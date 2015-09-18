@@ -95,11 +95,14 @@ class CSSMin {
 	 * @return array List of local file references
 	 */
 	public static function getAllLocalFileReferences( $source, $path ) {
+		$comments = array();
+		$stripped = self::replaceComments( $source, $comments );
+
 		$path = rtrim( $path, '/' ) . '/';
 		$files = array();
 
 		$rFlags = PREG_OFFSET_CAPTURE | PREG_SET_ORDER;
-		if ( preg_match_all( '/' . self::URL_REGEX . '/', $source, $matches, $rFlags ) ) {
+		if ( preg_match_all( '/' . self::URL_REGEX . '/', $stripped, $matches, $rFlags ) ) {
 			foreach ( $matches as $match ) {
 				$url = $match['file'][0];
 
@@ -250,25 +253,9 @@ class CSSMin {
 			$remote = substr( $remote, 0, -1 );
 		}
 
-		// Disallow U+007F DELETE, which is illegal anyway, and which
-		// we use for comment placeholders.
-		$source = str_replace( "\x7f", "?", $source );
-
-		// Replace all comments by a placeholder so they will not interfere with the remapping.
-		// Warning: This will also catch on anything looking like the start of a comment between
-		// quotation marks (e.g. "foo /* bar").
+		// Keep track of the comments we're about to replace with placeholders
 		$comments = array();
-
-		$pattern = '/(?!' . CSSMin::EMBED_REGEX . ')(' . CSSMin::COMMENT_REGEX . ')/s';
-
-		$source = preg_replace_callback(
-			$pattern,
-			function ( $match ) use ( &$comments ) {
-				$comments[] = $match[ 0 ];
-				return CSSMin::PLACEHOLDER . ( count( $comments ) - 1 ) . 'x';
-			},
-			$source
-		);
+		$source = self::replaceComments( $source, $comments );
 
 		// Note: This will not correctly handle cases where ';', '{' or '}'
 		// appears in the rule itself, e.g. in a quoted string. You are advised
@@ -356,6 +343,35 @@ class CSSMin {
 
 		return $source;
 
+	}
+
+	/**
+	 * Plucks comments out of $source into $comments array, replacing them
+	 * with placeholders.
+	 * @param string $source
+	 * @param array $comments
+	 * @return string input, with comments stripped out.
+	 */
+	protected static function replaceComments( $source, &$comments ) {
+		// Disallow U+007F DELETE, which is illegal anyway, and which
+		// we use for comment placeholders.
+		$source = str_replace( "\x7f", "?", $source );
+
+		// Replace all comments by a placeholder so they will not interfere with the remapping.
+		// Warning: This will also catch on anything looking like the start of a comment between
+		// quotation marks (e.g. "foo /* bar").
+
+		$pattern = '/(?!' . CSSMin::EMBED_REGEX . ')(' . CSSMin::COMMENT_REGEX . ')/s';
+
+		$source = preg_replace_callback(
+			$pattern,
+			function ( $match ) use ( &$comments ) {
+				$comments[] = $match[ 0 ];
+				return CSSMin::PLACEHOLDER . ( count( $comments ) - 1 ) . 'x';
+			},
+			$source
+		);
+		return $source;
 	}
 
 	/**
