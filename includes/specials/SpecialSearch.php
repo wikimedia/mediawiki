@@ -367,8 +367,8 @@ class SpecialSearch extends SpecialPage {
 			}
 
 			// show interwiki results if any
-			if ( $textMatches->hasInterwikiResults() ) {
-				$out->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults(), $term ) );
+			if ( $textMatches->hasInterwikiResults( SearchResultSet::SIDEBAR_RESULTS ) ) {
+				$out->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults( SearchResultSet::SIDEBAR_RESULTS ), $term ) );
 			}
 			// show results
 			if ( $numTextMatches > 0 ) {
@@ -377,16 +377,38 @@ class SpecialSearch extends SpecialPage {
 
 			$textMatches->free();
 		}
+
+		$hasOtherResults = $textMatches->hasInterwikiResults( SearchResultSet::INLINE_RESULTS );
+
 		if ( $num === 0 ) {
 			if ( $textStatus ) {
 				$out->addHTML( '<div class="error">' .
 					$textStatus->getMessage( 'search-error' ) . '</div>' );
 			} else {
-				$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>",
-					array( 'search-nonefound', wfEscapeWikiText( $term ) ) );
 				$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
+				if( $hasOtherResults ) {
+					$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>",
+						array( $hasOtherResults ? 'search-nonefound-otherwiki' : 'search-nonefound', wfEscapeWikiText( $term ) ) );
+				} else {
+					$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>",
+							array( 'search-nonefound', wfEscapeWikiText( $term ) ) );
+				}
 			}
 		}
+
+		if( $hasOtherResults ) {
+			foreach( $textMatches->getInterwikiResults( SearchResultSet::INLINE_RESULTS ) as $interwiki => $interwikiResult ) {
+				if( $interwikiResult instanceof Status || $interwikiResult->numRows() == 0 ) {
+					// ignore bad interwikis for now
+					continue;
+				}
+				// TODO: wiki header
+				$out->addHTML( $this->wikiHeader( $interwiki ) );
+				$out->addHTML( $this->showMatches( $interwikiResult ) );
+			}
+		}
+
+		$out->addHtml( "</div>" );
 
 		if ( $prevnext ) {
 			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
@@ -396,6 +418,15 @@ class SpecialSearch extends SpecialPage {
 
 		Hooks::run( 'SpecialSearchResultsAppend', array( $this, $out ) );
 
+	}
+
+	/**
+	 * Produce wiki header for interwiki results
+	 * @param string $interwiki
+	 */
+	protected function wikiHeader ( $interwiki ) {
+		// TODO: this needs to have something sane
+		return "<b>Another wiki: $interwiki</b><br>";
 	}
 
 	/**

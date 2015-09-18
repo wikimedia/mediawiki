@@ -928,6 +928,7 @@
 	"showingresultsinrange": "Showing below up to {{PLURAL:$1|<strong>1</strong> result|<strong>$1</strong> results}} in range #<strong>$2</strong> to #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Result <strong>$1</strong> of <strong>$3</strong>|Results <strong>$1 - $2</strong> of <strong>$3</strong>}}",
 	"search-nonefound": "There were no results matching the query.",
+	"search-nonefound-otherwiki": "There were no results matching the query in this wiki. Below are the results from other wikis.",
 	"powersearch-legend": "Advanced search",
 	"powersearch-ns": "Search in namespaces:",
 	"powersearch-togglelabel": "Check:",
