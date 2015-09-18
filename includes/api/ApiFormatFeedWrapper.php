@@ -60,15 +60,6 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	}
 
 	/**
-	 * Optimization - no need to sanitize data that will not be needed
-	 *
-	 * @return bool
-	 */
-	public function getNeedsRawData() {
-		return true;
-	}
-
-	/**
 	 * ChannelFeed doesn't give us a method to print errors in a friendly
 	 * manner, so just punt errors to the default printer.
 	 * @return bool
