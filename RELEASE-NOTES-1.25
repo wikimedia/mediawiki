@@ -12,6 +12,9 @@ THIS IS NOT YET A RELEASE!
   pointing to nonexistent pages.
 * (T104142) $wgEmergencyContact and $wgPasswordSender now use their default
   value if set to an empty string.
+* (T62174) Provide fallbacks for use of mb_convert_encoding() in
+  HtmlFormatter. It was causing an error when accessing the api help page
+  if the mbstring PHP extension was not installed.
 
 == MediaWiki 1.25.2 ==
 
