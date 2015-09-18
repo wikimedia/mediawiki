@@ -237,8 +237,8 @@ abstract class Skin extends ContextSource {
 			$titles[] = $user->getTalkPage();
 		}
 
-		// Other tab link
-		if ( $title->isSpecialPage() ) {
+		// Check, if the page can hold some kind of content, otherwise do nothing
+		if ( !$title->canExist() ) {
 			// nothing
 		} elseif ( $title->isTalkPage() ) {
 			$titles[] = $title->getSubjectPage();
