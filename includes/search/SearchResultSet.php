@@ -25,6 +25,21 @@
  * @ingroup Search
  */
 class SearchResultSet {
+
+	/**
+	 * Types of interwiki results
+	 */
+	/**
+	 * Results that are displayed only together with existing main wiki results
+	 * @var int
+	 */
+	const SECONDARY_RESULTS = 0;
+	/**
+	 * Results that can displayed even if no existing main wiki results exist
+	 * @var int
+	 */
+	const INLINE_RESULTS = 1;
+
 	protected $containedSyntax = false;
 
 	public function __construct( $containedSyntax = false ) {
@@ -116,7 +131,7 @@ class SearchResultSet {
 	 *
 	 * @return SearchResultSet
 	 */
-	function getInterwikiResults() {
+	function getInterwikiResults( $type = self::SECONDARY_RESULTS ) {
 		return null;
 	}
 
@@ -125,8 +140,8 @@ class SearchResultSet {
 	 *
 	 * @return bool
 	 */
-	function hasInterwikiResults() {
-		return $this->getInterwikiResults() != null;
+	function hasInterwikiResults( $type = self::SECONDARY_RESULTS ) {
+		return false;
 	}
 
 	/**
