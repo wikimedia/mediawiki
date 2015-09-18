@@ -121,7 +121,7 @@ class HttpError extends MWException {
 		if ( $this->content instanceof Message ) {
 			$contentHtml = $this->content->escaped();
 		} else {
-			$contentHtml = htmlspecialchars( $this->content );
+			$contentHtml = nl2br( htmlspecialchars( $this->content ) );
 		}
 
 		return "<!DOCTYPE html>\n" .
