@@ -260,9 +260,10 @@ class WANObjectCache {
 	/**
 	 * Purge a key from all clusters
 	 *
-	 * This deletes the key and instantiates a hold-off period where the key
-	 * cannot be written to for the next few seconds (HOLDOFF_TTL). This is to
-	 * avoid the following race condition:
+	 * This should only be called when the underlying data (being cached)
+	 * changes in a significant way. This deletes the key and starts a hold-off
+	 * period where the key cannot be written to for a few seconds (HOLDOFF_TTL).
+	 * This is done to avoid the following race condition:
 	 *   a) Some DB data changes and delete() is called on a corresponding key
 	 *   b) A request refills the key with a stale value from a lagged DB
 	 *   c) The stale value is stuck there until the key is expired/evicted
@@ -274,9 +275,10 @@ class WANObjectCache {
 	 *   a) Replication lag is bounded to being less than HOLDOFF_TTL; or
 	 *   b) If lag is higher, the DB will have gone into read-only mode already
 	 *
-	 * This should only be called when the underlying data (being cached)
-	 * changes in a significant way. If called twice on the same key, then
-	 * the last TTL takes precedence.
+	 * If called twice on the same key, then the last hold-off TTL takes
+	 * precedence. For idempotence, the $ttl should not vary for different
+	 * delete() calls on the same key. Also note that lowering $ttl reduces
+	 * the effective range of the 'lockTSE' parameter to getWithSetCallback().
 	 *
 	 * @param string $key Cache key
 	 * @param integer $ttl How long to block writes to the key [seconds]
@@ -469,6 +471,7 @@ class WANObjectCache {
 	 *               Other threads will try to use stale values if possible.
 	 *               If, on miss, the time since expiration is low, the assumption
 	 *               is that the key is hot and that a stampede is worth avoiding.
+	 *               Setting this above WANObjectCache::HOLDOFF_TTL makes no difference.
 	 *   - tempTTL : TTL of the temp key used to cache values while a key is tombstoned.
 	 *               This avoids excessive regeneration of hot keys on delete() but may
 	 *               result in stale values.
@@ -491,23 +494,24 @@ class WANObjectCache {
 			return $value;
 		}
 
+		// A deleted key with a negative TTL left must be tombstoned
 		$isTombstone = ( $curTTL !== null && $value === false );
 		// Assume a key is hot if requested soon after invalidation
 		$isHot = ( $curTTL !== null && $curTTL <= 0 && abs( $curTTL ) <= $lockTSE );
 
-		$locked = false;
+		$lockAcquired = false;
 		if ( $isHot ) {
 			// Acquire a cluster-local non-blocking lock
 			if ( $this->cache->lock( $key, 0, self::LOCK_TTL ) ) {
 				// Lock acquired; this thread should update the key
-				$locked = true;
+				$lockAcquired = true;
 			} elseif ( $value !== false ) {
 				// If it cannot be acquired; then the stale value can be used
 				return $value;
 			}
 		}
 
-		if ( !$locked && ( $isTombstone || $isHot ) ) {
+		if ( !$lockAcquired && ( $isTombstone || $isHot ) ) {
 			// Use the stash value for tombstoned keys to reduce regeneration load.
 			// For hot keys, either another thread has the lock or the lock failed;
 			// use the stash value from the last thread that regenerated it.
@@ -529,7 +533,7 @@ class WANObjectCache {
 			$this->cache->set( self::STASH_KEY_PREFIX . $key, $value, $tempTTL );
 		}
 
-		if ( $locked ) {
+		if ( $lockAcquired ) {
 			$this->cache->unlock( $key );
 		}
 
