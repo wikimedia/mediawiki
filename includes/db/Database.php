@@ -58,7 +58,6 @@ abstract class DatabaseBase implements IDatabase {
 	protected $mSchema;
 	protected $mFlags;
 	protected $mForeign;
-	protected $mErrorCount = 0;
 	protected $mLBInfo = array();
 	protected $mDefaultBigSelects = null;
 	protected $mSchemaVars = false;
@@ -257,15 +256,6 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	public function trxTimestamp() {
 		return $this->mTrxLevel ? $this->mTrxTimestamp : null;
-	}
-
-	/**
-	 * Get/set the number of errors logged. Only useful when errors are ignored
-	 * @param int $count The count to set, or omitted to leave it unchanged.
-	 * @return int The error count
-	 */
-	public function errorCount( $count = null ) {
-		return wfSetVar( $this->mErrorCount, $count );
 	}
 
 	/**
@@ -1111,8 +1101,6 @@ abstract class DatabaseBase implements IDatabase {
 	 * @throws DBQueryError
 	 */
 	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
-		++$this->mErrorCount;
-
 		if ( $this->ignoreErrors() || $tempIgnore ) {
 			wfDebug( "SQL ERROR (ignored): $error\n" );
 		} else {
