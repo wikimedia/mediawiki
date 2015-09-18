@@ -73,6 +73,12 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected $runSuggestion = true;
 
+	/**
+	 * Names of the wikis
+	 * @var array
+	 */
+	protected $customCaptions;
+
 	const NAMESPACES_CURRENT = 'sense';
 
 	public function __construct() {
@@ -366,9 +372,9 @@ class SpecialSearch extends SpecialPage {
 				$out->wrapWikiMsg( "==$1==\n", 'textmatches' );
 			}
 
-			// show interwiki results if any
-			if ( $textMatches->hasInterwikiResults() ) {
-				$out->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults(), $term ) );
+			// show secondary interwiki results if any
+			if ( $textMatches->hasInterwikiResults( SearchResultSet::SECONDARY_RESULTS ) ) {
+				$out->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults( SearchResultSet::SECONDARY_RESULTS ), $term ) );
 			}
 			// show results
 			if ( $numTextMatches > 0 ) {
@@ -377,16 +383,32 @@ class SpecialSearch extends SpecialPage {
 
 			$textMatches->free();
 		}
+
+		$hasOtherResults = $textMatches->hasInterwikiResults( SearchResultSet::INLINE_RESULTS );
+
 		if ( $num === 0 ) {
 			if ( $textStatus ) {
 				$out->addHTML( '<div class="error">' .
 					$textStatus->getMessage( 'search-error' ) . '</div>' );
 			} else {
-				$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>",
-					array( 'search-nonefound', wfEscapeWikiText( $term ) ) );
 				$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
+				$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>",
+					array( $hasOtherResults ? 'search-nonefound-thiswiki' : 'search-nonefound', wfEscapeWikiText( $term ) ) );
 			}
 		}
+
+		if( $hasOtherResults ) {
+			foreach( $textMatches->getInterwikiResults( SearchResultSet::INLINE_RESULTS ) as $interwiki => $interwikiResult ) {
+				if( $interwikiResult instanceof Status || $interwikiResult->numRows() == 0 ) {
+					// ignore bad interwikis for now
+					continue;
+				}
+				// TODO: wiki header
+				$out->addHTML( $this->showMatches( $interwikiResult, $interwiki ) );
+			}
+		}
+
+		$out->addHtml( "</div>" );
 
 		if ( $prevnext ) {
 			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
@@ -396,6 +418,15 @@ class SpecialSearch extends SpecialPage {
 
 		Hooks::run( 'SpecialSearchResultsAppend', array( $this, $out ) );
 
+	}
+
+	/**
+	 * Produce wiki header for interwiki results
+	 * @param string $interwiki
+	 */
+	protected function wikiHeader( $interwiki, $interwikiResult ) {
+		// TODO: we need to figure out how to name wikis correctly
+		return $this->msg( 'search-interwiki-results-' . $interwiki )->parse();
 	}
 
 	/**
@@ -640,13 +671,18 @@ class SpecialSearch extends SpecialPage {
 	 *
 	 * @return string
 	 */
-	protected function showMatches( &$matches ) {
+	protected function showMatches( &$matches, $interwiki = null ) {
 		global $wgContLang;
 
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
-
-		$out = "<ul class='mw-search-results'>\n";
+		$out = '';
 		$result = $matches->next();
+
+		if( $result && $interwiki ) {
+			$out .= $this->wikiHeader( $interwiki, $result );
+		}
+
+		$out .= "<ul class='mw-search-results'>\n";
 		while ( $result ) {
 			$out .= $this->showHit( $result, $terms );
 			$result = $matches->next();
@@ -817,6 +853,25 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
+	 * Extract custom captions from search-interwiki-custom message
+	 * @return array
+	 */
+	protected function getCustomCaptions() {
+		if( is_null($this->customCaptions) ) {
+			$this->customCaptions = array();
+			// format per line <iwprefix>:<caption>
+			$customLines = explode( "\n", $this->msg( 'search-interwiki-custom' )->text() );
+			foreach ( $customLines as $line ) {
+				$parts = explode( ":", $line, 2 );
+				if ( count( $parts ) == 2 ) { // validate line
+					$this->customCaptions[$parts[0]] = $parts[1];
+				}
+			}
+		}
+		return $this->customCaptions;
+	}
+
+	/**
 	 * Show results from other wikis
 	 *
 	 * @param SearchResultSet|array $matches
@@ -832,15 +887,7 @@ class SpecialSearch extends SpecialPage {
 		$out .= "<ul class='mw-search-iwresults'>\n";
 
 		// work out custom project captions
-		$customCaptions = array();
-		// format per line <iwprefix>:<caption>
-		$customLines = explode( "\n", $this->msg( 'search-interwiki-custom' )->text() );
-		foreach ( $customLines as $line ) {
-			$parts = explode( ":", $line, 2 );
-			if ( count( $parts ) == 2 ) { // validate line
-				$customCaptions[$parts[0]] = $parts[1];
-			}
-		}
+		$customCaptions = $this->getCustomCaptions();
 
 		if ( !is_array( $matches ) ) {
 			$matches = array( $matches );
