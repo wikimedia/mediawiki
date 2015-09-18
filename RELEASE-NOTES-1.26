@@ -187,6 +187,7 @@ changes to languages because of Phabricator reports.
 * Watchlist tokens, SpecialResetTokens, and User::getTokenFromOption()
   are deprecated. Applications using those can work via the OAuth
   extension instead. New tokens types should not be added.
+* DatabaseBase::errorCount() was removed (unused).
 
 == Compatibility ==
 
