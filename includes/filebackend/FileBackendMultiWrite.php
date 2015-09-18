@@ -40,9 +40,7 @@
  * @since 1.19
  */
 class FileBackendMultiWrite extends FileBackend {
-	/** @var array Prioritized list of FileBackendStore objects.
-	 * array of (backend index => backends)
-	 */
+	/** @var FileBackendStore[] Prioritized list of FileBackendStore objects */
 	protected $backends = array();
 
 	/** @var int Index of master backend */
@@ -688,6 +686,6 @@ class FileBackendMultiWrite extends FileBackend {
 		);
 
 		// Actually acquire the locks
-		return array( $this->getScopedFileLocks( $pbPaths, 'mixed', $status ) );
+		return $this->getScopedFileLocks( $pbPaths, 'mixed', $status );
 	}
 }

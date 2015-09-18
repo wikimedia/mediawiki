@@ -1302,7 +1302,7 @@ abstract class FileBackend {
 	 *
 	 * @param array $ops List of file operations to FileBackend::doOperations()
 	 * @param Status $status Status to update on lock/unlock
-	 * @return array List of ScopedFileLocks or null values
+	 * @return ScopedLock|null
 	 * @since 1.20
 	 */
 	abstract public function getScopedLocksForOps( array $ops, Status $status );
