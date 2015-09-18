@@ -25,6 +25,13 @@
  * @ingroup Search
  */
 class SearchResultSet {
+
+	/**
+	 * Types of interwiki results
+	 */
+	const SIDEBAR_RESULTS = 0;
+	const INLINE_RESULTS = 1;
+
 	protected $containedSyntax = false;
 
 	public function __construct( $containedSyntax = false ) {
@@ -116,7 +123,7 @@ class SearchResultSet {
 	 *
 	 * @return SearchResultSet
 	 */
-	function getInterwikiResults() {
+	function getInterwikiResults( $type = self::SIDEBAR_RESULTS ) {
 		return null;
 	}
 
@@ -125,8 +132,8 @@ class SearchResultSet {
 	 *
 	 * @return bool
 	 */
-	function hasInterwikiResults() {
-		return $this->getInterwikiResults() != null;
+	function hasInterwikiResults( $type = self::SIDEBAR_RESULTS ) {
+		return false;
 	}
 
 	/**
