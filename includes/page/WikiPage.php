@@ -2739,7 +2739,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function doDeleteArticleReal(
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
 	) {
-		global $wgUser, $wgContentHandlerUseDB;
+		global $wgUser, $wgContentHandlerUseDB, $wgMemc;
 
 		wfDebug( __METHOD__ . "\n" );
 
@@ -2871,6 +2871,10 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $commit ) {
 			$dbw->commit( __METHOD__ );
 		}
+
+		// Show log excerpt on 404 pages rather than just a link
+		$key = wfMemcKey( 'page-recent-delete', md5( $logTitle->getPrefixedText() ) );
+		$wgMemc->set( $key, 1, 3600 );
 
 		$this->doDeleteUpdates( $id, $content );
 

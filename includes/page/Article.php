@@ -1189,7 +1189,7 @@ class Article implements Page {
 	 * namespace, show the default message text. To be called from Article::view().
 	 */
 	public function showMissingArticle() {
-		global $wgSend404Code;
+		global $wgSend404Code, $wgMemc;
 
 		$outputPage = $this->getContext()->getOutput();
 		// Whether the page is a root user page of an existing user (but not a subpage)
@@ -1234,18 +1234,32 @@ class Article implements Page {
 
 		Hooks::run( 'ShowMissingArticle', array( $this ) );
 
-		// Give extensions a chance to hide their (unrelated) log entries
-		$logTypes = array( 'delete', 'move' );
-		$conds = array( "log_action != 'revision'" );
-		Hooks::run( 'Article::MissingArticleConditions', array( &$conds, $logTypes ) );
-
-		# Show delete and move logs
-		LogEventsList::showLogExtract( $outputPage, $logTypes, $title, '',
-			array( 'lim' => 10,
-				'conds' => $conds,
-				'showIfEmpty' => false,
-				'msgKey' => array( 'moveddeleted-notice' ) )
-		);
+		# Show delete and move logs if there were any such events.
+		# The logging query can DOS the site when bots/crawlers cause 404 floods,
+		# so be careful showing this. 404 pages must be cheap as they are hard to cache.
+		$key = wfMemcKey( 'page-recent-delete', md5( $title->getPrefixedText() ) );
+		$loggedIn = $this->getContext()->getUser()->getId();
+		if ( $loggedIn || $wgMemc->get( $key ) ) {
+			$logTypes = array( 'delete', 'move' );
+			$conds = array( "log_action != 'revision'" );
+			// Give extensions a chance to hide their (unrelated) log entries
+			Hooks::run( 'Article::MissingArticleConditions', array( &$conds, $logTypes ) );
+			LogEventsList::showLogExtract(
+				$outputPage,
+				$logTypes,
+				$title,
+				'',
+				array(
+					'lim' => 10,
+					'conds' => $conds,
+					'showIfEmpty' => false,
+					'msgKey' => array( $loggedIn
+						? 'moveddeleted-notice'
+						: 'moveddeleted-notice-recent'
+					)
+				)
+			);
+		}
 
 		if ( !$this->mPage->hasViewableContent() && $wgSend404Code && !$validUserPage ) {
 			// If there's no backing content, send a 404 Not Found
