@@ -75,13 +75,15 @@ class WANObjectCache {
 	const LOCK_TTL = 5;
 	/** Default remaining TTL at which to consider pre-emptive regeneration */
 	const LOW_TTL = 10;
-	/** Default TTL for temporarily caching tombstoned keys */
-	const TEMP_TTL = 5;
+	/** Default time-since-expiry on a miss that makes a key "hot" */
+	const LOCK_TSE = 1;
 
 	/** Idiom for set()/getWithSetCallback() TTL */
 	const TTL_NONE = 0;
 	/** Idiom for getWithSetCallback() callbacks to avoid calling set() */
 	const TTL_UNCACHEABLE = -1;
+	/** Idiom for getWithSetCallback() callbacks to 'lockTSE' logic */
+	const TSE_NONE = -1;
 
 	/** Cache format version number */
 	const VERSION = 1;
@@ -472,6 +474,7 @@ class WANObjectCache {
 	 *   - lowTTL  : consider pre-emptive updates when the current TTL (sec)
 	 *               of the key is less than this. It becomes more likely
 	 *               over time, becoming a certainty once the key is expired.
+	 *               [Default: WANObjectCache::LOW_TTL seconds]
 	 *   - lockTSE : if the key is tombstoned or expired (by $checkKeys) less
 	 *               than this many seconds ago, then try to have a single
 	 *               thread handle cache regeneration at any given time.
@@ -479,17 +482,16 @@ class WANObjectCache {
 	 *               If, on miss, the time since expiration is low, the assumption
 	 *               is that the key is hot and that a stampede is worth avoiding.
 	 *               Setting this above WANObjectCache::HOLDOFF_TTL makes no difference.
-	 *   - tempTTL : TTL of the temp key used to cache values while a key is tombstoned.
-	 *               This avoids excessive regeneration of hot keys on delete() but may
-	 *               result in stale values.
+	 *               The higher this is set, the higher the worst-case staleness can be.
+	 *               Use WANObjectCache::TSE_NONE to disable this logic.
+	 *               [Default: WANObjectCache::TSE_NONE]
 	 * @return mixed Value to use for the key
 	 */
 	final public function getWithSetCallback(
 		$key, $callback, $ttl, array $checkKeys = array(), array $opts = array()
 	) {
 		$lowTTL = isset( $opts['lowTTL'] ) ? $opts['lowTTL'] : min( self::LOW_TTL, $ttl );
-		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : -1;
-		$tempTTL = isset( $opts['tempTTL'] ) ? $opts['tempTTL'] : self::TEMP_TTL;
+		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
 
 		// Get the current key value
 		$curTTL = null;
@@ -505,9 +507,14 @@ class WANObjectCache {
 		$isTombstone = ( $curTTL !== null && $value === false );
 		// Assume a key is hot if requested soon after invalidation
 		$isHot = ( $curTTL !== null && $curTTL <= 0 && abs( $curTTL ) <= $lockTSE );
+		// Decide whether a single thread should handle regenerations.
+		// This avoids stampedes when $checkKeys are bumped and when preemptive
+		// renegerations take too long. It also reduces regenerations while $key
+		// is tombstoned. This balances cache freshness with avoiding DB load.
+		$useMutex = ( $isHot || ( $isTombstone && $lockTSE > 0 ) );
 
 		$lockAcquired = false;
-		if ( $isHot ) {
+		if ( $useMutex ) {
 			// Acquire a cluster-local non-blocking lock
 			if ( $this->cache->lock( $key, 0, self::LOCK_TTL ) ) {
 				// Lock acquired; this thread should update the key
@@ -515,16 +522,14 @@ class WANObjectCache {
 			} elseif ( $value !== false ) {
 				// If it cannot be acquired; then the stale value can be used
 				return $value;
-			}
-		}
-
-		if ( !$lockAcquired && ( $isTombstone || $isHot ) ) {
-			// Use the stash value for tombstoned keys to reduce regeneration load.
-			// For hot keys, either another thread has the lock or the lock failed;
-			// use the stash value from the last thread that regenerated it.
-			$value = $this->cache->get( self::STASH_KEY_PREFIX . $key );
-			if ( $value !== false ) {
-				return $value;
+			} else {
+				// Use the stash value for tombstoned keys to reduce regeneration load.
+				// For hot keys, either another thread has the lock or the lock failed;
+				// use the stash value from the last thread that regenerated it.
+				$value = $this->cache->get( self::STASH_KEY_PREFIX . $key );
+				if ( $value !== false ) {
+					return $value;
+				}
 			}
 		}
 
@@ -536,7 +541,8 @@ class WANObjectCache {
 		$value = call_user_func_array( $callback, array( $cValue, &$ttl ) );
 		// When delete() is called, writes are write-holed by the tombstone,
 		// so use a special stash key to pass the new value around threads.
-		if ( $value !== false && ( $isHot || $isTombstone ) && $ttl >= 0 ) {
+		if ( $useMutex && $value !== false && $ttl >= 0 ) {
+			$tempTTL = max( 1, (int)$lockTSE ); // set() expects seconds
 			$this->cache->set( self::STASH_KEY_PREFIX . $key, $value, $tempTTL );
 		}
 
