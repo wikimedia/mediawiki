@@ -2872,6 +2872,10 @@ class WikiPage implements Page, IDBAccessObject {
 			$dbw->commit( __METHOD__ );
 		}
 
+		// Show log excerpt on 404 pages rather than just a link
+		$key = wfMemcKey( 'page-recent-delete', md5( $logTitle->getPrefixedText() ) );
+		ObjectCache::getMainStashInstance()->set( $key, 1, 86400 );
+
 		$this->doDeleteUpdates( $id, $content );
 
 		Hooks::run( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id, $content, $logEntry ) );
