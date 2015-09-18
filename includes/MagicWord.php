@@ -950,10 +950,12 @@ class MagicWordArray {
 			if ( $regex === '' ) {
 				continue;
 			}
-			preg_match_all( $regex, $text, $matches, PREG_SET_ORDER );
-			foreach ( $matches as $m ) {
-				list( $name, $param ) = $this->parseMatch( $m );
-				$found[$name] = $param;
+			$matches = array();
+			if ( preg_match_all( $regex, $text, $matches, PREG_SET_ORDER ) ) {
+				foreach ( $matches as $m ) {
+					list( $name, $param ) = $this->parseMatch( $m );
+					$found[$name] = $param;
+				}
 			}
 			$text = preg_replace( $regex, '', $text );
 		}
