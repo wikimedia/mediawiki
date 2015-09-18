@@ -1281,6 +1281,7 @@
 	"deletereasonotherlist": "Ուրիշ պատճառ",
 	"deletereason-dropdown": "*Ջնջման տարածված պատճառներ\n** Հեղինակի խնդրանքով\n** Հեղինակային իրավունքների խախտում\n** Վանդալություն",
 	"delete-edit-reasonlist": "Խմբագրել ջնջման պատճառները",
+	"deleting-backlinks-warning": "'''Զգուշացում''', ձեր կողմից ջնջվող էջին հղվում են [[Special:WhatLinksHere/{{FULLPAGENAME}}|այլ հոդվածներ]]:",
 	"rollback": "Հետ գլորել խմբագրումները",
 	"rollbacklink": "հետ գլորել",
 	"rollbacklinkcount": "հետ գլորել $1 {{PLURAL:$1|խմբագրում}}",

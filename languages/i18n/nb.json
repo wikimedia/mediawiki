@@ -1037,7 +1037,7 @@
 	"userrights-lookup-user": "Ordne brukergrupper",
 	"userrights-user-editname": "Skriv inn et brukernavn:",
 	"editusergroup": "Endre brukergrupper",
-	"editinguser": "Endrer brukerrettighetene for {{GENDER:$1|bruker}} <strong>[[Bruker:$1|$1]]</strong> $2",
+	"editinguser": "Endrer brukerrettighetene for {{GENDER:$1|bruker}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Rediger brukergrupper",
 	"saveusergroups": "Lagre brukergrupper",
 	"userrights-groupsmember": "Medlem av:",
