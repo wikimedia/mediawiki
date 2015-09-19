@@ -1271,20 +1271,21 @@ $user: User being checked
 $confirmed: Whether or not the email address is confirmed
 
 'EmailUser': Before sending email from one user to another.
-$to: address of receiving user
-$from: address of sending user
+$to: MailAddress object of receiving user
+$from: MailAddress object of sending user
 $subject: subject of the mail
 $text: text of the mail
+&$error: Out-param for an error
 
 'EmailUserCC': Before sending the copy of the email to the author.
-$to: address of receiving user
-$from: address of sending user
+$to: MailAddress object of receiving user
+$from: MailAddress object of sending user
 $subject: subject of the mail
 $text: text of the mail
 
 'EmailUserComplete': After sending email from one user to another.
-$to: address of receiving user
-$from: address of sending user
+$to: MailAddress object of receiving user
+$from: MailAddress object of sending user
 $subject: subject of the mail
 $text: text of the mail
 
