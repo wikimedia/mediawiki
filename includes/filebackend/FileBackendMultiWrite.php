@@ -54,12 +54,6 @@ class FileBackendMultiWrite extends FileBackend {
 	/** @var string|bool */
 	protected $autoResync = false;
 
-	/** @var array */
-	protected $noPushDirConts = array();
-
-	/** @var bool */
-	protected $noPushQuickOps = false;
-
 	/* Possible internal backend consistency checks */
 	const CHECK_SIZE = 1;
 	const CHECK_TIME = 2;
@@ -88,8 +82,6 @@ class FileBackendMultiWrite extends FileBackend {
 	 *                      Use "conservative" to limit resyncing to copying newer master
 	 *                      backend files over older (or non-existing) clone backend files.
 	 *                      Cases that cannot be handled will result in operation abortion.
-	 *   - noPushQuickOps : (hack) Only apply doQuickOperations() to the master backend.
-	 *   - noPushDirConts : (hack) Only apply directory functions to the master backend.
 	 *
 	 * @param array $config
 	 * @throws FileBackendError
@@ -102,12 +94,6 @@ class FileBackendMultiWrite extends FileBackend {
 		$this->autoResync = isset( $config['autoResync'] )
 			? $config['autoResync']
 			: false;
-		$this->noPushQuickOps = isset( $config['noPushQuickOps'] )
-			? $config['noPushQuickOps']
-			: false;
-		$this->noPushDirConts = isset( $config['noPushDirConts'] )
-			? $config['noPushDirConts']
-			: array();
 		// Construct backends here rather than via registration
 		// to keep these backends hidden from outside the proxy.
 		$namesUsed = array();
@@ -460,12 +446,10 @@ class FileBackendMultiWrite extends FileBackend {
 		$masterStatus = $this->backends[$this->masterIndex]->doQuickOperations( $realOps );
 		$status->merge( $masterStatus );
 		// Propagate the operations to the clone backends...
-		if ( !$this->noPushQuickOps ) {
-			foreach ( $this->backends as $index => $backend ) {
-				if ( $index !== $this->masterIndex ) { // not done already
-					$realOps = $this->substOpBatchPaths( $ops, $backend );
-					$status->merge( $backend->doQuickOperations( $realOps ) );
-				}
+		foreach ( $this->backends as $index => $backend ) {
+			if ( $index !== $this->masterIndex ) { // not done already
+				$realOps = $this->substOpBatchPaths( $ops, $backend );
+				$status->merge( $backend->doQuickOperations( $realOps ) );
 			}
 		}
 		// Make 'success', 'successCount', and 'failCount' fields reflect
@@ -478,24 +462,11 @@ class FileBackendMultiWrite extends FileBackend {
 		return $status;
 	}
 
-	/**
-	 * @param string $path Storage path
-	 * @return bool Path container should have dir changes pushed to all backends
-	 */
-	protected function replicateContainerDirChanges( $path ) {
-		list( , $shortCont, ) = self::splitStoragePath( $path );
-
-		return !in_array( $shortCont, $this->noPushDirConts );
-	}
-
 	protected function doPrepare( array $params ) {
 		$status = Status::newGood();
-		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
 		foreach ( $this->backends as $index => $backend ) {
-			if ( $replicate || $index == $this->masterIndex ) {
-				$realParams = $this->substOpPaths( $params, $backend );
-				$status->merge( $backend->doPrepare( $realParams ) );
-			}
+			$realParams = $this->substOpPaths( $params, $backend );
+			$status->merge( $backend->doPrepare( $realParams ) );
 		}
 
 		return $status;
@@ -503,12 +474,9 @@ class FileBackendMultiWrite extends FileBackend {
 
 	protected function doSecure( array $params ) {
 		$status = Status::newGood();
-		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
 		foreach ( $this->backends as $index => $backend ) {
-			if ( $replicate || $index == $this->masterIndex ) {
-				$realParams = $this->substOpPaths( $params, $backend );
-				$status->merge( $backend->doSecure( $realParams ) );
-			}
+			$realParams = $this->substOpPaths( $params, $backend );
+			$status->merge( $backend->doSecure( $realParams ) );
 		}
 
 		return $status;
@@ -516,12 +484,9 @@ class FileBackendMultiWrite extends FileBackend {
 
 	protected function doPublish( array $params ) {
 		$status = Status::newGood();
-		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
 		foreach ( $this->backends as $index => $backend ) {
-			if ( $replicate || $index == $this->masterIndex ) {
-				$realParams = $this->substOpPaths( $params, $backend );
-				$status->merge( $backend->doPublish( $realParams ) );
-			}
+			$realParams = $this->substOpPaths( $params, $backend );
+			$status->merge( $backend->doPublish( $realParams ) );
 		}
 
 		return $status;
@@ -529,12 +494,9 @@ class FileBackendMultiWrite extends FileBackend {
 
 	protected function doClean( array $params ) {
 		$status = Status::newGood();
-		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
 		foreach ( $this->backends as $index => $backend ) {
-			if ( $replicate || $index == $this->masterIndex ) {
-				$realParams = $this->substOpPaths( $params, $backend );
-				$status->merge( $backend->doClean( $realParams ) );
-			}
+			$realParams = $this->substOpPaths( $params, $backend );
+			$status->merge( $backend->doClean( $realParams ) );
 		}
 
 		return $status;
