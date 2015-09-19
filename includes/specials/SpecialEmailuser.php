@@ -312,9 +312,10 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			// Messages used here: notargettext, noemailtext, nowikiemailtext
 			return $context->msg( $target . 'text' )->parseAsBlock();
 		}
+		$sender = $context->getUser();
 
 		$to = MailAddress::newFromUser( $target );
-		$from = MailAddress::newFromUser( $context->getUser() );
+		$from = MailAddress::newFromUser( $sender );
 		$subject = $data['Subject'];
 		$text = $data['Text'];
 
@@ -324,7 +325,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			$from->name, $to->name )->inContentLanguage()->text();
 
 		$error = '';
-		if ( !Hooks::run( 'EmailUser', array( &$to, &$from, &$subject, &$text, &$error ) ) ) {
+		if ( !Hooks::run( 'EmailUser', array( &$to, &$from, &$subject, &$text, &$error, $target, $sender ) ) ) {
 			return $error;
 		}
 
@@ -369,12 +370,15 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			if ( $data['CCMe'] && $to != $from ) {
 				$cc_subject = $context->msg( 'emailccsubject' )->rawParams(
 					$target->getName(), $subject )->text();
-				Hooks::run( 'EmailUserCC', array( &$from, &$from, &$cc_subject, &$text ) );
+
+				// target and sender are equal, because this is the CC for the sender
+				Hooks::run( 'EmailUserCC', array( &$from, &$from, &$cc_subject, &$text, $sender, $sender ) );
+
 				$ccStatus = UserMailer::send( $from, $from, $cc_subject, $text );
 				$status->merge( $ccStatus );
 			}
 
-			Hooks::run( 'EmailUserComplete', array( $to, $from, $subject, $text ) );
+			Hooks::run( 'EmailUserComplete', array( $to, $from, $subject, $text, $target, $sender ) );
 
 			return $status;
 		}
