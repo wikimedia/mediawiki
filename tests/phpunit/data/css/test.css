@@ -9,3 +9,7 @@
 .selector { /*@embed*/ /*@noflip*/ background-image: url(simple-ltr.gif); }
 
 .selector { /*@noflip*/ background-image: /*@embed*/ url(simple-ltr.gif); }
+
+/*
+.selector { background-image: url(commented-out.gif); }
+*/

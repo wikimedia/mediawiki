@@ -91,15 +91,16 @@ class CSSMin {
 	 * non-existent files.
 	 *
 	 * @param string $source CSS stylesheet source to process
-	 * @param string $path File path where the source wa
+	 * @param string $path File path where the source was read from
 	 * @return array List of local file references
 	 */
 	public static function getAllLocalFileReferences( $source, $path ) {
+		$stripped = preg_replace( '/' . self::COMMENT_REGEX . '/s', '', $source );
 		$path = rtrim( $path, '/' ) . '/';
 		$files = array();
 
 		$rFlags = PREG_OFFSET_CAPTURE | PREG_SET_ORDER;
-		if ( preg_match_all( '/' . self::URL_REGEX . '/', $source, $matches, $rFlags ) ) {
+		if ( preg_match_all( '/' . self::URL_REGEX . '/', $stripped, $matches, $rFlags ) ) {
 			foreach ( $matches as $match ) {
 				$url = $match['file'][0];
 
