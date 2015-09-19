@@ -606,6 +606,7 @@
 	"changeemail-password": "Dein {{SITENAME}}-Passwort:",
 	"changeemail-submit": "E-Mail-Adresse ändern",
 	"changeemail-throttled": "Du hast zu viele Anmeldeversuche unternommen.\nBitte warte $1, bevor du es erneut versuchst.",
+	"changeemail-nochange": "Bitte gib eine andere neue E-Mail-Adresse ein.",
 	"resettokens": "Tokens zurücksetzen",
 	"resettokens-text": "Du kannst Tokens zurücksetzen, welche dir den Zugriff auf bestimmte private Daten ermöglichen, die mit deinem Benutzerkonto hier verknüpft sind.\n\nDu solltest dies nur machen, wenn du die Tokens versehentlich mit jemandem geteilt hast oder dein Konto gefährdet ist.",
 	"resettokens-no-tokens": "Es gibt keine Tokens zum Zurücksetzen.",

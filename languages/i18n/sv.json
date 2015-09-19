@@ -590,6 +590,7 @@
 	"changeemail-password": "Ditt lösenord till {{SITENAME}}:",
 	"changeemail-submit": "Ändra e-post",
 	"changeemail-throttled": "Du har gjort för många inloggningsförsök.\nVänta $1 innan du försöker igen.",
+	"changeemail-nochange": "Ange en annan ny e-postadress.",
 	"resettokens": "Återställ nycklar",
 	"resettokens-text": "Du kan återställa nycklar som tillåter åtkomst till vissa privata uppgifter som är associerade till ditt konto här.\n\nDu bör återställa om du av misstag delade dem med någon eller om ditt konto har äventyrats.",
 	"resettokens-no-tokens": "Det finns inga nycklar att återställa.",

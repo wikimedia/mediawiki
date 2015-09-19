@@ -536,6 +536,7 @@
 	"changeemail-password": "Vaše geslo za {{GRAMMAR:tožilnik|{{SITENAME}}}}:",
 	"changeemail-submit": "Spremeni e-naslov",
 	"changeemail-throttled": "Izvedli ste preveč poskusov prijave.\nProsimo, počakajte $1, preden poskusite znova.",
+	"changeemail-nochange": "Prosimo, vnesite drugačen nov e-poštni naslov.",
 	"resettokens": "Ponastavitev žetonov",
 	"resettokens-text": "Žetone lahko ponastavite, kar omogoča dostop do nekaterih zasebnih podatkov, povezanih z vašim računom.\n\nTo storite, če ste po nesreči žetone z nekom delili, ali če je bil vaš račun ogrožen.",
 	"resettokens-no-tokens": "Ni nobenih žetonov za ponastavitev.",

@@ -538,6 +538,7 @@
 	"changeemail-password": "Äert {{SITENAME}}-Passwuert:",
 	"changeemail-submit": "Mailadress änneren",
 	"changeemail-throttled": "Dir hutt zevill dacks versicht Iech anzeloggen.\nWaart w.e.g. $1 ier Dir et nach eng Kéier probéiert.",
+	"changeemail-nochange": "Gitt w.e.g. eng aner nei E-Mail-Adress an.",
 	"resettokens": "Token zrécksetzen",
 	"resettokens-no-tokens": "Et gëtt keng Tokens fir zréck ze setzen.",
 	"resettokens-tokens": "Token:",

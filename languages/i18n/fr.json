@@ -655,6 +655,7 @@
 	"changeemail-password": "Votre mot de passe sur {{SITENAME}} :",
 	"changeemail-submit": "Changer l’adresse de courriel",
 	"changeemail-throttled": "Vous avez fait trop de tentatives de connexion.\nVeuillez attendre $1 avant de réessayer.",
+	"changeemail-nochange": "Veuillez saisir une nouvelle adresse de courriel différente de la précédente.",
 	"resettokens": "Réinitialiser les jetons",
 	"resettokens-text": "Ici, vous pouvez réinitialiser les jetons qui permettent d’accéder à certaines données privées associées à votre compte.\n\nVous devriez le faire si vous les avez partagés accidentellement avec quelqu'un ou si votre compte a été compromis.",
 	"resettokens-no-tokens": "Il n’y a aucun jeton à réinitialiser.",

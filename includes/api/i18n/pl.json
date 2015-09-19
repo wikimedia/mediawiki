@@ -176,6 +176,7 @@
 	"apihelp-query+allcategories-param-dir": "Kierunek sortowania.",
 	"apihelp-query+allcategories-param-limit": "Liczba kategorii do zwórcenia.",
 	"apihelp-query+alldeletedrevisions-paraminfo-useronly": "Może być użyte tylko z <var>$3user</var>.",
+	"apihelp-query+alldeletedrevisions-paraminfo-nonuseronly": "Nie może być używane z <var>$3user</var>.",
 	"apihelp-query+alldeletedrevisions-param-from": "Zacznij nasłuchiwanie na tym tytule.",
 	"apihelp-query+alldeletedrevisions-param-to": "Skończ nasłuchiwanie na tym tytule.",
 	"apihelp-query+alldeletedrevisions-param-tag": "Pokazuj tylko zmiany oznaczone tym znacznikiem.",

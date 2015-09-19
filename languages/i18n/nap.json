@@ -534,6 +534,7 @@
 	"changeemail-password": "'A password vosta pe' {{SITENAME}}:",
 	"changeemail-submit": "Cagna e-mail",
 	"changeemail-throttled": "Avite fatto troppe tentative 'a trasì.\nAspettate nu $1 apprimma 'e pruvà n'ata vota.",
+	"changeemail-nochange": "Pe' piacere mettite n'indirizzo e-mail differente",
 	"resettokens": "Riabbìa 'e token",
 	"resettokens-text": "Ccà se ponno riabbià 'e chiave ca permetessero l'acciesso a determinate date private associate a 'o cunto vuosto.\n\nL'aviste 'e ffà quanno l'avete spartuto pe' sbaglio cu cocche perzona o pure quanno 'o cunto d' 'o vuosto è stato compromesso.",
 	"resettokens-no-tokens": "Nun ce stanno token 'a riabbià.",

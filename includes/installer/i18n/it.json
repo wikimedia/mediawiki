@@ -14,7 +14,8 @@
 			"Ricordisamoa",
 			"Fpugliajno",
 			"The Polish",
-			"Sannita"
+			"Sannita",
+			"C.R."
 		]
 	},
 	"config-desc": "Programma di installazione per MediaWiki",
@@ -189,7 +190,7 @@
 	"config-mysql-charset": "Set di caratteri del database:",
 	"config-mysql-binary": "Binario",
 	"config-mysql-utf8": "UTF-8",
-	"config-mysql-charset-help": "In <strong>modalità binaria</strong>, MediaWiki archivia il testo UTF-8 nel database in cambi binari.\nQuesto è più efficiente rispetto alla modalità UTF-8 di MySQL, e consente di utilizzare la gamma completa di caratteri Unicode.\n\nIn <strong>modalità UTF-8</strong>, MySQL conoscerà in quale set di caratteri sono i tuoi dati, e può presentarli e convertirli in modo appropriato, ma non ti permetterà di memorizzare i caratteri al di sopra del [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
+	"config-mysql-charset-help": "In <strong>modalità binaria</strong>, MediaWiki archivia il testo UTF-8 nel database in campi binari.\nQuesto è più efficiente rispetto alla modalità UTF-8 di MySQL, e consente di utilizzare la gamma completa di caratteri Unicode.\n\nIn <strong>modalità UTF-8</strong>, MySQL conoscerà in quale set di caratteri sono i tuoi dati, e può presentarli e convertirli in modo appropriato, ma non ti permetterà di memorizzare i caratteri al di sopra del [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
 	"config-mssql-auth": "Tipo di autenticazione:",
 	"config-mssql-install-auth": "Seleziona il tipo di autenticazione che verrà utilizzato per connettersi al database durante il processo di installazione.\nSe si seleziona \"{{int:config-mssql-windowsauth}}\", saranno utilizzate le credenziali dell'utente con cui viene eseguito il server web, qualunque esso sia.",
 	"config-mssql-web-auth": "Seleziona il tipo di autenticazione che il server web utilizzerà per connettersi al database, durante il normale funzionamento del wiki.\nSe si seleziona \"{{int:config-mssql-windowsauth}}\", saranno utilizzate le credenziali dell'utente con cui viene eseguito il server web, qualunque esso sia.",

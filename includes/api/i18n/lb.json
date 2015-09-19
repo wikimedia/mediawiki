@@ -95,7 +95,7 @@
 	"apihelp-query+linkshere-paramvalue-prop-redirect": "Markéiere wann d'Säit eng Viruleedung ass.",
 	"apihelp-query+pageswithprop-example-generator": "Zousätzlech Informatiounen iwwer déi 10 éischt Säite kréie mat <code>_&#95;NOTOC_&#95;</code>.",
 	"apihelp-query+protectedtitles-param-namespace": "Nëmmen Titelen aus dësen Nummraim opzielen.",
-	"apihelp-query+random-param-redirect": "Eng zoufälleg Viruleedung lueden aplaz vun enger zoufälleger Säit.",
+	"apihelp-query+random-param-redirect": "Benotzt dofir <kbd>$1filterredir=Viruleedungen</kbd>.",
 	"apihelp-query+recentchanges-param-user": "Nëmmen Ännerunge vun dësem Benotzer opzielen.",
 	"apihelp-query+recentchanges-paramvalue-prop-comment": "Setzt d'Bemierkung vun der Ännerung derbäi.",
 	"apihelp-query+recentchanges-example-simple": "Rezent Ännerunge weisen",
