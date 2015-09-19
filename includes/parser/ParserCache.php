@@ -44,15 +44,14 @@ class ParserCache {
 
 	/**
 	 * Setup a cache pathway with a given back-end storage mechanism.
-	 * May be a memcached client or a BagOStuff derivative.
+	 *
+	 * This class use an invalidation strategy that is compatible with
+	 * MultiWriteBagOStuff in async replication mode.
 	 *
 	 * @param BagOStuff $memCached
 	 * @throws MWException
 	 */
-	protected function __construct( $memCached ) {
-		if ( !$memCached ) {
-			throw new MWException( "Tried to create a ParserCache with an invalid memcached" );
-		}
+	protected function __construct( BagOStuff $memCached ) {
 		$this->mMemc = $memCached;
 	}
 
