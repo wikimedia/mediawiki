@@ -313,6 +313,9 @@ class DatabasePostgres extends DatabaseBase {
 	/** @var string */
 	private $mCoreSchema;
 
+	/** @var bool */
+	private $mDoingRollback = false;
+
 	function getType() {
 		return 'postgres';
 	}
@@ -531,12 +534,29 @@ class DatabasePostgres extends DatabaseBase {
 			}
 		}
 		/* Transaction stays in the ERROR state until rolled back */
-		if ( $this->mTrxLevel ) {
-			$ignore = $this->ignoreErrors( true );
+		if ( $this->mTrxLevel && !$this->mDoingRollback ) {
 			$this->rollback( __METHOD__ );
-			$this->ignoreErrors( $ignore );
 		}
 		parent::reportQueryError( $error, $errno, $sql, $fname, false );
+	}
+
+	/**
+	 * Issues the ROLLBACK command to the database server.
+	 *
+	 * @see DatabaseBase::rollback()
+	 * @param string $fname
+	 */
+	protected function doRollback( $fname ) {
+		$this->mDoingRollback = true;
+
+		try {
+			parent::doRollback( $fname );
+		} catch ( Exception $e ) {
+			$this->mDoingRollback = false;
+			throw $e;
+		}
+
+		$this->mDoingRollback = false;
 	}
 
 	function queryIgnore( $sql, $fname = __METHOD__ ) {

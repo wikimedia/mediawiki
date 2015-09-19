@@ -1841,11 +1841,7 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	public function tableExists( $table, $fname = __METHOD__ ) {
 		$table = $this->tableName( $table );
-		$old = $this->ignoreErrors( true );
-		$res = $this->query( "SELECT 1 FROM $table LIMIT 1", $fname );
-		$this->ignoreErrors( $old );
-
-		return (bool)$res;
+		return (bool)$this->query( "SELECT 1 FROM $table LIMIT 1", $fname, true );
 	}
 
 	/**
