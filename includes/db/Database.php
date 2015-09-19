@@ -3226,9 +3226,6 @@ abstract class DatabaseBase implements IDatabase {
 				$retVal = call_user_func_array( $function, $args );
 				break;
 			} catch ( DBQueryError $e ) {
-				$error = $this->lastError();
-				$errno = $this->lastErrno();
-				$sql = $this->lastQuery();
 				if ( $this->wasDeadlock() ) {
 					// Retry after a randomized delay
 					usleep( mt_rand( self::DEADLOCK_DELAY_MIN, self::DEADLOCK_DELAY_MAX ) );
