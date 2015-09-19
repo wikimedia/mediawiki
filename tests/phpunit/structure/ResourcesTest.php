@@ -11,7 +11,6 @@
  * @copyright © 2012, Niklas Laxström
  * @copyright © 2012, Santhosh Thottingal
  * @copyright © 2012, Timo Tijhof
- *
  */
 class ResourcesTest extends MediaWikiTestCase {
 
@@ -116,6 +115,22 @@ class ResourcesTest extends MediaWikiTestCase {
 				}
 			}
 		}
+	}
+
+	/**
+	 * CSSMin::getAllLocalFileReferences should ignore url(...) expressions
+	 * that have been commented out.
+	 */
+	public function testCommentedLocalFileReferences() {
+		$basepath = __DIR__ . '/../data/css/';
+		$csspath = $basepath . 'test.css';
+		$css = file_get_contents( $csspath );
+		$files = CSSMin::getAllLocalFileReferences( $css, $csspath );
+		$expected = array(
+			$basepath . 'simple-ltr.gif',
+			$basepath . 'simple-rtl.gif',
+		);
+		$this->assertArrayEquals( $expected, $files );
 	}
 
 	/**
