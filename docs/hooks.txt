@@ -1275,18 +1275,24 @@ $to: address of receiving user
 $from: address of sending user
 $subject: subject of the mail
 $text: text of the mail
+$target: User object of the receiving user
+$sender: User object of the sending user
 
 'EmailUserCC': Before sending the copy of the email to the author.
 $to: address of receiving user
 $from: address of sending user
 $subject: subject of the mail
 $text: text of the mail
+$target: User object of the receiving user
+$sender: User object of the sending user
 
 'EmailUserComplete': After sending email from one user to another.
 $to: address of receiving user
 $from: address of sending user
 $subject: subject of the mail
 $text: text of the mail
+$target: User object of the receiving user
+$sender: User object of the sending user
 
 'EmailUserForm': After building the email user form object.
 $form: HTMLForm object

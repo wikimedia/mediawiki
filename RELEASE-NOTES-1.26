@@ -188,6 +188,8 @@ changes to languages because of Phabricator reports.
   are deprecated. Applications using those can work via the OAuth
   extension instead. New tokens types should not be added.
 * DatabaseBase::errorCount() was removed (unused).
+* Hooks EmailUser, EmailUserCC and EmailUserComplete now have a parameter for
+  the receiving user and sending user.
 
 == Compatibility ==
 
