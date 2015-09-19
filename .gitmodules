@@ -202,3 +202,7 @@
 	path = extensions/CollapsibleVector
 	url = https://github.com/wikimedia/mediawiki-extensions-CollapsibleVector
 	branch = REL1_25
+[submodule "extensions/SubpageFun"]
+	path = extensions/SubpageFun
+	url = https://github.com/wikimedia/mediawiki-extensions-SubpageFun.git
+	branch = REL1_25
