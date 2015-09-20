@@ -768,7 +768,7 @@ $name: Image name being checked
 
 'BaseTemplateAfterPortlet': After output of portlets, allow injecting
 custom HTML after the section. Any uses of the hook need to handle escaping.
-$template BaseTemplate
+$template: BaseTemplate
 $portlet: string portlet name
 &$html: string
 
@@ -1362,10 +1362,10 @@ $user: user who performed the undeletion
 $reason: reason
 
 'FileUpload': When a file upload occurs.
-$file : Image object representing the file that was uploaded
-$reupload : Boolean indicating if there was a previously another image there or
+$file: Image object representing the file that was uploaded
+$reupload: Boolean indicating if there was a previously another image there or
   not (since 1.17)
-$hasDescription : Boolean indicating that there was already a description page
+$hasDescription: Boolean indicating that there was already a description page
   and a new one from the comment wasn't created (since 1.17)
 
 'FormatAutocomments': When an autocomment is formatted by the Linker.
