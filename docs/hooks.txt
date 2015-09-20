@@ -643,14 +643,12 @@ $wikiPage: the WikiPage being protected
 $user: the user doing the protection
 $protect: boolean whether this is a protect or an unprotect
 $reason: Reason for protect
-$moveonly: boolean whether this is for move only or not
 
 'ArticleProtectComplete': After an article is protected.
 $wikiPage: the WikiPage that was protected
 $user: the user who did the protection
 $protect: boolean whether it was a protect or an unprotect
 $reason: Reason for protect
-$moveonly: boolean whether it was for move only or not
 
 'ArticlePurge': Before executing "&action=purge".
 $wikiPage: WikiPage (object) to purge
