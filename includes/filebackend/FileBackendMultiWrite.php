@@ -33,8 +33,10 @@
  * Only use this class when transitioning from one storage system to another.
  *
  * Read operations are only done on the 'master' backend for consistency.
- * Write operations are performed on all backends, in the order defined.
- * If an operation fails on one backend it will be rolled back from the others.
+ * Write operations are performed on all backends, starting with the master.
+ * This makes a best-effort to have transactional semantics, but since requests
+ * may sometimes fail, the use of "autoResync" or background scripts to fix
+ * inconsistencies is important.
  *
  * @ingroup FileBackend
  * @since 1.19
