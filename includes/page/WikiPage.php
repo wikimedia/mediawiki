@@ -2780,7 +2780,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$user = is_null( $user ) ? $wgUser : $user;
 		if ( !Hooks::run( 'ArticleDelete',
-			array( &$this, &$user, &$reason, &$error, &$status )
+			array( &$this, &$user, &$reason, &$error, &$status, $suppress )
 		) ) {
 			if ( $status->isOK() ) {
 				// Hook aborted but didn't set a fatal status
