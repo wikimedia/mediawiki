@@ -1579,6 +1579,7 @@ $imagePage: ImagePage object ($this)
 &$html: HTML for the hook to add
 
 'ImagePageFileHistoryLine': Called when a file history line is constructed.
+$imagePage: ImagePage object ($this)
 $file: the file
 $line: the HTML of the history line
 $css: the line CSS class
