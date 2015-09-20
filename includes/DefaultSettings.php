@@ -3107,11 +3107,24 @@ $wgWellFormedXml = true;
 $wgXhtmlNamespaces = array();
 
 /**
- * Show IP address, for non-logged in users. It's necessary to switch this off
- * for some forms of caching.
+ * Show links to personal user talk and contributions even for non-logged in
+ * users. By default, this doesn't include the user's IP address; to display
+ * this, use $wgShowIPinHeader.
+ *
+ * The links are only displayed if the user group '*' has the 'edit' right.
+ *
+ * @since 1.26
+ */
+$wgShowPersonalLinksForAnons = true;
+
+/**
+ * Show IP address in the personal links for non-logged in users. Does nothing
+ * if $wgShowPersonalLinksForAnons is false.
+ *
+ * It's necessary to switch this off for some forms of caching.
  * @warning Will disable file cache.
  */
-$wgShowIPinHeader = true;
+$wgShowIPinHeader = false;
 
 /**
  * Site notice shown at the top of each page
