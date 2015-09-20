@@ -662,7 +662,8 @@ $oldPageID: the page ID of the revision when archived (may be null)
 
 'ArticleRevisionVisibilitySet': Called when changing visibility of one or more
 revisions of an article.
-&$title: Title object of the article
+$title: Title object of the article
+$ids: Ids to set the visibility for
 
 'ArticleRollbackComplete': After an article rollback is completed.
 $wikiPage: the WikiPage that was edited
