@@ -2667,8 +2667,10 @@ $out: OutputPage object
 
 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink': After creating the "permanent
 link" tab.
-$sktemplate: SkinTemplate object
-$nav_urls: array of tabs
+&$sktemplate: SkinTemplate object
+&$nav_urls: array of tabs
+&$revid: The revision id of the permanent link
+&$revid2: The revision id of the permanent link, second time
 
 'SkinTemplateGetLanguageLink': After building the data for a language link from
 which the actual html is constructed.
