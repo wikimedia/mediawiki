@@ -38,7 +38,8 @@
 			"ViDam",
 			"Adam78",
 			"Grin",
-			"Macofe"
+			"Macofe",
+			"Nyuszika7H"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -2379,7 +2380,7 @@
 	"spam_reverting": "Visszatérés a $1 lapra mutató hivatkozásokat nem tartalmazó utolsó változathoz",
 	"spam_blanking": "Az összes változat tartalmazott a $1 lapra mutató hivatkozásokat, kiürítés",
 	"spam_deleting": "Minden változat tartalmazott $1-re mutató hivatkozást, törlöm",
-	"simpleantispam-label": "Spam elleni ellenőrzés.\n'''NE''' töltsd ezt ki!",
+	"simpleantispam-label": "Spam elleni ellenőrzés.\n<strong>NE</strong> töltsd ezt ki!",
 	"pageinfo-title": "Információk a(z) „$1” lapról",
 	"pageinfo-not-current": "Sajnáljuk, de lehetetlen információt nyújtani a régi verziókhoz.",
 	"pageinfo-header-basic": "Alapinformációk",

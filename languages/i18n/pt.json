@@ -64,7 +64,8 @@
 			"Leon saudanha",
 			"Macofe",
 			"He7d3r",
-			"Ti4goc"
+			"Ti4goc",
+			"Jkb8"
 		]
 	},
 	"tog-underline": "Sublinhar ligações:",
@@ -586,6 +587,7 @@
 	"changeemail-password": "A sua palavra-passe em {{SITENAME}}:",
 	"changeemail-submit": "Alterar correio eletrónico",
 	"changeemail-throttled": "Realizou demasiadas tentativas de início de sessão.\nAguarde $1 antes de tentar novamente, por favor.",
+	"changeemail-nochange": "Por favor insira um novo endereço de e-mail.",
 	"resettokens": "Redefinir chaves",
 	"resettokens-text": "Pode redefinir as chaves de acesso a certos dados privados associados à sua conta aqui.\n\nDeve fazê-lo se as divulgou acidentalmente a alguém ou se a sua conta tiver sido comprometida.",
 	"resettokens-no-tokens": "Não há chaves para redefinir.",

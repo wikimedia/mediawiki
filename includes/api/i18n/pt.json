@@ -3,7 +3,8 @@
 		"authors": [
 			"Vitorvicentevalente",
 			"Fúlvio",
-			"Macofe"
+			"Macofe",
+			"Jkb8"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentação]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de discussão]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Erros e solicitações]\n</div>\n<strong>Estado:</strong> Todas as funcionalidades mostradas nesta página deveriam estar a funcionar, mas a API ainda está em activo desenvolvimento, e pode ser alterada a qualquer momento. Inscreva-se na [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de discussão mediawiki-api-announce] para ser informado acerca das actualizações.\n\n<strong>Solicitações erradas:</strong> Quando solicitações erradas são enviadas à API, um cabeçalho em HTTP será enviado com a chave \"MediaWiki-API-Error\" e, em seguida, tanto o valor do cabeçalho quanto o código de erro retornado serão definidos com o mesmo valor. Para mais informação, consulte [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -75,6 +76,7 @@
 	"apihelp-query+filearchive-example-simple": "Mostrar lista de todos os ficheiros eliminados",
 	"apihelp-query+info-description": "Obter informação básica da página.",
 	"apihelp-query+recentchanges-example-simple": "Lista de mudanças recentes",
+	"apihelp-query+search-param-enablerewrites": "Habilitar rescrever a pesquisa interna. Alguns motores de busca podem rescrever a consulta para outra que acha dará melhores resultados, como a corrigir erros de ortografia.",
 	"apihelp-unblock-description": "Desbloquear um utilizador.",
 	"apihelp-unblock-param-reason": "Motivo para o desbloqueio.",
 	"apihelp-undelete-param-title": "Título da página a restaurar.",

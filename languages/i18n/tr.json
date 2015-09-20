@@ -2333,7 +2333,7 @@
 	"tooltip-pt-preferences": "Tercihleriniz (ayarlarınız)",
 	"tooltip-pt-watchlist": "Değişiklikler için izlemeye aldığınız sayfaların listesi",
 	"tooltip-pt-mycontris": "Katkılarınızın listesi",
-	"tooltip-pt-login": "Oturum açmanızı tavsiye ederiz; ancak zorunda değilsiniz",
+	"tooltip-pt-login": "Oturum açmanız tavsiye edilmektedir; ancak bu zorunda değildir",
 	"tooltip-pt-logout": "Sistemden çık",
 	"tooltip-pt-createaccount": "Bir hesap oluşturup oturum açmanız tavsiye edilmektedir ancak bu zorunlu değildir",
 	"tooltip-ca-talk": "İçerik ile ilgili tartışma",

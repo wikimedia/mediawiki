@@ -998,7 +998,7 @@
 	"saveusergroups": "Sačuvaj korisničke grupe",
 	"userrights-groupsmember": "Član:",
 	"userrights-groupsmember-auto": "Podrazumevano član i:",
-	"userrights-groups-help": "Možete promeniti grupe kojima ovaj korisnik pripada.\n* Označena kućica označava da se korisnik nalazi u toj grupi.\n* Neoznačena kućica označava da se korisnik ne nalazi u toj grupi.\n* Zvezdica označava da ne možete ukloniti grupu ako je dodate i obratno.",
+	"userrights-groups-help": "Možete promeniti grupe kojima ovaj korisnik pripada.\n* Označen kvadratić označava da se korisnik nalazi u toj grupi.\n* Neoznačen kvadratić označava da se korisnik ne nalazi u toj grupi.\n* Zvezdica označava da ne možete ukloniti grupu ako je dodate i obratno.",
 	"userrights-reason": "Razlog:",
 	"userrights-no-interwiki": "Nemate ovlašćenja da menjate korisnička prava na drugim vikijima.",
 	"userrights-nodatabase": "Baza podataka $1 ne postoji ili nije lokalna.",
