@@ -52,9 +52,11 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/** @var int Bitfield */
 	protected $syncChecks = 0;
-
 	/** @var string|bool */
 	protected $autoResync = false;
+
+	/** @var bool */
+	protected $asyncWrites = false;
 
 	/* Possible internal backend consistency checks */
 	const CHECK_SIZE = 1;
@@ -85,6 +87,9 @@ class FileBackendMultiWrite extends FileBackend {
 	 *                      Use "conservative" to limit resyncing to copying newer master
 	 *                      backend files over older (or non-existing) clone backend files.
 	 *                      Cases that cannot be handled will result in operation abortion.
+	 *   - replication    : Set to 'async' to defer file operations on the non-master backends.
+	 *                      This will apply such updates post-send for web requests. Note that
+	 *                      any checks from "syncChecks" are still synchronous.
 	 *
 	 * @param array $config
 	 * @throws FileBackendError
@@ -97,6 +102,7 @@ class FileBackendMultiWrite extends FileBackend {
 		$this->autoResync = isset( $config['autoResync'] )
 			? $config['autoResync']
 			: false;
+		$this->asyncWrites = isset( $config['replication'] ) && $config['replication'] === 'async';
 		// Construct backends here rather than via registration
 		// to keep these backends hidden from outside the proxy.
 		$namesUsed = array();
@@ -147,6 +153,7 @@ class FileBackendMultiWrite extends FileBackend {
 		$mbe = $this->backends[$this->masterIndex]; // convenience
 
 		// Try to lock those files for the scope of this function...
+		$scopeLock = null;
 		if ( empty( $opts['nonLocking'] ) ) {
 			// Try to lock those files for the scope of this function...
 			/** @noinspection PhpUnusedLocalVariableInspection */
@@ -187,8 +194,19 @@ class FileBackendMultiWrite extends FileBackend {
 		// If $ops only had one operation, this might avoid backend sync inconsistencies.
 		if ( $masterStatus->isOK() && $masterStatus->successCount > 0 ) {
 			foreach ( $this->backends as $index => $backend ) {
-				if ( $index !== $this->masterIndex ) { // not done already
-					$realOps = $this->substOpBatchPaths( $ops, $backend );
+				if ( $index === $this->masterIndex ) {
+					continue; // done already
+				}
+
+				$realOps = $this->substOpBatchPaths( $ops, $backend );
+				if ( $this->asyncWrites ) {
+					// Bind $scopeLock to the callback to preserve locks
+					DeferredUpdates::addCallableUpdate(
+						function() use ( $backend, $realOps, $opts, $scopeLock ) {
+							$backend->doOperations( $realOps, $opts );
+						}
+					);
+				} else {
 					$status->merge( $backend->doOperations( $realOps, $opts ) );
 				}
 			}
@@ -457,8 +475,18 @@ class FileBackendMultiWrite extends FileBackend {
 		$status->merge( $masterStatus );
 		// Propagate the operations to the clone backends...
 		foreach ( $this->backends as $index => $backend ) {
-			if ( $index !== $this->masterIndex ) { // not done already
-				$realOps = $this->substOpBatchPaths( $ops, $backend );
+			if ( $index === $this->masterIndex ) {
+				continue; // done already
+			}
+
+			$realOps = $this->substOpBatchPaths( $ops, $backend );
+			if ( $this->asyncWrites ) {
+				DeferredUpdates::addCallableUpdate(
+					function() use ( $backend, $realOps ) {
+						$backend->doQuickOperations( $realOps );
+					}
+				);
+			} else {
 				$status->merge( $backend->doQuickOperations( $realOps ) );
 			}
 		}
@@ -473,40 +501,48 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	protected function doPrepare( array $params ) {
-		$status = Status::newGood();
-		foreach ( $this->backends as $index => $backend ) {
-			$realParams = $this->substOpPaths( $params, $backend );
-			$status->merge( $backend->doPrepare( $realParams ) );
-		}
-
-		return $status;
+		return $this->doDirectoryOp( 'prepare', $params );
 	}
 
 	protected function doSecure( array $params ) {
-		$status = Status::newGood();
-		foreach ( $this->backends as $index => $backend ) {
-			$realParams = $this->substOpPaths( $params, $backend );
-			$status->merge( $backend->doSecure( $realParams ) );
-		}
-
-		return $status;
+		return $this->doDirectoryOp( 'secure', $params );
 	}
 
 	protected function doPublish( array $params ) {
-		$status = Status::newGood();
-		foreach ( $this->backends as $index => $backend ) {
-			$realParams = $this->substOpPaths( $params, $backend );
-			$status->merge( $backend->doPublish( $realParams ) );
-		}
-
-		return $status;
+		return $this->doDirectoryOp( 'publish', $params );
 	}
 
 	protected function doClean( array $params ) {
+		return $this->doDirectoryOp( 'clean', $params );
+	}
+
+	/**
+	 * @param string $method One of (doPrepare,doSecure,doPublish,doClean)
+	 * @param array $params Method arguments
+	 * @return Status
+	 */
+	protected function doDirectoryOp( $method, array $params ) {
 		$status = Status::newGood();
+
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		$masterStatus = $this->backends[$this->masterIndex]->$method( $realParams );
+		$status->merge( $masterStatus );
+
 		foreach ( $this->backends as $index => $backend ) {
+			if ( $index === $this->masterIndex ) {
+				continue; // already done
+			}
+
 			$realParams = $this->substOpPaths( $params, $backend );
-			$status->merge( $backend->doClean( $realParams ) );
+			if ( $this->asyncWrites ) {
+				DeferredUpdates::addCallableUpdate(
+					function() use ( $backend, $method, $realParams ) {
+						$backend->$method( $realParams );
+					}
+				);
+			} else {
+				$status->merge( $backend->$method( $realParams ) );
+			}
 		}
 
 		return $status;
