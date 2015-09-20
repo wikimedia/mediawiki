@@ -1961,14 +1961,14 @@ $rcid: ID of the revision to be marked patrolled
 $user: the user (object) marking the revision as patrolled
 $wcOnlySysopsCanPatrol: config setting indicating whether the user needs to be a
   sysop in order to mark an edit patrolled.
-$auto true if the edit is being marked as patrolled automatically
+$auto: true if the edit is being marked as patrolled automatically
 
 'MarkPatrolledComplete': After an edit is marked patrolled.
 $rcid: ID of the revision marked as patrolled
 $user: user (object) who marked the edit patrolled
 $wcOnlySysopsCanPatrol: config setting indicating whether the user must be a
   sysop to patrol the edit.
-$auto true if the edit is being marked as patrolled automatically
+$auto: true if the edit is being marked as patrolled automatically
 
 'MediaWikiPerformAction': Override MediaWiki::performAction(). Use this to do
 something completely different, after the basic globals have been set up, but
@@ -2598,7 +2598,8 @@ $terms: Search terms, for highlighting
 &$text: Text to use for the link
 $result: The search result
 $terms: The search terms entered
-$page: The SpecialSearch object.
+$page: The SpecialSearch object
+&$query: Query string to be appended to the link
 
 'SidebarBeforeOutput': Allows to edit sidebar just before it is output by skins.
 Warning: This hook is run on each display. You should consider to use
