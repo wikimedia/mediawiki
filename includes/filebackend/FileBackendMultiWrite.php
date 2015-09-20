@@ -54,6 +54,9 @@ class FileBackendMultiWrite extends FileBackend {
 	/** @var string|bool */
 	protected $autoResync = false;
 
+	/** @var bool */
+	protected $asyncWrites = false;
+	
 	/** @var array */
 	protected $noPushDirConts = array();
 
@@ -88,6 +91,9 @@ class FileBackendMultiWrite extends FileBackend {
 	 *                      Use "conservative" to limit resyncing to copying newer master
 	 *                      backend files over older (or non-existing) clone backend files.
 	 *                      Cases that cannot be handled will result in operation abortion.
+	 *   - replication    : Set to 'async' to defer file operations on the non-master backends.
+	 *                      This will apply such updates post-send for web requests. Note that
+	 *                      any checks from "syncChecks" are still synchronous.
 	 *   - noPushQuickOps : (hack) Only apply doQuickOperations() to the master backend.
 	 *   - noPushDirConts : (hack) Only apply directory functions to the master backend.
 	 *
@@ -144,6 +150,7 @@ class FileBackendMultiWrite extends FileBackend {
 		if ( $this->masterIndex < 0 ) { // need backends and must have a master
 			throw new FileBackendError( 'No master backend defined.' );
 		}
+		$this->asyncWrites = isset( $config['replication'] ) && $config['replication'] === 'async';
 	}
 
 	final protected function doOperationsInternal( array $ops, array $opts ) {
@@ -152,6 +159,7 @@ class FileBackendMultiWrite extends FileBackend {
 		$mbe = $this->backends[$this->masterIndex]; // convenience
 
 		// Try to lock those files for the scope of this function...
+		$scopeLock = null;
 		if ( empty( $opts['nonLocking'] ) ) {
 			// Try to lock those files for the scope of this function...
 			$scopeLock = $this->getScopedLocksForOps( $ops, $status );
@@ -191,8 +199,19 @@ class FileBackendMultiWrite extends FileBackend {
 		// If $ops only had one operation, this might avoid backend sync inconsistencies.
 		if ( $masterStatus->isOK() && $masterStatus->successCount > 0 ) {
 			foreach ( $this->backends as $index => $backend ) {
-				if ( $index !== $this->masterIndex ) { // not done already
-					$realOps = $this->substOpBatchPaths( $ops, $backend );
+				if ( $index === $this->masterIndex ) {
+					continue; // done already
+				}
+
+				$realOps = $this->substOpBatchPaths( $ops, $backend );
+				if ( $this->asyncWrites ) {
+					// Bind $scopeLock to the callback to preserve locks
+					DeferredUpdates::addCallableUpdate(
+						function() use ( $backend, $realOps, $opts, $scopeLock ) {
+							$backend->doOperations( $realOps, $opts );
+						}
+					);
+				} else {
 					$status->merge( $backend->doOperations( $realOps, $opts ) );
 				}
 			}
@@ -462,8 +481,18 @@ class FileBackendMultiWrite extends FileBackend {
 		// Propagate the operations to the clone backends...
 		if ( !$this->noPushQuickOps ) {
 			foreach ( $this->backends as $index => $backend ) {
-				if ( $index !== $this->masterIndex ) { // not done already
-					$realOps = $this->substOpBatchPaths( $ops, $backend );
+				if ( $index === $this->masterIndex ) {
+					continue; // done already
+				}
+
+				$realOps = $this->substOpBatchPaths( $ops, $backend );
+				if ( $this->asyncWrites ) {
+					DeferredUpdates::addCallableUpdate(
+						function() use ( $backend, $realOps ) {
+							$backend->doQuickOperations( $realOps );
+						}
+					);
+				} else {
 					$status->merge( $backend->doQuickOperations( $realOps ) );
 				}
 			}
@@ -489,51 +518,47 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	protected function doPrepare( array $params ) {
-		$status = Status::newGood();
-		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
-		foreach ( $this->backends as $index => $backend ) {
-			if ( $replicate || $index == $this->masterIndex ) {
-				$realParams = $this->substOpPaths( $params, $backend );
-				$status->merge( $backend->doPrepare( $realParams ) );
-			}
-		}
-
-		return $status;
+		return $this->doDirectoryOp( __FUNCTION__, $params );
 	}
 
 	protected function doSecure( array $params ) {
-		$status = Status::newGood();
-		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
-		foreach ( $this->backends as $index => $backend ) {
-			if ( $replicate || $index == $this->masterIndex ) {
-				$realParams = $this->substOpPaths( $params, $backend );
-				$status->merge( $backend->doSecure( $realParams ) );
-			}
-		}
-
-		return $status;
+		return $this->doDirectoryOp( __FUNCTION__, $params );
 	}
 
 	protected function doPublish( array $params ) {
-		$status = Status::newGood();
-		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
-		foreach ( $this->backends as $index => $backend ) {
-			if ( $replicate || $index == $this->masterIndex ) {
-				$realParams = $this->substOpPaths( $params, $backend );
-				$status->merge( $backend->doPublish( $realParams ) );
-			}
-		}
-
-		return $status;
+		return $this->doDirectoryOp( __FUNCTION__, $params );
 	}
 
 	protected function doClean( array $params ) {
+		return $this->doDirectoryOp( __FUNCTION__, $params );
+	}
+
+	/**
+	 * @param string $method One of (doPrepare,doSecure,doPublish,doClean)
+	 * @param array $params Method arguments
+	 * @return Status
+	 */
+	protected function doDirectoryOp( $method, array $params ) {
 		$status = Status::newGood();
-		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
+
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		$masterStatus = $this->backends[$this->masterIndex]->$method( $realParams );
+		$status->merge( $masterStatus );
+
 		foreach ( $this->backends as $index => $backend ) {
-			if ( $replicate || $index == $this->masterIndex ) {
-				$realParams = $this->substOpPaths( $params, $backend );
-				$status->merge( $backend->doClean( $realParams ) );
+			if ( $index === $this->masterIndex ) {
+				continue; // already done
+			}
+
+			$realParams = $this->substOpPaths( $params, $backend );
+			if ( $this->asyncWrites ) {
+				DeferredUpdates::addCallableUpdate(
+					function() use ( $backend, $method, $realParams ) {
+						$backend->$method( $realParams );
+					}
+				);
+			} else {
+				$status->merge( $backend->$method( $realParams ) );
 			}
 		}
 
