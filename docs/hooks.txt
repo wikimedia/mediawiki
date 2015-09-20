@@ -1628,6 +1628,11 @@ Return false to stop further processing of the tag
 $reader: XMLReader object
 $revisionInfo: Array of information
 
+'ImportSources': Called when reading from the $wgImportSources configuration
+variable. Can be used to lazy-load the import sources list.
+&$importSources: The value of $wgImportSources. Modify as necessary. See the
+comment in DefaultSettings.php for the detail of how to structure this array.
+
 'InfoAction': When building information to display on the action=info page.
 $context: IContextSource object
 &$pageInfo: Array of information
