@@ -1058,7 +1058,7 @@ abstract class FileBackendStore extends FileBackend {
 	public function getScopedLocksForOps( array $ops, Status $status ) {
 		$paths = $this->getPathsToLockForOpsInternal( $this->getOperationsInternal( $ops ) );
 
-		return array( $this->getScopedFileLocks( $paths, 'mixed', $status ) );
+		return $this->getScopedFileLocks( $paths, 'mixed', $status );
 	}
 
 	final protected function doOperationsInternal( array $ops, array $opts ) {
