@@ -80,6 +80,11 @@ class FileBackendTest extends MediaWikiTestCase {
 		) );
 	}
 
+	protected function tearDown() {
+		parent::tearDown();
+		DeferredUpdates::forceDeferral( false );
+	}
+
 	private static function baseStorePath() {
 		return 'mwstore://localtesting';
 	}
@@ -2439,6 +2444,54 @@ class FileBackendTest extends MediaWikiTestCase {
 			'princess of power',
 			$be->getFileContents( array( 'src' => "mwstore://localtesting/$p", 'latest' => 1 ) ),
 			"Latest read came from backend1"
+		);
+	}
+
+	public function testAsyncWrites() {
+		$be = TestingAccessWrapper::newFromObject(
+			new FileBackendMultiWrite( array(
+				'name' => 'localtesting',
+				'wikiId' => wfWikiId() . mt_rand(),
+				'backends' => array(
+					array( // backend 0
+						'name' => 'multitesting0',
+						'class' => 'MemoryFileBackend',
+						'isMultiMaster' => false
+					),
+					array( // backend 1
+						'name' => 'multitesting1',
+						'class' => 'MemoryFileBackend',
+						'isMultiMaster' => true
+					)
+				),
+				'replication' => 'async'
+			) )
+		);
+
+		DeferredUpdates::forceDeferral( true );
+
+		$p = 'container/test-cont/file.txt';
+		$be->quickCreate( array(
+			'dst' => "mwstore://localtesting/$p", 'content' => 'cattitude' ) );
+
+		$this->assertEquals(
+			false,
+			$be->backends[0]->getFileContents( array( 'src' => "mwstore://multitesting0/$p" ) ),
+			"File not yet written to backend 0"
+		);
+		$this->assertEquals(
+			'cattitude',
+			$be->backends[1]->getFileContents( array( 'src' => "mwstore://multitesting1/$p" ) ),
+			"File already written to backend 1"
+		);
+
+		DeferredUpdates::doUpdates();
+		DeferredUpdates::forceDeferral( false );
+
+		$this->assertEquals(
+			'cattitude',
+			$be->backends[0]->getFileContents( array( 'src' => "mwstore://multitesting0/$p" ) ),
+			"File now written to backend 0"
 		);
 	}
 
