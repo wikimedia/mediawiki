@@ -575,6 +575,7 @@ $error: if the deletion was prohibited, the (raw HTML) error message to display
   (added in 1.13)
 $status: Status object, modify this to throw an error. Overridden by $error
   (added in 1.20)
+$suppress: Whether this is a suppression deletion or not (added in 1.26)
 
 'ArticleDeleteAfterSuccess': Output after an article has been deleted.
 $title: Title of the article that has been deleted.
