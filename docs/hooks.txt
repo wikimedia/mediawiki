@@ -662,7 +662,8 @@ $oldPageID: the page ID of the revision when archived (may be null)
 
 'ArticleRevisionVisibilitySet': Called when changing visibility of one or more
 revisions of an article.
-&$title: Title object of the article
+$title: Title object of the article
+$ids: Ids to set the visibility for
 
 'ArticleRollbackComplete': After an article rollback is completed.
 $wikiPage: the WikiPage that was edited
@@ -2179,6 +2180,7 @@ which depends on user options should install this hook and append its values to
 the key.
 &$confstr: reference to a hash key string which can be modified
 $user: User (object) requesting the page
+&$forOptions: array of options the hash is for
 
 'PageViewUpdates': Allow database (or other) changes to be made after a
 page view is seen by MediaWiki.  Note this does not capture views made
