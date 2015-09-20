@@ -474,7 +474,7 @@
 	"nstab-template": "The name for the tab of the template namespace. Example: [[Template:Example]]\n\nSee also:\n* {{msg-mw|Nstab-template}}\n* {{msg-mw|Accesskey-ca-nstab-template}}\n* {{msg-mw|Tooltip-ca-nstab-template}}\n{{Identical|Template}}",
 	"nstab-help": "The name for the tab of the help namespace. Example: [[Help:Rollback]]\n\nSee also:\n* {{msg-mw|Nstab-help}}\n* {{msg-mw|Accesskey-ca-nstab-help}}\n* {{msg-mw|Tooltip-ca-nstab-help}}",
 	"nstab-category": "The name for the tab of the category namespace. Example: [[:Category:Example]]\n\nSee also:\n* {{msg-mw|Nstab-category}}\n* {{msg-mw|Accesskey-ca-nstab-category}}\n* {{msg-mw|Tooltip-ca-nstab-category}}\n{{Identical|Category}}",
-	"mainpage-nstab": "{{notranslate}}",
+	"mainpage-nstab": "This is the name for Main Page tab shown on the Main Page.",
 	"nosuchaction": "The title of the error you get when trying to open a page with invalid \"action\" parameter. The text of the warning is the message {{msg-mw|nosuchactiontext}}.\n\nSee example [{{canonicalurl:Main_page|action=x}} action=x].",
 	"nosuchactiontext": "This error is shown when trying to open a page with invalid \"action\" parameter, e.g. [{{canonicalurl:Main_page|action=x}} action=x].\n* The title of this error is the message {{msg-mw|nosuchaction}}.",
 	"nosuchspecialpage": "The title of the error you get when trying to open a special page which does not exist. The text of the warning is the message {{msg-mw|nospecialpagetext}}. Example: [[Special:Nosuchpage]]",
