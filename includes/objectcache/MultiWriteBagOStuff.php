@@ -32,9 +32,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	/** @var BagOStuff[] */
 	protected $caches;
 	/** @var bool Use async secondary writes */
-	protected $asyncReplication = false;
-	/** @var array[] */
-	protected $asyncWrites = array();
+	protected $asyncWrites = false;
 
 	/**
 	 * $params include:
@@ -72,9 +70,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 				: ObjectCache::newFromParams( $cacheInfo );
 		}
 
-		if ( isset( $params['replication'] ) && $params['replication'] === 'async' ) {
-			$this->asyncReplication = true;
-		}
+		$this->asyncWrites = isset( $params['replication'] ) && $params['replication'] === 'async';
 	}
 
 	/**
@@ -189,7 +185,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		array_shift( $args );
 
 		foreach ( $this->caches as $i => $cache ) {
-			if ( $i == 0 || !$this->asyncReplication ) {
+			if ( $i == 0 || !$this->asyncWrites ) {
 				// First store or in sync mode: write now and get result
 				if ( !call_user_func_array( array( $cache, $method ), $args ) ) {
 					$ret = false;
