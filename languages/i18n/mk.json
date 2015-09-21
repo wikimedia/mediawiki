@@ -129,7 +129,7 @@
 	"november-date": "$1 ноември",
 	"december-date": "$1 декември",
 	"pagecategories": "{{PLURAL:$1|Категорија|Категории}}",
-	"category_header": "Статии во категоријата „$1“",
+	"category_header": "Страници во категоријата „$1“",
 	"subcategories": "Поткатегории",
 	"category-media-header": "Податотеки во категоријата „$1“",
 	"category-empty": "''Оваа категорија моментално не содржи страници или податотеки.''",

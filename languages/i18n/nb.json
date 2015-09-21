@@ -1778,7 +1778,7 @@
 	"unwatchthispage": "Fjerner overvåkning",
 	"notanarticle": "Ikke en artikkel",
 	"notvisiblerev": "Revisjonen er slettet",
-	"watchlist-details": "Du har {{PLURAL:$1|én side|'''$1''' sider}} på [[Hjelp:Overvåke sider|overvåkningslisten]] din (pluss tilhørende [[Hjelp:Diskusjonsside|diskusjonssider]]).",
+	"watchlist-details": "Du har {{PLURAL:$1|én side|$1 sider}} på overvåkningslisten din (med tilhørende diskusjonssider).",
 	"wlheader-enotif": "E-postvarsling er slått på.",
 	"wlheader-showupdated": "Sider som har blitt endret siden du besøkte dem sist vises med '''fet skrift'''.",
 	"wlnote": "Nedenfor er {{PLURAL:$1|den siste endringen|de siste <strong>$1</strong> endringene}} {{PLURAL:$2|den siste timen|de siste <strong>$2</strong> timene}}, per $3 kl. $4",

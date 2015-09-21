@@ -2222,7 +2222,7 @@
 	"imagetypemismatch": "Nowe rozszerzenie nazwy pliku jest innego typu niż zawartość",
 	"imageinvalidfilename": "Nazwa pliku docelowego jest nieprawidłowa",
 	"fix-double-redirects": "Zaktualizuj wszystkie przekierowania wskazujące na stary tytuł",
-	"move-leave-redirect": "Pozostaw przekierowanie pod dotychczasowym tytułem",
+	"move-leave-redirect": "Pozostaw przekierowanie pod dotychczasowym tytułem.",
 	"protectedpagemovewarning": "'''UWAGA!''' Ponieważ strona została zabezpieczona, tylko użytkownicy z uprawnieniami administratora mogą zmienić jej nazwę.\nOstatni wpis z rejestru jest pokazany poniżej.",
 	"semiprotectedpagemovewarning": "'''Uwaga!''' Ponieważ strona została zabezpieczona, tylko zarejestrowani użytkownicy mogą zmienić jej nazwę.\nOstatni wpis z rejestru jest pokazany poniżej.",
 	"move-over-sharedrepo": "== Plik istnieje ==\n[[:$1]] istnieje we wspólnym repozytorium. Zmiana nazwy pliku na tę spowoduje przesłonięcie współdzielonego pliku.",

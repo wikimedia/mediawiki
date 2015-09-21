@@ -752,7 +752,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Objeto vazio",
 	"content-json-empty-array": "Array vazia",
-	"duplicate-args-warning": "<strong> Aviso: </ strong> [[:$1]] está chamando [[:$2]] com mais de um valor para o parâmetro \"$3\". Será utilizado apenas o último valor fornecido.",
+	"duplicate-args-warning": "<strong> Aviso: </strong> [[:$1]] está chamando [[:$2]] com mais de um valor para o parâmetro \"$3\". Será utilizado apenas o último valor fornecido.",
 	"duplicate-args-category": "Páginas que utilizam argumentos duplicados ao chamar predefinições",
 	"duplicate-args-category-desc": "A pagina contem modelos que usam argumentos duplicados, como <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ou <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "Aviso: Esta página contém muitas chamadas a funções do analisador \"parser\".\n\nDeveria ter menos de $2 {{PLURAL:$2|chamada|chamadas}}. Neste momento {{PLURAL:$1|há $1 chamada|existem $1 chamadas}}.",
