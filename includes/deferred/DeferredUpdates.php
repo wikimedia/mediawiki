@@ -106,9 +106,7 @@ class DeferredUpdates {
 	 *   prevent lock contention
 	 */
 	public static function doUpdates( $commit = '' ) {
-		global $wgDeferredUpdateList;
-
-		$updates = array_merge( $wgDeferredUpdateList, self::$updates );
+		$updates = self::$updates;
 
 		while ( count( $updates ) ) {
 			self::clearPendingUpdates();
@@ -131,7 +129,7 @@ class DeferredUpdates {
 				}
 			}
 
-			$updates = array_merge( $wgDeferredUpdateList, self::$updates );
+			$updates = self::$updates;
 		}
 	}
 
@@ -140,7 +138,6 @@ class DeferredUpdates {
 	 * want or need to call this. Unit tests need it though.
 	 */
 	public static function clearPendingUpdates() {
-		global $wgDeferredUpdateList;
-		$wgDeferredUpdateList = self::$updates = array();
+		self::$updates = array();
 	}
 }

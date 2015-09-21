@@ -106,7 +106,6 @@ class NewParserTest extends MediaWikiTestCase {
 		$tmpGlobals['wgAdaptiveMessageCache'] = true;
 		$tmpGlobals['wgUseDatabaseMessages'] = true;
 		$tmpGlobals['wgLocaltimezone'] = 'UTC';
-		$tmpGlobals['wgDeferredUpdateList'] = array();
 		$tmpGlobals['wgGroupPermissions'] = array(
 			'*' => array(
 				'createaccount' => true,
