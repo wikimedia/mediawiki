@@ -2718,6 +2718,9 @@ class OutputPage extends ContextSource {
 		$bodyClasses = array();
 		$bodyClasses[] = 'mediawiki';
 
+		// Class for user logged-in status
+		$bodyClasses[] = $this->getUser()->isLoggedIn() ? 'user-logged-in' : 'user-logged-out';
+
 		# Classes for LTR/RTL directionality support
 		$bodyClasses[] = $userdir;
 		$bodyClasses[] = "sitedir-$sitedir";
