@@ -1151,19 +1151,31 @@ return array(
 		),
 	),
 	'mediawiki.Upload.Dialog' => array(
-		'scripts' => 'resources/src/mediawiki/mediawiki.Upload.Dialog.js',
+		'scripts' => array(
+			'resources/src/mediawiki/mediawiki.Upload.Dialog.js',
+		),
 		'dependencies' => array(
 			'oojs-ui',
-			'mediawiki.Upload',
+			'mediawiki.StackLayout',
 		),
 		'messages' => array(
 			'upload-dialog-title',
-			'upload-dialog-error',
-			'upload-dialog-warning',
 			'upload-dialog-button-cancel',
 			'upload-dialog-button-done',
 			'upload-dialog-button-save',
 			'upload-dialog-button-upload',
+		),
+	),
+	'mediawiki.Upload.StackLayout' => array(
+		'scripts' => array(
+			'resources/src/mediawiki/mediawiki.Upload.StackLayout.js',
+		),
+		'dependencies' => array(
+			'oojs-ui',
+		),
+		'messages' => array(
+			'upload-dialog-error',
+			'upload-dialog-warning',
 			'upload-dialog-label-select-file',
 			'upload-dialog-label-infoform-title',
 			'upload-dialog-label-infoform-name',
