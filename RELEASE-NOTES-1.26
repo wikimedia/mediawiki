@@ -189,6 +189,7 @@ changes to languages because of Phabricator reports.
   extension instead. New tokens types should not be added.
 * DatabaseBase::errorCount() was removed (unused).
 * $wgDeferredUpdateList was removed.
+* DeferredUpdates::addHTMLCacheUpdate() was removed.
 
 == Compatibility ==
 

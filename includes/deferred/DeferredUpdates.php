@@ -79,17 +79,6 @@ class DeferredUpdates {
 	}
 
 	/**
-	 * HTMLCacheUpdates are the most common deferred update people use. This
-	 * is a shortcut method for that.
-	 * @see HTMLCacheUpdate::__construct()
-	 * @param Title $title
-	 * @param string $table
-	 */
-	public static function addHTMLCacheUpdate( $title, $table ) {
-		self::addUpdate( new HTMLCacheUpdate( $title, $table ) );
-	}
-
-	/**
 	 * Add a callable update.  In a lot of cases, we just need a callback/closure,
 	 * defining a new DeferrableUpdate object is not necessary
 	 * @see MWCallableUpdate::__construct()
