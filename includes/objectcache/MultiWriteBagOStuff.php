@@ -61,8 +61,8 @@ class MultiWriteBagOStuff extends BagOStuff {
 	public function __construct( $params ) {
 		parent::__construct( $params );
 
-		if ( !isset( $params['caches'] ) ) {
-			throw new InvalidArgumentException( __METHOD__ . ': "caches" parameter required' );
+		if ( empty( $params['caches'] ) || !is_array( $params['caches'] ) ) {
+			throw new InvalidArgumentException( __METHOD__ . ': "caches" parameter must be an array of caches' );
 		}
 
 		$this->caches = array();
@@ -149,11 +149,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 */
 	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
 		// Lock only the first cache, to avoid deadlocks
-		if ( isset( $this->caches[0] ) ) {
-			return $this->caches[0]->lock( $key, $timeout, $expiry, $rclass );
-		} else {
-			return true;
-		}
+		return $this->caches[0]->lock( $key, $timeout, $expiry, $rclass );
 	}
 
 	/**
@@ -161,11 +157,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function unlock( $key ) {
-		if ( isset( $this->caches[0] ) ) {
-			return $this->caches[0]->unlock( $key );
-		} else {
-			return true;
-		}
+		return $this->caches[0]->unlock( $key );
 	}
 
 	/**
@@ -180,13 +172,11 @@ class MultiWriteBagOStuff extends BagOStuff {
 	}
 
 	public function getLastError() {
-		return isset( $this->caches[0] ) ? $this->caches[0]->getLastError() : self::ERR_NONE;
+		return $this->caches[0]->getLastError();
 	}
 
 	public function clearLastError() {
-		if ( isset( $this->caches[0] ) ) {
-			$this->caches[0]->clearLastError();
-		}
+		$this->caches[0]->clearLastError();
 	}
 
 	/**
@@ -208,7 +198,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 				// Secondary write in async mode: do not block this HTTP request
 				$logger = $this->logger;
 				DeferredUpdates::addCallableUpdate(
-					function() use ( $cache, $method, $args, $logger ) {
+					function () use ( $cache, $method, $args, $logger ) {
 						if ( !call_user_func_array( array( $cache, $method ), $args ) ) {
 							$logger->warning( "Async $method op failed" );
 						}
