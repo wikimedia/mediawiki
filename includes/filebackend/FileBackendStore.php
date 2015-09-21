@@ -1076,6 +1076,7 @@ abstract class FileBackendStore extends FileBackend {
 			// Build up a list of files to lock...
 			$paths = $this->getPathsToLockForOpsInternal( $performOps );
 			// Try to lock those files for the scope of this function...
+
 			$scopeLock = $this->getScopedFileLocks( $paths, 'mixed', $status );
 			if ( !$status->isOK() ) {
 				return $status; // abort
