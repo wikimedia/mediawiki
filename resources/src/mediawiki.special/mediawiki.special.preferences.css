@@ -24,3 +24,15 @@
 .mw-preferences-messagebox {
 	display: none;
 }
+
+.prefsection td.mw-label {
+	width: 20%;
+}
+
+.prefsection table {
+	width: 100%;
+}
+
+.prefsection table.mw-htmlform-matrix {
+	width: auto;
+}
