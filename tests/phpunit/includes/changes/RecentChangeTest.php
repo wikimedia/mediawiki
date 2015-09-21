@@ -146,4 +146,29 @@ class RecentChangeTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, RecentChange::isInRCLifespan( $timestamp, $tolerance ) );
 	}
 
+	public function provideRCTypes() {
+		return array(
+			array( RC_EDIT, 'edit' ),
+			array( RC_NEW, 'new' ),
+			array( RC_LOG, 'log' ),
+			array( RC_EXTERNAL, 'external' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideRCTypes
+	 * @covers RecentChange::parseFromRCType
+	 */
+	public function testParseFromRCType( $rcType, $type ) {
+		$this->assertEquals( $type, RecentChange::parseFromRCType( $rcType ) );
+	}
+
+	/**
+	 * @dataProvider provideRCTypes
+	 * @covers RecentChange::parseToRCType
+	 */
+	public function testParseToRCType( $rcType, $type ) {
+		$this->assertEquals( $rcType, RecentChange::parseToRCType( $type ) );
+	}
+
 }
