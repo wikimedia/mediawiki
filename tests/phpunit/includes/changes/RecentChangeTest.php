@@ -104,4 +104,22 @@ class RecentChangeTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedParseParams, $actualParseParams );
 	}
 
+	public function provideIsInRCLifespan() {
+		return array(
+			array( 60, time() - 30, 0, true ),
+			array( 30, time() - 60, 0, false ),
+			array( 60, time() - 30, 60, true ),
+			array( 30, time() - 60, 60, true ),
+		);
+	}
+
+	/**
+	 * @covers RecentChange::isInRCLifespan
+	 * @dataProvider provideIsInRCLifespan
+	 */
+	public function testIsInRCLifespan( $maxAge, $timestamp, $tollerance, $expected ) {
+		$this->setMwGlobals( 'wgRCMaxAge', $maxAge );
+		$this->assertEquals( $expected, RecentChange::isInRCLifespan( $timestamp, $tollerance ) );
+	}
+
 }
