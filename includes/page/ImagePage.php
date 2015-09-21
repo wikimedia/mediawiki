@@ -712,7 +712,7 @@ EOT
 		$canUpload = $this->getTitle()->quickUserCan( 'upload', $this->getContext()->getUser() );
 		if ( $canUpload && UploadBase::userCanReUpload(
 				$this->getContext()->getUser(),
-				$this->mPage->getFile()->name )
+				$this->mPage->getFile() )
 		) {
 			$ulink = Linker::makeExternalLink(
 				$this->getUploadUrl(),
