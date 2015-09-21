@@ -747,18 +747,18 @@ class ResourceLoader implements LoggerAwareInterface {
 
 		if ( $context->getImageObj() && $this->errors ) {
 			// We can't show both the error messages and the response when it's an image.
-			$errorText = '';
-			foreach ( $this->errors as $error ) {
-				$errorText .= $error . "\n";
-			}
-			$response = $errorText;
+			$response = implode( "\n\n",  $this->errors );
 		} elseif ( $this->errors ) {
-			// Prepend comments indicating errors
-			$errorText = '';
-			foreach ( $this->errors as $error ) {
-				$errorText .= self::makeComment( $error );
+			$errorText = implode( "\n\n", $this->errors );
+			$errorResponse = self::makeComment( $errorText );
+			if ( $context->shouldIncludeScripts() ) {
+				$errorResponse .= 'if (window.console && console.error) {'
+					. Xml::encodeJsCall( 'console.error', array( $errorText ) )
+					. "}\n";
 			}
-			$response = $errorText . $response;
+
+			// Prepend error info to the response
+			$response = $errorResponse . $response;
 		}
 
 		$this->errors = array();
