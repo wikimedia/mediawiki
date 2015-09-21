@@ -104,4 +104,26 @@ class RecentChangeTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedParseParams, $actualParseParams );
 	}
 
+	/**
+	 * 50 mins and 100 mins are used here as the tests never take that long!
+	 * @return array
+	 */
+	public function provideIsInRCLifespan() {
+		return array(
+			array( 6000, time() - 3000, 0, true ),
+			array( 3000, time() - 6000, 0, false ),
+			array( 6000, time() - 3000, 6000, true ),
+			array( 3000, time() - 6000, 6000, true ),
+		);
+	}
+
+	/**
+	 * @covers RecentChange::isInRCLifespan
+	 * @dataProvider provideIsInRCLifespan
+	 */
+	public function testIsInRCLifespan( $maxAge, $timestamp, $tolerance, $expected ) {
+		$this->setMwGlobals( 'wgRCMaxAge', $maxAge );
+		$this->assertEquals( $expected, RecentChange::isInRCLifespan( $timestamp, $tolerance ) );
+	}
+
 }
