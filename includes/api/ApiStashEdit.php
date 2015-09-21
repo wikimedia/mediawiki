@@ -20,7 +20,7 @@
  */
 
 /**
- * Prepare and edit in shared cache so that it can be reused on edit
+ * Prepare an edit in shared cache so that it can be reused on edit
  *
  * This endpoint can be called via AJAX as the user focuses on the edit
  * summary box. By the time of submission, the parse may have already
