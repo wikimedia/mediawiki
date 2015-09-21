@@ -22,6 +22,26 @@ class RecentChangeTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers RecentChange::newFromRow
+	 * @covers RecentChange::loadFromRow
+	 */
+	public function testNewFromRow() {
+		$row = new stdClass();
+		$row->rc_foo = 'AAA';
+		$row->rc_timestamp = '20150921134808';
+		$row->rc_deleted = 'bar';
+
+		$rc = RecentChange::newFromRow( $row );
+
+		$expected = array(
+			'rc_foo' => 'AAA',
+			'rc_timestamp' => '20150921134808',
+			'rc_deleted' => 'bar',
+		);
+		$this->assertEquals( $expected, $rc->getAttributes() );
+	}
+
+	/**
 	 * The testIrcMsgForAction* tests are supposed to cover the hacky
 	 * LogFormatter::getIRCActionText / bug 34508
 	 *
