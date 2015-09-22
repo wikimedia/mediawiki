@@ -279,6 +279,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropTable', 'msg_resource_links' ],
 			[ 'dropTable', 'msg_resource' ],
 			[ 'addTable', 'bot_passwords', 'patch-bot_passwords.sql' ],
+			[ 'addTable', 'auth_blacklist', 'patch-auth_blacklist.sql' ],
 		];
 	}
 
