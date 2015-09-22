@@ -24,9 +24,10 @@ use MediaWiki\Session\SessionManager;
 
 /**
  * String Some punctuation to prevent editing from broken text-mangling proxies.
+ * @deprecated since 1.27, use \\MediaWiki\\Session\\Token::SUFFIX
  * @ingroup Constants
  */
-define( 'EDIT_TOKEN_SUFFIX', '+\\' );
+define( 'EDIT_TOKEN_SUFFIX', MediaWiki\Session\Token::SUFFIX );
 
 /**
  * The User object encapsulates all of the user-specific settings (user_id,
@@ -47,6 +48,7 @@ class User implements IDBAccessObject {
 	/**
 	 * Global constant made accessible as class constants so that autoloader
 	 * magic can be used.
+	 * @deprecated since 1.27, use \\MediaWiki\\Session\\Token::SUFFIX
 	 */
 	const EDIT_TOKEN_SUFFIX = EDIT_TOKEN_SUFFIX;
 
@@ -4066,30 +4068,25 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Internal implementation for self::getEditToken() and
-	 * self::matchEditToken().
+	 * Initialize (if necessary) and return a session token value
+	 * which can be used in edit forms to show that the user's
+	 * login credentials aren't being hijacked with a foreign form
+	 * submission.
 	 *
-	 * @param string|array $salt
-	 * @param WebRequest $request
-	 * @param string|int $timestamp
-	 * @return string
+	 * @since 1.27
+	 * @param string|array $salt Array of Strings Optional function-specific data for hashing
+	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
+	 * @return MediaWiki\\Session\\Token The new edit token
 	 */
-	private function getEditTokenAtTimestamp( $salt, $request, $timestamp ) {
+	public function getEditTokenObject( $salt = '', $request = null ) {
 		if ( $this->isAnon() ) {
-			return self::EDIT_TOKEN_SUFFIX;
-		} else {
-			$token = $request->getSessionData( 'wsEditToken' );
-			if ( $token === null ) {
-				$token = MWCryptRand::generateHex( 32 );
-				$request->setSessionData( 'wsEditToken', $token );
-			}
-			if ( is_array( $salt ) ) {
-				$salt = implode( '|', $salt );
-			}
-			return hash_hmac( 'md5', $timestamp . $salt, $token, false ) .
-				dechex( $timestamp ) .
-				self::EDIT_TOKEN_SUFFIX;
+			return new LoggedOutEditToken();
 		}
+
+		if ( !$request ) {
+			$request = $this->getRequest();
+		}
+		return $request->getSession()->getToken( $salt );
 	}
 
 	/**
@@ -4099,29 +4096,23 @@ class User implements IDBAccessObject {
 	 * submission.
 	 *
 	 * @since 1.19
-	 *
 	 * @param string|array $salt Array of Strings Optional function-specific data for hashing
 	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
 	 * @return string The new edit token
 	 */
 	public function getEditToken( $salt = '', $request = null ) {
-		return $this->getEditTokenAtTimestamp(
-			$salt, $request ?: $this->getRequest(), wfTimestamp()
-		);
+		return $this->getEditTokenObject( $salt, $request )->toString();
 	}
 
 	/**
 	 * Get the embedded timestamp from a token.
+	 * @deprecated since 1.27, use \\MediaWiki\\Session\\Token::getTimestamp instead.
 	 * @param string $val Input token
 	 * @return int|null
 	 */
 	public static function getEditTokenTimestamp( $val ) {
-		$suffixLen = strlen( self::EDIT_TOKEN_SUFFIX );
-		if ( strlen( $val ) <= 32 + $suffixLen ) {
-			return null;
-		}
-
-		return hexdec( substr( $val, 32, -$suffixLen ) );
+		wfDeprecated( __METHOD__, '1.27' );
+		return MediaWiki\Session\Token::getTimestamp( $val );
 	}
 
 	/**
@@ -4137,28 +4128,7 @@ class User implements IDBAccessObject {
 	 * @return bool Whether the token matches
 	 */
 	public function matchEditToken( $val, $salt = '', $request = null, $maxage = null ) {
-		if ( $this->isAnon() ) {
-			return $val === self::EDIT_TOKEN_SUFFIX;
-		}
-
-		$timestamp = self::getEditTokenTimestamp( $val );
-		if ( $timestamp === null ) {
-			return false;
-		}
-		if ( $maxage !== null && $timestamp < wfTimestamp() - $maxage ) {
-			// Expired token
-			return false;
-		}
-
-		$sessionToken = $this->getEditTokenAtTimestamp(
-			$salt, $request ?: $this->getRequest(), $timestamp
-		);
-
-		if ( !hash_equals( $sessionToken, $val ) ) {
-			wfDebug( "User::matchEditToken: broken session data\n" );
-		}
-
-		return hash_equals( $sessionToken, $val );
+		return $this->getEditTokenObject( $salt, $request )->match( $val, $maxage );
 	}
 
 	/**
