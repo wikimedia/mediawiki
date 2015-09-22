@@ -772,7 +772,7 @@ class ApiMain extends ApiBase {
 					return;
 				}
 				// Logged out, send normal public headers below
-			} elseif ( session_id() != '' ) {
+			} elseif ( MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent() ) {
 				// Logged in or otherwise has session (e.g. anonymous users who have edited)
 				// Mark request private
 				$response->header( "Cache-Control: $privateCache" );

@@ -51,6 +51,31 @@ production.
   a thumbnail handler. See $wgForeignFileRepos documentation for tweaks.
 * (T27397) WebP is enabled by default as an uploadable filetype.
 * (T48998) $wgArticlePath must now be either a full url, or start with a "/".
+* (T27397) WebP is enabled by default as an uploadable filetype
+* Massive overhaul to session handling:
+** $wgSessionsInObjectCache is no longer supported and must be true, due to
+   MediaWiki\Session\SessionManager. $wgSessionHandler is similarly no longer
+   used.
+** ObjectCacheSessionHandler is removed, replaced with
+   MediaWiki\Session\PhpSessionHandler.
+** PHP session handling in general ($_SESSION, session_id(), and so on) is
+   deprecated. Use MediaWiki\Session\SessionManager instead. A new config
+   variable, $wgPHPSessionHandling, is available to cause use of $_SESSION to
+   issue a deprecation warning or to cause most PHP session handling to throw
+   exceptions.
+** Deprecated UserSetCookies hook. Session-handling extensions should generally
+   be creating a custom subclass of CookieSessionProvider. Other extensions
+   messing with cookies can no longer count on user data being saved in cookies
+   versus other methods.
+** Deprecated UserLoadFromSession hook, extensions should create a
+   MediaWiki\Session\SessionProvider.
+** The User cannot be loaded from session until after Setup.php completes.
+   Attempts to do so will be ignored and the User will remain unloaded.
+* MediaWiki will now auto-create users as necessary, removing the need for
+  extensions to do so. An 'autocreateaccount' right is added to allow
+  auto-creation when 'createaccount' is not granted to all users.
+* Deprecated AuthPluginAutoCreate hook in favor of LocalUserCreated.
+* Most cookie-handling methods in User are deprecated.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
@@ -78,8 +103,13 @@ production.
   and .flex(@grow: 1, @shrink: 1, @width: auto, @order: 1)) in Less to create
   cross-browser-compatible FlexBox rules. Users will still need to add fallback
   float rules or the like for compatibility with IE9- separately.
+* MediaWiki\Session infrastructure allows for easier use of session mechanisms
+  other than the usual cookies.
+** SessionMetadata and SessionCheckInfo hooks allow for setting and checking
+   custom session metadata.
 
 ==== External libraries ====
+* Added wikimedia/php-session-serializer v1.0.2.
 
 === Bug fixes in 1.27 ===
 * Special:Upload will now display correct maximum allowed file size when running
