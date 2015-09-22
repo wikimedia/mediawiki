@@ -34,7 +34,12 @@ class TokenSessionAuthenticationRequest extends AuthenticationRequest {
 	public $forceHTTPS = false;
 
 	public static function getFieldInfo() {
-		return array(
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		$canRemember = $config->get( 'ExtendedLoginCookieExpiration' ) > 0
+			|| $config->get( 'ExtendedLoginCookieExpiration' ) === null
+				&& $config->get( 'CookieExpiration' ) > 0;
+
+		$ret = array(
 			'remember' => array(
 				'type' => 'checkbox',
 				'label' => wfMessage( 'tokensessionauthenticationrequest-remember-label' ),
@@ -48,6 +53,12 @@ class TokenSessionAuthenticationRequest extends AuthenticationRequest {
 			//	'optional' => true,
 			//),
 		);
+
+		if ( !$canRemember ) {
+			unset( $ret['remember'] );
+		}
+
+		return $ret;
 	}
 
 }
