@@ -62,10 +62,8 @@ class ApiLogin extends ApiBase {
 
 		$result = array();
 
-		// Init session if necessary
-		if ( session_id() == '' ) {
-			wfSetupSession();
-		}
+		// Make sure session is persisted
+		MediaWiki\Session\SessionManager::getGlobalSession()->persist();
 
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setRequest( new DerivativeRequest(

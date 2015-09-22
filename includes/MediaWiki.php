@@ -627,8 +627,10 @@ class MediaWiki {
 		if (
 			$request->getProtocol() == 'http' &&
 			(
+				$request->getSession()->forceHTTPS() ||
+				// Check the cookie manually, for paranoia
 				$request->getCookie( 'forceHTTPS', '' ) ||
-				// check for prefixed version for currently logged in users
+				// check for prefixed version that was used for a time in older MW versions
 				$request->getCookie( 'forceHTTPS' ) ||
 				// Avoid checking the user and groups unless it's enabled.
 				(
