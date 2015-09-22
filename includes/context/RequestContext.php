@@ -490,7 +490,7 @@ class RequestContext implements IContextSource, MutableContext {
 		return array(
 			'ip' => $this->getRequest()->getIP(),
 			'headers' => $this->getRequest()->getAllHeaders(),
-			'sessionId' => session_id(),
+			'sessionId' => MediaWiki\Session\SessionManager::getGlobalSession()->getId(),
 			'userId' => $this->getUser()->getId()
 		);
 	}
@@ -518,7 +518,9 @@ class RequestContext implements IContextSource, MutableContext {
 	 * @since 1.21
 	 */
 	public static function importScopedSession( array $params ) {
-		if ( session_id() != '' && strlen( $params['sessionId'] ) ) {
+		if ( strlen( $params['sessionId'] ) &&
+			MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent()
+		) {
 			// Sanity check to avoid sending random cookies for the wrong users.
 			// This method should only called by CLI scripts or by HTTP job runners.
 			throw new MWException( "Sessions can only be imported when none is active." );
@@ -536,27 +538,44 @@ class RequestContext implements IContextSource, MutableContext {
 			$user = User::newFromName( $params['ip'], false );
 		}
 
-		$importSessionFunc = function ( User $user, array $params ) {
+		$usePHPSessionHandling =
+			RequestContext::getMain()->getConfig()->get( 'PHPSessionHandling' ) !== 'disable';
+
+		$importSessionFunc = function ( User $user, array $params ) use ( $usePHPSessionHandling ) {
 			global $wgRequest, $wgUser;
 
 			$context = RequestContext::getMain();
+
 			// Commit and close any current session
-			session_write_close(); // persist
-			session_id( '' ); // detach
-			$_SESSION = array(); // clear in-memory array
-			// Remove any user IP or agent information
-			$context->setRequest( new FauxRequest() );
+			if ( $usePHPSessionHandling ) {
+				session_write_close(); // persist
+				session_id( '' ); // detach
+				$_SESSION = array(); // clear in-memory array
+			}
+
+			// Get new session, if applicable
+			$session = null;
+			if ( strlen( $params['sessionId'] ) ) { // don't make a new random ID
+				$session = MediaWiki\Session\SessionManager::singleton()
+					->getSessionById( $params['sessionId'] );
+			}
+
+			// Remove any user IP or agent information, and attach the request
+			// with the new session.
+			$context->setRequest( new FauxRequest( array(), false, $session ) );
 			$wgRequest = $context->getRequest(); // b/c
+
 			// Now that all private information is detached from the user, it should
 			// be safe to load the new user. If errors occur or an exception is thrown
 			// and caught (leaving the main context in a mixed state), there is no risk
 			// of the User object being attached to the wrong IP, headers, or session.
 			$context->setUser( $user );
 			$wgUser = $context->getUser(); // b/c
-			if ( strlen( $params['sessionId'] ) ) { // don't make a new random ID
-				wfSetupSession( $params['sessionId'] ); // sets $_SESSION
+			if ( $usePHPSessionHandling && $session ) {
+				session_id( $session->getId() );
+				MediaWiki\quietCall( 'session_start' );
 			}
-			$request = new FauxRequest( array(), false, $_SESSION );
+			$request = new FauxRequest( array(), false, $session );
 			$request->setIP( $params['ip'] );
 			foreach ( $params['headers'] as $name => $value ) {
 				$request->setHeader( $name, $value );
