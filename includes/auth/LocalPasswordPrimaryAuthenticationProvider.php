@@ -156,7 +156,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		$row = $dbw->selectRow(
 			'user',
 			[ 'user_password' ],
-			[ 'user_name' => $username ],
+			[ 'user_name' => User::getCanonicalName( $username, 'usable' ) ],
 			__METHOD__
 		);
 		if ( !$row ) {
@@ -182,7 +182,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		return (bool)wfGetDB( $db )->selectField(
 			[ 'user' ],
 			[ 'user_id' ],
-			[ 'user_name' => $username ],
+			[ 'user_name' => User::getCanonicalName( $username, 'usable' ) ],
 			__METHOD__,
 			$options
 		);
