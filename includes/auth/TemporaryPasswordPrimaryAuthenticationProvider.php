@@ -21,6 +21,8 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\Session\SessionManager;
+
 /**
  * A primary authentication provider that uses the temporary password field in
  * the 'user' table.
@@ -49,7 +51,8 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 
 			case AuthManager::ACTION_CHANGE:
 			case AuthManager::ACTION_CREATE:
-				return array( 'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest' );
+				$user = SessionManager::getGlobalSession()->getUser();
+				return $user->isLoggedIn() ? array( 'TemporaryPasswordAuthenticationRequest' ) : array();
 
 			case AuthManager::ACTION_ALL:
 				return array(
