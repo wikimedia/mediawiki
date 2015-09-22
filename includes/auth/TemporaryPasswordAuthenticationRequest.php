@@ -30,8 +30,26 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	/** @var string|null Temporary password */
 	public $password;
 
+	/** @var bool Email password to the user. */
+	public $mailpassword = false;
+
+	/**
+	 * @var bool Do not fail certain operations if the password cannot be mailed, there is a
+	 *   backchannel present.
+	 */
+	public $hasBackchannel = false;
+
+	/** @var string Username or IP address of the caller */
+	public $caller;
+
 	public function getFieldInfo() {
-		return [];
+		return [
+			'mailpassword' => [
+				'type' => 'checkbox',
+				'label' => wfMessage( 'createaccountmail' ),
+				'help' => wfMessage( 'createaccountmail-help' ),
+			],
+		];
 	}
 
 	/**
@@ -39,6 +57,9 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	 */
 	public function __construct( $password = null ) {
 		$this->password = $password;
+		if ( $password ) {
+			$this->mailpassword = true;
+		}
 	}
 
 	/**
@@ -70,6 +91,7 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	 * @return TemporaryPasswordAuthenticationRequest
 	 */
 	public static function newInvalid() {
-		return new self( null );
+		$request = new self( null );
+		return $request;
 	}
 }

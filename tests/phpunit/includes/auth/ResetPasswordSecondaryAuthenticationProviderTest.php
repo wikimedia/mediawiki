@@ -99,7 +99,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiTestCas
 			wfMessage( 'authprovider-resetpass-skip-label' ),
 			wfMessage( 'authprovider-resetpass-skip-help' )
 		);
-		$passReq = new PasswordAuthenticationRequest( true );
+		$passReq = new PasswordAuthenticationRequest( 'change' );
 		$passReq->username = 'UTSysop';
 		$passReq->password = 'Foo';
 		$passReq->retype = 'Bar';
@@ -116,7 +116,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiTestCas
 		$passReq2->allow = \StatusValue::newGood();
 		$passReq2->done = false;
 
-		$passReq3 = new PasswordAuthenticationRequest( false );
+		$passReq3 = new PasswordAuthenticationRequest();
 		$passReq3->username = 'UTSysop';
 		$passReq3->password = 'Foo';
 		$passReq3->retype = 'Foo';
