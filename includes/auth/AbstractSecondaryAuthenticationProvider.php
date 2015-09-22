@@ -21,6 +21,8 @@
 
 namespace MediaWiki\Auth;
 
+use User;
+
 /**
  * A base class that implements some of the boilerplate for a SecondaryAuthenticationProvider
  *
@@ -84,4 +86,30 @@ abstract class AbstractSecondaryAuthenticationProvider extends AbstractAuthentic
 	public function autoCreatedAccount( $user ) {
 	}
 
+	/**
+	 * Throttles a secondary authentication step using the login throttle settings.
+	 * Returns true if the action is over the throttle limit and should be rejected; returns false
+	 * (and increases the throttle count) otherwise.
+	 * @param User $user
+	 * @param string $action An arbitrary action name used to prevent different types of throttles
+	 *    from being counted together. FIXME actually use this
+	 * @return false|array False if the attempt should not be throttled, an associative array
+	 *   with three keys otherwise:
+	 *   - throttleIndex: which throttle condition was met (an array key of PasswordAttemptThrottle)
+	 *   - count: throttle count (ie. number of failed attempts)
+	 *   - wait: time in seconds until authentication can be attempted
+	 */
+	protected function throttleAction( $user, $action ) {
+		return Throttler::getInstance()->increase( $user->getName(), null, __METHOD__ );
+	}
+
+	/**
+	 * Clears a throttle after a successful action.
+	 * @param User $user
+	 * @param string $action An arbitrary action name used to prevent different types of throttles
+	 *    from being counted together.
+	 */
+	protected function clearThrottle( $user, $action ) {
+		Throttler::getInstance()->clear( $user->getName() );
+	}
 }

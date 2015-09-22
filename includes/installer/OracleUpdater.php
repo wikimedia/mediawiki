@@ -111,6 +111,7 @@ class OracleUpdater extends DatabaseUpdater {
 			// 1.27
 			[ 'dropTable', 'msg_resource_links' ],
 			[ 'dropTable', 'msg_resource' ],
+			[ 'addTable', 'auth_blacklist', 'patch-auth_blacklist.sql' ],
 
 			// KEEP THIS AT THE BOTTOM!!
 			[ 'doRebuildDuplicateFunction' ],

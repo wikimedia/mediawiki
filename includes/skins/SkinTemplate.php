@@ -684,20 +684,19 @@ class SkinTemplate extends Skin {
 				];
 			}
 
-			$is_signup = $request->getText( 'type' ) === 'signup';
-
 			if ( $this->getUser()->isAllowed( 'createaccount' ) && !( $this->useCombinedLoginLink() ) ) {
 				$personal_urls[ 'createaccount' ] = [
 					'text' => $this->msg( 'pt-createaccount' )->text(),
-					'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup" ),
-					'active' => $title->isSpecial( 'Userlogin' ) && $is_signup,
+					'href' => self::makeSpecialUrl( 'CreateAccount', $returnto ),
+					'active' => $title->isSpecial( 'CreateAccount' ),
 				];
 			}
 
 			$personal_urls['login'] = [
 				'text' => $this->msg( 'pt-login' )->text(),
 				'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
-				'active' => $title->isSpecial( 'Userlogin' ) && !$is_signup,
+				'active' => $title->isSpecial( 'Userlogin' )
+					|| $title->isSpecial( 'CreateAccount' ) && $this->useCombinedLoginLink(),
 			];
 		}
 

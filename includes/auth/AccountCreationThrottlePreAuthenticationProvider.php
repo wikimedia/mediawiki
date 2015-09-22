@@ -30,9 +30,11 @@ use Config;
  * @since 1.27
  */
 class AccountCreationThrottlePreAuthenticationProvider extends AbstractPreAuthenticationProvider {
-
 	/** @var int */
-	protected $throttle = null;
+	protected $throttle;
+
+	/** @var Throttler */
+	protected $throttler;
 
 	/** @var BagOStuff */
 	protected $cache;
@@ -40,15 +42,11 @@ class AccountCreationThrottlePreAuthenticationProvider extends AbstractPreAuthen
 	/**
 	 * @param array $params
 	 *  - throttle: (int) Accounts per IP per day, defaults to $wgAccountCreationThrottle
-	 *  - cache: (BagOStuff) Where to store the throttle, defaults to $wgMemc
 	 */
 	public function __construct( $params = [] ) {
-		global $wgMemc;
-
 		if ( isset( $params['throttle'] ) ) {
 			$this->throttle = $params['throttle'];
 		}
-		$this->cache = isset( $params['cache'] ) ? $params['cache'] : $wgMemc;
 	}
 
 	public function setConfig( Config $config ) {
@@ -57,6 +55,12 @@ class AccountCreationThrottlePreAuthenticationProvider extends AbstractPreAuthen
 		if ( $this->throttle === null ) {
 			$this->throttle = $this->config->get( 'AccountCreationThrottle' );
 		}
+
+		$conditions = [[
+			'count' => $this->throttle,
+			'wait' => 86400,
+		]];
+		$this->throttler = Throttler::newFromConditions( $conditions, ['type' => 'acctcreate'] );
 	}
 
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
@@ -66,18 +70,12 @@ class AccountCreationThrottlePreAuthenticationProvider extends AbstractPreAuthen
 			$this->logger->debug( __METHOD__ . ": a hook allowed account creation w/o throttle\n" );
 		} else {
 			if ( $this->throttle && $creator->isPingLimitable() ) {
-				$key = $this->cache->makeGlobalKey( 'acctcreate', 'ip', $ip );
-				$value = $this->cache->get( $key );
-				if ( !$value ) {
-					$this->cache->set( $key, 0, 86400 );
+				$result = $this->throttler->increase( null, $ip, __METHOD__ );
+				if ( $result ) {
+					return \StatusValue::newFatal( 'acct_creation_throttle_hit', $result['wait'] );
 				}
-				if ( $value >= $this->throttle ) {
-					return \StatusValue::newFatal( 'acct_creation_throttle_hit', $this->throttle );
-				}
-				$this->cache->incr( $key );
 			}
 		}
 		return \StatusValue::newGood();
 	}
-
 }

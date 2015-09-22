@@ -1352,7 +1352,7 @@ final class AuthManager implements LoggerAwareInterface {
 				\DeferredUpdates::addUpdate( new \SiteStatsUpdate( 0, 0, 0, 0, 1 ) );
 
 				// Watch user's userpage and talk page
-				$user->addWatch( $user->getUserPage(), \WatchedItem::IGNORE_USER_RIGHTS );
+				$user->addWatch( $user->getUserPage(), User::IGNORE_USER_RIGHTS );
 
 				// Inform the provider
 				$provider->finishAccountCreation( $user, $state['primaryResponse'] );
@@ -1612,7 +1612,7 @@ final class AuthManager implements LoggerAwareInterface {
 		\DeferredUpdates::addUpdate( new \SiteStatsUpdate( 0, 0, 0, 0, 1 ) );
 
 		// Watch user's userpage and talk page
-		$user->addWatch( $user->getUserPage(), \WatchedItem::IGNORE_USER_RIGHTS );
+		$user->addWatch( $user->getUserPage(), User::IGNORE_USER_RIGHTS );
 
 		if ( $login ) {
 			$this->setSessionDataForUser( $user );
