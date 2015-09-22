@@ -301,7 +301,7 @@
 	"nstab-template": "Template",
 	"nstab-help": "Help page",
 	"nstab-category": "Category",
-	"mainpage-nstab": "",
+	"mainpage-nstab": "Main page",
 	"nosuchaction": "No such action",
 	"nosuchactiontext": "The action specified by the URL is invalid.\nYou might have mistyped the URL, or followed an incorrect link.\nThis might also indicate a bug in the software used by {{SITENAME}}.",
 	"nosuchspecialpage": "No such special page",
