@@ -735,8 +735,9 @@ viewing.
 redirect was followed.
 $article: target article (object)
 
-'AuthPluginAutoCreate': Called when creating a local account for an user logged
-in from an external authentication method.
+'AuthPluginAutoCreate': DEPRECATED! Use the 'LocalUserCreated' hook instead.
+Called when creating a local account for an user logged in from an external
+authentication method.
 $user: User object created locally
 
 'AuthPluginSetup': Update or replace authentication plugin object ($wgAuth).
@@ -2033,6 +2034,20 @@ $oldTitle: Title object of the current (old) location
 $newTitle: Title object of the new location
 $status: Status object to pass error messages to
 
+'MWSessionCheckInfo': Validate an MWSessionInfo as it's being loaded from
+storage. Return false to prevent it from being used.
+&$reason: String rejection reason to be logged
+$info: MWSessionInfo being validated
+$request: WebRequest being loaded from
+$metadata: Array|false Metadata array for the MWSession
+$data: Array|false Data array for the MWSession
+
+'MWSessionMetadata': Add metadata to a session being saved.
+$backend: MWSessionBackend being saved.
+&$metadata: Array Metadata to be stored. Add new keys here.
+$requests: Array of WebRequests potentially being saved to. Generally 0-1 real
+  request and 0+ FauxRequests.
+
 'NamespaceIsMovable': Called when determining if it is possible to pages in a
 namespace.
 $index: Integer; the index of the namespace being checked.
@@ -3258,8 +3273,9 @@ $name: user name
 $user: user object
 &$s: database query object
 
-'UserLoadFromSession': Called to authenticate users on external/environmental
-means; occurs before session is loaded.
+'UserLoadFromSession': DEPRECATED! Create an MWSessionProvider instead.
+Called to authenticate users on external/environmental means; occurs before
+session is loaded.
 $user: user object being loaded
 &$result: set this to a boolean value to abort the normal authentication
   process
@@ -3330,9 +3346,11 @@ $user: User object
 'UserSaveSettings': Called when saving user settings.
 $user: User object
 
-'UserSetCookies': Called when setting user cookies.
+'UserSetCookies': DEPRECATED! You probably want your own version of
+CookieSessionProvider instead.
+Called when setting user cookies.
 $user: User object
-&$session: session array, will be added to $_SESSION
+&$session: session array, will be added to the session
 &$cookies: cookies array mapping cookie name to its value
 
 'UserSetEmail': Called when changing user email address.

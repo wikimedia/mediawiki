@@ -3438,9 +3438,11 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1,
 /**
  * Check if there is sufficient entropy in php's built-in session generation
  *
+ * @deprecated since 1.27, PHP's session generation isn't used with MWSessionManager
  * @return bool True = there is sufficient entropy
  */
 function wfCheckEntropy() {
+	wfDeprecated( __FUNCTION__, '1.27' );
 	return (
 			( wfIsWindows() && version_compare( PHP_VERSION, '5.3.3', '>=' ) )
 			|| ini_get( 'session.entropy_file' )
@@ -3451,26 +3453,10 @@ function wfCheckEntropy() {
 /**
  * Override session_id before session startup if php's built-in
  * session generation code is not secure.
+ * @deprecated since 1.27, PHP's session generation isn't used with MWSessionManager
  */
 function wfFixSessionID() {
-	// If the cookie or session id is already set we already have a session and should abort
-	if ( isset( $_COOKIE[session_name()] ) || session_id() ) {
-		return;
-	}
-
-	// PHP's built-in session entropy is enabled if:
-	// - entropy_file is set or you're on Windows with php 5.3.3+
-	// - AND entropy_length is > 0
-	// We treat it as disabled if it doesn't have an entropy length of at least 32
-	$entropyEnabled = wfCheckEntropy();
-
-	// If built-in entropy is not enabled or not sufficient override PHP's
-	// built in session id generation code
-	if ( !$entropyEnabled ) {
-		wfDebug( __METHOD__ . ": PHP's built in entropy is disabled or not sufficient, " .
-			"overriding session id generation using our cryptrand source.\n" );
-		session_id( MWCryptRand::generateHex( 32 ) );
-	}
+	wfDeprecated( __FUNCTION__, '1.27' );
 }
 
 /**
@@ -3479,53 +3465,36 @@ function wfFixSessionID() {
  * @since 1.22
  */
 function wfResetSessionID() {
-	global $wgCookieSecure;
-	$oldSessionId = session_id();
-	$cookieParams = session_get_cookie_params();
-	if ( wfCheckEntropy() && $wgCookieSecure == $cookieParams['secure'] ) {
-		session_regenerate_id( false );
+	if ( session_id() !== '' ) {
+		$session = MWSessionManager::singleton()->getSessionById( session_id() );
 	} else {
-		$tmp = $_SESSION;
-		session_destroy();
-		wfSetupSession( MWCryptRand::generateHex( 32 ) );
-		$_SESSION = $tmp;
+		$session = MWSessionManager::singleton()->getSession();
 	}
-	$newSessionId = session_id();
+	$session->resetId();
+	if ( session_id() !== $session->getId() ) {
+		wfSetupSession( $session->getId() );
+	}
 }
 
 /**
  * Initialise php session
  *
- * @param bool $sessionId
+ * @param bool|string $sessionId
  */
 function wfSetupSession( $sessionId = false ) {
-	global $wgSessionsInObjectCache, $wgSessionHandler;
-	global $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly;
-
-	if ( $wgSessionsInObjectCache ) {
-		ObjectCacheSessionHandler::install();
-	} elseif ( $wgSessionHandler && $wgSessionHandler != ini_get( 'session.save_handler' ) ) {
-		# Only set this if $wgSessionHandler isn't null and session.save_handler
-		# hasn't already been set to the desired value (that causes errors)
-		ini_set( 'session.save_handler', $wgSessionHandler );
-	}
-
-	session_set_cookie_params(
-		0, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
-	session_cache_limiter( 'private, must-revalidate' );
-	if ( $sessionId ) {
-		session_id( $sessionId );
+	if ( $sessionId !== false ) {
+		$session = MWSessionManager::singleton()->getSessionById( $sessionId );
 	} else {
-		wfFixSessionID();
+		$session = MWSessionManager::singleton()->getSession();
 	}
+	$session->persist();
+	$session->renew();
+
+	session_id( $session->getId() );
 
 	MediaWiki\suppressWarnings();
 	session_start();
 	MediaWiki\restoreWarnings();
-
-	if ( $wgSessionsInObjectCache ) {
-		ObjectCacheSessionHandler::renewCurrentSession();
-	}
 }
 
 /**
