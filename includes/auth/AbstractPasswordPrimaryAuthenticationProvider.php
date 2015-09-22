@@ -164,8 +164,10 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 				return [ new PasswordAuthenticationRequest() ];
 
 			case AuthManager::ACTION_CREATE:
-			case AuthManager::ACTION_CHANGE:
 				return [ new PasswordAuthenticationRequest( true ) ];
+
+			case AuthManager::ACTION_CHANGE:
+				return [ new PasswordAuthenticationRequest( true, true ) ];
 
 			default:
 				return [];

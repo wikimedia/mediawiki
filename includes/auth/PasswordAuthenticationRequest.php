@@ -28,6 +28,7 @@ namespace MediaWiki\Auth;
  */
 class PasswordAuthenticationRequest extends AuthenticationRequest {
 	protected $needsRetype = false;
+	protected $isNew = false;
 
 	/** @var string Password */
 	public $password = null;
@@ -37,9 +38,11 @@ class PasswordAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @param bool $needsRetype Whether to include a "retype" field
+	 * @param bool $isNew Whether to clarify in the labels that this is a new password
 	 */
-	public function __construct( $needsRetype = false ) {
+	public function __construct( $needsRetype = false, $isNew = false ) {
 		$this->needsRetype = $needsRetype;
+		$this->isNew = $isNew;
 	}
 
 	public function getFieldInfo() {
@@ -51,7 +54,7 @@ class PasswordAuthenticationRequest extends AuthenticationRequest {
 			],
 			'password' => [
 				'type' => 'password',
-				'label' => wfMessage( 'userlogin-yourpassword' ),
+				'label' => wfMessage( $this->isNew ? 'newpassword' : 'userlogin-yourpassword' ),
 				'help' => wfMessage( 'authmanager-password-help' ),
 			],
 		];
@@ -67,7 +70,7 @@ class PasswordAuthenticationRequest extends AuthenticationRequest {
 		if ( $this->needsRetype ) {
 			$ret['retype'] = [
 				'type' => 'password',
-				'label' => wfMessage( 'createacct-yourpasswordagain' ),
+				'label' => wfMessage( $this->isNew ? 'retypenew' : 'yourpasswordagain' ),
 				'help' => wfMessage( 'authmanager-retype-help' ),
 			];
 		}

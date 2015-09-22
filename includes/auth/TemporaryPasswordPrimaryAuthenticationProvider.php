@@ -188,6 +188,10 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			[ 'user_name' => $req->username ],
 			__METHOD__
 		);
+
+		// put the temporary password in the session for the secondary provider which is
+		// responsible for sending it to the user
+		$this->manager->setAuthenticationSessionData( 'temp-password', $req->password );
 	}
 
 	public function accountCreationType() {

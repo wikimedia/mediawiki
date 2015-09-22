@@ -4438,6 +4438,9 @@ $wgAuthManagerConfig = [
 		'MediaWiki\\Auth\\AccountCreationThrottlePreAuthenticationProvider' => [
 			'class' => 'MediaWiki\\Auth\\AccountCreationThrottlePreAuthenticationProvider',
 		],
+		'MediaWiki\\Auth\\LoginThrottlePreAuthenticationProvider' => [
+			'class' => 'MediaWiki\\Auth\\LoginThrottlePreAuthenticationProvider',
+		],
 	],
 	'primaryauth' => [
 		'MediaWiki\\Auth\\LocalPasswordPrimaryAuthenticationProvider' => [
@@ -4467,6 +4470,9 @@ $wgAuthManagerConfig = [
 		],
 		'MediaWiki\\Auth\\ConfirmLinkSecondaryAuthenticationProvider' => [
 			'class' => 'MediaWiki\\Auth\\ConfirmLinkSecondaryAuthenticationProvider',
+		],
+		'MediaWiki\\Auth\\NotificationSecondaryAuthenticationProvider' => [
+			'class' => 'MediaWiki\\Auth\\NotificationSecondaryAuthenticationProvider',
 		],
 	],
 ];
