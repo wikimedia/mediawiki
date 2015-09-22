@@ -83,5 +83,4 @@ abstract class AbstractSecondaryAuthenticationProvider extends AbstractAuthentic
 
 	public function autoCreatedAccount( $user ) {
 	}
-
 }

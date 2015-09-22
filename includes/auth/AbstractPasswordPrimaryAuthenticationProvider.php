@@ -161,11 +161,13 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 		switch ( $action ) {
 			case AuthManager::ACTION_LOGIN:
 			case AuthManager::ACTION_REMOVE:
-				return [ new PasswordAuthenticationRequest() ];
+				return [ new PasswordAuthenticationRequest( 'login' ) ];
 
 			case AuthManager::ACTION_CREATE:
+				return [ new PasswordAuthenticationRequest( 'create' ) ];
+
 			case AuthManager::ACTION_CHANGE:
-				return [ new PasswordAuthenticationRequest( true ) ];
+				return [ new PasswordAuthenticationRequest( 'change' ) ];
 
 			default:
 				return [];
