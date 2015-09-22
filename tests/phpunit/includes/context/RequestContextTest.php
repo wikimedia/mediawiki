@@ -76,6 +76,11 @@ class RequestContextTest extends MediaWikiTestCase {
 			$context->getRequest()->getAllHeaders(),
 			"Correct context headers."
 		);
+		$this->assertEquals(
+			$sinfo['sessionId'],
+			MediaWiki\Session\SessionManager::getGlobalSession()->getId(),
+			"Correct context session ID."
+		);
 		$this->assertEquals( $sinfo['sessionId'], session_id(), "Correct context session ID." );
 		$this->assertEquals( true, $context->getUser()->isLoggedIn(), "Correct context user." );
 		$this->assertEquals( $sinfo['userId'], $context->getUser()->getId(), "Correct context user ID." );
