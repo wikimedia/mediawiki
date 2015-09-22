@@ -62,9 +62,19 @@ class ApiLogin extends ApiBase {
 
 		$result = array();
 
-		// Init session if necessary
-		if ( session_id() == '' ) {
-			wfSetupSession();
+		// Make sure session is persisted
+		$session = MediaWiki\Session\SessionManager::getGlobalSession();
+		$session->persist();
+
+		// Make sure it's possible to log in
+		if ( !$session->canSetUser() ) {
+			$this->getResult()->addValue( null, 'login', array(
+				'result' => 'Aborted',
+				'reason' => 'Cannot log in when using ' .
+					$session->getProvider()->describe( Language::factory( 'en' ) ),
+			) );
+
+			return;
 		}
 
 		$context = new DerivativeContext( $this->getContext() );
@@ -107,7 +117,7 @@ class ApiLogin extends ApiBase {
 				// SessionManager/AuthManager are *really* going to break it.
 				$result['lgtoken'] = $user->getToken();
 				$result['cookieprefix'] = $this->getConfig()->get( 'CookiePrefix' );
-				$result['sessionid'] = session_id();
+				$result['sessionid'] = MediaWiki\Session\SessionManager::getGlobalSession()->getId();
 				break;
 
 			case LoginForm::NEED_TOKEN:
@@ -116,7 +126,7 @@ class ApiLogin extends ApiBase {
 
 				// @todo: See above about deprecation
 				$result['cookieprefix'] = $this->getConfig()->get( 'CookiePrefix' );
-				$result['sessionid'] = session_id();
+				$result['sessionid'] = MediaWiki\Session\SessionManager::getGlobalSession()->getId();
 				break;
 
 			case LoginForm::WRONG_TOKEN:
