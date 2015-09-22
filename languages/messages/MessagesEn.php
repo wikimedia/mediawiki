@@ -419,6 +419,7 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'InvalidateEmail' ),
 	'JavaScriptTest'            => array( 'JavaScriptTest' ),
 	'BlockList'                 => array( 'BlockList', 'ListBlocks', 'IPBlockList' ),
+	'LinkAccounts'              => array( 'LinkAccounts', 'LinkAccount' ),
 	'LinkSearch'                => array( 'LinkSearch' ),
 	'Listadmins'                => array( 'ListAdmins' ),
 	'Listbots'                  => array( 'ListBots' ),

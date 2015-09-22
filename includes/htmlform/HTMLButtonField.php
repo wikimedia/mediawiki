@@ -39,7 +39,7 @@ class HTMLButtonField extends HTMLFormField {
 			'id' => $this->mID,
 		) + $this->getAttributes( array( 'disabled', 'tabindex' ) );
 
-		return Html::input( $this->mName, $value, $this->buttonType, $attr );
+		return Html::input( $this->mName, $this->getDefault(), $this->buttonType, $attr );
 	}
 
 	/**
@@ -50,7 +50,7 @@ class HTMLButtonField extends HTMLFormField {
 	public function getInputOOUI( $value ) {
 		return new OOUI\ButtonInputWidget( array(
 			'name' => $this->mName,
-			'value' => $value,
+			'value' => $this->getDefault(),
 			'label' => $value,
 			'type' => $this->buttonType,
 			'classes' => array( 'mw-htmlform-submit', $this->mClass ),
