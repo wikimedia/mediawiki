@@ -35,6 +35,49 @@ use User;
 class TemporaryPasswordPrimaryAuthenticationProvider
 	extends AbstractPasswordPrimaryAuthenticationProvider
 {
+	/** @var bool */
+	protected $emailEnabled = null;
+
+	/** @var int */
+	protected $newPasswordExpiry = null;
+
+	/** @var int */
+	protected $passwordReminderResendTime = null;
+
+	/**
+	 * @param array $params
+	 *  - emailEnabled: (bool) must be true for the option to email passwords to be present
+	 *  - newPasswordExpiry: (int) expiraton time of temporary passwords, in seconds
+	 *  - passwordReminderResendTime: (int) cooldown period in hours until a password reminder can
+	 *    be sent to the same user again,
+	 */
+	public function __construct( $params = [] ) {
+		parent::__construct( $params );
+
+		if ( isset( $params['emailEnabled'] ) ) {
+			$this->emailEnabled = (bool)$params['emailEnabled'];
+		}
+		if ( isset( $params['newPasswordExpiry'] ) ) {
+			$this->newPasswordExpiry = (int)$params['newPasswordExpiry'];
+		}
+		if ( isset( $params['passwordReminderResendTime'] ) ) {
+			$this->passwordReminderResendTime = $params['passwordReminderResendTime'];
+		}
+	}
+
+	public function setConfig( \Config $config ) {
+		parent::setConfig( $config );
+
+		if ( $this->emailEnabled === null ) {
+			$this->emailEnabled = $this->config->get( 'EnableEmail' );
+		}
+		if ( $this->newPasswordExpiry === null ) {
+			$this->newPasswordExpiry = $this->config->get( 'NewPasswordExpiry' );
+		}
+		if ( $this->passwordReminderResendTime === null ) {
+			$this->passwordReminderResendTime = $this->config->get( 'PasswordReminderResendTime' );
+		}
+	}
 
 	protected function getPasswordResetData( $username, $data ) {
 		// Always reset
@@ -47,7 +90,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	public function getAuthenticationRequests( $action, array $options ) {
 		switch ( $action ) {
 			case AuthManager::ACTION_LOGIN:
-				return [ new PasswordAuthenticationRequest ];
+				return [ new PasswordAuthenticationRequest( 'login' ) ];
 
 			case AuthManager::ACTION_CHANGE:
 				return [ TemporaryPasswordAuthenticationRequest::newRandom() ];
@@ -148,31 +191,69 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	public function providerAllowsAuthenticationDataChange(
 		AuthenticationRequest $req, $checkData = true
 	) {
-		if ( $req instanceof TemporaryPasswordAuthenticationRequest && $req->username !== null ) {
-			$row = wfGetDB( DB_MASTER )->selectRow(
-				'user',
-				[ 'user_id' ],
-				[ 'user_name' => $req->username ],
-				__METHOD__
-			);
-			if ( $row ) {
-				$sv = \StatusValue::newGood();
-				if ( $checkData && $req->password !== null ) {
-					$sv->merge( $this->checkPasswordValidity( $req->username, $req->password ) );
-				}
-				return $sv;
-			}
+		if ( !$req instanceof TemporaryPasswordAuthenticationRequest || $req->username === null ) {
+			// We don't really ignore it, but this is what the caller expects.
+			return \StatusValue::newGood( 'ignored' );
 		}
 
-		// We don't really ignore it, but this is what the caller expects.
-		return \StatusValue::newGood( 'ignored' );
+		$row = wfGetDB( DB_MASTER )->selectRow(
+			'user',
+			[ 'user_id', 'user_newpass_time' ],
+			[ 'user_name' => $req->username ],
+			__METHOD__
+		);
+
+		if ( !$row ) {
+			return \StatusValue::newFatal( 'nosuchuser', wfEscapeWikiText( $req->username ) );
+		}
+
+		$sv = \StatusValue::newGood();
+		if ( $checkData && $req->password !== null ) {
+			$sv->merge( $this->checkPasswordValidity( $req->username, $req->password ) );
+
+			if ( $req->mailpassword ) {
+				if ( !$this->emailEnabled && !$req->hasBackchannel ) {
+					return \StatusValue::newFatal( 'passwordreset-emaildisabled' );
+				}
+
+				// We don't check whether the user has an email address;
+				// that information should not be exposed to the caller.
+
+				// do not allow temporary password creation within
+				// $wgPasswordReminderResendTime from the last attempt
+				if (
+					$this->passwordReminderResendTime
+					&& $row->user_newpass_time
+					&& time() < wfTimestamp( TS_UNIX, $row->user_newpass_time )
+						+ $this->passwordReminderResendTime * 3600
+				) {
+					// Round the time in hours to 3 d.p., in case someone is specifying
+					// minutes or seconds.
+					return \StatusValue::newFatal( 'throttled-mailpassword',
+						round( $this->passwordReminderResendTime, 3 ) );
+				}
+
+				if ( !$req->caller ) {
+					return \StatusValue::newFatal( 'passwordreset-nocaller' );
+				}
+				if ( !\IP::isValid( $req->caller ) ) {
+					$caller = User::newFromName( $req->caller );
+					if ( !$caller ) {
+						return \StatusValue::newFatal( 'passwordreset-nosuchcaller', $req->caller );
+					}
+				}
+			}
+		}
+		return $sv;
 	}
 
 	public function providerChangeAuthenticationData( AuthenticationRequest $req ) {
+		$sendMail = false;
 		if ( $req->action !== AuthManager::ACTION_REMOVE &&
 			$req instanceof TemporaryPasswordAuthenticationRequest && $req->username !== null
 		) {
 			$pwhash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
+			$sendMail = $req->mailpassword;
 		} else {
 			// Invalidate the temporary password when any other auth is reset, or when removing
 			$pwhash = $this->getPasswordFactory()->newFromCiphertext( null );
@@ -188,6 +269,10 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			[ 'user_name' => $req->username ],
 			__METHOD__
 		);
+
+		if ( $sendMail ) {
+			$this->sendPasswordResetEmail( $req );
+		}
 	}
 
 	public function accountCreationType() {
@@ -195,12 +280,20 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	}
 
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
+		/** @var TemporaryPasswordAuthenticationRequest $req */
 		$req = AuthenticationRequest::getRequestByClass(
-			$reqs, 'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest'
+			$reqs, TemporaryPasswordAuthenticationRequest::class
 		);
+		/** @var UserDataAuthenticationRequest $userDataReq */
+		$userDataReq = AuthenticationRequest::getRequestByClass( $reqs,
+			UserDataAuthenticationRequest::class );
 
 		$ret = \StatusValue::newGood();
 		if ( $req ) {
+			if ( $req->mailpassword && !$userDataReq->email && !$req->hasBackchannel ) {
+				$ret->merge( \StatusValue::newFatal( 'noemailcreate' ) );
+			}
+
 			$ret->merge(
 				$this->checkPasswordValidity( $req->username, $req->password )
 			);
@@ -209,8 +302,9 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	}
 
 	public function beginPrimaryAccountCreation( $user, $creator, array $reqs ) {
+		/** @var TemporaryPasswordAuthenticationRequest $req */
 		$req = AuthenticationRequest::getRequestByClass(
-			$reqs, 'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest'
+			$reqs, TemporaryPasswordAuthenticationRequest::class
 		);
 		if ( $req ) {
 			if ( $req->username !== null && $req->password !== null ) {
@@ -219,6 +313,12 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 					$req = clone( $req );
 					$req->username = $user->getName();
 				}
+
+				if ( $req->mailpassword ) {
+					// prevent EmailNotificationSecondaryAuthenticationProvider from sending another mail
+					$this->manager->setAuthenticationSessionData( 'no-email', true );
+				}
+
 				$ret = AuthenticationResponse::newPass( $req->username );
 				$ret->createRequest = $req;
 				return $ret;
@@ -228,10 +328,18 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	}
 
 	public function finishAccountCreation( $user, $creator, AuthenticationResponse $res ) {
-		// Now that the user is in the DB, set the password on it.
-		$this->providerChangeAuthenticationData( $res->createRequest );
+		/** @var TemporaryPasswordAuthenticationRequest $req */
+		$req = $res->createRequest;
+		$mailpassword = $req->mailpassword;
+		$req->mailpassword = false; // providerChangeAuthenticationData would send the wrong email
 
-		// @todo Really do this
+		// Now that the user is in the DB, set the password on it.
+		$this->providerChangeAuthenticationData( $req );
+
+		if ( $mailpassword ) {
+			$this->sendNewAccountEmail( $user, $creator, $req->password );
+		}
+
 		return 'byemail';
 	}
 
@@ -243,11 +351,64 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	protected function isTimestampValid( $timestamp ) {
 		$time = wfTimestampOrNull( TS_MW, $timestamp );
 		if ( $time !== null ) {
-			$expiry = wfTimestamp( TS_UNIX, $time ) + $this->config->get( 'NewPasswordExpiry' );
+			$expiry = wfTimestamp( TS_UNIX, $time ) + $this->newPasswordExpiry;
 			if ( time() >= $expiry ) {
 				return false;
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * Send an email about the new account creation and the temporary password.
+	 * @param User $user The new user account
+	 * @param User $creatingUser The user who created the account (can be anonymous)
+	 * @param string $password The temporary password
+	 * @return \Status
+	 */
+	protected function sendNewAccountEmail( User $user, User $creatingUser, $password ) {
+		$ip = $creatingUser->getRequest()->getIP();
+		if ( !$ip ) {
+			return \Status::newFatal( 'badipaddress' );
+		}
+
+		\Hooks::run( 'User::mailPasswordInternal', [ &$creatingUser, &$ip, &$user ] );
+
+		$mainPageUrl = \Title::newMainPage()->getCanonicalURL();
+		$userLanguage = $user->getOption( 'language' );
+		$subjectMessage = wfMessage( 'createaccount-title' )->inLanguage( $userLanguage );
+		$bodyMessage = wfMessage( 'createaccount-text', $ip, $user->getName(), $password,
+			'<' . $mainPageUrl . '>', round( $this->newPasswordExpiry / 86400 ) )
+			->inLanguage( $userLanguage );
+
+		$status = $user->sendMail( $subjectMessage->text(), $bodyMessage->text() );
+
+		// TODO show 'mailerror' message on error, 'accmailtext' success message otherwise?
+		if ( !$status->isGood() ) {
+			$this->logger->warning( 'Could not send account creation email: ' .
+									$status->getWikiText( false, false, 'en' ) );
+		}
+
+		return $status;
+	}
+
+	/**
+	 * @param TemporaryPasswordAuthenticationRequest $req
+	 * @return \Status
+	 */
+	protected function sendPasswordResetEmail( TemporaryPasswordAuthenticationRequest $req ) {
+			$user = User::newFromName( $req->username );
+			$userLanguage = $user->getOption( 'language' );
+			$callerIsAnon = \IP::isValid( $req->caller );
+			$callerName = $callerIsAnon ? $req->caller : User::newFromName( $req->caller )->getName();
+			$passwordMessage = wfMessage( 'passwordreset-emailelement', $user->getName(),
+				$req->password )->inLanguage( $userLanguage );
+			$emailMessage = wfMessage( $callerIsAnon ? 'passwordreset-emailtext-ip'
+				: 'passwordreset-emailtext-user' )->inLanguage( $userLanguage );
+			$emailMessage->params( $callerName, $passwordMessage->text(), 1,
+				'<' . \Title::newMainPage()->getCanonicalURL() . '>',
+				round( $this->newPasswordExpiry / 86400 ) );
+			$emailTitle = wfMessage( 'passwordreset-emailtitle' )->inLanguage( $userLanguage );
+			return $user->sendMail( $emailTitle->text(), $emailMessage->text() );
 	}
 }

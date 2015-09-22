@@ -20,22 +20,24 @@
  * @file
  * @ingroup SpecialPage
  */
+use MediaWiki\Auth\AuthManager;
+use MediaWiki\Auth\PasswordAuthenticationRequest;
+use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
 
 /**
- * Special page for requesting a password reset email
+ * Special page for requesting a password reset email.
+ *
+ * Requires the TemporaryPasswordPrimaryAuthenticationProvider and the
+ * EmailNotificationSecondaryAuthenticationProvider (or something providing equivalent functionality)
+ * to be enabled.
  *
  * @ingroup SpecialPage
  */
 class SpecialPasswordReset extends FormSpecialPage {
 	/**
-	 * @var Message
+	 * @var string[] Temporary storage for the passwords which have been sent out, keyed by username.
 	 */
-	private $email;
-
-	/**
-	 * @var User
-	 */
-	private $firstUser;
+	private $passwords;
 
 	/**
 	 * @var Status
@@ -71,7 +73,6 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	protected function getFormFields() {
-		global $wgAuth;
 		$resetRoutes = $this->getConfig()->get( 'PasswordResetRoutes' );
 		$a = [];
 		if ( isset( $resetRoutes['username'] ) && $resetRoutes['username'] ) {
@@ -89,15 +90,6 @@ class SpecialPasswordReset extends FormSpecialPage {
 			$a['Email'] = [
 				'type' => 'email',
 				'label-message' => 'passwordreset-email',
-			];
-		}
-
-		if ( isset( $resetRoutes['domain'] ) && $resetRoutes['domain'] ) {
-			$domains = $wgAuth->domainList();
-			$a['Domain'] = [
-				'type' => 'select',
-				'options' => $domains,
-				'label-message' => 'passwordreset-domain',
 			];
 		}
 
@@ -128,9 +120,6 @@ class SpecialPasswordReset extends FormSpecialPage {
 		if ( isset( $resetRoutes['email'] ) && $resetRoutes['email'] ) {
 			$i++;
 		}
-		if ( isset( $resetRoutes['domain'] ) && $resetRoutes['domain'] ) {
-			$i++;
-		}
 
 		$message = ( $i > 1 ) ? 'passwordreset-text-many' : 'passwordreset-text-one';
 
@@ -148,15 +137,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 	 * @return bool|array
 	 */
 	public function onSubmit( array $data ) {
-		global $wgAuth, $wgMinimalPasswordLength;
-
-		if ( isset( $data['Domain'] ) ) {
-			if ( $wgAuth->validDomain( $data['Domain'] ) ) {
-				$wgAuth->setDomain( $data['Domain'] );
-			} else {
-				$wgAuth->setDomain( 'invaliddomain' );
-			}
-		}
+		global $wgMinimalPasswordLength;
+		$authManager = AuthManager::singleton();
 
 		if ( isset( $data['Capture'] ) && !$this->getUser()->isAllowed( 'passwordreset' ) ) {
 			// The user knows they don't have the passwordreset permission,
@@ -228,19 +210,6 @@ class SpecialPasswordReset extends FormSpecialPage {
 			throw new ThrottledError;
 		}
 
-		// Check against password throttle
-		foreach ( $users as $user ) {
-			if ( $user->isPasswordReminderThrottled() ) {
-
-				# Round the time in hours to 3 d.p., in case someone is specifying
-				# minutes or seconds.
-				return [ [
-					'throttled-mailpassword',
-					round( $this->getConfig()->get( 'PasswordReminderResendTime' ), 3 )
-				] ];
-			}
-		}
-
 		// All the users will have the same email address
 		if ( $firstUser->getEmail() == '' ) {
 			// This won't be reachable from the email route, so safe to expose the username
@@ -253,45 +222,27 @@ class SpecialPasswordReset extends FormSpecialPage {
 		if ( !$ip ) {
 			return [ 'badipaddress' ];
 		}
+
 		$caller = $this->getUser();
 		Hooks::run( 'User::mailPasswordInternal', [ &$caller, &$ip, &$firstUser ] );
-		$username = $caller->getName();
-		$msg = IP::isValid( $username )
-			? 'passwordreset-emailtext-ip'
-			: 'passwordreset-emailtext-user';
 
-		// Send in the user's language; which should hopefully be the same
-		$userLanguage = $firstUser->getOption( 'language' );
-
-		$passwords = [];
+		$this->result = Status::newGood();
 		foreach ( $users as $user ) {
-			$password = PasswordFactory::generateRandomPasswordString( $wgMinimalPasswordLength );
-			$user->setNewpassword( $password );
-			$user->saveSettings();
-			$passwords[] = $this->msg( 'passwordreset-emailelement', $user->getName(), $password )
-				->inLanguage( $userLanguage )->text(); // We'll escape the whole thing later
-		}
-		$passwordBlock = implode( "\n\n", $passwords );
+			$req = TemporaryPasswordAuthenticationRequest::newRandom();
+			$req->username = $user->getName();
+			$req->mailpassword = true;
+			$req->hasBackchannel = !empty( $data['Capture'] );
+			$req->caller = $this->getUser()->getName();
+			$status = $authManager->allowsAuthenticationDataChange( $req, true );
+			$this->result->merge( $status );
+			if ( $status->isGood() ) {
+				$authManager->changeAuthenticationData( $req );
 
-		$this->email = $this->msg( $msg )->inLanguage( $userLanguage );
-		$this->email->params(
-			$username,
-			$passwordBlock,
-			count( $passwords ),
-			'<' . Title::newMainPage()->getCanonicalURL() . '>',
-			round( $this->getConfig()->get( 'NewPasswordExpiry' ) / 86400 )
-		);
-
-		$title = $this->msg( 'passwordreset-emailtitle' )->inLanguage( $userLanguage );
-
-		$this->result = $firstUser->sendMail( $title->text(), $this->email->text() );
-
-		if ( isset( $data['Capture'] ) && $data['Capture'] ) {
-			// Save the user, will be used if an error occurs when sending the email
-			$this->firstUser = $firstUser;
-		} else {
-			// Blank the email if the user is not supposed to see it
-			$this->email = null;
+				// TODO record mail sending errors
+				if ( !empty( $data['Capture'] ) ) {
+					$this->passwords[$req->username] = $req->password;
+				}
+			}
 		}
 
 		if ( $this->result->isGood() ) {
@@ -308,17 +259,26 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	public function onSuccess() {
-		if ( $this->getUser()->isAllowed( 'passwordreset' ) && $this->email != null ) {
+		if ( $this->getUser()->isAllowed( 'passwordreset' ) && $this->passwords ) {
 			// @todo Logging
 
 			if ( $this->result->isGood() ) {
-				$this->getOutput()->addWikiMsg( 'passwordreset-emailsent-capture' );
+				$this->getOutput()->addWikiMsg( 'passwordreset-emailsent-capture',
+					count( $this->passwords ) );
 			} else {
 				$this->getOutput()->addWikiMsg( 'passwordreset-emailerror-capture',
-					$this->result->getMessage(), $this->firstUser->getName() );
+					$this->result->getMessage(), $this->firstUser->getName(), count( $this->passwords ) );
 			}
 
-			$this->getOutput()->addHTML( Html::rawElement( 'pre', [], $this->email->escaped() ) );
+			$passwords = '';
+			foreach ( $this->passwords as $username => $pwd ) {
+				$passwords .= htmlspecialchars( $username, ENT_QUOTES )
+					. $this->msg( 'colon-separator' )->text()
+					. htmlspecialchars( $pwd, ENT_QUOTES )
+					. "\n";
+			}
+
+			$this->getOutput()->addHTML( Html::rawElement( 'pre', [], $passwords ) );
 		}
 
 		if ( $this->method === 'email' ) {
@@ -331,7 +291,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	protected function canChangePassword( User $user ) {
-		global $wgAuth;
+		$authManager = AuthManager::singleton();
 		$resetRoutes = $this->getConfig()->get( 'PasswordResetRoutes' );
 
 		// Maybe password resets are disabled, or there are no allowable routes
@@ -342,7 +302,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 		}
 
 		// Maybe the external auth plugin won't allow local password changes
-		if ( !$wgAuth->allowPasswordChange() ) {
+		if ( !$authManager->allowsAuthenticationDataChange( new PasswordAuthenticationRequest ) ) {
 			return 'resetpass_forbidden';
 		}
 

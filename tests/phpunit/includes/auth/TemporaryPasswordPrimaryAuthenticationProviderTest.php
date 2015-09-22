@@ -28,9 +28,10 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 	 * $provider->checkPasswordValidity is mocked to return $this->validity,
 	 * because we don't need to test that here.
 	 *
+	 * @param array $extraMockedMethods
 	 * @return TemporaryPasswordPrimaryAuthenticationProvider
 	 */
-	protected function getProvider() {
+	protected function getProvider( $mockedMethods = [] ) {
 		if ( !$this->config ) {
 			$this->config = new \HashConfig();
 		}
@@ -44,9 +45,10 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		}
 		$this->validity = \Status::newGood();
 
+		$mockedMethods[] = 'checkPasswordValidity';
 		$provider = $this->getMock(
 			'MediaWiki\\Auth\\TemporaryPasswordPrimaryAuthenticationProvider',
-			[ 'checkPasswordValidity' ]
+			$mockedMethods
 		);
 		$provider->expects( $this->any() )->method( 'checkPasswordValidity' )
 			->will( $this->returnCallback( function () {

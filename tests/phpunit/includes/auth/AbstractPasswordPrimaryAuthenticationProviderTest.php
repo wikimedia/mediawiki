@@ -206,11 +206,11 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 
 	public static function provideGetAuthenticationRequests() {
 		return [
-			[ AuthManager::ACTION_LOGIN, [ new PasswordAuthenticationRequest ] ],
-			[ AuthManager::ACTION_CREATE, [ new PasswordAuthenticationRequest( true ) ] ],
+			[ AuthManager::ACTION_LOGIN, [ new PasswordAuthenticationRequest( 'login' ) ] ],
+			[ AuthManager::ACTION_CREATE, [ new PasswordAuthenticationRequest( 'create' ) ] ],
 			[ AuthManager::ACTION_LINK, [] ],
-			[ AuthManager::ACTION_CHANGE, [ new PasswordAuthenticationRequest( true ) ] ],
-			[ AuthManager::ACTION_REMOVE, [ new PasswordAuthenticationRequest ] ],
+			[ AuthManager::ACTION_CHANGE, [ new PasswordAuthenticationRequest( 'change' ) ] ],
+			[ AuthManager::ACTION_REMOVE, [ new PasswordAuthenticationRequest( 'login' ) ] ],
 		];
 	}
 
