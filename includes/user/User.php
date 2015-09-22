@@ -2666,9 +2666,7 @@ class User implements IDBAccessObject {
 	/**
 	 * Set the password for a password reminder or new account email
 	 *
-	 * @deprecated since 1.27. Some way to do this via AuthManager (probably
-	 *  involving TemporaryPasswordAuthenticationRequest) has yet to be
-	 *  designed.
+	 * @deprecated Removed in 1.27. Use PasswordReset instead.
 	 * @param string $str New password to set or null to set an invalid
 	 *  password hash meaning that the user will not be able to use it
 	 * @param bool $throttle If true, reset the throttle timestamp to the present
