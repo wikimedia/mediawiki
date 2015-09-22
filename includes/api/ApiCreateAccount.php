@@ -149,7 +149,7 @@ class ApiCreateAccount extends ApiBase {
 			// Token was incorrect, so add it to result, but don't throw an exception
 			// since not having the correct token is part of the normal
 			// flow of events.
-			$result['token'] = LoginForm::getCreateaccountToken();
+			$result['token'] = LoginForm::getCreateaccountToken()->toString();
 			$result['result'] = 'NeedToken';
 		} elseif ( !$status->isOK() ) {
 			// There was an error. Die now.

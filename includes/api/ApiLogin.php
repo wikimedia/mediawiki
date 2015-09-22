@@ -84,12 +84,9 @@ class ApiLogin extends ApiBase {
 
 		// Check login token
 		$token = LoginForm::getLoginToken();
-		if ( !$token ) {
-			LoginForm::setLoginToken();
+		if ( $token->wasNew() || !$params['token'] ) {
 			$authRes = LoginForm::NEED_TOKEN;
-		} elseif ( !$params['token'] ) {
-			$authRes = LoginForm::NEED_TOKEN;
-		} elseif ( $token !== $params['token'] ) {
+		} elseif ( !$token->match( $params['token'] ) ) {
 			$authRes = LoginForm::WRONG_TOKEN;
 		}
 
@@ -159,7 +156,7 @@ class ApiLogin extends ApiBase {
 
 			case LoginForm::NEED_TOKEN:
 				$result['result'] = 'NeedToken';
-				$result['token'] = LoginForm::getLoginToken();
+				$result['token'] = LoginForm::getLoginToken()->toString();
 
 				// @todo: See above about deprecation
 				$result['cookieprefix'] = $this->getConfig()->get( 'CookiePrefix' );

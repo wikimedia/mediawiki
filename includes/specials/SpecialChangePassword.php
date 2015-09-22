@@ -111,13 +111,10 @@ class SpecialChangePassword extends FormSpecialPage {
 		);
 
 		if ( !$this->getUser()->isLoggedIn() ) {
-			if ( !LoginForm::getLoginToken() ) {
-				LoginForm::setLoginToken();
-			}
 			$fields['LoginOnChangeToken'] = array(
 				'type' => 'hidden',
 				'label' => 'Change Password Token',
-				'default' => LoginForm::getLoginToken(),
+				'default' => LoginForm::getLoginToken()->toString(),
 			);
 		}
 
@@ -179,7 +176,7 @@ class SpecialChangePassword extends FormSpecialPage {
 		}
 
 		if ( !$this->getUser()->isLoggedIn()
-			&& $request->getVal( 'wpLoginOnChangeToken' ) !== LoginForm::getLoginToken()
+			&& !LoginForm::getLoginToken()->match( $request->getVal( 'wpLoginOnChangeToken' ) )
 		) {
 			// Potential CSRF (bug 62497)
 			return false;
@@ -218,8 +215,8 @@ class SpecialChangePassword extends FormSpecialPage {
 			$this->getOutput()->returnToMain();
 		} else {
 			$request = $this->getRequest();
-			LoginForm::setLoginToken();
-			$token = LoginForm::getLoginToken();
+			LoginForm::clearLoginToken();
+			$token = LoginForm::getLoginToken()->toString();
 			$data = array(
 				'action' => 'submitlogin',
 				'wpName' => $this->mUserName,

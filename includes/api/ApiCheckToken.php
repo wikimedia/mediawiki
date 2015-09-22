@@ -46,7 +46,7 @@ class ApiCheckToken extends ApiBase {
 			$res['result'] = 'invalid';
 		}
 
-		$ts = User::getEditTokenTimestamp( $token );
+		$ts = MediaWiki\Session\Token::getTimestamp( $token );
 		if ( $ts !== null ) {
 			$mwts = new MWTimestamp();
 			$mwts->timestamp->setTimestamp( $ts );
