@@ -150,6 +150,13 @@ class WANObjectCache {
 	 *   - c) When the source data that "check" keys represent changes,
 	 *        the touchCheckKey() method is called on them
 	 *
+	 * Source data entities might exists in a DB that uses snapshot isolation
+	 * (e.g. the default REPEATABLE-READ in innoDB). Even for mutable data, that
+	 * isolation can largely be maintained by doing the following:
+	 *   - a) Calling delete() on entity change *and* creation, before DB commit
+	 *   - b) Keeping transaction duration shorter than delete() hold-off TTL
+	 * However, pre-snapshot values might still be seen due to delete() relay lag.
+	 *
 	 * For keys that are hot/expensive, consider using getWithSetCallback() instead.
 	 *
 	 * @param string $key Cache key
@@ -418,8 +425,8 @@ class WANObjectCache {
 	 *
 	 * The simplest way to avoid stampedes for hot keys is to use
 	 * the 'lockTSE' option in $opts. If cache purges are needed, also:
-	 *   a) Pass $key into $checkKeys
-	 *   b) Use touchCheckKey( $key ) instead of delete( $key )
+	 *   - a) Pass $key into $checkKeys
+	 *   - b) Use touchCheckKey( $key ) instead of delete( $key )
 	 * Following this pattern lets the old cache be used until a
 	 * single thread updates it as needed. Also consider tweaking
 	 * the 'lowTTL' parameter.
