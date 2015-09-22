@@ -49,6 +49,7 @@ $wgAutoloadClasses += array(
 
 	# tests/phpunit/includes
 	'TestingAccessWrapper' => "$testDir/phpunit/includes/TestingAccessWrapper.php",
+	'TestLogger' => "$testDir/phpunit/includes/TestLogger.php",
 
 	# tests/phpunit/includes/api
 	'ApiFormatTestBase' => "$testDir/phpunit/includes/api/format/ApiFormatTestBase.php",
@@ -94,6 +95,10 @@ $wgAutoloadClasses += array(
 	'ResourceLoaderImageModuleTestable' =>
 		"$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
 
+	# tests/phpunit/includes/session
+	'MediaWiki\\Session\\TestBagOStuff' => "$testDir/phpunit/includes/session/TestBagOStuff.php",
+	'MediaWiki\\Session\\TestUtils' => "$testDir/phpunit/includes/session/TestUtils.php",
+
 	# tests/phpunit/includes/specials
 	'SpecialPageTestBase' => "$testDir/phpunit/includes/specials/SpecialPageTestBase.php",
 
@@ -118,6 +123,7 @@ $wgAutoloadClasses += array(
 	'MockSvgHandler' => "$testDir/phpunit/mocks/media/MockSvgHandler.php",
 	'MockDjVuHandler' => "$testDir/phpunit/mocks/media/MockDjVuHandler.php",
 	'MockWebRequest' => "$testDir/phpunit/mocks/MockWebRequest.php",
+	'DummySessionProvider' => "$testDir/phpunit/mocks/session/DummySessionProvider.php",
 
 	# tests/parser
 	'NewParserTest' => "$testDir/phpunit/includes/parser/NewParserTest.php",
