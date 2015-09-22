@@ -2774,8 +2774,6 @@
 	"api-error-copyuploaddisabled": "Ngarkimi nga URL-ja është çaktivizuar në këtë server.",
 	"api-error-duplicate": "{{PLURAL:$1|Ekziston [$2 një skedë tjetër]|Ekzistojnë [$2 disa skeda të tjera]}} me të njëjtën përmbajtje.",
 	"api-error-duplicate-archive": "{{Ekzistonte [$2 një skedë tjetër]|Ekzistonin [$2 disa skeda të tjera]}} me të njëjtën përmbajtje, por {{PLURAL:$1|u gris|u grisën}}.",
-	"api-error-duplicate-archive-popup-title": "Dublo {{PLURAL:$1|skedë|skeda}} që janë grisur tashmë",
-	"api-error-duplicate-popup-title": "Dublo {{PLURAL:$1|skedë|skeda}}",
 	"api-error-empty-file": "Skeda që paraqitët ishte bosh.",
 	"api-error-emptypage": "Nuk lejohet krijimi i faqeve të reja bosh.",
 	"api-error-fetchfileerror": "Gabim i brendshëm: Diçka shkoi keq gjatë marrjes së skedës.",

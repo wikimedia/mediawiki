@@ -2894,8 +2894,6 @@
 	"api-error-copyuploaddisabled": "Bestaanden opsturen via n webadres is uutezet op disse server.",
 	"api-error-duplicate": "Der {{PLURAL:$1|steet al [$2 n bestaand]|staon al [$2 bestaanden]}} mit de zelfde inhoud in de wiki.",
 	"api-error-duplicate-archive": "Der {{PLURAL:$1|was al [$2 n aander bestaand]|waren al [$2 $1 aandere bestaanden]}}  op de webstee mit de zelfde inhoud, mer {{PLURAL:$1|dat is|die bin}} vortedaon.",
-	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Duplikaotbestaand dat al vortedaon is|Duplikaotbestaanden die al vortedaon bin}}",
-	"api-error-duplicate-popup-title": "Zelfde {{PLURAL:$1|bestaand|bestaanden}}",
 	"api-error-empty-file": "t Bestaand da'j op-estuurd hebben is leeg.",
 	"api-error-emptypage": "Je maggen gien lege nieje ziejen anmaken.",
 	"api-error-fetchfileerror": "Interne fout: der is iets verkeerd egaon mit t ophaolen van t bestaand.",

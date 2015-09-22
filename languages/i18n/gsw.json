@@ -3219,8 +3219,6 @@
 	"api-error-copyuploaddisabled": "S Uffelade iber e URL isch uf däm Server deaktiviert.",
 	"api-error-duplicate": "S git im Wiki scho {{PLURAL:$1|[$2 ei anderi Datei]|[$2 anderi Dateie]}} mit em glyche Inhalt.",
 	"api-error-duplicate-archive": "Es {{PLURAL:$1|isch scho [$2 e andri Datei]|sin scho [$2 anderi Dateie]}} mit em glyche Inhalt vorhande gsi. {{PLURAL:$1|Si isch|Si sin}} allerdings glöscht worde.",
-	"api-error-duplicate-archive-popup-title": "Doppelti {{PLURAL:$1|Datei, wo scho worde isch|Dateie, wo scho glöscht worde sin}}",
-	"api-error-duplicate-popup-title": "Dopplet vorhandeni {{PLURAL:$1|Datei|Dateie}}",
 	"api-error-empty-file": "D Datei, wu Du uffeglade hesch, isch läär.",
 	"api-error-emptypage": "S isch nit erlaubt, neji lääri Syte aazlege.",
 	"api-error-fetchfileerror": "Intärne Fähler: Bim Abruefe vu dr Datei isch e Fähler ufträtte.",

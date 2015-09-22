@@ -3269,8 +3269,6 @@
 	"api-error-copyuploaddisabled": "ამ სერვერზე URL-მისამართის საშუალებით ატვირთვა გამორთულია.",
 	"api-error-duplicate": "უკვე {{PLURAL:$1|არსებობს [$2 სხვა ფაილი]|არსებობს [$2 სხვა მსგავსი ფაილი]}} ანალოგიური შინაარსით.",
 	"api-error-duplicate-archive": "საიტზე ადრე {{PLURAL:$1|უკვე იყო [$2 ფაილი]}} ანალოგიური შინაარსით, მაგრამ {{PLURAL:$1|ის წაიშალა|ისინი წაიშალა}}.",
-	"api-error-duplicate-archive-popup-title": "უკვე წაშლილი {{PLURAL:$1|ფაილის|ფაილის}} დუბლიკატი.",
-	"api-error-duplicate-popup-title": "{{PLURAL:$1|ფაილის|ფაილის}} დუბლიკატი.",
 	"api-error-empty-file": "არჩეული ფაილი ცარიელია.",
 	"api-error-emptypage": "ახალი, ცარიელი გვერდების შექმნა აკრძალულია.",
 	"api-error-fetchfileerror": "შიდა შეცდომა: ფაილის მიღებისას მოხდა რაღაც შეცდომა.",

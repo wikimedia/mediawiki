@@ -3048,8 +3048,6 @@
 	"api-error-badtoken": "Żball intern: <em>Token</em> ħażin.",
 	"api-error-copyuploaddisabled": "It-tlugħ ta' fajls bl-użu tal-URL mhuwiex permess fuq dan is-server.",
 	"api-error-duplicate": "Hemm {{PLURAL:$1|[$2 fajl ieħor]|[$2 xi fajls oħra]}} diġà fuq dan is-sit bl-istess kontenut.",
-	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Fajl duplikat li diġà ġie mħassar|Fajls duplikat li diġà ġew imħassra}}.",
-	"api-error-duplicate-popup-title": "{{PLURAL:$1|Fajl duplikat|Fajls duplikati}}.",
 	"api-error-empty-file": "Il-fajl li bgħatt kien vojt.",
 	"api-error-emptypage": "Mhuwiex permess il-ħolqien ta' paġna ġdida vojta.",
 	"api-error-fetchfileerror": "Żball intern: Kien hemm problema waqt il-kisba tal-fajl.",

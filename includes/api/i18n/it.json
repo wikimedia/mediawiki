@@ -7,7 +7,8 @@
 			"Gianfranco",
 			"Alexmar983",
 			"Ricordisamoa",
-			"Valepert"
+			"Valepert",
+			"Sannita"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentazione (in inglese)]]\n* [[mw:API:FAQ|FAQ (in inglese)]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annunci sull'API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug & richieste]\n</div>\n<strong>Stato:</strong> Tutte le funzioni e caratteristiche mostrate su questa pagina dovrebbero funzionare, ma l'API è ancora in fase d'attivo sviluppo, e potrebbe cambiare in qualsiasi momenento. Iscriviti alla [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] per essere informato sugli aggiornamenti.\n\n<strong>Istruzioni sbagliate:</strong> quando vengono impartite all'API delle istruzioni sbagliate, un'intestazione HTTP verrà inviata col messaggio \"MediaWiki-API-Error\" e sia al valore dell'intestazione sia al codice d'errore verrà impostato lo stesso valore. Per maggiori informazioni leggi [[mw:API:Errors_and_warnings|API:Errori ed avvertimenti (in inglese)]].",
@@ -77,7 +78,11 @@
 	"apihelp-edit-param-unwatch": "Rimuovi la pagina dagli Osservati Speciali dell'utente corrente.",
 	"apihelp-edit-example-edit": "Modifica una pagina.",
 	"apihelp-emailuser-description": "Manda un'e-mail ad un utente.",
+	"apihelp-emailuser-param-target": "Utente a cui inviare l'e-mail.",
+	"apihelp-emailuser-param-subject": "Oggetto dell'e-mail.",
+	"apihelp-emailuser-param-text": "Testo dell'e-mail.",
 	"apihelp-emailuser-param-ccme": "Mandami una copia di questa mail.",
+	"apihelp-emailuser-example-email": "Manda una e-mail all'utente <kbd>WikiSysop</kbd> con il testo <kbd>Contenuto</kbd>",
 	"apihelp-expandtemplates-description": "Espandi tutti i template nel wikitesto.",
 	"apihelp-expandtemplates-param-title": "Titolo della pagina.",
 	"apihelp-expandtemplates-param-text": "Wikitesto da convertire.",
@@ -94,6 +99,8 @@
 	"apihelp-feedrecentchanges-param-hideanons": "Nascondi le modifiche fatte da utenti anonimi.",
 	"apihelp-feedrecentchanges-param-hideliu": "Nascondi le modifiche apportate dagli utenti registrati.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Mostra solo le modifiche alle pagine collegate a quella specificata.",
+	"apihelp-feedrecentchanges-example-simple": "Mostra le ultime modifiche.",
+	"apihelp-feedrecentchanges-example-30days": "Mostra le modifiche degli ultimi 30 giorni.",
 	"apihelp-login-param-name": "Nome utente.",
 	"apihelp-login-param-password": "Password.",
 	"apihelp-move-description": "Sposta una pagina.",

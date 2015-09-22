@@ -3048,8 +3048,6 @@
 	"api-error-copyuploaddisabled": "Uploading by URL ke ii server me disable kar dewa gais hae.",
 	"api-error-duplicate": "There {{PLURAL:$1|is [$2 another file]|are [$2 some other files]}} already on the site with the same content.",
 	"api-error-duplicate-archive": "There {{PLURAL:$1|was [$2 another file]|were [$2 some other files]}} already on the site with the same content, but {{PLURAL:$1|it was|they were}} deleted.",
-	"api-error-duplicate-archive-popup-title": "Duplicate {{PLURAL:$1|file that has|files that have}} already been deleted.",
-	"api-error-duplicate-popup-title": "Duplicate {{PLURAL:$1|file|files}}.",
 	"api-error-empty-file": "Jon file ke aap submit karaa rahaa, khaali hae.",
 	"api-error-emptypage": "Nawaa, khaali panna ke banae ke ijajat nai hae.",
 	"api-error-fetchfileerror": "Internal error: File khoje ke time kuch wrong hoe gais hae.",

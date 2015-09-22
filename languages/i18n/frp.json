@@ -2811,8 +2811,6 @@
 	"api-error-copyuploaddisabled": "Los tèlèchargements per URL sont dèsactivâs sur cél sèrvor.",
 	"api-error-duplicate": "Y at {{PLURAL:$1|[$2 un ôtro fichiér]|[$2 d’ôtros fichiérs]}} ja sur lo seto avouéc lo mémo contegnu.",
 	"api-error-duplicate-archive": "Y avéve {{PLURAL:$1|[$2 un ôtro fichiér]|[$2 d’ôtros fichiérs]}} ja sur lo seto avouéc lo mémo contegnu, mas {{PLURAL:$1|il at étâ suprimâ|ils ont étâ suprimâs}}.",
-	"api-error-duplicate-archive-popup-title": "Duplicar {{PLURAL:$1|lo fichiér|los fichiérs}} qu’{{PLURAL:$1|at ja étâ suprimâ|ont ja étâ suprimâs}}",
-	"api-error-duplicate-popup-title": "Fichiér{{PLURAL:$1||s}} en doblo",
 	"api-error-empty-file": "Lo fichiér que vos éd somês ére vouedo.",
 	"api-error-emptypage": "La crèacion de pâges novèles vouedes est pas ôtorisâ.",
 	"api-error-fetchfileerror": "Èrror de dedens : quârque-ren s’est mâl passâ pendent la rècupèracion du fichiér.",

@@ -3021,8 +3021,6 @@
 	"api-error-copyuploaddisabled": "URL द्वारा इस सर्वर पर अपलोड अक्षम है।",
 	"api-error-duplicate": "वहाँ {{PLURAL:$1| [ $2 अन्य फ़ाइल] | रहे हैं [ $2 कुछ अन्य फ़ाइलों]}} एक ही सामग्री के साथ साइट पर पहले से ही है.",
 	"api-error-duplicate-archive": "वहाँ {{PLURAL:$1|था [$2 कुछ अन्य फ़ाइल] |were [$2 कुछ अन्य फ़ाइलें]}}, पहले से ही {{PLURAL:$1|यह was|they थे}} परन्तु  हटा दिये गये",
-	"api-error-duplicate-archive-popup-title": "डुप्लिकेट {{PLURAL:$1| फ़ाइल | फ़ाइलें}} है कि पहले से ही हटा दिया गया है",
-	"api-error-duplicate-popup-title": "डुप्लिकेट {{PLURAL:$1| फ़ाइल | फ़ाइल}}",
 	"api-error-empty-file": "आप कय दीहल फ़ाइल खाली रहा।",
 	"api-error-emptypage": "नँवा अव खाली पन्ना बनावै कय अनुमति नाइ है",
 	"api-error-fetchfileerror": "आंतरिक त्रुटि: जब फ़ाइल लाया जा रहा तो कुछ गलत हो गया था।",

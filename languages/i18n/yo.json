@@ -2615,8 +2615,6 @@
 	"api-error-copyuploaddisabled": "Ìrùsókè pẹ̀lú URL jẹ́ dídálẹ́kun lórí ẹ̀rọ-ìpèsè yìí.",
 	"api-error-duplicate": "{{PLURAL:$1|[$2 Fáìlì míràn]|[$2 Àwọn fáìlì míràn]}} kan tilẹ̀ wà lórí ibiìtàkùn pẹ̀lú àkóónú kannáà.",
 	"api-error-duplicate-archive": "{{PLURAL:$1|[$2 Fáìlì míràn]|[$2 Àwọn fáìlì míràn]}} kan tilẹ̀ wà lórí ibiìtàkùn pẹ̀lú àkóónú kannáà, sùgbọ́n {{PLURAL:$1|ó|wọ́n}} ti jẹ́ píparẹ́.",
-	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Fáìlì àdáwòkọ tó ti|Àwọn fáìlì àdáwòkọ tí wọ́n ti}} jẹ́ píparẹ́.",
-	"api-error-duplicate-popup-title": "{{PLURAL:$1|Fáìlì|Àwọn fáìlì}} àdáwòkọ.",
 	"api-error-empty-file": "Fáílì tí ẹ fisílẹ̀ jẹ́ òfo.",
 	"api-error-emptypage": "Ẹ kò ní àyè láti dá ojúewé tuntun tó jẹ́ òfo.",
 	"api-error-fetchfileerror": "Àsìṣe inú: Kò le mú fáìlì ná jáde nítorí àsìṣe.",

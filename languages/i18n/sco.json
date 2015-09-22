@@ -3012,8 +3012,6 @@
 	"api-error-copyuploaddisabled": "Uplaidin bi URL is disabled oan this server.",
 	"api-error-duplicate": "Thaur {{PLURAL:$1|is [$2 anither file]|ar [$2 some ither files]}} awreadie oan the site wi the same content.",
 	"api-error-duplicate-archive": "Thaur {{PLURAL:$1|wis [$2 anither file]|were [$2 some ither files]}} awreadie oan the site wi the same content, but {{PLURAL:$1|it wis|thay were}} delytit.",
-	"api-error-duplicate-archive-popup-title": "Dupleecate {{PLURAL:$1|file that haes|files that hae}} awreadie been delytit.",
-	"api-error-duplicate-popup-title": "Dupleecate {{PLURAL:$1|file|files}}.",
 	"api-error-empty-file": "The file that ye haunnit in wis tuim.",
 	"api-error-emptypage": "Cræftin new, tuim pages isna permittit.",
 	"api-error-fetchfileerror": "Internal mistak: Sommit went wrang while fetchin the file.",

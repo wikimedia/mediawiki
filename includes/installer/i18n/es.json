@@ -330,7 +330,7 @@
 	"config-install-interwiki-exists": "<strong>Advertencia:</strong> la tabla de interwikis parece ya contener entradas.\nSe omitirá la lista predeterminada.",
 	"config-install-stats": "Iniciando las estadísticas",
 	"config-install-keys": "Generando claves secretas",
-	"config-insecure-keys": "<strong>Advertencia:</strong> {{PLURAL:$2|una clave de seguridad generada|las claves de seguridad generadas}} ($1) durante la instalación no  {{PLURAL:$2|es totalmente segura|son totalmente seguras}}. Considera {{PLURAL:$2| cambiarla|cambiarlas}} manualmente.",
+	"config-insecure-keys": "<strong>Advertencia:</strong> {{PLURAL:$2|una clave de seguridad generada|las claves de seguridad generadas}} ($1) durante la instalación no {{PLURAL:$2|es totalmente segura|son totalmente seguras}}. Considera {{PLURAL:$2|cambiarla|cambiarlas}} manualmente.",
 	"config-install-updates": "Evitar ejecutar actualizaciones innecesarias",
 	"config-install-updates-failed": "<strong>Error:</strong> falló la inserción de claves de actualización en las tablas con el siguiente error: $1",
 	"config-install-sysop": "Creando la cuenta de usuario del administrador",

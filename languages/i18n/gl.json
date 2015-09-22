@@ -3243,8 +3243,6 @@
 	"api-error-copyuploaddisabled": "As cargas mediante URL están desactivadas neste servidor.",
 	"api-error-duplicate": "Xa hai {{PLURAL:$1|[$2 outro ficheiro]|[$2 outros ficheiros]}} no wiki co mesmo contido",
 	"api-error-duplicate-archive": "Había {{PLURAL:$1|[$2 outro ficheiro]|[$2 outros ficheiros]}} no sitio co mesmo contido, pero {{PLURAL:$1|foi borrado|foron borrados}}.",
-	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Ficheiro duplicado|Ficheiros duplicados}} que xa {{PLURAL:$1|foi borrado|foron borrados}}",
-	"api-error-duplicate-popup-title": "{{PLURAL:$1|Ficheiro duplicado|Ficheiros duplicados}}",
 	"api-error-empty-file": "O ficheiro que enviou estaba baleiro.",
 	"api-error-emptypage": "Non está permitida a creación de páxinas novas que estean baleiras.",
 	"api-error-fetchfileerror": "Erro interno: Houbo un problema ao buscar o ficheiro.",

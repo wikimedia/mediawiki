@@ -2959,8 +2959,6 @@
 	"api-error-copyuploaddisabled": "Nagrawanje pśez URL jo na toś tom serwerje znjemóžnjone.",
 	"api-error-duplicate": "{{PLURAL:$1|Jo|Stej|Su|Jo}} južo {{PLURAL:$1|[$2 druga dataja]|[$2 drugej dataji]|[$2 druge dataje]|[$2 drugich datajow]}} z tym samym wopśimjeśim na sedle",
 	"api-error-duplicate-archive": "{{PLURAL:$1|Jo była [$2 druga dataja]|Stej byłej [$2 drugej dataji]|Su byli [$2 druge dataje]|Jo było [$2 drugich datajow]}} južo na websedle z tym samym wopśimjeśim, ale {{PLURAL:$1|jo se wulašowała|stej se wulašowałej|su se wulašowali|jo se wulašowało}}.",
-	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Dwójna dataja, kótaraž jo|Dwójnej dataji, kótarejž stej|Dwójne dataje, kótarež su|Dwójne dataje, kótarež su}} se južo {{PLURAL:$1|wulašowała|wulašowałej|wulašowali|wulašowali}}",
-	"api-error-duplicate-popup-title": "{{PLURAL:$1|Dwójna dataja|Dwójnej dataji|Dwójne dataje|Dwójne dataje}}",
 	"api-error-empty-file": "Dataja, kótaruž sy nagrał, jo prozna była.",
 	"api-error-emptypage": "Napóranje nowych, proznych bokow njejo dowólone.",
 	"api-error-fetchfileerror": "Nutśikowna zmólka: Pśi wobstarowanju dataje něco njejo se raźiło.",

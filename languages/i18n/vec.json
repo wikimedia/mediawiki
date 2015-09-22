@@ -2894,8 +2894,6 @@
 	"api-error-copyuploaddisabled": "El cargamento tramite URL el xe dixabiłità so sto server.",
 	"api-error-duplicate": "So'l sito {{PLURAL:$1|ghe xe xà [$2 'n altro documento]|ghe xe xà [$2 altri documenti]}} có 'l steso contegnuo.",
 	"api-error-duplicate-archive": "{{PLURAL:$1|Ghe xera [$2 'n altro file]|Ghe xera [$2 altri file]}} xà inte'l sito có 'l steso contegnuo, ma {{PLURAL:$1|el xe sta scansełà|i xe stai scansełai}}.",
-	"api-error-duplicate-archive-popup-title": "File duplic{{PLURAL:$1|à che xe xà sta scansełà|ai che i xe xà stai scansełai}}",
-	"api-error-duplicate-popup-title": "{{PLURAL:$1|documento duplicà|documenti duplicai}}",
 	"api-error-empty-file": "El file sełesionà el gera vodo.",
 	"api-error-emptypage": "Ła creasion de nove pàjine vode nó ła xe consentia.",
 	"api-error-fetchfileerror": "Eror interno: ghe xe sta un problema durante el recupero del documento.",

@@ -3297,8 +3297,6 @@
 	"api-error-copyuploaddisabled": "URL ile yükleme bu sunucuda devre dışı bırakılmıştır.",
 	"api-error-duplicate": "Sitede zaten aynı içerikte başka {{PLURAL:$1|bir [$2 dosya]|[$2 dosyalar]}} var.",
 	"api-error-duplicate-archive": "Sitede zaten aynı içerikte başka {{PLURAL:$1|bir [$2 dosya]|[$2 dosyalar]}} vardı, ama {{PLURAL:$1|silindi|silindiler}}.",
-	"api-error-duplicate-archive-popup-title": "Zaten silinmiş çift {{PLURAL:$1|sayfa|sayfalar}}.",
-	"api-error-duplicate-popup-title": "Çift {{PLURAL:$1|dosya|dosya}}",
 	"api-error-empty-file": "Gönderdiğiniz dosya boş.",
 	"api-error-emptypage": "Yeni, boş bir sayfa oluşturmaya izin verilmez.",
 	"api-error-fetchfileerror": "İç hata: Dosya alınırken bir hata oluştu.",

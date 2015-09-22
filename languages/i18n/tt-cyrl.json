@@ -1799,8 +1799,6 @@
 	"api-error-copyuploaddisabled": "URL-адрес буенча йөкләү бу серверда сүндерелгән.",
 	"api-error-duplicate": "Мондый эчтәлекле {{PLURAL:$1|[$2 башка файл]}} да бар.",
 	"api-error-duplicate-archive": "Элек сайтта мондый эчтәлекле {{PLURAL:$1|[$2 башка файл]}} бар иде инде, ләкин {{PLURAL:$1|1=аны бетерделәр|аларны бетерделәр}}.",
-	"api-error-duplicate-archive-popup-title": "Кайчандыр бетерелгән {{PLURAL:$1|1=файлның|файлларның}} дубликатлары.",
-	"api-error-duplicate-popup-title": "{{PLURAL:$1|файлның}} дубликаты",
 	"api-error-empty-file": "Сезнең тарафтан җибәрелгән файл буш.",
 	"api-error-emptypage": "Яңа буш сәхифәләр төзү рөхсәт ителми",
 	"api-error-unknown-code": "Билгесез хата: \"$1\"",

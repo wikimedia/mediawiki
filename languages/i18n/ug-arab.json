@@ -2856,8 +2856,6 @@
 	"api-error-copyuploaddisabled": "URL ئارقىلىق يوللايدىغان ئىقتىدارنى بۇ مۇلازىمېتىر چەكلىگەن.",
 	"api-error-duplicate": "تورتۇرادا ئوخشاش مەزمۇندىكى {{PLURAL:$1|is [$2 باشقا ھۆججەت]|[$2 بەزى باشقا ھۆججەتلەر]}} مەۋجۇت.",
 	"api-error-duplicate-archive": "تورتۇرادا ئىلگىرى ئوخشاش مەزمۇن بار {{PLURAL:$1|was [$2 باشقا بىر ھۆججەت]|were [$2 باشقا ھۆججەتلەر]}} مەۋجۇت ئەمما ئۆچۈرۈلگەن.",
-	"api-error-duplicate-archive-popup-title": "تەكرار {{PLURAL:$1|ھۆججەت}} ئۆچۈرۈلدى.",
-	"api-error-duplicate-popup-title": "تەكرار {{PLURAL:$1|ھۆججەت}}.",
 	"api-error-empty-file": "يوللىغان ھۆججىتىڭىز بوش.",
 	"api-error-emptypage": "يېڭىدىن قۇرۇش، قۇرۇق بەت يول قۇيۇلمايدۇ.",
 	"api-error-fetchfileerror": "ئىچكى خاتالىق: ھۆججەتكە ئېرىشىۋاتقاندا خاتالىق كۆرۈلدى.",

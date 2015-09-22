@@ -2594,8 +2594,6 @@
 	"api-error-copyuploaddisabled": "Uploade via URL steit óp deze server oet.",
 	"api-error-duplicate": "d'r {{PLURAL:$1|steit al [$2 e bestandj]|staon al [$2 bestenj]}} mit dezelfden inhawd oppe wiki.",
 	"api-error-duplicate-archive": "d'r {{PLURAL:$1|Waar al [$2 'n anger bestandj]|woren al [$2 $1 anger bestenj]}} óppe site mitte zelfdjen inhawd, meh {{PLURAL:$1|det is|die zeen}} gewösj.",
-	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Duplicaatbestandj det al gewösj is|Duplicaatbestenj die al gewösj zeen}}",
-	"api-error-duplicate-popup-title": "Zelfde {{PLURAL:$1|bestandj|bestenj}}",
 	"api-error-empty-file": "t Bestandj det se perbeers te uploade had gein inhald.",
 	"api-error-emptypage": "Doe maags gein nuuj, laeg pagina's aanmake.",
 	"api-error-fetchfileerror": "Intern fout: d'r is get fout gegange bie 't óphaole van 't bestandj.",

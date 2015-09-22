@@ -3026,8 +3026,6 @@
 	"api-error-copyuploaddisabled": "Postavljanje datoteka putem URL-a nije omogućeno na ovom projektu.",
 	"api-error-duplicate": "{{PLURAL:$1|Postoji [$2 druga datoteka]|Postoje $1 [$2 druge datoteke]|Postoji $1 [$2 drugih datoteka]}} istog sadržaja.",
 	"api-error-duplicate-archive": "{{PLURAL:$1|Postojala je [$2 druga datoteka]|Postojale su [$2 neke druge datoteke]|Postojalo je [$2 nekih drugih datoteka]}} na projektu s istim sadržajem, ali {{PLURAL:$1|je obrisana|su obrisane}}.",
-	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Dupla datoteka|Duple datoteke}} koje su ranije obrisane.",
-	"api-error-duplicate-popup-title": "{{PLURAL:$1|$1 dupla datoteka|$1 duple datoteke|$1 duplih datoteka}}.",
 	"api-error-empty-file": "Datoteka koju ste poslali je prazna.",
 	"api-error-emptypage": "Stvaranje praznih novih stranica nije dopušteno.",
 	"api-error-fetchfileerror": "Interna pogrješka: Pojavio se neki problem pri dobivanju podataka o datoteci.",

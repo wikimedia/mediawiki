@@ -1913,8 +1913,6 @@
 	"api-error-badaccess-groups": "Diri ka gintutugotan pagkarga paigbaw ha dinhi nga wiki.",
 	"api-error-badtoken": "Sayop ha sulod: Maraot nga token.",
 	"api-error-copyuploaddisabled": "Pagkarga paigbaw pinaagi han URL in diri mahihimo ha dinhi nga serbidor.",
-	"api-error-duplicate-archive-popup-title": "An nagdodoble {{PLURAL:$1|nga paypay|nga mga paypay}} in napara na.",
-	"api-error-duplicate-popup-title": "Nadoble {{PLURAL:$1|nga paypay|nga mga paypay}}.",
 	"api-error-empty-file": "An paypay nga isinumite nimo in waray sulod.",
 	"api-error-emptypage": "Naghihimo hin bag-o, diri gintutugotan an waray sulod nga mga pakli.",
 	"api-error-filename-tooshort": "An ngaran han paypay in halipot hin duro.",

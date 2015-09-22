@@ -2592,8 +2592,6 @@
 	"api-error-copyuploaddisabled": "یو آر ایل نال فائل چڑھانا ایس سرور تے نکام",
 	"api-error-duplicate": "ایتھے {{PLURAL:$1|ہے [$2 اک ہور فائل]|ہین [$2 کچ ہور فائلاں]}} ایسے مواد نال ایس تھاں تے پہلے ای ہے۔",
 	"api-error-duplicate-archive": "ایتھے  {{PLURAL:$1|سی [$2 اک ہور فائل]|سن [$2 کج ہور فائلاں]}} پہلے ای ایس تھاں تے اے اکو جے مواد نال پر {{PLURAL:$1|اے سی|اوہ سن}} مٹایا گیا۔",
-	"api-error-duplicate-archive-popup-title": "دوجی {{PLURAL:$1|فائل|فائلاں}} جناں نوں پہلے ای مٹا دتا گیا اے۔",
-	"api-error-duplicate-popup-title": "دوجی {{PLURAL:$1|فائل|فائلاں}}",
 	"api-error-empty-file": "جیڑی فائل تسی دسی اے اوہ حالی اے۔",
 	"api-error-emptypage": "نواں بناریا آن، خالی صفیاں دی اجازت نئیں۔",
 	"api-error-fetchfileerror": "اندر دی غلطی: فائل لیندیاں کوئی غلطی ہوئی۔",

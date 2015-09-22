@@ -1942,7 +1942,6 @@
 	"api-error-badtoken": "የውስጥ ስህተት: መጥፎ ጥቅል።",
 	"api-error-copyuploaddisabled": "በሰነድ አድራሻ መላክ በዚህ አቅራቢ ላይ አልተፈቀደም።",
 	"api-error-duplicate": "በዚህ ድረ ገጽ ላይ የዚህ ዓይነት ይዞታ {{PLURAL:$1| [$2 ያለው ፋይል አለ።] | [$2 ያላቸው ፍይሎች አሉ።]}}",
-	"api-error-duplicate-popup-title": "አንድ አይነት {{PLURAL:$1|ፋይል|ፋይሎች}}",
 	"api-error-empty-file": "የላኩት ፋይል ባዶ ነበር።",
 	"api-error-fetchfileerror": "የውስጥ ስህተት: ፍይሉ ሲመጣ ችግር ተፈጠረ።",
 	"api-error-file-too-large": "የላኩት ፋይል በጣም ትልቅ ነበር።",

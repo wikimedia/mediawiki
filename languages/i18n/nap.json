@@ -3208,8 +3208,6 @@
 	"api-error-copyuploaddisabled": "'A funzione carrcà 'e n'URL nun è appicciata dint'a stu server.",
 	"api-error-duplicate": "Nce {{PLURAL:$1|stà [$2 n'atu file]|stanno [$2 ati file]}} ncopp' 'o sito ch' 'e stisse cuntenute.",
 	"api-error-duplicate-archive": "Nce {{PLURAL:$1|steva [$2 n'atu file]|stevano [$2 ati file]}} già ncopp' 'o sito ch' 'e stisse cuntenute, però {{PLURAL:$1|è stato|so' state}} scancellate.",
-	"api-error-duplicate-archive-popup-title": "File duprecat{{PLURAL:$1|o che è già stato scancellato|e che songo già state scancellati}}",
-	"api-error-duplicate-popup-title": "Dupreche {{PLURAL:$1|file|file}}",
 	"api-error-empty-file": "'O file ch'avite mannato è abbacante.",
 	"api-error-emptypage": "'A criazione 'e paggene nuove abbacante nun è permessa.",
 	"api-error-fetchfileerror": "Errore interno: Coccosa ascette stuorta quanno se steva 'analizzà stu file.",

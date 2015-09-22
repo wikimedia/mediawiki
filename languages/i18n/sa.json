@@ -3164,8 +3164,6 @@
 	"api-error-copyuploaddisabled": "अस्मिन् वितारके युआर् एल् द्वारा उत्तारणं निष्क्रियम् ।",
 	"api-error-duplicate": "{{PLURAL:$1| [ $2 अन्यसञ्चिकाः] | सन्ति [ $2 काश्चन अन्यसञ्चिकाः]}} एकस्मिन् एव ।",
 	"api-error-duplicate-archive": "तत्र {{PLURAL:$1|आसीत् [$2 काश्चन अन्यसञ्चिकाः] |  [$2काचन अन्यसञ्चिकाः]}}, पूर्वमेव {{PLURAL:$1|यह was|they आसन्}} किन्तु अपनीताः ।",
-	"api-error-duplicate-archive-popup-title": "द्विप्रतिः {{PLURAL:$1| सञ्चिका |सञ्चिकाः}} पूर्वमेव अपमर्जिताः ।",
-	"api-error-duplicate-popup-title": "द्विप्रतिः {{PLURAL:$1| सञ्चिका| सञ्चिकाः}}",
 	"api-error-empty-file": "समर्पिता सञ्चिका रिक्ता आसीत् ।",
 	"api-error-emptypage": "नूतनस्य रिक्तस्य पृष्ठस्य सर्जनं निषिद्धम् ।",
 	"api-error-fetchfileerror": "आन्तरिकदोषः : सञ्चिकायाः प्राप्त्यवसरे कश्चन दोषः जातः ।",

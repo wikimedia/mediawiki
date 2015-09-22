@@ -2873,8 +2873,6 @@
 	"api-error-copyuploaddisabled": "Ekki er hægt að hlaða upp með vefslóð á þessum vefþjón.",
 	"api-error-duplicate": "Það {{PLURAL:$1|er [$2 önnur skrá]|eru [$2 aðrar skrár]}} þegar til á vefsvæðinu sem hafa sama innihald.",
 	"api-error-duplicate-archive": "Það {{PLURAL:$1|var [$2 önnur skrá]|voru [$2 aðrar skrár]}} þegar á síðunni með sama innihald, en {{PLURAL:$1|henni|þeim}} var eytt.",
-	"api-error-duplicate-archive-popup-title": "Eins {{PLURAL:$1|skrá|skrár}} sem {{PLURAL:$1|hefur|hafa}} þegar verið eytt.",
-	"api-error-duplicate-popup-title": "{{PLURAL:$1|Afrituð skrá|Afritaðar skrár}}",
 	"api-error-empty-file": "Skráin sem þú valdir er tóm.",
 	"api-error-emptypage": "Stofnun nýrra, tómra síðna er óheimil.",
 	"api-error-fetchfileerror": "Innri villa: Mistókst að sækja skránna.",

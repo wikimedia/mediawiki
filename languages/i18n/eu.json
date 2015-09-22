@@ -2941,7 +2941,6 @@
 	"searchsuggest-containing": "edukian...",
 	"api-error-badaccess-groups": "Ez duzu baimendik fitxategi hauek wiki honetara igotzeko.",
 	"api-error-badtoken": "Barne akatsa: token okerra.",
-	"api-error-duplicate-popup-title": "Fitxategi {{PLURAL:$1|bikoiztua|bikoiztuak}}.",
 	"api-error-empty-file": "Bidali duzun fitxategia hutsik dago.",
 	"api-error-emptypage": "Berria sortzerako garaian orrialde hutsak ezin dira erabili.",
 	"api-error-fetchfileerror": "Barne akatsa: zerbait gaizki joan da fitxategia eskuratzerakoan.",
