@@ -58,17 +58,17 @@
  *                             Some field types support multi-level arrays.
  *    'options-message'     -- message key to be parsed to extract the list of
  *                             options (like 'ipbreason-dropdown').
- *    'label-message'       -- message key for a message to use as the label.
+ *    'label-message'       -- message key or object for a message to use as the label.
  *                             can be an array of msg key and then parameters to
  *                             the message.
  *    'label'               -- alternatively, a raw text message. Overridden by
  *                             label-message
  *    'help'                -- message text for a message to use as a help text.
- *    'help-message'        -- message key for a message to use as a help text.
+ *    'help-message'        -- message key or object for a message to use as a help text.
  *                             can be an array of msg key and then parameters to
  *                             the message.
  *                             Overwrites 'help-messages' and 'help'.
- *    'help-messages'       -- array of message key. As above, each item can
+ *    'help-messages'       -- array of message keys/objects. As above, each item can
  *                             be an array of msg key and then parameters.
  *                             Overwrites 'help'.
  *    'required'            -- passed through to the object, indicating that it
@@ -179,6 +179,7 @@ class HTMLForm extends ContextSource {
 	protected $mSectionFooters = array();
 	protected $mPost = '';
 	protected $mId;
+	protected $mName;
 	protected $mTableId = '';
 
 	protected $mSubmitID;
@@ -931,6 +932,9 @@ class HTMLForm extends ContextSource {
 		if ( !empty( $this->mId ) ) {
 			$attribs['id'] = $this->mId;
 		}
+		if ( !empty ( $this->mName ) ) {
+			$attribs['name'] = $this->mName;
+		}
 		return $attribs;
 	}
 
@@ -942,13 +946,30 @@ class HTMLForm extends ContextSource {
 	 * @return string Wrapped HTML.
 	 */
 	function wrapForm( $html ) {
-		# Include a <fieldset> wrapper for style, if requested.
+		return $this->openForm() . $html . $this->closeForm();
+	}
+
+	/**
+	 * Opens the <form> element (and the wrapper legend, if any)
+	 * @return string
+	 */
+	public function openForm() {
+		$open = Html::openElement( 'form', $this->getFormAttributes() + array( 'class' => 'visualClear' ) );
 		if ( $this->mWrapperLegend !== false ) {
 			$legend = is_string( $this->mWrapperLegend ) ? $this->mWrapperLegend : false;
-			$html = Xml::fieldset( $legend, $html );
+			$open = Xml::fieldset( $legend );
 		}
+		return $open;
+	}
 
-		return Html::rawElement( 'form', $this->getFormAttributes() + array( 'class' => 'visualClear' ), $html );
+	/**
+	 * Closes the <form> element (and the wrapper legend, if any)
+	 * @return string
+	 */
+	public function closeForm() {
+		$close = ( $this->mWrapperLegend !== false ) ? Html::closeElement( 'fieldset' ) . "\n" : '';
+		$close .= Html::closeElement( 'form' );
+		return $close;
 	}
 
 	/**
@@ -1247,6 +1268,16 @@ class HTMLForm extends ContextSource {
 	 */
 	public function setId( $id ) {
 		$this->mId = $id;
+
+		return $this;
+	}
+
+	/**
+	 * @param string$ name 'name' attribute for the form
+	 * @return HTMLForm $this for chaining calls
+	 */
+	public function setName( $name ) {
+		$this->mName = $name;
 
 		return $this;
 	}

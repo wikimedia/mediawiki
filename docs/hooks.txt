@@ -739,6 +739,17 @@ viewing.
 redirect was followed.
 $article: target article (object)
 
+'AuthChangeFormField': After converting a field information array obtained
+from a set of AuthenticationRequest classes into a form descriptor; hooks
+can tweak the array to change how login etc. forms should look. Hook is
+called on each field descriptor separately.
+$fieldName: name of the field
+$singleFieldInfo: field information array for a single field (an item from
+  AuthenticationRequest::getFieldInfo()).
+&$fieldDescriptor: HTMLFormField descriptor. The special key 'weight' can be set
+  to change the order of the fields.
+$action: one of the AuthManager::ACTION_* constants.
+
 'AuthPluginAutoCreate': DEPRECATED! Use the 'LocalUserCreated' hook instead.
 Called when creating a local account for an user logged in from an external
 authentication method.
@@ -3166,7 +3177,8 @@ messages!" message, return false to not delete it.
 $user: User (object) that will clear the message
 $oldid: ID of the talk page revision being viewed (0 means the most recent one)
 
-'UserCreateForm': change to manipulate the login form
+'UserCreateForm': DEPRECATED! Create an AuthenticationProvider instead.
+Manipulate the login form.
 $template: SimpleTemplate instance for the form
 
 'UserEffectiveGroups': Called in User::getEffectiveGroups().
@@ -3270,8 +3282,9 @@ $user: User object for the logged-in user
 $user: the user object that was created on login
 $inject_html: Any HTML to inject after the "logged in" message.
 
-'UserLoginForm': change to manipulate the login form
-$template: SimpleTemplate instance for the form
+'UserLoginForm': DEPRECATED! Create an AuthenticationProvider instead.
+Manipulate the login form.
+$template: QuickTemplate instance for the form
 
 'UserLogout': Before a user logs out.
 $user: the user object that is about to be logged out
