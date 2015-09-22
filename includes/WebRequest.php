@@ -23,6 +23,8 @@
  * @file
  */
 
+use MediaWiki\Session\SessionManager;
+
 /**
  * The WebRequest class encapsulates getting at data passed in the
  * URL or via a POSTed form stripping illegal input characters and
@@ -67,6 +69,13 @@ class WebRequest {
 	 * @var string
 	 */
 	protected $protocol;
+
+	/**
+	 * @var \\MediaWiki\\Session\\SessionId|null Session ID to use for this
+	 *  request. We can't save the session directly due to reference cycles not
+	 *  working too well (slow GC in Zend and never collected in HHVM).
+	 */
+	protected $sessionId = null;
 
 	public function __construct() {
 		$this->requestTime = isset( $_SERVER['REQUEST_TIME_FLOAT'] )
@@ -643,18 +652,32 @@ class WebRequest {
 	}
 
 	/**
-	 * Returns true if there is a session cookie set.
+	 * Return the session for this request
+	 * @since 1.27
+	 * @return MediaWiki\\Session\\Session
+	 */
+	public function getSession() {
+		if ( $this->sessionId !== null ) {
+			return SessionManager::singleton()->getSessionById( (string)$this->sessionId, $this );
+		}
+
+		$session = SessionManager::singleton()->getSessionForRequest( $this );
+		$this->sessionId = $session->getSessionId();
+		return $session;
+	}
+
+	/**
+	 * Returns true if the request has a persistent session.
 	 * This does not necessarily mean that the user is logged in!
 	 *
-	 * If you want to check for an open session, use session_id()
-	 * instead; that will also tell you if the session was opened
-	 * during the current request (in which case the cookie will
-	 * be sent back to the client at the end of the script run).
-	 *
+	 * @deprecated since 1.27, use
+	 * \\MediaWiki\\Session\\SessionManager::singleton()->getPersistedSessionId()
+	 * instead.
 	 * @return bool
 	 */
 	public function checkSessionCookie() {
-		return isset( $_COOKIE[session_name()] );
+		wfDeprecated( __METHOD__, '1.27' );
+		return SessionManager::singleton()->getPersistedSessionId( $this ) !== null;
 	}
 
 	/**
@@ -932,26 +955,23 @@ class WebRequest {
 	}
 
 	/**
-	 * Get data from $_SESSION
+	 * Get data from the session
 	 *
-	 * @param string $key Name of key in $_SESSION
+	 * @param string $key Name of key in the session
 	 * @return mixed
 	 */
 	public function getSessionData( $key ) {
-		if ( !isset( $_SESSION[$key] ) ) {
-			return null;
-		}
-		return $_SESSION[$key];
+		return $this->getSession()->get( $key );
 	}
 
 	/**
 	 * Set session data
 	 *
-	 * @param string $key Name of key in $_SESSION
+	 * @param string $key Name of key in the session
 	 * @param mixed $data
 	 */
 	public function setSessionData( $key, $data ) {
-		$_SESSION[$key] = $data;
+		return $this->getSession()->set( $key, $data );
 	}
 
 	/**
@@ -1183,7 +1203,6 @@ HTML;
  */
 class FauxRequest extends WebRequest {
 	private $wasPosted = false;
-	private $session = array();
 	private $requestUrl;
 	protected $cookies = array();
 
@@ -1191,7 +1210,7 @@ class FauxRequest extends WebRequest {
 	 * @param array $data Array of *non*-urlencoded key => value pairs, the
 	 *   fake GET/POST values
 	 * @param bool $wasPosted Whether to treat the data as POST
-	 * @param array|null $session Session array or null
+	 * @param MediaWiki\\Session\\Session|array|null $session Session, session data array, or null
 	 * @param string $protocol 'http' or 'https'
 	 * @throws MWException
 	 */
@@ -1206,8 +1225,16 @@ class FauxRequest extends WebRequest {
 			throw new MWException( "FauxRequest() got bogus data" );
 		}
 		$this->wasPosted = $wasPosted;
-		if ( $session ) {
-			$this->session = $session;
+		if ( $session instanceof MediaWiki\Session\Session ) {
+			$this->sessionId = $session->getSessionId();
+		} elseif ( is_array( $session ) ) {
+			$mwsession = SessionManager::singleton()->getEmptySession( $this );
+			$this->sessionId = $mwsession->getSessionId();
+			foreach ( $session as $key => $value ) {
+				$mwsession->set( $key, $value );
+			}
+		} elseif ( $session !== null ) {
+			throw new MWException( "FauxRequest() got bogus session" );
 		}
 		$this->protocol = $protocol;
 	}
@@ -1293,10 +1320,6 @@ class FauxRequest extends WebRequest {
 		}
 	}
 
-	public function checkSessionCookie() {
-		return false;
-	}
-
 	public function setRequestURL( $url ) {
 		$this->requestUrl = $url;
 	}
@@ -1332,29 +1355,13 @@ class FauxRequest extends WebRequest {
 	}
 
 	/**
-	 * @param string $key
 	 * @return array|null
 	 */
-	public function getSessionData( $key ) {
-		if ( isset( $this->session[$key] ) ) {
-			return $this->session[$key];
+	public function getSessionArray() {
+		if ( $this->sessionId !== null ) {
+			return iterator_to_array( $this->getSession() );
 		}
 		return null;
-	}
-
-	/**
-	 * @param string $key
-	 * @param array $data
-	 */
-	public function setSessionData( $key, $data ) {
-		$this->session[$key] = $data;
-	}
-
-	/**
-	 * @return array|mixed|null
-	 */
-	public function getSessionArray() {
-		return $this->session;
 	}
 
 	/**
@@ -1433,6 +1440,10 @@ class DerivativeRequest extends FauxRequest {
 
 	public function getAllHeaders() {
 		return $this->base->getAllHeaders();
+	}
+
+	public function getSession() {
+		return $this->base->getSession();
 	}
 
 	public function getSessionData( $key ) {
