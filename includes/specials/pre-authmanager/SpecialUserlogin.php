@@ -29,7 +29,7 @@ use MediaWiki\Session\SessionManager;
  *
  * @ingroup SpecialPage
  */
-class LoginForm extends SpecialPage {
+class LoginFormPreAuthManager extends SpecialPage {
 	const SUCCESS = 0;
 	const NO_NAME = 1;
 	const ILLEGAL = 2;
@@ -690,12 +690,7 @@ class LoginForm extends SpecialPage {
 
 		$status = $u->addToDatabase();
 		if ( !$status->isOK() ) {
-			if ( $status->hasMessage( 'userexists' ) ) {
-				// AuthManager probably just added the user.
-				$u->saveSettings();
-			} else {
-				return $status;
-			}
+			return $status;
 		}
 
 		if ( $wgAuth->allowPasswordChange() ) {
@@ -707,12 +702,10 @@ class LoginForm extends SpecialPage {
 		SessionManager::singleton()->invalidateSessionsForUser( $u );
 
 		Hooks::run( 'LocalUserCreated', [ $u, $autocreate ] );
-		if ( $wgAuth && !$wgAuth instanceof MediaWiki\Auth\AuthManagerAuthPlugin ) {
-			$oldUser = $u;
-			$wgAuth->initUser( $u, $autocreate );
-			if ( $oldUser !== $u ) {
-				wfWarn( get_class( $wgAuth ) . '::initUser() replaced the user object' );
-			}
+		$oldUser = $u;
+		$wgAuth->initUser( $u, $autocreate );
+		if ( $oldUser !== $u ) {
+			wfWarn( get_class( $wgAuth ) . '::initUser() replaced the user object' );
 		}
 
 		$u->saveSettings();
@@ -864,12 +857,10 @@ class LoginForm extends SpecialPage {
 			$this->mAbortLoginErrorMsg = 'resetpass-expired';
 		} else {
 			Hooks::run( 'UserLoggedIn', [ $u ] );
-			if ( $wgAuth && !$wgAuth instanceof MediaWiki\Auth\AuthManagerAuthPlugin ) {
-				$oldUser = $u;
-				$wgAuth->updateUser( $u );
-				if ( $oldUser !== $u ) {
-					wfWarn( get_class( $wgAuth ) . '::updateUser() replaced the user object' );
-				}
+			$oldUser = $u;
+			$wgAuth->updateUser( $u );
+			if ( $oldUser !== $u ) {
+				wfWarn( get_class( $wgAuth ) . '::updateUser() replaced the user object' );
 			}
 			$wgUser = $u;
 			// This should set it for OutputPage and the Skin
@@ -1826,7 +1817,8 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
-	 * Private function to check password expiration, until this is rewritten for AuthManager.
+	 * Private function to check password expiration, until AuthManager comes
+	 * along to handle that.
 	 * @param User $user
 	 * @return string|bool
 	 */
