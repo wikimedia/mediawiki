@@ -28,6 +28,10 @@
 class PermissionsError extends ErrorPageError {
 	public $permission, $errors;
 
+	/**
+	 * @param string $permission A permission name.
+	 * @param string[] $errors Error message keys
+	 */
 	public function __construct( $permission, $errors = [] ) {
 		global $wgLang;
 
