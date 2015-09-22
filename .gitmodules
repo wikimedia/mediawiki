@@ -206,3 +206,11 @@
 	path = extensions/SubpageFun
 	url = https://github.com/wikimedia/mediawiki-extensions-SubpageFun.git
 	branch = REL1_25
+[submodule "extensions/LiquidThreads"]
+	path = extensions/LiquidThreads
+	url = https://github.com/wikimedia/mediawiki-extensions-LiquidThreads.git
+	branch = REL1_25
+[submodule "extensions/DPLForum"]
+	path = extensions/DPLForum
+	url = https://github.com/wikimedia/mediawiki-extensions-DPLForum.git
+	branch = REL1_25
