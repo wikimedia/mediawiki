@@ -372,15 +372,20 @@ class SpecialPage {
 	final public function run( $subPage ) {
 		/**
 		 * Gets called before @see SpecialPage::execute.
+		 * Return false to prevent calling execute().
 		 *
 		 * @since 1.20
 		 *
 		 * @param SpecialPage $this
 		 * @param string|null $subPage
 		 */
-		Hooks::run( 'SpecialPageBeforeExecute', array( $this, $subPage ) );
+		if ( !Hooks::run( 'SpecialPageBeforeExecute', array( $this, $subPage ) ) ) {
+			return;
+		}
 
-		$this->beforeExecute( $subPage );
+		if ( $this->beforeExecute( $subPage ) === false ) {
+			return;
+		}
 		$this->execute( $subPage );
 		$this->afterExecute( $subPage );
 
@@ -397,10 +402,12 @@ class SpecialPage {
 
 	/**
 	 * Gets called before @see SpecialPage::execute.
+	 * Return false to prevent calling execute().
 	 *
 	 * @since 1.20
 	 *
 	 * @param string|null $subPage
+	 * @return bool|void
 	 */
 	protected function beforeExecute( $subPage ) {
 		// No-op
