@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.8
+ * OOjs UI v0.12.9
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-09-08T20:56:08Z
+ * Date: 2015-09-22T20:09:59Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -589,57 +589,57 @@
 	right: 18em;
 	bottom: 18em;
 }
-.oo-ui-menuLayout.oo-ui-menuLayout-hideMenu .oo-ui-menuLayout-menu {
+.oo-ui-menuLayout.oo-ui-menuLayout-hideMenu > .oo-ui-menuLayout-menu {
 	width: 0 !important;
 	height: 0 !important;
 	overflow: hidden;
 }
-.oo-ui-menuLayout.oo-ui-menuLayout-hideMenu .oo-ui-menuLayout-content {
+.oo-ui-menuLayout.oo-ui-menuLayout-hideMenu > .oo-ui-menuLayout-content {
 	top: 0 !important;
 	left: 0 !important;
 	right: 0 !important;
 	bottom: 0 !important;
 }
-.oo-ui-menuLayout.oo-ui-menuLayout-showMenu.oo-ui-menuLayout-top .oo-ui-menuLayout-menu {
+.oo-ui-menuLayout.oo-ui-menuLayout-showMenu.oo-ui-menuLayout-top > .oo-ui-menuLayout-menu {
 	width: auto !important;
 	left: 0;
 	top: 0;
 	right: 0;
 }
-.oo-ui-menuLayout.oo-ui-menuLayout-showMenu.oo-ui-menuLayout-top .oo-ui-menuLayout-content {
+.oo-ui-menuLayout.oo-ui-menuLayout-showMenu.oo-ui-menuLayout-top > .oo-ui-menuLayout-content {
 	right: 0 !important;
 	bottom: 0 !important;
 	left: 0 !important;
 }
-.oo-ui-menuLayout.oo-ui-menuLayout-showMenu.oo-ui-menuLayout-after .oo-ui-menuLayout-menu {
+.oo-ui-menuLayout.oo-ui-menuLayout-showMenu.oo-ui-menuLayout-after > .oo-ui-menuLayout-menu {
 	height: auto !important;
 	top: 0;
 	right: 0;
 	bottom: 0;
 }
-.oo-ui-menuLayout.oo-ui-menuLayout-showMenu.oo-ui-menuLayout-after .oo-ui-menuLayout-content {
+.oo-ui-menuLayout.oo-ui-menuLayout-showMenu.oo-ui-menuLayout-after > .oo-ui-menuLayout-content {
 	bottom: 0 !important;
 	left: 0 !important;
 	top: 0 !important;
 }
-.oo-ui-menuLayout.oo-ui-menuLayout-showMenu.oo-ui-menuLayout-bottom .oo-ui-menuLayout-menu {
+.oo-ui-menuLayout.oo-ui-menuLayout-showMenu.oo-ui-menuLayout-bottom > .oo-ui-menuLayout-menu {
 	width: auto !important;
 	right: 0;
 	bottom: 0;
 	left: 0;
 }
-.oo-ui-menuLayout.oo-ui-menuLayout-showMenu.oo-ui-menuLayout-bottom .oo-ui-menuLayout-content {
+.oo-ui-menuLayout.oo-ui-menuLayout-showMenu.oo-ui-menuLayout-bottom > .oo-ui-menuLayout-content {
 	left: 0 !important;
 	top: 0 !important;
 	right: 0 !important;
 }
-.oo-ui-menuLayout.oo-ui-menuLayout-showMenu.oo-ui-menuLayout-before .oo-ui-menuLayout-menu {
+.oo-ui-menuLayout.oo-ui-menuLayout-showMenu.oo-ui-menuLayout-before > .oo-ui-menuLayout-menu {
 	height: auto !important;
 	bottom: 0;
 	left: 0;
 	top: 0;
 }
-.oo-ui-menuLayout.oo-ui-menuLayout-showMenu.oo-ui-menuLayout-before .oo-ui-menuLayout-content {
+.oo-ui-menuLayout.oo-ui-menuLayout-showMenu.oo-ui-menuLayout-before > .oo-ui-menuLayout-content {
 	top: 0 !important;
 	right: 0 !important;
 	bottom: 0 !important;
@@ -772,6 +772,7 @@
 	display: inline;
 }
 .oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-widget-disabled > .oo-ui-tool-link {
+	outline: 0;
 	cursor: default;
 }
 .oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool {
@@ -815,6 +816,9 @@
 .oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-tool-active.oo-ui-widget-enabled + .oo-ui-tool-active.oo-ui-widget-enabled {
 	border-left-color: rgba(0, 0, 0, 0.1);
 }
+.oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-widget-disabled > .oo-ui-tool-link:focus {
+	outline: 0;
+}
 .oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-widget-disabled > .oo-ui-tool-link .oo-ui-tool-title {
 	color: #cccccc;
 }
@@ -823,6 +827,12 @@
 }
 .oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-widget-enabled:hover > .oo-ui-tool-link .oo-ui-iconElement-icon {
 	opacity: 1;
+}
+.oo-ui-barToolGroup.oo-ui-widget-disabled > .oo-ui-toolGroup-tools > .oo-ui-tool:focus {
+	outline: 0;
+}
+.oo-ui-barToolGroup.oo-ui-widget-disabled > .oo-ui-toolGroup-tools > .oo-ui-tool > .oo-ui-tool-link:focus {
+	outline: 0;
 }
 .oo-ui-barToolGroup.oo-ui-widget-disabled > .oo-ui-toolGroup-tools > .oo-ui-tool > .oo-ui-tool-link .oo-ui-tool-title {
 	color: #cccccc;
@@ -844,6 +854,7 @@
 	position: absolute;
 }
 .oo-ui-popupToolGroup.oo-ui-widget-disabled .oo-ui-popupToolGroup-handle {
+	outline: 0;
 	cursor: default;
 }
 .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
@@ -1964,6 +1975,9 @@
 	border-color: #dddddd;
 	background-color: #f3f3f3;
 }
+.oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle:focus {
+	outline: 0;
+}
 .oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator {
 	opacity: 0.2;
 }
@@ -2024,6 +2038,9 @@
 	right: 0;
 	text-overflow: ellipsis;
 }
+.oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label > .oo-ui-selectFileWidget-fileType {
+	float: right;
+}
 .oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator,
 .oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon,
 .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-clearButton {
@@ -2059,7 +2076,7 @@
 .oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon {
 	left: 0.25em;
 }
-.oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label {
+.oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label {
 	line-height: 2.3em;
 	margin: 0;
 	overflow: hidden;
@@ -2071,7 +2088,10 @@
 	left: 0.5em;
 	right: 0.5em;
 }
-.oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-clearButton {
+.oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label > .oo-ui-selectFileWidget-fileType {
+	color: #888888;
+}
+.oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-clearButton {
 	top: 0;
 	width: 1.875em;
 	height: 1.875em;
