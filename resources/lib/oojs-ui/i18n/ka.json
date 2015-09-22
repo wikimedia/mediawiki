@@ -24,6 +24,5 @@
 	"ooui-dialog-process-retry": "კიდევ სცადეთ",
 	"ooui-dialog-process-continue": "გაგრძელება",
 	"ooui-selectfile-not-supported": "ფაილის არჩევა არ არის მხარდაჭერილი",
-	"ooui-selectfile-placeholder": "ფაილი არ არის არჩეული",
-	"ooui-semicolon-separator": ";"
+	"ooui-selectfile-placeholder": "ფაილი არ არის არჩეული"
 }

@@ -26,5 +26,5 @@
 	"ooui-dialog-process-continue": "Συνέχεια",
 	"ooui-selectfile-not-supported": "Επιλογή αρχείου δεν υποστηρίζεται",
 	"ooui-selectfile-placeholder": "Κανένα αρχείο δεν είναι επιλεγμένο",
-	"ooui-selectfile-dragdrop-placeholder": "Σύρετε ένα αρχείο εδώ (ή κάντε κλικ για αναζήτηση)"
+	"ooui-selectfile-dragdrop-placeholder": "Σύρετε το αρχείο εδώ"
 }
