@@ -23,17 +23,17 @@
 /**
  * Multi-datacenter aware caching interface
  *
- * All operations go to the local cache, except the delete()
- * and touchCheckKey(), which broadcast to all clusters.
  * This class is intended for caching data from primary stores.
+ * All operations go to the local datacenter cache, except for delete(),
+ * touchCheckKey(), and resetCheckKey(), which broadcast to all clusters.
+ *
  * If the get() method does not return a value, then the caller
  * should query the new value and backfill the cache using set().
- * When the source data changes, the delete() method should be called.
- * Since delete() is expensive, it should be avoided. One can do so if:
+ * When the source data changes, a purge method should be called.
+ * Since purges are expensive, it should be avoided. One can do so if:
  *   - a) The object cached is immutable; or
  *   - b) Validity is checked against the source after get(); or
  *   - c) Using a modest TTL is reasonably correct and performant
- * Consider using getWithSetCallback() instead of the get()/set() cycle.
  *
  * Instances of this class must be configured to point to a valid
  * PubSub endpoint, and there must be listeners on the cache servers
@@ -45,6 +45,12 @@
  * for a however many milliseconds the datacenters are apart. As with
  * any cache, this should not be relied on for cases where reads are
  * used to determine writes to source (e.g. non-cache) data stores.
+ *
+ * Usage of cache instances may be wrapped in declareTransactionStart()
+ * and declareTransactionCommit() calls. In between such calls, all of
+ * the broadcasted operations occur as normal, but also run a second time
+ * afterwards. This avoids race conditions for purges based on on updates
+ * to both transactional and non-transactional data stores.
  *
  * All values are wrapped in metadata arrays. Keys use a "WANCache:" prefix
  * to avoid collisions with keys that are not wrapped as metadata arrays. The
@@ -61,14 +67,28 @@ class WANObjectCache {
 	protected $cache;
 	/** @var string Cache pool name */
 	protected $pool;
-	/** @var EventRelayer */
+	/** @var EventRelayer Bus to use for purges */
 	protected $relayer;
 
-	/** @var int */
+	/** @var float UNIX timestamp */
+	protected $snapshotStartTime;
+	/** @var float UNIX timestamp */
+	protected $transactionStartTime;
+	/** @var float[] Map of (key => purge TTL) for purged keys */
+	protected $transactionKeysPurged = array();
+
+	/** @var int Last EventRelayer error */
 	protected $lastRelayError = self::ERR_NONE;
 
-	/** Seconds to tombstone keys on delete() */
-	const HOLDOFF_TTL = 10;
+	/** Skip secondary pre-commit purges for transactions this short */
+	const SHORT_TRX_TIME = 1;
+	/** Max expected replication lag for a reasonable storage setup */
+	const MAX_REPLICA_LAG = 8;
+	/** Max time since snapshot transaction start to avoid no-op of set() */
+	const MAX_SNAPSHOT_LAG = 6;
+	/** Seconds to tombstone keys when delete() is called */
+	const HOLDOFF_TTL = 15; // SHORT_TRX_TIME + MAX_REPLICA_LAG + MAX_SNAPSHOT_LAG
+
 	/** Seconds to keep dependency purge keys around */
 	const CHECK_KEY_TTL = 31536000; // 1 year
 	/** Seconds to keep lock keys around */
@@ -159,7 +179,8 @@ class WANObjectCache {
 	 *   - b) Keeping transaction duration shorter than delete() hold-off TTL
 	 * However, pre-snapshot values might still be seen due to delete() relay lag.
 	 *
-	 * For keys that are hot/expensive, consider using getWithSetCallback() instead.
+	 * Consider using getWithSetCallback() instead of the get()/set() cycle.
+	 * For keys that are hot/expensive, that method has several useful features.
 	 *
 	 * @param string $key Cache key
 	 * @param mixed $curTTL Approximate TTL left on the key if present [returned]
@@ -254,6 +275,10 @@ class WANObjectCache {
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = 0 ) {
+		if ( $this->since( $this->snapshotStartTime ) > self::MAX_SNAPSHOT_LAG ) {
+			return true; // no-op the write for being unsafe
+		}
+
 		$key = self::VALUE_KEY_PREFIX . $key;
 		$wrapped = $this->wrap( $value, $ttl );
 
@@ -378,10 +403,10 @@ class WANObjectCache {
 	 * This is similar to touchCheckKey() in that keys using it via
 	 * getWithSetCallback() will be invalidated. The differences are:
 	 *   - a) The timestamp will be deleted from all caches and lazily
-	 *      re-initialized when accessed (rather than set everywhere)
+	 *        re-initialized when accessed (rather than set everywhere)
 	 *   - b) Thus, dependent keys will be known to be invalid, but not
-	 *      for how long (they are treated as "just" purged), which
-	 *      effects any lockTSE logic in getWithSetCallback()
+	 *        for how long (they are treated as "just" purged), which
+	 *        effects any lockTSE logic in getWithSetCallback()
 	 * The advantage is that this does not place high TTL keys on every cache
 	 * server, making it better for code that will cache many different keys
 	 * and either does not use lockTSE or uses a low enough TTL anyway.
@@ -559,6 +584,48 @@ class WANObjectCache {
 	}
 
 	/**
+	 * Set the *earliest* possible time of any snapshot isolated transaction
+	 * or in-process cache which might be used to derive data from for set()
+	 *
+	 * In general, this will be set as the web request start time
+	 *
+	 * @param float|int|null $timestamp UNIX timestamp or null to clear [default: now]
+	 */
+	final public function declareSnapshotStartTime( $timestamp = 0 ) {
+		$this->snapshotStartTime = ( $timestamp === 0 ) ? microtime( true ) : $timestamp;
+	}
+
+	/**
+	 * Declare than ACID transactions will be started now
+	 *
+	 * In general, this will be set as the web request start time
+	 */
+	final public function declareTransactionPresent() {
+		$this->transactionStartTime = microtime( true );
+	}
+
+	/**
+	 * Declare that all ACID transactions will be committed
+	 * now and relay any secondary purge requests as needed
+	 *
+	 * In general, this will be called at the end of a web request
+	 */
+	final public function declareTransactionEnding() {
+		if ( $this->since( $this->transactionStartTime ) > self::SHORT_TRX_TIME ) {
+			foreach ( $this->transactionKeysPurged as $key => $ttl ) {
+				if ( $ttl > 0 ) {
+					$this->relayPurge( $key, $ttl );
+				} else {
+					$this->relayDelete( $key );
+				}
+			}
+		}
+
+		$this->transactionStartTime = null;
+		$this->transactionKeysPurged = array();
+	}
+
+	/**
 	 * Get the "last error" registered; clearLastError() should be called manually
 	 * @return int ERR_* constant for the "last error" registry
 	 */
@@ -594,6 +661,14 @@ class WANObjectCache {
 	}
 
 	/**
+	 * @param float $timestamp UNIX timestamp
+	 * @return float Seconds How long ago $timestamp was
+	 */
+	protected function since( $timestamp ) {
+		return $timestamp ? max( 0.0, microtime( true ) - $timestamp ) : 0.0;
+	}
+
+	/**
 	 * Do the actual async bus purge of a key
 	 *
 	 * This must set the key to "PURGED:<UNIX timestamp>"
@@ -603,6 +678,10 @@ class WANObjectCache {
 	 * @return bool Success
 	 */
 	protected function relayPurge( $key, $ttl ) {
+		if ( $this->transactionStartTime ) {
+			$this->transactionKeysPurged[$key] = $ttl;
+		}
+
 		$event = $this->cache->modifySimpleRelayEvent( array(
 			'cmd' => 'set',
 			'key' => $key,
@@ -626,6 +705,10 @@ class WANObjectCache {
 	 * @return bool Success
 	 */
 	protected function relayDelete( $key ) {
+		if ( $this->transactionStartTime ) {
+			$this->transactionKeysPurged[$key] = 0;
+		}
+
 		$event = $this->cache->modifySimpleRelayEvent( array(
 			'cmd' => 'delete',
 			'key' => $key,

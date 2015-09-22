@@ -29,6 +29,13 @@ abstract class LBFactory {
 	/** @var LBFactory */
 	private static $instance;
 
+	/** @var callable[] */
+	protected $onAllCommitted = array();
+	/** @var callable[] */
+	protected $onCommitChanges = array();
+	/** @var callable[] */
+	protected $onRollbackChanges = array();
+
 	/**
 	 * Disables all access to the load balancer, will cause all database access
 	 * to throw a DBAccessError
@@ -183,13 +190,16 @@ abstract class LBFactory {
 	 * 2. To release the snapshot on all connections, master and slave.
 	 */
 	public function commitAll() {
+		$this->comsumeCallbacks( $this->onCommitChanges );
 		$this->forEachLBCallMethod( 'commitAll' );
+		$this->comsumeCallbacks( $this->onAllCommitted );
 	}
 
 	/**
 	 * Commit changes on all master connections
 	 */
 	public function commitMasterChanges() {
+		$this->comsumeCallbacks( $this->onCommitChanges );
 		$this->forEachLBCallMethod( 'commitMasterChanges' );
 	}
 
@@ -198,6 +208,7 @@ abstract class LBFactory {
 	 * @since 1.23
 	 */
 	public function rollbackMasterChanges() {
+		$this->comsumeCallbacks( $this->onRollbackChanges );
 		$this->forEachLBCallMethod( 'rollbackMasterChanges' );
 	}
 
@@ -212,6 +223,37 @@ abstract class LBFactory {
 			$ret = $ret || $lb->hasMasterChanges();
 		} );
 		return $ret;
+	}
+
+	/**
+	 * @param callable $callback Callback to run after commitAll()
+	 * @since 1.26
+	 */
+	public function onAllCommitted( $callback ) {
+		$this->onAllCommitted[] = $callback;
+	}
+
+	/**
+	 * @param callable $callback Callback to run during commitMasterChanges()/commitAll()
+	 * @since 1.26
+	 */
+	public function onCommitChanges( $callback ) {
+		$this->onCommitChanges[] = $callback;
+	}
+
+	/**
+	 * @param callable $callback Callback to run during rollbackMasterChanges()
+	 * @since 1.26
+	 */
+	public function onRollbackChanges( $callback ) {
+		$this->onRollbackChanges[] = $callback;
+	}
+
+	private function comsumeCallbacks( array &$callbacks ) {
+		foreach ( $callbacks as $callback ) {
+			call_user_func( $callback );
+		}
+		$callbacks = array();
 	}
 }
 

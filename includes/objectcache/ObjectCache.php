@@ -107,6 +107,18 @@ class ObjectCache {
 	}
 
 	/**
+	 * Run a callback on each active WANObjectCache instance
+	 *
+	 * @param callable $callback Callback taking a WANObjectCache as an argument
+	 * @since 1.26
+	 */
+	public static function foreachWANInstance( $callback ) {
+		foreach ( self::$wanInstances as $instance ) {
+			call_user_func_array( $callback, array( $instance ) );
+		}
+	}
+
+	/**
 	 * Create a new cache object of the specified type.
 	 *
 	 * @param string $id A key in $wgObjectCaches.
@@ -246,7 +258,24 @@ class ObjectCache {
 		$params['cache'] = self::newFromId( $params['cacheId'] );
 		$class = $params['class'];
 
-		return new $class( $params );
+		/** @var WANObjectCache $cache */
+		$cache = new $class( $params );
+
+		if ( isset( $_SERVER['REQUEST_TIME_FLOAT'] ) ) {
+			// Make the cache aware of DBO_TRX snapshot reads
+			$cache->declareSnapshotStartTime( $_SERVER['REQUEST_TIME_FLOAT'] );
+			wfGetLBFactory()->onAllCommitted( array( $cache, 'declareSnapshotStartTime' ) );
+			// Make the cache aware of DBO_TRX write transactions
+			$cache->declareTransactionPresent();
+			wfGetLBFactory()->onCommitChanges( array( $cache, 'declareTransactionEnding' ) );
+			wfGetLBFactory()->onRollbackChanges( array( $cache, 'declareTransactionEnding' ) );
+			wfGetLBFactory()->onAllCommitted( array( $cache, 'declareTransactionPresent' ) );
+			wfDebugLog( 'caches', "WAN cache '$id' initialized and transaction aware" );
+		} else {
+			wfDebugLog( 'caches', "WAN cache '$id' initialized" );
+		}
+
+		return $cache;
 	}
 
 	/**
