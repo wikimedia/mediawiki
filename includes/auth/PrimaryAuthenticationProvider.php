@@ -137,6 +137,8 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	 * @param AuthenticationRequest $req
 	 * @param bool $checkData If false, $req hasn't been loaded from the
 	 *  submission so checks on user-submitted fields should be skipped.
+	 *  $req->username is considered user-submitted for this purpose, even
+	 *  if it cannot be changed via $req->loadFromSubmission.
 	 * @return StatusValue
 	 */
 	public function providerAllowsAuthenticationDataChange(

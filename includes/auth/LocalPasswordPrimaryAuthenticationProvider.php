@@ -197,7 +197,11 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return \StatusValue::newGood( 'ignored' );
 		}
 
-		if ( $req instanceof PasswordAuthenticationRequest && $req->username !== null ) {
+		if ( $req instanceof PasswordAuthenticationRequest ) {
+			if ( !$checkData ) {
+				return \StatusValue::newGood();;
+			}
+
 			$username = User::getCanonicalName( $req->username, 'usable' );
 			if ( $username ) {
 				$row = wfGetDB( DB_MASTER )->selectRow(
@@ -208,7 +212,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 				);
 				if ( $row ) {
 					$sv = \StatusValue::newGood();
-					if ( $checkData && $req->password !== null ) {
+					if ( $req->password !== null ) {
 						if ( $req->retype !== null && $req->password !== $req->retype ) {
 							$sv->fatal( 'badretype' );
 						} else {

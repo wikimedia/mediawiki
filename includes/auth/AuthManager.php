@@ -40,7 +40,7 @@ use WebRequest;
  * @ingroup Auth
  * @since 1.27
  */
-final class AuthManager implements LoggerAwareInterface {
+class AuthManager implements LoggerAwareInterface {
 	/** Log in with an existing (not necessarily local) user */
 	const ACTION_LOGIN = 'login';
 	/** Continue a login process that was interrupted by the need for user input or communication
@@ -767,7 +767,9 @@ final class AuthManager implements LoggerAwareInterface {
 	 * Validate a change of authentication data (e.g. passwords)
 	 * @param AuthenticationRequest $req
 	 * @param bool $checkData If false, $req hasn't been loaded from the
-	 *  submission so checks on user-submitted fields should be skipped.
+	 *  submission so checks on user-submitted fields should be skipped. $req->username is
+	 *  considered user-submitted for this purpose, even if it cannot be changed via
+	 *  $req->loadFromSubmission.
 	 * @return Status
 	 */
 	public function allowsAuthenticationDataChange( AuthenticationRequest $req, $checkData = true ) {
@@ -2306,7 +2308,7 @@ final class AuthManager implements LoggerAwareInterface {
 	public static function resetCache() {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			// @codeCoverageIgnoreStart
-			throw new MWException( __METHOD__ . ' may only be called from unit tests!' );
+			throw new \MWException( __METHOD__ . ' may only be called from unit tests!' );
 			// @codeCoverageIgnoreEnd
 		}
 
