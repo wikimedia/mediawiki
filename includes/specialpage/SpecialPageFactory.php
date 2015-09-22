@@ -81,9 +81,13 @@ class SpecialPageFactory {
 		'PagesWithProp' => 'SpecialPagesWithProp',
 		'TrackingCategories' => 'SpecialTrackingCategories',
 
-		// Login/create account
-		'Userlogin' => 'LoginForm',
+		// Authentication
+		'Userlogin' => 'SpecialUserLogin',
+		'Userlogout' => 'SpecialUserLogout',
 		'CreateAccount' => 'SpecialCreateAccount',
+		'LinkAccounts' => 'SpecialLinkAccounts',
+		'UnlinkAccounts' => 'SpecialUnlinkAccounts',
+		'ChangeCredentials' => 'SpecialChangeCredentials',
 
 		// Users and rights
 		'Block' => 'SpecialBlock',
@@ -177,7 +181,6 @@ class SpecialPageFactory {
 		'Revisiondelete' => 'SpecialRevisionDelete',
 		'RunJobs' => 'SpecialRunJobs',
 		'Specialpages' => 'SpecialSpecialpages',
-		'Userlogout' => 'SpecialUserlogout',
 	];
 
 	private static $list;

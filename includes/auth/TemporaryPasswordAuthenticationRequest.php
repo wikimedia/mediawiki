@@ -30,8 +30,20 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	/** @var string|null Temporary password */
 	public $password;
 
+	/** @var bool Email password to the user. */
+	public $mailpassword = false;
+
+	/** @var string Username or IP address of the caller */
+	public $caller;
+
 	public function getFieldInfo() {
-		return [];
+		return [
+			'mailpassword' => [
+				'type' => 'checkbox',
+				'label' => wfMessage( 'createaccountmail' ),
+				'help' => wfMessage( 'createaccountmail-help' ),
+			],
+		];
 	}
 
 	/**
@@ -39,6 +51,9 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	 */
 	public function __construct( $password = null ) {
 		$this->password = $password;
+		if ( $password ) {
+			$this->mailpassword = true;
+		}
 	}
 
 	/**
@@ -70,6 +85,8 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	 * @return TemporaryPasswordAuthenticationRequest
 	 */
 	public static function newInvalid() {
-		return new self( null );
+		$request = new self( null );
+		$request->mailpassword = true;
+		return $request;
 	}
 }

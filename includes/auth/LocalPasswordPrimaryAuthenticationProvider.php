@@ -53,16 +53,21 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 		$grace = $this->config->get( 'PasswordExpireGrace' );
 		if ( $expiration + $grace < $now ) {
-			return (object)[
+			$data = [
 				'hard' => true,
 				'msg' => \Status::newFatal( 'resetpass-expired' )->getMessage(),
 			];
 		} else {
-			return (object)[
+			$data = [
 				'hard' => false,
 				'msg' => \Status::newFatal( 'resetpass-expired-soft' )->getMessage(),
 			];
 		}
+
+		// Allow hooks to explain this password reset in more detail
+		\Hooks::run( 'LoginPasswordResetMessage', [ &$data['msg'], $username ] );
+
+		return (object)$data;
 	}
 
 	public function beginPrimaryAuthentication( array $reqs ) {
@@ -218,6 +223,8 @@ class LocalPasswordPrimaryAuthenticationProvider
 				__METHOD__
 			);
 		}
+
+		$this->resetPasswordExpiration( $req->username );
 	}
 
 	public function accountCreationType() {
@@ -273,5 +280,29 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 		// Now that the user is in the DB, set the password on it.
 		$this->providerChangeAuthenticationData( $res->createRequest );
+	}
+
+	/**
+	 * @param string $username
+	 */
+	protected function resetPasswordExpiration( $username ) {
+		$expirationDays = $this->config->get( 'PasswordExpirationDays' );
+
+		$expires = null;
+		if ( $expirationDays ) {
+			$expires = wfTimestamp(
+				TS_MW,
+				time() + ( $expirationDays * 24 * 3600 )
+			);
+		}
+		// Give extensions a chance to force an expiration
+		\Hooks::run( 'ResetPasswordExpiration', [ \User::newFromName( $username ), &$expires ] );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->update(
+			'user',
+			[ 'user_password_expires' => $dbw->timestampOrNull( $expires ) ],
+			[ 'user_name' => $username ],
+			__METHOD__
+		);
 	}
 }

@@ -77,11 +77,18 @@ class CheckBlocksSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 	 * @return StatusValue
 	 */
 	private function testCreationBlocked( $user ) {
+		// FIXME not related to blocks. Should this go to AuthManager::canCreateAccounts()?
+		// That one cannot return human-friendly error messages though.
+		if ( wfReadOnly() ) {
+			$reason = wfReadOnlyReason() ?: null;
+			return StatusValue::newFatal( wfMessage( 'readonlytext', $reason ) );
+		}
+
 		$block = $user->isBlockedFromCreateAccount();
 		if ( $block ) {
 			$errorParams = [
 				$block->getTarget(),
-				$block->mReason ? $block->mReason : \Message::newFromKey( 'blockednoreason' )->text(),
+				$block->mReason ?: \Message::newFromKey( 'blockednoreason' )->text(),
 				$block->getByName()
 			];
 
@@ -95,9 +102,23 @@ class CheckBlocksSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 			return StatusValue::newFatal(
 				new \Message( $errorMessage, $errorParams )
 			);
-		} else {
-			return StatusValue::newGood();
 		}
+
+		$ip = $this->manager->getRequest()->getIP();
+		if ( $user->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ ) ) {
+			return StatusValue::newFatal( 'sorbs_create_account_reason' );
+		}
+
+		// Handling of permission-related hooks is in Title, even for non-page-related permissions.
+		// Fake a title and reuse that - account creation checks should not depend on the page name.
+		$title = \Title::newFromText( 'Special:CreateAccount' );
+		$errors = $title->getUserPermissionsErrors( 'createaccount', $user, 'secure' );
+		$sv = StatusValue::newGood();
+		foreach ( $errors as $error ) {
+			call_user_func_array( [ $sv, 'fatal' ], $error );
+		}
+
+		return $sv;
 	}
 
 	public function testForAccountCreation( $user, $creator, array $reqs ) {

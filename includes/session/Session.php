@@ -335,7 +335,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 	 *
 	 * @param string|string[] $salt Token salt
 	 * @param string $key Token key
-	 * @return MediaWiki\\Session\\SessionToken
+	 * @return MediaWiki\\Session\\Token
 	 */
 	public function getToken( $salt = '', $key = 'default' ) {
 		$new = false;
