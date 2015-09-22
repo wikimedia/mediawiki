@@ -249,12 +249,6 @@ $user: the User object about to be created (read-only, incomplete)
 $autoblockip: The IP going to be autoblocked.
 &$block: The block from which the autoblock is coming.
 
-'AbortChangePassword': Return false to cancel password change.
-$user: the User object to which the password change is occuring
-$mOldpass: the old password provided by the user
-$newpass: the new password provided by the user
-&$abortMsg: the message identifier for abort reason
-
 'AbortDiffCache': Can be used to cancel the caching of a diff.
 &$diffEngine: DifferenceEngine object
 
@@ -298,7 +292,8 @@ $name: name of the action
 &$fields: HTMLForm descriptor array
 $article: Article object
 
-'AddNewAccount': After a user account is created.
+'AddNewAccount': DEPRECATED! Use LocalUserCreated.
+After a user account is created.
 $user: the User object that was created. (Parameter added in 1.7)
 $byEmail: true when account was created "by email" (added in 1.12)
 
@@ -747,6 +742,15 @@ viewing.
 redirect was followed.
 &$article: target article (object)
 
+'AuthChangeFormFields': After converting a field information array obtained
+from a set of AuthenticationRequest classes into a form descriptor; hooks
+can tweak the array to change how login etc. forms should look.
+$requests: array of AuthenticationRequests the fields are created from
+$fieldInfo: field information array (union of all AuthenticationRequest::getFieldInfo() responses).
+&$formDescriptor: HTMLForm descriptor. The special key 'weight' can be set
+  to change the order of the fields.
+$action: one of the AuthManager::ACTION_* constants.
+
 'AuthManagerLoginAuthenticateAudit': A login attempt either succeeded or failed
 for a reason other than misconfiguration or session loss. No return data is
 accepted; this hook is for auditing only.
@@ -929,8 +933,14 @@ $html: Requested html content of anchor
 &$link: Returned value. When set to a non-null value by a hook subscriber
   this value will be used as the anchor instead of Linker::link
 
-'ChangePasswordForm': For extensions that need to add a field to the
-ChangePassword form via the Preferences form.
+'ChangeAuthenticationDataAudit': Called when user changes his password.
+No return data is accepted; this hook is for auditing only.
+$req: AuthenticationRequest object describing the change (and target user)
+$status: StatusValue with the result of the action
+
+'ChangePasswordForm': DEPRECATED! Use AuthChangeFormFields or security levels.
+For extensions that need to add a field to the ChangePassword form via the
+Preferences form.
 &$extraFields: An array of arrays that hold fields like would be passed to the
   pretty function.
 
@@ -1937,12 +1947,6 @@ in LoginForm::$validErrorMessages).
 &$messages: Already added messages (inclusive messages from
   LoginForm::$validErrorMessages)
 
-'LoginPasswordResetMessage': User is being requested to reset their password on
-login. Use this hook to change the Message that will be output on
-Special:ChangePassword.
-&$msg: Message object that will be shown to the user
-$username: Username of the user who's password was expired.
-
 'LoginUserMigrated': DEPRECATED! Create a PreAuthenticationProvider instead.
 Called during login to allow extensions the opportunity to inform a user that
 their username doesn't exist for a specific reason, instead of letting the
@@ -2438,11 +2442,6 @@ namespace from the search string so that extensions can attempt it.
 $user: User (object) changing his email address
 $oldaddr: old email address (string)
 $newaddr: new email address (string)
-
-'PrefsPasswordAudit': Called when user changes his password.
-$user: User (object) changing his password
-$newPass: new password
-$error: error (string) 'badretype', 'wrongpassword', 'error' or 'success'
 
 'ProtectionForm::buildForm': Called after all protection type fieldsets are made
 in the form.
@@ -3273,7 +3272,8 @@ messages!" message, return false to not delete it.
 &$user: User (object) that will clear the message
 $oldid: ID of the talk page revision being viewed (0 means the most recent one)
 
-'UserCreateForm': change to manipulate the login form
+'UserCreateForm': DEPRECATED! Create an AuthenticationProvider instead.
+Manipulate the login form.
 &$template: SimpleTemplate instance for the form
 
 'UserEffectiveGroups': Called in User::getEffectiveGroups().
@@ -3376,12 +3376,14 @@ $user: User object
 'UserLoggedIn': Called after a user is logged in
 $user: User object for the logged-in user
 
-'UserLoginComplete': After a user has logged in.
+'UserLoginComplete': Show custom content after a user has logged in via the web interface.
+For functionality that needs to run after any login (API or web) use UserLoggedIn.
 &$user: the user object that was created on login
 &$inject_html: Any HTML to inject after the "logged in" message.
 
-'UserLoginForm': change to manipulate the login form
-&$template: SimpleTemplate instance for the form
+'UserLoginForm': DEPRECATED! Create an AuthenticationProvider instead.
+Manipulate the login form.
+&$template: QuickTemplate instance for the form
 
 'UserLogout': Before a user logs out.
 &$user: the user object that is about to be logged out
