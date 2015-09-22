@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Auth\AuthManager;
+
 /**
  * Let users change their email address.
  *
@@ -44,9 +46,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 	 * @return bool
 	 */
 	public function isListed() {
-		global $wgAuth;
-
-		return $wgAuth->allowPropChange( 'emailaddress' );
+		return AuthManager::singleton()->allowsPropertyChange( 'emailaddress' );
 	}
 
 	/**
@@ -54,6 +54,8 @@ class SpecialChangeEmail extends FormSpecialPage {
 	 * @param string $par
 	 */
 	function execute( $par ) {
+		$this->checkLoginSecurityLevel();
+
 		$out = $this->getOutput();
 		$out->disallowUserJs();
 
@@ -61,9 +63,8 @@ class SpecialChangeEmail extends FormSpecialPage {
 	}
 
 	protected function checkExecutePermissions( User $user ) {
-		global $wgAuth;
 
-		if ( !$wgAuth->allowPropChange( 'emailaddress' ) ) {
+		if ( !AuthManager::singleton()->allowsPropertyChange( 'emailaddress' ) ) {
 			throw new ErrorPageError( 'changeemail', 'cannotchangeemail' );
 		}
 
@@ -100,13 +101,6 @@ class SpecialChangeEmail extends FormSpecialPage {
 			],
 		];
 
-		if ( $this->getConfig()->get( 'RequirePasswordforEmailChange' ) ) {
-			$fields['Password'] = [
-				'type' => 'password',
-				'label-message' => 'changeemail-password'
-			];
-		}
-
 		return $fields;
 	}
 
@@ -121,14 +115,10 @@ class SpecialChangeEmail extends FormSpecialPage {
 		$form->addHiddenFields( $this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
 
 		$form->addHeaderText( $this->msg( 'changeemail-header' )->parseAsBlock() );
-		if ( $this->getConfig()->get( 'RequirePasswordforEmailChange' ) ) {
-			$form->addHeaderText( $this->msg( 'changeemail-passwordrequired' )->parseAsBlock() );
-		}
 	}
 
 	public function onSubmit( array $data ) {
-		$password = isset( $data['Password'] ) ? $data['Password'] : null;
-		$status = $this->attemptChange( $this->getUser(), $password, $data['NewEmail'] );
+		$status = $this->attemptChange( $this->getUser(), $data['NewEmail'] );
 
 		$this->status = $status;
 
@@ -158,11 +148,12 @@ class SpecialChangeEmail extends FormSpecialPage {
 
 	/**
 	 * @param User $user
-	 * @param string $pass
 	 * @param string $newaddr
 	 * @return Status
 	 */
-	private function attemptChange( User $user, $pass, $newaddr ) {
+	private function attemptChange( User $user, $newaddr ) {
+		$authManager = AuthManager::singleton();
+
 		if ( $newaddr != '' && !Sanitizer::validateEmail( $newaddr ) ) {
 			return Status::newFatal( 'invalidemailaddress' );
 		}
@@ -170,24 +161,6 @@ class SpecialChangeEmail extends FormSpecialPage {
 		if ( $newaddr === $user->getEmail() ) {
 			return Status::newFatal( 'changeemail-nochange' );
 		}
-
-		$throttleInfo = LoginForm::incrementLoginThrottle( $user->getName() );
-		if ( $throttleInfo ) {
-			$lang = $this->getLanguage();
-			return Status::newFatal(
-				'changeemail-throttled',
-				$lang->formatDuration( $throttleInfo['wait'] )
-			);
-		}
-
-		if ( $this->getConfig()->get( 'RequirePasswordforEmailChange' )
-			&& !$user->checkTemporaryPassword( $pass )
-			&& !$user->checkPassword( $pass )
-		) {
-			return Status::newFatal( 'wrongpassword' );
-		}
-
-		LoginForm::clearLoginThrottle( $user->getName() );
 
 		$oldaddr = $user->getEmail();
 		$status = $user->setEmailWithConfirmation( $newaddr );

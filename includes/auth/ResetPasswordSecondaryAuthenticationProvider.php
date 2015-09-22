@@ -95,7 +95,7 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 		if ( isset( $data->req ) ) {
 			$needReq = $data->req;
 		} else {
-			$needReq = new PasswordAuthenticationRequest( true );
+			$needReq = new PasswordAuthenticationRequest( true, true );
 		}
 		$needReqs = [ $needReq ];
 		if ( !$data->hard ) {
@@ -107,7 +107,7 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 		}
 
 		$req = AuthenticationRequest::getRequestByClass( $reqs, get_class( $needReq ) );
-		if ( !$req ) {
+		if ( !$req || !array_key_exists( 'retype', $req->getFieldInfo() ) ) {
 			return AuthenticationResponse::newUI( $needReqs, $data->msg );
 		}
 
@@ -124,5 +124,4 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 		$this->manager->removeAuthenticationSessionData( 'reset-pass' );
 		return AuthenticationResponse::newPass();
 	}
-
 }

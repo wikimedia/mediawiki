@@ -613,14 +613,14 @@ final class AuthManager implements LoggerAwareInterface {
 			// clean up.
 
 			$this->logger->info( "Login for $user succeeded" );
-			$session->set( 'AuthManager::authnState', null );
-			$this->removeAuthenticationSessionData( null );
 			$req = AuthenticationRequest::getRequestByClass(
 				$beginReqs, 'MediaWiki\\Auth\\RememberMeAuthenticationRequest'
 			);
 			$this->setSessionDataForUser( $user, $req && $req->rememberMe );
 			$ret = AuthenticationResponse::newPass( $user->getName() );
 			\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, $user, $user->getName() ] );
+			$session->set( 'AuthManager::authnState', null );
+			$this->removeAuthenticationSessionData( null );
 			return $ret;
 		} catch ( \Exception $ex ) {
 			$session->set( 'AuthManager::authnState', null );
@@ -1015,7 +1015,14 @@ final class AuthManager implements LoggerAwareInterface {
 			}
 			foreach ( $state['reqs'] as $req ) {
 				if ( $req instanceof UserDataAuthenticationRequest ) {
-					$req->populateUser( $user );
+					$status = $req->populateUser( $user );
+					if ( !$status->isGood() ) {
+						$session->set( 'AuthManager::accountCreationState', null );
+						$this->logger->debug( __METHOD__ . ": Invalid email address: {$req->email}" );
+						return AuthenticationResponse::newFail(
+							Status::wrap( $status )->getMessage()
+						);
+					}
 				}
 			}
 
