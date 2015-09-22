@@ -4464,6 +4464,9 @@ $wgAuthManagerConfig = [
 		MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class => [
 			'class' => MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class,
 		],
+		MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class => [
+			'class' => MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class,
+		],
 	],
 ];
 
@@ -4485,6 +4488,32 @@ $wgReauthenticateTime = [
  */
 $wgAllowSecuritySensitiveOperationIfCannotReauthenticate = [
 	'default' => true,
+];
+
+/**
+ * List of AuthenticationRequest class names which are not changeable through
+ * Special:ChangeCredentials and the changeauthenticationdata API.
+ * This is only enforced on the client level; AuthManager itself (e.g.
+ * AuthManager::allowsAuthenticationDataChange calls) is not affected.
+ * Class names are checked for exact match (not for subclasses).
+ * @since 1.27
+ * @var string[]
+ */
+$wgChangeCredentialsBlacklist = [
+	\MediaWiki\Auth\TemporaryPasswordAuthenticationRequest::class
+];
+
+/**
+ * List of AuthenticationRequest class names which are not removable through
+ * Special:RemoveCredentials and the removeauthenticationdata API.
+ * This is only enforced on the client level; AuthManager itself (e.g.
+ * AuthManager::allowsAuthenticationDataChange calls) is not affected.
+ * Class names are checked for exact match (not for subclasses).
+ * @since 1.27
+ * @var string[]
+ */
+$wgRemoveCredentialsBlacklist = [
+	\MediaWiki\Auth\PasswordAuthenticationRequest::class,
 ];
 
 /**
