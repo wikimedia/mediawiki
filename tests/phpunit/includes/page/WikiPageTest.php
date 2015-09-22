@@ -292,6 +292,12 @@ class WikiPageTest extends MediaWikiLangTestCase {
 			"Title::exists should return false after page was deleted"
 		);
 
+		// Run the job queue
+		JobQueueGroup::destroySingletons();
+		$jobs = new RunJobs;
+		$jobs->loadParamsAndArgs( null, array( 'quiet' => true ), null );
+		$jobs->execute();
+
 		# ------------------------
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'pagelinks', '*', array( 'pl_from' => $id ) );
@@ -313,6 +319,12 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$id = $page->getId();
 
 		$page->doDeleteUpdates( $id );
+
+		// Run the job queue
+		JobQueueGroup::destroySingletons();
+		$jobs = new RunJobs;
+		$jobs->loadParamsAndArgs( null, array( 'quiet' => true ), null );
+		$jobs->execute();
 
 		# ------------------------
 		$dbr = wfGetDB( DB_SLAVE );
