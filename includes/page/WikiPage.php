@@ -3223,10 +3223,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public static function onArticleEdit( Title $title, Revision $revision = null ) {
 		// Invalidate caches of articles which include this page
-		DeferredUpdates::addHTMLCacheUpdate( $title, 'templatelinks' );
+		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $title, 'templatelinks' ) );
 
 		// Invalidate the caches of all pages which redirect here
-		DeferredUpdates::addHTMLCacheUpdate( $title, 'redirect' );
+		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $title, 'redirect' ) );
 
 		// Purge squid for this page only
 		$title->purgeSquid();
