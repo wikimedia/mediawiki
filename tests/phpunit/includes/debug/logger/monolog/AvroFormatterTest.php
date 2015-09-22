@@ -25,7 +25,7 @@ use PHPUnit_Framework_Error_Notice;
 
 class AvroFormatterTest extends MediaWikiTestCase {
 
-	public function setUo() {
+	public function setUp() {
 		if ( !class_exists( 'AvroStringIO' ) ) {
 			$this->markTestSkipped( 'Avro is required for the AvroFormatterTest' );
 		}
@@ -33,15 +33,15 @@ class AvroFormatterTest extends MediaWikiTestCase {
 	}
 
 	public function testSchemaNotAvailable() {
-		$formatter = new AvroFormatter( array() );	
+		$formatter = new AvroFormatter( array() );
 		$this->setExpectedException( 'PHPUnit_Framework_Error_Notice', "The schema for channel 'marty' is not available" );
 		$formatter->format( array( 'channel' => 'marty' ) );
 	}
 
 	public function testSchemaNotAvailableReturnValue() {
-		$formatter = new AvroFormatter( array() );	
+		$formatter = new AvroFormatter( array() );
 		$noticeEnabled = PHPUnit_Framework_Error_Notice::$enabled;
-		// disable conversion of notices 
+		// disable conversion of notices
 		PHPUnit_Framework_Error_Notice::$enabled = false;
 		// have to keep the user notice from being output
 		wfSuppressWarnings();
