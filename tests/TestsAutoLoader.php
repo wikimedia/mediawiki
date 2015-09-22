@@ -121,6 +121,7 @@ $wgAutoloadClasses += array(
 	'MockSvgHandler' => "$testDir/phpunit/mocks/media/MockSvgHandler.php",
 	'MockDjVuHandler' => "$testDir/phpunit/mocks/media/MockDjVuHandler.php",
 	'MockWebRequest' => "$testDir/phpunit/mocks/MockWebRequest.php",
+	'DummySessionProvider' => "$testDir/phpunit/mocks/session/DummySessionProvider.php",
 
 	# tests/parser
 	'NewParserTest' => "$testDir/phpunit/includes/parser/NewParserTest.php",

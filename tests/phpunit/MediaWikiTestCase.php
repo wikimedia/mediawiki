@@ -510,6 +510,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				false,
 				$user
 			);
+
+			// doEditContent() probably started the session via
+			// User::loadFromSession(). Close it now.
+			session_write_close();
 		}
 	}
 

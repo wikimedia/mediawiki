@@ -93,10 +93,11 @@ class UploadFromUrlJob extends Job {
 							$this->params['url'] )->text()
 					);
 				} else {
-					wfSetupSession( $this->params['sessionId'] );
-					$this->storeResultInSession( 'Warning',
+					$session = MediaWiki\Session\SessionManager::singleton()->getSessionById(
+						$this->params['sessionId']
+					);
+					$this->storeResultInSession( $session, 'Warning',
 						'warnings', $warnings );
-					session_write_close();
 				}
 
 				return true;
@@ -139,15 +140,15 @@ class UploadFromUrlJob extends Job {
 					)->text() );
 			}
 		} else {
-			wfSetupSession( $this->params['sessionId'] );
+			$session = MediaWiki\Session\SessionManager::singleton()
+				->getSessionById( $this->params['sessionId'] );
 			if ( $status->isOk() ) {
-				$this->storeResultInSession( 'Success',
+				$this->storeResultInSession( $session, 'Success',
 					'filename', $this->upload->getLocalFile()->getName() );
 			} else {
-				$this->storeResultInSession( 'Failure',
+				$this->storeResultInSession( $session, 'Failure',
 					'errors', $status->getErrorsArray() );
 			}
-			session_write_close();
 		}
 	}
 
@@ -155,33 +156,51 @@ class UploadFromUrlJob extends Job {
 	 * Store a result in the session data. Note that the caller is responsible
 	 * for appropriate session_start and session_write_close calls.
 	 *
+	 * @param MediaWiki\\Session\\Session $session Session to store result into
 	 * @param string $result The result (Success|Warning|Failure)
 	 * @param string $dataKey The key of the extra data
 	 * @param mixed $dataValue The extra data itself
 	 */
-	protected function storeResultInSession( $result, $dataKey, $dataValue ) {
-		$session =& self::getSessionData( $this->params['sessionKey'] );
-		$session['result'] = $result;
-		$session[$dataKey] = $dataValue;
+	protected function storeResultInSession(
+		MediaWiki\Session\Session $session, $result, $dataKey, $dataValue
+	) {
+		$data = self::getSessionData( $session, $this->params['sessionKey'] );
+		$data['result'] = $result;
+		$data[$dataKey] = $dataValue;
+		self::setSessionData( $session, $this->params['sessionKey'], $data );
 	}
 
 	/**
 	 * Initialize the session data. Sets the initial result to queued.
 	 */
 	public function initializeSessionData() {
-		$session =& self::getSessionData( $this->params['sessionKey'] );
-		$session['result'] = 'Queued';
+		$session = MediaWiki\Session\SessionManager::getGlobalSession();
+		$data = self::getSessionData( $session, $this->params['sessionKey'] );
+		$data['result'] = 'Queued';
+		self::getSessionData( $session, $this->params['sessionKey'], $data );
 	}
 
 	/**
+	 * @param MediaWiki\\Session\\Session $session
 	 * @param string $key
 	 * @return mixed
 	 */
-	public static function &getSessionData( $key ) {
-		if ( !isset( $_SESSION[self::SESSION_KEYNAME][$key] ) ) {
-			$_SESSION[self::SESSION_KEYNAME][$key] = array();
+	public static function getSessionData( MediaWiki\Session\Session $session, $key ) {
+		if ( !isset( $session[self::SESSION_KEYNAME][$key] ) ) {
+			self::setSessionData( $session, $key, array() );
 		}
 
-		return $_SESSION[self::SESSION_KEYNAME][$key];
+		return $session[self::SESSION_KEYNAME][$key];
+	}
+
+	/**
+	 * @param MediaWiki\\Session\\Session $session
+	 * @param string $key
+	 * @param mixed $value
+	 */
+	public static function setSessionData( MediaWiki\Session\Session $session, $key, $value ) {
+		$data = $session->get( self::SESSION_KEYNAME, array() );
+		$data[$key] = $value;
+		$session[self::SESSION_KEYNAME] = $data;
 	}
 }

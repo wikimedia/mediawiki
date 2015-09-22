@@ -484,6 +484,13 @@ if ( $wgSessionsInMemcached ) {
 	$wgSessionsInObjectCache = true;
 }
 
+if ( $wgPHPSessionHandling !== 'enable' &&
+	$wgPHPSessionHandling !== 'warn' &&
+	$wgPHPSessionHandling !== 'disable'
+) {
+	$wgPHPSessionHandling = 'warn';
+}
+
 Profiler::instance()->scopedProfileOut( $ps_default );
 
 // Disable MWDebug for command line mode, this prevents MWDebug from eating up
@@ -621,20 +628,6 @@ Profiler::instance()->scopedProfileOut( $ps_memcached );
 // Most of the config is out, some might want to run hooks here.
 Hooks::run( 'SetupAfterCache' );
 
-$ps_session = Profiler::instance()->scopedProfileIn( $fname . '-session' );
-
-if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
-	// If session.auto_start is there, we can't touch session name
-	if ( !wfIniGetBool( 'session.auto_start' ) ) {
-		session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
-	}
-
-	if ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix . 'Token'] ) ) {
-		wfSetupSession();
-	}
-}
-
-Profiler::instance()->scopedProfileOut( $ps_session );
 $ps_globals = Profiler::instance()->scopedProfileIn( $fname . '-globals' );
 
 /**
@@ -646,6 +639,31 @@ $wgContLang->initContLang();
 
 // Now that variant lists may be available...
 $wgRequest->interpolateTitle();
+
+// Set up the session
+if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
+	// If session.auto_start is there, we can't touch session name
+	if ( $wgPHPSessionHandling !== 'disable' && !wfIniGetBool( 'session.auto_start' ) ) {
+		session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
+	}
+
+	$ps_session = Profiler::instance()->scopedProfileIn( $fname . '-session' );
+
+	// Create the main manager (and set up the session handler)
+	MediaWiki\Session\SessionManager::singleton();
+
+	// Initialize the session
+	$session = MediaWiki\Session\SessionManager::getGlobalSession();
+	$session->renew();
+	if ( $wgPHPSessionHandling !== 'disable' &&
+		( $session->isPersistent() || $session->rememberUser() )
+	) {
+		// Start the PHP-session for backwards compatibility
+		session_id( $session->getId() );
+		MediaWiki\quietCall( 'session_start' );
+	}
+	Profiler::instance()->scopedProfileOut( $ps_session );
+}
 
 /**
  * @var User $wgUser
@@ -703,9 +721,18 @@ foreach ( $wgExtensionFunctions as $func ) {
 	Profiler::instance()->scopedProfileOut( $ps_ext_func );
 }
 
+// If the session user has a 0 id but a valid name, that means we need to
+// autocreate it.
+$sessionUser = MediaWiki\Session\SessionManager::getGlobalSession()->getUser();
+if ( $sessionUser->getId() === 0 && User::isValidUserName( $sessionUser->getName() ) ) {
+	$ps_autocreate = Profiler::instance()->scopedProfileIn( $fname . '-autocreate' );
+	MediaWiki\Session\SessionManager::autoCreateUser( $sessionUser );
+	Profiler::instance()->scopedProfileOut( $ps_autocreate );
+}
+unset( $sessionUser );
+
 wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
 
 Profiler::instance()->scopedProfileOut( $ps_extensions );
 Profiler::instance()->scopedProfileOut( $ps_setup );
-
