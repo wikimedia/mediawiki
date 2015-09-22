@@ -513,7 +513,8 @@ sites statistics information.
 'ApiQueryTokensRegisterTypes': Use this hook to add additional token types to
 action=query&meta=tokens. Note that most modules will probably be able to use
 the 'csrf' token instead of creating their own token types.
-&$salts: array( type => salt to pass to User::getEditToken() )
+&$salts: array( type => salt to pass to User::getEditToken() or array of salt
+  and key to pass to Session::getToken() )
 
 'APIQueryUsersTokens': DEPRECATED! Use ApiQueryTokensRegisterTypes instead.
 Use this hook to add custom token to list=users. Every token has an action,

@@ -149,8 +149,11 @@ class ApiCreateAccount extends ApiBase {
 			// Token was incorrect, so add it to result, but don't throw an exception
 			// since not having the correct token is part of the normal
 			// flow of events.
-			$result['token'] = LoginForm::getCreateaccountToken();
+			$result['token'] = LoginForm::getCreateaccountToken()->toString();
 			$result['result'] = 'NeedToken';
+			$this->setWarning( 'Fetching a token via action=createaccount is deprecated. ' .
+				'Use action=query&meta=tokens&type=createaccount instead.' );
+			$this->logFeatureUsage( 'action=createaccount&!token' );
 		} elseif ( !$status->isOK() ) {
 			// There was an error. Die now.
 			$this->dieStatus( $status );
@@ -200,7 +203,11 @@ class ApiCreateAccount extends ApiBase {
 				ApiBase::PARAM_TYPE => 'password',
 			),
 			'domain' => null,
-			'token' => null,
+			'token' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => false, // for BC
+				ApiBase::PARAM_HELP_MSG => array( 'api-help-param-token', 'createaccount' ),
+			),
 			'email' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => $this->getConfig()->get( 'EmailConfirmToEdit' ),
