@@ -289,8 +289,10 @@
 				comment: upload.getComment(),
 				filename: upload.getFilename(),
 				text: upload.getText()
-			} ).then( function () {
+			} ).then( function ( result ) {
 				upload.state = Upload.State.UPLOADED;
+				upload.imageinfo = result.upload.imageinfo;
+				return result;
 			}, function () {
 				upload.state = Upload.State.ERROR;
 			} );
