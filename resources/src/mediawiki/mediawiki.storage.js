@@ -1,6 +1,5 @@
 ( function ( mw ) {
 	'use strict';
-	var storage;
 
 	/**
 	 * Library for storing device specific information. It should be used for storing simple
@@ -8,8 +7,10 @@
 	 * @class mw.storage
 	 * @singleton
 	 */
-	storage = {
-		isLocalStorageSupported: false,
+	mw.storage = {
+
+		localStorage: window.localStorage,
+
 		/**
 		 * Retrieve value from device storage.
 		 *
@@ -17,11 +18,10 @@
 		 * @returns {String|Boolean} false when localStorage not available, otherwise string
 		 */
 		get: function ( key ) {
-			if ( this.isLocalStorageSupported ) {
-				return localStorage.getItem( key );
-			} else {
-				return false;
-			}
+			try {
+				return mw.storage.localStorage.getItem( key );
+			} catch ( e ) {}
+			return false;
 		},
 
 		/**
@@ -33,11 +33,10 @@
 		 */
 		set: function ( key, value ) {
 			try {
-				localStorage.setItem( key, value );
+				mw.storage.localStorage.setItem( key, value );
 				return true;
-			} catch ( e ) {
-				return false;
-			}
+			} catch ( e ) {}
+			return false;
 		},
 
 		/**
@@ -47,23 +46,12 @@
 		 * @returns {Boolean} whether the save succeeded or not.
 		 */
 		remove: function ( key ) {
-			if ( this.isLocalStorageSupported ) {
-				localStorage.removeItem( key );
+			try {
+				mw.storage.localStorage.removeItem( key );
 				return true;
-			} else {
-				return false;
-			}
+			} catch ( e ) {}
+			return false;
 		}
 	};
-
-	mw.storage = storage;
-	// See if local storage is supported
-	try {
-		localStorage.setItem( 'localStorageTest', 'localStorageTest' );
-		localStorage.removeItem( 'localStorageTest' );
-		storage.isLocalStorageSupported = true;
-	} catch ( e ) {
-		// Already set. No body needed.
-	}
 
 }( mediaWiki ) );
