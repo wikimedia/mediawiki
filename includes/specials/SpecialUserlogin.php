@@ -1371,7 +1371,7 @@ class LoginForm extends SpecialPage {
 			if ( $user->isLoggedIn() ) {
 				$this->mUsername = $user->getName();
 			} else {
-				$this->mUsername = $this->getRequest()->getCookie( 'UserName' );
+				$this->mUsername = $this->getRequest()->getSession()->suggestLoginUsername();
 			}
 		}
 
@@ -1571,7 +1571,7 @@ class LoginForm extends SpecialPage {
 	public static function setLoginToken() {
 		global $wgRequest;
 		// Generate a token directly instead of using $user->getEditToken()
-		// because the latter reuses $_SESSION['wsEditToken']
+		// because the latter reuses wsEditToken in the session
 		$wgRequest->setSessionData( 'wsLoginToken', MWCryptRand::generateHex( 32 ) );
 	}
 

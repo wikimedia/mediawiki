@@ -2167,7 +2167,7 @@ $wgMessageCacheType = CACHE_ANYTHING;
 $wgParserCacheType = CACHE_ANYTHING;
 
 /**
- * The cache type for storing session data. Used if $wgSessionsInObjectCache is true.
+ * The cache type for storing session data.
  *
  * For available types see $wgMainCacheType.
  */
@@ -2301,27 +2301,20 @@ $wgParserCacheExpireTime = 86400;
  *
  * @deprecated since 1.20; Use $wgSessionsInObjectCache
  */
-$wgSessionsInMemcached = false;
+$wgSessionsInMemcached = true;
 
 /**
- * Store sessions in an object cache, configured by $wgSessionCacheType. This
- * can be useful to improve performance, or to avoid the locking behavior of
- * PHP's default session handler, which tends to prevent multiple requests for
- * the same user from acting concurrently.
+ * @deprecated since 1.27, session data is always stored in object cache.
  */
-$wgSessionsInObjectCache = false;
+$wgSessionsInObjectCache = true;
 
 /**
- * The expiry time to use for session storage when $wgSessionsInObjectCache is
- * enabled, in seconds.
+ * The expiry time to use for session storage, in seconds.
  */
 $wgObjectCacheSessionExpiry = 3600;
 
 /**
- * This is used for setting php's session.save_handler. In practice, you will
- * almost never need to change this ever. Other options might be 'user' or
- * 'session_mysql.' Setting to null skips setting this entirely (which might be
- * useful if you're doing cross-application sessions, see bug 11381)
+ * @deprecated since 1.27, MWSessionManager doesn't use PHP session storage.
  */
 $wgSessionHandler = null;
 
@@ -4596,6 +4589,24 @@ $wgUserrightsInterwikiDelimiter = '@';
  * @since 1.17
  */
 $wgSecureLogin = false;
+
+/**
+ * MWSession provider configuration.
+ *
+ * Value is an array of ObjectFactory specifications for the MWSessionProviders
+ * to be used.
+ *
+ * @since 1.27
+ */
+$wgMWSessionProviders = array(
+	'CookieSessionProvider' => array(
+		'class' => 'CookieSessionProvider',
+		'args' => array( array(
+			'priority' => 10,
+			'callUserSetCookiesHook' => true,
+		) ),
+	),
+);
 
 /** @} */ # end user accounts }
 
