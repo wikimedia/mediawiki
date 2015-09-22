@@ -93,7 +93,8 @@ class RawAction extends FormlessAction {
 		$response->header( 'Content-type: ' . $contentType . '; charset=UTF-8' );
 		// Output may contain user-specific data;
 		// vary generated content for open sessions on private wikis
-		$privateCache = !User::isEveryoneAllowed( 'read' ) && ( $smaxage == 0 || session_id() != '' );
+		$privateCache = !User::isEveryoneAllowed( 'read' ) &&
+			( $smaxage == 0 || MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent() );
 		// Don't accidentally cache cookies if user is logged in (T55032)
 		$privateCache = $privateCache || $this->getUser()->isLoggedIn();
 		$mode = $privateCache ? 'private' : 'public';
