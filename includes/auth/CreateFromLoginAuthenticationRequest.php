@@ -21,8 +21,6 @@
 
 namespace MediaWiki\Auth;
 
-use User;
-
 /**
  * This transfers state between the login and account creation flows.
  *

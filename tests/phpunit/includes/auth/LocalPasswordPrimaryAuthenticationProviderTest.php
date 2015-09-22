@@ -339,15 +339,13 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 	 * @dataProvider provideProviderAllowsAuthenticationDataChange
 	 * @param string $type
 	 * @param string $user
-	 * @param Status $validity
+	 * @param \Status $validity Result of the password validity check
+	 * @param \StatusValue $expect1 Expected result with $checkData = false
+	 * @param \StatusValue $expect2 Expected result with $checkData = true
 	 */
-	public function testProviderAllowsAuthenticationDataChange( $type, $user, $validity ) {
-		$expect1 = $validity->getValue() === 'ignored'
-			? \StatusValue::newGood( 'ignored' )
-			: \StatusValue::newGood();
-		$expect2 = \StatusValue::newGood();
-		$expect2->merge( $validity, true );
-
+	public function testProviderAllowsAuthenticationDataChange( $type, $user, $validity,
+		$expect1, $expect2
+	) {
 		if ( $type === PasswordAuthenticationRequest::class ) {
 			$req = new $type();
 		} else {
@@ -368,7 +366,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 			$provider->providerAllowsAuthenticationDataChange( $req, false )
 		);
 		$this->assertEquals(
-			$validity->getValue() === 'ignored' ? $expect2 : \StatusValue::newFatal( 'badretype' ),
+			$expect2->getValue() === 'ignored' ? $expect2 : \StatusValue::newFatal( 'badretype' ),
 			$provider->providerAllowsAuthenticationDataChange( $req, true )
 		);
 
@@ -381,18 +379,22 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 	}
 
 	public static function provideProviderAllowsAuthenticationDataChange() {
-		$err = \Status::newGood();
+		$err = \StatusValue::newGood();
 		$err->error( 'arbitrary-warning' );
 
 		return [
-			[ AuthenticationRequest::class, 'UTSysop', \Status::newGood( 'ignored' ) ],
-			[ PasswordAuthenticationRequest::class, 'UTSysop', \Status::newGood() ],
-			[ PasswordAuthenticationRequest::class, 'uTSysop', \Status::newGood() ],
-			[ PasswordAuthenticationRequest::class, 'UTSysop', $err ],
-			[ PasswordAuthenticationRequest::class, 'UTSysop',
-				\Status::newFatal( 'arbitrary-error' ) ],
-			[ PasswordAuthenticationRequest::class, 'DoesNotExist',
-				\Status::newGood( 'ignored' ) ],
+			[ AuthenticationRequest::class, 'UTSysop', \Status::newGood(),
+				\StatusValue::newGood( 'ignored' ), \StatusValue::newGood( 'ignored' ) ],
+			[ PasswordAuthenticationRequest::class, 'UTSysop', \Status::newGood(),
+				\StatusValue::newGood(), \StatusValue::newGood() ],
+			[ PasswordAuthenticationRequest::class, 'uTSysop', \Status::newGood(),
+				\StatusValue::newGood(), \StatusValue::newGood() ],
+			[ PasswordAuthenticationRequest::class, 'UTSysop', \Status::wrap( $err ),
+				\StatusValue::newGood(), $err ],
+			[ PasswordAuthenticationRequest::class, 'UTSysop', \Status::newFatal( 'arbitrary-error' ),
+				\StatusValue::newGood(), \StatusValue::newFatal( 'arbitrary-error' ) ],
+			[ PasswordAuthenticationRequest::class, 'DoesNotExist', \Status::newGood(),
+				\StatusValue::newGood(), \StatusValue::newGood( 'ignored' ) ],
 		];
 	}
 
