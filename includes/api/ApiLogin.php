@@ -62,10 +62,8 @@ class ApiLogin extends ApiBase {
 
 		$result = array();
 
-		// Init session if necessary
-		if ( session_id() == '' ) {
-			wfSetupSession();
-		}
+		// Make sure session is persisted
+		MediaWiki\Session\SessionManager::getGlobalSession()->persist();
 
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setRequest( new DerivativeRequest(
@@ -101,14 +99,14 @@ class ApiLogin extends ApiBase {
 				$result['lgusername'] = $user->getName();
 				$result['lgtoken'] = $user->getToken();
 				$result['cookieprefix'] = $this->getConfig()->get( 'CookiePrefix' );
-				$result['sessionid'] = session_id();
+				$result['sessionid'] = MediaWiki\Session\SessionManager::getGlobalSession()->getId();
 				break;
 
 			case LoginForm::NEED_TOKEN:
 				$result['result'] = 'NeedToken';
 				$result['token'] = $loginForm->getLoginToken();
 				$result['cookieprefix'] = $this->getConfig()->get( 'CookiePrefix' );
-				$result['sessionid'] = session_id();
+				$result['sessionid'] = MediaWiki\Session\SessionManager::getGlobalSession()->getId();
 				break;
 
 			case LoginForm::WRONG_TOKEN:

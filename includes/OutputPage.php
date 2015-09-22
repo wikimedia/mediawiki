@@ -1983,10 +1983,9 @@ class OutputPage extends ContextSource {
 			$config = $this->getConfig();
 			$cookies = array_merge(
 				array(
-					$config->get( 'CookiePrefix' ) . 'Token',
+					MediaWiki\Session\SessionManager::singleton()->getVaryCookies(),
 					$config->get( 'CookiePrefix' ) . 'LoggedOut',
 					"forceHTTPS",
-					session_name()
 				),
 				$config->get( 'CacheVaryCookies' )
 			);
@@ -2045,6 +2044,11 @@ class OutputPage extends ContextSource {
 	 * @return string
 	 */
 	public function getVaryHeader() {
+		foreach ( MediaWiki\Session\SessionManager::singleton()->getVaryHeaders()
+			as $header => $options
+		) {
+			$this->addVaryHeader( $header, $options );
+		}
 		return 'Vary: ' . join( ', ', array_keys( $this->mVaryHeader ) );
 	}
 
@@ -2061,6 +2065,12 @@ class OutputPage extends ContextSource {
 			$cookiesOption[] = 'string-contains=' . $cookieName;
 		}
 		$this->addVaryHeader( 'Cookie', $cookiesOption );
+
+		foreach ( MediaWiki\Session\SessionManager::singleton()->getVaryHeaders()
+			as $header => $options
+		) {
+			$this->addVaryHeader( $header, $options );
+		}
 
 		$headers = array();
 		foreach ( $this->mVaryHeader as $header => $option ) {
@@ -2186,8 +2196,9 @@ class OutputPage extends ContextSource {
 
 		if ( $this->mEnableClientCache ) {
 			if (
-				$config->get( 'UseSquid' ) && session_id() == '' && !$this->isPrintable() &&
-				$this->mSquidMaxage != 0 && !$this->haveCacheVaryCookies()
+				$config->get( 'UseSquid' ) &&
+				!MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent() &&
+				!$this->isPrintable() && $this->mSquidMaxage != 0 && !$this->haveCacheVaryCookies()
 			) {
 				if ( $config->get( 'UseESI' ) ) {
 					# We'll purge the proxy cache explicitly, but require end user agents

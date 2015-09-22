@@ -1276,6 +1276,7 @@
 	"right-createpage": "{{doc-right|createpage}}\nBasic right to create pages. The right to edit discussion/talk pages is {{msg-mw|right-createtalk}}.",
 	"right-createtalk": "{{doc-right|createtalk}}\nBasic right to create discussion/talk pages. The right to edit other pages is {{msg-mw|right-createpage}}.",
 	"right-createaccount": "{{doc-right|createaccount}}\nThe right to [[Special:CreateAccount|create a user account]].",
+	"right-autocreateaccount": "{{doc-right|autocreateaccount}}\nThe right to automatically create an account from an external source (e.g. CentralAuth).",
 	"right-minoredit": "{{doc-right|minoredit}}\nThe right to use the \"This is a minor edit\" checkbox. See {{msg-mw|minoredit}} for the message used for that checkbox.",
 	"right-move": "{{doc-right|move}}\nThe right to move any page that is not protected from moving.\n{{Identical|Move page}}",
 	"right-move-subpages": "{{doc-right|move-subpages}}",
@@ -1354,6 +1355,7 @@
 	"action-createpage": "{{Doc-action|createpage}}\n{{Identical|Create page}}",
 	"action-createtalk": "{{Doc-action|createtalk}}",
 	"action-createaccount": "{{Doc-action|createaccount}}",
+	"action-autocreateaccount": "{{Doc-action|autocreateaccount}}",
 	"action-history": "{{Doc-action|history}}",
 	"action-minoredit": "{{Doc-action|minoredit}}",
 	"action-move": "{{Doc-action|move}}",
@@ -4021,5 +4023,8 @@
 	"mw-widgets-dateinput-placeholder-day": "[[File:DateInputWidget active, empty.png|frame|Screenshot]]\nPlaceholder displayed in a date input field when it's empty, representing a date format with 4 digits for year, 2 digits for month, and 2 digits for day, separated with hyphens. This should be uppercase, if possible, and must not include any additional explanations. If there is no good way to translate it, make this message blank.",
 	"mw-widgets-dateinput-placeholder-month": "Placeholder displayed in a date input field when it's empty, representing a date format with 4 digits for year and 2 digits for month, separated with hyphens (without a day). This should be uppercase, if possible, and must not include any additional explanations. If there is no good way to translate it, make this message blank.",
 	"mw-widgets-titleinput-description-new-page": "Description label for a new page in the title input widget.",
-	"mw-widgets-titleinput-description-redirect": "Description label for a redirect in the title input widget."
+	"mw-widgets-titleinput-description-redirect": "Description label for a redirect in the title input widget.",
+	"sessionmanager-tie": "Used as an error message when multiple session sources are tied in priority.\n\nParameters:\n* $1 - List of dession type descriptions.",
+	"sessionprovider-generic": "Used to create a generic session type description when one isn't provided via the proper message.\n\nParameters:\n* $1 - PHP classname.",
+	"sessionprovider-cookiesessionprovider": "Description of the sessions provided by the CookieSessionProvider class, which use HTTP cookies."
 }

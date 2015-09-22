@@ -1103,6 +1103,7 @@
 	"right-createpage": "Create pages (which are not discussion pages)",
 	"right-createtalk": "Create discussion pages",
 	"right-createaccount": "Create new user accounts",
+	"right-autocreateaccount": "Automatically login with an external account",
 	"right-minoredit": "Mark edits as minor",
 	"right-move": "Move pages",
 	"right-move-subpages": "Move pages with their subpages",
@@ -1181,6 +1182,7 @@
 	"action-createpage": "create pages",
 	"action-createtalk": "create discussion pages",
 	"action-createaccount": "create this user account",
+	"action-autocreateaccount": "auto-create this external user account",
 	"action-history": "view the history of this page",
 	"action-minoredit": "mark this edit as minor",
 	"action-move": "move this page",
@@ -3848,5 +3850,8 @@
 	"mw-widgets-dateinput-placeholder-day": "YYYY-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "YYYY-MM",
 	"mw-widgets-titleinput-description-new-page": "page does not exist yet",
-	"mw-widgets-titleinput-description-redirect": "redirect to $1"
+	"mw-widgets-titleinput-description-redirect": "redirect to $1",
+	"sessionmanager-tie": "Cannot combine multiple request authentication types: $1",
+	"sessionprovider-generic": "$1 sessions",
+	"sessionprovider-cookiesessionprovider": "cookie-based sessions"
 }

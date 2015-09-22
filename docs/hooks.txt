@@ -735,8 +735,9 @@ viewing.
 redirect was followed.
 $article: target article (object)
 
-'AuthPluginAutoCreate': Called when creating a local account for an user logged
-in from an external authentication method.
+'AuthPluginAutoCreate': DEPRECATED! Use the 'LocalUserCreated' hook instead.
+Called when creating a local account for an user logged in from an external
+authentication method.
 $user: User object created locally
 
 'AuthPluginSetup': Update or replace authentication plugin object ($wgAuth).
@@ -2559,6 +2560,20 @@ $targetUser: the user whom to send watchlist email notification
 $title: the page title
 $enotif: EmailNotification object
 
+'SessionCheckInfo': Validate a MediaWiki\Session\SessionInfo as it's being
+loaded from storage. Return false to prevent it from being used.
+&$reason: String rejection reason to be logged
+$info: MediaWiki\Session\SessionInfo being validated
+$request: WebRequest being loaded from
+$metadata: Array|false Metadata array for the MediaWiki\Session\Session
+$data: Array|false Data array for the MediaWiki\Session\Session
+
+'SessionMetadata': Add metadata to a session being saved.
+$backend: MediaWiki\Session\SessionBackend being saved.
+&$metadata: Array Metadata to be stored. Add new keys here.
+$requests: Array of WebRequests potentially being saved to. Generally 0-1 real
+  request and 0+ FauxRequests.
+
 'SetupAfterCache': Called in Setup.php, after cache objects are set
 
 'ShowMissingArticle': Called when generating the output for a non-existent page.
@@ -3259,8 +3274,9 @@ $name: user name
 $user: user object
 &$s: database query object
 
-'UserLoadFromSession': Called to authenticate users on external/environmental
-means; occurs before session is loaded.
+'UserLoadFromSession': DEPRECATED! Create a MediaWiki\Session\SessionProvider instead.
+Called to authenticate users on external/environmental means; occurs before
+session is loaded.
 $user: user object being loaded
 &$result: set this to a boolean value to abort the normal authentication
   process
@@ -3351,9 +3367,11 @@ $user: User object
 'UserSaveSettings': Called when saving user settings.
 $user: User object
 
-'UserSetCookies': Called when setting user cookies.
+'UserSetCookies': DEPRECATED! You probably want your own version of
+MediaWiki\Session\CookieSessionProvider instead.
+Called when setting user cookies.
 $user: User object
-&$session: session array, will be added to $_SESSION
+&$session: session array, will be added to the session
 &$cookies: cookies array mapping cookie name to its value
 
 'UserSetEmail': Called when changing user email address.
