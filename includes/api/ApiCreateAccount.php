@@ -59,10 +59,8 @@ class ApiCreateAccount extends ApiBase {
 
 		$params = $this->extractRequestParams();
 
-		// Init session if necessary
-		if ( session_id() == '' ) {
-			wfSetupSession();
-		}
+		// Make sure session is persisted
+		MediaWiki\Session\SessionManager::getGlobalSession()->persist();
 
 		if ( $params['mailpassword'] && !$params['email'] ) {
 			$this->dieUsageMsg( 'noemail' );
