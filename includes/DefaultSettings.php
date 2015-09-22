@@ -4406,8 +4406,8 @@ $wgAuthManagerConfig = [
 		MediaWiki\Auth\LegacyHookPreAuthenticationProvider::class => [
 			'class' => MediaWiki\Auth\LegacyHookPreAuthenticationProvider::class,
 		],
-		MediaWiki\Auth\AccountCreationThrottlePreAuthenticationProvider::class => [
-			'class' => MediaWiki\Auth\AccountCreationThrottlePreAuthenticationProvider::class,
+		MediaWiki\Auth\ThrottlePreAuthenticationProvider::class => [
+			'class' => MediaWiki\Auth\ThrottlePreAuthenticationProvider::class,
 		],
 	],
 	'primaryauth' => [
@@ -4438,6 +4438,9 @@ $wgAuthManagerConfig = [
 		],
 		MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class => [
 			'class' => MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class,
+		],
+		MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class => [
+			'class' => MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class,
 		],
 	],
 ];
@@ -8013,13 +8016,6 @@ $wgTextModelsToParse = [
 	CONTENT_MODEL_JAVASCRIPT, // Make categories etc work, people put them into comments.
 	CONTENT_MODEL_CSS, // Make categories etc work, people put them into comments.
 ];
-
-/**
- * Whether the user must enter their password to change their e-mail address
- *
- * @since 1.20
- */
-$wgRequirePasswordforEmailChange = true;
 
 /**
  * Register handlers for specific types of sites.
