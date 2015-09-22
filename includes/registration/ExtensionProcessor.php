@@ -192,6 +192,16 @@ class ExtensionProcessor implements Processor {
 		);
 	}
 
+	public function getRequirements( array $info ) {
+		$requirements = array();
+		$key = ExtensionRegistry::MEDIAWIKI_CORE;
+		if ( isset( $info['requires'][$key] ) ) {
+			$requirements[$key] = $info['requires'][$key];
+		}
+
+		return $requirements;
+	}
+
 	protected function extractHooks( array $info ) {
 		if ( isset( $info['Hooks'] ) ) {
 			foreach ( $info['Hooks'] as $name => $value ) {
