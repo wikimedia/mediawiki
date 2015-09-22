@@ -21,6 +21,8 @@
 
 namespace MediaWiki\Auth;
 
+use Sanitizer;
+use StatusValue;
 use User;
 
 /**
@@ -69,14 +71,19 @@ class UserDataAuthenticationRequest extends AuthenticationRequest {
 	 * @param User $user User being created (not added to the database yet).
 	 *   This may become a "UserValue" in the future, or User may be refactored
 	 *   into such.
+	 * @return StatusValue
 	 */
 	public function populateUser( $user ) {
 		if ( $this->email !== null && $this->email !== '' ) {
+			if ( !Sanitizer::validateEmail( $this->email ) ) {
+				return StatusValue::newFatal( 'invalidemailaddress' );
+			}
 			$user->setEmail( $this->email );
 		}
 		if ( $this->realname !== null && $this->realname !== '' ) {
 			$user->setRealName( $this->realname );
 		}
+		return StatusValue::newGood();
 	}
 
 }
