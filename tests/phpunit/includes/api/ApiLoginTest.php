@@ -14,11 +14,11 @@ class ApiLoginTest extends ApiTestCase {
 	 */
 	public function testApiLoginNoName() {
 		$session = array(
-			'wsLoginToken' => 'foobar'
+			'wsTokenSecrets' => array( 'login' => 'foobar' ),
 		);
 		$data = $this->doApiRequest( array( 'action' => 'login',
 			'lgname' => '', 'lgpassword' => self::$users['sysop']->password,
-			'lgtoken' => 'foobar',
+			'lgtoken' => (string)( new MediaWiki\Session\Token( 'foobar', '' ) )
 		), $session );
 		$this->assertEquals( 'NoName', $data[0]['login']['result'] );
 	}

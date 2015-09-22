@@ -531,9 +531,8 @@ class LoginForm extends SpecialPage {
 		}
 
 		# Request forgery checks.
-		if ( !self::getCreateaccountToken() ) {
-			self::setCreateaccountToken();
-
+		$token = self::getCreateaccountToken();
+		if ( $token->wasNew() ) {
 			return Status::newFatal( 'nocookiesfornew' );
 		}
 
@@ -543,7 +542,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		# Validate the createaccount token
-		if ( $this->mToken !== self::getCreateaccountToken() ) {
+		if ( !$token->match( $this->mToken ) ) {
 			return Status::newFatal( 'sessionfailure' );
 		}
 
@@ -737,9 +736,8 @@ class LoginForm extends SpecialPage {
 		// but wrong-token attempts do.
 
 		// If the user doesn't have a login token yet, set one.
-		if ( !self::getLoginToken() ) {
-			self::setLoginToken();
-
+		$token = self::getLoginToken();
+		if ( $token->wasNew() ) {
 			return self::NEED_TOKEN;
 		}
 		// If the user didn't pass a login token, tell them we need one
@@ -753,7 +751,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		// Validate the login token
-		if ( $this->mToken !== self::getLoginToken() ) {
+		if ( !$token->match( $this->mToken ) ) {
 			return self::WRONG_TOKEN;
 		}
 
@@ -1492,15 +1490,9 @@ class LoginForm extends SpecialPage {
 		$template->set( 'loggedinuser', $user->getName() );
 
 		if ( $this->mType == 'signup' ) {
-			if ( !self::getCreateaccountToken() ) {
-				self::setCreateaccountToken();
-			}
-			$template->set( 'token', self::getCreateaccountToken() );
+			$template->set( 'token', self::getCreateaccountToken()->toString() );
 		} else {
-			if ( !self::getLoginToken() ) {
-				self::setLoginToken();
-			}
-			$template->set( 'token', self::getLoginToken() );
+			$template->set( 'token', self::getLoginToken()->toString() );
 		}
 
 		# Prepare language selection links as needed
@@ -1574,22 +1566,25 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * Get the login token from the current session
-	 * @return mixed
+	 * @since 1.27 returns a MediaWiki\\Session\\Token instead of a string
+	 * @return MediaWiki\\Session\\Token
 	 */
 	public static function getLoginToken() {
 		global $wgRequest;
-
-		return $wgRequest->getSessionData( 'wsLoginToken' );
+		return $wgRequest->getSession()->getToken( '', 'login' );
 	}
 
 	/**
-	 * Randomly generate a new login token and attach it to the current session
+	 * Formerly randomly generated a login token that would be returned by
+	 * $this->getLoginToken().
+	 *
+	 * Since 1.27, this is a no-op. The token is generated as necessary by
+	 * $this->getLoginToken().
+	 *
+	 * @deprecated since 1.27
 	 */
 	public static function setLoginToken() {
-		global $wgRequest;
-		// Generate a token directly instead of using $user->getEditToken()
-		// because the latter reuses wsEditToken in the session
-		$wgRequest->setSessionData( 'wsLoginToken', MWCryptRand::generateHex( 32 ) );
+		wfDeprecated( __METHOD__, '1.27' );
 	}
 
 	/**
@@ -1597,24 +1592,30 @@ class LoginForm extends SpecialPage {
 	 */
 	public static function clearLoginToken() {
 		global $wgRequest;
-		$wgRequest->setSessionData( 'wsLoginToken', null );
+		$wgRequest->getSession()->resetToken( 'login' );
 	}
 
 	/**
 	 * Get the createaccount token from the current session
-	 * @return mixed
+	 * @since 1.27 returns a MediaWiki\\Session\\Token instead of a string
+	 * @return MediaWiki\\Session\\Token
 	 */
 	public static function getCreateaccountToken() {
 		global $wgRequest;
-		return $wgRequest->getSessionData( 'wsCreateaccountToken' );
+		return $wgRequest->getSession()->getToken( '', 'createaccount' );
 	}
 
 	/**
-	 * Randomly generate a new createaccount token and attach it to the current session
+	 * Formerly randomly generated a createaccount token that would be returned
+	 * by $this->getCreateaccountToken().
+	 *
+	 * Since 1.27, this is a no-op. The token is generated as necessary by
+	 * $this->getCreateaccountToken().
+	 *
+	 * @deprecated since 1.27
 	 */
 	public static function setCreateaccountToken() {
-		global $wgRequest;
-		$wgRequest->setSessionData( 'wsCreateaccountToken', MWCryptRand::generateHex( 32 ) );
+		wfDeprecated( __METHOD__, '1.27' );
 	}
 
 	/**
@@ -1622,7 +1623,7 @@ class LoginForm extends SpecialPage {
 	 */
 	public static function clearCreateaccountToken() {
 		global $wgRequest;
-		$wgRequest->setSessionData( 'wsCreateaccountToken', null );
+		$wgRequest->getSession()->resetToken( 'createaccount' );
 	}
 
 	/**

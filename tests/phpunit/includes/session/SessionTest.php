@@ -199,4 +199,51 @@ class SessionTest extends MediaWikiTestCase {
 		$this->assertTrue( $backend->dirty );
 	}
 
+	public function testTokens() {
+		$rc = new \ReflectionClass( 'MediaWiki\\Session\\Session' );
+		if ( !method_exists( $rc, 'newInstanceWithoutConstructor' ) ) {
+			$this->markTestSkipped(
+				'ReflectionClass::newInstanceWithoutConstructor isn\'t available'
+			);
+		}
+
+		// Instead of actually constructing the Session, we use reflection to
+		// bypass the constructor and plug a mock SessionBackend into the
+		// private fields to avoid having to actually create a SessionBackend.
+		$backend = new DummySessionBackend;
+		$session = $rc->newInstanceWithoutConstructor();
+		$priv = \TestingAccessWrapper::newFromObject( $session );
+		$priv->backend = $backend;
+		$priv->index = 42;
+
+		$token = \TestingAccessWrapper::newFromObject( $session->getToken() );
+		$this->assertArrayHasKey( 'wsTokenSecrets', $backend->data );
+		$this->assertArrayHasKey( 'default', $backend->data['wsTokenSecrets'] );
+		$secret = $backend->data['wsTokenSecrets']['default'];
+		$this->assertSame( $secret, $token->secret );
+		$this->assertSame( '', $token->salt );
+		$this->assertTrue( $token->wasNew() );
+
+		$token = \TestingAccessWrapper::newFromObject( $session->getToken( 'foo' ) );
+		$this->assertSame( $secret, $token->secret );
+		$this->assertSame( 'foo', $token->salt );
+		$this->assertFalse( $token->wasNew() );
+
+		$backend->data['wsTokenSecrets']['secret'] = 'sekret';
+		$token = \TestingAccessWrapper::newFromObject(
+			$session->getToken( array( 'bar', 'baz' ), 'secret' )
+		);
+		$this->assertSame( 'sekret', $token->secret );
+		$this->assertSame( 'bar|baz', $token->salt );
+		$this->assertFalse( $token->wasNew() );
+
+		$session->resetToken( 'secret' );
+		$this->assertArrayHasKey( 'wsTokenSecrets', $backend->data );
+		$this->assertArrayHasKey( 'default', $backend->data['wsTokenSecrets'] );
+		$this->assertArrayNotHasKey( 'secret', $backend->data['wsTokenSecrets'] );
+
+		$session->resetAllTokens();
+		$this->assertArrayNotHasKey( 'wsTokenSecrets', $backend->data );
+
+	}
 }
