@@ -29,9 +29,12 @@ require_once __DIR__ . '/../../../ConsecutiveParametersMatcher.php';
 class KafkaHandlerTest extends MediaWikiTestCase {
 
 	public function setUp() {
-		if ( !class_exists( 'Monolog\Handler\AbstractProcessingHandler' ) ) {
-			$this->markTestSkipped( 'Monolog is required for the KafkaHandlerTest' );
+		if ( !class_exists( 'Monolog\Handler\AbstractProcessingHandler' )
+			|| !class_exists( 'Kafka\Produce' )
+		) {
+			$this->markTestSkipped( 'Monolog and Kafka are required for the KafkaHandlerTest' );
 		}
+
 		parent::setUp();
 	}
 
