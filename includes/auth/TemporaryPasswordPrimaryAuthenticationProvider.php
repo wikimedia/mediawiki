@@ -105,12 +105,8 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return $this->failResponse( $req );
 		}
 
-		$time = wfTimestampOrNull( TS_MW, $row->user_newpass_time );
-		if ( $time !== null ) {
-			$expiry = wfTimestamp( TS_UNIX, $time ) + $this->config->get( 'NewPasswordExpiry' );
-			if ( time() >= $expiry ) {
-				return $this->failResponse( $req );
-			}
+		if ( !$this->isTimestampValid( $row->user_newpass_time ) ) {
+			return $this->failResponse( $req );
 		}
 
 		$this->setPasswordResetFlag( $req->username, $status );
@@ -134,12 +130,8 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return false;
 		}
 
-		$time = wfTimestampOrNull( TS_MW, $row->user_newpass_time );
-		if ( $time !== null ) {
-			$expiry = wfTimestamp( TS_UNIX, $time ) + $this->config->get( 'NewPasswordExpiry' );
-			if ( time() >= $expiry ) {
-				return false;
-			}
+		if ( !$this->isTimestampValid( $row->user_newpass_time ) ) {
+			return false;
 		}
 
 		return true;
@@ -241,4 +233,19 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		$this->providerChangeAuthenticationData( $res->createRequest );
 	}
 
+	/**
+	 * Check that a temporary password is still valid (hasn't expired).
+	 * @param string $timestamp A timestamp in MediaWiki (TS_MW) format
+	 * @return bool
+	 */
+	protected function isTimestampValid( $timestamp ) {
+		$time = wfTimestampOrNull( TS_MW, $timestamp );
+		if ( $time !== null ) {
+			$expiry = wfTimestamp( TS_UNIX, $time ) + $this->config->get( 'NewPasswordExpiry' );
+			if ( time() < $expiry ) {
+				return false;
+			}
+		}
+		return true;
+	}
 }
