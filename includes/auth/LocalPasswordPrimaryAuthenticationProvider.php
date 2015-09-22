@@ -55,16 +55,18 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 		$grace = $this->config->get( 'PasswordExpireGrace' );
 		if ( $expiration + $grace < $now ) {
-			return (object)[
+			$data = [
 				'hard' => true,
 				'msg' => \Status::newFatal( 'resetpass-expired' )->getMessage(),
 			];
 		} else {
-			return (object)[
+			$data = [
 				'hard' => false,
 				'msg' => \Status::newFatal( 'resetpass-expired-soft' )->getMessage(),
 			];
 		}
+
+		return (object)$data;
 	}
 
 	public function beginPrimaryAuthentication( array $reqs ) {
