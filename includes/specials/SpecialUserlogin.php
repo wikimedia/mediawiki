@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Session\SessionManager;
 
 /**
  * Implements Special:UserLogin
@@ -263,9 +264,9 @@ class LoginForm extends SpecialPage {
 	 * @param string|null $subPage
 	 */
 	public function execute( $subPage ) {
-		if ( session_id() == '' ) {
-			wfSetupSession();
-		}
+		// Make sure session is persisted
+		$session = MediaWiki\Session\SessionManager::getGlobalSession();
+		$session->persist();
 
 		$this->load();
 
@@ -275,6 +276,17 @@ class LoginForm extends SpecialPage {
 			$this->mType = 'signup';
 		}
 		$this->setHeaders();
+
+		// Make sure it's possible to log in
+		if ( $this->mType !== 'signup' && !$session->canSetUser() ) {
+			throw new ErrorPageError(
+				'cannotloginnow-title',
+				'cannotloginnow-text',
+				array(
+					$session->getProvider()->describe( RequestContext::getMain()->getLanguage() )
+				)
+			);
+		}
 
 		/**
 		 * In the case where the user is already logged in, and was redirected to
@@ -1371,7 +1383,7 @@ class LoginForm extends SpecialPage {
 			if ( $user->isLoggedIn() ) {
 				$this->mUsername = $user->getName();
 			} else {
-				$this->mUsername = $this->getRequest()->getCookie( 'UserName' );
+				$this->mUsername = $this->getRequest()->getSession()->suggestLoginUsername();
 			}
 		}
 
@@ -1547,7 +1559,8 @@ class LoginForm extends SpecialPage {
 	function hasSessionCookie() {
 		global $wgDisableCookieCheck;
 
-		return $wgDisableCookieCheck ? true : $this->getRequest()->checkSessionCookie();
+		return $wgDisableCookieCheck ||
+			SessionManager::singleton()->getPersistedSessionId( $this->getRequest() ) !== null;
 	}
 
 	/**
@@ -1566,7 +1579,7 @@ class LoginForm extends SpecialPage {
 	public static function setLoginToken() {
 		global $wgRequest;
 		// Generate a token directly instead of using $user->getEditToken()
-		// because the latter reuses $_SESSION['wsEditToken']
+		// because the latter reuses wsEditToken in the session
 		$wgRequest->setSessionData( 'wsLoginToken', MWCryptRand::generateHex( 32 ) );
 	}
 
@@ -1612,7 +1625,7 @@ class LoginForm extends SpecialPage {
 			$wgCookieSecure = false;
 		}
 
-		wfResetSessionID();
+		MediaWiki\Session\SessionManager::getGlobalSession()->resetId();
 	}
 
 	/**
