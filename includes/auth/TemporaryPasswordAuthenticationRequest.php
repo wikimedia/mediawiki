@@ -30,8 +30,17 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	/** @var string|null Temporary password */
 	public $password;
 
+	/** @var bool Enable temporary password based account creation and send password by email */
+	public $mailpassword = false;
+
 	public function getFieldInfo() {
-		return array();
+		return array(
+			'mailpassword' => array(
+				'type' => 'checkbox',
+				'label' => wfMessage( 'createaccountmail' ),
+				'help' => wfMessage( 'authmanager-mailpassword-help' ), // TODO
+			),
+		);
 	}
 
 	/**
@@ -39,6 +48,9 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	 */
 	public function __construct( $password = null ) {
 		$this->password = $password;
+		if ( $password ) {
+			$this->mailpassword = true;
+		}
 	}
 
 	/**
@@ -70,6 +82,8 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	 * @return TemporaryPasswordAuthenticationRequest
 	 */
 	public static function newInvalid() {
-		return new self( null );
+		$request = new self( null );
+		$request->mailpassword = true;
+		return $request;
 	}
 }

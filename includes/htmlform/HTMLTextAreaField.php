@@ -32,9 +32,11 @@ class HTMLTextAreaField extends HTMLFormField {
 		if ( $this->mClass !== '' ) {
 			$attribs['class'] = $this->mClass;
 		}
+		if ( $this->mPlaceholder !== '' ) {
+			$attribs['placeholder'] = $this->mPlaceholder;
+		}
 
 		$allowedParams = array(
-			'placeholder',
 			'tabindex',
 			'disabled',
 			'readonly',
@@ -56,9 +58,11 @@ class HTMLTextAreaField extends HTMLFormField {
 		if ( $this->mClass !== '' ) {
 			$attribs['classes'] = array( $this->mClass );
 		}
+		if ( $this->mPlaceholder !== '' ) {
+			$attribs['placeholder'] = $this->mPlaceholder;
+		}
 
 		$allowedParams = array(
-			'placeholder',
 			'tabindex',
 			'disabled',
 			'readonly',
