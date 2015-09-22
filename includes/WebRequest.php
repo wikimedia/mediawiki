@@ -38,6 +38,8 @@
 class WebRequest {
 	protected $data, $headers = array();
 
+	protected $session = null;
+
 	/**
 	 * Flag to make WebRequest::getHeader return an array of values.
 	 * @since 1.26
@@ -643,18 +645,30 @@ class WebRequest {
 	}
 
 	/**
-	 * Returns true if there is a session cookie set.
+	 * Return the session for this request
+	 * @since 1.27
+	 * @return MWSession
+	 */
+	public function getSession() {
+		if ( $this->session === null ) {
+			$this->session = MWSessionManager::singleton()->getSessionForRequest( $this );
+		}
+		return $this->session;
+	}
+
+	/**
+	 * Returns true if the request has a persistent session.
 	 * This does not necessarily mean that the user is logged in!
 	 *
 	 * If you want to check for an open session, use session_id()
 	 * instead; that will also tell you if the session was opened
-	 * during the current request (in which case the cookie will
-	 * be sent back to the client at the end of the script run).
+	 * during the current request.
 	 *
+	 * @todo This name is not really accurate anymore.
 	 * @return bool
 	 */
 	public function checkSessionCookie() {
-		return isset( $_COOKIE[session_name()] );
+		return $this->getSession()->isPersistent();
 	}
 
 	/**
@@ -932,26 +946,23 @@ class WebRequest {
 	}
 
 	/**
-	 * Get data from $_SESSION
+	 * Get data from the session
 	 *
-	 * @param string $key Name of key in $_SESSION
+	 * @param string $key Name of key in the session
 	 * @return mixed
 	 */
 	public function getSessionData( $key ) {
-		if ( !isset( $_SESSION[$key] ) ) {
-			return null;
-		}
-		return $_SESSION[$key];
+		return $this->getSession()->get( $key );
 	}
 
 	/**
 	 * Set session data
 	 *
-	 * @param string $key Name of key in $_SESSION
+	 * @param string $key Name of key in the session
 	 * @param mixed $data
 	 */
 	public function setSessionData( $key, $data ) {
-		$_SESSION[$key] = $data;
+		return $this->getSession()->set( $key, $data );
 	}
 
 	/**
@@ -1298,7 +1309,6 @@ class WebRequestUpload {
  */
 class FauxRequest extends WebRequest {
 	private $wasPosted = false;
-	private $session = array();
 	private $requestUrl;
 	protected $cookies = array();
 
@@ -1306,7 +1316,7 @@ class FauxRequest extends WebRequest {
 	 * @param array $data Array of *non*-urlencoded key => value pairs, the
 	 *   fake GET/POST values
 	 * @param bool $wasPosted Whether to treat the data as POST
-	 * @param array|null $session Session array or null
+	 * @param MWSession|array|null $session Session, session data array, or null
 	 * @param string $protocol 'http' or 'https'
 	 * @throws MWException
 	 */
@@ -1321,8 +1331,15 @@ class FauxRequest extends WebRequest {
 			throw new MWException( "FauxRequest() got bogus data" );
 		}
 		$this->wasPosted = $wasPosted;
-		if ( $session ) {
+		if ( $session instanceof MWSession ) {
 			$this->session = $session;
+		} elseif ( is_array( $session ) ) {
+			$this->session = MWSessionManager::singleton()->getEmptySession( $this );
+			foreach ( $session as $key => $value ) {
+				$this->session->set( $key, $value );
+			}
+		} elseif ( $this->session !== null ) {
+			throw new MWException( "FauxRequest() got bogus session" );
 		}
 		$this->protocol = $protocol;
 	}
@@ -1408,10 +1425,6 @@ class FauxRequest extends WebRequest {
 		}
 	}
 
-	public function checkSessionCookie() {
-		return false;
-	}
-
 	public function setRequestURL( $url ) {
 		$this->requestUrl = $url;
 	}
@@ -1447,29 +1460,13 @@ class FauxRequest extends WebRequest {
 	}
 
 	/**
-	 * @param string $key
 	 * @return array|null
 	 */
-	public function getSessionData( $key ) {
-		if ( isset( $this->session[$key] ) ) {
-			return $this->session[$key];
+	public function getSessionArray() {
+		if ( $this->session ) {
+			return iterator_to_array( $this->session );
 		}
 		return null;
-	}
-
-	/**
-	 * @param string $key
-	 * @param array $data
-	 */
-	public function setSessionData( $key, $data ) {
-		$this->session[$key] = $data;
-	}
-
-	/**
-	 * @return array|mixed|null
-	 */
-	public function getSessionArray() {
-		return $this->session;
 	}
 
 	/**
@@ -1548,6 +1545,10 @@ class DerivativeRequest extends FauxRequest {
 
 	public function getAllHeaders() {
 		return $this->base->getAllHeaders();
+	}
+
+	public function getSession() {
+		return $this->base->getSession();
 	}
 
 	public function getSessionData( $key ) {
