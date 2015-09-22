@@ -940,21 +940,25 @@ class LinksUpdate extends SqlDataUpdate {
  * Update object handling the cleanup of links tables after a page was deleted.
  **/
 class LinksDeletionUpdate extends SqlDataUpdate {
-	/** @var WikiPage The WikiPage that was deleted */
-	protected $mPage;
+	/** @var WikiPage */
+	protected $page;
+	/** @var integer */
+	protected $pageId;
 
 	/**
-	 * Constructor
-	 *
 	 * @param WikiPage $page Page we are updating
+	 * @param integer|null $pageId ID of the page we are updating [optional]
 	 * @throws MWException
 	 */
-	function __construct( WikiPage $page ) {
+	function __construct( WikiPage $page, $pageId = null ) {
 		parent::__construct( false ); // no implicit transaction
 
-		$this->mPage = $page;
-
-		if ( !$page->exists() ) {
+		$this->page = $page;
+		if ( $page->exists() ) {
+			$this->pageId = $page->getId();
+		} elseif ( $pageId ) {
+			$this->pageId = $pageId;
+		} else {
 			throw new MWException( "Page ID not known, perhaps the page doesn't exist?" );
 		}
 	}
@@ -963,21 +967,20 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 	 * Do some database updates after deletion
 	 */
 	public function doUpdate() {
-		$title = $this->mPage->getTitle();
-		$id = $this->mPage->getId();
+		# Page may already be deleted, so don't just getId()
+		$id = $this->pageId;
 
 		# Delete restrictions for it
 		$this->mDb->delete( 'page_restrictions', array( 'pr_page' => $id ), __METHOD__ );
 
 		# Fix category table counts
-		$cats = array();
-		$res = $this->mDb->select( 'categorylinks', 'cl_to', array( 'cl_from' => $id ), __METHOD__ );
-
-		foreach ( $res as $row ) {
-			$cats[] = $row->cl_to;
-		}
-
-		$this->mPage->updateCategoryCounts( array(), $cats );
+		$cats = $this->mDb->selectFieldValues(
+			'categorylinks',
+			'cl_to',
+			array( 'cl_from' => $id ),
+			__METHOD__
+		);
+		$this->page->updateCategoryCounts( array(), $cats );
 
 		# If using cascading deletes, we can skip some explicit deletes
 		if ( !$this->mDb->cascadingDeletes() ) {
@@ -995,6 +998,7 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 
 		# If using cleanup triggers, we can skip some manual deletes
 		if ( !$this->mDb->cleanupTriggers() ) {
+			$title = $this->page->getTitle();
 			# Find recentchanges entries to clean up...
 			$rcIdsForTitle = $this->mDb->selectFieldValues( 'recentchanges',
 				'rc_id',
@@ -1017,17 +1021,5 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 				$this->mDb->delete( 'recentchanges', array( 'rc_id' => $rcIds ), __METHOD__ );
 			}
 		}
-	}
-
-	/**
-	 * Update all the appropriate counts in the category table.
-	 * @param array $added Associative array of category name => sort key
-	 * @param array $deleted Associative array of category name => sort key
-	 */
-	function updateCategoryCounts( $added, $deleted ) {
-		$a = WikiPage::factory( $this->mTitle );
-		$a->updateCategoryCounts(
-			array_keys( $added ), array_keys( $deleted )
-		);
 	}
 }

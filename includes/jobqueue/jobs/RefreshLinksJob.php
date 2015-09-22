@@ -96,7 +96,7 @@ class RefreshLinksJob extends Job {
 		} elseif ( isset( $this->params['pages'] ) ) {
 			foreach ( $this->params['pages'] as $pageId => $nsAndKey ) {
 				list( $ns, $dbKey ) = $nsAndKey;
-				$this->runForTitle( Title::makeTitleSafe( $ns, $dbKey ) );
+				$this->runForTitle( Title::makeTitleSafe( $ns, $dbKey ), $pageId );
 			}
 		// Job to update link tables for a given title
 		} else {
@@ -108,11 +108,13 @@ class RefreshLinksJob extends Job {
 
 	/**
 	 * @param Title $title
+	 * @param integer|null $pageId
 	 * @return bool
 	 */
-	protected function runForTitle( Title $title = null ) {
+	protected function runForTitle( Title $title = null, $pageId = null ) {
 		if ( is_null( $title ) ) {
 			$this->setLastError( "refreshLinks: Invalid title" );
+
 			return false;
 		}
 
@@ -127,11 +129,27 @@ class RefreshLinksJob extends Job {
 		$linkCache = LinkCache::singleton();
 		$linkCache->clear();
 
-		// Fetch the current page and revision...
 		$page = WikiPage::factory( $title );
-		$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
+		if ( !$page->exists() && $pageId ) {
+			$pageForId = WikiPage::newFromID( $pageId );
+			if ( $pageForId ) {
+				// No page at title but a page with that ID is still there;
+				// just update the links for the page at its new location
+				$page = $pageForId;
+				$title = $page->getTitle();
+			} else {
+				// No page at title nor at the old page ID; clear the backlinks
+				$update = new LinksDeletionUpdate( $page, $pageId );
+				DataUpdate::runUpdates( array( $update ) );
+
+				return true;
+			}
+		}
+
+		$revision = Revision::newFromTitle( $title );
 		if ( !$revision ) {
 			$this->setLastError( "refreshLinks: Article not found {$title->getPrefixedDBkey()}" );
+
 			return false; // XXX: what if it was just deleted?
 		}
 
