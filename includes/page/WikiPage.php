@@ -2916,7 +2916,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// remove secondary indexes, etc
 		$updates = $this->getDeletionUpdates( $content );
-		DataUpdate::runUpdates( $updates );
+		DataUpdate::runUpdates( $updates, 'enqueue' );
 
 		// Reparse any pages transcluding this page
 		LinksUpdate::queueRecursiveJobsForTable( $this->mTitle, 'templatelinks' );
