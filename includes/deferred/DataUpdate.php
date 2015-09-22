@@ -31,13 +31,6 @@
  */
 abstract class DataUpdate implements DeferrableUpdate {
 	/**
-	 * Constructor
-	 */
-	public function __construct() {
-		# noop
-	}
-
-	/**
 	 * Begin an appropriate transaction, if any.
 	 * This default implementation does nothing.
 	 */
@@ -73,21 +66,22 @@ abstract class DataUpdate implements DeferrableUpdate {
 	 * This allows for limited transactional logic across multiple backends for storing
 	 * secondary data.
 	 *
-	 * @param array $updates A list of DataUpdate instances
+	 * @param DataUpdate[] $updates A list of DataUpdate instances
+	 * @param string $mode Use "enqueue" to use the job queue when possible [Default: run]
 	 * @throws Exception|null
 	 */
-	public static function runUpdates( $updates ) {
-		if ( empty( $updates ) ) {
-			return; # nothing to do
+	public static function runUpdates( array $updates, $mode = 'run' ) {
+		if ( $mode === 'enqueue' ) {
+			// When possible, push updates as jobs instead of calling doUpdate()
+			$updates = self::enqueueUpdates( $updates );
+		}
+
+		if ( !count( $updates ) ) {
+			return; // nothing to do
 		}
 
 		$open_transactions = array();
 		$exception = null;
-
-		/**
-		 * @var $update DataUpdate
-		 * @var $trans DataUpdate
-		 */
 
 		try {
 			// begin transactions
@@ -122,4 +116,36 @@ abstract class DataUpdate implements DeferrableUpdate {
 			throw $exception; // rethrow after cleanup
 		}
 	}
+
+	/**
+	 * Enqueue jobs for every DataUpdate that support enqueueUpdate()
+	 * and return the remaining DataUpdate objects (those that do not)
+	 *
+	 * @param DataUpdate[] $updates A list of DataUpdate instances
+	 * @return DataUpdate[]
+	 * @since 1.26
+	 */
+	protected static function enqueueUpdates( array $updates ) {
+		$remaining = array();
+
+		foreach ( $updates as $update ) {
+			if ( $update instanceof EnqueueableDataUpdate ) {
+				$update->enqueueUpdate();
+			} else {
+				$remaining[] = $update;
+			}
+		}
+
+		return $remaining;
+	}
+}
+
+/**
+ * @since 1.26
+ */
+interface EnqueueableDataUpdate {
+	/**
+	 * Push the update into the job queue
+	 */
+	public function enqueueUpdate();
 }

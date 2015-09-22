@@ -384,6 +384,7 @@ $wgAutoloadLocalClasses = array(
 	'EnhancedChangesList' => __DIR__ . '/includes/changes/EnhancedChangesList.php',
 	'EnotifNotifyJob' => __DIR__ . '/includes/jobqueue/jobs/EnotifNotifyJob.php',
 	'EnqueueJob' => __DIR__ . '/includes/jobqueue/jobs/EnqueueJob.php',
+	'EnqueueableDataUpdate' => __DIR__ . '/includes/deferred/DataUpdate.php',
 	'EraseArchivedFile' => __DIR__ . '/maintenance/eraseArchivedFile.php',
 	'ErrorPageError' => __DIR__ . '/includes/exception/ErrorPageError.php',
 	'EventRelayer' => __DIR__ . '/includes/libs/eventrelayer/EventRelayer.php',
