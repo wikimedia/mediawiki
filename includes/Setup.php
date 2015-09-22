@@ -625,20 +625,6 @@ Profiler::instance()->scopedProfileOut( $ps_memcached );
 // Most of the config is out, some might want to run hooks here.
 Hooks::run( 'SetupAfterCache' );
 
-$ps_session = Profiler::instance()->scopedProfileIn( $fname . '-session' );
-
-if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
-	// If session.auto_start is there, we can't touch session name
-	if ( !wfIniGetBool( 'session.auto_start' ) ) {
-		session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
-	}
-
-	if ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix . 'Token'] ) ) {
-		wfSetupSession();
-	}
-}
-
-Profiler::instance()->scopedProfileOut( $ps_session );
 $ps_globals = Profiler::instance()->scopedProfileIn( $fname . '-globals' );
 
 /**
@@ -650,6 +636,21 @@ $wgContLang->initContLang();
 
 // Now that variant lists may be available...
 $wgRequest->interpolateTitle();
+
+// Set up the session
+if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
+	// If session.auto_start is there, we can't touch session name
+	if ( !wfIniGetBool( 'session.auto_start' ) ) {
+		session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
+	}
+
+	$ps_session = Profiler::instance()->scopedProfileIn( $fname . '-session' );
+	$session = MWSessionManager::singleton()->getSession();
+	if ( $session->isPersistent() || $session->rememberUser() ) {
+		wfSetupSession( $session->getId() );
+	}
+	Profiler::instance()->scopedProfileOut( $ps_session );
+}
 
 /**
  * @var User $wgUser
@@ -707,9 +708,18 @@ foreach ( $wgExtensionFunctions as $func ) {
 	Profiler::instance()->scopedProfileOut( $ps_ext_func );
 }
 
+// If the session user has a 0 id but a valid name, that means we need to
+// autocreate it.
+$sessionUser = MWSessionManager::singleton()->getSession()->getUser();
+if ( $sessionUser->getId() === 0 && User::isValidUserName( $sessionUser->getName() ) ) {
+	$ps_autocreate = Profiler::instance()->scopedProfileIn( $fname . '-autocreate' );
+	MWSessionProvider::singleton()->autoCreateUser( $sessionUser );
+	Profiler::instance()->scopedProfileOut( $ps_autocreate );
+}
+unset( $sessionUser );
+
 wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
 
 Profiler::instance()->scopedProfileOut( $ps_extensions );
 Profiler::instance()->scopedProfileOut( $ps_setup );
-

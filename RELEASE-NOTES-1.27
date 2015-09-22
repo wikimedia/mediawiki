@@ -14,11 +14,28 @@ production.
   $wgResourceLoaderMinifierMaxLineLength, because there was little value in
   making the behavior configurable. The default values (`false` for the former,
   1000 for the latter) are now hard-coded.
+* $wgSessionsInObjectCache is no longer supported and must be true, due to
+  MWSessionManager. $wgSessionHandler is similarly no longer used.
+* Deprecated AuthPluginAutoCreate hook in favor of LocalUserCreated.
+* Deprecated UserSetCookies hook, extensions should generally be creating a
+  custom subclass of CookieSessionProvider.
+* Deprecated UserLoadFromSession hook, extensions should create a
+  MWSessionProvider.
+* The User cannot be loaded from session until after Setup.php completes.
+  Attempts to do so will be ignored and the User will be left as anonymous.
+* MediaWiki will now auto-create users as necessary, removing the need for
+  extensions to do so. An 'autocreateaccount' right is added to allow
+  auto-creation when 'createaccount' is not granted to all users.
+* Most cookie-handling methods in User are deprecated.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
   basic configuration settings needed for multi-datacenter setups.
   $wgDataCenterUpdateStickTTL was also added.
+* MWSession infrastructure allows for easier use of session mechanisms other
+  than the usual cookies.
+** MWSessionMetadata and MWSessionCheckInfo hooks allow for setting and
+   checking custom session metadata.
 
 ==== External libraries ====
 
