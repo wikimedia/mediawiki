@@ -390,7 +390,7 @@ class UploadFromUrl extends UploadBase {
 			'userName' => $user->getName(),
 			'leaveMessage' => $this->mAsync == 'async-leavemessage',
 			'ignoreWarnings' => $this->mIgnoreWarnings,
-			'sessionId' => session_id(),
+			'sessionId' => MediaWiki\Session\SessionManager::singleton()->getSession()->getId(),
 			'sessionKey' => $sessionKey,
 		) );
 		$job->initializeSessionData();
