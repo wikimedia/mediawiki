@@ -19,9 +19,10 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 	 * $provider->checkPasswordValidity is mocked to return $this->validity,
 	 * because we don't need to test that here.
 	 *
+	 * @param array $extraMockedMethods
 	 * @return TemporaryPasswordPrimaryAuthenticationProvider
 	 */
-	protected function getProvider() {
+	protected function getProvider( $mockedMethods = array() ) {
 		if ( !$this->config ) {
 			$this->config = new \HashConfig();
 		}
@@ -36,9 +37,10 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		$this->validity = \Status::newGood();
 
 		$that = $this;
+		$mockedMethods[] = 'checkPasswordValidity';
 		$provider = $this->getMock(
 			'MediaWiki\\Auth\\TemporaryPasswordPrimaryAuthenticationProvider',
-			array( 'checkPasswordValidity' )
+			$mockedMethods
 		);
 		$provider->expects( $this->any() )->method( 'checkPasswordValidity' )
 			->will( $this->returnCallback( function () use ( $that ) {
@@ -133,9 +135,6 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 			array( AuthManager::ACTION_LOGIN, array(
 				new PasswordAuthenticationRequest()
 			) ),
-			array( AuthManager::ACTION_CREATE, array(
-				new TemporaryPasswordAuthenticationRequest()
-			) ),
 			array( AuthManager::ACTION_CHANGE, array(
 				new TemporaryPasswordAuthenticationRequest()
 			) ),
@@ -144,6 +143,24 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 			array( AuthManager::ACTION_LINK, array() ),
 			array( AuthManager::ACTION_LINK_CONTINUE, array() ),
 		);
+	}
+
+	public function testGetAuthenticationRequests_special() {
+		$this->markTestIncomplete();
+		// TODO mock logged-in
+		$this->assertEquals( array( new TemporaryPasswordAuthenticationRequest() ),
+			$this->getProvider()->getAuthenticationRequests( AuthManager::ACTION_CREATE ) );
+		// TODO mock logged-out
+		$this->assertEquals( array(),
+			$this->getProvider()->getAuthenticationRequests( AuthManager::ACTION_CREATE ) );
+
+		$provider = $this->getProvider( array( 'testUserCanAuthenticate' ) );
+		$provider->method( 'testUserCanAuthenticate' )->will( $this->returnValue( false ) );
+		$this->assertEquals( array(),
+			$this->getProvider()->getAuthenticationRequests( AuthManager::ACTION_REMOVE ) );
+		$provider->method( 'testUserCanAuthenticate' )->will( $this->returnValue( true ) );
+		$this->assertEquals( array( new TemporaryPasswordAuthenticationRequest() ),
+			$this->getProvider()->getAuthenticationRequests( AuthManager::ACTION_REMOVE ) );
 	}
 
 	public function testAuthentication() {
