@@ -19,6 +19,8 @@
  *
  * @file
  */
+use MediaWiki\Auth\AuthManager;
+use MediaWiki\Auth\PasswordAuthenticationRequest;
 
 /**
  * We're now using the HTMLForm object with some customisation to generate the
@@ -205,7 +207,7 @@ class Preferences {
 	 * @return void
 	 */
 	static function profilePreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgAuth, $wgContLang, $wgParser;
+		global $wgAuth, $wgContLang, $wgParser, $wgDisableAuthManager;
 
 		$config = $context->getConfig();
 		// retrieving user name for GENDER and misc.
@@ -281,16 +283,21 @@ class Preferences {
 		$canEditPrivateInfo = $user->isAllowed( 'editmyprivateinfo' );
 
 		// Actually changeable stuff
+		$realnameChangeAllowed = $wgDisableAuthManager ? $wgAuth->allowPropChange( 'realname' )
+			: AuthManager::singleton()->allowsPropertyChange( 'realname' );
 		$defaultPreferences['realname'] = [
 			// (not really "private", but still shouldn't be edited without permission)
-			'type' => $canEditPrivateInfo && $wgAuth->allowPropChange( 'realname' ) ? 'text' : 'info',
+			'type' => $canEditPrivateInfo && $realnameChangeAllowed ? 'text' : 'info',
 			'default' => $user->getRealName(),
 			'section' => 'personal/info',
 			'label-message' => 'yourrealname',
 			'help-message' => 'prefs-help-realname',
 		];
 
-		if ( $canEditPrivateInfo && $wgAuth->allowPasswordChange() ) {
+		$allowPasswordChange = $wgDisableAuthManager ? $wgAuth->allowPasswordChange()
+			: AuthManager::singleton()->allowsAuthenticationDataChange(
+				new PasswordAuthenticationRequest(), false );
+		if ( $canEditPrivateInfo && $allowPasswordChange ) {
 			$link = Linker::link( SpecialPage::getTitleFor( 'ChangePassword' ),
 				$context->msg( 'prefs-resetpass' )->escaped(), [],
 				[ 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ] );
@@ -411,8 +418,10 @@ class Preferences {
 			'default' => $oldsigHTML,
 			'section' => 'personal/signature',
 		];
+		$nicknameChangeAllowed = $wgDisableAuthManager ? $wgAuth->allowPropChange( 'nickname' )
+			: AuthManager::singleton()->allowsPropertyChange( 'nickname' );
 		$defaultPreferences['nickname'] = [
-			'type' => $wgAuth->allowPropChange( 'nickname' ) ? 'text' : 'info',
+			'type' => $nicknameChangeAllowed ? 'text' : 'info',
 			'maxlength' => $config->get( 'MaxSigChars' ),
 			'label-message' => 'yournick',
 			'validation-callback' => [ 'Preferences', 'validateSignature' ],
@@ -441,7 +450,9 @@ class Preferences {
 				}
 
 				$emailAddress = $user->getEmail() ? htmlspecialchars( $user->getEmail() ) : '';
-				if ( $canEditPrivateInfo && $wgAuth->allowPropChange( 'emailaddress' ) ) {
+				$emailChangeAllowed = $wgDisableAuthManager ? $wgAuth->allowPropChange( 'emailaddress' )
+					: AuthManager::singleton()->allowsPropertyChange( 'emailaddress' );
+				if ( $canEditPrivateInfo && $emailChangeAllowed ) {
 					$link = Linker::link(
 						SpecialPage::getTitleFor( 'ChangeEmail' ),
 						$context->msg( $user->getEmail() ? 'prefs-changeemail' : 'prefs-setemail' )->escaped(),
@@ -1428,6 +1439,7 @@ class Preferences {
 
 		// Fortunately, the realname field is MUCH simpler
 		// (not really "private", but still shouldn't be edited without permission)
+
 		if ( !in_array( 'realname', $hiddenPrefs )
 			&& $user->isAllowed( 'editmyprivateinfo' )
 			&& array_key_exists( 'realname', $formData )
