@@ -48,11 +48,9 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 	protected function tearDown() {
 		// Avoid leaking session over tests
-		if ( session_id() != '' ) {
-			global $wgUser;
-			$wgUser->logout();
-			session_destroy();
-		}
+		global $wgUser;
+		$wgUser->logout();
+		MediaWiki\Session\SessionManager::getGlobalSession()->clear();
 
 		parent::tearDown();
 	}
