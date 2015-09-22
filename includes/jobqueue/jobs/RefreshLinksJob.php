@@ -111,9 +111,6 @@ class RefreshLinksJob extends Job {
 	 * @return bool
 	 */
 	protected function runForTitle( Title $title = null ) {
-		$linkCache = LinkCache::singleton();
-		$linkCache->clear();
-
 		if ( is_null( $title ) ) {
 			$this->setLastError( "refreshLinks: Invalid title" );
 			return false;
@@ -126,14 +123,18 @@ class RefreshLinksJob extends Job {
 			wfGetLB()->waitFor( $this->params['masterPos'] );
 		}
 
-		$page = WikiPage::factory( $title );
+		// Clear out title cache data from prior job transaction snapshots
+		$linkCache = LinkCache::singleton();
+		$linkCache->clear();
 
-		// Fetch the current revision...
+		// Fetch the current page and revision...
+		$page = WikiPage::factory( $title );
 		$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
 		if ( !$revision ) {
 			$this->setLastError( "refreshLinks: Article not found {$title->getPrefixedDBkey()}" );
 			return false; // XXX: what if it was just deleted?
 		}
+
 		$content = $revision->getContent( Revision::RAW );
 		if ( !$content ) {
 			// If there is no content, pretend the content is empty
