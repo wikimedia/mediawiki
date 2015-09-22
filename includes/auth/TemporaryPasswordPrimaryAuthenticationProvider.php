@@ -307,6 +307,9 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		$req = AuthenticationRequest::getRequestByClass(
 			$reqs, TemporaryPasswordAuthenticationRequest::class
 		);
+		/** @var UserDataAuthenticationRequest $userDataReq */
+		$userDataReq = AuthenticationRequest::getRequestByClass( $reqs,
+			UserDataAuthenticationRequest::class );
 
 		$ret = \StatusValue::newGood();
 		if ( $req ) {
