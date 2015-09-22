@@ -38,6 +38,23 @@ abstract class DataUpdate implements DeferrableUpdate {
 	}
 
 	/**
+	 * @return bool Whether the update can be enqueued as a job
+	 * @since 1.26
+	 */
+	public function isEnqueueable() {
+		return false;
+	}
+
+	/**
+	 * Push the update as job
+	 *
+	 * @since 1.26
+	 */
+	public function enqueueUpdate() {
+		throw new LogicException( __CLASS__ . ' does not support enqueueing' );
+	}
+
+	/**
 	 * Begin an appropriate transaction, if any.
 	 * This default implementation does nothing.
 	 */
@@ -73,21 +90,16 @@ abstract class DataUpdate implements DeferrableUpdate {
 	 * This allows for limited transactional logic across multiple backends for storing
 	 * secondary data.
 	 *
-	 * @param array $updates A list of DataUpdate instances
+	 * @param DataUpdate[] $updates A list of DataUpdate instances
 	 * @throws Exception|null
 	 */
-	public static function runUpdates( $updates ) {
-		if ( empty( $updates ) ) {
+	public static function runUpdates( array $updates ) {
+		if ( !count( $updates ) ) {
 			return; # nothing to do
 		}
 
 		$open_transactions = array();
 		$exception = null;
-
-		/**
-		 * @var $update DataUpdate
-		 * @var $trans DataUpdate
-		 */
 
 		try {
 			// begin transactions
@@ -121,5 +133,27 @@ abstract class DataUpdate implements DeferrableUpdate {
 		if ( $exception ) {
 			throw $exception; // rethrow after cleanup
 		}
+	}
+
+	/**
+	 * Enqueue jobs for every DataUpdate that support enqueueUpdate()
+	 * and return the remaining DataUpdate objects (those that do not)
+	 *
+	 * @param DataUpdate[] $updates A list of DataUpdate instances
+	 * @return DataUpdate[]
+	 * @since 1.26
+	 */
+	public static function enqueueUpdates( array $updates ) {
+		$remaining = array();
+
+		foreach ( $updates as $update ) {
+			if ( $update->isEnqueueable() ) {
+				$update->enqueueUpdate();
+			} else {
+				$remaining[] = $update;
+			}
+		}
+
+		return $remaining;
 	}
 }
