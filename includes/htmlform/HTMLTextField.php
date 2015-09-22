@@ -1,6 +1,18 @@
 <?php
 
 class HTMLTextField extends HTMLFormField {
+	protected $mPlaceholder = '';
+
+	public function __construct( $params ) {
+		parent::__construct( $params );
+
+		if ( isset( $params['placeholder-message'] ) ) {
+			$this->mPlaceholder = $this->getMessage( $params['placeholder-message'] )->parse();
+		} elseif ( isset( $params['placeholder'] ) ) {
+			$this->mPlaceholder = $params['placeholder'];
+		}
+	}
+
 	function getSize() {
 		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 45;
 	}
@@ -27,6 +39,9 @@ class HTMLTextField extends HTMLFormField {
 		if ( $this->mClass !== '' ) {
 			$attribs['class'] = $this->mClass;
 		}
+		if ( $this->mPlaceholder !== '' ) {
+			$attribs['placeholder'] = $this->mPlaceholder;
+		}
 
 		# @todo Enforce pattern, step, required, readonly on the server side as
 		# well
@@ -37,7 +52,6 @@ class HTMLTextField extends HTMLFormField {
 			'pattern',
 			'title',
 			'step',
-			'placeholder',
 			'list',
 			'maxlength',
 			'tabindex',
@@ -90,6 +104,9 @@ class HTMLTextField extends HTMLFormField {
 		if ( $this->mClass !== '' ) {
 			$attribs['classes'] = array( $this->mClass );
 		}
+		if ( $this->mPlaceholder !== '' ) {
+			$attribs['placeholder'] = $this->mPlaceholder;
+		}
 
 		# @todo Enforce pattern, step, required, readonly on the server side as
 		# well
@@ -100,7 +117,6 @@ class HTMLTextField extends HTMLFormField {
 			'flags',
 			'indicator',
 			'maxlength',
-			'placeholder',
 			'readonly',
 			'required',
 			'tabindex',
@@ -126,4 +142,14 @@ class HTMLTextField extends HTMLFormField {
 	protected function getInputWidget( $params ) {
 		return new OOUI\TextInputWidget( $params );
 	}
+
+//	public function loadDataFromRequest( $request ) {
+//		if ( isset( $this->mParams['type'] ) && $this->mParams['type'] === 'password' ) {
+//			// don't put passwords into the HTML body, they could get cached and exposed to others
+//			return $this->getDefault();
+//		}
+//		return parent::loadDataFromRequest( $request );
+//	}
+
+
 }
