@@ -82,7 +82,7 @@ class SpecialPageFactory {
 		'TrackingCategories' => 'SpecialTrackingCategories',
 
 		// Login/create account
-		'Userlogin' => 'LoginForm',
+		'Userlogin' => 'SpecialUserLogin',
 		'CreateAccount' => 'SpecialCreateAccount',
 
 		// Users and rights
