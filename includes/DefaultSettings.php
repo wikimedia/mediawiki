@@ -6672,6 +6672,7 @@ $wgHooks = array();
  */
 $wgJobClasses = array(
 	'refreshLinks' => 'RefreshLinksJob',
+	'deleteLinks' => 'DeleteLinksJob',
 	'htmlCacheUpdate' => 'HTMLCacheUpdateJob',
 	'sendMail' => 'EmaillingJob',
 	'enotifNotify' => 'EnotifNotifyJob',
