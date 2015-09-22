@@ -4406,8 +4406,8 @@ $wgAuthManagerConfig = [
 		MediaWiki\Auth\LegacyHookPreAuthenticationProvider::class => [
 			'class' => MediaWiki\Auth\LegacyHookPreAuthenticationProvider::class,
 		],
-		MediaWiki\Auth\AccountCreationThrottlePreAuthenticationProvider::class => [
-			'class' => MediaWiki\Auth\AccountCreationThrottlePreAuthenticationProvider::class,
+		MediaWiki\Auth\ThrottlePreAuthenticationProvider::class => [
+			'class' => MediaWiki\Auth\ThrottlePreAuthenticationProvider::class,
 		],
 	],
 	'primaryauth' => [
@@ -4438,6 +4438,9 @@ $wgAuthManagerConfig = [
 		],
 		MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class => [
 			'class' => MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class,
+		],
+		MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class => [
+			'class' => MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class,
 		],
 	],
 ];
