@@ -27,6 +27,11 @@
  */
 class WebResponse {
 
+	/** @var array Used to record set cookies, so we don't wind up sending the
+	 * same cookie to the client several times.
+	 */
+	protected static $setCookies = array();
+
 	/**
 	 * Output an HTTP header, wrapper for PHP's header()
 	 * @param string $string Header to output
@@ -60,6 +65,15 @@ class WebResponse {
 	 */
 	public function statusHeader( $code ) {
 		HttpStatus::header( $code );
+	}
+
+	/**
+	 * Test if headers have been sent
+	 * @since 1.27
+	 * @return bool
+	 */
+	public function headersSent() {
+		return headers_sent();
 	}
 
 	/**
@@ -115,25 +129,26 @@ class WebResponse {
 		$func = $options['raw'] ? 'setrawcookie' : 'setcookie';
 
 		if ( Hooks::run( 'WebResponseSetCookie', array( &$name, &$value, &$expire, $options ) ) ) {
-			wfDebugLog( 'cookie',
-				$func . ': "' . implode( '", "',
-					array(
-						$options['prefix'] . $name,
-						$value,
-						$expire,
-						$options['path'],
-						$options['domain'],
-						$options['secure'],
-						$options['httpOnly'] ) ) . '"' );
-
-			call_user_func( $func,
-				$options['prefix'] . $name,
-				$value,
-				$expire,
-				$options['path'],
-				$options['domain'],
-				$options['secure'],
-				$options['httpOnly'] );
+			$cookie = $options['prefix'] . $name;
+			$data = array(
+				(string)$cookie,
+				(string)$value,
+				(int)$expire,
+				(string)$options['path'],
+				(string)$options['domain'],
+				(bool)$options['secure'],
+				(bool)$options['httpOnly'],
+			);
+			if ( !isset( self::$setCookies[$cookie] ) ||
+				self::$setCookies[$cookie] !== array( $func, $data )
+			) {
+				wfDebugLog( 'cookie', $func . ': "' . implode( '", "', $data ) . '"' );
+				if ( call_user_func_array( $func, $data ) ) {
+					self::$setCookies[$cookie] = array( $func, $data );
+				}
+			} else {
+				wfDebugLog( 'cookie', 'already set ' . $func . ': "' . implode( '", "', $data ) . '"' );
+			}
 		}
 	}
 }
@@ -143,7 +158,7 @@ class WebResponse {
  */
 class FauxResponse extends WebResponse {
 	private $headers;
-	private $cookies;
+	private $cookies = array();
 	private $code;
 
 	/**
@@ -177,6 +192,10 @@ class FauxResponse extends WebResponse {
 	 */
 	public function statusHeader( $code ) {
 		$this->code = intval( $code );
+	}
+
+	public function headersSent() {
+		return false;
 	}
 
 	/**
