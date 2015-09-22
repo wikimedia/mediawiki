@@ -1,53 +1,36 @@
 ( function ( mw ) {
-	QUnit.module( 'mediawiki.storage: normal case.', {
-		setup: function () {
-			this.sandbox.stub( mw.storage, 'isLocalStorageSupported', true );
-			this.spy = this.sandbox.spy( localStorage, 'setItem' );
-			this.sandbox.stub( localStorage, 'getItem' )
-				.withArgs( 'foo' ).returns( 'test' )
-				.withArgs( 'bar' ).returns( null );
-		}
-	} );
+	QUnit.module( 'mediawiki.storage' );
 
-	QUnit.test( 'set/get with localStorage', 4, function ( assert ) {
+	QUnit.test( 'set/get with localStorage', 3, function ( assert ) {
+		this.sandbox.stub( mw.storage, 'localStorage', {
+			setItem: this.sandbox.spy(),
+			getItem: this.sandbox.stub()
+		} );
+
 		mw.storage.set( 'foo', 'test' );
-		assert.strictEqual( this.spy.calledOnce, true, 'Check localStorage called.' );
-		assert.strictEqual( this.spy.calledWith( 'foo', 'test' ), true,
-			'Check prefixed.' );
+		assert.ok( mw.storage.localStorage.setItem.calledOnce );
+
+		mw.storage.localStorage.getItem.withArgs( 'foo' ).returns( 'test' );
+		mw.storage.localStorage.getItem.returns( null );
 		assert.strictEqual( mw.storage.get( 'foo' ), 'test', 'Check value gets stored.' );
 		assert.strictEqual( mw.storage.get( 'bar' ), null, 'Unset values are null.' );
 	} );
 
-	QUnit.module( 'mediawiki.storage: localStorage does not exist', {
-		setup: function () {
-			this.sandbox.stub( mw.storage, 'isLocalStorageSupported', false );
-			this.sandbox.stub( localStorage, 'setItem' ).throws();
-		}
-	} );
-
 	QUnit.test( 'set/get without localStorage', 3, function ( assert ) {
-		assert.strictEqual( mw.storage.set( 'foo', 'test' ), false,
-			'When localStorage not available save fails.' );
+		this.sandbox.stub( mw.storage, 'localStorage', {
+			getItem: this.sandbox.stub(),
+			removeItem: this.sandbox.stub(),
+			setItem: this.sandbox.stub()
+		} );
 
-		assert.strictEqual( mw.storage.remove( 'foo', 'test' ), false,
-			'When localStorage not available remove fails.' );
+		mw.storage.localStorage.getItem.throws();
+		assert.strictEqual( mw.storage.get( 'foo' ), false );
 
-		assert.strictEqual( mw.storage.get( 'foo' ), false,
-				'Inability to retrieve values return false to differentiate from null (not set).' );
-	} );
+		mw.storage.localStorage.setItem.throws();
+		assert.strictEqual( mw.storage.set( 'foo', 'test' ), false );
 
-	QUnit.module( 'mediawiki.storage: localStorage exhausted', {
-		setup: function () {
-			this.sandbox.stub( mw.storage, 'isLocalStorageSupported', true );
-			this.sandbox.stub( localStorage, 'setItem' ).throws();
-			this.sandbox.stub( localStorage, 'getItem' ).returns( null );
-		}
-	} );
-
-	QUnit.test( 'set/get without localStorage', 2, function ( assert ) {
-		assert.strictEqual( mw.storage.set( 'foo', 'test' ), false,
-			'When localStorage not available inform user with false.' );
-		assert.strictEqual( mw.storage.get( 'foo' ), null, 'No value registered.' );
+		mw.storage.localStorage.removeItem.throws();
+		assert.strictEqual( mw.storage.remove( 'foo', 'test' ), false );
 	} );
 
 }( mediaWiki ) );
