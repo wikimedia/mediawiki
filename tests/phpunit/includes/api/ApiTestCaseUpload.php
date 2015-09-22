@@ -15,8 +15,6 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 			'wgEnableAPI' => true,
 		) );
 
-		wfSetupSession();
-
 		$this->clearFakeUploads();
 	}
 
