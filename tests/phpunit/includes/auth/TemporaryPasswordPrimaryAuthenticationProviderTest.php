@@ -355,15 +355,13 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 	 * @dataProvider provideProviderAllowsAuthenticationDataChange
 	 * @param string $type
 	 * @param string $user
-	 * @param Status $validity
+	 * @param \Status $validity Result of the password validity check
+	 * @param \StatusValue $expect1 Expected result with $checkData = false
+	 * @param \StatusValue $expect2 Expected result with $checkData = true
 	 */
-	public function testProviderAllowsAuthenticationDataChange( $type, $user, $validity ) {
-		$expect1 = $validity->getValue() === 'ignored'
-			? \StatusValue::newGood( 'ignored' )
-			: \StatusValue::newGood();
-		$expect2 = \StatusValue::newGood();
-		$expect2->merge( $validity, true );
-
+	public function testProviderAllowsAuthenticationDataChange( $type, $user, $validity,
+		$expect1, $expect2
+	) {
 		if ( $type === PasswordAuthenticationRequest::class ||
 			$type === TemporaryPasswordAuthenticationRequest::class
 		) {
@@ -382,19 +380,27 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 	}
 
 	public static function provideProviderAllowsAuthenticationDataChange() {
-		$err = \Status::newGood();
+		$err = \StatusValue::newGood();
 		$err->error( 'arbitrary-warning' );
 
 		return [
-			[ AuthenticationRequest::class, 'UTSysop', \Status::newGood( 'ignored' ) ],
-			[ PasswordAuthenticationRequest::class, 'UTSysop', \Status::newGood( 'ignored' ) ],
-			[ TemporaryPasswordAuthenticationRequest::class, 'UTSysop', \Status::newGood() ],
-			[ TemporaryPasswordAuthenticationRequest::class, 'uTSysop', \Status::newGood() ],
-			[ TemporaryPasswordAuthenticationRequest::class, 'UTSysop', $err ],
+			[ AuthenticationRequest::class, 'UTSysop', \Status::newGood(),
+				\StatusValue::newGood( 'ignored' ), \StatusValue::newGood( 'ignored' ) ],
+			[ PasswordAuthenticationRequest::class, 'UTSysop', \Status::newGood(),
+				\StatusValue::newGood( 'ignored' ), \StatusValue::newGood( 'ignored' ) ],
+			[ TemporaryPasswordAuthenticationRequest::class, 'UTSysop', \Status::newGood(),
+				\StatusValue::newGood(), \StatusValue::newGood() ],
+			[ TemporaryPasswordAuthenticationRequest::class, 'uTSysop', \Status::newGood(),
+				\StatusValue::newGood(), \StatusValue::newGood() ],
+			[ TemporaryPasswordAuthenticationRequest::class, 'UTSysop', \Status::wrap( $err ),
+				\StatusValue::newGood(), $err ],
 			[ TemporaryPasswordAuthenticationRequest::class, 'UTSysop',
-				\Status::newFatal( 'arbitrary-error' ) ],
-			[ TemporaryPasswordAuthenticationRequest::class, 'DoesNotExist', \Status::newGood( 'ignored' ) ],
-			[ TemporaryPasswordAuthenticationRequest::class, '<invalid>', \Status::newGood( 'ignored' ) ],
+				\Status::newFatal( 'arbitrary-error' ), \StatusValue::newGood(),
+				\StatusValue::newFatal( 'arbitrary-error' ) ],
+			[ TemporaryPasswordAuthenticationRequest::class, 'DoesNotExist', \Status::newGood(),
+				\StatusValue::newGood(), \StatusValue::newGood( 'ignored' ) ],
+			[ TemporaryPasswordAuthenticationRequest::class, '<invalid>', \Status::newGood(),
+				\StatusValue::newGood(), \StatusValue::newGood( 'ignored' ) ],
 		];
 	}
 

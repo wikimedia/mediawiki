@@ -204,9 +204,13 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	public function providerAllowsAuthenticationDataChange(
 		AuthenticationRequest $req, $checkData = true
 	) {
-		if ( !$req instanceof TemporaryPasswordAuthenticationRequest || $req->username === null ) {
+		if ( !$req instanceof TemporaryPasswordAuthenticationRequest ) {
 			// We don't really ignore it, but this is what the caller expects.
 			return \StatusValue::newGood( 'ignored' );
+		}
+
+		if ( !$checkData ) {
+			return \StatusValue::newGood();
 		}
 
 		$username = User::getCanonicalName( $req->username, 'usable' );
@@ -226,7 +230,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		}
 
 		$sv = \StatusValue::newGood();
-		if ( $checkData && $req->password !== null ) {
+		if ( $req->password !== null ) {
 			$sv->merge( $this->checkPasswordValidity( $username, $req->password ) );
 
 			if ( $req->mailpassword ) {
