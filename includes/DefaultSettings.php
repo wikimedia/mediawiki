@@ -4413,8 +4413,8 @@ $wgAuthManagerConfig = [
 		MediaWiki\Auth\LegacyHookPreAuthenticationProvider::class => [
 			'class' => MediaWiki\Auth\LegacyHookPreAuthenticationProvider::class,
 		],
-		MediaWiki\Auth\AccountCreationThrottlePreAuthenticationProvider::class => [
-			'class' => MediaWiki\Auth\AccountCreationThrottlePreAuthenticationProvider::class,
+		MediaWiki\Auth\ThrottlePreAuthenticationProvider::class => [
+			'class' => MediaWiki\Auth\ThrottlePreAuthenticationProvider::class,
 		],
 	],
 	'primaryauth' => [
@@ -4446,6 +4446,9 @@ $wgAuthManagerConfig = [
 		MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class => [
 			'class' => MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class,
 		],
+		MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class => [
+			'class' => MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class,
+		],
 	],
 ];
 
@@ -4467,6 +4470,26 @@ $wgReauthenticateTime = [
  */
 $wgAllowSecuritySensitiveOperationIfCannotReauthenticate = [
 	'default' => true,
+];
+
+/**
+ * List of AuthenticationRequest class names which are not changeable through
+ * Special:ChangeCredentials and the changeauthenticationdata API.
+ * Class names are checked for exact match (not for subclasses).
+ * @since 1.27
+ * @var string[]
+ */
+$wgChangeCredentialsBlacklist = [];
+
+/**
+ * List of AuthenticationRequest class names which are not removable through
+ * Special:RemoveCredentials and the removeauthenticationdata API.
+ * Class names are checked for exact match (not for subclasses).
+ * @since 1.27
+ * @var string[]
+ */
+$wgRemoveCredentialsBlacklist = [
+	\MediaWiki\Auth\PasswordAuthenticationRequest::class,
 ];
 
 /**
