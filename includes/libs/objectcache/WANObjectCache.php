@@ -264,16 +264,16 @@ class WANObjectCache {
 	 * changes in a significant way. This deletes the key and starts a hold-off
 	 * period where the key cannot be written to for a few seconds (HOLDOFF_TTL).
 	 * This is done to avoid the following race condition:
-	 *   a) Some DB data changes and delete() is called on a corresponding key
-	 *   b) A request refills the key with a stale value from a lagged DB
-	 *   c) The stale value is stuck there until the key is expired/evicted
+	 *   - a) Some DB data changes and delete() is called on a corresponding key
+	 *   - b) A request refills the key with a stale value from a lagged DB
+	 *   - c) The stale value is stuck there until the key is expired/evicted
 	 *
 	 * This is implemented by storing a special "tombstone" value at the cache
 	 * key that this class recognizes; get() calls will return false for the key
 	 * and any set() calls will refuse to replace tombstone values at the key.
 	 * For this to always avoid writing stale values, the following must hold:
-	 *   a) Replication lag is bounded to being less than HOLDOFF_TTL; or
-	 *   b) If lag is higher, the DB will have gone into read-only mode already
+	 *   - a) Replication lag is bounded to being less than HOLDOFF_TTL; or
+	 *   - b) If lag is higher, the DB will have gone into read-only mode already
 	 *
 	 * If called twice on the same key, then the last hold-off TTL takes
 	 * precedence. For idempotence, the $ttl should not vary for different
@@ -292,6 +292,10 @@ class WANObjectCache {
 		$ok = $this->cache->set( $key, self::PURGE_VAL_PREFIX . microtime( true ), $ttl );
 		// Publish the purge to all clusters
 		return $this->relayPurge( $key, $ttl ) && $ok;
+	}
+
+	final public function deleteWithRebound( $key, $ttl = self::HOLDOFF_TTL ) {
+
 	}
 
 	/**
@@ -368,9 +372,9 @@ class WANObjectCache {
 	 *
 	 * This is similar to touchCheckKey() in that keys using it via
 	 * getWithSetCallback() will be invalidated. The differences are:
-	 *   a) The timestamp will be deleted from all caches and lazily
+	 *   - a) The timestamp will be deleted from all caches and lazily
 	 *      re-initialized when accessed (rather than set everywhere)
-	 *   b) Thus, dependent keys will be known to be invalid, but not
+	 *   - b) Thus, dependent keys will be known to be invalid, but not
 	 *      for how long (they are treated as "just" purged), which
 	 *      effects any lockTSE logic in getWithSetCallback()
 	 * The advantage is that this does not place high TTL keys on every cache
