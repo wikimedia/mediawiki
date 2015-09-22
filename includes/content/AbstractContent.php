@@ -412,9 +412,7 @@ abstract class AbstractContent implements Content {
 	 * @see Content::getDeletionUpdates
 	 */
 	public function getDeletionUpdates( WikiPage $page, ParserOutput $parserOutput = null ) {
-		return array(
-			new LinksDeletionUpdate( $page ),
-		);
+		return array();
 	}
 
 	/**

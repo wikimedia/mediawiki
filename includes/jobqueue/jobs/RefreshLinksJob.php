@@ -100,7 +100,8 @@ class RefreshLinksJob extends Job {
 			}
 		// Job to update link tables for a given title
 		} else {
-			$this->runForTitle( $this->title );
+			$pageId = isset( $this->params['pageId'] ) ? $this->params['pageId'] : null;
+			$this->runForTitle( $this->title, $pageId );
 		}
 
 		return true;

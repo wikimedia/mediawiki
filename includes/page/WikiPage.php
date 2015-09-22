@@ -2911,12 +2911,17 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   may already return null when the page proper was deleted.
 	 */
 	public function doDeleteUpdates( $id, Content $content = null ) {
-		// update site status
+		// Update site status
 		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, - (int)$this->isCountable(), -1 ) );
 
-		// remove secondary indexes, etc
+		// Remove secondary indexes, etc
 		$updates = $this->getDeletionUpdates( $content );
 		DataUpdate::runUpdates( $updates );
+
+		// Remove entires from backlink tables
+		JobQueueGroup::singleton()->lazyPush(
+			new RefreshLinksJob( $this->mTitle, array( 'pageId' => $id ) )
+		);
 
 		// Reparse any pages transcluding this page
 		LinksUpdate::queueRecursiveJobsForTable( $this->mTitle, 'templatelinks' );
