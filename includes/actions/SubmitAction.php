@@ -32,10 +32,8 @@ class SubmitAction extends EditAction {
 	}
 
 	public function show() {
-		if ( session_id() === '' ) {
-			// Send a cookie so anons get talk message notifications
-			wfSetupSession();
-		}
+		// Send a cookie so anons get talk message notifications
+		MediaWiki\Session\SessionManager::getGlobalSession()->persist();
 
 		parent::show();
 	}
