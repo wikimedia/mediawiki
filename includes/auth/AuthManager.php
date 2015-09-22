@@ -585,7 +585,7 @@ final class AuthManager implements LoggerAwareInterface {
 	 * change, that would normally have a "reenter your password to confirm"
 	 * box if we only supported password-based authentication.
 	 *
-	 * @param string Operation being checked. This should be a message-key-like
+	 * @param string $operation Operation being checked. This should be a message-key-like
 	 *  string such as 'change-password' or 'change-email'.
 	 * @return string One of the SEC_* constants.
 	 */
