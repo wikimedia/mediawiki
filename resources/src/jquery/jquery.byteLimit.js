@@ -86,11 +86,11 @@
 			}
 		}
 
-		newVal = inpParts.join( '' );
-
 		return {
-			newVal: newVal,
-			trimmed: true
+			newVal: inpParts.join( '' ),
+			// For pathological fn() that always returns a value longer than the limit, we might have
+			// ended up not trimming - check for this case to avoid infinite loops
+			trimmed: newVal !== inpParts.join( '' )
 		};
 	};
 
@@ -219,6 +219,9 @@
 				// This is a side-effect of limiting after the fact.
 				if ( res.trimmed === true ) {
 					this.value = res.newVal;
+					// Trigger a 'change' event to let other scripts attached to this node know that the value
+					// was changed. This will also call ourselves again, but that's okay, it'll be a no-op.
+					$el.trigger( 'change' );
 				}
 				// Always adjust prevSafeVal to reflect the input value. Not doing this could cause
 				// trimByteLength to compare the new value to an empty string instead of the
