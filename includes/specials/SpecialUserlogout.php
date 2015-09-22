@@ -58,6 +58,7 @@ class SpecialUserlogout extends UnlistedSpecialPage {
 
 		$user = $this->getUser();
 		$oldName = $user->getName();
+
 		$user->logout();
 
 		$loginURL = SpecialPage::getTitleFor( 'Userlogin' )->getFullURL(
