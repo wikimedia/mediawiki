@@ -23,6 +23,8 @@
  * @file
  */
 
+use MediaWiki\Session\SessionManager;
+
 /**
  * WebRequest clone which takes values from a provided array.
  *
@@ -30,7 +32,6 @@
  */
 class FauxRequest extends WebRequest {
 	private $wasPosted = false;
-	private $session = array();
 	private $requestUrl;
 	protected $cookies = array();
 
@@ -38,7 +39,8 @@ class FauxRequest extends WebRequest {
 	 * @param array $data Array of *non*-urlencoded key => value pairs, the
 	 *   fake GET/POST values
 	 * @param bool $wasPosted Whether to treat the data as POST
-	 * @param array|null $session Session array or null
+	 * @param MediaWiki\\Session\\Session|array|null $session Session, session
+	 *  data array, or null
 	 * @param string $protocol 'http' or 'https'
 	 * @throws MWException
 	 */
@@ -53,8 +55,16 @@ class FauxRequest extends WebRequest {
 			throw new MWException( "FauxRequest() got bogus data" );
 		}
 		$this->wasPosted = $wasPosted;
-		if ( $session ) {
-			$this->session = $session;
+		if ( $session instanceof MediaWiki\Session\Session ) {
+			$this->sessionId = $session->getSessionId();
+		} elseif ( is_array( $session ) ) {
+			$mwsession = SessionManager::singleton()->getEmptySession( $this );
+			$this->sessionId = $mwsession->getSessionId();
+			foreach ( $session as $key => $value ) {
+				$mwsession->set( $key, $value );
+			}
+		} elseif ( $session !== null ) {
+			throw new MWException( "FauxRequest() got bogus session" );
 		}
 		$this->protocol = $protocol;
 	}
@@ -140,10 +150,6 @@ class FauxRequest extends WebRequest {
 		}
 	}
 
-	public function checkSessionCookie() {
-		return false;
-	}
-
 	/**
 	 * @since 1.25
 	 */
@@ -186,29 +192,13 @@ class FauxRequest extends WebRequest {
 	}
 
 	/**
-	 * @param string $key
 	 * @return array|null
 	 */
-	public function getSessionData( $key ) {
-		if ( isset( $this->session[$key] ) ) {
-			return $this->session[$key];
+	public function getSessionArray() {
+		if ( $this->sessionId !== null ) {
+			return iterator_to_array( $this->getSession() );
 		}
 		return null;
-	}
-
-	/**
-	 * @param string $key
-	 * @param array $data
-	 */
-	public function setSessionData( $key, $data ) {
-		$this->session[$key] = $data;
-	}
-
-	/**
-	 * @return array|mixed|null
-	 */
-	public function getSessionArray() {
-		return $this->session;
 	}
 
 	/**

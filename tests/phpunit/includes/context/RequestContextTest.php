@@ -37,6 +37,14 @@ class RequestContextTest extends MediaWikiTestCase {
 	 * @covers RequestContext::importScopedSession
 	 */
 	public function testImportScopedSession() {
+		// Make sure session handling is started
+		if ( !MediaWiki\Session\PHPSessionHandler::isInstalled() ) {
+			MediaWiki\Session\PHPSessionHandler::install(
+				MediaWiki\Session\SessionManager::singleton()
+			);
+		}
+		$oldSessionId = session_id();
+
 		$context = RequestContext::getMain();
 
 		$oInfo = $context->exportSession();
@@ -76,7 +84,16 @@ class RequestContextTest extends MediaWikiTestCase {
 			$context->getRequest()->getAllHeaders(),
 			"Correct context headers."
 		);
-		$this->assertEquals( $sinfo['sessionId'], session_id(), "Correct context session ID." );
+		$this->assertEquals(
+			$sinfo['sessionId'],
+			MediaWiki\Session\SessionManager::getGlobalSession()->getId(),
+			"Correct context session ID."
+		);
+		if ( \MediaWiki\Session\PhpSessionHandler::isEnabled() ) {
+			$this->assertEquals( $sinfo['sessionId'], session_id(), "Correct context session ID." );
+		} else {
+			$this->assertEquals( $oldSessionId, session_id(), "Unchanged PHP session ID." );
+		}
 		$this->assertEquals( true, $context->getUser()->isLoggedIn(), "Correct context user." );
 		$this->assertEquals( $sinfo['userId'], $context->getUser()->getId(), "Correct context user ID." );
 		$this->assertEquals(

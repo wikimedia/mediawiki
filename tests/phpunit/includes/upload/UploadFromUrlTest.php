@@ -16,7 +16,6 @@ class UploadFromUrlTest extends ApiTestCase {
 			'wgAllowCopyUploads' => true,
 			'wgAllowAsyncCopyUploads' => true,
 		) );
-		wfSetupSession();
 
 		if ( wfLocalFile( 'UploadFromUrlTest.png' )->exists() ) {
 			$this->deleteFile( 'UploadFromUrlTest.png' );
@@ -26,14 +25,11 @@ class UploadFromUrlTest extends ApiTestCase {
 	protected function doApiRequest( array $params, array $unused = null,
 		$appendModule = false, User $user = null
 	) {
-		$sessionId = session_id();
-		session_write_close();
+		global $wgRequest;
 
-		$req = new FauxRequest( $params, true, $_SESSION );
+		$req = new FauxRequest( $params, true, $wgRequest->getSession() );
 		$module = new ApiMain( $req, true );
 		$module->execute();
-
-		wfSetupSession( $sessionId );
 
 		return array(
 			$module->getResult()->getResultData( null, array( 'Strip' => 'all' ) ),

@@ -61,6 +61,10 @@ class DerivativeRequest extends FauxRequest {
 		return $this->base->getAllHeaders();
 	}
 
+	public function getSession() {
+		return $this->base->getSession();
+	}
+
 	public function getSessionData( $key ) {
 		return $this->base->getSessionData( $key );
 	}
