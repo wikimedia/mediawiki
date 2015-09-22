@@ -16,6 +16,28 @@ class PasswordAuthenticationRequestTest extends AuthenticationRequestTestCase {
 		return $ret;
 	}
 
+	public function testGetFieldInfo( $args ) {
+		parent::testGetFieldInfo( $args );
+
+		$info = $this->getInstance( $args )->getFieldInfo();
+		switch ( $args[0] ) {
+			case 'login':
+				$this->assertArrayNotHasKey( 'retype', $info, 'No need to retype password on login' );
+				break;
+			case 'create':
+				$this->assertArrayHasKey( 'retype', $info, 'Need to retype when creating new password' );
+				break;
+			case 'change':
+				$this->assertArrayHasKey( 'retype', $info, 'Need to retype when changing password' );
+				break;
+		}
+
+		$loginInfo = ( new PasswordAuthenticationRequest( 'login' ) )->getFieldInfo();
+		$changeInfo = ( new PasswordAuthenticationRequest( 'change' ) )->getFieldInfo();
+		$this->assertNotEquals( $loginInfo['label'], $changeInfo['label'],
+			'Change field is differentiated' );
+	}
+
 	public static function provideGetFieldInfo() {
 		return [
 			[ [ 'login', AuthManager::ACTION_LOGIN ] ],

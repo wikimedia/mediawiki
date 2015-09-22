@@ -125,7 +125,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			[
 				'user_id', 'user_newpassword', 'user_newpass_time',
 			],
-			[ 'user_name' => $req->username ],
+			[ 'user_name' => User::getCanonicalName( $req->username, 'usable' ) ],
 			__METHOD__
 		);
 		if ( !$row ) {
@@ -197,7 +197,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		$row = wfGetDB( DB_MASTER )->selectRow(
 			'user',
 			[ 'user_id', 'user_newpass_time' ],
-			[ 'user_name' => $req->username ],
+			[ 'user_name' => User::getCanonicalName( $req->username, 'usable' ) ],
 			__METHOD__
 		);
 
@@ -264,7 +264,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 				'user_newpassword' => $pwhash->toString(),
 				'user_newpass_time' => $dbw->timestamp(),
 			],
-			[ 'user_name' => $req->username ],
+			[ 'user_name' => User::getCanonicalName( $req->username, 'usable' ) ],
 			__METHOD__
 		);
 
@@ -282,6 +282,9 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		$req = AuthenticationRequest::getRequestByClass(
 			$reqs, TemporaryPasswordAuthenticationRequest::class
 		);
+		/** @var UserDataAuthenticationRequest $userDataReq */
+		$userDataReq = AuthenticationRequest::getRequestByClass( $reqs,
+			UserDataAuthenticationRequest::class );
 
 		$ret = \StatusValue::newGood();
 		if ( $req ) {
@@ -388,7 +391,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		// @codeCoverageIgnoreStart
 		if ( !$status->isGood() ) {
 			$this->logger->warning( 'Could not send account creation email: ' .
-									$status->getWikiText( false, false, 'en' ) );
+				$status->getWikiText( false, false, 'en' ) );
 		}
 		// @codeCoverageIgnoreEnd
 

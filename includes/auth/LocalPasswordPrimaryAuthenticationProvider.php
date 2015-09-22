@@ -87,7 +87,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		$row = $dbw->selectRow(
 			'user',
 			$fields,
-			[ 'user_name' => $req->username ],
+			[ 'user_name' => User::getCanonicalName( $req->username, 'usable' ) ],
 			__METHOD__
 		);
 		if ( !$row ) {
@@ -146,7 +146,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		$row = $dbw->selectRow(
 			'user',
 			[ 'user_password' ],
-			[ 'user_name' => $username ],
+			[ 'user_name' => User::getCanonicalName( $username, 'usable' ) ],
 			__METHOD__
 		);
 		if ( !$row ) {
@@ -167,7 +167,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		return (bool)wfGetDB( $db )->selectField(
 			[ 'user' ],
 			[ 'user_id' ],
-			[ 'user_name' => $username ],
+			[ 'user_name' => User::getCanonicalName( $username, 'usable' ) ],
 			__METHOD__,
 			$options
 		);
@@ -224,7 +224,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 					'user_password' => $pwhash->toString(),
 					'user_password_expires' => $dbw->timestampOrNull( $expiry ),
 				],
-				[ 'user_name' => $req->username ],
+				[ 'user_name' => User::getCanonicalName( $req->username, 'usable' ) ],
 				__METHOD__
 			);
 		}
