@@ -21,6 +21,9 @@
 
 namespace MediaWiki\Auth;
 
+use ObjectCache;
+use User;
+
 /**
  * A base class that implements some of the boilerplate for a SecondaryAuthenticationProvider
  *
@@ -62,4 +65,44 @@ abstract class AbstractSecondaryAuthenticationProvider extends AbstractAuthentic
 	public function autoCreatedAccount( $user ) {
 	}
 
+	/**
+	 * Throttles a secondary authentication step using the login throttle settings.
+	 * Returns true if the action is over the throttle limit and should be rejected; returns false
+	 * (and increases the throttle count) otherwise.
+	 * @param User $user
+	 * @param string $action An arbitrary action name used to prevent different types of throttles
+	 *    from being counted together.
+	 * @return bool
+	 */
+	protected function throttleAction( $user, $action ) {
+		global $wgPasswordAttemptThrottle;
+
+		if ( is_array( $wgPasswordAttemptThrottle ) ) {
+			$throttleKey = wfMemcKey( 'auth-secondary-throttle', $action, md5( $user->getName() ) );
+			$count = $wgPasswordAttemptThrottle['count'];
+			$period = $wgPasswordAttemptThrottle['seconds'];
+
+			$cache = ObjectCache::getLocalClusterInstance();
+			$throttleCount = $cache->get( $throttleKey );
+			if ( !$throttleCount ) {
+				$cache->add( $throttleKey, 1, $period ); // start counter
+			} elseif ( $throttleCount < $count ) {
+				$cache->incr( $throttleKey );
+			} elseif ( $throttleCount >= $count ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Clears a throttle after a successful action.
+	 * @param User $user
+	 * @param string $action An arbitrary action name used to prevent different types of throttles
+	 *    from being counted together.
+	 */
+	protected function clearThrottle( $user, $action ) {
+		$throttleKey = wfMemcKey( 'auth-secondary-throttle', $action, md5( $user->getName() ) );
+		ObjectCache::getLocalClusterInstance()->delete( $throttleKey );
+	}
 }

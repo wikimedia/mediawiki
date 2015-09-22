@@ -70,6 +70,10 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 		return \StatusValue::newGood();
 	}
 
+	public function beginPrimaryAccountCreation( $user, array $reqs ) {
+		return AuthenticationResponse::newAbstain();
+	}
+
 	public function continuePrimaryAccountCreation( $user, array $reqs ) {
 		throw new \BadMethodCallException( __METHOD__ . ' is not implemented.' );
 	}
