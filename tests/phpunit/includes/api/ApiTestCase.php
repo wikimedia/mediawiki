@@ -148,12 +148,12 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		if ( isset( $session['wsToken'] ) && $session['wsToken'] ) {
 			// @todo Why does this directly mess with the session? Fix that.
 			// add edit token to fake session
-			$session['wsEditToken'] = $session['wsToken'];
+			$session['wsTokenSecrets']['default'] = $session['wsToken'];
 			// add token to request parameters
 			$timestamp = wfTimestamp();
 			$params['token'] = hash_hmac( 'md5', $timestamp, $session['wsToken'] ) .
 				dechex( $timestamp ) .
-				User::EDIT_TOKEN_SUFFIX;
+				MediaWiki\Session\Token::SUFFIX;
 
 			return $this->doApiRequest( $params, $session, false, $user );
 		} else {

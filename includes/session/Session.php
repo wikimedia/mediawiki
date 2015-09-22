@@ -315,6 +315,58 @@ final class Session implements \Countable, \Iterator {
 	}
 
 	/**
+	 * Fetch a CSRF token from the session
+	 *
+	 * Note that this does not persist the session, which you'll probably want
+	 * to do if you want the token to actually be useful.
+	 *
+	 * @param string|string[] $salt Token salt
+	 * @param string $key Token key
+	 * @return MediaWiki\\Session\\SessionToken
+	 */
+	public function getToken( $salt = '', $key = 'default' ) {
+		$new = false;
+		$secrets = $this->get( 'wsTokenSecrets' );
+		if ( !is_array( $secrets ) ) {
+			$secrets = array();
+		}
+		if ( isset( $secrets[$key] ) && is_string( $secrets[$key] ) ) {
+			$secret = $secrets[$key];
+		} else {
+			$secret = \MWCryptRand::generateHex( 32 );
+			$secrets[$key] = $secret;
+			$this->set( 'wsTokenSecrets', $secrets );
+			$new = true;
+		}
+		if ( is_array( $salt ) ) {
+			$salt = join( '|', $salt );
+		}
+		return new Token( $secret, (string)$salt, $new );
+	}
+
+	/**
+	 * Remove a CSRF token from the session
+	 *
+	 * The next call to self::getToken() with $key will generate a new secret.
+	 *
+	 * @param string $key Token key
+	 */
+	public function resetToken( $key = 'default' ) {
+		$secrets = $this->get( 'wsTokenSecrets' );
+		if ( is_array( $secrets ) && isset( $secrets[$key] ) ) {
+			unset( $secrets[$key] );
+			$this->set( 'wsTokenSecrets', $secrets );
+		}
+	}
+
+	/**
+	 * Remove all CSRF tokens from the session
+	 */
+	public function resetAllTokens() {
+		$this->remove( 'wsTokenSecrets' );
+	}
+
+	/**
 	 * Delay automatic saving while multiple updates are being made
 	 *
 	 * Calls to save() or clear() will not be delayed.
