@@ -443,6 +443,9 @@
 	"createacct-imgcaptcha-help": "",
 	"createacct-submit": "Create your account",
 	"createacct-another-submit": "Create account",
+	"createacct-another-submit": "Create another account",
+	"createacct-continue-submit": "Continue account creation",
+	"createacct-another-continue-submit": "Continue account creation",
 	"createacct-benefit-heading": "{{SITENAME}} is made by people like you.",
 	"createacct-benefit-icon1": "icon-edits",
 	"createacct-benefit-head1": "{{NUMBEROFEDITS}}",
@@ -511,6 +514,7 @@
 	"createacct-another-realname-tip": "Real name is optional.\nIf you choose to provide it, this will be used for giving the user attribution for their work.",
 	"pt-login": "Log in",
 	"pt-login-button": "Log in",
+	"pt-login-continue-button": "Continue login",
 	"pt-createaccount": "Create account",
 	"pt-userlogout": "Log out",
 	"pear-mail-error": "$1",
@@ -3892,5 +3896,10 @@
 	"authmanager-authplugin-setpass-fail": "The authentication plugin denied the password change.",
 	"authmanager-autocreate-noperm": "Automatic account creation is not allowed.",
 	"authmanager-autocreate-exception": "Automatic account creation temporarily disabled due to prior errors.",
-	"authmanager-userdoesnotexist": "User account \"$1\" is not registered."
+	"authmanager-userdoesnotexist": "User account \"$1\" is not registered.",
+	"cannotlink-no-provider-title": "There are no linkable accounts",
+	"cannotlink-no-provider": "There are no linkable accounts",
+	"linkaccounts": "Link accounts",
+	"linkaccountsform-success-text": "Success",
+	"linkaccountsform-submit": "Link accounts"
 }
