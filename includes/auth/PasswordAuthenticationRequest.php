@@ -27,7 +27,12 @@ namespace MediaWiki\Auth;
  * @since 1.27
  */
 class PasswordAuthenticationRequest extends AuthenticationRequest {
-	protected $needsRetype = false;
+	const TYPE_LOGIN = 'login';
+	const TYPE_CREATE = 'create';
+	const TYPE_CHANGE = 'change';
+
+	/** @var string */
+	protected $type;
 
 	/** @var string Password */
 	public $password = null;
@@ -36,13 +41,24 @@ class PasswordAuthenticationRequest extends AuthenticationRequest {
 	public $retype = null;
 
 	/**
-	 * @param bool $needsRetype Whether to include a "retype" field
+	 * @param string $type One of:
+	 *   - 'login': (default) Used for logging in with an existing password.
+	 *   - 'create': Used for creating a new password (typically for a new account).
+	 *   - 'change': Used for changing an existing password.
+	 *   This will influence what labels are shown, and whether there is a password retype field.
 	 */
-	public function __construct( $needsRetype = false ) {
-		$this->needsRetype = $needsRetype;
+	public function __construct( $type = 'login' ) {
+		if ( !in_array( $type, [ self::TYPE_LOGIN, self::TYPE_CREATE, self::TYPE_CHANGE ], true ) ) {
+			throw new \InvalidArgumentException( 'Invalid type: ' . $type );
+		}
+		$this->type = $type;
 	}
 
 	public function getFieldInfo() {
+		// for password change it's nice to make extra clear that we are asking for the new password
+		$passwordLabel = $this->type === self::TYPE_CHANGE ? 'newpassword' : 'userlogin-yourpassword';
+		$retypeLabel = $this->type === self::TYPE_CHANGE ? 'retypenew' : 'yourpasswordagain';
+
 		$ret = [
 			'username' => [
 				'type' => 'string',
@@ -51,7 +67,7 @@ class PasswordAuthenticationRequest extends AuthenticationRequest {
 			],
 			'password' => [
 				'type' => 'password',
-				'label' => wfMessage( 'userlogin-yourpassword' ),
+				'label' => wfMessage( $passwordLabel ),
 				'help' => wfMessage( 'authmanager-password-help' ),
 			],
 		];
@@ -64,10 +80,10 @@ class PasswordAuthenticationRequest extends AuthenticationRequest {
 				break;
 		}
 
-		if ( $this->needsRetype ) {
+		if ( $this->type !== 'login' ) {
 			$ret['retype'] = [
 				'type' => 'password',
-				'label' => wfMessage( 'createacct-yourpasswordagain' ),
+				'label' => wfMessage( $retypeLabel ),
 				'help' => wfMessage( 'authmanager-retype-help' ),
 			];
 		}

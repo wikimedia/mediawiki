@@ -21,6 +21,8 @@
 
 namespace MediaWiki\Auth;
 
+use User;
+
 /**
  * A base class that implements some of the boilerplate for a SecondaryAuthenticationProvider
  *
@@ -83,5 +85,4 @@ abstract class AbstractSecondaryAuthenticationProvider extends AbstractAuthentic
 
 	public function autoCreatedAccount( $user ) {
 	}
-
 }

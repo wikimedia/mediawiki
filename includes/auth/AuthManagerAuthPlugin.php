@@ -104,8 +104,6 @@ class AuthManagerAuthPlugin extends \AuthPlugin {
 	}
 
 	public function allowPasswordChange() {
-		$need = 'PasswordAuthenticationRequest';
-
 		$reqs = AuthManager::singleton()->getAuthenticationRequests( AuthManager::ACTION_CHANGE );
 		foreach ( $reqs as $req ) {
 			if ( $req instanceof PasswordAuthenticationRequest ) {
