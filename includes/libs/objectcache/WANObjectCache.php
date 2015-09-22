@@ -418,11 +418,19 @@ class WANObjectCache {
 	 *
 	 * The simplest way to avoid stampedes for hot keys is to use
 	 * the 'lockTSE' option in $opts. If cache purges are needed, also:
-	 *   a) Pass $key into $checkKeys
-	 *   b) Use touchCheckKey( $key ) instead of delete( $key )
+	 *   - a) Pass $key into $checkKeys
+	 *   - b) Use touchCheckKey( $key ) instead of delete( $key )
 	 * Following this pattern lets the old cache be used until a
 	 * single thread updates it as needed. Also consider tweaking
 	 * the 'lowTTL' parameter.
+	 *
+	 * Source data entities might exists in a DB that uses snapshot isolation
+	 * (e.g. the default REPEATABLE-READ in innoDB). Even for mutable data, that
+	 * isolation can largely be maintained by doing the following:
+	 *   - a) Calling delete() on entity change *and* creation, before DB commit
+	 *   - b) Keeping transaction duration shorter than delete() hold-off TTL
+	 *   - c) Avoiding usage of the "lockTSE" setting
+	 * However, pre-snapshot values might still be seen due to delete() relay lag.
 	 *
 	 * Example usage:
 	 * @code
