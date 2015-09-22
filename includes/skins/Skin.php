@@ -730,7 +730,7 @@ abstract class Skin extends ContextSource {
 	 */
 	function showIPinHeader() {
 		global $wgShowIPinHeader;
-		return $wgShowIPinHeader && session_id() != '';
+		return $wgShowIPinHeader && MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent();
 	}
 
 	/**
