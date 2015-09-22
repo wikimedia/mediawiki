@@ -158,8 +158,8 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	}
 
 	public static function provideGetAuthenticationRequests() {
-		$arr1 = [ new PasswordAuthenticationRequest ];
-		$arr2 = [ new PasswordAuthenticationRequest( true ) ];
+		$arr1 = [ new PasswordAuthenticationRequest( 'login' ) ];
+		$arr2 = [ new PasswordAuthenticationRequest( 'create' ) ];
 		return [
 			[ AuthManager::ACTION_LOGIN, $arr1, true ],
 			[ AuthManager::ACTION_LOGIN, $arr1, false ],
@@ -175,7 +175,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	}
 
 	public function testAuthentication() {
-		$req = new PasswordAuthenticationRequest();
+		$req = new PasswordAuthenticationRequest( 'login' );
 		$reqs = [ PasswordAuthenticationRequest::class => $req ];
 
 		$plugin = $this->getMockBuilder( 'AuthPlugin' )
@@ -493,7 +493,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			$this->getMock( AuthenticationRequest::class )
 		);
 
-		$req = new PasswordAuthenticationRequest();
+		$req = new PasswordAuthenticationRequest( 'change' );
 		$req->username = 'foo';
 		$req->password = 'bar';
 
