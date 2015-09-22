@@ -25,7 +25,7 @@ use PHPUnit_Framework_Error_Notice;
 
 class AvroFormatterTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
 		if ( !class_exists( 'AvroStringIO' ) ) {
 			$this->markTestSkipped( 'Avro is required for the AvroFormatterTest' );
 		}
