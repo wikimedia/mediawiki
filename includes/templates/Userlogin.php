@@ -20,6 +20,8 @@
  *
  * @file
  * @ingroup Templates
+ * @deprecated Will be removed when AuthManager lands.
+ *   The login form will be generated via HTMLForm.
  */
 
 class UserloginTemplate extends BaseTemplate {
