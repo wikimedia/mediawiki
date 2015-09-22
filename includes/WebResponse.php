@@ -63,6 +63,15 @@ class WebResponse {
 	}
 
 	/**
+	 * Test if headers have been sent
+	 * @since 1.27
+	 * @return bool
+	 */
+	public function headersSent() {
+		return headers_sent();
+	}
+
+	/**
 	 * Set the browser cookie
 	 * @param string $name The name of the cookie.
 	 * @param string $value The value to be stored in the cookie.
@@ -177,6 +186,10 @@ class FauxResponse extends WebResponse {
 	 */
 	public function statusHeader( $code ) {
 		$this->code = intval( $code );
+	}
+
+	public function headersSent() {
+		return false;
 	}
 
 	/**
