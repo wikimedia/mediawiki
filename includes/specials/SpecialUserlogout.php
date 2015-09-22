@@ -44,6 +44,18 @@ class SpecialUserlogout extends UnlistedSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
+		// Make sure it's possible to log out
+		$session = MediaWiki\Session\SessionManager::getGlobalSession();
+		if ( !$session->canSetUser() ) {
+			throw new ErrorPageError(
+				'cannotlogoutnow-title',
+				'cannotlogoutnow-text',
+				array(
+					$session->getProvider()->describe( RequestContext::getMain()->getLanguage() )
+				)
+			);
+		}
+
 		$user = $this->getUser();
 		$oldName = $user->getName();
 		$user->logout();

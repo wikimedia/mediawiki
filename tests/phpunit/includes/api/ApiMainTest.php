@@ -97,7 +97,8 @@ class ApiMainTest extends ApiTestCase {
 		$request->setHeaders( $headers );
 		$request->response()->statusHeader( 200 ); // Why doesn't it default?
 
-		$api = new ApiMain( $request );
+		$context = $this->apiContext->newTestContext( $request, null );
+		$api = new ApiMain( $context );
 		$priv = TestingAccessWrapper::newFromObject( $api );
 		$priv->mInternalMode = false;
 
