@@ -52,8 +52,9 @@ class ChronologyProtector {
 		}
 		if ( !$this->initialized ) {
 			$this->initialized = true;
-			if ( isset( $_SESSION[__CLASS__] ) && is_array( $_SESSION[__CLASS__] ) ) {
-				$this->startupPositions = $_SESSION[__CLASS__];
+			$session = MediaWiki\Session\SessionManager::getGlobalSession();
+			if ( isset( $session[__CLASS__] ) && is_array( $session[__CLASS__] ) ) {
+				$this->startupPositions = $session[__CLASS__];
 			}
 		}
 		$masterName = $lb->getServerName( 0 );
@@ -73,7 +74,9 @@ class ChronologyProtector {
 	 * @return void
 	 */
 	public function shutdownLB( LoadBalancer $lb ) {
-		if ( session_id() == '' || $lb->getServerCount() <= 1 ) {
+		if ( !MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent() ||
+			$lb->getServerCount() <= 1
+		) {
 			return; // don't start a session; don't bother with non-replicated setups
 		}
 		$masterName = $lb->getServerName( 0 );
@@ -100,10 +103,13 @@ class ChronologyProtector {
 	 * @return void
 	 */
 	public function shutdown() {
-		if ( session_id() != '' && count( $this->shutdownPositions ) ) {
+		if ( MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent() &&
+			count( $this->shutdownPositions )
+		) {
 			wfDebug( __METHOD__ . ": saving master pos for " .
 				count( $this->shutdownPositions ) . " master(s)\n" );
-			$_SESSION[__CLASS__] = $this->shutdownPositions;
+			$session = MediaWiki\Session\SessionManager::getGlobalSession();
+			$session[__CLASS__] = $this->shutdownPositions;
 		}
 	}
 }

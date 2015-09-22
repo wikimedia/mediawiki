@@ -37,6 +37,13 @@ class RequestContextTest extends MediaWikiTestCase {
 	 * @covers RequestContext::importScopedSession
 	 */
 	public function testImportScopedSession() {
+		// Make sure session handling is started
+		if ( !MediaWiki\Session\PHPSessionHandler::isInstalled() ) {
+			MediaWiki\Session\PHPSessionHandler::install(
+				MediaWiki\Session\SessionManager::singleton()
+			);
+		}
+
 		$context = RequestContext::getMain();
 
 		$oInfo = $context->exportSession();
@@ -75,6 +82,11 @@ class RequestContextTest extends MediaWikiTestCase {
 			$sinfo['headers'],
 			$context->getRequest()->getAllHeaders(),
 			"Correct context headers."
+		);
+		$this->assertEquals(
+			$sinfo['sessionId'],
+			MediaWiki\Session\SessionManager::getGlobalSession()->getId(),
+			"Correct context session ID."
 		);
 		$this->assertEquals( $sinfo['sessionId'], session_id(), "Correct context session ID." );
 		$this->assertEquals( true, $context->getUser()->isLoggedIn(), "Correct context user." );
