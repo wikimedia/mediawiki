@@ -148,6 +148,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'dropTable', 'msg_resource_links' ),
 			array( 'dropTable', 'msg_resource' ),
 			array( 'addTable', 'bot_passwords', 'patch-bot_passwords.sql' ),
+			array( 'addTable', 'auth_blacklist', 'auth_blacklist.sql' ),
 		);
 	}
 

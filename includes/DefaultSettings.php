@@ -4431,6 +4431,9 @@ $wgPasswordPolicy = array(
  * - preauth: Array (keys ignored) of specifications for PreAuthenticationProviders
  * - primaryauth: Array (keys ignored) of specifications for PrimaryAuthenticationProviders
  * - secondaryauth: Array (keys ignored) of specifications for SecondaryAuthenticationProviders
+ * - preferredprimary: False or one of the keys of the primaryauth array; if set, visiting the
+ *   login page will automatically trigger a login attempt (this only makes sense for providers
+ *   which do not require user input). The login page will only be displayed if that provider fails.
  *
  * @since 1.27
  */
@@ -4473,6 +4476,7 @@ $wgAuthManagerConfig = array(
 			'class' => 'MediaWiki\\Auth\\ConfirmLinkSecondaryAuthenticationProvider',
 		),
 	),
+	'preferredprimary' => false,
 );
 
 /**

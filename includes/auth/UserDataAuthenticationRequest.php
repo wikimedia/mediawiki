@@ -53,6 +53,10 @@ class UserDataAuthenticationRequest extends AuthenticationRequest {
 			),
 		);
 
+		if ( !$config->get( 'EnableEmail' ) ) {
+			unset( $ret['email'] );
+		}
+
 		if ( in_array( 'realname', $config->get( 'HiddenPrefs' ), true ) ) {
 			unset( $ret['realname'] );
 		}
