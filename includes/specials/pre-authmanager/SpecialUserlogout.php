@@ -26,7 +26,7 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialUserlogout extends UnlistedSpecialPage {
+class SpecialUserlogoutPreAuthManager extends UnlistedSpecialPage {
 	function __construct() {
 		parent::__construct( 'Userlogout' );
 	}
