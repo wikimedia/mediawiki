@@ -1246,21 +1246,34 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Log the preceding request
-	 * @param int $time Time in seconds
+	 * @param float $time Time in seconds,
 	 */
 	protected function logRequest( $time ) {
 		$request = $this->getRequest();
-		$milliseconds = $time === null ? '?' : round( $time * 1000 );
+		$context = array(
+			'wikiId' => wfWikiId(),
+			'timestampMs' => round( microtime( true ) * 1000 ),
+			'server' => wfHostName(),
+			'method' => $request->getMethod(),
+			'username' => $this->getUser()->getName(),
+			'ip' => $request->getIP(),
+			'userAgent' => $this->getUserAgent(),
+			'requestMs' => $time * 1000,
+			'params' => array(),
+		);
+
 		$s = 'API' .
-			' ' . $request->getMethod() .
-			' ' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) .
-			' ' . $request->getIP() .
-			' T=' . $milliseconds . 'ms';
+			' ' . $context['method'] .
+			' ' .  wfUrlencode( str_replace( ' ', '_', $context['username'] ) )
+			' ' . $context['ip'] .
+			' T=' . ( $context['requestMs'] ?: 0 ) . 'ms';
 		foreach ( $this->getParamsUsed() as $name ) {
 			$value = $request->getVal( $name );
 			if ( $value === null ) {
 				continue;
 			}
+			$context['params'][$name] = substr( $value, 0, 256 );
+
 			$s .= ' ' . $name . '=';
 			if ( strlen( $value ) > 256 ) {
 				$encValue = $this->encodeRequestLogValue( substr( $value, 0, 256 ) );
@@ -1270,7 +1283,10 @@ class ApiMain extends ApiBase {
 			}
 		}
 		$s .= "\n";
+
+		// logging to both only for transition period
 		wfDebugLog( 'api', $s, 'private' );
+		wfDebugLog( 'ApiRequest', $s, 'private', $context );
 	}
 
 	/**
