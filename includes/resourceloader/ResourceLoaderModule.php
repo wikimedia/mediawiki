@@ -438,6 +438,30 @@ abstract class ResourceLoaderModule {
 		}
 	}
 
+	public static function placeholderize( Array $filePaths ) {
+		global $IP, $wgStyleDirectory, $wgExtensionDirectory;
+		$placeholders = array(
+			array( 'extDir', $wgExtensionDirectory ),
+			array( 'styleDir', $wgStyleDirectory ),
+			array( 'IP', $IP ),
+		);
+		return array_map( function ( $path ) use ( $placeholders ) {
+			foreach ( $placeholders as $placeholder ) {
+				if ( strpos( $path, $placeholder[0] ) === 0 ) {
+					return strtr( $path, array(
+						$placeholder[1] => "/:{$placeholder[0]}"
+					) );
+				}
+			}
+			return $path;
+		}, $filePaths );
+
+	}
+
+	protected function unplaceholderize( Array $filePaths ) {
+		global $IP;
+	}
+
 	/**
 	 * Get the last modification timestamp of the messages in this module for a given language.
 	 * @param string $lang Language code
