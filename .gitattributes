@@ -1,3 +1,4 @@
 *.sh eol=lf
 *.icc binary
 *.webp binary
+vendor/zordius/lightncandy/tests/example_helpers.php export-ignore
