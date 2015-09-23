@@ -397,7 +397,9 @@ abstract class ResourceLoaderModule {
 		);
 
 		if ( !is_null( $deps ) ) {
-			$this->fileDeps[$skin] = (array)FormatJson::decode( $deps, true );
+			$this->fileDeps[$skin] = ResourceLoaderModule::unplaceholderize(
+				(array)FormatJson::decode( $deps, true )
+			);
 		} else {
 			$this->fileDeps[$skin] = array();
 		}
@@ -426,6 +428,10 @@ abstract class ResourceLoaderModule {
 	 * @param array $localFileRefs List of files
 	 */
 	protected function saveFileDependencies( $skin, $localFileRefs ) {
+		// Normalise array
+		$localFileRefs = array_values( array_unique( $localFileRefs ) );
+		sort( $localFileRefs );
+
 		try {
 			// If the list has been modified since last time we cached it, update the cache
 			if ( $localFileRefs !== $this->getFileDependencies( $skin ) ) {
@@ -434,13 +440,73 @@ abstract class ResourceLoaderModule {
 					array( array( 'md_module', 'md_skin' ) ), array(
 						'md_module' => $this->getName(),
 						'md_skin' => $skin,
-						'md_deps' => FormatJson::encode( $localFileRefs ),
+						// Use placeholders to ghost entries when $IP changes (T111481)
+						'md_deps' => FormatJson::encode( ResourceLoaderModule::placeholderize( $localFileRefs ) ),
 					)
 				);
 			}
 		} catch ( Exception $e ) {
 			wfDebugLog( 'resourceloader', __METHOD__ . ": failed to update DB: $e" );
 		}
+	}
+
+	/**
+	 * Replace use of relevant directory paths with canonical placeholders.
+	 *
+	 * This is used to make file paths safe for storing in a database without the paths
+	 * becoming stale or incorrect when MediaWiki is moved or upgraded (T111481).
+	 *
+	 * @since 1.26
+	 * @param array $filePaths
+	 * @return array
+	 */
+	public static function placeholderize( Array $filePaths ) {
+		global $IP, $wgStyleDirectory, $wgExtensionDirectory;
+		$placeholders = array(
+			// Order is significant. From more specific to less specific.
+			array( '/:extensionDir', $wgExtensionDirectory ),
+			array( '/:styleDir', $wgStyleDirectory ),
+			array( '/:mwDir', $IP ),
+		);
+		return array_map( function ( $path ) use ( $placeholders ) {
+			foreach ( $placeholders as $placeholder ) {
+				if ( strpos( $path, $placeholder[1] ) === 0 ) {
+					// Return early, allow only one replacement.
+					return strtr( $path, array(
+						"{$placeholder[1]}" => $placeholder[0],
+					) );
+				}
+			}
+			return $path;
+		}, $filePaths );
+	}
+
+	/**
+	 * Replace directory placeholders with actual directory paths.
+	 *
+	 * @since 1.26
+	 * @param array $filePaths
+	 * @return array
+	 */
+	public static function unplaceholderize( Array $filePaths ) {
+		global $IP, $wgStyleDirectory, $wgExtensionDirectory;
+		$placeholders = array(
+			array( '/:extensionDir', $wgExtensionDirectory ),
+			array( '/:styleDir', $wgStyleDirectory ),
+			array( '/:mwDir', $IP ),
+		);
+		return array_map( function ( $path ) use ( $placeholders ) {
+			foreach ( $placeholders as $placeholder ) {
+				// Ensure match has trailing slash to avoid false positives
+				if ( strpos( $path, "{$placeholder[0]}/" ) === 0 ) {
+					// Return early, allow only one replacement.
+					return strtr( $path, array(
+						"{$placeholder[0]}/" => "{$placeholder[1]}/",
+					) );
+				}
+			}
+			return $path;
+		}, $filePaths );
 	}
 
 	/**
