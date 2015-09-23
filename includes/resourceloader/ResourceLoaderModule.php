@@ -442,6 +442,48 @@ abstract class ResourceLoaderModule {
 		}
 	}
 
+	public static function placeholderize( Array $filePaths ) {
+		global $IP, $wgStyleDirectory, $wgExtensionDirectory;
+		$placeholders = array(
+			// Order is significant. From more specific to less specific.
+			array( '/:extensionDir', $wgExtensionDirectory ),
+			array( '/:styleDir', $wgStyleDirectory ),
+			array( '/:mwDir', $IP ),
+		);
+		return array_map( function ( $path ) use ( $placeholders ) {
+			foreach ( $placeholders as $placeholder ) {
+				if ( strpos( $path, $placeholder[1] ) === 0 ) {
+					// Return early, allow only one replacement.
+					return strtr( $path, array(
+						"{$placeholder[1]}" => $placeholder[0],
+					) );
+				}
+			}
+			return $path;
+		}, $filePaths );
+	}
+
+	public static function unplaceholderize( Array $filePaths ) {
+		global $IP, $wgStyleDirectory, $wgExtensionDirectory;
+		$placeholders = array(
+			array( '/:extensionDir', $wgExtensionDirectory ),
+			array( '/:styleDir', $wgStyleDirectory ),
+			array( '/:mwDir', $IP ),
+		);
+		return array_map( function ( $path ) use ( $placeholders ) {
+			foreach ( $placeholders as $placeholder ) {
+				// Ensure match has trailing slash to avoid false positives
+				if ( strpos( $path, "{$placeholder[0]}/" ) === 0 ) {
+					// Return early, allow only one replacement.
+					return strtr( $path, array(
+						"{$placeholder[0]}/" => "{$placeholder[1]}/",
+					) );
+				}
+			}
+			return $path;
+		}, $filePaths );
+	}
+
 	/**
 	 * Get the last modification timestamp of the messages in this module for a given language.
 	 * @param string $lang Language code
