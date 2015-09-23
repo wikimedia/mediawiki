@@ -203,6 +203,8 @@ changes to languages because of Phabricator reports.
 * DeferredUpdates::addHTMLCacheUpdate() was removed.
 * The default name of the 'suppress' group page has been changed from
   'Project:Oversight' to 'Project:Suppress'.
+* (T84937) Free external links ("autolinked" urls) will now be terminated
+  by &nbsp; and HTML entity encodings of &nbsp, <, and >.
 
 == Compatibility ==
 
