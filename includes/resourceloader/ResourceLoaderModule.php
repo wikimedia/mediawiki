@@ -857,34 +857,15 @@ abstract class ResourceLoaderModule {
 	 * @return string Hash
 	 */
 	protected static function safeFileHash( $filePath ) {
-		static $cache;
+		static $hasher;
 
-		if ( !$cache ) {
-			$cache = ObjectCache::newAccelerator( CACHE_NONE );
+		if ( !$hasher ) {
+			$hasher = new FileContentsHasher;
 		}
 
 		MediaWiki\suppressWarnings();
-		$mtime = filemtime( $filePath );
+		$hash = $hasher->getFileContentHash( $filePath );
 		MediaWiki\restoreWarnings();
-		if ( !$mtime ) {
-			return '';
-		}
-
-		$cacheKey = wfGlobalCacheKey( 'resourceloader', __METHOD__, $filePath );
-		$cachedHash = $cache->get( $cacheKey );
-		if ( isset( $cachedHash['mtime'] ) && $cachedHash['mtime'] === $mtime ) {
-			return $cachedHash['hash'];
-		}
-
-		MediaWiki\suppressWarnings();
-		$contents = file_get_contents( $filePath );
-		MediaWiki\restoreWarnings();
-		if ( !$contents ) {
-			return '';
-		}
-
-		$hash = hash( 'md4', $contents );
-		$cache->set( $cacheKey, array( 'mtime' => $mtime, 'hash' => $hash ), 60 * 60 * 24 );
 
 		return $hash;
 	}
