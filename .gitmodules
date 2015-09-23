@@ -230,3 +230,7 @@
 	path = extensions/AdminLinks
 	url = https://github.com/wikimedia/mediawiki-extensions-AdminLinks.git
 	branch = REL1_25
+[submodule "extensions/SocialProfile"]
+	path = extensions/SocialProfile
+	url = https://github.com/wikimedia/mediawiki-extensions-SocialProfile.git
+	branch = REL1_25
