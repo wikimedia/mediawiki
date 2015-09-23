@@ -201,6 +201,8 @@ changes to languages because of Phabricator reports.
 * DatabaseBase::errorCount() was removed (unused).
 * $wgDeferredUpdateList was removed.
 * DeferredUpdates::addHTMLCacheUpdate() was removed.
+* The default name of the 'suppress' group page has been changed from
+  'Project:Oversight' to 'Project:Suppress'.
 
 == Compatibility ==
 
