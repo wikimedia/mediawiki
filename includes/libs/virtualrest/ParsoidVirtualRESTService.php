@@ -34,7 +34,7 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 	 *   * body: array( 'wikitext' => ... ) or array( 'wikitext' => ..., 'bodyOnly' => true/false )
 	 *   * $title is optional
 	 *   * $revision is optional
-     *
+	 *
 	 * There are also deprecated "v1" requests; see onParsoid1Request
 	 * for details.
 	 * @param array $params Key/value map
