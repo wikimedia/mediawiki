@@ -438,6 +438,8 @@ class CategoryViewer extends ContextSource {
 		$r = '';
 		$rescnt = $this->showGallery ? $this->gallery->count() : count( $this->imgsNoGallery );
 		if ( $rescnt > 0 ) {
+			// Load gallery styles for category pages with images, too. Bug - T113511
+			$this->getOutput()->addModuleStyles( 'mediawiki.page.gallery.styles' );
 			$dbcnt = $this->cat->getFileCount();
 			$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'file' );
 
