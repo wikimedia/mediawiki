@@ -416,8 +416,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$context
 		);
 		// Collect referenced files
-		$this->localFileRefs = array_unique( $this->localFileRefs );
-		$this->saveFileDependencies( $context->getSkin(), $this->localFileRefs );
+		$this->saveFileDependencies( $context, $this->localFileRefs );
 
 		return $styles;
 	}
@@ -561,7 +560,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 		$files = array_map( array( $this, 'getLocalPath' ), $files );
 		// File deps need to be treated separately because they're already prefixed
-		$files = array_merge( $files, $this->getFileDependencies( $context->getSkin() ) );
+		$files = array_merge( $files, $this->getFileDependencies( $context ) );
 		// Filter out any duplicates from getFileDependencies() and others.
 		// Most commonly introduced by compileLessFile(), which always includes the
 		// entry point Less file we already know about.
