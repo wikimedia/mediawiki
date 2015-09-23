@@ -143,8 +143,12 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		}
 		$miser_ns = null;
 		if ( $params['namespace'] !== null ) {
-			if ( empty( $settings['from_namespace'] ) && $this->getConfig()->get( 'MiserMode' ) ) {
-				$miser_ns = $params['namespace'];
+			if ( empty( $settings['from_namespace'] ) ) {
+				if ( $this->getConfig()->get( 'MiserMode' ) ) {
+					$miser_ns = $params['namespace'];
+				} else {
+					$this->addWhereFld( 'page_namespace', $params['namespace'] );
+				}
 			} else {
 				$this->addWhereFld( "{$p}_from_namespace", $params['namespace'] );
 				if ( !empty( $settings['from_namespace'] ) && count( $params['namespace'] ) > 1 ) {
