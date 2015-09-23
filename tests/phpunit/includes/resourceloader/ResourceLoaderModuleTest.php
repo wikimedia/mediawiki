@@ -91,4 +91,39 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 			'Leave valid scripts as-is'
 		);
 	}
+
+	/**
+	 * @covers ResourceLoaderModule::placeholderize
+	 * @covers ResourceLoaderModule::unplaceholderize
+	 */
+	public function testPlaceholderize() {
+		$this->setMwGlobals( array(
+			'IP' => '/srv/example/mediawiki/core',
+			'wgExtensionDirectory' => '/srv/example/mediawiki/core/extensions',
+			// Support directories outside of $IP.
+			'wgStyleDirectory' => '/srv/example/mediawiki/skins'
+		) );
+		$raw = array(
+				'/srv/example/mediawiki/core/resources/foo.js',
+				'/srv/example/mediawiki/core/extensions/Example/modules/bar.js',
+				'/srv/example/mediawiki/skins/Example/baz.css',
+				'/srv/example/mediawiki/skins/Example/images/quux.png',
+		);
+		$canonical = array(
+				'/:mwDir/resources/foo.js',
+				'/:extensionDir/Example/modules/bar.js',
+				'/:styleDir/Example/baz.css',
+				'/:styleDir/Example/images/quux.png',
+		);
+		$this->assertEquals(
+			ResourceLoaderModule::placeholderize( $raw ),
+			$canonical,
+			'Insert placeholders'
+		);
+		$this->assertEquals(
+			ResourceLoaderModule::unplaceholderize( $canonical ),
+			$raw,
+			'Substitute placeholders'
+		);
+	}
 }

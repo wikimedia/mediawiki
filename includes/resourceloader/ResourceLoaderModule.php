@@ -397,7 +397,9 @@ abstract class ResourceLoaderModule {
 		);
 
 		if ( !is_null( $deps ) ) {
-			$this->fileDeps[$skin] = (array)FormatJson::decode( $deps, true );
+			$this->fileDeps[$skin] = self::expandRelativePaths(
+				(array)FormatJson::decode( $deps, true )
+			);
 		} else {
 			$this->fileDeps[$skin] = array();
 		}
@@ -426,6 +428,10 @@ abstract class ResourceLoaderModule {
 	 * @param array $localFileRefs List of files
 	 */
 	protected function saveFileDependencies( $skin, $localFileRefs ) {
+		// Normalise array
+		$localFileRefs = array_values( array_unique( $localFileRefs ) );
+		sort( $localFileRefs );
+
 		try {
 			// If the list has been modified since last time we cached it, update the cache
 			if ( $localFileRefs !== $this->getFileDependencies( $skin ) ) {
@@ -434,13 +440,45 @@ abstract class ResourceLoaderModule {
 					array( array( 'md_module', 'md_skin' ) ), array(
 						'md_module' => $this->getName(),
 						'md_skin' => $skin,
-						'md_deps' => FormatJson::encode( $localFileRefs ),
+						// Use relative paths to avoid ghost entries when $IP changes (T111481)
+						'md_deps' => FormatJson::encode( self::getRelativePaths( $localFileRefs ) ),
 					)
 				);
 			}
 		} catch ( Exception $e ) {
 			wfDebugLog( 'resourceloader', __METHOD__ . ": failed to update DB: $e" );
 		}
+	}
+
+	/**
+	 * Make file paths relative to MediaWiki directory.
+	 *
+	 * This is used to make file paths safe for storing in a database without the paths
+	 * becoming stale or incorrect when MediaWiki is moved or upgraded (T111481).
+	 *
+	 * @since 1.26
+	 * @param array $filePaths
+	 * @return array
+	 */
+	protected static function getRelativePaths( Array $filePaths ) {
+		return array_map( function ( $path ) {
+			global $IP;
+			return RelPath\getRelativePath( $path, $IP );
+		}, $filePaths );
+	}
+
+	/**
+	 * Expand  directories relative to $IP.
+	 *
+	 * @since 1.26
+	 * @param array $filePaths
+	 * @return array
+	 */
+	protected static function expandRelativePaths( Array $filePaths ) {
+		return array_map( function ( $path ) {
+			global $IP;
+			return RelPath\joinPath( $IP, $path );
+		}, $filePaths );
 	}
 
 	/**
