@@ -995,7 +995,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 		$css = $compiler->parseFile( $fileName )->getCss();
 		$files = $compiler->AllParsedFiles();
-		$this->localFileRefs += $files;
+		$this->localFileRefs = array_merge( $this->localFileRefs, array_values( $files ) );
 
 		$cache->set( $cacheKey, array(
 			'css'   => $css,
