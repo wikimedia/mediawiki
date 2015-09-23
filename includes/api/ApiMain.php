@@ -1289,31 +1289,45 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Log the preceding request
-	 * @param int $time Time in seconds
+	 * @param float $time Time in seconds
 	 */
 	protected function logRequest( $time ) {
 		$request = $this->getRequest();
-		$milliseconds = $time === null ? '?' : round( $time * 1000 );
-		$s = 'API' .
-			' ' . $request->getMethod() .
-			' ' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) .
-			' ' . $request->getIP() .
-			' T=' . $milliseconds . 'ms';
+		$logCtx = array(
+			'dt' => date( 'c' ),
+			'client_ip' => $request->getIP(),
+			'user_agent' => $this->getUserAgent(),
+			'wiki' => wfWikiId(),
+			'time_backend_ms' => round( $time * 1000 ),
+			'params' => array(),
+		);
+
+		// Construct space separated message for 'api' log channel
+		$msg = "API {$request->getMethod()} " .
+			wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) .
+			" {$logCtx['client_ip']} " .
+			"T={$logCtx['time_backend_ms']}ms";
+
 		foreach ( $this->getParamsUsed() as $name ) {
 			$value = $request->getVal( $name );
 			if ( $value === null ) {
 				continue;
 			}
-			$s .= ' ' . $name . '=';
+
 			if ( strlen( $value ) > 256 ) {
-				$encValue = $this->encodeRequestLogValue( substr( $value, 0, 256 ) );
-				$s .= $encValue . '[...]';
+				$value = substr( $value, 0, 256 );
+				$encValue = $this->encodeRequestLogValue( $value ) . '[...]';
 			} else {
-				$s .= $this->encodeRequestLogValue( $value );
+				$encValue = $this->encodeRequestLogValue( $value );
 			}
+
+			$logCtx['params'][$name] = $value;
+			$msg .= " {$name}={$encValue}";
 		}
-		$s .= "\n";
-		wfDebugLog( 'api', $s, 'private' );
+
+		wfDebugLog( 'api', $msg, 'private' );
+		// ApiRequest channel is for structured data consumers
+		wfDebugLog( 'ApiRequest', '', 'private', $logCtx );
 	}
 
 	/**
