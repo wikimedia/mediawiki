@@ -1164,6 +1164,7 @@ return array(
 			'upload-dialog-button-save',
 			'upload-dialog-button-upload',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.Upload.BookletLayout' => array(
 		'scripts' => array(
@@ -1183,6 +1184,7 @@ return array(
 			'upload-dialog-label-usage-title',
 			'upload-dialog-label-usage-filename',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.toc' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.toc.js',
