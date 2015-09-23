@@ -214,3 +214,19 @@
 	path = extensions/DPLForum
 	url = https://github.com/wikimedia/mediawiki-extensions-DPLForum.git
 	branch = REL1_25
+[submodule "extensions/Tabs"]
+	path = extensions/Tabs
+	url = https://github.com/wikimedia/mediawiki-extensions-Tabs.git
+	branch = master
+[submodule "extensions/Tabber"]
+	path = extensions/Tabber
+	url = https://github.com/wikimedia/mediawiki-extensions-Tabber.git
+	branch = REL1_25
+[submodule "extensions/Poem"]
+	path = extensions/Poem
+	url = https://github.com/wikimedia/mediawiki-extensions-Poem.git
+	branch = REL1_25
+[submodule "extensions/AdminLinks"]
+	path = extensions/AdminLinks
+	url = https://github.com/wikimedia/mediawiki-extensions-AdminLinks.git
+	branch = REL1_25
