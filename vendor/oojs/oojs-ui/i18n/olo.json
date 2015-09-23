@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mashoi7"
+		]
+	},
+	"ooui-toolbar-more": "Enämbi",
+	"ooui-toolgroup-expand": "Enämbi",
+	"ooui-toolgroup-collapse": "Vähembi",
+	"ooui-dialog-process-retry": "Opi vie",
+	"ooui-dialog-process-continue": "Jatka",
+	"ooui-selectfile-button-select": "Valliče failu"
+}

@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Calak",
+			"Muhammed taha",
+			"Serwan",
+			"Pirehelokan"
+		]
+	},
+	"ooui-toolbar-more": "زیاتر",
+	"ooui-toolgroup-expand": "زیاتر",
+	"ooui-toolgroup-collapse": "کەمتر",
+	"ooui-dialog-message-accept": "باشە",
+	"ooui-dialog-message-reject": "پاشگەزبوونەوە",
+	"ooui-dialog-process-error": "ھەڵەیەک ڕووی داوە",
+	"ooui-dialog-process-dismiss": "لێگەڕان",
+	"ooui-dialog-process-retry": "دیسان ھەوڵ بدە",
+	"ooui-dialog-process-continue": "درێژە بدە",
+	"ooui-selectfile-placeholder": "ھیچ فایلێک ھەڵنەبژێراوە"
+}

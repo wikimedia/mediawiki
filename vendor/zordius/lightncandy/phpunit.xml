@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit 
+ backupGlobals="false"
+ colors="true"
+ convertNoticesToExceptions="false"
+>
+ <filter>
+  <whitelist>
+   <directory suffix=".php">./src</directory>
+  </whitelist>
+ </filter>
+
+ <logging>
+  <log type="coverage-html" target="build/result/coverage" title="lightncandy" charset="UTF-8" />
+  <log type="coverage-text" target="php://stdout" />
+ </logging>
+
+ <testsuites>
+  <testsuite name="LightnCandy Test Suite">
+   <directory>./tests/</directory>
+  </testsuite>
+ </testsuites>
+</phpunit>

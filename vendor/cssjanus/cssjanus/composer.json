@@ -1,0 +1,24 @@
+{
+	"name": "cssjanus/cssjanus",
+	"description": "Convert CSS stylesheets between left-to-right and right-to-left.",
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/cssjanus/php-cssjanus"
+		}
+	],
+	"license": "Apache-2.0",
+	"autoload": {
+		"psr-0": {
+			"": "src/"
+		}
+	},
+	"require": {
+		"php": ">=5.3.3"
+	},
+	"require-dev": {
+		"jakub-onderka/php-parallel-lint": "0.8.*",
+		"phpunit/phpunit": "3.7.*",
+		"squizlabs/php_codesniffer": "1.*"
+	}
+}

@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gleki",
+			"NoiX180",
+			"Pras",
+			"Jadinegara"
+		]
+	},
+	"ooui-outline-control-move-down": "Pindhahaken butir mangandhap",
+	"ooui-outline-control-move-up": "Pindhah kara mêndhuwur",
+	"ooui-outline-control-remove": "Busak kara",
+	"ooui-toolbar-more": "Mênèh",
+	"ooui-toolgroup-expand": "Mênèh",
+	"ooui-toolgroup-collapse": "Suda",
+	"ooui-dialog-message-accept": "Oké",
+	"ooui-dialog-message-reject": "Batal",
+	"ooui-dialog-process-error": "Ana sing klèru",
+	"ooui-dialog-process-dismiss": "Tutup",
+	"ooui-dialog-process-retry": "Jajal manèh",
+	"ooui-dialog-process-continue": "Tutug",
+	"ooui-selectfile-not-supported": "Pilihan bêrkas ora disokong",
+	"ooui-selectfile-placeholder": "Ora ana bêrkas sing kapilih"
+}

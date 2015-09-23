@@ -1,0 +1,24 @@
+{
+    "name":             "wikimedia/assert",
+    "description":      "Provides runtime assertions",
+    "keywords":         ["PHP", "QA", "assert", "assertions", "precondition", "postcondition"],
+    "homepage":         "https://github.com/wmde/Assert",
+    "license":          "MIT",
+    "authors": [
+        {
+            "name":         "Daniel Kinzler"
+        }
+    ],
+
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "Wikimedia\\Assert\\": "src/",
+            "Wikimedia\\Assert\\Test\\": "tests/phpunit/"
+        }
+    }
+
+}

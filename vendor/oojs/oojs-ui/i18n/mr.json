@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kaajawa",
+			"Mahitgar",
+			"Praju23",
+			"V.narsikar",
+			"Ydyashad",
+			"संतोष दहिवळ",
+			"NehalDaveND",
+			"Sau6402"
+		]
+	},
+	"ooui-outline-control-move-down": "घटक (आयटम) खाली सरकवा",
+	"ooui-outline-control-move-up": "घटक (आयटम) वर सरकवा",
+	"ooui-toolbar-more": "अधिक",
+	"ooui-toolgroup-expand": "अधिक",
+	"ooui-dialog-message-accept": "ठिक आहे",
+	"ooui-dialog-message-reject": "रद्द करा",
+	"ooui-dialog-process-dismiss": "रद्द करा",
+	"ooui-dialog-process-continue": "चालू ठेवा"
+}

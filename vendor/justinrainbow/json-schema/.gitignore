@@ -1,0 +1,9 @@
+/vendor
+/bin
+!/bin/validate-json
+coverage
+.buildpath
+.project
+.settings
+composer.lock
+docs-api

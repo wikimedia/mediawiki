@@ -1,0 +1,242 @@
+body {
+	font-size: 0.8em;
+	font-family: sans-serif;
+}
+
+/* Layout */
+
+.oo-ui-demo-menu > .oo-ui-widget {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 1em;
+}
+
+.oo-ui-demo-menu .oo-ui-demo-pageDropdown {
+	width: 10em;
+}
+
+.oo-ui-demo {
+	max-width: 62.5em;
+	margin: 0 auto;
+}
+
+.oo-ui-demo-container {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+@media (max-width: 750px) {
+	.oo-ui-demo-menu {
+		margin-bottom: 1em;
+	}
+	.oo-ui-demo-container {
+		padding: 1em 2em;
+	}
+}
+
+@media (min-width: 751px) {
+	.oo-ui-demo-menu {
+		margin-bottom: 2em;
+	}
+	.oo-ui-demo-container {
+		padding: 2em 4em;
+	}
+}
+
+/* Toolbars demo */
+
+.oo-ui-demo-toolbars {
+	padding: 0;
+	margin-bottom: 2em;
+}
+
+.oo-ui-demo-toolbars-contents {
+	padding: 2em;
+	min-height: 100px;
+}
+
+/* Icons demo */
+
+.oo-ui-demo-icons .oo-ui-buttonSelectWidget {
+	margin-bottom: 2em;
+}
+
+.oo-ui-demo-icons .oo-ui-fieldLayout {
+	display: inline-block;
+	margin-bottom: 0;
+}
+
+.oo-ui-demo-icons .oo-ui-fieldLayout .oo-ui-labelElement-label {
+	display: none;
+}
+
+.oo-ui-demo-icons .oo-ui-fieldLayout .oo-ui-buttonElement-button {
+	margin: 1em 1em 1em 0;
+	width: 12em;
+	opacity: 0.8;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.oo-ui-demo-icons .oo-ui-fieldLayout .oo-ui-buttonElement-button .oo-ui-labelElement-label {
+	text-transform: capitalize;
+	display: inline !important;
+}
+
+.oo-ui-demo-icons .oo-ui-fieldLayout .oo-ui-buttonElement-button:hover {
+	opacity: 1;
+}
+
+/* Widgets demo */
+
+.oo-ui-horizontalLayout > .oo-ui-textInputWidget,
+.oo-ui-horizontalLayout > .oo-ui-dropdownInputWidget {
+	max-width: 10em;
+}
+
+/* Console */
+
+.oo-ui-demo-console {
+	clear: both;
+	position: relative;
+	border: 1px solid transparent;
+	margin-bottom: -2px;
+	line-height: 1.4;
+}
+
+.oo-ui-demo-console-expanded {
+	width: 100%;
+	border-color: #aaa;
+	margin: 0.5em 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.oo-ui-demo-console-toggle {
+	float: right;
+	margin-top: -2em;
+	margin-right: -2em;
+	cursor: pointer;
+}
+
+.oo-ui-demo-console-expanded .oo-ui-demo-console-toggle {
+	margin-top: -2.5em;
+}
+
+.oo-ui-demo-console-toggle::after {
+	position: relative;
+	display: inline-block;
+	width: 1.6em;
+	background: #f9f9f9;
+	border-radius: 50%;
+	line-height: 1.6em;
+	color: #999;
+	text-align: center;
+	content: "→";
+}
+
+.oo-ui-demo-console-toggle:hover::after,
+.oo-ui-demo-console-expanded .oo-ui-demo-console-toggle::after {
+	background: #eee;
+	color: #333;
+}
+
+.oo-ui-demo-console-expanded .oo-ui-demo-console-toggle::after {
+	content: "↑";
+}
+
+.oo-ui-demo-console-collapsed .oo-ui-demo-console-log,
+.oo-ui-demo-console-collapsed .oo-ui-demo-console-label,
+.oo-ui-demo-console-collapsed .oo-ui-demo-console-submit {
+	display: none;
+}
+
+.oo-ui-demo-console-log {
+	border: 1px solid #eee;
+	border-width: 0 0 1px 0;
+	max-height: 5em;
+	overflow: auto;
+}
+
+.oo-ui-demo-console-log-line {
+	position: relative;
+	padding-left: 20px;
+}
+
+.oo-ui-demo-console-log-line-input {
+	font-style: italic;
+	color: #555;
+}
+
+.oo-ui-demo-console-log-line-input::before {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 20px;
+	text-align: center;
+	bottom: 0;
+	content: "→";
+}
+
+.oo-ui-demo-console-log-line-error {
+	color: red;
+}
+
+.oo-ui-demo-console-label {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-right: -20px;
+	cursor: pointer;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.oo-ui-demo-console-label::before {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 20px;
+	text-align: center;
+	content: '→';
+	color: blue;
+}
+
+.oo-ui-demo-console-input {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	width: 100%;
+}
+
+.oo-ui-demo-console-input:focus {
+	outline: 0;
+}
+
+.oo-ui-demo-console-submit {
+	display: inline-block;
+	width: 20px;
+	line-height: 1.6em;
+	text-align: center;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background: #f9f9f9;
+	color: #888;
+	cursor: pointer;
+}
+
+.oo-ui-demo-console-submit:hover {
+	background: #eee;
+	color: #333;
+}

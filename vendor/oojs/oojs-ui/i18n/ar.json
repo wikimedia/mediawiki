@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ciphers",
+			"Claw eg",
+			"Elfalem",
+			"Jdforrester",
+			"Mido",
+			"OsamaK",
+			"زكريا",
+			"مشعل الحربي",
+			"ترجمان05",
+			"Abanima",
+			"محمد أحمد عبد الفتاح",
+			"Hiba Alshawi"
+		]
+	},
+	"ooui-outline-control-move-down": "انقل العنصر للأسفل",
+	"ooui-outline-control-move-up": "انقل العنصر للأعلى",
+	"ooui-outline-control-remove": "أزل العنصر",
+	"ooui-toolbar-more": "مزيد",
+	"ooui-toolgroup-expand": "مزيد",
+	"ooui-toolgroup-collapse": "أقل",
+	"ooui-dialog-message-accept": "موافق",
+	"ooui-dialog-message-reject": "ألغ",
+	"ooui-dialog-process-error": "حدث خطأ",
+	"ooui-dialog-process-dismiss": "أغلق",
+	"ooui-dialog-process-retry": "حاول مرة أخرى",
+	"ooui-dialog-process-continue": "استمر",
+	"ooui-selectfile-button-select": "أختر ملف",
+	"ooui-selectfile-not-supported": "تحديد الملفات غير مدعوم",
+	"ooui-selectfile-placeholder": "لم يختر أي ملف",
+	"ooui-selectfile-dragdrop-placeholder": "ترك ملف هنا"
+}

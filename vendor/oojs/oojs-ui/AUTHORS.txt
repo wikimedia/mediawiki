@@ -1,0 +1,35 @@
+Principal Authors (major contributors, alphabetically)
+
+Bartosz Dziewoński <matma.rex@gmail.com>
+Ed Sanders <esanders@wikimedia.org>
+James D. Forrester <jforrester@wikimedia.org>
+Kirsten Menger-Anderson <kmenger@wikimedia.org>
+Roan Kattouw <roan@wikimedia.org>
+Rob Moen <rmoen@wikimedia.org>
+Timo Tijhof <timo@wikimedia.org>
+Trevor Parscal <trevor@wikimedia.org>
+
+Patch Contributors (minor contributors, alphabetically)
+
+Alex Monk <krenair@wikimedia.org>
+Amir E. Aharoni <aaharoni@wikimedia.org>
+Antoine Musso <hashar@free.fr>
+Derk-Jan Hartman <hartman.wiki@gmail.com>
+eranroz <eranroz89@gmail.com>
+Erik Moeller <erik@wikimedia.org>
+Erick Guan <fantasticfears@gmail.com>
+Gilles Dubuc <gdubuc@wikimedia.org>
+Inez Korczyński <inez@wikia-inc.com>
+Juliusz Gonera <jgonera@wikimedia.org>
+Kunal Mehta <legoktm@gmail.com>
+Kyle Florence <kflorence@wikia-inc.com>
+May Tee-Galloway <mgalloway@wikimedia.org>
+Mr. Stradivarius <misterstrad@gmail.com>
+Moriel Schottlender <moriel@gmail.com>
+Niklas Laxström <nlaxstrom@wikimedia.org>
+Ricordisamoa <ricordisamoa@openmailbox.org>
+rillke <rillke@wikipedia.de>
+Ryan Kaldari <rkaldari@wikimedia.org>
+Sam Reed <reedy@wikimedia.org>
+Sucheta Ghoshal <sghoshal@wikimedia.org>
+Željko Filipin <zeljko.filipin@gmail.com>

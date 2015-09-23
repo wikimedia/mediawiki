@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"ooui-outline-control-move-down": "Displaciar elemento in basso",
+	"ooui-outline-control-move-up": "Displaciar elemento in alto",
+	"ooui-outline-control-remove": "Remover elemento",
+	"ooui-toolbar-more": "Plus",
+	"ooui-dialog-message-accept": "OK",
+	"ooui-dialog-message-reject": "Cancellar",
+	"ooui-dialog-process-error": "Qualcosa ha vadite mal",
+	"ooui-dialog-process-dismiss": "Clauder",
+	"ooui-dialog-process-retry": "Reprobar"
+}

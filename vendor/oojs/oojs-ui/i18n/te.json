@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Arjunaraoc",
+			"Jayarathina",
+			"Sank",
+			"Shanmugamp7",
+			"Veeven",
+			"Visdaviva",
+			"மதனாஹரன்"
+		]
+	},
+	"ooui-toolbar-more": "మరిన్ని",
+	"ooui-toolgroup-expand": "మరిన్ని",
+	"ooui-toolgroup-collapse": "కొన్ని",
+	"ooui-dialog-message-accept": "సరే",
+	"ooui-dialog-message-reject": "రద్దుచేయి",
+	"ooui-dialog-process-error": "ఏదో పొరపాటు జరిగింది",
+	"ooui-dialog-process-dismiss": "రద్దుచేయి",
+	"ooui-dialog-process-retry": "మళ్ళీ ప్రయత్నించు",
+	"ooui-dialog-process-continue": "కొనసాగించు"
+}

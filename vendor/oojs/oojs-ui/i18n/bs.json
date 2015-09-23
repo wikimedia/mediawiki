@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"DzWiki",
+			"Semso98"
+		]
+	},
+	"ooui-outline-control-move-down": "Premjesti stavku dolje",
+	"ooui-outline-control-move-up": "Premjesti stavku gore",
+	"ooui-outline-control-remove": "Ukloni stavku",
+	"ooui-toolbar-more": "Više",
+	"ooui-toolgroup-expand": "Više",
+	"ooui-toolgroup-collapse": "Manje",
+	"ooui-dialog-message-accept": "U redu",
+	"ooui-dialog-message-reject": "Otkaži",
+	"ooui-dialog-process-error": "Nešto je pošlo naopako",
+	"ooui-dialog-process-dismiss": "Odbaci",
+	"ooui-dialog-process-retry": "Pokušajte ponovo",
+	"ooui-dialog-process-continue": "Nastavi"
+}

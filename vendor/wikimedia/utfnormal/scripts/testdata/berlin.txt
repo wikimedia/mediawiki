@@ -1,0 +1,454 @@
+''Dieser Artikel beschäftigt sich mit Berlin, der Hauptstadt Deutschlands. Andere Namensträger finden sich unter [[Berlin (Begriffsklärung)]].''
+----
+{| border="0" cellpadding="2" cellspacing="1" style="float:right; empty-cells:show; margin-left:1em; margin-bottom:0.5em; background:#FFDEAD;"
+|+<font size="+1">'''Land Berlin'''</font><br />
+! colspan="2" bgcolor="#FFDEAD" | Landes- und Dienstflagge
+|-bgcolor="#FFFFFF"
+| colspan="2" align="center" bgcolor="#EFEFEF" |[[bild:Flagge_Berlin.png|150px|Landesflagge Berlins]] [[bild:Dienstflagge Berlin.png|150px|Dienstflagge des Landes Berlin]]<br />
+Landes- und Dienstflagge des Landes Berlin
+|- bgcolor="#FFDEAD"
+! Stadtwappen !! Karte
+|-bgcolor="#FFFFFF"
+! align="center" | [[Bild:Berlin Stadtwappen.png|center|140px|Wappen der Stadt Berlin]] || [[Bild:Karte berlin in deutschland.png|center|140px|Karte des Landes Berlin in Deutschland]]
+|-
+!colspan="2" bgcolor="#ffdead" | Basisdaten
+|-bgcolor="#FFFFFF"
+|[[Fläche]]: || [[Größenordnung (Fläche)|891,69 km²]]
+|-bgcolor="#FFFFFF"
+|[[Einwohner]]: || 3.388.477 <small>(12/2003)</small>
+|-bgcolor="#FFFFFF"
+|[[Bevölkerungsdichte]]: || 3.800 Einwohner/km²
+|-bgcolor="#FFFFFF"
+|Schulden: || 15.906 € pro Einwohner <br />''<small>(April 2004) [http://www.statistik-berlin.de/statistiken/oefffinanzen/schulden.htm]</small>''
+|-bgcolor="#FFFFFF"
+|Schulden gesamt: || 53,9 Mrd. € ''<small>(April 2004) [http://www.steuerzahler-berlin.de/]</small>''
+|-bgcolor="#FFFFFF"
+|[[Höhe]]: || 34 m ü. [[Normalnull|NN]]
+|-bgcolor="#FFFFFF"
+|[[Postleitzahl]]en: || 10001-14199
+|-bgcolor="#FFFFFF"
+|[[Telefonvorwahl|Vorwahlen]]: || 030
+|-bgcolor="#FFFFFF"
+|td valign="top" | [[Geografische Lage]]: || 52°&nbsp;31′ n.Br. <br />13°&nbsp;24′ ö.L.
+|-bgcolor="#FFFFFF"
+|[[KFZ-Kennzeichen]]: || <tt>B</tt>
+|-bgcolor="#FFFFFF"
+|[[Amtlicher Gemeindeschlüssel|Gemeindeschlüssel]]: || 11 1 00 000
+|-bgcolor="#FFFFFF"
+|Gliederung: || [[Orte in Berlin|12 Bezirke, 90 Stadtteile]]
+|-bgcolor="#FFFFFF"
+|[[ISO 3166-2:DE|ISO 3166-2]]: || <tt>DE-BE</tt>
+|-bgcolor="#FFFFFF"
+|Webseite: || http://www.berlin.de
+|-
+!colspan="2" bgcolor="#ffdead" | Politik
+|-bgcolor="#FFFFFF"
+|Reg. [[Bürgermeister]]: || [[Klaus Wowereit]] ([[Sozialdemokratische Partei Deutschlands|SPD]])
+|-bgcolor="#FFFFFF"
+|Reg. [[Politische Partei|Parteien]]: || [[Sozialdemokratische Partei Deutschlands|SPD]] und [[PDS]]
+|-bgcolor="#FFFFFF"
+|td valign="top" | [[Sitzverteilung in den deutschen Landesparlamenten|Sitzverteilung im<br />Abgeordnetenhaus]]<br />(141 Sitze): || td valign="top" | [[Sozialdemokratische Partei Deutschlands|SPD]] 44<br />[[CDU]] 35<br />[[PDS]] 33<br />[[FDP (Deutschland)|FDP]] 15<br />[[Bündnis 90/Die Grünen|B90/Grüne]] 14
+|-bgcolor="#FFFFFF"
+|letzte Wahl: || [[21. Oktober]] [[2001]]
+|-bgcolor="#FFFFFF"
+|nächste Wahl: || [[2006]]
+|-
+! colspan="2" bgcolor="#ffdead" | Parlamentarische Vertretung
+|-bgcolor="#FFFFFF"
+| Stimmen im [[Bundesrat (Deutschland)|Bundesrat]]: || 4
+|}
+'''Berlin''' ist als [[Stadtstaat]] ein [[Bundesland (Deutschland)|Land]] in der [[Bundesrepublik Deutschland]] und die größte Stadt Deutschlands: sie ist die bevölkerungsreichste Stadt ([[2003]]: 3.388.477 Einwohner) und mit einer Fläche von 89.169 ha auch die [[Liste der flächengrößten Städte Deutschlands|flächengrößte]] Stadt Deutschlands.
+
+Seit [[1990]] ist '''Berlin''' die [[Bundeshauptstadt]] der [[Bundesrepublik Deutschland]] nach der [[Deutsche Wiedervereinigung|Wiedervereinigung]]. Nach dem Fall der [[Berliner Mauer]] wuchs Berlin mit dem Umland zusammen, zur [[Megastadt]] der [[Metropolregion Berlin/Brandenburg]].
+
+==Allgemeines==
+Das Land Berlin ist gänzlich vom Land [[Brandenburg]] umgeben und liegt im Osten Deutschlands, etwa 70 km westlich der [[Polen|polnischen]] Grenze. Die Stadt ist einer der [[Ballungsgebiet|Verdichtungsräume]] der Bundesrepublik. [[1996]] fand eine Volksabstimmung über eine Länderfusion mit Brandenburg statt, welche jedoch scheiterte. Da man trotz dieses Ergebnisses auf politischer Seite weiterhin von der Notwendigkeit der Fusion überzeugt ist, strebt man nun eine erneute Volksabstimmung über diese Frage an.
+
+Vor der [[Wiedervereinigung]] der beiden deutschen Staaten [[Bundesrepublik Deutschland]] (''BRD'', West) und [[Deutsche Demokratische Republik]] (''DDR'', Ost) im Jahr [[1990]] war [[Bonn]] am [[Rhein]] die provisorische Hauptstadt der Bundesrepublik Deutschland, und [[Ost-Berlin]] war die Hauptstadt der ''DDR'' (amtlich: ''Berlin, Hauptstadt der DDR'', oder amtlich in der ''BRD'': ''Berlin (-Ost)''). Der Westteil Berlins ([[West-Berlin]], oder amtlich: ''Berlin (-West)'', amtlich in der DDR: ''Selbständige politische Einheit Westberlin'') nahm eine Sonderstellung zwischen den beiden deutschen Staaten ein.
+
+Mit der Wiedervereinigung am [[3. Oktober]] [[1990]] wurde Berlin wieder Hauptstadt Deutschlands. Im so genannten [[Hauptstadtbeschluss]] entschied der [[Deutscher Bundestag|Deutsche Bundestag]] am [[20. Juni]] [[1991]], dass Berlin auch Regierungs- und Parlamentssitz des vereinigten Deutschlands werden soll.
+
+== Geografie ==
+
+[[Bild:Luftbild_Berlin.jpg|thumb|Luftbild]]
+
+Berlin befindet sich in [[Eiszeit|eiszeitlich]] geprägter Landschaft im Warschau-[[Berliner Urstromtal]] zwischen den Hochebenen des [[Barnim]] und des [[Teltow (Landschaft)|Teltow]]. Das historische Zentrum Berlin liegt an der schmalsten Stelle des von der [[Spree]] in ost-westlicher Richtung durchflossenen Urstromtals. Im westlichsten [[#Bezirke|Bezirk]] [[Spandau]] mündet die Spree in die [[Havel]], die den Westen Berlins in Nord-Süd Richtung durchfließt. Der Flusslauf der Havel ähnelt dabei oft einer Seenlandschaft, die größten Ausbuchtungen bilden der [[Tegeler See]] und der [[Großer Wannsee|Große Wannsee]].
+
+Wesentliche Teile des heutigen Berlins liegen auf den beiden Hochebenen: große Teile der Bezirke [[Reinickendorf]] und [[Pankow]] liegen auf dem Barnim, während der Hauptteil der Bezirke [[Charlottenburg-Wilmersdorf]], [[Steglitz-Zehlendorf]], [[Tempelhof-Schöneberg]] und [[Neukölln]] auf dem Teltow gelegen ist.
+
+Die höchsten Erhebungen Berlins sind mit 120 m über NN der aus Trümmerschutt des [[Zweiter Weltkrieg|Zweiten Weltkriegs]] künstlich aufgeschüttete [[Teufelsberg]] im Bezirk [[Charlottenburg-Wilmersdorf]] und mit 115 m die [[Müggelberge]] im Bezirk [[Treptow-Köpenick]].
+
+=== Bezirke ===
+[[Bild:berlin.bezirke.png|thumb|Bezirke Berlins]]
+
+Nach dem Gebietsreformgesetz vom [[10. Juni]] [[1998]] wurde die Zahl der Berliner Verwaltungsbezirke zum [[1. Januar]] [[2001]] von 23 auf 12 reduziert.
+Berlin ist seitdem gegliedert in die Bezirke [[Berlin-Mitte|Mitte]], [[Friedrichshain-Kreuzberg]], [[Pankow]], [[Charlottenburg-Wilmersdorf]], [[Spandau]], [[Steglitz-Zehlendorf]], [[Tempelhof-Schöneberg]], [[Neukölln]], [[Treptow-Köpenick]], [[Marzahn-Hellersdorf]], [[Berlin-Lichtenberg|Lichtenberg]], [[Reinickendorf]].
+
+Weitere Differenzierung in [[Liste der Orte in Berlin]], siehe auch [[Berliner Straßen]] und Plätze.
+
+== Geschichte ==
+
+''Hauptartikel:'' [[Geschichte Berlins]]
+
+Die Geschichte Berlins beginnt nicht erst mit der ersten urkundlichen Erwähnung, sondern bereits mit der Vor- und [[Frühgeschichte]] des Berliner Raumes.
+Zeugnisse dieser frühen Phase der Besiedlung sind vor allem im Museum für Vor- und Frühgeschichte sowie als lebensechte Nachbildung im Museumsdorf Düppel zu sehen. Hier werden auch mittelalterliche handwerkliche Techniken vorgeführt.
+[[Bild:Reichstag.JPG|thumb|left|Der Reichstag]]
+[[Bild:Berliner Rathaus gross.jpeg|thumb|Berliner Rathaus (''Rotes Rathaus'')]]
+
+Funde von [[Feuerstein]]en und bearbeiteten Knochen in der Gegend lassen auf eine Besiedlung seit etwa 60000 v. Chr. schließen. Im [[9. Jahrtausend v. Chr.]] siedeln an der [[Spree]] und an der [[Dahme (Fluss)|Dahme]] [[Jagd|Jäger]] und [[Fischer]], die [[Pfeil (Geschoss)|Pfeil]]spitzen, Schaber und Feuersteinbeile hinterlassen. Aus dem [[7. Jahrtausend v. Chr.]] wurde eine Maske gefunden, die wohl als Jagdzauber diente.
+
+Im [[3. Jahrtausend v. Chr.]] bilden sich Kulturen mit [[Ackerbau]] und [[Viehzucht]], die handgefertigte [[Keramik]]en und [[Vorratsspeicher]] benutzen.
+
+Seit dem [[6. Jahrhundert v. Chr.]] siedeln sich verstärkt [[Germanen]] an:
+in historischen Quellen tauchen für sie die Stammesbezeichnungen
+[[Semnonen]] (Teilstamm der [[Sweben]]) und die [[Burgunder (Volk)|Burgunder]] auf.
+
+Später ziehen vom Berliner Raum aus Germanen in den süddeutschen Raum. Im Berliner Raum nimmt daher die Besiedlungsdichte ab, er bleibt aber germanisch besiedelt. Ab dem [[6. Jahrhundert]] strömen Slawenstämme in die [[Lausitz]]er Gegend und um das Jahr [[720]] auch in den Berliner Raum. Sie lassen sich auch an bisher unbesiedelten Standorten nieder und unterscheiden sich durch Standortwahl und Wirtschaftsweise von den Germanen.
+
+Ab dem [[12. Jahrhundert]] beginnt die Ostbesiedlung des Kaiserreichs.
+Auf den trockenen Flächen des [[Urstromtal]]s zwischen dem [[Teltow]] und dem [[Barnim]] wird eine Furt über die Spree besiedelt. Auf der rechten Uferseite entsteht Berlin, auf einer Spreeinsel [[Cölln]].
+
+'''Die wichtigsten historischen Daten:'''
+[[Bild:Kuppel des Reichstags.JPG|thumb|Der Reichstag mit Kuppel (vom Brandenburger Tor aus)]]
+:[[1197]] erste urkundliche Erwähnung [[Spandau]]s, das [[1232]] [[Stadtrecht]] erhält (seit 1920 Teil von Berlin)
+:[[1209]] erste urkundliche Erwähnung [[Köpenick]]s (seit 1920 Teil von Berlin)
+:um [[1230]] Verleihung des Stadtrechts für Berlin
+:[[1237]] erste urkundliche Erwähnung von Cölln
+:[[1244]] erste urkundliche Erwähnung von Berlin
+:[[1307]] Berlin und Cölln erhalten eine gemeinsame Verwaltung
+:[[1448]] "[[Berliner Unwille]]": Proteste der Bevölkerung gegen den brandenburgischen Kurfürsten [[Friedrich II. (Brandenburg)|Friedrich II. Eisenzahn]] und dessen Schlossneubau
+:[[1451]] Berlin wird Residenzstadt der [[Mark Brandenburg|brandenburgischen]] Markgrafen und Kurfürsten
+:[[1539]] Einführung der [[Reformation]] in Berlin
+:[[1567]] "[[Knüppelkrieg]]" zwischen Berlin und Spandau
+:ab [[1641]] mehrfache Stadterweiterungen, es entstehen die Vorstädte Friedrichswerder, Dorotheenstadt und Friedrichstadt
+:[[1701]] Berlin wird durch die Krönung des brandenburgischen Kurfürsten zum preußischen König [[Friedrich I. (Preußen)|Friedrich I.]] zur Hauptstadt des Königreichs [[Preußen]]
+:[[1709]] Die fünf bis dahin unabhängigen Städte Berlin, Cölln, Friedrichswerder, Dorotheenstadt und Friedrichstadt werden zur "königlichen Haupt- und Residenzstadt Berlin" vereinigt. Schon bald entstehen vor den Toren der Stadt neue Vorstädte.
+:[[1848]] [[Märzrevolution]] mit Barrikadenkämpfen
+:[[1861]] Das Stadtgebiet wird durch die Eingemeindung von Wedding, [[Moabit]], Tempelhofer und Schöneberger Vorstadt erweitert.
+:[[1871]] Berlin wird Hauptstadt des neu entstandenen Deutschen Reiches
+:[[1873]] Beginn des Baues des im Wesentlichen noch heute genutzten Kanalisationssystems (abgeschlossen 1893)
+:[[1918]] Als Ergebnis der [[Novemberrevolution]] wird in Berlin kurz hintereinander jeweils von [[Philipp Scheidemann]] und [[Karl Liebknecht]] die [[Republik]] ausgerufen.
+:[[1920]] umfangreiche Eingemeindung: Berlin wurde mit 7 weiteren Städten, 59 Landgemeinden und 28 Gutsbezirken zu "[[Groß-Berlin]]"
+:[[1933]] Nach der Ernennung [[Hitler]]s zum deutschen Reichskanzler wird Berlin zur Machtzentrale der [[Nationalsozialisten]]; diese richten die ersten "wilden Konzentrationslager" ein; Ende des Rechtsstaates; Terror gegen Kommunisten, Sozialdemokraten, entschiedene Christen und Juden
+:[[1936]] [[Olympische Sommerspiele 1936|Olympische Sommerspiele]] in Berlin
+:[[1937]] große 700-Jahr-Feiern in Berlin, die von den Nationalsozialisten als Propagandaveranstaltung genutzt werden
+: [[1938]] Vom 9. bis 10. November brannten infolge der "Reichspogromnacht" die Synagogen, jüdische Geschäfte und Wohnungen wurden demoliert, viele Juden verhaftet
+: In der Zeit des Nationalsozialismus bestand in der Nähe Berlins, in Uckermark, ein Jugendkonzentratonslager für Mädchen und junge Frauen, innerhalb Berlins bestanden mehrere kleine KZ-Außenstellen
+: [[1939]] Von Berlin aus wird der Zweite Weltkrieg ausgelöst, Hitler erlässt den Befehl zur "Aktion T 4" (Euthanasie-Befehl)
+: [[1940]]-[[1945]] Durch [[Flächenbombardement]]s der Alliierten sterben über 50.000 Berliner, mehr als 1,5 Millionen werden obdachlos.
+:[[1945]] das durch den Zweiten Weltkrieg zerstörte Berlin wird nach dem [[Zweiter Weltkrieg|Zweiten Weltkrieg]] "[[Vier-Sektoren-Stadt]]", die Versorgung der Bevölkerung mit Nahrungsmitteln und Brennholz ist katastrophal, das S-Bahnnetz und die Straßenbahn sind zerstört
+:[[1948]]/[[1949]] Blockade der westlichen Sektoren durch die sowjetischen Streitkräfte, [[Berliner Luftbrücke]] zur Versorgung der Bevölkerung mit Lebensmitteln und Gütern
+:[[1945]]/[[1949]] politische Spaltung Berlins im [[Ost-West-Konflikt]]
+:[[1961]] Bau der [[Berliner Mauer]] am [[13. August]]
+:[[1963]] Bei einem Besuch Westberlins spricht US-Präsident [[John F. Kennedy]] den berühmt gewordenen Satz "Ich bin ein Berliner".
+:[[1987]] große 750-Jahr-Feiern in beiden Teilen der Stadt
+:[[1989]] die Wende in der [[Deutsche Demokratische Republik|DDR]], Fall der [[Berliner Mauer|Mauer]].
+:[[1990]] [[Wiedervereinigung]] Deutschlands und der beiden Stadthälften [[Ost-Berlin|Ost-]] und [[West-Berlin]], Berlin wird Hauptstadt im vereinigten Deutschland.
+:seit [[1997]]: Der [[Berliner Bankenskandal]] um die "[[Bankgesellschaft Berlin]]" [http://www.bankgesellschaft.de] bereitet der Stadt und dem Land Berlin enorme finanzielle und fiskalische Probleme, die die Handlungsfähigkeit der Stadtverwaltung einschränken. Berlin klagt derzeit beim [[Bundesverfassungsgericht]] wegen einer "extremen Haushaltsnotlage", um eine Bundesergänzungszuweisung von 35 Milliarden Euro zum Schuldenabbau zu erhalten.
+
+=== Bevölkerung ===
+
+Im Jahr [[2003]] hatte Berlin knapp 3,4 Millionen Einwohner. Die [[Türkei|türkische]] und [[Kurden|kurdische]] Gemeinde Berlins umfasste 200.000 Köpfe. Außerdem wohnten in Berlin 180.000 [[Polen]] (9% aller Polen, die in [[Deutschland]] wohnten).
+Am letzten Stichtag, den 31.12.2000, lebten rund 430.000 Einwohner mit ausländischen Pass aus 185 Staaten in Berlin.
+<!--http://www.statistik-berlin.de/pms2000/sg03/2001/01-03-06.html-->
+
+Das durchschnittliche Lebensalter der Berliner Bevölkerung betrug 41,7 Jahre im Jahre 2004. Das entspricht einer Erhöhung von 2,5 Jahren in den letzten zwölf Jahren.
+
+== Politik ==
+
+[[Bild:Wahl_zum_Berliner_Abgeordnetenhaus_2001.png|thumb|Ergebnisse der Wahl zum Abgeordnetenhaus 2001]]
+
+Berlin ist seit der Wiedervereinigung der ehemals getrennten beiden deutschen Staaten am 3. Oktober 1990 ein vollwertiges Bundesland und zugleich eine kreisfreie Stadt, die in nunmehr 12 [[Stadtbezirk|Bezirk]]e untergliedert ist. Daneben ist Berlin die [[Hauptstadt]] der Bundesrepublik [[Deutschland]] und damit Sitz der [[Bundesregierung]], des [[Bundestag]]es und des [[Bundesrat]]es.
+
+=== Das Land Berlin ===
+
+Die [[Landesregierung]], also [[exekutive]] Ebene wird durch den [[Senat von Berlin]], bestehend aus dem Regierenden Bürgermeister (derzeit [[Klaus Wowereit]], SPD) und bis zu acht [[Senator]]en ausgeübt. Der [[Regierende Bürgermeister]] ist dabei zugleich Repräsentant des Landes und der Stadt. 
+
+Die [[Legislative|gesetzgebende Gewalt]] ist das [[Abgeordnetenhaus von Berlin]] in welchem derzeit eine [[Koalition]] aus [[Sozialdemokratische Partei Deutschlands|Sozialdemokratischer Partei Deutschlands]] ([[SPD]]) und der [[Partei des demokratischen Sozialismus]] ([[PDS]]) die Mehrheit der [[Abgeordneter|Abgeordneten]] stellt. Oberstes Landesgesetz ist die [[Verfassung von Berlin]].
+
+=== Die Bezirke ===
+
+Die [[Bezirksverwaltung in Berlin|Bezirke]] stellen keine eigenständigen [[Gemeinde]]n dar und sind somit stark vom Senat und auf Verwaltungsebene von den [[Senatsverwaltung]]en abhängig, die die [[Fachaufsicht]] ausüben.
+
+Dennoch gibt es in jedem Berliner Bezirk ein eigenes ''Bezirksparlament'', die ''Bezirksverordnetenversammlung (BVV)'', welches das ''politische Bezirksamt'', bestehend aus Bezirksbürgermeister und fünf [[Stadtrat|Stadträten]] wählt. Bürgermeister und Stadträte werden zwar politisch gewählt, haben aber den Status eines ''Abteilungsleiters'' und sind verbeamtet, so genannte ''[[Beamter|Wahlbeamte]]''.
+
+Die Bürgermeister der Bezirke bilden unter Vorsitz des Regierenden Bürgermeisters das Gremium des ''[[Rat der Bürgermeister|Rates der Bürgermeister]]'', welcher den Senat berät.
+
+=== Länderfusion Berlin-Brandenburg ===
+
+Im Jahre [[1996]] scheiterte eine [[Volksabstimmung]] zur Länderfusion der Bundesländer Berlin und Brandenburg, vor allem durch die politische Dominanz Berlins, der bürgerfernen Diskussion um die Fusion und aufgrund der Finanzprobleme des Landes Berlin. Trotzdem wurde in den letzten Jahren die Zusammenarbeit der beiden Bundesländer intensiviert und viele Einrichtungen zusammengelegt. Teilweise wird eine neue Volksabstimmung über die Fusion für die nächsten Jahrzehnte diskutiert.
+
+Vor der [[Wiedervereinigung]] Deutschlands hatte der Begriff ''[[Berlin-Politik]]'' sogar einen weltpolitischen Inhalt in der Ost-West-Auseinandersetzung.
+
+''Siehe auch:'' [[West-Berlin]], [[Ost-Berlin]]
+
+=== Städtepartnerschaften ===
+
+Berlin unterhält mit folgenden Städten eine [[Städtepartnerschaft]]. Die Partnerschaften wurden durch einen Vertrag des [[Senat von Berlin|Senats]] mit der jeweiligen Stadt vereinbart. Zwischen [[1968]] und [[1986]] wurden nur auf Bezirksebene Partnerschaften abgeschlossen. Diese sind hier nicht wiedergegeben.
+
+*[[Los Angeles]], Bundesstaat [[Kalifornien]] [[USA]], seit 1967
+*[[Paris]], [[Frankreich]], seit 1987
+*[[Madrid]], [[Spanien]], seit 1988 ¹
+*[[Istanbul]], [[Türkei]], seit 1989
+*[[Moskau]], [[Russische Föderation]], seit 1990 ¹
+*[[Warschau]], [[Polen]], seit 1991 ¹
+*[[Budapest]], [[Ungarn]], seit 1991 ¹
+*[[Brüssel]], [[Belgien]], seit 1992
+*[[Jakarta]], [[Indonesien]], seit 1993
+*[[Taschkent]], [[Usbekistan]], seit 1993
+*[[Mexiko-Stadt]], [[Mexiko]], seit 1993
+*[[Peking]], [[Volksrepublik China]], seit 1994 ¹
+*[[Tokio]], [[Japan]], seit 1994
+*[[Buenos Aires]], [[Argentinien]], seit 1994
+*[[Prag]], [[Tschechien]], seit 1995 ¹
+*[[Windhuk]], [[Namibia]], seit 2000
+
+¹ Diese Städte hatten vor 1990 auch mit Ost-Berlin einen Partnerschaftsvertrag, der vom Magistrat der Stadt abgeschlossen wurde. Nach der Wiedervereinigung wurden diese Verträge jedoch außer Kraft gesetzt und später vom Senat Gesamt-Berlins überarbeitet.
+
+
+=== weiterführende Links ===
+
+*[[Verfassung von Berlin]] [http://www.parlament-berlin.de/parlamentb.nsf/SystemHTML/FramesetLR?OpenDocument&_0H15_1H15U10_2../Dokumente/Verfassung?OpenDocument_3]
+*[[Abgeordnetenhaus von Berlin]] [http://www.abgeordnetenhaus-berlin.de] 
+*[[Regierender Bürgermeister von Berlin]] [http://www.berlin.de/RBmSKzl]
+*[[Senat von Berlin]] und [[Bezirksverwaltung in Berlin]] unter der offiziellen Webseite von Berlin [http://www.berlin.de]
+*[[Wahlen in Berlin|Wahlergebnisse]] beim Statistischen Landesamt [http://www.stala.verwalt-berlin.de]
+
+== Kultur und Sehenswürdigkeiten ==
+[[Bild:Brandenburger Tor 2003.jpg|thumb|Das Brandenburger Tor]]
+<!-- Hier sollte eine Kurzbeschreibung der wichtigsten Sehenswürdigkeiten und Kulturdenkmäler hin -->
+
+'''Siehe:''' [[Sehenswürdigkeiten in Berlin]]
+
+=== Kunst und Kultur ===
+
+[[Galerien in Berlin]], [[Museen in Berlin]], [[Kirchen in Berlin]], [[Historischer Hafen Berlin]], [[Staatsoper Unter den Linden]], [[Deutsche Oper Berlin]], [[Komische Oper Berlin]], [[Philharmonie Berlin]], [[Internationale Filmfestspiele Berlin]], [[Jüdisches Museum Berlin]]
+
+=== Sport ===
+
+'''Sport:''' [[Hertha BSC Berlin]], [[Berlin-Marathon]], [[Eisbären Berlin]], Eishockey, [[Moderner Fünfkampf]], [[Wasserfreunde Spandau]], Wasserball, [[Alba Berlin|Alba Berlin (Basketball)]], [[Berlin Thunder]] ([[American Football]])
+
+== Wirtschaft ==
+[[Bild:Bundeskanzleramt.JPG|thumb|left|Das Marie-Elisabeth-Lüders-Haus]]
+Das [[Bruttoinlandsprodukt]] des Landes Berlin betrug im Jahr 2001 75,8 Mrd. €. Zum Vergleich: Hamburg erzielte ein Bruttoinlandsprodukt von 73,7 Mrd. €, im Land Brandenburg waren es 42,3 Mrd. € (IHK-Bericht 2000/2001).
+
+In Berlin gab es 2001 insgesamt 138.688 der Industrie- und Handelskammer zugehörige Betriebe. Davon waren 48.289 im Handelsregister eingetragen und 90.399 so genannte Kleingewerbetreibende (IHK-Bericht 2000/2001).
+
+=== Berliner Wirtschaft 2001 ===
+
+Die wirtschaftliche Entwicklung Berlins war im Jahre [[2001]] meist von negativen [[Trend]]s bestimmt. Das Bruttoinlandsprodukt sank im Vergleich zum Vorjahr um ein halbes Prozent, die Zahl der Erwerbstätigen sank um 5000 Beschäftigte,
+die Arbeitslosenquote lag im November 2001 bei 16 Prozent. Berlin befand sich damit im Geleitzug aller nordostdeutschen Bundesländer, die alle eine
+Arbeitslosenquote zwischen 14 Prozent (Thüringen) und 18 Prozent (Sachsen-Anhalt) aufwiesen und damit weit über dem Bundesdurchschnitt von 9,2 Prozent lagen.
+[[Bild:Deutscher Dom.JPG|thumb|Der Deutsche Dom bei Nacht]]
+Positive Impulse gingen allein vom Dienstleistungsbereich, besonders der unternehmensnahen Dienstleistungen, aus.
+
+Im verarbeitenden Gewerbe verzeichnete der Fahrzeugbau, die chemische
+Industrie und die Elektrotechnik zum Teil kräftige Umsatzsteigerungen.
+
+Einzelhandel und Gastgewerbe litten unter mangelnder privater Nachfrage.
+
+In einer schweren Krise steckt seit Jahren die Berliner Bauwirtschaft, die offensichtlich vom Bauboom der Jahre nach 1990 nicht nachhaltig profitieren konnte.
+
+Positiv entwickelte sich die Neugründung von Unternehmen in Berlin und die Zahl der Gewerbeanmeldungen. Der Saldo von Gewerbean- und abmeldungen ist seit Jahren positiv, hatte [[1990]] einen vereinigungsbedingten Höchststand von über 26.000, und liegt nach einem Tief im Jahre [[1999]] aktuell wieder bei 4.000 mehr Anmeldungen als Abmeldungen.
+
+Die Terroranschläge des [[11. September]] [[2001]] in den USA hatten sofort auch negative Auswirkungen in Berlin, vor allem in den Touristikbereichen, die eine sehr große wirtschaftliche Rolle in der Bundeshauptstadt spielen. So ging das Passagieraufkommen der drei Berliner Flughäfen im Vergleich zum Jahr [[2000]] von 13,3 Millionen auf 12,6 Millionen Passagiere zurück.
+
+Große Erwartungen werden in Berlin in die Innovations- und Technologiezentren gesetzt. Der größte europäische Technologiestandort auf dem Gelände der ehemaligen [[Akademie der Wissenschaften der DDR]], bekannt unter der Kurzform [[WISTA]] in [[Adlershof]] mit den Schwerpunkten Umwelttechnologie,Informations- und Kommunikationstechnologie und Optoelektronik sowie der Biotechnologiestandort [[Berlin-Buch]] nehmen eine ausgesprochen positive Entwicklung und sind in internationale Netzwerke eingebunden.
+
+Berlin ist daher entschlossen, den Standortfaktor Wissenschaft und Forschung zu nutzen und auszubauen. Entschiedene Fördermaßnahmen sind aber in Folge des [[Berliner Bankenskandal|Berliner Bankenskandals]] und der sich hieraus ergebenden Haushaltsnöte unmöglich.
+
+''Siehe auch:'' [[Berlin - Wirtschaft]]
+
+=== Medien ===
+
+==== Rundfunk- und Fernseh-Sender ====
+
+*[[Rundfunk Berlin-Brandenburg]] (RBB), entstanden 2003 aus dem [[Sender Freies Berlin]] (SFB) und dem [[Ostdeutscher Rundfunk Brandenburg|Ostdeutschen Rundfunk Brandenburg]] (ORB)
+*[[Sat1]], hat seine Deutschlandzentrale in der Oberwallstraße.
+*[[N24]]
+*[[Deutsche Welle ]] TV
+*[[XXP]]
+*[[MTV]] - zog von Hamburg und München nach Berlin: in die Mediacity Oberspree im Bezirk [[Friedrichshain-Kreuzberg]].
+*[[n-tv]] - Umzug in die Sendezentrale des Muttersenders RTL nach Köln zum 01.09.2004
+*TV Berlin (tvb), privates Ballungsraumfernsehen
+*Fernsehen aus Berlin ([[FAB]]), privates Ballungsraumfernsehen, Sendestart: 1. Februar 1991
+*[[Offener Kanal Berlin]]
+*[[DeutschlandRadio Berlin]], entstanden aus [[RIAS]] Berlin und [[DS Kultur]]
+*[[Privatradio]]s (Auswahl): Berliner Rundfunk, JAM FM, r.s.2, Metropol FM, Radio Paradiso, KISS FM, Klassik Radio, Jazz Radio, [[Nouvelle Radio Jeunesse|Energy]] 103,4, Nova Radio/Joy FM/Kaufradio/RadiJojo, 104.6 RTL, Radio Power 4, Spreeradio, RFI, BB Radio, Hundert,6
+
+==== Druckmedien ====
+[[Bild:Hotel Adlon.JPG|thumb|left|Das Hotel Adlon am Pariser Platz]]
+* [[Die Welt]], [[Der Tagesspiegel]], [[die tageszeitung]], [[Berliner Zeitung]], [[Berliner Morgenpost]], [[B.Z.]], Berliner Kurier
+
+'''Stadtmagazine'''
+
+* [[Tip (Magazin)|Tip]], [[Zitty]]
+
+==== Sendeanlagen von Rundfunksendern ====
+[[Bild:Fernsehturm.JPG|thumb|Der Berliner Fernsehturm]]
+
+Im Stadtgebiet von Berlin befinden sich zahlreiche Rundfunksendeanlagen für alle Wellenbereiche (außer Langwelle). Neben dem 368 Meter hohen [[Berliner Fernsehturm]] am Alexanderplatz, von dem aus die meisten Programme abgestrahlt werden, sind dies:
+* der 212 Meter hohe [[Fernmeldeturm Berlin-Schäferberg]] (Sendeanlagen für [[UKW]] und TV)
+* der UKW- und TV-Sendemast des RBB am [[Scholzplatz]] ([[1963]] errichteter 230 Meter hoher, abgespannter Rohrmast)
+* der MW-Sender des RBB in der [[Stallupöner Allee]] (ein [[1987]] errichter, gegen Erde isolierter 130 Meter hoher Stahlfachwerkmast. Bis [[1998]] existierte noch ein zweiter ebenfalls gegen Erde isolierter Sendemast, der [[1948]] errichtet wurde)
+* die Sendeanlage für [[Mittelwelle]], [[Kurzwelle]] und UKW von Deutschlandradio (früher [[RIAS]]) in [[Berlin-Britz]]. Als Sendeantennen für UKW und MW sind zwei gegen Erde isolierte, abgespannte Stahlfachwerkmasten mit Höhen von 160 beziehungsweise 144 Metern vorhanden, die 1948 errichtet wurden. Für die Kurzwellensender existieren auf dem Areal der Anlage zwei Dipolantennen
+* ein 180 Meter hoher, abgespannter Stahlfachwerkmast beim [[Berliner Olympiastadion]].
+
+Der [[Berliner Funkturm]] dient seit [[1973]] nicht mehr zur Verbreitung von Rundfunkprogrammen, sondern nur noch als Relaisstation für Funkdienste des nichtöffentlichen Landfunkdienstes und des Amateurfunks.
+Bis [[2002]] existierte in [[Berlin-Köpenick]] eine Sendeanlage für UKW und MW mit einem 248 Meter hohen gegen Erde isolierten, abgespannten Stahlrohrmast. Diese Anlage ist inzwischen abgebrochen worden. Der Betrieb der dort befindlichen UKW-Sender wurde zum Berliner Fernsehturm, der der MW-Sender nach [[Zehlendorf bei Oranienburg|Zehlendorf]] bei Oranienburg verlegt.
+
+Eine weitere bemerkenswerte funktechnische Anlage im Stadtgebiet ist die Richtfunkstelle [[Berlin-Frohnau]], die über einen 358,70 Meter hohen abgespannten Stahlfachwerkmast und einem 117 Meter hohen Stahlgitterturm verfügt.
+
+Von 1933 bis 1948 war in Berlin-Tegel Standort des Rundfunksenders für Berlin. Die Gebäude stehen noch und werden von der Deutschen Telekom AG zu Meßzwecken benutzt, während die Antennenträger 1948 demontiert wurden.
+In Berlin-Adlershof befand sich vor dem 2. Weltkrieg die zentrale Funkstelle der Polizei mit 2 120 Meter hohen, selbststrahlenden Sendemasten. Zu Beginn der 50er Jahre wurde in Berlin-Adlershf ein Radioteleskop mit 36 Meter Durchmesser errichtet.
+
+Auf dem [[Teufelsberg]] befindet sich eine große Radaranlage, die einst den Alliierten zur Überwachung des Luftraums diente und heute der DFS zur Sicherung des zivilen Flugverkehrs dient.
+
+== Verkehr ==
+
+=== Öffentlicher Verkehr ===
+
+[[Bild:Potsdamer Platz.JPG|thumb|Potsdamer Platz]]
+
+Dem innerstädtischen Verkehr dienen die [[S-Bahn Berlin|S-Bahn]] – betrieben von der S-Bahn Berlin GmbH – sowie die [[U-Bahn Berlin|U-Bahn]], [[Straßenbahn]]en und [[Omnibus|Busse]] – betrieben von der [[Berliner Verkehrsbetriebe|BVG]].
+
+In Ost-West-Richtung wird die Innenstadt von der als Hochbahn angelegten [[Berliner Stadtbahn|Stadtbahn]] durchquert. Sie verbindet den [[Berlin Ostbahnhof|Ostbahnhof]] mit dem [[Bahnhof Berlin Charlottenburg|Bahnhof Charlottenburg]], über [[Alexanderplatz]], [[Bahnhof Berlin-Friedrichstraße|Friedrichstraße]] und [[Bahnhof Berlin Zoologischer Garten|Zoologischer Garten]]. Unterstützt wird die Ost-West-Verbindung durch die U-Bahnlinie 5 (U5), die teilweise im Ostteil Berlins oberirdisch verläuft. Zurzeit wird die Ost-West-Trasse durch eine teilweise unterirdische Nord-Süd-Trasse ergänzt (Teil des Pilzkonzepts), die am Lehrter Bahnhof (offizieller Name heute ''Berlin Hauptbahnhof-Lehrter Bahnhof'') die Stadtbahn kreuzt.
+
+Vervollständigt wird der S-Bahn-Verkehr durch die [[Berliner Ringbahn|Ringbahn]], auf der man in 63 Minuten einmal um die Innenstadt herum fahren kann.
+
+Zum Eisenbahnknotenpunkt Berlin gehört auch der bei [[Potsdam]] gelegene [[Rangierbahnhof]] Seddin.
+
+Für den Regionalverkehr verkehren Regionalbahnen und -expresslinien der [[Deutsche Bahn|Deutschen Bahn]] sowie zwei [[InterConneX]]-Linien.
+
+''Siehe auch:'' [[Geschichte des ÖPNV Berlins]], [[Liste Berliner Bahnhöfe]], [[Liste Berliner U-Bahnhöfe]]
+
+===Autobahnen===
+Die Innenstadt wird von Westen her von einem [[Autobahn]]-Halbkreis ([[Bundesautobahn 100|A 100]] – Berliner Stadtring) umgeben, der langfristig zu einem Ring vervollständigt werden soll. Rund um Berlin verläuft die Autobahn [[Bundesautobahn 10|A&nbsp;10]] (Berliner Ring).
+
+Von der A&nbsp;100 gibt es innerhalb des Stadtgebiets folgende Autobahnen Richtung Berliner Ring:
+* [[Bundesautobahn 111|A 111]] in Richtung Nordwesten (Richtung [[Hamburg]] und [[Rostock]])
+* [[Bundesautobahn 113|A 113]] in Richtung Südosten (Richtung [[Dresden]] und [[Cottbus]]). Diese Autobahn beginnt derzeit erst am Dreieck Treptow im äußersten Südosten der Stadt. Bis [[2007]] soll der im Bau befindliche Anschluss von der A&nbsp;100 (beginnend am Dreieck Neukölln) bis zur Berliner Stadtgrenze fertig gestellt sein. Am [[14. Juli]] [[2004]] wurde dazu das erste Teilstück vom Dreieck Neukölln bis zur Anschlussstelle Späthstraße für den Verkehr freigegeben.
+* [[Bundesautobahn 115|A 115]] in Richtung Südwesten (Richtung [[Hannover]] und [[Leipzig]]), teilweise auf der [[AVUS]].
+
+Zusätzlich dazu gibt es im Norden der Stadt noch die [[Bundesautobahn 114|A 114]] von der Prenzlauer Promenade im Bezirk [[Pankow]] zur A&nbsp;10. Die nur wenige Kilometer lange ehemalige [[Bundesautobahn 104|A 104]], die im Südwesten der Stadt [[Steglitz]] mit der A&nbsp;100 verbindet, wurde inzwischen zur [[Autostraße]] herabgestuft.
+
+===Flughäfen===
+Berlin besitzt drei Flughäfen in [[Flughafen Berlin-Tegel|Tegel]], [[Flughafen Berlin-Tempelhof|Tempelhof]] und [[Flughafen Berlin-Schönefeld|Schönefeld]]. Langfristig ist geplant den Flughafen [[Flughafen Berlin-Schönefeld|Schönefeld]] zu vergrößern um die im Innenstadtbereich liegenden Flughäfen [[Flughafen Berlin-Tegel|Tegel]] und [[Flughafen Berlin-Tempelhof|Tempelhof]] zu entlasten beziehungsweise zu schließen. Das Großprojekt Flughafen [[Flughafen Berlin-Schönefeld|Schönefeld]] trifft jedoch bei vielen Berlinern und Brandenburgern auf großen Widerstand.
+
+== Wissenschaft und Forschung ==
+
+=== Hochschulen in Berlin ===
+In Berlin studieren an insgesamt 17 Universitäten und Hochschulen rund 150.000 Studentinnen und Studenten:
+*[[Freie Universität Berlin]] (FU) http://www.fu-berlin.de
+*[[Humboldt-Universität zu Berlin]] (HU) http://www.hu-berlin.de
+*[[Charité]] Berlin (Gemeinsame Medizinische Fakultät von HU und FU) http://www.charite.de
+*[[Technische Universität Berlin]] (TU) http://www.tu-berlin.de
+*[[Fachhochschule für Technik und Wirtschaft]] (FHTW) http://www.fhtw-berlin.de
+*Fachhochschule für Wirtschaft (FHW) http://www.fhw-berlin.de
+*Fachhochschule für Verwaltung und Rechtspflege http://www.fhvr-berlin.de
+*[[Universität der Künste Berlin]] (UdK, früher: Hochschule der Künste - HdK) http://www.udk-berlin.de
+*Hochschule für Musik "Hanns Eisler" (HfM) http://www.hfm-berlin.de
+*Hochschule für Schauspielkunst "Ernst Busch" http://www.hfs-berlin.de/
+*Kunsthochschule Berlin-Weißensee Hochschule für Gestaltung (KHB) http://www.kh-berlin.de
+*[[Technische Fachhochschule Berlin]] (TFH) http://www.tfh-berlin.de
+*Alice-Salomon Fachhochschule für Sozialarbeit und Sozialpädagogik (ASFH) http://www.asfh-berlin.de
+*Katholische Hochschule für Sozialwesen Berlin (KHSB) http://www.khsb-berlin.de
+*Evangelische Fachhochschule Berlin (EFB) http://www.evfh-berlin.de
+*Touro College Berlin http://www.touroberlin.de/
+*Berufsakademie Berlin http://www.ba-berlin.de/
+
+=== Forschungsinstitute in Berlin ===
+*Max-Planck-Institut für Bildungsforschung http://www.mpib-berlin.mpg.de
+*Max-Planck-Institut für Infektionsbiologie http://www.mpiib-berlin.mpg.de
+*Max-Planck-Institut für molekulare Genetik http://www.molgen.mpg.de
+*Max-Planck-Institut für Wissenschaftsgeschichte http://www.mpiwg-berlin.mpg.de
+*Fraunhofer-Institut für Nachrichtentechnik - Heinrich-Hertz-Institut http://www.hhi.fraunhofer.de
+*Fraunhofer-Institut für Offene Kommunikationssysteme (FOKUS)
+*Fraunhofer-Institut für Produktionsanlagen und Konstruktionstechnik (IPK)
+*Fraunhofer-Institut für [[Rechnerarchitektur]] und [[Softwaretechnik]] (FIRST)
+*Fraunhofer-Institut für Software- und Systemtechnik (ISST)
+*Fraunhofer-Institut für Zuverlässigkeit und [[Mikrointegration]] (IZM)
+*Berliner Elektronenspeicherring-Gesellschaft m.b.H. BESSY http://www.bessy.de
+*Ecologic gGmbH http://www.ecologic.de
+*Institut für Ökologische Wirtschaftsforschung gGmbH (IÖW) http://www.ioew.de
+*Fritz-Haber-Institut der Max-Planck-Gesellschaft http://www.fhi-berlin.mpg.de
+*Hahn-Meitner-Institut [http://www.hmi.de/ hmi.de]
+*Institut für Planetenforschung des [[Deutsches Zentrum für Luft- und Raumfahrt|DLR]] http://solarsystem.dlr.de/
+*Physikalisch-Technische Bundesanstalt [http://www.ptb.de/ PTB.de]
+*Umweltbundesamt (UBA) http://www.umweltbundesamt.de
+<!-- == Städtepartnerschaften == -->
+
+=== Wichtige Berliner Persönlichkeiten===
+
+*Politiker
+**[[Willy Brandt]], ([[Sozialdemokratische Partei Deutschlands|SPD]])
+**D. Dr. [[Hermann Ehlers]], ([[CDU]]), [[Bundestagspräsident]]
+**Dr. [[Victor-Emanuel Preusker]] ([[1913]]-[[1991]]), ([[FDP (Deutschland)|FDP]], später [[CDU]]), [[MdB]], Bundesminister für Wohnungsbau
+**[[Ernst Reuter]], ([[Sozialdemokratische Partei Deutschlands|SPD]])
+
+*andere Persönlichkeiten
+**[[Alexander Beer]], jüdischer Architekt
+**[[Adolf Damaschke]], Bodenreformer
+**[[Hans Dominik]], Schriftsteller (technische Zukunftsliteratur), Journalist und Ingenieur
+**[[Gottfried Wilhelm Lehmann]], Baptistenpastor
+**[[Manfred Maurenbrecher]], Liedermacher und Autor
+**[[Werner-Viktor Toeffling]], Maler und Bühnenbildner
+**[[1932]], [[Charles Wilp]], Werbemacher und Künstler (Afri Cola Rausch, VW Käfer ''Und läuft ... und läuft ... und läuft'')
+
+''Siehe auch:'' [[Liste der Ehrenbürger von Berlin]]
+
+== Siehe auch ==
+
+* [[Geschichte Berlins]], [[Wirtschaft Berlins]], [[Berlin-Literatur]]
+* [[Berlinerisch]], [[Berliner]]
+* [[Liste der deutschen Hauptstädte]] in der Geschichte
+* [[Metropolregion Berlin/Brandenburg]].
+
+== Literatur ==
+
+* Presse- und Informationsamt des Landes Berlin (Hg.), ''Berlin Handbuch - Das Lexikon der Bundeshauptstadt''; Berlin 1992, (ISBN 3-927551-27-9)
+*Hosfeld, Rolf/Teicke, Friehelm/Vogt, Tobias/Wörtmann, Rainer: ''Berlin Kultur(ver)führer 2004'', Helmut Metz : Hamburg, 3. Aufl. 2004, 255 S., (ISBN 3-9807381-7-5)
+* Philipp Oswalt, ''Berlin - Stadt ohne Form''; München, London, New York 2000 (ISBN 3-7913-24403)
+* Bernhard van Treeck, ''Street Art Berlin''; Berlin 1999 (ISBN 3-89602-191-5)
+
+==Weblinks==
+* [http://www.berlin.de/ Offizielle Website der Hauptstadt Deutschlands]
+* [http://www.berlin-ehrungen.de/indexthemen.htm Daten zu Berlin]
+
+[[Kategorie:Ort in Deutschland]]
+[[Kategorie:Ort in Berlin| ]]
+[[Kategorie:Hauptstadt]]
+[[Kategorie:Bundesland (Deutschland)]]
+[[Kategorie:Berlin| ]]
+
+[[ar:برلين]]
+[[bg:Берлин]]
+[[cs:Berlín]]
+[[cy:Berlin]]
+[[da:Berlin (hovedstad)]]
+[[en:Berlin]]
+[[eo:Berlino]]
+[[es:Berlín]]
+[[et:Berliin]]
+[[fi:Berliini]]
+[[fr:Berlin]]
+[[he:ברלין]]
+[[id:Berlin]]
+[[it:Berlino]]
+[[ja:ベルリン]]
+[[la:Berolinum]]
+[[lt:Berlynas]]
+[[nds:Berlin]]
+[[nl:Berlijn]]
+[[no:Berlin]]
+[[pl:Berlin]]
+[[pt:Berlim]]
+[[ro:Berlin]]
+[[ru:Берлин]]
+[[simple:Berlin]]
+[[sk:Berlín]]
+[[sl:Berlin]]
+[[sv:Berlin]]
+[[tokipona:ma tomo Pelin]]
+[[uk:Берлін]]
+[[zh:柏林]]

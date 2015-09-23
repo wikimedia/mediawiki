@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Admresdeserv.",
+			"Audriusa",
+			"Eitvys200",
+			"Papuass",
+			"PeterisP"
+		]
+	},
+	"ooui-outline-control-move-down": "Pārvietot vienumu uz leju",
+	"ooui-outline-control-move-up": "Pārvietot vienumu uz augšu",
+	"ooui-toolbar-more": "Vairāk",
+	"ooui-toolgroup-expand": "Vairāk",
+	"ooui-toolgroup-collapse": "Mazāk",
+	"ooui-dialog-message-accept": "Labi",
+	"ooui-dialog-message-reject": "Atcelt",
+	"ooui-dialog-process-error": "Kaut kas nogāja greizi",
+	"ooui-dialog-process-retry": "Mēģināt vēlreiz",
+	"ooui-dialog-process-continue": "Turpināt"
+}

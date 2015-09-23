@@ -1,0 +1,59 @@
+{
+  "name": "oojs-ui",
+  "version": "0.12.9",
+  "description": "User interface classes built on the OOjs framework.",
+  "keywords": [
+    "oojs-plugin",
+    "ui"
+  ],
+  "homepage": "https://www.mediawiki.org/wiki/OOjs UI",
+  "repository": {
+    "type": "git",
+    "url": "https://git.wikimedia.org/git/oojs/ui.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "test": "grunt test",
+    "predoc": "grunt build",
+    "doc": "jsduck",
+    "postdoc": "grunt copy:jsduck",
+    "prepublish": "grunt build",
+    "demos": "grunt demos"
+  },
+  "dependencies": {
+    "es5-shim": "4.1.10",
+    "jquery": "1.11.3",
+    "oojs": "1.1.9"
+  },
+  "devDependencies": {
+    "grunt": "0.4.5",
+    "grunt-banana-checker": "0.3.0",
+    "grunt-cli": "0.1.13",
+    "grunt-contrib-clean": "0.6.0",
+    "grunt-contrib-concat-sourcemaps": "0.6.0",
+    "grunt-contrib-copy": "0.8.1",
+    "grunt-contrib-csslint": "0.5.0",
+    "grunt-contrib-cssmin": "0.13.0",
+    "grunt-contrib-jshint": "0.11.3",
+    "grunt-contrib-less": "1.0.1",
+    "grunt-contrib-uglify": "0.9.1",
+    "grunt-contrib-watch": "0.6.1",
+    "grunt-csscomb": "3.1.0",
+    "grunt-cssjanus": "0.2.4",
+    "grunt-exec": "0.4.6",
+    "grunt-file-exists": "0.1.2",
+    "grunt-jscs": "2.1.0",
+    "grunt-jsonlint": "1.0.4",
+    "grunt-karma": "0.12.0",
+    "grunt-promise-q": "0.1.1",
+    "grunt-svg2png": "git://github.com/jdforrester/grunt-svg2png.git#8bf55ef0c1d4814a5dede5f3f50506cd8c1e89f6",
+    "grunt-tyops": "0.1.0",
+    "karma": "0.13.9",
+    "karma-chrome-launcher": "0.2.0",
+    "karma-coverage": "0.5.0",
+    "karma-firefox-launcher": "0.1.6",
+    "karma-qunit": "0.1.5",
+    "q": "1.4.1",
+    "qunitjs": "1.18.0"
+  }
+}
