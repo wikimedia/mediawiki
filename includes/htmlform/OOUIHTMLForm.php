@@ -133,7 +133,7 @@ class OOUIHTMLForm extends HTMLForm {
 	function getErrors( $err ) {
 		if ( !$err ) {
 			$errors = array();
-		} else if ( $err instanceof Status ) {
+		} elseif ( $err instanceof Status ) {
 			if ( $err->isOK() ) {
 				$errors = array();
 			} else {
