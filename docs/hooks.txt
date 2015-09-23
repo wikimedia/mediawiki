@@ -3110,7 +3110,9 @@ $descriptor: (array) the HTMLForm descriptor
 
 'UploadFormSourceDescriptors': after the standard source inputs have been
 added to the descriptor
-$descriptor: (array) the HTMLForm descriptor
+&$descriptor: (array) the HTMLForm descriptor
+&$radio: Boolean, if source type should be shown as radio button
+$selectedSourceType: The selected source type
 
 'UploadVerification': Additional chances to reject an uploaded file. Consider
 using UploadVerifyFile instead.
