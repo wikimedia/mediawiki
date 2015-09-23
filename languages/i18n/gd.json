@@ -3110,7 +3110,7 @@
 	"api-error-badtoken": "Mearachd taobh a-staigh: Droch thòcan.",
 	"api-error-copyuploaddisabled": "Tha luchdadh suas le URL à comas air an fhrithealaiche seo.",
 	"api-error-duplicate": "Tha {{PLURAL:$1|[$2 faidhle eile]|are [$2 faidhlichean eile]}} air an làrach seo mar-thà sa bheil an aon susbaint.",
-	"api-error-duplicate-archive": "Tha {{PLURAL:$1|[$2 faidhle eile]|are [$2 faidhlichean eile]}} air an làrach seo mar-thà sa bheil an aon susbaint ach chaidh {{PLURAL:$1|a sguabadh|an sguabadh}} às.",
+	"api-error-duplicate-archive": "Tha {{PLURAL:$1|faidhle eile|faidhlichean eile}} air an làrach seo mar-thà sa bheil an aon susbaint ach chaidh {{PLURAL:$1|a sguabadh|an sguabadh}} às.",
 	"api-error-empty-file": "Tha am faidhle a chuir thu a-null falamh.",
 	"api-error-emptypage": "Chan fhaodar duilleagan falamh ùra a chruthachadh.",
 	"api-error-fetchfileerror": "Mearachd taobh a-staigh: Chaidh rudeigin cearr le faighinn an fhaidhle.",

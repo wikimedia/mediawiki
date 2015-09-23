@@ -12,7 +12,8 @@
 			"Spacebirdy",
 			"Горан Анђелковић",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Soslinhar los ligams :",
@@ -3057,7 +3058,7 @@
 	"api-error-badtoken": "Error intèrna : marrit « geton ».",
 	"api-error-copyuploaddisabled": "Los cargaments via URL son desactivats sus aqueste servidor.",
 	"api-error-duplicate": "I a ja {{PLURAL:$1|[$2 un autre fichièr present]|[$2 d'autres fichièrs presents]}} sul site amb lo meteis contengut.",
-	"api-error-duplicate-archive": "I aviá ja {{PLURAL:$1|[$2 un autre fichièr present]|[$2 d'autres fichièrs presents]}} sul site amb lo meteis contengut, mas {{PLURAL:$1|es estat suprimit|son estats suprimits}}.",
+	"api-error-duplicate-archive": "I aviá ja {{PLURAL:$1|un autre fichièr present|d'autres fichièrs presents}} sul site amb lo meteis contengut, mas {{PLURAL:$1|es estat suprimit|son estats suprimits}}.",
 	"api-error-empty-file": "Lo fichièr qu'avètz somés èra void.",
 	"api-error-emptypage": "Creacion de paginas voidas pas autorizada.",
 	"api-error-fetchfileerror": "Error intèrna : Quicòm s'es mal passat al moment de la recuperacion del fichièr.",

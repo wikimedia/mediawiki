@@ -31,7 +31,8 @@
 			"아라",
 			"Aswanas",
 			"Pofka",
-			"Albertas"
+			"Albertas",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Pabraukti nuorodas:",
@@ -315,6 +316,7 @@
 	"nstab-template": "Šablonas",
 	"nstab-help": "Pagalbos puslapis",
 	"nstab-category": "Kategorija",
+	"mainpage-nstab": "Pagrindinis puslapis",
 	"nosuchaction": "Nėra tokio veiksmo",
 	"nosuchactiontext": "Veiksmas, nurodytas adrese, neatpažintas.\nGalbūt Jūs padarėte klaidą adrese ar paspaudėte ant neteisingos nuorodos.\nŠios problemos priežastis taip pat gali būti klaida programinėje įrangoje, kurią naudoja {{SITENAME}}.",
 	"nosuchspecialpage": "Nėra tokio specialiojo puslapio",
@@ -3239,7 +3241,7 @@
 	"api-error-badtoken": "Vidinė klaida: blogai atpažinimo ženklas.",
 	"api-error-copyuploaddisabled": "Siuntimas pagal URL yra išjungtas šiame serveryje.",
 	"api-error-duplicate": "Jau {{PLURAL:$1|yra [$2 kitas failas]|yra [$2 kiti failai]}} puslapyje su tuo pačiu turiniu..",
-	"api-error-duplicate-archive": "Jau {{PLURAL:$1|buvo [$2 kitas failas]|buvo [$2 kitų failų]}} puslapyje su tuo pačiu turiniu, bet {{PLURAL:$1|buvo|buvo}} ištrinti.",
+	"api-error-duplicate-archive": "Jau {{PLURAL:$1|buvo kitas failas|buvo kitų failų}} puslapyje su tuo pačiu turiniu, bet {{PLURAL:$1|buvo|buvo}} ištrinti.",
 	"api-error-empty-file": "Pateikta failas buvo tuščias.",
 	"api-error-emptypage": "Kurti naujus, tuščius puslapius neleidžiama.",
 	"api-error-fetchfileerror": "Vidinė klaida: Kažkas nutiko gaunant failą.",

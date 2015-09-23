@@ -3325,7 +3325,7 @@
 	"api-error-badtoken": "Errore interno: token errato.",
 	"api-error-copyuploaddisabled": "Il caricamento tramite URL è disabilitato su questo server.",
 	"api-error-duplicate": "Sul sito {{PLURAL:$1|c'è già [$2 un altro documento]|ci sono già [$2 altri documenti]}} con lo stesso contenuto.",
-	"api-error-duplicate-archive": "{{PLURAL:$1|C'era [$2 un altro file]|C'erano [$2 altri file]}} già nel sito con lo stesso contenuto, ma {{PLURAL:$1|è stato cancellato|sono stati cancellati}}.",
+	"api-error-duplicate-archive": "{{PLURAL:$1|C'era un altro file|C'erano altri file}} già nel sito con lo stesso contenuto, ma {{PLURAL:$1|è stato cancellato|sono stati cancellati}}.",
 	"api-error-empty-file": "Il file selezionato era vuoto.",
 	"api-error-emptypage": "La creazione di nuove pagine vuote non è consentita.",
 	"api-error-fetchfileerror": "Errore interno: c'è stato un problema durante il recupero del documento.",

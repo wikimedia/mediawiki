@@ -25,7 +25,8 @@
 			"Boxmein",
 			"Roland",
 			"Postituvi",
-			"Purodha"
+			"Purodha",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Linkide allakriipsutus:",
@@ -3248,7 +3249,7 @@
 	"api-error-badtoken": "Sisemine tõrge: Sobimatu nimi.",
 	"api-error-copyuploaddisabled": "URLi kaudu üleslaadimine on selles serveris keelatud.",
 	"api-error-duplicate": "Siin on {{PLURAL:$1|[$2 teine samasisuline fail]|[$2 mõned teised samasisulised failid]}} juba olemas.",
-	"api-error-duplicate-archive": "Siin {{PLURAL:$1|on [$2 teine samasisuline fail]|olid [$2 mõned teised samasisulised failid]}} juba olemas, aga {{PLURAL:$1|see|need}} kustutati.",
+	"api-error-duplicate-archive": "Siin {{PLURAL:$1|on teine samasisuline fail|olid mõned teised samasisulised failid}} juba olemas, aga {{PLURAL:$1|see|need}} kustutati.",
 	"api-error-empty-file": "Üleslaaditav fail on tühi.",
 	"api-error-emptypage": "Uute tühjade lehekülgede loomine pole lubatud.",
 	"api-error-fetchfileerror": "Sisemine tõrge: Midagi läks faili kättesaamisel valesti.",

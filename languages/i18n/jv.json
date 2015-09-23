@@ -2869,7 +2869,7 @@
 	"api-error-badtoken": "Kasalahan njero: Token èlèk.",
 	"api-error-copyuploaddisabled": "Ngunggah saka URL dipatèni nèng sasana iki.",
 	"api-error-duplicate": "Ana {{PLURAL:$1|[$2 berkas liya]|[$2 pirang-pirang berkas liya]}} sing wis ana nèng situsé saha isiné padha.",
-	"api-error-duplicate-archive": "Ana {{PLURAL:$1|[$2 berkas liya]|[$2 pirang-pirang berkas liya]}} sing wis ana nèng situsé saha isiné padha, nanging {{PLURAL:$1|kuwi|kuwi kabèh}} wis dibusak.",
+	"api-error-duplicate-archive": "Ana {{PLURAL:$1|berkas liya|pirang-pirang berkas liya}} sing wis ana nèng situsé saha isiné padha, nanging {{PLURAL:$1|kuwi|kuwi kabèh}} wis dibusak.",
 	"api-error-empty-file": "Berkas sing Sampéyan kirim kosong.",
 	"api-error-emptypage": "Nggawé kaca kosong anyar ora dilikaké.",
 	"api-error-fetchfileerror": "Kasalahan njero: Ana sing salah nalika ngètukaké berkas iki.",

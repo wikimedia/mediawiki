@@ -49,7 +49,8 @@
 			"아라",
 			"Thomsen",
 			"Knud Winckelmann",
-			"Macofe"
+			"Macofe",
+			"Jyllanj"
 		]
 	},
 	"tog-underline": "Understreg henvisninger:",
@@ -84,7 +85,7 @@
 	"tog-watchlisthideminor": "Skjul mindre ændringer i overvågningslisten",
 	"tog-watchlisthideliu": "Skjul indloggede brugeres redigeringer i overvågningslisten",
 	"tog-watchlisthideanons": "Skjul anonyme brugeres redigeringer i overvågningslisten",
-	"tog-watchlisthidepatrolled": "Skjul patrujerede ændringer fra overvågningslisten",
+	"tog-watchlisthidepatrolled": "Skjul patruljerede ændringer fra overvågningslisten",
 	"tog-ccmeonemails": "Send mig kopier af e-mails som jeg sender til andre brugere",
 	"tog-diffonly": "Vis ikke sideindhold neden under versionssammenligninger",
 	"tog-showhiddencats": "Vis skjulte kategorier",
@@ -418,7 +419,7 @@
 	"yourname": "Dit brugernavn:",
 	"userlogin-yourname": "Brugernavn",
 	"userlogin-yourname-ph": "Indtast dit brugernavn",
-	"createacct-another-username-ph": "Indtast Brugernavn",
+	"createacct-another-username-ph": "Indtast brugernavn",
 	"yourpassword": "Din adgangskode:",
 	"userlogin-yourpassword": "Adgangskode",
 	"userlogin-yourpassword-ph": "Indtast din adgangskode",
@@ -3096,7 +3097,7 @@
 	"api-error-badtoken": "Intern fejl: ugyldigt mærke.",
 	"api-error-copyuploaddisabled": "At lægge filer op via hjemmesideadresser er slået fra på denne server.",
 	"api-error-duplicate": "Der er allerede {{PLURAL:$1|[$2 en anden fil]|[$2 nogle andre filer]}} med samme indhold på webstedet.",
-	"api-error-duplicate-archive": "Der var allerede {{PLURAL:$1|en [$2 anden fil]|[$2 nogle andre filer]}} med samme indhold på webstedet, men {{PLURAL:$1|den|de}} blev slettet.",
+	"api-error-duplicate-archive": "Der var allerede {{PLURAL:$1|en anden fil|nogle andre filer}} med samme indhold på webstedet, men {{PLURAL:$1|den|de}} blev slettet.",
 	"api-error-empty-file": "Den fil du indsendte var tom.",
 	"api-error-emptypage": "Det er ikke tilladt at oprette nye, tomme sider.",
 	"api-error-fetchfileerror": "Intern fejl: noget gik galt under hentningen af filen.",

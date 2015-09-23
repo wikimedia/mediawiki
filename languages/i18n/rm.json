@@ -2713,7 +2713,7 @@
 	"api-error-badtoken": "Errur interna: Token fauss.",
 	"api-error-copyuploaddisabled": "La funcziun da transferir dad ina URL è deactivada sin quest server.",
 	"api-error-duplicate": "I dat gia {{PLURAL:$1|ina [$2 autra datoteca]|[$2 autras datotecas]}} cun il medem cuntegn.",
-	"api-error-duplicate-archive": "I deva gia {{PLURAL:$1|ina [$2 autra datoteca]|[$2 autras datotecas]}} cun il medem cuntegn, {{PLURAL:$1|quella è dentant vegnida stizzada|quellas èn dentant vegnidas stizzadas}}.",
+	"api-error-duplicate-archive": "I deva gia {{PLURAL:$1|ina autra datoteca|autras datotecas}} cun il medem cuntegn, {{PLURAL:$1|quella è dentant vegnida stizzada|quellas èn dentant vegnidas stizzadas}}.",
 	"api-error-empty-file": "La datoteca tramessa è vida.",
 	"api-error-emptypage": "Crear paginas novas e vidas n'è betg lubì.",
 	"api-error-fetchfileerror": "Errur interna: Insatge n'ha betg funcziunà durant retschaiver la datoteca.",

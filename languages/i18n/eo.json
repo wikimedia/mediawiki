@@ -40,7 +40,8 @@
 			"아라",
 			"Fitoschido",
 			"Sudastelaro",
-			"Ochilov"
+			"Ochilov",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Substreki ligilojn",
@@ -3256,7 +3257,7 @@
 	"api-error-badtoken": "Interna eraro: fuŝaĵo.",
 	"api-error-copyuploaddisabled": "Alŝuto per URL-adreso estas malebligata en tiu ĉi servilo.",
 	"api-error-duplicate": "Jam estas {{PLURAL:$1|[$2 alia dosiero]|[$2 pluraj aliaj dosieroj]}} de sama enhavo en la retejo.",
-	"api-error-duplicate-archive": "Jam estis {{PLURAL:$1|[$2 alia dosiero]|[$2 pluraj aliaj dosieroj]}} de sama enhavo en la retejo, sed {{PLURAL:$1|ĝi estis forigita|ili estis forigitaj}}.",
+	"api-error-duplicate-archive": "Jam estis {{PLURAL:$1|alia dosiero|pluraj aliaj dosieroj}} de sama enhavo en la retejo, sed {{PLURAL:$1|ĝi estis forigita|ili estis forigitaj}}.",
 	"api-error-empty-file": "La dosiero kiun vi sendis estis malplena.",
 	"api-error-emptypage": "Kreo de novaj malplenaj paĝoj ne estas permesita.",
 	"api-error-fetchfileerror": "Interna eraro: io misfunkciis dum la dosiera prenado.",

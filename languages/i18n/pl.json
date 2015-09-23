@@ -3322,7 +3322,7 @@
 	"api-error-badtoken": "Błąd wewnętrzny – nieprawidłowy kod weryfikacyjny (token).",
 	"api-error-copyuploaddisabled": "Przesyłanie poprzez podanie adresu URL zostało na tym serwerze wyłączone.",
 	"api-error-duplicate": "{{PLURAL:$1|Jest już [$2 inny plik]|Są już [$2 inne pliki]}} o tej samej zawartości",
-	"api-error-duplicate-archive": "{{PLURAL:$1|Był już [$2 inny plik]|Były już [$2 inne pliki]}} o takiej samej zawartości, ale {{PLURAL:$1|został usunięty|zostały usunięte}}.",
+	"api-error-duplicate-archive": "{{PLURAL:$1|Był już inny plik|Były już inne pliki}} o takiej samej zawartości, ale {{PLURAL:$1|został usunięty|zostały usunięte}}.",
 	"api-error-empty-file": "Przesłany przez Ciebie plik jest pusty.",
 	"api-error-emptypage": "Tworzenie nowych, pustych stron jest niedozwolone.",
 	"api-error-fetchfileerror": "Błąd wewnętrzny – wystąpił błąd w trakcie pobierania pliku.",

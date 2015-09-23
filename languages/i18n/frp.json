@@ -2810,7 +2810,7 @@
 	"api-error-badtoken": "Èrror de dedens : crouyo « jeton ».",
 	"api-error-copyuploaddisabled": "Los tèlèchargements per URL sont dèsactivâs sur cél sèrvor.",
 	"api-error-duplicate": "Y at {{PLURAL:$1|[$2 un ôtro fichiér]|[$2 d’ôtros fichiérs]}} ja sur lo seto avouéc lo mémo contegnu.",
-	"api-error-duplicate-archive": "Y avéve {{PLURAL:$1|[$2 un ôtro fichiér]|[$2 d’ôtros fichiérs]}} ja sur lo seto avouéc lo mémo contegnu, mas {{PLURAL:$1|il at étâ suprimâ|ils ont étâ suprimâs}}.",
+	"api-error-duplicate-archive": "Y avéve {{PLURAL:$1|un ôtro fichiér|d’ôtros fichiérs}} ja sur lo seto avouéc lo mémo contegnu, mas {{PLURAL:$1|il at étâ suprimâ|ils ont étâ suprimâs}}.",
 	"api-error-empty-file": "Lo fichiér que vos éd somês ére vouedo.",
 	"api-error-emptypage": "La crèacion de pâges novèles vouedes est pas ôtorisâ.",
 	"api-error-fetchfileerror": "Èrror de dedens : quârque-ren s’est mâl passâ pendent la rècupèracion du fichiér.",

@@ -3231,7 +3231,7 @@
 	"api-error-badtoken": "Intern feil: Ugyldig nøkkel.",
 	"api-error-copyuploaddisabled": "Opplasting ved URL er deaktivert på denne tjeneren.",
 	"api-error-duplicate": "Det er allerede {{PLURAL:$1|en [$2 annen fil]|flere [$2 andre filer]}} på denne siden med samme innhold.",
-	"api-error-duplicate-archive": "Det fantes {{PLURAL:$1|[$2 en annen fil]|[$2 noen andre filer]}} på siden som hadde samme innhold, men {{PLURAL:$1|den|de}} ble slettet.",
+	"api-error-duplicate-archive": "Det fantes {{PLURAL:$1|en annen fil|noen andre filer}} på siden som hadde samme innhold, men {{PLURAL:$1|den|de}} ble slettet.",
 	"api-error-empty-file": "Filen du sendte inn var tom.",
 	"api-error-emptypage": "Det er ikke tillatt å opprette nye, tomme sider.",
 	"api-error-fetchfileerror": "Intern feil: Noe gikk galt ved henting av denne filen.",

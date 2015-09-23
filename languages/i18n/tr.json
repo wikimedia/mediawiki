@@ -3296,7 +3296,7 @@
 	"api-error-badtoken": "İç hata: Bozuk anahtar.",
 	"api-error-copyuploaddisabled": "URL ile yükleme bu sunucuda devre dışı bırakılmıştır.",
 	"api-error-duplicate": "Sitede zaten aynı içerikte başka {{PLURAL:$1|bir [$2 dosya]|[$2 dosyalar]}} var.",
-	"api-error-duplicate-archive": "Sitede zaten aynı içerikte başka {{PLURAL:$1|bir [$2 dosya]|[$2 dosyalar]}} vardı, ama {{PLURAL:$1|silindi|silindiler}}.",
+	"api-error-duplicate-archive": "Sitede zaten aynı içerikte başka {{PLURAL:$1|bir dosya|dosyalar}} vardı, ama {{PLURAL:$1|silindi|silindiler}}.",
 	"api-error-empty-file": "Gönderdiğiniz dosya boş.",
 	"api-error-emptypage": "Yeni, boş bir sayfa oluşturmaya izin verilmez.",
 	"api-error-fetchfileerror": "İç hata: Dosya alınırken bir hata oluştu.",

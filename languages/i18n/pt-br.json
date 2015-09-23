@@ -3262,7 +3262,7 @@
 	"api-error-badtoken": "Erro interno: token inválido.",
 	"api-error-copyuploaddisabled": "O upload por URL está desativado neste servidor.",
 	"api-error-duplicate": "Já {{PLURAL:$1|há [$2 outro arquivo]|existem [$2 outros arquivos]}} com o mesmo conteúdo",
-	"api-error-duplicate-archive": "Já {{PLURAL:$1|existiu [$2 outro arquivo]|existiram [$2 outros arquivos]}} neste site com o mesmo conteúdo que, no entanto, {{PLURAL:$1|foi removido|foram removidos}}.",
+	"api-error-duplicate-archive": "Já {{PLURAL:$1|existiu outro arquivo|existiram outros arquivos}} neste site com o mesmo conteúdo que, no entanto, {{PLURAL:$1|foi removido|foram removidos}}.",
 	"api-error-empty-file": "O arquivo que você enviou está vazio.",
 	"api-error-emptypage": "Não é permitido criar páginas novas vazias.",
 	"api-error-fetchfileerror": "Erro interno: ocorreu um problema indeterminado ao acessar o arquivo.",

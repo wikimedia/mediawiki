@@ -3011,7 +3011,7 @@
 	"api-error-badtoken": "Inby mistak: Bad token.",
 	"api-error-copyuploaddisabled": "Uplaidin bi URL is disabled oan this server.",
 	"api-error-duplicate": "Thaur {{PLURAL:$1|is [$2 anither file]|ar [$2 some ither files]}} awreadie oan the site wi the same content.",
-	"api-error-duplicate-archive": "Thaur {{PLURAL:$1|wis [$2 anither file]|were [$2 some ither files]}} awreadie oan the site wi the same content, but {{PLURAL:$1|it wis|thay were}} delytit.",
+	"api-error-duplicate-archive": "Thaur {{PLURAL:$1|wis anither file|were some ither files}} awreadie oan the site wi the same content, but {{PLURAL:$1|it wis|thay were}} delytit.",
 	"api-error-empty-file": "The file that ye haunnit in wis tuim.",
 	"api-error-emptypage": "Cræftin new, tuim pages isna permittit.",
 	"api-error-fetchfileerror": "Internal mistak: Sommit went wrang while fetchin the file.",

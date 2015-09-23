@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Paul Beppler",
-			"Midnight Gambler"
+			"Midnight Gambler",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Links (Verbinnunge) unnerstreiche:",
@@ -2944,7 +2945,7 @@
 	"api-error-badtoken": "Interner Fehler: Der Token ist fehlerhaft.",
 	"api-error-copyuploaddisabled": "Das Hochloode doorrich URL woard uff dem Server deaktiviert.",
 	"api-error-duplicate": "Do gebts im Wiki schon {{PLURAL:$1|[$2 en anner Datei]|[$2 mehrre andere Dateie]}} mit dem gleiche Inhalt.",
-	"api-error-duplicate-archive": "Es {{PLURAL:$1|war schon [$2 annre Datei]|woore schon [$2 annre Dateie]}} mit dem gleiche Inhalt voarhand. {{PLURAL:$1|Sie woard|Sie woorre}} awer abgewischt.",
+	"api-error-duplicate-archive": "Es {{PLURAL:$1|war schon annre Datei|woore schon annre Dateie}} mit dem gleiche Inhalt voarhand. {{PLURAL:$1|Sie woard|Sie woorre}} awer abgewischt.",
 	"api-error-empty-file": "Die hochgeloodne Datei woor leer.",
 	"api-error-emptypage": "Es ist net erlaubt, neie leere Seite erstelle.",
 	"api-error-fetchfileerror": "Interner Fehler: Bei dem Datei abrufe ist en Fehler uffgetret.",

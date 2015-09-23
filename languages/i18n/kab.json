@@ -12,7 +12,8 @@
 			"Urhixidur",
 			"아라",
 			"SalemB",
-			"Mezgoug"
+			"Mezgoug",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Aderrer n yezdayen:",
@@ -2866,7 +2867,7 @@
 	"api-error-badtoken": "Tuccḍa tagensit : yir « tiddest ».",
 	"api-error-copyuploaddisabled": "Issenɣal seg URL nsan ɣef aqeddac agi.",
 	"api-error-duplicate": "{{PLURAL:$1|[Yella yakan $2 afaylu nniḍen]|[Llan yakan $2 ifuyla nniḍen]}} ɣef asmel agi s ugbur am winna.",
-	"api-error-duplicate-archive": "{{PLURAL:$1|[Yella yakan $2 afaylu nniḍen]|[Llan yakan $2 ifuyla nniḍen]}} ɣef asmel agi s ugbur am winna, maca {{PLURAL:$1|yetwekkes|tetwekksen}}.",
+	"api-error-duplicate-archive": "{{PLURAL:$1|Yella yakan afaylu nniḍen|Llan yakan ifuyla nniḍen}} ɣef asmel agi s ugbur am winna, maca {{PLURAL:$1|yetwekkes|tetwekksen}}.",
 	"api-error-empty-file": "Afaylu id ceggɛeḍ d-ilem.",
 	"api-error-emptypage": "Asnulfu n isebtar ilemawen ur yareg ara.",
 	"api-error-fetchfileerror": "Tuccḍa tagensit : Yella kra ur yaɛeddan ara s luwqem deg tiririt n ufaylu.",

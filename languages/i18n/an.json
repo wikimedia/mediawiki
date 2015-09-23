@@ -2599,7 +2599,7 @@
 	"api-error-badtoken": "Error interna: Simbolo incorrecto.",
 	"api-error-copyuploaddisabled": "A puyada por URL ye desactivada en iste servidor.",
 	"api-error-duplicate": "Ya existe{{PLURAL:$1| [$2 unatro fichero]|[$2 belatros fichers]}} en o puesto con o mesmo conteniu.",
-	"api-error-duplicate-archive": "Ya {{PLURAL:$1|existiba [$2 unatro fichero]|existiban [$2 atros fichers]}} en o puesto con o mesmo conteniu, pero {{PLURAL:$1|estió|estioron}} {{PLURAL:$1|eliminau|eliminaus}}.",
+	"api-error-duplicate-archive": "Ya {{PLURAL:$1|existiba unatro fichero|existiban atros fichers}} en o puesto con o mesmo conteniu, pero {{PLURAL:$1|estió eliminau|estioron eliminaus}}.",
 	"api-error-empty-file": "O fichero que ninvió yera vuedo.",
 	"api-error-emptypage": "No se permite a creyación de pachinas nuevas en blanco.",
 	"api-error-fetchfileerror": "Error interna: Bella cosa salió malament mientres s'obteneba o fichero.",

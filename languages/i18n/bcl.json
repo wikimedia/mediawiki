@@ -2888,7 +2888,7 @@
 	"api-error-badtoken": "Panlaog na kasalaan: Raot na pangilip",
 	"api-error-copyuploaddisabled": "An pagkakarga sa paagi kan URL pinag-untok sa serbidor na ini.",
 	"api-error-duplicate": "Igwa {{PLURAL:$1|nin [$2 ibang sagunson]|mga [$2 iba pang mga sagunson]}} na yaon sa sityo na igwa nin kaparehong laog.",
-	"api-error-duplicate-archive": "Igwa {{PLURAL:$1|kaidto nin [$2 ibang sagunson]|kaidto nin [$2 ibang mga sagunson]}} na yaon sa sityo na igwa nin kaparehong laog, alagad {{PLURAL:$1|ini kaidto|sinda kaidto}} pinagpura na.",
+	"api-error-duplicate-archive": "Igwa {{PLURAL:$1|kaidto nin ibang sagunson|kaidto nin ibang mga sagunson}} na yaon sa sityo na igwa nin kaparehong laog, alagad {{PLURAL:$1|ini kaidto|sinda kaidto}} pinagpura na.",
 	"api-error-empty-file": "An sagunson na saimong pinagsumite daeng laog.",
 	"api-error-emptypage": "Nagmumukna nin bago, mayong laog na mga pahina dae pinagtutugutan.",
 	"api-error-fetchfileerror": "Panlaog na kasalaan: May bagay na naging sala habang hinahakot an sagunson.",

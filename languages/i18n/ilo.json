@@ -3151,7 +3151,7 @@
 	"api-error-badtoken": "Akin-uneg a biddut: Dakes a tandaan.",
 	"api-error-copyuploaddisabled": "Ti panagikarga babaen ti URL ket nabaldado iti daytoy server.",
 	"api-error-duplicate": "Adda {{PLURAL:$1|ket [$2 a sabali a papeles] |dagiti [$2 sabsabali a papeles]}} nga addaan ditoy a sitio nga agpada ti linaon.",
-	"api-error-duplicate-archive": "Adda {{PLURAL:$1|idi [$2 sabali a papeles]|dagidi [$2 sabali a papeles]}} nga addaan ditoy a sitio nga agpada ti linaonda, ngem {{PLURAL:$1|daytoy|dagitoy}} ket naikkat.",
+	"api-error-duplicate-archive": "Adda {{PLURAL:$1|idi sabali a papeles|dagidi sabali a papeles}} nga addaan ditoy a sitio nga agpada ti linaonda, ngem {{PLURAL:$1|daytoy|dagitoy}} ket naikkat.",
 	"api-error-empty-file": "Ti papeles nga intedmo ket awan linaon.",
 	"api-error-emptypage": "Agparprtuat ti baro, dagiti awan ti linaon a panid ket saan a maipalubos.",
 	"api-error-fetchfileerror": "Akin-uneg a biddut: Addaan ti dakes a napasamak bayat nga agal-ala ti papeles.",

@@ -14,7 +14,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Ianlopez1115",
-			"Leeheonjin"
+			"Leeheonjin",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Pagsasalungguhit ng link:",
@@ -2951,7 +2952,7 @@
 	"api-error-badtoken": "Panloob na kamalian: masamang kahalip.",
 	"api-error-copyuploaddisabled": "Ang pagkakarga ng URL ay hindi pinagagana sa tagapaghaing ito.",
 	"api-error-duplicate": "May {{PLURAL:$1|[$2 ibang talaksan]g|[$2 ibang ilang mga talaksan]g}} nasa wiki na na may katulad na nilalaman",
-	"api-error-duplicate-archive": "Nagkaroon {{PLURAL:$1|dati ng [$2 iba pang talaksan]|dati ng mga [$2 ilang iba pang mga talaksan]}} na umiiral na sa sityo na may katulad na nilalaman, ngunit {{PLURAL:$1|ito ay|ito ay mga}} nabura na.",
+	"api-error-duplicate-archive": "Nagkaroon {{PLURAL:$1|dati ng iba pang talaksan|dati ng mga ilang iba pang mga talaksan}} na umiiral na sa sityo na may katulad na nilalaman, ngunit {{PLURAL:$1|ito ay|ito ay mga}} nabura na.",
 	"api-error-empty-file": "Walang laman ang ipinasa mong talaksan.",
 	"api-error-emptypage": "Lumilikha ng bago, hindi pinapayagan ang mga pahinang walang laman.",
 	"api-error-fetchfileerror": "Panloob na kamalian: may naganap na pagkakamali habang kinukuha ang talaksan.",

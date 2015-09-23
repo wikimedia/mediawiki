@@ -3297,7 +3297,7 @@
 	"api-error-badtoken": "Interne fout: het token klopt niet.",
 	"api-error-copyuploaddisabled": "Uploaden via URL is uitgeschakeld op deze server.",
 	"api-error-duplicate": "Er {{PLURAL:$1|staat al [$2 een bestand]|staan al [$2 bestanden]}} met dezelfde inhoud in de wiki.",
-	"api-error-duplicate-archive": "Er {{PLURAL:$1|was al [$2 een ander bestand]|waren al [$2 $1 andere bestanden]}}  op de site met dezelfde inhoud, maar {{PLURAL:$1|dat is|die zijn}} verwijderd.",
+	"api-error-duplicate-archive": "Er {{PLURAL:$1|was al een ander bestand|waren al $1 andere bestanden}}  op de site met dezelfde inhoud, maar {{PLURAL:$1|dat is|die zijn}} verwijderd.",
 	"api-error-empty-file": "Het bestand dat u hebt geüpload is leeg.",
 	"api-error-emptypage": "Het aanmaken van nieuwe, lege pagina's is niet toegestaan.",
 	"api-error-fetchfileerror": "Interne fout: er is iets misgegaan bij het ophalen van het bestand.",

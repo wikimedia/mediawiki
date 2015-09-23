@@ -3382,7 +3382,7 @@
 	"api-error-badtoken": "Errore inderne: Gettone errate.",
 	"api-error-copyuploaddisabled": "'U carecamende da URL jè disabbilitate sus a stu server.",
 	"api-error-duplicate": "{{PLURAL:$1|Stè [$2 'n'otre file]|Stonne [$2 otre file]}} sus a 'u site cu 'u stesse condenute.",
-	"api-error-duplicate-archive": "{{PLURAL:$1|Stave [$2 'n'otre file]|Stavane [$2 otre file]}} già sus a 'u site cu 'u stesse condenute, ma {{PLURAL:$1|ha state|onne state}} scangellate.",
+	"api-error-duplicate-archive": "{{PLURAL:$1|Stave 'n'otre file|Stavane otre file}} già sus a 'u site cu 'u stesse condenute, ma {{PLURAL:$1|ha state|onne state}} scangellate.",
 	"api-error-empty-file": "'U file ca tu è confermate ere vacande.",
 	"api-error-emptypage": "Quanne se ne ccreje une, le pàggene vacande non ge sò permesse.",
 	"api-error-fetchfileerror": "Errore inderne: Quacchecose ha sciute stuèrte quanne ste analizzave 'u file.",

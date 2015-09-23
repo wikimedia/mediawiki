@@ -3338,7 +3338,7 @@
 	"api-error-badtoken": "Lỗi nội bộ: Dấu hiệu bị hỏng.",
 	"api-error-copyuploaddisabled": "Chức năng tải lên từ URL đã bị tắt trên máy chủ này.",
 	"api-error-duplicate": "Wiki này đã có [$2 {{PLURAL:$1|tập tin|$1 tập tin}} cùng nội dung] có tên khác",
-	"api-error-duplicate-archive": "{{PLURAL:$1|Một|Các}} [$2 tập tin khác] cùng nội dung đã tồn tại trên website, nhưng {{PLURAL:$1|nó|chúng}} đã bị xóa.",
+	"api-error-duplicate-archive": "{{PLURAL:$1|Một|Các}} tập tin khác cùng nội dung đã tồn tại trên website, nhưng {{PLURAL:$1|nó|chúng}} đã bị xóa.",
 	"api-error-empty-file": "Bạn đã gửi tập tin rỗng.",
 	"api-error-emptypage": "Không cho phép tạo mới các trang rỗng.",
 	"api-error-fetchfileerror": "Lỗi nội bộ: Việc tải tập tin bị thất bại.",

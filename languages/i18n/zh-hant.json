@@ -61,7 +61,8 @@
 			"EagerLin",
 			"Cbliu",
 			"Citizen01",
-			"Zhxy 519"
+			"Zhxy 519",
+			"Macofe"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -3294,7 +3295,7 @@
 	"api-error-badtoken": "內部錯誤：密鑰錯誤。",
 	"api-error-copyuploaddisabled": "此伺服器已停用使用 URL 上傳檔案的功能。",
 	"api-error-duplicate": "在網站上已有相同內容的{{PLURAL:$1|[$2 其他檔案]|[$2 其他檔案]}}。",
-	"api-error-duplicate-archive": "在網站上曾有相同內容的{{PLURAL:$1|[$2 其他檔案]|[$2 其他檔案]}}，但已被刪除。",
+	"api-error-duplicate-archive": "在網站上曾有相同內容的{{PLURAL:$1|其他檔案|其他檔案}}，但已被刪除。",
 	"api-error-empty-file": "您送出的檔案是空的。",
 	"api-error-emptypage": "不允許建立空白的頁面。",
 	"api-error-fetchfileerror": "內部錯誤：取得檔案時發生錯誤。",

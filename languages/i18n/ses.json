@@ -3193,7 +3193,7 @@
 	"api-error-badtoken": "Kunahere firka: Tokore laala.",
 	"api-error-copyuploaddisabled": "URL zijandiyan n' ka kay feršikaa woo ga.",
 	"api-error-duplicate": "{{PLURAL:$1|ti [ti tuku tana $2]}} kaŋ ga bara interneti nungoo ga ka ben nda gundakuna follokaa da.",
-	"api-error-duplicate-archive": "{{PLURAL:$1|ti [ti tuku tana $2]}} kaŋ ga bara interneti nungoo ga ka ben nda gundakuna follokaa da, amma {{PLURAL:$1|an' ka|in' ka}} tuusandi.",
+	"api-error-duplicate-archive": "{{PLURAL:$1|ti ti tuku tana}} kaŋ ga bara interneti nungoo ga ka ben nda gundakuna follokaa da, amma {{PLURAL:$1|an' ka|in' ka}} tuusandi.",
 	"api-error-empty-file": "Tukoo kaŋ war n'a sanba mma koonu.",
 	"api-error-emptypage": "Boro ši hin ka moo taaga, koonuyaŋ tee.",
 	"api-error-fetchfileerror": "Kunahere firka: Haya foo mana boori tuku zaayan waate.",
