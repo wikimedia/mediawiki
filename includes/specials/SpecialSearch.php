@@ -388,7 +388,7 @@ class SpecialSearch extends SpecialPage {
 			}
 		}
 
-		$out->addHTML( '<div class="visualClear"></div>\n' );
+		$out->addHTML( '<div class="visualClear"></div>' );
 		if ( $prevnext ) {
 			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
 		}
