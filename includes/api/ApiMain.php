@@ -1246,31 +1246,49 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Log the preceding request
-	 * @param int $time Time in seconds
+	 * @param float $time Time in seconds
 	 */
 	protected function logRequest( $time ) {
 		$request = $this->getRequest();
-		$milliseconds = $time === null ? '?' : round( $time * 1000 );
-		$s = 'API' .
-			' ' . $request->getMethod() .
-			' ' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) .
-			' ' . $request->getIP() .
-			' T=' . $milliseconds . 'ms';
+		$context = array(
+			// Unix timestamp with fractional milliseconds
+			'ts' => round( microtime( true ), 3 ),
+			'http_method' => $request->getMethod(),
+			'user_agent' => $this->getUserAgent(),
+			'wiki_user' => $this->getUser()->getName(),
+			'client_ip' => $request->getIP(),
+			'wiki' => wfWikiId(),
+			'hostname' => wfHostName(),
+			'time_backend_ms' => $time * 1000,
+			'params' => array(),
+		);
+
+		// Construct space separated message for 'api' log channel
+		$msg = "API {$context['http_method']} " .
+			wfUrlencode( str_replace( ' ', '_', $context['wiki_user'] ) ) .
+			" {$context['client_ip']} " .
+			'T=' . ( $context['time_backend_ms'] ?: 0 ) . 'ms';
+
 		foreach ( $this->getParamsUsed() as $name ) {
 			$value = $request->getVal( $name );
 			if ( $value === null ) {
 				continue;
 			}
-			$s .= ' ' . $name . '=';
+
 			if ( strlen( $value ) > 256 ) {
-				$encValue = $this->encodeRequestLogValue( substr( $value, 0, 256 ) );
-				$s .= $encValue . '[...]';
+				$value = substr( $value, 0, 256 );
+				$encValue = $this->encodeRequestLogValue( $value ) . '[...]';
 			} else {
-				$s .= $this->encodeRequestLogValue( $value );
+				$encValue = $this->encodeRequestLogValue( $value );
 			}
+
+			$context['params'][$name] = $value;
+			$msg .= " {$name}={$encValue}";
 		}
-		$s .= "\n";
-		wfDebugLog( 'api', $s, 'private' );
+
+		wfDebugLog( 'api', $msg, 'private' );
+		// ApiRequest channel is for structured data consumers
+		wfDebugLog( 'ApiRequest', '', 'private', $context );
 	}
 
 	/**
