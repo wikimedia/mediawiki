@@ -416,22 +416,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$context
 		);
 		// Collect referenced files
-		$this->localFileRefs = array_unique( $this->localFileRefs );
-		// If the list has been modified since last time we cached it, update the cache
-		try {
-			if ( $this->localFileRefs !== $this->getFileDependencies( $context->getSkin() ) ) {
-				$dbw = wfGetDB( DB_MASTER );
-				$dbw->replace( 'module_deps',
-					array( array( 'md_module', 'md_skin' ) ), array(
-						'md_module' => $this->getName(),
-						'md_skin' => $context->getSkin(),
-						'md_deps' => FormatJson::encode( $this->localFileRefs ),
-					)
-				);
-			}
-		} catch ( Exception $e ) {
-			wfDebugLog( 'resourceloader', __METHOD__ . ": failed to update DB: $e" );
-		}
+		$this->saveFileDependencies( $context, $this->localFileRefs );
+
 		return $styles;
 	}
 
@@ -574,7 +560,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 		$files = array_map( array( $this, 'getLocalPath' ), $files );
 		// File deps need to be treated separately because they're already prefixed
-		$files = array_merge( $files, $this->getFileDependencies( $context->getSkin() ) );
+		$files = array_merge( $files, $this->getFileDependencies( $context ) );
 		// Filter out any duplicates from getFileDependencies() and others.
 		// Most commonly introduced by compileLessFile(), which always includes the
 		// entry point Less file we already know about.
