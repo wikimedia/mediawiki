@@ -46,7 +46,7 @@ node_modules/
 /tests/phpunit/phpunit.phar
 
 # Composer
-/vendor
+# /vendor
 /composer.lock
 /composer.json
 /composer.local.json
