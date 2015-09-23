@@ -234,3 +234,7 @@
 	path = extensions/SocialProfile
 	url = https://github.com/wikimedia/mediawiki-extensions-SocialProfile.git
 	branch = REL1_25
+[submodule "extensions/Variables"]
+	path = extensions/Variables
+	url = https://github.com/wikimedia/mediawiki-extensions-Variables.git
+	branch = REL1_25
