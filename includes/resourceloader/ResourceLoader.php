@@ -941,10 +941,10 @@ class ResourceLoader implements LoggerAwareInterface {
 		global $wgShowExceptionDetails;
 
 		if ( !$wgShowExceptionDetails ) {
-			return 'Internal error';
+			return MWExceptionHandler::getPublicLogMessage( $e );
 		}
 
-		return $e->__toString();
+		return MWExceptionHandler::getLogMessage( $e );
 	}
 
 	/**
