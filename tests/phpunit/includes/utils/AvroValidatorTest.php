@@ -19,6 +19,10 @@ class AvroValidatorTest extends PHPUnit_Framework_TestCase {
 
 	public function getErrorsProvider() {
 		$stringSchema = AvroSchema::parse( json_encode( array( 'type' => 'string' ) ) );
+		$stringArraySchema = AvroSchema::parse( json_encode( array(
+			'type' => 'array',
+			'items' => 'string',
+		) ) );
 		$recordSchema = AvroSchema::parse( json_encode( array(
 			'type' => 'record',
 			'name' => 'ut',
@@ -79,6 +83,18 @@ class AvroValidatorTest extends PHPUnit_Framework_TestCase {
 						'Expected null, but recieved string',
 					)
 				) )
+			),
+			array(
+				'Empty array is accepted',
+				$stringArraySchema, array(), array()
+			),
+			array(
+				'correct array element accepted',
+				$stringArraySchema, array( 'fizzbuzz' ), array()
+			),
+			array(
+				'incorrect array element rejected',
+				$stringArraySchema, array( '12', 34 ), array( 'Expected string, but recieved integer' )
 			),
 		);
 	}
