@@ -416,7 +416,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$context
 		);
 		// Collect referenced files
-		$this->localFileRefs = array_unique( $this->localFileRefs );
 		$this->saveFileDependencies( $context->getSkin(), $this->localFileRefs );
 
 		return $styles;
