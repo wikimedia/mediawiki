@@ -142,6 +142,8 @@ abstract class ImageGalleryBase extends ContextSource {
 		$this->mHeights = $galleryOptions['imageHeight'];
 		$this->mCaptionLength = $galleryOptions['captionLength'];
 		$this->mMode = $mode;
+
+		$this->getOutput()->addModuleStyles( 'mediawiki.page.gallery.styles' );
 	}
 
 	/**

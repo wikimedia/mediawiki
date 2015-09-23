@@ -5326,7 +5326,6 @@ class Parser {
 		$ig->setParser( $this );
 		$ig->setHideBadImages();
 		$ig->setAttributes( Sanitizer::validateTagAttributes( $params, 'table' ) );
-		$this->getOutput()->addModuleStyles( 'mediawiki.page.gallery.styles' );
 
 		if ( isset( $params['showfilename'] ) ) {
 			$ig->setShowFilename( true );
