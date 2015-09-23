@@ -1229,7 +1229,8 @@ class Article implements Page {
 		# so be careful showing this. 404 pages must be cheap as they are hard to cache.
 		$cache = ObjectCache::getMainStashInstance();
 		$key = wfMemcKey( 'page-recent-delete', md5( $title->getPrefixedText() ) );
-		$loggedIn = $this->getContext()->getUser()->isLoggedIn();
+		$user = $this->getContext()->getUser();
+		$loggedIn = $user->isLoggedIn() && $user->isAllowed( 'editsemiprotected' );
 		if ( $loggedIn || $cache->get( $key ) ) {
 			$logTypes = array( 'delete', 'move' );
 			$conds = array( "log_action != 'revision'" );
