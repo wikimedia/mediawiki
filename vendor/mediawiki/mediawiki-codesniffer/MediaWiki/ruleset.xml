@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!--
+	See:
+	- https://www.mediawiki.org/wiki/Manual:Coding_conventions
+	- http://pear.php.net/manual/en/package.php.php-codesniffer.annotated-ruleset.php
+	- https://github.com/squizlabs/PHP_CodeSniffer/tree/master/CodeSniffer/Standards
+-->
+<ruleset name="MediaWiki">
+
+	<description>A coding standard for MediaWiki.</description>
+
+	<rule ref="Generic.Classes.DuplicateClassName" />
+	<!-- Some people likes else { /** comment */ }
+	<rule ref="Generic.CodeAnalysis.EmptyStatement" />
+	-->
+	<rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop" />
+	<rule ref="Generic.CodeAnalysis.ForLoopWithTestFunctionCall" />
+	<rule ref="Generic.CodeAnalysis.JumbledIncrementer" />
+	<rule ref="Generic.CodeAnalysis.UnconditionalIfStatement" />
+	<rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier" />
+	<!--
+		https://pear.php.net/bugs/bug.php?id=19950
+		<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter" />
+	-->
+	<!--
+	  Useless rule. Test is naïve and flags perfectly legit reasons to override
+	  <rule ref="Generic.CodeAnalysis.UselessOverridingMethod" />
+	-->
+	<rule ref="Generic.Files.ByteOrderMark" />
+	<rule ref="Generic.Files.EndFileNewline" />
+	<rule ref="Generic.Files.LineEndings" />
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<!-- More than 100 will throw a warning ... -->
+			<property name="lineLimit" value="100" />
+			<!-- ... but we will most probably never throw an error -->
+			<property name="absoluteLineLimit" value="9999" />
+		</properties>
+	</rule>
+	<!-- <rule ref="Generic.Files.OneClassPerFile" /> -->
+	<rule ref="Generic.Formatting.DisallowMultipleStatements" />
+	<rule ref="Generic.Formatting.MultipleStatementAlignment" />
+	<rule ref="Generic.Formatting.MultipleStatementAlignment.NotSameWarning">
+		<severity>0</severity>
+	</rule>
+	<!--
+		Community is undecided about (type) $cast vs. (type)$cast (bug 48450).
+		<rule ref="Generic.Formatting.SpaceAfterCast" />
+	-->
+	<!-- Use "(type)" instead of "( type )" -->
+	<rule ref="Squiz.WhiteSpace.CastSpacing" />
+	<rule ref="Generic.Functions.CallTimePassByReference" />
+	<rule ref="Generic.Functions.FunctionCallArgumentSpacing" />
+	<rule ref="Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma">
+		<!--
+			We alignement certain function calls like this
+			define( 'FOO',          1 );
+			define( 'A_BIT_LONGER', 2 );
+		-->
+		<severity>0</severity>
+	</rule>
+	<rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
+	<!-- <rule ref="Generic.NamingConventions.CamelCapsFunctionName" /> -->
+	<rule ref="Generic.NamingConventions.ConstructorName" />
+	<rule ref="Generic.NamingConventions.UpperCaseConstantName" />
+	<!-- <rule ref="Generic.PHP.CharacterBeforePHPOpeningTag" /> -->
+	<rule ref="Generic.PHP.DeprecatedFunctions" />
+	<rule ref="Generic.PHP.DisallowShortOpenTag" />
+	<rule ref="Generic.PHP.ForbiddenFunctions" />
+	<rule ref="Generic.PHP.LowerCaseConstant" />
+	<rule ref="Generic.PHP.LowerCaseKeyword" />
+	<rule ref="Generic.PHP.NoSilencedErrors" />
+	<rule ref="Generic.PHP.SAPIUsage" />
+	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent" />
+
+	<rule ref="PSR2.Classes.PropertyDeclaration" />
+	<rule ref="PSR2.Classes.PropertyDeclaration.Multiple">
+		<!-- We tends to declare multiple properties with one statement -->
+		<severity>0</severity>
+	</rule>
+	<rule ref="PSR2.ControlStructures.ElseIfDeclaration" />
+	<rule ref="PSR2.Methods.MethodDeclaration" />
+	<rule ref="PSR2.Namespaces.NamespaceDeclaration" />
+	<rule ref="PSR2.Namespaces.UseDeclaration" />
+
+	<rule ref="Squiz.CSS.SemicolonSpacing" />
+	<rule ref="Squiz.Classes.ValidClassName" />
+	<rule ref="Squiz.Scope.StaticThisUsage" />
+	<rule ref="Squiz.WhiteSpace.LanguageConstructSpacing" />
+	<rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing" />
+	<!-- <rule ref="Squiz.WhiteSpace.MemberVarSpacing" /> -->
+	<!--
+		`$foo -> bar()` is bad. But we do allow:
+		$foo
+			->bar()
+			->quux();
+		<rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing" />
+	-->
+	<!-- There is no consensus on how to apply this rule, so disabled -->
+	<!--rule ref="Squiz.WhiteSpace.OperatorSpacing" /-->
+	<rule ref="Squiz.WhiteSpace.ScopeClosingBrace" />
+	<rule ref="Squiz.WhiteSpace.ScopeKeywordSpacing" />
+	<rule ref="Squiz.WhiteSpace.SemicolonSpacing" />
+	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace" />
+
+	<rule ref="Zend.Files.ClosingTag" />
+</ruleset>

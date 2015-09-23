@@ -1,0 +1,60 @@
+#!/bin/sh
+echo "DEBUG ENV: ${TRAVIS_JOB_NUMBER} , ${TRAVIS_BUILD_NUMBER} , ${TRAVIS_PULL_REQUEST} ..."
+
+if [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
+  echo "This is a PR, skip push."
+  exit 0
+fi
+
+if [ "${TRAVIS_BUILD_NUMBER}.1" != "${TRAVIS_JOB_NUMBER}" ]; then
+  echo "Only push documents 1 time... quit."
+  exit 0
+fi
+
+# Push coverage report
+wget https://scrutinizer-ci.com/ocular.phar
+php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+
+# Set for all push in this script.
+git config --global user.name "Travis-CI"
+git config --global user.email "zordius@yahoo-inc.com"
+
+# Generate ANSI sample
+git clone https://github.com/fcambus/ansilove
+php tests/example_debug.php > example_debug
+php ansilove/ansilove example_debug
+git add example_debug.png
+
+# Push new tests back to this branch
+git commit -a -m "Auto generated tests from Travis [ci skip]"
+git push "https://${GHTK}@github.com/zordius/lightncandy.git" HEAD:${TRAVIS_BRANCH} > /dev/null 2>&1
+
+# Update hash in HandlebarsTest and push back, trigger new tests there.
+git clone https://github.com/zordius/HandlebarsTest
+cd HandlebarsTest
+echo ${TRAVIS_COMMIT} > lightncandy
+git add lightncandy
+git commit -a -m "Auto test on zordius/lightncandy@${TRAVIS_COMMIT}"
+git push "https://${GHTK}@github.com/zordius/HandlebarsTest.git" > /dev/null 2>&1
+cd ..
+
+# Generate documents for this branch
+build/gen_doc
+cd build/result/docs
+
+if [ "${TRAVIS_BRANCH}" != "master" ]; then
+  echo "Document will be pushed here: http://zordius.github.io/lightncandy/${TRAVIS_BRANCH}/"
+  cd ..
+  git init
+  git pull --quiet "https://${GHTK}@github.com/zordius/lightncandy.git" gh-pages:master > /dev/null 2>&1
+  rm -rf $TRAVIS_BRANCH
+  mv docs $TRAVIS_BRANCH
+  git add $TRAVIS_BRANCH
+else  
+  echo "Document will be pushed here: http://zordius.github.io/lightncandy/"
+  git init
+  git add .
+fi
+
+git commit -m "Auto deployed to Github Pages from branch ${TRAVIS_BRANCH} @${TRAVIS_COMMIT} [ci skip]"
+git push --force --quiet "https://${GHTK}@github.com/zordius/lightncandy.git" master:gh-pages > /dev/null 2>&1

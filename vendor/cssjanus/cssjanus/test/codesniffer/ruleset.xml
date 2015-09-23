@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ruleset name="cssjanus">
+	<rule ref="PSR2">
+		<exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace" />
+		<exclude name="PSR1.Classes.ClassDeclaration.MultipleClasses" />
+		<exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine" />
+		<exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine" />
+	</rule>
+</ruleset>

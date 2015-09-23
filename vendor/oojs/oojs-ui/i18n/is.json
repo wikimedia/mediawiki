@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Maxí",
+			"Snævar"
+		]
+	},
+	"ooui-outline-control-move-down": "Færa atriði niður",
+	"ooui-outline-control-move-up": "Færa atriði upp",
+	"ooui-outline-control-remove": "Fjarlægja atriði",
+	"ooui-toolbar-more": "Fleira",
+	"ooui-toolgroup-expand": "Fleira",
+	"ooui-toolgroup-collapse": "Færra",
+	"ooui-dialog-message-accept": "Í lagi",
+	"ooui-dialog-message-reject": "Hætta við",
+	"ooui-dialog-process-error": "Eitthvað mistókst",
+	"ooui-dialog-process-dismiss": "Loka",
+	"ooui-dialog-process-retry": "Reyna aftur",
+	"ooui-dialog-process-continue": "Halda áfram"
+}

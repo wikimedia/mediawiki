@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="tests/bootstrap.php" colors="true">
+    <testsuites>
+        <testsuite name="Statsd-Service Test Suite">
+            <directory>tests/Liuggio/StatsdClient</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src/Liuggio/</directory>
+        </whitelist>
+    </filter>
+</phpunit>

@@ -1,0 +1,32 @@
+# Configuration file for Doxygen
+
+PROJECT_NAME           = utfnormal
+PROJECT_BRIEF          = "Unicode normalization for PHP"
+
+OUTPUT_DIRECTORY       = doc
+
+JAVADOC_AUTOBRIEF      = YES
+QT_AUTOBRIEF           = YES
+
+WARN_NO_PARAMDOC       = YES
+
+INPUT                  = README.md src/
+FILE_PATTERNS          = *.php
+RECURSIVE              = YES
+# Requires doxygen 1.8.3+
+USE_MDFILE_AS_MAINPAGE = README.md
+
+HTML_DYNAMIC_SECTIONS  = YES
+GENERATE_TREEVIEW      = YES
+TREEVIEW_WIDTH         = 250
+
+GENERATE_LATEX         = NO
+
+HAVE_DOT               = YES
+DOT_FONTNAME           = Helvetica
+DOT_FONTSIZE           = 10
+TEMPLATE_RELATIONS     = YES
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+# Makes dot run faster. Requires graphviz >1.8.10
+DOT_MULTI_TARGETS      = YES

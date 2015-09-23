@@ -1,0 +1,44 @@
+{
+    "name": "wikimedia/composer-merge-plugin",
+    "description": "Composer plugin to merge multiple composer.json files",
+    "type": "composer-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bryan Davis",
+            "email": "bd808@wikimedia.org"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=5.3.2",
+        "composer-plugin-api": "^1.0"
+    },
+    "require-dev": {
+        "composer/composer": "1.0.*@dev",
+        "phpunit/phpunit": "~4.0",
+        "jakub-onderka/php-parallel-lint": "~0.8",
+        "squizlabs/php_codesniffer": "~2.1.0",
+        "phpspec/prophecy-phpunit": "~1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wikimedia\\Composer\\": "src/"
+        }
+    },
+    "extra": {
+        "class": "Wikimedia\\Composer\\MergePlugin"
+    },
+    "config": {
+        "optimize-autoloader": true
+    },
+    "scripts": {
+        "test": [
+            "composer validate --no-interaction",
+            "parallel-lint src tests",
+            "phpunit --log-junit=reports/unitreport.xml --coverage-text --coverage-html=reports/coverage --coverage-clover=reports/coverage.xml",
+            "phpcs --encoding=utf-8 --standard=PSR2 --report-checkstyle=reports/checkstyle-phpcs.xml --report-full --extensions=php src/* tests/phpunit/*"
+        ]
+    }
+}

@@ -1,0 +1,12 @@
+#!/bin/sh
+git checkout -B gh-pages
+git pull origin gh-pages
+rm *
+rm -rf src
+rm -rf test
+cp -r build/result/docs/* .
+rm -rf build
+rm .travis.yml
+git add .
+git commit -a -m "New documents on github"
+git push origin gh-pages

@@ -1,0 +1,27 @@
+language: php
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 5.3.3
+    - php: 5.3
+    - php: 5.4
+    - php: 5.5
+    - php: 5.6
+      env: CHECK_LINKS=true BUILD_DOCS=true
+    - php: 7
+    - php: hhvm
+  allow_failures:
+    - php: 7
+
+before_install:
+  - composer selfupdate
+
+install:
+  - travis_retry composer install --no-interaction --prefer-source
+  - if [[ "$CHECK_LINKS" == "true" ]]; then sudo apt-get -y install pypy python-sphinx graphviz; fi
+
+script:
+  - vendor/bin/phpunit --coverage-text
+  - if [[ "$CHECK_LINKS" == "true" ]]; then cd docs && make linkcheck && cd ..; fi
+  - if [[ "$BUILD_DOCS" == "true" ]]; then vendor/bin/phpdoc -d src -t docs-api; fi

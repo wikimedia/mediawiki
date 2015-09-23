@@ -1,0 +1,7 @@
+/composer.lock
+/vendor
+
+# emacs
+*~
+.#*
+#*#

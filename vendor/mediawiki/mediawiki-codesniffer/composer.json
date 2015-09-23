@@ -1,0 +1,21 @@
+{
+	"name": "mediawiki/mediawiki-codesniffer",
+	"description": "MediaWiki CodeSniffer Standards",
+	"keywords": ["mediawiki", "codesniffer"],
+	"homepage": "https://www.mediawiki.org/wiki/Manual:Coding_conventions/PHP",
+	"license": "GPL-2.0+",
+	"require": {
+		"squizlabs/php_codesniffer": "2.3.0"
+	},
+	"require-dev": {
+		"jakub-onderka/php-parallel-lint": "0.8.*",
+		"phpunit/phpunit": "~4.1.0"
+	},
+	"scripts": {
+		"test": [
+			"parallel-lint . --exclude vendor",
+			"phpunit $PHPUNIT_ARGS",
+			"phpcs --standard=./MediaWiki --extensions=php,php5,inc --ignore=vendor,*fail.php -p ."
+		]
+	}
+}

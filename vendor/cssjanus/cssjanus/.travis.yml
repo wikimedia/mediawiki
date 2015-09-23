@@ -1,0 +1,17 @@
+language: php
+php:
+  - "5.6"
+  - "5.5"
+  - "5.4"
+  - "5.3"
+  - "hhvm"
+install:
+  - composer install
+script:
+  - ./test/run
+notifications:
+  irc:
+    channels:
+      - "chat.freenode.net#wikimedia-dev"
+    template:
+      - "%{repository}#%{build_number} (%{branch} - %{commit} %{author}): %{message} - %{build_url}"

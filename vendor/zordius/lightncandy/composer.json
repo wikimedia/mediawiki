@@ -1,0 +1,22 @@
+{
+    "name": "zordius/lightncandy",
+    "description": "An extremely fast PHP implementation of handlebars ( http://handlebarsjs.com/ ) and mustache ( http://mustache.github.io/ ).",
+    "homepage": "https://github.com/zordius/lightncandy",
+    "keywords": ["handlebars", "mustache", "PHP", "template", "logicless"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zordius Chen",
+            "email": "zordius@yahoo-inc.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.0.17"
+    },
+    "autoload": {
+        "classmap": ["src/lightncandy.php"]
+    }
+}

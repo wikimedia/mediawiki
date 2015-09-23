@@ -1,0 +1,1266 @@
+[
+    {
+        "name": "wikimedia/composer-merge-plugin",
+        "version": "v1.2.1",
+        "version_normalized": "1.2.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/wikimedia/composer-merge-plugin.git",
+            "reference": "c455fb5ca09da6b970355b19185e27415bc15756"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/wikimedia/composer-merge-plugin/zipball/c455fb5ca09da6b970355b19185e27415bc15756",
+            "reference": "c455fb5ca09da6b970355b19185e27415bc15756",
+            "shasum": ""
+        },
+        "require": {
+            "composer-plugin-api": "^1.0",
+            "php": ">=5.3.2"
+        },
+        "require-dev": {
+            "composer/composer": "1.0.*@dev",
+            "jakub-onderka/php-parallel-lint": "~0.8",
+            "phpspec/prophecy-phpunit": "~1.0",
+            "phpunit/phpunit": "~4.0",
+            "squizlabs/php_codesniffer": "~2.1.0"
+        },
+        "time": "2015-07-03 03:24:58",
+        "type": "composer-plugin",
+        "extra": {
+            "class": "Wikimedia\\Composer\\MergePlugin"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Wikimedia\\Composer\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Bryan Davis",
+                "email": "bd808@wikimedia.org"
+            }
+        ],
+        "description": "Composer plugin to merge multiple composer.json files"
+    },
+    {
+        "name": "cssjanus/cssjanus",
+        "version": "v1.1.1",
+        "version_normalized": "1.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cssjanus/php-cssjanus.git",
+            "reference": "62a9c32e6e140de09082b40a6e99d868ad14d4e0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/cssjanus/php-cssjanus/zipball/62a9c32e6e140de09082b40a6e99d868ad14d4e0",
+            "reference": "62a9c32e6e140de09082b40a6e99d868ad14d4e0",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "jakub-onderka/php-parallel-lint": "0.8.*",
+            "phpunit/phpunit": "3.7.*",
+            "squizlabs/php_codesniffer": "1.*"
+        },
+        "time": "2014-11-14 20:00:50",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "description": "Convert CSS stylesheets between left-to-right and right-to-left."
+    },
+    {
+        "name": "liuggio/statsd-php-client",
+        "version": "v1.0.16",
+        "version_normalized": "1.0.16.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/liuggio/statsd-php-client.git",
+            "reference": "a84fbef1a7afbfafd0ca4f1ebae4935bd1a7d920"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/liuggio/statsd-php-client/zipball/a84fbef1a7afbfafd0ca4f1ebae4935bd1a7d920",
+            "reference": "a84fbef1a7afbfafd0ca4f1ebae4935bd1a7d920",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2"
+        },
+        "require-dev": {
+            "monolog/monolog": ">=1.2.0"
+        },
+        "suggest": {
+            "monolog/monolog": "Monolog, in order to do generate statistic from log >=1.2.0)"
+        },
+        "time": "2015-04-27 08:12:26",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Liuggio": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Giulio De Donato",
+                "email": "liuggio@gmail.com"
+            }
+        ],
+        "description": "Statsd (Object Oriented) client library for PHP",
+        "homepage": "https://github.com/liuggio/statsd-php-client/",
+        "keywords": [
+            "etsy",
+            "monitoring",
+            "php",
+            "statsd"
+        ]
+    },
+    {
+        "name": "oyejorge/less.php",
+        "version": "v1.7.0.5",
+        "version_normalized": "1.7.0.5",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/oyejorge/less.php.git",
+            "reference": "4385036b1dbfaf37f5380bd26a1e6006fc43149f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/oyejorge/less.php/zipball/4385036b1dbfaf37f5380bd26a1e6006fc43149f",
+            "reference": "4385036b1dbfaf37f5380bd26a1e6006fc43149f",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3"
+        },
+        "time": "2015-07-13 20:34:18",
+        "bin": [
+            "bin/lessc"
+        ],
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Less": "lib/"
+            },
+            "classmap": [
+                "lessc.inc.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Matt Agar",
+                "homepage": "https://github.com/agar"
+            },
+            {
+                "name": "Martin Jantošovič",
+                "homepage": "https://github.com/Mordred"
+            },
+            {
+                "name": "Josh Schmidt",
+                "homepage": "https://github.com/oyejorge"
+            }
+        ],
+        "description": "PHP port of the Javascript version of LESS http://lesscss.org",
+        "homepage": "http://lessphp.gpeasy.com",
+        "keywords": [
+            "css",
+            "less",
+            "less.js",
+            "lesscss",
+            "php",
+            "stylesheet"
+        ]
+    },
+    {
+        "name": "mediawiki/at-ease",
+        "version": "v1.1.0",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/wikimedia/at-ease.git",
+            "reference": "94c0b84888841d160419f915c2745d9d08fbf0c3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/wikimedia/at-ease/zipball/94c0b84888841d160419f915c2745d9d08fbf0c3",
+            "reference": "94c0b84888841d160419f915c2745d9d08fbf0c3",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "jakub-onderka/php-parallel-lint": "0.9",
+            "mediawiki/mediawiki-codesniffer": "0.3.0",
+            "phpunit/phpunit": "~4.5",
+            "squizlabs/php_codesniffer": "2.3.0"
+        },
+        "time": "2015-09-18 07:02:06",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/Functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Tim Starling",
+                "email": "tstarling@wikimedia.org"
+            },
+            {
+                "name": "MediaWiki developers",
+                "email": "wikitech-l@lists.wikimedia.org"
+            }
+        ],
+        "description": "Safe replacement to @ for suppressing warnings.",
+        "homepage": "https://www.mediawiki.org/wiki/at-ease"
+    },
+    {
+        "name": "oojs/oojs-ui",
+        "version": "v0.12.8.1",
+        "version_normalized": "0.12.8.1",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/wikimedia/oojs-ui.git",
+            "reference": "8d0cf8c5b12e1b16310b9ed1df979cfdd789757b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/wikimedia/oojs-ui/zipball/8d0cf8c5b12e1b16310b9ed1df979cfdd789757b",
+            "reference": "8d0cf8c5b12e1b16310b9ed1df979cfdd789757b",
+            "shasum": ""
+        },
+        "require": {
+            "mediawiki/at-ease": "1.1.0",
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "jakub-onderka/php-parallel-lint": "0.9",
+            "mediawiki/mediawiki-codesniffer": "0.3.0",
+            "phpunit/phpunit": "~4.5"
+        },
+        "time": "2015-09-18 17:41:55",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "php/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Provides library of common widgets, layouts, and windows.",
+        "homepage": "https://www.mediawiki.org/wiki/OOjs_UI"
+    },
+    {
+        "name": "psr/log",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/log.git",
+            "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+            "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+            "shasum": ""
+        },
+        "time": "2012-12-21 11:40:51",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Psr\\Log\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common interface for logging libraries",
+        "keywords": [
+            "log",
+            "psr",
+            "psr-3"
+        ]
+    },
+    {
+        "name": "wikimedia/assert",
+        "version": "v0.2.2",
+        "version_normalized": "0.2.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/wmde/Assert.git",
+            "reference": "2da55927525975f8d52825fc3ee02e5e36f5036c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/wmde/Assert/zipball/2da55927525975f8d52825fc3ee02e5e36f5036c",
+            "reference": "2da55927525975f8d52825fc3ee02e5e36f5036c",
+            "shasum": ""
+        },
+        "require-dev": {
+            "phpunit/phpunit": "3.7.*"
+        },
+        "time": "2015-04-29 17:23:50",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Wikimedia\\Assert\\": "src/",
+                "Wikimedia\\Assert\\Test\\": "tests/phpunit/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Daniel Kinzler"
+            }
+        ],
+        "description": "Provides runtime assertions",
+        "homepage": "https://github.com/wmde/Assert",
+        "keywords": [
+            "assert",
+            "assertions",
+            "php",
+            "postcondition",
+            "precondition",
+            "qa"
+        ]
+    },
+    {
+        "name": "wikimedia/cdb",
+        "version": "1.3.0",
+        "version_normalized": "1.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/wikimedia/cdb.git",
+            "reference": "68f8fd495ca94ca0e965dd511e234893c515bb95"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/wikimedia/cdb/zipball/68f8fd495ca94ca0e965dd511e234893c515bb95",
+            "reference": "68f8fd495ca94ca0e965dd511e234893c515bb95",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2"
+        },
+        "require-dev": {
+            "jakub-onderka/php-parallel-lint": "0.9",
+            "mediawiki/mediawiki-codesniffer": "0.3.0",
+            "phpunit/phpunit": "4.6.*"
+        },
+        "time": "2015-09-08 19:53:04",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Tim Starling",
+                "email": "tstarling@wikimedia.org"
+            },
+            {
+                "name": "Chad Horohoe",
+                "email": "chad@wikimedia.org"
+            },
+            {
+                "name": "Ori Livneh",
+                "email": "ori@wikimedia.org"
+            }
+        ],
+        "description": "Constant Database (CDB) wrapper library for PHP. Provides pure-PHP fallback when dba_* functions are absent.",
+        "homepage": "https://www.mediawiki.org/wiki/CDB"
+    },
+    {
+        "name": "wikimedia/ip-set",
+        "version": "1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/wikimedia/IPSet.git",
+            "reference": "3c2dd6706546fe616e6ceba02044e64dce4fc9be"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/wikimedia/IPSet/zipball/3c2dd6706546fe616e6ceba02044e64dce4fc9be",
+            "reference": "3c2dd6706546fe616e6ceba02044e64dce4fc9be",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "jakub-onderka/php-parallel-lint": "0.9",
+            "mediawiki/mediawiki-codesniffer": "0.3.0",
+            "phpunit/phpunit": "4.6.*"
+        },
+        "time": "2015-06-29 20:21:27",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Brandon Black",
+                "email": "blblack@gmail.com"
+            }
+        ],
+        "description": "Efficiently match IP addresses against a set of CIDR specifications.",
+        "homepage": "https://github.com/wikimedia/IPSet"
+    },
+    {
+        "name": "wikimedia/utfnormal",
+        "version": "v1.0.3",
+        "version_normalized": "1.0.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/wikimedia/utfnormal.git",
+            "reference": "bcb81d1d87bae400af45cc419a850dcf9883775b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/wikimedia/utfnormal/zipball/bcb81d1d87bae400af45cc419a850dcf9883775b",
+            "reference": "bcb81d1d87bae400af45cc419a850dcf9883775b",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "ext-mbstring": "*",
+            "jakub-onderka/php-parallel-lint": "0.8.*",
+            "mediawiki/mediawiki-codesniffer": "0.1.0",
+            "phpunit/phpunit": "4.6.*",
+            "squizlabs/php_codesniffer": "2.2.*"
+        },
+        "time": "2015-08-29 14:13:27",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Brion Vibber",
+                "email": "bvibber@wikimedia.org"
+            }
+        ],
+        "description": "Contains Unicode normalization routines, including both pure PHP implementations and automatic use of the 'intl' PHP extension when present",
+        "homepage": "https://www.mediawiki.org/wiki/utfnormal"
+    },
+    {
+        "name": "wikimedia/wrappedstring",
+        "version": "v2.0.0",
+        "version_normalized": "2.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/wikimedia/WrappedString.git",
+            "reference": "1b27e0ea23bd915644dade17c3fe1e45fdbadf11"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/wikimedia/WrappedString/zipball/1b27e0ea23bd915644dade17c3fe1e45fdbadf11",
+            "reference": "1b27e0ea23bd915644dade17c3fe1e45fdbadf11",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "jakub-onderka/php-parallel-lint": "^0.9.0.0",
+            "mediawiki/mediawiki-codesniffer": "^0.3.0.0",
+            "phpunit/phpunit": "^4.7.7.0"
+        },
+        "time": "2015-07-31 00:06:22",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "WrappedString\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Timo Tijhof",
+                "email": "krinklemail@gmail.com"
+            }
+        ],
+        "description": "Automatically compact sequentially-outputted strings that share a common prefix / suffix pair.",
+        "homepage": "https://www.mediawiki.org/wiki/WrappedString"
+    },
+    {
+        "name": "zordius/lightncandy",
+        "version": "v0.21",
+        "version_normalized": "0.21.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zordius/lightncandy.git",
+            "reference": "015fed62d0ae6fe7601d3910b8e4b6a6964f86a0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zordius/lightncandy/zipball/015fed62d0ae6fe7601d3910b8e4b6a6964f86a0",
+            "reference": "015fed62d0ae6fe7601d3910b8e4b6a6964f86a0",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.0.17"
+        },
+        "time": "2015-05-08 01:56:46",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/lightncandy.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Zordius Chen",
+                "email": "zordius@yahoo-inc.com"
+            }
+        ],
+        "description": "An extremely fast PHP implementation of handlebars ( http://handlebarsjs.com/ ) and mustache ( http://mustache.github.io/ ).",
+        "homepage": "https://github.com/zordius/lightncandy",
+        "keywords": [
+            "handlebars",
+            "logicless",
+            "mustache",
+            "php",
+            "template"
+        ]
+    },
+    {
+        "name": "jakub-onderka/php-parallel-lint",
+        "version": "v0.9",
+        "version_normalized": "0.9.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/JakubOnderka/PHP-Parallel-Lint.git",
+            "reference": "1b693fb455201cacf595163c92bfb1adfa2158d8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/JakubOnderka/PHP-Parallel-Lint/zipball/1b693fb455201cacf595163c92bfb1adfa2158d8",
+            "reference": "1b693fb455201cacf595163c92bfb1adfa2158d8",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "jakub-onderka/php-console-highlighter": "~0.3",
+            "nette/tester": "~1.3"
+        },
+        "suggest": {
+            "jakub-onderka/php-console-highlighter": "Highlight syntax in code snippet"
+        },
+        "time": "2015-06-16 10:17:07",
+        "bin": [
+            "parallel-lint"
+        ],
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "./"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD"
+        ],
+        "authors": [
+            {
+                "name": "Jakub Onderka",
+                "email": "jakub.onderka@gmail.com"
+            }
+        ],
+        "description": "This tool check syntax of PHP files about 20x faster than serial check.",
+        "homepage": "https://github.com/JakubOnderka/PHP-Parallel-Lint"
+    },
+    {
+        "name": "symfony/yaml",
+        "version": "v2.7.4",
+        "version_normalized": "2.7.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/Yaml.git",
+            "reference": "2dc7b06c065df96cc686c66da2705e5e18aef661"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/Yaml/zipball/2dc7b06c065df96cc686c66da2705e5e18aef661",
+            "reference": "2dc7b06c065df96cc686c66da2705e5e18aef661",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.9"
+        },
+        "require-dev": {
+            "symfony/phpunit-bridge": "~2.7"
+        },
+        "time": "2015-08-24 07:13:45",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.7-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Component\\Yaml\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Yaml Component",
+        "homepage": "https://symfony.com"
+    },
+    {
+        "name": "phpunit/php-text-template",
+        "version": "1.2.1",
+        "version_normalized": "1.2.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sebastianbergmann/php-text-template.git",
+            "reference": "31f8b717e51d9a2afca6c9f046f5d69fc27c8686"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
+            "reference": "31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2015-06-21 13:50:34",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Sebastian Bergmann",
+                "email": "sebastian@phpunit.de",
+                "role": "lead"
+            }
+        ],
+        "description": "Simple template engine.",
+        "homepage": "https://github.com/sebastianbergmann/php-text-template/",
+        "keywords": [
+            "template"
+        ]
+    },
+    {
+        "name": "phpunit/phpunit-mock-objects",
+        "version": "1.2.3",
+        "version_normalized": "1.2.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
+            "reference": "5794e3c5c5ba0fb037b11d8151add2a07fa82875"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/5794e3c5c5ba0fb037b11d8151add2a07fa82875",
+            "reference": "5794e3c5c5ba0fb037b11d8151add2a07fa82875",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3",
+            "phpunit/php-text-template": ">=1.1.1@stable"
+        },
+        "suggest": {
+            "ext-soap": "*"
+        },
+        "time": "2013-01-13 10:24:48",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "PHPUnit/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "include-path": [
+            ""
+        ],
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Sebastian Bergmann",
+                "email": "sb@sebastian-bergmann.de",
+                "role": "lead"
+            }
+        ],
+        "description": "Mock Object library for PHPUnit",
+        "homepage": "https://github.com/sebastianbergmann/phpunit-mock-objects/",
+        "keywords": [
+            "mock",
+            "xunit"
+        ]
+    },
+    {
+        "name": "phpunit/php-timer",
+        "version": "1.0.7",
+        "version_normalized": "1.0.7.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sebastianbergmann/php-timer.git",
+            "reference": "3e82f4e9fc92665fafd9157568e4dcb01d014e5b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/3e82f4e9fc92665fafd9157568e4dcb01d014e5b",
+            "reference": "3e82f4e9fc92665fafd9157568e4dcb01d014e5b",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2015-06-21 08:01:12",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Sebastian Bergmann",
+                "email": "sb@sebastian-bergmann.de",
+                "role": "lead"
+            }
+        ],
+        "description": "Utility class for timing",
+        "homepage": "https://github.com/sebastianbergmann/php-timer/",
+        "keywords": [
+            "timer"
+        ]
+    },
+    {
+        "name": "phpunit/php-token-stream",
+        "version": "1.2.2",
+        "version_normalized": "1.2.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sebastianbergmann/php-token-stream.git",
+            "reference": "ad4e1e23ae01b483c16f600ff1bebec184588e32"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/ad4e1e23ae01b483c16f600ff1bebec184588e32",
+            "reference": "ad4e1e23ae01b483c16f600ff1bebec184588e32",
+            "shasum": ""
+        },
+        "require": {
+            "ext-tokenizer": "*",
+            "php": ">=5.3.3"
+        },
+        "time": "2014-03-03 05:10:30",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "PHP/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "include-path": [
+            ""
+        ],
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Sebastian Bergmann",
+                "email": "sb@sebastian-bergmann.de",
+                "role": "lead"
+            }
+        ],
+        "description": "Wrapper around PHP's tokenizer extension.",
+        "homepage": "https://github.com/sebastianbergmann/php-token-stream/",
+        "keywords": [
+            "tokenizer"
+        ]
+    },
+    {
+        "name": "phpunit/php-file-iterator",
+        "version": "1.4.1",
+        "version_normalized": "1.4.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
+            "reference": "6150bf2c35d3fc379e50c7602b75caceaa39dbf0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/6150bf2c35d3fc379e50c7602b75caceaa39dbf0",
+            "reference": "6150bf2c35d3fc379e50c7602b75caceaa39dbf0",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2015-06-21 13:08:43",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.4.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Sebastian Bergmann",
+                "email": "sb@sebastian-bergmann.de",
+                "role": "lead"
+            }
+        ],
+        "description": "FilterIterator implementation that filters files based on a list of suffixes.",
+        "homepage": "https://github.com/sebastianbergmann/php-file-iterator/",
+        "keywords": [
+            "filesystem",
+            "iterator"
+        ]
+    },
+    {
+        "name": "phpunit/php-code-coverage",
+        "version": "1.2.18",
+        "version_normalized": "1.2.18.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
+            "reference": "fe2466802556d3fe4e4d1d58ffd3ccfd0a19be0b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/fe2466802556d3fe4e4d1d58ffd3ccfd0a19be0b",
+            "reference": "fe2466802556d3fe4e4d1d58ffd3ccfd0a19be0b",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3",
+            "phpunit/php-file-iterator": ">=1.3.0@stable",
+            "phpunit/php-text-template": ">=1.2.0@stable",
+            "phpunit/php-token-stream": ">=1.1.3,<1.3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "3.7.*@dev"
+        },
+        "suggest": {
+            "ext-dom": "*",
+            "ext-xdebug": ">=2.0.5"
+        },
+        "time": "2014-09-02 10:13:14",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.2.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "PHP/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "include-path": [
+            ""
+        ],
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Sebastian Bergmann",
+                "email": "sb@sebastian-bergmann.de",
+                "role": "lead"
+            }
+        ],
+        "description": "Library that provides collection, processing, and rendering functionality for PHP code coverage information.",
+        "homepage": "https://github.com/sebastianbergmann/php-code-coverage",
+        "keywords": [
+            "coverage",
+            "testing",
+            "xunit"
+        ]
+    },
+    {
+        "name": "phpunit/phpunit",
+        "version": "3.7.37",
+        "version_normalized": "3.7.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sebastianbergmann/phpunit.git",
+            "reference": "ae6cefd7cc84586a5ef27e04bae11ee940ec63dc"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/ae6cefd7cc84586a5ef27e04bae11ee940ec63dc",
+            "reference": "ae6cefd7cc84586a5ef27e04bae11ee940ec63dc",
+            "shasum": ""
+        },
+        "require": {
+            "ext-ctype": "*",
+            "ext-dom": "*",
+            "ext-json": "*",
+            "ext-pcre": "*",
+            "ext-reflection": "*",
+            "ext-spl": "*",
+            "php": ">=5.3.3",
+            "phpunit/php-code-coverage": "~1.2",
+            "phpunit/php-file-iterator": "~1.3",
+            "phpunit/php-text-template": "~1.1",
+            "phpunit/php-timer": "~1.0",
+            "phpunit/phpunit-mock-objects": "~1.2",
+            "symfony/yaml": "~2.0"
+        },
+        "require-dev": {
+            "pear-pear.php.net/pear": "1.9.4"
+        },
+        "suggest": {
+            "phpunit/php-invoker": "~1.1"
+        },
+        "time": "2014-04-30 12:24:19",
+        "bin": [
+            "composer/bin/phpunit"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.7.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "PHPUnit/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "include-path": [
+            "",
+            "../../symfony/yaml/"
+        ],
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Sebastian Bergmann",
+                "email": "sebastian@phpunit.de",
+                "role": "lead"
+            }
+        ],
+        "description": "The PHP Unit Testing framework.",
+        "homepage": "http://www.phpunit.de/",
+        "keywords": [
+            "phpunit",
+            "testing",
+            "xunit"
+        ]
+    },
+    {
+        "name": "squizlabs/php_codesniffer",
+        "version": "2.3.0",
+        "version_normalized": "2.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
+            "reference": "5046b0e01c416fc2b06df961d0673c85bcdc896c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/5046b0e01c416fc2b06df961d0673c85bcdc896c",
+            "reference": "5046b0e01c416fc2b06df961d0673c85bcdc896c",
+            "shasum": ""
+        },
+        "require": {
+            "ext-tokenizer": "*",
+            "ext-xmlwriter": "*",
+            "php": ">=5.1.2"
+        },
+        "time": "2015-03-04 02:07:03",
+        "bin": [
+            "scripts/phpcs",
+            "scripts/phpcbf"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "CodeSniffer.php",
+                "CodeSniffer/CLI.php",
+                "CodeSniffer/Exception.php",
+                "CodeSniffer/File.php",
+                "CodeSniffer/Fixer.php",
+                "CodeSniffer/Report.php",
+                "CodeSniffer/Reporting.php",
+                "CodeSniffer/Sniff.php",
+                "CodeSniffer/Tokens.php",
+                "CodeSniffer/Reports/",
+                "CodeSniffer/Tokenizers/",
+                "CodeSniffer/DocGenerators/",
+                "CodeSniffer/Standards/AbstractPatternSniff.php",
+                "CodeSniffer/Standards/AbstractScopeSniff.php",
+                "CodeSniffer/Standards/AbstractVariableSniff.php",
+                "CodeSniffer/Standards/IncorrectPatternException.php",
+                "CodeSniffer/Standards/Generic/Sniffs/",
+                "CodeSniffer/Standards/MySource/Sniffs/",
+                "CodeSniffer/Standards/PEAR/Sniffs/",
+                "CodeSniffer/Standards/PSR1/Sniffs/",
+                "CodeSniffer/Standards/PSR2/Sniffs/",
+                "CodeSniffer/Standards/Squiz/Sniffs/",
+                "CodeSniffer/Standards/Zend/Sniffs/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Greg Sherwood",
+                "role": "lead"
+            }
+        ],
+        "description": "PHP_CodeSniffer tokenizes PHP, JavaScript and CSS files and detects violations of a defined set of coding standards.",
+        "homepage": "http://www.squizlabs.com/php-codesniffer",
+        "keywords": [
+            "phpcs",
+            "standards"
+        ]
+    },
+    {
+        "name": "mediawiki/mediawiki-codesniffer",
+        "version": "v0.3.0",
+        "version_normalized": "0.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/wikimedia/mediawiki-tools-codesniffer.git",
+            "reference": "cb25db9fba6b3d3b6cc6ee95a87772ff1302929b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/wikimedia/mediawiki-tools-codesniffer/zipball/cb25db9fba6b3d3b6cc6ee95a87772ff1302929b",
+            "reference": "cb25db9fba6b3d3b6cc6ee95a87772ff1302929b",
+            "shasum": ""
+        },
+        "require": {
+            "squizlabs/php_codesniffer": "2.3.0"
+        },
+        "require-dev": {
+            "jakub-onderka/php-parallel-lint": "0.8.*",
+            "phpunit/phpunit": "~4.1.0"
+        },
+        "time": "2015-06-19 16:36:59",
+        "type": "library",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "description": "MediaWiki CodeSniffer Standards",
+        "homepage": "https://www.mediawiki.org/wiki/Manual:Coding_conventions/PHP",
+        "keywords": [
+            "codesniffer",
+            "mediawiki"
+        ]
+    },
+    {
+        "name": "justinrainbow/json-schema",
+        "version": "1.5.0",
+        "version_normalized": "1.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/justinrainbow/json-schema.git",
+            "reference": "a4bee9f4b344b66e0a0d96c7afae1e92edf385fe"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/a4bee9f4b344b66e0a0d96c7afae1e92edf385fe",
+            "reference": "a4bee9f4b344b66e0a0d96c7afae1e92edf385fe",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2"
+        },
+        "require-dev": {
+            "json-schema/json-schema-test-suite": "1.1.0",
+            "phpdocumentor/phpdocumentor": "~2",
+            "phpunit/phpunit": "~3.7"
+        },
+        "time": "2015-09-08 22:28:04",
+        "bin": [
+            "bin/validate-json"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.4.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "JsonSchema\\": "src/JsonSchema/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Bruno Prieto Reis",
+                "email": "bruno.p.reis@gmail.com"
+            },
+            {
+                "name": "Justin Rainbow",
+                "email": "justin.rainbow@gmail.com"
+            },
+            {
+                "name": "Igor Wiedler",
+                "email": "igor@wiedler.ch"
+            },
+            {
+                "name": "Robert Schönthal",
+                "email": "seroscho@googlemail.com"
+            }
+        ],
+        "description": "A library to validate a json schema.",
+        "homepage": "https://github.com/justinrainbow/json-schema",
+        "keywords": [
+            "json",
+            "schema"
+        ]
+    }
+]

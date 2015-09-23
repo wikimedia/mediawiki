@@ -1,0 +1,2 @@
+#!/bin/sh
+php -dopen_basedir=/ $1 $2
