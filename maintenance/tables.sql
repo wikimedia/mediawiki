@@ -1524,7 +1524,7 @@ CREATE UNIQUE INDEX /*i*/mrl_message_resource ON /*_*/msg_resource_links (mrl_me
 CREATE TABLE /*_*/module_deps (
   -- Module name
   md_module varbinary(255) NOT NULL,
-  -- Skin name
+  -- Module context vary (includes skin and language; called "md_skin" for legacy reasons)
   md_skin varbinary(32) NOT NULL,
   -- JSON blob with file dependencies
   md_deps mediumblob NOT NULL

@@ -88,4 +88,41 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 			'Leave valid scripts as-is'
 		);
 	}
+
+	/**
+	 * @covers ResourceLoaderModule::getRelativePaths
+	 * @covers ResourceLoaderModule::expandRelativePaths
+	 */
+	public function testPlaceholderize() {
+		$getRelativePaths = new ReflectionMethod( 'ResourceLoaderModule', 'getRelativePaths' );
+		$getRelativePaths->setAccessible( true );
+		$expandRelativePaths = new ReflectionMethod( 'ResourceLoaderModule', 'expandRelativePaths' );
+		$expandRelativePaths->setAccessible( true );
+
+		$this->setMwGlobals( array(
+			'IP' => '/srv/example/mediawiki/core',
+		) );
+		$raw = array(
+				'/srv/example/mediawiki/core/resources/foo.js',
+				'/srv/example/mediawiki/core/extensions/Example/modules/bar.js',
+				'/srv/example/mediawiki/skins/Example/baz.css',
+				'/srv/example/mediawiki/skins/Example/images/quux.png',
+		);
+		$canonical = array(
+				'resources/foo.js',
+				'extensions/Example/modules/bar.js',
+				'../skins/Example/baz.css',
+				'../skins/Example/images/quux.png',
+		);
+		$this->assertEquals(
+			$getRelativePaths->invoke( null, $raw ),
+			$canonical,
+			'Insert placeholders'
+		);
+		$this->assertEquals(
+			$expandRelativePaths->invoke( null, $canonical ),
+			$raw,
+			'Substitute placeholders'
+		);
+	}
 }

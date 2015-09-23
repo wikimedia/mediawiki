@@ -376,32 +376,33 @@ abstract class ResourceLoaderModule {
 	 * Get the files this module depends on indirectly for a given skin.
 	 * Currently these are only image files referenced by the module's CSS.
 	 *
-	 * @param string $skin Skin name
+	 * @param ResourceLoaderContext $context
 	 * @return array List of files
 	 */
-	public function getFileDependencies( $skin ) {
+	protected function getFileDependencies( ResourceLoaderContext $context ) {
+		$vary = $context->getSkin() . '|' . $context->getLanguage();
+
 		// Try in-object cache first
-		if ( isset( $this->fileDeps[$skin] ) ) {
-			return $this->fileDeps[$skin];
+		if ( !isset( $this->fileDeps[$vary] ) ) {
+			$dbr = wfGetDB( DB_SLAVE );
+			$deps = $dbr->selectField( 'module_deps',
+				'md_deps',
+				array(
+					'md_module' => $this->getName(),
+					'md_skin' => $vary,
+				),
+				__METHOD__
+			);
+
+			if ( !is_null( $deps ) ) {
+				$this->fileDeps[$vary] = self::expandRelativePaths(
+					(array)FormatJson::decode( $deps, true )
+				);
+			} else {
+				$this->fileDeps[$vary] = array();
+			}
 		}
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$deps = $dbr->selectField( 'module_deps',
-			'md_deps',
-			array(
-				'md_module' => $this->getName(),
-				'md_skin' => $skin,
-			),
-			__METHOD__
-		);
-
-		if ( !is_null( $deps ) ) {
-			$this->fileDeps[$skin] = (array)FormatJson::decode( $deps, true );
-		} else {
-			$this->fileDeps[$skin] = array();
-		}
-
-		return $this->fileDeps[$skin];
+		return $this->fileDeps[$vary];
 	}
 
 	/**
@@ -410,8 +411,71 @@ abstract class ResourceLoaderModule {
 	 * @param string $skin Skin name
 	 * @param array $deps Array of file names
 	 */
-	public function setFileDependencies( $skin, $deps ) {
-		$this->fileDeps[$skin] = $deps;
+	public function setFileDependencies( ResourceLoaderContext $context, $files ) {
+		$vary = $context->getSkin() . '|' . $context->getLanguage();
+		$this->fileDeps[$vary] = $files;
+	}
+
+	/**
+	 * Set the files this module depends on indirectly for a given skin.
+	 *
+	 * @since 1.26
+	 * @param ResourceLoaderContext $context
+	 * @param array $localFileRefs List of files
+	 */
+	protected function saveFileDependencies( ResourceLoaderContext $context, $localFileRefs ) {
+		// Normalise array
+		$localFileRefs = array_values( array_unique( $localFileRefs ) );
+		sort( $localFileRefs );
+
+		try {
+			// If the list has been modified since last time we cached it, update the cache
+			if ( $localFileRefs !== $this->getFileDependencies( $context ) ) {
+				$vary = $context->getSkin() . '|' . $context->getLanguage();
+				$dbw = wfGetDB( DB_MASTER );
+				$dbw->replace( 'module_deps',
+					array( array( 'md_module', 'md_skin' ) ), array(
+						'md_module' => $this->getName(),
+						'md_skin' => $vary,
+						// Use relative paths to avoid ghost entries when $IP changes (T111481)
+						'md_deps' => FormatJson::encode( self::getRelativePaths( $localFileRefs ) ),
+					)
+				);
+			}
+		} catch ( Exception $e ) {
+			wfDebugLog( 'resourceloader', __METHOD__ . ": failed to update DB: $e" );
+		}
+	}
+
+	/**
+	 * Make file paths relative to MediaWiki directory.
+	 *
+	 * This is used to make file paths safe for storing in a database without the paths
+	 * becoming stale or incorrect when MediaWiki is moved or upgraded (T111481).
+	 *
+	 * @since 1.26
+	 * @param array $filePaths
+	 * @return array
+	 */
+	protected static function getRelativePaths( Array $filePaths ) {
+		global $IP;
+		return array_map( function ( $path ) use ( $IP ) {
+			return RelPath\getRelativePath( $path, $IP );
+		}, $filePaths );
+	}
+
+	/**
+	 * Expand directories relative to $IP.
+	 *
+	 * @since 1.26
+	 * @param array $filePaths
+	 * @return array
+	 */
+	protected static function expandRelativePaths( Array $filePaths ) {
+		global $IP;
+		return array_map( function ( $path ) use ( $IP ) {
+			return RelPath\joinPath( $IP, $path );
+		}, $filePaths );
 	}
 
 	/**
