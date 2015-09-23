@@ -25,6 +25,8 @@
  * @defgroup API API
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * This is the main API class, used for both external and internal processing.
  * When executed, it will create the requested formatter object,
@@ -1250,12 +1252,18 @@ class ApiMain extends ApiBase {
 	 */
 	protected function logRequest( $time ) {
 		$request = $this->getRequest();
-		$milliseconds = $time === null ? '?' : round( $time * 1000 );
-		$s = 'API' .
-			' ' . $request->getMethod() .
-			' ' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) .
-			' ' . $request->getIP() .
-			' T=' . $milliseconds . 'ms';
+		$context = array(
+			'wikiId' => wfWikiId(),
+			'timestampMs' => (int) microtime( true ) * 1000,
+			'method' => $request->getMethod(),
+			'username' => wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ),
+			'ip' => $request->getIP(),
+			'userAgent' => $request->getHeader( 'User-Agent' ),
+			'requestMs' => $time === null ?: round( $time * 1000 ),
+			'params' => array(),
+		);
+
+		$s = 'API {method} {username} {ip} T={requestMs}ms';
 		foreach ( $this->getParamsUsed() as $name ) {
 			$value = $request->getVal( $name );
 			if ( $value === null ) {
@@ -1265,12 +1273,15 @@ class ApiMain extends ApiBase {
 			if ( strlen( $value ) > 256 ) {
 				$encValue = $this->encodeRequestLogValue( substr( $value, 0, 256 ) );
 				$s .= $encValue . '[...]';
+				$context['params'][$name] = $encValue;
 			} else {
 				$s .= $this->encodeRequestLogValue( $value );
+				$context['params'][$name] = (string) $value;
 			}
 		}
 		$s .= "\n";
-		wfDebugLog( 'api', $s, 'private' );
+
+		LoggerFactory::getInstance( 'api' )->debug( $s, $context );
 	}
 
 	/**
