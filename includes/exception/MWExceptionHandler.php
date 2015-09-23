@@ -485,6 +485,14 @@ TXT;
 		return "[$id] $url   $type from line $line of $file: $message";
 	}
 
+	public static function getPublicLogMessage( Exception $e ) {
+		$logId = self::getLogId( $e );
+		$type = get_class( $e );
+		return '[' . $logId . '] '
+			. gmdate( 'Y-m-d H:i:s' ) . ': '
+			. 'Fatal exception of type ' . $type;
+	}
+
 	/**
 	 * Get a PSR-3 log event context from an Exception.
 	 *
