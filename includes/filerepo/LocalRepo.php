@@ -203,6 +203,7 @@ class LocalRepo extends FileRepo {
 		} else {
 			$expiry = 86400; // has invalidation, 1 day
 		}
+
 		$cachedValue = $cache->get( $memcKey );
 		if ( $cachedValue === ' ' || $cachedValue === '' ) {
 			// Does not exist
@@ -211,9 +212,11 @@ class LocalRepo extends FileRepo {
 			return Title::newFromText( $cachedValue, NS_FILE );
 		} // else $cachedValue is false or null: cache miss
 
+		$opts = array( 'since' => $this->getSlaveDB()->trxTimestamp() );
+
 		$id = $this->getArticleID( $title );
 		if ( !$id ) {
-			$cache->set( $memcKey, " ", $expiry );
+			$cache->set( $memcKey, " ", $expiry, $opts );
 
 			return false;
 		}
@@ -227,11 +230,11 @@ class LocalRepo extends FileRepo {
 
 		if ( $row && $row->rd_namespace == NS_FILE ) {
 			$targetTitle = Title::makeTitle( $row->rd_namespace, $row->rd_title );
-			$cache->set( $memcKey, $targetTitle->getDBkey(), $expiry );
+			$cache->set( $memcKey, $targetTitle->getDBkey(), $expiry, $opts );
 
 			return $targetTitle;
 		} else {
-			$cache->set( $memcKey, '', $expiry );
+			$cache->set( $memcKey, '', $expiry, $opts );
 
 			return false;
 		}
