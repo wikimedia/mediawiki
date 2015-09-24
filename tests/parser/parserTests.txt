@@ -10354,12 +10354,52 @@ BUG 553: link with two variables in a piped link
 {|
 |[[{{{1}}}|{{{2}}}]]
 |}
-!! html
+!! html/php
 <table>
 <tr>
 <td>[[{{{1}}}|{{{2}}}]]
 </td></tr></table>
 
+!! html/parsoid
+<table>
+<tbody><tr><td>[[<span about="#mwt5" typeof="mw:Param" data-parsoid='{"src":"{{{1}}}"}'>{{{1}}}</span>|<span about="#mwt2" typeof="mw:Param" data-parsoid='{"src":"{{{2}}}"}'>{{{2}}}</span>]]</td></tr>
+!! end
+
+# See: T2553
+!! test
+Abort table cell attribute parsing on wikilink
+!! wikitext
+{|
+| testing [[one|two]] | three || four
+| testing one two | three || four
+|}
+!! html/php
+<table>
+<tr>
+<td> testing <a href="/index.php?title=One&amp;action=edit&amp;redlink=1" class="new" title="One (page does not exist)">two</a> | three </td>
+<td> four
+</td>
+<td> three </td>
+<td> four
+</td></tr></table>
+
+!! html/parsoid
+<table>
+<tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'> testing <a rel="mw:WikiLink" href="./One" title="One" data-parsoid='{"stx":"piped","a":{"href":"./One"},"sa":{"href":"one"}}'>two</a> | three </td><td data-parsoid='{"stx_v":"row","autoInsertedEnd":true}'> four</td>
+<td data-parsoid='{"a":{"testing":null,"one":null,"two":null},"sa":{"testing":"","one":"","two":""},"autoInsertedEnd":true}'> three </td><td data-parsoid='{"stx_v":"row","autoInsertedEnd":true}'> four</td></tr>
+</tbody></table>
+!! end
+
+!! test
+Don't abort table cell attribute parsing if wikilink is found in template arg
+!! wikitext
+{|
+| Test {{#tag:ref|One two "[[three]]" four}}
+|}
+!! html/parsoid
+<table>
+<tbody><tr><td> Test <ref about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1","spc":["","","",""]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"#tag:ref","function":"#tag"},"params":{"1":{"wt":"One two \"[[three]]\" four"}},"i":0}}]}'>One two "<a rel="mw:WikiLink" href="./Three" title="Three">three</a>" four</ref></td></tr>
+</tbody></table>
 !! end
 
 !! test
@@ -11817,6 +11857,17 @@ Templates: Ugly templates: 6. Template encapsulation test: Cyclical nesting of t
 <table about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;table>&lt;tr>&lt;td>&lt;table>"}},"i":0}},"\n",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;div>"}},"i":1}},"\n",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;/div>"}},"i":2}}]}' data-parsoid='{"stx":"html","autoInsertedEnd":true,"pi":[[{"k":"1","spc":["","","",""]}],[{"k":"1","spc":["","","",""]}],[{"k":"1","spc":["","","",""]}]]}'><tbody><tr data-parsoid='{"stx":"html"}'><td data-parsoid='{"stx":"html"}'><div data-parsoid='{"stx":"html"}'>
 </div><table about="#mwt1" data-parsoid='{"stx":"html"}'>
 </table></td></tr></tbody></table>
+!! end
+
+!! test
+Templates: Parameters substituted at the top-level
+!! wikitext
+{{{foo|''who'' {{echo|me}}? '''never!'''}}}
+!! html/php
+<p><i>who</i> me? <b>never!</b>
+</p>
+!! html/parsoid
+<p about="#mwt2" typeof="mw:Param" data-parsoid="{&quot;src&quot;:&quot;{{{foo|''who'' {{echo|me}}? '''never!'''}}}&quot;}"><i>who</i> me? <b>never!</b></p>
 !! end
 
 !!test
@@ -17974,11 +18025,15 @@ Special:Search page linking.
 {{!}} is a magic word
 !! wikitext
 {{!}} is a magic word there and {{!}} is still a magic word here
+| is not a magic word here but {{!}} is still a magic word here
 !! html/php
 <p>| is a magic word there and | is still a magic word here
+| is not a magic word here but | is still a magic word here
 </p>
 !! html/parsoid
-<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"!","href":"./Template:!"},"params":{},"i":0}}]}' data-parsoid='{"pi":[[]]}'>|</span> is a magic word there and <span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"!","href":"./Template:!"},"params":{},"i":0}}]}' data-parsoid='{"pi":[[]]}'>|</span> is still a magic word here</p>
+<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"!","href":"./Template:!"},"params":{},"i":0}}]}'>|</span> is a magic word there and <span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"!","href":"./Template:!"},"params":{},"i":0}}]}'>|</span> is still a magic word here
+| is not a magic word here but <span about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"!","href":"./Template:!"},"params":{},"i":0}}]}'>|</span> is still a magic word here</p>
+
 !! end
 
 !! test
@@ -23745,11 +23800,15 @@ RT-ed inter-element separators should be valid separators
 {|
 |- [[foo]]
 |}
-!! html
+!! html/php
 <table>
 
 </table>
 
+!! html/parsoid
+<table>
+<tbody><tr data-parsoid='{"startTagSrc":"|-","a":{"[[foo]]":null},"sa":{"[[foo]]":""},"autoInsertedEnd":true}'></tr>
+</tbody></table>
 !!end
 
 # Parsoid-only since PHP parser relies on Tidy for correct output
@@ -26058,6 +26117,37 @@ parsoid={
 <table>
 <tr><td>-</td></tr>
 </table>
+!! end
+
+## T111151 Remove font elements without attributes
+!! test
+5a. font tags without attributes should be dropped in scrubWikitext mode
+!! options
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": true
+}
+!! html
+<font>foo</font>
+<font><font>bar</font></font>
+<font class="x">boo</font>
+!! wikitext
+foo
+bar
+<font class="x">boo</font>
+!! end
+
+!! test
+5b. font tags should not be dropped without scrubWikitext being enabled
+!! options
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": false
+}
+!! html
+<font>foo</font>
+!! wikitext
+<font>foo</font>
 !! end
 
 !! test
