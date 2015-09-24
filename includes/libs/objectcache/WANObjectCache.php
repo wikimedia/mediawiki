@@ -67,8 +67,13 @@ class WANObjectCache {
 	/** @var int */
 	protected $lastRelayError = self::ERR_NONE;
 
+	/** Max expected replication lag for a reasonable storage setup */
+	const MAX_REPLICA_LAG = 8;
+	/** Max time since snapshot transaction start to avoid no-op of set() */
+	const MAX_SNAPSHOT_LAG = 6;
 	/** Seconds to tombstone keys on delete() */
-	const HOLDOFF_TTL = 10;
+	const HOLDOFF_TTL = 14; // MAX_REPLICA_LAG + MAX_SNAPSHOT_LAG
+
 	/** Seconds to keep dependency purge keys around */
 	const CHECK_KEY_TTL = 31536000; // 1 year
 	/** Seconds to keep lock keys around */
@@ -248,13 +253,42 @@ class WANObjectCache {
 	 * the changes do not replicate to the other WAN sites. In that case, delete()
 	 * should be used instead. This method is intended for use on cache misses.
 	 *
+	 * If the data was read from a snapshot-isolated transactions (e.g. the default
+	 * REPEATABLE-READ in innoDB), use 'since' to avoid the following race condition:
+	 *   - a) T1 starts
+	 *   - b) T2 updates a row, calls delete(), and commits
+	 *   - c) The HOLDOFF_TTL passes, expiring the delete() tombstone
+	 *   - d) T1 reads the row and calls set() due to a cache miss
+	 *   - e) Stale value is stuck in cache
+	 *
 	 * @param string $key Cache key
 	 * @param mixed $value
 	 * @param integer $ttl Seconds to live [0=forever]
+	 * @param array $opts Options map:
+	 *   - since   : UNIX timestamp of the data in $value. Typically, this is either
+	 *               the current time the data was read or (if applicable) the time when
+	 *               the snapshot-isolated transaction the data was read from started.
+	 *               [Default: 0 seconds]
+	 *   - lockTSE : if excessive possible snapshot lag is detected,
+	 *               then stash the value into a temporary location
+	 *               with this TTL. This is only useful if the reads
+	 *               use getWithSetCallback() with "lockTSE" set.
+	 *               [Default: WANObjectCache::TSE_NONE]
 	 * @return bool Success
 	 */
-	final public function set( $key, $value, $ttl = 0 ) {
-		$key = self::VALUE_KEY_PREFIX . $key;
+	final public function set( $key, $value, $ttl = 0, array $opts = array() ) {
+		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
+		$age = isset( $opts['since'] ) ? max( 0, microtime( true ) - $opts['since'] ) : 0;
+
+		if ( $age > self::MAX_SNAPSHOT_LAG ) {
+			if ( $lockTSE >= 0 ) {
+				$tempTTL = max( 1, (int)$lockTSE ); // set() expects seconds
+				$this->cache->set( self::STASH_KEY_PREFIX . $key, $value, $tempTTL );
+			}
+
+			return true; // no-op the write for being unsafe
+		}
+
 		$wrapped = $this->wrap( $value, $ttl );
 
 		$func = function ( $cache, $key, $cWrapped ) use ( $wrapped ) {
@@ -263,7 +297,7 @@ class WANObjectCache {
 				: $wrapped;
 		};
 
-		return $this->cache->merge( $key, $func, $ttl, 1 );
+		return $this->cache->merge( self::VALUE_KEY_PREFIX . $key, $func, $ttl, 1 );
 	}
 
 	/**
@@ -552,7 +586,7 @@ class WANObjectCache {
 
 		if ( $value !== false && $ttl >= 0 ) {
 			// Update the cache; this will fail if the key is tombstoned
-			$this->set( $key, $value, $ttl );
+			$this->set( $key, $value, $ttl, array( 'lockTSE' => $lockTSE ) );
 		}
 
 		return $value;
