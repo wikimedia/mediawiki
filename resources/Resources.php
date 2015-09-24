@@ -1897,6 +1897,7 @@ return array(
 			'resources/src/mediawiki.widgets/mw.widgets.ComplexTitleInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleOptionWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.UserInputWidget.js',
+			'resources/src/mediawiki.widgets/mw.widgets.CategoryCapsuleItemWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.CategorySelector.js',
 		),
 		'skinStyles' => array(
