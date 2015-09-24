@@ -128,4 +128,24 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 			),
 		);
 	}
+
+	/**
+	 * @param $filename string
+	 * @param $expectedLength float
+	 * @dataProvider provideGetLength
+	 */
+	public function testGetLength( $filename, $expectedLength ) {
+		$file = $this->dataFile( $filename, 'image/png' );
+		$actualLength = $file->getLength();
+		$this->assertEquals( $expectedLength, $actualLength, '', 0.00001 );
+	}
+
+	public function provideGetLength() {
+		return array(
+			array( 'Animated_PNG_example_bouncing_beach_ball.png', 1.5 ),
+			array( 'Png-native-test.png', 0.0 ),
+			array( 'greyscale-png.png', 0.0 ),
+			array( '1bit-png.png', 0.0 ),
+		);
+	}
 }
