@@ -437,6 +437,7 @@ $wgAutoloadLocalClasses = array(
 	'FileBackendStoreShardListIterator' => __DIR__ . '/includes/filebackend/FileBackendStore.php',
 	'FileBasedSiteLookup' => __DIR__ . '/includes/site/FileBasedSiteLookup.php',
 	'FileCacheBase' => __DIR__ . '/includes/cache/FileCacheBase.php',
+	'FileContentsHasher' => __DIR__ . '/includes/FileContentsHasher.php',
 	'FileDeleteForm' => __DIR__ . '/includes/FileDeleteForm.php',
 	'FileDependency' => __DIR__ . '/includes/cache/CacheDependency.php',
 	'FileDuplicateSearchPage' => __DIR__ . '/includes/specials/SpecialFileDuplicateSearch.php',
