@@ -205,12 +205,12 @@
 		this.uploadPromise.always( function () {
 
 			if ( layout.upload.getState() === mw.Upload.State.ERROR ) {
-				deferred.reject( new OO.ui.Error( mw.msg( 'upload-dialog-error' )  ) );
+				deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' )  ) );
 				return false;
 			}
 
 			if ( layout.upload.getState() === mw.Upload.State.WARNING ) {
-				deferred.reject( new OO.ui.Error( mw.msg( 'upload-dialog-error' )  ) );
+				deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' )  ) );
 				return false;
 			}
 
@@ -218,12 +218,12 @@
 				var name;
 
 				if ( layout.upload.getState() === mw.Upload.State.ERROR ) {
-					deferred.reject( new OO.ui.Error( mw.msg( 'upload-dialog-error' ) ) );
+					deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' ) ) );
 					return false;
 				}
 
 				if ( layout.upload.getState() === mw.Upload.State.WARNING ) {
-					deferred.reject( new OO.ui.Error( mw.msg( 'upload-dialog-warning' ) ) );
+					deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-warning' ) ) );
 					return false;
 				}
 
@@ -254,7 +254,7 @@
 		var fieldset;
 
 		this.selectFileWidget = new OO.ui.SelectFileWidget();
-		fieldset = new OO.ui.FieldsetLayout( { label: mw.msg( 'upload-dialog-label-select-file' ) } );
+		fieldset = new OO.ui.FieldsetLayout( { label: mw.msg( 'upload-form-label-select-file' ) } );
 		fieldset.addItems( [ this.selectFileWidget ] );
 		this.uploadForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
 
@@ -299,15 +299,15 @@
 		} );
 
 		fieldset = new OO.ui.FieldsetLayout( {
-			label: mw.msg( 'upload-dialog-label-infoform-title' )
+			label: mw.msg( 'upload-form-label-infoform-title' )
 		} );
 		fieldset.addItems( [
 			new OO.ui.FieldLayout( this.filenameWidget, {
-				label: mw.msg( 'upload-dialog-label-infoform-name' ),
+				label: mw.msg( 'upload-form-label-infoform-name' ),
 				align: 'top'
 			} ),
 			new OO.ui.FieldLayout( this.descriptionWidget, {
-				label: mw.msg( 'upload-dialog-label-infoform-description' ),
+				label: mw.msg( 'upload-form-label-infoform-description' ),
 				align: 'top'
 			} )
 		] );
@@ -349,11 +349,11 @@
 
 		this.filenameUsageWidget = new OO.ui.TextInputWidget();
 		fieldset = new OO.ui.FieldsetLayout( {
-			label: mw.msg( 'upload-dialog-label-usage-title' )
+			label: mw.msg( 'upload-form-label-usage-title' )
 		} );
 		fieldset.addItems( [
 			new OO.ui.FieldLayout( this.filenameUsageWidget, {
-				label: mw.msg( 'upload-dialog-label-usage-filename' ),
+				label: mw.msg( 'upload-form-label-usage-filename' ),
 				align: 'top'
 			} )
 		] );
