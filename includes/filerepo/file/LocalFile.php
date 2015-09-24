@@ -456,7 +456,7 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * @param array $row Row
+	 * @param array|object $row
 	 * @param string $prefix
 	 * @throws MWException
 	 * @return array
