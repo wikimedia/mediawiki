@@ -75,6 +75,7 @@
 	"apihelp-options-param-reset": "사이트 기본으로 설정 초기화",
 	"apihelp-options-example-reset": "모든 설정 초기화",
 	"apihelp-protect-example-protect": "문서 보호",
+	"apihelp-query+allmessages-example-ipb": "<kbd>ipb-</kbd>로 시작하는 메시지를 보입니다.",
 	"apihelp-query+pageswithprop-param-limit": "나타낼 문서의 최대 수입니다.",
 	"apihelp-query+pageswithprop-param-dir": "정렬 순서",
 	"apihelp-query+prefixsearch-param-search": "문자열 검색",

@@ -117,6 +117,7 @@
 	"api-help-parameters": "{{PLURAL:$1|Parametro|Parametri}}:",
 	"api-help-param-deprecated": "Deprecato.",
 	"api-help-param-required": "Questo parametro è obbligatorio.",
+	"api-help-param-list": "{{PLURAL:$1|1=Uno dei seguenti valori|2=Valori (separati da <kbd>{{!}}</kbd>)}}: $2",
 	"api-help-param-multi-max": "Il numero massimo di valori è {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} per i bot).",
 	"api-help-param-default": "Predefinito: $1",
 	"api-help-param-default-empty": "Predefinito: <span class=\"apihelp-empty\">(vuoto)</span>",

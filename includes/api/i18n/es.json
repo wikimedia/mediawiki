@@ -687,6 +687,7 @@
 	"apihelp-stashedit-param-section": "Número de la sección. <kbd>0</kbd> para una sección superior, <kbd>new</kbd> para una sección nueva.",
 	"apihelp-stashedit-param-sectiontitle": "El título de una sección nueva.",
 	"apihelp-stashedit-param-text": "Contenido de la página.",
+	"apihelp-stashedit-param-contentmodel": "Modelo del contenido nuevo.",
 	"apihelp-stashedit-param-contentformat": "Formato de serialización de contenido utilizado para el texto de entrada.",
 	"apihelp-stashedit-param-baserevid": "Identificador de la revisión de base.",
 	"apihelp-tag-param-logid": "Uno o más identificadores de entradas del registro a los que agregar o eliminar la etiqueta.",
