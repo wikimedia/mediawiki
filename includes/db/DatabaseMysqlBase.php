@@ -138,7 +138,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 		if ( $set ) {
 			// Use doQuery() to avoid opening implicit transactions (DBO_TRX)
-			$success = $this->doQuery( 'SET ' . implode( ', ', $set ), __METHOD__ );
+			$success = $this->doQuery( 'SET ' . implode( ', ', $set ) );
 			if ( !$success ) {
 				wfLogDBError(
 					'Error setting MySQL variables on server {db_server} (check $wgSQLMode)',
