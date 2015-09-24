@@ -151,6 +151,8 @@ changes to languages because of Phabricator reports.
 ** dty (डोटेली/Doteli), thanks to translators जनक राज भट्ट, बिप्लब आनन्द,
    मेश सिंह बोहरा, and राम प्रसाद जोशी
 ** luz (لئری دوٙمینی / Southern Luri)
+** olo (Livvinкarjala / Livvi-Karelian), thanks to translators Denö, Hiloin Natoi,
+   Ilja.mos, and Mashoi7
 
 === Other changes in 1.26 ===
 * ChangeTags::tagDescription() will return false if the interface message
