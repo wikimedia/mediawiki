@@ -342,6 +342,7 @@ $magicWords = array(
 	'directionmark'           => array( 1, 'DIRECTIONMARK', 'DIRMARK' ),
 	'language'                => array( 0, '#LANGUAGE:' ),
 	'contentlanguage'         => array( 1, 'CONTENTLANGUAGE', 'CONTENTLANG' ),
+	'pagecontentlanguage'     => array( 1, 'PAGECONTENTLANGUAGE', 'PAGECONTENTLANG' ),
 	'pagesinnamespace'        => array( 1, 'PAGESINNAMESPACE:', 'PAGESINNS:' ),
 	'numberofadmins'          => array( 1, 'NUMBEROFADMINS' ),
 	'formatnum'               => array( 0, 'FORMATNUM' ),
