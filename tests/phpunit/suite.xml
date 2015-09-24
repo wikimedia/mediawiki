@@ -26,6 +26,8 @@ phpunit.php enables colors for other OSs at runtime
 		</testsuite>
 		<testsuite name="skins">
 			<directory>skins</directory>
+			<directory>structure</directory>
+			<file>suites/LessTestSuite.php</file>
 		</testsuite>
 		<!-- As there is a class Maintenance, we cannot use the
 		     name "maintenance" directly -->
