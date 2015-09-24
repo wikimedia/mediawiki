@@ -417,21 +417,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		);
 		// Collect referenced files
 		$this->localFileRefs = array_unique( $this->localFileRefs );
-		// If the list has been modified since last time we cached it, update the cache
-		try {
-			if ( $this->localFileRefs !== $this->getFileDependencies( $context->getSkin() ) ) {
-				$dbw = wfGetDB( DB_MASTER );
-				$dbw->replace( 'module_deps',
-					array( array( 'md_module', 'md_skin' ) ), array(
-						'md_module' => $this->getName(),
-						'md_skin' => $context->getSkin(),
-						'md_deps' => FormatJson::encode( $this->localFileRefs ),
-					)
-				);
-			}
-		} catch ( Exception $e ) {
-			wfDebugLog( 'resourceloader', __METHOD__ . ": failed to update DB: $e" );
-		}
+		$this->saveFileDependencies( $context->getSkin(), $this->localFileRefs );
+
 		return $styles;
 	}
 
