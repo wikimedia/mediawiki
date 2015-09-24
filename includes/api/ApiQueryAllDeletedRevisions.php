@@ -54,7 +54,6 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		$params = $this->extractRequestParams( false );
 
 		$result = $this->getResult();
-		$pageSet = $this->getPageSet();
 
 		// This module operates in two modes:
 		// 'user': List deleted revs by a certain user
