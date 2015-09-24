@@ -46,7 +46,6 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 			);
 		}
 
-		$result = $this->getResult();
 		$pageSet = $this->getPageSet();
 		$pageMap = $pageSet->getGoodAndMissingTitlesByNamespace();
 		$pageCount = count( $pageSet->getGoodAndMissingTitles() );
