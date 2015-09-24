@@ -1694,6 +1694,7 @@ class User implements IDBAccessObject {
 			foreach ( (array)$bases as $base ) {
 				// Make hostname
 				// If we have an access key, use that too (ProjectHoneypot, etc.)
+				$basename = $base;
 				if ( is_array( $base ) ) {
 					if ( count( $base ) >= 2 ) {
 						// Access key is 1, base URL is 0
@@ -1701,6 +1702,7 @@ class User implements IDBAccessObject {
 					} else {
 						$host = "$ipReversed.{$base[0]}";
 					}
+					$basename = $base[0];
 				} else {
 					$host = "$ipReversed.$base";
 				}
@@ -1709,11 +1711,11 @@ class User implements IDBAccessObject {
 				$ipList = gethostbynamel( $host );
 
 				if ( $ipList ) {
-					wfDebugLog( 'dnsblacklist', "Hostname $host is {$ipList[0]}, it's a proxy says $base!" );
+					wfDebugLog( 'dnsblacklist', "Hostname $host is {$ipList[0]}, it's a proxy says $basename!" );
 					$found = true;
 					break;
 				} else {
-					wfDebugLog( 'dnsblacklist', "Requested $host, not found in $base." );
+					wfDebugLog( 'dnsblacklist', "Requested $host, not found in $basename." );
 				}
 			}
 		}
