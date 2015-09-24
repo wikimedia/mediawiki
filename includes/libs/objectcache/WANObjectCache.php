@@ -23,17 +23,18 @@
 /**
  * Multi-datacenter aware caching interface
  *
- * All operations go to the local cache, except the delete()
- * and touchCheckKey(), which broadcast to all clusters.
+ * All operations go to the local datacenter cache, except for delete(),
+ * touchCheckKey(), and resetCheckKey(), which broadcast to all clusters.
+ *
  * This class is intended for caching data from primary stores.
  * If the get() method does not return a value, then the caller
  * should query the new value and backfill the cache using set().
- * When the source data changes, the delete() method should be called.
- * Since delete() is expensive, it should be avoided. One can do so if:
+ * When the source data changes, a purge method should be called.
+ * Since purges are expensive, it should be avoided. One can do so if:
  *   - a) The object cached is immutable; or
  *   - b) Validity is checked against the source after get(); or
  *   - c) Using a modest TTL is reasonably correct and performant
- * Consider using getWithSetCallback() instead of the get()/set() cycle.
+ * The simpliest purge method is delete().
  *
  * Instances of this class must be configured to point to a valid
  * PubSub endpoint, and there must be listeners on the cache servers
@@ -159,7 +160,8 @@ class WANObjectCache {
 	 *   - b) Keeping transaction duration shorter than delete() hold-off TTL
 	 * However, pre-snapshot values might still be seen due to delete() relay lag.
 	 *
-	 * For keys that are hot/expensive, consider using getWithSetCallback() instead.
+	 * Consider using getWithSetCallback() instead of the get()/set() cycle.
+	 * For keys that are hot/expensive, that method has several useful features.
 	 *
 	 * @param string $key Cache key
 	 * @param mixed $curTTL Approximate TTL left on the key if present [returned]
@@ -378,10 +380,10 @@ class WANObjectCache {
 	 * This is similar to touchCheckKey() in that keys using it via
 	 * getWithSetCallback() will be invalidated. The differences are:
 	 *   - a) The timestamp will be deleted from all caches and lazily
-	 *      re-initialized when accessed (rather than set everywhere)
+	 *        re-initialized when accessed (rather than set everywhere)
 	 *   - b) Thus, dependent keys will be known to be invalid, but not
-	 *      for how long (they are treated as "just" purged), which
-	 *      effects any lockTSE logic in getWithSetCallback()
+	 *        for how long (they are treated as "just" purged), which
+	 *        effects any lockTSE logic in getWithSetCallback()
 	 * The advantage is that this does not place high TTL keys on every cache
 	 * server, making it better for code that will cache many different keys
 	 * and either does not use lockTSE or uses a low enough TTL anyway.
@@ -420,7 +422,7 @@ class WANObjectCache {
 	 * to maintain "most recent X" values that come from time or sequence
 	 * based source data, provided that the "as of" id/time is tracked.
 	 *
-	 * Usage of $checkKeys is similar to get()/getMulti(). However,
+	 * Usage of $checkKeys is similar to get() and getMulti(). However,
 	 * rather than the caller having to inspect a "current time left"
 	 * variable (e.g. $curTTL, $curTTLs), a cache regeneration will be
 	 * triggered using the callback.
