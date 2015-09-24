@@ -3107,11 +3107,12 @@ $wgWellFormedXml = true;
 $wgXhtmlNamespaces = array();
 
 /**
- * Show IP address, for non-logged in users. It's necessary to switch this off
- * for some forms of caching.
+ * Show IP address in the personal links for non-logged in users.
+ *
+ * It's necessary to switch this off for some forms of caching.
  * @warning Will disable file cache.
  */
-$wgShowIPinHeader = true;
+$wgShowIPinHeader = false;
 
 /**
  * Site notice shown at the top of each page
