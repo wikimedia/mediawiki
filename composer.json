@@ -20,7 +20,7 @@
 		"cssjanus/cssjanus": "1.1.1",
 		"ext-iconv": "*",
 		"liuggio/statsd-php-client": "1.0.16",
-		"oyejorge/less.php": "1.7.0.5",
+		"oyejorge/less.php": "1.7.0.8",
 		"mediawiki/at-ease": "1.1.0",
 		"oojs/oojs-ui": "0.12.9",
 		"php": ">=5.3.3",
