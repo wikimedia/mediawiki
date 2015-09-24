@@ -134,7 +134,8 @@ abstract class DataUpdate implements DeferrableUpdate {
 
 		foreach ( $updates as $update ) {
 			if ( $update instanceof EnqueueableDataUpdate ) {
-				$update->enqueueUpdate();
+				$spec = $update->getAsJobSpecification();
+				JobQueueGroup::singleton( $spec['wiki'] )->push( $spec['job'] );
 			} else {
 				$remaining[] = $update;
 			}
@@ -145,11 +146,16 @@ abstract class DataUpdate implements DeferrableUpdate {
 }
 
 /**
+ * Interface that marks a DataUpdate as enqueuable via the JobQueue
+ *
+ * Such updates must be representable using IJobSpecification, so that
+ * they can be serialized into jobs and enqueued for later execution
+ *
  * @since 1.26
  */
 interface EnqueueableDataUpdate {
 	/**
-	 * Push the update into the job queue
+	 * @return array (wiki => wiki ID, job => IJobSpecification)
 	 */
-	public function enqueueUpdate();
+	public function getAsJobSpecification();
 }
