@@ -284,6 +284,31 @@ class WANObjectCache {
 	 *   - a) Replication lag is bounded to being less than HOLDOFF_TTL; or
 	 *   - b) If lag is higher, the DB will have gone into read-only mode already
 	 *
+	 * When using potentially long-running ACID transactions, a good pattern is
+	 * to use a pre-commit hook to issue the delete. This means that immediately
+	 * after commit, callers will see the tombstone in cache in the local datacenter
+	 * and in the others upon relay. It also avoids the following race condition:
+	 *   - a) T1 begins, changes a row, and calls delete()
+	 *   - b) The HOLDOFF_TTL passes, expiring the delete() tombstone
+	 *   - c) T2 starts, reads the row and calls set() due to a cache miss
+	 *   - d) T1 finally commits
+	 *   - e) Stale value is stuck in cache
+	 *
+	 * Example usage:
+	 * @code
+	 *     $dbw->begin(); // start of request
+	 *     ... <execute some stuff> ...
+	 *     // Update the row in the DB
+	 *     $dbw->update( ... );
+	 *     $key = wfMemcKey( 'homes', $homeId );
+	 *     // Purge the corresponding cache entry just before committing
+	 *     $dbw->onTransactionPreCommitOrIdle( function() use ( $cache, $key ) {
+	 *         $cache->delete( $key );
+	 *     } );
+	 *     ... <execute some stuff> ...
+	 *     $dbw->commit(); // end of request
+	 * @endcode
+	 *
 	 * If called twice on the same key, then the last hold-off TTL takes
 	 * precedence. For idempotence, the $ttl should not vary for different
 	 * delete() calls on the same key. Also note that lowering $ttl reduces

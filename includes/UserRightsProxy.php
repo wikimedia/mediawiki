@@ -278,8 +278,9 @@ class UserRightsProxy {
 			array( 'user_id' => $this->id ),
 			__METHOD__ );
 
-		$cache = ObjectCache::getMainWANInstance();
 		$key = wfForeignMemcKey( $this->database, false, 'user', 'id', $this->id );
-		$cache->delete( $key );
+		$this->db->onTransactionPreCommitOrIdle( function() use ( $key ) {
+			ObjectCache::getMainWANInstance()->delete( $key );
+		} );
 	}
 }

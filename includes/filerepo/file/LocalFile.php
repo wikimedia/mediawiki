@@ -321,7 +321,9 @@ class LocalFile extends File {
 			return;
 		}
 
-		ObjectCache::getMainWANInstance()->delete( $key );
+		$this->repo->getMasterDB()->onTransactionPreCommitOrIdle( function() use ( $key ) {
+			ObjectCache::getMainWANInstance()->delete( $key );
+		} );
 	}
 
 	/**

@@ -2290,10 +2290,14 @@ class User implements IDBAccessObject {
 	 */
 	public function clearSharedCache() {
 		$id = $this->getId();
-		if ( $id ) {
-			$key = wfMemcKey( 'user', 'id', $id );
-			ObjectCache::getMainWANInstance()->delete( $key );
+		if ( !$id ) {
+			return;
 		}
+
+		$key = wfMemcKey( 'user', 'id', $id );
+		wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle( function() use ( $key ) {
+			ObjectCache::getMainWANInstance()->delete( $key );
+		} );
 	}
 
 	/**

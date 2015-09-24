@@ -521,15 +521,11 @@ class LocalRepo extends FileRepo {
 	 * @return void
 	 */
 	function invalidateImageRedirect( Title $title ) {
-		$cache = ObjectCache::getMainWANInstance();
-
-		$memcKey = $this->getSharedCacheKey( 'image_redirect', md5( $title->getDBkey() ) );
-		if ( $memcKey ) {
-			// Set a temporary value for the cache key, to ensure
-			// that this value stays purged long enough so that
-			// it isn't refreshed with a stale value due to a
-			// lagged slave.
-			$cache->delete( $memcKey, 12 );
+		$key = $this->getSharedCacheKey( 'image_redirect', md5( $title->getDBkey() ) );
+		if ( $key ) {
+			$this->getMasterDB()->onTransactionPreCommitOrIdle( function() use ( $key ) {
+				ObjectCache::getMainWANInstance()->delete( $key );
+			} );
 		}
 	}
 
