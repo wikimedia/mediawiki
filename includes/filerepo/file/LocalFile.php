@@ -308,8 +308,9 @@ class LocalFile extends File {
 		}
 
 		// Cache presence for 1 week and negatives for 1 day
-		$cache = ObjectCache::getMainWANInstance();
-		$cache->set( $key, $cacheVal, $this->fileExists ? 86400 * 7 : 86400 );
+		$ttl = $this->fileExists ? 86400 * 7 : 86400;
+		$opts = array( 'since' => wfGetDB( DB_SLAVE )->trxTimestamp() );
+		ObjectCache::getMainWANInstance()->set( $key, $cacheVal, $ttl, $opts );
 	}
 
 	/**
