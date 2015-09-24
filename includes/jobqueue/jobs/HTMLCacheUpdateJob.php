@@ -85,8 +85,6 @@ class HTMLCacheUpdateJob extends Job {
 			return;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-
 		// The page_touched field will need to be bumped for these pages.
 		// Only bump it to the present time if no "rootJobTimestamp" was known.
 		// If it is known, it can be used instead, which avoids invalidating output
@@ -100,9 +98,12 @@ class HTMLCacheUpdateJob extends Job {
 			$touchTimestamp = wfTimestampNow();
 		}
 
+		$dbw = wfGetDB( DB_MASTER );
 		// Update page_touched (skipping pages already touched since the root job).
 		// Check $wgUpdateRowsPerQuery for sanity; batch jobs are sized by that already.
 		foreach ( array_chunk( $pageIds, $wgUpdateRowsPerQuery ) as $batch ) {
+			$dbw->commit( __METHOD__, 'flush' );
+
 			$dbw->update( 'page',
 				array( 'page_touched' => $dbw->timestamp( $touchTimestamp ) ),
 				array( 'page_id' => $batch,
