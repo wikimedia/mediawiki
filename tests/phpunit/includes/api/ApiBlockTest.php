@@ -34,7 +34,7 @@ class ApiBlockTest extends ApiTestCase {
 	 *
 	 * Root cause is https://gerrit.wikimedia.org/r/3434
 	 * Which made the Block/Unblock API to actually verify the token
-	 * previously always considered valid (T37646).
+	 * previously always considered valid (T36212).
 	 */
 	public function testMakeNormalBlock() {
 		$tokens = $this->getTokens();
