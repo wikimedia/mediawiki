@@ -52,7 +52,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 		if ( $this->including() ) {
 			$out->addParserOutputContent( $pager->getBodyOutput() );
 		} else {
-			$out->addHTML( $pager->getForm() );
+			$pager->getForm();
 			$out->addParserOutputContent( $pager->getFullOutput() );
 		}
 	}
