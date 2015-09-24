@@ -5,7 +5,8 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 ( function ( $, mw ) {
-	var CSP;
+	var CSP,
+		NS_CATEGORY = mw.config.get( 'wgNamespaceIds' ).category;
 
 	/**
 	 * Category selector widget. Displays an OO.ui.CapsuleMultiSelectWidget
@@ -57,7 +58,6 @@
 		this.$input.on( 'change input cut paste', OO.ui.debounce( this.updateMenuItems.bind( this ), 100 ) );
 
 		// Initialize
-		this.catNsId = mw.config.get( 'wgNamespaceIds' ).category;
 		this.api = new mw.Api();
 
 	}
@@ -137,7 +137,7 @@
 
 			// Get titles
 			categoryNames = categories.map( function ( name ) {
-				return mw.Title.newFromText( name, this.catNsId ).getMainText();
+				return mw.Title.newFromText( name, NS_CATEGORY ).getMainText();
 			} );
 
 			deferred.resolve( categoryNames );
@@ -145,6 +145,15 @@
 		} );
 
 		return deferred.promise();
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	CSP.createItemWidget = function ( data ) {
+		return new mw.widgets.CategoryCapsuleItemWidget( {
+			title: mw.Title.newFromText( data, NS_CATEGORY )
+		} );
 	};
 
 	/**
@@ -211,7 +220,7 @@
 			case CategorySelector.SearchType.OpenSearch:
 				this.api.get( {
 					action: 'opensearch',
-					namespace: this.catNsId,
+					namespace: NS_CATEGORY,
 					limit: this.limit,
 					search: input
 				} ).done( function ( res ) {
@@ -224,7 +233,7 @@
 				this.api.get( {
 					action: 'query',
 					list: 'allpages',
-					apnamespace: this.catNsId,
+					apnamespace: NS_CATEGORY,
 					aplimit: this.limit,
 					apfrom: input,
 					apprefix: input
