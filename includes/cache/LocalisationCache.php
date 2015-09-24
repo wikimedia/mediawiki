@@ -23,6 +23,7 @@
 use Cdb\Exception as CdbException;
 use Cdb\Reader as CdbReader;
 use Cdb\Writer as CdbWriter;
+use CLDRPluralRuleParser\Evaluator;
 
 /**
  * Class for caching the contents of localisation files, Messages*.php
@@ -576,7 +577,7 @@ class LocalisationCache {
 			return null;
 		}
 		try {
-			$compiledRules = CLDRPluralRuleEvaluator::compile( $rules );
+			$compiledRules = Evaluator::compile( $rules );
 		} catch ( CLDRPluralRuleError $e ) {
 			wfDebugLog( 'l10n', $e->getMessage() );
 

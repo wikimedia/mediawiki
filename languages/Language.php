@@ -34,6 +34,8 @@ if ( function_exists( 'mb_strtoupper' ) ) {
 	mb_internal_encoding( 'UTF-8' );
 }
 
+use CLDRPluralRuleParser\Evaluator;
+
 /**
  * Internationalisation code
  * @ingroup Language
@@ -4968,7 +4970,7 @@ class Language {
 	 */
 	public function getPluralRuleIndexNumber( $number ) {
 		$pluralRules = $this->getCompiledPluralRules();
-		$form = CLDRPluralRuleEvaluator::evaluateCompiled( $number, $pluralRules );
+		$form = Evaluator::evaluateCompiled( $number, $pluralRules );
 		return $form;
 	}
 

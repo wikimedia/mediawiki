@@ -44,6 +44,7 @@ production.
 * $wgBlockAllowsUTEdit is now set to true by default. This allows
   blocked users to edit their talk pages unless explicitly disabled
   when they are being blocked.
+* CLDRPluralRule* classes have been replaced with wikimedia/cldr-plural-rule-parser.
 
 === New features in 1.26 ===
 * (T51506) Now action=info gives estimates of actual watchers for a page.
@@ -98,6 +99,7 @@ production.
 * Upgrade jQuery Client from v1.0.0 to v2.0.0.
 * Added mediawiki/at-ease 1.0.0.
 * Update QUnit from v1.17.1 to v1.18.0.
+* Added wikimedia/cldr-plural-rule-parser 1.0.0
 
 === Bug fixes in 1.26 ===
 * (T53283) load.php sometimes sends 304 response without full headers
