@@ -93,22 +93,19 @@ class AvroValidator {
 			}
 			$errors = array();
 			foreach ($datum as $d) {
-				$result = $this->validate( $schema->items(), $d );
+				$result = self::getErrors( $schema->items(), $d );
 				if ( $result ) {
 					$errors[] = $result;
 				}
 			}
-			if ( $errors ) {
-				return $errors;
-			}
-			return array();
+			return $errors;
 		case AvroSchema::MAP_SCHEMA:
 			if (!is_array($datum)) {
 				return self::wrongType( 'array', $datum );
 			}
 			$errors = array();
 			foreach ($datum as $k => $v) {
-			if ( !is_string($k) ) {
+				if ( !is_string($k) ) {
 					$errors[] = self::wrongType( 'string key', $k );
 				}
 				$result = self::getErrors( $schema->values(), $v );
