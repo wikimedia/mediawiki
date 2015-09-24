@@ -67,8 +67,13 @@ class WANObjectCache {
 	/** @var int */
 	protected $lastRelayError = self::ERR_NONE;
 
+	/** Max expected replication lag for a reasonable storage setup */
+	const MAX_REPLICA_LAG = 8;
+	/** Max time since snapshot transaction start to avoid no-op of set() */
+	const MAX_SNAPSHOT_LAG = 6;
 	/** Seconds to tombstone keys on delete() */
-	const HOLDOFF_TTL = 10;
+	const HOLDOFF_TTL = 14; // MAX_REPLICA_LAG + MAX_SNAPSHOT_LAG
+
 	/** Seconds to keep dependency purge keys around */
 	const CHECK_KEY_TTL = 31536000; // 1 year
 	/** Seconds to keep lock keys around */
@@ -248,13 +253,53 @@ class WANObjectCache {
 	 * the changes do not replicate to the other WAN sites. In that case, delete()
 	 * should be used instead. This method is intended for use on cache misses.
 	 *
+	 * If the data was read from a snapshot-isolated transactions (e.g. the default
+	 * REPEATABLE-READ in innoDB), use 'since' to avoid the following race condition:
+	 *   - a) T1 starts
+	 *   - b) T2 updates a row, calls delete(), and commits
+	 *   - c) The HOLDOFF_TTL passes, expiring the delete() tombstone
+	 *   - d) T1 reads the row and calls set() due to a cache miss
+	 *   - e) Stale value is stuck in cache
+	 *
+	 * Example usage:
+	 * @code
+	 *     $dbr = wfGetDB( DB_SLAVE );
+	 *     // Fetch the row from the DB
+	 *     $row = $dbr->selectRow( ... );
+	 *     $key = wfMemcKey( 'building', $buildingId );
+	 *     // Give the age of the transaction snapshot the data came from
+	 *     $opts = array( 'since' => $dbr->trxTimestamp() );
+	 *     $cache->set( $key, $row, 86400, $opts );
+	 * @endcode
+	 *
 	 * @param string $key Cache key
 	 * @param mixed $value
 	 * @param integer $ttl Seconds to live [0=forever]
+	 * @param array $opts Options map:
+	 *   - since   : UNIX timestamp of the data in $value. Typically, this is either
+	 *               the current time the data was read or (if applicable) the time when
+	 *               the snapshot-isolated transaction the data was read from started.
+	 *               [Default: 0 seconds]
+	 *   - lockTSE : if excessive possible snapshot lag is detected,
+	 *               then stash the value into a temporary location
+	 *               with this TTL. This is only useful if the reads
+	 *               use getWithSetCallback() with "lockTSE" set.
+	 *               [Default: WANObjectCache::TSE_NONE]
 	 * @return bool Success
 	 */
-	final public function set( $key, $value, $ttl = 0 ) {
-		$key = self::VALUE_KEY_PREFIX . $key;
+	final public function set( $key, $value, $ttl = 0, array $opts = array() ) {
+		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
+		$age = isset( $opts['since'] ) ? max( 0, microtime( true ) - $opts['since'] ) : 0;
+
+		if ( $age > self::MAX_SNAPSHOT_LAG ) {
+			if ( $lockTSE >= 0 ) {
+				$tempTTL = max( 1, (int)$lockTSE ); // set() expects seconds
+				$this->cache->set( self::STASH_KEY_PREFIX . $key, $value, $tempTTL );
+			}
+
+			return true; // no-op the write for being unsafe
+		}
+
 		$wrapped = $this->wrap( $value, $ttl );
 
 		$func = function ( $cache, $key, $cWrapped ) use ( $wrapped ) {
@@ -263,7 +308,7 @@ class WANObjectCache {
 				: $wrapped;
 		};
 
-		return $this->cache->merge( $key, $func, $ttl, 1 );
+		return $this->cache->merge( self::VALUE_KEY_PREFIX . $key, $func, $ttl, 1 );
 	}
 
 	/**
@@ -408,13 +453,15 @@ class WANObjectCache {
 	/**
 	 * Method to fetch/regenerate cache keys
 	 *
-	 * On cache miss, the key will be set to the callback result,
-	 * unless the callback returns false. The arguments supplied are:
-	 *     (current value or false, &$ttl)
+	 * On cache miss, the key will be set to the callback result via set()
+	 * unless the callback returns false. The arguments supplied to it are:
+	 *     (current value or false, &$ttl, &$setOpts)
 	 * The callback function returns the new value given the current
 	 * value (false if not present). Preemptive re-caching and $checkKeys
 	 * can result in a non-false current value. The TTL of the new value
 	 * can be set dynamically by altering $ttl in the callback (by reference).
+	 * The $setOpts array can be altered and is given to set() when called;
+	 * it is recommended to set the 'since' field to avoid race conditions.
 	 *
 	 * Usually, callbacks ignore the current value, but it can be used
 	 * to maintain "most recent X" values that come from time or sequence
@@ -437,7 +484,14 @@ class WANObjectCache {
 	 * @code
 	 *     $key = wfMemcKey( 'cat-recent-actions', $catId );
 	 *     // Function that derives the new key value given the old value
-	 *     $callback = function( $cValue, &$ttl ) { ... };
+	 *     $callback = function( $cValue, &$ttl, array &$setOpts ) {
+	 *         $dbr = wfGetDB( DB_SLAVE );
+	 *         // Fetch the row from the DB
+	 *         $row = $dbr->selectRow( ... );
+	 *         // Give the age of the transaction snapshot the data came from
+	 *         $setOpts = array( 'since' => $dbr->trxTimestamp() );
+	 *         return $row;
+	 *     };
 	 *     // Get the key value from cache or from source on cache miss;
 	 *     // try to only let one cluster thread manage doing cache updates
 	 *     $opts = array( 'lockTSE' => 5, 'lowTTL' => 10 );
@@ -463,6 +517,7 @@ class WANObjectCache {
 	 * @endcode
 	 *
 	 * @see WANObjectCache::get()
+	 * @see WANObjectCache::set()
 	 *
 	 * @param string $key Cache key
 	 * @param callable $callback Value generation function
@@ -538,7 +593,8 @@ class WANObjectCache {
 		}
 
 		// Generate the new value from the callback...
-		$value = call_user_func_array( $callback, array( $cValue, &$ttl ) );
+		$setOpts = array();
+		$value = call_user_func_array( $callback, array( $cValue, &$ttl, &$setOpts ) );
 		// When delete() is called, writes are write-holed by the tombstone,
 		// so use a special stash key to pass the new value around threads.
 		if ( $useMutex && $value !== false && $ttl >= 0 ) {
@@ -552,7 +608,8 @@ class WANObjectCache {
 
 		if ( $value !== false && $ttl >= 0 ) {
 			// Update the cache; this will fail if the key is tombstoned
-			$this->set( $key, $value, $ttl );
+			$setOpts['lockTSE'] = $lockTSE;
+			$this->set( $key, $value, $ttl, $setOpts );
 		}
 
 		return $value;
