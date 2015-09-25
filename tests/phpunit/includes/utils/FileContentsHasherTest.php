@@ -8,7 +8,7 @@ class FileContentsHasherTest extends MediaWikiTestCase {
 	public function provideSingleFile() {
 		return array_map( function ( $file ) {
 			return array( $file, file_get_contents( $file ) );
-		}, glob( __DIR__ . '/../data/filecontentshasher/*.*' ) );
+		}, glob( __DIR__ . '/../../data/filecontentshasher/*.*' ) );
 	}
 
 	public function provideMultipleFiles() {
