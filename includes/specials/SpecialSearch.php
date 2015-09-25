@@ -436,7 +436,7 @@ class SpecialSearch extends SpecialPage {
 		$suggest = Linker::linkKnown(
 			$this->getPageTitle(),
 			$textMatches->getSuggestionSnippet() ?: null,
-			array(),
+			array('id' => 'cirrusDYMsuggestion'),
 			$stParams
 		);
 
@@ -470,7 +470,7 @@ class SpecialSearch extends SpecialPage {
 		$rewritten = Linker::linkKnown(
 			$this->getPageTitle(),
 			$textMatches->getQueryAfterRewriteSnippet() ?: null,
-			array(),
+			array('id' => 'cirrusDYMrewritten'),
 			$stParams
 		);
 
@@ -479,7 +479,7 @@ class SpecialSearch extends SpecialPage {
 		$original = Linker::linkKnown(
 			$this->getPageTitle(),
 			htmlspecialchars( $term ),
-			array(),
+			array('id' => 'cirrusDYMoriginal'),
 			$stParams
 		);
 
