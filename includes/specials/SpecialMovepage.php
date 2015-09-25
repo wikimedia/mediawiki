@@ -342,6 +342,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				'id' => 'wpReason',
 				'maxLength' => 200,
 				'infusable' => true,
+				'value' => $this->reason,
 			) ),
 			array(
 				'label' => $this->msg( 'movereason' )->text(),
