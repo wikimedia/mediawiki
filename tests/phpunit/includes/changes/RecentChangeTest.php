@@ -42,44 +42,6 @@ class RecentChangeTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * The testIrcMsgForAction* tests are supposed to cover the hacky
-	 * LogFormatter::getIRCActionText / bug 34508
-	 *
-	 * Third parties bots listen to those messages. They are clever enough
-	 * to fetch the i18n messages from the wiki and then analyze the IRC feed
-	 * to reverse engineer the $1, $2 messages.
-	 * One thing bots can not detect is when MediaWiki change the meaning of
-	 * a message like what happened when we deployed 1.19. $1 became the user
-	 * performing the action which broke basically all bots around.
-	 *
-	 * Should cover the following log actions (which are most commonly used by bots):
-	 * - block/block
-	 * - block/unblock
-	 * - block/reblock
-	 * - delete/delete
-	 * - delete/restore
-	 * - newusers/create
-	 * - newusers/create2
-	 * - newusers/autocreate
-	 * - move/move
-	 * - move/move_redir
-	 * - protect/protect
-	 * - protect/modifyprotect
-	 * - protect/unprotect
-	 * - protect/move_prot
-	 * - upload/upload
-	 * - merge/merge
-	 * - import/upload
-	 * - import/interwiki
-	 *
-	 * As well as the following Auto Edit Summaries:
-	 * - blank
-	 * - replace
-	 * - rollback
-	 * - undo
-	 */
-
-	/**
 	 * @covers RecentChange::parseParams
 	 */
 	public function testParseParams() {
