@@ -66,11 +66,21 @@ class PHPUnitMaintClass extends Maintenance {
 		// wfWarn should cause tests to fail
 		$wgDevelopmentWarnings = true;
 
+		// Make sure all caches and stashes are either disabled or use
+		// in-process cache only to prevent tests from using any preconfigured
+		// cache meant for the local wiki from outside the test run.
+		// See also MediaWikiTestCase::run() which mocks CACHE_DB and APC.
+
+		// Disabled in DefaultSettings, override local settings
+		$wgMainWANCache =
 		$wgMainCacheType = CACHE_NONE;
-		$wgMainWANCache = CACHE_NONE;
-		$wgMessageCacheType = CACHE_NONE;
-		$wgParserCacheType = CACHE_NONE;
-		$wgLanguageConverterCacheType = CACHE_NONE;
+		// Uses CACHE_ANYTHING in DefaultSettings, use hash instead of db
+		$wgMessageCacheType =
+		$wgParserCacheType =
+		$wgSessionCacheType =
+		$wgLanguageConverterCacheType = 'hash';
+		// Uses db-replicated in DefaultSettings
+		$wgMainStash = 'hash';
 
 		$wgUseDatabaseMessages = false; # Set for future resets
 
