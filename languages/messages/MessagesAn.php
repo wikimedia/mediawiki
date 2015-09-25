@@ -33,7 +33,7 @@ $namespaceAliases = array(
 	'Espezial' => NS_SPECIAL,
 );
 
-// Remove Spanish gender aliases (bug 37090)
+// Remove Spanish gender aliases (bug T39090)
 $namespaceGenderAliases = array();
 
 $magicWords = array(
