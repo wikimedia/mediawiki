@@ -137,8 +137,8 @@
 				if ( response.parse.modules ) {
 					mw.loader.load( response.parse.modules.concat(
 						response.parse.modulescripts,
-						response.parse.modulestyles,
-						response.parse.modulemessages ) );
+						response.parse.modulestyles
+					) );
 				}
 				if ( response.parse.displaytitle ) {
 					$displaytitle = $( $.parseHTML( response.parse.displaytitle ) );
