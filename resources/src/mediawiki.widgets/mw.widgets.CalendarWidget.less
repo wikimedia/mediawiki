@@ -148,7 +148,7 @@
 	// 7x7 grid
 	width: @calendarWidth / 7;
 	line-height: @calendarHeight / 7;
-	// Don't overlap the hacked-up fake box-shadow border we get inside DateInputWidget when focussed
+	// Don't overlap the hacked-up fake box-shadow border we get when focussed
 	&:nth-child(7n) {
 		width: @calendarWidth / 7 - 0.2em;
 		margin-right: 0.2em;
@@ -167,7 +167,7 @@
 	// 2x6 grid
 	width: @calendarWidth / 2;
 	line-height: @calendarHeight / 6;
-	// Don't overlap the hacked-up fake box-shadow border we get inside DateInputWidget when focussed
+	// Don't overlap the hacked-up fake box-shadow border we get when focussed
 	&:nth-child(2n) {
 		width: @calendarWidth / 2 - 0.2em;
 		margin-right: 0.2em;
@@ -186,7 +186,7 @@
 	// 5x4 grid
 	width: @calendarWidth / 5;
 	line-height: @calendarHeight / 4;
-	// Don't overlap the hacked-up fake box-shadow border we get inside DateInputWidget when focussed
+	// Don't overlap the hacked-up fake box-shadow border we get when focussed
 	&:nth-child(5n) {
 		width: @calendarWidth / 5 - 0.2em;
 		margin-right: 0.2em;
@@ -206,6 +206,15 @@
 }
 
 /* Theme-specific */
+.mw-widget-calendarWidget {
+	box-shadow: inset 0 0 0 1px #ccc;
+}
+
+.mw-widget-calendarWidget:focus {
+	outline: none;
+	box-shadow: inset 0 0 0 2px #347bff;
+}
+
 .mw-widget-calendarWidget-day {
 	color: #444;
 	border-radius: 0.1em;
