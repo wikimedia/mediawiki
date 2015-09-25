@@ -455,6 +455,17 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
+	 * Get module-specific LESS variables, if any.
+	 *
+	 * @since 1.26
+	 * @param ResourceLoaderContext $context
+	 * @return array Module-specific LESS variables.
+	 */
+	protected function getLessVars( ResourceLoaderContext $context ) {
+		return array();
+	}
+
+	/**
 	 * Get an array of this module's resources. Ready for serving to the web.
 	 *
 	 * @since 1.26

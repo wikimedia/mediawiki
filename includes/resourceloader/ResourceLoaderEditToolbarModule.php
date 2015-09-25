@@ -48,41 +48,16 @@ class ResourceLoaderEditToolbarModule extends ResourceLoaderFileModule {
 	/**
 	 * Get language-specific LESS variables for this module.
 	 *
+	 * @since 1.26
+	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
-	private function getLessVars( ResourceLoaderContext $context ) {
+	protected function getLessVars( ResourceLoaderContext $context ) {
+		$vars = parent::getLessVars( $context );
 		$language = Language::factory( $context->getLanguage() );
-
-		// This is very conveniently formatted and we can pass it right through
-		$vars = $language->getImageFiles();
-
-		// less.php tries to be helpful and parse our variables as LESS source code
-		foreach ( $vars as $key => &$value ) {
-			$value = self::cssSerializeString( $value );
+		foreach ( $language->getImageFiles() as $key => $value ) {
+			$vars[ $key ] = self::cssSerializeString( $value );
 		}
-
 		return $vars;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function enableModuleContentVersion() {
-		return true;
-	}
-
-	/**
-	 * Get a LESS compiler instance for this module.
-	 *
-	 * Set our variables in it.
-	 *
-	 * @throws MWException
-	 * @param ResourceLoaderContext $context
-	 * @return Less_Parser
-	 */
-	protected function getLessCompiler( ResourceLoaderContext $context = null ) {
-		$parser = parent::getLessCompiler();
-		$parser->ModifyVars( $this->getLessVars( $context ) );
-		return $parser;
 	}
 }

@@ -201,6 +201,10 @@ changes to languages because of Phabricator reports.
 * DatabaseBase::errorCount() was removed (unused).
 * $wgDeferredUpdateList was removed.
 * DeferredUpdates::addHTMLCacheUpdate() was removed.
+* Calling ResourceLoaderFileModule::readStyleFiles() without a
+  ResourceLoaderContext instance is deprecated.
+* ResourceLoader::getLessCompiler() now takes an optional parameter of
+  additional LESS variables to set for the compiler.
 
 == Compatibility ==
 
