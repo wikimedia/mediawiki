@@ -24,7 +24,7 @@ use MediaWikiTestCase;
 use Monolog\Logger;
 
 // not available in the version of phpunit mw uses, so copied into repo
-require_once __DIR__ . '/../../../ConsecutiveParametersMatcher.php';
+require_once __DIR__ . '/../../../phpunit/ConsecutiveParametersMatcher.php';
 
 class KafkaHandlerTest extends MediaWikiTestCase {
 
