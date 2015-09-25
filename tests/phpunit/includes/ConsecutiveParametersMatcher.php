@@ -1,4 +1,5 @@
 <?php
+// @codingStandardsIgnoreFile
 /*
  * This file is part of the PHPUnit_MockObject package.
  *
