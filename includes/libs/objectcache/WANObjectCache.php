@@ -64,6 +64,9 @@ class WANObjectCache {
 	/** @var EventRelayer */
 	protected $relayer;
 
+	/** @var bool */
+	protected $acceptableLag = true;
+
 	/** @var int */
 	protected $lastRelayError = self::ERR_NONE;
 
@@ -84,6 +87,9 @@ class WANObjectCache {
 	const TTL_UNCACHEABLE = -1;
 	/** Idiom for getWithSetCallback() callbacks to 'lockTSE' logic */
 	const TSE_NONE = -1;
+
+	/** Default value to limit TTLs to when the lag SLA is not met */
+	const UNSAFE_LAG_TTL = 30;
 
 	/** Cache format version number */
 	const VERSION = 1;
@@ -254,6 +260,10 @@ class WANObjectCache {
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = 0 ) {
+		if ( !$this->acceptableLag ) {
+			$ttl = $ttl ? min( self::UNSAFE_LAG_TTL, $ttl ) : self::UNSAFE_LAG_TTL;
+		}
+
 		$key = self::VALUE_KEY_PREFIX . $key;
 		$wrapped = $this->wrap( $value, $ttl );
 
@@ -556,6 +566,17 @@ class WANObjectCache {
 		}
 
 		return $value;
+	}
+
+	/**
+	 * Declare whether the replication lag SLA (typically << MAX_REPLICA_LAG) if met
+	 *
+	 * Set this to false to limit the TTL of new cache items to UNSAFE_LAG_TTL
+	 *
+	 * @param bool $value
+	 */
+	final public function setAcceptableLagMode( $value ) {
+		$this->acceptableLag = $value;
 	}
 
 	/**
