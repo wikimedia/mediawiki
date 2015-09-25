@@ -421,7 +421,7 @@
 	"createacct-captcha": "Segurtasun froga",
 	"createacct-imgcaptcha-ph": "Sartu gainean ikusten duzun testua",
 	"createacct-submit": "Kontua sortu",
-	"createacct-another-submit": "Beste kontu bat sortu",
+	"createacct-another-submit": "Kontu bat sortu",
 	"createacct-benefit-heading": "{{SITENAME}} zu bezalako pertsonek egiten dute.",
 	"createacct-benefit-body1": "{{PLURAL:$1|edizio bat|$1 edizio}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|Orrialde 1|$1 orrialde}}",
