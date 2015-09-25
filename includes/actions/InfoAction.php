@@ -555,9 +555,11 @@ class InfoAction extends FormlessAction {
 		);
 
 		// Total number of distinct authors
-		$pageInfo['header-edits'][] = array(
-			$this->msg( 'pageinfo-authors' ), $lang->formatNum( $pageCounts['authors'] )
-		);
+		if ( $pageCounts['authors'] > 0 ) {
+			$pageInfo['header-edits'][] = array(
+				$this->msg( 'pageinfo-authors' ), $lang->formatNum( $pageCounts['authors'] )
+			);
+		}
 
 		// Recent number of edits (within past 30 days)
 		$pageInfo['header-edits'][] = array(
@@ -718,20 +720,23 @@ class InfoAction extends FormlessAction {
 		// Total number of edits
 		$edits = (int)$dbr->selectField(
 			'revision',
-			'COUNT(rev_page)',
+			'COUNT(*)',
 			array( 'rev_page' => $id ),
 			__METHOD__
 		);
 		$result['edits'] = $edits;
 
 		// Total number of distinct authors
-		$authors = (int)$dbr->selectField(
-			'revision',
-			'COUNT(DISTINCT rev_user_text)',
-			array( 'rev_page' => $id ),
-			__METHOD__
-		);
-		$result['authors'] = $authors;
+		if ( $config->get( 'MiserMode' ) ) {
+			$result['authors'] = 0;
+		} else {
+			$result['authors'] = (int)$dbr->selectField(
+				'revision',
+				'COUNT(DISTINCT rev_user_text)',
+				array( 'rev_page' => $id ),
+				__METHOD__
+			);
+		}
 
 		// "Recent" threshold defined by RCMaxAge setting
 		$threshold = $dbr->timestamp( time() - $config->get( 'RCMaxAge' ) );
@@ -749,7 +754,7 @@ class InfoAction extends FormlessAction {
 		$result['recent_edits'] = $edits;
 
 		// Recent number of distinct authors
-		$authors = (int)$dbr->selectField(
+		$result['recent_authors'] = (int)$dbr->selectField(
 			'revision',
 			'COUNT(DISTINCT rev_user_text)',
 			array(
@@ -758,7 +763,6 @@ class InfoAction extends FormlessAction {
 			),
 			__METHOD__
 		);
-		$result['recent_authors'] = $authors;
 
 		// Subpages (if enabled)
 		if ( MWNamespace::hasSubpages( $title->getNamespace() ) ) {
