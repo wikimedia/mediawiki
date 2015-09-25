@@ -112,7 +112,7 @@ class ReplacementArray {
 	 */
 	public function replace( $subject ) {
 		if (
-			function_exists( 'fss_prep_replace' )  &&
+			function_exists( 'fss_prep_replace' ) &&
 			version_compare( PHP_VERSION, '5.5.0' ) < 0
 		) {
 			if ( $this->fss === false ) {
