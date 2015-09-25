@@ -64,6 +64,9 @@ class WANObjectCache {
 	/** @var EventRelayer */
 	protected $relayer;
 
+	/** @var int|null */
+	protected $maxTTL;
+
 	/** @var int */
 	protected $lastRelayError = self::ERR_NONE;
 
@@ -254,6 +257,10 @@ class WANObjectCache {
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = 0 ) {
+		if ( $this->maxTTL > 0 ) {
+			$ttl = $ttl ? min( $this->maxTTL, $ttl ) : $this->maxTTL;
+		}
+
 		$key = self::VALUE_KEY_PREFIX . $key;
 		$wrapped = $this->wrap( $value, $ttl );
 
@@ -556,6 +563,17 @@ class WANObjectCache {
 		}
 
 		return $value;
+	}
+
+	/**
+	 * Limit the TTL of all keys saved via set()
+	 *
+	 * This is useful if replication lag starts to approach MAX_REPLICA_LAG
+	 *
+	 * @param integer $ttl
+	 */
+	final public function setMaxTTL( $ttl ) {
+		$this->maxTTL = $ttl;
 	}
 
 	/**
