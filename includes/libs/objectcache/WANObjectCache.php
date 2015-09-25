@@ -65,6 +65,11 @@ class WANObjectCache {
 	/** @var EventRelayer */
 	protected $relayer;
 
+	/** @var float[] Map of sources to replication lag */
+	protected $lagEstimates = array();
+	/** @var int|null Max seconds to cache entries due to high replication lag */
+	protected $emergencyMaxTTL;
+
 	/** @var int */
 	protected $lastRelayError = self::ERR_NONE;
 
@@ -302,6 +307,10 @@ class WANObjectCache {
 			}
 
 			return true; // no-op the write for being unsafe
+		}
+
+		if ( $this->emergencyMaxTTL > 0 ) {
+			$ttl = $ttl ? min( $this->emergencyMaxTTL, $ttl ) : $this->emergencyMaxTTL;
 		}
 
 		$wrapped = $this->wrap( $value, $ttl );
@@ -642,6 +651,24 @@ class WANObjectCache {
 		}
 
 		return $value;
+	}
+
+	/**
+	 * Report lag estimates for a data source
+	 *
+	 * This is useful if replication lag starts to approach MAX_REPLICA_LAG as it
+	 * will limit the TTL of all keys saved via set() due to excessive replication lag
+	 *
+	 * @param string $source String that identifies the resource (e.g. db1052)
+	 * @param float $lag The amount of replication leg in seconds
+	 */
+	final public function notifyReplicationLag( $source, $lag ) {
+		$this->lagEstimates[$source] = $lag;
+		if ( max( $this->lagEstimates ) >= self::MAX_REPLICA_LAG/2 ) {
+			$this->emergencyMaxTTL = 15;
+		} else {
+			$this->emergencyMaxTTL = null;
+		}
 	}
 
 	/**
