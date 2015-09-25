@@ -18,7 +18,7 @@
  */
 
 use Composer\Semver\VersionParser;
-use Composer\Semver\Constraint\VersionConstraint;
+use Composer\Semver\Constraint\Constraint;
 
 /**
  * @since 1.26
@@ -26,7 +26,7 @@ use Composer\Semver\Constraint\VersionConstraint;
 class CoreVersionChecker {
 
 	/**
-	 * @var VersionConstraint|bool representing $wgVersion
+	 * @var Constraint|bool representing $wgVersion
 	 */
 	private $coreVersion = false;
 
@@ -41,7 +41,7 @@ class CoreVersionChecker {
 	public function __construct( $coreVersion ) {
 		$this->versionParser = new VersionParser();
 		try {
-			$this->coreVersion = new VersionConstraint(
+			$this->coreVersion = new Constraint(
 				'==',
 				$this->versionParser->normalize( $coreVersion )
 			);
