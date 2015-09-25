@@ -114,12 +114,22 @@ class ExtensionRegistry {
 	}
 
 	public function loadFromQueue() {
+		global $wgVersion;
 		if ( !$this->queued ) {
 			return;
 		}
 
+		// A few more things to vary the cache on
+		$versions = array(
+			'registration' => self::CACHE_VERSION,
+			'mediawiki' => $wgVersion
+		);
+
 		// See if this queue is in APC
-		$key = wfMemcKey( 'registration', md5( json_encode( $this->queued ) ), self::CACHE_VERSION );
+		$key = wfMemcKey(
+			'registration',
+			md5( json_encode( $this->queued + $versions ) )
+		);
 		$data = $this->cache->get( $key );
 		if ( $data ) {
 			$this->exportExtractedData( $data );
