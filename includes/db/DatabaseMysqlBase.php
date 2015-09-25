@@ -32,9 +32,32 @@
 abstract class DatabaseMysqlBase extends DatabaseBase {
 	/** @var MysqlMasterPos */
 	protected $lastKnownSlavePos;
+	/** @var string Method to detect slave lag */
+	protected $lagDetectionMethod;
+
+	/** @var BagOStuff APC cache */
+	protected $srvCache;
 
 	/** @var string|null */
 	private $serverVersion = null;
+
+	/**
+	 * Additional $params include:
+	 *   - lagDetectionMethod : set to one of (Seconds_Behind_Master,pt-heartbeat).
+	 *                          pt-heartbeat assumes the table is at heartbeat.heartbeat
+	 *                          and uses UTC timestamps in the heartbeat.ts column.
+	 *                          (https://www.percona.com/doc/percona-toolkit/2.2/pt-heartbeat.html)
+	 * @param array $params
+	 */
+	function __construct( array $params ) {
+		parent::__construct( $params );
+
+		$this->lagDetectionMethod = isset( $params['lagDetectionMethod'] )
+			? $params['lagDetectionMethod']
+			: 'Seconds_Behind_Master';
+
+		$this->srvCache = ObjectCache::newAccelerator( 'hash' );
+	}
 
 	/**
 	 * @return string
@@ -604,26 +627,55 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @return int
 	 */
 	function getLag() {
-		return $this->getLagFromSlaveStatus();
+		if ( $this->lagDetectionMethod === 'pt-heartbeat' ) {
+			return $this->getLagFromPtHeartbeat();
+		} else {
+			return $this->getLagFromSlaveStatus();
+		}
 	}
 
 	/**
 	 * @return bool|int
 	 */
-	function getLagFromSlaveStatus() {
+	protected function getLagFromSlaveStatus() {
 		$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__ );
-		if ( !$res ) {
-			return false;
-		}
-		$row = $res->fetchObject();
-		if ( !$row ) {
-			return false;
-		}
-		if ( strval( $row->Seconds_Behind_Master ) === '' ) {
-			return false;
-		} else {
+		$row = $res ? $res->fetchObject() : false;
+		if ( $row && strval( $row->Seconds_Behind_Master ) !== '' ) {
 			return intval( $row->Seconds_Behind_Master );
 		}
+
+		return false;
+	}
+
+	/**
+	 * @return bool|float
+	 */
+	protected function getLagFromPtHeartbeat() {
+		$key = wfMemcKey( 'mysql', 'master-server-id', $this->getServer() );
+		$masterId = intval( $this->srvCache->get( $key ) );
+		if ( !$masterId ) {
+			$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__ );
+			$row = $res ? $res->fetchObject() : false;
+			if ( $row && strval( $row->Master_Server_Id ) !== '' ) {
+				$masterId = intval( $row->Master_Server_Id );
+				$this->srvCache->set( $key, $masterId, 30 );
+			}
+		}
+
+		if ( !$masterId ) {
+			return false;
+		}
+
+		$res = $this->query(
+			"SELECT TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6)) AS Lag " .
+			"FROM heartbeat.heartbeat WHERE server_id = $masterId"
+		);
+		$row = $res ? $res->fetchObject() : false;
+		if ( $row ) {
+			return max( floatval( $row->Lag ) / 1e6, 0.0 );
+		}
+
+		return false;
 	}
 
 	/**
