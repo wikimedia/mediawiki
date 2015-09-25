@@ -103,8 +103,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		 */
 		ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
 
-		// Sandbox APC by replacing with in-process hash cache instead.
-		// Ensures tests are removed between tests.
+		// Sandbox APC by replacing with in-process hash instead.
+		// Ensures values are removed between tests.
 		ObjectCache::$instances['apc'] =
 		ObjectCache::$instances['xcache'] =
 		ObjectCache::$instances['wincache'] = new HashBagOStuff;
