@@ -26,24 +26,6 @@
  * @since 1.24
  */
 class ResourceLoaderEditToolbarModule extends ResourceLoaderFileModule {
-	/**
-	 * Serialize a string (escape and quote) for use as a CSS string value.
-	 * http://www.w3.org/TR/2013/WD-cssom-20131205/#serialize-a-string
-	 *
-	 * @param string $value
-	 * @return string
-	 * @throws Exception
-	 */
-	private static function cssSerializeString( $value ) {
-		if ( strstr( $value, "\0" ) ) {
-			throw new Exception( "Invalid character in CSS string" );
-		}
-		$value = strtr( $value, array( '\\' => '\\\\', '"' => '\\"' ) );
-		$value = preg_replace_callback( '/[\x01-\x1f\x7f-\x9f]/', function ( $match ) {
-			return '\\' . base_convert( ord( $match[0] ), 10, 16 ) . ' ';
-		}, $value );
-		return '"' . $value . '"';
-	}
 
 	/**
 	 * Get language-specific LESS variables for this module.
@@ -58,7 +40,7 @@ class ResourceLoaderEditToolbarModule extends ResourceLoaderFileModule {
 
 		// less.php tries to be helpful and parse our variables as LESS source code
 		foreach ( $vars as $key => &$value ) {
-			$value = self::cssSerializeString( $value );
+			$value = CSSMin::serializeStringValue( $value );
 		}
 
 		return $vars;
