@@ -27,10 +27,6 @@
  * @ingroup Cache
  */
 class LinkCache {
-	// Increment $mClassVer whenever old serialized versions of this class
-	// becomes incompatible with the new version.
-	private $mClassVer = 5;
-
 	/**
 	 * @var MapCacheLRU
 	 */
