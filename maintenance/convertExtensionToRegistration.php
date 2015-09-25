@@ -41,12 +41,12 @@ class ConvertExtensionToRegistration extends Maintenance {
 	 */
 	protected $promote = array(
 		'name',
+		'namemsg',
 		'version',
 		'author',
 		'url',
 		'description',
 		'descriptionmsg',
-		'namemsg',
 		'license-name',
 		'type',
 	);
