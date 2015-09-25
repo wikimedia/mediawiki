@@ -238,3 +238,19 @@
 	path = extensions/Variables
 	url = https://github.com/wikimedia/mediawiki-extensions-Variables.git
 	branch = REL1_25
+[submodule "extensions/CharInsert"]
+	path = extensions/CharInsert
+	url = https://github.com/wikimedia/mediawiki-extensions-CharInsert.git
+	branch = REL1_25
+[submodule "extensions/NewUserMessage"]
+	path = extensions/NewUserMessage
+	url = https://github.com/wikimedia/mediawiki-extensions-NewUserMessage.git
+	branch = REL1_25
+[submodule "extensions/CSS"]
+	path = extensions/CSS
+	url = https://github.com/wikimedia/mediawiki-extensions-CSS.git
+	branch = REL1_25
+[submodule "extensions/RandomSelection"]
+	path = extensions/RandomSelection
+	url = https://github.com/Inclumedia/RandomSelection.git
+	branch = master
