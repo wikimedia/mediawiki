@@ -32,6 +32,8 @@
 abstract class DatabaseMysqlBase extends DatabaseBase {
 	/** @var MysqlMasterPos */
 	protected $lastKnownSlavePos;
+	/** @var string Method to detect slave lag */
+	protected $lagDetectionMethod;
 
 	/** @var null|int */
 	protected $mFakeSlaveLag = null;
@@ -40,6 +42,21 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 	/** @var string|null */
 	private $serverVersion = null;
+
+	/**
+	 * Additional $params include:
+	 *   - lagDetectionMethod : set to one of (Seconds_Behind_Master,pt-heartbeat).
+	 *                          pt-heartbeat assumes the table is at heartbeat.heartbeat
+	 *                          (https://www.percona.com/doc/percona-toolkit/2.2/pt-heartbeat.html)
+	 * @param array $params
+	 */
+	function __construct( array $params ) {
+		parent::__construct( $params );
+
+		$this->lagDetectionMethod = isset( $params['lagDetectionMethod'] )
+			? $params['lagDetectionMethod']
+			: 'Seconds_Behind_Master';
+	}
 
 	/**
 	 * @return string
@@ -641,13 +658,24 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 */
 	function getLagFromSlaveStatus() {
 		$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__ );
-		if ( !$res ) {
-			return false;
-		}
-		$row = $res->fetchObject();
+		$row = $res ? $res->fetchObject() : false;
 		if ( !$row ) {
 			return false;
 		}
+
+		$masterId = (int)$row->Master_Server_Id;
+		if ( $masterId && $this->lagDetectionMethod === 'pt-heartbeat' ) {
+			$res = $this->query(
+				"SELECT TIMESTAMPDIFF(SECOND,ts,NOW()) AS Lag " .
+				"FROM heartbeat.heartbeat WHERE server_id = $masterId"
+			);
+			$row = $res ? $res->fetchObject() : false;
+			if ( $row ) {
+				return $row->Lag;
+			}
+			// fallback to IO/slave position difference...
+		}
+
 		if ( strval( $row->Seconds_Behind_Master ) === '' ) {
 			return false;
 		} else {
