@@ -55,4 +55,8 @@ class HTMLHiddenField extends HTMLFormField {
 	public function getInputHTML( $value ) {
 		return '';
 	}
+
+	public function canDisplayErrors() {
+		return false;
+	}
 }
