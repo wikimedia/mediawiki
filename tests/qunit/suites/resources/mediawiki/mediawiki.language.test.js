@@ -13,7 +13,9 @@
 			// mw.language.listToText test
 			and: ' and',
 			'comma-separator': ', ',
-			'word-separator': ' '
+			'word-separator': ' ',
+			// mw.language.addLocalizations test
+			pagetitle: 'MyWiki: $1'
 		}
 	} ) );
 
@@ -484,5 +486,46 @@
 		assert.equal( mw.language.listToText( [ 'a' ] ), 'a', 'Single item' );
 		assert.equal( mw.language.listToText( [ 'a', 'b' ] ), 'a and b', 'Two items' );
 		assert.equal( mw.language.listToText( [ 'a', 'b', 'c' ] ), 'a, b and c', 'More than two items' );
+	} );
+
+	QUnit.test( 'mw.language.addLocalizations test', 3, function ( assert ) {
+		var l10n, keys;
+		l10n = {
+			en: {
+				pagetitle: '$1 - {{SITENAME}}',
+				questionmark: '?',
+				'my-cool-message': 'My cool message! ($3, $2 = $2)'
+			},
+			de: {
+				pagetitle: '$1 – {{SITENAME}}',
+				'my-cool-message': 'Meine heiße Nachricht! ($3, $2 = $2)'
+			}
+		};
+		keys = [ 'pagetitle', 'questionmark', 'my-cool-message' ];
+
+		mw.config.set( 'wgUserLanguage', 'pfl' );
+		mw.language.setData( 'pfl', 'fallbackLanguages', [ 'de', 'en' ] );
+
+		mw.language.addLocalizations( l10n );
+		assert.deepEqual( mw.messages.get( keys ), {
+			pagetitle: 'MyWiki: $1',
+			questionmark: '?',
+			'my-cool-message': 'Meine heiße Nachricht! ($3, $2 = $2)'
+		}, 'Localizations for pfl' );
+
+		mw.language.addLocalizations( l10n, true );
+		assert.deepEqual( mw.messages.get( keys ), {
+			pagetitle: '$1 – {{SITENAME}}',
+			questionmark: '?',
+			'my-cool-message': 'Meine heiße Nachricht! ($3, $2 = $2)'
+		}, 'Localizations for pfl with overriding' );
+
+		mw.config.set( 'wgUserLanguage', 'qqx' );
+		mw.language.addLocalizations( l10n, true );
+		assert.deepEqual( mw.messages.get( keys ), {
+			pagetitle: '(pagetitle: $1)',
+			questionmark: '(questionmark)',
+			'my-cool-message': '(my-cool-message: $1, $2, $3)'
+		}, 'Localizations for qqx' );
 	} );
 }( mediaWiki, jQuery ) );
