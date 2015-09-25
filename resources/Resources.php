@@ -1096,6 +1096,11 @@ return array(
 		'styles' => 'resources/src/mediawiki/mediawiki.pager.tablePager.less',
 		'position' => 'top',
 	),
+	'mediawiki.rownumbers' => array(
+		'styles' => 'resources/src/mediawiki/mediawiki.rownumbers.css',
+		'targets' => array( 'desktop', 'mobile' ),
+		'position' => 'top',
+	),
 	'mediawiki.searchSuggest' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.searchSuggest.js',
 		'styles' => 'resources/src/mediawiki/mediawiki.searchSuggest.css',

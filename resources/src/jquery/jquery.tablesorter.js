@@ -306,7 +306,8 @@
 	}
 
 	function buildHeaders( table, msg ) {
-		var config = $( table ).data( 'tablesorter' ).config,
+		var $table = $( table ),
+			config = $table.data( 'tablesorter' ).config,
 			maxSeen = 0,
 			colspanOffset = 0,
 			columns,
@@ -373,7 +374,10 @@
 			$cell = $( this );
 			columns = [];
 
-			if ( !$cell.hasClass( config.unsortableClass ) ) {
+			if (
+				!$cell.hasClass( config.unsortableClass ) &&
+				!( headerIndex === 0 && $table.hasClass( config.rownumbersClass ) )
+			) {
 				$cell
 					.addClass( config.cssHeader )
 					.prop( 'tabIndex', 0 )
@@ -781,6 +785,7 @@
 				cssChildRow: 'expand-child',
 				sortMultiSortKey: 'shiftKey',
 				unsortableClass: 'unsortable',
+				rownumbersClass: 'rownumbers',
 				parsers: [],
 				cancelSelection: true,
 				sortList: [],
