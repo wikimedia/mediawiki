@@ -446,8 +446,6 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		if ( $confirm ) {
-			$watchChecked = $user->isLoggedIn() && ( $this->watch || $user->getBoolOption( 'watchmoves' )
-				|| $user->isWatched( $this->oldTitle ) );
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( array(
 					'name' => 'wpConfirm',
