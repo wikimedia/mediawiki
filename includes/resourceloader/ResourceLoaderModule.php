@@ -486,6 +486,33 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
+	 * Get module-specific LESS variables, if any.
+	 *
+	 * @since 1.26
+	 * @param ResourceLoaderContext $context
+	 * @return array Module-specific LESS variables.
+	 */
+	protected function getLessVars( ResourceLoaderContext $context ) {
+		return array();
+	}
+
+	/**
+	 * Get a LESS compiler instance for this module in given context.
+	 *
+	 * Just calls ResourceLoader::getLessCompiler() by default to get a global compiler.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @throws MWException
+	 * @since 1.24
+	 * @return Less_Parser
+	 */
+	protected function getLessCompiler( ResourceLoaderContext $context ) {
+		$config = $this->getConfig();
+		$extraVars = $this->getLessVars( $context );
+		return ResourceLoader::getLessCompiler( $config, $extraVars );
+	}
+
+	/**
 	 * Get an array of this module's resources. Ready for serving to the web.
 	 *
 	 * @since 1.26
