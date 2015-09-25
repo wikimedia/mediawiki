@@ -4852,7 +4852,7 @@ class User implements IDBAccessObject {
 		$dbw->update(
 			'user',
 			array( 'user_editcount=user_editcount+1' ),
-			array( 'user_id' => $this->getId() ),
+			array( 'user_id' => $this->getId(), 'user_editcount IS NOT NULL' ),
 			__METHOD__
 		);
 		// Lazy initialization check...
