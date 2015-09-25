@@ -854,13 +854,21 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param array $styles List of media type/list of file paths pairs, to read, remap and
 	 * concetenate
 	 * @param bool $flip
-	 * @param ResourceLoaderContext $context (optional)
+	 * @param ResourceLoaderContext $context
 	 *
 	 * @throws MWException
 	 * @return array List of concatenated and remapped CSS data from $styles,
 	 *     keyed by media type
+	 *
+	 * @since 1.26 Calling this method without a ResourceLoaderContext instance
+	 *   is deprecated.
 	 */
 	public function readStyleFiles( array $styles, $flip, $context = null ) {
+		if ( $context === null ) {
+			wfDeprecated( __METHOD__ . ' without a ResourceLoader context', '1.26' );
+			$context = ResourceLoaderContext::newDummyContext();
+		}
+
 		if ( empty( $styles ) ) {
 			return array();
 		}
@@ -882,12 +890,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * @param string $path File path of style file to read
 	 * @param bool $flip
-	 * @param ResourceLoaderContext $context (optional)
+	 * @param ResourceLoaderContext $context
 	 *
 	 * @return string CSS data in script file
 	 * @throws MWException If the file doesn't exist
 	 */
-	protected function readStyleFile( $path, $flip, $context = null ) {
+	protected function readStyleFile( $path, $flip, $context ) {
 		$localPath = $this->getLocalPath( $path );
 		$remotePath = $this->getRemotePath( $path );
 		if ( !file_exists( $localPath ) ) {
@@ -897,8 +905,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 
 		if ( $this->getStyleSheetLang( $localPath ) === 'less' ) {
-			$compiler = $this->getLessCompiler( $context );
-			$style = $this->compileLessFile( $localPath, $compiler );
+			$style = $this->compileLessFile( $localPath, null, $context );
 			$this->hasGeneratedStyles = true;
 		} else {
 			$style = file_get_contents( $localPath );
@@ -947,12 +954,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Keeps track of all used files and adds them to localFileRefs.
 	 *
 	 * @since 1.22
+	 * @since 1.26 Added $context paramter.
 	 * @throws Exception If less.php encounters a parse error
 	 * @param string $fileName File path of LESS source
-	 * @param Less_Parser $parser Compiler to use, if not default
+	 * @param ResourceLoaderContext $context Context in which to generate script
 	 * @return string CSS source
 	 */
-	protected function compileLessFile( $fileName, $compiler = null ) {
+	protected function compileLessFile( $fileName, ResourceLoaderContext $context ) {
 		static $cache;
 
 		if ( !$cache ) {
@@ -961,7 +969,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 		// Construct a cache key from the LESS file name and a hash digest
 		// of the LESS variables used for compilation.
-		$varsHash = hash( 'md4', serialize( ResourceLoader::getLessVars( $this->getConfig() ) ) );
+		$vars = $this->getLessVars( $context );
+		ksort( $vars );
+		$varsHash = hash( 'md4', serialize( $vars ) );
 		$cacheKey = wfGlobalCacheKey( 'LESS', $fileName, $varsHash );
 		$cachedCompile = $cache->get( $cacheKey );
 
@@ -976,10 +986,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			}
 		}
 
-		if ( !$compiler ) {
-			$compiler = $this->getLessCompiler();
-		}
-
+		$compiler = ResourceLoader::getLessCompiler( $this->getConfig(), $vars );
 		$css = $compiler->parseFile( $fileName )->getCss();
 		$files = $compiler->AllParsedFiles();
 		$this->localFileRefs = array_merge( $this->localFileRefs, $files );
@@ -991,20 +998,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		), 60 * 60 * 24 );  // 86400 seconds, or 24 hours.
 
 		return $css;
-	}
-
-	/**
-	 * Get a LESS compiler instance for this module in given context.
-	 *
-	 * Just calls ResourceLoader::getLessCompiler() by default to get a global compiler.
-	 *
-	 * @param ResourceLoaderContext $context
-	 * @throws MWException
-	 * @since 1.24
-	 * @return Less_Parser
-	 */
-	protected function getLessCompiler( ResourceLoaderContext $context = null ) {
-		return ResourceLoader::getLessCompiler( $this->getConfig() );
 	}
 
 	/**

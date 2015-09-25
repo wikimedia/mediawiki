@@ -215,6 +215,10 @@ changes to languages because of Phabricator reports.
   'Project:Oversight' to 'Project:Suppress'.
 * (T84937) Free external links ("autolinked" urls) will now be terminated
   by &nbsp; and HTML entity encodings of &nbsp, <, and >.
+* Calling ResourceLoaderFileModule::readStyleFiles() without a
+  ResourceLoaderContext instance is deprecated.
+* ResourceLoader::getLessCompiler() now takes an optional parameter of
+  additional LESS variables to set for the compiler.
 
 == Compatibility ==
 
