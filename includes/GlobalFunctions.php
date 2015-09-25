@@ -4072,7 +4072,7 @@ function wfUnpack( $format, $data, $length = false ) {
  * @return bool
  */
 function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
-	static $badImageCache = null; // based on bad_image_list msg
+	$cache = ObjectCache::newAccelerator( 'hash' );
 
 	# Handle redirects
 	$redirectTitle = RepoGroup::singleton()->checkRedirect( Title::makeTitle( NS_FILE, $name ) );
@@ -4086,10 +4086,11 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 		return $bad;
 	}
 
+	$key = wfMemcKey( 'bad-image-list' );
 	$cacheable = ( $blacklist === null );
-	if ( $cacheable && $badImageCache !== null ) {
-		$badImages = $badImageCache;
-	} else { // cache miss
+	$badImages = $cacheable ? $cache->get( $key ) : false;
+
+	if ( $badImages === false ) { // cache miss
 		if ( $blacklist === null ) {
 			$blacklist = wfMessage( 'bad_image_list' )->inContentLanguage()->plain(); // site list
 		}
@@ -4126,12 +4127,13 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 			}
 		}
 		if ( $cacheable ) {
-			$badImageCache = $badImages;
+			$cache->set( $key, $badImages, 15 );
 		}
 	}
 
 	$contextKey = $contextTitle ? $contextTitle->getPrefixedDBkey() : false;
 	$bad = isset( $badImages[$name] ) && !isset( $badImages[$name][$contextKey] );
+
 	return $bad;
 }
 
