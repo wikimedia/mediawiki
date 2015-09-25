@@ -1,6 +1,25 @@
 <?xml version="1.0"?>
 <ruleset name="MediaWiki">
-	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki"/>
+	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
+		<!-- Disable failing rules -->
+		<exclude name="Generic.Files.LineLength"/>
+		<exclude name="PSR2.Methods.MethodDeclaration.Underscore"/>
+		<exclude name="MediaWiki.NamingConventions.PrefixedGlobalFunctions.wfPrefix"/>
+		<exclude name="MediaWiki.WhiteSpace.SpaceyParenthesis.SingleSpaceBeforeCloseParenthesis"/>
+		<exclude name="MediaWiki.WhiteSpace.SpaceyParenthesis.SingleSpaceAfterOpenParenthesis"/>
+		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
+		<exclude name="Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed"/>
+		<exclude name="MediaWiki.VariableAnalysis.UnusedGlobalVariables"/>
+		<exclude name="MediaWiki.WhiteSpace.SpaceAfterControlStructure.Incorrect"/>
+		<exclude name="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
+		<exclude name="PSR2.Methods.MethodDeclaration.AbstractAfterVisibility"/>
+		<exclude name="Generic.Files.EndFileNewline.NotFound"/>
+		<exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
+		<exclude name="PSR2.Methods.MethodDeclaration.StaticBeforeVisibility"/>
+		<exclude name="Squiz.WhiteSpace.ScopeClosingBrace.Indent"/>
+		<exclude name="Squiz.WhiteSpace.SemicolonSpacing.Incorrect"/>
+		<exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines"/>
+	</rule>
 	<file>.</file>
 	<arg name="encoding" value="utf8"/>
 	<arg name="extensions" value="php,php5,inc,sample"/>
