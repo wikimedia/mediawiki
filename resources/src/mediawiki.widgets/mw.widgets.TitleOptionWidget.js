@@ -73,6 +73,11 @@
 					.text( config.description )
 			);
 		}
+
+		// Events
+		this.$link.on( 'click', function () {
+			return false;
+		} );
 	};
 
 	/* Setup */
