@@ -415,10 +415,7 @@ class SpecialSearch extends SpecialPage {
 			return false;
 		}
 
-		// Generate a random number between 0 and 1. If the
-		// number is less than the desired percentages run it.
-		$rand = rand( 0, getrandmax() ) / getrandmax();
-		return $this->getConfig()->get( 'SearchRunSuggestedQueryPercent' ) > $rand;
+		return $this->getConfig()->get( 'SearchRunSuggestedQuery' );
 	}
 
 	/**
