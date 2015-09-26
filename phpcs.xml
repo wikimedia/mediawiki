@@ -13,7 +13,6 @@
 		<exclude name="MediaWiki.WhiteSpace.SpaceAfterControlStructure.Incorrect"/>
 		<exclude name="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
 		<exclude name="PSR2.Methods.MethodDeclaration.AbstractAfterVisibility"/>
-		<exclude name="Generic.Files.EndFileNewline.NotFound"/>
 		<exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
 		<exclude name="PSR2.Methods.MethodDeclaration.StaticBeforeVisibility"/>
 		<exclude name="Squiz.WhiteSpace.ScopeClosingBrace.Indent"/>
