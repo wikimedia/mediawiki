@@ -429,8 +429,14 @@ class XMPReader implements LoggerAwareInterface {
 		}
 		$len = unpack( 'Nlength/Noffset', substr( $content, 32, 8 ) );
 
-		if ( !$len || $len['length'] < 4 || $len['offset'] < 0 || $len['offset'] > $len['length'] ) {
-			$this->logger->info( __METHOD__ . 'Error reading extended XMP block, invalid length or offset.' );
+		if ( !$len ||
+			$len['length'] < 4 ||
+			$len['offset'] < 0 ||
+			$len['offset'] > $len['length']
+		) {
+			$this->logger->info(
+				__METHOD__ . 'Error reading extended XMP block, invalid length or offset.'
+			);
 
 			return false;
 		}
@@ -710,7 +716,6 @@ class XMPReader implements LoggerAwareInterface {
 	 * @throws RuntimeException
 	 */
 	private function endElementModeLi( $elm ) {
-
 		list( $ns, $tag ) = explode( ' ', $this->curItem[0], 2 );
 		$info = $this->items[$ns][$tag];
 		$finalName = isset( $info['map_name'] )
@@ -734,7 +739,9 @@ class XMPReader implements LoggerAwareInterface {
 				$this->results['xmp-' . $info['map_group']][$finalName]['_type'] = 'lang';
 			}
 		} else {
-			throw new RuntimeException( __METHOD__ . " expected </rdf:seq> or </rdf:bag> but instead got $elm." );
+			throw new RuntimeException(
+				__METHOD__ . " expected </rdf:seq> or </rdf:bag> but instead got $elm."
+			);
 		}
 	}
 
