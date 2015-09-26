@@ -1,13 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="MediaWiki">
-	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
-		<!-- Disable failing rules -->
-		<exclude name="Generic.Files.LineLength"/>
-		<exclude name="PSR2.Methods.MethodDeclaration.Underscore"/>
-		<exclude name="MediaWiki.NamingConventions.PrefixedGlobalFunctions.wfPrefix"/>
-		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
-		<exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
-	</rule>
+	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki" />
 	<file>.</file>
 	<arg name="encoding" value="utf8"/>
 	<arg name="extensions" value="php,php5,inc,sample"/>
