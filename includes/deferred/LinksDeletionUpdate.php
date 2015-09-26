@@ -103,3 +103,4 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 		}
 	}
 }
+
