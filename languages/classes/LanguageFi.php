@@ -42,8 +42,8 @@ class LanguageFi extends Language {
 			return $wgGrammarForms['fi'][$case][$word];
 		}
 
-		# These rules are not perfect, but they are currently only used for site names so it doesn't
-		# matter if they are wrong sometimes. Just add a special case for your site name if necessary.
+		# These rules don't cover the whole language.
+		# They are used only for site names.
 
 		# wovel harmony flag
 		$aou = preg_match( '/[aou][^äöy]*$/i', $word );
