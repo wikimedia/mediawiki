@@ -2726,10 +2726,20 @@ $wgLangObjCacheSize = 10;
  *
  * @par Example:
  * @code
- * $wgGrammarForms['en']['genitive']['car'] = 'car\'s';
+ * $wgGrammarForms['en']['genitive']['car'] = "car's";
  * @endcode
  */
 $wgGrammarForms = array();
+
+/**
+ * Some languages need different word forms, usually for different cases.
+ * Used in Language::convertGrammar().
+ * Unlike $wgGrammarForms, this uses pairs of regexes and replacements
+ * instead of direct replacements of words.
+ * The data is loaded from a JSON file in languages/data/grammarTransformations
+ * if it's available.
+ */
+$wgGrammarTransformations = array();
 
 /**
  * Treat language links as magic connectors, not inline links
