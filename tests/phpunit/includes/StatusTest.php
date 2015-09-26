@@ -64,7 +64,16 @@ class StatusTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $status->ok );
 		$status = Status::newFatal( 'foo', 1, 2 );
 		$this->assertFalse( $status->ok );
-		$this->assertArrayEquals( array( array( 'type' => 'error', 'message' => 'foo', 'params' => array( 1, 2 ) ) ), $status->errors );
+		$this->assertArrayEquals(
+			array(
+				array(
+					'type' => 'error',
+					'message' => 'foo',
+					'params' => array( 1, 2 )
+				)
+			),
+			$status->errors
+		);
 	}
 
 	/**
