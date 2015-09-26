@@ -1381,7 +1381,8 @@ return array(
 	),
 	'mediawiki.action.view.filepage' => array(
 		'styles' => array(
-			'resources/src/mediawiki.action/mediawiki.action.view.filepage.print.css' => array( 'media' => 'print' ),
+			'resources/src/mediawiki.action/mediawiki.action.view.filepage.print.css' =>
+				array( 'media' => 'print' ),
 			'resources/src/mediawiki.action/mediawiki.action.view.filepage.css',
 		),
 		'position' => 'top',
@@ -1774,7 +1775,8 @@ return array(
 			// @todo: Remove mediawiki.page.gallery when cache has cleared
 			'resources/src/mediawiki.page/mediawiki.page.gallery.print.css' => array( 'media' => 'print' ),
 			// @todo: Remove mediawiki.action.view.filepage.print.css when cache has cleared
-			'resources/src/mediawiki.action/mediawiki.action.view.filepage.print.css' => array( 'media' => 'print' ),
+			'resources/src/mediawiki.action/mediawiki.action.view.filepage.print.css' =>
+				array( 'media' => 'print' ),
 			'resources/src/mediawiki.legacy/commonPrint.css' => array( 'media' => 'print' )
 		),
 	),
