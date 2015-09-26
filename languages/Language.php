@@ -3905,6 +3905,7 @@ class Language {
 
 		return $word;
 	}
+
 	/**
 	 * Get the grammar forms for the content language
 	 * @return array Array of grammar forms
@@ -3920,6 +3921,39 @@ class Language {
 
 		return array();
 	}
+
+	/**
+	 * Get the grammar transformations data for the language.
+	 * Used like grammar forms, with {{GRAMMAR}} and cases,
+	 * but uses pairs of regexes and replacements
+	 * instead of code.
+	 * @return array Array of grammar transformations.
+	 * @since 1.26
+	 */
+	function getGrammarTransformations() {
+		global $wgGrammarTransformations;
+
+		$languageCode = $this->getCode();
+
+		if ( isset( $wgGrammarTransformations[$languageCode] ) ) {
+			return $wgGrammarTransformations[$languageCode];
+		}
+
+		$grammarDataFile = __DIR__ .
+			"/data/grammarTransformations/grammar.$languageCode.json";
+
+		if ( is_readable( $grammarDataFile ) ) {
+			$wgGrammarTransformations[$languageCode] = FormatJson::decode(
+				file_get_contents( $grammarDataFile ),
+				true
+			);
+
+			return $wgGrammarTransformations[$languageCode];
+		}
+
+		return array();
+	}
+
 	/**
 	 * Provides an alternative text depending on specified gender.
 	 * Usage {{gender:username|masculine|feminine|unknown}}.
