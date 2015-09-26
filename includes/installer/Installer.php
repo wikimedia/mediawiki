@@ -375,6 +375,8 @@ abstract class Installer {
 			CACHE_DB => $emptyCache,
 			CACHE_ANYTHING => $emptyCache,
 			CACHE_MEMCACHED => $emptyCache,
+			// Disable hash cache, too (e.g. used in resourceloader less caching) - bug T113843
+			'hash' => $emptyCache,
 		);
 
 		// Load the installer's i18n.
