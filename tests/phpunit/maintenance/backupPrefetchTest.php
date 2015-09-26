@@ -202,7 +202,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 	  <model name="wikitext">1</model>
 	  <format mime="text/x-wiki">1</format>
 	</revision>
-  </page>
+</page>
 ';
 		// Page with more than one revisions. Hole in rev ids.
 		$available_pages[2] = '  <page>
@@ -234,7 +234,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 	  <model name="wikitext">1</model>
 	  <format mime="text/x-wiki">1</format>
 	</revision>
-  </page>
+</page>
 ';
 		// Page with id higher than previous id + 1
 		$available_pages[4] = '  <page>
@@ -253,7 +253,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 	  <format mime="text/x-wiki">1</format>
 	  <text xml:space="preserve">Talk about BackupDumperTestP1 Text1</text>
 	</revision>
-  </page>
+</page>
 ';
 
 		// The common ending for all files

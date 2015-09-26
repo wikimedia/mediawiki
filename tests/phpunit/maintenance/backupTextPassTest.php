@@ -468,7 +468,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 			. 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
 			. 'xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ '
 			. 'http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
-  <siteinfo>
+<siteinfo>
 	<sitename>wikisvn</sitename>
 	<base>http://localhost/wiki-svn/index.php/Main_Page</base>
 	<generator>MediaWiki 1.21alpha</generator>
@@ -493,7 +493,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	  <namespace key="14" case="first-letter">Category</namespace>
 	  <namespace key="15" case="first-letter">Category talk</namespace>
 	</namespaces>
-  </siteinfo>
+</siteinfo>
 ';
 		$tail = '</mediawiki>
 ';
@@ -518,7 +518,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	  <text id="' . $this->textId1_1 . '" bytes="23" />
 	  <sha1>0bolhl6ol7i6x0e7yq91gxgaan39j87</sha1>
 	</revision>
-  </page>
+</page>
 ';
 			$page2 = '  <page>
 	<title>BackupDumperTestP2</title>
@@ -575,7 +575,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	  <text id="' . $this->textId2_4 . '" bytes="44" />
 	  <sha1>6o1ciaxa6pybnqprmungwofc4lv00wv</sha1>
 	</revision>
-  </page>
+</page>
 ';
 			// page 3 not in stub
 
@@ -595,7 +595,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	  <text id="' . $this->textId4_1 . '" bytes="35" />
 	  <sha1>nktofwzd0tl192k3zfepmlzxoax1lpe</sha1>
 	</revision>
-  </page>
+</page>
 ';
 			$content .= $page1 . $page2 . $page4;
 		}
