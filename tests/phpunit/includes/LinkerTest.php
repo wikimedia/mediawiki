@@ -93,7 +93,9 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 * @covers Linker::formatAutocomments
 	 * @covers Linker::formatLinksInComment
 	 */
-	public function testFormatComment( $expected, $comment, $title = false, $local = false, $wikiId = null ) {
+	public function testFormatComment(
+		$expected, $comment, $title = false, $local = false, $wikiId = null
+	) {
 		$conf = new SiteConfiguration();
 		$conf->settings = array(
 			'wgServer' => array(
