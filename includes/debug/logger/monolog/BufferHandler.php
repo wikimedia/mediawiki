@@ -44,4 +44,3 @@ class BufferHandler extends BaseBufferHandler {
 		return parent::handle( $record );
 	}
 }
-

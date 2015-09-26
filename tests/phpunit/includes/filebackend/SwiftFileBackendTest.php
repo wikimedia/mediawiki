@@ -146,4 +146,3 @@ class SwiftFileBackendTest extends MediaWikiTestCase {
 		);
 	}
 }
-
