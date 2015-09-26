@@ -747,7 +747,7 @@ class ResourceLoader implements LoggerAwareInterface {
 
 		if ( $context->getImageObj() && $this->errors ) {
 			// We can't show both the error messages and the response when it's an image.
-			$response = implode( "\n\n",  $this->errors );
+			$response = implode( "\n\n", $this->errors );
 		} elseif ( $this->errors ) {
 			$errorText = implode( "\n\n", $this->errors );
 			$errorResponse = self::makeComment( $errorText );

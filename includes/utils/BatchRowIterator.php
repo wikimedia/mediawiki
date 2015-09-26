@@ -90,7 +90,7 @@ class BatchRowIterator implements RecursiveIterator {
 		}
 		$this->db = $db;
 		$this->table = $table;
-		$this->primaryKey = (array) $primaryKey;
+		$this->primaryKey = (array)$primaryKey;
 		$this->fetchColumns = $this->primaryKey;
 		$this->orderBy = implode( ' ASC,', $this->primaryKey ) . ' ASC';
 		$this->batchSize = $batchSize;
@@ -169,7 +169,7 @@ class BatchRowIterator implements RecursiveIterator {
 	 * @return boolean True when the iterator is in a valid state
 	 */
 	public function valid() {
-		return (bool) $this->current;
+		return (bool)$this->current;
 	}
 
 	/**

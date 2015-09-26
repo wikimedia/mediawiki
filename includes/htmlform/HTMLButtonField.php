@@ -28,7 +28,7 @@ class HTMLButtonField extends HTMLFormField {
 		) {
 			$prefix = 'mw-ui-';
 			// add mw-ui-button separately, so the descriptor doesn't need to set it
-			$flags .= ' ' . $prefix.'button';
+			$flags .= ' ' . $prefix . 'button';
 		}
 		foreach ( $this->mFlags as $flag ) {
 			$flags .= ' ' . $prefix . $flag;

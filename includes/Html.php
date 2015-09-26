@@ -857,7 +857,7 @@ class Html {
 			} elseif ( is_int( $nsId ) ) {
 				$nsName = $wgContLang->convertNamespace( $nsId );
 			}
-			$optionsOut[ $nsId ] = $nsName;
+			$optionsOut[$nsId] = $nsName;
 		}
 
 		return $optionsOut;
