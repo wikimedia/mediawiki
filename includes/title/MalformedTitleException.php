@@ -33,7 +33,9 @@ class MalformedTitleException extends Exception {
 	 * @param string[] $errorMessageParameters Additional parameters for the error message.
 	 * $titleText will be appended if it's not null. (since MW 1.26)
 	 */
-	public function __construct( $errorMessage = null, $titleText = null, $errorMessageParameters = array() ) {
+	public function __construct(
+		$errorMessage = null, $titleText = null, $errorMessageParameters = array()
+	) {
 		$this->errorMessage = $errorMessage;
 		$this->titleText = $titleText;
 		if ( $titleText !== null ) {

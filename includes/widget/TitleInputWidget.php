@@ -19,12 +19,15 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 	/**
 	 * @param array $config Configuration options
 	 * @param int|null $config['namespace'] Namespace to prepend to queries
-	 * @param bool|null $config['relative'] If a namespace is set, return a title relative to it (default: true)
+	 * @param bool|null $config['relative'] If a namespace is set,
+	 *  return a title relative to it (default: true)
 	 * @param bool|null $config['suggestions'] Display search suggestions (default: true)
 	 */
 	public function __construct( array $config = array() ) {
 		// Parent constructor
-		parent::__construct( array_merge( array( 'infusable' => true, 'maxLength' => 255 ), $config ) );
+		parent::__construct(
+			array_merge( array( 'infusable' => true, 'maxLength' => 255 ), $config )
+		);
 
 		// Properties, which are ignored in PHP and just shipped back to JS
 		if ( isset( $config['namespace'] ) ) {
