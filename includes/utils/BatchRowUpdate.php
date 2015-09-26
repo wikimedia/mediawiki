@@ -71,7 +71,9 @@ class BatchRowUpdate {
 	 * @param RowUpdateGenerator $generator Generates single row updates
 	 *  based on the rows content
 	 */
-	public function __construct( BatchRowIterator $reader, BatchRowWriter $writer, RowUpdateGenerator $generator ) {
+	public function __construct(
+		BatchRowIterator $reader, BatchRowWriter $writer, RowUpdateGenerator $generator
+	) {
 		$this->reader = $reader;
 		$this->writer = $writer;
 		$this->generator = $generator;
