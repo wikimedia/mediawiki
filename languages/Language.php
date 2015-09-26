@@ -146,6 +146,12 @@ class Language {
 	static private $fallbackLanguageCache = array();
 
 	/**
+	 * Cache for grammar rules data
+	 * @var MapCacheLRU|null
+	 */
+	static private $grammarTransformations;
+
+	/**
 	 * Cache for language names
 	 * @var MapCacheLRU|null
 	 */
@@ -3905,6 +3911,7 @@ class Language {
 
 		return $word;
 	}
+
 	/**
 	 * Get the grammar forms for the content language
 	 * @return array Array of grammar forms
@@ -3920,6 +3927,48 @@ class Language {
 
 		return array();
 	}
+
+	/**
+	 * Get the grammar transformations data for the language.
+	 * Used like grammar forms, with {{GRAMMAR}} and cases,
+	 * but uses pairs of regexes and replacements instead of code.
+	 *
+	 * @return array[] Array of grammar transformations.
+	 * @since 1.26
+	 */
+	public function getGrammarTransformations() {
+		$languageCode = $this->getCode();
+
+		if ( self::$grammarTransformations === null ) {
+			self::$grammarTransformations = new MapCacheLRU( 20 );
+		}
+
+		$data = array();
+
+		// No negative caching is needed because this method is supposed
+		// to be called only once for each language
+		if ( self::$grammarTransformations->has( $languageCode ) ) {
+			$data = self::$grammarTransformations->get( $languageCode );
+		} else {
+			$grammarDataFile = __DIR__ . "/data/grammarTransformations/$languageCode.json";
+			if ( is_readable( $grammarDataFile ) ) {
+				$data = FormatJson::decode(
+					file_get_contents( $grammarDataFile ),
+					true
+				);
+
+				if ( $data === false ) {
+					wfLogWarning( "Invalid grammar data for $languageCode." );
+					$data = array();
+				}
+
+				self::$grammarTransformations->set( $languageCode, $data );
+			}
+		}
+
+		return $data;
+	}
+
 	/**
 	 * Provides an alternative text depending on specified gender.
 	 * Usage {{gender:username|masculine|feminine|unknown}}.
