@@ -831,8 +831,8 @@ class ParserOptions {
 	}
 
 	/**
-	 * Sets a hook to force that a page exists, and sets a current revision callback to return a
-	 * revision with custom content when the current revision of the page is requested.
+	 * Sets a hook to force that a page exists, and sets a current revision callback to return
+	 * a revision with custom content when the current revision of the page is requested.
 	 *
 	 * @since 1.25
 	 * @param Title $title
@@ -841,20 +841,25 @@ class ParserOptions {
 	 * @return ScopedCallback to unset the hook
 	 */
 	public function setupFakeRevision( $title, $content, $user ) {
-		$oldCallback = $this->setCurrentRevisionCallback( function ( $titleToCheck, $parser = false ) use ( $title, $content, $user, &$oldCallback ) {
-			if ( $titleToCheck->equals( $title ) ) {
-				return new Revision( array(
-					'page' => $title->getArticleID(),
-					'user_text' => $user->getName(),
-					'user' => $user->getId(),
-					'parent_id' => $title->getLatestRevId(),
-					'title' => $title,
-					'content' => $content
-				) );
-			} else {
-				return call_user_func( $oldCallback, $titleToCheck, $parser );
+		$oldCallback = $this->setCurrentRevisionCallback(
+			function (
+				$titleToCheck, $parser = false ) use ( $title, $content, $user, &$oldCallback
+			) {
+				if ( $titleToCheck->equals( $title ) ) {
+					return new Revision( array(
+						'page' => $title->getArticleID(),
+						'user_text' => $user->getName(),
+						'user' => $user->getId(),
+						'parent_id' => $title->getLatestRevId(),
+						'title' => $title,
+						'content' => $content
+					) );
+				} else {
+					return call_user_func( $oldCallback, $titleToCheck, $parser );
+				}
 			}
-		} );
+		);
+
 		global $wgHooks;
 		$wgHooks['TitleExists'][] =
 			function ( $titleToCheck, &$exists ) use ( $title ) {
