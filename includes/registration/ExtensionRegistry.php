@@ -204,7 +204,7 @@ class ExtensionRegistry {
 			) {
 				// Doesn't match, mark it as incompatible.
 				$incompatible[] = "{$info['name']} is not compatible with the current "
-					. "MediaWiki core (version {$wgVersion}), it requires: ". $requires[self::MEDIAWIKI_CORE]
+					. "MediaWiki core (version {$wgVersion}), it requires: " . $requires[self::MEDIAWIKI_CORE]
 					. '.';
 				continue;
 			}

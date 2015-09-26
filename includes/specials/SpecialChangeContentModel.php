@@ -139,7 +139,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			throw new RuntimeException( "Form submission was not POSTed" );
 		}
 
-		$this->title = Title::newFromText( $data['pagetitle' ] );
+		$this->title = Title::newFromText( $data['pagetitle'] );
 		$user = $this->getUser();
 		// Check permissions and make sure the user has permission to edit the specific page
 		$errors = $this->title->getUserPermissionsErrors( 'editcontentmodel', $user );

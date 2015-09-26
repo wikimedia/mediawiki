@@ -985,7 +985,7 @@ class DatabaseSqlite extends DatabaseBase {
 			$indexInfo = $this->query( 'PRAGMA INDEX_INFO(' . $this->addQuotes( $index->name ) . ')' );
 			$fields = array();
 			foreach ( $indexInfo as $indexInfoRow ) {
-				$fields[ $indexInfoRow->seqno ] = $indexInfoRow->name;
+				$fields[$indexInfoRow->seqno] = $indexInfoRow->name;
 			}
 
 			$sql .= '(' . implode( ',', $fields ) . ')';

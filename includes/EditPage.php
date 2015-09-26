@@ -3705,7 +3705,7 @@ HTML
 		$imagesAvailable = $wgEnableUploads || count( $wgForeignFileRepos );
 		$showSignature = true;
 		if ( $title ) {
-			 $showSignature = MWNamespace::wantSignatures( $title->getNamespace() );
+			$showSignature = MWNamespace::wantSignatures( $title->getNamespace() );
 		}
 
 		/**

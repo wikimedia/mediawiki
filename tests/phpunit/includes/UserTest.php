@@ -527,7 +527,7 @@ class UserTest extends MediaWikiTestCase {
 
 		$setcookieInvocations = $setcookieSpy->getInvocations();
 		$setcookieInvocation = end( $setcookieInvocations );
-		$actualExpiry = $setcookieInvocation->parameters[ 2 ];
+		$actualExpiry = $setcookieInvocation->parameters[2];
 
 		// TODO: ± 300 seconds compensates for
 		// slow-running tests. However, the dependency on the time

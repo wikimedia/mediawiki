@@ -71,7 +71,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 			}
 		}
 
-	  	rmdir( $directory );
+		rmdir( $directory );
 	}
 
 	protected function tearDown() {
