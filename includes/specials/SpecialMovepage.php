@@ -464,7 +464,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				'name' => $submitVar,
 				'value' => $movepagebtn,
 				'label' => $movepagebtn,
-				'flags' => array( 'progressive', 'primary' ),
+				'flags' => array( 'constructive', 'primary' ),
 				'type' => 'submit',
 			) ),
 			array(
