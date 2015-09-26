@@ -207,7 +207,12 @@ class SpecialSearchTestMockResultSet extends SearchResultSet {
 	protected $results;
 	protected $suggestion;
 
-	public function __construct( $suggestion = null, $rewrittenQuery = null, array $results = array(), $containedSyntax = false) {
+	public function __construct(
+		$suggestion = null,
+		$rewrittenQuery = null,
+		array $results = array(),
+		$containedSyntax = false
+	) {
 		$this->suggestion = $suggestion;
 		$this->rewrittenQuery = $rewrittenQuery;
 		$this->results = $results;
