@@ -60,7 +60,9 @@ class MultiWriteBagOStuff extends BagOStuff {
 		parent::__construct( $params );
 
 		if ( empty( $params['caches'] ) || !is_array( $params['caches'] ) ) {
-			throw new InvalidArgumentException( __METHOD__ . ': "caches" parameter must be an array of caches' );
+			throw new InvalidArgumentException(
+				__METHOD__ . ': "caches" parameter must be an array of caches'
+			);
 		}
 
 		$this->caches = array();
