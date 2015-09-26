@@ -1,4 +1,4 @@
-<?php
+a<?php
 
 class ResourceLoaderStartUpModuleTest extends ResourceLoaderTestCase {
 
@@ -9,7 +9,7 @@ class ResourceLoaderStartUpModuleTest extends ResourceLoaderTestCase {
 				'modules' => array(),
 				'out' => '
 mw.loader.addSource( {
-    "local": "/w/load.php"
+	"local": "/w/load.php"
 } );
 mw.loader.register( [] );'
 			) ),
@@ -20,13 +20,13 @@ mw.loader.register( [] );'
 				),
 				'out' => '
 mw.loader.addSource( {
-    "local": "/w/load.php"
+	"local": "/w/load.php"
 } );
 mw.loader.register( [
-    [
-        "test.blank",
-        "wvTifjse"
-    ]
+	[
+		"test.blank",
+		"wvTifjse"
+	]
 ] );',
 			) ),
 			array( array(
@@ -38,25 +38,25 @@ mw.loader.register( [
 				),
 				'out' => '
 mw.loader.addSource( {
-    "local": "/w/load.php"
+	"local": "/w/load.php"
 } );
 mw.loader.register( [
-    [
-        "test.blank",
-        "wvTifjse"
-    ],
-    [
-        "test.group.foo",
-        "wvTifjse",
-        [],
-        "x-foo"
-    ],
-    [
-        "test.group.bar",
-        "wvTifjse",
-        [],
-        "x-bar"
-    ]
+	[
+		"test.blank",
+		"wvTifjse"
+	],
+	[
+		"test.group.foo",
+		"wvTifjse",
+		[],
+		"x-foo"
+	],
+	[
+		"test.group.bar",
+		"wvTifjse",
+		[],
+		"x-bar"
+	]
 ] );'
 			) ),
 			array( array(
@@ -67,13 +67,13 @@ mw.loader.register( [
 				),
 				'out' => '
 mw.loader.addSource( {
-    "local": "/w/load.php"
+	"local": "/w/load.php"
 } );
 mw.loader.register( [
-    [
-        "test.blank",
-        "wvTifjse"
-    ]
+	[
+		"test.blank",
+		"wvTifjse"
+	]
 ] );'
 			) ),
 			array( array(
@@ -89,17 +89,17 @@ mw.loader.register( [
 				),
 				'out' => '
 mw.loader.addSource( {
-    "local": "/w/load.php",
-    "example": "http://example.org/w/load.php"
+	"local": "/w/load.php",
+	"example": "http://example.org/w/load.php"
 } );
 mw.loader.register( [
-    [
-        "test.blank",
-        "wvTifjse",
-        [],
-        null,
-        "example"
-    ]
+	[
+		"test.blank",
+		"wvTifjse",
+		[],
+		null,
+		"example"
+	]
 ] );'
 			) ),
 			array( array(
@@ -112,9 +112,9 @@ mw.loader.register( [
 					'test.y.polyfill' => new ResourceLoaderTestModule( array(
 						'skipFunction' =>
 							'return !!(' .
-							'    window.JSON &&' .
-							'    JSON.parse &&' .
-							'    JSON.stringify' .
+							'	window.JSON &&' .
+							'	JSON.parse &&' .
+							'	JSON.stringify' .
 							');'
 					) ),
 					'test.z.foo' => new ResourceLoaderTestModule( array(
@@ -127,38 +127,38 @@ mw.loader.register( [
 				),
 				'out' => '
 mw.loader.addSource( {
-    "local": "/w/load.php"
+	"local": "/w/load.php"
 } );
 mw.loader.register( [
-    [
-        "test.x.core",
-        "wvTifjse"
-    ],
-    [
-        "test.x.polyfill",
-        "wvTifjse",
-        [],
-        null,
-        null,
-        "return true;"
-    ],
-    [
-        "test.y.polyfill",
-        "wvTifjse",
-        [],
-        null,
-        null,
-        "return !!(    window.JSON \u0026\u0026    JSON.parse \u0026\u0026    JSON.stringify);"
-    ],
-    [
-        "test.z.foo",
-        "wvTifjse",
-        [
-            0,
-            1,
-            2
-        ]
-    ]
+	[
+		"test.x.core",
+		"wvTifjse"
+	],
+	[
+		"test.x.polyfill",
+		"wvTifjse",
+		[],
+		null,
+		null,
+		"return true;"
+	],
+	[
+		"test.y.polyfill",
+		"wvTifjse",
+		[],
+		null,
+		null,
+		"return !!(	window.JSON \u0026\u0026	JSON.parse \u0026\u0026	JSON.stringify);"
+	],
+	[
+		"test.z.foo",
+		"wvTifjse",
+		[
+			0,
+			1,
+			2
+		]
+	]
 ] );',
 			) ),
 			array( array(
@@ -223,73 +223,73 @@ mw.loader.register( [
 				),
 				'out' => '
 mw.loader.addSource( {
-    "local": "/w/load.php",
-    "example": "http://example.org/w/load.php"
+	"local": "/w/load.php",
+	"example": "http://example.org/w/load.php"
 } );
 mw.loader.register( [
-    [
-        "test.blank",
-        "wvTifjse"
-    ],
-    [
-        "test.x.core",
-        "wvTifjse"
-    ],
-    [
-        "test.x.util",
-        "wvTifjse",
-        [
-            1
-        ]
-    ],
-    [
-        "test.x.foo",
-        "wvTifjse",
-        [
-            1
-        ]
-    ],
-    [
-        "test.x.bar",
-        "wvTifjse",
-        [
-            2
-        ]
-    ],
-    [
-        "test.x.quux",
-        "wvTifjse",
-        [
-            3,
-            4,
-            "test.x.unknown"
-        ]
-    ],
-    [
-        "test.group.foo.1",
-        "wvTifjse",
-        [],
-        "x-foo"
-    ],
-    [
-        "test.group.foo.2",
-        "wvTifjse",
-        [],
-        "x-foo"
-    ],
-    [
-        "test.group.bar.1",
-        "wvTifjse",
-        [],
-        "x-bar"
-    ],
-    [
-        "test.group.bar.2",
-        "wvTifjse",
-        [],
-        "x-bar",
-        "example"
-    ]
+	[
+		"test.blank",
+		"wvTifjse"
+	],
+	[
+		"test.x.core",
+		"wvTifjse"
+	],
+	[
+		"test.x.util",
+		"wvTifjse",
+		[
+			1
+		]
+	],
+	[
+		"test.x.foo",
+		"wvTifjse",
+		[
+			1
+		]
+	],
+	[
+		"test.x.bar",
+		"wvTifjse",
+		[
+			2
+		]
+	],
+	[
+		"test.x.quux",
+		"wvTifjse",
+		[
+			3,
+			4,
+			"test.x.unknown"
+		]
+	],
+	[
+		"test.group.foo.1",
+		"wvTifjse",
+		[],
+		"x-foo"
+	],
+	[
+		"test.group.foo.2",
+		"wvTifjse",
+		[],
+		"x-foo"
+	],
+	[
+		"test.group.bar.1",
+		"wvTifjse",
+		[],
+		"x-bar"
+	],
+	[
+		"test.group.bar.2",
+		"wvTifjse",
+		[],
+		"x-bar",
+		"example"
+	]
 ] );'
 			) ),
 		);
@@ -327,9 +327,9 @@ mw.loader.register( [
 				'test.min' => new ResourceLoaderTestModule( array(
 					'skipFunction' =>
 						'return !!(' .
-						'    window.JSON &&' .
-						'    JSON.parse &&' .
-						'    JSON.stringify' .
+						'	window.JSON &&' .
+						'	JSON.parse &&' .
+						'	JSON.stringify' .
 						');',
 					'dependencies' => array(
 						'test.blank',
@@ -370,23 +370,23 @@ mw.loader.register( [
 		$module = new ResourceLoaderStartUpModule();
 		$this->assertEquals(
 'mw.loader.addSource( {
-    "local": "/w/load.php"
+	"local": "/w/load.php"
 } );
 mw.loader.register( [
-    [
-        "test.blank",
-        "wvTifjse"
-    ],
-    [
-        "test.min",
-        "wvTifjse",
-        [
-            0
-        ],
-        null,
-        null,
-        "return !!(    window.JSON \u0026\u0026    JSON.parse \u0026\u0026    JSON.stringify);"
-    ]
+	[
+		"test.blank",
+		"wvTifjse"
+	],
+	[
+		"test.min",
+		"wvTifjse",
+		[
+			0
+		],
+		null,
+		null,
+		"return !!(	window.JSON \u0026\u0026	JSON.parse \u0026\u0026	JSON.stringify);"
+	]
 ] );',
 			$module->getModuleRegistrations( $context ),
 			'Unminified output'
