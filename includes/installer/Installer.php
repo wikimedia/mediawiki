@@ -370,14 +370,14 @@ abstract class Installer {
 		$GLOBALS['wgMemc'] = new EmptyBagOStuff;
 		ObjectCache::clear();
 		$emptyCache = array( 'class' => 'EmptyBagOStuff' );
+		// disable (problematic) object cache types explicitly, preserving all other (working) ones
+		// bug T113843
 		$GLOBALS['wgObjectCaches'] = array(
 			CACHE_NONE => $emptyCache,
 			CACHE_DB => $emptyCache,
 			CACHE_ANYTHING => $emptyCache,
 			CACHE_MEMCACHED => $emptyCache,
-			// Set hash object cache (e.g. used in ResourceLoader LESS caching) - bug T113843
-			'hash' => array( 'class' => 'HashBagOStuff' ),
-		);
+		) + $GLOBALS['wgObjectCaches'];
 
 		// Load the installer's i18n.
 		$wgMessagesDirs['MediawikiInstaller'] = __DIR__ . '/i18n';
