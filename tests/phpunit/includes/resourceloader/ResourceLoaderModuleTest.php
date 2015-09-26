@@ -75,7 +75,10 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		) );
 		$this->assertEquals(
 			$module->getScript( $context ),
-			'mw.log.error("JavaScript parse error: Parse error: Unexpected token; token } expected in file \'input\' on line 3");',
+			'mw.log.error(
+				"JavaScript parse error: Parse error: Unexpected token; "
+				+ "token } expected in file \'input\' on line 3"
+			);',
 			'Replace invalid syntax with error logging'
 		);
 
