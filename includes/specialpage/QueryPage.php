@@ -457,7 +457,7 @@ abstract class QueryPage extends SpecialPage {
 				array( 'qc_type' => $this->getName() ),
 				__METHOD__, $options
 		);
-		return $dbr->resultObject( $res );
+		return $res;
 	}
 
 	public function getCachedTimestamp() {
