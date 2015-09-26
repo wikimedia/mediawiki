@@ -897,7 +897,7 @@ class PhpHttpRequest extends MWHttpRequest {
 			) );
 		}
 
-		foreach( $certLocations as $key => $cert ) {
+		foreach ( $certLocations as $key => $cert ) {
 			if ( is_dir( $cert ) ) {
 				$certOptions['capath'] = $cert;
 				break;

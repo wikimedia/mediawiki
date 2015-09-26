@@ -7,7 +7,6 @@
 		<exclude name="MediaWiki.NamingConventions.PrefixedGlobalFunctions.wfPrefix"/>
 		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
 		<exclude name="Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed"/>
-		<exclude name="MediaWiki.WhiteSpace.SpaceAfterControlStructure.Incorrect"/>
 		<exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
 	</rule>
 	<file>.</file>
