@@ -511,7 +511,10 @@ class Parser {
 			}
 			$limitReport .= 'Cached time: ' . $this->mOutput->getCacheTime() . "\n";
 			$limitReport .= 'Cache expiry: ' . $this->mOutput->getCacheExpiry() . "\n";
-			$limitReport .= 'Dynamic content: ' . ( $this->mOutput->hasDynamicContent() ? 'true' : 'false' ) . "\n";
+			$limitReport .= 'Dynamic content: ' .
+				( $this->mOutput->hasDynamicContent() ? 'true' : 'false' ) .
+				"\n";
+
 			foreach ( $this->mOutput->getLimitReportData() as $key => $value ) {
 				if ( Hooks::run( 'ParserLimitReportFormat',
 					array( $key, &$value, &$limitReport, false, false )
@@ -1468,7 +1471,6 @@ class Parser {
 	 * @private
 	 */
 	public function makeFreeExternalLink( $url, $numPostProto ) {
-
 		$trail = '';
 
 		# The characters '<' and '>' (which were escaped by
@@ -1476,7 +1478,12 @@ class Parser {
 		# URLs, per RFC 2396.
 		# Make &nbsp; terminate a URL as well (bug T84937)
 		$m2 = array();
-		if ( preg_match( '/&(lt|gt|nbsp|#x0*(3[CcEe]|[Aa]0)|#0*(60|62|160));/', $url, $m2, PREG_OFFSET_CAPTURE ) ) {
+		if ( preg_match(
+			'/&(lt|gt|nbsp|#x0*(3[CcEe]|[Aa]0)|#0*(60|62|160));/',
+			$url,
+			$m2,
+			PREG_OFFSET_CAPTURE
+		) ) {
 			$trail = substr( $url, $m2[0][1] ) . $trail;
 			$url = substr( $url, 0, $m2[0][1] );
 		}

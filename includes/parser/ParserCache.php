@@ -226,11 +226,17 @@ class ParserCache {
 			wfIncrStats( "pcache.miss.revid" );
 			$revId = $article->getLatest();
 			$cachedRevId = $value->getCacheRevisionId();
-			wfDebug( "ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n" );
+			wfDebug(
+				"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n"
+			);
 			$value = false;
-		} elseif ( Hooks::run( 'RejectParserCacheValue', array( $value, $wikiPage, $popts ) ) === false ) {
+		} elseif (
+			Hooks::run( 'RejectParserCacheValue', array( $value, $wikiPage, $popts ) ) === false
+		) {
 			wfIncrStats( 'pcache.miss.rejected' );
-			wfDebug( "ParserOutput key valid, but rejected by RejectParserCacheValue hook handler.\n" );
+			wfDebug(
+				"ParserOutput key valid, but rejected by RejectParserCacheValue hook handler.\n"
+			);
 			$value = false;
 		} else {
 			wfIncrStats( "pcache.hit" );
@@ -284,7 +290,10 @@ class ParserCache {
 			// ...and its pointer
 			$this->mMemc->set( $this->getOptionsKey( $page ), $optionsKey, $expire );
 
-			Hooks::run( 'ParserCacheSaveComplete', array( $this, $parserOutput, $page->getTitle(), $popts, $revId ) );
+			Hooks::run(
+				'ParserCacheSaveComplete',
+				array( $this, $parserOutput, $page->getTitle(), $popts, $revId )
+			);
 		} else {
 			wfDebug( "Parser output was marked as uncacheable and has not been saved.\n" );
 		}
