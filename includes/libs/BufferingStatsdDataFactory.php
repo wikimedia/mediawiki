@@ -57,7 +57,9 @@ class BufferingStatsdDataFactory extends StatsdDataFactory {
 		return str_replace( array( '._', '_.' ), '.', $key );
 	}
 
-	public function produceStatsdData( $key, $value = 1, $metric = StatsdDataInterface::STATSD_METRIC_COUNT ) {
+	public function produceStatsdData(
+		$key, $value = 1, $metric = StatsdDataInterface::STATSD_METRIC_COUNT
+	) {
 		$entity = $this->produceStatsdDataEntity();
 		if ( $key !== null ) {
 			$key = self::normalizeMetricKey( "{$this->prefix}.{$key}" );
