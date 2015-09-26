@@ -547,7 +547,9 @@ class SearchHighlighter {
 		$text = ltrim( $text ) . "\n"; // make sure the preg_match may find the last line
 		$text = str_replace( "\n\n", "\n", $text ); // remove empty lines
 		preg_match( "/^(.*\n){0,$contextlines}/", $text, $match );
-		$text = htmlspecialchars( substr( trim( $match[0] ), 0, $contextlines * $contextchars ) ); // trim and limit to max number of chars
+
+		// Trim and limit to max number of chars
+		$text = htmlspecialchars( substr( trim( $match[0] ), 0, $contextlines * $contextchars ) );
 		return str_replace( "\n", '<br>', $text );
 	}
 }

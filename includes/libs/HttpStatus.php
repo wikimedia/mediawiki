@@ -102,7 +102,10 @@ class HttpStatus {
 		}
 
 		if ( $version === null ) {
-			$version = isset( $_SERVER['SERVER_PROTOCOL'] ) && $_SERVER['SERVER_PROTOCOL'] === 'HTTP/1.0' ? '1.0' : '1.1';
+			$version = isset( $_SERVER['SERVER_PROTOCOL'] ) &&
+				$_SERVER['SERVER_PROTOCOL'] === 'HTTP/1.0' ?
+					'1.0' :
+					'1.1';
 		}
 
 		header( "HTTP/$version $code $message" );
