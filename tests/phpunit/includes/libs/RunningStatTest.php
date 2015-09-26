@@ -23,7 +23,7 @@ class RunningStatTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testRunningStatAccuracy() {
 		$rstat = new RunningStat();
-		foreach( $this->points as $point ) {
+		foreach ( $this->points as $point ) {
 			$rstat->push( $point );
 		}
 
@@ -51,7 +51,7 @@ class RunningStatTest extends PHPUnit_Framework_TestCase {
 	public function testRunningStatMerge() {
 		$expected = new RunningStat();
 
-		foreach( $this->points as $point ) {
+		foreach ( $this->points as $point ) {
 			$expected->push( $point );
 		}
 
@@ -60,13 +60,13 @@ class RunningStatTest extends PHPUnit_Framework_TestCase {
 
 		// Accumulate the first half into one RunningStat object
 		$first = new RunningStat();
-		foreach( $sets[0] as $point ) {
+		foreach ( $sets[0] as $point ) {
 			$first->push( $point );
 		}
 
 		// Accumulate the second half into another RunningStat object
 		$second = new RunningStat();
-		foreach( $sets[1] as $point ) {
+		foreach ( $sets[1] as $point ) {
 			$second->push( $point );
 		}
 
