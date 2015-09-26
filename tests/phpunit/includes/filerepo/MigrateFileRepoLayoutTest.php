@@ -103,7 +103,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 			. '/'
 			. substr( $sha1, 2, 1 )
 			. '/'
-			. $sha1 ;
+			. $sha1;
 
 		$this->assertEquals( file_get_contents( $expectedOriginalFilepath ), $this->text, 'New sha1 file should be exist and have the right contents' );
 
