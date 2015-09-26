@@ -13,7 +13,9 @@
 			// mw.language.listToText test
 			and: ' and',
 			'comma-separator': ', ',
-			'word-separator': ' '
+			'word-separator': ' ',
+			// mw.language.addMessages test
+			pagetitle: 'MyWiki: $1'
 		}
 	} ) );
 
@@ -484,5 +486,44 @@
 		assert.equal( mw.language.listToText( [ 'a' ] ), 'a', 'Single item' );
 		assert.equal( mw.language.listToText( [ 'a', 'b' ] ), 'a and b', 'Two items' );
 		assert.equal( mw.language.listToText( [ 'a', 'b', 'c' ] ), 'a, b and c', 'More than two items' );
+	} );
+
+	QUnit.test( 'mw.language.addMessages test - normal messages', 1, function ( assert ) {
+		mw.config.set( 'wgUserLanguage', 'pfl' );
+		mw.language.setData( 'pfl', 'fallbackLanguages', [ 'de', 'en' ] );
+
+		mw.language.addMessages( {
+			en: {
+				pagetitle: '$1 - {{SITENAME}}',
+				questionmark: '?',
+				'my-cool-message': 'My cool message!'
+			},
+			de: {
+				pagetitle: '$1 – {{SITENAME}}',
+				'my-cool-message': 'Meine heiße Nachricht!'
+			}
+		} );
+
+		assert.deepEqual( mw.messages.get( [ 'pagetitle', 'questionmark', 'my-cool-message' ] ), {
+			pagetitle: 'MyWiki: $1',
+			questionmark: '?',
+			'my-cool-message': 'Meine heiße Nachricht!'
+		}, 'Localizations for pfl' );
+	} );
+
+	QUnit.test( 'mw.language.addMessages test - qqx messages', 1, function ( assert ) {
+		mw.config.set( 'wgUserLanguage', 'qqx' );
+
+		mw.language.addMessages( {
+			en: {
+				questionmark: '?',
+				'my-cool-message': 'My cool message! ($3, $2 = $2)'
+			}
+		} );
+
+		assert.deepEqual( mw.messages.get( [ 'questionmark', 'my-cool-message' ] ), {
+			questionmark: '(questionmark)',
+			'my-cool-message': '(my-cool-message: $1, $2, $3)'
+		}, 'Localizations for qqx' );
 	} );
 }( mediaWiki, jQuery ) );
