@@ -220,6 +220,8 @@ changes to languages because of Phabricator reports.
   'Project:Oversight' to 'Project:Suppress'.
 * (T84937) Free external links ("autolinked" urls) will now be terminated
   by &nbsp; and HTML entity encodings of &nbsp, <, and >.
+* DatabaseBase::resultObject() is now protected (use outside Database classes
+  not necessary since 1.11).
 
 == Compatibility ==
 
