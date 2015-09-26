@@ -99,7 +99,7 @@ class FileBackendDBRepoWrapperTest extends MediaWikiTestCase {
 			->will( $this->returnValue( '96246614d75ba1703bdfd5d7660bb57407aaf5d9' ) );
 
 		$backendMock->expects( $this->once() )
-			->method( 'getFileContentsMulti')
+			->method( 'getFileContentsMulti' )
 			->will( $this->returnValue( array( $sha1Path => 'foo' ) ) );
 
 		$result = $wrapperMock->getFileContentsMulti( array( 'srcs' => array( $filenamePath ) ) );

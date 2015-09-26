@@ -253,7 +253,7 @@ class JavaScriptContentTest extends TextContentTest {
 	 * @covers JavaScriptContent::updateRedirect
 	 * @dataProvider provideUpdateRedirect
 	 */
-	public function testUpdateRedirect( $oldText, $expectedText) {
+	public function testUpdateRedirect( $oldText, $expectedText ) {
 		$this->setMwGlobals( array(
 			'wgServer' => '//example.org',
 			'wgScriptPath' => '/w/index.php',
