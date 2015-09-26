@@ -153,4 +153,3 @@ interface EnqueueableDataUpdate {
 	 */
 	public function enqueueUpdate();
 }
-

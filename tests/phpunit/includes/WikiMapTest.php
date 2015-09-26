@@ -105,4 +105,3 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	}
 
 }
-

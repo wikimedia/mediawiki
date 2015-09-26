@@ -77,4 +77,3 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 	}
 
 }
-

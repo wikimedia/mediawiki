@@ -52,4 +52,3 @@ class ProtectAction extends FormlessAction {
 		$this->page->protect();
 	}
 }
-
