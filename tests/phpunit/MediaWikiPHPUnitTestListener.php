@@ -1,6 +1,7 @@
 <?php
 
-class MediaWikiPHPUnitTestListener extends PHPUnit_TextUI_ResultPrinter implements PHPUnit_Framework_TestListener {
+class MediaWikiPHPUnitTestListener
+	extends PHPUnit_TextUI_ResultPrinter implements PHPUnit_Framework_TestListener {
 
 	/**
 	 * @var string
