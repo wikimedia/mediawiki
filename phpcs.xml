@@ -10,7 +10,6 @@
 		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
 		<exclude name="Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed"/>
 		<exclude name="MediaWiki.WhiteSpace.SpaceAfterControlStructure.Incorrect"/>
-		<exclude name="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
 		<exclude name="PSR2.Methods.MethodDeclaration.AbstractAfterVisibility"/>
 		<exclude name="Generic.Files.EndFileNewline.NotFound"/>
 		<exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
