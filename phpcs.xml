@@ -15,7 +15,6 @@
 		<exclude name="PSR2.Methods.MethodDeclaration.AbstractAfterVisibility"/>
 		<exclude name="Generic.Files.EndFileNewline.NotFound"/>
 		<exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
-		<exclude name="PSR2.Methods.MethodDeclaration.StaticBeforeVisibility"/>
 		<exclude name="Squiz.WhiteSpace.ScopeClosingBrace.Indent"/>
 		<exclude name="Squiz.WhiteSpace.SemicolonSpacing.Incorrect"/>
 		<exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines"/>
