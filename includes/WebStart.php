@@ -29,14 +29,14 @@
 # Die if register_globals is enabled (PHP <=5.3)
 # This must be done before any globals are set by the code
 if ( ini_get( 'register_globals' ) ) {
-	die( 'MediaWiki does not support installations where register_globals is enabled. '
-		. 'Please see <a href="https://www.mediawiki.org/wiki/register_globals">mediawiki.org</a> '
+	die( 'MediaWiki does not support installations where register_globals is enabled. Please see '
+		. '<a href="https://www.mediawiki.org/wiki/register_globals">mediawiki.org</a> '
 		. 'for help on how to disable it.' );
 }
 
 if ( function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
-	die( 'MediaWiki does not function when magic quotes are enabled. '
-		. 'Please see the <a href="https://php.net/manual/security.magicquotes.disabling.php">PHP Manual</a> '
+	die( 'MediaWiki does not function when magic quotes are enabled. Please see the '
+		. '<a href="https://php.net/manual/security.magicquotes.disabling.php">PHP Manual</a> '
 		. 'for help on how to disable magic quotes.' );
 }
 
