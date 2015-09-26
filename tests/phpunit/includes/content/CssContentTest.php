@@ -111,7 +111,7 @@ class CssContentTest extends JavaScriptContentTest {
 		);
 	}
 
-		public static function dataEquals() {
+	public static function dataEquals() {
 		return array(
 			array( new CssContent( 'hallo' ), null, false ),
 			array( new CssContent( 'hallo' ), new CssContent( 'hallo' ), true ),
