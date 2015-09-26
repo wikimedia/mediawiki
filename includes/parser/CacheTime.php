@@ -32,10 +32,17 @@ class CacheTime {
 	 */
 	public $mUsedOptions;
 
-	public $mVersion = Parser::VERSION,  # Compatibility check
-		$mCacheTime = '',             # Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
-		$mCacheExpiry = null,         # Seconds after which the object should expire, use 0 for uncacheable. Used in ParserCache.
-		$mCacheRevisionId = null;     # Revision ID that was parsed
+	# Compatibility check
+	public $mVersion = Parser::VERSION;
+
+	# Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
+	public $mCacheTime = '';
+
+	# Seconds after which the object should expire, use 0 for uncacheable. Used in ParserCache.
+	public $mCacheExpiry = null;
+
+	# Revision ID that was parsed
+	public $mCacheRevisionId = null;
 
 	/**
 	 * @return string TS_MW timestamp
