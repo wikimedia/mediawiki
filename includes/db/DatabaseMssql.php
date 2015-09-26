@@ -145,8 +145,8 @@ class DatabaseMssql extends DatabaseBase {
 	 * @param bool|MssqlResultWrapper|resource $result
 	 * @return bool|MssqlResultWrapper
 	 */
-	public function resultObject( $result ) {
-		if ( empty( $result ) ) {
+	protected function resultObject( $result ) {
+		if ( !$result ) {
 			return false;
 		} elseif ( $result instanceof MssqlResultWrapper ) {
 			return $result;
