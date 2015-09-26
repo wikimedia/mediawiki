@@ -315,7 +315,9 @@ class WebRequest {
 			}
 		} else {
 			global $wgContLang;
-			$data = isset( $wgContLang ) ? $wgContLang->normalize( $data ) : UtfNormal\Validator::cleanUp( $data );
+			$data = isset( $wgContLang ) ?
+				$wgContLang->normalize( $data ) :
+				UtfNormal\Validator::cleanUp( $data );
 		}
 		return $data;
 	}
@@ -754,7 +756,8 @@ class WebRequest {
 	 * Appends or replaces value of query variables.
 	 *
 	 * @param array $array Array of values to replace/add to query
-	 * @param bool $onlyquery Whether to only return the query string and not the complete URL [deprecated]
+	 * @param bool $onlyquery Whether to only return the query string
+	 *  and not the complete URL [deprecated]
 	 * @return string
 	 */
 	public function appendQueryArray( $array, $onlyquery = true ) {
