@@ -9,7 +9,6 @@
 		<exclude name="MediaWiki.WhiteSpace.SpaceyParenthesis.SingleSpaceAfterOpenParenthesis"/>
 		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
 		<exclude name="Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed"/>
-		<exclude name="MediaWiki.VariableAnalysis.UnusedGlobalVariables"/>
 		<exclude name="MediaWiki.WhiteSpace.SpaceAfterControlStructure.Incorrect"/>
 		<exclude name="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
 		<exclude name="PSR2.Methods.MethodDeclaration.AbstractAfterVisibility"/>
