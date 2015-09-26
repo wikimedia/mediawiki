@@ -248,7 +248,9 @@ class ImagePage extends Article {
 		Hooks::run( 'ImagePageShowTOC', array( $this, &$r ) );
 
 		if ( $metadata ) {
-			$r[] = '<li><a href="#metadata">' . $this->getContext()->msg( 'metadata' )->escaped() . '</a></li>';
+			$r[] = '<li><a href="#metadata">' .
+				$this->getContext()->msg( 'metadata' )->escaped() .
+				'</a></li>';
 		}
 
 		return '<ul id="filetoc">' . implode( "\n", $r ) . '</ul>';
@@ -389,9 +391,13 @@ class ImagePage extends Article {
 					}
 					if ( count( $otherSizes ) ) {
 						$msgsmall .= ' ' .
-						Html::rawElement( 'span', array( 'class' => 'mw-filepage-other-resolutions' ),
-							$this->getContext()->msg( 'show-big-image-other' )->rawParams( $lang->pipeList( $otherSizes ) )->
-							params( count( $otherSizes ) )->parse()
+						Html::rawElement(
+							'span',
+							array( 'class' => 'mw-filepage-other-resolutions' ),
+							$this->getContext()->msg( 'show-big-image-other' )
+								->rawParams( $lang->pipeList( $otherSizes ) )
+								->params( count( $otherSizes ) )
+								->parse()
 						);
 					}
 				} elseif ( $width == 0 && $height == 0 ) {
@@ -667,9 +673,14 @@ EOT
 		$wrap = "<div class=\"sharedUploadNotice\">\n$1\n</div>\n";
 		$repo = $this->mPage->getFile()->getRepo()->getDisplayName();
 
-		if ( $descUrl && $descText && $this->getContext()->msg( 'sharedupload-desc-here' )->plain() !== '-' ) {
+		if ( $descUrl &&
+			$descText &&
+			$this->getContext()->msg( 'sharedupload-desc-here' )->plain() !== '-'
+		) {
 			$out->wrapWikiMsg( $wrap, array( 'sharedupload-desc-here', $repo, $descUrl ) );
-		} elseif ( $descUrl && $this->getContext()->msg( 'sharedupload-desc-there' )->plain() !== '-' ) {
+		} elseif ( $descUrl &&
+			$this->getContext()->msg( 'sharedupload-desc-there' )->plain() !== '-'
+		) {
 			$out->wrapWikiMsg( $wrap, array( 'sharedupload-desc-there', $repo, $descUrl ) );
 		} else {
 			$out->wrapWikiMsg( $wrap, array( 'sharedupload', $repo ), ''/*BACKCOMPAT*/ );
@@ -854,7 +865,9 @@ EOT
 				$liContents = $link;
 			} elseif ( count( $redirects[$element->page_title] ) === 0 ) {
 				# Redirect without usages
-				$liContents = $this->getContext()->msg( 'linkstoimage-redirect' )->rawParams( $link, '' )->parse();
+				$liContents = $this->getContext()->msg( 'linkstoimage-redirect' )
+					->rawParams( $link, '' )
+					->parse();
 			} else {
 				# Redirect with usages
 				$li = '';
@@ -923,7 +936,10 @@ EOT
 			} else {
 				$link = Linker::makeExternalLink( $file->getDescriptionUrl(),
 					$file->getTitle()->getPrefixedText() );
-				$fromSrc = $this->getContext()->msg( 'shared-repo-from', $file->getRepo()->getDisplayName() )->text();
+				$fromSrc = $this->getContext()->msg(
+					'shared-repo-from',
+					$file->getRepo()->getDisplayName()
+				)->text();
 			}
 			$out->addHTML( "<li>{$link} {$fromSrc}</li>\n" );
 		}
@@ -1068,8 +1084,10 @@ EOT
 		);
 		$submit = Xml::submitButton( $this->getContext()->msg( 'img-lang-go' )->text() );
 
-		$formContents = $this->getContext()->msg( 'img-lang-info' )->rawParams( $select, $submit )->parse()
-			. Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() );
+		$formContents = $this->getContext()->msg( 'img-lang-info' )
+			->rawParams( $select, $submit )
+			->parse();
+		$formContents .= Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() );
 
 		$langSelectLine = Html::rawElement( 'div', array( 'id' => 'mw-imglangselector-line' ),
 			Html::rawElement( 'form', array( 'action' => $wgScript ), $formContents )
@@ -1141,7 +1159,9 @@ EOT
 		} else {
 			# Creating thumb links triggers thumbnail generation.
 			# Just generate the thumb for the current users prefs.
-			$thumbSizes = array( $this->getImageLimitsFromOption( $this->getContext()->getUser(), 'thumbsize' ) );
+			$thumbSizes = array(
+				$this->getImageLimitsFromOption( $this->getContext()->getUser(), 'thumbsize' )
+			);
 			if ( !$this->displayImg->mustRender() ) {
 				// We can safely include a link to the "full-size" preview,
 				// without actually rendering.
