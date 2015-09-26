@@ -442,7 +442,9 @@ class RedisConnRef {
 	 * @param Redis $conn
 	 * @param LoggerInterface $logger
 	 */
-	public function __construct( RedisConnectionPool $pool, $server, Redis $conn, LoggerInterface $logger ) {
+	public function __construct(
+		RedisConnectionPool $pool, $server, Redis $conn, LoggerInterface $logger
+	) {
 		$this->pool = $pool;
 		$this->server = $server;
 		$this->conn = $conn;
