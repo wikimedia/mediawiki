@@ -133,7 +133,7 @@ class KafkaHandler extends AbstractProcessingHandler {
 				}
 			}
 			if ( $messages ) {
-				$this->addMessages($channel, $messages);
+				$this->addMessages( $channel, $messages );
 			}
 		}
 

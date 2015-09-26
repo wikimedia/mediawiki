@@ -36,25 +36,25 @@ class AvroValidator {
 	 *  returned.
 	 */
 	public static function getErrors( AvroSchema $schema, $datum ) {
-		switch ( $schema->type) {
+		switch ( $schema->type ) {
 		case AvroSchema::NULL_TYPE:
-			if ( !is_null($datum) ) {
+			if ( !is_null( $datum ) ) {
 				return self::wrongType( 'null', $datum );
 			}
 			return array();
 		case AvroSchema::BOOLEAN_TYPE:
-			if ( !is_bool($datum) ) {
+			if ( !is_bool( $datum ) ) {
 				return self::wrongType( 'boolean', $datum );
 			}
 			return array();
 		case AvroSchema::STRING_TYPE:
 		case AvroSchema::BYTES_TYPE:
-			if ( !is_string($datum) ) {
+			if ( !is_string( $datum ) ) {
 				return self::wrongType( 'string', $datum );
 			}
 			return array();
 		case AvroSchema::INT_TYPE:
-			if ( !is_int($datum) ) {
+			if ( !is_int( $datum ) ) {
 				return self::wrongType( 'integer', $datum );
 			}
 			if ( AvroSchema::INT_MIN_VALUE > $datum
@@ -68,7 +68,7 @@ class AvroValidator {
 			}
 			return array();
 		case AvroSchema::LONG_TYPE:
-			if ( !is_int($datum) ) {
+			if ( !is_int( $datum ) ) {
 				return self::wrongType( 'integer', $datum );
 			}
 			if ( AvroSchema::LONG_MIN_VALUE > $datum
@@ -83,12 +83,12 @@ class AvroValidator {
 			return array();
 		case AvroSchema::FLOAT_TYPE:
 		case AvroSchema::DOUBLE_TYPE:
-			if ( !is_float($datum) && !is_int($datum) ) {
+			if ( !is_float( $datum ) && !is_int( $datum ) ) {
 				return self::wrongType( 'float or integer', $datum );
 			}
 			return array();
 		case AvroSchema::ARRAY_SCHEMA:
-			if (!is_array($datum)) {
+			if (!is_array( $datum )) {
 				return self::wrongType( 'array', $datum );
 			}
 			$errors = array();
@@ -100,7 +100,7 @@ class AvroValidator {
 			}
 			return $errors;
 		case AvroSchema::MAP_SCHEMA:
-			if (!is_array($datum)) {
+			if (!is_array( $datum )) {
 				return self::wrongType( 'array', $datum );
 			}
 			$errors = array();
