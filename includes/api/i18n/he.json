@@ -289,7 +289,7 @@
 	"apihelp-parse-param-pst": "לעשות התמרה לפני שמירה על הקלט לפני פענוחו. תקין רק בשימוש עם טקסט.",
 	"apihelp-parse-param-onlypst": "לעשות התמרה לפני שמירה (pre-save transform‏, PST) על הקלט, אבל לא לפענח אותו. מחזיר את אותו קוד הוויקי אחרי החלת PST. תקף רק בשימוש עם <var>$1text</var>.",
 	"apihelp-parse-param-effectivelanglinks": "כולל קישור שפה שמספקות הרחבות (לשימוש עם <kbd>$1prop=langlinks</kbd>).",
-	"apihelp-parse-param-section": "לאחזר את התוכן של הפסקה עם המספר הזה, או, אם זה <kbd>new</kbd>, ליצור פסקה חדשה.\n\n<kbd>new</kbd> יכובד רק בעת ציון <var>text</var>.",
+	"apihelp-parse-param-section": "לפענח רק את התוכן של הפסקה שזה מספרה.\n\nכשצוין <kbd>new</kbd>, לפענח את <var>$1text</var> ואת <var>$1sectiontitle</var> כאילו נוספת פסקה חדשה לדף.\n\nמותר להשתמש ב־<kbd>new</kbd> רק בעת שימוש ב־<var>text</var>.",
 	"apihelp-parse-param-sectiontitle": "כותרת פסקה חדשה כאשר <var>section</var> הוא <kbd>new</kbd>.\n\nבניגוד לעריכת דף, זה לא מתגבה ל־<var>summary</var> כשזה מושמט אם ריק.",
 	"apihelp-parse-param-disablelimitreport": "להשמיט את דו\"ח הקדם־מעבד (\"NewPP limit report\") מפלט המפענח.",
 	"apihelp-parse-param-disablepp": "יש להשתמש ב־<var>$1disablelimitreport</var> במקום.",

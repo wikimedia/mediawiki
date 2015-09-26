@@ -21,7 +21,8 @@
 			"Ævar Arnfjörð Bjarmason",
 			"לערי ריינהארט",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"ਪ੍ਰਚਾਰਕ"
 		]
 	},
 	"tog-underline": "ਲਿੰਕ ਹੇਠ-ਲਾਈਨ:",
@@ -422,7 +423,7 @@
 	"createacct-captcha": "ਸੁਰੱਖਿਆ ਜਾਂਚ",
 	"createacct-imgcaptcha-ph": "ਉੱਤੇ ਵੇਖਾਈ ਦੇ ਰਿਹਾ ਸ਼ਬਦ ਦਿਉ",
 	"createacct-submit": "ਆਪਣਾ ਖਾਤਾ ਬਣਾਓ",
-	"createacct-another-submit": "ਹੋਰ ਖਾਤਾ ਬਣਾਓ",
+	"createacct-another-submit": "ਨਵਾਂ ਖਾਤਾ ਬਣਾਓ",
 	"createacct-benefit-heading": "{{SITENAME}} ਨੂੰ ਤੁਹਾਡੇ ਵਰਗੇ ਲੋਕਾਂ ਵਲੋਂ ਹੀ ਬਣਾਇਆ ਗਿਆ ਹੈ।",
 	"createacct-benefit-body1": "{{PLURAL:$1|ਸੋਧ|ਸੋਧਾਂ}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|ਸਫ਼ਾ|ਸਫ਼ੇ}}",
