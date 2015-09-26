@@ -15,8 +15,9 @@ class HTMLButtonField extends HTMLFormField {
 
 	public function __construct( $info ) {
 		$info['nodata'] = true;
-		if ( isset( $info['flags'] ) )
+		if ( isset( $info['flags'] ) ) {
 			$this->mFlags = $info['flags'];
+		}
 		parent::__construct( $info );
 	}
 
