@@ -62,7 +62,7 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	public function provideMakeForeignLink() {
 		return array(
 			'unknown' => array( false, 'xyzzy', 'Foo' ),
-			'enwiki' => array( '<a class="external" rel="nofollow" href="http://en.example.org/w/Foo">Foo</a>', 'enwiki', 'Foo',  ),
+			'enwiki' => array( '<a class="external" rel="nofollow" href="http://en.example.org/w/Foo">Foo</a>', 'enwiki', 'Foo' ),
 			'ruwiki' => array( '<a class="external" rel="nofollow" href="//ru.example.org/wiki/%D0%A4%D1%83">вар</a>', 'ruwiki', 'Фу', 'вар' ),
 		);
 	}
@@ -77,7 +77,7 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	public function provideForeignUserLink() {
 		return array(
 			'unknown' => array( false, 'xyzzy', 'Foo' ),
-			'enwiki' => array( '<a class="external" rel="nofollow" href="http://en.example.org/w/User:Foo">User:Foo</a>', 'enwiki', 'Foo',  ),
+			'enwiki' => array( '<a class="external" rel="nofollow" href="http://en.example.org/w/User:Foo">User:Foo</a>', 'enwiki', 'Foo' ),
 			'ruwiki' => array( '<a class="external" rel="nofollow" href="//ru.example.org/wiki/User:%D0%A4%D1%83">вар</a>', 'ruwiki', 'Фу', 'вар' ),
 		);
 	}
@@ -92,7 +92,7 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	public function provideGetForeignURL() {
 		return array(
 			'unknown' => array( false, 'xyzzy', 'Foo' ),
-			'enwiki' => array( 'http://en.example.org/w/Foo', 'enwiki', 'Foo',  ),
+			'enwiki' => array( 'http://en.example.org/w/Foo', 'enwiki', 'Foo' ),
 			'ruwiki with fragement' => array( '//ru.example.org/wiki/%D0%A4%D1%83#%D0%B2%D0%B0%D1%80', 'ruwiki', 'Фу', 'вар' ),
 		);
 	}
