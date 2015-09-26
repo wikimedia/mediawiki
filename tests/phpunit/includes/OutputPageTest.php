@@ -323,8 +323,6 @@ class OutputPageTest extends MediaWikiTestCase {
 					array( 'Cookie', array( 'string-contains=phpsessid' ) ),
 					array( 'Cookie', array( 'string-contains=phpsessid' ) ),
 					array( 'Accept-Language', array( 'string-contains=en', 'string-contains=en' ) ),
-
-
 				),
 				'Vary: Cookie, Accept-Language',
 				'X-Vary-Options: Cookie;string-contains=phpsessid,Accept-Language;string-contains=en',
@@ -359,6 +357,7 @@ class NullMessageBlobStore extends MessageBlobStore {
 
 	public function updateMessage( $key ) {
 	}
+
 	public function clear() {
 	}
 }

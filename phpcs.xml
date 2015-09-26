@@ -18,7 +18,6 @@
 		<exclude name="PSR2.Methods.MethodDeclaration.StaticBeforeVisibility"/>
 		<exclude name="Squiz.WhiteSpace.ScopeClosingBrace.Indent"/>
 		<exclude name="Squiz.WhiteSpace.SemicolonSpacing.Incorrect"/>
-		<exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines"/>
 	</rule>
 	<file>.</file>
 	<arg name="encoding" value="utf8"/>
