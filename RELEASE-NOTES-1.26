@@ -95,14 +95,29 @@ production.
   suggestion, results for suggestion will be shown. Can be disabled by setting
   $wgSearchRunSuggestedQuery to false.
 
-==== External libraries ====
-* Update es5-shim from v4.0.0 to v4.1.5.
-* Update json2 from revision 2014-02-04 to 2015-05-03.
-* Update Sinon.JS from 1.10.3 to 1.15.4.
-* Upgrade jQuery Client from v1.0.0 to v2.0.0.
-* Added mediawiki/at-ease 1.0.0.
-* Update QUnit from v1.17.1 to v1.18.0.
-* Added wikimedia/cldr-plural-rule-parser 1.0.0
+== External libraries ==
+=== Upgraded external libraries ===
+* Updated es5-shim from v4.0.0 to v4.1.5.
+* Updated json2 from revision 2014-02-04 to 2015-05-03.
+* Updated Sinon.JS from 1.10.3 to 1.15.4.
+* Updated jQuery Client from v1.0.0 to v2.0.0.
+* Updated QUnit from v1.17.1 to v1.18.0.
+* Updated liuggio/statsd-php-client from v1.0.12 to v1.0.16
+* Updated oojs/oojs-ui from v0.9.8 to v0.12.9.
+* Updated wikimedia/utfnormal from v1.0.2 to v1.0.3
+* Updated wikimedia/composer-merge-plugin from v1.0.0 to v1.2.1.
+* Updated zordius/lightncandy from v0.18 to v0.21.
+
+=== New external libraries ===
+* Added composer/semver v0.1.0.
+* Added mediawiki/at-ease v1.1.0.
+* Added wikimedia/assert v0.2.2.
+* Added wikimedia/cldr-plural-rule-parser v1.0.0
+* Added wikimedia/ip-set v1.0.1.
+* Added wikimedia/wrappedstring v2.0.0.
+
+=== Removed and replaced external libraries ===
+* Replaced leafo/lessphp v0.5.0 with oyejorge/less.php: v1.7.0.8
 
 === Bug fixes in 1.26 ===
 * (T53283) load.php sometimes sends 304 response without full headers
