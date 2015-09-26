@@ -45,7 +45,7 @@ class MWTidy {
 	public static function tidy( $text ) {
 		$driver = self::singleton();
 		if ( !$driver ) {
-			throw new MWException( __METHOD__.
+			throw new MWException( __METHOD__ .
 				': tidy is disabled, caller should have checked MWTidy::isEnabled()' );
 		}
 		return $driver->tidy( $text );
@@ -61,7 +61,7 @@ class MWTidy {
 	public static function checkErrors( $text, &$errorStr = null ) {
 		$driver = self::singleton();
 		if ( !$driver ) {
-			throw new MWException( __METHOD__.
+			throw new MWException( __METHOD__ .
 				': tidy is disabled, caller should have checked MWTidy::isEnabled()' );
 		}
 		if ( $driver->supportsValidate() ) {

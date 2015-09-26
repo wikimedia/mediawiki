@@ -102,7 +102,7 @@ class WebPHandler extends BitmapHandler {
 
 		if ( $info['fourCC'] != 'WEBP' ) {
 			wfDebugLog( 'WebP', __METHOD__ . ': FourCC was not WEBP: ' .
-				bin2hex( $info['fourCC'] ) .  " \n" );
+				bin2hex( $info['fourCC'] ) . " \n" );
 			return false;
 		}
 
@@ -187,7 +187,7 @@ class WebPHandler extends BitmapHandler {
 		// Bytes 4-7 are chunk stream size
 		// Byte 8 is 0x2F called the signature
 		if ( $header{8} != "\x2F" ) {
-			wfDebugLog( 'WebP',  __METHOD__ . ': Invalid signature: ' .
+			wfDebugLog( 'WebP', __METHOD__ . ': Invalid signature: ' .
 				bin2hex( $header{8} ) . "\n" );
 			return array();
 		}

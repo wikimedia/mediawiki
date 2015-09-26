@@ -75,7 +75,7 @@ class SwiftFileBackendTest extends MediaWikiTestCase {
 				array(
 					'content-length' => 345,
 					'content-type'   => 'image+bitmap/jpeg',
-					'content-disposition' => 'filename='. str_repeat( 'o', 1024 ) . ';inline',
+					'content-disposition' => 'filename=' . str_repeat( 'o', 1024 ) . ';inline',
 					'content-duration' => 35.6363,
 					'content-custom' => 'hello',
 					'x-content-custom' => 'hello'

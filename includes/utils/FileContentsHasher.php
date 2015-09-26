@@ -93,7 +93,7 @@ class FileContentsHasher {
 		$instance = self::singleton();
 
 		if ( !is_array( $filePaths ) ) {
-			$filePaths = (array) $filePaths;
+			$filePaths = (array)$filePaths;
 		}
 
 		if ( count( $filePaths ) === 1 ) {

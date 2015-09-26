@@ -58,7 +58,7 @@ class LoadMonitorMySQL implements LoadMonitor {
 		# (a) Check the local APC cache
 		$value = $this->srvCache->get( $key );
 		if ( $value && $value['timestamp'] > ( microtime( true ) - $ttl ) ) {
-			wfDebugLog( 'replication',  __FUNCTION__ . ": got lag times ($key) from local cache" );
+			wfDebugLog( 'replication', __FUNCTION__ . ": got lag times ($key) from local cache" );
 			return $value['lagTimes']; // cache hit
 		}
 		$staleValue = $value ?: false;
@@ -67,7 +67,7 @@ class LoadMonitorMySQL implements LoadMonitor {
 		$value = $this->mainCache->get( $key );
 		if ( $value && $value['timestamp'] > ( microtime( true ) - $ttl ) ) {
 			$this->srvCache->set( $key, $value, $staleTTL );
-			wfDebugLog( 'replication',  __FUNCTION__ . ": got lag times ($key) from main cache" );
+			wfDebugLog( 'replication', __FUNCTION__ . ": got lag times ($key) from main cache" );
 
 			return $value['lagTimes']; // cache hit
 		}
@@ -106,7 +106,7 @@ class LoadMonitorMySQL implements LoadMonitor {
 		$value = array( 'lagTimes' => $lagTimes, 'timestamp' => microtime( true ) );
 		$this->mainCache->set( $key, $value, $staleTTL );
 		$this->srvCache->set( $key, $value, $staleTTL );
-		wfDebugLog( 'replication',  __FUNCTION__ . ": re-calculated lag times ($key)" );
+		wfDebugLog( 'replication', __FUNCTION__ . ": re-calculated lag times ($key)" );
 
 		return $value['lagTimes'];
 	}

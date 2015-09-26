@@ -357,7 +357,7 @@ class LegacyLogger extends AbstractLogger {
 		}
 
 		if ( is_scalar( $item ) ) {
-			return (string) $item;
+			return (string)$item;
 		}
 
 		if ( is_array( $item ) ) {
@@ -376,7 +376,7 @@ class LegacyLogger extends AbstractLogger {
 
 		if ( is_object( $item ) ) {
 			if ( method_exists( $item, '__toString' ) ) {
-				return (string) $item;
+				return (string)$item;
 			}
 
 			return '[Object ' . get_class( $item ) . ']';
