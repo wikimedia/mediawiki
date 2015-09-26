@@ -31,7 +31,6 @@
  * @ingroup Language
  */
 class LanguageRu extends Language {
-
 	/**
 	 * Convert from the nominative form of a noun to some other case
 	 * Invoked with {{grammar:case|word}}
@@ -46,19 +45,22 @@ class LanguageRu extends Language {
 			return $wgGrammarForms['ru'][$case][$word];
 		}
 
-		$grammarDataFile = __DIR__ . '/data/grammar.ru.json';
-		$grammarData = FormatJson::decode( file_get_contents( $grammarDataFile ), true );
+		$grammarTransformations = $this->getGrammarTransformations();
 
-		if ( array_key_exists( $case, $grammarData ) ) {
-			foreach ( array_keys( $grammarData[$case] ) as $form ) {
+		if ( array_key_exists( $case, $grammarTransformations ) ) {
+			foreach ( array_values( $grammarTransformations[$case] ) as $rule ) {
+				$form = $rule[0];
+
 				if ( $form === '@metadata' ) {
 					continue;
 				}
 
+				$replacement = $rule[1];
+
 				$regex = "/$form/";
 
 				if ( preg_match( $regex, $word ) ) {
-					$word = preg_replace( $regex, $grammarData[$case][$form], $word );
+					$word = preg_replace( $regex, $replacement, $word );
 
 					break;
 				}
