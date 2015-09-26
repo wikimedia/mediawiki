@@ -3766,14 +3766,13 @@ abstract class DatabaseBase implements IDatabase {
 	 * Once upon a time, DatabaseBase::query() returned a bare MySQL result
 	 * resource, and it was necessary to call this function to convert it to
 	 * a wrapper. Nowadays, raw database objects are never exposed to external
-	 * callers, so this is unnecessary in external code. For compatibility with
-	 * old code, ResultWrapper objects are passed through unaltered.
+	 * callers, so this is unnecessary in external code.
 	 *
-	 * @param bool|ResultWrapper|resource $result
+	 * @param bool|ResultWrapper|resource|object $result
 	 * @return bool|ResultWrapper
 	 */
-	public function resultObject( $result ) {
-		if ( empty( $result ) ) {
+	protected function resultObject( $result ) {
+		if ( !$result ) {
 			return false;
 		} elseif ( $result instanceof ResultWrapper ) {
 			return $result;
