@@ -24,14 +24,14 @@ class FileContentsHasher {
 	/** @var BagOStuff */
 	protected $cache;
 
-	/** @var FileContentsHasher */
+	/** @var MessageCache */
 	private static $instance;
 
 	/**
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->cache = ObjectCache::newAccelerator( 'hash' );
+		$this->cache = ObjectCache::newAccelerator( CACHE_ANYTHING );
 	}
 
 	/**
@@ -62,11 +62,11 @@ class FileContentsHasher {
 			return false;
 		}
 
-		$cacheKey = wfGlobalCacheKey( __CLASS__, $filePath, $mtime, $algo );
-		$hash = $this->cache->get( $cacheKey );
+		$cacheKey = wfGlobalCacheKey( __CLASS__, $filePath, $algo );
+		$cachedHash = $this->cache->get( $cacheKey );
 
-		if ( $hash ) {
-			return $hash;
+		if ( isset( $cachedHash['mtime'] ) && $cachedHash['mtime'] >= $mtime ) {
+			return $cachedHash['hash'];
 		}
 
 		$contents = MediaWiki\quietCall( 'file_get_contents', $filePath );
@@ -75,7 +75,10 @@ class FileContentsHasher {
 		}
 
 		$hash = hash( $algo, $contents );
-		$this->cache->set( $cacheKey, $hash, 60 * 60 * 24 );  // 24h
+		$this->cache->set( $cacheKey, array(
+			'mtime' => $mtime,
+			'hash'  => $hash
+		), 60 * 60 * 24 );  // 86400 seconds, or 24 hours.
 
 		return $hash;
 	}

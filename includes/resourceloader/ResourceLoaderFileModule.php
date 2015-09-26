@@ -975,7 +975,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// Construct a cache key from the LESS file name and a hash digest
 		// of the LESS variables used for compilation.
 		$varsHash = hash( 'md4', serialize( ResourceLoader::getLessVars( $this->getConfig() ) ) );
-		$cacheKey = wfGlobalCacheKey( 'LESS', $fileName, $varsHash );
+		$cacheKey = wfGlobalCacheKey( __CLASS__, 'LESS', $fileName, $varsHash );
 		$cachedCompile = $cache->get( $cacheKey );
 
 		// If we got a cached value, we have to validate it by getting a
@@ -995,7 +995,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 		$css = $compiler->parseFile( $fileName )->getCss();
 		$files = $compiler->AllParsedFiles();
-		$this->localFileRefs = array_merge( $this->localFileRefs, $files );
+		$this->localFileRefs = array_merge( $this->localFileRefs, array_values( $files ) );
 
 		$cache->set( $cacheKey, array(
 			'css'   => $css,
