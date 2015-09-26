@@ -250,11 +250,16 @@ function wfStreamThumb( array $params ) {
 	try {
 		$thumbName = $img->thumbName( $params );
 		if ( !strlen( $thumbName ) ) { // invalid params?
-			throw new MediaTransformInvalidParametersException( 'Empty return from File::thumbName' );
+			throw new MediaTransformInvalidParametersException(
+				'Empty return from File::thumbName'
+			);
 		}
 		$thumbName2 = $img->thumbName( $params, File::THUMB_FULL_NAME ); // b/c; "long" style
 	} catch ( MediaTransformInvalidParametersException $e ) {
-		wfThumbError( 400, 'The specified thumbnail parameters are not valid: ' . $e->getMessage() );
+		wfThumbError(
+			400,
+			'The specified thumbnail parameters are not valid: ' . $e->getMessage()
+		);
 		return;
 	} catch ( MWException $e ) {
 		wfThumbError( 500, $e->getHTML() );
@@ -294,7 +299,8 @@ function wfStreamThumb( array $params ) {
 	$dispositionType = isset( $params['download'] ) ? 'attachment' : 'inline';
 
 	// Suggest a good name for users downloading this thumbnail
-	$headers[] = "Content-Disposition: {$img->getThumbDisposition( $thumbName, $dispositionType )}";
+	$headers[] =
+		"Content-Disposition: {$img->getThumbDisposition( $thumbName, $dispositionType )}";
 
 	if ( count( $varyHeader ) ) {
 		$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
@@ -333,7 +339,9 @@ function wfStreamThumb( array $params ) {
 	$errorCode = 500;
 	if ( !$thumb ) {
 		$errorMsg = $errorMsg ?: $msg->rawParams( 'File::transform() returned false' )->escaped();
-		if ( $errorMsg instanceof MessageSpecifier && $errorMsg->getKey() === 'thumbnail_image-failure-limit' ) {
+		if ( $errorMsg instanceof MessageSpecifier &&
+			$errorMsg->getKey() === 'thumbnail_image-failure-limit'
+		) {
 			$errorCode = 429;
 		}
 	} elseif ( $thumb->isError() ) {
@@ -341,8 +349,9 @@ function wfStreamThumb( array $params ) {
 	} elseif ( !$thumb->hasFile() ) {
 		$errorMsg = $msg->rawParams( 'No path supplied in thumbnail object' )->escaped();
 	} elseif ( $thumb->fileIsSource() ) {
-		$errorMsg = $msg->
-			rawParams( 'Image was not scaled, is the requested width bigger than the source?' )->escaped();
+		$errorMsg = $msg
+			->rawParams( 'Image was not scaled, is the requested width bigger than the source?' )
+			->escaped();
 		$errorCode = 400;
 	}
 
