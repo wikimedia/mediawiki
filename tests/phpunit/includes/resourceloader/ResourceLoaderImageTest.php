@@ -15,9 +15,16 @@ class ResourceLoaderImageTest extends ResourceLoaderTestCase {
 	protected function getTestImage( $name ) {
 		$options = ResourceLoaderImageModuleTest::$commonImageData[$name];
 		$fileDescriptor = is_string( $options ) ? $options : $options['file'];
-		$allowedVariants = is_array( $options ) && isset( $options['variants'] ) ? $options['variants'] : array();
+		$allowedVariants = is_array( $options ) &&
+			isset( $options['variants'] ) ? $options['variants'] : array();
 		$variants = array_fill_keys( $allowedVariants, array( 'color' => 'red' ) );
-		return new ResourceLoaderImageTestable( $name, 'test', $fileDescriptor, $this->imagesPath, $variants );
+		return new ResourceLoaderImageTestable(
+			$name,
+			'test',
+			$fileDescriptor,
+			$this->imagesPath,
+			$variants
+		);
 	}
 
 	public static function provideGetPath() {
@@ -86,7 +93,10 @@ class ResourceLoaderImageTest extends ResourceLoaderTestCase {
 		$data = file_get_contents( $this->imagesPath . '/remove.svg' );
 		$dataConstructive = file_get_contents( $this->imagesPath . '/remove_variantize.svg' );
 		$this->assertEquals( $image->getImageData( $context, null, 'original' ), $data );
-		$this->assertEquals( $image->getImageData( $context, 'destructive', 'original' ), $dataConstructive );
+		$this->assertEquals(
+			$image->getImageData( $context, 'destructive', 'original' ),
+			$dataConstructive
+		);
 		// Stub, since we don't know if we even have a SVG handler, much less what exactly it'll output
 		$this->assertEquals( $image->getImageData( $context, null, 'rasterized' ), 'RASTERIZESTUB' );
 

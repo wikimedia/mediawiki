@@ -100,7 +100,8 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 				array(
 					'class' => 'ResourceLoaderImageModule',
 					'selectorWithoutVariant' => '.mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
-					'selectorWithVariant' => '.mw-ui-icon-{name}-{variant}:after, .mw-ui-icon-{name}-{variant}:before',
+					'selectorWithVariant' =>
+						'.mw-ui-icon-{name}-{variant}:after, .mw-ui-icon-{name}-{variant}:before',
 					'variants' => self::$commonImageVariants,
 					'images' => self::$commonImageData,
 				),
@@ -146,7 +147,10 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoaderImageModule::getStyles
 	 */
 	public function testGetStyles( $module, $expected ) {
-		$module = new ResourceLoaderImageModuleTestable( $module, __DIR__ . '/../../data/resourceloader' );
+		$module = new ResourceLoaderImageModuleTestable(
+			$module,
+			__DIR__ . '/../../data/resourceloader'
+		);
 		$styles = $module->getStyles( $this->getResourceLoaderContext() );
 		$this->assertEquals( $expected, $styles['all'] );
 	}
