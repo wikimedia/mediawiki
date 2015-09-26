@@ -178,7 +178,7 @@ class PopulateContentModel extends Maintenance {
 					if ( $dbFormat === $defaultFormat ) {
 						$toSave[$defaultModel][] = $row->{$key};
 					} else { // non-default format, just update now
-						$this->output( "Updating model to match format for $table $id of $title... ");
+						$this->output( "Updating model to match format for $table $id of $title... " );
 						$dbw->update(
 							$table,
 							array( $model_column => $defaultModel ),
