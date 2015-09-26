@@ -1,0 +1,2 @@
+This directory contains classes duplicated from new versions of phpunit
+that also work in the older php 3.7.37 used by wmf CI servers.
