@@ -52,10 +52,10 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 		$produce = $this->getMockBuilder( 'Kafka\Produce' )
 			->disableOriginalConstructor()
 			->getMock();
-		$produce->expects($this->any())
-			->method('getAvailablePartitions')
-			->will($this->returnValue( array( 'A' ) ) );
-		$produce->expects($this->once())
+		$produce->expects( $this->any() )
+			->method( 'getAvailablePartitions' )
+			->will( $this->returnValue( array( 'A' ) ) );
+		$produce->expects( $this->once() )
 			->method( 'setMessages' )
 			->with( $expect, $this->anything(), $this->anything() );
 
