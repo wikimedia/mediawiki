@@ -66,7 +66,8 @@ $wgAutoloadClasses += array(
 	'TestRecentChangesHelper' => "$testDir/phpunit/includes/changes/TestRecentChangesHelper.php",
 
 	# tests/phpunit/includes/content
-	'DummyContentHandlerForTesting' => "$testDir/phpunit/mocks/content/DummyContentHandlerForTesting.php",
+	'DummyContentHandlerForTesting' =>
+		"$testDir/phpunit/mocks/content/DummyContentHandlerForTesting.php",
 	'DummyContentForTesting' => "$testDir/phpunit/mocks/content/DummyContentForTesting.php",
 	'DummyNonTextContentHandler' => "$testDir/phpunit/mocks/content/DummyNonTextContentHandler.php",
 	'DummyNonTextContent' => "$testDir/phpunit/mocks/content/DummyNonTextContent.php",
@@ -91,8 +92,10 @@ $wgAutoloadClasses += array(
 	'PasswordTestCase' => "$testDir/phpunit/includes/password/PasswordTestCase.php",
 
 	# tests/phpunit/includes/resourceloader
-	'ResourceLoaderImageModuleTest' => "$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
-	'ResourceLoaderImageModuleTestable' => "$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
+	'ResourceLoaderImageModuleTest' =>
+		"$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
+	'ResourceLoaderImageModuleTestable' =>
+		"$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
 
 	# tests/phpunit/includes/specials
 	'SpecialPageTestBase' => "$testDir/phpunit/includes/specials/SpecialPageTestBase.php",

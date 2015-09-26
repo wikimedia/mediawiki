@@ -61,7 +61,12 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			array( $params, new HashConfig( array( 'UseSiteJs' => false ) + $settings ), array(
 				'MediaWiki:Common.css' => array( 'type' => 'style' ),
 			) ),
-			array( $params, new HashConfig( array( 'UseSiteJs' => false, 'UseSiteCss' => false ) ), array() ),
+			array( $params,
+				new HashConfig(
+					array( 'UseSiteJs' => false, 'UseSiteCss' => false )
+				),
+				array()
+			),
 		);
 	}
 

@@ -729,7 +729,7 @@ class ParserTest {
 				)*
 				\}		# Close bracket
 			)
-            (?<value>
+			(?<value>
 				(?:
 					(?&qstr)			# Quoted val
 				|
