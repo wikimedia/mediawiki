@@ -1348,22 +1348,6 @@ interface IDatabase {
 	public function timestampOrNull( $ts = null );
 
 	/**
-	 * Take the result from a query, and wrap it in a ResultWrapper if
-	 * necessary. Boolean values are passed through as is, to indicate success
-	 * of write queries or failure.
-	 *
-	 * Once upon a time, DatabaseBase::query() returned a bare MySQL result
-	 * resource, and it was necessary to call this function to convert it to
-	 * a wrapper. Nowadays, raw database objects are never exposed to external
-	 * callers, so this is unnecessary in external code. For compatibility with
-	 * old code, ResultWrapper objects are passed through unaltered.
-	 *
-	 * @param bool|ResultWrapper|resource $result
-	 * @return bool|ResultWrapper
-	 */
-	public function resultObject( $result );
-
-	/**
 	 * Ping the server and try to reconnect if it there is no connection
 	 *
 	 * @return bool Success or failure

@@ -449,10 +449,6 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function resultObject( $result ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function ping() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
