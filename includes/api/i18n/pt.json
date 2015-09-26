@@ -60,6 +60,7 @@
 	"apihelp-opensearch-param-limit": "Número máximo de resultados a apresentar.",
 	"apihelp-options-param-reset": "Reiniciar preferências para os padrões do sítio.",
 	"apihelp-options-example-reset": "Reiniciar todas as preferências",
+	"apihelp-parse-param-section": "Apenas analisar o conteúdo desta secção.\n\nQuando <kbd>nova</kbd>, analise <var>$1text</var> e <var>$1sectiontitle</var> como se fosse adicionar uma nova secção da página.\n\n<kbd>novo</kbd> só é permitido quando especifica <var>text</var>.",
 	"apihelp-patrol-description": "Patrulhar uma página ou edição.",
 	"apihelp-patrol-example-rcid": "Patrulhar uma mudança recente",
 	"apihelp-patrol-example-revid": "Patrulhar uma edição",

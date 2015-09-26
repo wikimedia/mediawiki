@@ -422,6 +422,7 @@
 	"apihelp-query+allmessages-description": "返回来自该网站的消息。",
 	"apihelp-query+allmessages-param-messages": "要输出的消息。<kbd>*</kbd>（默认）表示所有消息。",
 	"apihelp-query+allmessages-param-prop": "要获取的属性。",
+	"apihelp-query+allmessages-param-nocontent": "如果设置，不要在输出中包含消息内容。",
 	"apihelp-query+allmessages-param-args": "要替代进消息的参数。",
 	"apihelp-query+allmessages-param-filter": "只返回名称包含此字符串的消息。",
 	"apihelp-query+allmessages-param-customised": "只返回在此定制情形下的消息。",
