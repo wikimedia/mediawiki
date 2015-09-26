@@ -44,28 +44,23 @@ class LanguageTyv extends Language {
 		}
 
 		// Set up some constants...
-		$allVowels = array( "е", "и", "э", "ө", "ү", "а", "ё", "о", "у", "ы",
-			"ю", "я", "a", "e", "i", "o", "ö", "u", "ü", "y" );
-		$frontVowels = array( "е", "и", "э", "ө", "ү", "e", "i", "ö", "ü" );
-		$backVowels = array( "а", "ё", "о", "у", "ы", "ю", "я", "a", "o", "u", "y" );
-		$unroundFrontVowels = array( "е", "и", "э", "e", "i" );
-		$roundFrontVowels = array( "ө", "ү", "ö", "ü" );
-		$unroundBackVowels = array( "а", "ы", "я", "a", "y" );
-		$roundBackVowels = array( "ё", "о", "у", "ю", "o", "u" );
-		//$voicedPhonemes = array( "д", "б", "з", "ж", "г", "d", "b", "z", "g" );
-		$unvoicedPhonemes = array( "т", "п", "с", "ш", "к", "ч", "х", "t", "p", "s", "k", "x" );
-		$directiveUnvoicedStems = array( "т", "п", "с", "ш", "к", "ч", "х", "л",
-			"м", "н", "ң", "t", "p", "s", "k", "x", "l", "m", "n", "ŋ" );
-		$directiveVoicedStems = array( "д", "б", "з", "ж", "г", "р", "й", "d", "b", "z", "g", "r", "j" );
+		$allVowels = array( "е", "и", "э", "ө", "ү", "а", "ё", "о", "у", "ы", "ю", "я", "u" );
+		$frontVowels = array( "е", "и", "э", "ө", "ү" );
+		$backVowels = array( "а", "ё", "о", "у", "ы", "ю", "я" );
+		$unroundFrontVowels = array( "е", "и", "э" );
+		$roundFrontVowels = array( "ө", "ү" );
+		$unroundBackVowels = array( "а", "ы", "я" );
+		$roundBackVowels = array( "ё", "о", "у", "ю" );
+		$unvoicedPhonemes = array( "т", "п", "с", "ш", "к", "ч", "х" );
+		$directiveUnvoicedStems = array( "т", "п", "с", "ш", "к", "ч", "х", "л", "м", "н", "ң" );
+		$directiveVoicedStems = array( "д", "б", "з", "ж", "г", "р", "й" );
 
-		//$allSonants = array("л", "м", "н", "ң", "р", "й");
-		//$allNasals = array("м", "н", "ң");
-
-		//Put the word in a form we can play with since we're using UTF-8
+		// Put the word in a form we can play with since we're using UTF-8
 		preg_match_all( '/./us', $word, $ar );
 
 		// Here's the last letter in the word
 		$wordEnding = $ar[0][count( $ar[0] ) - 1];
+
 		// Here's an array with the order of the letters in the word reversed so
 		// we can find a match quicker. *shrug*
 		$wordReversed = array_reverse( $ar[0] );
@@ -81,6 +76,7 @@ class LanguageTyv extends Language {
 					continue;
 				}
 			}
+
 			if ( $wordLastVowel !== null ) {
 				break;
 			} else {
