@@ -1,6 +1,7 @@
 <?php
 
 namespace MediaWiki\Tidy;
+
 use MWHttpRequest;
 use Exception;
 
