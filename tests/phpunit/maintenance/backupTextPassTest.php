@@ -469,30 +469,30 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 			. 'xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ '
 			. 'http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
   <siteinfo>
-    <sitename>wikisvn</sitename>
-    <base>http://localhost/wiki-svn/index.php/Main_Page</base>
-    <generator>MediaWiki 1.21alpha</generator>
-    <case>first-letter</case>
-    <namespaces>
-      <namespace key="-2" case="first-letter">Media</namespace>
-      <namespace key="-1" case="first-letter">Special</namespace>
-      <namespace key="0" case="first-letter" />
-      <namespace key="1" case="first-letter">Talk</namespace>
-      <namespace key="2" case="first-letter">User</namespace>
-      <namespace key="3" case="first-letter">User talk</namespace>
-      <namespace key="4" case="first-letter">Wikisvn</namespace>
-      <namespace key="5" case="first-letter">Wikisvn talk</namespace>
-      <namespace key="6" case="first-letter">File</namespace>
-      <namespace key="7" case="first-letter">File talk</namespace>
-      <namespace key="8" case="first-letter">MediaWiki</namespace>
-      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
-      <namespace key="10" case="first-letter">Template</namespace>
-      <namespace key="11" case="first-letter">Template talk</namespace>
-      <namespace key="12" case="first-letter">Help</namespace>
-      <namespace key="13" case="first-letter">Help talk</namespace>
-      <namespace key="14" case="first-letter">Category</namespace>
-      <namespace key="15" case="first-letter">Category talk</namespace>
-    </namespaces>
+	<sitename>wikisvn</sitename>
+	<base>http://localhost/wiki-svn/index.php/Main_Page</base>
+	<generator>MediaWiki 1.21alpha</generator>
+	<case>first-letter</case>
+	<namespaces>
+	  <namespace key="-2" case="first-letter">Media</namespace>
+	  <namespace key="-1" case="first-letter">Special</namespace>
+	  <namespace key="0" case="first-letter" />
+	  <namespace key="1" case="first-letter">Talk</namespace>
+	  <namespace key="2" case="first-letter">User</namespace>
+	  <namespace key="3" case="first-letter">User talk</namespace>
+	  <namespace key="4" case="first-letter">Wikisvn</namespace>
+	  <namespace key="5" case="first-letter">Wikisvn talk</namespace>
+	  <namespace key="6" case="first-letter">File</namespace>
+	  <namespace key="7" case="first-letter">File talk</namespace>
+	  <namespace key="8" case="first-letter">MediaWiki</namespace>
+	  <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+	  <namespace key="10" case="first-letter">Template</namespace>
+	  <namespace key="11" case="first-letter">Template talk</namespace>
+	  <namespace key="12" case="first-letter">Help</namespace>
+	  <namespace key="13" case="first-letter">Help talk</namespace>
+	  <namespace key="14" case="first-letter">Category</namespace>
+	  <namespace key="15" case="first-letter">Category talk</namespace>
+	</namespaces>
   </siteinfo>
 ';
 		$tail = '</mediawiki>
@@ -503,98 +503,98 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		for ( $i = 0; $i < $iterations; $i++ ) {
 
 			$page1 = '  <page>
-    <title>BackupDumperTestP1</title>
-    <ns>0</ns>
-    <id>' . ( $this->pageId1 + $i * self::$numOfPages ) . '</id>
-    <revision>
-      <id>' . ( $this->revId1_1 + $i * self::$numOfRevs ) . '</id>
-      <timestamp>2012-04-01T16:46:05Z</timestamp>
-      <contributor>
-        <ip>127.0.0.1</ip>
-      </contributor>
-      <comment>BackupDumperTestP1Summary1</comment>
-      <model>wikitext</model>
-      <format>text/x-wiki</format>
-      <text id="' . $this->textId1_1 . '" bytes="23" />
-      <sha1>0bolhl6ol7i6x0e7yq91gxgaan39j87</sha1>
-    </revision>
+	<title>BackupDumperTestP1</title>
+	<ns>0</ns>
+	<id>' . ( $this->pageId1 + $i * self::$numOfPages ) . '</id>
+	<revision>
+	  <id>' . ( $this->revId1_1 + $i * self::$numOfRevs ) . '</id>
+	  <timestamp>2012-04-01T16:46:05Z</timestamp>
+	  <contributor>
+		<ip>127.0.0.1</ip>
+	  </contributor>
+	  <comment>BackupDumperTestP1Summary1</comment>
+	  <model>wikitext</model>
+	  <format>text/x-wiki</format>
+	  <text id="' . $this->textId1_1 . '" bytes="23" />
+	  <sha1>0bolhl6ol7i6x0e7yq91gxgaan39j87</sha1>
+	</revision>
   </page>
 ';
 			$page2 = '  <page>
-    <title>BackupDumperTestP2</title>
-    <ns>0</ns>
-    <id>' . ( $this->pageId2 + $i * self::$numOfPages ) . '</id>
-    <revision>
-      <id>' . ( $this->revId2_1 + $i * self::$numOfRevs ) . '</id>
-      <timestamp>2012-04-01T16:46:05Z</timestamp>
-      <contributor>
-        <ip>127.0.0.1</ip>
-      </contributor>
-      <comment>BackupDumperTestP2Summary1</comment>
-      <model>wikitext</model>
-      <format>text/x-wiki</format>
-      <text id="' . $this->textId2_1 . '" bytes="23" />
-      <sha1>jprywrymfhysqllua29tj3sc7z39dl2</sha1>
-    </revision>
-    <revision>
-      <id>' . ( $this->revId2_2 + $i * self::$numOfRevs ) . '</id>
-      <parentid>' . ( $this->revId2_1 + $i * self::$numOfRevs ) . '</parentid>
-      <timestamp>2012-04-01T16:46:05Z</timestamp>
-      <contributor>
-        <ip>127.0.0.1</ip>
-      </contributor>
-      <comment>BackupDumperTestP2Summary2</comment>
-      <model>wikitext</model>
-      <format>text/x-wiki</format>
-      <text id="' . $this->textId2_2 . '" bytes="23" />
-      <sha1>b7vj5ks32po5m1z1t1br4o7scdwwy95</sha1>
-    </revision>
-    <revision>
-      <id>' . ( $this->revId2_3 + $i * self::$numOfRevs ) . '</id>
-      <parentid>' . ( $this->revId2_2 + $i * self::$numOfRevs ) . '</parentid>
-      <timestamp>2012-04-01T16:46:05Z</timestamp>
-      <contributor>
-        <ip>127.0.0.1</ip>
-      </contributor>
-      <comment>BackupDumperTestP2Summary3</comment>
-      <model>wikitext</model>
-      <format>text/x-wiki</format>
-      <text id="' . $this->textId2_3 . '" bytes="23" />
-      <sha1>jfunqmh1ssfb8rs43r19w98k28gg56r</sha1>
-    </revision>
-    <revision>
-      <id>' . ( $this->revId2_4 + $i * self::$numOfRevs ) . '</id>
-      <parentid>' . ( $this->revId2_3 + $i * self::$numOfRevs ) . '</parentid>
-      <timestamp>2012-04-01T16:46:05Z</timestamp>
-      <contributor>
-        <ip>127.0.0.1</ip>
-      </contributor>
-      <comment>BackupDumperTestP2Summary4 extra</comment>
-      <model>wikitext</model>
-      <format>text/x-wiki</format>
-      <text id="' . $this->textId2_4 . '" bytes="44" />
-      <sha1>6o1ciaxa6pybnqprmungwofc4lv00wv</sha1>
-    </revision>
+	<title>BackupDumperTestP2</title>
+	<ns>0</ns>
+	<id>' . ( $this->pageId2 + $i * self::$numOfPages ) . '</id>
+	<revision>
+	  <id>' . ( $this->revId2_1 + $i * self::$numOfRevs ) . '</id>
+	  <timestamp>2012-04-01T16:46:05Z</timestamp>
+	  <contributor>
+		<ip>127.0.0.1</ip>
+	  </contributor>
+	  <comment>BackupDumperTestP2Summary1</comment>
+	  <model>wikitext</model>
+	  <format>text/x-wiki</format>
+	  <text id="' . $this->textId2_1 . '" bytes="23" />
+	  <sha1>jprywrymfhysqllua29tj3sc7z39dl2</sha1>
+	</revision>
+	<revision>
+	  <id>' . ( $this->revId2_2 + $i * self::$numOfRevs ) . '</id>
+	  <parentid>' . ( $this->revId2_1 + $i * self::$numOfRevs ) . '</parentid>
+	  <timestamp>2012-04-01T16:46:05Z</timestamp>
+	  <contributor>
+		<ip>127.0.0.1</ip>
+	  </contributor>
+	  <comment>BackupDumperTestP2Summary2</comment>
+	  <model>wikitext</model>
+	  <format>text/x-wiki</format>
+	  <text id="' . $this->textId2_2 . '" bytes="23" />
+	  <sha1>b7vj5ks32po5m1z1t1br4o7scdwwy95</sha1>
+	</revision>
+	<revision>
+	  <id>' . ( $this->revId2_3 + $i * self::$numOfRevs ) . '</id>
+	  <parentid>' . ( $this->revId2_2 + $i * self::$numOfRevs ) . '</parentid>
+	  <timestamp>2012-04-01T16:46:05Z</timestamp>
+	  <contributor>
+		<ip>127.0.0.1</ip>
+	  </contributor>
+	  <comment>BackupDumperTestP2Summary3</comment>
+	  <model>wikitext</model>
+	  <format>text/x-wiki</format>
+	  <text id="' . $this->textId2_3 . '" bytes="23" />
+	  <sha1>jfunqmh1ssfb8rs43r19w98k28gg56r</sha1>
+	</revision>
+	<revision>
+	  <id>' . ( $this->revId2_4 + $i * self::$numOfRevs ) . '</id>
+	  <parentid>' . ( $this->revId2_3 + $i * self::$numOfRevs ) . '</parentid>
+	  <timestamp>2012-04-01T16:46:05Z</timestamp>
+	  <contributor>
+		<ip>127.0.0.1</ip>
+	  </contributor>
+	  <comment>BackupDumperTestP2Summary4 extra</comment>
+	  <model>wikitext</model>
+	  <format>text/x-wiki</format>
+	  <text id="' . $this->textId2_4 . '" bytes="44" />
+	  <sha1>6o1ciaxa6pybnqprmungwofc4lv00wv</sha1>
+	</revision>
   </page>
 ';
 			// page 3 not in stub
 
 			$page4 = '  <page>
-    <title>Talk:BackupDumperTestP1</title>
-    <ns>1</ns>
-    <id>' . ( $this->pageId4 + $i * self::$numOfPages ) . '</id>
-    <revision>
-      <id>' . ( $this->revId4_1 + $i * self::$numOfRevs ) . '</id>
-      <timestamp>2012-04-01T16:46:05Z</timestamp>
-      <contributor>
-        <ip>127.0.0.1</ip>
-      </contributor>
-      <comment>Talk BackupDumperTestP1 Summary1</comment>
-      <model>BackupTextPassTestModel</model>
-      <format>text/plain</format>
-      <text id="' . $this->textId4_1 . '" bytes="35" />
-      <sha1>nktofwzd0tl192k3zfepmlzxoax1lpe</sha1>
-    </revision>
+	<title>Talk:BackupDumperTestP1</title>
+	<ns>1</ns>
+	<id>' . ( $this->pageId4 + $i * self::$numOfPages ) . '</id>
+	<revision>
+	  <id>' . ( $this->revId4_1 + $i * self::$numOfRevs ) . '</id>
+	  <timestamp>2012-04-01T16:46:05Z</timestamp>
+	  <contributor>
+		<ip>127.0.0.1</ip>
+	  </contributor>
+	  <comment>Talk BackupDumperTestP1 Summary1</comment>
+	  <model>BackupTextPassTestModel</model>
+	  <format>text/plain</format>
+	  <text id="' . $this->textId4_1 . '" bytes="35" />
+	  <sha1>nktofwzd0tl192k3zfepmlzxoax1lpe</sha1>
+	</revision>
   </page>
 ';
 			$content .= $page1 . $page2 . $page4;
