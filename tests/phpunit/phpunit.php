@@ -42,14 +42,28 @@ class PHPUnitMaintClass extends Maintenance {
 			false, # not required
 			false # no arg needed
 		);
-		$this->addOption( 'regex', 'Only run parser tests that match the given regex.', false, true );
+		$this->addOption(
+			'regex',
+			'Only run parser tests that match the given regex.',
+			false,
+			true
+		);
 		$this->addOption( 'file', 'File describing parser tests.', false, true );
 		$this->addOption( 'use-filebackend', 'Use filebackend', false, true );
 		$this->addOption( 'use-bagostuff', 'Use bagostuff', false, true );
 		$this->addOption( 'use-jobqueue', 'Use jobqueue', false, true );
-		$this->addOption( 'keep-uploads', 'Re-use the same upload directory for each test, don\'t delete it.', false, false );
+		$this->addOption(
+			'keep-uploads',
+			'Re-use the same upload directory for each test, don\'t delete it.',
+			false,
+			false
+		);
 		$this->addOption( 'use-normal-tables', 'Use normal DB tables.', false, false );
-		$this->addOption( 'reuse-db', 'Init DB only if tables are missing and keep after finish.', false, false );
+		$this->addOption(
+			'reuse-db', 'Init DB only if tables are missing and keep after finish.',
+			false,
+			false
+		);
 	}
 
 	public function finalSetup() {
