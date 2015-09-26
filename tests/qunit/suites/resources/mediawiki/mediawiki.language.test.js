@@ -99,7 +99,7 @@
 				word: 'Wikipedia',
 				grammarForm: 'תחילית',
 				expected: '־Wikipedia',
-				description: 'GAdd a hyphen (maqaf) before non-Hebrew letters'
+				description: 'Add a hyphen (maqaf) before non-Hebrew letters'
 			},
 			{
 				word: '1995',
