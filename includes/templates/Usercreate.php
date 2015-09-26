@@ -45,7 +45,7 @@ class UsercreateTemplate extends BaseTemplate {
 			<p><?php $this->html( 'languages' ); ?></p>
 		</div>
 	<?php }
-	      if ( !wfMessage( 'signupstart' )->isDisabled() ) { ?>
+		  if ( !wfMessage( 'signupstart' )->isDisabled() ) { ?>
 		<div id="signupstart"><?php $this->msgWiki( 'signupstart' ); ?></div>
 	<?php } ?>
 	<div id="userloginForm">

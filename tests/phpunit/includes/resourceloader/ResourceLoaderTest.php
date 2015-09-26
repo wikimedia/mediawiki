@@ -191,11 +191,11 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery ) {
 mw.example();
 }, {
-    "css": [
-        ".mw-example {}"
-    ]
+	"css": [
+		".mw-example {}"
+	]
 }, {
-    "example": ""
+	"example": ""
 } );',
 			) ),
 			array( array(
@@ -222,9 +222,9 @@ mw.example();
 				'templates' => array(),
 
 				'expected' => 'mw.loader.implement( "test.example", [], {
-    "css": [
-        ".mw-example {}"
-    ]
+	"css": [
+		".mw-example {}"
+	]
 } );',
 			) ),
 			array( array(
@@ -239,7 +239,7 @@ mw.example();
 				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery ) {
 mw.example();
 }, {}, {
-    "example": ""
+	"example": ""
 } );',
 			) ),
 			array( array(
@@ -254,7 +254,7 @@ mw.example();
 				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery ) {
 mw.example();
 }, {}, {}, {
-    "example.html": ""
+	"example.html": ""
 } );',
 			) ),
 		);

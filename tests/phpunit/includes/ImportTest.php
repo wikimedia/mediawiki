@@ -129,16 +129,16 @@ EOF
 				<<< EOF
 <mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
   <siteinfo>
-    <namespaces>
-      <namespace key="-2" case="first-letter">Media</namespace>
-      <namespace key="-1" case="first-letter">Special</namespace>
-      <namespace key="0" case="first-letter" />
-      <namespace key="1" case="first-letter">Talk</namespace>
-      <namespace key="2" case="first-letter">User</namespace>
-      <namespace key="3" case="first-letter">User talk</namespace>
-      <namespace key="100" case="first-letter">Portal</namespace>
-      <namespace key="101" case="first-letter">Portal talk</namespace>
-    </namespaces>
+	<namespaces>
+	  <namespace key="-2" case="first-letter">Media</namespace>
+	  <namespace key="-1" case="first-letter">Special</namespace>
+	  <namespace key="0" case="first-letter" />
+	  <namespace key="1" case="first-letter">Talk</namespace>
+	  <namespace key="2" case="first-letter">User</namespace>
+	  <namespace key="3" case="first-letter">User talk</namespace>
+	  <namespace key="100" case="first-letter">Portal</namespace>
+	  <namespace key="101" case="first-letter">Portal talk</namespace>
+	</namespaces>
   </siteinfo>
 </mediawiki>
 EOF

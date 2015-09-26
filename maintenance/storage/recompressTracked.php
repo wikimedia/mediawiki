@@ -35,7 +35,7 @@ and recompresses them in the process. Restartable.
 Options:
 	--procs <procs>       Set the number of child processes (default 1)
 	--copy-only           Copy only, do not update the text table. Restart
-	                      without this option to complete.
+						  without this option to complete.
 	--debug-log <file>    Log debugging data to the specified file
 	--info-log <file>     Log progress messages to the specified file
 	--critical-log <file> Log error messages to the specified file

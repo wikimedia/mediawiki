@@ -48,11 +48,11 @@ Options:
 			  pressure on the database.
 			  (Requires the XMLReader extension)
   --maxtime=<minutes> Write out checkpoint file after this many minutes (writing
-	          out complete page, closing xml file properly, and opening new one
-	          with header).  This option requires the checkpointfile option.
+			  out complete page, closing xml file properly, and opening new one
+			  with header).  This option requires the checkpointfile option.
   --checkpointfile=<filenamepattern> Use this string for checkpoint filenames,
-		      substituting first pageid written for the first %s (required) and the
-              last pageid written for the second %s if it exists.
+			  substituting first pageid written for the first %s (required) and the
+			  last pageid written for the second %s if it exists.
   --quiet	  Don't dump status reports to stderr.
   --report=n  Report position and speed after every n pages processed.
 			  (Default: 100)
@@ -60,7 +60,7 @@ Options:
   --current	  Base ETA on number of pages in database instead of all revisions
   --spawn	  Spawn a subprocess for loading text records
   --buffersize=<size> Buffer size in bytes to use for reading the stub.
-              (Default: 512KB, Minimum: 4KB)
+			  (Default: 512KB, Minimum: 4KB)
   --help      Display this help message
 ENDS
 	);

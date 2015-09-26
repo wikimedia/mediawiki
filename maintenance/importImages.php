@@ -361,16 +361,16 @@ USAGE: php importImages.php [options] <dir>
 
 Options:
 --extensions=<exts>     Comma-separated list of allowable extensions, defaults
-                        to \$wgFileExtensions.
+						to \$wgFileExtensions.
 --overwrite             Overwrite existing images with the same name (default
-                        is to skip them).
+						is to skip them).
 --limit=<num>           Limit the number of images to process. Ignored or
-                        skipped images are not counted.
+						skipped images are not counted.
 --from=<name>           Ignore all files until the one with the given name.
-                        Useful for resuming aborted imports. <name> should be
-                        the file's canonical database form.
+						Useful for resuming aborted imports. <name> should be
+						the file's canonical database form.
 --skip-dupes            Skip images that were already uploaded under a different
-                        name (check SHA1).
+						name (check SHA1).
 --search-recursively    Search recursively for files in subdirectories.
 --sleep=<sec>           Sleep between files. Useful mostly for debugging.
 --user=<username>       Set username of uploader, default 'Maintenance script'.
@@ -378,19 +378,19 @@ Options:
 --comment=<text>        Set file description, default 'Importing file'.
 --comment-file=<file>   Set description to the content of <file>.
 --comment-ext=<ext>     Causes the description for each file to be loaded from a
-                        file with the same name, but the extension <ext>. If a
-                        global description is also given, it is appended.
+						file with the same name, but the extension <ext>. If a
+						global description is also given, it is appended.
 --license=<code>        Use an optional license template.
 --dry                   Dry run, don't import anything.
 --protect=<protect>     Specify the protect value (autoconfirmed,sysop).
 --summary=<summary>     Upload summary, description will be used if not
-                        provided.
+						provided.
 --timestamp=<timestamp> Override upload time/date, all MediaWiki timestamp
-                        formats are accepted.
+						formats are accepted.
 --unprotect             Unprotects all uploaded images.
 --source-wiki-url       If specified, take User and Comment data for each
-                        imported file from this URL. For example,
-                        --source-wiki-url="http://en.wikipedia.org/."
+						imported file from this URL. For example,
+						--source-wiki-url="http://en.wikipedia.org/."
 
 TEXT;
 	exit( 1 );

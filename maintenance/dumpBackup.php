@@ -90,7 +90,7 @@ XML output is sent to stdout; progress reports are sent to stderr.
 
 WARNING: this is not a full database dump! It is merely for public export
 		 of your wiki. For full backup, see our online help at:
-         https://www.mediawiki.org/wiki/Backup
+		 https://www.mediawiki.org/wiki/Backup
 
 Usage: php dumpBackup.php <action> [<options>]
 Actions:
@@ -101,7 +101,7 @@ Actions:
   --pagelist=<file>
 			  Where <file> is a list of page titles to be dumped
   --revrange  Dump specified range of revisions, requires
-              revstart and revend options.
+			  revstart and revend options.
 Options:
   --quiet     Don't dump status reports to stderr.
   --report=n  Report position and speed after every n pages processed.
@@ -123,7 +123,7 @@ Options:
 Fancy stuff: (Works? Add examples please.)
   --plugin=<class>[:<file>]   Load a dump plugin class
   --output=<type>:<file>      Begin a filtered output stream;
-                              <type>s: file, gzip, bzip2, 7zip
+							  <type>s: file, gzip, bzip2, 7zip
   --filter=<type>[:<options>] Add a filter on an output branch
 
 ENDS
