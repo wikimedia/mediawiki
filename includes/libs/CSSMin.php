@@ -304,7 +304,17 @@ class CSSMin {
 				// Check for global @embed comment and remove it. Allow other comments to be present
 				// before @embed (they have been replaced with placeholders at this point).
 				$embedAll = false;
-				$rule = preg_replace( '/^((?:\s+|' . CSSMin::PLACEHOLDER . '(\d+)x)*)' . CSSMin::EMBED_REGEX . '\s*/', '$1', $rule, 1, $embedAll );
+				$rule = preg_replace(
+					'/^((?:\s+|' .
+						CSSMin::PLACEHOLDER .
+						'(\d+)x)*)' .
+						CSSMin::EMBED_REGEX .
+						'\s*/',
+					'$1',
+					$rule,
+					1,
+					$embedAll
+				);
 
 				// Build two versions of current rule: with remapped URLs
 				// and with embedded data: URIs (where possible).
