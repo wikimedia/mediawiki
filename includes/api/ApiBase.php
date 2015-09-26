@@ -206,7 +206,8 @@ abstract class ApiBase extends ContextSource {
 				// Fix up the ugly "even numbered elements are description, odd
 				// numbered elemts are the link" format (see doc for self::getExamples)
 				$tmp = array();
-				for ( $i = 0; $i < count( $examples ); $i += 2 ) {
+				$examplesCount = count( $examples );
+				for ( $i = 0; $i < $examplesCount; $i += 2 ) {
 					$tmp[$examples[$i + 1]] = $examples[$i];
 				}
 				$examples = $tmp;
