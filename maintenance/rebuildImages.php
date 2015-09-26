@@ -48,7 +48,7 @@ class ImageBuilder extends Maintenance {
 		parent::__construct();
 
 		global $wgUpdateCompatibleMetadata;
-		//make sure to update old, but compatible img_metadata fields.
+		// make sure to update old, but compatible img_metadata fields.
 		$wgUpdateCompatibleMetadata = true;
 
 		$this->mDescription = 'Script to update image metadata records';

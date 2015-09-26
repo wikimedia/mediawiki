@@ -143,7 +143,7 @@ define( 'UTF8_MAX', "\xf4\x8f\xbf\xbf" /*codepointToUtf8( UNICODE_MAX )*/ );
  * @deprecated since 1.25, use UtfNormal\Constants instead
  */
 define( 'UTF8_REPLACEMENT', "\xef\xbf\xbd" /*codepointToUtf8( UNICODE_REPLACEMENT )*/ );
-#define( 'UTF8_REPLACEMENT', '!' );
+# define( 'UTF8_REPLACEMENT', '!' );
 
 /**
  * @deprecated since 1.25, use UtfNormal\Constants instead

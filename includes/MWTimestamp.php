@@ -106,7 +106,7 @@ class MWTimestamp {
 			$ts,
 			$da
 		) ) {
-			#TS_ISO_8601_BASIC
+			# TS_ISO_8601_BASIC
 		} elseif ( preg_match(
 			'/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)\.*\d*[\+\- ](\d\d)$/',
 			$ts,

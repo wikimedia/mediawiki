@@ -1434,7 +1434,7 @@ class WikiPage implements Page, IDBAccessObject {
 	) {
 		ContentHandler::deprecated( __METHOD__, '1.21' );
 
-		//NOTE: keep condition in sync with condition in replaceSectionContent!
+		// NOTE: keep condition in sync with condition in replaceSectionContent!
 		if ( strval( $sectionId ) === '' ) {
 			// Whole-page edit; let the whole text through
 			return $text;
@@ -2046,7 +2046,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$user = is_null( $user ) ? $wgUser : $user;
-		//XXX: check $user->getId() here???
+		// XXX: check $user->getId() here???
 
 		// Use a sane default for $serialFormat, see bug 57026
 		if ( $serialFormat === null ) {

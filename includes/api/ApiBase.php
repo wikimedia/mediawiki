@@ -2672,14 +2672,14 @@ abstract class ApiBase extends ContextSource {
 					$desc = implode( $paramPrefix, $desc );
 				}
 
-				//handle shorthand
+				// handle shorthand
 				if ( !is_array( $paramSettings ) ) {
 					$paramSettings = array(
 						self::PARAM_DFLT => $paramSettings,
 					);
 				}
 
-				//handle missing type
+				// handle missing type
 				if ( !isset( $paramSettings[ApiBase::PARAM_TYPE] ) ) {
 					$dflt = isset( $paramSettings[ApiBase::PARAM_DFLT] )
 						? $paramSettings[ApiBase::PARAM_DFLT]

@@ -68,8 +68,8 @@ class MediaWikiPageLinkRenderer implements PageLinkRenderer {
 	 * @return string
 	 */
 	public function getPageUrl( TitleValue $page, $params = array() ) {
-		//TODO: move the code from Linker::linkUrl here!
-		//The below is just a rough estimation!
+		// TODO: move the code from Linker::linkUrl here!
+		// The below is just a rough estimation!
 
 		$name = $this->formatter->getPrefixedText( $page );
 		$name = str_replace( ' ', '_', $name );

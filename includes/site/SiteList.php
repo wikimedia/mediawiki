@@ -319,7 +319,7 @@ class SiteList extends GenericArrayObject {
 	 * @return array
 	 */
 	protected function getSerializationData() {
-		//NOTE: When changing the structure, either implement unserialize() to handle the
+		// NOTE: When changing the structure, either implement unserialize() to handle the
 		//      old structure too, or update SERIAL_VERSION_ID to kill any caches.
 		return array_merge(
 			parent::getSerializationData(),

@@ -391,7 +391,7 @@ class SpecialPageFactory {
 					'closure_expansion' => false,
 				) );
 			} elseif ( $rec instanceof SpecialPage ) {
-				$page = $rec; //XXX: we should deep clone here
+				$page = $rec; // XXX: we should deep clone here
 			} else {
 				$page = null;
 			}

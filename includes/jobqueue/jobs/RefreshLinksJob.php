@@ -47,13 +47,13 @@ class RefreshLinksJob extends Job {
 		}
 		// Base backlink update jobs and per-title update jobs can be de-duplicated.
 		// If template A changes twice before any jobs run, a clean queue will have:
-		//		(A base, A base)
+		// 		(A base, A base)
 		// The second job is ignored by the queue on insertion.
 		// Suppose, many pages use template A, and that template itself uses template B.
 		// An edit to both will first create two base jobs. A clean FIFO queue will have:
-		//		(A base, B base)
+		// 		(A base, B base)
 		// When these jobs run, the queue will have per-title and remnant partition jobs:
-		//		(titleX,titleY,titleZ,...,A remnant,titleM,titleN,titleO,...,B remnant)
+		// 		(titleX,titleY,titleZ,...,A remnant,titleM,titleN,titleO,...,B remnant)
 		// Some these jobs will be the same, and will automatically be ignored by
 		// the queue upon insertion. Some title jobs will run before the duplicate is
 		// inserted, so the work will still be done twice in those cases. More titles

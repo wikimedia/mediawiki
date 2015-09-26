@@ -84,7 +84,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 		return self::createProviderUpTo( 31 );
 	}
 
-	############### TESTS #############################################
+	# ############## TESTS #############################################
 	# @todo FIXME:
 	#  - those got copy pasted, we can probably make them cleaner
 	#  - tests are lacking useful messages
@@ -157,7 +157,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 		$this->assertUnPadded( 'revisionmonth1', $month );
 	}
 
-	############### HELPERS ############################################
+	# ############## HELPERS ############################################
 
 	/** assertion helper expecting a magic output which is zero padded */
 	public function assertZeroPadded( $magic, $value ) {
@@ -189,7 +189,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 		);
 
 		# please keep the following commented line of code. It helps debugging.
-		//print "\nDEBUG (value $value):" . sprintf( '2010%02d%02d123456', $value, $value ) . "\n";
+		// print "\nDEBUG (value $value):" . sprintf( '2010%02d%02d123456', $value, $value ) . "\n";
 
 		# format expectation and test it
 		$expected = sprintf( $format, $value );

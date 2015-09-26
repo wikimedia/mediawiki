@@ -295,7 +295,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 
 		// Versions tested
 		$versions = array(
-			//'1.13', disabled for now, was totally screwed up
+			// '1.13', disabled for now, was totally screwed up
 			// SQLite wasn't included in 1.14
 			'1.15',
 			'1.16',

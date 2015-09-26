@@ -106,22 +106,22 @@ class ApiEditPageTest extends ApiTestCase {
 	 */
 	public static function provideEditAppend() {
 		return array(
-			array( #0: append
+			array( # 0: append
 				'foo', 'append', 'bar', "foobar"
 			),
-			array( #1: prepend
+			array( # 1: prepend
 				'foo', 'prepend', 'bar', "barfoo"
 			),
-			array( #2: append to empty page
+			array( # 2: append to empty page
 				'', 'append', 'foo', "foo"
 			),
-			array( #3: prepend to empty page
+			array( # 3: prepend to empty page
 				'', 'prepend', 'foo', "foo"
 			),
-			array( #4: append to non-existing page
+			array( # 4: append to non-existing page
 				null, 'append', 'foo', "foo"
 			),
-			array( #5: prepend to non-existing page
+			array( # 5: prepend to non-existing page
 				null, 'prepend', 'foo', "foo"
 			),
 		);

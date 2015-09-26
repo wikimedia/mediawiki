@@ -65,14 +65,14 @@ class SearchPostgres extends SearchDatabase {
 
 		wfDebug( "parseQuery received: $term \n" );
 
-		## No backslashes allowed
+		# # No backslashes allowed
 		$term = preg_replace( '/\\\/', '', $term );
 
-		## Collapse parens into nearby words:
+		# # Collapse parens into nearby words:
 		$term = preg_replace( '/\s*\(\s*/', ' (', $term );
 		$term = preg_replace( '/\s*\)\s*/', ') ', $term );
 
-		## Treat colons as word separators:
+		# # Treat colons as word separators:
 		$term = preg_replace( '/:/', ' ', $term );
 
 		$searchstring = '';
@@ -97,22 +97,22 @@ class SearchPostgres extends SearchDatabase {
 			}
 		}
 
-		## Strip out leading junk
+		# # Strip out leading junk
 		$searchstring = preg_replace( '/^[\s\&\|]+/', '', $searchstring );
 
-		## Remove any doubled-up operators
+		# # Remove any doubled-up operators
 		$searchstring = preg_replace( '/([\!\&\|]) +(?:[\&\|] +)+/', "$1 ", $searchstring );
 
-		## Remove any non-spaced operators (e.g. "Zounds!")
+		# # Remove any non-spaced operators (e.g. "Zounds!")
 		$searchstring = preg_replace( '/([^ ])[\!\&\|]/', "$1", $searchstring );
 
-		## Remove any trailing whitespace or operators
+		# # Remove any trailing whitespace or operators
 		$searchstring = preg_replace( '/[\s\!\&\|]+$/', '', $searchstring );
 
-		## Remove unnecessary quotes around everything
+		# # Remove unnecessary quotes around everything
 		$searchstring = preg_replace( '/^[\'"](.*)[\'"]$/', "$1", $searchstring );
 
-		## Quote the whole thing
+		# # Quote the whole thing
 		$searchstring = $this->db->addQuotes( $searchstring );
 
 		wfDebug( "parseQuery returned: $searchstring \n" );
@@ -132,18 +132,18 @@ class SearchPostgres extends SearchDatabase {
 		# Get the SQL fragment for the given term
 		$searchstring = $this->parseQuery( $term );
 
-		## We need a separate query here so gin does not complain about empty searches
+		# # We need a separate query here so gin does not complain about empty searches
 		$sql = "SELECT to_tsquery($searchstring)";
 		$res = $this->db->query( $sql );
 		if ( !$res ) {
-			## TODO: Better output (example to catch: one 'two)
+			# # TODO: Better output (example to catch: one 'two)
 			die( "Sorry, that was not a valid search string. Please go back and try again" );
 		}
 		$top = $res->fetchRow();
 		$top = $top[0];
 
 		$this->searchTerms = array();
-		if ( $top === "" ) { ## e.g. if only stopwords are used XXX return something better
+		if ( $top === "" ) { # # e.g. if only stopwords are used XXX return something better
 			$query = "SELECT page_id, page_namespace, page_title, 0 AS score " .
 				"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
 				"AND r.rev_text_id = c.old_id AND 1=0";
@@ -162,7 +162,7 @@ class SearchPostgres extends SearchDatabase {
 			"AND r.rev_text_id = c.old_id AND $fulltext @@ to_tsquery($searchstring)";
 		}
 
-		## Namespaces - defaults to 0
+		# # Namespaces - defaults to 0
 		if ( !is_null( $this->namespaces ) ) { // null -> search all
 			if ( count( $this->namespaces ) < 1 ) {
 				$query .= ' AND page_namespace = 0';
@@ -181,10 +181,10 @@ class SearchPostgres extends SearchDatabase {
 		return $query;
 	}
 
-	## Most of the work of these two functions are done automatically via triggers
+	# # Most of the work of these two functions are done automatically via triggers
 
 	function update( $pageid, $title, $text ) {
-		## We don't want to index older revisions
+		# # We don't want to index older revisions
 		$sql = "UPDATE pagecontent SET textvector = NULL WHERE textvector IS NOT NULL and old_id IN " .
 				"(SELECT DISTINCT rev_text_id FROM revision WHERE rev_page = " . intval( $pageid ) .
 				" ORDER BY rev_text_id DESC OFFSET 1)";

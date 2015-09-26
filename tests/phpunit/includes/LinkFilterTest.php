@@ -172,7 +172,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			//
 			// array( null, 'http://*.test.com', 'http://www.test.com:80', false ),
 			// array( '', 'https://*.wikimedia.org/r/#/q/status:open,n,z',
-			//	'https://gerrit.wikimedia.org/XXX/r/#/q/status:open,n,z', false ),
+			// 	'https://gerrit.wikimedia.org/XXX/r/#/q/status:open,n,z', false ),
 		);
 
 	}

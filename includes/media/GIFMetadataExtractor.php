@@ -102,14 +102,14 @@ class GIFMetadataExtractor {
 				// Found a frame
 				$frameCount++;
 
-				## Skip bounding box
+				# # Skip bounding box
 				fread( $fh, 8 );
 
-				## Read BPP
+				# # Read BPP
 				$buf = fread( $fh, 1 );
 				$bpp = self::decodeBPP( $buf );
 
-				## Read GCT
+				# # Read GCT
 				self::readGCT( $fh, $bpp );
 				fread( $fh, 1 );
 				self::skipBlock( $fh );

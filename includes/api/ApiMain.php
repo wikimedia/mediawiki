@@ -1236,7 +1236,7 @@ class ApiMain extends ApiBase {
 		$this->reportUnusedParams();
 
 		if ( !$this->mInternalMode ) {
-			//append Debug information
+			// append Debug information
 			MWDebug::appendDebugInfoToApiResult( $this->getContext(), $this->getResult() );
 
 			// Print result data

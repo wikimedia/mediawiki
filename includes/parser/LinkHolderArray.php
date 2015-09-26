@@ -364,13 +364,13 @@ class LinkHolderArray {
 				# The redirect status and length is passed to getLinkColour via the LinkCache
 				# Use formal parameters instead
 				$colours[$pdbk] = Linker::getLinkColour( $title, $threshold );
-				//add id to the extension todolist
+				// add id to the extension todolist
 				$linkcolour_ids[$s->page_id] = $pdbk;
 			}
 			unset( $res );
 		}
 		if ( count( $linkcolour_ids ) ) {
-			//pass an array of page_ids to an extension
+			// pass an array of page_ids to an extension
 			Hooks::run( 'GetLinkColours', array( $linkcolour_ids, &$colours ) );
 		}
 

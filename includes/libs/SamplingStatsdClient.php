@@ -80,7 +80,7 @@ class SamplingStatsdClient extends StatsdClient {
 		if ( $this->getReducePacket() ) {
 			$data = $this->reduceCount( $data );
 		}
-		//failures in any of this should be silently ignored if ..
+		// failures in any of this should be silently ignored if ..
 		$written = 0;
 		try {
 			$fp = $this->getSender()->open();

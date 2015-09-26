@@ -1169,7 +1169,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param bool $isHtml
 	 */
 	public static function assertTag( $matcher, $actual, $message = '', $isHtml = true ) {
-		//trigger_error(__METHOD__ . ' is deprecated', E_USER_DEPRECATED);
+		// trigger_error(__METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
 		self::assertTrue( self::tagMatch( $matcher, $actual, $isHtml ), $message );
 	}
@@ -1184,7 +1184,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param bool $isHtml
 	 */
 	public static function assertNotTag( $matcher, $actual, $message = '', $isHtml = true ) {
-		//trigger_error(__METHOD__ . ' is deprecated', E_USER_DEPRECATED);
+		// trigger_error(__METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
 		self::assertFalse( self::tagMatch( $matcher, $actual, $isHtml ), $message );
 	}

@@ -705,7 +705,7 @@ class XMPInfo {
 			),
 			'creator' => array(
 				'map_group' => 'general',
-				'map_name' => 'Artist', //map with exif Artist, iptc byline (2:80)
+				'map_name' => 'Artist', // map with exif Artist, iptc byline (2:80)
 				'mode' => XMPReader::MODE_SEQ,
 			),
 			'date' => array(
@@ -872,7 +872,7 @@ class XMPInfo {
 				'mode' => XMPReader::MODE_SIMPLE,
 			),
 		),
-		//Note, this property affects how jpeg metadata is extracted.
+		// Note, this property affects how jpeg metadata is extracted.
 		'http://ns.adobe.com/xmp/note/' => array(
 			'HasExtendedXMP' => array(
 				'map_group' => 'special',

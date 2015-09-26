@@ -200,7 +200,7 @@ class Preprocessor_Hash implements Preprocessor {
 		$fakeLineStart = true;
 
 		while ( true ) {
-			//$this->memCheck();
+			// $this->memCheck();
 
 			if ( $findOnlyinclude ) {
 				// Ignore all input up to the next <onlyinclude>
@@ -1154,7 +1154,7 @@ class PPFrame_Hash implements PPFrame {
 					) {
 						$out .= $contextNode->firstChild->value;
 					} else {
-						//$out .= '';
+						// $out .= '';
 					}
 				} elseif ( $contextNode->name == 'ext' ) {
 					# Extension tag

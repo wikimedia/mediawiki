@@ -71,7 +71,7 @@ class Preprocessor_DOM implements Preprocessor {
 	 * @throws MWException
 	 */
 	public function newPartNodeArray( $values ) {
-		//NOTE: DOM manipulation is slower than building & parsing XML! (or so Tim sais)
+		// NOTE: DOM manipulation is slower than building & parsing XML! (or so Tim sais)
 		$xml = "<list>";
 
 		foreach ( $values as $k => $val ) {
@@ -257,7 +257,7 @@ class Preprocessor_DOM implements Preprocessor {
 
 		$stack = new PPDStack;
 
-		$searchBase = "[{<\n"; #}
+		$searchBase = "[{<\n"; # }
 		// For fast reverse searches
 		$revText = strrev( $text );
 		$lengthText = strlen( $text );
@@ -282,7 +282,7 @@ class Preprocessor_DOM implements Preprocessor {
 		$fakeLineStart = true;
 
 		while ( true ) {
-			//$this->memCheck();
+			// $this->memCheck();
 
 			if ( $findOnlyinclude ) {
 				// Ignore all input up to the next <onlyinclude>
