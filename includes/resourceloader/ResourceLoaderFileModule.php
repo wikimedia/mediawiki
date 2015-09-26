@@ -966,44 +966,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string CSS source
 	 */
 	protected function compileLessFile( $fileName, $compiler = null ) {
-		static $cache;
-
-		if ( !$cache ) {
-			$cache = ObjectCache::newAccelerator( CACHE_ANYTHING );
-		}
-
-		// Construct a cache key from the LESS file name and a hash digest
-		// of the LESS variables used for compilation.
-		$varsHash = hash( 'md4', serialize( ResourceLoader::getLessVars( $this->getConfig() ) ) );
-		$cacheKey = wfGlobalCacheKey( 'LESS', $fileName, $varsHash );
-		$cachedCompile = $cache->get( $cacheKey );
-
-		// If we got a cached value, we have to validate it by getting a
-		// checksum of all the files that were loaded by the parser and
-		// ensuring it matches the cached entry's.
-		if ( isset( $cachedCompile['hash'] ) ) {
-			$contentHash = FileContentsHasher::getFileContentsHash( $cachedCompile['files'] );
-			if ( $contentHash === $cachedCompile['hash'] ) {
-				$this->localFileRefs += $cachedCompile['files'];
-				return $cachedCompile['css'];
-			}
-		}
-
 		if ( !$compiler ) {
 			$compiler = $this->getLessCompiler();
 		}
-
-		$css = $compiler->parseFile( $fileName )->getCss();
-		$files = $compiler->AllParsedFiles();
-		$this->localFileRefs = array_merge( $this->localFileRefs, $files );
-
-		$cache->set( $cacheKey, array(
-			'css'   => $css,
-			'files' => $files,
-			'hash'  => FileContentsHasher::getFileContentsHash( $files ),
-		), 60 * 60 * 24 );  // 86400 seconds, or 24 hours.
-
-		return $css;
+		$result = $compiler->parseFile( $fileName )->getCss();
+		$this->localFileRefs += array_keys( $compiler->AllParsedFiles() );
+		return $result;
 	}
 
 	/**
