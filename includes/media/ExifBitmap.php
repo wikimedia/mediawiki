@@ -269,9 +269,11 @@ class ExifBitmapHandler extends BitmapHandler {
 	}
 
 	/**
-	 * Swaps an embedded ICC profile for another, if found. Depends on exiftool, no-op if not installed.
+	 * Swaps an embedded ICC profile for another, if found.
+	 * Depends on exiftool, no-op if not installed.
 	 * @param string $filepath File to be manipulated (will be overwritten)
-	 * @param string $oldProfileString Exact name of color profile to look for (the one that will be replaced)
+	 * @param string $oldProfileString Exact name of color profile to look for
+	 *  (the one that will be replaced)
 	 * @param string $profileFilepath ICC profile file to apply to the file
 	 * @since 1.26
 	 * @return bool

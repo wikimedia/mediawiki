@@ -866,14 +866,21 @@ abstract class MediaHandler {
 	 * Gets configuration for the file warning message. Return value of
 	 * the following structure:
 	 *   array(
-	 *     'module' => 'example.filewarning.messages', // Required, module with messages loaded for the client
-	 *     'messages' => array( // Required, array of names of messages
-	 *       'main' => 'example-filewarning-main', // Required, main warning message
-	 *       'header' => 'example-filewarning-header', // Optional, header for warning dialog
-	 *       'footer' => 'example-filewarning-footer', // Optional, footer for warning dialog
-	 *       'info' => 'example-filewarning-info', // Optional, text for more-information link (see below)
+	 *     // Required, module with messages loaded for the client
+	 *     'module' => 'example.filewarning.messages',
+	 *     // Required, array of names of messages
+	 *     'messages' => array(
+	 *       // Required, main warning message
+	 *       'main' => 'example-filewarning-main',
+	 *       // Optional, header for warning dialog
+	 *       'header' => 'example-filewarning-header',
+	 *       // Optional, footer for warning dialog
+	 *       'footer' => 'example-filewarning-footer',
+	 *       // Optional, text for more-information link (see below)
+	 *       'info' => 'example-filewarning-info',
 	 *     ),
-	 *     'link' => 'http://example.com', // Optional, link for more information
+	 *     // Optional, link for more information
+	 *     'link' => 'http://example.com',
 	 *   )
 	 *
 	 * Returns null if no warning is necessary.
