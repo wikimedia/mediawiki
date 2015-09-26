@@ -375,6 +375,8 @@ abstract class Installer {
 			CACHE_DB => $emptyCache,
 			CACHE_ANYTHING => $emptyCache,
 			CACHE_MEMCACHED => $emptyCache,
+			// Set hash object cache (e.g. used in ResourceLoader LESS caching) - bug T113843
+			'hash' => array( 'class' => 'HashBagOStuff' ),
 		);
 
 		// Load the installer's i18n.
