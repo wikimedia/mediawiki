@@ -223,7 +223,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	protected function tearDown() {
 		$status = ob_get_status();
-		if ( isset( $status['name'] ) && $status['name'] === 'MediaWikiTestCase::wfResetOutputBuffersBarrier' ) {
+		if ( isset( $status['name'] ) &&
+			$status['name'] === 'MediaWikiTestCase::wfResetOutputBuffersBarrier'
+		) {
 			ob_end_flush();
 		}
 
