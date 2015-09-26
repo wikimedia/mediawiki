@@ -1274,14 +1274,17 @@ class Linker {
 	 * temporarily to a value pass. Should be adjusted further. --brion
 	 *
 	 * @param string $comment
-	 * @param Title|null $title Title object (to generate link to the section in autocomment) or null
+	 * @param Title|null $title Title object (to generate link to the section in autocomment)
+	 *  or null
 	 * @param bool $local Whether section links should refer to local page
-	 * @param string|null $wikiId Id (as used by WikiMap) of the wiki to generate links to. For use with external changes.
+	 * @param string|null $wikiId Id (as used by WikiMap) of the wiki to generate links to.
+	 *  For use with external changes.
 	 *
 	 * @return mixed|string
 	 */
-	public static function formatComment( $comment, $title = null, $local = false, $wikiId = null ) {
-
+	public static function formatComment(
+		$comment, $title = null, $local = false, $wikiId = null
+	) {
 		# Sanitize text a bit:
 		$comment = str_replace( "\n", " ", $comment );
 		# Allow HTML entities (for bug 13815)
@@ -1306,11 +1309,14 @@ class Linker {
 	 * @param string $comment Comment text
 	 * @param Title|null $title An optional title object used to links to sections
 	 * @param bool $local Whether section links should refer to local page
-	 * @param string|null $wikiId Id of the wiki to link to (if not the local wiki), as used by WikiMap.
+	 * @param string|null $wikiId Id of the wiki to link to (if not the local wiki),
+	 *  as used by WikiMap.
 	 *
 	 * @return string Formatted comment (wikitext)
 	 */
-	private static function formatAutocomments( $comment, $title = null, $local = false, $wikiId = null ) {
+	private static function formatAutocomments(
+		$comment, $title = null, $local = false, $wikiId = null
+	) {
 		// @todo $append here is something of a hack to preserve the status
 		// quo. Someone who knows more about bidi and such should decide
 		// (1) what sane rendering even *is* for an LTR edit summary on an RTL
@@ -1334,7 +1340,12 @@ class Linker {
 				$auto = $match[2];
 				$post = $match[3] !== '';
 				$comment = null;
-				Hooks::run( 'FormatAutocomments', array( &$comment, $pre, $auto, $post, $title, $local, $wikiId ) );
+
+				Hooks::run(
+					'FormatAutocomments',
+					array( &$comment, $pre, $auto, $post, $title, $local, $wikiId )
+				);
+
 				if ( $comment === null ) {
 					$link = '';
 					if ( $title ) {
@@ -1386,7 +1397,8 @@ class Linker {
 	 * @param string $comment Text to format links in
 	 * @param Title|null $title An optional title object used to links to sections
 	 * @param bool $local Whether section links should refer to local page
-	 * @param string|null $wikiId Id of the wiki to link to (if not the local wiki), as used by WikiMap.
+	 * @param string|null $wikiId Id of the wiki to link to (if not the local wiki),
+	 *  as used by WikiMap.
 	 *
 	 * @return string
 	 */
@@ -1489,18 +1501,25 @@ class Linker {
 	 *
 	 * @param Title $title
 	 * @param string $text
-	 * @param string|null $wikiId Id of the wiki to link to (if not the local wiki), as used by WikiMap.
+	 * @param string|null $wikiId Id of the wiki to link to (if not the local wiki),
+	 *  as used by WikiMap.
 	 * @param string|string[] $options See the $options parameter in Linker::link.
 	 *
 	 * @return string HTML link
 	 */
-	public static function makeCommentLink( Title $title, $text, $wikiId = null, $options = array() ) {
+	public static function makeCommentLink(
+		Title $title, $text, $wikiId = null, $options = array()
+	) {
 		if ( $wikiId !== null && !$title->isExternal() ) {
 			$link = Linker::makeExternalLink(
-					WikiMap::getForeignURL( $wikiId, $title->getPrefixedText(), $title->getFragment() ),
-					$text,
-					/* escape = */ false // Already escaped
-				);
+				WikiMap::getForeignURL(
+					$wikiId,
+					$title->getPrefixedText(),
+					$title->getFragment()
+				),
+				$text,
+				/* escape = */ false // Already escaped
+			);
 		} else {
 			$link = Linker::link( $title, $text, array(), array(), $options );
 		}
@@ -1594,11 +1613,14 @@ class Linker {
 	 * @param string $comment
 	 * @param Title|null $title Title object (to generate link to section in autocomment) or null
 	 * @param bool $local Whether section links should refer to local page
-	 * @param string|null $wikiId Id (as used by WikiMap) of the wiki to generate links to. For use with external changes.
+	 * @param string|null $wikiId Id (as used by WikiMap) of the wiki to generate links to.
+	 *  For use with external changes.
 	 *
 	 * @return string
 	 */
-	public static function commentBlock( $comment, $title = null, $local = false, $wikiId = null ) {
+	public static function commentBlock(
+		$comment, $title = null, $local = false, $wikiId = null
+	) {
 		// '*' used to be the comment inserted by the software way back
 		// in antiquity in case none was provided, here for backwards
 		// compatibility, acc. to brion -ævar
