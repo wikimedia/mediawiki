@@ -450,14 +450,13 @@ abstract class QueryPage extends SpecialPage {
 		} else {
 			$options['ORDER BY'] = 'qc_value ASC';
 		}
-		$res = $dbr->select( 'querycache', array( 'qc_type',
+		return $dbr->select( 'querycache', array( 'qc_type',
 				'namespace' => 'qc_namespace',
 				'title' => 'qc_title',
 				'value' => 'qc_value' ),
 				array( 'qc_type' => $this->getName() ),
 				__METHOD__, $options
 		);
-		return $dbr->resultObject( $res );
 	}
 
 	public function getCachedTimestamp() {
