@@ -60,7 +60,11 @@ class CoreParserFunctions {
 			$parser->setFunctionHook( $func, array( __CLASS__, $func ), Parser::SFH_NO_HASH );
 		}
 
-		$parser->setFunctionHook( 'namespace', array( __CLASS__, 'mwnamespace' ), Parser::SFH_NO_HASH );
+		$parser->setFunctionHook(
+			'namespace',
+			array( __CLASS__, 'mwnamespace' ),
+			Parser::SFH_NO_HASH
+		);
 		$parser->setFunctionHook( 'int', array( __CLASS__, 'intFunction' ), Parser::SFH_NO_HASH );
 		$parser->setFunctionHook( 'special', array( __CLASS__, 'special' ) );
 		$parser->setFunctionHook( 'speciale', array( __CLASS__, 'speciale' ) );
@@ -68,7 +72,11 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'formatdate', array( __CLASS__, 'formatDate' ) );
 
 		if ( $wgAllowDisplayTitle ) {
-			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), Parser::SFH_NO_HASH );
+			$parser->setFunctionHook(
+				'displaytitle',
+				array( __CLASS__, 'displaytitle' ),
+				Parser::SFH_NO_HASH
+			);
 		}
 		if ( $wgAllowSlowParserFunctions ) {
 			$parser->setFunctionHook(
@@ -810,7 +818,9 @@ class CoreParserFunctions {
 	 * @param int $direction
 	 * @return string
 	 */
-	public static function pad( $parser, $string, $length, $padding = '0', $direction = STR_PAD_RIGHT ) {
+	public static function pad(
+		$parser, $string, $length, $padding = '0', $direction = STR_PAD_RIGHT
+	) {
 		$padding = $parser->killMarkers( $padding );
 		$lengthOfPadding = mb_strlen( $padding );
 		if ( $lengthOfPadding == 0 ) {
