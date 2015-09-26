@@ -29,7 +29,7 @@
  * Basic database interface for live and lazy-loaded DB handles
  *
  * @todo: loosen up DB classes from MWException
- * @note: DatabaseBase and DBConnRef should be updated to reflect any changes
+ * @note: IDatabase and DBConnRef should be updated to reflect any changes
  * @ingroup Database
  */
 interface IDatabase {
@@ -137,7 +137,7 @@ interface IDatabase {
 	public function implicitOrderby();
 
 	/**
-	 * Return the last query that went through DatabaseBase::query()
+	 * Return the last query that went through IDatabase::query()
 	 * @return string
 	 */
 	public function lastQuery();
@@ -259,7 +259,7 @@ interface IDatabase {
 	 * member variables.
 	 * If no more rows are available, false is returned.
 	 *
-	 * @param ResultWrapper|stdClass $res Object as returned from DatabaseBase::query(), etc.
+	 * @param ResultWrapper|stdClass $res Object as returned from IDatabase::query(), etc.
 	 * @return stdClass|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
@@ -270,7 +270,7 @@ interface IDatabase {
 	 * form. Fields are retrieved with $row['fieldname'].
 	 * If no more rows are available, false is returned.
 	 *
-	 * @param ResultWrapper $res Result object as returned from DatabaseBase::query(), etc.
+	 * @param ResultWrapper $res Result object as returned from IDatabase::query(), etc.
 	 * @return array|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
@@ -448,12 +448,12 @@ interface IDatabase {
 	 *
 	 * If no result rows are returned from the query, false is returned.
 	 *
-	 * @param string|array $table Table name. See DatabaseBase::select() for details.
+	 * @param string|array $table Table name. See IDatabase::select() for details.
 	 * @param string $var The field name to select. This must be a valid SQL
 	 *   fragment: do not use unvalidated user input.
-	 * @param string|array $cond The condition array. See DatabaseBase::select() for details.
+	 * @param string|array $cond The condition array. See IDatabase::select() for details.
 	 * @param string $fname The function name of the caller.
-	 * @param string|array $options The query options. See DatabaseBase::select() for details.
+	 * @param string|array $options The query options. See IDatabase::select() for details.
 	 *
 	 * @return bool|mixed The value from the field, or false on failure.
 	 */
@@ -469,12 +469,12 @@ interface IDatabase {
 	 *
 	 * If no result rows are returned from the query, false is returned.
 	 *
-	 * @param string|array $table Table name. See DatabaseBase::select() for details.
+	 * @param string|array $table Table name. See IDatabase::select() for details.
 	 * @param string $var The field name to select. This must be a valid SQL
 	 *   fragment: do not use unvalidated user input.
-	 * @param string|array $cond The condition array. See DatabaseBase::select() for details.
+	 * @param string|array $cond The condition array. See IDatabase::select() for details.
 	 * @param string $fname The function name of the caller.
-	 * @param string|array $options The query options. See DatabaseBase::select() for details.
+	 * @param string|array $options The query options. See IDatabase::select() for details.
 	 *
 	 * @return bool|array The values from the field, or false on failure
 	 * @since 1.25
@@ -506,7 +506,7 @@ interface IDatabase {
 	 * for use in field names (e.g. a.user_name).
 	 *
 	 * All of the table names given here are automatically run through
-	 * DatabaseBase::tableName(), which causes the table prefix (if any) to be
+	 * IDatabase::tableName(), which causes the table prefix (if any) to be
 	 * added, and various other table name mappings to be performed.
 	 *
 	 *
@@ -546,8 +546,8 @@ interface IDatabase {
 	 * Note that expressions are often DBMS-dependent in their syntax.
 	 * DBMS-independent wrappers are provided for constructing several types of
 	 * expression commonly used in condition queries. See:
-	 *    - DatabaseBase::buildLike()
-	 *    - DatabaseBase::conditional()
+	 *    - IDatabase::buildLike()
+	 *    - IDatabase::conditional()
 	 *
 	 *
 	 * @param string|array $options
@@ -630,7 +630,7 @@ interface IDatabase {
 	);
 
 	/**
-	 * The equivalent of DatabaseBase::select() except that the constructed SQL
+	 * The equivalent of IDatabase::select() except that the constructed SQL
 	 * is returned, instead of being immediately executed. This can be useful for
 	 * doing UNION queries, where the SQL text of each query is needed. In general,
 	 * however, callers outside of Database classes should just use select().
@@ -643,7 +643,7 @@ interface IDatabase {
 	 * @param string|array $join_conds Join conditions
 	 *
 	 * @return string SQL query string.
-	 * @see DatabaseBase::select()
+	 * @see IDatabase::select()
 	 */
 	public function selectSQLText(
 		$table, $vars, $conds = '', $fname = __METHOD__,
@@ -651,7 +651,7 @@ interface IDatabase {
 	);
 
 	/**
-	 * Single row SELECT wrapper. Equivalent to DatabaseBase::select(), except
+	 * Single row SELECT wrapper. Equivalent to IDatabase::select(), except
 	 * that a single row object is returned. If the query returns no rows,
 	 * false is returned.
 	 *
@@ -679,7 +679,7 @@ interface IDatabase {
 	 * For DBMSs that don't support fast result size estimation, this function
 	 * will actually perform the SELECT COUNT(*).
 	 *
-	 * Takes the same arguments as DatabaseBase::select().
+	 * Takes the same arguments as IDatabase::select().
 	 *
 	 * @param string $table Table name
 	 * @param string $vars Unused
@@ -697,7 +697,7 @@ interface IDatabase {
 	 *
 	 * This is useful when trying to do COUNT(*) but with a LIMIT for performance.
 	 *
-	 * Takes the same arguments as DatabaseBase::select().
+	 * Takes the same arguments as IDatabase::select().
 	 *
 	 * @param string $table Table name
 	 * @param string $vars Unused
@@ -770,15 +770,15 @@ interface IDatabase {
 	 *
 	 * $options is an array of options, with boolean options encoded as values
 	 * with numeric keys, in the same style as $options in
-	 * DatabaseBase::select(). Supported options are:
+	 * IDatabase::select(). Supported options are:
 	 *
 	 *   - IGNORE: Boolean: if present, duplicate key errors are ignored, and
 	 *     any rows which cause duplicate key errors are not inserted. It's
 	 *     possible to determine how many rows were successfully inserted using
-	 *     DatabaseBase::affectedRows().
+	 *     IDatabase::affectedRows().
 	 *
 	 * @param string $table Table name. This will be passed through
-	 *   DatabaseBase::tableName().
+	 *   IDatabase::tableName().
 	 * @param array $a Array of rows to insert
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @param array $options Array of options
@@ -791,12 +791,12 @@ interface IDatabase {
 	 * UPDATE wrapper. Takes a condition array and a SET array.
 	 *
 	 * @param string $table Name of the table to UPDATE. This will be passed through
-	 *   DatabaseBase::tableName().
+	 *   IDatabase::tableName().
 	 * @param array $values An array of values to SET. For each array element,
 	 *   the key gives the field name, and the value gives the data to set
-	 *   that field to. The data will be quoted by DatabaseBase::addQuotes().
+	 *   that field to. The data will be quoted by IDatabase::addQuotes().
 	 * @param array $conds An array of conditions (WHERE). See
-	 *   DatabaseBase::select() for the details of the format of condition
+	 *   IDatabase::select() for the details of the format of condition
 	 *   arrays. Use '*' to update all rows.
 	 * @param string $fname The function name of the caller (from __METHOD__),
 	 *   for logging and profiling.
@@ -814,7 +814,7 @@ interface IDatabase {
 	 * @param int $mode Constant
 	 *    - LIST_COMMA: Comma separated, no field names
 	 *    - LIST_AND:   ANDed WHERE clause (without the WHERE). See the
-	 *      documentation for $conds in DatabaseBase::select().
+	 *      documentation for $conds in IDatabase::select().
 	 *    - LIST_OR:    ORed WHERE clause (without the WHERE)
 	 *    - LIST_SET:   Comma separated with field names, like a SET clause
 	 *    - LIST_NAMES: Comma separated field names
@@ -975,7 +975,7 @@ interface IDatabase {
 	 * @param array $uniqueIndexes Is an array of indexes. Each element may be either
 	 *    a field name or an array of field names
 	 * @param array $rows Can be either a single row to insert, or multiple rows,
-	 *    in the same format as for DatabaseBase::insert()
+	 *    in the same format as for IDatabase::insert()
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 */
 	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ );
@@ -1004,12 +1004,12 @@ interface IDatabase {
 	 *
 	 * @since 1.22
 	 *
-	 * @param string $table Table name. This will be passed through DatabaseBase::tableName().
+	 * @param string $table Table name. This will be passed through IDatabase::tableName().
 	 * @param array $rows A single row or list of rows to insert
 	 * @param array $uniqueIndexes List of single field names or field name tuples
 	 * @param array $set An array of values to SET. For each array element, the
 	 *   key gives the field name, and the value gives the data to set that
-	 *   field to. The data will be quoted by DatabaseBase::addQuotes().
+	 *   field to. The data will be quoted by IDatabase::addQuotes().
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @throws Exception
 	 * @return bool
@@ -1046,7 +1046,7 @@ interface IDatabase {
 	 * DELETE query wrapper.
 	 *
 	 * @param array $table Table name
-	 * @param string|array $conds Array of conditions. See $conds in DatabaseBase::select()
+	 * @param string|array $conds Array of conditions. See $conds in IDatabase::select()
 	 *   for the format. Use $conds == "*" to delete all rows
 	 * @param string $fname Name of the calling function
 	 * @throws DBUnexpectedError
@@ -1065,18 +1065,18 @@ interface IDatabase {
 	 * @param array $varMap Must be an associative array of the form
 	 *    array( 'dest1' => 'source1', ...). Source items may be literals
 	 *    rather than field names, but strings should be quoted with
-	 *    DatabaseBase::addQuotes()
+	 *    IDatabase::addQuotes()
 	 *
-	 * @param array $conds Condition array. See $conds in DatabaseBase::select() for
+	 * @param array $conds Condition array. See $conds in IDatabase::select() for
 	 *    the details of the format of condition arrays. May be "*" to copy the
 	 *    whole table.
 	 *
 	 * @param string $fname The function name of the caller, from __METHOD__
 	 *
 	 * @param array $insertOptions Options for the INSERT part of the query, see
-	 *    DatabaseBase::insert() for details.
+	 *    IDatabase::insert() for details.
 	 * @param array $selectOptions Options for the SELECT part of the query, see
-	 *    DatabaseBase::select() for details.
+	 *    IDatabase::select() for details.
 	 *
 	 * @return ResultWrapper
 	 */
@@ -1236,7 +1236,7 @@ interface IDatabase {
 	 * Atomic sections are more strict than transactions. With transactions,
 	 * attempting to begin a new transaction when one is already running results
 	 * in MediaWiki issuing a brief warning and doing an implicit commit. All
-	 * atomic levels *must* be explicitly closed using DatabaseBase::endAtomic(),
+	 * atomic levels *must* be explicitly closed using IDatabase::endAtomic(),
 	 * and any database transactions cannot be began or committed until all atomic
 	 * levels are closed. There is no such thing as implicitly opening or closing
 	 * an atomic section.
@@ -1254,7 +1254,7 @@ interface IDatabase {
 	 * if necessary.
 	 *
 	 * @since 1.23
-	 * @see DatabaseBase::startAtomic
+	 * @see IDatabase::startAtomic
 	 * @param string $fname
 	 * @throws DBError
 	 */
@@ -1376,7 +1376,7 @@ interface IDatabase {
 	 * Some DBMSs have a special format for inserting into blob fields, they
 	 * don't allow simple quoted strings to be inserted. To insert into such
 	 * a field, pass the data through this function before passing it to
-	 * DatabaseBase::insert().
+	 * IDatabase::insert().
 	 *
 	 * @param string $b
 	 * @return string
