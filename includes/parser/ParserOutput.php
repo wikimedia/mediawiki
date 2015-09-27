@@ -22,36 +22,67 @@
  * @ingroup Parser
  */
 class ParserOutput extends CacheTime {
-	public $mText,                       # The output text
-		$mLanguageLinks,              # List of the full text of language links, in the order they appear
-		$mCategories,                 # Map of category names to sort keys
-		$mIndicators = array(),       # Page status indicators, usually displayed in top-right corner
-		$mTitleText,                  # title text of the chosen language variant
-		$mLinks = array(),            # 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
-		$mTemplates = array(),        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
-		$mTemplateIds = array(),      # 2-D map of NS/DBK to rev ID for the template references. ID=zero for broken.
-		$mImages = array(),           # DB keys of the images used, in the array key only
-		$mFileSearchOptions = array(), # DB keys of the images used mapped to sha1 and MW timestamp
-		$mExternalLinks = array(),    # External link URLs, in the key only
-		$mInterwikiLinks = array(),   # 2-D map of prefix/DBK (in keys only) for the inline interwiki links in the document.
-		$mNewSection = false,         # Show a new section link?
-		$mHideNewSection = false,     # Hide the new section link?
-		$mNoGallery = false,          # No gallery on category page? (__NOGALLERY__)
-		$mHeadItems = array(),        # Items to put in the <head> section
-		$mModules = array(),          # Modules to be loaded by the resource loader
-		$mModuleScripts = array(),    # Modules of which only the JS will be loaded by the resource loader
-		$mModuleStyles = array(),     # Modules of which only the CSSS will be loaded by the resource loader
-		$mJsConfigVars = array(),     # JavaScript config variable for mw.config combined with this page
-		$mOutputHooks = array(),      # Hook tags as per $wgParserOutputHooks
-		$mWarnings = array(),         # Warning text to be returned to the user. Wikitext formatted, in the key only
-		$mSections = array(),         # Table of contents
-		$mEditSectionTokens = false,  # prefix/suffix markers if edit sections were output as tokens
-		$mProperties = array(),       # Name/value pairs to be cached in the DB
-		$mTOCHTML = '',               # HTML of the TOC
-		$mTimestamp,                  # Timestamp of the revision
-		$mTOCEnabled = true,          # Whether TOC should be shown, can't override __NOTOC__
-		$mEnableOOUI = false;         # Whether OOUI should be enabled
-	private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
+	public
+		# The output text
+		$mText,
+		# List of the full text of language links, in the order they appear
+		$mLanguageLinks,
+		# Map of category names to sort keys
+		$mCategories,
+		# Page status indicators, usually displayed in top-right corner
+		$mIndicators = array(),
+		# title text of the chosen language variant
+		$mTitleText,
+		# 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
+		$mLinks = array(),
+		# 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
+		$mTemplates = array(),
+		# 2-D map of NS/DBK to rev ID for the template references. ID=zero for broken.
+		$mTemplateIds = array(),
+		# DB keys of the images used, in the array key only
+		$mImages = array(),
+		# DB keys of the images used mapped to sha1 and MW timestamp
+		$mFileSearchOptions = array(),
+		# External link URLs, in the key only
+		$mExternalLinks = array(),
+		# 2-D map of prefix/DBK (in keys only) for the inline interwiki links in the document.
+		$mInterwikiLinks = array(),
+		# Show a new section link?
+		$mNewSection = false,
+		# Hide the new section link?
+		$mHideNewSection = false,
+		# No gallery on category page? (__NOGALLERY__)
+		$mNoGallery = false,
+		# Items to put in the <head> section
+		$mHeadItems = array(),
+		# Modules to be loaded by the resource loader
+		$mModules = array(),
+		# Modules of which only the JS will be loaded by the resource loader
+		$mModuleScripts = array(),
+		# Modules of which only the CSSS will be loaded by the resource loader
+		$mModuleStyles = array(),
+		# JavaScript config variable for mw.config combined with this page
+		$mJsConfigVars = array(),
+		# Hook tags as per $wgParserOutputHooks
+		$mOutputHooks = array(),
+		# Warning text to be returned to the user. Wikitext formatted, in the key only
+		$mWarnings = array(),
+		# Table of contents
+		$mSections = array(),
+		# prefix/suffix markers if edit sections were output as tokens
+		$mEditSectionTokens = false,
+		# Name/value pairs to be cached in the DB
+		$mProperties = array(),
+		# HTML of the TOC
+		$mTOCHTML = '',
+		# Timestamp of the revision
+		$mTimestamp,
+		# Whether TOC should be shown, can't override __NOTOC__
+		$mTOCEnabled = true,
+		# Whether OOUI should be enabled
+		$mEnableOOUI = false;
+
+	private $mIndexPolicy = ''; # 'index' or 'noindex'?  Any other value will result in no change.
 	private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
 	private $mExtensionData = array(); # extra data used by extensions
 	private $mLimitReportData = array(); # Parser limit report data
@@ -715,7 +746,11 @@ class ParserOutput extends CacheTime {
 	 */
 	public function addSecondaryDataUpdate( DataUpdate $update ) {
 		wfDeprecated( __METHOD__, '1.25' );
-		throw new MWException( 'ParserOutput::addSecondaryDataUpdate() is no longer supported. Override Content::getSecondaryDataUpdates() or use the SecondaryDataUpdates hook instead.' );
+		throw new MWException(
+			'ParserOutput::addSecondaryDataUpdate() is no longer supported. ' .
+				'Override Content::getSecondaryDataUpdates() ' .
+				'or use the SecondaryDataUpdates hook instead.'
+		);
 	}
 
 	/**
