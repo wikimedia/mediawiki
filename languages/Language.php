@@ -2551,10 +2551,13 @@ class Language {
 	 *
 	 * @param MWTimestamp $time
 	 * @param MWTimestamp|null $relativeTo The base timestamp to compare to (defaults to now)
-	 * @param User|null $user User the timestamp is being generated for (or null to use main context's user)
+	 * @param User|null $user User the timestamp is being generated for
+	 *  (or null to use main context's user)
 	 * @return string Formatted timestamp
 	 */
-	public function getHumanTimestamp( MWTimestamp $time, MWTimestamp $relativeTo = null, User $user = null ) {
+	public function getHumanTimestamp(
+		MWTimestamp $time, MWTimestamp $relativeTo = null, User $user = null
+	) {
 		if ( $relativeTo === null ) {
 			$relativeTo = new MWTimestamp();
 		}
@@ -2589,7 +2592,9 @@ class Language {
 	 * @return string Human timestamp
 	 * @since 1.26
 	 */
-	private function getHumanTimestampInternal( MWTimestamp $ts, MWTimestamp $relativeTo, User $user ) {
+	private function getHumanTimestampInternal(
+		MWTimestamp $ts, MWTimestamp $relativeTo, User $user
+	) {
 		$diff = $ts->diff( $relativeTo );
 		$diffDay = (bool)( (int)$ts->timestamp->format( 'w' ) -
 			(int)$relativeTo->timestamp->format( 'w' ) );
