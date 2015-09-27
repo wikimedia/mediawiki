@@ -320,7 +320,13 @@ if ( isset( $_REQUEST['sort'] ) && in_array( $_REQUEST['sort'], $sorts ) ) {
 	$sort = $_REQUEST['sort'];
 }
 
-$res = $dbr->select( 'profiling', '*', array(), 'profileinfo.php', array( 'ORDER BY' => 'pf_name ASC' ) );
+$res = $dbr->select(
+	'profiling',
+	'*',
+	array(),
+	'profileinfo.php',
+	array( 'ORDER BY' => 'pf_name ASC' )
+);
 
 if ( isset( $_REQUEST['filter'] ) ) {
 	$filter = $_REQUEST['filter'];
@@ -333,7 +339,9 @@ if ( isset( $_REQUEST['filter'] ) ) {
 	<p>
 		<input type="text" name="filter" value="<?php echo htmlspecialchars( $filter ); ?>">
 		<input type="hidden" name="sort" value="<?php echo htmlspecialchars( $sort ); ?>">
-		<input type="hidden" name="expand" value="<?php echo htmlspecialchars( implode( ",", array_keys( $expand ) ) ); ?>">
+		<input type="hidden" name="expand" value="<?php
+			echo htmlspecialchars( implode( ",", array_keys( $expand ) ) );
+		?>">
 		<input type="submit" value="Filter">
 	</p>
 </form>
@@ -341,15 +349,33 @@ if ( isset( $_REQUEST['filter'] ) ) {
 <table class="mw-profileinfo-table table table-striped table-hover">
 	<thead>
 	<tr>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'name' ); ?>">Name</a></th>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'time' ); ?>">Time (%)</a></th>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'memory' ); ?>">Memory (%)</a></th>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'count' ); ?>">Count</a></th>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'calls_per_req' ); ?>">Calls/req</a></th>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'time_per_call' ); ?>">ms/call</a></th>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'memory_per_call' ); ?>">kb/call</a></th>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'time_per_req' ); ?>">ms/req</a></th>
-		<th><a href="<?php echo getEscapedProfileUrl( false, 'memory_per_req' ); ?>">kb/req</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'name' );
+		?>">Name</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'time' );
+		?>">Time (%)</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'memory' );
+		?>">Memory (%)</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'count' );
+		?>">Count</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'calls_per_req' );
+		?>">Calls/req</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'time_per_call' );
+		?>">ms/call</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'memory_per_call' );
+		?>">kb/call</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'time_per_req' );
+		?>">ms/req</a></th>
+		<th><a href="<?php
+			echo getEscapedProfileUrl( false, 'memory_per_req' );
+		?>">kb/req</a></th>
 	</tr>
 	</thead>
 	<tbody>
