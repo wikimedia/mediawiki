@@ -963,6 +963,7 @@
 	"apihelp-query+recentchanges-param-limit": "How many total changes to return.",
 	"apihelp-query+recentchanges-param-type": "Which types of changes to show.",
 	"apihelp-query+recentchanges-param-toponly": "Only list changes which are the latest revision.",
+	"apihelp-query+recentchanges-param-generaterevisions": "When being used as a generator, generate revision IDs rather than titles. Recent change entries without associated revision IDs (e.g. most log entries) will generate nothing.",
 	"apihelp-query+recentchanges-example-simple": "List recent changes.",
 	"apihelp-query+recentchanges-example-generator": "Get page info about recent unpatrolled changes.",
 
