@@ -12,11 +12,6 @@
 class ExtensionRegistry {
 
 	/**
-	 * "requires" key that applies to MediaWiki core/$wgVersion
-	 */
-	const MEDIAWIKI_CORE = 'MediaWiki';
-
-	/**
 	 * Version of the highest supported manifest version
 	 */
 	const MANIFEST_VERSION = 1;
@@ -161,11 +156,8 @@ class ExtensionRegistry {
 	 * @throws Exception
 	 */
 	public function readFromQueue( array $queue ) {
-		global $wgVersion;
 		$autoloadClasses = array();
 		$processor = new ExtensionProcessor();
-		$incompatible = array();
-		$coreVersionParser = new CoreVersionChecker( $wgVersion );
 		foreach ( $queue as $path => $mtime ) {
 			$json = file_get_contents( $path );
 			if ( $json === false ) {
@@ -187,26 +179,7 @@ class ExtensionRegistry {
 			// Set up the autoloader now so custom processors will work
 			$GLOBALS['wgAutoloadClasses'] += $autoload;
 			$autoloadClasses += $autoload;
-			// Check any constraints against MediaWiki core
-			$requires = $processor->getRequirements( $info );
-			if ( isset( $requires[self::MEDIAWIKI_CORE] )
-				&& !$coreVersionParser->check( $requires[self::MEDIAWIKI_CORE] )
-			) {
-				// Doesn't match, mark it as incompatible.
-				$incompatible[] = "{$info['name']} is not compatible with the current "
-					. "MediaWiki core (version {$wgVersion}), it requires: ". $requires[self::MEDIAWIKI_CORE]
-					. '.';
-				continue;
-			}
-			// Compatible, read and extract info
 			$processor->extractInfo( $path, $info, $version );
-		}
-		if ( $incompatible ) {
-			if ( count( $incompatible ) === 1 ) {
-				throw new Exception( $incompatible[0] );
-			} else {
-				throw new Exception( implode( "\n", $incompatible ) );
-			}
 		}
 		$data = $processor->getExtractedInfo();
 		// Need to set this so we can += to it later

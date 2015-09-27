@@ -2731,6 +2731,7 @@
 	"searchsuggest-containing": "شامیلین دیمان...",
 	"api-error-badaccess-groups": "شما اجازه په پایلی ئی بُرز کورتین ئا بئ ای ویکی ای تا نداریت.",
 	"api-error-badtoken": "داخیلی ئین خه تا: امنیتی ئین کوڈ سه ئی نه اینت (Bad token).",
+	"api-error-duplicate-popup-title": "تکرارین {{PLURAL:$1|فایل|فایلان}}",
 	"api-error-empty-file": "فایلی که دیم داته بوت خالی ات.",
 	"api-error-emptypage": "خالی ئین دیمانی جۆڑ کورتین جایز نه اینت.",
 	"api-error-file-too-large": "فایلی که دیم داتیت بئ حد ٹوو ات.",

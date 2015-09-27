@@ -681,6 +681,12 @@ if ( !is_object( $wgAuth ) ) {
  */
 $wgTitle = null;
 
+/**
+ * @deprecated since 1.24 Use DeferredUpdates::addUpdate instead
+ * @var array
+ */
+$wgDeferredUpdateList = array();
+
 Profiler::instance()->scopedProfileOut( $ps_globals );
 $ps_extensions = Profiler::instance()->scopedProfileIn( $fname . '-extensions' );
 

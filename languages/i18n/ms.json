@@ -3220,6 +3220,8 @@
 	"api-error-copyuploaddisabled": "Ciri memuat naik melalui URL dimatikan di pelayan ini.",
 	"api-error-duplicate": "Di tapak ini sudah ada {{PLURAL:$1|[$2 satu fail lain]|[$2 fail-fail lain]}} yang sama kandungannya.",
 	"api-error-duplicate-archive": "Di tapak ini pernah ada {{PLURAL:$1|[$2 satu fail lain]|[$2 fail-fail lain]}} yang sama kandungannya, tetapi telah dihapuskan.",
+	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Fail|Fail-fail}} pendua yang sudah dihapuskan",
+	"api-error-duplicate-popup-title": "{{PLURAL:$1|Fail|Fail-fail}} pendua",
 	"api-error-empty-file": "Fail yang anda serahkan adalah kosong.",
 	"api-error-emptypage": "Anda tidak dibenarkan membuat laman baru yang kosong.",
 	"api-error-fetchfileerror": "Ralat dalaman: ada malasah ketika mengambil fail itu.",

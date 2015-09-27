@@ -674,12 +674,7 @@ class LoginForm extends SpecialPage {
 		$u->setRealName( $this->mRealName );
 		$u->setToken();
 
-		Hooks::run( 'LocalUserCreated', array( $u, $autocreate ) );
-		$oldUser = $u;
 		$wgAuth->initUser( $u, $autocreate );
-		if ( $oldUser !== $u ) {
-			wfWarn( get_class( $wgAuth ) . '::initUser() replaced the user object' );
-		}
 
 		$u->saveSettings();
 
@@ -825,12 +820,7 @@ class LoginForm extends SpecialPage {
 			$retval = self::RESET_PASS;
 			$this->mAbortLoginErrorMsg = 'resetpass-expired';
 		} else {
-			Hooks::run( 'UserLoggedIn', array( $u ) );
-			$oldUser = $u;
 			$wgAuth->updateUser( $u );
-			if ( $oldUser !== $u ) {
-				wfWarn( get_class( $wgAuth ) . '::updateUser() replaced the user object' );
-			}
 			$wgUser = $u;
 			// This should set it for OutputPage and the Skin
 			// which is needed or the personal links will be

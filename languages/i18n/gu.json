@@ -2901,6 +2901,8 @@
 	"api-error-copyuploaddisabled": "આ સર્વર પર URL દ્વારા માહિતી ચઢાવવા પર પ્રતિબંધ",
 	"api-error-duplicate": "આ {{PLURAL:$1|is [$2 another file]|are [$2 some other files]}} પહેલેથી સાઈટ પર તેજ માહિતી સાથે મોજૂદ છે.",
 	"api-error-duplicate-archive": "ત્યાં {{PLURAL:$1|was [$2 another file]|were [$2 some other files]}} તે જ મહિતી સાથે મોજૂદ છે , પણ {{PLURAL:$1|it was|they were}} હટાવી દો.",
+	"api-error-duplicate-archive-popup-title": "ડ્યુપ્લીકેટ {{PLURAL:$1|ફાઈલ|ફાઈલો}} પહેલેથી મોજુદ છે.",
+	"api-error-duplicate-popup-title": "આબેહુબ અન્ય {{PLURAL:$1|ફાઈલ|ફાઈલો}}.",
 	"api-error-empty-file": "તમે ચડાવેલ ફાઈલ ખાલી છે",
 	"api-error-emptypage": "નવા ખાલી પાનાં બનાવવાની પરવાનગી નથી.",
 	"api-error-fetchfileerror": "આંતરીક ત્રુટી: ફાઈલ લાવતી વખતે અમુક ગડબડ થઈ",

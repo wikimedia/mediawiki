@@ -2885,6 +2885,8 @@
 	"api-error-copyuploaddisabled": "Postavljanja putem URL-a su onemogućena na ovom serveru.",
 	"api-error-duplicate": "Već postoji {{PLURAL:$1|[$2 druga datoteka]|[$2 druge datoteke]}} na ovoj stranici sa istim sadržajem",
 	"api-error-duplicate-archive": "{{PLURAL:$1|Postojala je [$2 druga datoteka]|Postojale su [$2 neke druge datoteke]}} na sajtu sa istim sadržajem, ali {{PLURAL:$1|je obrisana|su obrisane}}.",
+	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Dupla datoteka|Duple datoteke}} koje su već obrisane",
+	"api-error-duplicate-popup-title": "{{PLURAL:$1|Dvojna datoteka|Dvojne datoteke}}",
 	"api-error-empty-file": "Datoteka koju ste poslali je bila prazna.",
 	"api-error-emptypage": "Stvaranje novih praznih stranica nije dozvoljeno.",
 	"api-error-fetchfileerror": "Unutrašnja greška: pojavio se neki problem pri dobijanju podataka o datoteci.",

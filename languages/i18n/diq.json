@@ -3098,6 +3098,8 @@
 	"api-error-copyuploaddisabled": "URL barkerdış ena waster dı qefılyayo.",
 	"api-error-duplicate": "Ena {{PLURAL:$1|ze ke [zey $2]|biya [zey dosya da $2]}} zeq wesiqa biya wendeyê.",
 	"api-error-duplicate-archive": "Ena {{PLURAL:$1|vurneyaya [$2 zey na dosya]| [zerrey cı zey $2 dosya]}} aseno,feqet {{PLURAL:$1|ena dosya|tewr veri}} besterneyaya.",
+	"api-error-duplicate-archive-popup-title": "Ena {{PLURAL:$1|Dosya besterneyaya|dosya}} xora  besterneyaya.",
+	"api-error-duplicate-popup-title": "{{PLURAL:$1|dosyaya|dosyaya}} dılet",
 	"api-error-empty-file": "Dosyaya ke şıma rışta venga.",
 	"api-error-emptypage": "Newi, pelaya veng vıraştışi rê mısade nêdeyêno.",
 	"api-error-fetchfileerror": "Xırabiya zerrek:Dosya grotış dı tay çi raşt nêşı.",

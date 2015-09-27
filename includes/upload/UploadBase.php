@@ -1706,21 +1706,24 @@ abstract class UploadBase {
 	 * Check if a user is the last uploader
 	 *
 	 * @param User $user
-	 * @param File $img
+	 * @param string $img Image name
 	 * @return bool
 	 */
-	public static function userCanReUpload( User $user, File $img ) {
+	public static function userCanReUpload( User $user, $img ) {
 		if ( $user->isAllowed( 'reupload' ) ) {
 			return true; // non-conditional
-		} elseif ( !$user->isAllowed( 'reupload-own' ) ) {
+		}
+		if ( !$user->isAllowed( 'reupload-own' ) ) {
 			return false;
 		}
-
+		if ( is_string( $img ) ) {
+			$img = wfLocalFile( $img );
+		}
 		if ( !( $img instanceof LocalFile ) ) {
 			return false;
 		}
 
-		$img->load();
+		$img->load( File::READ_LATEST );
 
 		return $user->getId() == $img->getUser( 'id' );
 	}

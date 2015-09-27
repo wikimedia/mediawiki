@@ -3216,7 +3216,6 @@ function wfUsePHP( $req_ver ) {
  *
  * @see perldoc -f use
  *
- * @deprecated since 1.26, use the "requires' property of extension.json
  * @param string|int|float $req_ver The version to check, can be a string, an integer, or a float
  * @throws MWException
  */
@@ -3467,6 +3466,7 @@ function wfResetSessionID() {
 		$_SESSION = $tmp;
 	}
 	$newSessionId = session_id();
+	Hooks::run( 'ResetSessionID', array( $oldSessionId, $newSessionId ) );
 }
 
 /**

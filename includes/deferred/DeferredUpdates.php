@@ -79,6 +79,17 @@ class DeferredUpdates {
 	}
 
 	/**
+	 * HTMLCacheUpdates are the most common deferred update people use. This
+	 * is a shortcut method for that.
+	 * @see HTMLCacheUpdate::__construct()
+	 * @param Title $title
+	 * @param string $table
+	 */
+	public static function addHTMLCacheUpdate( $title, $table ) {
+		self::addUpdate( new HTMLCacheUpdate( $title, $table ) );
+	}
+
+	/**
 	 * Add a callable update.  In a lot of cases, we just need a callback/closure,
 	 * defining a new DeferrableUpdate object is not necessary
 	 * @see MWCallableUpdate::__construct()
@@ -95,7 +106,9 @@ class DeferredUpdates {
 	 *   prevent lock contention
 	 */
 	public static function doUpdates( $commit = '' ) {
-		$updates = self::$updates;
+		global $wgDeferredUpdateList;
+
+		$updates = array_merge( $wgDeferredUpdateList, self::$updates );
 
 		while ( count( $updates ) ) {
 			self::clearPendingUpdates();
@@ -118,7 +131,7 @@ class DeferredUpdates {
 				}
 			}
 
-			$updates = self::$updates;
+			$updates = array_merge( $wgDeferredUpdateList, self::$updates );
 		}
 	}
 
@@ -127,6 +140,7 @@ class DeferredUpdates {
 	 * want or need to call this. Unit tests need it though.
 	 */
 	public static function clearPendingUpdates() {
-		self::$updates = array();
+		global $wgDeferredUpdateList;
+		$wgDeferredUpdateList = self::$updates = array();
 	}
 }

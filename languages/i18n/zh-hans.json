@@ -3337,6 +3337,8 @@
 	"api-error-copyuploaddisabled": "通过URL上传的功能已被此服务器禁用。",
 	"api-error-duplicate": "在网站上已经具有相同内容的{{PLURAL:$1|[$2 另一个文件]|[$2 另一些文件]}}。",
 	"api-error-duplicate-archive": "在网站上曾经具有相同内容的{{PLURAL:$1|[$2 另一个文件]|[$2 另一些文件]}}，但已被删除。",
+	"api-error-duplicate-archive-popup-title": "已被删的除重复{{PLURAL:$1|文件}}。",
+	"api-error-duplicate-popup-title": "重复的 {{PLURAL:$1|文件}}。",
 	"api-error-empty-file": "您提交的文件是空的。",
 	"api-error-emptypage": "不能创建没有内容的新页面。",
 	"api-error-fetchfileerror": "内部错误：获取文件时发生错误。",

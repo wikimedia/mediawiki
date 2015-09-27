@@ -120,8 +120,6 @@ class AuthPlugin {
 	 * The User object is passed by reference so it can be modified; don't
 	 * forget the & on your function declaration.
 	 *
-	 * @deprecated since 1.26, use the UserLoggedIn hook instead. And assigning
-	 *  a different User object to $user is no longer supported.
 	 * @param User $user
 	 * @return bool
 	 */
@@ -206,7 +204,6 @@ class AuthPlugin {
 	 * Update user information in the external authentication database.
 	 * Return true if successful.
 	 *
-	 * @deprecated since 1.26, use the UserSaveSettings hook instead.
 	 * @param User $user
 	 * @return bool
 	 */
@@ -218,7 +215,6 @@ class AuthPlugin {
 	 * Update user groups in the external authentication database.
 	 * Return true if successful.
 	 *
-	 * @deprecated since 1.26, use the UserGroupsChanged hook instead.
 	 * @param User $user
 	 * @param array $addgroups Groups to add.
 	 * @param array $delgroups Groups to remove.
@@ -282,8 +278,6 @@ class AuthPlugin {
 	 * The User object is passed by reference so it can be modified; don't
 	 * forget the & on your function declaration.
 	 *
-	 * @deprecated since 1.26, use the UserLoggedIn hook instead. And assigning
-	 *  a different User object to $user is no longer supported.
 	 * @param User $user
 	 * @param bool $autocreate True if user is being autocreated on login
 	 */
@@ -332,21 +326,11 @@ class AuthPluginUser {
 		return -1;
 	}
 
-	/**
-	 * Indicate whether the user is locked
-	 * @deprecated since 1.26, use the UserIsLocked hook instead.
-	 * @return bool
-	 */
 	public function isLocked() {
 		# Override this!
 		return false;
 	}
 
-	/**
-	 * Indicate whether the user is hidden
-	 * @deprecated since 1.26, use the UserIsHidden hook instead.
-	 * @return bool
-	 */
 	public function isHidden() {
 		# Override this!
 		return false;

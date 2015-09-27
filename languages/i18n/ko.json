@@ -3236,6 +3236,8 @@
 	"api-error-copyuploaddisabled": "이 서버에서 URL을 통해 파일 올리기가 비활성화되어 있습니다.",
 	"api-error-duplicate": "이 위키에 내용이 똑같은 {{PLURAL:$1|[$2 다른 파일]}}이 있습니다.",
 	"api-error-duplicate-archive": "같은 내용을 담고 있던 {{PLURAL:$1|[$2 다른 파일]}}이 있었지만 이 {{PLURAL:$1|파일}}은 삭제되었습니다.",
+	"api-error-duplicate-archive-popup-title": "중복된 {{PLURAL:$1|파일}}이 이미 삭제되었습니다.",
+	"api-error-duplicate-popup-title": "중복된 {{PLURAL:$1|파일}}입니다.",
 	"api-error-empty-file": "올리려는 파일이 비어 있습니다.",
 	"api-error-emptypage": "새 문서로 빈 문서를 만들 수 없습니다.",
 	"api-error-fetchfileerror": "내부 오류: 파일을 불러오는 중 문제가 발생했습니다.",

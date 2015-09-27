@@ -33,10 +33,8 @@
  * Only use this class when transitioning from one storage system to another.
  *
  * Read operations are only done on the 'master' backend for consistency.
- * Write operations are performed on all backends, starting with the master.
- * This makes a best-effort to have transactional semantics, but since requests
- * may sometimes fail, the use of "autoResync" or background scripts to fix
- * inconsistencies is important.
+ * Write operations are performed on all backends, in the order defined.
+ * If an operation fails on one backend it will be rolled back from the others.
  *
  * @ingroup FileBackend
  * @since 1.19
@@ -47,14 +45,18 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/** @var int Index of master backend */
 	protected $masterIndex = -1;
-	/** @var int Index of read affinity backend */
-	protected $readIndex = -1;
 
 	/** @var int Bitfield */
 	protected $syncChecks = 0;
 
 	/** @var string|bool */
 	protected $autoResync = false;
+
+	/** @var array */
+	protected $noPushDirConts = array();
+
+	/** @var bool */
+	protected $noPushQuickOps = false;
 
 	/* Possible internal backend consistency checks */
 	const CHECK_SIZE = 1;
@@ -71,7 +73,6 @@ class FileBackendMultiWrite extends FileBackend {
 	 *                      FileBackendStore class, but with these additional settings:
 	 *                        - class         : The name of the backend class
 	 *                        - isMultiMaster : This must be set for one backend.
-	 *                        - readAffinity  : Use this for reads without 'latest' set.
 	 *                        - template:     : If given a backend name, this will use
 	 *                                          the config of that backend as a template.
 	 *                                          Values specified here take precedence.
@@ -85,6 +86,8 @@ class FileBackendMultiWrite extends FileBackend {
 	 *                      Use "conservative" to limit resyncing to copying newer master
 	 *                      backend files over older (or non-existing) clone backend files.
 	 *                      Cases that cannot be handled will result in operation abortion.
+	 *   - noPushQuickOps : (hack) Only apply doQuickOperations() to the master backend.
+	 *   - noPushDirConts : (hack) Only apply directory functions to the master backend.
 	 *
 	 * @param array $config
 	 * @throws FileBackendError
@@ -97,6 +100,12 @@ class FileBackendMultiWrite extends FileBackend {
 		$this->autoResync = isset( $config['autoResync'] )
 			? $config['autoResync']
 			: false;
+		$this->noPushQuickOps = isset( $config['noPushQuickOps'] )
+			? $config['noPushQuickOps']
+			: false;
+		$this->noPushDirConts = isset( $config['noPushDirConts'] )
+			? $config['noPushDirConts']
+			: array();
 		// Construct backends here rather than via registration
 		// to keep these backends hidden from outside the proxy.
 		$namesUsed = array();
@@ -123,9 +132,6 @@ class FileBackendMultiWrite extends FileBackend {
 				$this->masterIndex = $index; // this is the "master"
 				$config['fileJournal'] = $this->fileJournal; // log under proxy backend
 			}
-			if ( !empty( $config['readAffinity'] ) ) {
-				$this->readIndex = $index; // prefer this for reads
-			}
 			// Create sub-backend object
 			if ( !isset( $config['class'] ) ) {
 				throw new FileBackendError( 'No class given for a backend config.' );
@@ -135,9 +141,6 @@ class FileBackendMultiWrite extends FileBackend {
 		}
 		if ( $this->masterIndex < 0 ) { // need backends and must have a master
 			throw new FileBackendError( 'No master backend defined.' );
-		}
-		if ( $this->readIndex < 0 ) {
-			$this->readIndex = $this->masterIndex; // default
 		}
 	}
 
@@ -149,7 +152,6 @@ class FileBackendMultiWrite extends FileBackend {
 		// Try to lock those files for the scope of this function...
 		if ( empty( $opts['nonLocking'] ) ) {
 			// Try to lock those files for the scope of this function...
-			/** @noinspection PhpUnusedLocalVariableInspection */
 			$scopeLock = $this->getScopedLocksForOps( $ops, $status );
 			if ( !$status->isOK() ) {
 				return $status; // abort
@@ -456,10 +458,12 @@ class FileBackendMultiWrite extends FileBackend {
 		$masterStatus = $this->backends[$this->masterIndex]->doQuickOperations( $realOps );
 		$status->merge( $masterStatus );
 		// Propagate the operations to the clone backends...
-		foreach ( $this->backends as $index => $backend ) {
-			if ( $index !== $this->masterIndex ) { // not done already
-				$realOps = $this->substOpBatchPaths( $ops, $backend );
-				$status->merge( $backend->doQuickOperations( $realOps ) );
+		if ( !$this->noPushQuickOps ) {
+			foreach ( $this->backends as $index => $backend ) {
+				if ( $index !== $this->masterIndex ) { // not done already
+					$realOps = $this->substOpBatchPaths( $ops, $backend );
+					$status->merge( $backend->doQuickOperations( $realOps ) );
+				}
 			}
 		}
 		// Make 'success', 'successCount', and 'failCount' fields reflect
@@ -472,11 +476,24 @@ class FileBackendMultiWrite extends FileBackend {
 		return $status;
 	}
 
+	/**
+	 * @param string $path Storage path
+	 * @return bool Path container should have dir changes pushed to all backends
+	 */
+	protected function replicateContainerDirChanges( $path ) {
+		list( , $shortCont, ) = self::splitStoragePath( $path );
+
+		return !in_array( $shortCont, $this->noPushDirConts );
+	}
+
 	protected function doPrepare( array $params ) {
 		$status = Status::newGood();
+		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
 		foreach ( $this->backends as $index => $backend ) {
-			$realParams = $this->substOpPaths( $params, $backend );
-			$status->merge( $backend->doPrepare( $realParams ) );
+			if ( $replicate || $index == $this->masterIndex ) {
+				$realParams = $this->substOpPaths( $params, $backend );
+				$status->merge( $backend->doPrepare( $realParams ) );
+			}
 		}
 
 		return $status;
@@ -484,9 +501,12 @@ class FileBackendMultiWrite extends FileBackend {
 
 	protected function doSecure( array $params ) {
 		$status = Status::newGood();
+		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
 		foreach ( $this->backends as $index => $backend ) {
-			$realParams = $this->substOpPaths( $params, $backend );
-			$status->merge( $backend->doSecure( $realParams ) );
+			if ( $replicate || $index == $this->masterIndex ) {
+				$realParams = $this->substOpPaths( $params, $backend );
+				$status->merge( $backend->doSecure( $realParams ) );
+			}
 		}
 
 		return $status;
@@ -494,9 +514,12 @@ class FileBackendMultiWrite extends FileBackend {
 
 	protected function doPublish( array $params ) {
 		$status = Status::newGood();
+		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
 		foreach ( $this->backends as $index => $backend ) {
-			$realParams = $this->substOpPaths( $params, $backend );
-			$status->merge( $backend->doPublish( $realParams ) );
+			if ( $replicate || $index == $this->masterIndex ) {
+				$realParams = $this->substOpPaths( $params, $backend );
+				$status->merge( $backend->doPublish( $realParams ) );
+			}
 		}
 
 		return $status;
@@ -504,9 +527,12 @@ class FileBackendMultiWrite extends FileBackend {
 
 	protected function doClean( array $params ) {
 		$status = Status::newGood();
+		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
 		foreach ( $this->backends as $index => $backend ) {
-			$realParams = $this->substOpPaths( $params, $backend );
-			$status->merge( $backend->doClean( $realParams ) );
+			if ( $replicate || $index == $this->masterIndex ) {
+				$realParams = $this->substOpPaths( $params, $backend );
+				$status->merge( $backend->doClean( $realParams ) );
+			}
 		}
 
 		return $status;
@@ -514,52 +540,44 @@ class FileBackendMultiWrite extends FileBackend {
 
 	public function concatenate( array $params ) {
 		// We are writing to an FS file, so we don't need to do this per-backend
-		$index = $this->getReadIndexFromParams( $params );
-		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 
-		return $this->backends[$index]->concatenate( $realParams );
+		return $this->backends[$this->masterIndex]->concatenate( $realParams );
 	}
 
 	public function fileExists( array $params ) {
-		$index = $this->getReadIndexFromParams( $params );
-		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 
-		return $this->backends[$index]->fileExists( $realParams );
+		return $this->backends[$this->masterIndex]->fileExists( $realParams );
 	}
 
 	public function getFileTimestamp( array $params ) {
-		$index = $this->getReadIndexFromParams( $params );
-		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 
-		return $this->backends[$index]->getFileTimestamp( $realParams );
+		return $this->backends[$this->masterIndex]->getFileTimestamp( $realParams );
 	}
 
 	public function getFileSize( array $params ) {
-		$index = $this->getReadIndexFromParams( $params );
-		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 
-		return $this->backends[$index]->getFileSize( $realParams );
+		return $this->backends[$this->masterIndex]->getFileSize( $realParams );
 	}
 
 	public function getFileStat( array $params ) {
-		$index = $this->getReadIndexFromParams( $params );
-		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 
-		return $this->backends[$index]->getFileStat( $realParams );
+		return $this->backends[$this->masterIndex]->getFileStat( $realParams );
 	}
 
 	public function getFileXAttributes( array $params ) {
-		$index = $this->getReadIndexFromParams( $params );
-		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 
-		return $this->backends[$index]->getFileXAttributes( $realParams );
+		return $this->backends[$this->masterIndex]->getFileXAttributes( $realParams );
 	}
 
 	public function getFileContentsMulti( array $params ) {
-		$index = $this->getReadIndexFromParams( $params );
-		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
-
-		$contentsM = $this->backends[$index]->getFileContentsMulti( $realParams );
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		$contentsM = $this->backends[$this->masterIndex]->getFileContentsMulti( $realParams );
 
 		$contents = array(); // (path => FSFile) mapping using the proxy backend's name
 		foreach ( $contentsM as $path => $data ) {
@@ -570,31 +588,26 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	public function getFileSha1Base36( array $params ) {
-		$index = $this->getReadIndexFromParams( $params );
-		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 
-		return $this->backends[$index]->getFileSha1Base36( $realParams );
+		return $this->backends[$this->masterIndex]->getFileSha1Base36( $realParams );
 	}
 
 	public function getFileProps( array $params ) {
-		$index = $this->getReadIndexFromParams( $params );
-		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 
-		return $this->backends[$index]->getFileProps( $realParams );
+		return $this->backends[$this->masterIndex]->getFileProps( $realParams );
 	}
 
 	public function streamFile( array $params ) {
-		$index = $this->getReadIndexFromParams( $params );
-		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 
-		return $this->backends[$index]->streamFile( $realParams );
+		return $this->backends[$this->masterIndex]->streamFile( $realParams );
 	}
 
 	public function getLocalReferenceMulti( array $params ) {
-		$index = $this->getReadIndexFromParams( $params );
-		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
-
-		$fsFilesM = $this->backends[$index]->getLocalReferenceMulti( $realParams );
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		$fsFilesM = $this->backends[$this->masterIndex]->getLocalReferenceMulti( $realParams );
 
 		$fsFiles = array(); // (path => FSFile) mapping using the proxy backend's name
 		foreach ( $fsFilesM as $path => $fsFile ) {
@@ -605,10 +618,8 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	public function getLocalCopyMulti( array $params ) {
-		$index = $this->getReadIndexFromParams( $params );
-		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
-
-		$tempFilesM = $this->backends[$index]->getLocalCopyMulti( $realParams );
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		$tempFilesM = $this->backends[$this->masterIndex]->getLocalCopyMulti( $realParams );
 
 		$tempFiles = array(); // (path => TempFSFile) mapping using the proxy backend's name
 		foreach ( $tempFilesM as $path => $tempFile ) {
@@ -619,10 +630,9 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	public function getFileHttpUrl( array $params ) {
-		$index = $this->getReadIndexFromParams( $params );
-		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 
-		return $this->backends[$index]->getFileHttpUrl( $realParams );
+		return $this->backends[$this->masterIndex]->getFileHttpUrl( $realParams );
 	}
 
 	public function directoryExists( array $params ) {
@@ -655,15 +665,13 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	public function preloadCache( array $paths ) {
-		$realPaths = $this->substPaths( $paths, $this->backends[$this->readIndex] );
-		$this->backends[$this->readIndex]->preloadCache( $realPaths );
+		$realPaths = $this->substPaths( $paths, $this->backends[$this->masterIndex] );
+		$this->backends[$this->masterIndex]->preloadCache( $realPaths );
 	}
 
 	public function preloadFileStat( array $params ) {
-		$index = $this->getReadIndexFromParams( $params );
-		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
-
-		return $this->backends[$index]->preloadFileStat( $realParams );
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		return $this->backends[$this->masterIndex]->preloadFileStat( $realParams );
 	}
 
 	public function getScopedLocksForOps( array $ops, Status $status ) {
@@ -679,13 +687,5 @@ class FileBackendMultiWrite extends FileBackend {
 
 		// Actually acquire the locks
 		return $this->getScopedFileLocks( $pbPaths, 'mixed', $status );
-	}
-
-	/**
-	 * @param array $params
-	 * @return int The master or read affinity backend index, based on $params['latest']
-	 */
-	protected function getReadIndexFromParams( array $params ) {
-		return !empty( $params['latest'] ) ? $this->masterIndex : $this->readIndex;
 	}
 }

@@ -3301,6 +3301,8 @@
 	"api-error-copyuploaddisabled": "Načítání z URL je na tomto severu zakázáno.",
 	"api-error-duplicate": "Na této wiki již {{PLURAL:$1|existuje [$2 jiný soubor]|existují [$2 jiné soubory]}} se shodným obsahem.",
 	"api-error-duplicate-archive": "[$2 {{PLURAL:$1|Soubor|Soubory}}] se stejným obsahem již zde dříve {{PLURAL:$1|byl|byly}}, ale {{PLURAL:$1|byl smazán|byly smazány}}.",
+	"api-error-duplicate-archive-popup-title": "Duplicitní {{PLURAL:$1|soubor, který byl smazán|soubory, které byly smazány}}.",
+	"api-error-duplicate-popup-title": "Duplicitní {{PLURAL:$1|soubor|soubory}}.",
 	"api-error-empty-file": "Načtený soubor je prázdný.",
 	"api-error-emptypage": "Zakládání prázdných stránek není dovoleno.",
 	"api-error-fetchfileerror": "Vnitřní chyba: došlo k chybě při stahování souboru.",

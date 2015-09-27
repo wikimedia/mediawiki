@@ -3097,6 +3097,8 @@
 	"api-error-copyuploaddisabled": "At lægge filer op via hjemmesideadresser er slået fra på denne server.",
 	"api-error-duplicate": "Der er allerede {{PLURAL:$1|[$2 en anden fil]|[$2 nogle andre filer]}} med samme indhold på webstedet.",
 	"api-error-duplicate-archive": "Der var allerede {{PLURAL:$1|en [$2 anden fil]|[$2 nogle andre filer]}} med samme indhold på webstedet, men {{PLURAL:$1|den|de}} blev slettet.",
+	"api-error-duplicate-archive-popup-title": "Duplet af {{PLURAL:$1|fil|filer}}, der allerede er slettet",
+	"api-error-duplicate-popup-title": "Duplet {{PLURAL:$1|fil|filer}}",
 	"api-error-empty-file": "Den fil du indsendte var tom.",
 	"api-error-emptypage": "Det er ikke tilladt at oprette nye, tomme sider.",
 	"api-error-fetchfileerror": "Intern fejl: noget gik galt under hentningen af filen.",

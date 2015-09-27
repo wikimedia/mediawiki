@@ -2778,6 +2778,7 @@
 	"searchsuggest-search": "Излеу",
 	"searchsuggest-containing": "ичиндегиси…",
 	"api-error-badtoken": "Ич халат: терс токен.",
+	"api-error-duplicate-popup-title": "Дубликат {{PLURAL:$1|файл|файлла}}",
 	"api-error-empty-file": "Сиз ийген файлны ичи бошду.",
 	"api-error-emptypage": "Ичи бош болгъан джангы бетле къураргъа болмайды.",
 	"api-error-file-too-large": "Сиз ийген файл асыры уллуду.",

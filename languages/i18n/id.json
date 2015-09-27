@@ -3209,6 +3209,8 @@
 	"api-error-copyuploaddisabled": "Mengunggah melalui URL dilarang pada peladen ini.",
 	"api-error-duplicate": "Sudah ada {{PLURAL:$1|[$2 berkas lain]}} dengan konten yang sama di situs ini.",
 	"api-error-duplicate-archive": "Ada {{PLURAL:$1|[$2 berkas]}} lain di situs dengan konten yang sama, namun {{PLURAL:$1|berkas|berkas-berkas}} itu telah dihapus.",
+	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Berkas|Berkas-berkas}} duplikat yang telah dihapus.",
+	"api-error-duplicate-popup-title": "{{PLURAL:$1|Berkas}} duplikat.",
 	"api-error-empty-file": "Berkas yang Anda kirim kosong.",
 	"api-error-emptypage": "Pembuatan halaman baru yang kosong tidak diizinkan.",
 	"api-error-fetchfileerror": "Kesalahan internal: terjadi kesalahan saat memperoleh berkas ini.",

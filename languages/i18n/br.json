@@ -2979,6 +2979,8 @@
 	"api-error-copyuploaddisabled": "Diweredekaet eo an enporzhioù dre URL war ar servijer-mañ.",
 	"api-error-duplicate": "Bez' {{PLURAL:$1|ez eus [$2 restr all]|[$2 restr all]}} gant an hevelep danvez war al lec'hienn-mañ c'hoazh",
 	"api-error-duplicate-archive": "Bez' e oa {{PLURAL:$1|[$2 ur restr all]|[$2 restroù all]}} c'hoazh enno an hevelep danvez, nemet {{PLURAL:$1|eo bet diverket|int bet diverket}}.",
+	"api-error-duplicate-archive-popup-title": "Eilañ ar {{PLURAL:$1|restr|restroù}} zo bet diverket c'hoazh",
+	"api-error-duplicate-popup-title": "Eilañ {{PLURAL:$1|ar restr|ar restroù}}",
 	"api-error-empty-file": "Ar restr hoc'h eus roet a oa goullo.",
 	"api-error-emptypage": "N'eo ket aotreet krouiñ pajennoù goullo.",
 	"api-error-fetchfileerror": "Fazi diabarzh : aet ez eus un dra bennak a-dreuz en ur glask adtapout ar restr.",

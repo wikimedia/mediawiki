@@ -271,7 +271,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 			round( $this->getConfig()->get( 'NewPasswordExpiry' ) / 86400 )
 		);
 
-		$title = $this->msg( 'passwordreset-emailtitle' )->inLanguage( $userLanguage );
+		$title = $this->msg( 'passwordreset-emailtitle' );
 
 		$this->result = $firstUser->sendMail( $title->text(), $this->email->text() );
 

@@ -30,17 +30,6 @@ production.
 * Custom LESS functions (defined via $wgResourceLoaderLESSFunctions)
   have been removed, after being deprecated in 1.24.
 * $wgAlwaysUseTidy has been removed.
-* ResetSessionID hook has been removed. Nothing seems to use it.
-* Certain AuthPlugin methods are deprecated in favor of new hooks:
-** AuthPlugin::initUser() is replaced by LocalUserCreated.
-** AuthPlugin::updateUser() is replaced by UserLoggedIn.
-** AuthPlugin::updateExternalDB() is replaced by the existing UserSaveSettings.
-** AuthPlugin::updateExternalDBGroups() is replaced by UserGroupsChanged.
-** AuthPluginUser::isHidden() is replaced by UserIsHidden.
-** AuthPluginUser::isLocked() is replaced by UserIsLocked.
-* The UserRights hook is deprecated in favor of the new UserGroupsChanged hook.
-* AuthPlugin::initUser() and AuthPlugin::updateUser() should no longer replace
-  the passed User object.
 
 === New features in 1.26 ===
 * (T51506) Now action=info gives estimates of actual watchers for a page.
@@ -199,8 +188,6 @@ changes to languages because of Phabricator reports.
   are deprecated. Applications using those can work via the OAuth
   extension instead. New tokens types should not be added.
 * DatabaseBase::errorCount() was removed (unused).
-* $wgDeferredUpdateList was removed.
-* DeferredUpdates::addHTMLCacheUpdate() was removed.
 
 == Compatibility ==
 

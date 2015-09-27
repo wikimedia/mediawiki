@@ -207,8 +207,6 @@
 	"apihelp-query+usercontribs-param-limit": "回傳的貢獻數量上限。",
 	"apihelp-query+watchlist-param-limit": "每個請求要回傳的結果總數。",
 	"apihelp-query+watchlistraw-param-limit": "每個請求要回傳的結果總數。",
-	"apihelp-stashedit-param-title": "正在編輯此頁面的標題。",
-	"apihelp-stashedit-param-text": "頁面內容。",
 	"apihelp-tokens-description": "取得資料修改動作的密鑰。\n\n此模組已因支援 [[Special:ApiHelp/query+tokens|action=query&meta=tokens]] 而停用。",
 	"apihelp-unblock-param-reason": "解除封鎖的原因。",
 	"apihelp-unblock-example-id": "解除封銷 ID #<kbd>105</kbd>。",

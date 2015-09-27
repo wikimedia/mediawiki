@@ -175,6 +175,7 @@ class UploadFromUrl extends UploadBase {
 		$url = $request->getVal( 'wpUploadFileURL' );
 
 		return !empty( $url )
+			&& Http::isValidURI( $url )
 			&& $wgUser->isAllowed( 'upload_by_url' );
 	}
 

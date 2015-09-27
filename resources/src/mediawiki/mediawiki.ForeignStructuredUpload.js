@@ -11,8 +11,8 @@
 	 * See <https://commons.wikimedia.org/wiki/Commons:Structured_data> for
 	 * a more detailed description of how that system works.
 	 *
-	 * **TODO: This currently only supports uploads under CC-BY-SA 4.0,
-	 * and should really have support for more licenses.**
+	 * TODO this currently only supports uploads under CC-BY-SA 4.0,
+	 *     and should really have support for more licenses.
 	 *
 	 * @inheritdoc
 	 */

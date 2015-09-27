@@ -1430,8 +1430,8 @@ class User implements IDBAccessObject {
 		foreach ( $toPromote as $group ) {
 			$this->addGroup( $group );
 		}
+
 		// update groups in external authentication database
-		Hooks::run( 'UserGroupsChanged', array( $this, $toPromote, array(), false ) );
 		$wgAuth->updateExternalDBGroups( $this, $toPromote );
 
 		$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
@@ -1993,7 +1993,6 @@ class User implements IDBAccessObject {
 		global $wgAuth;
 		$authUser = $wgAuth->getUserInstance( $this );
 		$this->mLocked = (bool)$authUser->isLocked();
-		Hooks::run( 'UserIsLocked', array( $this, &$this->mLocked ) );
 		return $this->mLocked;
 	}
 
@@ -2011,7 +2010,6 @@ class User implements IDBAccessObject {
 			global $wgAuth;
 			$authUser = $wgAuth->getUserInstance( $this );
 			$this->mHideName = (bool)$authUser->isHidden();
-			Hooks::run( 'UserIsHidden', array( $this, &$this->mHideName ) );
 		}
 		return $this->mHideName;
 	}

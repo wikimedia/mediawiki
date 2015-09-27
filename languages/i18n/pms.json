@@ -3204,6 +3204,8 @@
 	"api-error-copyuploaddisabled": "Le carie a travers ëd liure a son disabilità ansima a cost servent.",
 	"api-error-duplicate": "A-i {{PLURAL:$1|é [$2 n'àutr archivi]|son [$2 àutri archivi]}} già an sël sit col ël midem contnù.",
 	"api-error-duplicate-archive": "A-i {{PLURAL:$1|era [$2 n'àutr archivi]|ero [$2 àutri archivi]}} già an sël sit con ël midem contnù, ma {{PLURAL:$1|a l'é stàit|a son ëstàit}} ëscancelà.",
+	"api-error-duplicate-archive-popup-title": "Dupliché {{PLURAL:$1|l'archivi|j'archivi}} ch'a son già stàit ëscancelà",
+	"api-error-duplicate-popup-title": "Dupliché {{PLURAL:$1|l'archivi|j'archivi}}",
 	"api-error-empty-file": "L'archivi ch'a l'ha mandà a l'era veuid.",
 	"api-error-emptypage": "La creassion ëd pàgine neuve veujde a l'é nen përmëttùa.",
 	"api-error-fetchfileerror": "Eror antern: quaicòs a l'é andàit mal antramentre ch'as arcuperava l'archivi.",

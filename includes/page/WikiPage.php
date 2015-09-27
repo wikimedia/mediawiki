@@ -1765,6 +1765,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$now = wfTimestampNow();
+		$this->mTimestamp = $now;
 
 		if ( $flags & EDIT_UPDATE ) {
 			// Update article, but only if changed.
@@ -1843,7 +1844,6 @@ class WikiPage implements Page, IDBAccessObject {
 				$user->incEditCount();
 
 				$dbw->commit( __METHOD__ );
-				$this->mTimestamp = $now;
 			} else {
 				// Bug 32948: revision ID must be set to page {{REVISIONID}} and
 				// related variables correctly
@@ -1938,7 +1938,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$user->incEditCount();
 
 			$dbw->commit( __METHOD__ );
-			$this->mTimestamp = $now;
 
 			// Update links, etc.
 			$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
@@ -2873,10 +2872,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$dbw->commit( __METHOD__ );
 		}
 
-		// Show log excerpt on 404 pages rather than just a link
-		$key = wfMemcKey( 'page-recent-delete', md5( $logTitle->getPrefixedText() ) );
-		ObjectCache::getMainStashInstance()->set( $key, 1, 86400 );
-
 		$this->doDeleteUpdates( $id, $content );
 
 		Hooks::run( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id, $content, $logEntry ) );
@@ -3223,10 +3218,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public static function onArticleEdit( Title $title, Revision $revision = null ) {
 		// Invalidate caches of articles which include this page
-		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $title, 'templatelinks' ) );
+		DeferredUpdates::addHTMLCacheUpdate( $title, 'templatelinks' );
 
 		// Invalidate the caches of all pages which redirect here
-		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $title, 'redirect' ) );
+		DeferredUpdates::addHTMLCacheUpdate( $title, 'redirect' );
 
 		// Purge squid for this page only
 		$title->purgeSquid();

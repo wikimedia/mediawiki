@@ -3235,6 +3235,8 @@
 	"api-error-copyuploaddisabled": "Otpremanje putem adrese je onemogućeno na ovom serveru.",
 	"api-error-duplicate": "Već {{PLURAL:$1|postoji [$2 druga datoteka]|postoje [$2 druge datoteke]}} s istim sadržajem.",
 	"api-error-duplicate-archive": "{{PLURAL:$1|Postojala je [$2 druga datoteka]|Postojale su [$2 druge datoteke]}} s istim sadržajem, ali {{PLURAL:$1|je obrisana|su obrisane}}.",
+	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Duplirana datoteka koja je već obrisana|Duplirane datoteke koje su već obrisane}}",
+	"api-error-duplicate-popup-title": "{{PLURAL:$1|Duplirana datoteka|Duplirane datoteke}}",
 	"api-error-empty-file": "Poslata datoteka je prazna.",
 	"api-error-emptypage": "Stvaranje novih praznih stranica nije dozvoljeno.",
 	"api-error-fetchfileerror": "Unutrašnja greška: došlo je do greške pri dobavljanju datoteke.",

@@ -315,7 +315,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			array()
 		);
 
-		$query = $title->isRedirect() ? array( 'redirect' => 'no' ) : array();
+		$query = array( 'redirect' => 'no' );
 
 		// Linker::linkKnown() uses 'known' and 'noclasses' options.
 		// This breaks the colouration for stubs.

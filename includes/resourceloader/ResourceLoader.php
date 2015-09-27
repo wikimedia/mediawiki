@@ -283,8 +283,8 @@ class ResourceLoader implements LoggerAwareInterface {
 		$this->register( include "$IP/resources/Resources.php" );
 		$this->register( include "$IP/resources/ResourcesOOUI.php" );
 		// Register extension modules
-		$this->register( $config->get( 'ResourceModules' ) );
 		Hooks::run( 'ResourceLoaderRegisterModules', array( &$this ) );
+		$this->register( $config->get( 'ResourceModules' ) );
 
 		if ( $config->get( 'EnableJavaScriptTest' ) === true ) {
 			$this->registerTestModules();
@@ -747,18 +747,18 @@ class ResourceLoader implements LoggerAwareInterface {
 
 		if ( $context->getImageObj() && $this->errors ) {
 			// We can't show both the error messages and the response when it's an image.
-			$response = implode( "\n\n",  $this->errors );
-		} elseif ( $this->errors ) {
-			$errorText = implode( "\n\n", $this->errors );
-			$errorResponse = self::makeComment( $errorText );
-			if ( $context->shouldIncludeScripts() ) {
-				$errorResponse .= 'if (window.console && console.error) {'
-					. Xml::encodeJsCall( 'console.error', array( $errorText ) )
-					. "}\n";
+			$errorText = '';
+			foreach ( $this->errors as $error ) {
+				$errorText .= $error . "\n";
 			}
-
-			// Prepend error info to the response
-			$response = $errorResponse . $response;
+			$response = $errorText;
+		} elseif ( $this->errors ) {
+			// Prepend comments indicating errors
+			$errorText = '';
+			foreach ( $this->errors as $error ) {
+				$errorText .= self::makeComment( $error );
+			}
+			$response = $errorText . $response;
 		}
 
 		$this->errors = array();

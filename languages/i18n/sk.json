@@ -3054,6 +3054,8 @@
 	"api-error-copyuploaddisabled": "Nahrávanie z URL je na tomto serveri zakázané.",
 	"api-error-duplicate": "{{PLURAL:$1|[$2 ďalší súbor]|[$2 ďalšie súbory]}} s rovnakým obsahom už na tejto wiki existujú",
 	"api-error-duplicate-archive": "{{PLURAL:$1|[$2 ďalší súbor]|[$2 ďalšie súbory]}} s rovnakým obsahom už na tejto wiki existoval, ale {{PLURAL:$1|bol zmazaný|boli zmazané}}.",
+	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Duplicitný súbor, ktorý už bol zmazaný|Duplicitné súbory, ktoré už boli zmazané}}",
+	"api-error-duplicate-popup-title": "Duplikovať {{PLURAL:$1|súbor|súbory}}",
 	"api-error-empty-file": "Súbor, ktorý ste poslali bol prázdny.",
 	"api-error-emptypage": "Vytváranie nových, prázdnych stránok nie je dovolené.",
 	"api-error-fetchfileerror": "Vnútorná chyba: Niečo pokazilo počas sťahovania súboru.",

@@ -3118,6 +3118,8 @@
 	"api-error-copyuploaddisabled": "D'Eroplueden iwwer eng URL ass op dësem Server desaktivéiert.",
 	"api-error-duplicate": "Et gëtt schonn {{PLURAL:$1|[$2 en anere Fichier]|[$2 aner Fichiere]}} mat dem selwechten Inhalt op dem Site",
 	"api-error-duplicate-archive": "Et gouf schonn {{PLURAL:$1| [een anere Fichier]|[$2 aner Fichieren]}} op dem Site mat deemselwechten Inhalt, {{PLURAL:$1|e gouf was|se goufen}} awer geläscht.",
+	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Duebele Fichier, dee scho geläscht gouf|Duebel Fichieren, déi scho geläscht goufen}}",
+	"api-error-duplicate-popup-title": "{{PLURAL:$1|Duebele Fichier|Duebel Fichieren}}",
 	"api-error-empty-file": "De Fichier deen Dir geschéckt hutt war eidel.",
 	"api-error-emptypage": "Et ass net erlaabt nei, eidel Säiten unzeleeën.",
 	"api-error-fetchfileerror": "Interne Feeler: beim Opruffe vum Fichier huet eppes net funktionéiert.",

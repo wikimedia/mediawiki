@@ -1256,15 +1256,6 @@
 	"apihelp-setnotificationtimestamp-example-pagetimestamp": "Set the notification timestamp for <kbd>Main page</kbd> so all edits since 1 January 2012 are unviewed.",
 	"apihelp-setnotificationtimestamp-example-allpages": "Reset the notification status for pages in the <kbd>{{ns:user}}</kbd> namespace.",
 
-	"apihelp-stashedit-description": "Prepare an edit in shared cache.\n\nThis is intended to be used via AJAX from the edit form to improve the performance of the page save.",
-	"apihelp-stashedit-param-title": "Title of the page being edited.",
-	"apihelp-stashedit-param-section": "Section number. <kbd>0</kbd> for the top section, <kbd>new</kbd> for a new section.",
-	"apihelp-stashedit-param-sectiontitle": "The title for a new section.",
-	"apihelp-stashedit-param-text": "Page content.",
-	"apihelp-stashedit-param-contentmodel": "Content model of the new content.",
-	"apihelp-stashedit-param-contentformat": "Content serialization format used for the input text.",
-	"apihelp-stashedit-param-baserevid": "Revision ID of the base revision.",
-
 	"apihelp-tag-description": "Add or remove change tags from individual revisions or log entries.",
 	"apihelp-tag-param-rcid": "One or more recent changes IDs from which to add or remove the tag.",
 	"apihelp-tag-param-revid": "One or more revision IDs from which to add or remove the tag.",

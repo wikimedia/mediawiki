@@ -2945,6 +2945,8 @@
 	"api-error-copyuploaddisabled": "Opplasting etter URL er avslege på tenaren.",
 	"api-error-duplicate": "Det finst {{PLURAL:$1|[$2 ei anna fil]|[$2 andre filer]}} på nettstaden med same innhaldet.",
 	"api-error-duplicate-archive": "Det fanst {{PLURAL:$1|[$2 ei anna fil]|[$2 andre filer]}} på nettstaden med det same innhaldet, men {{PLURAL:$1|ho|dei}} vart sletta.",
+	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Tvifelt fil|Tvifelte filer}} som alt er sletta",
+	"api-error-duplicate-popup-title": "{{PLURAL:$1|Tvifelt fil|Tvifelte filer}}",
 	"api-error-empty-file": "Fila du sende var tom.",
 	"api-error-emptypage": "Det er ikkje tillate å oppretta nye tomme sider.",
 	"api-error-fetchfileerror": "Intern feil: Noko gjekk gale då fila vart henta.",

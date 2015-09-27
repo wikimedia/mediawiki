@@ -3282,6 +3282,8 @@
 	"api-error-copyuploaddisabled": "Les càrregues via URL estan desactivades en aquest servidor.",
 	"api-error-duplicate": "Ja hi ha {{PLURAL:$1|[$2 un altre fitxer]|[$2 altres fitxers]}} en aquest lloc web amb el mateix contingut.",
 	"api-error-duplicate-archive": "Aquí ja hi ha hagut {{PLURAL:$1|[$2 un altre fitxer]|[$2 altres fitxers]}} amb el mateix contingut, i {{PLURAL:$1|va ser esborrat|varen ser esborrats}}.",
+	"api-error-duplicate-archive-popup-title": "Duplica {{PLURAL:$1|el fitxer|els fitxers}} que ja s'han eliminat",
+	"api-error-duplicate-popup-title": "{{PLURAL:$1|Fitxer duplicat|Fitxers duplicats}}",
 	"api-error-empty-file": "El fitxer que heu tramès està buit.",
 	"api-error-emptypage": "No es permet la creació de pàgines noves en blanc.",
 	"api-error-fetchfileerror": "Error intern: quelcom no ha funcionat en accedir al fitxer.",

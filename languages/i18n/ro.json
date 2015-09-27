@@ -3236,6 +3236,8 @@
 	"api-error-copyuploaddisabled": "Încărcarea prin URL este dezactivată pe acest server.",
 	"api-error-duplicate": "Există {{PLURAL:$1|un [$2 alt fișier]|[$2 alte fișiere]}} deja încărcate cu același conținut.",
 	"api-error-duplicate-archive": "{{PLURAL:$1|A existat [$2 un alt fișier]|Au existat [$2 alte fișiere]}} cu același conținut pe site, dar {{PLURAL:$1|a fost|au fost}} șterse.",
+	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Fișierul|Fișierele}} {{PLURAL:$1|duplicat|duplicate}} care {{PLURAL:$1|a|au}} fost deja {{PLURAL:$1|șters|șterse}}",
+	"api-error-duplicate-popup-title": "{{PLURAL:$1|Fișier|Fișiere}} {{PLURAL:$1|duplicat|duplicate}}",
 	"api-error-empty-file": "Fișierul încărcat de dumneavoastră este gol.",
 	"api-error-emptypage": "Crearea paginilor noi, goale nu este permisă.",
 	"api-error-fetchfileerror": "Eroare internă: ceva nu a funcționat corect la prelucrarea fișierului.",

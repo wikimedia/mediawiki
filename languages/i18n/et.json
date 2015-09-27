@@ -3249,6 +3249,8 @@
 	"api-error-copyuploaddisabled": "URLi kaudu üleslaadimine on selles serveris keelatud.",
 	"api-error-duplicate": "Siin on {{PLURAL:$1|[$2 teine samasisuline fail]|[$2 mõned teised samasisulised failid]}} juba olemas.",
 	"api-error-duplicate-archive": "Siin {{PLURAL:$1|on [$2 teine samasisuline fail]|olid [$2 mõned teised samasisulised failid]}} juba olemas, aga {{PLURAL:$1|see|need}} kustutati.",
+	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Duplikaatfail|Duplikaatfailid}}, mis on juba kustutatud",
+	"api-error-duplicate-popup-title": "{{PLURAL:$1|Duplikaatfail|Duplikaatfailid}}",
 	"api-error-empty-file": "Üleslaaditav fail on tühi.",
 	"api-error-emptypage": "Uute tühjade lehekülgede loomine pole lubatud.",
 	"api-error-fetchfileerror": "Sisemine tõrge: Midagi läks faili kättesaamisel valesti.",

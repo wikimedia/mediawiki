@@ -42,7 +42,6 @@ class SpecialImport extends SpecialPage {
 	private $history = true;
 	private $includeTemplates = false;
 	private $pageLinkDepth;
-	private $importSources;
 
 	/**
 	 * Constructor
@@ -66,9 +65,6 @@ class SpecialImport extends SpecialPage {
 		$this->namespace = $this->getConfig()->get( 'ImportTargetNamespace' );
 
 		$this->getOutput()->addModules( 'mediawiki.special.import' );
-
-		$this->importSources = $this->getConfig()->get( 'ImportSources' );
-		Hooks::run( 'ImportSources', array( &$this->importSources ) );
 
 		$user = $this->getUser();
 		if ( !$user->isAllowedAny( 'import', 'importupload' ) ) {
@@ -140,17 +136,16 @@ class SpecialImport extends SpecialPage {
 			}
 			$this->interwiki = $this->fullInterwikiPrefix = $request->getVal( 'interwiki' );
 			// does this interwiki have subprojects?
-			$hasSubprojects = array_key_exists( $this->interwiki, $this->importSources );
-			if ( !$hasSubprojects && !in_array( $this->interwiki, $this->importSources ) ) {
+			$importSources = $this->getConfig()->get( 'ImportSources' );
+			$hasSubprojects = array_key_exists( $this->interwiki, $importSources );
+			if ( !$hasSubprojects && !in_array( $this->interwiki, $importSources ) ) {
 				$source = Status::newFatal( "import-invalid-interwiki" );
 			} else {
 				if ( $hasSubprojects ) {
 					$this->subproject = $request->getVal( 'subproject' );
 					$this->fullInterwikiPrefix .= ':' . $request->getVal( 'subproject' );
 				}
-				if ( $hasSubprojects &&
-					!in_array( $this->subproject, $this->importSources[$this->interwiki] )
-				) {
+				if ( $hasSubprojects && !in_array( $this->subproject, $importSources[$this->interwiki] ) ) {
 					$source = Status::newFatal( "import-invalid-interwiki" );
 				} else {
 					$this->history = $request->getCheck( 'interwikiHistory' );
@@ -311,6 +306,7 @@ class SpecialImport extends SpecialPage {
 		$user = $this->getUser();
 		$out = $this->getOutput();
 		$this->addHelpLink( '//meta.wikimedia.org/wiki/Special:MyLanguage/Help:Import', true );
+		$importSources = $this->getConfig()->get( 'ImportSources' );
 
 		if ( $user->isAllowed( 'importupload' ) ) {
 			$mappingSelection = $this->getMappingFormPart( 'upload' );
@@ -360,12 +356,12 @@ class SpecialImport extends SpecialPage {
 					Xml::closeElement( 'fieldset' )
 			);
 		} else {
-			if ( empty( $this->importSources ) ) {
+			if ( empty( $importSources ) ) {
 				$out->addWikiMsg( 'importnosources' );
 			}
 		}
 
-		if ( $user->isAllowed( 'import' ) && !empty( $this->importSources ) ) {
+		if ( $user->isAllowed( 'import' ) && !empty( $importSources ) ) {
 			# Show input field for import depth only if $wgExportMaxLinkDepth > 0
 			$importDepth = '';
 			if ( $this->getConfig()->get( 'ExportMaxLinkDepth' ) > 0 ) {
@@ -407,7 +403,7 @@ class SpecialImport extends SpecialPage {
 			);
 
 			$needSubprojectField = false;
-			foreach ( $this->importSources as $key => $value ) {
+			foreach ( $importSources as $key => $value ) {
 				if ( is_int( $key ) ) {
 					$key = $value;
 				} elseif ( $value !== $key ) {
@@ -439,7 +435,7 @@ class SpecialImport extends SpecialPage {
 				);
 
 				$subprojectsToAdd = array();
-				foreach ( $this->importSources as $key => $value ) {
+				foreach ( $importSources as $key => $value ) {
 					if ( is_array( $value ) ) {
 						$subprojectsToAdd = array_merge( $subprojectsToAdd, $value );
 					}

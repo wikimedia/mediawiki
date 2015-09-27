@@ -2916,6 +2916,8 @@
 	"api-error-copyuploaddisabled": "URL nisqawanqa kay sirwiqpi manam churkuyta atinki.",
 	"api-error-duplicate": "Kay tiyaypiqa huk {{PLURAL:$1|[$2 willañiqim]|[$2 willañiqikunam]}} kachkanñam kaqlla samiqniyuq kaq.",
 	"api-error-duplicate-archive": "Kay tiyaypiqa huk {{PLURAL:$1|[$2 willañiqim]|[$2 willañiqikunam]}} karqanñam kaqlla samiqniyuq kaq, kunantaq qullusqañam.",
+	"api-error-duplicate-archive-popup-title": "Qullusqaña iskaychasqa {{PLURAL:$1|willañiqi|willañiqikuna}}.",
+	"api-error-duplicate-popup-title": "Iskaychasqa {{PLURAL:$1|willañiqi|willañiqikuna}}.",
 	"api-error-empty-file": "Kachasqayki willañiqiqa ch'usaqmi.",
 	"api-error-emptypage": "Musuq ch'usaq p'anqakunata kamariyqa manam saqillasqachu.",
 	"api-error-fetchfileerror": "Ukhupi pantasqa: Willañiqita chaskiykachachkaptiyki ima mana allin kaqpas tukurqan.",

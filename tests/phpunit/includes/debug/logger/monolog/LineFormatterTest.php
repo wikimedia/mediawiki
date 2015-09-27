@@ -28,7 +28,7 @@ use TestingAccessWrapper;
 
 class LineFormatterTest extends MediaWikiTestCase {
 
-	protected function setUp() {
+	public function setUp() {
 		if ( !class_exists( 'Monolog\Formatter\LineFormatter' ) ) {
 			$this->markTestSkipped( 'This test requires monolog to be installed' );
 		}

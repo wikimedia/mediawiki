@@ -3292,6 +3292,8 @@
 	"api-error-copyuploaddisabled": "Uppladdning via URL är inaktiverad på den här servern.",
 	"api-error-duplicate": "Det finns redan {{PLURAL:$1|[$2 en annan fil]|[$2 andra filer]}} på webbplatsen med samma innehåll.",
 	"api-error-duplicate-archive": "Det fanns redan {{PLURAL:$1|[$2 en annan fil]|[$2 några andra filer]}} på webbplatsen med samma innehåll, men {{PLURAL:$1|den har|de har}} raderats.",
+	"api-error-duplicate-archive-popup-title": "Dubblett av {{PLURAL:$1|fil|filer}} som redan har tagits bort",
+	"api-error-duplicate-popup-title": "Dubblett{{PLURAL:$1|fil|filer}}",
 	"api-error-empty-file": "Filen du skickade var tom.",
 	"api-error-emptypage": "Det är inte tillåtet att skapa nya, tomma sidor.",
 	"api-error-fetchfileerror": "Internt fel: något gick fel vid hämtningen av filen.",

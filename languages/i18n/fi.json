@@ -3283,6 +3283,8 @@
 	"api-error-copyuploaddisabled": "Tallentaminen URL-osoitteesta ei ole käytössä.",
 	"api-error-duplicate": "Samansisältöisiä tiedostoja löytyi {{PLURAL:$1|[$2 yksi kappale]|[$2 useampia kappaleita]}}.",
 	"api-error-duplicate-archive": "Sivustolla oli aiemmin {{PLURAL:$1|[$2 toinen samansisältöinen tiedosto]|[$2 toisia samansisältöisiä tiedostoja]}}, mutta {{PLURAL:$1|se|ne}} poistettiin.",
+	"api-error-duplicate-archive-popup-title": "Tiedostolla on {{PLURAL:$1|poistettu kaksoiskappale|poistettuja kaksoiskappaleita}}",
+	"api-error-duplicate-popup-title": "Tiedoston {{PLURAL:$1|kaksoiskappale|kaksoiskappaleet}}",
 	"api-error-empty-file": "Määrittämäsi tiedosto on tyhjä.",
 	"api-error-emptypage": "Ei ole sallittua luoda uutta, tyhjää sivua.",
 	"api-error-fetchfileerror": "Sisäinen virhe: Jotakin meni pieleen kun tiedostoa haettiin.",

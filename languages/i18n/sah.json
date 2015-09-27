@@ -3143,6 +3143,8 @@
 	"api-error-copyuploaddisabled": "URL көмөтүнэн киллэрии бу сиэрбэргэ араарыллыбыт.",
 	"api-error-duplicate": "Маннык иһинээҕилээх {{PLURAL:$1|[$2 атын билэ] баар эбит}}",
 	"api-error-duplicate-archive": "Урут ситим-сиргэ маннык иһинээҕилээх {{PLURAL:$1|[$2 билэ] баар |[$2 билэлэр] бааллар}} этэ, ол гынан баран {{PLURAL:$1|сотуллубута|сотуллубуттара}}.",
+	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Билэ|Билэлэр}} сотуллубут дубликааттара",
+	"api-error-duplicate-popup-title": "{{PLURAL:$1|Билэ|Билэлэр}} дубликааттара.",
 	"api-error-empty-file": "Ыыппыт билэҥ кураанах.",
 	"api-error-emptypage": "Саҥа кураанах сирэйи оҥорор табыллыбат.",
 	"api-error-fetchfileerror": "Ис алҕас: билэни ыларга туох эрэ сатаммата.",

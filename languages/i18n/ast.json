@@ -3231,6 +3231,8 @@
 	"api-error-copyuploaddisabled": "Xubir d'una URL ta desactivao nesti sirvidor.",
 	"api-error-duplicate": "Yá hai {{PLURAL:$1|[$2 otru ficheru]|[$2 otros ficheros]}} nesti sitiu col mesmu conteníu.",
 	"api-error-duplicate-archive": "Había {{PLURAL:$1|[$2 otru ficheru]|[$2 otros ficheros]}} nesti sitiu col mesmu conteníu, pero se {{PLURAL:$1|desanició|desaniciaron}}.",
+	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Ficheru duplicáu|Ficheros duplicaos}} que yá se {{PLURAL:$1|desanició|desaniciaron}}",
+	"api-error-duplicate-popup-title": "{{PLURAL:$1|Ficheru duplicáu|Ficheros duplicaos}}",
 	"api-error-empty-file": "El ficheru qu'unviasti taba baleru.",
 	"api-error-emptypage": "Nun se permite la creación de páxines nueves baleres.",
 	"api-error-fetchfileerror": "Fallu internu: daqué nun funcionó al buscar el ficheru.",

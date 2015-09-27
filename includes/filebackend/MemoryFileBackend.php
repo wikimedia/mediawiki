@@ -35,10 +35,6 @@ class MemoryFileBackend extends FileBackendStore {
 	/** @var array Map of (file path => (data,mtime) */
 	protected $files = array();
 
-	public function getFeatures() {
-		return self::ATTR_UNICODE_PATHS;
-	}
-
 	public function isPathUsableInternal( $storagePath ) {
 		return true;
 	}

@@ -3172,6 +3172,8 @@
 	"api-error-copyuploaddisabled": "Det huuchschüüren auer URL as üüb didiar server ei aktiif.",
 	"api-error-duplicate": "Uun det Wiki {{PLURAL:$1|as al [$2 en ööder datei]|san al [$2 muar datein]}} mä detsalew banen.",
 	"api-error-duplicate-archive": "Diar wiar al {{PLURAL:$1|[$2 ööder datei]|[$2 ööder datein]}} mä detsalew banen. {{PLURAL:$1|Hat as |Jo san}} oober stregen wurden.",
+	"api-error-duplicate-archive-popup-title": "Dobelt {{PLURAL:$1|datei, diar al stregen wurden as|datein, diar al stregen wurden san}}.",
+	"api-error-duplicate-popup-title": "Dobelt {{PLURAL:$1|datei|datein}}",
 	"api-error-empty-file": "Det datei, wat dü huuchschüürd heest, as leesag.",
 	"api-error-emptypage": "Dü mutst nian leesag sidjen nei iinstel.",
 	"api-error-fetchfileerror": "Intern feeler: Bi't ufrepen faan det datei as wat skiaf gingen.",

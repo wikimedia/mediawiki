@@ -3215,6 +3215,8 @@
 	"api-error-copyuploaddisabled": "سوار کردن وا یو آر ال دی ای سرور غیرفعال بیه.",
 	"api-error-duplicate": "{{PLURAL:$1|[$2 یه گل جانیا هنی]|[$2 چن گل جانیا هنی]}} د دیارگه وا مینونه هومبراور بی.",
 	"api-error-duplicate-archive": "{{PLURAL:$1|[$2 یه گل جانیا هنی]|[$2 چن گل جانیا هنی]}} د دیارگه وا مینونه هومبراور بی.ولی پاکسا {{PLURAL:$1|بیه|بینه}}.",
+	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|جانیا|جانیایا}} تکراری یی که ایسه پاکسا بیینه",
+	"api-error-duplicate-popup-title": "{{PLURAL:$1|جانیا|جانیایا}} تکراری",
 	"api-error-empty-file": "جانیایی که دئی ته حالی بی.",
 	"api-error-emptypage": "یه گل بلگه تازه راس بکیت،بلگه یا حالی صلادار کاری نیئن.",
 	"api-error-fetchfileerror": "خطا مین کار: د گات گرتن جانیا، یه چی یی خو پیش نرت.",

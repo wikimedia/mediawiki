@@ -92,30 +92,6 @@ class ApiImport extends ApiBase {
 		$result->addValue( null, $this->getModuleName(), $resultData );
 	}
 
-	/**
-	 * Returns a list of interwiki prefixes corresponding to each defined import
-	 * source.
-	 *
-	 * @return array
-	 * @since 1.26
-	 */
-	public function getAllowedImportSources() {
-		$importSources = $this->getConfig()->get( 'ImportSources' );
-		Hooks::run( 'ImportSources', array( &$importSources ) );
-
-		$result = array();
-		foreach ( $importSources as $key => $value ) {
-			if ( is_int( $key ) ) {
-				$result[] = $value;
-			} else {
-				foreach ( $value as $subproject ) {
-					$result[] = "$key:$subproject";
-				}
-			}
-		}
-		return $result;
-	}
-
 	public function mustBePosted() {
 		return true;
 	}
@@ -131,7 +107,7 @@ class ApiImport extends ApiBase {
 				ApiBase::PARAM_TYPE => 'upload',
 			),
 			'interwikisource' => array(
-				ApiBase::PARAM_TYPE => $this->getAllowedImportSources(),
+				ApiBase::PARAM_TYPE => $this->getConfig()->get( 'ImportSources' ),
 			),
 			'interwikipage' => null,
 			'fullhistory' => false,

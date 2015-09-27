@@ -3075,6 +3075,8 @@
 	"api-error-copyuploaddisabled": "Nahrawanje přez URL je na tutym serwerje znjemóžnjene.",
 	"api-error-duplicate": "{{PLURAL:$1|Je|Stej|Su|Je}} hižo {{PLURAL:$1|[$2 druha dataja]|[$2 druhej dataji]|[$2 druhe dataje]|[$2 druhich datajow]}} ze samsnym wobsahom na sydle",
 	"api-error-duplicate-archive": "{{PLURAL:$1|Bě [$2 druha dataja]|Běštej [$2 druhej dataji]|Běchu [$2 druhe dataje]|Bě [$2 druhich datajow]}} hižo na websydle ze samsnym wobsahom, ale {{PLURAL:$1|je so zhašała|stej so zhašałoj|su so zhašeli|je so zhašało}}.",
+	"api-error-duplicate-archive-popup-title": "{{PLURAL:$1|Dwójna dataja, kotraž je|Dwójnej dataji, kotrejž stej|Dwójne dataje, kotrež su|Dwójne dataje, kotrež su}} so hižo {{PLURAL:$1|zhašała|zhašałoj|zhašeli|zhašeli}}",
+	"api-error-duplicate-popup-title": "{{PLURAL:$1|Dwójna dataja|Dwójnej dataji|Dwójne dataje|Dwójne dataje}}",
 	"api-error-empty-file": "Dataja, kotruž sy nahrał, je prózdna.",
 	"api-error-emptypage": "Wutworjenje nowych, prózdnych stronow njeje dowolene.",
 	"api-error-fetchfileerror": "Nutřkowny zmylk: při wobstarowanju dataje je so něšto nimokuliło.",

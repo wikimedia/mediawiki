@@ -1272,21 +1272,20 @@ $user: User being checked
 $confirmed: Whether or not the email address is confirmed
 
 'EmailUser': Before sending email from one user to another.
-$to: MailAddress object of receiving user
-$from: MailAddress object of sending user
+$to: address of receiving user
+$from: address of sending user
 $subject: subject of the mail
 $text: text of the mail
-&$error: Out-param for an error
 
 'EmailUserCC': Before sending the copy of the email to the author.
-$to: MailAddress object of receiving user
-$from: MailAddress object of sending user
+$to: address of receiving user
+$from: address of sending user
 $subject: subject of the mail
 $text: text of the mail
 
 'EmailUserComplete': After sending email from one user to another.
-$to: MailAddress object of receiving user
-$from: MailAddress object of sending user
+$to: address of receiving user
+$from: address of sending user
 $subject: subject of the mail
 $text: text of the mail
 
@@ -1633,11 +1632,6 @@ Return false to stop further processing of the tag
 $reader: XMLReader object
 $revisionInfo: Array of information
 
-'ImportSources': Called when reading from the $wgImportSources configuration
-variable. Can be used to lazy-load the import sources list.
-&$importSources: The value of $wgImportSources. Modify as necessary. See the
-comment in DefaultSettings.php for the detail of how to structure this array.
-
 'InfoAction': When building information to display on the action=info page.
 $context: IContextSource object
 &$pageInfo: Array of information
@@ -1850,10 +1844,6 @@ localisation checks.
 optional localisation messages
 &$ignored: Array of ignored message keys
 &$optional: Array of optional message keys
-
-'LocalUserCreated': Called when a local user has been created
-$user: User object for the created user
-$autocreated: Boolean, whether this was an auto-creation
 
 'LogEventsListGetExtraInputs': When getting extra inputs to display on
 Special:Log for a specific log type
@@ -2190,7 +2180,6 @@ which depends on user options should install this hook and append its values to
 the key.
 &$confstr: reference to a hash key string which can be modified
 $user: User (object) requesting the page
-&$forOptions: array of options the hash is for
 
 'PageViewUpdates': Allow database (or other) changes to be made after a
 page view is seen by MediaWiki.  Note this does not capture views made
@@ -2458,6 +2447,10 @@ $context: (IContextSource) The RequestContext the skin is being created for.
 'ResetPasswordExpiration': Allow extensions to set a default password expiration
 $user: The user having their password expiration reset
 &$newExpire: The new expiration date
+
+'ResetSessionID': Called from wfResetSessionID
+$oldSessionID: old session id
+$newSessionID: new session id
 
 'ResourceLoaderForeignApiModules': Called from ResourceLoaderForeignApiModule.
 Use this to add dependencies to 'mediawiki.ForeignApi' module when you wish
@@ -3116,9 +3109,7 @@ $descriptor: (array) the HTMLForm descriptor
 
 'UploadFormSourceDescriptors': after the standard source inputs have been
 added to the descriptor
-&$descriptor: (array) the HTMLForm descriptor
-&$radio: Boolean, if source type should be shown as radio button
-$selectedSourceType: The selected source type
+$descriptor: (array) the HTMLForm descriptor
 
 'UploadVerification': Additional chances to reject an uploaded file. Consider
 using UploadVerifyFile instead.
@@ -3213,12 +3204,6 @@ $context: IContextSource object
 $user: User to get rights for
 &$rights: Current rights
 
-'UserGroupsChanged': Called after user groups are changed.
-$user: User whose groups changed
-$added: Groups added
-$removed: Groups removed
-$performer: User who performed the change, false if via autopromotion
-
 'UserIsBlockedFrom': Check if a user is blocked from a specific page (for
 specific block exemptions).
 $user: User in question
@@ -3235,14 +3220,6 @@ $ip: User's IP address
 'UserIsEveryoneAllowed': Check if all users are allowed some user right; return
 false if a UserGetRights hook might remove the named right.
 $right: The user right being checked
-
-'UserIsHidden': Check if the user's name should be hidden. See User::isHidden().
-$user: User in question.
-&$hidden: Set true if the user's name should be hidden.
-
-'UserIsLocked': Check if the user is locked. See User::isLocked().
-$user: User in question.
-&$locked: Set true if the user should be locked.
 
 'UserLoadAfterLoadFromSession': Called to authenticate users on external or
 environmental means; occurs after session is loaded.
@@ -3266,9 +3243,6 @@ $user: user object being loaded
 database.
 $user: User object
 &$options: Options, can be modified.
-
-'UserLoggedIn': Called after a user is logged in
-$user: User object for the logged-in user
 
 'UserLoginComplete': After a user has logged in.
 $user: the user object that was created on login
@@ -3315,9 +3289,8 @@ message(s).
 $user: user retrieving new talks messages
 $talks: array of new talks page(s)
 
-'UserRights': DEPRECATED! Use UserGroupsChanged instead.
-After a user's group memberships are changed.
-&$user: User object that was changed
+'UserRights': After a user's group memberships are changed.
+$user: User object that was changed
 $add: Array of strings corresponding to groups added
 $remove: Array of strings corresponding to groups removed
 

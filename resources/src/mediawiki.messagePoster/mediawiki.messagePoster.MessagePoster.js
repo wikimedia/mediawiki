@@ -16,7 +16,6 @@
 	/**
 	 * Post a message (with subject and body) to a talk page.
 	 *
-	 * @abstract
 	 * @param {string} subject Subject/topic title; plaintext only (no wikitext or HTML)
 	 * @param {string} body Body, as wikitext.  Signature code will automatically be added
 	 *   by MessagePosters that require one, unless the message already contains the string
