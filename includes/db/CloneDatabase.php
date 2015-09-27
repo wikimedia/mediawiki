@@ -88,8 +88,10 @@ class CloneDatabase {
 			self::changePrefix( $this->newTablePrefix );
 			$newTableName = $this->db->tableName( $tbl, 'raw' );
 
+			// Postgres: Temp tables are automatically deleted upon end of session
+			//           Same Temp table name hides existing table for current session
 			if ( $this->dropCurrentTables
-				&& !in_array( $this->db->getType(), array( 'postgres', 'oracle' ) )
+				&& !in_array( $this->db->getType(), array( 'oracle' ) )
 			) {
 				if ( $oldTableName === $newTableName ) {
 					// Last ditch check to avoid data loss
