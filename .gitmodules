@@ -270,3 +270,7 @@
 	path = extensions/TitleKey
 	url = https://github.com/wikimedia/mediawiki-extensions-TitleKey.git
 	branch = REL1_25
+[submodule "extensions/SyntaxHighlight_GeSHi"]
+	path = extensions/SyntaxHighlight_GeSHi
+	url = https://git.wikimedia.org/git/mediawiki/extensions/SyntaxHighlight_GeSHi.git
+	branch = REL1_25
