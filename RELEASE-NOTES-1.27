@@ -27,6 +27,7 @@ production.
 === Bug fixes in 1.27 ===
 
 === Action API changes in 1.27 ===
+* Added list=allrevisions.
 
 === Action API internal changes in 1.27 ===
 
