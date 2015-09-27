@@ -1275,12 +1275,14 @@ $from: MailAddress object of sending user
 $subject: subject of the mail
 $text: text of the mail
 &$error: Out-param for an error
+$user: User object of the recipient
 
 'EmailUserCC': Before sending the copy of the email to the author.
 $to: MailAddress object of receiving user
 $from: MailAddress object of sending user
 $subject: subject of the mail
 $text: text of the mail
+$user: User object of the recipient of the copy
 
 'EmailUserComplete': After sending email from one user to another.
 $to: MailAddress object of receiving user

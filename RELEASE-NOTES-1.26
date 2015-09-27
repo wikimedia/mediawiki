@@ -237,6 +237,7 @@ changes to languages because of Phabricator reports.
   by &nbsp; and HTML entity encodings of &nbsp, <, and >.
 * DatabaseBase::resultObject() is now protected (use outside Database classes
   not necessary since 1.11).
+* Added $user parameter to EmailUser and EmailUserCC hooks.
 
 == Compatibility ==
 
