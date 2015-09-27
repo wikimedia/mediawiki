@@ -13,9 +13,9 @@
 	 * @extends OO.ui.MenuOptionWidget
 	 *
 	 * @constructor
-	 * @param {Object} [config] Configuration options
-	 * @cfg {string} [data] Label to display
-	 * @cfg {mw.Title} [title] Page title object
+	 * @param {Object} config Configuration options
+	 * @cfg {string} data Label to display
+	 * @cfg {string} url URL of page
 	 * @cfg {string} [imageUrl] Thumbnail image URL with URL encoding
 	 * @cfg {string} [description] Page description
 	 * @cfg {boolean} [missing] Page doesn't exist
@@ -40,24 +40,22 @@
 		config = $.extend( {
 			icon: icon,
 			label: config.data,
-			href: config.title.getUrl(),
-			autoFitLabel: false
+			autoFitLabel: false,
+			$label: $( '<a>' )
 		}, config );
 
 		// Parent constructor
 		mw.widgets.TitleOptionWidget.parent.call( this, config );
 
 		// Initialization
-		this.$label.wrap( '<a>' );
-		this.$link = this.$label.parent();
-		this.$link.attr( 'href', config.href );
+		this.$label.attr( 'href', config.url );
 		this.$element.addClass( 'mw-widget-titleOptionWidget' );
 
 		// Highlight matching parts of link suggestion
 		this.$label.autoEllipsis( { hasSpan: false, tooltip: true, matchText: config.query } );
 
 		if ( config.missing ) {
-			this.$link.addClass( 'new' );
+			this.$label.addClass( 'new' );
 		}
 
 		if ( config.imageUrl ) {
@@ -73,11 +71,6 @@
 					.text( config.description )
 			);
 		}
-
-		// Events
-		this.$link.on( 'click', function () {
-			return false;
-		} );
 	};
 
 	/* Setup */
