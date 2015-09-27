@@ -159,7 +159,8 @@ class WikiReference {
 		if ( $parsed ) {
 			return $parsed['host'];
 		} else {
-			// Invalid server spec. There's no sane thing to do here, so just return the canonical server name in full
+			// Invalid server spec.
+			// There's no sane thing to do here, so just return the canonical server name in full.
 			return $this->mCanonicalServer;
 		}
 	}
@@ -169,7 +170,8 @@ class WikiReference {
 	 *
 	 * @todo FIXME: This may be generalized...
 	 *
-	 * @param string $page Page name (must be normalised before calling this function! May contain a section part.)
+	 * @param string $page Page name (must be normalised before calling this function!
+	 *  May contain a section part.)
 	 * @param string|null $fragmentId
 	 *
 	 * @return string relative URL, without the server part.

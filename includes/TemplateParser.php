@@ -79,7 +79,9 @@ class TemplateParser {
 	 */
 	protected function getTemplate( $templateName ) {
 		// If a renderer has already been defined for this template, reuse it
-		if ( isset( $this->renderers[$templateName] ) && is_callable( $this->renderers[$templateName] ) ) {
+		if ( isset( $this->renderers[$templateName] ) &&
+			is_callable( $this->renderers[$templateName] )
+		) {
 			return $this->renderers[$templateName];
 		}
 
