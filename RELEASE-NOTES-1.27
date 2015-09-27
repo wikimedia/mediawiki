@@ -40,6 +40,7 @@ production.
 
 === Action API changes in 1.27 ===
 * Added list=allrevisions.
+* generator=recentchanges now has the option to generate revids.
 
 === Action API internal changes in 1.27 ===
 
@@ -49,9 +50,7 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
-
 === Other changes in 1.27 ===
-
 
 == Compatibility ==
 
