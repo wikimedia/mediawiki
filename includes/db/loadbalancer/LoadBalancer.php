@@ -839,7 +839,9 @@ class LoadBalancer {
 				"Connection error: {last_error} ({db_server})",
 				$context
 			);
-			$conn->reportConnectionError( "{$this->mLastError} ({$context['db_server']})" ); // throws DBConnectionError
+
+			// throws DBConnectionError
+			$conn->reportConnectionError( "{$this->mLastError} ({$context['db_server']})" );
 		}
 
 		return false; /* not reached */
