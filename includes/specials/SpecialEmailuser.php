@@ -324,6 +324,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			$from->name, $to->name )->inContentLanguage()->text();
 
 		$error = '';
+		$origText = $text;
 		if ( !Hooks::run( 'EmailUser', array( &$to, &$from, &$subject, &$text, &$error ) ) ) {
 			return $error;
 		}
@@ -371,9 +372,9 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 					$target->getName(), $subject )->text();
 
 				// target and sender are equal, because this is the CC for the sender
-				Hooks::run( 'EmailUserCC', array( &$from, &$from, &$cc_subject, &$text ) );
+				Hooks::run( 'EmailUserCC', array( &$from, &$from, &$cc_subject, &$origText ) );
 
-				$ccStatus = UserMailer::send( $from, $from, $cc_subject, $text );
+				$ccStatus = UserMailer::send( $from, $from, $cc_subject, $origText );
 				$status->merge( $ccStatus );
 			}
 
