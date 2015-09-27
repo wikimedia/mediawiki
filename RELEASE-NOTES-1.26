@@ -151,6 +151,7 @@ production.
 * API responses to GET requests may now include ETag and Last-Modified headers,
   and will honor corresponding If-None-Match and If-Modified-Since on such
   requests.
+* generator=recentchanges now has the option to generate revids.
 
 === Action API internal changes in 1.26 ===
 * New metadata item ApiResult::META_KVP_MERGE to allow for merging the KVP key
