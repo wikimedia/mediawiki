@@ -4072,11 +4072,10 @@ function wfUnpack( $format, $data, $length = false ) {
  * @return bool
  */
 function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
-	# Handle redirects
-	$redirectTitle = RepoGroup::singleton()->checkRedirect( Title::makeTitle( NS_FILE, $name ) );
-	if ( $redirectTitle ) {
-		$name = $redirectTitle->getDBkey();
-	}
+	# Handle redirects; callers almost always hit wfFindFile() anyway,
+	# so just use that method because it has a fast process cache.
+	$file = wfFindFile( $name ); // get the final name
+	$name = $file ? $file->getTitle()->getDBkey() : $name;
 
 	# Run the extension hook
 	$bad = false;
