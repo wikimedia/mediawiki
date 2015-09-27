@@ -69,4 +69,32 @@ class LanguageUkTest extends LanguageClassesTestCase {
 			array( 'other', 121 ),
 		);
 	}
+
+	/**
+	 * @dataProvider providerGrammar
+	 * @covers Language::convertGrammar
+	 */
+	public function testGrammar( $result, $word, $case ) {
+		$this->assertEquals( $result, $this->getLang()->convertGrammar( $word, $case ) );
+	}
+
+	public static function providerGrammar() {
+		return array(
+			array(
+				'Вікіпедії',
+				'Вікіпедія',
+				'genitive',
+			),
+			array(
+				'Віківидів',
+				'Віківиди',
+				'genitive',
+			),
+			array(
+				'Вікіпедію',
+				'Вікіпедія',
+				'accusative',
+			),
+		);
+	}
 }
