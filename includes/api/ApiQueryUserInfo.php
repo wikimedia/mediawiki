@@ -129,7 +129,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if ( isset( $this->prop['preferencestoken'] ) ) {
 			$p = $this->getModulePrefix();
 			$this->setWarning(
-				"{$p}prop=preferencestoken has been deprecated. Please use action=query&meta=tokens instead."
+				"{$p}prop=preferencestoken has been deprecated. " .
+					"Please use action=query&meta=tokens instead."
 			);
 		}
 		if ( isset( $this->prop['preferencestoken'] ) &&
@@ -149,7 +150,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['ratelimits'] = $this->getRateLimits();
 		}
 
-		if ( isset( $this->prop['realname'] ) && !in_array( 'realname', $this->getConfig()->get( 'HiddenPrefs' ) ) ) {
+		if ( isset( $this->prop['realname'] ) &&
+			!in_array( 'realname', $this->getConfig()->get( 'HiddenPrefs' ) )
+		) {
 			$vals['realname'] = $user->getRealName();
 		}
 

@@ -1071,9 +1071,12 @@ abstract class ApiBase extends ContextSource {
 	 * @param int $botMax Maximum value for sysops/bots
 	 * @param bool $enforceLimits Whether to enforce (die) if value is outside limits
 	 */
-	protected function validateLimit( $paramName, &$value, $min, $max, $botMax = null, $enforceLimits = false ) {
+	protected function validateLimit(
+		$paramName, &$value, $min, $max, $botMax = null, $enforceLimits = false
+	) {
 		if ( !is_null( $min ) && $value < $min ) {
-			$msg = $this->encodeParamName( $paramName ) . " may not be less than $min (set to $value)";
+			$msg = $this->encodeParamName( $paramName ) .
+				" may not be less than $min (set to $value)";
 			$this->warnOrDie( $msg, $enforceLimits );
 			$value = $min;
 		}
