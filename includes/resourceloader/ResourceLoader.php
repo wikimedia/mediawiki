@@ -208,7 +208,12 @@ class ResourceLoader implements LoggerAwareInterface {
 		if ( !$options['cache'] ) {
 			$result = self::applyFilter( $filter, $data, $this->config );
 		} else {
-			$key = wfGlobalCacheKey( 'resourceloader', 'filter', $filter, self::$filterCacheVersion, md5( $data ) );
+			$key = wfGlobalCacheKey(
+				'resourceloader',
+				'filter',
+				$filter,
+				self::$filterCacheVersion, md5( $data )
+			);
 			$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
 			$cacheEntry = $cache->get( $key );
 			if ( is_string( $cacheEntry ) ) {
@@ -1380,7 +1385,8 @@ MESSAGE;
 	 * @return string
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
-		return "window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n" . trim( $script ) . "\n} );";
+		return "window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n" .
+			trim( $script ) . "\n} );";
 	}
 
 	/**

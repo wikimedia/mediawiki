@@ -356,7 +356,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'$VARS.configuration' => $this->getConfigSettings( $context ),
 			'$VARS.baseModulesUri' => self::getStartupModulesUrl( $context ),
 		) );
-		$pairs['$CODE.registrations()'] = str_replace( "\n", "\n\t", trim( $this->getModuleRegistrations( $context ) ) );
+		$pairs['$CODE.registrations()'] = str_replace(
+			"\n",
+			"\n\t",
+			trim( $this->getModuleRegistrations( $context ) )
+		);
 
 		return strtr( $out, $pairs );
 	}
