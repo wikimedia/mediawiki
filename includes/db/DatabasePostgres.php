@@ -487,6 +487,9 @@ class DatabasePostgres extends DatabaseBase {
 			$sql = mb_convert_encoding( $sql, 'UTF-8' );
 		}
 		$this->mTransactionState->check();
+		// Clear previously left over PQresult
+		while ( $res = pg_get_result( $this->mConn ) )
+			pg_free_result( $res );
 		if ( pg_send_query( $this->mConn, $sql ) === false ) {
 			throw new DBUnexpectedError( $this, "Unable to post new query to PostgreSQL\n" );
 		}
