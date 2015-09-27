@@ -5,59 +5,77 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
-.mw-widget-titleOptionWidget-description {
-	display: none;
-}
-
 .mw-widget-titleWidget {
+	.mw-widget-titleOptionWidget {
+		line-height: normal;
+
+		&-description {
+			color: #888;
+		}
+
+		> .oo-ui-labelElement-label {
+			pointer-events: none;
+		}
+	}
+
 	&-menu-withImages {
 		.mw-widget-titleOptionWidget {
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;
 			box-sizing: border-box;
 			min-height: 3.75em;
-			margin-left: 3.75em;
+			padding-left: 4.75em;
+
+			&:not(:last-child) {
+				margin-bottom: 0.2em;
+			}
+
+			> .oo-ui-labelElement-label {
+				line-height: 2.8em;
+			}
+
+			&.oo-ui-iconElement {
+				>.oo-ui-iconElement-icon {
+					display: block;
+					width: 3.75em;
+					height: 3.75em;
+					left: 0;
+					background-color: #ccc;
+					opacity: 0.4;
+				}
+
+				> .mw-widget-titleOptionWidget-hasImage {
+					border: 0;
+					background-size: cover;
+					opacity: 0.7;
+				}
+			}
 		}
 
-		.mw-widget-titleOptionWidget:not(:last-child) {
-			margin-bottom: 1px;
-		}
-
-		.oo-ui-iconElement .oo-ui-iconElement-icon {
-			display: block;
-			width: 3.75em;
-			height: 3.75em;
-			left: -3.75em;
-			background-color: #ccc;
-			opacity: 0.4;
-		}
-
-		.oo-ui-iconElement .mw-widget-titleOptionWidget-hasImage {
-			border: 0;
-			background-size: cover;
-			opacity: 1;
-		}
-
-		.mw-widget-titleOptionWidget .oo-ui-labelElement-label {
-			line-height: 2.8em;
+		&.oo-ui-optionWidget-highlighted, &.oo-ui-optionWidget-selected {
+			&.oo-ui-iconElement > .mw-widget-titleOptionWidget-hasImage {
+				opacity: 1;
+			}
 		}
 	}
 
 	&-menu-withDescriptions {
-		.mw-widget-titleOptionWidget .oo-ui-labelElement-label {
-			line-height: 1.5em;
-		}
+		.mw-widget-titleOptionWidget {
+			> .oo-ui-labelElement-label {
+				line-height: 1.5em;
+			}
 
-		.mw-widget-titleOptionWidget-description {
-			display: block;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			overflow: hidden;
+			&-description {
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
 		}
 	}
-}
 
-.oo-ui-menuOptionWidget:not(.oo-ui-optionWidget-selected) .mw-widget-titleOptionWidget-description,
-.oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted .mw-widget-titleOptionWidget-description {
-	color: #888;
+	&:not(&-menu-withDescriptions) {
+		.mw-widget-titleOptionWidget-description {
+			display: none;
+		}
+	}
 }

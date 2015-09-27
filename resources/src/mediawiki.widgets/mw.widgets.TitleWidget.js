@@ -47,6 +47,7 @@
 		this.cache = config.cache;
 
 		// Initialization
+		this.$element.addClass( 'mw-widget-titleWidget' );
 		this.interwikiPrefixes = [];
 		this.interwikiPrefixesPromise = new mw.Api().get( {
 			action: 'query',

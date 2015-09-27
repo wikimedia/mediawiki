@@ -41,23 +41,22 @@
 			icon: icon,
 			label: config.data,
 			href: config.title.getUrl(),
-			autoFitLabel: false
+			autoFitLabel: false,
+			$label: $( '<a>' )
 		}, config );
 
 		// Parent constructor
 		mw.widgets.TitleOptionWidget.parent.call( this, config );
 
 		// Initialization
-		this.$label.wrap( '<a>' );
-		this.$link = this.$label.parent();
-		this.$link.attr( 'href', config.href );
+		this.$label.attr( 'href', config.href );
 		this.$element.addClass( 'mw-widget-titleOptionWidget' );
 
 		// Highlight matching parts of link suggestion
 		this.$label.autoEllipsis( { hasSpan: false, tooltip: true, matchText: config.query } );
 
 		if ( config.missing ) {
-			this.$link.addClass( 'new' );
+			this.$label.addClass( 'new' );
 		}
 
 		if ( config.imageUrl ) {
@@ -75,7 +74,7 @@
 		}
 
 		// Events
-		this.$link.on( 'click', function () {
+		this.$label.on( 'click', function () {
 			return false;
 		} );
 	};
