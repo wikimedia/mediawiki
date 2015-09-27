@@ -32,6 +32,11 @@ $namespaceAliases = array(
 	'Imatge_Discussió' => NS_FILE_TALK,
 );
 
+$namespaceGenderAliases = array(
+	NS_USER => array( 'male' => 'Usuari', 'female' => 'Usuària' ),
+	NS_USER_TALK => array( 'male' => 'Usuari_Discussió', 'female' => 'Usuària_Discussió' ),
+); // T113616
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Usuaris_actius' ),
 	'Allmessages'               => array( 'Missatges', 'MediaWiki' ),
