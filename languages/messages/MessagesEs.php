@@ -29,12 +29,12 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'Imagen' => NS_FILE,
-	'Imagen_Discusión' => NS_FILE_TALK,
+	'Imagen_discusión' => NS_FILE_TALK,
 );
 
 $namespaceGenderAliases = array(
 	NS_USER => array( 'male' => 'Usuario', 'female' => 'Usuaria' ),
-	NS_USER_TALK => array( 'male' => 'Usuario_Discusión', 'female' => 'Usuaria_Discusión' ),
+	NS_USER_TALK => array( 'male' => 'Usuario_discusión', 'female' => 'Usuaria_discusión' ),
 );
 
 $specialPageAliases = array(
