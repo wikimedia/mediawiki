@@ -499,6 +499,17 @@
 	"apihelp-query+allredirects-example-unique-generator": "Gets all target pages, marking the missing ones.",
 	"apihelp-query+allredirects-example-generator": "Gets pages containing the redirects.",
 
+	"apihelp-query+allrevisions-description": "List all revisions.",
+	"apihelp-query+allrevisions-param-start": "The timestamp to start enumerating from.",
+	"apihelp-query+allrevisions-param-end": "The timestamp to stop enumerating at.",
+	"apihelp-query+allrevisions-param-tag": "Only list revisions tagged with this tag.",
+	"apihelp-query+allrevisions-param-user": "Only list revisions by this user.",
+	"apihelp-query+allrevisions-param-excludeuser": "Don't list revisions by this user.",
+	"apihelp-query+allrevisions-param-namespace": "Only list pages in this namespace.",
+	"apihelp-query+allrevisions-param-generatetitles": "When being used as a generator, generate titles rather than revision IDs.",
+	"apihelp-query+allrevisions-example-user": "List the last 50 contributions by user <kbd>Example</kbd>.",
+	"apihelp-query+allrevisions-example-ns-main": "List the first 50 revisions in the main namespace.",
+
 	"apihelp-query+alltransclusions-description": "List all transclusions (pages embedded using &#123;&#123;x&#125;&#125;), including non-existing.",
 	"apihelp-query+alltransclusions-param-from": "The title of the transclusion to start enumerating from.",
 	"apihelp-query+alltransclusions-param-to": "The title of the transclusion to stop enumerating at.",
