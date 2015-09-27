@@ -74,6 +74,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiQueryAllLinks' => __DIR__ . '/includes/api/ApiQueryAllLinks.php',
 	'ApiQueryAllMessages' => __DIR__ . '/includes/api/ApiQueryAllMessages.php',
 	'ApiQueryAllPages' => __DIR__ . '/includes/api/ApiQueryAllPages.php',
+	'ApiQueryAllRevisions' => __DIR__ . '/includes/api/ApiQueryAllRevisions.php',
 	'ApiQueryAllUsers' => __DIR__ . '/includes/api/ApiQueryAllUsers.php',
 	'ApiQueryBacklinks' => __DIR__ . '/includes/api/ApiQueryBacklinks.php',
 	'ApiQueryBacklinksprop' => __DIR__ . '/includes/api/ApiQueryBacklinksprop.php',
