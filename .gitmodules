@@ -254,3 +254,19 @@
 	path = extensions/RandomSelection
 	url = https://github.com/Inclumedia/RandomSelection.git
 	branch = master
+[submodule "extensions/TextExtracts"]
+	path = extensions/TextExtracts
+	url = https://github.com/wikimedia/mediawiki-extensions-TextExtracts.git
+	branch = REL1_25
+[submodule "extensions/Popups"]
+	path = extensions/Popups
+	url = https://github.com/wikimedia/mediawiki-extensions-Popups.git
+	branch = REL1_25
+[submodule "extensions/PageImages"]
+	path = extensions/PageImages
+	url = https://github.com/wikimedia/mediawiki-extensions-PageImages.git
+	branch = REL1_25
+[submodule "extensions/TitleKey"]
+	path = extensions/TitleKey
+	url = https://github.com/wikimedia/mediawiki-extensions-TitleKey.git
+	branch = REL1_25
