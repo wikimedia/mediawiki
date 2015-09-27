@@ -8,7 +8,8 @@
 			"Ysjbserver",
 			"Alex00728",
 			"Hwangjy9",
-			"Kurousagi"
+			"Kurousagi",
+			"Revi"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|설명문서]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 메일링 리스트]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API 공지 사항] * [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 버그 및 요청] </div>\n<strong>상태:</strong> 이 페이지에 표시된 모든 기능은 정상 작동할 것이지만, API는 여전히 활발하게 개발되고 있으며, 언제든지 바뀔 수 있습니다. 업데이트 정보를 받아보려면 [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce 메일링 리스트]를 구독하십시오.\n\n<strong>잘못된 요청:</strong> API에 잘못된 요청이 전송되면 HTTP 헤더에서 \"MediaWiki-API-Error\" 키를 보내고, 헤더 값과 오류 코드가 같게 설정됩니다. 자세한 정보에 대해서는 [[mw:API:Errors_and_warnings|API:오류 및 경고]]를 참조하십시오.",
@@ -16,7 +17,7 @@
 	"apihelp-main-param-format": "출력값의 형식.",
 	"apihelp-block-description": "사용자를 차단합니다.",
 	"apihelp-block-param-user": "차단하고자 하는 계정 이름, IP 주소 또는 대역",
-	"apihelp-block-param-expiry": "기한. 상대값(예시: \"5 months\" 또는 \"2 weeks\") 또는 절대값(예시: \"2014-09-18T12:34:56Z\")이 될 수 있습니다. \"infinite\", \"indefinite\" 또는 \"never\"로 설정하면 무기한으로 설정됩니다.",
+	"apihelp-block-param-expiry": "기한. 상대값(예시: <kbd>5 months</kbd> 또는 </kbd>2 weeks</kbd>) 또는 절대값(예시: <kbd>2014-09-18T12:34:56Z</kbd>)이 될 수 있습니다. <kbd>infinite</kbd>, <kbd>indefinite</kbd> 또는 <kbd>never</kbd>로 설정하면 무기한으로 설정됩니다.",
 	"apihelp-block-param-reason": "차단 이유.",
 	"apihelp-block-param-anononly": "익명 사용자만 차단합니다. (즉, 이 IP의 익명 편집을 막음)",
 	"apihelp-block-param-nocreate": "계정 생성을 막습니다.",
@@ -28,6 +29,7 @@
 	"apihelp-block-param-watchuser": "해당 사용자 또는 IP 주소의 사용자 문서 및 토론 문서를 주시합니다.",
 	"apihelp-block-example-ip-simple": "IP <kbd>192.0.2.5</kbd>에 대해 <kbd>First strike</kbd>라는 이유로 3일간 차단하기",
 	"apihelp-block-example-user-complex": "사용자 <kbd>Vandal</kbd>을 <kbd>Vandalism</kbd>이라는 이유로 무기한 차단하며 계정 생성 및 이메일 발송을 막기",
+	"apihelp-checktoken-param-token": "테스트할 토큰",
 	"apihelp-createaccount-description": "새 사용자 계정을 만듭니다.",
 	"apihelp-createaccount-param-name": "사용자 이름",
 	"apihelp-createaccount-param-email": "사용자 이메일 주소 (선택).",
@@ -49,6 +51,8 @@
 	"apihelp-emailuser-param-target": "이메일을 받을 사용자.",
 	"apihelp-expandtemplates-param-title": "문서 제목",
 	"apihelp-expandtemplates-param-text": "변환할 위키텍스트.",
+	"apihelp-feedcontributions-param-deletedonly": "삭제된 기여만 봅니다.",
+	"apihelp-feedcontributions-param-toponly": "최신 판인 편집만 봅니다.",
 	"apihelp-feedrecentchanges-param-hideminor": "사소한 편집을 숨깁니다.",
 	"apihelp-feedrecentchanges-param-hidebots": "봇의 편집을 숨깁니다.",
 	"apihelp-feedrecentchanges-param-hideanons": "익명 사용자의 편집을 숨깁니다.",

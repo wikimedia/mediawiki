@@ -402,6 +402,7 @@
 	"apihelp-query+querypage-param-limit": "返す結果の数。",
 	"apihelp-query+querypage-example-ancientpages": "[[Special:Ancientpages]] の結果を返す。",
 	"apihelp-query+random-param-namespace": "この名前空間にあるページのみを返します。",
+	"apihelp-query+random-param-filterredir": "どうやってリダイレクトのためのフィルターをするのか",
 	"apihelp-query+random-example-simple": "標準名前空間から2つのページを無作為に返す。",
 	"apihelp-query+random-example-generator": "標準名前空間から無作為に選ばれた2つのページのページ情報を返す。",
 	"apihelp-query+recentchanges-description": "最近の更新を一覧表示します。",

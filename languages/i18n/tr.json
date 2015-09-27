@@ -78,7 +78,8 @@
 			"Uğurkent",
 			"Kincki",
 			"McAang",
-			"Captantrips"
+			"Captantrips",
+			"Diyapazon"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -667,7 +668,7 @@
 	"newarticletext": "Henüz varolmayan bir sayfaya konulmuş bir bağlantıya tıkladınız.\nSayfayı oluşturmak için aşağıdaki metin kutusunu kullanın. ([$1 yardım sayfasına] bakınız).\nBuraya yanlışlıkla geldiyseniz tarayıcınızın  <strong>geri </strong> tuşuna tıklayın.",
 	"anontalkpagetext": "----''Bu sayfa henüz bir kullanıcı hesabı oluşturmamış veya hesabını kullanmayan bir anonim kullanıcının mesaj sayfasıdır. Bu nedenle bu kişiyi belirtmek için rakamsal IP adresini kullanmak zorundayız. Bu gibi IP adresleri birçok kullanıcı tarafından paylaşılabilir. Eğer siz de bir anonim kullanıcıysanız ve size sizin ilginiz olmayan iletiler geliyorsa, lütfen diğer anonim kullanıcılarla olabilecek olan karmaşayı önlemek için [[Special:UserLogin/signup|bir hesap edinin]] veya [[Special:UserLogin|oturum açın]].''",
 	"noarticletext": "Bu sayfa şu anda boştur.\nBu başlığı [[Special:Search/{{PAGENAME}}|diğer sayfalarda arayabilir]],\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ilgili kayıtları arayabilir],\nya da bu sayfayı [{{fullurl:{{FULLPAGENAME}}|action=edit}} değiştirebilirsiniz]</span>.",
-	"noarticletext-nopermission": "Bu sayfa şu anda boştur. \nBu başlığı [[Special:Search/{{PAGENAME}}|diğer sayfalarda arayabilir]] ya da <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ilgili kayıtları tarayabilirsiniz]</span>, fakat sayfayı yaratma yetkiniz bulunmamaktadır.",
+	"noarticletext-nopermission": "Bu sayfa şu anda boştur. \nBu başlığı [[Special:Search/{{PAGENAME}}|diğer sayfalarda arayabilir]] ya da <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ilgili kayıtları tarayabilirsiniz]</span>, fakat sayfayı oluşturma yetkiniz bulunmamaktadır.",
 	"missing-revision": "\"{{FULLPAGENAME}}\" sayfasının #$1 sürümü yok.\n\nBu duruma genellikle silinmiş bir sayfaya eski tarihli bir bağlantının takip edilmesi neden olur.\n\nDaha fazla detaylı bilgi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sayfasında bulunabilir].",
 	"userpage-userdoesnotexist": "\"<nowiki>$1</nowiki>\" kullanıcı hesabı kayıtlı değil. Bu sayfayı oluşturmak/değiştirmek istiyorsanız lütfen kontrol edin.",
 	"userpage-userdoesnotexist-view": "\"$1\" kullanıcı hesabı kayıtlı değil.",

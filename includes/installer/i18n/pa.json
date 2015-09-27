@@ -2,10 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Aalam",
-			"Babanwalia"
+			"Babanwalia",
+			"ਪ੍ਰਚਾਰਕ"
 		]
 	},
+	"config-desc": "ਮੀਡੀਅਾਵਿਕੀ ਲੲੀ ਸਥਾਪਿਤਕਰਤਾ",
 	"config-information": "ਜਾਣਕਾਰੀ",
+	"config-localsettings-badkey": "ਤੁਹਾਡੇ ਦੁਅਾਰਾ ਦਿਤੀ ਗੲੀ ਚਾਬੀ ਗਲਤ ਹੈ",
 	"config-your-language": "ਤੁਹਾਡੀ ਭਾਸ਼ਾ:",
 	"config-your-language-help": "ਜੜਾਈ ਦੀ ਕਾਰਵਾਈ ਵੇਲੇ ਵਰਤਣ ਵਾਸਤੇ ਕੋਈ ਭਾਸ਼ਾ ਚੁਣੋ।",
 	"config-wiki-language": "ਵਿਕੀ ਦੀ ਭਾਸ਼ਾ:",
@@ -27,6 +30,8 @@
 	"config-page-upgradedoc": "ਮਿਆਰ-ਉਚਾਈ",
 	"config-page-existingwiki": "ਮੌਜੂਦਾ ਵਿਕੀ",
 	"config-restart": "ਹਾਂਜੀ, ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ",
+	"config-env-good": "ਵਾਤਾਵਰਨ ਪਰਖਿਅਾ ਗਿਅਾ ਹੈ।\nਤੁਸੀਂ ਮੀਡੀਆਵਿਕੀ ਸਥਾਪਿਤ ਕਰ ਸਕਦੇ ਹੋ",
+	"config-env-bad": "ਵਾਤਾਵਰਨ ਪਰਖਿਅਾ ਗਿਅਾ ਹੈ।\nਤੁਸੀਂ ਮੀਡੀਆਵਿਕੀ ਸਥਾਪਿਤ ਨਹੀਂ ਕਰ ਸਕਦੇ ਹੋ",
 	"config-env-php": "PHP $1 ਜੜਿਆ ਗਿਆ।",
 	"config-env-hhvm": "HHVM $1 ਜੜਿਆ ਗਿਆ।",
 	"config-db-wiki-settings": "ਇਸ ਵਿਕੀ ਦੀ ਪਛਾਣ ਕਰਾਉ",

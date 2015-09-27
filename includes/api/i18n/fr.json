@@ -301,7 +301,7 @@
 	"apihelp-parse-param-pst": "Faire une transformation avant enregistrement de l’entrée avant de l’analyser. Valide uniquement quand utilisé avec du texte.",
 	"apihelp-parse-param-onlypst": "Faire une transformation avant enregistrement (PST) de l’entrée, mais ne pas l’analyser. Renvoie le même wikitexte, après que la PST a été appliquée. Valide uniquement quand utilisé avec <var>$1text</var>.",
 	"apihelp-parse-param-effectivelanglinks": "Inclut les liens de langue fournis par les extensions (à utiliser avec <kbd>$1prop=langlinks</kbd>).",
-	"apihelp-parse-param-section": "Récupérer uniquement le contenu de ce numéro de section ou quand <kbd>nouveau</kbd> génère une nouvelle section.\n\nLa <kbd>nouvelle</kbd> section est mise à l’honneur uniquement quand <var>text</var> est spécifié.",
+	"apihelp-parse-param-section": "Traiter uniquement le contenu de la section ayant ce numéro.\n\nQuand la valeur est <kbd>new</kbd>, traite <var>$1text</var> et <var>$1sectiontitle</var> comme s’ils correspondaient à une nouvelle section de la page.\n\nLa valeur <kbd>new</kbd> n’est autorisée que si <var>text</var> est défini.",
 	"apihelp-parse-param-sectiontitle": "Nouveau titre de section quand <var>section</var> vaut <kbd>nouveau</kbd>.\n\nÀ la différence de la modification de page, cela ne revient pas à <var>summary</var> quand il est omis ou vide.",
 	"apihelp-parse-param-disablelimitreport": "Omettre le rapport de limite (« rapport de limite du nouveau PP ») de la sortie de l’analyseur.",
 	"apihelp-parse-param-disablepp": "Utiliser <var>$1disablelimitreport</var> à la place.",
