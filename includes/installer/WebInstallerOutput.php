@@ -269,7 +269,7 @@ class WebInstallerOutput {
 	<title><?php $this->outputTitle(); ?></title>
 	<?php echo $this->getCssUrl() . "\n"; ?>
 	<?php echo $this->getJQuery() . "\n"; ?>
-	<?php echo Html::linkedScript( 'config.js' ) . "\n"; ?>
+	<?php echo Html::linkedScript( '../mw-config/config.js' ) . "\n"; ?>
 </head>
 
 <?php echo Html::openElement( 'body', array( 'class' => $this->getDir() ) ) . "\n"; ?>
@@ -321,7 +321,7 @@ class WebInstallerOutput {
 	<title><?php $this->outputTitle(); ?></title>
 	<?php echo $this->getCssUrl() . "\n"; ?>
 	<?php echo $this->getJQuery(); ?>
-	<?php echo Html::linkedScript( 'config.js' ); ?>
+	<?php echo Html::linkedScript( '../mw-config/config.js' ); ?>
 </head>
 
 <body style="background-image: none">
