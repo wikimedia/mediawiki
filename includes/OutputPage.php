@@ -2988,7 +2988,8 @@ class OutputPage extends ContextSource {
 	function getExternalHeadScripts() {
 		$links = array();
 
-		// Startup - this provides the client with the module manifest and loads jquery and mediawiki base modules
+		// Startup - this provides the client with the module
+		// manifest and loads jquery and mediawiki base modules
 		$links[] = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS );
 
 		return self::getHtmlFromLoaderLinks( $links );
@@ -3022,9 +3023,15 @@ class OutputPage extends ContextSource {
 		// This needs to be TYPE_COMBINED so these modules are properly wrapped
 		// in mw.loader.implement() calls and deferred until mw.user is available
 		$embedScripts = array( 'user.options' );
-		$links[] = $this->makeResourceLoaderLink( $embedScripts, ResourceLoaderModule::TYPE_COMBINED );
+		$links[] = $this->makeResourceLoaderLink(
+			$embedScripts,
+			ResourceLoaderModule::TYPE_COMBINED
+		);
 		// Separate user.tokens as otherwise caching will be allowed (T84960)
-		$links[] = $this->makeResourceLoaderLink( 'user.tokens', ResourceLoaderModule::TYPE_COMBINED );
+		$links[] = $this->makeResourceLoaderLink(
+			'user.tokens',
+			ResourceLoaderModule::TYPE_COMBINED
+		);
 
 		// Modules requests - let the client calculate dependencies and batch requests as it likes
 		// Only load modules that have marked themselves for loading at the top
@@ -3109,16 +3116,19 @@ class OutputPage extends ContextSource {
 			// FIXME: If the user is previewing, say, ./vector.js, his ./common.js will be loaded
 			// asynchronously and may arrive *after* the inline script here. So the previewed code
 			// may execute before ./common.js runs. Normally, ./common.js runs before ./vector.js.
-			// Similarly, when previewing ./common.js and the user module does arrive first, it will
-			// arrive without common.js and the inline script runs after. Thus running common after
-			// the excluded subpage.
+			// Similarly, when previewing ./common.js and the user module does arrive first,
+			// it will arrive without common.js and the inline script runs after.
+			// Thus running common after the excluded subpage.
 		} else {
 			// Include the user module normally, i.e., raw to avoid it being wrapped in a closure.
 			$links[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED );
 		}
 
 		// Group JS is only enabled if site JS is enabled.
-		$links[] = $this->makeResourceLoaderLink( 'user.groups', ResourceLoaderModule::TYPE_COMBINED );
+		$links[] = $this->makeResourceLoaderLink(
+			'user.groups',
+			ResourceLoaderModule::TYPE_COMBINED
+		);
 
 		return self::getHtmlFromLoaderLinks( $links );
 	}
@@ -3375,7 +3385,9 @@ class OutputPage extends ContextSource {
 		if ( $config->get( 'UniversalEditButton' ) && $this->isArticleRelated() ) {
 			$user = $this->getUser();
 			if ( $this->getTitle()->quickUserCan( 'edit', $user )
-				&& ( $this->getTitle()->exists() || $this->getTitle()->quickUserCan( 'create', $user ) ) ) {
+				&& ( $this->getTitle()->exists() ||
+					$this->getTitle()->quickUserCan( 'create', $user ) )
+			) {
 				// Original UniversalEditButton
 				$msg = $this->msg( 'edit' )->text();
 				$tags['universal-edit-button'] = Html::element( 'link', array(
@@ -3427,8 +3439,9 @@ class OutputPage extends ContextSource {
 			$tags['rsd'] = Html::element( 'link', array(
 				'rel' => 'EditURI',
 				'type' => 'application/rsd+xml',
-				// Output a protocol-relative URL here if $wgServer is protocol-relative
-				// Whether RSD accepts relative or protocol-relative URLs is completely undocumented, though
+				// Output a protocol-relative URL here if $wgServer is protocol-relative.
+				// Whether RSD accepts relative or protocol-relative URLs is completely
+				// undocumented, though.
 				'href' => wfExpandUrl( wfAppendQuery(
 					wfScript( 'api' ),
 					array( 'action' => 'rsd' ) ),
@@ -3446,7 +3459,9 @@ class OutputPage extends ContextSource {
 					$tags["variant-$variant"] = Html::element( 'link', array(
 						'rel' => 'alternate',
 						'hreflang' => wfBCP47( $variant ),
-						'href' => $this->getTitle()->getLocalURL( array( 'variant' => $variant ) ) )
+						'href' => $this->getTitle()->getLocalURL(
+							array( 'variant' => $variant ) )
+						)
 					);
 				}
 				# x-default link per https://support.google.com/webmasters/answer/189077?hl=en
@@ -3494,7 +3509,9 @@ class OutputPage extends ContextSource {
 					$format,
 					$link,
 					# Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
-					$this->msg( "page-{$format}-feed", $this->getTitle()->getPrefixedText() )->text()
+					$this->msg(
+						"page-{$format}-feed", $this->getTitle()->getPrefixedText()
+					)->text()
 				);
 			}
 
@@ -3701,7 +3718,8 @@ class OutputPage extends ContextSource {
 				continue;
 			}
 			$group = $module->getGroup();
-			// Modules in groups other than the ones needing special treatment (see $styles assignment)
+			// Modules in groups other than the ones needing special treatment
+			// (see $styles assignment)
 			// will be placed in the "other" style category.
 			$styles[isset( $styles[$group] ) ? $group : 'other'][] = $name;
 		}
@@ -3711,10 +3729,14 @@ class OutputPage extends ContextSource {
 		// statically added styles from other modules. So the order has to be
 		// other, dynamic, site, private, user. Add statically added styles for
 		// other modules
-		$links[] = $this->makeResourceLoaderLink( $styles['other'], ResourceLoaderModule::TYPE_STYLES );
+		$links[] = $this->makeResourceLoaderLink(
+			$styles['other'],
+			ResourceLoaderModule::TYPE_STYLES
+		);
 		// Add normal styles added through addStyle()/addInlineStyle() here
 		$links[] = implode( "\n", $this->buildCssLinksArray() ) . $this->mInlineStyles;
-		// Add marker tag to mark the place where the client-side loader should inject dynamic styles
+		// Add marker tag to mark the place where the client-side
+		// loader should inject dynamic styles
 		// We use a <meta> tag with a made-up name for this because that's valid HTML
 		$links[] = Html::element(
 			'meta',
@@ -3784,7 +3806,8 @@ class OutputPage extends ContextSource {
 			$url = $style;
 		} else {
 			$config = $this->getConfig();
-			$url = $config->get( 'StylePath' ) . '/' . $style . '?' . $config->get( 'StyleVersion' );
+			$url = $config->get( 'StylePath' ) . '/' . $style . '?' .
+				$config->get( 'StyleVersion' );
 		}
 
 		$link = Html::linkedStyle( $url, $media );
