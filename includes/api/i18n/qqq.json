@@ -897,6 +897,7 @@
 	"apihelp-query+recentchanges-param-limit": "{{doc-apihelp-param|query+recentchanges|limit}}",
 	"apihelp-query+recentchanges-param-type": "{{doc-apihelp-param|query+recentchanges|type}}",
 	"apihelp-query+recentchanges-param-toponly": "{{doc-apihelp-param|query+recentchanges|toponly}}",
+	"apihelp-query+recentchanges-param-generaterevisions": "{{doc-apihelp-param|query+recentchanges|generaterevisions}}",
 	"apihelp-query+recentchanges-example-simple": "{{doc-apihelp-example|query+recentchanges}}",
 	"apihelp-query+recentchanges-example-generator": "{{doc-apihelp-example|query+recentchanges}}",
 	"apihelp-query+redirects-description": "{{doc-apihelp-description|query+redirects}}",

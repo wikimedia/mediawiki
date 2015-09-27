@@ -297,6 +297,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$showRedirects = $this->fld_redirect || isset( $show['redirect'] )
 				|| isset( $show['!redirect'] );
 		}
+		$this->addFieldsIf( array( 'rc_this_oldid' ),
+			$resultPageSet && $params['generaterevisions'] );
 
 		if ( $this->fld_tags ) {
 			$this->addTables( 'tag_summary' );
@@ -366,6 +368,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		/* Perform the actual query. */
 		$res = $this->select( __METHOD__ );
 
+		$revids = array();
 		$titles = array();
 
 		$result = $this->getResult();
@@ -389,6 +392,11 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					$this->setContinueEnumParameter( 'continue', "$row->rc_timestamp|$row->rc_id" );
 					break;
 				}
+			} elseif ( $params['generaterevisions'] ) {
+				$revid = (int)$row->rc_this_oldid;
+				if ( $revid > 0 ) {
+					$revids[] = $revid;
+				}
 			} else {
 				$titles[] = Title::makeTitle( $row->rc_namespace, $row->rc_title );
 			}
@@ -397,6 +405,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		if ( is_null( $resultPageSet ) ) {
 			/* Format the result */
 			$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'rc' );
+		} elseif ( $params['generaterevisions'] ) {
+			$resultPageSet->populateFromRevisionIDs( $revids );
 		} else {
 			$resultPageSet->populateFromTitles( $titles );
 		}
@@ -681,6 +691,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			'continue' => array(
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			),
+			'generaterevisions' => false,
 		);
 	}
 
