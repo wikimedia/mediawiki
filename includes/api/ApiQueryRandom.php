@@ -152,7 +152,8 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 			$end = null;
 		}
 
-		list( $left, $continue ) = $this->runQuery( $resultPageSet, $params['limit'], $start, $startId, $end );
+		list( $left, $continue ) =
+			$this->runQuery( $resultPageSet, $params['limit'], $start, $startId, $end );
 		if ( $end === null && $continue === null ) {
 			// Wrap around. We do this even if $left === 0 for continuation
 			// (saving a DB query in this rare case probably isn't worth the
@@ -167,7 +168,10 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$this->getResult()->addIndexedTagName( array( 'query', $this->getModuleName() ), 'page' );
+			$this->getResult()->addIndexedTagName(
+				array( 'query', $this->getModuleName() ),
+				'page'
+			);
 		}
 	}
 

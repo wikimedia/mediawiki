@@ -618,10 +618,15 @@ class ApiMain extends ApiBase {
 
 			$response->header( "Access-Control-Allow-Origin: $originHeader" );
 			$response->header( 'Access-Control-Allow-Credentials: true' );
-			$response->header( "Timing-Allow-Origin: $originHeader" ); # http://www.w3.org/TR/resource-timing/#timing-allow-origin
+
+			# http://www.w3.org/TR/resource-timing/#timing-allow-origin
+			$response->header( "Timing-Allow-Origin: $originHeader" );
 
 			if ( !$preflight ) {
-				$response->header( 'Access-Control-Expose-Headers: MediaWiki-API-Error, Retry-After, X-Database-Lag' );
+				$response->header(
+					'Access-Control-Expose-Headers: MediaWiki-API-Error, ' .
+						'Retry-After, X-Database-Lag'
+				);
 			}
 		}
 
@@ -977,7 +982,8 @@ class ApiMain extends ApiBase {
 				)
 			) {
 				$this->dieUsage(
-					"The '{$module->encodeParamName( 'token' )}' parameter was found in the query string, but must be in the POST body",
+					"The '{$module->encodeParamName( 'token' )}' parameter was found ' .
+						'in the query string, but must be in the POST body",
 					'mustposttoken'
 				);
 			}
