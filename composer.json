@@ -20,9 +20,9 @@
 		"cssjanus/cssjanus": "1.1.1",
 		"ext-iconv": "*",
 		"liuggio/statsd-php-client": "1.0.16",
-		"oyejorge/less.php": "1.7.0.8",
 		"mediawiki/at-ease": "1.1.0",
 		"oojs/oojs-ui": "0.12.9",
+		"oyejorge/less.php": "1.7.0.8",
 		"php": ">=5.3.3",
 		"psr/log": "1.0.0",
 		"wikimedia/assert": "0.2.2",
@@ -37,18 +37,18 @@
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "0.9",
 		"justinrainbow/json-schema": "~1.3",
-		"phpunit/phpunit": "3.7.37",
 		"mediawiki/mediawiki-codesniffer": "0.4.0",
-		"wikimedia/avro": "1.7.7",
+		"monolog/monolog": "1.14.0",
 		"nmred/kafka-php": "0.1.4",
-		"monolog/monolog": "1.14.0"
+		"phpunit/phpunit": "3.7.37",
+		"wikimedia/avro": "1.7.7"
 	},
 	"suggest": {
+		"ext-apc": "Local data and opcode cache",
 		"ext-fileinfo": "Improved mime magic detection",
 		"ext-intl": "ICU integration",
 		"ext-mbstring": "Multibyte string support",
 		"ext-wikidiff2": "Diff accelerator",
-		"ext-apc": "Local data and opcode cache",
 		"monolog/monolog": "Flexible debug logging system",
 		"nmred/kafka-php": "Send debug log events to kafka",
 		"pear/mail": "Mail sending support",
@@ -64,16 +64,16 @@
 	"scripts": {
 		"lint": "parallel-lint --exclude vendor",
 		"phpcs": "phpcs -p $PHPCS_ARGS",
+		"pre-install-cmd": "ComposerHookHandler::onPreInstall",
+		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
 		"test": [
 			"composer lint",
 			"composer phpcs"
-		],
-		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
-		"pre-install-cmd": "ComposerHookHandler::onPreInstall"
+		]
 	},
 	"config": {
-		"prepend-autoloader": false,
-		"optimize-autoloader": true
+		"optimize-autoloader": true,
+		"prepend-autoloader": false
 	},
 	"extra": {
 		"merge-plugin": {
