@@ -76,7 +76,9 @@ class KafkaHandler extends AbstractProcessingHandler {
 	 * @param int $level The minimum logging level at which this handler will be triggered
 	 * @param bool $bubble Whether the messages that are handled can bubble up the stack or not
 	 */
-	public function __construct( Produce $produce, array $options, $level = Logger::DEBUG, $bubble = true ) {
+	public function __construct(
+		Produce $produce, array $options, $level = Logger::DEBUG, $bubble = true
+	) {
 		parent::__construct( $level, $bubble );
 		$this->produce = $produce;
 		$this->options = array_merge( self::$defaultOptions, $options );
@@ -92,7 +94,9 @@ class KafkaHandler extends AbstractProcessingHandler {
 	 * @param bool $bubble Whether the messages that are handled can bubble the stack or not
 	 * @return KafkaHandler
 	 */
-	public static function factory( $kafkaServers, array $options = array(), $level = Logger::DEBUG, $bubble = true ) {
+	public static function factory(
+		$kafkaServers, array $options = array(), $level = Logger::DEBUG, $bubble = true
+	) {
 		$metadata = new MetaDataFromKafka( $kafkaServers );
 		$produce = new Produce( $metadata );
 		if ( isset( $options['logExceptions'] ) && is_string( $options['logExceptions'] ) ) {
