@@ -799,15 +799,21 @@ class DatabaseSqlite extends DatabaseBase {
 			return (int)$s;
 		} elseif ( strpos( $s, "\0" ) !== false ) {
 			// SQLite doesn't support \0 in strings, so use the hex representation as a workaround.
-			// This is a known limitation of SQLite's mprintf function which PDO should work around,
-			// but doesn't. I have reported this to php.net as bug #63419:
+			// This is a known limitation of SQLite's mprintf function which PDO
+			// should work around, but doesn't. I have reported this to php.net as bug #63419:
 			// https://bugs.php.net/bug.php?id=63419
 			// There was already a similar report for SQLite3::escapeString, bug #62361:
 			// https://bugs.php.net/bug.php?id=62361
 			// There is an additional bug regarding sorting this data after insert
 			// on older versions of sqlite shipped with ubuntu 12.04
 			// https://phabricator.wikimedia.org/T74367
-			wfDebugLog( __CLASS__, __FUNCTION__ . ': Quoting value containing null byte. For consistency all binary data should have been first processed with self::encodeBlob()' );
+			wfDebugLog(
+				__CLASS__,
+				__FUNCTION__ .
+					': Quoting value containing null byte. ' .
+					'For consistency all binary data should have been ' .
+					'first processed with self::encodeBlob()'
+			);
 			return "x'" . bin2hex( $s ) . "'";
 		} else {
 			return $this->mConn->quote( $s );
