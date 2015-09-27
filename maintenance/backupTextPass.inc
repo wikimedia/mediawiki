@@ -464,8 +464,9 @@ class TextPassDumper extends BackupDumper {
 	 * is thrown.
 	 *
 	 * @param string $id The revision id to get the text for
-	 * @param string|bool|null $model The content model used to determine applicable export transformations.
-	 *      If $model is null, it will be determined from the database.
+	 * @param string|bool|null $model The content model used to determine
+	 *  applicable export transformations.
+	 *  If $model is null, it will be determined from the database.
 	 * @param string|null $format The content format used when applying export transformations.
 	 *
 	 * @throws MWException
