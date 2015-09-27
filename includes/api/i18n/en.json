@@ -390,7 +390,7 @@
 	"apihelp-query+alldeletedrevisions-param-namespace": "Only list pages in this namespace.",
 	"apihelp-query+alldeletedrevisions-param-miser-user-namespace": "<strong>Note:</strong> Due to [[mw:Manual:$wgMiserMode|miser mode]], using <var>$1user</var> and <var>$1namespace</var> together may result in fewer than <var>$1limit</var> results returned before continuing; in extreme cases, zero results may be returned.",
 	"apihelp-query+alldeletedrevisions-param-generatetitles": "When being used as a generator, generate titles rather than revision IDs.",
-	"apihelp-query+alldeletedrevisions-example-user": "List the last 50 deleted contributions by user <kbd>Example<kbd>.",
+	"apihelp-query+alldeletedrevisions-example-user": "List the last 50 deleted contributions by user <kbd>Example</kbd>.",
 	"apihelp-query+alldeletedrevisions-example-ns-main": "List the first 50 deleted revisions in the main namespace.",
 
 	"apihelp-query+allfileusages-description": "List all file usages, including non-existing.",
@@ -543,8 +543,8 @@
 	"apihelp-query+backlinks-param-filterredir": "How to filter for redirects. If set to <kbd>nonredirects</kbd> when <var>$1redirect</var> is enabled, this is only applied to the second level.",
 	"apihelp-query+backlinks-param-limit": "How many total pages to return. If <var>$1redirect</var> is enabled, the limit applies to each level separately (which means up to 2 * <var>$1limit</var> results may be returned).",
 	"apihelp-query+backlinks-param-redirect": "If linking page is a redirect, find all pages that link to that redirect as well. Maximum limit is halved.",
-	"apihelp-query+backlinks-example-simple": "Show links to <kbd>Main page<kbd>.",
-	"apihelp-query+backlinks-example-generator": "Get information about pages linking to <kbd>Main page<kbd>.",
+	"apihelp-query+backlinks-example-simple": "Show links to <kbd>Main page</kbd>.",
+	"apihelp-query+backlinks-example-generator": "Get information about pages linking to <kbd>Main page</kbd>.",
 
 	"apihelp-query+blocks-description": "List all blocked users and IP addresses.",
 	"apihelp-query+blocks-param-start": "The timestamp to start enumerating from.",
@@ -669,7 +669,7 @@
 	"apihelp-query+extlinks-param-protocol": "Protocol of the URL. If empty and <var>$1query</var> is set, the protocol is <kbd>http</kbd>. Leave both this and <var>$1query</var> empty to list all external links.",
 	"apihelp-query+extlinks-param-query": "Search string without protocol. Useful for checking whether a certain page contains a certain external url.",
 	"apihelp-query+extlinks-param-expandurl": "Expand protocol-relative URLs with the canonical protocol.",
-	"apihelp-query+extlinks-example-simple": "Get a list of external links on <kbd>Main Page<kbd>.",
+	"apihelp-query+extlinks-example-simple": "Get a list of external links on <kbd>Main Page</kbd>.",
 
 	"apihelp-query+exturlusage-description": "Enumerate pages that contain a given URL.",
 	"apihelp-query+exturlusage-param-prop": "Which pieces of information to include:",
