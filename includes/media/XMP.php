@@ -447,9 +447,8 @@ class XMPReader implements LoggerAwareInterface {
 		// immediately following the StandardXMP. However, the JPEG standard
 		// does not require preservation of marker segment order. A robust JPEG
 		// reader should tolerate the marker segments in any order."
-		//
-		// otoh the probability that an image will have more than 128k of
-		// metadata is rather low... so the probability that it will have
+		// On the other hand, the probability that an image will have more than
+		// 128k of metadata is rather low... so the probability that it will have
 		// > 128k, and be in the wrong order is very low...
 
 		if ( $len['offset'] !== $this->extendedXMPOffset ) {
@@ -1213,8 +1212,7 @@ class XMPReader implements LoggerAwareInterface {
 			// In practise I have yet to see a file that
 			// uses this element, however it is mentioned
 			// on page 25 of part 1 of the xmp standard.
-			//
-			// also it seems as if exiv2 and exiftool do not support
+			// Also it seems as if exiv2 and exiftool do not support
 			// this either (That or I misunderstand the standard)
 			$this->logger->info( __METHOD__ . ' Encountered <rdf:type> which isn\'t currently supported' );
 		}
