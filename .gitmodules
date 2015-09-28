@@ -274,3 +274,12 @@
 	path = extensions/SyntaxHighlight_GeSHi
 	url = https://git.wikimedia.org/git/mediawiki/extensions/SyntaxHighlight_GeSHi.git
 	branch = REL1_25
+[submodule "extensions/MsUpload"]
+	path = extensions/MsUpload
+	url = https://git.wikimedia.org/git/mediawiki/extensions/MsUpload.git
+[submodule "extensions/MsLinks"]
+	path = extensions/MsLinks
+	url = https://git.wikimedia.org/git/mediawiki/extensions/MsLinks.git
+[submodule "extensions/MsCatSelect"]
+	path = extensions/MsCatSelect
+	url = https://git.wikimedia.org/git/mediawiki/extensions/MsCatSelect.git
