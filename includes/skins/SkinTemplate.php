@@ -928,7 +928,7 @@ class SkinTemplate extends Skin {
 					// section link
 					if ( $showNewSection ) {
 						// Adds new section link
-						//$content_navigation['actions']['addsection']
+						// $content_navigation['actions']['addsection']
 						$content_navigation['views']['addsection'] = array(
 							'class' => ( $isEditing && $section == 'new' ) ? 'selected' : false,
 							'text' => wfMessageFallback( "$skname-action-addsection", 'addsection' )
