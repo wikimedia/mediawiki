@@ -125,6 +125,34 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * Get an array of default HTML class attributes for the change.
+	 *
+	 * @param RecentChange|RCCacheEntry $rc
+	 * $param bool $watched
+	 *
+	 * @return array of classes
+	 */
+	protected function getHTMLClasses( $rc, $watched ) {
+		$classes = array();
+		$logType = $rc->mAttribs['rc_log_type'];
+
+		if ( $logType ) {
+			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-log-' . $logType );
+		} else {
+			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-ns' .
+				$rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
+		}
+
+		// Indicate watched status on the line to allow for more
+		// comprehensive styling.
+		$classes[] = $watched && $rc->mAttribs['rc_timestamp'] >= $watched
+			? 'mw-changeslist-line-watched'
+			: 'mw-changeslist-line-not-watched';
+
+		return $classes;
+	}
+
+	/**
 	 * Provide the "<abbr>" element appropriate to a given abbreviated flag,
 	 * namely the flag indicating a new page, a minor edit, a bot edit, or an
 	 * unpatrolled edit.  By default in English it will contain "N", "m", "b",

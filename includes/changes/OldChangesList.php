@@ -33,7 +33,7 @@ class OldChangesList extends ChangesList {
 	 */
 	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
 
-		$classes = array();
+		$classes = $this->getHTMLClasses( $rc, $watched );
 		// use mw-line-even/mw-line-odd class only if linenumber is given (feature from bug 14468)
 		if ( $linenumber ) {
 			if ( $linenumber & 1 ) {
@@ -42,11 +42,6 @@ class OldChangesList extends ChangesList {
 				$classes[] = 'mw-line-even';
 			}
 		}
-
-		// Indicate watched status on the line to allow for more
-		// comprehensive styling.
-		$classes[] = $watched && $rc->mAttribs['rc_timestamp'] >= $watched
-			? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
 
 		$html = $this->formatChangeLine( $rc, $classes, $watched );
 
