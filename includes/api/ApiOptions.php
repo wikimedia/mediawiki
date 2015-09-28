@@ -55,7 +55,7 @@ class ApiOptions extends ApiBase {
 		// Load the user from the master to reduce CAS errors on double post (T95839)
 		if ( wfGetLB()->getServerCount() > 1 ) {
 			$user = User::newFromId( $user->getId() );
-			if ( !$user->loadFromId( User::READ_LATEST ) ) {
+			if ( !$user->loadFromId( User::READ_EXCLUSIVE ) ) {
 				$this->dieUsage( 'Anonymous users cannot change preferences', 'notloggedin' );
 			}
 		}

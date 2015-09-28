@@ -1203,18 +1203,15 @@ class User implements IDBAccessObject {
 			return false;
 		}
 
-		$db = ( $flags & self::READ_LATEST )
-			? wfGetDB( DB_MASTER )
-			: wfGetDB( DB_SLAVE );
+		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+		$db = wfGetDB( $index );
 
 		$s = $db->selectRow(
 			'user',
 			self::selectFields(),
 			array( 'user_id' => $this->mId ),
 			__METHOD__,
-			( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING )
-				? array( 'LOCK IN SHARE MODE' )
-				: array()
+			$options
 		);
 
 		$this->queryFlagsUsed = $flags;
