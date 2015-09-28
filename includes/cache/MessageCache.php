@@ -394,21 +394,19 @@ class MessageCache {
 		$saveSuccess = $this->saveToCaches( $cache, 'all', $code );
 
 		if ( !$saveSuccess ) {
-			# Cache save has failed.
-			# There are two main scenarios where this could be a problem:
-			#
-			#   - The cache is more than the maximum size (typically
-			#     1MB compressed).
-			#
-			#   - Memcached has no space remaining in the relevant slab
-			#     class. This is unlikely with recent versions of
-			#     memcached.
-			#
-			# Either way, if there is a local cache, nothing bad will
-			# happen. If there is no local cache, disabling the message
-			# cache for all requests avoids incurring a loadFromDB()
-			# overhead on every request, and thus saves the wiki from
-			# complete downtime under moderate traffic conditions.
+			/**
+			 * Cache save has failed.
+			 *
+			 * There are two main scenarios where this could be a problem:
+			 * - The cache is more than the maximum size (typically 1MB compressed).
+			 * - Memcached has no space remaining in the relevant slab class. This is
+			 *   unlikely with recent versions of memcached.
+			 *
+			 * Either way, if there is a local cache, nothing bad will happen. If there
+			 * is no local cache, disabling the message cache for all requests avoids
+			 * incurring a loadFromDB() overhead on every request, and thus saves the
+			 * wiki from complete downtime under moderate traffic conditions.
+			 */
 			if ( !$wgUseLocalMessageCache ) {
 				$this->mMemc->set( $statusKey, 'error', 60 * 5 );
 				$where[] = 'could not save cache, disabled globally for 5 minutes';
