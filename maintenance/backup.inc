@@ -174,12 +174,6 @@ class BackupDumper {
 					case "server":
 						$this->server = $val;
 						break;
-					case "force-normal":
-						if ( !function_exists( 'utf8_normalize' ) ) {
-							$this->fatalError( "UTF-8 normalization extension not loaded. " .
-								"Install or remove --force-normal parameter to use slower code." );
-						}
-						break;
 					default:
 						$this->processOption( $opt, $val, $param );
 				}

@@ -190,6 +190,8 @@ changes to languages because of Phabricator reports.
 * OutputPage::loginToUse() was removed (deprecated since 1.19).
 * Article::loadContent() was removed (deprecated since 1.19).
 * User::editToken() was removed (deprecated since 1.19).
+* Removed --force-normal option of dumpBackup.php, as it no longer served
+  any useful purpose since 1.22.
 
 == Compatibility ==
 
