@@ -134,6 +134,12 @@ class ParserTest {
 		$this->setupRecorder( $options );
 		$this->keepUploads = isset( $options['keep-uploads'] );
 
+		if ( $this->keepUploads ) {
+			$this->uploadDir = wfTempDir() . '/mwParser-images';
+		} else {
+			$this->uploadDir = wfTempDir() . "/mwParser-" . mt_rand() . "-images";
+		}
+
 		if ( isset( $options['seed'] ) ) {
 			$this->fuzzSeed = intval( $options['seed'] ) - 1;
 		}
@@ -147,13 +153,17 @@ class ParserTest {
 			echo "Warning: tidy is not installed, skipping some tests\n";
 		}
 
+		if ( !extension_loaded( 'gd' ) ) {
+			echo "Warning: GD extension is not present, thumbnailing tests will probably fail\n";
+		}
+
 		$this->hooks = array();
 		$this->functionHooks = array();
 		$this->transparentHooks = array();
-		self::setUp();
+		$this->setUp();
 	}
 
-	static function setUp() {
+	function setUp() {
 		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc,
 			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory,
 			$wgExtraNamespaces, $wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
@@ -171,7 +181,7 @@ class ParserTest {
 		$wgLockManagers = array( array(
 			'name' => 'fsLockManager',
 			'class' => 'FSLockManager',
-			'lockDirectory' => wfTempDir() . '/test-repo/lockdir',
+			'lockDirectory' => $this->uploadDir . '/lockdir',
 		), array(
 			'name' => 'nullLockManager',
 			'class' => 'NullLockManager',
@@ -186,10 +196,10 @@ class ParserTest {
 				'name' => 'local-backend',
 				'wikiId' => wfWikiId(),
 				'containerPaths' => array(
-					'local-public' => wfTempDir() . '/test-repo/public',
-					'local-thumb' => wfTempDir() . '/test-repo/thumb',
-					'local-temp' => wfTempDir() . '/test-repo/temp',
-					'local-deleted' => wfTempDir() . '/test-repo/deleted',
+					'local-public' => $this->uploadDir . '/public',
+					'local-thumb' => $this->uploadDir . '/thumb',
+					'local-temp' => $this->uploadDir . '/temp',
+					'local-deleted' => $this->uploadDir . '/deleted',
 				)
 			) )
 		);
@@ -937,6 +947,7 @@ class ParserTest {
 
 		MagicWord::clearCache();
 		MWTidy::destroySingleton();
+		RepoGroup::destroySingleton();
 
 		return $context;
 	}
@@ -1028,7 +1039,7 @@ class ParserTest {
 
 		// Remember to update newParserTests.php after changing the below
 		// (and it uses a slightly different syntax just for teh lulz)
-		$this->uploadDir = $this->setupUploadDir();
+		$this->setupUploadDir();
 		$user = User::createNew( 'WikiSysop' );
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Foobar.jpg' ) );
 		# note that the size/width/height/bits/etc of the file
@@ -1177,20 +1188,15 @@ class ParserTest {
 	private function setupUploadDir() {
 		global $IP;
 
-		if ( $this->keepUploads ) {
-			$dir = wfTempDir() . '/mwParser-images';
-
-			if ( is_dir( $dir ) ) {
-				return $dir;
-			}
-		} else {
-			$dir = wfTempDir() . "/mwParser-" . mt_rand() . "-images";
+		$dir = $this->uploadDir;
+		if ( $this->keepUploads && is_dir( $dir ) ) {
+			return;
 		}
 
 		// wfDebug( "Creating upload directory $dir\n" );
 		if ( file_exists( $dir ) ) {
 			wfDebug( "Already exists!\n" );
-			return $dir;
+			return;
 		}
 
 		wfMkdirParents( $dir . '/3/3a', null, __METHOD__ );
@@ -1207,7 +1213,7 @@ class ParserTest {
 		wfMkdirParents( $dir . '/5/5f', null, __METHOD__ );
 		copy( "$IP/tests/phpunit/data/parser/LoremIpsum.djvu", "$dir/5/5f/LoremIpsum.djvu" );
 
-		return $dir;
+		return;
 	}
 
 	/**
@@ -1239,58 +1245,13 @@ class ParserTest {
 		self::deleteFiles(
 			array(
 				"$dir/3/3a/Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/1000px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/100px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/1280px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/137px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/1500px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/177px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/206px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/20px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/265px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/274px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/30px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/353px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/40px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/442px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/450px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/600px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/640px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/75px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/960px-Foobar.jpg",
-
+				"$dir/thumb/3/3a/Foobar.jpg/*.jpg",
 				"$dir/e/ea/Thumb.png",
-
 				"$dir/0/09/Bad.jpg",
-
 				"$dir/5/5f/LoremIpsum.djvu",
-				"$dir/thumb/5/5f/LoremIpsum.djvu/page2-2480px-LoremIpsum.djvu.jpg",
-				"$dir/thumb/5/5f/LoremIpsum.djvu/page2-3720px-LoremIpsum.djvu.jpg",
-				"$dir/thumb/5/5f/LoremIpsum.djvu/page2-4960px-LoremIpsum.djvu.jpg",
-
+				"$dir/thumb/5/5f/LoremIpsum.djvu/*-LoremIpsum.djvu.jpg",
 				"$dir/f/ff/Foobar.svg",
-				"$dir/thumb/f/ff/Foobar.svg/180px-Foobar.svg.png",
-				"$dir/thumb/f/ff/Foobar.svg/2000px-Foobar.svg.png",
-				"$dir/thumb/f/ff/Foobar.svg/270px-Foobar.svg.png",
-				"$dir/thumb/f/ff/Foobar.svg/3000px-Foobar.svg.png",
-				"$dir/thumb/f/ff/Foobar.svg/360px-Foobar.svg.png",
-				"$dir/thumb/f/ff/Foobar.svg/4000px-Foobar.svg.png",
-				"$dir/thumb/f/ff/Foobar.svg/langde-180px-Foobar.svg.png",
-				"$dir/thumb/f/ff/Foobar.svg/langde-270px-Foobar.svg.png",
-				"$dir/thumb/f/ff/Foobar.svg/langde-360px-Foobar.svg.png",
-
+				"$dir/thumb/f/ff/Foobar.svg/*-Foobar.svg.png",
 				"$dir/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
 			)
 		);
@@ -1321,6 +1282,7 @@ class ParserTest {
 				"$dir/math/f/a",
 				"$dir/math/f",
 				"$dir/math",
+				"$dir/lockdir",
 				"$dir",
 			)
 		);
@@ -1331,9 +1293,11 @@ class ParserTest {
 	 * @param array $files Full paths to files to delete.
 	 */
 	private static function deleteFiles( $files ) {
-		foreach ( $files as $file ) {
-			if ( file_exists( $file ) ) {
-				unlink( $file );
+		foreach ( $files as $pattern ) {
+			foreach ( glob( $pattern ) as $file ) {
+				if ( file_exists( $file ) ) {
+					unlink( $file );
+				}
 			}
 		}
 	}
