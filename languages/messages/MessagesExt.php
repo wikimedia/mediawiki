@@ -8,6 +8,8 @@
  *
  */
 
+$fallback = 'es';
+ 
 $namespaceNames = array(
 	NS_TEMPLATE         => 'Prantilla',
 );
