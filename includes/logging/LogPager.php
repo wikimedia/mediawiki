@@ -218,17 +218,19 @@ class LogPager extends ReverseChronologicalPager {
 			}
 		}
 
-		# Using the (log_namespace, log_title, log_timestamp) index with a
-		# range scan (LIKE) on the first two parts, instead of simple equality,
-		# makes it unusable for sorting.  Sorted retrieval using another index
-		# would be possible, but then we might have to scan arbitrarily many
-		# nodes of that index. Therefore, we need to avoid this if $wgMiserMode
-		# is on.
-		#
-		# This is not a problem with simple title matches, because then we can
-		# use the page_time index.  That should have no more than a few hundred
-		# log entries for even the busiest pages, so it can be safely scanned
-		# in full to satisfy an impossible condition on user or similar.
+		/**
+		 * Using the (log_namespace, log_title, log_timestamp) index with a
+		 * range scan (LIKE) on the first two parts, instead of simple equality,
+		 * makes it unusable for sorting.  Sorted retrieval using another index
+		 * would be possible, but then we might have to scan arbitrarily many
+		 * nodes of that index. Therefore, we need to avoid this if $wgMiserMode
+		 * is on.
+		 *
+		 * This is not a problem with simple title matches, because then we can
+		 * use the page_time index.  That should have no more than a few hundred
+		 * log entries for even the busiest pages, so it can be safely scanned
+		 * in full to satisfy an impossible condition on user or similar.
+		 */
 		$this->mConds['log_namespace'] = $ns;
 		if ( $doUserRightsLogLike ) {
 			$params = array( $name . $wgUserrightsInterwikiDelimiter );
