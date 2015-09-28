@@ -350,7 +350,8 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_DFLT => 'timestamp|url',
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+imageinfo-param-prop',
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => ApiQueryImageInfo::getPropertyMessages( $this->propertyFilter ),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE =>
+					ApiQueryImageInfo::getPropertyMessages( $this->propertyFilter ),
 			),
 			'prefix' => null,
 			'minsize' => array(

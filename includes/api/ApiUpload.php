@@ -45,7 +45,8 @@ class ApiUpload extends ApiBase {
 		$this->mParams = $this->extractRequestParams();
 		$request = $this->getMain()->getRequest();
 		// Check if async mode is actually supported (jobs done in cli mode)
-		$this->mParams['async'] = ( $this->mParams['async'] && $this->getConfig()->get( 'EnableAsyncUploads' ) );
+		$this->mParams['async'] = ( $this->mParams['async'] &&
+			$this->getConfig()->get( 'EnableAsyncUploads' ) );
 		// Add the uploaded file to the params array
 		$this->mParams['file'] = $request->getFileName( 'file' );
 		$this->mParams['chunk'] = $request->getFileName( 'chunk' );
@@ -605,16 +606,29 @@ class ApiUpload extends ApiBase {
 
 		switch ( $exceptionType ) {
 			case 'UploadStashFileNotFoundException':
-				$this->dieUsage( 'Could not find the file in the stash: ' . $e->getMessage(), 'stashedfilenotfound' );
+				$this->dieUsage(
+					'Could not find the file in the stash: ' . $e->getMessage(),
+					'stashedfilenotfound'
+				);
 				break;
 			case 'UploadStashBadPathException':
-				$this->dieUsage( 'File key of improper format or otherwise invalid: ' . $e->getMessage(), 'stashpathinvalid' );
+				$this->dieUsage(
+					'File key of improper format or otherwise invalid: ' . $e->getMessage(),
+					'stashpathinvalid'
+				);
 				break;
 			case 'UploadStashFileException':
-				$this->dieUsage( 'Could not store upload in the stash: ' . $e->getMessage(), 'stashfilestorage' );
+				$this->dieUsage(
+					'Could not store upload in the stash: ' . $e->getMessage(),
+					'stashfilestorage'
+				);
 				break;
 			case 'UploadStashZeroLengthFileException':
-				$this->dieUsage( 'File is of zero length, and could not be stored in the stash: ' . $e->getMessage(), 'stashzerolength' );
+				$this->dieUsage(
+					'File is of zero length, and could not be stored in the stash: ' .
+						$e->getMessage(),
+					'stashzerolength'
+				);
 				break;
 			case 'UploadStashNotLoggedInException':
 				$this->dieUsage( 'Not logged in: ' . $e->getMessage(), 'stashnotloggedin' );

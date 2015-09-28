@@ -118,7 +118,9 @@ class ApiCreateAccount extends ApiBase {
 					'createaccount-title',
 					'createaccount-text'
 				) );
-			} elseif ( $this->getConfig()->get( 'EmailAuthentication' ) && Sanitizer::validateEmail( $user->getEmail() ) ) {
+			} elseif ( $this->getConfig()->get( 'EmailAuthentication' ) &&
+				Sanitizer::validateEmail( $user->getEmail() )
+			) {
 				// Send out an email authentication message if needed
 				$status->merge( $user->sendConfirmationMail() );
 			}
