@@ -18,8 +18,8 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 					word = word.slice( 0, -2 ) + 'ки';
 				} else if ( word.slice( -2 ) === 'ти' ) {
 					word = word.slice( 0, -2 ) + 'тей';
-				} else if ( word.slice( -2 ) === 'ды' ) {
-					word = word.slice( 0, -2 ) + 'дов';
+				} else if ( word.slice( -2 ) === 'ди' ) {
+					word = word.slice( 0, -2 ) + 'дів';
 				} else if ( word.slice( -3 ) === 'ник' ) {
 					word = word.slice( 0, -3 ) + 'ника';
 				}

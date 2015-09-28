@@ -378,9 +378,9 @@
 				description: 'Grammar test for genitive case'
 			},
 			{
-				word: 'доводы',
+				word: 'Віківиди',
 				grammarForm: 'genitive',
-				expected: 'доводов',
+				expected: 'Віківидів',
 				description: 'Grammar test for genitive case'
 			},
 			{
