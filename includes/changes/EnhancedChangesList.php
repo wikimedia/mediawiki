@@ -569,7 +569,9 @@ class EnhancedChangesList extends ChangesList {
 
 		$type = $rcObj->mAttribs['rc_type'];
 		$logType = $rcObj->mAttribs['rc_log_type'];
-		$classes = [ 'mw-enhanced-rc' ];
+		$classes = $this->getHTMLClasses( $rcObj, $rcObj->watched );
+		$classes[] = 'mw-enhanced-rc';
+
 		if ( $logType ) {
 			# Log entry
 			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-log-' . $logType );
@@ -577,8 +579,6 @@ class EnhancedChangesList extends ChangesList {
 			$classes[] = Sanitizer::escapeClass( 'mw-changeslist-ns' .
 				$rcObj->mAttribs['rc_namespace'] . '-' . $rcObj->mAttribs['rc_title'] );
 		}
-		$classes[] = $rcObj->watched && $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched
-			? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
 
 		# Flag and Timestamp
 		$data['recentChangesFlags'] = [
