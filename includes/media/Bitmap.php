@@ -299,7 +299,6 @@ class BitmapHandler extends TransformationalImageHandler {
 	 */
 	protected function transformGd( $image, $params ) {
 		# Use PHP's builtin GD library functions.
-		#
 		# First find out what kind of file this is, and select the correct
 		# input routine for this.
 
