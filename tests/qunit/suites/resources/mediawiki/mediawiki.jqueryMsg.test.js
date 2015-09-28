@@ -1,5 +1,6 @@
 ( function ( mw, $ ) {
-	var formatText, formatParse, formatnumTests, specialCharactersPageName, expectedListUsers, expectedEntrypoints,
+	var formatText, formatParse, formatnumTests, specialCharactersPageName, expectedListUsers,
+		expectedListUsersSitename, expectedEntrypoints,
 		mwLanguageCache = {},
 		hasOwn = Object.hasOwnProperty;
 
@@ -16,6 +17,8 @@
 			specialCharactersPageName = '"Who" wants to be a millionaire & live on \'Exotic Island\'?';
 
 			expectedListUsers = '注册<a title="Special:ListUsers" href="/wiki/Special:ListUsers">用户</a>';
+			expectedListUsersSitename = '注册<a title="Special:ListUsers" href="/wiki/Special:ListUsers">用户' +
+				mw.config.get( 'wgSiteName' ) + '</a>';
 
 			expectedEntrypoints = '<a href="https://www.mediawiki.org/wiki/Manual:index.php">index.php</a>';
 
@@ -52,6 +55,7 @@
 			'see-portal-url': '{{Int:portal-url}} is an important community page.',
 
 			'jquerymsg-test-statistics-users': '注册[[Special:ListUsers|用户]]',
+			'jquerymsg-test-statistics-users-sitename': '注册[[Special:ListUsers|用户{{SITENAME}}]]',
 
 			'jquerymsg-test-version-entrypoints-index-php': '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
 
@@ -339,7 +343,7 @@
 		process( tasks, QUnit.start );
 	} );
 
-	QUnit.test( 'Links', 6, function ( assert ) {
+	QUnit.test( 'Links', 7, function ( assert ) {
 		var expectedDisambiguationsText,
 			expectedMultipleBars,
 			expectedSpecialCharacters;
@@ -394,6 +398,12 @@
 			formatParse( 'special-characters' ),
 			expectedSpecialCharacters,
 			'Special characters'
+		);
+
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-test-statistics-users-sitename' ),
+			expectedListUsersSitename,
+			'Piped wikilink with parser function in the text'
 		);
 	} );
 
