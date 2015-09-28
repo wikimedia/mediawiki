@@ -108,20 +108,59 @@ $.extend( mw.language, {
 
 	/**
 	 * Grammatical transformations, needed for inflected languages.
-	 * Invoked by putting `{{grammar:form|word}}` in a message.
+	 * Invoked by putting `{{grammar:case|word}}` in a message.
 	 *
 	 * The rules can be defined in $wgGrammarForms global or computed
 	 * dynamically by overriding this method per language.
 	 *
 	 * @param {string} word
-	 * @param {string} form
+	 * @param {string} grammarCase
 	 * @return {string}
 	 */
-	convertGrammar: function ( word, form ) {
-		var grammarForms = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'grammarForms' );
-		if ( grammarForms && grammarForms[ form ] ) {
-			return grammarForms[ form ][ word ] || word;
+	convertGrammar: function ( word, grammarCase ) {
+		var userLanguage, grammarForms, grammarTransformations,
+			i, rule, forms, form, regexp, replacement;
+
+		userLanguage = mw.config.get( 'wgUserLanguage' );
+
+		grammarForms = mediaWiki.language.getData( userLanguage, 'grammarForms' );
+		if ( grammarForms && grammarForms[ grammarCase ] ) {
+			return grammarForms[ grammarCase ][ word ];
 		}
+
+		grammarTransformations = mediaWiki.language.getData(
+			userLanguage,
+			'grammarTransformations'
+		);
+
+		if ( grammarTransformations && grammarTransformations[ grammarCase ] ) {
+			forms = grammarTransformations[ grammarCase ];
+
+			// Check whether it's a redirect to a different name for
+			// the grammar tranformation
+			if ( typeof forms === 'string' ) {
+				forms = grammarTransformations[ forms ];
+			}
+
+			for ( i = 0; i < forms.length; i++ ) {
+				rule = forms[ i ];
+				form = rule[ 0 ];
+
+				if ( form === '@metadata' ) {
+					continue;
+				}
+
+				regexp = new RegExp( form );
+				replacement = rule[ 1 ];
+
+				if ( word.match( form ) ) {
+					word = word.replace( regexp, replacement );
+
+					break;
+				}
+			}
+		}
+
 		return word;
 	},
 
