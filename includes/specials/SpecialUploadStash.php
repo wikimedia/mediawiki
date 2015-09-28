@@ -36,14 +36,16 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	// UploadStash
 	private $stash;
 
-	// Since we are directly writing the file to STDOUT,
-	// we should not be reading in really big files and serving them out.
-	//
-	// We also don't want people using this as a file drop, even if they
-	// share credentials.
-	//
-	// This service is really for thumbnails and other such previews while
-	// uploading.
+	/**
+	 * Since we are directly writing the file to STDOUT,
+	 * we should not be reading in really big files and serving them out.
+	 *
+	 * We also don't want people using this as a file drop, even if they
+	 * share credentials.
+	 *
+	 * This service is really for thumbnails and other such previews while
+	 * uploading.
+	 */
 	const MAX_SERVE_BYTES = 1048576; // 1MB
 
 	public function __construct() {
