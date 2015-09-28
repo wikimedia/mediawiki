@@ -1029,7 +1029,7 @@
 	"mergehistory-go": "Used as the label for Submit button in the Merge form, in [[Special:MergeHistory]].\n\nSee also:\n* {{msg-mw|mergehistory-header}}\n* {{msg-mw|mergehistory-box}}\n* {{msg-mw|mergehistory-from}}\n* {{msg-mw|mergehistory-into}}",
 	"mergehistory-submit": "Used as label for Submit button in [[Special:MergeHistory]].",
 	"mergehistory-empty": "Used in [[Special:MergeHistory]].",
-	"mergehistory-success": "Used in [[Special:MergeHistory]].\n* $1 - target page title\n* $2 - destination page title\n* $3 - number of revisions which succeeded to merge",
+	"mergehistory-done": "Success message shown on [[Special:MergeHistory]].\n* $1 - link to target page\n* $2 - destination page title\n* $3 - number of revisions which succeeded to merge",
 	"mergehistory-fail": "Used as error message in [[Special:MergeHistory]].",
 	"mergehistory-fail-toobig": "Used as error message in [[Special:MergeHistory]].\n* $1 - maximum allowed number of revisions that can be moved",
 	"mergehistory-no-source": "Used as error message in [[Special:MergeHistory]].\n* $1 - source page title\nSee also:\n* {{msg-mw|mergehistory-invalid-source}}\n* {{msg-mw|mergehistory-invalid-destination}}\n* {{msg-mw|mergehistory-no-destination}}\n* {{msg-mw|mergehistory-same-destination}}",

@@ -476,10 +476,13 @@ class SpecialMergeHistory extends SpecialPage {
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
-		# @todo message should use redirect=no
-		$this->getOutput()->addWikiText( $this->msg( 'mergehistory-success',
-			$targetTitle->getPrefixedText(), $destTitle->getPrefixedText() )->numParams(
-			$count )->text() );
+		$this->getOutput()->addWikiMsg( $this->msg( 'mergehistory-done' )
+			->rawParams(
+				Linker::link( $targetTitle, $targetTitle->getPrefixedText(), array(), array( 'redirect' => 'no' ) )
+			)
+			->params( $destTitle->getPrefixedText() )
+			->numParams( $count )
+		);
 
 		Hooks::run( 'ArticleMergeComplete', array( $targetTitle, $destTitle ) );
 
