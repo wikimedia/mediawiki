@@ -458,8 +458,11 @@ class TestFileIterator implements Iterator {
 			$this->sectionData['config'] = '';
 		}
 
-		$isDisabled = preg_match( '/\\bdisabled\\b/i', $this->sectionData['options'] ) && !$this->parserTest->runDisabled;
-		$isParsoidOnly = preg_match( '/\\bparsoid\\b/i', $this->sectionData['options'] ) && $result == 'html' && !$this->parserTest->runParsoid;
+		$isDisabled = preg_match( '/\\bdisabled\\b/i', $this->sectionData['options'] ) &&
+			!$this->parserTest->runDisabled;
+		$isParsoidOnly = preg_match( '/\\bparsoid\\b/i', $this->sectionData['options'] ) &&
+			$result == 'html' &&
+			!$this->parserTest->runParsoid;
 		$isFiltered = !preg_match( "/" . $this->parserTest->regex . "/i", $this->sectionData['test'] );
 		if ( $input == false || $result == false || $isDisabled || $isParsoidOnly || $isFiltered ) {
 			# disabled test
