@@ -3909,6 +3909,43 @@ class Language {
 			return $wgGrammarForms[$this->getCode()][$case][$word];
 		}
 
+		$grammarTransformations = $this->getGrammarTransformations();
+
+		if ( array_key_exists( $case, $grammarTransformations ) ) {
+			$forms = $grammarTransformations[$case];
+
+			// Some names of grammar rules are aliases for other rules.
+			// In such cases the value is a string rather than object,
+			// so load the actual rules.
+			if ( is_string( $forms ) ) {
+				$forms = $grammarTransformations[$forms];
+			}
+
+			foreach ( array_values( $forms ) as $rule ) {
+				$form = $rule[0];
+
+				if ( $form === '@metadata' ) {
+					continue;
+				}
+
+				$replacement = $rule[1];
+
+				$regex = "/$form/u";
+				$patternMatches = preg_match( $regex, $word );
+
+				if ( $patternMatches === false ) {
+					wfLogWarning(
+						'An error occurred while processing grammar. ' .
+						"Word: '$word'. Regex: /$form/."
+					);
+				} elseif ( $patternMatches === 1 ) {
+					$word = preg_replace( $regex, $replacement, $word );
+
+					break;
+				}
+			}
+		}
+
 		return $word;
 	}
 
