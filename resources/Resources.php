@@ -1888,11 +1888,31 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
-	'mediawiki.widgets' => array(
+	'mediawiki.widgets.dateinput' => array(
 		'scripts' => array(
-			'resources/src/mediawiki.widgets/mw.widgets.js',
 			'resources/src/mediawiki.widgets/mw.widgets.CalendarWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.DateInputWidget.js',
+		),
+		'skinStyles' => array(
+			'default' => array(
+				'resources/src/mediawiki.widgets/mw.widgets.CalendarWidget.less',
+				'resources/src/mediawiki.widgets/mw.widgets.DateInputWidget.less',
+			),
+		),
+		'messages' => array(
+			'mw-widgets-dateinput-no-date',
+			'mw-widgets-dateinput-placeholder-day',
+			'mw-widgets-dateinput-placeholder-month',
+		),
+		'dependencies' => array(
+			'oojs-ui',
+			'moment',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+
+	'mediawiki.widgets' => array(
+		'scripts' => array(
 			'resources/src/mediawiki.widgets/mw.widgets.NamespaceInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.ComplexNamespaceInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleWidget.js',
@@ -1905,28 +1925,22 @@ return array(
 		),
 		'skinStyles' => array(
 			'default' => array(
-				'resources/src/mediawiki.widgets/mw.widgets.CalendarWidget.less',
-				'resources/src/mediawiki.widgets/mw.widgets.DateInputWidget.less',
 				'resources/src/mediawiki.widgets/mw.widgets.TitleWidget.less',
 			),
 		),
 		'dependencies' => array(
 			'oojs-ui',
 			'mediawiki.widgets.styles',
-			// DateInputWidget
-			'moment',
 			// TitleInputWidget
 			'mediawiki.Title',
 			'mediawiki.api',
 			'jquery.byteLimit',
 			// TitleOptionWidget
 			'jquery.autoEllipsis',
+			// For backwards-compatibility
+			'mediawiki.widgets.dateinput',
 		),
 		'messages' => array(
-			// DateInputWidget
-			'mw-widgets-dateinput-no-date',
-			'mw-widgets-dateinput-placeholder-day',
-			'mw-widgets-dateinput-placeholder-month',
 			// NamespaceInputWidget
 			'blanknamespace',
 			'namespacesall',

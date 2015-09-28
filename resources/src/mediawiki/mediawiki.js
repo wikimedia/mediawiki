@@ -2450,6 +2450,9 @@
 			tokens: new Map()
 		},
 
+		// OOUI widgets specific to MediaWiki
+		widgets: {},
+
 		/**
 		 * Registry and firing of events.
 		 *
