@@ -250,7 +250,6 @@
 			data: this.namespace !== null && this.relative
 				? mwTitle.getRelativeText( this.namespace )
 				: title,
-			url: mwTitle.getUrl(),
 			imageUrl: this.showImages ? data.imageUrl : null,
 			description: this.showDescriptions ? data.description : null,
 			missing: data.missing,

@@ -15,7 +15,6 @@
 	 * @constructor
 	 * @param {Object} config Configuration options
 	 * @cfg {string} data Label to display
-	 * @cfg {string} url URL of page
 	 * @cfg {string} [imageUrl] Thumbnail image URL with URL encoding
 	 * @cfg {string} [description] Page description
 	 * @cfg {boolean} [missing] Page doesn't exist
@@ -41,14 +40,13 @@
 			icon: icon,
 			label: config.data,
 			autoFitLabel: false,
-			$label: $( '<a>' )
+			$label: $( '<a href="#">' )
 		}, config );
 
 		// Parent constructor
 		mw.widgets.TitleOptionWidget.parent.call( this, config );
 
 		// Initialization
-		this.$label.attr( 'href', config.url );
 		this.$element.addClass( 'mw-widget-titleOptionWidget' );
 
 		// Highlight matching parts of link suggestion
@@ -71,6 +69,11 @@
 					.text( config.description )
 			);
 		}
+
+		// Events
+		this.$label.on( 'click', function () {
+			return false;
+		} );
 	};
 
 	/* Setup */
