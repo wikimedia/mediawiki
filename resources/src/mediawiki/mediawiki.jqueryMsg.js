@@ -614,9 +614,9 @@
 				var result = sequence( [
 					wikilinkPage,
 					pipe,
-					expression
+					nOrMore( 1, expression )
 				] );
-				return result === null ? null : [ result[ 0 ], result[ 2 ] ];
+				return result === null ? null : [ result[ 0 ], [ 'CONCAT' ].concat( result[ 2 ] ) ];
 			}
 
 			wikilinkContents = choice( [
@@ -1052,7 +1052,9 @@
 			return $( '<a>' ).attr( {
 				title: page,
 				href: url
-			} ).text( anchor );
+			} )
+				// FIXME This means that you can't have anything with formatting inside a wikilink.
+				.text( anchor.jquery ? anchor.text() : anchor );
 		},
 
 		/**
