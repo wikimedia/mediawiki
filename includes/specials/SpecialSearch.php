@@ -115,6 +115,7 @@ class SpecialSearch extends SpecialPage {
 			return;
 		}
 
+		$out->addJsConfigVars( array( 'searchTerm' => $search ) );
 		$this->searchEngineType = $request->getVal( 'srbackend' );
 
 		if ( $request->getVal( 'fulltext' )
@@ -437,7 +438,7 @@ class SpecialSearch extends SpecialPage {
 			$stParams
 		);
 
-		# html of did you mean... search suggestion link
+		# HTML of did you mean... search suggestion link
 		return Html::rawElement(
 			'div',
 			array( 'class' => 'searchdidyoumean' ),
@@ -645,8 +646,9 @@ class SpecialSearch extends SpecialPage {
 
 		$out = "<ul class='mw-search-results'>\n";
 		$result = $matches->next();
+		$pos = $this->offset;
 		while ( $result ) {
-			$out .= $this->showHit( $result, $terms );
+			$out .= $this->showHit( $result, $terms, ++$pos );
 			$result = $matches->next();
 		}
 		$out .= "</ul>\n";
@@ -662,10 +664,11 @@ class SpecialSearch extends SpecialPage {
 	 *
 	 * @param SearchResult $result
 	 * @param array $terms Terms to highlight
+	 * @param int $position Position within the search results, including offset.
 	 *
 	 * @return string
 	 */
-	protected function showHit( $result, $terms ) {
+	protected function showHit( $result, $terms, $position ) {
 
 		if ( $result->isBrokenTitle() ) {
 			return '';
@@ -686,7 +689,8 @@ class SpecialSearch extends SpecialPage {
 
 		$link = Linker::linkKnown(
 			$link_t,
-			$titleSnippet
+			$titleSnippet,
+			array( 'data-serp-pos' => $position ) // HTML attributes
 		);
 
 		// If page content is not readable, just return the title.
