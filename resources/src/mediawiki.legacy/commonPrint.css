@@ -147,22 +147,9 @@ span.texhtml {
 /**
  * Links
  */
-a.stub,
-a.new {
-	color: #ba0000;
-	text-decoration: none;
-}
-
 a {
-	color: black !important;
 	background: none !important;
 	padding: 0 !important;
-}
-
-a:link, a:visited {
-	color: #520;
-	background: transparent;
-	text-decoration: underline;
 }
 
 /* Expand URLs for printing */
