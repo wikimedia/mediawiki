@@ -46,23 +46,31 @@ class LanguageHe extends Language {
 			return $wgGrammarForms['he'][$case][$word];
 		}
 
-		switch ( $case ) {
-			case 'prefixed':
-			case 'תחילית':
-				# Duplicate the "Waw" if prefixed, but not if it is already double.
-				if ( substr( $word, 0, 2 ) === "ו" && substr( $word, 0, 4 ) !== "וו" ) {
-					$word = "ו" . $word;
+		$grammarTransformations = $this->getGrammarTransformations();
+
+		if ( array_key_exists( $case, $grammarTransformations ) ) {
+			foreach ( array_values( $grammarTransformations[$case] ) as $rule ) {
+				$form = $rule[0];
+
+				if ( $form === '@metadata' ) {
+					continue;
 				}
 
-				# Remove the "He" article if prefixed.
-				if ( substr( $word, 0, 2 ) === "ה" ) {
-					$word = substr( $word, 2 );
-				}
+				$replacement = $rule[1];
 
-				# Add a hyphen (maqaf) before non-Hebrew letters.
-				if ( substr( $word, 0, 2 ) < "א" || substr( $word, 0, 2 ) > "ת" ) {
-					$word = "־" . $word;
+				$regex = "/$form/";
+
+				wfDebug( "Chapa! replacement: $replacement; regex: $regex; word: $word\n" );
+
+				if ( preg_match( $regex, $word ) ) {
+					wfDebug( "match\n" );
+					$word = preg_replace( $regex, $replacement, $word );
+
+					break;
+				} else {
+					wfDebug( "no match\n" );
 				}
+			}
 		}
 
 		return $word;
