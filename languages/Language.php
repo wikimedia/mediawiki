@@ -3903,6 +3903,28 @@ class Language {
 			return $wgGrammarForms[$this->getCode()][$case][$word];
 		}
 
+		$grammarTransformations = $this->getGrammarTransformations();
+
+		if ( array_key_exists( $case, $grammarTransformations ) ) {
+			foreach ( array_values( $grammarTransformations[$case] ) as $rule ) {
+				$form = $rule[0];
+
+				if ( $form === '@metadata' ) {
+					continue;
+				}
+
+				$replacement = $rule[1];
+
+				$regex = "/$form/";
+
+				if ( preg_match( $regex, $word ) ) {
+					$word = preg_replace( $regex, $replacement, $word );
+
+					break;
+				}
+			}
+		}
+
 		return $word;
 	}
 

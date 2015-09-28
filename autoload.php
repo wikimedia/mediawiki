@@ -630,7 +630,6 @@ $wgAutoloadLocalClasses = array(
 	'LanguageFi' => __DIR__ . '/languages/classes/LanguageFi.php',
 	'LanguageGa' => __DIR__ . '/languages/classes/LanguageGa.php',
 	'LanguageGan' => __DIR__ . '/languages/classes/LanguageGan.php',
-	'LanguageHe' => __DIR__ . '/languages/classes/LanguageHe.php',
 	'LanguageHsb' => __DIR__ . '/languages/classes/LanguageHsb.php',
 	'LanguageHu' => __DIR__ . '/languages/classes/LanguageHu.php',
 	'LanguageHy' => __DIR__ . '/languages/classes/LanguageHy.php',
