@@ -56,7 +56,10 @@ class HTMLCheckField extends HTMLFormField {
 		$attr['id'] = $this->mID;
 		$attr['name'] = $this->mName;
 
-		$attr += $this->getAttributes( array( 'disabled', 'tabindex' ), array( 'tabindex' => 'tabIndex' ) );
+		$attr += $this->getAttributes(
+			array( 'disabled', 'tabindex' ),
+			array( 'tabindex' => 'tabIndex' )
+		);
 
 		if ( $this->mClass !== '' ) {
 			$attr['classes'] = array( $this->mClass );

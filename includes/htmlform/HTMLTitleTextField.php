@@ -55,7 +55,9 @@ class HTMLTitleTextField extends HTMLTextField {
 		}
 
 		$text = $title->getPrefixedText();
-		if ( $this->mParams['namespace'] !== false && !$title->inNamespace( $this->mParams['namespace'] ) ) {
+		if ( $this->mParams['namespace'] !== false &&
+			!$title->inNamespace( $this->mParams['namespace'] )
+		) {
 			return $this->msg( 'htmlform-title-badnamespace', $this->mParams['namespace'], $text )->parse();
 		}
 

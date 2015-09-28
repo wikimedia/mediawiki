@@ -925,7 +925,8 @@ abstract class HTMLFormField {
 	 * Returns the given attributes from the parameters
 	 *
 	 * @param array $list List of attributes to get
-	 * @param array $mappings Optional - Key/value map of attribute names to use instead of the ones passed in
+	 * @param array $mappings Optional - Key/value map of attribute names to use
+	 *   instead of the ones passed in.
 	 * @return array Attributes
 	 */
 	public function getAttributes( array $list, array $mappings = null ) {
