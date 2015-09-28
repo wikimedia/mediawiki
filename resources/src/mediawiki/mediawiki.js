@@ -924,14 +924,18 @@
 					// Verify that the element before the marker actually is a
 					// <style> tag and one that came from ResourceLoader
 					// (not some other style tag or even a `<meta>` or `<script>`).
-					if ( $style.data( 'ResourceLoaderDynamicStyleTag' ) === true ) {
+					if ( $style.data( 'ResourceLoaderDynamicStyleTag' ) ) {
 						// There's already a dynamic <style> tag present and
 						// we are able to append more to it.
 						styleEl = $style.get( 0 );
 						// Support: IE6-10
 						if ( styleEl.styleSheet ) {
 							try {
-								styleEl.styleSheet.cssText += cssText;
+								// Support: IE9
+								// We can't do styleSheet.cssText += cssText, since IE9 drops @media queries from
+								// the CSS text when that property is read. We would then re-assign the crippled CSS
+								// and apply @media-specific styles to all media. (T108727)
+								styleEl.styleSheet.cssText = $style.data( 'ResourceLoaderDynamicStyleTag' ) + cssText;
 							} catch ( e ) {
 								mw.track( 'resourceloader.exception', { exception: e, source: 'stylesheet' } );
 							}
@@ -943,7 +947,7 @@
 					}
 				}
 
-				$( newStyleTag( cssText, getMarker() ) ).data( 'ResourceLoaderDynamicStyleTag', true );
+				$( newStyleTag( cssText, getMarker() ) ).data( 'ResourceLoaderDynamicStyleTag', cssText );
 
 				fireCallbacks();
 			}
