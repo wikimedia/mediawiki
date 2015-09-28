@@ -54,7 +54,7 @@ class SquidUpdate {
 	/**
 	 * Create a SquidUpdate from an array of Title objects, or a TitleArray object
 	 *
-	 * @param array $titles
+	 * @param Traversable|array $titles
 	 * @param array $urlArr
 	 * @return SquidUpdate
 	 */
