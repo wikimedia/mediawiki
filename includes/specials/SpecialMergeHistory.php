@@ -61,6 +61,9 @@ class SpecialMergeHistory extends SpecialPage {
 	/** @var Title */
 	protected $mDestObj;
 
+	/** @var int[] */
+	public $prevId;
+
 	public function __construct() {
 		parent::__construct( 'MergeHistory', 'mergehistory' );
 	}
@@ -93,18 +96,6 @@ class SpecialMergeHistory extends SpecialPage {
 		} else {
 			$this->mTargetObj = null;
 			$this->mDestObj = null;
-		}
-		$this->preCacheMessages();
-	}
-
-	/**
-	 * As we use the same small set of messages in various methods and that
-	 * they are called often, we call them once and save them in $this->message
-	 */
-	function preCacheMessages() {
-		// Precache various messages
-		if ( !isset( $this->message ) ) {
-			$this->message['last'] = $this->msg( 'last' )->escaped();
 		}
 	}
 
@@ -283,7 +274,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$rev = new Revision( $row );
 
 		$stxt = '';
-		$last = $this->message['last'];
+		$last = $this->msg( 'last' )->escaped();
 
 		$ts = wfTimestamp( TS_MW, $row->rev_timestamp );
 		$checkBox = Xml::radio( 'mergepoint', $ts, ( $this->mTimestamp === $ts ) );
@@ -302,11 +293,11 @@ class SpecialMergeHistory extends SpecialPage {
 
 		# Last link
 		if ( !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
-			$last = $this->message['last'];
+			$last = $this->msg( 'last' )->escaped();
 		} elseif ( isset( $this->prevId[$row->rev_id] ) ) {
 			$last = Linker::linkKnown(
 				$rev->getTitle(),
-				$this->message['last'],
+				$this->msg( 'last' )->escaped(),
 				array(),
 				array(
 					'diff' => $row->rev_id,
@@ -501,13 +492,13 @@ class SpecialMergeHistory extends SpecialPage {
 }
 
 class MergeHistoryPager extends ReverseChronologicalPager {
-	/** @var IContextSource */
+	/** @var SpecialMergeHistory */
 	public $mForm;
 
 	/** @var array */
 	public $mConds;
 
-	function __construct( $form, $conds, $source, $dest ) {
+	function __construct( SpecialMergeHistory $form, $conds, Title $source, Title $dest ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->title = $source;
