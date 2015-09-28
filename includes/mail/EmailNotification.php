@@ -148,11 +148,10 @@ class EmailNotification {
 		$watchers = self::updateWatchlistTimestamp( $editor, $title, $timestamp );
 
 		$sendEmail = true;
+		// $watchers deals with $wgEnotifWatchlist.
 		// If nobody is watching the page, and there are no users notified on all changes
 		// don't bother creating a job/trying to send emails, unless it's a
 		// talk page with an applicable notification.
-		//
-		// $watchers deals with $wgEnotifWatchlist
 		if ( !count( $watchers ) && !count( $wgUsersNotifiedOnAllChanges ) ) {
 			$sendEmail = false;
 			// Only send notification for non minor edits, unless $wgEnotifMinorEdits

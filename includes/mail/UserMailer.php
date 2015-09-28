@@ -178,32 +178,34 @@ class UserMailer {
 			return Status::newFatal( 'user-mail-no-addy' );
 		}
 
-		// Forge email headers
-		// -------------------
-		//
-		// WARNING
-		//
-		// DO NOT add To: or Subject: headers at this step. They need to be
-		// handled differently depending upon the mailer we are going to use.
-		//
-		// To:
-		//  PHP mail() first argument is the mail receiver. The argument is
-		//  used as a recipient destination and as a To header.
-		//
-		//  PEAR mailer has a recipient argument which is only used to
-		//  send the mail. If no To header is given, PEAR will set it to
-		//  to 'undisclosed-recipients:'.
-		//
-		//  NOTE: To: is for presentation, the actual recipient is specified
-		//  by the mailer using the Rcpt-To: header.
-		//
-		// Subject:
-		//  PHP mail() second argument to pass the subject, passing a Subject
-		//  as an additional header will result in a duplicate header.
-		//
-		//  PEAR mailer should be passed a Subject header.
-		//
-		// -- hashar 20120218
+		/**
+		 * Forge email headers
+		 * -------------------
+		 *
+		 * WARNING
+		 *
+		 * DO NOT add To: or Subject: headers at this step. They need to be
+		 * handled differently depending upon the mailer we are going to use.
+		 *
+		 * To:
+		 *  PHP mail() first argument is the mail receiver. The argument is
+		 *  used as a recipient destination and as a To header.
+		 *
+		 *  PEAR mailer has a recipient argument which is only used to
+		 *  send the mail. If no To header is given, PEAR will set it to
+		 *  to 'undisclosed-recipients:'.
+		 *
+		 *  NOTE: To: is for presentation, the actual recipient is specified
+		 *  by the mailer using the Rcpt-To: header.
+		 *
+		 * Subject:
+		 *  PHP mail() second argument to pass the subject, passing a Subject
+		 *  as an additional header will result in a duplicate header.
+		 *
+		 *  PEAR mailer should be passed a Subject header.
+		 *
+		 * -- hashar 20120218
+		 */
 
 		$headers['From'] = $from->toString();
 		$returnPath = $from->address;
@@ -326,9 +328,7 @@ class UserMailer {
 			MediaWiki\restoreWarnings();
 			return Status::newGood();
 		} else {
-			//
 			// PHP mail()
-			//
 			if ( count( $to ) > 1 ) {
 				$headers['To'] = 'undisclosed-recipients:;';
 			}
