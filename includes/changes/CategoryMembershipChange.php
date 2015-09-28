@@ -165,8 +165,10 @@ class CategoryMembershipChange {
 
 		# If no revision is given, the change was probably triggered by parser functions
 		if ( $revision !== null ) {
-			// TODO if no RC try again from the master DB?
 			$correspondingRc = $this->revision->getRecentChange();
+			if ( $correspondingRc === null ) {
+				$correspondingRc = $this->revision->getRecentChange( Revision::READ_LATEST );
+			}
 			if ( $correspondingRc !== null ) {
 				$bot = $correspondingRc->getAttribute( 'rc_bot' ) ?: 0;
 				$ip = $correspondingRc->getAttribute( 'rc_ip' ) ?: '';
