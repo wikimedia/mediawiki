@@ -956,8 +956,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * Generate code for a response.
 	 *
 	 * @param ResourceLoaderContext $context Context in which to generate a response
-	 * @param array $modules List of module objects keyed by module name
-	 * @param array $missing List of requested module names that are unregistered (optional)
+	 * @param ResourceLoaderModule[] $modules List of module objects keyed by module name
+	 * @param string[] $missing List of requested module names that are unregistered (optional)
 	 * @return string Response data
 	 */
 	public function makeModuleResponse( ResourceLoaderContext $context,
@@ -1246,7 +1246,7 @@ MESSAGE;
 	}
 
 	private static function isEmptyObject( stdClass $obj ) {
-		foreach ( $obj as $key => &$value ) {
+		foreach ( $obj as $key => $value ) {
 			return false;
 		}
 		return true;
