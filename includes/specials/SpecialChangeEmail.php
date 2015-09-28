@@ -92,7 +92,8 @@ class SpecialChangeEmail extends FormSpecialPage {
 			'NewEmail' => array(
 				'type' => 'email',
 				'label-message' => 'changeemail-newemail',
-				'autofocus' => true
+				'autofocus' => true,
+				'help-message' => 'changeemail-newemail-help',
 			),
 		);
 
