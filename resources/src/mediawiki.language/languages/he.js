@@ -7,23 +7,28 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 	if ( grammarForms && grammarForms[ form ] ) {
 		return grammarForms[ form ][ word ];
 	}
-	switch ( form ) {
-		case 'prefixed':
-		case 'תחילית': // the same word in Hebrew
-			// Duplicate prefixed "Waw", but only if it's not already double
-			if ( word.slice( 0, 1 ) === 'ו' && word.slice( 0, 2 ) !== 'וו' ) {
-				word = 'ו' + word;
+
+	grammarTransformations = mediaWiki.language.getData( 'ru', 'grammarTransformations' );
+
+	if ( grammarTransformations[ grammarCase ] ) {
+		for ( i = 0; i < grammarTransformations[ grammarCase ].length; i++ ) {
+			rule = grammarTransformations[ grammarCase ][ i ];
+			form = rule[ 0 ];
+
+			if ( form === '@metadata' ) {
+				continue;
 			}
 
-			// Remove the "He" if prefixed
-			if ( word.slice( 0, 1 ) === 'ה' ) {
-				word = word.slice( 1 );
-			}
+			regexp = new RegExp( form );
+			replacement = rule[ 1 ];
 
-			// Add a hyphen (maqaf) before numbers and non-Hebrew letters
-			if ( word.slice( 0, 1 ) < 'א' ||  word.slice( 0, 1 ) > 'ת' ) {
-				word = '־' + word;
+			if ( word.match( form ) ) {
+				word = word.replace( regexp, replacement );
+
+				break;
 			}
+		}
 	}
+
 	return word;
 };
