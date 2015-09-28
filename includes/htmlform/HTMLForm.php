@@ -959,7 +959,11 @@ class HTMLForm extends ContextSource {
 			$html = Xml::fieldset( $legend, $html );
 		}
 
-		return Html::rawElement( 'form', $this->getFormAttributes() + array( 'class' => 'visualClear' ), $html );
+		return Html::rawElement(
+			'form',
+			$this->getFormAttributes() + array( 'class' => 'visualClear' ),
+			$html
+		);
 	}
 
 	/**
