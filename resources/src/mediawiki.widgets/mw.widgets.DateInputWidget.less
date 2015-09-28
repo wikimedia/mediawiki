@@ -26,6 +26,8 @@
 	}
 }
 
+@indicator-size: unit(12 / 16 / 0.8, em);
+
 .mw-widget-dateInputWidget {
 	display: inline-block;
 	position: relative;
@@ -34,9 +36,22 @@
 		width: 100%;
 		display: inline-block;
 		cursor: pointer;
+		position: relative;
 
 		.oo-ui-unselectable();
 		.oo-ui-box-sizing(border-box);
+
+		> .oo-ui-indicatorElement-indicator {
+			display: none;
+		}
+	}
+
+	&.oo-ui-indicatorElement .mw-widget-dateInputWidget-handle > .oo-ui-indicatorElement-indicator {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100%;
 	}
 
 	&.oo-ui-widget-disabled .mw-widget-dateInputWidget-handle {
@@ -60,6 +75,11 @@
 		border-radius: 0.1em;
 		line-height: 1.275em;
 		background-color: white;
+	}
+
+	&.oo-ui-indicatorElement .mw-widget-dateInputWidget-handle > .oo-ui-indicatorElement-indicator {
+		width: @indicator-size;
+		margin: 0 0.775em;
 	}
 
 	> .oo-ui-textInputWidget input {
@@ -91,7 +111,12 @@
 			text-shadow: 0 1px 1px #fff;
 			border-color: #ddd;
 			background-color: #f3f3f3;
+
+			> .oo-ui-indicatorElement-indicator {
+				opacity: 0.2;
+			}
 		}
+
 	}
 
 	&.oo-ui-flaggedElement-invalid {
