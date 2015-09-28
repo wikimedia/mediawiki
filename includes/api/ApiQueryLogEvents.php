@@ -365,7 +365,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	 */
 	private function getAllowedLogActions() {
 		$config = $this->getConfig();
-		return array_keys( array_merge( $config->get( 'LogActions' ), $config->get( 'LogActionsHandlers' ) ) );
+		return array_keys( array_merge(
+			$config->get( 'LogActions' ),
+			$config->get( 'LogActionsHandlers' )
+		) );
 	}
 
 	public function getCacheMode( $params ) {

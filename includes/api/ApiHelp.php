@@ -703,7 +703,12 @@ class ApiHelp extends ApiBase {
 						$submodules[] = $manager->getModule( $name );
 					}
 				}
-				$help['submodules'] .= self::getHelpInternal( $context, $submodules, $suboptions, $haveModules );
+				$help['submodules'] .= self::getHelpInternal(
+					$context,
+					$submodules,
+					$suboptions,
+					$haveModules
+				);
 				$numSubmodules = count( $submodules );
 			}
 

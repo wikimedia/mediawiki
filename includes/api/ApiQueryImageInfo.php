@@ -339,7 +339,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		// in the actual normalised version, only if we can actually normalise them,
 		// so we use the functions scope to throw away the normalisations.
 		if ( !$h->normaliseParams( $image, $finalParams ) ) {
-			$this->dieUsage( "Could not normalise image parameters for " . $image->getName(), "urlparamnormal" );
+			$this->dieUsage( 'Could not normalise image parameters for ' .
+				$image->getName(), 'urlparamnormal' );
 		}
 	}
 

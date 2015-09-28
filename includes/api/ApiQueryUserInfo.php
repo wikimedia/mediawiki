@@ -149,7 +149,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['ratelimits'] = $this->getRateLimits();
 		}
 
-		if ( isset( $this->prop['realname'] ) && !in_array( 'realname', $this->getConfig()->get( 'HiddenPrefs' ) ) ) {
+		if ( isset( $this->prop['realname'] ) &&
+			!in_array( 'realname', $this->getConfig()->get( 'HiddenPrefs' ) )
+		) {
 			$vals['realname'] = $user->getRealName();
 		}
 
