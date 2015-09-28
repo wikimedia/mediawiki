@@ -85,7 +85,7 @@
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {
 		// Config initialization
-		config = $.extend( { precision: 'day' }, config );
+		config = $.extend( { precision: 'day', required: false }, config );
 		if ( config.required ) {
 			if ( config.indicator === undefined ) {
 				config.indicator = 'required';
@@ -106,6 +106,7 @@
 		// Properties (must be set before parent constructor, which calls #setValue)
 		this.handle = new OO.ui.LabelWidget();
 		this.textInput = new OO.ui.TextInputWidget( {
+			required: config.required,
 			placeholder: placeholder,
 			validate: this.validateDate.bind( this )
 		} );
@@ -118,6 +119,7 @@
 		this.inTextInput = 0;
 		this.inputFormat = config.inputFormat;
 		this.displayFormat = config.displayFormat;
+		this.required = config.required;
 
 		// Validate and set min and max dates as properties
 		mustBeAfter = moment( config.mustBeAfter, 'YYYY-MM-DD' );
@@ -159,10 +161,6 @@
 		} );
 
 		// Initialization
-		if ( config.required ) {
-			this.$input.attr( 'required', 'required' );
-			this.$input.attr( 'aria-required', 'true' );
-		}
 		// Move 'tabindex' from this.$input (which is invisible) to the visible handle
 		this.setTabIndexedElement( this.handle.$element );
 		this.handle.$element
@@ -207,7 +205,8 @@
 
 		// Set handle label and hide stuff
 		this.updateUI();
-		this.deactivate();
+		this.textInput.toggle( false );
+		this.calendar.toggle( false );
 	};
 
 	/* Inheritance */
@@ -287,6 +286,7 @@
 
 		if ( this.value !== oldValue ) {
 			this.updateUI();
+			this.setValidityFlag();
 		}
 
 		return this;
@@ -361,6 +361,7 @@
 		this.handle.toggle( true );
 		this.textInput.toggle( false );
 		this.calendar.toggle( false );
+		this.setValidityFlag();
 	};
 
 	/**
@@ -507,30 +508,29 @@
 
 	/**
 	 * @private
-	 * @param {string} date Date string, to be valid, must be empty (no date selected) or in
-	 *     'YYYY-MM-DD' or 'YYYY-MM' format to be valid
+	 * @param {string} date Date string, to be valid, must be in 'YYYY-MM-DD' or 'YYYY-MM' format or
+	 *     (unless the field is required) empty
 	 * @returns {boolean}
 	 */
 	mw.widgets.DateInputWidget.prototype.validateDate = function ( date ) {
+		var isValid;
 		if ( date === '' ) {
-			return true;
+			isValid = !this.required;
+		} else {
+			isValid = this.isValidDate( date ) && this.isInRange( date );
 		}
-
-		var isValid = this.isValidDate( date ) && this.isInRange( date );
-		this.setValidityFlag( isValid );
 		return isValid;
 	};
 
 	/**
 	 * @private
-	 * @param {string} date Date string, to be valid, must be empty (no date selected) or in
-	 *     'YYYY-MM-DD' or 'YYYY-MM' format to be valid
+	 * @param {string} date Date string, to be valid, must be in 'YYYY-MM-DD' or 'YYYY-MM' format
 	 * @returns {boolean}
 	 */
 	mw.widgets.DateInputWidget.prototype.isValidDate = function ( date ) {
 		// "Half-strict mode": for example, for the format 'YYYY-MM-DD', 2015-1-3 instead of 2015-01-03
 		// is okay, but 2015-01 isn't, and neither is 2015-01-foo. Use Moment's "fuzzy" mode and check
-		// parsing flags for the details (stoled from implementation of #isValid).
+		// parsing flags for the details (stoled from implementation of moment#isValid).
 		var
 			mom = moment( date, this.getInputFormat() ),
 			flags = mom.parsingFlags();
