@@ -960,7 +960,8 @@ class WebInstaller extends Installer {
 	 *      var:             The variable to be configured (required)
 	 *      label:           The message name for the label (required)
 	 *      itemLabelPrefix: The message name prefix for the item labels (required)
-	 *      itemLabels:      List of message names to use for the item labels instead of itemLabelPrefix, keyed by values
+	 *      itemLabels:      List of message names to use for the item labels instead
+	 *                       of itemLabelPrefix, keyed by values
 	 *      values:          List of allowed values (required)
 	 *      itemAttribs:     Array of attribute arrays, outer key is the value name (optional)
 	 *      commonAttribs:   Attribute array applied to all items
