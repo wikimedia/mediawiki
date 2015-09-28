@@ -753,7 +753,6 @@ class FileRepo {
 		}
 		if ( !is_null( $this->articleUrl ) ) {
 			# "http://example.com/wiki/$1"
-			#
 			# We use "Image:" as the canonical namespace for
 			# compatibility across all MediaWiki versions.
 			return str_replace( '$1',
@@ -761,7 +760,6 @@ class FileRepo {
 		}
 		if ( !is_null( $this->scriptDirUrl ) ) {
 			# "http://example.com/w"
-			#
 			# We use "Image:" as the canonical namespace for
 			# compatibility across all MediaWiki versions,
 			# and just sort of hope index.php is right. ;)

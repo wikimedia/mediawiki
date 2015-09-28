@@ -2214,7 +2214,6 @@ class LocalFileDeleteBatch {
 
 		// Lock the filearchive rows so that the files don't get deleted by a cleanup operation
 		// We acquire this lock by running the inserts now, before the file operations.
-		//
 		// This potentially has poor lock contention characteristics -- an alternative
 		// scheme would be to insert stub filearchive entries with no fa_name and commit
 		// them in a separate transaction, then run the file ops, then update the fa_name fields.
