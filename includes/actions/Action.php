@@ -370,7 +370,7 @@ abstract class Action {
 	 * Returns the description that goes below the \<h1\> tag
 	 * @since 1.17
 	 *
-	 * @return string
+	 * @return string HTML
 	 */
 	protected function getDescription() {
 		return $this->msg( strtolower( $this->getName() ) )->escaped();

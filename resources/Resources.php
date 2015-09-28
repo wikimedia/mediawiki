@@ -1532,7 +1532,6 @@ return array(
 		'dependencies' => array(
 			'mediawiki.api.watch',
 			'mediawiki.notify',
-			'mediawiki.page.startup',
 			'mediawiki.util',
 			'jquery.accessKeyLabel',
 			'mediawiki.RegExp',

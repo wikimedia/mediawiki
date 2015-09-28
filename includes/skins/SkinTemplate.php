@@ -1019,12 +1019,11 @@ class SkinTemplate extends Skin {
 					 * the global versions.
 					 */
 					$mode = $user->isWatched( $title ) ? 'unwatch' : 'watch';
-					$token = WatchAction::getWatchToken( $title, $user, $mode );
 					$content_navigation['actions'][$mode] = array(
 						'class' => $onPage && ( $action == 'watch' || $action == 'unwatch' ) ? 'selected' : false,
 						// uses 'watch' or 'unwatch' message
 						'text' => $this->msg( $mode )->text(),
-						'href' => $title->getLocalURL( array( 'action' => $mode, 'token' => $token ) )
+						'href' => $title->getLocalURL( array( 'action' => $mode ) )
 					);
 				}
 			}
