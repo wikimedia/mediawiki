@@ -384,7 +384,11 @@ class ProtectionForm {
 				"mwProtect-$action-expires"
 			);
 
-			$expiryFormOptions = new XmlSelect( "wpProtectExpirySelection-$action", "mwProtectExpirySelection-$action", $this->mExpirySelection[$action] );
+			$expiryFormOptions = new XmlSelect(
+				"wpProtectExpirySelection-$action",
+				"mwProtectExpirySelection-$action",
+				$this->mExpirySelection[$action]
+			);
 			$expiryFormOptions->setAttribute( 'tabindex', '2' );
 			if ( $this->disabled ) {
 				$expiryFormOptions->setAttribute( 'disabled', 'disabled' );
@@ -397,12 +401,20 @@ class ProtectionForm {
 					$timestamp = $lang->userTimeAndDate( $this->mExistingExpiry[$action], $user );
 					$d = $lang->userDate( $this->mExistingExpiry[$action], $user );
 					$t = $lang->userTime( $this->mExistingExpiry[$action], $user );
-					$existingExpiryMessage = $context->msg( 'protect-existing-expiry', $timestamp, $d, $t );
+					$existingExpiryMessage = $context->msg(
+						'protect-existing-expiry',
+						$timestamp,
+						$d,
+						$t
+					);
 				}
 				$expiryFormOptions->addOption( $existingExpiryMessage->text(), 'existing' );
 			}
 
-			$expiryFormOptions->addOption( $context->msg( 'protect-othertime-op' )->text(), 'othertime' );
+			$expiryFormOptions->addOption(
+				$context->msg( 'protect-othertime-op' )->text(),
+				'othertime'
+			);
 			foreach ( explode( ',', $scExpiryOptions ) as $option ) {
 				if ( strpos( $option, ":" ) === false ) {
 					$show = $value = $option;
