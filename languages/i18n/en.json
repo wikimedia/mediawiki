@@ -3604,7 +3604,6 @@
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|protected}} $3 $4 [cascading]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|changed}} protection level for $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|changed}} protection level for $3 $4 [cascading]",
-	"logentry-protect-unprotect": "$1 {{GENDER:$2|removed}} protection from $3",
 	"logentry-rights-rights": "$1 {{GENDER:$2|changed}} group membership for $3 from $4 to $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|changed}} group membership for $3",
 	"logentry-rights-autopromote": "$1 was automatically {{GENDER:$2|promoted}} from $4 to $5",
