@@ -1484,10 +1484,11 @@ class User implements IDBAccessObject {
 
 		if ( $success ) {
 			$this->mTouched = $newTouched;
+			$this->clearSharedCache();
+		} else {
+			// Clears on failure too since that is desired if the cache is stale
+			$this->clearSharedCache( 'refresh' );
 		}
-
-		// Clears on failure too since that is desired if the cache is stale
-		$this->clearSharedCache();
 
 		return $success;
 	}
@@ -2282,22 +2283,29 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Clear user data from memcached.
-	 * Use after applying fun updates to the database; caller's
+	 * Clear user data from memcached
+	 *
+	 * Use after applying updates to the database; caller's
 	 * responsibility to update user_touched if appropriate.
 	 *
 	 * Called implicitly from invalidateCache() and saveSettings().
+	 *
+	 * @param string $mode Use 'refresh' to clear now; otherwise before DB commit
 	 */
-	public function clearSharedCache() {
+	public function clearSharedCache( $mode = 'changed' ) {
 		$id = $this->getId();
 		if ( !$id ) {
 			return;
 		}
 
 		$key = wfMemcKey( 'user', 'id', $id );
-		wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle( function() use ( $key ) {
-			ObjectCache::getMainWANInstance()->delete( $key );
-		} );
+		if ( $mode === 'refresh' ) {
+			ObjectCache::getMainWANInstance()->delete( $key, 1 );
+		} else {
+			wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle( function() use ( $key ) {
+				ObjectCache::getMainWANInstance()->delete( $key );
+			} );
+		}
 	}
 
 	/**
@@ -3702,7 +3710,7 @@ class User implements IDBAccessObject {
 
 		if ( !$dbw->affectedRows() ) {
 			// Maybe the problem was a missed cache update; clear it to be safe
-			$this->clearSharedCache();
+			$this->clearSharedCache( 'refresh' );
 			// User was changed in the meantime or loaded with stale data
 			$from = ( $this->queryFlagsUsed & self::READ_LATEST ) ? 'master' : 'slave';
 			throw new MWException(
