@@ -28,6 +28,8 @@ changes to languages because of Bugzilla reports.
 
 
 === Other changes in 1.27 ===
+* Removed --force-normal option of dumpBackup.php, as it no longer served
+  any useful purpose since 1.22.
 
 
 == Compatibility ==
