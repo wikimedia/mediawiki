@@ -148,21 +148,22 @@ class SearchUpdate implements DeferrableUpdate {
 		# Strip all remaining non-search characters
 		$text = preg_replace( "/[^{$lc}]+/", " ", $text );
 
-		# Handle 's, s'
-		#
-		#   $text = preg_replace( "/([{$lc}]+)'s /", "\\1 \\1's ", $text );
-		#   $text = preg_replace( "/([{$lc}]+)s' /", "\\1s ", $text );
-		#
-		# These tail-anchored regexps are insanely slow. The worst case comes
-		# when Japanese or Chinese text (ie, no word spacing) is written on
-		# a wiki configured for Western UTF-8 mode. The Unicode characters are
-		# expanded to hex codes and the "words" are very long paragraph-length
-		# monstrosities. On a large page the above regexps may take over 20
-		# seconds *each* on a 1GHz-level processor.
-		#
-		# Following are reversed versions which are consistently fast
-		# (about 3 milliseconds on 1GHz-level processor).
-		#
+		/**
+		 * Handle 's, s'
+		 *
+		 *   $text = preg_replace( "/([{$lc}]+)'s /", "\\1 \\1's ", $text );
+		 *   $text = preg_replace( "/([{$lc}]+)s' /", "\\1s ", $text );
+		 *
+		 * These tail-anchored regexps are insanely slow. The worst case comes
+		 * when Japanese or Chinese text (ie, no word spacing) is written on
+		 * a wiki configured for Western UTF-8 mode. The Unicode characters are
+		 * expanded to hex codes and the "words" are very long paragraph-length
+		 * monstrosities. On a large page the above regexps may take over 20
+		 * seconds *each* on a 1GHz-level processor.
+		 *
+		 * Following are reversed versions which are consistently fast
+		 * (about 3 milliseconds on 1GHz-level processor).
+		 */
 		$text = strrev( preg_replace( "/ s'([{$lc}]+)/", " s'\\1 \\1", strrev( $text ) ) );
 		$text = strrev( preg_replace( "/ 's([{$lc}]+)/", " s\\1", strrev( $text ) ) );
 
