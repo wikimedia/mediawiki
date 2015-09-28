@@ -1611,12 +1611,15 @@ MESSAGE;
 	/**
 	 * Returns LESS compiler set up for use with MediaWiki
 	 *
-	 * @param Config $config
-	 * @throws MWException
 	 * @since 1.22
+	 * @since 1.26 added $extraVars parameter
+	 * @param Config $config
+	 * @param array $extraVars Associative array of extra (i.e., other than the
+	 *   globally-configured ones) that should be used for compilation.
+	 * @throws MWException
 	 * @return Less_Parser
 	 */
-	public static function getLessCompiler( Config $config ) {
+	public static function getLessCompiler( Config $config, $extraVars = array() ) {
 		// When called from the installer, it is possible that a required PHP extension
 		// is missing (at least for now; see bug 47564). If this is the case, throw an
 		// exception (caught by the installer) to prevent a fatal error later on.
@@ -1625,7 +1628,7 @@ MESSAGE;
 		}
 
 		$parser = new Less_Parser;
-		$parser->ModifyVars( self::getLessVars( $config ) );
+		$parser->ModifyVars( array_merge( self::getLessVars( $config ), $extraVars ) );
 		$parser->SetImportDirs( array_fill_keys( $config->get( 'ResourceLoaderLESSImportPaths' ), '' ) );
 		$parser->SetOption( 'relativeUrls', false );
 		$parser->SetCacheDir( $config->get( 'CacheDirectory' ) ?: wfTempDir() );
@@ -1644,8 +1647,6 @@ MESSAGE;
 		if ( !self::$lessVars ) {
 			$lessVars = $config->get( 'ResourceLoaderLESSVars' );
 			Hooks::run( 'ResourceLoaderGetLessVars', array( &$lessVars ) );
-			// Sort by key to ensure consistent hashing for cache lookups.
-			ksort( $lessVars );
 			self::$lessVars = $lessVars;
 		}
 		return self::$lessVars;

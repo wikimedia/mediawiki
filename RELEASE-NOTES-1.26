@@ -237,6 +237,10 @@ changes to languages because of Phabricator reports.
   by &nbsp; and HTML entity encodings of &nbsp, <, and >.
 * DatabaseBase::resultObject() is now protected (use outside Database classes
   not necessary since 1.11).
+* Calling ResourceLoaderFileModule::readStyleFiles() without a
+  ResourceLoaderContext instance is deprecated.
+* ResourceLoader::getLessCompiler() now takes an optional parameter of
+  additional LESS variables to set for the compiler.
 
 == Compatibility ==
 
