@@ -33,8 +33,11 @@ $namespaceAliases = array(
 	'Espezial' => NS_SPECIAL,
 );
 
-// Remove Spanish gender aliases (bug T39090)
-$namespaceGenderAliases = array();
+// T113890: Setting $namespaceGenderAliases for Aragonese (an)
+$namespaceGenderAliases = array(
+	NS_USER => array( 'male' => 'Usuario', 'female' => 'Usuaria' ),
+	NS_USER_TALK => array( 'male' => 'Descusión_usuario', 'female' => 'Descusión_usuaria' ),
+);
 
 $magicWords = array(
 	'redirect'                  => array( '0', '#ENDRECERA', '#REENDRECERA', '#REDIRECCIÓN', '#REDIRECCION', '#REDIRECT' ),
