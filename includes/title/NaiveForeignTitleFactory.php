@@ -45,16 +45,18 @@ class NaiveForeignTitleFactory implements ForeignTitleFactory {
 
 		global $wgContLang;
 
-		// Can we assume that the part of the page title before the colon is a
-		// namespace name?
-		//
-		// XML export schema version 0.5 and earlier (MW 1.18 and earlier) does not
-		// contain a <ns> tag, so we need to be able to handle that case.
-		//
-		// If we know the namespace ID, we assume a non-zero namespace ID means
-		// the ':' sets off a valid namespace name. If we don't know the namespace
-		// ID, we fall back to using the local wiki's namespace names to resolve
-		// this -- better than nothing, and mimics the old crappy behavior
+		/**
+		 * Can we assume that the part of the page title before the colon is a
+		 * namespace name?
+		 *
+		 * XML export schema version 0.5 and earlier (MW 1.18 and earlier) does not
+		 * contain a <ns> tag, so we need to be able to handle that case.
+		 *
+		 * If we know the namespace ID, we assume a non-zero namespace ID means
+		 * the ':' sets off a valid namespace name. If we don't know the namespace
+		 * ID, we fall back to using the local wiki's namespace names to resolve
+		 * this -- better than nothing, and mimics the old crappy behavior
+		 */
 		$isNamespacePartValid = is_null( $ns ) ?
 			( $wgContLang->getNsIndex( $pieces[0] ) !== false ) :
 			$ns != 0;
