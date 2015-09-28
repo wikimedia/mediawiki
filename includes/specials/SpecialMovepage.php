@@ -643,17 +643,19 @@ class MovePageForm extends UnlistedSpecialPage {
 			$this->moveSubpages = false;
 		}
 
-		# Next make a list of id's.  This might be marginally less efficient
-		# than a more direct method, but this is not a highly performance-cri-
-		# tical code path and readable code is more important here.
-		#
-		# Note: this query works nicely on MySQL 5, but the optimizer in MySQL
-		# 4 might get confused.  If so, consider rewriting as a UNION.
-		#
-		# If the target namespace doesn't allow subpages, moving with subpages
-		# would mean that you couldn't move them back in one operation, which
-		# is bad.
-		# @todo FIXME: A specific error message should be given in this case.
+		/**
+		 * Next make a list of id's.  This might be marginally less efficient
+		 * than a more direct method, but this is not a highly performance-cri-
+		 * tical code path and readable code is more important here.
+		 *
+		 * Note: this query works nicely on MySQL 5, but the optimizer in MySQL
+		 * 4 might get confused.  If so, consider rewriting as a UNION.
+		 *
+		 * If the target namespace doesn't allow subpages, moving with subpages
+		 * would mean that you couldn't move them back in one operation, which
+		 * is bad.
+		 * @todo FIXME: A specific error message should be given in this case.
+		 */
 
 		// @todo FIXME: Use Title::moveSubpages() here
 		$dbr = wfGetDB( DB_MASTER );

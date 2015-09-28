@@ -276,13 +276,17 @@ class LoginForm extends SpecialPage {
 		}
 		$this->setHeaders();
 
-		// In the case where the user is already logged in, and was redirected to the login form from a
-		// page that requires login, do not show the login page. The use case scenario for this is when
-		// a user opens a large number of tabs, is redirected to the login page on all of them, and then
-		// logs in on one, expecting all the others to work properly.
-		//
-		// However, do show the form if it was visited intentionally (no 'returnto' is present). People
-		// who often switch between several accounts have grown accustomed to this behavior.
+		/**
+		 * In the case where the user is already logged in, and was redirected to
+		 * the login form from a page that requires login, do not show the login
+		 * page. The use case scenario for this is when a user opens a large number
+		 * of tabs, is redirected to the login page on all of them, and then logs
+		 * in on one, expecting all the others to work properly.
+		 *
+		 * However, do show the form if it was visited intentionally (no 'returnto'
+		 * is present). People who often switch between several accounts have grown
+		 * accustomed to this behavior.
+		 */
 		if (
 			$this->mType !== 'signup' &&
 			!$this->mPosted &&
@@ -357,10 +361,10 @@ class LoginForm extends SpecialPage {
 		}
 
 		$status = $this->addNewAccountInternal();
-		LoggerFactory::getInstance( 'authmanager' )->info( 'Account creation attempt with mailed password', array(
-			'event' => 'accountcreation',
-			'status' => $status,
-		) );
+		LoggerFactory::getInstance( 'authmanager' )->info(
+			'Account creation attempt with mailed password',
+			array( 'event' => 'accountcreation', 'status' => $status )
+		);
 		if ( !$status->isGood() ) {
 			$error = $status->getMessage();
 			$this->mainLoginForm( $error->toString() );
@@ -787,22 +791,24 @@ class LoginForm extends SpecialPage {
 		global $wgBlockDisablesLogin;
 		if ( !$u->checkPassword( $this->mPassword ) ) {
 			if ( $u->checkTemporaryPassword( $this->mPassword ) ) {
-				// The e-mailed temporary password should not be used for actu-
-				// al logins; that's a very sloppy habit, and insecure if an
-				// attacker has a few seconds to click "search" on someone's o-
-				// pen mail reader.
-				//
-				// Allow it to be used only to reset the password a single time
-				// to a new value, which won't be in the user's e-mail ar-
-				// chives.
-				//
-				// For backwards compatibility, we'll still recognize it at the
-				// login form to minimize surprises for people who have been
-				// logging in with a temporary password for some time.
-				//
-				// As a side-effect, we can authenticate the user's e-mail ad-
-				// dress if it's not already done, since the temporary password
-				// was sent via e-mail.
+				/**
+				 * The e-mailed temporary password should not be used for actu-
+				 * al logins; that's a very sloppy habit, and insecure if an
+				 * attacker has a few seconds to click "search" on someone's
+				 * open mail reader.
+				 *
+				 * Allow it to be used only to reset the password a single time
+				 * to a new value, which won't be in the user's e-mail ar-
+				 * chives.
+				 *
+				 * For backwards compatibility, we'll still recognize it at the
+				 * login form to minimize surprises for people who have been
+				 * logging in with a temporary password for some time.
+				 *
+				 * As a side-effect, we can authenticate the user's e-mail ad-
+				 * dress if it's not already done, since the temporary password
+				 * was sent via e-mail.
+				 */
 				if ( !$u->isEmailConfirmed() && !wfReadOnly() ) {
 					$u->confirmEmail();
 					$u->saveSettings();
@@ -1459,7 +1465,9 @@ class LoginForm extends SpecialPage {
 		$template->set( 'emailothers', $wgEnableUserEmail );
 		$template->set( 'canreset', $wgAuth->allowPasswordChange() );
 		$template->set( 'resetlink', $resetLink );
-		$template->set( 'canremember', $wgExtendedLoginCookieExpiration === null ? ( $wgCookieExpiration > 0 ) : ( $wgExtendedLoginCookieExpiration > 0 ) );
+		$template->set( 'canremember', $wgExtendedLoginCookieExpiration === null ?
+			( $wgCookieExpiration > 0 ) :
+			( $wgExtendedLoginCookieExpiration > 0 ) );
 		$template->set( 'usereason', $user->isLoggedIn() );
 		$template->set( 'remember', $this->mRemember );
 		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
