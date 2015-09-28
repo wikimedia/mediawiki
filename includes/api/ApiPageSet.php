@@ -58,7 +58,10 @@ class ApiPageSet extends ApiBase {
 	private $mGoodTitles = array();
 	private $mMissingPages = array(); // [ns][dbkey] => fake page_id
 	private $mMissingTitles = array();
-	private $mInvalidTitles = array(); // [fake_page_id] => array( 'title' => $title, 'invalidreason' => $reason )
+	/** @var array @var array
+	 * [fake_page_id] => array( 'title' => $title, 'invalidreason' => $reason )
+	 */
+	private $mInvalidTitles = array();
 	private $mMissingPageIDs = array();
 	private $mRedirectTitles = array();
 	private $mSpecialTitles = array();
