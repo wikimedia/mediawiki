@@ -174,11 +174,18 @@ class RecentChange {
 	 * @param array $conds Array of conditions
 	 * @param mixed $fname Override the method name in profiling/logs
 	 * @param array $options Query options
+	 * @param int $dbType DB_* constant
+	 *
 	 * @return RecentChange|null
 	 */
-	public static function newFromConds( $conds, $fname = __METHOD__, $options = array() ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow( 'recentchanges', self::selectFields(), $conds, $fname, $options );
+	public static function newFromConds(
+		$conds,
+		$fname = __METHOD__,
+		$options = array(),
+		$dbType = DB_SLAVE
+	) {
+		$db = wfGetDB( $dbType );
+		$row = $db->selectRow( 'recentchanges', self::selectFields(), $conds, $fname, $options );
 		if ( $row !== false ) {
 			return self::newFromRow( $row );
 		} else {
