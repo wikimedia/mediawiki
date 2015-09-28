@@ -315,21 +315,23 @@ class ResourceLoaderImage {
 	 * @return string|bool PNG image data, or false on failure
 	 */
 	protected function rasterize( $svg ) {
-		// This code should be factored out to a separate method on SvgHandler, or perhaps a separate
-		// class, with a separate set of configuration settings.
-		//
-		// This is a distinct use case from regular SVG rasterization:
-		// * We can skip many sanity and security checks (as the images come from a trusted source,
-		//   rather than from the user).
-		// * We need to provide extra options to some converters to achieve acceptable quality for very
-		//   small images, which might cause performance issues in the general case.
-		// * We want to directly pass image data to the converter, rather than a file path.
-		//
-		// See https://phabricator.wikimedia.org/T76473#801446 for examples of what happens with the
-		// default settings.
-		//
-		// For now, we special-case rsvg (used in WMF production) and do a messy workaround for other
-		// converters.
+		/**
+		 * This code should be factored out to a separate method on SvgHandler, or perhaps a separate
+		 * class, with a separate set of configuration settings.
+		 *
+		 * This is a distinct use case from regular SVG rasterization:
+		 * * We can skip many sanity and security checks (as the images come from a trusted source,
+		 *   rather than from the user).
+		 * * We need to provide extra options to some converters to achieve acceptable quality for very
+		 *   small images, which might cause performance issues in the general case.
+		 * * We want to directly pass image data to the converter, rather than a file path.
+		 *
+		 * See https://phabricator.wikimedia.org/T76473#801446 for examples of what happens with the
+		 * default settings.
+		 *
+		 * For now, we special-case rsvg (used in WMF production) and do a messy workaround for other
+		 * converters.
+		 */
 
 		global $wgSVGConverter, $wgSVGConverterPath;
 
