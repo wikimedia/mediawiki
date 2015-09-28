@@ -13,9 +13,8 @@
 	 * @extends OO.ui.MenuOptionWidget
 	 *
 	 * @constructor
-	 * @param {Object} [config] Configuration options
-	 * @cfg {string} [data] Label to display
-	 * @cfg {mw.Title} [title] Page title object
+	 * @param {Object} config Configuration options
+	 * @cfg {string} data Label to display
 	 * @cfg {string} [imageUrl] Thumbnail image URL with URL encoding
 	 * @cfg {string} [description] Page description
 	 * @cfg {boolean} [missing] Page doesn't exist
@@ -40,16 +39,14 @@
 		config = $.extend( {
 			icon: icon,
 			label: config.data,
-			href: config.title.getUrl(),
 			autoFitLabel: false,
-			$label: $( '<a>' )
+			$label: $( '<a href="#">' )
 		}, config );
 
 		// Parent constructor
 		mw.widgets.TitleOptionWidget.parent.call( this, config );
 
 		// Initialization
-		this.$label.attr( 'href', config.href );
 		this.$element.addClass( 'mw-widget-titleOptionWidget' );
 
 		// Highlight matching parts of link suggestion

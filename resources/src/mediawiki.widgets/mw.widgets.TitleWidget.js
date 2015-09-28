@@ -240,7 +240,7 @@
 	/**
 	 * Get menu option widget data from the title and page data
 	 *
-	 * @param {mw.Title} title Title object
+	 * @param {string} title Title object
 	 * @param {Object} data Page data
 	 * @return {Object} Data for option widget
 	 */
@@ -250,7 +250,6 @@
 			data: this.namespace !== null && this.relative
 				? mwTitle.getRelativeText( this.namespace )
 				: title,
-			title: mwTitle,
 			imageUrl: this.showImages ? data.imageUrl : null,
 			description: this.showDescriptions ? data.description : null,
 			missing: data.missing,
