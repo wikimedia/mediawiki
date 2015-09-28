@@ -950,7 +950,6 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $rt->isExternal() ) {
 			if ( $rt->isLocal() ) {
 				// Offsite wikis need an HTTP redirect.
-				//
 				// This can be hard to reverse and may produce loops,
 				// so they may be disabled in the site configuration.
 				$source = $this->mTitle->getFullURL( 'redirect=no' );
@@ -964,10 +963,8 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( $rt->isSpecialPage() ) {
 			// Gotta handle redirects to special pages differently:
-			// Fill the HTTP response "Location" header and ignore
-			// the rest of the page we're on.
-			//
-			// Some pages are not valid targets
+			// Fill the HTTP response "Location" header and ignore the rest of the page we're on.
+			// Some pages are not valid targets.
 			if ( $rt->isValidRedirectTarget() ) {
 				return $rt->getFullURL();
 			} else {
@@ -1811,8 +1808,7 @@ class WikiPage implements Page, IDBAccessObject {
 				}
 				$revisionId = $revision->insertOn( $dbw );
 
-				// Update page
-				//
+				// Update page.
 				// We check for conflicts by comparing $oldid with the current latest revision ID.
 				$ok = $this->updateRevisionOn( $dbw, $revision, $oldid, $oldIsRedirect );
 
@@ -2817,16 +2813,18 @@ class WikiPage implements Page, IDBAccessObject {
 			$bitfield = 'rev_deleted';
 		}
 
-		// For now, shunt the revision data into the archive table.
-		// Text is *not* removed from the text table; bulk storage
-		// is left intact to avoid breaking block-compression or
-		// immutable storage schemes.
-		//
-		// For backwards compatibility, note that some older archive
-		// table entries will have ar_text and ar_flags fields still.
-		//
-		// In the future, we may keep revisions and mark them with
-		// the rev_deleted field, which is reserved for this purpose.
+		/**
+		 * For now, shunt the revision data into the archive table.
+		 * Text is *not* removed from the text table; bulk storage
+		 * is left intact to avoid breaking block-compression or
+		 * immutable storage schemes.
+		 *
+		 * For backwards compatibility, note that some older archive
+		 * table entries will have ar_text and ar_flags fields still.
+		 *
+		 * In the future, we may keep revisions and mark them with
+		 * the rev_deleted field, which is reserved for this purpose.
+		 */
 
 		$row = array(
 			'ar_namespace'  => 'page_namespace',
