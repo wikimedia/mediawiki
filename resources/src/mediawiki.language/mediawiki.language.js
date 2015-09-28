@@ -108,7 +108,7 @@ $.extend( mw.language, {
 
 	/**
 	 * Grammatical transformations, needed for inflected languages.
-	 * Invoked by putting `{{grammar:form|word}}` in a message.
+	 * Invoked by putting `{{grammar:case|word}}` in a message.
 	 *
 	 * The rules can be defined in $wgGrammarForms global or computed
 	 * dynamically by overriding this method per language.
@@ -118,10 +118,47 @@ $.extend( mw.language, {
 	 * @return {string}
 	 */
 	convertGrammar: function ( word, form ) {
-		var grammarForms = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'grammarForms' );
-		if ( grammarForms && grammarForms[ form ] ) {
-			return grammarForms[ form ][ word ] || word;
+		var userLanguage, forms, transformations,
+			patterns, i, rule, sourcePattern, regexp, replacement;
+
+		userLanguage = mw.config.get( 'wgUserLanguage' );
+
+		forms = mediaWiki.language.getData( userLanguage, 'grammarForms' );
+		if ( forms && forms[ form ] ) {
+			return forms[ form ][ word ];
 		}
+
+		transformations = mediaWiki.language.getData( userLanguage, 'grammarTransformations' );
+
+		if ( !( transformations && transformations[ form ] ) ) {
+			return word;
+		}
+
+		patterns = transformations[ form ];
+
+		// Some names of grammar rules are aliases for other rules.
+		// In such cases the value is a string rather than object,
+		// so load the actual rules.
+		if ( typeof patterns === 'string' ) {
+			patterns = transformations[ patterns ];
+		}
+
+		for ( i = 0; i < patterns.length; i++ ) {
+			rule = patterns[ i ];
+			sourcePattern = rule[ 0 ];
+
+			if ( sourcePattern === '@metadata' ) {
+				continue;
+			}
+
+			regexp = new RegExp( sourcePattern );
+			replacement = rule[ 1 ];
+
+			if ( word.match( regexp ) ) {
+				return word.replace( regexp, replacement );
+			}
+		}
+
 		return word;
 	},
 
