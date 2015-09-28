@@ -116,16 +116,6 @@ abbr[title],
 	unicode-bidi: isolate;
 }
 
-/**
- * Links to redirects appear italicized on [[Special:AllPages]], [[Special:PrefixIndex]],
- * [[Special:Watchlist/edit]] and in category listings.
- */
-.allpagesredirect,
-.redirect-in-category,
-.watchlistredir {
-	font-style: italic;
-}
-
 /* Comment portions of RC entries */
 span.comment {
 	font-style: italic;
