@@ -1816,7 +1816,7 @@
 	"deletepage": "Kustuta lehekülg",
 	"confirm": "Kinnita",
 	"excontent": "sisu oli: '$1'",
-	"excontentauthor": "sisu oli: '$1' (ja ainuke kirjutaja oli '[[Special:Contributions/$2|$2]]')",
+	"excontentauthor": "sisu oli: \"$1\"; ainuke kirjutaja oli \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|arutelu]])",
 	"exbeforeblank": "sisu enne lehekülje tühjendamist: '$1'",
 	"delete-confirm": "Lehekülje \"$1\" kustutamine",
 	"delete-legend": "Kustutamine",

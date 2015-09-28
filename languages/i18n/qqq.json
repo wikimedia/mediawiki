@@ -2098,7 +2098,7 @@
 	"deletepage": "Used as Submit button text.\n{{Identical|Delete page}}",
 	"confirm": "Submit button text for protection confirmation\n\n{{Identical|Confirm}}",
 	"excontent": "Automated deletion reason when deleting a page for admins. Parameters:\n* $1 - content before deletion",
-	"excontentauthor": "Automated deletion reason when deleting a page for admins providing that the page has one author only.\n\nParameters:\n* $1 - content before deletion\n* $2 - username",
+	"excontentauthor": "Automated deletion reason when deleting a page for admins providing that the page has one author only.\n\nParameters:\n* $1 - content before deletion\n* $2 - username\n\nThe label of the link to the talk page should be consistent with {{msg-mw|Talkpagelinktext}}.",
 	"exbeforeblank": "Automated deletion reason when deleting a page for admins providing that the page was blanked before deletion.\n\nParameters:\n* $1 - content before blanking",
 	"delete-confirm": "Used as page title. Parameters:\n* $1 - the page title\n{{Identical|Delete}}",
 	"delete-legend": "{{Identical|Delete}}",

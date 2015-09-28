@@ -1880,7 +1880,7 @@
 	"deletepage": "删除页面",
 	"confirm": "确认",
 	"excontent": "内容：“$1”",
-	"excontentauthor": "内容：“$1”（唯一贡献者为“[[Special:Contributions/$2|$2]]”）",
+	"excontentauthor": "内容为：“$1”，唯一贡献者是“[[Special:Contributions/$2|$2]]”（[[User talk:$2|讨论]]）",
 	"exbeforeblank": "被清空前的内容为：“$1”",
 	"delete-confirm": "删除“$1”",
 	"delete-legend": "删除",

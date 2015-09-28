@@ -244,7 +244,7 @@
 	"apihelp-parse-paramvalue-prop-externallinks": "Gibt die externen Links im geparsten Wikitext zurück.",
 	"apihelp-parse-paramvalue-prop-revid": "Ergänzt die Versionskennung der geparsten Seite.",
 	"apihelp-parse-paramvalue-prop-displaytitle": "Ergänzt den Titel des geparsten Wikitextes.",
-	"apihelp-parse-param-section": "Gibt nur den Inhalt dieses Abschnittes zurück oder erstellt einen neuen Abschnitt, wenn <kbd>new</kbd> angegeben wird.\n\n<kbd>new</kbd> wird nur ausgewertet, wenn auch <var>text</var> angegeben wurde.",
+	"apihelp-parse-param-section": "Parst nur den Inhalt dieser Abschnittsnummer.\n\nFalls <kbd>new</kbd>, parst <var>$1text</var> und <var>$1sectiontitle</var>, als ob ein neuer Abschnitt der Seite hinzugefügt wird.\n\n<kbd>new</kbd> ist nur erlaubt mit der Angabe <var>text</var>.",
 	"apihelp-parse-param-sectiontitle": "Überschrift des neuen Abschnittes, wenn <var>section</var> = <kbd>new</kbd> ist.\n\nAnders als beim Bearbeiten der Seite wird der Parameter nicht durch die <var>summary</var> ersetzt, wenn er weggelassen oder leer ist.",
 	"apihelp-parse-param-disableeditsection": "Lässt Abschnittsbearbeitungslinks in der Parserausgabe weg.",
 	"apihelp-parse-param-preview": "Im Vorschaumodus parsen.",

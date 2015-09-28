@@ -1822,7 +1822,7 @@
 	"deletepage": "מחיקה",
 	"confirm": "אישור",
 	"excontent": "התוכן היה: \"$1\"",
-	"excontentauthor": "התוכן היה: \"$1\" ({{GENDER:$2|והתורם היחיד היה|והתורמת היחידה הייתה}} \"[[Special:Contributions/$2|$2]]\")",
+	"excontentauthor": "התוכן היה: \"$1\", {{GENDER:$2|והתורם היחיד היה|והתורמת היחידה הייתה}} \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|שיחה]])",
 	"exbeforeblank": "התוכן לפני שרוקן היה: \"$1\"",
 	"delete-confirm": "מחיקת \"$1\"",
 	"delete-legend": "מחיקה",

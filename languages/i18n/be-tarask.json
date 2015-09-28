@@ -1803,7 +1803,7 @@
 	"deletepage": "Выдаліць старонку",
 	"confirm": "Пацьвердзіць",
 	"excontent": "колішні зьмест: «$1»",
-	"excontentauthor": "зьмест быў: «$1» (і адзіным аўтарам быў '[[Special:Contributions/$2|$2]]')",
+	"excontentauthor": "зьмест быў: «$1», адзіным аўтарам быў «[[Special:Contributions/$2|$2]]» ([[User talk:$2|гутаркі]])",
 	"exbeforeblank": "зьмест да ачысткі: «$1»",
 	"delete-confirm": "Выдаліць «$1»",
 	"delete-legend": "Выдаліць",

@@ -1913,7 +1913,7 @@
 	"deletepage": "Borrar esta página",
 	"confirm": "Confirmar",
 	"excontent": "el contenido era: «$1»",
-	"excontentauthor": "el contenido era: «$1» (y el único autor fue «[[Special:Contributions/$2|$2]]»)",
+	"excontentauthor": "el contenido era: «$1», y el único autor fue «[[Special:Contributions/$2|$2]]» ([[User talk:$2|discusión]])",
 	"exbeforeblank": "El contenido antes de blanquear era: «$1»",
 	"delete-confirm": "Borrar «$1»",
 	"delete-legend": "Borrar",

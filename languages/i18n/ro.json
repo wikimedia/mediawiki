@@ -1817,7 +1817,7 @@
 	"deletepage": "Șterge pagina",
 	"confirm": "Confirmă",
 	"excontent": "conținutul era: '$1'",
-	"excontentauthor": "conținutul era: „$1” (unicul contribuitor: [[Special:Contributions/$2|$2]])",
+	"excontentauthor": "conținutul era: „$1”, iar unicul contribuitor a fost „[[Special:Contributions/$2|$2]]” ([[User talk:$2|discuție]])",
 	"exbeforeblank": "conținutul înainte de golire era: '$1'",
 	"delete-confirm": "Şterge \"$1\"",
 	"delete-legend": "Şterge",

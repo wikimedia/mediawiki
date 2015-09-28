@@ -1877,7 +1877,7 @@
 	"deletepage": "Seite löschen",
 	"confirm": "Bestätigen",
 	"excontent": "Inhalt war: „$1“",
-	"excontentauthor": "Inhalt war: „$1“ (einziger Bearbeiter: [[Special:Contributions/$2|$2]])",
+	"excontentauthor": "Inhalt war: „$1“. Einziger Bearbeiter: [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]])",
 	"exbeforeblank": "Inhalt vor dem Leeren der Seite: „$1“",
 	"delete-confirm": "Löschen von „$1“",
 	"delete-legend": "Löschen",

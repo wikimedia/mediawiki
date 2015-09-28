@@ -67,6 +67,7 @@
 	"apihelp-query+allusers-description": "All registréiert Benotzer opzielen.",
 	"apihelp-query+allusers-paramvalue-prop-implicitgroups": "Lëscht vun alle Gruppen an deenen de Benotzer automatesch dran ass.",
 	"apihelp-query+allusers-param-activeusers": "Nëmme Benotzer opzielen déi an de leschten $1 {{PLURAL:$1|Dag|Deeg}} aktiv waren.",
+	"apihelp-query+backlinks-example-simple": "Linken op d'<kbd>Haaptsäit</kbd> weisen.",
 	"apihelp-query+blocks-description": "Lëscht vun de gespaarte Benotzer an IP-Adressen.",
 	"apihelp-query+blocks-paramvalue-prop-range": "Setzt de Beräich vun den IP-Adressen derbäi déi vun der Spär betraff sinn.",
 	"apihelp-query+blocks-example-simple": "Lëscht vun de Spären",

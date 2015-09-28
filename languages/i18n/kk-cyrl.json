@@ -3156,7 +3156,7 @@
 	"logentry-suppress-revision": "$1 $3 бетіндегі {{PLURAL:$5|нұсқаның|$5 нұсқаның}} көрінулігін құпия түрде {{GENDER:$2|өзгертті}}",
 	"logentry-suppress-event-legacy": "$1 $3 бетіндегі журнал оқиғаларының көрінулігін құпия түрде {{GENDER:$2|өзгертті}}",
 	"logentry-suppress-revision-legacy": "$1 $3 бетіндегі нұсқалардың көрінулігін құпия түрде {{GENDER:$2|өзгертті}}",
-	"revdelete-content-hid": "мағлұматын жасырыды",
+	"revdelete-content-hid": "мағлұматын жасырды",
 	"revdelete-summary-hid": "өңдеу түйіндемесін жасырды",
 	"revdelete-uname-hid": "қатысушы есімін жасырды",
 	"revdelete-content-unhid": "мағлұматы жасырылмаған",

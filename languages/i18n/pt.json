@@ -1844,7 +1844,7 @@
 	"deletepage": "Eliminar página",
 	"confirm": "Confirmar",
 	"excontent": "o conteúdo era: \"$1\"",
-	"excontentauthor": "o conteúdo era: \"$1\" (e o único editor era [[Special:Contributions/$2|$2]]\")",
+	"excontentauthor": "o conteúdo era: \"$1\", e o único editor foi \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|talk]])",
 	"exbeforeblank": "o conteúdo antes de esvaziar era: \"$1\"",
 	"delete-confirm": "Eliminar \"$1\"",
 	"delete-legend": "Eliminar",

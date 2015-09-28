@@ -7,7 +7,8 @@
 			"Mdupont",
 			"아라",
 			"Ammartivari",
-			"Olsi"
+			"Olsi",
+			"Kosovastar"
 		]
 	},
 	"tog-underline": "Nënvizoji vegzat",
@@ -505,7 +506,7 @@
 	"nohistory": "Nuk ka histori redaktimesh për këtë faqe.",
 	"currentrev": "Versioni i tanishëm",
 	"currentrev-asof": "Redaktimi aktual i datës $1",
-	"revisionasof": "Versioni i $1",
+	"revisionasof": "Versioni i datës $1",
 	"revision-info": "Versioni me $1 nga $2",
 	"previousrevision": "← Verzion ma i vjetër",
 	"nextrevision": "Redaktimi mâ i ri →",

@@ -1802,7 +1802,7 @@
 	"deletepage": "Briši stran",
 	"confirm": "Potrdi",
 	"excontent": "vsebina: '$1'",
-	"excontentauthor": "vsebina: '$1' (edini urejevalec pa '$2')",
+	"excontentauthor": "vsebina je bila: »$1«, edini urejevalec pa »[[Special:Contributions/$2|$2]]« ([[User talk:$2|pogovor]])",
 	"exbeforeblank": "vsebina pred brisanjem: '$1'",
 	"delete-confirm": "Brisanje »$1«",
 	"delete-legend": "Izbriši",
