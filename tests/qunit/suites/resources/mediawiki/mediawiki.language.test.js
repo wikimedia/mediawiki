@@ -354,27 +354,9 @@
 
 		uk: [
 			{
-				word: 'тесть',
-				grammarForm: 'genitive',
-				expected: 'тестя',
-				description: 'Grammar test for genitive case'
-			},
-			{
 				word: 'Вікіпедія',
 				grammarForm: 'genitive',
 				expected: 'Вікіпедії',
-				description: 'Grammar test for genitive case'
-			},
-			{
-				word: 'установка',
-				grammarForm: 'genitive',
-				expected: 'установки',
-				description: 'Grammar test for genitive case'
-			},
-			{
-				word: 'похоти',
-				grammarForm: 'genitive',
-				expected: 'похотей',
 				description: 'Grammar test for genitive case'
 			},
 			{
@@ -384,9 +366,15 @@
 				description: 'Grammar test for genitive case'
 			},
 			{
-				word: 'песчаник',
+				word: 'Вікіцитати',
 				grammarForm: 'genitive',
-				expected: 'песчаника',
+				expected: 'Вікіцитат',
+				description: 'Grammar test for genitive case'
+			},
+			{
+				word: 'Вікіпідручник',
+				grammarForm: 'genitive',
+				expected: 'Вікіпідручника',
 				description: 'Grammar test for genitive case'
 			},
 			{

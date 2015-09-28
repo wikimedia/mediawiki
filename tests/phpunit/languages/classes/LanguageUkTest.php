@@ -91,6 +91,16 @@ class LanguageUkTest extends LanguageClassesTestCase {
 				'genitive',
 			),
 			array(
+				'Вікіцитат',
+				'Вікіцитати',
+				'genitive',
+			),
+			array(
+				'Вікіпідручника',
+				'Вікіпідручник',
+				'genitive',
+			),
+			array(
 				'Вікіпедію',
 				'Вікіпедія',
 				'accusative',
