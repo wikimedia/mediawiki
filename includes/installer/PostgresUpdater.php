@@ -250,7 +250,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgIndex', 'recentchanges', 'rc_timestamp_bot', '(rc_timestamp) WHERE rc_bot = 0' ),
 			array( 'addPgIndex', 'templatelinks', 'templatelinks_from', '(tl_from)' ),
 			array( 'addPgIndex', 'watchlist', 'wl_user', '(wl_user)' ),
-			array( 'addPgIndex', 'watchlist', 'wl_user_notificationtimestamp', '(wl_user, wl_notificationtimestamp)' ),
+			array( 'addPgIndex', 'watchlist', 'wl_user_notificationtimestamp',
+				'(wl_user, wl_notificationtimestamp)' ),
 			array( 'addPgIndex', 'logging', 'logging_user_type_time',
 				'(log_user, log_type, log_timestamp)' ),
 			array( 'addPgIndex', 'logging', 'logging_page_id_time', '(log_page,log_timestamp)' ),
@@ -955,6 +956,7 @@ END;
 			$this->output( "...bug 66650 already fixed or not applicable.\n" );
 			return true;
 		};
-		$this->applyPatch( 'patch-textsearch_bug66650.sql', false, "Rebuilding text search for bug 66650" );
+		$this->applyPatch( 'patch-textsearch_bug66650.sql', false,
+			'Rebuilding text search for bug 66650' );
 	}
 }

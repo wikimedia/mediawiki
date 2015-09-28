@@ -83,7 +83,12 @@ class PostgresInstaller extends DatabaseInstaller {
 
 	function submitConnectForm() {
 		// Get variables from the request
-		$newValues = $this->setVarsFromRequest( array( 'wgDBserver', 'wgDBport', 'wgDBname', 'wgDBmwschema' ) );
+		$newValues = $this->setVarsFromRequest( array(
+			'wgDBserver',
+			'wgDBport',
+			'wgDBname',
+			'wgDBmwschema'
+		) );
 
 		// Validate them
 		$status = Status::newGood();
