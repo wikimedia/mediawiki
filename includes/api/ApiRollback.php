@@ -45,16 +45,6 @@ class ApiRollback extends ApiBase {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
-		// WikiPage::doRollback needs a Web UI token, so get one of those if we
-		// validated based on an API rollback token.
-		$token = $params['token'];
-		if ( $user->matchEditToken( $token, 'rollback', $this->getRequest() ) ) {
-			$token = $this->getUser()->getEditToken(
-				$this->getWebUITokenSalt( $params ),
-				$this->getRequest()
-			);
-		}
-
 		$titleObj = $this->getRbTitle( $params );
 		$pageObj = WikiPage::factory( $titleObj );
 		$summary = $params['summary'];
@@ -72,15 +62,30 @@ class ApiRollback extends ApiBase {
 		$retval = $pageObj->doRollback(
 			$this->getRbUser( $params ),
 			$summary,
-			$token,
+			$params['token'],
 			$params['markbot'],
 			$details,
 			$user,
 			$params['tags']
 		);
 
+		// We don't care about multiple errors, just report one of them
 		if ( $retval ) {
-			// We don't care about multiple errors, just report one of them
+			if ( isset( $retval[0][0] ) &&
+				( $retval[0][0] == 'alreadyrolled' || $retval[0][0] == 'cantrollback' )
+			) {
+				$error = $retval[0];
+				$userMessage = $this->msg( $error[0], array_slice( $error, 1 ) );
+				// dieUsageMsg() doesn't support $extraData
+				$errorCode = $error[0];
+				$errorInfo = isset( ApiBase::$messageMap[$errorCode] ) ?
+					ApiBase::$messageMap[$errorCode]['info'] :
+					$errorCode;
+				$this->dieUsage( $errorInfo, $errorCode, 0, [
+					'messageHtml' => $userMessage->parseAsBlock()
+				] );
+			}
+
 			$this->dieUsageMsg( reset( $retval ) );
 		}
 
@@ -97,9 +102,22 @@ class ApiRollback extends ApiBase {
 			'pageid' => intval( $details['current']->getPage() ),
 			'summary' => $details['summary'],
 			'revid' => intval( $details['newid'] ),
+			// The revision being reverted (previously the current revision of the page)
 			'old_revid' => intval( $details['current']->getID() ),
+			// The revision being restored (the last revision before revision(s) by the reverted user)
 			'last_revid' => intval( $details['target']->getID() )
 		];
+
+		$oldUser = $details['current']->getUserText( Revision::FOR_THIS_USER );
+		$lastUser = $details['target']->getUserText( Revision::FOR_THIS_USER );
+		$diffUrl = $titleObj->getFullURL( [
+			'diff' => $info['revid'],
+			'oldid' => $info['old_revid'],
+			'diffonly' => '1'
+		] );
+		$info['messageHtml'] = $this->msg( 'rollback-success-notify' )
+			->params( $oldUser, $lastUser, $diffUrl )
+			->parseAsBlock();
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $info );
 	}
@@ -146,13 +164,6 @@ class ApiRollback extends ApiBase {
 
 	public function needsToken() {
 		return 'rollback';
-	}
-
-	protected function getWebUITokenSalt( array $params ) {
-		return [
-			$this->getRbTitle( $params )->getPrefixedText(),
-			$this->getRbUser( $params )
-		];
 	}
 
 	/**
