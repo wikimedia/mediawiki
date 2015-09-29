@@ -13,7 +13,6 @@
 		"maintenance/jsduck/external.js",
 		"resources/src/mediawiki",
 		"resources/src/mediawiki.action",
-		"resources/src/mediawiki.api",
 		"resources/src/mediawiki.language",
 		"resources/src/mediawiki.messagePoster",
 		"resources/src/mediawiki.page",

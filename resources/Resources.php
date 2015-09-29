@@ -860,7 +860,7 @@ return array(
 		'position' => 'top',
 	),
 	'mediawiki.api' => array(
-		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.js',
+		'scripts' => 'resources/src/mediawiki/api.js',
 		'dependencies' => array(
 			'mediawiki.util',
 			'user.tokens',
@@ -868,14 +868,14 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.api.category' => array(
-		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.category.js',
+		'scripts' => 'resources/src/mediawiki/api/category.js',
 		'dependencies' => array(
 			'mediawiki.api',
 			'mediawiki.Title',
 		),
 	),
 	'mediawiki.api.edit' => array(
-		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.edit.js',
+		'scripts' => 'resources/src/mediawiki/api/edit.js',
 		'dependencies' => array(
 			'mediawiki.api',
 			'mediawiki.Title',
@@ -883,21 +883,21 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.api.login' => array(
-		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.login.js',
+		'scripts' => 'resources/src/mediawiki/api/login.js',
 		'dependencies' => 'mediawiki.api',
 	),
 	'mediawiki.api.options' => array(
-		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.options.js',
+		'scripts' => 'resources/src/mediawiki/api/options.js',
 		'dependencies' => 'mediawiki.api',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.api.parse' => array(
-		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.parse.js',
+		'scripts' => 'resources/src/mediawiki/api/parse.js',
 		'dependencies' => 'mediawiki.api',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.api.upload' => array(
-		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.upload.js',
+		'scripts' => 'resources/src/mediawiki/api/upload.js',
 		'dependencies' => array(
 			'dom-level2-shim',
 			'mediawiki.api',
@@ -906,7 +906,7 @@ return array(
 		),
 	),
 	'mediawiki.api.watch' => array(
-		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.watch.js',
+		'scripts' => 'resources/src/mediawiki/api/watch.js',
 		'dependencies' => array(
 			'mediawiki.api',
 		),
@@ -993,7 +993,7 @@ return array(
 		'dependencies' => 'mediawiki.ForeignApi.core',
 	),
 	'mediawiki.ForeignApi.core' => array(
-		'scripts' => 'resources/src/mediawiki.api/mediawiki.ForeignApi.js',
+		'scripts' => 'resources/src/mediawiki/ForeignApi.js',
 		'dependencies' => array(
 			'mediawiki.api',
 			'oojs',
