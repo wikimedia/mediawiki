@@ -2993,6 +2993,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * to do the dirty work
 	 *
 	 * @todo Separate the business/permission stuff out from backend code
+	 * @todo Remove $token parameter. Already verified by RollbackAction and ApiRollback.
 	 *
 	 * @param string $fromP Name of the user whose edits to rollback.
 	 * @param string $summary Custom summary. Set to default summary if empty.
@@ -3023,7 +3024,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$rollbackErrors = $this->mTitle->getUserPermissionsErrors( 'rollback', $user );
 		$errors = array_merge( $editErrors, wfArrayDiff2( $rollbackErrors, $editErrors ) );
 
-		if ( !$user->matchEditToken( $token, [ $this->mTitle->getPrefixedText(), $fromP ] ) ) {
+		if ( !$user->matchEditToken( $token, 'rollback' ) ) {
 			$errors[] = [ 'sessionfailure' ];
 		}
 
