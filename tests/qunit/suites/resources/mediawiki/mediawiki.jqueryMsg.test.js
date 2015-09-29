@@ -14,11 +14,17 @@
 		setup: function () {
 			this.originalMwLanguage = mw.language;
 
+			mw.jqueryMsg.setParserDefaults( {
+				magic: {
+					SITENAME: 'Wiki'
+				}
+			} );
+
 			specialCharactersPageName = '"Who" wants to be a millionaire & live on \'Exotic Island\'?';
 
 			expectedListUsers = '注册<a title="Special:ListUsers" href="/wiki/Special:ListUsers">用户</a>';
 			expectedListUsersSitename = '注册<a title="Special:ListUsers" href="/wiki/Special:ListUsers">用户' +
-				mw.config.get( 'wgSiteName' ) + '</a>';
+				'Wiki</a>';
 
 			expectedEntrypoints = '<a href="https://www.mediawiki.org/wiki/Manual:index.php">index.php</a>';
 
@@ -32,6 +38,12 @@
 		},
 		teardown: function () {
 			mw.language = this.originalMwLanguage;
+
+			mw.jqueryMsg.setParserDefaults( {
+				magic: {
+					SITENAME: mw.config.get( 'wgSiteName' )
+				}
+			} );
 		},
 		config: {
 			wgArticlePath: '/wiki/$1'
@@ -215,7 +227,7 @@
 		assert.equal( formatParse( 'plural-msg', 1 ), 'Found 1 item', 'Singular test for english' );
 		assert.equal( formatParse( 'plural-msg', 2 ), 'Found 2 items', 'Plural test for english' );
 		assert.equal( formatParse( 'plural-msg-explicit-forms-nested', 6 ), 'Found 6 results', 'Plural message with explicit plural forms' );
-		assert.equal( formatParse( 'plural-msg-explicit-forms-nested', 0 ), 'Found no results in ' + mw.config.get( 'wgSiteName' ), 'Plural message with explicit plural forms, with nested {{SITENAME}}' );
+		assert.equal( formatParse( 'plural-msg-explicit-forms-nested', 0 ), 'Found no results in Wiki', 'Plural message with explicit plural forms, with nested {{SITENAME}}' );
 		assert.equal( formatParse( 'plural-msg-explicit-forms-nested', 1 ), 'Found 1 result', 'Plural message with explicit plural forms with placeholder nested' );
 	} );
 
@@ -313,7 +325,7 @@
 	} );
 
 	QUnit.test( 'Grammar', 2, function ( assert ) {
-		assert.equal( formatParse( 'grammar-msg' ), 'Przeszukaj ' + mw.config.get( 'wgSiteName' ), 'Grammar Test with sitename' );
+		assert.equal( formatParse( 'grammar-msg' ), 'Przeszukaj Wiki', 'Grammar Test with sitename' );
 
 		mw.messages.set( 'grammar-msg-wrong-syntax', 'Przeszukaj {{GRAMMAR:grammar_case_xyz}}' );
 		assert.equal( formatParse( 'grammar-msg-wrong-syntax' ), 'Przeszukaj ', 'Grammar Test with wrong grammar template syntax' );
@@ -415,7 +427,7 @@
 
 		assertBothModes( assert, [ 'plural-msg', 5 ], 'Found 5 items', 'plural is resolved' );
 
-		assertBothModes( assert, [ 'grammar-msg' ], 'Przeszukaj ' + mw.config.get( 'wgSiteName' ), 'grammar is resolved' );
+		assertBothModes( assert, [ 'grammar-msg' ], 'Przeszukaj Wiki', 'grammar is resolved' );
 
 		mw.config.set( 'wgUserLanguage', 'en' );
 		assertBothModes( assert, [ 'formatnum-msg', '987654321.654321' ], '987,654,321.654', 'formatnum is resolved' );
