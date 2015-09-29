@@ -1312,7 +1312,7 @@ class EditPage {
 		}
 
 		$response = RequestContext::getMain()->getRequest()->response();
-		$response->setcookie( $postEditKey, $val, time() + self::POST_EDIT_COOKIE_DURATION, array(
+		$response->setCookie( $postEditKey, $val, time() + self::POST_EDIT_COOKIE_DURATION, array(
 			'httpOnly' => false,
 		) );
 	}

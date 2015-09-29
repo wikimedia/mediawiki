@@ -3508,7 +3508,7 @@ class User implements IDBAccessObject {
 			$request = $this->getRequest();
 		}
 		$params['secure'] = $secure;
-		$request->response()->setcookie( $name, $value, $exp, $params );
+		$request->response()->setCookie( $name, $value, $exp, $params );
 	}
 
 	/**
