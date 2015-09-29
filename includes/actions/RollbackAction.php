@@ -25,7 +25,7 @@
  *
  * @ingroup Actions
  */
-class RollbackAction extends FormlessAction {
+class RollbackAction extends FormAction {
 
 	public function getName() {
 		return 'rollback';
@@ -35,17 +35,44 @@ class RollbackAction extends FormlessAction {
 		return 'rollback';
 	}
 
-	public function onView() {
-		// TODO: use $this->useTransactionalTimeLimit(); when POST only
-		wfTransactionalTimeLimit();
+	protected function preText() {
+		return $this->msg( 'confirm-rollback-top' )->parse();
+	}
 
-		$details = null;
+	protected function alterForm( HTMLForm $form ) {
+		$form->setSubmitTextMsg( 'confirm-rollback-button' );
+		$form->setTokenSalt( 'rollback' );
+
+		// Copy parameters from GET to confirmation form
+		foreach ( array( 'from', 'bot', 'hidediff', 'summary' ) as $param ) {
+			if ( $this->getRequest()->getVal( $param ) ) {
+				$form->addHiddenField( $param, $this->getRequest()->getVal( $param ) );
+			}
+		}
+	}
+
+	public function onSubmit( $data ) {
+		$this->useTransactionalTimeLimit();
 
 		$request = $this->getRequest();
 		$user = $this->getUser();
 
+		$from = $request->getVal( 'from' );
+		$rev = Revision::newFromTitle( $this->getTitle() );
+		if ( $from === null || $from === '' ) {
+			throw new ErrorPageError( 'rollbackfailed', 'sessionfailure' );
+		}
+		if ( $from !== $rev->getUserText() ) {
+			throw new ErrorPageError( 'rollbackfailed', 'alreadyrolled', array(
+				$this->getTitle()->getPrefixedText(),
+				$from,
+				$rev->getUserText()
+			) );
+		}
+
+		$details = null;
 		$result = $this->page->doRollback(
-			$request->getVal( 'from' ),
+			$from,
 			$request->getText( 'summary' ),
 			$request->getVal( 'token' ),
 			$request->getBool( 'bot' ),
@@ -75,7 +102,7 @@ class RollbackAction extends FormlessAction {
 				}
 			}
 
-			return;
+			return false;
 		}
 
 		# NOTE: Permission errors already handled by Action::checkExecute.
@@ -121,6 +148,11 @@ class RollbackAction extends FormlessAction {
 			);
 			$de->showDiff( '', '' );
 		}
+	}
+
+	public function onSuccess() {
+		// Required by parent class, but redundant as onSubmit already
+		// shows the correct success message to the user.
 	}
 
 	protected function getDescription() {
