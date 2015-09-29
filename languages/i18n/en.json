@@ -3381,6 +3381,8 @@
 	"confirm-watch-top": "Add this page to your watchlist?",
 	"confirm-unwatch-button": "OK",
 	"confirm-unwatch-top": "Remove this page from your watchlist?",
+	"confirm-rollback-button": "OK",
+	"confirm-rollback-top": "Revert edits to this page?",
 	"semicolon-separator": ";&#32;",
 	"comma-separator": ",&#32;",
 	"colon-separator": ":&#32;",
