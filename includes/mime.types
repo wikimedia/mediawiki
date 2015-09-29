@@ -20,6 +20,7 @@ application/vnd.wap.wbxml wbxml
 application/vnd.wap.wmlc wmlc
 application/vnd.wap.wmlscriptc wmlsc
 application/voicexml+xml vxml
+application/x-7z-compressed 7z
 application/x-bcpio bcpio
 application/x-bzip bz
 application/x-bzip2 bz2
