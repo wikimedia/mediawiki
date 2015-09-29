@@ -57,6 +57,7 @@
 	 *
 	 * @class
 	 * @extends OO.ui.InputWidget
+	 * @mixins OO.ui.mixin.IndicatorElement
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
@@ -104,7 +105,8 @@
 		}
 
 		// Properties (must be set before parent constructor, which calls #setValue)
-		this.handle = new OO.ui.LabelWidget();
+		this.$handle = $( '<div>' );
+		this.label = new OO.ui.LabelWidget();
 		this.textInput = new OO.ui.TextInputWidget( {
 			required: config.required,
 			placeholder: placeholder,
@@ -141,6 +143,9 @@
 		// Parent constructor
 		mw.widgets.DateInputWidget.parent.call( this, config );
 
+		// Mixin constructors
+		OO.ui.mixin.IndicatorElement.call( this, config );
+
 		// Events
 		this.calendar.connect( this, {
 			change: 'onCalendarChange'
@@ -155,21 +160,22 @@
 		this.calendar.$element.on( {
 			keypress: this.onCalendarKeyPress.bind( this )
 		} );
-		this.handle.$element.on( {
+		this.$handle.on( {
 			click: this.onClick.bind( this ),
 			keypress: this.onKeyPress.bind( this )
 		} );
 
 		// Initialization
 		// Move 'tabindex' from this.$input (which is invisible) to the visible handle
-		this.setTabIndexedElement( this.handle.$element );
-		this.handle.$element
+		this.setTabIndexedElement( this.$handle );
+		this.$handle
+			.append( this.label.$element, this.$indicator )
 			.addClass( 'mw-widget-dateInputWidget-handle' );
 		this.calendar.$element
 			.addClass( 'mw-widget-dateInputWidget-calendar' );
 		this.$element
 			.addClass( 'mw-widget-dateInputWidget' )
-			.append( this.handle.$element, this.textInput.$element, this.calendar.$element );
+			.append( this.$handle, this.textInput.$element, this.calendar.$element );
 
 		if ( config.$overlay ) {
 			this.calendar.setFloatableContainer( this.$element );
@@ -212,6 +218,7 @@
 	/* Inheritance */
 
 	OO.inheritClass( mw.widgets.DateInputWidget, OO.ui.InputWidget );
+	OO.mixinClass( mw.widgets.DateInputWidget, OO.ui.mixin.IndicatorElement );
 
 	/* Methods */
 
@@ -337,7 +344,7 @@
 		if ( this.getValue() === '' ) {
 			this.textInput.setValue( '' );
 			this.calendar.setDate( null );
-			this.handle.setLabel( mw.msg( 'mw-widgets-dateinput-no-date' ) );
+			this.label.setLabel( mw.msg( 'mw-widgets-dateinput-no-date' ) );
 			this.$element.addClass( 'mw-widget-dateInputWidget-empty' );
 		} else {
 			if ( !this.inTextInput ) {
@@ -346,7 +353,7 @@
 			if ( !this.inCalendar ) {
 				this.calendar.setDate( this.getValue() );
 			}
-			this.handle.setLabel( this.getMoment().format( this.getDisplayFormat() ) );
+			this.label.setLabel( this.getMoment().format( this.getDisplayFormat() ) );
 			this.$element.removeClass( 'mw-widget-dateInputWidget-empty' );
 		}
 	};
@@ -358,7 +365,7 @@
 	 */
 	mw.widgets.DateInputWidget.prototype.deactivate = function () {
 		this.$element.removeClass( 'mw-widget-dateInputWidget-active' );
-		this.handle.toggle( true );
+		this.$handle.show();
 		this.textInput.toggle( false );
 		this.calendar.toggle( false );
 		this.setValidityFlag();
@@ -372,7 +379,7 @@
 	mw.widgets.DateInputWidget.prototype.activate = function () {
 		this.calendar.resetUI();
 		this.$element.addClass( 'mw-widget-dateInputWidget-active' );
-		this.handle.toggle( false );
+		this.$handle.hide();
 		this.textInput.toggle( true );
 		this.calendar.toggle( true );
 
@@ -491,7 +498,7 @@
 	mw.widgets.DateInputWidget.prototype.onCalendarKeyPress = function ( e ) {
 		if ( !this.isDisabled() && e.which === OO.ui.Keys.ENTER ) {
 			this.deactivate();
-			this.handle.$element.focus();
+			this.$handle.focus();
 			return false;
 		}
 	};
@@ -503,7 +510,7 @@
 	 */
 	mw.widgets.DateInputWidget.prototype.onEnter = function () {
 		this.deactivate();
-		this.handle.$element.focus();
+		this.$handle.focus();
 	};
 
 	/**
