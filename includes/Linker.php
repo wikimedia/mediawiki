@@ -1835,7 +1835,9 @@ class Linker {
 	 * work if $wgShowRollbackEditCount is disabled, so this can only function
 	 * as an additional check.
 	 *
-	 * If the option noBrackets is set the rollback link wont be enclosed in []
+	 * If the option noBrackets is set the rollback link wont be enclosed in "[]".
+	 *
+	 * See the "mediawiki.page.rollback" module for the client-side handling of this link.
 	 *
 	 * @param Revision $rev
 	 * @param IContextSource $context Context to use or null for the main context.
@@ -1956,10 +1958,6 @@ class Linker {
 		$query = array(
 			'action' => 'rollback',
 			'from' => $rev->getUserText(),
-			'token' => $context->getUser()->getEditToken( array(
-				$title->getPrefixedText(),
-				$rev->getUserText()
-			) ),
 		);
 		if ( $context->getRequest()->getBool( 'bot' ) ) {
 			$query['bot'] = '1';
