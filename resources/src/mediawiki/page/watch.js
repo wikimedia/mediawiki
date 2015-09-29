@@ -115,7 +115,7 @@
 		$links.click( function ( e ) {
 			var action, api, $link;
 
-			// Start preloading the notification module (normally loaded by mw.notify())
+			// Preload the notification module (lazy-loaded via mw.notify)
 			mw.loader.load( 'mediawiki.notification' );
 
 			action = mwUriGetAction( this.href );
