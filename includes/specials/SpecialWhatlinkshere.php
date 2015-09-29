@@ -127,20 +127,13 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			'il_to' => $target->getDBkey(),
 		);
 
-		$useLinkNamespaceDBFields = $this->getConfig()->get( 'UseLinkNamespaceDBFields' );
 		$namespace = $this->opts->getValue( 'namespace' );
 		$invert = $this->opts->getValue( 'invert' );
 		$nsComparison = ( $invert ? '!= ' : '= ' ) . $dbr->addQuotes( $namespace );
 		if ( is_int( $namespace ) ) {
-			if ( $useLinkNamespaceDBFields ) {
-				$conds['pagelinks'][] = "pl_from_namespace $nsComparison";
-				$conds['templatelinks'][] = "tl_from_namespace $nsComparison";
-				$conds['imagelinks'][] = "il_from_namespace $nsComparison";
-			} else {
-				$conds['pagelinks'][] = "page_namespace $nsComparison";
-				$conds['templatelinks'][] = "page_namespace $nsComparison";
-				$conds['imagelinks'][] = "page_namespace $nsComparison";
-			}
+			$conds['pagelinks'][] = "pl_from_namespace $nsComparison";
+			$conds['templatelinks'][] = "tl_from_namespace $nsComparison";
+			$conds['imagelinks'][] = "il_from_namespace $nsComparison";
 		}
 
 		if ( $from ) {
@@ -156,7 +149,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		}
 
 		$queryFunc = function ( IDatabase $dbr, $table, $fromCol ) use (
-			$conds, $target, $limit, $useLinkNamespaceDBFields
+			$conds, $target, $limit
 		) {
 			// Read an extra row as an at-end check
 			$queryLimit = $limit + 1;
@@ -165,9 +158,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				'rd_title' => $target->getDBkey(),
 				'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL'
 			);
-			if ( $useLinkNamespaceDBFields ) { // migration check
-				$on['rd_namespace'] = $target->getNamespace();
-			}
+			$on['rd_namespace'] = $target->getNamespace();
 			// Inner LIMIT is 2X in case of stale backlinks with wrong namespaces
 			$subQuery = $dbr->selectSqlText(
 				array( $table, 'redirect', 'page' ),

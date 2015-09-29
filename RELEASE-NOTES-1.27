@@ -9,6 +9,7 @@ MediaWiki 1.27 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.27 ===
+* Removed $wgUseLinkNamespaceDBFields
 
 === New features in 1.27 ===
 
