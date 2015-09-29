@@ -25,7 +25,7 @@
  *
  * @ingroup Actions
  */
-class RollbackAction extends FormlessAction {
+class RollbackAction extends FormAction {
 
 	public function getName() {
 		return 'rollback';
@@ -35,17 +35,49 @@ class RollbackAction extends FormlessAction {
 		return 'rollback';
 	}
 
-	public function onView() {
-		// TODO: use $this->useTransactionalTimeLimit(); when POST only
-		wfTransactionalTimeLimit();
+	protected function getDescription() {
+		return '';
+	}
 
-		$details = null;
+	protected function preText() {
+		return $this->msg( 'confirm-rollback-top' )->parse();
+	}
+
+	protected function alterForm( HTMLForm $form ) {
+		$form->setSubmitTextMsg( 'confirm-rollback-button' );
+		$form->setTokenSalt( 'rollback' );
+
+		// Copy parameters from GET to confirmation form
+		foreach ( array( 'from', 'bot', 'hidediff', 'summary' ) as $param ) {
+			if ( $this->getRequest()->getVal( $param ) ) {
+				$form->addHiddenField( $param, $this->getRequest()->getVal( $param ) );
+			}
+		}
+	}
+
+	public function onSubmit( $data ) {
+		$this->useTransactionalTimeLimit();
 
 		$request = $this->getRequest();
+
+		$user = $request->getVal( 'from' );
+		$rev = Revision::newFromTitle( $this->getTitle() );
+		if ( $user === null || $user === '' ) {
+			throw new ErrorPageError( 'rollbackfailed', 'sessionfailure' );
+		}
+		if ( $user !== $rev->getUserText() ) {
+			throw new ErrorPageError( 'rollbackfailed', 'alreadyrolled', array(
+				$this->getTitle()->getPrefixedText(),
+				$user,
+				$rev->getUserText()
+			) );
+		}
+
+		$details = null;
 		$user = $this->getUser();
 
 		$result = $this->page->doRollback(
-			$request->getVal( 'from' ),
+			$user,
 			$request->getText( 'summary' ),
 			$request->getVal( 'token' ),
 			$request->getBool( 'bot' ),
@@ -75,7 +107,7 @@ class RollbackAction extends FormlessAction {
 				}
 			}
 
-			return;
+			return false;
 		}
 
 		# NOTE: Permission errors already handled by Action::checkExecute.
@@ -123,7 +155,6 @@ class RollbackAction extends FormlessAction {
 		}
 	}
 
-	protected function getDescription() {
-		return '';
+	public function onSuccess() {
 	}
 }
