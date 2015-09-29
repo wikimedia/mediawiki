@@ -32,13 +32,36 @@ class FauxResponseTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers FauxResponse::getcookie
-	 * @covers FauxResponse::setcookie
+	 * @covers FauxResponse::setCookie
+	 * @covers FauxResponse::getCookie
+	 * @covers FauxResponse::getCookieData
+	 * @covers FauxResponse::getCookies
 	 */
 	public function testCookie() {
-		$this->assertEquals( null, $this->response->getcookie( 'key' ), 'Non-existing cookie' );
-		$this->response->setcookie( 'key', 'val' );
-		$this->assertEquals( 'val', $this->response->getcookie( 'key' ), 'Existing cookie' );
+		$expire = time() + 100;
+		$cookie = array(
+			'value' => 'val',
+			'path' => '/path',
+			'domain' => 'domain',
+			'secure' => true,
+			'httpOnly' => false,
+			'raw' => false,
+			'expire' => $expire,
+		);
+
+		$this->assertEquals( null, $this->response->getCookie( 'xkey' ), 'Non-existing cookie' );
+		$this->response->setCookie( 'key', 'val', $expire, array(
+			'prefix' => 'x',
+			'path' => '/path',
+			'domain' => 'domain',
+			'secure' => 1,
+			'httpOnly' => 0,
+		) );
+		$this->assertEquals( 'val', $this->response->getCookie( 'xkey' ), 'Existing cookie' );
+		$this->assertEquals( $cookie, $this->response->getCookieData( 'xkey' ),
+			'Existing cookie (data)' );
+		$this->assertEquals( array( 'xkey' => $cookie ), $this->response->getCookies(),
+			'Existing cookies' );
 	}
 
 	/**

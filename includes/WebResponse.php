@@ -81,7 +81,7 @@ class WebResponse {
 	 *   'prefix', 'domain', and 'secure'
 	 * @since 1.22 Replaced $prefix, $domain, and $forceSecure with $options
 	 */
-	public function setcookie( $name, $value, $expire = 0, $options = array() ) {
+	public function setCookie( $name, $value, $expire = 0, $options = array() ) {
 		global $wgCookiePath, $wgCookiePrefix, $wgCookieDomain;
 		global $wgCookieSecure, $wgCookieExpiration, $wgCookieHttpOnly;
 
@@ -207,18 +207,74 @@ class FauxResponse extends WebResponse {
 	 * @param int|null $expire Ignored in this faux subclass.
 	 * @param array $options Ignored in this faux subclass.
 	 */
-	public function setcookie( $name, $value, $expire = 0, $options = array() ) {
-		$this->cookies[$name] = $value;
+	public function setCookie( $name, $value, $expire = 0, $options = array() ) {
+		global $wgCookiePath, $wgCookiePrefix, $wgCookieDomain;
+		global $wgCookieSecure, $wgCookieExpiration, $wgCookieHttpOnly;
+
+		if ( !is_array( $options ) ) {
+			// Backwards compatibility
+			$options = array( 'prefix' => $options );
+			if ( func_num_args() >= 5 ) {
+				$options['domain'] = func_get_arg( 4 );
+			}
+			if ( func_num_args() >= 6 ) {
+				$options['secure'] = func_get_arg( 5 );
+			}
+		}
+		$options = array_filter( $options, function ( $a ) {
+			return $a !== null;
+		} ) + array(
+			'prefix' => $wgCookiePrefix,
+			'domain' => $wgCookieDomain,
+			'path' => $wgCookiePath,
+			'secure' => $wgCookieSecure,
+			'httpOnly' => $wgCookieHttpOnly,
+			'raw' => false,
+		);
+
+		if ( $expire === null ) {
+			$expire = 0; // Session cookie
+		} elseif ( $expire == 0 && $wgCookieExpiration != 0 ) {
+			$expire = time() + $wgCookieExpiration;
+		}
+
+		$this->cookies[$options['prefix'] . $name] = array(
+			'value' => (string)$value,
+			'expire' => (int)$expire,
+			'path' => (string)$options['path'],
+			'domain' => (string)$options['domain'],
+			'secure' => (bool)$options['secure'],
+			'httpOnly' => (bool)$options['httpOnly'],
+			'raw' => (bool)$options['raw'],
+		);
 	}
 
 	/**
 	 * @param string $name
 	 * @return string|null
 	 */
-	public function getcookie( $name ) {
+	public function getCookie( $name ) {
+		if ( isset( $this->cookies[$name] ) ) {
+			return $this->cookies[$name]['value'];
+		}
+		return null;
+	}
+
+	/**
+	 * @param string $name
+	 * @return array|null
+	 */
+	public function getCookieData( $name ) {
 		if ( isset( $this->cookies[$name] ) ) {
 			return $this->cookies[$name];
 		}
 		return null;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getCookies() {
+		return $this->cookies;
 	}
 }
