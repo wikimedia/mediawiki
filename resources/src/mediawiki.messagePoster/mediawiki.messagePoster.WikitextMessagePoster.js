@@ -39,7 +39,7 @@
 			if ( resp.edit.result === 'Success' ) {
 				return $.Deferred().resolve( resp, jqXHR );
 			} else {
-				// mediawiki.api.js checks for resp.error.  Are there actually cases where the
+				// mw.Api checks for response error.  Are there actually cases where the
 				// request fails, but it's not caught there?
 				return $.Deferred().reject( 'api-unexpected' );
 			}
