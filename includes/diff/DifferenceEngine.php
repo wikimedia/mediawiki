@@ -487,8 +487,7 @@ class DifferenceEngine extends ContextSource {
 						'rc_this_oldid' => $this->mNewid,
 						'rc_patrolled' => 0
 					),
-					__METHOD__,
-					array( 'USE INDEX' => 'rc_timestamp' )
+					__METHOD__
 				);
 
 				if ( $change && !$change->getPerformer()->equals( $user ) ) {

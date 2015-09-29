@@ -1124,8 +1124,7 @@ class Article implements Page {
 					'rc_namespace' => $this->getTitle()->getNamespace(),
 					'rc_cur_id' => $this->getTitle()->getArticleID()
 				),
-				__METHOD__,
-				array( 'USE INDEX' => 'new_name_timestamp' )
+				__METHOD__
 			);
 		} else {
 			// Cache the information we gathered above in case we can't patrol
