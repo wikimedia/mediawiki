@@ -45,16 +45,6 @@ class ApiRollback extends ApiBase {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
-		// WikiPage::doRollback needs a Web UI token, so get one of those if we
-		// validated based on an API rollback token.
-		$token = $params['token'];
-		if ( $user->matchEditToken( $token, 'rollback', $this->getRequest() ) ) {
-			$token = $this->getUser()->getEditToken(
-				$this->getWebUITokenSalt( $params ),
-				$this->getRequest()
-			);
-		}
-
 		$titleObj = $this->getRbTitle( $params );
 		$pageObj = WikiPage::factory( $titleObj );
 		$summary = $params['summary'];
@@ -72,7 +62,7 @@ class ApiRollback extends ApiBase {
 		$retval = $pageObj->doRollback(
 			$this->getRbUser( $params ),
 			$summary,
-			$token,
+			$params['token'],
 			$params['markbot'],
 			$details,
 			$user,
@@ -97,8 +87,12 @@ class ApiRollback extends ApiBase {
 			'pageid' => intval( $details['current']->getPage() ),
 			'summary' => $details['summary'],
 			'revid' => intval( $details['newid'] ),
+			// The revision being reverted (previously the current revision of the page)
 			'old_revid' => intval( $details['current']->getID() ),
-			'last_revid' => intval( $details['target']->getID() )
+			'oldUser' => $details['current']->getUserText( Revision::FOR_THIS_USER ),
+			// The revision being restored (the last revision before revision(s) by the reverted user)
+			'last_revid' => intval( $details['target']->getID() ),
+			'lastUser' => $details['target']->getUserText( Revision::FOR_THIS_USER ),
 		];
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $info );
@@ -146,13 +140,6 @@ class ApiRollback extends ApiBase {
 
 	public function needsToken() {
 		return 'rollback';
-	}
-
-	protected function getWebUITokenSalt( array $params ) {
-		return [
-			$this->getRbTitle( $params )->getPrefixedText(),
-			$this->getRbUser( $params )
-		];
 	}
 
 	/**
