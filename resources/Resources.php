@@ -912,6 +912,12 @@ return array(
 			'mediawiki.api',
 		),
 	),
+	'mediawiki.api.rollback' => array(
+		'scripts' => 'resources/src/mediawiki/api/rollback.js',
+		'dependencies' => array(
+			'mediawiki.api',
+		),
+	),
 	'mediawiki.content.json' => array(
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki/mediawiki.content.json.css',
@@ -1626,6 +1632,17 @@ return array(
 			'tooltip-ca-watch',
 			'tooltip-ca-unwatch',
 			'watcherrortext',
+		),
+	),
+	'mediawiki.page.rollback' => array(
+		'scripts' => 'resources/src/mediawiki/page/rollback.js',
+		'dependencies' => array(
+			'mediawiki.api.rollback',
+			'mediawiki.notify',
+		),
+		'messages' => array(
+			'rollbackfailed',
+			'rollback-success',
 		),
 	),
 	'mediawiki.page.image.pagination' => array(
