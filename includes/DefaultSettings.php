@@ -7676,14 +7676,6 @@ $wgHKDFAlgorithm = 'sha256';
 $wgPageLanguageUseDB = false;
 
 /**
- * Enable use of the *_namespace fields of the pagelinks, redirect, and templatelinks tables.
- * Set this only if the fields are fully populated. This may be removed in 1.25.
- * @var bool
- * @since 1.24
- */
-$wgUseLinkNamespaceDBFields = true;
-
-/**
  * Global configuration variable for Virtual REST Services.
  * Parameters for different services are to be declared inside
  * $wgVirtualRestConfig['modules'], which is to be treated as an associative
