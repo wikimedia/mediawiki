@@ -3029,7 +3029,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$rollbackErrors = $this->mTitle->getUserPermissionsErrors( 'rollback', $user );
 		$errors = array_merge( $editErrors, wfArrayDiff2( $rollbackErrors, $editErrors ) );
 
-		if ( !$user->matchEditToken( $token, [ $this->mTitle->getPrefixedText(), $fromP ] ) ) {
+		if ( !$user->matchEditToken( $token, 'rollback' ) ) {
 			$errors[] = [ 'sessionfailure' ];
 		}
 
