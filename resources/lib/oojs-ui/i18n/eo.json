@@ -20,6 +20,7 @@
 	"ooui-dialog-process-dismiss": "Elimini",
 	"ooui-dialog-process-retry": "Reprovi",
 	"ooui-dialog-process-continue": "Daŭrigi",
+	"ooui-selectfile-button-select": "Elekti dosieron",
 	"ooui-selectfile-not-supported": "Dosieroselekto ne estas subtenata.",
 	"ooui-selectfile-placeholder": "Vi ne selektis dosieron"
 }

@@ -1,20 +1,12 @@
-/*
- * Local backports:
- *
- * - d190bc51e60195eed81f147e9324c9ec21c9e68c
- *   FloatableElement: Don't try unbinding events before we bind them
- *   Required for mw.widgets.DateInputWidget when used with '$overlay' config option.
- */
-
 /*!
- * OOjs UI v0.12.9
+ * OOjs UI v0.12.10
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-09-22T20:09:51Z
+ * Date: 2015-09-29T21:20:38Z
  */
 ( function ( OO ) {
 
@@ -13697,7 +13689,6 @@ OO.ui.CapsuleItemWidget = function OoUiCapsuleItemWidget( config ) {
 		keydown: this.onCloseKeyDown.bind( this ),
 		click: this.onCloseClick.bind( this )
 	} );
-	this.$element.on( 'click', false );
 
 	// Initialization
 	this.$element
@@ -17676,8 +17667,10 @@ OO.ui.SearchWidget.prototype.onQueryChange = function () {
  * @param {string} value New value
  */
 OO.ui.SearchWidget.prototype.onQueryEnter = function () {
-	// Reset
-	this.results.chooseItem( this.results.getHighlightedItem() );
+	var highlightedItem = this.results.getHighlightedItem();
+	if ( highlightedItem ) {
+		this.results.chooseItem( highlightedItem );
+	}
 };
 
 /**
@@ -18399,8 +18392,10 @@ OO.ui.SelectWidget.prototype.pressItem = function ( item ) {
  * @chainable
  */
 OO.ui.SelectWidget.prototype.chooseItem = function ( item ) {
-	this.selectItem( item );
-	this.emit( 'choose', item );
+	if ( item ) {
+		this.selectItem( item );
+		this.emit( 'choose', item );
+	}
 
 	return this;
 };

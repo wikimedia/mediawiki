@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.9
+ * OOjs UI v0.12.10
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-09-22T20:09:59Z
+ * Date: 2015-09-29T21:20:47Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -1803,10 +1803,6 @@
 .oo-ui-textInputWidget textarea.oo-ui-pendingElement-pending {
 	background-color: transparent;
 }
-.oo-ui-textInputWidget-decorated input,
-.oo-ui-textInputWidget-decorated textarea {
-	padding-left: 2em;
-}
 .oo-ui-textInputWidget-icon {
 	width: 2em;
 }
@@ -1841,15 +1837,15 @@
 }
 .oo-ui-textInputWidget.oo-ui-iconElement input,
 .oo-ui-textInputWidget.oo-ui-iconElement textarea {
-	padding-left: 2em;
+	padding-left: 2.475em;
 }
 .oo-ui-textInputWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
 	width: 1.875em;
-	margin-left: 0.1em;
+	margin-left: 0.3em;
 }
 .oo-ui-textInputWidget.oo-ui-indicatorElement input,
 .oo-ui-textInputWidget.oo-ui-indicatorElement textarea {
-	padding-right: 1.5em;
+	padding-right: 2.4875em;
 }
 .oo-ui-textInputWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
 	width: 0.9375em;
@@ -1861,10 +1857,10 @@
 	color: #888888;
 }
 .oo-ui-textInputWidget-labelPosition-after.oo-ui-indicatorElement > .oo-ui-labelElement-label {
-	margin-right: 1.6em;
+	margin-right: 2.0875em;
 }
 .oo-ui-textInputWidget-labelPosition-before.oo-ui-iconElement > .oo-ui-labelElement-label {
-	margin-left: 2.1em;
+	margin-left: 2.075em;
 }
 .oo-ui-menuSelectWidget {
 	position: absolute;
@@ -2074,7 +2070,7 @@
 	right: 0;
 }
 .oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon {
-	left: 0.25em;
+	left: 0;
 }
 .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label {
 	line-height: 2.3em;
@@ -2094,20 +2090,22 @@
 .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-clearButton {
 	top: 0;
 	width: 1.875em;
-	height: 1.875em;
-	margin: 0.3em;
+	margin-right: 0;
+}
+.oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-clearButton .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
+	height: 2.3em;
 }
 .oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator {
 	top: 0;
 	width: 0.9375em;
-	height: 0.9375em;
-	margin: 0.775em;
+	height: 2.3em;
+	margin-right: 0.775em;
 }
 .oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon {
 	top: 0;
 	width: 1.875em;
-	height: 1.875em;
-	margin: 0.3em;
+	height: 2.3em;
+	margin-left: 0.3em;
 }
 .oo-ui-selectFileWidget.oo-ui-widget-disabled .oo-ui-selectFileWidget-info {
 	color: #cccccc;
@@ -2123,23 +2121,23 @@
 	color: #cccccc;
 }
 .oo-ui-selectFileWidget.oo-ui-iconElement .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label {
-	left: 2.75em;
+	left: 2.475em;
 }
 .oo-ui-selectFileWidget .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label {
-	right: 3em;
+	right: 2.175em;
 }
 .oo-ui-selectFileWidget .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-clearButton {
 	right: 0;
 }
 .oo-ui-selectFileWidget.oo-ui-indicatorElement .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label {
-	right: 5em;
+	right: 4.2625em;
 }
 .oo-ui-selectFileWidget.oo-ui-indicatorElement .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-clearButton {
-	right: 2em;
+	right: 2.0875em;
 }
 .oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label,
 .oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label {
-	right: 1em;
+	right: 0.5em;
 }
 .oo-ui-selectFileWidget-empty.oo-ui-indicatorElement .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label,
 .oo-ui-selectFileWidget-notsupported.oo-ui-indicatorElement .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label {

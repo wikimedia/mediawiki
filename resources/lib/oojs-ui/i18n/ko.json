@@ -9,7 +9,8 @@
 			"고기랑",
 			"Ryuch",
 			"Revi",
-			"Infinity"
+			"Infinity",
+			"Hwangjy9"
 		]
 	},
 	"ooui-outline-control-move-down": "항목을 아래로 옮기기",
@@ -24,6 +25,8 @@
 	"ooui-dialog-process-dismiss": "숨기기",
 	"ooui-dialog-process-retry": "다시 시도하세요",
 	"ooui-dialog-process-continue": "계속",
+	"ooui-selectfile-button-select": "파일을 선택하세요",
 	"ooui-selectfile-not-supported": "파일 선택은 지원하지 않습니다",
-	"ooui-selectfile-placeholder": "선택한 파일 없음"
+	"ooui-selectfile-placeholder": "선택한 파일 없음",
+	"ooui-selectfile-dragdrop-placeholder": "여기에 파일을 놓으세요"
 }

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Naudefj"
+			"Naudefj",
+			"Fwolff"
 		]
 	},
 	"ooui-outline-control-move-down": "Skuif item af",
@@ -15,5 +16,8 @@
 	"ooui-dialog-process-error": "Iets het verkeerd gegaan",
 	"ooui-dialog-process-dismiss": "Sluit",
 	"ooui-dialog-process-retry": "Probeer weer",
-	"ooui-dialog-process-continue": "Gaan voort"
+	"ooui-dialog-process-continue": "Gaan voort",
+	"ooui-selectfile-button-select": "Kies 'n lêer",
+	"ooui-selectfile-placeholder": "Geen lêer is gekies nie",
+	"ooui-selectfile-dragdrop-placeholder": "Laat val die lêer hier"
 }

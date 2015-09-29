@@ -21,7 +21,7 @@
 		"ext-iconv": "*",
 		"liuggio/statsd-php-client": "1.0.16",
 		"mediawiki/at-ease": "1.1.0",
-		"oojs/oojs-ui": "0.12.9",
+		"oojs/oojs-ui": "0.12.10",
 		"oyejorge/less.php": "1.7.0.8",
 		"php": ">=5.3.3",
 		"psr/log": "1.0.0",
