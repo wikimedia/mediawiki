@@ -51,6 +51,12 @@ interface LoadMonitor {
 	 * @return array Map of (server index => seconds)
 	 */
 	public function getLagTimes( $serverIndexes, $wiki );
+
+	/**
+	 * Clear any process and persistent cache of lag times
+	 * @since 1.26
+	 */
+	public function clearCaches();
 }
 
 class LoadMonitorNull implements LoadMonitor {
@@ -62,5 +68,9 @@ class LoadMonitorNull implements LoadMonitor {
 
 	public function getLagTimes( $serverIndexes, $wiki ) {
 		return array_fill_keys( $serverIndexes, 0 );
+	}
+
+	public function clearCaches() {
+
 	}
 }
