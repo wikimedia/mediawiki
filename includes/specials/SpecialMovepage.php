@@ -142,7 +142,12 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		$this->getSkin()->setRelevantTitle( $this->oldTitle );
 
-		$oldTitleLink = Linker::link( $this->oldTitle );
+		$oldTitleLink = Linker::link(
+			$this->oldTitle,
+			null,
+			array(),
+			$this->oldTitle->isRedirect() ? array( 'redirect' => 'no' ) : array()
+		);
 
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'move-page', $this->oldTitle->getPrefixedText() ) );
