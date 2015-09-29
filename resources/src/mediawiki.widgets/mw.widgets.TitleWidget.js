@@ -47,6 +47,7 @@
 		this.cache = config.cache;
 
 		// Initialization
+		this.$element.addClass( 'mw-widget-titleWidget' );
 		this.interwikiPrefixes = [];
 		this.interwikiPrefixesPromise = new mw.Api().get( {
 			action: 'query',
@@ -239,7 +240,7 @@
 	/**
 	 * Get menu option widget data from the title and page data
 	 *
-	 * @param {mw.Title} title Title object
+	 * @param {string} title Title object
 	 * @param {Object} data Page data
 	 * @return {Object} Data for option widget
 	 */
@@ -249,7 +250,7 @@
 			data: this.namespace !== null && this.relative
 				? mwTitle.getRelativeText( this.namespace )
 				: title,
-			title: mwTitle,
+			url: mwTitle.getUrl(),
 			imageUrl: this.showImages ? data.imageUrl : null,
 			description: this.showDescriptions ? data.description : null,
 			missing: data.missing,
