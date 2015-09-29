@@ -856,7 +856,7 @@
 	"mergehistory-go": "Show mergeable edits",
 	"mergehistory-submit": "Merge revisions",
 	"mergehistory-empty": "No revisions can be merged.",
-	"mergehistory-done": "$3 {{PLURAL:$3|revision|revisions}} of $1 were merged into [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|revision|revisions}} of $1 {{PLURAL:$3|was|were}} merged into [[:$2]].",
 	"mergehistory-fail": "Unable to perform history merge, please recheck the page and time parameters.",
 	"mergehistory-fail-toobig" : "Unable to perform history merge as more than the limit of $1 {{PLURAL:$1|revision|revisions}} would be moved.",
 	"mergehistory-no-source": "Source page $1 does not exist.",
