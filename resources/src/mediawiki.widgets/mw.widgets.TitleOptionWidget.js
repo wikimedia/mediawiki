@@ -51,6 +51,14 @@
 		this.$label.attr( 'href', config.url );
 		this.$element.addClass( 'mw-widget-titleOptionWidget' );
 
+		// Allow opening the link in new tab, but not regular navigation.
+		this.$label.on( 'click', function ( e ) {
+			// Do not interfere with non-left clicks or if modifier keys are pressed (e.g. ctrl-click).
+			if ( !( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) ) {
+				e.preventDefault();
+			}
+		} );
+
 		// Highlight matching parts of link suggestion
 		this.$label.autoEllipsis( { hasSpan: false, tooltip: true, matchText: config.query } );
 
