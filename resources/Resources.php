@@ -1981,8 +1981,6 @@ return array(
 			'jquery.autoEllipsis',
 			// CategorySelector
 			'mediawiki.ForeignApi',
-			// For backwards-compatibility
-			'mediawiki.widgets.DateInputWidget',
 		),
 		'messages' => array(
 			// NamespaceInputWidget
