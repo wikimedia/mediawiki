@@ -42,34 +42,10 @@ class WatchAction extends FormAction {
 		return $this->msg( 'addwatch' )->escaped();
 	}
 
-	/**
-	 * Just get an empty form with a single submit button
-	 * @return array
-	 */
-	protected function getFormFields() {
-		return array();
-	}
-
 	public function onSubmit( $data ) {
 		self::doWatch( $this->getTitle(), $this->getUser() );
 
 		return true;
-	}
-
-	/**
-	 * This can be either formed or formless depending on the session token given
-	 */
-	public function show() {
-		$this->setHeaders();
-
-		$user = $this->getUser();
-		// This will throw exceptions if there's a problem
-		$this->checkCanExecute( $user );
-
-		$form = $this->getForm();
-		if ( $form->show() ) {
-			$this->onSuccess();
-		}
 	}
 
 	protected function checkCanExecute( User $user ) {
