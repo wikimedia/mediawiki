@@ -1479,7 +1479,7 @@ return array(
 	/* MediaWiki Page */
 
 	'mediawiki.page.gallery' => array(
-		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.gallery.js',
+		'scripts' => 'resources/src/mediawiki/page/gallery.js',
 		'dependencies' => array(
 			'mediawiki.page.gallery.styles',
 			'jquery.throttle-debounce',
@@ -1487,14 +1487,14 @@ return array(
 	),
 	'mediawiki.page.gallery.styles' => array(
 		'styles' => array(
-			'resources/src/mediawiki.page/mediawiki.page.gallery.print.css' => array( 'media' => 'print' ),
-			'resources/src/mediawiki.page/mediawiki.page.gallery.css',
+			'resources/src/mediawiki/page/gallery-print.css' => array( 'media' => 'print' ),
+			'resources/src/mediawiki/page/gallery.css',
 		),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.page.ready' => array(
-		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.ready.js',
+		'scripts' => 'resources/src/mediawiki/page/ready.js',
 		'dependencies' => array(
 			'jquery.accessKeyLabel',
 			'jquery.checkboxShiftClick',
@@ -1505,13 +1505,13 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.page.startup' => array(
-		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.startup.js',
+		'scripts' => 'resources/src/mediawiki/page/startup.js',
 		'dependencies' => 'mediawiki.util',
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.page.patrol.ajax' => array(
-		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.patrol.ajax.js',
+		'scripts' => 'resources/src/mediawiki/page/patrol.js',
 		'dependencies' => array(
 			'mediawiki.page.startup',
 			'mediawiki.api',
@@ -1528,7 +1528,7 @@ return array(
 		),
 	),
 	'mediawiki.page.watch.ajax' => array(
-		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.watch.ajax.js',
+		'scripts' => 'resources/src/mediawiki/page/watch.js',
 		'dependencies' => array(
 			'mediawiki.api.watch',
 			'mediawiki.notify',
@@ -1547,7 +1547,7 @@ return array(
 		),
 	),
 	'mediawiki.page.image.pagination' => array(
-		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.image.pagination.js',
+		'scripts' => 'resources/src/mediawiki/page/image-pagination.js',
 		'dependencies' => array(
 			'mediawiki.Uri',
 			'mediawiki.util',
@@ -1772,7 +1772,7 @@ return array(
 		'position' => 'top',
 		'styles' => array(
 			// @todo: Remove mediawiki.page.gallery when cache has cleared
-			'resources/src/mediawiki.page/mediawiki.page.gallery.print.css' => array( 'media' => 'print' ),
+			'resources/src/mediawiki/page/gallery-print.css' => array( 'media' => 'print' ),
 			// @todo: Remove mediawiki.action.view.filepage.print.css when cache has cleared
 			'resources/src/mediawiki.action/mediawiki.action.view.filepage.print.css' =>
 				array( 'media' => 'print' ),
@@ -1789,7 +1789,7 @@ return array(
 		'position' => 'top',
 		'styles' => array(
 			// @todo: Remove when mediawiki.page.gallery in cached html.
-			'resources/src/mediawiki.page/mediawiki.page.gallery.css',
+			'resources/src/mediawiki/page/gallery.css',
 			// @todo: Remove mediawiki.action.view.filepage.css
 			// and mediawiki.legacy/images/checker.png when cache has cleared
 			'resources/src/mediawiki.action/mediawiki.action.view.filepage.css',
