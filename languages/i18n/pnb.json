@@ -663,7 +663,7 @@
 	"mergehistory-go": "رلن والیاں لکھتاں وکھاؤ",
 	"mergehistory-submit": "ریویسن رلاؤ",
 	"mergehistory-empty": "کوئی ریوین رلائی نئیں جاسکدی",
-	"mergehistory-success": "$3 {{PLURAL:$3|ریوین}} [[:$1]] دی [[:$2]] چ رلا دتی گئی اے۔",
+	"mergehistory-done": "$3 {{PLURAL:$3|ریوین}} $1 دی [[:$2]] چ رلا دتی گئی اے۔",
 	"mergehistory-fail": "رکارڈ کٹھا نئیں کیتا جاسکدا، صفہ دوبارہ ویکھو تے ویلے دا پیرامیٹر چیک کرو۔",
 	"mergehistory-no-source": "سورس صفہ $1 ہے نئیں۔",
 	"mergehistory-no-destination": "اپڑن صفہ $1 ہے ای نئیں۔",

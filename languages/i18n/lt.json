@@ -835,7 +835,7 @@
 	"mergehistory-go": "Rodyti sujungiamus keitimus",
 	"mergehistory-submit": "Sujungti versijas",
 	"mergehistory-empty": "Versijos negali būti sujungtos",
-	"mergehistory-success": "$3 [[:$1]] {{PLURAL:$3|versija|versijos|versijų}} sėkmingai {{PLURAL:$3|sujungta|sujungtos|sujungta}} su [[:$2]].",
+	"mergehistory-done": "$3 $1 {{PLURAL:$3|versija|versijos|versijų}} sėkmingai {{PLURAL:$3|sujungta|sujungtos|sujungta}} su [[:$2]].",
 	"mergehistory-fail": "Nepavyksta atlikti istorijų sujungimo, prašome patikrinti puslapio ir laiko parametrus.",
 	"mergehistory-fail-toobig": "Nepavyksta sulieti istorijos, nes būtina pernešti daugiau, nei leidžia $1 riba, {{PLURAL:$1|versijos|versijų}}.",
 	"mergehistory-no-source": "Šaltinio puslapis $1 neegzistuoja.",

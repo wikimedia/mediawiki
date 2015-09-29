@@ -792,7 +792,7 @@
 	"mergehistory-go": "Onyesha hariri ambazo zinaweza kushikanishwa",
 	"mergehistory-submit": "Unganisha mapitio",
 	"mergehistory-empty": "Hakuna mapitio yanayoweza kuunganishwa",
-	"mergehistory-success": "{{PLURAL:$3|Pitio $3 la [[:$1]] liliingizwa|Mapitio $3 ya [[:$1]] yaliingizwa}} ndani ya [[:$2]].",
+	"mergehistory-done": "{{PLURAL:$3|Pitio $3 la $1 liliingizwa|Mapitio $3 ya $1 yaliingizwa}} ndani ya [[:$2]].",
 	"mergehistory-no-source": "Chanzo cha ukurasa $1 hakipo.",
 	"mergehistory-no-destination": "Ukurasa wa makusudio $1 haupo.",
 	"mergehistory-invalid-source": "Chanzo cha ukurasa lazima kiwe na jina uhalali.",

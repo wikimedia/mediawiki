@@ -654,7 +654,7 @@
 	"mergehistory-list": "Susuyan niditan milo pisompuruon",
 	"mergehistory-submit": "Pisompuruo sinimakan",
 	"mergehistory-empty": "Inggaa sinimakan do milo pisompuruon",
-	"mergehistory-success": "$3 {{PLURAL:$3|sinimakan|tongosinimakan}} montok[[:$1]] nokopisompuru noh id [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|sinimakan|tongosinimakan}} montok$1 nokopisompuru noh id [[:$2]].",
 	"mergehistory-fail": "Awu milo do pisompuruon susuyan, mangai imuriai iri bolikon om nuludan do timpu.",
 	"mergehistory-no-source": "Wowonod bolikon $1 awu poinsuang.",
 	"mergehistory-no-destination": "Korikoton do bolikon $1 awu poinsuang.",

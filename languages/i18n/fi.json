@@ -848,7 +848,7 @@
 	"mergehistory-go": "Etsi muokkaukset, jotka voidaan yhdistää",
 	"mergehistory-submit": "Yhdistä versiot",
 	"mergehistory-empty": "Mitään versioita ei voida yhdistää.",
-	"mergehistory-success": "$3 {{PLURAL:$3|versio|versiota}} sivusta [[:$1]] yhdistettiin onnistuneesti sivuun [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|versio|versiota}} sivusta $1 yhdistettiin onnistuneesti sivuun [[:$2]].",
 	"mergehistory-fail": "Sivuhistorioiden yhdistämistä ei voida suorittaa. Tarkista lähde- ja kohdesivujen nimet sekä versioiden aikamääritys.",
 	"mergehistory-fail-toobig": "Sivuhistorian yhdistämistä ei voi tehdä, koska enemmän kuin sallittu määrä $1 {{PLURAL:$1|versio|versiota}} siirrettäisiin.",
 	"mergehistory-no-source": "Lähdesivua $1 ei ole olemassa.",

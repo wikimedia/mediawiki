@@ -5,7 +5,8 @@
 			"Liuxinyu970226",
 			"LNDDYL",
 			"EagerLin",
-			"Zhxy 519"
+			"Zhxy 519",
+			"Macofe"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|文件]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 郵件清單]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug與請求]\n</div>\n<strong>狀態資訊：</strong>本頁所展示的所有功能都應正常工作，但是 API 仍在開發當中，將會隨時變化。請訂閱[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 郵件清單]以便得到更新通知。\n\n<strong>錯誤請求：</strong>當 API 收到錯誤請求時， HTTP header 將會返回一個包含「MediaWiki-API-Error」的值，隨後 header 的值與錯誤碼將會送回並設定為相同的值。詳細資訊請參閱[[mw:API:Errors_and_warnings|API: 錯誤與警告]]。",
@@ -23,7 +24,7 @@
 	"apihelp-block-param-reblock": "若使用者已被封鎖，覆寫既有的封鎖設定值。",
 	"apihelp-block-param-watchuser": "監視使用者或 IP 位址的使用者頁面與對話頁面。",
 	"apihelp-block-example-ip-simple": "封鎖 IP 位址 <kbd>192.0.2.5</kbd> 三天，原因為 <kbd>First strike</kbd>。",
-	"apihelp-block-example-user-complex": "永久封鎖 IP 位址 <kbd>Vandal</kbd>，原因為 <kbd>First strike</kbd>。",
+	"apihelp-block-example-user-complex": "永久封鎖 IP 位址 <kbd>Vandal</kbd>，原因為 <kbd>Vandalism</kbd>。",
 	"apihelp-checktoken-description": "檢查來自 <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd> 的密鑰有效性。",
 	"apihelp-checktoken-param-type": "要測試的密鑰類型。",
 	"apihelp-checktoken-param-token": "要測試的密鑰。",

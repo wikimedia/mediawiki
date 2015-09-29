@@ -778,7 +778,7 @@
 	"mergehistory-go": "Vernayîşê yewbiyayeni bimocne",
 	"mergehistory-submit": "revizyonî yew bike",
 	"mergehistory-empty": "Revizyonî yew nibenê.",
-	"mergehistory-success": "$3 {{PLURAL:$3|revizyonê|revizyonê}} [[:$1]] u [[:$2]] yew biyê.",
+	"mergehistory-done": "$3 {{PLURAL:$3|revizyonê|revizyonê}} $1 u [[:$2]] yew biyê.",
 	"mergehistory-fail": "Tarixê pele yew nibeno, ma rica kenê ke pel u wext control bike.",
 	"mergehistory-no-source": "Pela çımeyê $1 çıniya.",
 	"mergehistory-no-destination": "Pela destinasyoni $1 çini yo.",

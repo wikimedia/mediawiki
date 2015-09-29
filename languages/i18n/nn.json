@@ -762,7 +762,7 @@
 	"mergehistory-go": "Vis flettbare endringar",
 	"mergehistory-submit": "Flett versjonane",
 	"mergehistory-empty": "Ingen endringar kan flettast.",
-	"mergehistory-success": "{{PLURAL:$3|Éin versjon|$3 versjonar}} av [[:$1]] er fletta til [[:$2]].",
+	"mergehistory-done": "{{PLURAL:$3|Éin versjon|$3 versjonar}} av $1 er fletta til [[:$2]].",
 	"mergehistory-fail": "Kunne ikkje utføre fletting av historikkane, ver venleg og dobbelsjekk sidene og versjonane du har valt.",
 	"mergehistory-no-source": "Kjeldesida $1 finst ikkje.",
 	"mergehistory-no-destination": "Målsida $1 finst ikkje.",

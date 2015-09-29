@@ -803,7 +803,7 @@
 	"mergehistory-go": "แสดงการแก้ไขที่รวมได้",
 	"mergehistory-submit": "รวมรุ่นปรับปรุง",
 	"mergehistory-empty": "ไม่มีรุ่นปรับปรุงที่รวมได้",
-	"mergehistory-success": "รวม $3 รุ่นปรับปรุงของ [[:$1]] เข้ากับ [[:$2]] แล้ว",
+	"mergehistory-done": "รวม $3 รุ่นปรับปรุงของ $1 เข้ากับ [[:$2]] แล้ว",
 	"mergehistory-fail": "ไม่สามารถรวมประวัติได้ โปรดตรวจสอบตัวแปรเสริมหน้าและเวลาอีกครั้ง",
 	"mergehistory-no-source": "ไม่มีหน้าต้นทาง $1",
 	"mergehistory-no-destination": "ไม่มีหน้าปลายทาง $1",

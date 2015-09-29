@@ -649,7 +649,7 @@
 	"mergehistory-go": "Besjen bewurkings dy't kombinearre wurde kinne",
 	"mergehistory-submit": "Kombinearje ferzjes",
 	"mergehistory-empty": "Gjin ferzjes kinne kombinearren wurde.",
-	"mergehistory-success": "Kombinearjen slagge fan $3 {{PLURAL:$3|ferzje|ferzjes}} fan [[:$1]] no [[:$2]].",
+	"mergehistory-done": "Kombinearjen slagge fan $3 {{PLURAL:$3|ferzje|ferzjes}} fan $1 no [[:$2]].",
 	"mergehistory-fail": "It is net mooglik de skiednis te kombinearje; kontrolearje nochris de side en tiidparameters.",
 	"mergehistory-no-source": "Boarneside $1 bestiet net.",
 	"mergehistory-no-destination": "Doelside $1 bestiet net.",

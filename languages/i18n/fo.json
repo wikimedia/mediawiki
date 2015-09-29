@@ -752,7 +752,7 @@
 	"mergehistory-go": "Vís rættingar ið kunnu samantvinnast",
 	"mergehistory-submit": "Samanflætta versjónirnar",
 	"mergehistory-empty": "Ongar versjónir kunnu samanflættast.",
-	"mergehistory-success": "$3 {{PLURAL:$3|versjón|versjónir}} av [[:$1]] er samanflættað við [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|versjón|versjónir}} av $1 er samanflættað við [[:$2]].",
 	"mergehistory-no-source": "Keldu síðan $1 er ikki til.",
 	"mergehistory-no-destination": "Destinatiónssíðan $1 er ikki til.",
 	"mergehistory-invalid-source": "Keldusíðan má hava eitt gyldugt heiti.",

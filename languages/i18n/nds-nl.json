@@ -770,7 +770,7 @@
 	"mergehistory-go": "Bekiek bewarkingen die bie mekaar edaon kunnen wörden",
 	"mergehistory-submit": "Versies bie mekaar doon",
 	"mergehistory-empty": "Der bin gien versies die samenevoegd kunnen wörden.",
-	"mergehistory-success": "$3 {{PLURAL:$3|versie|versies}} van [[:$1]] bin suksesvol samenevoegd naor [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|versie|versies}} van $1 bin suksesvol samenevoegd naor [[:$2]].",
 	"mergehistory-fail": "Kan gien geschiedenisse samenvoegen, kiek opniej de zied- en tiedparameters nao.",
 	"mergehistory-no-source": "Bronzied $1 besteet niet.",
 	"mergehistory-no-destination": "Bestemmingszied $1 besteet niet.",

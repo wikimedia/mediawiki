@@ -820,7 +820,7 @@
 	"mergehistory-go": "Prikaži izmjene koje se mogu spojiti",
 	"mergehistory-submit": "Spoji revizije",
 	"mergehistory-empty": "Nema revizija za spajanje.",
-	"mergehistory-success": "$3 {{PLURAL:$3|revizija|revizije|revizija}} stranice [[:$1]] uspješno spojeno u [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|revizija|revizije|revizija}} stranice $1 uspješno spojeno u [[:$2]].",
 	"mergehistory-fail": "Ne može se izvršiti spajanje historije, molimo provjerite opet stranicu i parametre vremena.",
 	"mergehistory-fail-toobig": "Ne može se izvršiti spajanje historije jer će se više premjestiti više od ograničenja od $1 {{PLURAL:$1|revizije|revizija}}.",
 	"mergehistory-no-source": "Izvorna stranica $1 ne postoji.",

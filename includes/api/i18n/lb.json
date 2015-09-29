@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Macofe"
 		]
 	},
 	"apihelp-block-description": "E Benotzer spären.",
@@ -19,7 +20,7 @@
 	"apihelp-createaccount-param-realname": "Richtegen Numm vum Benotzer (fakultativ).",
 	"apihelp-delete-description": "Eng Säit läschen.",
 	"apihelp-delete-param-watch": "D'Säit op dem aktuelle Benotzer seng Iwwerwaachungslëscht dobäisetzen.",
-	"apihelp-delete-example-simple": "D'<kbd>Haaptsäit</kbd> läschen.",
+	"apihelp-delete-example-simple": "D'<kbd>Main Page</kbd> läschen.",
 	"apihelp-disabled-description": "Dëse Modul gouf ausgeschalt.",
 	"apihelp-edit-param-sectiontitle": "Den Titel fir en neien Abschnitt.",
 	"apihelp-edit-param-text": "Säiteninhalt.",
@@ -27,7 +28,7 @@
 	"apihelp-edit-param-bot": "Dës Ännerung als Bot-Ännerung markéieren.",
 	"apihelp-edit-param-watch": "D'Säit op dem aktuelle Benotzer seng Iwwerwaachungslëscht dobäisetzen.",
 	"apihelp-edit-example-edit": "Eng Säit änneren",
-	"apihelp-emailuser-example-email": "Dem Benotzer <kbd>WikiSysop</kbd> eng E-Mail mam Text <kbd>Inhalt</kbd> schécken.",
+	"apihelp-emailuser-example-email": "Dem Benotzer <kbd>WikiSysop</kbd> eng E-Mail mam Text <kbd>Content</kbd> schécken.",
 	"apihelp-expandtemplates-param-title": "Titel vun der Säit.",
 	"apihelp-expandtemplates-paramvalue-prop-ttl": "D'Maximalzäit no där den Tëschespäicher vum Resultat net méi valabel si soll.",
 	"apihelp-feedcontributions-param-year": "Vum Joer (a virdrun).",
@@ -67,7 +68,7 @@
 	"apihelp-query+allusers-description": "All registréiert Benotzer opzielen.",
 	"apihelp-query+allusers-paramvalue-prop-implicitgroups": "Lëscht vun alle Gruppen an deenen de Benotzer automatesch dran ass.",
 	"apihelp-query+allusers-param-activeusers": "Nëmme Benotzer opzielen déi an de leschten $1 {{PLURAL:$1|Dag|Deeg}} aktiv waren.",
-	"apihelp-query+backlinks-example-simple": "Linken op d'<kbd>Haaptsäit</kbd> weisen.",
+	"apihelp-query+backlinks-example-simple": "Linken op d'<kbd>Main page</kbd> weisen.",
 	"apihelp-query+blocks-description": "Lëscht vun de gespaarte Benotzer an IP-Adressen.",
 	"apihelp-query+blocks-paramvalue-prop-range": "Setzt de Beräich vun den IP-Adressen derbäi déi vun der Spär betraff sinn.",
 	"apihelp-query+blocks-example-simple": "Lëscht vun de Spären",
@@ -146,7 +147,7 @@
 	"apihelp-userrights-param-user": "Benotzernumm.",
 	"apihelp-userrights-param-userid": "Benotzer Id.",
 	"apihelp-userrights-param-reason": "Grond fir d'Ännerung.",
-	"apihelp-watch-example-watch": "D'Säit <kbd>Haaptsäit</kbd> iwwerwaachen.",
+	"apihelp-watch-example-watch": "D'Säit <kbd>Main Page</kbd> iwwerwaachen.",
 	"api-help-source": "Quell: $1",
 	"api-help-source-unknown": "Quell: <span class=\"apihelp-unknown\">onbekannt</span>",
 	"api-help-license": "Lizenz: [[$1|$2]]",

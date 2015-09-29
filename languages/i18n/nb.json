@@ -844,7 +844,7 @@
 	"mergehistory-go": "Vis flettbare redigeringer",
 	"mergehistory-submit": "Flett revisjoner",
 	"mergehistory-empty": "Ingen revisjoner kan flettes.",
-	"mergehistory-success": "{{PLURAL:$3|Én revisjon|$3 revisjoner}} av [[:$1]] ble flettet til [[:$2]].",
+	"mergehistory-done": "{{PLURAL:$3|Én revisjon|$3 revisjoner}} av $1 ble flettet til [[:$2]].",
 	"mergehistory-fail": "Klarte ikke å utføre historikkfletting; sjekk siden og tidsparameterne igjen.",
 	"mergehistory-fail-toobig": "Det er ikke mulig å utføre historikk-fletting fordi flere enn tillatte $1 {{PLURAL:$1|revisjon|revisjoner}} ville blitt flyttet.",
 	"mergehistory-no-source": "Kildesiden $1 finnes ikke.",

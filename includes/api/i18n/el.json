@@ -3,7 +3,8 @@
 		"authors": [
 			"Glavkos",
 			"Protnet",
-			"Stam.nikos"
+			"Stam.nikos",
+			"Macofe"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Τεκμηρίωση]]\n* [[mw:API:FAQ|Συχνές ερωτήσεις]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Λίστα αλληλογραφίας]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Ανακοινώσεις API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Σφάλματα & αιτήματα]\n</div>\n<strong>Κατάσταση:</strong> Όλα τα χαρακτηριστικά που εμφανίζονται σε αυτή τη σελίδα πρέπει να λειτουργούν, αλλά το API είναι ακόμα σε ενεργό ανάπτυξη, και μπορεί να αλλάξει ανά πάσα στιγμή. Εγγραφείτε στη [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce λίστα αλληλογραφίας] για να ειδοποιείστε για ενημερώσεις.\n\n<strong>Εσφαλμένα αιτήματα:</strong> Όταν στέλνονται εσφαλμένα αιτήματα στο API, επιστρέφεται μία κεφαλίδα HTTP (header) με το κλειδί \"MediaWiki-API-Error\" κι έπειτα η τιμή της κεφαλίδας και ο κωδικός σφάλματος που επιστρέφονται ορίζονται στην ίδια τιμή. Για περισσότερες πληροφορίες, δείτε [[mw:API:Errors_and_warnings|API: Σφάλματα και προειδοποιήσεις]].",
@@ -26,7 +27,7 @@
 	"apihelp-createaccount-param-mailpassword": "Εάν οριστεί σε οποιαδήποτε τιμή, ένας τυχαίος κωδικός πρόσβασης θα αποσταλεί μέσω ηλεκτρονικού ταχυδρομείου στο χρήστη.",
 	"apihelp-createaccount-param-language": "Κωδικός γλώσσας που να οριστεί ως προεπιλογή για το χρήστη (προαιρετικό, έχει ως προεπιλογή τη γλώσσα περιεχομένου).",
 	"apihelp-delete-description": "Διαγραφή σελίδας.",
-	"apihelp-delete-example-simple": "Διαγραφή <kbd>Αρχικής Σελίδας</kbd>.",
+	"apihelp-delete-example-simple": "Διαγραφή <kbd>Main Page</kbd>.",
 	"apihelp-edit-description": "Δημιουργία και επεξεργασία σελίδων.",
 	"apihelp-edit-param-sectiontitle": "Ο τίτλος νέας ενότητας.",
 	"apihelp-edit-param-text": "Περιεχόμενο σελίδας.",

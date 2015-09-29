@@ -593,7 +593,7 @@
 	"mergehistory-go": "wrri ṫ-ṫĝdilaṫ lli yṣlaḫ ṫndamj",
 	"mergehistory-submit": "dmj lmorajaat",
 	"mergehistory-empty": "ḫṫṫa moṛajaĝaṫ ma ymkn ṫdmj.",
-	"mergehistory-success": "$3 {{PLURAL:$3|l-moṛajaĝa|maṛajaĝa}} d-[[:$1]] ṫdmjaṫ b-najaḫ f-[[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|l-moṛajaĝa|maṛajaĝa}} d-$1 ṫdmjaṫ b-najaḫ f-[[:$2]].",
 	"mergehistory-no-source": "ṣfḫṫ l-ṃṣḍṛ $1 ma kayna-ċ.",
 	"mergehistory-no-destination": "ṣfḫṫ l-hadaf $1 ma kayna-ċ.",
 	"mergehistory-invalid-source": "ṣfḫṫ l-ṃṣḍṛ ĥaṣ ṫkon ĝonwan ṣḫiḫ.",

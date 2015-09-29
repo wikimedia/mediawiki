@@ -567,7 +567,7 @@
 	"mergehistory-go": "Trego redaktimet e bashkueshme",
 	"mergehistory-submit": "Bashko versionet",
 	"mergehistory-empty": "Nuk ka versione të bashkueshme.",
-	"mergehistory-success": "$3 {{PLURAL:$3|version|versione}} të [[:$1]] janë bashkuar me sukses në [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|version|versione}} të $1 janë bashkuar me sukses në [[:$2]].",
 	"mergehistory-fail": "Nuk munda të bashkoj historikun, ju lutem kontrolloni përzgjedhjen e faqes dhe të kohës.",
 	"mergehistory-no-source": "Faqja e burimit $1 nuk ekziston.",
 	"mergehistory-no-destination": "Faqja mbledhëse $1 nuk ekzsiton.",

@@ -634,7 +634,7 @@
 	"mergehistory-go": "Wies Versione, do der fereeniged wäide konnen",
 	"mergehistory-submit": "Fereenige Versione",
 	"mergehistory-empty": "Der konnen neen Versione fereeniged wäide.",
-	"mergehistory-success": "{{PLURAL:$3|Beoarbaidenge|Beoarbaidengen}} fon [[:$1]] mäd Ärfoulch ätter [[:$2]] fereeniged.",
+	"mergehistory-done": "{{PLURAL:$3|Beoarbaidenge|Beoarbaidengen}} fon $1 mäd Ärfoulch ätter [[:$2]] fereeniged.",
 	"mergehistory-fail": "Versionsfereenigenge nit muugelk, pröif ju Siede un do Tiedangoawen.",
 	"mergehistory-no-source": "Uursproangssiede „$1“ is nit deer.",
 	"mergehistory-no-destination": "Sielsiede „$1“ is nit deer.",

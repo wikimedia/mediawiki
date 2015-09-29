@@ -9,7 +9,8 @@
 			"ערן",
 			"LaG roiL",
 			"Elyashiv",
-			"Umherirrender"
+			"Umherirrender",
+			"Macofe"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|תיעוד]]\n* [[mw:API:FAQ|שו\"ת]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api רשימת דיוור]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> כל האפשרויות שמוצגות בדף הזה אמורות לעבוד, אבל ה־API עדיין בפיתוח פעיל, ויכול להשתנות בכל זמן. עשו מינוי ל [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ רשימת הדיוור mediawiki-api-announce] להודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, תישלח כותרת HTTP עם המפתח \"MediaWiki-API-Error\" ואז גם הערך של הכותרת וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף ר' [[mw:API:Errors_and_warnings|API: שגיאות ואזהרות]].",
@@ -399,7 +400,7 @@
 	"apihelp-query+allimages-param-limit": "כמה תמונות להחזיר בסך הכול.",
 	"apihelp-query+allimages-example-B": "הצגת רשימה של קבצים שמתחילים באות <kbd>B</kbd>.",
 	"apihelp-query+allimages-example-recent": "הצגת רשימת קבצים שהועלו לאחרונה, דומה ל־[[Special:NewFiles]].",
-	"apihelp-query+allimages-example-mimetypes": "להציג רשימה של קבצות שסוג ה־MIME שלהם הוא <kbd>image/png</kbd> או <kbd>image/png</kbd>.",
+	"apihelp-query+allimages-example-mimetypes": "להציג רשימה של קבצות שסוג ה־MIME שלהם הוא <kbd>image/png</kbd> או <kbd>image/gif</kbd>.",
 	"apihelp-query+allimages-example-generator": "הצגת מידע על 4 קבצים המתחילים באות <kbd>T</kbd>.",
 	"apihelp-query+alllinks-description": "למנות את כל הקישורים שמצביעים למרחב שם נתון.",
 	"apihelp-query+alllinks-param-from": "מאיזה שם קישור להתחיל למנות.",
@@ -568,7 +569,7 @@
 	"apihelp-query+categorymembers-param-endsortkeyprefix": "תחילית מפתח מיון שהרשימה תסתיים <strong>לפניה</strong> (לא <strong>בה</strong>, אם הערך הזה מוגדר, הוא לא ייכלל!). יכול לשמש רק עם $1sort=sortkey. דורס את $1endhexsortkey.",
 	"apihelp-query+categorymembers-param-startsortkey": "כדאי להשתמש ב־$1starthexsortkey במקום.",
 	"apihelp-query+categorymembers-param-endsortkey": "כדאי להשתמש ב־$1endhexsortkey במקום.",
-	"apihelp-query+categorymembers-example-simple": "קבלת עשרת העמודים הראשונים שתחת <kbd>קטגוריה:פיזיקה</kbd>.",
+	"apihelp-query+categorymembers-example-simple": "קבלת עשרת העמודים הראשונים שתחת <kbd>Category:Physics</kbd>.",
 	"apihelp-query+categorymembers-example-generator": "קבל מידע על הדף עבור 10 הדפים הראשונים ב־<kbd>Category:Physics</kbd>.",
 	"apihelp-query+contributors-description": "קבלת רשימה של תורמים שנכנסו לחשבון ומניין של תורמים אלמוניים לדף.",
 	"apihelp-query+contributors-param-group": "לכלול רק משתמשים בקבוצות הנתונות. לא כולל קבוצות משתמעות או אוטומטיות כגון *, user או autoconfirmed.",
@@ -576,7 +577,7 @@
 	"apihelp-query+contributors-param-rights": "לכלול רק משתמשים עם ההרשאות הנתונות. לא כולל הרשאות שניתנו בקבוצות משתמעות או אוטומטיות כגון *, user או autoconfirmed.",
 	"apihelp-query+contributors-param-excluderights": "לא לכלול משתמשים עם ההרשאות הנתונות. לא כולל הרשאות שניתנו בקבוצות משתמעות או אוטומטיות כגון *, user או autoconfirmed.",
 	"apihelp-query+contributors-param-limit": "כמה תורמים להחזיר.",
-	"apihelp-query+contributors-example-simple": "הצגת תורמים לדף <kbd>עמוד ראשי</kbd>.",
+	"apihelp-query+contributors-example-simple": "הצגת תורמים לדף <kbd>Main Page</kbd>.",
 	"apihelp-query+deletedrevisions-description": "קבלת מידע על גרסה מחוקה.\n\nיכול לשמש במספר דרכים:\n# קבלת גרסאות מחוקות עבור ערכת דפים, על־ידי הגדרת שמות או מזהי דף. ממוין לפי שם וחותם־זמן.\n# קבלת מידע על ערכת גרסאות מחוקות באמצעות הגדרת המזהים שלהם עם revid־ים. ממוין לפי מזהה גרסה.",
 	"apihelp-query+deletedrevisions-param-start": "מאיזה חותם־זמן להתחיל למנות. לא תקף בעיבוד רשימת מזהי גרסה.",
 	"apihelp-query+deletedrevisions-param-end": "באיזה חותם־זמן להפסיק למנות. לא תקף בעת עיבוד רשימת מזהי גרסה.",

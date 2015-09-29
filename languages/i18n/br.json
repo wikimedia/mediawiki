@@ -776,7 +776,7 @@
 	"mergehistory-go": "Diskouez ar stummoù a c'haller kendeuziñ",
 	"mergehistory-submit": "Kendeuziñ ar stummoù",
 	"mergehistory-empty": "N'haller ket kendeuziñ stumm ebet.",
-	"mergehistory-success": "Kendeuzet ez eus bet $3 {{PLURAL:$3|stumm|stumm}} eus [[:$1]] e [[:$2]].",
+	"mergehistory-done": "Kendeuzet ez eus bet $3 {{PLURAL:$3|stumm|stumm}} eus $1 e [[:$2]].",
 	"mergehistory-fail": "Dibosupl kendeuziñ an istorioù. Gwiriit ar bajenn hag arventennoù an deiziadoù.",
 	"mergehistory-fail-toobig": "Ne c'haller ket kendeuziñ an istorioù o vezañ ma vefe mont en tu all d'ar harzh a $1 reizhadenn da zilec'hiañ.",
 	"mergehistory-no-source": "N'eus ket eus ar bajenn orin $1.",

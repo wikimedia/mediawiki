@@ -661,7 +661,7 @@
 	"mergehistory-go": "Samevoegbare bewerkinge toeane",
 	"mergehistory-submit": "Versies samevoege",
 	"mergehistory-empty": "Gein inkele versies kinne samegevoeg waere.",
-	"mergehistory-success": "$3 {{PLURAL:$3|versie|versies}} van [[:$1]] zeen succesvol samegevoeg nao [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|versie|versies}} van $1 zeen succesvol samegevoeg nao [[:$2]].",
 	"mergehistory-fail": "Kan gein gesjiedenis samevoege, lèvver opnuuj de pagina- en tiedparamaeters te controlere.",
 	"mergehistory-no-source": "Bronpagina $1 besteit neet.",
 	"mergehistory-no-destination": "Bestömmingspagina $1 besteit neet.",

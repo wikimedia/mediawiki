@@ -794,7 +794,7 @@
 	"mergehistory-go": "Jorre jaae sake badlao ke dekhao",
 	"mergehistory-submit": "Badlao ke jorro",
 	"mergehistory-empty": "Koi badlao ke jorraa nai jaae sake hai.",
-	"mergehistory-success": "[[:$1]]ke $3 {{PLURAL:$3|badlao|badlao}} ke safalta se [[:$2]] me jorr dewa gais hai.",
+	"mergehistory-done": "$1ke $3 {{PLURAL:$3|badlao|badlao}} ke safalta se [[:$2]] me jorr dewa gais hai.",
 	"mergehistory-fail": "Itihaas ke nai jorre paaya hae, meharbaani kar ke panna aur time parameters ke check karo.",
 	"mergehistory-fail-toobig": "History merge nai hoe sake, kaaheki limit of $1 {{PLURAL:$1|revision|revisions}} se jaada move hoe jaai.",
 	"mergehistory-no-source": "Source panna $1 nai hai.",

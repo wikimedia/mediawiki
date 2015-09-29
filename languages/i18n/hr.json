@@ -792,7 +792,7 @@
 	"mergehistory-go": "Pokaži spojivu povijest uređivanja",
 	"mergehistory-submit": "Spoji povijesti uređivanja stranica",
 	"mergehistory-empty": "Nema spojivih promjena (spajanje nije moguće).",
-	"mergehistory-success": "$3 {{PLURAL:$3|izmjena|izmjene}} stranice [[:$1|$1]] uspješno {{PLURAL:$3|spojena|spojene}} u povijest stranice [[:$2|$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|izmjena|izmjene}} stranice $1 uspješno {{PLURAL:$3|spojena|spojene}} u povijest stranice [[:$2]].",
 	"mergehistory-fail": "Nemoguće spojiti povijest stranica, molimo provjerite stranice i vremenske parametre.",
 	"mergehistory-no-source": "Izvorna stranica $1 ne postoji.",
 	"mergehistory-no-destination": "Ciljna stranica $1 ne postoji.",

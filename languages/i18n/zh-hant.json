@@ -863,7 +863,7 @@
 	"mergehistory-go": "顯示可以合併的編輯",
 	"mergehistory-submit": "合併修訂",
 	"mergehistory-empty": "沒有可以合併的修訂",
-	"mergehistory-success": "[[:$1]] 中 $3 次修訂已經成功地合併至 [[:$2]]。",
+	"mergehistory-done": "$1 中 $3 次修訂已經成功地合併至 [[:$2]]。",
 	"mergehistory-fail": "無法進行歷史合併，請重新檢查該頁面及時間參數。",
 	"mergehistory-fail-toobig": "超過 $1 個修訂移動的上限，無法進行歷史合併。",
 	"mergehistory-no-source": "來源頁面 $1 不存在。",

@@ -889,7 +889,7 @@
 	"mergehistory-go": "Exibir edições habilitadas a serem fundidas",
 	"mergehistory-submit": "Fundir revisões",
 	"mergehistory-empty": "Não existem edições habilitadas a serem fundidas.",
-	"mergehistory-success": "$3 {{PLURAL:$3|revisão|revisões}} de [[:$1]] fundidas em [[:$2]] com sucesso.",
+	"mergehistory-done": "$3 {{PLURAL:$3|revisão|revisões}} de $1 fundidas em [[:$2]] com sucesso.",
 	"mergehistory-fail": "Não foi possível fundir os históricos; por gentileza, verifique a página e os parâmetros de tempo.",
 	"mergehistory-fail-toobig": "Não é possível fundir o histórico, já que um número de revisão(ões) acima do limite ($1 {{PLURAL:$1|revisão|revisões}}) seriam movidos.",
 	"mergehistory-no-source": "A página de origem ($1) não existe.",

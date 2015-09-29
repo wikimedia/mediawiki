@@ -839,7 +839,7 @@
 	"mergehistory-go": "Egyesíthető szerkesztések mutatása",
 	"mergehistory-submit": "Változatok egyesítése",
 	"mergehistory-empty": "Nincs egyesíthető változás.",
-	"mergehistory-success": "[[:$1]] {{PLURAL:$3|egy|$3}} változata sikeresen egyesítve lett a(z) [[:$2]] lappal.",
+	"mergehistory-done": "$1 {{PLURAL:$3|egy|$3}} változata sikeresen egyesítve lett a(z) [[:$2]] lappal.",
 	"mergehistory-fail": "Nem sikerült a laptörténetek egyesítése. Kérlek, ellenőrizd újra az oldalt és a megadott időparamétereket.",
 	"mergehistory-fail-toobig": "Nem lehetséges a laptörténetek egyesítése, mivel több mint $1 {{PLURAL:$1|változást}} kellene áthelyezni.",
 	"mergehistory-no-source": "Nem létezik forráslap $1 néven.",

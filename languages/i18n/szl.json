@@ -708,7 +708,7 @@
 	"mergehistory-go": "Pokoż půmjyńańo kere idźe scalić",
 	"mergehistory-submit": "Scal historyjo půmjyńań",
 	"mergehistory-empty": "Ńy mo historyje zmjan do scalyńo.",
-	"mergehistory-success": "$3 {{PLURAL:$3|pomjyńańe|pomjyńańa|pomjyńań}} we [[:$1]] ze sukcesym uostało scalonych ze [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|pomjyńańe|pomjyńańa|pomjyńań}} we $1 ze sukcesym uostało scalonych ze [[:$2]].",
 	"mergehistory-fail": "Ńy idźe scalić historyje půmjyńań. Zmjyń sztalowańo parametrůw tyj uoperacyji.",
 	"mergehistory-no-source": "Ńy ma sam zajty zdrzůdłowyj $1.",
 	"mergehistory-no-destination": "Ńy ma sam zajty docelowyj $1.",

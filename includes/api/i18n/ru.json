@@ -10,7 +10,8 @@
 			"WindEwriX",
 			"Ochilov",
 			"Nzeemin",
-			"INS Pirat"
+			"INS Pirat",
+			"Macofe"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документация]]\n* [[mw:API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> Все отображаемые на этой странице функции должны работать, однако API находится в статусе активной разработки, и может измениться в любой момент. Подпишитесь на  [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом \"MediaWiki-API-Error\", после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:API:Errors_and_warnings|API: Ошибки и предупреждения]].",
@@ -82,7 +83,7 @@
 	"apihelp-emailuser-param-subject": "Заголовок темы.",
 	"apihelp-emailuser-param-text": "Содержание письма",
 	"apihelp-emailuser-param-ccme": "Отправить копию этого сообщения мне.",
-	"apihelp-emailuser-example-email": "Отправить письмо пользователю <kbd>WikiSysop</kbd> с текстом <kbd>контентом</kbd>.",
+	"apihelp-emailuser-example-email": "Отправить письмо пользователю <kbd>WikiSysop</kbd> с текстом <kbd>Content</kbd>.",
 	"apihelp-expandtemplates-description": "Разворачивает все шаблоны в wikitext.",
 	"apihelp-expandtemplates-param-title": "Заголовок страницы.",
 	"apihelp-expandtemplates-param-text": "Викитекст для конвертирования",

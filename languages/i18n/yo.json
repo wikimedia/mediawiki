@@ -728,7 +728,7 @@
 	"mergehistory-go": "Ìfihàn àwọn àtúnṣe tóṣeédàpọ̀",
 	"mergehistory-submit": "Ìdàpọ̀ àwọn àtúnyẹ̀wò",
 	"mergehistory-empty": "Àwọn àtúnyẹ̀wó kankan kò ṣeédàpọ̀.",
-	"mergehistory-success": "{{PLURAL:$3|Àtúnyẹ̀wò|Àwọn àtúnyẹ̀wò}} $3 fún [[:$1]] jẹ́ dídàpọ̀ mọ́ [[:$2]] láyọrísírere.",
+	"mergehistory-done": "{{PLURAL:$3|Àtúnyẹ̀wò|Àwọn àtúnyẹ̀wò}} $3 fún $1 jẹ́ dídàpọ̀ mọ́ [[:$2]] láyọrísírere.",
 	"mergehistory-fail": "Kò le ṣe ìdàpọ̀ ìtàn, ẹ jọ̀wọ́ ẹ ṣàyẹ̀wò ojúewé náà àti àwọn pàrámità àkókò.",
 	"mergehistory-no-source": "Ojúewé orísun $1 kò sí.",
 	"mergehistory-no-destination": "Ojúewé ìdópin $1 kò sí.",

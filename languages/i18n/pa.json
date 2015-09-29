@@ -738,7 +738,7 @@
 	"mergehistory-go": "ਰਲ਼ਾਉਣਯੋਗ ਸੋਧਾਂ ਵਖਾਓ",
 	"mergehistory-submit": "ਰੀਵਿਜ਼ਨਾਂ ਰਲ਼ਾਓ",
 	"mergehistory-empty": "ਕੋਈ ਰੀਵਿਜ਼ਨ ਰਲ਼ਾਈ ਨਹੀ ਜਾ ਸਕਦੀ।",
-	"mergehistory-success": "[[:$1]] {{PLURAL:|ਦੀ|ਦੀਆਂ}} $3 {{PLURAL:$3|ਰੀਵਿਜ਼ਨ|ਰੀਵਿਜ਼ਨਾਂ}} ਕਾਮਯਾਬੀ ਨਾਲ਼ [[:$2]] ਵਿਚ {{PLURAL:$3|ਰਲ਼ਾਈ|ਰਲ਼ਾਈਆਂ}}।",
+	"mergehistory-done": "$1 {{PLURAL:|ਦੀ|ਦੀਆਂ}} $3 {{PLURAL:$3|ਰੀਵਿਜ਼ਨ|ਰੀਵਿਜ਼ਨਾਂ}} ਕਾਮਯਾਬੀ ਨਾਲ਼ [[:$2]] ਵਿਚ {{PLURAL:$3|ਰਲ਼ਾਈ|ਰਲ਼ਾਈਆਂ}}।",
 	"mergehistory-no-source": "ਸਰੋਤ ਸਫ਼ਾ $1 ਮੌਜੂਦ ਨਹੀਂ ਹੈ।",
 	"mergehistory-no-destination": "ਨੀਯਤ ਸਫ਼ਾ $1 ਮੌਜੂਦ ਨਹੀਂ ਹੈ।",
 	"mergehistory-invalid-source": "ਸਰੋਤ ਸਫ਼ਾ ਇੱਕ ਸਹੀ ਸਿਰਲੇਖ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।",

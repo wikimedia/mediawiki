@@ -606,7 +606,7 @@
 	"mergehistory-go": "Birleşdirip bolýan özgerdişleri görkez",
 	"mergehistory-submit": "Wersiýalary birleşdir",
 	"mergehistory-empty": "Hiç bir wersiýany birleşdirip bolmaýar.",
-	"mergehistory-success": "[[:$1]] sahypasynyň $3 {{PLURAL:$3|wersiýasy|wersiýasy}} şowlulyk bilen [[:$2]] sahypasyna birleşdirildi.",
+	"mergehistory-done": "$1 sahypasynyň $3 {{PLURAL:$3|wersiýasy|wersiýasy}} şowlulyk bilen [[:$2]] sahypasyna birleşdirildi.",
 	"mergehistory-fail": "Geçmişi birleşdirmekligi amala aşyryp bolmaýar, sahypa we wagt parametrlerini gaýtadan barlamagyňyzy haýyş edýäris.",
 	"mergehistory-no-source": "Çeşme sahypa $1 ýok.",
 	"mergehistory-no-destination": "Niýetlenilýän sahypa $1 ýok.",

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hangmanwa7id"
+			"Hangmanwa7id",
+			"Macofe"
 		]
 	},
 	"apihelp-block-description": "Bloquer un useur.",
@@ -10,7 +11,7 @@
 	"apihelp-createaccount-param-domain": "Domaine pour l’authentification externe (optional).",
 	"apihelp-delete-description": "Effacer une page.",
 	"apihelp-delete-param-title": "Titre de la page que tu veux effacer. Impossible de l’user avec $1pageid.",
-	"apihelp-delete-example-simple": "Effacer la Page principale",
+	"apihelp-delete-example-simple": "Effacer <kbd>Main Page</kbd>.",
 	"apihelp-emailuser-description": "Emailer un useur.",
 	"apihelp-expandtemplates-param-title": "Titre de la page.",
 	"apihelp-login-param-name": "Nom d’useur.",

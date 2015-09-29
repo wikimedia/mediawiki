@@ -796,7 +796,7 @@
 	"mergehistory-go": "Shaw mergeable eidits",
 	"mergehistory-submit": "Merge reveesions",
 	"mergehistory-empty": "Naw reveesions can be merged.",
-	"mergehistory-success": "$3 {{PLURAL:$3|reveesion|reveesions}} o [[:$1]] successfully merged intil [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|reveesion|reveesions}} o $1 successfully merged intil [[:$2]].",
 	"mergehistory-fail": "Onable tae perform histerie merge, please recheck the page n time parameters.",
 	"mergehistory-fail-toobig": "Canna perform histerie merge cause mair than the leemit o $1 {{PLURAL:$1|reveesion|reveesions}} wid be muivit.",
 	"mergehistory-no-source": "Soorce page $1 disna exeest.",

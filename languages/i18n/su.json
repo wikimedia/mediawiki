@@ -787,7 +787,7 @@
 	"mergehistory-go": "Témbongkeun éditan nu bisa digabungkeun",
 	"mergehistory-submit": "Gabungkeun révisi",
 	"mergehistory-empty": "Euweuh révisi nu bisa digabungkeun.",
-	"mergehistory-success": "$3 {{PLURAL:$3|révisi|révisi}} tina [[:$1]] parantos digabung ka [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|révisi|révisi}} tina $1 parantos digabung ka [[:$2]].",
 	"mergehistory-fail": "Jujutan teu bisa digabungkeun! Mangga pariiksa deui paraméter kaca jeung titimangsana.",
 	"mergehistory-no-source": "Sumber kaca $1 teu aya.",
 	"mergehistory-no-destination": "Kaca nu dituju ($1) teu aya.",

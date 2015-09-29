@@ -881,7 +881,7 @@
 	"mergehistory-go": "Birleştirilebilir değişikilikleri göster",
 	"mergehistory-submit": "Revizyonları birleştir",
 	"mergehistory-empty": "Hiçbir sürüm birleştirilemez.",
-	"mergehistory-success": "[[:$1]] sayfasının $3 {{PLURAL:$3|revizyonu|revizyonu}} başarıyla [[:$2]] içine birleştirildi.",
+	"mergehistory-done": "$1 sayfasının $3 {{PLURAL:$3|revizyonu|revizyonu}} başarıyla [[:$2]] içine birleştirildi.",
 	"mergehistory-fail": "Geçmiş birleştirmesi gerçekleştirlemiyor, lütfen sayfa ve zaman parametrelerini yeniden kontrol edin.",
 	"mergehistory-fail-toobig": "Limit olarak belirlenen $1 {{PLURAL:$1|sürümden|sürümden}} daha fazlasını taşımak gerekeceği için geçmiş birleştirme gerçekleştirilemiyor.",
 	"mergehistory-no-source": "Kaynak sayfa $1 bulunmamaktadır.",

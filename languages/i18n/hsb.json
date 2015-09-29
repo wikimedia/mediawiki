@@ -795,7 +795,7 @@
 	"mergehistory-go": "Zjednoćujomne změny pokazać",
 	"mergehistory-submit": "Wersije zjednoćić",
 	"mergehistory-empty": "Njehodźa so žane wersije zjednoćeć.",
-	"mergehistory-success": "$3 {{PLURAL:$3|wersija|wersiji|wersije|wersijow}} wot [[:$1]] wuspěšnje z [[:$2]] {{PLURAL:$3|zjednoćena|zjednoćenej|zjednoćene|zjednoćene}}.",
+	"mergehistory-done": "$3 {{PLURAL:$3|wersija|wersiji|wersije|wersijow}} wot $1 wuspěšnje z [[:$2]] {{PLURAL:$3|zjednoćena|zjednoćenej|zjednoćene|zjednoćene}}.",
 	"mergehistory-fail": "Njeje móžno zjednócenje stawiznow přewjesć, prošu přepruwuj stronu a časowe parametry.",
 	"mergehistory-no-source": "Žórłowa strona $1 njeeksistuje.",
 	"mergehistory-no-destination": "Cilowa strona $1 njeeksistuje.",

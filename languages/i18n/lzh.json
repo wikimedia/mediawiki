@@ -693,7 +693,7 @@
 	"mergehistory-go": "示可併之誌",
 	"mergehistory-submit": "併誌",
 	"mergehistory-empty": "無誌可併",
-	"mergehistory-success": "[[:$1]]之$3誌已併至[[:$2]]。",
+	"mergehistory-done": "$1之$3誌已併至[[:$2]]。",
 	"mergehistory-fail": "併誌無進也，該頁及時間參數請重檢也。",
 	"mergehistory-no-source": "源頁$1無存也。",
 	"mergehistory-no-destination": "到頁$1無存也。",

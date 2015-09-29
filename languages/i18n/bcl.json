@@ -766,7 +766,7 @@
 	"mergehistory-go": "Ipahayag an mapuwedeng matiripon na mga pagliwat",
 	"mergehistory-submit": "Tiripona an mga pagbabago",
 	"mergehistory-empty": "Mayong mga pagbabago na puwedeng mapagtiripon.",
-	"mergehistory-success": "$3 {{PLURAL:$3|pagbabago|mga pagbabago}} sa [[:$1]] matrayumpong napagtiripon na magin [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|pagbabago|mga pagbabago}} sa $1 matrayumpong napagtiripon na magin [[:$2]].",
 	"mergehistory-fail": "Dae tabi makayanan na makapaghimo nin historiyang pagtiripon, tabi pakihiling giraray an pahina asin parametro kan oras.",
 	"mergehistory-no-source": "Gikanang pahina $1 bakong eksistido.",
 	"mergehistory-no-destination": "Destinasyong pahina $1 bakong eksistido.",

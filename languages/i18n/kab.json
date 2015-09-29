@@ -752,7 +752,7 @@
 	"mergehistory-go": "Ẓeṛ ibeddilen i nezmer an zdi",
 	"mergehistory-submit": "Azday n ileqman",
 	"mergehistory-empty": "Ulac lqem i nezmer an zdi.",
-	"mergehistory-success": "$3 {{PLURAL:$3|lqem|ileqman}} n [[:$1]] {{PLURAL:$3|yezdukel|zdukelen}} deg [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|lqem|ileqman}} n $1 {{PLURAL:$3|yezdukel|zdukelen}} deg [[:$2]].",
 	"mergehistory-fail": "Ulamek an zdukel imezruyen. Fru tikkelt nniḍen asebter d iɣewwaren is n uzmez.",
 	"mergehistory-no-source": "Azar n usebter $1 ulac-it.",
 	"mergehistory-no-destination": "Aserken n usebter $1 ulac-it",

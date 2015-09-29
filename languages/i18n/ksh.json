@@ -815,7 +815,7 @@
 	"mergehistory-go": "Don Versione zeije, di mer zosamme läje künne",
 	"mergehistory-submit": "Versione zosamme läje",
 	"mergehistory-empty": "Mer han kei Versione för zesammezeläje",
-	"mergehistory-success": "{{PLURAL:$3|Ein Version es|$3 Versione sen|Kei Version wood}} fun „[[:$1]]“ noh „[[:$2]]“ övverdraare un domet zosamme jelaat.",
+	"mergehistory-done": "{{PLURAL:$3|Ein Version es|$3 Versione sen|Kei Version wood}} fun „$1“ noh „[[:$2]]“ övverdraare un domet zosamme jelaat.",
 	"mergehistory-fail": "Dat Versione zesamme läje is nit müjjelisch. Don ens di Sigge un de Zigge pröfe!",
 	"mergehistory-fail-toobig": "Mih wi {{PLURAL:$1|ein Väsjohn|$1 Väsjohne|kein Väsjohne}} wöödte zesamme jelaat. Esu vill künne mer nit, un maache mer nit.",
 	"mergehistory-no-source": "En Ursprungssigg „$1“ jidd_et nit.",

@@ -789,7 +789,7 @@
 	"mergehistory-go": "Fà vèder al mudéfichi che pōlen èser unîdi",
 	"mergehistory-submit": "Unés al versiòun",
 	"mergehistory-empty": "Nisòna versiòun da unîr",
-	"mergehistory-success": "{{PLURAL:$3|'Na versiòun ed [[:$1]] l'é stêda unîda|$3 versiòn ed [[:$1]] în stêdi unîdi}} al la stòria ed [[:$2]].",
+	"mergehistory-done": "{{PLURAL:$3|'Na versiòun ed $1 l'é stêda unîda|$3 versiòn ed $1 în stêdi unîdi}} al la stòria ed [[:$2]].",
 	"mergehistory-fail": "Impusébil unîr al stòri. Verifichêr la pàgina e al règoli dal mumèint.",
 	"mergehistory-fail-toobig": "Imposébil fêr l'uniòun ed la stòria cun pió 'd $1{{PLURAL:$1|revisiòun}} da spustêr",
 	"mergehistory-no-source": "La pàgina 'd urégin $1 l'an gh'é mìa.",

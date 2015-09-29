@@ -815,7 +815,7 @@
 	"mergehistory-go": "Vidi li canciamenti ca ponnu èssiri junciuti",
 	"mergehistory-submit": "Junci li virsioni",
 	"mergehistory-empty": "Nudda virsioni di jùnciri.",
-	"mergehistory-success": "$3 {{PLURAL:$3|virsioni di [[:$1]] fu junciuta|$3 virsioni di [[:$1]] foru junciuti}} â crunuluggìa di [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|virsioni di $1 fu junciuta|$3 virsioni di $1 foru junciuti}} â crunuluggìa di [[:$2]].",
 	"mergehistory-fail": "Nun fu pussìbbili jùnciri li crunuluggìi, pi favuri cuntrolla n'àutra vota li paràmitri chi spicìficanu li pàggini e li dati.",
 	"mergehistory-fail-toobig": "Nun fu pussìbbili jùnciri li crunuluggìi pirchì s'avìssiru a spustari cchiossai virsioni dû lìmiti chi è {{PLURAL:$1|$1}}.",
 	"mergehistory-no-source": "La pàggina d'orìggini $1 nun esisti.",

@@ -727,7 +727,7 @@
 	"mergehistory-go": "显示可合并个编辑",
 	"mergehistory-submit": "合并版本",
 	"mergehistory-empty": "呒没修订可以合并",
-	"mergehistory-success": "[[:$1]]个$3趟修订已成功合并到[[:$2]]。",
+	"mergehistory-done": "$1个$3趟修订已成功合并到[[:$2]]。",
 	"mergehistory-fail": "弗可以进行历史合并，请重新检查页面以及辰光参数。",
 	"mergehistory-no-source": "来源页面$1弗存在。",
 	"mergehistory-no-destination": "目的页面$1弗存在。",

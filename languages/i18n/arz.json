@@ -660,7 +660,7 @@
 	"mergehistory-go": "عرض التعديلات اللى ممكن تتدمج",
 	"mergehistory-submit": "دمج النسخ",
 	"mergehistory-empty": "مافيش مراجعات ممكن دمجها.",
-	"mergehistory-success": "$3 {{PLURAL:$3|مراجعة|مراجعة}} من [[:$1]] تم دمجها بنجاح فى [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|مراجعة|مراجعة}} من $1 تم دمجها بنجاح فى [[:$2]].",
 	"mergehistory-fail": "مش قادر يعمل دمج للتاريخ، لو سمحت تتأكد تانى من محددات الصفحة والزمن.",
 	"mergehistory-no-source": "الصفحة المصدر $1  مش موجودة.",
 	"mergehistory-no-destination": "الصفحه الهدف $1 مش موجوده.",

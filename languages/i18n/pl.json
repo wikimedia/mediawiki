@@ -882,7 +882,7 @@
 	"mergehistory-go": "Pokaż możliwe do scalenia zmiany",
 	"mergehistory-submit": "Scal historię zmian",
 	"mergehistory-empty": "Brak historii zmian do scalenia.",
-	"mergehistory-success": "$3 {{PLURAL:$3|zmiana|zmiany|zmian}} w [[:$1]] zostało scalonych z [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|zmiana|zmiany|zmian}} w $1 zostało scalonych z [[:$2]].",
 	"mergehistory-fail": "Scalenie historii zmian jest niewykonalne. Zmień ustawienia parametrów.",
 	"mergehistory-fail-toobig": "Nie można połączyć historii, gdyż wymagałoby to przeniesienia więcej niż maksymalnej dopuszczalnej liczby $1 {{PLURAL:$1|wersji}}.",
 	"mergehistory-no-source": "Strona źródłowa $1 nie istnieje.",

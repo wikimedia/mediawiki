@@ -529,7 +529,7 @@
 	"mergehistory-go": "Nedira va rojoan betakseem",
 	"mergehistory-submit": "Joara va betakseem",
 	"mergehistory-empty": "Mek rojoan betaks.",
-	"mergehistory-success": "$3 {{PLURAL:$3|betara|betara}} va [[:$1]] joanyayan ko [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|betara|betara}} va $1 joanyayan ko [[:$2]].",
 	"mergehistory-fail": "Skura va jera va izvot tir merotisa, va bu is evladoreem vay tolstujel !",
 	"mergehistory-no-source": "$1 klitabu me tir.",
 	"mergehistory-no-destination": "$1 jalabu me tir.",

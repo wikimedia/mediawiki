@@ -790,7 +790,7 @@
 	"mergehistory-go": "Hijery ny fanovàna mety hatsonika",
 	"mergehistory-submit": "atsonika ny version",
 	"mergehistory-empty": "tsy misy version azo hatambarana",
-	"mergehistory-success": "{{PLURAL:$3|}}Versiona $3 an'i [[:$1]] no natsonika tamin'ny [[:$2]]",
+	"mergehistory-done": "{{PLURAL:$3|}}Versiona $3 an'i $1 no natsonika tamin'ny [[:$2]]",
 	"mergehistory-fail": "Tsy afaka manatambatra ny tantara(n'asa). Avereno checheo ny pejy sy ny daty.",
 	"mergehistory-no-source": "Tsy misy ny pejy avy amin'ny $1.",
 	"mergehistory-no-destination": "Tsy misy ilay pejy tanjona $1.",

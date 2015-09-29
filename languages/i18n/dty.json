@@ -644,7 +644,7 @@
 	"mergehistory-go": "जोड्ड मिल्न्या सम्पादनहरू",
 	"mergehistory-submit": "पुनरावलोकहरू जोड",
 	"mergehistory-empty": "कोइलै पुनरावलोकनहरू जोड्ड नाइँमिल्लो ।",
-	"mergehistory-success": "$3 {{PLURAL:$3|संस्करण|संस्करणहरू}}  [[:$1]]बठे सफलतापूर्वक [[:$2]]मी थपियो ।",
+	"mergehistory-done": "$3 {{PLURAL:$3|संस्करण|संस्करणहरू}}  $1बठे सफलतापूर्वक [[:$2]]मी थपियो ।",
 	"mergehistory-autocomment": " [[:$1]] लाई [[:$2]] मी जोडियो",
 	"mergehistory-comment": " [[:$1]] लाई[[:$2]] मी जोडियो : $3",
 	"mergehistory-same-destination": "स्रोत र गन्तव्य पाना एउटै हुनसक्दैनन्",

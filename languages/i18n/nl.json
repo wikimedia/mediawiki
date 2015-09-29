@@ -869,7 +869,7 @@
 	"mergehistory-go": "Samenvoegbare bewerkingen bekijken",
 	"mergehistory-submit": "Versies samenvoegen",
 	"mergehistory-empty": "Er zijn geen versies die samengevoegd kunnen worden.",
-	"mergehistory-success": "$3 {{PLURAL:$3|versie|versies}} van [[:$1]] zijn samengevoegd naar [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|versie|versies}} van $1 zijn samengevoegd naar [[:$2]].",
 	"mergehistory-fail": "Kan geen geschiedenis samenvoegen, controleer opnieuw de pagina- en tijdinstellingen.",
 	"mergehistory-fail-toobig": "Niet in staat om geschiedenis samen te voegen omdat meer dan de limiet van $1 {{PLURAL:$1|versie wordt|versie worden}} verplaatst.",
 	"mergehistory-no-source": "De bronpagina $1 bestaat niet.",

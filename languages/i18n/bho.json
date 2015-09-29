@@ -794,7 +794,7 @@
 	"mergehistory-list": "विलय जोग्य संपादन इतिहास",
 	"mergehistory-submit": "अवतरण विलय करीं",
 	"mergehistory-empty": "कौनों अवतरण विलय नइखे कइल जा सकत।",
-	"mergehistory-success": " [[:$1]] के $3 {{PLURAL:$3|अवतरण|अवतरण सभ}} सफलता से [[:$2]] में विलय भइल।",
+	"mergehistory-done": " $1 के $3 {{PLURAL:$3|अवतरण|अवतरण सभ}} सफलता से [[:$2]] में विलय भइल।",
 	"mergehistory-fail": "इतिहास विलय करे में अक्षम, पन्ना आ एकर टाइम पैरामीटर चेक करीं।",
 	"mergehistory-reason": "कारण:",
 	"revertmerge": "अलग करीं",

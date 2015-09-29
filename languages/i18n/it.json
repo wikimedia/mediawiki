@@ -892,7 +892,7 @@
 	"mergehistory-go": "Mostra le modifiche che possono essere unite",
 	"mergehistory-submit": "Unisci le versioni",
 	"mergehistory-empty": "Nessuna versione da unire.",
-	"mergehistory-success": "{{PLURAL:$3|Una versione di [[:$1]] è stata unita|$3 versioni di [[:$1]] sono state unite}} alla cronologia di [[:$2]].",
+	"mergehistory-done": "{{PLURAL:$3|Una versione di $1 è stata unita|$3 versioni di $1 sono state unite}} alla cronologia di [[:$2]].",
 	"mergehistory-fail": "Impossibile unire le cronologie. Verificare la pagina e i parametri temporali.",
 	"mergehistory-fail-toobig": "Impossibile eseguire l'unione della cronologia essendoci oltre $1 {{PLURAL:$1|versione|versioni}} da spostare.",
 	"mergehistory-no-source": "La pagina di origine $1 non esiste.",

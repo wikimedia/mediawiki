@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Cedric31"
+			"Cedric31",
+			"Macofe"
 		]
 	},
 	"apihelp-main-param-action": "Quina accion cal efectuar.",
@@ -21,7 +22,7 @@
 	"apihelp-createaccount-param-password": "Senhal (ignorat se <var>$1mailpassword</var> es definit).",
 	"apihelp-createaccount-param-realname": "Nom vertadièr de l’utilizaire (facultatiu).",
 	"apihelp-delete-description": "Suprimir una pagina.",
-	"apihelp-delete-example-simple": "Suprimir la <kbd>Pagina principala</kbd>.",
+	"apihelp-delete-example-simple": "Suprimir la <kbd>Main Page</kbd>.",
 	"apihelp-disabled-description": "Aqueste modul es estat desactivat.",
 	"apihelp-edit-description": "Crear e modificar las paginas.",
 	"apihelp-edit-param-text": "Contengut de la pagina.",

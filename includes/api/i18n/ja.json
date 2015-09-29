@@ -7,7 +7,8 @@
 			"Whym",
 			"Mfuji",
 			"Otokoume",
-			"Sujiniku"
+			"Sujiniku",
+			"Macofe"
 		]
 	},
 	"apihelp-main-param-action": "実行する操作です。",
@@ -54,7 +55,7 @@
 	"apihelp-createaccount-param-mailpassword": "設定されると (その値を問わず)、ランダムなパスワードがその利用者に電子メールで送られます。",
 	"apihelp-createaccount-param-reason": "ログに記録されるアカウント作成の理由 (任意)。",
 	"apihelp-createaccount-example-pass": "利用者 <kbd>testuser</kbd> をパスワード <kbd>test123</kbd> として作成する。",
-	"apihelp-createaccount-example-mail": "利用者 <kbd>testuser</kbd>を作成し、ランダムに生成されたパスワードをメールで送る",
+	"apihelp-createaccount-example-mail": "利用者 <kbd>testmailuser</kbd>を作成し、ランダムに生成されたパスワードをメールで送る",
 	"apihelp-delete-description": "ページを削除します。",
 	"apihelp-delete-param-title": "削除するページ名です。<var>$1pageid</var> とは同時に使用できません。",
 	"apihelp-delete-param-pageid": "削除するページIDです。<var>$1title</var> とは同時に使用できません。",

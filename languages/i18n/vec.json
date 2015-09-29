@@ -741,7 +741,7 @@
 	"mergehistory-go": "Mostra le modifiche che pol èssar unìe",
 	"mergehistory-submit": "Unissi le revision",
 	"mergehistory-empty": "Nissuna revision da unir.",
-	"mergehistory-success": "{{PLURAL:$3|Una revision de [[:$1]] la xe stà unìa|$3 revision de [[:$1]] le xe stà unìe}} a la cronologia de [[:$2]].",
+	"mergehistory-done": "{{PLURAL:$3|Una revision de $1 la xe stà unìa|$3 revision de $1 le xe stà unìe}} a la cronologia de [[:$2]].",
 	"mergehistory-fail": "Inpossibile unir le cronologie. Verifica la pagina e i parametri tenporali.",
 	"mergehistory-no-source": "La pagina de origine $1 no la esiste.",
 	"mergehistory-no-destination": "La pagina de destinazion $1 no la esiste.",

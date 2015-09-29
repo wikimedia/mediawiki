@@ -934,7 +934,7 @@
 	"mergehistory-go": "Voir les modifications qui peuvent être fusionnées",
 	"mergehistory-submit": "Fusionner les versions",
 	"mergehistory-empty": "Aucune version ne peut être fusionnée.",
-	"mergehistory-success": "$3 version{{PLURAL:$3||s}} de [[:$1]] fusionnée{{PLURAL:$3||s}} dans [[:$2]].",
+	"mergehistory-done": "$3 version{{PLURAL:$3||s}} de $1 fusionnée{{PLURAL:$3||s}} dans [[:$2]].",
 	"mergehistory-fail": "Impossible de procéder à la fusion des historiques. Resélectionner la page ainsi que les paramètres de date.",
 	"mergehistory-fail-toobig": "Impossible d’effectuer la fusion de l’historique car un nombre de {{PLURAL:$1|révisions}} supérieur à la limite de $1 devrait être déplacé.",
 	"mergehistory-no-source": "La page d'origine $1 n'existe pas.",

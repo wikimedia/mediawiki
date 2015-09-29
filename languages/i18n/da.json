@@ -846,7 +846,7 @@
 	"mergehistory-go": "Vis sammenflettelige versioner",
 	"mergehistory-submit": "Sammenflet versioner",
 	"mergehistory-empty": "Der findes ingen sammenflettelige udgaver",
-	"mergehistory-success": "$3 {{PLURAL:$3|version|versioner}} af [[:$1]] blev flettet sammen med [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|version|versioner}} af $1 blev flettet sammen med [[:$2]].",
 	"mergehistory-fail": "Sammenfletningen kunne ikke gennemføres. Vær venlig at kontrollere sidenavne og tidsafgrænsning.",
 	"mergehistory-fail-toobig": "Ude af stand til at flette historiken sammen, fordi flere end grænsen på $1 {{PLURAL:$1|version|versioner}} ville blive flyttet.",
 	"mergehistory-no-source": "Kildesiden $1 findes ikke.",

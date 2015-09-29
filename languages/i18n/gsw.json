@@ -819,7 +819,7 @@
 	"mergehistory-go": "Zeig d Versione, wu zämegfierd chenne wäre",
 	"mergehistory-submit": "Fier Versione zäme",
 	"mergehistory-empty": "S chenne kei Versione zämegfierd wäre.",
-	"mergehistory-success": "{{PLURAL:$3|1 Version|$3 Versione}} vu „[[:$1]]“ isch no „[[:$2]]“ zämegfierd.",
+	"mergehistory-done": "{{PLURAL:$3|1 Version|$3 Versione}} vu „$1“ isch no „[[:$2]]“ zämegfierd.",
 	"mergehistory-fail": "Zämefierig vu dr Versione nid megli, bitte prief d Syte un d Zytaagobe.",
 	"mergehistory-fail-toobig": "D Versionsgschichte lö sech nid la zämefüere, wil me meh weder ds Limit {{PLURAL:$1|eire Version|$1 Versione}} müesst verschiebe.",
 	"mergehistory-no-source": "Ursprungssyte „$1“ isch nit vorhande.",

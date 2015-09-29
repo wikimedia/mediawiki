@@ -10,5 +10,6 @@
 	"apihelp-query+siteinfo-paramvalue-prop-statistics": "Kthehet në faqen e statistikave.",
 	"apihelp-tag-param-reason": "Arsyeja për ndërrimin.",
 	"apihelp-unblock-description": "Zhblloko një përdorues.",
+	"apihelp-upload-param-file": "Përmbajtja e skedave.",
 	"apihelp-userrights-description": "Ndërro anëtarësinë e grupit të një përdoruesit."
 }

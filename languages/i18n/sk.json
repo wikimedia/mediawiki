@@ -812,7 +812,7 @@
 	"mergehistory-go": "Zobraziť zlúčiteľné úpravy",
 	"mergehistory-submit": "Zlúčiť revízie",
 	"mergehistory-empty": "Žiadne revízie nie je možné zlúčiť.",
-	"mergehistory-success": "$3 {{PLURAL:$3|revízia|revízie|revízií}} z [[:$1]] {{PLURAL:$3|bola úspešne zlúčená|boli úspešne zlúčené|bolo úspešne zlúčených}} do [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|revízia|revízie|revízií}} z $1 {{PLURAL:$3|bola úspešne zlúčená|boli úspešne zlúčené|bolo úspešne zlúčených}} do [[:$2]].",
 	"mergehistory-fail": "Nepodarilo sa vykonať zlúčenie histórií. Prosím, skontrolujte parametre stránka a časy.",
 	"mergehistory-no-source": "Zdrojová stránka $1 neexistuje.",
 	"mergehistory-no-destination": "Cieľová stránka $1 neexistuje.",

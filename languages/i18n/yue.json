@@ -825,7 +825,7 @@
 	"mergehistory-go": "顯示可以合併嘅編輯",
 	"mergehistory-submit": "合併修訂",
 	"mergehistory-empty": "無修訂可以合併",
-	"mergehistory-success": "[[:$1]]嘅$3次修訂已經成功噉合併到[[:$2]]。",
+	"mergehistory-done": "$1嘅$3次修訂已經成功噉合併到[[:$2]]。",
 	"mergehistory-fail": "歷史合併唔到，請重新檢查嗰一版同埋時間參數。",
 	"mergehistory-fail-toobig": "唔能夠合併編輯紀錄，因為入面超過咗$1個版本嘅上限。",
 	"mergehistory-no-source": "來源頁$1唔存在。",

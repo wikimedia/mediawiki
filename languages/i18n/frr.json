@@ -809,7 +809,7 @@
 	"mergehistory-go": "Wise werjuunen, diar tuupfeerd wurd kön.",
 	"mergehistory-submit": "Werjuunen tuupfeer",
 	"mergehistory-empty": "Nian werjuunen kön tuupfeerd wurd.",
-	"mergehistory-success": "$3 {{PLURAL:$3|werjuun|werjuunen}} faan [[:$1]] tuupfeerd tu [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|werjuun|werjuunen}} faan $1 tuupfeerd tu [[:$2]].",
 	"mergehistory-fail": "Werjuunen kön ei tuupfeerd wurd. Luke noch ans efter at sidj an a tidjen.",
 	"mergehistory-fail-toobig": "A werjuunen küd ei tuupfeerd wurd, auer muar üs {{PLURAL:$1|ian werjuun|$1 werjuunen}} fersköwen {{PLURAL:$1|wurd skul|wurd skul}}.",
 	"mergehistory-no-source": "Det iarst sidj \"$1\" as ai diar.",

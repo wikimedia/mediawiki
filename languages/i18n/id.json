@@ -836,7 +836,7 @@
 	"mergehistory-go": "Tampilkan suntingan-suntingan yang dapat digabung",
 	"mergehistory-submit": "Gabung revisi",
 	"mergehistory-empty": "Tidak ada revisi yang dapat digabung.",
-	"mergehistory-success": "$3 {{PLURAL:$3|revisi|revisi}} dari [[:$1]] berhasil digabungkan ke [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|revisi|revisi}} dari $1 berhasil digabungkan ke [[:$2]].",
 	"mergehistory-fail": "Tidak dapat melakukan penggabungan, harap periksa kembali halaman dan parameter waktu.",
 	"mergehistory-fail-toobig": "Tidak dapat melakukan penggabungan sebagai lebih dari batas dari $1 {{PLURAL:$1|revisi|revisi}} akan dipindahkan.",
 	"mergehistory-no-source": "Halaman sumber $1 tidak ada.",

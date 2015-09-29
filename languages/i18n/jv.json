@@ -754,7 +754,7 @@
 	"mergehistory-go": "Tuduhna suntingan-suntingan sing bisa digabung",
 	"mergehistory-submit": "Gabung revisi",
 	"mergehistory-empty": "Ora ana revisi sing bisa digabung.",
-	"mergehistory-success": "$3 {{PLURAL:$1|révisi|révisi}} saka [[:$1]] bisa suksès digabung menyang [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$1|révisi|révisi}} saka $1 bisa suksès digabung menyang [[:$2]].",
 	"mergehistory-fail": "Ora bisa nggabung sajarah, coba dipriksa manèh kacané lan paramèter wektuné.",
 	"mergehistory-no-source": "Kaca sumber $1 ora ana.",
 	"mergehistory-no-destination": "Kaca tujuan $1 ora ana.",

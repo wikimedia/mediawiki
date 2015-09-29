@@ -858,7 +858,7 @@
 	"mergehistory-go": "Mostra les edicions que es poden fusionar",
 	"mergehistory-submit": "Fusiona les revisions",
 	"mergehistory-empty": "No pot fusionar-se cap revisió.",
-	"mergehistory-success": "$3 {{PLURAL:$3|revisió|revisions}} de [[:$1]] s'han fusionat amb èxit a [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|revisió|revisions}} de $1 s'han fusionat amb èxit a [[:$2]].",
 	"mergehistory-fail": "No s'ha pogut realitzar la fusió de l'historial, comproveu la pàgina i els paràmetres horaris.",
 	"mergehistory-fail-toobig": "No s'ha pogut realitzar la fusió de l'historial perquè es mourien més del limit de $1 {{PLURAL:$1|revisió|revisions}}.",
 	"mergehistory-no-source": "La pàgina d'origen $1 no existeix.",

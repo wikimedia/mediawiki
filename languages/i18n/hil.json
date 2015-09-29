@@ -679,7 +679,7 @@
 	"mergehistory-go": "Ipakita ang mga mahimo masugpon nga mga pagbag-o",
 	"mergehistory-submit": "Isugpon ang mga pagbag-o",
 	"mergehistory-empty": "Wala sing pagbag-o nga mahimo masugpon.",
-	"mergehistory-success": "$3 {{PLURAL:$3|ka pagbag-o|ka mga pagbag-o}} sang [[:$1]] madinalag-on nga ginsugpon sa [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|ka pagbag-o|ka mga pagbag-o}} sang $1 madinalag-on nga ginsugpon sa [[:$2]].",
 	"mergehistory-fail": "Wala mahuman ang pagsugpon sang kasaysayan, palihog lantawa liwat ang panid kag ang parametro sang tion.",
 	"mergehistory-no-source": "Ang ginhalin nga panid nga $1 wala naga-eksister.",
 	"mergehistory-no-destination": "Ang tuyo lab-oton nga panid nga $1 wala naga-eksister.",

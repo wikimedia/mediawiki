@@ -732,7 +732,7 @@
 	"mergehistory-go": "Montrar los changements que pôvont étre fusionâs",
 	"mergehistory-submit": "Fusionar les vèrsions",
 	"mergehistory-empty": "Niona vèrsion pôt étre fusionâye.",
-	"mergehistory-success": "$3 vèrsion{{PLURAL:$3||s}} de [[:$1]] fusionâye{{PLURAL:$3||s}} avouéc reusséta dedens [[:$2]].",
+	"mergehistory-done": "$3 vèrsion{{PLURAL:$3||s}} de $1 fusionâye{{PLURAL:$3||s}} avouéc reusséta dedens [[:$2]].",
 	"mergehistory-fail": "Y at pas moyen de fâre la fusion des historicos, se vos plét tornâd chouèsir la pâge et pués los paramètros de dâta.",
 	"mergehistory-no-source": "La pâge d’origina $1 ègziste pas.",
 	"mergehistory-no-destination": "La pâge de dèstinacion $1 ègziste pas.",

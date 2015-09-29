@@ -822,7 +822,7 @@
 	"mergehistory-go": "Mostrar as edicións que se poden fusionar",
 	"mergehistory-submit": "Fusionar as revisións",
 	"mergehistory-empty": "Non hai revisións que se poidan fusionar.",
-	"mergehistory-success": "{{PLURAL:$3|Unha revisión|$3 revisións}} de \"[[:$1]]\" {{PLURAL:$3|fusionouse|fusionáronse}} sen problemas con \"[[:$2]]\".",
+	"mergehistory-done": "{{PLURAL:$3|Unha revisión|$3 revisións}} de \"$1\" {{PLURAL:$3|fusionouse|fusionáronse}} sen problemas con \"[[:$2]]\".",
 	"mergehistory-fail": "Non se puido fusionar o historial; comprobe outra vez os parámetros de páxina e data.",
 	"mergehistory-fail-toobig": "Non se puido fusionar o historial, xa que supón trasladar máis revisións que o límite de $1 {{PLURAL:$1|revisión|revisións}}.",
 	"mergehistory-no-source": "Non existe a páxina de orixe \"$1\".",

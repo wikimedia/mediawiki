@@ -662,7 +662,7 @@
 	"mergehistory-go": "Tampaiakan bababakan nang kawa digabungakan",
 	"mergehistory-submit": "Gabungakan raralatan",
 	"mergehistory-empty": "Kadada raralatan nang kawa digabungakan",
-	"mergehistory-success": "$3 {{PLURAL:$3|ralatan|raralatan}} matan [[:$1]] ruhui digabungakan ka [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|ralatan|raralatan}} matan $1 ruhui digabungakan ka [[:$2]].",
 	"mergehistory-fail": "Kada kawa manggabungakan halam, muhun pariksa pulang tungkaran wan parameter wayah.",
 	"mergehistory-no-source": "Tungkaran asal mula $1 kadada.",
 	"mergehistory-no-destination": "Tungkaran tatuju $1 kadada.",

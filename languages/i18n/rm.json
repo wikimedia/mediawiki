@@ -702,7 +702,7 @@
 	"mergehistory-go": "Mussar versiuns che pon vegnir unidas",
 	"mergehistory-submit": "Unir las versiuns",
 	"mergehistory-empty": "Naginas versiuns pon vegnir unidas.",
-	"mergehistory-success": "$3 {{PLURAL:$3|versiun|versiuns}} da [[:$1]] {{PLURAL:$3|è vegnida unida|èn vegnidas unidas}} a [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|versiun|versiuns}} da $1 {{PLURAL:$3|è vegnida unida|èn vegnidas unidas}} a [[:$2]].",
 	"mergehistory-fail": "Betg pussaivel dad unir la cronologia. Controllescha ils parameters da las paginas e datas.",
 	"mergehistory-no-source": "La pagina d'origin $1 n'exista betg.",
 	"mergehistory-no-destination": "La pagina da destinaziun $1 n'exista betg.",

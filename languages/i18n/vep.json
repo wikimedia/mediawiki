@@ -637,7 +637,7 @@
 	"mergehistory-go": "Ozutada toižetusid, kudambid ühtenzoittas",
 	"mergehistory-submit": "Ühtenzoitta redakcijad",
 	"mergehistory-empty": "Ei voi löuta redakcijoid ühtenzoitandan täht.",
-	"mergehistory-success": "$3 {{PLURAL:$3|redakcii om|redakcijad oma}} sirtud satusekahas [[:$2]]-lahtpolele. Ühthine redakcijoiden lugu om [[:$1]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|redakcii om|redakcijad oma}} sirtud satusekahas [[:$2]]-lahtpolele. Ühthine redakcijoiden lugu om $1.",
 	"mergehistory-fail": "Ei voi ühtenzoitta lehtpoliden istorijoid, olgat hüväd, kodvgat lehtpolen da aigan parametrad.",
 	"mergehistory-no-source": "$1-augotižlehtpol't ei ole.",
 	"mergehistory-no-destination": "$1-metlehtpol't ei ole.",

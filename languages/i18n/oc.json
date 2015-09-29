@@ -792,7 +792,7 @@
 	"mergehistory-go": "Veire las edicions fusionablas",
 	"mergehistory-submit": "Fusionar las revisions",
 	"mergehistory-empty": "Cap de revision pòt pas èsser fusionada.",
-	"mergehistory-success": "$3 {{PLURAL:$3|revision|revisions}} de [[:$1]] {{PLURAL:$3|fusionada|fusionadas}} amb succès amb [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|revision|revisions}} de $1 {{PLURAL:$3|fusionada|fusionadas}} amb succès amb [[:$2]].",
 	"mergehistory-fail": "Impossible de procedir a la fusion dels istorics. Seleccionatz  tornamai la pagina e mai los paramètres de data.",
 	"mergehistory-fail-toobig": "Impossible d’efectuar la fusion de l’istoric perque un nombre de {{PLURAL:$1|revisions}} superior al limit de $1 deuriá èsser desplaçat.",
 	"mergehistory-no-source": "La pagina d'origina $1 existís pas.",

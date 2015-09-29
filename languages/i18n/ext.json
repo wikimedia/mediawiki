@@ -528,7 +528,7 @@
 	"mergehistory-go": "Muestral eicionis uñificabris",
 	"mergehistory-submit": "Uñifical revisionis",
 	"mergehistory-empty": "Nu es posibri uñifical denguna revisión.",
-	"mergehistory-success": "S'án mesturau $3 {{PLURAL:$3|revisión|revisionis}} de [[:$1]] en [[:$2]].",
+	"mergehistory-done": "S'án mesturau $3 {{PLURAL:$3|revisión|revisionis}} de $1 en [[:$2]].",
 	"mergehistory-fail": "Nu es posibri uñifical los estorialis. Pol favol, compreba la páhina i los parámetrus de tiempu.",
 	"mergehistory-no-source": "La páhina huenti $1 nu desisti.",
 	"mergehistory-no-destination": "La páhina e destinu $1 nu desisti.",

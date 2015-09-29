@@ -815,7 +815,7 @@
 	"mergehistory-go": "Smon le modìfiche ch'as peulo butesse ansema",
 	"mergehistory-submit": "Buta ansema le revision",
 	"mergehistory-empty": "Pa gnun-a revision ch'as peula butesse ansema.",
-	"mergehistory-success": "$3 {{PLURAL:$3|revision|revision}} ëd [[:$1]] a son ëstàite butà ansema a [[:$2]] sensa problema.",
+	"mergehistory-done": "$3 {{PLURAL:$3|revision|revision}} ëd $1 a son ëstàite butà ansema a [[:$2]] sensa problema.",
 	"mergehistory-fail": "A l'é nen riessusse a buté ansema le revision, për piasì, ch'as contròla la pàgina e ij temp.",
 	"mergehistory-fail-toobig": "Impossìbil fé la fusion ëd la stòria përchè un nùmer ëd {{PLURAL:$1|revision}} pi grand che $1 a sarìa spostà.",
 	"mergehistory-no-source": "La pàgina sorgiss $1 a-i é pa.",

@@ -821,7 +821,7 @@
 	"mergehistory-go": "Tunjukkan suntingan yang boleh digabungkan",
 	"mergehistory-submit": "Gabungkan semakan",
 	"mergehistory-empty": "Tiada semakan yang boleh digabungkan",
-	"mergehistory-success": "$3 semakan bagi [[:$1]] telah digabungkan ke dalam [[:$2]].",
+	"mergehistory-done": "$3 semakan bagi $1 telah digabungkan ke dalam [[:$2]].",
 	"mergehistory-fail": "Gagal melaksanakan penggabungan sejarah, sila semak semula laman tersebut dan parameter waktu.",
 	"mergehistory-fail-toobig": "Tidak dapat melakukan gabungan sejarah sebab lebih daripada had $1 semakan perlu dipindahkan.",
 	"mergehistory-no-source": "Laman sumber $1 tidak wujud.",

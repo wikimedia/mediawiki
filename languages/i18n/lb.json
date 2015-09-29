@@ -805,7 +805,7 @@
 	"mergehistory-go": "Weis déi Versiounen, déi zesummegeluecht kënne ginn",
 	"mergehistory-submit": "Versioune verschmelzen",
 	"mergehistory-empty": "Et kënne keng Versioune zesummegeluecht ginn.",
-	"mergehistory-success": "{{PLURAL:$3|1 Versioun gouf|$3 Versioune goufe}} vu(n) [[:$1]] op [[:$2]] zesummegeluecht.",
+	"mergehistory-done": "{{PLURAL:$3|1 Versioun gouf|$3 Versioune goufe}} vu(n) $1 op [[:$2]] zesummegeluecht.",
 	"mergehistory-fail": "Versiounszesummeleeung war net méiglech, kuckt w.e.g. d'Säiten an d'Zäit-Parameter no.",
 	"mergehistory-fail-toobig": "D'zesummeleeë vun der Lëscht vun de Versioune konnt net gemaach ginn well méi wéi d'Limite vun $1 {{PLURAL:$1|Versioun|Versioune}} geréckelt géife ginn",
 	"mergehistory-no-source": "Originalsäit \"$1\" gëtt et net.",

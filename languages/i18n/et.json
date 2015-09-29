@@ -829,7 +829,7 @@
 	"mergehistory-go": "Näita liidetavaid muudatusi",
 	"mergehistory-submit": "Liida redaktsioonid",
 	"mergehistory-empty": "Ühtegi redaktsiooni ei saa liita.",
-	"mergehistory-success": "Lehekülje [[:$1]] {{PLURAL:$3|üks redaktsioon|$3 redaktsiooni}} liideti lehega [[:$2]].",
+	"mergehistory-done": "Lehekülje $1 {{PLURAL:$3|üks redaktsioon|$3 redaktsiooni}} liideti lehega [[:$2]].",
 	"mergehistory-fail": "Muudatuste ajaloo liitmine ebaõnnestus. Palun kontrolli lehekülje ja aja parameetreid.",
 	"mergehistory-fail-toobig": "Ajalugusid ei õnnestu liita, sest teisaldada tuleks rohkem kui {{PLURAL:$1|üks redaktsioon|$1 redaktsiooni}}, mis on piirmäär.",
 	"mergehistory-no-source": "Alliklehekülge $1 pole olemas.",

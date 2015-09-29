@@ -4,7 +4,8 @@
 			"Csega",
 			"Dorgan",
 			"Tacsipacsi",
-			"ViDam"
+			"ViDam",
+			"Macofe"
 		]
 	},
 	"apihelp-main-param-action": "Milyen műveletet hajtson végre.",
@@ -19,7 +20,7 @@
 	"apihelp-block-param-nocreate": "Új regisztráció megakadályozása",
 	"apihelp-createaccount-param-name": "Felhasználónév.",
 	"apihelp-delete-description": "Lap törlése.",
-	"apihelp-delete-example-simple": "<kbd>Kezdőlap</kbd> törlése.",
+	"apihelp-delete-example-simple": "<kbd>Main Page</kbd> törlése.",
 	"apihelp-edit-example-edit": "Lap szerkesztése",
 	"apihelp-expandtemplates-param-title": "Lap címe.",
 	"apihelp-userrights-param-userid": "Felhasználói azonosító."

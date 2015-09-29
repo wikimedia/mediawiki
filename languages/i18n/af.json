@@ -776,7 +776,7 @@
 	"mergehistory-go": "Wys versmeltbare wysigings",
 	"mergehistory-submit": "Versmelt weergawes",
 	"mergehistory-empty": "Geen weergawes kan versmelt word nie.",
-	"mergehistory-success": "$3 {{PLURAL:$3|weergawe|weergawes}} van [[:$1]] is suksesvol versmelt met [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|weergawe|weergawes}} van $1 is suksesvol versmelt met [[:$2]].",
 	"mergehistory-fail": "Kan nie geskiedenis versmelt nie, kontroleer asseblief die bladsy- en tydinstellings.",
 	"mergehistory-no-source": "Bronbladsy $1 bestaan nie.",
 	"mergehistory-no-destination": "Bestemmingsbladsy $1 bestaan nie.",

@@ -27,7 +27,8 @@
 			"Fitoschido",
 			"Macofe",
 			"ImGelu",
-			"Wintereu"
+			"Wintereu",
+			"Rsocol"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -829,7 +830,7 @@
 	"mergehistory-go": "Vezi modificările care pot fi combinate",
 	"mergehistory-submit": "Unește versiunile",
 	"mergehistory-empty": "Nicio versiune nu poate fi unită.",
-	"mergehistory-success": "$3 {{PLURAL:$3|versiune|versiuni|de versiuni}} ale [[:$1]] {{PLURAL:$3|a fost unită|au fost unite|au fost unite}} cu succes în [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|versiune|versiuni|de versiuni}} ale $1 {{PLURAL:$3|a fost unită|au fost unite|au fost unite}} cu succes în [[:$2]].",
 	"mergehistory-fail": "Nu se poate executa combinarea istoricului, te rog verifică parametrii pagină și timp.",
 	"mergehistory-fail-toobig": "Nu s-a putut efectua unirea istoricelor întrucât s-ar fi depășit limita de $1 {{PLURAL:$1|versiune|versiuni|de versiuni}} mutat{{PLURAL:$1|ă|e}}.",
 	"mergehistory-no-source": "Pagina sursă $1 nu există.",
@@ -3243,7 +3244,7 @@
 	"api-error-badaccess-groups": "Nu aveți dreptul să încărcați fișiere pe acest wiki.",
 	"api-error-badtoken": "Eroare internă: jeton greșit.",
 	"api-error-copyuploaddisabled": "Încărcarea prin URL este dezactivată pe acest server.",
-	"api-error-duplicate": "Există {{PLURAL:$1|un alt fișier|alte fișiere}} deja încărcate cu același conținut.",
+	"api-error-duplicate": "Există {{PLURAL:$1|un alt fișier deja încărcat|alte fișiere deja încărcate}} cu același conținut.",
 	"api-error-duplicate-archive": "{{PLURAL:$1|A existat un alt fișier|Au existat alte fișiere}} cu același conținut pe site, dar {{PLURAL:$1|a fost|au fost}} șterse.",
 	"api-error-empty-file": "Fișierul încărcat de dumneavoastră este gol.",
 	"api-error-emptypage": "Crearea paginilor noi, goale nu este permisă.",

@@ -668,7 +668,7 @@
 	"mergehistory-go": "Amostrar edicions fusionables",
 	"mergehistory-submit": "Fusionar versions",
 	"mergehistory-empty": "No puede fusionar-se garra revisión.",
-	"mergehistory-success": "$3 {{PLURAL:$3|revisión|revisions}} de [[:$1]] {{PLURAL:$3|fusionata|fusionatas}} correctament con [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|revisión|revisions}} de $1 {{PLURAL:$3|fusionata|fusionatas}} correctament con [[:$2]].",
 	"mergehistory-fail": "No s'ha puesto fusionar os dos historials, por favor comprebe a pachina y os parametros de tiempo.",
 	"mergehistory-no-source": "A pachina d'orichen $1 no existe.",
 	"mergehistory-no-destination": "A pachina de destino $1 no existe.",

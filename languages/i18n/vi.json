@@ -831,7 +831,7 @@
 	"mergehistory-go": "Hiển thị các sửa đổi có thể trộn được",
 	"mergehistory-submit": "Trộn các sửa đổi",
 	"mergehistory-empty": "Không thể trộn được sửa đổi nào.",
-	"mergehistory-success": "$3 {{PLURAL:$3|sửa đổi|sửa đổi}} của [[:$1]] đã được trộn vào [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|sửa đổi|sửa đổi}} của $1 đã được trộn vào [[:$2]].",
 	"mergehistory-fail": "Không thể thực hiện được việc trộn lịch sử sửa đổi, vui lòng chọn lại trang cũng như thông số ngày giờ.",
 	"mergehistory-fail-toobig": "Không thể trộn lịch sử vì phải di chuyển $1 phiên bản và vượt quá giới hạn cho phép.",
 	"mergehistory-no-source": "Trang nguồn $1 không tồn tại.",

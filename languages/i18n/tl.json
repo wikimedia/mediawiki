@@ -756,7 +756,7 @@
 	"mergehistory-go": "Ipakita ang mga pagbabagong mapagsasanib",
 	"mergehistory-submit": "Pagsanibin ang mga pagbabago",
 	"mergehistory-empty": "Walang mga pagbabagong mapagsasanib.",
-	"mergehistory-success": "$3 {{PLURAL:$3|pagbabago|pagbabago}} ng [[:$1]] ay matagumpay na naisanib sa [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|pagbabago|pagbabago}} ng $1 ay matagumpay na naisanib sa [[:$2]].",
 	"mergehistory-fail": "Hindi magawa ang pagsasanib ng kasaysayan, pakisuri ang parametro ng pahina at oras.",
 	"mergehistory-no-source": "Hindi umiiral ang pagmumulang pahinang $1.",
 	"mergehistory-no-destination": "Hindi umiiral ang patutunguhang pahinang $1.",

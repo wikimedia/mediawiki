@@ -710,7 +710,7 @@
 	"mergehistory-go": "Birləşdirilə bilən redaktələri göstər",
 	"mergehistory-submit": "Qarışıq düzəlişlər",
 	"mergehistory-empty": "Birləşdiriləcək redaktələr tapılmamışdır.",
-	"mergehistory-success": "[[:$1]] səhifəsinin $3 {{PLURAL:$3|revizyonu|dəyişikliyi}} uğurla [[:$2]] -yə birləşdirildi.",
+	"mergehistory-done": "$1 səhifəsinin $3 {{PLURAL:$3|revizyonu|dəyişikliyi}} uğurla [[:$2]] -yə birləşdirildi.",
 	"mergehistory-no-source": "Mənbə $1 yoxdur.",
 	"mergehistory-no-destination": "Mənbə səhifəsi $1 mövcud deyil.",
 	"mergehistory-invalid-source": "Mənbənin düzgün başlığı olmalıdır.",

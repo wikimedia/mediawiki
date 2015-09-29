@@ -789,7 +789,7 @@
 	"mergehistory-go": "Dangos y golygiadau y gellir eu cyfuno",
 	"mergehistory-submit": "Cyfuner y diwygiadau",
 	"mergehistory-empty": "Ni ellir cyfuno unrhyw ddiwygiadau.",
-	"mergehistory-success": "Cyfunwyd $3 {{PLURAL:$3|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}} o [[:$1]] yn llwyddiannus i'r dudalen [[:$2]].",
+	"mergehistory-done": "Cyfunwyd $3 {{PLURAL:$3|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}} o $1 yn llwyddiannus i'r dudalen [[:$2]].",
 	"mergehistory-fail": "Methodd y cyfuno hanes; a wnewch wirio paramedrau'r dudalen a'r amser unwaith eto.",
 	"mergehistory-no-source": "Nid yw'r dudalen gwreiddiol $1 yn bod.",
 	"mergehistory-no-destination": "Nid yw'r dudalen cyrchfan $1 yn bod.",

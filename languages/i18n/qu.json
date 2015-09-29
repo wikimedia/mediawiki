@@ -764,7 +764,7 @@
 	"mergehistory-go": "Huñunalla llamk'apusqakunata rikuchiy",
 	"mergehistory-submit": "Llamk'apusqakunata huñuy",
 	"mergehistory-empty": "Manam atinichu llamk'apusqakunata huñuyta.",
-	"mergehistory-success": "[[:$1]]-paq $3 {{PLURAL:$3|llamk'apusqaqa|llamk'apusqakunaqa}} aypalla [[:$2]]-man huñusqañam.",
+	"mergehistory-done": "$1-paq $3 {{PLURAL:$3|llamk'apusqaqa|llamk'apusqakunaqa}} aypalla [[:$2]]-man huñusqañam.",
 	"mergehistory-fail": "Manam atinichu wiñay kawsaykunata huñuyta. Ama hina kaspa, p'anqata pacha kuskanachina tupukunatapas musuqmanta llanchiy.",
 	"mergehistory-no-source": "Pukyu p'anqaqa $1 manam kanchu.",
 	"mergehistory-no-destination": "Taripana p'anqaqa $1 manam kanchu.",

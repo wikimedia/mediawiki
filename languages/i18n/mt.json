@@ -775,7 +775,7 @@
 	"mergehistory-go": "Uri modifiki li jistgħu jiġu magħquda",
 	"mergehistory-submit": "Waħħad ir-reviżjonijiet",
 	"mergehistory-empty": "L-Ebda reviżjoni tista' tiġi magħquda.",
-	"mergehistory-success": "$3 {{PLURAL:$3|reviżjoni|reviżjonijiet}} ta' [[:$1]] twaħħdu ma' [[:$2]] b'suċċess.",
+	"mergehistory-done": "$3 {{PLURAL:$3|reviżjoni|reviżjonijiet}} ta' $1 twaħħdu ma' [[:$2]] b'suċċess.",
 	"mergehistory-fail": "Mhux possibli li jitwaħħdu l-istejjer, jekk jogħġbok ivverifika l-paġna u l-parametri tal-ħin.",
 	"mergehistory-no-source": "Paġna tas-sors $1 ma teżistix.",
 	"mergehistory-no-destination": "Paġna tad-destinazzjoni $1 ma teżistix.",

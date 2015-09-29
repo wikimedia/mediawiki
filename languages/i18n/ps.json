@@ -675,7 +675,7 @@
 	"mergehistory-list": "د اخږلو وړ سمون پېښليک",
 	"mergehistory-go": "اخږلو وړ سمونونه ښکاره کول",
 	"mergehistory-submit": "بڼې سره يوځای کول",
-	"mergehistory-success": "د [[:$1]] $3 {{PLURAL:$3|بڼه|بڼې}} په برياليتوب سره و [[:$2]] کې {{PLURAL:$3|واخږل شو|واخږل شول}}.",
+	"mergehistory-done": "د $1 $3 {{PLURAL:$3|بڼه|بڼې}} په برياليتوب سره و [[:$2]] کې {{PLURAL:$3|واخږل شو|واخږل شول}}.",
 	"mergehistory-no-source": "د سرچينې مخ $1 نشته.",
 	"mergehistory-no-destination": "د $1 موخنيز مخ نشته.",
 	"mergehistory-invalid-source": "د سرچينې مخ بايد يو سم سرليک وي.",

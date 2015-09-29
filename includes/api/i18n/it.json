@@ -8,7 +8,8 @@
 			"Alexmar983",
 			"Ricordisamoa",
 			"Valepert",
-			"Sannita"
+			"Sannita",
+			"Macofe"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentazione (in inglese)]]\n* [[mw:API:FAQ|FAQ (in inglese)]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annunci sull'API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug & richieste]\n</div>\n<strong>Stato:</strong> Tutte le funzioni e caratteristiche mostrate su questa pagina dovrebbero funzionare, ma l'API è ancora in fase d'attivo sviluppo, e potrebbe cambiare in qualsiasi momenento. Iscriviti alla [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] per essere informato sugli aggiornamenti.\n\n<strong>Istruzioni sbagliate:</strong> quando vengono impartite all'API delle istruzioni sbagliate, un'intestazione HTTP verrà inviata col messaggio \"MediaWiki-API-Error\" e sia al valore dell'intestazione sia al codice d'errore verrà impostato lo stesso valore. Per maggiori informazioni leggi [[mw:API:Errors_and_warnings|API:Errori ed avvertimenti (in inglese)]].",
@@ -26,7 +27,7 @@
 	"apihelp-block-param-reblock": "Se l'utente è già bloccato, sovrascrivere il blocco esistente.",
 	"apihelp-block-param-watchuser": "Segui la pagina utente e le pagine di discussione utente dell'utente o dell'indirizzo IP.",
 	"apihelp-block-example-ip-simple": "Blocca l'indirizzo IP <kbd>192.0.2.5</kbd> per tre giorni con motivazione <kbd>Primo avvertimento</kbd>.",
-	"apihelp-block-example-user-complex": "Blocca l'utente <kbd>Vandalo</kbd> a tempo indeterminato con motivazione <kbd>Vandalismo</kbd>, e impediscigli la creazione di nuovi account e l'invio di e-mail.",
+	"apihelp-block-example-user-complex": "Blocca l'utente <kbd>Vandal</kbd> a tempo indeterminato con motivazione <kbd>Vandalism</kbd>, e impediscigli la creazione di nuovi account e l'invio di e-mail.",
 	"apihelp-checktoken-description": "Verifica la validità di un token da <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>.",
 	"apihelp-checktoken-param-type": "Tipo di token in corso di test.",
 	"apihelp-checktoken-param-token": "Token da testare.",
@@ -59,8 +60,8 @@
 	"apihelp-delete-param-reason": "Motivo della cancellazione. Se non indicato, verrà usata una motivazione generata automaticamente.",
 	"apihelp-delete-param-watch": "Aggiungi la pagina agli Osservati Speciali dell'utente corrente.",
 	"apihelp-delete-param-unwatch": "Rimuovi la pagina dagli Osservati Speciali dell'utente corrente.",
-	"apihelp-delete-example-simple": "Cancella la <kbd>Pagina Principale</kbd>.",
-	"apihelp-delete-example-reason": "Cancella la <kbd>Pagina Principale</kbd> con motivazione <kbd>Preparazione allo spostamento</kbd>.",
+	"apihelp-delete-example-simple": "Cancella <kbd>Main Page</kbd>.",
+	"apihelp-delete-example-reason": "Cancella la <kbd>Main Page</kbd> con motivazione <kbd>Preparing for move</kbd>.",
 	"apihelp-disabled-description": "Questo modulo è stato disabilitato.",
 	"apihelp-edit-description": "Crea e modifica pagine.",
 	"apihelp-edit-param-title": "Titolo della pagina da modificare. Non può essere usato insieme con <var>$1pageid</var>.",
@@ -82,7 +83,7 @@
 	"apihelp-emailuser-param-subject": "Oggetto dell'e-mail.",
 	"apihelp-emailuser-param-text": "Testo dell'e-mail.",
 	"apihelp-emailuser-param-ccme": "Mandami una copia di questa mail.",
-	"apihelp-emailuser-example-email": "Manda una e-mail all'utente <kbd>WikiSysop</kbd> con il testo <kbd>Contenuto</kbd>",
+	"apihelp-emailuser-example-email": "Manda una e-mail all'utente <kbd>WikiSysop</kbd> con il testo <kbd>Content</kbd>.",
 	"apihelp-expandtemplates-description": "Espandi tutti i template nel wikitesto.",
 	"apihelp-expandtemplates-param-title": "Titolo della pagina.",
 	"apihelp-expandtemplates-param-text": "Wikitesto da convertire.",

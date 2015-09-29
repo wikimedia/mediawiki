@@ -585,7 +585,7 @@
 	"mergehistory-go": "Wone coppite yi boolewu",
 	"mergehistory-submit": "Boole jagal yi",
 	"mergehistory-empty": "Manuloo boole menn sumb.",
-	"mergehistory-success": "$3 {{PLURAL:$3|sumb|sumb}} mu [[:$1]] boole {{PLURAL:$3|nañ ko|nañ leen}} ci jàmm ak [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|sumb|sumb}} mu $1 boole {{PLURAL:$3|nañ ko|nañ leen}} ci jàmm ak [[:$2]].",
 	"mergehistory-fail": "Booleb jaar-jaar yi antuwul. Falaatal xët wi ak taariix yi",
 	"mergehistory-no-source": "Xëtu gongikuwaay bii $1 amul.",
 	"mergehistory-no-destination": "Xëtu jëmuwaay bii $1 amul.",

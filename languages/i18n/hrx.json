@@ -765,7 +765,7 @@
 	"mergehistory-go": "Zeich Versione, wo vereinicht sin könne",
 	"mergehistory-submit": "Vereinich Versione",
 	"mergehistory-empty": "Do könne ken Versione vereinicht sin.",
-	"mergehistory-success": "{{PLURAL:$3|1 Version|$3 Versione}} von \"[[:$1]]\" erfollichreich noh „[[:$2]]“ vereinicht.",
+	"mergehistory-done": "{{PLURAL:$3|1 Version|$3 Versione}} von \"$1\" erfollichreich noh „[[:$2]]“ vereinicht.",
 	"mergehistory-fail": "Versionsvereinichung net möchlich, bittschön prüf die Seit und die Zeitoongäb.",
 	"mergehistory-no-source": "Uarsprungsseit \"$1\" ist net voarhand.",
 	"mergehistory-no-destination": "Zielseit \"$1\" ist net voarhand.",

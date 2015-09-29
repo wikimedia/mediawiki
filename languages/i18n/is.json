@@ -761,7 +761,7 @@
 	"mergehistory-go": "Sýna breytingar sem hægt er að sameina",
 	"mergehistory-submit": "Sameina útgáfur",
 	"mergehistory-empty": "Engar útgáfur sem hægt er að sameina.",
-	"mergehistory-success": "$3 {{PLURAL:$3|útgáfa|útgáfur}} af [[:$1]] sameinaðar í [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|útgáfa|útgáfur}} af $1 sameinaðar í [[:$2]].",
 	"mergehistory-fail": "Gat ekki sameinað breytingasögur. Vinsamlegast athugaðu síðuna og tímabreyturnar.",
 	"mergehistory-no-source": "Upprunasíðan $1 er ekki til.",
 	"mergehistory-no-destination": "Marksíðan $1 er ekki til.",

@@ -800,7 +800,7 @@
 	"mergehistory-go": "Prikaži izmene koje se mogu spojiti",
 	"mergehistory-submit": "Spoji izmene",
 	"mergehistory-empty": "Nema izmena za spajanje.",
-	"mergehistory-success": "$3 {{PLURAL:$3|izmena stranice [[:$1]] je spojena|izmene stranice [[:$1]] su spojene|izmena stranice [[:$1]] je spojeno}} u [[:$2]].",
+	"mergehistory-done": "$3 {{PLURAL:$3|izmena stranice $1 je spojena|izmene stranice $1 su spojene|izmena stranice $1 je spojeno}} u [[:$2]].",
 	"mergehistory-fail": "Ne mogu da spojim istorije. Proverite stranicu i vremenske parametre.",
 	"mergehistory-fail-toobig": "Nije moguće spojiti istorije jer više od $1 {{PLURAL:$1|izmene će biti premeštene|izmena će biti premešteno}}.",
 	"mergehistory-no-source": "Izvorna stranica $1 ne postoji.",

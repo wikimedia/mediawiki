@@ -817,7 +817,7 @@
 	"mergehistory-go": "Fà vedè le cangiaminde ca se ponne squagghià 'nzieme",
 	"mergehistory-submit": "Scuagghije 'nzieme le revisiune",
 	"mergehistory-empty": "Nisciuna revisione pò essere scuagghiate.",
-	"mergehistory-success": "$3 {{PLURAL:$3|revisione|revisiune}} de [[:$1]] onne state scuagghiate jndr'à [[:$2]] correttamende.",
+	"mergehistory-done": "$3 {{PLURAL:$3|revisione|revisiune}} de $1 onne state scuagghiate jndr'à [[:$2]] correttamende.",
 	"mergehistory-fail": "Non ge se pò fa vedè 'a storie d'u scuagghiamende, pe piacere verifiche 'n'otra vota a pàgene e le parametre de l'orarie.",
 	"mergehistory-fail-toobig": "Non ge pozze combletà 'u scuagghiamende s'u cunde purcé supranesce 'u limite de $1 {{PLURAL:$1|revisione|revisiune}} ca onna essere spustate.",
 	"mergehistory-no-source": "'A pàgena sorgende $1 non g'esiste.",

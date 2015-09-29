@@ -779,7 +779,7 @@
 	"mergehistory-go": "Wersije, kótarež daju se zjadnośiś, pokazaś",
 	"mergehistory-submit": "Wersije zjadnośiś",
 	"mergehistory-empty": "Njadaju se žedne wersije zjadnośiś.",
-	"mergehistory-success": "$3 {{PLURAL:$3|wersija|wersiji|wersije|wersijow}} wót [[:$1]] wuspěšnje do [[:$2]] {{PLURAL:$3|zjadnośona|zjadnośonej|zjadnośone|zjadnośone}}.",
+	"mergehistory-done": "$3 {{PLURAL:$3|wersija|wersiji|wersije|wersijow}} wót $1 wuspěšnje do [[:$2]] {{PLURAL:$3|zjadnośona|zjadnośonej|zjadnośone|zjadnośone}}.",
 	"mergehistory-fail": "Njemóžno stawizny zjadnośiś, pśeglědaj pšosym bok a casowe parametry.",
 	"mergehistory-no-source": "Žrědłowy bok $1 njeeksistěrujo.",
 	"mergehistory-no-destination": "Celowy bok $1 njeeksistěruje.",

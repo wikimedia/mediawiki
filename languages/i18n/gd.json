@@ -802,7 +802,7 @@
 	"mergehistory-go": "Seall na deasachaidhean a ghabhas a cho-aonadh",
 	"mergehistory-submit": "Co-aonaich na mùthaidhean",
 	"mergehistory-empty": "Chan eil mùthadh sam bith ann a ghabhas a cho-aonadh.",
-	"mergehistory-success": "Chaidh $3 {{PLURAL:$3|mhùthadh|mhùthadh|mùthaidhean|mùthadh}} air [[:$1]] a cho-aonadh dha [[:$2]].",
+	"mergehistory-done": "Chaidh $3 {{PLURAL:$3|mhùthadh|mhùthadh|mùthaidhean|mùthadh}} air $1 a cho-aonadh dha [[:$2]].",
 	"mergehistory-fail": "Cha ghabh an eachdraidh a cho-aonadh, thoir sùil air paramadairean na duilleige 's an ama.",
 	"mergehistory-fail-toobig": "Cha b' urrainn dhuinn an eachdraidh a cho-aonachadh on a bhiodh barrachd na tha ceadaichte de $1 {{PLURAL:$1|mhùthadh|mhùthadh|mùthaidhean|mùthadh}} a ghluasad.",
 	"mergehistory-no-source": "Chan eil an tùs-duilleag $1 ann.",

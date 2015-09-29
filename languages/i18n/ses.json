@@ -786,7 +786,7 @@
 	"mergehistory-go": "Fasalyaney kaŋ ga hin ka marga cebe",
 	"mergehistory-submit": "Fillawey marga",
 	"mergehistory-empty": "Filla kulyaŋ mana margandi.",
-	"mergehistory-success": "[[:$1]] {{PLURAL:$3|filla}} $3 margandi ka boori ka tee [[:$2]].",
+	"mergehistory-done": "$1 {{PLURAL:$3|filla}} $3 margandi ka boori ka tee [[:$2]].",
 	"mergehistory-fail": "Ši hin taariki margaroo tee, taare moo nda waati kayandiyaney guna ka boori. \\",
 	"mergehistory-fail-toobig": "Ši hin ka taariki margaroo tee zam'a ga bisa {{PLURAL:$1|filla}} $1 kaŋ ga ganandi waati din.",
 	"mergehistory-no-source": "$1 aššil moo ši bara.",
