@@ -78,6 +78,10 @@
 	 * @cfg {boolean} [required=false] Mark the field as required. Implies `indicator: 'required'`.
 	 * @cfg {string} [mustBeAfter] Validates the date to be after this. In the 'YYYY-MM-DD' format.
 	 * @cfg {string} [mustBeBefore] Validates the date to be before this. In the 'YYYY-MM-DD' format.
+	 * @cfg {jQuery} [$overlay] Render the calendar into a separate layer. This configuration is
+	 *     useful in cases where the expanded calendar is larger than its container. The specified
+	 *     overlay layer is usually on top of the container and has a larger area. By default, the
+	 *     calendar uses relative positioning.
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {
 		// Config initialization
@@ -106,6 +110,8 @@
 			validate: this.validateDate.bind( this )
 		} );
 		this.calendar = new mw.widgets.CalendarWidget( {
+			// Can't pass `$floatableContainer: this.$element` here, the latter is not set yet.
+			// Instead we call setFloatableContainer() below.
 			precision: config.precision
 		} );
 		this.inCalendar = 0;
@@ -161,9 +167,44 @@
 		this.setTabIndexedElement( this.handle.$element );
 		this.handle.$element
 			.addClass( 'mw-widget-dateInputWidget-handle' );
+		this.calendar.$element
+			.addClass( 'mw-widget-dateInputWidget-calendar' );
 		this.$element
 			.addClass( 'mw-widget-dateInputWidget' )
 			.append( this.handle.$element, this.textInput.$element, this.calendar.$element );
+
+		if ( config.$overlay ) {
+			this.calendar.setFloatableContainer( this.$element );
+			config.$overlay.append( this.calendar.$element );
+
+			// The text input and calendar are not in DOM order, so fix up focus transitions.
+			this.textInput.$input.on( 'keydown', function ( e ) {
+				if ( e.which === OO.ui.Keys.TAB ) {
+					if ( e.shiftKey ) {
+						// Tabbing backward from text input: normal browser behavior
+						$.noop();
+					} else {
+						// Tabbing forward from text input: just focus the calendar
+						this.calendar.$element.focus();
+						return false;
+					}
+				}
+			}.bind( this ) );
+			this.calendar.$element.on( 'keydown', function ( e ) {
+				if ( e.which === OO.ui.Keys.TAB ) {
+					if ( e.shiftKey ) {
+						// Tabbing backward from calendar: just focus the text input
+						this.textInput.$input.focus();
+						return false;
+					} else {
+						// Tabbing forward from calendar: focus the text input, then allow normal browser
+						// behavior to move focus to next focusable after it
+						this.textInput.$input.focus();
+					}
+				}
+			}.bind( this ) );
+		}
+
 		// Set handle label and hide stuff
 		this.updateUI();
 		this.deactivate();
@@ -261,7 +302,11 @@
 		setTimeout( function () {
 			var $focussed = $( ':focus' );
 			// Deactivate unless the focus moved to something else inside this widget
-			if ( !OO.ui.contains( widget.$element[ 0 ], $focussed[ 0 ], true ) ) {
+			if (
+				!OO.ui.contains( widget.$element[ 0 ], $focussed[ 0 ], true ) &&
+				// Calendar might be in an $overlay
+				!OO.ui.contains( widget.calendar.$element[ 0 ], $focussed[ 0 ], true )
+			) {
 				widget.deactivate();
 			}
 		}, 0 );

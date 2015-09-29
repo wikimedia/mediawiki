@@ -15,6 +15,7 @@
 	 * @class
 	 * @extends OO.ui.Widget
 	 * @mixins OO.ui.mixin.TabIndexedElement
+	 * @mixins OO.ui.mixin.FloatableElement
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
@@ -32,6 +33,7 @@
 
 		// Mixin constructors
 		OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$element } ) );
+		OO.ui.mixin.FloatableElement.call( this, config );
 
 		// Properties
 		this.precision = config.precision || 'day';
@@ -98,6 +100,7 @@
 
 	OO.inheritClass( mw.widgets.CalendarWidget, OO.ui.Widget );
 	OO.mixinClass( mw.widgets.CalendarWidget, OO.ui.mixin.TabIndexedElement );
+	OO.mixinClass( mw.widgets.CalendarWidget, OO.ui.mixin.FloatableElement );
 
 	/* Events */
 
@@ -535,6 +538,20 @@
 				return false;
 			}
 		}
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.CalendarWidget.prototype.toggle = function ( visible ) {
+		// Parent method
+		mw.widgets.CalendarWidget.parent.prototype.toggle.call( this, visible );
+
+		if ( this.$floatableContainer ) {
+			this.togglePositioning( this.isVisible() );
+		}
+
+		return this;
 	};
 
 }( jQuery, mediaWiki ) );
