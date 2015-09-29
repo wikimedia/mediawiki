@@ -848,12 +848,31 @@ class PPDStack {
  * @ingroup Parser
  */
 class PPDStackElement {
-	public $open,              // Opening character (\n for heading)
-		$close,             // Matching closing character
-		$count,             // Number of opening characters found (number of "=" for heading)
-		$parts,             // Array of PPDPart objects describing pipe-separated parts.
-		$lineStart;         // True if the open char appeared at the start of the input line.
-		                    // Not set for headings.
+	/**
+	 * @var string Opening character (\n for heading)
+	 */
+	public $open;
+
+	/**
+	 * @var string Matching closing character
+	 */
+	public $close;
+
+	/**
+	 * @var int Number of opening characters found (number of "=" for heading)
+	 */
+	public $count;
+
+	/**
+	 * @var PPDPart[] Array of PPDPart objects describing pipe-separated parts.
+	 */
+	public $parts;
+
+	/**
+	 * @var bool True if the open char appeared at the start of the input line.
+	 *  Not set for headings.
+	 */
+	public $lineStart;
 
 	public $partClass = 'PPDPart';
 
@@ -924,7 +943,10 @@ class PPDStackElement {
  * @ingroup Parser
  */
 class PPDPart {
-	public $out; // Output accumulator string
+	/**
+	 * @var string Output accumulator string
+	 */
+	public $out;
 
 	// Optional member variables:
 	//   eqpos        Position of equals sign in output accumulator
