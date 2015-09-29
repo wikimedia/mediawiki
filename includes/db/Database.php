@@ -323,24 +323,6 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
-	 * Set lag time in seconds for a fake slave
-	 *
-	 * @param mixed $lag Valid values for this parameter are determined by the
-	 *   subclass, but should be a PHP scalar or array that would be sensible
-	 *   as part of $wgLBFactoryConf.
-	 */
-	public function setFakeSlaveLag( $lag ) {
-	}
-
-	/**
-	 * Make this connection a fake master
-	 *
-	 * @param bool $enabled
-	 */
-	public function setFakeMaster( $enabled = true ) {
-	}
-
-	/**
 	 * @return TransactionProfiler
 	 */
 	protected function getTransactionProfiler() {
