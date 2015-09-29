@@ -1190,6 +1190,7 @@ return array(
 			'mediawiki.ForeignStructuredUpload',
 			'mediawiki.Upload.BookletLayout',
 			'mediawiki.widgets',
+			'mediawiki.widgets.DateInputWidget',
 			'mediawiki.jqueryMsg',
 		),
 		'messages' => array(
