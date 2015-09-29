@@ -24,7 +24,7 @@
  * Multi-datacenter aware caching interface
  *
  * All operations go to the local datacenter cache, except for delete(),
- * touchCheckKey(), and resetCheckKey(), which broadcast to all clusters.
+ * touchCheckKey(), and resetCheckKey(), which broadcast to all datacenters.
  *
  * This class is intended for caching data from primary stores.
  * If the get() method does not return a value, then the caller
@@ -41,9 +41,9 @@
  * that subscribe to the endpoint and update the caches.
  *
  * Broadcasted operations like delete() and touchCheckKey() are done
- * synchronously in the local cluster, but are relayed asynchronously.
+ * synchronously in the local datacenter, but are relayed asynchronously.
  * This means that callers in other datacenters will see older values
- * for a however many milliseconds the datacenters are apart. As with
+ * for however many milliseconds the datacenters are apart. As with
  * any cache, this should not be relied on for cases where reads are
  * used to determine writes to source (e.g. non-cache) data stores.
  *
@@ -58,7 +58,7 @@
  * @since 1.26
  */
 class WANObjectCache {
-	/** @var BagOStuff The local cluster cache */
+	/** @var BagOStuff The local datacenter cache */
 	protected $cache;
 	/** @var string Cache pool name */
 	protected $pool;
@@ -165,7 +165,8 @@ class WANObjectCache {
 	 * isolation can largely be maintained by doing the following:
 	 *   - a) Calling delete() on entity change *and* creation, before DB commit
 	 *   - b) Keeping transaction duration shorter than delete() hold-off TTL
-	 * However, pre-snapshot values might still be seen due to delete() relay lag.
+	 * However, pre-snapshot values might still be seen if an update was made
+	 * in a remote datacenter but the purge from delete() didn't relay yet.
 	 *
 	 * Consider using getWithSetCallback() instead of get()/set() cycles.
 	 * That method has cache slam avoiding features for hot/expensive keys.
@@ -316,7 +317,7 @@ class WANObjectCache {
 	}
 
 	/**
-	 * Purge a key from all clusters
+	 * Purge a key from all datacenters
 	 *
 	 * This should only be called when the underlying data (being cached)
 	 * changes in a significant way. This deletes the key and starts a hold-off
@@ -371,9 +372,9 @@ class WANObjectCache {
 		$key = self::VALUE_KEY_PREFIX . $key;
 		// Avoid indefinite key salting for sanity
 		$ttl = max( $ttl, 1 );
-		// Update the local cluster immediately
+		// Update the local datacenter immediately
 		$ok = $this->cache->set( $key, self::PURGE_VAL_PREFIX . microtime( true ), $ttl );
-		// Publish the purge to all clusters
+		// Publish the purge to all datacenters
 		return $this->relayPurge( $key, $ttl ) && $ok;
 	}
 
@@ -411,7 +412,7 @@ class WANObjectCache {
 	}
 
 	/**
-	 * Purge a "check" key from all clusters, invalidating keys that use it
+	 * Purge a "check" key from all datacenters, invalidating keys that use it
 	 *
 	 * This should only be called when the underlying data (being cached)
 	 * changes in a significant way, and it is impractical to call delete()
@@ -439,15 +440,15 @@ class WANObjectCache {
 	 */
 	final public function touchCheckKey( $key ) {
 		$key = self::TIME_KEY_PREFIX . $key;
-		// Update the local cluster immediately
+		// Update the local datacenter immediately
 		$ok = $this->cache->set( $key,
 			self::PURGE_VAL_PREFIX . microtime( true ), self::CHECK_KEY_TTL );
-		// Publish the purge to all clusters
+		// Publish the purge to all datacenters
 		return $this->relayPurge( $key, self::CHECK_KEY_TTL ) && $ok;
 	}
 
 	/**
-	 * Delete a "check" key from all clusters, invalidating keys that use it
+	 * Delete a "check" key from all datacenters, invalidating keys that use it
 	 *
 	 * This is similar to touchCheckKey() in that keys using it via
 	 * getWithSetCallback() will be invalidated. The differences are:
@@ -473,9 +474,9 @@ class WANObjectCache {
 	 */
 	final public function resetCheckKey( $key ) {
 		$key = self::TIME_KEY_PREFIX . $key;
-		// Update the local cluster immediately
+		// Update the local datacenter immediately
 		$ok = $this->cache->delete( $key );
-		// Publish the purge to all clusters
+		// Publish the purge to all datacenters
 		return $this->relayDelete( $key ) && $ok;
 	}
 
@@ -522,7 +523,7 @@ class WANObjectCache {
 	 *         return $row;
 	 *     };
 	 *     // Get the key value from cache or from source on cache miss;
-	 *     // try to only let one cluster thread manage doing cache updates
+	 *     // try to only let one datacenter thread manage doing cache updates
 	 *     $opts = array( 'lockTSE' => 5, 'lowTTL' => 10 );
 	 *     $value = $cache->getWithSetCallback( $key, $callback, 60, array(), $opts );
 	 * @endcode
@@ -540,7 +541,7 @@ class WANObjectCache {
 	 *     // Function that derives the new key value
 	 *     $callback = function() { ... };
 	 *     // Get the key value from cache or from source on cache miss;
-	 *     // try to only let one cluster thread manage doing cache updates
+	 *     // try to only let one datacenter thread manage doing cache updates
 	 *     $opts = array( 'lockTSE' => 5, 'lowTTL' => 10 );
 	 *     $value = $cache->getWithSetCallback( $key, $callback, 60, $checkKeys, $opts );
 	 * @endcode
@@ -599,7 +600,7 @@ class WANObjectCache {
 
 		$lockAcquired = false;
 		if ( $useMutex ) {
-			// Acquire a cluster-local non-blocking lock
+			// Acquire a datacenter-local non-blocking lock
 			if ( $this->cache->lock( $key, 0, self::LOCK_TTL ) ) {
 				// Lock acquired; this thread should update the key
 				$lockAcquired = true;
