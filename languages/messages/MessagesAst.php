@@ -8,6 +8,8 @@
  *
  */
 
+$fallback = 'es';
+
 $namespaceNames = array(
 	NS_MEDIA            => 'Medios',
 	NS_SPECIAL          => 'Especial',
@@ -44,6 +46,11 @@ $namespaceAliases = array(
 	'Aida'                => NS_HELP,
 	'Aida_alderique'      => NS_HELP_TALK,
 	'Categoría_discusión' => NS_CATEGORY_TALK,
+);
+
+$namespaceGenderAliases = array(
+	NS_USER => array( 'male' => 'Usuariu', 'female' => 'Usuaria' ),
+	NS_USER_TALK => array( 'male' => 'Usuariu_alderique', 'female' => 'Usuaria_alderique' ),
 );
 
 $specialPageAliases = array(
