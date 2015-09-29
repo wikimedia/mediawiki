@@ -1,3 +1,11 @@
+/*
+ * Local backports:
+ *
+ * - d190bc51e60195eed81f147e9324c9ec21c9e68c
+ *   FloatableElement: Don't try unbinding events before we bind them
+ *   Required for mw.widgets.DateInputWidget when used with '$overlay' config option.
+ */
+
 /*!
  * OOjs UI v0.12.9
  * https://www.mediawiki.org/wiki/OOjs_UI
@@ -6933,8 +6941,10 @@ OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positionin
 			// Initial position after visible
 			this.position();
 		} else {
-			this.$floatableWindow.off( 'resize', this.onFloatableWindowResizeHandler );
-			this.$floatableWindow = null;
+			if ( this.$floatableWindow ) {
+				this.$floatableWindow.off( 'resize', this.onFloatableWindowResizeHandler );
+				this.$floatableWindow = null;
+			}
 
 			if ( this.$floatableClosestScrollable ) {
 				this.$floatableClosestScrollable.off( 'scroll', this.onFloatableScrollHandler );
