@@ -33,11 +33,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/** @var MysqlMasterPos */
 	protected $lastKnownSlavePos;
 
-	/** @var null|int */
-	protected $mFakeSlaveLag = null;
-
-	protected $mFakeMaster = false;
-
 	/** @var string|null */
 	private $serverVersion = null;
 
@@ -602,24 +597,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	abstract protected function mysqlPing();
 
 	/**
-	 * Set lag time in seconds for a fake slave
-	 *
-	 * @param int $lag
-	 */
-	public function setFakeSlaveLag( $lag ) {
-		$this->mFakeSlaveLag = $lag;
-	}
-
-	/**
-	 * Make this connection a fake master
-	 *
-	 * @param bool $enabled
-	 */
-	public function setFakeMaster( $enabled = true ) {
-		$this->mFakeMaster = $enabled;
-	}
-
-	/**
 	 * Returns slave lag.
 	 *
 	 * This will do a SHOW SLAVE STATUS
@@ -627,12 +604,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @return int
 	 */
 	function getLag() {
-		if ( !is_null( $this->mFakeSlaveLag ) ) {
-			wfDebug( "getLag: fake slave lagged {$this->mFakeSlaveLag} seconds\n" );
-
-			return $this->mFakeSlaveLag;
-		}
-
 		return $this->getLagFromSlaveStatus();
 	}
 
@@ -673,25 +644,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		# Commit any open transactions
 		$this->commit( __METHOD__, 'flush' );
 
-		if ( !is_null( $this->mFakeSlaveLag ) ) {
-			$wait = intval( ( $pos->pos - microtime( true ) + $this->mFakeSlaveLag ) * 1e6 );
-
-			if ( $wait > $timeout * 1e6 ) {
-				wfDebug( "Fake slave timed out waiting for $pos ($wait us)\n" );
-
-				return -1;
-			} elseif ( $wait > 0 ) {
-				wfDebug( "Fake slave waiting $wait us\n" );
-				usleep( $wait );
-
-				return 1;
-			} else {
-				wfDebug( "Fake slave up to date ($wait us)\n" );
-
-				return 0;
-			}
-		}
-
 		# Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
 		$encFile = $this->addQuotes( $pos->file );
 		$encPos = intval( $pos->pos );
@@ -715,13 +667,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @return MySQLMasterPos|bool
 	 */
 	function getSlavePos() {
-		if ( !is_null( $this->mFakeSlaveLag ) ) {
-			$pos = new MySQLMasterPos( 'fake', microtime( true ) - $this->mFakeSlaveLag );
-			wfDebug( __METHOD__ . ": fake slave pos = $pos\n" );
-
-			return $pos;
-		}
-
 		$res = $this->query( 'SHOW SLAVE STATUS', 'DatabaseBase::getSlavePos' );
 		$row = $this->fetchObject( $res );
 
@@ -742,10 +687,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 * @return MySQLMasterPos|bool
 	 */
 	function getMasterPos() {
-		if ( $this->mFakeMaster ) {
-			return new MySQLMasterPos( 'fake', microtime( true ) );
-		}
-
 		$res = $this->query( 'SHOW MASTER STATUS', 'DatabaseBase::getMasterPos' );
 		$row = $this->fetchObject( $res );
 
