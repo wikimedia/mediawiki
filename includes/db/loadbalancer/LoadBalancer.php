@@ -250,6 +250,7 @@ class LoadBalancer {
 
 		# No server found yet
 		$i = false;
+		$conn = false;
 		# First try quickly looking through the available servers for a server that
 		# meets our criteria
 		$currentLoads = $nonErrorLoads;
