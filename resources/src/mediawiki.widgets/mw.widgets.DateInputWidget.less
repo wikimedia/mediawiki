@@ -66,26 +66,16 @@
 		padding-left: 1em;
 	}
 
-	> .mw-widget-calendarWidget {
-		background-color: white;
+	> .oo-ui-textInputWidget {
+		z-index: 2;
 	}
 
-	&-active > .mw-widget-calendarWidget {
+	> .mw-widget-calendarWidget {
+		background-color: white;
 		margin-top: -2px;
-		// Immitate focussed input styles
-		// First shadow generates bottom and right "border", second shadow generates bottom and left,
-		// resulting in no "border" at the top. Note that this generates a 2px-wide "border", not 1px.
-		// It makes sense when you think about it long enough and look up what each value means. Enjoy.
-		// (This is symmetrical anyway, and CSSJanus can't flip it correctly. T62805)
-		/* @noflip */
-		box-shadow: inset -1px -1px 0 1px #347bff, inset 1px -1px 0 1px #347bff;
-		border-top: 1px solid #ccc;
 
 		&:focus {
-			outline: none;
-			// Add border at the top on focus
-			margin-top: -3px;
-			border-top: 2px solid #347bff;
+			z-index: 3;
 		}
 	}
 
