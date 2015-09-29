@@ -45,16 +45,6 @@ class ApiRollback extends ApiBase {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
-		// WikiPage::doRollback needs a Web UI token, so get one of those if we
-		// validated based on an API rollback token.
-		$token = $params['token'];
-		if ( $user->matchEditToken( $token, 'rollback', $this->getRequest() ) ) {
-			$token = $this->getUser()->getEditToken(
-				$this->getWebUITokenSalt( $params ),
-				$this->getRequest()
-			);
-		}
-
 		$titleObj = $this->getRbTitle( $params );
 		$pageObj = WikiPage::factory( $titleObj );
 		$summary = $params['summary'];
@@ -62,7 +52,7 @@ class ApiRollback extends ApiBase {
 		$retval = $pageObj->doRollback(
 			$this->getRbUser( $params ),
 			$summary,
-			$token,
+			$params['token'],
 			$params['markbot'],
 			$details,
 			$user
@@ -131,13 +121,6 @@ class ApiRollback extends ApiBase {
 
 	public function needsToken() {
 		return 'rollback';
-	}
-
-	protected function getWebUITokenSalt( array $params ) {
-		return array(
-			$this->getRbTitle( $params )->getPrefixedText(),
-			$this->getRbUser( $params )
-		);
 	}
 
 	/**

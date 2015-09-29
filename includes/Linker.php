@@ -1957,10 +1957,6 @@ class Linker {
 		$query = array(
 			'action' => 'rollback',
 			'from' => $rev->getUserText(),
-			'token' => $context->getUser()->getEditToken( array(
-				$title->getPrefixedText(),
-				$rev->getUserText()
-			) ),
 		);
 		if ( $context->getRequest()->getBool( 'bot' ) ) {
 			$query['bot'] = '1';
