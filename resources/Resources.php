@@ -1934,8 +1934,6 @@ return array(
 			'jquery.byteLimit',
 			// TitleOptionWidget
 			'jquery.autoEllipsis',
-			// For backwards-compatibility
-			'mediawiki.widgets.DateInputWidget',
 		),
 		'messages' => array(
 			// NamespaceInputWidget
