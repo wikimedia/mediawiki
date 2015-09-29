@@ -1,3 +1,11 @@
+/*
+ * Local backports:
+ *
+ * - 4fbbc737c86b500c11bbb471ec1001c50ab8853c
+ *   SelectFileWidget: Use i18n string for button label
+ *   We totally forgot to use a localisation message we carefully introduced.
+ */
+
 /*!
  * OOjs UI v0.13.3
  * https://www.mediawiki.org/wiki/OOjs_UI
@@ -14234,7 +14242,7 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 
 	this.selectButton = new OO.ui.ButtonWidget( {
 		classes: [ 'oo-ui-selectFileWidget-selectButton' ],
-		label: 'Select a file',
+		label: OO.ui.msg( 'ooui-selectfile-button-select' ),
 		disabled: this.disabled || !this.isSupported
 	} );
 
