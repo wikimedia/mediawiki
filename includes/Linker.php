@@ -1838,7 +1838,9 @@ class Linker {
 	 * work if $wgShowRollbackEditCount is disabled, so this can only function
 	 * as an additional check.
 	 *
-	 * If the option noBrackets is set the rollback link wont be enclosed in []
+	 * If the option noBrackets is set the rollback link wont be enclosed in "[]".
+	 *
+	 * See the "mediawiki.page.rollback" module for the client-side handling of this link.
 	 *
 	 * @param Revision $rev
 	 * @param IContextSource $context Context to use or null for the main context.
@@ -1865,6 +1867,8 @@ class Linker {
 		if ( !in_array( 'noBrackets', $options ) ) {
 			$inner = $context->msg( 'brackets' )->rawParams( $inner )->escaped();
 		}
+
+		$context->getOutput()->addModules( 'mediawiki.page.rollback' );
 
 		return '<span class="mw-rollback-link">' . $inner . '</span>';
 	}
@@ -1959,11 +1963,13 @@ class Linker {
 		$query = array(
 			'action' => 'rollback',
 			'from' => $rev->getUserText(),
-			'token' => $context->getUser()->getEditToken( array(
-				$title->getPrefixedText(),
-				$rev->getUserText()
-			) ),
 		);
+		$attrs = array(
+			'data-mw' => 'interface',
+			'title' => $context->msg( 'tooltip-rollback' )->text(),
+		);
+		$options = array( 'known', 'noclasses' );
+
 		if ( $context->getRequest()->getBool( 'bot' ) ) {
 			$query['bot'] = '1';
 			$query['hidediff'] = '1'; // bug 15999
@@ -1988,27 +1994,16 @@ class Linker {
 			}
 
 			if ( $editCount > $wgShowRollbackEditCount ) {
-				$editCount_output = $context->msg( 'rollbacklinkcount-morethan' )
+				$html = $context->msg( 'rollbacklinkcount-morethan' )
 					->numParams( $wgShowRollbackEditCount )->parse();
 			} else {
-				$editCount_output = $context->msg( 'rollbacklinkcount' )->numParams( $editCount )->parse();
+				$html = $context->msg( 'rollbacklinkcount' )->numParams( $editCount )->parse();
 			}
 
-			return self::link(
-				$title,
-				$editCount_output,
-				array( 'title' => $context->msg( 'tooltip-rollback' )->text() ),
-				$query,
-				array( 'known', 'noclasses' )
-			);
+			return self::link( $title, $html, $attrs, $query, $options );
 		} else {
-			return self::link(
-				$title,
-				$context->msg( 'rollbacklink' )->escaped(),
-				array( 'title' => $context->msg( 'tooltip-rollback' )->text() ),
-				$query,
-				array( 'known', 'noclasses' )
-			);
+			$html = $context->msg( 'rollbacklink' )->escaped();
+			return self::link( $title, $html, $attrs, $query, $options );
 		}
 	}
 
