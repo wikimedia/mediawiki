@@ -44,14 +44,6 @@ class PurgeAction extends FormAction {
 		return '';
 	}
 
-	/**
-	 * Just get an empty form with a single submit button
-	 * @return array
-	 */
-	protected function getFormFields() {
-		return array();
-	}
-
 	public function onSubmit( $data ) {
 		return $this->page->doPurge();
 	}
