@@ -53,7 +53,6 @@
 			// applies to direct calls to jqueryMsg. The default for mediawiki.js itself
 			// is 'text', including when it uses jqueryMsg.
 			format: 'parse'
-
 		};
 
 	/**
@@ -142,9 +141,7 @@
 	 * @param {Object} data
 	 */
 	mw.jqueryMsg.setParserDefaults = function ( data ) {
-		if ( data.allowedHtmlElements ) {
-			parserDefaults.allowedHtmlElements = data.allowedHtmlElements;
-		}
+		$.extend( parserDefaults, data );
 	};
 
 	/**
