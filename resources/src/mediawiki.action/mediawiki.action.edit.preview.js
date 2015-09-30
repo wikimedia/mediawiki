@@ -94,7 +94,7 @@
 			postData.onlypst = true;
 			request = api.post( postData );
 			request.done( function ( response ) {
-				return api.post( {
+				api.post( {
 					action: 'query',
 					indexpageids: true,
 					prop: 'revisions',
