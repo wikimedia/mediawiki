@@ -1269,6 +1269,7 @@ class XMPReader implements LoggerAwareInterface {
 		}
 	}
 
+	// @codingStandardsIgnoreStart Generic.Files.LineLength
 	/**
 	 * Process attributes.
 	 * Simple values can be stored as either a tag or attribute
@@ -1276,16 +1277,15 @@ class XMPReader implements LoggerAwareInterface {
 	 * Often the initial "<rdf:Description>" tag just has all the simple
 	 * properties as attributes.
 	 *
-	 * @codingStandardsIgnoreStart Long line that cannot be broken
 	 * @par Example:
 	 * @code
 	 * <rdf:Description rdf:about="" xmlns:exif="http://ns.adobe.com/exif/1.0/" exif:DigitalZoomRatio="0/10">
 	 * @endcode
-	 * @codingStandardsIgnoreEnd
 	 *
 	 * @param array $attribs Array attribute=>value
 	 * @throws RuntimeException
 	 */
+	// @codingStandardsIgnoreEnd
 	private function doAttribs( $attribs ) {
 		// first check for rdf:parseType attribute, as that can change
 		// how the attributes are interperted.
