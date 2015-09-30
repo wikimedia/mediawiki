@@ -4007,6 +4007,14 @@ $wgParserConf = array(
 );
 
 /**
+ * Class name of a parser that implements ContentParserInterface to use for rendering wikitext content.
+ * This config variable can be used to redefine the wikitext language for your wiki.
+ */
+$wgWikitextContentParserConf = array(
+	'class' => 'Parser',
+);
+
+/**
  * Maximum indent level of toc.
  */
 $wgMaxTocLevel = 999;

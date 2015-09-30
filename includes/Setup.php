@@ -671,6 +671,12 @@ $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
  */
 $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
+/**
+ * @var ParserInterface $wgWikitextContentParser
+ */
+$wgWikitextContentParser = new StubObject( 'wgWikitextContentParser',
+	$wgWikitextContentParserConf['class'], array( $wgWikitextContentParserConf ) );
+
 if ( !is_object( $wgAuth ) ) {
 	$wgAuth = new AuthPlugin;
 	Hooks::run( 'AuthPluginSetup', array( &$wgAuth ) );
