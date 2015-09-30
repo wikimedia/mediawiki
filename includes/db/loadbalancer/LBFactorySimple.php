@@ -44,8 +44,13 @@ class LBFactorySimple extends LBFactory {
 	 */
 	public function newMainLB( $wiki = false ) {
 		global $wgDBservers;
-		if ( $wgDBservers ) {
+
+		if ( is_array( $wgDBservers ) ) {
 			$servers = $wgDBservers;
+			$servers[0]['master'] = true;
+			for ( $i = 1; $i < count( $servers ); ++$i ) {
+				$servers[$i]['slave'] = true;
+			}
 		} else {
 			global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgDebugDumpSql;
 			global $wgDBssl, $wgDBcompress;
@@ -68,7 +73,8 @@ class LBFactorySimple extends LBFactory {
 				'dbname' => $wgDBname,
 				'type' => $wgDBtype,
 				'load' => 1,
-				'flags' => $flags
+				'flags' => $flags,
+				'master' => true
 			) );
 		}
 

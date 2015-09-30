@@ -57,4 +57,92 @@ class LBFactoryTest extends MediaWikiTestCase {
 			array( 'LBFactoryFake', 'LBFactory_Fake' ),
 		);
 	}
+
+	public function testLBFactorySimpleServer() {
+		$this->setMwGlobals( 'wgDBservers', false );
+
+		$factory = new LBFactorySimple( array() );
+		$lb = $factory->getMainLB();
+
+		$dbw = $lb->getConnection( DB_MASTER );
+		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
+
+		$dbr = $lb->getConnection( DB_SLAVE );
+		$this->assertTrue( $dbr->getLBInfo( 'master' ), 'DB_SLAVE also gets the master' );
+
+		$factory->shutdown();
+		$lb->closeAll();
+	}
+
+	public function testLBFactorySimpleServers() {
+		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
+
+		$this->setMwGlobals( 'wgDBservers', array(
+			array( // master
+				'host'		=> $wgDBserver,
+				'dbname'    => $wgDBname,
+				'user'		=> $wgDBuser,
+				'password'	=> $wgDBpassword,
+				'type'		=> $wgDBtype,
+				'load'      => 0,
+				'flags'     => DBO_TRX // REPEATABLE-READ for consistency
+			),
+			array( // emulated slave
+				'host'		=> $wgDBserver,
+				'dbname'    => $wgDBname,
+				'user'		=> $wgDBuser,
+				'password'	=> $wgDBpassword,
+				'type'		=> $wgDBtype,
+				'load'      => 100,
+				'flags'     => DBO_TRX // REPEATABLE-READ for consistency
+			)
+		) );
+
+		$factory = new LBFactorySimple( array() );
+		$lb = $factory->getMainLB();
+
+		$dbw = $lb->getConnection( DB_MASTER );
+		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
+
+		$dbr = $lb->getConnection( DB_SLAVE );
+		$this->assertTrue( $dbr->getLBInfo( 'slave' ), 'slave shows as slave' );
+
+		$factory->shutdown();
+		$lb->closeAll();
+	}
+
+	public function testLBFactoryMulti() {
+		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
+
+		$factory = new LBFactoryMulti( array(
+			'sectionsByDB' => array(),
+			'sectionLoads' => array(
+				'DEFAULT' => array(
+					'test-db1' => 0,
+					'test-db2' => 100,
+				),
+			),
+			'serverTemplate' => array(
+				'dbname'	  => $wgDBname,
+				'user'		  => $wgDBuser,
+				'password'	  => $wgDBpassword,
+				'type'		  => $wgDBtype,
+				'flags'		  => DBO_DEFAULT
+			),
+			'hostsByName' => array(
+				'test-db1'  => $wgDBserver,
+				'test-db2'  => $wgDBserver
+			),
+		) );
+		$lb = $factory->getMainLB();
+
+		$dbw = $lb->getConnection( DB_MASTER );
+		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
+
+		$dbr = $lb->getConnection( DB_SLAVE );
+		$this->assertTrue( $dbr->getLBInfo( 'slave' ), 'slave shows as slave' );
+
+		$factory->shutdown();
+		$lb->closeAll();
+	}
 }
