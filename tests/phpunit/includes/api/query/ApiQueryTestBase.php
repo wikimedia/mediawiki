@@ -100,10 +100,6 @@ STR;
 		if ( !array_key_exists( 'action', $req ) ) {
 			$req['action'] = 'query';
 		}
-		// Silence warning
-		if ( !isset( $params['continue'] ) ) {
-			$params['continue'] = '';
-		}
 		foreach ( $req as &$val ) {
 			if ( is_array( $val ) ) {
 				$val = implode( '|', array_unique( $val ) );

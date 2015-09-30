@@ -57,10 +57,6 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 		} else {
 			$params['action'] = 'query';
 		}
-		// Silence warning
-		if ( !isset( $params['continue'] ) ) {
-			$params['continue'] = '';
-		}
 		$count = 0;
 		$result = array();
 		$continue = array();
