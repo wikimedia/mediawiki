@@ -102,7 +102,7 @@
 		 * - You must pass a HTMLInputElement and not a File for it to be possible
 		 *
 		 * @param {HTMLInputElement|File} file HTML input type=file element with a file already inside
-		 *     of it, or a File object.
+		 *  of it, or a File object.
 		 * @param {Object} data Other upload options, see action=upload API docs for more
 		 * @return {jQuery.Promise}
 		 */
