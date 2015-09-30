@@ -41,6 +41,12 @@ production.
 * $wgCdnMaxageLagged was added, which limits the CDN cache TTL
   when any load balancer uses a DB that is lagged beyond the 'max lag'
   setting in the relevant section of $wgLBFactoryConf.
+* Added several JavaScript libraries for uploading files to MediaWiki
+  from the client-side. See documentation for mw.Upload and its
+  subclasses for more information.
+* Added OOUI dialogs and layout for file upload interfaces. See
+  documentation for mw.Upload.Dialog, mw.Upload.BookletLayout and its
+  subclasses for more information.
 
 ==== External libraries ====
 
