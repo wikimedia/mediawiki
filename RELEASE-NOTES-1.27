@@ -19,6 +19,12 @@ production.
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
   basic configuration settings needed for multi-datacenter setups.
   $wgDataCenterUpdateStickTTL was also added.
+* Added several JavaScript libraries for uploading files to MediaWiki
+  from the client-side. See documentation for mw.Upload and its
+  subclasses for more information.
+* Added OOUI dialogs and layout for file upload interfaces. See
+  documentation for mw.Upload.Dialog, mw.Upload.BookletLayout and its
+  subclasses for more information.
 
 ==== External libraries ====
 
