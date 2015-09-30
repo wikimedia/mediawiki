@@ -29,9 +29,6 @@
  * @ingroup FileRepo
  */
 class LocalRepo extends FileRepo {
-	/** @var bool */
-	protected $hasSha1Storage = false;
-
 	/** @var array */
 	protected $fileFactory = array( 'LocalFile', 'newFromTitle' );
 
