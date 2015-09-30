@@ -315,7 +315,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				'infusable' => true,
 			) ),
 			array(
-				'label' => $this->msg( 'move-new-title' )->text(),
+				'label' => $this->msg( 'newtitle' )->text(),
 				'align' => 'top',
 			)
 		);

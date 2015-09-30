@@ -2282,7 +2282,7 @@
 	"cant-move-to-user-page": "You do not have permission to move a page to a user page (except to a user subpage).",
 	"cant-move-category-page": "You do not have permission to move category pages.",
 	"cant-move-to-category-page": "You do not have permission to move a page to a category page.",
-	"move-new-title": "New title:",
+	"newtitle": "New title:",
 	"move-watch": "Watch source page and target page",
 	"movepagebtn": "Move page",
 	"pagemovedsub": "Move succeeded",
