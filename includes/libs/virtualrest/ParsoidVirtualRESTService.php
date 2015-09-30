@@ -31,7 +31,7 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 	 *   * body: array( 'html' => ... )
 	 *   * $title and $revision are optional
 	 *  POST /local/v3/transform/wikitext/to/html/{$title}{/$revision}
-	 *   * body: array( 'wikitext' => ... ) or array( 'wikitext' => ..., 'bodyOnly' => true/false )
+	 *   * body: array( 'wikitext' => ... ) or array( 'wikitext' => ..., 'body_only' => true/false )
 	 *   * $title is optional
 	 *   * $revision is optional
 	 *
@@ -202,7 +202,7 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 					throw new Exception( "You must set a 'wikitext' body key for this request" );
 				}
 				if ( isset( $req['body']['body'] ) ) {
-					$req['body']['bodyOnly'] = $req['body']['body'];
+					$req['body']['body_only'] = $req['body']['body'];
 					unset( $req['body']['body'] );
 				}
 			} else {
