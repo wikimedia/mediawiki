@@ -229,7 +229,7 @@ def translate( text, conv_table ):
 
 def manualWordsTable( path, conv_table, reconv_table ):
     fp = open( path, 'r', encoding = 'U8' )
-    reconv_table = {}
+    out_table = {}
     wordlist = [line.split( '#' )[0].strip() for line in fp]
     wordlist = list( set( wordlist ) )
     wordlist.sort( key = lambda w: ( len(w), w ), reverse = True )
@@ -238,9 +238,9 @@ def manualWordsTable( path, conv_table, reconv_table ):
         new_word = translate( word, conv_table )
         rcv_word = translate( word, reconv_table )
         if word != rcv_word:
-            reconv_table[word] = word
-        reconv_table[new_word] = word
-    return reconv_table
+            out_table[word] = word
+        out_table[new_word] = word
+    return out_table
 
 def defaultWordsTable( src_wordlist, src_tomany, char_conv_table, char_reconv_table ):
     wordlist = list( src_wordlist )
