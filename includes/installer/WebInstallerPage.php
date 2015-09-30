@@ -1127,6 +1127,28 @@ class WebInstallerOptions extends WebInstallerPage {
 			$this->getFieldSetEnd()
 		);
 
+		// We'll hide/show this on demand when the value changes, see config.js.
+		$capitalLinksValue = $this->getVar( 'wgCapitalLinks' );
+		if ( !$capitalLinksValue ) {
+			// We need to set a default here; but don't hardcode it
+			// or we lose it every time we reload the page for validation
+			// or going back!
+			$capitalLinksValue = 'standard';
+		}
+		$this->addHTML(
+			# Letter case for page titles
+			$this->getFieldSetStart( 'config-page-titles' ) .
+			$this->parent->getInfoBox( wfMessage( 'config-page-titles-intro' )->plain() ) .
+			$this->parent->getRadioSet( array(
+				'var' => 'wgCapitalLinks',
+				'label' => 'config-page-titles-choose',
+				'itemLabelPrefix' => 'config-page-titles-',
+				'values' => array( 'standard', 'other' ),
+				'value' => $capitalLinksValue,
+			) ) .
+			$this->parent->getHelpBox( 'config-page-titles-help' ) .
+			$this->getFieldSetEnd()
+		);
 		$caches = array( 'none' );
 		if ( count( $this->getVar( '_Caches' ) ) ) {
 			$caches[] = 'accel';
@@ -1288,7 +1310,7 @@ class WebInstallerOptions extends WebInstallerPage {
 		$this->parent->setVarsFromRequest( array( '_RightsProfile', '_LicenseCode',
 			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUploads', 'wgLogo',
 			'wgEnableUserEmail', 'wgEnotifUserTalk', 'wgEnotifWatchlist',
-			'wgEmailAuthentication', 'wgMainCacheType', '_MemCachedServers',
+			'wgEmailAuthentication', 'wgCapitalLinks', 'wgMainCacheType', '_MemCachedServers',
 			'wgUseInstantCommons', 'wgDefaultSkin' ) );
 
 		$retVal = true;
