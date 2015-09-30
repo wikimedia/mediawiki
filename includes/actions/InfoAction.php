@@ -28,7 +28,7 @@
  * @ingroup Actions
  */
 class InfoAction extends FormlessAction {
-	const CACHE_VERSION = '2013-03-17';
+	const VERSION = 1;
 
 	/**
 	 * Returns the name of the action this object responds to.
@@ -65,15 +65,13 @@ class InfoAction extends FormlessAction {
 	 * @param int|null $revid Revision id to clear
 	 */
 	public static function invalidateCache( Title $title, $revid = null ) {
-		$cache = ObjectCache::getMainWANInstance();
-
 		if ( !$revid ) {
 			$revision = Revision::newFromTitle( $title, 0, Revision::READ_LATEST );
 			$revid = $revision ? $revision->getId() : null;
 		}
 		if ( $revid !== null ) {
-			$key = wfMemcKey( 'infoaction', sha1( $title->getPrefixedText() ), $revid );
-			$cache->delete( $key );
+			$key = self::getCacheKey( $title, $revid );
+			ObjectCache::getMainWANInstance()->delete( $key );
 		}
 	}
 
@@ -205,18 +203,7 @@ class InfoAction extends FormlessAction {
 		$id = $title->getArticleID();
 		$config = $this->context->getConfig();
 
-		$cache = ObjectCache::getMainWANInstance();
-		$memcKey = wfMemcKey( 'infoaction',
-			sha1( $title->getPrefixedText() ), $this->page->getLatest() );
-		$pageCounts = $cache->get( $memcKey );
-		$version = isset( $pageCounts['cacheversion'] ) ? $pageCounts['cacheversion'] : false;
-		if ( $pageCounts === false || $version !== self::CACHE_VERSION ) {
-			// Get page information that would be too "expensive" to retrieve by normal means
-			$pageCounts = $this->pageCounts( $title );
-			$pageCounts['cacheversion'] = self::CACHE_VERSION;
-
-			$cache->set( $memcKey, $pageCounts );
-		}
+		$pageCounts = $this->pageCounts( $this->page );
 
 		// Get page properties
 		$dbr = wfGetDB( DB_SLAVE );
@@ -674,146 +661,159 @@ class InfoAction extends FormlessAction {
 	/**
 	 * Returns page counts that would be too "expensive" to retrieve by normal means.
 	 *
-	 * @param Title $title Title to get counts for
+	 * @param WikiPage|Article|Page $page
 	 * @return array
 	 */
-	protected function pageCounts( Title $title ) {
-		$id = $title->getArticleID();
+	protected function pageCounts( Page $page ) {
+		$fname = __METHOD__;
 		$config = $this->context->getConfig();
 
-		$dbrWatchlist = wfGetDB( DB_SLAVE, 'watchlist' );
-		$result = array();
+		return ObjectCache::getMainWANInstance()->getWithSetCallback(
+			self::getCacheKey( $page->getTitle(), $page->getLatest() ),
+			function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname ) {
+				$title = $page->getTitle();
+				$id = $title->getArticleID();
 
-		// Number of page watchers
-		$watchers = (int)$dbrWatchlist->selectField(
-			'watchlist',
-			'COUNT(*)',
-			array(
-				'wl_namespace' => $title->getNamespace(),
-				'wl_title' => $title->getDBkey(),
-			),
-			__METHOD__
+				$dbrWatchlist = wfGetDB( DB_SLAVE, 'watchlist' );
+				$result = array();
+
+				// Number of page watchers
+				$watchers = (int)$dbrWatchlist->selectField(
+					'watchlist',
+					'COUNT(*)',
+					array(
+						'wl_namespace' => $title->getNamespace(),
+						'wl_title' => $title->getDBkey(),
+					),
+					$fname
+				);
+				$result['watchers'] = $watchers;
+
+				if ( $config->get( 'ShowUpdatedMarker' ) ) {
+					// Threshold: last visited about 26 weeks before latest edit
+					$updated = wfTimestamp( TS_UNIX, $page->getTimestamp() );
+					$age = $config->get( 'WatchersMaxAge' );
+					$threshold = $dbrWatchlist->timestamp( $updated - $age );
+					// Number of page watchers who also visited a "recent" edit
+					$visitingWatchers = (int)$dbrWatchlist->selectField(
+						'watchlist',
+						'COUNT(*)',
+						array(
+							'wl_namespace' => $title->getNamespace(),
+							'wl_title' => $title->getDBkey(),
+							'wl_notificationtimestamp >= ' . $dbrWatchlist->addQuotes( $threshold ) .
+							' OR wl_notificationtimestamp IS NULL'
+						),
+						$fname
+					);
+					$result['visitingWatchers'] = $visitingWatchers;
+				}
+
+				$dbr = wfGetDB( DB_SLAVE );
+				// Total number of edits
+				$edits = (int)$dbr->selectField(
+					'revision',
+					'COUNT(*)',
+					array( 'rev_page' => $id ),
+					$fname
+				);
+				$result['edits'] = $edits;
+
+				// Total number of distinct authors
+				if ( $config->get( 'MiserMode' ) ) {
+					$result['authors'] = 0;
+				} else {
+					$result['authors'] = (int)$dbr->selectField(
+						'revision',
+						'COUNT(DISTINCT rev_user_text)',
+						array( 'rev_page' => $id ),
+						$fname
+					);
+				}
+
+				// "Recent" threshold defined by RCMaxAge setting
+				$threshold = $dbr->timestamp( time() - $config->get( 'RCMaxAge' ) );
+
+				// Recent number of edits
+				$edits = (int)$dbr->selectField(
+					'revision',
+					'COUNT(rev_page)',
+					array(
+						'rev_page' => $id,
+						"rev_timestamp >= " . $dbr->addQuotes( $threshold )
+					),
+					$fname
+				);
+				$result['recent_edits'] = $edits;
+
+				// Recent number of distinct authors
+				$result['recent_authors'] = (int)$dbr->selectField(
+					'revision',
+					'COUNT(DISTINCT rev_user_text)',
+					array(
+						'rev_page' => $id,
+						"rev_timestamp >= " . $dbr->addQuotes( $threshold )
+					),
+					$fname
+				);
+
+				// Subpages (if enabled)
+				if ( MWNamespace::hasSubpages( $title->getNamespace() ) ) {
+					$conds = array( 'page_namespace' => $title->getNamespace() );
+					$conds[] = 'page_title ' .
+						$dbr->buildLike( $title->getDBkey() . '/', $dbr->anyString() );
+
+					// Subpages of this page (redirects)
+					$conds['page_is_redirect'] = 1;
+					$result['subpages']['redirects'] = (int)$dbr->selectField(
+						'page',
+						'COUNT(page_id)',
+						$conds,
+						$fname
+					);
+
+					// Subpages of this page (non-redirects)
+					$conds['page_is_redirect'] = 0;
+					$result['subpages']['nonredirects'] = (int)$dbr->selectField(
+						'page',
+						'COUNT(page_id)',
+						$conds,
+						$fname
+					);
+
+					// Subpages of this page (total)
+					$result['subpages']['total'] = $result['subpages']['redirects']
+						+ $result['subpages']['nonredirects'];
+				}
+
+				// Counts for the number of transclusion links (to/from)
+				if ( $config->get( 'MiserMode' ) ) {
+					$result['transclusion']['to'] = 0;
+				} else {
+					$result['transclusion']['to'] = (int)$dbr->selectField(
+						'templatelinks',
+						'COUNT(tl_from)',
+						array(
+							'tl_namespace' => $title->getNamespace(),
+							'tl_title' => $title->getDBkey()
+						),
+						$fname
+					);
+				}
+
+				$result['transclusion']['from'] = (int)$dbr->selectField(
+					'templatelinks',
+					'COUNT(*)',
+					array( 'tl_from' => $title->getArticleID() ),
+					$fname
+				);
+
+				$setOpts = array( 'since' => $dbr->trxTimestamp() );
+
+				return $result;
+			},
+			86400 * 7
 		);
-		$result['watchers'] = $watchers;
-
-		if ( $config->get( 'ShowUpdatedMarker' ) ) {
-			// Threshold: last visited about 26 weeks before latest edit
-			$updated = wfTimestamp( TS_UNIX, $this->page->getTimestamp() );
-			$age = $config->get( 'WatchersMaxAge' );
-			$threshold = $dbrWatchlist->timestamp( $updated - $age );
-			// Number of page watchers who also visited a "recent" edit
-			$visitingWatchers = (int)$dbrWatchlist->selectField(
-				'watchlist',
-				'COUNT(*)',
-				array(
-					'wl_namespace' => $title->getNamespace(),
-					'wl_title' => $title->getDBkey(),
-					'wl_notificationtimestamp >= ' . $dbrWatchlist->addQuotes( $threshold ) .
-					' OR wl_notificationtimestamp IS NULL'
-				),
-				__METHOD__
-			);
-			$result['visitingWatchers'] = $visitingWatchers;
-		}
-
-		$dbr = wfGetDB( DB_SLAVE );
-		// Total number of edits
-		$edits = (int)$dbr->selectField(
-			'revision',
-			'COUNT(*)',
-			array( 'rev_page' => $id ),
-			__METHOD__
-		);
-		$result['edits'] = $edits;
-
-		// Total number of distinct authors
-		if ( $config->get( 'MiserMode' ) ) {
-			$result['authors'] = 0;
-		} else {
-			$result['authors'] = (int)$dbr->selectField(
-				'revision',
-				'COUNT(DISTINCT rev_user_text)',
-				array( 'rev_page' => $id ),
-				__METHOD__
-			);
-		}
-
-		// "Recent" threshold defined by RCMaxAge setting
-		$threshold = $dbr->timestamp( time() - $config->get( 'RCMaxAge' ) );
-
-		// Recent number of edits
-		$edits = (int)$dbr->selectField(
-			'revision',
-			'COUNT(rev_page)',
-			array(
-				'rev_page' => $id,
-				"rev_timestamp >= " . $dbr->addQuotes( $threshold )
-			),
-			__METHOD__
-		);
-		$result['recent_edits'] = $edits;
-
-		// Recent number of distinct authors
-		$result['recent_authors'] = (int)$dbr->selectField(
-			'revision',
-			'COUNT(DISTINCT rev_user_text)',
-			array(
-				'rev_page' => $id,
-				"rev_timestamp >= " . $dbr->addQuotes( $threshold )
-			),
-			__METHOD__
-		);
-
-		// Subpages (if enabled)
-		if ( MWNamespace::hasSubpages( $title->getNamespace() ) ) {
-			$conds = array( 'page_namespace' => $title->getNamespace() );
-			$conds[] = 'page_title ' . $dbr->buildLike( $title->getDBkey() . '/', $dbr->anyString() );
-
-			// Subpages of this page (redirects)
-			$conds['page_is_redirect'] = 1;
-			$result['subpages']['redirects'] = (int)$dbr->selectField(
-				'page',
-				'COUNT(page_id)',
-				$conds,
-				__METHOD__ );
-
-			// Subpages of this page (non-redirects)
-			$conds['page_is_redirect'] = 0;
-			$result['subpages']['nonredirects'] = (int)$dbr->selectField(
-				'page',
-				'COUNT(page_id)',
-				$conds,
-				__METHOD__
-			);
-
-			// Subpages of this page (total)
-			$result['subpages']['total'] = $result['subpages']['redirects']
-				+ $result['subpages']['nonredirects'];
-		}
-
-		// Counts for the number of transclusion links (to/from)
-		if ( $config->get( 'MiserMode' ) ) {
-			$result['transclusion']['to'] = 0;
-		} else {
-			$result['transclusion']['to'] = (int)$dbr->selectField(
-				'templatelinks',
-				'COUNT(tl_from)',
-				array(
-					'tl_namespace' => $title->getNamespace(),
-					'tl_title' => $title->getDBkey()
-				),
-				__METHOD__
-			);
-		}
-
-		$result['transclusion']['from'] = (int)$dbr->selectField(
-			'templatelinks',
-			'COUNT(*)',
-			array( 'tl_from' => $title->getArticleID() ),
-			__METHOD__
-		);
-
-		return $result;
 	}
 
 	/**
@@ -895,5 +895,14 @@ class InfoAction extends FormlessAction {
 	 */
 	protected function getDescription() {
 		return '';
+	}
+
+	/**
+	 * @param Title $title
+	 * @param int $revId
+	 * @return string
+	 */
+	protected static function getCacheKey( Title $title, $revId ) {
+		return wfMemcKey( 'infoaction', md5( $title->getPrefixedText() ), $revId, self::VERSION );
 	}
 }
