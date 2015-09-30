@@ -34,6 +34,8 @@ class WikitextContent extends TextContent {
 	private $redirectTargetAndText = null;
 
 	public function __construct( $text ) {
+		global $wgContentParserConf;
+		$this->parser = $wgContentParserConf[CONTENT_MODEL_WIKITEXT];
 		parent::__construct( $text, CONTENT_MODEL_WIKITEXT );
 	}
 
@@ -312,6 +314,15 @@ class WikitextContent extends TextContent {
 	}
 
 	/**
+	 * Return a ContentParserInterface for generating the output of the wikitext content.
+	 *
+	 * @return ContentParserInterface
+	 */
+	protected function getParser() {
+		return $this->parser;
+	}
+
+	/**
 	 * Returns a ParserOutput object resulting from parsing the content's text
 	 * using $wgParser.
 	 *
@@ -325,10 +336,8 @@ class WikitextContent extends TextContent {
 	protected function fillParserOutput( Title $title, $revId,
 			ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
-		global $wgParser;
-
 		list( $redir, $text ) = $this->getRedirectTargetAndText();
-		$output = $wgParser->parse( $text, $title, $options, true, true, $revId );
+		$output = $this->getParser()->parse( $text, $title, $options, true, true, $revId );
 
 		// Add redirect indicator at the top
 		if ( $redir ) {
