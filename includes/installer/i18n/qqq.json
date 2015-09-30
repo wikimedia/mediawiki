@@ -17,7 +17,8 @@
 			"Siebrand",
 			"Umherirrender",
 			"Waldir",
-			"Jdforrester"
+			"Jdforrester",
+			"Purodha"
 		]
 	},
 	"config-desc": "Short description of the installer.",
@@ -273,6 +274,12 @@
 	"config-cc-error": "Prompt to manually enter a license when the tool fails to match.",
 	"config-cc-again": "Prompt to re-try picking a Creative Commons license.",
 	"config-cc-not-chosen": "{{doc-important|Do not translate the \"<code>proceed</code>\" part.}}\nThis message refers to a block of HTML being embedded into the installer page. It comes from the Creative Commons Web site. The block is in the English language. It is a scripted license chooser. When an individual license has been selected, it asks you to click \"proceed\" so as to return to the MediaWiki installer page.",
+	"config-page-titles": "Group heading for the <code>[[mw:Manual:$wgCapitalLinks|$wgCapitalLinks]]</code> setting",
+	"config-page-titles-intro": "Initial note about the <code>[[mw:Manual:$wgCapitalLinks|$wgCapitalLinks]]</code> setting",
+	"config-page-titles-help": "Help text explaining the <code>[[mw:Manual:$wgCapitalLinks|$wgCapitalLinks]]</code> setting",
+	"config-page-titles-choose": "Prompt for the <code>[[mw:Manual:$wgCapitalLinks|$wgCapitalLinks]]</code> setting",
+	"config-page-titles-standard": "Label for a choice of the <code>[[mw:Manual:$wgCapitalLinks|$wgCapitalLinks]]</code> setting, this is the default",
+	"config-page-titles-other": "Label for a choice of the <code>[[mw:Manual:$wgCapitalLinks|$wgCapitalLinks]]</code> setting, the non-standard setting",
 	"config-advanced-settings": "Label for the advanced configuration settings page.",
 	"config-cache-options": "Prompt for the object caching options.",
 	"config-cache-help": "Explanation for what object caching is, next to {{msg|config-cache-options}}.",
