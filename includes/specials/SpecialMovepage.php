@@ -142,8 +142,6 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		$this->getSkin()->setRelevantTitle( $this->oldTitle );
 
-		$oldTitleLink = Linker::link( $this->oldTitle );
-
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'move-page', $this->oldTitle->getPrefixedText() ) );
 		$out->addModules( 'mediawiki.special.movePage' );
@@ -230,10 +228,6 @@ class MovePageForm extends UnlistedSpecialPage {
 			$hasRedirects = false;
 		}
 
-		if ( $considerTalk ) {
-			$out->addWikiMsg( 'movepagetalktext' );
-		}
-
 		if ( count( $err ) ) {
 			$out->addHTML( "<div class='error'>\n" );
 			$action_desc = $this->msg( 'action-move' )->plain();
@@ -303,16 +297,6 @@ class MovePageForm extends UnlistedSpecialPage {
 		$fields = array();
 
 		$fields[] = new OOUI\FieldLayout(
-			new OOUI\LabelWidget( array(
-				'label' => new OOUI\HtmlSnippet( "<strong>$oldTitleLink</strong>" )
-			) ),
-			array(
-				'label' => $this->msg( 'movearticle' )->text(),
-				'align' => 'top',
-			)
-		);
-
-		$fields[] = new OOUI\FieldLayout(
 			new MediaWiki\Widget\ComplexTitleInputWidget( array(
 				'id' => 'wpNewTitle',
 				'namespace' => array(
@@ -360,7 +344,9 @@ class MovePageForm extends UnlistedSpecialPage {
 				) ),
 				array(
 					'label' => $this->msg( 'movetalk' )->text(),
+					'help' => new OOUI\HtmlSnippet( $this->msg( 'movepagetalktext' )->parseAsBlock() ),
 					'align' => 'inline',
+					'infusable' => true,
 				)
 			);
 		}
