@@ -1067,22 +1067,6 @@ MESSAGE;
 			}
 		}
 
-		$enableFilterCache = true;
-		if ( count( $modules ) === 1 && reset( $modules ) instanceof ResourceLoaderUserTokensModule ) {
-			// If we're building the embedded user.tokens, don't cache (T84960)
-			$enableFilterCache = false;
-		}
-
-		if ( !$context->getDebug() ) {
-			if ( $context->getOnly() === 'styles' ) {
-				$out = $this->filter( 'minify-css', $out );
-			} else {
-				$out = $this->filter( 'minify-js', $out, array(
-					'cache' => $enableFilterCache
-				) );
-			}
-		}
-
 		return $out;
 	}
 
