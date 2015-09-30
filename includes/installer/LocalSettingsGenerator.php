@@ -65,6 +65,7 @@ class LocalSettingsGenerator {
 				'_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
 				'wgMetaNamespace', 'wgLogo', 'wgAuthenticationTokenVersion', 'wgPingback',
+				'wgCapitalLinks',
 			],
 			$db->getGlobalNames()
 		);
@@ -288,7 +289,10 @@ class LocalSettingsGenerator {
 			$serverSetting .= "\$wgServer = \"{$this->values['wgServer']}\";";
 		}
 
-		switch ( $this->values['_MainCacheType'] ) {
+		$this->values['wgCapitalLinks'] = ( $this->values['wgCapitalLinks'] == 'standard' )
+			? 'True' : 'False';
+
+		switch ( $this->values['wgMainCacheType'] ) {
 			case 'anything':
 			case 'db':
 			case 'memcached':
@@ -414,6 +418,10 @@ ${serverSetting}
 {$groupRights}{$noFollow}## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'vector', 'monobook':
 \$wgDefaultSkin = \"{$this->values['wgDefaultSkin']}\";
+
+## Initial letters in page titles are be mapped to upper case, if True.
+\$wgCapitalLinks = {$this->values['wgCapitalLinks']};
+
 ";
 	}
 }
