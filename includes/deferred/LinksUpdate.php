@@ -25,7 +25,7 @@
  *
  * @todo document (e.g. one-sentence top-level class description).
  */
-class LinksUpdate extends SqlDataUpdate {
+class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	// @todo make members protected, but make sure extensions don't break
 
 	/** @var int Page ID of the article linked from */
@@ -933,5 +933,17 @@ class LinksUpdate extends SqlDataUpdate {
 				__METHOD__
 			);
 		}
+	}
+
+	public function getAsJobSpecification() {
+		return array(
+			'wiki' => $this->mDb->getWikiID(),
+			'job'  => new JobSpecification(
+				'refreshLinks',
+				array( 'prioritize' => true ),
+				array( 'removeDuplicates' => true ),
+				$this->getTitle()
+			)
+		);
 	}
 }

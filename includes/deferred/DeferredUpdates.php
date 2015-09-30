@@ -45,7 +45,7 @@ interface DeferrableUpdate {
  */
 class DeferredUpdates {
 	/**
-	 * @var array Updates to be deferred until the end of the request.
+	 * @var DeferrableUpdate[] Updates to be deferred until the end of the request.
 	 */
 	private static $updates = array();
 
@@ -92,21 +92,27 @@ class DeferredUpdates {
 	 * Do any deferred updates and clear the list
 	 *
 	 * @param string $commit Set to 'commit' to commit after every update to
+	 * @param string $mode Use "enqueue" to use the job queue when possible [Default: run]
 	 *   prevent lock contention
 	 */
-	public static function doUpdates( $commit = '' ) {
+	public static function doUpdates( $commit = '', $mode = 'run' ) {
 		$updates = self::$updates;
 
 		while ( count( $updates ) ) {
 			self::clearPendingUpdates();
 
-			/** @var DeferrableUpdate $update */
 			foreach ( $updates as $update ) {
 				try {
-					$update->doUpdate();
-
-					if ( $commit === 'commit' ) {
-						wfGetLBFactory()->commitMasterChanges();
+					// Enqueue jobs if requested and possible
+					if ( $mode === 'enqueue' && $update instanceof EnqueueableDataUpdate ) {
+						$spec = $update->getAsJobSpecification();
+						JobQueueGroup::singleton( $spec['wiki'] )->push( $spec['job'] );
+					// Otherwise run them now and flush transactions if requested
+					} else {
+						$update->doUpdate();
+						if ( $commit === 'commit' ) {
+							wfGetLBFactory()->commitMasterChanges();
+						}
 					}
 				} catch ( Exception $e ) {
 					// We don't want exceptions thrown during deferred updates to
