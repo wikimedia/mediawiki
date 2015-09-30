@@ -74,6 +74,14 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		}
 	}
 
+	public function testStaleSet() {
+		$key = wfRandomString();
+		$value = wfRandomString();
+		$this->cache->set( $key, $value, 3, array( 'since' => microtime( true ) - 30 ) );
+
+		$this->assertFalse( $this->cache->get( $key ), "Stale set() value ignored" );
+	}
+
 	/**
 	 * @covers WANObjectCache::getWithSetCallback()
 	 */
