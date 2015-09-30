@@ -272,10 +272,13 @@ class JavaScriptContentTest extends TextContentTest {
 				'#REDIRECT [[Someplace]]',
 				'#REDIRECT [[Someplace]]',
 			),
+
+			// @codingStandardsIgnoreStart Generic.Files.LineLength
 			array(
 				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=MediaWiki:MonoBook.js\u0026action=raw\u0026ctype=text/javascript");',
 				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=TestUpdateRedirect_target\u0026action=raw\u0026ctype=text/javascript");'
 			)
+			// @codingStandardsIgnoreEnd
 		);
 	}
 
