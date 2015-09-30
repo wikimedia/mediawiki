@@ -110,28 +110,27 @@ class ResourceLoader implements LoggerAwareInterface {
 		$skin = $context->getSkin();
 		$lang = $context->getLanguage();
 
-		// Get file dependency information
+		// Batched version of ResourceLoaderModule::getFileDependencies
+		$vary = "$skin|$lang";
 		$res = $dbr->select( 'module_deps', array( 'md_module', 'md_deps' ), array(
 				'md_module' => $modules,
-				'md_skin' => $skin
+				'md_skin' => $vary,
 			), __METHOD__
 		);
-
-		// Set modules' dependencies
+		// Prime in-object cache values for each module
 		$modulesWithDeps = array();
 		foreach ( $res as $row ) {
 			$module = $this->getModule( $row->md_module );
 			if ( $module ) {
-				$module->setFileDependencies( $skin, FormatJson::decode( $row->md_deps, true ) );
+				$module->setFileDependencies( $context, FormatJson::decode( $row->md_deps, true ) );
 				$modulesWithDeps[] = $row->md_module;
 			}
 		}
-
 		// Register the absence of a dependency row too
 		foreach ( array_diff( $modules, $modulesWithDeps ) as $name ) {
 			$module = $this->getModule( $name );
 			if ( $module ) {
-				$this->getModule( $name )->setFileDependencies( $skin, array() );
+				$this->getModule( $name )->setFileDependencies( $context, array() );
 			}
 		}
 
