@@ -16,7 +16,8 @@
 			"아라",
 			"Kolega2357",
 			"Purodha",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Anliure con la sotliniadura",
@@ -2094,7 +2095,6 @@
 	"movepagetext": "An dovrand ël mòdul ambelessì-sota a cangerà nòm a na pàgina, tramudand-je dapress ëdcò tuta soa cronologìa anvers al nòm neuv.\nËl vej tìtol a resterà trasformà ant na ridiression che a men-a al tìtol neuv.\nAs peul agiorné an automàtich le ridiression che a men-o al tìtol original.\nSe a decid ëd nen felo, ch'a contròla le [[Special:DoubleRedirects|ridiression dobie]] o le [[Special:BrokenRedirects|ridiression ch'a men-o da gnun-e part]].\nA l'é responsàbil ëd controlé che le liure a men-o ancora andoa as pensa che a devo mné.\n\nNoté bin che la pàgina a sarà '''nen''' tramudà se a-i fussa già mai n'artìcol che a l'ha ël nòm neuv, gavà col cas che a sia na ridiression, e che a l'abia già nen na soa cronologìa.\nSòn a veul dì che, se a fèissa n'operassion nen giusta, a podrìa sempe torné a rinominé la pàgina col nòm vej, ma ant gnun cas a podrìa coaté na pàgina che a-i é già.\n\n'''ATENSION!'''\nUn cambiament dràstich e nen ëspetà parèj a podrìa dé dle gran-e dzora a na pàgina motobin visità.\nChe a varda mach dë esse pì che sigur d'avèj presente le conseguense, prima che fé che fé.",
 	"movepagetext-noredirectfixer": "Dovré ël formolari sì-sota a arnominërà na pàgina, tramudand tuta soa stòria al nòm neuv.\nËl tìtol vèj a vnirà na pàgina ëd ridiression al tìtol neuv.\nCh'as sigura ëd controlé le ridiression [[Special:DoubleRedirects|dobie]] o cole [[Special:BrokenRedirects|ch'a marcio nen]].\nA l'é responsàbil ëd fé an manera che le liure a continuo a ponté andova as pensa ch'a vado.\n\nCh'a armarca che la pàgina a sarà '''pa''' tramudà s'a-i é già na pàgina con ël tìtol neuv, gavà ch'a sia veuida o na ridiression e ch'a l'abia pa na stòria ëd modìfiche passà.\nSon a veul dì ch'a peul torna arnominé na pàgina andré da andova a l'avìa arnominala s'a fa n'eror, e ch'a peul pa coaté na pàgina esistenta.\n\n'''Avis!'''\nSossì a peul esse un cambi dràstich e pa spetà për na pàgina popolar;\npër piasì ch'as renda bin cont ëd le conseguense ëd sòn prima d'andé anans.",
 	"movepagetalktext": "La pàgina ëd discussion tacà a costa pàgina d'artìcol, se a-i é, a sarà tramudà n'automatich ansema a l'artìcol, '''gavà costi cas-sì''':\n*quand as tramuda la pàgina tra diferent spassi nominaj,\n*quand na pàgina ëd discussion nen veujda a-i é già për ël nòm neuv, ò pura\n*a l'ha desselessionà ël quadrèt ëd conferma ambelessì-sota.\n\nAnt costi cas-sì, se a chërd dë felo, a-j farà da manca dë tramudesse la pàgina ëd discussion daspërchiel, a man.",
-	"movearticle": "Cangeje nòm a l'artìcol:",
 	"moveuserpage-warning": "'''Atension:''' A sta për tramudé na pàgina d'utent. Për piasì ch'a nòta che a sarà tramudà mach la pàgina e che l'utent a sarà ''pa'' arbatjà.",
 	"movecategorypage-warning": "<strong>Atension:</strong> A l'é a brus ëd tramudé na pàgina ëd categorìa. Për piasì, ch'a ten-a da ment che mach la pàgina a sarà tramudà e che tute le pàgine ant la veja categorìa a saran <em>nen</em> tramudà an cola neuva.",
 	"movenologintext": "A venta esse n'Utent registrà e esse [[Special:UserLogin|rintrà ant ël sistema]]\npër podèj tramudé na pàgina.",
@@ -3203,7 +3203,7 @@
 	"api-error-badaccess-groups": "Chiel a peul pa carié d'archivi su costa wiki.",
 	"api-error-badtoken": "Eror antern: sìmbol pa bon.",
 	"api-error-copyuploaddisabled": "Le carie a travers ëd liure a son disabilità ansima a cost servent.",
-	"api-error-duplicate": "A-i {{PLURAL:$1|é [$2 n'àutr archivi]|son [$2 àutri archivi]}} già an sël sit col ël midem contnù.",
+	"api-error-duplicate": "A-i {{PLURAL:$1|é n'àutr archivi|son àutri archivi}} già an sël sit col ël midem contnù.",
 	"api-error-duplicate-archive": "A-i {{PLURAL:$1|era n'àutr archivi|ero àutri archivi}} già an sël sit con ël midem contnù, ma {{PLURAL:$1|a l'é stàit|a son ëstàit}} ëscancelà.",
 	"api-error-empty-file": "L'archivi ch'a l'ha mandà a l'era veuid.",
 	"api-error-emptypage": "La creassion ëd pàgine neuve veujde a l'é nen përmëttùa.",

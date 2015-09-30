@@ -79,7 +79,8 @@
 			"Kincki",
 			"McAang",
 			"Captantrips",
-			"Diyapazon"
+			"Diyapazon",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -1292,6 +1293,7 @@
 	"recentchangeslinked-summary": "Aşağıdaki liste, belirtilen sayfaya (ya da belirtilen kategorinin üyelerine) bağlantı veren sayfalarda yapılan son değişikliklerin listesidir.\n[[Special:Watchlist|İzleme listenizdeki]] sayfalar '''kalın''' olarak belirtilmiştir.",
 	"recentchangeslinked-page": "Sayfa adı:",
 	"recentchangeslinked-to": "Belirtilen sayfadan verilenler yerine, sayfaya verilen bağlantıları göster.",
+	"recentchanges-page-added-to-category": "[[:$1]] kategoriye eklendi",
 	"upload": "Dosya yükle",
 	"uploadbtn": "Dosya yükle",
 	"reuploaddesc": "Yükleme formuna geri dön.",
@@ -2173,7 +2175,6 @@
 	"movepagetext": "Aşağıdaki formu kullanmak sayfanın adını değiştirir, tüm geçmiş kayıtlarını da yeni isme aktarır.\nEski başlık yeni başlığa yönlendirme hâline dönüşür. Otomatik olarak eski başlığa yönlendirmeleri güncelleyebilirsiniz.\nEğer istemezseniz, tüm [[Special:DoubleRedirects|çift]] veya [[Special:BrokenRedirects|geçersiz]] yönlendirmeleri kontrol ettiğinizden emin olun.\nTüm bağlantıların olması gerektiği gibi çalıştığından sizin sorumlu olduğunuzu unutmayınız.\n\nEğer yeni isimde bir madde zaten varsa isim değişikliği '''yapılmayacaktır''', sonraki bir yönlendirme olup geçmiş değişiklik geçmişi olmadığı müddetçe.\nBu şu anlama gelir ki, eğer bir hata yaparsanız sayfayı değiştirildiği isme geri isimlendirebilirsiniz, ve mevcut bir sayfanın üstüne yazmazsınız.\n\n'''UYARI!'''\nBu değişim popüler bir sayfa için etkili ve beklenmeyen sonuçlar doğurabilir; lütfen devam etmeden önce olabilecekleri anladığınızdan emin olun.",
 	"movepagetext-noredirectfixer": "Aşağıdaki formu doldurmak bir sayfayı yeniden adlandırır, tüm geçmişini yeni ada taşır.\nEski başlık yeni başlığa bir yönlendirme sayfası olur.\n[[Special:DoubleRedirects|Çift]] ya da [[Special:BrokenRedirects|bozuk yönlendirmeler]] sayfalarını kontrol edin.\nBağlantıların gitmeleri gereken yerlere gittiklerinden emin olmak sizin sorumluluğunuzdadır.\n\nYeni başlıkta mevcut bir sayfa varsa, boş yada bir yönlendirme olmadıkça ve değişiklik geçmişi bulunmadıkça, sayfa '''taşınmayacaktır'''.\nBu şu anlama gelir, bir sayfayı yanlışlık yaparsanız sayfayı eski adıyla yeniden adlandırabilirsiniz, bu mevcut sayfanın üzerine yazmaz.\n\n'''Uyarı!'''\nBu popüler bir sayfa için etkili ve beklenmedik bir değişiklik olabilir;\nLütfen onaylamadan önce bunun sonuçlarını anladığınızdan emin olun.",
 	"movepagetalktext": "İlişikteki tartışma sayfası da (eğer varsa) otomatik olarak yeni isme taşınacaktır. Ama şu durumlarda '''taşınmaz''':\n\n*Alanlar arası bir taşıma ise, (örnek: \"Project:\" --> \"Help:\")\n*Yeni isimde bir tartışma sayfası zaten var ise,\n*Alttaki kutucuğu seçmediyseniz.\n\nBu durumlarda sayfayı kendiniz aktarmalısınız.",
-	"movearticle": "Eski isim",
 	"moveuserpage-warning": "'''Uyarı:''' Bir kullanıcı sayfasını taşımak üzeresiniz. Lütfen sadece sayfanın taşınacağına, ancak kullanıcının yeniden ''adlandırılmayacağına'' dikkat edin.",
 	"movecategorypage-warning": "<strong>Uyarı:</strong> Bir kategori sayfasını taşımak üzeresiniz. Lütfen yalnızca sayfanın taşınacağını ve eski kategoride yer alan sayfaların yeniden kategorize <em>edilmeyeceğini</em> unutmayın.",
 	"movenologintext": "Sayfanın adını değiştirebilmek için kayıtlı ve [[Special:UserLogin|sisteme]] giriş yapmış olmanız gerekmektedir.",
@@ -3296,7 +3297,7 @@
 	"api-error-badaccess-groups": "Bu wiki için dosya yüklemenize izin verilmiyor.",
 	"api-error-badtoken": "İç hata: Bozuk anahtar.",
 	"api-error-copyuploaddisabled": "URL ile yükleme bu sunucuda devre dışı bırakılmıştır.",
-	"api-error-duplicate": "Sitede zaten aynı içerikte başka {{PLURAL:$1|bir [$2 dosya]|[$2 dosyalar]}} var.",
+	"api-error-duplicate": "Sitede zaten aynı içerikte başka {{PLURAL:$1|bir dosya|dosyalar}} var.",
 	"api-error-duplicate-archive": "Sitede zaten aynı içerikte başka {{PLURAL:$1|bir dosya|dosyalar}} vardı, ama {{PLURAL:$1|silindi|silindiler}}.",
 	"api-error-empty-file": "Gönderdiğiniz dosya boş.",
 	"api-error-emptypage": "Yeni, boş bir sayfa oluşturmaya izin verilmez.",

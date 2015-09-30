@@ -16,7 +16,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Kolega2357",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Verwiezingen onderstrepen",
@@ -1952,7 +1953,6 @@
 	"movepagetext": "Mit dit formulier ku'j de zied n nieje naam geven, de geschiedenisse geet dan vanzelf mee.\nDe ouwe naam zal automaties n deurverwiezing wörden naor de nieje zied.\nDeurverwiezingen naor de ouwe naam kunnen automaties ewiezigd wörden.\nA'j derveur kiezen um dat niet te doon, kiek t dan effen nao of der [[Special:DoubleRedirects|dubbele]] en [[Special:BrokenRedirects|ebreuken deurverwiezingen]] bin ontstaon.\nt Is an joe um derveur te zörgen dat de deurverwiezingen naor de goeie naam gaon.\n\nn Zied kan '''allinnig''' herneumd wörden as de nieje naam niet besteet of t n deurverwiezing is zonder veerdere geschiedenisse.\nDit betekent da'j n zied weer naor de ouwe naam kunnen herneumen, a'j bieveurbeeld n fout emaakt hebben, zonder da'j de bestaonde zied overschrieven.\n\n'''WAORSCHUWING!'''\nVeur populaere ziejen kan t herneumen drastiese en onveurziene gevolgen hebben.\nZörg derveur da'j de gevolgen overzien veurda'j veerder gaon.",
 	"movepagetext-noredirectfixer": "Mit dit formulier ku'j de zied n nieje naam geven, de geschiedenisse geet dan vanzelf mee.\nDe ouwe naam zal automaties n deurverwiezing wörden naor de nieje zied.\nKiek oek effen nao of der gien [[Special:DoubleRedirects|dubbele]] of [[Special:BrokenRedirects|ebreuken deurverwiezingen]] bin ontstaon.\nt Is an joe um derveur te zörgen dat de deurverwiezingen naor de goeie naam gaon.\n\nn Zied kan '''allinnig''' herneumd wörden as de nieje naam niet besteet of t n deurverwiezing is zonder veerdere geschiedenisse.\nDit betekent da'j n zied weer naor de ouwe naam herneumen kunnen, a'j bieveurbeeld n fout emaakt hebben, zonder da'j de bestaonde zied overschrieven.\n\n'''WAORSCHUWING!'''\nVeur ziejen die vake bekeken wörden kan t herneumen drastiese en onveurziene gevolgen hebben.\nZörg derveur da'j de gevolgen overzien veurda'j veerder gaon.",
 	"movepagetalktext": "De overlegzied die derbie heurt krig oek n nieje titel, mer '''niet''' in de volgende gevallen:\n* As der al n niet-lege overlegzied besteet onder de aandere naam, of\n* A'j de opsie hieronder uutzetten.\n\nAs dat zo is dan mu'j de zied haandmaotig herneumen of samenvoegen.",
-	"movearticle": "Herneum",
 	"moveuserpage-warning": "'''Waorschuwing:''' Je staon op t punt um n gebrukerszied te herneumen. Allinnig disse zied zal herneumd wörden, '''niet''' de gebruker.",
 	"movenologintext": "Je mutten [[Special:UserLogin|an-emeld]] ween um de naam van n zied te wiezigen.",
 	"movenotallowed": "Je hebben gien rechten um ziejen te herneumen.",
@@ -2892,7 +2892,7 @@
 	"api-error-badaccess-groups": "Je maggen gien bestaanden in disse wiki oplaojen.",
 	"api-error-badtoken": "Interne fout: t token klopt niet.",
 	"api-error-copyuploaddisabled": "Bestaanden opsturen via n webadres is uutezet op disse server.",
-	"api-error-duplicate": "Der {{PLURAL:$1|steet al [$2 n bestaand]|staon al [$2 bestaanden]}} mit de zelfde inhoud in de wiki.",
+	"api-error-duplicate": "Der {{PLURAL:$1|steet al n bestaand|staon al bestaanden}} mit de zelfde inhoud in de wiki.",
 	"api-error-duplicate-archive": "Der {{PLURAL:$1|was al n aander bestaand|waren al $1 aandere bestaanden}}  op de webstee mit de zelfde inhoud, mer {{PLURAL:$1|dat is|die bin}} vortedaon.",
 	"api-error-empty-file": "t Bestaand da'j op-estuurd hebben is leeg.",
 	"api-error-emptypage": "Je maggen gien lege nieje ziejen anmaken.",

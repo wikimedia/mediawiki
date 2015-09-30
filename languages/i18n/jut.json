@@ -813,7 +813,6 @@
 	"blocklogentry": "blokiirtje [[$1]] mä $2 som utløbstiid $3",
 	"movepagetext": "Når du brugerst æ formulær herunder hvilst du få omdøbt en side og flyttet æ hæle side han skigte til det nye navn.\nDen gamle titel hvil bleve en omdirigærengsside til den nye titel.\nHenvesnenger til den gamle titel hvil ekke bleve ændret.\nSørg før at tjekke før dåbelte æller dårlege omdirigærenger.\nDu erst ansvarleg før, at ål henvesnenger stadeg pæger derhen, hvår det er æ mænenge de skal pæge.\n\nBemærk at æ side '''ekke''' ken flyttes hves der ålrede er en side ve den nye titel, medmendre den side er tøm æller er en omdirigærenge uden nogen skigte.\nDet betyder at du kenst flytte en side tilbåge hvår den kåm frå, hves du kåmer til at lave en fejl.\n\n'''ADVARSEL!'''\nDette ken være en drastisk og uventet ændrenge før en populær side; vær sekker på, at du førstår konsekvenserne åf dette før du førtsætter.",
 	"movepagetalktext": "Den tilhørenje diskusjonssiid, hwes där ä jen, will automatisk blyw flytten mä siden '''mämenja:''' \n*En intj-tomm diskusjonssiid ållried eksistiire unje ny naune, elle\n*Du fjäne markiirengen i boksi nierunje.\n\nI dyss tilfåll ä du nød til å flytt elle sammelflætt siden manuellt.",
-	"movearticle": "Flytt siid:",
 	"newtitle": "Te ny titel:",
 	"move-watch": "Öwewåg siden",
 	"movepagebtn": "Flytt siid",

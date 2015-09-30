@@ -13,7 +13,8 @@
 			"Горан Анђелковић",
 			"לערי ריינהארט",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Soslinhar los ligams :",
@@ -2029,7 +2030,6 @@
 	"move-page-legend": "Tornar nomenar una pagina",
 	"movepagetext": "Utilizatz lo formulari çaijós per tornar nomenar una pagina, en desplaçant tot son istoric cap al nom novèl. Lo títol ancian vendrà una pagina de redireccion cap al títol novèl. Podètz metre a jorn automaticament las redireccions actualas que puntan cap al títol original. Se causissètz de lo far pas, asseguratz-vos de verificar tota [[Special:DoubleRedirects|redireccion dobla]] o [[Special:BrokenRedirects|redireccion copada]]. Avètz la responsabilitat de vos assegurar que los ligams contunhen de puntar cap a lor destinacion supausada.\n\nNotatz que la pagina serà '''pas''' renomada s'existís ja una pagina amb lo novèl títol, levat se aquesta darrièra a un istoric de modificacions verge e es una simpla redireccion. Aquò permet de renomenar una pagina cap a sa posicion d'origina se lo desplaçament s'avera erronèu.\n\n'''ATENCION !'''\nAquò pòt provocar un cambiament radical e imprevist per una pagina consultada frequentament ; asseguratz-vos de n'aver comprés las consequéncias abans de contunhar.",
 	"movepagetalktext": "La pagina de discussion associada, se presenta, serà automaticament desplaçada amb ''' levat se :'''\n*Desplaçatz una pagina cap a un autre espaci,\n*Una pagina de discussion ja existís amb lo nom novèl, o\n*Avètz deseleccionat lo boton çaijós.\n\nDins aqueste cas, vos caldrà desplaçar o fusionar la pagina manualament se o volètz.",
-	"movearticle": "Tornar nomenar l'article",
 	"moveuserpage-warning": "'''Atencion :''' Sètz a mand de tornar nomenar una pagina d’utilizaire. Notatz que sola la pagina serà renomenada e que l’utilizaire '''ne''' serà '''pas''' renomenat.",
 	"movenologintext": "Per poder renomenar una pagina, vos cal èsser [[Special:UserLogin|indentific{{GENDER:||t|da)}}]]\nen tant qu'utilizaire enregistrat amb pro d'ancianetat.",
 	"movenotallowed": "Avètz pas la permission de renomenar de paginas.",
@@ -3057,7 +3057,7 @@
 	"api-error-badaccess-groups": "Sètz pas autorizat a cargar de fichièrs sus aqueste wiki.",
 	"api-error-badtoken": "Error intèrna : marrit « geton ».",
 	"api-error-copyuploaddisabled": "Los cargaments via URL son desactivats sus aqueste servidor.",
-	"api-error-duplicate": "I a ja {{PLURAL:$1|[$2 un autre fichièr present]|[$2 d'autres fichièrs presents]}} sul site amb lo meteis contengut.",
+	"api-error-duplicate": "I a ja {{PLURAL:$1|un autre fichièr present|d'autres fichièrs presents}} sul site amb lo meteis contengut.",
 	"api-error-duplicate-archive": "I aviá ja {{PLURAL:$1|un autre fichièr present|d'autres fichièrs presents}} sul site amb lo meteis contengut, mas {{PLURAL:$1|es estat suprimit|son estats suprimits}}.",
 	"api-error-empty-file": "Lo fichièr qu'avètz somés èra void.",
 	"api-error-emptypage": "Creacion de paginas voidas pas autorizada.",

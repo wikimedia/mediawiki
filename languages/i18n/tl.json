@@ -15,7 +15,8 @@
 			"아라",
 			"Ianlopez1115",
 			"Leeheonjin",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Pagsasalungguhit ng link:",
@@ -1903,7 +1904,6 @@
 	"movepagetext": "Mapapalitan ang pangalan ng isang pahina kapag ginamit mo ang pormularyong nasa ibaba, malilipat ang lahat ng kasaysayan nito patungo sa bagong pangalan.\nMagiging isang pahina ng panuto/panturo patungo sa bagong pamagat ang dati/lumang pangalan.\nMaaari mong isapanahon ang mga panutong tumuturo sa orihinal na pamagat sa pamamagitan ng kusang pamamaraan (paraang awtomatiko).\nKung pipiliin mong huwag gawin ito, dapat mong tiyakin kung may [[Special:DoubleRedirects|dalawahan o doble]] o [[Special:BrokenRedirects|bali o putol na mga panturo]].\nTungkulin mong tiyakin kung magpapatuloy sa pagturo ang mga kawing patungo sa dapat nilang puntahan.\n\nTandaan '''hindi''' ililipat ang pahina kapag mayroon nang isang pahina sa bagong pamagat, maliban na lamang kung wala itong laman o isang panuto/panturo at walang nakaraang kasaysayan ng pagbabago.\nNangangahulugan ito na maaari mong muling pangalanan ang isang pahina pabalik sa kung saan ito  muling pinangalanan/pinalitan ng pangalan kung sakaling magkamali ka, at hindi mo maaaring patungan/pangibabawan ang isang umiiral na pahina.\n\n'''BABALA!'''\nMaaaring itong maging isang marahas at hindi inaaasang pagbabago para sa isang bantog na pahina;\npakitiyak na nauunawaan mo ang mga kahihinatnan nito bago magpatuloy.",
 	"movepagetext-noredirectfixer": "Ang paggamit ng pormularyo sa ibaba ay muling magpapangalan ng isang pahina, na maglilipat sa lahat ng kasaysayan nito papunta sa bagong pangalan.\nAng lumang pamagat ay magiging isang pahina binago ang pupuntahan papunta sa bagong pamagat.\nTiyaking suriin ang [[Special:DoubleRedirects|nagkadalawa]] o [[Special:BrokenRedirects|putol na mga pagpapapunta]].\nIkaw ang may pananagutan sa pagtitiyak na ang mga kawin ay patuloy na nakaturo kung saan sila dapat pumunta.\n\nTandaan na ang pahina ay '''hindi''' ililipat kung mayroon nang isang pahina sa bagong pamagat, maliban na lang kung wala itong laman o isang pagpapapunta sa ibang lugar at walang nakaraang kasaysayan ng pagbago.\nNangangahulugan ito na maaari mong muling pangalanan ang isang pahina pabalik sa kung saan ito nagsimulang muling pinangalanan kung nagkamali ka, at hindi mo mapangibabawan ang isang umiiral na pahina.\n\n'''Babala!'''\nMaaari itong maging isang marahas at hindi inaasahang pagbabago para sa isang tanyag na pahina;\nmangyaring tiyakin na nauunawaan mo ang mga kahihinatnan nito bago magpatuloy.",
 	"movepagetalktext": "Kusa/awtomatikong ililipat din ang mga kasama/kakabit na mga kaugnay na mga pahina '''maliban na lamang kung''':\n*Mayroon nang isang pahina ng usapang may laman na at umiiral na sa ilalim ng isang bagong pangalan, o\n*Hindi mo nilagyan ng tsek ang kahong nasa ibaba.\n\nSa mga kasong ganoon, kailangan mong ilipat o pagsamahin/pagsanibin ang pahina sa manwal o kinakamay na paraan kung nanaisin.",
-	"movearticle": "Ilipat ang pahina:",
 	"moveuserpage-warning": "'''Babala:''' Ililipat mo ang isang pahina ng tagagamit. Pakitandaan na tanging ang pahina lamang ang malilipat at ''hindi'' babaguhin ang pangalan ng tagagamit.",
 	"movenologintext": "Dapat na isa kang nagpatalang tagagamit at [[Special:UserLogin|nakalagdang papasok]] upang makapaglipat ng isang pahina.",
 	"movenotallowed": "Wala kang permisong maglipat ng pahina.",
@@ -2951,7 +2951,7 @@
 	"api-error-badaccess-groups": "Hindi ka pinapayagang makapagkarga ng mga talaksan papunta sa wiking ito.",
 	"api-error-badtoken": "Panloob na kamalian: masamang kahalip.",
 	"api-error-copyuploaddisabled": "Ang pagkakarga ng URL ay hindi pinagagana sa tagapaghaing ito.",
-	"api-error-duplicate": "May {{PLURAL:$1|[$2 ibang talaksan]g|[$2 ibang ilang mga talaksan]g}} nasa wiki na na may katulad na nilalaman",
+	"api-error-duplicate": "May {{PLURAL:$1|ibang talaksang|ibang ilang mga talaksang}} nasa wiki na na may katulad na nilalaman",
 	"api-error-duplicate-archive": "Nagkaroon {{PLURAL:$1|dati ng iba pang talaksan|dati ng mga ilang iba pang mga talaksan}} na umiiral na sa sityo na may katulad na nilalaman, ngunit {{PLURAL:$1|ito ay|ito ay mga}} nabura na.",
 	"api-error-empty-file": "Walang laman ang ipinasa mong talaksan.",
 	"api-error-emptypage": "Lumilikha ng bago, hindi pinapayagan ang mga pahinang walang laman.",

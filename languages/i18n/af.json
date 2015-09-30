@@ -22,7 +22,8 @@
 			"아라",
 			"Macofe",
 			"Fwolff",
-			"Oesjaar"
+			"Oesjaar",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Onderstreep skakels.",
@@ -1996,7 +1997,6 @@
 	"movepagetext": "ie vorm hier onder hernoem 'n bladsy en skuif die hele wysigingsgeskiedenis na die nuwe naam.\nDie ou bladsy sal vervang word met 'n aanstuurblad na die nuwe titel.\n'''Skakels na die ou bladsytitel sal nie outomaties verander word nie; maak seker dat [[Special:DoubleRedirects|dubbele aanstuurverwysings]] en [[Special:BrokenRedirects|stukkende aansture]] nie voorkom nie deur die \"wat skakel hierheen\"-funksie na die skuif te gebruik.''' Dit is u verantwoordelikheid om seker te maak dat skakels steeds wys na waarheen hulle behoort te gaan.\n\nLet daarop dat 'n bladsy '''nie''' geskuif sal word indien daar reeds 'n bladsy met dieselfde titel bestaan nie, tensy dit leeg of 'n aanstuurbladsy is en geen wysigingsgeskiedenis het nie. Dit beteken dat u 'n bladsy kan terugskuif na sy ou titel indien u 'n fout gemaak het, maar u kan nie 'n bestaande bladsy oorskryf nie.\n\n<b>WAARSKUWING!</b>\nHierdie kan 'n drastiese en onverwagte verandering vir 'n gewilde bladsy wees;\nmaak asseblief seker dat u die gevolge van hierdie aksie verstaan voordat u voortgaan. Gebruik ook die ooreenstemmende besprekingsbladsy om oorleg te pleeg met ander bydraers.",
 	"movepagetext-noredirectfixer": "Die vorm hier onder hernoem 'n bladsy en skuif sy hele wysigingsgeskiedenis na die nuwe naam.\nDie ou bladsy sal vervang word met 'n aanstuurblad na die nuwe titel.\nWees asseblief op die uitkyk vir vir [[Special:DoubleRedirects|dubbele]] of [[Special:BrokenRedirects|stukkende aansture]].\nDit is u verantwoordelikheid om seker te maak dat skakels steeds wys na waarheen hulle behoort te gaan.\n\nLet daarop dat 'n bladsy '''nie''' geskuif sal word indien daar reeds 'n bladsy met dieselfde titel bestaan nie, tensy dit leeg of 'n aanstuurbladsy is en geen wysigingsgeskiedenis het nie. Dit beteken dat u 'n bladsy kan terugskuif na sy ou titel indien u 'n fout begaan het, maar u kan nie 'n bestaande bladsy oorskryf nie.\n\n<b>WAARSKUWING!</b>\nHierdie kan 'n drastiese en onverwagte verandering vir 'n gewilde bladsy wees;\nmaak asseblief seker dat u die gevolge van hierdie aksie verstaan voordat u voortgaan.",
 	"movepagetalktext": "Die ooreenstemmende besprekingsblad sal outomaties saam geskuif word, '''tensy:'''\n*'n Besprekengsblad met die nuwe naam reeds bestaan, of\n*U die keuse hier onder deselekteer.\n\nIndien wel sal u self die blad moet skuif of versmelt (indien nodig).",
-	"movearticle": "Skuif bladsy",
 	"moveuserpage-warning": "'''Waarskuwing:''' U gaan 'n gebruikersblad skuif.\nLet daarop dat slegs die bladsy geskuif sal word. Die gebruiker self sal ''nie'' hernoem word ''nie''.",
 	"movenologintext": "U moet 'n geregistreerde gebruiker wees en [[Special:UserLogin|ingeteken]]\nwees om 'n bladsy te skuif.",
 	"movenotallowed": "U het nie regte om bladsye te skuif nie.",
@@ -2979,8 +2979,8 @@
 	"api-error-badaccess-groups": "U word nie toegelaat om lêers te laai op hierdie wiki.",
 	"api-error-badtoken": "Interne fout: slegte teken.",
 	"api-error-copyuploaddisabled": "Oplaai via URL is gedeaktiveer op hierdie bediener.",
-	"api-error-duplicate": "Daar {{PLURAL:$1|is al [$2 'n lêer]|is al [$2 lêers]}} met dieselfde inhoud op die wiki.",
-	"api-error-duplicate-archive": "Daar {{PLURAL:$1|was [$2 'n ander lêer]|was [$2 ander lêers]}} op hierdie webtuiste met dieselfde inhoud, maar {{PLURAL:$1|dit is|dit is}} geskrap.",
+	"api-error-duplicate": "Daar {{PLURAL:$1|is al 'n lêer|is al lêers}} met dieselfde inhoud op die wiki.",
+	"api-error-duplicate-archive": "Daar {{PLURAL:$1|was 'n ander lêer|was ander lêers}} op hierdie webtuiste met dieselfde inhoud, maar {{PLURAL:$1|dit is|dit is}} geskrap.",
 	"api-error-empty-file": "Die lêer wat u probeer oplaai is leeg.",
 	"api-error-emptypage": "Die skep van leë nuwe bladsye word nie toegelaat nie.",
 	"api-error-fetchfileerror": "Interne fout: Iets het verkeerd gegaan met die haal van die lêer.",

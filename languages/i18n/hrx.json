@@ -3,7 +3,8 @@
 		"authors": [
 			"Paul Beppler",
 			"Midnight Gambler",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Links (Verbinnunge) unnerstreiche:",
@@ -1987,7 +1988,6 @@
 	"movepagetext": "Mit dem unnenstehendem Formular kannst du en Seit umbenenne, indem du sie mitsamt alle Versione uff en neie Titel verschiebst.\nDer alte Titel weard danoh zum neie weiterleite.\nDu kannst Weiterleitunge, wo uff den Originaltitel verlinke, automatisch korrigiere losse.\nMach sicher, dass du im Oonschluss all die [[Special:DoubleRedirects|doppelte]] orrer [[Special:BrokenRedirects|defekt Weiterleitunge]] üwerprüfe tust.\nDu bist dofoar verantwortlich, dass Links weiterhin uff das korrekte Ziel verweise.\n\nDie Seit weard '''net''' verschub, soweit das schon en Seit mit dem voargesiehne Titel gebt, es sei denn, letztre ist en Weiterleitung ohne Versionsgeschicht.\nDas bedeitet, dass du die Umbenennung rückgängig mache kannst, soweit du en Fehler gemacht host. Du kannst hingeche ken existierende Seit üwerschreiwe.\n\n'''Warnung!'''\nDie Verschiebung kann weitreichende und unerwoortete Folliche für häifich besuchte Seite honn.\nDu solltst doher die Konsequenze verstand honn, bevoar du jetzt fortfährst.",
 	"movepagetext-noredirectfixer": "Mit dem do unnen stehendem Formular kannst du en Seit umbenenne, indem du sie mitsamt alle Versione uff en neie Titel verschiebst.\nDer alte Titel weard danoh zum neie weiterleite.\nMach sicher, dass du im Oonschluss all [[Special:DoubleRedirects|doppelte]] orrer [[Special:BrokenRedirects|defekt Weiterleitunge]] üwerprüfe tust.\nDu bist dofoar verantwortlich, dass Links weiterhin uff das korrekte Ziel verweise.\n\nDie Seit weard '''net''' verschub, soweit es schon en Seit mit dem voargesiehne Titel gebt, das sei denn, die ist en Weiterleitung ohne Versionsgeschicht.\nDas bedeitet, dass du die Umbenennung rückgängig mache kannst, soweit du en Fehler gemacht host. Du kannst hingeche ken existierend Seit üwerschreiwe.\n\n'''Warnung!'''\nDie Verschiebung kann weitreichend und unerwoortete Folliche für häifich besuchte Seite honn.\nDu solltst doher die Konsequenze verstand honn, bevoar du jetzt fortfährst.",
 	"movepagetalktext": "Die dazugehöriche Diskussionsseit weard, soweit voarhand, mitverschub, '''es sei denn:'''\n*Es existiert schon en Diskussionsseit mit dem Noome, orrer\n*du wählst die do unne stehnd Option ab.\n\nIn den Fälle musst du, falls gewünscht, den Inhalt von der Seit von Hand verschieb orrer zusammerführe.\n\nBittschön den '''neie''' Titel unnich '''Ziel''' rentroohn, dorunner die Umbenennung bittschön '''begründe.'''",
-	"movearticle": "Seit verschiebe:",
 	"moveuserpage-warning": "'''Warnung:''' Du bist dabei, en Benutzerseit zu verschiebe. Bittschön bedenk, dass dodoorrich nuar die Benutzerseit verschub, '''net''' awer der Benutzer umbenannt weard.",
 	"movenologintext": "Du musst en registrierter Benutzer und [[Special:UserLogin|ongemeldt]] sin, um en Seit zu verschiebe.",
 	"movenotallowed": "Du host net die erforderliche Berechtichung, um Seite verschiebe zu könne.",
@@ -2944,7 +2944,7 @@
 	"api-error-badaccess-groups": "Du host net die Berechtichung Dateie in des Wiki hochzuloode.",
 	"api-error-badtoken": "Interner Fehler: Der Token ist fehlerhaft.",
 	"api-error-copyuploaddisabled": "Das Hochloode doorrich URL woard uff dem Server deaktiviert.",
-	"api-error-duplicate": "Do gebts im Wiki schon {{PLURAL:$1|[$2 en anner Datei]|[$2 mehrre andere Dateie]}} mit dem gleiche Inhalt.",
+	"api-error-duplicate": "Do gebts im Wiki schon {{PLURAL:$1|en anner Datei|mehrre andere Dateie}} mit dem gleiche Inhalt.",
 	"api-error-duplicate-archive": "Es {{PLURAL:$1|war schon annre Datei|woore schon annre Dateie}} mit dem gleiche Inhalt voarhand. {{PLURAL:$1|Sie woard|Sie woorre}} awer abgewischt.",
 	"api-error-empty-file": "Die hochgeloodne Datei woor leer.",
 	"api-error-emptypage": "Es ist net erlaubt, neie leere Seite erstelle.",

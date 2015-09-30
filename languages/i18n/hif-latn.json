@@ -13,7 +13,8 @@
 			"Soul Train",
 			"Filipinayzd",
 			"SNN95",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Jorr ke niche line khicho:",
@@ -2047,7 +2048,6 @@
 	"movepagetext": "Niche ke form kaam me laae se panna ke naam badal jaai aur iske itihass nawaa naam ke niche hoe jaai.\nPuraana title nawaa title pe redirect hoe jaai.\nAap uu redirect, jon ki pahile waala title pe jawe hai, ke update kare sakta hai.\nAgar aap ii nai kare mangta hai, tab [[Special:DoubleRedirects|double]] nai to [[Special:BrokenRedirects|broken redirects]] ke check karna.\nAap ke jimewaari hai ki dekho ki links right jagah point kare hai.\n\nKhayal rakhna ki agar jo nawaa title ke naam ke ek panna hai tab panna move '''nai''' hae saki jab tak ki panna khali nahi hai yah to redirect hai yah to koi pahile ke edit itihaas nahi hai.\nIske matlab ii hai ki aap ek panna ke naam badal ke wahi naam rakh de sakta hai jon naam pahile rahaa aur agar aap mistake karaa tab abhi ke panna ke overwrite nahi kare saktaa.\n\n'''CHETAWANI'''\nIi ek lokpriye panna ke galti se badal de sake hai;\nmeharbaani kar ke aap aapan karya ke natiija ke baare me socho aage kuch kare se pahile.",
 	"movepagetext-noredirectfixer": "Niche ke form kaam me laae se panna ke naam badal jaai aur iske itihass nawaa naam ke niche hoe jaai.\nPuraana title nawaa title pe redirect hoe jaai.\nIi jaruri hae ki aap  [[Special:DoubleRedirects|double]] nai to [[Special:BrokenRedirects|broken redirects]] ke check karo.\nAap ke jimewaari hai ki dekho ki links right jagah point kare hai.\n\nKhayal rakhna ki agar jo nawaa title ke naam ke ek panna hai tab panna move '''nai''' hae saki jab tak ki panna khali nahi hai yah to redirect hai yah to koi pahile ke edit itihaas nahi hai.\nIske matlab ii hai ki aap ek panna ke naam badal ke wahi naam rakh de sakta hai jon naam pahile rahaa aur agar aap mistake karaa tab abhi ke panna ke overwrite nahi kare saktaa.\n\n'''CHETAWANI'''\nIi ek lokpriye panna ke galti se badal de sake hai;\nmeharbaani kar ke aap aapan karya ke natiija ke baare me socho aage kuch kare se pahile.",
 	"movepagetalktext": "Saathe ke talk panna ke automatically move kar dewa jai ii panna ke saathe '''agar jo:'''\n* khali nahi talk page nawaa naam ke already hai, yah\n* Aap nivhe waala box ke uncheck karo\nIi prastithi me, aap ke manually move yah merge kare ke parri.",
-	"movearticle": "Panna ke naam badli karo:",
 	"moveuserpage-warning": " '''Chetauni:'''  Aap ek sadasya ke panna ke naam badle waala hae. Ii yaad rakhna ki khaali panna ke naam badla jaai, sadasya ke naam ''nai'' badlaa jaai.",
 	"movecategorypage-warning": "<strong>Chetauni:</strong> Aap ek category panna ke hatae waala hae. Khaali ii panna ke hataawa jaai aur purana category ke aur panna ke nawaa category me <em>nai</em>  recategorize karaa jaai.",
 	"movenologintext": "Panna ke naam badle ke khatir aap ke ek registered sadasya rahe ke parri aur  [[Special:UserLogin|logged in]].",
@@ -3046,8 +3046,8 @@
 	"api-error-badaccess-groups": "Aap ke ii wiki me file upload kare ke ijajat nai hae.",
 	"api-error-badtoken": "Internal error: Bad token.",
 	"api-error-copyuploaddisabled": "Uploading by URL ke ii server me disable kar dewa gais hae.",
-	"api-error-duplicate": "There {{PLURAL:$1|is [$2 another file]|are [$2 some other files]}} already on the site with the same content.",
-	"api-error-duplicate-archive": "There {{PLURAL:$1|was [$2 another file]|were [$2 some other files]}} already on the site with the same content, but {{PLURAL:$1|it was|they were}} deleted.",
+	"api-error-duplicate": "There {{PLURAL:$1|is another file|are some other files}} already on the site with the same content.",
+	"api-error-duplicate-archive": "There {{PLURAL:$1|was another file|were some other files}} already on the site with the same content, but {{PLURAL:$1|it was|they were}} deleted.",
 	"api-error-empty-file": "Jon file ke aap submit karaa rahaa, khaali hae.",
 	"api-error-emptypage": "Nawaa, khaali panna ke banae ke ijajat nai hae.",
 	"api-error-fetchfileerror": "Internal error: File khoje ke time kuch wrong hoe gais hae.",

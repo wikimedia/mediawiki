@@ -1702,7 +1702,6 @@
 	"move-page-legend": "遷頁",
 	"movepagetext": "函下遷頁，誌隨新往、舊題作渡、取佐欲移。保佐正，[[Special:DoubleRedirects|防窮]]、[[Special:BrokenRedirects|斷渡]]。\n\n囑之者，新題若非空、渡、缺誌，則舊'''不遷'''焉。存頁勿覆，而誤遷可悔也。\n\n'''警示！'''\n膾炙遷焉，禍生不測；戒慎行之。",
 	"movepagetext-noredirectfixer": "函下遷頁，誌隨新往、舊題作渡、取佐欲移。欲查[[Special:DoubleRedirects|防窮]]、[[Special:BrokenRedirects|斷渡]]之。\n\n囑之者，新題若非空、渡、缺誌，則舊'''不遷'''焉。存頁勿覆，而誤遷可悔也。\n\n'''警示！'''\n膾炙遷焉，禍生不測；戒慎行之。",
-	"movearticle": "遷文：",
 	"moveuserpage-warning": "'''警：'''爾將遷頁齋。注之遷齋後之簿名乃為''無''變也。",
 	"movenologintext": "遷文須[[Special:UserLogin|登簿]]。",
 	"movenotallowed": "無准遷檔也。",

@@ -19,7 +19,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Pizza1016",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Garis bawah pautan:",
@@ -2102,7 +2103,6 @@
 	"movepagetext": "Menggunakan borang di bawah akan menukar nama halaman dan memindahkan segala sejarahnya kepada nama baru itu.\n\nTajuk yang lama akan menjadi halaman lencongan kepada tajuk baru.\nAnda boleh mengemaskinikan lencongan yang menghala ke tajuk asal secara automatik.\nJika anda memilih untuk tidak berbuat demikian, tolong semak untuk mencari lencongan [[Special:DoubleRedirects|berganda]] atau [[Special:BrokenRedirects|terputus]].\nAnda dipertanggungjawabkan untuk memastikan agar semua pautan tetap menghala ke tempat yang sepatutnya.\n\nSila ingat bahasa halaman '''tidak''' akan dipindahkan jika tajuk barunya sudah diambil oleh halaman yang sedia ada, melainkan halaman yang sedia ada tersebut merupakan lencongan tanpa sebarang sejarah suntingan.\nErtinya, anda boleh menukar kembali nama halaman ke nama yang sebelumnya jika anda terbuat silap, tetapi anda tidak boleh menulis ganti halaman yang sedia ada.\n\n'''Amaran!'''\nTindakan ini boleh mendatangkan perubahan yang drastik dan tidak dijangka untuk halaman yang popular; sila pasti bahawa anda memahami akibatnya sebelum meneruskan.",
 	"movepagetext-noredirectfixer": "Borang di bawah akan menamakan semula sesebuah laman, memindahkan kesemua sejarahnya ke nama baru.\nNama lamanya akan menjadi sebuah laman lencongan ke laman baru tadi.\nPastikan [[Special:DoubleRedirects|lencongan berganda]] atau [[Special:BrokenRedirects|rosak]] sudah diperiksa.\nAnda bertanggungjawab memastikan pautan-pautan sampai ke tujuan yang sepatutnya.\n\nSila maklum bahawa laman tadi '''tidak''' akan dipindahkan sekiranya laman dengan tajuk yang baru tadi telah wujud, melainkan ia kosong atau sebuah pelencongan dan tiada sejarah suntingan lampau.\nIni bermakna anda boleh menamakan semula sesebuah laman balik kepada nama asalnya jika anda melakukan kesilapan, dan anda tidak boleh menulis ganti sebuah laman yang sudah wujud.\n\n'''AMARAN!'''\nTindakan ini boleh menjadi perubahan yang tidak dijangka dan drastik bagi laman popular;\nsila pastikan anda faham akibat yang mungkin timbul sebelum meneruskannya.",
 	"movepagetalktext": "Laman perbincangan yang berkaitan, jika ada, akan dipindahkan bersama-sama laman ini secara automatik '''kecuali''':\n* Sebuah laman perbincangan dengan nama baru telah pun wujud, atau\n* Anda membuang tanda kotak di bawah.\n\nDalam kes tersebut, anda terpaksa melencongkan atau menggabungkan laman secara manual, jika perlu.",
-	"movearticle": "Pindahkan laman:",
 	"moveuserpage-warning": "'''Amaran:''' Anda sudah hendak memindahkan suatu laman pengguna. Sila ambil perhatian bahawa hanya laman tersebut akan dipindahkan dan nama pengguna yang berkenaan ''tidak'' berubah.",
 	"movecategorypage-warning": "<strong>Amaran:</strong> Anda hendak memindahkan sebuah laman kategori. Sila ambil perhatian bahawa hanya laman akan dipindahkan dan sebarang laman dalam kategori laman <em>tidak</em> akan dikategorikan semula ke dalam yang baru.",
 	"movenologintext": "Anda mesti [[Special:UserLogin|log masuk]] terlebih dahulu untuk memindahkan laman.",
@@ -3218,7 +3218,7 @@
 	"api-error-badaccess-groups": "Anda tidak dibenarkan memuat naik fail di wiki ini.",
 	"api-error-badtoken": "Ralat dalaman: token tak elok.",
 	"api-error-copyuploaddisabled": "Ciri memuat naik melalui URL dimatikan di pelayan ini.",
-	"api-error-duplicate": "Di tapak ini sudah ada {{PLURAL:$1|[$2 satu fail lain]|[$2 fail-fail lain]}} yang sama kandungannya.",
+	"api-error-duplicate": "Di tapak ini sudah ada {{PLURAL:$1|satu fail lain|fail-fail lain}} yang sama kandungannya.",
 	"api-error-duplicate-archive": "Di tapak ini pernah ada {{PLURAL:$1|satu fail lain|fail-fail lain}} yang sama kandungannya, tetapi telah dihapuskan.",
 	"api-error-empty-file": "Fail yang anda serahkan adalah kosong.",
 	"api-error-emptypage": "Anda tidak dibenarkan membuat laman baru yang kosong.",

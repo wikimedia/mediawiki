@@ -40,7 +40,8 @@
 			"Macofe",
 			"Totosunarto",
 			"Mirws",
-			"Ilham"
+			"Ilham",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -2111,7 +2112,6 @@
 	"movepagetext": "Menggunakan formulir di bawah ini akan mengubah nama suatu halaman dan memindahkan semua data sejarah ke nama baru.\nJudul lama akan menjadi halaman pengalihan ke judul baru.\nAnda dapat memperbarui pengalihan yang menuju ke judul asli secara otomatis.\nJika Anda memilih tidak, pastikan untuk memeriksa\n[[Special:DoubleRedirects|pengalihan ganda]] atau [[Special:BrokenRedirects|pengalihan rusak]].\nAnda bertanggung jawab untuk memastikan bahwa pranala terhubung ke tempat seharusnya.\n\nPerhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman pada judul yang baru, kecuali bila halaman peralihan dan tidak mempunyai sejarah penyuntingan. \nIni berarti Anda dapat mengubah kembali nama halaman seperti semula apabila Anda membuat kesalahan, dan Anda tidak dapat menimpa halaman yang telah ada.\n\n'''Peringatan:'''\nIni dapat mengakibatkan perubahan drastis dan tak terduga bagi halaman yang populer; pastikan Anda mengerti konsekuensinya sebelum melanjutkan.",
 	"movepagetext-noredirectfixer": "Formulir di bawah ini digunakan untuk mengubah nama suatu halaman dan memindahkan semua data sejarah ke nama baru.\nJudul yang lama akan menjadi halaman peralihan menuju judul yang baru.\nPastikan untuk memeriksa pengalihan [[Special:DoubleRedirects|ganda]] atau [[Special:BrokenRedirects|rusak]].\nAnda bertanggung jawab untuk memastikan bahwa pranala terus menyambung ke halaman yang seharusnya.\n\nPerhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman yang menggunakan judul yang baru, kecuali bila halaman tersebut kosong atau merupakan halaman peralihan dan tidak mempunyai sejarah penyuntingan.\nIni berarti Anda dapat mengubah nama halaman kembali seperti semula apabila Anda membuat kesalahan, dan Anda tidak dapat menimpa halaman yang telah ada.\n\n'''Peringatan:'''\nHal ini dapat mengakibatkan perubahan yang tak terduga dan drastis bagi halaman yang populer;\nPastikan Anda mengerti konsekuensi dari perbuatan ini sebelum melanjutkan.",
 	"movepagetalktext": "Halaman pembicaraan yang berkaitan juga akan dipindahkan secara otomatis '''kecuali apabila:'''\n\n*Sebuah halaman pembicaraan yang tidak kosong telah ada di bawah judul baru, atau\n*Anda tidak memberi tanda cek pada kotak di bawah ini\n\nDalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabungkan halaman secara manual.",
-	"movearticle": "Pindahkan halaman:",
 	"moveuserpage-warning": "'''Peringatan:''' Anda tengah memindahkan halaman pengguna. Perlu diketahui bahwa hanya halaman yang akan dipindahkan namun pengguna ''tidak akan'' berganti nama.",
 	"movecategorypage-warning": "<strong>Peringatan:</strong> Anda akan memindahkan halaman kategori. Perlu diketahui bahwa hanya halaman yang akan dipindahkan dan setiap halaman dalam kategori lama <em>tidak</em> akan dikategorikan ulang ke yang baru.",
 	"movenologintext": "Anda harus menjadi pengguna terdaftar dan telah [[Special:UserLogin|masuk log]] untuk dapat memindahkan suatu halaman.",
@@ -3207,8 +3207,8 @@
 	"api-error-badaccess-groups": "Anda tidak diizinkan mengunggah berkas ke wiki ini.",
 	"api-error-badtoken": "Kesalahan internal: token buruk.",
 	"api-error-copyuploaddisabled": "Mengunggah melalui URL dilarang pada peladen ini.",
-	"api-error-duplicate": "Sudah ada {{PLURAL:$1|[$2 berkas lain]}} dengan konten yang sama di situs ini.",
-	"api-error-duplicate-archive": "Ada {{PLURAL:$1|[$2 berkas]}} lain di situs dengan konten yang sama, namun {{PLURAL:$1|berkas|berkas-berkas}} itu telah dihapus.",
+	"api-error-duplicate": "Sudah ada {{PLURAL:$1|berkas lain}} dengan konten yang sama di situs ini.",
+	"api-error-duplicate-archive": "Ada {{PLURAL:$1|berkas}} lain di situs dengan konten yang sama, namun {{PLURAL:$1|berkas|berkas-berkas}} itu telah dihapus.",
 	"api-error-empty-file": "Berkas yang Anda kirim kosong.",
 	"api-error-emptypage": "Pembuatan halaman baru yang kosong tidak diizinkan.",
 	"api-error-fetchfileerror": "Kesalahan internal: terjadi kesalahan saat memperoleh berkas ini.",

@@ -41,7 +41,8 @@
 			"Fitoschido",
 			"Sudastelaro",
 			"Ochilov",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Substreki ligilojn",
@@ -2104,7 +2105,6 @@
 	"movepagetext": "Per la jena formulo vi povas ŝanĝi la nomon de iu paĝo, kunportante ĝian historion de redaktoj al la nova nomo.\nLa antaŭa titolo fariĝos alidirektilo al la nova titolo.\nVi povas ĝisdatigi alidirektilojn kiu indikas la originalan titolon aŭtomate.\nSe vi elektas ĝisdatigi permane, bonvolu kontroli [[Special:DoubleRedirects|duoblajn]] aŭ [[Special:BrokenRedirects|rompitajn alidirektilojn]].\nVi estas responsa por certigi ke ligilojn direktas fidinde.\n\nNotu, ke la paĝo '''ne''' estos movita se jam ekzistas paĝo ĉe la nova titolo, krom se tiu loko estas malplena aŭ alidirektilo al ĉi tiu paĝo, kaj sen antaŭa redaktohistorio.\nPro tio, vi ja povos removi la paĝon je la antaŭa titolo se vi mistajpus, kaj ne povas forviŝi ekzistantan paĝon per movo.\n\n'''AVERTO!'''\nTio povas esti drasta kaj neatendita ŝanĝo por populara paĝo;\nbonvolu certigi vin, ke vi komprenas ties konsekvencojn antaŭ ol vi antaŭeniru.",
 	"movepagetext-noredirectfixer": "Per jena formularo vi povas alinomigi paĝon, kaj movi tutan ĝian redaktohistorion al la nova nomo. \nLa antaŭa titolo alidirektigos onin al la nova titolo.\nKontrolu pri [[Special:DoubleRedirects|duoblajn]] aŭ [[Special:BrokenRedirects|nefunkciantajn alidirektilojn]].\nVi respondecas pri tio ke ligoj restas montrantaj ĝustadirekten.\n\nKonsciu ke la paĝo '''ne'' estas movota se jam ekzistas paĝo havanta la novan titolon, krom se ĝi maplenas aŭ estas alidirektilo sen antaŭa redaktohistorio.\nTio ĉi signifas ke vi povas alinomigi paĝon reen al antaŭa nomo se vi eraras, kaj vi ke vi ne povas anstataŭigi ekzistantan paĝon.\n\n'''Averto!''\nEblas ke tio ĉi estas drasta kaj neatendita ŝanĝo de populara paĝo;\nAntaŭ daŭrigi, bonvolu certiĝi, ke vi komprenas la konsekvencojn de tiuj ĉi ŝanĝo.",
 	"movepagetalktext": "La movo aŭtomate kunportos la diskuto-paĝon, se tia ekzistas, '''krom se:'''\n*Vi movas la paĝon tra nomspacoj (ekz de ''Nomo'' je ''User:Nomo''),\n*Ne malplena diskuto-paĝo jam ekzistas je la nova nomo, aŭ\n*Vi malelektas la suban ŝaltilon.\n\nTiujokaze, vi nepre permane kunigu la diskuto-paĝojn se vi tion deziras.",
-	"movearticle": "Alinomi paĝon",
 	"moveuserpage-warning": "<strong>Averto:</strong> Vi preskaŭ alinomas paĝon de uzanto. Bonvolu noti ke nur la paĝo estos alinomita kaj la uzanto mem <em>ne</em> estos alinomita.",
 	"movecategorypage-warning": "<strong>Averto:</strong> Vi baldaŭ movos kategorian paĝon. Bonvolu noti ke, nur la paĝo estos movita, kaj la paĝoj en la malnova kategorio <em>ne</em> transiros en la novan kategorion.",
 	"movenologintext": "Vi nepre estu registrita uzanto kaj [[Special:UserLogin|ensalutu]] por rajti movi paĝojn.",
@@ -3257,7 +3257,7 @@
 	"api-error-badaccess-groups": "Vi ne havas permeson alŝuti dosierojn al tiu ĉi vikio.",
 	"api-error-badtoken": "Interna eraro: fuŝaĵo.",
 	"api-error-copyuploaddisabled": "Alŝuto per URL-adreso estas malebligata en tiu ĉi servilo.",
-	"api-error-duplicate": "Jam estas {{PLURAL:$1|[$2 alia dosiero]|[$2 pluraj aliaj dosieroj]}} de sama enhavo en la retejo.",
+	"api-error-duplicate": "Jam estas {{PLURAL:$1|alia dosiero|pluraj aliaj dosieroj}} de sama enhavo en la retejo.",
 	"api-error-duplicate-archive": "Jam estis {{PLURAL:$1|alia dosiero|pluraj aliaj dosieroj}} de sama enhavo en la retejo, sed {{PLURAL:$1|ĝi estis forigita|ili estis forigitaj}}.",
 	"api-error-empty-file": "La dosiero kiun vi sendis estis malplena.",
 	"api-error-emptypage": "Kreo de novaj malplenaj paĝoj ne estas permesita.",

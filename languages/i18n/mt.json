@@ -10,7 +10,8 @@
 			"아라",
 			"CharlieTheCabbie",
 			"Leli Forte",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Ħoloq sottolinjati:",
@@ -1985,7 +1986,6 @@
 	"movepagetext": "L-użu tal-formola t'hawn taħt, twassal f'isem ġdid għall-paġna, tmexxija tal-kronoloġija kollha tagħha għall-isem il-ġdid.<br />\nIt-titlu l-antik se jsir paġna ta' riindirizz għat-titlu l-ġdid.<br />\nTista' taġġorna riindirizzi li jippuntaw awtomatikament lejn l-isem oriġinali.<br />\nTista' tagħżel li ma tagħmilx dan, imma ftakar biex tivverifika li t-tmexxija li saret ma ħolqitx riindirizzi [[Special:DoubleRedirects|doppji]] jew [[Special:BrokenRedirects|ħżiena]]. Inti responsabbli li tkun ċert li l-ħoloq jibqgħu korretti.\n\nGħandek tkun taf li l-paġna '''mhux''' se titmexxa jekk hemm diġà paġna fit-titlu l-ġdid, sakemm tkun vojta jew xi riindirizz u m'għandha ebda kronoloġija ta' modifika passata. Fil-każ ta' tmexxija ħażina tista' tmur lura mal-ewwel għat-titlu l-antik, u mhuwiex possibli li tikteb bi żball fuq paġna diġà eżistenti.\n\n'''ATTENZJONI!'''\nDin tista' tkun bidla drastika u mhux mistenniha għal paġna popolari; jekk jogħġbok kun ċert li tifhem il-konsegwenzi ta' din qabel ma tkompli.",
 	"movepagetext-noredirectfixer": "Bl-użu tal-formola t'hawn taħt inti tista' ssemmi paġna mill-ġdid, bil-kronoloġija tal-oriġinali timxi fuq il-ġdida.\nIt-titlu l-antik jiġi paġna ta' rindirizz lejn it-titlu l-ġdid.\nKun żgur li tiċċekkja għal [[Special:DoubleRedirects|rindirizzi doppji]] jew [[Special:BrokenRedirects|miksura]].\nInti responsabbli li tiżgura li l-ħoloq ikomplu jippuntaw fejn suppost immorru.\n\nKun af li l-paġna '''mhux''' se titmexxa jekk diġà hemm paġna bit-titlu l-ġdid, sakemm din tkun vojta jew rindirizz u nieqsa minn kwalunkwe modifika.\nDan ifisser li inti tista' ssemmi paġna lura lejn l-isem oriġinali jekk tara li ħadt żball, u ma tistasx tikteb fuq paġna diġà eżistenti.\n\n'''Twissija!'''\nDin tista' tkun bidla drastika għal paġna populari; kun ċert li tifhem il-konsegwenzi qabel ma tkompli.",
 	"movepagetalktext": "Il-Paġna korrispondenti tad-diskussjoni se tiġi awtomatikament imċaqilqa flimkien magħha '''sakemm:'''\n* Paġna mhux vojta ta' diskussjoni ġa teżisti taħt l-isem il-ġdid.\n* Ma tagħżilx il-kaxxa t'hawn taħt.\n\nF'dawn il-każi, inti trid iċaqlaq jew tagħqad il-paġna manwalment jekk dan huwa mixtieq.",
-	"movearticle": "Ċaqlaq il-paġna:",
 	"moveuserpage-warning": "'''Twissija:''' Inti se tmexxi paġna tal-utent. Kun af li hi l-paġna biss li se titmexxa. L-utent ''mhux'' se jitmexxa.",
 	"movecategorypage-warning": "<strong>Attenzjoni:</strong> Se tmexxi kategorija. Kun af li l-paġna biss se titmexxa u kwalunkwe paġna fil-kategorija l-qadima <em>mhumiex</em> se jiġu kategorizzati fil-kategorija l-ġdida.",
 	"movenologintext": "Trid [[Special:UserLogin|tidħol]] bħalha utent reġistrat sabiex tkun tista' iċaqlaq din il-paġna.",
@@ -3047,7 +3047,7 @@
 	"api-error-badaccess-groups": "Mintix permess li ttella' fajls fuq din il-wiki.",
 	"api-error-badtoken": "Żball intern: <em>Token</em> ħażin.",
 	"api-error-copyuploaddisabled": "It-tlugħ ta' fajls bl-użu tal-URL mhuwiex permess fuq dan is-server.",
-	"api-error-duplicate": "Hemm {{PLURAL:$1|[$2 fajl ieħor]|[$2 xi fajls oħra]}} diġà fuq dan is-sit bl-istess kontenut.",
+	"api-error-duplicate": "Hemm {{PLURAL:$1|fajl ieħor|xi fajls oħra}} diġà fuq dan is-sit bl-istess kontenut.",
 	"api-error-empty-file": "Il-fajl li bgħatt kien vojt.",
 	"api-error-emptypage": "Mhuwiex permess il-ħolqien ta' paġna ġdida vojta.",
 	"api-error-fetchfileerror": "Żball intern: Kien hemm problema waqt il-kisba tal-fajl.",

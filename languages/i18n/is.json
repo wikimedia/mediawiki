@@ -20,7 +20,8 @@
 			"아라",
 			"Macofe",
 			"Sveinn í Felli",
-			"Jonbg"
+			"Jonbg",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Undirstrika tengla:",
@@ -1958,7 +1959,6 @@
 	"movepagetext": "Hér er hægt að endurnefna síðu. Hún færist, ásamt breytingaskránni, yfir á nýtt heiti og eldra heitið myndar tilvísun á það. Þú getur sjálfkrafa uppfært tilvísanir á nýja heitið. Ef þú vilt það síður, athugaðu þá hvort nokkuð myndist [[Special:DoubleRedirects|tvöfaldar]] eða [[Special:BrokenRedirects|brotnar tilvísanir]].\nÞú berð ábyrgð á því að tenglar vísi á rétta staði.\n\nAthugaðu að síðan mun '''ekki''' færast ef þegar er síða á nafninu sem þú hyggst færa hana á, nema sú síða sé tóm eða tilvísun sem vísar á síðuna sem þú ætlar að færa. Þú getur þar með fært síðuna aftur til baka án þess að missa breytingarsöguna, en ekki fært hana yfir venjulega síðu.\n\n'''Varúð:'''\nAthugaðu að þessi aðgerð getur kallað fram viðbrögð annarra notenda og getur þýtt mjög rótækar breytingar á vinsælum síðum.",
 	"movepagetext-noredirectfixer": "Með þessu eyðublaði er hægt að endurnefna síðu og færa alla breytingarskrá hennar á nýja nafnið. Gamli titillinn verður að tilvísun á nýja titilinn. \nAthugaðu hvort síðan tengist [[Special:DoubleRedirects|tvöfaldri]]- eða [[Special:BrokenRedirects|brotinni]] tilvísun.\nÞú berð ábyrgð á því að tenglarnir haldi áfram að tengjast á réttan stað.\n\nAthugaðu að síðan verður '''ekki''' færð ef síða er þegar til á nýja titlinum, nema hann sé annaðhvort tómur, tilvísun eða hafi enga breytingarskrá.\nÞetta merkir að þú getur fært síðu aftur til baka á þann stað sem hún var færð frá ef þú gerir mistök og þú getur ekki skrifað yfir síðu sem er þegar til.\n\n'''Varúð:'''\nEf síðan er vinsæl þá getur þessi aðgerð kallað fram viðbrögð annara notenda og getur þýtt mjög rótækar breytingar á öðrum síðum. Vertu viss um að þú skiljir hættuna áður en þú heldur áfram.",
 	"movepagetalktext": "Spallsíða síðunnar verður sjálfkrafa færð með ef hún er til nema:\n* Þú sért að færa síðuna á milli nafnrýma\n* Spallsíða sé þegar til undir nýja nafninu\n* Þú veljir að færa hana ekki\nÍ þeim tilfellum verður að færa hana handvirkt.",
-	"movearticle": "Færa síðu:",
 	"moveuserpage-warning": "'''Viðvörun:''' Þú ert í þann mund að færa notendasíðu. Athugaðu aðeins síðan verður færð og notendanafni hans verður '''ekki''' breytt.",
 	"movenologintext": "Þú verður að vera [[Special:UserLogin|innskráð(ur)]] til að geta fært síður.",
 	"movenotallowed": "Þú hefur ekki leyfi til að færa síður.",
@@ -2871,7 +2871,7 @@
 	"api-error-badaccess-groups": "Þú hefur ekki leyfi til að hlaða inn skrám.",
 	"api-error-badtoken": "Innri villa: Skemmdur tóki.",
 	"api-error-copyuploaddisabled": "Ekki er hægt að hlaða upp með vefslóð á þessum vefþjón.",
-	"api-error-duplicate": "Það {{PLURAL:$1|er [$2 önnur skrá]|eru [$2 aðrar skrár]}} þegar til á vefsvæðinu sem hafa sama innihald.",
+	"api-error-duplicate": "Það {{PLURAL:$1|er önnur skrá|eru aðrar skrár}} þegar til á vefsvæðinu sem hafa sama innihald.",
 	"api-error-duplicate-archive": "Það {{PLURAL:$1|var önnur skrá|voru aðrar skrár}} þegar á síðunni með sama innihald, en {{PLURAL:$1|henni|þeim}} var eytt.",
 	"api-error-empty-file": "Skráin sem þú valdir er tóm.",
 	"api-error-emptypage": "Stofnun nýrra, tómra síðna er óheimil.",

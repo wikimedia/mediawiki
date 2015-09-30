@@ -50,7 +50,8 @@
 			"Medol",
 			"Xavier Dengra",
 			"Pginer",
-			"Eduardo Martinez"
+			"Eduardo Martinez",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -1274,6 +1275,10 @@
 	"recentchangeslinked-summary": "Aquesta llista reflecteix els canvis recents a les pàgines enllaçades des d'una pàgina concreta (o als membres d'una categoria concreta).\nLes pàgines de la vostra [[Special:Watchlist|llista de seguiment]] apareixen en <strong>negreta</strong>.",
 	"recentchangeslinked-page": "Nom de la pàgina:",
 	"recentchangeslinked-to": "Mostra els canvis de les pàgines enllaçades amb la pàgina donada",
+	"recentchanges-page-added-to-category": "[[:$1]] afegida a la categoria",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] i {{PLURAL:$2|una pàgina|$2 pàgines}} més afegides a la categoria",
+	"recentchanges-page-removed-from-category": "[[:$1]] treta de la categoria",
+	"recentchanges-page-removed-from-category-bundled": "[[:$1]] i {{PLURAL:$2|una pàgina|$2 pàgines}} més tretes de la categoria",
 	"upload": "Carregueu un fitxer",
 	"uploadbtn": "Carrega un fitxer",
 	"reuploaddesc": "Torna al formulari per apujar.",
@@ -2162,7 +2167,6 @@
 	"movepagetext": "Amb el formulari següent reanomenareu una pàgina, movent tot el seu historial al nou nom.\nEl títol anterior es convertirà en una pàgina de redirecció al nou títol.\nPodeu actualitzar automàticament les redireccions que apuntin al títol original.\nSi no ho feu, assegureu-vos de verificar les redireccions [[Special:DoubleRedirects|dobles]] o [[Special:BrokenRedirects|trencades]].\nSerà de la vostra responsabilitat verificar que els enllaços segueixin apuntant cap a on se suposa que ho han de fer.\n\nTingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, tret que sigui una redirecció sense més historial.\nAixò significa que podeu reanomenar de nou una pàgina al seu títol original si cometeu un error, i que no podeu sobreescriure una pàgina existent.\n\n'''Atenció!'''\nAçò pot ser un canvi dràstic i inesperat en una pàgina que sigui popular; \nassegureu-vos d'entendre les conseqüències que comporta abans de seguir endavant.",
 	"movepagetext-noredirectfixer": "Amb el formulari següent podeu reanomenar una pàgina movent tot el seu historial al nom nou.\nEl títol anterior es convertirà en una pàgina de redirecció al nou títol. \nAssegureu-vos de verificar les redireccions [[Special:DoubleRedirects|dobles]] o [[Special:BrokenRedirects|trencades]].\nÉs responsabilitat vostra assegurar que els enllaços continuen apuntant cap a on se suposa que han d'anar. \n\nTingueu en compte que la pàgina '''no''' serà traslladada si ja existeix una pàgina amb el títol nou, tret que sigui una redirecció i no tingui més historial. \nAixò significa que podeu reanomenar de nou una pàgina al seu títol original si cometeu un error, i que no podeu sobreescriure una pàgina existent.\n \n'''Atenció!''' \nAixò pot ser un canvi dràstic i inesperat per una pàgina popular; \nassegureu-vos que sabeu el que feu abans de continuar.",
 	"movepagetalktext": "La pàgina de discussió associada també serà traslladada automàticament '''tret que''':\n* Ja existeixi una pàgina de discussió no buida amb el nou nom, o\n* Desactiveu l'opció de més avall.\n\nEn aquests casos, haureu de traslladar o fusionar la pàgina manualment si ho desitgeu.",
-	"movearticle": "Reanomena la pàgina",
 	"moveuserpage-warning": "'''Atenció:''' Esteu a punt de moure una pàgina d'usuari. Tingueu en compte que només la pàgina es desplaçarà i que el compte d'usuari ''no'' canviarà de nom.",
 	"movecategorypage-warning": "<strong>Avís:</strong> Esteu a punt de moure una pàgina de categoria. Tingueu en compte que només es moure la pàgina i qualsevol de les pàgines a l'antiga categoria <em>no</em> es recategoritzarà automàticament en la nova.",
 	"movenologintext": "Heu de ser un usuari registrat i estar [[Special:UserLogin|dintre d'una sessió]]\nper reanomenar una pàgina.",
@@ -3281,7 +3285,7 @@
 	"api-error-badaccess-groups": "No teniu permís per a carregar fitxers en aquest wiki.",
 	"api-error-badtoken": "Error intern: argument incorrecte.",
 	"api-error-copyuploaddisabled": "Les càrregues via URL estan desactivades en aquest servidor.",
-	"api-error-duplicate": "Ja hi ha {{PLURAL:$1|[$2 un altre fitxer]|[$2 altres fitxers]}} en aquest lloc web amb el mateix contingut.",
+	"api-error-duplicate": "Ja hi ha {{PLURAL:$1|un altre fitxer|altres fitxers}} en aquest lloc web amb el mateix contingut.",
 	"api-error-duplicate-archive": "Aquí ja hi ha hagut {{PLURAL:$1|un altre fitxer|altres fitxers}} amb el mateix contingut, i {{PLURAL:$1|va ser esborrat|varen ser esborrats}}.",
 	"api-error-empty-file": "El fitxer que heu tramès està buit.",
 	"api-error-emptypage": "No es permet la creació de pàgines noves en blanc.",

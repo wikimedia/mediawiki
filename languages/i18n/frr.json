@@ -9,7 +9,8 @@
 			"Pyt",
 			"아라",
 			"Purodha",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Ferwisangen onerstrik:",
@@ -1218,6 +1219,10 @@
 	"recentchangeslinked-summary": "Detdiar spezial-sidj wiset a leetst feranrangen faan ferwiset sidjen (of faan sidjen uun en was kategorii). Sidjen, diar dü [[Special:Watchlist|uun't uug behual]] wel, san '''fäät''' skrewen.",
 	"recentchangeslinked-page": "Sidjennööm:",
 	"recentchangeslinked-to": "Wise feranrangen üüb sidjen, diar heerhen ferwise.",
+	"recentchanges-page-added-to-category": "[[:$1]] tu kategorii saat",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] an {{PLURAL:$2|ian sidj muar|$2 muar sidjen}} tu kategorii saat",
+	"recentchanges-page-removed-from-category": "[[:$1]] faan't kategorii wechnimen",
+	"recentchanges-page-removed-from-category-bundled": "[[:$1]] an {{PLURAL:$2|ian sidj muar|$2 muar sidjen}} faan det kategorii wechnimen",
 	"upload": "Datei huuchschüür",
 	"uploadbtn": "Datei huuchschüür",
 	"reuploaddesc": "Ufbreeg an turag tu't sidj för't huuchschüüren",
@@ -2104,7 +2109,6 @@
 	"movepagetext": "Mä detdiar formulaar könst dü en sidj mä aal sin werjuunen amnääm.\nDi ual tiitel woort üüb di nei widjerfeerd.\nDü könst widjerfeerangen, diar üüb di ual tiitel wise, automaatisk üüb di nei tiitel widjerfeer läät.\nWan dü det oober ei dääst, paase üüb, dat dü aal a [[Special:DoubleRedirects|dobelt]] of [[Special:BrokenRedirects|breegen]] widjerfeerangen noch ans efterlukest.\nBluas dü könst diarför surge, dat ferwisangen widjerhen rocht werke.\n\nDet sidj woort '''ei''' fersköwen, wan't al en sidj mä di nei nööm jaft. Det loket bluas do, wan di nei nööm salew en widjerfeerang as. Det ment, dat dü det amnäämen turagsaat könst, wan dü niks ferkiard maaget heest. Dü könst oober nian sidj, diar't al jaft, auerskriiw.\n\n'''Paase üüb!'''\nDet fersküüwen hää widjloftag fulgen för ööder sidjen. Dü skulst begreben haa, wat dü diar maage wel.",
 	"movepagetext-noredirectfixer": "Mä detdiar formulaar könst dü en sidj mä aal sin werjuunen amnääm.\nDi ual tiitel woort üüb di nei widjerfeerd.\nDü könst widjerfeerangen, diar üüb di ual tiitel wise, automaatisk üüb di nei tiitel widjer feer läät.\nWan dü det oober ei dääst, paase üüb, dat dü aal a [[Special:DoubleRedirects|dobelt]] of [[Special:BrokenRedirects|breegen]] widjerfeerangen noch ans efterlukest.\nBluas dü könst diarför surge, dat ferwisangen widjerhen rocht werke.\n\nDet sidj woort '''ei''' fersköwen, wan't al en sidj mä di nei nööm jaft. Det loket bluas do, wan di nei nööm salew en widjerfeerang as. Det ment, dat dü det amnäämen turagsaat könst, wan dü niks ferkiard maaget heest. Dü könst oober nian sidj, diar't al jaft, auerskriiw.\n\n'''Paase üüb!'''\nDet fersküüwen hää widjloftag fulgen för ööder sidjen. Dü skulst begreben haa, wat dü diar maage wel.",
 	"movepagetalktext": "Uk det diskuschuunsidj woort fersköwen, wan det diar as, <strong>oober ei, wan:</strong>\n*Diar al en diskuschuunsidj mä didiar nööm as, of\n*Dü detdiar mögelkhaid ütjslotst.\n\nUun didiar faal skel dü a diskuschuunsidjen faan hun tuupfeer.",
-	"movearticle": "Sidj fersküüw:",
 	"moveuserpage-warning": "'''Paase üüb:''' Dü wel en brükersidj fersküüw. Seenk diaram, dat bluas det brükersidj amnäämd woort, oober '''ei''' di brüker. Hi behäält san ual nööm.",
 	"movecategorypage-warning": "<strong>Paase üüb:</strong> Dü wel jüst en kategoriisidj fersküüw. Seenk diaram, dat bluas det sidj fersköwen woort. A sidjen uun det kategorii wurd <em>ei</em> nei kategorisiaret.",
 	"movenologintext": "Dü skel registriaret an [[Special:UserLogin|uunmeldet]] wees, am en sidj tu fersküüwen.",
@@ -3171,7 +3175,7 @@
 	"api-error-badaccess-groups": "Dü mutst nian datein tu detdiar Wiki huuchschüür.",
 	"api-error-badtoken": "Intern feeler: Token as ferkiard.",
 	"api-error-copyuploaddisabled": "Det huuchschüüren auer URL as üüb didiar server ei aktiif.",
-	"api-error-duplicate": "Uun det Wiki {{PLURAL:$1|as al [$2 en ööder datei]|san al [$2 muar datein]}} mä detsalew banen.",
+	"api-error-duplicate": "Uun det Wiki {{PLURAL:$1|as al en ööder datei|san al muar datein}} mä detsalew banen.",
 	"api-error-duplicate-archive": "Diar wiar al {{PLURAL:$1|ööder datei|ööder datein}} mä detsalew banen. {{PLURAL:$1|Hat as |Jo san}} oober stregen wurden.",
 	"api-error-empty-file": "Det datei, wat dü huuchschüürd heest, as leesag.",
 	"api-error-emptypage": "Dü mutst nian leesag sidjen nei iinstel.",

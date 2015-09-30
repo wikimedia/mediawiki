@@ -18,7 +18,8 @@
 			"Tlustulimu Nepl1",
 			"아라",
 			"TMg",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Wótkaze pódšmarnuś:",
@@ -1995,7 +1996,6 @@
 	"movepagetext": "Z pomocu slědujucego formulara móžoš bok pśemjenjowaś, pśi comž se jogo wersije k nowemu mjenjoju pśesuwaju.\nStary titel wordujo dalejpósrědnjeński bok k nowemu titeloju.\nMóžoš awtomatiski aktualizěrowaś dalejposrědkowanja, kótarež pokazuju na originalny titel.\nJolic njocoš, pśeglědaj za [[Special:DoubleRedirects|dwójnymi]] abo [[Special:BrokenRedirects|defektnymi daleposrědkowanjami]].\nSy zagronity, až wótkaze wjedu tam, źož maju wjasć.\n\nŹiwaj na to, až se bok '''nje'''pśesuwa, jolic jo južo bok z nowym titelom, snaźkuli slědny jo dalejpósrědnjenje a njama stare wobźěłane wersije. To ma groniś, až móžoš bok zasej slědk pśemjenjowaś, jolic cyniš zmólku, a njemóžoš eksistěrujucy bok pśepisaś.\n\n'''WARNOWANJE!'''\nTo móžo byś drastiska a njewocakowana změna za popularny bok;\npšosym zawěsć, až konsekwency rozmijoš, nježli až pókšacujoš.",
 	"movepagetext-noredirectfixer": "Z pomocu slědujucego formulara móžoš bok pśemjenjowaś, pśi comž se jogo wersije k nowemu mjenjoju pśesuwaju.\nStary titel wordujo dalejpósrědnjeński bok k nowemu titeloju.\nMóžoš awtomatiski aktualizěrowaś dalejposrědkowanja, kótarež pokazuju na originalny titel.\nJolic njocoš, pśeglědaj za [[Special:DoubleRedirects|dwójnymi]] abo [[Special:BrokenRedirects|defektnymi daleposrědkowanjami]].\nSy zagronity, až wótkaze wjedu tam, źož maju wjasć.\n\nŹiwaj na to, až se bok '''nje'''pśesuwa, jolic jo južo bok z nowym titelom, snaźkuli jo prozny abo dalejpósrědnjenje a njama stare wobźěłane wersije. To ma groniś, až móžoš bok zasej slědk pśemjenjowaś, jolic cyniš zmólku, a njemóžoš eksistěrujucy bok pśepisaś.\n\n'''WARNOWANJE!'''\nTo móžo byś drastiska a njewocakowana změna za popularny bok;\npšosym źiwaj na to, až rozumijoš konsekwency, nježli až pókšacujoš.",
 	"movepagetalktext": "Pśisłušny diskusijny bok se sobu pśesunjo, '''ale nic gaž:'''\n* eksistěrujo južo diskusijny bok z toś tym mjenim, abo gaž\n* wótwólijoš toś tu funkciju.\n\nW toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu wjasć, jolic až to coš.",
-	"movearticle": "Bok pśesunuś",
 	"moveuserpage-warning": "'''Warnowanje:''' Coš rowno wužywarski bok pśesunuś. Pšosym wobmysli, až jano bok se pśesunjo a wužiwaŕ '''nje'''buźo se pśemjenjowaś.",
 	"movenologintext": "Musyš zregistrěrowany wužywaŕ a [[Special:UserLogin|pśizjawjony]] byś, aby pśesunuł bok.",
 	"movenotallowed": "Njamaš pšawo pśesuwaś boki.",
@@ -2957,8 +2957,8 @@
 	"api-error-badaccess-groups": "Njamaš pšawo dataje do toś togo wikija nagraś.",
 	"api-error-badtoken": "Nutśikowna zmólka: Wopacny token",
 	"api-error-copyuploaddisabled": "Nagrawanje pśez URL jo na toś tom serwerje znjemóžnjone.",
-	"api-error-duplicate": "{{PLURAL:$1|Jo|Stej|Su|Jo}} južo {{PLURAL:$1|[$2 druga dataja]|[$2 drugej dataji]|[$2 druge dataje]|[$2 drugich datajow]}} z tym samym wopśimjeśim na sedle",
-	"api-error-duplicate-archive": "{{PLURAL:$1|Jo była [$2 druga dataja]|Stej byłej [$2 drugej dataji]|Su byli [$2 druge dataje]|Jo było [$2 drugich datajow]}} južo na websedle z tym samym wopśimjeśim, ale {{PLURAL:$1|jo se wulašowała|stej se wulašowałej|su se wulašowali|jo se wulašowało}}.",
+	"api-error-duplicate": "{{PLURAL:$1|Jo|Stej|Su|Jo}} južo {{PLURAL:$1|druga dataja|drugej dataji|druge dataje|drugich datajow}} z tym samym wopśimjeśim na sedle",
+	"api-error-duplicate-archive": "{{PLURAL:$1|Jo była druga dataja|Stej byłej drugej dataji|Su byli druge dataje|Jo było drugich datajow}} južo na websedle z tym samym wopśimjeśim, ale {{PLURAL:$1|jo se wulašowała|stej se wulašowałej|su se wulašowali|jo se wulašowało}}.",
 	"api-error-empty-file": "Dataja, kótaruž sy nagrał, jo prozna była.",
 	"api-error-emptypage": "Napóranje nowych, proznych bokow njejo dowólone.",
 	"api-error-fetchfileerror": "Nutśikowna zmólka: Pśi wobstarowanju dataje něco njejo se raźiło.",

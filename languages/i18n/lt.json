@@ -33,7 +33,8 @@
 			"Pofka",
 			"Albertas",
 			"Macofe",
-			"Zygimantus"
+			"Zygimantus",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Nuorodos pabraukimas:",
@@ -2140,7 +2141,6 @@
 	"movepagetext": "Naudodamiesi žemiau pateikta forma, pervadinsite puslapį\nneprarasdami jo istorijos.\nSenasis pavadinimas taps nukreipiamuoju - rodys į naująjį.\nNuorodos į senąjį puslapį nebus automatiškai pakeistos, todėl būtinai\npatikrinkite ar nesukūrėte [[Special:DoubleRedirects|dvigubų]] ar\n[[Special:BrokenRedirects|neveikiančių]] nukreipimų.\nJūs esate atsakingas už tai, kad nuorodos rodytų į ten, kur ir norėta.\n\nPrimename, kad puslapis '''nebus''' pervadintas, jei jau yra puslapis\nnauju pavadinimu, nebent tas puslapis tuščias arba nukreipiamasis ir\nneturi redagavimo istorijos. Taigi, jūs galite pervadinti puslapį\nseniau naudotu vardu, jei prieš tai jis buvo per klaidą pervadintas,\no egzistuojančių puslapių sugadinti negalite.\n\n'''DĖMESIO!'''\nJei pervadinate populiarų puslapį, tai gali sukelti nepageidaujamų\nšalutinių efektų, dėl to šį veiksmą vykdykite tik įsitikinę,\nkad suprantate visas pasekmes.",
 	"movepagetext-noredirectfixer": "Naudodamiesi žemiau pateikta forma, pervadinsite puslapį perkeldami visą jo istoriją į naująjį pavadinimą.\nSenasis pavadinimas taps nukreipiamuoju puslapiu į naująjį.\nNuorodos į senąjį puslapį nebus automatiškai pakeistos, todėl būtinai\npatikrinkite, ar nesukūrėte [[Special:DoubleRedirects|dvigubų]] ar [[Special:BrokenRedirects|neveikiančių]] nukreipimų.\nJūs esate atsakingas už tai, kad nuorodos rodytų į ten, kur ir norėta.\n\nPrimename, kad puslapis '''nebus''' pervadintas, jei jau yra puslapis nauju pavadinimu, nebent tas puslapis yra tuščias arba nukreipiamasis ir neturi redagavimo istorijos.\nTaigi, jūs galite pervadinti puslapį seniau naudotu vardu, jei prieš tai jis buvo per klaidą pervadintas, o egzistuojančių puslapių sugadinti negalite.\n\n'''Dėmesio!'''\nJei pervadinate populiarų puslapį, tai gali sukelti nepageidaujamų šalutinių efektų,\ndėl to šį veiksmą vykdykite tik įsitikinę, kad suprantate visas pasekmes.",
 	"movepagetalktext": "Susietas aptarimo puslapis bus automatiškai perkeltas kartu su juo, '''išskyrus:''':\n*Puslapis nauju pavadinimu jau turi netuščią aptarimo puslapį, arba\n*Paliksite žemiau esančia varnelę nepažymėtą.\n\nŠiais atvejais jūs savo nuožiūra turite perkelti arba apjungti aptarimo puslapį.",
-	"movearticle": "Pervardinti puslapį:",
 	"moveuserpage-warning": "'''Dėmesio:''' Jūs ruošiatės perkelti naudotojo puslapį. Atkreipkite dėmesį, kad bus perkeltas tik puslapis, naudotojas ''nebus'' pervadintas.",
 	"movecategorypage-warning": "<strong>Dėmesio:</strong> Jūs ketinate pervadinti kategorijos puslapį. Atminkite, kad tik pats puslapis bus pervadintas, tačiau kategorijai priskirti puslapiai <em>nebus</em> perkelti naujon kategorijon.",
 	"movenologintext": "Norėdami pervadinti puslapį, turite būti užsiregistravęs naudotojas ir būti  [[Special:UserLogin|prisijungęs]].",
@@ -3247,7 +3247,7 @@
 	"api-error-badaccess-groups": "Jums neleidžiama įkelti failus į šią wiki.",
 	"api-error-badtoken": "Vidinė klaida: blogai atpažinimo ženklas.",
 	"api-error-copyuploaddisabled": "Siuntimas pagal URL yra išjungtas šiame serveryje.",
-	"api-error-duplicate": "Jau {{PLURAL:$1|yra [$2 kitas failas]|yra [$2 kiti failai]}} puslapyje su tuo pačiu turiniu..",
+	"api-error-duplicate": "Jau {{PLURAL:$1|yra kitas failas|yra kiti failai}} puslapyje su tuo pačiu turiniu..",
 	"api-error-duplicate-archive": "Jau {{PLURAL:$1|buvo kitas failas|buvo kitų failų}} puslapyje su tuo pačiu turiniu, bet {{PLURAL:$1|buvo|buvo}} ištrinti.",
 	"api-error-empty-file": "Pateikta failas buvo tuščias.",
 	"api-error-emptypage": "Kurti naujus, tuščius puslapius neleidžiama.",

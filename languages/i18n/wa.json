@@ -6,7 +6,8 @@
 			"Urhixidur",
 			"לערי ריינהארט",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Sorlignî les loyéns:",
@@ -1198,7 +1199,6 @@
 	"move-page-legend": "Displaecî l' pådje",
 	"movepagetext": "Chal vos ploz candjî l' no d' ene pådje, dj' ô bén displaecî l' pådje, eyet si istwere, eviè l' novea no.\nLi vî tite divénrè-st ene pådje di redjiblaedje viè l' novele.\nVos ploz mete otomaticmint a djoû les redjiblaedje k' evoyént sol vî tite.\nSi vos nel vloz nén fé, acertinez vs di verifyî s' i n' a nén des [[Special:DoubleRedirects|dobes]] ou [[Special:BrokenRedirects|crons redjiblaedjes]].\nVos estoz responsåve di fé çou k' i fåt po k' les loyéns continouwexhe di moenner la k' i fåt.\n\nNotez k' el pådje èn serè '''nén''' displaeceye s' i gn a ddja ene pådje avou l' novea tite, a moens k' ele soeye vude, ou ene pådje di redjiblaedje, et k' ele n' åye nole istwere.\nÇoula vout dire ki vos ploz ridisplaecî ene pådje viè l' no k' ele aveut djusse divant, et insi disfé vosse prumî displaeçaedje, å cas ou vos vs rindrîz conte ki vos avoz fwait ene flotche;\ney eto ki vos n' poloz nén spotchî par accidint ene pådje k' egzistêye dedja.\n\n'''ASTEME!'''\nOn displaeçaedje pout esse on consecant et nén atindou candjmint po ene pådje foirt léjhowe;\ns' i vs plait tuzez bén åzès consecwinces divant d' continouwer.",
 	"movepagetalktext": "Li pådje di copene associeye serè\ndisplaeceye otomaticmint avou, '''a moens ki:'''\n*Ene pådje di copene nén vude egzistêye dedja dizo l' novea no,\n*Vos disclitchrîz l' boesse a clitchî chal pa dzo.\n\nDins ces cas la, vos dvroz displaecî l' pådje di copene al mwin, ou rcopyî\nsi contnou, si vos l' vloz mete adlé l' novea no\nd' l' årtike.",
-	"movearticle": "Displaecî di",
 	"movenologintext": "I vs fåt esse èn uzeu eredjîstré eyet esse [[Special:UserLogin|elodjî]] por vos pleur displaecî ene pådje.",
 	"newtitle": "Viè l' novea tite",
 	"move-watch": "Shuve cisse pådje cial",
@@ -1576,7 +1576,7 @@
 	"searchsuggest-containing": "ki contént...",
 	"api-error-badaccess-groups": "Vos n' avoz nén l' droet d' eberweter des fitchîs so ç' wiki cial",
 	"api-error-copyuploaddisabled": "Les eberwetaedjes pa URL ni vont nén so ç' sierveu cial.",
-	"api-error-duplicate": "N a ddja {{PLURAL:$1|[$2 èn ôte fitchî]|[$2 des ôtes fitchîs]}} avou l' minme contnou so nosse waibe",
+	"api-error-duplicate": "N a ddja {{PLURAL:$1|èn ôte fitchî|des ôtes fitchîs}} avou l' minme contnou so nosse waibe",
 	"api-error-duplicate-archive": "N aveut ddja {{PLURAL:$1|èn ôte fitchî|des ôtes fitchîs}} avou l' minme contnou so nosse waibe, mins {{PLURAL:$1|il a stî rsaetchî|il ont stî rsaetchîs}}.",
 	"api-error-empty-file": "Vosse fitchî est vude.",
 	"api-error-emptypage": "C' est nén permetou d' ahiver ene novele pådje et l' leyî vude.",

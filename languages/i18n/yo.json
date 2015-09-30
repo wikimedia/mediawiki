@@ -6,7 +6,8 @@
 			"Meno25",
 			"Urhixidur",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Ìfàlàsábẹ́ àwọn àjápọ̀:",
@@ -1865,7 +1866,6 @@
 	"movepagetext": "Fọ́ọ̀mù ìsàlẹ̀ yìí ṣàtúnṣọlórúkọ ojúewé, yíò kó gbogbo ìtàn rẹ̀ sí ojúewé tuntun.\nÀkọlé rẹ̀ tẹ́lẹ̀ yíò di ojúewé àtúndarí sí ọ̀dọ̀ àkọlẹ́ tuntun.\nẸ lè ṣọdọ̀tun àwọn àtúndarí tí wọ́n tọ́kasí àkọlé tìbẹ̀rẹ̀ fúnrararẹ̀.\nTí ẹ kò bá fẹ́ ṣèyí, ẹ ríi dájú pé ẹ kíyèsí [[Special:DoubleRedirects|ẹ̀mejì]] tàbí [[Special:BrokenRedirects|àwọn àtúndarí jíjá]].\nOjúṣe yín ni pé àwọn ìjápọ̀ ún tọ́kasí ibi tó yẹ kí wọn ó lọ sí.\n\nẸ kíyèsí pé ojúewé '''kò''' ní yípò tí ojúewé mìíràn bá wà tó ní orúkọ ojúewé tuntun ọ̀hún, àyàfi tó bá jẹ́ òfo tàbí àtúndarí tí kò sì ní ìtàn àtúnṣe ṣẹ́yìn.\nÈyí túmọ́sí wípé ẹ lẹ̀ ṣàtúnṣọlórúkọ ojúewé padà sí ibi tó ti jẹ́ ṣíṣàtúnṣọlórúkọ wá tí ẹ bá ṣe àṣìṣe, àti pé ẹ kò le ṣàkọléṣórí ojúewé tó wà.\n\n'''Ìkìlọ̀!'''\nÈyí le fa ìdàrú sí ojúewé tó gbajúmọ́;\nẹ ríi wípé ohun tí yíò ṣẹlẹ̀ ye yín kí ẹ tó tẹ̀síwájú.",
 	"movepagetext-noredirectfixer": "Lílo fọ́ọ̀mù ìsàlẹ̀ yìí yíò ṣe àtúnsọlórúkọ ojúewé, yíò sì kó gbogbo ìtàn rẹ̀ lọ sí orí orúkọ tuntun.\nÀkọlé tó ní tẹ́lẹ̀ yíò di ojúewé àtúnjúwe sí àkọlé tuntun.\nẸ kí yèsi pé kò sí [[Special:DoubleRedirects|àtúnjúwe ẹ̀mejì]] tàbí [[Special:BrokenRedirects|jíjá]].\nOjúṣe yín ni láti rí pé àwọn àjápọ̀ únnawọ́ sí ibi tó yẹ kí wọn ó lọ.\n\nÀkíyèsí pé ojúewé náà '''kò''' ní jẹ́ yíyínípòpadà tí ojúewé míràn bá ti wà ní ibi àkọlé tuntun náà, àyàfi tó bá jẹ́ òfo tàbí àtúnjúwe, tí kò sì ní ìtàn àtúnṣe tẹ́lẹ̀.\nÈyí túmọ̀sí pé ẹ le dá orúkọ ojúewé padà sí orúkọ rẹ̀ tẹ́lẹ̀ tí ẹ bá ṣe àsìṣe, tí ẹ kò sì le ṣàkọlélórí ojúewé tí únbẹ.\n\n'''Ìkìlọ̀!'''\nÈyí le jẹ́ àtúnṣe òjijì fún ojúewé tó gbajúmọ̀; Ẹ ri dájú pé ohun tí yíò ṣẹlẹ̀ yé yín kí ẹ tó tẹ̀ síwájú.",
 	"movepagetalktext": "Ojúewé ọ̀rọ̀ tó sopọ̀ mọ náà yíó yípò pọ̀ mọ fún ra rẹ̀ '''àfibí:'''\n*Tí ọ̀rọ̀ ojúewé tí kò jẹ́ òfo wà pẹ̀lú orúkọ tuntun náà, tàbí\n*Ẹ mú àmí kúrò nínú àpótí ìṣàlẹ̀ yìí.\n\nTí ó bá jẹ́ báhun, ẹ gbúdọ̀ ṣe ìyípò rẹ̀ fúnra yín.",
-	"movearticle": "Yípò ojúewé:",
 	"moveuserpage-warning": "'''Ìkìlọ̀:''' Ẹ ti fẹ́ yí ipò ojúewé oníṣe kan padà. Ẹ kíyèsi pé ojúewé ọ̀hún nìkan ni yíò jẹ́ yíyípòpadà, oníṣe ọ̀hún ''kò'' ní jẹ́ títúnsọlọ́rúkọ.",
 	"movenologintext": "Ẹ gbọ́dọ̀ jẹ́ oníṣe ajẹ́fíforúkọsílẹ̀ kí ẹ sì [[Special:UserLogin|wọlẹ́]] láti yípò ojúewé kan.",
 	"movenotallowed": "Ẹ kò ní ìyọ̀nda láti yípò ojúewé.",
@@ -2613,7 +2613,7 @@
 	"api-error-badaccess-groups": "Ẹ kò ní àṣẹ láti ru fáìlì wọlé sí orí wiki yìí.",
 	"api-error-badtoken": "Àsìṣe inú: Ìdáramọ̀ búburú.",
 	"api-error-copyuploaddisabled": "Ìrùsókè pẹ̀lú URL jẹ́ dídálẹ́kun lórí ẹ̀rọ-ìpèsè yìí.",
-	"api-error-duplicate": "{{PLURAL:$1|[$2 Fáìlì míràn]|[$2 Àwọn fáìlì míràn]}} kan tilẹ̀ wà lórí ibiìtàkùn pẹ̀lú àkóónú kannáà.",
+	"api-error-duplicate": "{{PLURAL:$1|Fáìlì míràn|Àwọn fáìlì míràn}} kan tilẹ̀ wà lórí ibiìtàkùn pẹ̀lú àkóónú kannáà.",
 	"api-error-duplicate-archive": "{{PLURAL:$1|Fáìlì míràn|Àwọn fáìlì míràn}} kan tilẹ̀ wà lórí ibiìtàkùn pẹ̀lú àkóónú kannáà, sùgbọ́n {{PLURAL:$1|ó|wọ́n}} ti jẹ́ píparẹ́.",
 	"api-error-empty-file": "Fáílì tí ẹ fisílẹ̀ jẹ́ òfo.",
 	"api-error-emptypage": "Ẹ kò ní àyè láti dá ojúewé tuntun tó jẹ́ òfo.",

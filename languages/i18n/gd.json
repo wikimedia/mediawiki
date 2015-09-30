@@ -9,7 +9,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"GunChleoc",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Fo-loidhneadh nan ceanglaichean:",
@@ -2068,7 +2069,6 @@
 	"movepagetext": "Ma chleachdas tu am foirm gu h-ìosal, cuiridh tu ainm ùr air 's gluaisidh tu a h-eachdraidh gu lèir dhan ainm ùr.\nBidh an seann tiotal 'na ath-sheòladh dhan tiotal ùr an uairsin.\n'S urrainn dhut ath-sheòladh sam bith a tha a' dol dhan tiotal tùsail ùrachadh leis fhèin.\nMura dèan thu sin, dèan cinnteach gun cuir thu sùil air eagal 's gum bi [[Special:DoubleRedirects|ath-sheòlaidhean dùbailte]] no [[Special:BrokenRedirects|briste]] ann.\n'S ann ort-sa a tha an t-uallach airson dèanamh cinntach gu bheil na ceanglaichean a' dol dha na h-àitichean ceart.\n\nThoir an aire <strong>nach dèid</strong> an duilleag a ghluasad ma tha duilleag air an tiotal ùr mu thràth ach ma bhios e falamh no 'na ath-sheòladh 's mur eil eachdraidh deasachaidh ann.\n'S ciall dha seo gun urrainn dhut ainm duilleige a thilleadh dhan ainm a bha air roimhe ma rinn thu mearachd agus nach urrainn dhut sgrìobhadh thairis air duilleag a tha ann.\n\n<strong>Rabhadh!</strong>\nFaodaidh seo a bhith 'na atharrachadh mòr ris nach bi dùil air duilleag air a bheil fèill mhòr;\ndèan cinnteach gu bheil thu a' tuigsinn dè a' bhuaidh a bhios agad mus dèid thu air adhart.",
 	"movepagetext-noredirectfixer": "Ma chleachdas tu am foirm gu h-ìosal, cuiridh tu ainm ùr air 's gluaisidh tu a h-eachdraidh gu lèir dhan ainm ùr.\nBidh an seann tiotal 'na ath-stiùireadh dhan tiotal ùr an uairsin.\nDearbhaich nach bi ath-sheòlaidhean [[Special:DoubleRedirects|dùbailte]] no [[Special:BrokenRedirects|briste]] ann.\n'S ann ort-sa a tha an t-uallach airson dèanamh cinnteach gu bheil na ceanglaichean a' dol dha na h-àitichean a bu chòir.\n\nThoir an aire <strong>nach dèid</strong> an duilleag a ghluasad ma tha duilleag air an tiotal ùr mu thràth ach ma bhios e falamh no 'na ath-sheòladh 's mur eil eachdraidh deasachaidh ann.\n'S ciall dha seo gur urrainn dhut ainm duilleige a thilleadh dhan ainm a bha air roimhe ma rinn thu mearachd agus nach urrainn dhut sgrìobhadh thairis air duilleag a tha ann.\n\n<strong>Rabhadh!</strong>\nFaodaidh seo a bhith 'na atharrachadh mòr ris nach bi dùil air duilleag air a bheil fèill mhòr;\ndèan cinnteach gu bheil thu a' tuigsinn dè a' bhuaidh a bhios agad mus dèid thu air adhart.",
 	"movepagetalktext": "Thèid an duilleag deasbaireachd a tha co-cheangailte ris a ghluasad 'na cois <strong>ach:</strong>\n*Ma tha duilleag deasbaireachd nach eil falamh aig an ainm ùr mu thràth, no\n*Ma bheir thu air falbh a' chromag on bhogsa gu h-ìosal\n\nMa thachras seo, feumaidh to an duilleag a ghluasad no cho-aonachadh a làimh, ma tha sin fa-near dhut.",
-	"movearticle": "Gluais duilleag:",
 	"moveuserpage-warning": "<strong>Rabhadh:</strong> Tha thu airson duilleag cleachdaiche a ghluasad. Thoir an aire nach dèid ach an duilleag a ghluasad 's <em>gur ann nach dèid</em> ainm ùr a thoirt air a' chleachdaiche.",
 	"movecategorypage-warning": "<strong>Rabhadh:</strong> Tha thu airson duilleag roinn-seòrsa a ghluasad. Thoir an aire nach dèid ach an duilleag a ghluasad 's <em>gur ann nach dèid</em> gach duilleag a tha san t-seann roinn-seòrsa a chur ris an roinn-seòrsa ùr.",
 	"movenologintext": "Feumaidh tu a bhith 'nad bhall clàraichte 's air [[Special:UserLogin|logadh a-steach]] mus gluais thu duilleag.",
@@ -3109,7 +3109,7 @@
 	"api-error-badaccess-groups": "Chan eil cead agad gus faidhlichean a luchdadh suas dhan uicidh seo.",
 	"api-error-badtoken": "Mearachd taobh a-staigh: Droch thòcan.",
 	"api-error-copyuploaddisabled": "Tha luchdadh suas le URL à comas air an fhrithealaiche seo.",
-	"api-error-duplicate": "Tha {{PLURAL:$1|[$2 faidhle eile]|are [$2 faidhlichean eile]}} air an làrach seo mar-thà sa bheil an aon susbaint.",
+	"api-error-duplicate": "Tha {{PLURAL:$1|faidhle eile|are faidhlichean eile}} air an làrach seo mar-thà sa bheil an aon susbaint.",
 	"api-error-duplicate-archive": "Tha {{PLURAL:$1|faidhle eile|faidhlichean eile}} air an làrach seo mar-thà sa bheil an aon susbaint ach chaidh {{PLURAL:$1|a sguabadh|an sguabadh}} às.",
 	"api-error-empty-file": "Tha am faidhle a chuir thu a-null falamh.",
 	"api-error-emptypage": "Chan fhaodar duilleagan falamh ùra a chruthachadh.",

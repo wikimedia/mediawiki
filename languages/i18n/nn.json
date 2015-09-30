@@ -23,7 +23,8 @@
 			"아라",
 			"Gaute",
 			"Macofe",
-			"Chameleon222"
+			"Chameleon222",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Strek under lenkjer:",
@@ -1966,7 +1967,6 @@
 	"movepagetext": "Ved å bruka skjemaet nedanfor kan du få omdøypt ei side og flytt heile historikken til det nye namnet.\nDen gamle tittelen vil verta ei omdirigeringsside til den nye.\nDu kan oppdatera omdirigeringar som peikar til den opphavlege tittelen automatisk.\nVel du å ikkje gjera dette, pass på å sjå etter [[Special:DoubleRedirects|doble]] eller [[Special:BrokenRedirects|øydelagde omdirigeringar]].\n\nMerk at sida '''ikkje''' vert flytt dersom det alt finst ei side med den nye tittelen, minder målsida er ei omdirigering og ikkje har nokon endringshistorikk. Detter tyder at du kan omdøypa ei side attende til der ho vart omdøypt frå om du gjorde eit mistak, og du kan ikkje skriva over sider som finst.\n\n'''ÅTVARING!'''\nDette kan vera ei drastisk og uventa endring for ei populær side; ver viss på at du skjøner konsekvensane av dette før du held fram.",
 	"movepagetext-noredirectfixer": "Nyttar ein skjemaet under får ein døypt om ei side og flytt heile historikken til det nye namnet. \nDen gamle tittelen vil verta ei omdirigeringsside for den nye tittelen. \nPass på å sjå etter [[Special:DoubleRedirects|doble]] eller [[Special:BrokenRedirects|uverksame]] omdirigeringar. \nDu er ansvarleg for at alle lenkjene stadig peikar dit det er meininga at dei skal føra.\n\nMerk at sida '''ikkje''' vert flytt dersom det alt finst ei side med den nye tittelen, om ho då ikkje er tom eller ei omdirigeringsside utan endringshistorikk.\nDette vil seia at du kan døypa om ei side til det gamle namnet hennar om du gjer ein feil, og dessutan at du ikkje kan skriva over ei side som finst.\n\n'''ÅTVARING!'''\nDette kan vera ei drastisk og uventa endring for ei populær side;\nver viss på at du skjøner konsekvensane av flyttinga før du held fram.",
 	"movepagetalktext": "Den tilhøyrande diskusjonssida, om ho finst, vert automatisk flytt med sida '''minder:'''\n*ei ikkje-tom diskusjonsside alt finst under det nye namnet, eller\n*du fjernar avhakinga i boksen nedanfor.\n\nI desse falla lyt du flytta eller fletta sida manuelt, om ynskjeleg.",
-	"movearticle": "Flytt side:",
 	"moveuserpage-warning": "'''Åtvaring:''' Du er i ferd med å flytta ei brukarside. Merk at berre sida vert flytt og at brukarnamnet '''ikkje''' vert endra.",
 	"movecategorypage-warning": "<strong>Åtvaring:</strong> Du er i ferd med å flytta ei kategoriside. Merk at berre kategorisida vert flytt og at sider i den gamle kategorien <em>ikkje</em> vert omkategoriserte til den nye kategorien.",
 	"movenologintext": "Du lyt vera registrert brukar og vera [[Special:UserLogin|innlogga]] for å flytte ei side.",
@@ -2943,7 +2943,7 @@
 	"api-error-badaccess-groups": "Du har ikkje løyve til å lasta opp filer til wikien.",
 	"api-error-badtoken": "Intern feil: ugild token.",
 	"api-error-copyuploaddisabled": "Opplasting etter URL er avslege på tenaren.",
-	"api-error-duplicate": "Det finst {{PLURAL:$1|[$2 ei anna fil]|[$2 andre filer]}} på nettstaden med same innhaldet.",
+	"api-error-duplicate": "Det finst {{PLURAL:$1|ei anna fil|andre filer}} på nettstaden med same innhaldet.",
 	"api-error-duplicate-archive": "Det fanst {{PLURAL:$1|ei anna fi]|andre file]}} på nettstaden med det same innhaldet, men {{PLURAL:$1|ho|dei}} vart sletta.",
 	"api-error-empty-file": "Fila du sende var tom.",
 	"api-error-emptypage": "Det er ikkje tillate å oppretta nye tomme sider.",

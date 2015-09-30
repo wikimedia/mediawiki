@@ -16,7 +16,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Pymouss",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Liammoù islinennet",
@@ -2002,7 +2003,6 @@
 	"movepagetext": "Grit gant ar furmskrid a-is evit adenvel ur pennad hag adkas an holl stummoù kent anezhañ war-zu an anv nevez.\nDont a raio an titl kozh da vezañ ur bajenn adkas war-zu an titl nevez.\nGallout a rit nevesaat ent emgefre an adkasoù a-vremañ a gas d'an titl orin.\nNe vo ket kemmet liammoù an titl kozh ha ne vo ket dilec'hiet ar bajenn gaozeal, ma'z eus anezhi.\n\nMa rit ho soñj chom hep en ober, gwiriit mat an holl [[Special:DoubleRedirects|adkasoù doubl]] pe [[Special:BrokenRedirects|adkasoù torret]].\nC'hwi eo zo karget da wiriañ e kas mat al liammoù d'al lec'h int sañset kas.\n\nNotit mat '''ne vo ket''' dilec'hiet ma'z eus dija ur bajenn ganti an anv nevez, nemet e vefe un adkas ha ne vefe tamm istor ebet stag outi.\nDre se e c'haller adkas ur bajenn war-zu he lec'h orin ma oa kamm an adkas.\n\n'''DIWALLIT!'''\nGallout a ra kement-se bezañ ur c'hemm bras ha dic'hortoz evit ur pennad a vez sellet outi alies;\nbezit sur e komprenit mat an heuliadoù a-raok kenderc'hel ganti.",
 	"movepagetext-noredirectfixer": "Grit gant ar furmskrid a-is evit adenvel ur bajenn hag adkas an istor anezhi war-zu an anv nevez.\nDont a raio an titl kozh da vezañ ur bajenn adkas war-zu an titl nevez.\nGwiriit mat an [[Special:DoubleRedirects|adkasoù doubl]] hag an [[Special:BrokenRedirects|adkasoù torr]].\nEnnoc'h emañ fiziet gwiriañ e kendalc'h al liammoù da gas war-zu ar bajenn a rankont kas daveti.\n\nNotit mat ne vo '''ket''' dilec'hiet ar bajenn ma'z eus dija unan gant an titl nevez nemet e vefe goullo istor ar c'hemmoù degaset enni hag e vefe pe goullo ar bajenn pe e vefe un adkas anezhi. Gant se e c'haller adenvel ur bajenn war-zu he lec'h orin mard eo faziek an dilec'hiañ ha dibosupl eo frikañ ur bajenn zo anezhi c'hoazh. \n\n'''Diwallit !'''\nUr c'hemm bras ha dic'hortoz e c'hall bezañ evit ur bajenn a vez sellet outi alies ; bezit sur hoc'h eus komprenet mat an heuliadoù a-raok kenderc'hel ganti.",
 	"movepagetalktext": "Gant se e vo adanvet ent emgefre ar bajenn gaozeal stag, ma'z eus anezhi '''nemet ma:'''\n*ec'h adanvit ur bajenn war-du ul lec'h all,\n*ez eus ur bajenn gaozeal c'hoazh gant an anv nevez, pe\n*diweredekaet hoc'h eus ar bouton a-is.\n\nEn degouezh-se e rankot adenvel pe gendeuziñ ar bajenn c'hwi hoc'h-unan ma karit.",
-	"movearticle": "Dilec'hiañ ar pennad",
 	"moveuserpage-warning": "'''Diwallit : ''' War-nes dilec'hiañ ur bajenn implijer emaoc'h. Notit mat n'eus nemet ar bajenn a vo dilec'hiet ha ne vo ''ket'' adanvet an implijer.",
 	"movenologintext": "A-benn gellout adenvel ur pennad e rankit bezañ un implijer enrollet ha bezañ [[Special:UserLogin|kevreet]].",
 	"movenotallowed": "N'oc'h ket aotreet da zilec'hiañ pajennoù.",
@@ -2977,7 +2977,7 @@
 	"api-error-badaccess-groups": "N'oc'h ket aotreet da enporzhiañ restroù war ar wiki-mañ.",
 	"api-error-badtoken": "Fazi diabarzh : \"jedouer\" fall.",
 	"api-error-copyuploaddisabled": "Diweredekaet eo an enporzhioù dre URL war ar servijer-mañ.",
-	"api-error-duplicate": "Bez' {{PLURAL:$1|ez eus [$2 restr all]|[$2 restr all]}} gant an hevelep danvez war al lec'hienn-mañ c'hoazh",
+	"api-error-duplicate": "Bez' {{PLURAL:$1|ez eus restr all|restr all}} gant an hevelep danvez war al lec'hienn-mañ c'hoazh",
 	"api-error-duplicate-archive": "Bez' e oa {{PLURAL:$1|ur restr all|restroù all}} c'hoazh enno an hevelep danvez, nemet {{PLURAL:$1|eo bet diverket|int bet diverket}}.",
 	"api-error-empty-file": "Ar restr hoc'h eus roet a oa goullo.",
 	"api-error-emptypage": "N'eo ket aotreet krouiñ pajennoù goullo.",

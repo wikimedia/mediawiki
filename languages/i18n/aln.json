@@ -962,7 +962,6 @@
 	"block-log-flags-nocreate": "krijimi i llogarive âsht pamundësue",
 	"movepagetext": "Me formularin e maposhtëm mund ta ndërrosh titullin e faqes, tue zhvendosë krejt prapavijën e saj te titulli i ri.\n\nTitulli i vjetër do të bahet faqe përcjellëse te titulli e ri.\n\nMundesh t'i freskosh automatikisht përcjelljet që tregojnë në titullin e kryehershëm.\n\nNëse zgjedhë mos me i freskue, sigurohu që i ke kontrollue [[Special:DoubleRedirects|përcjelljet e dyfishta]] apo [[Special:BrokenRedirects|të damtueme]].\n\nTi je përgjegjës që vegzat me çue atje ku duhet.\n\n\nVeneroje që faqja '''nuk''' do të zhvendoset nëse nji faqe me të njejtin titull tashma ekziston, përveç nëse asht e shprazët apo vetëm përcjellëse dhe nuk ka histori të redaktimit.\n\nKjo domethanë që mund ta rikthesh titullin e faqes aty ku ka qenë nëse ke ba gabim dhe nuk mund ta mbishkruesh nji faqe ekzistuese.\n\n\n'''Kujdes!'''\n\nKy mund të jetë ndryshim drastik dhe i papritun për nji faqe të popullarizueme;\n\ntë lutem, sigurohu që i ke parasysh pasojat para se të vazhdosh.",
 	"movepagetalktext": "Faqja e diskutimit që lidhet me këtë faqe do të zhvendoset automatikisht '''përveç:'''\n*Nëse ekziston nji faqe e diskutimit nën titullin e ri, apo\n*E shêjoni të pazgjedhun kutinë e mâposhtme.\n\nNë këto raste, duheni me i bashkue manualisht këto faqe nëse dëshironi.",
-	"movearticle": "Zhvendose faqen",
 	"newtitle": "Te titulli i ri",
 	"move-watch": "Mbikqyre kët faqe",
 	"movepagebtn": "Zhvendose faqen",

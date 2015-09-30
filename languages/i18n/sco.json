@@ -19,7 +19,8 @@
 			"아라",
 			"PiRSquared17",
 			"Macofe",
-			"Caliburn"
+			"Caliburn",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Unnerline airtins:",
@@ -2040,7 +2041,6 @@
 	"movepagetext": "Uisin the form ablo will rename ae page, muivin aw o its histerie til the new name.\nThe auld title will become ae reguidal page til the new title.\nYe can update reguidals that poynt til the oreeginal title autæmateeclie.\nGif ye chuise na tae, be sair tae check fer [[Special:DoubleRedirects|dooble]] or [[Special:BrokenRedirects|broken reguidals]].\nYe'r responsible fer makin sair that airtins continue tae poynt til whaur thay'r supposed to gae.\n\nMynd that the page will <strong>na</strong> be muived gif thaur is awreadie ae page at the new title, onless the latter is ae reguidal n haes nae past eedit histerie.\nThis means that ye can rename ae page back til whaur it wis renamed fae gif ye mak ae mistak, n ye canna owerwrite aen exeestin page.\n\n<strong>Warnishment!</strong>\nThis can be ae drasteec n onexpectit chynge fer ae popular page;\nplease be sair ye unnerstaunn the consequences o this afore proceedin.",
 	"movepagetext-noredirectfixer": "Uising the form ablo will rename ae page, muivin aw o its histerie til the new name.\nThe auld title will become ae reguidal page til the new title.\nBe sair tae check fer [[Special:DoubleRedirects|dooble]] or [[Special:BrokenRedirects|broken reguidals]].\nYe'r responsible fer makin sair that airtins continue tae poynt whaur thay'r supposed tae gae.\n\nTak tent that the page will <strong>naw</strong> be muived gif thaur's awreadie ae page at the new title, onless it is tuim n haes naw past eedit histerie.\nThis means that ye can rename ae page back til whaur it wis renamed fae gif ye mak ae mistak, n ye canna owerwrite aen existin page.\n\n<strong>Warnishment!</strong>\nThis can be ae drastic n onexpectit chynge fer ae popular page;\nplease be sair that ye unnerstaun the consequences o this afore preceedin.",
 	"movepagetalktext": "The associated tauk page will be autaematiclie muived alang wi it <strong>onless:</strong>\n*A no-tuim tauk page awreadie exeests unner the new name, or\n*Ye oncheck the kist ablo.\n\nIn thae cases, ye will hae tae muiv or merge the page manuallie gif ye sae desire.",
-	"movearticle": "Muiv page:",
 	"moveuserpage-warning": "<strong>Warnishment:</strong> Ye'r aboot tae muiv ae uiser page. Please tak tent that yinlie the page will be muivd n the uiser will <em>naw</em> be renamed.",
 	"movecategorypage-warning": "<strong>Wairnishment:</strong> Ye'r aboot tae muiv ae categerie page. Please mynd that yinlie the page'll be muived n onie pages in the auld categerie will <em>no</em> be recategerised intae the new categerie.",
 	"movenologintext": "Ye maun be a registert uiser n [[Special:UserLogin|loggit in]] tae muiv ae page.",
@@ -3010,7 +3010,7 @@
 	"api-error-badaccess-groups": "Ye'r na permittit tae uplaid files til this wiki.",
 	"api-error-badtoken": "Inby mistak: Bad token.",
 	"api-error-copyuploaddisabled": "Uplaidin bi URL is disabled oan this server.",
-	"api-error-duplicate": "Thaur {{PLURAL:$1|is [$2 anither file]|ar [$2 some ither files]}} awreadie oan the site wi the same content.",
+	"api-error-duplicate": "Thaur {{PLURAL:$1|is anither file|ar some ither files}} awreadie oan the site wi the same content.",
 	"api-error-duplicate-archive": "Thaur {{PLURAL:$1|wis anither file|were some ither files}} awreadie oan the site wi the same content, but {{PLURAL:$1|it wis|thay were}} delytit.",
 	"api-error-empty-file": "The file that ye haunnit in wis tuim.",
 	"api-error-emptypage": "Cræftin new, tuim pages isna permittit.",

@@ -39,7 +39,8 @@
 			"Adam78",
 			"Grin",
 			"Macofe",
-			"Nyuszika7H"
+			"Nyuszika7H",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -2128,7 +2129,6 @@
 	"movepagetext": "Az alábbi űrlap használatával nevezhetsz át egy lapot, és helyezheted át teljes laptörténetét az új nevére.\nA régi cím az új címre való átirányítás lesz.\nFrissítheted a régi címre mutató átirányításokat, hogy azok automatikusan a megfelelő címre mutassanak;\nha nem teszed, ellenőrizd a [[Special:DoubleRedirects|dupla]] vagy [[Special:BrokenRedirects|hibás átirányításokat]].\nNeked kell biztosítanod, hogy a linkek továbbra is oda mutassanak, ahová mutatniuk kell.\n\nA lap '''nem''' nevezhető át, ha már van egy ugyanilyen című lap, hacsak nem üres vagy átirányítás, és nincs laptörténete.\nEz azt jelenti, hogy vissza tudsz nevezni egy tévedésből átnevezett lapot, és nem tudsz létező lapot véletlenül felülírni.\n\n'''FIGYELEM!'''\nNépszerű oldalak esetén ez drasztikus és nem várt változtatás lehet;\ngyőződj meg a folytatás előtt arról, hogy tisztában vagy a következményekkel.",
 	"movepagetext-noredirectfixer": "Az alábbi űrlap használatával nevezhetsz át egy lapot, és helyezheted át teljes laptörténetét az új nevére.\nA régi cím az új címre való átirányítás lesz.\nEllenőrizd a [[Special:DoubleRedirects|dupla]] és a [[Special:BrokenRedirects|hibás átirányításoknál]], hogy a linkek továbbra is oda mutatnak, ahová mutatniuk kell.\n\nA lap '''nem''' nevezhető át, ha már van egy ugyanilyen című lap, hacsak nem üres, vagy átirányítás, aminek nincs laptörténete.\nEz azt jelenti, hogy vissza tudsz nevezni egy tévedésből átnevezett lapot, de nem tudsz egy már létező lapot véletlenül felülírni.\n\n'''Figyelem!'''\nNépszerű oldalak esetén ez drasztikus és nem várt változtatás lehet;\ngyőződj meg a folytatás előtt arról, hogy tisztában vagy-e a következményekkel.",
 	"movepagetalktext": "A laphoz tartozó vitalap automatikusan átneveződik ezzel a lappal együtt, <strong>kivéve, ha:</strong>\n*már létezik egy nem üres vitalap az új helyen,\n*nem jelölöd be a lenti pipát.\n\nEzen esetekben a vitalapot külön, kézzel kell átnevezned vagy egyesítened a kívánságaid szerint.",
-	"movearticle": "Átnevezendő lap:",
 	"moveuserpage-warning": "'''Figyelem:''' Egy felhasználólapot készülsz átmozgatni. Csak a lap lesz átmozgatva, a szerkesztő ''nem'' lesz átnevezve.",
 	"movecategorypage-warning": "<strong>Figyelmeztetés:</strong> Éppen egy kategórialapot készülsz átnevezni. Figyelj arra, hogy csak a lap lesz átnevezve, az idekategorizált lapok <em>nem</em> lesznek átkategorizálva.",
 	"movenologintext": "Ahhoz, hogy átnevezhess egy lapot, [[Special:UserLogin|be kell lépned]].",
@@ -3235,7 +3235,7 @@
 	"api-error-badaccess-groups": "Nincs jogod fájlokat feltölteni erre a wikire.",
 	"api-error-badtoken": "Belső hiba: hibás token.",
 	"api-error-copyuploaddisabled": "Az URL-címes feltöltés nem engedélyezett ezen a kiszolgálón.",
-	"api-error-duplicate": "Már van {{PLURAL:$1|egy|néhány}} [$2 másik fájl] az oldalon ugyanilyen tartalommal",
+	"api-error-duplicate": "Már van {{PLURAL:$1|egy|néhány}} másik fájl az oldalon ugyanilyen tartalommal",
 	"api-error-duplicate-archive": "Az oldalon {{PLURAL:$1|szerepelt|szerepeltek}} más {{PLURAL:$1|fájl|fájlok}} is ugyanezzel a tartalommal, de törölve {{PLURAL:$1|lett|lettek}}.",
 	"api-error-empty-file": "Az általad elküldött fájl üres volt.",
 	"api-error-emptypage": "Új, üres lap létrehozása nem engedélyezett.",

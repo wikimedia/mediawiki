@@ -7,7 +7,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Soul Train",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Solegnér los lims :",
@@ -1873,7 +1874,6 @@
 	"movepagetext": "Utilisâd lo formulèro ce-desot por renomar una pâge, en dèplacient tot son historico vers lo novél nom.\nLo viely titro vindrat una pâge de redirèccion de vers lo titro novél.\nVos pouede betar a jorn ôtomaticament les redirèccions d’ora que pouentont vers lo titro originâl.\nSe vos chouèsésséd de pas lo fâre, assurâd-vos de controlar tota [[Special:DoubleRedirects|redirèccion dobla]] ou ben [[Special:BrokenRedirects|câssa]].\nVos avéd la rèsponsabilitât de vos assurar que los lims continuont de pouentar vers lor dèstinacion suposâ.\n\nNotâd que la pâge serat '''pas''' dèplaciê s’y at ja una pâge avouéc lo titro novél, a muens que cela dèrriére seye voueda ou ben seye ren qu’una redirèccion et que son historico des changements seye vouedo.\nCen vôt dére que vos pouede renomar una pâge vers sa posicion d’origina se vos éd fêt una èrror, mas que vos pouede pas ècllafar una pâge ja ègzistenta.\n\n'''ATENCION !'''\nCen pôt provocar un changement fôrt et emprèvu por una pâge sovent vua ;\nassurâd-vos de nen avêr comprês les consèquences devant que continuar.",
 	"movepagetext-noredirectfixer": "Utilisâd lo formulèro ce-desot por renomar una pâge, en dèplacient tot son historico vers lo novél nom.\nLo viely titro vindrat una pâge de redirèccion de vers lo titro novél.\nControlâd bien les [[Special:DoubleRedirects|redirèccions dobles]] ou ben [[Special:BrokenRedirects|câsses]].\nVos avéd la rèsponsabilitât de vos assurar que los lims continuont de pouentar vers lor dèstinacion suposâ.\n\nNotâd que la pâge serat '''pas''' dèplaciê s’y at ja una pâge avouéc lo titro novél, a muens que cela dèrriére seye voueda ou ben seye ren qu’una redirèccion et que son historico des changements seye vouedo.\nCen vôt dére que vos pouede renomar una pâge vers sa posicion d’origina se vos éd fêt una èrror, mas que vos pouede pas ècllafar una pâge ja ègzistenta.\n\n'''ATENCION !'''\nCen pôt provocar un changement fôrt et emprèvu por una pâge sovent vua ;\nassurâd-vos de nen avêr comprês les consèquences devant que continuar.",
 	"movepagetalktext": "La pâge de discussion associyê, se presente, serat renomâ ôtomaticament avouéc '''a muens que :'''\n* una pâge de discussion pas voueda ègziste ja avouéc lo novél nom, ou ben\n* vos pouentâd pas la câsa ce-desot.\n\nDens celos câs, vos devréd renomar ou ben fusionar la pâge a la man se vos lo voléd.",
-	"movearticle": "Renomar la pâge :",
 	"moveuserpage-warning": "'''Atencion :''' vos éte prèst a renomar una pâge usanciér. Volyéd notar que solament la pâge serat renomâ et que l’usanciér serat '''pas''' renomâ.",
 	"movenologintext": "Por povêr renomar una pâge, vos dête étre [[Special:UserLogin|branchiê]] coment usanciér encartâ.",
 	"movenotallowed": "Vos avéd pas la pèrmission de renomar les pâges.",
@@ -2809,7 +2809,7 @@
 	"api-error-badaccess-groups": "Vos éte pas ôtorisâ a tèlèchargiér des fichiérs sur ceti vouiqui.",
 	"api-error-badtoken": "Èrror de dedens : crouyo « jeton ».",
 	"api-error-copyuploaddisabled": "Los tèlèchargements per URL sont dèsactivâs sur cél sèrvor.",
-	"api-error-duplicate": "Y at {{PLURAL:$1|[$2 un ôtro fichiér]|[$2 d’ôtros fichiérs]}} ja sur lo seto avouéc lo mémo contegnu.",
+	"api-error-duplicate": "Y at {{PLURAL:$1|un ôtro fichiér|d’ôtros fichiérs}} ja sur lo seto avouéc lo mémo contegnu.",
 	"api-error-duplicate-archive": "Y avéve {{PLURAL:$1|un ôtro fichiér|d’ôtros fichiérs}} ja sur lo seto avouéc lo mémo contegnu, mas {{PLURAL:$1|il at étâ suprimâ|ils ont étâ suprimâs}}.",
 	"api-error-empty-file": "Lo fichiér que vos éd somês ére vouedo.",
 	"api-error-emptypage": "La crèacion de pâges novèles vouedes est pas ôtorisâ.",

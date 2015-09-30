@@ -31,7 +31,8 @@
 			"Macofe",
 			"KhangND",
 			"Darcy Le",
-			"Quenhitran"
+			"Quenhitran",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -1241,6 +1242,10 @@
 	"recentchangeslinked-summary": "Đây là danh sách các thay đổi được thực hiện gần đây tại những trang được liên kết đến từ một trang nào đó (hoặc tại các trang thuộc một thể loại nào đó).\nCác trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''tô đậm'''.",
 	"recentchangeslinked-page": "Tên trang:",
 	"recentchangeslinked-to": "Hiện thay đổi tại những trang có liên kết đến trang này thay thế",
+	"recentchanges-page-added-to-category": "[[:$1]] được xếp vào thể loại",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] và {{PLURAL:$2|một trang|$2 trang}} nữa được xếp vào thể loại",
+	"recentchanges-page-removed-from-category": "[[:$1]] được gỡ khỏi thể loại",
+	"recentchanges-page-removed-from-category-bundled": "[[:$1]] và {{PLURAL:$2|một trang|$2 trang}} nữa được gỡ khỏi thể loại",
 	"upload": "Tải tập tin lên",
 	"uploadbtn": "Tải tập tin lên",
 	"reuploaddesc": "Hủy tác vụ tải và quay lại mẫu tải tập tin lên",
@@ -2138,7 +2143,6 @@
 	"movepagetext": "Dùng mẫu dưới đây để đổi tên một trang, di chuyển tất cả lịch sử của nó sang tên mới.\nTên cũ sẽ trở thành trang đổi hướng sang tên mới.\nBạn có thể cập nhật tự động các trang đổi hướng đến tên cũ.\nNếu bạn chọn không cập nhật, hãy nhớ kiểm tra [[Special:DoubleRedirects|đổi hướng kép]] hoặc [[Special:BrokenRedirects|đổi hướng đến trang không tồn tại]].\nBạn phải chịu trách nhiệm đảm bảo các liên kết đó tiếp tục trỏ đến nơi chúng cần đến.\n\nChú ý rằng trang sẽ '''không''' bị di chuyển nếu đã có một trang tại tên mới, trừ khi trang tại tên mới là trang đổi hướng và không có lịch sử sửa đổi trước đây.\nĐiều này có nghĩa là bạn có thể đổi tên trang lại như cũ nếu bạn có nhầm lẫn, và bạn không thể ghi đè lên một trang đã có sẵn.\n\n'''CẢNH BÁO!'''\nViệc làm này có thể dẫn đến sự thay đổi mạnh mẽ và không lường trước đối với các trang dễ nhìn thấy;\nxin hãy chắc chắn rằng bạn đã nhận thức được những hệ lụy của nó trước khi thực hiện.",
 	"movepagetext-noredirectfixer": "Dùng mẫu dưới đây để đổi tên một trang, di chuyển tất cả lịch sử của nó sang tên mới.\nTên cũ sẽ trở thành trang đổi hướng sang tên mới.\nHãy nhớ kiểm tra [[Special:DoubleRedirects|đổi hướng kép]] hoặc [[Special:BrokenRedirects|đổi hướng đến trang không tồn tại]].\nBạn phải chịu trách nhiệm đảm bảo các liên kết đó tiếp tục trỏ đến nơi chúng cần đến.\n\nChú ý rằng trang sẽ '''không''' bị di chuyển nếu đã có một trang tại tên mới, trừ khi nó rỗng hoặc là trang đổi hướng và không có lịch sử sửa đổi trước đây.\nĐiều này có nghĩa là bạn có thể đổi tên trang lại như cũ nếu bạn có nhầm lẫn, và bạn không thể ghi đè lên một trang đã có sẵn.\n\n'''CẢNH BÁO!'''\nViệc làm này có thể dẫn đến sự thay đổi mạnh mẽ và không lường trước đối với các trang dễ nhìn thấy;\nxin hãy chắc chắn rằng bạn đã nhận thức được những hệ lụy của nó trước khi thực hiện.",
 	"movepagetalktext": "Trang thảo luận đi kèm sẽ được tự động di chuyển theo '''trừ khi''':\n*Đã tồn tại một trang thảo luận không trống tại tên mới, hoặc\n*Bạn không đánh vào ô bên dưới.\n\nTrong những trường hợp đó, bạn phải di chuyển hoặc hợp nhất trang theo kiểu thủ công nếu muốn.",
-	"movearticle": "Di chuyển trang:",
 	"moveuserpage-warning": "'''Cảnh báo:''' Bạn sắp di chuyển trang cá nhân của người dùng. Xin lưu ý rằng chỉ có trang này sẽ được di chuyển, còn người dùng sẽ ''không'' đổi tên.",
 	"movecategorypage-warning": "<strong>Cảnh báo:</strong> Bạn sắp sửa di chuyển một trang thể loại. Lưu ý rằng chỉ trang này sẽ được di chuyển, còn trang nào được xếp vào thể loại cũ sẽ <em>không</em> được xếp vào thể loại mới.",
 	"movenologintext": "Bạn phải là thành viên đã mở tài khoản và [[Special:UserLogin|đăng nhập]] mới di chuyển trang được.",
@@ -3337,7 +3341,7 @@
 	"api-error-badaccess-groups": "Bạn không được phép tải tập tin lên wiki này.",
 	"api-error-badtoken": "Lỗi nội bộ: Dấu hiệu bị hỏng.",
 	"api-error-copyuploaddisabled": "Chức năng tải lên từ URL đã bị tắt trên máy chủ này.",
-	"api-error-duplicate": "Wiki này đã có [$2 {{PLURAL:$1|tập tin|$1 tập tin}} cùng nội dung] có tên khác",
+	"api-error-duplicate": "Wiki này đã có {{PLURAL:$1|tập tin|$1 tập tin}} cùng nội dung có tên khác",
 	"api-error-duplicate-archive": "{{PLURAL:$1|Một|Các}} tập tin khác cùng nội dung đã tồn tại trên website, nhưng {{PLURAL:$1|nó|chúng}} đã bị xóa.",
 	"api-error-empty-file": "Bạn đã gửi tập tin rỗng.",
 	"api-error-emptypage": "Không cho phép tạo mới các trang rỗng.",

@@ -32,7 +32,8 @@
 			"Macofe",
 			"TomášPolonec",
 			"Mikulas1",
-			"Hromoslav"
+			"Hromoslav",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Podčiarkovať odkazy:",
@@ -2055,7 +2056,6 @@
 	"movepagetext": "Pomocou tohto formulára premenujete stránku a premiestnite všetky jej predchádzajúce verzie pod zadaný nový názov.\nStarý názov sa stane presmerovacou stránkou na nový názov.\nMôžete automaticky aktualizovať odkazy odkazujúce na pôvodný názov.\nAk sa rozhodnete túto možnosť nevyužiť, ubezpečte sa, že ste skontrolovali\nvýskyt [[Special:DoubleRedirects|dvojitých]] a [[Special:BrokenRedirects|pokazených]] presmerovaní.\nVy ste zodpovedný za to, aby odkazy naďalej ukazovali tam, kam majú.\n\nUvedomte si, že stránka sa '''nepremiestni''', ak pod novým názvom už stránka existuje.\nToto neplatí iba ak je stránka prázdna alebo presmerovacia a nemá žiadne predchádzajúce verzie.\nTo znamená, že môžete premenovať stránku späť na názov, ktorý mala pred premenovaním, ak ste sa pomýlili, a že nemôžete prepísať\nexistujúcu stránku.\n\n'''UPOZORNENIE!'''\nToto môže byť drastická a nečakaná zmena pre populárnu stránku;\nubezpečte sa preto, skôr ako budete pokračovať, že chápete dôsledky svojho činu.",
 	"movepagetext-noredirectfixer": "Pomocou tohto formulára premenujete stránku a premiestnite všetky jej predchádzajúce verzie pod zadaný nový názov.\nStarý názov sa stane presmerovacou stránkou na nový názov.\nUbezpečte sa, že ste skontrolovali výskyt [[Special:DoubleRedirects|dvojitých]] a [[Special:BrokenRedirects|pokazených]] presmerovaní.\nVy ste zodpovedný za to, aby odkazy naďalej ukazovali tam, kam majú.\n\nUvedomte si, že stránka sa '''nepremiestni''', ak pod novým názvom už stránka existuje.\nToto neplatí iba ak je stránka prázdna alebo presmerovacia a nemá žiadne predchádzajúce verzie.\nTo znamená, že môžete premenovať stránku späť na názov, ktorý mala pred premenovaním, ak ste sa pomýlili, a že nemôžete prepísať\nexistujúcu stránku.\n\n'''UPOZORNENIE!'''\nToto môže byť drastická a nečakaná zmena pre populárnu stránku;\nubezpečte sa preto, skôr ako budete pokračovať, že chápete dôsledky svojho činu.",
 	"movepagetalktext": "Príslušná diskusná stránka (ak existuje) bude premiestnená spolu so samotnou stránkou; '''nestane sa tak, iba ak:'''\n*už existuje Diskusná stránka pod týmto novým menom, alebo\n*nezaškrtnete nižšie sa nachádzajúci textový rámček.\n\nV takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlúčiť stránku ručne.",
-	"movearticle": "Presunúť stránku",
 	"moveuserpage-warning": "'''Upozornenie:''' Chystáte sa presunúť používateľskú stránku. Pamätajte, že týmto presuniete iba stránku a používateľ ''nebude'' premenovaný.",
 	"movecategorypage-warning": "<strong>Upozornenie:</strong> Chystáte sa presunúť stránku kategórie. Uvedomte si, že presunutá bude iba táto stránka a že žiadne stránky v pôvodnej kategórii <em>nebudú</em> do novej kategórie automaticky preradené.",
 	"movenologintext": "Musíte byť registrovaný používateľ a [[Special:UserLogin|prihlásený]], aby ste mohli presunúť stránku.",
@@ -3052,7 +3052,7 @@
 	"api-error-badaccess-groups": "Nemáte oprávnenie nahrávať súbory na tejto wiki.",
 	"api-error-badtoken": "Vnútorná chyba: Zlý token.",
 	"api-error-copyuploaddisabled": "Nahrávanie z URL je na tomto serveri zakázané.",
-	"api-error-duplicate": "{{PLURAL:$1|[$2 ďalší súbor]|[$2 ďalšie súbory]}} s rovnakým obsahom už na tejto wiki existujú",
+	"api-error-duplicate": "{{PLURAL:$1|ďalší súbor|ďalšie súbory}} s rovnakým obsahom už na tejto wiki existujú",
 	"api-error-duplicate-archive": "{{PLURAL:$1|ďalší súbor|ďalšie súbory}} s rovnakým obsahom už na tejto wiki existoval, ale {{PLURAL:$1|bol zmazaný|boli zmazané}}.",
 	"api-error-empty-file": "Súbor, ktorý ste poslali bol prázdny.",
 	"api-error-emptypage": "Vytváranie nových, prázdnych stránok nie je dovolené.",

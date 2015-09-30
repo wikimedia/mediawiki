@@ -13,7 +13,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Mikławš",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Wotkazy podšmórnić:",
@@ -2052,7 +2053,6 @@
 	"movepagetext": "Wužiwanje formulara deleka budźe stronu přemjenować, suwajo jeje cyłe stawizny pod nowe mjeno. Stary titl budźe daleposrědkowanje na nowy titl.  Móžeš dalesposrědkowanja, kotrež na prěnjotny titl pokazać, awtomatisce aktualizować. Pruwuj za [[Special:DoubleRedirects|dwójnymi]] abo [[Special:BrokenRedirects|skóncowanymi daleposrědkowanjemi]]. Dyrbiš zaručić, zo wotkazy na stronu pokazuja, na kotruž dyrbja dowjesć.\n\nWobkedźbuj, zo strona so '''nje'''přesunje, jeli strona z nowym titlom hizo eksistuje, chibazo poslednja je dalesposrědkowanje a nima zašłe stawizny. To woznamjenja, zo móžeš stronu tam wróćo přemjenować, hdźež bu runje přemjenowana, jeli zmylk činiš a njemóžeš wobstejacu stronu přepisować.\n\n'''Kedźbu!''' Móže to drastiska a njewočakowana změna za woblubowanu stronu być; prošu budź sej wěsty, zo sćěwki rozumiš, prjedy hač pokročuješ.",
 	"movepagetext-noredirectfixer": "Wužiwajo slědowacy formular, móžeš stronu přemjenować a wšě jich daty do stawiznow noweho titula přesunyć.\nStary titul budźe dalesposrědkowanska strona k nowemu titulej.\nSkontroluj za [[Special:DoubleRedirects|dwójnymi]] abo [[Special:BrokenRedirects|wobškodźenymi dalesposrědkowanjemi]].\nSy za to zamołwity, zo wotkazy na tón cil pokazuja, na kotryž maja pokazować.\n\nDźiwaj na to, zo strona so '''nje'''přesunje, jeli je hižo strona z nowym titulom, chibazo wona je prózdna abo dalesposrědkowanje a nima stawizny změnow.\nTo woznamjenja, zo móžeš stronu do stareho mjena wróćopřemjenować, jeli činiš zmylk a njemóžeš eksistowacu stronu přepisać.\n\n'''Warnowanje!'''\nTo móže drastiska a njewočakowana změna za woblubowanu stronu być:\nprošu wuwědomće sej konsekwency, prjedy hač pokročuješ.",
 	"movepagetalktext": "Přisłušna diskusijna strona přesunje so awtomatisce hromadźe z njej, <b>chibazo:</b>\n*Njeprózdna diskusijna strona pod nowym mjenom hižo eksistuje abo\n*wotstronješ hóčku z kašćika deleka.\n\nW tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to přeješ.",
-	"movearticle": "Stronu přesunyć",
 	"moveuserpage-warning": "'''Warnowanje:''' Sy při tym wužiwarsku stronu přesunyć. Prošu dźiwaj na to, zo so jenož strona posunje a wužiwar so ''nje''budźe přemjenować.",
 	"movecategorypage-warning": "<strong>Warnowanje:</strong> Chceš runje kategorijowu stronu přesunyć. Prošu dźiwaj na to, zo so jenož strona přesunje a strony w starej kategoriji <em>nje</em>budu so nowo kategorizować.",
 	"movenologintext": "Dyrbiš zregistrowany wužiwar a [[Special:UserLogin|přizjewjeny]] być, zo by stronu přesunył.",
@@ -3073,8 +3073,8 @@
 	"api-error-badaccess-groups": "Nimaš prawo dataje do tutoho wikija nahrać.",
 	"api-error-badtoken": "Nutřkowny zmylk: Wopačny token.",
 	"api-error-copyuploaddisabled": "Nahrawanje přez URL je na tutym serwerje znjemóžnjene.",
-	"api-error-duplicate": "{{PLURAL:$1|Je|Stej|Su|Je}} hižo {{PLURAL:$1|[$2 druha dataja]|[$2 druhej dataji]|[$2 druhe dataje]|[$2 druhich datajow]}} ze samsnym wobsahom na sydle",
-	"api-error-duplicate-archive": "{{PLURAL:$1|Bě [$2 druha dataja]|Běštej [$2 druhej dataji]|Běchu [$2 druhe dataje]|Bě [$2 druhich datajow]}} hižo na websydle ze samsnym wobsahom, ale {{PLURAL:$1|je so zhašała|stej so zhašałoj|su so zhašeli|je so zhašało}}.",
+	"api-error-duplicate": "{{PLURAL:$1|Je|Stej|Su|Je}} hižo {{PLURAL:$1|druha dataja|druhej dataji|druhe dataje|druhich datajow}} ze samsnym wobsahom na sydle",
+	"api-error-duplicate-archive": "{{PLURAL:$1|Bě druha dataja|Běštej druhej dataji|Běchu druhe dataje|Bě druhich datajow}} hižo na websydle ze samsnym wobsahom, ale {{PLURAL:$1|je so zhašała|stej so zhašałoj|su so zhašeli|je so zhašało}}.",
 	"api-error-empty-file": "Dataja, kotruž sy nahrał, je prózdna.",
 	"api-error-emptypage": "Wutworjenje nowych, prózdnych stronow njeje dowolene.",
 	"api-error-fetchfileerror": "Nutřkowny zmylk: při wobstarowanju dataje je so něšto nimokuliło.",

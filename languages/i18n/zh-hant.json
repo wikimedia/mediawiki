@@ -63,7 +63,8 @@
 			"Citizen01",
 			"Zhxy 519",
 			"Macofe",
-			"578985s"
+			"578985s",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -1273,6 +1274,10 @@
 	"recentchangeslinked-summary": "此頁面列出指定頁面連結到的所有頁面中 (或指定分類中的所有成員) 有做變更的頁面清單。\n有在 [[Special:Watchlist|您的監視清單]] 中的頁面會以 <strong>粗體</strong> 標示。",
 	"recentchangeslinked-page": "頁面名稱：",
 	"recentchangeslinked-to": "改顯示連結至指定頁面的變更",
+	"recentchanges-page-added-to-category": "[[:$1]] 已加入至分類",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] 與其他 {{PLURAL:$2|1 頁|$2 頁}}已加入至分類",
+	"recentchanges-page-removed-from-category": "[[:$1]] 已自分類移除",
+	"recentchanges-page-removed-from-category-bundled": "[[:$1]] 與其他 {{PLURAL:$2|1 頁|$2 頁}}已自分類移除",
 	"upload": "上傳檔案",
 	"uploadbtn": "上傳檔案",
 	"reuploaddesc": "取消上傳並返回上傳表單",
@@ -2171,7 +2176,6 @@
 	"movepagetext": "以下表單可以用來重新命名一個頁面，並將該頁面的所有歷史記錄一併移至擁有新名稱的頁面。\n舊標題的頁面將會變成重新導向頁面，指向使用新標題的頁面。\n您可以選擇自動更新所有指向舊頁面的重新導向，讓它們改為指向新頁面。\n若您選擇不自動更新，請檢查有沒有[[Special:DoubleRedirects|雙重重新導向]]或[[Special:BrokenRedirects|損壞的重新導向]]需要修正。\n您有責任讓連結繼續指向正確的地方。\n\n請注意，若新的頁面名稱已經被使用，則此頁面將<strong>不會</strong>移動至該處，除非新名稱下是個重新導向頁面而且沒有任何編輯記錄。\n即是說，您可以將錯誤移動至其他名稱的頁面還原到原有名稱，但不能覆蓋任何現有的頁面。\n\n<strong>警告！</strong>\n這個動作對受歡迎的頁面來說可能是重大而唐突的更改；\n在行動前請先確認您了解移動可能帶來的後果。",
 	"movepagetext-noredirectfixer": "以下表單可以用來重新命名一個頁面，並將該頁面的所有歷史記錄一併移至擁有新名稱的頁面。\n舊標題的頁面將會變成重新導向頁面，指向使用新標題的頁面。\n請檢查有沒有[[Special:DoubleRedirects|雙重重新導向]]或[[Special:BrokenRedirects|損壞的重新導向]]需要修正。\n您有責任讓連結繼續指向正確的地方。\n\n請注意，若新的頁面名稱已經被使用，則此頁面將<strong>不會</strong>移動至該處，除非新名稱下是個重新導向頁面而且沒有任何編輯記錄。\n即是說，您可以將錯誤移動至其他名稱的頁面還原到原有名稱，但不能覆蓋任何現有的頁面。\n\n<strong>警告！</strong>\n這個動作對受歡迎的頁面來說可能是重大而唐突的更改；\n在行動前請先確認您了解移動可能帶來的後果。",
 	"movepagetalktext": "相關的的對話頁面 (如果有的話) 會自動與該頁面一起移動，<strong>除非：</strong>\n*新的名稱已有一個存在的對話頁面，或\n*您未勾選此核選方塊。\n\n在上述情況下，若有必要您必須手動移動或合併已存在的頁面。",
-	"movearticle": "移動頁面：",
 	"moveuserpage-warning": "<strong>警告：</strong>您正要移動使用者頁面，請注意只有使用者頁面會變更名稱，並<em>不會</em>重新命名使用者。",
 	"movecategorypage-warning": "<strong>警告：</strong>您正要移動分類頁面。請注意此操作只會移動頁面，在舊分類中的頁面將<em>不會</em>移動到新的分類。",
 	"movenologintext": "您必須是已註冊的使用者並且 [[Special:UserLogin|登入]] 才可移動頁面。",
@@ -3296,7 +3300,7 @@
 	"api-error-badaccess-groups": "您沒有權限在此 Wiki 上傳檔案。",
 	"api-error-badtoken": "內部錯誤：密鑰錯誤。",
 	"api-error-copyuploaddisabled": "此伺服器已停用使用 URL 上傳檔案的功能。",
-	"api-error-duplicate": "在網站上已有相同內容的{{PLURAL:$1|[$2 其他檔案]|[$2 其他檔案]}}。",
+	"api-error-duplicate": "在網站上已有相同內容的{{PLURAL:$1|其他檔案|其他檔案}}。",
 	"api-error-duplicate-archive": "在網站上曾有相同內容的{{PLURAL:$1|其他檔案|其他檔案}}，但已被刪除。",
 	"api-error-empty-file": "您送出的檔案是空的。",
 	"api-error-emptypage": "不允許建立空白的頁面。",

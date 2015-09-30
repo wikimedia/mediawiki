@@ -10,7 +10,8 @@
 			"לערי ריינהארט",
 			"Davent",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Suttastritgar colliaziuns:",
@@ -1831,7 +1832,6 @@
 	"movepagetext": "Cun il formular sutvart das ti in nov num ad in artitgel e spostas l'entira istorgia da l'artitgel al nov.\nL'artitgel vegl renviescha lura al nov.\nTi pos actualisar automaticamain paginas che renvieschan a l'artitgel original.\nSche ti na vuls betg quai, controllescha p. pl las paginas che renvieschan [[Special:DoubleRedirects|dublamain]] u [[Special:BrokenRedirects|incorrect]].\nTi ès responsabels che tut las colliaziuns mainan al lieu ch'els duessan.\n\nFa stim, che la pagina '''na vegn betg''' spustada sch'i exista gia in artitgel cun il nov titel, auter sche quel è vids u renviescha ad in'autra pagina e n'ha nagina istorgia.\n\n'''ATTENZIUN!'''\nQuai po esser ina midada drastica ed nunspetgada per in artitgel popular;\nsajas conscient da las consequenzas che quai process po avair.",
 	"movepagetext-noredirectfixer": "Il formular sutvart po dar in nov num ad ina pagina e spustar l'entira cronologia ad nov num. \nIl titel vegl vegn a renviar al titel nov.\nControllescha silsuenter ils [[Special:DoubleRedirects|renviaments dubels]] u [[Special:BrokenRedirects|nuncorrects]]. \nTi es responsabel da controllar che las colliaziuns mussan en quest lieu nua ch'ellas duessan. \n\nFa stim, che la pagina na vegn '''betg''' spustada sch'ina pagina cun il nov num exista gia; danor sch'ella è vida u in renviament senza cronologia.\nQuai munta che ti pos en cas che ti fas in sbagl spustar anavos la pagina nua ch'ella era avon e che ti na pso betg surscriver ina pagina existenta.\n\n\n'''Attenziun!'''\nQuai po esser ina midada drastica ed nunspetgada per in artitgel popular;\nsajas conscient da las consequenzas che quai process po avair.",
 	"movepagetalktext": "La pagina da discussiun che tutga tar l'artitgel vegn spustada automaticamain cun l'artitgel, '''sche betg''':\n*Ina pagina da discussiun betg vida exista gia sut il lemma nov\n*Ti prendas ora il crutschin dal champ sutvart\n\nEn quests cas as ti da spustar u colliar manualmain las paginas, sche giavischà.",
-	"movearticle": "Spustar artitgel:",
 	"moveuserpage-warning": "'''Attenziun:''' Ti es londervi da spustar ina pagina d'utilisader. Considerescha che be la pagina vegn spustada ed il num da l'utilisader na vegn ''betg'' midà.",
 	"movenologintext": "Ti stos [[Special:UserLogin|t'annunziar]] per spustar in artitgel.",
 	"movenotallowed": "Ti n'has betg il dretg da spustar paginas.",
@@ -2712,7 +2712,7 @@
 	"api-error-badaccess-groups": "Ti na dastgas betg chargiar datotecas en quest wiki.",
 	"api-error-badtoken": "Errur interna: Token fauss.",
 	"api-error-copyuploaddisabled": "La funcziun da transferir dad ina URL è deactivada sin quest server.",
-	"api-error-duplicate": "I dat gia {{PLURAL:$1|ina [$2 autra datoteca]|[$2 autras datotecas]}} cun il medem cuntegn.",
+	"api-error-duplicate": "I dat gia {{PLURAL:$1|ina autra datoteca|autras datotecas}} cun il medem cuntegn.",
 	"api-error-duplicate-archive": "I deva gia {{PLURAL:$1|ina autra datoteca|autras datotecas}} cun il medem cuntegn, {{PLURAL:$1|quella è dentant vegnida stizzada|quellas èn dentant vegnidas stizzadas}}.",
 	"api-error-empty-file": "La datoteca tramessa è vida.",
 	"api-error-emptypage": "Crear paginas novas e vidas n'è betg lubì.",

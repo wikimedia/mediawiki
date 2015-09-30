@@ -2,14 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"George Animal",
-			"Macofe"
+			"Macofe",
+			"Ghybu"
 		]
 	},
 	"apihelp-block-description": "Bikarhênerekî asteng bike.",
 	"apihelp-block-param-reason": "Sedemê bo astengkirinê.",
 	"apihelp-createaccount-param-name": "Navê bikarhêner.",
 	"apihelp-delete-description": "Rûpelekê jê bibe.",
-	"apihelp-delete-example-simple": "<kbd>Main Page</kbd>ê Jê bibe.",
+	"apihelp-delete-example-simple": "<kbd>Main Page</kbd>ê jê bibe.",
 	"apihelp-edit-param-sectiontitle": "Sernavê bo beşeke nû.",
 	"apihelp-edit-param-text": "Naveroka rûpelê.",
 	"apihelp-edit-param-minor": "Guhertina biçûk.",

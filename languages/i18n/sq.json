@@ -30,7 +30,8 @@
 			"Macofe",
 			"Liridon",
 			"Ammartivari",
-			"Kosovastar"
+			"Kosovastar",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Nënvizimi i lidhjes:",
@@ -1956,7 +1957,6 @@
 	"movepagetext": "Duke përdorur formularin e mëposhtëm do të ndërroni titullin e një faqeje, duke zhvendosur gjithë historkun e saj tek titulli i ri.\nTitulli i vjetër do të bëhet një faqe ridrejtuese tek titulli i ri.\nLidhjet tek faqja e vjetër nuk do të ndryshohen;\nduhet të kontrolloni mirëmbajtjen për përcjellime të [[Special:DoubleRedirects|dyfishta]] ose të [[Special:BrokenRedirects|prishura]].\nKeni përgjegjësinë për tu siguruar që lidhjet të vazhdojnë të jenë të sakta.\n\nKini parasysh se kjo faqe '''nuk''' do të zhvendoset n.q.s. ekziston një faqe me titullin e ri, përveçse nëse ajo është bosh ose një përcjellim dhe nuk ka historik të redaktimeve.\nKjo do të thotë se mund ta zhvendosni një faqe prapë tek emri i vjetër n.q.s. keni bërë një gabim, dhe s'mund ta prishësh një faqe që ekziston.\n\n'''KUJDES!'''\nKy mund të jetë një ndryshim i madh dhe i papritur për një faqe të shumë-frekuentuar; ju lutem, kini kujdes dhe mendohuni mirë para se të përdorni këtë funksion.",
 	"movepagetext-noredirectfixer": "Duke përdorur formularin e mëposhtëm do të ndërroni titullin e një faqeje, duke zhvendosur gjithë historinë përkatëse tek titulli i ri.\nTitulli i vjetër do të bëhet një faqe përcjellëse tek titulli i ri.\nLidhjet tek faqja e vjetër nuk do të ndryshohen;\nduhet të kontrolloni mirëmbajtjen për përcjellime të [[Special:DoubleRedirects|dyfishta]] ose të [[Special:BrokenRedirects|prishura]].\nKeni përgjegjësinë për tu siguruar që lidhjet të vazhdojnë të jenë të sakta.\n\nVini re se kjo faqe '''nuk''' do të zhvendoset n.q.s. ekziston një faqe me titullin e ri, përveçse kur ajo të jetë bosh ose një përcjellim dhe të mos ketë një histori të vjetër.\nKjo do të thotë se mund ta zhvendosni një faqe prapë tek emri i vjetër n.q.s. keni bërë një gabim, dhe s'mund ta prishësh një faqe që ekziston.\n\n'''KUJDES!'''\nKy mund të jetë një ndryshim i madh dhe gjëra të papritura mund të ndodhin për një faqe të shumë-frekuentuar; ju lutem, kini kujdes dhe mendohuni mirë para se të përdorni këtë funksion.",
 	"movepagetalktext": "Faqja a bashkangjitur e diskutimit, n.q.s. ekziston, do të zhvendoset automatikisht '''përveçse''' kur:\n*Zhvendosni një faqe midis hapësirave të ndryshme,\n*Një faqe diskutimi jo-boshe ekziston nën titullin e ri, ose\n*Nuk zgjidhni kutinë më poshtë.\n\nNë ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi.",
-	"movearticle": "Zhvendose faqen",
 	"moveuserpage-warning": "'''Kujdes:''' Ju po zhvendosni një faqe përdoruesi. Ju lutemi, kujtoni se vetëm faqja do të zhvendoset dhe përdoruesi ''nuk'' do të ndryshojë emrin.",
 	"movenologintext": "Duhet të keni hapur një llogari dhe të keni [[Special:UserLogin|hyrë brenda]] për të zhvendosur një faqe.",
 	"movenotallowed": "Nuk ju lejohet të zhvendosni faqe.",
@@ -2847,7 +2847,7 @@
 	"api-error-badaccess-groups": "Ju nuk lejoheni të ngarkoni skeda në këtë wiki.",
 	"api-error-badtoken": "Gabim i brendshëm: Shenjë e keqe.",
 	"api-error-copyuploaddisabled": "Ngarkimi nga URL-ja është çaktivizuar në këtë server.",
-	"api-error-duplicate": "{{PLURAL:$1|Ekziston [$2 një skedë tjetër]|Ekzistojnë [$2 disa skeda të tjera]}} me të njëjtën përmbajtje.",
+	"api-error-duplicate": "{{PLURAL:$1|Ekziston një skedë tjetër|Ekzistojnë disa skeda të tjera}} me të njëjtën përmbajtje.",
 	"api-error-duplicate-archive": "{{Ekzistonte një skedë tjetër|Ekzistonin disa skeda të tjera}} me të njëjtën përmbajtje, por {{PLURAL:$1|ajo është|ato janë}} fshirë.",
 	"api-error-empty-file": "Skeda që paraqitët ishte bosh.",
 	"api-error-emptypage": "Nuk lejohet krijimi i faqeve të reja bosh.",

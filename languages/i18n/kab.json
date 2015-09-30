@@ -13,7 +13,8 @@
 			"아라",
 			"SalemB",
 			"Mezgoug",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Aderrer n yezdayen:",
@@ -1923,7 +1924,6 @@
 	"movepagetext": "Seqdec tiferkit ddaw agi iwakken ad beddeleḍ isem n usebter, s usiweḍ n akkw umezruy-is ɣer isem amaynut. Azwel aqbur ad yuɣal d asebter n usemmime ɣer azwel amaynut. Tzemreḍ ad mucceḍeḍ s uwurman isemmimen imiranen i sweṛen ɣer azwel amezwaru. Ma ur tebɣiḍ ara at sexdemeḍ wagi, ilaq ad selkeneḍ akkw [[Special:DoubleRedirects|Asemmimeḍ yeḍran snat tikwal]] neɣ [[Special:BrokenRedirects|asmmimeḍ yerẓan]]. Ilaq ad sɛuḍ talkint belli izdayen tsweṛen ɣer aserken is.\n\nAbeddel n isem <strong>ur</strong> yezmer <strong>ara</strong> ad yilli ma yella yakan asebter s isem agi, ḥaca ma ulac amezruy deg-es. Waya yetɛemmed an beddel isem n usebtar ɣer addud ines amezwaru ma tiggit d tuccḍit, dɣa ulamek an mzey yiwen asebtar yellan.\n\n'''Ɣur-wet !'''\nWagi yezmer ad yexdem abeddel ameqqṛan i asebter s aṭas timerziwin ; ilaq ad fehmeḍ uqbel ad beddeleḍ asebter.",
 	"movepagetext-noredirectfixer": "Seqdec tiferkit ddaw agi iwakken ad beddeleḍ isem n usebter, s usiweḍ n akkw amezruy is ɣer isem amaynut. Azwel aqbur ad yuɣal d asebter n usemmime ɣer azwel amaynut.\nIlaq ad selkeneḍ akkw [[Special:DoubleRedirects|Asemmimeḍ yeḍran snat tikwal]] naɣ [[Special:BrokenRedirects|asmmimeḍ yerẓan]].\nIlaq ad sɛuḍ talkint belli izdayen tsweṛen ɣer aserken is.\n\nAbeddel n isem ur yezmer ara ad yilli ma yella yakan asebter s isem agi, ḥaca ma ulac amezruy deg-es dɣa yuɣal d-asebtar n usemmim. Waya yetɛemmed an beddel isem n usebtar ɣer addud ines amezwaru ma tiggit d tuccḍit, dɣa ulamek an mzey yiwen asebtar yellan.\n\n'''Ɣur-wet !'''\nWagi yezmer ad yexdem abeddel ameqqṛan i asebter s aṭas timerziwin ; ilaq ad fehmeḍ uqbel ad beddeleḍ asebter.",
 	"movepagetalktext": "Asebter \"Amyannan\" yettusmimeḍ ula d netta '''ma ulac:'''\n*Yella asebter \"Amyannan\" deg isem amaynut, neɣ\n*Trecmeḍ tankult deg ukessar.\n\nLukan akka, yessefk a t-tedmeḍ weḥdek.",
-	"movearticle": "Smimeḍ asebter",
 	"moveuserpage-warning": "'''Ɣur-wet !''' Atan ad beddeleḍ isem n usebtar n umseqdac. Ilaq ad fehmeḍ, isem n usebtar ad yetbeddel, maca isem n umseqdac '''ur''' d-yetbeddel '''ara'''.",
 	"movenologintext": "Yessefk ad tesɛuḍ isem n wemseqdac u [[Special:UserLogin|tkecmeḍ]]\niwakken ad tesmimḍeḍ asebter.",
 	"movenotallowed": "Ur tesɛiḍ ara turagt ad beddeleḍ isem n isebtar.",
@@ -2866,7 +2866,7 @@
 	"api-error-badaccess-groups": "Ur tesɛiḍ ara turagt ad smireḍ ifuyla ɣef wiki agi.",
 	"api-error-badtoken": "Tuccḍa tagensit : yir « tiddest ».",
 	"api-error-copyuploaddisabled": "Issenɣal seg URL nsan ɣef aqeddac agi.",
-	"api-error-duplicate": "{{PLURAL:$1|[Yella yakan $2 afaylu nniḍen]|[Llan yakan $2 ifuyla nniḍen]}} ɣef asmel agi s ugbur am winna.",
+	"api-error-duplicate": "{{PLURAL:$1|Yella yakan $2 afaylu nniḍen|Llan yakan $2 ifuyla nniḍen}} ɣef asmel agi s ugbur am winna.",
 	"api-error-duplicate-archive": "{{PLURAL:$1|Yella yakan afaylu nniḍen|Llan yakan ifuyla nniḍen}} ɣef asmel agi s ugbur am winna, maca {{PLURAL:$1|yetwekkes|tetwekksen}}.",
 	"api-error-empty-file": "Afaylu id ceggɛeḍ d-ilem.",
 	"api-error-emptypage": "Asnulfu n isebtar ilemawen ur yareg ara.",

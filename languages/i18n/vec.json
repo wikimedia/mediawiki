@@ -18,7 +18,8 @@
 			"Vajotwo",
 			"לערי ריינהארט",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Sotołinea i cołegamenti:",
@@ -1924,7 +1925,6 @@
 	"movepagetext": "Có 'l moduło cuà soto te podi rinominar na pàjina, spostando anca tuta ła so storia al titoło novo.\nEl vecio titoło el devegnarà automategamente un rimando (redirect) che ponta al titoło novo.\nTe podi axornar automategamente i rimandi che ponta al vecio titoło.\nSe te siełi de nó farlo, tiente inamente de controłar ben che nó se cree [[Special:DoubleRedirects|dopi rimandi]] o [[Special:BrokenRedirects|rimandi interoti]].\nResta inte ła to responsabiłità de controłar che i ligamenti i continue a pontar 'ndove che i deve.\n\nOcio: ła pàjina '''nó''' ła sarà spostà se ghe fuse xà na pàjina có 'l titoło novo, a meno che nó ła sia un rimando, e senpre che nó ła gabia na storia.\nCuesto signifega che, se te fè un eror, te podi da novo rinominar na pàjina có 'l vecio titoło, ma nó te podi sovrascrìvar na pàjina xà existente.\n\n'''OCIO!'''\nSto canbiamento drastico el podarìa dar problemi che nó se se speta, spesalmente se se trata de na pàjina molto vixità.\nStà ben tento a łe conseguense del spostamento, prima de farlo.",
 	"movepagetext-noredirectfixer": "Col modulo qua soto te podi rinominar na pagina, spostando anca tuta la so storia al titolo novo.\nEl vecio titolo el deventarà automaticamente un rimando (redirect) che punta al titolo novo.\nTiente in mente de controlar ben che no se crea [[Special:DoubleRedirects|dopi redirect]] o [[Special:BrokenRedirects|redirect interoti]].\nResta ne la to responsabilità de controlar che i colegamenti i continua a puntar dove che i deve.\n\nOcio: la pagina '''no''' la sarà spostà se ghe fusse zà na pagina col titolo novo, a meno che no la sia na pagina voda o un rimando, e senpre che no la gabia na storia.\nQuesto significa che, se te fè un eror, te podi da novo rinominar na pagina col vecio titolo, ma no te podi sovrascrìvar na pagina zà esistente.\n\n'''OCIO!'''\nSto canbiamento drastico el podarìa dar problemi che no se se speta, specialmente se se trata de na pagina molto visità.\nStà ben tento a le conseguense del spostamento, prima de farlo.",
 	"movepagetalktext": "La corispondente pagina de discussion la sarà spostà automaticamente insieme a la pagina prinsipale, '''trane che nei seguenti casi:'''\n* El spostamento de la pagina el xe tra namespace diversi\n* In corispondenza del titolo novo ghe xe xà na pagina de discussion (mìa voda)\n* La casèla qua soto la xe stà deselezionà.",
-	"movearticle": "Sposta la pagina:",
 	"moveuserpage-warning": "'''Ocio:''' Te sì drio spostar na pagina utente. Par piaser tien conto che vegnarà spostà solo la pagina e l'utente no'l vegnarà ''mia'' rinominà.",
 	"movenologintext": "Te ghè da èssar un utente registrà ed aver efetuà el [[Special:UserLogin|login]] par poder spostar na pàxena.",
 	"movenotallowed": "No te ghè i parmessi necessari al spostamento de le pagine.",
@@ -2893,7 +2893,7 @@
 	"api-error-badaccess-groups": "Nó te si autorixà a cargar documenti so sta wiki.",
 	"api-error-badtoken": "Eror interno: token fałà.",
 	"api-error-copyuploaddisabled": "El cargamento tramite URL el xe dixabiłità so sto server.",
-	"api-error-duplicate": "So'l sito {{PLURAL:$1|ghe xe xà [$2 'n altro documento]|ghe xe xà [$2 altri documenti]}} có 'l steso contegnuo.",
+	"api-error-duplicate": "So'l sito {{PLURAL:$1|ghe xe xà 'n altro documento|ghe xe xà altri documenti}} có 'l steso contegnuo.",
 	"api-error-duplicate-archive": "{{PLURAL:$1|Ghe xera 'n altro file|Ghe xera altri file}} xà inte'l sito có 'l steso contegnuo, ma {{PLURAL:$1|el xe sta scansełà|i xe stai scansełai}}.",
 	"api-error-empty-file": "El file sełesionà el gera vodo.",
 	"api-error-emptypage": "Ła creasion de nove pàjine vode nó ła xe consentia.",

@@ -9,7 +9,8 @@
 			"아라",
 			"Milicevic01",
 			"Macofe",
-			"KWiki"
+			"KWiki",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Podvuci linkove:",
@@ -1959,7 +1960,6 @@
 	"movepagetext": "Korištenjem ovog formulara možete preimenovati stranicu, premještajući cijelu historiju na novo ime.\nČlanak pod starim imenom će postati stranica koja preusmjerava na članak pod novim imenom. \nMožete automatski izmjeniti preusmjerenje do izvornog naslova.\nAko se ne odlučite na to, provjerite [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|neispravna preusmjeravanja]].\nDužni ste provjeriti da svi linkovi i dalje nastave voditi na prave stranice.\n\nImajte na umu da članak '''neće''' biti preusmjeren ukoliko već postoji članak pod imenom na koje namjeravate da preusmjerite osim u slučaju stranice za preusmjeravanje koja nema nikakvih starih izmjena.\nTo znači da možete vratiti stranicu na prethodno mjesto ako pogriješite, ali ne možete zamijeniti postojeću stranicu.\n\n'''Pažnja!'''\nOvo može biti drastična i neočekivana promjena kad su u pitanju popularne stranice;\nMolimo dobro razmislite prije nego što preimenujete stranicu.",
 	"movepagetext-noredirectfixer": "Koristeći obrazac ispod ćete preimenovati stranicu i premjestiti cijelu njenu historiju na novi naziv.\nStari naziv će postati preusmjerenje na novi naziv.\nMolimo provjerite da li postoje [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|nedovršena preusmjerenja]].\nVi ste za to odgovorni te morate provjeriti da li su linkovi ispravni i da li vode tamo gdje bi trebali.\n\nImajte na umu da stranica '''neće''' biti premještena ako već postoji stranica s tim imenom, osim ako je prazna ili je preusmjerenje ili nema ranije historije.\nOvo znali da možete preimenovati stranicu nazad gdje je ranije bila preimenovana ako ste pogriješili a ne možete ponovo preimenovati postojeću stranicu.\n\n'''Pažnja!'''\nImajte na umu da preusmjeravanje popularnog članka može biti\ndrastična i neočekivana promjena za korisnike; molimo budite sigurni da ste shvatili posljedice prije nego što nastavite.",
 	"movepagetalktext": "Odgovarajuća stranica za razgovor, ako postoji, će automatski biti premještena istovremeno '''osim:'''\n*Neprazna stranica za razgovor već postoji pod novim imenom, ili\n*Odznačite donju kutiju.\n\nU tim slučajevima, moraćete ručno da premjestite stranicu ukoliko to želite.",
-	"movearticle": "Premjesti stranicu – Премјести страницу",
 	"moveuserpage-warning": "'''Upozorenje:''' Premještate korisničku stranicu. Molimo da zapamtite da će se samo stranica premjestiti a korisnik se ''neće'' preimenovati.",
 	"movenologintext": "Morate se registrovati ili [[Special:Userlogin|prijaviti]] kako biste premjestili članak.<br>\nМорате се регистровати или [[Special:Userlogin|пријавити]] како бисте преместили чланак.",
 	"movenotallowed": "Nemate dopuštenje za premještanje stranica.",
@@ -2883,7 +2883,7 @@
 	"api-error-badaccess-groups": "Nemate ovlasti da postavljate datoteke na ovoj wiki.",
 	"api-error-badtoken": "Unutrašnja greška: token nije ispravan.",
 	"api-error-copyuploaddisabled": "Postavljanja putem URL-a su onemogućena na ovom serveru.",
-	"api-error-duplicate": "Već postoji {{PLURAL:$1|[$2 druga datoteka]|[$2 druge datoteke]}} na ovoj stranici sa istim sadržajem",
+	"api-error-duplicate": "Već postoji {{PLURAL:$1|druga datoteka|druge datoteke}} na ovoj stranici sa istim sadržajem",
 	"api-error-duplicate-archive": "{{PLURAL:$1|Postojala je druga datoteka|Postojale su neke druge datoteke}} na sajtu sa istim sadržajem, ali {{PLURAL:$1|je obrisana|su obrisane}}.",
 	"api-error-empty-file": "Datoteka koju ste poslali je bila prazna.",
 	"api-error-emptypage": "Stvaranje novih praznih stranica nije dozvoljeno.",

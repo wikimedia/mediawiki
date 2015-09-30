@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Songhay",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Dobu ganda-žeeriyan:",
@@ -2046,7 +2047,6 @@
 	"movepagetext": "Ne ganda takaddaa goyyanoo ga moɲoo maaɲoo barmay, ka nga taarikoo kul ganandi maa taagaa here.\nMaa žeenaa ka tee kuubiyan moo maa taagaa se.\nWar ga hin ka kuubiyaney taagandi k'i sinji aššil maaɲoo ga ngi boŋše.\nNda war ši woo tee nd'anniya, wa [[Special:DoubleRedirects|kuubiyan fillantey]] wala [[Special:BrokenRedirects|ikayrantey]] koroši boryo.\nWar allamaanaa woo kaŋ dobey ma gaabandi alhakiika ra ka sinja nungey kaŋ i ga hima ga koy ga.\n\nLaasaabu kaŋ moɲoo <strong>ši</strong> ganandi nda moo foo ga bara maa taagaa cire ka ben, nda manti ikoraa ti kuubiyan nd'a ši nda fasal taariki bisante,\n\n<strong>Yaamar!</strong>\nWoo ga hin ka ti barmay gaabante kaŋ boro ši a tammahãa moo maakoyni se;\n w'alhakiika war ga faham misoo benantaa se jina nda war ga koy jine.",
 	"movepagetext-noredirectfixer": "\n<strong>Yaamar!</strong>\nWoo ga hin ka ti barmay šenda kaŋ boro si a tammahã moo maakoyni se;\nwar m'alhakiika kaŋ war ga faham misoo benantaa jina nda war baa ka goy jine.",
 	"movepagetalktext": "Deede moo kondantaa ši ma ganandi nga boŋše jinehere <strong> nda manti:</strong>\n*Deede moo kaŋ ši koonu ga bara ka ben moo taagaa cire, wala\n*War na maasaa ka ne ganda bataa ga.\n\nMise taney din ra, war ga hima ka moɲoo ganandi wal'a margandi war boŋše nda war ga baa.",
-	"movearticle": "Moɲoo ganandi:",
 	"moveuserpage-warning": "<strong>Yaamar:</strong> War ga baa ka goykaw moo foo ganandi. Laasaabu kaŋ moɲoo hinne ma ganandi nda kaŋ goykaa <em> ši </em> maa taaga zaa.",
 	"movecategorypage-warning": "<strong>Yaamar:</strong> War ga baa ka dumi moo foo ganandi. Laasaabu kaŋ moɲoo ga ganandi nda mooyaŋ kul kaŋ ga bara dumi žeenaa ra <em>ši</em> huru dumi taagaa woo ra.",
 	"movenologintext": "War mma hima ka tee goykaw hantumante nda [[Special:UserLogin|hurante]] ka moɲoo ganandi.",
@@ -3192,7 +3192,7 @@
 	"api-error-badaccess-groups": "War ši nda fondo ka tukey zijandi wikiyoo woo ga.",
 	"api-error-badtoken": "Kunahere firka: Tokore laala.",
 	"api-error-copyuploaddisabled": "URL zijandiyan n' ka kay feršikaa woo ga.",
-	"api-error-duplicate": "{{PLURAL:$1|ti [ti tuku tana $2]}} kaŋ ga bara interneti nungoo ga ka ben nda gundakuna follokaa da.",
+	"api-error-duplicate": "{{PLURAL:$1|ti ti tuku tana $2}} kaŋ ga bara interneti nungoo ga ka ben nda gundakuna follokaa da.",
 	"api-error-duplicate-archive": "{{PLURAL:$1|ti ti tuku tana}} kaŋ ga bara interneti nungoo ga ka ben nda gundakuna follokaa da, amma {{PLURAL:$1|an' ka|in' ka}} tuusandi.",
 	"api-error-empty-file": "Tukoo kaŋ war n'a sanba mma koonu.",
 	"api-error-emptypage": "Boro ši hin ka moo taaga, koonuyaŋ tee.",

@@ -45,7 +45,8 @@
 			"Helland",
 			"Macofe",
 			"Kingu",
-			"Tarjeimo"
+			"Tarjeimo",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -2113,7 +2114,6 @@
 	"movepagetext": "Når du bruker skjemaet nedenfor døper du om en side og flytter hele historikken til det nye navnet.\nDen gamle tittelen blir en omdirigeringsside til den nye tittelen.\nDu kan oppdatere omdirigeringer som peker til den opprinnelige tittelen automatisk.\nOm du velger å ikke gjøre det, sjekk at flyttingen ikke fører til [[Special:DoubleRedirects|doble]] eller [[Special:BrokenRedirects|ødelagte omdirigeringer]].\nDu er ansvarlig for at lenker fortsetter å peke til de sidene de er ment å peke til.\n\nLegg merke til at siden '''ikke''' kan flyttes hvis det allerede finnes en side med den nye tittelen, med mindre sistnevnte er tom eller er en omdirigeringsside uten historikk.\nDet betyr at du kan flytte en side tilbake dit den kom fra hvis du gjør en feil, og du kan ikke overskrive eksisterende sider ved et uhell.\n\n'''Advarsel!'''\nDette kan være en drastisk og uventet endring for en populær side;\nvær sikker på at du forstår konsekvensene av dette før du fortsetter.",
 	"movepagetext-noredirectfixer": "Skjemaet nedenfor vil gi en side ny tittel og flytte historikken dens til det nye navnet.\nDen gamle tittelen vil bli en omdirigering til den nye.\nSjekk om det blir [[Special:DoubleRedirects|doble]] eller [[Special:BrokenRedirects|ødelagte omdirigeringer]].\nDu er ansvarlig for å sjekke at lenker fortsetter å gå dit de skal.\n\nMerk at sider '''ikke''' blir flyttet om det allerede finnes en side med den tittelen, med mindre siden er tom eller en omdirigering og ikke har noen redigeringshistorikk.\nDette betyr at du kan endre tittelen til en tittel siden hadde tidligere, og at du ikke kan skrive over en eksisterende side.\n\n'''Advarsel!'''\nDette kan være en drastisk og uventet endring for en populær side;\nvær sikker på at du forstår konsekvensene av dette før du fortsetter.",
 	"movepagetalktext": "Den tilhørende diskusjonssiden vil automatisk bli flyttet sammen med siden '''med mindre:'''\n*Det allerede finnes en diskusjonsside som ikke er tom under det nye navnet, eller\n*Du fjerner markeringen i boksen nedenfor.\n\nI disse tilfellene er du nødt til å flytte eller flette siden manuelt, om ønskelig.",
-	"movearticle": "Flytt side:",
 	"moveuserpage-warning": "'''Advarsel:''' Du er i ferd med å flytte en brukerside. Merk at kun siden vil bli flyttet; brukernavnet vil ''ikke'' bli endret.",
 	"movecategorypage-warning": "<strong>Advarsel:</strong> Du er i ferd med å flytte en kategoriside. Merk at kun siden blir flyttet, og at sider i det gamle kategorinavnet <em>ikke</em> blir omkategorisert til det nye navnet.",
 	"movenologintext": "Du må være registrert bruker og være [[Special:UserLogin|logget på]] for å flytte en side.",
@@ -3230,7 +3230,7 @@
 	"api-error-badaccess-groups": "Du har ikke tillatelse til å laste opp filer til denne wikien.",
 	"api-error-badtoken": "Intern feil: Ugyldig nøkkel.",
 	"api-error-copyuploaddisabled": "Opplasting ved URL er deaktivert på denne tjeneren.",
-	"api-error-duplicate": "Det er allerede {{PLURAL:$1|en [$2 annen fil]|flere [$2 andre filer]}} på denne siden med samme innhold.",
+	"api-error-duplicate": "Det er allerede {{PLURAL:$1|en annen fil|flere andre filer}} på denne siden med samme innhold.",
 	"api-error-duplicate-archive": "Det fantes {{PLURAL:$1|en annen fil|noen andre filer}} på siden som hadde samme innhold, men {{PLURAL:$1|den|de}} ble slettet.",
 	"api-error-empty-file": "Filen du sendte inn var tom.",
 	"api-error-emptypage": "Det er ikke tillatt å opprette nye, tomme sider.",

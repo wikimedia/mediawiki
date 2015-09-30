@@ -6,13 +6,17 @@
 		]
 	},
 	"config-title": "MediaWiki $1 пуктон",
+	"config-information": "Информация",
 	"config-your-language": "Тӥляд кылды:",
 	"config-back": "← Берлань",
 	"config-continue": "Азьлань →",
 	"config-page-language": "Кыл",
+	"config-page-name": "Ним",
 	"config-page-options": "Настройкаос",
 	"config-page-complete": "Быдэстэмын!",
 	"config-page-readme": "Лыдӟы монэ",
 	"config-page-copying": "Лицензия",
+	"config-page-upgradedoc": "Выльдытон",
+	"config-diff3-bad": "GNU diff3 шедьтэмын ӧвӧл.",
 	"mainpagetext": "'''MediaWiki движок азинлыко пуктэмын.'''"
 }

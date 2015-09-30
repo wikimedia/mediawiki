@@ -242,6 +242,7 @@
 	"config-email-auth": "Appiccia autenticaziona via email",
 	"config-email-auth-help": "Si st'opzione è appicciata, ll'utente avesser'a cunfermà 'o cunto e-mail ausanno nu cullegamento ca se mannasse a chiste quanno facessero 'a mpustaziona o pure quanno facessero 'o cagnamiento.\nSurtanto 'e mail autenticate putesser piglià mail 'a ll'at'utente o cagnà email 'e notifica.\nMpustà st'opzione è <strong>raccumannato</strong p' 'e wiki pubbreche pecché se putesse ausà o se fà abbuso d' 'e funziune mail.",
 	"config-email-sender": "Innerizo email e ritorno:",
+	"config-email-sender-help": "Nzèrta l'indirizzo email ca s'avess'ausà comme indirizzo 'e turnata p' 'a posta asciuta.\nChest'è l'indirizzo addò veneno l'errure.\nNu cuofeno 'e server posta vulessero minimo na parte d' 'o nomme dumminio valido.",
 	"config-upload-settings": "Immaggene e upload",
 	"config-upload-enable": "Premmette 'a carreca 'e file",
 	"config-upload-deleted": "Cartella p' 'e file scancellate:",

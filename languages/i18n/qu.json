@@ -10,7 +10,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Fitoschido",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "T'inkikunata uranpi sikwiy",
@@ -1963,7 +1964,6 @@
 	"movepagetext": "Kay hunt'ana p'anqawanqa huk p'anqa tukuy wiñay kawsasqanpas astasqam kanqa. Mawk'a sutinqa musuq sutiman pusapuq p'anqam tukunqa. Akllaptiykiqa, mawk'a sutiman t'inkimuq pusapuna p'anqakuna kikinmanta allinchasqam kanqa. Mana hinaptiykiqa, paqtataq [[Special:DoubleRedirects|iskayllapas]] [[Special:BrokenRedirects|p'akisqapas]] pusapuna p'anqakunata llanchispa allinchallay. Qammi paqtachiq, t'inkimuqkuna allinraq kana hawam kanki. Ama panta t'inkimuqkunata saqiychu.\n\nNisqayki musuq sutiyuq wiñay kawsasqayuq p'anqaña kachkaptinqa, kay p'anqa '''manam''' astasqa kanqachu. Huklla kuti astasqa p'anqataqa mawk'a sutinman astayta atinkim, manataqmi huk mawk'a kachkaqña p'anqamanchu.\n\n'''Paqtataq!'''\nKay astayqa ancha riqsisqa p'anqata hatun mana suyapusqa hukchaymi kayta atinman;\nama hina kaspa, yuyarillay imachus kay astanayki saqispa tukunata atinman.",
 	"movepagetext-noredirectfixer": "Kay hunt'ana p'anqawanqa huk p'anqam tukuy wiñay kawsasqanpas musuq sutiman astasqa kanqa.\nMawk'a sutinqa musuq sutiman pusapuq p'anqam tukunqa.\nPaqtataq [[Special:DoubleRedirects|iskaylla]] icha [[Special:BrokenRedirects|p'akisqa]] pusapuna p'anqakunata allinchallay.\nAma panta t'inkimuqkunata saqiychu. Qammi chay t'inkikunap allin taripananmanta paqtachiq.\n\nNisqayki musuq sutiyuq wiñay kawsasqayuq p'anqaña kachkaptinqa, kay p'anqa '''manam''' astasqa kanqachu.\nHuklla kuti astasqa p'anqataqa mawk'a sutinman astayta atinkim, manataq huk mawk'a kachkaqña p'anqamanchu.\n\n'''Paqtataq!'''\nKay astayqa ancha riqsisqa p'anqata hatun mana suyapusqa hukchaymi kayta atinman;\nama hina kaspa, yuyarillay imachus kay astanaykita saqispa tukunata atinman.",
 	"movepagetalktext": "P'anqaman kapuq rimachina p'anqaqa - kachkaspaqa - kikinmanta astasqam kanqa. '''Manallam astasqachu kanqa,'''\n*p'anqa huk suti huñumanta huk suti huñuman astasqa kachkaptinqa;\n*huk wiñay kawsasqayuq musuq sutiyuq rimachina p'anqa kachkaptinqa;\n*\"Rimachinapas, atikuq hinaptin\" nisqa akllanaman ama niptiykiqa.\n\nHinaptinqa, kay rimachina p'anqap samiqninta makiykiwan astanaykim tiyanqa.",
-	"movearticle": "P'anqata astay",
 	"moveuserpage-warning": "'''Paqtataq:''' Ruraqpa p'anqantam astaykachachkanki. Qhawariy, p'anqallam astasqa kanqa, ruraqpa sutintaq '''manam''' wakinchasqachu kanqa.",
 	"movenologintext": "P'anqata astanaykipaqqa hallch'asqa ruraqmi kanayki [[Special:UserLogin|llamk'apuy tiyay qallarinaykipas]] tiyan.",
 	"movenotallowed": "Manam saqillasunkichu p'anqata astayta.",
@@ -2914,7 +2914,7 @@
 	"api-error-badaccess-groups": "Kay wikipiqa willañiqikunata manam churkuyta atinkichu.",
 	"api-error-badtoken": "Ukhupi pantasqa: Mana allinta sananchasqa.",
 	"api-error-copyuploaddisabled": "URL nisqawanqa kay sirwiqpi manam churkuyta atinki.",
-	"api-error-duplicate": "Kay tiyaypiqa huk {{PLURAL:$1|[$2 willañiqim]|[$2 willañiqikunam]}} kachkanñam kaqlla samiqniyuq kaq.",
+	"api-error-duplicate": "Kay tiyaypiqa huk {{PLURAL:$1|willañiqim|willañiqikunam}} kachkanñam kaqlla samiqniyuq kaq.",
 	"api-error-duplicate-archive": "Kay tiyaypiqa huk {{PLURAL:$1|willañiqim|willañiqikunam}} karqanñam kaqlla samiqniyuq kaq, kunantaq qullusqañam.",
 	"api-error-empty-file": "Kachasqayki willañiqiqa ch'usaqmi.",
 	"api-error-emptypage": "Musuq ch'usaq p'anqakunata kamariyqa manam saqillasqachu.",

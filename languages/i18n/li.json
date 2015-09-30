@@ -16,7 +16,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Robin0van0der0vliet",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Links óngersjtriepe",
@@ -1760,7 +1761,6 @@
 	"movepagetext": "Mit 't óngersjtaond formuleer kans te 'n pagina verplaatse. \nDe historie van de auw pagina zal nao de nuuj mitgoon. \nDe auwe titel zal automatisch 'ne redirect nao de nuuj pagina waere. \nVerwiezinge nao de auw pagina waere neet aangepas.\nDe pagina's die doorverwieze  nao de oersjprunkelike paginanaom weurt otomatisch biegewirk.\nEs dat neet gewunsj is, controleer dan of d'r gein [[Special:DoubleRedirects|dobbel]] of [[Special:BrokenRedirects|gebraoke redirects]] ontsjtange zien.\n\nDoe kans 'n pagina allein verplaatse, es gein pagina besjteit mit de nuje naam, of es op die pagina allein 'ne redirect zónger historie sjteit.\n\n'''Waarsjoewing!'''\nVeur väöl bekeke pagina's ken 't verplaatse drastische en onveurzene gevolge höbbe.\nZörg deveur dets te die gevolge euverzuus ierdets te dees hanjeling oetvoers.",
 	"movepagetext-noredirectfixer": "Mit 't óngersjtaond formuleer kans te 'n pagina verplaatse. De historie van de auw pagina zal nao de nuuj mitgoon. \nDe auwe titel zal automatisch 'ne redirect nao de nuuj pagina waere. \nControleer den of d'r gein [[Special:DoubleRedirects|dobbel]] of [[Special:BrokenRedirects|gebraoke redirects]] ontsjtange zien.\n\nDoe kans 'n pagina '''allein''' verplaatse, es gein pagina besjteit mit de nuje naam, of es op die pagina allein 'ne redirect zónger historie sjteit. Doe kins dus 's pagina die abusievelik verplaats is, trökverplaatse en 'n bestaondje pagina neet euversjrieve.\n\n'''Waarsjoewing!'''\nVeur väöl bekeke pagina's ken 't verplaatse drastische en onveurzene gevolge höbbe.\nZörg deveur dets te die gevolge euverzuus ierdets te dees hanjeling oetvoers.",
 	"movepagetalktext": "De biebehurende euverlèkpagina weurt ouch verplaats, mer '''neet''' in de volgende gevalle:\n* es al 'n euverlèkpagina besjteit ónger de angere naam\n* es doe 't óngersjtaond vekske neet aanvinks",
-	"movearticle": "Verplaats pagina:",
 	"moveuserpage-warning": "'''Waorsjoewing:''' doe geis 'ne gebroekerspagina hernömme.\nHaaj d'r raekening mit det allein de pagina wuuertj hernömp, ''neet'' de gebroeker.",
 	"movenologintext": "Veur 't verplaatse van 'n pagina mos te zien [[Special:UserLogin|aangemèld]].",
 	"movenotallowed": "De kèns gein pazjena's verplaatse.",
@@ -2592,8 +2592,8 @@
 	"api-error-badaccess-groups": "Doe moogs gein bestenj uploade óp deze wiki.",
 	"api-error-badtoken": "Intern fout: toke is slech.",
 	"api-error-copyuploaddisabled": "Uploade via URL steit óp deze server oet.",
-	"api-error-duplicate": "d'r {{PLURAL:$1|steit al [$2 e bestandj]|staon al [$2 bestenj]}} mit dezelfden inhawd oppe wiki.",
-	"api-error-duplicate-archive": "d'r {{PLURAL:$1|Waar al [$2 'n anger bestandj]|woren al [$2 $1 anger bestenj]}} óppe site mitte zelfdjen inhawd, meh {{PLURAL:$1|det is|die zeen}} gewösj.",
+	"api-error-duplicate": "d'r {{PLURAL:$1|steit al e bestandj|staon al bestenj}} mit dezelfden inhawd oppe wiki.",
+	"api-error-duplicate-archive": "d'r {{PLURAL:$1|Waar al 'n anger bestandj|woren al $1 anger bestenj}} óppe site mitte zelfdjen inhawd, meh {{PLURAL:$1|det is|die zeen}} gewösj.",
 	"api-error-empty-file": "t Bestandj det se perbeers te uploade had gein inhald.",
 	"api-error-emptypage": "Doe maags gein nuuj, laeg pagina's aanmake.",
 	"api-error-fetchfileerror": "Intern fout: d'r is get fout gegange bie 't óphaole van 't bestandj.",

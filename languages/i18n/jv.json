@@ -15,7 +15,8 @@
 			"StefanusRA",
 			"לערי ריינהארט",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Garisen ngisoré pranala:",
@@ -1928,7 +1929,6 @@
 	"movepagetext": "Formulir ing ngisor iki bakal ngowahi jeneng sawijining kaca, mindhah kabèh sajarahé menyang kaca sing anyar. Irah-irahan utawa judhul sing lawas bakal dadi kaca pangalihan menyang irah-irahan sing anyar. Pranala menyang kaca sing lawas ora bakal diowahi; dadi pastèkna dhisik mriksa pangalihan [[Special:DoubleRedirects|dobel]] utawa [[Special:BrokenRedirects|pangalihan sing rusak]] sawisé pamindhahan. Panjenengan sing tanggung jawab mastèkaké menawa kabèh pranala-pranala tetep nyambung ing kaca panujon kaya samesthiné.\n\nGatèkna yèn kaca iki '''ora''' bakal dipindhah yèn wis ana kaca liyané sing nganggo irah-irahan sing anyar, kejaba kaca iku kosong utawa ora nduwé sajarah panyuntingan. Dadi tegesé panjenengan bisa ngowahi jeneng kaca iku manèh kaya sedyakala menawa panjenengan luput, lan panjenengan ora bisa nimpani kaca sing wis ana.\n\n'''PÈNGET!'''\nPerkara iki bisa ngakibataké owah-owahan sing drastis lan ora kaduga kanggo kaca-kaca sing populèr;\npastekaké dhisik panjenengan ngerti konsekwènsi saka panggayuh panjenengan sadurungé dibanjuraké.",
 	"movepagetext-noredirectfixer": "Formulir di bawah ini digunakan untuk mengubah nama suatu halaman dan memindahkan semua data sejarah ke nama baru.\nJudul yang lama akan menjadi halaman peralihan menuju judul yang baru.\nPastikan untuk memeriksa pengalihan [[Special:DoubleRedirects|ganda]] atau [[Special:BrokenRedirects|rusak]].\nAnda bertanggung jawab untuk memastikan bahwa pranala terus menyambung ke halaman yang seharusnya.\n\nPerhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman yang menggunakan judul yang baru, kecuali bila halaman tersebut kosong atau merupakan halaman peralihan dan tidak mempunyai sejarah penyuntingan.\nIni berarti Anda dapat mengubah nama halaman kembali seperti semula apabila Anda membuat kesalahan, dan Anda tidak dapat menimpa halaman yang telah ada.\n\n'''Peringatan:'''\nHal ini dapat mengakibatkan perubahan yang tak terduga dan drastis bagi halaman yang populer;\nPastikan Anda mengerti konsekuensi dari perbuatan ini sebelum melanjutkan.",
 	"movepagetalktext": "Kaca dhiskusi sing kagandhèng uga bakal dipindhahaké sacara otomatis '''kejaba yèn:'''\n\n*Sawijining kaca dhiskusi sing ora kosong wis ana sangisoring irah-irahan (judhul) anyar, utawa\n*Panjenengan ora maringi tandha cèk ing kothak ing ngisor iki.\n\nIng kasus-kasus iku, yèn panjenengan gayuh, panjenengan bisa mindhahaké utawa nggabung kaca iku sacara manual.",
-	"movearticle": "Pindhah kaca",
 	"moveuserpage-warning": "'''Pèngetan:''' Sampéyan arep mindhahaké kaca panganggo. Mangga cathet yèn namung kaca sing bakal dipindhahaké lan panganggo '''ora''' bakal diganti jenengé.",
 	"movenologintext": "Panjenengan kudu dadi panganggo sing wis ndaftar lan wis [[Special:UserLogin|mlebu log]] kanggo mindhah kaca.",
 	"movenotallowed": "Panjenengan ora pareng ngalihaké kaca.",
@@ -2868,7 +2868,7 @@
 	"api-error-badaccess-groups": "Sampéyan ora dililakaké ngunggah berkas nèng wiki iki.",
 	"api-error-badtoken": "Kasalahan njero: Token èlèk.",
 	"api-error-copyuploaddisabled": "Ngunggah saka URL dipatèni nèng sasana iki.",
-	"api-error-duplicate": "Ana {{PLURAL:$1|[$2 berkas liya]|[$2 pirang-pirang berkas liya]}} sing wis ana nèng situsé saha isiné padha.",
+	"api-error-duplicate": "Ana {{PLURAL:$1|berkas liya|pirang-pirang berkas liya}} sing wis ana nèng situsé saha isiné padha.",
 	"api-error-duplicate-archive": "Ana {{PLURAL:$1|berkas liya|pirang-pirang berkas liya}} sing wis ana nèng situsé saha isiné padha, nanging {{PLURAL:$1|kuwi|kuwi kabèh}} wis dibusak.",
 	"api-error-empty-file": "Berkas sing Sampéyan kirim kosong.",
 	"api-error-emptypage": "Nggawé kaca kosong anyar ora dilikaké.",

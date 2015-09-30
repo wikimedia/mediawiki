@@ -13,7 +13,8 @@
 			"Xxglennxx",
 			"לערי ריינהארט",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Tanlinellu cysylltiadau:",
@@ -2027,7 +2028,6 @@
 	"movepagetext": "Drwy ddefnyddio'r ffurflen isod, byddwch yn ailenwi tudalen, ac felly yn symud ei holl hanes i'r dudalen a'r enw newydd.\nCaiff y dudalen a'r hen deitl ei throi'n dudalen sy'n ailgyfeirio i'r teitl newydd.\nGallwch ddiweddaru tudalennau ailgyfeirio sy'n cyfeirio at y teitl gwreiddiol yn awtomatig.\nOs ydych yn dewis peidio â gwneud hyn, gwiriwch [[Special:DoubleRedirects|dudalennau ailgyfeirio dwbl]] neu \n[[Special:BrokenRedirects|dudalennau ailgyfeirio nad ydynt yn ailgyfeirio]].\nChi sy'n gyfrifol am sicrhau bod cysylltiadau yn cyfeirio at y tudalennau cywir.\n\nSylwer '''na''' chaiff y dudalen ei symud os oes tudalen a'r enw newydd ar gael yn barod, oni bai bod y dudalen a'r enw newydd yn dudalen ailgyfeirio ac nad oes hanes golygu ganddi.\nMae hyn yn golygu y gallwch ailenwi tudalen yn ôl i'w henw gwreiddiol os ydych yn gwneud camgymeriad, ond na allwch drosysgrifo tudalen sy'n bodoli'n barod.\n\n'''Rhybudd!'''\nGall hwn fod yn newid mawr ac annisgwyl i dudalen boblogaidd;\ngwnewch yn siŵr eich bod yn deall canlyniadau'r broses hon cyn i chi barhau.",
 	"movepagetext-noredirectfixer": "Wrth ddefnyddio'r ffurflen isod byddwch yn ail-enwi tudalen, gan symud ei hanes gyfan i'r enw newydd.\nBydd yr hen deitl yn troi'n dudalen ailgyfeirio i'r teitl newydd.\nByddwch gystal â thrwsio [[Special:DoubleRedirects|ailgyfeiriadau dwbl]] ac [[Special:BrokenRedirects|ailgyfeiriadau tor]].\nEich cyfrifoldeb chi yw sicrhau bod cysylltiadau wici'n dal i arwain at y man iawn.\n\nSylwch '''na fydd''' y dudalen yn symud os oes yna dudalen o'r enw newydd ar gael yn barod (heblaw ei bod hi'n wag neu'n ailgyfeiriad heb unrhyw hanes golygu).\nFelly, os y gwnewch gamgymeriad wrth ail-enwi tudalen dylai fod yn bosibl ei hail-enwi eto ar unwaith wrth yr enw gwreiddiol. \nHefyd, mae'n amhosibl ysgrifennu dros ben tudalen sydd yn bodoli'n barod.\n\n'''Dalier Sylw!'''\nGall hwn fod yn newid sydyn a llym i dudalen boblogaidd;\ngwnewch yn siwr eich bod chi'n deall y canlyniadau cyn mynd ati.",
 	"movepagetalktext": "Bydd y dudalen sgwrs yn symud gyda'r dudalen hon '''onibai:'''\n*bod tudalen sgwrs wrth yr enw newydd yn bodoli'n barod\n*bod y blwch isod heb ei farcio.\n\nOs felly, gallwch symud y dudalen sgwrs neu ei gyfuno ar ôl symud y dudalen ei hun.",
-	"movearticle": "Symud y dudalen:",
 	"moveuserpage-warning": "'''Sylwer:''' Yr ydych ar fin symud tudalen defnyddiwr. Sylwch mai'r dudalen yn unig a gaiff ei symud ac ''na fydd'' y defnyddiwr yn cael ei ail-enwi.",
 	"movecategorypage-warning": "<strong>Rhybudd:</strong> Rydych ar fin dileu categori. Sylwch mai dim ond y dudalen a gaiff ei symud, a bydd y tudalennau o fewn yr hen gategori yn aros fel ag yr oeddent.",
 	"movenologintext": "Mae'n rhaid bod yn ddefnyddiwr cofrestredig a'ch bod wedi [[Special:UserLogin|mewngofnodi]] cyn medru symud tudalen.",
@@ -3007,7 +3007,7 @@
 	"api-error-badaccess-groups": "Nid oes caniatad gennych i uwchlwytho ffeiliau ar y wici hwn.",
 	"api-error-badtoken": "Gwall mewnol: tocyn gwael.",
 	"api-error-copyuploaddisabled": "Nid oes modd uwchlwytho drwy URL ar y gweinydd hwn",
-	"api-error-duplicate": "Mae {{PLURAL:$1||[$2 ffeil arall]|[$2 ffeiliau eraill]|[$2 ffeiliau eraill]|[$2 ffeiliau eraill]|[$2 ffeiliau eraill]}} gyda'r un cynnwys {{PLURAL:$1||ynddi|ynddynt|ynddynt|ynddynt|ynddynt}} eisoes ar y wici hwn",
+	"api-error-duplicate": "Mae {{PLURAL:$1||ffeil arall|ffeiliau eraill|ffeiliau eraill|ffeiliau eraill|ffeiliau eraill}} gyda'r un cynnwys {{PLURAL:$1||ynddi|ynddynt|ynddynt|ynddynt|ynddynt}} eisoes ar y wici hwn",
 	"api-error-duplicate-archive": "Fe fu {{PLURAL:$1|ffeil arall gyda'r un cynnwys ynddi|ffeiliau eraill gyda'r un cynnwys ynddynt}} ar y safle, ond fe'{{PLURAL:$1|i|u}} dilëwyd.",
 	"api-error-empty-file": "Mae'r ffeil a gyflwynwyd gennych yn wag.",
 	"api-error-emptypage": "Ni chaniateir dechrau tudalen newydd, a honno'n wag.",

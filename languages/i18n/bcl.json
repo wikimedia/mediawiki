@@ -9,7 +9,8 @@
 			"Steven*fung",
 			"Urhixidur",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Linyahan an kilyawan:",
@@ -1945,7 +1946,6 @@
 	"movepagetext": "Sa paggagamit kan porma na yaon sa ibaba mariribayan nin pangaran an sarong pahina, maibabalyo an gabos kaining historiya pasiring sa baguhong pangaran.\nAn lumang titulo magigin sarong panlikwat na pahina sa baguhong titulo.\nIka makakapagsumpay kan mga panlikwat na magtutukdong awtomatiko pasiring sa orihinal na titulo.\nKun saimong pinili na dae, seguraduhon na marikisa para sa [[Special:DoubleRedirects|doble]] o [[Special:BrokenRedirects|nabaak na mga panlikwat]].\nIka an responsable para himoong segurado na an mga kasugpon padagos na minatukdo kun saen sinda dapat na magduman.\n\nGiromdoma na an pahina '''dae''' maibabalyo kun igwa na nin sarong pahina sa baguhon na titulo, laen lang kun ini daeng laman o sarong panlikwat asin mayo nin nakaaging historiya nin pagliwat.\nIni minapasabot na ika makakapagribay nin pangaran nin sarong pahina pabalik sa kun saen ini pinagribayan nin pangaran kun ika nakahimo nin kasalaan, asin ika dae makakasalambaw nin sarong eksistido nang pahina.\n\n'''Patanid!'''\nIni magigin sarong biglaan asin dae inaasahan na kaliwatan para sa sarong bantugan na pahina; pakiseguro sana na saimong nasabutan an mga konsekuwensiya kaini bago ipagpadagos.",
 	"movepagetext-noredirectfixer": "An paggamit kan porma na yaon sa ibaba magliliwat sa pangaran kan pahina, magbabalyo kan gabos kaining historiya paduman sa baguhon na pangaran.\nAn lumang titulo magigin sarong panlikwat na pahina paduman sa baguhon na titulo.\nMagin paseguro na magmansay nin [[Special:DoubleRedirects|doble]] o [[Special:BrokenRedirects|baraak na panlikwat]].\nIka an responsable para himoon na segurado na an mga kilyaw padagos na magtutukdo kun saen sinda dapat na magduman.\n\nTandaan na an pahina '''dae''' maibabalyo kun igwa na nin sarong pahina sa baguhon na titulo, lean lang kun ini mayong laog o sarong panlikwat asin mayo nin nakaaging historiya nin pagliwat.\nIni minapasabot na ika makakapagliwat nin pangaran kan saron gpahina pabalik sa kun saen ini pinagliwat an pangaran sa piggikanan kun ika makahimo nin sarong kasalaan, asin ika dae makakasalambaw kan sarong eksistido nang pahina.\n\n'''Patanid!'''\nIni mapuwedeng sarong hidalion asin dae inaasahan na kaliwatan para sa sarong bantugan na pahina;\npakipaseguro baya na ika nakakasabot sa mga konsekuwensiya kaini bago magpapadagos.",
 	"movepagetalktext": "An kapadis na olay na páhina enseguidang ibabalyo kasabay kaini '''kun:'''\n*Igwa nang may laog na olay na páhina na may parehong pangaran, o\n*Halîon mo an marka sa kahon sa babâ.\n\nSa mga kasong iyan, kaipuhan mong ibalyo o isalak an páhina nin mano-mano kun boot mo.",
-	"movearticle": "Ibalyó an pahina:",
 	"moveuserpage-warning": "'''Patanid:''' Ika magpopoon na magbalyo in sarong pahina nin paragamit. Pakitandaan tabi na an pahina sana na ipagbabalyo asin an paragamit '''dae''' maipagliliwat an pangaran.",
 	"movenologintext": "Kaipuhan na rehistradong parágamit ka asin si [[Special:UserLogin|nakalaog]] tangarig makabalyó ka nin páhina.",
 	"movenotallowed": "Mayô kang permiso na ibalyó an mga pahina sa wiki na ini.",
@@ -2887,7 +2887,7 @@
 	"api-error-badaccess-groups": "Ika daeng permiso na magkarga nin mga sagunson sa wiking ini.",
 	"api-error-badtoken": "Panlaog na kasalaan: Raot na pangilip",
 	"api-error-copyuploaddisabled": "An pagkakarga sa paagi kan URL pinag-untok sa serbidor na ini.",
-	"api-error-duplicate": "Igwa {{PLURAL:$1|nin [$2 ibang sagunson]|mga [$2 iba pang mga sagunson]}} na yaon sa sityo na igwa nin kaparehong laog.",
+	"api-error-duplicate": "Igwa {{PLURAL:$1|nin ibang sagunson|mga iba pang mga sagunson}} na yaon sa sityo na igwa nin kaparehong laog.",
 	"api-error-duplicate-archive": "Igwa {{PLURAL:$1|kaidto nin ibang sagunson|kaidto nin ibang mga sagunson}} na yaon sa sityo na igwa nin kaparehong laog, alagad {{PLURAL:$1|ini kaidto|sinda kaidto}} pinagpura na.",
 	"api-error-empty-file": "An sagunson na saimong pinagsumite daeng laog.",
 	"api-error-emptypage": "Nagmumukna nin bago, mayong laog na mga pahina dae pinagtutugutan.",

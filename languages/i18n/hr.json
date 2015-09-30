@@ -31,7 +31,8 @@
 			"Macofe",
 			"Fraxinus",
 			"Srdjan m",
-			"Teoo3"
+			"Teoo3",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Podcrtane poveznice",
@@ -1995,7 +1996,6 @@
 	"movepagetext": "Uporabom ovog obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene na novo ime.\nStari će se naslov pretvoriti u stranicu koja automatski preusmjerava na novi naslov.\nMožete odabrati automatsko ažuriranje preusmjeravanja na izvorni naslov.\nAko se ne odlučite na to, provjerite [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|neispravna preusmjeravanja]].\nDužni ste provjeriti da sve poveznice i dalje nastave voditi na prave stranice.\n\nStranica se '''ne će''' premjestiti ako već postoji stranica s novim naslovom, osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema nikakvih starih izmjena.\nTo znači: 1. ako pogriješite, možete opet preimenovati stranicu na stari naslov, 2. ne može se dogoditi da izbrišete neku postojeću stranicu.\n\n'''Upozorenje!'''\nOvo može biti drastična i neočekivana promjena kad su u pitanju popularne stranice. Molimo dobro razmislite prije nego što preimenujete stranicu.",
 	"movepagetext-noredirectfixer": "Pomoću donjeg obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene na novo ime. \nStari će se naslov pretvoriti u stranicu koja automatski preusmjerava na novi naslov. \nBudite sigurni da ste provjerili [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|nevaljana preusmjeravanja]]. \nVi ste odgovorni za to da poveznice i dalje povezuju tamo gdje treba.\n\nImajte na umu da stranica '''ne će''' biti premještena ako već postoji stranica s novim naslovom, osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema nikakvih starih izmjena. \nTo znači da stranicu možete preimenovati u prethodno ime ako ste pogriješili te ne možete pisati preko postojeće stranice. \n\n'''Upozorenje!''' \nOvo može biti drastična i neočekivana promjena kad su u pitanju popularne stranice; \nbudite sigurni da razumijete posljedice ove akcije prije nastavka.",
 	"movepagetalktext": "Stranica za razgovor, ako postoji, automatski će se premjestiti zajedno sa stranicom koju premještate. '''Stranica se za razgovor ne će premjestiti ako:'''\n*premještate stranicu iz jednog prostora u drugi,\n*pod novim imenom već postoji stranica za razgovor s nekim sadržajem, ili\n*maknete kvačicu u kućici na dnu ove stranice.\n\nU tim ćete slučajevima morati sami premjestiti ili iskopirati stranicu za razgovor,\nako to želite.",
-	"movearticle": "Premjesti stranicu",
 	"moveuserpage-warning": "'''Upozorenje:''' Premještate suradničku stranicu. Imajte na umu da će stranica biti premještena, ali suradnik ''ne će'' biti preimenovan.",
 	"movenologintext": "Ako želite premjestiti stranicu morate biti [[Special:UserLogin|prijavljeni]].",
 	"movenotallowed": "Nemate pravo premještanja stranica.",
@@ -3024,8 +3024,8 @@
 	"api-error-badaccess-groups": "Nemate ovlasti za postavljanje datoteka na ovu wiki.",
 	"api-error-badtoken": "Interna pogrješka: Token nije ispravan.",
 	"api-error-copyuploaddisabled": "Postavljanje datoteka putem URL-a nije omogućeno na ovom projektu.",
-	"api-error-duplicate": "{{PLURAL:$1|Postoji [$2 druga datoteka]|Postoje $1 [$2 druge datoteke]|Postoji $1 [$2 drugih datoteka]}} istog sadržaja.",
-	"api-error-duplicate-archive": "{{PLURAL:$1|Postojala je [$2 druga datoteka]|Postojale su [$2 neke druge datoteke]|Postojalo je [$2 nekih drugih datoteka]}} na projektu s istim sadržajem, ali {{PLURAL:$1|je obrisana|su obrisane}}.",
+	"api-error-duplicate": "{{PLURAL:$1|Postoji druga datoteka|Postoje $1 druge datoteke|Postoji $1 drugih datoteka}} istog sadržaja.",
+	"api-error-duplicate-archive": "{{PLURAL:$1|Postojala je druga datoteka|Postojale su neke druge datoteke|Postojalo je nekih drugih datoteka}} na projektu s istim sadržajem, ali {{PLURAL:$1|je obrisana|su obrisane}}.",
 	"api-error-empty-file": "Datoteka koju ste poslali je prazna.",
 	"api-error-emptypage": "Stvaranje praznih novih stranica nije dopušteno.",
 	"api-error-fetchfileerror": "Interna pogrješka: Pojavio se neki problem pri dobivanju podataka o datoteci.",
