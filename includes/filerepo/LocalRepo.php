@@ -189,8 +189,6 @@ class LocalRepo extends FileRepo {
 	 * @return bool|Title
 	 */
 	function checkRedirect( Title $title ) {
-		$cache = ObjectCache::getMainWANInstance();
-
 		$title = File::normalizeTitle( $title, 'exception' );
 
 		$memcKey = $this->getSharedCacheKey( 'image_redirect', md5( $title->getDBkey() ) );
@@ -201,65 +199,43 @@ class LocalRepo extends FileRepo {
 			$expiry = 86400; // has invalidation, 1 day
 		}
 
-		$cachedValue = $cache->get( $memcKey );
-		if ( $cachedValue === ' ' || $cachedValue === '' ) {
-			// Does not exist
-			return false;
-		} elseif ( strval( $cachedValue ) !== '' && $cachedValue !== ' PURGED' ) {
-			return Title::newFromText( $cachedValue, NS_FILE );
-		} // else $cachedValue is false or null: cache miss
+		$that = $this;
+		$redirDbKey = ObjectCache::getMainWANInstance()->getWithSetCallback(
+			$memcKey,
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $that, $title ) {
+				$dbr = $that->getSlaveDB(); // possibly remote DB
 
-		$opts = array( 'since' => $this->getSlaveDB()->trxTimestamp() );
+				$setOpts = array( 'since' => $dbr->trxTimestamp() );
 
-		$id = $this->getArticleID( $title );
-		if ( !$id ) {
-			$cache->set( $memcKey, " ", $expiry, $opts );
+				if ( $title instanceof Title ) {
+					$row = $dbr->selectRow(
+						array( 'page', 'redirect' ),
+						array( 'rd_namespace', 'rd_title' ),
+						array(
+							'page_namespace' => $title->getNamespace(),
+							'page_title' => $title->getDBkey(),
+							'rd_from = page_id'
+						),
+						__METHOD__
+					);
+				} else {
+					$row = false;
+				}
 
-			return false;
-		}
-		$dbr = $this->getSlaveDB();
-		$row = $dbr->selectRow(
-			'redirect',
-			array( 'rd_title', 'rd_namespace' ),
-			array( 'rd_from' => $id ),
-			__METHOD__
+				return ( $row && $row->rd_namespace == NS_FILE )
+					? Title::makeTitle( $row->rd_namespace, $row->rd_title )->getDBkey()
+					: ''; // negative cache
+			},
+			$expiry
 		);
 
-		if ( $row && $row->rd_namespace == NS_FILE ) {
-			$targetTitle = Title::makeTitle( $row->rd_namespace, $row->rd_title );
-			$cache->set( $memcKey, $targetTitle->getDBkey(), $expiry, $opts );
-
-			return $targetTitle;
-		} else {
-			$cache->set( $memcKey, '', $expiry, $opts );
-
-			return false;
+		// @note: also checks " " for b/c
+		if ( $redirDbKey !== ' ' && strval( $redirDbKey ) !== '' ) {
+			// Page is a redirect to another file
+			return Title::newFromText( $redirDbKey, NS_FILE );
 		}
-	}
 
-	/**
-	 * Function link Title::getArticleID().
-	 * We can't say Title object, what database it should use, so we duplicate that function here.
-	 *
-	 * @param Title $title
-	 * @return bool|int|mixed
-	 */
-	protected function getArticleID( $title ) {
-		if ( !$title instanceof Title ) {
-			return 0;
-		}
-		$dbr = $this->getSlaveDB();
-		$id = $dbr->selectField(
-			'page', // Table
-			'page_id', // Field
-			array( // Conditions
-				'page_namespace' => $title->getNamespace(),
-				'page_title' => $title->getDBkey(),
-			),
-			__METHOD__ // Function name
-		);
-
-		return $id;
+		return false; // no redirect
 	}
 
 	public function findFiles( array $items, $flags = 0 ) {
