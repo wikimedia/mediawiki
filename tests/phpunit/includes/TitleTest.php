@@ -657,7 +657,15 @@ class TitleTest extends MediaWikiTestCase {
 		$linkCache->clearLink( $title );
 		$linkCache->addBadLinkObj( $title );
 
-		$this->assertEquals( false, $title->exists(), 'exists() should rely on link cache unless GAID_FOR_UPDATE is used' );
-		$this->assertEquals( true, $title->exists( Title::GAID_FOR_UPDATE ), 'exists() should re-query database when GAID_FOR_UPDATE is used' );
+		$this->assertEquals(
+			false,
+			$title->exists(),
+			'exists() should rely on link cache unless GAID_FOR_UPDATE is used'
+		);
+		$this->assertEquals(
+			true,
+			$title->exists( Title::GAID_FOR_UPDATE ),
+			'exists() should re-query database when GAID_FOR_UPDATE is used'
+		);
 	}
 }
