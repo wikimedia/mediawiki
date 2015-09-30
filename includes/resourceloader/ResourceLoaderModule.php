@@ -397,7 +397,7 @@ abstract class ResourceLoaderModule {
 
 			if ( !is_null( $deps ) ) {
 				$this->fileDeps[$vary] = self::expandRelativePaths(
-					(array)FormatJson::decode( $deps, true )
+					FormatJson::decode( $deps )
 				);
 			} else {
 				$this->fileDeps[$vary] = array();
