@@ -48,10 +48,16 @@ class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 				'backend' => $backend
 			) ) );
 
-		$repoMock->expects( $this->any() )->method( 'getMasterDB' )->will( $this->returnValue( $dbMock ) );
+		$repoMock
+			->expects( $this->any() )
+			->method( 'getMasterDB' )
+			->will( $this->returnValue( $dbMock ) );
 
 		$this->migratorMock = $this->getMock( 'MigrateFileRepoLayout', array( 'getRepo' ) );
-		$this->migratorMock->expects( $this->any() )->method( 'getRepo' )->will( $this->returnValue( $repoMock ) );
+		$this->migratorMock
+			->expects( $this->any() )
+			->method( 'getRepo' )
+			->will( $this->returnValue( $repoMock ) );
 
 		$this->tmpFilepath = TempFSFile::factory( 'migratefilelayout-test-', 'png' )->getPath();
 
@@ -59,7 +65,12 @@ class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 
 		$hashPath = $repoMock->getHashPath( $filename );
 
-		$status = $repoMock->store( $this->tmpFilepath, 'public', $hashPath . $filename, FileRepo::OVERWRITE );
+		$status = $repoMock->store(
+			$this->tmpFilepath,
+			'public',
+			$hashPath . $filename,
+			FileRepo::OVERWRITE
+		);
 	}
 
 	protected function deleteFilesRecursively( $directory ) {
@@ -85,7 +96,10 @@ class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 	}
 
 	public function testMigration() {
-		$this->migratorMock->loadParamsAndArgs( null, array( 'oldlayout' => 'name', 'newlayout' => 'sha1' ) );
+		$this->migratorMock->loadParamsAndArgs(
+			null,
+			array( 'oldlayout' => 'name', 'newlayout' => 'sha1' )
+		);
 
 		ob_start();
 
@@ -105,10 +119,18 @@ class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 			. '/'
 			. $sha1;
 
-		$this->assertEquals( file_get_contents( $expectedOriginalFilepath ), $this->text, 'New sha1 file should be exist and have the right contents' );
+		$this->assertEquals(
+			file_get_contents( $expectedOriginalFilepath ),
+			$this->text,
+			'New sha1 file should be exist and have the right contents'
+		);
 
 		$expectedPublicFilepath = $this->tmpPrefix . '-public/f/f8/Foo.png';
 
-		$this->assertEquals( file_get_contents( $expectedPublicFilepath ), $this->text, 'Existing name file should still and have the right contents' );
+		$this->assertEquals(
+			file_get_contents( $expectedPublicFilepath ),
+			$this->text,
+			'Existing name file should still and have the right contents'
+		);
 	}
 }
