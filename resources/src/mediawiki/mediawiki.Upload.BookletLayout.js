@@ -175,7 +175,8 @@
 	 * @return {jQuery.Promise}
 	 */
 	mw.Upload.BookletLayout.prototype.uploadFile = function () {
-		var file = this.getFile();
+		var layout = this,
+			file = this.getFile();
 
 		this.filenameWidget.setValue( file.name );
 		this.setPage( 'info' );
@@ -183,6 +184,16 @@
 		this.upload.setFile( file );
 		this.uploadPromise = this.upload.uploadToStash();
 		this.uploadPromise.then( this.emit.bind( this, 'fileUploaded' ) );
+		this.uploadPromise.always( function () {
+			if ( layout.upload.getState() === mw.Upload.State.ERROR ) {
+				deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' )  ) );
+				return false;
+			}
+			if ( layout.upload.getState() === mw.Upload.State.WARNING ) {
+				deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' )  ) );
+				return false;
+			}
+		} );
 
 		return this.uploadPromise;
 	};
@@ -206,17 +217,6 @@
 		this.upload.setText( this.getText() );
 
 		this.uploadPromise.always( function () {
-
-			if ( layout.upload.getState() === mw.Upload.State.ERROR ) {
-				deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' )  ) );
-				return false;
-			}
-
-			if ( layout.upload.getState() === mw.Upload.State.WARNING ) {
-				deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' )  ) );
-				return false;
-			}
-
 			layout.upload.finishStashUpload().always( function () {
 				var name;
 
