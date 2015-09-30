@@ -385,10 +385,10 @@ class User implements IDBAccessObject {
 			return false;
 		}
 
-		// Try cache (unless this needs to lock the DB).
+		// Try cache (unless this needs data from the master DB).
 		// NOTE: if this thread called saveSettings(), the cache was cleared.
-		$locking = ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING );
-		if ( $locking || !$this->loadFromCache() ) {
+		$latest = DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST );
+		if ( $latest || !$this->loadFromCache() ) {
 			wfDebug( "User: cache miss for user {$this->mId}\n" );
 			// Load from DB (make sure this thread sees its own changes)
 			if ( wfGetLB()->hasOrMadeRecentMasterChanges() ) {
