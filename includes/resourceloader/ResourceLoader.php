@@ -246,10 +246,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	private static function applyFilter( $filter, $data, Config $config ) {
 		switch ( $filter ) {
 			case 'minify-js':
-				return JavaScriptMinifier::minify( $data,
-					$config->get( 'ResourceLoaderMinifierStatementsOnOwnLine' ),
-					$config->get( 'ResourceLoaderMinifierMaxLineLength' )
-				);
+				return JavaScriptMinifier::minify( $data );
 			case 'minify-css':
 				return CSSMin::minify( $data );
 		}

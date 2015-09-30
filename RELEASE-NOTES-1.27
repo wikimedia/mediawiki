@@ -10,6 +10,10 @@ production.
 
 === Configuration changes in 1.27 ===
 * Removed $wgUseLinkNamespaceDBFields
+* Deprecated $wgResourceLoaderMinifierStatementsOnOwnLine and
+  $wgResourceLoaderMinifierMaxLineLength, because there was little value in
+  making the behavior configurable. The default values (`false` for the former,
+  1000 for the latter) are now hard-coded.
 
 === New features in 1.27 ===
 
