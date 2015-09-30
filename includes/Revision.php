@@ -948,18 +948,25 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get the RC object belonging to the current revision, if there's one
 	 *
+	 * @param int $flags (optional) $flags include:
+	 *      Revision::READ_LATEST  : Select the data from the master
+	 *
 	 * @since 1.22
 	 * @return RecentChange|null
 	 */
-	public function getRecentChange() {
+	public function getRecentChange( $flags = 0 ) {
 		$dbr = wfGetDB( DB_SLAVE );
+
+		list( $dbType, ) = DBAccessObjectUtils::getDBOptions( $flags );
+
 		return RecentChange::newFromConds(
 			array(
 				'rc_user_text' => $this->getUserText( Revision::RAW ),
 				'rc_timestamp' => $dbr->timestamp( $this->getTimestamp() ),
 				'rc_this_oldid' => $this->getId()
 			),
-			__METHOD__
+			__METHOD__,
+			$dbType
 		);
 	}
 
