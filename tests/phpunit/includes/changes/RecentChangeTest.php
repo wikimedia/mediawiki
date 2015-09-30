@@ -114,6 +114,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 			array( RC_NEW, 'new' ),
 			array( RC_LOG, 'log' ),
 			array( RC_EXTERNAL, 'external' ),
+			array( RC_CATEGORIZE, 'categorize' ),
 		);
 	}
 

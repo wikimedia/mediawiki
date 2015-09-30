@@ -67,6 +67,7 @@ class RecentChange {
 	const SRC_NEW = 'mw.new';
 	const SRC_LOG = 'mw.log';
 	const SRC_EXTERNAL = 'mw.external'; // obsolete
+	const SRC_CATEGORIZE = 'mw.categorize';
 
 	public $mAttribs = array();
 	public $mExtra = array();
@@ -97,6 +98,7 @@ class RecentChange {
 		'new' => RC_NEW,
 		'log' => RC_LOG,
 		'external' => RC_EXTERNAL,
+		'categorize' => RC_CATEGORIZE,
 	);
 
 	# Factory methods
@@ -743,6 +745,80 @@ class RecentChange {
 			'actionComment' => $actionComment, // the comment appended to the action, passed from LogPage
 			'pageStatus' => $pageStatus,
 			'actionCommentIRC' => $actionCommentIRC
+		);
+
+		return $rc;
+	}
+
+	/**
+	 * Constructs a RecentChange object for the given categorization
+	 * This does not call save() on the object and thus does not write to the db
+	 *
+	 * @since 1.26
+	 *
+	 * @param string $timestamp Timestamp of the recent change to occur
+	 * @param Title $categoryTitle Title of the category a page is being added to or removed from
+	 * @param User $user User object of the user that made the change
+	 * @param string $comment Change summary
+	 * @param Title $pageTitle Title of the page that is being added or removed
+	 * @param int $oldRevId Parent revision ID of this change
+	 * @param int $newRevId Revision ID of this change
+	 * @param string $lastTimestamp Parent revision timestamp of this change
+	 * @param bool $bot true, if the change was made by a bot
+	 * @param string $ip IP address of the user, if the change was made anonymously
+	 * @param int $deleted Indicates whether the change has been deleted
+	 *
+	 * @return RecentChange
+	 */
+	public static function newForCategorization(
+		$timestamp,
+		Title $categoryTitle,
+		User $user = null,
+		$comment,
+		Title $pageTitle,
+		$oldRevId,
+		$newRevId,
+		$lastTimestamp,
+		$bot,
+		$ip = '',
+		$deleted = 0
+	) {
+
+		$rc = new RecentChange;
+		$rc->mTitle = $categoryTitle;
+		$rc->mPerformer = $user;
+		$rc->mAttribs = array(
+			'rc_timestamp' => $timestamp,
+			'rc_namespace' => $categoryTitle->getNamespace(),
+			'rc_title' => $categoryTitle->getDBkey(),
+			'rc_type' => RC_CATEGORIZE,
+			'rc_source' => self::SRC_CATEGORIZE,
+			'rc_minor' => 0,
+			'rc_cur_id' => $pageTitle->getArticleID(),
+			'rc_user' => $user ? $user->getId() : 0,
+			'rc_user_text' => $user ? $user->getName() : '',
+			'rc_comment' => $comment,
+			'rc_this_oldid' => $newRevId,
+			'rc_last_oldid' => $oldRevId,
+			'rc_bot' => $bot ? 1 : 0,
+			'rc_ip' => self::checkIPAddress( $ip ),
+			'rc_patrolled' => 1, // Always patrolled, just like log entries
+			'rc_new' => 0, # obsolete
+			'rc_old_len' => 0,
+			'rc_new_len' => 0,
+			'rc_deleted' => $deleted,
+			'rc_logid' => 0,
+			'rc_log_type' => null,
+			'rc_log_action' => '',
+			'rc_params' => ''
+		);
+
+		$rc->mExtra = array(
+			'prefixedDBkey' => $categoryTitle->getPrefixedDBkey(),
+			'lastTimestamp' => $lastTimestamp,
+			'oldSize' => 0,
+			'newSize' => 0,
+			'pageStatus' => 'changed'
 		);
 
 		return $rc;
