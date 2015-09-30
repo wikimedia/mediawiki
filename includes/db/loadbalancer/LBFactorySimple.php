@@ -27,15 +27,19 @@
 class LBFactorySimple extends LBFactory {
 	/** @var LoadBalancer */
 	private $mainLB;
-
 	/** @var LoadBalancer[] */
 	private $extLBs = array();
-
 	/** @var ChronologyProtector */
 	private $chronProt;
 
+	/** @var string */
+	private $loadMonitorClass;
+
 	public function __construct( array $conf ) {
 		$this->chronProt = new ChronologyProtector;
+		$this->loadMonitorClass = isset( $conf['loadMonitorClass'] )
+			? $conf['loadMonitorClass']
+			: null;
 	}
 
 	/**
@@ -44,8 +48,16 @@ class LBFactorySimple extends LBFactory {
 	 */
 	public function newMainLB( $wiki = false ) {
 		global $wgDBservers;
-		if ( $wgDBservers ) {
+
+		if ( is_array( $wgDBservers ) ) {
 			$servers = $wgDBservers;
+			foreach ( $servers as $i => &$server ) {
+				if ( $i == 0 ) {
+					$server['master'] = true;
+				} else {
+					$server['slave'] = true;
+				}
+			}
 		} else {
 			global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgDebugDumpSql;
 			global $wgDBssl, $wgDBcompress;
@@ -68,12 +80,14 @@ class LBFactorySimple extends LBFactory {
 				'dbname' => $wgDBname,
 				'type' => $wgDBtype,
 				'load' => 1,
-				'flags' => $flags
+				'flags' => $flags,
+				'master' => true
 			) );
 		}
 
 		return new LoadBalancer( array(
 			'servers' => $servers,
+			'loadMonitor' => $this->loadMonitorClass
 		) );
 	}
 
@@ -104,7 +118,8 @@ class LBFactorySimple extends LBFactory {
 		}
 
 		return new LoadBalancer( array(
-			'servers' => $wgExternalServers[$cluster]
+			'servers' => $wgExternalServers[$cluster],
+			'loadMonitor' => $this->loadMonitorClass
 		) );
 	}
 

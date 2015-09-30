@@ -68,6 +68,8 @@
  *
  *     masterTemplateOverrides     An override array for all master servers.
  *
+ *     loadMonitorClass            Name of the LoadMonitor class to always use.
+ *
  *     readOnlyBySection           A map of section name to read-only message.
  *                                 Missing or false for read/write.
  *
@@ -143,6 +145,9 @@ class LBFactoryMulti extends LBFactory {
 	private $extLBs = array();
 
 	/** @var string */
+	private $loadMonitorClass;
+
+	/** @var string */
 	private $lastWiki;
 
 	/** @var string */
@@ -159,7 +164,7 @@ class LBFactoryMulti extends LBFactory {
 		$optional = array( 'groupLoadsBySection', 'groupLoadsByDB', 'hostsByName',
 			'externalLoads', 'externalTemplateOverrides', 'templateOverridesByServer',
 			'templateOverridesByCluster', 'masterTemplateOverrides',
-			'readOnlyBySection' );
+			'readOnlyBySection', 'loadMonitorClass' );
 
 		foreach ( $required as $key ) {
 			if ( !isset( $conf[$key] ) ) {
@@ -289,6 +294,7 @@ class LBFactoryMulti extends LBFactory {
 		$servers = $this->makeServerArray( $template, $loads, $groupLoads );
 		$lb = new LoadBalancer( array(
 			'servers' => $servers,
+			'loadMonitor' => $this->loadMonitorClass
 		) );
 
 		return $lb;
@@ -319,6 +325,8 @@ class LBFactoryMulti extends LBFactory {
 					$serverInfo = $this->masterTemplateOverrides + $serverInfo;
 				}
 				$master = false;
+			} else {
+				$serverInfo['slave'] = true;
 			}
 			if ( isset( $this->templateOverridesByServer[$serverName] ) ) {
 				$serverInfo = $this->templateOverridesByServer[$serverName] + $serverInfo;
