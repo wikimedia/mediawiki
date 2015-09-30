@@ -1037,7 +1037,7 @@ class MessageCache {
 				# Uncloneable
 				$this->mParser = new $class( $wgParserConf );
 			} else {
-				$this->mParser = clone $wgParser;
+				$this->mParser = $wgParser->getMessageParser();
 			}
 		}
 

@@ -51,6 +51,11 @@ abstract class AbstractContent implements Content {
 		$this->model_id = $modelId;
 	}
 
+	public static function getContentParser() {
+		global $wgParser;
+		return $wgParser;
+	}
+
 	/**
 	 * @since 1.21
 	 *
@@ -485,7 +490,7 @@ abstract class AbstractContent implements Content {
 			$options = $this->getContentHandler()->makeParserOptions( 'canonical' );
 		}
 
-		$po = new ParserOutput();
+		$po = $this->getContentParser()->getOutput();
 
 		if ( Hooks::run( 'ContentGetParserOutput',
 			array( $this, $title, $revId, $options, $generateHtml, &$po ) ) ) {
@@ -499,7 +504,6 @@ abstract class AbstractContent implements Content {
 		}
 
 		Hooks::run( 'ContentAlterParserOutput', array( $this, $title, $po ) );
-
 		return $po;
 	}
 

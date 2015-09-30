@@ -64,7 +64,7 @@
  *
  * @ingroup Parser
  */
-class Parser {
+class Parser implements ParserInterface {
 	/**
 	 * Update this version number when the ParserOutput format
 	 * changes in an incompatible way, so the parser cache
@@ -255,6 +255,7 @@ class Parser {
 	 * @param array $conf
 	 */
 	public function __construct( $conf = array() ) {
+		$this->mOutput = new ParserOutput;
 		$this->mConf = $conf;
 		$this->mUrlProtocols = wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->mUrlProtocols . ')' .
@@ -383,6 +384,11 @@ class Parser {
 		Hooks::run( 'ParserClearState', array( &$this ) );
 	}
 
+	/** @inheritdoc */
+	public function getMessageParser() {
+		return new Parser();
+	}
+
 	/**
 	 * Convert wikitext to HTML
 	 * Do not call this function recursively.
@@ -393,7 +399,7 @@ class Parser {
 	 * @param bool $linestart
 	 * @param bool $clearState
 	 * @param int $revid Number to pass in {{REVISIONID}}
-	 * @return ParserOutput A ParserOutput
+	 * @return ParserOutputInterface A ParserOutput
 	 */
 	public function parse( $text, Title $title, ParserOptions $options,
 		$linestart = true, $clearState = true, $revid = null

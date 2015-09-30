@@ -325,10 +325,9 @@ class WikitextContent extends TextContent {
 	protected function fillParserOutput( Title $title, $revId,
 			ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
-		global $wgParser;
 
 		list( $redir, $text ) = $this->getRedirectTargetAndText();
-		$output = $wgParser->parse( $text, $title, $options, true, true, $revId );
+		$output = $this->getContentParser()->parse( $text, $title, $options, true, true, $revId );
 
 		// Add redirect indicator at the top
 		if ( $redir ) {
