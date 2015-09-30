@@ -510,40 +510,108 @@ class WANObjectCache {
 	 * single thread updates it as needed. Also consider tweaking
 	 * the 'lowTTL' parameter.
 	 *
-	 * Example usage:
+	 * Example usage (typical key):
 	 * @code
-	 *     $key = wfMemcKey( 'cat-recent-actions', $catId );
-	 *     // Function that derives the new key value given the old value
-	 *     $callback = function( $cValue, &$ttl, array &$setOpts ) {
-	 *         $dbr = wfGetDB( DB_SLAVE );
-	 *         // Fetch the row from the DB
-	 *         $row = $dbr->selectRow( ... );
-	 *         // Give the age of the transaction snapshot the data came from
-	 *         $setOpts = array( 'since' => $dbr->trxTimestamp() );
-	 *         return $row;
-	 *     };
-	 *     // Get the key value from cache or from source on cache miss;
-	 *     // try to only let one datacenter thread manage doing cache updates
-	 *     $opts = array( 'lockTSE' => 5, 'lowTTL' => 10 );
-	 *     $value = $cache->getWithSetCallback( $key, $callback, 60, array(), $opts );
+	 *     $catInfo = $cache->getWithSetCallback(
+	 *         // Key to store the cached value under
+	 *         wfMemcKey( 'cat-attributes', $catId ),
+	 *         // Function that derives the new key value
+	 *         function( $oldValue, &$ttl, array &$setOpts ) {
+	 *             // Fetch row from the DB
+	 *             $dbr = wfGetDB( DB_SLAVE );
+	 *             $row = $dbr->selectRow( ... );
+	 *
+	 *             // Set age of the transaction snapshot the data came from
+	 *             $setOpts = array( 'since' => $dbr->trxTimestamp() );
+	 *
+	 *             return $row;
+	 *        },
+	 *        // Time-to-live (seconds)
+	 *        60
+	 *     );
 	 * @endcode
 	 *
-	 * Example usage:
+	 * Example usage (key that is expensive and hot):
 	 * @code
-	 *     $key = wfMemcKey( 'cat-state', $catId );
-	 *     // The "check" keys that represent things the value depends on;
-	 *     // Calling touchCheckKey() on them invalidates "cat-state"
-	 *     $checkKeys = array(
-	 *         wfMemcKey( 'water-bowls', $houseId ),
-	 *         wfMemcKey( 'food-bowls', $houseId ),
-	 *         wfMemcKey( 'people-present', $houseId )
+	 *     $catConfig = $cache->getWithSetCallback(
+	 *         // Key to store the cached value under
+	 *         wfMemcKey( 'site-cat-config' ),
+	 *         // Function that derives the new key value
+	 *         function( $oldValue, &$ttl, array &$setOpts ) {
+	 *             // Fetch row from the DB
+	 *             $dbr = wfGetDB( DB_SLAVE );
+	 *             $config = CatConfig::newFromRow( $dbr->selectRow( ... ) );
+	 *
+	 *             // Set age of the transaction snapshot the data came from
+	 *             $setOpts = array( 'since' => $dbr->trxTimestamp() );
+	 *
+	 *             return $config;
+	 *        },
+	 *        // Time-to-live (seconds)
+	 *        86400,
+	 *        // Calling touchCheckKey() on this key invalidates the cache
+	 *        wfMemcKey( 'site-cat-config' ),
+	 *        // Try to only let one datacenter thread manage cache updates at a time
+	 *        array( 'lockTSE' => 30 )
 	 *     );
-	 *     // Function that derives the new key value
-	 *     $callback = function() { ... };
-	 *     // Get the key value from cache or from source on cache miss;
-	 *     // try to only let one datacenter thread manage doing cache updates
-	 *     $opts = array( 'lockTSE' => 5, 'lowTTL' => 10 );
-	 *     $value = $cache->getWithSetCallback( $key, $callback, 60, $checkKeys, $opts );
+	 * @endcode
+	 *
+	 * Example usage (key with dynamic dependencies):
+	 * @code
+	 *     $catState = $cache->getWithSetCallback(
+	 *         // Key to store the cached value under
+	 *         wfMemcKey( 'cat-state', $cat->getId() ),
+	 *         // Function that derives the new key value
+	 *         function( $oldValue, &$ttl, array &$setOpts ) {
+	 *             // Determine new value from the DB
+	 *             $dbr = wfGetDB( DB_SLAVE );
+	 *             $state = CatState::newFromResults( $dbr->select( ... ) );
+	 *
+	 *             // Set age of the transaction snapshot the data came from
+	 *             $setOpts = array( 'since' => $dbr->trxTimestamp() );
+	 *
+	 *             return $state;
+	 *        },
+	 *        // Time-to-live (seconds)
+	 *        900,
+	 *        // The "check" keys that represent things the value depends on;
+	 *        // Calling touchCheckKey() on any of them invalidates the cache
+	 *        array(
+	 *             wfMemcKey( 'sustenance-bowls', $cat->getRoomId() ),
+	 *             wfMemcKey( 'people-present', $cat->getHouseId() ),
+	 *             wfMemcKey( 'cat-laws', $cat->getCityId() ),
+	 *         )
+	 *     );
+	 * @endcode
+	 *
+	 * Example usage (hot key holding most recent 100 events):
+	 * @code
+	 *     $lastCatActions = $cache->getWithSetCallback(
+	 *         // Key to store the cached value under
+	 *         wfMemcKey( 'cat-last-actions', 100 ),
+	 *         // Function that derives the new key value
+	 *         function( $oldValue, &$ttl, array &$setOpts ) {
+	 *             $dbr = wfGetDB( DB_SLAVE );
+	 *             // Start off with the last cached list
+	 *             $list = $oldValue ? $oldValue : array();
+	 *             $last = end( $list );
+	 *             // Fetch any rows newer than $last from the DB (in order)
+	 *             $rows = iterator_to_array( $dbr->select( ... ) );
+	 *             // Merge them and get the new "last 100" rows
+	 *             $list = array_slice( array_merge( $list, $new ), -100 );
+	 *
+	 *             // Set age of the transaction snapshot the data came from
+	 *             $setOpts = array( 'since' => $dbr->trxTimestamp() );
+	 *
+	 *             return $list;
+	 *        },
+	 *        // Time-to-live (seconds)
+	 *        10
+	 *        // No "check" keys
+	 *        array(),
+	 *        // Try to only let one datacenter thread manage cache updates at a time
+	 *        array( 'lockTSE' => 30 )
+	 *     ) );
 	 * @endcode
 	 *
 	 * @see WANObjectCache::get()
