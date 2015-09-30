@@ -34,7 +34,10 @@ class AvroFormatterTest extends MediaWikiTestCase {
 
 	public function testSchemaNotAvailable() {
 		$formatter = new AvroFormatter( array() );
-		$this->setExpectedException( 'PHPUnit_Framework_Error_Notice', "The schema for channel 'marty' is not available" );
+		$this->setExpectedException(
+			'PHPUnit_Framework_Error_Notice',
+			"The schema for channel 'marty' is not available"
+		);
 		$formatter->format( array( 'channel' => 'marty' ) );
 	}
 
