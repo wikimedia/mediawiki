@@ -1420,6 +1420,7 @@ class Title {
 	 * Deprecated for public use, use Title::makeTitle() with fragment parameter.
 	 * Still in active use privately.
 	 *
+	 * @private
 	 * @param string $fragment Text
 	 */
 	public function setFragment( $fragment ) {
