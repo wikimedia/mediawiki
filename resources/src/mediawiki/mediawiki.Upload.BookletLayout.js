@@ -183,11 +183,16 @@
 		this.setPage( 'info' );
 
 		this.upload.setFile( file );
+		// Explicitly set the filename so that the old filename isn't used in case of retry
+		this.upload.setFilenameFromFile();
+
 		this.uploadPromise = this.upload.uploadToStash();
 		this.uploadPromise.then( function () {
 			deferred.resolve();
 			layout.emit( 'fileUploaded' );
 		} );
+
+		// These errors will be thrown while the user is on the info page
 		this.uploadPromise.always( function () {
 			if ( layout.upload.getState() === mw.Upload.State.ERROR ) {
 				deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' ), {
@@ -201,6 +206,11 @@
 				} ) );
 				return false;
 			}
+		} );
+
+		// If there is an error in uploading, come back to the upload page
+		deferred.fail( function () {
+			layout.setPage( 'upload' );
 		} );
 
 		return deferred;
