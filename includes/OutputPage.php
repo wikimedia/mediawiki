@@ -1744,7 +1744,7 @@ class OutputPage extends ContextSource {
 		$oldTidy = $popts->setTidy( $tidy );
 		$popts->setInterfaceMessage( (bool)$interface );
 
-		$parserOutput = $wgParser->getFreshParser()->parse(
+		$parserOutput = $wgParser->getFreshParser()->getMessageParser()->parse(
 			$text, $title, $popts,
 			$linestart, true, $this->mRevisionId
 		);
@@ -1895,7 +1895,7 @@ class OutputPage extends ContextSource {
 	 * @return string HTML
 	 */
 	public function parse( $text, $linestart = true, $interface = false, $language = null ) {
-		global $wgParser;
+		$parser = AbstractContent::getContentParser();
 
 		if ( is_null( $this->getTitle() ) ) {
 			throw new MWException( 'Empty $mTitle in ' . __METHOD__ );
@@ -1909,7 +1909,7 @@ class OutputPage extends ContextSource {
 			$oldLang = $popts->setTargetLanguage( $language );
 		}
 
-		$parserOutput = $wgParser->getFreshParser()->parse(
+		$parserOutput = $parser->getFreshParser()->parse(
 			$text, $this->getTitle(), $popts,
 			$linestart, true, $this->mRevisionId
 		);

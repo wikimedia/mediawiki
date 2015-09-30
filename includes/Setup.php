@@ -667,7 +667,7 @@ $wgLang = new StubUserLang;
 $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
 
 /**
- * @var Parser $wgParser
+ * @var ParserInterface $wgParser
  */
 $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
