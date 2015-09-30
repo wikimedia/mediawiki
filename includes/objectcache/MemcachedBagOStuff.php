@@ -168,7 +168,10 @@ class MemcachedBagOStuff extends BagOStuff {
 	 * @return string
 	 */
 	public function decodeKey( $key ) {
-		return urldecode( $key );
+		// matches %00-%20, %25, %7F (=decoded alternatives for those encoded in encodeKey)
+		return preg_replace_callback( '/%([0-1][0-9]|20|25|7F)/i', function ( $match ) {
+			return urldecode( $match[0] );
+		}, $key );
 	}
 
 	/**
