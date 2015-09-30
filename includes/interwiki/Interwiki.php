@@ -209,49 +209,35 @@ class Interwiki {
 			return Interwiki::loadFromArray( $iwData );
 		}
 
-		$cache = ObjectCache::getMainWANInstance();
-
-		if ( !$iwData ) {
-			$key = wfMemcKey( 'interwiki', $prefix );
-			$iwData = $cache->get( $key );
-			if ( $iwData === '!NONEXISTENT' ) {
-				// negative cache hit
-				return false;
-			}
-		}
-
-		// is_array is hack for old keys
-		if ( $iwData && is_array( $iwData ) ) {
+		if ( is_array( $iwData ) ) {
 			$iw = Interwiki::loadFromArray( $iwData );
 			if ( $iw ) {
-				return $iw;
+				return $iw; // handled by hook
 			}
 		}
 
-		$db = wfGetDB( DB_SLAVE );
+		$iwData = ObjectCache::getMainWANInstance()->getWithSetCallback(
+			wfMemcKey( 'interwiki', $prefix ),
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $prefix ) {
+				$dbr = wfGetDB( DB_SLAVE );
 
-		$row = $db->fetchRow( $db->select(
-			'interwiki',
-			self::selectFields(),
-			array( 'iw_prefix' => $prefix ),
-			__METHOD__
-		) );
+				$row = $dbr->selectRow(
+					'interwiki',
+					Interwiki::selectFields(),
+					array( 'iw_prefix' => $prefix ),
+					__METHOD__
+				);
 
-		$iw = Interwiki::loadFromArray( $row );
-		if ( $iw ) {
-			$mc = array(
-				'iw_url' => $iw->mURL,
-				'iw_api' => $iw->mAPI,
-				'iw_local' => $iw->mLocal,
-				'iw_trans' => $iw->mTrans
-			);
-			$cache->set( $key, $mc, $wgInterwikiExpiry );
+				$setOpts = array( 'since' => $dbr->trxTimestamp() );
 
-			return $iw;
+				return $row ? (array)$row : '!NONEXISTENT';
+			},
+			$wgInterwikiExpiry
+		);
+
+		if ( is_array( $iwData ) ) {
+			return Interwiki::loadFromArray( $iwData ) ?: false;
 		}
-
-		// negative cache hit
-		$cache->set( $key, '!NONEXISTENT', $wgInterwikiExpiry );
 
 		return false;
 	}
