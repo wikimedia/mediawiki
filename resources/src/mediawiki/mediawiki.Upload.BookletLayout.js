@@ -190,11 +190,15 @@
 		} );
 		this.uploadPromise.always( function () {
 			if ( layout.upload.getState() === mw.Upload.State.ERROR ) {
-				deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' )  ) );
+				deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' ), {
+					recoverable: false
+				} ) );
 				return false;
 			}
 			if ( layout.upload.getState() === mw.Upload.State.WARNING ) {
-				deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' )  ) );
+				deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' ), {
+					recoverable: false
+				} ) );
 				return false;
 			}
 		} );
@@ -225,12 +229,16 @@
 				var name;
 
 				if ( layout.upload.getState() === mw.Upload.State.ERROR ) {
-					deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' ) ) );
+					deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' ), {
+						recoverable: false
+					} ) );
 					return false;
 				}
 
 				if ( layout.upload.getState() === mw.Upload.State.WARNING ) {
-					deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-warning' ) ) );
+					deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-warning' ), {
+						recoverable: false
+					} ) );
 					return false;
 				}
 
