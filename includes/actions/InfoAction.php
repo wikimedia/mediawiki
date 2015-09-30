@@ -28,7 +28,7 @@
  * @ingroup Actions
  */
 class InfoAction extends FormlessAction {
-	const CACHE_VERSION = '2013-03-17';
+	const VERSION = 1;
 
 	/**
 	 * Returns the name of the action this object responds to.
@@ -65,15 +65,13 @@ class InfoAction extends FormlessAction {
 	 * @param int|null $revid Revision id to clear
 	 */
 	public static function invalidateCache( Title $title, $revid = null ) {
-		$cache = ObjectCache::getMainWANInstance();
-
 		if ( !$revid ) {
 			$revision = Revision::newFromTitle( $title, 0, Revision::READ_LATEST );
 			$revid = $revision ? $revision->getId() : null;
 		}
 		if ( $revid !== null ) {
-			$key = wfMemcKey( 'infoaction', sha1( $title->getPrefixedText() ), $revid );
-			$cache->delete( $key );
+			$key = self::getCacheKey( $title, $revid );
+			ObjectCache::getMainWANInstance()->delete( $key );
 		}
 	}
 
@@ -204,19 +202,16 @@ class InfoAction extends FormlessAction {
 		$title = $this->getTitle();
 		$id = $title->getArticleID();
 		$config = $this->context->getConfig();
+		$latest = $this->page->getLatest();
 
-		$cache = ObjectCache::getMainWANInstance();
-		$memcKey = wfMemcKey( 'infoaction',
-			sha1( $title->getPrefixedText() ), $this->page->getLatest() );
-		$pageCounts = $cache->get( $memcKey );
-		$version = isset( $pageCounts['cacheversion'] ) ? $pageCounts['cacheversion'] : false;
-		if ( $pageCounts === false || $version !== self::CACHE_VERSION ) {
-			// Get page information that would be too "expensive" to retrieve by normal means
-			$pageCounts = $this->pageCounts( $title );
-			$pageCounts['cacheversion'] = self::CACHE_VERSION;
-
-			$cache->set( $memcKey, $pageCounts );
-		}
+		$that = $this;
+		$pageCounts = ObjectCache::getMainWANInstance()->getWithSetCallback(
+			self::getCacheKey( $title, $latest ),
+			function () use ( $that, $title ) {
+				return $that->pageCounts( $title );
+			},
+			86400 * 7
+		);
 
 		// Get page properties
 		$dbr = wfGetDB( DB_SLAVE );
@@ -544,7 +539,7 @@ class InfoAction extends FormlessAction {
 					$title,
 					htmlspecialchars( $lang->userTimeAndDate( $this->page->getTimestamp(), $user ) ),
 					array(),
-					array( 'oldid' => $this->page->getLatest() )
+					array( 'oldid' => $latest )
 				)
 			);
 		}
@@ -677,7 +672,7 @@ class InfoAction extends FormlessAction {
 	 * @param Title $title Title to get counts for
 	 * @return array
 	 */
-	protected function pageCounts( Title $title ) {
+	public function pageCounts( Title $title ) {
 		$id = $title->getArticleID();
 		$config = $this->context->getConfig();
 
@@ -895,5 +890,14 @@ class InfoAction extends FormlessAction {
 	 */
 	protected function getDescription() {
 		return '';
+	}
+
+	/**
+	 * @param Title $title
+	 * @param int $revId
+	 * @return string
+	 */
+	protected static function getCacheKey( Title $title, $revId ) {
+		return wfMemcKey( 'infoaction', md5( $title->getPrefixedText() ), $revId, self::VERSION );
 	}
 }
