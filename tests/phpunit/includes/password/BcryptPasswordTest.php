@@ -12,7 +12,7 @@ class BcryptPasswordTestCase extends PasswordTestCase {
 	}
 
 	public static function providePasswordTests() {
-		/** @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong */
+		/** @codingStandardsIgnoreStart Generic.Files.LineLength */
 		return array(
 			// Tests from glibc bcrypt implementation
 			array( true, ':bcrypt:5$CCCCCCCCCCCCCCCCCCCCC.$E5YPO9kmyuRGyh0XouQYb4YMJKvyOeW', "U*U" ),
