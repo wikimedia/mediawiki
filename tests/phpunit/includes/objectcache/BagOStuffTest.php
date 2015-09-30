@@ -143,8 +143,11 @@ class BagOStuffTest extends MediaWikiTestCase {
 
 		$key1 = wfMemcKey( 'test1' );
 		$key2 = wfMemcKey( 'test2' );
-		$key3 = wfMemcKey( 'will-%-encode' ); // internally, MemcachedBagOStuffs will encode to will-%25-encode
-		$key4 = wfMemcKey( 'flowdb:flow_ref:wiki:by-source:v3:Parser\'s_"broken"_+_(page)_&_grill:testwiki:1:4.7' );
+		// internally, MemcachedBagOStuffs will encode to will-%25-encode
+		$key3 = wfMemcKey( 'will-%-encode' );
+		$key4 = wfMemcKey(
+			'flowdb:flow_ref:wiki:by-source:v3:Parser\'s_"broken"_+_(page)_&_grill:testwiki:1:4.7'
+		);
 
 		$this->cache->add( $key1, $value1 );
 		$this->cache->add( $key2, $value2 );
