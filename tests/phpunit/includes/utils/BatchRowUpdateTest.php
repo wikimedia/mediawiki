@@ -123,11 +123,14 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_readerSetFetchColumns
 	 */
-	public function testReaderSetFetchColumns( $message, array $columns, array $primaryKeys, array $fetchColumns ) {
+	public function testReaderSetFetchColumns(
+		$message, array $columns, array $primaryKeys, array $fetchColumns
+	) {
 		$db = $this->mockDb();
 		$db->expects( $this->once() )
 			->method( 'select' )
-			->with( 'some_table', $columns ) // only testing second parameter of DatabaseBase::select
+			// only testing second parameter of DatabaseBase::select
+			->with( 'some_table', $columns )
 			->will( $this->returnValue( new ArrayIterator( array() ) ) );
 
 		$reader = new BatchRowIterator( $db, 'some_table', $primaryKeys, 22 );
@@ -148,7 +151,8 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 			),
 
 			array(
-				'With multiple primary keys the first conditions must use >= and the final condition must use >',
+				'With multiple primary keys the first conditions ' .
+					'must use >= and the final condition must use >',
 				// Expected second iteration
 				array( "( id_field = '3' AND foo > '103' ) OR ( id_field > '3' )" ),
 				// Primary key(s)
@@ -164,7 +168,9 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 	 *
 	 * @dataProvider provider_readerSelectConditions
 	 */
-	public function testReaderSelectConditionsMultiplePrimaryKeys( $message, $expectedSecondIteration, $primaryKeys, $batchSize = 3 ) {
+	public function testReaderSelectConditionsMultiplePrimaryKeys(
+		$message, $expectedSecondIteration, $primaryKeys, $batchSize = 3
+	) {
 		$results = $this->genSelectResult( $batchSize, $batchSize * 3, function() {
 			static $i = 0, $j = 100, $k = 1000;
 			return array( 'id_field' => ++$i, 'foo' => ++$j, 'bar' => ++$k );
