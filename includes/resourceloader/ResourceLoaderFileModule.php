@@ -981,7 +981,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( isset( $cachedCompile['hash'] ) ) {
 			$contentHash = FileContentsHasher::getFileContentsHash( $cachedCompile['files'] );
 			if ( $contentHash === $cachedCompile['hash'] ) {
-				$this->localFileRefs += $cachedCompile['files'];
+				$this->localFileRefs = array_merge( $this->localFileRefs, $cachedCompile['files'] );
 				return $cachedCompile['css'];
 			}
 		}
