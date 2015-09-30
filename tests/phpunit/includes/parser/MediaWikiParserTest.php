@@ -94,9 +94,12 @@ class MediaWikiParserTest {
 			$testsName = $extensionName . '__' . basename( $fileName, '.txt' );
 			$escapedFileName = strtr( $fileName, array( "'" => "\\'", '\\' => '\\\\' ) );
 			$parserTestClassName = ucfirst( $testsName );
+
 			// Official spec for class names: http://php.net/manual/en/language.oop5.basic.php
 			// Prepend 'ParserTest_' to be paranoid about it not starting with a number
-			$parserTestClassName = 'ParserTest_' . preg_replace( '/[^a-zA-Z0-9_\x7f-\xff]/', '_', $parserTestClassName );
+			$parserTestClassName = 'ParserTest_' .
+				preg_replace( '/[^a-zA-Z0-9_\x7f-\xff]/', '_', $parserTestClassName );
+
 			if ( isset( $testList[$parserTestClassName] ) ) {
 				// If a conflict happens, gives a very unclear fatal.
 				// So as a last ditch effort to prevent that eventuality, if there
