@@ -593,12 +593,12 @@ class WANObjectCache {
 	 *         function( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
 	 *             // Start off with the last cached list
-	 *             $list = $oldValue ? $oldValue : array();
-	 *             $last = end( $list );
-	 *             // Fetch any rows newer than $last from the DB (in order)
+	 *             $list = $oldValue ?: array();
+	 *             // Fetch the last 100 relevant rows in descending order;
+	 *             // only fetch rows newer than $list[0] to reduce scanning
 	 *             $rows = iterator_to_array( $dbr->select( ... ) );
 	 *             // Merge them and get the new "last 100" rows
-	 *             $list = array_slice( array_merge( $list, $new ), -100 );
+	 *             $list = array_slice( array_merge( $new, $list ), 0, 100 );
 	 *
 	 *             // Set age of the transaction snapshot the data came from
 	 *             $setOpts = array( 'since' => $dbr->trxTimestamp() );
@@ -606,12 +606,12 @@ class WANObjectCache {
 	 *             return $list;
 	 *        },
 	 *        // Time-to-live (seconds)
-	 *        10
+	 *        10,
 	 *        // No "check" keys
 	 *        array(),
 	 *        // Try to only let one datacenter thread manage cache updates at a time
 	 *        array( 'lockTSE' => 30 )
-	 *     ) );
+	 *     );
 	 * @endcode
 	 *
 	 * @see WANObjectCache::get()
