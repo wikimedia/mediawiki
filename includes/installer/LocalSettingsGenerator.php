@@ -65,6 +65,7 @@ class LocalSettingsGenerator {
 				'_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
 				'wgMetaNamespace', 'wgLogo', 'wgAuthenticationTokenVersion', 'wgPingback',
+				'wgCapitalLinks',
 			],
 			$db->getGlobalNames()
 		);
@@ -414,6 +415,10 @@ ${serverSetting}
 {$groupRights}{$noFollow}## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'vector', 'monobook':
 \$wgDefaultSkin = \"{$this->values['wgDefaultSkin']}\";
+
+## Initial letters in page titles are be mapped to upper case, if True.
+\$wgCapitalLinks = {$this->values['wgCapitalLinks']};
+
 ";
 	}
 }
