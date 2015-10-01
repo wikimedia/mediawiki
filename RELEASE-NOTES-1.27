@@ -12,6 +12,14 @@ production.
 * Removed $wgUseLinkNamespaceDBFields
 
 === New features in 1.27 ===
+* Added a new hook, 'UserMailerTransformContent', to transform the contents
+  of an email. This is similar to the EmailUser hook but applies to all mail
+  sent via UserMailer.
+* Added a new hook, 'UserMailerTransformMessage', to transform the contents
+  of an emai after MIME encoding.
+* Added a new hook, 'UserMailerSplitTo', to control which users have to be
+  emailed separately (ie. there is a single address in the To: field) so
+  user-specific changes to the email can be applied safely.
 
 ==== External libraries ====
 
