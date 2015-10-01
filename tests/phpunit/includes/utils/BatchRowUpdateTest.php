@@ -244,6 +244,10 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 		$databaseMysql->expects( $this->any() )
 			->method( 'isOpen' )
 			->will( $this->returnValue( true ) );
+		// FIXME: the constructor normally sets mAtomicLevels and mSrvCache
+		$databaseMysql->expects( $this->any() )
+			->method( 'getApproximateLagStatus' )
+			->will( $this->returnValue( array( 'lag' => 0, 'since' => 0 ) ) );
 		return $databaseMysql;
 	}
 }
