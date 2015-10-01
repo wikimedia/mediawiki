@@ -1342,11 +1342,46 @@ function wfReadOnly() {
 }
 
 /**
- * Get the value of $wgReadOnly or the contents of $wgReadOnlyFile.
+ * Check if the site is in read-only mode and return the message if so
+ *
+ * This checks wfConfiguredReadOnlyReason() and the main load balancer
+ * for slave lag. This may result in DB_SLAVE connection being made.
  *
  * @return string|bool String when in read-only mode; false otherwise
  */
 function wfReadOnlyReason() {
+	$readOnly = wfConfiguredReadOnlyReason();
+	if ( $readOnly !== false ) {
+		return $readOnly;
+	}
+
+	static $autoReadOnly = null;
+	if ( $autoReadOnly === null ) {
+		// Callers use this method to be aware that data presented to a user
+		// may be very stale and thus allowing submissions can be problematic.
+		try {
+			if ( wfGetLB()->getLaggedSlaveMode() ) {
+				$autoReadOnly = 'The database has been automatically locked ' .
+					'while the slave database servers catch up to the master';
+			} else {
+				$autoReadOnly = false;
+			}
+		} catch ( DBConnectionError $e ) {
+			$autoReadOnly = 'The database has been automatically locked ' .
+				'until the slave database servers become available';
+		}
+	}
+
+	return $autoReadOnly;
+}
+
+/**
+ * Get the value of $wgReadOnly or the contents of $wgReadOnlyFile.
+ *
+ * @return string|bool String when in read-only mode; false otherwise
+ * @since 1.27
+ */
+function wfConfiguredReadOnlyReason() {
 	global $wgReadOnly, $wgReadOnlyFile;
 
 	if ( $wgReadOnly === null ) {
@@ -1355,17 +1390,6 @@ function wfReadOnlyReason() {
 			$wgReadOnly = file_get_contents( $wgReadOnlyFile );
 		} else {
 			$wgReadOnly = false;
-		}
-		// Callers use this method to be aware that data presented to a user
-		// may be very stale and thus allowing submissions can be problematic.
-		try {
-			if ( $wgReadOnly === false && wfGetLB()->getLaggedSlaveMode() ) {
-				$wgReadOnly = 'The database has been automatically locked ' .
-					'while the slave database servers catch up to the master';
-			}
-		} catch ( DBConnectionError $e ) {
-			$wgReadOnly = 'The database has been automatically locked ' .
-				'until the slave database servers become available';
 		}
 	}
 
