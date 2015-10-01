@@ -21,7 +21,7 @@
  */
 
 /**
- * Helper tools for dealing with other locally-hosted wikis
+ * Helper tools for dealing with other wikis.
  */
 class WikiMap {
 
@@ -32,6 +32,20 @@ class WikiMap {
 	 * @return WikiReference|null WikiReference object or null if the wiki was not found
 	 */
 	public static function getWiki( $wikiID ) {
+		$wikiReference = self::getWikiWikiReferenceFromWgConf( $wikiID );
+		if ( $wikiReference ) {
+			return $wikiReference;
+		}
+
+		// Try sites, if $wgConf failed
+		return self::getWikiWikiReferenceFromSites( $wikiID );
+	}
+
+	/**
+	 * @param string $wikiID
+	 * @return WikiReference|null WikiReference object or null if the wiki was not found
+	 */
+	private static function getWikiWikiReferenceFromWgConf( $wikiID ) {
 		global $wgConf;
 
 		$wgConf->loadFullData();
@@ -52,6 +66,46 @@ class WikiMap {
 		$path = $wgConf->get( 'wgArticlePath', $wikiID, $major,
 			array( 'lang' => $minor, 'site' => $major ) );
 		return new WikiReference( $major, $minor, $canonicalServer, $path, $server );
+	}
+
+	/**
+	 * @param string $wikiID
+	 * @return WikiReference|null WikiReference object or null if the wiki was not found
+	 */
+	private static function getWikiWikiReferenceFromSites( $wikiID ) {
+		$site = SiteSQLStore::newInstance()->getSite( $wikiID );
+
+		if ( !$site instanceof MediaWikiSite ) {
+			// Abort if not a MediaWikiSite, as this is about Wikis
+			return null;
+		}
+
+		// "Guess" the minor/major… this feels so wrong.
+		$localIds = $site->getLocalIds();
+		if ( isset( $localIds['interwiki'] ) && $localIds['interwiki'] ) {
+			$minor = $localIds['interwiki'][0];
+		} else {
+			// XXX: Rather abort?
+			$minor = $site->getLanguageCode();
+		}
+		$major = $site->getGroup();
+
+		$urlParts = wfParseUrl( $site->getPageUrl() );
+		if ( $urlParts === false || !isset( $urlParts['path'] ) || !isset( $urlParts['host'] ) ) {
+			// We can't create a meaningful WikiReference without URLs
+			return null;
+		}
+
+		// XXX: Check whether path contains a $1?
+		$path = $urlParts['path'];
+		if ( isset( $urlParts['query'] ) ) {
+			$path .= '?' . $urlParts['query'];
+		}
+
+		$canonicalServer = isset( $urlParts['scheme'] ) ? $urlParts['scheme'] : 'http';
+		$canonicalServer .= '://' . $urlParts['host'];
+
+		return new WikiReference( $major, $minor, $canonicalServer, $path );
 	}
 
 	/**
