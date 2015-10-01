@@ -1366,6 +1366,21 @@ interface IDatabase {
 	public function getLag();
 
 	/**
+	 * Get the slave lag when the current transaction started
+	 * or a general lag estimate if not transaction is active
+	 *
+	 * This is useful when transactions might use snapshot isolation
+	 * (e.g. REPEATABLE-READ in innodb), so the "real" lag of that data
+	 * is this lag plus transaction duration. If they don't, it is still
+	 * safe to be pessimistic. In AUTO-COMMIT mode, this still gives an
+	 * indication of the staleness of subsequent reads.
+	 *
+	 * @return array ('lag': seconds, 'since': UNIX timestamp of BEGIN)
+	 * @since 1.27
+	 */
+	public function getSessionLagStatus();
+
+	/**
 	 * Return the maximum number of items allowed in a list, or 0 for unlimited.
 	 *
 	 * @return int
