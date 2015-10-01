@@ -139,24 +139,28 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$value1 = array( 'this' => 'is', 'a' => 'test' );
 		$value2 = array( 'this' => 'is', 'another' => 'test' );
 		$value3 = array( 'testing a key that may be encoded when sent to cache backend' );
+		$value4 = array( 'another test where chars in key will be encoded' );
 
 		$key1 = wfMemcKey( 'test1' );
 		$key2 = wfMemcKey( 'test2' );
 		$key3 = wfMemcKey( 'will-%-encode' ); // internally, MemcachedBagOStuffs will encode to will-%25-encode
+		$key4 = wfMemcKey( 'flowdb:flow_ref:wiki:by-source:v3:Parser\'s_"broken"_+_(page)_&_grill:testwiki:1:4.7' );
 
 		$this->cache->add( $key1, $value1 );
 		$this->cache->add( $key2, $value2 );
 		$this->cache->add( $key3, $value3 );
+		$this->cache->add( $key4, $value4 );
 
 		$this->assertEquals(
-			array( $key1 => $value1, $key2 => $value2, $key3 => $value3 ),
-			$this->cache->getMulti( array( $key1, $key2, $key3 ) )
+			array( $key1 => $value1, $key2 => $value2, $key3 => $value3, $key4 => $value4 ),
+			$this->cache->getMulti( array( $key1, $key2, $key3, $key4 ) )
 		);
 
 		// cleanup
 		$this->cache->delete( $key1 );
 		$this->cache->delete( $key2 );
 		$this->cache->delete( $key3 );
+		$this->cache->delete( $key4 );
 	}
 
 	/**
