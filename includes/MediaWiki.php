@@ -504,6 +504,12 @@ class MediaWiki {
 		$factory->shutdown();
 
 		wfDebug( __METHOD__ . ' completed; all transactions committed' );
+
+		if ( $factory->laggedSlaveUsed() ) {
+			$maxAge = $this->config->get( 'CdnMaxageLagged' );
+			$this->context->getOutput()->lowerCdnMaxage( $maxAge );
+			wfDebugLog( 'caches', "Lagged DB used; CDN cache TTL limited to $maxAge seconds" );
+		}
 	}
 
 	/**

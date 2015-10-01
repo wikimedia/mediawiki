@@ -16,6 +16,9 @@ production.
   1000 for the latter) are now hard-coded.
 
 === New features in 1.27 ===
+* $wgCdnMaxageLagged was added, which limits the CDN cache TTL
+  when any load balancer uses a DB that is lagged beyond the 'max lag'
+  setting in the relevant section of $wgLBFactoryConf.
 
 ==== External libraries ====
 
