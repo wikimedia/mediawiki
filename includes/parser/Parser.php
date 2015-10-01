@@ -3385,6 +3385,8 @@ class Parser {
 	 * Warn the user when a parser limitation is reached
 	 * Will warn at most once the user per limitation type
 	 *
+	 * The results are shown during preview and run through the Parser (See EditPage.php)
+	 *
 	 * @param string $limitationType Should be one of:
 	 *   'expensive-parserfunction' (corresponding messages:
 	 *       'expensive-parserfunction-warning',
@@ -3407,8 +3409,10 @@ class Parser {
 	 */
 	public function limitationWarn( $limitationType, $current = '', $max = '' ) {
 		# does no harm if $current and $max are present but are unnecessary for the message
+		# Not doing ->inLanguage( $this->mOptions->getUserLangObj() ), since this is shown
+		# only during preview, and that would split the parser cache unnecessarily.
 		$warning = wfMessage( "$limitationType-warning" )->numParams( $current, $max )
-			->inLanguage( $this->mOptions->getUserLangObj() )->text();
+			->text();
 		$this->mOutput->addWarning( $warning );
 		$this->addTrackingCategory( "$limitationType-category" );
 	}
