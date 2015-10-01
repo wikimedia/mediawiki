@@ -51,11 +51,17 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Generate the JavaScript content of this module.
+	 *
+	 * Add '@nomin' annotation to prevent the module's contents from getting
+	 * cached (T84960).
+	 *
 	 * @param ResourceLoaderContext $context
 	 * @return string
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		return Xml::encodeJsCall( 'mw.user.tokens.set',
+		return ResourceLoader::makeComment( '@nomin' ) . Xml::encodeJsCall(
+			'mw.user.tokens.set',
 			array( $this->contextUserTokens( $context ) ),
 			ResourceLoader::inDebugMode()
 		);
