@@ -63,9 +63,6 @@ class FileBackendGroup {
 	protected function initFromGlobals() {
 		global $wgLocalFileRepo, $wgForeignFileRepos, $wgFileBackends;
 
-		// Register explicitly defined backends
-		$this->register( $wgFileBackends );
-
 		$autoBackends = array();
 		// Automatically create b/c backends for file repos...
 		$repos = array_merge( $wgForeignFileRepos, array( $wgLocalFileRepo ) );
@@ -105,8 +102,16 @@ class FileBackendGroup {
 			);
 		}
 
-		// Register implicitly defined backends
-		$this->register( $autoBackends );
+		$backends = array_merge( $autoBackends, $wgFileBackends );
+
+		// Apply $wgReadOnly to all backends if not already read-only
+		foreach ( $backends as &$backend ) {
+			$backend['readOnly'] = !empty( $backend['readOnly'] )
+				? $backend['readOnly']
+				: wfConfiguredReadOnlyReason();
+		}
+
+		$this->register( $backends );
 	}
 
 	/**
