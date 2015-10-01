@@ -16,6 +16,9 @@ production.
   1000 for the latter) are now hard-coded.
 
 === New features in 1.27 ===
+* $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
+  basic configuration settings needed for multi-datacenter setups.
+  $wgDataCenterUpdateStickTTL was also added.
 
 ==== External libraries ====
 
