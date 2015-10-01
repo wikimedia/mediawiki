@@ -69,13 +69,13 @@ class WANObjectCache {
 	protected $lastRelayError = self::ERR_NONE;
 
 	/** Max time expected to pass between delete() and DB commit finishing */
-	const MAX_COMMIT_DELAY = 1;
-	/** Max expected replication lag for a reasonable storage setup */
-	const MAX_REPLICA_LAG = 7;
+	const MAX_COMMIT_DELAY = 3;
+	/** Max replication lag before applying TTL_LAGGED to set() */
+	const MAX_REPLICA_LAG = 5;
 	/** Max time since snapshot transaction start to avoid no-op of set() */
-	const MAX_SNAPSHOT_LAG = 6;
+	const MAX_SNAPSHOT_LAG = 5;
 	/** Seconds to tombstone keys on delete() */
-	const HOLDOFF_TTL = 14; // MAX_COMMIT_DELAY + MAX_REPLICA_LAG + MAX_SNAPSHOT_LAG
+	const HOLDOFF_TTL = 14; // MAX_COMMIT_DELAY + MAX_REPLICA_LAG + MAX_SNAPSHOT_LAG + 1
 
 	/** Seconds to keep dependency purge keys around */
 	const CHECK_KEY_TTL = 31536000; // 1 year
@@ -92,6 +92,8 @@ class WANObjectCache {
 	const TTL_UNCACHEABLE = -1;
 	/** Idiom for getWithSetCallback() callbacks to 'lockTSE' logic */
 	const TSE_NONE = -1;
+	/** Max TTL to store keys when a data sourced is lagged */
+	const TTL_LAGGED = 30;
 
 	/** Cache format version number */
 	const VERSION = 1;
@@ -270,18 +272,21 @@ class WANObjectCache {
 	 * Example usage:
 	 * @code
 	 *     $dbr = wfGetDB( DB_SLAVE );
+	 *     $setOpts = DatabaseBase::getCacheSetOptions( $dbr );
 	 *     // Fetch the row from the DB
 	 *     $row = $dbr->selectRow( ... );
 	 *     $key = wfMemcKey( 'building', $buildingId );
-	 *     // Give the age of the transaction snapshot the data came from
-	 *     $opts = array( 'since' => $dbr->trxTimestamp() );
-	 *     $cache->set( $key, $row, 86400, $opts );
+	 *     $cache->set( $key, $row, 86400, $setOpts );
 	 * @endcode
 	 *
 	 * @param string $key Cache key
 	 * @param mixed $value
 	 * @param integer $ttl Seconds to live [0=forever]
 	 * @param array $opts Options map:
+	 *   - lag     : Seconds of slave lag. Typically, this is either the slave lag
+	 *               before the data was read or, if applicable, the slave lag before
+	 *               the snapshot-isolated transaction the data was read from started.
+	 *               [Default: 0 seconds]
 	 *   - since   : UNIX timestamp of the data in $value. Typically, this is either
 	 *               the current time the data was read or (if applicable) the time when
 	 *               the snapshot-isolated transaction the data was read from started.
@@ -296,6 +301,12 @@ class WANObjectCache {
 	final public function set( $key, $value, $ttl = 0, array $opts = array() ) {
 		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
 		$age = isset( $opts['since'] ) ? max( 0, microtime( true ) - $opts['since'] ) : 0;
+		$lag = isset( $opts['lag'] ) ? $opts['lag'] : 0;
+
+		if ( $lag > self::MAX_REPLICA_LAG ) {
+			// Too much lag detected; lower TTL so it converges faster
+			$ttl = $ttl ? min( $ttl, self::TTL_LAGGED ) : self::TTL_LAGGED;
+		}
 
 		if ( $age > self::MAX_SNAPSHOT_LAG ) {
 			if ( $lockTSE >= 0 ) {
@@ -515,15 +526,12 @@ class WANObjectCache {
 	 *         // Key to store the cached value under
 	 *         wfMemcKey( 'cat-attributes', $catId ),
 	 *         // Function that derives the new key value
-	 *         function( $oldValue, &$ttl, array &$setOpts ) {
-	 *             // Fetch row from the DB
+	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
-	 *             $row = $dbr->selectRow( ... );
+	 *             // Account for any snapshot/slave lag
+	 *             $setOpts += DatabaseBase::getCacheSetOptions( $dbr );
 	 *
-	 *             // Set age of the transaction snapshot the data came from
-	 *             $setOpts = array( 'since' => $dbr->trxTimestamp() );
-	 *
-	 *             return $row;
+	 *             return $dbr->selectRow( ... );
 	 *        },
 	 *        // Time-to-live (seconds)
 	 *        60
@@ -536,15 +544,12 @@ class WANObjectCache {
 	 *         // Key to store the cached value under
 	 *         wfMemcKey( 'site-cat-config' ),
 	 *         // Function that derives the new key value
-	 *         function( $oldValue, &$ttl, array &$setOpts ) {
-	 *             // Fetch row from the DB
+	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
-	 *             $config = CatConfig::newFromRow( $dbr->selectRow( ... ) );
+	 *             // Account for any snapshot/slave lag
+	 *             $setOpts += DatabaseBase::getCacheSetOptions( $dbr );
 	 *
-	 *             // Set age of the transaction snapshot the data came from
-	 *             $setOpts = array( 'since' => $dbr->trxTimestamp() );
-	 *
-	 *             return $config;
+	 *             return CatConfig::newFromRow( $dbr->selectRow( ... ) );
 	 *        },
 	 *        // Time-to-live (seconds)
 	 *        86400,
@@ -561,15 +566,13 @@ class WANObjectCache {
 	 *         // Key to store the cached value under
 	 *         wfMemcKey( 'cat-state', $cat->getId() ),
 	 *         // Function that derives the new key value
-	 *         function( $oldValue, &$ttl, array &$setOpts ) {
+	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             // Determine new value from the DB
 	 *             $dbr = wfGetDB( DB_SLAVE );
-	 *             $state = CatState::newFromResults( $dbr->select( ... ) );
+	 *             // Account for any snapshot/slave lag
+	 *             $setOpts += DatabaseBase::getCacheSetOptions( $dbr );
 	 *
-	 *             // Set age of the transaction snapshot the data came from
-	 *             $setOpts = array( 'since' => $dbr->trxTimestamp() );
-	 *
-	 *             return $state;
+	 *             return CatState::newFromResults( $dbr->select( ... ) );
 	 *        },
 	 *        // Time-to-live (seconds)
 	 *        900,
@@ -589,20 +592,18 @@ class WANObjectCache {
 	 *         // Key to store the cached value under
 	 *         wfMemcKey( 'cat-last-actions', 100 ),
 	 *         // Function that derives the new key value
-	 *         function( $oldValue, &$ttl, array &$setOpts ) {
+	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
+	 *             // Account for any snapshot/slave lag
+	 *             $setOpts += DatabaseBase::getCacheSetOptions( $dbr );
+	 *
 	 *             // Start off with the last cached list
 	 *             $list = $oldValue ?: array();
 	 *             // Fetch the last 100 relevant rows in descending order;
 	 *             // only fetch rows newer than $list[0] to reduce scanning
 	 *             $rows = iterator_to_array( $dbr->select( ... ) );
 	 *             // Merge them and get the new "last 100" rows
-	 *             $list = array_slice( array_merge( $new, $list ), 0, 100 );
-	 *
-	 *             // Set age of the transaction snapshot the data came from
-	 *             $setOpts = array( 'since' => $dbr->trxTimestamp() );
-	 *
-	 *             return $list;
+	 *             return array_slice( array_merge( $new, $list ), 0, 100 );
 	 *        },
 	 *        // Time-to-live (seconds)
 	 *        10,
