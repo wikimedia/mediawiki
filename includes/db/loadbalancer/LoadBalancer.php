@@ -1131,12 +1131,22 @@ class LoadBalancer {
 	}
 
 	/**
+	 * @note This method will trigger a DB connection if not yet done
 	 * @return bool Whether the generic connection for reads is highly "lagged"
 	 */
 	public function getLaggedSlaveMode() {
 		# Get a generic reader connection
 		$this->getConnection( DB_SLAVE );
 
+		return $this->mLaggedSlaveMode;
+	}
+
+	/**
+	 * @note This method will never cause a new DB connection
+	 * @return bool Whether any generic connection used for reads was highly "lagged"
+	 * @since 1.27
+	 */
+	public function laggedSlaveUsed() {
 		return $this->mLaggedSlaveMode;
 	}
 
