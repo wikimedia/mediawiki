@@ -45,6 +45,9 @@ abstract class DatabaseBase implements IDatabase {
 
 	protected $mServer, $mUser, $mPassword, $mDBname;
 
+	/** @var BagOStuff APC cache */
+	protected $srvCache;
+
 	/** @var resource Database connection */
 	protected $mConn = null;
 	protected $mOpened = false;
@@ -95,6 +98,9 @@ abstract class DatabaseBase implements IDatabase {
 	 * @see DatabaseBase::mTrxLevel
 	 */
 	private $mTrxTimestamp = null;
+
+	/** @var float Lag estimate at the time of BEGIN */
+	private $mTrxSlaveLag = null;
 
 	/**
 	 * Remembers the function name given for starting the most recent transaction via begin().
@@ -600,6 +606,9 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	function __construct( array $params ) {
 		global $wgDBprefix, $wgDBmwschema, $wgCommandLineMode;
+
+		$this->mTrxAtomicLevels = new SplStack;
+		$this->srvCache = ObjectCache::newAccelerator( 'hash' );
 
 		$server = $params['host'];
 		$user = $params['user'];
@@ -3466,6 +3475,11 @@ abstract class DatabaseBase implements IDatabase {
 		$this->mTrxPreCommitCallbacks = array();
 		$this->mTrxShortId = wfRandomString( 12 );
 		$this->mTrxWriteDuration = 0.0;
+		// First SELECT after BEGIN will establish the snapshot in REPEATABLE-READ.
+		// Get an estimate of the slave lag before then, treating estimate staleness
+		// as lag itself just to be safe
+		$status = $this->getApproximateLagStatus();
+		$this->mTrxSlaveLag = $status['lag'] + ( microtime( true ) - $status['since'] );
 	}
 
 	/**
@@ -3740,6 +3754,80 @@ abstract class DatabaseBase implements IDatabase {
 	public function ping() {
 		# Stub. Not essential to override.
 		return true;
+	}
+
+	/**
+	 * Get the slave lag when the current transaction started
+	 * or a general lag estimate if not transaction is active
+	 *
+	 * This is useful when transactions might use snapshot isolation
+	 * (e.g. REPEATABLE-READ in innodb), so the "real" lag of that data
+	 * is this lag plus transaction duration. If they don't, it is still
+	 * safe to be pessimistic. In AUTO-COMMIT mode, this still gives an
+	 * indication of the staleness of subsequent reads.
+	 *
+	 * @return array ('lag': seconds, 'since': UNIX timestamp of BEGIN)
+	 * @since 1.27
+	 */
+	public function getSessionLagStatus() {
+		return $this->getTransactionLagStatus() ?: $this->getApproximateLagStatus();
+	}
+
+	/**
+	 * Get the slave lag when the current transaction started
+	 *
+	 * This is useful when transactions might use snapshot isolation
+	 * (e.g. REPEATABLE-READ in innodb), so the "real" lag of that data
+	 * is this lag plus transaction duration. If they don't, it is still
+	 * safe to be pessimistic. This returns null if there is no transaction.
+	 *
+	 * @return array|null ('lag': seconds, 'since': UNIX timestamp of BEGIN)
+	 * @since 1.27
+	 */
+	public function getTransactionLagStatus() {
+		return $this->mTrxLevel
+			? array( 'lag' => $this->mTrxSlaveLag, 'since' => $this->trxTimestamp() )
+			: null;
+	}
+
+	/**
+	 * Get a slave lag estimate for this server
+	 *
+	 * @return array ('lag': seconds, 'since': UNIX timestamp of estimate)
+	 * @since 1.27
+	 */
+	public function getApproximateLagStatus() {
+		return array(
+			'lag'   => $this->getLBInfo( 'slave' ) ? $this->getLag() : 0,
+			'since' => microtime( true )
+		);
+	}
+
+	/**
+	 * Merge the result of getSessionLagStatus() for several DBs
+	 * using the most pessimistic values to estimate the lag of
+	 * any data derived from them in combination
+	 *
+	 * This is information is useful for caching modules
+	 *
+	 * @see WANObjectCache::set()
+	 * @see WANObjectCache::getWithSetCallback()
+	 *
+	 * @param IDatabase $db1
+	 * @param IDatabase ...
+	 * @return array ('lag': highest lag, 'since': lowest estimate UNIX timestamp)
+	 * @since 1.27
+	 */
+	public static function getCacheSetOptions( IDatabase $db1 ) {
+		$res = array( 'lag' => 0, 'since' => INF );
+		foreach ( func_get_args() as $db ) {
+			/** @var IDatabase $db */
+			$status = $db->getSessionLagStatus();
+			$res['lag'] = max( $res['lag'], $status['lag'] );
+			$res['since'] = min( $res['since'], $status['since'] );
+		}
+
+		return $res;
 	}
 
 	/**
