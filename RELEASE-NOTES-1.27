@@ -21,6 +21,9 @@ production.
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
   basic configuration settings needed for multi-datacenter setups.
   $wgDataCenterUpdateStickTTL was also added.
+* $wgCdnMaxageLagged was added, which limits the CDN cache TTL
+  when any load balancer uses a DB that is lagged beyond the 'max lag'
+  setting in the relevant section of $wgLBFactoryConf.
 
 ==== External libraries ====
 
