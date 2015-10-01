@@ -1003,9 +1003,13 @@ MESSAGE;
 
 		// Generate output
 		$isRaw = false;
+
+		$filter = $context->shouldIncludeScripts() ? 'minify-js' : 'minify-css';
+
 		foreach ( $modules as $name => $module ) {
 			try {
 				$content = $module->getModuleContent( $context );
+				$strContent = '';
 
 				// Append output
 				switch ( $context->getOnly() ) {
@@ -1013,10 +1017,10 @@ MESSAGE;
 						$scripts = $content['scripts'];
 						if ( is_string( $scripts ) ) {
 							// Load scripts raw...
-							$out .= $scripts;
+							$strContent = $scripts;
 						} elseif ( is_array( $scripts ) ) {
 							// ...except when $scripts is an array of URLs
-							$out .= self::makeLoaderImplementScript( $name, $scripts, array(), array(), array() );
+							$strContent = self::makeLoaderImplementScript( $name, $scripts, array(), array(), array() );
 						}
 						break;
 					case 'styles':
@@ -1024,10 +1028,10 @@ MESSAGE;
 						// We no longer seperate into media, they are all combined now with
 						// custom media type groups into @media .. {} sections as part of the css string.
 						// Module returns either an empty array or a numerical array with css strings.
-						$out .= isset( $styles['css'] ) ? implode( '', $styles['css'] ) : '';
+						$strContent = isset( $styles['css'] ) ? implode( '', $styles['css'] ) : '';
 						break;
 					default:
-						$out .= self::makeLoaderImplementScript(
+						$strContent = self::makeLoaderImplementScript(
 							$name,
 							isset( $content['scripts'] ) ? $content['scripts'] : '',
 							isset( $content['styles'] ) ? $content['styles'] : array(),
@@ -1036,6 +1040,17 @@ MESSAGE;
 						);
 						break;
 				}
+
+				if ( !$context->getDebug() ) {
+					// Don't cache private modules. This is especially important in the case
+					// of modules which change every time they are built, like the embedded
+					// user.tokens module (bug T84960).
+					$filterOptions = array( 'cache' => ( $module->getGroup() !== 'private' ) );
+					$strContent = $this->filter( $filter, $strContent, $filterOptions );
+				}
+
+				$out .= $strContent;
+
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
 				$this->logger->warning( 'Generating module package failed: {exception}', array(
@@ -1062,28 +1077,16 @@ MESSAGE;
 
 			// Set the state of modules we didn't respond to with mw.loader.implement
 			if ( count( $states ) ) {
-				$out .= self::makeLoaderStateScript( $states );
+				$stateScript = self::makeLoaderStateScript( $states );
+				if ( !$context->getDebug() ) {
+					$stateScript = $this->filter( 'minify-js', $stateScript );
+				}
+				$out .= $stateScript;
 			}
 		} else {
 			if ( count( $states ) ) {
 				$this->errors[] = 'Problematic modules: ' .
 					FormatJson::encode( $states, ResourceLoader::inDebugMode() );
-			}
-		}
-
-		$enableFilterCache = true;
-		if ( count( $modules ) === 1 && reset( $modules ) instanceof ResourceLoaderUserTokensModule ) {
-			// If we're building the embedded user.tokens, don't cache (T84960)
-			$enableFilterCache = false;
-		}
-
-		if ( !$context->getDebug() ) {
-			if ( $context->getOnly() === 'styles' ) {
-				$out = $this->filter( 'minify-css', $out );
-			} else {
-				$out = $this->filter( 'minify-js', $out, array(
-					'cache' => $enableFilterCache
-				) );
 			}
 		}
 
