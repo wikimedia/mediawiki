@@ -27,8 +27,8 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	}
 
 	public function provideGetWiki() {
-		$enwiki = new WikiReference( 'wiki', 'en', 'http://en.example.org', '/w/$1' );
-		$ruwiki = new WikiReference( 'wiki', 'ru', '//ru.example.org', '/wiki/$1' );
+		$enwiki = new WikiReference( 'http://en.example.org', '/w/$1' );
+		$ruwiki = new WikiReference( '//ru.example.org', '/wiki/$1' );
 
 		return array(
 			'unknown' => array( false, 'xyzzy' ),

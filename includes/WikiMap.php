@@ -51,7 +51,7 @@ class WikiMap {
 
 		$path = $wgConf->get( 'wgArticlePath', $wikiID, $major,
 			array( 'lang' => $minor, 'site' => $major ) );
-		return new WikiReference( $major, $minor, $canonicalServer, $path, $server );
+		return new WikiReference( $canonicalServer, $path, $server );
 	}
 
 	/**
@@ -127,22 +127,16 @@ class WikiMap {
  * Reference to a locally-hosted wiki
  */
 class WikiReference {
-	private $mMinor; ///< 'en', 'meta', 'mediawiki', etc
-	private $mMajor; ///< 'wiki', 'wiktionary', etc
 	private $mCanonicalServer; ///< canonical server URL, e.g. 'https://www.mediawiki.org'
 	private $mServer; ///< server URL, may be protocol-relative, e.g. '//www.mediawiki.org'
 	private $mPath;   ///< path, '/wiki/$1'
 
 	/**
-	 * @param string $major
-	 * @param string $minor
 	 * @param string $canonicalServer
 	 * @param string $path
 	 * @param null|string $server
 	 */
-	public function __construct( $major, $minor, $canonicalServer, $path, $server = null ) {
-		$this->mMajor = $major;
-		$this->mMinor = $minor;
+	public function __construct( $canonicalServer, $path, $server = null ) {
 		$this->mCanonicalServer = $canonicalServer;
 		$this->mPath = $path;
 		$this->mServer = $server === null ? $canonicalServer : $server;

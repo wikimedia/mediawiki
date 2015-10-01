@@ -20,12 +20,12 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider provideGetDisplayName
 	 */
 	public function testGetDisplayName( $expected, $canonicalServer ) {
-		$reference = new WikiReference( 'wiki', 'xx', $canonicalServer, '/wiki/$1' );
+		$reference = new WikiReference( $canonicalServer, '/wiki/$1' );
 		$this->assertEquals( $expected, $reference->getDisplayName() );
 	}
 
 	public function testGetCanonicalServer() {
-		$reference = new WikiReference( 'wiki', 'xx', 'https://acme.com', '/wiki/$1', '//acme.com' );
+		$reference = new WikiReference( 'https://acme.com', '/wiki/$1', '//acme.com' );
 		$this->assertEquals( 'https://acme.com', $reference->getCanonicalServer() );
 	}
 
@@ -44,7 +44,7 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider provideGetCanonicalUrl
 	 */
 	public function testGetCanonicalUrl( $expected, $canonicalServer, $server, $path, $page, $fragmentId ) {
-		$reference = new WikiReference( 'wiki', 'xx', $canonicalServer, $path, $server );
+		$reference = new WikiReference( $canonicalServer, $path, $server );
 		$this->assertEquals( $expected, $reference->getCanonicalUrl( $page, $fragmentId ) );
 	}
 
@@ -53,7 +53,7 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 	 * @note getUrl is an alias for getCanonicalUrl
 	 */
 	public function testGetUrl( $expected, $canonicalServer, $server, $path, $page, $fragmentId ) {
-		$reference = new WikiReference( 'wiki', 'xx', $canonicalServer, $path, $server );
+		$reference = new WikiReference( $canonicalServer, $path, $server );
 		$this->assertEquals( $expected, $reference->getUrl( $page, $fragmentId ) );
 	}
 
@@ -72,7 +72,7 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider provideGetFullUrl
 	 */
 	public function testGetFullUrl( $expected, $canonicalServer, $server, $path, $page, $fragmentId ) {
-		$reference = new WikiReference( 'wiki', 'xx', $canonicalServer, $path, $server );
+		$reference = new WikiReference( $canonicalServer, $path, $server );
 		$this->assertEquals( $expected, $reference->getFullUrl( $page, $fragmentId ) );
 	}
 
