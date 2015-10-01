@@ -190,18 +190,16 @@
 		this.uploadPromise.then( function () {
 			deferred.resolve();
 			layout.emit( 'fileUploaded' );
-		} );
-
-		// These errors will be thrown while the user is on the info page
-		this.uploadPromise.always( function () {
+		}, function () {
+			// These errors will be thrown while the user is on the info page
 			if ( layout.upload.getState() === mw.Upload.State.ERROR ) {
-				deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' ), {
+				deferred.reject( new OO.ui.Error( layout.upload.getStateDetails(), {
 					recoverable: false
 				} ) );
 				return false;
 			}
 			if ( layout.upload.getState() === mw.Upload.State.WARNING ) {
-				deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' ), {
+				deferred.reject( new OO.ui.Error( layout.upload.getStateDetails(), {
 					recoverable: false
 				} ) );
 				return false;
