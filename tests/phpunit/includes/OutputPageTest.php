@@ -136,6 +136,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		) );
 	}
 
+	// @codingStandardsIgnoreStart Generic.Files.LineLength
 	public static function provideMakeResourceLoaderLink() {
 		return array(
 			// Load module script only
@@ -194,6 +195,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			),
 		);
 	}
+	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @dataProvider provideMakeResourceLoaderLink
