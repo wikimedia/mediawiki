@@ -31,7 +31,7 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 
 	public function provideGetCanonicalUrl() {
 		return array(
-			'no fragement' => array(
+			'no fragment' => array(
 				'https://acme.com/wiki/Foo',
 				'https://acme.com',
 				'//acme.com',
@@ -39,7 +39,7 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 				'Foo',
 				null
 			),
-			'empty fragement' => array(
+			'empty fragment' => array(
 				'https://acme.com/wiki/Foo',
 				'https://acme.com',
 				'//acme.com',
@@ -63,7 +63,7 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 				'Foo',
 				'Bar#Xus'
 			),
-			'escaped fragement' => array(
+			'escaped fragment' => array(
 				'https://acme.com/wiki/Foo%23Bar',
 				'https://acme.com',
 				'//acme.com',
@@ -101,7 +101,7 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 
 	public function provideGetFullUrl() {
 		return array(
-			'no fragement' => array(
+			'no fragment' => array(
 				'//acme.com/wiki/Foo',
 				'https://acme.com',
 				'//acme.com',
@@ -109,7 +109,7 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 				'Foo',
 				null
 			),
-			'empty fragement' => array(
+			'empty fragment' => array(
 				'//acme.com/wiki/Foo',
 				'https://acme.com',
 				'//acme.com',
@@ -133,7 +133,7 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 				'Foo',
 				'Bar#Xus'
 			),
-			'escaped fragement' => array(
+			'escaped fragment' => array(
 				'//acme.com/wiki/Foo%23Bar',
 				'https://acme.com',
 				'//acme.com',
