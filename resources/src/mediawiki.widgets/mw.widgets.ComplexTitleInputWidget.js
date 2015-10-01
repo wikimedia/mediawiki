@@ -60,4 +60,23 @@
 		this.title.setNamespace( Number( this.namespace.getValue() ) );
 	};
 
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.ComplexTitleInputWidget.prototype.gatherPreInfuseState = function ( node ) {
+		var state = mw.widgets.ComplexTitleInputWidget.parent.prototype.gatherPreInfuseState.call( this, node );
+		state.namespace = this.namespace.gatherPreInfuseState( $( node ).find( '.mw-widget-namespaceInputWidget' ) );
+		state.title = this.title.gatherPreInfuseState( $( node ).find( '.mw-widget-titleInputWidget' ) );
+		return state;
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.ComplexTitleInputWidget.prototype.restorePreInfuseState = function ( state ) {
+		mw.widgets.ComplexTitleInputWidget.parent.prototype.restorePreInfuseState.call( this, state );
+		this.namespace.restorePreInfuseState( state.namespace );
+		this.title.restorePreInfuseState( state.title );
+	};
+
 }( jQuery, mediaWiki ) );
