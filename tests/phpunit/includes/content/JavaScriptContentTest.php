@@ -116,10 +116,12 @@ class JavaScriptContentTest extends TextContentTest {
 
 	public static function dataPreloadTransform() {
 		return array(
-			array( 'hello this is ~~~',
+			array(
+				'hello this is ~~~',
 				'hello this is ~~~',
 			),
-			array( 'hello \'\'this\'\' is <noinclude>foo</noinclude><includeonly>bar</includeonly>',
+			array(
+				'hello \'\'this\'\' is <noinclude>foo</noinclude><includeonly>bar</includeonly>',
 				'hello \'\'this\'\' is <noinclude>foo</noinclude><includeonly>bar</includeonly>',
 			),
 		);
@@ -326,6 +328,7 @@ class JavaScriptContentTest extends TextContentTest {
 	 * Keep this in sync with JavaScriptContentHandlerTest::provideMakeRedirectContent()
 	 */
 	public static function provideGetRedirectTarget() {
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		return array(
 			array( 'MediaWiki:MonoBook.js', '/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=MediaWiki:MonoBook.js\u0026action=raw\u0026ctype=text/javascript");' ),
 			array( 'User:FooBar/common.js', '/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=User:FooBar/common.js\u0026action=raw\u0026ctype=text/javascript");' ),
@@ -335,5 +338,6 @@ class JavaScriptContentTest extends TextContentTest {
 			// Different domain
 			array( null, '/* #REDIRECT */mw.loader.load("//example.com/w/index.php?title=MediaWiki:OtherWiki.js\u0026action=raw\u0026ctype=text/javascript");' ),
 		);
+		// @codingStandardsIgnoreEnd
 	}
 }
