@@ -458,7 +458,7 @@ class User implements IDBAccessObject {
 		$data['mVersion'] = self::VERSION;
 		$key = wfMemcKey( 'user', 'id', $this->mId );
 
-		$opts = array( 'since' => wfGetDB( DB_SLAVE )->trxTimestamp() );
+		$opts = wfGetDB( DB_SLAVE )->getSessionLagStatus();
 		ObjectCache::getMainWANInstance()->set( $key, $data, 3600, $opts );
 	}
 

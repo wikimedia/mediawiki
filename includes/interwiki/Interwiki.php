@@ -221,14 +221,14 @@ class Interwiki {
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $prefix ) {
 				$dbr = wfGetDB( DB_SLAVE );
 
+				$setOpts += $dbr->getSessionLagStatus();
+
 				$row = $dbr->selectRow(
 					'interwiki',
 					Interwiki::selectFields(),
 					array( 'iw_prefix' => $prefix ),
 					__METHOD__
 				);
-
-				$setOpts = array( 'since' => $dbr->trxTimestamp() );
 
 				return $row ? (array)$row : '!NONEXISTENT';
 			},
