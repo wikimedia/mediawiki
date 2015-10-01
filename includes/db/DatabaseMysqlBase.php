@@ -35,9 +35,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	/** @var string Method to detect slave lag */
 	protected $lagDetectionMethod;
 
-	/** @var BagOStuff APC cache */
-	protected $srvCache;
-
 	/** @var string|null */
 	private $serverVersion = null;
 
@@ -55,8 +52,6 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		$this->lagDetectionMethod = isset( $params['lagDetectionMethod'] )
 			? $params['lagDetectionMethod']
 			: 'Seconds_Behind_Master';
-
-		$this->srvCache = ObjectCache::newAccelerator( 'hash' );
 	}
 
 	/**
@@ -676,6 +671,17 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		}
 
 		return false;
+	}
+
+	protected function getApproximateLagStatus() {
+		if ( $this->lagDetectionMethod === 'pt-heartbeat' ) {
+			// Disable caching since this is fast enough and we don't wan't
+			// to be *too* pessimistic by having both the cache TTL and the
+			// pt-heartbeat interval count as lag in getSessionLagStatus()
+			return array( 'lag' => $this->getLag(), 'since' => microtime( true ) );
+		} else {
+			return parent::getApproximateLagStatus();
+		}
 	}
 
 	/**

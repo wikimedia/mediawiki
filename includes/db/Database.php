@@ -45,6 +45,9 @@ abstract class DatabaseBase implements IDatabase {
 
 	protected $mServer, $mUser, $mPassword, $mDBname;
 
+	/** @var BagOStuff APC cache */
+	protected $srvCache;
+
 	/** @var resource Database connection */
 	protected $mConn = null;
 	protected $mOpened = false;
@@ -95,6 +98,9 @@ abstract class DatabaseBase implements IDatabase {
 	 * @see DatabaseBase::mTrxLevel
 	 */
 	private $mTrxTimestamp = null;
+
+	/** @var float Lag estimate at the time of BEGIN */
+	private $mTrxSlaveLag = null;
 
 	/**
 	 * Remembers the function name given for starting the most recent transaction via begin().
@@ -610,6 +616,7 @@ abstract class DatabaseBase implements IDatabase {
 		global $wgDBprefix, $wgDBmwschema, $wgCommandLineMode, $wgDebugDBTransactions;
 
 		$this->mTrxAtomicLevels = new SplStack;
+		$this->srvCache = ObjectCache::newAccelerator( 'hash' );
 
 		$server = $params['host'];
 		$user = $params['user'];
@@ -3496,6 +3503,14 @@ abstract class DatabaseBase implements IDatabase {
 		$this->mTrxPreCommitCallbacks = array();
 		$this->mTrxShortId = wfRandomString( 12 );
 		$this->mTrxWriteDuration = 0.0;
+		// First SELECT here or after will establish the snapshot in REPEATABLE-READ
+		if ( $this->getLBInfo( 'slave' ) ) {
+			$status = $this->getApproximateLagStatus();
+			// Treat estimate staleness as lag to be safe
+			$this->mTrxSlaveLag = $status['lag'] + ( $this->mTrxTimestamp - $status['since'] );
+		} else {
+			$this->mTrxSlaveLag = 0;
+		}
 	}
 
 	/**
@@ -3770,6 +3785,81 @@ abstract class DatabaseBase implements IDatabase {
 	public function ping() {
 		# Stub. Not essential to override.
 		return true;
+	}
+
+	/**
+	 * Get the slave lag when the current transaction started
+	 * or a general lag estimate if not transaction is active
+	 *
+	 * This is useful when transactions might use snapshot isolation
+	 * (e.g. REPEATABLE-READ in innodb), so the "real" lag of that data
+	 * is this lag plus transaction duration. If they don't, it is still
+	 * safe to be pessimistic. In AUTO-COMMIT mode, this still gives an
+	 * indication of the staleness of subsequent reads.
+	 *
+	 * @return array ('lag': seconds, 'since': UNIX timestamp of BEGIN)
+	 * @since 1.27
+	 */
+	public function getSessionLagStatus() {
+		return $this->getTransactionLagStatus() ?: $this->getApproximateLagStatus();
+	}
+
+	/**
+	 * Merge the result of getSessionLagStatus() for several DBs
+	 * using the most pessimistic values to estimate the lag of
+	 * any data derived from them in combination
+	 *
+	 * @param IDatabase $db1
+	 * @param IDatabase $db2
+	 * @param IDatabase ...
+	 * @return array ('lag': highest lag, 'since': lowest estimate UNIX timestamp)
+	 * @since 1.27
+	 */
+	public static function getAggregateSessionLagStatus( IDatabase $db1, IDatabase $db2 ) {
+		$res = array( 'lag' => 0, 'since' => INF );
+		foreach ( func_get_args() as $db ) {
+			/** @var IDatabase $db */
+			$status = $db->getSessionLagStatus();
+			$res['lag'] = max( $res['lag'], $status['lag'] );
+			$res['since'] = min( $res['since'], $status['since'] );
+		}
+
+		return $res;
+	}
+
+	/**
+	 * Get a slave lag estimate for this server
+	 *
+	 * @return array ('lag': seconds, 'since': UNIX timestamp of estimate)
+	 * @since 1.27
+	 */
+	protected function getApproximateLagStatus() {
+		$key = wfGlobalCacheKey( 'db-lag', $this->getType(), $this->getServer() );
+
+		$approxLag = $this->srvCache->get( $key );
+		if ( !$approxLag ) {
+			$approxLag = array( 'lag' => $this->getLag(), 'since' => microtime( true ) );
+			$this->srvCache->set( $key, $approxLag, 1 );
+		}
+
+		return $approxLag;
+	}
+
+	/**
+	 * Get the slave lag when the current transaction started
+	 *
+	 * This is useful when transactions might use snapshot isolation
+	 * (e.g. REPEATABLE-READ in innodb), so the "real" lag of that data
+	 * is this lag plus transaction duration. If they don't, it is still
+	 * safe to be pessimistic. This returns null if there is no transaction.
+	 *
+	 * @return array|null ('lag': seconds, 'since': UNIX timestamp of BEGIN)
+	 * @since 1.27
+	 */
+	protected function getTransactionLagStatus() {
+		return $this->mTrxLevel
+			? array( 'lag' => $this->mTrxSlaveLag, 'since' => $this->trxTimestamp() )
+			: null;
 	}
 
 	/**
