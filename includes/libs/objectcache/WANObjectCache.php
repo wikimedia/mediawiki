@@ -165,6 +165,7 @@ class WANObjectCache {
 	 * isolation can largely be maintained by doing the following:
 	 *   - a) Calling delete() on entity change *and* creation, before DB commit
 	 *   - b) Keeping transaction duration shorter than delete() hold-off TTL
+	 *
 	 * However, pre-snapshot values might still be seen if an update was made
 	 * in a remote datacenter but the purge from delete() didn't relay yet.
 	 *
@@ -457,6 +458,7 @@ class WANObjectCache {
 	 *   - b) Thus, dependent keys will be known to be invalid, but not
 	 *        for how long (they are treated as "just" purged), which
 	 *        effects any lockTSE logic in getWithSetCallback()
+	 *
 	 * The advantage is that this does not place high TTL keys on every cache
 	 * server, making it better for code that will cache many different keys
 	 * and either does not use lockTSE or uses a low enough TTL anyway.
@@ -506,9 +508,6 @@ class WANObjectCache {
 	 * the 'lockTSE' option in $opts. If cache purges are needed, also:
 	 *   - a) Pass $key into $checkKeys
 	 *   - b) Use touchCheckKey( $key ) instead of delete( $key )
-	 * Following this pattern lets the old cache be used until a
-	 * single thread updates it as needed. Also consider tweaking
-	 * the 'lowTTL' parameter.
 	 *
 	 * Example usage (typical key):
 	 * @code
