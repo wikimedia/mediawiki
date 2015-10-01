@@ -1061,8 +1061,8 @@ abstract class DatabaseBase implements IDatabase {
 		$res = $this->resultObject( $ret );
 
 		// Destroy profile sections in the opposite order to their creation
-		$queryProfSection = false;
-		$totalProfSection = false;
+		ScopedCallback::consume( $queryProfSection );
+		ScopedCallback::consume( $totalProfSection );
 
 		if ( $isWriteQuery && $this->mTrxLevel ) {
 			$this->mTrxWriteDuration += $queryRuntime;
@@ -1232,6 +1232,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param string|array $options The query options. See DatabaseBase::select() for details.
 	 *
 	 * @return bool|mixed The value from the field, or false on failure.
+	 * @throws DBUnexpectedError
 	 */
 	public function selectField(
 		$table, $var, $cond = '', $fname = __METHOD__, $options = array()
@@ -3193,11 +3194,6 @@ abstract class DatabaseBase implements IDatabase {
 		$args = func_get_args();
 		$function = array_shift( $args );
 		$tries = self::DEADLOCK_TRIES;
-		if ( is_array( $function ) ) {
-			$fname = $function[0];
-		} else {
-			$fname = $function;
-		}
 
 		$this->begin( __METHOD__ );
 
