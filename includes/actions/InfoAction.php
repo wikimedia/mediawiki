@@ -674,7 +674,11 @@ class InfoAction extends FormlessAction {
 				$title = $page->getTitle();
 				$id = $title->getArticleID();
 
+				$dbr = wfGetDB( DB_SLAVE );
 				$dbrWatchlist = wfGetDB( DB_SLAVE, 'watchlist' );
+
+				$setOpts += DatabaseBase::getAggregateSessionLagStatus( $dbr, $dbrWatchlist );
+
 				$result = array();
 
 				// Number of page watchers
@@ -709,7 +713,6 @@ class InfoAction extends FormlessAction {
 					$result['visitingWatchers'] = $visitingWatchers;
 				}
 
-				$dbr = wfGetDB( DB_SLAVE );
 				// Total number of edits
 				$edits = (int)$dbr->selectField(
 					'revision',
@@ -807,8 +810,6 @@ class InfoAction extends FormlessAction {
 					array( 'tl_from' => $title->getArticleID() ),
 					$fname
 				);
-
-				$setOpts = array( 'since' => $dbr->trxTimestamp() );
 
 				return $result;
 			},

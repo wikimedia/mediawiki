@@ -457,6 +457,10 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function getSessionLagStatus() {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function maxListLen() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
