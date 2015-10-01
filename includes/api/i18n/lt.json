@@ -4,6 +4,8 @@
 			"Zygimantus"
 		]
 	},
+	"apihelp-query+alldeletedrevisions-example-user": "Sąrašas paskutinių 50 ištrintų indėlių pagal vartotoją\n<kbd>Pavyzdys</kbd>.",
+	"apihelp-query+backlinks-example-simple": "Rodyti nuorodas <kbd>Pagrindinis puslapis</kbd>.",
 	"apihelp-stashedit-param-title": "Puslapio pavadinimas buvo redaguotas.",
 	"apihelp-stashedit-param-sectiontitle": "Naujo skyriaus pavadinimas.",
 	"apihelp-stashedit-param-text": "Puslapio turinys."

@@ -403,7 +403,7 @@
 	"loginreqlink": "kirjuttai",
 	"accmailtitle": "Peittosana työtty",
 	"newarticle": "(Uuzi)",
-	"newarticletext": "Olet puutunuh sivule, kudamua ei ole vie. Ku luadie sivu, zavodi kirjuttua al olijah juaššiekkah (kačo [$1 help page] ku suaha ližätieduo).\nKu puutuit tänne petties, painalda sinun livaimen <strong>järilleh</strong>-nyblyä.",
+	"newarticletext": "Olet puuttunuh sivule, kudamua vie ei ole. Ku luadie sivu, zavodi kirjuttua al olijah juaššiekkah (kačo [$1 ohjavosivulpäi] ližätieduo).\nKu ollet puuttunuh tänne petties, käytä livaimen <strong>mennä järilleh</strong>-toiminduo.",
 	"noarticletext": "Täl sivul ei ole juuri nygöi tekstua.\nVoit [[Special:Search/{{PAGENAME}}|eččie sivun nimel]] toizis sivuloispäi,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} eččie sidä koskijua logua],\nlibo [{{fullurl:{{FULLPAGENAME}}|action=edit}} korjata tädä sivuu]</span>.",
 	"noarticletext-nopermission": "Täl sivul ei ole tekstua.\nVoit [[Special:Search/{{PAGENAME}}|eččie sivun nimel]] toizis sivuloispäi, libo <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} eččie sivuu koskijua logua]</span>, ga sinul ei ole oigevuksii luadie tädä sivuu.",
 	"updated": "(Päivitetty)",

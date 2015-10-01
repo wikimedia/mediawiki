@@ -3095,7 +3095,7 @@
 	"logentry-delete-delete": "{{GENDER:$2|Inikkat}} ni $1 ti panid ti $3",
 	"logentry-delete-restore": "Ni $1 ket {{GENDER:$2|insublina}} ti panid ti $3",
 	"logentry-delete-event": "Ni $1 ket {{GENDER:$2|binaliwanna}} ti panagkita {{PLURAL:$5|iti listaan ti pasamak |dagiti $5 a listaan ti pasamak }} iti $3: $4",
-	"logentry-delete-revision": "{{GENDER:$2|Binaliwanna}} ni $1 ti panagkita {{PLURAL:$5|ti rebision|dagiti $5 a rebision}} iti panid ti $3: $4",
+	"logentry-delete-revision": "{{GENDER:$2|Binaliwan}} ni $1 ti panagkita {{PLURAL:$5|ti rebision|dagiti $5 a rebision}} iti panid ti $3: $4",
 	"logentry-delete-event-legacy": "Ni $1 ket {{GENDER:$2|binaliwanna}} ti panagkita ti listaan dagiti pasamak iti $3",
 	"logentry-delete-revision-legacy": "Ni $1 ket {{GENDER:$2|binaliwanna}} ti panagkita dagiti rebision iti panid ti $3",
 	"logentry-suppress-delete": "Ni $1 ket {{GENDER:$2|pinasardengna}} ti panid ti $3",

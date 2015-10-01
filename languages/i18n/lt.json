@@ -1367,6 +1367,8 @@
 	"upload-form-label-infoform-description": "Aprašymas",
 	"upload-form-label-usage-title": "Naudojimas",
 	"upload-form-label-usage-filename": "Failo pavadinimas",
+	"foreign-structured-upload-form-label-own-work": "Tai yra mano darbas",
+	"foreign-structured-upload-form-label-infoform-categories": "Kategorijos",
 	"backend-fail-stream": "Negali būti apdorotas failas $1.",
 	"backend-fail-backup": "Negali būti išsaugotas failas $1.",
 	"backend-fail-notexists": "Failas $1 neegzistuoja.",

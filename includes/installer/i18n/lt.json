@@ -32,6 +32,7 @@
 	"config-page-existingwiki": "Esamas viki",
 	"config-restart": "Taip, paleiskite jį iš naujo",
 	"config-env-php": "PHP $1 yra įdiegtas.",
+	"config-diff3-bad": "GNU diff3 nerastas.",
 	"config-db-type": "Duomenų bazės tipas:",
 	"config-db-host": "Duomenų bazės serveris:",
 	"config-db-name": "Duomenų bazės pavadinimas:",
