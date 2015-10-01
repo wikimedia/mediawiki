@@ -432,7 +432,7 @@
 		relativePath = uri.getRelativePath();
 		assert.ok( relativePath.indexOf( uri.path ) >= 0, 'path in relative path' );
 		assert.ok( relativePath.indexOf( uri.getQueryString() ) >= 0, 'query string in relative path' );
-		assert.ok( relativePath.indexOf( uri.fragment ) >= 0, 'fragement in relative path' );
+		assert.ok( relativePath.indexOf( uri.fragment ) >= 0, 'fragment in relative path' );
 	} );
 
 	QUnit.test( 'Parse a uri with an @ symbol in the path and query', 1, function ( assert ) {
