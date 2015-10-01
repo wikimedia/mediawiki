@@ -511,6 +511,13 @@ class MediaWiki {
 			$expires = time() + $this->config->get( 'DataCenterUpdateStickTTL' );
 			$request->response()->setCookie( 'UseDC', 'master', $expires );
 		}
+
+		// Avoid letting a few seconds of slave lag cause a month of stale data
+		if ( $factory->laggedSlaveUsed() ) {
+			$maxAge = $this->config->get( 'CdnMaxageLagged' );
+			$this->context->getOutput()->lowerCdnMaxage( $maxAge );
+			wfDebugLog( 'replication', "Lagged DB used; CDN cache TTL limited to $maxAge seconds" );
+		}
 	}
 
 	/**
