@@ -455,59 +455,21 @@ class MWDebug {
 	 * @return string HTML fragment
 	 */
 	public static function getHTMLDebugLog() {
-		global $wgDebugTimestamps, $wgShowDebug;
+		global $wgShowDebug;
 
 		if ( !$wgShowDebug ) {
 			return '';
 		}
 
-		$curIdent = 0;
-		$ret = "\n<hr />\n<strong>Debug data:</strong><ul id=\"mw-debug-html\">\n<li>";
+		$ret = "\n<hr />\n<strong>Debug data:</strong><ul id=\"mw-debug-html\">\n";
 
 		foreach ( self::$debug as $line ) {
-			$pre = '';
-			if ( $wgDebugTimestamps ) {
-				$matches = array();
-				if ( preg_match( '/^(\d+\.\d+ {1,3}\d+.\dM\s{2})/', $line, $matches ) ) {
-					$pre = $matches[1];
-					$line = substr( $line, strlen( $pre ) );
-				}
-			}
-			$display = ltrim( $line );
-			$ident = strlen( $line ) - strlen( $display );
-			$diff = $ident - $curIdent;
+			$display = nl2br( htmlspecialchars( trim( $line ) ) );
 
-			$display = $pre . $display;
-			if ( $display == '' ) {
-				$display = "\xc2\xa0";
-			}
-
-			if ( !$ident
-				&& $diff < 0
-				&& substr( $display, 0, 9 ) != 'Entering '
-				&& substr( $display, 0, 8 ) != 'Exiting '
-			) {
-				$ident = $curIdent;
-				$diff = 0;
-				$display = '<span style="background:yellow;">' .
-					nl2br( htmlspecialchars( $display ) ) . '</span>';
-			} else {
-				$display = nl2br( htmlspecialchars( $display ) );
-			}
-
-			if ( $diff < 0 ) {
-				$ret .= str_repeat( "</li></ul>\n", -$diff ) . "</li><li>\n";
-			} elseif ( $diff == 0 ) {
-				$ret .= "</li><li>\n";
-			} else {
-				$ret .= str_repeat( "<ul><li>\n", $diff );
-			}
-			$ret .= "<code>$display</code>\n";
-
-			$curIdent = $ident;
+			$ret .= "<li><code>$display</code></li>\n";
 		}
 
-		$ret .= str_repeat( '</li></ul>', $curIdent ) . "</li>\n</ul>\n";
+		$ret .= '</ul>' . "\n";
 
 		return $ret;
 	}
