@@ -178,6 +178,36 @@ class UserMailer {
 			return Status::newFatal( 'user-mail-no-addy' );
 		}
 
+		// give a chance to UserMailerTransformContents subscribers who need to deal with each
+		// target differently to split up the address list
+		if ( count( $to ) > 1 ) {
+			$oldTo = $to;
+			Hooks::run( 'UserMailerSplitTo', array( &$to ) );
+			if ( $oldTo != $to ) {
+				$splitTo = array_diff( $oldTo, $to );
+				$to = array_diff( $oldTo, $splitTo ); // ignore new addresses added in the hook
+				// first send to non-split address list, then to split addresses one by one
+				$status = Status::newGood();
+				if ( $to ) {
+					$status->merge( UserMailer::send( $to, $from, $subject, $body, $options ) );
+				}
+				foreach ( $splitTo as $newTo ) {
+					$status->merge( UserMailer::send( $newTo, $from, $subject, $body, $options ) );
+				}
+				return $status;
+			}
+		}
+
+		// Allow transformation of content, such as encrypting/signing
+		$error = false;
+		if ( !Hooks::run( 'UserMailerTransformContent', array( $to, $from, &$body, &$error ) ) ) {
+			if ( $error ) {
+				return Status::newFatal( 'php-mail-error', $error );
+			} else {
+				return Status::newFatal( 'php-mail-error-unknown' );
+			}
+		}
+
 		/**
 		 * Forge email headers
 		 * -------------------
