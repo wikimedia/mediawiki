@@ -115,23 +115,17 @@ class UserMailer {
 	 * @return Status
 	 */
 	public static function send( $to, $from, $subject, $body, $options = array() ) {
-		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams, $wgAllowHTMLEmail;
+		global $wgAllowHTMLEmail;
 		$contentType = 'text/plain; charset=UTF-8';
-		$headers = array();
-		if ( is_array( $options ) ) {
-			$replyto = isset( $options['replyTo'] ) ? $options['replyTo'] : null;
-			$contentType = isset( $options['contentType'] ) ? $options['contentType'] : $contentType;
-			$headers = isset( $options['headers'] ) ? $options['headers'] : $headers;
-		} else {
+		if ( !is_array( $options ) ) {
 			// Old calling style
 			wfDeprecated( __METHOD__ . ' with $replyto as 5th parameter', '1.26' );
-			$replyto = $options;
+			$options = array( 'replyTo' => $options );
 			if ( func_num_args() === 6 ) {
-				$contentType = func_get_arg( 5 );
+				$options['contentType'] = func_get_arg( 5 );
 			}
 		}
 
-		$mime = null;
 		if ( !is_array( $to ) ) {
 			$to = array( $to );
 		}
@@ -141,19 +135,9 @@ class UserMailer {
 		// arbitrary but longer than Array or Object to detect casting error
 
 		// body must either be a string or an array with text and body
-		if (
-			!(
-				!is_array( $body ) &&
-				strlen( $body ) >= $minBodyLen
-			)
-			&&
-			!(
-				is_array( $body ) &&
-				isset( $body['text'] ) &&
-				isset( $body['html'] ) &&
-				strlen( $body['text'] ) >= $minBodyLen &&
-				strlen( $body['html'] ) >= $minBodyLen
-			)
+		if ( !( !is_array( $body ) && strlen( $body ) >= $minBodyLen ) &&
+			 !( is_array( $body ) && isset( $body['text'] ) && isset( $body['html'] ) &&
+				strlen( $body['text'] ) >= $minBodyLen && strlen( $body['html'] ) >= $minBodyLen )
 		) {
 			// if it is neither we have a problem
 			return Status::newFatal( 'user-mail-no-body' );
@@ -176,6 +160,63 @@ class UserMailer {
 		}
 		if ( !$has_address ) {
 			return Status::newFatal( 'user-mail-no-addy' );
+		}
+
+		// give a chance to UserMailerTransformContents subscribers who need to deal with each
+		// target differently to split up the address list
+		if ( count( $to ) > 1 ) {
+			$oldTo = $to;
+			Hooks::run( 'UserMailerSplitTo', array( &$to ) );
+			if ( $oldTo != $to ) {
+				$splitTo = array_diff( $oldTo, $to );
+				$to = array_diff( $oldTo, $splitTo ); // ignore new addresses added in the hook
+				// first send to non-split address list, then to split addresses one by one
+				$status = Status::newGood();
+				if ( $to ) {
+					$status->merge( UserMailer::sendInternal( $to, $from, $subject, $body, $options ) );
+				}
+				foreach ( $splitTo as $newTo ) {
+					$status->merge( UserMailer::sendInternal( array( $newTo ), $from, $subject, $body, $options ) );
+				}
+				return $status;
+			}
+		}
+
+		return UserMailer::sendInternal( $to, $from, $subject, $body, $options );
+	}
+
+	/**
+	 * Helper function fo UserMailer::send() which does the actual sending. It expects a $to
+	 * list which the UserMailerSplitTo hook would not split further.
+	 * @param MailAddress[] $to Array of recipients' email addresses
+	 * @param MailAddress $from Sender's email
+	 * @param string $subject Email's subject.
+	 * @param string $body Email's text or Array of two strings to be the text and html bodies
+	 * @param array $options:
+	 * 		'replyTo' MailAddress
+	 * 		'contentType' string default 'text/plain; charset=UTF-8'
+	 * 		'headers' array Extra headers to set
+	 *
+	 * @throws MWException
+	 * @throws Exception
+	 * @return Status
+	 */
+	protected static function sendInternal( array $to, MailAddress $from, $subject, $body, $options = array() ) {
+		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams;
+		$mime = null;
+
+		$replyto = isset( $options['replyTo'] ) ? $options['replyTo'] : null;
+		$contentType = isset( $options['contentType'] ) ? $options['contentType'] : 'text/plain; charset=UTF-8';
+		$headers = isset( $options['headers'] ) ? $options['headers'] : array();
+
+		// Allow transformation of content, such as encrypting/signing
+		$error = false;
+		if ( !Hooks::run( 'UserMailerTransformContent', array( $to, $from, &$body, &$error ) ) ) {
+			if ( $error ) {
+				return Status::newFatal( 'php-mail-error', $error );
+			} else {
+				return Status::newFatal( 'php-mail-error-unknown' );
+			}
 		}
 
 		/**
@@ -274,6 +315,15 @@ class UserMailer {
 			$headers['Content-type'] = ( is_null( $contentType ) ?
 				'text/plain; charset=UTF-8' : $contentType );
 			$headers['Content-transfer-encoding'] = '8bit';
+		}
+
+		// allow transformation of MIME-encoded message
+		if ( !Hooks::run( 'UserMailerTransformMessage', array( $to, $from, &$subject, &$headers, &$body, &$error ) ) ) {
+			if ( $error ) {
+				return Status::newFatal( 'php-mail-error', $error );
+			} else {
+				return Status::newFatal( 'php-mail-error-unknown' );
+			}
 		}
 
 		$ret = Hooks::run( 'AlternateUserMailer', array( $headers, $to, $from, $subject, $body ) );
