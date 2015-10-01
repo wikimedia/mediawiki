@@ -238,8 +238,10 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 	protected function mockDb() {
 		// Cant mock from DatabaseType or DatabaseBase, they dont
 		// have the full gamut of methods
+		// FIXME: the constructor normally sets mAtomicLevels and mSrvCache
 		$databaseMysql = $this->getMockBuilder( 'DatabaseMysql' )
 			->disableOriginalConstructor()
+			->setMethods( array( 'begin', 'commit' ) )
 			->getMock();
 		$databaseMysql->expects( $this->any() )
 			->method( 'isOpen' )
