@@ -197,6 +197,15 @@
 	};
 
 	/**
+	 * Gets details of the current state.
+	 *
+	 * @return {string}
+	 */
+	UP.getStateDetails = function () {
+		return this.stateDetails;
+	};
+
+	/**
 	 * Get the imageinfo object for the finished upload.
 	 * Only available once the upload is finished! Don't try to get it
 	 * beforehand.
@@ -262,8 +271,9 @@
 		} ).then( function ( finishStash ) {
 			upload.state = Upload.State.STASHED;
 			return finishStash;
-		}, function () {
+		}, function ( result ) {
 			upload.state = Upload.State.ERROR;
+			upload.stateDetails = mw.message( 'api-error-' + result );
 		} );
 
 		return this.stashPromise;
