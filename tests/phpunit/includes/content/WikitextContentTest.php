@@ -90,7 +90,11 @@ more stuff
 
 			foreach ( $fieldValues as $field => $value ) {
 				$v = $update->$field; # if the field doesn't exist, just crash and burn
-				$this->assertEquals( $value, $v, "unexpected value for field $field in instance of $class" );
+				$this->assertEquals(
+					$value,
+					$v,
+					"unexpected value for field $field in instance of $class"
+				);
 			}
 		}
 
@@ -208,10 +212,12 @@ just a test"
 
 	public static function dataPreloadTransform() {
 		return array(
-			array( 'hello this is ~~~',
+			array(
+				'hello this is ~~~',
 				"hello this is ~~~",
 			),
-			array( 'hello \'\'this\'\' is <noinclude>foo</noinclude><includeonly>bar</includeonly>',
+			array(
+				'hello \'\'this\'\' is <noinclude>foo</noinclude><includeonly>bar</includeonly>',
 				'hello \'\'this\'\' is bar',
 			),
 		);
@@ -318,7 +324,10 @@ just a test"
 		$this->assertTrue( $content->matchMagicWord( $mw ), "should have matched magic word" );
 
 		$content = $this->newContent( "#REDIRECT [[FOO]]" );
-		$this->assertFalse( $content->matchMagicWord( $mw ), "should not have matched magic word" );
+		$this->assertFalse(
+			$content->matchMagicWord( $mw ),
+			"should not have matched magic word"
+		);
 	}
 
 	/**
@@ -340,7 +349,10 @@ just a test"
 		$this->assertFalse( $content->equals( $newContent ), "content should have changed" );
 		$this->assertTrue( $newContent->isRedirect(), "new content should be a redirect" );
 
-		$this->assertEquals( $target->getFullText(), $newContent->getRedirectTarget()->getFullText() );
+		$this->assertEquals(
+			$target->getFullText(),
+			$newContent->getRedirectTarget()->getFullText()
+		);
 	}
 
 	/**
@@ -394,15 +406,28 @@ just a test"
 		// Test with a redirect page
 		$wikitext = false;
 		$redirectTarget = false;
-		$content = $this->newContent( "#REDIRECT [[TestRedirectParserOption/redir]]\nhello redirect." );
+		$content = $this->newContent(
+			"#REDIRECT [[TestRedirectParserOption/redir]]\nhello redirect."
+		);
 		$options = $content->getContentHandler()->makeParserOptions( 'canonical' );
 		$content->getParserOutput( $title, null, $options );
-		$this->assertEquals( 'hello redirect.', $wikitext, 'Wikitext passed to hook was not as expected' );
-		$this->assertNotEquals( null, $redirectTarget, 'Redirect seen in hook was null' );
-		$this->assertEquals( 'TestRedirectParserOption/redir', $redirectTarget->getFullText(),
+		$this->assertEquals(
+			'hello redirect.',
+			$wikitext,
+			'Wikitext passed to hook was not as expected'
+		);
+		$this->assertNotEquals(
+			null,
+			$redirectTarget,
+			'Redirect seen in hook was null' );
+		$this->assertEquals(
+			'TestRedirectParserOption/redir',
+			$redirectTarget->getFullText(),
 			'Redirect seen in hook was not the expected title'
 		);
-		$this->assertEquals( null, $options->getRedirectTarget(),
+		$this->assertEquals(
+			null,
+			$options->getRedirectTarget(),
 			'ParserOptions\' redirectTarget was changed'
 		);
 	}
