@@ -3292,6 +3292,26 @@ when UserMailer sends an email, with a bounce handling extension.
 $to: Array of MailAddress objects for the recipients
 &$returnPath: The return address string
 
+'UserMailerSplitTo': Called in UserMailer::send() to give extensions a chance
+to split up an email with multiple the To: field into separate emails.
+$to: array of MailAddress objects; unset the ones which should be mailed separately
+
+'UserMailerTransformContent': Called in UserMailer::send() to change email contents.
+Extensions can block sending the email by returning false and setting $error.
+$to: array of MailAdresses of the targets
+$from: MailAddress of the sender
+&$body: email body, either a string (for plaintext emails) or an array with 'text' and 'html' keys
+&$error: should be set to an error message string
+
+'UserMailerTransformMessage': Called in UserMailer::send() to change email after it has gone through
+the MIME transform. Extensions can block sending the email by returning false and setting $error.
+$to: array of MailAdresses of the targets
+$from: MailAddress of the sender
+&$subject: email subject (not MIME encoded)
+&$headers: email headers (except To: and Subject:) as an array of header name => value pairs
+&$body: email body (in MIME format) as a string
+&$error: should be set to an error message string
+
 'UserRemoveGroup': Called when removing a group; return false to override stock
 group removal.
 $user: the user object that is to have a group removed
