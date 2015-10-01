@@ -96,6 +96,12 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	private $mTrxTimestamp = null;
 
+	/** @var float Lag estimate at the time of BEGIN */
+	private $mTrxStartingLag = null;
+
+	/** @var array (Slave lag estimate, UNIX time of estimate) */
+	private $mApproxLag = null;
+
 	/**
 	 * Remembers the function name given for starting the most recent transaction via begin().
 	 * Used to provide additional context for error reporting.
@@ -3496,6 +3502,8 @@ abstract class DatabaseBase implements IDatabase {
 		$this->mTrxPreCommitCallbacks = array();
 		$this->mTrxShortId = wfRandomString( 12 );
 		$this->mTrxWriteDuration = 0.0;
+		// First SELECT here or after will establish the snapshot in REPEATABLE-READ
+		$this->mTrxStartingLag = $this->getLBInfo( 'slave' ) ? $this->getLag() : 0;
 	}
 
 	/**
@@ -3770,6 +3778,51 @@ abstract class DatabaseBase implements IDatabase {
 	public function ping() {
 		# Stub. Not essential to override.
 		return true;
+	}
+
+	public function getSessionLagStatus() {
+		return $this->getTransactionLagStatus() ?: $this->getApproximateLagStatus();
+	}
+
+	/**
+	 * Get a slave lag estimate for this server
+	 *
+	 * @return array ('lag': seconds, 'since': UNIX timestamp of estimate)
+	 * @since 1.27
+	 */
+	protected function getApproximateLagStatus() {
+		$now = microtime( true );
+
+		if ( !$this->getLBInfo( 'slave' ) ) {
+			return array( 'lag' => 0, 'since' => $now );
+		}
+
+		if ( $this->mApproxLag && ( $now - $this->mApproxLag['since'] ) > 1 ) {
+			$this->mApproxLag = null;
+		}
+
+		if ( !$this->mApproxLag ) {
+			$this->mApproxLag = array( 'lag' => $this->getLag(), 'since' => $now );
+		}
+
+		return $this->mApproxLag;
+	}
+
+	/**
+	 * Get the slave lag when the current transaction started
+	 *
+	 * This is useful when transactions might use snapshot isolation
+	 * (e.g. REPEATABLE-READ in innodb), so the "real" lag of that data
+	 * is this lag plus transaction duration. If they don't, it is still
+	 * safe to be pessimistic. This returns null if there is no transaction.
+	 *
+	 * @return array|null ('lag': seconds, 'since': UNIX timestamp of BEGIN)
+	 * @since 1.27
+	 */
+	protected function getTransactionLagStatus() {
+		return $this->mTrxLevel
+			? array( 'lag' => $this->mTrxStartingLag, 'since' => $this->trxTimestamp() )
+			: null;
 	}
 
 	/**

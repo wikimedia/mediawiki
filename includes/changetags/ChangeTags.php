@@ -1090,7 +1090,9 @@ class ChangeTags {
 	public static function listExtensionActivatedTags() {
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'active-tags' ),
-			function() {
+			function ( $oldValue, &$ttl, array &$setOpts ) {
+				$setOpts += wfGetDB( DB_SLAVE )->getSessionLagStatus();
+
 				// Ask extensions which tags they consider active
 				$extensionActive = array();
 				Hooks::run( 'ChangeTagsListActive', array( &$extensionActive ) );
@@ -1130,10 +1132,12 @@ class ChangeTags {
 
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'valid-tags-db' ),
-			function() use ( $fname ) {
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
 				$dbr = wfGetDB( DB_SLAVE );
-				$tags = $dbr->selectFieldValues(
-					'valid_tag', 'vt_tag', array(), $fname );
+
+				$setOpts += $dbr->getSessionLagStatus();
+
+				$tags = $dbr->selectFieldValues( 'valid_tag', 'vt_tag', array(), $fname );
 
 				return array_filter( array_unique( $tags ) );
 			},
@@ -1155,7 +1159,9 @@ class ChangeTags {
 	public static function listExtensionDefinedTags() {
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'valid-tags-hook' ),
-			function() {
+			function ( $oldValue, &$ttl, array &$setOpts ) {
+				$setOpts += wfGetDB( DB_SLAVE )->getSessionLagStatus();
+
 				$tags = array();
 				Hooks::run( 'ListDefinedTags', array( &$tags ) );
 				return array_filter( array_unique( $tags ) );
@@ -1212,10 +1218,11 @@ class ChangeTags {
 		$fname = __METHOD__;
 		$cachedStats = ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'change-tag-statistics' ),
-			function() use ( $fname ) {
-				$out = array();
-
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
 				$dbr = wfGetDB( DB_SLAVE, 'vslow' );
+
+				$setOpts += $dbr->getSessionLagStatus();
+
 				$res = $dbr->select(
 					'change_tag',
 					array( 'ct_tag', 'hitcount' => 'count(*)' ),
@@ -1224,6 +1231,7 @@ class ChangeTags {
 					array( 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' )
 				);
 
+				$out = array();
 				foreach ( $res as $row ) {
 					$out[$row->ct_tag] = $row->hitcount;
 				}
