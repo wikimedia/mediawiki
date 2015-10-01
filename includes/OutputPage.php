@@ -1949,6 +1949,16 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Lower the value of the "s-maxage" part of the "Cache-control" HTTP header
+	 *
+	 * @param int $maxage Maximum cache time on the Squid, in seconds
+	 * @since 1.27
+	 */
+	public function lowerCdnMaxage( $maxage ) {
+		$this->mSquidMaxage = min( $this->mSquidMaxage, $maxage );
+	}
+
+	/**
 	 * Use enableClientCache(false) to force it to send nocache headers
 	 *
 	 * @param bool $state

@@ -202,7 +202,7 @@ abstract class LBFactory {
 	}
 
 	/**
-	 * Detemine if any master connection has pending changes.
+	 * Detemine if any master connection has pending changes
 	 * @since 1.23
 	 * @return bool
 	 */
@@ -211,6 +211,21 @@ abstract class LBFactory {
 		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$ret ) {
 			$ret = $ret || $lb->hasMasterChanges();
 		} );
+
+		return $ret;
+	}
+
+	/**
+	 * Detemine if any lagged slave connection was used
+	 * @since 1.27
+	 * @return bool
+	 */
+	public function laggedSlaveUsed() {
+		$ret = false;
+		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$ret ) {
+			$ret = $ret || $lb->laggedSlaveUsed();
+		} );
+
 		return $ret;
 	}
 }
