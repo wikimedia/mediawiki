@@ -469,12 +469,11 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isRedirect() {
-		$content = $this->getContent();
-		if ( !$content ) {
-			return false;
+		if ( !$this->mDataLoaded ) {
+			$this->loadPageData();
 		}
 
-		return $content->isRedirect();
+		return (bool)$this->mIsRedirect;
 	}
 
 	/**
