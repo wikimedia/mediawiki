@@ -276,7 +276,8 @@
 			 */
 			parse: function ( str, options ) {
 				var q, matches,
-					uri = this;
+					uri = this,
+					hasOwn = Object.prototype.hasOwnProperty;
 
 				// Apply parser regex and set all properties based on the result
 				matches = parser[ options.strictMode ? 'strict' : 'loose' ].exec( str );
@@ -298,7 +299,7 @@
 
 							// If overrideKeys, always (re)set top level value.
 							// If not overrideKeys but this key wasn't set before, then we set it as well.
-							if ( options.overrideKeys || q[ k ] === undefined ) {
+							if ( options.overrideKeys || !hasOwn.call( q, k ) ) {
 								q[ k ] = v;
 
 							// Use arrays if overrideKeys is false and key was already seen before
