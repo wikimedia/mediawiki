@@ -1551,6 +1551,7 @@ return array(
 	'mediawiki.page.watch.ajax' => array(
 		'scripts' => 'resources/src/mediawiki/page/watch.js',
 		'dependencies' => array(
+			'mediawiki.page.startup',
 			'mediawiki.api.watch',
 			'mediawiki.notify',
 			'mediawiki.util',
