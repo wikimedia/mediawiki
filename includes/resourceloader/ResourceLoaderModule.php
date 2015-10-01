@@ -619,11 +619,11 @@ abstract class ResourceLoaderModule {
 								foreach ( $style as $cssText ) {
 									if ( is_string( $cssText ) ) {
 										$stylePairs[$media][] =
-											$rl->filter( 'minify-css', $cssText );
+											ResourceLoader::filter( 'minify-css', $cssText );
 									}
 								}
 							} elseif ( is_string( $style ) ) {
-								$stylePairs[$media] = $rl->filter( 'minify-css', $style );
+								$stylePairs[$media] = ResourceLoader::filter( 'minify-css', $style );
 							}
 						}
 					}

@@ -87,6 +87,9 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	private $logger;
 
+	/** @var string JavaScript / CSS pragma to disable minification. **/
+	const FILTER_NOMIN = ' /* @nomin */ ';
+
 	/**
 	 * Load information stored in the database about modules.
 	 *
@@ -185,74 +188,52 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *  - (bool) cacheReport: Whether to include the "cache key" report comment. Default: false.
 	 * @return string Filtered data, or a comment containing an error message
 	 */
-	public function filter( $filter, $data, $options = array() ) {
+	public static function filter( $filter, $data, $options = array() ) {
+		if ( strpos( $data, ResourceLoader::FILTER_NOMIN ) !== false ) {
+			return $data;
+		}
+
 		// Back-compat
-		if ( is_bool( $options ) ) {
-			$options = array( 'cacheReport' => $options );
-		}
-		// Defaults
+		$options = is_array( $options ) ? $options : array();
 		$options += array( 'cache' => true, 'cacheReport' => false );
-		$stats = RequestContext::getMain()->getStats();
-
-		// Don't filter empty content
-		if ( trim( $data ) === '' ) {
-			return $data;
-		}
-
-		if ( !in_array( $filter, array( 'minify-js', 'minify-css' ) ) ) {
-			$this->logger->warning( 'Invalid filter {filter}', array(
-				'filter' => $filter
-			) );
-			return $data;
-		}
 
 		if ( !$options['cache'] ) {
-			$result = self::applyFilter( $filter, $data, $this->config );
+			return self::applyFilter( $filter, $data );
+		}
+
+		$stats = RequestContext::getMain()->getStats();
+		$cache = ObjectCache::newAccelerator( CACHE_ANYTHING );
+
+		$key = wfGlobalCacheKey(
+			'resourceloader',
+			'filter',
+			$filter,
+			self::$filterCacheVersion, md5( $data )
+		);
+
+		$result = $cache->get( $key );
+		if ( !$result ) {
+			$stats->increment( "resourceloader_cache.$filter.miss" );
+			$result = self::applyFilter( $filter, $data );
+			$cache->set( $key, $result, 24 * 3600 );
 		} else {
-			$key = wfGlobalCacheKey(
-				'resourceloader',
-				'filter',
-				$filter,
-				self::$filterCacheVersion, md5( $data )
-			);
-			$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
-			$cacheEntry = $cache->get( $key );
-			if ( is_string( $cacheEntry ) ) {
-				$stats->increment( "resourceloader_cache.$filter.hit" );
-				return $cacheEntry;
-			}
-			$result = '';
-			try {
-				$statStart = microtime( true );
-				$result = self::applyFilter( $filter, $data, $this->config );
-				$statTiming = microtime( true ) - $statStart;
-				$stats->increment( "resourceloader_cache.$filter.miss" );
-				$stats->timing( "resourceloader_cache.$filter.timing", 1000 * $statTiming );
-				if ( $options['cacheReport'] ) {
-					$result .= "\n/* cache key: $key */";
-				}
-				// Set a TTL since HHVM's APC doesn't have any limitation or eviction logic.
-				$cache->set( $key, $result, 24 * 3600 );
-			} catch ( Exception $e ) {
-				MWExceptionHandler::logException( $e );
-				$this->logger->warning( 'Minification failed: {exception}', array(
-					'exception' => $e
-				) );
-				$this->errors[] = self::formatExceptionNoComment( $e );
-			}
+			$stats->increment( "resourceloader_cache.$filter.hit" );
 		}
 
 		return $result;
 	}
 
-	private static function applyFilter( $filter, $data, Config $config ) {
-		switch ( $filter ) {
-			case 'minify-js':
-				return JavaScriptMinifier::minify( $data );
-			case 'minify-css':
-				return CSSMin::minify( $data );
+	private static function applyFilter( $filter, $data ) {
+		$data = trim( $data );
+		if ( $data ) {
+			try {
+				$data = ( $filter === 'minify-css' )
+					? CSSMin::minify( $data )
+					: JavaScriptMinifier::minify( $data );
+			} catch ( Exception $e ) {
+				MWExceptionHandler::logException( $e );
+			}
 		}
-
 		return $data;
 	}
 
@@ -1040,11 +1021,7 @@ MESSAGE;
 				}
 
 				if ( !$context->getDebug() ) {
-					// Don't cache private modules. This is especially important in the case
-					// of modules which change every time they are built, like the embedded
-					// user.tokens module (bug T84960).
-					$filterOptions = array( 'cache' => ( $module->getGroup() !== 'private' ) );
-					$strContent = $this->filter( $filter, $strContent, $filterOptions );
+					$strContent = self::filter( $filter, $strContent );
 				}
 
 				$out .= $strContent;
@@ -1077,7 +1054,7 @@ MESSAGE;
 			if ( count( $states ) ) {
 				$stateScript = self::makeLoaderStateScript( $states );
 				if ( !$context->getDebug() ) {
-					$stateScript = $this->filter( 'minify-js', $stateScript );
+					$stateScript = self::filter( 'minify-js', $stateScript );
 				}
 				$out .= $stateScript;
 			}
@@ -1118,8 +1095,7 @@ MESSAGE;
 				// Minify manually because the general makeModuleResponse() minification won't be
 				// effective here due to the script being a string instead of a function. (T107377)
 				if ( !ResourceLoader::inDebugMode() ) {
-					$scripts = self::applyFilter( 'minify-js', $scripts,
-						ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
+					$scripts = self::filter( 'minify-js', $scripts );
 				}
 			} else {
 				$scripts = new XmlJsCode( "function ( $, jQuery ) {\n{$scripts}\n}" );
@@ -1416,13 +1392,11 @@ MESSAGE;
 	 * @return string
 	 */
 	public static function makeConfigSetScript( array $configuration ) {
-		if ( ResourceLoader::inDebugMode() ) {
-			return Xml::encodeJsCall( 'mw.config.set', array( $configuration ), true );
-		}
-
-		$config = RequestContext::getMain()->getConfig();
-		$js = Xml::encodeJsCall( 'mw.config.set', array( $configuration ), false );
-		return self::applyFilter( 'minify-js', $js, $config );
+		return Xml::encodeJsCall(
+			'mw.config.set',
+			array( $configuration ),
+			ResourceLoader::inDebugMode()
+		) . ResourceLoader::FILTER_NOMIN;
 	}
 
 	/**
