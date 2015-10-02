@@ -863,7 +863,7 @@
 			 * @param {Function} [callback]
 			 */
 			function addEmbeddedCSS( cssText, callback ) {
-				var $style, styleEl;
+				var $style, styleEl, newCssText;
 
 				function fireCallbacks() {
 					var oldCallbacks = cssCallbacks;
@@ -936,7 +936,9 @@
 								// write, dropping @media queries from the CSS text. If we read it and used its
 								// value, we would accidentally apply @media-specific styles to all media. (T108727)
 								if ( document.documentMode === 9 ) {
-									styleEl.styleSheet.cssText = $style.data( 'ResourceLoaderDynamicStyleTag' ) + cssText;
+									newCssText = $style.data( 'ResourceLoaderDynamicStyleTag' ) + cssText;
+									styleEl.styleSheet.cssText = newCssText;
+									$style.data( 'ResourceLoaderDynamicStyleTag', newCssText );
 								} else {
 									styleEl.styleSheet.cssText += cssText;
 								}
