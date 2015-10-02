@@ -43,12 +43,14 @@ interface LoadMonitor {
 	public function scaleLoads( &$loads, $group = false, $wiki = false );
 
 	/**
-	 * Return an estimate of replication lag for each server
+	 * Get an estimate of replication lag (in seconds) for each server
+	 *
+	 * Values may be "false" if replication is too broken to estimate
 	 *
 	 * @param array $serverIndexes
 	 * @param string $wiki
 	 *
-	 * @return array Map of (server index => seconds)
+	 * @return array Map of (server index => float|int|bool)
 	 */
 	public function getLagTimes( $serverIndexes, $wiki );
 
