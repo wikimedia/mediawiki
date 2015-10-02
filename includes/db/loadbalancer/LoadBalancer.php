@@ -1221,12 +1221,14 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Get lag time for each server
+	 * Get an estimate of replication lag (in seconds) for each server
 	 *
 	 * Results are cached for a short time in memcached/process cache
 	 *
+	 * Values may be "false" if replication is too broken to estimate
+	 *
 	 * @param string|bool $wiki
-	 * @return int[] Map of (server index => seconds)
+	 * @return int[] Map of (server index => float|int|bool)
 	 */
 	public function getLagTimes( $wiki = false ) {
 		if ( $this->getServerCount() <= 1 ) {
