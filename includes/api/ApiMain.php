@@ -1001,9 +1001,12 @@ class ApiMain extends ApiBase {
 	 * @return bool True on success, false should exit immediately
 	 */
 	protected function checkMaxLag( $module, $params ) {
-		if ( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
-			// Check for maxlag
-			$maxLag = $params['maxlag'];
+		$maxLag = isset( $params['maxlag'] ) ? $params['maxlag'] : 0;
+		if ( $module->shouldCheckMaxlag()
+			&& $module->isWriteMode()
+			&& ( $this->getUser()->isAllowed( 'bot' ) || $maxLag )
+		) {
+			$maxLag = min( $maxLag, $this->getConfig()->get( 'APIMaxLagThreshold' ) );
 			list( $host, $lag ) = wfGetLB()->getMaxLag();
 			if ( $lag > $maxLag ) {
 				$response = $this->getRequest()->response();

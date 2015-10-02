@@ -471,7 +471,6 @@ class MediaWiki {
 	 */
 	public function run() {
 		try {
-			$this->checkMaxLag();
 			try {
 				$this->main();
 			} catch ( ErrorPageError $e ) {
@@ -552,33 +551,6 @@ class MediaWiki {
 
 			$callback();
 		}
-	}
-
-	/**
-	 * Checks if the request should abort due to a lagged server,
-	 * for given maxlag parameter.
-	 * @return bool
-	 */
-	private function checkMaxLag() {
-		$maxLag = $this->context->getRequest()->getVal( 'maxlag' );
-		if ( !is_null( $maxLag ) ) {
-			list( $host, $lag ) = wfGetLB()->getMaxLag();
-			if ( $lag > $maxLag ) {
-				$resp = $this->context->getRequest()->response();
-				$resp->statusHeader( 503 );
-				$resp->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
-				$resp->header( 'X-Database-Lag: ' . intval( $lag ) );
-				$resp->header( 'Content-Type: text/plain' );
-				if ( $this->config->get( 'ShowHostnames' ) ) {
-					echo "Waiting for $host: $lag seconds lagged\n";
-				} else {
-					echo "Waiting for a database server: $lag seconds lagged\n";
-				}
-
-				exit;
-			}
-		}
-		return true;
 	}
 
 	private function main() {
