@@ -604,10 +604,6 @@ class ApiQuery extends ApiBase {
 		return implode( "\n", $moduleDescriptions );
 	}
 
-	public function shouldCheckMaxlag() {
-		return true;
-	}
-
 	protected function getExamplesMessages() {
 		return array(
 			'action=query&prop=revisions&meta=siteinfo&' .
