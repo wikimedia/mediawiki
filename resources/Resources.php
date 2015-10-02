@@ -1220,6 +1220,7 @@ return array(
 		'dependencies' => array(
 			'oojs-ui',
 			'mediawiki.Upload',
+			'mediawiki.jqueryMsg',
 		),
 		'messages' => array(
 			'upload-process-error',
@@ -1230,6 +1231,12 @@ return array(
 			'upload-form-label-infoform-description',
 			'upload-form-label-usage-title',
 			'upload-form-label-usage-filename',
+			'fileexists',
+			'filepageexists',
+			'filename-bad-prefix',
+			'filename-thumb-name',
+			'badfilename',
+			'api-error-duplicate-archive',
 		),
 	),
 	'mediawiki.ForeignStructuredUpload.BookletLayout' => array(
