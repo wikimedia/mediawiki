@@ -215,7 +215,7 @@ class ResourceLoader implements LoggerAwareInterface {
 				$filter,
 				self::$filterCacheVersion, md5( $data )
 			);
-			$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
+			$cache = ObjectCache::getInstance( 'resourceloader' );
 			$cacheEntry = $cache->get( $key );
 			if ( is_string( $cacheEntry ) ) {
 				$stats->increment( "resourceloader_cache.$filter.hit" );
