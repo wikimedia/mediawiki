@@ -1002,7 +1002,6 @@ class ApiMain extends ApiBase {
 	 */
 	protected function checkMaxLag( $module, $params ) {
 		if ( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
-			// Check for maxlag
 			$maxLag = $params['maxlag'];
 			list( $host, $lag ) = wfGetLB()->getMaxLag();
 			if ( $lag > $maxLag ) {
@@ -1016,6 +1015,20 @@ class ApiMain extends ApiBase {
 				}
 
 				$this->dieUsage( "Waiting for a database server: $lag seconds lagged", 'maxlag' );
+			}
+		}
+
+		if ( $module->isWriteMode() && $this->getUser()->isAllowed( 'bot' ) ) {
+			list( $host, $lag ) = wfGetLB()->getMaxLag();
+			if ( $lag > $this->getConfig()->get( 'APIMaxLagThreshold' ) ) {
+				$parsed = $this->parseMsg( array( 'readonlytext' ) );
+				$this->dieUsage(
+					$parsed['info'],
+					$parsed['code'],
+					/* http error */
+					0,
+					array( 'readonlyreason' => "Waiting for database $host: $lag seconds lagged" )
+				);
 			}
 		}
 

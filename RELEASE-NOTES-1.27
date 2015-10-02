@@ -19,6 +19,8 @@ production.
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
   basic configuration settings needed for multi-datacenter setups.
   $wgDataCenterUpdateStickTTL was also added.
+* $wgAPIMaxLagThreshold was added to limit bot changes when databases lag
+  becomes too high.
 
 ==== External libraries ====
 
