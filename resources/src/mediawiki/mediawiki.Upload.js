@@ -55,7 +55,7 @@
 		this.comment = '';
 		this.filename = null;
 		this.file = null;
-		this.state = Upload.State.NEW;
+		this.setState( Upload.State.NEW );
 
 		this.imageinfo = undefined;
 	}
@@ -188,12 +188,29 @@
 	};
 
 	/**
+	 * Sets the state and state details (if any) of the upload.
+	 */
+	UP.setState = function ( state, stateDetails ) {
+		this.state = state;
+		this.stateDetails = stateDetails;
+	};
+
+	/**
 	 * Gets the state of the upload.
 	 *
 	 * @return {mw.Upload.State}
 	 */
 	UP.getState = function () {
 		return this.state;
+	};
+
+	/**
+	 * Gets details of the current state.
+	 *
+	 * @return {string}
+	 */
+	UP.getStateDetails = function () {
+		return this.stateDetails;
 	};
 
 	/**
@@ -223,7 +240,7 @@
 			return $.Deferred().reject( 'No filename set. Call setFilename to add one.' );
 		}
 
-		this.state = Upload.State.UPLOADING;
+		this.setState( Upload.State.UPLOADING );
 
 		return this.api.upload( this.getFile(), {
 			watchlist: ( this.getWatchlist() ) ? 1 : undefined,
@@ -231,11 +248,11 @@
 			filename: this.getFilename(),
 			text: this.getText()
 		} ).then( function ( result ) {
-			upload.state = Upload.State.UPLOADED;
+			upload.setState( Upload.State.UPLOADED );
 			upload.imageinfo = result.upload.imageinfo;
 			return result;
 		}, function () {
-			upload.state = Upload.State.ERROR;
+			upload.setState( Upload.State.ERROR );
 		} );
 	};
 
@@ -255,15 +272,15 @@
 			this.setFilenameFromFile();
 		}
 
-		this.state = Upload.State.UPLOADING;
+		this.setState( Upload.State.UPLOADING );
 
 		this.stashPromise = this.api.uploadToStash( this.getFile(), {
 			filename: this.getFilename()
 		} ).then( function ( finishStash ) {
-			upload.state = Upload.State.STASHED;
+			upload.setState( Upload.State.STASHED );
 			return finishStash;
-		}, function () {
-			upload.state = Upload.State.ERROR;
+		}, function ( result ) {
+			upload.setState( Upload.State.ERROR, mw.message( 'api-error-' + result ) );
 		} );
 
 		return this.stashPromise;
@@ -282,7 +299,7 @@
 		}
 
 		return this.stashPromise.then( function ( finishStash ) {
-			upload.state = Upload.State.UPLOADING;
+			upload.setState( Upload.State.UPLOADING );
 
 			return finishStash( {
 				watchlist: ( upload.getWatchlist() ) ? 1 : undefined,
@@ -290,11 +307,11 @@
 				filename: upload.getFilename(),
 				text: upload.getText()
 			} ).then( function ( result ) {
-				upload.state = Upload.State.UPLOADED;
+				upload.setState( Upload.State.UPLOADED );
 				upload.imageinfo = result.upload.imageinfo;
 				return result;
 			}, function () {
-				upload.state = Upload.State.ERROR;
+				upload.setState( Upload.State.ERROR );
 			} );
 		} );
 	};
