@@ -1564,6 +1564,7 @@
 	"upload-options": "Caption above a section of the [[Special:Upload]] page",
 	"watchthisupload": "In [[Special:Upload]]",
 	"filewasdeleted": "This warning is shown when trying to upload a file that does not exist, but has previously been deleted.\n\nParameters:\n* $1 - a link to the deletion log, with the text from {{msg-mw|deletionlog}}",
+	"filename-thumb-name": "Appears when thumbnail title is similar to \"22px-Example.jpg\" - the prefix is what MW adds when downloading pictures as thumbnails.",
 	"filename-bad-prefix": "Used as warning in [[Special:Upload]]. Parameters:\n* $1 - prefix\nSee also:\n* {{msg-mw|fileexists}}\n* {{msg-mw|filepageexists}}\n* {{msg-mw|fileexists-extension}}\n* {{msg-mw|fileexists-thumbnail-yes}}\n* {{msg-mw|file-thumbnail-no}}\n* {{msg-mw|filewasdeleted}}",
 	"filename-prefix-blacklist": "{{optional}}\nDo not translate the file name prefixes before the hash mark (#). Leave all the wiki markup, including the spaces, as is. You can translate the text, including 'Leave this line exactly as it is'. The first line of this messages has one (1) leading space.",
 	"upload-success-subj": "Used as message subject which is posted on the user talk page.\n\nSee also:\n* {{msg-mw|upload-success-subj|subject}}\n* {{msg-mw|upload-success-msg|message}}\n* {{msg-mw|upload-failure-subj|subject}}\n* {{msg-mw|upload-failure-msg|message}}",

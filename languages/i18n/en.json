@@ -1391,6 +1391,7 @@
 	"upload-options": "Upload options",
 	"watchthisupload": "Watch this file",
 	"filewasdeleted": "A file of this name has been previously uploaded and subsequently deleted.\nYou should check the $1 before proceeding to upload it again.",
+	"filename-thumb-name": "This looks like a thumbnail title. Please do not upload thumbnails back to the same wiki. Otherwise, please fix the filename so it is more meaningful, and does not have the thumbnail prefix.",
 	"filename-bad-prefix": "The name of the file you are uploading begins with <strong>\"$1\"</strong>, which is a non-descriptive name typically assigned automatically by digital cameras.\nPlease choose a more descriptive name for your file.",
 	"filename-prefix-blacklist": " #<!-- leave this line exactly as it is --> <pre>\n# Syntax is as follows:\n#   * Everything from a \"#\" character to the end of the line is a comment\n#   * Every non-blank line is a prefix for typical filenames assigned automatically by digital cameras\nCIMG # Casio\nDSC_ # Nikon\nDSCF # Fuji\nDSCN # Nikon\nDUW # some mobile phones\nIMG # generic\nJD # Jenoptik\nMGP # Pentax\nPICT # misc.\n #</pre> <!-- leave this line exactly as it is -->",
 	"upload-success-subj": "Successful upload",
