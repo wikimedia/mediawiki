@@ -185,14 +185,24 @@ class ObjectCache {
 	 * This will look for any APC style server-local cache.
 	 * A fallback cache can be specified if none is found.
 	 *
-	 * @param array $params [optional]
+	 *     // Direct calls
+	 *     ObjectCache::newAccelerator( $fallbackType );
+	 *
+	 *     // From $wgObjectCaches via newFromParams()
+	 *     ObjectCache::newAccelerator( array( 'fallback' => $fallbackType ) );
+	 *
+	 * @param array $params [optional] Array key 'fallback' for $fallback.
 	 * @param int|string $fallback Fallback cache, e.g. (CACHE_NONE, "hash") (since 1.24)
 	 * @return BagOStuff
 	 * @throws MWException
 	 */
 	public static function newAccelerator( $params = array(), $fallback = null ) {
-		if ( !is_array( $params ) && $fallback === null ) {
-			$fallback = $params;
+		if ( $fallback === null ) {
+			if ( isset( $params['fallback'] ) ) {
+				$fallback = $params['fallback'];
+			} elseif ( !is_array( $params ) ) {
+				$fallback = $params;
+			}
 		}
 		if ( function_exists( 'apc_fetch' ) ) {
 			$id = 'apc';
