@@ -539,7 +539,7 @@
 	"resetpass-expired": "A jelszavad lejárt. Adjál meg egy új jelszót a bejelentkezéshez!",
 	"resetpass-expired-soft": "A jelszavad lejárt, ezért újat kell beállítanod. Válassz most egy új jelszót, vagy kattints a {{int:resetpass-submit-cancel}} gombra, ha később akarod csak beállítani.",
 	"resetpass-validity-soft": "Adj meg egy új jelszót most, vagy kattints a \"{{int:resetpass-submit-cancel}}\" gombra, ha később akarod megadni.",
-	"passwordreset": "Jelszó törlése",
+	"passwordreset": "Jelszó visszaállítása",
 	"passwordreset-text-one": "A jelszó átmeneti beállításához töltsd ki az űrlapot.",
 	"passwordreset-text-many": "{{PLURAL:$1|Az átmeneti jelszó elküldéséhez töltsd ki az alábbi mezők egyikét.}}",
 	"passwordreset-disabled": "Új jelszó kérése nem engedélyezett ezen a wikin.",

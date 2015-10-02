@@ -70,7 +70,7 @@
 	"apihelp-query+allpages-param-prefix": "Pesquisa para todos os títulos de páginas que comecem com este valor.",
 	"apihelp-query+allpages-example-generator": "Mostrar informação sobre 4 páginas que comecem com a letra <kbd>T</kbd>.",
 	"apihelp-query+allusers-example-Y": "Lista de utilizadores que comecem com <kbd>Y</kbd>.",
-	"apihelp-query+backlinks-example-simple": "Mostrar links para <kbd>Main page</kbd>.",
+	"apihelp-query+backlinks-example-simple": "Mostrar ligações para <kbd>Main page</kbd>.",
 	"apihelp-query+backlinks-example-generator": "Obtenha informações sobre as páginas de ligação para <kbd>Main page</kbd>.",
 	"apihelp-query+blocks-param-limit": "O número máximo de bloqueios a listar.",
 	"apihelp-query+categorymembers-description": "Lista de todas as páginas numa categoria fornecida.",

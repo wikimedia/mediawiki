@@ -940,7 +940,7 @@
 	"editusergroup": "Хийца декъашхочун бакъо",
 	"editinguser": "Хийца декъашхочуьна бакъо '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 	"userrights-editusergroup": "Хийца декъашхочун бакъо",
-	"saveusergroups": "Декъашхочун бакъонаш ӏалашян",
+	"saveusergroups": "Декъашхочун бакъонаш Ӏалашъян",
 	"userrights-groupsmember": "Декъашхо:",
 	"userrights-groupsmember-auto": "Бакъонашан тоба:",
 	"userrights-groups-help": "Хьона хийца ло декъашхочун бакъонаш.\n* Бакъона цӀера юххехь билгало елахь, цуна и бакъо йолуш ю.\n* Билгало яцахь — декъашхочун и бакъо яц.\n* Знако * билгала до ахьа бакъо еллачул тӀаьхьа хьона и дӀаяккха цалуш хилар.",

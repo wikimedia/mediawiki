@@ -530,7 +530,7 @@
 	"passwordreset-emailsent": "Eng Mail fir d'Passwuert zréckzesetze gouf geschéckt.",
 	"passwordreset-emailsent-capture": "Eng Mail fir d'Passwuert zréckzesetze gouf geschéckt, Dir gesitt se hei drënner.",
 	"passwordreset-emailerror-capture": "Eng Mail fir d'Passwuert zréckzesetze gouf geschéckt, Dir gesitt se hei drënner, awer de {{GENDER:$2|Benotzer}} konnt se net kréien: $1",
-	"changeemail": "Mailadress änneren",
+	"changeemail": "E-Mail-Adress änneren oder ewechhuelen",
 	"changeemail-text": "Fëllt dëse Formulaire aus fir Är Mailadress z'änneren. Dir musst Äert Passwuert aginn fir dës Ännerung ze confirméieren.",
 	"changeemail-no-info": "Dir musst ageloggt sinn, fir direkt op dës Säit ze kommen.",
 	"changeemail-oldemail": "Aktuell Mailadress:",

@@ -65,7 +65,8 @@
 			"Hindustanilanguage",
 			"राम प्रसाद जोशी",
 			"ShrUtiable",
-			"Matma Rex"
+			"Matma Rex",
+			"Angpradesh"
 		]
 	},
 	"tog-underline": "कड़ियाँ अधोरेखन:",
@@ -2306,7 +2307,7 @@
 	"tooltip-pt-logout": "सत्रांत",
 	"tooltip-pt-createaccount": "हमारा सुझाव है की आप खाता बनाएँ और लॉगिन करें, परन्तु यह अनिवार्य नहीं है",
 	"tooltip-ca-talk": "सामग्री पृष्ठ के बारे में वार्तालाप",
-	"tooltip-ca-edit": "आप यह पृष्ठ बदल सकते हैं।\nकृपया बदलाव संजोने से पहले झलक देखें।",
+	"tooltip-ca-edit": "यह पृष्ठ संपादित करें",
 	"tooltip-ca-addsection": "नया विभाग आरम्भ करें",
 	"tooltip-ca-viewsource": "यह पृष्ठ रक्षित हैं। आप इसका स्रोत देख सकते हैं।",
 	"tooltip-ca-history": "इस पृष्ठ के पुराने अवतरण",
@@ -2342,7 +2343,7 @@
 	"tooltip-ca-nstab-main": "सामग्री वाला पृष्ठ देखें",
 	"tooltip-ca-nstab-user": "सदस्य पृष्ठ देखें",
 	"tooltip-ca-nstab-media": "मीडिया पृष्ठ देखें",
-	"tooltip-ca-nstab-special": "यह एक खास पृष्ठ है, आप इसे बदल नहीं सकतें हैं",
+	"tooltip-ca-nstab-special": "यह एक खास पृष्ठ है, इसका संपादन नहीं किया जा सकता",
 	"tooltip-ca-nstab-project": "प्रोजेक्ट पृष्ठ देखियें",
 	"tooltip-ca-nstab-image": "संचिका का पृष्ठ देखें",
 	"tooltip-ca-nstab-mediawiki": "प्रणाली सन्देश देखें",

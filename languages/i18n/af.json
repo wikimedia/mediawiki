@@ -307,6 +307,7 @@
 	"nstab-template": "Sjabloon",
 	"nstab-help": "Hulpblad",
 	"nstab-category": "Kategorie",
+	"mainpage-nstab": "Voorblad",
 	"nosuchaction": "Ongeldige aksie",
 	"nosuchactiontext": "Die opdrag in die URL is ongeldig.\nU het moontlik 'n tikfout gemaak of 'n ongeldige skakel gevolg.\nDit kan ook dui op 'n fout in die sagteware van {{SITENAME}}.",
 	"nosuchspecialpage": "Ongeldige spesiale bladsy",

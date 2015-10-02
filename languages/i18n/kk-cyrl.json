@@ -3128,7 +3128,7 @@
 	"htmlform-float-invalid": "Сіз көрсеткен мән сан емес.",
 	"htmlform-int-toolow": "Сіз көрсеткен мәні $1 минимум мәнінен кіші.",
 	"htmlform-int-toohigh": "Сіз көрсеткен мәні $1 минимум мәнінен үлкен.",
-	"htmlform-required": "Бұл мән міндетті",
+	"htmlform-required": "Бұл мән міндетті.",
 	"htmlform-submit": "Жіберу",
 	"htmlform-reset": "Өзгерістерді болдырмау",
 	"htmlform-selectorother-other": "Басқа",

@@ -601,7 +601,7 @@
 	"passwordreset-emailtext-ip": "有人（可能是您，来自IP地址$1）请求重设{{SITENAME}}（$4）上相关账户的密码。以下$3个账户与该电子邮件地址关联：\n\n$2\n\n这个临时密码将会在{{PLURAL:$5|一天|$5天}}后过期。请立即登录并设置新的密码。如果请求是其他人发出的，或者您已回忆起您的旧密码并不再需要更改，您可以忽略本条消息并继续使用原密码。",
 	"passwordreset-emailtext-user": "用户$1请求重设{{SITENAME}}（$4）上您的账户的密码。{{PLURAL:$3|以下账户|此账户}}与该电子邮件地址关联：\n\n$2\n\n这个临时密码将会在{{PLURAL:$5|一天|$5天}}后过期。请立即登录并设置新的密码。如果请求是其他人发出的，或者您已回忆起您的旧密码并不再需要更改，您可以忽略本条消息并继续使用原密码。",
 	"passwordreset-emailelement": "用户名：\n$1\n\n临时密码：\n$2",
-	"passwordreset-emailsent": "密码重置邮件已发送。",
+	"passwordreset-emailsent": "如果您的账户有一个已注册的电子邮件地址的话，将发送一封密码重置邮件。",
 	"passwordreset-emailsent-capture": "密码重设电子邮件已发送，并在下面显示。",
 	"passwordreset-emailerror-capture": "重置密码邮件已生成，但是无法向{{GENDER:$2|下列用户}} 发送：$1",
 	"changeemail": "更改或移除电子邮件地址",

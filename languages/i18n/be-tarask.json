@@ -1227,6 +1227,7 @@
 	"recentchangeslinked-to": "Замест гэтага паказваць зьмены на старонках, што спасылаюцца на гэтую старонку",
 	"recentchanges-page-added-to-category": "[[:$1]] дададзеная да катэгорыі",
 	"recentchanges-page-added-to-category-bundled": "[[:$1]] і яшчэ {{PLURAL:$2|$2 старонка была дададзеная|$2 старонкі былі дададзеныя|$2 старонак былі дададзеныя}} да катэгорыі",
+	"recentchanges-page-removed-from-category": "[[:$1]] выдаленая з катэгорыі",
 	"upload": "Загрузіць файл",
 	"uploadbtn": "Загрузіць файл",
 	"reuploaddesc": "Скасаваць загрузку і вярнуцца да формы загрузкі",

@@ -377,6 +377,7 @@
 	"apihelp-query+duplicatefiles-example-generated": "Leta efter kopior av alla filer.",
 	"apihelp-query+embeddedin-param-dir": "Riktningen att lista mot.",
 	"apihelp-query+embeddedin-param-limit": "Hur många sidor att returnera totalt.",
+	"apihelp-query+extlinks-example-simple": "Hämta en lista över externa länkar på <kbd>Main Page</kbd>.",
 	"apihelp-query+filearchive-param-dir": "Riktningen att lista mot.",
 	"apihelp-query+filearchive-paramvalue-prop-timestamp": "Lägger till tidsstämpel för den uppladdade versionen.",
 	"apihelp-query+filearchive-paramvalue-prop-user": "Lägger till användaren som laddade upp bildversionen.",
