@@ -224,4 +224,26 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 
 	}
 
+	public function getVersion() {
+		$client = new MultiHttpClient( array() );
+		$resp = $client->run( array(
+			'method' => 'GET',
+			// the query to get the parsoid version
+			'url' => $this->params['url'] . '_version'
+		) );
+
+		// if there wasn't a valid response, return the default value
+		if ( $resp['code'] !== 200 || $resp['error'] !== '' ) {
+			return parent::getVersion();
+		}
+		// transform the body into an object
+		$respObj = json_decode( $resp['body'] );
+		// if there was an error, return the default
+		if ( $respObj === null ) {
+			return parent::getVersion();
+		}
+
+		return $respObj->version;
+	}
+
 }
