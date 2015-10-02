@@ -19,6 +19,7 @@ use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceContainer;
 use MediaWiki\Services\NoSuchServiceException;
+use MediaWiki\Services\VirtualRESTServiceFactory;
 use MWException;
 use MimeAnalyzer;
 use ObjectCache;
@@ -35,6 +36,7 @@ use SkinFactory;
 use TitleFormatter;
 use TitleParser;
 use VirtualRESTServiceClient;
+use VirtualRESTService;
 use MediaWiki\Interwiki\InterwikiLookup;
 
 /**
@@ -655,6 +657,30 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getVirtualRESTServiceClient() {
 		return $this->getService( 'VirtualRESTServiceClient' );
+	}
+
+	/**
+	 * @since 1.29
+	 * @return VirtualRESTServiceFactory
+	 */
+	public function getVirtualRESTServiceFactory() {
+		return $this->getService( 'VirtualRESTServiceFactory' );
+	}
+
+	/**
+	 * @since 1.29
+	 * @return VirtualRESTService
+	 */
+	public function getParsoidVirtualRESTService() {
+		return $this->getService( 'ParsoidVirtualRESTService' );
+	}
+
+	/**
+	 * @since 1.29
+	 * @return VirtualRESTService
+	 */
+	public function getRestbaseVirtualRESTService() {
+		return $this->getService( 'RestbaseVirtualRESTService' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

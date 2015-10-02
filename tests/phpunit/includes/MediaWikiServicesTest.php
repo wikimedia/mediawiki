@@ -328,7 +328,12 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'MainObjectStash' => [ 'MainObjectStash', BagOStuff::class ],
 			'MainWANObjectCache' => [ 'MainWANObjectCache', WANObjectCache::class ],
 			'LocalServerObjectCache' => [ 'LocalServerObjectCache', BagOStuff::class ],
-			'VirtualRESTServiceClient' => [ 'VirtualRESTServiceClient', VirtualRESTServiceClient::class ]
+			'VirtualRESTServiceClient' => [ 'VirtualRESTServiceClient',
+				VirtualRESTServiceClient::class ],
+			'ParsoidVirtualRESTService' => [ 'ParsoidVirtualRESTService',
+				\VirtualRESTService::class ],
+			'RestbaseVirtualRESTService' => [ 'RestbaseVirtualRESTService',
+				\VirtualRESTService::class ]
 		];
 	}
 

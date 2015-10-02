@@ -354,6 +354,18 @@ return [
 		return $vrsClient;
 	},
 
+	'VirtualRESTServiceFactory' => function( MediaWikiServices $services ) {
+		return new \MediaWiki\Services\VirtualRESTServiceFactory( $services->getMainConfig() );
+	},
+
+	'ParsoidVirtualRESTService' => function( MediaWikiServices $services ) {
+		return $services->getVirtualRESTServiceFactory()->makeService( 'parsoid' );
+	},
+
+	'RestbaseVirtualRESTService' => function( MediaWikiServices $services ) {
+		return $services->getVirtualRESTServiceFactory()->makeService( 'restbase' );
+	},
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call
