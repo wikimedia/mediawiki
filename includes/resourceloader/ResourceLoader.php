@@ -199,7 +199,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 
 		$stats = RequestContext::getMain()->getStats();
-		$cache = ObjectCache::newAccelerator( CACHE_ANYTHING );
+		$cache = ObjectCache::getInstance( 'resourceloader' );
 
 		$key = wfGlobalCacheKey(
 			'resourceloader',

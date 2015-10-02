@@ -2189,6 +2189,7 @@ $wgObjectCaches = array(
 	'memcached-php' => array( 'class' => 'MemcachedPhpBagOStuff', 'loggroup' => 'memcached' ),
 	'memcached-pecl' => array( 'class' => 'MemcachedPeclBagOStuff', 'loggroup' => 'memcached' ),
 	'hash' => array( 'class' => 'HashBagOStuff' ),
+	'resourceloader' => array( 'factory' => 'ObjectCache::newAnything' ),
 );
 
 /**
