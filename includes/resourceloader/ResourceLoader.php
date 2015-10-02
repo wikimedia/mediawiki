@@ -122,7 +122,9 @@ class ResourceLoader implements LoggerAwareInterface {
 		foreach ( $res as $row ) {
 			$module = $this->getModule( $row->md_module );
 			if ( $module ) {
-				$module->setFileDependencies( $context, FormatJson::decode( $row->md_deps, true ) );
+				$module->setFileDependencies( $context, ResourceLoader::expandRelativePaths(
+					FormatJson::decode( $row->md_deps, true )
+				) );
 				$modulesWithDeps[] = $row->md_module;
 			}
 		}
