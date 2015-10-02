@@ -5247,6 +5247,13 @@ $wgRateLimits = array(
 		'user' => null,
 		'newbie' => null,
 	),
+	'purge' => array( // purging pages
+		'anon' => null,
+		'user' => null,
+		'newbie' => null,
+		'ip' => null,
+		'subnet' => null,
+	),
 );
 
 /**

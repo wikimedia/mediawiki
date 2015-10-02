@@ -355,7 +355,7 @@
 	"viewsource": "View source",
 	"viewsource-title": "View source for $1",
 	"actionthrottled": "Action throttled",
-	"actionthrottledtext": "As an anti-spam measure, you are limited from performing this action too many times in a short space of time, and you have exceeded this limit.\nPlease try again in a few minutes.",
+	"actionthrottledtext": "As an anti-abuse measure, you are limited from performing this action too many times in a short space of time, and you have exceeded this limit.\nPlease try again in a few minutes.",
 	"protectedpagetext": "This page has been protected to prevent editing or other actions.",
 	"viewsourcetext": "You can view and copy the source of this page.",
 	"viewyourtext": "You can view and copy the source of <strong>your edits</strong> to this page.",

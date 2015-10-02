@@ -58,7 +58,14 @@ class PurgeAction extends FormAction {
 		// This will throw exceptions if there's a problem
 		$this->checkCanExecute( $this->getUser() );
 
-		if ( $this->getUser()->isAllowed( 'purge' ) ) {
+		$user = $this->getUser();
+
+		if ( $user->pingLimiter( 'purge' ) ) {
+			// TODO: Display actionthrottledtext
+			return;
+		}
+
+		if ( $user->isAllowed( 'purge' ) ) {
 			$this->redirectParams = wfArrayToCgi( array_diff_key(
 				$this->getRequest()->getQueryValues(),
 				array( 'title' => null, 'action' => null )
