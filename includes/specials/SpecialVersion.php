@@ -223,6 +223,9 @@ class SpecialVersion extends SpecialPage {
 		}
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerInfo();
 
+		// publish parsoid version info, if configured
+		self::addParsoidVersion( $software );
+
 		if ( IcuCollation::getICUVersion() ) {
 			$software['[http://site.icu-project.org/ ICU]'] = IcuCollation::getICUVersion();
 		}
@@ -249,6 +252,18 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		return $out . Xml::closeElement( 'table' );
+	}
+
+	private static function addParsoidVersion( &$software ) {
+		$vrsObject = \MediaWiki\MediaWikiServices::getInstance()->getParsoidVirtualRESTService();
+		if ( $vrsObject === null ) {
+			return;
+		}
+		$version = $vrsObject->getVersion();
+
+		if ( $version ) {
+			$software['[https://www.mediawiki.org/wiki/Parsoid Parsoid]'] = $version;
+		}
 	}
 
 	/**

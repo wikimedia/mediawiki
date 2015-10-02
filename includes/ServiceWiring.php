@@ -354,6 +354,32 @@ return [
 		return $vrsClient;
 	},
 
+	'VirtualRESTServiceFactory' => function( MediaWikiServices $services ) {
+		return new \MediaWiki\Services\VirtualRESTServiceFactory( $services->getMainConfig() );
+	},
+
+	'ParsoidVirtualRESTService' => function( MediaWikiServices $services ) {
+		$config = $services->getMainConfig()->get( 'VirtualRestConfig' );
+		if ( isset( $config['modules'] ) && isset( $config['modules']['parsoid'] ) ) {
+			$params = $config['modules']['parsoid'];
+			$params['restbaseCompat'] = true;
+		} else {
+			return null;
+		}
+		return $services->getVirtualRESTServiceFactory()->makeService( 'parsoid', $params );
+	},
+
+	'RestbaseVirtualRESTService' => function( MediaWikiServices $services ) {
+		$config = $services->getMainConfig()->get( 'VirtualRestConfig' );
+		if ( isset( $config['modules'] ) && isset( $config['modules']['restbase'] ) ) {
+			$params = $config['modules']['restbase'];
+			$params['parsoidCompat'] = false;
+		} else {
+			return null;
+		}
+		return $services->getVirtualRESTServiceFactory()->makeService( 'restbase', $params );
+	},
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call

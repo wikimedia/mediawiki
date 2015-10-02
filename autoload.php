@@ -889,6 +889,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Services\\ServiceAlreadyDefinedException' => __DIR__ . '/includes/services/ServiceAlreadyDefinedException.php',
 	'MediaWiki\\Services\\ServiceContainer' => __DIR__ . '/includes/services/ServiceContainer.php',
 	'MediaWiki\\Services\\ServiceDisabledException' => __DIR__ . '/includes/services/ServiceDisabledException.php',
+	'MediaWiki\\Services\\VirtualRESTServiceFactory' => __DIR__ . '/includes/services/VirtualRESTServiceFactory.php',
 	'MediaWiki\\Session\\BotPasswordSessionProvider' => __DIR__ . '/includes/session/BotPasswordSessionProvider.php',
 	'MediaWiki\\Session\\CookieSessionProvider' => __DIR__ . '/includes/session/CookieSessionProvider.php',
 	'MediaWiki\\Session\\ImmutableSessionProviderWithCookie' => __DIR__ . '/includes/session/ImmutableSessionProviderWithCookie.php',
