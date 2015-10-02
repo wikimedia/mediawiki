@@ -881,7 +881,7 @@ abstract class ResourceLoaderModule {
 				self::$parseCacheVersion,
 				md5( $contents )
 			);
-			$cache = wfGetCache( CACHE_ANYTHING );
+			$cache = ObjectCache::getInstance( 'resourceloader' );
 			$cacheEntry = $cache->get( $key );
 			if ( is_string( $cacheEntry ) ) {
 				return $cacheEntry;
