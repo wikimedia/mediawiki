@@ -10,11 +10,13 @@ var
 	// Use a separate cache when match highlighting is enabled
 	matchTextCache = {};
 
+// Due to <https://github.com/jscs-dev/jscs-jsdoc/issues/136>
+// jscs:disable jsDoc
 /**
  * Automatically truncate the plain text contents of an element and add an ellipsis
  *
  * @param {Object} options
- * @param {'center'|'left'|'right'} [options.position='center'] Where to remove text.
+ * @param {'left'|'center'|'right'} [options.position='center'] Where to remove text.
  * @param {boolean} [options.tooltip=false] Whether to show a tooltip with the remainder
  * of the text.
  * @param {boolean} [options.restoreText=false] Whether to save the text for restoring
@@ -159,6 +161,7 @@ $.fn.autoEllipsis = function ( options ) {
 
 	} );
 };
+// jscs:enable jsDoc
 
 /**
  * @class jQuery

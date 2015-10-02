@@ -170,7 +170,7 @@
 		 * Generate and print one more reports. When invoked with no arguments,
 		 * print all reports.
 		 *
-		 * @param {string...} [reports] Report names to run, or unset to print
+		 * @param {...string} [reports] Report names to run, or unset to print
 		 *  all available reports.
 		 */
 		runReports: function () {

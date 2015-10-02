@@ -22,7 +22,7 @@
 	 * messages to that, instead of the console.
 	 *
 	 * @member mw.log
-	 * @param {string...} msg Messages to output to console.
+	 * @param {...string} msg Messages to output to console.
 	 */
 	mw.log = function () {
 		// Turn arguments into an array
