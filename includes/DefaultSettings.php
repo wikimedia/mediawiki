@@ -2200,10 +2200,12 @@ $wgObjectCaches = array(
 	CACHE_NONE => array( 'class' => 'EmptyBagOStuff' ),
 	CACHE_DB => array( 'class' => 'SqlBagOStuff', 'loggroup' => 'SQLBagOStuff' ),
 
+	// Canonical aliases
 	CACHE_ANYTHING => array( 'factory' => 'ObjectCache::newAnything' ),
 	CACHE_ACCEL => array( 'factory' => 'ObjectCache::newAccelerator' ),
 	CACHE_MEMCACHED => array( 'factory' => 'ObjectCache::newMemcached', 'loggroup' => 'memcached' ),
 
+	// Actual bags
 	'db-replicated' => array(
 		'class'       => 'ReplicatedBagOStuff',
 		'readFactory' => array(
@@ -2216,13 +2218,18 @@ $wgObjectCaches = array(
 		),
 		'loggroup'  => 'SQLBagOStuff'
 	),
-
 	'apc' => array( 'class' => 'APCBagOStuff' ),
 	'xcache' => array( 'class' => 'XCacheBagOStuff' ),
 	'wincache' => array( 'class' => 'WinCacheBagOStuff' ),
 	'memcached-php' => array( 'class' => 'MemcachedPhpBagOStuff', 'loggroup' => 'memcached' ),
 	'memcached-pecl' => array( 'class' => 'MemcachedPeclBagOStuff', 'loggroup' => 'memcached' ),
 	'hash' => array( 'class' => 'HashBagOStuff' ),
+
+	// Aliases to bags for specific MediaWiki components
+	'resourceloader' => array(
+		'factory' => 'ObjectCache::newAccelerator',
+		'fallback' => CACHE_ANYTHING,
+	),
 );
 
 /**
