@@ -365,7 +365,7 @@ class RecompressTracked {
 		if ( $current == $end || $this->numBatches >= $this->reportingInterval ) {
 			$this->numBatches = 0;
 			$this->info( "$label: $current / $end" );
-			$this->waitForSlaves();
+			wfWaitForSlaves();
 		}
 	}
 
@@ -463,7 +463,7 @@ class RecompressTracked {
 				case 'quit':
 					return;
 			}
-			$this->waitForSlaves();
+			wfWaitForSlaves();
 		}
 	}
 
@@ -530,7 +530,7 @@ class RecompressTracked {
 					$this->debug( "$titleText: committing blob with " . $trx->getSize() . " items" );
 					$trx->commit();
 					$trx = new CgzCopyTransaction( $this, $this->pageBlobClass );
-					$this->waitForSlaves();
+					wfWaitForSlaves();
 				}
 			}
 			$startId = $row->bt_text_id;
@@ -613,7 +613,7 @@ class RecompressTracked {
 			foreach ( $res as $row ) {
 				$this->moveTextRow( $row->bt_text_id, $row->bt_new_url );
 				if ( $row->bt_text_id % 10 == 0 ) {
-					$this->waitForSlaves();
+					wfWaitForSlaves();
 				}
 			}
 			$startId = $row->bt_text_id;
@@ -681,25 +681,11 @@ class RecompressTracked {
 				$this->debug( "[orphan]: committing blob with " . $trx->getSize() . " rows" );
 				$trx->commit();
 				$trx = new CgzCopyTransaction( $this, $this->orphanBlobClass );
-				$this->waitForSlaves();
+				wfWaitForSlaves();
 			}
 		}
 		$this->debug( "[orphan]: committing blob with " . $trx->getSize() . " rows" );
 		$trx->commit();
-	}
-
-	/**
-	 * Wait for slaves (quietly)
-	 */
-	function waitForSlaves() {
-		$lb = wfGetLB();
-		while ( true ) {
-			list( $host, $maxLag ) = $lb->getMaxLag();
-			if ( $maxLag < 2 ) {
-				break;
-			}
-			sleep( 5 );
-		}
 	}
 }
 
