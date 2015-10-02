@@ -1002,7 +1002,6 @@ class ApiMain extends ApiBase {
 	 */
 	protected function checkMaxLag( $module, $params ) {
 		if ( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
-			// Check for maxlag
 			$maxLag = $params['maxlag'];
 			list( $host, $lag ) = wfGetLB()->getMaxLag();
 			if ( $lag > $maxLag ) {
@@ -1148,6 +1147,7 @@ class ApiMain extends ApiBase {
 		) {
 			$this->dieUsageMsg( 'readrequired' );
 		}
+
 		if ( $module->isWriteMode() ) {
 			if ( !$this->mEnableWrite ) {
 				$this->dieUsageMsg( 'writedisabled' );
@@ -1155,15 +1155,35 @@ class ApiMain extends ApiBase {
 			if ( !$user->isAllowed( 'writeapi' ) ) {
 				$this->dieUsageMsg( 'writerequired' );
 			}
-			if ( wfReadOnly() ) {
-				$this->dieReadOnly();
-			}
+			$this->checkReadOnly( $module );
 		}
 
 		// Allow extensions to stop execution for arbitrary reasons.
 		$message = false;
 		if ( !Hooks::run( 'ApiCheckCanExecute', array( $module, $user, &$message ) ) ) {
 			$this->dieUsageMsg( $message );
+		}
+	}
+
+	/**
+	 * Check if the DB is read-only for this user
+	 * @param ApiBase $module An Api module
+	 */
+	protected function checkReadOnly( $module ) {
+		if ( wfReadOnly() ) {
+			$this->dieReadOnly();
+		} elseif ( $module->isWriteMode() && $this->getUser()->isAllowed( 'bot' ) ) {
+			list( $host, $lag ) = wfGetLB()->getMaxLag();
+			if ( $lag > $this->getConfig()->get( 'APIMaxLagThreshold' ) ) {
+				$parsed = $this->parseMsg( array( 'readonlytext' ) );
+				$this->dieUsage(
+					$parsed['info'],
+					$parsed['code'],
+					/* http error */
+					0,
+					array( 'readonlyreason' => "Waiting for database $host: $lag seconds lagged" )
+				);
+			}
 		}
 	}
 

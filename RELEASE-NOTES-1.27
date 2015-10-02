@@ -32,6 +32,8 @@ production.
 * $wgCdnMaxageLagged was added, which limits the CDN cache TTL
   when any load balancer uses a DB that is lagged beyond the 'max lag'
   setting in the relevant section of $wgLBFactoryConf.
+* $wgAPIMaxLagThreshold was added to limit bot changes when databases lag
+  becomes too high.
 
 ==== External libraries ====
 
