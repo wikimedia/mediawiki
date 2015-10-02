@@ -1002,7 +1002,6 @@ class ApiMain extends ApiBase {
 	 */
 	protected function checkMaxLag( $module, $params ) {
 		if ( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
-			// Check for maxlag
 			$maxLag = $params['maxlag'];
 			list( $host, $lag ) = wfGetLB()->getMaxLag();
 			if ( $lag > $maxLag ) {
@@ -1148,26 +1147,62 @@ class ApiMain extends ApiBase {
 		) {
 			$this->dieUsageMsg( 'readrequired' );
 		}
+
 		if ( $module->isWriteMode() ) {
 			if ( !$this->mEnableWrite ) {
 				$this->dieUsageMsg( 'writedisabled' );
 			} elseif ( !$user->isAllowed( 'writeapi' ) ) {
 				$this->dieUsageMsg( 'writerequired' );
-			} elseif ( wfReadOnly() ) {
-				$this->dieReadOnly();
-			}
-			if ( $this->getRequest()->getHeader( 'Promise-Non-Write-API-Action' ) ) {
+			} elseif ( $this->getRequest()->getHeader( 'Promise-Non-Write-API-Action' ) ) {
 				$this->dieUsage(
 					"Promise-Non-Write-API-Action HTTP header cannot be sent to write API modules",
 					'promised-nonwrite-api'
 				);
 			}
+
+			$this->checkReadOnly( $module );
 		}
 
 		// Allow extensions to stop execution for arbitrary reasons.
 		$message = false;
 		if ( !Hooks::run( 'ApiCheckCanExecute', array( $module, $user, &$message ) ) ) {
 			$this->dieUsageMsg( $message );
+		}
+	}
+
+	/**
+	 * Check if the DB is read-only for this user
+	 * @param ApiBase $module An Api module
+	 */
+	protected function checkReadOnly( $module ) {
+		if ( wfReadOnly() ) {
+			$this->dieReadOnly();
+		}
+
+		if ( $module->isWriteMode()
+			&& in_array( 'bot', $this->getUser()->getGroups() )
+			&& wfGetLB()->getServerCount() > 1
+		) {
+			// Figure out how many servers have passed the lag threshold
+			$numLagged = 0;
+			$lagLimit = $this->getConfig()->get( 'APIMaxLagThreshold' );
+			foreach ( wfGetLB()->getLagTimes() as $lag ) {
+				if ( $lag > $lagLimit ) {
+					++$numLagged;
+				}
+			}
+			// If a majority of slaves are too lagged then disallow writes
+			$slaveCount = wfGetLB()->getServerCount() - 1;
+			if ( $numLagged >= ceil( $slaveCount / 2 ) ) {
+				$parsed = $this->parseMsg( array( 'readonlytext' ) );
+				$this->dieUsage(
+					$parsed['info'],
+					$parsed['code'],
+					/* http error */
+					0,
+					array( 'readonlyreason' => "Waiting for $numLagged lagged database(s)" )
+				);
+			}
 		}
 	}
 
