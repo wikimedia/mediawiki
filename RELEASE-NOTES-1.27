@@ -63,6 +63,8 @@ production.
   setting in the relevant section of $wgLBFactoryConf.
 * User::newSystemUser() may be used to simplify the creation of passwordless
   "system" users for logged actions from scripts and extensions.
+* $wgAPIMaxLagThreshold was added to limit bot changes when databases lag
+  becomes too high.
 
 ==== External libraries ====
 
