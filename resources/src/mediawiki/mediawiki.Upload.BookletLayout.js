@@ -232,23 +232,9 @@
 		this.upload.setFilename( this.getFilename() );
 		this.upload.setText( this.getText() );
 
-		this.uploadPromise.always( function () {
-			layout.upload.finishStashUpload().always( function () {
+		this.uploadPromise.then( function () {
+			layout.upload.finishStashUpload().then( function () {
 				var name;
-
-				if ( layout.upload.getState() === mw.Upload.State.ERROR ) {
-					deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-error' ), {
-						recoverable: false
-					} ) );
-					return false;
-				}
-
-				if ( layout.upload.getState() === mw.Upload.State.WARNING ) {
-					deferred.reject( new OO.ui.Error( mw.msg( 'upload-process-warning' ), {
-						recoverable: false
-					} ) );
-					return false;
-				}
 
 				// Normalize page name and localise the 'File:' prefix
 				name = new mw.Title( 'File:' + layout.upload.getFilename() ).toString();
@@ -257,6 +243,42 @@
 
 				deferred.resolve();
 				layout.emit( 'fileSaved' );
+			}, function () {
+				var stateDetails = layout.upload.getStateDetails();
+				console.log( stateDetails );
+
+				if ( layout.upload.getState() === mw.Upload.State.ERROR ) {
+					deferred.reject( new OO.ui.Error( stateDetails, {
+						recoverable: false
+					} ) );
+					return false;
+				}
+
+				if ( layout.upload.getState() === mw.Upload.State.WARNING ) {
+					if ( stateDetails.exists !== undefined ) {
+						deferred.reject( new OO.ui.Error(
+							$( '<p>' ).html(
+								mw.message( 'filepageexists', stateDetails.exists ).parse()
+							)
+						) );
+					}
+
+					if ( stateDetails.duplicate !== undefined ) {
+						deferred.reject( new OO.ui.Error(
+							$( '<p>' ).html(
+								mw.message( 'fileexists', stateDetails.duplicate[ 0 ] ).parse()
+							)
+						) );
+					}
+
+					// Change the name if the current name isn't acceptable
+					if ( stateDetails.badfilename !== undefined ) {
+						layout.filenameWidget.setValue( stateDetails.badfilename );
+						deferred.reject( new OO.ui.Error( 'Changing name to ' + stateDetails.badfilename ) );
+					}
+
+					return false;
+				}
 			} );
 		} );
 

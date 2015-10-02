@@ -310,7 +310,20 @@
 				upload.setState( Upload.State.UPLOADED );
 				upload.imageinfo = result.upload.imageinfo;
 				return result;
-			}, function () {
+			}, function ( result ) {
+				// Errors are strings that can be used to get error message
+				if ( typeof result === 'string' ) {
+					upload.setState( Upload.State.ERROR, mw.message( 'api-error-' + result ) );
+					return;
+				}
+
+				// Warnings come in the form of objects
+				if ( $.isPlainObject( result ) ) {
+					upload.setState( Upload.State.WARNING, result );
+					return;
+				}
+
+				// Throw an empty error if we can't figure it out
 				upload.setState( Upload.State.ERROR );
 			} );
 		} );
