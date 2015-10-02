@@ -67,6 +67,8 @@ production.
 * Extensions can now return detailed error information via the API when
   preventing user actions using 'getUserPermissionsErrors' and similar hooks
   by using ApiMessage instances instead of strings for the $result value.
+* $wgAPIMaxLagThreshold was added to limit bot changes when databases lag
+  becomes too high.
 
 ==== External libraries ====
 
