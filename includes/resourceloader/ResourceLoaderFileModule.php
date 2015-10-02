@@ -960,11 +960,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string CSS source
 	 */
 	protected function compileLessFile( $fileName, ResourceLoaderContext $context ) {
-		static $cache;
 
-		if ( !$cache ) {
-			$cache = ObjectCache::newAccelerator( CACHE_ANYTHING );
-		}
+		$cache = ObjectCache::getInstance( 'resourceloader' );
 
 		// Construct a cache key from the LESS file name and a hash digest
 		// of the LESS variables used for compilation.
