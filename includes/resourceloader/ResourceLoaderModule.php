@@ -475,7 +475,7 @@ abstract class ResourceLoaderModule {
 	 * @param array $filePaths
 	 * @return array
 	 */
-	protected static function expandRelativePaths( Array $filePaths ) {
+	public static function expandRelativePaths( Array $filePaths ) {
 		global $IP;
 		return array_map( function ( $path ) use ( $IP ) {
 			return RelPath\joinPath( $IP, $path );
