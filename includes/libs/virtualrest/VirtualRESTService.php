@@ -115,4 +115,17 @@ abstract class VirtualRESTService {
 	public function onResponses( array $reqs, Closure $idGeneratorFunc ) {
 		return $reqs;
 	}
+
+	/**
+	 * Returns the currently used version of the underlying RESTService used by this
+	 * object.
+	 *
+	 * This method returns either 'null', if the RESTService doesn't support a version
+	 * numbering that could be returned, otherwise a version string.
+	 *
+	 * @return string|null
+	 */
+	public function getVersion() {
+		return null;
+	}
 }

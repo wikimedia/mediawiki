@@ -229,6 +229,9 @@ class SpecialVersion extends SpecialPage {
 		}
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerInfo();
 
+		// publish parsoid version info, if configured
+		self::addParsoidVersion( $software );
+
 		if ( IcuCollation::getICUVersion() ) {
 			$software['[http://site.icu-project.org/ ICU]'] = IcuCollation::getICUVersion();
 		}
@@ -255,6 +258,35 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		return $out . Xml::closeElement( 'table' );
+	}
+
+	private static function addParsoidVersion( &$software ) {
+		$context = RequestContext::getMain();
+		$vrc = $context->getConfig()->get( 'VirtualRestConfig' );
+		if ( !isset( $vrc['modules']['parsoid'] ) ) {
+			return;
+		}
+		$params = $vrc['modules']['parsoid'];
+		$params['restbaseCompat'] = true;
+
+		// merge the global and service-specific params
+		if ( isset( $vrc['global'] ) ) {
+			$params = array_merge( $vrc['global'], $params );
+		}
+		// set up cookie forwarding
+		if ( $params['forwardCookies'] && !User::isEveryoneAllowed( 'read' ) ) {
+			$params['forwardCookies'] = $context->getRequest()->getHeader( 'Cookie' );
+		} else {
+			$params['forwardCookies'] = false;
+		}
+
+		// build the RESTService object and the client to execute a query against the virtual /parsoid/ path
+		$pvrs = new ParsoidVirtualRESTService( $params );
+		$version = $pvrs->getVersion();
+
+		if ( $version ) {
+			$software['[https://www.mediawiki.org/wiki/Parsoid Parsoid]'] = $version;
+		}
 	}
 
 	/**
