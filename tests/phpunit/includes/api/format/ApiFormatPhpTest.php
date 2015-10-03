@@ -136,7 +136,8 @@ class ApiFormatPhpTest extends ApiFormatTestBase {
 		} catch ( UsageException $ex ) {
 			ob_end_clean();
 			$this->assertSame(
-				'This response cannot be represented using format=php. See https://phabricator.wikimedia.org/T68776',
+				'This response cannot be represented using format=php. ' .
+					'See https://phabricator.wikimedia.org/T68776',
 				$ex->getMessage(),
 				'Expected exception'
 			);
