@@ -307,12 +307,24 @@ class ApiModuleManagerTest extends MediaWikiTestCase {
 		$moduleManager->addModules( $fooModules, 'foo' );
 		$moduleManager->addModules( $barModules, 'bar' );
 
-		$this->assertEquals( 'ApiLogin', $moduleManager->getClassName( 'login' ) );
-		$this->assertEquals( 'ApiLogout', $moduleManager->getClassName( 'logout' ) );
-		$this->assertEquals( 'ApiFeedContributions', $moduleManager->getClassName( 'feedcontributions' ) );
-		$this->assertEquals( 'ApiFeedRecentChanges', $moduleManager->getClassName( 'feedrecentchanges' ) );
-		$this->assertFalse( $moduleManager->getClassName( 'nonexistentmodule' ) );
+		$this->assertEquals(
+			'ApiLogin',
+			$moduleManager->getClassName( 'login' )
+		);
+		$this->assertEquals(
+			'ApiLogout',
+			$moduleManager->getClassName( 'logout' )
+		);
+		$this->assertEquals(
+			'ApiFeedContributions',
+			$moduleManager->getClassName( 'feedcontributions' )
+		);
+		$this->assertEquals(
+			'ApiFeedRecentChanges',
+			$moduleManager->getClassName( 'feedrecentchanges' )
+		);
+		$this->assertFalse(
+			$moduleManager->getClassName( 'nonexistentmodule' )
+		);
 	}
-
-
 }

@@ -44,8 +44,14 @@ class ApiFormatJsonTest extends ApiFormatTestBase {
 				array( array( array( 1, ApiResult::META_TYPE => 'assoc' ) ), '[{"0":1}]' ),
 				array( array( array( 'x' => 1, ApiResult::META_TYPE => 'array' ) ), '[[1]]' ),
 				array( array( array( 'x' => 1, ApiResult::META_TYPE => 'kvp' ) ), '[{"x":1}]' ),
-				array( array( array( 'x' => 1, ApiResult::META_TYPE => 'BCkvp', ApiResult::META_KVP_KEY_NAME => 'key' ) ),
-					'[[{"key":"x","*":1}]]' ),
+				array(
+					array( array(
+						'x' => 1,
+						ApiResult::META_TYPE => 'BCkvp',
+						ApiResult::META_KVP_KEY_NAME => 'key'
+					) ),
+					'[[{"key":"x","*":1}]]'
+				),
 				array( array( array( 'x' => 1, ApiResult::META_TYPE => 'BCarray' ) ), '[{"x":1}]' ),
 				array( array( array( 'a', 'b', ApiResult::META_TYPE => 'BCassoc' ) ), '[["a","b"]]' ),
 
@@ -85,10 +91,23 @@ class ApiFormatJsonTest extends ApiFormatTestBase {
 				array( array( array( 1, ApiResult::META_TYPE => 'assoc' ) ), '[{"0":1}]' ),
 				array( array( array( 'x' => 1, ApiResult::META_TYPE => 'array' ) ), '[[1]]' ),
 				array( array( array( 'x' => 1, ApiResult::META_TYPE => 'kvp' ) ), '[{"x":1}]' ),
-				array( array( array( 'x' => 1, ApiResult::META_TYPE => 'BCkvp', ApiResult::META_KVP_KEY_NAME => 'key' ) ),
-					'[{"x":1}]' ),
+				array(
+					array( array(
+						'x' => 1,
+						ApiResult::META_TYPE => 'BCkvp',
+						ApiResult::META_KVP_KEY_NAME => 'key'
+					) ),
+					'[{"x":1}]'
+				),
 				array( array( array( 'x' => 1, ApiResult::META_TYPE => 'BCarray' ) ), '[[1]]' ),
-				array( array( array( 'a', 'b', ApiResult::META_TYPE => 'BCassoc' ) ), '[{"0":"a","1":"b"}]' ),
+				array(
+					array( array(
+						'a',
+						'b',
+						ApiResult::META_TYPE => 'BCassoc'
+					) ),
+					'[{"0":"a","1":"b"}]'
+				),
 
 				// Content
 				array( array( 'content' => 'foo', ApiResult::META_CONTENT => 'content' ),

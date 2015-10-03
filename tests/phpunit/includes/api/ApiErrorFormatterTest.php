@@ -130,13 +130,21 @@ class ApiErrorFormatterTest extends MediaWikiTestCase {
 				array(
 					'errors' => array(
 						'err' => array(
-							array( 'code' => 'mainpage', 'message' => 'mainpage', 'params' => array( $I => 'param' ) ),
+							array(
+								'code' => 'mainpage',
+								'message' => 'mainpage',
+								'params' => array( $I => 'param' )
+							),
 							$I => 'error',
 						),
 					),
 					'warnings' => array(
 						'string' => array(
-							array( 'code' => 'mainpage', 'message' => 'mainpage', 'params' => array( $I => 'param' ) ),
+							array(
+								'code' => 'mainpage',
+								'message' => 'mainpage',
+								'params' => array( $I => 'param' )
+							),
 							$I => 'warning',
 						),
 					),
@@ -144,24 +152,44 @@ class ApiErrorFormatterTest extends MediaWikiTestCase {
 				array(
 					'errors' => array(
 						'errWithData' => array(
-							array( 'code' => 'overriddenCode', 'message' => 'mainpage', 'params' => array( $I => 'param' ),
-								'overriddenData' => true ),
+							array(
+								'code' => 'overriddenCode',
+								'message' => 'mainpage',
+								'params' => array( $I => 'param' ),
+								'overriddenData' => true
+							),
 							$I => 'error',
 						),
 					),
 					'warnings' => array(
 						'messageWithData' => array(
-							array( 'code' => 'overriddenCode', 'message' => 'mainpage', 'params' => array( $I => 'param' ),
-								'overriddenData' => true ),
+							array(
+								'code' => 'overriddenCode',
+								'message' => 'mainpage',
+								'params' => array( $I => 'param' ),
+								'overriddenData' => true
+							),
 							$I => 'warning',
 						),
 						'message' => array(
-							array( 'code' => 'mainpage', 'message' => 'mainpage', 'params' => array( $I => 'param' ) ),
+							array(
+								'code' => 'mainpage',
+								'message' => 'mainpage',
+								'params' => array( $I => 'param' )
+							),
 							$I => 'warning',
 						),
 						'foo' => array(
-							array( 'code' => 'mainpage', 'message' => 'mainpage', 'params' => array( $I => 'param' ) ),
-							array( 'code' => 'parentheses', 'message' => 'parentheses', 'params' => array( 'foobar', $I => 'param' ) ),
+							array(
+								'code' => 'mainpage',
+								'message' => 'mainpage',
+								'params' => array( $I => 'param' )
+							),
+							array(
+								'code' => 'parentheses',
+								'message' => 'parentheses',
+								'params' => array( 'foobar', $I => 'param' )
+							),
 							$I => 'warning',
 						),
 					),
@@ -169,17 +197,37 @@ class ApiErrorFormatterTest extends MediaWikiTestCase {
 				array(
 					'errors' => array(
 						'status' => array(
-							array( 'code' => 'mainpage', 'message' => 'mainpage', 'params' => array( $I => 'param' ) ),
-							array( 'code' => 'parentheses', 'message' => 'parentheses', 'params' => array( 'foobar', $I => 'param' ) ),
+							array(
+								'code' => 'mainpage',
+								'message' => 'mainpage',
+								'params' => array( $I => 'param' )
+							),
+							array(
+								'code' => 'parentheses',
+								'message' => 'parentheses',
+								'params' => array( 'foobar', $I => 'param' )
+							),
 							$I => 'error',
 						),
 					),
 					'warnings' => array(
 						'status' => array(
-							array( 'code' => 'mainpage', 'message' => 'mainpage', 'params' => array( $I => 'param' ) ),
-							array( 'code' => 'parentheses', 'message' => 'parentheses', 'params' => array( 'foobar', $I => 'param' ) ),
-							array( 'code' => 'overriddenCode', 'message' => 'mainpage', 'params' => array( $I => 'param' ),
-								'overriddenData' => true ),
+							array(
+								'code' => 'mainpage',
+								'message' => 'mainpage',
+								'params' => array( $I => 'param' )
+							),
+							array(
+								'code' => 'parentheses',
+								'message' => 'parentheses',
+								'params' => array( 'foobar', $I => 'param' )
+							),
+							array(
+								'code' => 'overriddenCode',
+								'message' => 'mainpage',
+								'params' => array( $I => 'param' ),
+								'overriddenData' => true
+							),
 							$I => 'warning',
 						),
 					),
@@ -328,8 +376,16 @@ class ApiErrorFormatterTest extends MediaWikiTestCase {
 		$I = ApiResult::META_INDEXED_TAG_NAME;
 		$this->assertSame(
 			array(
-				array( 'type' => 'error', 'message' => 'mainpage', 'params' => array( $I => 'param' ) ),
-				array( 'type' => 'error', 'message' => 'parentheses', 'params' => array( 'foobar', $I => 'param' ) ),
+				array(
+					'type' => 'error',
+					'message' => 'mainpage',
+					'params' => array( $I => 'param' )
+				),
+				array(
+					'type' => 'error',
+					'message' => 'parentheses',
+					'params' => array( 'foobar', $I => 'param' )
+				),
 				$I => 'error',
 			),
 			$formatter->arrayFromStatus( $status, 'error' ),
@@ -337,10 +393,26 @@ class ApiErrorFormatterTest extends MediaWikiTestCase {
 		);
 		$this->assertSame(
 			array(
-				array( 'type' => 'warning', 'message' => 'mainpage', 'params' => array( $I => 'param' ) ),
-				array( 'type' => 'warning', 'message' => 'parentheses', 'params' => array( 'foobar', $I => 'param' ) ),
-				array( 'message' => 'mainpage', 'params' => array( $I => 'param' ), 'type' => 'warning' ),
-				array( 'message' => 'mainpage', 'params' => array( $I => 'param' ), 'type' => 'warning' ),
+				array(
+					'type' => 'warning',
+					'message' => 'mainpage',
+					'params' => array( $I => 'param' )
+				),
+				array(
+					'type' => 'warning',
+					'message' => 'parentheses',
+					'params' => array( 'foobar', $I => 'param' )
+				),
+				array(
+					'message' => 'mainpage',
+					'params' => array( $I => 'param' ),
+					'type' => 'warning'
+				),
+				array(
+					'message' => 'mainpage',
+					'params' => array( $I => 'param' ),
+					'type' => 'warning'
+				),
 				$I => 'warning',
 			),
 			$formatter->arrayFromStatus( $status, 'warning' ),

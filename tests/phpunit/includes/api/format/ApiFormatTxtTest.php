@@ -29,6 +29,7 @@ class ApiFormatTxtTest extends ApiFormatTestBase {
 			array( array( 'fóo' ), "Array\n({$warning}\n    [0] => fóo\n)\n" ),
 
 			// Arrays and objects
+			// @codingStandardsIgnoreStart Generic.Files.LineLength
 			array( array( array() ), "Array\n({$warning}\n    [0] => Array\n        (\n        )\n\n)\n" ),
 			array( array( array( 1 ) ), "Array\n({$warning}\n    [0] => Array\n        (\n            [0] => 1\n        )\n\n)\n" ),
 			array( array( array( 'x' => 1 ) ), "Array\n({$warning}\n    [0] => Array\n        (\n            [x] => 1\n        )\n\n)\n" ),
@@ -49,6 +50,7 @@ class ApiFormatTxtTest extends ApiFormatTestBase {
 			// BC Subelements
 			array( array( 'foo' => 'foo', ApiResult::META_BC_SUBELEMENTS => array( 'foo' ) ),
 				"Array\n({$warning}\n    [foo] => Array\n        (\n            [*] => foo\n        )\n\n)\n" ),
+			// @codingStandardsIgnoreEnd
 		);
 	}
 
