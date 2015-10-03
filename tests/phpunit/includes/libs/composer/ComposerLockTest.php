@@ -38,7 +38,8 @@ class ComposerLockTest extends MediaWikiTestCase {
 						'email' => 'chad@wikimedia.org',
 					),
 				),
-				'description' => 'Constant Database (CDB) wrapper library for PHP. Provides pure-PHP fallback when dba_* functions are absent.',
+				'description' => 'Constant Database (CDB) wrapper library for PHP. '.
+					'Provides pure-PHP fallback when dba_* functions are absent.',
 			),
 			'cssjanus/cssjanus' => array(
 				'version' => '1.1.1',
@@ -108,14 +109,18 @@ class ComposerLockTest extends MediaWikiTestCase {
 						'role' => 'Developer',
 					),
 				),
-				'description' => 'The only standard solution to translate any kind of text with an avant-garde web interface within MediaWiki, including your documentation and software',
+				'description' => 'The only standard solution to translate any kind ' .
+					'of text with an avant-garde web interface within MediaWiki, ' .
+					'including your documentation and software',
 			),
 			'mediawiki/universal-language-selector' => array(
 				'version' => '2014.12',
 				'type' => 'mediawiki-extension',
 				'licenses' => array( 'GPL-2.0+', 'MIT' ),
 				'authors' => array(),
-				'description' => 'The primary aim is to allow users to select a language and configure its support in an easy way. Main features are language selection, input methods and web fonts.',
+				'description' => 'The primary aim is to allow users to select a language ' .
+					'and configure its support in an easy way. ' .
+					'Main features are language selection, input methods and web fonts.',
 			),
 		), $lock->getInstalledDependencies(), false, true );
 	}
