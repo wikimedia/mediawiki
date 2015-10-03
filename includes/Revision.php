@@ -1466,7 +1466,8 @@ class Revision implements IDBAccessObject {
 	protected function checkContentModel() {
 		global $wgContentHandlerUseDB;
 
-		$title = $this->getTitle(); // note: may return null for revisions that have not yet been inserted.
+		// Note: may return null for revisions that have not yet been inserted
+		$title = $this->getTitle();
 
 		$model = $this->getContentModel();
 		$format = $this->getContentFormat();

@@ -250,7 +250,9 @@ class MWHttpRequest {
 	 * @param string $caller The method making this request, for profiling
 	 * @param Profiler $profiler An instance of the profiler for profiling, or null
 	 */
-	protected function __construct( $url, $options = array(), $caller = __METHOD__, $profiler = null ) {
+	protected function __construct(
+		$url, $options = array(), $caller = __METHOD__, $profiler = null
+	) {
 		global $wgHTTPTimeout, $wgHTTPConnectTimeout;
 
 		$this->url = wfExpandUrl( $url, PROTO_HTTP );
@@ -870,8 +872,10 @@ class PhpHttpRequest extends MWHttpRequest {
 	}
 
 	/**
-	 * Returns an array with a 'capath' or 'cafile' key that is suitable to be merged into the 'ssl' sub-array of a
-	 * stream context options array. Uses the 'caInfo' option of the class if it is provided, otherwise uses the system
+	 * Returns an array with a 'capath' or 'cafile' key
+	 * that is suitable to be merged into the 'ssl' sub-array of
+	 * a stream context options array.
+	 * Uses the 'caInfo' option of the class if it is provided, otherwise uses the system
 	 * default CA bundle if PHP supports that, or searches a few standard locations.
 	 * @return array
 	 * @throws DomainException
@@ -882,10 +886,13 @@ class PhpHttpRequest extends MWHttpRequest {
 		if ( $this->caInfo ) {
 			$certLocations = array( 'manual' => $this->caInfo );
 		} elseif ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
+			// @codingStandardsIgnoreStart Generic.Files.LineLength
 			// Default locations, based on
 			// https://www.happyassassin.net/2015/01/12/a-note-about-ssltls-trusted-certificate-stores-and-platforms/
-			// PHP 5.5 and older doesn't have any defaults, so we try to guess ourselves. PHP 5.6+ gets the CA location
-			// from OpenSSL as long as it is not set manually, so we should leave capath/cafile empty there.
+			// PHP 5.5 and older doesn't have any defaults, so we try to guess ourselves.
+			// PHP 5.6+ gets the CA location from OpenSSL as long as it is not set manually,
+			// so we should leave capath/cafile empty there.
+			// @codingStandardsIgnoreEnd
 			$certLocations = array_filter( array(
 				getenv( 'SSL_CERT_DIR' ),
 				getenv( 'SSL_CERT_PATH' ),
@@ -914,8 +921,10 @@ class PhpHttpRequest extends MWHttpRequest {
 	}
 
 	/**
-	 * Custom error handler for dealing with fopen() errors. fopen() tends to fire multiple errors in succession, and the last one
-	 * is completely useless (something like "fopen: failed to open stream") so normal methods of handling errors programmatically
+	 * Custom error handler for dealing with fopen() errors.
+	 * fopen() tends to fire multiple errors in succession, and the last one
+	 * is completely useless (something like "fopen: failed to open stream")
+	 * so normal methods of handling errors programmatically
 	 * like get_last_error() don't work.
 	 */
 	public function errorHandler( $errno, $errstr ) {

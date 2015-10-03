@@ -476,7 +476,12 @@ class SpecialMergeHistory extends SpecialPage {
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
-		$targetLink = Linker::link( $targetTitle, $targetTitle->getPrefixedText(), array(), array( 'redirect' => 'no' ) );
+		$targetLink = Linker::link(
+			$targetTitle,
+			$targetTitle->getPrefixedText(),
+			array(),
+			array( 'redirect' => 'no' )
+		);
 
 		$this->getOutput()->addWikiMsg( $this->msg( 'mergehistory-done' )
 			->rawParams( $targetLink )
