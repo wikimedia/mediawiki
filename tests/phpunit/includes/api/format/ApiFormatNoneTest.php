@@ -29,7 +29,14 @@ class ApiFormatNoneTest extends ApiFormatTestBase {
 			array( array( array( 1, ApiResult::META_TYPE => 'assoc' ) ), '' ),
 			array( array( array( 'x' => 1, ApiResult::META_TYPE => 'array' ) ), '' ),
 			array( array( array( 'x' => 1, ApiResult::META_TYPE => 'kvp' ) ), '' ),
-			array( array( array( 'x' => 1, ApiResult::META_TYPE => 'BCkvp', ApiResult::META_KVP_KEY_NAME => 'key' ) ), '' ),
+			array(
+				array( array(
+					'x' => 1,
+					ApiResult::META_TYPE => 'BCkvp',
+					ApiResult::META_KVP_KEY_NAME => 'key'
+				) ),
+				''
+			),
 			array( array( array( 'x' => 1, ApiResult::META_TYPE => 'BCarray' ) ), '' ),
 			array( array( array( 'a', 'b', ApiResult::META_TYPE => 'BCassoc' ) ), '' ),
 

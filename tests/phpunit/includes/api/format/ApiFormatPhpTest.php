@@ -20,6 +20,7 @@ class ApiFormatPhpTest extends ApiFormatTestBase {
 	}
 
 	public static function provideGeneralEncoding() {
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		return array_merge(
 			self::addFormatVersion( 1, array(
 				// Basic types
@@ -96,6 +97,7 @@ class ApiFormatPhpTest extends ApiFormatTestBase {
 					'a:1:{s:3:"foo";s:3:"foo";}' ),
 			) )
 		);
+		// @codingStandardsIgnoreEnd
 	}
 
 	public function testCrossDomainMangling() {

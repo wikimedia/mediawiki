@@ -90,7 +90,9 @@ class ApiMainTest extends ApiTestCase {
 	 * @param int $status Expected response status
 	 * @param bool $post Request is a POST
 	 */
-	public function testCheckConditionalRequestHeaders( $headers, $conditions, $status, $post = false ) {
+	public function testCheckConditionalRequestHeaders(
+		$headers, $conditions, $status, $post = false
+	) {
 		$request = new FauxRequest( array( 'action' => 'query', 'meta' => 'siteinfo' ), $post );
 		$request->setHeaders( $headers );
 		$request->response()->statusHeader( 200 ); // Why doesn't it default?
@@ -186,7 +188,9 @@ class ApiMainTest extends ApiTestCase {
 	 * @param bool $isError $isError flag
 	 * @param bool $post Request is a POST
 	 */
-	public function testConditionalRequestHeadersOutput( $conditions, $headers, $isError = false, $post = false ) {
+	public function testConditionalRequestHeadersOutput(
+		$conditions, $headers, $isError = false, $post = false
+	) {
 		$request = new FauxRequest( array( 'action' => 'query', 'meta' => 'siteinfo' ), $post );
 		$response = $request->response();
 
