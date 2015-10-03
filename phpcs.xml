@@ -4,7 +4,6 @@
 		<!-- Disable failing rules -->
 		<exclude name="Generic.Files.LineLength"/>
 		<exclude name="PSR2.Methods.MethodDeclaration.Underscore"/>
-		<exclude name="MediaWiki.NamingConventions.PrefixedGlobalFunctions.wfPrefix"/>
 		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
 		<exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.EmptyComment"/>
