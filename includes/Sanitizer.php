@@ -700,6 +700,7 @@ class Sanitizer {
 	 * illegal values for the given element type.
 	 *
 	 * - Discards attributes not on a whitelist for the given element
+	 * - Discards WAI-ARIA roles not on a whitelist for the given element
 	 * - Unsafe style attributes are discarded
 	 * - Invalid id attributes are re-encoded
 	 *
@@ -712,28 +713,31 @@ class Sanitizer {
 	 */
 	static function validateTagAttributes( $attribs, $element ) {
 		return Sanitizer::validateAttributes( $attribs,
-			Sanitizer::attributeWhitelist( $element ) );
+			Sanitizer::attributeWhitelist( $element ),
+			Sanitizer::roleWhitelist( $element ) );
 	}
 
 	/**
 	 * Take an array of attribute names and values and normalize or discard
 	 * illegal values for the given whitelist.
 	 *
-	 * - Discards attributes not the given whitelist
+	 * - Discards attributes not on a whitelist for the given element
+	 * - Discards WAI-ARIA roles not on a whitelist for the given element
 	 * - Unsafe style attributes are discarded
 	 * - Invalid id attributes are re-encoded
 	 *
 	 * @param array $attribs
-	 * @param array $whitelist List of allowed attribute names
+	 * @param array $attribWhitelist List of allowed attribute names
+	 * @param array $roleWhitelist List of allowed WAI-ARIA roles
 	 * @return array
 	 *
 	 * @todo Check for legal values where the DTD limits things.
 	 * @todo Check for unique id attribute :P
 	 */
-	static function validateAttributes( $attribs, $whitelist ) {
+	static function validateAttributes( $attribs, $attribWhitelist, $roleWhitelist ) {
 		global $wgAllowRdfaAttributes, $wgAllowMicrodataAttributes;
 
-		$whitelist = array_flip( $whitelist );
+		$attribWhitelist = array_flip( $attribWhitelist );
 		$hrefExp = '/^(' . wfUrlProtocols() . ')[^\s]+$/';
 
 		$out = array();
@@ -747,8 +751,10 @@ class Sanitizer {
 				continue;
 			}
 
-			# Allow any attribute beginning with "data-"
-			if ( !preg_match( '/^data-(?!ooui)/i', $attribute ) && !isset( $whitelist[$attribute] ) ) {
+			# Allow only attributes beginning with "data-" and whitelisted attributes
+			if ( !preg_match( '/^data-(?!ooui)/i', $attribute )
+				&& !isset( $attribWhitelist[$attribute] )
+			) {
 				continue;
 			}
 
@@ -758,18 +764,53 @@ class Sanitizer {
 				$value = Sanitizer::checkCss( $value );
 			}
 
+			# Escape HTML ids.
 			if ( $attribute === 'id' ) {
 				$value = Sanitizer::escapeId( $value, 'noninitial' );
 			}
 
-			# WAI-ARIA
-			# http://www.w3.org/TR/wai-aria/
-			# http://www.whatwg.org/html/elements.html#wai-aria
-			# For now we only support role="presentation" until we work out what roles should be
-			# usable by content and we ensure that our code explicitly rejects patterns that
-			# violate HTML5's ARIA restrictions.
-			if ( $attribute === 'role' && $value !== 'presentation' ) {
-				continue;
+			# Check attributes that accept a space delimited list of HTML ids as a value.
+			if ( $attribute === 'aria-describedby'
+				|| $attribute === 'aria-flowto'
+				|| $attribute === 'aria-labelledby'
+				|| $attribute === 'aria-owns'
+			) {
+				# Explode the space delimited list string into an array of HTML IDs.
+				$references = explode( ' ', $value );
+
+				# Escape each HTML id.
+				foreach ( $references as $ref ) {
+					$ref = Sanitizer::escapeId( $ref, 'noninitial' );
+				}
+
+				# Merge the array back to a space delimited list string.
+				$value = implode( ' ', $references );
+			}
+
+			# Check role attribute against the role whitelist for the element.
+			if ( $attribute === 'role' ) {
+				# Explode the space delimited list string into an array of roles.
+				$roles = explode( ' ', $value );
+
+				# An <img> with empty alt text is allowed to have only the presentation role.
+				# Strip all other roles for <img> with empty alt text.
+				if ( isset( $attribs['alt'] )
+					&& isset( $attribWhitelist['alt'] )
+					&& $attribs['alt'] === ''
+				) {
+					$roles = array_intersect( $roles, array( 'presentation' ) );
+				}
+
+				# Compute the intersection between the roles array and the role whitelist.
+				$roles = array_intersect( $roles, $roleWhitelist );
+
+				# If every role has been eliminated, discard the entire attribute.
+				if ( empty( $roles ) ) {
+					continue;
+				}
+
+				# Otherwise, merge the array back to a space delimited list string.
+				$value = implode( ' ', $roles );
 			}
 
 			// RDFa and microdata properties allow URLs, URIs and/or CURIs.
@@ -1535,6 +1576,11 @@ class Sanitizer {
 			'title',
 
 			# WAI-ARIA
+			'aria-describedby',
+			'aria-flowto',
+			'aria-label',
+			'aria-labelledby',
+			'aria-owns',
 			'role',
 		);
 
@@ -1569,163 +1615,299 @@ class Sanitizer {
 			'bgcolor', # deprecated
 		);
 
-		# Numbers refer to sections in HTML 4.01 standard describing the element.
-		# See: http://www.w3.org/TR/html4/
 		$whitelist = array(
-			# 7.5.4
-			'div'        => $block,
-			'center'     => $common, # deprecated
-			'span'       => $common,
+			# Numbers refer to sections in HTML5 standard describing the element.
+			# See: http://www.w3.org/TR/html5/
 
-			# 7.5.5
+			# 4.2 Document metadata
+			// link and meta are only permitted by removeHTMLtags when Microdata
+			// is enabled so we don't bother adding a conditional to hide these
+			// Also link and meta are only valid in WikiText as Microdata elements
+			// (ie: validateTag rejects tags missing the attributes needed for Microdata)
+			// So we don't bother including $common attributes that have no purpose.
+			'link'       => array( 'itemprop', 'href' ),
+			'meta'       => array( 'itemprop', 'content' ),
+
+			# 4.3 Sections
 			'h1'         => $block,
 			'h2'         => $block,
 			'h3'         => $block,
 			'h4'         => $block,
 			'h5'         => $block,
 			'h6'         => $block,
-
-			# 7.5.6
 			# address
 
-			# 8.2.4
-			'bdo'        => $common,
-
-			# 9.2.1
-			'em'         => $common,
-			'strong'     => $common,
-			'cite'       => $common,
-			'dfn'        => $common,
-			'code'       => $common,
-			'samp'       => $common,
-			'kbd'        => $common,
-			'var'        => $common,
-			'abbr'       => $common,
-			# acronym
-
-			# 9.2.2
-			'blockquote' => array_merge( $common, array( 'cite' ) ),
-			'q'          => array_merge( $common, array( 'cite' ) ),
-
-			# 9.2.3
-			'sub'        => $common,
-			'sup'        => $common,
-
-			# 9.3.1
+			# 4.4 Grouping content
 			'p'          => $block,
-
-			# 9.3.2
-			'br'         => array_merge( $common, array( 'clear' ) ),
-
-			# http://www.whatwg.org/html/text-level-semantics.html#the-wbr-element
-			'wbr'        => $common,
-
-			# 9.3.4
+			'hr'         => array_merge( $common, array( 'width' ) ),
 			'pre'        => array_merge( $common, array( 'width' ) ),
-
-			# 9.4
-			'ins'        => array_merge( $common, array( 'cite', 'datetime' ) ),
-			'del'        => array_merge( $common, array( 'cite', 'datetime' ) ),
-
-			# 10.2
-			'ul'         => array_merge( $common, array( 'type' ) ),
+			'blockquote' => array_merge( $common, array( 'cite' ) ),
 			'ol'         => array_merge( $common, array( 'type', 'start' ) ),
+			'ul'         => array_merge( $common, array( 'type' ) ),
 			'li'         => array_merge( $common, array( 'type', 'value' ) ),
-
-			# 10.3
 			'dl'         => $common,
-			'dd'         => $common,
 			'dt'         => $common,
+			'dd'         => $common,
+			'div'        => $block,
 
-			# 11.2.1
-			'table'      => array_merge( $common,
-								array( 'summary', 'width', 'border', 'frame',
-										'rules', 'cellspacing', 'cellpadding',
-										'align', 'bgcolor',
-								) ),
-
-			# 11.2.2
-			'caption'    => $block,
-
-			# 11.2.3
-			'thead'      => $common,
-			'tfoot'      => $common,
-			'tbody'      => $common,
-
-			# 11.2.4
-			'colgroup'   => array_merge( $common, array( 'span' ) ),
-			'col'        => array_merge( $common, array( 'span' ) ),
-
-			# 11.2.5
-			'tr'         => array_merge( $common, array( 'bgcolor' ), $tablealign ),
-
-			# 11.2.6
-			'td'         => array_merge( $common, $tablecell, $tablealign ),
-			'th'         => array_merge( $common, $tablecell, $tablealign ),
-
-			# 12.2
+			# 4.5 Text-level semantics
 			# NOTE: <a> is not allowed directly, but the attrib
 			# whitelist is used from the Parser object
 			'a'          => array_merge( $common, array( 'href', 'rel', 'rev' ) ), # rel/rev esp. for RDFa
+			'em'         => $common,
+			'strong'     => $common,
+			'small'      => $common,
+			's'          => $common,
+			'cite'       => $common,
+			'q'          => array_merge( $common, array( 'cite' ) ),
+			'dfn'        => $common,
+			'abbr'       => $common,
+			'data'       => array_merge( $common, array( 'value' ) ),
+			'time'       => array_merge( $common, array( 'datetime' ) ),
+			'code'       => $common,
+			'var'        => $common,
+			'samp'       => $common,
+			'kbd'        => $common,
+			'sub'        => $common,
+			'sup'        => $common,
+			'i'          => $common,
+			'b'          => $common,
+			'u'          => $common,
+			'mark'       => $common,
+			'ruby'       => $common,
+			'rb'         => $common,
+			'rt'         => $common,
+			'rtc'        => $common,
+			'rp'         => $common,
+			'bdi'        => $common,
+			'bdo'        => $common,
+			'span'       => $common,
+			'br'         => array_merge( $common, array( 'clear' ) ),
+			'wbr'        => $common,
 
-			# 13.2
+			# 4.6 Edits
+			'ins'        => array_merge( $common, array( 'cite', 'datetime' ) ),
+			'del'        => array_merge( $common, array( 'cite', 'datetime' ) ),
+
+			# 4.7 Embedded content
 			# Not usually allowed, but may be used for extension-style hooks
 			# such as <math> when it is rasterized, or if $wgAllowImageTag is
 			# true
 			'img'        => array_merge( $common, array( 'alt', 'src', 'width', 'height' ) ),
-
-			# 15.2.1
-			'tt'         => $common,
-			'b'          => $common,
-			'i'          => $common,
-			'big'        => $common,
-			'small'      => $common,
-			'strike'     => $common,
-			's'          => $common,
-			'u'          => $common,
-
-			# 15.2.2
-			'font'       => array_merge( $common, array( 'size', 'color', 'face' ) ),
-			# basefont
-
-			# 15.3
-			'hr'         => array_merge( $common, array( 'width' ) ),
-
-			# HTML Ruby annotation text module, simple ruby only.
-			# http://www.whatwg.org/html/text-level-semantics.html#the-ruby-element
-			'ruby'       => $common,
-			# rbc
-			'rb'         => $common,
-			'rp'         => $common,
-			'rt'         => $common, # array_merge( $common, array( 'rbspan' ) ),
-			'rtc'         => $common,
-
 			# MathML root element, where used for extensions
 			# 'title' may not be 100% valid here; it's XHTML
 			# http://www.w3.org/TR/REC-MathML/
 			'math'       => array( 'class', 'style', 'id', 'title' ),
 
-			# HTML 5 section 4.6
-			'bdi' => $common,
+			# 4.9 Tabular data
+			'table'      => array_merge( $common,
+								array( 'summary', 'width', 'border', 'frame',
+										'rules', 'cellspacing', 'cellpadding',
+										'align', 'bgcolor',
+								) ),
+			'caption'    => $block,
+			'colgroup'   => array_merge( $common, array( 'span' ) ),
+			'col'        => array_merge( $common, array( 'span' ) ),
+			'tbody'      => $common,
+			'thead'      => $common,
+			'tfoot'      => $common,
+			'tr'         => array_merge( $common, array( 'bgcolor' ), $tablealign ),
+			'td'         => array_merge( $common, $tablecell, $tablealign ),
+			'th'         => array_merge( $common, $tablecell, $tablealign ),
 
-			# HTML5 elements, defined by:
-			# http://www.whatwg.org/html/
-			'data' => array_merge( $common, array( 'value' ) ),
-			'time' => array_merge( $common, array( 'datetime' ) ),
-			'mark' => $common,
+			# Obsolete elements in HTML5
+			# Numbers refer to sections in HTML 4.01 standard describing the element.
+			# See: http://www.w3.org/TR/html4/
 
-			// meta and link are only permitted by removeHTMLtags when Microdata
-			// is enabled so we don't bother adding a conditional to hide these
-			// Also meta and link are only valid in WikiText as Microdata elements
-			// (ie: validateTag rejects tags missing the attributes needed for Microdata)
-			// So we don't bother including $common attributes that have no purpose.
-			'meta' => array( 'itemprop', 'content' ),
-			'link' => array( 'itemprop', 'href' ),
+			# 9.2.1
+			# acronym
+
+			# 15.1.2
+			'center'     => $common,
+
+			# 15.2.1
+			'tt'         => $common,
+			'big'        => $common,
+			'strike'     => $common,
+
+			# 15.2.2
+			'font'       => array_merge( $common, array( 'size', 'color', 'face' ) ),
+			# basefont
 		);
 
 		$staticInitialised = $globalContext;
 
 		return $whitelist;
+	}
+
+	/**
+	 * Fetch the whitelist of acceptable WAI-ARIA roles for a given element name.
+	 *
+	 * @param string $element
+	 * @return array
+	 */
+	static function roleWhitelist( $element ) {
+		$list = Sanitizer::setupRoleWhitelist();
+		return isset( $list[$element] )
+			? $list[$element]
+			: array();
+	}
+
+	/**
+	 * Foreach array key (an allowed HTML element), return an array
+	 * of allowed WAI-ARIA roles
+	 * @return array
+	 */
+	static function setupRoleWhitelist() {
+		static $roleWhitelist;
+
+		if ( $roleWhitelist !== null ) {
+			return $roleWhitelist;
+		}
+
+		# WAI-ARIA
+		# http://www.w3.org/TR/wai-aria/
+		# For now we only support a limited number of roles until we work out what roles
+		# should be usable by content, and how to limit roles so they do not exceed
+		# limitations, e.g. one contentinfo per document.
+		$anyRole = array(
+			'columnheader',
+			'complementary',
+			'definition',
+			'directory',
+			'grid',
+			'gridcell',
+			'group',
+			'heading',
+			'img',
+			'list',
+			'listitem',
+			'math',
+			'navigation',
+			'note',
+			'presentation',
+			'region',
+			'row',
+			'rowgroup',
+			'rowheader',
+			'separator',
+		);
+
+		$roleWhitelist = array(
+			# Numbers refer to sections in HTML5 standard describing the element.
+			# See: http://www.w3.org/TR/html5/
+
+			# 4.2 Document metadata
+			// link and meta are only permitted by removeHTMLtags when Microdata
+			// is enabled so we don't bother adding a conditional to hide these
+			'link'       => array(),
+			'meta'       => array(),
+
+			# 4.3 Sections
+			'h1'         => array( 'heading', 'presentation' ),
+			'h2'         => array( 'heading', 'presentation' ),
+			'h3'         => array( 'heading', 'presentation' ),
+			'h4'         => array( 'heading', 'presentation' ),
+			'h5'         => array( 'heading', 'presentation' ),
+			'h6'         => array( 'heading', 'presentation' ),
+			# address
+
+			# 4.4 Grouping content
+			'p'          => $anyRole,
+			'hr'         => array( 'separator', 'presentation' ),
+			'pre'        => $anyRole,
+			'blockquote' => $anyRole,
+			'ol'         => array( 'list', 'directory', 'presentation' ),
+			'ul'         => array( 'list', 'directory', 'group', 'presentation' ),
+			'li'         => array( 'listitem', 'presentation' ),
+			'dl'         => $anyRole,
+			'dt'         => $anyRole,
+			'dd'         => $anyRole,
+			'div'        => $anyRole,
+
+			# 4.5 Text-level semantics
+			# NOTE: <a> is not allowed directly, but the role
+			# whitelist is used from the Parser object
+			'a'          => array(),
+			'em'         => $anyRole,
+			'strong'     => $anyRole,
+			'small'      => $anyRole,
+			's'          => $anyRole,
+			'cite'       => $anyRole,
+			'q'          => $anyRole,
+			'dfn'        => $anyRole,
+			'abbr'       => $anyRole,
+			'data'       => $anyRole,
+			'time'       => $anyRole,
+			'code'       => $anyRole,
+			'var'        => $anyRole,
+			'samp'       => $anyRole,
+			'kbd'        => $anyRole,
+			'sub'        => $anyRole,
+			'sup'        => $anyRole,
+			'i'          => $anyRole,
+			'b'          => $anyRole,
+			'u'          => $anyRole,
+			'mark'       => $anyRole,
+			'ruby'       => $anyRole,
+			'rb'         => $anyRole,
+			'rt'         => $anyRole,
+			'rtc'        => $anyRole,
+			'rp'         => $anyRole,
+			'bdi'        => $anyRole,
+			'bdo'        => $anyRole,
+			'span'       => $anyRole,
+			'br'         => $anyRole,
+			'wbr'        => $anyRole,
+
+			# 4.6 Edits
+			'ins'        => $anyRole,
+			'del'        => $anyRole,
+
+			# 4.7 Embedded content
+			# Not usually allowed, but may be used for extension-style hooks
+			# such as <math> when it is rasterized, or if $wgAllowImageTag is
+			# true
+			# validateAttributes will remove roles other than presentation if
+			# an alt attribute is present and empty
+			'img'        => $anyRole,
+			# MathML root element, where used for extensions
+			# http://www.w3.org/TR/REC-MathML/
+			'math'       => array(),
+
+			# 4.9 Tabular data
+			'table'      => $anyRole,
+			'caption'    => $anyRole,
+			'colgroup'   => array(),
+			'col'        => array(),
+			'tbody'      => $anyRole,
+			'thead'      => $anyRole,
+			'tfoot'      => $anyRole,
+			'tr'         => $anyRole,
+			'td'         => $anyRole,
+			'th'         => $anyRole,
+
+			# Obsolete elements in HTML5
+			# Numbers refer to sections in HTML 4.01 standard describing the element.
+			# See: http://www.w3.org/TR/html4/
+
+			# 9.2.1
+			# acronym
+
+			# 15.1.2
+			'center'     => array(),
+
+			# 15.2.1
+			'tt'         => array(),
+			'big'        => array(),
+			'strike'     => array(),
+
+			# 15.2.2
+			'font'       => array(),
+			# basefont
+		);
+
+		return $roleWhitelist;
 	}
 
 	/**
