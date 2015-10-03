@@ -136,6 +136,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 	}
 
 	public static function provideCheckSvgScriptCallback() {
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		return array(
 			// html5sec SVG vectors
 			array(
@@ -389,6 +390,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 				'SVG with local urls, including filter: in style'
 			),
 		);
+		// @codingStandardsIgnoreEnd
 	}
 }
 

@@ -28,7 +28,9 @@ class TestUser {
 
 	private function assertNotReal() {
 		global $wgDBprefix;
-		if ( $wgDBprefix !== MediaWikiTestCase::DB_PREFIX && $wgDBprefix !== MediaWikiTestCase::ORA_DB_PREFIX ) {
+		if ( $wgDBprefix !== MediaWikiTestCase::DB_PREFIX &&
+			$wgDBprefix !== MediaWikiTestCase::ORA_DB_PREFIX
+		) {
 			throw new MWException( "Can't create user on real database" );
 		}
 	}
