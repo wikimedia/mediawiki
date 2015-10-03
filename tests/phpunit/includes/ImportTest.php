@@ -38,7 +38,10 @@ class ImportTest extends MediaWikiLangTestCase {
 			}
 		};
 
-		$importer = new WikiImporter( $source, ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
+		$importer = new WikiImporter(
+			$source,
+			ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+		);
 		$importer->setPageOutCallback( $callback );
 		$importer->doImport();
 
@@ -46,6 +49,7 @@ class ImportTest extends MediaWikiLangTestCase {
 	}
 
 	public function getRedirectXML() {
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		return array(
 			array(
 				<<< EOF
@@ -100,6 +104,7 @@ EOF
 				null
 			),
 		);
+		// @codingStandardsIgnoreEnd
 	}
 
 	/**
@@ -116,7 +121,10 @@ EOF
 			$importNamespaces = $siteinfo['_namespaces'];
 		};
 
-		$importer = new WikiImporter( $source, ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
+		$importer = new WikiImporter(
+			$source,
+			ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+		);
 		$importer->setSiteInfoCallback( $callback );
 		$importer->doImport();
 
@@ -124,6 +132,7 @@ EOF
 	}
 
 	public function getSiteInfoXML() {
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		return array(
 			array(
 				<<< EOF
@@ -155,6 +164,7 @@ EOF
 				)
 			),
 		);
+		// @codingStandardsIgnoreEnd
 	}
 
 }
