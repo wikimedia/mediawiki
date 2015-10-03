@@ -289,6 +289,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideCasesForFormatLinksInComment() {
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		return array(
 			array(
 				'foo bar <a href="/wiki/Special:BlankPage" title="Special:BlankPage">Special:BlankPage</a>',
@@ -306,5 +307,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 				'enwiki',
 			),
 		);
+		// @codingStandardsIgnoreEnd
 	}
 }
