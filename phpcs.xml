@@ -2,7 +2,6 @@
 <ruleset name="MediaWiki">
 	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<!-- Disable failing rules -->
-		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.EmptyComment"/>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
