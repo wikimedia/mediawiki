@@ -19,6 +19,12 @@ production.
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
   basic configuration settings needed for multi-datacenter setups.
   $wgDataCenterUpdateStickTTL was also added.
+* The aria-describedby, aria-flowto, aria-label, aria-labelledby, and aria-owns
+  HTML attributes have been whitelisted.
+* The role HTML attribute now allows the columnheader, complementary,
+  definition, directory, grid, gridcell, group, heading, img, list, listitem,
+  math, navigation, note, presentation, region, row, rowgroup, rowheader, or
+  separator role, provided it is allowed by the HTML5 spec for the element.
 
 ==== External libraries ====
 

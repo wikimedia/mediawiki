@@ -325,11 +325,28 @@ class SanitizerTest extends MediaWikiTestCase {
 		return array(
 			array(
 				'div',
-				' role="presentation"',
-				' role="presentation"',
-				'Support for WAI-ARIA\'s role="presentation".'
+				' aria-labelledby=" "',
+				'',
+				'The aria-labelledby attribute\'s value must contain at least one id reference.'
 			),
-			array( 'div', ' role="main"', '', "Other WAI-ARIA roles are currently not supported." ),
+			array(
+				'div',
+				' role=" "',
+				'',
+				'The role attribute\'s value cannot be empty or whitespace.'
+			),
+			array(
+				'div',
+				' role="note presentation"',
+				' role="note"',
+				'Superfluous WAI-ARIA roles are not allowed.'
+			),
+			array(
+				'img',
+				' alt="" role="region"',
+				' alt=""',
+				'The img element with empty alt text may only have the WAI-ARIA presentation role.'
+			),
 		);
 	}
 
