@@ -25,7 +25,7 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testClosureExpansionDisabled() {
 		$obj = ObjectFactory::getObjectFromSpec( array(
-			'class' => 'ObjectFactoryTest_Fixture',
+			'class' => 'ObjectFactoryTestFixture',
 			'args' => array( function() {
 				return 'unwrapped';
 			}, ),
@@ -47,7 +47,7 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testClosureExpansionEnabled() {
 		$obj = ObjectFactory::getObjectFromSpec( array(
-			'class' => 'ObjectFactoryTest_Fixture',
+			'class' => 'ObjectFactoryTestFixture',
 			'args' => array( function() {
 				return 'unwrapped';
 			}, ),
@@ -64,7 +64,7 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame( 'unwrapped', $obj->setterArgs[0] );
 
 		$obj = ObjectFactory::getObjectFromSpec( array(
-			'class' => 'ObjectFactoryTest_Fixture',
+			'class' => 'ObjectFactoryTestFixture',
 			'args' => array( function() {
 				return 'unwrapped';
 			}, ),
@@ -81,7 +81,7 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 	}
 }
 
-class ObjectFactoryTest_Fixture {
+class ObjectFactoryTestFixture {
 	public $args;
 	public $setterArgs;
 	public function __construct( /*...*/ ) {
