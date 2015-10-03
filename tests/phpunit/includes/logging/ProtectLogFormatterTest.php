@@ -255,7 +255,9 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 					),
 				),
 				array(
-					'text' => 'User changed protection level for ProtectPage [Edit=Allow only administrators] (indefinite) [Move=Allow only administrators] (indefinite) [cascading]',
+					'text' => 'User changed protection level for ProtectPage ' .
+						'[Edit=Allow only administrators] (indefinite) ' .
+						'[Move=Allow only administrators] (indefinite) [cascading]',
 					'api' => array(
 						'description' => '[edit=sysop] (indefinite)[move=sysop] (indefinite)',
 						'cascade' => true,
