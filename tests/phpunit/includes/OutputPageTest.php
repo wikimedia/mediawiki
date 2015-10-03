@@ -137,6 +137,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	public static function provideMakeResourceLoaderLink() {
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		return array(
 			// Load module script only
 			array(
@@ -193,6 +194,7 @@ class OutputPageTest extends MediaWikiTestCase {
 					. "\n} );</script>"
 			),
 		);
+		// @codingStandardsIgnoreEnd
 	}
 
 	/**
