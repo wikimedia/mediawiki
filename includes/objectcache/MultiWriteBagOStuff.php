@@ -34,6 +34,11 @@ class MultiWriteBagOStuff extends BagOStuff {
 	/** @var bool Use async secondary writes */
 	protected $asyncWrites = false;
 
+	/** Idiom for "write to all backends" */
+	const ALL = INF;
+
+	const UPGRADE_TTL = 3600; // TTL when a key is copied to a higher cache tier
+
 	/**
 	 * $params include:
 	 *   - caches:      This should have a numbered array of cache parameter
@@ -79,17 +84,28 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @param bool $debug
 	 */
 	public function setDebug( $debug ) {
-		$this->doWrite( 'setDebug', $debug );
+		$this->doWrite( self::ALL, 'setDebug', $debug );
 	}
 
 	public function get( $key, &$casToken = null, $flags = 0 ) {
+		$misses = 0; // number backends checked
+		$value = false;
 		foreach ( $this->caches as $cache ) {
 			$value = $cache->get( $key, $casToken, $flags );
 			if ( $value !== false ) {
-				return $value;
+				break;
 			}
+			++$misses;
 		}
-		return false;
+
+		if ( $value !== false
+			&& $misses > 0
+			&& ( $flags & self::READ_VERIFIED ) == self::READ_VERIFIED
+		) {
+			$this->doWrite( $misses, 'set', $key, $value, self::UPGRADE_TTL );
+		}
+
+		return $value;
 	}
 
 	/**
@@ -99,7 +115,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function set( $key, $value, $exptime = 0 ) {
-		return $this->doWrite( 'set', $key, $value, $exptime );
+		return $this->doWrite( self::ALL, 'set', $key, $value, $exptime );
 	}
 
 	/**
@@ -107,7 +123,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function delete( $key ) {
-		return $this->doWrite( 'delete', $key );
+		return $this->doWrite( self::ALL, 'delete', $key );
 	}
 
 	/**
@@ -117,7 +133,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function add( $key, $value, $exptime = 0 ) {
-		return $this->doWrite( 'add', $key, $value, $exptime );
+		return $this->doWrite( self::ALL, 'add', $key, $value, $exptime );
 	}
 
 	/**
@@ -126,7 +142,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @return bool|null
 	 */
 	public function incr( $key, $value = 1 ) {
-		return $this->doWrite( 'incr', $key, $value );
+		return $this->doWrite( self::ALL, 'incr', $key, $value );
 	}
 
 	/**
@@ -135,7 +151,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function decr( $key, $value = 1 ) {
-		return $this->doWrite( 'decr', $key, $value );
+		return $this->doWrite( self::ALL, 'decr', $key, $value );
 	}
 
 	/**
@@ -166,7 +182,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @return bool Success
 	 */
 	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
-		return $this->doWrite( 'merge', $key, $callback, $exptime );
+		return $this->doWrite( self::ALL, 'merge', $key, $callback, $exptime );
 	}
 
 	public function getLastError() {
@@ -178,15 +194,22 @@ class MultiWriteBagOStuff extends BagOStuff {
 	}
 
 	/**
+	 * Apply a write method to the first $count backing caches
+	 *
+	 * @param integer $count
 	 * @param string $method
 	 * @return bool
 	 */
-	protected function doWrite( $method /*, ... */ ) {
+	protected function doWrite( $count, $method /*, ... */ ) {
 		$ret = true;
 		$args = func_get_args();
 		array_shift( $args );
 
 		foreach ( $this->caches as $i => $cache ) {
+			if ( $i >= $count ) {
+				break; // ignore the lower tiers
+			}
+
 			if ( $i == 0 || !$this->asyncWrites ) {
 				// First store or in sync mode: write now and get result
 				if ( !call_user_func_array( array( $cache, $method ), $args ) ) {
