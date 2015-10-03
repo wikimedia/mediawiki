@@ -198,7 +198,9 @@ class ObjectCache {
 	 */
 	public static function newAccelerator( $params = array(), $fallback = null ) {
 		if ( $fallback === null ) {
-			if ( isset( $params['fallback'] ) ) {
+			// The is_array check here is needed because in PHP 5.3:
+			// $a = 'hash'; isset( $params['fallback'] ); yields true
+			if ( is_array( $params ) && isset( $params['fallback'] ) ) {
 				$fallback = $params['fallback'];
 			} elseif ( !is_array( $params ) ) {
 				$fallback = $params;
