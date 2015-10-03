@@ -325,11 +325,49 @@ class SanitizerTest extends MediaWikiTestCase {
 		return array(
 			array(
 				'div',
-				' role="presentation"',
-				' role="presentation"',
-				'Support for WAI-ARIA\'s role="presentation".'
+				' role="columnheader complementary definition directory grid gridcell group'
+					. ' heading img list listitem math navigation note presentation region row'
+					. ' rowgroup rowheader separator"',
+				' role="columnheader complementary definition directory grid gridcell group'
+					. ' heading img list listitem math navigation note presentation region row'
+					. ' rowgroup rowheader separator"',
+				'Some WAI-ARIA roles are supported.'
 			),
-			array( 'div', ' role="main"', '', "Other WAI-ARIA roles are currently not supported." ),
+			array(
+				'div',
+				' role="alert alertdialog application article banner button checkbox combobox'
+					. ' contentinfo dialog document form link listbox log main marquee menu'
+					. ' menubar menuitem menuitemcheckbox menuitemradio option progressbar'
+					. ' radio radiogroup scrollbar search slider spinbutton status tab tablist'
+					. ' tabpanel textbox timer toolbar tooltip tree treegrid treeitem"',
+				'',
+				'Some WAI-ARIA roles are not yet supported.'
+			),
+			array(
+				'div',
+				' role="command composite input landmark range roletype section sectionhead select'
+					. 'structure widget window"',
+				'',
+				'WAI-ARIA abstract roles are not allowed.'
+			),
+			array(
+				'div',
+				' role="regionpresentation"',
+				'',
+				'Invalid WAI-ARIA roles are not allowed.'
+			),
+			array(
+				'img',
+				' alt="" role="region presentation"',
+				' alt="" role="presentation"',
+				'The img element with empty alt text may only have the WAI-ARIA presentation role.'
+			),
+			array(
+				'li',
+				' role="region listitem"',
+				' role="listitem"',
+				'The li element may only have certain WAI-ARIA roles.'
+			),
 		);
 	}
 
