@@ -379,13 +379,21 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 			array(
 				array( 'wgGroupPermissions' ),
 				array(
-					'wgGroupPermissions' => array( 'sysop' => array( 'delete' ) ),
+					'wgGroupPermissions' => array(
+						'sysop' => array( 'delete' )
+					),
 				),
 				array(
-					'GroupPermissions' => array( 'sysop' => array( 'undelete' ), 'user' => array( 'edit' ) ),
+					'GroupPermissions' => array(
+						'sysop' => array( 'undelete' ),
+						'user' => array( 'edit' )
+					),
 				),
 				array(
-					'wgGroupPermissions' => array( 'sysop' => array( 'delete', 'undelete' ), 'user' => array( 'edit' ) ),
+					'wgGroupPermissions' => array(
+						'sysop' => array( 'delete', 'undelete' ),
+						'user' => array( 'edit' )
+					),
 				)
 			)
 		);

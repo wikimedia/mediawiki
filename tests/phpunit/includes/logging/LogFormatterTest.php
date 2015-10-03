@@ -523,8 +523,10 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 
 		# protect/modify
 		$this->assertIRCComment(
-			$this->context->msg( 'modifiedarticleprotection', 'SomeTitle ' . $protectParams['4::description'] )
-				->plain() . $sep . $this->user_comment,
+			$this->context->msg(
+				'modifiedarticleprotection',
+				'SomeTitle ' . $protectParams['4::description']
+			)->plain() . $sep . $this->user_comment,
 			'protect', 'modify',
 			$protectParams,
 			$this->user_comment
