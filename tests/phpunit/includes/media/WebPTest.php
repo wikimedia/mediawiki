@@ -78,10 +78,22 @@ class WebPHandlerTest extends MediaWikiTestCase {
 	}
 	public function provideTestWithFileExtractMetaData() {
 		return array(
-				array( __DIR__ . '/../../data/media/2_webp_ll.webp',
-					array( 'compression' => 'lossless', 'width' => 386, 'height' => 395 ) ),
-				array( __DIR__ . '/../../data/media/2_webp_a.webp',
-					array( 'compression' => 'lossy', 'animated' => false, 'transparency' => true, 'width' => 386, 'height' => 395 ) ),
+			array( __DIR__ . '/../../data/media/2_webp_ll.webp',
+				array(
+					'compression' => 'lossless',
+					'width' => 386,
+					'height' => 395
+				)
+			),
+			array( __DIR__ . '/../../data/media/2_webp_a.webp',
+				array(
+					'compression' => 'lossy',
+					'animated' => false,
+					'transparency' => true,
+					'width' => 386,
+					'height' => 395
+				)
+			),
 		);
 	}
 
