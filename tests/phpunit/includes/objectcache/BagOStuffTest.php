@@ -121,6 +121,23 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers BagOStuff::getWithSetCallback
+	 */
+	public function testGetWithSetCallback() {
+		$key = wfMemcKey( 'test' );
+		$value = $this->cache->getWithSetCallback(
+			$key,
+			function() {
+				return 'hello kitty';
+			},
+			30
+		);
+
+		$this->assertEquals( 'hello kitty', $value );
+		$this->assertEquals( $value, $this->cache->get( $key ) );
+	}
+
+	/**
 	 * @covers BagOStuff::incr
 	 */
 	public function testIncr() {
