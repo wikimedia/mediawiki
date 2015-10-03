@@ -1323,6 +1323,7 @@
 	"upload-options": "Možnosti nalaganja",
 	"watchthisupload": "Opazuj to datoteko",
 	"filewasdeleted": "Datoteka s tem imenom je bila nekoč že naložena in potem izbrisana. Preden jo znova naložite, preverite $1.",
+	"filename-thumb-name": "Zdi se, da je to naslov predogledne sličice. Prosimo, ne nalagajte predoglednih sličic nazaj na isti wiki. V nasprotnem primeru popravite ime datoteke, da je bolj smiselno in da nima predpone sličice.",
 	"filename-bad-prefix": "Ime datoteke, ki jo nalagate, se začne z '''»$1«''', ki je neopisno ime, ponavadi dodeljeno samodejno s strani digitalnih fotoaparatov.\nProsimo, izberite bolj opisno ime vaše datoteke.",
 	"filename-prefix-blacklist": " #<!-- pustite to vrstico takšno, kot je --> <pre>\n# Sintaksa:\n#   * Vse od znaka »#« in do konca vrstice je komentar\n#   * Vsaka neprazna vrstica je predpona za tipična imena datotek, določena samodejno s strani digitalnih fotoaparatov\nCIMG # Casio\nDSC_ # Nikon\nDSCF # Fuji\nDSCN # Nikon\nDUW # nekateri mobilni telefoni\nIMG # generično\nJD # Jenoptik\nMGP # Pentax\nPICT # mešano\n #</pre> <!-- pustite to vrstico takšno, kot je -->",
 	"upload-success-subj": "Datoteka je bila uspešno naložena",

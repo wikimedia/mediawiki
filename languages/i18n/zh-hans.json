@@ -786,7 +786,7 @@
 	"undo-summary-username-hidden": "取消由一匿名用户所作的版本$1",
 	"cantcreateaccounttitle": "无法创建账户",
 	"cantcreateaccount-text": "从该IP地址（'''$1'''）创建账户已被[[User:$3|$3]]禁止。\n\n$3的理由是''$2''",
-	"cantcreateaccount-range-text": "从该IP地址段'''$1'''的账户创建已被[[User:$3|$3]]禁止，而这也包括了您的IP地址（'''$4'''）。\n$3给出的原因是“$2”。",
+	"cantcreateaccount-range-text": "从该IP地址段'''$1'''的账户创建已被[[User:$3|$3]]禁止，而这也包括了您的IP地址（'''$4'''）。\n\n$3给出的原因是 $2。",
 	"viewpagelogs": "查看该页面的日志",
 	"nohistory": "本页面没有编辑历史记录。",
 	"currentrev": "最后版本",

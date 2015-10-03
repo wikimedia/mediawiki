@@ -472,7 +472,7 @@
 	"createacct-captcha": "Control de seguretat",
 	"createacct-imgcaptcha-ph": "Introduïu el text que apareix a dalt",
 	"createacct-submit": "Crea el meu compte",
-	"createacct-another-submit": "Crea un altre compte",
+	"createacct-another-submit": "Crea un compte",
 	"createacct-benefit-heading": "{{SITENAME}} és feta per gent com tu.",
 	"createacct-benefit-body1": "{{PLURAL:$1|edició|edicions}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|pàgina|pàgines}}",
