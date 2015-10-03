@@ -25,8 +25,8 @@ class TestRecentChangesHelper {
 		return $this->makeRecentChange( $attribs, $counter, $watchingUsers );
 	}
 
-	public function makeLogRecentChange( $logType, $logAction, User $user, $titleText, $timestamp, $counter,
-		$watchingUsers
+	public function makeLogRecentChange(
+		$logType, $logAction, User $user, $titleText, $timestamp, $counter, $watchingUsers
 	) {
 		$attribs = array_merge(
 			$this->getDefaultAttributes( $titleText, $timestamp ),

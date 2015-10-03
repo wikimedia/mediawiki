@@ -131,6 +131,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	public function provideCasesForFormatComment() {
 		$wikiId = 'enwiki'; // $wgConf has a fake entry for this
 
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		return array(
 			// Linker::formatComment
 			array(
@@ -254,6 +255,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 				false, false, $wikiId
 			)
 		);
+		// @codingStandardsIgnoreEnd
 	}
 
 	/**
