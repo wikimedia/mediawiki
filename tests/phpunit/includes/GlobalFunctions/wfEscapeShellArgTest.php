@@ -4,7 +4,7 @@
  * @group GlobalFunctions
  * @covers ::wfEscapeShellArg
  */
-class wfEscapeShellArgTest extends MediaWikiTestCase {
+class WfEscapeShellArgTest extends MediaWikiTestCase {
 	public function testSingleInput() {
 		if ( wfIsWindows() ) {
 			$expected = '"blah"';
