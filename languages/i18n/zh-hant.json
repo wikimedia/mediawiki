@@ -64,7 +64,8 @@
 			"Zhxy 519",
 			"Macofe",
 			"578985s",
-			"Matma Rex"
+			"Matma Rex",
+			"范"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -759,7 +760,7 @@
 	"undo-summary-username-hidden": "還原隱藏使用者的修訂 $1",
 	"cantcreateaccounttitle": "無法建立帳號",
 	"cantcreateaccount-text": "來自這個 IP 位址 (<strong>$1</strong>) 建立的帳號已經被 [[User:$3|$3]] 封鎖。\n\n $3 封鎖的原因是 <em>$2</em>",
-	"cantcreateaccount-range-text": "來自 IP 位址範圍 '''$1'''，包含您的 IP 位址 ('''$4''') 所建立的帳號已經被 [[User:$3|$3]] 封鎖。\n\n $3 封鎖的原因是 ''$2''",
+	"cantcreateaccount-range-text": "來自 IP 位址範圍 '''$1'''，包含您的 IP 位址 ('''$4''') 所建立的帳號已經被 [[User:$3|$3]] 封鎖。\n\n$3 封鎖的原因是 ''$2''",
 	"viewpagelogs": "檢視此頁面的日誌",
 	"nohistory": "此頁沒有任何的修訂記錄。",
 	"currentrev": "最新修訂",
