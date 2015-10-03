@@ -168,13 +168,18 @@ class ApiContinuationManagerTest extends MediaWikiTestCase {
 			);
 		}
 
-		$manager = self::getManager( '||mock2', array_slice( $allModules, 0, 2 ), array( 'mock1', 'mock2' ) );
+		$manager = self::getManager(
+			'||mock2',
+			array_slice( $allModules, 0, 2 ),
+			array( 'mock1', 'mock2' )
+		);
 		try {
 			$manager->addContinueParam( $allModules[1], 'm2continue', 1 );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( UnexpectedValueException $ex ) {
 			$this->assertSame(
-				'Module \'mock2\' was not supposed to have been executed, but it was executed anyway',
+				'Module \'mock2\' was not supposed to have been executed, ' .
+					'but it was executed anyway',
 				$ex->getMessage(),
 				'Expected exception'
 			);
@@ -184,7 +189,8 @@ class ApiContinuationManagerTest extends MediaWikiTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( UnexpectedValueException $ex ) {
 			$this->assertSame(
-				'Module \'mocklist\' called ApiContinuationManager::addContinueParam but was not passed to ApiContinuationManager::__construct',
+				'Module \'mocklist\' called ApiContinuationManager::addContinueParam ' .
+					'but was not passed to ApiContinuationManager::__construct',
 				$ex->getMessage(),
 				'Expected exception'
 			);
