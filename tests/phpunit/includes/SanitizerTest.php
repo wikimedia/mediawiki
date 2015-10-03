@@ -325,11 +325,48 @@ class SanitizerTest extends MediaWikiTestCase {
 		return array(
 			array(
 				'div',
-				' role="presentation"',
-				' role="presentation"',
-				'Support for WAI-ARIA\'s role="presentation".'
+				' aria-describedby="id1 id2" aria-flowto="id1 id2"'
+					. ' aria-labelledby="id1 id2" aria-owns="id1 id2"',
+				' aria-describedby="id1 id2" aria-flowto="id1 id2"'
+					. ' aria-labelledby="id1 id2" aria-owns="id1 id2"',
+				'Relational aria-* attributes with id lists as values are supported.'
 			),
-			array( 'div', ' role="main"', '', "Other WAI-ARIA roles are currently not supported." ),
+			array(
+				'div',
+				' aria-describedby=" " aria-flowto=" " aria-labelledby=" " aria-owns=" "',
+				'',
+				'An aria-* attribute with an id list as its value must have at least one id.'
+			),
+			array(
+				'div',
+				' aria-label="label"',
+				' aria-label="label"',
+				'The aria-label attribute is supported.'
+			),
+			array(
+				'div',
+				' role="presentation"',
+				' role="presentation"',
+				'The role attribute is supported.'
+			),
+			array(
+				'img',
+				' alt="" role="region"',
+				' alt=""',
+				'The img element with empty alt text may only have the WAI-ARIA presentation role.'
+			),
+			array(
+				'div',
+				' role=" "',
+				'',
+				'The role attribute\'s value cannot be empty or whitespace.'
+			),
+			array(
+				'div',
+				' role="note presentation"',
+				'',
+				'Superfluous WAI-ARIA roles are not allowed.'
+			),
 		);
 	}
 
