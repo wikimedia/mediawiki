@@ -5,7 +5,7 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
-.mw-widget-titleWidget {
+.mw-widget-titleWidget-menu {
 	.mw-widget-titleOptionWidget {
 		line-height: normal;
 
@@ -14,7 +14,7 @@
 		}
 	}
 
-	&-menu-withImages {
+	&-withImages {
 		.mw-widget-titleOptionWidget {
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;
@@ -55,13 +55,14 @@
 		}
 	}
 
-	&-menu-withDescriptions {
+	&-withDescriptions {
 		.mw-widget-titleOptionWidget {
 			> .oo-ui-labelElement-label {
 				line-height: 1.5em;
 			}
 
 			&-description {
+				display: block;
 				white-space: nowrap;
 				text-overflow: ellipsis;
 				overflow: hidden;
@@ -69,7 +70,7 @@
 		}
 	}
 
-	&:not(&-menu-withDescriptions) {
+	&:not(&-withDescriptions) {
 		.mw-widget-titleOptionWidget-description {
 			display: none;
 		}
