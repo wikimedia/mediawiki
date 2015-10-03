@@ -77,6 +77,7 @@
 				$( '<span>' )
 					.addClass( 'mw-widget-titleOptionWidget-description' )
 					.text( config.description )
+					.attr( 'title', config.description )
 			);
 		}
 	};
