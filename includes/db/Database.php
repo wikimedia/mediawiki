@@ -124,9 +124,9 @@ abstract class DatabaseBase implements IDatabase {
 	/**
 	 * Array of levels of atomicity within transactions
 	 *
-	 * @var SplStack
+	 * @var array
 	 */
-	private $mTrxAtomicLevels;
+	private $mTrxAtomicLevels = array();
 
 	/**
 	 * Record if the current transaction was started implicitly by DatabaseBase::startAtomic
@@ -608,8 +608,6 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	function __construct( array $params ) {
 		global $wgDBprefix, $wgDBmwschema, $wgCommandLineMode, $wgDebugDBTransactions;
-
-		$this->mTrxAtomicLevels = new SplStack;
 
 		$server = $params['host'];
 		$user = $params['user'];
@@ -3395,7 +3393,7 @@ abstract class DatabaseBase implements IDatabase {
 			}
 		}
 
-		$this->mTrxAtomicLevels->push( $fname );
+		$this->mTrxAtomicLevels[] = $fname;
 	}
 
 	/**
@@ -3413,13 +3411,13 @@ abstract class DatabaseBase implements IDatabase {
 		if ( !$this->mTrxLevel ) {
 			throw new DBUnexpectedError( $this, 'No atomic transaction is open.' );
 		}
-		if ( $this->mTrxAtomicLevels->isEmpty() ||
-			$this->mTrxAtomicLevels->pop() !== $fname
+		if ( !$this->mTrxAtomicLevels ||
+			array_pop( $this->mTrxAtomicLevels ) !== $fname
 		) {
 			throw new DBUnexpectedError( $this, 'Invalid atomic section ended.' );
 		}
 
-		if ( $this->mTrxAtomicLevels->isEmpty() && $this->mTrxAutomaticAtomic ) {
+		if ( !$this->mTrxAtomicLevels && $this->mTrxAutomaticAtomic ) {
 			$this->commit( $fname, 'flush' );
 		}
 	}
@@ -3443,7 +3441,7 @@ abstract class DatabaseBase implements IDatabase {
 		global $wgDebugDBTransactions;
 
 		if ( $this->mTrxLevel ) { // implicit commit
-			if ( !$this->mTrxAtomicLevels->isEmpty() ) {
+			if ( $this->mTrxAtomicLevels ) {
 				// If the current transaction was an automatic atomic one, then we definitely have
 				// a problem. Same if there is any unclosed atomic level.
 				throw new DBUnexpectedError( $this,
@@ -3491,7 +3489,7 @@ abstract class DatabaseBase implements IDatabase {
 		$this->mTrxDoneWrites = false;
 		$this->mTrxAutomatic = false;
 		$this->mTrxAutomaticAtomic = false;
-		$this->mTrxAtomicLevels = new SplStack;
+		$this->mTrxAtomicLevels = array();
 		$this->mTrxIdleCallbacks = array();
 		$this->mTrxPreCommitCallbacks = array();
 		$this->mTrxShortId = wfRandomString( 12 );
@@ -3524,7 +3522,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @throws DBUnexpectedError
 	 */
 	final public function commit( $fname = __METHOD__, $flush = '' ) {
-		if ( !$this->mTrxAtomicLevels->isEmpty() ) {
+		if ( $this->mTrxLevel && $this->mTrxAtomicLevels ) {
 			// There are still atomic sections open. This cannot be ignored
 			throw new DBUnexpectedError(
 				$this,
@@ -3610,7 +3608,7 @@ abstract class DatabaseBase implements IDatabase {
 		$this->doRollback( $fname );
 		$this->mTrxIdleCallbacks = array(); // cancel
 		$this->mTrxPreCommitCallbacks = array(); // cancel
-		$this->mTrxAtomicLevels = new SplStack;
+		$this->mTrxAtomicLevels = array();
 		if ( $this->mTrxDoneWrites ) {
 			$this->getTransactionProfiler()->transactionWritingOut(
 				$this->mServer, $this->mDBname, $this->mTrxShortId );
