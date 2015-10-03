@@ -62,6 +62,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 
 	/** Bitfield constants for get()/getMulti() */
 	const READ_LATEST = 1; // use latest data for replicated stores
+	const READ_VERIFIED = 2; // promise that caller can tell when keys are stale
 
 	public function __construct( array $params = array() ) {
 		if ( isset( $params['logger'] ) ) {
@@ -87,16 +88,24 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get an item with the given key. Returns false if it does not exist.
+	 * Get an item with the given key
+	 *
+	 * If the key includes a determistic input hash (e.g. the key can only have
+	 * the correct value) or complete staleness checks are handled by the caller
+	 * (e.g. nothing relies on the TTL), then the READ_VERIFIED flag should be set.
+	 * This lets tiered backends know they can safely upgrade a cached value to
+	 * higher tiers using standard TTLs.
+	 *
 	 * @param string $key
 	 * @param mixed $casToken [optional]
-	 * @param integer $flags Bitfield; supports READ_LATEST [optional]
-	 * @return mixed Returns false on failure
+	 * @param integer $flags Bitfield of BagOStuff::READ_* constants [optional]
+	 * @return mixed Returns false on failure and if the item does not exist
 	 */
 	abstract public function get( $key, &$casToken = null, $flags = 0 );
 
 	/**
-	 * Set an item.
+	 * Set an item
+	 *
 	 * @param string $key
 	 * @param mixed $value
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
@@ -105,7 +114,8 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	abstract public function set( $key, $value, $exptime = 0 );
 
 	/**
-	 * Delete an item.
+	 * Delete an item
+	 *
 	 * @param string $key
 	 * @return bool True if the item was deleted or not found, false on failure
 	 */
