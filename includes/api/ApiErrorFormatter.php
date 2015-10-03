@@ -226,6 +226,7 @@ class ApiErrorFormatter {
 	}
 }
 
+// @codingStandardsIgnoreStart PSR2.Methods.MethodDeclaration.Underscore
 /**
  * Format errors and warnings in the old style, for backwards compatibility.
  * @since 1.25
@@ -233,6 +234,8 @@ class ApiErrorFormatter {
  * @ingroup API
  */
 class ApiErrorFormatter_BackCompat extends ApiErrorFormatter {
+	// @codingStandardsIgnoreEnd
+
 	/**
 	 * @param ApiResult $result Into which data will be added
 	 */
