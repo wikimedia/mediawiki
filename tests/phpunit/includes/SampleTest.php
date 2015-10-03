@@ -59,9 +59,9 @@ class TestSample extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideTitles
-	 * @codingStandardsIgnoreStart Ignore long line warning
+	 * // @codingStandardsIgnoreStart Ignore long line warning
 	 * See http://phpunit.de/manual/3.7/en/appendixes.annotations.html#appendixes.annotations.dataProvider
-	 * @codingStandardsIgnoreEnd
+	 * // @codingStandardsIgnoreEnd
 	 */
 	public function testCreateBasicListOfTitles( $titleName, $ns, $text ) {
 		$title = Title::newFromText( $titleName, $ns );

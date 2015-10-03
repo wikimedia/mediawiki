@@ -85,7 +85,9 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider provideGetCanonicalUrl
 	 */
-	public function testGetCanonicalUrl( $expected, $canonicalServer, $server, $path, $page, $fragmentId ) {
+	public function testGetCanonicalUrl(
+		$expected, $canonicalServer, $server, $path, $page, $fragmentId
+	) {
 		$reference = new WikiReference( $canonicalServer, $path, $server );
 		$this->assertEquals( $expected, $reference->getCanonicalUrl( $page, $fragmentId ) );
 	}
