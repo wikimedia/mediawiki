@@ -232,7 +232,10 @@ class ApiErrorFormatter {
  * @deprecated Only for backwards compatibility, do not use
  * @ingroup API
  */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class ApiErrorFormatter_BackCompat extends ApiErrorFormatter {
+	// @codingStandardsIgnoreEnd
+
 	/**
 	 * @param ApiResult $result Into which data will be added
 	 */
