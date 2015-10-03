@@ -12,9 +12,11 @@ class ApiFormatXmlTest extends ApiFormatTestBase {
 	public static function setUpBeforeClass() {
 		parent::setUpBeforeClass();
 		$page = WikiPage::factory( Title::newFromText( 'MediaWiki:ApiFormatXmlTest.xsl' ) );
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		$page->doEditContent( new WikitextContent(
 			'<?xml version="1.0"?><xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" />'
 		), 'Summary' );
+		// @codingStandardsIgnoreEnd
 		$page = WikiPage::factory( Title::newFromText( 'MediaWiki:ApiFormatXmlTest' ) );
 		$page->doEditContent( new WikitextContent( 'Bogus' ), 'Summary' );
 		$page = WikiPage::factory( Title::newFromText( 'ApiFormatXmlTest' ) );
@@ -22,6 +24,7 @@ class ApiFormatXmlTest extends ApiFormatTestBase {
 	}
 
 	public static function provideGeneralEncoding() {
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		return array(
 			// Basic types
 			array( array( null, 'a' => null ), '<?xml version="1.0"?><api><_v _idx="0" /></api>' ),
@@ -114,6 +117,7 @@ class ApiFormatXmlTest extends ApiFormatTestBase {
 					'" type="text/xsl" ?><api />',
 				array( 'xslt' => 'MediaWiki:ApiFormatXmlTest.xsl' ) ),
 		);
+		// @codingStandardsIgnoreEnd
 	}
 
 }

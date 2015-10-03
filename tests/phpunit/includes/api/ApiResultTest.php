@@ -973,7 +973,12 @@ class ApiResultTest extends MediaWikiTestCase {
 					'kvpmerge' => array(
 						$kvp( 'name', 'x', 'value', 'a' ),
 						$kvp( 'name', 'y', 'value', array( 'b', ApiResult::META_TYPE => 'array' ) ),
-						array( 'name' => 'z', 'c' => 'd', ApiResult::META_TYPE => 'assoc', ApiResult::META_PRESERVE_KEYS => array( 'name' ) ),
+						array(
+							'name' => 'z',
+							'c' => 'd',
+							ApiResult::META_TYPE => 'assoc',
+							ApiResult::META_PRESERVE_KEYS => array( 'name' )
+						),
 						ApiResult::META_TYPE => 'array',
 						ApiResult::META_KVP_MERGE => true,
 					),
@@ -1011,7 +1016,11 @@ class ApiResultTest extends MediaWikiTestCase {
 					'kvpmerge' => array(
 						$kvp( 'name', 'x', '*', 'a' ),
 						$kvp( 'name', 'y', '*', array( 'b', ApiResult::META_TYPE => 'array' ) ),
-						array( 'name' => 'z', 'c' => 'd', ApiResult::META_TYPE => 'assoc', ApiResult::META_PRESERVE_KEYS => array( 'name' ) ),
+						array(
+							'name' => 'z',
+							'c' => 'd',
+							ApiResult::META_TYPE => 'assoc',
+							ApiResult::META_PRESERVE_KEYS => array( 'name' ) ),
 						ApiResult::META_TYPE => 'array',
 						ApiResult::META_KVP_MERGE => true,
 					),
@@ -1053,7 +1062,12 @@ class ApiResultTest extends MediaWikiTestCase {
 					'kvpmerge' => array(
 						(object)$kvp( 'name', 'x', 'value', 'a' ),
 						(object)$kvp( 'name', 'y', 'value', array( 'b', ApiResult::META_TYPE => 'array' ) ),
-						(object)array( 'name' => 'z', 'c' => 'd', ApiResult::META_TYPE => 'assoc', ApiResult::META_PRESERVE_KEYS => array( 'name' ) ),
+						(object)array(
+							'name' => 'z',
+							'c' => 'd',
+							ApiResult::META_TYPE => 'assoc',
+							ApiResult::META_PRESERVE_KEYS => array( 'name' )
+						),
 						ApiResult::META_TYPE => 'array',
 						ApiResult::META_KVP_MERGE => true,
 					),

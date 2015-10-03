@@ -475,7 +475,8 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testCheckDirectApiEditingDisallowed_forNonTextContent() {
 		$this->setExpectedException(
 			'UsageException',
-			'Direct editing via API is not supported for content model testing used by Dummy:ApiEditPageTest_nonTextPageEdit'
+			'Direct editing via API is not supported for content model ' .
+				'testing used by Dummy:ApiEditPageTest_nonTextPageEdit'
 		);
 
 		$this->doApiRequestWithToken( array(

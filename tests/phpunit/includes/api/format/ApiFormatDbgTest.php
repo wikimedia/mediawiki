@@ -29,18 +29,55 @@ class ApiFormatDbgTest extends ApiFormatTestBase {
 			array( array( 'fóo' ), "array ({$warning}\n  0 => 'fóo',\n)" ),
 
 			// Arrays and objects
-			array( array( array() ), "array ({$warning}\n  0 => \n  array (\n  ),\n)" ),
-			array( array( array( 1 ) ), "array ({$warning}\n  0 => \n  array (\n    0 => 1,\n  ),\n)" ),
-			array( array( array( 'x' => 1 ) ), "array ({$warning}\n  0 => \n  array (\n    'x' => 1,\n  ),\n)" ),
-			array( array( array( 2 => 1 ) ), "array ({$warning}\n  0 => \n  array (\n    2 => 1,\n  ),\n)" ),
-			array( array( (object)array() ), "array ({$warning}\n  0 => \n  array (\n  ),\n)" ),
-			array( array( array( 1, ApiResult::META_TYPE => 'assoc' ) ), "array ({$warning}\n  0 => \n  array (\n    0 => 1,\n  ),\n)" ),
-			array( array( array( 'x' => 1, ApiResult::META_TYPE => 'array' ) ), "array ({$warning}\n  0 => \n  array (\n    0 => 1,\n  ),\n)" ),
-			array( array( array( 'x' => 1, ApiResult::META_TYPE => 'kvp' ) ), "array ({$warning}\n  0 => \n  array (\n    'x' => 1,\n  ),\n)" ),
-			array( array( array( 'x' => 1, ApiResult::META_TYPE => 'BCkvp', ApiResult::META_KVP_KEY_NAME => 'key' ) ),
-				"array ({$warning}\n  0 => \n  array (\n    0 => \n    array (\n      'key' => 'x',\n      '*' => 1,\n    ),\n  ),\n)" ),
-			array( array( array( 'x' => 1, ApiResult::META_TYPE => 'BCarray' ) ), "array ({$warning}\n  0 => \n  array (\n    'x' => 1,\n  ),\n)" ),
-			array( array( array( 'a', 'b', ApiResult::META_TYPE => 'BCassoc' ) ), "array ({$warning}\n  0 => \n  array (\n    0 => 'a',\n    1 => 'b',\n  ),\n)" ),
+			array(
+				array( array() ),
+				"array ({$warning}\n  0 => \n  array (\n  ),\n)"
+			),
+			array(
+				array( array( 1 ) ),
+				"array ({$warning}\n  0 => \n  array (\n    0 => 1,\n  ),\n)"
+			),
+			array(
+				array( array( 'x' => 1 ) ),
+				"array ({$warning}\n  0 => \n  array (\n    'x' => 1,\n  ),\n)"
+			),
+			array(
+				array( array( 2 => 1 ) ),
+				"array ({$warning}\n  0 => \n  array (\n    2 => 1,\n  ),\n)"
+			),
+			array(
+				array( (object)array() ),
+				"array ({$warning}\n  0 => \n  array (\n  ),\n)"
+			),
+			array(
+				array( array( 1, ApiResult::META_TYPE => 'assoc' ) ),
+				"array ({$warning}\n  0 => \n  array (\n    0 => 1,\n  ),\n)"
+			),
+			array(
+				array( array( 'x' => 1, ApiResult::META_TYPE => 'array' ) ),
+				"array ({$warning}\n  0 => \n  array (\n    0 => 1,\n  ),\n)"
+			),
+			array(
+				array( array( 'x' => 1, ApiResult::META_TYPE => 'kvp' ) ),
+				"array ({$warning}\n  0 => \n  array (\n    'x' => 1,\n  ),\n)"
+			),
+			array(
+				array( array(
+					'x' => 1,
+					ApiResult::META_TYPE => 'BCkvp',
+					ApiResult::META_KVP_KEY_NAME => 'key'
+				) ),
+				"array ({$warning}\n  0 => \n  array (\n    0 => \n    " .
+					"array (\n      'key' => 'x',\n      '*' => 1,\n    ),\n  ),\n)"
+			),
+			array(
+				array( array( 'x' => 1, ApiResult::META_TYPE => 'BCarray' ) ),
+				"array ({$warning}\n  0 => \n  array (\n    'x' => 1,\n  ),\n)"
+			),
+			array(
+				array( array( 'a', 'b', ApiResult::META_TYPE => 'BCassoc' ) ),
+				"array ({$warning}\n  0 => \n  array (\n    0 => 'a',\n    1 => 'b',\n  ),\n)"
+			),
 
 			// Content
 			array( array( 'content' => 'foo', ApiResult::META_CONTENT => 'content' ),
