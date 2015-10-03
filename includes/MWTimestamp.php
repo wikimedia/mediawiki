@@ -203,11 +203,15 @@ class MWTimestamp {
 	 * @deprecated since 1.26 Use Language::getHumanTimestamp directly
 	 *
 	 * @param MWTimestamp|null $relativeTo The base timestamp to compare to (defaults to now)
-	 * @param User|null $user User the timestamp is being generated for (or null to use main context's user)
-	 * @param Language|null $lang Language to use to make the human timestamp (or null to use main context's language)
+	 * @param User|null $user User the timestamp is being generated for
+	 *  (or null to use main context's user)
+	 * @param Language|null $lang Language to use to make the human timestamp
+	 *  (or null to use main context's language)
 	 * @return string Formatted timestamp
 	 */
-	public function getHumanTimestamp( MWTimestamp $relativeTo = null, User $user = null, Language $lang = null ) {
+	public function getHumanTimestamp(
+		MWTimestamp $relativeTo = null, User $user = null, Language $lang = null
+	) {
 		if ( $lang === null ) {
 			$lang = RequestContext::getMain()->getLanguage();
 		}

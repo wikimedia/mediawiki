@@ -149,6 +149,7 @@ class PoolCounterRedis extends PoolCounter {
 		}
 		$conn = $status->value;
 
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		static $script =
 <<<LUA
 		local kSlots,kSlotsNextRelease,kWakeup,kWaiting = unpack(KEYS)
@@ -186,6 +187,8 @@ class PoolCounterRedis extends PoolCounter {
 		end
 		return 1
 LUA;
+		// @codingStandardsIgnoreEnd
+
 		try {
 			$conn->luaEval( $script,
 				array(
