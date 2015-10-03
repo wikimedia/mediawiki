@@ -573,6 +573,12 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
+	 * @param string $s
+	 * @return mixed
+	 */
+	abstract function mysqlRealEscapeString( $s );
+
+	/**
 	 * MySQL uses `backticks` for identifier quoting instead of the sql standard "double quotes".
 	 *
 	 * @param string $s
@@ -1250,7 +1256,7 @@ class MySQLField implements Field {
 	 * @return string
 	 */
 	function tableName() {
-		return $this->tableName;
+		return $this->tablename;
 	}
 
 	/**
