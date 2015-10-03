@@ -2,7 +2,6 @@
 <ruleset name="MediaWiki">
 	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<!-- Disable failing rules -->
-		<exclude name="PSR2.Methods.MethodDeclaration.Underscore"/>
 		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.EmptyComment"/>
 	</rule>
@@ -21,6 +20,9 @@
 	<arg name="extensions" value="php,php5,inc,sample"/>
 	<rule ref="Generic.Files.LineLength">
 		<exclude-pattern>*/languages/messages/Messages*.php</exclude-pattern>
+	</rule>
+	<rule ref="PSR2.Methods.MethodDeclaration.Underscore">
+		<exclude-pattern>*/includes/StubObject.php</exclude-pattern>
 	</rule>
 	<exclude-pattern>node_modules</exclude-pattern>
 	<exclude-pattern>vendor</exclude-pattern>
