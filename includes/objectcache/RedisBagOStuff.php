@@ -85,14 +85,13 @@ class RedisBagOStuff extends BagOStuff {
 		}
 	}
 
-	public function get( $key, &$casToken = null, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
 		}
 		try {
 			$value = $conn->get( $key );
-			$casToken = $value;
 			$result = $this->unserialize( $value );
 		} catch ( RedisException $e ) {
 			$result = false;
