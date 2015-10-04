@@ -34,10 +34,8 @@ class APCBagOStuff extends BagOStuff {
 	 **/
 	const KEY_SUFFIX = ':1';
 
-	public function get( $key, &$casToken = null, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0 ) {
 		$val = apc_fetch( $key . self::KEY_SUFFIX );
-
-		$casToken = $val;
 
 		return $val;
 	}

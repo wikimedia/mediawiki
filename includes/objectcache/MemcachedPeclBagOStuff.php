@@ -115,7 +115,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		$this->client->addServers( $servers );
 	}
 
-	public function get( $key, &$casToken = null, $flags = 0 ) {
+	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
 		$this->debugLog( "get($key)" );
 		$result = $this->client->get( $this->encodeKey( $key ), null, $casToken );
 		$result = $this->checkResult( $key, $result );

@@ -28,7 +28,7 @@
  * @ingroup Cache
  */
 class XCacheBagOStuff extends BagOStuff {
-	public function get( $key, &$casToken = null, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0 ) {
 		$val = xcache_get( $key );
 
 		if ( is_string( $val ) ) {
