@@ -125,7 +125,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	}
 
 	/**
-	 * @param DatabaseBase $dbw
+	 * @param IDatabase $dbw
 	 * @return bool|mixed
 	 */
 	public static function cacheUpdate( $dbw ) {

@@ -78,13 +78,13 @@ class BatchRowIterator implements RecursiveIterator {
 	private $key;
 
 	/**
-	 * @param DatabaseBase $db         The database to read from
+	 * @param IDatabase $db The database to read from
 	 * @param string       $table      The name of the table to read from
 	 * @param string|array $primaryKey The name or names of the primary key columns
 	 * @param integer      $batchSize  The number of rows to fetch per iteration
 	 * @throws MWException
 	 */
-	public function __construct( DatabaseBase $db, $table, $primaryKey, $batchSize ) {
+	public function __construct( IDatabase $db, $table, $primaryKey, $batchSize ) {
 		if ( $batchSize < 1 ) {
 			throw new MWException( 'Batch size must be at least 1 row.' );
 		}

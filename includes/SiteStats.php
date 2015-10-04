@@ -98,7 +98,7 @@ class SiteStats {
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @return bool|ResultWrapper
 	 */
 	static function doLoad( $db ) {
@@ -364,7 +364,7 @@ class SiteStatsInit {
 	 * Do all updates and commit them. More or less a replacement
 	 * for the original initStats, but without output.
 	 *
-	 * @param DatabaseBase|bool $database
+	 * @param IDatabase|bool $database
 	 * - Boolean: whether to use the master DB
 	 * - DatabaseBase: database connection to use
 	 * @param array $options Array of options, may contain the following values

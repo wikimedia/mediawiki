@@ -701,7 +701,7 @@ class ApiPageSet extends ApiBase {
 	 * Note that the query result must include the columns returned by
 	 * $this->getPageTableFields().
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param ResultWrapper $queryResult Query result object
 	 */
 	public function populateFromQueryResult( $db, $queryResult ) {

@@ -2820,7 +2820,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * @deprecated since 1.25, always returns empty string
-	 * @param DatabaseBase|bool $db
+	 * @param IDatabase|bool $db
 	 * @return string
 	 */
 	public function getModuleProfileName( $db = false ) {
