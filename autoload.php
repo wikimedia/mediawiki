@@ -933,7 +933,6 @@ $wgAutoloadLocalClasses = array(
 	'PostgresBlob' => __DIR__ . '/includes/db/DatabasePostgres.php',
 	'PostgresField' => __DIR__ . '/includes/db/DatabasePostgres.php',
 	'PostgresInstaller' => __DIR__ . '/includes/installer/PostgresInstaller.php',
-	'PostgresTransactionState' => __DIR__ . '/includes/db/DatabasePostgres.php',
 	'PostgresUpdater' => __DIR__ . '/includes/installer/PostgresUpdater.php',
 	'Preferences' => __DIR__ . '/includes/Preferences.php',
 	'PreferencesForm' => __DIR__ . '/includes/Preferences.php',

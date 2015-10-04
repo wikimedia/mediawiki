@@ -14,6 +14,8 @@ production.
   $wgResourceLoaderMinifierMaxLineLength, because there was little value in
   making the behavior configurable. The default values (`false` for the former,
   1000 for the latter) are now hard-coded.
+* $wgDebugDumpSqlLength was removed.
+* $wgDebugDBTransactions was removed.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
