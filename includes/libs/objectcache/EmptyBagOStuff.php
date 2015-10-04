@@ -27,7 +27,7 @@
  * @ingroup Cache
  */
 class EmptyBagOStuff extends BagOStuff {
-	public function get( $key, &$casToken = null, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0 ) {
 		return false;
 	}
 

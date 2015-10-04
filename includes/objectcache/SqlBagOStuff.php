@@ -220,7 +220,13 @@ class SqlBagOStuff extends BagOStuff {
 		}
 	}
 
-	public function get( $key, &$casToken = null, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0 ) {
+		$casToken = null;
+
+		return $this->getWithToken( $key, $casToken, $flags );
+	}
+
+	protected function getWithToken( $key, &$casToken = null, $flags = 0 ) {
 		$values = $this->getMulti( array( $key ) );
 		if ( array_key_exists( $key, $values ) ) {
 			$casToken = $values[$key];

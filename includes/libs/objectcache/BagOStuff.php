@@ -88,12 +88,36 @@ abstract class BagOStuff implements LoggerAwareInterface {
 
 	/**
 	 * Get an item with the given key. Returns false if it does not exist.
+	 * @param $key
+	 * @param integer $flags Bitfield; supports READ_LATEST [optional]
+	 * @param integer $oldFlags [unused]
+	 * @return mixed Returns false on failure
+	 */
+	public function get( $key, $flags = 0, $oldFlags = null ) {
+		// B/C for ( $key, &$casToken = null, $flags = 0 )
+		$flags = is_int( $oldFlags ) ? $oldFlags : $flags;
+
+		return $this->doGet( $key, $flags );
+	}
+
+	/**
+	 * @param string $key
+	 * @param integer $flags Bitfield; supports READ_LATEST [optional]
+	 * @return mixed Returns false on failure
+	 */
+	abstract protected function doGet( $key, $flags = 0 );
+
+	/**
+	 * @note: This method is only needed if cas() is not is used for merge()
+	 *
 	 * @param string $key
 	 * @param mixed $casToken [optional]
 	 * @param integer $flags Bitfield; supports READ_LATEST [optional]
 	 * @return mixed Returns false on failure
 	 */
-	abstract public function get( $key, &$casToken = null, $flags = 0 );
+	protected function getWithToken( $key, &$casToken = null, $flags = 0 ) {
+		throw new Exception( __METHOD__ . ' not implemented.' );
+	}
 
 	/**
 	 * Set an item.
@@ -145,7 +169,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 		do {
 			$this->clearLastError();
 			$casToken = null; // passed by reference
-			$currentValue = $this->get( $key, $casToken );
+			$currentValue = $this->getWithToken( $key, $casToken, BagOStuff::READ_LATEST );
 			if ( $this->getLastError() ) {
 				return false; // don't spam retries (retry only on races)
 			}
@@ -200,7 +224,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 		}
 
 		$this->clearLastError();
-		$currentValue = $this->get( $key );
+		$currentValue = $this->get( $key, BagOStuff::READ_LATEST );
 		if ( $this->getLastError() ) {
 			$success = false;
 		} else {
