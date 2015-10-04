@@ -82,9 +82,9 @@ class MultiWriteBagOStuff extends BagOStuff {
 		$this->doWrite( 'setDebug', $debug );
 	}
 
-	public function get( $key, &$casToken = null, $flags = 0 ) {
+	protected function getWithToken( $key, &$casToken = null, $flags = 0 ) {
 		foreach ( $this->caches as $cache ) {
-			$value = $cache->get( $key, $casToken, $flags );
+			$value = $cache->get( $key, $flags );
 			if ( $value !== false ) {
 				return $value;
 			}

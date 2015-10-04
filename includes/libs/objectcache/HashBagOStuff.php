@@ -48,7 +48,7 @@ class HashBagOStuff extends BagOStuff {
 		return true;
 	}
 
-	public function get( $key, &$casToken = null, $flags = 0 ) {
+	protected function getWithToken( $key, &$casToken = null, $flags = 0 ) {
 		if ( !isset( $this->bag[$key] ) ) {
 			return false;
 		}
@@ -56,8 +56,6 @@ class HashBagOStuff extends BagOStuff {
 		if ( $this->expire( $key ) ) {
 			return false;
 		}
-
-		$casToken = $this->bag[$key][0];
 
 		return $this->bag[$key][0];
 	}

@@ -28,7 +28,7 @@
  * @ingroup Cache
  */
 class WinCacheBagOStuff extends BagOStuff {
-	public function get( $key, &$casToken = null, $flags = 0 ) {
+	protected function getWithToken( $key, &$casToken = null, $flags = 0 ) {
 		$val = wincache_ucache_get( $key );
 
 		$casToken = $val;

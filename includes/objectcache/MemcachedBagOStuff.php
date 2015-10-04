@@ -57,7 +57,7 @@ class MemcachedBagOStuff extends BagOStuff {
 		return $params;
 	}
 
-	public function get( $key, &$casToken = null, $flags = 0 ) {
+	protected function getWithToken( $key, &$casToken = null, $flags = 0 ) {
 		return $this->client->get( $this->encodeKey( $key ), $casToken );
 	}
 
