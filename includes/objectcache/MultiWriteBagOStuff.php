@@ -87,11 +87,11 @@ class MultiWriteBagOStuff extends BagOStuff {
 		$this->doWrite( self::ALL, 'setDebug', $debug );
 	}
 
-	public function get( $key, &$casToken = null, $flags = 0 ) {
+	protected function doGet( $key, $flags = 0 ) {
 		$misses = 0; // number backends checked
 		$value = false;
 		foreach ( $this->caches as $cache ) {
-			$value = $cache->get( $key, $casToken, $flags );
+			$value = $cache->get( $key, $flags );
 			if ( $value !== false ) {
 				break;
 			}
