@@ -28,15 +28,15 @@
  */
 class SearchDatabase extends SearchEngine {
 	/**
-	 * @var DatabaseBase Slave database for reading from for results
+	 * @var IDatabase Slave database for reading from for results
 	 */
 	protected $db;
 
 	/**
 	 * Constructor
-	 * @param DatabaseBase $db The database to search from
+	 * @param IDatabase $db The database to search from
 	 */
-	public function __construct( DatabaseBase $db = null ) {
+	public function __construct( IDatabase $db = null ) {
 		if ( $db ) {
 			$this->db = $db;
 		} else {

@@ -4430,7 +4430,7 @@ class Title {
 	/**
 	 * Get the last touched timestamp
 	 *
-	 * @param DatabaseBase $db Optional db
+	 * @param IDatabase $db Optional db
 	 * @return string Last-touched timestamp
 	 */
 	public function getTouched( $db = null ) {

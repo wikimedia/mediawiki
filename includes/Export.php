@@ -79,7 +79,7 @@ class WikiExporter {
 	 * make additional queries to pull source data while the
 	 * main query is still running.
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param int|array $history One of WikiExporter::FULL, WikiExporter::CURRENT,
 	 *   WikiExporter::RANGE or WikiExporter::STABLE, or an associative array:
 	 *   - offset: non-inclusive offset at which to start the query

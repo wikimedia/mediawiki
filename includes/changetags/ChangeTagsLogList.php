@@ -29,7 +29,7 @@ class ChangeTagsLogList extends ChangeTagsList {
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {

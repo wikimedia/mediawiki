@@ -452,7 +452,7 @@ class Block {
 	 * Insert a block into the block table. Will fail if there is a conflicting
 	 * block (same name and options) already in the database.
 	 *
-	 * @param DatabaseBase $dbw If you have one available
+	 * @param IDatabase $dbw If you have one available
 	 * @return bool|array False on failure, assoc array on success:
 	 *	('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
@@ -556,7 +556,7 @@ class Block {
 
 	/**
 	 * Get an array suitable for passing to $dbw->insert() or $dbw->update()
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @return array
 	 */
 	protected function getDatabaseArray( $db = null ) {

@@ -646,7 +646,7 @@ class LogEventsList extends ContextSource {
 	/**
 	 * SQL clause to skip forbidden log types for this user
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param string $audience Public/user
 	 * @param User $user User to check, or null to use $wgUser
 	 * @return string|bool String on success, false on failure.

@@ -121,7 +121,7 @@ abstract class RevisionListBase extends ContextSource {
 
 	/**
 	 * Do the DB query to iterate through the objects.
-	 * @param DatabaseBase $db DatabaseBase object to use for the query
+	 * @param IDatabase $db DatabaseBase object to use for the query
 	 */
 	abstract public function doQuery( $db );
 
@@ -264,7 +264,7 @@ class RevisionList extends RevisionListBase {
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {

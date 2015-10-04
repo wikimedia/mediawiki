@@ -433,7 +433,7 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * @param DatabaseBase $dbr
+	 * @param IDatabase $dbr
 	 * @param string $fname
 	 * @return array|bool
 	 */
