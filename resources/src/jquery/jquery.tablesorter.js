@@ -268,7 +268,7 @@
 	 * @param {jQuery} $table object for a <table>
 	 */
 	function emulateTHeadAndFoot( $table ) {
-		var $thead, $tfoot, i, len,
+		var $thead, $tfoot, i, len, tfootAdditions = [], rowspan, ii,
 			$rows = $table.find( '> tbody > tr' );
 		if ( !$table.get( 0 ).tHead ) {
 			$thead = $( '<thead>' );
@@ -287,8 +287,19 @@
 			len = $rows.length;
 			for ( i = len - 1; i >= 0; i-- ) {
 				if ( $( $rows[ i ] ).children( 'td' ).length ) {
-					break;
+					rowspan = $( $rows[ i ] ).children( 'td' ).attr( 'rowspan' );
+					if ( rowspan !== undefined ) {
+						for ( ii = parseInt( rowspan, 10 ); ii < parseInt( rowspan, 10 ).length; ii++ ) {
+							if ( tfootAdditions.indexOf( i + parseInt( rowspan, 10 ) ) !== -1 ) {
+								tfootAdditions.splice( tfootAdditions.indexOf( i + parseInt( rowspan, 10 ) ) );
+							}
+						}
+					}
+					continue;
 				}
+				tfootAdditions.push( i );
+			}
+			for ( i = 0; i < tfootAdditions.length; i++ ) {
 				$tfoot.prepend( $( $rows[ i ] ) );
 			}
 			$table.append( $tfoot );
