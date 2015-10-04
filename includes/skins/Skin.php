@@ -917,7 +917,8 @@ abstract class Skin extends ContextSource {
 				$html = htmlspecialchars( $icon["alt"] );
 			}
 			if ( $url ) {
-				$html = Html::rawElement( 'a', array( "href" => $url ), $html );
+				global $wgExternalLinkTarget;
+				$html = Html::rawElement( 'a', array( "href" => $url, "target" => $wgExternalLinkTarget ), $html );
 			}
 		}
 		return $html;
