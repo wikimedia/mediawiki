@@ -139,11 +139,6 @@ class InfoAction extends FormlessAction {
 			$content .= $this->msg( 'pageinfo-footer' )->parse();
 		}
 
-		// Page credits
-		/*if ( $this->page->exists() ) {
-			$content .= Html::rawElement( 'div', array( 'id' => 'mw-credits' ), $this->getContributors() );
-		}*/
-
 		return $content;
 	}
 
@@ -169,10 +164,13 @@ class InfoAction extends FormlessAction {
 	 * @return string The table with the row added
 	 */
 	protected function addRow( $table, $name, $value, $id ) {
-		return $table . Html::rawElement( 'tr', $id === null ? array() : array( 'id' => 'mw-' . $id ),
-			Html::rawElement( 'td', array( 'style' => 'vertical-align: top;' ), $name ) .
-			Html::rawElement( 'td', array(), $value )
-		);
+		return $table .
+			Html::rawElement(
+				'tr',
+				$id === null ? array() : array( 'id' => 'mw-' . $id ),
+				Html::rawElement( 'td', array( 'style' => 'vertical-align: top;' ), $name ) .
+					Html::rawElement( 'td', array(), $value )
+			);
 	}
 
 	/**
@@ -305,7 +303,8 @@ class InfoAction extends FormlessAction {
 		$policy = $this->page->getRobotPolicy( 'view', $pOutput );
 		$pageInfo['header-basic'][] = array(
 			// Messages: pageinfo-robot-index, pageinfo-robot-noindex
-			$this->msg( 'pageinfo-robot-policy' ), $this->msg( "pageinfo-robot-${policy['index']}" )
+			$this->msg( 'pageinfo-robot-policy' ),
+			$this->msg( "pageinfo-robot-${policy['index']}" )
 		);
 
 		$unwatchedPageThreshold = $config->get( 'UnwatchedPageThreshold' );
@@ -371,7 +370,8 @@ class InfoAction extends FormlessAction {
 
 		// Subpages of this page, if subpages are enabled for the current NS
 		if ( MWNamespace::hasSubpages( $title->getNamespace() ) ) {
-			$prefixIndex = SpecialPage::getTitleFor( 'Prefixindex', $title->getPrefixedText() . '/' );
+			$prefixIndex = SpecialPage::getTitleFor(
+				'Prefixindex', $title->getPrefixedText() . '/' );
 			$pageInfo['header-basic'][] = array(
 				Linker::link( $prefixIndex, $this->msg( 'pageinfo-subpages-name' )->escaped() ),
 				$this->msg( 'pageinfo-subpages-value' )
@@ -421,7 +421,8 @@ class InfoAction extends FormlessAction {
 			$sources = $title->getCascadeProtectionSources(); // Array deferencing is in PHP 5.4 :(
 
 			foreach ( $sources[0] as $sourceTitle ) {
-				$cascadingFrom .= Html::rawElement( 'li', array(), Linker::linkKnown( $sourceTitle ) );
+				$cascadingFrom .= Html::rawElement(
+					'li', array(), Linker::linkKnown( $sourceTitle ) );
 			}
 
 			$cascadingFrom = Html::rawElement( 'ul', array(), $cascadingFrom );
@@ -529,7 +530,9 @@ class InfoAction extends FormlessAction {
 				$this->msg( 'pageinfo-lasttime' ),
 				Linker::linkKnown(
 					$title,
-					htmlspecialchars( $lang->userTimeAndDate( $this->page->getTimestamp(), $user ) ),
+					htmlspecialchars(
+						$lang->userTimeAndDate( $this->page->getTimestamp(), $user )
+					),
 					array(),
 					array( 'oldid' => $this->page->getLatest() )
 				)
@@ -550,13 +553,15 @@ class InfoAction extends FormlessAction {
 
 		// Recent number of edits (within past 30 days)
 		$pageInfo['header-edits'][] = array(
-			$this->msg( 'pageinfo-recent-edits', $lang->formatDuration( $config->get( 'RCMaxAge' ) ) ),
+			$this->msg( 'pageinfo-recent-edits',
+				$lang->formatDuration( $config->get( 'RCMaxAge' ) ) ),
 			$lang->formatNum( $pageCounts['recent_edits'] )
 		);
 
 		// Recent number of distinct authors
 		$pageInfo['header-edits'][] = array(
-			$this->msg( 'pageinfo-recent-authors' ), $lang->formatNum( $pageCounts['recent_authors'] )
+			$this->msg( 'pageinfo-recent-authors' ),
+			$lang->formatNum( $pageCounts['recent_authors'] )
 		);
 
 		// Array of MagicWord objects
@@ -701,8 +706,9 @@ class InfoAction extends FormlessAction {
 						array(
 							'wl_namespace' => $title->getNamespace(),
 							'wl_title' => $title->getDBkey(),
-							'wl_notificationtimestamp >= ' . $dbrWatchlist->addQuotes( $threshold ) .
-							' OR wl_notificationtimestamp IS NULL'
+							'wl_notificationtimestamp >= ' .
+								$dbrWatchlist->addQuotes( $threshold ) .
+								' OR wl_notificationtimestamp IS NULL'
 						),
 						$fname
 					);
@@ -858,15 +864,17 @@ class InfoAction extends FormlessAction {
 
 		# "ThisSite user(s) A, B and C"
 		if ( count( $user_names ) ) {
-			$user = $this->msg( 'siteusers' )->rawParams( $lang->listToText( $user_names ) )->params(
-				count( $user_names ) )->escaped();
+			$user = $this->msg( 'siteusers' )
+				->rawParams( $lang->listToText( $user_names ) )
+				->params( count( $user_names ) )->escaped();
 		} else {
 			$user = false;
 		}
 
 		if ( count( $anon_ips ) ) {
-			$anon = $this->msg( 'anonusers' )->rawParams( $lang->listToText( $anon_ips ) )->params(
-				count( $anon_ips ) )->escaped();
+			$anon = $this->msg( 'anonusers' )
+				->rawParams( $lang->listToText( $anon_ips ) )
+				->params( count( $anon_ips ) )->escaped();
 		} else {
 			$anon = false;
 		}
