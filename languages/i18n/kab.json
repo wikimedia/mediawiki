@@ -1345,7 +1345,7 @@
 	"filerevert-legend": "Erred afaylu",
 	"filerevert-intro": "Ha-ta-n ad uɣaleḍ ar ufaylu  '''[[Media:$1|$1]]''' ar [$4 lqem n $2 af $3].",
 	"filerevert-comment": "Taɣẓint :",
-	"filerevert-defaultcomment": "Uɣaleḍ ar lqem n $1 af $2",
+	"filerevert-defaultcomment": "Uɣaleḍ ar lqem n $1 af $2 ($3)",
 	"filerevert-submit": "Erred",
 	"filerevert-success": "'''[[Media:$1|$1]]''' yuɣaled ar  [$4 lqem n $2 af $3].",
 	"filerevert-badversion": "Ulac, deg udigan, lqem aqbur n ufaylu yesɛan azmez agi.",

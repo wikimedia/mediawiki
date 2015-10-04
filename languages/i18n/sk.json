@@ -1437,7 +1437,7 @@
 	"filerevert-legend": "Obnoviť súbor",
 	"filerevert-intro": "Obnovujete '''[[Media:$1|$1]]''' na [$4 verziu z $2, $3].",
 	"filerevert-comment": "Dôvod:",
-	"filerevert-defaultcomment": "Obnovená verzia z $1, $2",
+	"filerevert-defaultcomment": "Obnovená verzia z $1, $2 ($3)",
 	"filerevert-submit": "Obnoviť",
 	"filerevert-success": "'''[[Media:$1|$1]]''' bol obnovený na [$4 verziu z $2, $3].",
 	"filerevert-badversion": "Neexistuje predchádzajúca lokálna verzia tohto súboru s požadovanou časovou značkou.",

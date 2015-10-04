@@ -7,7 +7,8 @@
 			"Sura",
 			"Triple-ADHD-AS",
 			"Игорь Бродский",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Jonoštada kosketused:",
@@ -1118,7 +1119,7 @@
 	"filerevert-legend": "Endištada failan versii",
 	"filerevert-intro": "Tö takait endištada '''[[Media:$1|$1]]'''-fail [$4-versijahasai, kudamb oli tehtud datal $3, $2].",
 	"filerevert-comment": "Homaičend:",
-	"filerevert-defaultcomment": "Om endištadud versijahasai, kudamban dat om $2, $1",
+	"filerevert-defaultcomment": "Om endištadud versijahasai, kudamban dat om $2, $1 ($3)",
 	"filerevert-submit": "Endištada",
 	"filerevert-success": "'''[[Media:$1|$1]]''' om endištadud [$4 versijannoks datal $3, $2].",
 	"filedelete": "Čuta $1",

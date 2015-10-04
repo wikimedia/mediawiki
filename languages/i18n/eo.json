@@ -1473,7 +1473,7 @@
 	"filerevert-legend": "Restarigi dosieron",
 	"filerevert-intro": "Vi restarigas '''[[Media:$1|$1]]''' al la [$4 versio de $3, $2].",
 	"filerevert-comment": "Kialo:",
-	"filerevert-defaultcomment": "Restarigita al versio ekde $2, $1",
+	"filerevert-defaultcomment": "Restarigita al versio ekde $2, $1 ($3)",
 	"filerevert-submit": "Restarigi",
 	"filerevert-success": "'''[[Media:$1|$1]]''' estis restarigita al [$4 versio ekde $3, $2].",
 	"filerevert-badversion": "Ne estas antaŭa loka versio de ĉi tiu dosiero ĉe tiu tempo.",

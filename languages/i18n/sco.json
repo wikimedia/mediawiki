@@ -1417,7 +1417,7 @@
 	"filerevert-legend": "Revert file",
 	"filerevert-intro": "Ye'r aboot tae revert the file '''[[Media:$1|$1]]''' til the [$4 version aes o $3, $2].",
 	"filerevert-comment": "Raison:",
-	"filerevert-defaultcomment": "Reverted til version aes o $2, $1",
+	"filerevert-defaultcomment": "Reverted til version aes o $2, $1 ($3)",
 	"filerevert-submit": "Revert",
 	"filerevert-success": "'''[[Media:$1|$1]]''' haes been reverted til the [$4 version aes o $3, $2].",
 	"filerevert-badversion": "Thaur's naw preeveeoos local version o this file wi the gien timestamp.",

@@ -1272,7 +1272,7 @@
 	"filerevert-legend": "Reinizialisar la datoteca",
 	"filerevert-intro": "Ti es londervi da reinizialisar la [$4 versiun dals $2 las $3] da la datoteca '''[[Media:$1|$1]]'''.",
 	"filerevert-comment": "Motiv:",
-	"filerevert-defaultcomment": "Reinizialisà la versiun dals $1 las $2",
+	"filerevert-defaultcomment": "Reinizialisà la versiun dals $1 las $2 ($3)",
 	"filerevert-submit": "Reinizialisar",
 	"filerevert-success": "'''[[Media:$1|$1]]''' è vegnì reinizialisà a la [$4 versiun dals $2 las $3].",
 	"filerevert-badversion": "I n'exista nagina versiun locala da la datoteca dal temp inditgà.",

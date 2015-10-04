@@ -14,7 +14,8 @@
 			"bar.wikipedia.org administrators",
 			"✓",
 			"아라",
-			"Matthias Klostermayr"
+			"Matthias Klostermayr",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -683,7 +684,7 @@
 	"sharedupload-desc-there": "De Datei stãmmt aus $1 und deaf bei ãndera Projekte vawendt wean. Schau auf'd [$2 Dateibeschreibungsseitn] fia weidare Infoamazionen.",
 	"sharedupload-desc-here": "De Datei stammt aus $1 und deaf vo andan Projektn vawendt wean. De Bschreibung vo da [$2 Dateibschreibungsseitn] wead unen ozoagt.",
 	"uploadnewversion-linktext": "A neiche Versión voh derer Daatei aufféloon",
-	"filerevert-defaultcomment": "zruckgsétzd auf dé Versión vom $1, $2",
+	"filerevert-defaultcomment": "zruckgsétzd auf dé Versión vom $1, $2 ($3)",
 	"filerevert-submit": "Zrucksetzen",
 	"filedelete-legend": "Lésch dé Daatei",
 	"filedelete-intro": "Du léschst dé Daatei '''„[[Media:$1|$1]]“'''.",
@@ -799,7 +800,6 @@
 	"listgrouprights-addgroup-self-all": "Kauh olle Gruppm zum oagern Kóntó dazuadoah",
 	"mailnologin": "Du bist néd auhgmödt",
 	"emailuser": "Mail an den Nutza",
-	"emailpage": "E-Mail an Nutza",
 	"noemailtitle": "Koa Mail-Adress",
 	"emailfrom": "Voh:",
 	"emailto": "Aun:",
@@ -1007,7 +1007,6 @@
 	"move-page-legend": "Seiten vaschiam",
 	"movepagetext": "Mid dém Formular kauhst a Seiten umbenénner, waunnstas mid olle Versiónen auf an neichen Titel vaschiabst.\nDa oide Titel werd danoch zum neichen weiderloaten.\nDu kauhst Weiderloatungen, dé auf dén Originoititel valinken, autómaatisch koarigiern lossen.\nStö sicher, daas du im Auhschlus olle [[Special:DoubleRedirects|dóppéden]] óder [[Special:BrokenRedirects|dé hienigen Weiderloatungen]] ywerpriaffst.\nDu bist dodafyr vaauntwortlich, daas Links weiderhih aufs richtige Zü vaweisen.\n\nDé Seiten werd '''néd''' vaschóm, waunns bereits a Seiten mim vurgseegernen Titel gibt, ausser dé is laar óder a Weiderloatung óne a Versiónsgschicht. \nDés bdeitt, daas du d' Umbenénnung ryckgängig mochen kauhst, waunn du an Feeler gmocht host.  Du kauhst hihgéng koah Seiten ywerschreim.\n\n'''Ówocht!'''\nD' Vaschiawung kauh weidreichende und néd daworterde Fóing fyr haiffig bsuachde Seiten haum.\nDu sóiderst désswéng d' Kónsequenzen vastaunden haum, bevur du iatz weider duast.",
 	"movepagetalktext": "De dazuaghearade Dischgria-Seitn wiad, fåis's ane gibt, midvaschom, '''außa'''\n*unta'm neichn Nãm gibt's schãu an Eintråg oda\n*du tuast s'Hakal bei da unting Opzion außa.\n\nIn de zwoa Fälle miaßadst, fåis des gwünscht is, de Seitn händisch vaschiam oda zsãmmfüng.\n\nBittschee gib außadem druntn in '''neichn''' Nãm vu da Seitn ei und schreib kuaz '''wieso'''<nowiki>'st</nowiki> de Seitn vaschiam mechst.",
-	"movearticle": "Seitn vaschiam:",
 	"movenologintext": "Zum Vaschiam muaßt a registriada und [[Special:UserLogin|ãngmöideta Benutza]] sei.",
 	"movenotallowed": "Du håst ka Berechtigung zum Vaschiam vu Seitn.",
 	"movenotallowedfile": "Du håst ka Berechtigung zum Vaschiam vu Datein.",

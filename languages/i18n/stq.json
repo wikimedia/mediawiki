@@ -9,7 +9,8 @@
 			"Pyt",
 			"Reedy",
 			"Urhixidur",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Ferwiese unnerstriekje:",
@@ -1137,7 +1138,7 @@
 	"filerevert-legend": "Doatäi touräächsätte",
 	"filerevert-intro": "Du sätst ju Doatäi '''[[Media:$1|$1]]''' ap ju [$4 Version fon $2, $3 Uure] tourääch.",
 	"filerevert-comment": "Begruundenge:",
-	"filerevert-defaultcomment": "touräächsät ap ju Version fon $1, $2 Uure",
+	"filerevert-defaultcomment": "touräächsät ap ju Version fon $1, $2 Uure ($3)",
 	"filerevert-submit": "Touräächsätte",
 	"filerevert-success": "'''[[Media:$1|$1]]''' wuud ap ju [$4 Version fon $2, $3 Uure] touräächsät.",
 	"filerevert-badversion": "Et rakt neen Version fon ju Doatäi tou dän ounroate Tiedpunkt.",

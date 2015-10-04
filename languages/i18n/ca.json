@@ -1521,7 +1521,7 @@
 	"filerevert-legend": "Reverteix el fitxer",
 	"filerevert-intro": "Esteu revertint '''[[Media:$1|$1]]''' a la [$4 versió de  $3, $2].",
 	"filerevert-comment": "Motiu:",
-	"filerevert-defaultcomment": "S'ha revertit a la versió com de $2, $1",
+	"filerevert-defaultcomment": "S'ha revertit a la versió com de $2, $1 ($3)",
 	"filerevert-submit": "Reverteix",
 	"filerevert-success": "S'ha revertit '''[[Media:$1|$1]]''' a la [$4 versió de $3, $2].",
 	"filerevert-badversion": "No hi ha cap versió local anterior d'aquest fitxer amb la marca horària que es proporciona.",

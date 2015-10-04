@@ -1374,7 +1374,7 @@
 	"filerevert-legend": "Bestaand weerummezetten",
 	"filerevert-intro": "Je bin '''[[Media:$1|$1]]''' an t weerummedreien tot de [$4 versie van $2, $3]",
 	"filerevert-comment": "Reden:",
-	"filerevert-defaultcomment": "Weerummedreid tot de versie van $1, $2",
+	"filerevert-defaultcomment": "Weerummedreid tot de versie van $1, $2 ($3)",
 	"filerevert-submit": "Weerummedreien",
 	"filerevert-success": "<span class=\"plainlinks\">'''[[Media:$1|$1]]''' is weerummedreid naor de [$4 versie op $2, $3]</span>.",
 	"filerevert-badversion": "Der is gien veurige lokale versie van dit bestaand mit de op-egeven tied.",

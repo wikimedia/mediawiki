@@ -1218,7 +1218,7 @@
 	"filerevert-legend": "Revertir fichero",
 	"filerevert-intro": "Ye revertindo '''[[Media:$1|$1]]''' a la [$4 versión de $3, $2].",
 	"filerevert-comment": "Razón:",
-	"filerevert-defaultcomment": "Revertito t'a versión de $1, $2",
+	"filerevert-defaultcomment": "Revertito t'a versión de $1, $2 ($3)",
 	"filerevert-submit": "Revertir",
 	"filerevert-success": "S'ha revertito '''[[Media:$1|$1]]''' a la [$4 versión de $3, $2].",
 	"filerevert-badversion": "No bi ha garra versión antiga d'o fichero con ixa calendata y hora.",

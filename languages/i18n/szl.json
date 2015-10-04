@@ -16,7 +16,8 @@
 			"Przemub",
 			"Tchoř",
 			"Timpul",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Podsztrychńyńcy linkůw:",
@@ -1139,7 +1140,7 @@
 	"filerevert-legend": "Přiwracańy poprzedńy wersje plika",
 	"filerevert-intro": "Zamjeřoš přiwrůćić '''[[Media:$1|$1]]''' do wersje z [$4 $3, $2].",
 	"filerevert-comment": "Kůmyntorz:",
-	"filerevert-defaultcomment": "Přiwrůcůno wersyjo z $2, $1",
+	"filerevert-defaultcomment": "Přiwrůcůno wersyjo z $2, $1 ($3)",
 	"filerevert-submit": "Přiwrůć",
 	"filerevert-success": "Plik '''[[Media:$1|$1]]''' zostou cofńynty do [wersyje $4 ze $3, $2].",
 	"filerevert-badversion": "Ńy ma sam popředńij lokalnyj wersyji tygo plika s podanům datům.",

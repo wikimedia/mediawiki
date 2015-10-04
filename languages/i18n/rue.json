@@ -1348,7 +1348,7 @@
 	"filerevert-legend": "Вернути назад файл",
 	"filerevert-intro": "Вертате назад '''[[Media:$1|$1]]''' на [$4 верзію з $3 $2].",
 	"filerevert-comment": "Причіна:",
-	"filerevert-defaultcomment": "Навернута верзії з $2 дня $1.",
+	"filerevert-defaultcomment": "Навернута верзії з $2 дня $1 ($3)",
 	"filerevert-submit": "Вернути назад",
 	"filerevert-success": "Файл '''[[Media:$1|$1]]''' быв вернутый назад на [$4 верзію з $3 $2].",
 	"filerevert-badversion": "Не є доступна попередня верзія того файлу з одоповідаючов часовов значков.",

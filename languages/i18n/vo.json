@@ -9,7 +9,8 @@
 			"Smeira",
 			"לערי ריינהארט",
 			"아라",
-			"Rachmat.Wahidi"
+			"Rachmat.Wahidi",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Dislienükön yümis:",
@@ -1060,7 +1061,7 @@
 	"filerevert-legend": "Geükön ragivi",
 	"filerevert-intro": "Anu geükol padi: '''[[Media:$1|$1]]''' ad [fomam $4: $3, $2].",
 	"filerevert-comment": "Kod:",
-	"filerevert-defaultcomment": "Pegeükon ad fomam: $2, $1",
+	"filerevert-defaultcomment": "Pegeükon ad fomam: $2, $1 ($3)",
 	"filerevert-submit": "Geükön",
 	"filerevert-success": "Pad: '''[[Media:$1|$1]]''' pegeükon ad [fomam $4: $3, $2].",
 	"filerevert-badversion": "No dabinon fomam topik büik ragiva at labü timamäk pegevöl",

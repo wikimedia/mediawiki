@@ -1409,7 +1409,7 @@
 	"filerevert-legend": "Gwrthdroi'r ffeil",
 	"filerevert-intro": "Rydych yn gwrthdroi '''[[Media:$1|$1]]''' i'r fersiwn [$4 fel ag yr oedd ar $3, $2].",
 	"filerevert-comment": "Rheswm:",
-	"filerevert-defaultcomment": "Wedi adfer fersiwn $2, $1",
+	"filerevert-defaultcomment": "Wedi adfer fersiwn $2, $1 ($3)",
 	"filerevert-submit": "Gwrthdroi",
 	"filerevert-success": "Mae '''[[Media:$1|$1]]''' wedi cael ei wrthdroi i'r fersiwn [$4 fel ag yr oedd ar $3, $2].",
 	"filerevert-badversion": "Nid oes fersiwn lleol cynt o'r ffeil hwn gyda'r amsernod a nodwyd.",

@@ -11,7 +11,8 @@
 			"RigiMahnoor",
 			"Oldstoneage",
 			"Baloch Afghanistan",
-			"Mjbmr"
+			"Mjbmr",
+			"Macofe"
 		]
 	},
 	"tog-underline": ":لینکانآ خط کش",
@@ -1395,7 +1396,7 @@
 	"filerevert-legend": "ترینگ فایل",
 	"filerevert-intro": " شما په ترینگء '''[[Media:$1|$1]]''' په  [$4 نسخه ای په داب چه $3, $2].",
 	"filerevert-comment": "دلیل:",
-	"filerevert-defaultcomment": "تررت په نسخه په داب $2, $1",
+	"filerevert-defaultcomment": "تررت په نسخه په داب $2, $1 ($3)",
 	"filerevert-submit": "تررگ",
 	"filerevert-success": "''[[Media:$1|$1]]'''  بدل بوتت په [$4 نسخه په داب چه $3, $2].",
 	"filerevert-badversion": "چه ای فایل پیشگین نسخه مکلی گون داتگین وهد نیست.",

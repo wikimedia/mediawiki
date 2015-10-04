@@ -17,7 +17,8 @@
 			"Snowdog",
 			"Sprüngli",
 			"아라",
-			"Ninonino"
+			"Ninonino",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Sutulinia i ligam",
@@ -961,7 +962,7 @@
 	"uploadnewversion-linktext": "Carga una versión növa de quel file chì",
 	"filerevert-intro": "Te seet adree a bütà turna el file '''[[Media:$1|$1]]''' a la [$4 version del $2, $3].",
 	"filerevert-comment": "Mutif:",
-	"filerevert-defaultcomment": "Ripristinàt la versiù del $2, $1",
+	"filerevert-defaultcomment": "Ripristinàt la versiù del $2, $1 ($3)",
 	"filerevert-submit": "Riprìstina 'mè che l'era",
 	"filerevert-success": "'''L'archivi [[Media:$1|$1]]''' l'è stat ripristinat a la [$4 versiù del $2, $3].",
 	"filedelete": "Scancela $1",
@@ -1291,7 +1292,6 @@
 	"block-log-flags-nocreate": "blucada la creazión de cünt növ",
 	"movepagetext": "Duvraant la büeta chí-da-sota al re-numinerà una pàgina, muveent tüta la suva stòria al nomm nööf. Ul vecc títul al deventarà una pàgina da redirezziun al nööf títul. I liamm a la vegja pàgina i sarà mia cambiaa: assürévas da cuntrulá par redirezziun dopi u rumpüüt.\nA sii respunsàbil da assüráss che i liamm i sigüta a puntá intúe i è süpunüü da ná.\nNutii che la pàgina la sarà '''mia''' muvüda se a gh'è gjamò una pàgina al nööf títul, a maanch che la sía vöja, una redirezziun cun nissüna stòtia d'esizziun passada. Cheest-chí al signífega ch'a pudii renuminá indrée\nuna pàgina intúe l'évuf renuminada via par eruur, e che vüü pudii mia surascriif una pàgina esisteent.\n\n\n<b>ATENZIUN!</b>\nCheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupülara: par piasée assürévas ch'a ii capii i cunsegueenz da cheest-chí prima da ná inaanz.",
 	"movepagetalktext": "La pagina de discüssión tacada a quel articul chì, la sarà spustada in manera utumatega insema a l'articul, '''asca in quij cas chì:'''\n* quand che la pagina a l'è spustada intra namespace diferent\n* se in del növ titul al gh'è giamò una pagina de discüssiun (minga vöja)\n* el quadret de cunferma chì de sota a l'è staa deseleziónaa.\nIn quij cas chì, se'l var la pena, ghe sarà de spustà a man i infurmazión de la pagina de discüssión.",
-	"movearticle": "Spòsta la pàgina:",
 	"newtitle": "Titul növ:",
 	"move-watch": "Gionta chela pagina chí ai pàgin à tegní d'œucc.",
 	"movepagebtn": "Sposta quela pagina chì",

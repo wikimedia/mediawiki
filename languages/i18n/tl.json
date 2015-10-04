@@ -1341,7 +1341,7 @@
 	"filerevert-legend": "Ibalik ang talaksan",
 	"filerevert-intro": "<span class=\"plainlinks\">Ibinabalik mo sa dati ang '''[[Media:$1|$1]]''' patungo sa [$4 bersyon noong $3, $2].</span>",
 	"filerevert-comment": "Dahilan:",
-	"filerevert-defaultcomment": "Ibinalik sa dating bersyon mula pa noong $2, $1",
+	"filerevert-defaultcomment": "Ibinalik sa dating bersyon mula pa noong $2, $1 ($3)",
 	"filerevert-submit": "Ibalik",
 	"filerevert-success": "<span class=\"plainlinks\">Ibinalik sa dati ang '''[[Media:$1|$1]]''' patungo sa [$4 bersyon noong $3, $2].</span>",
 	"filerevert-badversion": "Walang nakaraang lokal/katutubong bersyon para sa talaksang ito na may kasamang ibinigay na <i>tatak ng oras</i>.",

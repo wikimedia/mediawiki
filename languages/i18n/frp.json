@@ -1303,7 +1303,7 @@
 	"filerevert-legend": "Rèvocar lo fichiér",
 	"filerevert-intro": "Vos éte prèst a rèvocar lo fichiér '''[[Media:$1|$1]]''' a la [$4 vèrsion du $2 a $3].",
 	"filerevert-comment": "Rêson :",
-	"filerevert-defaultcomment": "Rèvocâ a la vèrsion du $1 a $2",
+	"filerevert-defaultcomment": "Rèvocâ a la vèrsion du $1 a $2 ($3)",
 	"filerevert-submit": "Rèvocar",
 	"filerevert-success": "'''[[Media:$1|$1]]''' est étâ rèvocâ a la [$4 vèrsion du $2 a $3].",
 	"filerevert-badversion": "Y at gins de vèrsion locâla devant de cél fichiér avouéc l’horodatâjo balyê.",

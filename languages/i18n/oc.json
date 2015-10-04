@@ -1415,7 +1415,7 @@
 	"filerevert-legend": "Revocar lo fichièr",
 	"filerevert-intro": "Anatz revocar '''[[Media:$1|$1]]''' fins a [$4 la version del $2 a $3].",
 	"filerevert-comment": "Motiu :",
-	"filerevert-defaultcomment": "Revocat fins a la version del $1 a $2",
+	"filerevert-defaultcomment": "Revocat fins a la version del $1 a $2 ($3)",
 	"filerevert-submit": "Revocar",
 	"filerevert-success": "'''[[Media:$1|$1]]''' es estat revocat fins a [$4 la version del $2 a $3].",
 	"filerevert-badversion": "I a pas de version mai anciana del fichièr amb lo Timestamp donat.",

@@ -10,7 +10,8 @@
 			"Reedy",
 			"Urhixidur",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Gurat-handapan tutumbu",
@@ -1301,7 +1302,7 @@
 	"filerevert-legend": "Balikkeun gambar",
 	"filerevert-intro": "Anjeun keur mulangkeun '''[[Media:$1|$1]]''' ka [vérsi $4, $3, $2].",
 	"filerevert-comment": "Alesan:",
-	"filerevert-defaultcomment": "Dipulangkeun ka vérsi $2, $1",
+	"filerevert-defaultcomment": "Dipulangkeun ka vérsi $2, $1 ($3)",
 	"filerevert-submit": "Balikkeun",
 	"filerevert-success": "'''[[Media:$1|$1]]''' geus dipulangkeun ka [vérsi $4, $3, $2].",
 	"filerevert-badversion": "Euweuh vérsi lokal tiheula ti koropak ieu kalawan cap waktu anu dimaksud.",

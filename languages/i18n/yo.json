@@ -1299,7 +1299,7 @@
 	"filerevert-legend": "Dá fáìlì padà",
 	"filerevert-intro": "Ẹ ti fẹ́ dá fáìlì '''[[Media:$1|$1]]''' padà sí [$4 àtẹ̀jáde bó ṣe wà ní $3, $2].",
 	"filerevert-comment": "Ìdíẹ̀:",
-	"filerevert-defaultcomment": "Jẹ́ dídápadà sí àtẹ̀jáde bó ṣe wà ní $2, $1",
+	"filerevert-defaultcomment": "Jẹ́ dídápadà sí àtẹ̀jáde bó ṣe wà ní $2, $1 ($3)",
 	"filerevert-submit": "Dápadà",
 	"filerevert-success": "'''[[Media:$1|$1]]''' ti jẹ́ dídápadà sí [$4 àtẹ̀jáde bó ṣe wà ní $3, $2].",
 	"filerevert-badversion": "Kò sí àtúnyẹ̀wò abẹ́lé tẹ́lẹ̀ fún fáìlì yìí pẹ̀lú àmì àsìkò tí ẹ pèsè.",

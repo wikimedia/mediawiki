@@ -1467,7 +1467,7 @@
 	"filerevert-legend": "Datei turagsaat",
 	"filerevert-intro": "Dü saatst det datei '''[[Media:$1|$1]]''' üüb det [$4 werjuun faan $2, klook $3] turag.",
 	"filerevert-comment": "Grünj:",
-	"filerevert-defaultcomment": "Turagsaat üüb det werjuun faan $1, klook $2",
+	"filerevert-defaultcomment": "Turagsaat üüb det werjuun faan $1, klook $2 ($3)",
 	"filerevert-submit": "Turagsaat",
 	"filerevert-success": "'''[[Media:$1|$1]]''' as üüb det [$4 werjuun faan $3, klook $2] turagsaat wurden.",
 	"filerevert-badversion": "Diar as nään werjuun faan detdiar datei tu didiar tidjponkt.",

@@ -1502,7 +1502,7 @@
 	"filerevert-legend": "استرجع الملف",
 	"filerevert-intro": "أنت تسترجع '''[[Media:$1|$1]]''' [$4 لنسخة بتاريخ $2، $3].",
 	"filerevert-comment": "السبب:",
-	"filerevert-defaultcomment": "استرجع للنسخة بتاريخ $2، $1",
+	"filerevert-defaultcomment": "استرجع للنسخة بتاريخ $2، $1 ($3)",
 	"filerevert-submit": "استرجع",
 	"filerevert-success": "'''[[Media:$1|$1]]''' تم استرجاعها [$4 للنسخة بتاريخ $3، $2].",
 	"filerevert-badversion": "لا توجد نسخة محلية سابقة لهذا الملف بالتاريخ المعطى.",

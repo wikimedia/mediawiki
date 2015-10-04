@@ -1477,7 +1477,7 @@
 	"filerevert-legend": "Билэни төннөр",
 	"filerevert-intro": "Эн бу билэни  '''[[Media:$1|$1]]'''  [$4 торумҥа от $3, $2] төннөрөҕүн.",
 	"filerevert-comment": "Төрүөтэ:",
-	"filerevert-defaultcomment": "Торумҥа төннүү $2, $1",
+	"filerevert-defaultcomment": "Торумҥа төннүү $2, $1 ($3)",
 	"filerevert-submit": "Төннөрүү",
 	"filerevert-success": "'''[[Media:$1|$1]]''' бу торумҥа төннөрүлүннэ [$4 торум Filetype-missingот $3, $2].",
 	"filerevert-badversion": "Бу билэ этиллибит күҥҥэ-ыйга/кэмҥэ оҥоһуллубут урукку торума суох.",

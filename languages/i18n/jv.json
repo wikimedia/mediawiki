@@ -1350,7 +1350,7 @@
 	"filerevert-legend": "Balèkna berkas",
 	"filerevert-intro": "Panjenengan mbalèkaké '''[[Media:$1|$1]]''' menyang [vèrsi $4 ing $3, $2].",
 	"filerevert-comment": "Alesan:",
-	"filerevert-defaultcomment": "Dibalèkaké menyang vèrsi ing $2, $1",
+	"filerevert-defaultcomment": "Dibalèkaké menyang vèrsi ing $2, $1 ($3)",
 	"filerevert-submit": "Balèkna",
 	"filerevert-success": "'''[[Media:$1|$1]]''' wis dibalèkaké menyang [vèrsi $4 ing $3, $2].",
 	"filerevert-badversion": "Ora ana vèrsi lokal sadurungé saka berkas iki mawa stèmpel wektu sing dikarepaké.",

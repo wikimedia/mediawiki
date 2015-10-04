@@ -9,7 +9,8 @@
 			"לערי ריינהארט",
 			"Kolega2357",
 			"아라",
-			"MarcoAurelio"
+			"MarcoAurelio",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Bagisa ha ilarom an mga sumpay:",
@@ -1109,7 +1110,7 @@
 	"filerevert": "Igbalik $1",
 	"filerevert-legend": "Igbalik an paypay",
 	"filerevert-comment": "Rason:",
-	"filerevert-defaultcomment": "Ginbalik nga bersyon han $2, $1",
+	"filerevert-defaultcomment": "Ginbalik nga bersyon han $2, $1 ($3)",
 	"filerevert-submit": "Igbalik",
 	"filedelete": "Igpara $1",
 	"filedelete-legend": "Igpara an file",
@@ -1456,7 +1457,6 @@
 	"databasenotlocked": "An database in diri nakatrangka.",
 	"move-page": "Mabalhin an $1",
 	"move-page-legend": "Balhina an pakli:",
-	"movearticle": "Balhina an pakli:",
 	"moveuserpage-warning": "'''Pahimatngon:''' Tibalhin ka hin pakli hin gumaramit. Alayon pagtigaman nga an pakli là an mababalhin ngan an gumaramit in ''diri'' mababalyoan hin ngaran.",
 	"movenotallowed": "Waray ka pagtugot para makabalhin hin mga pakli.",
 	"movenotallowedfile": "Waray ka pagtugot para makabalhin hin mga paypay.",

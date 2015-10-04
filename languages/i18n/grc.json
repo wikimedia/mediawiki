@@ -15,7 +15,8 @@
 			"Yannos",
 			"ZaDiak",
 			"아라",
-			"JoostBotman"
+			"JoostBotman",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Ὑπογραμμίζειν συνδέσμους:",
@@ -949,7 +950,7 @@
 	"filerevert-legend": "Ἐπαναφέρειν ἀρχεῖον",
 	"filerevert-intro": "Ἀναστρέφεις τὴν '''[[Media:$1|$1]]''' εἰς τὴν [$4 ἔκδοσιν μέχρι $3, $2].",
 	"filerevert-comment": "Αἰτία:",
-	"filerevert-defaultcomment": "Ἀναστροφὴ κατὰ τὴν ἔκδοσιν μέχρι $2, $1",
+	"filerevert-defaultcomment": "Ἀναστροφὴ κατὰ τὴν ἔκδοσιν μέχρι $2, $1 ($3)",
 	"filerevert-submit": "Ἀναστρέφειν",
 	"filerevert-success": "'''[[Media:$1|$1]]''' ἀνεστραμμένη ἐστὶ κατὰ τὴν [$4 ἔκδοσιν μέχρι $3, $2].",
 	"filerevert-badversion": "Οὐκ ἔστι προτέρα τοπικὴ ἔκδοσις τοῦδε τοῦ ἀρχείου μετὰ τῆς παρεσχημένης χρονικῆς σφραγίδος.",

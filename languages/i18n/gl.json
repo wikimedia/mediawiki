@@ -1491,7 +1491,7 @@
 	"filerevert-legend": "Reverter o ficheiro",
 	"filerevert-intro": "Está a piques de reverter o ficheiro \"'''[[Media:$1|$1]]'''\" ata a [$4 versión do $2 ás $3].",
 	"filerevert-comment": "Motivo:",
-	"filerevert-defaultcomment": "Volveuse á versión do $1 ás $2",
+	"filerevert-defaultcomment": "Volveuse á versión do $1 ás $2 ($3)",
 	"filerevert-submit": "Reverter",
 	"filerevert-success": "Reverteuse \"'''[[Media:$1|$1]]'''\" á [$4 versión do $2 ás $3].",
 	"filerevert-badversion": "Non existe unha versión local anterior deste ficheiro coa data e hora indicadas.",

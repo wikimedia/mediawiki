@@ -4,7 +4,8 @@
 			"Kaganer",
 			"Nertiks",
 			"Peteris",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Autengīnsenin paglaubasnā",
@@ -943,7 +944,7 @@
 	"filerevert-legend": "Etwārtai wartinnais pirzdauman zūrbrukes wersiōnin",
 	"filerevert-intro": "Tu skatta etwārtai wartīntun zūrbrukin '''[[Media:$1|$1]]''' prei [$4 wersiōnin iz $3, $2].",
 	"filerevert-comment": "Kumentārs",
-	"filerevert-defaultcomment": "Etwārtai wartinnā di wersiōnin iz $2, $1",
+	"filerevert-defaultcomment": "Etwārtai wartinnā di wersiōnin iz $2, $1 ($3)",
 	"filerevert-submit": "Etwārtai wartinnais",
 	"filerevert-success": "Zūrbrukis '''[[Media:$1|$1]]''' pastāi etwārtai wartīntan prei [$4 wersiōnin iz $3, $2].",
 	"filerevert-badversion": "Nist pirzdauma lōkala wersiōni šisse zūrbrukin sen padātan dātan.",

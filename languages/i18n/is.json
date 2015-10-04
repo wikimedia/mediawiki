@@ -1371,7 +1371,7 @@
 	"filerevert-legend": "Taka aftur skrá",
 	"filerevert-intro": "Þú ert í þann mund að breyta skránni '''[[Media:$1|$1]]''' aftur til [$4 útgáfu frá $3, $2].",
 	"filerevert-comment": "Ástæða:",
-	"filerevert-defaultcomment": "Breytt til útgáfu $2 $1",
+	"filerevert-defaultcomment": "Breytt til útgáfu $2 $1 ($3)",
 	"filerevert-submit": "Taka aftur",
 	"filerevert-success": "'''[[Media:$1|$1]]''' var breytt aftur til [$4 útgáfu frá $3, $2].",
 	"filerevert-badversion": "Það er ekki til nein fyrri staðbundin útgáfa af þessari skrá með þessum tímastimpli.",

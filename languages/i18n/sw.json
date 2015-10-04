@@ -16,7 +16,8 @@
 			"Baba Tabita",
 			"Rich Farmbrough",
 			"Kipala",
-			"Kwisha"
+			"Kwisha",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Wekea mstari viungo:",
@@ -1385,7 +1386,7 @@
 	"filerevert-legend": "Rejesha faili",
 	"filerevert-intro": "Unataka kulirudisha faili la '''[[Media:$1|$1]]''' hadi [$4 pitio la saa $3, tarehe $2].",
 	"filerevert-comment": "Sababu:",
-	"filerevert-defaultcomment": "Ilirejeshwa hadi sahihisho lile la $2, $1",
+	"filerevert-defaultcomment": "Ilirejeshwa hadi sahihisho lile la $2, $1 ($3)",
 	"filerevert-submit": "Rejesha",
 	"filerevert-success": "'''[[Media:$1|$1]]''' limerudishwa hadi [$4 pitio la saa $3, tarehe $2].",
 	"filerevert-badversion": "Katika wiki hii hakuna mtindo wa awali wa faili hili lenye stempu ya saa iliyotajwa.",

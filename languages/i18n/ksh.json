@@ -8,7 +8,8 @@
 			"Rentenirer",
 			"לערי ריינהארט",
 			"아라",
-			"TTO"
+			"TTO",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Dun de Lengks ongerschtriische:",
@@ -1490,7 +1491,7 @@
 	"filerevert-legend": "Dattei zerök holle",
 	"filerevert-intro": "<span class=\"plainlinks\">Do bes di Datei '''[[Media:$1|$1]]''' op di [$4 Version fum $2 öm $3 Uhr] zeröck aam sätze.</span>",
 	"filerevert-comment": "Jrond:",
-	"filerevert-defaultcomment": "Zerök jesaz op di Version fum $1 öm $2 Uhr",
+	"filerevert-defaultcomment": "Zerök jesaz op di Version fum $1 öm $2 Uhr ($3)",
 	"filerevert-submit": "Zeröcknämme",
 	"filerevert-success": "<span class=\"plainlinks\">Di Dattei '''[[Media:$1|$1]]''' es jäz op di [$4 Version fum $2 öm $3 Uhr] zerök jesatz.</span>",
 	"filerevert-badversion": "Mer han kei Version fun dä Datei för dä aanjejovve Zickpunk.",

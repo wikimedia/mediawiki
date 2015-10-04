@@ -12,7 +12,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Kolega2357",
-			"Servien"
+			"Servien",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Verwies ünnerstrieken",
@@ -1046,7 +1047,7 @@
 	"filerevert-legend": "Datei trüchsetten",
 	"filerevert-intro": "Du settst de Datei '''[[Media:$1|$1]]''' op de [$4 Version vun $2, $3] trüch.",
 	"filerevert-comment": "Kommentar:",
-	"filerevert-defaultcomment": "trüchsett op de Version vun’n $1, $2",
+	"filerevert-defaultcomment": "trüchsett op de Version vun’n $1, $2 ($3)",
 	"filerevert-submit": "Trüchsetten",
 	"filerevert-success": "'''[[Media:$1|$1]]''' is op de [$4 Version vun $2, $3] trüchsett worrn.",
 	"filerevert-badversion": "Gifft keen vörige lokale Version vun de Datei to disse Tied.",

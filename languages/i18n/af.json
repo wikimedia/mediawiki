@@ -1400,7 +1400,7 @@
 	"filerevert-legend": "Maak lêer ongedaan",
 	"filerevert-intro": "U is besig om die lêer '''[[Media:$1|$1]]''' terug te rol tot die [$4 weergawe op $2, $3]",
 	"filerevert-comment": "Rede:",
-	"filerevert-defaultcomment": "Teruggerol na die weergawe van $1, $2",
+	"filerevert-defaultcomment": "Teruggerol na die weergawe van $1, $2 ($3)",
 	"filerevert-submit": "Rol terug",
 	"filerevert-success": "'''[[Media:$1|$1]]''' is teruggerol na die [$4 weergawe op $2, $3].",
 	"filerevert-badversion": "Daar is geen vorige plaaslike weergawe van die lêer vir die gespesifiseerde tydstip nie.",

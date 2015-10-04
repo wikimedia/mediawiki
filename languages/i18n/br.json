@@ -1397,7 +1397,7 @@
 	"filerevert-legend": "Disteuler ar restr",
 	"filerevert-intro": "Emaoc'h o tistreiñ '''[[Media:$1|$1]]''' d'ar [stumm $4 eus $3, $2].",
 	"filerevert-comment": "Abeg :",
-	"filerevert-defaultcomment": "Distroet da stumm $2, $1",
+	"filerevert-defaultcomment": "Distroet da stumm $2, $1 ($3)",
 	"filerevert-submit": "Disteuler",
 	"filerevert-success": "'''Distroet eo bet [[Media:$1|$1]]''' da [stumm $4 an $3, $2].",
 	"filerevert-badversion": "N'eus stumm lec'hel kent ebet eus ar restr-mañ d'ar mare spisaet.",

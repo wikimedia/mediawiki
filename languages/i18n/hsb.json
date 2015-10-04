@@ -1429,7 +1429,7 @@
 	"filerevert-legend": "Dataju wróćo stajeć",
 	"filerevert-intro": "Stajiš dataju '''[[Media:$1|$1]]''' na [$4 wersiju wot $2, $3 hodź.] wróćo.",
 	"filerevert-comment": "Přičina:",
-	"filerevert-defaultcomment": "wróćo stajene na wersiju wot $1, $2 hodź.",
+	"filerevert-defaultcomment": "wróćo stajene na wersiju wot $1, $2 hodź ($3)",
 	"filerevert-submit": "Cofnyć",
 	"filerevert-success": "'''[[Media:$1|$1]]''' bu na [$4 wersiju wot $2, $3 hodź.] wróćo stajeny.",
 	"filerevert-badversion": "W zapodatym času žana wersija dataje njeje.",

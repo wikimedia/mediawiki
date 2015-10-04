@@ -7,7 +7,8 @@
 			"Jun Misugi",
 			"Kaganer",
 			"Midnight Gambler",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Sotturìnia li cullegamenti:",
@@ -791,7 +792,7 @@
 	"filerevert-legend": "Ricupara file",
 	"filerevert-intro": "N'isthai pa ricuparà lu file '''[[Media:$1|$1]]''' a la [versioni $4 di lu $2, $3].",
 	"filerevert-comment": "Mutibu:",
-	"filerevert-defaultcomment": "Turradda che primma la versioni di lu $1, $2",
+	"filerevert-defaultcomment": "Turradda che primma la versioni di lu $1, $2 ($3)",
 	"filerevert-submit": "Turra che primma",
 	"filerevert-success": "'''Lu file [[Media:$1|$1]]''' è isthaddu ricuparaddu a la [versioni $4 di lu $2, $3].",
 	"filerevert-badversion": "Nò isisthono versioni lucari prizzidenti di lu file cu' la marchaddura oreria disizadda.",

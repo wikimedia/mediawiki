@@ -1391,7 +1391,7 @@
 	"filerevert-legend": "Възвръщане на файла",
 	"filerevert-intro": "Възвръщане на '''[[Media:$1|$1]]''' към [$4 версията от $3, $2].",
 	"filerevert-comment": "Причина:",
-	"filerevert-defaultcomment": "Възвръщане към версия от $2, $1",
+	"filerevert-defaultcomment": "Възвръщане към версия от $2, $1 ($3)",
 	"filerevert-submit": "Възвръщане",
 	"filerevert-success": "Файлът '''[[Media:$1|$1]]''' беше възвърнат към [$4 версия от $3, $2].",
 	"filerevert-badversion": "Не съществува предишна локална версия на файла със зададения времеви отпечатък.",

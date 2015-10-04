@@ -1475,7 +1475,7 @@
 	"filerevert-legend": "Balikkan fail",
 	"filerevert-intro": "<span class=\"plainlinks\">Anda sedang menmbalikkan '''[[Media:$1|$1]]''' kepada [$4 versi pada $3, $2].</span>",
 	"filerevert-comment": "Sebab:",
-	"filerevert-defaultcomment": "Dibalikkan kepada versi pada $2, $1",
+	"filerevert-defaultcomment": "Dibalikkan kepada versi pada $2, $1 ($3)",
 	"filerevert-submit": "Balikkan",
 	"filerevert-success": "<span class=\"plainlinks\">'''[[Media:$1|$1]]''' telah dibalikkan kepada [$4 versi pada $3, $2].</span>",
 	"filerevert-badversion": "Tiada versi tempatan bagi fail ini dengan cap waktu yang dinyatakan.",

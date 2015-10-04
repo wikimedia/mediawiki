@@ -1340,7 +1340,7 @@
 	"file-thumbnail-no": "Filnamnet börjar med <strong>$1</strong>.\nDet verkar vara en bild med förminskad storlek ''(miniatyrbild)''.\nOm du har denna bild i full storlek, ladda då hellre upp den, annars var vänlig och ändra filens namn.",
 	"fileexists-forbidden": "En fil med detta namn existerar redan, och kan inte överskrivas.\nOm du fortfarande vill ladda upp din fil, var god gå tillbaka och välj ett nytt namn. [[File:$1|thumb|center|$1]]",
 	"fileexists-shared-forbidden": "En fil med detta namn finns redan bland de delade filerna.\nOm du ändå vill ladda upp din fil, gå då tillbaka och använd ett annat namn. [[File:$1|thumb|center|$1]]",
-	"file-exists-duplicate": "Den här filen är en dubblett till följande {{PLURAL:$1|fil|filer}}:",
+	"file-exists-duplicate": "Denna fil är en dubblett av följande {{PLURAL:$1|fil|filer}}:",
 	"file-deleted-duplicate": "En identisk fil till den här filen ([[:$1]]) har tidigare raderats. Du bör kontrollera den filens raderingshistorik innan du fortsätter att återuppladda den.",
 	"file-deleted-duplicate-notitle": "En identisk fil till den här filen har tidigare raderats och titeln har undanhållits.\nDu borde be någon som kan se undanhållen fildata att granska situationen innan du försöker ladda upp den.",
 	"uploadwarning": "Uppladdningsvarning",

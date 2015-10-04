@@ -1455,7 +1455,7 @@
 	"filerevert-legend": "د سرگرتن جانیا",
 	"filerevert-intro": "شما د حال و بار لرسن'''[[Media:$1|$1]]''' وه [$4 نسقه ای که ها د ویرگار$2 ساعت $3] هیئت.",
 	"filerevert-comment": "دليل:",
-	"filerevert-defaultcomment": "لرسن وه نسقه $1 ساعت $2",
+	"filerevert-defaultcomment": "لرسن وه نسقه $1 ساعت $2 ($3)",
 	"filerevert-submit": "ورگنین",
 	"filerevert-success": "''[[Media:$1|$1]]''' وه[$4 نسقه ای که ها د ویرگار$2 ساعت $3] لرسه بی.",
 	"filerevert-badversion": "نسقه دماتری د ای نسقه وجود ناشت.",

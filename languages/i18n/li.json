@@ -1216,7 +1216,7 @@
 	"filerevert-legend": "Bestandj trökdrejje",
 	"filerevert-intro": "Doe bös '''[[Media:$1|$1]]''' aan 't trökdrèjje tot de [$4 versie op $2, $3]",
 	"filerevert-comment": "Raeje:",
-	"filerevert-defaultcomment": "Trökgedrèjt tot de versie op $1, $2",
+	"filerevert-defaultcomment": "Trökgedrèjt tot de versie op $1, $2 ($3)",
 	"filerevert-submit": "Trökdrèjje",
 	"filerevert-success": "'''[[Media:$1|$1]]''' is trökgedrèjt tot de [$4 versie op $2, $3]",
 	"filerevert-badversion": "d'r is geine vörge lokale versie van dit bestand mit 't opgegaeve tiejdstip.",

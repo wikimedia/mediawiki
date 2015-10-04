@@ -8,7 +8,8 @@
 			"Val2397",
 			"아라",
 			"Leeheonjin",
-			"TTO"
+			"TTO",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Gulisan lang panglalam deng suglung:",
@@ -842,7 +843,7 @@
 	"filerevert-legend": "Isubli (revert) ya ing simpan",
 	"filerevert-intro": "Susubli me ing '''[[Media:$1|$1]]''' king [$4 bersion aniang $3, $2].",
 	"filerevert-comment": "Komentu:",
-	"filerevert-defaultcomment": "Misubli ya king bersion aniang $2, $1",
+	"filerevert-defaultcomment": "Misubli ya king bersion aniang $2, $1 ($3)",
 	"filerevert-submit": "Isubli",
 	"filerevert-success": "Ing '''[[Media:$1|$1]]''' misubli ya king [$4 bersion aniang $3, $2].",
 	"filerevert-badversion": "Alang sadiang/minunang lokal a bersion na niting simpan a tambing maki timestamp.",

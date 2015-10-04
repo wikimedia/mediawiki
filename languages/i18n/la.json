@@ -23,7 +23,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Lesgles",
-			"StevenJ81"
+			"StevenJ81",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Versores linea denotandi:",
@@ -937,7 +938,7 @@
 	"filerevert-legend": "Reverti fasciculum",
 	"filerevert-intro": "Reverteris '''[[Media:$1|$1]]''' ad [emendationem $4 ex $3, $2].",
 	"filerevert-comment": "Causa:",
-	"filerevert-defaultcomment": "Reverti ad emendationem ex $2, $1",
+	"filerevert-defaultcomment": "Reverti ad emendationem ex $2, $1 ($3)",
 	"filerevert-submit": "Revertere",
 	"filerevert-success": "'''[[Media:$1|$1]]''' reversum est ad [emendationem $4 ex $3, $2].",
 	"filedelete": "Delere $1",
@@ -1351,7 +1352,6 @@
 	"move-page-legend": "Paginam movere",
 	"movepagetext": "Formam inferam utere ad paginam renominandum et ad historiam eius ad nomen novum movendum.\nTitulus vetus paginam redirectionis ad titulum novum fiet.\nNexus ad paginam veterem non mutabuntur;\nredirectiones [[Special:DoubleRedirects|duplices]] vel [[Special:BrokenRedirects|fractas]] quaerere et figere debebis.\n\nPagina '''non''' movebitur si pagina sub titulo novo iam est, nisi est vacua aut pagina redirectionis et nullam historiam habet.\n\n'''MONITUM!'''\nHaec mutatio vehemens et improvisa potest esse pro pagina populare;\nadfirma te consequentias intellegere antequam procedis.",
 	"movepagetalktext": "Pagina disputationis huius paginae, si est, etiam necessario motabitur '''nisi''':\n\n*Disputatio sub paginae novae nomine contenta habet, aut\n*Capsam subter non nota.\n\nErgo manu necesse disputationes motare vel contribuere erit, si vis.",
-	"movearticle": "Paginam movere:",
 	"moveuserpage-warning": "'''Monitio:''' Si paginam usoris moves, solum pagina movetur, usor '''non''' renominatur.",
 	"movenologintext": "Rationem usoris habere et [[Special:UserLogin|conventum aperire]] debes ad movendum paginam.",
 	"movenotallowed": "Tibi non licet paginas movere.",

@@ -10,7 +10,8 @@
 			"Spacebirdy",
 			"Urhixidur",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Undirstrika leinki:",
@@ -1321,7 +1322,7 @@
 	"filerevert-legend": "Endurstovna fílu",
 	"filerevert-intro": "Tú ert í ferð við at endurstovna fílu '''[[Media:$1|$1]]''' til [$4 verssjónina sum hon sá út kl. $3, hin $2].",
 	"filerevert-comment": "Orsøk:",
-	"filerevert-defaultcomment": "Endurstovanð til versjón frá kl. $2, hin $1",
+	"filerevert-defaultcomment": "Endurstovanð til versjón frá kl. $2, hin $1 ($3)",
 	"filerevert-submit": "Endurstovna",
 	"filerevert-success": "'''[[Media:$1|$1]]''' er blivið endurstovna til [$4 versjónina frá $2, kl. $3].",
 	"filedelete": "Strika $1",

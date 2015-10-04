@@ -1372,7 +1372,7 @@
 	"filerevert-legend": "Erġa' lura għall-fajl",
 	"filerevert-intro": "Inti qiegħed terġa lura għal fajl '''[[Media:$1|$1]]''' fil-[verżjoni $4 minn $3, $2].",
 	"filerevert-comment": "Raġuni:",
-	"filerevert-defaultcomment": "Irkuprata l-verżjoni ta' $2, $1",
+	"filerevert-defaultcomment": "Irkuprata l-verżjoni ta' $2, $1 ($3)",
 	"filerevert-submit": "Ġib lura",
 	"filerevert-success": "'''Il-fajl [[Media:$1|$1]]''' ġie irkuprat lura għall-[$4 verżjoni tal-$2, $3].",
 	"filerevert-badversion": "M'hemmx verżjoni lokali tal-fajl aktar riċenti b'timbru tal-ħin rikjest.",

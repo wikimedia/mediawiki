@@ -1364,7 +1364,7 @@
 	"filerevert-legend": "Rull attende fila",
 	"filerevert-intro": "Du rullar attende '''[[Media:$1|$1]]''' til [$4 versjonen frå $3, $2].",
 	"filerevert-comment": "Årsak:",
-	"filerevert-defaultcomment": "Rulla attende til versjonen frå $2, $1",
+	"filerevert-defaultcomment": "Rulla attende til versjonen frå $2, $1 ($3)",
 	"filerevert-submit": "Rull attende",
 	"filerevert-success": "'''[[Media:$1|$1]]''' er rulla attende til [$4 versjonen frå $3, $2].",
 	"filerevert-badversion": "Det finst ingen tidlegare lokal versjon av denne fila frå det oppgjevne tidspunktet.",

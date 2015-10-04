@@ -1377,7 +1377,7 @@
 	"filerevert-legend": "Datei zurücksetze",
 	"filerevert-intro": "Du setzt die Datei '''[[Media:$1|$1]]''' uff die [$4 Version vom $2, $3 Uhr] zurück.",
 	"filerevert-comment": "Grund:",
-	"filerevert-defaultcomment": "Zurückgesetzt uff die Version vom $1, $2 Uhr",
+	"filerevert-defaultcomment": "Zurückgesetzt uff die Version vom $1, $2 Uhr ($3)",
 	"filerevert-submit": "Zurücksetze",
 	"filerevert-success": "'''[[Media:$1|$1]]''' woard uff die [$4 Version vom $2, $3 Uhr] zurückgesetzt.",
 	"filerevert-badversion": "Do gebts ken Version von der Datei zu dem oongebne Zeitpunkt.",

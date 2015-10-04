@@ -1272,7 +1272,7 @@
 	"filerevert-legend": "پێچەوانەکردنەوەی پەڕگە",
 	"filerevert-intro": "خەریکی پەڕگەی '''[[Media:$1|$1]]''' دەگەڕینیتەوە بۆ [$4 وەشانی $3، $2].",
 	"filerevert-comment": "هۆکار:",
-	"filerevert-defaultcomment": "گەڕێندراوە بۆ وەشانی $2، $1",
+	"filerevert-defaultcomment": "گەڕێندراوە بۆ وەشانی $2، $1 ($3)",
 	"filerevert-submit": "گەڕاندنەوە",
 	"filerevert-success": "'''[[Media:$1|$1]]''' گەڕێندراوەتەوە بۆ [$4 وەشانی $3، $2].",
 	"filerevert-badversion": "وەشانێکی پێشووی ئەم  پەڕگە بەو کاتە ڕاچاوکراوه ‌نەدۆزرایەوە.",

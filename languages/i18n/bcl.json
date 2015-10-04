@@ -1368,7 +1368,7 @@
 	"filerevert-legend": "Ibalik an dokumento",
 	"filerevert-intro": "Pigbabalik mo an '''[[Media:$1|$1]]''' sa [$4 version as of $3, $2].",
 	"filerevert-comment": "Rason:",
-	"filerevert-defaultcomment": "Pigbalik sa bersyon sa ngonyan $2, $1",
+	"filerevert-defaultcomment": "Pigbalik sa bersyon sa ngonyan $2, $1 ($3)",
 	"filerevert-submit": "Ibalik",
 	"filerevert-success": "'''[[Media:$1|$1]]''' binalik sa [$4 version as of $3, $2].",
 	"filerevert-badversion": "Mayong dating bersyón na lokal kaining ''file'' na may taták nin oras na arog sa tinao.",

@@ -1499,7 +1499,7 @@
 	"filerevert-legend": "Revenirea la o versiune anterioară",
 	"filerevert-intro": "Pentru a readuce fișierul '''[[Media:$1|$1]]''' la versiunea din [$4 $2 $3] apasă butonul de mai jos.",
 	"filerevert-comment": "Motiv:",
-	"filerevert-defaultcomment": "Revenire la versiunea din $2, $1",
+	"filerevert-defaultcomment": "Revenire la versiunea din $2, $1 ($3)",
 	"filerevert-submit": "Revenire",
 	"filerevert-success": "'''[[Media:$1|$1]]''' a fost readus [la versiunea $4 din $3, $2].",
 	"filerevert-badversion": "Nu există o versiune mai veche a fișierului care să corespundă cu data introdusă.",

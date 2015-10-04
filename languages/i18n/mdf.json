@@ -6,7 +6,8 @@
 			"Khazar II",
 			"Kranch",
 			"Numulunj pilgae",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Сюлмафкснень алга китькстамс:",
@@ -1001,7 +1002,7 @@
 	"filerevert-legend": "Мърдафтомс файл",
 	"filerevert-intro": "Тон мърдафнесак '''[[Media:$1|$1]]''' [$4 верзиенза $3, $2-с].",
 	"filerevert-comment": "Мяльполаткс:",
-	"filerevert-defaultcomment": "Мърдаф верзиес $2, $1",
+	"filerevert-defaultcomment": "Мърдаф верзиес $2, $1 ($3)",
 	"filerevert-submit": "Мърдафтомс",
 	"filerevert-success": "'''[[Media:$1|$1]]''' мърдаф [$4 верзиенза $3, $2].",
 	"filerevert-badversion": "Тя файлть сядынгольдень верзинц вешф пингоняфкс мархта тяса аш.",

@@ -1200,7 +1200,7 @@
 	"filerevert-legend": "Bulikakan barakas",
 	"filerevert-intro": "Pian mambulikakan '''[[Media:$1|$1]]''' ka macam [$4 pada $3, $2].",
 	"filerevert-comment": "Alasan:",
-	"filerevert-defaultcomment": "Dibulikakan ka macam pada $2, $1",
+	"filerevert-defaultcomment": "Dibulikakan ka macam pada $2, $1 ($3)",
 	"filerevert-submit": "Bulikakan",
 	"filerevert-success": "'''[[Media:$1|$1]]''' sudah dibulikakan ka macam [$4 pada $3, $2]",
 	"filerevert-badversion": "Kadada janis lokal bahari tumatan barakas ini lawan bacap waktu nang dimaksud.",

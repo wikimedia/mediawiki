@@ -1416,7 +1416,7 @@
 	"filerevert-legend": "Tuku willi",
 	"filerevert-intro": "War ga kaa ka tukoo willi <strong>[[Media:$1|$1]]</strong> nga [$4 dumi ga $3 waate, $2 hane].",
 	"filerevert-comment": "Dalil:",
-	"filerevert-defaultcomment": "Willi dumoo ga kaŋ tee $2 waate, $1 hane.",
+	"filerevert-defaultcomment": "Willi dumoo ga kaŋ tee $2 waate, $1 hane ($3)",
 	"filerevert-submit": "Willi",
 	"filerevert-success": "<strong>[[Media:$1|$1]]</strong> n' ka willi [$4 dumi ga $3 waate, $2 hane].",
 	"filerevert-badversion": "Nungu dumi bisante kul ši bara tukoo woo se nda waatišilbaa kaŋ noondi.",

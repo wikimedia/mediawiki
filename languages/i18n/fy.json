@@ -1117,7 +1117,7 @@
 	"filerevert-legend": "Triem weromsette",
 	"filerevert-intro": "Jo binne '''[[Media:$1|$1]]''' oan it weromdraaien ta de [$4 ferzje op $2, $3].",
 	"filerevert-comment": "Reden:",
-	"filerevert-defaultcomment": "Weromdraaid ta de ferzje op $1, $2",
+	"filerevert-defaultcomment": "Weromdraaid ta de ferzje op $1, $2 ($3)",
 	"filerevert-submit": "werom sette",
 	"filerevert-success": "<strong>[[Media:$1|$1]]</strong> is weromdraaid ta de [$4 ferzje op $2, $3].",
 	"filerevert-badversion": "Der is gjin foarige lokale ferzje fan dizze triem fan 'e opjûne tiid.",

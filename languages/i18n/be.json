@@ -1419,7 +1419,7 @@
 	"filerevert-legend": "Адкат файла",
 	"filerevert-intro": "Вы адкочваеце '''[[Media:$1|$1]]''' да [$4 версіі з $3, $2].",
 	"filerevert-comment": "Прычына:",
-	"filerevert-defaultcomment": "Адкочана да версіі з $2, $1",
+	"filerevert-defaultcomment": "Адкочана да версіі з $2, $1 ($3)",
 	"filerevert-submit": "Адкаціць",
 	"filerevert-success": "'''[[Media:$1|$1]]''' быў адкочаны да [$4 версіі з $3, $2].",
 	"filerevert-badversion": "Няма старэйшай тутэйшай версіі гэтага файла з прапанаванай часавай меткай.",

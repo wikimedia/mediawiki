@@ -1372,7 +1372,7 @@
 	"filerevert-legend": "Vrati datoteku/fajl",
 	"filerevert-intro": "Vraćate datoteku '''[[Media:$1|$1]]''' na [$4 verziju od $3, $2].",
 	"filerevert-comment": "Razlog:",
-	"filerevert-defaultcomment": "Vraćeno na verziju od $2, $1",
+	"filerevert-defaultcomment": "Vraćeno na verziju od $2, $1 ($3)",
 	"filerevert-submit": "Vrati",
 	"filerevert-success": "'''Datoteka [[Media:$1|$1]]''' je vraćena na [$4 verziju od $3, $2].",
 	"filerevert-badversion": "Ne postoji ranija lokalna verzija ove datoteke sa navedenim vremenskim podacima.",

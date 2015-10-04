@@ -1478,7 +1478,7 @@
 	"filerevert-legend": "Batalkan berkas",
 	"filerevert-intro": "Anda membatalkan '''[[Media:$1|$1]]''' ke versi [$4 pada $3, $2].",
 	"filerevert-comment": "Alasan:",
-	"filerevert-defaultcomment": "Dibatalkan ke versi pada $2, $1",
+	"filerevert-defaultcomment": "Dibatalkan ke versi pada $2, $1 ($3)",
 	"filerevert-submit": "Batalkan",
 	"filerevert-success": "'''[[Media:$1|$1]]''' telah dibatalkan ke versi [$4 pada $3, $2]",
 	"filerevert-badversion": "Tidak ada versi lokal terdahulu dari berkas ini dengan stempel waktu yang dimaksud.",

@@ -1425,7 +1425,7 @@
 	"filerevert-legend": "Hamerina ilay rakitra",
 	"filerevert-intro": "Eo am-pamerenana ilay rakitra '''[[Media:$1|$1]]''' any amin'ny [$4 santiona tamin'ny $2 tamin'ny $3].",
 	"filerevert-comment": "Antony :",
-	"filerevert-defaultcomment": "Voaverina ny santiônan'ny $1 tamin'ny $2",
+	"filerevert-defaultcomment": "Voaverina ny santiônan'ny $1 tamin'ny $2 ($3)",
 	"filerevert-submit": "Hamerina",
 	"filerevert-success": "Naverina tamin' [$4 ny santiôn'ny $2 tamin'ny $3] i '''[[Media:$1|$1]]'''",
 	"filerevert-badversion": "An-toerana, tsy misy versiona nialoha io rakitra io miankina amin'ny daty voatoro.",

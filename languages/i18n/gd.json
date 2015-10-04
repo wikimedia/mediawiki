@@ -1441,7 +1441,7 @@
 	"filerevert-legend": "Till am faidhle",
 	"filerevert-intro": "Tha thu an impis am faidhle <strong>[[Media:$1|$1]]</strong> a thilleadh dhan [$4 tionndadh on $2 $3].",
 	"filerevert-comment": "Adhbhar:",
-	"filerevert-defaultcomment": "Air a thilleadh gun tionndadh on $1 $2",
+	"filerevert-defaultcomment": "Air a thilleadh gun tionndadh on $1 $2 ($3)",
 	"filerevert-submit": "Till",
 	"filerevert-success": "Chaidh <strong>[[Media:$1|$1]]</strong> a thilleadh gun [$4 tionndadh on $2 $3].",
 	"filerevert-badversion": "Chan eil tionndadh ionadail an fhaidhle ann air a bheil an stampa-tìde a chaidh a thoirt seachad.",

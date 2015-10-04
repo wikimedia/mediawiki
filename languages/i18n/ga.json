@@ -18,7 +18,8 @@
 			"לערי ריינהארט",
 			"පසිඳු කාවින්ද",
 			"아라",
-			"SeoMac"
+			"SeoMac",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Folínte faoi naisc:",
@@ -765,7 +766,7 @@
 	"filerevert": "Fill $1 ar ais",
 	"filerevert-legend": "Fill comhad ar ais",
 	"filerevert-comment": "Nóta tráchta:",
-	"filerevert-defaultcomment": "Filleadh ar ais go leagan ó $2, $1",
+	"filerevert-defaultcomment": "Filleadh ar ais go leagan ó $2, $1 ($3)",
 	"filerevert-submit": "Athúsáid",
 	"filerevert-success": "Filleadh '''[[Media:$1|$1]]''' go leagan [$4 ó $3, $2].",
 	"filedelete": "Scrios $1",
@@ -1089,7 +1090,6 @@
 	"move-page-legend": "Athainmnigh an leathanach",
 	"movepagetext": "Úsáid an fhoirm seo thíos chun leathanach a athainmniú. Aistreofar a chuid staire go léir chuig an teideal nua.\nDéanfar leathanach atreoraithe den sean-teideal chuig an teideal nua.\nIs féidir atreoruithe don bhunteideal a nuashonrú go huathoibríoch.\nMura ndéanfaidh tú sin, bí cinnte go ndéanfaidh tú cuardach ar atreoruithe [[Special:DoubleRedirects|dúbailte]] nó [[Special:BrokenRedirects|briste]].\nTá dualgas ort bheith cinnte go rachaidh na naisc chuig an áit is ceart.\n\nTabhair faoi deara '''nach''' n-athainmneofar an leathanach má tá leathanach ann cheana féin faoin teideal nua, ach amháin más folamh nó atreorú é nó mura bhfuil aon stair athraithe aige cheana.\nMar sin, is féidir leathanach a athainmniú ar ais chuig an teideal a raibh air roimhe má tá botún déanta agat, agus ní féidir leathanach atá ann cheana a fhorscríobh.\n\n'''Rabhadh!'''\nIs féidir gur dianbheart gan choinne é athrú a dhéanamh ar leathanach móréilimh;\ncinntigh go dtuigeann tú na hiarmhairtí go léir roimh dul ar aghaigh.",
 	"movepagetalktext": "Aistreofar an leathanach plé go huathoibríoch '''ach ní tharlófar sin''':\n* má tá leathanach plé neamhfholamh ann cheana leis an teideal nua, nó\n* má bhaineann tú an tic den bhosca thíos.\n\nSna cásanna sin, caithfidh tú an leathanach a aistrigh nó a chumasc tú féin más maith leat.",
-	"movearticle": "Athainmnigh an leathanach",
 	"movenologintext": "Ní mór duit bheith i d'úsáideoir cláraithe agus [[Special:UserLogin|logáilte isteach]] chun leathanach a hathainmniú.",
 	"movenotallowed": "Níl cead agat leathanaigh a athainmniú.",
 	"newtitle": "Go teideal nua",

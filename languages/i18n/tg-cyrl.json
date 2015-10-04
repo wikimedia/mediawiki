@@ -1077,7 +1077,7 @@
 	"filerevert-legend": "Вогардонии парванда",
 	"filerevert-intro": "Шумо дар ҳоли вогардонии '''[[Media:$1|$1]]''' ба [$4 нусхаи аз $3, $2] ҳастед.",
 	"filerevert-comment": "Сабаб:",
-	"filerevert-defaultcomment": "Вогардонӣ ба нусхаи $2, $1",
+	"filerevert-defaultcomment": "Вогардонӣ ба нусхаи $2, $1 ($3)",
 	"filerevert-submit": "бирав",
 	"filerevert-success": "'''[[Media:$1|$1]]''' вогардонида шуд ба [нусхаи $4 аз таърихи $3, $2].",
 	"filerevert-badversion": "Нусхаи кӯҳнатаре аз ин парванда вуҷуд надошт.",

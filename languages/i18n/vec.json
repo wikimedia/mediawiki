@@ -1337,7 +1337,7 @@
 	"filerevert-legend": "Ripristina file",
 	"filerevert-intro": "Te stè par ripristinar el file '''[[Media:$1|$1]]''' a la [versione $4 del $2, $3].",
 	"filerevert-comment": "Motivassion:",
-	"filerevert-defaultcomment": "Xe stà ripristinà la version del $1, $2",
+	"filerevert-defaultcomment": "Xe stà ripristinà la version del $1, $2 ($3)",
 	"filerevert-submit": "Ripristina",
 	"filerevert-success": "'''El file [[Media:$1|$1]]''' el xe stà ripristinà a la [$4 version del $2, $3].",
 	"filerevert-badversion": "No esiste mìa version locali precedenti del file col timestamp richiesto.",

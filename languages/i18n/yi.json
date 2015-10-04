@@ -15,7 +15,8 @@
 			"Har-wradim",
 			"Amire80",
 			"පසිඳු කාවින්ද",
-			"Matma Rex"
+			"Matma Rex",
+			"Macofe"
 		]
 	},
 	"tog-underline": "שטרייכט אונטער לינקען",
@@ -1445,7 +1446,7 @@
 	"filerevert-legend": "צוריקדרייען טעקע",
 	"filerevert-intro": "איר האַלט בײַ צוריקשטעלן די טעקע '''[[Media:$1|$1]]''' צו דער [$4 ווערסיע פֿון $3, $2].",
 	"filerevert-comment": "אורזאַך:",
-	"filerevert-defaultcomment": "צוריקגעשטעלט צו דער ווערסיע פֿון $2, $1",
+	"filerevert-defaultcomment": "צוריקגעשטעלט צו דער ווערסיע פֿון $2, $1 ($3)",
 	"filerevert-submit": "צוריקדרייען",
 	"filerevert-success": "'''[[Media:$1|$1]]''' צוריקגשטעלט צו דער [$4 ווערסיע פֿון $3, $2].",
 	"filerevert-badversion": "נישט פאראן קיין פריערדיקע לאקאלע ווערסיע פון דער טעקע מיטן געזוכטן צייטשטעמפל.",

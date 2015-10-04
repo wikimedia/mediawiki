@@ -8,7 +8,8 @@
 			"Rahmatdenas",
 			"SpartacksCompatriot",
 			"VoteITP",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Garih bawahi tautan:",
@@ -1059,7 +1060,7 @@
 	"filerevert-legend": "Baliakan berkas",
 	"filerevert-intro": "Sanank ka mambaliakan berkas '''[[Media:$1|$1]]''' ka versi [$4 pado $3, $2].",
 	"filerevert-comment": "Alasan:",
-	"filerevert-defaultcomment": "Baliakan ka versi pado $2, $1",
+	"filerevert-defaultcomment": "Baliakan ka versi pado $2, $1 ($3)",
 	"filerevert-submit": "Baliakan",
 	"filerevert-success": "'''[[Media:$1|$1]]''' lah dibaliakan ka versi [$4 pado $3, $2]",
 	"filerevert-badversion": "Indak ado versi lokal tadahulu dari berkas ko pado wakatu nan dituju.",
@@ -1457,7 +1458,6 @@
 	"movepagetext": "Formulir di bawah ko digunoan untuak maubah namo suatu laman dan mamindahan kasado data riwayaiknyo ka namo baru. \nJudua lamo tu ka manjadi laman pangaliahan manuju judua nan baru. \nSanak dapek mampabarui pangaliahan-pangaliahan nan manuju ka judua lamo sacaro otomatih.\nKok indak dipabarui sacaro otomatih, pastikan lah dipareso laman ko dari [[Special:DoubleRedirects|pangaliahan ganda]] atau [[Special:BrokenRedirects|pangaliahan rusak]]. Sanak batangguang jawek untuak mamastian baso pautan tu taruih manyambuang ka laman nan saharuihnyo.\n\nIngek baso laman ko '''indak''' ka bapindah apobilo lah ado laman nan manggunoan judua nan baru, kacuali bilo laman tu kosong atau marupoan laman pangaliahan dan indak adoi riwayaik suntiangan. Aratinyo Sanak dapek maubah baliak namo laman tu ka namo lamo apobilo ado kasalahan, dan baso awak indak dapek maimpok laman nan alah ado.\n\n'''Paringatan!''' \nIko dapek maakibaikan parubahan nan indak dipakiroan pado laman nan populer; jadi pastian Sanak paham bana akibaik dari tindakan ko sabalun malanjuikannyo.",
 	"movepagetext-noredirectfixer": "Formulir di bawah ko digunoan untuak maubah namo suatu laman dan mamindahan sado data riwayaiknyo ka namo baru. \nJudul lamo tu ka manjadi laman paraliahan manuju judul nan baru. \nSanak dapek mampabarui paraliahan-paraliahan nan manuju ka judul lamo sacaro otomatih.\nKok indak dipabarui sacaro otomatih, pastikan lah dipareso laman ko dari [[Special:DoubleRedirects|paraliahan ganda]] atau [[Special:BrokenRedirects|paralihan rusak]]. Sanak batangguang-jawek untuak mamastian pautan tu taruih manyambuang ka laman nan saaruihnyo.\n\nIngeklah bahaso laman ko '''indak''' ka bapindah apobilo lah ado laman nan manggunoan judul nan baru tu, kacuali bilo laman tu kosong atau marupoan laman paraliahan dan indak punyo riwayaik suntiangan. Aratinyo Sanak dapek maubah baliak namo laman ka namo samulo apobilo ado kasalahan, dan Sanak indak dapek manimpo laman nan lah ado.\n\n'''Paringatan!''' \nIko dapek maakibaikan parubahan nan indak dipakiroan pado laman nan populer; jadi pastikan Sanak paham akibaik tindakan ko sabalun malanjuikannyo.",
 	"movepagetalktext": "Laman rundiang nan takaik akan dipindahan sacaro otomatih '''kacuali bilo:'''\n\n*Laman rundiang nan indak kosong lah ado pado judul baru, atau\n*Sanak indak mangagiah tando pado kotak di bawah.\n\nDalam kasus tu, kok amuah Sanak dapek mamindahan ataupun manggabuangan laman sacaro manual.",
-	"movearticle": "Pindahkan laman",
 	"moveuserpage-warning": "'''Paringatan:''' Sanak tangah mamindahan laman pangguno. Paralu dikatahui bahwa hanyo laman nan ka bapindah namun pangguno ''indak akan'' baganti namo.",
 	"movenologintext": "Sanak musti pangguno tadaftar dan [[Special:UserLogin|masuak log]] untuak mamindahan laman.",
 	"movenotallowed": "Sanak indak ado izin untuak mamindahan laman.",

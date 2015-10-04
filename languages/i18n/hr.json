@@ -1409,7 +1409,7 @@
 	"filerevert-legend": "Vrati datoteku",
 	"filerevert-intro": "Vraćate '''[[Media:$1|$1]]''' na [$4 promjenu od $3, $2].",
 	"filerevert-comment": "Razlog:",
-	"filerevert-defaultcomment": "vraćeno na inačicu od $1 ($2)",
+	"filerevert-defaultcomment": "vraćeno na inačicu od $1, $2 ($3)",
 	"filerevert-submit": "Vrati",
 	"filerevert-success": "'''[[Media:$1|$1]]''' je vraćena na [$4 promjenu od $3, $2].",
 	"filerevert-badversion": "Nema prethodne lokalne inačice datoteke s zadanim datumom i vremenom.",
