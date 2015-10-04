@@ -129,89 +129,6 @@ SQL;
 }
 
 /**
- * Used to debug transaction processing
- * Only used if $wgDebugDBTransactions is true
- *
- * @since 1.19
- * @ingroup Database
- */
-class PostgresTransactionState {
-	private static $WATCHED = array(
-		array(
-			"desc" => "%s: Connection state changed from %s -> %s\n",
-			"states" => array(
-				PGSQL_CONNECTION_OK => "OK",
-				PGSQL_CONNECTION_BAD => "BAD"
-			)
-		),
-		array(
-			"desc" => "%s: Transaction state changed from %s -> %s\n",
-			"states" => array(
-				PGSQL_TRANSACTION_IDLE => "IDLE",
-				PGSQL_TRANSACTION_ACTIVE => "ACTIVE",
-				PGSQL_TRANSACTION_INTRANS => "TRANS",
-				PGSQL_TRANSACTION_INERROR => "ERROR",
-				PGSQL_TRANSACTION_UNKNOWN => "UNKNOWN"
-			)
-		)
-	);
-
-	/** @var array */
-	private $mNewState;
-
-	/** @var array */
-	private $mCurrentState;
-
-	public function __construct( $conn ) {
-		$this->mConn = $conn;
-		$this->update();
-		$this->mCurrentState = $this->mNewState;
-	}
-
-	public function update() {
-		$this->mNewState = array(
-			pg_connection_status( $this->mConn ),
-			pg_transaction_status( $this->mConn )
-		);
-	}
-
-	public function check() {
-		global $wgDebugDBTransactions;
-		$this->update();
-		if ( $wgDebugDBTransactions ) {
-			if ( $this->mCurrentState !== $this->mNewState ) {
-				$old = reset( $this->mCurrentState );
-				$new = reset( $this->mNewState );
-				foreach ( self::$WATCHED as $watched ) {
-					if ( $old !== $new ) {
-						$this->log_changed( $old, $new, $watched );
-					}
-					$old = next( $this->mCurrentState );
-					$new = next( $this->mNewState );
-				}
-			}
-		}
-		$this->mCurrentState = $this->mNewState;
-	}
-
-	protected function describe_changed( $status, $desc_table ) {
-		if ( isset( $desc_table[$status] ) ) {
-			return $desc_table[$status];
-		} else {
-			return "STATUS " . $status;
-		}
-	}
-
-	protected function log_changed( $old, $new, $watched ) {
-		wfDebug( sprintf( $watched["desc"],
-			$this->mConn,
-			$this->describe_changed( $old, $watched["states"] ),
-			$this->describe_changed( $new, $watched["states"] )
-		) );
-	}
-}
-
-/**
  * Manage savepoints within a transaction
  * @ingroup Database
  * @since 1.19
@@ -252,11 +169,7 @@ class SavepointPostgres {
 	}
 
 	protected function query( $keyword, $msg_ok, $msg_failed ) {
-		global $wgDebugDBTransactions;
 		if ( $this->dbw->doQuery( $keyword . " " . $this->id ) !== false ) {
-			if ( $wgDebugDBTransactions ) {
-				wfDebug( sprintf( $msg_ok, $this->id ) );
-			}
 		} else {
 			wfDebug( sprintf( $msg_failed, $this->id ) );
 		}
@@ -306,9 +219,6 @@ class DatabasePostgres extends DatabaseBase {
 
 	/** @var string Connect string to open a PostgreSQL connection */
 	private $connectString;
-
-	/** @var PostgresTransactionState */
-	private $mTransactionState;
 
 	/** @var string */
 	private $mCoreSchema;
@@ -428,7 +338,6 @@ class DatabasePostgres extends DatabaseBase {
 		}
 
 		$this->mOpened = true;
-		$this->mTransactionState = new PostgresTransactionState( $this->mConn );
 
 		global $wgCommandLineMode;
 		# If called from the command-line (e.g. importDump), only show errors
@@ -486,12 +395,10 @@ class DatabasePostgres extends DatabaseBase {
 		if ( function_exists( 'mb_convert_encoding' ) ) {
 			$sql = mb_convert_encoding( $sql, 'UTF-8' );
 		}
-		$this->mTransactionState->check();
 		if ( pg_send_query( $this->mConn, $sql ) === false ) {
 			throw new DBUnexpectedError( $this, "Unable to post new query to PostgreSQL\n" );
 		}
 		$this->mLastResult = pg_get_result( $this->mConn );
-		$this->mTransactionState->check();
 		$this->mAffectedRows = null;
 		if ( pg_result_error( $this->mLastResult ) ) {
 			return false;
