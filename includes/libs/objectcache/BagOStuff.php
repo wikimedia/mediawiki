@@ -124,11 +124,35 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * higher tiers using standard TTLs.
 	 *
 	 * @param string $key
+	 * @param integer $flags Bitfield of BagOStuff::READ_* constants [optional]
+	 * @param integer $oldFlags [unused]
+	 * @return mixed Returns false on failure and if the item does not exist
+	 */
+	public function get( $key, $flags = 0, $oldFlags = null ) {
+		// B/C for ( $key, &$casToken = null, $flags = 0 )
+		$flags = is_int( $oldFlags ) ? $oldFlags : $flags;
+
+		return $this->doGet( $key, $flags );
+	}
+
+	/**
+	 * @param string $key
+	 * @param integer $flags Bitfield of BagOStuff::READ_* constants [optional]
+	 * @return mixed Returns false on failure and if the item does not exist
+	 */
+	abstract protected function doGet( $key, $flags = 0 );
+
+	/**
+	 * @note: This method is only needed if cas() is not is used for merge()
+	 *
+	 * @param string $key
 	 * @param mixed $casToken [optional]
 	 * @param integer $flags Bitfield of BagOStuff::READ_* constants [optional]
 	 * @return mixed Returns false on failure and if the item does not exist
 	 */
-	abstract public function get( $key, &$casToken = null, $flags = 0 );
+	protected function getWithToken( $key, &$casToken = null, $flags = 0 ) {
+		throw new Exception( __METHOD__ . ' not implemented.' );
+	}
 
 	/**
 	 * Set an item
@@ -182,7 +206,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 		do {
 			$this->clearLastError();
 			$casToken = null; // passed by reference
-			$currentValue = $this->get( $key, $casToken );
+			$currentValue = $this->getWithToken( $key, $casToken, BagOStuff::READ_LATEST );
 			if ( $this->getLastError() ) {
 				return false; // don't spam retries (retry only on races)
 			}
@@ -237,7 +261,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 		}
 
 		$this->clearLastError();
-		$currentValue = $this->get( $key );
+		$currentValue = $this->get( $key, BagOStuff::READ_LATEST );
 		if ( $this->getLastError() ) {
 			$success = false;
 		} else {
