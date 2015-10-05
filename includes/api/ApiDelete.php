@@ -32,6 +32,11 @@
  */
 class ApiDelete extends ApiBase {
 	/**
+	 * @var array Cached copy of user permissions errors
+	 */
+	private static $permissionsErrors = null;
+
+	/**
 	 * Extracts the title, token, and reason from the request parameters and invokes
 	 * the local delete() function with these as arguments. It does not make use of
 	 * the delete function specified by Article.php. If the deletion succeeds, the
@@ -51,6 +56,21 @@ class ApiDelete extends ApiBase {
 		$titleObj = $pageObj->getTitle();
 		$reason = $params['reason'];
 		$user = $this->getUser();
+
+		// Check that the user is allowed to carry out the deletion
+		$errors = self::getPermissionsError( $titleObj, $user, $params['token'] );
+		if ( count( $errors ) ) {
+			$this->dieUsageMsg( $errors[0] );
+		}
+
+		// If change tagging was requested, check that the user is allowed to tag,
+		// and the tags are valid
+		if ( count( $params['tags'] ) ) {
+			$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			if ( !$tagStatus->isOK() ) {
+				$this->dieStatus( $tagStatus );
+			}
+		}
 
 		if ( $titleObj->getNamespace() == NS_FILE ) {
 			$status = self::deleteFile(
@@ -84,6 +104,11 @@ class ApiDelete extends ApiBase {
 		}
 		$this->setWatch( $watch, $titleObj, 'watchdeletion' );
 
+		// Apply change tags to the log entry, if requested
+		if ( count( $params['tags'] ) ) {
+			ChangeTags::addTags( $params['tags'], null, null, $status->value, null, $user );
+		}
+
 		$r = array(
 			'title' => $titleObj->getPrefixedText(),
 			'reason' => $reason,
@@ -93,14 +118,18 @@ class ApiDelete extends ApiBase {
 	}
 
 	/**
+	 * Check user permissions for the delete operation.
+	 *
 	 * @param Title $title
 	 * @param User $user User doing the action
 	 * @param string $token
 	 * @return array
 	 */
 	private static function getPermissionsError( $title, $user, $token ) {
-		// Check permissions
-		return $title->getUserPermissionsErrors( 'delete', $user );
+		if ( self::$permissionsErrors === null ) {
+			self::$permissionsErrors = $title->getUserPermissionsErrors( 'delete', $user );
+		}
+		return self::$permissionsErrors;
 	}
 
 	/**
@@ -114,6 +143,9 @@ class ApiDelete extends ApiBase {
 	 */
 	public static function delete( Page $page, User $user, $token, &$reason = null ) {
 		$title = $page->getTitle();
+
+		// Permissions were already checked in execute(). This is kept here
+		// for the benefit of external callers
 		$errors = self::getPermissionsError( $title, $user, $token );
 		if ( count( $errors ) ) {
 			return $errors;
@@ -149,6 +181,9 @@ class ApiDelete extends ApiBase {
 		&$reason = null, $suppress = false
 	) {
 		$title = $page->getTitle();
+
+		// Permissions were already checked in execute(). This is kept here
+		// for the benefit of external callers
 		$errors = self::getPermissionsError( $title, $user, $token );
 		if ( count( $errors ) ) {
 			return $errors;
@@ -191,6 +226,10 @@ class ApiDelete extends ApiBase {
 				ApiBase::PARAM_TYPE => 'integer'
 			),
 			'reason' => null,
+			'tags' => array(
+				ApiBase::PARAM_TYPE => ChangeTags::listExplicitlyDefinedTags(),
+				ApiBase::PARAM_ISMULTI => true,
+			),
 			'watch' => array(
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,

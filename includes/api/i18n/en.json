@@ -69,6 +69,7 @@
 	"apihelp-delete-param-title": "Title of the page to delete. Cannot be used together with <var>$1pageid</var>.",
 	"apihelp-delete-param-pageid": "Page ID of the page to delete. Cannot be used together with <var>$1title</var>.",
 	"apihelp-delete-param-reason": "Reason for the deletion. If not set, an automatically generated reason will be used.",
+	"apihelp-delete-param-tags": "Change tags to apply to the entry in the deletion log.",
 	"apihelp-delete-param-watch": "Add the page to the current user's watchlist.",
 	"apihelp-delete-param-watchlist": "Unconditionally add or remove the page from the current user's watchlist, use preferences or do not change watch.",
 	"apihelp-delete-param-unwatch": "Remove the page from the current user's watchlist.",
