@@ -4383,7 +4383,7 @@ class Title {
 	/**
 	 * Updates page_touched for this page; called from LinksUpdate.php
 	 *
-	 * @param integer $purgeTime TS_MW timestamp [optional]
+	 * @param string $purgeTime [optional] TS_MW timestamp
 	 * @return bool True if the update succeeded
 	 */
 	public function invalidateCache( $purgeTime = null ) {
