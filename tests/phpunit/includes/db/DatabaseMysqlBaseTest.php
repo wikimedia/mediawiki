@@ -79,6 +79,10 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	protected function mysqlPing() {
 	}
 
+	protected function mysqlRealEscapeString( $s ) {
+
+	}
+
 	// From interface DatabaseType
 	function insertId() {
 	}
