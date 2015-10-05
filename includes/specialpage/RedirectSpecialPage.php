@@ -89,6 +89,18 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 			? $params
 			: false;
 	}
+
+	/**
+	 * Indicate if the target of this redirect can be used to identify
+	 * a particular user of this wiki (e.g., if the redirect is to the
+	 * user page of a User). See T109724.
+	 *
+	 * @since 1.27
+	 * @return bool
+	 */
+	public function personallyIdentifiableTarget() {
+		return false;
+	}
 }
 
 /**
