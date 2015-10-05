@@ -1580,7 +1580,7 @@ MESSAGE;
 	 * @return bool Whether $moduleName is a valid module name
 	 */
 	public static function isValidModuleName( $moduleName ) {
-		return !preg_match( '/[|,!]/', $moduleName ) && strlen( $moduleName ) <= 255;
+		return strcspn( $moduleName, '!,|', 0, 255 ) === strlen( $moduleName );
 	}
 
 	/**
