@@ -133,7 +133,7 @@ class BacklinkCache {
 	/**
 	 * Set the Database object to use
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 */
 	public function setDB( $db ) {
 		$this->db = $db;

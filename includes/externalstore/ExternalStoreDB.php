@@ -156,7 +156,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	/**
 	 * Get the 'blobs' table name for this database
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @return string Table name ('blobs' by default)
 	 */
 	function getTable( $db ) {

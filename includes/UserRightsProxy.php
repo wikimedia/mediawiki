@@ -31,7 +31,7 @@ class UserRightsProxy {
 	 *
 	 * @see newFromId()
 	 * @see newFromName()
-	 * @param DatabaseBase $db Db connection
+	 * @param IDatabase $db Db connection
 	 * @param string $database Database name
 	 * @param string $name User name
 	 * @param int $id User ID

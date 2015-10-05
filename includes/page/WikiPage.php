@@ -298,7 +298,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Fetch a page record with the given conditions
-	 * @param DatabaseBase $dbr
+	 * @param IDatabase $dbr
 	 * @param array $conditions
 	 * @param array $options
 	 * @return object|bool Database result resource, or false on failure
@@ -319,7 +319,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Fetch a page record matching the Title object's namespace and title
 	 * using a sanitized title string
 	 *
-	 * @param DatabaseBase $dbr
+	 * @param IDatabase $dbr
 	 * @param Title $title
 	 * @param array $options
 	 * @return object|bool Database result resource, or false on failure
@@ -333,7 +333,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Fetch a page record matching the requested ID
 	 *
-	 * @param DatabaseBase $dbr
+	 * @param IDatabase $dbr
 	 * @param int $id
 	 * @param array $options
 	 * @return object|bool Database result resource, or false on failure
@@ -1194,7 +1194,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * or else the record will be left in a funky state.
 	 * Best if all done inside a transaction.
 	 *
-	 * @param DatabaseBase $dbw
+	 * @param IDatabase $dbw
 	 * @return int|bool The newly created page_id key; false if the title already existed
 	 */
 	public function insertOn( $dbw ) {
@@ -1228,7 +1228,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Update the page record to point to a newly saved revision.
 	 *
-	 * @param DatabaseBase $dbw
+	 * @param IDatabase $dbw
 	 * @param Revision $revision For ID number, and text used to set
 	 *   length and redirect status fields
 	 * @param int $lastRevision If given, will not overwrite the page field
@@ -1295,7 +1295,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Add row to the redirect table if this is a redirect, remove otherwise.
 	 *
-	 * @param DatabaseBase $dbw
+	 * @param IDatabase $dbw
 	 * @param Title $redirectTitle Title object pointing to the redirect target,
 	 *   or NULL if this is not a redirect
 	 * @param null|bool $lastRevIsRedirect If given, will optimize adding and
@@ -1334,7 +1334,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @deprecated since 1.24, use updateRevisionOn instead
 	 *
-	 * @param DatabaseBase $dbw
+	 * @param IDatabase $dbw
 	 * @param Revision $revision
 	 * @return bool
 	 */

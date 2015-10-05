@@ -223,7 +223,7 @@ class Revision implements IDBAccessObject {
 	 * Load a page revision from a given revision ID number.
 	 * Returns null if no such revision can be found.
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param int $id
 	 * @return Revision|null
 	 */
@@ -236,7 +236,7 @@ class Revision implements IDBAccessObject {
 	 * that's attached to a given page. If not attached
 	 * to that page, will return null.
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param int $pageid
 	 * @param int $id
 	 * @return Revision|null
@@ -256,7 +256,7 @@ class Revision implements IDBAccessObject {
 	 * that's attached to a given page. If not attached
 	 * to that page, will return null.
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param Title $title
 	 * @param int $id
 	 * @return Revision|null
@@ -281,7 +281,7 @@ class Revision implements IDBAccessObject {
 	 * WARNING: Timestamps may in some circumstances not be unique,
 	 * so this isn't the best key to use.
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param Title $title
 	 * @param string $timestamp
 	 * @return Revision|null
@@ -333,7 +333,7 @@ class Revision implements IDBAccessObject {
 	 * Given a set of conditions, fetch a revision from
 	 * the given database connection.
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param array $conditions
 	 * @param int $flags (optional)
 	 * @return Revision|null
@@ -375,7 +375,7 @@ class Revision implements IDBAccessObject {
 	 * which will return matching database rows with the
 	 * fields necessary to build Revision objects.
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param array $conditions
 	 * @param int $flags (optional)
 	 * @return ResultWrapper
@@ -519,7 +519,7 @@ class Revision implements IDBAccessObject {
 
 	/**
 	 * Do a batched query to get the parent revision lengths
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param array $revIds
 	 * @return array
 	 */
@@ -1206,7 +1206,7 @@ class Revision implements IDBAccessObject {
 	 * Get previous revision Id for this page_id
 	 * This is used to populate rev_parent_id on save
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @return int
 	 */
 	private function getPreviousRevisionId( $db ) {
@@ -1359,7 +1359,7 @@ class Revision implements IDBAccessObject {
 	 * Insert a new revision into the database, returning the new revision ID
 	 * number on success and dies horribly on failure.
 	 *
-	 * @param DatabaseBase $dbw (master connection)
+	 * @param IDatabase $dbw (master connection)
 	 * @throws MWException
 	 * @return int
 	 */
@@ -1596,7 +1596,7 @@ class Revision implements IDBAccessObject {
 	 * Such revisions can for instance identify page rename
 	 * operations and other such meta-modifications.
 	 *
-	 * @param DatabaseBase $dbw
+	 * @param IDatabase $dbw
 	 * @param int $pageId ID number of the page to read from
 	 * @param string $summary Revision's summary
 	 * @param bool $minor Whether the revision should be considered as minor
@@ -1746,7 +1746,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get count of revisions per page...not very efficient
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param int $id Page id
 	 * @return int
 	 */
@@ -1762,7 +1762,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get count of revisions per page...not very efficient
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param Title $title
 	 * @return int
 	 */
@@ -1782,7 +1782,7 @@ class Revision implements IDBAccessObject {
 	 * @since 1.20
 	 * @deprecated since 1.24
 	 *
-	 * @param DatabaseBase|int $db The Database to perform the check on. May be given as a
+	 * @param IDatabase|int $db The Database to perform the check on. May be given as a
 	 *        Database object or a database identifier usable with wfGetDB.
 	 * @param int $pageId The ID of the page in question
 	 * @param int $userId The ID of the user in question
