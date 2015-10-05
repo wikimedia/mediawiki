@@ -924,7 +924,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				$this->missingLocalFileRefs[] = $file;
 			}
 		}
-		return CSSMin::remap(
+		return new MemoizedCallable( 'CSSMin::remap' )->invoke(
 			$style, $localDir, $remoteDir, true
 		);
 	}
