@@ -986,7 +986,7 @@ class LocalFile extends File {
 	 * @param int $start Optional: Timestamp, start from
 	 * @param int $end Optional: Timestamp, end at
 	 * @param bool $inc
-	 * @return array
+	 * @return OldLocalFile[]
 	 */
 	function getHistory( $limit = null, $start = null, $end = null, $inc = true ) {
 		$dbr = $this->repo->getSlaveDB();

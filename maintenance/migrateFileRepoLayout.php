@@ -72,7 +72,8 @@ class MigrateFileRepoLayout extends Maintenance {
 		$batch = array();
 		$lastName = '';
 		do {
-			$res = $dbw->select( 'image', array( 'img_name', 'img_sha1' ),
+			$res = $dbw->select( 'image',
+				array( 'img_name', 'img_sha1' ),
 				array_merge( array( 'img_name > ' . $dbw->addQuotes( $lastName ) ), $conds ),
 				__METHOD__,
 				array( 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'img_name' )
@@ -80,12 +81,14 @@ class MigrateFileRepoLayout extends Maintenance {
 
 			foreach ( $res as $row ) {
 				$lastName = $row->img_name;
-				$sha1 = $row->img_sha1;
-				if ( !strlen( $sha1 ) ) {
-					$this->error( "Image SHA-1 not set for {$row->img_name}." );
-				} else {
-					$file = $repo->newFile( $row->img_name );
+				/** @var LocalFile $file */
+				$file = $repo->newFile( $row->img_name );
+				// Check in case SHA1 rows are not populated for some files
+				$sha1 = strlen( $row->img_sha1 ) ? $row->img_sha1 : $file->getSha1();
 
+				if ( !strlen( $sha1 ) ) {
+					$this->error( "Image SHA-1 not known for {$row->img_name}." );
+				} else {
 					if ( $oldLayout === 'sha1' ) {
 						$spath = "{$origBase}/{$sha1[0]}/{$sha1[1]}/{$sha1[2]}/{$sha1}";
 					} else {
@@ -98,7 +101,8 @@ class MigrateFileRepoLayout extends Maintenance {
 						$dpath = $file->getPath();
 					}
 
-					$status = $be->prepare( array( 'dir' => dirname( $dpath ) ) );
+					$status = $be->prepare( array(
+						'dir' => dirname( $dpath ), 'bypassReadOnly' => 1 ) );
 					if ( !$status->isOK() ) {
 						$this->error( print_r( $status->getErrorsArray(), true ) );
 					}
@@ -130,7 +134,8 @@ class MigrateFileRepoLayout extends Maintenance {
 						$dpath = $ofile->getPath();
 					}
 
-					$status = $be->prepare( array( 'dir' => dirname( $dpath ) ) );
+					$status = $be->prepare( array(
+						'dir' => dirname( $dpath ), 'bypassReadOnly' => 1 ) );
 					if ( !$status->isOK() ) {
 						$this->error( print_r( $status->getErrorsArray(), true ) );
 					}
@@ -187,7 +192,8 @@ class MigrateFileRepoLayout extends Maintenance {
 						'/' . $repo->getDeletedHashPath( $sha1Key ) . $sha1Key;
 				}
 
-				$status = $be->prepare( array( 'dir' => dirname( $dpath ) ) );
+				$status = $be->prepare( array(
+					'dir' => dirname( $dpath ), 'bypassReadOnly' => 1 ) );
 				if ( !$status->isOK() ) {
 					$this->error( print_r( $status->getErrorsArray(), true ) );
 				}
@@ -219,7 +225,7 @@ class MigrateFileRepoLayout extends Maintenance {
 			$this->output( "\"{$op['img']}\" (dest: {$op['dst']})\n" );
 		}
 
-		$status = $be->doOperations( $ops );
+		$status = $be->doOperations( $ops, array( 'bypassReadOnly' => 1 ) );
 		if ( !$status->isOK() ) {
 			$this->output( print_r( $status->getErrorsArray(), true ) );
 		}

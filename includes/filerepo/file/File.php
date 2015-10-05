@@ -1444,7 +1444,7 @@ abstract class File implements IDBAccessObject {
 	 * @param string $end Only revisions newer than $end will be returned
 	 * @param bool $inc Include the endpoints of the time range
 	 *
-	 * @return array
+	 * @return File[]
 	 */
 	function getHistory( $limit = null, $start = null, $end = null, $inc = true ) {
 		return array();
