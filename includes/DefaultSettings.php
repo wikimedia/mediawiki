@@ -4680,6 +4680,12 @@ $wgWhitelistReadRegexp = false;
 $wgEmailConfirmToEdit = false;
 
 /**
+ * Should MediaWiki attempt to protect user's privacy when doing redirects?
+ * Keep this true if access counts to articles are made public.
+ */
+$wgHideIdentifiableRedirects = true;
+
+/**
  * Permission keys given to users in each group.
  *
  * This is an array where the keys are all groups and each value is an
