@@ -343,8 +343,9 @@
 		process( tasks, QUnit.start );
 	} );
 
-	QUnit.test( 'Links', 7, function ( assert ) {
-		var expectedDisambiguationsText,
+	QUnit.test( 'Links', 11, function ( assert ) {
+		var testCases,
+			expectedDisambiguationsText,
 			expectedMultipleBars,
 			expectedSpecialCharacters;
 
@@ -405,6 +406,132 @@
 			expectedListUsersSitename,
 			'Piped wikilink with parser function in the text'
 		);
+
+		testCases = [
+			[
+				'extlink-html-full',
+				'asd [http://example.org <strong>Example</strong>] asd',
+				'asd <a href="http://example.org"><strong>Example</strong></a> asd'
+			],
+			[
+				'extlink-html-partial',
+				'asd [http://example.org foo <strong>Example</strong> bar] asd',
+				'asd <a href="http://example.org">foo <strong>Example</strong> bar</a> asd'
+			],
+			[
+				'wikilink-html-full',
+				'asd [[Example|<strong>Example</strong>]] asd',
+				'asd <a title="Example" href="/wiki/Example"><strong>Example</strong></a> asd'
+			],
+			[
+				'wikilink-html-partial',
+				'asd [[Example|foo <strong>Example</strong> bar]] asd',
+				'asd <a title="Example" href="/wiki/Example">foo <strong>Example</strong> bar</a> asd'
+			]
+		];
+
+		$.each( testCases, function () {
+			var
+				key = this[ 0 ],
+				input = this[ 1 ],
+				output = this[ 2 ];
+			mw.messages.set( key, input );
+			assert.htmlEqual(
+				formatParse( key ),
+				output,
+				'HTML in links: ' + key
+			);
+		} );
+	} );
+
+	QUnit.test( 'Replacements in links', 14, function ( assert ) {
+		var testCases = [
+			[
+				'extlink-param-href-full',
+				'asd [$1 Example] asd',
+				'asd <a href="http://example.com">Example</a> asd'
+			],
+			[
+				'extlink-param-href-partial',
+				'asd [$1/example Example] asd',
+				'asd <a href="http://example.com/example">Example</a> asd'
+			],
+			[
+				'extlink-param-text-full',
+				'asd [http://example.org $2] asd',
+				'asd <a href="http://example.org">Text</a> asd'
+			],
+			[
+				'extlink-param-text-partial',
+				'asd [http://example.org Example $2] asd',
+				'asd <a href="http://example.org">Example Text</a> asd'
+			],
+			[
+				'extlink-param-both-full',
+				'asd [$1 $2] asd',
+				'asd <a href="http://example.com">Text</a> asd'
+			],
+			[
+				'extlink-param-both-partial',
+				'asd [$1/example Example $2] asd',
+				'asd <a href="http://example.com/example">Example Text</a> asd'
+			],
+			[
+				'wikilink-param-href-full',
+				'asd [[$1|Example]] asd',
+				'asd <a title="Example" href="/wiki/Example">Example</a> asd'
+			],
+			[
+				'wikilink-param-href-partial',
+				'asd [[$1/Test|Example]] asd',
+				'asd <a title="Example/Test" href="/wiki/Example/Test">Example</a> asd'
+			],
+			[
+				'wikilink-param-text-full',
+				'asd [[Example|$2]] asd',
+				'asd <a title="Example" href="/wiki/Example">Text</a> asd'
+			],
+			[
+				'wikilink-param-text-partial',
+				'asd [[Example|Example $2]] asd',
+				'asd <a title="Example" href="/wiki/Example">Example Text</a> asd'
+			],
+			[
+				'wikilink-param-both-full',
+				'asd [[$1|$2]] asd',
+				'asd <a title="Example" href="/wiki/Example">Text</a> asd'
+			],
+			[
+				'wikilink-param-both-partial',
+				'asd [[$1/Test|Example $2]] asd',
+				'asd <a title="Example/Test" href="/wiki/Example/Test">Example Text</a> asd'
+			],
+			[
+				'wikilink-param-unpiped-full',
+				'asd [[$1]] asd',
+				'asd <a title="Example" href="/wiki/Example">Example</a> asd'
+			],
+			[
+				'wikilink-param-unpiped-partial',
+				'asd [[$1/Test]] asd',
+				'asd <a title="Example/Test" href="/wiki/Example/Test">Example/Test</a> asd'
+			]
+		];
+
+		$.each( testCases, function () {
+			var
+				key = this[ 0 ],
+				input = this[ 1 ],
+				output = this[ 2 ],
+				paramHref = key.slice( 0, 8 ) === 'wikilink' ? 'Example' : 'http://example.com',
+				paramText = 'Text';
+			mw.messages.set( key, input );
+			assert.htmlEqual(
+				formatParse( key, paramHref, paramText ),
+				output,
+				'Replacements in links: ' + key
+			);
+		} );
 	} );
 
 	// Tests that {{-transformation vs. general parsing are done as requested
@@ -757,19 +884,17 @@
 			'Mismatched HTML start and end tag treated as text'
 		);
 
-		// TODO (mattflaschen, 2013-03-18): It's not a security issue, but there's no real
-		// reason the htmlEmitter span needs to be here. It's an artifact of how emitting works.
 		mw.messages.set( 'jquerymsg-script-and-external-link', '<script>alert( "jquerymsg-script-and-external-link test" );</script> [http://example.com <i>Foo</i> bar]' );
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-script-and-external-link' ),
-			'&lt;script&gt;alert( "jquerymsg-script-and-external-link test" );&lt;/script&gt; <a href="http://example.com"><span class="mediaWiki_htmlEmitter"><i>Foo</i> bar</span></a>',
+			'&lt;script&gt;alert( "jquerymsg-script-and-external-link test" );&lt;/script&gt; <a href="http://example.com"><i>Foo</i> bar</a>',
 			'HTML tags in external links not interfering with escaping of other tags'
 		);
 
 		mw.messages.set( 'jquerymsg-link-script', '[http://example.com <script>alert( "jquerymsg-link-script test" );</script>]' );
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-link-script' ),
-			'<a href="http://example.com"><span class="mediaWiki_htmlEmitter">&lt;script&gt;alert( "jquerymsg-link-script test" );&lt;/script&gt;</span></a>',
+			'<a href="http://example.com">&lt;script&gt;alert( "jquerymsg-link-script test" );&lt;/script&gt;</a>',
 			'Non-whitelisted HTML tag in external link anchor treated as text'
 		);
 
@@ -812,7 +937,7 @@
 		mw.messages.set( 'jquerymsg-wikitext-contents-script', '<i><script>Script inside</script></i>' );
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-wikitext-contents-script' ),
-			'<i><span class="mediaWiki_htmlEmitter">&lt;script&gt;Script inside&lt;/script&gt;</span></i>',
+			'<i>&lt;script&gt;Script inside&lt;/script&gt;</i>',
 			'Contents of valid tag are treated as wikitext, so invalid HTML element is treated as text'
 		);
 
