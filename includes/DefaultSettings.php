@@ -7662,7 +7662,7 @@ $wgTextModelsToParse = array(
  *
  * @since 1.20
  */
-$wgRequirePasswordforEmailChange = true;
+$wgRequirePasswordforEmailChange = false;
 
 /**
  * Register handlers for specific types of sites.

@@ -89,6 +89,8 @@ abstract class FormSpecialPage extends SpecialPage {
 	 * @return HTMLForm|null
 	 */
 	protected function getForm() {
+		global $wgRequirePasswordforEmailChange;
+
 		$form = HTMLForm::factory(
 			$this->getDisplayFormat(),
 			$this->getFormFields(),
@@ -104,7 +106,10 @@ abstract class FormSpecialPage extends SpecialPage {
 
 		$headerMsg = $this->msg( $this->getMessagePrefix() . '-text' );
 		if ( !$headerMsg->isDisabled() ) {
-			$form->addHeaderText( $headerMsg->parseAsBlock() );
+			if( $wgRequirePasswordforEmailChange )
+				$form->addHeaderText( 'Complete this form to change your email address. You will need to enter your password to confirm this change.' );
+			else 
+				$form->addHeaderText( 'Complete this form to change your email address.' );
 		}
 
 		// Retain query parameters (uselang etc)
