@@ -114,6 +114,33 @@ return array(
 		),
 	),
 
+	// Bug: T114695
+	'mediawiki.skinning.interface.elements' => array(
+		'position' => 'top',
+		'class' => 'ResourceLoaderSkinModule',
+		'styles' => array(
+			'resources/src/mediawiki.skinning/elements.css' => array( 'media' => 'screen' ),
+		),
+	),
+
+	// Bug: T114695
+	'mediawiki.skinning.interface.content' => array(
+		'position' => 'top',
+		'class' => 'ResourceLoaderSkinModule',
+		'styles' => array(
+			'resources/src/mediawiki.skinning/content.css' => array( 'media' => 'screen' ),
+		),
+	),
+
+	// Bug: T114695
+	'mediawiki.skinning.interface.interface' => array(
+		'position' => 'top',
+		'class' => 'ResourceLoaderSkinModule',
+		'styles' => array(
+			'resources/src/mediawiki.skinning/interface.css' => array( 'media' => 'screen' ),
+		),
+	),
+
 	'mediawiki.skinning.content.parsoid' => array(
 		'position' => 'top',
 		// Style Parsoid HTML+RDFa output consistent with wikitext from PHP parser
