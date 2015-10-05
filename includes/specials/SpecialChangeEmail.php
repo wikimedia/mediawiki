@@ -112,10 +112,18 @@ class SpecialChangeEmail extends FormSpecialPage {
 	}
 
 	protected function alterForm( HTMLForm $form ) {
+		global $wgRequirePasswordforEmailChange;
+
 		$form->setId( 'mw-changeemail-form' );
 		$form->setTableId( 'mw-changeemail-table' );
 		$form->setSubmitTextMsg( 'changeemail-submit' );
 		$form->addHiddenFields( $this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
+
+		if ( $wgRequirePasswordforEmailChange ) {
+ 			$form->addHeaderText( $this->msg( 'changeemail-passwordrequired' )->parseAsBlock() );
+		} else {
+			$form->addHeaderText( $this->msg( 'changeemail-text' )->parseAsBlock() );
+		}
 	}
 
 	public function onSubmit( array $data ) {
