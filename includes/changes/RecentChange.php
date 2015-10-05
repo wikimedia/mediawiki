@@ -460,7 +460,7 @@ class RecentChange {
 		// Automatic patrol needs "autopatrol", ordinary patrol needs "patrol"
 		$right = $auto ? 'autopatrol' : 'patrol';
 		$errors = array_merge( $errors, $this->getTitle()->getUserPermissionsErrors( $right, $user ) );
-		if ( !Hooks::run( 'MarkPatrolled', array( $this->getAttribute( 'rc_id' ), &$user, false ) ) ) {
+		if ( !Hooks::run( 'MarkPatrolled', array( $this->getAttribute( 'rc_id' ), &$user, false, $auto ) ) ) {
 			$errors[] = array( 'hookaborted' );
 		}
 		// Users without the 'autopatrol' right can't patrol their
@@ -481,7 +481,7 @@ class RecentChange {
 		$this->reallyMarkPatrolled();
 		// Log this patrol event
 		PatrolLog::record( $this, $auto, $user );
-		Hooks::run( 'MarkPatrolledComplete', array( $this->getAttribute( 'rc_id' ), &$user, false ) );
+		Hooks::run( 'MarkPatrolledComplete', array( $this->getAttribute( 'rc_id' ), &$user, false, $auto ) );
 
 		return array();
 	}
