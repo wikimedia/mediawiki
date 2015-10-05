@@ -1032,6 +1032,14 @@ class DatabaseSqlite extends DatabaseBase {
 
 		return $endArray;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function __toString() {
+		return 'SQLite ' . (string)$this->mConn->getAttribute( PDO::ATTR_SERVER_VERSION );
+	}
+
 } // end DatabaseSqlite class
 
 /**
