@@ -451,3 +451,9 @@ This may indicate a bug in the software.',
  */
 class DBUnexpectedError extends DBError {
 }
+
+/**
+ * @ingroup Database
+ */
+class DBReadOnlyError extends DBError {
+}
