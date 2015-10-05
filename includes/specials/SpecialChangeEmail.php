@@ -208,4 +208,32 @@ class SpecialChangeEmail extends FormSpecialPage {
 	protected function getGroupName() {
 		return 'users';
 	}
+
+	/**
+	 * Add form header to the Change Email Special Page
+	 * @return FormHeader|null
+	 */
+
+	public function addFormHeader() {
+		global $wgRequirePasswordChangeEmail;
+
+		$form = HTMLForm::factory(
+			$this->getDisplayFormat(),
+			$this->getFormFields(),
+			$this->getContext(),
+			$this->getMessagePrefix()
+		);
+		
+		if( !$wgRequirePasswordChangeEmail ) {
+			$headerMsg = $this->msg( 'Complete this form to change your email address. ' );
+			if ( !$headerMsg->isDisabled() ) {
+				$form->addHeaderText( $headerMsg->parseAsBlock() );
+			}
+		} else {
+			$headerMsg = $this->msg( 'Complete this form to change your email address. You will need to enter your password to confirm this change.' );
+			if ( !$headerMsg->isDisabled() ) {
+				$form->addHeaderText( $headerMsg->parseAsBlock() );
+			}
+		}
+	}
 }

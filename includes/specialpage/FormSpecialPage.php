@@ -102,11 +102,6 @@ abstract class FormSpecialPage extends SpecialPage {
 			$form->setWrapperLegendMsg( $this->getMessagePrefix() . '-legend' );
 		}
 
-		$headerMsg = $this->msg( $this->getMessagePrefix() . '-text' );
-		if ( !$headerMsg->isDisabled() ) {
-			$form->addHeaderText( $headerMsg->parseAsBlock() );
-		}
-
 		// Retain query parameters (uselang etc)
 		$params = array_diff_key(
 			$this->getRequest()->getQueryValues(), array( 'title' => null ) );
@@ -120,6 +115,25 @@ abstract class FormSpecialPage extends SpecialPage {
 		Hooks::run( 'SpecialPageBeforeFormDisplay', array( $this->getName(), &$form ) );
 
 		return $form;
+	}
+
+	/**
+	 * Add form header to the Change Email Special Page
+	 * @return FormHeader|null
+	 */
+
+	public function addFormHeader() {
+		$form = HTMLForm::factory(
+			$this->getDisplayFormat(),
+			$this->getFormFields(),
+			$this->getContext(),
+			$this->getMessagePrefix()
+		);
+		
+		$headerMsg = $this->msg( $this->getMessagePrefix() . '-text' );
+		if ( !$headerMsg->isDisabled() ) {
+			$form->addHeaderText( $headerMsg->parseAsBlock() );
+		}
 	}
 
 	/**
