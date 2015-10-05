@@ -780,6 +780,7 @@ $wgAutoloadLocalClasses = array(
 	'MemcachedBagOStuff' => __DIR__ . '/includes/objectcache/MemcachedBagOStuff.php',
 	'MemcachedPeclBagOStuff' => __DIR__ . '/includes/objectcache/MemcachedPeclBagOStuff.php',
 	'MemcachedPhpBagOStuff' => __DIR__ . '/includes/objectcache/MemcachedPhpBagOStuff.php',
+	'MemoizedCallable' => __DIR__ . '/includes/libs/MemoizedCallable.php',
 	'MemoryFileBackend' => __DIR__ . '/includes/filebackend/MemoryFileBackend.php',
 	'MergeHistoryPager' => __DIR__ . '/includes/specials/SpecialMergeHistory.php',
 	'MergeLogFormatter' => __DIR__ . '/includes/logging/MergeLogFormatter.php',
