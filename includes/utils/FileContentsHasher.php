@@ -57,7 +57,7 @@ class FileContentsHasher {
 	 * @return string|bool Hash of file contents, or false if the file could not be read.
 	 */
 	public function getFileContentsHashInternal( $filePath, $algo = 'md4' ) {
-		$mtime = MediaWiki\quietCall( 'filemtime', $filePath );
+		$mtime = filemtime( $filePath );
 		if ( $mtime === false ) {
 			return false;
 		}
@@ -69,7 +69,7 @@ class FileContentsHasher {
 			return $hash;
 		}
 
-		$contents = MediaWiki\quietCall( 'file_get_contents', $filePath );
+		$contents = file_get_contents( $filePath );
 		if ( $contents === false ) {
 			return false;
 		}
@@ -96,6 +96,8 @@ class FileContentsHasher {
 			$filePaths = (array)$filePaths;
 		}
 
+		MediaWiki\supressWarnings();
+
 		if ( count( $filePaths ) === 1 ) {
 			return $instance->getFileContentsHashInternal( $filePaths[0], $algo );
 		}
@@ -104,6 +106,8 @@ class FileContentsHasher {
 		$hashes = array_map( function ( $filePath ) use ( $instance, $algo ) {
 			return $instance->getFileContentsHashInternal( $filePath, $algo ) ?: '';
 		}, $filePaths );
+
+		MediaWiki\restoreWarnings();
 
 		$hashes = implode( '', $hashes );
 		return $hashes ? hash( $algo, $hashes ) : false;
