@@ -90,7 +90,8 @@
 			"Aquatech",
 			"Statix64",
 			"CassiodoroVicinetti",
-			"Bultro"
+			"Bultro",
+			"Oggioniale"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -428,7 +429,7 @@
 	"viewsource": "Visualizza wikitesto",
 	"viewsource-title": "Visualizza wikitesto di $1",
 	"actionthrottled": "Azione ritardata",
-	"actionthrottledtext": "Come misura di sicurezza contro lo spam, l'esecuzione di alcune azioni è limitata a un numero massimo di volte in un determinato periodo di tempo, limite che in questo caso è stato superato. Si prega di riprovare tra qualche minuto.",
+	"actionthrottledtext": "Come misura di sicurezza contro lo spam, l'esecuzione di alcune azioni è limitata a un numero massimo di volte in un determinato periodo di tempo, limite che tu hai superato. Si prega di riprovare tra qualche minuto.",
 	"protectedpagetext": "Questa pagina è stata protetta per impedirne la modifica o altre operazioni.",
 	"viewsourcetext": "È possibile visualizzare e copiare il codice sorgente di questa pagina.",
 	"viewyourtext": "È possibile visualizzare e copiare il codice sorgente delle <strong>tue modifiche</strong> a questa pagina.",
@@ -1396,6 +1397,7 @@
 	"upload-options": "Opzioni di caricamento",
 	"watchthisupload": "Aggiungi agli osservati speciali",
 	"filewasdeleted": "Un file con questo nome è stato già caricato e cancellato in passato. Verificare il log delle $1 prima di caricarlo di nuovo.",
+	"filename-thumb-name": "Questo sembra essere il titolo di una miniatura. Non caricare le miniature sulla stessa wiki. Oppure, modifica il nome del file in modo che sia più significativo e non abbia il prefisso della miniatura.",
 	"filename-bad-prefix": "Il nome del file che si sta caricando inizia con '''\"$1\"''', che è un nome generico simile a quelli assegnati automaticamente dalle fotocamere digitali. Si prega di scegliere un nome più descrittivo per il file.",
 	"filename-prefix-blacklist": " #<!-- lascia questa riga esattamente com'è --> <pre>\n# La sintassi è la seguente:\n#   * Tutto ciò che segue il carattere \"#\" sino alla fine della riga è un commento\n#   * Ogni riga non vuota è un prefisso per nomi di file tipici assegnati automaticamente da fotocamere digitali\nCIMG # Casio\nDSC_ # Nikon\nDSCF # Fuji\nDSCN # Nikon\nDUW # alcuni telefonini\nIMG # generic\nJD # Jenoptik\nMGP # Pentax\nPICT # misc.\n #</pre> <!-- lascia questa riga esattamente com'è -->",
 	"upload-success-subj": "Caricamento completato",

@@ -2548,7 +2548,7 @@
 	"exif-bitspersample": "ביטים לרכיב",
 	"exif-compression": "תבנית דחיסה",
 	"exif-photometricinterpretation": "הרכב פיקסלים",
-	"exif-orientation": "כיווניות",
+	"exif-orientation": "כיוון מצלמה",
 	"exif-samplesperpixel": "מספר רכיבים",
 	"exif-planarconfiguration": "סידור מידע",
 	"exif-ycbcrsubsampling": "הפחתת יחס Y ל־C",

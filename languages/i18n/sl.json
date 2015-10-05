@@ -350,7 +350,7 @@
 	"viewsource": "Izvorno besedilo",
 	"viewsource-title": "Ogled vira $1",
 	"actionthrottled": "Dejanje zaustavljeno",
-	"actionthrottledtext": "Kot ukrep proti smetju, je število izvajanj tega dejanja v časovnem obdobju omejeno, in vi ste ta limit presegli.\nProsimo, poskusite znova čez nekaj minut.",
+	"actionthrottledtext": "Kot ukrep proti zlorabam je število izvajanj tega dejanja v časovnem obdobju omejeno, in vi ste ta limit presegli.\nProsimo, poskusite znova čez nekaj minut.",
 	"protectedpagetext": "Ta stran je bila zaklenjena za preprečitev urejanja ali drugih dejanj.",
 	"viewsourcetext": "Vsebino te strani si lahko ogledate in kopirate.",
 	"viewyourtext": "Lahko si ogledate in kopirate vsebino <strong>vaših urejanj</strong> te strani.",

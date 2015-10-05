@@ -1302,7 +1302,7 @@
 	"filerevert-legend": "بیئرگردینتین فایلی",
 	"filerevert-intro": "شما بی حالی بیئرگردینتینا '''[[Media:$1|$1]]''' بی [$4 نخسه تاریخ $2 سائت $3] هستیت.",
 	"filerevert-comment": "دلیل:",
-	"filerevert-defaultcomment": "بیئرگردینتین بئ $1 ئی نخسه ئا سائت $2 ($3)",
+	"filerevert-defaultcomment": "بێرگردینتین بِه نخسه $2، سائت $1 ($3)",
 	"filerevert-submit": "بیئرگشت",
 	"filerevert-success": "<strong>[[Media:$1|$1]]</strong> بی [$4 نخسه ئی بی تاریخی $2 سائت $3] ئا بیئرگشتینته بوت.",
 	"filerevert-badversion": "قدیمیتیرین نخسه شه ای فایلا موجود نه اینت.",
