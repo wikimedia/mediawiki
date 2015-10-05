@@ -1244,7 +1244,7 @@ return array(
 		'dependencies' => array(
 			'mediawiki.ForeignStructuredUpload',
 			'mediawiki.Upload.BookletLayout',
-			'mediawiki.widgets',
+			'mediawiki.widgets.CategorySelector',
 			'mediawiki.widgets.DateInputWidget',
 			'mediawiki.jqueryMsg',
 		),
@@ -1974,8 +1974,6 @@ return array(
 			'resources/src/mediawiki.widgets/mw.widgets.ComplexTitleInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleOptionWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.UserInputWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.CategoryCapsuleItemWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.CategorySelector.js',
 		),
 		'skinStyles' => array(
 			'default' => array(
@@ -2033,6 +2031,16 @@ return array(
 			'moment',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
+	),
+	'mediawiki.widgets.CategorySelector' => array(
+		'scripts' => array(
+			'resources/src/mediawiki.widgets/mw.widgets.CategoryCapsuleItemWidget.js',
+			'resources/src/mediawiki.widgets/mw.widgets.CategorySelector.js',
+		),
+		'dependencies' => array(
+			'oojs-ui',
+			'mediawiki.api',
+		),
 	),
 
 	/* es5-shim */
