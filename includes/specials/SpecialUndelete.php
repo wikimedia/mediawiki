@@ -1210,6 +1210,8 @@ class SpecialUndelete extends SpecialPage {
 	}
 
 	protected function showHistory() {
+		$this->checkReadOnly();
+
 		$out = $this->getOutput();
 		if ( $this->mAllowed ) {
 			$out->addModules( 'mediawiki.special.undelete' );
@@ -1639,9 +1641,7 @@ class SpecialUndelete extends SpecialPage {
 			throw new ErrorPageError( 'undelete-error', 'filedelete-maintenance' );
 		}
 
-		if ( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+		$this->checkReadOnly();
 
 		$out = $this->getOutput();
 		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
