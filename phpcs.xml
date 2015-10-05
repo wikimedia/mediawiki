@@ -2,7 +2,6 @@
 <ruleset name="MediaWiki">
 	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<!-- Disable failing rules -->
-		<exclude name="Generic.Files.LineLength"/>
 		<exclude name="PSR2.Methods.MethodDeclaration.Underscore"/>
 		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.EmptyComment"/>
@@ -21,7 +20,13 @@
 	<arg name="encoding" value="utf8"/>
 	<arg name="extensions" value="php,php5,inc,sample"/>
 	<rule ref="Generic.Files.LineLength">
+		<!-- Many of these files consist of long lists of translations in one-line,
+		which are managed by translatewiki export scripts and shouldn't be edited manually -->
 		<exclude-pattern>*/languages/messages/Messages*.php</exclude-pattern>
+
+		<!-- See https://phabricator.wikimedia.org/T114213 -->
+		<exclude-pattern>*/tests/phpunit/includes/SampleTest.php</exclude-pattern>
+		<exclude-pattern>*/includes/media/XMP.php</exclude-pattern>
 	</rule>
 	<exclude-pattern>node_modules</exclude-pattern>
 	<exclude-pattern>vendor</exclude-pattern>
