@@ -60,6 +60,9 @@
 	 * Wrapper around jQuery append that converts all non-objects to TextNode so append will not
 	 * convert what it detects as an htmlString to an element.
 	 *
+	 * If our own htmlEmitter jQuery object is given, its children will be unwrapped and appended to
+	 * new parent.
+	 *
 	 * Object elements of children (jQuery, HTMLElement, TextNode, etc.) will be left as is.
 	 *
 	 * @private
@@ -77,6 +80,9 @@
 		for ( i = 0, len = children.length; i < len; i++ ) {
 			if ( typeof children[ i ] !== 'object' ) {
 				children[ i ] = document.createTextNode( children[ i ] );
+			}
+			if ( children[ i ] instanceof jQuery && children[ i ].hasClass( 'mediaWiki_htmlEmitter' ) ) {
+				children[ i ] = children[ i ].contents();
 			}
 		}
 
@@ -97,6 +103,20 @@
 			.replace( /&lt;/g, '<' )
 			.replace( /&gt;/g, '>' )
 			.replace( /&amp;/g, '&' );
+	}
+
+	/**
+	 * Turn input into a string.
+	 *
+	 * @private
+	 * @param {string|jQuery} input
+	 * @return {string} Textual value of input
+	 */
+	function textify( input ) {
+		if ( input instanceof jQuery ) {
+			input = input.text();
+		}
+		return String( input );
 	}
 
 	/**
@@ -215,11 +235,7 @@
 
 		return function () {
 			var $target = this.empty();
-			// TODO: Simply appendWithoutParsing( $target, failableParserFn( arguments ).contents() )
-			// or Simply appendWithoutParsing( $target, failableParserFn( arguments ) )
-			$.each( failableParserFn( arguments ).contents(), function ( i, node ) {
-				appendWithoutParsing( $target, node );
-			} );
+			appendWithoutParsing( $target, failableParserFn( arguments ) );
 			return $target;
 		};
 	};
@@ -314,7 +330,7 @@
 				escapedOrLiteralWithoutSpace, escapedOrLiteralWithoutBar, escapedOrRegularLiteral,
 				whitespace, dollar, digits, htmlDoubleQuoteAttributeValue, htmlSingleQuoteAttributeValue,
 				htmlAttributeEquals, openHtmlStartTag, optionalForwardSlash, openHtmlEndTag, closeHtmlTag,
-				openExtlink, closeExtlink, wikilinkPage, wikilinkContents, openWikilink, closeWikilink, templateName, pipe, colon,
+				openExtlink, closeExtlink, wikilinkContents, openWikilink, closeWikilink, templateName, pipe, colon,
 				templateContents, openTemplate, closeTemplate,
 				nonWhitespaceExpression, paramExpression, expression, curlyBraceTransformExpression, result,
 				settings = this.settings,
@@ -517,13 +533,6 @@
 				return result === null ? null : result.join( '' );
 			}
 
-			// Used for wikilink page names.  Like literalWithoutBar, but
-			// without allowing escapes.
-			function unescapedLiteralWithoutBar() {
-				var result = nOrMore( 1, regularLiteralWithoutBar )();
-				return result === null ? null : result.join( '' );
-			}
-
 			function literal() {
 				var result = nOrMore( 1, escapedOrRegularLiteral )();
 				return result === null ? null : result.join( '' );
@@ -556,41 +565,30 @@
 			closeExtlink = makeStringParser( ']' );
 			// this extlink MUST have inner contents, e.g. [foo] not allowed; [foo bar] [foo <i>bar</i>], etc. are allowed
 			function extlink() {
-				var result, parsedResult;
+				var result, parsedResult, target;
 				result = null;
 				parsedResult = sequence( [
 					openExtlink,
-					nonWhitespaceExpression,
+					nOrMore( 1, nonWhitespaceExpression ),
 					whitespace,
 					nOrMore( 1, expression ),
 					closeExtlink
 				] );
 				if ( parsedResult !== null ) {
-					result = [ 'EXTLINK', parsedResult[ 1 ] ];
-					// TODO (mattflaschen, 2013-03-22): Clean this up if possible.
-					// It's avoiding CONCAT for single nodes, so they at least doesn't get the htmlEmitter span.
-					if ( parsedResult[ 3 ].length === 1 ) {
-						result.push( parsedResult[ 3 ][ 0 ] );
-					} else {
-						result.push( [ 'CONCAT' ].concat( parsedResult[ 3 ] ) );
-					}
+					// When the entire link target is a single parameter, we can't use CONCAT, as we allow
+					// passing fancy parameters (like a whole jQuery object or a function) to use for the
+					// link. Check only if it's a single match, since we can either do CONCAT or not for
+					// singles with the same effect.
+					target = parsedResult[ 1 ].length === 1 ?
+						parsedResult[ 1 ][ 0 ] :
+						[ 'CONCAT' ].concat( parsedResult[ 1 ] );
+					result = [
+						'EXTLINK',
+						target,
+						[ 'CONCAT' ].concat( parsedResult[ 3 ] )
+					];
 				}
 				return result;
-			}
-			// this is the same as the above extlink, except that the url is being passed on as a parameter
-			function extLinkParam() {
-				var result = sequence( [
-					openExtlink,
-					dollar,
-					digits,
-					whitespace,
-					expression,
-					closeExtlink
-				] );
-				if ( result === null ) {
-					return null;
-				}
-				return [ 'EXTLINKPARAM', parseInt( result[ 2 ], 10 ) - 1, result[ 4 ] ];
 			}
 			openWikilink = makeStringParser( '[[' );
 			closeWikilink = makeStringParser( ']]' );
@@ -605,23 +603,30 @@
 				return result === null ? null : result[ 1 ];
 			}
 
-			wikilinkPage = choice( [
-				unescapedLiteralWithoutBar,
-				template
-			] );
-
 			function pipedWikilink() {
 				var result = sequence( [
-					wikilinkPage,
+					nOrMore( 1, paramExpression ),
 					pipe,
 					nOrMore( 1, expression )
 				] );
-				return result === null ? null : [ result[ 0 ], [ 'CONCAT' ].concat( result[ 2 ] ) ];
+				return result === null ? null : [
+					[ 'CONCAT' ].concat( result[ 0 ] ),
+					[ 'CONCAT' ].concat( result[ 2 ] )
+				];
+			}
+
+			function unpipedWikilink() {
+				var result = sequence( [
+					nOrMore( 1, paramExpression )
+				] );
+				return result === null ? null : [
+					[ 'CONCAT' ].concat( result[ 0 ] )
+				];
 			}
 
 			wikilinkContents = choice( [
 				pipedWikilink,
-				wikilinkPage // unpiped link
+				unpipedWikilink
 			] );
 
 			function wikilink() {
@@ -849,7 +854,6 @@
 			nonWhitespaceExpression = choice( [
 				template,
 				wikilink,
-				extLinkParam,
 				extlink,
 				replacement,
 				literalWithoutSpace
@@ -857,7 +861,6 @@
 			paramExpression = choice( [
 				template,
 				wikilink,
-				extLinkParam,
 				extlink,
 				replacement,
 				literalWithoutBar
@@ -866,7 +869,6 @@
 			expression = choice( [
 				template,
 				wikilink,
-				extLinkParam,
 				extlink,
 				replacement,
 				html,
@@ -985,15 +987,9 @@
 		concat: function ( nodes ) {
 			var $span = $( '<span>' ).addClass( 'mediaWiki_htmlEmitter' );
 			$.each( nodes, function ( i, node ) {
-				if ( node instanceof jQuery && node.hasClass( 'mediaWiki_htmlEmitter' ) ) {
-					$.each( node.contents(), function ( j, childNode ) {
-						appendWithoutParsing( $span, childNode );
-					} );
-				} else {
-					// Let jQuery append nodes, arrays of nodes and jQuery objects
-					// other things (strings, numbers, ..) are appended as text nodes (not as HTML strings)
-					appendWithoutParsing( $span, node );
-				}
+				// Let jQuery append nodes, arrays of nodes and jQuery objects
+				// other things (strings, numbers, ..) are appended as text nodes (not as HTML strings)
+				appendWithoutParsing( $span, node );
 			} );
 			return $span;
 		},
@@ -1036,9 +1032,9 @@
 		 * @param {string[]} nodes
 		 */
 		wikilink: function ( nodes ) {
-			var page, anchor, url;
+			var page, anchor, url, $el;
 
-			page = nodes[ 0 ];
+			page = textify( nodes[ 0 ] );
 			url = mw.util.getUrl( page );
 
 			if ( nodes.length === 1 ) {
@@ -1049,12 +1045,11 @@
 				anchor = nodes[ 1 ];
 			}
 
-			return $( '<a>' ).attr( {
+			$el = $( '<a>' ).attr( {
 				title: page,
 				href: url
-			} )
-				// FIXME This means that you can't have anything with formatting inside a wikilink.
-				.text( anchor.jquery ? anchor.text() : anchor );
+			} );
+			return appendWithoutParsing( $el, anchor );
 		},
 
 		/**
@@ -1089,11 +1084,12 @@
 		},
 
 		/**
-		 * Transform parsed structure into external link
-		 * If the href is a jQuery object, treat it as "enclosing" the link text.
+		 * Transform parsed structure into external link.
 		 *
-		 * - ... function, treat it as the click handler.
-		 * - ... string, treat it as a URI.
+		 * The "href" can be:
+		 * - a jQuery object, treat it as "enclosing" the link text.
+		 * - a function, treat it as the click handler.
+		 * - a string, or our htmlEmitter jQuery object, treat it as a URI after stringifying.
 		 *
 		 * TODO: throw an error if nodes.length > 2 ?
 		 *
@@ -1104,7 +1100,7 @@
 			var $el,
 				arg = nodes[ 0 ],
 				contents = nodes[ 1 ];
-			if ( arg instanceof jQuery ) {
+			if ( arg instanceof jQuery && !arg.hasClass( 'mediaWiki_htmlEmitter' ) ) {
 				$el = arg;
 			} else {
 				$el = $( '<a>' );
@@ -1115,33 +1111,10 @@
 					} )
 					.click( arg );
 				} else {
-					$el.attr( 'href', arg.toString() );
+					$el.attr( 'href', textify( arg ) );
 				}
 			}
 			return appendWithoutParsing( $el, contents );
-		},
-
-		/**
-		 * This is basically use a combination of replace + external link (link with parameter
-		 * as url), but we don't want to run the regular replace here-on: inserting a
-		 * url as href-attribute of a link will automatically escape it already, so
-		 * we don't want replace to (manually) escape it as well.
-		 *
-		 * TODO: throw error if nodes.length > 1 ?
-		 *
-		 * @param {Array} nodes List of one element, integer, n >= 0
-		 * @param {Array} replacements List of at least n strings
-		 * @return {string} replacement
-		 */
-		extlinkparam: function ( nodes, replacements ) {
-			var replacement,
-				index = parseInt( nodes[ 0 ], 10 );
-			if ( index < replacements.length ) {
-				replacement = replacements[ index ];
-			} else {
-				replacement = '$' + ( index + 1 );
-			}
-			return this.extlink( [ replacement, nodes[ 1 ] ] );
 		},
 
 		/**
@@ -1161,7 +1134,7 @@
 			for ( formIndex = 0; formIndex < forms.length; formIndex++ ) {
 				form = forms[ formIndex ];
 
-				if ( form.jquery && form.hasClass( 'mediaWiki_htmlEmitter' ) ) {
+				if ( form instanceof jQuery && form.hasClass( 'mediaWiki_htmlEmitter' ) ) {
 					// This is a nested node, may be an explicit plural form like 5=[$2 linktext]
 					firstChild = form.contents().get( 0 );
 					if ( firstChild && firstChild.nodeType === Node.TEXT_NODE ) {
