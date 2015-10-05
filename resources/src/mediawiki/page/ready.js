@@ -62,7 +62,8 @@
 		// Infuse OOUI widgets, if any are present
 		$nodes = $( '[data-ooui]' );
 		if ( $nodes.length ) {
-			mw.loader.using( 'mediawiki.widgets' ).done( function () {
+			// FIXME: We should only load the widgets that are being infused
+			mw.loader.using( [ 'mediawiki.widgets', 'mediawiki.widgets.UserInputWidget' ] ).done( function () {
 				$nodes.each( function () {
 					OO.ui.infuse( this );
 				} );
