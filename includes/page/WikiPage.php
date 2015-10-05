@@ -1421,7 +1421,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param string $edittime Revision timestamp or null to use the current revision.
 	 *
 	 * @throws MWException
-	 * @return string New complete article text, or null if error.
+	 * @return string|null New complete article text, or null if error.
 	 *
 	 * @deprecated since 1.21, use replaceSectionAtRev() instead
 	 */
@@ -1473,7 +1473,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param string $edittime Revision timestamp or null to use the current revision.
 	 *
 	 * @throws MWException
-	 * @return Content New complete article content, or null if error.
+	 * @return Content|null New complete article content, or null if error.
 	 *
 	 * @since 1.21
 	 * @deprecated since 1.24, use replaceSectionAtRev instead
@@ -1512,7 +1512,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param int|null $baseRevId
 	 *
 	 * @throws MWException
-	 * @return Content New complete article content, or null if error.
+	 * @return Content|null New complete article content, or null if error.
 	 *
 	 * @since 1.24
 	 */

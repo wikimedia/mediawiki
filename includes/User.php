@@ -935,7 +935,7 @@ class User implements IDBAccessObject {
 	 * the cached User object, we assume that whatever mechanism is setting
 	 * the expiration date is also expiring the User cache.
 	 * @since 1.23
-	 * @return string|bool The datestamp of the expiration, or null if not set
+	 * @return string|null The datestamp of the expiration, or null if not set
 	 */
 	public function getPasswordExpireDate() {
 		$this->load();

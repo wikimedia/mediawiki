@@ -530,7 +530,7 @@ class Title {
 	 * @param string $title Database key form
 	 * @param string $fragment The link fragment (after the "#")
 	 * @param string $interwiki Interwiki prefix
-	 * @return Title The new object, or null on an error
+	 * @return Title|null The new object, or null on an error
 	 */
 	public static function makeTitleSafe( $ns, $title, $fragment = '', $interwiki = '' ) {
 		if ( !MWNamespace::exists( $ns ) ) {

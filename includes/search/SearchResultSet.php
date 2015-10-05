@@ -98,7 +98,7 @@ class SearchResultSet {
 	}
 
 	/**
-	 * @return string Suggested query, null if none
+	 * @return string|null Suggested query, null if none
 	 */
 	function getSuggestionQuery() {
 		return null;

@@ -574,7 +574,7 @@ abstract class File implements IDBAccessObject {
 	 * In files that support multiple language, what is the default language
 	 * to use if none specified.
 	 *
-	 * @return string Lang code, or null if filetype doesn't support multiple languages.
+	 * @return string|null Lang code, or null if filetype doesn't support multiple languages.
 	 * @since 1.23
 	 */
 	public function getDefaultRenderLanguage() {
@@ -922,7 +922,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @param array $params Handler-specific parameters
 	 * @param int $flags Bitfield that supports THUMB_* constants
-	 * @return string
+	 * @return string|null
 	 */
 	public function thumbName( $params, $flags = 0 ) {
 		$name = ( $this->repo && !( $flags & self::THUMB_FULL_NAME ) )
@@ -937,7 +937,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @param string $name
 	 * @param array $params Parameters which will be passed to MediaHandler::makeParamString
-	 * @return string
+	 * @return string|null
 	 */
 	public function generateThumbName( $name, $params ) {
 		if ( !$this->getHandler() ) {
