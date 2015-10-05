@@ -555,7 +555,7 @@
 	"passwordreset-emailerror-capture": "A password reset email was generated, which is shown below, but sending it to the {{GENDER:$2|user}} failed: $1",
 	"changeemail": "Change or remove email address",
 	"changeemail-summary": "",
-	"changeemail-text": "Complete this form to change your email address. You will need to enter your password to confirm this change. If you would like to remove the association of any email address from your account, leave the new email address blank when submitting the form.",
+	"changeemail-text": "Complete this form to change your email address.",
 	"changeemail-no-info": "You must be logged in to access this page directly.",
 	"changeemail-oldemail": "Current email address:",
 	"changeemail-newemail": "New email address:",
