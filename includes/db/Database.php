@@ -932,9 +932,9 @@ abstract class DatabaseBase implements IDatabase {
 
 		$isWriteQuery = $this->isWriteQuery( $sql );
 		if ( $isWriteQuery ) {
-			if ( !$this->mDoneWrites ) {
-				wfDebug( __METHOD__ . ': Writes done: ' .
-					DatabaseBase::generalizeSQL( $sql ) . "\n" );
+			$reason = $this->getLBInfo( 'readOnlyReason' );
+			if ( is_string( $reason ) ) {
+				throw new DBReadOnlyError( $this, "Database is read-only: $reason" );
 			}
 			# Set a flag indicating that writes have been done
 			$this->mDoneWrites = microtime( true );
