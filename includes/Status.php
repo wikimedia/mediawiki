@@ -361,7 +361,7 @@ class Status {
 	 *
 	 * @note: this handles RawMessage poorly
 	 *
-	 * @param string $type
+	 * @param string|bool $type
 	 * @return array
 	 */
 	protected function getStatusArray( $type = false ) {
