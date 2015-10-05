@@ -482,4 +482,12 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 
 		$this->assertTrue( $db->close(), "closing database" );
 	}
+
+	public function testToString() {
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
+
+		$toString = (string)$db;
+
+		$this->assertContains( 'SQLite ', $toString );
+	}
 }
