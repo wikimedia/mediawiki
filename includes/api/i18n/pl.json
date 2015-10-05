@@ -202,6 +202,7 @@
 	"apihelp-query+alltransclusions-param-namespace": "Przestrzeń nazw do emulacji.",
 	"apihelp-query+allusers-param-witheditsonly": "Tylko użytkownicy, którzy edytowali.",
 	"apihelp-query+backlinks-param-namespace": "Przestrzeń nazw do emulacji.",
+	"apihelp-query+backlinks-example-simple": "Pokazuj linki do <kbd>Main page</kbd>.",
 	"apihelp-query+blocks-param-ids": "Lista zablokowanych ID do wylistowania (opcjonalne).",
 	"apihelp-query+blocks-param-users": "Lista użytkowników do wyszukania (opcjonalne).",
 	"apihelp-query+blocks-param-limit": "Maksymalna liczba blokad do wylistowania.",

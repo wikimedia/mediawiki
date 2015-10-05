@@ -252,7 +252,7 @@
 	"config-email-watchlist-help": "若使用者在個人偏好開啟了此功能，允許使用者收到與其監視清單有關的通知。",
 	"config-email-auth": "開啟電子郵件身份認證",
 	"config-email-auth-help": "若開啟此選項，使用者不論設定或者更改電子郵件地址，都必須透過收信的方式確認沒有問題。\n只有驗證過的電子郵件地址可以收到來自其他使用者或修改通知的信件。\n公開的 Wiki 會 <strong>建議</strong> 設定此選項，以防使用者濫用電子郵件功能。",
-	"config-email-sender": "電子郵件回覆位址：",
+	"config-email-sender": "電子郵件回覆地址：",
 	"config-email-sender-help": "請輸入要用來做為外寄郵件的電子郵件回覆地址。\n該郵件地址會收到被拒收的信件。\n許多郵件伺服器會要求使用有效的網域名稱。",
 	"config-upload-settings": "圖片和檔案上傳",
 	"config-upload-enable": "開啟檔案上傳",

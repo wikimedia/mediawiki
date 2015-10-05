@@ -1955,7 +1955,7 @@
 	"undeletepage": "Mostra i restaura pàgines esborrades",
 	"undeletepagetitle": "'''A continuació teniu revisions eliminades de [[:$1]]'''.",
 	"viewdeletedpage": "Visualitza les pàgines eliminades",
-	"undeletepagetext": "{{PLURAL:|S'ha eliminat la pàgina següent, però encara és a l'arxiu i pot ser restaurada|S'han eliminat les $1 pàgines següents, però encara són a l'arxiu i poden ser restaurades}}.\nL'arxiu pot ser netejat periòdicament.",
+	"undeletepagetext": "{{PLURAL:$1|S'ha eliminat la pàgina següent, però encara és a l'arxiu i pot ser restaurada|S'han eliminat les $1 pàgines següents, però encara són a l'arxiu i poden ser restaurades}}.\nL'arxiu pot ser netejat periòdicament.",
 	"undelete-fieldset-title": "Restaura revisions",
 	"undeleteextrahelp": "Per a restaurar l'historial sencer de la pàgina, deixeu totes les caselles sense seleccionar i feu clic a '''''{{int:undeletebtn}}'''''.\nPer a realitzar una restauració selectiva, marqueu les caselles que corresponguin a les revisions que voleu recuperar, i feu clic a '''''{{int:undeletebtn}}'''''.",
 	"undeleterevisions": "{{PLURAL:$1|Una revisió suprimida|$1 revisions suprimides}}",
