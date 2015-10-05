@@ -29,7 +29,7 @@
  * @since 1.22
  * @see Database
  */
-abstract class DatabaseMysqlBase extends DatabaseBase {
+abstract class DatabaseMysqlBase extends Database {
 	/** @var MysqlMasterPos */
 	protected $lastKnownSlavePos;
 	/** @var string Method to detect slave lag */

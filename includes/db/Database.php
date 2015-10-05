@@ -4218,3 +4218,8 @@ abstract class DatabaseBase implements IDatabase {
 		}
 	}
 }
+
+abstract class Database extends DatabaseBase {
+	// B/C until nothing type hints for DatabaseBase
+	// @TODO: finish renaming DatabaseBase => Database
+}
