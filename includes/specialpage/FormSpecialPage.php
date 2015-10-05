@@ -103,7 +103,7 @@ abstract class FormSpecialPage extends SpecialPage {
 		}
 
 		$headerMsg = $this->msg( $this->getMessagePrefix() . '-text' );
-		if ( !$headerMsg->isDisabled() ) {
+		if ( !$headerMsg->isDisabled() && $wgRequirePasswordforEmailChange == false ) {
 			$form->addHeaderText( $headerMsg->parseAsBlock() );
 		}
 
