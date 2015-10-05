@@ -729,6 +729,8 @@
 	"changeemail": "Title of [[Special:ChangeEmail|special page]]. This page also allows removing the user's email address.",
 	"changeemail-summary": "{{ignored}}",
 	"changeemail-text": "Text of [[Special:ChangeEmail]].",
+	"changeemail-header": "Text of [[Special:ChangeEmail]].",
+	"changeemail-passwordrequired": "Shown on [[Special:ChangeEmail]] of users are required to enter their password to change their email address..",
 	"changeemail-no-info": "Error message for [[Special:ChangeEmail]].\n\nParameters:\n* $1 (unused) - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description",
 	"changeemail-oldemail": "Label for e-mail address field in [[Special:ChangeEmail]].",
 	"changeemail-newemail": "Label for e-mail address field in [[Special:ChangeEmail]]. See also {{msg-mw|changeemail-newemail-help}}",
