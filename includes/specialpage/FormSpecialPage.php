@@ -102,15 +102,15 @@ abstract class FormSpecialPage extends SpecialPage {
 			$form->setWrapperLegendMsg( $this->getMessagePrefix() . '-legend' );
 		}
 
-		$headerMsg = $this->msg( $this->getMessagePrefix() . '-text' );
-		if ( !$headerMsg->isDisabled() ) {
-			$form->addHeaderText( $headerMsg->parseAsBlock() );
-		}
-
 		// Retain query parameters (uselang etc)
 		$params = array_diff_key(
 			$this->getRequest()->getQueryValues(), array( 'title' => null ) );
 		$form->addHiddenField( 'redirectparams', wfArrayToCgi( $params ) );
+
+		$headerMsg = $this->msg( $this->getMessagePrefix() . '-text' );
+		if ( !$headerMsg->isDisabled() ) {
+			$form->addHeaderText( $headerMsg->parseAsBlock() );
+		}
 
 		$form->addPreText( $this->preText() );
 		$form->addPostText( $this->postText() );
