@@ -107,9 +107,36 @@ return array(
 	'mediawiki.skinning.interface' => array(
 		'position' => 'top',
 		'class' => 'ResourceLoaderSkinModule',
+		'dependencies' => array(
+			'mediawiki.skinning.interface.elements',
+			'mediawiki.skinning.interface.content',
+			'mediawiki.skinning.interface.interface',
+		),
+	),
+
+	// Bug: T114695
+	'mediawiki.skinning.interface.elements' => array(
+		'position' => 'top',
+		'class' => 'ResourceLoaderSkinModule',
 		'styles' => array(
 			'resources/src/mediawiki.skinning/elements.css' => array( 'media' => 'screen' ),
+		),
+	),
+
+	// Bug: T114695
+	'mediawiki.skinning.interface.content' => array(
+		'position' => 'top',
+		'class' => 'ResourceLoaderSkinModule',
+		'styles' => array(
 			'resources/src/mediawiki.skinning/content.css' => array( 'media' => 'screen' ),
+		),
+	),
+
+	// Bug: T114695
+	'mediawiki.skinning.interface.interface' => array(
+		'position' => 'top',
+		'class' => 'ResourceLoaderSkinModule',
+		'styles' => array(
 			'resources/src/mediawiki.skinning/interface.css' => array( 'media' => 'screen' ),
 		),
 	),
