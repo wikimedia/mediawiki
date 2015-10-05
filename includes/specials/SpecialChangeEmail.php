@@ -116,6 +116,11 @@ class SpecialChangeEmail extends FormSpecialPage {
 		$form->setTableId( 'mw-changeemail-table' );
 		$form->setSubmitTextMsg( 'changeemail-submit' );
 		$form->addHiddenFields( $this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
+
+		$form->addHeaderText( $this->msg( 'changeemail-header' )->parseAsBlock() );
+		if ( $this->getConfig()->get( 'RequirePasswordforEmailChange' ) ) {
+			$form->addHeaderText( $this->msg( 'changeemail-passwordrequired' )->parseAsBlock() );
+		}
 	}
 
 	public function onSubmit( array $data ) {
