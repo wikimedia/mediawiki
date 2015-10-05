@@ -688,7 +688,7 @@
 	} );
 
 	// HTML in wikitext
-	QUnit.test( 'HTML', 26, function ( assert ) {
+	QUnit.test( 'HTML', 32, function ( assert ) {
 		mw.messages.set( 'jquerymsg-italics-msg', '<i>Very</i> important' );
 
 		assertBothModes( assert, [ 'jquerymsg-italics-msg' ], mw.messages.get( 'jquerymsg-italics-msg' ), 'Simple italics unchanged' );
@@ -828,6 +828,44 @@
 			formatParse( 'jquerymsg-self-closing-tag' ),
 			'Foo&lt;tag/&gt;bar',
 			'Self-closing tags don\'t cause a parse error'
+		);
+
+		mw.messages.set( 'jquerymsg-entities1', 'A&B' );
+		mw.messages.set( 'jquerymsg-entities2', 'A&gt;B' );
+		mw.messages.set( 'jquerymsg-entities3', 'A&rarr;B' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-entities1' ),
+			'A&amp;B',
+			'Lone "&" is escaped in text'
+		);
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-entities2' ),
+			'A&amp;gt;B',
+			'"&gt;" entity is double-escaped in text' // (WHY?)
+		);
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-entities3' ),
+			'A&amp;rarr;B',
+			'"&rarr;" entity is double-escaped in text'
+		);
+
+		mw.messages.set( 'jquerymsg-entities-attr1', '<i title="A&B"></i>' );
+		mw.messages.set( 'jquerymsg-entities-attr2', '<i title="A&gt;B"></i>' );
+		mw.messages.set( 'jquerymsg-entities-attr3', '<i title="A&rarr;B"></i>' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-entities-attr1' ),
+			'<i title="A&amp;B"></i>',
+			'Lone "&" is escaped in attribute'
+		);
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-entities-attr2' ),
+			'<i title="A&gt;B"></i>',
+			'"&gt;" entity is not double-escaped in attribute' // (WHY?)
+		);
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-entities-attr3' ),
+			'<i title="A&amp;rarr;B"></i>',
+			'"&rarr;" entity is double-escaped in attribute'
 		);
 	} );
 
