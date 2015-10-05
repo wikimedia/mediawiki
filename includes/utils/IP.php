@@ -659,7 +659,7 @@ class IP {
 	 * unusual representations may be added later.
 	 *
 	 * @param string $addr Something that might be an IP address
-	 * @return string Valid dotted quad IPv4 address or null
+	 * @return string|null Valid dotted quad IPv4 address or null
 	 */
 	public static function canonicalize( $addr ) {
 		// remove zone info (bug 35738)

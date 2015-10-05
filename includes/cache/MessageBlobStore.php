@@ -167,7 +167,7 @@ class MessageBlobStore {
 	 * @param string $name Module name
 	 * @param ResourceLoaderModule $module
 	 * @param string $lang Language code
-	 * @return string Regenerated message blob, or null if there was no blob for
+	 * @return string|null Regenerated message blob, or null if there was no blob for
 	 *   the given module/language pair.
 	 */
 	public function updateModule( $name, ResourceLoaderModule $module, $lang ) {

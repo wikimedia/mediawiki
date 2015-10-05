@@ -165,7 +165,7 @@ class SearchResult {
 	}
 
 	/**
-	 * @return Title Title object for the redirect to this page, null if none or not supported
+	 * @return Title|null Title object for the redirect to this page, null if none or not supported
 	 */
 	function getRedirectTitle() {
 		return null;
@@ -179,7 +179,7 @@ class SearchResult {
 	}
 
 	/**
-	 * @return Title Title object (pagename+fragment) for the section, null if none or not supported
+	 * @return Title|null Title object (pagename+fragment) for the section, null if none or not supported
 	 */
 	function getSectionTitle() {
 		return null;

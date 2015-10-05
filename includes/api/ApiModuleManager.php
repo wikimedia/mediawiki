@@ -275,7 +275,7 @@ class ApiModuleManager extends ContextSource {
 	/**
 	 * Returns the group name for the given module
 	 * @param string $moduleName
-	 * @return string Group name or null if missing
+	 * @return string|null Group name or null if missing
 	 */
 	public function getModuleGroup( $moduleName ) {
 		if ( isset( $this->mModules[$moduleName] ) ) {
