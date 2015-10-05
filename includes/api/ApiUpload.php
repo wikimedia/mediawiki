@@ -782,7 +782,6 @@ class ApiUpload extends ApiBase {
 			'url' => null,
 			'filekey' => null,
 			'sessionkey' => array(
-				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_DEPRECATED => true,
 			),
 			'stash' => false,

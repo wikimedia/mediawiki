@@ -392,7 +392,6 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			'namespace' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'namespace',
-				ApiBase::PARAM_DFLT => null,
 			),
 			'start' => array(
 				ApiBase::PARAM_TYPE => 'timestamp',

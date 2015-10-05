@@ -294,7 +294,6 @@ class ApiQueryUsers extends ApiQueryBase {
 	public function getAllowedParams() {
 		return array(
 			'prop' => array(
-				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array(
 					'blockinfo',

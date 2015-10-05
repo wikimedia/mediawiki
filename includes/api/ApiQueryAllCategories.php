@@ -169,11 +169,9 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 				),
 			),
 			'min' => array(
-				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_TYPE => 'integer'
 			),
 			'max' => array(
-				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_TYPE => 'integer'
 			),
 			'limit' => array(
