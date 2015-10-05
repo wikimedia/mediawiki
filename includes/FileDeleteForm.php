@@ -195,9 +195,7 @@ class FileDeleteForm {
 				// or revision is missing, so check for isOK() rather than isGood()
 				if ( $deleteStatus->isOK() ) {
 					$status = $file->delete( $reason, $suppress, $user );
-					if ( $status->isOK() ) {
-						$dbw->commit( __METHOD__ );
-					} else {
+					if ( !$status->isOK() ) {
 						$dbw->rollback( __METHOD__ );
 					}
 				}
