@@ -63,6 +63,9 @@ class FileBackendGroup {
 	protected function initFromGlobals() {
 		global $wgLocalFileRepo, $wgForeignFileRepos, $wgFileBackends;
 
+		// Register explicitly defined backends
+		$this->register( $wgFileBackends, wfConfiguredReadOnlyReason() );
+
 		$autoBackends = array();
 		// Automatically create b/c backends for file repos...
 		$repos = array_merge( $wgForeignFileRepos, array( $wgLocalFileRepo ) );
@@ -102,25 +105,18 @@ class FileBackendGroup {
 			);
 		}
 
-		$backends = array_merge( $autoBackends, $wgFileBackends );
-
-		// Apply $wgReadOnly to all backends if not already read-only
-		foreach ( $backends as &$backend ) {
-			$backend['readOnly'] = !empty( $backend['readOnly'] )
-				? $backend['readOnly']
-				: wfConfiguredReadOnlyReason();
-		}
-
-		$this->register( $backends );
+		// Register implicitly defined backends
+		$this->register( $autoBackends, wfConfiguredReadOnlyReason() );
 	}
 
 	/**
 	 * Register an array of file backend configurations
 	 *
 	 * @param array $configs
+	 * @param string|null $readOnlyReason
 	 * @throws FileBackendException
 	 */
-	protected function register( array $configs ) {
+	protected function register( array $configs, $readOnlyReason = null ) {
 		foreach ( $configs as $config ) {
 			if ( !isset( $config['name'] ) ) {
 				throw new FileBackendException( "Cannot register a backend with no name." );
@@ -132,6 +128,10 @@ class FileBackendGroup {
 				throw new FileBackendException( "Backend with name `{$name}` has no class." );
 			}
 			$class = $config['class'];
+
+			$config['readOnly'] = !empty( $config['readOnly'] )
+				? $config['readOnly']
+				: $readOnlyReason;
 
 			unset( $config['class'] ); // backend won't need this
 			$this->backends[$name] = array(
