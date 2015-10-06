@@ -88,6 +88,33 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Get an item with the given key, regenerating and setting it if not found
+	 *
+	 * If the callback returns false, then nothing is stored.
+	 *
+	 * @param string $key
+	 * @param int $ttl Time-to-live (seconds)
+	 * @param callable $callback Callback that derives the new value
+	 * @return mixed The cached value if found or the result of $callback otherwise
+	 * @since 1.27
+	 */
+	final public function getWithSetCallback( $key, $ttl, $callback ) {
+		$value = $this->get( $key );
+
+		if ( $value === false ) {
+			if ( !is_callable( $callback ) ) {
+				throw new InvalidArgumentException( "Invalid cache miss callback provided." );
+			}
+			$value = call_user_func( $callback );
+			if ( $value !== false ) {
+				$this->set( $key, $value, $ttl );
+			}
+		}
+
+		return $value;
+	}
+
+	/**
 	 * Get an item with the given key
 	 *
 	 * If the key includes a determistic input hash (e.g. the key can only have
