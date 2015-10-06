@@ -179,7 +179,8 @@ class SearchResult {
 	}
 
 	/**
-	 * @return Title|null Title object (pagename+fragment) for the section, null if none or not supported
+	 * @return Title|null Title object (pagename+fragment) for the section,
+	 *  null if none or not supported
 	 */
 	function getSectionTitle() {
 		return null;
