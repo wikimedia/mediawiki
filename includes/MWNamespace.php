@@ -271,6 +271,8 @@ class MWNamespace {
 					$mValidNamespaces[] = $ns;
 				}
 			}
+			// T109137: sort numerically
+			sort( $mValidNamespaces, SORT_NUMERIC );
 		}
 
 		return $mValidNamespaces;
