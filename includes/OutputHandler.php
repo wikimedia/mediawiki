@@ -137,9 +137,9 @@ function wfGzipHandler( $s ) {
 	}
 	if ( !$foundVary ) {
 		header( 'Vary: Accept-Encoding' );
-		global $wgUseXVO;
-		if ( $wgUseXVO ) {
-			header( 'X-Vary-Options: Accept-Encoding;list-contains=gzip' );
+		global $wgUseKeyHeader;
+		if ( $wgUseKeyHeader ) {
+			header( 'Key: Accept-Encoding;match=gzip' );
 		}
 	}
 	return $s;

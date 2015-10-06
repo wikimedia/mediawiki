@@ -271,7 +271,7 @@ class OutputPage extends ContextSource {
 	private $mIndexPolicy = 'index';
 	private $mFollowPolicy = 'follow';
 	private $mVaryHeader = array(
-		'Accept-Encoding' => array( 'list-contains=gzip' ),
+		'Accept-Encoding' => array( 'match=gzip' ),
 	);
 
 	/**
@@ -1989,14 +1989,9 @@ class OutputPage extends ContextSource {
 	 * @return bool
 	 */
 	function haveCacheVaryCookies() {
-		$cookieHeader = $this->getRequest()->getHeader( 'cookie' );
-		if ( $cookieHeader === false ) {
-			return false;
-		}
-		$cvCookies = $this->getCacheVaryCookies();
-		foreach ( $cvCookies as $cookieName ) {
-			# Check for a simple string match, like the way squid does it
-			if ( strpos( $cookieHeader, $cookieName ) !== false ) {
+		$request = $this->getRequest();
+		foreach ( $this->getCacheVaryCookies() as $cookieName ) {
+			if ( $request->getCookie( $cookieName, '' ) ) {
 				wfDebug( __METHOD__ . ": found $cookieName\n" );
 				return true;
 			}
@@ -2009,11 +2004,9 @@ class OutputPage extends ContextSource {
 	 * Add an HTTP header that will influence on the cache
 	 *
 	 * @param string $header Header name
-	 * @param string[]|null $option Options for X-Vary-Options. Possible options are:
-	 *  - "string-contains=$XXX" varies on whether the header value as a string
-	 *    contains $XXX as a substring.
-	 *  - "list-contains=$XXX" varies on whether the header value as a
-	 *    comma-separated list contains $XXX as one of the list items.
+	 * @param string[]|null $option Options for the Key header. See
+	 * https://datatracker.ietf.org/doc/draft-fielding-http-key/
+	 * for the list of valid options.
 	 */
 	public function addVaryHeader( $header, array $option = null ) {
 		if ( !array_key_exists( $header, $this->mVaryHeader ) ) {
@@ -2036,16 +2029,16 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Get a complete X-Vary-Options header
+	 * Get a complete Key header
 	 *
 	 * @return string
 	 */
-	public function getXVO() {
+	public function getKeyHeader() {
 		$cvCookies = $this->getCacheVaryCookies();
 
 		$cookiesOption = array();
 		foreach ( $cvCookies as $cookieName ) {
-			$cookiesOption[] = 'string-contains=' . $cookieName;
+			$cookiesOption[] = 'param=' . $cookieName;
 		}
 		$this->addVaryHeader( 'Cookie', $cookiesOption );
 
@@ -2057,13 +2050,13 @@ class OutputPage extends ContextSource {
 			}
 			$headers[] = $newheader;
 		}
-		$xvo = 'X-Vary-Options: ' . implode( ',', $headers );
+		$key = 'Key: ' . implode( ',', $headers );
 
-		return $xvo;
+		return $key;
 	}
 
 	/**
-	 * bug 21672: Add Accept-Language to Vary and XVO headers
+	 * T23672: Add Accept-Language to Vary and Key headers
 	 * if there's no 'variant' parameter existed in GET.
 	 *
 	 * For example:
@@ -2084,14 +2077,14 @@ class OutputPage extends ContextSource {
 				if ( $variant === $lang->getCode() ) {
 					continue;
 				} else {
-					$aloption[] = 'string-contains=' . $variant;
+					$aloption[] = 'substr=' . $variant;
 
 					// IE and some other browsers use BCP 47 standards in
 					// their Accept-Language header, like "zh-CN" or "zh-Hant".
 					// We should handle these too.
 					$variantBCP47 = wfBCP47( $variant );
 					if ( $variantBCP47 !== $variant ) {
-						$aloption[] = 'string-contains=' . $variantBCP47;
+						$aloption[] = 'substr=' . $variantBCP47;
 					}
 				}
 			}
@@ -2166,9 +2159,8 @@ class OutputPage extends ContextSource {
 		# maintain different caches for logged-in users and non-logged in ones
 		$response->header( $this->getVaryHeader() );
 
-		if ( $config->get( 'UseXVO' ) ) {
-			# Add an X-Vary-Options header for Squid with Wikimedia patches
-			$response->header( $this->getXVO() );
+		if ( $config->get( 'UseKeyHeader' ) ) {
+			$response->header( $this->getKeyHeader() );
 		}
 
 		if ( $this->mEnableClientCache ) {
