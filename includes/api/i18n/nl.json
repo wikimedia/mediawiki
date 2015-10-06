@@ -82,6 +82,7 @@
 	"apihelp-parse-example-text": "Wikitext parseren.",
 	"apihelp-parse-example-summary": "Een samenvatting parseren.",
 	"apihelp-protect-example-protect": "Een pagina beveiligen",
+	"apihelp-stashedit-param-text": "Pagina-inhoud.",
 	"api-help-flag-readrights": "Voor deze module zijn leesrechten nodig.",
 	"api-help-flag-writerights": "Voor deze module zijn schrijfrechten nodig.",
 	"api-help-parameters": "{{PLURAL:$1|Parameter|Parameters}}:",

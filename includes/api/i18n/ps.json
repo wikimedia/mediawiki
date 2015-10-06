@@ -28,7 +28,7 @@
 	"apihelp-login-param-domain": "شپول (اختياري).",
 	"apihelp-login-example-login": "ننوتل.",
 	"apihelp-move-description": "يو مخ لېږدول.",
-	"apihelp-query+search-example-simple": "د <kbd>مانا</kbd> پلټل.",
+	"apihelp-query+search-example-simple": "د <kbd>meaning</kbd> پلټل.",
 	"apihelp-query+search-example-text": "د <kbd>مانا</kbd> لپاره متنونه پلټل.",
 	"apihelp-query+watchlist-paramvalue-prop-title": "د يو مخ سرليک ورگډوي.",
 	"apihelp-tag-param-reason": "د بدلون سبب.",

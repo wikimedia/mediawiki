@@ -660,6 +660,7 @@
 	"apihelp-query+pageprops-example-simple": "Holl de Eijeschaffte för di Sigge „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Main Page</kbd>“ un „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">MediaWiki</kbd>“.",
 	"apihelp-query+pageswithprop-description": "Donn alle Sigge met bechtemmpte Sigge_Eijeschaff opleßte.",
 	"apihelp-query+pageswithprop-paramvalue-prop-ids": "Deiht de Kännong vun de Sigge derbei.",
+	"apihelp-query+pageswithprop-paramvalue-prop-value": "Deiht der Wäät för de Eijeschaff vun dä Sigg derbei.",
 	"apihelp-query+pageswithprop-param-limit": "De jrüüßte Zahl Sigge för ußzejävve.",
 	"apihelp-query+pageswithprop-param-dir": "En wälsche Reihjefollsch opleßte.",
 	"apihelp-query+pageswithprop-example-generator": "Holl zohsäzlejje Aanjahbe övver de eezde zehn Sigge, woh <code>_&#95;NOTOC_&#95;</code> dren vörkütt.",

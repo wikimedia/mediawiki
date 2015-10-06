@@ -2135,7 +2135,7 @@
 	"tooltip-rollback": "Mbalèkaké suntingan-suntingan ing kaca iki menyang kontributor pungkasan nganggo sak klik.",
 	"tooltip-undo": "Mbalèkaké révisi iki lan mbukak kothak panyuntingan jroning mode pratayang. Wènèhi kasempatan kanggo ngisi alesan ing kothak ringkesan.",
 	"tooltip-preferences-save": "Simpen préperensi",
-	"tooltip-summary": "Lebkaké ringkesan cedhèk",
+	"tooltip-summary": "Lebokna ringkesan cendhèk",
 	"anonymous": "{{PLURAL:$1|Panganggo|panganggo}} anon ing {{SITENAME}}.",
 	"siteuser": "Panganggo {{SITENAME}} $1",
 	"anonuser": "Panganggo anonim {{SITENAME}} $1",

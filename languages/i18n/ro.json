@@ -2359,7 +2359,7 @@
 	"tooltip-recreate": "Recreează",
 	"tooltip-upload": "Pornește încărcarea",
 	"tooltip-rollback": "„Revenire” anulează modificarea(ările) de pe această pagină a(le) ultimului contribuitor printr-o singură apăsare",
-	"tooltip-undo": "„Anulează” șterge această modificare și deschide formularul de modificare în modulul de previzualizare.\nPermite adăugarea unui motiv în descrierea modificărilor.",
+	"tooltip-undo": "„Anulează” revine asupra acestei modificări către versiunea anterioară și deschide formularul de modificare în modul de previzualizare.\nPermite adăugarea unui motiv în descrierea modificărilor.",
 	"tooltip-preferences-save": "Salvează preferințele",
 	"tooltip-summary": "Descrieți pe scurt modificarea",
 	"interlanguage-link-title": "$1 – $2",
