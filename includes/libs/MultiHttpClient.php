@@ -55,6 +55,8 @@ class MultiHttpClient {
 	protected $maxConnsPerHost = 50;
 	/** @var string|null proxy */
 	protected $proxy;
+	/** @var string */
+	protected $userAgent = 'MW-MultiHttpClient';
 
 	/**
 	 * @param array $options
@@ -63,6 +65,7 @@ class MultiHttpClient {
 	 *   - proxy           : HTTP proxy to use
 	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
+	 *   - userAgent       : The User-Agent header value to send
 	 * @throws Exception
 	 */
 	public function __construct( array $options ) {
@@ -73,7 +76,7 @@ class MultiHttpClient {
 			}
 		}
 		static $opts = array(
-			'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost', 'proxy'
+			'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost', 'proxy', 'userAgent'
 		);
 		foreach ( $opts as $key ) {
 			if ( isset( $options[$key] ) ) {
@@ -341,6 +344,10 @@ class MultiHttpClient {
 				throw new Exception( "HTTP body specified for a non PUT/POST request." );
 			}
 			$req['headers']['content-length'] = 0;
+		}
+
+		if ( !isset( $req['headers']['user-agent'] ) ) {
+			$req['headers']['user-agent'] = $this->userAgent;
 		}
 
 		$headers = array();
