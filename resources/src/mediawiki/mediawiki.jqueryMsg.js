@@ -225,16 +225,20 @@
 	 * We append to 'this', which in a jQuery plugin context will be the selected elements.
 	 *
 	 * @param {Object} options Parser options
+	 * @param {boolean} append Do not empty the jQuery object before appending
 	 * @return {Function} Function suitable for assigning to jQuery plugin, such as jQuery#msg
 	 * @return {string} return.key Message key.
 	 * @return {Array|Mixed} return.replacements Optional variable replacements (variadically or an array).
 	 * @return {jQuery} return.return
 	 */
-	mw.jqueryMsg.getPlugin = function ( options ) {
+	mw.jqueryMsg.getPlugin = function ( options, append ) {
 		var failableParserFn = getFailableParserFn( options );
 
 		return function () {
-			var $target = this.empty();
+			var $target = this;
+			if ( !append ) {
+				$target = $target.empty();
+			}
 			appendWithoutParsing( $target, failableParserFn( arguments ) );
 			return $target;
 		};
@@ -1251,6 +1255,13 @@
 	 * @see mw.jqueryMsg#getPlugin
 	 */
 	$.fn.msg = mw.jqueryMsg.getPlugin();
+
+	/**
+	 * @method
+	 * @member jQuery
+	 * @see mw.jqueryMsg#getPlugin
+	 */
+	$.fn.appendMsg = mw.jqueryMsg.getPlugin( {}, true );
 
 	// Replace the default message parser with jqueryMsg
 	oldParser = mw.Message.prototype.parser;
