@@ -266,9 +266,9 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @dataProvider provideVaryHeaders
 	 * @covers OutputPage::addVaryHeader
 	 * @covers OutputPage::getVaryHeader
-	 * @covers OutputPage::getXVO
+	 * @covers OutputPage::getKeyHeader
 	 */
-	public function testVaryHeaders( $calls, $vary, $xvo ) {
+	public function testVaryHeaders( $calls, $vary, $key ) {
 		// get rid of default Vary fields
 		$outputPage = $this->getMockBuilder( 'OutputPage' )
 			->setConstructorArgs( array( new RequestContext() ) )
@@ -283,18 +283,18 @@ class OutputPageTest extends MediaWikiTestCase {
 			call_user_func_array( array( $outputPage, 'addVaryHeader' ), $call );
 		}
 		$this->assertEquals( $vary, $outputPage->getVaryHeader(), 'Vary:' );
-		$this->assertEquals( $xvo, $outputPage->getXVO(), 'X-Vary-Options:' );
+		$this->assertEquals( $key, $outputPage->getKeyHeader(), 'Key:' );
 	}
 
 	public function provideVaryHeaders() {
-		// note: getXVO() automatically adds Vary: Cookie
+		// note: getKeyHeader() automatically adds Vary: Cookie
 		return array(
 			array( // single header
 				array(
 					array( 'Cookie' ),
 				),
 				'Vary: Cookie',
-				'X-Vary-Options: Cookie',
+				'Key: Cookie',
 			),
 			array( // non-unique headers
 				array(
@@ -303,39 +303,39 @@ class OutputPageTest extends MediaWikiTestCase {
 					array( 'Cookie' ),
 				),
 				'Vary: Cookie, Accept-Language',
-				'X-Vary-Options: Cookie,Accept-Language',
+				'Key: Cookie,Accept-Language',
 			),
 			array( // two headers with single options
 				array(
-					array( 'Cookie', array( 'string-contains=phpsessid' ) ),
-					array( 'Accept-Language', array( 'string-contains=en' ) ),
+					array( 'Cookie', array( 'param=phpsessid' ) ),
+					array( 'Accept-Language', array( 'substr=en' ) ),
 				),
 				'Vary: Cookie, Accept-Language',
-				'X-Vary-Options: Cookie;string-contains=phpsessid,Accept-Language;string-contains=en',
+				'Key: Cookie;param=phpsessid,Accept-Language;substr=en',
 			),
 			array( // one header with multiple options
 				array(
-					array( 'Cookie', array( 'string-contains=phpsessid', 'string-contains=userId' ) ),
+					array( 'Cookie', array( 'param=phpsessid', 'param=userId' ) ),
 				),
 				'Vary: Cookie',
-				'X-Vary-Options: Cookie;string-contains=phpsessid;string-contains=userId',
+				'Key: Cookie;param=phpsessid;param=userId',
 			),
 			array( // Duplicate option
 				array(
-					array( 'Cookie', array( 'string-contains=phpsessid' ) ),
-					array( 'Cookie', array( 'string-contains=phpsessid' ) ),
-					array( 'Accept-Language', array( 'string-contains=en', 'string-contains=en' ) ),
+					array( 'Cookie', array( 'param=phpsessid' ) ),
+					array( 'Cookie', array( 'param=phpsessid' ) ),
+					array( 'Accept-Language', array( 'substr=en', 'substr=en' ) ),
 				),
 				'Vary: Cookie, Accept-Language',
-				'X-Vary-Options: Cookie;string-contains=phpsessid,Accept-Language;string-contains=en',
+				'Key: Cookie;param=phpsessid,Accept-Language;substr=en',
 			),
 			array( // Same header, different options
 				array(
-					array( 'Cookie', array( 'string-contains=phpsessid' ) ),
-					array( 'Cookie', array( 'string-contains=userId' ) ),
+					array( 'Cookie', array( 'param=phpsessid' ) ),
+					array( 'Cookie', array( 'param=userId' ) ),
 				),
 				'Vary: Cookie',
-				'X-Vary-Options: Cookie;string-contains=phpsessid;string-contains=userId',
+				'Key: Cookie;param=phpsessid;param=userId',
 			),
 		);
 	}

@@ -2542,13 +2542,15 @@ $wgUseSquid = false;
 $wgUseESI = false;
 
 /**
- * Send X-Vary-Options header for better caching (requires patched Squid)
+ * Send the Key HTTP header for better caching.
+ * See https://datatracker.ietf.org/doc/draft-fielding-http-key/ for details.
+ * @since 1.27
  */
-$wgUseXVO = false;
+$wgUseKeyHeader = false;
 
 /**
- * Add X-Forwarded-Proto to the Vary and X-Vary-Options headers for API
- * requests and RSS/Atom feeds. Use this if you have an SSL termination setup
+ * Add X-Forwarded-Proto to the Vary and Key headers for API requests and
+ * RSS/Atom feeds. Use this if you have an SSL termination setup
  * and need to split the cache between HTTP and HTTPS for API requests,
  * feed requests and HTTP redirect responses in order to prevent cache
  * pollution. This does not affect 'normal' requests to index.php other than
