@@ -169,7 +169,6 @@ abstract class FormSpecialPage extends SpecialPage {
 	 * Failures here must throw subclasses of ErrorPageError.
 	 * @param User $user
 	 * @throws UserBlockedError
-	 * @return bool True
 	 */
 	protected function checkExecutePermissions( User $user ) {
 		$this->checkPermissions();
@@ -182,8 +181,6 @@ abstract class FormSpecialPage extends SpecialPage {
 		if ( $this->requiresWrite() ) {
 			$this->checkReadOnly();
 		}
-
-		return true;
 	}
 
 	/**

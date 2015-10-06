@@ -58,7 +58,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 			throw new ErrorPageError( 'internalerror', 'resetpass_forbidden' );
 		}
 
-		return parent::checkExecutePermissions( $user );
+		parent::checkExecutePermissions( $user );
 	}
 
 	protected function getFormFields() {
