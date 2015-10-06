@@ -17,6 +17,11 @@ production.
 * $wgDebugDumpSqlLength was removed (deprecated in 1.24).
 * $wgDebugDBTransactions was removed (deprecated in 1.20).
 * $wgRemoteUploadTarget (added in 1.26) removed, replaced by $wgForeignUploadTargets
+* $wgUseXVO has been removed, as it provides functionality only used by
+  custom Wikimedia patches against Squid 2.x that probably noone uses in
+  production anymore. There is now $wgUseKeyHeader that provides similar
+  functionality but instead of the MediaWiki-specific X-Vary-Options header,
+  uses the draft Key header standard.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as

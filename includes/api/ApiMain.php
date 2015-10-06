@@ -760,12 +760,12 @@ class ApiMain extends ApiBase {
 			return;
 		}
 
-		$useXVO = $config->get( 'UseXVO' );
+		$useKeyHeader = $config->get( 'UseKeyHeader' );
 		if ( $this->mCacheMode == 'anon-public-user-private' ) {
 			$out->addVaryHeader( 'Cookie' );
 			$response->header( $out->getVaryHeader() );
-			if ( $useXVO ) {
-				$response->header( $out->getXVO() );
+			if ( $useKeyHeader ) {
+				$response->header( $out->getKeyHeader() );
 				if ( $out->haveCacheVaryCookies() ) {
 					// Logged in, mark this request private
 					$response->header( "Cache-Control: $privateCache" );
@@ -778,13 +778,13 @@ class ApiMain extends ApiBase {
 				$response->header( "Cache-Control: $privateCache" );
 
 				return;
-			} // else no XVO and anonymous, send public headers below
+			} // else no Key and anonymous, send public headers below
 		}
 
 		// Send public headers
 		$response->header( $out->getVaryHeader() );
-		if ( $useXVO ) {
-			$response->header( $out->getXVO() );
+		if ( $useKeyHeader ) {
+			$response->header( $out->getKeyHeader() );
 		}
 
 		// If nobody called setCacheMaxAge(), use the (s)maxage parameters
