@@ -55,6 +55,8 @@ class MultiHttpClient {
 	protected $maxConnsPerHost = 50;
 	/** @var string|null proxy */
 	protected $proxy;
+	/** @var string */
+	protected $userAgent = 'MW-MultiHttpClient';
 
 	/**
 	 * @param array $options
@@ -73,7 +75,7 @@ class MultiHttpClient {
 			}
 		}
 		static $opts = array(
-			'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost', 'proxy'
+			'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost', 'proxy', 'userAgent'
 		);
 		foreach ( $opts as $key ) {
 			if ( isset( $options[$key] ) ) {
@@ -342,6 +344,8 @@ class MultiHttpClient {
 			}
 			$req['headers']['content-length'] = 0;
 		}
+
+		$req['headers']['user-agent'] = $this->userAgent;
 
 		$headers = array();
 		foreach ( $req['headers'] as $name => $value ) {
