@@ -68,7 +68,11 @@ class FileBackendGroup {
 		$repos = array_merge( $wgForeignFileRepos, array( $wgLocalFileRepo ) );
 		foreach ( $repos as $info ) {
 			$backendName = $info['backend'];
-			if ( is_object( $backendName ) || isset( $this->backends[$backendName] ) ) {
+			if (
+				is_object( $backendName ) ||
+				isset( $this->backends[$backendName] ) ||
+				isset( $wgFileBackends[$backendName] )
+			) {
 				continue; // already defined (or set to the object for some reason)
 			}
 			$repoName = $info['name'];
