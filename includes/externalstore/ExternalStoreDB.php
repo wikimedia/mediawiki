@@ -116,7 +116,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * Get a slave database connection for the specified cluster
 	 *
 	 * @param string $cluster Cluster name
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 */
 	function getSlave( $cluster ) {
 		global $wgDefaultExternalStore;
@@ -141,7 +141,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * Get a master database connection for the specified cluster
 	 *
 	 * @param string $cluster Cluster name
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 */
 	function getMaster( $cluster ) {
 		$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : false;
@@ -268,7 +268,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * Helper function for self::batchFetchBlobs for merging master/slave results
 	 * @param array &$ret Current self::batchFetchBlobs return value
 	 * @param array &$ids Map from blob_id to requested itemIDs
-	 * @param mixed $res DB result from DatabaseBase::select
+	 * @param mixed $res DB result from Database::select
 	 */
 	private function mergeBatchResult( array &$ret, array &$ids, $res ) {
 		foreach ( $res as $row ) {

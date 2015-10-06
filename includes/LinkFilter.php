@@ -71,7 +71,7 @@ class LinkFilter {
 	}
 
 	/**
-	 * Make an array to be used for calls to DatabaseBase::buildLike(), which
+	 * Make an array to be used for calls to Database::buildLike(), which
 	 * will match the specified string. There are several kinds of filter entry:
 	 *     *.domain.com    -  Produces http://com.domain.%, matches domain.com
 	 *                        and www.domain.com
@@ -89,7 +89,7 @@ class LinkFilter {
 	 *
 	 * @param string $filterEntry Domainparts
 	 * @param string $protocol Protocol (default http://)
-	 * @return array Array to be passed to DatabaseBase::buildLike() or false on error
+	 * @return array Array to be passed to Database::buildLike() or false on error
 	 */
 	public static function makeLikeArray( $filterEntry, $protocol = 'http://' ) {
 		$db = wfGetDB( DB_SLAVE );

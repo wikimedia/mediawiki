@@ -22,7 +22,7 @@
  */
 class BatchRowWriter {
 	/**
-	 * @var DatabaseBase $db The database to write to
+	 * @var IDatabase $db The database to write to
 	 */
 	protected $db;
 
