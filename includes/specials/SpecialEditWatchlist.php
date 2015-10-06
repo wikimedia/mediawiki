@@ -282,10 +282,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			}
 
 			if ( $title instanceof Title ) {
-				$output .= "<li>"
-					. Linker::link( $title )
-					. ' (' . Linker::link( $title->getTalkPage(), $talk )
-					. ")</li>\n";
+				$output .= '<li>' .
+					Linker::link( $title ) . ' ' .
+					$this->msg( 'parentheses' )->rawParams( Linker::link( $title->getTalkPage(), $talk ) ) .
+					"</li>\n";
 			}
 		}
 
@@ -659,7 +659,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$link = '<span class="watchlistredir">' . $link . '</span>';
 		}
 
-		return $link . " (" . $this->getLanguage()->pipeList( $tools ) . ")";
+		return $link . ' ' .
+			$this->msg( 'parentheses')->rawParams( $this->getLanguage()->pipeList( $tools ) )->escaped();
 	}
 
 	/**
