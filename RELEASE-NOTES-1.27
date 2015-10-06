@@ -93,6 +93,7 @@ changes to languages because of Bugzilla reports.
 * WikiPage::doDeleteArticleReal() and WikiPage::doDeleteArticle() now
   ignore the 2nd and 3rd arguments (formerly $id and $commit).
 * Removed "loaderScripts" option from ResourceLoaderFileModule class.
+* Removed ORM-like wrapper added in 1.20.
 
 == Compatibility ==
 
