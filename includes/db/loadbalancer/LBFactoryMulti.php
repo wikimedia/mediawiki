@@ -178,13 +178,6 @@ class LBFactoryMulti extends LBFactory {
 				$this->$key = $conf[$key];
 			}
 		}
-
-		// Check for read-only mode
-		$section = $this->getSectionForWiki();
-		if ( !empty( $this->readOnlyBySection[$section] ) ) {
-			global $wgReadOnly;
-			$wgReadOnly = $this->readOnlyBySection[$section];
-		}
 	}
 
 	/**
