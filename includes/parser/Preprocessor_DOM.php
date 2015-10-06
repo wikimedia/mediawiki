@@ -23,8 +23,8 @@
 
 /**
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart
 class Preprocessor_DOM implements Preprocessor {
 	// @codingStandardsIgnoreEnd
 
@@ -961,8 +961,8 @@ class PPDPart {
 /**
  * An expansion frame, used as a context to expand the result of preprocessToObj()
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart
 class PPFrame_DOM implements PPFrame {
 	// @codingStandardsIgnoreEnd
 
@@ -1575,8 +1575,8 @@ class PPFrame_DOM implements PPFrame {
 /**
  * Expansion frame with template arguments
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart
 class PPTemplateFrame_DOM extends PPFrame_DOM {
 	// @codingStandardsIgnoreEnd
 
@@ -1742,8 +1742,8 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 /**
  * Expansion frame with custom arguments
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart
 class PPCustomFrame_DOM extends PPFrame_DOM {
 	// @codingStandardsIgnoreEnd
 
@@ -1791,8 +1791,8 @@ class PPCustomFrame_DOM extends PPFrame_DOM {
 
 /**
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart
 class PPNode_DOM implements PPNode {
 	// @codingStandardsIgnoreEnd
 
