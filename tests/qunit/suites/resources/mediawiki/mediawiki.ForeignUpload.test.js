@@ -6,7 +6,7 @@
 		var upload = new mw.ForeignUpload();
 
 		assert.ok( upload, 'The ForeignUpload constructor is working.' );
-		assert.strictEqual( upload.targetHost, 'commons.wikimedia.org', 'Default target host is correct' );
-		assert.ok( upload.api instanceof mw.ForeignApi, 'API is correctly configured to point at a foreign wiki.' );
+		assert.strictEqual( upload.target, 'local', 'Default target host is correct' );
+		assert.ok( upload.api instanceof mw.Api, 'API is local because default target is local.' );
 	} );
 }( mediaWiki ) );
