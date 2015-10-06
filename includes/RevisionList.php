@@ -121,7 +121,7 @@ abstract class RevisionListBase extends ContextSource {
 
 	/**
 	 * Do the DB query to iterate through the objects.
-	 * @param IDatabase $db DatabaseBase object to use for the query
+	 * @param IDatabase $db DB object to use for the query
 	 */
 	abstract public function doQuery( $db );
 

@@ -485,7 +485,7 @@ class JobRunner implements LoggerAwareInterface {
 		// Re-ping all masters with transactions. This throws DBError if some
 		// connection died while waiting on locks/slaves, triggering a rollback.
 		wfGetLBFactory()->forEachLB( function( LoadBalancer $lb ) use ( $fname ) {
-			$lb->forEachOpenConnection( function( DatabaseBase $conn ) use ( $fname ) {
+			$lb->forEachOpenConnection( function( IDatabase $conn ) use ( $fname ) {
 				if ( $conn->writesOrCallbacksPending() ) {
 					$conn->query( "SELECT 1", $fname );
 				}

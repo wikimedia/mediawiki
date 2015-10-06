@@ -182,7 +182,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Get the Database object in use
 	 *
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 */
 	public function getDatabase() {
 		return $this->mDb;

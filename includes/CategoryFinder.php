@@ -64,7 +64,7 @@ class CategoryFinder {
 	/** @var string "AND" or "OR" */
 	protected $mode;
 
-	/** @var DatabaseBase Read-DB slave */
+	/** @var IDatabase Read-DB slave */
 	protected $dbr;
 
 	/**
