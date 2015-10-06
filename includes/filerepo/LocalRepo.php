@@ -205,7 +205,7 @@ class LocalRepo extends FileRepo {
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $that, $title ) {
 				$dbr = $that->getSlaveDB(); // possibly remote DB
 
-				$setOpts += DatabaseBase::getCacheSetOptions( $dbr );
+				$setOpts += Database::getCacheSetOptions( $dbr );
 
 				if ( $title instanceof Title ) {
 					$row = $dbr->selectRow(

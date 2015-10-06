@@ -221,7 +221,7 @@ class Interwiki {
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $prefix ) {
 				$dbr = wfGetDB( DB_SLAVE );
 
-				$setOpts += DatabaseBase::getCacheSetOptions( $dbr );
+				$setOpts += Database::getCacheSetOptions( $dbr );
 
 				$row = $dbr->selectRow(
 					'interwiki',
