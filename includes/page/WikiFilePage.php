@@ -169,8 +169,7 @@ class WikiFilePage extends WikiPage {
 		$this->loadFile();
 		if ( $this->mFile->exists() ) {
 			wfDebug( 'ImagePage::doPurge purging ' . $this->mFile->getName() . "\n" );
-			$update = new HTMLCacheUpdate( $this->mTitle, 'imagelinks' );
-			$update->doUpdate();
+			DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this->mTitle, 'imagelinks' ) );
 			$this->mFile->upgradeRow();
 			$this->mFile->purgeCache( array( 'forThumbRefresh' => true ) );
 		} else {

@@ -4418,12 +4418,9 @@ class Title {
 	 * on the number of links. Typically called on create and delete.
 	 */
 	public function touchLinks() {
-		$u = new HTMLCacheUpdate( $this, 'pagelinks' );
-		$u->doUpdate();
-
+		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this, 'pagelinks' ) );
 		if ( $this->getNamespace() == NS_CATEGORY ) {
-			$u = new HTMLCacheUpdate( $this, 'categorylinks' );
-			$u->doUpdate();
+			DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this, 'categorylinks' ) );
 		}
 	}
 
