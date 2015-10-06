@@ -16,6 +16,7 @@ production.
   1000 for the latter) are now hard-coded.
 * $wgDebugDumpSqlLength was removed (deprecated in 1.24).
 * $wgDebugDBTransactions was removed (deprecated in 1.20).
+* $wgRemoteUploadTarget (added in 1.26) removed, replaced by $wgForeignUploadTargets
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as

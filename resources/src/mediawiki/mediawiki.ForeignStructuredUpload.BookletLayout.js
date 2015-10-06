@@ -53,7 +53,10 @@
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm = function () {
 		var fieldset,
-			target = mw.config.get( 'wgRemoteUploadTarget' ),
+			targets = mw.config.get( 'wgForeignUploadTargets' ),
+			// Default to using local, but try to use a configured target.
+			// TODO allow finer configuration of this somehow?
+			target = ( targets && targets.length ) ? targets[ 0 ] : 'local',
 			$ownWorkMessage = $( '<p>' ).html(
 				mw.message( 'foreign-structured-upload-form-label-own-work-message-' + target ).parse()
 			),
