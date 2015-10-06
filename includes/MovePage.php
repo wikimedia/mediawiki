@@ -247,7 +247,7 @@ class MovePage {
 			RepoGroup::singleton()->clearCache( $this->newTitle ); # clear false negative cache
 		}
 
-		$dbw->begin( __METHOD__ ); # If $file was a LocalFile, its transaction would have closed our own.
+		$dbw->startAtomic( __METHOD__ );
 		$pageid = $this->oldTitle->getArticleID( Title::GAID_FOR_UPDATE );
 		$protected = $this->oldTitle->isProtected();
 
@@ -369,12 +369,13 @@ class MovePage {
 			WatchedItem::duplicateEntries( $this->oldTitle, $this->newTitle );
 		}
 
-		$dbw->commit( __METHOD__ );
+		$dbw->endAtomic( __METHOD__ );
 
-		Hooks::run(
-			'TitleMoveComplete',
-			array( &$this->oldTitle, &$this->newTitle, &$user, $pageid, $redirid, $reason )
-		);
+		$params = array( $this->oldTitle, $this->newTitle, $user, $pageid, $redirid, $reason );
+		$dbw->onTransactionIdle( function () use ( $params ) {
+			Hooks::run( 'TitleMoveComplete', $params );
+		} );
+
 		return Status::newGood();
 	}
 
