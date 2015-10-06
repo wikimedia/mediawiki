@@ -108,7 +108,7 @@ $.bracketedDevicePixelRatio = function () {
  */
 $.fn.hidpi = function () {
 	var $target = this,
-		// @todo add support for dpi media query checks on Firefox, IE
+		// TODO add support for dpi media query checks on Firefox, IE
 		devicePixelRatio = $.devicePixelRatio(),
 		testImage = new Image();
 

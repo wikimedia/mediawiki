@@ -193,7 +193,7 @@
 		assert.equal( hello.key, 'hello', 'Message property "key" (currect key)' );
 		assert.deepEqual( hello.parameters, [], 'Message property "parameters" defaults to an empty array' );
 
-		// Todo
+		// TODO
 		assert.ok( hello.params, 'Message prototype "params"' );
 
 		hello.format = 'plain';

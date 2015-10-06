@@ -123,7 +123,7 @@
 						.empty()
 						.append(
 							// Ugh…
-							// @todo Change the HTML structure in includes/templates/Usercreate.php
+							// TODO Change the HTML structure in includes/templates/Usercreate.php
 							$( '<strong>' ).text( mw.message( 'createacct-error' ).text() ),
 							$( '<br>' ),
 							document.createTextNode( message )

@@ -26,7 +26,7 @@
 			return $.Deferred().resolve( cache[ url ] ).promise();
 		}
 
-		// @todo Don't fetch the entire page. Ideally we'd only fetch the content portion or the data
+		// TODO Don't fetch the entire page. Ideally we'd only fetch the content portion or the data
 		// (thumbnail urls) and update the interface manually.
 		jqXhr = $.ajax( url ).then( function ( data ) {
 			return $( data ).find( 'table.multipageimage' ).contents();

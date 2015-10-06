@@ -140,7 +140,7 @@
 						params.wbptterms = 'description';
 					}
 					req = new mw.Api().get( params );
-					promiseAbortObject.abort = req.abort.bind( req ); // todo: ew
+					promiseAbortObject.abort = req.abort.bind( req ); // TODO ew
 					return req;
 				}
 			} ).promise( promiseAbortObject );
