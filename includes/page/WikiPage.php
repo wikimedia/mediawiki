@@ -3221,8 +3221,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Images
 		if ( $title->getNamespace() == NS_FILE ) {
-			$update = new HTMLCacheUpdate( $title, 'imagelinks' );
-			$update->doUpdate();
+			DeferredUpdates::addUpdate( new HTMLCacheUpdate( $title, 'imagelinks' ) );
 		}
 
 		// User talk pages
