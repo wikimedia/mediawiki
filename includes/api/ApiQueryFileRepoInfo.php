@@ -41,18 +41,26 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 	}
 
 	public function execute() {
+		$conf = $this->getConfig();
+
 		$params = $this->extractRequestParams();
 		$props = array_flip( $params['prop'] );
 
 		$repos = array();
 
 		$repoGroup = $this->getInitialisedRepoGroup();
+		$foreignTargets = $conf->get( 'ForeignUploadTargets' );
 
-		$repoGroup->forEachForeignRepo( function ( $repo ) use ( &$repos, $props ) {
-			$repos[] = array_intersect_key( $repo->getInfo(), $props );
+		$repoGroup->forEachForeignRepo( function ( $repo ) use ( &$repos, $props, $foreignTargets ) {
+			$repoProps = $repo->getInfo();
+			$repoProps['canUpload'] = in_array( $repoProps['name'], $foreignTargets );
+
+			$repos[] = array_intersect_key( $repoProps, $props );
 		} );
 
-		$repos[] = array_intersect_key( $repoGroup->getLocalRepo()->getInfo(), $props );
+		$localInfo = $repoGroup->getLocalRepo()->getInfo();
+		$localInfo['canUpload'] = $conf->get( 'EnableUploads' );
+		$repos[] = array_intersect_key( $localInfo, $props );
 
 		$result = $this->getResult();
 		ApiResult::setIndexedTagName( $repos, 'repo' );
@@ -78,17 +86,19 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 	}
 
 	public function getProps() {
-		$props = array();
-		$repoGroup = $this->getInitialisedRepoGroup();
-
-		$repoGroup->forEachForeignRepo( function ( $repo ) use ( &$props ) {
-			$props = array_merge( $props, array_keys( $repo->getInfo() ) );
-		} );
-
-		return array_values( array_unique( array_merge(
-			$props,
-			array_keys( $repoGroup->getLocalRepo()->getInfo() )
-		) ) );
+		return array(
+			'name',
+			'displayname',
+			'rootUrl',
+			'url',
+			'thumbUrl',
+			'initialCapital',
+			'descBaseUrl',
+			'scriptDirUrl',
+			'fetchDescription',
+			'favicon',
+			'canUpload',
+		);
 	}
 
 	protected function getExamplesMessages() {
