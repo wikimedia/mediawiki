@@ -526,12 +526,11 @@ $wgForeignFileRepos = array();
 $wgUseInstantCommons = false;
 
 /**
- * Name of the remote repository to which users will be allowed to upload
- * files in their editors. Used to find a set of message names to describe
- * the legal requirements for uploading to that wiki, and suggestions for
- * when those requirements are not met.
+ * Array of foreign file repos (set in $wgForeignFileRepos above) that
+ * are allowable upload targets. These wikis must have some method of
+ * authentication (i.e. CentralAuth), and be CORS-enabled for this wiki.
  */
-$wgRemoteUploadTarget = 'default';
+$wgForeignUploadTargets = array();
 
 /**
  * File backend structure configuration.
