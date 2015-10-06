@@ -55,8 +55,6 @@ class MultiHttpClient {
 	protected $maxConnsPerHost = 50;
 	/** @var string|null proxy */
 	protected $proxy;
-	/** @var string */
-	protected $userAgent = 'MW-MultiHttpClient';
 
 	/**
 	 * @param array $options
@@ -347,7 +345,7 @@ class MultiHttpClient {
 		}
 
 		if ( !isset( $req['headers']['user-agent'] ) ) {
-			$req['headers']['user-agent'] = $this->userAgent;
+			$req['headers']['user-agent'] = self::userAgent();
 		}
 
 		$headers = array();
@@ -417,5 +415,15 @@ class MultiHttpClient {
 		if ( $this->multiHandle ) {
 			curl_multi_close( $this->multiHandle );
 		}
+	}
+
+	/**
+	 * The default User-Agent for requests.
+	 * @return string
+	 * @see Http::userAgent
+	 */
+	public static function userAgent() {
+		global $wgVersion;
+		return "MediaWiki/$wgVersion MW-MultiHttpClient";
 	}
 }
