@@ -458,7 +458,7 @@ class User implements IDBAccessObject {
 		$data['mVersion'] = self::VERSION;
 		$key = wfMemcKey( 'user', 'id', $this->mId );
 
-		$opts = DatabaseBase::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
+		$opts = Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
 		ObjectCache::getMainWANInstance()->set( $key, $data, 3600, $opts );
 	}
 

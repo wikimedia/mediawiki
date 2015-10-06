@@ -682,7 +682,7 @@ class InfoAction extends FormlessAction {
 				$dbr = wfGetDB( DB_SLAVE );
 				$dbrWatchlist = wfGetDB( DB_SLAVE, 'watchlist' );
 
-				$setOpts += DatabaseBase::getCacheSetOptions( $dbr, $dbrWatchlist );
+				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
 
 				$result = array();
 

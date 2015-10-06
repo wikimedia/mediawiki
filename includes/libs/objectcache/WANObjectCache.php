@@ -269,10 +269,12 @@ class WANObjectCache {
 	 *   - d) T1 reads the row and calls set() due to a cache miss
 	 *   - e) Stale value is stuck in cache
 	 *
+	 * Setting 'lag' helps avoids keys getting stuck in long-term stale states.
+	 *
 	 * Example usage:
 	 * @code
 	 *     $dbr = wfGetDB( DB_SLAVE );
-	 *     $setOpts = DatabaseBase::getCacheSetOptions( $dbr );
+	 *     $setOpts = Database::getCacheSetOptions( $dbr );
 	 *     // Fetch the row from the DB
 	 *     $row = $dbr->selectRow( ... );
 	 *     $key = wfMemcKey( 'building', $buildingId );
@@ -505,6 +507,7 @@ class WANObjectCache {
 	 * can be set dynamically by altering $ttl in the callback (by reference).
 	 * The $setOpts array can be altered and is given to set() when called;
 	 * it is recommended to set the 'since' field to avoid race conditions.
+	 * Setting 'lag' helps avoids keys getting stuck in long-term stale states.
 	 *
 	 * Usually, callbacks ignore the current value, but it can be used
 	 * to maintain "most recent X" values that come from time or sequence
@@ -529,7 +532,7 @@ class WANObjectCache {
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
 	 *             // Account for any snapshot/slave lag
-	 *             $setOpts += DatabaseBase::getCacheSetOptions( $dbr );
+	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             return $dbr->selectRow( ... );
 	 *        },
@@ -547,7 +550,7 @@ class WANObjectCache {
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
 	 *             // Account for any snapshot/slave lag
-	 *             $setOpts += DatabaseBase::getCacheSetOptions( $dbr );
+	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             return CatConfig::newFromRow( $dbr->selectRow( ... ) );
 	 *        },
@@ -570,7 +573,7 @@ class WANObjectCache {
 	 *             // Determine new value from the DB
 	 *             $dbr = wfGetDB( DB_SLAVE );
 	 *             // Account for any snapshot/slave lag
-	 *             $setOpts += DatabaseBase::getCacheSetOptions( $dbr );
+	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             return CatState::newFromResults( $dbr->select( ... ) );
 	 *        },
@@ -595,7 +598,7 @@ class WANObjectCache {
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
 	 *             // Account for any snapshot/slave lag
-	 *             $setOpts += DatabaseBase::getCacheSetOptions( $dbr );
+	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             // Start off with the last cached list
 	 *             $list = $oldValue ?: array();

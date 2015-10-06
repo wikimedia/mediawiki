@@ -309,7 +309,7 @@ class LocalFile extends File {
 
 		// Cache presence for 1 week and negatives for 1 day
 		$ttl = $this->fileExists ? 86400 * 7 : 86400;
-		$opts = DatabaseBase::getCacheSetOptions( $this->repo->getSlaveDB() );
+		$opts = Database::getCacheSetOptions( $this->repo->getSlaveDB() );
 		ObjectCache::getMainWANInstance()->set( $key, $cacheVal, $ttl, $opts );
 	}
 

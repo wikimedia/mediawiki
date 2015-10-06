@@ -1091,7 +1091,7 @@ class ChangeTags {
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'active-tags' ),
 			function ( $oldValue, &$ttl, array &$setOpts ) {
-				$setOpts += DatabaseBase::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
+				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
 
 				// Ask extensions which tags they consider active
 				$extensionActive = array();
@@ -1135,7 +1135,7 @@ class ChangeTags {
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
 				$dbr = wfGetDB( DB_SLAVE );
 
-				$setOpts += DatabaseBase::getCacheSetOptions( $dbr );
+				$setOpts += Database::getCacheSetOptions( $dbr );
 
 				$tags = $dbr->selectFieldValues( 'valid_tag', 'vt_tag', array(), $fname );
 
@@ -1160,7 +1160,7 @@ class ChangeTags {
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'valid-tags-hook' ),
 			function ( $oldValue, &$ttl, array &$setOpts ) {
-				$setOpts += DatabaseBase::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
+				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
 
 				$tags = array();
 				Hooks::run( 'ListDefinedTags', array( &$tags ) );
@@ -1221,7 +1221,7 @@ class ChangeTags {
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
 				$dbr = wfGetDB( DB_SLAVE, 'vslow' );
 
-				$setOpts += DatabaseBase::getCacheSetOptions( $dbr );
+				$setOpts += Database::getCacheSetOptions( $dbr );
 
 				$res = $dbr->select(
 					'change_tag',
