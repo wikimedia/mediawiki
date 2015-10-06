@@ -183,7 +183,8 @@
 		[ '2000-01-01T12:30:30Z',	true, 946729830000, 'Date with a UTC+0 time' ],
 		[ '2000-01-01T24:30:30Z',	true, 0, 'Date with invalid hours' ],
 		[ '2000-01-01T12:60:30Z',	true, 0, 'Date with invalid minutes' ],
-		[ '2000-01-01T12:30:61Z',	true, 0, 'Date with invalid amount of seconds' ],
+		[ '2000-01-01T12:30:60Z',	true, 946729860000, 'Date with leap second' ],
+		[ '2000-01-01T12:30:61Z',	true, 946729800000, 'Date with invalid amount of seconds, drops seconds' ],
 		[ '2000-01-01T23:59:59Z',	true, 946771199000, 'Edges of time' ],
 		[ '2000-01-01T12:30:30.111Z',	true, 946729830111, 'Date with milliseconds' ],
 		[ '2000-01-01T12:30:30.11111Z',	true, 946729830111, 'Date with too high precision' ],
@@ -192,7 +193,9 @@
 		[ '2000-01-01T12:30:30+01:30',	true, 946724430000, 'Date time in UTC+1:30' ],
 		[ '2000-01-01T12:30:30-01:00',	true, 946733430000, 'Date time in UTC-1' ],
 		[ '2000-01-01T12:30:30-01:30',	true, 946735230000, 'Date time in UTC-1:30' ],
-		[ '2000-01-01T12:30:30.111+01:00', true, 946726230111, 'Date time and milliseconds in UTC+1 ' ]
+		[ '2000-01-01T12:30:30.111+01:00', true, 946726230111, 'Date time and milliseconds in UTC+1 ' ],
+		[ '2000-01-01Postfix', true, 946684800000, 'Date with appended postfix' ],
+		[ '2000-01-01 Postfix', true, 946684800000, 'Date with separate postfix' ]
 		/* Disable testcases, because behavior is browser dependant */
 		/*
 		[ '2000-11-31',	true, 0, '31 days in 30 day month' ],
