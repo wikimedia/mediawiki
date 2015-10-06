@@ -26,8 +26,8 @@
  *   * attribute nodes are children
  *   * "<h>" nodes that aren't at the top are replaced with <possible-h>
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class Preprocessor_Hash implements Preprocessor {
 	// @codingStandardsIgnoreEnd
 
@@ -749,8 +749,8 @@ class Preprocessor_Hash implements Preprocessor {
 /**
  * Stack class to help Preprocessor::preprocessToObj()
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class PPDStack_Hash extends PPDStack {
 	// @codingStandardsIgnoreEnd
 
@@ -763,8 +763,8 @@ class PPDStack_Hash extends PPDStack {
 
 /**
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class PPDStackElement_Hash extends PPDStackElement {
 	// @codingStandardsIgnoreENd
 
@@ -804,8 +804,8 @@ class PPDStackElement_Hash extends PPDStackElement {
 
 /**
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class PPDPart_Hash extends PPDPart {
 	// @codingStandardsIgnoreEnd
 
@@ -820,8 +820,8 @@ class PPDPart_Hash extends PPDPart {
 
 /**
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class PPDAccum_Hash {
 	// @codingStandardsIgnoreEnd
 
@@ -891,8 +891,8 @@ class PPDAccum_Hash {
 /**
  * An expansion frame, used as a context to expand the result of preprocessToObj()
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class PPFrame_Hash implements PPFrame {
 	// @codingStandardsIgnoreEnd
 
@@ -1477,8 +1477,8 @@ class PPFrame_Hash implements PPFrame {
 /**
  * Expansion frame with template arguments
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class PPTemplateFrame_Hash extends PPFrame_Hash {
 	// @codingStandardsIgnoreEnd
 
@@ -1660,8 +1660,8 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 /**
  * Expansion frame with custom arguments
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class PPCustomFrame_Hash extends PPFrame_Hash {
 	// @codingStandardsIgnoreEnd
 
@@ -1713,8 +1713,8 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 
 /**
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class PPNode_Hash_Tree implements PPNode {
 	// @codingStandardsIgnoreEnd
 
@@ -1938,8 +1938,8 @@ class PPNode_Hash_Tree implements PPNode {
 
 /**
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class PPNode_Hash_Text implements PPNode {
 	// @codingStandardsIgnoreEnd
 
@@ -1999,8 +1999,8 @@ class PPNode_Hash_Text implements PPNode {
 
 /**
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class PPNode_Hash_Array implements PPNode {
 	// @codingStandardsIgnoreEnd
 
@@ -2057,8 +2057,8 @@ class PPNode_Hash_Array implements PPNode {
 
 /**
  * @ingroup Parser
- * @codingStandardsIgnoreStart
  */
+// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class PPNode_Hash_Attr implements PPNode {
 	// @codingStandardsIgnoreEnd
 
