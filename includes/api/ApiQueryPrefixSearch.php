@@ -52,7 +52,28 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 				$this->setContinueEnumParameter( 'offset', $offset + $params['limit'] );
 				array_pop( $titles );
 			}
-			$resultPageSet->populateFromTitles( $titles );
+
+			// Maintains a "chain" of resolved redirects
+			$indices = array();
+			foreach( $titles as $index => $title ) {
+				$indices[$title->getPrefixedText()] = $index + $offset + 1;
+			}
+
+			// Populate the page set. The redirCallback will help
+			// us to keep track of resolved redirect and set
+			// generator data for all pages including resolved
+			// redirects.
+			$resultPageSet->populateFromTitles( $titles,
+				function( $from, $to ) use ( &$indices, $resultPageSet ) {
+					$index = $indices[$from->getPrefixedText()];
+					$indices[$to->getPrefixedText()] = $index;
+					$resultPageSet->setGeneratorData( $to, array( 'index' => $index ) );
+				}
+			);
+
+			// Set generator data for remaining pages that were not
+			// resolved (non redirect or when redirect resolution
+			// is not requested)
 			foreach ( $titles as $index => $title ) {
 				$resultPageSet->setGeneratorData( $title, array( 'index' => $index + $offset + 1 ) );
 			}

@@ -682,9 +682,10 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Populate this PageSet from a list of Titles
 	 * @param array $titles Array of Title objects
+	 * @param callback $redirCallback called when redirects are resolved
 	 */
-	public function populateFromTitles( $titles ) {
-		$this->initFromTitles( $titles );
+	public function populateFromTitles( $titles, $redirCallback = null ) {
+		$this->initFromTitles( $titles, $redirCallback );
 	}
 
 	/**
@@ -764,8 +765,9 @@ class ApiPageSet extends ApiBase {
 	 * #6 Repeat from step #1
 	 *
 	 * @param array $titles Array of Title objects or strings
+	 * @param callback $redirCallback callback called when redirect are resolved
 	 */
-	private function initFromTitles( $titles ) {
+	private function initFromTitles( $titles, $redirCallback = null ) {
 		// Get validated and normalized title objects
 		$linkBatch = $this->processTitlesArray( $titles );
 		if ( $linkBatch->isEmpty() ) {
@@ -783,7 +785,7 @@ class ApiPageSet extends ApiBase {
 		$this->initFromQueryResult( $res, $linkBatch->data, true ); // process Titles
 
 		// Resolve any found redirects
-		$this->resolvePendingRedirects();
+		$this->resolvePendingRedirects( $redirCallback );
 	}
 
 	/**
@@ -979,8 +981,9 @@ class ApiPageSet extends ApiBase {
 	 * Resolve any redirects in the result if redirect resolution was
 	 * requested. This function is called repeatedly until all redirects
 	 * have been resolved.
+	 * @param callback $redirCallback called when a redirect is resolved
 	 */
-	private function resolvePendingRedirects() {
+	private function resolvePendingRedirects( $redirCallback = null ) {
 		if ( $this->mResolveRedirects ) {
 			$db = $this->getDB();
 			$pageFlds = $this->getPageTableFields();
@@ -990,7 +993,7 @@ class ApiPageSet extends ApiBase {
 			while ( $this->mPendingRedirectIDs ) {
 				// Resolve redirects by querying the pagelinks table, and repeat the process
 				// Create a new linkBatch object for the next pass
-				$linkBatch = $this->getRedirectTargets();
+				$linkBatch = $this->getRedirectTargets( $redirCallback );
 
 				if ( $linkBatch->isEmpty() ) {
 					break;
@@ -1015,9 +1018,10 @@ class ApiPageSet extends ApiBase {
 	 *
 	 * Also creates entries in the redirect table for redirects that don't
 	 * have one.
+	 * @param callback $redirCallback called when a redirect is resolved
 	 * @return LinkBatch
 	 */
-	private function getRedirectTargets() {
+	private function getRedirectTargets( $redirCallback = null ) {
 		$lb = new LinkBatch();
 		$db = $this->getDB();
 
@@ -1041,6 +1045,9 @@ class ApiPageSet extends ApiBase {
 				$row->rd_fragment,
 				$row->rd_interwiki
 			);
+			if ( $redirCallback ) {
+				$redirCallback( $this->mPendingRedirectIDs[$rdfrom], $to );
+			}
 			$this->mResolvedRedirectTitles[$from] = $this->mPendingRedirectIDs[$rdfrom];
 			unset( $this->mPendingRedirectIDs[$rdfrom] );
 			if ( $to->isExternal() ) {
