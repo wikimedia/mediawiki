@@ -4307,6 +4307,9 @@ abstract class DatabaseBase implements IDatabase {
 	}
 }
 
+/**
+ * @since 1.27
+ */
 abstract class Database extends DatabaseBase {
 	// B/C until nothing type hints for DatabaseBase
 	// @TODO: finish renaming DatabaseBase => Database
