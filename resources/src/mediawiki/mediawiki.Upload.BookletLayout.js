@@ -254,6 +254,9 @@
 				}
 
 				if ( layout.upload.getState() === mw.Upload.State.WARNING ) {
+					// We could get more than one of these errors, these are in order
+					// of importance. For example fixing the thumbnail like file name
+					// won't help the fact that the file already exists.
 					if ( stateDetails.exists !== undefined ) {
 						deferred.reject( new OO.ui.Error(
 							$( '<p>' ).html(
@@ -296,6 +299,14 @@
 							$( '<p>' ).html(
 								mw.message( 'badfilename', stateDetails.badfilename ).parse()
 							)
+						) );
+					} else {
+						deferred.reject( new OO.ui.Error(
+							$( '<p>' ).html(
+								// Let's get all the help we can if we can't pin point the error
+								mw.message( 'api-error-unknown-warning', JSON.stringify( stateDetails ) ).parse()
+							),
+							{ recoverable: false }
 						) );
 					}
 
