@@ -55,6 +55,8 @@ class MultiHttpClient {
 	protected $maxConnsPerHost = 50;
 	/** @var string|null proxy */
 	protected $proxy;
+	/** @var string */
+	protected $userAgent = 'wikimedia/multi-http-client v1.0';
 
 	/**
 	 * @param array $options
@@ -345,7 +347,7 @@ class MultiHttpClient {
 		}
 
 		if ( !isset( $req['headers']['user-agent'] ) ) {
-			$req['headers']['user-agent'] = self::userAgent();
+			$req['headers']['user-agent'] = $this->userAgent;
 		}
 
 		$headers = array();
@@ -415,13 +417,5 @@ class MultiHttpClient {
 		if ( $this->multiHandle ) {
 			curl_multi_close( $this->multiHandle );
 		}
-	}
-
-	/**
-	 * The default User-Agent for requests.
-	 * @return string
-	 */
-	public static function userAgent() {
-		return 'wikimedia/multi-http-client v1.0';
 	}
 }
