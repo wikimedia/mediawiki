@@ -72,7 +72,7 @@ class ForeignDBRepo extends LocalRepo {
 	}
 
 	/**
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 */
 	function getMasterDB() {
 		if ( !isset( $this->dbConn ) ) {
@@ -84,7 +84,7 @@ class ForeignDBRepo extends LocalRepo {
 	}
 
 	/**
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 */
 	function getSlaveDB() {
 		return $this->getMasterDB();

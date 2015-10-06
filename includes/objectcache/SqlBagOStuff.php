@@ -127,7 +127,7 @@ class SqlBagOStuff extends BagOStuff {
 	 * Get a connection to the specified database
 	 *
 	 * @param int $serverIndex
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 * @throws MWException
 	 */
 	protected function getDB( $serverIndex ) {
@@ -482,7 +482,7 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @param string $exptime
 	 * @return bool
 	 */
@@ -491,7 +491,7 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 * @return string
 	 */
 	protected function getMaxDateTime( $db ) {

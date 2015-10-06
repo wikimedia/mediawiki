@@ -26,7 +26,7 @@
 class BatchRowIterator implements RecursiveIterator {
 
 	/**
-	 * @var DatabaseBase $db The database to read from
+	 * @var IDatabase $db The database to read from
 	 */
 	protected $db;
 
@@ -58,7 +58,7 @@ class BatchRowIterator implements RecursiveIterator {
 
 	/**
 	 * @var array $fetchColumns List of column names to select from the
-	 *  table suitable for use with DatabaseBase::select()
+	 *  table suitable for use with IDatabase::select()
 	 */
 	protected $fetchColumns;
 
@@ -98,7 +98,7 @@ class BatchRowIterator implements RecursiveIterator {
 
 	/**
 	 * @param array $condition Query conditions suitable for use with
-	 *  DatabaseBase::select
+	 *  IDatabase::select
 	 */
 	public function addConditions( array $conditions ) {
 		$this->conditions = array_merge( $this->conditions, $conditions );
@@ -106,7 +106,7 @@ class BatchRowIterator implements RecursiveIterator {
 
 	/**
 	 * @param array $condition Query join conditions suitable for use
-	 *  with DatabaseBase::select
+	 *  with IDatabase::select
 	 */
 	public function addJoinConditions( array $conditions ) {
 		$this->joinConditions = array_merge( $this->joinConditions, $conditions );
@@ -114,7 +114,7 @@ class BatchRowIterator implements RecursiveIterator {
 
 	/**
 	 * @param array $columns List of column names to select from the
-	 *  table suitable for use with DatabaseBase::select()
+	 *  table suitable for use with IDatabase::select()
 	 */
 	public function setFetchColumns( array $columns ) {
 		// If it's not the all column selector merge in the primary keys we need

@@ -45,7 +45,7 @@ class ObjectFactory {
 	 * Values in the arguments collection which are Closure instances will be
 	 * expanded by invoking them with no arguments before passing the
 	 * resulting value on to the constructor/callable. This can be used to
-	 * pass DatabaseBase instances or other live objects to the
+	 * pass IDatabase instances or other live objects to the
 	 * constructor/callable. This behavior can be suppressed by adding
 	 * closure_expansion => false to the specification.
 	 *

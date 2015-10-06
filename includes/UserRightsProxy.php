@@ -146,7 +146,7 @@ class UserRightsProxy {
 	 *
 	 * @param string $database
 	 * @param bool $ignoreInvalidDB If true, don't check if $database is in $wgLocalDatabases
-	 * @return DatabaseBase|null If invalid selection
+	 * @return IDatabase|null If invalid selection
 	 */
 	public static function getDB( $database, $ignoreInvalidDB = false ) {
 		global $wgDBname;

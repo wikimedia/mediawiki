@@ -281,12 +281,12 @@ class SiteStatsInit {
 
 	/**
 	 * Constructor
-	 * @param bool|DatabaseBase $database
+	 * @param bool|IDatabase $database
 	 * - Boolean: whether to use the master DB
-	 * - DatabaseBase: database connection to use
+	 * - IDatabase: database connection to use
 	 */
 	public function __construct( $database = false ) {
-		if ( $database instanceof DatabaseBase ) {
+		if ( $database instanceof IDatabase ) {
 			$this->db = $database;
 		} else {
 			$this->db = wfGetDB( $database ? DB_MASTER : DB_SLAVE );
@@ -366,7 +366,7 @@ class SiteStatsInit {
 	 *
 	 * @param IDatabase|bool $database
 	 * - Boolean: whether to use the master DB
-	 * - DatabaseBase: database connection to use
+	 * - IDatabase: database connection to use
 	 * @param array $options Array of options, may contain the following values
 	 * - activeUsers Boolean: whether to update the number of active users (default: false)
 	 */

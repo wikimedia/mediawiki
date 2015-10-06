@@ -27,7 +27,7 @@
  * @since 1.20
  */
 class DBFileJournal extends FileJournal {
-	/** @var DatabaseBase */
+	/** @var IDatabase */
 	protected $dbw;
 
 	protected $wiki = false; // string; wiki DB name
@@ -174,7 +174,7 @@ class DBFileJournal extends FileJournal {
 	/**
 	 * Get a master connection to the logging DB
 	 *
-	 * @return DatabaseBase
+	 * @return IDatabase
 	 * @throws DBError
 	 */
 	protected function getMasterDB() {
