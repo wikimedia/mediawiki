@@ -51,6 +51,8 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
 === Other changes in 1.27 ===
+* WikiPage::doDeleteArticleReal() and WikiPage::doDeleteArticle() now
+  ignore the 2nd and 3rd arguments (formerly $id and $commit).
 
 == Compatibility ==
 

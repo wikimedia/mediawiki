@@ -2724,16 +2724,16 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param string $reason Delete reason for deletion log
 	 * @param bool $suppress Suppress all revisions and log the deletion in
 	 *        the suppression log instead of the deletion log
-	 * @param int $id Article ID
-	 * @param bool $commit Defaults to true, triggers transaction end
-	 * @param array &$error Array of errors to append to
+	 * @param int $u1 Unused
+	 * @param bool $u2 Unused
+	 * @param array|string &$error Array of errors to append to
 	 * @param User $user The deleting user
 	 * @return bool True if successful
 	 */
 	public function doDeleteArticle(
-		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
+		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null
 	) {
-		$status = $this->doDeleteArticleReal( $reason, $suppress, $id, $commit, $error, $user );
+		$status = $this->doDeleteArticleReal( $reason, $suppress, $u1, $u2, $error, $user );
 		return $status->isGood();
 	}
 
@@ -2746,16 +2746,16 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param string $reason Delete reason for deletion log
 	 * @param bool $suppress Suppress all revisions and log the deletion in
 	 *   the suppression log instead of the deletion log
-	 * @param int $id Article ID
-	 * @param bool $commit Defaults to true, triggers transaction end
-	 * @param array &$error Array of errors to append to
+	 * @param int $u1 Unused
+	 * @param bool $u2 Unused
+	 * @param array|string &$error Array of errors to append to
 	 * @param User $user The deleting user
 	 * @return Status Status object; if successful, $status->value is the log_id of the
 	 *   deletion log entry. If the page couldn't be deleted because it wasn't
 	 *   found, $status is a non-fatal 'cannotdelete' error
 	 */
 	public function doDeleteArticleReal(
-		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
+		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null
 	) {
 		global $wgUser, $wgContentHandlerUseDB;
 
@@ -2778,24 +2778,26 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$dbw->startAtomic( __METHOD__ );
 
-		if ( $id == 0 ) {
-			// T98706: lock the page from various other updates but avoid using
-			// WikiPage::READ_LOCKING as that will carry over the FOR UPDATE to
-			// the revisions queries (which also JOIN on user). Only lock the page
-			// row and CAS check on page_latest to see if the trx snapshot matches.
-			$latest = $this->lock();
+		// T98706: lock the page from various other updates but avoid using
+		// WikiPage::READ_LOCKING as that will carry over the FOR UPDATE to
+		// the revisions queries (which also JOIN on user). Only lock the page
+		// row and CAS check on page_latest to see if the trx snapshot matches.
+		$latest = $this->lock();
 
-			$this->loadPageData( WikiPage::READ_LATEST );
-			$id = $this->getID();
-			if ( $id == 0 || $this->getLatest() != $latest ) {
-				// Page not there or trx snapshot is stale
-				$dbw->rollback( __METHOD__ );
-				$status->error( 'cannotdelete', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
-				return $status;
-			}
+		$this->loadPageData( WikiPage::READ_LATEST );
+		$id = $this->getID();
+		if ( $id == 0 || $this->getLatest() != $latest ) {
+			// Page not there or trx snapshot is stale
+			$status->error( 'cannotdelete', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
+			return $status;
 		}
+
+		// At this point we are now comitted to returning an OK
+		// status unless some DB query error or other exception comes up.
+		// This way callers don't have to call rollback() if $status is bad
+		// or they actually try to catch exceptions (which is rare).
 
 		// we need to remember the old content so we can use it to generate all deletion updates.
 		$content = $this->getContent( Revision::RAW );
@@ -2849,23 +2851,20 @@ class WikiPage implements Page, IDBAccessObject {
 			$row['ar_content_format'] = 'rev_content_format';
 		}
 
-		$dbw->insertSelect( 'archive', array( 'page', 'revision' ),
+		// Copy all the page revisions into the archive table
+		$dbw->insertSelect(
+			'archive',
+			array( 'page', 'revision' ),
 			$row,
 			array(
 				'page_id' => $id,
 				'page_id = rev_page'
-			), __METHOD__
+			),
+			__METHOD__
 		);
 
 		// Now that it's safely backed up, delete it
 		$dbw->delete( 'page', array( 'page_id' => $id ), __METHOD__ );
-		$ok = ( $dbw->affectedRows() > 0 ); // $id could be laggy
-
-		if ( !$ok ) {
-			$dbw->rollback( __METHOD__ );
-			$status->error( 'cannotdelete', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
-			return $status;
-		}
 
 		if ( !$dbw->cascadingDeletes() ) {
 			$dbw->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
@@ -2888,18 +2887,17 @@ class WikiPage implements Page, IDBAccessObject {
 			$logEntry->publish( $logid );
 		} );
 
-		if ( $commit ) {
-			$dbw->commit( __METHOD__ );
-		}
-
-		// Show log excerpt on 404 pages rather than just a link
-		$key = wfMemcKey( 'page-recent-delete', md5( $logTitle->getPrefixedText() ) );
-		ObjectCache::getMainStashInstance()->set( $key, 1, 86400 );
+		$dbw->endAtomic( __METHOD__ );
 
 		$this->doDeleteUpdates( $id, $content );
 
 		Hooks::run( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id, $content, $logEntry ) );
 		$status->value = $logid;
+
+		// Show log excerpt on 404 pages rather than just a link
+		$key = wfMemcKey( 'page-recent-delete', md5( $logTitle->getPrefixedText() ) );
+		ObjectCache::getMainStashInstance()->set( $key, 1, 86400 );
+
 		return $status;
 	}
 
