@@ -102,7 +102,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgResourceLoaderStorageVersion' => $conf->get( 'ResourceLoaderStorageVersion' ),
 			'wgResourceLoaderStorageEnabled' => $conf->get( 'ResourceLoaderStorageEnabled' ),
 			'wgResourceLoaderLegacyModules' => self::getLegacyModules(),
-			'wgRemoteUploadTarget' => $conf->get( 'RemoteUploadTarget' ),
+			'wgForeignUploadTargets' => $conf->get( 'ForeignUploadTargets' ),
 		);
 
 		Hooks::run( 'ResourceLoaderGetConfigVars', array( &$vars ) );
