@@ -478,6 +478,16 @@
 	/* Setters */
 
 	/**
+	 * Sets the file object
+	 *
+	 * @protected
+	 * @param {File|null} file File to select
+	 */
+	mw.Upload.BookletLayout.prototype.setFile = function ( file ) {
+		this.selectFileWidget.setValue( file );
+	};
+
+	/**
 	 * Clear the values of all fields
 	 *
 	 * @protected
