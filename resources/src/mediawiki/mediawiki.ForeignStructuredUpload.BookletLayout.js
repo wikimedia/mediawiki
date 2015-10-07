@@ -8,7 +8,7 @@
 	 *     var uploadDialog = new mw.Upload.Dialog( {
 	 *         bookletClass: mw.ForeignStructuredUpload.BookletLayout,
 	 *         booklet: {
-	 *             targetHost: 'localhost:8080'
+	 *             target: 'local'
 	 *         }
 	 *     } );
 	 *     var windowManager = new OO.ui.WindowManager();
@@ -18,7 +18,7 @@
 	 * @class mw.ForeignStructuredUpload.BookletLayout
 	 * @uses mw.ForeignStructuredUpload
 	 * @extends mw.Upload.BookletLayout
-	 * @cfg {string} [targetHost] Used to set up the target wiki.
+	 * @cfg {string} [target] Used to choose the target repository.
 	 *     If nothing is passed, the {@link mw.ForeignUpload#property-target default} is used.
 	 */
 	mw.ForeignStructuredUpload.BookletLayout = function ( config ) {
@@ -26,7 +26,7 @@
 		// Parent constructor
 		mw.ForeignStructuredUpload.BookletLayout.parent.call( this, config );
 
-		this.targetHost = config.targetHost;
+		this.target = config.target;
 	};
 
 	/* Setup */
@@ -37,13 +37,13 @@
 
 	/**
 	 * Returns a {@link mw.ForeignStructuredUpload mw.ForeignStructuredUpload}
-	 * with the {@link #cfg-targetHost targetHost} specified in config.
+	 * with the {@link #cfg-target target} specified in config.
 	 *
 	 * @protected
 	 * @return {mw.Upload}
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.createUpload = function () {
-		return new mw.ForeignStructuredUpload( this.targetHost );
+		return new mw.ForeignStructuredUpload( this.target );
 	};
 
 	/* Form renderers */
@@ -52,23 +52,38 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm = function () {
-		var fieldset,
-			targets = mw.config.get( 'wgForeignUploadTargets' ),
-			// Default to using local, but try to use a configured target.
-			// TODO allow finer configuration of this somehow?
-			target = ( targets && targets.length ) ? targets[ 0 ] : 'local',
-			$ownWorkMessage = $( '<p>' ).html(
-				mw.message( 'foreign-structured-upload-form-label-own-work-message-' + target ).parse()
-			),
-			$notOwnWorkMessage = $( '<div>' ).append(
-				$( '<p>' ).html(
-					mw.message( 'foreign-structured-upload-form-label-not-own-work-message-' + target ).parse()
-				),
-				$( '<p>' ).html(
-					mw.message( 'foreign-structured-upload-form-label-not-own-work-local-' + target ).parse()
-				)
-			),
+		var fieldset, $ownWorkMessage, $notOwnWorkMessage,
+			ownWorkMessage, notOwnWorkMessage, notOwnWorkLocal,
+			validTargets = mw.config.get( 'wgForeignUploadTargets' ),
+			target = this.target || validTargets[ 0 ] || 'local',
 			layout = this;
+
+		// foreign-structured-upload-form-label-own-work-message-local
+		// foreign-structured-upload-form-label-own-work-message-shared
+		ownWorkMessage = mw.message( 'foreign-structured-upload-form-label-own-work-message-' + target );
+		// foreign-structured-upload-form-label-not-own-work-message-local
+		// foreign-structured-upload-form-label-not-own-work-message-shared
+		notOwnWorkMessage = mw.message( 'foreign-structured-upload-form-label-not-own-work-message-' + target );
+		// foreign-structured-upload-form-label-not-own-work-local-local
+		// foreign-structured-upload-form-label-not-own-work-local-shared
+		notOwnWorkLocal = mw.message( 'foreign-structured-upload-form-label-not-own-work-local-' + target );
+
+		if ( !ownWorkMessage.exists() ) {
+			ownWorkMessage = mw.message( 'foreign-structured-upload-form-label-own-work-message-default' );
+		}
+		if ( !notOwnWorkMessage.exists() ) {
+			notOwnWorkMessage = mw.message( 'foreign-structured-upload-form-label-not-own-work-message-default' );
+		}
+		if ( !notOwnWorkLocal.exists() ) {
+			notOwnWorkLocal = mw.message( 'foreign-structured-upload-form-label-not-own-work-local-default' );
+		}
+
+		$ownWorkMessage = $( '<p>' ).html( ownWorkMessage.parse() );
+		$notOwnWorkMessage = $( '<div>' ).append(
+			$( '<p>' ).html( notOwnWorkMessage.parse() ),
+			$( '<p>' ).html( notOwnWorkLocal.parse() )
+		);
+		$ownWorkMessage.add( $notOwnWorkMessage ).find( 'a' ).attr( 'target', '_blank' );
 
 		this.selectFileWidget = new OO.ui.SelectFileWidget();
 		this.messageLabel = new OO.ui.LabelWidget( {
