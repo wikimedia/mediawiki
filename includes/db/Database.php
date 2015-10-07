@@ -3426,8 +3426,10 @@ abstract class DatabaseBase implements IDatabase {
 			if ( $this->mTrxAtomicLevels ) {
 				// If the current transaction was an automatic atomic one, then we definitely have
 				// a problem. Same if there is any unclosed atomic level.
-				throw new DBUnexpectedError( $this,
-					"Attempted to start explicit transaction when atomic levels are still open."
+				$levels = implode( ', ', $this->mTrxAtomicLevels );
+				throw new DBUnexpectedError(
+					$this,
+					"Got explicit BEGIN while atomic sections $levels are still open."
 				);
 			} elseif ( !$this->mTrxAutomatic ) {
 				// We want to warn about inadvertently nested begin/commit pairs, but not about
@@ -3510,9 +3512,10 @@ abstract class DatabaseBase implements IDatabase {
 	final public function commit( $fname = __METHOD__, $flush = '' ) {
 		if ( $this->mTrxLevel && $this->mTrxAtomicLevels ) {
 			// There are still atomic sections open. This cannot be ignored
+			$levels = implode( ', ', $this->mTrxAtomicLevels );
 			throw new DBUnexpectedError(
 				$this,
-				"Attempted to commit transaction while atomic sections are still open"
+				"Got COMMIT while atomic sections $levels are still open"
 			);
 		}
 
