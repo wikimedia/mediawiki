@@ -19,7 +19,7 @@
 	 * @uses mw.ForeignStructuredUpload
 	 * @extends mw.Upload.BookletLayout
 	 * @cfg {string} [targetHost] Used to set up the target wiki.
-	 *     If nothing is passed, the {@link mw.ForeignUpload#property-targetHost default} is used.
+	 *     If nothing is passed, the {@link mw.ForeignUpload#property-target default} is used.
 	 */
 	mw.ForeignStructuredUpload.BookletLayout = function ( config ) {
 		config = config || {};
