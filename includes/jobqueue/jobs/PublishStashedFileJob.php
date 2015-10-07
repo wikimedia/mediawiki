@@ -35,6 +35,7 @@ class PublishStashedFileJob extends Job {
 	}
 
 	public function run() {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = RequestContext::importScopedSession( $this->params['session'] );
 		$context = RequestContext::getMain();
 		$user = $context->getUser();
@@ -120,7 +121,7 @@ class PublishStashedFileJob extends Job {
 					'status' => Status::newFatal( 'api-error-publishfailed' )
 				)
 			);
-			$this->setLastError( get_class( $e ) . ": " . $e->getText() );
+			$this->setLastError( get_class( $e ) . ": " . $e->getMessage() );
 			// To prevent potential database referential integrity issues.
 			// See bug 32551.
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
