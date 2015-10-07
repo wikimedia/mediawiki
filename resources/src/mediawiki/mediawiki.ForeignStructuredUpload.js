@@ -16,12 +16,12 @@
 	 *
 	 * @inheritdoc
 	 */
-	function ForeignStructuredUpload( targetHost, apiconfig ) {
+	function ForeignStructuredUpload( target, apiconfig ) {
 		this.date = undefined;
 		this.descriptions = [];
 		this.categories = [];
 
-		mw.ForeignUpload.call( this, targetHost, apiconfig );
+		mw.ForeignUpload.call( this, target, apiconfig );
 	}
 
 	OO.inheritClass( ForeignStructuredUpload, mw.ForeignUpload );

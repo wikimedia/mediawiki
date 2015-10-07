@@ -16,12 +16,13 @@
 	 * @param {string} [target] Used to set up the target
 	 *     wiki. If not remote, this class behaves identically to mw.Upload (unless further subclassed)
 	 *     Use the same names as set in $wgForeignFileRepos for this. Also,
-	 *     make sure there is an entry in the $wgForeignUploadTargets array
-	 *     set to "true" for this name.
+	 *     make sure there is an entry in the $wgForeignUploadTargets array for this name.
 	 * @param {Object} [apiconfig] Passed to the constructor of mw.ForeignApi or mw.Api, as needed.
 	 */
 	function ForeignUpload( target, apiconfig ) {
-		var api, upload = this;
+		var api,
+			validTargets = mw.config.get( 'wgForeignUploadTargets' ),
+			upload = this;
 
 		if ( typeof target === 'object' ) {
 			// target probably wasn't passed in, it must
@@ -30,7 +31,10 @@
 			target = undefined;
 		}
 
-		this.target = target;
+		// * Use the given `target` first;
+		// * If not given, fall back to default (first) ForeignUploadTarget;
+		// * If none is configured, fall back to local uploads.
+		this.target = target || validTargets[ 0 ] || 'local';
 
 		// Now we have several different options.
 		// If the local wiki is the target, then we can skip a bunch of steps
@@ -40,6 +44,10 @@
 		// to confirm that the target is one that this site is configured to
 		// support.
 		if ( this.target === 'local' ) {
+			// If local uploads were requested, but they are disabled, fail.
+			if ( !mw.config.get( 'wgEnableUploads' ) ) {
+				throw new Error( 'Local uploads are disabled' );
+			}
 			// We'll ignore the CORS and centralauth stuff if the target is
 			// the local wiki.
 			this.apiPromise = $.Deferred().resolve( new mw.Api( apiconfig ) );
@@ -60,7 +68,7 @@
 
 					// Skip repos that are not our target, or if they
 					// are the target, cannot be uploaded to.
-					if ( repo.name === upload.target && repo.canUpload ) {
+					if ( repo.name === upload.target && repo.canUpload === '' ) {
 						return new mw.ForeignApi(
 							repo.scriptDirUrl + '/api.php',
 							apiconfig
@@ -68,22 +76,7 @@
 					}
 				}
 
-				// Second pass - none of the configured repos were our
-				// passed-in target, just look for the first one that would
-				// work.
-				for ( i in repos ) {
-					repo = repos[ i ];
-
-					if ( repo.canUpload ) {
-						return new mw.ForeignApi(
-							repo.scriptDirUrl + '/api.php',
-							apiconfig
-						);
-					}
-				}
-
-				// No luck finding the correct foreign repo, default to local.
-				return $.Deferred().resolve( new mw.Api( apiconfig ) );
+				throw new Error( 'Can not upload to requested foreign repo' );
 			} );
 		}
 
@@ -105,6 +98,9 @@
 	 *
 	 * Most wikis use "shared" to refer to Wikimedia Commons, we assume that
 	 * in this class and in the messages linked to it.
+	 *
+	 * Defaults to the first available foreign upload target,
+	 * or to local uploads if no foreign target is configured.
 	 */
 
 	/**
