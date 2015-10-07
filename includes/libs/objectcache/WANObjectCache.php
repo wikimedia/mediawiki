@@ -60,6 +60,8 @@
 class WANObjectCache {
 	/** @var BagOStuff The local datacenter cache */
 	protected $cache;
+	/** @var HashBagOStuff Script instance PHP cache */
+	protected $procCache;
 	/** @var string Cache pool name */
 	protected $pool;
 	/** @var EventRelayer */
@@ -127,6 +129,7 @@ class WANObjectCache {
 		$this->cache = $params['cache'];
 		$this->pool = $params['pool'];
 		$this->relayer = $params['relayer'];
+		$this->procCache = new HashBagOStuff();
 	}
 
 	/**
@@ -641,11 +644,50 @@ class WANObjectCache {
 	 *               The higher this is set, the higher the worst-case staleness can be.
 	 *               Use WANObjectCache::TSE_NONE to disable this logic.
 	 *               [Default: WANObjectCache::TSE_NONE]
+	 *   - procTTL : process cache the value in this PHP instance with this TTL.
+	 *               This saves avoids network I/O when the same key is requested.
+	 *               This will not cache if the callback returns false however.
+	 *               Note that any purges will not be seen while process cached;
+	 *               since the callback should use slave DBs and they may be lagged
+	 *               or have snapshot isolation anyway, this should not matter much
+	 *               [Default: WANObjectCache::TTL_UNCACHEABLE]
 	 * @return mixed Value to use for the key
 	 */
 	final public function getWithSetCallback(
 		$key, $callback, $ttl, array $checkKeys = array(), array $opts = array()
 	) {
+		$procTTL = isset( $opts['procTTL'] ) ? $opts['procTTL'] : self::TTL_NONE;
+
+		// Try the process cache if enabled
+		if ( $procTTL >= 0 ) {
+			$value = $this->procCache->get( $key );
+		} else {
+			$value = false;
+		}
+
+		if ( $value === false ) {
+			// Fetch the value over the network
+			$value = $this->doGetWithSetCallback( $key, $callback, $ttl, $checkKeys, $opts );
+			// Update the process cache if enabled
+			if ( $value !== false && $procTTL >= 0 ) {
+				$this->procCache->set( $key, $value, $procTTL );
+			}
+		}
+
+		return $value;
+	}
+
+	/**
+	 * @see WANObjectCache::getWithSetCallback()
+	 *
+	 * @param string $key
+	 * @param callback $callback
+	 * @param integer $ttl
+	 * @param array $checkKeys
+	 * @param array $opts
+	 * @return mixed
+	 */
+	protected function doGetWithSetCallback( $key, $callback, $ttl, $checkKeys, $opts ) {
 		$lowTTL = isset( $opts['lowTTL'] ) ? $opts['lowTTL'] : min( self::LOW_TTL, $ttl );
 		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
 
