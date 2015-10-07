@@ -364,9 +364,8 @@ class OldLocalFile extends LocalFile {
 	 * @param User $user User who did this upload
 	 * @return bool
 	 */
-	function recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user ) {
+	protected function recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user ) {
 		$dbw = $this->repo->getMasterDB();
-		$dbw->begin( __METHOD__ );
 
 		$dstPath = $this->repo->getZonePath( 'public' ) . '/' . $this->getRel();
 		$props = $this->repo->getFileProps( $dstPath );
@@ -393,8 +392,6 @@ class OldLocalFile extends LocalFile {
 				'oi_sha1' => $props['sha1'],
 			), __METHOD__
 		);
-
-		$dbw->commit( __METHOD__ );
 
 		return true;
 	}
