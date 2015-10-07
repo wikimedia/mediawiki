@@ -1,6 +1,4 @@
 <?php
-// @codingStandardsIgnoreFile
-// PHPCS can't handle the level of nesting in this file
 /**
  * Formatting of image metadata values into human readable form.
  *
