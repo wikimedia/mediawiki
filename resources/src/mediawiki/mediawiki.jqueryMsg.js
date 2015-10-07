@@ -1038,6 +1038,11 @@
 			url = mw.util.getUrl( page );
 
 			if ( nodes.length === 1 ) {
+				// Strip leading ':', which is used to suppress special behavior in wikitext links,
+				// e.g. [[:Category:Foo]] or [[:File:Foo.jpg]]
+				if ( page.charAt( 0 ) === ':' ) {
+					page = page.slice( 1 );
+				}
 				// [[Some Page]] or [[Namespace:Some Page]]
 				anchor = page;
 			} else {

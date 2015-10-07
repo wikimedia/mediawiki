@@ -343,7 +343,7 @@
 		process( tasks, QUnit.start );
 	} );
 
-	QUnit.test( 'Links', 11, function ( assert ) {
+	QUnit.test( 'Links', 12, function ( assert ) {
 		var testCases,
 			expectedDisambiguationsText,
 			expectedMultipleBars,
@@ -399,6 +399,13 @@
 			formatParse( 'special-characters' ),
 			expectedSpecialCharacters,
 			'Special characters'
+		);
+
+		mw.messages.set( 'leading-colon', '[[:File:Foo.jpg]]' );
+		assert.htmlEqual(
+			formatParse( 'leading-colon' ),
+			'<a title="File:Foo.jpg" href="/wiki/File:Foo.jpg">File:Foo.jpg</a>',
+			'Leading colon in links is stripped'
 		);
 
 		assert.htmlEqual(
