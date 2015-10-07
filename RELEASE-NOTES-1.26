@@ -41,10 +41,6 @@ production.
 * The UserRights hook is deprecated in favor of the new UserGroupsChanged hook.
 * AuthPlugin::initUser() and AuthPlugin::updateUser() should no longer replace
   the passed User object.
-* $wgBlockAllowsUTEdit is now set to true by default. This allows
-  blocked users to edit their talk pages unless explicitly disabled
-  when they are being blocked.
-* CLDRPluralRule* classes have been replaced with wikimedia/cldr-plural-rule-parser.
 
 === New features in 1.26 ===
 * (T51506) Now action=info gives estimates of actual watchers for a page.
@@ -74,9 +70,6 @@ production.
 * Caches that need purging ability now use the WANObjectCache interface.
   This corresponds to a new $wgMainWANCache setting, which defaults to using
   the $wgMainCacheType settings.
-* Added MWTimestamp::getTimezoneString() which returns the localized timezone
-  string, if available. To localize this string, see the comments of
-  $wgLocaltimezone in includes/DefaultSettings.php.
 * Callers needing fast light-weight data stores use $wgMainStash to select
   the store type from $wgObjectCaches. The default is the local database.
 * Interface message overrides in the MediaWiki namespace will now be cached in
@@ -95,29 +88,30 @@ production.
   suggestion, results for suggestion will be shown. Can be disabled by setting
   $wgSearchRunSuggestedQuery to false.
 
-== External libraries ==
-=== Upgraded external libraries ===
+
+=== External library updates in 1.26 ===
+==== Upgraded external libraries ====
 * Updated es5-shim from v4.0.0 to v4.1.5.
 * Updated json2 from revision 2014-02-04 to 2015-05-03.
 * Updated Sinon.JS from 1.10.3 to 1.15.4.
 * Updated jQuery Client from v1.0.0 to v2.0.0.
 * Updated QUnit from v1.17.1 to v1.18.0.
-* Updated liuggio/statsd-php-client from v1.0.12 to v1.0.16
-* Updated oojs/oojs-ui from v0.9.8 to v0.12.9.
-* Updated wikimedia/utfnormal from v1.0.2 to v1.0.3
+* Updated liuggio/statsd-php-client from v1.0.12 to v1.0.16.
+* Updated oojs/oojs-ui from v0.11.3 to v0.12.8.1.
+* Updated wikimedia/cdb from v1.0.1 to v1.3.0.
+* Updated wikimedia/utfnormal from v1.0.2 to v1.0.3.
 * Updated wikimedia/composer-merge-plugin from v1.0.0 to v1.2.1.
 * Updated zordius/lightncandy from v0.18 to v0.21.
 
-=== New external libraries ===
-* Added composer/semver v0.1.0.
+==== New external libraries ====
+* Added composer/semver v1.0.0.
 * Added mediawiki/at-ease v1.1.0.
 * Added wikimedia/assert v0.2.2.
-* Added wikimedia/cldr-plural-rule-parser v1.0.0
 * Added wikimedia/ip-set v1.0.1.
 * Added wikimedia/wrappedstring v2.0.0.
 
-=== Removed and replaced external libraries ===
-* Replaced leafo/lessphp v0.5.0 with oyejorge/less.php: v1.7.0.8
+==== Removed and replaced external libraries ====
+* Replaced leafo/lessphp v0.5.0 with oyejorge/less.php v1.7.0.9.
 
 === Bug fixes in 1.26 ===
 * (T53283) load.php sometimes sends 304 response without full headers
@@ -151,7 +145,6 @@ production.
 * API responses to GET requests may now include ETag and Last-Modified headers,
   and will honor corresponding If-None-Match and If-Modified-Since on such
   requests.
-* (T47988) The protect log event details now use new-style formatting.
 
 === Action API internal changes in 1.26 ===
 * New metadata item ApiResult::META_KVP_MERGE to allow for merging the KVP key
@@ -172,8 +165,6 @@ changes to languages because of Phabricator reports.
 ** dty (डोटेली/Doteli), thanks to translators जनक राज भट्ट, बिप्लब आनन्द,
    मेश सिंह बोहरा, and राम प्रसाद जोशी
 ** luz (لئری دوٙمینی / Southern Luri)
-** olo (Livvinкarjala / Livvi-Karelian), thanks to translators Denö, Hiloin Natoi,
-   Ilja.mos, and Mashoi7
 
 === Other changes in 1.26 ===
 * ChangeTags::tagDescription() will return false if the interface message
@@ -227,21 +218,9 @@ changes to languages because of Phabricator reports.
 * Watchlist tokens, SpecialResetTokens, and User::getTokenFromOption()
   are deprecated. Applications using those can work via the OAuth
   extension instead. New tokens types should not be added.
-* (T36948) The default file revert message's timestamp is now in $wgLocaltimezone,
-  instead of UTC.
 * DatabaseBase::errorCount() was removed (unused).
 * $wgDeferredUpdateList was removed.
 * DeferredUpdates::addHTMLCacheUpdate() was removed.
-* The default name of the 'suppress' group page has been changed from
-  'Project:Oversight' to 'Project:Suppress'.
-* (T84937) Free external links ("autolinked" urls) will now be terminated
-  by &nbsp; and HTML entity encodings of &nbsp, <, and >.
-* DatabaseBase::resultObject() is now protected (use outside Database classes
-  not necessary since 1.11).
-* Calling ResourceLoaderFileModule::readStyleFiles() without a
-  ResourceLoaderContext instance is deprecated.
-* ResourceLoader::getLessCompiler() now takes an optional parameter of
-  additional LESS variables to set for the compiler.
 
 == Compatibility ==
 

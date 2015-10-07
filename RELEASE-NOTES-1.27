@@ -16,6 +16,10 @@ production.
   1000 for the latter) are now hard-coded.
 * $wgDebugDumpSqlLength was removed (deprecated in 1.24).
 * $wgDebugDBTransactions was removed (deprecated in 1.20).
+* $wgBlockAllowsUTEdit is now set to true by default. This allows
+  blocked users to edit their talk pages unless explicitly disabled
+  when they are being blocked.
+* CLDRPluralRule* classes have been replaced with wikimedia/cldr-plural-rule-parser.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
@@ -32,12 +36,24 @@ production.
 * $wgCdnMaxageLagged was added, which limits the CDN cache TTL
   when any load balancer uses a DB that is lagged beyond the 'max lag'
   setting in the relevant section of $wgLBFactoryConf.
+* Added MWTimestamp::getTimezoneString() which returns the localized timezone
+  string, if available. To localize this string, see the comments of
+  $wgLocaltimezone in includes/DefaultSettings.php.
 
-==== External libraries ====
+=== External library updates in 1.27 ===
+==== Upgraded external libraries ====
+* Updated oojs/oojs-ui from v0.12.8.1 to v0.12.10.
+
+==== New external libraries ====
+* Added wikimedia/cldr-plural-rule-parser v1.0.0.
+* Added wikimedia/relpath v1.0.3.
+
+==== Removed and replaced external libraries ====
 
 === Bug fixes in 1.27 ===
 
 === Action API changes in 1.27 ===
+* (T47988) The protect log event details now use new-style formatting.
 
 === Action API internal changes in 1.27 ===
 
@@ -47,9 +63,24 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* Languages added:
+** olo (Livvinкarjala / Livvi-Karelian), thanks to translators Denö, Hiloin Natoi,
+   Ilja.mos, and Mashoi7
+
 
 === Other changes in 1.27 ===
-
+* (T36948) The default file revert message's timestamp is now in $wgLocaltimezone,
+  instead of UTC.
+* The default name of the 'suppress' group page has been changed from
+  'Project:Oversight' to 'Project:Suppress'.
+* (T84937) Free external links ("autolinked" urls) will now be terminated
+  by &nbsp; and HTML entity encodings of &nbsp, <, and >.
+* DatabaseBase::resultObject() is now protected (use outside Database classes
+  not necessary since 1.11).
+* Calling ResourceLoaderFileModule::readStyleFiles() without a
+  ResourceLoaderContext instance is deprecated.
+* ResourceLoader::getLessCompiler() now takes an optional parameter of
+  additional LESS variables to set for the compiler.
 
 == Compatibility ==
 
