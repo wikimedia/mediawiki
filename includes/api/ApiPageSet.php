@@ -79,6 +79,8 @@ class ApiPageSet extends ApiBase {
 	private $mRequestedPageFields = array();
 	/** @var int */
 	private $mDefaultNamespace = NS_MAIN;
+	/** @var callable|null */
+	private $mRedirectMergePolicy;
 
 	/**
 	 * Add all items from $values into the result
@@ -1198,6 +1200,26 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
+	 * Controls how generator data about a redirect source is merged into
+	 * the generator data for the redirect target. When not set no data
+	 * is merged. Note that if multiple titles redirect to the same target
+	 * the order of operations is undefined.
+	 *
+	 * example to include all generated data from redirect in target:
+	 *   $pageSet->setRedirectMergePolicy( function( array $current, array $new ) {
+	 *       return $current + $new;
+	 *   } );
+	 *
+	 * @param callable $callable Recieves two array arguments, first the
+	 *  generator data for the redirect target and second the generator data
+	 *  for the redirect source, and returns the resulting generator data to
+	 *  use for the redirect target.
+	 */
+	public function setRedirectMergePolicy( $callable ) {
+		$this->mRedirectMergePolicy = $callable;
+	}
+
+	/**
 	 * Populate the generator data for all titles in the result
 	 *
 	 * The page data may be inserted into an ApiResult object or into an
@@ -1270,6 +1292,29 @@ class ApiPageSet extends ApiBase {
 				}
 			}
 		}
+
+		// Merge data generated about redirect titles into the redirect destination
+		if ( $this->mRedirectMergePolicy ) {
+			foreach ( $this->mResolvedRedirectTitles as $titleFrom ) {
+				$dest = $titleFrom;
+				while ( isset( $this->mRedirectTitles[$dest->getPrefixedText()] ) ) {
+					$dest = $this->mRedirectTitles[$dest->getPrefixedText()];
+				}
+				$fromNs = $titleFrom->getNamespace();
+				$fromDBkey = $titleFrom->getDBkey();
+				$toPageId = $dest->getArticleID();
+				if ( isset( $data[$toPageId] ) && 
+					isset( $this->mGeneratorData[$fromNs][$fromDBkey] ) 
+				) {
+					$data[$toPageId] = call_user_func(
+						$this->mRedirectMergePolicy,
+						$data[$toPageId],
+						$this->mGeneratorData[$fromNs][$fromDBkey]
+					);
+				}
+			}
+		}
+
 		return true;
 	}
 
