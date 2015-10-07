@@ -154,6 +154,7 @@
 	"apihelp-feedcontributions-param-deletedonly": "Show only deleted contributions.",
 	"apihelp-feedcontributions-param-toponly": "Only show edits that are latest revisions.",
 	"apihelp-feedcontributions-param-newonly": "Only show edits that are page creations.",
+	"apihelp-feedcontributions-param-hideminor": "Hide minor edits.",
 	"apihelp-feedcontributions-param-showsizediff": "Show the size difference between revisions.",
 	"apihelp-feedcontributions-example-simple": "Return contributions for user <kbd>Example</kbd>.",
 

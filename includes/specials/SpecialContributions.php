@@ -72,6 +72,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->opts['target'] = $target;
 		$this->opts['topOnly'] = $request->getBool( 'topOnly' );
 		$this->opts['newOnly'] = $request->getBool( 'newOnly' );
+		$this->opts['hideMinor'] = $request->getBool( 'hideMinor' );
 
 		$nt = Title::makeTitleSafe( NS_USER, $target );
 		if ( !$nt ) {
@@ -142,6 +143,9 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $this->opts['newOnly'] ) {
 			$feedParams['newonly'] = true;
 		}
+		if ( $this->opts['hideMinor'] ) {
+			$feedParams['hideminor'] = true;
+		}
 		if ( $this->opts['deletedOnly'] ) {
 			$feedParams['deletedonly'] = true;
 		}
@@ -188,6 +192,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				'deletedOnly' => $this->opts['deletedOnly'],
 				'topOnly' => $this->opts['topOnly'],
 				'newOnly' => $this->opts['newOnly'],
+				'hideMinor' => $this->opts['hideMinor'],
 				'nsInvert' => $this->opts['nsInvert'],
 				'associated' => $this->opts['associated'],
 			] );
@@ -441,6 +446,10 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['newOnly'] = false;
 		}
 
+		if ( !isset( $this->opts['hideMinor'] ) ) {
+			$this->opts['hideMinor'] = false;
+		}
+
 		$form = Html::openElement(
 			'form',
 			[
@@ -461,6 +470,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			'month',
 			'topOnly',
 			'newOnly',
+			'hideMinor',
 			'associated',
 			'tagfilter'
 		];
@@ -606,6 +616,17 @@ class SpecialContributions extends IncludableSpecialPage {
 				'newOnly',
 				'mw-show-new-only',
 				$this->opts['newOnly'],
+				[ 'class' => 'mw-input' ]
+			)
+		);
+		$filters[] = Html::rawElement(
+			'span',
+			[ 'class' => 'mw-input-with-label' ],
+			Xml::checkLabel(
+				$this->msg( 'sp-contributions-hideminor' )->text(),
+				'hideMinor',
+				'mw-hide-minor-edits',
+				$this->opts['hideMinor'],
 				[ 'class' => 'mw-input' ]
 			)
 		);
