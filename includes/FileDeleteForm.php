@@ -180,6 +180,8 @@ class FileDeleteForm {
 				$logEntry->setComment( $logComment );
 				$logid = $logEntry->insert();
 				$logEntry->publish( $logid );
+
+				$status->value = $logid;
 			}
 		} else {
 			$status = Status::newFatal( 'cannotdelete',
@@ -197,6 +199,7 @@ class FileDeleteForm {
 					$status = $file->delete( $reason, $suppress, $user );
 					if ( $status->isOK() ) {
 						$dbw->commit( __METHOD__ );
+						$status->value = $deleteStatus->value; // log id
 					} else {
 						$dbw->rollback( __METHOD__ );
 					}
