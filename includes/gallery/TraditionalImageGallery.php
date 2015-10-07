@@ -46,6 +46,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			array( 'class' => 'gallery mw-gallery-' . $this->mMode ), $this->mAttribs );
 
 		$modules = $this->getModules();
+		$modules[] = 'mediawiki.page.gallery.styles';
 
 		if ( $this->mParser ) {
 			$this->mParser->getOutput()->addModules( $modules );
