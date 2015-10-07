@@ -859,12 +859,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return array List of concatenated and remapped CSS data from $styles,
 	 *     keyed by media type
 	 *
-	 * @since 1.26 Calling this method without a ResourceLoaderContext instance
+	 * @since 1.27 Calling this method without a ResourceLoaderContext instance
 	 *   is deprecated.
 	 */
 	public function readStyleFiles( array $styles, $flip, $context = null ) {
 		if ( $context === null ) {
-			wfDeprecated( __METHOD__ . ' without a ResourceLoader context', '1.26' );
+			wfDeprecated( __METHOD__ . ' without a ResourceLoader context', '1.27' );
 			$context = ResourceLoaderContext::newDummyContext();
 		}
 
@@ -952,7 +952,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Keeps track of all used files and adds them to localFileRefs.
 	 *
 	 * @since 1.22
-	 * @since 1.26 Added $context paramter.
+	 * @since 1.27 Added $context paramter.
 	 * @throws Exception If less.php encounters a parse error
 	 * @param string $fileName File path of LESS source
 	 * @param ResourceLoaderContext $context Context in which to generate script

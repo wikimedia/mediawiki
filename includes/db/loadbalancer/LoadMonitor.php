@@ -56,7 +56,7 @@ interface LoadMonitor {
 
 	/**
 	 * Clear any process and persistent cache of lag times
-	 * @since 1.26
+	 * @since 1.27
 	 */
 	public function clearCaches();
 }

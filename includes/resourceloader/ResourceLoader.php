@@ -1587,7 +1587,7 @@ MESSAGE;
 	 * Returns LESS compiler set up for use with MediaWiki
 	 *
 	 * @since 1.22
-	 * @since 1.26 added $extraVars parameter
+	 * @since 1.27 added $extraVars parameter
 	 * @param Config $config
 	 * @param array $extraVars Associative array of extra (i.e., other than the
 	 *   globally-configured ones) that should be used for compilation.

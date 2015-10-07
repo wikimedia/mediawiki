@@ -136,7 +136,7 @@ class DeferredUpdates {
 	/**
 	 * @note This method is intended for testing purposes
 	 * @param bool $value Whether to *always* defer updates, even in CLI mode
-	 * @since 1.26
+	 * @since 1.27
 	 */
 	public static function forceDeferral( $value ) {
 		self::$forceDeferral = $value;
