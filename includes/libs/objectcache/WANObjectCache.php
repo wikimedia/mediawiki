@@ -60,6 +60,8 @@
 class WANObjectCache {
 	/** @var BagOStuff The local datacenter cache */
 	protected $cache;
+	/** @var HashBagOStuff Script instance PHP cache */
+	protected $procCache;
 	/** @var string Cache pool name */
 	protected $pool;
 	/** @var EventRelayer */
@@ -127,6 +129,7 @@ class WANObjectCache {
 		$this->cache = $params['cache'];
 		$this->pool = $params['pool'];
 		$this->relayer = $params['relayer'];
+		$this->procCache = new HashBagOStuff();
 	}
 
 	/**
@@ -636,7 +639,14 @@ class WANObjectCache {
 	 *      expiration is low, the assumption is that the key is hot and that a stampede is worth
 	 *      avoiding. Setting this above WANObjectCache::HOLDOFF_TTL makes no difference. The
 	 *      higher this is set, the higher the worst-case staleness can be.
-	 *      Use WANObjectCache::TSE_NONE to disable this logic. Default: WANObjectCache::TSE_NONE.
+	 *      Use WANObjectCache::TSE_NONE to disable this logic.
+	 *      Default: WANObjectCache::TSE_NONE.
+	 *   - pcTTL : process cache the value in this PHP instance with this TTL. This avoids
+	 *      network I/O when a key is read several times. This will not cache if the callback
+	 *      returns false however. Note that any purges will not be seen while process cached;
+	 *      since the callback should use slave DBs and they may be lagged or have snapshot
+	 *      isolation anyway, this should not matter much
+	 *      Default: WANObjectCache::TTL_UNCACHEABLE.
 	 * @return mixed Value to use for the key
 	 */
 	final public function getWithSetCallback(
@@ -656,6 +666,36 @@ class WANObjectCache {
 			$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : array();
 		}
 
+		$pcTTL = isset( $opts['pcTTL'] ) ? $opts['pcTTL'] : self::TTL_UNCACHEABLE;
+
+		// Try the process cache if enabled
+		$value = ( $pcTTL >= 0 ) ? $this->procCache->get( $key ) : false;
+
+		if ( $value === false ) {
+			// Fetch the value over the network
+			$value = $this->doGetWithSetCallback( $key, $ttl, $callback, $checkKeys, $opts );
+			// Update the process cache if enabled
+			if ( $pcTTL >= 0 && $value !== false ) {
+				$this->procCache->set( $key, $value, $pcTTL );
+			}
+		}
+
+		return $value;
+	}
+
+	/**
+	 * @see WANObjectCache::getWithSetCallback()
+	 *
+	 * @param string $key
+	 * @param integer $ttl
+	 * @param callback $callback
+	 * @param array $checkKeys
+	 * @param array $opts
+	 * @return mixed
+	 */
+	protected function doGetWithSetCallback(
+		$key, $ttl, $callback, array $checkKeys, array $opts
+	) {
 		$lowTTL = isset( $opts['lowTTL'] ) ? $opts['lowTTL'] : min( self::LOW_TTL, $ttl );
 		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
 
