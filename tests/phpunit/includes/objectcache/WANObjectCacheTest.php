@@ -13,11 +13,14 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 			$this->cache = ObjectCache::getWANInstance( $name );
 		} else {
 			$this->cache = new WANObjectCache( array(
-				'cache'   => new HashBagOStuff(),
-				'pool'    => 'testcache-hash',
+				'cache' => new HashBagOStuff(),
+				'pool' => 'testcache-hash',
 				'relayer' => new EventRelayerNull( array() )
 			) );
 		}
+
+		$wanCache = TestingAccessWrapper::newFromObject( $this->cache );
+		$this->internalCache = $wanCache->cache;
 	}
 
 	/**
@@ -143,6 +146,32 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$v = $cache->get( $key, $curTTL, array( $cKey1, $cKey2 ) );
 		$this->assertEquals( $v, $value );
 		$this->assertLessThanOrEqual( 0, $curTTL, "Value has current TTL < 0 due to check keys" );
+	}
+
+	/**
+	 * @covers WANObjectCache::getWithSetCallback()
+	 */
+	public function testLockTSE() {
+		$cache = $this->cache;
+		$key = wfRandomString();
+		$value = wfRandomString();
+
+		$calls = 0;
+		$func = function() use ( &$calls, $value ) {
+			++$calls;
+			return $value;
+		};
+
+		$cache->delete( $key );
+		$ret = $cache->getWithSetCallback( $key, 30, $func, array(), array( 'lockTSE' => 5 ) );
+		$this->assertEquals( $value, $ret );
+		$this->assertEquals( 1, $calls, 'Value was populated' );
+
+		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
+		$this->internalCache->lock( $key, 0 );
+		$ret = $cache->getWithSetCallback( $key, 30, $func, array(), array( 'lockTSE' => 5 ) );
+		$this->assertEquals( $value, $ret );
+		$this->assertEquals( 1, $calls, 'Callback was not used' );
 	}
 
 	/**
