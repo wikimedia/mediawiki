@@ -546,6 +546,14 @@ class LoadBalancer {
 			$trxProf->recordConnection( $host, $dbname, $masterOnly );
 		}
 
+		# Make master connections read only if in lagged slave mode
+		if ( $masterOnly && $this->getServerCount() > 1 && $this->getLaggedSlaveMode() ) {
+			$conn->setLBInfo( 'readOnlyReason',
+				'The database has been automatically locked ' .
+				'while the slave database servers catch up to the master'
+			);
+		}
+
 		return $conn;
 	}
 

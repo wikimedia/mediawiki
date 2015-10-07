@@ -287,6 +287,7 @@ $wgAutoloadLocalClasses = array(
 	'DBLockManager' => __DIR__ . '/includes/filebackend/lockmanager/DBLockManager.php',
 	'DBMasterPos' => __DIR__ . '/includes/db/DatabaseUtility.php',
 	'DBQueryError' => __DIR__ . '/includes/db/DatabaseError.php',
+	'DBReadOnlyError' => __DIR__ . '/includes/db/DatabaseError.php',
 	'DBSiteStore' => __DIR__ . '/includes/site/DBSiteStore.php',
 	'DBUnexpectedError' => __DIR__ . '/includes/db/DatabaseError.php',
 	'DataUpdate' => __DIR__ . '/includes/deferred/DataUpdate.php',
