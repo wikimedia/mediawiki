@@ -79,7 +79,7 @@ class FileRepo {
 	protected $scriptDirUrl;
 
 	/** @var string Script extension of the MediaWiki installation, equivalent
-	 *    to $wgScriptExtension, e.g. .php5 defaults to .php */
+	 *    to the old $wgScriptExtension, e.g. .php5 defaults to .php */
 	protected $scriptExtension;
 
 	/** @var string Equivalent to $wgArticlePath, e.g. https://en.wikipedia.org/wiki/$1 */
