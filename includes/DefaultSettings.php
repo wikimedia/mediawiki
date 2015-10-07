@@ -526,9 +526,12 @@ $wgForeignFileRepos = array();
 $wgUseInstantCommons = false;
 
 /**
- * Array of foreign file repos (set in $wgForeignFileRepos above) that
+ * Array of foreign file repo names (set in $wgForeignFileRepos above) that
  * are allowable upload targets. These wikis must have some method of
  * authentication (i.e. CentralAuth), and be CORS-enabled for this wiki.
+ *
+ * Example:
+ * $wgForeignUploadTargets = array( 'shared' );
  */
 $wgForeignUploadTargets = array();
 
