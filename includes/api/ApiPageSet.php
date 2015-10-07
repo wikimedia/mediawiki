@@ -79,6 +79,8 @@ class ApiPageSet extends ApiBase {
 	private $mRequestedPageFields = array();
 	/** @var int */
 	private $mDefaultNamespace = NS_MAIN;
+	/** @var callable|null */
+	private $mMergePolicy;
 
 	/**
 	 * Add all items from $values into the result
@@ -1198,6 +1200,21 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
+	 * example to include all generated data from redirect in target:
+	 *   $pageSet->setMergePolicy( function( array $current, array $new ) {
+	 *       return $current + $new;
+	 *   } );
+	 *
+	 * @param callable $callable Recieves two array arguments, first the
+	 *  generator data for the redirect target and second the data generated
+	 *  for the redirect source, and returns the resulting generator data to
+	 *  use for the redirect target.
+	 */
+	public function setMergePolicy( $callable ) {
+		$this->mMergePolicy = $callable;
+	}
+
+	/**
 	 * Populate the generator data for all titles in the result
 	 *
 	 * The page data may be inserted into an ApiResult object or into an
@@ -1270,6 +1287,27 @@ class ApiPageSet extends ApiBase {
 				}
 			}
 		}
+
+		// Merge data generated about redirect titles into the redirect destination
+		if ( $this->mResolveRedirects && $this->mMergePolicy ) {
+			foreach ( $this->mResolvedRedirectTitles as $titleFrom ) {
+				$dest = $titleFrom;
+				while ( $dest->isRedirect() && isset( $this->mRedirectTitles[$dest->getPrefixedText()] ) ) {
+					$dest = $this->mRedirectTitles[$dest->getPrefixedText()];
+				}
+				$fromNs = $titleFrom->getNamespace();
+				$fromDBkey = $titleFrom->getDBkey();
+				$finalPageId = $dest->getArticleID();
+				if ( isset( $data[$finalPageId] ) && isset( $this->mGeneratorData[$fromNs][$fromDBkey] ) ) {
+					$data[$finalPageId] = call_user_func(
+						$this->mMergePolicy,
+						$data[$finalPageId],
+						$this->mGeneratorData[$fromNs][$fromDBkey]
+					);
+				}
+			}
+		}
+
 		return true;
 	}
 
