@@ -1035,6 +1035,11 @@
 			var page, anchor, url, $el;
 
 			page = textify( nodes[ 0 ] );
+			// Strip leading ':', which is used to suppress special behavior in wikitext links,
+			// e.g. [[:Category:Foo]] or [[:File:Foo.jpg]]
+			if ( page.charAt( 0 ) === ':' ) {
+				page = page.slice( 1 );
+			}
 			url = mw.util.getUrl( page );
 
 			if ( nodes.length === 1 ) {
