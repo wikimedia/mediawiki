@@ -621,31 +621,40 @@ class WANObjectCache {
 	 * @see WANObjectCache::set()
 	 *
 	 * @param string $key Cache key
-	 * @param callable $callback Value generation function
 	 * @param integer $ttl Seconds to live for key updates. Special values are:
-	 *   - WANObjectCache::TTL_NONE        : cache forever
-	 *   - WANObjectCache::TTL_UNCACHEABLE : do not cache at all
-	 * @param array $checkKeys List of "check" keys
+	 *   - WANObjectCache::TTL_NONE : Cache forever
+	 *   - WANObjectCache::TTL_UNCACHEABLE: Do not cache at all
+	 * @param callable $callback Value generation function
 	 * @param array $opts Options map:
-	 *   - lowTTL  : consider pre-emptive updates when the current TTL (sec)
-	 *               of the key is less than this. It becomes more likely
-	 *               over time, becoming a certainty once the key is expired.
-	 *               [Default: WANObjectCache::LOW_TTL seconds]
-	 *   - lockTSE : if the key is tombstoned or expired (by $checkKeys) less
-	 *               than this many seconds ago, then try to have a single
-	 *               thread handle cache regeneration at any given time.
-	 *               Other threads will try to use stale values if possible.
-	 *               If, on miss, the time since expiration is low, the assumption
-	 *               is that the key is hot and that a stampede is worth avoiding.
-	 *               Setting this above WANObjectCache::HOLDOFF_TTL makes no difference.
-	 *               The higher this is set, the higher the worst-case staleness can be.
-	 *               Use WANObjectCache::TSE_NONE to disable this logic.
-	 *               [Default: WANObjectCache::TSE_NONE]
+	 *   - checkKeys: List of "check" keys.
+	 *   - lowTTL: Consider pre-emptive updates when the current TTL (sec) of the key is less than
+	 *      this. It becomes more likely over time, becoming a certainty once the key is expired.
+	 *      Default: WANObjectCache::LOW_TTL seconds.
+	 *   - lockTSE: If the key is tombstoned or expired (by checkKeys) less than this many seconds
+	 *      ago, then try to have a single thread handle cache regeneration at any given time.
+	 *      Other threads will try to use stale values if possible. If, on miss, the time since
+	 *      expiration is low, the assumption is that the key is hot and that a stampede is worth
+	 *      avoiding. Setting this above WANObjectCache::HOLDOFF_TTL makes no difference. The
+	 *      higher this is set, the higher the worst-case staleness can be.
+	 *      Use WANObjectCache::TSE_NONE to disable this logic. Default: WANObjectCache::TSE_NONE.
 	 * @return mixed Value to use for the key
 	 */
 	final public function getWithSetCallback(
-		$key, $callback, $ttl, array $checkKeys = array(), array $opts = array()
+		$key, $ttl, $callback, array $opts = array(), $oldOpts = array()
 	) {
+		// Back-compat with 1.26: Swap $ttl and $callback
+		if ( is_int( $callback ) ) {
+			$ttl = $callback;
+			$callback = func_get_arg( 1 );
+		}
+		// Back-compat with 1.26: $checkKeys as separate parameter
+		if ( is_array( $opts ) && isset( $opts[0] ) ) {
+			$checkKeys = $opts;
+			$opts = $oldOpts;
+		} else {
+			$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : array();
+		}
+
 		$lowTTL = isset( $opts['lowTTL'] ) ? $opts['lowTTL'] : min( self::LOW_TTL, $ttl );
 		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
 
