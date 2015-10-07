@@ -2781,15 +2781,14 @@ class WikiPage implements Page, IDBAccessObject {
 		$dbw->begin( __METHOD__ );
 
 		if ( $id == 0 ) {
+			$this->loadPageData( self::READ_LATEST );
+			$id = $this->getID();
 			// T98706: lock the page from various other updates but avoid using
 			// WikiPage::READ_LOCKING as that will carry over the FOR UPDATE to
 			// the revisions queries (which also JOIN on user). Only lock the page
 			// row and CAS check on page_latest to see if the trx snapshot matches.
-			$latest = $this->lock();
-
-			$this->loadPageData( WikiPage::READ_LATEST );
-			$id = $this->getID();
-			if ( $id == 0 || $this->getLatest() != $latest ) {
+			$lockedLatest = $this->lock();
+			if ( $id == 0 || $this->getLatest() != $lockedLatest ) {
 				// Page not there or trx snapshot is stale
 				$dbw->rollback( __METHOD__ );
 				$status->error( 'cannotdelete', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
@@ -2904,15 +2903,18 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Lock the page row for this title and return page_latest (or 0)
+	 * Lock the page row for this title+id and return page_latest (or 0)
 	 *
-	 * @return integer
+	 * @return integer Returns 0 if no row was found with this title+id
 	 */
 	protected function lock() {
 		return (int)wfGetDB( DB_MASTER )->selectField(
 			'page',
 			'page_latest',
 			array(
+				'page_id' => $this->getId(),
+				// Typically page_id is enough, but some code might try to do
+				// updates assuming the title is the same, so verify that
 				'page_namespace' => $this->getTitle()->getNamespace(),
 				'page_title' => $this->getTitle()->getDBkey()
 			),
