@@ -343,7 +343,7 @@
 		process( tasks, QUnit.start );
 	} );
 
-	QUnit.test( 'Links', 11, function ( assert ) {
+	QUnit.test( 'Links', 12, function ( assert ) {
 		var testCases,
 			expectedDisambiguationsText,
 			expectedMultipleBars,
@@ -376,11 +376,23 @@
 
 		// Pipe trick is not supported currently, but should not parse as text either.
 		mw.messages.set( 'pipe-trick', '[[Tampa, Florida|]]' );
+		mw.messages.set( 'reverse-pipe-trick', '[[|Tampa, Florida]]' );
+		mw.messages.set( 'empty-link', '[[]]' );
 		this.suppressWarnings();
 		assert.equal(
 			formatParse( 'pipe-trick' ),
 			'[[Tampa, Florida|]]',
 			'Pipe trick should not be parsed.'
+		);
+		assert.equal(
+			formatParse( 'reverse-pipe-trick' ),
+			'[[|Tampa, Florida]]',
+			'Reverse pipe trick should not be parsed.'
+		);
+		assert.equal(
+			formatParse( 'empty-link' ),
+			'[[]]',
+			'Empty link should not be parsed.'
 		);
 		this.restoreWarnings();
 
@@ -399,6 +411,13 @@
 			formatParse( 'special-characters' ),
 			expectedSpecialCharacters,
 			'Special characters'
+		);
+
+		mw.messages.set( 'leading-colon', '[[:File:Foo.jpg]]' );
+		assert.htmlEqual(
+			formatParse( 'leading-colon' ),
+			'<a title="File:Foo.jpg" href="/wiki/File:Foo.jpg">File:Foo.jpg</a>',
+			'Leading colon in links is stripped'
 		);
 
 		assert.htmlEqual(
