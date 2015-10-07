@@ -914,7 +914,7 @@ class LocalFile extends File {
 	 * Delete cached transformed files for the current version only.
 	 * @param array $options
 	 */
-	function purgeThumbnails( $options = array() ) {
+	public function purgeThumbnails( $options = array() ) {
 		global $wgUseSquid;
 
 		// Delete thumbnails
@@ -1428,8 +1428,9 @@ class LocalFile extends File {
 				$user
 			);
 
-			$dbw->begin( __METHOD__ ); // XXX; doEdit() uses a transaction
 			// Now that the page exists, make an RC entry.
+			// This relies on the resetArticleID() call in WikiPage::insertOn(),
+			// which is triggered on $descTitle by doEditContent() above.
 			$logEntry->publish( $logId );
 			if ( isset( $status->value['revision'] ) ) {
 				$dbw->update( 'logging',
@@ -1438,26 +1439,29 @@ class LocalFile extends File {
 					__METHOD__
 				);
 			}
-			$dbw->commit( __METHOD__ ); // commit before anything bad can happen
 		}
 
-		if ( $reupload ) {
-			# Delete old thumbnails
-			$this->purgeThumbnails();
+		# Do some cache purges after final commit so that:
+		# a) Changes are more likely to be seen post-purge
+		# b) They won't cause rollback of the log publish/update above
+		$that = $this;
+		$dbw->onTransactionIdle( function () use ( $that, $reupload, $descTitle ) {
+			# Run hook for other updates (typically more cache purging)
+			Hooks::run( 'FileUpload', array( $that, $reupload, $descTitle->exists() ) );
 
-			# Remove the old file from the squid cache
-			SquidUpdate::purge( array( $this->getURL() ) );
-		}
-
-		# Hooks, hooks, the magic of hooks...
-		Hooks::run( 'FileUpload', array( $this, $reupload, $descTitle->exists() ) );
+			if ( $reupload ) {
+				# Delete old thumbnails
+				$that->purgeThumbnails();
+				# Remove the old file from the squid cache
+				SquidUpdate::purge( array( $that->getURL() ) );
+			} else {
+				# Update backlink pages pointing to this title if created
+				LinksUpdate::queueRecursiveJobsForTable( $that->getTitle(), 'imagelinks' );
+			}
+		} );
 
 		# Invalidate cache for all pages using this file
-		$update = new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' );
-		$update->doUpdate();
-		if ( !$reupload ) {
-			LinksUpdate::queueRecursiveJobsForTable( $this->getTitle(), 'imagelinks' );
-		}
+		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' ) );
 
 		return true;
 	}
