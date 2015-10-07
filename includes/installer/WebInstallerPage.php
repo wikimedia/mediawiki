@@ -669,8 +669,6 @@ class WebInstallerUpgrade extends WebInstallerPage {
 	}
 
 	public function showDoneMessage() {
-		global $wgScriptExtension;
-
 		$this->startForm();
 		$regenerate = !$this->getVar( '_ExistingDBSettings' );
 		if ( $regenerate ) {
@@ -683,8 +681,7 @@ class WebInstallerUpgrade extends WebInstallerPage {
 			$this->parent->getInfoBox(
 				wfMessage( $msg,
 					$this->getVar( 'wgServer' ) .
-					$this->getVar( 'wgScriptPath' ) . '/index' .
-					$wgScriptExtension
+					$this->getVar( 'wgScriptPath' ) . '/index.php'
 				)->plain(), 'tick-32.png'
 			)
 		);

@@ -67,7 +67,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgUrlProtocols' => wfUrlProtocols(),
 			'wgArticlePath' => $conf->get( 'ArticlePath' ),
 			'wgScriptPath' => $conf->get( 'ScriptPath' ),
-			'wgScriptExtension' => $conf->get( 'ScriptExtension' ),
+			'wgScriptExtension' => '.php',
 			'wgScript' => wfScript(),
 			'wgSearchType' => $conf->get( 'SearchType' ),
 			'wgVariantArticlePath' => $conf->get( 'VariantArticlePath' ),

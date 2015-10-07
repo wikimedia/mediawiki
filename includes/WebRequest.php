@@ -965,8 +965,7 @@ class WebRequest {
 	 * @return bool
 	 */
 	public function checkUrlExtension( $extWhitelist = array() ) {
-		global $wgScriptExtension;
-		$extWhitelist[] = ltrim( $wgScriptExtension, '.' );
+		$extWhitelist[] = 'php';
 		if ( IEUrlExtension::areServerVarsBad( $_SERVER, $extWhitelist ) ) {
 			if ( !$this->wasPosted() ) {
 				$newUrl = IEUrlExtension::fixUrlForIE6(

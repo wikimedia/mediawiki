@@ -136,8 +136,7 @@
 		mw.config.set( {
 			wgScript: '/w/i.php', // customized wgScript for bug 39103
 			wgLoadScript: '/w/l.php', // customized wgLoadScript for bug 39103
-			wgScriptPath: '/w',
-			wgScriptExtension: '.php'
+			wgScriptPath: '/w'
 		} );
 
 		assert.equal( mw.util.wikiScript(), mw.config.get( 'wgScript' ),
