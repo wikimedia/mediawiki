@@ -30,10 +30,6 @@
 			target = undefined;
 		}
 
-		// Resolve defaults etc. - if target isn't passed in, we use
-		// the default.
-		this.target = target || this.target;
-
 		// Now we have several different options.
 		// If the local wiki is the target, then we can skip a bunch of steps
 		// and just return an mw.Api object, because we don't need any special
@@ -41,7 +37,11 @@
 		// However, if the target is a remote wiki, we must check the API
 		// to confirm that the target is one that this site is configured to
 		// support.
-		if ( this.target !== 'local' ) {
+		if ( this.target === 'local' ) {
+			// We'll ignore the CORS and centralauth stuff if the target is
+			// the local wiki.
+			this.apiPromise = $.Deferred().resolve( new mw.Api( apiconfig ) );
+		} else {
 			api = new mw.Api();
 			this.apiPromise = api.get( {
 				action: 'query',
@@ -54,24 +54,19 @@
 				for ( i in repos ) {
 					repo = repos[ i ];
 
-					if ( repo.name === upload.target ) {
-						// This is our target repo.
-						if ( !repo.canUpload ) {
-							// But it's not configured correctly.
-							return $.Deferred().reject( 'repo-cannot-upload' );
-						}
-
+					// Skip repos that are not our target, or if they
+					// are the target, cannot be uploaded to.
+					if ( repo.name === upload.target && repo.canUpload ) {
 						return new mw.ForeignApi(
 							repo.scriptDirUrl + '/api.php',
 							apiconfig
 						);
 					}
 				}
+
+				// No luck finding the correct foreign repo, default to local.
+				return $.Deferred().resolve( new mw.Api( apiconfig ) );
 			} );
-		} else {
-			// We'll ignore the CORS and centralauth stuff if the target is
-			// the local wiki.
-			this.apiPromise = $.Deferred().resolve( new mw.Api( apiconfig ) );
 		}
 
 		// Build the upload object without an API - this class overrides the
@@ -83,14 +78,16 @@
 	OO.inheritClass( ForeignUpload, mw.Upload );
 
 	/**
-	 * @property targetHost
+	 * @property {string} target
 	 * Used to specify the target repository of the upload.
 	 *
 	 * If you set this to something that isn't 'local', you must be sure to
 	 * add that target to $wgForeignUploadTargets in LocalSettings, and the
 	 * repository must be set up to use CORS and CentralAuth.
+	 *
+	 * Most wikis use "shared" to refer to Wikimedia Commons, we assume that
+	 * in this class and in the messages linked to it.
 	 */
-	ForeignUpload.prototype.target = 'local';
 
 	/**
 	 * Override from mw.Upload to make sure the API info is found and allowed
