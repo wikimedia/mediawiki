@@ -116,7 +116,6 @@ return array(
 			'mediawiki.api.upload',
 			'mediawiki.api.watch',
 			'mediawiki.ForeignApi.core',
-			'mediawiki.ForeignUpload',
 			'mediawiki.ForeignStructuredUpload',
 			'mediawiki.jqueryMsg',
 			'mediawiki.messagePoster',
