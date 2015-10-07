@@ -31,7 +31,7 @@
 
 		if ( location.host !== this.targetHost ) {
 			api = new mw.ForeignApi(
-				location.protocol + '//' + this.targetHost + '/w/api.php',
+				location.protocol + '//' + this.targetHost + mw.util.wikiScript( 'api' ),
 				apiconfig
 			);
 		} else {

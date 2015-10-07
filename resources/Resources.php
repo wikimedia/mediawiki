@@ -1189,6 +1189,7 @@ return array(
 		'dependencies' => array(
 			'mediawiki.ForeignApi',
 			'mediawiki.Upload',
+			'mediawiki.util',
 			'oojs',
 		),
 	),
