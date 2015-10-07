@@ -33,6 +33,9 @@ production.
 * $wgCdnMaxageLagged was added, which limits the CDN cache TTL
   when any load balancer uses a DB that is lagged beyond the 'max lag'
   setting in the relevant section of $wgLBFactoryConf.
+* ApiPageSet::setRedirectMergePolicy() was added. This allows generator
+  modules to define how generator data for a redirect source gets merged
+  into the redirect destination.
 
 ==== External libraries ====
 
