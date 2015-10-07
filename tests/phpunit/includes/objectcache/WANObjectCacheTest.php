@@ -102,24 +102,24 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 		$wasSet = 0;
 		$v = $cache->getWithSetCallback( $key, $func, 30, array(), array( 'lockTSE' => 5 ) );
-		$this->assertEquals( $v, $value );
+		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated" );
 
 		$curTTL = null;
-		$v = $cache->get( $key, $curTTL );
+		$cache->get( $key, $curTTL );
 		$this->assertLessThanOrEqual( 20, $curTTL, 'Current TTL between 19-20 (overriden)' );
 		$this->assertGreaterThanOrEqual( 19, $curTTL, 'Current TTL between 19-20 (overriden)' );
 
 		$wasSet = 0;
 		$v = $cache->getWithSetCallback( $key, $func, 30, array(), array( 'lockTSE' => 5 ) );
-		$this->assertEquals( $v, $value );
+		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 0, $wasSet, "Value not regenerated" );
 
 		$priorTime = microtime( true );
 		usleep( 1 );
 		$wasSet = 0;
 		$v = $cache->getWithSetCallback( $key, $func, 30, array( $cKey1, $cKey2 ) );
-		$this->assertEquals( $v, $value );
+		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated due to check keys" );
 		$t1 = $cache->getCheckKeyTime( $cKey1 );
 		$this->assertGreaterThanOrEqual( $priorTime, $t1, 'Check keys generated on miss' );
@@ -129,7 +129,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$priorTime = microtime( true );
 		$wasSet = 0;
 		$v = $cache->getWithSetCallback( $key, $func, 30, array( $cKey1, $cKey2 ) );
-		$this->assertEquals( $v, $value );
+		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated due to still-recent check keys" );
 		$t1 = $cache->getCheckKeyTime( $cKey1 );
 		$this->assertLessThanOrEqual( $priorTime, $t1, 'Check keys did not change again' );
@@ -138,8 +138,17 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 		$curTTL = null;
 		$v = $cache->get( $key, $curTTL, array( $cKey1, $cKey2 ) );
-		$this->assertEquals( $v, $value );
+		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertLessThanOrEqual( 0, $curTTL, "Value has current TTL < 0 due to check keys" );
+
+		$wasSet = 0;
+		$key = wfRandomString();
+		$v = $cache->getWithSetCallback( $key, $func, 30, array(), array( 'procTTL' => 5 ) );
+		$this->assertEquals( $value, $v, "Value returned" );
+		$cache->delete( $key );
+		$v = $cache->getWithSetCallback( $key, $func, 30, array(), array( 'procTTL' => 5 ) );
+		$this->assertEquals( $value, $v, "Value still returned after deleted" );
+		$this->assertEquals( 1, $wasSet, "Value process cached while deleted" );
 	}
 
 	/**
