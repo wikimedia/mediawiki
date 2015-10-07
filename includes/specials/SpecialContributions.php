@@ -76,6 +76,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->opts['target'] = $target;
 		$this->opts['topOnly'] = $request->getBool( 'topOnly' );
 		$this->opts['newOnly'] = $request->getBool( 'newOnly' );
+		$this->opts['hideMinor'] = $request->getBool( 'hideMinor' );
 
 		$nt = Title::makeTitleSafe( NS_USER, $target );
 		if ( !$nt ) {
@@ -145,6 +146,9 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $this->opts['newOnly'] ) {
 			$feedParams['newonly'] = true;
 		}
+		if ( $this->opts['hideMinor'] ) {
+			$feedParams['hideminor'] = true;
+		}
 		if ( $this->opts['deletedOnly'] ) {
 			$feedParams['deletedonly'] = true;
 		}
@@ -191,6 +195,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				'deletedOnly' => $this->opts['deletedOnly'],
 				'topOnly' => $this->opts['topOnly'],
 				'newOnly' => $this->opts['newOnly'],
+				'hideMinor' => $this->opts['hideMinor'],
 				'nsInvert' => $this->opts['nsInvert'],
 				'associated' => $this->opts['associated'],
 			) );
@@ -444,6 +449,10 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['newOnly'] = false;
 		}
 
+		if ( !isset( $this->opts['hideMinor'] ) ) {
+			$this->opts['hideMinor'] = false;
+		}
+
 		$form = Html::openElement(
 			'form',
 			array(
@@ -464,6 +473,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			'month',
 			'topOnly',
 			'newOnly',
+			'hideMinor',
 			'associated'
 		);
 
@@ -606,10 +616,21 @@ class SpecialContributions extends IncludableSpecialPage {
 				array( 'class' => 'mw-input' )
 			)
 		);
+		$checkLabelHideMinor = Html::rawElement(
+			'span',
+			array( 'style' => 'white-space: nowrap' ),
+			Xml::checkLabel(
+				$this->msg( 'sp-contributions-hideminor' )->text(),
+				'hideMinor',
+				'mw-hide-minor-edits',
+				$this->opts['hideMinor'],
+				array( 'class' => 'mw-input' )
+			)
+		);
 		$extraOptions = Html::rawElement(
 			'td',
 			array( 'colspan' => 2 ),
-			$deletedOnlyCheck . $checkLabelTopOnly . $checkLabelNewOnly
+			$deletedOnlyCheck . $checkLabelTopOnly . $checkLabelNewOnly . $checkLabelHideMinor
 		);
 
 		$dateSelectionAndSubmit = Xml::tags( 'td', array( 'colspan' => 2 ),
@@ -691,6 +712,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$this->deletedOnly = !empty( $options['deletedOnly'] );
 		$this->topOnly = !empty( $options['topOnly'] );
 		$this->newOnly = !empty( $options['newOnly'] );
+		$this->hideMinor = !empty( $options['hideMinor'] );
 
 		$year = isset( $options['year'] ) ? $options['year'] : false;
 		$month = isset( $options['month'] ) ? $options['month'] : false;
@@ -871,6 +893,10 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		if ( $this->newOnly ) {
 			$condition[] = 'rev_parent_id = 0';
+		}
+
+		if ( $this->hideMinor ) {
+			$condition[] = 'rev_minor_edit = 0';
 		}
 
 		return array( $tables, $index, $condition, $join_conds );
