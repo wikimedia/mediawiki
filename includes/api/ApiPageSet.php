@@ -79,6 +79,8 @@ class ApiPageSet extends ApiBase {
 	private $mRequestedPageFields = array();
 	/** @var int */
 	private $mDefaultNamespace = NS_MAIN;
+	/** @var callable|null */
+	private $mMergePolicy;
 
 	/**
 	 * Add all items from $values into the result
@@ -1197,6 +1199,10 @@ class ApiPageSet extends ApiBase {
 		$this->mGeneratorData[$ns][$dbkey] = $data;
 	}
 
+	public function setMergePolicy( $callable ) {
+		$this->mMergePolicy = $callable;
+	}
+
 	/**
 	 * Populate the generator data for all titles in the result
 	 *
@@ -1270,6 +1276,27 @@ class ApiPageSet extends ApiBase {
 				}
 			}
 		}
+
+		// Merge data generated about redirect titles into the redirect destination
+		if ( $this->mResolveRedirects && $this->mMergePolicy ) {
+			foreach ( $this->mResolvedRedirectTitles as $titleFrom ) {
+				$dest = $titleFrom;
+				while ( $dest->isRedirect() && isset( $this->mRedirectTitles[$dest->getPrefixedText()] ) ) {
+					$dest = $this->mRedirectTitles[$dest->getPrefixedText()];
+				}
+				$fromNs = $titleFrom->getNamespace();
+				$fromDBkey = $titleFrom->getDBkey();
+				$finalPageId = $dest->getArticleID();
+				if ( isset( $data[$finalPageId] ) && isset( $this->mGeneratorData[$fromNs][$fromDBkey] ) ) {
+					$data[$finalPageId] = call_user_func(
+						$this->mMergePolicy,
+						$data[$finalPageId],
+						$this->mGeneratorData[$fromNs][$fromDBkey]
+					);
+				}
+			}
+		}
+
 		return true;
 	}
 
