@@ -294,7 +294,7 @@ class MWDebug {
 	 * @param int|bool $level Error level to use; set to false to not trigger an error
 	 */
 	private static function sendMessage( $msg, $caller, $group, $level ) {
-		$msg .= ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ']';
+		$msg .= ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ' on ' . wfWikiId() . ']';
 
 		if ( $level !== false ) {
 			trigger_error( $msg, $level );
