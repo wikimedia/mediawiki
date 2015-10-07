@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.10
+ * OOjs UI v0.12.11
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-09-29T21:20:38Z
+ * Date: 2015-10-07T20:48:15Z
  */
 ( function ( OO ) {
 
@@ -9832,8 +9832,8 @@ OO.ui.BookletLayout.prototype.focus = function ( itemIndex ) {
 		return;
 	}
 	// Only change the focus if is not already in the current page
-	if ( !page.$element.find( ':focus' ).length ) {
-		OO.ui.findFocusable( page.$element ).focus();
+	if ( !OO.ui.contains( page.$element[ 0 ], this.getElementDocument().activeElement, true ) ) {
+		page.focus();
 	}
 };
 
@@ -10338,9 +10338,9 @@ OO.ui.IndexLayout.prototype.focus = function ( itemIndex ) {
 	if ( !card ) {
 		return;
 	}
-	// Only change the focus if is not already in the current card
-	if ( !card.$element.find( ':focus' ).length ) {
-		OO.ui.findFocusable( card.$element ).focus();
+	// Only change the focus if is not already in the current page
+	if ( !OO.ui.contains( card.$element[ 0 ], this.getElementDocument().activeElement, true ) ) {
+		card.focus();
 	}
 };
 
@@ -10663,6 +10663,17 @@ OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.PanelLayout, OO.ui.Layout );
+
+/* Methods */
+
+/**
+ * Focus the panel layout
+ *
+ * The default implementation just focuses the first focusable element in the panel
+ */
+OO.ui.PanelLayout.prototype.focus = function () {
+	OO.ui.findFocusable( this.$element ).focus();
+};
 
 /**
  * CardLayouts are used within {@link OO.ui.IndexLayout index layouts} to create cards that users can select and display
@@ -15530,6 +15541,18 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	}
 	if ( config.autocomplete === false ) {
 		this.$input.attr( 'autocomplete', 'off' );
+		// Turning off autocompletion also disables "form caching" when the user navigates to a
+		// different page and then clicks "Back". Re-enable it when leaving. Borrowed from jQuery UI.
+		$( window ).on( {
+			beforeunload: function () {
+				this.$input.removeAttr( 'autocomplete' );
+			}.bind( this ),
+			pageshow: function () {
+				// Browsers don't seem to actually fire this event on "Back", they instead just reload the
+				// whole page... it shouldn't hurt, though.
+				this.$input.attr( 'autocomplete', 'off' );
+			}.bind( this )
+		} );
 	}
 	if ( this.multiline && config.rows ) {
 		this.$input.attr( 'rows', config.rows );

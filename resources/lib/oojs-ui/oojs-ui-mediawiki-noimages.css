@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.10
+ * OOjs UI v0.12.11
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-09-29T21:20:47Z
+ * Date: 2015-10-07T20:48:23Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -1616,7 +1616,7 @@
 	border: 1px solid #aaaaaa;
 	border-radius: 0.2em;
 	background-color: #ffffff;
-	box-shadow: 0 0.15em 0 0 rgba(204, 204, 204, 0.5);
+	box-shadow: 0 0.15em 0 0 rgba(0, 0, 0, 0.15);
 }
 .oo-ui-popupWidget-anchored .oo-ui-popupWidget-popup {
 	margin-top: 9px;
@@ -1788,6 +1788,9 @@
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
 	border: 1px solid #cccccc;
+	border-radius: 0.1em;
+	padding-left: 1em;
+	vertical-align: middle;
 }
 .oo-ui-dropdownInputWidget.oo-ui-widget-enabled select:hover,
 .oo-ui-dropdownInputWidget.oo-ui-widget-enabled select:focus {
@@ -2061,7 +2064,7 @@
 	margin-top: -1px;
 	border: 1px solid #aaaaaa;
 	border-radius: 0 0 0.2em 0.2em;
-	box-shadow: 0 0.15em 0 0 rgba(204, 204, 204, 0.5);
+	box-shadow: 0 0.15em 0 0 rgba(0, 0, 0, 0.15);
 }
 .oo-ui-menuSelectWidget input {
 	position: absolute;
@@ -2138,7 +2141,8 @@
 	margin-right: 0;
 }
 .oo-ui-dropdownWidget-handle {
-	padding: 0.5em 0;
+	padding: 0.3em 0;
+	height: 2.275em;
 	border: 1px solid #cccccc;
 	border-radius: 0.1em;
 }
