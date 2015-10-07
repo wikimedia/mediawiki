@@ -122,8 +122,7 @@
 			} else if ( str === 'load' ) {
 				return mw.config.get( 'wgLoadScript' );
 			} else {
-				return mw.config.get( 'wgScriptPath' ) + '/' + str +
-					mw.config.get( 'wgScriptExtension' );
+				return mw.config.get( 'wgScriptPath' ) + '/' + str + '.php';
 			}
 		},
 

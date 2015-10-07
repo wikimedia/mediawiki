@@ -168,7 +168,7 @@ $wgUsePathInfo = ( strpos( PHP_SAPI, 'cgi' ) === false ) &&
  * This variable was provided to support those providers.
  *
  * @since 1.11
- * @deprecated since 1.25; support for '.php5' is being phased out of MediaWiki
+ * @deprecated since 1.25; support for '.php5' has been phased out of MediaWiki
  *  proper. Backward-compatibility can be maintained by configuring your web
  *  server to rewrite URLs. See RELEASE-NOTES for details.
  */
@@ -197,14 +197,14 @@ $wgScriptExtension = '.php';
 /**
  * The URL path to index.php.
  *
- * Defaults to "{$wgScriptPath}/index{$wgScriptExtension}".
+ * Defaults to "{$wgScriptPath}/index.php".
  */
 $wgScript = false;
 
 /**
  * The URL path to load.php.
  *
- * Defaults to "{$wgScriptPath}/load{$wgScriptExtension}".
+ * Defaults to "{$wgScriptPath}/load.php".
  * @since 1.17
  */
 $wgLoadScript = false;
@@ -744,7 +744,7 @@ $wgUploadMissingFileUrl = false;
  *
  * @par Example:
  * @code
- *   $wgThumbnailScriptPath = "{$wgScriptPath}/thumb{$wgScriptExtension}";
+ *   $wgThumbnailScriptPath = "{$wgScriptPath}/thumb.php";
  * @endcode
  */
 $wgThumbnailScriptPath = false;

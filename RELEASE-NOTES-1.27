@@ -17,6 +17,9 @@ production.
 * $wgDebugDumpSqlLength was removed (deprecated in 1.24).
 * $wgDebugDBTransactions was removed (deprecated in 1.20).
 * $wgRemoteUploadTarget (added in 1.26) removed, replaced by $wgForeignUploadTargets
+* $wgScriptExtension (and support for '.php5' entry points) was removed. See the
+  deprecation notice in the release notes for version 1.25 for advice on how to
+  preserve support for '.php5' entry points via URL rewriting.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as

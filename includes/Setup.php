@@ -48,10 +48,10 @@ if ( !isset( $wgVersion ) ) {
 $ps_default = Profiler::instance()->scopedProfileIn( $fname . '-defaults' );
 
 if ( $wgScript === false ) {
-	$wgScript = "$wgScriptPath/index$wgScriptExtension";
+	$wgScript = "$wgScriptPath/index.php";
 }
 if ( $wgLoadScript === false ) {
-	$wgLoadScript = "$wgScriptPath/load$wgScriptExtension";
+	$wgLoadScript = "$wgScriptPath/load.php";
 }
 
 if ( $wgArticlePath === false ) {
@@ -186,7 +186,7 @@ if ( !$wgLocalFileRepo ) {
 		'name' => 'local',
 		'directory' => $wgUploadDirectory,
 		'scriptDirUrl' => $wgScriptPath,
-		'scriptExtension' => $wgScriptExtension,
+		'scriptExtension' => '.php',
 		'url' => $wgUploadBaseUrl ? $wgUploadBaseUrl . $wgUploadPath : $wgUploadPath,
 		'hashLevels' => $wgHashedUploadDirectory ? 2 : 0,
 		'thumbScriptUrl' => $wgThumbnailScriptPath,
@@ -502,10 +502,6 @@ MWExceptionHandler::installHandler();
 require_once "$IP/includes/compat/normal/UtfNormalUtil.php";
 
 $ps_default2 = Profiler::instance()->scopedProfileIn( $fname . '-defaults2' );
-
-if ( $wgScriptExtension !== '.php' || defined( 'MW_ENTRY_PHP5' ) ) {
-	wfWarn( 'Script extensions other than ".php" are deprecated.' );
-}
 
 if ( $wgCanonicalServer === false ) {
 	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );
