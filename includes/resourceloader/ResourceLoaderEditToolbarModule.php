@@ -29,7 +29,7 @@ class ResourceLoaderEditToolbarModule extends ResourceLoaderFileModule {
 	/**
 	 * Get language-specific LESS variables for this module.
 	 *
-	 * @since 1.26
+	 * @since 1.27
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
