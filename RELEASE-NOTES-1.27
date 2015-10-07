@@ -41,6 +41,9 @@ production.
 === Action API changes in 1.27 ===
 * Added list=allrevisions.
 * generator=recentchanges now has the option to generate revids.
+* ApiPageSet::setRedirectMergePolicy() was added. This allows generator
+  modules to define how generator data for a redirect source gets merged
+  into the redirect destination.
 
 === Action API internal changes in 1.27 ===
 
