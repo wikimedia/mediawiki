@@ -1430,7 +1430,7 @@
 	"foreign-structured-upload-form-label-infoform-categories": "Категории",
 	"foreign-structured-upload-form-label-infoform-date": "Дата",
 	"foreign-structured-upload-form-label-own-work-message-default": "Я понимаю, что загружаю этот файл в общий репозиторий. Я подтверждаю, что я делаю это в соответствии с пользовательским соглашением и лицензионной политикой.",
-	"foreign-structured-upload-form-label-not-own-work-message-wikimediacommons": "Если вы не являетесь владельцем авторских прав на этот файл, или вы хотите выпустить его под другой лицензией, рассмотрите возможность использования [https://commons.wikimedia.org/wiki/Special:UploadWizard Мастера загрузки на Викисладе].",
+	"foreign-structured-upload-form-label-not-own-work-message-shared": "Если вы не являетесь владельцем авторских прав на этот файл, или вы хотите выпустить его под другой лицензией, рассмотрите возможность использования [https://commons.wikimedia.org/wiki/Special:UploadWizard Мастера загрузки на Викисладе].",
 	"backend-fail-stream": "Не удалось транслировать файл $1.",
 	"backend-fail-backup": "Невозможно сделать резервную копию файла $1.",
 	"backend-fail-notexists": "Файл $1 не существует.",

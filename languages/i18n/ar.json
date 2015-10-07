@@ -54,7 +54,8 @@
 			"Yahya Sakhnini",
 			"Mervat Salman",
 			"Shbib Al-Subaie",
-			"Matma Rex"
+			"Matma Rex",
+			"Haytham morsy"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -2345,7 +2346,7 @@
 	"tooltip-ca-nstab-main": "رؤية صفحة المحتوى",
 	"tooltip-ca-nstab-user": "اعرض صفحة المستخدم",
 	"tooltip-ca-nstab-media": "رؤية صفحة الميديا",
-	"tooltip-ca-nstab-special": "هذه صفحة خاصة، لا تستطيع أن تعدل الصفحة نفسها",
+	"tooltip-ca-nstab-special": "هذه صفحة خاصة، ولا يمكن تعديلها",
 	"tooltip-ca-nstab-project": "رؤية صفحة المشروع",
 	"tooltip-ca-nstab-image": "رؤية صفحة الملف",
 	"tooltip-ca-nstab-mediawiki": "رؤية رسالة النظام",

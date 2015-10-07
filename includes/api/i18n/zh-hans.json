@@ -992,6 +992,7 @@
 	"apihelp-query+tokens-param-type": "要请求的令牌类型。",
 	"apihelp-query+tokens-example-simple": "检索一个csrf令牌（默认）。",
 	"apihelp-query+tokens-example-types": "检索一个监视令牌和一个巡查令牌。",
+	"apihelp-query+transcludedin-description": "查找所有嵌入指定页面的页面。",
 	"apihelp-query+transcludedin-param-prop": "要获取的属性：",
 	"apihelp-query+transcludedin-paramvalue-prop-pageid": "每个页面的页面ID。",
 	"apihelp-query+transcludedin-paramvalue-prop-title": "每个页面的标题。",
