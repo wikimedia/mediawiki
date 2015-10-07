@@ -2088,15 +2088,15 @@ class Article implements Page {
 	/**
 	 * @param string $reason
 	 * @param bool $suppress
-	 * @param int $id
-	 * @param bool $commit
+	 * @param int $u1 Unused
+	 * @param bool $u2 Unused
 	 * @param string $error
 	 * @return bool
 	 */
-	public function doDeleteArticle( $reason, $suppress = false, $id = 0,
-		$commit = true, &$error = ''
+	public function doDeleteArticle(
+		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = ''
 	) {
-		return $this->mPage->doDeleteArticle( $reason, $suppress, $id, $commit, $error );
+		return $this->mPage->doDeleteArticle( $reason, $suppress, $u1, $u2, $error );
 	}
 
 	/**
