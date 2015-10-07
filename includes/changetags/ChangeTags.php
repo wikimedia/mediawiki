@@ -1101,7 +1101,8 @@ class ChangeTags {
 			},
 			array(
 				'checkKeys' => array( wfMemcKey( 'active-tags' ) ),
-				'lockTSE' => INF
+				'lockTSE' => INF,
+				'pcTTL' => 30
 			)
 		);
 	}
@@ -1146,7 +1147,8 @@ class ChangeTags {
 			},
 			array(
 				'checkKeys' => array( wfMemcKey( 'valid-tags-db' ) ),
-				'lockTSE' => INF
+				'lockTSE' => INF,
+				'pcTTL' => 30
 			)
 		);
 	}
@@ -1173,7 +1175,8 @@ class ChangeTags {
 			},
 			array(
 				'checkKeys' => array( wfMemcKey( 'valid-tags-hook' ) ),
-				'lockTSE' => INF
+				'lockTSE' => INF,
+				'pcTTL' => 30
 			)
 		);
 	}
@@ -1214,15 +1217,8 @@ class ChangeTags {
 	 * @return array Array of string => int
 	 */
 	public static function tagUsageStatistics() {
-		static $cachedStats = null;
-
-		// Process cache to avoid I/O and repeated regens during holdoff
-		if ( $cachedStats !== null ) {
-			return $cachedStats;
-		}
-
 		$fname = __METHOD__;
-		$cachedStats = ObjectCache::getMainWANInstance()->getWithSetCallback(
+		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'change-tag-statistics' ),
 			300,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
@@ -1247,11 +1243,10 @@ class ChangeTags {
 			},
 			array(
 				'checkKeys' => array( wfMemcKey( 'change-tag-statistics' ) ),
-				'lockTSE' => INF
+				'lockTSE' => INF,
+				'pcTTL' => 30
 			)
 		);
-
-		return $cachedStats;
 	}
 
 	/**
