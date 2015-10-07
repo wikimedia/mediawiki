@@ -177,7 +177,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::doBatchPush()
-	 * @param array $jobs
+	 * @param IJobSpecification[] $jobs
 	 * @param int $flags
 	 * @throws DBError|Exception
 	 * @return void
@@ -198,7 +198,7 @@ class JobQueueDB extends JobQueue {
 	 * This function should *not* be called outside of JobQueueDB
 	 *
 	 * @param IDatabase $dbw
-	 * @param array $jobs
+	 * @param IJobSpecification[] $jobs
 	 * @param int $flags
 	 * @param string $method
 	 * @throws DBError
@@ -221,7 +221,7 @@ class JobQueueDB extends JobQueue {
 		}
 
 		if ( $flags & self::QOS_ATOMIC ) {
-			$dbw->begin( $method ); // wrap all the job additions in one transaction
+			$dbw->startAtomic( $method ); // wrap all the job additions in one transaction
 		}
 		try {
 			// Strip out any duplicate jobs that are already in the queue...
@@ -256,7 +256,7 @@ class JobQueueDB extends JobQueue {
 			throw $e;
 		}
 		if ( $flags & self::QOS_ATOMIC ) {
-			$dbw->commit( $method );
+			$dbw->endAtomic( $method );
 		}
 
 		return;
