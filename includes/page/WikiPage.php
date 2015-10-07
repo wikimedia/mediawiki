@@ -1236,7 +1236,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   Giving 0 indicates the new page flag should be set on.
 	 * @param bool $lastRevIsRedirect If given, will optimize adding and
 	 *   removing rows in redirect table.
-	 * @return bool True on success, false on failure
+	 * @return bool Success; false if the page row was missing or page_latest changed
 	 */
 	public function updateRevisionOn( $dbw, $revision, $lastRevision = null,
 		$lastRevIsRedirect = null
@@ -1795,30 +1795,34 @@ class WikiPage implements Page, IDBAccessObject {
 			$changed = !$content->equals( $old_content );
 
 			if ( $changed ) {
-				$dbw->begin( __METHOD__ );
-
 				$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
 				$status->merge( $prepStatus );
 
 				if ( !$status->isOK() ) {
-					$dbw->rollback( __METHOD__ );
-
 					return $status;
 				}
-				$revisionId = $revision->insertOn( $dbw );
 
-				// Update page.
-				// We check for conflicts by comparing $oldid with the current latest revision ID.
-				$ok = $this->updateRevisionOn( $dbw, $revision, $oldid, $oldIsRedirect );
-
-				if ( !$ok ) {
-					// Belated edit conflict! Run away!!
+				$dbw->begin( __METHOD__ );
+				// Get the latest page_latest value while locking it.
+				// Do a CAS style check to see if it's the same as when this method
+				// started. If it changed then bail out before touching the DB.
+				$latestNow = $this->lock();
+				if ( $latestNow != $oldid ) {
+					// Page updated or deleted in the mean time
 					$status->fatal( 'edit-conflict' );
 
-					$dbw->rollback( __METHOD__ );
-
 					return $status;
 				}
+
+				// At this point we are now comitted to returning an OK
+				// status unless some DB query error or other exception comes up.
+				// This way callers don't have to call rollback() if $status is bad
+				// unless they actually try to catch exceptions (which is rare).
+
+				$revisionId = $revision->insertOn( $dbw );
+
+				// Update page_latest and friends to reflect the new revision
+				$this->updateRevisionOn( $dbw, $revision, null, $oldIsRedirect );
 
 				Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId, $user ) );
 
@@ -1866,29 +1870,26 @@ class WikiPage implements Page, IDBAccessObject {
 			// Create new article
 			$status->value['new'] = true;
 
-			$dbw->begin( __METHOD__ );
-
 			$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
 			$status->merge( $prepStatus );
-
 			if ( !$status->isOK() ) {
-				$dbw->rollback( __METHOD__ );
-
 				return $status;
 			}
 
-			$status->merge( $prepStatus );
+			$dbw->begin( __METHOD__ );
 
-			// Add the page record; stake our claim on this title!
-			// This will return false if the article already exists
+			// Add the page record unless one already exists for the title
 			$newid = $this->insertOn( $dbw );
-
 			if ( $newid === false ) {
-				$dbw->rollback( __METHOD__ );
 				$status->fatal( 'edit-already-exists' );
 
-				return $status;
+				return $status; // nothing done
 			}
+
+			// At this point we are now comitted to returning an OK
+			// status unless some DB query error or other exception comes up.
+			// This way callers don't have to call rollback() if $status is bad
+			// unless they actually try to catch exceptions (which is rare).
 
 			// Save the revision text...
 			$revision = new Revision( array(
