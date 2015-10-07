@@ -8,7 +8,7 @@
 	 *     var uploadDialog = new mw.Upload.Dialog( {
 	 *         bookletClass: mw.ForeignStructuredUpload.BookletLayout,
 	 *         booklet: {
-	 *             targetHost: 'localhost:8080'
+	 *             targetHost: 'localhost:8080/w/api.php'
 	 *         }
 	 *     } );
 	 *     var windowManager = new OO.ui.WindowManager();

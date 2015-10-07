@@ -13,7 +13,7 @@
 	 * instead.
 	 *
 	 * @constructor
-	 * @param {string} [targetHost="commons.wikimedia.org"] Used to set up the target
+	 * @param {string} [targetHost="commons.wikimedia.org/w/api.php"] Used to set up the target
 	 *     wiki. If not remote, this class behaves identically to mw.Upload (unless further subclassed)
 	 * @param {Object} [apiconfig] Passed to the constructor of mw.ForeignApi or mw.Api, as needed.
 	 */
@@ -31,7 +31,7 @@
 
 		if ( location.host !== this.targetHost ) {
 			api = new mw.ForeignApi(
-				location.protocol + '//' + this.targetHost + '/w/api.php',
+				location.protocol + '//' + this.targetHost,
 				apiconfig
 			);
 		} else {
@@ -52,7 +52,7 @@
 	 * but be sure it has the correct templates and is CORS and CentralAuth
 	 * ready.
 	 */
-	ForeignUpload.prototype.targetHost = 'commons.wikimedia.org';
+	ForeignUpload.prototype.targetHost = 'commons.wikimedia.org/w/api.php';
 
 	mw.ForeignUpload = ForeignUpload;
 }( mediaWiki, OO ) );
