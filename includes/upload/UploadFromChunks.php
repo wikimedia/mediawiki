@@ -237,7 +237,6 @@ class UploadFromChunks extends UploadFromFile {
 		$dbw = $this->repo->getMasterDb();
 		// Use a quick transaction since we will upload the full temp file into shared
 		// storage, which takes time for large files. We don't want to hold locks then.
-		$dbw->begin( __METHOD__ );
 		$dbw->update(
 			'uploadstash',
 			array(
@@ -248,7 +247,7 @@ class UploadFromChunks extends UploadFromFile {
 			array( 'us_key' => $this->mFileKey ),
 			__METHOD__
 		);
-		$dbw->commit( __METHOD__ );
+		$dbw->commit( __METHOD__, 'flush' );
 	}
 
 	/**
