@@ -2567,13 +2567,20 @@ $wgVaryOnXFP = false;
 $wgInternalServer = false;
 
 /**
- * Cache timeout for the squid, will be sent as s-maxage (without ESI) or
- * Surrogate-Control (with ESI). Without ESI, you should strip out s-maxage in
- * the Squid config.
+ * Cache TTL for the CDN sent as s-maxage (without ESI) or
+ * Surrogate-Control (with ESI). Without ESI, you should strip
+ * out s-maxage in the Squid config.
  *
-* 18000 seconds = 5 hours, more cache hits with 2678400 = 31 days.
+ * 18000 seconds = 5 hours, more cache hits with 2678400 = 31 days.
  */
 $wgSquidMaxage = 18000;
+
+/**
+ * Cache timeout for the CDN when DB slave lag is high
+ * @see $wgSquidMaxage
+ * @since 1.27
+ */
+$wgCdnMaxageLagged = 30;
 
 /**
  * Default maximum age for raw CSS/JS accesses

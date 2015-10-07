@@ -29,6 +29,9 @@ production.
 * Added a new hook, 'UserMailerSplitTo', to control which users have to be
   emailed separately (ie. there is a single address in the To: field) so
   user-specific changes to the email can be applied safely.
+* $wgCdnMaxageLagged was added, which limits the CDN cache TTL
+  when any load balancer uses a DB that is lagged beyond the 'max lag'
+  setting in the relevant section of $wgLBFactoryConf.
 
 ==== External libraries ====
 
