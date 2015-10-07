@@ -1970,7 +1970,6 @@ return array(
 			'resources/src/mediawiki.widgets/mw.widgets.TitleSearchWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.ComplexTitleInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleOptionWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.UserInputWidget.js',
 		),
 		'skinStyles' => array(
 			'default' => array(
@@ -2041,6 +2040,14 @@ return array(
 			'mediawiki.api',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
+	),
+	'mediawiki.widgets.UserInputWidget' => array(
+		'scripts' => array(
+			'resources/src/mediawiki.widgets/mw.widgets.UserInputWidget.js',
+		),
+		'dependencies' => array(
+			'oojs-ui',
+		),
 	),
 
 	/* es5-shim */
