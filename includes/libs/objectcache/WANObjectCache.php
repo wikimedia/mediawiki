@@ -82,7 +82,7 @@ class WANObjectCache {
 	/** Seconds to keep lock keys around */
 	const LOCK_TTL = 5;
 	/** Default remaining TTL at which to consider pre-emptive regeneration */
-	const LOW_TTL = 10;
+	const LOW_TTL = 30;
 	/** Default time-since-expiry on a miss that makes a key "hot" */
 	const LOCK_TSE = 1;
 
