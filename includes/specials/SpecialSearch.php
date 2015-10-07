@@ -396,7 +396,7 @@ class SpecialSearch extends SpecialPage {
 
 		$out->addHtml( "</div>" );
 
-		Hooks::run( 'SpecialSearchResultsAppend', array( $this, $out ) );
+		Hooks::run( 'SpecialSearchResultsAppend', array( $this, $out, $term ) );
 
 	}
 

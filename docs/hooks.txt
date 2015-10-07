@@ -2907,6 +2907,7 @@ $term: Search term specified by the user
 on the search results page.  Useful for including a feedback link.
 $specialSearch: SpecialSearch object ($this)
 $output: $wgOut
+$term: Search term specified by the user
 
 'SpecialSearchSetupEngine': Allows passing custom data to search engine.
 $search: SpecialSearch special page object
