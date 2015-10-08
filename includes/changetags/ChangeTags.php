@@ -1090,6 +1090,7 @@ class ChangeTags {
 	public static function listExtensionActivatedTags() {
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'active-tags' ),
+			300,
 			function ( $oldValue, &$ttl, array &$setOpts ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
 
@@ -1098,9 +1099,10 @@ class ChangeTags {
 				Hooks::run( 'ChangeTagsListActive', array( &$extensionActive ) );
 				return $extensionActive;
 			},
-			300,
-			array( wfMemcKey( 'active-tags' ) ),
-			array( 'lockTSE' => INF )
+			array(
+				'checkKeys' => array( wfMemcKey( 'active-tags' ) ),
+				'lockTSE' => INF
+			)
 		);
 	}
 
@@ -1132,6 +1134,7 @@ class ChangeTags {
 
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'valid-tags-db' ),
+			300,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
 				$dbr = wfGetDB( DB_SLAVE );
 
@@ -1141,9 +1144,10 @@ class ChangeTags {
 
 				return array_filter( array_unique( $tags ) );
 			},
-			300,
-			array( wfMemcKey( 'valid-tags-db' ) ),
-			array( 'lockTSE' => INF )
+			array(
+				'checkKeys' => array( wfMemcKey( 'valid-tags-db' ) ),
+				'lockTSE' => INF
+			)
 		);
 	}
 
@@ -1159,6 +1163,7 @@ class ChangeTags {
 	public static function listExtensionDefinedTags() {
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'valid-tags-hook' ),
+			300,
 			function ( $oldValue, &$ttl, array &$setOpts ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
 
@@ -1166,9 +1171,10 @@ class ChangeTags {
 				Hooks::run( 'ListDefinedTags', array( &$tags ) );
 				return array_filter( array_unique( $tags ) );
 			},
-			300,
-			array( wfMemcKey( 'valid-tags-hook' ) ),
-			array( 'lockTSE' => INF )
+			array(
+				'checkKeys' => array( wfMemcKey( 'valid-tags-hook' ) ),
+				'lockTSE' => INF
+			)
 		);
 	}
 
@@ -1218,6 +1224,7 @@ class ChangeTags {
 		$fname = __METHOD__;
 		$cachedStats = ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'change-tag-statistics' ),
+			300,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
 				$dbr = wfGetDB( DB_SLAVE, 'vslow' );
 
@@ -1238,9 +1245,10 @@ class ChangeTags {
 
 				return $out;
 			},
-			300,
-			array( wfMemcKey( 'change-tag-statistics' ) ),
-			array( 'lockTSE' => INF )
+			array(
+				'checkKeys' => array( wfMemcKey( 'change-tag-statistics' ) ),
+				'lockTSE' => INF
+			)
 		);
 
 		return $cachedStats;

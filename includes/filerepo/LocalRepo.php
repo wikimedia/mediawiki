@@ -202,6 +202,7 @@ class LocalRepo extends FileRepo {
 		$that = $this;
 		$redirDbKey = ObjectCache::getMainWANInstance()->getWithSetCallback(
 			$memcKey,
+			$expiry,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $that, $title ) {
 				$dbr = $that->getSlaveDB(); // possibly remote DB
 
@@ -225,8 +226,7 @@ class LocalRepo extends FileRepo {
 				return ( $row && $row->rd_namespace == NS_FILE )
 					? Title::makeTitle( $row->rd_namespace, $row->rd_title )->getDBkey()
 					: ''; // negative cache
-			},
-			$expiry
+			}
 		);
 
 		// @note: also checks " " for b/c

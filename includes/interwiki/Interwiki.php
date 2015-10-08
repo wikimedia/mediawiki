@@ -218,6 +218,7 @@ class Interwiki {
 
 		$iwData = ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'interwiki', $prefix ),
+			$wgInterwikiExpiry,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $prefix ) {
 				$dbr = wfGetDB( DB_SLAVE );
 
@@ -231,8 +232,7 @@ class Interwiki {
 				);
 
 				return $row ? (array)$row : '!NONEXISTENT';
-			},
-			$wgInterwikiExpiry
+			}
 		);
 
 		if ( is_array( $iwData ) ) {
