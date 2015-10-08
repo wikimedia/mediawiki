@@ -278,6 +278,12 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				), 'p' );
 			}
 		} else {
+			$resultPageSet->setRedirectMergePolicy( function ( $current, $new ) {
+				if ( !isset( $current['index'] ) || $new['index'] < $current['index'] ) {
+					$current['index'] = $new['index'];
+				}
+				return $current;
+			} );
 			$resultPageSet->populateFromTitles( $titles );
 			$offset = $params['offset'] + 1;
 			foreach ( $titles as $index => $title ) {
