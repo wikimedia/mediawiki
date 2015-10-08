@@ -158,6 +158,8 @@ class LBFactoryMulti extends LBFactory {
 	 * @throws MWException
 	 */
 	public function __construct( array $conf ) {
+		parent::__construct( $conf );
+
 		$this->chronProt = new ChronologyProtector;
 		$this->conf = $conf;
 		$required = array( 'sectionsByDB', 'sectionLoads', 'serverTemplate' );

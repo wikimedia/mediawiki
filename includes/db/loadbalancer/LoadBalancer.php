@@ -63,6 +63,8 @@ class LoadBalancer {
 
 	/** @var integer Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
+	/** @var integer Default 'max lag' when unspecified */
+	const MAX_LAG = 30;
 
 	/**
 	 * @param array $params Array with keys:
@@ -155,7 +157,7 @@ class LoadBalancer {
 	 * @param float $maxLag Restrict the maximum allowed lag to this many seconds
 	 * @return bool|int|string
 	 */
-	private function getRandomNonLagged( array $loads, $wiki = false, $maxLag = INF ) {
+	private function getRandomNonLagged( array $loads, $wiki = false, $maxLag = self::MAX_LAG ) {
 		$lags = $this->getLagTimes( $wiki );
 
 		# Unset excessively lagged servers

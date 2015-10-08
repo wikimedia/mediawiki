@@ -30,6 +30,13 @@ abstract class LBFactory {
 	private static $instance;
 
 	/**
+	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
+	 * @param array $conf
+	 */
+	public function __construct( array $conf ) {
+	}
+
+	/**
 	 * Disables all access to the load balancer, will cause all database access
 	 * to throw a DBAccessError
 	 */
@@ -104,12 +111,6 @@ abstract class LBFactory {
 		self::destroyInstance();
 		self::$instance = $instance;
 	}
-
-	/**
-	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
-	 * @param array $conf
-	 */
-	abstract public function __construct( array $conf );
 
 	/**
 	 * Create a new load balancer object. The resulting object will be untracked,
