@@ -158,6 +158,7 @@
 			focusout: this.onBlur.bind( this )
 		} );
 		this.calendar.$element.on( {
+			click: this.onCalendarClick.bind( this ),
 			keypress: this.onCalendarKeyPress.bind( this )
 		} );
 		this.$handle.on( {
@@ -497,6 +498,24 @@
 	 */
 	mw.widgets.DateInputWidget.prototype.onCalendarKeyPress = function ( e ) {
 		if ( !this.isDisabled() && e.which === OO.ui.Keys.ENTER ) {
+			this.deactivate();
+			this.$handle.focus();
+			return false;
+		}
+	};
+
+	/**
+	 * Handle calendar click events.
+	 *
+	 * @private
+	 * @param {jQuery.Event} e Mouse click event
+	 */
+	mw.widgets.DateInputWidget.prototype.onCalendarClick = function ( e ) {
+		if (
+			!this.isDisabled() &&
+			e.which === 1 &&
+			$( e.target ).hasClass( 'mw-widget-calendarWidget-day' )
+		) {
 			this.deactivate();
 			this.$handle.focus();
 			return false;
