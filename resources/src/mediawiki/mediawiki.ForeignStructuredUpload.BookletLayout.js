@@ -27,6 +27,7 @@
 		mw.ForeignStructuredUpload.BookletLayout.parent.call( this, config );
 
 		this.target = config.target;
+		this.setupFormResetListeners();
 	};
 
 	/* Setup */
@@ -211,4 +212,18 @@
 		this.upload.addCategories( this.categoriesWidget.getItemsData() );
 		return this.upload.getText();
 	};
+
+	mw.ForeignStructuredUpload.BookletLayout.prototype.setupFormResetListeners = function () {
+		var layout = this;
+
+		this.on( 'fileUploaded', function () {
+			layout.ownWorkCheckbox.setSelected( false );
+		} );
+
+		this.on( 'fileSaved', function () {
+			layout.categoriesWidget.setData( [] ); // This isn't going to work
+			layout.dateWidget.setValue( '' );
+		} );
+	};
+
 }( jQuery, mediaWiki ) );
