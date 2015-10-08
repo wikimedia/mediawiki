@@ -3730,6 +3730,7 @@
 	"api-error-stashwrongowner": "The file you were attempting to access in the stash does not belong to you.",
 	"api-error-stashnosuchfilekey": "The file key you were attempting to access in the stash does not exist.",
 	"api-error-timeout": "The server did not respond within the expected time.",
+	"api-error-titleblacklist-custom-imagename": "The filename is very common or uninformative. Please use a file name that describes the content of the image or media file you're uploading and is sufficiently distinctive that no-one else is likely to pick the same name by accident.",
 	"api-error-unclassified": "An unknown error occurred.",
 	"api-error-unknown-code": "Unknown error: \"$1\".",
 	"api-error-unknown-error": "Internal error: Something went wrong when trying to upload your file.",
