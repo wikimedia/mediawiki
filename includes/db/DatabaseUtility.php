@@ -221,6 +221,9 @@ class FakeResultWrapper extends ResultWrapper {
 	/** @var array|stdClass|bool */
 	protected $currentRow = null;
 
+	/**
+	 * @param array $array
+	 */
 	function __construct( $array ) {
 		$this->result = $array;
 	}

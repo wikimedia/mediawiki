@@ -440,7 +440,7 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @since 1.17
 	 *
-	 * @param mixed $params,... Parameters as strings, or a single argument that is
+	 * @param mixed ... Parameters as strings, or a single argument that is
 	 * an array of strings.
 	 *
 	 * @return Message $this
