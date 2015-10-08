@@ -109,7 +109,7 @@ abstract class LBFactory {
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
 	 * @param array $conf
 	 */
-	abstract public function __construct( array $conf );
+	public function __construct( array $conf );
 
 	/**
 	 * Create a new load balancer object. The resulting object will be untracked,
