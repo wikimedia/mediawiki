@@ -36,6 +36,8 @@ class LBFactorySimple extends LBFactory {
 	private $loadMonitorClass;
 
 	public function __construct( array $conf ) {
+		parent::__construct( $conf );
+
 		$this->chronProt = new ChronologyProtector;
 		$this->loadMonitorClass = isset( $conf['loadMonitorClass'] )
 			? $conf['loadMonitorClass']
