@@ -512,7 +512,7 @@
 	"passwordreset-emailsent-capture": "Ein e-post om attendestilling av passord - vist under - er vorten send",
 	"passwordreset-emailerror-capture": "Ein e-post om attendestilling av passord vart oppretta, og er vist nedanfor; men det lukkast ikkje å senda han til {{GENDER:$2|brukaren}}: $1",
 	"changeemail": "↓Endre e-postadresse",
-	"changeemail-text": "↓Fyll ut dette skjemaet for å endra di e-postadresse. Du må oppgje passordet ditt for å stadfesta endringa.",
+	"changeemail-header": "↓Endre kontoen si e-postadresse",
 	"changeemail-no-info": "↓Du må vera pålogga for å få tilgang direkte til denne sida.",
 	"changeemail-oldemail": "↓Noverande e-postadresse:",
 	"changeemail-newemail": "Ny e-postadresse:",

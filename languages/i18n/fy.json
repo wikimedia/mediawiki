@@ -449,6 +449,7 @@
 	"passwordreset-emailtitle": "Akkountdetails op {{SITENAME}}",
 	"passwordreset-emailelement": "Brûkersnamme: \n$1\n\nTydlik wachtwurd: \n$2",
 	"changeemail": "Feroarje e-mailadres",
+	"changeemail-header": "Feroarje akkount e-mailadres",
 	"changeemail-newemail": "Nij e-mailadres:",
 	"changeemail-none": "(gjin)",
 	"changeemail-password": "Jo wachtwurd foar {{SITENAME}}:",

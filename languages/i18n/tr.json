@@ -600,7 +600,7 @@
 	"passwordreset-emailsent-capture": "Aşağıda gözüktüğü gibi bir parola sıfırlama e-postası gönderildi.",
 	"passwordreset-emailerror-capture": "Aşağıda gözüktüğü gibi bir parola sıfırlama e-postası oluşturuldu ancak {{GENDER:$2|kullanıcıya}} gönderme işlemi başarısız oldu: $1",
 	"changeemail": "E-posta adresini değiştir",
-	"changeemail-text": "E-posta adresinizi değiştirmek için bu formu doldurun. Değişikliği onaylamak için parolanızı girmeniz gerekecektir.",
+	"changeemail-header": "Hesabın e-posta adresini değiştirin",
 	"changeemail-no-info": "Bu sayfaya doğrudan erişmek için oturum açmanız gereklidir.",
 	"changeemail-oldemail": "Mevcut E-posta adresi:",
 	"changeemail-newemail": "Yeni E-posta adresi:",

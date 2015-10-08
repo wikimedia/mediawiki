@@ -497,7 +497,7 @@
 	"passwordreset-emailsent-capture": "Layang èlèktronik kanggo mbalèkaké tembung sandhi wis dikirim, bisa didelok ngisor iki.",
 	"passwordreset-emailerror-capture": "Layang èlèktronik pangèling tembung sandhi wis digawe, yaiku sing ditampilaké nèng ngisor iki, nanging ora kasil dikirim ing {{GENDER:$2|panganggo}}: $1",
 	"changeemail": "Ganti alamat layang èlèktronik",
-	"changeemail-text": "Rampungaké pormulir iki kanggo ngganti alamat layang èlèktronik Sampéyan. Sampéyan bakal butuh nglebokaké tembung sandhi Sampéyan kanggo pepesthèn owahan kuwi.",
+	"changeemail-header": "Ganti alamat layang èlèktronik akun",
 	"changeemail-no-info": "Sampéyan kudu mlebu log kanggo ngaksès kaca iki langsung.",
 	"changeemail-oldemail": "Alamat layang èlèktronik saiki:",
 	"changeemail-newemail": "Alamat layang èlèktronik anyar:",

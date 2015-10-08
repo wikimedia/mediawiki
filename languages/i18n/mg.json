@@ -519,7 +519,7 @@
 	"passwordreset-emailsent-capture": "Lasa ilay mailaka famerenana tenimiafina, izay aseho eo ambany.",
 	"passwordreset-emailerror-capture": "Nosoratana ilay mailaka famerenana tenimiafina, izay aseho eo ambany, fa tsy tafalefa tany amin'ilay mpikambana ilay izy : $1{{GENDER:$2}}",
 	"changeemail": "Hanova ny adiresy imailaka",
-	"changeemail-text": "Fenoy ity pejy fenoina ity mba hanova ny adiresy imailakao. Ilainao atsofoka ny tenimiafinao mba hampihatra ilay fanovana.",
+	"changeemail-header": "Hanova ny adiresy imailak'ilay kaonty",
 	"changeemail-no-info": "Mila tafiditra ianao vao avaka mijery ity pejy ity.",
 	"changeemail-oldemail": "Adiresy imailaka ankehitriny :",
 	"changeemail-newemail": "Adiresy imailaka vaovao :",

@@ -511,7 +511,7 @@
 	"passwordreset-emailsent-capture": "Naipadala na ang isang e-liham na paalala, na ipinapakita sa ibaba.",
 	"passwordreset-emailerror-capture": "Nalikha na ang isang e-liham na paalala, na ipinapakita sa ibaba, subalit nabigo ang pagpapadala sa tagagamit: $1",
 	"changeemail": "Baguhin ang direksiyong e-liham",
-	"changeemail-text": "Kumpletuhin ang form na ito upang mabago ang email address. Kakailanganin mong ipasok ang iyong password upang tiyakin ang pagbabagong ito.",
+	"changeemail-header": "Baguhin ang email address ng account",
 	"changeemail-no-info": "Kailangan mong lumagda upang tuwirang mapuntahan ang pahinang ito.",
 	"changeemail-oldemail": "Kasalukuyang direksiyong e-liham:",
 	"changeemail-newemail": "Bagong direksiyong e-liham:",

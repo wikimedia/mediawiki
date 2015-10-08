@@ -501,7 +501,7 @@
 	"passwordreset-emailsent-capture": "E-mail za resetiranje lozinke/zaporke je poslan (prikazan dolje).",
 	"passwordreset-emailerror-capture": "E-mail za resetiranje lozinke/zaporke, prikazan dolje, je poslan, ali slanje {{GENDER:$2|korisniku|korisnici|korisniku}} nije uspjelo: $1",
 	"changeemail": "Promijeni e-mail adresu",
-	"changeemail-text": "Ispunite ovaj formular da biste promijenili svoju e-mail adresu. Morat ćete upisati svoju lozinku da potvrdite ovu promjenu.",
+	"changeemail-header": "Promijeni e-mail adresu korisničkog računa",
 	"changeemail-no-info": "Morate biti prijavljeni da biste izravno pristupili ovoj stranici.",
 	"changeemail-oldemail": "Trenutna e-mail adresa:",
 	"changeemail-newemail": "Nova e-mail adresa:",

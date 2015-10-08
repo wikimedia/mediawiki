@@ -422,7 +422,7 @@
 	"passwordreset-emailsent-capture": "Sabuting suril pangingat sudah dikirim, nangkaya ditampaiakan di bawah.",
 	"passwordreset-emailerror-capture": "Suril paugingat, nang ditampaikan di bawah, hudah dihasilakan, tagal gagal mangirimakannya ka pamakai: $1",
 	"changeemail": "Ganti alamat suril",
-	"changeemail-text": "Manuntungakan purmulir ngini hagan mangganti alamat suril Pian. Pian akan parlu mamasukakan katasunduk Pian hagan mayakinakan paubahan ngini.",
+	"changeemail-header": "Ganti akun alamat suril",
 	"changeemail-no-info": "Pian musti babuat log hagan babuat ka tungkaran ngini langsung.",
 	"changeemail-oldemail": "Alamat suril wayah ni:",
 	"changeemail-newemail": "Alamat suril puga:",

@@ -557,7 +557,7 @@
 	"passwordreset-emailsent-capture": "Az alább látható jelszó-visszaállító e-mail lett elküldve.",
 	"passwordreset-emailerror-capture": "A jelszó-visszaállító e-mail generálása megtörtént, mint az alább látszik, de elküldése a {{GENDER:$2|szerkesztőnek}} nem sikerült: $1",
 	"changeemail": "E-mail cím megváltoztatása",
-	"changeemail-text": "Az e-mail címed megváltoztatásához ki kell töltened az alábbi űrlapot. Megerősítésképpen meg kell adnod a jelszavadat is.",
+	"changeemail-header": "A fiókhoz tartozó e-mail cím megváltoztatása",
 	"changeemail-no-info": "A lap közvetlen eléréséhez be kell jelentkezned.",
 	"changeemail-oldemail": "Jelenlegi e-mail cím:",
 	"changeemail-newemail": "Új e-mail cím:",

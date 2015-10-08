@@ -587,7 +587,7 @@
 	"passwordreset-emailsent-capture": "Er is een e-mail voor het opnieuw instellen van een wachtwoord verzonden. Deze wordt hieronder weergegeven.",
 	"passwordreset-emailerror-capture": "Er is een e-mail voor het opnieuw instellen van een wachtwoord aangemaakt. Deze wordt hieronder weergegeven. Het verzenden naar de {{GENDER:$2|gebruiker}} is mislukt om de volgende reden: $1",
 	"changeemail": "E-mailadres wijzigen",
-	"changeemail-text": "Vul dit formulier in om uw e-mailadres te wijzigen. U moet uw wachtwoord invoeren om deze wijziging te bevestigen.",
+	"changeemail-header": "Het e-mailadres van mijn gebruiker wijzigen",
 	"changeemail-no-info": "U moet aangemeld zijn om rechtstreeks toegang te hebben tot deze pagina.",
 	"changeemail-oldemail": "Huidig e-mailadres:",
 	"changeemail-newemail": "Nieuw e-mailadres:",

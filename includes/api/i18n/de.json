@@ -402,6 +402,7 @@
 	"apihelp-query+logevents-description": "Ereignisse von den Logbüchern abrufen.",
 	"apihelp-query+pageswithprop-paramvalue-prop-ids": "Fügt die Seitenkennung hinzu.",
 	"apihelp-query+prefixsearch-param-search": "Such-Zeichenfolge.",
+	"apihelp-query+revisions+base-paramvalue-prop-content": "Text der Version.",
 	"apihelp-query+search-param-prop": "Eigenschaften zur Rückgabe:",
 	"apihelp-query+search-example-simple": "Nach <kbd>meaning</kbd> suchen.",
 	"apihelp-query+search-example-text": "Texte nach <kbd>meaning</kbd> durchsuchen.",

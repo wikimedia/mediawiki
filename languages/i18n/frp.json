@@ -484,7 +484,7 @@
 	"passwordreset-emailsent-capture": "Un mèssâjo de remês’a zérô de contresegno est étâ mandâ, qu’est montrâ ce-desot.",
 	"passwordreset-emailerror-capture": "Un mèssâjo de remês’a zérô de contresegno est étâ fêt, qu’est montrâ ce-desot, mas l’èxpèdicion a l’utilisat{{GENDER:$2|or|rice}} at pas reussi : $1",
 	"changeemail": "Changiér l’adrèce èlèctronica",
-	"changeemail-text": "Rempléd ceti formulèro por changiér voutron adrèce èlèctronica. Vos devréd buchiér voutron contresegno por confirmar cél changement.",
+	"changeemail-header": "Changiér l’adrèce èlèctronica du compto",
 	"changeemail-no-info": "Vos dête étre branchiê por arrevar tot drêt a cela pâge.",
 	"changeemail-oldemail": "Adrèce èlèctronica d’ora :",
 	"changeemail-newemail": "Novèl’adrèce èlèctronica :",

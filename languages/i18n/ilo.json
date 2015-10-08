@@ -524,7 +524,7 @@
 	"passwordreset-emailsent-capture": "Ti maysa nga esurat ti panangisaad manen ti kontrasenias ket naipatuloden, a naipakita dita baba.",
 	"passwordreset-emailerror-capture": "Naaramid ti maysa nga esurat a panangisaad manen ti kontrasenias, a napaikita dita baba, ngem ti panangitulod kenni {{GENDER:$2|agar-aramat}} ket napaay: $1",
 	"changeemail": "Sukatan ti esurat a pagtaengan",
-	"changeemail-text": "Kompletuen daytoy a porma ti panagsukat ti adres ti esuratmo. Masapulmonto nga ikabil ti kontraseniasmo tapno mapasingkedan daytoy a panagsukat. No kayatmo nga ikkaten ti pannakainaig iti ania man nga adres ti esurat manipud iti pakabilangam, ibati a blanko ti adres ti esurat intono ited ti porma.",
+	"changeemail-header": "Sukatan ti esurat a pagtaengan ti pakabilangan",
 	"changeemail-no-info": "Masapul a nakastrekka tapno dagus a makapan iti ditoy a panid.",
 	"changeemail-oldemail": "Agdama nga esurat a pagtaengan:",
 	"changeemail-newemail": "Baro nga esurat a pagtaengan:",

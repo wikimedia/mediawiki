@@ -256,6 +256,7 @@
 	"config-cc-not-chosen": "Sciglite quale licienza Creative Commons desiderate e cliccate ncopp' 'a \"prucede\".",
 	"config-advanced-settings": "Configurazione avanzata",
 	"config-cache-options": "Mpustaziune p' 'a cache d'oggette:",
+	"config-cache-help": "'O caching 'uggette s'ausa pe' puté migliurà 'a velocità 'e MediaWiki a fforza 'e ffà caching d' 'e date cchiù spisso ausàte.\nE Mezze a gruosse site se songo ncuraggiate a ll'appiccià chiste, e site piccerilli vedarranno migliuramente pure.",
 	"config-cache-none": "Nisciuna memorizzazione n cache (nisciuna funziunalità è luvata, ma 'a velocità se putesse ffà a meno dint' 'e wiki cchiù gruosse)",
 	"config-cache-accel": "Mettere 'n cache oggette PHP (APC, XCache o WinCache)",
 	"config-cache-memcached": "Aúsa 'o Memcached (richiede cchiù mpustaziune 'installazione e configuraziona)",

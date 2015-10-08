@@ -522,7 +522,7 @@
 	"passwordreset-emailsent-capture": "Ae passwaird reset wab-mail haas been sent, this is shawn ablow.",
 	"passwordreset-emailerror-capture": "Ae passwaird reset wab-mail wis generated, (this is shawn ablow), but sendin it til the {{GENDER:$2|uiser}} failed: $1",
 	"changeemail": "Chynge wab-mail address",
-	"changeemail-text": "Compleate this form tae chynge yer wab-mail address. Ye will need tae enter yer passwaird tae confirm this chynge.",
+	"changeemail-header": "Chynge accoont wab-mail address",
 	"changeemail-no-info": "Ye maun be loggit in tae access this page directly.",
 	"changeemail-oldemail": "Current wab-mail address:",
 	"changeemail-newemail": "New wab-mail address:",

@@ -510,7 +510,7 @@
 	"passwordreset-emailsent-capture": "Šennikulal yeetiyan bataga n' ka sanbandi war se, kaŋ ga cebandi ne ganda.",
 	"passwordreset-emailerror-capture": "Šennikufal yeetiyan bataga n' ka teendi, kaŋ ga cebandi ne ganda, amm'a mana hin ka sanbandi {{GENDER:$2|goykaw}} do: $1",
 	"changeemail": "Bataga aderesu barmay",
-	"changeemail-text": "Takaddaa woo toonandi ka war bataga aderesoo barmay. War ka hima ka war šennikufaloo dam ka barmayyanoo tabatandi.",
+	"changeemail-header": "Takaddaa woo toonandi ka war bataga aderesoo barmay. War ka hima ka war šennikufaloo dam ka barmayyanoo tabatandi.",
 	"changeemail-no-info": "War ga hima ka huru ka hin duu moɲoo woo.",
 	"changeemail-oldemail": "Sohõda bataga aderesu",
 	"changeemail-newemail": "Bataga aderesu taaga:",

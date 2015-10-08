@@ -518,7 +518,7 @@
 	"passwordreset-emailsent-capture": "Yew e-posteyê esterıtışê parolayo ke rışiya, no cêr mocniyayo.",
 	"passwordreset-emailerror-capture": "Yew e-posteyê esterıtışê parolayo ke rışiya, no cêr mocniyayo, ema {{GENDER:$2|karber}}i rê rıştış de mıwefeq nêbi: $1",
 	"changeemail": "E-posta adresa xo bıvurnê",
-	"changeemail-text": "Şıma ke qailê  e-postay xo bıvırnê, enê formi pırr kerê. Raştkerdışi rê ki şıma gani parolay xo bınusnê",
+	"changeemail-header": "E-posya adresta hesabdê xo bıvurnê",
 	"changeemail-no-info": "Şıma gani bıkewê pele ke derdest bıresê na pele.",
 	"changeemail-oldemail": "E-postay şımawa nıkaêne:",
 	"changeemail-newemail": "E-postay şımawa newiye:",

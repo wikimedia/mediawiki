@@ -558,7 +558,7 @@
 	"passwordreset-emailsent-capture": "Retpoŝto kun renovigita pasvorto estis sendita, kiu estas montrata malsupre.",
 	"passwordreset-emailerror-capture": "Retpoŝto kun renovigita pasvorto estis generita, montrata sube, sed sendado al la {{GENDER:$2|uzanto}} malsukcesis: $1",
 	"changeemail": "Ŝanĝi retpoŝtadreson",
-	"changeemail-text": "Plenumu ĉi tiu formularon por ŝanĝi vian retpoŝtadreson. Vi devas enigi vian pasvorton por konfirmi ĉi tiun ŝanĝon.",
+	"changeemail-header": "Ŝanĝi retpoŝtadreso por konto",
 	"changeemail-no-info": "Vi devas ensaluti por atingi ĉi tiun paĝon rekte.",
 	"changeemail-oldemail": "Aktuala retpoŝtadreso:",
 	"changeemail-newemail": "Nova retpoŝtadreso:",

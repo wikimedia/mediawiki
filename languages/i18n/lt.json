@@ -551,7 +551,7 @@
 	"passwordreset-emailsent-capture": "Slaptažodžio priminimo laiškas bus išsiųstas, toks koks parodytas.",
 	"passwordreset-emailerror-capture": "Priminimo elektroninis laiškas buvo sukurtas, toks, koks parodytas žemiau, bet pasiuntimas naudotojui buvo nesėkmingas: $1",
 	"changeemail": "Pakeisti ar pašalinti el. pašto adresą",
-	"changeemail-text": "Užpildykite šią formą, jei norite pakeisti savo el. pašto adresą. Jums reikės įvesti savo slaptažodį, siekiant patvirtinti šį pakeitimą.",
+	"changeemail-header": "Keisti paskyros el. pašto adresą",
 	"changeemail-no-info": "Jūs turite būti prisijungęs, kad pasiektumėte puslapį tiesiogiai.",
 	"changeemail-oldemail": "Dabartinis el. pašto adresas:",
 	"changeemail-newemail": "Naujas el. pašto adresas:",

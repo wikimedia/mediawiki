@@ -492,7 +492,7 @@
 	"passwordreset-emailsent-capture": "Tirawt n uwennez n awal n uɛaddi tetwaceggaɛ, ẓeṛ-itt ddaw agi.",
 	"passwordreset-emailerror-capture": "Tirawt n uwennez n awal n uɛaddi t-arewed, ẓeṛ-itt ddaw agi, lamaɛna aceggaɛ i {{GENDER:$2|umseqdac}} yefkad anezri : $1",
 	"changeemail": "Beddel tansa n e-mail",
-	"changeemail-text": "Ččur tiferkit agi iwakken ad beddeleḍ tansa e-mail inek/inem. Ilaq ad sekcemeḍ awal ik/im n uɛaddi iwakken ad sergegeḍ abeddel agi.",
+	"changeemail-header": "Beddel tansa n e-mail n umiḍan",
 	"changeemail-no-info": "Ilaq ad qqeneḍ iwakken ad ẓṛeḍ asebter agi.",
 	"changeemail-oldemail": "Tansa e-mail n tura :",
 	"changeemail-newemail": "Tansa e-mail tamaynut :",

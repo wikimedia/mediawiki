@@ -484,7 +484,7 @@
 	"passwordreset-emailsent-capture": "E-mail àtúntò ọ̀rọ̀ìpamọ́ kan ti jẹ́ fífiránṣẹ́. Òhun nìyí nísàlẹ̀.",
 	"passwordreset-emailerror-capture": "E-mail ìyípadà ọ̀rọ̀ìpamọ́ jẹ́ dídá, òhun lóhàn nísàlẹ̀ yìí, sùgbọ́n ìfiránṣẹ́ rẹ̀ sí {{GENDER:$2|oníṣe}} náà kùnà: $1",
 	"changeemail": "Ìyípadà àdírẹ̀sì E-mail",
-	"changeemail-text": "Ẹ parí fọ́ọ̀mù yìí láti ṣèyípadà àdírẹ̀sì e-mail yín. Ẹ gbọ́dọ̀ tẹ ọ̀rọ̀ìpamọ́ yín láti ṣèmúdájú ìyípadà yìí.",
+	"changeemail-header": "Ìyípadà àdírẹ̀sì e-mail àkópamọ́",
 	"changeemail-no-info": "Ẹ gbódọ̀ wọlé láti bósí ojúewé yìí tààrà.",
 	"changeemail-oldemail": "Àdírẹ̀sì E-mail ìsinsìnyí:",
 	"changeemail-newemail": "Àdírẹ̀sì E-mail tuntun:",

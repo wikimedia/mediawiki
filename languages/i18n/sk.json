@@ -539,7 +539,7 @@
 	"passwordreset-emailsent-capture": "Bol odoslaný email s novým heslom, ktorý je zobrazený nižšie.",
 	"passwordreset-emailerror-capture": "Bol odoslaný email s novým heslom, ktorý je zobrazený nižšie, ale nepodarilo sa ho odoslať {{GENDER:$2|používateľovi}}: $1",
 	"changeemail": "Zmeniť emailovú adresu",
-	"changeemail-text": "Vyplňte tento formulár na zmenu e-mailovej adresy. Zmenu budete musieť potvrdiť zadaním svojho hesla.",
+	"changeemail-header": "Zmena e-mailovej adresy pre účet",
 	"changeemail-no-info": "Na prístup k tejto stránke musíte byť prihlásený.",
 	"changeemail-oldemail": "Súčasná e-mailová adresa:",
 	"changeemail-newemail": "Nová e-mailová adresa:",

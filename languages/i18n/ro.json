@@ -545,7 +545,7 @@
 	"passwordreset-emailsent-capture": "Un mesaj de resetare a parolei a fost trimis, fiind afișat mai jos.",
 	"passwordreset-emailerror-capture": "Un mesaj de resetare a parolei a fost generat (fiind afișat mai jos), dar trimiterea sa către {{GENDER:$2|utilizator}} a eșuat: $1",
 	"changeemail": "Modificare sau înlăturare adresă de e-mail",
-	"changeemail-text": "Completați acest formular pentru a vă modifica adresa de e-mail. Va trebui să introduceți și parola pentru a confirma această modificare.",
+	"changeemail-header": "Modificare adresă de e-mail asociată contului",
 	"changeemail-no-info": "Trebuie să fiți autentificat pentru a accesa această pagină direct.",
 	"changeemail-oldemail": "Adresa de e-mail actuală:",
 	"changeemail-newemail": "Noua adresă de e-mail:",

@@ -526,7 +526,7 @@
 	"passwordreset-emailsent-capture": "Surélék pikeun nyetél ulang kecap sandi geus dikirim, sakumaha ditémbongkeun di handap.",
 	"passwordreset-emailerror-capture": "Surélék pikeun nyetél ulang kecap sandi geus dijieun, sakumaha ditémbongkeun di handap, tapi gagal ngirim ka {{GENDER:$2|pamaké}}: $1",
 	"changeemail": "Ganti alamat surélék",
-	"changeemail-text": "Lengkepan ieu formulir pikeun ngaganti alamat surélék. Anjeun bakal kudu ngasupkeun sandi pikeun ngonfirmasi ieu parobahan.",
+	"changeemail-header": "Ganti alamat surélék akun",
 	"changeemail-no-info": "Anjeun kudu asup log pikeun bisa muka ieu kaca sacara langsung.",
 	"changeemail-oldemail": "Alamat surélék ayeuna:",
 	"changeemail-newemail": "Alamat surélék anyar:",

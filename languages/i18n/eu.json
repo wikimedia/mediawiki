@@ -514,7 +514,7 @@
 	"passwordreset-emailsent": "Pasahitza berrezartzeko e-posta bidali da.",
 	"passwordreset-emailsent-capture": "Pasahitza berrezartzeko e-posta bat bidali dizugu, behean erakusten dena.",
 	"changeemail": "Aldatu e-mail helbidea",
-	"changeemail-text": "Bete ezazu formulario hau e-posta helbidea aldatzeko. Zure pasahitza sartu beharko duzu aldaketa hau baieztatzeko.",
+	"changeemail-header": "Aldatu kontuko e-posta helbidea",
 	"changeemail-no-info": "Orrialde honetara zuzenean sartzeko izena eman behar duzu.",
 	"changeemail-oldemail": "Egungo e-mail helbidea:",
 	"changeemail-newemail": "E-posta helbide berria:",

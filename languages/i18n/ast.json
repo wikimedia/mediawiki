@@ -528,7 +528,7 @@
 	"passwordreset-emailsent-capture": "Unvióse un corréu electrónicu pa reaniciar la contraseña, que s'amuesa abaxo.",
 	"passwordreset-emailerror-capture": "Unvióse un corréu electrónicu pa reaniciar la contraseña, que s'amuesa abaxo, pero falló l'unviu {{GENDER:$2|al usuariu|a la usuaria}}: $1",
 	"changeemail": "Camudar o desaniciar la dirección de corréu electrónicu",
-	"changeemail-text": "Rellena esti formulariu pa camudar la direición de corréu electrónicu. Tendrás d'escribir la contraseña pa confirmar esti cambéu. Si quies desaniciar l'asociación de cualquier direición de corréu electrónicu cola cuenta, dexa en blanco la direición de corréu electrónicu nueva cuando unvies el formulariu.",
+	"changeemail-header": "Camudar la direición de corréu electrónicu de la cuenta",
 	"changeemail-no-info": "Tien d'aniciar sesión pa entrar direutamente a esta páxina.",
 	"changeemail-oldemail": "Direición de corréu electrónicu actual:",
 	"changeemail-newemail": "Direición de corréu electrónicu nueva:",

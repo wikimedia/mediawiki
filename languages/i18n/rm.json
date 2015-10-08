@@ -459,7 +459,7 @@
 	"passwordreset-emailsent-capture": "In e-mail (sco mussà sutvart) per redefinir il pled-clav è vegnì tramess.",
 	"passwordreset-emailerror-capture": "In e-mail (sco mussà sutvart) per redefinir il pled-clav è vegnì generà ma n'ha betg pudì envià a l'{{GENDER:$2|utilisader|utilisadra}}: $1",
 	"changeemail": "Midar l'adressa dad e-mail",
-	"changeemail-text": "Cumpletescha quest formular per midar tia adressa dad e-mail. Ti stos endatar tes pled-clav per confermar questa midada.",
+	"changeemail-header": "Midar l'adressa dad e-mail dal conto",
 	"changeemail-no-info": "Ti stos t'annunziar per acceder directamain questa pagina.",
 	"changeemail-oldemail": "Adressa dad e-mail actuala:",
 	"changeemail-newemail": " Nova adressa dad e-mail",

@@ -538,7 +538,7 @@
 	"passwordreset-emailsent-capture": "Enviouse un correo electrónico de restablecemento do contrasinal, mostrado a continuación.",
 	"passwordreset-emailerror-capture": "Xerouse un correo electrónico de restablecemento do contrasinal, mostrado a continuación, pero o envío {{GENDER:$2|ao usuario|á usuaria}} fallou: $1",
 	"changeemail": "Cambiar ou eliminar o enderezo de correo electrónico",
-	"changeemail-text": "Encha este formulario para cambiar o seu enderezo de correo electrónico. Terá que escribir o seu contrasinal para confirmar este cambio. Se vostede quere eliminar a asociación da dirección de correo electrónico da súa conta, deixe en branco a nova dirección de correo electrónico cando envíe o formulario.",
+	"changeemail-header": "Cambiar o enderezo de correo electrónico da conta",
 	"changeemail-no-info": "Debe rexistrarse para acceder directamente a esta páxina.",
 	"changeemail-oldemail": "Enderezo de correo electrónico actual:",
 	"changeemail-newemail": "Novo enderezo de correo electrónico:",

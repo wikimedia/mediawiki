@@ -359,6 +359,7 @@
 	"passwordreset-emailtitle": "Pinta va pata dene {{SITENAME}}",
 	"passwordreset-emailelement": "Favesikyolt : \n$1\n\nUgaloraf remravlem : \n$2",
 	"changeemail": "Betara va e-mail mane",
+	"changeemail-header": "Betara va patafe e-mail mane",
 	"changeemail-oldemail": "Noelafe e-mail mane",
 	"changeemail-newemail": "Warzafe e-mail mane",
 	"changeemail-none": "(mek)",

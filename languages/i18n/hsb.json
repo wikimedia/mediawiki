@@ -520,7 +520,7 @@
 	"passwordreset-emailsent-capture": "E-mejl za anulowanje hesła je so pósłała, kotraž so deleka pokazuje.",
 	"passwordreset-emailerror-capture": "E-mejl za anulowanje hesła je so wutworiła, kotraž so deleka pokazuje, ale słanje {{GENDER:$2|wužiwarjej|wužiwarce}} je so njeporadźiło: $1",
 	"changeemail": "E-mejlowu adresu změnić",
-	"changeemail-text": "Wupjelń tutón formular, zo by swoju e-mejlowu adresu změnił. Dyrbiš swoje hesło zapodać, zo by tutu změnu wobkrućił.",
+	"changeemail-header": "Kontowu e-mejlowu adresu změnić",
 	"changeemail-no-info": "Dyrbiš so přizjewić, zo by direktny přistup na tutu stronu měł.",
 	"changeemail-oldemail": "Aktualna e-mejlowa adresa:",
 	"changeemail-newemail": "Nowa e-mejlowa adresa:",

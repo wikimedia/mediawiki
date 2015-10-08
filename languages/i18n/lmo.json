@@ -474,6 +474,7 @@
 	"passwordreset-emailsent": "Gh'è stat mandàt vià 'na e-mail de redefinisiù de la password.",
 	"passwordreset-emailsent-capture": "Gh'è stat mandàt vià chèsta e-mail de redefinisiù de la password:",
 	"changeemail": "Càmbia l'indirìs e-mail",
+	"changeemail-header": "Càmbia l'indirìs e-mail de l'ütènsa",
 	"changeemail-none": "(nisü)",
 	"changeemail-password": "La password sö {{SITENAME}}:",
 	"changeemail-submit": "Càmbia l'indirìs e-mail",

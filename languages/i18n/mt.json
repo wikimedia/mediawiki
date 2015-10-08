@@ -525,7 +525,7 @@
 	"passwordreset-emailsent-capture": "Intbagħtet ittra-e għall-ssettjar mill-ġdid tal-password u l-kontenut jidher hawn taħt.",
 	"passwordreset-emailerror-capture": "Ġiet ġenerata ittra-e ta' tfakkira, li l-kontenut tagħha jidher hawn taħt. Madanakollu, il-posta ma ntbagħtitx lill-utent: $1",
 	"changeemail": "Biddel l-indirizz elettroniku",
-	"changeemail-text": "Kompli din il-formola sabiex tbiddel l-indirizz elettroniku. Trid iddaħħal il-password biex tikkonferma din il-bidla.",
+	"changeemail-header": "Biddel l-indirizz elettroniku tal-kont",
 	"changeemail-no-info": "Trid tkun dħalt fil-kont tiegħek sabiex taċċessa direttament din il-paġna.",
 	"changeemail-oldemail": "Indirizz elettroniku attwali:",
 	"changeemail-newemail": "Indirizz elettroniku ġdid:",

@@ -494,7 +494,7 @@
 	"passwordreset-emailsent-capture": "E-brif posłony, kerego widać niżej.",
 	"passwordreset-emailerror-capture": "Ńy udoło śe posłać wjadomości lo {{GENDER:$2|używocza|używoczki}}: $1",
 	"changeemail": "Pomjyno ausdruka e-mail",
-	"changeemail-text": "Wypełnij formularz, podej nowy ausdruk a hasło.",
+	"changeemail-header": "Pomjyno ausduku e-mail",
 	"changeemail-no-info": "Muśisz być zalogowany, coby uzyskać bezpostrzedńi dostymp do tyj zajty.",
 	"changeemail-oldemail": "Uobecny ausdruk:",
 	"changeemail-newemail": "Nowy adresu e-brif",

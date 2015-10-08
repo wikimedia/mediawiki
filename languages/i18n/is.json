@@ -503,7 +503,7 @@
 	"passwordreset-emailsent-capture": "Tölvupóstur til að endursetja lykilorðið hefur verið sendur í tölvupósti, sem er sýndur hér fyrir neðan.",
 	"passwordreset-emailerror-capture": "Tölvupóstur til að endursetja lykilorðið var búinn til, sem er sýndur hér fyrir neðan, en ekki tókst að senda hana til {{GENDER:$2|notandans}}: $1",
 	"changeemail": "Breyting netfangs",
-	"changeemail-text": "Fylltu út þetta eyðublað til að breyta netfanginu þínu. Þú þarft að slá inn lykilorðið þitt til að staðfesta breytinguna.",
+	"changeemail-header": "Breyta skráðu netfangi",
 	"changeemail-no-info": "Þú verður að vera skráð(ur) inn til að hafa aðgang að þessari síðu.",
 	"changeemail-oldemail": "Núverandi netfang:",
 	"changeemail-newemail": "Nýtt netfang:",

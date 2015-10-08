@@ -472,6 +472,7 @@
 	"passwordreset-emailtitle": "Teuneurang nan ureueng ngui bak {{SITENAME}}",
 	"passwordreset-emailelement": "Nan ureuëng ngui: \n$1\n\nLageuëm rahsia sijamong: \n$2",
 	"changeemail": "Gantoe alamat surat-e",
+	"changeemail-header": "Gantoe alamat surat-e",
 	"changeemail-no-info": "Droeneuh suwah neutamöng mangat jeuet neu'eu laman nyoe",
 	"changeemail-oldemail": "Alamat surat-e jinoe:",
 	"changeemail-newemail": "Alamat surat-e barô:",

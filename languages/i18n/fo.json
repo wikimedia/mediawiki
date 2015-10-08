@@ -505,7 +505,7 @@
 	"passwordreset-emailsent-capture": "Ein teldupostur, har ið tú kanst nullstilla loyniorðið, er blivin sendur, sum víst niðanfyri.",
 	"passwordreset-emailerror-capture": "Ein teldupostur við nullstillaðum loyniorði var gjørdur, sum víst niðanfyri, men tað miseydnaðist at senda til {{GENDER:$2|brúkaran}}: $1",
 	"changeemail": "Broyt teldupost adressu",
-	"changeemail-text": "Útfyll henda formularin fyri at broyta tína t-post adressu. Tú mást skriva títt loyniorð fyri at vátta hesa broyting.",
+	"changeemail-header": "Broyt t-post adressuna hjá kontuni",
 	"changeemail-no-info": "Tú mást vera innritað/ur fyri at fáa beinleiðis atgongd til hesa síðu.",
 	"changeemail-oldemail": "Verandi t-post adressa:",
 	"changeemail-newemail": "Nýggj t-post adressa:",

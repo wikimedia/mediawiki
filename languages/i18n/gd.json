@@ -522,7 +522,7 @@
 	"passwordreset-emailsent-capture": "Chaidh post-d a chum ath-shuidheachadh an fhacail-fhaire a chur agus chì thu sin gu h-ìosal.",
 	"passwordreset-emailerror-capture": "Chaidh post-d a chum ath-shuidheachadh an fhacail-fhaire a ghintinn agus chì thu sin gu h-ìosal ach cha b' urrainn dhuinn a chur dhan chleachdaiche: $1",
 	"changeemail": "Atharraich am post-d",
-	"changeemail-text": "Lìon am foirm seo gus am post-d agad atharrachadh. Feumaidh tu am facal-faire agad a chur a-steach a-rithist gus a dhearbhadh.",
+	"changeemail-header": "Atharraich cunntas a' phuist-d",
 	"changeemail-no-info": "Feumaidh tu logadh a-steach mus dèan thu inntrigeadh dìreach dhan duilleag seo.",
 	"changeemail-oldemail": "An seòladh puist-d làithreach:",
 	"changeemail-newemail": "An seòladh puist-d ùr:",

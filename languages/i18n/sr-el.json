@@ -529,7 +529,7 @@
 	"passwordreset-emailsent-capture": "Poslat je podsetnik preko e-pošte (prikazan dole).",
 	"passwordreset-emailerror-capture": "E-poruka za resetovanje lozinke, prikazana ispod je poslata, ali slanje {{GENDER:$2|korisniku|korisnici}} nije uspelo: $1",
 	"changeemail": "Promeni ili ukloni e-adresu",
-	"changeemail-text": "Popunite ovaj obrazac da biste promenili svoju e-adresu. Moraćete da unesete lozinku da potvrdite izmenu.",
+	"changeemail-header": "Promenite e-adresu naloga",
 	"changeemail-no-info": "Morate biti prijavljeni da biste pristupili ovoj stranici.",
 	"changeemail-oldemail": "Trenutna e-adresa:",
 	"changeemail-newemail": "Nova e-adresa:",

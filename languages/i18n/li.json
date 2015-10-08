@@ -428,7 +428,7 @@
 	"passwordreset-emailsent-capture": "d'r Is 'ne herinneringse-mail versjik. Deze weurt hieónger getuind.",
 	"passwordreset-emailerror-capture": "d'r Is 'ne herinneringse-mail aangemaak. Deze weurt hieónger getuind. 't Verzènje nao de gebroeker is mislök óm de volgende raeje: $1",
 	"changeemail": "Veranger dien e-mailadres",
-	"changeemail-text": "Völ dit form in óm dien e-mailadres te verangere. Doe mós dien wachwaord inveuren óm dees veranger te bevestige.",
+	"changeemail-header": "Veranger 't e-mailadres van miene gebroekersnaam",
 	"changeemail-no-info": "Doe moos aangemeld zien ierdets doe dees pagina gebroeke kens.",
 	"changeemail-oldemail": "Hujig mailadres:",
 	"changeemail-newemail": "Nuuj mailadres:",

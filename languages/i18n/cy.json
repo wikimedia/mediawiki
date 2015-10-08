@@ -512,7 +512,7 @@
 	"passwordreset-emailsent-capture": "Anfonwyd e-bost i ailosod cyfrinair, ac fe'i ddangosir isod.",
 	"passwordreset-emailerror-capture": "Lluniwyd e-bost i ailosod cyfrinair fel ag a welir isod, ond ni lwyddwyd i'w anfon at y {{GENDER:$2|defnyddiwr}}: $1",
 	"changeemail": "Newid y cyfeiriad e-bost",
-	"changeemail-text": "Cwblhewch y ffurflen hon i newid eich cyfeiriad e-bost. Bydd angen i chi roi eich cyfrinair i gadarnhau hyn o newid.",
+	"changeemail-header": "Newid cyfeiriad e-bost y cyfrif",
 	"changeemail-no-info": "Ni allwch fynd at y dudalen hon heblaw eich bod wedi mewngofnodi.",
 	"changeemail-oldemail": "Y cyfeiriad e-bost presennol:",
 	"changeemail-newemail": "Cyfeiriad e-bost newydd:",

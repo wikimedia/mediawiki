@@ -540,7 +540,7 @@
 	"passwordreset-emailsent-capture": "E-mel set semula kata laluan telah dihantar, seperti yang dipaparkan di bawah.",
 	"passwordreset-emailerror-capture": "E-mel set semula kata laluan telah dihasilkan, seperti yang dipaparkan di bawah, tetapi tidak berjaya dihantar kepada {{GENDER:$2|pengguna}} berkenaan: $1",
 	"changeemail": "Tukar alamat e-mel",
-	"changeemail-text": "Lengkapkan borang ini untuk menukar alamat e-mel anda. Anda akan perlu mengisikan kata laluan untuk mengesahkan perubahan ini.",
+	"changeemail-header": "Tukar alamat e-mel akaun",
 	"changeemail-no-info": "Anda hendaklah log masuk terlebih dahulu untuk mencapai laman ini secara terus.",
 	"changeemail-oldemail": "Alamat e-mel sekarang:",
 	"changeemail-newemail": "Alamat e-mel baru:",

@@ -608,7 +608,7 @@
 	"passwordreset-emailsent-capture": "È stata inviata una email di reimpostazione della password, il contenuto è riportato di seguito.",
 	"passwordreset-emailerror-capture": "È stata generata una email di reimpostazione della password, riportata di seguito. L'invio {{GENDER:$2|all'utente}} non è riuscito: $1",
 	"changeemail": "Modifica o rimuovi indirizzo email",
-	"changeemail-text": "Completa questo modulo per cambiare il tuo indirizzo email. Sarà necessario inserire la password per confermare la modifica. Se vuoi rimuovere l'associazione di qualsiasi indirizzo email dalla tua utenza, lascia il nuovo indirizzo email vuoto quando invii il modulo.",
+	"changeemail-header": "Modifica l'indirizzo email dell'account",
 	"changeemail-no-info": "Devi aver effettuato l'accesso per accedere a questa pagina direttamente.",
 	"changeemail-oldemail": "Indirizzo email attuale:",
 	"changeemail-newemail": "Nuovo indirizzo email:",

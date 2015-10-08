@@ -505,7 +505,7 @@
 	"passwordreset-emailsent-capture": "Sarong e-surat sa pagliliwat kan sekretong panlaog an ipinadara na, yaon ipinapahiling sa ibaba.",
 	"passwordreset-emailerror-capture": "Sarong e-surat sa pagliliwat kan sekretong panlaog an pinagpuyos na, yaon ipinapahiling sa ibaba, alagad sa pagpapadara kaini sa {{GENDER:$2|paragamit}} nagpalya: $1",
 	"changeemail": "Ribayan an e-koreong address",
-	"changeemail-text": "Kumpletoha ining porma tanganing ribayan an saimong e-koreong address. Kinakaipo mong ilaog an saimong sekretong panlaog tanganing kumpirmaron ining pagribay.",
+	"changeemail-header": "Ribayan an panindog na e-koreong address",
 	"changeemail-no-info": "Ika dapat nakalaog na tanganing direktang makagamit kaining pahina.",
 	"changeemail-oldemail": "Presenteng e-koreong address:",
 	"changeemail-newemail": "Bagong e-koreong address:",

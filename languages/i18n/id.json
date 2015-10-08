@@ -555,7 +555,7 @@
 	"passwordreset-emailsent-capture": "Surel setel ulang kata sandi telah dikirim, yang ditampilkan di bawah.",
 	"passwordreset-emailerror-capture": "Surel setel ulang kata sandi telah dibuat, yang ditampilkan di bawah, namun pengiriman pada {{GENDER:$2|pengguna}} gagal: $1",
 	"changeemail": "Ubah alamat surel",
-	"changeemail-text": "Selesaikan formulir ini untuk mengubah alamat surel Anda. Anda perlu memasukkan sandi untuk mengkonfirmasi perubahan ini.",
+	"changeemail-header": "Ubah alamat surel akun",
 	"changeemail-no-info": "Anda harus masuk log untuk mengakses halaman ini secara langsung.",
 	"changeemail-oldemail": "Alamat surel saat ini:",
 	"changeemail-newemail": "Alamat surel baru:",

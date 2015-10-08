@@ -425,6 +425,7 @@
 	"passwordreset-domain": "Domen:",
 	"passwordreset-email": "Ladet leäktronik:",
 	"changeemail": "Votükön ladeti leäktronik",
+	"changeemail-header": "Votükön ladeti leäktronik kala",
 	"changeemail-oldemail": "Ladet leäktronik anuik:",
 	"changeemail-newemail": "Ladet leäktronik nulik:",
 	"changeemail-none": "(nonik)",

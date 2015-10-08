@@ -530,7 +530,7 @@
 	"passwordreset-emailsent-capture": "Detdiar E-Mail, wat oner uunwiset woort, as tu di onerwais.",
 	"passwordreset-emailerror-capture": "Detdiar E-Mail, wat oner uunwiset woort, wiar tu di onerwais, oober küd ei tu di {{GENDER:$2|brüker}} ufsjüürd wurd: $1",
 	"changeemail": "Feranre det E-Mail-adres",
-	"changeemail-text": "Fal detdiar formulaar hialandaal ütj, am din E-Mail-adres tu feranrin. Diarför skel dü din paaswurd uundu.",
+	"changeemail-header": "Feranre det E-Mail-adres",
 	"changeemail-no-info": "Dü möist önjmälded weese am ju sid diräkt tu tu gripen.",
 	"changeemail-oldemail": "Aktuel e-mail adres",
 	"changeemail-newemail": "Nei e-mail adres",

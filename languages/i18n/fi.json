@@ -564,7 +564,7 @@
 	"passwordreset-emailsent-capture": "Salasanan uudistamisesta kertova sähköpostiviesti on lähetetty, ja se näkyy myös alla.",
 	"passwordreset-emailerror-capture": "Allaoleva sähköpostiviesti luotiin, mutta sen lähettäminen {{GENDER:$2|käyttäjälle}} epäonnistui: $1",
 	"changeemail": "Muuta tai poista sähköpostiosoite",
-	"changeemail-text": "Täytä tämä lomake vaihtaaksesi sähköpostiosoitteesi. Sinun on syötettävä salasanasi vahvistaaksesi tämän muutoksen. Jos haluat poistaa yhteyden mihin tahansa sähköpostiosoitteeseen tiltäsi, jätä uusi sähköpostiosoite tyhjäksi kun lähetät lomakkeen.",
+	"changeemail-header": "Muuta tunnuksen sähköpostiosoite",
 	"changeemail-no-info": "Tämän sivun käyttö edellyttää sisäänkirjautumista.",
 	"changeemail-oldemail": "Nykyinen sähköpostiosoite:",
 	"changeemail-newemail": "Uusi sähköpostiosoite:",

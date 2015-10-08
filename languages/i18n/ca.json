@@ -575,7 +575,7 @@
 	"passwordreset-emailsent-capture": "S'ha enviat un correu electrònic de reinicialització de contrasenya, tal com es mostra a continuació.",
 	"passwordreset-emailerror-capture": "S'ha generat un correu electrònic de renovació de contrasenya, que es mostra a continuació, però ha fallat l'enviament a {{GENDER:$2:l'usuari|la usuària}}: $1",
 	"changeemail": "Canvi de correu electrònic",
-	"changeemail-text": "Completeu el següent formulari per canviar la vostra adreça de correu electrònic. Haureu d'introduir la contrasenya per confirmar el canvi.",
+	"changeemail-header": "Canvi de l'adreça de correu electrònic del compte",
 	"changeemail-no-info": "Heu d'entrar en un compte d'usuari per accedir directament a aquesta pàgina.",
 	"changeemail-oldemail": "Adreça de correu electrònic actual:",
 	"changeemail-newemail": "Adreça electrònica nova:",

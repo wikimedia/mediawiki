@@ -550,7 +550,7 @@
 	"passwordreset-emailsent-capture": "Thư điện tử để tái tạo mật khẩu đã được gửi, nội dung như sau.",
 	"passwordreset-emailerror-capture": "Chúng tôi đã tạo thư tái tạo mật khẩu dưới đây, nhưng không thể gửi đến {{GENDER:$2}}người dùng: $1",
 	"changeemail": "Đổi hoặc gỡ địa chỉ thư điện tử",
-	"changeemail-text": "Điền biểu mẫu này để đổi địa chỉ thư điện tử. Bạn sẽ cần phải nhập mật khẩu để xác nhận thay đổi này. Nếu bạn muốn gỡ địa chỉ thư điện tử nào khỏi tài khoản của bạn, để trống hộp địa chỉ thư điện tử và lưu biểu mẫu.",
+	"changeemail-header": "Đổi địa chỉ thư điện tử của tài khoản",
 	"changeemail-no-info": "Bạn phải đăng nhập mới có thể truy cập trực tiếp trang này.",
 	"changeemail-oldemail": "Địa chỉ thư điện tử hiện tại:",
 	"changeemail-newemail": "Địa chỉ thư điện tử mới:",

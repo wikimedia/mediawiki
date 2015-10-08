@@ -537,7 +537,7 @@
 	"passwordreset-emailsent-capture": "E Passwort-Zrucksetzigs-Mail isch vergschickt worde, un isch unte aazeigt.",
 	"passwordreset-emailerror-capture": "Die unten angezeigte Passwortzrucksetzigsmail, wu unten aazeigt wird, isch generiert wore, aber dr Versand an {{GENDER:$2|dr Benutzer|d Benutzeri}} het nit funktioniert: $1",
 	"changeemail": "E-Mail-Adrässen änderen oder lösche",
-	"changeemail-text": "Füll das Formular uus, für dyni E-Mail-Adrässe z ändere. Du muesch dys Passwort agä, für d Änderig z bestätige. We du möchtisch, das dys Benutzerkonto nümm mit dyren E-Mail-Adrässe verbunden isch, de chasch ds Fäld für’ne nöüi E-Mail-Adrässe läär la und uf «E-Mail-Adrässen änderen oder lösche» klicke.",
+	"changeemail-header": "D E-Mail-Adräss vo däm Chonto ändre",
 	"changeemail-no-info": "Du muesch aagmolde sy zum uff die Syte diräkt zuegryfe z chönne.",
 	"changeemail-oldemail": "Aktuelli E-Mail-Adräss",
 	"changeemail-newemail": "Nöii E-Mail-Adräss:",

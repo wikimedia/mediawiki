@@ -440,7 +440,7 @@
 	"passwordreset-emailsent-capture": "Se le ha ninviau un recordatorio por correu electronico, que s'amuestra contino.",
 	"passwordreset-emailerror-capture": "S'ha chenerau un recordatorio por correu electronico, que s'amuestra contino, pero o ninvío ta l'usuario ha fallau: $1",
 	"changeemail": "Cambiar l'adreza de correu-e",
-	"changeemail-text": "Replene iste formulario ta cambiar a suya adreza de correu electronico. Habrá d'introducir a clau ta confirmar iste cambeo.",
+	"changeemail-header": "Cambiar l'adreza de correu-e d'a cuenta",
 	"changeemail-no-info": "Debe identificar-se como usuario ta poder acceder dreitament ta ista pachina.",
 	"changeemail-oldemail": "Adreza de correu-e actual:",
 	"changeemail-newemail": "No bi ha garra adreza de correu electronico",

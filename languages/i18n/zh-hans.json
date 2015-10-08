@@ -605,7 +605,7 @@
 	"passwordreset-emailsent-capture": "密码重设电子邮件已发送，并在下面显示。",
 	"passwordreset-emailerror-capture": "重置密码邮件已生成，但是无法向{{GENDER:$2|下列用户}} 发送：$1",
 	"changeemail": "更改或移除电子邮件地址",
-	"changeemail-text": "完成此表格以更改您的电子邮件地址。您需要输入您的密码以确认此更改。如果您希望从您的账户中移除任何关联的电子邮件地址，请在提交表格时将新电子邮件地址留空。",
+	"changeemail-header": "更改账户电子邮件地址",
 	"changeemail-no-info": "\n您必须登录以直接访问本页。",
 	"changeemail-oldemail": "当前电子邮件地址：",
 	"changeemail-newemail": "新的电子邮件地址：",

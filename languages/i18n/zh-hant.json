@@ -582,7 +582,7 @@
 	"passwordreset-emailsent-capture": "已寄出重設密碼的電子郵件，並於下方顯示。",
 	"passwordreset-emailerror-capture": "下列為重設密碼的電子郵件內容，傳送給{{GENDER:$2|使用者}}失敗：$1",
 	"changeemail": "變更或移除電子郵件地址",
-	"changeemail-text": "完成此表單以修改您的電子郵件地址，您需要輸入您的密碼來確認此次變更。若您想要從您的帳號移除電子郵件地址，送出表單時請在新電子郵件欄位留空。",
+	"changeemail-header": "變更帳號的電子郵箱地址",
 	"changeemail-no-info": "您必須登入方可直接存取此頁面。",
 	"changeemail-oldemail": "目前的電子郵件地址：",
 	"changeemail-newemail": "新的電子郵件地址：",

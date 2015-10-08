@@ -503,6 +503,7 @@
 	"passwordreset-emailsent-capture": "Atgādinājuma e-pasta ziņojums ir nosūtīts, tas parādīts zemāk.",
 	"passwordreset-emailerror-capture": "Atgādinājuma e-pasta ziņojums tika izveidots, tas parādīts zemāk, bet nosūtīšana lietotājam neizdevās: $1",
 	"changeemail": "Mainīt e-pasta adresi",
+	"changeemail-header": "Mainīt konta e-pasta adresi",
 	"changeemail-oldemail": "Pašreizējā e-pasta adrese:",
 	"changeemail-newemail": "Jaunā e-pasta adrese:",
 	"changeemail-none": "(nav)",

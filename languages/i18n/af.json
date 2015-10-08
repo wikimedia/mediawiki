@@ -521,7 +521,7 @@
 	"passwordreset-emailsent-capture": "'n E-pos vir die herstel van 'n wagwoord is gestuur. Dit word hieronder vertoon.",
 	"passwordreset-emailerror-capture": "'n E-pos vir die herstel van 'n wagwoord is saamgestel. Dit word hieronder vertoon. Die uitstuur daarvan na die {{GENDER:$2|gebruiker}} het egter gefaal: $1",
 	"changeemail": "Wysig E-posadres",
-	"changeemail-text": "Voltooi die vorm om u e-posadres te verander. U sal u wagwoord moet insleutel om die verandering te bevestig.",
+	"changeemail-header": "Wysig rekening se e-posadres",
 	"changeemail-no-info": "U moet aangemeld wees om regstreeks toegang tot die bladsy te kry.",
 	"changeemail-oldemail": "Huidige e-posadres:",
 	"changeemail-newemail": "Nuwe e-posadres:",

@@ -566,7 +566,7 @@
 	"passwordreset-emailsent-capture": "En e-mail om nulstilling af adgangskode, som vist nedenfor, er blevet sendt.",
 	"passwordreset-emailerror-capture": "En mail om nulstilling af adgangskode, som vist nedenfor, blev genereret, men det lykkedes ikke at sende den til {{GENDER:$2|bruger}}: $1",
 	"changeemail": "Ændre e-mailadresse",
-	"changeemail-text": "Udfyld denne formular for at ændre din e-mailadresse. Du skal indtaste din adgangskode for at bekræfte denne ændring.",
+	"changeemail-header": "Ændre kontoens e-mailadresse",
 	"changeemail-no-info": "Du skal være logget på for at komme direkte til denne side.",
 	"changeemail-oldemail": "Nuværende e-mailadresse:",
 	"changeemail-newemail": "Ny e-mailadresse:",

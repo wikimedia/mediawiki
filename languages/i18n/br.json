@@ -512,7 +512,7 @@
 	"passwordreset-emailsent-capture": "Ur postel evit aderaouekaat ho ker-tremen, evel diskouezet amañ dindan, zo bet kaset.",
 	"passwordreset-emailerror-capture": "Kaset ez eus bet ur postel degas da soñj evel m'emañ diskouezet amañ dindan met c'hwitet eo bet ar gasadenn d'an {{GENDER:$2|implijer|implijerez}} : $1",
 	"changeemail": "Kemmañ ar chomlec'h postel",
-	"changeemail-text": "Leugnit ar furmskrid-mañ da cheñch ho chomlec'h postel. Ret e vo deoc'h merkañ ho ker-tremen evit kadarnaat ar c'hemm-se.",
+	"changeemail-header": "Kemmañ chomlec'h postel ar gont",
 	"changeemail-no-info": "Ret eo deoc'h bezañ kevreet a-benn mont d'ar bajenn-se war-eeun.",
 	"changeemail-oldemail": "Chomlec'h postel a-vremañ :",
 	"changeemail-newemail": "Chomlec'h postel nevez :",

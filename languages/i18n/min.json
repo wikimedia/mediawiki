@@ -470,7 +470,7 @@
 	"passwordreset-emailsent-capture": "Surel parubahan kato sandi alah dikirim, nan nampak di bawah ko.",
 	"passwordreset-emailerror-capture": "Surel parubahan kato sandi nan ditampilan di bawah, alah dibuek, tapi pangirimannyo ka {{GENDER:$2|pangguno}} gagal: $1",
 	"changeemail": "Tuka alamaik surel.",
-	"changeemail-text": "Isi formulir ko untuak mangganti alamaik surel. Sanak musti mamasuakan kato sandi untuak mayakinkan parubahan.",
+	"changeemail-header": "Ganti alamaik surel.",
 	"changeemail-no-info": "Sanak harus masuak log untuak mangakses laman ko.",
 	"changeemail-oldemail": "Alamat surel kini:",
 	"changeemail-newemail": "Alamat surel baru:",

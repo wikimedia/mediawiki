@@ -517,7 +517,7 @@
 	"passwordreset-emailsent-capture": "Un corrièr electronic de reïnicializacion senhal es estat mandat, qu'es afichat çaijós.",
 	"passwordreset-emailerror-capture": "Un corrièr electronic de reïnicializacion de senhal es estat generat, qu'es afichat çaijós, mas lo mandadís a l'{{GENDER:$2|utilizaire}} a fracassat : $1",
 	"changeemail": "Cambiar l'adreça electronica:",
-	"changeemail-text": "Emplenatz aqueste formulari per cambiar vòstra adreça de corrièr electronic. Vos cal entrar vòstre senhal per confirmar aqueste cambiament.",
+	"changeemail-header": "Cambiar l'adreça electronica del compte",
 	"changeemail-no-info": "Vos cal èsser connectat per aver accès a aquesta pagina.",
 	"changeemail-oldemail": "Adreça electronica actuala:",
 	"changeemail-newemail": "Novela adreça electronica:",

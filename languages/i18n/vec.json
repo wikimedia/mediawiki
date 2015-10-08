@@ -494,7 +494,7 @@
 	"passwordreset-emailsent-capture": "Xe stà invià na mail de reset password: el contegù xe riportà cuà de seguito.",
 	"passwordreset-emailerror-capture": "Xe stà generà na mail de reset password, riportà cuà de seguito. L'invio a {{GENDER:$2|l'utente}} no xe riusido: $1",
 	"changeemail": "Canbia indiriso de posta ełetronega",
-	"changeemail-text": "Conpleta sto moduło par canbiare el to indiriso de posta ełetronega. Sarà necesario inserire ła password par confermare ła modifega.",
+	"changeemail-header": "Canbia el indiriso de posta ełetronega del account",
 	"changeemail-no-info": "Te ghe da aver efetuà l'aceso par acedare a sta pajina diretamente.",
 	"changeemail-oldemail": "Indiriso de posta ełetronega atuałe:",
 	"changeemail-newemail": "Novo indiriso de posta ełetronega:",

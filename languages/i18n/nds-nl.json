@@ -511,7 +511,7 @@
 	"passwordreset-emailsent-capture": "Der is n bericht verstuurd um joew wachtwoord opniej in te stellen. Dit ku'j hieronder lezen.",
 	"passwordreset-emailerror-capture": "Der is n bericht veur t opniej opstellen van joew wachwoord an-emaakt, dit ku'j hieronder lezen. t Versturen naor de {{GENDER:$2|gebruker}} is mislokt um de volgende reden: $1",
 	"changeemail": "Wiezig netpostadres",
-	"changeemail-text": "Vul dit formulier in um joew netpostadres te wiezigen. Um disse wieziging te bevestigen mu'j je wachtwoord invoeren.",
+	"changeemail-header": "Netpostadres wiezigen",
 	"changeemail-no-info": "Je mutten an-emeld ween um drekt toegang te hebben tot disse zied.",
 	"changeemail-oldemail": "t Ouwe netpostadres:",
 	"changeemail-newemail": "t Nieje netpostadres:",
