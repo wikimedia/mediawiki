@@ -2935,10 +2935,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Delete pagelinks, update secondary indexes, etc
 		$updates = $this->getDeletionUpdates( $content );
-		// Make sure an enqueued jobs run after commit so they see the deletion
-		wfGetDB( DB_MASTER )->onTransactionIdle( function() use ( $updates ) {
-			DataUpdate::runUpdates( $updates, 'enqueue' );
-		} );
+		foreach ( $updates as $update ) {
+			DeferredUpdates::addUpdate( $update );
+		}
 
 		// Reparse any pages transcluding this page
 		LinksUpdate::queueRecursiveJobsForTable( $this->mTitle, 'templatelinks' );

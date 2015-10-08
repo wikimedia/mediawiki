@@ -95,9 +95,10 @@ class DeferredUpdates {
 	 * Do any deferred updates and clear the list
 	 *
 	 * @param string $commit Set to 'commit' to commit after every update to
+	 * @param string $mode Use "enqueue" to use the job queue when possible [Default: run]
 	 *   prevent lock contention
 	 */
-	public static function doUpdates( $commit = '' ) {
+	public static function doUpdates( $commit = '', $mode = 'run' ) {
 		$updates = self::$updates;
 
 		while ( count( $updates ) ) {
@@ -115,12 +116,11 @@ class DeferredUpdates {
 			}
 
 			// Delegate DataUpdate execution to the DataUpdate class
-			DataUpdate::runUpdates( $dataUpdates, 'run' );
+			DataUpdate::runUpdates( $dataUpdates, $mode );
 			// Execute the non-DataUpdate tasks
 			foreach ( $otherUpdates as $update ) {
 				try {
 					$update->doUpdate();
-
 					if ( $commit === 'commit' ) {
 						wfGetLBFactory()->commitMasterChanges();
 					}
