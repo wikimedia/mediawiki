@@ -211,4 +211,18 @@
 		this.upload.addCategories( this.categoriesWidget.getItemsData() );
 		return this.upload.getText();
 	};
+
+	/* Setters */
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.clear = function () {
+		mw.ForeignStructuredUpload.BookletLayout.parent.prototype.clear.call( this );
+
+		this.ownWorkCheckbox.setSelected( false );
+		this.categoriesWidget.setItemsFromData( [] );
+		this.dateWidget.setValue( '' ).setValidityFlag( true );
+	};
+
 }( jQuery, mediaWiki ) );
