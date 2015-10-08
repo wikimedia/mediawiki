@@ -3903,6 +3903,7 @@
 	"api-error-stashwrongowner": "API error message that can be used for client side localisation of API errors.",
 	"api-error-stashnosuchfilekey": "API error message that can be used for client side localisation of API errors.",
 	"api-error-timeout": "API error message that can be used for client side localisation of API errors.",
+	"api-error-titleblacklist-custom-imagename": "API error message that can be used for client side localisation of API errors.",
 	"api-error-unclassified": "API error message that can be used for client side localisation of API errors.",
 	"api-error-unknown-code": "API error message that can be used for client side localisation of API errors.\n\nParameters:\n* $1 - may contain more error details\n{{Identical|Unknown error}}",
 	"api-error-unknown-error": "API error message that can be used for client side localisation of API errors.",

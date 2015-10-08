@@ -1175,6 +1175,7 @@ return array(
 			'api-error-stashwrongowner',
 			'api-error-stashnosuchfilekey',
 			'api-error-timeout',
+			'api-error-titleblacklist-custom-imagename',
 			'api-error-unclassified',
 			'api-error-unknown-code',
 			'api-error-unknown-error',
