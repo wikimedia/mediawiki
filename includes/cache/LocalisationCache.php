@@ -816,9 +816,7 @@ class LocalisationCache {
 		$this->recachedLangs[$code] = true;
 
 		# Initial values
-		$initialData = array_combine(
-			self::$allKeys,
-			array_fill( 0, count( self::$allKeys ), null ) );
+		$initialData = array_fill_keys( self::$allKeys, null );
 		$coreData = $initialData;
 		$deps = array();
 
@@ -856,9 +854,7 @@ class LocalisationCache {
 		$messageDirs = $this->getMessagesDirs();
 
 		# Load non-JSON localisation data for extensions
-		$extensionData = array_combine(
-			$codeSequence,
-			array_fill( 0, count( $codeSequence ), $initialData ) );
+		$extensionData = array_fill_keys( $codeSequence, $initialData );
 		foreach ( $wgExtensionMessagesFiles as $extension => $fileName ) {
 			if ( isset( $messageDirs[$extension] ) ) {
 				# This extension has JSON message data; skip the PHP shim
