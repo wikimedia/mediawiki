@@ -349,6 +349,7 @@
 		} else {
 			if ( !this.inTextInput ) {
 				this.textInput.setValue( this.getMoment().format( this.getInputFormat() ) );
+				this.deactivate();
 			}
 			if ( !this.inCalendar ) {
 				this.calendar.setDate( this.getValue() );
