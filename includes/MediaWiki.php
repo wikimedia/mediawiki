@@ -690,7 +690,7 @@ class MediaWiki {
 		Profiler::instance()->getTransactionProfiler()->resetExpectations();
 
 		// Do any deferred jobs
-		DeferredUpdates::doUpdates( 'commit', 'enqueue' );
+		DeferredUpdates::doUpdates( 'enqueue' );
 
 		// Make sure any lazy jobs are pushed
 		JobQueueGroup::pushLazyJobs();
