@@ -106,7 +106,7 @@ $maintenance->execute();
 $maintenance->globals();
 
 // Perform deferred updates.
-DeferredUpdates::doUpdates( 'commit' );
+DeferredUpdates::doUpdates();
 
 // log profiling info
 wfLogProfilingData();

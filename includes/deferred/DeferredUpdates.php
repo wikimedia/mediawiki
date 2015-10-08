@@ -94,11 +94,17 @@ class DeferredUpdates {
 	/**
 	 * Do any deferred updates and clear the list
 	 *
-	 * @param string $commit Set to 'commit' to commit after every update to
 	 * @param string $mode Use "enqueue" to use the job queue when possible [Default: run]
 	 *   prevent lock contention
+	 * @param string $oldMode Unused
 	 */
-	public static function doUpdates( $commit = '', $mode = 'run' ) {
+	public static function doUpdates( $mode = 'run', $oldMode = '' ) {
+		// B/C for ( $commit, $mode ) args
+		$mode = $oldMode ?: $mode;
+		if ( $mode === 'commit' ) {
+			$mode = 'run';
+		}
+
 		$updates = self::$updates;
 
 		while ( count( $updates ) ) {
@@ -121,9 +127,7 @@ class DeferredUpdates {
 			foreach ( $otherUpdates as $update ) {
 				try {
 					$update->doUpdate();
-					if ( $commit === 'commit' ) {
-						wfGetLBFactory()->commitMasterChanges();
-					}
+					wfGetLBFactory()->commitMasterChanges();
 				} catch ( Exception $e ) {
 					// We don't want exceptions thrown during deferred updates to
 					// be reported to the user since the output is already sent.
