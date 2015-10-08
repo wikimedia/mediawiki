@@ -111,7 +111,10 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertGreaterThanOrEqual( 19, $curTTL, 'Current TTL between 19-20 (overriden)' );
 
 		$wasSet = 0;
-		$v = $cache->getWithSetCallback( $key, $func, 30, array(), array( 'lockTSE' => 5 ) );
+		$v = $cache->getWithSetCallback( $key, $func, 30, array(), array(
+			'lowTTL' => 0,
+			'lockTSE' => 5,
+		) );
 		$this->assertEquals( $v, $value );
 		$this->assertEquals( 0, $wasSet, "Value not regenerated" );
 
@@ -239,12 +242,12 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$key = wfRandomString();
 
 		$priorTime = microtime( true );
-		usleep( 1 );
+		usleep( 100 );
 		$t0 = $this->cache->getCheckKeyTime( $key );
 		$this->assertGreaterThanOrEqual( $priorTime, $t0, 'Check key auto-created' );
 
 		$priorTime = microtime( true );
-		usleep( 1 );
+		usleep( 100 );
 		$this->cache->touchCheckKey( $key );
 		$t1 = $this->cache->getCheckKeyTime( $key );
 		$this->assertGreaterThanOrEqual( $priorTime, $t1, 'Check key created' );
@@ -252,7 +255,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$t2 = $this->cache->getCheckKeyTime( $key );
 		$this->assertEquals( $t1, $t2, 'Check key time did not change' );
 
-		usleep( 1 );
+		usleep( 100 );
 		$this->cache->touchCheckKey( $key );
 		$t3 = $this->cache->getCheckKeyTime( $key );
 		$this->assertGreaterThan( $t2, $t3, 'Check key time increased' );
@@ -260,7 +263,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$t4 = $this->cache->getCheckKeyTime( $key );
 		$this->assertEquals( $t3, $t4, 'Check key time did not change' );
 
-		usleep( 1 );
+		usleep( 100 );
 		$this->cache->resetCheckKey( $key );
 		$t5 = $this->cache->getCheckKeyTime( $key );
 		$this->assertGreaterThan( $t4, $t5, 'Check key time increased' );
