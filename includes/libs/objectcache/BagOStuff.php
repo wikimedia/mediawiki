@@ -95,11 +95,12 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * @param string $key
 	 * @param int $ttl Time-to-live (seconds)
 	 * @param callable $callback Callback that derives the new value
+	 * @param integer $flags Bitfield of BagOStuff::READ_* constants [optional]
 	 * @return mixed The cached value if found or the result of $callback otherwise
 	 * @since 1.27
 	 */
-	final public function getWithSetCallback( $key, $ttl, $callback ) {
-		$value = $this->get( $key );
+	final public function getWithSetCallback( $key, $ttl, $callback, $flags = 0 ) {
+		$value = $this->get( $key, $flags );
 
 		if ( $value === false ) {
 			if ( !is_callable( $callback ) ) {
