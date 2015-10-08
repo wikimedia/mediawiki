@@ -2004,7 +2004,7 @@ class OutputPage extends ContextSource {
 	function haveCacheVaryCookies() {
 		$request = $this->getRequest();
 		foreach ( $this->getCacheVaryCookies() as $cookieName ) {
-			if ( $request->getCookie( $cookieName, '' ) ) {
+			if ( $request->getCookie( $cookieName, '', '' ) !== '' ) {
 				wfDebug( __METHOD__ . ": found $cookieName\n" );
 				return true;
 			}
