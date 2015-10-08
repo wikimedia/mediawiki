@@ -547,6 +547,43 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
+	 * Gets a link for the personal toolbar that points to the user's
+	 * contributions.
+	 *
+	 * @param string $text Link display text
+	 * @return array
+	 * @since 1.26
+	 */
+	protected function getPersonalContribsLink( $text ) {
+		$request = $this->getRequest();
+
+		# To determine whether the current user's Special:Contributions
+		# is the active page, we have to match both the title, and the
+		# target, which could come from request values
+		# (Special:Contributions?target=Jimbo_Wales)
+		# or be specified in "sub page" form
+		# (Special:Contributions/Jimbo_Wales). The plot
+		# thickens, because the Title object is altered for special pages,
+		# so it doesn't contain the original alias-with-subpage.
+		$origTitle = Title::newFromText( $request->getText( 'title' ) );
+		if ( $origTitle instanceof Title && $origTitle->isSpecialPage() ) {
+			list( $spName, $spPar ) = SpecialPageFactory::resolveAlias( $origTitle->getText() );
+			$active = $spName == 'Contributions'
+				&& ( ( $spPar && $spPar == $this->username )
+					|| $request->getText( 'target' ) == $this->username );
+		} else {
+			$active = false;
+		}
+
+		$href = self::makeSpecialUrlSubpage( 'Contributions', $this->username );
+		return array(
+			'text' => $text,
+			'href' => $href,
+			'active' => $active
+		);
+	}
+
+	/**
 	 * build array of urls for personal toolbar
 	 * @return array
 	 */
@@ -609,29 +646,9 @@ class SkinTemplate extends Skin {
 				);
 			}
 
-			# We need to do an explicit check for Special:Contributions, as we
-			# have to match both the title, and the target, which could come
-			# from request values (Special:Contributions?target=Jimbo_Wales)
-			# or be specified in "sub page" form
-			# (Special:Contributions/Jimbo_Wales). The plot
-			# thickens, because the Title object is altered for special pages,
-			# so it doesn't contain the original alias-with-subpage.
-			$origTitle = Title::newFromText( $request->getText( 'title' ) );
-			if ( $origTitle instanceof Title && $origTitle->isSpecialPage() ) {
-				list( $spName, $spPar ) = SpecialPageFactory::resolveAlias( $origTitle->getText() );
-				$active = $spName == 'Contributions'
-					&& ( ( $spPar && $spPar == $this->username )
-						|| $request->getText( 'target' ) == $this->username );
-			} else {
-				$active = false;
-			}
+			$personal_urls['mycontris'] = $this->getPersonalContribsLink(
+				$this->msg( 'mycontris' )->text() );
 
-			$href = self::makeSpecialUrlSubpage( 'Contributions', $this->username );
-			$personal_urls['mycontris'] = array(
-				'text' => $this->msg( 'mycontris' )->text(),
-				'href' => $href,
-				'active' => $active
-			);
 			$personal_urls['logout'] = array(
 				'text' => $this->msg( 'pt-userlogout' )->text(),
 				'href' => self::makeSpecialUrl( 'Userlogout',
@@ -660,22 +677,46 @@ class SkinTemplate extends Skin {
 				'active' => $title->isSpecial( 'Userlogin' ) && $is_signup,
 			);
 
-			if ( $this->showIPinHeader() ) {
-				$href = &$this->userpageUrlDetails['href'];
-				$personal_urls['anonuserpage'] = array(
-					'text' => $this->username,
-					'href' => $href,
-					'class' => $this->userpageUrlDetails['exists'] ? false : 'new',
-					'active' => ( $pageurl == $href )
-				);
+			if ( User::groupHasPermission( '*', 'edit' ) ) {
+				// Link to IP user page if $wgShowIPinHeader is true, otherwise just the
+				// text "Not logged in"
+				if ( $this->showIPinHeader() ) {
+					$href = &$this->userpageUrlDetails['href'];
+					$personal_urls['anonuserpage'] = array(
+						'text' => $this->username,
+						'href' => $href,
+						'class' => $this->userpageUrlDetails['exists'] ? false : 'new',
+						'active' => ( $pageurl == $href )
+					);
+				} else {
+					$personal_urls['anonuserpage'] = array(
+						'text' => $this->msg( 'notloggedin' )->text()
+					);
+				}
+
+				// Link to IP user talk page. Most of the time IP talk pages don't
+				// exist, and having a red link on every page is ugly, so we make sure
+				// the link is always blue. However, we do perform an existence check
+				// when $wgShowIPinHeader is set to true, for backwards compatibility.
 				$usertalkUrlDetails = $this->makeTalkUrlDetails( $this->userpage );
 				$href = &$usertalkUrlDetails['href'];
-				$personal_urls['anontalk'] = array(
-					'text' => $this->msg( 'anontalk' )->text(),
-					'href' => $href,
-					'class' => $usertalkUrlDetails['exists'] ? false : 'new',
-					'active' => ( $pageurl == $href )
-				);
+				if ( $this->showIPinHeader() ) {
+					$personal_urls['anontalk'] = array(
+						'text' => $this->msg( 'anontalk' )->text(),
+						'href' => $href,
+						'class' => $usertalkUrlDetails['exists'] ? false : 'new',
+						'active' => ( $pageurl == $href )
+					);
+				} else {
+					$personal_urls['anontalk'] = array(
+						'text' => $this->msg( 'anontalkshort' )->text(),
+						'href' => $href,
+						'active' => ( $pageurl == $href )
+					);
+				}
+
+				$personal_urls['anoncontribs'] = $this->getPersonalContribsLink(
+					$this->msg( 'anoncontribs' )->text() );
 			}
 
 			if ( $this->getUser()->isAllowed( 'createaccount' ) && !$useCombinedLoginLink ) {
