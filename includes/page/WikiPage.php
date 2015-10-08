@@ -1599,8 +1599,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 *          Do not log the change in recentchanges
 	 *      EDIT_FORCE_BOT
 	 *          Mark the edit a "bot" edit regardless of user rights
-	 *      EDIT_DEFER_UPDATES
-	 *          Defer some of the updates until the end of index.php
 	 *      EDIT_AUTOSUMMARY
 	 *          Fill in blank summaries with generated text where possible
 	 *
@@ -1661,8 +1659,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 *          Do not log the change in recentchanges
 	 *      EDIT_FORCE_BOT
 	 *          Mark the edit a "bot" edit regardless of user rights
-	 *      EDIT_DEFER_UPDATES
-	 *          Defer some of the updates until the end of index.php
 	 *      EDIT_AUTOSUMMARY
 	 *          Fill in blank summaries with generated text where possible
 	 *
@@ -1955,11 +1951,6 @@ class WikiPage implements Page, IDBAccessObject {
 
 			ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $hook_args );
 			Hooks::run( 'PageContentInsertComplete', $hook_args );
-		}
-
-		// Do updates right now unless deferral was requested
-		if ( !( $flags & EDIT_DEFER_UPDATES ) ) {
-			DeferredUpdates::doUpdates();
 		}
 
 		// Return the new revision (or null) to the caller
