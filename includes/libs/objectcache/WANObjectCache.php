@@ -640,7 +640,7 @@ class WANObjectCache {
 	 * @return mixed Value to use for the key
 	 */
 	final public function getWithSetCallback(
-		$key, $ttl, $callback, array $opts = array(), $oldOpts = null
+		$key, $ttl, $callback, array $opts = array(), $oldOpts = array()
 	) {
 		// Back-compat with 1.26: Swap $ttl and $callback
 		if ( is_int( $callback ) ) {
