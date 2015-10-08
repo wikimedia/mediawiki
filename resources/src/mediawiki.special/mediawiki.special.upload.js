@@ -426,7 +426,7 @@
 			var reader = new FileReader();
 			if ( callbackBinary && 'readAsBinaryString' in reader ) {
 				// To fetch JPEG metadata we need a binary string; start there.
-				// todo:
+				// TODO
 				reader.onload = function () {
 					callbackBinary( reader.result );
 
