@@ -339,6 +339,27 @@ class OutputPageTest extends MediaWikiTestCase {
 			),
 		);
 	}
+
+	/**
+	 * @covers OutputPage::testHaveVaryCookies
+	 */
+	function testHaveVaryCookies() {
+		$request = new FauxRequest();
+		$context = new RequestContext();
+		$context->setRequest( $request );
+		$outputPage = new OutputPage( $context );
+
+		// No cookies are set.
+		$this->assertFalse( $outputPage->haveCacheVaryCookies() );
+
+		// 'Token' is present but empty, so it shouldn't count.
+		$request->setCookie( 'Token', '' );
+		$this->assertFalse( $outputPage->haveCacheVaryCookies() );
+
+		// 'Token' present and nonempty.
+		$request->setCookie( 'Token', '123' );
+		$this->assertTrue( $outputPage->haveCacheVaryCookies() );
+	}
 }
 
 /**
