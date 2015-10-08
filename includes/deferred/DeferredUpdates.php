@@ -44,7 +44,7 @@ interface DeferrableUpdate {
  * @since 1.19
  */
 class DeferredUpdates {
-	/** @var array Updates to be deferred until the end of the request */
+	/** @var DeferrableUpdate[] Updates to be deferred until the end of the request */
 	private static $updates = array();
 	/** @var bool Defer updates fully even in CLI mode */
 	private static $forceDeferral = false;
@@ -102,9 +102,22 @@ class DeferredUpdates {
 
 		while ( count( $updates ) ) {
 			self::clearPendingUpdates();
-
-			/** @var DeferrableUpdate $update */
+			/** @var DataUpdate[] $dataUpdates */
+			$dataUpdates = array();
+			/** @var DeferrableUpdate[] $otherUpdates */
+			$otherUpdates = array();
 			foreach ( $updates as $update ) {
+				if ( $update instanceof DataUpdate ) {
+					$dataUpdates[] = $update;
+				} else {
+					$otherUpdates[] = $update;
+				}
+			}
+
+			// Delegate DataUpdate execution to the DataUpdate class
+			DataUpdate::runUpdates( $dataUpdates, 'run' );
+			// Execute the non-DataUpdate tasks
+			foreach ( $otherUpdates as $update ) {
 				try {
 					$update->doUpdate();
 
