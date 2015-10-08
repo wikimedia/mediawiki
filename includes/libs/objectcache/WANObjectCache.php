@@ -528,6 +528,8 @@ class WANObjectCache {
 	 *     $catInfo = $cache->getWithSetCallback(
 	 *         // Key to store the cached value under
 	 *         wfMemcKey( 'cat-attributes', $catId ),
+	 *         // Time-to-live (seconds)
+	 *         60,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
@@ -535,9 +537,7 @@ class WANObjectCache {
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             return $dbr->selectRow( ... );
-	 *        },
-	 *        // Time-to-live (seconds)
-	 *        60
+	 *        }
 	 *     );
 	 * @endcode
 	 *
@@ -546,6 +546,8 @@ class WANObjectCache {
 	 *     $catConfig = $cache->getWithSetCallback(
 	 *         // Key to store the cached value under
 	 *         wfMemcKey( 'site-cat-config' ),
+	 *         // Time-to-live (seconds)
+	 *         86400,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
@@ -553,13 +555,13 @@ class WANObjectCache {
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             return CatConfig::newFromRow( $dbr->selectRow( ... ) );
-	 *        },
-	 *        // Time-to-live (seconds)
-	 *        86400,
-	 *        // Calling touchCheckKey() on this key invalidates the cache
-	 *        wfMemcKey( 'site-cat-config' ),
-	 *        // Try to only let one datacenter thread manage cache updates at a time
-	 *        array( 'lockTSE' => 30 )
+	 *         },
+	 *         // Calling touchCheckKey() on this key invalidates the cache
+	 *         array(
+	 *             'checkKeys' => array( wfMemcKey( 'site-cat-config' ) ),
+	 *             // Try to only let one datacenter thread manage cache updates at a time
+	 *             'lockTSE' => 30
+	 *         )
 	 *     );
 	 * @endcode
 	 *
@@ -568,6 +570,8 @@ class WANObjectCache {
 	 *     $catState = $cache->getWithSetCallback(
 	 *         // Key to store the cached value under
 	 *         wfMemcKey( 'cat-state', $cat->getId() ),
+	 *         // Time-to-live (seconds)
+	 *         900,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             // Determine new value from the DB
@@ -576,15 +580,15 @@ class WANObjectCache {
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             return CatState::newFromResults( $dbr->select( ... ) );
-	 *        },
-	 *        // Time-to-live (seconds)
-	 *        900,
-	 *        // The "check" keys that represent things the value depends on;
-	 *        // Calling touchCheckKey() on any of them invalidates the cache
-	 *        array(
-	 *             wfMemcKey( 'sustenance-bowls', $cat->getRoomId() ),
-	 *             wfMemcKey( 'people-present', $cat->getHouseId() ),
-	 *             wfMemcKey( 'cat-laws', $cat->getCityId() ),
+	 *         },
+	 *         // The "check" keys that represent things the value depends on;
+	 *         // Calling touchCheckKey() on any of them invalidates the cache
+	 *         array(
+	 *             'checkKeys' => array(
+	 *                 wfMemcKey( 'sustenance-bowls', $cat->getRoomId() ),
+	 *                 wfMemcKey( 'people-present', $cat->getHouseId() ),
+	 *                 wfMemcKey( 'cat-laws', $cat->getCityId() ),
+	 *             )
 	 *         )
 	 *     );
 	 * @endcode
@@ -594,6 +598,8 @@ class WANObjectCache {
 	 *     $lastCatActions = $cache->getWithSetCallback(
 	 *         // Key to store the cached value under
 	 *         wfMemcKey( 'cat-last-actions', 100 ),
+	 *         // Time-to-live (seconds)
+	 *         10,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
@@ -608,10 +614,6 @@ class WANObjectCache {
 	 *             // Merge them and get the new "last 100" rows
 	 *             return array_slice( array_merge( $new, $list ), 0, 100 );
 	 *        },
-	 *        // Time-to-live (seconds)
-	 *        10,
-	 *        // No "check" keys
-	 *        array(),
 	 *        // Try to only let one datacenter thread manage cache updates at a time
 	 *        array( 'lockTSE' => 30 )
 	 *     );
