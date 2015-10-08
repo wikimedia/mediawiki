@@ -41,7 +41,7 @@ use UnexpectedValueException;
  * channel as the prefix value.
  *
  * When not targeting a udp2log stream this class will act as a drop-in
- * replacement for Monolog's StreamHandler.
+ * replacement for \\Monolog\\Handler\\StreamHandler.
  *
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>

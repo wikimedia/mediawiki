@@ -117,7 +117,7 @@ class AvroFormatter implements FormatterInterface {
 	 * Get the writer for the named channel
 	 *
 	 * @var string $channel Name of the schema to fetch
-	 * @return AvroSchema|null
+	 * @return \\AvroSchema|null
 	 */
 	protected function getSchema( $channel ) {
 		if ( !isset( $this->schemas[$channel] ) ) {

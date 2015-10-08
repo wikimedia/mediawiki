@@ -26,7 +26,7 @@ use DeferredUpdates;
 use Monolog\Handler\BufferHandler as BaseBufferHandler;
 
 /**
- * Updates the Monolog BufferHandler to use DeferredUpdates rather
+ * Updates \\Monolog\\Handler\\BufferHandler to use DeferredUpdates rather
  * than register_shutdown_function. On supported platforms this will
  * use register_postsend_function or fastcgi_finish_request() to delay
  * until after the request has shutdown and we are no longer delaying
