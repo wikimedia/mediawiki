@@ -3312,22 +3312,31 @@ class OutputPage extends ContextSource {
 	 * @return bool
 	 */
 	public function userCanPreview() {
-		if ( $this->getRequest()->getVal( 'action' ) != 'submit'
-			|| !$this->getRequest()->wasPosted()
-			|| !$this->getUser()->matchEditToken(
-				$this->getRequest()->getVal( 'wpEditToken' ) )
-		) {
+		$request = $this->getRequest();
+		if ( $request->getVal( 'action' ) !== 'submit' || !$request->wasPosted() ) {
 			return false;
 		}
-		if ( !$this->getTitle()->isJsSubpage() && !$this->getTitle()->isCssSubpage() ) {
+
+		$user = $this->getUser();
+		if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
 			return false;
 		}
-		if ( !$this->getTitle()->isSubpageOf( $this->getUser()->getUserPage() ) ) {
+
+		$title = $this->getTitle();
+		if ( !$title->isJsSubpage() && !$title->isCssSubpage() ) {
+			return false;
+		}
+		if ( !$title->isSubpageOf( $user->getUserPage() ) ) {
 			// Don't execute another user's CSS or JS on preview (T85855)
 			return false;
 		}
 
-		return !count( $this->getTitle()->getUserPermissionsErrors( 'edit', $this->getUser() ) );
+		$errors = $title->getUserPermissionsErrors( 'edit', $user );
+		if ( count( $errors ) !== 0 ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
