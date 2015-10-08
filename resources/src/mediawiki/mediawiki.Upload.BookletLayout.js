@@ -191,19 +191,15 @@
 			deferred.resolve();
 			layout.emit( 'fileUploaded' );
 		}, function () {
-			// These errors will be thrown while the user is on the info page
-			if ( layout.upload.getState() === mw.Upload.State.ERROR ) {
-				deferred.reject( new OO.ui.Error( layout.upload.getStateDetails(), {
-					recoverable: false
-				} ) );
-				return false;
-			}
-			if ( layout.upload.getState() === mw.Upload.State.WARNING ) {
-				deferred.reject( new OO.ui.Error( layout.upload.getStateDetails(), {
-					recoverable: false
-				} ) );
-				return false;
-			}
+			var
+				state = layout.upload.getState(),
+				stateDetails = layout.upload.getStateDetails(),
+				errorMessage = layout.getErrorMessageForStateDetails( state, stateDetails );
+
+			// These errors will be thrown while the user is on the info page.
+			// Pretty sure it's impossible to get a warning other than 'stashfailed' here, which should
+			// really be an error...
+			deferred.reject( errorMessage );
 		} );
 
 		// If there is an error in uploading, come back to the upload page
@@ -244,78 +240,110 @@
 				deferred.resolve();
 				layout.emit( 'fileSaved' );
 			}, function () {
-				var stateDetails = layout.upload.getStateDetails();
+				var
+					state = layout.upload.getState(),
+					stateDetails = layout.upload.getStateDetails(),
+					errorMessage = layout.getErrorMessageForStateDetails( state, stateDetails );
 
-				if ( layout.upload.getState() === mw.Upload.State.ERROR ) {
-					deferred.reject( new OO.ui.Error( stateDetails, {
-						recoverable: false
-					} ) );
-					return false;
-				}
-
-				if ( layout.upload.getState() === mw.Upload.State.WARNING ) {
-					// We could get more than one of these errors, these are in order
-					// of importance. For example fixing the thumbnail like file name
-					// won't help the fact that the file already exists.
-					if ( stateDetails.exists !== undefined ) {
-						deferred.reject( new OO.ui.Error(
-							$( '<p>' ).html(
-								mw.message( 'filepageexists', stateDetails.exists ).parse()
-							),
-							{ recoverable: false }
-						) );
-					} else if ( stateDetails.duplicate !== undefined ) {
-						deferred.reject( new OO.ui.Error(
-							$( '<p>' ).html(
-								mw.message( 'fileexists', stateDetails.duplicate[ 0 ] ).parse()
-							),
-							{ recoverable: false }
-						) );
-					} else if ( stateDetails[ 'thumb-name' ] !== undefined ) {
-						deferred.reject( new OO.ui.Error(
-							$( '<p>' ).html(
-								mw.message( 'filename-thumb-name' ).parse()
-							),
-							{ recoverable: false }
-						) );
-					} else if ( stateDetails[ 'bad-prefix' ] !== undefined ) {
-						deferred.reject( new OO.ui.Error(
-							$( '<p>' ).html(
-								mw.message( 'filename-bad-prefix', stateDetails[ 'bad-prefix' ] ).parse()
-							),
-							{ recoverable: false }
-						) );
-					} else if ( stateDetails[ 'duplicate-archive' ] !== undefined ) {
-						deferred.reject( new OO.ui.Error(
-							$( '<p>' ).html(
-								mw.message( 'api-error-duplicate-archive', stateDetails[ 'duplicate-archive' ] ).parse()
-							),
-							{ recoverable: false }
-						) );
-					} else if ( stateDetails.badfilename !== undefined ) {
-						// Change the name if the current name isn't acceptable
-						layout.filenameWidget.setValue( stateDetails.badfilename );
-						deferred.reject( new OO.ui.Error(
-							$( '<p>' ).html(
-								mw.message( 'badfilename', stateDetails.badfilename ).parse()
-							)
-						) );
-					} else {
-						deferred.reject( new OO.ui.Error(
-							$( '<p>' ).html(
-								// Let's get all the help we can if we can't pin point the error
-								mw.message( 'api-error-unknown-warning', JSON.stringify( stateDetails ) ).parse()
-							),
-							{ recoverable: false }
-						) );
-					}
-
-					return false;
-				}
+				deferred.reject( errorMessage );
 			} );
 		} );
 
 		return deferred.promise();
+	};
+
+	/**
+	 * Get an error message (as OO.ui.Error object) that should be displayed to the user for the given
+	 * state and state details.
+	 *
+	 * @protected
+	 * @param {mw.Upload.State} state mw.Upload.State.ERROR or mw.Upload.State.WARNING
+	 * @param {Object} stateDetails
+	 * @returns {OO.ui.Error} Error to display for given state and details.
+	 */
+	mw.Upload.BookletLayout.prototype.getErrorMessageForStateDetails = function ( state, stateDetails ) {
+		var message,
+			error = stateDetails.error,
+			warnings = stateDetails.upload && stateDetails.upload.warnings;
+
+		if ( state === mw.Upload.State.ERROR ) {
+			message = mw.message( 'api-error-' + error.code );
+			if ( !message.exists() ) {
+				message = mw.message( 'api-error-unknownerror', JSON.stringify( stateDetails ) );
+			}
+			return new OO.ui.Error(
+				$( '<p>' ).html(
+					message.parse()
+				),
+				{ recoverable: false }
+			);
+		}
+
+		if ( state === mw.Upload.State.WARNING ) {
+			// We could get more than one of these errors, these are in order
+			// of importance. For example fixing the thumbnail like file name
+			// won't help the fact that the file already exists.
+			if ( warnings.stashfailed !== undefined ) {
+				return new OO.ui.Error(
+					$( '<p>' ).html(
+						mw.message( 'api-error-stashfailed' ).parse()
+					),
+					{ recoverable: false }
+				);
+			} else if ( warnings.exists !== undefined ) {
+				return new OO.ui.Error(
+					$( '<p>' ).html(
+						mw.message( 'filepageexists', warnings.exists ).parse()
+					),
+					{ recoverable: false }
+				);
+			} else if ( warnings.duplicate !== undefined ) {
+				return new OO.ui.Error(
+					$( '<p>' ).html(
+						mw.message( 'fileexists', warnings.duplicate[ 0 ] ).parse()
+					),
+					{ recoverable: false }
+				);
+			} else if ( warnings[ 'thumb-name' ] !== undefined ) {
+				return new OO.ui.Error(
+					$( '<p>' ).html(
+						mw.message( 'filename-thumb-name' ).parse()
+					),
+					{ recoverable: false }
+				);
+			} else if ( warnings[ 'bad-prefix' ] !== undefined ) {
+				return new OO.ui.Error(
+					$( '<p>' ).html(
+						mw.message( 'filename-bad-prefix', warnings[ 'bad-prefix' ] ).parse()
+					),
+					{ recoverable: false }
+				);
+			} else if ( warnings[ 'duplicate-archive' ] !== undefined ) {
+				return new OO.ui.Error(
+					$( '<p>' ).html(
+						mw.message( 'api-error-duplicate-archive', warnings[ 'duplicate-archive' ] ).parse()
+					),
+					{ recoverable: false }
+				);
+			} else if ( warnings.badfilename !== undefined ) {
+				// Change the name if the current name isn't acceptable
+				// TODO This might not really be the best place to do this
+				this.filenameWidget.setValue( warnings.badfilename );
+				return new OO.ui.Error(
+					$( '<p>' ).html(
+						mw.message( 'badfilename', warnings.badfilename ).parse()
+					)
+				);
+			} else {
+				return new OO.ui.Error(
+					$( '<p>' ).html(
+						// Let's get all the help we can if we can't pin point the error
+						mw.message( 'api-error-unknown-warning', JSON.stringify( stateDetails ) ).parse()
+					),
+					{ recoverable: false }
+				);
+			}
+		}
 	};
 
 	/* Form renderers */
