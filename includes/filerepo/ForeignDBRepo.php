@@ -94,18 +94,19 @@ class ForeignDBRepo extends LocalRepo {
 	 * @return Closure
 	 */
 	protected function getDBFactory() {
-		return function( $index ) {
-			return DatabaseBase::factory( $this->dbType,
-				array(
-					'host' => $this->dbServer,
-					'user' => $this->dbUser,
-					'password' => $this->dbPassword,
-					'dbname' => $this->dbName,
-					'flags' => $this->dbFlags,
-					'tablePrefix' => $this->tablePrefix,
-					'foreign' => true,
-				)
-			);
+		$type = $this->dbType;
+		$params = array(
+			'host' => $this->dbServer,
+			'user' => $this->dbUser,
+			'password' => $this->dbPassword,
+			'dbname' => $this->dbName,
+			'flags' => $this->dbFlags,
+			'tablePrefix' => $this->tablePrefix,
+			'foreign' => true,
+		);
+
+		return function ( $index ) use ( $type, $params ) {
+			return DatabaseBase::factory( $type, $params );
 		};
 	}
 
