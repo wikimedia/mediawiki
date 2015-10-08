@@ -191,7 +191,7 @@
 	 * Sets the state and state details (if any) of the upload.
 	 *
 	 * @param {mw.Upload.State} state
-	 * @param {string|Object} stateDetails
+	 * @param {Object} stateDetails
 	 */
 	UP.setState = function ( state, stateDetails ) {
 		this.state = state;
@@ -254,8 +254,13 @@
 			upload.setState( Upload.State.UPLOADED );
 			upload.imageinfo = result.upload.imageinfo;
 			return result;
-		}, function () {
-			upload.setState( Upload.State.ERROR );
+		}, function ( errorCode, result ) {
+			if ( result && result.upload && result.upload.warnings ) {
+				upload.setState( Upload.State.WARNING, result );
+			} else {
+				upload.setState( Upload.State.ERROR, result );
+			}
+			return $.Deferred().reject( errorCode, result );
 		} );
 	};
 
@@ -282,8 +287,13 @@
 		} ).then( function ( finishStash ) {
 			upload.setState( Upload.State.STASHED );
 			return finishStash;
-		}, function ( result ) {
-			upload.setState( Upload.State.ERROR, mw.message( 'api-error-' + result ) );
+		}, function ( errorCode, result ) {
+			if ( result && result.upload && result.upload.warnings ) {
+				upload.setState( Upload.State.WARNING, result );
+			} else {
+				upload.setState( Upload.State.ERROR, result );
+			}
+			return $.Deferred().reject( errorCode, result );
 		} );
 
 		return this.stashPromise;
@@ -313,21 +323,13 @@
 				upload.setState( Upload.State.UPLOADED );
 				upload.imageinfo = result.upload.imageinfo;
 				return result;
-			}, function ( result ) {
-				// Errors are strings that can be used to get error message
-				if ( typeof result === 'string' ) {
-					upload.setState( Upload.State.ERROR, mw.message( 'api-error-' + result ) );
-					return;
-				}
-
-				// Warnings come in the form of objects
-				if ( $.isPlainObject( result ) ) {
+			}, function ( errorCode, result ) {
+				if ( result && result.upload && result.upload.warnings ) {
 					upload.setState( Upload.State.WARNING, result );
-					return;
+				} else {
+					upload.setState( Upload.State.ERROR, result );
 				}
-
-				// Throw an empty error if we can't figure it out
-				upload.setState( Upload.State.ERROR );
+				return $.Deferred().reject( errorCode, result );
 			} );
 		} );
 	};

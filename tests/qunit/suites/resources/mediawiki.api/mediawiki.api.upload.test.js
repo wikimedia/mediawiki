@@ -5,8 +5,9 @@
 		QUnit.expect( 2 );
 		var api = new mw.Api();
 		assert.ok( api.upload );
-		// The below will return a rejected deferred, but that's OK.
-		assert.ok( api.upload() );
+		assert.throws( function () {
+			api.upload();
+		} );
 	} );
 
 	QUnit.test( 'Set up iframe upload', function ( assert ) {
