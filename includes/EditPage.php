@@ -1942,7 +1942,7 @@ class EditPage {
 			return $status;
 		}
 
-		$flags = EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
+		$flags = EDIT_AUTOSUMMARY |
 			( $new ? EDIT_NEW : EDIT_UPDATE ) |
 			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
 			( $bot ? EDIT_FORCE_BOT : 0 );
