@@ -25,7 +25,7 @@
  * @ingroup Parser
  * @codingStandardsIgnoreStart
  */
-class Preprocessor_DOM implements Preprocessor {
+class Preprocessor_DOM extends Preprocessor {
 	// @codingStandardsIgnoreEnd
 
 	/**
@@ -35,7 +35,7 @@ class Preprocessor_DOM implements Preprocessor {
 
 	public $memoryLimit;
 
-	const CACHE_VERSION = 1;
+	const CACHE_PREFIX = 'preprocess-xml';
 
 	public function __construct( $parser ) {
 		$this->parser = $parser;
@@ -148,30 +148,11 @@ class Preprocessor_DOM implements Preprocessor {
 	 * @return PPNode_DOM
 	 */
 	public function preprocessToObj( $text, $flags = 0 ) {
-		global $wgMemc, $wgPreprocessorCacheThreshold;
 
-		$xml = false;
-		$cacheable = ( $wgPreprocessorCacheThreshold !== false
-			&& strlen( $text ) > $wgPreprocessorCacheThreshold );
-		if ( $cacheable ) {
-			$cacheKey = wfMemcKey( 'preprocess-xml', md5( $text ), $flags );
-			$cacheValue = $wgMemc->get( $cacheKey );
-			if ( $cacheValue ) {
-				$version = substr( $cacheValue, 0, 8 );
-				if ( intval( $version ) == self::CACHE_VERSION ) {
-					$xml = substr( $cacheValue, 8 );
-					// From the cache
-					wfDebugLog( "Preprocessor", "Loaded preprocessor XML from memcached (key $cacheKey)" );
-				}
-			}
-			if ( $xml === false ) {
-				$xml = $this->preprocessToXml( $text, $flags );
-				$cacheValue = sprintf( "%08d", self::CACHE_VERSION ) . $xml;
-				$wgMemc->set( $cacheKey, $cacheValue, 86400 );
-				wfDebugLog( "Preprocessor", "Saved preprocessor XML to memcached (key $cacheKey)" );
-			}
-		} else {
+		$xml = $this->cacheGetTree( $text, $flags );
+		if ( $xml === false ) {
 			$xml = $this->preprocessToXml( $text, $flags );
+			$this->cacheSetTree( $text, $flags, $xml );
 		}
 
 		// Fail if the number of elements exceeds acceptable limits
@@ -179,8 +160,7 @@ class Preprocessor_DOM implements Preprocessor {
 		$this->parser->mGeneratedPPNodeCount += substr_count( $xml, '<' );
 		$max = $this->parser->mOptions->getMaxGeneratedPPNodeCount();
 		if ( $this->parser->mGeneratedPPNodeCount > $max ) {
-			if ( $cacheable ) {
-			}
+			// if ( $cacheable ) { ... }
 			throw new MWException( __METHOD__ . ': generated node count limit exceeded' );
 		}
 
@@ -199,8 +179,7 @@ class Preprocessor_DOM implements Preprocessor {
 			$obj = new PPNode_DOM( $dom->documentElement );
 		}
 
-		if ( $cacheable ) {
-		}
+		// if ( $cacheable ) { ... }
 
 		if ( !$result ) {
 			throw new MWException( __METHOD__ . ' generated invalid XML' );

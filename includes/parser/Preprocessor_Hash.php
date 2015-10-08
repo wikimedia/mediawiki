@@ -28,7 +28,7 @@
  * @ingroup Parser
  * @codingStandardsIgnoreStart
  */
-class Preprocessor_Hash implements Preprocessor {
+class Preprocessor_Hash extends Preprocessor {
 	// @codingStandardsIgnoreEnd
 
 	/**
@@ -36,7 +36,7 @@ class Preprocessor_Hash implements Preprocessor {
 	 */
 	public $parser;
 
-	const CACHE_VERSION = 1;
+	const CACHE_PREFIX = 'preprocess-hash';
 
 	public function __construct( $parser ) {
 		$this->parser = $parser;
@@ -88,6 +88,7 @@ class Preprocessor_Hash implements Preprocessor {
 		return $node;
 	}
 
+
 	/**
 	 * Preprocess some wikitext and return the document tree.
 	 * This is the ghost of Parser::replace_variables().
@@ -112,25 +113,9 @@ class Preprocessor_Hash implements Preprocessor {
 	 * @return PPNode_Hash_Tree
 	 */
 	public function preprocessToObj( $text, $flags = 0 ) {
-		// Check cache.
-		global $wgMemc, $wgPreprocessorCacheThreshold;
-
-		$cacheable = $wgPreprocessorCacheThreshold !== false
-			&& strlen( $text ) > $wgPreprocessorCacheThreshold;
-
-		if ( $cacheable ) {
-			$cacheKey = wfMemcKey( 'preprocess-hash', md5( $text ), $flags );
-			$cacheValue = $wgMemc->get( $cacheKey );
-			if ( $cacheValue ) {
-				$version = substr( $cacheValue, 0, 8 );
-				if ( intval( $version ) == self::CACHE_VERSION ) {
-					$hash = unserialize( substr( $cacheValue, 8 ) );
-					// From the cache
-					wfDebugLog( "Preprocessor",
-						"Loaded preprocessor hash from memcached (key $cacheKey)" );
-					return $hash;
-				}
-			}
+		$tree = $this->cacheGetTree( $text, $flags );
+		if ( $tree !== false ) {
+			return $tree;
 		}
 
 		$rules = array(
@@ -629,13 +614,11 @@ class Preprocessor_Hash implements Preprocessor {
 								$lastNode = $node;
 							}
 							if ( !$node ) {
-								if ( $cacheable ) {
-								}
+								// if ( $cacheable ) { ... }
 								throw new MWException( __METHOD__ . ': eqpos not found' );
 							}
 							if ( $node->name !== 'equals' ) {
-								if ( $cacheable ) {
-								}
+								// if ( $cacheable ) { ... }
 								throw new MWException( __METHOD__ . ': eqpos is not equals' );
 							}
 							$equalsNode = $node;
@@ -732,15 +715,7 @@ class Preprocessor_Hash implements Preprocessor {
 		$rootNode->lastChild = $stack->rootAccum->lastNode;
 
 		// Cache
-		if ( $cacheable ) {
-			$cacheValue = sprintf( "%08d", self::CACHE_VERSION ) . serialize( $rootNode );
-
-			// T111289: Cache values should not exceed 1 Mb, but they do.
-			if ( strlen( $cacheValue ) <= 1e6 ) {
-				$wgMemc->set( $cacheKey, $cacheValue, 86400 );
-				wfDebugLog( "Preprocessor", "Saved preprocessor Hash to memcached (key $cacheKey)" );
-			}
-		}
+		$this->cacheSetTree( $text, $flags, $rootNode );
 
 		return $rootNode;
 	}
