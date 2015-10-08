@@ -1606,6 +1606,16 @@ class WikiRevision {
 			}
 		}
 
+		// Select previous version to make size diffs correct
+		$prevId = $dbw->selectField( 'revision', 'rev_id',
+			array(
+				'rev_page' => $pageId,
+				'rev_timestamp < ' . $dbw->timestamp( $this->timestamp ),
+			),
+			__METHOD__,
+			array( 'ORDER BY' => 'rev_timestamp DESC' )
+		);
+
 		# @todo FIXME: Use original rev_id optionally (better for backups)
 		# Insert the row
 		$revision = new Revision( array(
@@ -1620,6 +1630,7 @@ class WikiRevision {
 			'user_text' => $userText,
 			'timestamp' => $this->timestamp,
 			'minor_edit' => $this->minor,
+			'parent_id' => $prevId,
 			) );
 		$revision->insertOn( $dbw );
 		$changed = $page->updateIfNewerOn( $dbw, $revision );
