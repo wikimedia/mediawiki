@@ -39,9 +39,9 @@ class ReplicatedBagOStuff extends BagOStuff {
 
 	/**
 	 * Constructor. Parameters are:
-	 *   - writeFactory : ObjectFactory::getObjectFromSpec parameters yeilding BagOStuff.
+	 *   - writeFactory : ObjectFactory::getObjectFromSpec array yeilding BagOStuff.
 	 *                    This object will be used for writes (e.g. the master DB).
-	 *   - readFactory  : ObjectFactory::getObjectFromSpec parameters yeilding BagOStuff.
+	 *   - readFactory  : ObjectFactory::getObjectFromSpec array yeilding BagOStuff.
 	 *                    This object will be used for reads (e.g. a slave DB).
 	 *
 	 * @param array $params

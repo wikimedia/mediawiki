@@ -41,10 +41,9 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 	/**
 	 * $params include:
-	 *   - caches:      This should have a numbered array of cache parameter
-	 *                  structures, in the style required by $wgObjectCaches. See
-	 *                  the documentation of $wgObjectCaches for more detail.
-	 *                  BagOStuff objects can also be used as values.
+	 *   - caches:      A numbered array of either ObjectFactory::getObjectFromSpec
+	 *                  arrays yeilding BagOStuff objects or direct BagOStuff objects.
+	 *                  If using the former, the 'args' field *must* be set.
 	 *                  The first cache is the primary one, being the first to
 	 *                  be read in the fallback chain. Writes happen to all stores
 	 *                  in the order they are defined. However, lock()/unlock() calls
@@ -72,9 +71,18 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 		$this->caches = array();
 		foreach ( $params['caches'] as $cacheInfo ) {
-			$this->caches[] = ( $cacheInfo instanceof BagOStuff )
-				? $cacheInfo
-				: ObjectCache::newFromParams( $cacheInfo );
+			if ( $cacheInfo instanceof BagOStuff ) {
+				$this->caches[] = $cacheInfo;
+			} else {
+				if ( !isset( $cacheInfo['args'] ) ) {
+					// B/C for when $cacheInfo was for ObjectCache::newFromParams().
+					// Callers intenting this to be for ObjectFactory::getObjectFromSpec
+					// should have set "args" per the docs above. Doings so avoids extra
+					// (likely harmless) params (factory/class/calls) ending up in "args".
+					$cacheInfo['args'] = array( $cacheInfo );
+				}
+				$this->caches[] = ObjectFactory::getObjectFromSpec( $cacheInfo );
+			}
 		}
 
 		$this->asyncWrites = isset( $params['replication'] ) && $params['replication'] === 'async';
