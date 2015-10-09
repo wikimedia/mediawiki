@@ -3362,5 +3362,6 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "sengkang en",
 	"special-characters-title-emdash": "sengkang em",
-	"special-characters-title-minus": "tanda tolak"
+	"special-characters-title-minus": "tanda tolak",
+	"api-error-blacklisted": "Sila pilih tajuk yang berbeza dan deskriptif."
 }

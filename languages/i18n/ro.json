@@ -3400,5 +3400,6 @@
 	"mw-widgets-dateinput-placeholder-day": "AAAA-LL-ZZ",
 	"mw-widgets-dateinput-placeholder-month": "AAAA-LL",
 	"mw-widgets-titleinput-description-new-page": "pagina nu există încă",
-	"mw-widgets-titleinput-description-redirect": "redirecționare către $1"
+	"mw-widgets-titleinput-description-redirect": "redirecționare către $1",
+	"api-error-blacklisted": "Vă rugăm să alegeți un alt titlu, mai descriptiv."
 }

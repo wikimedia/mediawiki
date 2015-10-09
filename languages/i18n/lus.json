@@ -1477,5 +1477,6 @@
 	"special-characters-group-lao": "Lao",
 	"special-characters-group-khmer": "Khmer",
 	"mw-widgets-dateinput-placeholder-day": "KKKK-TT-NN",
-	"mw-widgets-dateinput-placeholder-month": "KKKK-TT"
+	"mw-widgets-dateinput-placeholder-month": "KKKK-TT",
+	"api-error-blacklisted": "Hming dang, chiang zâwk deuh thlang hräm rawh le."
 }

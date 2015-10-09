@@ -3025,5 +3025,6 @@
 	"special-characters-group-lao": "Lao",
 	"special-characters-group-khmer": "Khmer",
 	"mw-widgets-dateinput-placeholder-day": "TTTT-BB-AA",
-	"mw-widgets-dateinput-placeholder-month": "TTTT-BB"
+	"mw-widgets-dateinput-placeholder-month": "TTTT-BB",
+	"api-error-blacklisted": "Paki pumili ng isang naiibang mapaglarawang pamagat."
 }

@@ -3369,5 +3369,6 @@
 	"special-characters-title-minus": "мінус",
 	"mw-widgets-dateinput-placeholder-day": "ГГГГ-ММ-ДД",
 	"mw-widgets-dateinput-placeholder-month": "ГГГГ-ММ",
-	"mw-widgets-titleinput-description-new-page": "старонка яшчэ не існуе"
+	"mw-widgets-titleinput-description-new-page": "старонка яшчэ не існуе",
+	"api-error-blacklisted": "Калі ласка, выбярыце іншую, апісальную назву."
 }

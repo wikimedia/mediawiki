@@ -3349,5 +3349,6 @@
 	"special-characters-title-emdash": "tratin em",
 	"special-characters-title-minus": "segn meno",
 	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-DD",
-	"mw-widgets-dateinput-placeholder-month": "AAAA-MM"
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
+	"api-error-blacklisted": "Për piasì sern un tìtol diferent, descritiv."
 }

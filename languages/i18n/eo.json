@@ -3403,5 +3403,6 @@
 	"special-characters-title-emdash": "longa streketo",
 	"special-characters-title-minus": "minus-signo",
 	"mw-widgets-dateinput-placeholder-day": "JJJJ-MM-TT",
-	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM"
+	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM",
+	"api-error-blacklisted": "Bonvolu elekti alian, priskriban titolon."
 }

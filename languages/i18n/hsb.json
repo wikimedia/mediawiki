@@ -3204,5 +3204,6 @@
 	"special-characters-title-emdash": "dołha ležaca smužka",
 	"special-characters-title-minus": "minusowe znamješko",
 	"mw-widgets-dateinput-placeholder-day": "JJJJ-MM-TT",
-	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM"
+	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM",
+	"api-error-blacklisted": "Prošu wubjer druhi, wuprajiwy titul."
 }

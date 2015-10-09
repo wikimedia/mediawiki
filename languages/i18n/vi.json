@@ -3509,5 +3509,6 @@
 	"mw-widgets-dateinput-placeholder-day": "YYYY-MM-DD (năm-tháng-ngày)",
 	"mw-widgets-dateinput-placeholder-month": "YYYY-MM (năm-tháng)",
 	"mw-widgets-titleinput-description-new-page": "Trang này chưa tồn tại",
-	"mw-widgets-titleinput-description-redirect": "Đổi hướng đến $1"
+	"mw-widgets-titleinput-description-redirect": "Đổi hướng đến $1",
+	"api-error-blacklisted": "Xin vui lòng chọn một tên khác miêu tả đầy đủ."
 }

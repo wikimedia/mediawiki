@@ -2386,5 +2386,6 @@
 	"expand_templates_preview": "Forskoðan",
 	"mw-widgets-dateinput-placeholder-day": "ÁÁÁÁ-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "ÁÁÁÁ-MM",
-	"mw-widgets-titleinput-description-new-page": "síðan er ikki til enn"
+	"mw-widgets-titleinput-description-new-page": "síðan er ikki til enn",
+	"api-error-blacklisted": "Vinarliga vel ein annarleiðis tittul, sum lýsir fíluna betri."
 }

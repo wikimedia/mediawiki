@@ -3192,5 +3192,6 @@
 	"special-characters-title-emdash": "tira derge",
 	"special-characters-title-minus": "işaretê kemiye",
 	"mw-widgets-dateinput-placeholder-day": "SSSS-AA-RR",
-	"mw-widgets-dateinput-placeholder-month": "SSSS-AA"
+	"mw-widgets-dateinput-placeholder-month": "SSSS-AA",
+	"api-error-blacklisted": "Reca keme zewbina weçine, name wa şınasnaye bo."
 }

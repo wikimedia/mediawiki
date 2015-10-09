@@ -3398,5 +3398,6 @@
 	"mw-widgets-dateinput-placeholder-day": "LLLL-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "LLLL-MM",
 	"mw-widgets-titleinput-description-new-page": "stran še ne obstaja",
-	"mw-widgets-titleinput-description-redirect": "preusmeritev na $1"
+	"mw-widgets-titleinput-description-redirect": "preusmeritev na $1",
+	"api-error-blacklisted": "Prosimo, izberite drugačen, opisen naslov."
 }

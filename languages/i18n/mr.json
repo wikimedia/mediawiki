@@ -3029,5 +3029,6 @@
 	"special-characters-group-thai": "थाई भाषा",
 	"special-characters-group-lao": "लाऒ भाषा",
 	"special-characters-group-khmer": "ख्मेर",
-	"special-characters-title-minus": "ॠण चिन्ह"
+	"special-characters-title-minus": "ॠण चिन्ह",
+	"api-error-blacklisted": "कुपया वेगळे वर्णनात्मक शीर्षक निवडा"
 }

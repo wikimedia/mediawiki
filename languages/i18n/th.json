@@ -2979,5 +2979,6 @@
 	"special-characters-group-bangla": "บังคลา",
 	"special-characters-group-telugu": "เตลูกู",
 	"special-characters-group-sinhala": "สิงหล",
-	"special-characters-group-gujarati": "คุชราต"
+	"special-characters-group-gujarati": "คุชราต",
+	"api-error-blacklisted": "โปรดใช้ชื่ออื่นที่สื่อความหมาย"
 }

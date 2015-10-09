@@ -3616,5 +3616,6 @@
 	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-JJ",
 	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
 	"mw-widgets-titleinput-description-new-page": "la page n’existe pas encore",
-	"mw-widgets-titleinput-description-redirect": "redirection vers $1"
+	"mw-widgets-titleinput-description-redirect": "redirection vers $1",
+	"api-error-blacklisted": "Merci de choisir un autre titre descriptif."
 }

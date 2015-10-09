@@ -3384,5 +3384,6 @@
 	"mw-widgets-dateinput-placeholder-day": "ÉÉÉÉ-HH-NN",
 	"mw-widgets-dateinput-placeholder-month": "ÉÉÉÉ-HH",
 	"mw-widgets-titleinput-description-new-page": "a lap még nem létezik",
-	"mw-widgets-titleinput-description-redirect": "átirányítás ide: $1"
+	"mw-widgets-titleinput-description-redirect": "átirányítás ide: $1",
+	"api-error-blacklisted": "Válasszon egy másik, leíró címet."
 }

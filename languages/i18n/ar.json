@@ -3474,5 +3474,6 @@
 	"special-characters-title-minus": "علامة الطرح",
 	"mw-widgets-dateinput-no-date": "لا تاريخ تم اختياره",
 	"mw-widgets-titleinput-description-new-page": "الصفحة غير موجودة بعد",
-	"mw-widgets-titleinput-description-redirect": "تحويل إلى $1"
+	"mw-widgets-titleinput-description-redirect": "تحويل إلى $1",
+	"api-error-blacklisted": "اختر عنوانا مختلفا ومفهوما."
 }

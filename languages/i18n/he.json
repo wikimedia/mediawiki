@@ -3489,5 +3489,6 @@
 	"special-characters-title-minus": "מינוס",
 	"mw-widgets-dateinput-no-date": "לא נבחר תאריך",
 	"mw-widgets-titleinput-description-new-page": "הדף עדיין לא קיים",
-	"mw-widgets-titleinput-description-redirect": "הפניה ל{{GRAMMAR:תחילית|$1}}"
+	"mw-widgets-titleinput-description-redirect": "הפניה ל{{GRAMMAR:תחילית|$1}}",
+	"api-error-blacklisted": "נא לבחור כותרת שונה, מתארת יותר."
 }

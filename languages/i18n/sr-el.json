@@ -3341,5 +3341,6 @@
 	"mw-widgets-dateinput-placeholder-day": "GGGG-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "GGGG-MM",
 	"mw-widgets-titleinput-description-new-page": "stranica još uvek ne postoji",
-	"mw-widgets-titleinput-description-redirect": "preusmerava na $1"
+	"mw-widgets-titleinput-description-redirect": "preusmerava na $1",
+	"api-error-blacklisted": "Izaberite drugačiji, opisan naziv."
 }

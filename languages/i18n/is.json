@@ -2964,5 +2964,6 @@
 	"special-characters-group-thai": "Taílenskt",
 	"special-characters-group-lao": "Laoskt",
 	"mw-widgets-titleinput-description-new-page": "síðan er ekki enn til",
-	"mw-widgets-titleinput-description-redirect": "tilvísun á $1"
+	"mw-widgets-titleinput-description-redirect": "tilvísun á $1",
+	"api-error-blacklisted": "Vinsamlegast veldu annað lýsandi skráarnafn"
 }

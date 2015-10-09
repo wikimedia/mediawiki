@@ -2658,5 +2658,6 @@
 	"special-characters-group-lao": "Laosiano",
 	"special-characters-group-khmer": "Khmer",
 	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-DD",
-	"mw-widgets-dateinput-placeholder-month": "AAAA-MM"
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
+	"api-error-blacklisted": "Trigue un titol diferent, mas descriptivo."
 }

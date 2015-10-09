@@ -3185,5 +3185,6 @@
 	"special-characters-title-endash": "en ଡ୍ୟାସ",
 	"special-characters-title-emdash": "em dash",
 	"special-characters-title-minus": "ମେନୁଗୁଡିକର ଚିହ୍ନ",
-	"mw-widgets-titleinput-description-redirect": "$1କୁ ପୁନଃପ୍ରେରଣ କରିବେ"
+	"mw-widgets-titleinput-description-redirect": "$1କୁ ପୁନଃପ୍ରେରଣ କରିବେ",
+	"api-error-blacklisted": "ଦୟାକରି ଏକ ଅଲଗା, ବିବରଣୀ ଶିରୋନାମାରେ ରଖିବେ ।"
 }

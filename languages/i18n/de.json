@@ -3499,5 +3499,6 @@
 	"mw-widgets-dateinput-placeholder-day": "JJJJ-MM-TT",
 	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM",
 	"mw-widgets-titleinput-description-new-page": "Seite ist noch nicht vorhanden",
-	"mw-widgets-titleinput-description-redirect": "Weiterleitung nach $1"
+	"mw-widgets-titleinput-description-redirect": "Weiterleitung nach $1",
+	"api-error-blacklisted": "Bitte einen anderen, aussagekräftigen Titel wählen."
 }

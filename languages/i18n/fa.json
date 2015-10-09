@@ -3482,5 +3482,6 @@
 	"special-characters-title-minus": "علامت منفی",
 	"mw-widgets-dateinput-no-date": "هیچ داده‌ای انتخاب نشده",
 	"mw-widgets-titleinput-description-new-page": "این صفحه هنوز وجود ندارد",
-	"mw-widgets-titleinput-description-redirect": "تغییر مسیر به $1"
+	"mw-widgets-titleinput-description-redirect": "تغییر مسیر به $1",
+	"api-error-blacklisted": "لطفاً یک عنوان توصیفی متفاوت انتخاب کنید."
 }
