@@ -24,6 +24,40 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers BagOStuff::makeGlobalKey
+	 * @covers BagOStuff::makeKeyInternal
+	 */
+	public function testMakeKey() {
+		$cache = ObjectCache::newFromId( 'hash' );
+
+		$localKey = $cache->makeKey( 'first', 'second', 'third' );
+		$globalKey = $cache->makeGlobalKey( 'first', 'second', 'third' );
+
+		$this->assertStringMatchesFormat(
+			'%Sfirst%Ssecond%Sthird%S',
+			$localKey,
+			'Local key interpolates parameters'
+		);
+
+		$this->assertStringMatchesFormat(
+			'global%Sfirst%Ssecond%Sthird%S',
+			$globalKey,
+			'Global key interpolates parameters and contains global prefix'
+		);
+
+		$this->assertNotEquals(
+			$localKey,
+			$globalKey,
+			'Local key and global key with same parameters should not be equal'
+		);
+
+		$this->assertNotEquals(
+			$cache->makeKeyInternal( 'prefix', array( 'a', 'bc:', 'de' ) ),
+			$cache->makeKeyInternal( 'prefix', array( 'a', 'bc', ':de' ) )
+		);
+	}
+
+	/**
 	 * @covers BagOStuff::merge
 	 * @covers BagOStuff::mergeViaLock
 	 */
