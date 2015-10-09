@@ -283,3 +283,15 @@
 [submodule "extensions/MsCatSelect"]
 	path = extensions/MsCatSelect
 	url = https://git.wikimedia.org/git/mediawiki/extensions/MsCatSelect.git
+[submodule "extensions/MultiBoilerplate"]
+	path = extensions/MultiBoilerplate
+	url = https://github.com/wikimedia/mediawiki-extensions-MultiBoilerplate
+	branch = REL1_25
+[submodule "extensions/RelatedArticles"]
+	path = extensions/RelatedArticles
+	url = https://github.com/wikimedia/mediawiki-extensions-RelatedArticles
+	branch = REL1_25
+[submodule "extensions/CustomData"]
+	path = extensions/CustomData
+	url = https://github.com/wikimedia/mediawiki-extensions-CustomData
+	branch = REL1_25
