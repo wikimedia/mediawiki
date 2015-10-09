@@ -380,10 +380,12 @@ TXT;
 				$text .= "{$pad}#{$level} [internal function]: ";
 			}
 
-			if ( isset( $frame['class'] ) ) {
+			if ( isset( $frame['class'] ) && isset( $frame['type'] ) && isset( $frame['function'] ) ) {
 				$text .= $frame['class'] . $frame['type'] . $frame['function'];
-			} else {
+			} elseif ( isset( $frame['function'] ) ) {
 				$text .= $frame['function'];
+			} else {
+				$text .= 'NO_FUNCTION_GIVEN';
 			}
 
 			if ( isset( $frame['args'] ) ) {
