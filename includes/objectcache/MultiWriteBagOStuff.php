@@ -33,6 +33,8 @@ class MultiWriteBagOStuff extends BagOStuff {
 	protected $caches;
 	/** @var bool Use async secondary writes */
 	protected $asyncWrites = false;
+	/** @var callback|null */
+	protected $asyncHandler;
 
 	/** Idiom for "write to all backends" */
 	const ALL = INF;
@@ -41,23 +43,24 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 	/**
 	 * $params include:
-	 *   - caches:      This should have a numbered array of cache parameter
-	 *                  structures, in the style required by $wgObjectCaches. See
-	 *                  the documentation of $wgObjectCaches for more detail.
-	 *                  BagOStuff objects can also be used as values.
-	 *                  The first cache is the primary one, being the first to
-	 *                  be read in the fallback chain. Writes happen to all stores
-	 *                  in the order they are defined. However, lock()/unlock() calls
-	 *                  only use the primary store.
-	 *   - replication: Either 'sync' or 'async'. This controls whether writes to
-	 *                  secondary stores are deferred when possible. Async writes
-	 *                  require the HHVM register_postsend_function() function.
-	 *                  Async writes can increase the chance of some race conditions
-	 *                  or cause keys to expire seconds later than expected. It is
-	 *                  safe to use for modules when cached values: are immutable,
-	 *                  invalidation uses logical TTLs, invalidation uses etag/timestamp
-	 *                  validation against the DB, or merge() is used to handle races.
-	 *
+	 *   - caches: This should have a numbered array of cache parameter
+	 *      structures, in the style required by $wgObjectCaches. See
+	 *      the documentation of $wgObjectCaches for more detail.
+	 *      BagOStuff objects can also be used as values.
+	 *      The first cache is the primary one, being the first to
+	 *      be read in the fallback chain. Writes happen to all stores
+	 *      in the order they are defined. However, lock()/unlock() calls
+	 *      only use the primary store.
+	 *   - replication: Either 'sync' or 'async'. This controls whether writes
+	 *      to secondary stores are deferred when possible. Async writes
+	 *      require setting 'asyncCallback'. HHVM register_postsend_function() function.
+	 *      Async writes can increase the chance of some race conditions
+	 *      or cause keys to expire seconds later than expected. It is
+	 *      safe to use for modules when cached values: are immutable,
+	 *      invalidation uses logical TTLs, invalidation uses etag/timestamp
+	 *      validation against the DB, or merge() is used to handle races.
+	 *   - asyncHandler: callable that takes a callback and runs it after the
+	 *      current web request ends. In CLI mode, it should run it immediately.
 	 * @param array $params
 	 * @throws InvalidArgumentException
 	 */
@@ -77,7 +80,11 @@ class MultiWriteBagOStuff extends BagOStuff {
 				: ObjectCache::newFromParams( $cacheInfo );
 		}
 
-		$this->asyncWrites = isset( $params['replication'] ) && $params['replication'] === 'async';
+		$this->asyncWrites = (
+			isset( $params['replication'] ) &&
+			$params['replication'] === 'async' &&
+			is_callable( $this->asyncHandler )
+		);
 	}
 
 	/**
@@ -218,7 +225,8 @@ class MultiWriteBagOStuff extends BagOStuff {
 			} else {
 				// Secondary write in async mode: do not block this HTTP request
 				$logger = $this->logger;
-				DeferredUpdates::addCallableUpdate(
+				call_user_func(
+					$this->asyncHandler,
 					function () use ( $cache, $method, $args, $logger ) {
 						if ( !call_user_func_array( array( $cache, $method ), $args ) ) {
 							$logger->warning( "Async $method op failed" );

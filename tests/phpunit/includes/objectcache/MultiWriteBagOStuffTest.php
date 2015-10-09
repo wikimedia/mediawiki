@@ -18,7 +18,8 @@ class MultiWriteBagOStuffTest extends MediaWikiTestCase {
 		$this->cache2 = new HashBagOStuff();
 		$this->cache = new MultiWriteBagOStuff( array(
 			'caches' => array( $this->cache1, $this->cache2 ),
-			'replication' => 'async'
+			'replication' => 'async',
+			'asyncHandler' => 'DeferredUpdates::addCallableUpdate'
 		) );
 	}
 
