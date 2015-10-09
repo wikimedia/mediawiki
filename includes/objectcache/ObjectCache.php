@@ -125,6 +125,31 @@ class ObjectCache {
 	}
 
 	/**
+	 * Get the default keyspace for this wiki.
+	 *
+	 * This is either the value of the `CachePrefix` configuration variable,
+	 * or (if the former is unset) the `DBname` configuration variable, with
+	 * `DBprefix` (if defined).
+	 *
+	 * @return string
+	 */
+	public static function getDefaultKeyspace() {
+		global $wgCachePrefix, $wgDBname, $wgDBprefix;
+
+		$keyspace = $wgCachePrefix;
+		if ( is_string( $keyspace ) && $keyspace !== '' ) {
+			return $keyspace;
+		}
+
+		$keyspace = $wgDBname;
+		if ( is_string( $wgDBprefix ) && $wgDBprefix !== '' ) {
+			$keyspace .= '-' . $wgDBprefix;
+		}
+
+		return $keyspace;
+	}
+
+	/**
 	 * Create a new cache object from parameters.
 	 *
 	 * @param array $params Must have 'factory' or 'class' property.
@@ -142,6 +167,9 @@ class ObjectCache {
 			// For backwards-compatability with custom parameters, lets not
 			// have all logging suddenly disappear
 			$params['logger'] = LoggerFactory::getInstance( 'objectcache' );
+		}
+		if ( !isset( $params['keyspace'] ) ) {
+			$params['keyspace'] = self::getDefaultKeyspace();
 		}
 		if ( isset( $params['factory'] ) ) {
 			return call_user_func( $params['factory'], $params );
@@ -268,9 +296,9 @@ class ObjectCache {
 	 * @return BagOStuff
 	 */
 	public static function getMainClusterInstance() {
-		$config = RequestContext::getMain()->getConfig();
-		$id = $config->get( 'MainCacheType' );
-		return self::getInstance( $id );
+		global $wgMainCacheType;
+
+		return self::getInstance( $wgMainCacheType );
 	}
 
 	/**
