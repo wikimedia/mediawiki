@@ -49,6 +49,9 @@ abstract class DiffFormatter {
 	 */
 	protected $trailingContextLines = 0;
 
+	/** @var string Holds the output while it is built. */
+	protected $result = '';
+
 	/**
 	 * Format a diff.
 	 *
@@ -146,15 +149,15 @@ abstract class DiffFormatter {
 	}
 
 	protected function startDiff() {
-		ob_start();
+		$this->result = '';
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function endDiff() {
-		$val = ob_get_contents();
-		ob_end_clean();
+		$val = $this->result;
+		$this->result = '';
 
 		return $val;
 	}
@@ -185,7 +188,7 @@ abstract class DiffFormatter {
 	 * @param string $header
 	 */
 	protected function startBlock( $header ) {
-		echo $header . "\n";
+		$this->result .= $header . "\n";
 	}
 
 	/**
@@ -203,7 +206,7 @@ abstract class DiffFormatter {
 	 */
 	protected function lines( $lines, $prefix = ' ' ) {
 		foreach ( $lines as $line ) {
-			echo "$prefix $line\n";
+			$this->result .= "$prefix $line\n";
 		}
 	}
 
@@ -236,7 +239,7 @@ abstract class DiffFormatter {
 	 */
 	protected function changed( $orig, $closing ) {
 		$this->deleted( $orig );
-		echo "---\n";
+		$this->result .= "---\n";
 		$this->added( $closing );
 	}
 

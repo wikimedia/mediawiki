@@ -80,7 +80,7 @@ class TableDiffFormatter extends DiffFormatter {
 	 * @param string $header
 	 */
 	protected function startBlock( $header ) {
-		echo $header;
+		$this->result .= $header;
 	}
 
 	protected function endBlock() {
@@ -157,7 +157,7 @@ class TableDiffFormatter extends DiffFormatter {
 	 */
 	protected function added( $lines ) {
 		foreach ( $lines as $line ) {
-			echo '<tr>' . $this->emptyLine() .
+			$this->result .= '<tr>' . $this->emptyLine() .
 				$this->addedLine( '<ins class="diffchange">' .
 					htmlspecialchars( $line ) . '</ins>' ) . "</tr>\n";
 		}
@@ -170,7 +170,7 @@ class TableDiffFormatter extends DiffFormatter {
 	 */
 	protected function deleted( $lines ) {
 		foreach ( $lines as $line ) {
-			echo '<tr>' . $this->deletedLine( '<del class="diffchange">' .
+			$this->result .= '<tr>' . $this->deletedLine( '<del class="diffchange">' .
 					htmlspecialchars( $line ) . '</del>' ) .
 				$this->emptyLine() . "</tr>\n";
 		}
@@ -183,7 +183,7 @@ class TableDiffFormatter extends DiffFormatter {
 	 */
 	protected function context( $lines ) {
 		foreach ( $lines as $line ) {
-			echo '<tr>' .
+			$this->result .= '<tr>' .
 				$this->contextLine( htmlspecialchars( $line ) ) .
 				$this->contextLine( htmlspecialchars( $line ) ) . "</tr>\n";
 		}
@@ -206,11 +206,11 @@ class TableDiffFormatter extends DiffFormatter {
 
 		while ( $line = array_shift( $del ) ) {
 			$aline = array_shift( $add );
-			echo '<tr>' . $this->deletedLine( $line ) .
+			$this->result .= '<tr>' . $this->deletedLine( $line ) .
 				$this->addedLine( $aline ) . "</tr>\n";
 		}
 		foreach ( $add as $line ) { # If any leftovers
-			echo '<tr>' . $this->emptyLine() .
+			$this->result .= '<tr>' . $this->emptyLine() .
 				$this->addedLine( $line ) . "</tr>\n";
 		}
 	}
