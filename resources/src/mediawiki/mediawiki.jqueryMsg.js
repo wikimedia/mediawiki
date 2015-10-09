@@ -1228,6 +1228,22 @@
 		},
 
 		/**
+		 * Get localized namespace name from canonical name or namespace number.
+		 * Invoked by putting `{{ns:foo}}` into a message
+		 *
+		 * @param {Array} nodes List of nodes
+		 * @return {string} Localized namespace name
+		 */
+		ns: function ( nodes ) {
+			var ns = $.trim( textify( nodes[ 0 ] ) );
+			if ( !/^\d+$/.test( ns ) ) {
+				ns = mw.config.get( 'wgNamespaceIds' )[ ns.replace( / /g, '_' ).toLowerCase() ];
+			}
+			ns = mw.config.get( 'wgFormattedNamespaces' )[ ns ];
+			return ns || '';
+		},
+
+		/**
 		 * Takes an unformatted number (arab, no group separators and . as decimal separator)
 		 * and outputs it in the localized digit script and formatted with decimal
 		 * separator, according to the current language.
