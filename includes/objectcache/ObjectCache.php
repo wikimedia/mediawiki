@@ -125,6 +125,31 @@ class ObjectCache {
 	}
 
 	/**
+	 * Get the default keyspace for this wiki.
+	 *
+	 * This is either the value of the `CachePrefix` configuration variable,
+	 * or (if the former is unset) the `DBname` configuration variable, with
+	 * `DBprefix` (if defined).
+	 *
+	 * @return string
+	 */
+	public static function getDefaultKeyspace() {
+		$config = RequestContext::getMain()->getConfig();
+		$keyspace = $config->get( 'CachePrefix' );
+		if ( is_string( $keyspace ) && $keyspace !== '' ) {
+			return $keyspace;
+		}
+
+		$keyspace = $config->get( 'DBname' );
+		$dbPrefix = $config->get( 'DBprefix' );
+		if ( is_string( $dbPrefix ) && $dbPrefix !== '' ) {
+			$keyspace .= '-'. $dbPrefix;
+		}
+
+		return $keyspace;
+	}
+
+	/**
 	 * Create a new cache object from parameters.
 	 *
 	 * @param array $params Must have 'factory' or 'class' property.
@@ -142,6 +167,9 @@ class ObjectCache {
 			// For backwards-compatability with custom parameters, lets not
 			// have all logging suddenly disappear
 			$params['logger'] = LoggerFactory::getInstance( 'objectcache' );
+		}
+		if ( !isset( $params['keyspace'] ) ) {
+			$params['keyspace'] = self::getDefaultKeyspace();
 		}
 		if ( isset( $params['factory'] ) ) {
 			return call_user_func( $params['factory'], $params );
