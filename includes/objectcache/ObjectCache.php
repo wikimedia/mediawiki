@@ -262,6 +262,18 @@ class ObjectCache {
 	}
 
 	/**
+	 * Get the main object cache instance.
+	 *
+	 * @since 1.27
+	 * @return BagOStuff
+	 */
+	public static function getMainInstance() {
+		$config = RequestContext::getMain()->getConfig();
+		$id = $config->get( 'MainCacheType' );
+		return self::getInstance( $id );
+	}
+
+	/**
 	 * Get the main WAN cache object.
 	 *
 	 * @since 1.26
