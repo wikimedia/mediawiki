@@ -710,54 +710,18 @@ class GlobalTest extends MediaWikiTestCase {
 	public function testWfMemcKey() {
 		// Just assert the exact output so we can catch unintentional changes to key
 		// construction, which would effectively invalidate all existing cache.
+		$keyspace = ObjectCache::getDefaultKeyspace();
 
-		$this->setMwGlobals( array(
-			'wgCachePrefix' => false,
-			'wgDBname' => 'example',
-			'wgDBprefix' => '',
-		) );
 		$this->assertEquals(
 			wfMemcKey( 'foo', '123', 'bar' ),
-			'example:foo:123:bar'
-		);
-
-		$this->setMwGlobals( array(
-			'wgCachePrefix' => false,
-			'wgDBname' => 'example',
-			'wgDBprefix' => 'mw_',
-		) );
-		$this->assertEquals(
-			wfMemcKey( 'foo', '123', 'bar' ),
-			'example-mw_:foo:123:bar'
-		);
-
-		$this->setMwGlobals( array(
-			'wgCachePrefix' => 'custom',
-			'wgDBname' => 'example',
-			'wgDBprefix' => 'mw_',
-		) );
-		$this->assertEquals(
-			wfMemcKey( 'foo', '123', 'bar' ),
-			'custom:foo:123:bar'
+			"{$keyspace}:foo:123:bar"
 		);
 	}
 
 	public function testWfForeignMemcKey() {
-		$this->setMwGlobals( array(
-			'wgCachePrefix' => false,
-			'wgDBname' => 'example',
-			'wgDBprefix' => '',
-		) );
-		$local = wfMemcKey( 'foo', 'bar' );
-
-		$this->setMwGlobals( array(
-			'wgDBname' => 'other',
-			'wgDBprefix' => 'mw_',
-		) );
 		$this->assertEquals(
 			wfForeignMemcKey( 'example', '', 'foo', 'bar' ),
-			$local,
-			'Match output of wfMemcKey from local wiki'
+			"example:foo:bar"
 		);
 	}
 
