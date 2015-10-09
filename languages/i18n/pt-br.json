@@ -84,7 +84,8 @@
 			"Araceletorres",
 			"L",
 			"Walesson",
-			"Rhcastilhos"
+			"Rhcastilhos",
+			"Claudio Emanuel Weiler"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -605,7 +606,7 @@
 	"passwordreset-emailsent-capture": "Foi enviado um e-mail de lembrete, que é mostrado abaixo.",
 	"passwordreset-emailerror-capture": "Foi gerado um e-mail de recuperação da senha, conforme mostrado abaixo, mas o envio {{GENDER:$2|ao usuário|à usuária}} falhou. $1",
 	"changeemail": "Alterar o endereço de e-mail",
-	"changeemail-text": "Preencha este formulário para alterar o endereço de e-mail. Para confirmar esta alteração terá de introduzir a sua senha.",
+	"changeemail-header": "Alterar o endereço de e-mail da conta",
 	"changeemail-no-info": "Para acessar diretamente esta página você tem de estar autenticado.",
 	"changeemail-oldemail": "Endereço de e-mail atual:",
 	"changeemail-newemail": "Novo endereço de e-mail:",
@@ -912,9 +913,9 @@
 	"showhideselectedversions": "Exibir/ocultar edições selecionadas",
 	"editundo": "desfazer",
 	"diff-empty": "(Sem diferença)",
-	"diff-multi-sameuser": "({{PLURAL:$1|Uma revisão intermediária|$1 revisões intermediárias}} pelo mesmo usuário não estão sendo mostradas)",
+	"diff-multi-sameuser": "({{PLURAL:$1|Uma revisão intermediária|$1 revisões intermediárias}} pelo mesmo usuário não {{PLURAL:$1|está sendo mostrada|estão sendo mostradas}})",
 	"diff-multi-otherusers": "({{PLURAL:$1|Uma revisão intermediária por {{PLURAL:$2|um outro usuário|$2 usuários}} não está sendo mostrada|$1 revisões intermediárias por {{PLURAL:$2|um outro usuário|$2 usuários}} não estão sendo mostradas}})",
-	"diff-multi-manyusers": "({{PLURAL:$1|Uma edição intermediária|$1 edições intermediárias}} de mais de {{PLURAL:$2|um usuário|$2 usuário}} não {{PLURAL:$1|apresentada|apresentadas}})",
+	"diff-multi-manyusers": "({{PLURAL:$1|Uma edição intermediária|$1 edições intermediárias}} de mais de {{PLURAL:$2|um usuário|$2 usuários}} não {{PLURAL:$1|está sendo mostrada|estão sendo mostradas}})",
 	"difference-missing-revision": "{{PLURAL:$2|Uma revisão|$2 revisões}} desta diferença ($1) não {{PLURAL:$2|foi encontrada|foram encontradas}}.\n\nIsto é geralmente causado por seguir um link de histórico desatualizado para uma página que foi eliminada.\nOs detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 	"searchresults": "Resultados da pesquisa",
 	"searchresults-title": "Resultados da pesquisa por \"$1\"",

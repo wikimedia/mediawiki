@@ -20,7 +20,8 @@
 			"PiRSquared17",
 			"Macofe",
 			"Caliburn",
-			"Matma Rex"
+			"Matma Rex",
+			"Aursani"
 		]
 	},
 	"tog-underline": "Unnerline airtins:",
@@ -1568,7 +1569,7 @@
 	"notargettext": "Ye'v na speceefie'd ae tairget page or uiser tae perform this function oan.",
 	"nopagetitle": "Naw sic tairget page",
 	"nopagetext": "The tairget page that ye'v speeceefied disna exeest.",
-	"pager-newer-n": "{{PLURAL:$1|newer 1|newer $1}}",
+	"pager-newer-n": "{{PLURAL:$1|اڃا نئون 1|اڃا نئون $1}}",
 	"pager-older-n": "{{PLURAL:$1|aulder 1|aulder $1}}",
 	"suppress": "Owersicht",
 	"querypage-disabled": "This speecial page is disablit fer performance raisons.",
