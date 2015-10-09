@@ -31,6 +31,10 @@ class UserrightsPage extends SpecialPage {
 	# either a GET parameter or a subpage-style parameter, so have a member
 	# variable for it.
 	protected $mTarget;
+	/*
+	 * @var null|User $mFetchedUser The user object of the target username or null.
+	 */
+	protected $mFetchedUser = null;
 	protected $isself = false;
 
 	public function __construct() {
@@ -75,6 +79,8 @@ class UserrightsPage extends SpecialPage {
 		// any groups, it's a bit silly to give them the user search prompt.
 
 		$user = $this->getUser();
+		$request = $this->getRequest();
+		$out = $this->getOutput();
 
 		/*
 		 * If the user is blocked and they only have "partial" access
@@ -84,8 +90,6 @@ class UserrightsPage extends SpecialPage {
 		if ( $user->isBlocked() && !$user->isAllowed( 'userrights' ) ) {
 			throw new UserBlockedError( $user->getBlock() );
 		}
-
-		$request = $this->getRequest();
 
 		if ( $par !== null ) {
 			$this->mTarget = $par;
@@ -110,13 +114,17 @@ class UserrightsPage extends SpecialPage {
 			$this->isself = true;
 		}
 
+		$fetchedStatus = $this->fetchUser( $this->mTarget );
+		if ( $fetchedStatus->isOk() ) {
+			$this->mFetchedUser = $fetchedStatus->value;
+		}
+
 		if ( !$this->userCanChangeRights( $user, true ) ) {
 			if ( $this->isself && $request->getCheck( 'success' ) ) {
 				// bug 48609: if the user just removed its own rights, this would
 				// leads it in a "permissions error" page. In that case, show a
 				// message that it can't anymore use this page instead of an error
 				$this->setHeaders();
-				$out = $this->getOutput();
 				$out->wrapWikiMsg( "<div class=\"successbox\">\n$1\n</div>", 'userrights-removed-self' );
 				$out->returnToMain();
 
@@ -128,12 +136,16 @@ class UserrightsPage extends SpecialPage {
 			throw new PermissionsError( null, array( array( $msg ) ) );
 		}
 
+		// show a successbox, if the user rights was saved successfully
+		if ( $request->getCheck( 'success' ) && $this->mFetchedUser !== null ) {
+			$out->wrapWikiMsg( "<div class=\"successbox\">\n$1\n</div>", array( 'savedrights', $this->mFetchedUser->getName() ) );
+		}
+
 		$this->checkReadOnly();
 
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$out = $this->getOutput();
 		$out->addModuleStyles( 'mediawiki.special' );
 		$this->addHelpLink( 'Help:Assigning permissions' );
 
@@ -149,14 +161,13 @@ class UserrightsPage extends SpecialPage {
 			$user->matchEditToken( $request->getVal( 'wpEditToken' ), $this->mTarget )
 		) {
 			// save settings
-			$status = $this->fetchUser( $this->mTarget );
-			if ( !$status->isOK() ) {
-				$this->getOutput()->addWikiText( $status->getWikiText() );
+			if ( !$fetchedStatus->isOK() ) {
+				$this->getOutput()->addWikiText( $fetchedStatus->getWikiText() );
 
 				return;
 			}
 
-			$targetUser = $status->value;
+			$targetUser = $this->mFetchedUser;
 			if ( $targetUser instanceof User ) { // UserRightsProxy doesn't have this method (bug 61252)
 				$targetUser->clearInstanceCache(); // bug 38989
 			}
