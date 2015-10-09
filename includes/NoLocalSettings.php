@@ -37,7 +37,9 @@ foreach ( array_filter( explode( '/', $_SERVER['PHP_SELF'] ) ) as $part ) {
 if ( !function_exists( 'session_name' ) ) {
 	$installerStarted = false;
 } else {
-	session_name( 'mw_installer_session' );
+	if ( !wfIniGetBool( 'session.auto_start' ) ) {
+		session_name( 'mw_installer_session' );
+	}
 	$oldReporting = error_reporting( E_ALL & ~E_NOTICE );
 	$success = session_start();
 	error_reporting( $oldReporting );
