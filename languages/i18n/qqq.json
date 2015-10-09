@@ -1159,6 +1159,7 @@
 	"prefs-help-recentchangescount": "Used in [[Special:Preferences]], tab \"Recent changes\".",
 	"prefs-help-watchlist-token2": "Used in [[Special:Preferences]], tab Watchlist. (Formerly in {{msg-mw|prefs-help-watchlist-token}}.)",
 	"savedprefs": "This message appears after saving changes to your user preferences.",
+	"savedrights": "This message appears after saving the user rights on [[Special:UserRights]].\n* $1 - The user name of the user which rights was saved.",
 	"timezonelegend": "{{Identical|Time zone}}",
 	"localtime": "Used as label in [[Special:Preferences#mw-prefsection-datetime|preferences]].",
 	"timezoneuseserverdefault": "[[Special:Preferences]] > Date and time > Time zone\n\nThis option lets your time zone setting use the one that is used on the wiki (often UTC).\n\nParameters:\n* $1 - timezone name, or timezone offset (in \"%+03d:%02d\" format)",
