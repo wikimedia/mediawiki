@@ -143,6 +143,10 @@ class ObjectCache {
 			// have all logging suddenly disappear
 			$params['logger'] = LoggerFactory::getInstance( 'objectcache' );
 		}
+		if ( !isset( $params['keyspace'] ) ) {
+			$config = RequestContext::getMain()->getConfig();
+			$params['keyspace'] = $config->get( 'CachePrefix' ) ?: $config->get( 'DBname' );
+		}
 		if ( isset( $params['factory'] ) ) {
 			return call_user_func( $params['factory'], $params );
 		} elseif ( isset( $params['class'] ) ) {
