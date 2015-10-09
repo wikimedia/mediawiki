@@ -3554,11 +3554,10 @@ function wfGetPrecompiledData( $name ) {
  * @return string
  */
 function wfMemcKey( /*...*/ ) {
-	global $wgCachePrefix;
-	$prefix = $wgCachePrefix === false ? wfWikiID() : $wgCachePrefix;
-	$args = func_get_args();
-	$key = $prefix . ':' . implode( ':', $args );
-	return strtr( $key, ' ', '_' );
+	return call_user_func_array(
+		array( ObjectCache::getMainInstance(), 'makeKey' ),
+		func_get_args()
+	);
 }
 
 /**
@@ -3594,9 +3593,10 @@ function wfForeignMemcKey( $db, $prefix /*...*/ ) {
  * @return string
  */
 function wfGlobalCacheKey( /*...*/ ) {
-	$args = func_get_args();
-	$key = 'global:' . implode( ':', $args );
-	return strtr( $key, ' ', '_' );
+	return call_user_func_array(
+		array( ObjectCache::getMainInstance(), 'makeGlobalKey' ),
+		func_get_args()
+	);
 }
 
 /**
