@@ -3554,11 +3554,10 @@ function wfGetPrecompiledData( $name ) {
  * @return string
  */
 function wfMemcKey( /*...*/ ) {
-	global $wgCachePrefix;
-	$prefix = $wgCachePrefix === false ? wfWikiID() : $wgCachePrefix;
-	$args = func_get_args();
-	$key = $prefix . ':' . implode( ':', $args );
-	return strtr( $key, ' ', '_' );
+	return call_user_func_array(
+		array( ObjectCache::getMainClusterInstance(), 'makeKey' ),
+		func_get_args()
+	);
 }
 
 /**
@@ -3573,13 +3572,11 @@ function wfMemcKey( /*...*/ ) {
  */
 function wfForeignMemcKey( $db, $prefix /*...*/ ) {
 	$args = array_slice( func_get_args(), 2 );
-	if ( $prefix ) {
-		// Match wfWikiID() logic
-		$key = "$db-$prefix:" . implode( ':', $args );
-	} else {
-		$key = $db . ':' . implode( ':', $args );
-	}
-	return strtr( $key, ' ', '_' );
+	$keyspace = $prefix ? "$db-$prefix" : $db;
+	return call_user_func_array(
+		array( ObjectCache::getMainClusterInstance(), 'makeKeyInternal' ),
+		array( $keyspace, $args )
+	);
 }
 
 /**
@@ -3594,9 +3591,10 @@ function wfForeignMemcKey( $db, $prefix /*...*/ ) {
  * @return string
  */
 function wfGlobalCacheKey( /*...*/ ) {
-	$args = func_get_args();
-	$key = 'global:' . implode( ':', $args );
-	return strtr( $key, ' ', '_' );
+	return call_user_func_array(
+		array( ObjectCache::getMainClusterInstance(), 'makeGlobalKey' ),
+		func_get_args()
+	);
 }
 
 /**

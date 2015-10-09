@@ -45,8 +45,12 @@ use Psr\Log\NullLogger;
 abstract class BagOStuff implements LoggerAwareInterface {
 	/** @var array[] Lock tracking */
 	protected $locks = array();
+
 	/** @var integer */
 	protected $lastError = self::ERR_NONE;
+
+	/** @var string */
+	protected $keyspace = 'local';
 
 	/** @var LoggerInterface */
 	protected $logger;
@@ -69,6 +73,10 @@ abstract class BagOStuff implements LoggerAwareInterface {
 			$this->setLogger( $params['logger'] );
 		} else {
 			$this->setLogger( new NullLogger() );
+		}
+
+		if ( isset( $params['keyspace'] ) ) {
+			$this->keyspace = $params['keyspace'];
 		}
 	}
 
@@ -601,5 +609,40 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 */
 	protected function isInteger( $value ) {
 		return ( is_int( $value ) || ctype_digit( $value ) );
+	}
+
+	/**
+	 * Construct a cache key.
+	 *
+	 * @since 1.27
+	 * @param string $keyspace
+	 * @param array $args
+	 * @return string
+	 */
+	public function makeKeyInternal( $keyspace, $args ) {
+		$key = $keyspace . ':' . implode( ':', $args );
+		return strtr( $key, ' ', '_' );
+	}
+
+	/**
+	 * Make a global cache key.
+	 *
+	 * @since 1.27
+	 * @param string $args,...
+	 * @return string
+	 */
+	public function makeGlobalKey() {
+		return $this->makeKeyInternal( 'global', func_get_args() );
+	}
+
+	/**
+	 * Make a cache key, scoped to this instance's keyspace.
+	 *
+	 * @since 1.27
+	 * @param string $args,...
+	 * @return string
+	 */
+	public function makeKey() {
+		return $this->makeKeyInternal( $this->keyspace, func_get_args() );
 	}
 }
