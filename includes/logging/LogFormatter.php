@@ -604,12 +604,13 @@ class LogFormatter {
 	 * value in consideration.
 	 * @param Title $title The page
 	 * @param array $parameters Query parameters
+	 * @param string|null $html Linktext of the link as raw html
 	 * @throws MWException
 	 * @return string
 	 */
-	protected function makePageLink( Title $title = null, $parameters = array() ) {
+	protected function makePageLink( Title $title = null, $parameters = array(), $html = null ) {
 		if ( !$this->plaintext ) {
-			$link = Linker::link( $title, null, array(), $parameters );
+			$link = Linker::link( $title, $html, array(), $parameters );
 		} else {
 			if ( !$title instanceof Title ) {
 				throw new MWException( "Expected title, got null" );

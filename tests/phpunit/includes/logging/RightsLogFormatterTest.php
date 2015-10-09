@@ -25,7 +25,7 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 					),
 				),
 				array(
-					'text' => 'Sysop changed group membership for User:User from (none) to '
+					'text' => 'Sysop changed group membership for User from (none) to '
 						. 'administrator and bureaucrat',
 					'api' => array(
 						'oldgroups' => array(),
@@ -51,7 +51,7 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 				),
 				array(
 					'legacy' => true,
-					'text' => 'Sysop changed group membership for User:User from (none) to '
+					'text' => 'Sysop changed group membership for User from (none) to '
 						. 'administrator and bureaucrat',
 					'api' => array(
 						'oldgroups' => array(),
@@ -74,7 +74,7 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 				),
 				array(
 					'legacy' => true,
-					'text' => 'Sysop changed group membership for User:User',
+					'text' => 'Sysop changed group membership for User',
 					'api' => array(),
 				),
 			),
