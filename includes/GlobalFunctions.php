@@ -1989,7 +1989,7 @@ function wfFormatStackFrame( $frame ) {
 		return 'NO_FUNCTION_GIVEN';
 	}
 	return isset( $frame['class'] ) ?
-		$frame['class'] . '::' . $frame['function'] :
+		$frame['class'] . $frame['type'] . $frame['function'] :
 		$frame['function'];
 }
 
