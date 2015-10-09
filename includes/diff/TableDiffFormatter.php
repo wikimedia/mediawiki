@@ -204,16 +204,23 @@ class TableDiffFormatter extends DiffFormatter {
 		# Notice that WordLevelDiff returns HTML-escaped output.
 		# Hence, we will be calling addedLine/deletedLine without HTML-escaping.
 
-		$line = array_shift( $del );
-		while ( $line ) {
-			$aline = array_shift( $add );
-			$this->writeOutput( '<tr>' . $this->deletedLine( $line ) .
-				$this->addedLine( $aline ) . "</tr>\n" );
-			$line = array_shift( $del );
-		}
-		foreach ( $add as $line ) { # If any leftovers
-			$this->writeOutput( '<tr>' . $this->emptyLine() .
-				$this->addedLine( $line ) . "</tr>\n" );
+		$ndel = count( $del );
+		$nadd = count( $add );
+		$n = max( $ndel, $nadd );
+		for ( $i = 0; $i < $n; $i++ ) {
+			if ( $i < $ndel ) {
+				$delLine = $this->deletedLine( $del[$i] );
+			} else {
+				$delLine = $this->emptyLine();
+			}
+
+			if ( $i < $nadd ) {
+				$addLine = $this->addedLine( $add[$i] );
+			} else {
+				$addLine = $this->emptyLine();
+			}
+
+			$this->writeOutput( "<tr>{$delLine}{$addLine}</tr>\n" );
 		}
 	}
 
