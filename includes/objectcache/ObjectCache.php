@@ -47,7 +47,7 @@ use MediaWiki\Logger\LoggerFactory;
  *   Stored only on the individual web server.
  *   Not associated with other servers.
  *
- * - wfGetMainCache()
+ * - ObjectCache::getMainClusterInstance()
  *   Purpose: Cache.
  *   Stored centrally within the local data-center.
  *   Not replicated to other DCs.
@@ -259,6 +259,18 @@ class ObjectCache {
 		$class = $params['class'];
 
 		return new $class( $params );
+	}
+
+	/**
+	 * Get the main cluster-local cache object.
+	 *
+	 * @since 1.27
+	 * @return BagOStuff
+	 */
+	public static function getMainClusterInstance() {
+		$config = RequestContext::getMain()->getConfig();
+		$id = $config->get( 'MainCacheType' );
+		return self::getInstance( $id );
 	}
 
 	/**
