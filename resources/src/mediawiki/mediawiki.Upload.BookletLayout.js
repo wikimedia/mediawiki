@@ -267,6 +267,19 @@
 			warnings = stateDetails.upload && stateDetails.upload.warnings;
 
 		if ( state === mw.Upload.State.ERROR ) {
+			// HACK We should either have a hook here to allow TitleBlacklist to handle this, or just have
+			// TitleBlacklist produce sane error messages that can be displayed without arcane knowledge
+			if ( error.info === 'TitleBlacklist prevents this title from being created' ) {
+				// HACK Apparently the only reliable way to determine whether TitleBlacklist was involved
+				return new OO.ui.Error(
+					$( '<p>' ).html(
+						// HACK TitleBlacklist doesn't have a sensible message, this one is from UploadWizard
+						mw.message( 'mwe-upwiz-blacklisted' ).parse()
+					),
+					{ recoverable: false }
+				);
+			}
+
 			message = mw.message( 'api-error-' + error.code );
 			if ( !message.exists() ) {
 				message = mw.message( 'api-error-unknownerror', JSON.stringify( stateDetails ) );
