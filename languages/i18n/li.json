@@ -2666,5 +2666,6 @@
 	"special-characters-group-lao": "Lao",
 	"special-characters-group-khmer": "Cambodzjaans",
 	"mw-widgets-dateinput-placeholder-day": "JJJJ-MM-DD",
-	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM"
+	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM",
+	"api-error-blacklisted": "Kees 'nen angere, besjrievendje naam."
 }

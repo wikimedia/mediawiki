@@ -3607,5 +3607,6 @@
 	"mw-widgets-dateinput-placeholder-day": "РРРР-ММ-ДД",
 	"mw-widgets-dateinput-placeholder-month": "РРРР-ММ",
 	"mw-widgets-titleinput-description-new-page": "сторінка ще не існує",
-	"mw-widgets-titleinput-description-redirect": "перенаправлення на $1"
+	"mw-widgets-titleinput-description-redirect": "перенаправлення на $1",
+	"api-error-blacklisted": "Будь ласка, виберіть іншу, більш зрозумілу назву."
 }

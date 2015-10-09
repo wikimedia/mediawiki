@@ -3077,5 +3077,6 @@
 	"special-characters-group-khmer": "খেমাৰ",
 	"special-characters-title-endash": "en দেছ্‌",
 	"special-characters-title-emdash": "em দেছ‌",
-	"special-characters-title-minus": "বিয়োগ চিন"
+	"special-characters-title-minus": "বিয়োগ চিন",
+	"api-error-blacklisted": "অনুগ্ৰহ কৰি অন্য এটা বৰ্ণনামূলক শিৰোনাম নিৰ্বাচন কৰক"
 }

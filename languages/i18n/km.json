@@ -2742,5 +2742,6 @@
 	"special-characters-title-minus": "សញ្ញាដក",
 	"mw-widgets-dateinput-no-date": "គ្មានកាលបរិច្ឆេទត្រូវបានជ្រើសរើស",
 	"mw-widgets-titleinput-description-new-page": "ទំព័រមិនទាន់មាននៅឡើយទេ",
-	"mw-widgets-titleinput-description-redirect": "បញ្ជូនបន្តទៅ $1"
+	"mw-widgets-titleinput-description-redirect": "បញ្ជូនបន្តទៅ $1",
+	"api-error-blacklisted": "សូមជ្រើសរើសឈ្មោះផ្សេងដែលក្បោះក្បាយជាង។"
 }

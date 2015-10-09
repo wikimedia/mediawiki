@@ -3370,5 +3370,6 @@
 	"mw-widgets-dateinput-placeholder-day": "ΕΕΕΕ-ΜΜ-ΗΗ",
 	"mw-widgets-dateinput-placeholder-month": "ΕΕΕΕ-ΜΜ",
 	"mw-widgets-titleinput-description-new-page": "η σελίδα που δεν υπάρχει ακόμα",
-	"mw-widgets-titleinput-description-redirect": "ανακατεύθυνση στο $1"
+	"mw-widgets-titleinput-description-redirect": "ανακατεύθυνση στο $1",
+	"api-error-blacklisted": "Παρακαλώ επιλέξτε ένα διαφορετικό, περιγραφικό τίτλο."
 }

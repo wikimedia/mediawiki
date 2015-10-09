@@ -3384,5 +3384,6 @@
 	"mw-widgets-dateinput-placeholder-day": "ЖЖЖЖ-АА-КК",
 	"mw-widgets-dateinput-placeholder-month": "ЖЖЖЖ-АА",
 	"mw-widgets-titleinput-description-new-page": "бет жоқ екен",
-	"mw-widgets-titleinput-description-redirect": "$1 дегенге бағыттату"
+	"mw-widgets-titleinput-description-redirect": "$1 дегенге бағыттату",
+	"api-error-blacklisted": "Өтініш, сипаттама атауының басқасын таңдаңыз."
 }

@@ -3504,5 +3504,6 @@
 	"special-characters-title-minus": "减号",
 	"mw-widgets-dateinput-no-date": "没有选定日期",
 	"mw-widgets-titleinput-description-new-page": "页面不存在",
-	"mw-widgets-titleinput-description-redirect": "重定向至$1"
+	"mw-widgets-titleinput-description-redirect": "重定向至$1",
+	"api-error-blacklisted": "请选择其他描述性的标题。"
 }

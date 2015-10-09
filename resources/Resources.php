@@ -1235,6 +1235,7 @@ return array(
 			'filename-thumb-name',
 			'badfilename',
 			'api-error-duplicate-archive',
+			'api-error-blacklisted', // HACK
 		),
 	),
 	'mediawiki.ForeignStructuredUpload.BookletLayout' => array(

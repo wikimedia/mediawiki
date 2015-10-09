@@ -3417,5 +3417,6 @@
 	"special-characters-title-minus": "빼기 기호",
 	"mw-widgets-dateinput-no-date": "선택된 날짜 없음",
 	"mw-widgets-titleinput-description-new-page": "문서가 존재하지 않습니다",
-	"mw-widgets-titleinput-description-redirect": "$1 문서로 넘겨주기"
+	"mw-widgets-titleinput-description-redirect": "$1 문서로 넘겨주기",
+	"api-error-blacklisted": "이 파일을 설명할 수 있는 다른 제목을 선택하세요."
 }

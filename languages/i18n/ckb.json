@@ -2623,5 +2623,6 @@
 	"special-characters-group-sinhala": "سینھالا",
 	"special-characters-group-gujarati": "گوجەراتی",
 	"special-characters-group-thai": "تایلەندی",
-	"special-characters-group-khmer": "خمێری"
+	"special-characters-group-khmer": "خمێری",
+	"api-error-blacklisted": "هەڵبژێرە ناونیشانی جیاوازتر و واتادارتر."
 }

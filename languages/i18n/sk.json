@@ -3176,5 +3176,6 @@
 	"special-characters-title-emdash": "dlhá pomlčka",
 	"special-characters-title-minus": "mínus",
 	"mw-widgets-dateinput-placeholder-day": "RRRR-MM-DD",
-	"mw-widgets-dateinput-placeholder-month": "RRRR-MM"
+	"mw-widgets-dateinput-placeholder-month": "RRRR-MM",
+	"api-error-blacklisted": "Prosím, zvoľte iný, opisný názov."
 }

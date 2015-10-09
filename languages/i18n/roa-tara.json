@@ -3532,5 +3532,6 @@
 	"special-characters-title-minus": "segne mene",
 	"mw-widgets-dateinput-no-date": "Nisciune date scacchiate",
 	"mw-widgets-titleinput-description-new-page": "'a pàgene non g'esiste angore",
-	"mw-widgets-titleinput-description-redirect": "redirezionate sus a $1"
+	"mw-widgets-titleinput-description-redirect": "redirezionate sus a $1",
+	"api-error-blacklisted": "Pe piacere scacchie 'nu titole diverse, descrittive."
 }

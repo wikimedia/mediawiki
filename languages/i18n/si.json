@@ -3206,5 +3206,6 @@
 	"special-characters-group-khmer": "ඛෙමර්",
 	"special-characters-title-endash": "en තේජස",
 	"special-characters-title-emdash": "em තේජස",
-	"special-characters-title-minus": "ඍණ ලකුණ"
+	"special-characters-title-minus": "ඍණ ලකුණ",
+	"api-error-blacklisted": "කරුණාකර වෙනස්, විස්තරාත්මක මාතෘකාවක් තෝරන්න."
 }

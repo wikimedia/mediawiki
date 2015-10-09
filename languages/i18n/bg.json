@@ -3043,5 +3043,6 @@
 	"special-characters-title-emdash": "дълго тире",
 	"special-characters-title-minus": "знак минус",
 	"mw-widgets-dateinput-placeholder-day": "ГГГГ-ММ-ДД",
-	"mw-widgets-dateinput-placeholder-month": "ГГГГ-ММ"
+	"mw-widgets-dateinput-placeholder-month": "ГГГГ-ММ",
+	"api-error-blacklisted": "Моля, изберете различно, описателно заглавие."
 }

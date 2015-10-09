@@ -3202,5 +3202,6 @@
 	"special-characters-group-thai": "தாய்",
 	"special-characters-group-lao": "இலாவோ",
 	"special-characters-group-khmer": "கெமெர்",
-	"special-characters-title-minus": "கழித்தல் குறி"
+	"special-characters-title-minus": "கழித்தல் குறி",
+	"api-error-blacklisted": "தயவுகூர்ந்து வேறு, விளக்கமான தலைப்பைத் தேர்ந்தெடுக்கவும்."
 }

@@ -3550,5 +3550,6 @@
 	"mw-widgets-dateinput-placeholder-day": "ГГГГ-ММ-ДД",
 	"mw-widgets-dateinput-placeholder-month": "ГГГГ-ММ",
 	"mw-widgets-titleinput-description-new-page": "страница ещё не существует",
-	"mw-widgets-titleinput-description-redirect": "перенаправление на $1"
+	"mw-widgets-titleinput-description-redirect": "перенаправление на $1",
+	"api-error-blacklisted": "Пожалуйста, выберите другое, более понятное название."
 }
