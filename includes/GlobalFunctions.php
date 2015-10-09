@@ -1985,8 +1985,11 @@ function wfGetAllCallers( $limit = 3 ) {
  * @return string
  */
 function wfFormatStackFrame( $frame ) {
+	if ( !isset( $frame['function'] ) ) {
+		return 'NO_FUNCTION_GIVEN';
+	}
 	return isset( $frame['class'] ) ?
-		$frame['class'] . '::' . $frame['function'] :
+		$frame['class'] . $frame['type'] . $frame['function'] :
 		$frame['function'];
 }
 
