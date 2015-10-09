@@ -80,10 +80,16 @@ class ObjectCache {
 	/**
 	 * Get a cached instance of the specified type of cache object.
 	 *
-	 * @param string $id A key in $wgObjectCaches.
+	 * @param string $id [optional] A key in $wgObjectCaches. If not set,
+	 *  will default to `MainCacheType`.
 	 * @return BagOStuff
 	 */
-	public static function getInstance( $id ) {
+	public static function getInstance( $id = null ) {
+		if ( $id === null ) {
+			$config = RequestContext::getMain()->getConfig();
+			$id = $config->get( 'MainCacheType' );
+		}
+
 		if ( !isset( self::$instances[$id] ) ) {
 			self::$instances[$id] = self::newFromId( $id );
 		}
