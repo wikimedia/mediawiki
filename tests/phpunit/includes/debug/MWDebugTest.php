@@ -29,7 +29,7 @@ class MWDebugTest extends MediaWikiTestCase {
 			array( array(
 				'msg' => 'logging a string',
 				'type' => 'log',
-				'caller' => __METHOD__,
+				'caller' => 'MWDebugTest->testAddLog',
 			) ),
 			MWDebug::getLog()
 		);

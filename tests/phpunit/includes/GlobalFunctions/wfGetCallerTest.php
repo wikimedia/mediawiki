@@ -6,7 +6,7 @@
  */
 class WfGetCallerTest extends MediaWikiTestCase {
 	public function testZero() {
-		$this->assertEquals( __METHOD__, wfGetCaller( 1 ) );
+		$this->assertEquals( 'WfGetCallerTest->testZero', wfGetCaller( 1 ) );
 	}
 
 	function callerOne() {
@@ -14,10 +14,10 @@ class WfGetCallerTest extends MediaWikiTestCase {
 	}
 
 	public function testOne() {
-		$this->assertEquals( 'WfGetCallerTest::testOne', self::callerOne() );
+		$this->assertEquals( 'WfGetCallerTest->testOne', self::callerOne() );
 	}
 
-	function intermediateFunction( $level = 2, $n = 0 ) {
+	static function intermediateFunction( $level = 2, $n = 0 ) {
 		if ( $n > 0 ) {
 			return self::intermediateFunction( $level, $n - 1 );
 		}
@@ -26,11 +26,11 @@ class WfGetCallerTest extends MediaWikiTestCase {
 	}
 
 	public function testTwo() {
-		$this->assertEquals( 'WfGetCallerTest::testTwo', self::intermediateFunction() );
+		$this->assertEquals( 'WfGetCallerTest->testTwo', self::intermediateFunction() );
 	}
 
 	public function testN() {
-		$this->assertEquals( 'WfGetCallerTest::testN', self::intermediateFunction( 2, 0 ) );
+		$this->assertEquals( 'WfGetCallerTest->testN', self::intermediateFunction( 2, 0 ) );
 		$this->assertEquals(
 			'WfGetCallerTest::intermediateFunction',
 			self::intermediateFunction( 1, 0 )
