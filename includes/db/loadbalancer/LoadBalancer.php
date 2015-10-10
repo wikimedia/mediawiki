@@ -55,9 +55,13 @@ class LoadBalancer {
 	/** @var bool|DBMasterPos False if not set */
 	private $mWaitForPos;
 	/** @var bool Whether the generic reader fell back to a lagged slave */
-	private $mLaggedSlaveMode;
+	private $laggedSlaveMode = false;
+	/** @var bool Whether the generic reader fell back to a lagged slave */
+	private $slavesDownMode = false;
 	/** @var string The last DB selection or connection error */
 	private $mLastError = 'Unknown error';
+	/** @var string|bool Reason the LB is read-only or false if not */
+	private $readOnlyReason = false;
 	/** @var integer Total connections opened */
 	private $connsOpened = 0;
 
@@ -68,8 +72,9 @@ class LoadBalancer {
 
 	/**
 	 * @param array $params Array with keys:
-	 *   servers           Required. Array of server info structures.
-	 *   loadMonitor       Name of a class used to fetch server lag and load.
+	 *  - servers : Required. Array of server info structures.
+	 *  - loadMonitor : Name of a class used to fetch server lag and load.
+	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
 	 * @throws MWException
 	 */
 	public function __construct( array $params ) {
@@ -87,9 +92,12 @@ class LoadBalancer {
 			'foreignFree' => array() );
 		$this->mLoads = array();
 		$this->mWaitForPos = false;
-		$this->mLaggedSlaveMode = false;
 		$this->mErrorConnection = false;
 		$this->mAllowLagged = false;
+
+		if ( isset( $params['readOnlyReason'] ) ) {
+			$this->readOnlyReason = $params['readOnlyReason'];
+		}
 
 		if ( isset( $params['loadMonitor'] ) ) {
 			$this->mLoadMonitorClass = $params['loadMonitor'];
@@ -329,7 +337,7 @@ class LoadBalancer {
 				$this->mReadIndex = $i;
 				# Record if the generic reader index is in "lagged slave" mode
 				if ( $laggedSlaveMode ) {
-					$this->mLaggedSlaveMode = true;
+					$this->laggedSlaveMode = true;
 				}
 			}
 			$serverName = $this->getServerName( $i );
@@ -352,7 +360,7 @@ class LoadBalancer {
 		if ( $i > 0 ) {
 			if ( !$this->doWait( $i ) ) {
 				$this->mServers[$i]['slave pos'] = $this->getAnyOpenConnection( $i )->getSlavePos();
-				$this->mLaggedSlaveMode = true;
+				$this->laggedSlaveMode = true;
 			}
 		}
 	}
@@ -548,12 +556,9 @@ class LoadBalancer {
 			$trxProf->recordConnection( $host, $dbname, $masterOnly );
 		}
 
-		# Make master connections read only if in lagged slave mode
-		if ( $masterOnly && $this->getServerCount() > 1 && $this->getLaggedSlaveMode() ) {
-			$conn->setLBInfo( 'readOnlyReason',
-				'The database has been automatically locked ' .
-				'while the slave database servers catch up to the master'
-			);
+		if ( $masterOnly ) {
+			# Make master-requested DB handles inherit any read-only mode setting
+			$conn->setLBInfo( 'readOnlyReason', $this->getReadOnlyReason() );
 		}
 
 		return $conn;
@@ -1145,10 +1150,19 @@ class LoadBalancer {
 	 * @return bool Whether the generic connection for reads is highly "lagged"
 	 */
 	public function getLaggedSlaveMode() {
-		# Get a generic reader connection
-		$this->getConnection( DB_SLAVE );
+		// No-op if there is only one DB (also avoids recursion)
+		if ( !$this->laggedSlaveMode && $this->getServerCount() > 1 ) {
+			try {
+				// See if laggedSlaveMode gets set
+				$this->getConnection( DB_SLAVE );
+			} catch ( DBConnectionError $e ) {
+				// Avoid expensive re-connect attempts and failures
+				$this->slavesDownMode = true;
+				$this->laggedSlaveMode = true;
+			}
+		}
 
-		return $this->mLaggedSlaveMode;
+		return $this->laggedSlaveMode;
 	}
 
 	/**
@@ -1157,7 +1171,28 @@ class LoadBalancer {
 	 * @since 1.27
 	 */
 	public function laggedSlaveUsed() {
-		return $this->mLaggedSlaveMode;
+		return $this->laggedSlaveMode;
+	}
+
+	/**
+	 * @note This method may trigger a DB connection if not yet done
+	 * @return string|bool Reason the master is read-only or false if it is not
+	 * @since 1.27
+	 */
+	public function getReadOnlyReason() {
+		if ( strlen( $this->readOnlyReason ) ) {
+			return $this->readOnlyReason;
+		} elseif ( $this->getLaggedSlaveMode() ) {
+			if ( $this->slavesDownMode ) {
+				return 'The database has been automatically locked ' .
+					'until the slave database servers become available';
+			} else {
+				return 'The database has been automatically locked ' .
+					'while the slave database servers catch up to the master.';
+			}
+		}
+
+		return false;
 	}
 
 	/**
