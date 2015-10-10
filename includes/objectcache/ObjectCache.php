@@ -43,12 +43,12 @@ use MediaWiki\Logger\LoggerFactory;
  * Primary entry points:
  *
  * - ObjectCache::newAccelerator( $fallbackType )
- *   Purpose: Cache.
+ *   Purpose: Cache for very hot keys.
  *   Stored only on the individual web server.
  *   Not associated with other servers.
  *
  * - ObjectCache::getMainClusterInstance()
- *   Purpose: Cache.
+ *   Purpose: Memory storage for per-cluster coordination and tracking.
  *   Stored centrally within the local data-center.
  *   Not replicated to other DCs.
  *   Also known as $wgMemc. Configured by $wgMainCacheType.
@@ -71,10 +71,9 @@ use MediaWiki\Logger\LoggerFactory;
  * @ingroup Cache
  */
 class ObjectCache {
-	/** @var Array Map of (id => BagOStuff) */
+	/** @var BagOStuff[] Map of (id => BagOStuff) */
 	public static $instances = array();
-
-	/** @var Array Map of (id => WANObjectCache) */
+	/** @var WANObjectCache[] Map of (id => WANObjectCache) */
 	public static $wanInstances = array();
 
 	/**
