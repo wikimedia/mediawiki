@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Milicevic01",
-			"Aktron"
+			"Aktron",
+			"Сербијана"
 		]
 	},
 	"apihelp-block-description": "Блокирај корисника.",
@@ -20,5 +21,7 @@
 	"apihelp-login-param-name": "Корисничко име.",
 	"apihelp-login-param-password": "Лозинка.",
 	"apihelp-login-example-login": "Пријавa.",
-	"apihelp-move-description": "Премештање странице."
+	"apihelp-move-description": "Премештање странице.",
+	"apihelp-query+allrevisions-param-namespace": "Само списак страница у овом именском простору.",
+	"apihelp-stashedit-param-text": "Страница са садржајем."
 }

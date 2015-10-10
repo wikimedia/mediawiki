@@ -1290,6 +1290,8 @@
 	"recentchangeslinked-summary": "これは指定したページからリンクされている (または指定したカテゴリに含まれている) ページの最近の変更の一覧です。\n[[Special:Watchlist|自分のウォッチリスト]]にあるページは<strong>太字</strong>で表示されます。",
 	"recentchangeslinked-page": "ページ名:",
 	"recentchangeslinked-to": "このページへのリンク元での変更の表示に切り替え",
+	"recentchanges-page-added-to-category": "[[:$1]] カテゴリに追加",
+	"recentchanges-page-removed-from-category": "[[:$1]] カテゴリから削除",
 	"autochange-username": "メディアウィキ自動変更",
 	"upload": "ファイルをアップロード",
 	"uploadbtn": "ファイルをアップロード",
