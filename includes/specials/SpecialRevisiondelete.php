@@ -408,6 +408,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 		// Show form if the user can submit
 		if ( $this->mIsAllowed ) {
+			$out->addModuleStyles( 'mediawiki.special' );
+
 			$form = Xml::openElement( 'form', array( 'method' => 'post',
 					'action' => $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) ),
 					'id' => 'mw-revdel-form-revisions' ) ) .
