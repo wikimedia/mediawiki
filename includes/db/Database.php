@@ -927,8 +927,8 @@ abstract class DatabaseBase implements IDatabase {
 
 		$isWriteQuery = $this->isWriteQuery( $sql );
 		if ( $isWriteQuery ) {
-			$reason = $this->getLBInfo( 'readOnlyReason' );
-			if ( is_string( $reason ) ) {
+			$reason = $this->getReadOnlyReason();
+			if ( $reason !== false ) {
 				throw new DBReadOnlyError( $this, "Database is read-only: $reason" );
 			}
 			# Set a flag indicating that writes have been done
@@ -4282,6 +4282,16 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	public function setBigSelects( $value = true ) {
 		// no-op
+	}
+
+	/**
+	 * @return string|bool Reason this DB is read-only or false if it is not
+	 * @since 1.27
+	 */
+	public function getReadOnlyReason() {
+		$reason = $this->getLBInfo( 'readOnlyReason' );
+
+		return is_string( $reason ) ? $reason : false;
 	}
 
 	/**
