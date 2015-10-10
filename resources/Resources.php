@@ -1606,6 +1606,11 @@ return array(
 			'markedaspatrollederror-noautopatrol'
 		),
 	),
+	'mediawiki.page.patrol.styles' => array(
+		'styles' => 'resources/src/mediawiki/page/patrol.css',
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.page.watch.ajax' => array(
 		'scripts' => 'resources/src/mediawiki/page/watch.js',
 		'dependencies' => array(

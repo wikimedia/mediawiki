@@ -608,6 +608,7 @@ abstract class QueryPage extends SpecialPage {
 
 		if ( $num > 0 ) {
 			$html = array();
+			$patrolUsed = false;
 			if ( !$this->listoutput ) {
 				$html[] = $this->openList( $offset );
 			}
@@ -619,9 +620,11 @@ abstract class QueryPage extends SpecialPage {
 				// @codingStandardsIgnoreEnd
 				$line = $this->formatResult( $skin, $row );
 				if ( $line ) {
-					$attr = ( isset( $row->usepatrol ) && $row->usepatrol && $row->patrolled == 0 )
-						? ' class="not-patrolled"'
-						: '';
+					$attr = '';
+					if ( isset( $row->usepatrol ) && $row->usepatrol && $row->patrolled == 0 ) {
+						$attr = ' class="not-patrolled"';
+						$patrolUsed = true;
+					}
 					$html[] = $this->listoutput
 						? $line
 						: "<li{$attr}>{$line}</li>\n";
@@ -633,9 +636,11 @@ abstract class QueryPage extends SpecialPage {
 				$row = null;
 				$line = $this->formatResult( $skin, $row );
 				if ( $line ) {
-					$attr = ( isset( $row->usepatrol ) && $row->usepatrol && $row->patrolled == 0 )
-						? ' class="not-patrolled"'
-						: '';
+					$attr = '';
+					if ( isset( $row->usepatrol ) && $row->usepatrol && $row->patrolled == 0 ) {
+						attr = ' class="not-patrolled"'
+						$patrolUsed = true;
+					}
 					$html[] = $this->listoutput
 						? $line
 						: "<li{$attr}>{$line}</li>\n";
@@ -644,6 +649,9 @@ abstract class QueryPage extends SpecialPage {
 
 			if ( !$this->listoutput ) {
 				$html[] = $this->closeList();
+			}
+			if ( $patrolUsed ) {
+				$out->addModuleStyles( 'mediawiki.page.patrol.styles' );
 			}
 
 			$html = $this->listoutput
