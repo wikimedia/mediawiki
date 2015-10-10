@@ -1,0 +1,32 @@
+/* Catlinks print styles */
+
+/* Categories */
+.catlinks ul {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	list-style-type: none;
+	list-style-image: none;
+	vertical-align: middle !ie;
+}
+
+.catlinks li {
+	display: inline-block;
+	line-height: 1.15em;
+	padding: 0 .4em;
+	border-left: 1px solid #AAA;
+	margin: 0.1em 0;
+	zoom: 1;
+	display: inline !ie;
+}
+
+.catlinks li:first-child {
+	padding-left: .2em;
+	border-left: none;
+}
+
+/* Hidden categories */
+.mw-hidden-catlinks {
+	display: none;
+}
