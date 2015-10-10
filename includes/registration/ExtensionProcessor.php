@@ -22,7 +22,6 @@ class ExtensionProcessor implements Processor {
 		'RemoveGroups',
 		'AvailableRights',
 		'ContentHandlers',
-		'ConfigRegistry',
 		'RateLimits',
 		'RecentChangesFlags',
 		'MediaHandlers',
@@ -157,6 +156,7 @@ class ExtensionProcessor implements Processor {
 		$this->extractMessagesDirs( $dir, $info );
 		$this->extractNamespaces( $info );
 		$this->extractResourceLoaderModules( $dir, $info );
+		$this->extractConfigFactories( $info );
 		$this->extractParserTestFiles( $dir, $info );
 		if ( isset( $info['callback'] ) ) {
 			$this->callbacks[] = $info['callback'];
@@ -241,6 +241,15 @@ class ExtensionProcessor implements Processor {
 				if ( isset( $ns['capitallinkoverride'] ) ) {
 					$this->globals['wgCapitalLinkOverrides'][$id] = $ns['capitallinkoverride'];
 				}
+			}
+		}
+	}
+
+	protected function extractConfigFactories( array $info ) {
+		$config = ConfigFactory::getDefaultInstance();
+		if ( isset( $info['ConfigRegistry'] ) ) {
+			foreach ( $info['ConfigRegistry'] as $name => $callback ) {
+				$config->register( $name, $callback );
 			}
 		}
 	}

@@ -62,14 +62,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 $wgConf = new SiteConfiguration;
 
 /**
- * Registry of factory functions to create config objects:
- * The 'main' key must be set, and the value should be a valid
- * callable.
+ * Registry of factory functions to create config objects.
  * @since 1.23
  */
-$wgConfigRegistry = array(
-	'main' => 'GlobalVarConfig::newInstance'
-);
+$wgConfigRegistry = array();
 
 /**
  * MediaWiki version number

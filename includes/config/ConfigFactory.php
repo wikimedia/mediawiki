@@ -32,7 +32,7 @@ class ConfigFactory {
 	 * Map of config name => callback
 	 * @var array
 	 */
-	protected $factoryFunctions = array();
+	protected $factoryFunctions = array( 'main' => 'GlobalVarConfig::newInstance' );
 
 	/**
 	 * Config objects that have already been created
@@ -52,10 +52,6 @@ class ConfigFactory {
 	public static function getDefaultInstance() {
 		if ( !self::$self ) {
 			self::$self = new self;
-			global $wgConfigRegistry;
-			foreach ( $wgConfigRegistry as $name => $callback ) {
-				self::$self->register( $name, $callback );
-			}
 		}
 		return self::$self;
 	}
