@@ -1,0 +1,50 @@
+/* Catlinks styles */
+/* Don't forget to update catlinks-print.css */
+
+/* Categories */
+#catlinks {
+	/**
+	 * Overrides text justification (user preference)
+	 * See bug 31990
+	 */
+	text-align: left;
+}
+
+.catlinks ul {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	list-style-type: none;
+	list-style-image: none;
+	vertical-align: middle !ie;
+}
+
+.catlinks li {
+	display: inline-block;
+	line-height: 1.25em;
+	border-left: 1px solid #AAA;
+	margin: 0.125em 0;
+	padding: 0 0.5em;
+	zoom: 1;
+	display: inline !ie;
+}
+
+.catlinks li:first-child {
+	padding-left: 0.25em;
+	border-left: none;
+}
+
+/* (bug 5346) make category redirects italic */
+.catlinks li a.mw-redirect {
+	font-style: italic;
+}
+
+/* Hidden categories */
+.mw-hidden-cats-hidden {
+	display: none;
+}
+
+.catlinks-allhidden {
+	display: none;
+}
