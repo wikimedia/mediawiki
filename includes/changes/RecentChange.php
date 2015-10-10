@@ -760,7 +760,7 @@ class RecentChange {
 	 * Constructs a RecentChange object for the given categorization
 	 * This does not call save() on the object and thus does not write to the db
 	 *
-	 * @since 1.26
+	 * @since 1.27
 	 *
 	 * @param string $timestamp Timestamp of the recent change to occur
 	 * @param Title $categoryTitle Title of the category a page is being added to or removed from

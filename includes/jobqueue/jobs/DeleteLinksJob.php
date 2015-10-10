@@ -27,7 +27,7 @@
  * Only DataUpdate classes should construct these jobs
  *
  * @ingroup JobQueue
- * @since 1.26
+ * @since 1.27
  */
 class DeleteLinksJob extends Job {
 	function __construct( Title $title, array $params ) {

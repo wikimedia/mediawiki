@@ -20,7 +20,7 @@
  * @file
  * @author Kai Nissen
  * @author Adam Shorland
- * @since 1.26
+ * @since 1.27
  */
 
 use Wikimedia\Assert\Assert;

@@ -423,7 +423,7 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Set the files this module depends on indirectly for a given skin.
 	 *
-	 * @since 1.26
+	 * @since 1.27
 	 * @param ResourceLoaderContext $context
 	 * @param array $localFileRefs List of files
 	 */
@@ -457,7 +457,7 @@ abstract class ResourceLoaderModule {
 	 * This is used to make file paths safe for storing in a database without the paths
 	 * becoming stale or incorrect when MediaWiki is moved or upgraded (T111481).
 	 *
-	 * @since 1.26
+	 * @since 1.27
 	 * @param array $filePaths
 	 * @return array
 	 */
@@ -471,7 +471,7 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Expand directories relative to $IP.
 	 *
-	 * @since 1.26
+	 * @since 1.27
 	 * @param array $filePaths
 	 * @return array
 	 */
@@ -527,7 +527,7 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Get module-specific LESS variables, if any.
 	 *
-	 * @since 1.26
+	 * @since 1.27
 	 * @param ResourceLoaderContext $context
 	 * @return array Module-specific LESS variables.
 	 */

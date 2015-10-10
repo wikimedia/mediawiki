@@ -127,7 +127,7 @@ abstract class DataUpdate implements DeferrableUpdate {
 	 *
 	 * @param DataUpdate[] $updates A list of DataUpdate instances
 	 * @return DataUpdate[]
-	 * @since 1.26
+	 * @since 1.27
 	 */
 	protected static function enqueueUpdates( array $updates ) {
 		$remaining = array();
@@ -151,7 +151,7 @@ abstract class DataUpdate implements DeferrableUpdate {
  * Such updates must be representable using IJobSpecification, so that
  * they can be serialized into jobs and enqueued for later execution
  *
- * @since 1.26
+ * @since 1.27
  */
 interface EnqueueableDataUpdate {
 	/**

@@ -97,7 +97,7 @@ class ApiImport extends ApiBase {
 	 * source.
 	 *
 	 * @return array
-	 * @since 1.26
+	 * @since 1.27
 	 */
 	public function getAllowedImportSources() {
 		$importSources = $this->getConfig()->get( 'ImportSources' );
