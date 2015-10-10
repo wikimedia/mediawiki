@@ -728,6 +728,7 @@ $wgAutoloadLocalClasses = array(
 	'MWSaltedPassword' => __DIR__ . '/includes/password/MWSaltedPassword.php',
 	'MWTidy' => __DIR__ . '/includes/parser/MWTidy.php',
 	'MWTimestamp' => __DIR__ . '/includes/MWTimestamp.php',
+	'MWUnknownContentModelException' => __DIR__ . '/includes/content/ContentHandler.php',
 	'MachineReadableRCFeedFormatter' => __DIR__ . '/includes/rcfeed/MachineReadableRCFeedFormatter.php',
 	'MagicWord' => __DIR__ . '/includes/MagicWord.php',
 	'MagicWordArray' => __DIR__ . '/includes/MagicWord.php',

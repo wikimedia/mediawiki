@@ -34,6 +34,32 @@ class MWContentSerializationException extends MWException {
 }
 
 /**
+ * Exception thrown when an unregistered content model is requested. This error
+ * can be triggered by user input, so a separate exception class is provided so
+ * callers can substitute a context-specific, internationalised error message.
+ *
+ * @ingroup Content
+ * @since 1.27
+ */
+class MWUnknownContentModelException extends MWException {
+	/** @var string The name of the unknown content model */
+	private $modelId;
+
+	/** @param string $modelId */
+	function __construct( $modelId ) {
+		parent::__construct( "The content model '$modelId' is not registered on this wiki.\n" .
+			'See https://www.mediawiki.org/wiki/Content_handlers to find out which extensions ' .
+			'handle this content model.' );
+		$this->modelId = $modelId;
+	}
+
+	/** @return string */
+	public function getModelId() {
+		return $modelId;
+	}
+}
+
+/**
  * A content handler knows how do deal with a specific type of content on a wiki
  * page. Content is stored in the database in a serialized form (using a
  * serialization format a.k.a. MIME type) and is unserialized into its native
@@ -307,7 +333,8 @@ abstract class ContentHandler {
 	 * @param string $modelId The ID of the content model for which to get a
 	 *    handler. Use CONTENT_MODEL_XXX constants.
 	 *
-	 * @throws MWException If no handler is known for the model ID.
+	 * @throws MWException For internal errors and problems in the configuration.
+	 * @throws MWUnknownContentModelException If no handler is known for the model ID.
 	 * @return ContentHandler The ContentHandler singleton for handling the model given by the ID.
 	 */
 	public static function getForModelID( $modelId ) {
@@ -323,7 +350,7 @@ abstract class ContentHandler {
 			Hooks::run( 'ContentHandlerForModelID', array( $modelId, &$handler ) );
 
 			if ( $handler === null ) {
-				throw new MWException( "No handler for model '$modelId' registered in \$wgContentHandlers" );
+				throw new MWUnknownContentModelException( $modelId );
 			}
 
 			if ( !( $handler instanceof ContentHandler ) ) {
