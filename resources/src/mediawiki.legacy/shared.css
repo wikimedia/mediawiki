@@ -322,7 +322,7 @@ p.mw-upload-editlicenses {
 	border: 1px dashed #aaa;
 }
 
-.mw-history-revisionactions, #mw-fileduplicatesearch-icon {
+.mw-history-revisionactions {
 	float: right;
 }
 

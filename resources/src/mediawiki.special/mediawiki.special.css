@@ -66,6 +66,11 @@ td#mw-emailuser-recipient {
 	font-weight: bold;
 }
 
+/* Special:FileDuplicateSearch */
+#mw-fileduplicatesearch-icon {
+	float: right;
+}
+
 /* Special:ListGroupRights */
 table.mw-listgrouprights-table tr {
 	vertical-align: top;
