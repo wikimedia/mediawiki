@@ -499,12 +499,14 @@ class DifferenceEngine extends ContextSource {
 				}
 				// Build the link
 				if ( $rcid ) {
-					$this->getOutput()->preventClickjacking();
+					$out = $this->getOutput();
+					$out->preventClickjacking();
 					if ( $wgEnableAPI && $wgEnableWriteAPI
 						&& $user->isAllowed( 'writeapi' )
 					) {
-						$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
+						$out->addModules( 'mediawiki.page.patrol.ajax' );
 					}
+					$out->addModuleStyles( 'mediawiki.page.patrol.styles' );
 
 					$token = $user->getEditToken( $rcid );
 					$this->mMarkPatrolledLink = ' <span class="patrollink">[' . Linker::linkKnown(

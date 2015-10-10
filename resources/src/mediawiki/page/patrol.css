@@ -1,0 +1,15 @@
+/* Patrol stuff */
+.not-patrolled {
+	background-color: #ffa;
+}
+
+div.patrollink {
+	font-size: 75%;
+	text-align: right;
+}
+
+@media print {
+	.patrollink {
+		display: none;
+	}
+}

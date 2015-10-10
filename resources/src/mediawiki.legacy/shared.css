@@ -161,23 +161,6 @@ span.history-deleted {
 }
 
 /**
- * Patrol stuff
- */
-.not-patrolled {
-	background-color: #ffa;
-}
-
-.unpatrolled {
-	font-weight: bold;
-	color: red;
-}
-
-div.patrollink {
-	font-size: 75%;
-	text-align: right;
-}
-
-/**
  * Forms
  */
 td.mw-label {
@@ -331,6 +314,11 @@ p.mw-upload-editlicenses {
 .minoredit,
 .botedit {
 	font-weight: bold;
+}
+/** Patrol styling of recent change flag */
+.unpatrolled {
+	font-weight: bold;
+	color: red;
 }
 
 /**
