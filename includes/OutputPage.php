@@ -1957,7 +1957,7 @@ class OutputPage extends ContextSource {
 	 * @since 1.27
 	 */
 	public function lowerCdnMaxage( $maxage ) {
-		$this->mCdnMaxageLimit = $this->min( $maxage, $this->mCdnMaxageLimit );
+		$this->mCdnMaxageLimit = min( $maxage, $this->mCdnMaxageLimit );
 		$this->setSquidMaxage( $this->mSquidMaxage );
 	}
 
