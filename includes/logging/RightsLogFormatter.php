@@ -29,7 +29,7 @@
  * @since 1.21
  */
 class RightsLogFormatter extends LogFormatter {
-	protected function makePageLink( Title $title = null, $parameters = array() ) {
+	protected function makePageLink( Title $title = null, $parameters = array(), $html = null ) {
 		global $wgContLang, $wgUserrightsInterwikiDelimiter;
 
 		if ( !$this->plaintext ) {
@@ -38,7 +38,7 @@ class RightsLogFormatter extends LogFormatter {
 
 			if ( count( $parts ) === 2 ) {
 				$titleLink = WikiMap::foreignUserLink( $parts[1], $parts[0],
-					htmlspecialchars( $title->getPrefixedText() ) );
+					htmlspecialchars( $title->getText() ) );
 
 				if ( $titleLink !== false ) {
 					return $titleLink;
@@ -46,7 +46,7 @@ class RightsLogFormatter extends LogFormatter {
 			}
 		}
 
-		return parent::makePageLink( $title, $parameters );
+		return parent::makePageLink( $title, $parameters, $title ? $title->getText() : null );
 	}
 
 	protected function getMessageKey() {
