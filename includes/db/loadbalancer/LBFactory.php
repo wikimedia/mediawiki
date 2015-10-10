@@ -29,11 +29,17 @@ abstract class LBFactory {
 	/** @var LBFactory */
 	private static $instance;
 
+	/** @var string|bool Reason all LBs are read-only or false if not */
+	protected $readOnlyReason = false;
+
 	/**
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
 	 * @param array $conf
 	 */
 	public function __construct( array $conf ) {
+		if ( isset( $conf['readOnlyReason'] ) && is_string( $conf['readOnlyReason'] ) ) {
+			$this->readOnlyReason = $conf['readOnlyReason'];
+		}
 	}
 
 	/**
@@ -55,8 +61,11 @@ abstract class LBFactory {
 
 		if ( is_null( self::$instance ) ) {
 			$class = self::getLBFactoryClass( $wgLBFactoryConf );
-
-			self::$instance = new $class( $wgLBFactoryConf );
+			$config = $wgLBFactoryConf;
+			if ( !isset( $config['readOnlyReason'] ) ) {
+				$config['readOnlyReason'] = wfConfiguredReadOnlyReason();
+			}
+			self::$instance = new $class( $config );
 		}
 
 		return self::$instance;

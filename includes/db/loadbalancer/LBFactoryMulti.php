@@ -209,19 +209,27 @@ class LBFactoryMulti extends LBFactory {
 	public function newMainLB( $wiki = false ) {
 		list( $dbName, ) = $this->getDBNameAndPrefix( $wiki );
 		$section = $this->getSectionForWiki( $wiki );
-		$groupLoads = array();
 		if ( isset( $this->groupLoadsByDB[$dbName] ) ) {
 			$groupLoads = $this->groupLoadsByDB[$dbName];
+		} else {
+			$groupLoads = array();
 		}
 
 		if ( isset( $this->groupLoadsBySection[$section] ) ) {
 			$groupLoads = array_merge_recursive( $groupLoads, $this->groupLoadsBySection[$section] );
 		}
 
+		$readOnlyReason = $this->readOnlyReason;
+		// Use the LB-specific read-only reason if everything isn't already read-only
+		if ( $readOnlyReason === false && isset( $this->readOnlyBySection[$section] ) ) {
+			$readOnlyReason = $this->readOnlyBySection[$section];
+		}
+
 		return $this->newLoadBalancer(
 			$this->serverTemplate,
 			$this->sectionLoads[$section],
-			$groupLoads
+			$groupLoads,
+			$readOnlyReason
 		);
 	}
 
@@ -259,7 +267,12 @@ class LBFactoryMulti extends LBFactory {
 			$template = $this->templateOverridesByCluster[$cluster] + $template;
 		}
 
-		return $this->newLoadBalancer( $template, $this->externalLoads[$cluster], array() );
+		return $this->newLoadBalancer(
+			$template,
+			$this->externalLoads[$cluster],
+			array(),
+			$this->readOnlyReason
+		);
 	}
 
 	/**
@@ -283,16 +296,15 @@ class LBFactoryMulti extends LBFactory {
 	 * @param array $template
 	 * @param array $loads
 	 * @param array $groupLoads
+	 * @param string|bool $readOnlyReason
 	 * @return LoadBalancer
 	 */
-	private function newLoadBalancer( $template, $loads, $groupLoads ) {
-		$servers = $this->makeServerArray( $template, $loads, $groupLoads );
-		$lb = new LoadBalancer( array(
-			'servers' => $servers,
-			'loadMonitor' => $this->loadMonitorClass
+	private function newLoadBalancer( $template, $loads, $groupLoads, $readOnlyReason ) {
+		return new LoadBalancer( array(
+			'servers' => $this->makeServerArray( $template, $loads, $groupLoads ),
+			'loadMonitor' => $this->loadMonitorClass,
+			'readOnlyReason' => $readOnlyReason
 		) );
-
-		return $lb;
 	}
 
 	/**
