@@ -236,7 +236,7 @@ class OutputPage extends ContextSource {
 
 	/** @var int Cache stuff. Looks like mEnableClientCache */
 	protected $mSquidMaxage = 0;
-	/** @var in Upper limit on mSquidMaxage */
+	/** @var int Upper limit on mSquidMaxage */
 	protected $mCdnMaxageLimit = INF;
 
 	/**
