@@ -1423,6 +1423,41 @@
 			0,
 			'empty cell is sorted as number 0'
 		);
-
 	} );
+
+	QUnit.test( 'bug T114721 - use of expand-child class', 2, function ( assert ) {
+		var $table, parsers;
+		$table = $(
+			'<table class="sortable">' +
+				'<tr><th>A</th><th>B</th></tr>' +
+				'<tr><td>b</td><td>4</td></tr>' +
+				'<tr class="expand-child"><td colspan="2">some text follow b</td></tr>' +
+				'<tr><td>a</td><td>2</td></tr>' +
+				'<tr class="expand-child"><td colspan="2">some text follow a</td></tr>' +
+				'<tr class="expand-child"><td colspan="2">more text</td></tr>' +
+				'</table>'
+		);
+		$table.tablesorter();
+		$table.find( '.headerSort:eq(0)' ).click();
+
+		assert.deepEqual(
+			tableExtract( $table ),
+			[
+				[ 'a', '2' ],
+				[ 'some text follow a' ],
+				[ 'more text' ],
+				[ 'b', '4' ],
+				[ 'some text follow b' ]
+			],
+			'row with expand-child class follow above row'
+		);
+
+		parsers = $table.data( 'tablesorter' ).config.parsers;
+		assert.equal(
+			parsers[ 1 ].id,
+			'number',
+			'detectParserForColumn() detect parser.id "number" for second column'
+		);
+	} );
+
 }( jQuery, mediaWiki ) );
