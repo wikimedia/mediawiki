@@ -50,13 +50,17 @@ class ConfigFactory {
 	 * @return ConfigFactory
 	 */
 	public static function getDefaultInstance() {
+		global $wgConfigRegistry;
+
 		if ( !self::$self ) {
 			self::$self = new self;
-			global $wgConfigRegistry;
-			foreach ( $wgConfigRegistry as $name => $callback ) {
-				self::$self->register( $name, $callback );
-			}
 		}
+
+		foreach ( array_keys( $wgConfigRegistry ) as $name ) {
+			self::$self->register( $name, $wgConfigRegistry[$name] );
+			unset( $wgConfigRegistry[$name] );
+		}
+
 		return self::$self;
 	}
 
