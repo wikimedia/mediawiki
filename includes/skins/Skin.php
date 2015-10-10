@@ -546,6 +546,7 @@ abstract class Skin extends ContextSource {
 	 */
 	function getCategories() {
 		$out = $this->getOutput();
+		$out->addModuleStyles( 'mediawiki.page.catlinks' );
 
 		$catlinks = $this->getCategoryLinks();
 
