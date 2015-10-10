@@ -361,6 +361,8 @@ class SpecialBlock extends FormSpecialPage {
 	protected function postText() {
 		$links = array();
 
+		$this->getOutput()->addModuleStyles( 'mediawiki.special' );
+
 		# Link to the user's contributions, if applicable
 		if ( $this->target instanceof User ) {
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $this->target->getName() );
