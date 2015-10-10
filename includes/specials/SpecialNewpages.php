@@ -202,6 +202,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 	protected function form() {
 		$out = $this->getOutput();
 		$out->addModules( 'mediawiki.userSuggest' );
+		if ( $this->getUser()->useNPPatrol() ) {
+			$out->addModuleStyles( 'mediawiki.page.patrol.styles' );
+		}
 
 		// Consume values
 		$this->opts->consumeValue( 'offset' ); // don't carry offset, DWIW

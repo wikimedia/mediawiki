@@ -1163,6 +1163,7 @@ class Article implements Page {
 		if ( $wgEnableAPI && $wgEnableWriteAPI && $user->isAllowed( 'writeapi' ) ) {
 			$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
 		}
+		$outputPage->addModuleStyles( 'mediawiki.page.patrol.styles' );
 
 		$link = Linker::linkKnown(
 			$this->getTitle(),
