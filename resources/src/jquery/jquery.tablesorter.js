@@ -107,6 +107,7 @@
 
 	function detectParserForColumn( table, rows, column ) {
 		var l = parsers.length,
+			config = $( table ).data( 'tablesorter' ).config,
 			cellIndex,
 			nodeValue,
 			// Start with 1 because 0 is the fallback parser
@@ -118,7 +119,8 @@
 			needed = ( rows.length > 4 ) ? 5 : rows.length;
 
 		while ( i < l ) {
-			if ( rows[ rowIndex ] ) {
+			// if this is a child row, continue to the next row (as buildCache())
+			if ( rows[ rowIndex ] && !$( rows[ rowIndex ] ).hasClass( config.cssChildRow ) ) {
 				if ( rowIndex !== lastRowIndex ) {
 					lastRowIndex = rowIndex;
 					cellIndex = $( rows[ rowIndex ] ).data( 'columnToCell' )[ column ];
