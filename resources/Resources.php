@@ -1634,6 +1634,14 @@ return array(
 			'jquery.spinner',
 		),
 	),
+	'mediawiki.page.catlinks' => array(
+		'styles' => array(
+			'resources/src/mediawiki/page/catlinks-print.css' => array( 'media' => 'print' ),
+			'resources/src/mediawiki/page/catlinks.css',
+		),
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 
 	/* MediaWiki Special pages */
 
@@ -1853,7 +1861,9 @@ return array(
 		'styles' => array(
 			// @todo: Remove mediawiki.page.gallery when cache has cleared
 			'resources/src/mediawiki/page/gallery-print.css' => array( 'media' => 'print' ),
-			'resources/src/mediawiki.legacy/commonPrint.css' => array( 'media' => 'print' )
+			'resources/src/mediawiki.legacy/commonPrint.css' => array( 'media' => 'print' ),
+			// @todo: Remove mediawiki.page.catlinks when cache has cleared
+			'resources/src/mediawiki/page/catlinks-print.css' => array( 'media' => 'print' ),
 		),
 	),
 	'mediawiki.legacy.protect' => array(
@@ -1867,7 +1877,9 @@ return array(
 		'styles' => array(
 			// @todo: Remove when mediawiki.page.gallery in cached html.
 			'resources/src/mediawiki/page/gallery.css',
-			'resources/src/mediawiki.legacy/shared.css' => array( 'media' => 'screen' )
+			'resources/src/mediawiki.legacy/shared.css' => array( 'media' => 'screen' ),
+			// @todo: Remove when mediawiki.page.catlinks is in cached html.
+			'resources/src/mediawiki/page/catlinks.css' => array( 'media' => 'screen' ),
 		),
 	),
 	'mediawiki.legacy.oldshared' => array(
