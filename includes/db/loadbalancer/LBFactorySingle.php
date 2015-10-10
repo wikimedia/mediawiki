@@ -33,6 +33,8 @@ class LBFactorySingle extends LBFactory {
 	 *  - connection: The DatabaseBase connection object
 	 */
 	public function __construct( array $conf ) {
+		parent::__construct( $conf );
+
 		$this->lb = new LoadBalancerSingle( $conf );
 	}
 

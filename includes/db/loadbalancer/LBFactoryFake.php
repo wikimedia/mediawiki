@@ -28,9 +28,6 @@
  * LBFactory::enableBackend() to return to normal behavior
  */
 class LBFactoryFake extends LBFactory {
-	public function __construct( array $conf ) {
-	}
-
 	public function newMainLB( $wiki = false ) {
 		throw new DBAccessError;
 	}
