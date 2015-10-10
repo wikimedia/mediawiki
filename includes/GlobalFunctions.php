@@ -1360,12 +1360,7 @@ function wfReadOnlyReason() {
 		// Callers use this method to be aware that data presented to a user
 		// may be very stale and thus allowing submissions can be problematic.
 		try {
-			if ( wfGetLB()->getLaggedSlaveMode() ) {
-				$autoReadOnly = 'The database has been automatically locked ' .
-					'while the slave database servers catch up to the master';
-			} else {
-				$autoReadOnly = false;
-			}
+			$autoReadOnly = wfGetLB()->getReadOnlyReason();
 		} catch ( DBConnectionError $e ) {
 			$autoReadOnly = 'The database has been automatically locked ' .
 				'until the slave database servers become available';

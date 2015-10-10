@@ -58,6 +58,8 @@ class LoadBalancer {
 	private $mLaggedSlaveMode;
 	/** @var string The last DB selection or connection error */
 	private $mLastError = 'Unknown error';
+	/** @var string|bool Reason the LB is read-only or false if not */
+	private $readOnlyReason = false;
 	/** @var integer Total connections opened */
 	private $connsOpened = 0;
 
@@ -68,8 +70,9 @@ class LoadBalancer {
 
 	/**
 	 * @param array $params Array with keys:
-	 *   servers           Required. Array of server info structures.
-	 *   loadMonitor       Name of a class used to fetch server lag and load.
+	 *  - servers : Required. Array of server info structures.
+	 *  - loadMonitor : Name of a class used to fetch server lag and load.
+	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
 	 * @throws MWException
 	 */
 	public function __construct( array $params ) {
@@ -90,6 +93,10 @@ class LoadBalancer {
 		$this->mLaggedSlaveMode = false;
 		$this->mErrorConnection = false;
 		$this->mAllowLagged = false;
+
+		if ( isset( $params['readOnlyReason'] ) ) {
+			$this->readOnlyReason = $params['readOnlyReason'];
+		}
 
 		if ( isset( $params['loadMonitor'] ) ) {
 			$this->mLoadMonitorClass = $params['loadMonitor'];
@@ -548,12 +555,17 @@ class LoadBalancer {
 			$trxProf->recordConnection( $host, $dbname, $masterOnly );
 		}
 
-		# Make master connections read only if in lagged slave mode
-		if ( $masterOnly && $this->getServerCount() > 1 && $this->getLaggedSlaveMode() ) {
-			$conn->setLBInfo( 'readOnlyReason',
-				'The database has been automatically locked ' .
-				'while the slave database servers catch up to the master'
-			);
+		if ( $masterOnly ) {
+			# Make master-requested DB handles inherit any read-only mode setting
+			if ( strlen( $this->readOnlyReason ) ) {
+				$conn->setLBInfo( 'readOnlyReason', $this->readOnlyReason );
+			# Make master connections read only if in lagged slave mode
+			} elseif ( $this->getServerCount() > 1 && $this->getLaggedSlaveMode() ) {
+				$conn->setLBInfo( 'readOnlyReason',
+					'The database has been automatically locked ' .
+					'while the slave database servers catch up to the master.'
+				);
+			}
 		}
 
 		return $conn;
@@ -1158,6 +1170,22 @@ class LoadBalancer {
 	 */
 	public function laggedSlaveUsed() {
 		return $this->mLaggedSlaveMode;
+	}
+
+	/**
+	 * @note This method may trigger a DB connection if not yet done
+	 * @return string|bool Reason the master is read-only or false if it is not
+	 * @since 1.27
+	 */
+	public function getReadOnlyReason() {
+		if ( strlen( $this->readOnlyReason ) ) {
+			return $this->readOnlyReason;
+		} elseif ( $this->getLaggedSlaveMode() ) {
+			return 'The master database has been automatically locked ' .
+				'while the slave database servers catch up to the master.';
+		}
+
+		return false;
 	}
 
 	/**
