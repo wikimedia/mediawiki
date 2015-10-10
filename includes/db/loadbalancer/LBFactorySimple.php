@@ -89,7 +89,8 @@ class LBFactorySimple extends LBFactory {
 
 		return new LoadBalancer( array(
 			'servers' => $servers,
-			'loadMonitor' => $this->loadMonitorClass
+			'loadMonitor' => $this->loadMonitorClass,
+			'readOnlyReason' => $this->readOnlyReason
 		) );
 	}
 
@@ -121,7 +122,8 @@ class LBFactorySimple extends LBFactory {
 
 		return new LoadBalancer( array(
 			'servers' => $wgExternalServers[$cluster],
-			'loadMonitor' => $this->loadMonitorClass
+			'loadMonitor' => $this->loadMonitorClass,
+			'readOnlyReason' => $this->readOnlyReason
 		) );
 	}
 
