@@ -556,8 +556,8 @@ class WANObjectCache {
 	 *
 	 *             return CatConfig::newFromRow( $dbr->selectRow( ... ) );
 	 *         },
-	 *         // Calling touchCheckKey() on this key invalidates the cache
 	 *         array(
+	 *             // Calling touchCheckKey() on this key invalidates the cache
 	 *             'checkKeys' => array( wfMemcKey( 'site-cat-config' ) ),
 	 *             // Try to only let one datacenter thread manage cache updates at a time
 	 *             'lockTSE' => 30
@@ -581,9 +581,9 @@ class WANObjectCache {
 	 *
 	 *             return CatState::newFromResults( $dbr->select( ... ) );
 	 *         },
-	 *         // The "check" keys that represent things the value depends on;
-	 *         // Calling touchCheckKey() on any of them invalidates the cache
 	 *         array(
+	 *              // The "check" keys that represent things the value depends on;
+	 *              // Calling touchCheckKey() on any of them invalidates the cache
 	 *             'checkKeys' => array(
 	 *                 wfMemcKey( 'sustenance-bowls', $cat->getRoomId() ),
 	 *                 wfMemcKey( 'people-present', $cat->getHouseId() ),
