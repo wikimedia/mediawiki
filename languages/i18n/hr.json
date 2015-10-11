@@ -833,7 +833,7 @@
 	"shown-title": "Prikaži $1 {{PLURAL:$1|rezultat|rezultata|rezultata}} po stranici",
 	"viewprevnext": "Vidi ($1 {{int:pipe-separator}} $2) ($3).",
 	"searchmenu-exists": "* Stranica '''[[$1]]'''",
-	"searchmenu-new": "<strong>Napravite stranicu \"[[:$1]]\" na ovom wiki projektu!</strong>\n{{PLURAL:$2|0=|Cm. i stranica koje se nalaze u rezultatima vaših pretraživanja.|Cm. također su pronađeni rezultati pretraživanja.}}",
+	"searchmenu-new": "<strong>Napravite stranicu \"[[:$1]]\" na ovom wiki projektu!</strong>\n{{PLURAL:$2|0=|Pogledajte i stranicu pronađenu pretragom.|Pogledajte i druge rezultate pretrage.}}",
 	"searchprofile-articles": "Stranice sa sadržajem",
 	"searchprofile-images": "Multimedija",
 	"searchprofile-everything": "Sve",
