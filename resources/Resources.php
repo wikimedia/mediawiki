@@ -1486,7 +1486,6 @@ return array(
 			'la' => 'resources/src/mediawiki.language/languages/la.js',
 			'os' => 'resources/src/mediawiki.language/languages/os.js',
 			'sl' => 'resources/src/mediawiki.language/languages/sl.js',
-			'uk' => 'resources/src/mediawiki.language/languages/uk.js',
 		),
 		'dependencies' => array(
 			'mediawiki.language.data',
