@@ -92,6 +92,7 @@ return array(
 	 */
 	'mediawiki.skinning.elements' => array(
 		'position' => 'top',
+		'class' => 'ResourceLoaderSkinModule',
 		'styles' => array(
 			'resources/src/mediawiki.skinning/elements.css' => array( 'media' => 'screen' ),
 		),
@@ -110,6 +111,26 @@ return array(
 		'styles' => array(
 			'resources/src/mediawiki.skinning/elements.css' => array( 'media' => 'screen' ),
 			'resources/src/mediawiki.skinning/content.css' => array( 'media' => 'screen' ),
+			'resources/src/mediawiki.skinning/interface.css' => array( 'media' => 'screen' ),
+		),
+	),
+
+	// Bug: T114695
+	// This is also a hack until dependencies can be added to postion: top
+	'mediawiki.skinning.content.only' => array(
+		'position' => 'top',
+		'class' => 'ResourceLoaderSkinModule',
+		'styles' => array(
+			'resources/src/mediawiki.skinning/content.css' => array( 'media' => 'screen' ),
+		),
+	),
+
+	// Bug: T114695
+	// This is also a hack until dependencies can be added to postion: top
+	'mediawiki.skinning.interface.only' => array(
+		'position' => 'top',
+		'class' => 'ResourceLoaderSkinModule',
+		'styles' => array(
 			'resources/src/mediawiki.skinning/interface.css' => array( 'media' => 'screen' ),
 		),
 	),
