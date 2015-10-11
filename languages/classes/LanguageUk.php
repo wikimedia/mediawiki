@@ -27,50 +27,6 @@
  * @ingroup Language
  */
 class LanguageUk extends Language {
-
-	/**
-	 * Convert from the nominative form of a noun to some other case
-	 * Invoked with {{grammar:case|word}}
-	 *
-	 * @param string $word
-	 * @param string $case
-	 * @return string
-	 */
-	function convertGrammar( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms['uk'][$case][$word] ) ) {
-			return $wgGrammarForms['uk'][$case][$word];
-		}
-
-		# These rules don't cover the whole language.
-		# They are used only for site names.
-
-		# join and array_slice instead mb_substr
-		$ar = array();
-		preg_match_all( '/./us', $word, $ar );
-		if ( !preg_match( "/[a-zA-Z_]/us", $word ) ) {
-			switch ( $case ) {
-				case 'genitive': # родовий відмінок
-					if ( join( '', array_slice( $ar[0], -2 ) ) === 'ія' ) {
-						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'ії';
-					} elseif ( join( '', array_slice( $ar[0], -2 ) ) === 'ти' ) {
-						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'т';
-					} elseif ( join( '', array_slice( $ar[0], -2 ) ) === 'ди' ) {
-						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'дів';
-					} elseif ( join( '', array_slice( $ar[0], -3 ) ) === 'ник' ) {
-						$word = join( '', array_slice( $ar[0], 0, -3 ) ) . 'ника';
-					}
-					break;
-				case 'accusative': # знахідний відмінок
-					if ( join( '', array_slice( $ar[0], -2 ) ) === 'ія' ) {
-						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'ію';
-					}
-					break;
-			}
-		}
-		return $word;
-	}
-
 	/**
 	 * Ukrainian numeric format is "12 345,67" but "1234,56"
 	 *
