@@ -641,7 +641,7 @@
 	"passwordreset-emailsent-capture": "Se ha enviado un correo para el restablecimiento de la contraseña, el cual se muestra a continuación.",
 	"passwordreset-emailerror-capture": "Se ha generado un correo electrónico de restablecimiento de contraseña, que se muestra a continuación, pero ha fallado el envío {{GENDER:$2|al usuario|a la usuaria}}: $1",
 	"changeemail": "Cambiar o eliminar la dirección de correo electrónico",
-	"changeemail-header": "Cambiar la dirección de correo de la cuenta",
+	"changeemail-header": "Completa este formulario para cambiar tu dirección de correo electrónico. Si quieres eliminar la asociación de cualquier dirección de correo electrónico con tu cuenta, deja en blanco la nueva dirección de correo electrónico cuando envíes el formulario.",
 	"changeemail-passwordrequired": "Tendrás que escribir tu contraseña para confirmar este cambio.",
 	"changeemail-no-info": "Debes iniciar sesión para acceder directamente a esta página.",
 	"changeemail-oldemail": "Dirección de correo electrónico actual:",

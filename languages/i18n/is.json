@@ -799,7 +799,7 @@
 	"shown-title": "Sýna $1 {{PLURAL:$1|niðurstöðu|niðurstöður}} á hverri síðu",
 	"viewprevnext": "Skoða ($1 {{int:pipe-separator}} $2) ($3).",
 	"searchmenu-exists": "'''Það er síða að nafni „[[:$1]]“ á þessum wiki'''",
-	"searchmenu-new": "<strong>Skapaðu síðuna \"[[:$1]]\" á þessum wiki!<strong>\nSjá einnig {{PLURAL:$2|0=|leitarniðurstöðuna|leitarniðurstöðurnar}}.",
+	"searchmenu-new": "<strong>Skapaðu síðuna „[[:$1]]“ á þessum wiki!<strong>\nSjá einnig {{PLURAL:$2|0=|leitarniðurstöðuna|leitarniðurstöðurnar}}.",
 	"searchprofile-articles": "Efnissíður",
 	"searchprofile-images": "Margmiðlanir",
 	"searchprofile-everything": "Allt",
