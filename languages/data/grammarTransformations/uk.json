@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gutsul",
+			"Amir E. Aharoni (amir.aharoni@mail.huji.ac.il)"
+		],
+		"comment": "These rules don't cover the whole grammar of the language, and are intended only for names of languages and Wikimedia projects."
+	},
+	"genitive": [
+		[ "(.+)ія$", "$1ії" ],
+		[ "(.+)ти$", "$1т" ],
+		[ "(.+)ди$", "$1дів" ],
+		[ "(.+)ник$", "$1ника" ]
+	],
+	"accusative": [
+		[ "(.+)ія$", "$1ію" ]
+	]
+}
