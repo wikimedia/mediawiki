@@ -16,7 +16,7 @@ use Wikimedia\Assert\Assert;
 /**
  * Service locator for MediaWiki core services.
  *
- * This program is free software; you can redistribute it and/or modify
+ * This program is free software; you can redistribute it and/or wrap
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
@@ -98,6 +98,11 @@ class MediaWikiServices {
 	private $serviceConstructors = array();
 
 	/**
+	 * @var callable[]
+	 */
+	private $serviceWrapperConstructors = array();
+
+	/**
 	 * @param Config $config The Config object to be registered as the 'BootstrapConfig' service.
 	 *        This has to contain at least the information needed to set up the 'ConfigFactory' service.
 	 */
@@ -132,7 +137,7 @@ class MediaWikiServices {
 	 *
 	 * @see getService().
 	 * @see replaceService().
-	 * @see modifyService().
+	 * @see wrapService().
 	 *
 	 * @param string $name The name of the service to register, for use with getService().
 	 * @param callable $constructor Callback that returns a service instance.
@@ -152,9 +157,10 @@ class MediaWikiServices {
 
 	/**
 	 * Replace an already defined service.
+	 * This does not remove any service wrappers defined for the service.
 	 *
 	 * @see defineService().
-	 * @see modifyService().
+	 * @see wrapService().
 	 *
 	 * @note This causes any previously instantiated instance of the service to be discarded.
 	 *
@@ -177,13 +183,43 @@ class MediaWikiServices {
 	}
 
 	/**
+	 * Defines a constructor callback for wrapping a service.
+	 * When multiple wrappers are defined for the same service, they are chained:
+	 * Each wrapper is called on the result of the previous wrapper.
+	 *
+	 * @note This causes any previously instantiated instance of the service to be discarded.
+	 *
+	 * @see defineService().
+	 * @see replaceService().
+	 *
+	 * @param string $name The name of the service to wrap.
+	 * @param callable $wrapperConstructor Callback that returns a service instance based on
+	 *        an existing service instance. This will typically be a "decorator" or "proxy"
+	 *        wrapping the original service. Will be called with the original service as the
+	 *        first and MediaWikiServices as the second parameter.
+	 *        The callback must return a service compatible with the originally defined service.
+	 *
+	 * @throws RuntimeException if $name is not a known service.
+	 */
+	public function wrapService( $name, $wrapperConstructor ) {
+		Assert::parameterType( 'callable', $wrapperConstructor, '$wrapperConstructor' );
+
+		if ( !$this->hasService( $name ) ) {
+			throw new RuntimeException( 'Service not defined: ' . $name );
+		}
+
+		$this->serviceWrapperConstructors[$name][] = $wrapperConstructor;
+		unset( $this->services[$name] );
+	}
+
+	/**
 	 * Returns a service object of the kind associated with $name.
 	 * Services instances are instantiated lazily, on demand.
 	 * This method may or may not return the same service instance
 	 * when called multiple times with the same $name.
 	 *
 	 * @see defineService().
-	 * @see modifyService().
+	 * @see wrapService().
 	 *
 	 * @param string $name The service name
 	 *
@@ -209,6 +245,12 @@ class MediaWikiServices {
 			$service = call_user_func( $this->serviceConstructors[$name], $this );
 		} else {
 			throw new InvalidArgumentException( 'Unknown service: ' . $name );
+		}
+
+		if ( isset( $this->serviceWrapperConstructors[$name] ) ) {
+			foreach ( $this->serviceWrapperConstructors[$name] as $constructor ) {
+				$service = call_user_func( $constructor, $service, $this );
+			}
 		}
 
 		return $service;
