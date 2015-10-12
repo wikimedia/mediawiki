@@ -60,13 +60,7 @@ class SpecialCategories extends SpecialPage {
 	 */
 	private function initServices() {
 		if ( !$this->linkRenderer ) {
-			$lang = $this->getContext()->getLanguage();
-			$titleFormatter = new MediaWikiTitleCodec(
-				$lang,
-				GenderCache::singleton(),
-				MediaWikiServices::getInstance()->getInterwikiLookup()
-			);
-			$this->linkRenderer = new MediaWikiPageLinkRenderer( $titleFormatter );
+			$this->linkRenderer = MediaWikiServices::getInstance()->getPageLinkRenderer();
 		}
 	}
 

@@ -69,15 +69,8 @@ class LinkSearchPage extends QueryPage {
 	 * This allows for dependency injection even though we don't control object creation.
 	 */
 	private function initServices() {
-		global $wgLanguageCode;
 		if ( !$this->linkRenderer ) {
-			$lang = Language::factory( $wgLanguageCode );
-			$titleFormatter = new MediaWikiTitleCodec(
-				$lang,
-				GenderCache::singleton(),
-				MediaWikiServices::getInstance()->getInterwikiLookup()
-			);
-			$this->linkRenderer = new MediaWikiPageLinkRenderer( $titleFormatter );
+			$this->linkRenderer = MediaWikiServices::getInstance()->getPageLinkRenderer();
 		}
 	}
 
