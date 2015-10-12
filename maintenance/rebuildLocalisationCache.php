@@ -114,6 +114,10 @@ class RebuildLocalisationCache extends Maintenance {
 				// Reset services, so we don't re-use connections.
 				\MediaWiki\MediaWikiServices::resetChildProcessServices();
 
+
+				// Reset services, so we don't end up re-using connections.
+				MediaWiki\MediaWikiServices::resetGlobalInstance();
+
 				$this->doRebuild( $codes, $lc, $force );
 				exit( 0 );
 			} elseif ( $pid === -1 ) {
