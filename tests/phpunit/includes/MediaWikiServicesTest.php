@@ -189,6 +189,13 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SiteLookup' => [ 'SiteLookup', 'SiteLookup' ],
 			'DBLoadBalancerFactory' => [ 'DBLoadBalancerFactory', 'LBFactory' ],
 			'DBLoadBalancer' => [ 'DBLoadBalancer', 'LoadBalancer' ],
+			'ObjectCacheManager' => [ 'ObjectCacheManager', 'ObjectCacheManager' ],
+			'Profiler' => [ 'Profiler', 'Profiler' ],
+			'LoggerFactory' => [ 'LoggerFactory', 'MediaWiki\Logger\Spi' ],
+			'FileBackendGroup' => [ 'FileBackendGroup', 'FileBackendGroup' ],
+			'RedisConnectionPoolPool' => [ 'RedisConnectionPoolPool', 'MediaWiki\Services\ServicePool' ],
+			'JobQueueGroupPool' => [ 'JobQueueGroupPool', 'MediaWiki\Services\ServicePool' ],
+			'LockManagerGroupPool' => [ 'LockManagerGroupPool', 'MediaWiki\Services\ServicePool' ],
 		];
 	}
 

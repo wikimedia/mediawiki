@@ -29,8 +29,6 @@
  * @since 1.19
  */
 class LockManagerGroup {
-	/** @var array (domain => LockManager) */
-	protected static $instances = [];
 
 	protected $domain; // string; domain (usually wiki ID)
 
@@ -40,7 +38,7 @@ class LockManagerGroup {
 	/**
 	 * @param string $domain Domain (usually wiki ID)
 	 */
-	protected function __construct( $domain ) {
+	public function __construct( $domain ) {
 		$this->domain = $domain;
 	}
 
@@ -49,29 +47,8 @@ class LockManagerGroup {
 	 * @return LockManagerGroup
 	 */
 	public static function singleton( $domain = false ) {
-		$domain = ( $domain === false ) ? wfWikiID() : $domain;
-		if ( !isset( self::$instances[$domain] ) ) {
-			self::$instances[$domain] = new self( $domain );
-			self::$instances[$domain]->initFromGlobals();
-		}
-
-		return self::$instances[$domain];
-	}
-
-	/**
-	 * Destroy the singleton instances
-	 */
-	public static function destroySingletons() {
-		self::$instances = [];
-	}
-
-	/**
-	 * Register lock managers from the global variables
-	 */
-	protected function initFromGlobals() {
-		global $wgLockManagers;
-
-		$this->register( $wgLockManagers );
+		$groupPool = \MediaWiki\MediaWikiServices::getInstance()->getLockManagerGroupPool();
+		return $groupPool->getService( $domain );
 	}
 
 	/**
@@ -80,7 +57,7 @@ class LockManagerGroup {
 	 * @param array $configs
 	 * @throws Exception
 	 */
-	protected function register( array $configs ) {
+	public function register( array $configs ) {
 		foreach ( $configs as $config ) {
 			$config['domain'] = $this->domain;
 			if ( !isset( $config['name'] ) ) {
