@@ -38,7 +38,7 @@ class RebuildSitesCache extends Maintenance {
 
 	public function execute() {
 		$sitesCacheFileBuilder = new SitesCacheFileBuilder(
-			new DBSiteStore(),
+			\MediaWiki\MediaWikiServices::getInstance()->getSiteLookup(),
 			$this->getCacheFile()
 		);
 
