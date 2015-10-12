@@ -37,8 +37,17 @@ DI framework. Per default, $wgServiceWiringFiles lists ServiceWiring.php,
 which defines all default service implementations, and specifies how they
 depend on each other ("wiring").
 
-When a new service is added to MediaWiki core, a callback that will instantiate
-an appropriate default instance for that service must be added to
+Note that services get their configuration injected, and changes to global
+configuration variables will not have any effect on services that were already
+instantiated. This would typically be the case for low level services like
+the ConfigFactory or the ObjectCacheManager, which are used during extension
+registration. To address this issue, Setup.php resets the global service
+locator instance by calling MediaWikiServices::resetGlobalInstance() once
+configuration and extension registration is complete.
+
+
+When a new service is added to MediaWiki core, a callback that will
+instantiate an appropriate default instance for that service must be added to
 ServiceWiring.php. This makes the service available through the generic
 getService() method on the service locator returned by
 MediaWikiServices::getInstance().
