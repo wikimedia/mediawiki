@@ -26,6 +26,7 @@
  *
  * @license GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ * @author Daniel Kinzler
  */
 class DBSiteStore implements SiteStore {
 
@@ -35,15 +36,20 @@ class DBSiteStore implements SiteStore {
 	protected $sites = null;
 
 	/**
-	 * @since 1.25
-	 * @param null $sitesTable Unused since 1.27
+	 * @var LoadBalancer
 	 */
-	public function __construct( $sitesTable = null ) {
-		if ( $sitesTable !== null ) {
-			throw new InvalidArgumentException(
-				__METHOD__ . ': $sitesTable parameter must be null'
-			);
-		}
+	private $dbLoadBalancer;
+
+	/**
+	 * @since 1.27
+	 *
+	 * @todo: inject some kind of connection manager that is aware of the target wiki,
+	 * instead of injecting a LoadBalancer.
+	 *
+	 * @param LoadBalancer $dbLoadBalancer
+	 */
+	public function __construct( LoadBalancer $dbLoadBalancer ) {
+		$this->dbLoadBalancer = $dbLoadBalancer;
 	}
 
 	/**
@@ -67,7 +73,7 @@ class DBSiteStore implements SiteStore {
 	protected function loadSites() {
 		$this->sites = new SiteList();
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->dbLoadBalancer->getConnection( DB_SLAVE );
 
 		$res = $dbr->select(
 			'sites',
@@ -124,6 +130,8 @@ class DBSiteStore implements SiteStore {
 				$this->sites->setSite( $site );
 			}
 		}
+
+		$this->dbLoadBalancer->reuseConnection( $dbr );
 	}
 
 	/**
@@ -170,7 +178,7 @@ class DBSiteStore implements SiteStore {
 			return true;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->dbLoadBalancer->getConnection( DB_MASTER );
 
 		$dbw->startAtomic( __METHOD__ );
 
@@ -241,6 +249,8 @@ class DBSiteStore implements SiteStore {
 
 		$dbw->endAtomic( __METHOD__ );
 
+		$this->dbLoadBalancer->reuseConnection( $dbw );
+
 		$this->reset();
 
 		return $success;
@@ -263,12 +273,14 @@ class DBSiteStore implements SiteStore {
 	 * @return bool Success
 	 */
 	public function clear() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->dbLoadBalancer->getConnection( DB_MASTER );
 
 		$dbw->startAtomic( __METHOD__ );
 		$ok = $dbw->delete( 'sites', '*', __METHOD__ );
 		$ok = $dbw->delete( 'site_identifiers', '*', __METHOD__ ) && $ok;
 		$dbw->endAtomic( __METHOD__ );
+
+		$this->dbLoadBalancer->reuseConnection( $dbw );
 
 		$this->reset();
 
