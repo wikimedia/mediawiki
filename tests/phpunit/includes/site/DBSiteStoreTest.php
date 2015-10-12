@@ -32,13 +32,22 @@
 class DBSiteStoreTest extends MediaWikiTestCase {
 
 	/**
+	 * @return DBSiteStore
+	 */
+	private function newDBSiteStore() {
+		// NOTE: Use the real DB load balancer for now. Eventually, the test framework should
+		// provide a LoadBalancer that is safe to use in unit tests.
+		return new DBSiteStore( wfGetLB() );
+	}
+
+	/**
 	 * @covers DBSiteStore::getSites
 	 */
 	public function testGetSites() {
 		$expectedSites = TestSites::getSites();
 		TestSites::insertIntoDb();
 
-		$store = new DBSiteStore();
+		$store = $this->newDBSiteStore();
 
 		$sites = $store->getSites();
 
@@ -62,7 +71,7 @@ class DBSiteStoreTest extends MediaWikiTestCase {
 	 * @covers DBSiteStore::saveSites
 	 */
 	public function testSaveSites() {
-		$store = new DBSiteStore();
+		$store = $this->newDBSiteStore();
 
 		$sites = array();
 
@@ -95,8 +104,8 @@ class DBSiteStoreTest extends MediaWikiTestCase {
 	 * @covers DBSiteStore::reset
 	 */
 	public function testReset() {
-		$store1 = new DBSiteStore();
-		$store2 = new DBSiteStore();
+		$store1 = $this->newDBSiteStore();
+		$store2 = $this->newDBSiteStore();
 
 		// initialize internal cache
 		$this->assertGreaterThan( 0, $store1->getSites()->count() );
@@ -121,7 +130,7 @@ class DBSiteStoreTest extends MediaWikiTestCase {
 	 * @covers DBSiteStore::clear
 	 */
 	public function testClear() {
-		$store = new DBSiteStore();
+		$store = $this->newDBSiteStore();
 		$this->assertTrue( $store->clear() );
 
 		$site = $store->getSite( 'enwiki' );
@@ -135,7 +144,7 @@ class DBSiteStoreTest extends MediaWikiTestCase {
 	 * @covers DBSiteStore::getSites
 	 */
 	public function testGetSitesDefaultOrder() {
-		$store = new DBSiteStore();
+		$store = $this->newDBSiteStore();
 		$siteB = new Site();
 		$siteB->setGlobalId( 'B' );
 		$siteA = new Site();
