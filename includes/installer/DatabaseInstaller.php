@@ -287,8 +287,16 @@ abstract class DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			throw new MWException( __METHOD__ . ': unexpected DB connection error' );
 		}
-		LBFactory::setInstance( new LBFactorySingle( [
-			'connection' => $status->value ] ) );
+
+		\MediaWiki\MediaWikiServices::resetGlobalInstance();
+		$services = \MediaWiki\MediaWikiServices::getInstance();
+
+		$connection = $status->value;
+		$services->redefineService( 'DBLoadBalancerFactory', function() use ( $connection ) {
+			return new LBFactorySingle( [
+				'connection' => $connection ] );
+		} );
+
 	}
 
 	/**
