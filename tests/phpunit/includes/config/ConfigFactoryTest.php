@@ -2,12 +2,6 @@
 
 class ConfigFactoryTest extends MediaWikiTestCase {
 
-	public function tearDown() {
-		// Reset this since we mess with it a bit
-		ConfigFactory::destroyDefaultInstance();
-		parent::tearDown();
-	}
-
 	/**
 	 * @covers ConfigFactory::register
 	 */
@@ -54,17 +48,10 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 	 * @covers ConfigFactory::getDefaultInstance
 	 */
 	public function testGetDefaultInstance() {
-		// Set $wgConfigRegistry, and check the default
-		// instance read from it
-		$this->setMwGlobals( 'wgConfigRegistry', array(
-			'conf1' => 'GlobalVarConfig::newInstance',
-			'conf2' => 'GlobalVarConfig::newInstance',
-		) );
-		ConfigFactory::destroyDefaultInstance();
 		$factory = ConfigFactory::getDefaultInstance();
-		$this->assertInstanceOf( 'Config', $factory->makeConfig( 'conf1' ) );
-		$this->assertInstanceOf( 'Config', $factory->makeConfig( 'conf2' ) );
+		$this->assertInstanceOf( 'Config', $factory->makeConfig( 'main' ) );
+
 		$this->setExpectedException( 'ConfigException' );
-		$factory->makeConfig( 'conf3' );
+		$factory->makeConfig( 'xyzzy' );
 	}
 }
