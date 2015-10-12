@@ -753,6 +753,7 @@ $wgAutoloadLocalClasses = array(
 	'MediaWikiSite' => __DIR__ . '/includes/site/MediaWikiSite.php',
 	'MediaWikiTitleCodec' => __DIR__ . '/includes/title/MediaWikiTitleCodec.php',
 	'MediaWikiVersionFetcher' => __DIR__ . '/includes/MediaWikiVersionFetcher.php',
+	'MediaWiki\\MediaWikiServices' => __DIR__ . '/includes/MediaWikiServices.php',
 	'MediaWiki\\Logger\\LegacyLogger' => __DIR__ . '/includes/debug/logger/LegacyLogger.php',
 	'MediaWiki\\Logger\\LegacySpi' => __DIR__ . '/includes/debug/logger/LegacySpi.php',
 	'MediaWiki\\Logger\\LoggerFactory' => __DIR__ . '/includes/debug/logger/LoggerFactory.php',
