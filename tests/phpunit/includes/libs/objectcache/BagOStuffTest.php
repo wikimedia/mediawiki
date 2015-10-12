@@ -2,10 +2,80 @@
 /**
  * @author Matthias Mullie <mmullie@wikimedia.org>
  * @group BagOStuff
+ *
+ * @note: This is an system level integration test. We will test the caches
+ * configured via global variables, possibly accessing remote servers!
  */
 class BagOStuffTest extends MediaWikiTestCase {
 	/** @var BagOStuff */
 	private $cache;
+
+	/**
+	 * @return MediaWiki\Logger\Spi
+	 */
+	private function getLoggerFactory() {
+		$logger = $this->getMock( 'Psr\Log\LoggerInterface' );
+
+		$loggerFactory = $this->getMock( 'MediaWiki\Logger\Spi' );
+		$loggerFactory->expects( $this->any() )
+			->method( 'getLogger' )
+			->will( $this->returnValue( $logger ) );
+
+		return $loggerFactory;
+	}
+
+	/**
+	 * Returns the BagOStuff instance designated by $name, according to $wgObjectCaches.
+	 *
+	 * @note: The BagOStuff returned here uses live configuration, and may access remote servers!
+	 *
+	 * @param string $name
+	 *
+	 * @return BagOStuff
+	 * @throws ConfigException
+	 */
+	private function getConfiguredObjectCache( $name ) {
+
+		// NOTE: We cannot rely on MediaWikiServices::getInstance()->getMainConfig()
+		// or on MediaWikiServices::getInstance()->getObjectCacheManager(),
+		// since the global ObjectCacheManager instance has the cache configuration
+		// overwritten for testing, to avoid leaking test data into live caches.
+		$config = new GlobalVarConfig();
+		$keyPrefix = wfWikiID() . ':TEST:BagOStuff:';
+		$objectCacheSpecs = $config->get( 'ObjectCaches' );
+		$wanObjectCacheSpecs = [];
+
+		$manager = new ObjectCacheManager(
+			$keyPrefix,
+			$objectCacheSpecs,
+			$wanObjectCacheSpecs,
+			$this->getLoggerFactory()
+		);
+
+		// XXX: the below replicates the setup logic for the 'ObjectCacheManager'
+		// in ServiceWiring.php. Would be nice to share this code, but it should
+		// probably not go into ObjectCacheManager.
+		$memcachedParams = [
+			'servers' => $config->get( 'MemCachedServers' ),
+			'debug' => $config->get( 'MemCachedDebug' ),
+			'persistent' => $config->get( 'MemCachedPersistent' ),
+			'timeout' => $config->get( 'MemCachedTimeout' ),
+		];
+
+		$manager->setDefaultMemcachedParams( $memcachedParams );
+
+		$manager->setMainStash( $config->get( 'MainStash' ) );
+		$manager->setMainWANCache( $config->get( 'MainWANCache' ) );
+		$manager->setLocalClusterCache( $config->get( 'MainCacheType' ) );
+
+		$manager->setAnythingCandidates( [
+			$config->get( 'MainCacheType' ),
+			$config->get( 'MessageCacheType' ),
+			$config->get( 'ParserCacheType' ),
+		] );
+
+		return $manager->getInstance( $name );
+	}
 
 	protected function setUp() {
 		parent::setUp();
@@ -14,7 +84,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 		if ( $this->getCliArg( 'use-bagostuff' ) ) {
 			$name = $this->getCliArg( 'use-bagostuff' );
 
-			$this->cache = ObjectCache::newFromId( $name );
+			$this->cache = $this->getConfiguredObjectCache( $name );
 		} else {
 			// no type defined - use simple hash
 			$this->cache = new HashBagOStuff;
@@ -23,12 +93,20 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->cache->delete( wfMemcKey( 'test' ) );
 	}
 
+	protected function tearDown() {
+		if ( $this->cache ) {
+			$this->cache->delete( wfMemcKey( 'test' ) );
+		}
+
+		parent::tearDown();
+	}
+
 	/**
 	 * @covers BagOStuff::makeGlobalKey
 	 * @covers BagOStuff::makeKeyInternal
 	 */
 	public function testMakeKey() {
-		$cache = ObjectCache::newFromId( 'hash' );
+		$cache = $this->getConfiguredObjectCache( 'hash' );
 
 		$localKey = $cache->makeKey( 'first', 'second', 'third' );
 		$globalKey = $cache->makeGlobalKey( 'first', 'second', 'third' );
