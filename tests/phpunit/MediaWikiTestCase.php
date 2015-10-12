@@ -1,8 +1,5 @@
 <?php
-use MediaWiki\Logger\LegacySpi;
-use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\Logger\MonologSpi;
-use Psr\Log\LoggerInterface;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @since 1.18
@@ -69,10 +66,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private $mwGlobals = array();
 
 	/**
-	 * Holds original loggers which have been replaced by setLogger()
-	 * @var LoggerInterface[]
+	 * Holds the original MediaWikiServices
+	 * to be restored in tearDown().
+	 * See also stashMwServices().
+	 * @var MediaWikiServices
 	 */
-	private $loggers = array();
+	private $mwServices = array();
 
 	/**
 	 * Table name prefixes. Oracle likes it shorter.
@@ -106,18 +105,46 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 	}
 
-	public function run( PHPUnit_Framework_TestResult $result = null ) {
+	/**
+	 * Prepare service configuration for unit testing.
+	 */
+	public static function prepareServices() {
+		static $servicesPrepared = false;
+
+		if ( $servicesPrepared ) {
+			return;
+		} else {
+			$servicesPrepared = true;
+		}
+
+		$bootstrapConfig = MediaWikiServices::getInstance()->getBootstrapConfig();
+		$configOverrides = new HashConfig();
+
 		/* Some functions require some kind of caching, and will end up using the db,
 		 * which we can't allow, as that would open a new connection for mysql.
 		 * Replace with a HashBag. They would not be going to persist anyway.
 		 */
-		ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
+		$hashCache = array( 'class' => 'HashBagOStuff' );
+		$objectCaches = array(
+				CACHE_DB => $hashCache,
+				CACHE_ACCEL => $hashCache,
+				CACHE_MEMCACHED => $hashCache,
+				'apc' => $hashCache,
+				'xcache' => $hashCache,
+				'wincache' => $hashCache,
+			) + $bootstrapConfig->get( 'ObjectCaches' );
 
-		// Sandbox APC by replacing with in-process hash instead.
-		// Ensures values are removed between tests.
-		ObjectCache::$instances['apc'] =
-		ObjectCache::$instances['xcache'] =
-		ObjectCache::$instances['wincache'] = new HashBagOStuff;
+		$configOverrides->set( 'ObjectCaches', $objectCaches );
+
+		$testConfig = new MultiConfig( array( $configOverrides, $bootstrapConfig ) );
+		MediaWikiServices::resetGlobalInstance( $testConfig );
+	}
+
+	public function run( PHPUnit_Framework_TestResult $result = null ) {
+		self::prepareServices();
+
+		// Reset all caches between tests.
+		MediaWikiServices::resetBetweenTest();
 
 		$needsResetDB = false;
 
@@ -262,7 +289,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$GLOBALS[$key] = $value;
 		}
 		$this->mwGlobals = array();
-		$this->restoreLoggers();
+
+		if ( $this->mwServices ) {
+			MediaWikiServices::forceGlobalInstance( $this->mwServices );
+			$this->mwServices = null;
+		}
+
+		// TODO: move global state into MediaWikiServices
 		RequestContext::resetMain();
 		MediaHandler::resetCache();
 		if ( session_id() !== '' ) {
@@ -328,6 +361,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param mixed $value Value to set the global to (ignored
 	 *  if an array is given as first argument).
 	 *
+	 * @note To allow changes to global variables to take effect on global service instances,
+	 *       call overrideMwServices().
+	 *
 	 * @since 1.21
 	 */
 	protected function setMwGlobals( $pairs, $value = null ) {
@@ -355,6 +391,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param array|string $globalKeys Key to the global variable, or an array of keys.
 	 *
 	 * @throws Exception When trying to stash an unset global
+	 *
+	 * @note To allow changes to global variables to take effect on global service instances,
+	 *       call overrideMwServices().
+	 *
 	 * @since 1.23
 	 */
 	protected function stashMwGlobals( $globalKeys ) {
@@ -395,6 +435,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @throws MWException If the designated global is not an array.
 	 *
+	 * @note To allow changes to global variables to take effect on global service instances,
+	 *       call overrideMwServices().
+	 *
 	 * @since 1.21
 	 */
 	protected function mergeMwGlobalArrayValue( $name, $values ) {
@@ -416,58 +459,27 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Sets the logger for a specified channel, for the duration of the test.
+	 * Stashes the global instance of MediaWikiServices.
+	 * Useful to allow changes to global config variables to take effect.
+	 * The previous instance will be restored on tearDown.
+	 *
+	 * @param Config $configOverrides Configuration overrides for the new MediaWikiServices instance.
+	 *
 	 * @since 1.27
-	 * @param string $channel
-	 * @param LoggerInterface $logger
 	 */
-	protected function setLogger( $channel, LoggerInterface $logger ) {
-		$provider = LoggerFactory::getProvider();
-		$wrappedProvider = TestingAccessWrapper::newFromObject( $provider );
-		$singletons = $wrappedProvider->singletons;
-		if ( $provider instanceof MonologSpi ) {
-			if ( !isset( $this->loggers[$channel] ) ) {
-				$this->loggers[$channel] = isset( $singletons['loggers'][$channel] )
-					? $singletons['loggers'][$channel] : null;
-			}
-			$singletons['loggers'][$channel] = $logger;
-		} elseif ( $provider instanceof LegacySpi ) {
-			if ( !isset( $this->loggers[$channel] ) ) {
-				$this->loggers[$channel] = isset( $singletons[$channel] ) ? $singletons[$channel] : null;
-			}
-			$singletons[$channel] = $logger;
-		} else {
-			throw new LogicException( __METHOD__ . ': setting a logger for ' . get_class( $provider )
-				. ' is not implemented' );
+	protected function overrideMwServices( Config $configOverrides = null ) {
+		if ( !$configOverrides ) {
+			$configOverrides = new HashConfig();
 		}
-		$wrappedProvider->singletons = $singletons;
-	}
 
-	/**
-	 * Restores loggers replaced by setLogger().
-	 * @since 1.27
-	 */
-	private function restoreLoggers() {
-		$provider = LoggerFactory::getProvider();
-		$wrappedProvider = TestingAccessWrapper::newFromObject( $provider );
-		$singletons = $wrappedProvider->singletons;
-		foreach ( $this->loggers as $channel => $logger ) {
-			if ( $provider instanceof MonologSpi ) {
-				if ( $logger === null ) {
-					unset( $singletons['loggers'][$channel] );
-				} else {
-					$singletons['loggers'][$channel] = $logger;
-				}
-			} elseif ( $provider instanceof LegacySpi ) {
-				if ( $logger === null ) {
-					unset( $singletons[$channel] );
-				} else {
-					$singletons[$channel] = $logger;
-				}
-			}
+		$bootstrapConfig = MediaWikiServices::getInstance()->getBootstrapConfig();
+
+		$instance = new MediaWikiServices( new MultiConfig( array( $configOverrides, $bootstrapConfig ) ) );
+
+		// only stash and restore the first instance
+		if ( $this->mwServices === null ) {
+			$this->mwServices = MediaWikiServices::forceGlobalInstance( $instance );
 		}
-		$wrappedProvider->singletons = $singletons;
-		$this->loggers = array();
 	}
 
 	/**
@@ -649,6 +661,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( self::$dbSetup ) {
 			return;
 		}
+
+		// TODO: the below should be re-written as soon as LBFactory, LoadBalancer,
+		// and DatabaseBase no longer use global state.
 
 		$tablesCloned = self::listTables( $db );
 		$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix );

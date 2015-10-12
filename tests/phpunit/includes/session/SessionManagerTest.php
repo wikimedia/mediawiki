@@ -3,7 +3,6 @@
 namespace MediaWiki\Session;
 
 use AuthPlugin;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWikiTestCase;
 use Psr\Log\LogLevel;
 use User;
@@ -761,6 +760,8 @@ class SessionManagerTest extends MediaWikiTestCase {
 	public function testAutoCreateUser() {
 		global $wgGroupPermissions;
 
+		$that = $this;
+
 		\ObjectCache::$instances[__METHOD__] = new TestBagOStuff();
 		$this->setMwGlobals( array( 'wgMainCacheType' => __METHOD__ ) );
 		$this->setMWGlobals( array(
@@ -1011,10 +1012,10 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$logger->clearBuffer();
 
 		// Sanity check that creation still works, and test completion hook
-		$cb = $this->callback( function ( User $user ) {
-			$this->assertNotEquals( 0, $user->getId() );
-			$this->assertSame( 'UTSessionAutoCreate4', $user->getName() );
-			$this->assertEquals(
+		$cb = $this->callback( function ( User $user ) use ( $that ) {
+			$that->assertNotEquals( 0, $user->getId() );
+			$that->assertSame( 'UTSessionAutoCreate4', $user->getName() );
+			$that->assertEquals(
 				$user->getId(), User::idFromName( 'UTSessionAutoCreate4', User::READ_LATEST )
 			);
 			return true;
@@ -1113,7 +1114,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$provider->expects( $this->any() )->method( 'mergeMetadata' )
 			->will( $this->returnCallback( function ( $a, $b ) {
 				if ( $b === array( 'Throw' ) ) {
-					throw new MetadataMergeException( 'no merge!' );
+					throw new \UnexpectedValueException( 'no merge!' );
 				}
 				return array( 'Merged' );
 			} ) );
@@ -1648,6 +1649,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertSame( array(), $logger->getBuffer() );
 
 		// Hook
+		$that = $this;
 		$called = false;
 		$data = array( 'foo' => 1 );
 		$this->store->setSession( $id, array( 'metadata' => $metadata, 'data' => $data ) );
@@ -1658,14 +1660,14 @@ class SessionManagerTest extends MediaWikiTestCase {
 		) );
 		$this->mergeMwGlobalArrayValue( 'wgHooks', array(
 			'SessionCheckInfo' => array( function ( &$reason, $i, $r, $m, $d ) use (
-				$info, $metadata, $data, $request, &$called
+				$that, $info, $metadata, $data, $request, &$called
 			) {
-				$this->assertSame( $info->getId(), $i->getId() );
-				$this->assertSame( $info->getProvider(), $i->getProvider() );
-				$this->assertSame( $info->getUserInfo(), $i->getUserInfo() );
-				$this->assertSame( $request, $r );
-				$this->assertEquals( $metadata, $m );
-				$this->assertEquals( $data, $d );
+				$that->assertSame( $info->getId(), $i->getId() );
+				$that->assertSame( $info->getProvider(), $i->getProvider() );
+				$that->assertSame( $info->getUserInfo(), $i->getUserInfo() );
+				$that->assertSame( $request, $r );
+				$that->assertEquals( $metadata, $m );
+				$that->assertEquals( $data, $d );
 				$called = true;
 				return false;
 			} )
@@ -1678,73 +1680,4 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$logger->clearBuffer();
 	}
 
-	/**
-	 * @dataProvider provideCheckIpLimits
-	 */
-	public function testCheckIpLimits( $ip, $sessionData, $userData, $logLevel1, $logLevel2 ) {
-		$this->setMwGlobals( array(
-			'wgSuspiciousIpPerSessionLimit' => 5,
-			'wgSuspiciousIpPerUserLimit' => 10,
-			'wgSuspiciousIpExpiry' => 600,
-			'wgSquidServers' => array( '11.22.33.44' ),
-		) );
-		$manager = new SessionManager();
-		$logger = $this->getMock( '\Psr\Log\LoggerInterface' );
-		$this->setLogger( 'session-ip', $logger );
-		$request = new \FauxRequest();
-		$request->setIP( $ip );
-
-		$session = $manager->getSessionForRequest( $request );
-		/** @var SessionBackend $backend */
-		$backend = \TestingAccessWrapper::newFromObject( $session )->backend;
-		$data = &$backend->getData();
-		$data = array( 'SessionManager-ip' => $sessionData );
-		$backend->setUser( User::newFromName( 'UTSysop' ) );
-		$manager = \TestingAccessWrapper::newFromObject( $manager );
-		$manager->store->set( 'SessionManager-ip:' . md5( 'UTSysop' ), $userData );
-
-		$logger->expects( $this->exactly( isset( $logLevel1 ) + isset( $logLevel2 ) ) )->method( 'log' );
-		if ( $logLevel1 ) {
-			$logger->expects( $this->at( 0 ) )->method( 'log' )->with( $logLevel1,
-				'Same session used from {count} IPs', $this->isType( 'array' ) );
-		}
-		if ( $logLevel2 ) {
-			$logger->expects( $this->at( isset( $logLevel1 ) ) )->method( 'log' )->with( $logLevel2,
-				'Same user had sessions from {count} IPs', $this->isType( 'array' ) );
-		}
-
-		$manager->checkIpLimits( $session );
-	}
-
-	public function provideCheckIpLimits() {
-		$future = time() + 1000;
-		$past = time() - 1000;
-		return array(
-			// DEBUG log for first new IP
-			array( '1.2.3.4', array(), array(), LogLevel::DEBUG, LogLevel::DEBUG ),
-			// no log for same IP
-			array( '1.2.3.4', array( '1.2.3.4'  => $future ), array( '1.2.3.4' => $future ),
-				   null, null ),
-			array( '1.2.3.4', array(), array( '1.2.3.4' => $future ),
-				   LogLevel::DEBUG, null ),
-			// INFO log for second new IP
-			array( '1.2.3.4', array( '10.20.30.40'  => $future ), array( '10.20.30.40' => $future ),
-			   LogLevel::INFO, LogLevel::INFO ),
-			// WARNING above $wgSuspiciousIpPerSessionLimit
-			array( '1.2.3.4', array_fill_keys( range( 1, 5 ), $future ),
-			   array_fill_keys( range( 1, 5 ), $future ), LogLevel::WARNING, LogLevel::INFO ),
-			// WARNING above $wgSuspiciousIpPerUserLimit
-
-			array( '1.2.3.4', array_fill_keys( range( 1, 2 ), $future ),
-				   array_fill_keys( range( 1, 12 ), $future ), LogLevel::INFO, LogLevel::WARNING ),
-			// expired keys ignored
-			array( '1.2.3.4', array( '1.2.3.4'  => $past ), array( '1.2.3.4' => $past ),
-			   LogLevel::DEBUG, LogLevel::DEBUG ),
-			array( '1.2.3.4', array_fill_keys( range( 1, 5 ), $past ),
-				   array_fill_keys( range( 1, 5 ), $past ), LogLevel::DEBUG, LogLevel::DEBUG ),
-			// special IPs are ignored
-			array( '127.0.0.1', array(), array(), null, null ),
-			array( '11.22.33.44', array(), array(), null, null ),
-		);
-	}
 }
