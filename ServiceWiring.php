@@ -1,0 +1,90 @@
+<?php
+/**
+ * Default wiring for MediaWiki services.
+ *
+ * This file is loaded by MediaWiki\MediaWikiServices::getInstance() during the
+ * bootstrapping of the dependency injection framework.
+ *
+ * This file returns an array that associates service name with constructor callbacks
+ * that instantiate the default instances for the services used by MediaWiki
+ * core. For every service that MediaWiki core requires, a constructor callback
+ * creating a default instance must be defined in this file.
+ *
+ * @note As of version 1.27, MediaWiki is only beginning to use dependency injection.
+ * The services defined here do not yet fully represent all services used by core,
+ * much of the code still relies on global state for this accessing services.
+ *
+ * @license GPL2 and later
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ *
+ * @since 1.27
+ */
+
+use MediaWiki\MediaWikiServices;
+
+return array(
+	'DBLoadBalancerFactory' => function( MediaWikiServices $services ) {
+		// NOTE: Defining the LBFactory class via LBFactoryConf is supported for
+		// backwards compatibility. The preferred way would be to register a
+		// callback for DBLoadBalancerFactory that constructs the desired LBFactory
+		// directly.
+		$config = $services->getCoreConfig()->get( 'LBFactoryConf' );
+
+		$class = LBFactory::getLBFactoryClass( $config );
+		if ( !isset( $config['readOnlyReason'] ) ) {
+			// TODO: replace the global wfConfiguredReadOnlyReason() with a service.
+			$config['readOnlyReason'] = wfConfiguredReadOnlyReason();
+		}
+
+		return new $class( $config );
+	},
+
+	'DBLoadBalancer' => function( MediaWikiServices $services ) {
+		// just return the default LB from the DBLoadBalancerFactory service
+		return $services->getDBLoadBalancerFactory()->getMainLB();
+	},
+
+	'SiteStore' => function( MediaWikiServices $services ) {
+		$rawSiteStore = new DBSiteStore( $services->getDBLoadBalancer() );
+
+		// TODO: replace wfGetCache with a CacheFactory service.
+		// TODO: replace wfIsHHVM with a capabilities service.
+		$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
+
+		return new CachingSiteStore( $rawSiteStore, $cache );
+	},
+
+	'SiteLookup' => function( MediaWikiServices $services ) {
+		// Use the default SiteStore as the SiteLookup implementation for now
+		return $services->getSiteStore();
+	},
+
+	'CoreConfig' => function( MediaWikiServices $services ) {
+		// For now, core uses the bootstrap config. In the future, we may load the core config
+		// from the database, or some other location specified by the bootstrap config.
+		return $services->getBootstrapConfig();
+	},
+
+	///////////////////////////////////////////////////////////////////////////
+	// NOTE: When adding a service here, don't forget to add a getter function
+	// in the MediaWikiServices class. The convenience getter should just call
+	// $this->getService( 'FooBarService' ).
+	///////////////////////////////////////////////////////////////////////////
+
+);
