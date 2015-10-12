@@ -19,6 +19,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * The CentralIdLookup service allows for connecting local users with
@@ -68,9 +69,8 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 * Reset internal cache for unit testing
 	 */
 	public static function resetCache() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new MWException( __METHOD__ . ' may only be called from unit tests!' );
-		}
+		// TODO: manage service instances in MediaWikiServices
+		MediaWikiServices::failUnlessBootstrapping( __METHOD__ );
 		self::$instances = [];
 	}
 
