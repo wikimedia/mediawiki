@@ -3581,5 +3581,6 @@
 	"special-characters-title-minus": "マイナス記号",
 	"mw-widgets-dateinput-no-date": "選択されたデータ無し",
 	"mw-widgets-titleinput-description-new-page": "ページは存在しません",
-	"mw-widgets-titleinput-description-redirect": "$1 へのリダイレクト"
+	"mw-widgets-titleinput-description-redirect": "$1 へのリダイレクト",
+	"api-error-blacklisted": "他の、説明的なタイトルをお選びください。"
 }

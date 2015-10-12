@@ -3297,5 +3297,6 @@
 	"mw-widgets-dateinput-placeholder-day": "TTTT-BB-AA",
 	"mw-widgets-dateinput-placeholder-month": "TTTT-BB",
 	"mw-widgets-titleinput-description-new-page": "awan pay ti panid",
-	"mw-widgets-titleinput-description-redirect": "ibaw-ing iti $1"
+	"mw-widgets-titleinput-description-redirect": "ibaw-ing iti $1",
+	"api-error-blacklisted": "Pangngaasi nga agpili iti sabali, a mangipalpalawag a titulo."
 }

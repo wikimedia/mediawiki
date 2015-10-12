@@ -3454,5 +3454,6 @@
 	"special-characters-title-minus": "減號",
 	"mw-widgets-dateinput-no-date": "未選擇日期",
 	"mw-widgets-titleinput-description-new-page": "頁面不存在",
-	"mw-widgets-titleinput-description-redirect": "重新導向至 $1"
+	"mw-widgets-titleinput-description-redirect": "重新導向至 $1",
+	"api-error-blacklisted": "請選擇另一個更具描述性的標題。"
 }

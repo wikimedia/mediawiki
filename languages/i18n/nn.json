@@ -3047,5 +3047,6 @@
 	"special-characters-group-sinhala": "Singalesisk",
 	"special-characters-group-gujarati": "Gujarati",
 	"mw-widgets-dateinput-placeholder-day": "ÅÅÅÅ-MM-DD",
-	"mw-widgets-dateinput-placeholder-month": "ÅÅÅÅ-MM"
+	"mw-widgets-dateinput-placeholder-month": "ÅÅÅÅ-MM",
+	"api-error-blacklisted": "Vel eit anna namn som er meir skildrande."
 }

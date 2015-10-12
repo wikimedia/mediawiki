@@ -2884,5 +2884,6 @@
 	"special-characters-title-emdash": "terèt èm",
 	"special-characters-title-minus": "segno muens",
 	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-JJ",
-	"mw-widgets-dateinput-placeholder-month": "AAAA-MM"
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
+	"api-error-blacklisted": "Volyéd chouèsir un ôtro titro dèscriptif."
 }

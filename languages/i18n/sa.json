@@ -3307,5 +3307,6 @@
 	"special-characters-title-endash": "en dash",
 	"special-characters-title-emdash": "em dash",
 	"special-characters-title-minus": "minus sign",
-	"mw-widgets-titleinput-description-new-page": "पृष्ठं न विद्यते"
+	"mw-widgets-titleinput-description-new-page": "पृष्ठं न विद्यते",
+	"api-error-blacklisted": "कृपया भिन्नं विवरणपूर्वकं शीर्षकं चीयताम् ।"
 }

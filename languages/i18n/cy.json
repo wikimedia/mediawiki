@@ -3143,5 +3143,6 @@
 	"special-characters-title-emdash": "heiffen em",
 	"special-characters-title-minus": "arwydd minws",
 	"mw-widgets-dateinput-placeholder-day": "BBBB-MM-DD",
-	"mw-widgets-dateinput-placeholder-month": "BBBB-MM"
+	"mw-widgets-dateinput-placeholder-month": "BBBB-MM",
+	"api-error-blacklisted": "Dewiswch deitl gwahanol sy'n disgrifio'r gwaith, os gwelwch yn dda."
 }

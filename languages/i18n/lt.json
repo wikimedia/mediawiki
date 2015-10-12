@@ -3402,5 +3402,6 @@
 	"special-characters-title-minus": "minuso ženklas",
 	"mw-widgets-dateinput-no-date": "Nepasirinkta data",
 	"mw-widgets-titleinput-description-new-page": "puslapis dar neegzistuoja",
-	"mw-widgets-titleinput-description-redirect": "nukreipti į $1"
+	"mw-widgets-titleinput-description-redirect": "nukreipti į $1",
+	"api-error-blacklisted": "Prašome pasirinkti kitą, aprašomąją antraštę."
 }

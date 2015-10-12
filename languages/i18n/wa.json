@@ -1615,5 +1615,6 @@
 	"duration-years": "$1 anêye{{PLURAL:$1||s}}",
 	"duration-decades": "$1 dijhinne{{PLURAL:$1||s}} d' anêyes",
 	"duration-centuries": "$1 sieke{{PLURAL:$1||s}}",
-	"duration-millennia": "$1 meynaire{{PLURAL:$1||s}}"
+	"duration-millennia": "$1 meynaire{{PLURAL:$1||s}}",
+	"api-error-blacklisted": "S' i vs plait, tchoezixhoz èn ôte tite, pus esplicant."
 }

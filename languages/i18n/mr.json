@@ -3098,5 +3098,6 @@
 	"special-characters-group-khmer": "ख्मेर",
 	"special-characters-title-minus": "ॠण चिन्ह",
 	"mw-widgets-dateinput-no-date": "कोणताही दिनांक निवडला नाही",
-	"mw-widgets-titleinput-description-new-page": "अद्याप पान अस्तित्वात नाही"
+	"mw-widgets-titleinput-description-new-page": "अद्याप पान अस्तित्वात नाही",
+	"api-error-blacklisted": "कुपया वेगळे वर्णनात्मक शीर्षक निवडा"
 }

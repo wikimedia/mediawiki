@@ -3465,5 +3465,6 @@
 	"mw-widgets-dateinput-placeholder-day": "RRRR-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "RRRR-MM",
 	"mw-widgets-titleinput-description-new-page": "stránka zatím neexistuje",
-	"mw-widgets-titleinput-description-redirect": "přesměrování na $1"
+	"mw-widgets-titleinput-description-redirect": "přesměrování na $1",
+	"api-error-blacklisted": "Zvolte jiný, popisný název."
 }

@@ -3431,5 +3431,6 @@
 	"special-characters-title-emdash": "इएम ड्यास",
 	"special-characters-title-minus": "घटाउने चिन्ह",
 	"mw-widgets-titleinput-description-new-page": "हालसम्म पृष्ठ उपलब्ध छैन्",
-	"mw-widgets-titleinput-description-redirect": "$1 मा जाने"
+	"mw-widgets-titleinput-description-redirect": "$1 मा जाने",
+	"api-error-blacklisted": "एउटा फरक वर्णनात्मक शीर्षक चयन गर्नुहोस् ।"
 }
