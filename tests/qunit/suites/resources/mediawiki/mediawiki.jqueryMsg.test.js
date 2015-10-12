@@ -34,7 +34,21 @@
 			mw.language = this.originalMwLanguage;
 		},
 		config: {
-			wgArticlePath: '/wiki/$1'
+			wgArticlePath: '/wiki/$1',
+			// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+			wgNamespaceIds: {
+				template: 10,
+				template_talk: 11,
+				// Localised
+				szablon: 10,
+				dyskusja_szablonu: 11
+			},
+			// jscs:enable requireCamelCaseOrUpperCaseIdentifiers
+			wgFormattedNamespaces: {
+				// Localised
+				10: 'Szablon',
+				11: 'Dyskusja szablonu'
+			}
 		},
 		// Messages that are reused in multiple tests
 		messages: {
@@ -656,6 +670,36 @@
 			formatParse( 'uses-missing-int' ),
 			'[doesnt-exist]',
 			'int: where nested message does not exist'
+		);
+	} );
+
+	QUnit.test( 'Ns', 4, function ( assert ) {
+		mw.messages.set( 'ns-template-talk', '{{ns:Template talk}}' );
+		assert.equal(
+			formatParse( 'ns-template-talk' ),
+			'Dyskusja szablonu',
+			'ns: returns localised namespace when used with a canonical namespace name'
+		);
+
+		mw.messages.set( 'ns-10', '{{ns:10}}' );
+		assert.equal(
+			formatParse( 'ns-10' ),
+			'Szablon',
+			'ns: returns localised namespace when used with a namespace number'
+		);
+
+		mw.messages.set( 'ns-unknown', '{{ns:doesnt-exist}}' );
+		assert.equal(
+			formatParse( 'ns-unknown' ),
+			'',
+			'ns: returns empty string for unknown namespace name'
+		);
+
+		mw.messages.set( 'ns-in-a-link', '[[{{ns:template}}:Foo]]' );
+		assert.equal(
+			formatParse( 'ns-in-a-link' ),
+			'<a title="Szablon:Foo" href="/wiki/Szablon:Foo">Szablon:Foo</a>',
+			'ns: works when used inside a wikilink'
 		);
 	} );
 
