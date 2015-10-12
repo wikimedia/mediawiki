@@ -25,34 +25,25 @@
  * @file
  * @ingroup Site
  *
+ * @deprecated 1.27 use DBSiteStore and CachingSiteStore instead.
+ *
  * @license GNU GPL v2+
- * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ * @author Daniel Kinzler
  */
-class SiteSQLStore extends CachingSiteStore {
+class SiteSQLStore {
 
 	/**
 	 * @since 1.21
-	 * @deprecated 1.25 Construct a SiteStore instance directly instead.
+	 * @deprecated 1.27 use MediaWikiServices::getSiteStore() or MediaWikiServices::getSiteLookup()
+	 *             instead.
 	 *
-	 * @param null $sitesTable Unused
-	 * @param BagOStuff|null $cache
+	 * @param null $sitesTable IGNORED
+	 * @param BagOStuff|null $cache IGNORED
 	 *
 	 * @return SiteStore
 	 */
 	public static function newInstance( $sitesTable = null, BagOStuff $cache = null ) {
-		if ( $sitesTable !== null ) {
-			throw new InvalidArgumentException(
-				__METHOD__ . ': $sitesTable parameter is unused and must be null'
-			);
-		}
-
-		if ( $cache === null ) {
-			$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
-		}
-
-		$siteStore = new DBSiteStore();
-
-		return new static( $siteStore, $cache );
+		return \MediaWiki\MediaWikiServices::getInstance()->getSiteStore();
 	}
 
 }
