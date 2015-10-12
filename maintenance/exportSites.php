@@ -42,7 +42,7 @@ class ExportSites extends Maintenance {
 
 		$exporter = new SiteExporter( $handle );
 
-		$sites = SiteSQLStore::newInstance()->getSites( 'recache' );
+		$sites = MediaWikiServices::getInstance()->getSiteStore()->getSites( 'recache' );
 		$exporter->exportSites( $sites );
 
 		fclose( $handle );
