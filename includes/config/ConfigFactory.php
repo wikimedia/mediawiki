@@ -47,17 +47,12 @@ class ConfigFactory {
 	private static $self;
 
 	/**
+	 * @deprecated since 1.27, use MediaWikiServices::getConfigFactory() instead.
+	 *
 	 * @return ConfigFactory
 	 */
 	public static function getDefaultInstance() {
-		if ( !self::$self ) {
-			self::$self = new self;
-			global $wgConfigRegistry;
-			foreach ( $wgConfigRegistry as $name => $callback ) {
-				self::$self->register( $name, $callback );
-			}
-		}
-		return self::$self;
+		return \MediaWiki\MediaWikiServices::getInstance()->getConfigFactory();
 	}
 
 	/**
