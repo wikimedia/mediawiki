@@ -133,7 +133,8 @@ class ForkController {
 				$this->termReceived = false;
 			}
 		} while ( count( $this->children ) );
-		pcntl_signal( SIGTERM, SIG_DFL );
+
+		$this->initProcess();
 		return 'done';
 	}
 
@@ -149,14 +150,12 @@ class ForkController {
 
 	protected function prepareEnvironment() {
 		global $wgMemc;
-		// Don't share DB, storage, or memcached connections
-		wfGetLBFactory()->destroyInstance();
-		FileBackendGroup::destroySingleton();
-		LockManagerGroup::destroySingletons();
-		JobQueueGroup::destroySingletons();
-		ObjectCache::clear();
-		RedisConnectionPool::destroySingletons();
-		$wgMemc = null;
+		$wgMemc = null; // TODO: change all code that accesses this directly!
+
+		// NOTE: we want to destroy global service instances before forking,
+		// so no external resources such as database connections get copied
+		// to the child processes.
+		\MediaWiki\MediaWikiServices::disableStorageBackend();
 	}
 
 	/**
@@ -178,7 +177,7 @@ class ForkController {
 			}
 
 			if ( !$pid ) {
-				$this->initChild();
+				$this->initProcess();
 				$this->childNumber = $i;
 				return 'child';
 			} else {
@@ -190,9 +189,10 @@ class ForkController {
 		return 'parent';
 	}
 
-	protected function initChild() {
-		global $wgMemc, $wgMainCacheType;
-		$wgMemc = wfGetCache( $wgMainCacheType );
+	protected function initProcess() {
+		// Reset services, so we don't re-use connections.
+		\MediaWiki\MediaWikiServices::resetChildProcessServices();
+
 		$this->children = null;
 		pcntl_signal( SIGTERM, SIG_DFL );
 	}
