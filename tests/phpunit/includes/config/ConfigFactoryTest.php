@@ -26,6 +26,16 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 	/**
 	 * @covers ConfigFactory::makeConfig
 	 */
+	public function testMakeConfigFallback() {
+		$factory = new ConfigFactory();
+		$factory->register( '*', 'GlobalVarConfig::newInstance' );
+		$conf = $factory->makeConfig( 'unittest' );
+		$this->assertInstanceOf( 'Config', $conf );
+	}
+
+	/**
+	 * @covers ConfigFactory::makeConfig
+	 */
 	public function testMakeConfigWithNoBuilders() {
 		$factory = new ConfigFactory();
 		$this->setExpectedException( 'ConfigException' );
@@ -48,10 +58,10 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 	 * @covers ConfigFactory::getDefaultInstance
 	 */
 	public function testGetDefaultInstance() {
+		// NOTE: the global config factory returned here has been overwritten
+		// for operation in test mode. It may not reflect LocalSettings.
 		$factory = ConfigFactory::getDefaultInstance();
 		$this->assertInstanceOf( 'Config', $factory->makeConfig( 'main' ) );
-
-		$this->setExpectedException( 'ConfigException' );
-		$factory->makeConfig( 'xyzzy' );
 	}
+
 }

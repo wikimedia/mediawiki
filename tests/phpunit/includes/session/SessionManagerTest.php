@@ -3,7 +3,9 @@
 namespace MediaWiki\Session;
 
 use AuthPlugin;
+use HashConfig;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use MediaWikiTestCase;
 use Psr\Log\LogLevel;
 use User;
@@ -17,8 +19,33 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 	protected $config, $logger, $store;
 
+	protected function setUp() {
+		parent::setUp();
+		$sysop = User::newFromName( 'UTSysop' );
+		if ( !$sysop->getId() ) {
+			throw new \Exception( "eeekkk!" );
+		}
+
+		$configOverrides = new HashConfig();
+
+		$objectCaches = MediaWikiServices::getInstance()->getMainConfig()->get( 'ObjectCaches' );
+		$objectCaches['testSessionStore'] = [ 'class' => 'MediaWiki\Session\TestBagOStuff' ];
+
+		$configOverrides->set( 'ObjectCaches', $objectCaches );
+		$configOverrides->set( 'MainCacheType', 'testSessionStore' );
+
+		$this->overrideMwServices( $configOverrides );
+
+		SessionManager::resetCache();
+
+		$sysop = User::newFromName( 'UTSysop' );
+		if ( !$sysop->getId() ) {
+			throw new \Exception( "orrr" );
+		}
+	}
+
 	protected function getManager() {
-		\ObjectCache::$instances['testSessionStore'] = new TestBagOStuff();
+
 		$this->config = new \HashConfig( [
 			'LanguageCode' => 'en',
 			'SessionCacheType' => 'testSessionStore',
@@ -113,7 +140,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$manager = \TestingAccessWrapper::newFromObject( new SessionManager( [
 			'config' => $this->config,
 		] ) );
-		$this->assertSame( \ObjectCache::$instances['testSessionStore'], $manager->store );
+		$this->assertSame( \ObjectCache::getInstance('testSessionStore'), $manager->store );
 
 		foreach ( [
 			'config' => '$options[\'config\'] must be an instance of Config',
@@ -761,8 +788,6 @@ class SessionManagerTest extends MediaWikiTestCase {
 	public function testAutoCreateUser() {
 		global $wgGroupPermissions;
 
-		\ObjectCache::$instances[__METHOD__] = new TestBagOStuff();
-		$this->setMwGlobals( [ 'wgMainCacheType' => __METHOD__ ] );
 		$this->setMWGlobals( [
 			'wgAuth' => new AuthPlugin,
 		] );
@@ -904,18 +929,16 @@ class SessionManagerTest extends MediaWikiTestCase {
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
-		// Test prevention by wfReadOnly()
-		$this->setMwGlobals( [
-			'wgReadOnly' => 'Because',
-		] );
+		$loadBalancer = wfGetLB();
+
+		// Test prevention by getReadOnlyReason()
+		$loadBalancer->setReadOnlyReason( 'Because' );
 		$user = User::newFromName( 'UTDoesNotExist' );
 		$this->assertFalse( $manager->autoCreateUser( $user ) );
 		$this->assertSame( 0, $user->getId() );
 		$this->assertNotSame( 'UTDoesNotExist', $user->getName() );
 		$this->assertEquals( 0, User::idFromName( 'UTDoesNotExist', User::READ_LATEST ) );
-		$this->setMwGlobals( [
-			'wgReadOnly' => false,
-		] );
+		$loadBalancer->setReadOnlyReason( false );
 		$session->clear();
 		$this->assertSame( [
 			[ LogLevel::DEBUG, 'denied by wfReadOnly()' ],

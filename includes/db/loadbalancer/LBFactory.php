@@ -24,6 +24,7 @@
 use MediaWiki\Services\DestructibleService;
 use Psr\Log\LoggerInterface;
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Assert\Assert;
 
 /**
  * An interface for generating database load balancers
@@ -172,6 +173,19 @@ abstract class LBFactory implements DestructibleService {
 	 * STUB
 	 */
 	public function shutdown( $flags = 0 ) {
+	}
+
+	/**
+	 * @param string|bool $reason
+	 */
+	public function setReadOnlyReason( $reason ) {
+		Assert::parameterType( 'boolean|string', $reason, '$reason' );
+
+		$this->readOnlyReason = $reason;
+
+		$this->forEachLB( function( LoadBalancer $lb ) use ( $reason ) {
+			$lb->setReadOnlyReason( $reason );
+		} );
 	}
 
 	/**

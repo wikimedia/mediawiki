@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use BagOStuff;
@@ -360,10 +361,12 @@ final class SessionManager implements SessionManagerInterface {
 		$localId = User::idFromName( $user->getName() );
 		$flags = 0;
 
+		$loadBalancer = wfGetLB();
+
 		// Fetch the user ID from the master, so that we don't try to create the user
 		// when they already exist, due to replication lag
 		// @codeCoverageIgnoreStart
-		if ( !$localId && wfGetLB()->getReaderIndex() != 0 ) {
+		if ( !$localId && $loadBalancer->getReaderIndex() != 0 ) {
 			$localId = User::idFromName( $user->getName(), User::READ_LATEST );
 			$flags = User::READ_LATEST;
 		}
@@ -385,7 +388,7 @@ final class SessionManager implements SessionManagerInterface {
 		}
 
 		// Wiki is read-only?
-		if ( wfReadOnly() ) {
+		if ( $loadBalancer->getReadOnlyReason() !== false ) {
 			$logger->debug( __METHOD__ . ': denied by wfReadOnly()' );
 			$user->setId( 0 );
 			$user->loadFromId();
@@ -1056,12 +1059,9 @@ final class SessionManager implements SessionManagerInterface {
 	 * Reset the internal caching for unit testing
 	 */
 	public static function resetCache() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			// @codeCoverageIgnoreStart
-			throw new MWException( __METHOD__ . ' may only be called from unit tests!' );
-			// @codeCoverageIgnoreEnd
-		}
+		MediaWikiServices::failUnlessBootstrapping( __METHOD__ );
 
+		self::$instance = null;
 		self::$globalSession = null;
 		self::$globalSessionRequest = null;
 	}
