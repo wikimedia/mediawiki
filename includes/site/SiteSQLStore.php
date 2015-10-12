@@ -23,6 +23,8 @@
  * @file
  * @ingroup Site
  *
+ * @deprecated 1.27 use DBSiteStore and CachingSiteStore instead.
+ *
  * @license GNU GPL v2+
  * @author Daniel Kinzler
  */
