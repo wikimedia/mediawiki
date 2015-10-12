@@ -23,6 +23,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 
 /**
  * This file is not a valid entry point, perform no further processing unless
@@ -531,6 +532,8 @@ if ( !class_exists( 'AutoLoader' ) ) {
 	require_once "$IP/includes/AutoLoader.php";
 }
 
+MediaWikiServices::initialize();
+
 MWExceptionHandler::installHandler();
 
 require_once "$IP/includes/compat/normal/UtfNormalUtil.php";
@@ -656,7 +659,7 @@ if ( $wgCommandLineMode ) {
 Profiler::instance()->scopedProfileOut( $ps_misc );
 $ps_memcached = Profiler::instance()->scopedProfileIn( $fname . '-memcached' );
 
-$wgMemc = wfGetMainCache();
+$wgMemc = ObjectCache::getLocalClusterInstance();
 $messageMemc = wfGetMessageCacheStorage();
 $parserMemc = wfGetParserCacheStorage();
 

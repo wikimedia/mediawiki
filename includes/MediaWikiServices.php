@@ -1,15 +1,40 @@
 <?php
 namespace MediaWiki;
 
-use ConfigFactory;
-use GlobalVarConfig;
+use ApiQueryInfo;
+use CentralIdLookup;
 use Config;
+use ConfigFactory;
+use DeferredUpdates;
+use FileBackendGroup;
+use GlobalVarConfig;
 use Hooks;
+use IP;
+use JobQueueAggregator;
+use Language;
 use LBFactory;
+use LinkCache;
 use LoadBalancer;
+use LockManagerGroup;
+use MagicWord;
+use MediaHandler;
 use MediaWiki\Services\ServiceContainer;
+use MessageCache;
+use MWException;
+use MWNamespace;
+use MWTidy;
+use ObjectCache;
+use RedisConnectionPool;
+use RepoGroup;
+use RequestContext;
+use ResourceLoader;
+use RuntimeException;
 use SiteLookup;
 use SiteStore;
+use SpecialPageFactory;
+use Title;
+use User;
+use Wikimedia\Assert\Assert;
 
 /**
  * Service locator for MediaWiki core services.
@@ -50,6 +75,31 @@ use SiteStore;
 class MediaWikiServices extends ServiceContainer {
 
 	/**
+	 * @var MediaWikiServices|null
+	 */
+	private static $instance = null;
+
+	/**
+	 * Initializes and enables the global service locator. Before initialize() has been called,
+	 * global service instances are not available, and any call to getInstance() will fail.
+	 * The idea is that calling this method signifies the point during bootstrapping when
+	 * configuration and registration of extensions is complete, and after which services
+	 * can be constructed.
+	 *
+	 * @note This should be called exactly once for every web request or CLI invocation.
+	 * @note This should be called after settings have been loaded and extensions have been
+	 * registered.
+	 */
+	public static function initialize() {
+		if ( self::$instance === null ) {
+			self::$instance = self::newInstance();
+		} else {
+			// log this, since it might indicate an inconsistency in the initialization process
+			wfDebugLog( __CLASS__, 'Redundant call to initialize()' );
+		}
+	}
+
+	/**
 	 * Returns the global default instance of the top level service locator.
 	 *
 	 * The default instance is initialized using the service constructor callbacks
@@ -59,28 +109,260 @@ class MediaWikiServices extends ServiceContainer {
 	 * should not be passed around! Objects that need access to a service should have
 	 * that service injected into the constructor, never a service locator!
 	 *
+	 * @note This method will fail with an exception if called before initialize().
+	 *
+	 * @throws RuntimeException
 	 * @return MediaWikiServices
 	 */
 	public static function getInstance() {
-		static $instance = null;
+		if ( self::$instance === null ) {
+			throw new RuntimeException( 'Global service locator was not yet initialized.' );
+		}
 
-		if ( $instance === null ) {
+		return self::$instance;
+	}
+
+	/**
+	 * Replaces the global MediaWikiServices instance.
+	 *
+	 * @note This is for use in PHPUnit tests only!
+	 *
+	 * @throws MWException if called outside of PHPUnit tests.
+	 *
+	 * @param MediaWikiServices $services The new MediaWikiServices object.
+	 *
+	 * @return MediaWikiServices The old MediaWikiServices object, so it can be restored later.
+	 */
+	public static function forceGlobalInstance( MediaWikiServices $services ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new MWException( 'setGlobalInstance() must not be used outside unit tests.' );
+		}
+
+		$old = self::getInstance();
+		self::$instance = $services;
+
+		self::resetLegacyServices();
+
+		return $old;
+	}
+
+	/**
+	 * Creates a new instance of MediaWikiServices and sets it as the global default
+	 * instance. getInstance() will return a different MediaWikiServices object
+	 * after every call to resetGlobalServiceLocator().
+	 *
+	 * @warning This should not be used during normal operation. It is intended for use
+	 * when the configuration has changed significantly since bootstrap time, e.g.
+	 * during the installation process or during testing.
+	 *
+	 * @warning Calling resetGlobalServiceLocator() may leave the application in an inconsistent
+	 * state. Calling this is only safe under the ASSUMPTION that NO REFERENCE to
+	 * any of the services managed by MediaWikiServices exist. If any service objects
+	 * managed by the old MediaWikiServices instance remain in use, they may INTERFERE
+	 * with the operation of the services managed by the new MediaWikiServices.
+	 * Operating with a mix of services created by the old and the new
+	 * MediaWikiServices instance may lead to INCONSISTENCIES and even DATA LOSS!
+	 * Any class implementing LAZY LOADING is especially prone to this problem,
+	 * since instances would typically retain a reference to a storage layer service.
+	 *
+	 * @see forceGlobalInstance()
+	 * @see resetGlobalInstance()
+	 * @see resetBetweenTest()
+	 *
+	 * @param Config|null $bootstrapConfig The Config object to be registered as the
+	 *        'BootstrapConfig' service. This has to contain at least the information
+	 *        needed to set up the 'ConfigFactory' service. If not given, the bootstrap
+	 *        config of the old instance of MediaWikiServices will be re-used. If there
+	 *        was no previous instance, a new GlobalVarConfig object will be used to
+	 *        bootstrap the services.
+	 *
+	 * @throws MWException
+	 */
+	public static function resetGlobalInstance( Config $bootstrapConfig = null ) {
+		if ( self::$instance === null ) {
+			// no global instance yet, nothing to reset
+			return;
+		}
+
+		if ( $bootstrapConfig === null ) {
+			$bootstrapConfig = self::$instance->getBootstrapConfig();
+		}
+
+		self::$instance->destroy();
+
+		self::$instance = self::newInstance( $bootstrapConfig );
+
+		self::resetLegacyServices();
+
+		Assert::postcondition(
+			self::$instance instanceof MediaWikiServices,
+			'self::$instance should now contain a MediaWikiServices instance'
+		);
+	}
+
+	/**
+	 * Creates a new MediaWikiServices instance and initializes it according to the
+	 * given $bootstrapConfig. In particular, all wiring files defined in the
+	 * ServiceWiringFiles setting are loaded, and the MediaWikiServices hook is called.
+	 *
+	 * @param Config|null $bootstrapConfig The Config object to be registered as the
+	 *        'BootstrapConfig' service. This has to contain at least the information
+	 *        needed to set up the 'ConfigFactory' service. If not given, the bootstrap
+	 *        config of the old instance of MediaWikiServices will be re-used. If there
+	 *        was no previous instance, a new GlobalVarConfig object will be used to
+	 *        bootstrap the services.
+	 *
+	 * @return MediaWikiServices
+	 * @throws MWException
+	 */
+	private static function newInstance( Config $bootstrapConfig = null ) {
+		if ( $bootstrapConfig === null ) {
 			// NOTE: constructing GlobalVarConfig here is not particularly pretty,
 			// but some information from the global scope has to be injected here,
 			// even if it's just a file name or database credentials to load
 			// configuration from.
-			$config = new GlobalVarConfig();
-			$instance = new self( $config );
-
-			// Load the default wiring from the specified files.
-			$wiringFiles = $config->get( 'ServiceWiringFiles' );
-			$instance->loadWiringFiles( $wiringFiles );
-
-			// Provide a traditional hook point to allow extensions to configure services.
-			Hooks::run( 'MediaWikiServices', [ $instance ] );
+			$bootstrapConfig = new GlobalVarConfig();
 		}
 
+		$instance = new self( $bootstrapConfig );
+
+		// Load the default wiring from the specified files.
+		$wiringFiles = $bootstrapConfig->get( 'ServiceWiringFiles' );
+		$instance->loadWiringFiles( $wiringFiles );
+
+		// Provide a traditional hook point to allow extensions to configure services.
+		Hooks::run( 'MediaWikiServices', [ self::$instance ] );
+
 		return $instance;
+	}
+
+	/**
+	 * Resets global instances of services that have not yet been ported to using
+	 * MediaWikiServices to manage their default instance.
+	 *
+	 * @note eventually, all global service instances are to be managed by MediaWikiServices.
+	 * To emulate the effect of resetting the global service locator, we reset the individual
+	 * static singletons for now.
+	 *
+	 * @note As long as we don't know the interdependencies between the services, the only way
+	 * to reset services consistently is to reset all services at once. This should be ok since
+	 * there should rarely be a need to reset all processes.
+	 */
+	private static function resetLegacyServices() {
+		global $wgContLang, $wgUser, $wgMemc;
+
+		$services = self::getInstance();
+		$config = $services->getMainConfig();
+
+		// NOTE: all the services instance that get reset below should be migrated
+		// to be managed by MediaWikiServices. Eventually, this method can then be
+		// removed.
+
+		User::resetIdByNameCache();
+		LinkCache::singleton()->clear();
+		Title::clearCaches();
+
+		MWTidy::destroySingleton();
+		MagicWord::clearCache();
+		SpecialPageFactory::resetList();
+		JobQueueAggregator::destroySingleton();
+		DeferredUpdates::clearPendingUpdates();
+		CentralIdLookup::resetCache();
+		MediaHandler::resetCache();
+		IP::clearCaches();
+		ResourceLoader::clearCache();
+
+		ApiQueryInfo::resetTokenCache();
+
+		RepoGroup::destroySingleton();
+
+		MessageCache::destroyInstance();
+
+		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		Language::$mLangObjCache = [];
+		Language::getLocalisationCache()->unloadAll();
+
+		ObjectCache::clear();
+		RedisConnectionPool::destroySingletons();
+		FileBackendGroup::destroySingleton();
+		LockManagerGroup::destroySingletons();
+
+		RequestContext::resetMain();
+
+		$wgContLang = Language::factory( $config->get( 'LanguageCode' ) );
+		$wgContLang->resetNamespaces(); # reset namespace cache
+
+		$wgMemc = ObjectCache::getLocalClusterInstance();
+		$wgUser = RequestContext::getMain()->getUser();
+
+		// Provide a hook point for extensions that need to reset global service instances.
+		Hooks::run( 'MediaWikiServices::resetLegacyServices', [ $services ] );
+	}
+
+	/**
+	 * Disables all storage layer services. After calling this, any attempt to access the
+	 * storage layer will result in an error. Use resetGlobalInstance() to restore normal
+	 * operation.
+	 *
+	 * @warning This is intended for extreme situations only and should never be used
+	 * while serving normal web requests. Legitimate use cases for this method include
+	 * the installation process. Test fixtures may also use this, if the fixture relies
+	 * on globalState.
+	 *
+	 * @see resetGlobalInstance()
+	 * @see resetChildProcessServices()
+	 */
+	public static function disableStorageBackend() {
+		// TODO: also disable some Caches, JobQueues, etc
+		$destroy = [ 'DBLoadBalancer', 'DBLoadBalancerFactory' ];
+		$services = self::getInstance();
+
+		foreach ( $destroy as $name ) {
+			$services->disableService( $name );
+		}
+	}
+
+	/**
+	 * Resets any services that may have become stale after a child process
+	 * returns from after pcntl_fork(). It's also safe, but generally unnecessary,
+	 * to call this method from the pafent process.
+	 *
+	 * @note This is intended for use in the context of process forking only!
+	 *
+	 * @see resetGlobalInstance()
+	 * @see disableStorageBackend()
+	 */
+	public static function resetChildProcessServices() {
+		// NOTE: for now, just reset everything. Since we don't know the interdependencies
+		// between services, we can't do this more selectively at this time.
+		self::resetGlobalInstance();
+
+		// Child, reseed because there is no bug in PHP:
+		// http://bugs.php.net/bug.php?id=42465
+		mt_srand( getmypid() );
+	}
+
+	/**
+	 * Resets any services that has state that may interfere with unit tests.
+	 * Eventually, all unit tests should be fully isolated. Until then, this
+	 * method can be used to reset state between tests.
+	 *
+	 * @note This is not a full reset of all services! It is intended as a lightweight
+	 * alternative to resetGlobalInstance() and forceGlobalInstance() for use between
+	 * test runs.
+	 *
+	 * @throws MWException if called outside of PHPUnit tests.
+	 *
+	 * @see resetGlobalInstance()
+	 * @see forceGlobalInstance()
+	 * @see disableStorageBackend()
+	 */
+	public static function resetBetweenTest() {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new MWException( 'resetBetweenTest() must not be used outside unit tests.' );
+		}
+
+		ObjectCache::clear();
 	}
 
 	/**
@@ -91,7 +373,7 @@ class MediaWikiServices extends ServiceContainer {
 	public function __construct( Config $config ) {
 		parent::__construct();
 
-		// register the given Config object as the bootstrap config service.
+		// Register the given Config object as the bootstrap config service.
 		$this->defineService( 'BootstrapConfig', function() use ( $config ) {
 			return $config;
 		} );
@@ -112,6 +394,8 @@ class MediaWikiServices extends ServiceContainer {
 	public function getBootstrapConfig() {
 		return $this->getService( 'BootstrapConfig' );
 	}
+
+	//////////////////////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * @return ConfigFactory
@@ -142,6 +426,20 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getSiteStore() {
 		return $this->getService( 'SiteStore' );
+	}
+
+	/**
+	 * @return LBFactory
+	 */
+	public function getDBLoadBalancerFactory() {
+		return $this->getService( 'DBLoadBalancerFactory' );
+	}
+
+	/**
+	 * @return LoadBalancer
+	 */
+	public function getDBLoadBalancer() {
+		return $this->getService( 'DBLoadBalancer' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
