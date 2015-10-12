@@ -61,12 +61,36 @@ class ServiceContainer {
 	private $extraInstantiationParams;
 
 	/**
+	 * @var boolean
+	 */
+	private $destroyed = false;
+
+	/**
 	 * @param array $extraInstantiationParams Any additional parameters to be pased to the
 	 * constructor callback when instantiating a service. This is typically used to provide
 	 * access to additional ServiceContainers or Config objects.
 	 */
 	public function __construct( array $extraInstantiationParams = array() ) {
 		$this->extraInstantiationParams = $extraInstantiationParams;
+	}
+
+	/**
+	 * Destroys all contained service instances that implement the DestructibleService
+	 * interface. This will render all services obtained from this MediaWikiServices
+	 * instance unusable. In particular, this will disable access to the storage backend
+	 * via any of these services. Any future call to getService() will throw an exception.
+	 *
+	 * @see resetGlobalInstance()
+	 */
+	public function destroy() { !!!TEST ME!!!
+		foreach ( $this->getServiceNames() as $name ) {
+			$service = $this->peekService( $name );
+			if ( $service !== null && $service instanceof DestructibleService ) {
+				$service->destroy();
+			}
+		}
+
+		$this->destroyed = true;
 	}
 
 	/**
@@ -126,6 +150,22 @@ class ServiceContainer {
 	 */
 	public function hasService( $name ) {
 		return isset( $this->serviceConstructors[$name] );
+	}
+
+	/**
+	 * Returns the service instance for $name only if that service has already been instantiated.
+	 *
+	 * @param string $name
+	 *
+	 * @return object|null The service instance, or null if the service has not yet been instantiated.
+	 * @throws RuntimeException if $name does not refer to a known service.
+	 */
+	protected function peekService( $name ) {
+		if ( !$this->hasService( $name ) ) {
+			throw new RuntimeException( 'Service not defined: ' . $name );
+		}
+
+		return isset( $this->services[$name] ) ? $this->services[$name] : null;
 	}
 
 	/**
@@ -206,9 +246,19 @@ class ServiceContainer {
 	 * @param string $name The service name
 	 *
 	 * @throws InvalidArgumentException if $name is not a known service.
+	 * @throws RuntimeException if this container has already been destroyed.
+	 *
 	 * @return object The service instance
 	 */
 	public function getService( $name ) {
+		if ( $this->destroyed ) {
+			throw new RuntimeException(
+				'This MediaWikiServices has already been destroyed!'
+				. ' It may be necessary to use resetGlobalInstance()'
+				. ' to create a new global instance.'
+			);
+		}
+
 		if ( !isset( $this->services[$name] ) ) {
 			$this->services[$name] = $this->createService( $name );
 		}

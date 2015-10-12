@@ -884,6 +884,7 @@ $wgAutoloadLocalClasses = array(
 	'ORAField' => __DIR__ . '/includes/db/DatabaseOracle.php',
 	'ORAResult' => __DIR__ . '/includes/db/DatabaseOracle.php',
 	'ObjectCache' => __DIR__ . '/includes/objectcache/ObjectCache.php',
+	'ObjectCacheManager' => __DIR__ . '/includes/objectcache/ObjectCacheManager.php',
 	'ObjectFactory' => __DIR__ . '/includes/libs/ObjectFactory.php',
 	'ObjectFileCache' => __DIR__ . '/includes/cache/ObjectFileCache.php',
 	'OldChangesList' => __DIR__ . '/includes/changes/OldChangesList.php',

@@ -1357,18 +1357,25 @@ function wfReadOnlyReason() {
  * @since 1.27
  */
 function wfConfiguredReadOnlyReason() {
-	global $wgReadOnly, $wgReadOnlyFile;
+	// remember $readOnly for faster access next time
+	static $readOnly = null;
 
-	if ( $wgReadOnly === null ) {
-		// Set $wgReadOnly for faster access next time
-		if ( is_file( $wgReadOnlyFile ) && filesize( $wgReadOnlyFile ) > 0 ) {
-			$wgReadOnly = file_get_contents( $wgReadOnlyFile );
+	$config = \MediaWiki\MediaWikiServices::getInstance()->getMainConfig();
+
+	if ( $readOnly === null ) {
+		$config->get( 'ReadOnly' );
+	}
+
+	if ( $readOnly === null ) {
+		$readOnlyFile = $config->get( 'ReadOnlyFile' );
+		if ( is_file( $readOnlyFile ) && filesize( $readOnlyFile ) > 0 ) {
+			$readOnly = file_get_contents( $readOnlyFile );
 		} else {
-			$wgReadOnly = false;
+			$readOnly = false;
 		}
 	}
 
-	return $wgReadOnly;
+	return $readOnly;
 }
 
 /**
@@ -3205,6 +3212,9 @@ function wfSplitWikiID( $wiki ) {
  * Note 2: use $this->getDB() in maintenance scripts that may be invoked by
  * updater to ensure that a proper database is being updated.
  *
+ * @todo Replace calls to wfGetDB with calls to LoadBalancer::getConnection()
+ *       on an injected instance of LoadBalancer.
+ *
  * @return DatabaseBase
  */
 function wfGetDB( $db, $groups = array(), $wiki = false ) {
@@ -3213,6 +3223,9 @@ function wfGetDB( $db, $groups = array(), $wiki = false ) {
 
 /**
  * Get a load balancer object.
+ *
+ * @deprecated since 1.27, use MediaWikiServices::getDBLoadBalancer() instead
+ *              or MediaWikiServices::getDBLoadBalancerFactory() instead.
  *
  * @param string|bool $wiki Wiki ID, or false for the current wiki
  * @return LoadBalancer
@@ -3224,10 +3237,12 @@ function wfGetLB( $wiki = false ) {
 /**
  * Get the load balancer factory object
  *
+ * @deprecated since 1.27, use MediaWikiServices::getDBLoadBalancerFactory() instead.
+ *
  * @return LBFactory
  */
 function wfGetLBFactory() {
-	return LBFactory::singleton();
+	return \MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 }
 
 /**

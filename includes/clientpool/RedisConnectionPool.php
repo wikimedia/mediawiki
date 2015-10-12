@@ -63,11 +63,8 @@ class RedisConnectionPool implements LoggerAwareInterface {
 
 	/** @var array (server name => ((connection info array),...) */
 	protected $connections = array();
-	/** @var array (server name => UNIX timestamp) */
+	/** @var array (server name => UNIX timestamicp) */
 	protected $downServers = array();
-
-	/** @var array (pool ID => RedisConnectionPool) */
-	protected static $instances = array();
 
 	/** integer; seconds to cache servers as "down". */
 	const SERVER_DOWN_TTL = 30;
@@ -81,7 +78,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	 * @param array $options
 	 * @throws Exception
 	 */
-	protected function __construct( array $options ) {
+	public function __construct( array $options ) {
 		if ( !class_exists( 'Redis' ) ) {
 			throw new Exception( __CLASS__ . ' requires a Redis client library. ' .
 				'See https://www.mediawiki.org/wiki/Redis#Setup' );
@@ -118,7 +115,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	 * @param array $options
 	 * @return array
 	 */
-	protected static function applyDefaultConfig( array $options ) {
+	public static function applyDefaultConfig( array $options ) {
 		if ( !isset( $options['connectTimeout'] ) ) {
 			$options['connectTimeout'] = 1;
 		}
@@ -151,19 +148,8 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	 * @return RedisConnectionPool
 	 */
 	public static function singleton( array $options ) {
-		$options = self::applyDefaultConfig( $options );
-		// Map the options to a unique hash...
-		ksort( $options ); // normalize to avoid pool fragmentation
-		$id = sha1( serialize( $options ) );
-		// Initialize the object at the hash as needed...
-		if ( !isset( self::$instances[$id] ) ) {
-			self::$instances[$id] = new self( $options );
-			LoggerFactory::getInstance( 'redis' )->debug(
-				"Creating a new " . __CLASS__ . " instance with id $id."
-			);
-		}
-
-		return self::$instances[$id];
+		!!!!
+		return $poolPool->getService( $options );
 	}
 
 	/**
