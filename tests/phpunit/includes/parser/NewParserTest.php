@@ -188,7 +188,6 @@ class NewParserTest extends MediaWikiTestCase {
 
 		// Restore backends
 		RepoGroup::destroySingleton();
-		FileBackendGroup::destroySingleton();
 
 		// Remove temporary pages from the link cache
 		LinkCache::singleton()->clear();
@@ -476,7 +475,6 @@ class NewParserTest extends MediaWikiTestCase {
 
 		# The entries saved into RepoGroup cache with previous globals will be wrong.
 		RepoGroup::destroySingleton();
-		FileBackendGroup::destroySingleton();
 
 		# Create dummy files in storage
 		$this->setupUploads();
