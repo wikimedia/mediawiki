@@ -2713,7 +2713,7 @@
 	"exif-sharpness": "撮影シャープネス",
 	"exif-devicesettingdescription": "撮影条件記述情報",
 	"exif-subjectdistancerange": "被写体距離レンジ",
-	"exif-imageuniqueid": "画像ユニークID",
+	"exif-imageuniqueid": "ユニーク画像ID",
 	"exif-gpsversionid": "GPSタグのバージョン",
 	"exif-gpslatituderef": "北緯/南緯",
 	"exif-gpslatitude": "緯度",

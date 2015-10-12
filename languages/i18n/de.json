@@ -2556,6 +2556,7 @@
 	"svg-long-error": "Ungültige SVG-Datei: $1",
 	"show-big-image": "Originaldatei",
 	"show-big-image-preview": "Größe dieser Vorschau: $1.",
+	"show-big-image-preview-differ": "Größe der $3-Vorschau dieser $2-Datei: $1.",
 	"show-big-image-other": "Weitere {{PLURAL:$2|Auflösung|Auflösungen}}: $1.",
 	"show-big-image-size": "$1 × $2 Pixel",
 	"file-info-gif-looped": "Endlosschleife",
