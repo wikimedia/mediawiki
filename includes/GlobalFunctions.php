@@ -3174,7 +3174,7 @@ function wfGetDB( $db, $groups = [], $wiki = false ) {
 /**
  * Get a load balancer object.
  *
- * @deprecated since 1.27, use MediaWikiServices::getDBLoadBalancer()
+ * @deprecated since 1.27, use MediaWikiServices::getDBLoadBalancer() instead
  *              or MediaWikiServices::getDBLoadBalancerFactory() instead.
  *
  * @param string|bool $wiki Wiki ID, or false for the current wiki

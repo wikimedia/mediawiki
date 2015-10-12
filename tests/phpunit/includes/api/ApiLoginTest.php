@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\Session\SessionManager;
 
 /**
  * @group API

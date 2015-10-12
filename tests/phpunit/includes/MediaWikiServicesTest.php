@@ -141,15 +141,56 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 		MediaWikiServices::forceGlobalInstance( $oldServices );
 	}
 
-	public function testResetBetweenTests() {
-		// We don't know what resetBetweenTest() actually does. So we just check
-		// that we still can access the main config via the service locator.
-		MediaWikiServices::resetBetweenTest();
+	public function testResetServiceForTesting() {
+		$services = $this->newMediaWikiServices();
+		$serviceCounter = 0;
 
-		$services = MediaWikiServices::getInstance();
-		$this->assertInstanceOf( 'MediaWiki\\MediaWikiServices', $services );
+		$services->defineService(
+			'Test',
+			function() use ( &$serviceCounter ) {
+				$serviceCounter++;
+				$service = $this->getMock( 'MediaWiki\Services\DestructibleService' );
+				$service->expects( $this->once() )->method( 'destroy' );
+				return $service;
+			}
+		);
 
-		$services->getMainConfig();
+		// This should do nothing. In particular, it should not create a service instance.
+		$services->resetServiceForTesting( 'Test' );
+		$this->assertEquals( 0, $serviceCounter, 'No service instance should be created yet.' );
+
+		$oldInstance = $services->getService( 'Test' );
+		$this->assertEquals( 1, $serviceCounter, 'A service instance should exit now.' );
+
+		// The old instance should be detached, and destroy() called.
+		$services->resetServiceForTesting( 'Test' );
+		$newInstance = $services->getService( 'Test' );
+
+		$this->assertNotSame( $oldInstance, $newInstance );
+
+		// Satisfy the expectation that destroy() is called also for the second service instance.
+		$newInstance->destroy();
+	}
+
+	public function testResetServiceForTesting_noDestroy() {
+		$services = $this->newMediaWikiServices();
+
+		$services->defineService(
+			'Test',
+			function() {
+				$service = $this->getMock( 'MediaWiki\Services\DestructibleService' );
+				$service->expects( $this->never() )->method( 'destroy' );
+				return $service;
+			}
+		);
+
+		$oldInstance = $services->getService( 'Test' );
+
+		// The old instance should be detached, but destroy() not called.
+		$services->resetServiceForTesting( 'Test', false );
+		$newInstance = $services->getService( 'Test' );
+
+		$this->assertNotSame( $oldInstance, $newInstance );
 	}
 
 	public function provideGetters() {
@@ -189,6 +230,13 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SiteLookup' => [ 'SiteLookup', 'SiteLookup' ],
 			'DBLoadBalancerFactory' => [ 'DBLoadBalancerFactory', 'LBFactory' ],
 			'DBLoadBalancer' => [ 'DBLoadBalancer', 'LoadBalancer' ],
+			'ObjectCacheManager' => [ 'ObjectCacheManager', 'ObjectCacheManager' ],
+			'Profiler' => [ 'Profiler', 'Profiler' ],
+			'LoggerFactory' => [ 'LoggerFactory', 'MediaWiki\Logger\Spi' ],
+			'FileBackendGroup' => [ 'FileBackendGroup', 'FileBackendGroup' ],
+			'RedisConnectionPoolPool' => [ 'RedisConnectionPoolPool', 'MediaWiki\Services\ServicePool' ],
+			'JobQueueGroupPool' => [ 'JobQueueGroupPool', 'MediaWiki\Services\ServicePool' ],
+			'LockManagerGroupPool' => [ 'LockManagerGroupPool', 'MediaWiki\Services\ServicePool' ],
 		];
 	}
 
