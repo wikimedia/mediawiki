@@ -6885,6 +6885,21 @@ $wgAuth = null;
 $wgHooks = [];
 
 /**
+ * List of service wiring files to be loaded by the default instance of MediaWikiServices.
+ * Each file listed here is expected to return an associative array mapping service names
+ * to instantiator functions. Extensions may add wiring files to define their own services.
+ * However, this cannot be used to replace existing services - use the MediaWikiServices
+ * hook for that.
+ *
+ * @see MediaWikiServices
+ * @see ServiceContainer::loadWiringFiles() for details on loading service instantiator functions.
+ * @see docs/injection.txt for an overview of dependency injection in MediaWiki.
+ */
+$wgServiceWiringFiles = [
+	__DIR__ . '/ServiceWiring.php'
+];
+
+/**
  * Maps jobs to their handling classes; extensions
  * can add to this to provide custom jobs
  */
