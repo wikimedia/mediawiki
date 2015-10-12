@@ -1,0 +1,78 @@
+injection.txt
+
+This is an overview of how MediaWiki makes use of dependency injection.
+
+The term "dependency injection" (DI) refers to a pattern on object oriented
+programming that tries to improve modularity by reducing strong coupling
+between classes. In practical terms, this means that anything an object needs
+to operate should be injected from the outside, the object itself should only
+know narrow interfaces, no concrete implementation of the logic it relies on.
+
+The requirement to inject everything typically results in an architecture that
+based on two main types of objects: simple value objects with no business logic
+(and often immutable), and essentially stateless service objects that user
+other service objects to operate on the value objects.
+
+As of the beginning of 2016 (MW version 1.27), MediaWiki is only starting to
+use the DI approach. Much of the code still relies on global state or direct
+instantiation, resulting in a highly cyclical dependency graph.
+
+
+== Overview ==
+The heart of the DI in MediaWiki is the central service locator,
+MediaWikiServices, which acts as the top level factory for services in
+MediaWiki. MediaWikiServices::getInstances() returns the default service
+locator instance, which can be used to gain access to default instances of
+various services. MediaWikiServices however also allows new services to be
+defined and default services to be replaced. Services are defined or
+replaced be providing a callback that will return a new instance of the
+service.
+
+When MediaWikiServices::getInstances() is first called, it will create an
+instance of MediaWikiServices and populates it with the services defined
+in the file ServiceWiring.php, thereby "bootstrapping" the DI framework.
+The file ServiceWiring.php defines all default service implementations, and
+specifies how they depend on each other ("wiring").
+
+When a new service is added to MediaWiki core, a callback that will instantiate
+an appropriate default instance for that service must be added to
+ServiceWiring.php. This makes the service available through the generic
+getService() method on the service locator returned by
+MediaWikiServices::getInstance().
+
+Extensions can use the 'MediaWikiServices' hook to define or replace services
+by calling methods on the freshly created MediaWikiServices instance.
+
+
+It should be noted that the term "service locator" is often used to refer to a
+top level factory that is accessed directly, throughout the code, to avoid
+explicit dependency injection. In contrast, the term "DI container" is often
+used to describe a top level factory that is only accessed when services
+are created. We use the term "service locator" for the top level factory
+because it is more descriptive than "DI container", even though application
+logic is strongly discouraged from accessing MediaWikiServices directly.
+MediaWikiServices:.getInstances() should ideally be accessed only in "static
+entry points" such as hook handler functions. See "DI Principles" and
+"Migration" below.
+
+
+== Configuration ==
+
+When the default MediaWikiServices instance is created, a Config object is
+provided to the constructor. This Config object represents the "bootstrap"
+configuration which will become available as the 'BootstrapConfig' service.
+As of MW 1.27, the bootstrap config is a GlobalVarConfig object providing
+access to the $wgXxx configuration variables.
+
+The bootstrap config is then used to construct a 'ConfigFactory' service,
+which in turn is used to construct the 'MainConfig' service. Application
+logic should use the 'MainConfig' service (or a more specific configuration
+object). 'BootstrapConfig' should only be used for bootstrapping basic
+services that are needed to load the 'MainConfig'.
+
+
+== DI Principles ==
+TBD
+
+== Migration ==
+TBD
