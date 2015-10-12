@@ -16,10 +16,9 @@ class SessionManagerTest extends MediaWikiTestCase {
 	protected $config, $logger, $store;
 
 	protected function getManager() {
-		\ObjectCache::$instances['testSessionStore'] = new TestBagOStuff();
 		$this->config = new \HashConfig( array(
 			'LanguageCode' => 'en',
-			'SessionCacheType' => 'testSessionStore',
+			'store' => new TestBagOStuff(),
 			'ObjectCacheSessionExpiry' => 100,
 			'SessionProviders' => array(
 				array( 'class' => 'DummySessionProvider' ),
@@ -110,8 +109,9 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 		$manager = \TestingAccessWrapper::newFromObject( new SessionManager( array(
 			'config' => $this->config,
+			'store' => new TestBagOStuff(),
 		) ) );
-		$this->assertSame( \ObjectCache::$instances['testSessionStore'], $manager->store );
+		$this->assertInstanceOf( 'MediaWiki\Session\TestBagOStuff', $manager->store );
 
 		foreach ( array(
 			'config' => '$options[\'config\'] must be an instance of Config',
@@ -788,9 +788,6 @@ class SessionManagerTest extends MediaWikiTestCase {
 		global $wgGroupPermissions;
 
 		$that = $this;
-
-		\ObjectCache::$instances[__METHOD__] = new \HashBagOStuff();
-		$this->setMwGlobals( array( 'wgMainCacheType' => __METHOD__ ) );
 
 		$this->stashMwGlobals( array( 'wgGroupPermissions' ) );
 		$wgGroupPermissions['*']['createaccount'] = true;

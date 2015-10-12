@@ -69,6 +69,48 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$services->getService( $name );
 	}
 
+	public function testPeekService() {
+		$services = $this->newServiceContainer();
+
+		$services->defineService(
+			'Foo',
+			function() {
+				return new stdClass();
+			}
+		);
+
+		$services->defineService(
+			'Bar',
+			function() {
+				return new stdClass();
+			}
+		);
+
+		// trigger instantiation of Foo
+		$services->getService( 'Foo' );
+
+		$this->assertInternalType(
+			'object',
+			$services->peekService( 'Foo' ),
+			'Peek should return the service object if it had been accessed before.'
+		);
+
+		$this->assertNull(
+			$services->peekService( 'Bar' ),
+			'Peek should return null if the service was never accessed.'
+		);
+	}
+
+	public function testPeekService_fail_unknown() {
+		$services = $this->newServiceContainer();
+
+		$name = 'TestService92834576';
+
+		$this->setExpectedException( 'InvalidArgumentException' );
+
+		$services->peekService( $name );
+	}
+
 	public function testDefineService() {
 		$services = $this->newServiceContainer();
 
@@ -204,6 +246,31 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$services->redefineService( $name, function() use ( $theService ) {
 			return $theService;
 		} );
+	}
+
+	public function testDestroy() {
+		$services = $this->newServiceContainer();
+
+		$destructible = $this->getMock( 'MediaWiki\Services\DestructibleService' );
+		$destructible->expects( $this->once() )
+			->method( 'destroy' );
+
+		$services->defineService( 'Foo', function() use ( $destructible ) {
+			return $destructible;
+		} );
+
+		$services->defineService( 'Bar', function() {
+			return new stdClass();
+		} );
+
+		// create the service
+		$services->getService( 'Foo' );
+
+		// destroy the container
+		$services->destroy();
+
+		$this->setExpectedException( 'RuntimeException' );
+		$services->getService( 'Bar' );
 	}
 
 }
