@@ -123,6 +123,9 @@ class PHPUnitMaintClass extends Maintenance {
 			),
 		);
 
+		// Allow all these changes to globals above take effect
+		MediaWikiTestCase::prepareServices( new GlobalVarConfig() );
+
 		// Bug 44192 Do not attempt to send a real e-mail
 		Hooks::clear( 'AlternateUserMailer' );
 		Hooks::register(
