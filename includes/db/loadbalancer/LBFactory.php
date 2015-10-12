@@ -21,6 +21,7 @@
  * @ingroup Database
  */
 
+use MediaWiki\Services\DestructibleService;
 use Psr\Log\LoggerInterface;
 use MediaWiki\Logger\LoggerFactory;
 
@@ -28,7 +29,8 @@ use MediaWiki\Logger\LoggerFactory;
  * An interface for generating database load balancers
  * @ingroup Database
  */
-abstract class LBFactory {
+abstract class LBFactory implements DestructibleService {
+
 	/** @var ChronologyProtector */
 	protected $chronProt;
 
@@ -37,9 +39,6 @@ abstract class LBFactory {
 
 	/** @var LoggerInterface */
 	protected $logger;
-
-	/** @var LBFactory */
-	private static $instance;
 
 	/** @var string|bool Reason all LBs are read-only or false if not */
 	protected $readOnlyReason = false;
@@ -61,36 +60,30 @@ abstract class LBFactory {
 	}
 
 	/**
-	 * Disables all access to the load balancer, will cause all database access
-	 * to throw a DBAccessError
+	 * Disables all load balancers. All connections are closed, and any attempt to
+	 * open a new connection will result in a DBAccessError.
+	 * @see LoadBalancer::disable()
 	 */
-	public static function disableBackend() {
-		global $wgLBFactoryConf;
-		self::$instance = new LBFactoryFake( $wgLBFactoryConf );
+	public function destroy() {
+		$this->shutdown();
+		$this->forEachLBCallMethod( 'disable' );
 	}
 
 	/**
 	 * Get an LBFactory instance
 	 *
+	 * @deprecated since 1.27, use MediaWikiServices::getDBLoadBalancerFactory() instead.
+	 *
 	 * @return LBFactory
 	 */
 	public static function singleton() {
-		global $wgLBFactoryConf;
-
-		if ( is_null( self::$instance ) ) {
-			$class = self::getLBFactoryClass( $wgLBFactoryConf );
-			$config = $wgLBFactoryConf;
-			if ( !isset( $config['readOnlyReason'] ) ) {
-				$config['readOnlyReason'] = wfConfiguredReadOnlyReason();
-			}
-			self::$instance = new $class( $config );
-		}
-
-		return self::$instance;
+		return \MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 	}
 
 	/**
 	 * Returns the LBFactory class to use and the load balancer configuration.
+	 *
+	 * @todo instead of this, use a ServiceContainer for managing the different implementations.
 	 *
 	 * @param array $config (e.g. $wgLBFactoryConf)
 	 * @return string Class name
@@ -100,7 +93,6 @@ abstract class LBFactory {
 		// underscores from class names in MediaWiki 1.23.
 		$bcClasses = array(
 			'LBFactory_Simple' => 'LBFactorySimple',
-			'LBFactory_Single' => 'LBFactorySingle',
 			'LBFactory_Multi' => 'LBFactoryMulti',
 			'LBFactory_Fake' => 'LBFactoryFake',
 		);
@@ -116,27 +108,6 @@ abstract class LBFactory {
 		}
 
 		return $class;
-	}
-
-	/**
-	 * Shut down, close connections and destroy the cached instance.
-	 */
-	public static function destroyInstance() {
-		if ( self::$instance ) {
-			self::$instance->shutdown();
-			self::$instance->forEachLBCallMethod( 'closeAll' );
-			self::$instance = null;
-		}
-	}
-
-	/**
-	 * Set the instance to be the given object
-	 *
-	 * @param LBFactory $instance
-	 */
-	public static function setInstance( $instance ) {
-		self::destroyInstance();
-		self::$instance = $instance;
 	}
 
 	/**

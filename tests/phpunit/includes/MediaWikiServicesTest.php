@@ -14,16 +14,18 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function provideGetters() {
-		// NOTE: This should list all service getters defined in MediaWikiServices.
-		// NOTE: For every test case defined here there should be a corresponding
-		// test case defined in provideGetService().
-		return array(
-			'BootstrapConfig' => array( 'getBootstrapConfig', 'Config' ),
-			'ConfigFactory' => array( 'getConfigFactory', 'ConfigFactory' ),
-			'MainConfig' => array( 'getMainConfig', 'Config' ),
-			'SiteStore' => array( 'getSiteStore', 'SiteStore' ),
-			'SiteLookup' => array( 'getSiteLookup', 'SiteLookup' ),
-		);
+		$getServiceCases = $this->provideGetService();
+		$getterCases = array();
+
+		// All getters should be named just like the service, with "get" added.
+		foreach ( $getServiceCases as $name => $case ) {
+			$getterCases[$name] = array(
+				'get' . $case[0],
+				$case[1]
+			);
+		}
+
+		return $getterCases;
 	}
 
 	/**
@@ -46,6 +48,15 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'MainConfig' => array( 'MainConfig', 'Config' ),
 			'SiteStore' => array( 'SiteStore', 'SiteStore' ),
 			'SiteLookup' => array( 'SiteLookup', 'SiteLookup' ),
+			'DBLoadBalancerFactory' => array( 'DBLoadBalancerFactory', 'LBFactory' ),
+			'DBLoadBalancer' => array( 'DBLoadBalancer', 'LoadBalancer' ),
+			'ObjectCacheManager' => array( 'ObjectCacheManager', 'ObjectCacheManager' ),
+			'Profiler' => array( 'Profiler', 'Profiler' ),
+			'LoggerFactory' => array( 'LoggerFactory', 'MediaWiki\Logger\Spi' ),
+			'FileBackendGroup' => array( 'FileBackendGroup', 'FileBackendGroup' ),
+			'RedisConnectionPoolPool' => array( 'RedisConnectionPoolPool', 'MediaWiki\Services\ServicePool' ),
+			'JobQueueGroupPool' => array( 'JobQueueGroupPool', 'MediaWiki\Services\ServicePool' ),
+			'LockManagerGroupPool' => array( 'LockManagerGroupPool', 'MediaWiki\Services\ServicePool' ),
 		);
 	}
 

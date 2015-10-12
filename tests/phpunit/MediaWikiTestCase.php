@@ -96,18 +96,46 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 	}
 
-	public function run( PHPUnit_Framework_TestResult $result = null ) {
+	/**
+	 * Prepare service configuration for unit testing.
+	 */
+	public static function prepareServices() {
+		static $servicesPrepared = false;
+
+		if ( $servicesPrepared ) {
+			return;
+		} else {
+			$servicesPrepared = true;
+		}
+
+		$bootstrapConfig = \MediaWiki\MediaWikiServices::getInstance()->getBootstrapConfig();
+		$configOverrides = new HashConfig();
+
 		/* Some functions require some kind of caching, and will end up using the db,
 		 * which we can't allow, as that would open a new connection for mysql.
 		 * Replace with a HashBag. They would not be going to persist anyway.
 		 */
-		ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
+		$hashCache = array( 'class' => 'HashBagOStuff' );
+		$objectCaches = array(
+				CACHE_DB => $hashCache,
+				CACHE_ACCEL => $hashCache,
+				CACHE_MEMCACHED => $hashCache,
+				'apc' => $hashCache,
+				'xcache' => $hashCache,
+				'wincache' => $hashCache,
+			) + $bootstrapConfig->get( 'ObjectCaches' );
 
-		// Sandbox APC by replacing with in-process hash instead.
-		// Ensures values are removed between tests.
-		ObjectCache::$instances['apc'] =
-		ObjectCache::$instances['xcache'] =
-		ObjectCache::$instances['wincache'] = new HashBagOStuff;
+		$configOverrides->set( 'ObjectCaches', $objectCaches );
+
+		$testConfig = new MultiConfig( array( $configOverrides, $bootstrapConfig ) );
+		\MediaWiki\MediaWikiServices::resetGlobalInstance( $testConfig );
+	}
+
+	public function run( PHPUnit_Framework_TestResult $result = null ) {
+		self::prepareServices(); //FIXME database setup !!!
+
+		// Reset all caches between tests.
+		\MediaWiki\MediaWikiServices::getInstance()->getObjectCacheManager()->clear();
 
 		$needsResetDB = false;
 
@@ -312,6 +340,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @since 1.21
 	 */
 	protected function setMwGlobals( $pairs, $value = null ) {
+		// FIXME: reset services !!! recycle "vanilla" instance?
 		if ( is_string( $pairs ) ) {
 			$pairs = array( $pairs => $value );
 		}
@@ -559,7 +588,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @throws MWException If the database table prefix is already $prefix
 	 */
 	public static function setupTestDB( DatabaseBase $db, $prefix ) {
-		global $wgDBprefix;
+		global $wgDBprefix; // FIXME: reset storage layer services !!!
 		if ( $wgDBprefix === $prefix ) {
 			throw new MWException(
 				'Cannot run unit tests, the database prefix is already "' . $prefix . '"' );

@@ -2,12 +2,17 @@
 namespace MediaWiki;
 
 use ConfigFactory;
+use FileBackendGroup;
 use GlobalVarConfig;
 use Config;
 use Hooks;
 use LBFactory;
 use LoadBalancer;
+use MediaWiki\Services\DestructibleService;
 use MediaWiki\Services\ServiceContainer;
+use MediaWiki\Services\ServicePool;
+use ObjectCacheManager;
+use Profiler;
 use SiteLookup;
 use SiteStore;
 
@@ -50,6 +55,11 @@ use SiteStore;
 class MediaWikiServices extends ServiceContainer {
 
 	/**
+	 * @var MediaWikiServices|null
+	 */
+	private static $instance = null;
+
+	/**
 	 * Returns the global default instance of the top level service locator.
 	 *
 	 * The default instance is initialized using the service constructor callbacks
@@ -62,25 +72,93 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return MediaWikiServices
 	 */
 	public static function getInstance() {
-		static $instance = null;
+		if ( self::$instance === null ) {
+			self::resetGlobalInstance();
+		}
 
-		if ( $instance === null ) {
+		return self::$instance;
+	}
+
+	/**
+	 * Creates a new instance of MediaWikiServices and sets it as the global default
+	 * instance. getInstance() will return a different MediaWikiServices object
+	 * after every call to resetGlobalServiceLocator().
+	 *
+	 * @warning ONLY USE THIS IF YOU ABSOLUTELY MUST AND KNOW WHAT YOU ARE DOING!
+	 * Calling resetGlobalServiceLocator() may leave the application in an inconsistent
+	 * state. Calling this is only safe under the ASSUMPTION that NO REFERENCE to
+	 * any of the services managed by MediaWikiServices exist. If any service objects
+	 * managed by the old MediaWikiServices instance remain in use, they may INTERFERE
+	 * with the operation of the services managed by the new MediaWikiServices.
+	 * Operating with a mix of services created by the old and the new
+	 * MediaWikiServices instance may lead to INCONSISTENCIES and even DATA LOSS!
+	 * Any class implementing LAZY LOADING is especially prone to this problem,
+	 * since instances would typically retain a reference to a storage layer service.
+	 *
+	 * Legitimate use cases for this method are limited to extreme cases like the
+	 * installer resetting services once initial database credentials are provided by
+	 * the user, or resetting services after pctl_fork to make sure each process is
+	 * using a separate set of file handles and network connections.
+	 *
+	 * @param Config|null $bootstrapConfig The Config object to be registered as the
+	 *        'BootstrapConfig' service. This has to contain at least the information
+	 *        needed to set up the 'ConfigFactory' service. If not given, the bootstrap
+	 *        config of the old instance of MediaWikiServices will be re-used. If there
+	 *        was no previous instance, a new GlobalVarConfig object will be used to
+	 *        boostrap the services.
+	 *
+	 * @throws \FatalError
+	 * @throws \MWException
+	 */
+	public static function resetGlobalInstance( Config $bootstrapConfig = null ) {
+		if ( self::$instance ) {
+			if ( $bootstrapConfig === null ) {
+				$bootstrapConfig = self::$instance->getBootstrapConfig();
+			}
+
+			self::$instance->destroy();
+		}
+
+		if ( $bootstrapConfig === null ) {
 			// NOTE: constructing GlobalVarConfig here is not particularly pretty,
 			// but some information from the global scope has to be injected here,
 			// even if it's just a file name or database credentials to load
 			// configuration from.
-			$config = new GlobalVarConfig();
-			$instance = new self( $config );
-
-			// Load the default wiring from the specified files.
-			$wiringFiles = $config->get( 'ServiceWiringFiles' );
-			$instance->loadWiringFiles( $wiringFiles );
-
-			// Provide a traditional hook point to allow extensions to configure services.
-			Hooks::run( 'MediaWikiServices', array( $instance ) );
+			$bootstrapConfig = new GlobalVarConfig();
 		}
 
-		return $instance;
+		self::$instance = new self( $bootstrapConfig );
+
+		// Load the default wiring from the specified files.
+		$wiringFiles = $bootstrapConfig->get( 'ServiceWiringFiles' );
+		self::$instance->loadWiringFiles( $wiringFiles );
+
+		// Provide a traditional hook point to allow extensions to configure services.
+		Hooks::run( 'MediaWikiServices', array( self::$instance ) );
+	}
+
+	/**
+	 * Disables all storage layer services. After calling this, any attempt to access the
+	 * storage layer will result in an error. Use resetGlobalInstance() to restore normal
+	 * operation.
+	 *
+	 * @warning This is intended for extreme situations only and should never be used
+	 * while serving normal web requests. Legitimate use cases for this method include
+	 * the installation process, maintenance tasks that use pctl_fork, and possibly
+	 * integration tests.
+	 *
+	 * @see resetGlobalInstance().
+	 */
+	public static function disableStorageBackend() {
+		$destroy = array( 'DBLoadBalancer', 'DBLoadBalancerFactory' );
+		$services = self::getInstance();
+
+		foreach ( $destroy as $name ) {
+			$service = $services->peekService( $name );
+			if ( $service instanceof DestructibleService ) {
+				$service->destroy();
+			}
+		}
 	}
 
 	/**
@@ -113,6 +191,8 @@ class MediaWikiServices extends ServiceContainer {
 		return $this->getService( 'BootstrapConfig' );
 	}
 
+	//////////////////////////////////////////////////////////////////////////////////////////
+
 	/**
 	 * @return ConfigFactory
 	 */
@@ -142,6 +222,68 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getSiteStore() {
 		return $this->getService( 'SiteStore' );
+	}
+
+	/**
+	 * @return LBFactory
+	 */
+	public function getDBLoadBalancerFactory() {
+		return $this->getService( 'DBLoadBalancerFactory' );
+	}
+
+	/**
+	 * @return LoadBalancer The main DB load balancer for the local wiki.
+	 */
+	public function getDBLoadBalancer() {
+		return $this->getService( 'DBLoadBalancer' );
+	}
+	/**
+	 * @return ObjectCacheManager
+	 */
+	public function getObjectCacheManager() {
+		return $this->getService( 'ObjectCacheManager' );
+	}
+
+	/**
+	 * @return Profiler
+	 */
+	public function getProfiler() {
+		return $this->getService( 'Profiler' );
+	}
+
+	/**
+	 * @return \MediaWiki\Logger\Spi
+	 */
+	public function getLoggerFactory() {
+		return $this->getService( 'LoggerFactory' );
+	}
+
+	/**
+	 * @return FileBackendGroup
+	 */
+	public function getFileBackendGroup() {
+		return $this->getService( 'FileBackendGroup' );
+	}
+
+	/**
+	 * @return ServicePool A pool of RedisConnectionPool services.
+	 */
+	public function getRedisConnectionPoolPool() {
+		return $this->getService( 'RedisConnectionPoolPool' );
+	}
+
+	/**
+	 * @return ServicePool A pool of JobbQueueGroup services.
+	 */
+	public function getJobQueueGroupPool() {
+		return $this->getService( 'JobQueueGroupPool' );
+	}
+
+	/**
+	 * @return ServicePool A pool of LockManagerGroup services.
+	 */
+	public function getLockManagerGroupPool() {
+		return $this->getService( 'LockManagerGroupPool' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

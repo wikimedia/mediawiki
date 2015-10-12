@@ -1004,7 +1004,7 @@ class ParserTest {
 		# SqlBagOStuff broke when using temporary tables on r40209 (bug 15892).
 		# It seems to have been fixed since (r55079?), but regressed at some point before r85701.
 		# This works around it for now...
-		ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
+		ObjectCache::$instances[CACHE_DB] = new HashBagOStuff; !!!FIXME re-use stuff from MediaWikiTestCase
 
 		# CREATE TEMPORARY TABLE breaks if there is more than one server
 		if ( wfGetLB()->getServerCount() != 1 ) {
@@ -1237,9 +1237,10 @@ class ParserTest {
 	 * after each test runs.
 	 */
 	private function teardownGlobals() {
+		\MediaWiki\MediaWikiServices::resetGlobalInstance();
+
+		// TODO: move more singletons to MediaWikiServices
 		RepoGroup::destroySingleton();
-		FileBackendGroup::destroySingleton();
-		LockManagerGroup::destroySingletons();
 		LinkCache::singleton()->clear();
 		MWTidy::destroySingleton();
 

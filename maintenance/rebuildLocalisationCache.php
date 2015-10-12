@@ -114,6 +114,10 @@ class RebuildLocalisationCache extends Maintenance {
 				// Child, reseed because there is no bug in PHP:
 				// http://bugs.php.net/bug.php?id=42465
 				mt_srand( getmypid() );
+
+				// Reset services, so we don't end up re-using connections.
+				MediaWiki\MediaWikiServices::resetGlobalInstance();
+
 				$this->doRebuild( $codes, $lc, $force );
 				exit( 0 );
 			} elseif ( $pid === -1 ) {

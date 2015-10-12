@@ -28,8 +28,6 @@
  * @since 1.21
  */
 class JobQueueGroup {
-	/** @var JobQueueGroup[] */
-	protected static $instances = array();
 
 	/** @var ProcessCacheLRU */
 	protected $cache;
@@ -55,7 +53,7 @@ class JobQueueGroup {
 	/**
 	 * @param string $wiki Wiki ID
 	 */
-	protected function __construct( $wiki ) {
+	public function __construct( $wiki ) {
 		$this->wiki = $wiki;
 		$this->cache = new ProcessCacheLRU( 10 );
 	}
@@ -65,21 +63,8 @@ class JobQueueGroup {
 	 * @return JobQueueGroup
 	 */
 	public static function singleton( $wiki = false ) {
-		$wiki = ( $wiki === false ) ? wfWikiID() : $wiki;
-		if ( !isset( self::$instances[$wiki] ) ) {
-			self::$instances[$wiki] = new self( $wiki );
-		}
-
-		return self::$instances[$wiki];
-	}
-
-	/**
-	 * Destroy the singleton instances
-	 *
-	 * @return void
-	 */
-	public static function destroySingletons() {
-		self::$instances = array();
+		$groupManager = \MediaWiki\MediaWikiServices::getInstance()->getJobQueueGroupPool();
+		return $groupManager->getService( $wiki );
 	}
 
 	/**
@@ -167,7 +152,10 @@ class JobQueueGroup {
 	 * @since 1.26
 	 */
 	public static function pushLazyJobs() {
-		foreach ( self::$instances as $group ) {
+		$groupManager = \MediaWiki\MediaWikiServices::getInstance()->getJobQueueGroupPool();
+
+		/** @var JobQueueGroup $group */
+		foreach ( $groupManager->getActiveInstances() as $group ) {
 			$group->push( $group->bufferedJobs );
 			$group->bufferedJobs = array();
 		}
