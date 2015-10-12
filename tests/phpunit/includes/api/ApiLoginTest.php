@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\Session\SessionManager;
 
 /**
  * @group API
@@ -206,14 +207,10 @@ class ApiLoginTest extends ApiTestCase {
 		] );
 
 		// Make sure our session provider is present
-		$manager = TestingAccessWrapper::newFromObject( MediaWiki\Session\SessionManager::singleton() );
-		if ( !isset( $manager->sessionProviders['MediaWiki\\Session\\BotPasswordSessionProvider'] ) ) {
-			$tmp = $manager->sessionProviders;
-			$manager->sessionProviders = null;
-			$manager->sessionProviders = $tmp + $manager->getProviders();
-		}
+		SessionManager::resetCache();
+
 		$this->assertNotNull(
-			MediaWiki\Session\SessionManager::singleton()->getProvider(
+			SessionManager::singleton()->getProvider(
 				'MediaWiki\\Session\\BotPasswordSessionProvider'
 			),
 			'sanity check'
