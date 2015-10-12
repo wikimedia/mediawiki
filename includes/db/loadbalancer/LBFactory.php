@@ -38,9 +38,6 @@ abstract class LBFactory {
 	/** @var LoggerInterface */
 	protected $logger;
 
-	/** @var LBFactory */
-	private static $instance;
-
 	/** @var string|bool Reason all LBs are read-only or false if not */
 	protected $readOnlyReason = false;
 
@@ -66,32 +63,23 @@ abstract class LBFactory {
 	 */
 	public static function disableBackend() {
 		global $wgLBFactoryConf;
-		self::$instance = new LBFactoryFake( $wgLBFactoryConf );
+		self::setInstance( new LBFactoryFake( $wgLBFactoryConf ) );
 	}
 
 	/**
 	 * Get an LBFactory instance
 	 *
+	 * @deprecated since 1.27, use MediaWikiServices::getDBLoadBalancerFactory() instead.
+	 *
 	 * @return LBFactory
 	 */
 	public static function singleton() {
-		global $wgLBFactoryConf;
-
-		if ( is_null( self::$instance ) ) {
-			$class = self::getLBFactoryClass( $wgLBFactoryConf );
-			$config = $wgLBFactoryConf;
-			if ( !isset( $config['readOnlyReason'] ) ) {
-				$config['readOnlyReason'] = wfConfiguredReadOnlyReason();
-			}
-			self::$instance = new $class( $config );
-		}
-
-		return self::$instance;
+		return \MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 	}
 
 	/**
 	 * Returns the LBFactory class to use and the load balancer configuration.
-	 *
+	 *wgDB
 	 * @param array $config (e.g. $wgLBFactoryConf)
 	 * @return string Class name
 	 */
@@ -122,11 +110,13 @@ abstract class LBFactory {
 	 * Shut down, close connections and destroy the cached instance.
 	 */
 	public static function destroyInstance() {
-		if ( self::$instance ) {
-			self::$instance->shutdown();
-			self::$instance->forEachLBCallMethod( 'closeAll' );
-			self::$instance = null;
-		}
+		\MediaWiki\MediaWikiServices::getInstance()->resetService(
+			'DBLoadBalancerFactory',
+			function ( LBFactory $instance ) {
+				$instance->shutdown();
+				$instance->forEachLBCallMethod( 'closeAll' );
+			}
+		);
 	}
 
 	/**
@@ -134,9 +124,17 @@ abstract class LBFactory {
 	 *
 	 * @param LBFactory $instance
 	 */
-	public static function setInstance( $instance ) {
-		self::destroyInstance();
-		self::$instance = $instance;
+	public static function setInstance( LBFactory $instance ) {
+		\MediaWiki\MediaWikiServices::getInstance()->replaceService(
+			'DBLoadBalancerFactory',
+			function () use ( $instance ) {
+				return $instance;
+			},
+			function ( LBFactory $instance ) {
+				$instance->shutdown();
+				$instance->forEachLBCallMethod( 'closeAll' );
+			}
+		);
 	}
 
 	/**
