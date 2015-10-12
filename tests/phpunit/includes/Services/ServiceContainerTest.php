@@ -182,6 +182,9 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		];
 
 		$services->applyWiring( $wiring );
+		$services->wrapService( 'Bar', function( $old ) {
+			return '(' . $old . ')';
+		} );
 
 		$newServices = $this->newServiceContainer();
 
@@ -206,11 +209,19 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$this->assertNotContains( 'Bar', $newServices->getServiceNames(), 'Skip `Bar` service' );
 		$this->assertSame( 'Foo!', $newServices->getService( 'Foo' ) );
 
+		// Definition of Bar will be overwritten, but the wrapper will be preserved
+		$newServices->defineService( 'Bar', function() {
+			return 'BARBAR!'; // we should never see this
+		} );
+		$newServices->wrapService( 'Bar', function( $old ) {
+			return '{' . $old . '}';
+		} );
+
 		// import all wiring, but preserve existing service instance
 		$newServices->importWiring( $services );
 
 		$this->assertContains( 'Bar', $newServices->getServiceNames(), 'Import all services' );
-		$this->assertSame( 'Bar!', $newServices->getService( 'Bar' ) );
+		$this->assertSame( '({Bar!})', $newServices->getService( 'Bar' ), 'Wrappers are combined' );
 		$this->assertSame( 'Car!', $newServices->getService( 'Car' ), 'Use existing service instance' );
 		$this->assertSame( 'Xar!', $newServices->getService( 'Xar' ), 'Predefined services are kept' );
 	}
@@ -404,6 +415,71 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 
 		$this->setExpectedException( 'MediaWiki\Services\ContainerDisabledException' );
 		$services->getService( 'Bar' );
+	}
+
+	public function testWrapService() {
+		$services = $this->newServiceContainer();
+
+		$serviceOne = new stdClass();
+		$serviceTwo = new stdClass();
+		$serviceThree = new stdClass();
+		$name = 'TestService92834576';
+
+		$services->defineService( $name, function() use ( $serviceOne ) {
+			return $serviceOne;
+		} );
+
+		$services->wrapService( $name,
+			function( $actualService, $actualLocator )
+			use ( $serviceOne, $serviceTwo, $services ) {
+				PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
+				PHPUnit_Framework_Assert::assertSame( $serviceOne, $actualService );
+
+				return $serviceTwo;
+			}
+		);
+
+		$services->wrapService( $name,
+			function( $actualService, $actualLocator )
+			use ( $serviceTwo, $serviceThree, $services ) {
+				PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
+				PHPUnit_Framework_Assert::assertSame( $serviceTwo, $actualService );
+				return $serviceThree;
+			}
+		);
+
+		$this->assertSame( $serviceThree, $services->getService( $name ) );
+	}
+
+	public function testWrapService_fail_undefined() {
+		$services = $this->newServiceContainer();
+
+		$theService = new stdClass();
+		$name = 'TestService92834576';
+
+		$this->setExpectedException( 'RuntimeException' );
+
+		$services->wrapService( $name, function() use ( $theService ) {
+			return $theService;
+		} );
+	}
+
+	public function testWrapService_fail_in_use() {
+		$services = $this->newServiceContainer();
+
+		$theService = new stdClass();
+		$name = 'TestService92834576';
+
+		$services->defineService( $name, function() use ( $theService ) {
+			return $theService;
+		} );
+
+		$services->getService( $name );
+
+		$this->setExpectedException( 'RuntimeException' );
+		$services->wrapService( $name, function() {
+			$this->fail();
+		} );
 	}
 
 }
