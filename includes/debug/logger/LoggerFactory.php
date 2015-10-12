@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Logger;
 
+use MediaWiki\MediaWikiServices;
 use ObjectFactory;
 
 /**
@@ -46,19 +47,18 @@ use ObjectFactory;
 class LoggerFactory {
 
 	/**
-	 * Service provider.
-	 * @var \MediaWiki\Logger\Spi $spi
-	 */
-	private static $spi;
-
-	/**
 	 * Register a service provider to create new \Psr\Log\LoggerInterface
 	 * instances.
 	 *
 	 * @param \MediaWiki\Logger\Spi $provider Provider to register
 	 */
 	public static function registerProvider( Spi $provider ) {
-		self::$spi = $provider;
+		MediaWikiServices::getInstance()->replaceService(
+			'LoggerFactory',
+			function () use ( $provider ) {
+				return $provider;
+			}
+		);
 	}
 
 	/**
@@ -74,14 +74,7 @@ class LoggerFactory {
 	 * @see ObjectFactory::getObjectFromSpec()
 	 */
 	public static function getProvider() {
-		if ( self::$spi === null ) {
-			global $wgMWLoggerDefaultSpi;
-			$provider = ObjectFactory::getObjectFromSpec(
-				$wgMWLoggerDefaultSpi
-			);
-			self::registerProvider( $provider );
-		}
-		return self::$spi;
+		return MediaWikiServices::getInstance()->getLoggerFactory();
 	}
 
 	/**
