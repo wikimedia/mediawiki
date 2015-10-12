@@ -3191,6 +3191,9 @@ function wfSplitWikiID( $wiki ) {
  * Note 2: use $this->getDB() in maintenance scripts that may be invoked by
  * updater to ensure that a proper database is being updated.
  *
+ * @todo Replace calls to wfGetDB with calls to LoadBalancer::getConnection()
+ *       on an injected instance of LoadBalancer.
+ *
  * @return DatabaseBase
  */
 function wfGetDB( $db, $groups = array(), $wiki = false ) {
@@ -3199,6 +3202,9 @@ function wfGetDB( $db, $groups = array(), $wiki = false ) {
 
 /**
  * Get a load balancer object.
+ *
+ * @deprecated since 1.27, use MediaWikiServices::getDBLoadBalancer()
+ *              or MediaWikiServices::getDBLoadBalancerFactory() instead.
  *
  * @param string|bool $wiki Wiki ID, or false for the current wiki
  * @return LoadBalancer
@@ -3210,10 +3216,12 @@ function wfGetLB( $wiki = false ) {
 /**
  * Get the load balancer factory object
  *
+ * @deprecated since 1.27, use MediaWikiServices::getDBLoadBalancerFactory() instead.
+ *
  * @return LBFactory
  */
 function wfGetLBFactory() {
-	return LBFactory::singleton();
+	return \MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 }
 
 /**
