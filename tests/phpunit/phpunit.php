@@ -223,6 +223,9 @@ class PHPUnitMaintClass extends Maintenance {
 			}
 		}
 
+		// !!!! TO NOT MERGE !!!!
+		// FIXME: forcing debug to see what fails on Jenkins.
+		$_SERVER['argv'][] = '--debug';
 	}
 
 	public function getDbType() {
@@ -297,5 +300,10 @@ if ( $puVersion !== '@package_version@' && version_compare( $puVersion, '3.7.0',
 echo defined( 'HHVM_VERSION' ) ?
 	'Using HHVM ' . HHVM_VERSION . ' (' . PHP_VERSION . ")\n" :
 	'Using PHP ' . PHP_VERSION . "\n";
+
+// Prepare global services for unit tests.
+// FIXME: this should be done in the finalSetup() method,
+// but PHPUnit may not have been loaded at that point.
+MediaWikiTestCase::prepareServices( new GlobalVarConfig() );
 
 PHPUnit_TextUI_Command::main();
