@@ -23,10 +23,10 @@
 	 *
 	 *     selector.setSearchType( [ mw.widgets.CategorySelector.SearchType.SubCategories ] );
 	 *
-	 *
 	 * @class mw.widgets.CategorySelector
 	 * @uses mw.Api
 	 * @extends OO.ui.CapsuleMultiSelectWidget
+	 * @mixins OO.ui.mixin.PendingElement
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
@@ -54,17 +54,20 @@
 			allowArbitrary: true
 		} ) );
 
+		// Mixin constructors
+		OO.ui.mixin.PendingElement.call( this, $.extend( {}, config, { $pending: this.$handle } ) );
+
 		// Event handler to call the autocomplete methods
 		this.$input.on( 'change input cut paste', OO.ui.debounce( this.updateMenuItems.bind( this ), 100 ) );
 
 		// Initialize
 		this.api = new mw.Api();
-
 	}
 
 	/* Setup */
 
 	OO.inheritClass( CategorySelector, OO.ui.CapsuleMultiSelectWidget );
+	OO.mixinClass( CategorySelector, OO.ui.mixin.PendingElement );
 	CSP = CategorySelector.prototype;
 
 	/* Methods */
@@ -82,6 +85,11 @@
 		this.getNewMenuItems( this.$input.val() ).then( function ( items ) {
 			var existingItems, filteredItems,
 				menu = this.getMenu();
+
+			// Never show the menu if the input lost focus in the meantime
+			if ( !this.$input.is( ':focus' ) ) {
+				return;
+			}
 
 			// Array of strings of the data of OO.ui.MenuOptionsWidgets
 			existingItems = menu.getItems().map( function ( item ) {
@@ -106,6 +114,15 @@
 	};
 
 	/**
+	 * @inheritdoc
+	 */
+	CSP.clearInput = function () {
+		CategorySelector.parent.prototype.clearInput.call( this );
+		// Abort all pending requests, we won't need their results
+		this.api.abort();
+	};
+
+	/**
 	 * Searches for categories based on the input.
 	 *
 	 * @private
@@ -118,9 +135,18 @@
 			promises = [],
 			deferred = new $.Deferred();
 
+		if ( $.trim( input ) === '' ) {
+			deferred.resolve( [] );
+			return deferred.promise();
+		}
+
+		// Abort all pending requests, we won't need their results
+		this.api.abort();
 		for ( i = 0; i < this.searchTypes.length; i++ ) {
 			promises.push( this.searchCategories( input, this.searchTypes[ i ] ) );
 		}
+
+		this.pushPending();
 
 		$.when.apply( $, promises ).done( function () {
 			var categories, categoryNames,
@@ -142,7 +168,7 @@
 
 			deferred.resolve( categoryNames );
 
-		} );
+		} ).always( this.popPending.bind( this ) );
 
 		return deferred.promise();
 	};
@@ -226,7 +252,7 @@
 				} ).done( function ( res ) {
 					var categories = res[ 1 ];
 					deferred.resolve( categories );
-				} );
+				} ).fail( deferred.reject.bind( deferred ) );
 				break;
 
 			case CategorySelector.SearchType.InternalSearch:
@@ -242,7 +268,7 @@
 						return page.title;
 					} );
 					deferred.resolve( categories );
-				} );
+				} ).fail( deferred.reject.bind( deferred ) );
 				break;
 
 			case CategorySelector.SearchType.Exists:
@@ -266,7 +292,7 @@
 					}
 
 					deferred.resolve( categories );
-				} );
+				} ).fail( deferred.reject.bind( deferred ) );
 				break;
 
 			case CategorySelector.SearchType.SubCategories:
@@ -286,7 +312,7 @@
 						return category.title;
 					} );
 					deferred.resolve( categories );
-				} );
+				} ).fail( deferred.reject.bind( deferred ) );
 				break;
 
 			case CategorySelector.SearchType.ParentCategories:
@@ -315,7 +341,7 @@
 					}
 
 					deferred.resolve( categories );
-				} );
+				} ).fail( deferred.reject.bind( deferred ) );
 				break;
 
 			default:
