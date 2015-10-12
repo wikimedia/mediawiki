@@ -51,8 +51,9 @@ class ConfigFactory {
 	}
 
 	/**
-	 * Register a new config factory function
-	 * Will override if it's already registered
+	 * Register a new config factory function.
+	 * Will override if it's already registered.
+	 * Use "*" for $name to provide a fallback config for all unknown names.
 	 * @param string $name
 	 * @param callable $callback That takes this ConfigFactory as an argument
 	 * @throws InvalidArgumentException If an invalid callback is provided
@@ -75,10 +76,14 @@ class ConfigFactory {
 	 */
 	public function makeConfig( $name ) {
 		if ( !isset( $this->configs[$name] ) ) {
-			if ( !isset( $this->factoryFunctions[$name] ) ) {
+			$key = $name;
+			if ( !isset( $this->factoryFunctions[$key] ) ) {
+				$key = '*';
+			}
+			if ( !isset( $this->factoryFunctions[$key] ) ) {
 				throw new ConfigException( "No registered builder available for $name." );
 			}
-			$conf = call_user_func( $this->factoryFunctions[$name], $this );
+			$conf = call_user_func( $this->factoryFunctions[$key], $this );
 			if ( $conf instanceof Config ) {
 				$this->configs[$name] = $conf;
 			} else {

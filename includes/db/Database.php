@@ -262,7 +262,7 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	public function setLBInfo( $name, $value = null ) {
-		if ( is_null( $value ) ) {
+		if ( is_array( $name ) ) {
 			$this->mLBInfo = $name;
 		} else {
 			$this->mLBInfo[$name] = $value;
