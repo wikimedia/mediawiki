@@ -40,9 +40,29 @@
 use MediaWiki\MediaWikiServices;
 
 return array(
+	'DBLoadBalancerFactory' => function( MediaWikiServices $services ) {
+		// NOTE: Defining the LBFactory class via LBFactoryConf is supported for
+		// backwards compatibility. The preferred way would be to register a
+		// callback for DBLoadBalancerFactory that constructs the desired LBFactory
+		// directly.
+		$config = $services->getMainConfig()->get( 'LBFactoryConf' );
+
+		$class = LBFactory::getLBFactoryClass( $config );
+		if ( !isset( $config['readOnlyReason'] ) ) {
+			// TODO: replace the global wfConfiguredReadOnlyReason() with a service.
+			$config['readOnlyReason'] = wfConfiguredReadOnlyReason();
+		}
+
+		return new $class( $config );
+	},
+
+	'DBLoadBalancer' => function( MediaWikiServices $services ) {
+		// just return the default LB from the DBLoadBalancerFactory service
+		return $services->getDBLoadBalancerFactory()->getMainLB();
+	},
+
 	'SiteStore' => function( MediaWikiServices $services ) {
-		$loadBalancer = wfGetLB(); // TODO: use LB from MediaWikiServices
-		$rawSiteStore = new DBSiteStore( $loadBalancer );
+		$rawSiteStore = new DBSiteStore( $services->getDBLoadBalancer() );
 
 		// TODO: replace wfGetCache with a CacheFactory service.
 		// TODO: replace wfIsHHVM with a capabilities service.
