@@ -46,7 +46,9 @@ MediaWikiServices::getInstance().
 Extensions can add their own wiring files to $wgServiceWiringFiles, in order
 to define their own service. Extensions may also use the 'MediaWikiServices'
 hook to define or redefined services by calling methods on the default
-MediaWikiServices instance.
+MediaWikiServices instance. The wrapService() method on the ServiceContainer
+may be used to wrap decorators around a service, in order to intercept calls
+to service methods without having to replace the service implementation.
 
 
 It should be noted that the term "service locator" is often used to refer to a
