@@ -78,6 +78,11 @@ class LoadBalancer {
 	const POS_WAIT_TIMEOUT = 10;
 
 	/**
+	 * @var boolean
+	 */
+	private $disabled = false;
+
+	/**
 	 * @param array $params Array with keys:
 	 *  - servers : Required. Array of server info structures.
 	 *  - loadMonitor : Name of a class used to fetch server lag and load.
@@ -666,6 +671,8 @@ class LoadBalancer {
 	 * On error, returns false, and the connection which caused the
 	 * error will be available via $this->mErrorConnection.
 	 *
+	 * @note If disable() was called on this LoadBalancer, this method will throw a DBAccessError.
+	 *
 	 * @param int $i Server index
 	 * @param string|bool $wiki Wiki ID, or false for the current wiki
 	 * @return DatabaseBase|bool Returns false on errors
@@ -715,6 +722,8 @@ class LoadBalancer {
 	 *
 	 * On error, returns false, and the connection which caused the
 	 * error will be available via $this->mErrorConnection.
+	 *
+	 * @note If disable() was called on this LoadBalancer, this method will throw a DBAccessError.
 	 *
 	 * @param int $i Server index
 	 * @param string $wiki Wiki ID to open
@@ -803,6 +812,10 @@ class LoadBalancer {
 	 * @return DatabaseBase
 	 */
 	protected function reallyOpenConnection( $server, $dbNameOverride = false ) {
+		if ( $this->disabled ) {
+			throw new DBAccessError();
+		}
+
 		if ( !is_array( $server ) ) {
 			throw new MWException( 'You must update your load-balancing configuration. ' .
 				'See DefaultSettings.php entry for $wgDBservers.' );
@@ -974,6 +987,17 @@ class LoadBalancer {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Disable this load balancer. All connections are closed, and any attempt to
+	 * open a new connection will result in a DBAccessError.
+	 *
+	 * @since 1.27
+	 */
+	public function disable() {
+		$this->closeAll();
+		$this->disabled = true;
 	}
 
 	/**

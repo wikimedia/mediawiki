@@ -1091,9 +1091,9 @@ final class SessionManager implements SessionManagerInterface {
 	 * Reset the internal caching for unit testing
 	 */
 	public static function resetCache() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MEDIAWIKI_INSTALL' ) ) {
 			// @codeCoverageIgnoreStart
-			throw new MWException( __METHOD__ . ' may only be called from unit tests!' );
+			throw new MWException( __METHOD__ . ' may only be called from unit tests and the installer!' );
 			// @codeCoverageIgnoreEnd
 		}
 
