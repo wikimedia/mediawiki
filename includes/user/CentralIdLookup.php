@@ -68,7 +68,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 * Reset internal cache for unit testing
 	 */
 	public static function resetCache() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MEDIAWIKI_INSTALL' ) ) {
 			throw new MWException( __METHOD__ . ' may only be called from unit tests!' );
 		}
 		self::$instances = array();

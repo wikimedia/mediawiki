@@ -123,6 +123,10 @@ class PHPUnitMaintClass extends Maintenance {
 			),
 		);
 
+		// Allow all these changes to globals above take effect
+		// FIXME: This seems to make Jenkins fail for some reason. Disabled to see if that helps.
+		// MediaWikiTestCase::prepareServices( new GlobalVarConfig() );
+
 		// Bug 44192 Do not attempt to send a real e-mail
 		Hooks::clear( 'AlternateUserMailer' );
 		Hooks::register(
@@ -223,6 +227,9 @@ class PHPUnitMaintClass extends Maintenance {
 			}
 		}
 
+		// !!!! TO NOT MERGE !!!!
+		// FIXME: forcing debug to see what fails on Jenkins.
+		$_SERVER['argv'][] = '--debug';
 	}
 
 	public function getDbType() {
