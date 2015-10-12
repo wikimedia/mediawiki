@@ -141,15 +141,22 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 		MediaWikiServices::forceGlobalInstance( $oldServices );
 	}
 
-	public function testResetBetweenTests() {
-		// We don't know what resetBetweenTest() actually does. So we just check
-		// that we still can access the main config via the service locator.
-		MediaWikiServices::resetBetweenTest();
+	public function testResetServiceForTesting() {
+		$services = $this->newMediaWikiServices();
 
-		$services = MediaWikiServices::getInstance();
-		$this->assertInstanceOf( 'MediaWiki\\MediaWikiServices', $services );
+		$services->defineService(
+			'Test',
+			function() {
+				return new stdClass();
+			}
+		);
 
-		$services->getMainConfig();
+		$oldInstance = $services->getService( 'Test' );
+
+		$services->resetServiceForTesting( 'Test' );
+		$newInstance = $services->getService( 'Test' );
+
+		$this->assertNotSame( $oldInstance, $newInstance );
 	}
 
 	public function provideGetters() {
@@ -189,6 +196,13 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SiteLookup' => [ 'SiteLookup', 'SiteLookup' ],
 			'DBLoadBalancerFactory' => [ 'DBLoadBalancerFactory', 'LBFactory' ],
 			'DBLoadBalancer' => [ 'DBLoadBalancer', 'LoadBalancer' ],
+			'ObjectCacheManager' => [ 'ObjectCacheManager', 'ObjectCacheManager' ],
+			'Profiler' => [ 'Profiler', 'Profiler' ],
+			'LoggerFactory' => [ 'LoggerFactory', 'MediaWiki\Logger\Spi' ],
+			'FileBackendGroup' => [ 'FileBackendGroup', 'FileBackendGroup' ],
+			'RedisConnectionPoolPool' => [ 'RedisConnectionPoolPool', 'MediaWiki\Services\ServicePool' ],
+			'JobQueueGroupPool' => [ 'JobQueueGroupPool', 'MediaWiki\Services\ServicePool' ],
+			'LockManagerGroupPool' => [ 'LockManagerGroupPool', 'MediaWiki\Services\ServicePool' ],
 		];
 	}
 
