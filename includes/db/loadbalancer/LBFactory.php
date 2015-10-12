@@ -54,21 +54,12 @@ abstract class LBFactory {
 	/**
 	 * Get an LBFactory instance
 	 *
+	 * @deprecated since 1.27, use MediaWikiServices::getDBLoadBalancerFactory() instead.
+	 *
 	 * @return LBFactory
 	 */
 	public static function singleton() {
-		global $wgLBFactoryConf;
-
-		if ( is_null( self::$instance ) ) {
-			$class = self::getLBFactoryClass( $wgLBFactoryConf );
-			$config = $wgLBFactoryConf;
-			if ( !isset( $config['readOnlyReason'] ) ) {
-				$config['readOnlyReason'] = wfConfiguredReadOnlyReason();
-			}
-			self::$instance = new $class( $config );
-		}
-
-		return self::$instance;
+		return \MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 	}
 
 	/**

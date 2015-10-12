@@ -92,9 +92,10 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function getConfig() {
 		if ( $this->config === null ) {
-			// @todo In the future, we could move this to WebStart.php so
-			// the Config object is ready for when initialization happens
-			$this->config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+			// @todo Always inject the config when the RequestContext is created.
+			// Or better, don't use requestContext::getConfig() and inject individual
+			// settings where needed.
+			$this->config = \MediaWiki\MediaWikiServices::getInstance()->getMainConfig();
 		}
 
 		return $this->config;
