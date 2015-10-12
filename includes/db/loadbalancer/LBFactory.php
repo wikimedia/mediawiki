@@ -101,7 +101,6 @@ abstract class LBFactory implements DestructibleService {
 		// underscores from class names in MediaWiki 1.23.
 		$bcClasses = array(
 			'LBFactory_Simple' => 'LBFactorySimple',
-			'LBFactory_Single' => 'LBFactorySingle',
 			'LBFactory_Multi' => 'LBFactoryMulti',
 			'LBFactory_Fake' => 'LBFactoryFake',
 		);

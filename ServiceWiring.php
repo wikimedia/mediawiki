@@ -38,6 +38,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Services\ServicePool;
 
 return array(
 	'DBLoadBalancerFactory' => function( MediaWikiServices $services ) {
@@ -90,6 +91,159 @@ return array(
 	'MainConfig' => function( MediaWikiServices $services ) {
 		// Use the 'main' config from the ConfigFactory service.
 		return $services->getConfigFactory()->makeConfig( 'main' );
+	},
+
+	'ObjectCacheManager' => function( MediaWikiServices $services ) {
+		$config = $services->getMainConfig();
+		$keyPrefix = $config->get( 'CachePrefix' );
+		$objectCacheSpecs = $config->get( 'ObjectCaches' );
+		$wanObjectCacheSpecs = $config->get( 'WANObjectCaches' );
+
+		if ( !is_string( $keyPrefix ) || $keyPrefix === '' ) {
+			$keyPrefix = wfWikiID(); // TODO: use a service!
+		}
+
+		$manager = new ObjectCacheManager(
+			$keyPrefix,
+			$objectCacheSpecs,
+			$wanObjectCacheSpecs,
+			$services->getLoggerFactory()
+		);
+
+		$manager->setMainStash( $config->get( 'MainStash' ) );
+		$manager->setMainWANCache( $config->get( 'MainWANCache' ) );
+		$manager->setLocalClusterCache( $config->get( 'MainCacheType' ) );
+
+		$manager->setAnythingCandidates( array(
+			$config->get( 'MainCacheType' ),
+			$config->get( 'MessageCacheType' ),
+			$config->get( 'ParserCacheType' ),
+		) );
+
+		return $manager;
+	},
+
+	'Profiler' =>  function( MediaWikiServices $services ) {
+		$config = $services->getMainConfig();
+		$limit = $config->has( 'ProfilerLimit' ) ? $config->get( 'ProfilerLimit' ) : null;
+
+		$params = array(
+			'class'     => 'ProfilerStub',
+			'sampling'  => 1,
+			'threshold' => $limit,
+			'output'    => array(),
+		);
+
+		if ( $config->has( 'Profiler' ) ) {
+			$spec = $config->get( 'Profiler' );
+
+			if ( is_array( $spec ) ) {
+				$params = array_merge( $params, $spec );
+			}
+		}
+
+		$inSample = mt_rand( 0, $params['sampling'] - 1 ) === 0;
+		if ( PHP_SAPI === 'cli' || !$inSample ) {
+			$params['class'] = 'ProfilerStub';
+		}
+
+		if ( !is_array( $params['output'] ) ) {
+			$params['output'] = array( $params['output'] );
+		}
+
+		// TODO: use a ServiceContainer for managing profiler implementations!
+		return new $params['class']( $params );
+	},
+
+	'LoggerFactory' =>  function( MediaWikiServices $services ) {
+		$spiSpec = $services->getInstance()->getMainConfig()->get( 'MWLoggerDefaultSpi' );
+
+		$provider = ObjectFactory::getObjectFromSpec( $spiSpec );
+		return $provider;
+	},
+
+	'FileBackendGroup' => function( MediaWikiServices $services ) {
+		$config = $services->getMainConfig();
+
+		return new FileBackendGroup(
+			$config->get( 'LocalFileRepo' ),
+			$config->get( 'ForeignFileRepos' ),
+			$config->get( 'FileBackends' ),
+			wfConfiguredReadOnlyReason()
+		);
+	},
+
+	'RedisConnectionPoolPool' => function( MediaWikiServices $services ) {
+		// NOTE: this is a ServicePool (per wiki id) of connection pool services (per redis options).
+		return new ServicePool(
+			function( $options ) {
+				return new RedisConnectionPool( $options );
+			},
+			function( $params ) {
+				$options = $params[0];
+				ksort( $options ); // normalize to avoid pool fragmentation
+				$id = sha1( serialize( $options ) );
+				return $id;
+			},
+			function ( $params ) use ( $services ) {
+				$options = &$params[0];
+
+				if ( !isset( $options['connectTimeout'] ) ) {
+					$options['connectTimeout'] = 1;
+				}
+				if ( !isset( $options['readTimeout'] ) ) {
+					$options['readTimeout'] = 1;
+				}
+				if ( !isset( $options['persistent'] ) ) {
+					$options['persistent'] = false;
+				}
+				if ( !isset( $options['password'] ) ) {
+					$options['password'] = null;
+				}
+				if ( !isset( $options['logger'] ) ) {
+					$options['logger'] = $services->getLoggerFactory()->getLogger( 'redis' );
+				}
+
+				return $params;
+			}
+		);
+	},
+
+	'JobQueueGroupPool' => function( MediaWikiServices $services ) {
+		return new ServicePool(
+			function( $wiki ) use ( $services ) {
+				return new JobQueueGroup( $wiki );
+			},
+			function( $params ) {
+				return strval( $params[0] );
+			},
+			function( $params ) {
+				$params[0] = ( $params[0] === false ) ? wfWikiID() : $params[0];
+				return $params;
+			}
+		);
+	},
+
+	'LockManagerGroupPool' => function( MediaWikiServices $services ) {
+		return new ServicePool(
+			function( $domain ) use ( $services ) {
+				$domain = ( $domain === false ) ? wfWikiID() : $domain;
+
+				$lockManagerGroup = new LockManagerGroup( $domain );
+
+				$managers = $services->getMainConfig()->get( 'LockManagers' );
+				$lockManagerGroup->register( $managers );
+
+				return $lockManagerGroup;
+			},
+			function( $params ) {
+				return strval( $params[0] );
+			},
+			function( $params ) {
+				$params[0] = ( $params[0] === false ) ? wfWikiID() : $params[0];
+				return $params;
+			}
+		);
 	},
 
 	///////////////////////////////////////////////////////////////////////////

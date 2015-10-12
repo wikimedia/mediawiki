@@ -16,15 +16,19 @@ use LBFactory;
 use LinkCache;
 use LoadBalancer;
 use LockManagerGroup;
+use LocalisationCache;
 use MagicWord;
 use MediaHandler;
 use MediaWiki\Services\ServiceContainer;
+use MediaWiki\Services\ServicePool;
 use MessageCache;
 use MWException;
 use MWNamespace;
 use MWTidy;
 use ObjectCache;
 use RedisConnectionPool;
+use ObjectCacheManager;
+use Profiler;
 use RepoGroup;
 use RequestContext;
 use ResourceLoader;
@@ -387,10 +391,58 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * @return LoadBalancer
+	 * @return LoadBalancer The main DB load balancer for the local wiki.
 	 */
 	public function getDBLoadBalancer() {
 		return $this->getService( 'DBLoadBalancer' );
+	}
+	/**
+	 * @return ObjectCacheManager
+	 */
+	public function getObjectCacheManager() {
+		return $this->getService( 'ObjectCacheManager' );
+	}
+
+	/**
+	 * @return Profiler
+	 */
+	public function getProfiler() {
+		return $this->getService( 'Profiler' );
+	}
+
+	/**
+	 * @return \MediaWiki\Logger\Spi
+	 */
+	public function getLoggerFactory() {
+		return $this->getService( 'LoggerFactory' );
+	}
+
+	/**
+	 * @return FileBackendGroup
+	 */
+	public function getFileBackendGroup() {
+		return $this->getService( 'FileBackendGroup' );
+	}
+
+	/**
+	 * @return ServicePool A pool of RedisConnectionPool services.
+	 */
+	public function getRedisConnectionPoolPool() {
+		return $this->getService( 'RedisConnectionPoolPool' );
+	}
+
+	/**
+	 * @return ServicePool A pool of JobbQueueGroup services.
+	 */
+	public function getJobQueueGroupPool() {
+		return $this->getService( 'JobQueueGroupPool' );
+	}
+
+	/**
+	 * @return ServicePool A pool of LockManagerGroup services.
+	 */
+	public function getLockManagerGroupPool() {
+		return $this->getService( 'LockManagerGroupPool' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

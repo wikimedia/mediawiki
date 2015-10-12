@@ -1,9 +1,5 @@
 <?php
-use MediaWiki\Logger\LegacySpi;
-use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\Logger\MonologSpi;
 use MediaWiki\MediaWikiServices;
-use Psr\Log\LoggerInterface;
 
 /**
  * @since 1.18
@@ -202,6 +198,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 			// Init DB connection for use by tests.
 			$this->db = wfGetDB( DB_MASTER );
+
+				// reset all services so they operate on the new database setup
+				MediaWikiServices::resetGlobalInstance();
 
 			$this->addCoreDBData();
 			$this->addDBData();
@@ -502,6 +501,30 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 
 		$this->setMwGlobals( $name, $merged );
+	}
+
+	/**
+	 * Stashes the global instance of MediaWikiServices.
+	 * Useful to allow changes to global config variables to take effect.
+	 * The previous instance will be restored on tearDown.
+	 *
+	 * @param Config $configOverrides Configuration overrides for the new MediaWikiServices instance.
+	 *
+	 * @since 1.27
+	 */
+	protected function overrideMwServices( Config $configOverrides = null ) {
+		if ( !$configOverrides ) {
+			$configOverrides = new HashConfig();
+		}
+
+		$bootstrapConfig = MediaWikiServices::getInstance()->getBootstrapConfig();
+
+		$instance = new MediaWikiServices( new MultiConfig( array( $configOverrides, $bootstrapConfig ) ) );
+
+		// only stash and restore the first instance
+		if ( $this->mwServices === null ) {
+			$this->mwServices = MediaWikiServices::forceGlobalInstance( $instance );
+		}
 	}
 
 	/**

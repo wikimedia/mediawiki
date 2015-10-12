@@ -1344,18 +1344,25 @@ function wfReadOnlyReason() {
  * @since 1.27
  */
 function wfConfiguredReadOnlyReason() {
-	global $wgReadOnly, $wgReadOnlyFile;
+	// remember $readOnly for faster access next time
+	static $readOnly = null;
 
-	if ( $wgReadOnly === null ) {
-		// Set $wgReadOnly for faster access next time
-		if ( is_file( $wgReadOnlyFile ) && filesize( $wgReadOnlyFile ) > 0 ) {
-			$wgReadOnly = file_get_contents( $wgReadOnlyFile );
+	$config = \MediaWiki\MediaWikiServices::getInstance()->getMainConfig();
+
+	if ( $readOnly === null ) {
+		$config->get( 'ReadOnly' );
+	}
+
+	if ( $readOnly === null ) {
+		$readOnlyFile = $config->get( 'ReadOnlyFile' );
+		if ( is_file( $readOnlyFile ) && filesize( $readOnlyFile ) > 0 ) {
+			$readOnly = file_get_contents( $readOnlyFile );
 		} else {
-			$wgReadOnly = false;
+			$readOnly = false;
 		}
 	}
 
-	return $wgReadOnly;
+	return $readOnly;
 }
 
 /**
@@ -3203,7 +3210,7 @@ function wfGetDB( $db, $groups = array(), $wiki = false ) {
 /**
  * Get a load balancer object.
  *
- * @deprecated since 1.27, use MediaWikiServices::getDBLoadBalancer()
+ * @deprecated since 1.27, use MediaWikiServices::getDBLoadBalancer() instead
  *              or MediaWikiServices::getDBLoadBalancerFactory() instead.
  *
  * @param string|bool $wiki Wiki ID, or false for the current wiki

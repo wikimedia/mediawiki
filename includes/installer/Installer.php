@@ -411,7 +411,8 @@ abstract class Installer {
 
 		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
 		// SqlBagOStuff will then throw since we just disabled wfGetDB)
-		$wgMemc = ObjectCache::getInstance( CACHE_NONE );
+		$objectCacheManager = MediaWiki\MediaWikiServices::getInstance()->getObjectCacheManager();
+		$wgMemc = $objectCacheManager->getInstance( CACHE_NONE );
 
 		// Having a user with id = 0 safeguards us from DB access via User::loadOptions().
 		$wgUser = User::newFromId( 0 );
