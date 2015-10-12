@@ -29,46 +29,41 @@
  * @since 1.19
  */
 class FileBackendGroup {
-	/** @var FileBackendGroup */
-	protected static $instance = null;
 
 	/** @var array (name => ('class' => string, 'config' => array, 'instance' => object)) */
 	protected $backends = [];
 
-	protected function __construct() {
+	public function __construct(
+		array $localFileRepo,
+		array $foreignFileRepos,
+		array $fileBackends,
+		$readOnlyReason
+	) {
+		$this->init( $localFileRepo, $foreignFileRepos, $fileBackends, $readOnlyReason );
 	}
 
 	/**
 	 * @return FileBackendGroup
 	 */
 	public static function singleton() {
-		if ( self::$instance == null ) {
-			self::$instance = new self();
-			self::$instance->initFromGlobals();
-		}
-
-		return self::$instance;
+		return \MediaWiki\MediaWikiServices::getInstance()->getFileBackendGroup();
 	}
 
 	/**
-	 * Destroy the singleton instance
+	 * Register file backends
 	 */
-	public static function destroySingleton() {
-		self::$instance = null;
-	}
-
-	/**
-	 * Register file backends from the global variables
-	 */
-	protected function initFromGlobals() {
-		global $wgLocalFileRepo, $wgForeignFileRepos, $wgFileBackends;
-
+	protected function init(
+		array $localFileRepo,
+		array $foreignFileRepos,
+		array $fileBackends,
+		$readOnlyReason
+	) {
 		// Register explicitly defined backends
-		$this->register( $wgFileBackends, wfConfiguredReadOnlyReason() );
+		$this->register( $fileBackends, $readOnlyReason );
 
 		$autoBackends = [];
 		// Automatically create b/c backends for file repos...
-		$repos = array_merge( $wgForeignFileRepos, [ $wgLocalFileRepo ] );
+		$repos = array_merge( $foreignFileRepos, [ $localFileRepo ] );
 		foreach ( $repos as $info ) {
 			$backendName = $info['backend'];
 			if ( is_object( $backendName ) || isset( $this->backends[$backendName] ) ) {
@@ -106,7 +101,7 @@ class FileBackendGroup {
 		}
 
 		// Register implicitly defined backends
-		$this->register( $autoBackends, wfConfiguredReadOnlyReason() );
+		$this->register( $autoBackends, $readOnlyReason );
 	}
 
 	/**

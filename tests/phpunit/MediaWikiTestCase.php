@@ -20,15 +20,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private static $serviceLocator = null;
 
 	/**
-	 * The LBFactory created by prepareServices(), which can be used to manage
-	 * database cloaking. It allows the table prefix to be switched, to prevent
-	 * tests from writing into production data.
-	 *
-	 * @var CloakingLBFactory|null
-	 */
-	private static $cloakingLBFactory = null;
-
-	/**
 	 * $called tracks whether the setUp and tearDown method has been called.
 	 * class extending MediaWikiTestCase usually override setUp and tearDown
 	 * but forget to call the parent.
@@ -142,7 +133,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @note This is called by PHPUnitMaintClass::finalSetup.
 	 *
-	 * @see MediaWikiServices::resetGlobalInstance()
+	 * @see resetGlobalServices()
 	 *
 	 * @param Config $bootstrapConfig The bootstrap config to use with the new
 	 *        MediaWikiServices. Only used for the first call to this method.
@@ -156,7 +147,49 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$servicesPrepared = true;
 		}
 
-		$configOverrides = new HashConfig();
+		self::resetGlobalServices( $bootstrapConfig );
+	}
+
+	/**
+	 * Reset global services, and install testing environment.
+	 * This is the testing equivalent of MediaWikiServices::resetGlobalInstance().
+	 * This should only be used to set up the testing environment, not when
+	 * runnnig unit tests. Use overrideMwServices() for that.
+	 *
+	 * @see MediaWikiServices::resetGlobalInstance()
+	 * @see prepareServices()
+	 * @see overrideMwServices()
+	 *
+	 * @param Config|null $bootstrapConfig The bootstrap config to use with the new
+	 *        MediaWikiServices.
+	 */
+	protected static function resetGlobalServices( Config $bootstrapConfig = null ) {
+		$oldServices = MediaWikiServices::getInstance();
+		$oldLBFactory = $oldServices->getDBLoadBalancerFactory();
+
+		$testConfig = self::makeTestConfig( $bootstrapConfig );
+
+		MediaWikiServices::resetGlobalInstance( $testConfig );
+
+		self::$serviceLocator = MediaWikiServices::getInstance();
+		self::installTestServices( $oldLBFactory, self::$serviceLocator );
+	}
+
+	/**
+	 * Create a config suitable for testing, based on a base config, default overrides,
+	 * and custom overrdies.
+	 *
+	 * @param Config|null $baseConfig
+	 * @param Config|null $customOverrides
+	 *
+	 * @return Config
+	 */
+	private static function makeTestConfig( Config $baseConfig = null, Config $customOverrides = null ) {
+		$defaultOverrides = new HashConfig();
+
+		if ( !$baseConfig ) {
+			$baseConfig = MediaWikiServices::getInstance()->getBootstrapConfig();
+		}
 
 		/* Some functions require some kind of caching, and will end up using the db,
 		 * which we can't allow, as that would open a new connection for mysql.
@@ -170,27 +203,101 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				'apc' => $hashCache,
 				'xcache' => $hashCache,
 				'wincache' => $hashCache,
-			] + $bootstrapConfig->get( 'ObjectCaches' );
+			] + $baseConfig->get( 'ObjectCaches' );
 
-		$configOverrides->set( 'ObjectCaches', $objectCaches );
+		$defaultOverrides->set( 'ObjectCaches', $objectCaches );
+		$defaultOverrides->set( 'MainCacheType', CACHE_NONE );
 
-		$testConfig = new MultiConfig( [ $configOverrides, $bootstrapConfig ] );
-		MediaWikiServices::resetGlobalInstance( $testConfig );
+		$testConfig = $customOverrides
+			? new MultiConfig( [ $customOverrides, $defaultOverrides, $baseConfig ] )
+			: new MultiConfig( [ $defaultOverrides, $baseConfig ] );
+
+		return $testConfig;
+	}
+
+	/**
+	 * @param LBFactory $oldLBFactory
+	 * @param MediaWikiServices $newServices
+	 */
+	private static function installTestServices(
+		LBFactory $oldLBFactory,
+		MediaWikiServices $newServices
+	) {
+		// Remember if the database is currently cloaked.
+		$cloak = ( $oldLBFactory instanceof CloakingLBFactory )
+			? $oldLBFactory->getCloakParams()
+			: null;
+
+		$newServices->redefineService(
+			'DBLoadBalancerFactory',
+			function( MediaWikiServices $services ) use ( $cloak ) {
+				$lbFactoryConf = $services->getMainConfig()->get( 'LBFactoryConf' );
+				$lbFactory = new CloakingLBFactory( $lbFactoryConf );
+
+				if ( $cloak !== null ) {
+					// If the database was cloaked, cloak it again.
+					$lbFactory->cloakDatabase( $cloak );
+				}
+
+				return $lbFactory;
+			}
+		);
+
+		// Use bootstrap config as main config per default.
+		// This allows config overrides to take effect.
+		// XXX: We may want to override all configs here, by redefining ConfigFactory
+		$newServices->resetServiceForTesting( 'ConfigFactory' );
+		$newServices->redefineService(
+			'ConfigFactory',
+			function( MediaWikiServices $services ) {
+				$bootstrapConfig = $services->getBootstrapConfig();
+
+				$factory = new ConfigFactory();
+				$factory->register( '*', function() use ( $bootstrapConfig ) {
+					return $bootstrapConfig;
+				} );
+
+				return $factory;
+			}
+		);
+	}
+
+	/**
+	 * Resets some well known services that typically have state that may interfere with unit tests.
+	 * This is a lightweight alternative to resetGlobalServices().
+	 *
+	 * @note There is no guarantee that no references remain to stale service instances destroyed
+	 * by a call to doLightweightServiceReset().
+	 *
+	 * @throws MWException if called outside of PHPUnit tests.
+	 *
+	 * @see resetGlobalServices()
+	 */
+	private function doLightweightServiceReset() {
+		global $wgRequest;
 
 		$services = MediaWikiServices::getInstance();
 
-		// override services
-		$lbFactoryConf = $services->getMainConfig()->get( 'LBFactoryConf' );
-		self::$cloakingLBFactory = new CloakingLBFactory( $lbFactoryConf );
+		$services->getJobQueueGroupPool()->clear();
+		$services->getObjectCacheManager()->clear();
 
-		$services->redefineService( 'DBLoadBalancerFactory', function() {
-			return self::$cloakingLBFactory;
-		} );
+		$services->resetServiceForTesting( 'FileBackendGroup' );
+
+		// TODO: move global state into MediaWikiServices
+		RequestContext::resetMain();
+		MediaHandler::resetCache();
+		if ( session_id() !== '' ) {
+			session_write_close();
+			session_id( '' );
+		}
+
+		$wgRequest = new FauxRequest();
+		MediaWiki\Session\SessionManager::resetCache();
 	}
 
 	public function run( PHPUnit_Framework_TestResult $result = null ) {
 		// Reset all caches between tests.
-		MediaWikiServices::resetBetweenTest();
+		$this->doLightweightServiceReset();
 
 		$needsResetDB = false;
 
@@ -199,9 +306,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$this->checkDbIsSupported();
 
 			$this->setupTestDB();
-
-			// Init DB connection for use by tests.
-			$this->db = wfGetDB( DB_MASTER );
 
 			$this->addCoreDBData();
 			$this->addDBData();
@@ -304,8 +408,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	protected function tearDown() {
-		global $wgRequest;
-
 		$status = ob_get_status();
 		if ( isset( $status['name'] ) &&
 			$status['name'] === 'MediaWikiTestCase::wfResetOutputBuffersBarrier'
@@ -340,16 +442,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( self::$serviceLocator && MediaWikiServices::getInstance() !== self::$serviceLocator ) {
 			MediaWikiServices::forceGlobalInstance( self::$serviceLocator );
 		}
-
-		// TODO: move global state into MediaWikiServices
-		RequestContext::resetMain();
-		MediaHandler::resetCache();
-		if ( session_id() !== '' ) {
-			session_write_close();
-			session_id( '' );
-		}
-		$wgRequest = new FauxRequest();
-		MediaWiki\Session\SessionManager::resetCache();
 
 		$phpErrorLevel = intval( ini_get( 'error_reporting' ) );
 
@@ -505,33 +597,49 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Stashes the global instance of MediaWikiServices.
-	 * Useful to allow changes to global config variables to take effect.
-	 * The previous instance will be restored on tearDown.
-	 *
-	 * @param Config $configOverrides Configuration overrides for the new MediaWikiServices instance.
+	 * Stashes the global instance of MediaWikiServices, and installs a new one,
+	 * allowing test cases to override settings and services.
+	 * The previous instance of MediaWikiServices will be restored on tearDown.
 	 *
 	 * @since 1.27
+	 *
+	 * @param Config $configOverrides Configuration overrides for the new MediaWikiServices instance.
+	 * @param callable[] $services An associative array of services to re-define. Keys are service
+	 *        names, values are callables.
+	 *
+	 * @return MediaWikiServices
+	 * @throws MWException
 	 */
-	protected function overrideMwServices( Config $configOverrides = null ) {
+	protected function overrideMwServices( Config $configOverrides = null, array $services = [] ) {
 		if ( !$configOverrides ) {
 			$configOverrides = new HashConfig();
 		}
 
-		$bootstrapConfig = MediaWikiServices::getInstance()->getBootstrapConfig();
+		$oldInstance = MediaWikiServices::getInstance();
+		$oldLBFactory = $oldInstance->getDBLoadBalancerFactory();
 
-		$instance = new MediaWikiServices(
-			new MultiConfig( [ $configOverrides, $bootstrapConfig ] )
-		);
+		$testConfig = self::makeTestConfig( null, $configOverrides );
+		$newInstance = new MediaWikiServices( $testConfig );
 
-		if ( self::$cloakingLBFactory ) {
-			$instance->redefineService( 'DBLoadBalancerFactory', function( MediaWikiServices $services ) {
-				$lbFactoryConf = $services->getMainConfig()->get( 'LBFactoryConf' );
-				self::$cloakingLBFactory = new CloakingLBFactory( $lbFactoryConf );
-			} );
+		// Load the default wiring from the specified files.
+		// NOTE: this logic mirrors the logic in MediaWikiServices::newInstance.
+		$wiringFiles = $testConfig->get( 'ServiceWiringFiles' );
+		$newInstance->loadWiringFiles( $wiringFiles );
+
+		// Provide a traditional hook point to allow extensions to configure services.
+		Hooks::run( 'MediaWikiServices', [ $newInstance ] );
+
+		foreach ( $services as $name => $callback ) {
+			$newInstance->redefineService( $name, $callback );
 		}
 
-		MediaWikiServices::forceGlobalInstance( $instance );
+		self::installTestServices( $oldLBFactory, $newInstance );
+		MediaWikiServices::forceGlobalInstance( $newInstance );
+
+		// grab a fresh DB connection
+		$this->db = wfGetDB( DB_MASTER );
+
+		return $newInstance;
 	}
 
 	/**
@@ -650,6 +758,21 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Run any pending jobs.
+	 * The JobQueueGroup pool is cleared first.
+	 *
+	 * @since 1.27
+	 */
+	protected function runMwJobs() {
+		// XXX: Is resetting the JobQueueGroup instances really the right thing here?
+		// This behavior was copied from WikiPageTest and TemplateCategoriesTest.
+		MediaWikiServices::getInstance()->getJobQueueGroupPool()->clear();
+		$jobs = new RunJobs;
+		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
+		$jobs->execute();
+	}
+
+	/**
 	 * Stub. If a test needs to add additional data to the database, it should
 	 * implement this method and do so
 	 *
@@ -731,8 +854,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			JobQueueGroup::singleton()->get( $type )->delete();
 		}
 
-		if ( self::$cloakingLBFactory ) {
-			self::$cloakingLBFactory->uncloakDatabase();
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
+		if ( $lbFactory instanceof CloakingLBFactory && $lbFactory->isCloaked() ) {
+			$lbFactory->uncloakDatabase();
 		}
 	}
 
@@ -751,24 +876,37 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @throws MWException If the database table prefix is already $prefix
 	 */
 	public function setupTestDB() {
-		if ( !self::$cloakingLBFactory ) {
-			throw new MWException( '$cloakingLBFactory not initialized, call prepareServices first!' );
-		}
+		$services = MediaWikiServices::getInstance();
+		$lbFactory = $services->getDBLoadBalancerFactory();
 
-		if ( self::$cloakingLBFactory->isCloaked() ) {
+		if ( $lbFactory instanceof CloakingLBFactory && $lbFactory->isCloaked() ) {
 			// nothing to do
+			$this->db = wfGetDB( DB_MASTER );
 			return;
 		}
 
-		self::$cloakingLBFactory->cloakDatabase( [
+		// Reset all services so they operate on the new database setup.
+		self::resetGlobalServices();
+		$services = MediaWikiServices::getInstance();
+
+		/** @var CloakingLBFactory $lbFactory */
+		$lbFactory = $services->getDBLoadBalancerFactory();
+
+		$lbFactory->cloakDatabase( [
 			'testDbPrefix' => $this->dbPrefix(),
 			'useTemporaryTables' => !$this->getCliArg( 'use-normal-tables' ),
 			'reuseDB' => $this->getCliArg( 'reuse-db' ),
 		] );
 
-		$db = wfGetDB( DB_MASTER );
+		// Init DB connection for use by tests.
+		!!! We need to keep this DB connection alive and around!
+		!!! Cloaking uses temp tables which are bound to the connection.
+		!!! After re-cloaking, we would need to re-insert data!
+		$this->db = wfGetDB( DB_MASTER );
 
-		if ( ( $db->getType() == 'oracle' || $this->usesTemporaryTables() ) && $this->reusesDB() ) {
+		if ( ( $this->db->getType() == 'oracle' || $this->usesTemporaryTables() )
+			&& $this->reusesDB()
+		) {
 			$this->resetDB();
 		}
 	}

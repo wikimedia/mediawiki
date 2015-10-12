@@ -10,7 +10,7 @@ use Wikimedia\Assert\Assert;
  *
  * @since 1.27
  */
-class CloakingLoadBalancer extends LoadBalancer {
+class CloakingLoadBalancer extends LoadBalancer { // FIXME TESTME
 
 	/**
 	 * @var array|null

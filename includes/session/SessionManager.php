@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use BagOStuff;
@@ -1056,12 +1057,9 @@ final class SessionManager implements SessionManagerInterface {
 	 * Reset the internal caching for unit testing
 	 */
 	public static function resetCache() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			// @codeCoverageIgnoreStart
-			throw new MWException( __METHOD__ . ' may only be called from unit tests!' );
-			// @codeCoverageIgnoreEnd
-		}
+		MediaWikiServices::failUnlessBootstrapping( __METHOD__ );
 
+		self::$instance = null;
 		self::$globalSession = null;
 		self::$globalSessionRequest = null;
 	}

@@ -15,16 +15,18 @@ use Language;
 use LBFactory;
 use LinkCache;
 use LoadBalancer;
-use LockManagerGroup;
 use MagicWord;
 use MediaHandler;
 use MediaWiki\Services\ServiceContainer;
+use MediaWiki\Services\ServicePool;
+use MediaWiki\Session\SessionManager;
 use MessageCache;
 use MWException;
 use MWNamespace;
 use MWTidy;
 use ObjectCache;
-use RedisConnectionPool;
+use ObjectCacheManager;
+use Profiler;
 use RepoGroup;
 use RequestContext;
 use ResourceLoader;
@@ -227,7 +229,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * there should rarely be a need to reset all processes.
 	 */
 	private static function resetLegacyServices() {
-		global $wgContLang, $wgUser, $wgMemc;
+		global $wgContLang, $wgUser, $wgMemc, $wgRequest;
 
 		$services = self::getInstance();
 		$config = $services->getMainConfig();
@@ -260,18 +262,16 @@ class MediaWikiServices extends ServiceContainer {
 		Language::$mLangObjCache = [];
 		Language::getLocalisationCache()->unloadAll();
 
-		ObjectCache::clear();
-		RedisConnectionPool::destroySingletons();
-		FileBackendGroup::destroySingleton();
-		LockManagerGroup::destroySingletons();
-
 		RequestContext::resetMain();
+		$wgRequest = RequestContext::getMain()->getRequest(); // BackCompat
 
 		$wgContLang = Language::factory( $config->get( 'LanguageCode' ) );
 		$wgContLang->resetNamespaces(); # reset namespace cache
 
 		$wgMemc = ObjectCache::getLocalClusterInstance();
 		$wgUser = RequestContext::getMain()->getUser();
+
+		SessionManager::resetCache();
 
 		// Provide a hook point for extensions that need to reset global service instances.
 		Hooks::run( 'MediaWikiServices::resetLegacyServices', [ $services ] );
@@ -321,26 +321,25 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * Resets any services that has state that may interfere with unit tests.
-	 * Eventually, all unit tests should be fully isolated. Until then, this
-	 * method can be used to reset state between tests.
+	 * Resets the given service for testing purposes.
 	 *
-	 * @note This is not a full reset of all services! It is intended as a lightweight
-	 * alternative to resetGlobalInstance() and forceGlobalInstance() for use between
-	 * test runs.
+	 * @warning This is generally unsafe! Other services may still retain references
+	 * to the stale service instance, leading to failures and inconsistencies. Subclasses
+	 * may use this method to reset specific services under specific instances, but
+	 * it should not be exposed to application logic.
+	 *
+	 * @note With proper dependency injection used throughout the codebase, this method
+	 * should not be needed. It is provided to allow tests that pollute global service
+	 * instances to clean up.
 	 *
 	 * @throws MWException if called outside of PHPUnit tests.
-	 *
-	 * @see resetGlobalInstance()
-	 * @see forceGlobalInstance()
-	 * @see disableStorageBackend()
 	 */
-	public static function resetBetweenTest() {
+	public function resetServiceForTesting( $name ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new MWException( 'resetBetweenTest() must not be used outside unit tests.' );
+			throw new MWException( 'resetServiceForTesting() must not be used outside unit tests.' );
 		}
 
-		ObjectCache::clear();
+		$this->resetService( $name );
 	}
 
 	/**
@@ -445,10 +444,58 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * @return LoadBalancer
+	 * @return LoadBalancer The main DB load balancer for the local wiki.
 	 */
 	public function getDBLoadBalancer() {
 		return $this->getService( 'DBLoadBalancer' );
+	}
+	/**
+	 * @return ObjectCacheManager
+	 */
+	public function getObjectCacheManager() {
+		return $this->getService( 'ObjectCacheManager' );
+	}
+
+	/**
+	 * @return Profiler
+	 */
+	public function getProfiler() {
+		return $this->getService( 'Profiler' );
+	}
+
+	/**
+	 * @return \MediaWiki\Logger\Spi
+	 */
+	public function getLoggerFactory() {
+		return $this->getService( 'LoggerFactory' );
+	}
+
+	/**
+	 * @return FileBackendGroup
+	 */
+	public function getFileBackendGroup() {
+		return $this->getService( 'FileBackendGroup' );
+	}
+
+	/**
+	 * @return ServicePool A pool of RedisConnectionPool services.
+	 */
+	public function getRedisConnectionPoolPool() {
+		return $this->getService( 'RedisConnectionPoolPool' );
+	}
+
+	/**
+	 * @return ServicePool A pool of JobbQueueGroup services.
+	 */
+	public function getJobQueueGroupPool() {
+		return $this->getService( 'JobQueueGroupPool' );
+	}
+
+	/**
+	 * @return ServicePool A pool of LockManagerGroup services.
+	 */
+	public function getLockManagerGroupPool() {
+		return $this->getService( 'LockManagerGroupPool' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
