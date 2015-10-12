@@ -28,6 +28,8 @@
 $wgUseMasterForMaintenance = true;
 require_once __DIR__ . '/Maintenance.php';
 
+define( 'MEDIAWIKI_UPDATE', true );
+
 /**
  * Maintenance script to run database schema updates.
  *
