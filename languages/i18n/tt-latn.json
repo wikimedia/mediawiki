@@ -1476,5 +1476,8 @@
 	"htmlform-selectorother-other": "Başqa",
 	"revdelete-restricted": "çikläwlär idaräçelärgä dä qullanıla",
 	"rightsnone": "(yuq)",
-	"revdelete-summary": "üzgärtülär taswirlaması"
+	"revdelete-summary": "üzgärtülär taswirlaması",
+    "variantname-tt-cyrl": "Kirill yazuı",
+    "variantname-tt-latn": "Latin yazuı",
+    "variantname-tt": "Yazılğança",
 }
