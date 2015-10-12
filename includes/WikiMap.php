@@ -73,13 +73,8 @@ class WikiMap {
 	 * @return WikiReference|null WikiReference object or null if the wiki was not found
 	 */
 	private static function getWikiWikiReferenceFromSites( $wikiID ) {
-		static $siteStore = null;
-		if ( !$siteStore ) {
-			// Replace once T114471 got fixed and don't do the caching here.
-			$siteStore = SiteSQLStore::newInstance();
-		}
-
-		$site = $siteStore->getSite( $wikiID );
+		$siteLookup = \MediaWiki\MediaWikiServices::getInstance()->getSiteLookup();
+		$site = $siteLookup->getSite( $wikiID );
 
 		if ( !$site instanceof MediaWikiSite ) {
 			// Abort if not a MediaWikiSite, as this is about Wikis
