@@ -603,10 +603,11 @@
 			 */
 			log.warn = function () {
 				var console = window.console;
-				if ( console && console.warn && console.warn.apply ) {
-					console.warn.apply( console, arguments );
+				if ( console && console.warn ) {
+					return Function.prototype.bind.call( console.warn, console );
 				}
-			};
+				return $.noop;
+			}();
 
 			/**
 			 * Write a message the console's error channel.
@@ -619,10 +620,11 @@
 			 */
 			log.error = function () {
 				var console = window.console;
-				if ( console && console.error && console.error.apply ) {
-					console.error.apply( console, arguments );
+				if ( console && console.error ) {
+					return Function.prototype.bind.call( console.error, console );
 				}
-			};
+				return $.noop;
+			}();
 
 			/**
 			 * Create a property in a host object that, when accessed, will produce
