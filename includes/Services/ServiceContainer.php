@@ -56,6 +56,11 @@ class ServiceContainer {
 	private $serviceConstructors = [];
 
 	/**
+	 * @var callable[]
+	 */
+	private $serviceWrapperConstructors = array();
+
+	/**
 	 * @var array
 	 */
 	private $extraInstantiationParams;
@@ -140,6 +145,7 @@ class ServiceContainer {
 	 *
 	 * @see getService().
 	 * @see replaceService().
+	 * @see wrapService().
 	 *
 	 * @param string $name The name of the service to register, for use with getService().
 	 * @param callable $constructor Callback that returns a service instance.
@@ -164,8 +170,10 @@ class ServiceContainer {
 	 * Replace an already defined service.
 	 *
 	 * @see defineService().
+	 * @see wrapService().
 	 *
 	 * @note This causes any previously instantiated instance of the service to be discarded.
+	 * @note This does not remove any service wrappers defined for the service.
 	 *
 	 * @param string $name The name of the service to register.
 	 * @param callable $constructor Callback that returns a service instance.
@@ -192,6 +200,36 @@ class ServiceContainer {
 	}
 
 	/**
+	 * Defines a constructor callback for wrapping a service.
+	 * When multiple wrappers are defined for the same service, they are chained:
+	 * Each wrapper is called on the result of the previous wrapper.
+	 *
+	 * @note This causes any previously instantiated instance of the service to be discarded.
+	 *
+	 * @see defineService().
+	 * @see replaceService().
+	 *
+	 * @param string $name The name of the service to wrap.
+	 * @param callable $wrapperConstructor Callback that returns a service instance based on
+	 *        an existing service instance. This will typically be a "decorator" or "proxy"
+	 *        wrapping the original service. Will be called with the original service as the
+	 *        first and MediaWikiServices as the second parameter.
+	 *        The callback must return a service compatible with the originally defined service.
+	 *
+	 * @throws RuntimeException if $name is not a known service.
+	 */
+	public function wrapService( $name, $wrapperConstructor ) {
+		Assert::parameterType( 'callable', $wrapperConstructor, '$wrapperConstructor' );
+
+		if ( !$this->hasService( $name ) ) {
+			throw new RuntimeException( 'Service not defined: ' . $name );
+		}
+
+		$this->serviceWrapperConstructors[$name][] = $wrapperConstructor;
+		unset( $this->services[$name] );
+	}
+
+	/**
 	 * Returns a service object of the kind associated with $name.
 	 * Services instances are instantiated lazily, on demand.
 	 * This method may or may not return the same service instance
@@ -202,6 +240,7 @@ class ServiceContainer {
 	 * a subclass or wrapper.
 	 *
 	 * @see redefineService().
+	 * @see wrapService().
 	 *
 	 * @param string $name The service name
 	 *
@@ -230,6 +269,12 @@ class ServiceContainer {
 			);
 		} else {
 			throw new InvalidArgumentException( 'Unknown service: ' . $name );
+		}
+
+		if ( isset( $this->serviceWrapperConstructors[$name] ) ) {
+			foreach ( $this->serviceWrapperConstructors[$name] as $constructor ) {
+				$service = call_user_func( $constructor, $service, $this );
+			}
 		}
 
 		return $service;

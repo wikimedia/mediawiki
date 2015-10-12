@@ -206,4 +206,53 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		} );
 	}
 
+	public function testWrapService() {
+		$services = $this->newServiceContainer();
+
+		$serviceOne = new stdClass();
+		$serviceTwo = new stdClass();
+		$serviceThree = new stdClass();
+		$name = 'TestService92834576';
+
+		$services->defineService( $name, function() use ( $serviceOne ) {
+			return $serviceOne;
+		} );
+
+		$services->wrapService( $name,
+			function( $actualService, $actualLocator )
+			use ( $serviceOne, $serviceTwo, $services ) {
+				PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
+				PHPUnit_Framework_Assert::assertSame( $serviceOne, $actualService );
+
+				return $serviceTwo;
+			}
+		);
+
+		$this->assertSame( $serviceTwo, $services->getService( $name ) );
+
+		$services->wrapService( $name,
+			function( $actualService, $actualLocator )
+			use ( $serviceTwo, $serviceThree, $services ) {
+				PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
+				PHPUnit_Framework_Assert::assertSame( $serviceTwo, $actualService );
+				return $serviceThree;
+			}
+		);
+
+		$this->assertSame( $serviceThree, $services->getService( $name ) );
+	}
+
+	public function testWrapService_fail_undefined() {
+		$services = $this->newServiceContainer();
+
+		$theService = new stdClass();
+		$name = 'TestService92834576';
+
+		$this->setExpectedException( 'RuntimeException' );
+
+		$services->wrapService( $name, function() use ( $theService ) {
+			return $theService;
+		} );
+	}
+
 }
