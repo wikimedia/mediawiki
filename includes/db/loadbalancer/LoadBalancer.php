@@ -20,6 +20,7 @@
  * @file
  * @ingroup Database
  */
+use Wikimedia\Assert\Assert;
 
 /**
  * Database load balancing object
@@ -719,6 +720,12 @@ class LoadBalancer {
 			$conn = false;
 		}
 
+		if ( $conn ) {
+			// Remember for which wiki and index the connection was created.
+			$conn->setLBInfo( 'wiki', $wiki );
+			$conn->setLBInfo( 'index', $i );
+		}
+
 		return $conn;
 	}
 
@@ -1013,6 +1020,13 @@ class LoadBalancer {
 	}
 
 	/**
+	 * @return bool
+	 */
+	public function isDisabled() {
+		return $this->disabled;
+	}
+
+	/**
 	 * Close all open connections
 	 */
 	public function closeAll() {
@@ -1274,6 +1288,21 @@ class LoadBalancer {
 		}
 
 		return false;
+	}
+
+	/**
+	 * @param string|bool $reason
+	 */
+	public function setReadOnlyReason( $reason ) {
+		Assert::parameterType( 'boolean|string', $reason, '$reason' );
+
+		$this->readOnlyReason = $reason;
+
+		$this->forEachOpenConnection( function( DatabaseBase $conn ) {
+			$wiki = $conn->getLBInfo( 'wiki' );
+			$wiki = $wiki === null ? false : $wiki;
+			$conn->setLBInfo( 'readOnlyReason', $this->getReadOnlyReason( $wiki ) );
+		} );
 	}
 
 	/**

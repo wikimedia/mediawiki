@@ -2173,8 +2173,10 @@ $wgObjectCaches = [
 	CACHE_NONE => [ 'class' => 'EmptyBagOStuff' ],
 	CACHE_DB => [ 'class' => 'SqlBagOStuff', 'loggroup' => 'SQLBagOStuff' ],
 
-	CACHE_ANYTHING => [ 'factory' => 'ObjectCache::newAnything' ],
-	CACHE_ACCEL => [ 'factory' => 'ObjectCache::getLocalServerInstance' ],
+	// Default handling for the CACHE_ANYTHING and CACHE_ACCEL aliases are build in now.
+	// CACHE_ANYTHING => [ ... ],
+	// CACHE_ACCEL => [ ... ],
+
 	CACHE_MEMCACHED => [ 'class' => 'MemcachedPhpBagOStuff', 'loggroup' => 'memcached' ],
 
 	'db-replicated' => [

@@ -213,7 +213,7 @@ class ServiceContainer implements DestructibleService {
 	 *
 	 * @note This causes any previously instantiated instance of the service to be discarded.
 	 *
-	 * @param string $name The name of the service to register.
+	 * @param string $name The name of the service to redefine.
 	 * @param callable $constructor Callback that returns a service instance.
 	 *        Will be called with this MediaWikiServices instance as the only parameter.
 	 *        The callback must return a service compatible with the originally defined service.
@@ -249,26 +249,54 @@ class ServiceContainer implements DestructibleService {
 	 * and the service instance implements DestructibleService, destroy() is called on the
 	 * service instance.
 	 *
-	 * @see redefineService().
+	 * @see redefineService()
+	 * @see resetService()
 	 *
-	 * @param string $name The name of the service to register.
+	 * @param string $name The name of the service to disable.
 	 *
 	 * @throws RuntimeException if $name is not a known service.
 	 */
 	public function disableService( $name ) {
-		Assert::parameterType( 'string', $name, '$name' );
-
-		$instance = $this->peekService( $name );
-
-		if ( $instance instanceof DestructibleService )  {
-			$instance->destroy();
-		}
-
-		unset( $this->services[$name] );
+		$this->resetService( $name );
 
 		$this->redefineService( $name, function() use ( $name ) {
 			throw new ServiceDisabledException( $name );
 		} );
+	}
+
+	/**
+	 * Resets a service by dropping the service instance.
+	 * If the service instances implements DestructibleService, destroy()
+	 * is called on the service instance.
+	 *
+	 * @warning This is generally unsafe! Other services may still retain references
+	 * to the stale service instance, leading to failures and inconsistencies. Subclasses
+	 * may use this method to reset specific services under specific instances, but
+	 * it should not be exposed to application logic.
+	 *
+	 * @note This is declared final so subclasses can not interfere with the expectations
+	 * disableService() has when calling resetService().
+	 *
+	 * @see redefineService()
+	 * @see disableService().
+	 *
+	 * @param string $name The name of the service to reset.
+	 * @param bool $destroy Whether the service instance should be destroyed if it exists.
+	 *        When set to false, any existing service instance will effectively be detached
+	 *        from the container.
+	 *
+	 * @throws RuntimeException if $name is not a known service.
+	 */
+	final protected function resetService( $name, $destroy = true ) {
+		Assert::parameterType( 'string', $name, '$name' );
+
+		$instance = $this->peekService( $name );
+
+		if ( $destroy && $instance instanceof DestructibleService )  {
+			$instance->destroy();
+		}
+
+		unset( $this->services[$name] );
 	}
 
 	/**
