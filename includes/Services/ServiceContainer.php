@@ -56,6 +56,11 @@ class ServiceContainer implements DestructibleService {
 	private $serviceInstantiators = [];
 
 	/**
+	 * @var callable[]
+	 */
+	private $serviceWrapperInstantiators = [];
+
+	/**
 	 * @var array
 	 */
 	private $extraInstantiationParams;
@@ -173,10 +178,11 @@ class ServiceContainer implements DestructibleService {
 	 *
 	 * @see getService().
 	 * @see replaceService().
+	 * @see wrapService().
 	 *
 	 * @param string $name The name of the service to register, for use with getService().
 	 * @param callable $instantiator Callback that returns a service instance.
-	 *        Will be called with this MediaWikiServices instance as the only parameter.
+	 *        Will be called with this ServiceContainer instance as the only parameter.
 	 *        Any extra instantiation parameters provided to the constructor will be
 	 *        passed as subsequent parameters when invoking the instantiator.
 	 *
@@ -196,17 +202,19 @@ class ServiceContainer implements DestructibleService {
 	 * Replace an already defined service.
 	 *
 	 * @see defineService().
+	 * @see wrapService().
 	 *
 	 * @note This causes any previously instantiated instance of the service to be discarded.
+	 * @note This does not remove any service wrappers defined for the service.
 	 *
 	 * @param string $name The name of the service to register.
 	 * @param callable $instantiator Callback function that returns a service instance.
-	 *        Will be called with this MediaWikiServices instance as the only parameter.
+	 *        Will be called with this ServiceContainer instance as the only parameter.
 	 *        The instantiator must return a service compatible with the originally defined service.
 	 *        Any extra instantiation parameters provided to the constructor will be
 	 *        passed as subsequent parameters when invoking the instantiator.
 	 *
-	 * @throws RuntimeException if $name is not a known service.
+	 * @throws RuntimeException if $name is not a known service, or the service is already in use.
 	 */
 	public function redefineService( $name, callable $instantiator ) {
 		Assert::parameterType( 'string', $name, '$name' );
@@ -285,6 +293,37 @@ class ServiceContainer implements DestructibleService {
 	}
 
 	/**
+	 * Defines a constructor callback for wrapping a service.
+	 * When multiple wrappers are defined for the same service, they are chained:
+	 * Each wrapper is called on the result of the previous wrapper.
+	 *
+	 * @note This causes any existing instance of the service to be discarded.
+	 *
+	 * @see defineService().
+	 * @see replaceService().
+	 *
+	 * @param string $name The name of the service to wrap.
+	 * @param callable $wrapperConstructor Callback that returns a service instance based on
+	 *        an existing service instance. This will typically be a "decorator" or "proxy"
+	 *        wrapping the original service. Will be called with the original service as the
+	 *        first and this ServiceContainer as the second parameter.
+	 *        The callback must return a service compatible with the originally defined service.
+	 *
+	 * @throws RuntimeException if $name is not a known service, or the service is already in use.
+	 */
+	public function wrapService( $name, callable $wrapperConstructor ) {
+		if ( !$this->hasService( $name ) ) {
+			throw new RuntimeException( 'Service not defined: ' . $name );
+		}
+
+		if ( isset( $this->services[$name] ) ) {
+			throw new RuntimeException( 'Cannot wrap a service that is already in use: ' . $name );
+		}
+
+		$this->serviceWrapperInstantiators[$name][] = $wrapperConstructor;
+	}
+
+	/**
 	 * Returns a service object of the kind associated with $name.
 	 * Services instances are instantiated lazily, on demand.
 	 * This method may or may not return the same service instance
@@ -295,6 +334,7 @@ class ServiceContainer implements DestructibleService {
 	 * a subclass or wrapper.
 	 *
 	 * @see redefineService().
+	 * @see wrapService().
 	 *
 	 * @param string $name The service name
 	 *
@@ -329,6 +369,12 @@ class ServiceContainer implements DestructibleService {
 			);
 		} else {
 			throw new NoSuchServiceException( $name );
+		}
+
+		if ( isset( $this->serviceWrapperInstantiators[$name] ) ) {
+			foreach ( $this->serviceWrapperInstantiators[$name] as $constructor ) {
+				$service = call_user_func( $constructor, $service, $this );
+			}
 		}
 
 		return $service;
