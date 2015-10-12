@@ -170,31 +170,7 @@ class Title {
 	 * @return TitleParser
 	 */
 	private static function getTitleParser() {
-		global $wgContLang, $wgLocalInterwikis;
-
-		static $titleCodec = null;
-		static $titleCodecFingerprint = null;
-
-		// $wgContLang and $wgLocalInterwikis may change (especially while testing),
-		// make sure we are using the right one. To detect changes over the course
-		// of a request, we remember a fingerprint of the config used to create the
-		// codec singleton, and re-create it if the fingerprint doesn't match.
-		$fingerprint = spl_object_hash( $wgContLang ) . '|' . join( '+', $wgLocalInterwikis );
-
-		if ( $fingerprint !== $titleCodecFingerprint ) {
-			$titleCodec = null;
-		}
-
-		if ( !$titleCodec ) {
-			$titleCodec = new MediaWikiTitleCodec(
-				$wgContLang,
-				GenderCache::singleton(),
-				$wgLocalInterwikis
-			);
-			$titleCodecFingerprint = $fingerprint;
-		}
-
-		return $titleCodec;
+		return MediaWikiServices::getInstance()->getTitleParser();
 	}
 
 	/**
@@ -206,9 +182,7 @@ class Title {
 	 * @return TitleFormatter
 	 */
 	private static function getTitleFormatter() {
-		// NOTE: we know that getTitleParser() returns a MediaWikiTitleCodec,
-		//      which implements TitleFormatter.
-		return self::getTitleParser();
+		return MediaWikiServices::getInstance()->getTitleFormatter();
 	}
 
 	function __construct() {
