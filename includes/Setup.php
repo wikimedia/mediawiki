@@ -640,7 +640,7 @@ if ( $wgCommandLineMode ) {
 Profiler::instance()->scopedProfileOut( $ps_misc );
 $ps_memcached = Profiler::instance()->scopedProfileIn( $fname . '-memcached' );
 
-$wgMemc = wfGetMainCache();
+$wgMemc = ObjectCache::getLocalClusterInstance();
 $messageMemc = wfGetMessageCacheStorage();
 $parserMemc = wfGetParserCacheStorage();
 
