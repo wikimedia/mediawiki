@@ -11,7 +11,7 @@
  *
  * @since 1.27
  */
-class CloakingLBFactory extends LBFactorySimple {
+class CloakingLBFactory extends LBFactorySimple { // FIXME TESTME
 
 	/**
 	 * @var array|null
@@ -46,6 +46,13 @@ class CloakingLBFactory extends LBFactorySimple {
 	 */
 	public function isCloaked() {
 		return $this->cloakParams !== null;
+	}
+
+	/**
+	 * @return array|null
+	 */
+	public function getCloakParams() {
+		return $this->cloakParams;
 	}
 
 	/**
