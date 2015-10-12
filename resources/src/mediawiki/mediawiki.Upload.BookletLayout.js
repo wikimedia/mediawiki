@@ -285,21 +285,21 @@
 			} else if ( warnings.exists !== undefined ) {
 				return new OO.ui.Error(
 					$( '<p>' ).html(
-						mw.message( 'fileexists', warnings.exists ).parse()
+						mw.message( 'fileexists', 'File:' + warnings.exists ).parse()
 					),
 					{ recoverable: false }
 				);
 			} else if ( warnings[ 'page-exists' ] !== undefined ) {
 				return new OO.ui.Error(
 					$( '<p>' ).html(
-						mw.message( 'filepageexists', warnings[ 'page-exists' ] ).parse()
+						mw.message( 'filepageexists', 'File:' + warnings[ 'page-exists' ] ).parse()
 					),
 					{ recoverable: false }
 				);
 			} else if ( warnings.duplicate !== undefined ) {
 				return new OO.ui.Error(
 					$( '<p>' ).html(
-						mw.message( 'api-error-duplicate', warnings.duplicate[ 0 ] ).parse()
+						mw.message( 'api-error-duplicate', warnings.duplicate.length ).parse()
 					),
 					{ recoverable: false }
 				);
@@ -320,7 +320,7 @@
 			} else if ( warnings[ 'duplicate-archive' ] !== undefined ) {
 				return new OO.ui.Error(
 					$( '<p>' ).html(
-						mw.message( 'api-error-duplicate-archive', warnings[ 'duplicate-archive' ] ).parse()
+						mw.message( 'api-error-duplicate-archive', 1 ).parse()
 					),
 					{ recoverable: false }
 				);
