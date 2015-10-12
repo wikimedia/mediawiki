@@ -491,9 +491,8 @@ class RequestContext implements IContextSource, MutableContext {
 	 * Resets singleton returned by getMain(). Should be called only from unit tests.
 	 */
 	public static function resetMain() {
-		if ( !( defined( 'MW_PHPUNIT_TEST' ) || defined( 'MW_PARSER_TEST' ) ) ) {
-			throw new MWException( __METHOD__ . '() should be called only from unit tests!' );
-		}
+		// TODO: manage service instances in MediaWikiServices
+		MediaWikiServices::failIfResetNotAllowed( __METHOD__ );
 		self::$instance = null;
 	}
 
