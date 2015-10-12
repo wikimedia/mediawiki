@@ -34,7 +34,7 @@ class SiteSQLStoreTest extends MediaWikiTestCase {
 	 */
 	public function testNewInstance() {
 		$siteStore = SiteSQLStore::newInstance();
-		$this->assertInstanceOf( 'SiteSQLStore', $siteStore );
+		$this->assertInstanceOf( 'SiteStore', $siteStore );
 	}
 
 }

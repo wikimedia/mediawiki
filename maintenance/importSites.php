@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 $basePath = getenv( 'MW_INSTALL_PATH' ) !== false ? getenv( 'MW_INSTALL_PATH' ) : __DIR__ . '/..';
 
 require_once $basePath . '/maintenance/Maintenance.php';
@@ -31,7 +33,8 @@ class ImportSites extends Maintenance {
 	public function execute() {
 		$file = $this->getArg( 0 );
 
-		$importer = new SiteImporter( SiteSQLStore::newInstance() );
+		$siteStore = MediaWikiServices::getInstance()->getSiteStore();
+		$importer = new SiteImporter( $siteStore );
 		$importer->setExceptionCallback( array( $this, 'reportException' ) );
 
 		$importer->importFromFile( $file );

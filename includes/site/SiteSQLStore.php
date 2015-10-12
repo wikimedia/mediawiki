@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\MediaWikiServices;
 
 /**
  * Represents the site configuration of a wiki.
@@ -27,32 +28,41 @@
  *
  * @license GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ *
+ * @node SiteSQLStore is a backwards compatibility stub. Despite the name, no guarantee is given
+ * regarding the backend used for storing site information.
  */
 class SiteSQLStore extends CachingSiteStore {
 
 	/**
+	 * Backwards compatibility alias for MediaWikiServices::getSiteStore().
+	 *
+	 * @note: is not guaranteed to return a fresh instance.
+	 * @note: is not guaranteed to return an SiteSQLStore.
+	 *
 	 * @since 1.21
-	 * @deprecated 1.25 Construct a SiteStore instance directly instead.
+	 * @deprecated 1.25 Use MediaWikiServices::getSiteStore() instead.
 	 *
-	 * @param null $sitesTable Unused
-	 * @param BagOStuff|null $cache
+	 * @param null $sitesTable must be null
+	 * @param null $cache must be null
 	 *
-	 * @return SiteStore
+	 * @throws InvalidArgumentException if $sitesTable or $cache is not null.
+	 * @return SiteStore A SiteStore; no guarantee is given regarding the storage backend used.
 	 */
-	public static function newInstance( $sitesTable = null, BagOStuff $cache = null ) {
+	public static function newInstance( $sitesTable = null, $cache = null ) {
 		if ( $sitesTable !== null ) {
 			throw new InvalidArgumentException(
 				__METHOD__ . ': $sitesTable parameter is unused and must be null'
 			);
 		}
 
-		if ( $cache === null ) {
-			$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
+		if ( $cache !== null ) {
+			throw new InvalidArgumentException(
+				__METHOD__ . ': $cache parameter is unused and must be null'
+			);
 		}
 
-		$siteStore = new DBSiteStore();
-
-		return new static( $siteStore, $cache );
+		return MediaWikiServices::getInstance()->getSiteStore();
 	}
 
 }

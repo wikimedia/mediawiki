@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 $basePath = getenv( 'MW_INSTALL_PATH' ) !== false ? getenv( 'MW_INSTALL_PATH' ) : __DIR__ . '/..';
 
 require_once $basePath . '/maintenance/Maintenance.php';
@@ -42,7 +44,7 @@ class ExportSites extends Maintenance {
 
 		$exporter = new SiteExporter( $handle );
 
-		$sites = SiteSQLStore::newInstance()->getSites( 'recache' );
+		$sites = MediaWikiServices::getInstance()->getSiteStore()->getSites( 'recache' );
 		$exporter->exportSites( $sites );
 
 		fclose( $handle );
