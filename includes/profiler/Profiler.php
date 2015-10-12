@@ -39,8 +39,6 @@ abstract class Profiler {
 	protected $context = null;
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
-	/** @var Profiler */
-	private static $instance = null;
 
 	/**
 	 * @param array $params
@@ -58,31 +56,7 @@ abstract class Profiler {
 	 * @return Profiler
 	 */
 	final public static function instance() {
-		if ( self::$instance === null ) {
-			global $wgProfiler, $wgProfileLimit;
-
-			$params = array(
-				'class'     => 'ProfilerStub',
-				'sampling'  => 1,
-				'threshold' => $wgProfileLimit,
-				'output'    => array(),
-			);
-			if ( is_array( $wgProfiler ) ) {
-				$params = array_merge( $params, $wgProfiler );
-			}
-
-			$inSample = mt_rand( 0, $params['sampling'] - 1 ) === 0;
-			if ( PHP_SAPI === 'cli' || !$inSample ) {
-				$params['class'] = 'ProfilerStub';
-			}
-
-			if ( !is_array( $params['output'] ) ) {
-				$params['output'] = array( $params['output'] );
-			}
-
-			self::$instance = new $params['class']( $params );
-		}
-		return self::$instance;
+		return \MediaWiki\MediaWikiServices::getInstance()->getProfiler();
 	}
 
 	/**
@@ -93,11 +67,17 @@ abstract class Profiler {
 	 * @since 1.25
 	 */
 	final public static function replaceStubInstance( Profiler $profiler ) {
-		if ( self::$instance && !( self::$instance instanceof ProfilerStub ) ) {
-			throw new MWException( 'Could not replace non-stub profiler instance.' );
-		} else {
-			self::$instance = $profiler;
-		}
+		\MediaWiki\MediaWikiServices::getInstance()->replaceService(
+			'Profiler',
+			function () use ( $profiler ) {
+				return $profiler;
+			},
+			function ( $oldProfiler ) {
+				if ( !( $oldProfiler instanceof ProfilerStub ) ) {
+					throw new MWException( 'Could not replace non-stub profiler instance.' );
+				}
+			}
+		);
 	}
 
 	/**
@@ -140,7 +120,7 @@ abstract class Profiler {
 		} else {
 			wfDebug( __METHOD__ . " called and \$context is null. " .
 				"Return RequestContext::getMain(); for sanity\n" );
-			return RequestContext::getMain();
+			return RequestContext::getMain(); // TODO: inject RequestContext via the constructor
 		}
 	}
 
