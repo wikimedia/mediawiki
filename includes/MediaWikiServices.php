@@ -74,12 +74,27 @@ class MediaWikiServices {
 	}
 
 	/**
+	 * @return Language
+	 */
+	public function getContentLanguage() {
+		return $this->getConfig()->get( 'ContLang' );
+	}
+
+	/**
+	 * @return string language code
+	 */
+	public function getContentLanguageCode() {
+		return $this->getConfig()->get( 'LanguageCode' );
+	}
+
+	/**
 	 * @param string $name
+	 * @param string $reset if 'reset', creation of a fresh instance is forced.
 	 *
 	 * @return object
 	 */
-	private function getService( $name ) {
-		if ( !isset( $this->services[$name] ) ) {
+	private function getService( $name, $reset = '' ) {
+		if ( $reset === 'reset' || !isset( $this->services[$name] ) ) {
 			$this->services[$name] = $this->createService( $name );
 		}
 
@@ -118,6 +133,89 @@ class MediaWikiServices {
 		$siteStore = new DBSiteStore();
 
 		return new CachingSiteStore( $siteStore, $cache );
+	}
+
+	private $titleCodecFingerprint = null;
+
+	/**
+	 * Checks the global configuration variables that affect the TitleCodec have
+	 * been modified.
+	 *
+	 * @note This is a hack around the fact that a) the configuration object may depend on mutable
+	 * global state and b) the title codec is accessed via static methods in Title. Once TitleParser
+	 * and TitleFormatter instances are property getting injected in all places that need them,
+	 * there will no longer be need to purge the default instance when the config changes.
+	 * Once that is the case, this method should be removed.
+	 *
+	 * @return bool true if the global configuration variables that affect the TitleCodec have
+	 * been modified.
+	 */
+	private function checkConfigForTitleCodecChanged() {
+		$localInterwikis = $this->getConfig()->get( 'LocalInterwikis' );
+		$contLang = $this->getConfig()->get( 'ContLang' );
+
+		// $wgContLang and $wgLocalInterwikis may change (especially while testing),
+		// make sure we are using the right one. To detect changes over the course
+		// of a request, we remember a fingerprint of the config used to create the
+		// codec singleton, and re-create it if the fingerprint doesn't match.
+		$fingerprint = spl_object_hash( $contLang ) . '|' . join( '+', $localInterwikis );
+		$changed = ( $fingerprint !== $this->titleCodecFingerprint );
+
+		$this->titleCodecFingerprint = $fingerprint;
+		return $changed;
+	}
+
+	/**
+	 * @return TitleParser
+	 */
+	public function getTitleParser() {
+		return $this->getService( 'TitleCodec', $this->checkConfigForTitleCodecChanged() ? 'reset' : '' );
+	}
+
+	/**
+	 * @return TitleFormatter
+	 */
+	public function getTitleFormatter() {
+		// XXX: we may want to manage this per language, or at least content language vs user language.
+		return $this->getService( 'TitleCodec', $this->checkConfigForTitleCodecChanged() ? 'reset' : '' );
+	}
+
+	/**
+	 * @note should be called by createService() only!
+	 */
+	private function newTitleCodec() {
+		$localInterwikis = $this->getConfig()->get( 'LocalInterwikis' );
+
+		return new MediaWikiTitleCodec(
+			$this->getContentLanguage(),
+			$this->getGenderCache(),
+			$localInterwikis
+		);
+	}
+
+	/**
+	 * @return GenderCache
+	 */
+	public function getGenderCache() {
+		// @todo: manage the GenderCache singleton here instead of in the GenderCache class.
+		return GenderCache::singleton();
+	}
+
+	/**
+	 * @return PageLinkRenderer
+	 */
+	public function getPageLinkRenderer() {
+		// XXX: we may want to manage this per language, or at least content language vs user language.
+		return $this->getService( 'PageLinkRenderer' );
+	}
+
+	/**
+	 * @note should be called by createService() only!
+	 */
+	private function newPageLinkRenderer() {
+		return new MediaWikiPageLinkRenderer(
+			$this->getTitleFormatter()
+		);
 	}
 
 }
