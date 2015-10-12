@@ -298,14 +298,21 @@
 			} else if ( warnings.exists !== undefined ) {
 				return new OO.ui.Error(
 					$( '<p>' ).html(
-						mw.message( 'filepageexists', warnings.exists ).parse()
+						mw.message( 'fileexists', warnings.exists ).parse()
+					),
+					{ recoverable: false }
+				);
+			} else if ( warnings[ 'page-exists' ] !== undefined ) {
+				return new OO.ui.Error(
+					$( '<p>' ).html(
+						mw.message( 'filepageexists', warnings[ 'page-exists' ] ).parse()
 					),
 					{ recoverable: false }
 				);
 			} else if ( warnings.duplicate !== undefined ) {
 				return new OO.ui.Error(
 					$( '<p>' ).html(
-						mw.message( 'fileexists', warnings.duplicate[ 0 ] ).parse()
+						mw.message( 'api-error-duplicate', warnings.duplicate[ 0 ] ).parse()
 					),
 					{ recoverable: false }
 				);
