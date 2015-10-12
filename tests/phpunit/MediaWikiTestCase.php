@@ -203,6 +203,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			// Init DB connection for use by tests.
 			$this->db = wfGetDB( DB_MASTER );
 
+				// reset all services so they operate on the new database setup
+				MediaWikiServices::resetGlobalInstance();
+
 			$this->addCoreDBData();
 			$this->addDBData();
 			$needsResetDB = true;
