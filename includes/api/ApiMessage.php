@@ -23,6 +23,11 @@
 
 /**
  * Interface for messages with machine-readable data for use by the API
+ *
+ * The idea is it's a Message that has some extra data for the API to use when interpreting it as an
+ * error. Internals of MediaWiki often use messages (or message keys) to pass information about
+ * errors to the user (e.g. Title::getUserPermissionsErrors()) and the API has to make do with that.
+ *
  * @since 1.25
  * @ingroup API
  */
