@@ -1,20 +1,12 @@
-/*
- * Local backports:
- *
- * - 9aba218a882ff45b07410a3ce9d5cdfd8e567e26
- *   CapsuleMultiSelectWidget: When 'allowArbitrary' is true, don't require 'Enter' to confirm
- *   Required for more intuitive behavior of mw.widgets.CategorySelector.
- */
-
 /*!
- * OOjs UI v0.12.11
+ * OOjs UI v0.12.12
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-10-07T20:48:15Z
+ * Date: 2015-10-13T20:38:18Z
  */
 ( function ( OO ) {
 
@@ -1113,7 +1105,8 @@ OO.ui.ActionSet.prototype.organize = function () {
  * @cfg {Array} [content] An array of content elements to append (after #text).
  *  Strings will be html-escaped; use an OO.ui.HtmlSnippet to append raw HTML.
  *  Instances of OO.ui.Element will have their $element appended.
- * @cfg {jQuery} [$content] Content elements to append (after #text)
+ * @cfg {jQuery} [$content] Content elements to append (after #text).
+ * @cfg {jQuery} [$element] Wrapper element. Defaults to a new element with #getTagName.
  * @cfg {Mixed} [data] Custom data of any type or combination of types (e.g., string, number, array, object).
  *  Data can also be specified with the #setData method.
  */
@@ -4241,7 +4234,7 @@ OO.initClass( OO.ui.Theme );
  * @param {OO.ui.Element} element Element for which to get classes
  * @return {Object.<string,string[]>} Categorized class names with `on` and `off` lists
  */
-OO.ui.Theme.prototype.getElementClasses = function ( /* element */ ) {
+OO.ui.Theme.prototype.getElementClasses = function () {
 	return { on: [], off: [] };
 };
 
@@ -4633,18 +4626,28 @@ OO.ui.mixin.ButtonElement.prototype.toggleFramed = function ( framed ) {
 };
 
 /**
- * Set the button to its 'active' state.
+ * Set the button's active state.
  *
  * The active state occurs when a {@link OO.ui.ButtonOptionWidget ButtonOptionWidget} or
  * a {@link OO.ui.ToggleButtonWidget ToggleButtonWidget} is pressed. This method does nothing
  * for other button types.
  *
- * @param {boolean} [value] Make button active
+ * @param {boolean} value Make button active
  * @chainable
  */
 OO.ui.mixin.ButtonElement.prototype.setActive = function ( value ) {
-	this.$element.toggleClass( 'oo-ui-buttonElement-active', !!value );
+	this.active = !!value;
+	this.$element.toggleClass( 'oo-ui-buttonElement-active', this.active );
 	return this;
+};
+
+/**
+ * Check if the button is active
+ *
+ * @return {boolean} The button is active
+ */
+OO.ui.mixin.ButtonElement.prototype.isActive = function () {
+	return this.active;
 };
 
 /**
@@ -14107,6 +14110,18 @@ OO.ui.SelectFileWidget.prototype.setValue = function ( file ) {
 		this.updateUI();
 		this.emit( 'change', this.currentFile );
 	}
+};
+
+/**
+ * Focus the widget.
+ *
+ * Focusses the select file button.
+ *
+ * @chainable
+ */
+OO.ui.SelectFileWidget.prototype.focus = function () {
+	this.selectButton.$button[ 0 ].focus();
+	return this;
 };
 
 /**

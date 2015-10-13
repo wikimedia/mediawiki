@@ -1,20 +1,12 @@
-/*
- * Local backports:
- *
- * - aadaa8a187d36ded603eebbdff47efe133908f6c
- *   CapsuleMultiSelectWidget: Set 'background-color' rather than 'background'
- *   Required for mw.widgets.CategorySelector's pending state to display.
- */
-
 /*!
- * OOjs UI v0.12.11
+ * OOjs UI v0.12.12
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-10-07T20:48:23Z
+ * Date: 2015-10-13T20:38:26Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -212,11 +204,11 @@
 	min-width: 1em;
 	border-radius: 2px;
 	position: relative;
-	-webkit-transition: background 100ms ease, color 100ms ease, box-shadow 100ms ease;
-	   -moz-transition: background 100ms ease, color 100ms ease, box-shadow 100ms ease;
-	    -ms-transition: background 100ms ease, color 100ms ease, box-shadow 100ms ease;
-	     -o-transition: background 100ms ease, color 100ms ease, box-shadow 100ms ease;
-	        transition: background 100ms ease, color 100ms ease, box-shadow 100ms ease;
+	-webkit-transition: background 100ms ease, color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
+	   -moz-transition: background 100ms ease, color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
+	    -ms-transition: background 100ms ease, color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
+	     -o-transition: background 100ms ease, color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
+	        transition: background 100ms ease, color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:focus {
@@ -1714,13 +1706,13 @@
 	opacity: 0;
 	z-index: 1;
 	position: relative;
+	cursor: pointer;
 	margin: 0;
 	width: 1.6em;
 	height: 1.6em;
 	max-width: none;
 }
 .oo-ui-checkboxInputWidget input[type="checkbox"] + span {
-	cursor: pointer;
 	-webkit-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	   -moz-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	    -ms-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -1823,13 +1815,13 @@
 	opacity: 0;
 	z-index: 1;
 	position: relative;
+	cursor: pointer;
 	margin: 0;
 	width: 1.6em;
 	height: 1.6em;
 	max-width: none;
 }
 .oo-ui-radioInputWidget input[type="radio"] + span {
-	cursor: pointer;
 	-webkit-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	   -moz-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	    -ms-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -2149,7 +2141,7 @@
 	margin-right: 0;
 }
 .oo-ui-dropdownWidget-handle {
-	padding: 0.3em 0;
+	padding: 0.5em 0;
 	height: 2.275em;
 	border: 1px solid #cccccc;
 	border-radius: 0.1em;
