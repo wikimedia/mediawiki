@@ -547,7 +547,7 @@
 	"passwordreset-emailsent-capture": "Një email për rivendosjen e fjalëkalimit është dërguar, i cili tregohet më poshtë.",
 	"passwordreset-emailerror-capture": "U dërgua një e-mail kujtesë, i cili tregohet më poshtë, por dërgesa për tek përdoruesi qe e pamundur: $1",
 	"changeemail": "Ndrysho postën elektronike",
-	"changeemail-text": "Plotësoni këtë formular për të ndryshuar adresën tuaj të postës elektronike. Ju duhet të shkruani fjalëkalimin tuaj për të konfirmuar këtë ndryshim.",
+	"changeemail-header": "Ndrysho llogarinë e adresës së postës elektronike",
 	"changeemail-no-info": "Ju duhet të identifikoheni në mënyrë që të keni të drejtë hyrjeje në këtë faqe.",
 	"changeemail-oldemail": "Adresa aktuale e emailit:",
 	"changeemail-newemail": "Adresa e re e emailit:",

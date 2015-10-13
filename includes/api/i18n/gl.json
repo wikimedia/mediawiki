@@ -70,6 +70,7 @@
 	"apihelp-delete-param-title": "Título da páxina a eliminar. Non pode usarse xunto con <var>$1pageid</var>.",
 	"apihelp-delete-param-pageid": "Identificador da páxina a eliminar. Non pode usarse xunto con <var>$1title</var>.",
 	"apihelp-delete-param-reason": "Razón para o borrado. Se non se indica, usarase unha razón xenerada automaticamente.",
+	"apihelp-delete-param-tags": "Cambiar as etiquetas a aplicar na entrada do rexistro de borrado.",
 	"apihelp-delete-param-watch": "Engadir esta páxina á lista de vixilancia do usuario actual.",
 	"apihelp-delete-param-watchlist": "Engadir ou eliminar sen condicións a páxina da lista de vixiancia do usuario actual, use as preferencias ou non cambie a vixiancia.",
 	"apihelp-delete-param-unwatch": "Eliminar esta páxina da lista de vixilancia do usuario actual.",

@@ -81,6 +81,7 @@
 	"apihelp-delete-param-title": "Titre de la page que vous voulez supprimer. Impossible de l’utiliser avec <var>$1pageid</var>.",
 	"apihelp-delete-param-pageid": "ID de la page que vous voulez supprimer. Impossible à utiliser avec <var>$1title</var>.",
 	"apihelp-delete-param-reason": "Motif de suppression. Si non défini, un motif généré automatiquement sera utilisé.",
+	"apihelp-delete-param-tags": "Modifier les balises à appliquer à l’entrée dans le journal des suppressions.",
 	"apihelp-delete-param-watch": "Ajouter la page à la liste de suivi de l’utilisateur actuel.",
 	"apihelp-delete-param-watchlist": "Ajouter ou supprimer sans distinction la page de la liste de suivi de l'utilisateur actuel, utiliser les préférences ou ne rien changer au suivi.",
 	"apihelp-delete-param-unwatch": "Supprimer la page de la liste de suivi de l'utilisateur actuel.",

@@ -2466,6 +2466,7 @@
 	"svg-long-error": "Neveljavna datoteka SVG: $1",
 	"show-big-image": "Izvirna datoteka",
 	"show-big-image-preview": "Velikost predogleda: $1.",
+	"show-big-image-preview-differ": "Velikost predogleda $3 datoteke $2: $1.",
 	"show-big-image-other": "{{PLURAL:$2|Druga ločljivost|Drugi ločljivosti|Druge ločljivosti}}: $1.",
 	"show-big-image-size": "$1 × $2 točk",
 	"file-info-gif-looped": "ponavljajoče",
