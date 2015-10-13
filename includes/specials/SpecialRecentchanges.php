@@ -212,7 +212,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$join_conds['watchlist'] = array( 'LEFT JOIN', array(
 				'wl_user' => $user->getId(),
 				'wl_title=rc_title',
-				'wl_namespace=rc_namespace'
+				'wl_namespace=rc_namespace',
+				'wl_expirytimestamp > ' .
+					$dbr->addQuotes( $dbr->timestamp() ) .
+					' OR wl_expirytimestamp IS NULL'
 			) );
 		}
 
@@ -346,6 +349,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 							array(
 								'wl_namespace' => $obj->rc_namespace,
 								'wl_title' => $obj->rc_title,
+								'wl_expirytimestamp > ' .
+									$dbr->addQuotes( $dbr->timestamp() ) .
+									' OR wl_expirytimestamp IS NULL'
 							),
 							__METHOD__ . '-watchers'
 						);

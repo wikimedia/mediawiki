@@ -774,6 +774,7 @@ class SpecialBlock extends FormSpecialPage {
 			WatchAction::doWatch(
 				Title::makeTitle( NS_USER, $target ),
 				$performer,
+				null,
 				WatchedItem::IGNORE_USER_RIGHTS
 			);
 		}

@@ -44,6 +44,10 @@ class ApiWatch extends ApiBase {
 
 		$params = $this->extractRequestParams();
 
+		if ( isset( $params['expiry'] ) && $params['expiry'] < wfTimestamp( TS_MW ) ) {
+			$this->dieUsage( 'The expiry must be in the future', 'invalidparam' );
+		}
+
 		$continuationManager = new ApiContinuationManager( $this, array(), array() );
 		$this->setContinuationManager( $continuationManager );
 
@@ -115,7 +119,8 @@ class ApiWatch extends ApiBase {
 					->title( $title )->parseAsBlock();
 			}
 		} else {
-			$status = WatchAction::doWatch( $title, $user );
+			$expiry = ( isset( $params['expiry'] ) ? $params['expiry'] : null );
+			$status = WatchAction::doWatch( $title, $user, $expiry );
 			$res['watched'] = $status->isOK();
 			if ( $status->isOK() ) {
 				$res['message'] = $this->msg( 'addedwatchtext', $title->getPrefixedText() )
@@ -167,6 +172,10 @@ class ApiWatch extends ApiBase {
 			'continue' => array(
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			),
+			'expiry' => array(
+				ApiBase::PARAM_TYPE => 'timestamp',
+				// TODO PARAM_HELP_MSG
+			),
 		);
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
@@ -183,6 +192,7 @@ class ApiWatch extends ApiBase {
 				=> 'apihelp-watch-example-unwatch',
 			'action=watch&generator=allpages&gapnamespace=0&token=123ABC'
 				=> 'apihelp-watch-example-generator',
+			// TODO add exmaple with expiry
 		);
 	}
 

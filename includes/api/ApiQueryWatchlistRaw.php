@@ -61,6 +61,8 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			$this->dieUsageMsg( 'show' );
 		}
 
+		$db = $this->getDB();
+
 		$this->addTables( 'watchlist' );
 		$this->addFields( array( 'wl_namespace', 'wl_title' ) );
 		$this->addFieldsIf( 'wl_notificationtimestamp', isset( $prop['changed'] ) );
@@ -68,6 +70,9 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		$this->addWhereFld( 'wl_namespace', $params['namespace'] );
 		$this->addWhereIf( 'wl_notificationtimestamp IS NOT NULL', isset( $show['changed'] ) );
 		$this->addWhereIf( 'wl_notificationtimestamp IS NULL', isset( $show['!changed'] ) );
+		$this->addWhere( 'wl_expirytimestamp > ' .
+			$db->addQuotes( $db->timestamp() ) .
+			' OR wl_expirytimestamp IS NULL' );
 
 		if ( isset( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
