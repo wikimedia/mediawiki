@@ -77,7 +77,7 @@
 			'\n|date=' +
 			this.getDate() +
 			'\n|source=' +
-			this.getUser() +
+			this.getSource() +
 			'\n|author=' +
 			this.getUser() +
 			'\n}}\n\n' +
@@ -156,6 +156,16 @@
 	 */
 	ForeignStructuredUpload.prototype.getLicense = function () {
 		return '';
+	};
+
+	/**
+	 * Get the source. This should be some sort of localised text for "Own work".
+	 *
+	 * @private
+	 * @return {string}
+	 */
+	ForeignStructuredUpload.prototype.getSource = function () {
+		return '{{own}}';
 	};
 
 	/**
