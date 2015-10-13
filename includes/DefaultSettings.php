@@ -6909,6 +6909,7 @@ $wgJobClasses = array(
 	'PublishStashedFile' => 'PublishStashedFileJob',
 	'ThumbnailRender' => 'ThumbnailRenderJob',
 	'recentChangesUpdate' => 'RecentChangesUpdateJob',
+	'watchlistUpdate' => 'WatchlistUpdateJob',
 	'refreshLinksPrioritized' => 'RefreshLinksJob',
 	'refreshLinksDynamic' => 'RefreshLinksJob',
 	'activityUpdateJob' => 'ActivityUpdateJob',

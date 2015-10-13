@@ -111,6 +111,8 @@ class OracleUpdater extends DatabaseUpdater {
 			// 1.27
 			array( 'dropTable', 'msg_resource_links' ),
 			array( 'dropTable', 'msg_resource' ),
+			array( 'addField', 'watchlist', 'wl_id', 'patch-watchlist-wl_id.sql' ),
+			array( 'addField', 'watchlist', 'wl_expirytimestamp', 'patch-watchlist-wl_expirytimestamp.sql' ),
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),
