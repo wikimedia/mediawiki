@@ -76,7 +76,7 @@ class EmailNotification {
 	 *  timestamp will not be updated(they have already seen it)
 	 * @param Title $title The title to update timestamps for
 	 * @param string $timestamp Set the update timestamp to this value
-	 * @return int[]
+	 * @return int[] Array of user IDs
 	 */
 	public static function updateWatchlistTimestamp( User $editor, Title $title, $timestamp ) {
 		global $wgEnotifWatchlist, $wgShowUpdatedMarker;
