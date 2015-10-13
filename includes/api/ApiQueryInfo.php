@@ -741,6 +741,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->addTables( array( 'watchlist' ) );
 		$this->addFields( array( 'wl_title', 'wl_namespace' ) );
 		$this->addFieldsIf( 'wl_notificationtimestamp', $this->fld_notificationtimestamp );
+		//TODO dont get expired watchlist items?
 		$this->addWhere( array(
 			$lb->constructSet( 'wl', $db ),
 			'wl_user' => $user->getID()
@@ -786,6 +787,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->addWhere( array(
 			$lb->constructSet( 'wl', $db )
 		) );
+		//TODO where not expired!!!
 		$this->addOption( 'GROUP BY', array( 'wl_namespace', 'wl_title' ) );
 		if ( !$canUnwatchedpages ) {
 			$this->addOption( 'HAVING', "COUNT(*) >= $unwatchedPageThreshold" );

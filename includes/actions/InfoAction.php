@@ -694,6 +694,7 @@ class InfoAction extends FormlessAction {
 					array(
 						'wl_namespace' => $title->getNamespace(),
 						'wl_title' => $title->getDBkey(),
+						//TODO where not expired!?
 					),
 					$fname
 				);
@@ -714,6 +715,7 @@ class InfoAction extends FormlessAction {
 							'wl_notificationtimestamp >= ' .
 								$dbrWatchlist->addQuotes( $threshold ) .
 								' OR wl_notificationtimestamp IS NULL'
+							//TODO where not expired?
 						),
 						$fname
 					);

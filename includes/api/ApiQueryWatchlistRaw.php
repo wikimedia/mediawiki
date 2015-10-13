@@ -68,6 +68,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		$this->addWhereFld( 'wl_namespace', $params['namespace'] );
 		$this->addWhereIf( 'wl_notificationtimestamp IS NOT NULL', isset( $show['changed'] ) );
 		$this->addWhereIf( 'wl_notificationtimestamp IS NULL', isset( $show['!changed'] ) );
+		//TODO where not expired!
 
 		if ( isset( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );

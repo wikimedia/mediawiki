@@ -112,6 +112,7 @@ class ApiUndelete extends ApiBase {
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_ISMULTI => true,
 			),
+			//TODO could optional watch with an expiry?
 			'watchlist' => array(
 				ApiBase::PARAM_DFLT => 'preferences',
 				ApiBase::PARAM_TYPE => array(

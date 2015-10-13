@@ -115,6 +115,7 @@ class ApiWatch extends ApiBase {
 					->title( $title )->parseAsBlock();
 			}
 		} else {
+			// TODO pass expiry param to doWatch
 			$status = WatchAction::doWatch( $title, $user );
 			$res['watched'] = $status->isOK();
 			if ( $status->isOK() ) {
@@ -167,6 +168,7 @@ class ApiWatch extends ApiBase {
 			'continue' => array(
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			),
+			// TODO add optional expiry param
 		);
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
@@ -183,6 +185,7 @@ class ApiWatch extends ApiBase {
 				=> 'apihelp-watch-example-unwatch',
 			'action=watch&generator=allpages&gapnamespace=0&token=123ABC'
 				=> 'apihelp-watch-example-generator',
+			//TODO add exmaple with expiry
 		);
 	}
 

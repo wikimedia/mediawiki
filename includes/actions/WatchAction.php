@@ -103,6 +103,7 @@ class WatchAction extends FormAction {
 	 * @param User $user User who is watching/unwatching
 	 * @param int $checkRights Passed through to $user->addWatch()
 	 * @return Status
+	 * @todo add expiry param
 	 */
 	public static function doWatch( Title $title, User $user,
 		$checkRights = WatchedItem::CHECK_USER_RIGHTS
@@ -116,9 +117,11 @@ class WatchAction extends FormAction {
 		$page = WikiPage::factory( $title );
 
 		$status = Status::newFatal( 'hookaborted' );
+		// TODO WatchArticle hook will have an expiry param
 		if ( Hooks::run( 'WatchArticle', array( &$user, &$page, &$status ) ) ) {
 			$status = Status::newGood();
 			$user->addWatch( $title, $checkRights );
+			// TODO WatchArticleComplete might have an extra param?
 			Hooks::run( 'WatchArticleComplete', array( &$user, &$page ) );
 		}
 

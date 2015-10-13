@@ -312,6 +312,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				'wl_namespace', 'wl_title'
 			), array(
 				'wl_user' => $this->getUser()->getId(),
+			//TODO where not expired
 			),
 			__METHOD__
 		);
@@ -352,6 +353,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$titles = array();
 		$dbr = wfGetDB( DB_SLAVE );
 
+		//TODO where not expired
 		$res = $dbr->select(
 			array( 'watchlist' ),
 			array( 'wl_namespace', 'wl_title' ),
@@ -463,6 +465,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			}
 
 			if ( $title instanceof Title ) {
+				//TODO possible need to edit expiry here? needs UI first
 				$rows[] = array(
 					'wl_user' => $this->getUser()->getId(),
 					'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),

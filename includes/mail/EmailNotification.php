@@ -93,6 +93,7 @@ class EmailNotification {
 				'wl_namespace' => $title->getNamespace(),
 				'wl_title' => $title->getDBkey(),
 				'wl_notificationtimestamp IS NULL',
+				//TODO where not expired?
 			), __METHOD__
 		);
 

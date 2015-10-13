@@ -93,6 +93,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 				'wl_user' => $uid,
 				'wl_title=rc_title',
 				'wl_namespace=rc_namespace'
+				//TODO where not expired?
 			) );
 		}
 		if ( $this->getUser()->isAllowed( 'rollback' ) ) {

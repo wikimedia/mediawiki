@@ -56,6 +56,7 @@ class UnwatchedpagesPage extends QueryPage {
 				'page_is_redirect' => 0,
 				"page_namespace != '" . NS_MEDIAWIKI . "'"
 			),
+			//TODO where not expired?
 			'join_conds' => array( 'watchlist' => array(
 				'LEFT JOIN', array( 'wl_title = page_title',
 					'wl_namespace = page_namespace' ) ) )

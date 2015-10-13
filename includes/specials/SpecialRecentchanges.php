@@ -213,6 +213,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				'wl_user' => $user->getId(),
 				'wl_title=rc_title',
 				'wl_namespace=rc_namespace'
+				//TODO where not expired?
 			) );
 		}
 
@@ -346,6 +347,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 							array(
 								'wl_namespace' => $obj->rc_namespace,
 								'wl_title' => $obj->rc_title,
+								//TODO where not expired?
 							),
 							__METHOD__ . '-watchers'
 						);

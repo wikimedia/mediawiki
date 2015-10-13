@@ -113,6 +113,7 @@ class ApiRollback extends ApiBase {
 			),
 			'summary' => '',
 			'markbot' => false,
+			//TODO could optional watch with an expiry?
 			'watchlist' => array(
 				ApiBase::PARAM_DFLT => 'preferences',
 				ApiBase::PARAM_TYPE => array(

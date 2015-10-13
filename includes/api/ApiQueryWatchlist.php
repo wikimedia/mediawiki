@@ -129,6 +129,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				'wl_user' => $userId,
 				'wl_namespace=rc_namespace',
 				'wl_title=rc_title'
+				// TODO where (wl_expirytimestamp > NOW() OR wl_expirytimestamp IS NULL)
 			)
 		) ) );
 

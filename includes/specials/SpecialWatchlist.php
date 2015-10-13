@@ -226,6 +226,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					'wl_user' => $user->getId(),
 					'wl_namespace=rc_namespace',
 					'wl_title=rc_title'
+					// TODO where (wl_expirytimestamp > NOW() OR wl_expirytimestamp IS NULL)
 				),
 			),
 		);
@@ -367,6 +368,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			if ( $this->getConfig()->get( 'RCShowWatchingUsers' )
 				&& $user->getOption( 'shownumberswatching' )
 			) {
+				//TODO where not expired?
 				$rc->numberofWatchingusers = $dbr->selectField( 'watchlist',
 					'COUNT(*)',
 					array(
@@ -609,6 +611,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		# Fetch the raw count
 		$rows = $dbr->select( 'watchlist', array( 'count' => 'COUNT(*)' ),
 			array( 'wl_user' => $this->getUser()->getId() ), __METHOD__ );
+		//TODO where not expired?
 		$row = $dbr->fetchObject( $rows );
 		$count = $row->count;
 

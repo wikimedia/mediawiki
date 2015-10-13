@@ -197,6 +197,7 @@ class ApiDelete extends ApiBase {
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,
 			),
+			//TODO could optional watch with an expiry?
 			'watchlist' => array(
 				ApiBase::PARAM_DFLT => 'preferences',
 				ApiBase::PARAM_TYPE => array(

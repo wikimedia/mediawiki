@@ -45,6 +45,8 @@ class WatchedItem {
 	/** @var string */
 	private $timestamp;
 
+	// TODO add an expiry!
+
 	/**
 	 * Constant to specify that user rights 'editmywatchlist' and
 	 * 'viewmywatchlist' should not be checked.
@@ -78,6 +80,7 @@ class WatchedItem {
 	 * @param int $checkRights Whether to check the 'viewmywatchlist' and 'editmywatchlist' rights.
 	 *     Pass either WatchedItem::IGNORE_USER_RIGHTS or WatchedItem::CHECK_USER_RIGHTS.
 	 * @return WatchedItem
+	 * @todo add expiry?
 	 */
 	public static function fromUserTitle( $user, $title,
 		$checkRights = WatchedItem::CHECK_USER_RIGHTS
@@ -121,6 +124,8 @@ class WatchedItem {
 	protected function getUserId() {
 		return $this->mUser->getId();
 	}
+
+	// TODO add getExpiry method?
 
 	/**
 	 * Return an array of conditions to select or update the appropriate database
@@ -169,6 +174,7 @@ class WatchedItem {
 		} else {
 			$this->watched = true;
 			$this->timestamp = $row->wl_notificationtimestamp;
+			//TODO set $this->expiry
 		}
 	}
 
@@ -191,6 +197,9 @@ class WatchedItem {
 		}
 
 		$this->load();
+
+		// TODO eatched but not expired?
+
 		return $this->watched;
 	}
 
@@ -320,6 +329,7 @@ class WatchedItem {
 				'wl_namespace' => MWNamespace::getSubject( $item->getTitleNs() ),
 				'wl_title' => $item->getTitleDBkey(),
 				'wl_notificationtimestamp' => null,
+				//TODO add expiry
 			);
 			// Every single watched page needs now to be listed in watchlist;
 			// namespace:page and namespace_talk:page need separate entries:
@@ -328,6 +338,7 @@ class WatchedItem {
 				'wl_namespace' => MWNamespace::getTalk( $item->getTitleNs() ),
 				'wl_title' => $item->getTitleDBkey(),
 				'wl_notificationtimestamp' => null
+				//TODO add expiry
 			);
 			$item->watched = true;
 		}
@@ -459,4 +470,6 @@ class WatchedItem {
 
 		return true;
 	}
+
+	//TODO some method to remove expired entires? Similar to one of the methods above
 }
