@@ -46,6 +46,7 @@ class ApiQuery extends ApiBase {
 		'categoryinfo' => 'ApiQueryCategoryInfo',
 		'contributors' => 'ApiQueryContributors',
 		'deletedrevisions' => 'ApiQueryDeletedRevisions',
+		'displaytext' => 'ApiQueryDisplayText',
 		'duplicatefiles' => 'ApiQueryDuplicateFiles',
 		'extlinks' => 'ApiQueryExternalLinks',
 		'fileusage' => 'ApiQueryBacklinksprop',
