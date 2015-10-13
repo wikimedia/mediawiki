@@ -424,7 +424,10 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'dropTable', 'hitcounter' ),
 			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
 			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
-			array( 'dropFkey', 'recentchanges', 'rc_cur_id' )
+			array( 'dropFkey', 'recentchanges', 'rc_cur_id' ),
+
+			// 1.27
+			array( 'addPgField', 'watchlist', 'wl_expirytimestamp', 'TIMESTAMPTZ NULL DEFAULT NULL' ),
 		);
 	}
 

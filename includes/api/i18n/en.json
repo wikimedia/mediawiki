@@ -1343,7 +1343,9 @@
 	"apihelp-watch-description": "Add or remove pages from the current user's watchlist.",
 	"apihelp-watch-param-title": "The page to (un)watch. Use <var>$1titles</var> instead.",
 	"apihelp-watch-param-unwatch": "If set the page will be unwatched rather than watched.",
+	"apihelp-watch-param-expiry": "Expiry time. May be relative (e.g. <kbd>5 months</kbd> or <kbd>2 weeks</kbd>) or absolute (e.g. <kbd>2014-09-18T12:34:56Z</kbd>). If not set the watch entry will never expire.",
 	"apihelp-watch-example-watch": "Watch the page <kbd>Main Page</kbd>.",
+	"apihelp-watch-example-watch-expiry": "Watch the page <kbd>Main Page</kbd> for 2 weeks.",
 	"apihelp-watch-example-unwatch": "Unwatch the page <kbd>Main Page</kbd>.",
 	"apihelp-watch-example-generator": "Watch the first few pages in the main namespace.",
 

@@ -312,6 +312,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				'wl_namespace', 'wl_title'
 			), array(
 				'wl_user' => $this->getUser()->getId(),
+			'wl_expirytimestamp > ' .
+				$dbr->addQuotes( $dbr->timestamp() ) .
+				' OR wl_expirytimestamp IS NULL'
 			),
 			__METHOD__
 		);
@@ -355,7 +358,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$res = $dbr->select(
 			array( 'watchlist' ),
 			array( 'wl_namespace', 'wl_title' ),
-			array( 'wl_user' => $this->getUser()->getId() ),
+			array(
+				'wl_user' => $this->getUser()->getId(),
+				'wl_expirytimestamp > ' .
+					$dbr->addQuotes( $dbr->timestamp() ) .
+					' OR wl_expirytimestamp IS NULL'
+			),
 			__METHOD__,
 			array( 'ORDER BY' => array( 'wl_namespace', 'wl_title' ) )
 		);
