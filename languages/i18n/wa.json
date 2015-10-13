@@ -347,7 +347,7 @@
 	"passwordreset-email": "Adresse emile:",
 	"passwordreset-emailtitle": "Detays do contre so {{SITENAME}}",
 	"changeemail": "Candjî l' emile",
-	"changeemail-text": "Rimplixhoz l' formulrece po candjî voste adresse emile. Vos dvroz dner vosse sicret po-z acertiner l' candjmint.",
+	"changeemail-header": "Candjî l' adresse emile do conte",
 	"changeemail-no-info": "Vos dvoz esse elodjî po pleur aveur accès a cisse pådje ci.",
 	"changeemail-oldemail": "Adresse emile pol moumint:",
 	"changeemail-newemail": "Novele adresse emile:",

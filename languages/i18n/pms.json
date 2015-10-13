@@ -533,7 +533,7 @@
 	"passwordreset-emailsent-capture": "Un mëssagi ëd riampostassion ëd la ciav a l'é stàit mandà, e a l'é mostrà sì-sota.",
 	"passwordreset-emailerror-capture": "Un mëssagi ëd riampostassion ëd la ciav a l'é stàit generà, e a l'é smonù sì-sota, ma la spedission a {{GENDER:$2|l'utent}} a l'é falìa: $1",
 	"changeemail": "Cangé l'adrëssa ëd pòsta eletrònica",
-	"changeemail-text": "Ch'a completa 's formolari për cangé soa adrëssa eletrònica. A dev anserì soa ciav për confirmé costa modìfica.",
+	"changeemail-header": "Cangé l'adrëssa ëd pòsta eletrònica dël cont",
 	"changeemail-no-info": "A dev esse intrà ant ël sistema për andé diretament a costa pàgina.",
 	"changeemail-oldemail": "Adrëssa ëd pòsta eletrònica atual:",
 	"changeemail-newemail": "Adrëssa ëd pòsta eletrònica neuva:",

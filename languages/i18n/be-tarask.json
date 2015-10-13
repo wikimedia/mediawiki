@@ -1231,6 +1231,7 @@
 	"recentchanges-page-added-to-category-bundled": "[[:$1]] і яшчэ {{PLURAL:$2|$2 старонка была дададзеная|$2 старонкі былі дададзеныя|$2 старонак былі дададзеныя}} да катэгорыі",
 	"recentchanges-page-removed-from-category": "[[:$1]] выдаленая з катэгорыі",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] і яшчэ $2 {{PLURAL:$2|старонка была выдаленая|старонкі былі выдаленыя|старонак былі выдаленыя}} з катэгорыі",
+	"autochange-username": "Аўтаматычная зьмена MediaWiki",
 	"upload": "Загрузіць файл",
 	"uploadbtn": "Загрузіць файл",
 	"reuploaddesc": "Скасаваць загрузку і вярнуцца да формы загрузкі",
