@@ -149,13 +149,15 @@
 	};
 
 	/**
-	 * Gets the wikitext for the license of the upload. Abstract for now.
+	 * Gets the wikitext for the license of the upload.
 	 *
 	 * @private
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getLicense = function () {
-		return '';
+		// Make sure this matches the messages for different targets in 
+		// mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm
+		return this.target === 'shared' ? '{{self|cc-by-sa-4.0}}' : '';
 	};
 
 	/**
