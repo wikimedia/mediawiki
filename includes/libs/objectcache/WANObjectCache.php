@@ -92,7 +92,7 @@ class WANObjectCache {
 	const LOCK_TSE = 1;
 
 	/** Idiom for set()/getWithSetCallback() TTL being "forever" */
-	const TTL_NONE = 0;
+	const TTL_INDEFINITE = 0;
 	/** Idiom for getWithSetCallback() callbacks to avoid calling set() */
 	const TTL_UNCACHEABLE = -1;
 	/** Idiom for getWithSetCallback() callbacks to 'lockTSE' logic */
@@ -633,7 +633,7 @@ class WANObjectCache {
 	 *
 	 * @param string $key Cache key
 	 * @param integer $ttl Seconds to live for key updates. Special values are:
-	 *   - WANObjectCache::TTL_NONE : Cache forever
+	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever
 	 *   - WANObjectCache::TTL_UNCACHEABLE: Do not cache at all
 	 * @param callable $callback Value generation function
 	 * @param array $opts Options map:
