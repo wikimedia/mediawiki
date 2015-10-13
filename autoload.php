@@ -88,6 +88,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiQueryDeletedRevisions' => __DIR__ . '/includes/api/ApiQueryDeletedRevisions.php',
 	'ApiQueryDeletedrevs' => __DIR__ . '/includes/api/ApiQueryDeletedrevs.php',
 	'ApiQueryDisabled' => __DIR__ . '/includes/api/ApiQueryDisabled.php',
+	'ApiQueryDisplayText' => __DIR__ . '/includes/api/ApiQueryDisplayText.php',
 	'ApiQueryDuplicateFiles' => __DIR__ . '/includes/api/ApiQueryDuplicateFiles.php',
 	'ApiQueryExtLinksUsage' => __DIR__ . '/includes/api/ApiQueryExtLinksUsage.php',
 	'ApiQueryExternalLinks' => __DIR__ . '/includes/api/ApiQueryExternalLinks.php',
