@@ -1175,8 +1175,6 @@ return array(
 			'mediawiki.jqueryMsg',
 		),
 		'messages' => array(
-			'upload-process-error',
-			'upload-process-warning',
 			'upload-form-label-select-file',
 			'upload-form-label-infoform-title',
 			'upload-form-label-infoform-name',

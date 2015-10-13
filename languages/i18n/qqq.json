@@ -1588,8 +1588,6 @@
 	"upload-dialog-button-done": "Button to close the dialog once upload is complete\n{{Identical|Done}}",
 	"upload-dialog-button-save": "Button to save the file\n{{Identical|Save}}",
 	"upload-dialog-button-upload": "Button to initiate upload\n{{Identical|Upload}}",
-	"upload-process-error": "Error message from upload",
-	"upload-process-warning": "Warning message from upload",
 	"upload-form-label-select-file": "Label for the select file widget\n{{Identical|Select file}}",
 	"upload-form-label-infoform-title": "Title for the information form\n{{Identical|Detail}}",
 	"upload-form-label-infoform-name": "Label for the file name input\n{{Identical|Name}}",
