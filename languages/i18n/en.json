@@ -1415,8 +1415,6 @@
 	"upload-dialog-button-done": "Done",
 	"upload-dialog-button-save": "Save",
 	"upload-dialog-button-upload": "Upload",
-	"upload-process-error": "An error occurred",
-	"upload-process-warning": "A warning occurred",
 	"upload-form-label-select-file": "Select file",
 	"upload-form-label-infoform-title": "Details",
 	"upload-form-label-infoform-name": "Name",
