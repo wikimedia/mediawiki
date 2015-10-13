@@ -29,11 +29,14 @@
  * This class is intended for caching data from primary stores.
  * If the get() method does not return a value, then the caller
  * should query the new value and backfill the cache using set().
+ * When querying the store on cache miss, the closest DB replica
+ * should be used. Try to avoid heavyweight DB master or quorum reads.
  * When the source data changes, a purge method should be called.
  * Since purges are expensive, they should be avoided. One can do so if:
  *   - a) The object cached is immutable; or
  *   - b) Validity is checked against the source after get(); or
  *   - c) Using a modest TTL is reasonably correct and performant
+ *
  * The simplest purge method is delete().
  *
  * Instances of this class must be configured to point to a valid
@@ -64,10 +67,10 @@ class WANObjectCache {
 	protected $procCache;
 	/** @var string Cache pool name */
 	protected $pool;
-	/** @var EventRelayer */
+	/** @var EventRelayer Bus that handles purge broadcasts */
 	protected $relayer;
 
-	/** @var int */
+	/** @var int ERR_* constant for the "last error" registry */
 	protected $lastRelayError = self::ERR_NONE;
 
 	/** Max time expected to pass between delete() and DB commit finishing */
@@ -100,13 +103,11 @@ class WANObjectCache {
 	/** Cache format version number */
 	const VERSION = 1;
 
-	/** Fields of value holder arrays */
 	const FLD_VERSION = 0;
 	const FLD_VALUE = 1;
 	const FLD_TTL = 2;
 	const FLD_TIME = 3;
 
-	/** Possible values for getLastError() */
 	const ERR_NONE = 0; // no error
 	const ERR_NO_RESPONSE = 1; // no response
 	const ERR_UNREACHABLE = 2; // can't connect
@@ -133,7 +134,9 @@ class WANObjectCache {
 	}
 
 	/**
-	 * @return WANObjectCache Cache that wraps EmptyBagOStuff
+	 * Get an instance that wraps EmptyBagOStuff
+	 *
+	 * @return WANObjectCache
 	 */
 	public static function newEmpty() {
 		return new self( array(
@@ -174,7 +177,7 @@ class WANObjectCache {
 	 * However, pre-snapshot values might still be seen if an update was made
 	 * in a remote datacenter but the purge from delete() didn't relay yet.
 	 *
-	 * Consider using getWithSetCallback() instead of get()/set() cycles.
+	 * Consider using getWithSetCallback() instead of get() and set() cycles.
 	 * That method has cache slam avoiding features for hot/expensive keys.
 	 *
 	 * @param string $key Cache key
@@ -197,7 +200,7 @@ class WANObjectCache {
 	 *
 	 * @param array $keys List of cache keys
 	 * @param array $curTTLs Map of (key => approximate TTL left) for existing keys [returned]
-	 * @param array $checkKeys List of "check" keys
+	 * @param array $checkKeys List of "check" keys to apply to all of $keys
 	 * @return array Map of (key => value) for keys that exist
 	 */
 	final public function getMulti(
@@ -258,7 +261,7 @@ class WANObjectCache {
 	}
 
 	/**
-	 * Set the value of a key from cache
+	 * Set the value of a key in cache
 	 *
 	 * Simply calling this method when source data changes is not valid because
 	 * the changes do not replicate to the other WAN sites. In that case, delete()
@@ -272,7 +275,7 @@ class WANObjectCache {
 	 *   - d) T1 reads the row and calls set() due to a cache miss
 	 *   - e) Stale value is stuck in cache
 	 *
-	 * Setting 'lag' helps avoids keys getting stuck in long-term stale states.
+	 * Setting 'lag' and 'since' help avoids keys getting stuck in stale states.
 	 *
 	 * Example usage:
 	 * @code
@@ -291,16 +294,16 @@ class WANObjectCache {
 	 *   - lag     : Seconds of slave lag. Typically, this is either the slave lag
 	 *               before the data was read or, if applicable, the slave lag before
 	 *               the snapshot-isolated transaction the data was read from started.
-	 *               [Default: 0 seconds]
+	 *               Default: 0 seconds
 	 *   - since   : UNIX timestamp of the data in $value. Typically, this is either
 	 *               the current time the data was read or (if applicable) the time when
 	 *               the snapshot-isolated transaction the data was read from started.
-	 *               [Default: 0 seconds]
+	 *               Default: 0 seconds
 	 *   - lockTSE : if excessive possible snapshot lag is detected,
 	 *               then stash the value into a temporary location
 	 *               with this TTL. This is only useful if the reads
 	 *               use getWithSetCallback() with "lockTSE" set.
-	 *               [Default: WANObjectCache::TSE_NONE]
+	 *               Default: WANObjectCache::TSE_NONE
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = 0, array $opts = array() ) {
@@ -347,9 +350,11 @@ class WANObjectCache {
 	 * This is implemented by storing a special "tombstone" value at the cache
 	 * key that this class recognizes; get() calls will return false for the key
 	 * and any set() calls will refuse to replace tombstone values at the key.
-	 * For this to always avoid writing stale values, the following must hold:
+	 * For this to always avoid stale value writes, the following must hold:
 	 *   - a) Replication lag is bounded to being less than HOLDOFF_TTL; or
 	 *   - b) If lag is higher, the DB will have gone into read-only mode already
+	 *
+	 * Note that set() can also be lag-aware and lower the TTL if it's high.
 	 *
 	 * When using potentially long-running ACID transactions, a good pattern is
 	 * to use a pre-commit hook to issue the delete. This means that immediately
@@ -409,7 +414,7 @@ class WANObjectCache {
 	 * if the key was evicted from cache, such calculations may show the
 	 * time since expiry as ~0 seconds.
 	 *
-	 * Note that "check" keys won't collide with other regular keys
+	 * Note that "check" keys won't collide with other regular keys.
 	 *
 	 * @param string $key
 	 * @return float UNIX timestamp of the key
@@ -437,20 +442,23 @@ class WANObjectCache {
 	 * keys, the relevant "check" keys must be supplied for this to work.
 	 *
 	 * The "check" key essentially represents a last-modified field.
-	 * It is set in the future a few seconds when this is called, to
-	 * avoid race conditions where dependent keys get updated with a
-	 * stale value (e.g. from a DB slave).
+	 * When touched, keys using it via get(), getMulti(), or getWithSetCallback()
+	 * will be invalidated. It is treated as being HOLDOFF_TTL seconds in the future
+	 * by those methods to avoid race conditions where dependent keys get updated
+	 * with stale values (e.g. from a DB slave).
 	 *
-	 * This is typically useful for keys with static names or some cases
+	 * This is typically useful for keys with hardcoded names or in some cases
 	 * dynamically generated names where a low number of combinations exist.
 	 * When a few important keys get a large number of hits, a high cache
-	 * time is usually desired as well as lockTSE logic. The resetCheckKey()
+	 * time is usually desired as well as "lockTSE" logic. The resetCheckKey()
 	 * method is less appropriate in such cases since the "time since expiry"
 	 * cannot be inferred.
 	 *
-	 * Note that "check" keys won't collide with other regular keys
+	 * Note that "check" keys won't collide with other regular keys.
 	 *
 	 * @see WANObjectCache::get()
+	 * @see WANObjectCache::getWithSetCallback()
+	 * @see WANObjectCache::resetCheckKey()
 	 *
 	 * @param string $key Cache key
 	 * @return bool True if the item was purged or not found, false on failure
@@ -467,8 +475,8 @@ class WANObjectCache {
 	/**
 	 * Delete a "check" key from all datacenters, invalidating keys that use it
 	 *
-	 * This is similar to touchCheckKey() in that keys using it via
-	 * getWithSetCallback() will be invalidated. The differences are:
+	 * This is similar to touchCheckKey() in that keys using it via get(), getMulti(),
+	 * or getWithSetCallback() will be invalidated. The differences are:
 	 *   - a) The timestamp will be deleted from all caches and lazily
 	 *        re-initialized when accessed (rather than set everywhere)
 	 *   - b) Thus, dependent keys will be known to be invalid, but not
@@ -482,10 +490,11 @@ class WANObjectCache {
 	 * This is typically useful for keys with dynamically generated names
 	 * where a high number of combinations exist.
 	 *
-	 * Note that "check" keys won't collide with other regular keys
+	 * Note that "check" keys won't collide with other regular keys.
 	 *
-	 * @see WANObjectCache::touchCheckKey()
 	 * @see WANObjectCache::get()
+	 * @see WANObjectCache::getWithSetCallback()
+	 * @see WANObjectCache::touchCheckKey()
 	 *
 	 * @param string $key Cache key
 	 * @return bool True if the item was purged or not found, false on failure
@@ -502,24 +511,21 @@ class WANObjectCache {
 	 * Method to fetch/regenerate cache keys
 	 *
 	 * On cache miss, the key will be set to the callback result via set()
-	 * unless the callback returns false. The arguments supplied to it are:
-	 *     (current value or false, &$ttl, &$setOpts)
-	 * The callback function returns the new value given the current
-	 * value (false if not present). Preemptive re-caching and $checkKeys
-	 * can result in a non-false current value. The TTL of the new value
-	 * can be set dynamically by altering $ttl in the callback (by reference).
-	 * The $setOpts array can be altered and is given to set() when called;
-	 * it is recommended to set the 'since' field to avoid race conditions.
-	 * Setting 'lag' helps avoids keys getting stuck in long-term stale states.
+	 * (unless the callback returns false) and that result will be returned.
+	 * The arguments supplied to the callback are:
+	 *   - $oldValue : current cache value or false if not present
+	 *   - &$ttl : a reference to the TTL which can be altered
+	 *   - &$setOpts : a reference to options for set() which can be altered
 	 *
-	 * Usually, callbacks ignore the current value, but it can be used
-	 * to maintain "most recent X" values that come from time or sequence
-	 * based source data, provided that the "as of" id/time is tracked.
+	 * It is strongly recommended to set the 'lag' and 'since' fields to avoid race conditions
+	 * that can cause stale values to get stuck at keys. Usually, callbacks ignore the current
+	 * value, but it can be used to maintain "most recent X" values that come from time or
+	 * sequence based source data, provided that the "as of" id/time is tracked. Note that
+	 * preemptive regeneration and $checkKeys can result in a non-false current value.
 	 *
-	 * Usage of $checkKeys is similar to get() and getMulti(). However,
-	 * rather than the caller having to inspect a "current time left"
-	 * variable (e.g. $curTTL, $curTTLs), a cache regeneration will be
-	 * triggered using the callback.
+	 * Usage of $checkKeys is similar to get() and getMulti(). However, rather than the caller
+	 * having to inspect a "current time left" variable (e.g. $curTTL, $curTTLs), a cache
+	 * regeneration will automatically be triggered using the callback.
 	 *
 	 * The simplest way to avoid stampedes for hot keys is to use
 	 * the 'lockTSE' option in $opts. If cache purges are needed, also:
@@ -631,7 +637,8 @@ class WANObjectCache {
 	 *   - WANObjectCache::TTL_UNCACHEABLE: Do not cache at all
 	 * @param callable $callback Value generation function
 	 * @param array $opts Options map:
-	 *   - checkKeys: List of "check" keys.
+	 *   - checkKeys: List of "check" keys. The key at $key will be seen as invalid when either
+	 *      touchCheckKey() or resetCheckKey() is called on any of these keys.
 	 *   - lowTTL: Consider pre-emptive updates when the current TTL (sec) of the key is less than
 	 *      this. It becomes more likely over time, becoming a certainty once the key is expired.
 	 *      Default: WANObjectCache::LOW_TTL seconds.
@@ -647,7 +654,7 @@ class WANObjectCache {
 	 *      network I/O when a key is read several times. This will not cache if the callback
 	 *      returns false however. Note that any purges will not be seen while process cached;
 	 *      since the callback should use slave DBs and they may be lagged or have snapshot
-	 *      isolation anyway, this should not matter much
+	 *      isolation anyway, this should not typically matter.
 	 *      Default: WANObjectCache::TTL_UNCACHEABLE.
 	 * @param array $oldOpts Unused (mentioned only to avoid PHPDoc warnings)
 	 * @return mixed Value to use for the key
@@ -687,6 +694,8 @@ class WANObjectCache {
 	}
 
 	/**
+	 * Do the actual I/O for getWithSetCallback() when needed
+	 *
 	 * @see WANObjectCache::getWithSetCallback()
 	 *
 	 * @param string $key
