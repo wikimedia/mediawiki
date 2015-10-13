@@ -16,7 +16,6 @@ production.
   1000 for the latter) are now hard-coded.
 * $wgDebugDumpSqlLength was removed (deprecated in 1.24).
 * $wgDebugDBTransactions was removed (deprecated in 1.20).
-* $wgRemoteUploadTarget (added in 1.26) removed, replaced by $wgForeignUploadTargets
 * $wgUseXVO has been removed, as it provides functionality only used by
   custom Wikimedia patches against Squid 2.x that probably noone uses in
   production anymore. There is now $wgUseKeyHeader that provides similar
@@ -60,12 +59,6 @@ production.
 * $wgCdnMaxageLagged was added, which limits the CDN cache TTL
   when any load balancer uses a DB that is lagged beyond the 'max lag'
   setting in the relevant section of $wgLBFactoryConf.
-* Added several JavaScript libraries for uploading files to MediaWiki
-  from the client-side. See documentation for mw.Upload and its
-  subclasses for more information.
-* Added OOUI dialogs and layout for file upload interfaces. See
-  documentation for mw.Upload.Dialog, mw.Upload.BookletLayout and its
-  subclasses for more information.
 * User::newSystemUser() may be used to simplify the creation of passwordless
   "system" users for logged actions from scripts and extensions.
 
