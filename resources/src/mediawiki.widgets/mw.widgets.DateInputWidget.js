@@ -57,6 +57,7 @@
 	 *
 	 * @class
 	 * @extends OO.ui.InputWidget
+	 * @mixins OO.ui.mixin.IndicatorElement
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
@@ -78,10 +79,14 @@
 	 * @cfg {boolean} [required=false] Mark the field as required. Implies `indicator: 'required'`.
 	 * @cfg {string} [mustBeAfter] Validates the date to be after this. In the 'YYYY-MM-DD' format.
 	 * @cfg {string} [mustBeBefore] Validates the date to be before this. In the 'YYYY-MM-DD' format.
+	 * @cfg {jQuery} [$overlay] Render the calendar into a separate layer. This configuration is
+	 *     useful in cases where the expanded calendar is larger than its container. The specified
+	 *     overlay layer is usually on top of the container and has a larger area. By default, the
+	 *     calendar uses relative positioning.
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {
 		// Config initialization
-		config = $.extend( { precision: 'day' }, config );
+		config = $.extend( { precision: 'day', required: false }, config );
 		if ( config.required ) {
 			if ( config.indicator === undefined ) {
 				config.indicator = 'required';
@@ -100,18 +105,23 @@
 		}
 
 		// Properties (must be set before parent constructor, which calls #setValue)
-		this.handle = new OO.ui.LabelWidget();
+		this.$handle = $( '<div>' );
+		this.label = new OO.ui.LabelWidget();
 		this.textInput = new OO.ui.TextInputWidget( {
+			required: config.required,
 			placeholder: placeholder,
 			validate: this.validateDate.bind( this )
 		} );
 		this.calendar = new mw.widgets.CalendarWidget( {
+			// Can't pass `$floatableContainer: this.$element` here, the latter is not set yet.
+			// Instead we call setFloatableContainer() below.
 			precision: config.precision
 		} );
 		this.inCalendar = 0;
 		this.inTextInput = 0;
 		this.inputFormat = config.inputFormat;
 		this.displayFormat = config.displayFormat;
+		this.required = config.required;
 
 		// Validate and set min and max dates as properties
 		mustBeAfter = moment( config.mustBeAfter, 'YYYY-MM-DD' );
@@ -133,6 +143,9 @@
 		// Parent constructor
 		mw.widgets.DateInputWidget.parent.call( this, config );
 
+		// Mixin constructors
+		OO.ui.mixin.IndicatorElement.call( this, config );
+
 		// Events
 		this.calendar.connect( this, {
 			change: 'onCalendarChange'
@@ -145,33 +158,68 @@
 			focusout: this.onBlur.bind( this )
 		} );
 		this.calendar.$element.on( {
+			click: this.onCalendarClick.bind( this ),
 			keypress: this.onCalendarKeyPress.bind( this )
 		} );
-		this.handle.$element.on( {
+		this.$handle.on( {
 			click: this.onClick.bind( this ),
 			keypress: this.onKeyPress.bind( this )
 		} );
 
 		// Initialization
-		if ( config.required ) {
-			this.$input.attr( 'required', 'required' );
-			this.$input.attr( 'aria-required', 'true' );
-		}
 		// Move 'tabindex' from this.$input (which is invisible) to the visible handle
-		this.setTabIndexedElement( this.handle.$element );
-		this.handle.$element
+		this.setTabIndexedElement( this.$handle );
+		this.$handle
+			.append( this.label.$element, this.$indicator )
 			.addClass( 'mw-widget-dateInputWidget-handle' );
+		this.calendar.$element
+			.addClass( 'mw-widget-dateInputWidget-calendar' );
 		this.$element
 			.addClass( 'mw-widget-dateInputWidget' )
-			.append( this.handle.$element, this.textInput.$element, this.calendar.$element );
+			.append( this.$handle, this.textInput.$element, this.calendar.$element );
+
+		if ( config.$overlay ) {
+			this.calendar.setFloatableContainer( this.$element );
+			config.$overlay.append( this.calendar.$element );
+
+			// The text input and calendar are not in DOM order, so fix up focus transitions.
+			this.textInput.$input.on( 'keydown', function ( e ) {
+				if ( e.which === OO.ui.Keys.TAB ) {
+					if ( e.shiftKey ) {
+						// Tabbing backward from text input: normal browser behavior
+						$.noop();
+					} else {
+						// Tabbing forward from text input: just focus the calendar
+						this.calendar.$element.focus();
+						return false;
+					}
+				}
+			}.bind( this ) );
+			this.calendar.$element.on( 'keydown', function ( e ) {
+				if ( e.which === OO.ui.Keys.TAB ) {
+					if ( e.shiftKey ) {
+						// Tabbing backward from calendar: just focus the text input
+						this.textInput.$input.focus();
+						return false;
+					} else {
+						// Tabbing forward from calendar: focus the text input, then allow normal browser
+						// behavior to move focus to next focusable after it
+						this.textInput.$input.focus();
+					}
+				}
+			}.bind( this ) );
+		}
+
 		// Set handle label and hide stuff
 		this.updateUI();
-		this.deactivate();
+		this.textInput.toggle( false );
+		this.calendar.toggle( false );
 	};
 
 	/* Inheritance */
 
 	OO.inheritClass( mw.widgets.DateInputWidget, OO.ui.InputWidget );
+	OO.mixinClass( mw.widgets.DateInputWidget, OO.ui.mixin.IndicatorElement );
 
 	/* Methods */
 
@@ -246,6 +294,7 @@
 
 		if ( this.value !== oldValue ) {
 			this.updateUI();
+			this.setValidityFlag();
 		}
 
 		return this;
@@ -261,7 +310,11 @@
 		setTimeout( function () {
 			var $focussed = $( ':focus' );
 			// Deactivate unless the focus moved to something else inside this widget
-			if ( !OO.ui.contains( widget.$element[ 0 ], $focussed[ 0 ], true ) ) {
+			if (
+				!OO.ui.contains( widget.$element[ 0 ], $focussed[ 0 ], true ) &&
+				// Calendar might be in an $overlay
+				!OO.ui.contains( widget.calendar.$element[ 0 ], $focussed[ 0 ], true )
+			) {
 				widget.deactivate();
 			}
 		}, 0 );
@@ -292,7 +345,7 @@
 		if ( this.getValue() === '' ) {
 			this.textInput.setValue( '' );
 			this.calendar.setDate( null );
-			this.handle.setLabel( mw.msg( 'mw-widgets-dateinput-no-date' ) );
+			this.label.setLabel( mw.msg( 'mw-widgets-dateinput-no-date' ) );
 			this.$element.addClass( 'mw-widget-dateInputWidget-empty' );
 		} else {
 			if ( !this.inTextInput ) {
@@ -301,7 +354,7 @@
 			if ( !this.inCalendar ) {
 				this.calendar.setDate( this.getValue() );
 			}
-			this.handle.setLabel( this.getMoment().format( this.getDisplayFormat() ) );
+			this.label.setLabel( this.getMoment().format( this.getDisplayFormat() ) );
 			this.$element.removeClass( 'mw-widget-dateInputWidget-empty' );
 		}
 	};
@@ -313,9 +366,10 @@
 	 */
 	mw.widgets.DateInputWidget.prototype.deactivate = function () {
 		this.$element.removeClass( 'mw-widget-dateInputWidget-active' );
-		this.handle.toggle( true );
+		this.$handle.show();
 		this.textInput.toggle( false );
 		this.calendar.toggle( false );
+		this.setValidityFlag();
 	};
 
 	/**
@@ -326,7 +380,7 @@
 	mw.widgets.DateInputWidget.prototype.activate = function () {
 		this.calendar.resetUI();
 		this.$element.addClass( 'mw-widget-dateInputWidget-active' );
-		this.handle.toggle( false );
+		this.$handle.hide();
 		this.textInput.toggle( true );
 		this.calendar.toggle( true );
 
@@ -445,7 +499,25 @@
 	mw.widgets.DateInputWidget.prototype.onCalendarKeyPress = function ( e ) {
 		if ( !this.isDisabled() && e.which === OO.ui.Keys.ENTER ) {
 			this.deactivate();
-			this.handle.$element.focus();
+			this.$handle.focus();
+			return false;
+		}
+	};
+
+	/**
+	 * Handle calendar click events.
+	 *
+	 * @private
+	 * @param {jQuery.Event} e Mouse click event
+	 */
+	mw.widgets.DateInputWidget.prototype.onCalendarClick = function ( e ) {
+		if (
+			!this.isDisabled() &&
+			e.which === 1 &&
+			$( e.target ).hasClass( 'mw-widget-calendarWidget-day' )
+		) {
+			this.deactivate();
+			this.$handle.focus();
 			return false;
 		}
 	};
@@ -457,35 +529,34 @@
 	 */
 	mw.widgets.DateInputWidget.prototype.onEnter = function () {
 		this.deactivate();
-		this.handle.$element.focus();
+		this.$handle.focus();
 	};
 
 	/**
 	 * @private
-	 * @param {string} date Date string, to be valid, must be empty (no date selected) or in
-	 *     'YYYY-MM-DD' or 'YYYY-MM' format to be valid
+	 * @param {string} date Date string, to be valid, must be in 'YYYY-MM-DD' or 'YYYY-MM' format or
+	 *     (unless the field is required) empty
 	 * @returns {boolean}
 	 */
 	mw.widgets.DateInputWidget.prototype.validateDate = function ( date ) {
+		var isValid;
 		if ( date === '' ) {
-			return true;
+			isValid = !this.required;
+		} else {
+			isValid = this.isValidDate( date ) && this.isInRange( date );
 		}
-
-		var isValid = this.isValidDate( date ) && this.isInRange( date );
-		this.setValidityFlag( isValid );
 		return isValid;
 	};
 
 	/**
 	 * @private
-	 * @param {string} date Date string, to be valid, must be empty (no date selected) or in
-	 *     'YYYY-MM-DD' or 'YYYY-MM' format to be valid
+	 * @param {string} date Date string, to be valid, must be in 'YYYY-MM-DD' or 'YYYY-MM' format
 	 * @returns {boolean}
 	 */
 	mw.widgets.DateInputWidget.prototype.isValidDate = function ( date ) {
 		// "Half-strict mode": for example, for the format 'YYYY-MM-DD', 2015-1-3 instead of 2015-01-03
 		// is okay, but 2015-01 isn't, and neither is 2015-01-foo. Use Moment's "fuzzy" mode and check
-		// parsing flags for the details (stoled from implementation of #isValid).
+		// parsing flags for the details (stoled from implementation of moment#isValid).
 		var
 			mom = moment( date, this.getInputFormat() ),
 			flags = mom.parsingFlags();

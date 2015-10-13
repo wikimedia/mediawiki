@@ -79,9 +79,20 @@
 		options.ajax = $.extend( {}, defaultOptions.ajax, options.ajax );
 
 		this.defaults = options;
+		this.requests = [];
 	};
 
 	mw.Api.prototype = {
+		/**
+		 * Abort all unfinished requests issued by this Api object.
+		 *
+		 * @method
+		 */
+		abort: function () {
+			$.each( this.requests, function ( index, request ) {
+				request.abort();
+			} );
+		},
 
 		/**
 		 * Perform API get request
@@ -222,6 +233,7 @@
 					}
 				} );
 
+			this.requests.push( xhr );
 			// Return the Promise
 			return apiDeferred.promise( { abort: xhr.abort } ).fail( function ( code, details ) {
 				if ( !( code === 'http' && details && details.textStatus === 'abort' ) ) {

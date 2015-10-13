@@ -28,6 +28,21 @@
 
 	/**
 	 * @private
+	 * Given a non-empty object, return one of its keys.
+	 *
+	 * @param {Object} obj
+	 * @return {string}
+	 */
+	function getFirstKey( obj ) {
+		for ( var key in obj ) {
+			if ( obj.hasOwnProperty( key ) ) {
+				return key;
+			}
+		}
+	}
+
+	/**
+	 * @private
 	 * Get new iframe object for an upload.
 	 *
 	 * @return {HTMLIframeElement}
@@ -116,13 +131,13 @@
 			}
 
 			if ( !file ) {
-				return $.Deferred().reject( 'No file' );
+				throw new Error( 'No file' );
 			}
 
 			canUseFormData = formDataAvailable() && file instanceof window.File;
 
 			if ( !isFileInput && !canUseFormData ) {
-				return $.Deferred().reject( 'Unsupported argument type passed to mw.Api.upload' );
+				throw new Error( 'Unsupported argument type passed to mw.Api.upload' );
 			}
 
 			if ( canUseFormData ) {
@@ -182,17 +197,19 @@
 			$iframe.one( 'load', function () {
 				$iframe.one( 'load', function () {
 					var result = processIframeResult( iframe );
+					deferred.notify( 1 );
 
 					if ( !result ) {
-						deferred.reject( 'No response from API on upload attempt.' );
-					} else if ( result.error || result.warnings ) {
-						if ( result.error && result.error.code === 'badtoken' ) {
+						deferred.reject( 'ok-but-empty', 'No response from API on upload attempt.' );
+					} else if ( result.error ) {
+						if ( result.error.code === 'badtoken' ) {
 							api.badToken( 'edit' );
 						}
 
-						deferred.reject( result.error || result.warnings );
+						deferred.reject( result.error.code, result );
+					} else if ( result.upload && result.upload.warnings ) {
+						deferred.reject( getFirstKey( result.upload.warnings ), result );
 					} else {
-						deferred.notify( 1 );
 						deferred.resolve( result );
 					}
 				} );
@@ -202,7 +219,7 @@
 			} );
 
 			$iframe.error( function ( error ) {
-				deferred.reject( 'iframe failed to load: ' + error );
+				deferred.reject( 'http', error );
 			} );
 
 			$iframe.prop( 'src', 'about:blank' ).hide();
@@ -214,7 +231,7 @@
 			} );
 
 			if ( !data.filename && !data.stash ) {
-				return $.Deferred().reject( 'Filename not included in file data.' );
+				throw new Error( 'Filename not included in file data.' );
 			}
 
 			if ( this.needToken() ) {
@@ -258,7 +275,7 @@
 			data.file = file;
 
 			if ( !data.filename && !data.stash ) {
-				return $.Deferred().reject( 'Filename not included in file data.' );
+				throw new Error( 'Filename not included in file data.' );
 			}
 
 			// Use this.postWithEditToken() or this.post()
@@ -281,15 +298,16 @@
 				}
 			} )
 				.done( function ( result ) {
-					if ( result.error || result.warnings ) {
-						deferred.reject( result.error || result.warnings );
+					deferred.notify( 1 );
+					if ( result.upload && result.upload.warnings ) {
+						deferred.reject( getFirstKey( result.upload.warnings ), result );
 					} else {
-						deferred.notify( 1 );
 						deferred.resolve( result );
 					}
 				} )
-				.fail( function ( result ) {
-					deferred.reject( result );
+				.fail( function ( errorCode, result ) {
+					deferred.notify( 1 );
+					deferred.reject( errorCode, result );
 				} );
 
 			return deferred.promise();
@@ -324,7 +342,7 @@
 				api = this;
 
 			if ( !data.filename ) {
-				return $.Deferred().reject( 'Filename not included in file data.' );
+				throw new Error( 'Filename not included in file data.' );
 			}
 
 			function finishUpload( moreData ) {
@@ -334,26 +352,31 @@
 				data.format = 'json';
 
 				if ( !data.filename ) {
-					return $.Deferred().reject( 'Filename not included in file data.' );
+					throw new Error( 'Filename not included in file data.' );
 				}
 
 				return api.postWithEditToken( data ).then( function ( result ) {
-					if ( result.upload && ( result.upload.error || result.upload.warnings ) ) {
-						return $.Deferred().reject( result.upload.error || result.upload.warnings ).promise();
+					if ( result.upload && result.upload.warnings ) {
+						return $.Deferred().reject( getFirstKey( result.upload.warnings ), result ).promise();
 					}
 					return result;
 				} );
 			}
 
-			return this.upload( file, { stash: true, filename: data.filename } ).then( function ( result ) {
-				if ( result && result.upload && result.upload.filekey ) {
+			return this.upload( file, { stash: true, filename: data.filename } ).then(
+				function ( result ) {
 					filekey = result.upload.filekey;
-				} else if ( result && ( result.error || result.warning ) ) {
-					return $.Deferred().reject( result );
+					return finishUpload;
+				},
+				function ( errorCode, result ) {
+					if ( result && result.upload && result.upload.filekey ) {
+						// Ignore any warnings if 'filekey' was returned, that's all we care about
+						filekey = result.upload.filekey;
+						return $.Deferred().resolve( finishUpload );
+					}
+					return $.Deferred().reject( errorCode, result );
 				}
-
-				return finishUpload;
-			} );
+			);
 		},
 
 		needToken: function () {

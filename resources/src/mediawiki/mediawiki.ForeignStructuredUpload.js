@@ -11,17 +11,17 @@
 	 * See <https://commons.wikimedia.org/wiki/Commons:Structured_data> for
 	 * a more detailed description of how that system works.
 	 *
-	 * TODO this currently only supports uploads under CC-BY-SA 4.0,
-	 *     and should really have support for more licenses.
+	 * **TODO: This currently only supports uploads under CC-BY-SA 4.0,
+	 * and should really have support for more licenses.**
 	 *
 	 * @inheritdoc
 	 */
-	function ForeignStructuredUpload( targetHost, apiconfig ) {
+	function ForeignStructuredUpload( target, apiconfig ) {
 		this.date = undefined;
 		this.descriptions = [];
 		this.categories = [];
 
-		mw.ForeignUpload.call( this, targetHost, apiconfig );
+		mw.ForeignUpload.call( this, target, apiconfig );
 	}
 
 	OO.inheritClass( ForeignStructuredUpload, mw.ForeignUpload );
@@ -77,7 +77,7 @@
 			'\n|date=' +
 			this.getDate() +
 			'\n|source=' +
-			this.getUser() +
+			this.getSource() +
 			'\n|author=' +
 			this.getUser() +
 			'\n}}\n\n' +
@@ -149,13 +149,25 @@
 	};
 
 	/**
-	 * Gets the wikitext for the license of the upload. Abstract for now.
+	 * Gets the wikitext for the license of the upload.
 	 *
 	 * @private
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getLicense = function () {
-		return '';
+		// Make sure this matches the messages for different targets in
+		// mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm
+		return this.target === 'shared' ? '{{self|cc-by-sa-4.0}}' : '';
+	};
+
+	/**
+	 * Get the source. This should be some sort of localised text for "Own work".
+	 *
+	 * @private
+	 * @return {string}
+	 */
+	ForeignStructuredUpload.prototype.getSource = function () {
+		return '{{own}}';
 	};
 
 	/**

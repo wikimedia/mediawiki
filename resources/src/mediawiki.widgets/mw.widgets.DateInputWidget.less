@@ -26,6 +26,8 @@
 	}
 }
 
+@indicator-size: unit(12 / 16 / 0.8, em);
+
 .mw-widget-dateInputWidget {
 	display: inline-block;
 	position: relative;
@@ -34,16 +36,29 @@
 		width: 100%;
 		display: inline-block;
 		cursor: pointer;
+		position: relative;
 
 		.oo-ui-unselectable();
 		.oo-ui-box-sizing(border-box);
+
+		> .oo-ui-indicatorElement-indicator {
+			display: none;
+		}
+	}
+
+	&.oo-ui-indicatorElement .mw-widget-dateInputWidget-handle > .oo-ui-indicatorElement-indicator {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100%;
 	}
 
 	&.oo-ui-widget-disabled .mw-widget-dateInputWidget-handle {
 		cursor: default;
 	}
 
-	> .mw-widget-calendarWidget {
+	&-calendar {
 		position: absolute;
 		z-index: 1;
 	}
@@ -62,30 +77,25 @@
 		background-color: white;
 	}
 
+	&.oo-ui-indicatorElement .mw-widget-dateInputWidget-handle > .oo-ui-indicatorElement-indicator {
+		width: @indicator-size;
+		margin: 0 0.775em;
+	}
+
 	> .oo-ui-textInputWidget input {
 		padding-left: 1em;
 	}
 
-	> .mw-widget-calendarWidget {
-		background-color: white;
+	> .oo-ui-textInputWidget {
+		z-index: 2;
 	}
 
-	&-active > .mw-widget-calendarWidget {
+	&-calendar {
+		background-color: white;
 		margin-top: -2px;
-		// Immitate focussed input styles
-		// First shadow generates bottom and right "border", second shadow generates bottom and left,
-		// resulting in no "border" at the top. Note that this generates a 2px-wide "border", not 1px.
-		// It makes sense when you think about it long enough and look up what each value means. Enjoy.
-		// (This is symmetrical anyway, and CSSJanus can't flip it correctly. T62805)
-		/* @noflip */
-		box-shadow: inset -1px -1px 0 1px #347bff, inset 1px -1px 0 1px #347bff;
-		border-top: 1px solid #ccc;
 
 		&:focus {
-			outline: none;
-			// Add border at the top on focus
-			margin-top: -3px;
-			border-top: 2px solid #347bff;
+			z-index: 3;
 		}
 	}
 
@@ -101,7 +111,12 @@
 			text-shadow: 0 1px 1px #fff;
 			border-color: #ddd;
 			background-color: #f3f3f3;
+
+			> .oo-ui-indicatorElement-indicator {
+				opacity: 0.2;
+			}
 		}
+
 	}
 
 	&.oo-ui-flaggedElement-invalid {
