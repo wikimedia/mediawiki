@@ -77,6 +77,21 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * Format a line
+	 *
+	 * @since 1.27
+	 *
+	 * @param RecentChange $rc Passed by reference
+	 * @param bool $watched (default false)
+	 * @param int $linenumber (default null)
+	 *
+	 * @return string|bool
+	 */
+	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
+		throw new RuntimeException( 'recentChangesLine should be implemented' );
+	}
+
+	/**
 	 * Sets the list to use a "<li class='watchlist-(namespace)-(page)'>" tag
 	 * @param bool $value
 	 */
