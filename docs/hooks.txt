@@ -1956,12 +1956,14 @@ $rcid: ID of the revision to be marked patrolled
 $user: the user (object) marking the revision as patrolled
 $wcOnlySysopsCanPatrol: config setting indicating whether the user needs to be a
   sysop in order to mark an edit patrolled.
+$auto true if the edit is being marked as patrolled automatically
 
 'MarkPatrolledComplete': After an edit is marked patrolled.
 $rcid: ID of the revision marked as patrolled
 $user: user (object) who marked the edit patrolled
 $wcOnlySysopsCanPatrol: config setting indicating whether the user must be a
   sysop to patrol the edit.
+$auto true if the edit is being marked as patrolled automatically
 
 'MediaWikiPerformAction': Override MediaWiki::performAction(). Use this to do
 something completely different, after the basic globals have been set up, but
