@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/watchlist ADD wl_expirytimestamp VARCHAR(14) DEFAULT NULL
