@@ -549,7 +549,7 @@ class LoadBalancer {
 		}
 
 		# Make master connections read only if in lagged slave mode
-		if ( $masterOnly && $this->getServerCount() > 1 && $this->getLaggedSlaveMode() ) {
+		if ( $masterOnly && $this->getServerCount() > 1 && $this->getLaggedSlaveMode( $wiki ) ) {
 			$conn->setLBInfo( 'readOnlyReason',
 				'The database has been automatically locked ' .
 				'while the slave database servers catch up to the master'
@@ -1142,11 +1142,13 @@ class LoadBalancer {
 
 	/**
 	 * @note This method will trigger a DB connection if not yet done
+	 *
+	 * @param string|bool $wiki Wiki ID, or false for the current wiki
 	 * @return bool Whether the generic connection for reads is highly "lagged"
 	 */
-	public function getLaggedSlaveMode() {
+	public function getLaggedSlaveMode( $wiki = false ) {
 		# Get a generic reader connection
-		$this->getConnection( DB_SLAVE );
+		$this->getConnection( DB_SLAVE, false, $wiki );
 
 		return $this->mLaggedSlaveMode;
 	}
