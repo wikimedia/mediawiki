@@ -44,6 +44,8 @@ class UnwatchedpagesPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
+		$db = wfGetDB( DB_READ );
+
 		return array(
 			'tables' => array( 'page', 'watchlist' ),
 			'fields' => array(
@@ -54,11 +56,16 @@ class UnwatchedpagesPage extends QueryPage {
 			'conds' => array(
 				'wl_title IS NULL',
 				'page_is_redirect' => 0,
-				"page_namespace != '" . NS_MEDIAWIKI . "'"
+				"page_namespace != '" . NS_MEDIAWIKI . "'",
 			),
 			'join_conds' => array( 'watchlist' => array(
-				'LEFT JOIN', array( 'wl_title = page_title',
-					'wl_namespace = page_namespace' ) ) )
+				'LEFT JOIN', array(
+					'wl_title = page_title',
+					'wl_namespace = page_namespace',
+					'wl_expirytimestamp > ' .
+						$db->addQuotes( $db->timestamp() ) .
+						' OR wl_expirytimestamp IS NULL'
+				) ) )
 		);
 	}
 

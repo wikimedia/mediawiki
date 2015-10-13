@@ -93,6 +93,9 @@ class EmailNotification {
 				'wl_namespace' => $title->getNamespace(),
 				'wl_title' => $title->getDBkey(),
 				'wl_notificationtimestamp IS NULL',
+				'wl_expirytimestamp > ' .
+					$dbw->addQuotes( $dbw->timestamp() ) .
+					' OR wl_expirytimestamp IS NULL'
 			), __METHOD__
 		);
 

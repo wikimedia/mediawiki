@@ -225,7 +225,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				array(
 					'wl_user' => $user->getId(),
 					'wl_namespace=rc_namespace',
-					'wl_title=rc_title'
+					'wl_title=rc_title',
+					'wl_expirytimestamp > ' .
+						$dbr->addQuotes( $dbr->timestamp() ) .
+						' OR wl_expirytimestamp IS NULL'
 				),
 			),
 		);
@@ -372,6 +375,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					array(
 						'wl_namespace' => $obj->rc_namespace,
 						'wl_title' => $obj->rc_title,
+						'wl_expirytimestamp > ' .
+							$dbr->addQuotes( $dbr->timestamp() ) .
+							' OR wl_expirytimestamp IS NULL'
 					),
 					__METHOD__ );
 			} else {
@@ -607,8 +613,16 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 */
 	protected function countItems( $dbr ) {
 		# Fetch the raw count
-		$rows = $dbr->select( 'watchlist', array( 'count' => 'COUNT(*)' ),
-			array( 'wl_user' => $this->getUser()->getId() ), __METHOD__ );
+		$rows = $dbr->select( 'watchlist',
+			array( 'count' => 'COUNT(*)' ),
+			array(
+				'wl_user' => $this->getUser()->getId(),
+				'wl_expirytimestamp > ' .
+					$dbr->addQuotes( $dbr->timestamp() ) .
+					' OR wl_expirytimestamp IS NULL'
+			),
+		__METHOD__
+		);
 		$row = $dbr->fetchObject( $rows );
 		$count = $row->count;
 
