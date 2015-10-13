@@ -3391,6 +3391,7 @@ $page: WikiPage object to be watched
 'WatchArticleComplete': After a watch is added to an article.
 $user: user that watched
 $page: WikiPage object watched
+$expiry: timestamp the watch entry will expire
 
 'WatchlistEditorBeforeFormRender': Before building the Special:EditWatchlist
 form, used to manipulate the list of pages or preload data based on that list.

@@ -92,7 +92,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$join_conds['watchlist'] = array( 'LEFT JOIN', array(
 				'wl_user' => $uid,
 				'wl_title=rc_title',
-				'wl_namespace=rc_namespace'
+				'wl_namespace=rc_namespace',
+				'wl_expirytimestamp > ' . $dbr->addQuotes( $dbr->timestamp() )
 			) );
 		}
 		if ( $this->getUser()->isAllowed( 'rollback' ) ) {
