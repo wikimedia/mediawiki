@@ -1,3 +1,11 @@
+/*
+ * Local backports:
+ *
+ * - 9aba218a882ff45b07410a3ce9d5cdfd8e567e26
+ *   CapsuleMultiSelectWidget: When 'allowArbitrary' is true, don't require 'Enter' to confirm
+ *   Required for more intuitive behavior of mw.widgets.CategorySelector.
+ */
+
 /*!
  * OOjs UI v0.12.11
  * https://www.mediawiki.org/wiki/OOjs_UI
@@ -13455,6 +13463,9 @@ OO.ui.CapsuleMultiSelectWidget.prototype.onInputFocus = function () {
  * @param {jQuery.Event} event
  */
 OO.ui.CapsuleMultiSelectWidget.prototype.onInputBlur = function () {
+	if ( this.allowArbitrary && this.$input.val().trim() !== '' ) {
+		this.addItemsFromData( [ this.$input.val() ] );
+	}
 	this.clearInput();
 };
 

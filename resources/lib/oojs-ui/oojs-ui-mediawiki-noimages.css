@@ -1,3 +1,11 @@
+/*
+ * Local backports:
+ *
+ * - aadaa8a187d36ded603eebbdff47efe133908f6c
+ *   CapsuleMultiSelectWidget: Set 'background-color' rather than 'background'
+ *   Required for mw.widgets.CategorySelector's pending state to display.
+ */
+
 /*!
  * OOjs UI v0.12.11
  * https://www.mediawiki.org/wiki/OOjs_UI
@@ -2519,7 +2527,7 @@
 	width: 100%;
 }
 .oo-ui-capsuleMultiSelectWidget-handle {
-	background: #ffffff;
+	background-color: #ffffff;
 	cursor: text;
 	min-height: 2.4em;
 	margin-right: 0.5em;
