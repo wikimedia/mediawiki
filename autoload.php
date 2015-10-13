@@ -1388,6 +1388,7 @@ $wgAutoloadLocalClasses = array(
 	'WatchAction' => __DIR__ . '/includes/actions/WatchAction.php',
 	'WatchedItem' => __DIR__ . '/includes/WatchedItem.php',
 	'WatchlistCleanup' => __DIR__ . '/maintenance/cleanupWatchlist.php',
+	'WatchlistUpdateJob' => __DIR__ . '/includes/jobqueue/jobs/WatchlistUpdateJob.php',
 	'WebInstaller' => __DIR__ . '/includes/installer/WebInstaller.php',
 	'WebInstallerComplete' => __DIR__ . '/includes/installer/WebInstallerComplete.php',
 	'WebInstallerCopying' => __DIR__ . '/includes/installer/WebInstallerCopying.php',

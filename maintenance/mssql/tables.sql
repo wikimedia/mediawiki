@@ -847,6 +847,7 @@ CREATE INDEX /*i*/rc_user_text ON /*_*/recentchanges (rc_user_text, rc_timestamp
 
 
 CREATE TABLE /*_*/watchlist (
+  wl_id int NOT NULL PRIMARY KEY IDENTITY,
   -- Key to user.user_id
   wl_user int NOT NULL REFERENCES /*_*/mwuser(user_id) ON DELETE CASCADE,
 
@@ -859,12 +860,16 @@ CREATE TABLE /*_*/watchlist (
   -- Timestamp used to send notification e-mails and show "updated since last visit" markers on
   -- history and recent changes / watchlist. Set to NULL when the user visits the latest revision
   -- of the page, which means that they should be sent an e-mail on the next change.
-  wl_notificationtimestamp varchar(14)
+  wl_notificationtimestamp varchar(14),
+
+  -- Timestamp to make the point in time that this watchlist item should no longer counted after.
+  wl_expirytimestamp varchar(14) NOT NULL default ''
 
 );
 
 CREATE UNIQUE INDEX /*i*/wl_user ON /*_*/watchlist (wl_user, wl_namespace, wl_title);
 CREATE INDEX /*i*/namespace_title ON /*_*/watchlist (wl_namespace, wl_title);
+CREATE INDEX /*i*/wl_expirytimestamp ON /*_*/watchlist (wl_expirytimestamp);
 
 
 --

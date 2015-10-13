@@ -3311,12 +3311,20 @@ class User implements IDBAccessObject {
 	 * Get a WatchedItem for this user and $title.
 	 *
 	 * @since 1.22 $checkRights parameter added
+	 * @since 1.27 $expiry parameter added
+	 *
 	 * @param Title $title
 	 * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
 	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
+	 * @param string|null $expiry MW_TS format
+	 *
 	 * @return WatchedItem
 	 */
-	public function getWatchedItem( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
+	public function getWatchedItem(
+		$title,
+		$checkRights = WatchedItem::CHECK_USER_RIGHTS,
+		$expiry = null
+	) {
 		$key = $checkRights . ':' . $title->getNamespace() . ':' . $title->getDBkey();
 
 		if ( isset( $this->mWatchedItems[$key] ) ) {
@@ -3327,7 +3335,7 @@ class User implements IDBAccessObject {
 			$this->mWatchedItems = array();
 		}
 
-		$this->mWatchedItems[$key] = WatchedItem::fromUserTitle( $this, $title, $checkRights );
+		$this->mWatchedItems[$key] = WatchedItem::fromUserTitle( $this, $title, $expiry, $checkRights );
 		return $this->mWatchedItems[$key];
 	}
 
@@ -3340,18 +3348,25 @@ class User implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function isWatched( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
-		return $this->getWatchedItem( $title, $checkRights )->isWatched();
+		return $this->getWatchedItem( $title, $checkRights, null )->isWatched();
 	}
 
 	/**
 	 * Watch an article.
 	 * @since 1.22 $checkRights parameter added
+	 * @since 1.27 $expiry parameter added
+	 *
 	 * @param Title $title Title of the article to look at
 	 * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
 	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
+	 * @param string|null $expiry MW_TS format
 	 */
-	public function addWatch( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
-		$this->getWatchedItem( $title, $checkRights )->addWatch();
+	public function addWatch(
+		$title,
+		$checkRights = WatchedItem::CHECK_USER_RIGHTS,
+		$expiry = null
+	) {
+		$this->getWatchedItem( $title, $checkRights, $expiry )->addWatch();
 		$this->invalidateCache();
 	}
 
