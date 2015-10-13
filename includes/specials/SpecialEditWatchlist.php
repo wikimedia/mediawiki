@@ -312,6 +312,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				'wl_namespace', 'wl_title'
 			), array(
 				'wl_user' => $this->getUser()->getId(),
+			'wl_expirytimestamp > ' .
+				$dbr->addQuotes( $dbr->timestamp() ) .
+				' OR wl_expirytimestamp IS NULL'
 			),
 			__METHOD__
 		);
@@ -355,7 +358,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$res = $dbr->select(
 			array( 'watchlist' ),
 			array( 'wl_namespace', 'wl_title' ),
-			array( 'wl_user' => $this->getUser()->getId() ),
+			array(
+				'wl_user' => $this->getUser()->getId(),
+				'wl_expirytimestamp > ' .
+					$dbr->addQuotes( $dbr->timestamp() ) .
+					' OR wl_expirytimestamp IS NULL'
+			),
 			__METHOD__,
 			array( 'ORDER BY' => array( 'wl_namespace', 'wl_title' ) )
 		);
@@ -468,17 +476,25 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
 					'wl_title' => $title->getDBkey(),
 					'wl_notificationtimestamp' => null,
+					'wl_expirytimestamp' => null,
 				);
 				$rows[] = array(
 					'wl_user' => $this->getUser()->getId(),
 					'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
 					'wl_title' => $title->getDBkey(),
 					'wl_notificationtimestamp' => null,
+					'wl_expirytimestamp' => null,
 				);
 			}
 		}
 
-		$dbw->insert( 'watchlist', $rows, __METHOD__, 'IGNORE' );
+		$dbw->upsert(
+			'watchlist',
+			$rows,
+			array( 'wl_user', 'wl_namespace', 'wl_title' ),
+			array( 'wl_expirytimestamp = VALUES(wl_expirytimestamp)' ),
+			__METHOD__
+		);
 	}
 
 	/**
