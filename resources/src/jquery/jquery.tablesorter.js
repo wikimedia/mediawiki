@@ -740,7 +740,7 @@
 				new RegExp( /(https?|ftp|file):\/\// )
 			],
 			isoDate: [
-				new RegExp( /^([-+]?\d{1,4})-([01]\d)-([0-3]\d)([T\s]((([01]\d|2[0-3])(:?[0-5]\d)?|24:?00)?(:?([0-5]\d))?([.,]\d+)?)([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?/ ),
+				new RegExp( /^([-+]?\d{1,4})-([01]\d)-([0-3]\d)([T\s]((([01]\d|2[0-3])(:?[0-5]\d)?|24:?00)?(:?([0-5]\d|60))?([.,]\d+)?)([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?/ ),
 				new RegExp( /^([-+]?\d{1,4})-([01]\d)-([0-3]\d)/ )
 			],
 			usLongDate: [
@@ -1165,7 +1165,12 @@
 					return $.tablesorter.formatFloat( 0 );
 				}
 			} else {
-				isodate = new Date( $.trim( s ) );
+				matches = s.match( ts.rgx.isoDate[ 0 ] );
+				if ( matches ) {
+					isodate = new Date( $.trim( matches[ 0 ] ) );
+				} else {
+					return $.tablesorter.formatFloat( 0 );
+				}
 			}
 			return $.tablesorter.formatFloat( ( isodate !== undefined ) ? isodate.getTime() : 0 );
 		},
