@@ -428,6 +428,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			// 1.27
 			array( 'dropTable', 'msg_resource_links' ),
 			array( 'dropTable', 'msg_resource' ),
+			array( 'dropFkey', 'recentchanges', 'rc_cur_id' ),
+			array( 'addPgField', 'watchlist', 'wl_expirytimestamp', 'TIMESTAMPTZ NULL DEFAULT NULL' ),
+			array( 'addPgIndex', 'watchlist', 'wl_expirytimestamp', '(wl_expirytimestamp)' ),
 		);
 	}
 

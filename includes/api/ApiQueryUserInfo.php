@@ -233,6 +233,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				array(
 					'wl_user' => $user->getId(),
 					'wl_notificationtimestamp IS NOT NULL',
+					'wl_expirytimestamp > ' . $dbr->addQuotes( $dbr->timestamp() )
 				),
 				__METHOD__,
 				array( 'LIMIT' => self::WL_UNREAD_LIMIT )

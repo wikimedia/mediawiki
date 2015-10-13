@@ -44,6 +44,11 @@ class ApiWatch extends ApiBase {
 
 		$params = $this->extractRequestParams();
 
+		if ( $params['expiry'] !== null && $params['expiry'] < wfTimestamp( TS_MW ) ) {
+			$this->dieUsage( 'The expiry must be in the future', 'badtimestamp_expiry' );
+		}
+		$params['expiry'] = $this->getExpiryTimestampFromParameter( $params['expiry'] );
+
 		$continuationManager = new ApiContinuationManager( $this, array(), array() );
 		$this->setContinuationManager( $continuationManager );
 
@@ -114,7 +119,7 @@ class ApiWatch extends ApiBase {
 					->title( $title )->parseAsBlock();
 			}
 		} else {
-			$status = WatchAction::doWatch( $title, $user );
+			$status = WatchAction::doWatch( $title, $user, $params['expiry'] );
 			$res['watched'] = $status->isOK();
 			if ( $status->isOK() ) {
 				$res['message'] = $this->msg( 'addedwatchtext', $title->getPrefixedText() )
@@ -130,6 +135,24 @@ class ApiWatch extends ApiBase {
 		}
 
 		return $res;
+	}
+
+	/**
+	 * @param string $param User input
+	 *
+	 * @return string TS_MW
+	 */
+	private function getExpiryTimestampFromParameter( $param ) {
+		if ( wfIsInfinity( $param ) ) {
+			$exp = 'infinity';
+		} else {
+			$exp = strtotime( $param );
+			if ( $exp < 0 || !$exp ) {
+				$this->dieUsageMsg( array( 'invalidexpiry', $param ) );
+			}
+			$exp = wfTimestamp( TS_MW, $exp );
+		}
+		return $exp;
 	}
 
 	/**
@@ -166,6 +189,10 @@ class ApiWatch extends ApiBase {
 			'continue' => array(
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			),
+			'expiry' => array(
+				ApiBase::PARAM_TYPE => 'timestamp',
+				ApiBase::PARAM_DFLT => 'infinite',
+			),
 		);
 		if ( $flags ) {
 			$result += $this->getPageSet()->getFinalParams( $flags );
@@ -178,6 +205,8 @@ class ApiWatch extends ApiBase {
 		return array(
 			'action=watch&titles=Main_Page&token=123ABC'
 				=> 'apihelp-watch-example-watch',
+			'action=watch&titles=Main_Page&expiry=2%20weeks&token=123ABC'
+				=> 'apihelp-watch-example-watch-expiry',
 			'action=watch&titles=Main_Page&unwatch=&token=123ABC'
 				=> 'apihelp-watch-example-unwatch',
 			'action=watch&generator=allpages&gapnamespace=0&token=123ABC'
