@@ -19,9 +19,16 @@ matrix:
       php: hhvm
     - env: dbtype=mysql
       php: 7
+    - env: dbtype=mariadb
+      php: 5.3
+    - env: dbtype=mariadb
+      php: hhvm
+    - env: dbtype=mariadb
+      php: 7
 
 services:
   - mysql
+  - mariadb
 
 branches:
   # Test changes in master and arbitrary Travis CI branches only.
