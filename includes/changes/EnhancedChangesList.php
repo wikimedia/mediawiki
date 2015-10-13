@@ -83,15 +83,16 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
 	 *
-	 * @param RecentChange $baseRC
+	 * @param RecentChange $rc
 	 * @param bool $watched
+	 * @param int $linenumber (default null)
 	 *
 	 * @return string
 	 */
-	public function recentChangesLine( &$baseRC, $watched = false ) {
+	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
 
 		$date = $this->getLanguage()->userDate(
-			$baseRC->mAttribs['rc_timestamp'],
+			$rc->mAttribs['rc_timestamp'],
 			$this->getUser()
 		);
 
@@ -106,7 +107,7 @@ class EnhancedChangesList extends ChangesList {
 			$this->lastdate = $date;
 		}
 
-		$cacheEntry = $this->cacheEntryFactory->newFromRecentChange( $baseRC, $watched );
+		$cacheEntry = $this->cacheEntryFactory->newFromRecentChange( $rc, $watched );
 		$this->addCacheEntry( $cacheEntry );
 
 		return $ret;
