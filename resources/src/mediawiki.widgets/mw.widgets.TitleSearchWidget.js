@@ -63,11 +63,7 @@
 	 * @param {OO.ui.OptionWidget} item Chosen item
 	 */
 	mw.widgets.TitleSearchWidget.prototype.onTitleSearchResultsChoose = function ( item ) {
-		// TOOD: Pressing enter can incorrectly trigger 'choose' with null.
-		// Remove this check when oojs-ui 0.12.10 lands.
-		if ( item ) {
-			this.getQuery().setValue( item.getData() );
-		}
+		this.getQuery().setValue( item.getData() );
 	};
 
 	/**
