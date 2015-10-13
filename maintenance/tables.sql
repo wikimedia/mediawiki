@@ -1126,7 +1126,11 @@ CREATE TABLE /*_*/watchlist (
   -- Timestamp used to send notification e-mails and show "updated since last visit" markers on
   -- history and recent changes / watchlist. Set to NULL when the user visits the latest revision
   -- of the page, which means that they should be sent an e-mail on the next change.
-  wl_notificationtimestamp varbinary(14)
+  wl_notificationtimestamp varbinary(14),
+
+  -- Timestamp to make the point in time that this watchlist item should no longer counted after.
+  -- Set to NULL to mark no expiry.
+  wl_expirytimestamp varbinary(14) NULL default NULL
 
 ) /*$wgDBTableOptions*/;
 

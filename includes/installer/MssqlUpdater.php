@@ -64,6 +64,9 @@ class MssqlUpdater extends DatabaseUpdater {
 				'patch-oi_major_mime-chemical.sql' ),
 			array( 'modifyField', 'filearchive', 'fa_major_mime',
 				'patch-fa_major_mime-chemical.sql' ),
+
+			// 1.27
+			array( 'addField', 'watchlist', 'wl_expirytimestamp', 'patch-watchlist-wl_expirytimestamp.sql' ),
 		);
 	}
 
