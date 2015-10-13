@@ -94,6 +94,12 @@ production.
 * If search returns zero results and current search engine has a "did you mean"
   suggestion, results for suggestion will be shown. Can be disabled by setting
   $wgSearchRunSuggestedQuery to false.
+* Added several JavaScript libraries for uploading files to MediaWiki
+  from the client-side. See documentation for mw.Upload and its
+  subclasses for more information.
+* Added OOUI dialogs and layout for file upload interfaces. See
+  documentation for mw.Upload.Dialog, mw.Upload.BookletLayout and its
+  subclasses for more information.
 
 == External libraries ==
 === Upgraded external libraries ===
