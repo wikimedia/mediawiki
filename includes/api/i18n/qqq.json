@@ -616,6 +616,8 @@
 	"apihelp-query+deletedrevs-example-mode3-main": "{{doc-apihelp-example|query+deletedrevs}}",
 	"apihelp-query+deletedrevs-example-mode3-talk": "{{doc-apihelp-example|query+deletedrevs}}",
 	"apihelp-query+disabled-description": "{{doc-apihelp-description|query+disabled}}",
+	"apihelp-query+displaytext-lang": "{{doc-apihelp-lang|query+displaytext}}",
+	"apihelp-query+displaytext-example-simple": "{{doc-apihelp-example|query+displaytext}}",
 	"apihelp-query+duplicatefiles-description": "{{doc-apihelp-description|query+duplicatefiles}}",
 	"apihelp-query+duplicatefiles-param-limit": "{{doc-apihelp-param|query+duplicatefiles|limit}}",
 	"apihelp-query+duplicatefiles-param-dir": "{{doc-apihelp-param|query+duplicatefiles|dir}}",

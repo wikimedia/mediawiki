@@ -658,6 +658,9 @@
 
 	"apihelp-query+disabled-description": "This query module has been disabled.",
 
+	"apihelp-query+displaytext-param-lang": "Return display text for given language code.",
+	"apihelp-query+displaytext-example-simple": "Get the display text for the <kbd>Main Page</kbd>.",
+
 	"apihelp-query+duplicatefiles-description": "List all files that are duplicates of the given files based on hash values.",
 	"apihelp-query+duplicatefiles-param-limit": "How many duplicate files to return.",
 	"apihelp-query+duplicatefiles-param-dir": "The direction in which to list.",
