@@ -123,16 +123,17 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'watchlist',
 		) );
 
+		$db = $this->getDB();
+
 		$userId = $wlowner->getId();
 		$this->addJoinConds( array( 'watchlist' => array( 'INNER JOIN',
 			array(
 				'wl_user' => $userId,
 				'wl_namespace=rc_namespace',
-				'wl_title=rc_title'
+				'wl_title=rc_title',
+				'wl_expirytimestamp > ' . $db->addQuotes( $db->timestamp() )
 			)
 		) ) );
-
-		$db = $this->getDB();
 
 		$this->addTimestampWhereRange( 'rc_timestamp', $params['dir'],
 			$params['start'], $params['end'] );
