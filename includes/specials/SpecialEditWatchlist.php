@@ -316,6 +316,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				'wl_namespace', 'wl_title'
 			), array(
 				'wl_user' => $this->getUser()->getId(),
+				'wl_expirytimestamp > ' . $dbr->addQuotes( $dbr->timestamp() )
 			),
 			__METHOD__
 		);
@@ -359,7 +360,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$res = $dbr->select(
 			array( 'watchlist' ),
 			array( 'wl_namespace', 'wl_title' ),
-			array( 'wl_user' => $this->getUser()->getId() ),
+			array(
+				'wl_user' => $this->getUser()->getId(),
+				'wl_expirytimestamp > ' . $dbr->addQuotes( $dbr->timestamp() )
+			),
 			__METHOD__,
 			array( 'ORDER BY' => array( 'wl_namespace', 'wl_title' ) )
 		);
@@ -452,14 +456,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/**
 	 * Add a list of titles to a user's watchlist
 	 *
-	 * $titles can be an array of strings or Title objects; the former
-	 * is preferred, since Titles are very memory-heavy
-	 *
-	 * @param array $titles Array of strings, or Title objects
+	 * @param string[]|Title[] $titles
 	 */
 	private function watchTitles( $titles ) {
-		$dbw = wfGetDB( DB_MASTER );
-		$rows = array();
+		$items = array();
 
 		foreach ( $titles as $title ) {
 			if ( !$title instanceof Title ) {
@@ -467,22 +467,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			}
 
 			if ( $title instanceof Title ) {
-				$rows[] = array(
-					'wl_user' => $this->getUser()->getId(),
-					'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
-					'wl_title' => $title->getDBkey(),
-					'wl_notificationtimestamp' => null,
-				);
-				$rows[] = array(
-					'wl_user' => $this->getUser()->getId(),
-					'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
-					'wl_title' => $title->getDBkey(),
-					'wl_notificationtimestamp' => null,
-				);
+				$items[] = WatchedItem::fromUserTitle( $this->getUser(), $title->getSubjectPage() );
+				$items[] = WatchedItem::fromUserTitle( $this->getUser(), $title->getTalkPage() );
 			}
 		}
 
-		$dbw->insert( 'watchlist', $rows, __METHOD__, 'IGNORE' );
+		WatchedItem::batchAddWatch( $items );
 	}
 
 	/**

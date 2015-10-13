@@ -761,7 +761,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->addFieldsIf( 'wl_notificationtimestamp', $this->fld_notificationtimestamp );
 		$this->addWhere( array(
 			$lb->constructSet( 'wl', $db ),
-			'wl_user' => $user->getId()
+			'wl_user' => $user->getId(),
+			'wl_expirytimestamp > ' . $db->addQuotes( $db->timestamp() )
 		) );
 
 		$res = $this->select( __METHOD__ );
@@ -802,7 +803,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->addTables( array( 'watchlist' ) );
 		$this->addFields( array( 'wl_title', 'wl_namespace', 'count' => 'COUNT(*)' ) );
 		$this->addWhere( array(
-			$lb->constructSet( 'wl', $db )
+			$lb->constructSet( 'wl', $db ),
+			'wl_expirytimestamp > ' . $db->addQuotes( $db->timestamp() )
 		) );
 		$this->addOption( 'GROUP BY', array( 'wl_namespace', 'wl_title' ) );
 		if ( !$canUnwatchedpages ) {

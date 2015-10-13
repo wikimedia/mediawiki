@@ -436,14 +436,18 @@ CREATE INDEX &mw_prefix.recentchanges_i06 ON &mw_prefix.recentchanges (rc_namesp
 CREATE INDEX &mw_prefix.recentchanges_i07 ON &mw_prefix.recentchanges (rc_user_text, rc_timestamp);
 
 CREATE TABLE &mw_prefix.watchlist (
+  wl_id                     NUMBER     NOT NULL,
   wl_user                   NUMBER     NOT NULL,
   wl_namespace              NUMBER    DEFAULT 0 NOT NULL,
   wl_title                  VARCHAR2(255)        NOT NULL,
-  wl_notificationtimestamp  TIMESTAMP(6) WITH TIME ZONE
+  wl_notificationtimestamp  TIMESTAMP(6) WITH TIME ZONE,
+  wl_expirytimestamp TIMESTAMP(6) WITH TIME ZONE
 );
+ALTER TABLE &mw_prefix.watchlist ADD CONSTRAINT &mw_prefix.watchlist_pk PRIMARY KEY (wl_id);
 ALTER TABLE &mw_prefix.watchlist ADD CONSTRAINT &mw_prefix.watchlist_fk1 FOREIGN KEY (wl_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 CREATE UNIQUE INDEX &mw_prefix.watchlist_u01 ON &mw_prefix.watchlist (wl_user, wl_namespace, wl_title);
 CREATE INDEX &mw_prefix.watchlist_i01 ON &mw_prefix.watchlist (wl_namespace, wl_title);
+CREATE INDEX &mw_prefix.watchlist_i02 ON &mw_prefix.watchlist (wl_expirytimestamp);
 
 
 CREATE TABLE &mw_prefix.searchindex (
