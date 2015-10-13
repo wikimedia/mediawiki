@@ -383,7 +383,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * @param FormOptions $opts
 	 */
-	function setTopText( FormOptions $opts ) {
+	public function setTopText( FormOptions $opts ) {
 		// nothing by default
 	}
 
@@ -393,7 +393,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * @param FormOptions $opts
 	 */
-	function setBottomText( FormOptions $opts ) {
+	public function setBottomText( FormOptions $opts ) {
 		// nothing by default
 	}
 
@@ -405,7 +405,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @param FormOptions $opts
 	 * @return array
 	 */
-	function getExtraOptions( $opts ) {
+	public function getExtraOptions( $opts ) {
 		return array();
 	}
 
