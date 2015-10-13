@@ -18,6 +18,5 @@
 	"ooui-dialog-process-continue": "Continue",
 	"ooui-selectfile-not-supported": "File(s) not supported",
 	"ooui-selectfile-placeholder": "No file selected",
-	"ooui-selectfile-dragdrop-placeholder": "Drop file here (or click to browse your computer)",
-	"ooui-semicolon-separator": ";"
+	"ooui-selectfile-dragdrop-placeholder": "Drop file here (or click to browse your computer)"
 }

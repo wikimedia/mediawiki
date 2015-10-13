@@ -12,7 +12,8 @@
 			"Edustus",
 			"Davidpar",
 			"Maceleiro",
-			"Kippelboy"
+			"Kippelboy",
+			"Macofe"
 		]
 	},
 	"ooui-outline-control-move-down": "Baixa l'element",
@@ -27,6 +28,7 @@
 	"ooui-dialog-process-dismiss": "Descarta",
 	"ooui-dialog-process-retry": "Torneu-ho a provar",
 	"ooui-dialog-process-continue": "Continua",
+	"ooui-selectfile-button-select": "Seleccioneu un fitxer",
 	"ooui-selectfile-not-supported": "El tipus de fitxer no és compatible",
 	"ooui-selectfile-placeholder": "No s'ha seleccionat cap fitxer",
 	"ooui-selectfile-dragdrop-placeholder": "Deixeu-hi anar el fitxer (o feu clic a navega)"

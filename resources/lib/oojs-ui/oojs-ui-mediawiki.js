@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.8
+ * OOjs UI v0.12.12
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-09-08T20:55:55Z
+ * Date: 2015-10-13T20:38:18Z
  */
 /**
  * @class
@@ -30,7 +30,7 @@ OO.inheritClass( OO.ui.MediaWikiTheme, OO.ui.Theme );
  */
 OO.ui.MediaWikiTheme.prototype.getElementClasses = function ( element ) {
 	// Parent method
-	var variant,
+	var variant, isFramed, isActive,
 		variants = {
 			warning: false,
 			invert: false,
@@ -39,13 +39,13 @@ OO.ui.MediaWikiTheme.prototype.getElementClasses = function ( element ) {
 			destructive: false
 		},
 		// Parent method
-		classes = OO.ui.MediaWikiTheme.parent.prototype.getElementClasses.call( this, element ),
-		isFramed;
+		classes = OO.ui.MediaWikiTheme.parent.prototype.getElementClasses.call( this, element );
 
 	if ( element.supports( [ 'hasFlag' ] ) ) {
 		isFramed = element.supports( [ 'isFramed' ] ) && element.isFramed();
+		isActive = element.supports( [ 'isActive' ] ) && element.isActive();
 		if (
-			( isFramed && ( element.isDisabled() || element.hasFlag( 'primary' ) ) ) ||
+			( isFramed && ( isActive || element.isDisabled() || element.hasFlag( 'primary' ) ) ) ||
 			( !isFramed && element.hasFlag( 'primary' ) )
 		) {
 			variants.invert = true;

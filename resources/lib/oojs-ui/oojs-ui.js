@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.8
+ * OOjs UI v0.12.12
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-09-08T20:55:55Z
+ * Date: 2015-10-13T20:38:18Z
  */
 ( function ( OO ) {
 
@@ -67,30 +67,79 @@ OO.ui.generateElementId = function () {
  * @return {boolean}
  */
 OO.ui.isFocusableElement = function ( $element ) {
-	var node = $element[ 0 ],
-		nodeName = node.nodeName.toLowerCase(),
-		// Check if the element have tabindex set
-		isInElementGroup = /^(input|select|textarea|button|object)$/.test( nodeName ),
-		// Check if the element is a link with href or if it has tabindex
-		isOtherElement = (
-			( nodeName === 'a' && node.href ) ||
-			!isNaN( $element.attr( 'tabindex' ) )
-		),
-		// Check if the element is visible
-		isVisible = (
-			// This is quicker than calling $element.is( ':visible' )
-			$.expr.filters.visible( node ) &&
-			// Check that all parents are visible
-			!$element.parents().addBack().filter( function () {
-				return $.css( this, 'visibility' ) === 'hidden';
-			} ).length
-		),
-		isTabOk = isNaN( $element.attr( 'tabindex' ) ) || +$element.attr( 'tabindex' ) >= 0;
+	var nodeName,
+		element = $element[ 0 ];
 
-	return (
-		( isInElementGroup ? !node.disabled : isOtherElement ) &&
-		isVisible && isTabOk
-	);
+	// Anything disabled is not focusable
+	if ( element.disabled ) {
+		return false;
+	}
+
+	// Check if the element is visible
+	if ( !(
+		// This is quicker than calling $element.is( ':visible' )
+		$.expr.filters.visible( element ) &&
+		// Check that all parents are visible
+		!$element.parents().addBack().filter( function () {
+			return $.css( this, 'visibility' ) === 'hidden';
+		} ).length
+	) ) {
+		return false;
+	}
+
+	// Check if the element is ContentEditable, which is the string 'true'
+	if ( element.contentEditable === 'true' ) {
+		return true;
+	}
+
+	// Anything with a non-negative numeric tabIndex is focusable.
+	// Use .prop to avoid browser bugs
+	if ( $element.prop( 'tabIndex' ) >= 0 ) {
+		return true;
+	}
+
+	// Some element types are naturally focusable
+	// (indexOf is much faster than regex in Chrome and about the
+	// same in FF: https://jsperf.com/regex-vs-indexof-array2)
+	nodeName = element.nodeName.toLowerCase();
+	if ( [ 'input', 'select', 'textarea', 'button', 'object' ].indexOf( nodeName ) !== -1 ) {
+		return true;
+	}
+
+	// Links and areas are focusable if they have an href
+	if ( ( nodeName === 'a' || nodeName === 'area' ) && $element.attr( 'href' ) !== undefined ) {
+		return true;
+	}
+
+	return false;
+};
+
+/**
+ * Find a focusable child
+ *
+ * @param {jQuery} $container Container to search in
+ * @param {boolean} [backwards] Search backwards
+ * @return {jQuery} Focusable child, an empty jQuery object if none found
+ */
+OO.ui.findFocusable = function ( $container, backwards ) {
+	var $focusable = $( [] ),
+		// $focusableCandidates is a superset of things that
+		// could get matched by isFocusableElement
+		$focusableCandidates = $container
+			.find( 'input, select, textarea, button, object, a, area, [contenteditable], [tabindex]' );
+
+	if ( backwards ) {
+		$focusableCandidates = Array.prototype.reverse.call( $focusableCandidates );
+	}
+
+	$focusableCandidates.each( function () {
+		var $this = $( this );
+		if ( OO.ui.isFocusableElement( $this ) ) {
+			$focusable = $this;
+			return false;
+		}
+	} );
+	return $focusable;
 };
 
 /**
@@ -286,9 +335,7 @@ OO.ui.infuse = function ( idOrNode ) {
 		// Label for the file selection widget when no file is currently selected
 		'ooui-selectfile-placeholder': 'No file is selected',
 		// Label for the file selection widget's drop target
-		'ooui-selectfile-dragdrop-placeholder': 'Drop file here',
-		// Semicolon separator
-		'ooui-semicolon-separator': '; '
+		'ooui-selectfile-dragdrop-placeholder': 'Drop file here'
 	};
 
 	/**
@@ -1058,7 +1105,8 @@ OO.ui.ActionSet.prototype.organize = function () {
  * @cfg {Array} [content] An array of content elements to append (after #text).
  *  Strings will be html-escaped; use an OO.ui.HtmlSnippet to append raw HTML.
  *  Instances of OO.ui.Element will have their $element appended.
- * @cfg {jQuery} [$content] Content elements to append (after #text)
+ * @cfg {jQuery} [$content] Content elements to append (after #text).
+ * @cfg {jQuery} [$element] Wrapper element. Defaults to a new element with #getTagName.
  * @cfg {Mixed} [data] Custom data of any type or combination of types (e.g., string, number, array, object).
  *  Data can also be specified with the #setData method.
  */
@@ -1960,7 +2008,8 @@ OO.ui.Widget.static.supportsSimpleLabel = false;
 /**
  * @event disable
  *
- * A 'disable' event is emitted when a widget is disabled.
+ * A 'disable' event is emitted when the disabled state of the widget changes
+ * (i.e. on disable **and** enable).
  *
  * @param {boolean} disabled Widget is disabled
  */
@@ -2081,6 +2130,10 @@ OO.ui.Window = function OoUiWindow( config ) {
 	this.$overlay = $( '<div>' );
 	this.$content = $( '<div>' );
 
+	this.$focusTrapBefore = $( '<div>' ).prop( 'tabIndex', 0 );
+	this.$focusTrapAfter = $( '<div>' ).prop( 'tabIndex', 0 );
+	this.$focusTraps = this.$focusTrapBefore.add( this.$focusTrapAfter );
+
 	// Initialization
 	this.$overlay.addClass( 'oo-ui-window-overlay' );
 	this.$content
@@ -2088,7 +2141,7 @@ OO.ui.Window = function OoUiWindow( config ) {
 		.attr( 'tabindex', 0 );
 	this.$frame
 		.addClass( 'oo-ui-window-frame' )
-		.append( this.$content );
+		.append( this.$focusTrapBefore, this.$content, this.$focusTrapAfter );
 
 	this.$element
 		.addClass( 'oo-ui-window' )
@@ -2522,6 +2575,21 @@ OO.ui.Window.prototype.initialize = function () {
 };
 
 /**
+ * Called when someone tries to focus the hidden element at the end of the dialog.
+ * Sends focus back to the start of the dialog.
+ *
+ * @param {jQuery.Event} event Focus event
+ */
+OO.ui.Window.prototype.onFocusTrapFocused = function ( event ) {
+	if ( this.$focusTrapBefore.is( event.target ) ) {
+		OO.ui.findFocusable( this.$content, true ).focus();
+	} else {
+		// this.$content is the part of the focus cycle, and is the first focusable element
+		this.$content.focus();
+	}
+};
+
+/**
  * Open the window.
  *
  * This method is a wrapper around a call to the window manager’s {@link OO.ui.WindowManager#openWindow openWindow}
@@ -2580,6 +2648,9 @@ OO.ui.Window.prototype.setup = function ( data ) {
 		deferred = $.Deferred();
 
 	this.toggle( true );
+
+	this.focusTrapHandler = OO.ui.bind( this.onFocusTrapFocused, this );
+	this.$focusTraps.on( 'focus', this.focusTrapHandler );
 
 	this.getSetupProcess( data ).execute().done( function () {
 		// Force redraw by asking the browser to measure the elements' widths
@@ -2663,6 +2734,7 @@ OO.ui.Window.prototype.teardown = function ( data ) {
 			// Force redraw by asking the browser to measure the elements' widths
 			win.$element.removeClass( 'oo-ui-window-active oo-ui-window-setup' ).width();
 			win.$content.removeClass( 'oo-ui-window-content-setup' ).width();
+			win.$focusTraps.off( 'focus', win.focusTrapHandler );
 			win.toggle( false );
 		} );
 };
@@ -4162,7 +4234,7 @@ OO.initClass( OO.ui.Theme );
  * @param {OO.ui.Element} element Element for which to get classes
  * @return {Object.<string,string[]>} Categorized class names with `on` and `off` lists
  */
-OO.ui.Theme.prototype.getElementClasses = function ( /* element */ ) {
+OO.ui.Theme.prototype.getElementClasses = function () {
 	return { on: [], off: [] };
 };
 
@@ -4554,18 +4626,28 @@ OO.ui.mixin.ButtonElement.prototype.toggleFramed = function ( framed ) {
 };
 
 /**
- * Set the button to its 'active' state.
+ * Set the button's active state.
  *
  * The active state occurs when a {@link OO.ui.ButtonOptionWidget ButtonOptionWidget} or
  * a {@link OO.ui.ToggleButtonWidget ToggleButtonWidget} is pressed. This method does nothing
  * for other button types.
  *
- * @param {boolean} [value] Make button active
+ * @param {boolean} value Make button active
  * @chainable
  */
 OO.ui.mixin.ButtonElement.prototype.setActive = function ( value ) {
-	this.$element.toggleClass( 'oo-ui-buttonElement-active', !!value );
+	this.active = !!value;
+	this.$element.toggleClass( 'oo-ui-buttonElement-active', this.active );
 	return this;
+};
+
+/**
+ * Check if the button is active
+ *
+ * @return {boolean} The button is active
+ */
+OO.ui.mixin.ButtonElement.prototype.isActive = function () {
+	return this.active;
 };
 
 /**
@@ -6755,6 +6837,163 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 };
 
 /**
+ * Element that will stick under a specified container, even when it is inserted elsewhere in the
+ * document (for example, in a OO.ui.Window's $overlay).
+ *
+ * The elements's position is automatically calculated and maintained when window is resized or the
+ * page is scrolled. If you reposition the container manually, you have to call #position to make
+ * sure the element is still placed correctly.
+ *
+ * As positioning is only possible when both the element and the container are attached to the DOM
+ * and visible, it's only done after you call #togglePositioning. You might want to do this inside
+ * the #toggle method to display a floating popup, for example.
+ *
+ * @abstract
+ * @class
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {jQuery} [$floatable] Node to position, assigned to #$floatable, omit to use #$element
+ * @cfg {jQuery} [$floatableContainer] Node to position below
+ */
+OO.ui.mixin.FloatableElement = function OoUiMixinFloatableElement( config ) {
+	// Configuration initialization
+	config = config || {};
+
+	// Properties
+	this.$floatable = null;
+	this.$floatableContainer = null;
+	this.$floatableWindow = null;
+	this.$floatableClosestScrollable = null;
+	this.onFloatableScrollHandler = this.position.bind( this );
+	this.onFloatableWindowResizeHandler = this.position.bind( this );
+
+	// Initialization
+	this.setFloatableContainer( config.$floatableContainer );
+	this.setFloatableElement( config.$floatable || this.$element );
+};
+
+/* Methods */
+
+/**
+ * Set floatable element.
+ *
+ * If an element is already set, it will be cleaned up before setting up the new element.
+ *
+ * @param {jQuery} $floatable Element to make floatable
+ */
+OO.ui.mixin.FloatableElement.prototype.setFloatableElement = function ( $floatable ) {
+	if ( this.$floatable ) {
+		this.$floatable.removeClass( 'oo-ui-floatableElement-floatable' );
+		this.$floatable.css( { left: '', top: '' } );
+	}
+
+	this.$floatable = $floatable.addClass( 'oo-ui-floatableElement-floatable' );
+	this.position();
+};
+
+/**
+ * Set floatable container.
+ *
+ * The element will be always positioned under the specified container.
+ *
+ * @param {jQuery|null} $floatableContainer Container to keep visible, or null to unset
+ */
+OO.ui.mixin.FloatableElement.prototype.setFloatableContainer = function ( $floatableContainer ) {
+	this.$floatableContainer = $floatableContainer;
+	if ( this.$floatable ) {
+		this.position();
+	}
+};
+
+/**
+ * Toggle positioning.
+ *
+ * Do not turn positioning on until after the element is attached to the DOM and visible.
+ *
+ * @param {boolean} [positioning] Enable positioning, omit to toggle
+ * @chainable
+ */
+OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positioning ) {
+	var closestScrollableOfContainer, closestScrollableOfFloatable;
+
+	positioning = positioning === undefined ? !this.positioning : !!positioning;
+
+	if ( this.positioning !== positioning ) {
+		this.positioning = positioning;
+
+		closestScrollableOfContainer = OO.ui.Element.static.getClosestScrollableContainer( this.$floatableContainer[ 0 ] );
+		closestScrollableOfFloatable = OO.ui.Element.static.getClosestScrollableContainer( this.$floatable[ 0 ] );
+		if ( closestScrollableOfContainer !== closestScrollableOfFloatable ) {
+			// If the scrollable is the root, we have to listen to scroll events
+			// on the window because of browser inconsistencies (or do we? someone should verify this)
+			if ( $( closestScrollableOfContainer ).is( 'html, body' ) ) {
+				closestScrollableOfContainer = OO.ui.Element.static.getWindow( closestScrollableOfContainer );
+			}
+		}
+
+		if ( positioning ) {
+			this.$floatableWindow = $( this.getElementWindow() );
+			this.$floatableWindow.on( 'resize', this.onFloatableWindowResizeHandler );
+
+			if ( closestScrollableOfContainer !== closestScrollableOfFloatable ) {
+				this.$floatableClosestScrollable = $( closestScrollableOfContainer );
+				this.$floatableClosestScrollable.on( 'scroll', this.onFloatableScrollHandler );
+			}
+
+			// Initial position after visible
+			this.position();
+		} else {
+			if ( this.$floatableWindow ) {
+				this.$floatableWindow.off( 'resize', this.onFloatableWindowResizeHandler );
+				this.$floatableWindow = null;
+			}
+
+			if ( this.$floatableClosestScrollable ) {
+				this.$floatableClosestScrollable.off( 'scroll', this.onFloatableScrollHandler );
+				this.$floatableClosestScrollable = null;
+			}
+
+			this.$floatable.css( { left: '', top: '' } );
+		}
+	}
+
+	return this;
+};
+
+/**
+ * Position the floatable below its container.
+ *
+ * This should only be done when both of them are attached to the DOM and visible.
+ *
+ * @chainable
+ */
+OO.ui.mixin.FloatableElement.prototype.position = function () {
+	var pos;
+
+	if ( !this.positioning ) {
+		return this;
+	}
+
+	pos = OO.ui.Element.static.getRelativePosition( this.$floatableContainer, this.$floatable.offsetParent() );
+
+	// Position under container
+	pos.top += this.$floatableContainer.height();
+	this.$floatable.css( pos );
+
+	// We updated the position, so re-evaluate the clipping state.
+	// (ClippableElement does not listen to 'scroll' events on $floatableContainer's parent, and so
+	// will not notice the need to update itself.)
+	// TODO: This is terrible, we shouldn't need to know about ClippableElement at all here. Why does
+	// it not listen to the right events in the right places?
+	if ( this.clip ) {
+		this.clip();
+	}
+
+	return this;
+};
+
+/**
  * AccessKeyedElement is mixed into other classes to provide an `accesskey` attribute.
  * Accesskeys allow an user to go to a specific element by using
  * a shortcut combination of a browser specific keys + the key
@@ -8182,7 +8421,6 @@ OO.ui.MessageDialog.prototype.onResize = function () {
 /**
  * Toggle action layout between vertical and horizontal.
  *
- *
  * @private
  * @param {boolean} [value] Layout actions vertically, omit to toggle
  * @chainable
@@ -8998,7 +9236,6 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
  *
  *     $( 'body' ).append( actionFieldLayout.$element );
  *
- *
  * @class
  * @extends OO.ui.FieldLayout
  *
@@ -9589,7 +9826,7 @@ OO.ui.BookletLayout.prototype.onStackLayoutSet = function ( page ) {
  * @param {number} [itemIndex] A specific item to focus on
  */
 OO.ui.BookletLayout.prototype.focus = function ( itemIndex ) {
-	var $input, page,
+	var page,
 		items = this.stackLayout.getItems();
 
 	if ( itemIndex !== undefined && items[ itemIndex ] ) {
@@ -9606,11 +9843,8 @@ OO.ui.BookletLayout.prototype.focus = function ( itemIndex ) {
 		return;
 	}
 	// Only change the focus if is not already in the current page
-	if ( !page.$element.find( ':focus' ).length ) {
-		$input = page.$element.find( ':input:first' );
-		if ( $input.length ) {
-			$input[ 0 ].focus();
-		}
+	if ( !OO.ui.contains( page.$element[ 0 ], this.getElementDocument().activeElement, true ) ) {
+		page.focus();
 	}
 };
 
@@ -9619,28 +9853,7 @@ OO.ui.BookletLayout.prototype.focus = function ( itemIndex ) {
  * on it.
  */
 OO.ui.BookletLayout.prototype.focusFirstFocusable = function () {
-	var i, len,
-		found = false,
-		items = this.stackLayout.getItems(),
-		checkAndFocus = function () {
-			if ( OO.ui.isFocusableElement( $( this ) ) ) {
-				$( this ).focus();
-				found = true;
-				return false;
-			}
-		};
-
-	for ( i = 0, len = items.length; i < len; i++ ) {
-		if ( found ) {
-			break;
-		}
-		// Find all potentially focusable elements in the item
-		// and check if they are focusable
-		items[ i ].$element
-			.find( 'input, select, textarea, button, object' )
-			/* jshint loopfunc:true */
-			.each( checkAndFocus );
-	}
+	OO.ui.findFocusable( this.stackLayout.$element ).focus();
 };
 
 /**
@@ -9908,7 +10121,8 @@ OO.ui.BookletLayout.prototype.clearPages = function () {
 OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 	var selectedItem,
 		$focused,
-		page = this.pages[ name ];
+		page = this.pages[ name ],
+		previousPage = this.currentPageName && this.pages[ this.currentPageName ];
 
 	if ( name !== this.currentPageName ) {
 		if ( this.outlined ) {
@@ -9918,21 +10132,34 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 			}
 		}
 		if ( page ) {
-			if ( this.currentPageName && this.pages[ this.currentPageName ] ) {
-				this.pages[ this.currentPageName ].setActive( false );
-				// Blur anything focused if the next page doesn't have anything focusable - this
-				// is not needed if the next page has something focusable because once it is focused
-				// this blur happens automatically
-				if ( this.autoFocus && !page.$element.find( ':input' ).length ) {
-					$focused = this.pages[ this.currentPageName ].$element.find( ':focus' );
+			if ( previousPage ) {
+				previousPage.setActive( false );
+				// Blur anything focused if the next page doesn't have anything focusable.
+				// This is not needed if the next page has something focusable (because once it is focused
+				// this blur happens automatically). If the layout is non-continuous, this check is
+				// meaningless because the next page is not visible yet and thus can't hold focus.
+				if (
+					this.autoFocus &&
+					this.stackLayout.continuous &&
+					OO.ui.findFocusable( page.$element ).length !== 0
+				) {
+					$focused = previousPage.$element.find( ':focus' );
 					if ( $focused.length ) {
 						$focused[ 0 ].blur();
 					}
 				}
 			}
 			this.currentPageName = name;
-			this.stackLayout.setItem( page );
 			page.setActive( true );
+			this.stackLayout.setItem( page );
+			if ( !this.stackLayout.continuous && previousPage ) {
+				// This should not be necessary, since any inputs on the previous page should have been
+				// blurred when it was hidden, but browsers are not very consistent about this.
+				$focused = previousPage.$element.find( ':focus' );
+				if ( $focused.length ) {
+					$focused[ 0 ].blur();
+				}
+			}
 			this.emit( 'set', page );
 		}
 	}
@@ -9969,20 +10196,13 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
  *     }
  *     OO.inheritClass( CardOneLayout, OO.ui.CardLayout );
  *     CardOneLayout.prototype.setupTabItem = function () {
- *         this.tabItem.setLabel( 'Card One' );
- *     };
- *
- *     function CardTwoLayout( name, config ) {
- *         CardTwoLayout.parent.call( this, name, config );
- *         this.$element.append( '<p>Second card</p>' );
- *     }
- *     OO.inheritClass( CardTwoLayout, OO.ui.CardLayout );
- *     CardTwoLayout.prototype.setupTabItem = function () {
- *         this.tabItem.setLabel( 'Card Two' );
+ *         this.tabItem.setLabel( 'Card one' );
  *     };
  *
  *     var card1 = new CardOneLayout( 'one' ),
- *         card2 = new CardTwoLayout( 'two' );
+ *         card2 = new CardLayout( 'two', { label: 'Card two' } );
+ *
+ *     card2.$element.append( '<p>Second card</p>' );
  *
  *     var index = new OO.ui.IndexLayout();
  *
@@ -9995,6 +10215,7 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [continuous=false] Show all cards, one after another
+ * @cfg {boolean} [expanded=true] Expand the content panel to fill the entire parent element.
  * @cfg {boolean} [autoFocus=true] Focus on the first focusable element when a new card is displayed.
  */
 OO.ui.IndexLayout = function OoUiIndexLayout( config ) {
@@ -10008,7 +10229,10 @@ OO.ui.IndexLayout = function OoUiIndexLayout( config ) {
 	this.currentCardName = null;
 	this.cards = {};
 	this.ignoreFocus = false;
-	this.stackLayout = new OO.ui.StackLayout( { continuous: !!config.continuous } );
+	this.stackLayout = new OO.ui.StackLayout( {
+		continuous: !!config.continuous,
+		expanded: config.expanded
+	} );
 	this.$content.append( this.stackLayout.$element );
 	this.autoFocus = config.autoFocus === undefined || !!config.autoFocus;
 
@@ -10109,7 +10333,7 @@ OO.ui.IndexLayout.prototype.onStackLayoutSet = function ( card ) {
  * @param {number} [itemIndex] A specific item to focus on
  */
 OO.ui.IndexLayout.prototype.focus = function ( itemIndex ) {
-	var $input, card,
+	var card,
 		items = this.stackLayout.getItems();
 
 	if ( itemIndex !== undefined && items[ itemIndex ] ) {
@@ -10125,12 +10349,9 @@ OO.ui.IndexLayout.prototype.focus = function ( itemIndex ) {
 	if ( !card ) {
 		return;
 	}
-	// Only change the focus if is not already in the current card
-	if ( !card.$element.find( ':focus' ).length ) {
-		$input = card.$element.find( ':input:first' );
-		if ( $input.length ) {
-			$input[ 0 ].focus();
-		}
+	// Only change the focus if is not already in the current page
+	if ( !OO.ui.contains( card.$element[ 0 ], this.getElementDocument().activeElement, true ) ) {
+		card.focus();
 	}
 };
 
@@ -10139,27 +10360,7 @@ OO.ui.IndexLayout.prototype.focus = function ( itemIndex ) {
  * on it.
  */
 OO.ui.IndexLayout.prototype.focusFirstFocusable = function () {
-	var i, len,
-		found = false,
-		items = this.stackLayout.getItems(),
-		checkAndFocus = function () {
-			if ( OO.ui.isFocusableElement( $( this ) ) ) {
-				$( this ).focus();
-				found = true;
-				return false;
-			}
-		};
-
-	for ( i = 0, len = items.length; i < len; i++ ) {
-		if ( found ) {
-			break;
-		}
-		// Find all potentially focusable elements in the item
-		// and check if they are focusable
-		items[ i ].$element
-			.find( 'input, select, textarea, button, object' )
-			.each( checkAndFocus );
-	}
+	OO.ui.findFocusable( this.stackLayout.$element ).focus();
 };
 
 /**
@@ -10363,7 +10564,8 @@ OO.ui.IndexLayout.prototype.clearCards = function () {
 OO.ui.IndexLayout.prototype.setCard = function ( name ) {
 	var selectedItem,
 		$focused,
-		card = this.cards[ name ];
+		card = this.cards[ name ],
+		previousCard = this.currentCardName && this.cards[ this.currentCardName ];
 
 	if ( name !== this.currentCardName ) {
 		selectedItem = this.tabSelectWidget.getSelectedItem();
@@ -10371,21 +10573,34 @@ OO.ui.IndexLayout.prototype.setCard = function ( name ) {
 			this.tabSelectWidget.selectItemByData( name );
 		}
 		if ( card ) {
-			if ( this.currentCardName && this.cards[ this.currentCardName ] ) {
-				this.cards[ this.currentCardName ].setActive( false );
-				// Blur anything focused if the next card doesn't have anything focusable - this
-				// is not needed if the next card has something focusable because once it is focused
-				// this blur happens automatically
-				if ( this.autoFocus && !card.$element.find( ':input' ).length ) {
-					$focused = this.cards[ this.currentCardName ].$element.find( ':focus' );
+			if ( previousCard ) {
+				previousCard.setActive( false );
+				// Blur anything focused if the next card doesn't have anything focusable.
+				// This is not needed if the next card has something focusable (because once it is focused
+				// this blur happens automatically). If the layout is non-continuous, this check is
+				// meaningless because the next card is not visible yet and thus can't hold focus.
+				if (
+					this.autoFocus &&
+					this.stackLayout.continuous &&
+					OO.ui.findFocusable( card.$element ).length !== 0
+				) {
+					$focused = previousCard.$element.find( ':focus' );
 					if ( $focused.length ) {
 						$focused[ 0 ].blur();
 					}
 				}
 			}
 			this.currentCardName = name;
-			this.stackLayout.setItem( card );
 			card.setActive( true );
+			this.stackLayout.setItem( card );
+			if ( !this.stackLayout.continuous && previousCard ) {
+				// This should not be necessary, since any inputs on the previous card should have been
+				// blurred when it was hidden, but browsers are not very consistent about this.
+				$focused = previousCard.$element.find( ':focus' );
+				if ( $focused.length ) {
+					$focused[ 0 ].blur();
+				}
+			}
 			this.emit( 'set', card );
 		}
 	}
@@ -10460,6 +10675,17 @@ OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 
 OO.inheritClass( OO.ui.PanelLayout, OO.ui.Layout );
 
+/* Methods */
+
+/**
+ * Focus the panel layout
+ *
+ * The default implementation just focuses the first focusable element in the panel
+ */
+OO.ui.PanelLayout.prototype.focus = function () {
+	OO.ui.findFocusable( this.$element ).focus();
+};
+
 /**
  * CardLayouts are used within {@link OO.ui.IndexLayout index layouts} to create cards that users can select and display
  * from the index's optional {@link OO.ui.TabSelectWidget tab} navigation. Cards are usually not instantiated directly,
@@ -10475,6 +10701,7 @@ OO.inheritClass( OO.ui.PanelLayout, OO.ui.Layout );
  * @constructor
  * @param {string} name Unique symbolic name of card
  * @param {Object} [config] Configuration options
+ * @cfg {jQuery|string|Function|OO.ui.HtmlSnippet} [label] Label for card's tab
  */
 OO.ui.CardLayout = function OoUiCardLayout( name, config ) {
 	// Allow passing positional parameters inside the config object
@@ -10491,6 +10718,7 @@ OO.ui.CardLayout = function OoUiCardLayout( name, config ) {
 
 	// Properties
 	this.name = name;
+	this.label = config.label;
 	this.tabItem = null;
 	this.active = false;
 
@@ -10576,6 +10804,9 @@ OO.ui.CardLayout.prototype.setTabItem = function ( tabItem ) {
  * @chainable
  */
 OO.ui.CardLayout.prototype.setupTabItem = function () {
+	if ( this.label ) {
+		this.tabItem.setLabel( this.label );
+	}
 	return this;
 };
 
@@ -11310,8 +11541,8 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 			}
 			if ( this.isClippedHorizontally() ) {
 				// Anchoring to the right also caused the popup to clip, so just make it fill the container
-				containerWidth = this.$clippableContainer.width();
-				containerLeft = this.$clippableContainer.offset().left;
+				containerWidth = this.$clippableScrollableContainer.width();
+				containerLeft = this.$clippableScrollableContainer.offset().left;
 
 				this.toggleClipping( false );
 				this.$element.removeClass( 'oo-ui-popupToolGroup-right' );
@@ -12119,7 +12350,6 @@ OO.ui.OutlineControlsWidget.prototype.setAbilities = function ( abilities ) {
 };
 
 /**
- *
  * @private
  * Handle outline change events.
  */
@@ -13032,6 +13262,18 @@ OO.mixinClass( OO.ui.CapsuleMultiSelectWidget, OO.ui.mixin.IconElement );
 /* Methods */
 
 /**
+ * Construct a OO.ui.CapsuleItemWidget (or a subclass thereof) from given label and data.
+ *
+ * @protected
+ * @param {Mixed} data Custom data of any type.
+ * @param {string} label The label text.
+ * @return {OO.ui.CapsuleItemWidget}
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.createItemWidget = function ( data, label ) {
+	return new OO.ui.CapsuleItemWidget( { data: data, label: label } );
+};
+
+/**
  * Get the data of the items in the capsule
  * @return {Mixed[]}
  */
@@ -13071,7 +13313,7 @@ OO.ui.CapsuleMultiSelectWidget.prototype.setItemsFromData = function ( datas ) {
 			}
 		}
 		if ( !item ) {
-			item = new OO.ui.CapsuleItemWidget( { data: data, label: label } );
+			item = widget.createItemWidget( data, label );
 		}
 		widget.addItems( [ item ], i );
 	} );
@@ -13100,9 +13342,9 @@ OO.ui.CapsuleMultiSelectWidget.prototype.addItemsFromData = function ( datas ) {
 		if ( !widget.getItemFromData( data ) ) {
 			item = menu.getItemFromData( data );
 			if ( item ) {
-				items.push( new OO.ui.CapsuleItemWidget( { data: data, label: item.label } ) );
+				items.push( widget.createItemWidget( data, item.label ) );
 			} else if ( widget.allowArbitrary ) {
-				items.push( new OO.ui.CapsuleItemWidget( { data: data, label: String( data ) } ) );
+				items.push( widget.createItemWidget( data, String( data ) ) );
 			}
 		}
 	} );
@@ -13224,6 +13466,9 @@ OO.ui.CapsuleMultiSelectWidget.prototype.onInputFocus = function () {
  * @param {jQuery.Event} event
  */
 OO.ui.CapsuleMultiSelectWidget.prototype.onInputBlur = function () {
+	if ( this.allowArbitrary && this.$input.val().trim() !== '' ) {
+		this.addItemsFromData( [ this.$input.val() ] );
+	}
 	this.clearInput();
 };
 
@@ -13469,7 +13714,6 @@ OO.ui.CapsuleItemWidget = function OoUiCapsuleItemWidget( config ) {
 		keydown: this.onCloseKeyDown.bind( this ),
 		click: this.onCloseClick.bind( this )
 	} );
-	this.$element.on( 'click', false );
 
 	// Initialization
 	this.$element
@@ -13548,6 +13792,10 @@ OO.ui.CapsuleItemWidget.prototype.onCloseKeyDown = function ( e ) {
  *     } );
  *
  *     $( 'body' ).append( dropDown.$element );
+ *
+ *     dropDown.getMenu().selectItemByData( 'b' );
+ *
+ *     dropDown.getMenu().getSelectedItem().getData(); // returns 'b'
  *
  * For more information, please see the [OOjs UI documentation on MediaWiki] [1].
  *
@@ -13865,11 +14113,24 @@ OO.ui.SelectFileWidget.prototype.setValue = function ( file ) {
 };
 
 /**
+ * Focus the widget.
+ *
+ * Focusses the select file button.
+ *
+ * @chainable
+ */
+OO.ui.SelectFileWidget.prototype.focus = function () {
+	this.selectButton.$button[ 0 ].focus();
+	return this;
+};
+
+/**
  * Update the user interface when a file is selected or unselected
  *
  * @protected
  */
 OO.ui.SelectFileWidget.prototype.updateUI = function () {
+	var $label;
 	if ( !this.isSupported ) {
 		this.$element.addClass( 'oo-ui-selectFileWidget-notsupported' );
 		this.$element.removeClass( 'oo-ui-selectFileWidget-empty' );
@@ -13878,9 +14139,12 @@ OO.ui.SelectFileWidget.prototype.updateUI = function () {
 		this.$element.addClass( 'oo-ui-selectFileWidget-supported' );
 		if ( this.currentFile ) {
 			this.$element.removeClass( 'oo-ui-selectFileWidget-empty' );
-			this.setLabel( this.currentFile.name +
-				( this.currentFile.type !== '' ? OO.ui.msg( 'ooui-semicolon-separator' ) + this.currentFile.type : '' )
-			);
+			$label = $( [] );
+			if ( this.currentFile.type !== '' ) {
+				$label = $label.add( $( '<span>' ).addClass( 'oo-ui-selectFileWidget-fileType' ).text( this.currentFile.type ) );
+			}
+			$label = $label.add( $( '<span>' ).text( this.currentFile.name ) );
+			this.setLabel( $label );
 		} else {
 			this.$element.addClass( 'oo-ui-selectFileWidget-empty' );
 			this.setLabel( this.placeholder );
@@ -15303,6 +15567,18 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	}
 	if ( config.autocomplete === false ) {
 		this.$input.attr( 'autocomplete', 'off' );
+		// Turning off autocompletion also disables "form caching" when the user navigates to a
+		// different page and then clicks "Back". Re-enable it when leaving. Borrowed from jQuery UI.
+		$( window ).on( {
+			beforeunload: function () {
+				this.$input.removeAttr( 'autocomplete' );
+			}.bind( this ),
+			pageshow: function () {
+				// Browsers don't seem to actually fire this event on "Back", they instead just reload the
+				// whole page... it shouldn't hurt, though.
+				this.$input.attr( 'autocomplete', 'off' );
+			}.bind( this )
+		} );
 	}
 	if ( this.multiline && config.rows ) {
 		this.$input.attr( 'rows', config.rows );
@@ -16026,7 +16302,6 @@ OO.ui.ComboBoxWidget.prototype.onInputChange = function ( value ) {
 /**
  * Handle mouse click events.
  *
- *
  * @private
  * @param {jQuery.Event} e Mouse click event
  */
@@ -16040,7 +16315,6 @@ OO.ui.ComboBoxWidget.prototype.onClick = function ( e ) {
 
 /**
  * Handle key press events.
- *
  *
  * @private
  * @param {jQuery.Event} e Key press event
@@ -16133,7 +16407,6 @@ OO.ui.ComboBoxWidget.prototype.setDisabled = function ( disabled ) {
  *         new OO.ui.FieldLayout( label2 )
  *     ] );
  *     $( 'body' ).append( fieldset.$element );
- *
  *
  * @class
  * @extends OO.ui.Widget
@@ -16644,7 +16917,6 @@ OO.ui.MenuOptionWidget.static.scrollIntoViewOnSelect = true;
  *     } );
  *     $( 'body' ).append( myDropdown.$element );
  *
- *
  * @class
  * @extends OO.ui.DecoratedOptionWidget
  *
@@ -16854,6 +17126,7 @@ OO.ui.TabOptionWidget.static.highlightable = false;
  * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.mixin.LabelElement
+ * @mixins OO.ui.mixin.ClippableElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -17443,8 +17716,10 @@ OO.ui.SearchWidget.prototype.onQueryChange = function () {
  * @param {string} value New value
  */
 OO.ui.SearchWidget.prototype.onQueryEnter = function () {
-	// Reset
-	this.results.chooseItem( this.results.getHighlightedItem() );
+	var highlightedItem = this.results.getHighlightedItem();
+	if ( highlightedItem ) {
+		this.results.chooseItem( highlightedItem );
+	}
 };
 
 /**
@@ -18166,8 +18441,10 @@ OO.ui.SelectWidget.prototype.pressItem = function ( item ) {
  * @chainable
  */
 OO.ui.SelectWidget.prototype.chooseItem = function ( item ) {
-	this.selectItem( item );
-	this.emit( 'choose', item );
+	if ( item ) {
+		this.selectItem( item );
+		this.emit( 'choose', item );
+	}
 
 	return this;
 };
@@ -18748,6 +19025,7 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
  *
  * @class
  * @extends OO.ui.MenuSelectWidget
+ * @mixins OO.ui.mixin.FloatableElement
  *
  * @constructor
  * @param {OO.ui.Widget} [inputWidget] Widget to provide the menu for.
@@ -18768,10 +19046,12 @@ OO.ui.FloatingMenuSelectWidget = function OoUiFloatingMenuSelectWidget( inputWid
 	// Parent constructor
 	OO.ui.FloatingMenuSelectWidget.parent.call( this, config );
 
-	// Properties
+	// Properties (must be set before mixin constructors)
 	this.inputWidget = inputWidget; // For backwards compatibility
 	this.$container = config.$container || this.inputWidget.$element;
-	this.onWindowResizeHandler = this.onWindowResize.bind( this );
+
+	// Mixins constructors
+	OO.ui.mixin.FloatableElement.call( this, $.extend( {}, config, { $floatableContainer: this.$container } ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-floatingMenuSelectWidget' );
@@ -18782,6 +19062,7 @@ OO.ui.FloatingMenuSelectWidget = function OoUiFloatingMenuSelectWidget( inputWid
 /* Setup */
 
 OO.inheritClass( OO.ui.FloatingMenuSelectWidget, OO.ui.MenuSelectWidget );
+OO.mixinClass( OO.ui.FloatingMenuSelectWidget, OO.ui.mixin.FloatableElement );
 
 // For backwards compatibility
 OO.ui.TextInputMenuSelectWidget = OO.ui.FloatingMenuSelectWidget;
@@ -18789,64 +19070,25 @@ OO.ui.TextInputMenuSelectWidget = OO.ui.FloatingMenuSelectWidget;
 /* Methods */
 
 /**
- * Handle window resize event.
- *
- * @private
- * @param {jQuery.Event} e Window resize event
- */
-OO.ui.FloatingMenuSelectWidget.prototype.onWindowResize = function () {
-	this.position();
-};
-
-/**
  * @inheritdoc
  */
 OO.ui.FloatingMenuSelectWidget.prototype.toggle = function ( visible ) {
 	var change;
 	visible = visible === undefined ? !this.isVisible() : !!visible;
-
 	change = visible !== this.isVisible();
 
 	if ( change && visible ) {
 		// Make sure the width is set before the parent method runs.
-		// After this we have to call this.position(); again to actually
-		// position ourselves correctly.
-		this.position();
+		this.setIdealSize( this.$container.width() );
 	}
 
 	// Parent method
+	// This will call this.clip(), which is nonsensical since we're not positioned yet...
 	OO.ui.FloatingMenuSelectWidget.parent.prototype.toggle.call( this, visible );
 
 	if ( change ) {
-		if ( this.isVisible() ) {
-			this.position();
-			$( this.getElementWindow() ).on( 'resize', this.onWindowResizeHandler );
-		} else {
-			$( this.getElementWindow() ).off( 'resize', this.onWindowResizeHandler );
-		}
+		this.togglePositioning( this.isVisible() );
 	}
-
-	return this;
-};
-
-/**
- * Position the menu.
- *
- * @private
- * @chainable
- */
-OO.ui.FloatingMenuSelectWidget.prototype.position = function () {
-	var $container = this.$container,
-		pos = OO.ui.Element.static.getRelativePosition( $container, this.$element.offsetParent() );
-
-	// Position under input
-	pos.top += $container.height();
-	this.$element.css( pos );
-
-	// Set width
-	this.setIdealSize( $container.width() );
-	// We updated the position, so re-evaluate the clipping state
-	this.clip();
 
 	return this;
 };
@@ -19234,7 +19476,6 @@ OO.ui.NumberInputWidget.prototype.onWheel = function ( event ) {
 
 /**
  * Handle key down events.
- *
  *
  * @private
  * @param {jQuery.Event} e Key down event
