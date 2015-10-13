@@ -87,7 +87,7 @@ class WatchAction extends FormAction {
 			// If the user doesn't have 'editmywatchlist', we still want to
 			// allow them to add but not remove items via edits and such.
 			if ( $watch ) {
-				return self::doWatch( $title, $user, WatchedItem::IGNORE_USER_RIGHTS );
+				return self::doWatch( $title, $user, null, WatchedItem::IGNORE_USER_RIGHTS );
 			} else {
 				return self::doUnwatch( $title, $user );
 			}
@@ -99,12 +99,14 @@ class WatchAction extends FormAction {
 	/**
 	 * Watch a page
 	 * @since 1.22 Returns Status, $checkRights parameter added
+	 * @since 1.27 $expiry parameter added
 	 * @param Title $title Page to watch/unwatch
 	 * @param User $user User who is watching/unwatching
+	 * @param string|null $expiry optional string to be parsed by strtotime
 	 * @param int $checkRights Passed through to $user->addWatch()
 	 * @return Status
 	 */
-	public static function doWatch( Title $title, User $user,
+	public static function doWatch( Title $title, User $user, $expiry = null,
 		$checkRights = WatchedItem::CHECK_USER_RIGHTS
 	) {
 		if ( $checkRights !== WatchedItem::IGNORE_USER_RIGHTS &&
@@ -113,13 +115,17 @@ class WatchAction extends FormAction {
 			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
 		}
 
+		if ( $expiry !== null ) {
+			$expiry = wfTimestamp( TS_MW, strtotime( $expiry ) );
+		}
+
 		$page = WikiPage::factory( $title );
 
 		$status = Status::newFatal( 'hookaborted' );
 		if ( Hooks::run( 'WatchArticle', array( &$user, &$page, &$status ) ) ) {
 			$status = Status::newGood();
-			$user->addWatch( $title, $checkRights );
-			Hooks::run( 'WatchArticleComplete', array( &$user, &$page ) );
+			$user->addWatch( $title, $expiry, $checkRights );
+			Hooks::run( 'WatchArticleComplete', array( &$user, &$page, $expiry ) );
 		}
 
 		return $status;

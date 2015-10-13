@@ -45,6 +45,9 @@ class WatchedItem {
 	/** @var string */
 	private $timestamp;
 
+	/** @var string MW_TS format */
+	private $expiry;
+
 	/**
 	 * Constant to specify that user rights 'editmywatchlist' and
 	 * 'viewmywatchlist' should not be checked.
@@ -73,21 +76,38 @@ class WatchedItem {
 	/**
 	 * Create a WatchedItem object with the given user and title
 	 * @since 1.22 $checkRights parameter added
+	 * @since 1.27 $expiry parameter added
 	 * @param User $user The user to use for (un)watching
 	 * @param Title $title The title we're going to (un)watch
+	 * @param string|null $expiry MW_TS format
 	 * @param int $checkRights Whether to check the 'viewmywatchlist' and 'editmywatchlist' rights.
 	 *     Pass either WatchedItem::IGNORE_USER_RIGHTS or WatchedItem::CHECK_USER_RIGHTS.
 	 * @return WatchedItem
 	 */
-	public static function fromUserTitle( $user, $title,
+	public static function fromUserTitle( $user, $title, $expiry = null,
 		$checkRights = WatchedItem::CHECK_USER_RIGHTS
 	) {
+		// Maintain back compat pre 1.27 method signiture
+		if ( $expiry === WatchedItem::CHECK_USER_RIGHTS || $expiry === WatchedItem::IGNORE_USER_RIGHTS ) {
+			// TODO log deprecated use of method signiture
+			$checkRights = $expiry;
+			$expiry = null;
+		}
+
 		$wl = new WatchedItem;
 		$wl->mUser = $user;
 		$wl->mTitle = $title;
 		$wl->mCheckRights = $checkRights;
+		$wl->expiry = $expiry;
 
 		return $wl;
+	}
+
+	/**
+	 * @return string MW_TS format
+	 */
+	public function getExpiry() {
+		return $this->expiry;
 	}
 
 	/**
@@ -161,14 +181,19 @@ class WatchedItem {
 		# remember that talk namespaces are numbered as page namespace+1.
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow( 'watchlist', 'wl_notificationtimestamp',
-			$this->dbCond(), __METHOD__ );
+		$row = $dbr->selectRow(
+			'watchlist',
+			array( 'wl_notificationtimestamp', 'wl_expirytimestamp' ),
+			$this->dbCond(),
+			__METHOD__
+		);
 
 		if ( $row === false ) {
 			$this->watched = false;
 		} else {
 			$this->watched = true;
 			$this->timestamp = $row->wl_notificationtimestamp;
+			$this->expiry = $row->wl_expirytimestamp;
 		}
 	}
 
@@ -191,7 +216,8 @@ class WatchedItem {
 		}
 
 		$this->load();
-		return $this->watched;
+
+		return $this->watched && strtotime( $this->expiry ) > time();
 	}
 
 	/**
@@ -320,6 +346,7 @@ class WatchedItem {
 				'wl_namespace' => MWNamespace::getSubject( $item->getTitleNs() ),
 				'wl_title' => $item->getTitleDBkey(),
 				'wl_notificationtimestamp' => null,
+				'wl_expirytimestamp' => $item->getExpiry(),
 			);
 			// Every single watched page needs now to be listed in watchlist;
 			// namespace:page and namespace_talk:page need separate entries:
@@ -327,7 +354,8 @@ class WatchedItem {
 				'wl_user' => $item->getUserId(),
 				'wl_namespace' => MWNamespace::getTalk( $item->getTitleNs() ),
 				'wl_title' => $item->getTitleDBkey(),
-				'wl_notificationtimestamp' => null
+				'wl_notificationtimestamp' => null,
+				'wl_expirytimestamp' => $item->getExpiry(),
 			);
 			$item->watched = true;
 		}
@@ -459,4 +487,5 @@ class WatchedItem {
 
 		return true;
 	}
+
 }

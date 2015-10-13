@@ -703,6 +703,7 @@ abstract class UploadBase {
 				WatchAction::doWatch(
 					$this->getLocalFile()->getTitle(),
 					$user,
+					null,
 					WatchedItem::IGNORE_USER_RIGHTS
 				);
 			}
