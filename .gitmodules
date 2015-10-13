@@ -272,17 +272,20 @@
 	branch = REL1_25
 [submodule "extensions/SyntaxHighlight_GeSHi"]
 	path = extensions/SyntaxHighlight_GeSHi
-	url = https://git.wikimedia.org/git/mediawiki/extensions/SyntaxHighlight_GeSHi.git
+	url = https://github.com/wikimedia/mediawiki-extensions-SyntaxHighlight_GeSHi.git
 	branch = REL1_25
 [submodule "extensions/MsUpload"]
 	path = extensions/MsUpload
-	url = https://git.wikimedia.org/git/mediawiki/extensions/MsUpload.git
+	url = https://github.com/wikimedia/mediawiki-extensions-MsUpload.git
+	branch = REL1_25
 [submodule "extensions/MsLinks"]
 	path = extensions/MsLinks
-	url = https://git.wikimedia.org/git/mediawiki/extensions/MsLinks.git
+	url = https://github.com/wikimedia/mediawiki-extensions-MsLinks.git
+	branch = REL1_25
 [submodule "extensions/MsCatSelect"]
 	path = extensions/MsCatSelect
-	url = https://git.wikimedia.org/git/mediawiki/extensions/MsCatSelect.git
+	url = https://github.com/wikimedia/mediawiki-extensions-MsCatSelect.git
+	branch = REL1_25
 [submodule "extensions/MultiBoilerplate"]
 	path = extensions/MultiBoilerplate
 	url = https://github.com/wikimedia/mediawiki-extensions-MultiBoilerplate
