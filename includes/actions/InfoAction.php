@@ -203,19 +203,9 @@ class InfoAction extends FormlessAction {
 
 		$pageCounts = $this->pageCounts( $this->page );
 
-		// Get page properties
-		$dbr = wfGetDB( DB_SLAVE );
-		$result = $dbr->select(
-			'page_props',
-			array( 'pp_propname', 'pp_value' ),
-			array( 'pp_page' => $id ),
-			__METHOD__
-		);
-
 		$pageProperties = array();
-		foreach ( $result as $row ) {
-			$pageProperties[$row->pp_propname] = $row->pp_value;
-		}
+		$props = new PageProps( $title->getArticleID() );
+		$pageProperties = $props->getProperties();
 
 		// Basic information
 		$pageInfo = array();
