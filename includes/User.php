@@ -5246,7 +5246,7 @@ class User implements IDBAccessObject {
 
 		# Note that the pattern requirement will always be satisfied if the
 		# input is empty, so we need required in all cases.
-		#
+
 		# @todo FIXME: Bug 23769: This needs to not claim the password is required
 		# if e-mail confirmation is being used.  Since HTML5 input validation
 		# is b0rked anyway in some browsers, just return nothing.  When it's

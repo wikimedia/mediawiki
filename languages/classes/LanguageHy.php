@@ -68,10 +68,10 @@ class LanguageHy extends Language {
 				case 'accusative': # Հայցական հոլով
 					# stub
 					break;
-				case 'instrumental':  #
+				case 'instrumental':
 					# stub
 					break;
-				case 'prepositional': #
+				case 'prepositional':
 					# stub
 					break;
 			}

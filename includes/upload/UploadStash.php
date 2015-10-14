@@ -221,7 +221,6 @@ class UploadStash {
 		// If no key was supplied, make one.  a mysql insertid would be totally
 		// reasonable here, except that for historical reasons, the key is this
 		// random thing instead.  At least it's not guessable.
-		//
 		// Some things that when combined will make a suitably unique key.
 		// see: http://www.jwz.org/doc/mid.html
 		list( $usec, $sec ) = explode( ' ', microtime() );

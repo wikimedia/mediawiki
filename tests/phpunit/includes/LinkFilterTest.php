@@ -125,21 +125,16 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			array( '', 'gopher://*.test.com/', 'gopher://gopher.test.com/0/v2/vstat' ),
 			array( 'telnet://', '*.test.com', 'telnet://shell.test.com/~home/' ),
 
-			//
 			// The following only work in PHP >= 5.3.7, due to a bug in parse_url which eats
 			// the path from the url (https://bugs.php.net/bug.php?id=54180)
-			//
 			// array( '', 'http://test.com', 'http://test.com/index?arg=1' ),
 			// array( 'http://', '*.test.com', 'http://www.test.com/index?arg=1' ),
 			// array( '' ,
 			//    'http://xx23124:__ffdfdef__@www.test.com:12345/dir' ,
 			//    'http://name:pass@www.test.com:12345/dir/dir/file.xyz.php#__se__?arg1=_&arg2[]=4rtg'
 			// ),
-			//
 
-			//
 			// Tests for false positives
-			//
 			array( 'http://', 'test.com', 'http://www.test.com', false ),
 			array( 'http://', 'www1.test.com', 'http://www.test.com', false ),
 			array( 'http://', '*.test.com', 'http://www.test.t.com', false ),
@@ -166,10 +161,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			array( '', 'http://test.com:8080/dir/', 'http://test.com:808/dir/', false ),
 			array( '', 'http://test.com/dir/index.html', 'http://test.com/dir/index.php', false ),
 
-			//
 			// These are false positives too and ideally shouldn't match, but that
 			// would require using regexes and RLIKE instead of LIKE
-			//
 			// array( null, 'http://*.test.com', 'http://www.test.com:80', false ),
 			// array( '', 'https://*.wikimedia.org/r/#/q/status:open,n,z',
 			// 	'https://gerrit.wikimedia.org/XXX/r/#/q/status:open,n,z', false ),

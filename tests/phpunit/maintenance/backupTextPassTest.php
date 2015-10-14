@@ -301,7 +301,6 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 
 		// The dump (hopefully) did take long enough to produce more than one
 		// checkpoint file.
-		//
 		// We now check all the checkpoint files for validity.
 
 		$files = scandir( $nameOutputDir );

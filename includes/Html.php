@@ -597,7 +597,6 @@ class Html {
 				// we may as well not call htmlspecialchars().
 				// @todo FIXME: Verify that we actually need to
 				// escape \n\r\t here, and explain why, exactly.
-				#
 				// We could call Sanitizer::encodeAttribute() for this, but we
 				// don't because we're stubborn and like our marginal savings on
 				// byte size from not having to encode unnecessary quotes.

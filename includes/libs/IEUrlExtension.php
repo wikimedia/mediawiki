@@ -119,7 +119,6 @@ class IEUrlExtension {
 
 		if ( !preg_match( '/^[a-zA-Z0-9_-]+$/', $extension ) ) {
 			// Non-alphanumeric extension, unlikely to be registered.
-			//
 			// The regex above is known to match all registered file extensions
 			// in a default Windows XP installation. It's important to allow
 			// extensions with ampersands and percent signs, since that reduces
