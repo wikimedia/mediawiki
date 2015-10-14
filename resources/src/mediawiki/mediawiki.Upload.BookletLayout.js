@@ -290,51 +290,37 @@
 			// won't help the fact that the file already exists.
 			if ( warnings.stashfailed !== undefined ) {
 				return new OO.ui.Error(
-					$( '<p>' ).html(
-						mw.message( 'api-error-stashfailed' ).parse()
-					),
+					$( '<p>' ).msg( 'api-error-stashfailed' ),
 					{ recoverable: false }
 				);
 			} else if ( warnings.exists !== undefined ) {
 				return new OO.ui.Error(
-					$( '<p>' ).html(
-						mw.message( 'fileexists', 'File:' + warnings.exists ).parse()
-					),
+					$( '<p>' ).msg( 'fileexists', 'File:' + warnings.exists ),
 					{ recoverable: false }
 				);
 			} else if ( warnings[ 'page-exists' ] !== undefined ) {
 				return new OO.ui.Error(
-					$( '<p>' ).html(
-						mw.message( 'filepageexists', 'File:' + warnings[ 'page-exists' ] ).parse()
-					),
+					$( '<p>' ).msg( 'filepageexists', 'File:' + warnings[ 'page-exists' ] ),
 					{ recoverable: false }
 				);
 			} else if ( warnings.duplicate !== undefined ) {
 				return new OO.ui.Error(
-					$( '<p>' ).html(
-						mw.message( 'api-error-duplicate', warnings.duplicate.length ).parse()
-					),
+					$( '<p>' ).msg( 'api-error-duplicate', warnings.duplicate.length ),
 					{ recoverable: false }
 				);
 			} else if ( warnings[ 'thumb-name' ] !== undefined ) {
 				return new OO.ui.Error(
-					$( '<p>' ).html(
-						mw.message( 'filename-thumb-name' ).parse()
-					),
+					$( '<p>' ).msg( 'filename-thumb-name' ),
 					{ recoverable: false }
 				);
 			} else if ( warnings[ 'bad-prefix' ] !== undefined ) {
 				return new OO.ui.Error(
-					$( '<p>' ).html(
-						mw.message( 'filename-bad-prefix', warnings[ 'bad-prefix' ] ).parse()
-					),
+					$( '<p>' ).msg( 'filename-bad-prefix', warnings[ 'bad-prefix' ] ),
 					{ recoverable: false }
 				);
 			} else if ( warnings[ 'duplicate-archive' ] !== undefined ) {
 				return new OO.ui.Error(
-					$( '<p>' ).html(
-						mw.message( 'api-error-duplicate-archive', 1 ).parse()
-					),
+					$( '<p>' ).msg( 'api-error-duplicate-archive', 1 ),
 					{ recoverable: false }
 				);
 			} else if ( warnings.badfilename !== undefined ) {
@@ -342,9 +328,7 @@
 				// TODO This might not really be the best place to do this
 				this.filenameWidget.setValue( warnings.badfilename );
 				return new OO.ui.Error(
-					$( '<p>' ).html(
-						mw.message( 'badfilename', warnings.badfilename ).parse()
-					)
+					$( '<p>' ).msg( 'badfilename', warnings.badfilename )
 				);
 			} else {
 				return new OO.ui.Error(
