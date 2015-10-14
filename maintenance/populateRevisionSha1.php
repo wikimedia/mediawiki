@@ -152,26 +152,20 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$rev = ( $table === 'archive' )
 				? Revision::newFromArchiveRow( $row )
 				: new Revision( $row );
-			$text = $rev->getSerializedData();
+			$sha1 = $rev->getSha1();
 		} catch ( Exception $e ) {
 			$this->output( "Data of revision with {$idCol}={$row->$idCol} unavailable!\n" );
 
 			return false; // bug 22624?
 		}
-		if ( !is_string( $text ) ) {
-			# This should not happen, but sometimes does (bug 20757)
-			$this->output( "Data of revision with {$idCol}={$row->$idCol} unavailable!\n" );
 
-			return false;
-		} else {
-			$db->update( $table,
-				array( "{$prefix}_sha1" => Revision::base36Sha1( $text ) ),
-				array( $idCol => $row->$idCol ),
-				__METHOD__
-			);
+		$db->update( $table,
+			array( "{$prefix}_sha1" => $sha1 ),
+			array( $idCol => $row->$idCol ),
+			__METHOD__
+		);
 
-			return true;
-		}
+		return true;
 	}
 
 	/**
@@ -187,28 +181,22 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 
 			return false; // bug 22624?
 		}
-		$text = $rev->getSerializedData();
-		if ( !is_string( $text ) ) {
-			# This should not happen, but sometimes does (bug 20757)
-			$this->output( "Data of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
+		$sha1 = $rev->getSha1();
 
-			return false;
-		} else {
-			# Archive table as no PK, but (NS,title,time) should be near unique.
-			# Any duplicates on those should also have duplicated text anyway.
-			$db->update( 'archive',
-				array( 'ar_sha1' => Revision::base36Sha1( $text ) ),
-				array(
-					'ar_namespace' => $row->ar_namespace,
-					'ar_title' => $row->ar_title,
-					'ar_timestamp' => $row->ar_timestamp,
-					'ar_len' => $row->ar_len // extra sanity
-				),
-				__METHOD__
-			);
+		# Archive table as no PK, but (NS,title,time) should be near unique.
+		# Any duplicates on those should also have duplicated text anyway.
+		$db->update( 'archive',
+			array( 'ar_sha1' => $sha1 ),
+			array(
+				'ar_namespace' => $row->ar_namespace,
+				'ar_title' => $row->ar_title,
+				'ar_timestamp' => $row->ar_timestamp,
+				'ar_len' => $row->ar_len // extra sanity
+			),
+			__METHOD__
+		);
 
-			return true;
-		}
+		return true;
 	}
 }
 
