@@ -2856,16 +2856,17 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	$status = false;
 	$logMsg = false;
 
-	// According to the documentation, it is possible for stream_select()
-	// to fail due to EINTR. I haven't managed to induce this in testing
-	// despite sending various signals. If it did happen, the error
-	// message would take the form:
-	//
-	// stream_select(): unable to select [4]: Interrupted system call (max_fd=5)
-	//
-	// where [4] is the value of the macro EINTR and "Interrupted system
-	// call" is string which according to the Linux manual is "possibly"
-	// localised according to LC_MESSAGES.
+	/* According to the documentation, it is possible for stream_select()
+	 * to fail due to EINTR. I haven't managed to induce this in testing
+	 * despite sending various signals. If it did happen, the error
+	 * message would take the form:
+	 *
+	 * stream_select(): unable to select [4]: Interrupted system call (max_fd=5)
+	 *
+	 * where [4] is the value of the macro EINTR and "Interrupted system
+	 * call" is string which according to the Linux manual is "possibly"
+	 * localised according to LC_MESSAGES.
+	 */
 	$eintr = defined( 'SOCKET_EINTR' ) ? SOCKET_EINTR : 4;
 	$eintrMessage = "stream_select(): unable to select [$eintr]";
 
@@ -3737,16 +3738,16 @@ function wfScript( $script = 'index' ) {
  */
 function wfGetScriptUrl() {
 	if ( isset( $_SERVER['SCRIPT_NAME'] ) ) {
-		#
-		# as it was called, minus the query string.
-		#
-		# Some sites use Apache rewrite rules to handle subdomains,
-		# and have PHP set up in a weird way that causes PHP_SELF
-		# to contain the rewritten URL instead of the one that the
-		# outside world sees.
-		#
-		# If in this mode, use SCRIPT_URL instead, which mod_rewrite
-		# provides containing the "before" URL.
+		/* as it was called, minus the query string.
+		 *
+		 * Some sites use Apache rewrite rules to handle subdomains,
+		 * and have PHP set up in a weird way that causes PHP_SELF
+		 * to contain the rewritten URL instead of the one that the
+		 * outside world sees.
+		 *
+		 * If in this mode, use SCRIPT_URL instead, which mod_rewrite
+		 * provides containing the "before" URL.
+		 */
 		return $_SERVER['SCRIPT_NAME'];
 	} else {
 		return $_SERVER['URL'];

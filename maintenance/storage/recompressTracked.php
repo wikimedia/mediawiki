@@ -757,13 +757,14 @@ class CgzCopyTransaction {
 			return;
 		}
 
-		// Check to see if the target text_ids have been moved already.
-		//
-		// We originally read from the slave, so this can happen when a single
-		// text_id is shared between multiple pages. It's rare, but possible
-		// if a delete/move/undelete cycle splits up a null edit.
-		//
-		// We do a locking read to prevent closer-run race conditions.
+		/* Check to see if the target text_ids have been moved already.
+		 *
+		 * We originally read from the slave, so this can happen when a single
+		 * text_id is shared between multiple pages. It's rare, but possible
+		 * if a delete/move/undelete cycle splits up a null edit.
+		 *
+		 * We do a locking read to prevent closer-run race conditions.
+		 */
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
 		$res = $dbw->select( 'blob_tracking',

@@ -179,22 +179,22 @@ class NamespaceConflictChecker extends Maintenance {
 
 		foreach ( $spaces as $name => $ns ) {
 			if ( $ns != 0 ) {
-				// Fix up link destinations for non-interwiki links only.
-				//
-				// For example if a page has [[Foo:Bar]] and then a Foo namespace
-				// is introduced, pagelinks needs to be updated to have
-				// page_namespace = NS_FOO.
-				//
-				// If instead an interwiki prefix was introduced called "Foo",
-				// the link should instead be moved to the iwlinks table. If a new
-				// language is introduced called "Foo", or if there is a pagelink
-				// [[fr:Bar]] when interlanguage magic links are turned on, the
-				// link would have to be moved to the langlinks table. Let's put
-				// those cases in the too-hard basket for now. The consequences are
-				// not especially severe.
-				//
-				// @fixme Handle interwiki links, and pagelinks to Category:, File:
-				// which probably need reparsing.
+				/* Fix up link destinations for non-interwiki links only.
+				 *
+				 * For example if a page has [[Foo:Bar]] and then a Foo namespace
+				 * is introduced, pagelinks needs to be updated to have
+				 * page_namespace = NS_FOO.
+				 *
+				 * If instead an interwiki prefix was introduced called "Foo",
+				 * the link should instead be moved to the iwlinks table. If a new
+				 * language is introduced called "Foo", or if there is a pagelink
+				 * [[fr:Bar]] when interlanguage magic links are turned on, the
+				 * link would have to be moved to the langlinks table. Let's put
+				 * those cases in the too-hard basket for now. The consequences are
+				 * not especially severe.
+				 * @fixme Handle interwiki links, and pagelinks to Category:, File:
+				 * which probably need reparsing.
+				 */
 
 				$this->checkLinkTable( 'pagelinks', 'pl', $ns, $name, $options );
 				$this->checkLinkTable( 'templatelinks', 'tl', $ns, $name, $options );
@@ -592,14 +592,15 @@ class NamespaceConflictChecker extends Maintenance {
 
 		$this->db->delete( 'page', array( 'page_id' => $id ), __METHOD__ );
 
-		// Call LinksDeletionUpdate to delete outgoing links from the old title,
-		// and update category counts.
-		//
-		// Calling external code with a fake broken Title is a fairly dubious
-		// idea. It's necessary because it's quite a lot of code to duplicate,
-		// but that also makes it fragile since it would be easy for someone to
-		// accidentally introduce an assumption of title validity to the code we
-		// are calling.
+		/* Call LinksDeletionUpdate to delete outgoing links from the old title,
+		 * and update category counts.
+		 *
+		 * Calling external code with a fake broken Title is a fairly dubious
+		 * idea. It's necessary because it's quite a lot of code to duplicate,
+		 * but that also makes it fragile since it would be easy for someone to
+		 * accidentally introduce an assumption of title validity to the code we
+		 * are calling.
+		 */
 		$update = new LinksDeletionUpdate( $wikiPage );
 		$update->doUpdate();
 		$this->db->commit( __METHOD__ );

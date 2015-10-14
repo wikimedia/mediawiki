@@ -3856,18 +3856,19 @@ class OutputPage extends ContextSource {
 				if ( $media == $targetMedia ) {
 					$media = '';
 				} elseif ( preg_match( $screenMediaQueryRegex, $media ) === 1 ) {
-					// This regex will not attempt to understand a comma-separated media_query_list
-					//
-					// Example supported values for $media:
-					// 'screen', 'only screen', 'screen and (min-width: 982px)' ),
-					// Example NOT supported value for $media:
-					// '3d-glasses, screen, print and resolution > 90dpi'
-					//
-					// If it's a print request, we never want any kind of screen stylesheets
-					// If it's a handheld request (currently the only other choice with a switch),
-					// we don't want simple 'screen' but we might want screen queries that
-					// have a max-width or something, so we'll pass all others on and let the
-					// client do the query.
+					/* This regex will not attempt to understand a comma-separated media_query_list
+					 *
+					 * Example supported values for $media:
+					 * 'screen', 'only screen', 'screen and (min-width: 982px)' ),
+					 * Example NOT supported value for $media:
+					 * '3d-glasses, screen, print and resolution > 90dpi'
+					 *
+					 * If it's a print request, we never want any kind of screen stylesheets
+					 * If it's a handheld request (currently the only other choice with a switch),
+					 * we don't want simple 'screen' but we might want screen queries that
+					 * have a max-width or something, so we'll pass all others on and let the
+					 * client do the query.
+					 */
 					if ( $targetMedia == 'print' || $media == 'screen' ) {
 						return null;
 					}
