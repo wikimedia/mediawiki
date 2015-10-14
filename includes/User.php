@@ -2412,20 +2412,24 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Actually set the password and such
-	 * @param string|null $str New password to set or null to set an invalid
+	 * @param Password|string|null $password New password to set or null to set an invalid
 	 *  password hash meaning that the user will not be able to log in
 	 *  through the web interface.
 	 */
-	private function setPasswordInternal( $str ) {
+	private function setPasswordInternal( $password ) {
+		$passwordFactory = new PasswordFactory();
+		$passwordFactory->init( RequestContext::getMain()->getConfig() );
+		if ( !$password instanceof Password ) {
+			$password = $passwordFactory->newFromPlaintext( $password )->toString();
+		}
+
 		$id = self::idFromName( $this->getName() );
 		if ( $id ) {
-			$passwordFactory = new PasswordFactory();
-			$passwordFactory->init( RequestContext::getMain()->getConfig() );
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update(
 				'user',
 				array(
-					'user_password' => $passwordFactory->newFromPlaintext( $str )->toString(),
+					'user_password' => $password,
 					'user_newpassword' => PasswordFactory::newInvalidPassword()->toString(),
 					'user_newpass_time' => $dbw->timestampOrNull( null ),
 				),
@@ -2436,7 +2440,7 @@ class User implements IDBAccessObject {
 			);
 			$this->mPassword = null;
 		} else {
-			$this->mPassword = $str;
+			$this->mPassword = $password;
 		}
 	}
 
