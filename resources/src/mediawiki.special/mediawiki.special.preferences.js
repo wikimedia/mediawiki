@@ -6,7 +6,7 @@
 		var $preftoc, $preferences, $fieldsets,
 			hash, labelFunc,
 			$tzSelect, $tzTextbox, $localtimeHolder, servertime,
-			allowCloseWindow, notif;
+			allowCloseWindow;
 
 		labelFunc = function () {
 			return this.id.replace( /^mw-prefsection/g, 'preftab' );
@@ -83,24 +83,7 @@
 		}
 
 		// Check for messageboxes (.successbox, .warningbox, .errorbox) to replace with notifications
-		if ( $( '.mw-preferences-messagebox' ).length ) {
-			// If there is a #mw-preferences-success box and javascript is enabled, use a slick notification instead!
-			if ( $( '#mw-preferences-success' ).length ) {
-				notif = mw.notification.notify( mw.message( 'savedprefs' ), { autoHide: false } );
-				// 'change' event not reliable!
-				$( '#preftoc, .prefsection' ).one( 'change keydown mousedown', function () {
-					if ( notif ) {
-						notif.close();
-						notif = null;
-					}
-				} );
-
-				// Remove now-unnecessary success=1 querystring to prevent reappearance of notification on reload
-				if ( history.replaceState ) {
-					history.replaceState( {}, document.title, location.href.replace( /&?success=1/, '' ) );
-				}
-			}
-		}
+		mediaWiki.notification.convertsuccessbox();
 
 		// Enable keyboard users to use left and right keys to switch tabs
 		$preftoc.on( 'keydown', function ( event ) {

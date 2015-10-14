@@ -33,11 +33,6 @@
 	zoom: 1;
 }
 
-/* When JS is enabled, .mw-preferences-messageboxes are replaced with mw.notifications */
-.client-js .mw-preferences-messagebox {
-	display: none;
-}
-
 .client-nojs #preftoc {
 	display: none;
 }
