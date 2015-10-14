@@ -1311,8 +1311,6 @@
 	"upload-dialog-button-done": "เสร็จสิ้น",
 	"upload-dialog-button-save": "บันทึก",
 	"upload-dialog-button-upload": "อัปโหลด",
-	"upload-process-error": "เกิดข้อผิดพลาด",
-	"upload-process-warning": "เกิดคำเตือน",
 	"upload-form-label-select-file": "เลือกไฟล์",
 	"upload-form-label-infoform-title": "รายละเอียด",
 	"upload-form-label-infoform-name": "ชื่อ",

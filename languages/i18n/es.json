@@ -1456,8 +1456,6 @@
 	"upload-dialog-button-done": "Hecho",
 	"upload-dialog-button-save": "Guardar",
 	"upload-dialog-button-upload": "Subir",
-	"upload-process-error": "Ha ocurrido un error",
-	"upload-process-warning": "Ha ocurrido una advertencia",
 	"upload-form-label-select-file": "Seleccionar archivo",
 	"upload-form-label-infoform-title": "Detalles",
 	"upload-form-label-infoform-name": "Nombre",

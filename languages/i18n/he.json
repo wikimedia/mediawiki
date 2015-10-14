@@ -954,6 +954,7 @@
 	"prefs-help-recentchangescount": "כולל דף השינויים האחרונים, דפי היסטוריית גרסאות ויומנים.",
 	"prefs-help-watchlist-token2": "זהו המפתח הסודי של ההזנה של רשימת המעקב שלך.\nכל מי שיודע אותו יוכל לקרוא את רשימת המעקב שלך, לכן אין לשתף אותו.\n[[Special:ResetTokens|אם יש בכך צורך, אפשר לאפס אותו כאן]].",
 	"savedprefs": "ההעדפות שלך נשמרו.",
+	"savedrights": "הרשאות {{GENDER:$1|המשתמש|המשתמשת}} של $1 נשמרו.",
 	"timezonelegend": "אזור זמן:",
 	"localtime": "זמן מקומי:",
 	"timezoneuseserverdefault": "ברירת המחדל של האתר ($1)",
@@ -1365,8 +1366,6 @@
 	"upload-dialog-button-done": "בוצע",
 	"upload-dialog-button-save": "שמירה",
 	"upload-dialog-button-upload": "העלאה",
-	"upload-process-error": "אירעה שגיאה",
-	"upload-process-warning": "אירעה אזהרה",
 	"upload-form-label-select-file": "בחירת קובץ",
 	"upload-form-label-infoform-title": "פרטים",
 	"upload-form-label-infoform-name": "שם",
@@ -3495,5 +3494,5 @@
 	"mw-widgets-dateinput-no-date": "לא נבחר תאריך",
 	"mw-widgets-titleinput-description-new-page": "הדף עדיין לא קיים",
 	"mw-widgets-titleinput-description-redirect": "הפניה ל{{GRAMMAR:תחילית|$1}}",
-	"api-error-blacklisted": "נא לבחור כותרת שונה, מתארת יותר."
+	"api-error-blacklisted": "נא לבחור כותרת אחרת, המתארת טוב יותר את התוכן."
 }

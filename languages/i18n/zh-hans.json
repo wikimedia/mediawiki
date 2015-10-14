@@ -1422,8 +1422,6 @@
 	"upload-dialog-button-done": "完成",
 	"upload-dialog-button-save": "保存",
 	"upload-dialog-button-upload": "上传",
-	"upload-process-error": "发生错误",
-	"upload-process-warning": "发生一条警告",
 	"upload-form-label-select-file": "选择文件",
 	"upload-form-label-infoform-title": "详细信息",
 	"upload-form-label-infoform-name": "名称",

@@ -1365,8 +1365,6 @@
 	"upload-dialog-button-done": "완료",
 	"upload-dialog-button-save": "저장",
 	"upload-dialog-button-upload": "올리기",
-	"upload-process-error": "오류가 발생했습니다",
-	"upload-process-warning": "경고가 일어났습니다",
 	"upload-form-label-select-file": "파일을 선택해주세요.",
 	"upload-form-label-infoform-title": "자세한 사항",
 	"upload-form-label-infoform-name": "이름",

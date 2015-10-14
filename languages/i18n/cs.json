@@ -952,6 +952,7 @@
 	"prefs-help-recentchangescount": "Týká se posledních změn, historie stránek a protokolovacích záznamů.",
 	"prefs-help-watchlist-token2": "Toto je tajný klíč k webovému kanálu vašich sledovaných stránek. Kdokoli, kdo bude tento klíč znát, bude moci váš seznam sledovaných stránek číst, takže ho nešiřte.\n[[Special:ResetTokens|Kliknutím sem ho můžete reinicializovat.]]",
 	"savedprefs": "Nastavení byla uložena.",
+	"savedrights": "Práva {{GENDER:$1|uživatele|uživatelky}} $1 byla uložena.",
 	"timezonelegend": "Časové pásmo:",
 	"localtime": "Místní čas:",
 	"timezoneuseserverdefault": "Použít časové pásmo wiki ($1)",
@@ -1246,6 +1247,7 @@
 	"recentchanges-page-added-to-category-bundled": "Stránka [[:$1]] a {{PLURAL:$2|jedna další zařazeny|$2 další zařazeny|$2 dalších zařazeno}} do kategorie",
 	"recentchanges-page-removed-from-category": "Stránka [[:$1]] vyřazena z kategorie",
 	"recentchanges-page-removed-from-category-bundled": "Stránka [[:$1]] a {{PLURAL:$2|jedna další vyřazeny|$2 další vyřazeny|$2 dalších vyřazeno}} z kategorie",
+	"autochange-username": "Automatická změna MediaWiki",
 	"upload": "Načíst soubor",
 	"uploadbtn": "Načíst soubor",
 	"reuploaddesc": "Zrušit načítání a vrátit se do formuláře.",
@@ -1362,8 +1364,6 @@
 	"upload-dialog-button-done": "Hotovo",
 	"upload-dialog-button-save": "Uložit",
 	"upload-dialog-button-upload": "Načíst",
-	"upload-process-error": "Došlo k chybě",
-	"upload-process-warning": "Objevilo se upozornění",
 	"upload-form-label-select-file": "Výběr souboru",
 	"upload-form-label-infoform-title": "Podrobnosti",
 	"upload-form-label-infoform-name": "Název",
@@ -2484,6 +2484,7 @@
 	"svg-long-error": "Neplatný soubor SVG: $1",
 	"show-big-image": "Původní soubor",
 	"show-big-image-preview": "Velikost tohoto náhledu: $1.",
+	"show-big-image-preview-differ": "Velikost tohoto $3 náhledu tohoto $2 souboru: $1.",
 	"show-big-image-other": "{{PLURAL:$2|Jiné|Jiná}} rozlišení: $1.",
 	"show-big-image-size": "$1 × $2 pixelů",
 	"file-info-gif-looped": "ve smyčce",
@@ -3466,5 +3467,5 @@
 	"mw-widgets-dateinput-placeholder-month": "RRRR-MM",
 	"mw-widgets-titleinput-description-new-page": "stránka zatím neexistuje",
 	"mw-widgets-titleinput-description-redirect": "přesměrování na $1",
-	"api-error-blacklisted": "Zvolte jiný, popisný název."
+	"api-error-blacklisted": "Zvolte prosím jiný, popisný název."
 }

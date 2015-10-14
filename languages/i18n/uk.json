@@ -1409,8 +1409,6 @@
 	"upload-dialog-button-done": "Готово",
 	"upload-dialog-button-save": "Зберегти",
 	"upload-dialog-button-upload": "Завантажити",
-	"upload-process-error": "Сталася помилка",
-	"upload-process-warning": "З'явилось попередження",
 	"upload-form-label-select-file": "Обрати файл",
 	"upload-form-label-infoform-title": "Деталі",
 	"upload-form-label-infoform-name": "Назва",

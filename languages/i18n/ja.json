@@ -1409,8 +1409,6 @@
 	"upload-dialog-button-done": "完了",
 	"upload-dialog-button-save": "保存",
 	"upload-dialog-button-upload": "アップロード",
-	"upload-process-error": "エラーが発生しました",
-	"upload-process-warning": "警告",
 	"upload-form-label-select-file": "ファイル選択",
 	"upload-form-label-infoform-title": "詳細",
 	"upload-form-label-infoform-name": "名前",
