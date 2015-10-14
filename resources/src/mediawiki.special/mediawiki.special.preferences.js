@@ -3,10 +3,9 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var $preftoc, $preferences, $fieldsets,
-			labelFunc,
-			$tzSelect, $tzTextbox, $localtimeHolder, servertime,
-			allowCloseWindow, notif;
+		var $preftoc, $preferences, $fieldsets, labelFunc,
+			$tzSelect, $tzTextbox, $localtimeHolder, servertime, allowCloseWindow,
+			convertmessagebox = require( 'mediawiki.notification.convertmessagebox' );
 
 		labelFunc = function () {
 			return this.id.replace( /^mw-prefsection/g, 'preftab' );
@@ -82,20 +81,8 @@
 			}
 		}
 
-		// Check for messageboxes (.successbox, .warningbox, .errorbox) to replace with notifications
-		if ( $( '.mw-preferences-messagebox' ).length ) {
-			// If there is a #mw-preferences-success box and javascript is enabled, use a slick notification instead!
-			if ( $( '#mw-preferences-success' ).length ) {
-				notif = mw.notification.notify( mw.message( 'savedprefs' ), { autoHide: false } );
-				// 'change' event not reliable!
-				$( '#preftoc, .prefsection' ).one( 'change keydown mousedown', function () {
-					if ( notif ) {
-						notif.close();
-						notif = null;
-					}
-				} );
-			}
-		}
+		// Check for successbox to replace with notifications
+		convertmessagebox();
 
 		// Enable keyboard users to use left and right keys to switch tabs
 		$preftoc.on( 'keydown', function ( event ) {
