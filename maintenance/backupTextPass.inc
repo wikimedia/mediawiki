@@ -699,7 +699,6 @@ class TextPassDumper extends BackupDumper {
 		$this->progress( "Spawning database subprocess: $cmd" );
 		$this->spawnProc = proc_open( $cmd, $spec, $pipes );
 		if ( !$this->spawnProc ) {
-			// shit
 			$this->progress( "Subprocess spawn failed." );
 
 			return false;

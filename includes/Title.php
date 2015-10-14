@@ -1008,10 +1008,8 @@ class Title {
 	 */
 	public function getNsText() {
 		if ( $this->isExternal() ) {
-			// This probably shouldn't even happen. ohh man, oh yuck.
-			// But for interwiki transclusion it sometimes does.
-			// Shit. Shit shit shit.
-			//
+			// This probably shouldn't even happen,
+			// but for interwiki transclusion it sometimes does.
 			// Use the canonical namespaces if possible to try to
 			// resolve a foreign namespace.
 			if ( MWNamespace::exists( $this->mNamespace ) ) {
