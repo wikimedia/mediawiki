@@ -150,6 +150,40 @@ class Linker {
 	}
 
 	/**
+	 * If custom link text has not be provided and displaytitle page property
+	 * is set, use display title for link text.
+	 *
+	 * @param Title $target
+	 * @param &$text
+	 */
+	private static function getDisplayTitleLinkText( Title $target, &$text ) {
+
+		if ( isset( $text ) ) {
+			if ( is_string( $text ) ) {
+				$title = Title::newFromText( $text );
+				if ( is_null( $title ) ||
+					$title->getText() != $target->getText() ) {
+					return;
+				}
+				if ( $title->getSubjectNsText() == $target->getSubjectNsText()
+					|| $title->getSubjectNsText() == '' ) {
+					$props = new PageProps( $target->getArticleID() );
+					$value = $props->getProperty( 'displaytitle' );
+					if ( $value !== false ) {
+						$text = $value;
+					}
+				}
+			}
+		} else {
+			$props = new PageProps( $target->getArticleID() );
+			$value = $props->getProperty( 'displaytitle' );
+			if ( $value !== false ) {
+				$text = $value;
+			}
+		}
+	}
+
+	/**
 	 * This function returns an HTML link to the given target.  It serves a few
 	 * purposes:
 	 *   1) If $target is a Title, the correct URL to link to will be figured
@@ -213,6 +247,9 @@ class Linker {
 		) {
 			return $ret;
 		}
+
+	 	# If displaytitle page property is set, use if for link text
+		self::getDisplayTitleLinkText( $target, $html );
 
 		# Normalize the Title if it's a special page
 		$target = self::normaliseSpecialPage( $target );
@@ -402,6 +439,14 @@ class Linker {
 		$ret = "<strong class=\"selflink\">{$prefix}{$html}</strong>{$trail}";
 		if ( !Hooks::run( 'SelfLinkBegin', array( $nt, &$html, &$trail, &$prefix, &$ret ) ) ) {
 			return $ret;
+		}
+
+		if ( $html == '' || $html == $nt->getPrefixedText() ) {
+			$props = new PageProps( $nt->getArticleID() );
+			$value = $props->getProperty( 'displaytitle' );
+			if ( $value !== false ) {
+				$html = $value;
+			}
 		}
 
 		if ( $html == '' ) {
