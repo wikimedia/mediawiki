@@ -37,7 +37,7 @@ class ResourceLoaderEditToolbarModule extends ResourceLoaderFileModule {
 		$vars = parent::getLessVars( $context );
 		$language = Language::factory( $context->getLanguage() );
 		foreach ( $language->getImageFiles() as $key => $value ) {
-			$vars[ $key ] = CSSMin::serializeStringValue( $value );
+			$vars[$key] = CSSMin::serializeStringValue( $value );
 		}
 		return $vars;
 	}
