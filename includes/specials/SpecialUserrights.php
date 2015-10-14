@@ -147,9 +147,22 @@ class UserrightsPage extends SpecialPage {
 
 		// show a successbox, if the user rights was saved successfully
 		if ( $request->getCheck( 'success' ) && $this->mFetchedUser !== null ) {
-			$out->wrapWikiMsg(
-				"<div class=\"successbox\">\n$1\n</div>",
-				array( 'savedrights', $this->mFetchedUser->getName() )
+			$out->addModules( array( 'mediawiki.special.userrights' ) );
+			$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
+			$out->addHtml(
+				Html::rawElement(
+					'div',
+					array(
+						'class' => 'mw-notify-success successbox',
+						'id' => 'mw-preferences-success',
+						'data-mw-autohide' => 'false',
+					),
+					Html::element(
+						'p',
+						array(),
+						$this->msg( 'savedrights', $this->mFetchedUser->getName() )->parse()
+					)
+				)
 			);
 		}
 
