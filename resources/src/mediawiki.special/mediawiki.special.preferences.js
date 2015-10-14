@@ -5,8 +5,7 @@ jQuery( function ( $ ) {
 	var $preftoc, $preferences, $fieldsets, $legends,
 		hash, labelFunc,
 		$tzSelect, $tzTextbox, $localtimeHolder, servertime,
-		$checkBoxes, allowCloseWindow,
-		notif;
+		$checkBoxes, allowCloseWindow;
 
 	labelFunc = function () {
 		return this.id.replace( /^mw-prefsection/g, 'preftab' );
@@ -86,24 +85,11 @@ jQuery( function ( $ ) {
 	}
 
 	// Check for messageboxes (.successbox, .warningbox, .errorbox) to replace with notifications
-	if ( $( '.mw-preferences-messagebox' ).length ) {
-		// If there is a #mw-preferences-success box and javascript is enabled, use a slick notification instead!
-		if ( $( '#mw-preferences-success' ).length ) {
-			notif = mediaWiki.notification.notify( mediaWiki.message( 'savedprefs' ), { autoHide: false } );
-			// 'change' event not reliable!
-			$( '#preftoc, .prefsection' ).one( 'change keydown mousedown', function () {
-				if ( notif ) {
-					notif.close();
-					notif = null;
-				}
-			} );
-
-			// Remove now-unnecessary success=1 querystring to prevent reappearance of notification on reload
-			if ( history.replaceState ) {
-				history.replaceState( {}, document.title, location.href.replace( /&?success=1/, '' ) );
-			}
-		}
-	}
+	mediaWiki.notification.convertsuccessbox( {
+		messageBoxSelector: '.mw-preferences-messagebox',
+		msg: 'savedprefs',
+		closeSelector: '#preftoc, .prefsection'
+	} );
 
 	// Populate the prefToc
 	$legends.each( function ( i, legend ) {
