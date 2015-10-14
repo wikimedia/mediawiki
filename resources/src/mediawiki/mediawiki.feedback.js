@@ -98,16 +98,13 @@
 			case 'submitted':
 				dialogConfig = {
 					title: mw.msg( 'feedback-thanks-title' ),
-					message: $( '<span>' ).append(
-						mw.message(
-							'feedback-thanks',
-							this.feedbackPageTitle.getNameText(),
-							$( '<a>' )
-								.attr( {
-									target: '_blank',
-									href: this.feedbackPageTitle.getUrl()
-								} )
-						).parse()
+					message: $( '<span>' ).msg(
+						'feedback-thanks',
+						this.feedbackPageTitle.getNameText(),
+						$( '<a>' ).attr( {
+							target: '_blank',
+							href: this.feedbackPageTitle.getUrl()
+						} )
 					),
 					actions: [
 						{
