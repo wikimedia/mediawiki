@@ -1126,6 +1126,20 @@ return [
 		'scripts' => 'resources/src/mediawiki/mediawiki.notify.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.notification.convertmessagebox' => [
+		'dependencies' => [
+			'mediawiki.notification',
+		],
+		'scripts' => 'resources/src/mediawiki/mediawiki.notification.convertmessagebox.js',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'mediawiki.notification.convertmessagebox.styles' => [
+		'position' => 'top',
+		'styles' => [
+			'resources/src/mediawiki/mediawiki.notification.convertmessagebox.styles.less',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.RegExp' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.RegExp.js',
 		'targets' => [ 'desktop', 'mobile' ],
@@ -1884,7 +1898,13 @@ return [
 		'dependencies' => [
 			'mediawiki.language',
 			'mediawiki.confirmCloseWindow',
-			'mediawiki.notification',
+			'mediawiki.notification.convertmessagebox',
+		],
+	],
+	'mediawiki.special.userrights' => [
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.userrights.js',
+		'dependencies' => [
+			'mediawiki.notification.convertmessagebox',
 		],
 	],
 	'mediawiki.special.preferences.styles' => [

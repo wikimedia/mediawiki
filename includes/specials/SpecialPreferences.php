@@ -57,17 +57,18 @@ class SpecialPreferences extends SpecialPage {
 		if ( $request->getSessionData( 'specialPreferencesSaveSuccess' ) ) {
 			// Remove session data for the success message
 			$request->setSessionData( 'specialPreferencesSaveSuccess', null );
+			$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
 
-			$out->wrapWikiMsg(
+			$out->addHtml(
 				Html::rawElement(
 					'div',
 					[
-						'class' => 'mw-preferences-messagebox successbox',
-						'id' => 'mw-preferences-success'
+						'class' => 'mw-preferences-messagebox mw-notify-success successbox',
+						'id' => 'mw-preferences-success',
+						'data-mw-autohide' => 'false',
 					],
-					Html::element( 'p', [], '$1' )
-				),
-				'savedprefs'
+					Html::element( 'p', [], $this->msg( 'savedprefs' )->text() )
+				)
 			);
 		}
 
