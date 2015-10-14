@@ -105,7 +105,9 @@ class UserOptions {
 		return true;
 	}
 
-	// Dumb stuff to run a mode.
+	/**
+	 * Dumb stuff to run a mode.
+	 */
 	public function run() {
 		if ( !$this->mReady ) {
 			return false;
@@ -116,11 +118,9 @@ class UserOptions {
 		return true;
 	}
 
-	#
-	# Modes.
-	#
-
-	/** List default options and their value */
+	/**
+	 * List default options and their value
+	 */
 	private function LISTER() {
 		$def = User::getDefaultOptions();
 		ksort( $def );
@@ -133,7 +133,9 @@ class UserOptions {
 		}
 	}
 
-	/** List options usage */
+	/**
+	 * List options usage
+	 */
 	private function USAGER() {
 		$ret = array();
 		$defaultOptions = User::getDefaultOptions();
@@ -186,7 +188,9 @@ class UserOptions {
 		}
 	}
 
-	/** Change our users options */
+	/**
+	 * Change our users options
+	 */
 	private function CHANGER() {
 		$this->warn();
 
@@ -241,10 +245,6 @@ class UserOptions {
 
 		return $ret;
 	}
-
-	#
-	# Helper methods
-	#
 
 	public static function showUsageAndExit() {
 		print <<<USAGE
