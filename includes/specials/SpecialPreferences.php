@@ -50,12 +50,14 @@ class SpecialPreferences extends SpecialPage {
 		$out->addModuleStyles( 'mediawiki.special.preferences.styles' );
 
 		if ( $this->getRequest()->getCheck( 'success' ) ) {
+			$out->addModuleStyles( 'mediawiki.notification.convertsuccessbox.styles' );
 			$out->wrapWikiMsg(
 				Html::rawElement(
 					'div',
 					array(
-						'class' => 'mw-preferences-messagebox successbox',
-						'id' => 'mw-preferences-success'
+						'class' => 'mw-preferences-messagebox mw-notify-success successbox',
+						'id' => 'mw-preferences-success',
+						'data-mw-autohide' => 'false',
 					),
 					Html::element( 'p', array(), '$1' )
 				),
