@@ -49,11 +49,12 @@ class SpecialPreferences extends SpecialPage {
 		$out->addModules( 'mediawiki.special.preferences' );
 
 		if ( $this->getRequest()->getCheck( 'success' ) ) {
+			$out->addModuleStyles( 'mediawiki.notification.convertsuccessbox.styles' );
 			$out->wrapWikiMsg(
 				Html::rawElement(
 					'div',
 					array(
-						'class' => 'mw-preferences-messagebox successbox',
+						'class' => 'mw-preferences-messagebox mw-notify-success-js successbox',
 						'id' => 'mw-preferences-success'
 					),
 					Html::element( 'p', array(), '$1' )
