@@ -19,6 +19,7 @@
  *
  * @file
  */
+use MediaWiki\Storage\RevisionSlot;
 
 /**
  * @todo document
@@ -207,6 +208,23 @@ class Revision implements IDBAccessObject {
 			}
 		}
 		return new self( $attribs );
+	}
+
+	/**
+	 * Get revision text associated with an old or archive row
+	 * $row is usually an object from wfFetchRow(), both the flags and the text
+	 * field must be included.
+	 *
+	 * @param stdClass $row The text data
+	 * @param string $prefix Table prefix (default 'old_')
+	 * @param string|bool $wiki The name of the wiki to load the revision text from
+	 *   (same as the the wiki $row was loaded from) or false to indicate the local
+	 *   wiki (this is the default). Otherwise, it must be a symbolic wiki database
+	 *   identifier as understood by the LoadBalancer class.
+	 * @return string Text the text requested or false on failure
+	 */
+	public static function getRevisionText( $row, $prefix = 'old_', $wiki = false ) {
+		\MediaWiki\Storage\TextTable\TextTable::getRevisionText( $row, $prefix, $wiki );
 	}
 
 	/**
@@ -1102,18 +1120,7 @@ class Revision implements IDBAccessObject {
 	 *     see the CONTENT_MODEL_XXX constants.
 	 **/
 	public function getContentModel() {
-		if ( !$this->mContentModel ) {
-			$title = $this->getTitle();
-			if ( $title ) {
-				$this->mContentModel = ContentHandler::getDefaultModelFor( $title );
-			} else {
-				$this->mContentModel = CONTENT_MODEL_WIKITEXT;
-			}
-
-			assert( !empty( $this->mContentModel ) );
-		}
-
-		return $this->mContentModel;
+		return $this->getMainSlot()->getContentModel();
 	}
 
 	/**
@@ -1126,14 +1133,14 @@ class Revision implements IDBAccessObject {
 	 *     see the CONTENT_FORMAT_XXX constants.
 	 **/
 	public function getContentFormat() {
-		if ( !$this->mContentFormat ) {
-			$handler = $this->getContentHandler();
-			$this->mContentFormat = $handler->getDefaultFormat();
+		return $this->getMainSlot()->getContentFormat();
+	}
 
-			assert( !empty( $this->mContentFormat ) );
-		}
-
-		return $this->mContentFormat;
+	/**
+	 * @return RevisionSlot
+	 */
+	public function getMainSlot() {
+		if ( $this->isDeleted() )
 	}
 
 	/**
@@ -1143,19 +1150,7 @@ class Revision implements IDBAccessObject {
 	 * @return ContentHandler
 	 */
 	public function getContentHandler() {
-		if ( !$this->mContentHandler ) {
-			$model = $this->getContentModel();
-			$this->mContentHandler = ContentHandler::getForModelID( $model );
-
-			$format = $this->getContentFormat();
-
-			if ( !$this->mContentHandler->isSupportedFormat( $format ) ) {
-				throw new MWException( "Oops, the content format $format is not supported for "
-					. "this content model, $model" );
-			}
-		}
-
-		return $this->mContentHandler;
+		return $this->getMainSlot()->getContentHandler();
 	}
 
 	/**
@@ -1228,54 +1223,6 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Get revision text associated with an old or archive row
-	 * $row is usually an object from wfFetchRow(), both the flags and the text
-	 * field must be included.
-	 *
-	 * @param stdClass $row The text data
-	 * @param string $prefix Table prefix (default 'old_')
-	 * @param string|bool $wiki The name of the wiki to load the revision text from
-	 *   (same as the the wiki $row was loaded from) or false to indicate the local
-	 *   wiki (this is the default). Otherwise, it must be a symbolic wiki database
-	 *   identifier as understood by the LoadBalancer class.
-	 * @return string Text the text requested or false on failure
-	 */
-	public static function getRevisionText( $row, $prefix = 'old_', $wiki = false ) {
-
-		# Get data
-		$textField = $prefix . 'text';
-		$flagsField = $prefix . 'flags';
-
-		if ( isset( $row->$flagsField ) ) {
-			$flags = explode( ',', $row->$flagsField );
-		} else {
-			$flags = array();
-		}
-
-		if ( isset( $row->$textField ) ) {
-			$text = $row->$textField;
-		} else {
-			return false;
-		}
-
-		# Use external methods for external objects, text in table is URL-only then
-		if ( in_array( 'external', $flags ) ) {
-			$url = $text;
-			$parts = explode( '://', $url, 2 );
-			if ( count( $parts ) == 1 || $parts[1] == '' ) {
-				return false;
-			}
-			$text = ExternalStore::fetchFromURL( $url, array( 'wiki' => $wiki ) );
-		}
-
-		// If the text was fetched without an error, convert it
-		if ( $text !== false ) {
-			$text = self::decompressRevisionText( $text, $flags );
-		}
-		return $text;
-	}
-
-	/**
 	 * If $wgCompressRevisions is enabled, we will compress data.
 	 * The input string is modified in place.
 	 * Return value is the flags field: contains 'gzip' if the
@@ -1318,41 +1265,7 @@ class Revision implements IDBAccessObject {
 	 * @return string|bool Decompressed text, or false on failure
 	 */
 	public static function decompressRevisionText( $text, $flags ) {
-		if ( in_array( 'gzip', $flags ) ) {
-			# Deal with optional compression of archived pages.
-			# This can be done periodically via maintenance/compressOld.php, and
-			# as pages are saved if $wgCompressRevisions is set.
-			$text = gzinflate( $text );
-
-			if ( $text === false ) {
-				wfLogWarning( __METHOD__ . ': gzinflate() failed' );
-				return false;
-			}
-		}
-
-		if ( in_array( 'object', $flags ) ) {
-			# Generic compressed storage
-			$obj = unserialize( $text );
-			if ( !is_object( $obj ) ) {
-				// Invalid object
-				return false;
-			}
-			$text = $obj->getText();
-		}
-
-		global $wgLegacyEncoding;
-		if ( $text !== false && $wgLegacyEncoding
-			&& !in_array( 'utf-8', $flags ) && !in_array( 'utf8', $flags )
-		) {
-			# Old revisions kept around in a legacy encoding?
-			# Upconvert on demand.
-			# ("utf8" checked for compatibility with some broken
-			#  conversion scripts 2008-12-30)
-			global $wgContLang;
-			$text = $wgContLang->iconv( $wgLegacyEncoding, 'UTF-8', $text );
-		}
-
-		return $text;
+		return \MediaWiki\Storage\TextTable\TextTable::decompressRevisionText( $text, $flags );
 	}
 
 	/**
@@ -1520,72 +1433,6 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function base36Sha1( $text ) {
 		return wfBaseConvert( sha1( $text ), 16, 36, 31 );
-	}
-
-	/**
-	 * Lazy-load the revision's text.
-	 * Currently hardcoded to the 'text' table storage engine.
-	 *
-	 * @return string|bool The revision's text, or false on failure
-	 */
-	protected function loadText() {
-		// Caching may be beneficial for massive use of external storage
-		global $wgRevisionCacheExpiry, $wgMemc;
-
-		$textId = $this->getTextId();
-		$key = wfMemcKey( 'revisiontext', 'textid', $textId );
-		if ( $wgRevisionCacheExpiry ) {
-			$text = $wgMemc->get( $key );
-			if ( is_string( $text ) ) {
-				wfDebug( __METHOD__ . ": got id $textId from cache\n" );
-				return $text;
-			}
-		}
-
-		// If we kept data for lazy extraction, use it now...
-		if ( $this->mTextRow !== null ) {
-			$row = $this->mTextRow;
-			$this->mTextRow = null;
-		} else {
-			$row = null;
-		}
-
-		if ( !$row ) {
-			// Text data is immutable; check slaves first.
-			$dbr = wfGetDB( DB_SLAVE );
-			$row = $dbr->selectRow( 'text',
-				array( 'old_text', 'old_flags' ),
-				array( 'old_id' => $textId ),
-				__METHOD__ );
-		}
-
-		// Fallback to the master in case of slave lag. Also use FOR UPDATE if it was
-		// used to fetch this revision to avoid missing the row due to REPEATABLE-READ.
-		$forUpdate = ( $this->mQueryFlags & self::READ_LOCKING == self::READ_LOCKING );
-		if ( !$row && ( $forUpdate || wfGetLB()->getServerCount() > 1 ) ) {
-			$dbw = wfGetDB( DB_MASTER );
-			$row = $dbw->selectRow( 'text',
-				array( 'old_text', 'old_flags' ),
-				array( 'old_id' => $textId ),
-				__METHOD__,
-				$forUpdate ? array( 'FOR UPDATE' ) : array() );
-		}
-
-		if ( !$row ) {
-			wfDebugLog( 'Revision', "No text row with ID '$textId' (revision {$this->getId()})." );
-		}
-
-		$text = self::getRevisionText( $row );
-		if ( $row && $text === false ) {
-			wfDebugLog( 'Revision', "No blob for text row '$textId' (revision {$this->getId()})." );
-		}
-
-		# No negative caching -- negative hits on text rows may be due to corrupted slave servers
-		if ( $wgRevisionCacheExpiry && $text !== false ) {
-			$wgMemc->set( $key, $text, $wgRevisionCacheExpiry );
-		}
-
-		return $text;
 	}
 
 	/**
