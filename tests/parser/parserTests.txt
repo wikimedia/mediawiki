@@ -26267,3 +26267,19 @@ B <ref group="X" name="b" />
 <ref name="b"><span id="Z">foo</span>bar</ref>
 </references>
 !! end
+
+!! test
+Empty LI (T49673)
+!! wikitext
+* a
+* 
+*
+* b
+!! html/php+tidy
+<ul>
+<li>a</li>
+<li class="mw-empty-li"></li>
+<li class="mw-empty-li"></li>
+<li>b</li>
+</ul>
+!! end
