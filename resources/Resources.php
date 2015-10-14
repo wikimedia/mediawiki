@@ -1088,6 +1088,13 @@ return array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.notify.js',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.notification.convertsuccessbox' => array(
+		'dependencies' => array(
+			'mediawiki.notification',
+		),
+		'scripts' => 'resources/src/mediawiki/mediawiki.notification.convertsuccessbox.js',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.RegExp' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.RegExp.js',
 		'targets' => array( 'desktop', 'mobile' ),
@@ -1720,7 +1727,13 @@ return array(
 		'dependencies' => array(
 			'mediawiki.language',
 			'mediawiki.confirmCloseWindow',
-			'mediawiki.notification',
+			'mediawiki.notification.convertsuccessbox',
+		),
+	),
+	'mediawiki.special.userrights' => array(
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.userrights.js',
+		'dependencies' => array(
+			'mediawiki.notification.convertsuccessbox',
 		),
 	),
 	'mediawiki.special.recentchanges' => array(
