@@ -420,7 +420,7 @@ class DiffEngine {
 			}
 
 			$x1 = $xoff + (int)( ( $numer + ( $xlim - $xoff ) * $chunk ) / $nchunks );
-			// @codingStandardsIgnoreFile Ignore Squiz.WhiteSpace.SemicolonSpacing.Incorrect
+			// @codingStandardsIgnoreStart Ignore Squiz.WhiteSpace.SemicolonSpacing.Incorrect
 			for ( ; $x < $x1; $x++ ) {
 				// @codingStandardsIgnoreEnd
 				$line = $flip ? $this->yv[$x] : $this->xv[$x];
@@ -444,7 +444,7 @@ class DiffEngine {
 					if ( $y > $this->seq[$k - 1] ) {
 						assert( '$y < $this->seq[$k]' );
 						// Optimization: this is a common case:
-						//	next match is just replacing previous match.
+						// next match is just replacing previous match.
 						$this->in_seq[$this->seq[$k]] = false;
 						$this->seq[$k] = $y;
 						$this->in_seq[$y] = 1;
