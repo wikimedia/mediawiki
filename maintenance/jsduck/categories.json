@@ -26,6 +26,7 @@
 					"mw.RegExp",
 					"mw.messagePoster.*",
 					"mw.notification",
+					"mw.notification.convertmessagebox",
 					"mw.Notification_",
 					"mw.storage",
 					"mw.user",
