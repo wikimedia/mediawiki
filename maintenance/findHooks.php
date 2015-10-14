@@ -128,8 +128,8 @@ class FindHooks extends Maintenance {
 		$todo = array_diff( $potential, $documented, self::$ignore );
 		$deprecated = array_diff( $documented, $potential, self::$ignore );
 
-		// Check parameter count
-		$badParameter = array();
+		// Check parameter count and references
+		$badParameterCount = $badParameterReference = array();
 		foreach ( $potentialHooks as $hook => $args ) {
 			if ( !isset( $documentedHooks[$hook] ) ) {
 				// Not documented, but that will also be in $todo
@@ -141,7 +141,25 @@ class FindHooks extends Maintenance {
 				continue;
 			}
 			if ( count( $argsDoc ) !== count( $args ) ) {
-				$badParameter[] = $hook . ': Doc: ' . count( $argsDoc ) . ' vs. Code: ' . count( $args );
+				$badParameterCount[] = $hook . ': Doc: ' . count( $argsDoc ) . ' vs. Code: ' . count( $args );
+			} else {
+				// Check if & is equal
+				foreach ( $argsDoc as $index => $argDoc ) {
+					$arg = $args[$index];
+					if ( preg_match( '/^&?(?:self::)?\$\w+/', $arg ) ) {
+						// $arg is a variable, compare
+						if ( strncmp( $argDoc, $arg, 1 ) !== 0 ) {
+							$badParameterReference[] = $hook . ': References different: Doc: ' . $argDoc .
+								' vs. Code: ' . $arg;
+						}
+					} else {
+						// $arg is a fixed value or expression, no & possible
+						if ( $argDoc[0] !== '$' ) { 
+							$badParameterReference[] = $hook . ': References different: Doc: ' . $argDoc .
+								' vs. Code value: ' . $arg;
+						}
+					}
+				}
 			}
 		}
 
@@ -149,10 +167,11 @@ class FindHooks extends Maintenance {
 		$this->printArray( 'Undocumented', $todo );
 		$this->printArray( 'Documented and not found', $deprecated );
 		$this->printArray( 'Unclear hook calls', $bad );
-		$this->printArray( 'Different parameter count', $badParameter );
+		$this->printArray( 'Different parameter count', $badParameterCount );
+		$this->printArray( 'Different parameter reference', $badParameterReference );
 
 		if ( count( $todo ) == 0 && count( $deprecated ) == 0 && count( $bad ) == 0
-			&& count( $badParameter ) == 0
+			&& count( $badParameterCount ) == 0 && count( $badParameterReference ) == 0
 		) {
 			$this->output( "Looks good!\n" );
 		} else {
