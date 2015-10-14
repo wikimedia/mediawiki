@@ -65,7 +65,7 @@ class MailAddress {
 	 * @return string
 	 */
 	function toString() {
-		# PHP's mail() implementation under Windows is somewhat shite, and
+		# PHP's mail() implementation under Windows is very poor, and
 		# can't handle "Joe Bloggs <joe@bloggs.com>" format email addresses,
 		# so don't bother generating them
 		if ( $this->address ) {
