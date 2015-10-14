@@ -31,19 +31,19 @@
  * @ingroup SpecialPage
  */
 class WikiImporter {
-	private $reader = null;
-	private $foreignNamespaces = null;
-	private $mLogItemCallback, $mUploadCallback, $mRevisionCallback, $mPageCallback;
-	private $mSiteInfoCallback, $mPageOutCallback;
-	private $mNoticeCallback, $mDebug;
-	private $mImportUploads, $mImageBasePath;
-	private $mNoUpdates = false;
+	protected $reader = null;
+	protected $foreignNamespaces = null;
+	protected $mLogItemCallback, $mUploadCallback, $mRevisionCallback, $mPageCallback;
+	protected $mSiteInfoCallback, $mPageOutCallback;
+	protected $mNoticeCallback, $mDebug;
+	protected $mImportUploads, $mImageBasePath;
+	protected $mNoUpdates = false;
 	/** @var Config */
-	private $config;
+	protected $config;
 	/** @var ImportTitleFactory */
-	private $importTitleFactory;
+	protected $importTitleFactory;
 	/** @var array */
-	private $countableCache = array();
+	protected $countableCache = array();
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
@@ -427,7 +427,7 @@ class WikiImporter {
 	 * @param array $siteInfo
 	 * @return bool|mixed
 	 */
-	private function siteInfoCallback( $siteInfo ) {
+	protected function siteInfoCallback( $siteInfo ) {
 		if ( isset( $this->mSiteInfoCallback ) ) {
 			return call_user_func_array( $this->mSiteInfoCallback,
 					array( $siteInfo, $this ) );
@@ -454,7 +454,7 @@ class WikiImporter {
 	 * @param int $sucCount Number of revisions for which callback returned true
 	 * @param array $pageInfo Associative array of page information
 	 */
-	private function pageOutCallback( $title, $foreignTitle, $revCount,
+	protected function pageOutCallback( $title, $foreignTitle, $revCount,
 			$sucCount, $pageInfo ) {
 		if ( isset( $this->mPageOutCallback ) ) {
 			$args = func_get_args();
@@ -467,7 +467,7 @@ class WikiImporter {
 	 * @param WikiRevision $revision
 	 * @return bool|mixed
 	 */
-	private function revisionCallback( $revision ) {
+	protected function revisionCallback( $revision ) {
 		if ( isset( $this->mRevisionCallback ) ) {
 			return call_user_func_array( $this->mRevisionCallback,
 					array( $revision, $this ) );
@@ -481,7 +481,7 @@ class WikiImporter {
 	 * @param WikiRevision $revision
 	 * @return bool|mixed
 	 */
-	private function logItemCallback( $revision ) {
+	protected function logItemCallback( $revision ) {
 		if ( isset( $this->mLogItemCallback ) ) {
 			return call_user_func_array( $this->mLogItemCallback,
 					array( $revision, $this ) );
@@ -595,7 +595,7 @@ class WikiImporter {
 		return true;
 	}
 
-	private function handleSiteInfo() {
+	protected function handleSiteInfo() {
 		$this->debug( "Enter site info handler." );
 		$siteInfo = array();
 
@@ -622,7 +622,7 @@ class WikiImporter {
 		$this->siteInfoCallback( $siteInfo );
 	}
 
-	private function handleLogItem() {
+	protected function handleLogItem() {
 		$this->debug( "Enter log item handler." );
 		$logInfo = array();
 
@@ -658,7 +658,7 @@ class WikiImporter {
 	 * @param array $logInfo
 	 * @return bool|mixed
 	 */
-	private function processLogItem( $logInfo ) {
+	protected function processLogItem( $logInfo ) {
 		$revision = new WikiRevision( $this->config );
 
 		$revision->setID( $logInfo['id'] );
@@ -683,7 +683,7 @@ class WikiImporter {
 		return $this->logItemCallback( $revision );
 	}
 
-	private function handlePage() {
+	protected function handlePage() {
 		// Handle page data.
 		$this->debug( "Enter page handler." );
 		$pageInfo = array( 'revisionCount' => 0, 'successfulRevisionCount' => 0 );
@@ -767,7 +767,7 @@ class WikiImporter {
 	/**
 	 * @param array $pageInfo
 	 */
-	private function handleRevision( &$pageInfo ) {
+	protected function handleRevision( &$pageInfo ) {
 		$this->debug( "Enter revision handler" );
 		$revisionInfo = array();
 
@@ -808,7 +808,7 @@ class WikiImporter {
 	 * @param array $revisionInfo
 	 * @return bool|mixed
 	 */
-	private function processRevision( $pageInfo, $revisionInfo ) {
+	protected function processRevision( $pageInfo, $revisionInfo ) {
 		$revision = new WikiRevision( $this->config );
 
 		if ( isset( $revisionInfo['id'] ) ) {
@@ -858,7 +858,7 @@ class WikiImporter {
 	 * @param array $pageInfo
 	 * @return mixed
 	 */
-	private function handleUpload( &$pageInfo ) {
+	protected function handleUpload( &$pageInfo ) {
 		$this->debug( "Enter upload handler" );
 		$uploadInfo = array();
 
@@ -913,7 +913,7 @@ class WikiImporter {
 	 * @param string $contents
 	 * @return string
 	 */
-	private function dumpTemp( $contents ) {
+	protected function dumpTemp( $contents ) {
 		$filename = tempnam( wfTempDir(), 'importupload' );
 		file_put_contents( $filename, $contents );
 		return $filename;
@@ -924,7 +924,7 @@ class WikiImporter {
 	 * @param array $uploadInfo
 	 * @return mixed
 	 */
-	private function processUpload( $pageInfo, $uploadInfo ) {
+	protected function processUpload( $pageInfo, $uploadInfo ) {
 		$revision = new WikiRevision( $this->config );
 		$text = isset( $uploadInfo['text'] ) ? $uploadInfo['text'] : '';
 
@@ -961,7 +961,7 @@ class WikiImporter {
 	/**
 	 * @return array
 	 */
-	private function handleContributor() {
+	protected function handleContributor() {
 		$fields = array( 'id', 'ip', 'username' );
 		$info = array();
 
@@ -986,7 +986,7 @@ class WikiImporter {
 	 * @param string|null $ns
 	 * @return array|bool
 	 */
-	private function processTitle( $text, $ns = null ) {
+	protected function processTitle( $text, $ns = null ) {
 		if ( is_null( $this->foreignNamespaces ) ) {
 			$foreignTitleFactory = new NaiveForeignTitleFactory();
 		} else {
@@ -1031,13 +1031,13 @@ class UploadSourceAdapter {
 	public static $sourceRegistrations = array();
 
 	/** @var string */
-	private $mSource;
+	protected $mSource;
 
 	/** @var string */
-	private $mBuffer;
+	protected $mBuffer;
 
 	/** @var int */
-	private $mPosition;
+	protected $mPosition;
 
 	/**
 	 * @param ImportSource $source
@@ -1228,10 +1228,10 @@ class WikiRevision {
 	public $fileIsTemp;
 
 	/** @var bool */
-	private $mNoUpdates = false;
+	protected $mNoUpdates = false;
 
 	/** @var Config $config */
-	private $config;
+	protected $config;
 
 	public function __construct( Config $config ) {
 		$this->config = $config;
