@@ -248,6 +248,8 @@
 		return this.api.upload( this.getFile(), {
 			watchlist: ( this.getWatchlist() ) ? 1 : undefined,
 			comment: this.getComment(),
+			// The API will check whether this is really a cross-wiki upload
+			crosswikiuploadtag: true,
 			filename: this.getFilename(),
 			text: this.getText()
 		} ).then( function ( result ) {
@@ -317,6 +319,8 @@
 			return finishStash( {
 				watchlist: ( upload.getWatchlist() ) ? 1 : undefined,
 				comment: upload.getComment(),
+				// The API will check whether this is really a cross-wiki upload
+				crosswikiuploadtag: true,
 				filename: upload.getFilename(),
 				text: upload.getText()
 			} ).then( function ( result ) {
