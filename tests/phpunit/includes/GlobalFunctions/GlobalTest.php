@@ -583,7 +583,6 @@ class GlobalTest extends MediaWikiTestCase {
 			// if you hack it just right are kinda pathological,
 			// and unreliable cross-platform or on IE which means they're
 			// unlikely to appear on intranets.
-			//
 			// Those will survive the algorithm but with results that
 			// are less consistent.
 
