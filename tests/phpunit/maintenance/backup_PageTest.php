@@ -288,17 +288,18 @@ class BackupDumperPageTest extends DumpTestCase {
 		$this->assertDumpEnd();
 	}
 
+	/**
+	 * xmldumps-backup typically performs a single dump that that writes
+	 * out three files
+	 * - gzipped stubs of everything (meta-history)
+	 * - gzipped stubs of latest revisions of all pages (meta-current)
+	 * - gzipped stubs of latest revisions of all pages of namespage 0
+	 *   (articles)
+	 *
+	 * We reproduce such a setup with our mini fixture, although we omit
+	 * chunks, and all the other gimmicks of xmldumps-backup.
+	 */
 	function testXmlDumpsBackupUseCase() {
-		// xmldumps-backup typically performs a single dump that that writes
-		// out three files
-		// * gzipped stubs of everything (meta-history)
-		// * gzipped stubs of latest revisions of all pages (meta-current)
-		// * gzipped stubs of latest revisions of all pages of namespage 0
-		//   (articles)
-		//
-		// We reproduce such a setup with our mini fixture, although we omit
-		// chunks, and all the other gimmicks of xmldumps-backup.
-		//
 		$this->checkHasGzip();
 
 		$fnameMetaHistory = $this->getNewTempFile();
