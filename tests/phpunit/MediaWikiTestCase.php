@@ -181,7 +181,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$fileName = $this->getNewTempFile();
 
 		// Converting the temporary /file/ to a /directory/
-		//
 		// The following is not atomic, but at least we now have a single place,
 		// where temporary directory creation is bundled and can be improved
 		unlink( $fileName );

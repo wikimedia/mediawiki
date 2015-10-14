@@ -102,7 +102,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		// expectOutput[...] functions. However, the PHPUnit shipped prediactes
 		// do not allow to check /each/ line of the output using /readable/ REs.
 		// So we ...
-		//
+
 		// 1. ... add a dummy output checking to make PHPUnit not complain
 		//    about unchecked test output
 		$this->expectOutputRegex( '//' );

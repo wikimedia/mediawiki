@@ -74,10 +74,8 @@ class HtmlFormatter {
 			}
 
 			// Workaround for bug that caused spaces before references
-			// to disappear during processing:
-			// https://phabricator.wikimedia.org/T55086
-			//
-			// Please replace with a better fix if one can be found.
+			// to disappear during processing: https://phabricator.wikimedia.org/T55086
+			// TODO: Please replace with a better fix if one can be found.
 			$html = str_replace( ' <', '&#32;<', $html );
 
 			libxml_use_internal_errors( true );
@@ -295,7 +293,6 @@ class HtmlFormatter {
 			$html = $this->fixLibXml( $html );
 			if ( wfIsWindows() ) {
 				// Cleanup for CRLF misprocessing of unknown origin on Windows.
-				//
 				// If this error continues in the future, please track it down in the
 				// XML code paths if possible and fix there.
 				$html = str_replace( '&#13;', '', $html );

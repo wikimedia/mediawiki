@@ -203,10 +203,9 @@ class MediaWiki {
 			// curid and oldid request  parameters would allow page titles to be enumerated even
 			// when they are not guessable. So we reset the title to Special:Badtitle before the
 			// permissions error is displayed.
-			//
+
 			// The skin mostly uses $this->context->getTitle() these days, but some extensions
 			// still use $wgTitle.
-
 			$badTitle = SpecialPage::getTitleFor( 'Badtitle' );
 			$this->context->setTitle( $badTitle );
 			$wgTitle = $badTitle;
@@ -628,7 +627,7 @@ class MediaWiki {
 					// redirecting to HTTPS. It's likely such a request is going
 					// to fail due to post data being lost, but let's try anyway
 					// and just log the instance.
-					//
+
 					// @todo FIXME: See if we could issue a 307 or 308 here, need
 					// to see how clients (automated & browser) behave when we do
 					wfDebugLog( 'RedirectedPosts', "Redirected from HTTP to HTTPS: $oldUrl" );

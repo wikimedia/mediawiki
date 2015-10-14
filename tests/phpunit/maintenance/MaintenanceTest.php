@@ -4,7 +4,6 @@
 // instead of the MaintenanceFixup hack below. However, we cannot do
 // without changing the visibility and without working around hacks in
 // Maintenance.php
-//
 // For the same reason, we cannot just use FakeMaintenance.
 
 /**
