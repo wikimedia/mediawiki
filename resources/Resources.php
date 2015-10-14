@@ -1317,6 +1317,9 @@ return array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.experiments.js',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.raggett' => array(
+		'styles' => 'resources/src/mediawiki/mediawiki.raggett.css'
+	),
 
 	/* MediaWiki Action */
 

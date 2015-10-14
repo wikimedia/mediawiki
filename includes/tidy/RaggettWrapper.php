@@ -50,6 +50,11 @@ class RaggettWrapper {
 		// Modify inline Microdata <link> and <meta> elements so they say <html-link> and <html-meta> so
 		// we can trick Tidy into not stripping them out by including them in tidy's new-empty-tags config
 		$wrappedtext = preg_replace( '!<(link|meta)([^>]*?)(/{0,1}>)!', '<html-$1$2$3', $wrappedtext );
+		
+		// Preserve empty li elements (T49673) by abusing Tidy's datafld hack
+		// The whitespace class is as in TY_(InitMap)
+		$wrappedtext = preg_replace( "!<li>([ \r\n\t\f]*)</li>!",
+			'<li datafld="" class="mw-empty-li">\1</li>', $wrappedtext );
 
 		// Wrap the whole thing in a doctype and body for Tidy.
 		$wrappedtext = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"' .
@@ -78,6 +83,9 @@ class RaggettWrapper {
 	public function postprocess( $text ) {
 		// Revert <html-{link,meta}> back to <{link,meta}>
 		$text = preg_replace( '!<html-(link|meta)([^>]*?)(/{0,1}>)!', '<$1$2$3', $text );
+
+		// Remove datafld
+		$text = str_replace( '<li datafld=""', '<li', $text );
 
 		// Restore the contents of placeholder tokens
 		$text = $this->mTokens->replace( $text );
