@@ -111,6 +111,17 @@ class ApiUpload extends ApiBase {
 			$result = $this->getContextResult();
 			if ( $result['result'] === 'Success' ) {
 				$result['imageinfo'] = $this->mUpload->getImageInfo( $this->getResult() );
+
+				if (
+					$this->mParams['crosswikiuploadtag'] &&
+					$this->getRequest()->response()->getHeader( 'Access-Control-Allow-Origin' )
+				) {
+					$revId = Title::makeTitle( NS_FILE, $result['filename'] )
+						->getLatestRevID( Title::GAID_FOR_UPDATE );
+					DeferredUpdates::addCallableUpdate( function () use ( $revId ) {
+						ChangeTags::addTags( 'Cross-wiki upload', null, $revId );
+					} );
+				}
 			}
 		} catch ( UploadStashException $e ) { // XXX: don't spam exception log
 			$this->handleStashException( $e );
@@ -798,6 +809,7 @@ class ApiUpload extends ApiBase {
 			'leavemessage' => false,
 			'statuskey' => null,
 			'checkstatus' => false,
+			'crosswikiuploadtag' => false,
 		);
 
 		return $params;

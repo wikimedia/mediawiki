@@ -1236,6 +1236,7 @@
 	"apihelp-upload-param-leavemessage": "{{doc-apihelp-param|upload|leavemessage}}",
 	"apihelp-upload-param-statuskey": "{{doc-apihelp-param|upload|statuskey}}",
 	"apihelp-upload-param-checkstatus": "{{doc-apihelp-param|upload|checkstatus}}",
+	"apihelp-upload-param-crosswikiuploadtag": "{{doc-apihelp-param|upload|crosswikiuploadtag}}",
 	"apihelp-upload-example-url": "{{doc-apihelp-example|upload}}",
 	"apihelp-upload-example-filekey": "{{doc-apihelp-example|upload}}",
 	"apihelp-userrights-description": "{{doc-apihelp-description|userrights}}",

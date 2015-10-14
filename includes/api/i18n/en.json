@@ -1328,6 +1328,7 @@
 	"apihelp-upload-param-leavemessage": "If asyncdownload is used, leave a message on the user talk page if finished.",
 	"apihelp-upload-param-statuskey": "Fetch the upload status for this file key (upload by URL).",
 	"apihelp-upload-param-checkstatus": "Only fetch the upload status for the given file key.",
+	"apihelp-upload-param-crosswikiuploadtag": "<span class=\"apihelp-flag-internal\"><strong>Internal.</strong> Used to mark cross-wiki uploads.</span>",
 	"apihelp-upload-example-url": "Upload from a URL.",
 	"apihelp-upload-example-filekey": "Complete an upload that failed due to warnings.",
 
