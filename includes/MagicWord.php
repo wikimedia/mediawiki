@@ -941,6 +941,7 @@ class MagicWordArray {
 	 *
 	 * @param string $text
 	 *
+	 * @throws Exception
 	 * @return array
 	 */
 	public function matchAndRemove( &$text ) {
@@ -951,13 +952,22 @@ class MagicWordArray {
 				continue;
 			}
 			$matches = array();
-			if ( preg_match_all( $regex, $text, $matches, PREG_SET_ORDER ) ) {
+			$matched = preg_match_all( $regex, $text, $matches, PREG_SET_ORDER );
+			if ( $matched === false ) {
+				throw new Exception( __METHOD__ . ': preg_match_all returned false' );
+			}
+			if ( $matched ) {
 				foreach ( $matches as $m ) {
 					list( $name, $param ) = $this->parseMatch( $m );
 					$found[$name] = $param;
 				}
 			}
-			$text = preg_replace( $regex, '', $text );
+			$replaced = preg_replace( $regex, '', $text );
+			if ( $replaced !== null ) {
+				$text = $replaced;
+			} else {
+				throw new Exception( __METHOD__ . ': preg_replace returned null' );
+			}
 		}
 		return $found;
 	}
