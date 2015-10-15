@@ -12,7 +12,6 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 
 		$this->setMwGlobals( array(
 			'wgEnableUploads' => true,
-			'wgEnableAPI' => true,
 		) );
 
 		wfSetupSession();

@@ -45,6 +45,8 @@ production.
   blocked users to edit their talk pages unless explicitly disabled
   when they are being blocked.
 * CLDRPluralRule* classes have been replaced with wikimedia/cldr-plural-rule-parser.
+* (T115414) $wgEnableAPI has been removed, MediaWiki now always requires API for
+  normal functioning.
 
 === New features in 1.26 ===
 * (T51506) Now action=info gives estimates of actual watchers for a page.
@@ -158,6 +160,9 @@ production.
   and will honor corresponding If-None-Match and If-Modified-Since on such
   requests.
 * (T47988) The protect log event details now use new-style formatting.
+* (T115414) $wgEnableAPI has been removed, MediaWiki now always requires API for
+  normal functioning.
+
 
 === Action API internal changes in 1.26 ===
 * New metadata item ApiResult::META_KVP_MERGE to allow for merging the KVP key

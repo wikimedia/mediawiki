@@ -80,7 +80,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgContentLanguage' => $wgContLang->getCode(),
 			'wgTranslateNumerals' => $conf->get( 'TranslateNumerals' ),
 			'wgVersion' => $conf->get( 'Version' ),
-			'wgEnableAPI' => $conf->get( 'EnableAPI' ),
+			'wgEnableAPI' => true, // @todo: b/c, remove in 1.28
 			'wgEnableWriteAPI' => $conf->get( 'EnableWriteAPI' ),
 			'wgMainPageTitle' => $mainPage->getPrefixedText(),
 			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
