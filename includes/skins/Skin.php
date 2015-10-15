@@ -180,7 +180,7 @@ abstract class Skin extends ContextSource {
 	 * @return array Array of modules with helper keys for easy overriding
 	 */
 	public function getDefaultModules() {
-		global $wgUseAjax, $wgAjaxWatch, $wgEnableAPI, $wgEnableWriteAPI;
+		global $wgUseAjax, $wgAjaxWatch, $wgEnableWriteAPI;
 
 		$out = $this->getOutput();
 		$user = $out->getUser();
@@ -200,7 +200,7 @@ abstract class Skin extends ContextSource {
 		);
 
 		// Add various resources if required
-		if ( $wgUseAjax && $wgEnableAPI ) {
+		if ( $wgUseAjax ) {
 			if ( $wgEnableWriteAPI && $wgAjaxWatch && $user->isLoggedIn()
 				&& $user->isAllowedAll( 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
 				&& $this->getRelevantTitle()->canExist()

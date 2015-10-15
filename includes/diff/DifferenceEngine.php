@@ -466,7 +466,7 @@ class DifferenceEngine extends ContextSource {
 	 * @return string
 	 */
 	protected function markPatrolledLink() {
-		global $wgUseRCPatrol, $wgEnableAPI, $wgEnableWriteAPI;
+		global $wgUseRCPatrol, $wgEnableWriteAPI;
 		$user = $this->getUser();
 
 		if ( $this->mMarkPatrolledLink === null ) {
@@ -500,9 +500,7 @@ class DifferenceEngine extends ContextSource {
 				// Build the link
 				if ( $rcid ) {
 					$this->getOutput()->preventClickjacking();
-					if ( $wgEnableAPI && $wgEnableWriteAPI
-						&& $user->isAllowed( 'writeapi' )
-					) {
+					if ( $wgEnableWriteAPI && $user->isAllowed( 'writeapi' ) ) {
 						$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
 					}
 

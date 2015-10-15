@@ -7178,10 +7178,8 @@ $wgExemptFromUserRobotsControl = null;
  */
 
 /**
- * Enable the MediaWiki API for convenient access to
- * machine-readable data via api.php
- *
- * See https://www.mediawiki.org/wiki/API
+ * @deprecated Since 1.26, does nothing.
+ * To be completely removed in a later release.
  */
 $wgEnableAPI = true;
 
@@ -7344,7 +7342,7 @@ $wgAjaxWatch = true;
 $wgAjaxUploadDestCheck = true;
 
 /**
- * Enable previewing licences via AJAX. Also requires $wgEnableAPI to be true.
+ * Enable previewing licences via AJAX.
  */
 $wgAjaxLicensePreview = true;
 

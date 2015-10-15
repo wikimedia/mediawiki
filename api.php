@@ -2,9 +2,7 @@
 /**
  * This file is the entry point for all API queries.
  *
- * It begins by checking whether the API is enabled on this wiki; if not,
- * it informs the user that s/he should set $wgEnableAPI to true and exits.
- * Otherwise, it constructs a new ApiMain using the parameter passed to it
+ * It constructs a new ApiMain using the parameter passed to it
  * as an argument in the URL ('?action=') and with write-enabled set to the
  * value of $wgEnableWriteAPI as specified in LocalSettings.php.
  * It then invokes "execute()" on the ApiMain object instance, which
@@ -47,14 +45,6 @@ $starttime = microtime( true );
 // URL safety checks
 if ( !$wgRequest->checkUrlExtension() ) {
 	return;
-}
-
-// Verify that the API has not been disabled
-if ( !$wgEnableAPI ) {
-	header( $_SERVER['SERVER_PROTOCOL'] . ' 500 MediaWiki configuration Error', true, 500 );
-	echo 'MediaWiki API is not enabled for this site. Add the following line to your LocalSettings.php'
-		. '<pre><b>$wgEnableAPI=true;</b></pre>';
-	die( 1 );
 }
 
 // Set a dummy $wgTitle, because $wgTitle == null breaks various things
