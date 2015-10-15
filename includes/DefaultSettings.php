@@ -4768,6 +4768,12 @@ $wgRateLimits = array(
 		'ip' => null, // for each anon and recent account
 		'subnet' => null, // ... within a /24 subnet in IPv4 or /64 in IPv6
 	),
+	'upload' => array(
+		'user' => null,
+		'newbie' => null,
+		'ip' => null,
+		'subnet' => null,
+	),
 	'move' => array(
 		'user' => null,
 		'newbie' => null,
