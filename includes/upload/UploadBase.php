@@ -123,6 +123,16 @@ abstract class UploadBase {
 		return true;
 	}
 
+	/**
+	 * Returns true if the user has surpassed the upload rate limit, false otherwise.
+	 *
+	 * @param User $user
+	 * @return bool
+	 */
+	public static function isThrottled( $user ) {
+		return $user->pingLimiter( 'upload' );
+	}
+
 	// Upload handlers. Should probably just be a global.
 	static $uploadHandlers = array( 'Stash', 'File', 'Url' );
 
