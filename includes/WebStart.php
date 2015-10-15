@@ -65,6 +65,9 @@ $wgRUstart = wfGetRusage() ?: array();
 # Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
 
+# Load global functions
+require_once "$IP/includes/GlobalFunctions.php";
+
 # Load up some global defines.
 require_once "$IP/includes/Defines.php";
 

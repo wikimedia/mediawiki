@@ -81,7 +81,7 @@ class ApiUpload extends ApiBase {
 
 		// Check if the uploaded file is sane
 		if ( $this->mParams['chunk'] ) {
-			$maxSize = $this->mUpload->getMaxUploadSize();
+			$maxSize = UploadBase::getMaxUploadSize();
 			if ( $this->mParams['filesize'] > $maxSize ) {
 				$this->dieUsage( 'The file you submitted was too large', 'file-too-large' );
 			}
@@ -201,13 +201,30 @@ class ApiUpload extends ApiBase {
 	private function getChunkResult( $warnings ) {
 		$result = array();
 
-		$result['result'] = 'Continue';
 		if ( $warnings && count( $warnings ) > 0 ) {
 			$result['warnings'] = $warnings;
 		}
+
 		$request = $this->getMain()->getRequest();
 		$chunkPath = $request->getFileTempname( 'chunk' );
 		$chunkSize = $request->getUpload( 'chunk' )->getSize();
+		$totalSoFar = $this->mParams['offset'] + $chunkSize;
+		$minChunkSize = $this->getConfig()->get( 'MinUploadChunkSize' );
+
+		// Sanity check sizing
+		if ( $totalSoFar > $this->mParams['filesize'] ) {
+			$this->dieUsage(
+				'Offset plus current chunk is greater than claimed file size', 'invalid-chunk'
+			);
+		}
+
+		// Enforce minimum chunk size
+		if ( $totalSoFar != $this->mParams['filesize'] && $chunkSize < $minChunkSize ) {
+			$this->dieUsage(
+				"Minimum chunk size is $minChunkSize bytes for non-final chunks", 'chunk-too-small'
+			);
+		}
+
 		if ( $this->mParams['offset'] == 0 ) {
 			try {
 				$filekey = $this->performStash();
@@ -217,22 +234,28 @@ class ApiUpload extends ApiBase {
 			}
 		} else {
 			$filekey = $this->mParams['filekey'];
+
+			// Don't allow further uploads to an already-completed session
+			$progress = UploadBase::getSessionStatus( $this->getUser(), $filekey );
+			if ( !$progress ) {
+				// Probably can't get here, but check anyway just in case
+				$this->dieUsage( 'No chunked upload session with this key', 'stashfailed' );
+			} elseif ( $progress['result'] !== 'Continue' || $progress['stage'] !== 'uploading' ) {
+				$this->dieUsage(
+					'Chunked upload is already completed, check status for details', 'stashfailed'
+				);
+			}
+
 			$status = $this->mUpload->addChunk(
 				$chunkPath, $chunkSize, $this->mParams['offset'] );
 			if ( !$status->isGood() ) {
 				$this->dieUsage( $status->getWikiText(), 'stashfailed' );
-
-				return array();
 			}
 		}
 
 		// Check we added the last chunk:
-		if ( $this->mParams['offset'] + $chunkSize == $this->mParams['filesize'] ) {
+		if ( $totalSoFar == $this->mParams['filesize'] ) {
 			if ( $this->mParams['async'] ) {
-				$progress = UploadBase::getSessionStatus( $filekey );
-				if ( $progress && $progress['result'] === 'Poll' ) {
-					$this->dieUsage( "Chunk assembly already in progress.", 'stashfailed' );
-				}
 				UploadBase::setSessionStatus(
 					$filekey,
 					array( 'result' => 'Poll',
@@ -251,21 +274,37 @@ class ApiUpload extends ApiBase {
 			} else {
 				$status = $this->mUpload->concatenateChunks();
 				if ( !$status->isGood() ) {
+					UploadBase::setSessionStatus(
+						$this->getUser(),
+						$filekey,
+						array( 'result' => 'Failure', 'stage' => 'assembling', 'status' => $status )
+					);
 					$this->dieUsage( $status->getWikiText(), 'stashfailed' );
-
-					return array();
 				}
 
 				// The fully concatenated file has a new filekey. So remove
 				// the old filekey and fetch the new one.
+				UploadBase::setSessionStatus( $this->getUser(), $filekey, false );
 				$this->mUpload->stash->removeFile( $filekey );
 				$filekey = $this->mUpload->getLocalFile()->getFileKey();
 
 				$result['result'] = 'Success';
 			}
+		} else {
+			UploadBase::setSessionStatus(
+				$this->getUser(),
+				$filekey,
+				array(
+					'result' => 'Continue',
+					'stage' => 'uploading',
+					'offset' => $totalSoFar,
+					'status' => Status::newGood(),
+				)
+			);
+			$result['result'] = 'Continue';
+			$result['offset'] = $totalSoFar;
 		}
 		$result['filekey'] = $filekey;
-		$result['offset'] = $this->mParams['offset'] + $chunkSize;
 
 		return $result;
 	}
@@ -374,6 +413,10 @@ class ApiUpload extends ApiBase {
 			// Chunk upload
 			$this->mUpload = new UploadFromChunks();
 			if ( isset( $this->mParams['filekey'] ) ) {
+				if ( $this->mParams['offset'] === 0 ) {
+					$this->dieUsage( 'Cannot supply a filekey when offset is 0', 'badparams' );
+				}
+
 				// handle new chunk
 				$this->mUpload->continueChunks(
 					$this->mParams['filename'],
@@ -720,8 +763,15 @@ class ApiUpload extends ApiBase {
 			),
 			'stash' => false,
 
-			'filesize' => null,
-			'offset' => null,
+			'filesize' => array(
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_MIN => 0,
+				ApiBase::PARAM_MAX => UploadBase::getMaxUploadSize(),
+			),
+			'offset' => array(
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_MIN => 0,
+			),
 			'chunk' => array(
 				ApiBase::PARAM_TYPE => 'upload',
 			),
