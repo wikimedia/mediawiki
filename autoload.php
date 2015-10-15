@@ -103,7 +103,6 @@ $wgAutoloadLocalClasses = array(
 	'ApiQueryLangLinks' => __DIR__ . '/includes/api/ApiQueryLangLinks.php',
 	'ApiQueryLinks' => __DIR__ . '/includes/api/ApiQueryLinks.php',
 	'ApiQueryLogEvents' => __DIR__ . '/includes/api/ApiQueryLogEvents.php',
-	'ApiQueryORM' => __DIR__ . '/includes/api/ApiQueryORM.php',
 	'ApiQueryPagePropNames' => __DIR__ . '/includes/api/ApiQueryPagePropNames.php',
 	'ApiQueryPageProps' => __DIR__ . '/includes/api/ApiQueryPageProps.php',
 	'ApiQueryPagesWithProp' => __DIR__ . '/includes/api/ApiQueryPagesWithProp.php',
