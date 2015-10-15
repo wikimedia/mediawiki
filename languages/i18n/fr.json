@@ -1057,6 +1057,7 @@
 	"prefs-help-recentchangescount": "Ceci inclut les modifications récentes, les pages d'historiques et les journaux.",
 	"prefs-help-watchlist-token2": "Voici la clé secrète du flux Web de votre liste de suivi.\nToute personne la connaissant pourra lire votre liste de suivi, ne la communiquez donc pas.\n[[Special:ResetTokens|Cliquez ici si vous devez la réinitialiser]].",
 	"savedprefs": "Les préférences ont été sauvegardées.",
+	"savedrights": "Les droits utilisateur de {{GENDER:$1|$1}} ont été enregistrés.",
 	"timezonelegend": "Fuseau horaire :",
 	"localtime": "Heure locale :",
 	"timezoneuseserverdefault": "Utiliser la valeur par défaut du wiki ($1)",

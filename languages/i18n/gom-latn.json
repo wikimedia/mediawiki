@@ -585,7 +585,7 @@
 	"statistics-files": "Upload kel'le faili",
 	"brokenredirects-edit": "bodol",
 	"brokenredirects-delete": "Kadun udoi",
-	"nbytes": "$1 {{PLURAL:$1|byte|bytesi}}",
+	"nbytes": "$1 {{PLURAL:$1|byte|byti}}",
 	"nmembers": "$1 {{PLURAL:$1|vangddi}}",
 	"prefixindex": "Panam jenche nanvache survatek asa...",
 	"shortpages": "Dhaktim panam",

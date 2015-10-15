@@ -11,7 +11,8 @@
 			"Ochilov",
 			"Nzeemin",
 			"INS Pirat",
-			"Macofe"
+			"Macofe",
+			"Краснорядцева Елена"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документация]]\n* [[mw:API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> Все отображаемые на этой странице функции должны работать, однако API находится в статусе активной разработки, и может измениться в любой момент. Подпишитесь на  [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом \"MediaWiki-API-Error\", после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:API:Errors_and_warnings|API: Ошибки и предупреждения]].",
@@ -178,6 +179,7 @@
 	"apihelp-query+revisions-example-first5-user": "Получить 5 первых версий <kbd>Main Page</kbd> которые созданы пользователями <kbd>MediaWiki default</kbd>.",
 	"apihelp-query+revisions+base-param-limit": "Ограничение на количество версий которое будут вовзращено",
 	"apihelp-query+search-description": "Выполнить полнотекстовый поиск.",
+	"apihelp-query+siteinfo-paramvalue-prop-fileextensions": "Возвращает список расширений (типы файлов), которые доступны к загрузке",
 	"apihelp-query+tags-description": "Список изменерий тегов.",
 	"apihelp-query+tags-example-simple": "Лист доступных тегов",
 	"apihelp-query+templates-param-namespace": "Показывать шаблоны только из данного списка имен",
@@ -220,8 +222,6 @@
 	"apihelp-xml-description": "Выходные данные в формате XML.",
 	"apihelp-yaml-description": "Выходные данные в формате yaml.",
 	"api-format-title": "Результат MediaWiki API",
-	"api-orm-param-props": "Поля для запроса.",
-	"api-orm-param-limit": "Максимальное количество возвращаемых строк.",
 	"api-pageset-param-titles": "Список заголовков для работы.",
 	"api-pageset-param-pageids": "Список страниц идентификаторов для работы.",
 	"api-pageset-param-revids": "Список идентификаторов версий для работы.",

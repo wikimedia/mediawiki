@@ -4,7 +4,8 @@
 			"Aursani",
 			"아라",
 			"Fayazburiro",
-			"Sindhu"
+			"Sindhu",
+			"Mehtab ahmed"
 		]
 	},
 	"tog-underline": "ڳنڍڻي هيٺان لڪير:",
@@ -780,5 +781,6 @@
 	"logentry-delete-delete": "$1 {{GENDER:$2|ڊاٺو}} صفحو $3",
 	"logentry-newusers-create": "يوزر کاتو $1 {{GENDER:$2|جوڙيو ويو}}",
 	"logentry-upload-upload": "$1 {{GENDER:$2|چاڙهيو}} $3",
-	"searchsuggest-search": "ڳوليو"
+	"searchsuggest-search": "ڳوليو",
+	"api-error-blacklisted": "براءِ مهرباني هڪ مختلف، وضاحتي عنوان چونڊيو."
 }
