@@ -666,6 +666,14 @@ $wgCopyUploadAsyncTimeout = false;
 $wgMaxUploadSize = 1024 * 1024 * 100; # 100MB
 
 /**
+ * Minimum upload chunk size, in bytes. When using chunked upload, non-final
+ * chunks smaller than this will be rejected. May be reduced based on the
+ * 'upload_max_filesize' or 'post_max_size' PHP settings.
+ * @since 1.26
+ */
+$wgMinUploadChunkSize = 1024; # 1KB
+
+/**
  * Point the upload navigation link to an external URL
  * Useful if you want to use a shared repository by default
  * without disabling local uploads (use $wgEnableUploads = false for that).
