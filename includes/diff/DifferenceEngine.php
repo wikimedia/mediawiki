@@ -680,7 +680,6 @@ class DifferenceEngine extends ContextSource {
 	 * @return mixed (string/false)
 	 */
 	public function getDiffBody() {
-		global $wgMemc;
 		$this->mCacheHit = true;
 		// Check if the diff should be hidden from this user
 		if ( !$this->loadRevisionData() ) {
@@ -702,12 +701,13 @@ class DifferenceEngine extends ContextSource {
 		}
 		// Cacheable?
 		$key = false;
+		$cache = ObjectCache::getMainWANInstance();
 		if ( $this->mOldid && $this->mNewid ) {
 			$key = $this->getDiffBodyCacheKey();
 
 			// Try cache
 			if ( !$this->mRefreshCache ) {
-				$difftext = $wgMemc->get( $key );
+				$difftext = $cache->get( $key );
 				if ( $difftext ) {
 					wfIncrStats( 'diff_cache.hit' );
 					$difftext = $this->localiseLineNumbers( $difftext );
@@ -731,7 +731,7 @@ class DifferenceEngine extends ContextSource {
 			wfIncrStats( 'diff_cache.uncacheable' );
 		} elseif ( $key !== false && $difftext !== false ) {
 			wfIncrStats( 'diff_cache.miss' );
-			$wgMemc->set( $key, $difftext, 7 * 86400 );
+			$cache->set( $key, $difftext, 7 * 86400 );
 		} else {
 			wfIncrStats( 'diff_cache.uncacheable' );
 		}
