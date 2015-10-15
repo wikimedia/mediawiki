@@ -675,7 +675,7 @@ class MessageCache {
 				'hash' => $cache['HASH'],
 				'latest' => isset( $cache['LATEST'] ) ? $cache['LATEST'] : 0
 			),
-			WANObjectCache::TTL_NONE
+			WANObjectCache::TTL_INDEFINITE
 		);
 	}
 
