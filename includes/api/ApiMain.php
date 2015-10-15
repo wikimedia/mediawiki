@@ -1596,25 +1596,19 @@ class ApiMain extends ApiBase {
 	 */
 	public function makeHelpMsg() {
 		wfDeprecated( __METHOD__, '1.25' );
-		global $wgMemc;
+
 		$this->setHelp();
-		// Get help text from cache if present
-		$key = wfMemcKey( 'apihelp', $this->getModuleName(),
-			str_replace( ' ', '_', SpecialVersion::getVersion( 'nodb' ) ) );
-
 		$cacheHelpTimeout = $this->getConfig()->get( 'APICacheHelpTimeout' );
-		if ( $cacheHelpTimeout > 0 ) {
-			$cached = $wgMemc->get( $key );
-			if ( $cached ) {
-				return $cached;
-			}
-		}
-		$retval = $this->reallyMakeHelpMsg();
-		if ( $cacheHelpTimeout > 0 ) {
-			$wgMemc->set( $key, $retval, $cacheHelpTimeout );
-		}
 
-		return $retval;
+		$that = $this;
+		return ObjectCache::getMainWANInstance()->getWithSetCallback(
+			wfMemcKey( 'apihelp', $this->getModuleName(),
+				str_replace( ' ', '_', SpecialVersion::getVersion( 'nodb' ) ) ),
+			$cacheHelpTimeout > 0 ? $cacheHelpTimeout : WANObjectCache::TTL_UNCACHEABLE,
+			function () use ( $that ) {
+				return $that->reallyMakeHelpMsg();
+			}
+		);
 	}
 
 	/**
