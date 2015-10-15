@@ -269,11 +269,25 @@ class SpecialRedirect extends FormSpecialPage {
 	 */
 	protected function getSubpagesForPrefixSearch() {
 		return array(
-			"file",
-			"page",
-			"revision",
-			"user",
+			'file',
+			'page',
+			'revision',
+			'user',
 		);
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function requiresWrite() {
+		return false;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function requiresUnblock() {
+		return false;
 	}
 
 	protected function getGroupName() {
