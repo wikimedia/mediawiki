@@ -108,7 +108,7 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 			'wiki' => $this->mDb->getWikiID(),
 			'job'  => new JobSpecification(
 				'deleteLinks',
-				array( 'pageId' => $this->page->getId() ),
+				array( 'pageId' => $this->pageId ),
 				array( 'removeDuplicates' => true ),
 				$this->page->getTitle()
 			)
