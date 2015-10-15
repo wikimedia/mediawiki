@@ -251,20 +251,6 @@ class ApiStashEdit extends ApiBase {
 
 		$key = self::getStashKey( $title, $content, $user );
 		$editInfo = $wgMemc->get( $key );
-		if ( !is_object( $editInfo ) ) {
-			$start = microtime( true );
-			// We ignore user aborts and keep parsing. Block on any prior parsing
-			// so as to use it's results and make use of the time spent parsing.
-			if ( $wgMemc->lock( $key, 30, 30 ) ) {
-				$editInfo = $wgMemc->get( $key );
-				$wgMemc->unlock( $key );
-			}
-			$sec = microtime( true ) - $start;
-			if ( $sec > .01 ) {
-				wfDebugLog( 'StashEdit', "Waited $sec seconds on '$key'." );
-			}
-		}
-
 		if ( !is_object( $editInfo ) || !$editInfo->output ) {
 			wfDebugLog( 'StashEdit', "No cache value for key '$key'." );
 			return false;
