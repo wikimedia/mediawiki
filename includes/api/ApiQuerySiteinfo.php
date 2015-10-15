@@ -256,6 +256,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$data['maxuploadsize'] = UploadBase::getMaxUploadSize();
+		$data['minuploadchunksize'] = (int)$this->getConfig()->get( 'MinUploadChunkSize' );
 
 		$data['thumblimits'] = $config->get( 'ThumbLimits' );
 		$this->getResult()->setIndexedTagName( $data['thumblimits'], 'limit' );

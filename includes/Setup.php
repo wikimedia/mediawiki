@@ -350,6 +350,15 @@ if ( $wgResourceLoaderMaxQueryLength === false ) {
 	$wgResourceLoaderMaxQueryLength = $maxValueLength > 0 ? $maxValueLength : -1;
 }
 
+// Ensure the minimum chunk size is less than PHP upload limits or the maximum
+// upload size.
+$wgMinUploadChunkSize = min(
+	$wgMinUploadChunkSize,
+	$wgMaxUploadSize,
+	wfShorthandToInteger( ini_get( 'upload_max_filesize' ), 1e100 ),
+	wfShorthandToInteger( ini_get( 'post_max_size' ), 1e100) - 1024 # Leave room for other parameters
+);
+
 /**
  * Definitions of the NS_ constants are in Defines.php
  * @private
