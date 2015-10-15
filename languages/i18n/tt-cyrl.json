@@ -1824,5 +1824,8 @@
 	"special-characters-group-gujarati": "Гуҗарати",
 	"special-characters-group-thai": "Таиланд",
 	"special-characters-group-lao": "Лаос",
-	"special-characters-group-khmer": "Кһмер"
+	"special-characters-group-khmer": "Кһмер",
+	"variantname-tt-cyrl": "Кирилл язуы",
+	"variantname-tt-latn": "Латин язуы",
+	"variantname-tt": "Язылганча"
 }
