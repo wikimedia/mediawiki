@@ -114,7 +114,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			}
 
 			$config = $this->getConfig();
-			if ( ( $config->get( 'UseTidy' ) && $options->getTidy() ) || $config->get( 'AlwaysUseTidy' ) ) {
+			if ( $config->get( 'UseTidy' ) && $options->getTidy() ) {
 				$tmp = MWTidy::tidy( $tmp );
 			}
 
