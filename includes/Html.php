@@ -744,10 +744,10 @@ class Html {
 	}
 
 	/**
-	 * Convenience function to produce a checkbox (input element with type=checkbox)
+	 * Convenience function to produce a radio button (input element with type=radio)
 	 *
 	 * @param string $name Name attribute
-	 * @param bool $checked Whether the checkbox is checked or not
+	 * @param bool $checked Whether the radio button is checked or not
 	 * @param array $attribs Array of additional attributes
 	 * @return string Raw HTML
 	 */
