@@ -93,6 +93,7 @@ class SpecialSearch extends SpecialPage {
 			'mediawiki.special', 'mediawiki.special.search', 'mediawiki.ui', 'mediawiki.ui.button',
 			'mediawiki.ui.input',
 		) );
+		$this->addHelpLink( 'Help:Searching' );
 
 		// Strip underscores from title parameter; most of the time we'll want
 		// text form here. But don't strip underscores from actual text params!
