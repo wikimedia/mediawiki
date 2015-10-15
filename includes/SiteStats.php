@@ -180,23 +180,23 @@ class SiteStats {
 	 * @return int
 	 */
 	static function numberingroup( $group ) {
-		if ( !isset( self::$groupMemberCounts[$group] ) ) {
-			global $wgMemc;
-			$key = wfMemcKey( 'SiteStats', 'groupcounts', $group );
-			$hit = $wgMemc->get( $key );
-			if ( !$hit ) {
+		return ObjectCache::getMainWANInstance()->getWithSetCallback(
+			wfMemcKey( 'SiteStats', 'groupcounts', $group ),
+			3600,
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $group ) {
 				$dbr = wfGetDB( DB_SLAVE );
-				$hit = $dbr->selectField(
+
+				$setOpts += $dbr->getCacheSetOptions();
+
+				return $dbr->selectField(
 					'user_groups',
 					'COUNT(*)',
 					array( 'ug_group' => $group ),
 					__METHOD__
 				);
-				$wgMemc->set( $key, $hit, 3600 );
-			}
-			self::$groupMemberCounts[$group] = $hit;
-		}
-		return self::$groupMemberCounts[$group];
+			},
+			array( 'pcTTL' => 10 )
+		);
 	}
 
 	/**
