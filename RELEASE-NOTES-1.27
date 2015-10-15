@@ -76,6 +76,7 @@ production.
   "was-deleted" warning.
 
 === Action API internal changes in 1.27 ===
+* ApiQueryORM removed.
 
 === Languages updated in 1.27 ===
 
