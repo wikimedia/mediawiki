@@ -1047,6 +1047,7 @@
 	"prefs-help-recentchangescount": "Esto incluye cambios recientes, historiales de páginas y registros.",
 	"prefs-help-watchlist-token2": "Esta es la clave secreta del canal de suscripción de tu lista de seguimiento.\nCualquier persona que la conozca podría leer tu lista, así que no la compartas.\n[[Special:ResetTokens|Pulsa aquí si necesitas restablecerla]].",
 	"savedprefs": "Se han guardado tus preferencias.",
+	"savedrights": "Se han guardado los permisos de {{GENDER:$1|$1}}.",
 	"timezonelegend": "Huso horario:",
 	"localtime": "Hora local:",
 	"timezoneuseserverdefault": "Usar la hora del servidor ($1)",

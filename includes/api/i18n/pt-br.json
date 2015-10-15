@@ -5,7 +5,8 @@
 			"Dianakc",
 			"Cainamarques",
 			"Rhcastilhos",
-			"Macofe"
+			"Macofe",
+			"Almondega"
 		]
 	},
 	"apihelp-main-param-action": "Qual ação executar.",
@@ -285,6 +286,12 @@
 	"apihelp-query+links-param-limit": "Quantos links retornar.",
 	"apihelp-query+linkshere-param-limit": "Quantos retornar.",
 	"apihelp-query+prefixsearch-param-limit": "O número máximo a se retornar.",
+	"apihelp-query+search-param-prop": "Que propriedades retornar:",
+	"apihelp-query+search-paramvalue-prop-size": "Adiciona o tamanho da página em bytes.",
+	"apihelp-query+search-paramvalue-prop-wordcount": "Adiciona a contagem de palavras da página.",
+	"apihelp-query+search-paramvalue-prop-timestamp": "Adiciona a marcação de data (timestamp) de quando a página foi editada pela última vez.",
+	"apihelp-query+search-paramvalue-prop-snippet": "Adiciona um fragmento analisado da página.",
+	"apihelp-query+search-paramvalue-prop-titlesnippet": "Adiciona um fragmento analisado do título da página.",
 	"apihelp-query+search-param-limit": "Quantas páginas retornar.",
 	"apihelp-query+templates-param-limit": "Quantas predefinições retornar.",
 	"apihelp-query+transcludedin-param-limit": "Quantos retornar.",

@@ -868,8 +868,6 @@
 	"apihelp-yamlfm-description": "Donn de Dahte em <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"YAML Ain't Markup Language\">YAML</i>-Fommahd schöhn met <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Markup Language\">HTML</i> ußjävve.",
 	"api-format-title": "Wat et <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> ußjohv.",
 	"api-format-prettyprint-header-only-html": "Dat heh es en <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Markup Language\">HTML</i>_Daaschtällong un för et Fähersöhke jedaach. Dadd is för Aanwändongsprojramme nit ze bruche.\n\nEn de [[mw:API|complete Dokkemäntazjohn]] un de [[Special:ApiHelp/main|API Hölp_Sigg]] kam_mer doh mih drövver lässe.",
-	"api-orm-param-props": "De Fällder zom Affrohre.",
-	"api-orm-param-limit": "De jrühßte Aanzahl vun Reihje zom zeröckjävve.",
 	"api-pageset-param-titles": "En Leß vun Övverschreffte för ze beärbeide.",
 	"api-pageset-param-pageids": "En Leß vun Kännonge vun Sigge för ze beärbeide.",
 	"api-pageset-param-revids": "En Leß vun Kännonge vun Väsjohne för ze beärbeide.",

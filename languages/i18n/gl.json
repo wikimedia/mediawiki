@@ -944,6 +944,7 @@
 	"prefs-help-recentchangescount": "Isto inclúe os cambios recentes, os historiais e mais os rexistros.",
 	"prefs-help-watchlist-token2": "Esta é a clave secreta da fonte de novas web para a súa lista de vixilancia.\nCalquera persoa que a saiba poderá ler a súa lista de vixilancia; non comparta esta clave.\n[[Special:ResetTokens|Prema aquí se necesita restablecela]].",
 	"savedprefs": "Gardáronse as súas preferencias.",
+	"savedrights": "Gardáronse os permisos de {{GENDER:$1|$1}}.",
 	"timezonelegend": "Fuso horario:",
 	"localtime": "Hora local:",
 	"timezoneuseserverdefault": "Usar a hora do servidor por defecto ($1)",

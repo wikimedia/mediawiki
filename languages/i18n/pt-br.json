@@ -85,7 +85,8 @@
 			"L",
 			"Walesson",
 			"Rhcastilhos",
-			"Claudio Emanuel Weiler"
+			"Claudio Emanuel Weiler",
+			"Almondega"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -1013,6 +1014,7 @@
 	"prefs-help-recentchangescount": "Isto inclui mudanças recentes, histórico de páginas e registros.",
 	"prefs-help-watchlist-token2": "Esta é a senha secreta para o feed da Web com sua lista de tokens vigiados.\nQualquer pessoa que descobrir esta senha será capaz de ler sua lista, então não a compartilhe.\n[[Special:ResetTokens|Clique aqui para redefini-la]].",
 	"savedprefs": "As suas preferências foram salvas.",
+	"savedrights": "Os direitos de usuário de {{GENDER:$1|$1}} foram salvos.",
 	"timezonelegend": "Fuso horário:",
 	"localtime": "Horário local:",
 	"timezoneuseserverdefault": "Utilizar padrão do wiki ($1)",
