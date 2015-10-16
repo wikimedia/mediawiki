@@ -1,11 +1,20 @@
 Security reminder: If you have PHP's register_globals option set, you must
 turn it off. MediaWiki will no longer work with it enabled.
 
+== MediaWiki 1.24.4 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
 == Changes since 1.24.3 ==
 
 * (T91653) Minimal PSR-3 debug logger to support backports from 1.25+.
 * (T68650) Fix indexing of moved pages with PostgreSQL. Requires running
   update.php to fix.
+* (T91850) SECURITY: Add throttle check in ApiUpload and SpecialUpload
+* (T91203, T91205) SECURITY: API: Improve validation in chunked uploading
+* (T95589) SECURITY: RevDel: Check all revisions for suppression, not just the
+  first
+* (T108616) SECURITY: Avoid exposure of local path in PNG thumbnails
 
 == MediaWiki 1.24.3 ==
 
