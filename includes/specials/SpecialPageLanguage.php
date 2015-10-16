@@ -197,4 +197,8 @@ class SpecialPageLanguage extends FormSpecialPage {
 		LogEventsList::showLogExtract( $out2, 'pagelang', $title );
 		return $out1 . $out2;
 	}
+
+	protected function getGroupName() {
+		return 'pagetools';
+	}
 }
