@@ -161,11 +161,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->typeLabels = self::$UILabels[$this->typeName];
 		$list = $this->getList();
 		$list->reset();
-		$bitfield = $list->current()->getBits();
 		$this->mIsAllowed = $user->isAllowed( RevisionDeleter::getRestriction( $this->typeName ) );
 		$canViewSuppressedOnly = $this->getUser()->isAllowed( 'viewsuppressed' ) &&
 			!$this->getUser()->isAllowed( 'suppressrevision' );
-		$pageIsSuppressed = $bitfield & Revision::DELETED_RESTRICTED;
+		$pageIsSuppressed = $list->areAnySuppressed();
 		$this->mIsAllowed = $this->mIsAllowed && !( $canViewSuppressedOnly && $pageIsSuppressed );
 
 		$this->otherReason = $request->getVal( 'wpReason' );

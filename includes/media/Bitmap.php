@@ -162,6 +162,8 @@ class BitmapHandler extends TransformationalImageHandler {
 			( $params['comment'] !== ''
 				? array( '-set', 'comment', $this->escapeMagickProperty( $params['comment'] ) )
 				: array() ),
+			// T108616: Avoid exposure of local file path
+			array( '+set', 'Thumb::URI'),
 			array( '-depth', 8 ),
 			$sharpen,
 			array( '-rotate', "-$rotation" ),

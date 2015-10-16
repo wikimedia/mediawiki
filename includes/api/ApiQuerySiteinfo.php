@@ -245,6 +245,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['misermode'] = (bool)$config->get( 'MiserMode' );
 
 		$data['maxuploadsize'] = UploadBase::getMaxUploadSize();
+		$data['minuploadchunksize'] = (int)$this->getConfig()->get( 'MinUploadChunkSize' );
 
 		$data['thumblimits'] = $config->get( 'ThumbLimits' );
 		ApiResult::setArrayType( $data['thumblimits'], 'BCassoc' );

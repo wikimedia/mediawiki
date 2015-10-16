@@ -102,6 +102,50 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 				)
 			),
 			array(
+				'Global already set, 1d array that appends',
+				array(
+					'mwAvailableRights' => array(
+						'foobar',
+						'foo'
+					),
+				),
+				array(
+					'mwAvailableRights' => array(
+						'barbaz',
+					),
+				),
+				array(
+					'mwAvailableRights' => array(
+						'barbaz',
+						'foobar',
+						'foo',
+					),
+				)
+			),
+			array(
+				'Global already set, array with integer keys',
+				array(
+					'mwNamespacesFoo' => array(
+						100 => true,
+						102 => false
+					),
+				),
+				array(
+					'mwNamespacesFoo' => array(
+						100 => false,
+						500 => true,
+						ExtensionRegistry::MERGE_STRATEGY => 'array_plus',
+					),
+				),
+				array(
+					'mwNamespacesFoo' => array(
+						100 => true,
+						102 => false,
+						500 => true,
+					),
+				)
+			),
+			array(
 				'No global already set, $wgHooks',
 				array(
 					'wgHooks' => array(),
@@ -111,6 +155,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 						'FooBarEvent' => array(
 							'FooBarClass::onFooBarEvent'
 						),
+						ExtensionRegistry::MERGE_STRATEGY => 'array_merge_recursive'
 					),
 				),
 				array(
@@ -138,6 +183,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 						'FooBarEvent' => array(
 							'BazBarClass::onFooBarEvent',
 						),
+						ExtensionRegistry::MERGE_STRATEGY => 'array_merge_recursive',
 					),
 				),
 				array(
@@ -172,7 +218,8 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 						'user' => array(
 							'right' => true,
 							'somethingtwo' => false,
-						)
+						),
+						ExtensionRegistry::MERGE_STRATEGY => 'array_plus_2d',
 					),
 				),
 				array(
