@@ -115,15 +115,22 @@ class NamespaceAwareForeignTitleFactory implements ForeignTitleFactory {
 	protected function parseTitleWithNs( $title, $ns ) {
 		$pieces = explode( ':', $title, 2 );
 
+		// Is $title of the form Namespace:Title (true), or just Title (false)?
+		$titleIncludesNamespace = ( $ns != '0' && count( $pieces ) === 2 );
+
 		if ( isset( $this->foreignNamespaces[$ns] ) ) {
 			$namespaceName = $this->foreignNamespaces[$ns];
 		} else {
-			$namespaceName = $ns == '0' ? '' : $pieces[0];
+			// If the foreign wiki is misconfigured, XML dumps can contain a page with
+			// a non-zero namespace ID, but whose title doesn't contain a colon
+			// (T114115). In those cases, output a blank namespace name and let the
+			// ImportTitleFactory fill it in.
+			$namespaceName = $titleIncludesNamespace ? $pieces[0] : '';
 		}
 
 		// We assume that the portion of the page title before the colon is the
-		// namespace name, except in the case of namespace 0
-		if ( $ns != '0' ) {
+		// namespace name, except in the case of namespace 0.
+		if ( $titleIncludesNamespace ) {
 			$pageName = $pieces[1];
 		} else {
 			$pageName = $title;
