@@ -298,3 +298,6 @@
 	path = extensions/CustomData
 	url = https://github.com/wikimedia/mediawiki-extensions-CustomData
 	branch = REL1_25
+[submodule "extensions/YouTube"]
+	path = extensions/YouTube
+	url = https://github.com/miraheze/YouTube.git
