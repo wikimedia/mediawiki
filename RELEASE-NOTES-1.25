@@ -3,7 +3,7 @@ turn it off. MediaWiki will not work with it enabled.
 
 == MediaWiki 1.25.3 ==
 
-THIS IS NOT YET A RELEASE!
+This is a security and maintenance release of the MediaWiki 1.25 branch.
 
 === Changes since 1.25.2 ===
 
@@ -17,6 +17,11 @@ THIS IS NOT YET A RELEASE!
   if the mbstring PHP extension was not installed.
 * (T105896) Confirmation emails would sometimes contain invalid codes.
 * (T105597) Fixed edit stash inclusion queries.
+* (T91850) SECURITY: Add throttle check in ApiUpload and SpecialUpload
+* (T91203, T91205) SECURITY: API: Improve validation in chunked uploading
+* (T95589) SECURITY: RevDel: Check all revisions for suppression, not just the
+  first
+* (T108616) SECURITY: Avoid exposure of local path in PNG thumbnails
 
 == MediaWiki 1.25.2 ==
 
