@@ -1,6 +1,16 @@
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.23.11 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+== Changes since 1.23.10 ==
+
+* (T91850) SECURITY: Add throttle check in ApiUpload and SpecialUpload
+* (T91203, T91205) SECURITY: API: Improve validation in chunked uploading
+* (T108616) SECURITY: Avoid exposure of local path in PNG thumbnails
+
 == MediaWiki 1.23.10 ==
 
 This is a security and maintenance release of the MediaWiki 1.23 branch.
