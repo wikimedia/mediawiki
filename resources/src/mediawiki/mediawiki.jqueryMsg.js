@@ -189,8 +189,7 @@
 	 * @return {string} return.return Rendered HTML.
 	 */
 	mw.jqueryMsg.getMessageFunction = function ( options ) {
-		var failableParserFn = getFailableParserFn( options ),
-			format;
+		var failableParserFn, format;
 
 		if ( options && options.format !== undefined ) {
 			format = options.format;
@@ -199,6 +198,9 @@
 		}
 
 		return function () {
+			if ( !failableParserFn ) {
+				failableParserFn = getFailableParserFn( options );
+			}
 			var failableResult = failableParserFn( arguments );
 			if ( format === 'text' || format === 'escaped' ) {
 				return failableResult.text();
@@ -231,9 +233,12 @@
 	 * @return {jQuery} return.return
 	 */
 	mw.jqueryMsg.getPlugin = function ( options ) {
-		var failableParserFn = getFailableParserFn( options );
+		var failableParserFn;
 
 		return function () {
+			if ( !failableParserFn ) {
+				failableParserFn = getFailableParserFn( options );
+			}
 			var $target = this.empty();
 			appendWithoutParsing( $target, failableParserFn( arguments ) );
 			return $target;

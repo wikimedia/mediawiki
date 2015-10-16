@@ -1078,4 +1078,31 @@
 		assert.equal( logSpy.callCount, 2, 'mw.log.warn calls' );
 	} );
 
+	QUnit.test( 'Integration', 4, function ( assert ) {
+		var expected = '<b><a title="Bold" href="/wiki/Bold">Bold</a>!</b>';
+		mw.messages.set( 'integration-test', '<b>[[Bold]]!</b>' );
+
+		this.suppressWarnings();
+		var logSpy = this.sandbox.spy( mw.log, 'warn' );
+		assert.equal(
+			window.gM( 'integration-test' ),
+			expected,
+			'Global function gM() works correctly'
+		);
+		assert.equal( logSpy.callCount, 1, 'mw.log.warn called' );
+		this.restoreWarnings();
+
+		assert.equal(
+			mw.message( 'integration-test' ).parse(),
+			expected,
+			'mw.message().parse() works correctly'
+		);
+
+		assert.equal(
+			$( '<span>' ).msg( 'integration-test' ).html(),
+			expected,
+			'jQuery plugin $.fn.msg() works correctly'
+		);
+	} );
+
 }( mediaWiki, jQuery ) );
