@@ -75,7 +75,7 @@ $wgConfigRegistry = array(
  * MediaWiki version number
  * @since 1.2
  */
-$wgVersion = '1.25.2';
+$wgVersion = '1.25.3';
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
@@ -701,6 +701,14 @@ $wgCopyUploadAsyncTimeout = false;
  * will have a maximum of 500 kB.
  */
 $wgMaxUploadSize = 1024 * 1024 * 100; # 100MB
+
+/**
+ * Minimum upload chunk size, in bytes. When using chunked upload, non-final
+ * chunks smaller than this will be rejected. May be reduced based on the
+ * 'upload_max_filesize' or 'post_max_size' PHP settings.
+ * @since 1.26
+ */
+$wgMinUploadChunkSize = 1024; # 1KB
 
 /**
  * Point the upload navigation link to an external URL
@@ -3636,8 +3644,8 @@ $wgMetaNamespaceTalk = false;
  * Additional namespaces. If the namespaces defined in Language.php and
  * Namespace.php are insufficient, you can create new ones here, for example,
  * to import Help files in other languages. You can also override the namespace
- * names of existing namespaces. Extensions developers should use
- * $wgCanonicalNamespaceNames.
+ * names of existing namespaces. Extensions should use the CanonicalNamespaces
+ * hook or extension.json.
  *
  * @warning Once you delete a namespace, the pages in that namespace will
  * no longer be accessible. If you rename it, then you can access them through
@@ -5015,6 +5023,12 @@ $wgRateLimits = array(
 		'newbie' => null, // for each recent (autoconfirmed) account; overrides 'user'
 		'ip' => null, // for each anon and recent account
 		'subnet' => null, // ... within a /24 subnet in IPv4 or /64 in IPv6
+	),
+	'upload' => array(
+		'user' => null,
+		'newbie' => null,
+		'ip' => null,
+		'subnet' => null,
 	),
 	'move' => array(
 		'user' => null,

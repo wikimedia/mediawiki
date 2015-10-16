@@ -47,6 +47,24 @@ class ExtensionProcessor implements Processor {
 	);
 
 	/**
+	 * Mapping of global settings to their specific merge strategies.
+	 *
+	 * @see ExtensionRegistry::exportExtractedData
+	 * @see getExtractedInfo
+	 * @var array
+	 */
+	protected static $mergeStrategies = array(
+		'wgGroupPermissions' => 'array_plus_2d',
+		'wgRevokePermissions' => 'array_plus_2d',
+		'wgHooks' => 'array_merge_recursive',
+		// credits are handled in the ExtensionRegistry
+		//'wgExtensionCredits' => 'array_merge_recursive',
+		'wgExtraGenderNamespaces' => 'array_plus',
+		'wgNamespacesWithSubpages' => 'array_plus',
+		'wgNamespaceContentModels' => 'array_plus',
+	);
+
+	/**
 	 * Keys that are part of the extension credits
 	 *
 	 * @var array
@@ -155,6 +173,13 @@ class ExtensionProcessor implements Processor {
 	}
 
 	public function getExtractedInfo() {
+		// Make sure the merge strategies are set
+		foreach ( $this->globals as $key => $val ) {
+			if ( isset( self::$mergeStrategies[$key] ) ) {
+				$this->globals[$key][ExtensionRegistry::MERGE_STRATEGY] = self::$mergeStrategies[$key];
+			}
+		}
+
 		return array(
 			'globals' => $this->globals,
 			'defines' => $this->defines,
@@ -166,8 +191,10 @@ class ExtensionProcessor implements Processor {
 
 	protected function extractHooks( array $info ) {
 		if ( isset( $info['Hooks'] ) ) {
-			foreach ( $info['Hooks'] as $name => $callable ) {
-				$this->globals['wgHooks'][$name][] = $callable;
+			foreach ( $info['Hooks'] as $name => $value ) {
+				foreach ( (array)$value as $callback ) {
+					$this->globals['wgHooks'][$name][] = $callback;
+				}
 			}
 		}
 	}
@@ -182,7 +209,7 @@ class ExtensionProcessor implements Processor {
 			foreach ( $info['namespaces'] as $ns ) {
 				$id = $ns['id'];
 				$this->defines[$ns['constant']] = $id;
-				$this->globals['wgExtraNamespaces'][$id] = $ns['name'];
+				$this->attributes['ExtensionNamespaces'][$id] = $ns['name'];
 				if ( isset( $ns['gender'] ) ) {
 					$this->globals['wgExtraGenderNamespaces'][$id] = $ns['gender'];
 				}
@@ -269,9 +296,15 @@ class ExtensionProcessor implements Processor {
 	 */
 	protected function extractConfig( array $info ) {
 		if ( isset( $info['config'] ) ) {
+			if ( isset( $info['config']['_prefix'] ) ) {
+				$prefix = $info['config']['_prefix'];
+				unset( $info['config']['_prefix'] );
+			} else {
+				$prefix = 'wg';
+			}
 			foreach ( $info['config'] as $key => $val ) {
 				if ( $key[0] !== '@' ) {
-					$this->globals["wg$key"] = $val;
+					$this->globals["$prefix$key"] = $val;
 				}
 			}
 		}

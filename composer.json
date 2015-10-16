@@ -31,7 +31,7 @@
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "~0.8",
 		"justinrainbow/json-schema": "~1.3",
-		"phpunit/phpunit": "~4.5",
+		"phpunit/phpunit": "3.7.37",
 		"mediawiki/mediawiki-codesniffer": "0.1.0"
 	},
 	"suggest": {

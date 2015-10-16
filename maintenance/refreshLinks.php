@@ -327,13 +327,14 @@ class RefreshLinks extends Maintenance {
 
 		foreach ( $linksTables as $table => $field ) {
 			$this->output( "    $table: 0" );
+			$tableStart = $start;
 			$counter = 0;
 			do {
 				$ids = $dbr->selectFieldValues(
 					$table,
 					$field,
 					array(
-						self::intervalCond( $dbr, $field, $start, $end ),
+						self::intervalCond( $dbr, $field, $tableStart, $end ),
 						"$field NOT IN ({$dbr->selectSQLText( 'page', 'page_id' )})",
 					),
 					__METHOD__,
@@ -346,10 +347,10 @@ class RefreshLinks extends Maintenance {
 					wfWaitForSlaves();
 					$dbw->delete( $table, array( $field => $ids ), __METHOD__ );
 					$this->output( ", $counter" );
-					$start = $ids[$numIds - 1] + 1;
+					$tableStart = $ids[$numIds - 1] + 1;
 				}
 
-			} while ( $numIds >= $batchSize && ( $end === null || $start <= $end ) );
+			} while ( $numIds >= $batchSize && ( $end === null || $tableStart <= $end ) );
 
 			$this->output( " deleted.\n" );
 
