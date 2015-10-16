@@ -66,7 +66,8 @@
 			"राम प्रसाद जोशी",
 			"ShrUtiable",
 			"Matma Rex",
-			"Angpradesh"
+			"Angpradesh",
+			"Sfic"
 		]
 	},
 	"tog-underline": "कड़ियाँ अधोरेखन:",
@@ -483,7 +484,7 @@
 	"createacct-captcha": "सुरक्षा जाँच",
 	"createacct-imgcaptcha-ph": "उपरोक्त पाठ लिखें",
 	"createacct-submit": "अपना खाता बनाएँ",
-	"createacct-another-submit": "एक अन्य खाता खोलें",
+	"createacct-another-submit": "खाता बनाएँ",
 	"createacct-benefit-heading": "{{SITENAME}} आपके जैसे लोगों द्वारा बनायी गई है।",
 	"createacct-benefit-body1": "{{PLURAL:$1|सम्पादन}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|पृष्ठ}}",

@@ -3240,7 +3240,7 @@
 	"logentry-tag-update-add-logentry": "$1 사용자가 $3 문서의 기록 항목 $5에 $6 {{PLURAL:$7|태그}}를 {{GENDER:$2|추가했습니다}}",
 	"logentry-tag-update-remove-revision": "$1 사용자가 $3 문서의 $4판에서 $8 {{PLURAL:$9|태그}}를 {{GENDER:$2|제거했습니다}}",
 	"logentry-tag-update-remove-logentry": "$1 사용자가 $3 문서의 기록 항목 $5에서 $8 {{PLURAL:$9|태그}}를 {{GENDER:$2|제거했습니다}}",
-	"logentry-tag-update-revision": "$1 사용자가 $3 문서의 $4 판에서 태그를 수정했습니다 ($6을(를) {{PLURAL:$7|추가함}}; $8을(를) {{PLURAL:$9|제거함}})",
+	"logentry-tag-update-revision": "$1 사용자가 $3 문서의 $4 판에서 태그를 {{GENDER:$2|수정했습니다}} ($6을(를) {{PLURAL:$7|추가함}}; $8을(를) {{PLURAL:$9|제거함}})",
 	"rightsnone": "(없음)",
 	"revdelete-summary": "편집 요약",
 	"feedback-adding": "문서에 피드백을 올리는 중...",

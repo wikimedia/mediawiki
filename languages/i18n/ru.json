@@ -766,7 +766,7 @@
 	"parser-template-loop-warning": "Обнаружена петля в шаблонах: [[$1]]",
 	"parser-template-recursion-depth-warning": "Превышен предел глубины рекурсии шаблона ($1)",
 	"language-converter-depth-warning": "Превышен предел глубины преобразователя языков ($1)",
-	"node-count-exceeded-category": "Странице, на которых превышено число узлов",
+	"node-count-exceeded-category": "Страницы, на которых превышено число узлов",
 	"node-count-exceeded-category-desc": "У страницы превышено максимально допустимое число узлов.",
 	"node-count-exceeded-warning": "Страница, на которой превышено максимально допустимое число узлов.",
 	"expansion-depth-exceeded-category": "Страницы с превышением глубины раскрытия",
