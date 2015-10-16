@@ -1464,17 +1464,19 @@ class Linker {
 					$linkText = $text;
 					$linkTarget = Linker::normalizeSubpageLink( $title, $match[1], $linkText );
 
-					$target = Title::newFromText( $linkTarget );
-					if ( $target ) {
-						if ( $target->getText() == '' && !$target->isExternal()
-							&& !$local && $title
-						) {
-							$newTarget = clone $title;
-							$newTarget->setFragment( '#' . $target->getFragment() );
-							$target = $newTarget;
-						}
+					if ( $linkTarget ) {
+						$target = Title::newFromText( $linkTarget );
+						if ( $target ) {
+							if ( $target->getText() == '' && !$target->isExternal()
+								&& !$local && $title
+							) {
+								$newTarget = clone $title;
+								$newTarget->setFragment( '#' . $target->getFragment() );
+								$target = $newTarget;
+							}
 
-						$thelink = Linker::makeCommentLink( $target, $linkText . $inside, $wikiId ) . $trail;
+							$thelink = Linker::makeCommentLink( $target, $linkText . $inside, $wikiId ) . $trail;
+						}
 					}
 				}
 				if ( $thelink ) {
