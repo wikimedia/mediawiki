@@ -2188,6 +2188,8 @@ class EditPage {
 		}
 
 		# Use the title defined by DISPLAYTITLE magic word when present
+		# NOTE: getDisplayTitle() returns HTML while getPrefixedText() returns plain text.
+		#       setPageTitle() treats the input as wikitext, which should be safe in either case.
 		$displayTitle = isset( $this->mParserOutput ) ? $this->mParserOutput->getDisplayTitle() : false;
 		if ( $displayTitle === false ) {
 			$displayTitle = $contextTitle->getPrefixedText();

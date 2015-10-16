@@ -44,7 +44,7 @@ class ParserOutput extends CacheTime {
 	public $mIndicators = array();
 
 	/**
-	 * @var string $mTitleText Title text of the chosen language variant
+	 * @var string $mTitleText Title text of the chosen language variant, as HTML.
 	 */
 	public $mTitleText;
 
@@ -700,8 +700,12 @@ class ParserOutput extends CacheTime {
 
 	/**
 	 * Override the title to be used for display
-	 * -- this is assumed to have been validated
+	 *
+	 * @note this is assumed to have been validated
 	 * (check equal normalisation, etc.)
+	 *
+	 * @note this is expected to be safe HTML,
+	 * ready to be served to the client.
 	 *
 	 * @param string $text Desired title text
 	 */
@@ -711,9 +715,12 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Get the title to be used for display
+	 * Get the title to be used for display.
 	 *
-	 * @return string
+	 * As per the contract of setDisplayTitle(), this is safe HTML,
+	 * ready to be served to the client.
+	 *
+	 * @return string HTML
 	 */
 	public function getDisplayTitle() {
 		$t = $this->getTitleText();
