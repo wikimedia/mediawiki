@@ -161,12 +161,12 @@
 				label: mw.msg( 'upload-form-label-infoform-name' ),
 				align: 'top'
 			} ),
-			new OO.ui.FieldLayout( this.categoriesWidget, {
-				label: mw.msg( 'foreign-structured-upload-form-label-infoform-categories' ),
-				align: 'top'
-			} ),
 			new OO.ui.FieldLayout( this.descriptionWidget, {
 				label: mw.msg( 'upload-form-label-infoform-description' ),
+				align: 'top'
+			} ),
+			new OO.ui.FieldLayout( this.categoriesWidget, {
+				label: mw.msg( 'foreign-structured-upload-form-label-infoform-categories' ),
 				align: 'top'
 			} ),
 			new OO.ui.FieldLayout( this.dateWidget, {
