@@ -1469,7 +1469,7 @@ class Linker {
 						if ( $target->getText() == '' && !$target->isExternal()
 							&& !$local && $title
 						) {
-							$newTarget = clone ( $title );
+							$newTarget = clone $title;
 							$newTarget->setFragment( '#' . $target->getFragment() );
 							$target = $newTarget;
 						}
