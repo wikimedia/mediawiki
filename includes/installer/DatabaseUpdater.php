@@ -145,15 +145,26 @@ abstract class DatabaseUpdater {
 			return; // already loaded
 		}
 		$vars = Installer::getExistingLocalSettings();
-		if ( !$vars ) {
-			return; // no LocalSettings found
+
+		$registry = ExtensionRegistry::getInstance();
+		$queue = $registry->getQueue();
+		// Don't accidentally load extensions in the future
+		$registry->clearQueue();
+
+		// This will automatically add "AutoloadClasses" to $wgAutoloadClasses
+		$data = $registry->readFromQueue( $queue );
+		$hooks = array( 'wgHooks' => array( 'LoadExtensionSchemaUpdates' => array() ) );
+		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
+			$hooks = $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'];
 		}
-		if ( !isset( $vars['wgHooks'] ) || !isset( $vars['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
-			return;
+		if ( $vars && isset( $vars['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
+			$hooks = array_merge_recursive( $hooks, $vars['wgHooks']['LoadExtensionSchemaUpdates'] );
 		}
 		global $wgHooks, $wgAutoloadClasses;
-		$wgHooks['LoadExtensionSchemaUpdates'] = $vars['wgHooks']['LoadExtensionSchemaUpdates'];
-		$wgAutoloadClasses = $wgAutoloadClasses + $vars['wgAutoloadClasses'];
+		$wgHooks['LoadExtensionSchemaUpdates'] = $hooks;
+		if ( $vars && isset( $vars['wgAutoloadClasses'] ) ) {
+			$wgAutoloadClasses += $vars['wgAutoloadClasses'];
+		}
 	}
 
 	/**
