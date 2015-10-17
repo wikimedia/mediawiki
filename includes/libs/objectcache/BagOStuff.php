@@ -628,7 +628,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * Make a global cache key.
 	 *
 	 * @since 1.27
-	 * @param string $args,...
+	 * @param string ... Key component (variadic)
 	 * @return string
 	 */
 	public function makeGlobalKey() {
@@ -639,7 +639,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * Make a cache key, scoped to this instance's keyspace.
 	 *
 	 * @since 1.27
-	 * @param string $args,...
+	 * @param string ... Key component (variadic)
 	 * @return string
 	 */
 	public function makeKey() {
