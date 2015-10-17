@@ -15,32 +15,41 @@
 	background-color: #b1ffb1;
 }
 
+/* Common for Special:Allpages and Special:PrefixIndex */
+.mw-allpages-body, .mw-prefixindex-body {
+	columns: 22em 3;
+	-moz-columns: 22em 3;
+	-webkit-columns: 22em 3;
+	break-inside: avoid-column;
+	page-break-inside: avoid;
+	-webkit-column-break-inside: avoid;
+}
+.allpagesredirect {
+	font-style: italic;
+}
+
 /* Special:Allpages */
+.mw-allpages-nav {
+	text-align: right;
+	margin-bottom: 1em;
+}
 table.mw-allpages-table-form {
 	width: 100%;
 }
 table.mw-allpages-table-form tr {
 	vertical-align: top;
 }
-.mw-allpages-nav {
-	text-align: right;
-	margin-bottom: 1em;
-}
 
-ul.mw-allpages-chunk {
-	margin: 0;
-	padding: 0;
+/* Special:Prefixindex */
+.mw-prefixindex-nav {
+	text-align: right;
 }
-ul.mw-allpages-chunk li {
-	border-top: 1px solid #ccc;
-	display: inline-block;
-	margin: 0 1% 0 0;
-	padding: .2em 0;
+table#mw-prefixindex-nav-table {
+	width: 100%;
+}
+td#mw-prefixindex-nav-form {
+	margin-bottom: 1em;
 	vertical-align: top;
-	width: 31%;
-}
-.allpagesredirect {
-	font-style: italic;
 }
 
 /* Special:Block */
@@ -59,6 +68,9 @@ span.mw-blocklist-actions {
 /* Special:Contributions */
 .mw-uctop {
 	font-weight: bold;
+}
+.mw-contributions-form select {
+	vertical-align: middle;
 }
 
 /* Special:EditWatchlist */
@@ -83,19 +95,6 @@ table.mw-listgrouprights-table tr {
 }
 .listgrouprights-revoked {
 	text-decoration: line-through;
-}
-
-/* Special:Prefixindex */
-table.mw-prefixindex-list-table,
-table#mw-prefixindex-nav-table {
-	width: 100%;
-}
-td#mw-prefixindex-nav-form {
-	margin-bottom: 1em;
-	vertical-align: top;
-}
-.mw-prefixindex-nav {
-	text-align: right;
 }
 
 /* Special:RevisionDelete */
@@ -145,9 +144,4 @@ table.mw-userrights-groups * th {
 p.mw-upload-editlicenses {
 	font-size: 90%;
 	text-align: right;
-}
-
-/* Special:Contributions */
-.mw-contributions-form select {
-	vertical-align: middle;
 }

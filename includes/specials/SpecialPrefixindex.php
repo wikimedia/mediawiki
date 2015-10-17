@@ -209,7 +209,8 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 			$n = 0;
 			if ( $res->numRows() > 0 ) {
-				$out = Xml::openElement( 'table', array( 'class' => 'mw-prefixindex-list-table' ) );
+				$out = Html::openElement( 'div', array( 'class' => 'mw-prefixindex-body' ) );
+				$out .= Html::openElement( 'ul', array( 'class' => 'mw-prefixindex-list' ) );
 
 				$prefixLength = strlen( $prefix );
 				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
@@ -230,21 +231,13 @@ class SpecialPrefixindex extends SpecialAllPages {
 					} else {
 						$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
 					}
-					if ( $n % $this->columns == 0 ) {
-						$out .= '<tr>';
-					}
-					$out .= "<td>$link</td>";
+
+					$out .= "<li> $link </li>\n";
 					$n++;
-					if ( $n % $this->columns == 0 ) {
-						$out .= '</tr>';
-					}
-				}
 
-				if ( $n % $this->columns != 0 ) {
-					$out .= '</tr>';
 				}
-
-				$out .= Xml::closeElement( 'table' );
+				$out .= Html::closeElement( 'ul' );
+				$out .= Html::closeElement( 'div' );
 			} else {
 				$out = '';
 			}

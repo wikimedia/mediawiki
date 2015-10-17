@@ -216,7 +216,9 @@ class SpecialAllPages extends IncludableSpecialPage {
 			);
 
 			if ( $res->numRows() > 0 ) {
-				$out = Xml::openElement( 'ul', array( 'class' => 'mw-allpages-chunk' ) );
+				$out = Html::openElement( 'div', array( 'class' => 'mw-allpages-body' ) );
+				$out .= Html::openElement( 'ul', array( 'class' => 'mw-allpages-chunk' ) );
+
 				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 					$t = Title::newFromRow( $s );
 					if ( $t ) {
@@ -230,7 +232,8 @@ class SpecialAllPages extends IncludableSpecialPage {
 					}
 					$n++;
 				}
-				$out .= Xml::closeElement( 'ul' );
+				$out .= Html::closeElement( 'ul' );
+				$out .= Html::closeElement( 'div' );
 			} else {
 				$out = '';
 			}
