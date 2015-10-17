@@ -36,9 +36,6 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 	protected $hideRedirects = false;
 
-	// number of columns in output table
-	protected $columns = 3;
-
 	// Inherit $maxPerPage
 
 	function __construct() {
@@ -66,7 +63,6 @@ class SpecialPrefixindex extends SpecialAllPages {
 		$namespace = (int)$ns; // if no namespace given, use 0 (NS_MAIN).
 		$this->hideRedirects = $request->getBool( 'hideredirects', $this->hideRedirects );
 		$this->stripPrefix = $request->getBool( 'stripprefix', $this->stripPrefix );
-		$this->columns = $request->getInt( 'columns', $this->columns );
 
 		$namespaces = $wgContLang->getNamespaces();
 		$out->setPageTitle(
@@ -209,7 +205,8 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 			$n = 0;
 			if ( $res->numRows() > 0 ) {
-				$out = Xml::openElement( 'table', array( 'class' => 'mw-prefixindex-list-table' ) );
+				$out = Html::openElement( 'div', array( 'class' => 'mw-prefixindex-body' ) );
+				$out .= Html::openElement( 'ul', array( 'class' => 'mw-prefixindex-list' ) );
 
 				$prefixLength = strlen( $prefix );
 				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
@@ -230,21 +227,13 @@ class SpecialPrefixindex extends SpecialAllPages {
 					} else {
 						$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
 					}
-					if ( $n % $this->columns == 0 ) {
-						$out .= '<tr>';
-					}
-					$out .= "<td>$link</td>";
+
+					$out .= "<li> $link </li>\n";
 					$n++;
-					if ( $n % $this->columns == 0 ) {
-						$out .= '</tr>';
-					}
-				}
 
-				if ( $n % $this->columns != 0 ) {
-					$out .= '</tr>';
 				}
-
-				$out .= Xml::closeElement( 'table' );
+				$out .= Html::closeElement( 'ul' );
+				$out .= Html::closeElement( 'div' );
 			} else {
 				$out = '';
 			}
@@ -269,7 +258,6 @@ class SpecialPrefixindex extends SpecialAllPages {
 					'prefix' => $prefix,
 					'hideredirects' => $this->hideRedirects,
 					'stripprefix' => $this->stripPrefix,
-					'columns' => $this->columns,
 				);
 
 				if ( $namespace || $prefix == '' ) {
