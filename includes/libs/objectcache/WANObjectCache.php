@@ -656,26 +656,9 @@ class WANObjectCache {
 	 *      since the callback should use slave DBs and they may be lagged or have snapshot
 	 *      isolation anyway, this should not typically matter.
 	 *      Default: WANObjectCache::TTL_UNCACHEABLE.
-	 * @param array $oldOpts Unused (mentioned only to avoid PHPDoc warnings)
 	 * @return mixed Value to use for the key
 	 */
-	final public function getWithSetCallback(
-		$key, $ttl, $callback, array $opts = array(), $oldOpts = array()
-	) {
-		// Back-compat with 1.26: Swap $ttl and $callback
-		if ( is_int( $callback ) ) {
-			$temp = $ttl;
-			$ttl = $callback;
-			$callback = $temp;
-		}
-		// Back-compat with 1.26: $checkKeys as separate parameter
-		if ( $oldOpts || ( is_array( $opts ) && isset( $opts[0] ) ) ) {
-			$checkKeys = $opts;
-			$opts = $oldOpts;
-		} else {
-			$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : array();
-		}
-
+	final public function getWithSetCallback( $key, $ttl, $callback, array $opts = array() ) {
 		$pcTTL = isset( $opts['pcTTL'] ) ? $opts['pcTTL'] : self::TTL_UNCACHEABLE;
 
 		// Try the process cache if enabled
@@ -683,7 +666,7 @@ class WANObjectCache {
 
 		if ( $value === false ) {
 			// Fetch the value over the network
-			$value = $this->doGetWithSetCallback( $key, $ttl, $callback, $checkKeys, $opts );
+			$value = $this->doGetWithSetCallback( $key, $ttl, $callback, $opts );
 			// Update the process cache if enabled
 			if ( $pcTTL >= 0 && $value !== false ) {
 				$this->procCache->set( $key, $value, $pcTTL );
@@ -701,15 +684,13 @@ class WANObjectCache {
 	 * @param string $key
 	 * @param integer $ttl
 	 * @param callback $callback
-	 * @param array $checkKeys
 	 * @param array $opts
 	 * @return mixed
 	 */
-	protected function doGetWithSetCallback(
-		$key, $ttl, $callback, array $checkKeys, array $opts
-	) {
+	protected function doGetWithSetCallback( $key, $ttl, $callback, array $opts ) {
 		$lowTTL = isset( $opts['lowTTL'] ) ? $opts['lowTTL'] : min( self::LOW_TTL, $ttl );
 		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
+		$checkKeys = isset( $opts['checkKeys'] ) ? $opts['checkKeys'] : array();
 
 		// Get the current key value
 		$curTTL = null;
