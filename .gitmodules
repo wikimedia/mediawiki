@@ -301,3 +301,7 @@
 [submodule "extensions/YouTube"]
 	path = extensions/YouTube
 	url = https://github.com/miraheze/YouTube.git
+[submodule "extensions/TemplateSandbox"]
+	path = extensions/TemplateSandbox
+	url = https://github.com/wikimedia/mediawiki-extensions-TemplateSandbox
+	branch = REL1_25
