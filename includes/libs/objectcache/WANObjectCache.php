@@ -289,7 +289,8 @@ class WANObjectCache {
 	 *
 	 * @param string $key Cache key
 	 * @param mixed $value
-	 * @param integer $ttl Seconds to live [0=forever]
+	 * @param integer $ttl Seconds to live. Special values are:
+	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever
 	 * @param array $opts Options map:
 	 *   - lag     : Seconds of slave lag. Typically, this is either the slave lag
 	 *               before the data was read or, if applicable, the slave lag before
