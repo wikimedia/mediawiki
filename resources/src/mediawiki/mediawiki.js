@@ -588,7 +588,8 @@
 		log: ( function () {
 			// Also update the restoration of methods in mediawiki.log.js
 			// when adding or removing methods here.
-			var log = function () {};
+			var log = function () {},
+				console = window.console;
 
 			/**
 			 * @class mw.log
@@ -601,12 +602,9 @@
 			 *
 			 * @param {...string} msg Messages to output to console
 			 */
-			log.warn = function () {
-				var console = window.console;
-				if ( console && console.warn && console.warn.apply ) {
-					console.warn.apply( console, arguments );
-				}
-			};
+			log.warn = console && console.warn && Function.prototype.bind ?
+				Function.prototype.bind.call( console.warn, console ) :
+				$.noop;
 
 			/**
 			 * Write a message the console's error channel.
@@ -617,12 +615,9 @@
 			 * @since 1.26
 			 * @param {Error|...string} msg Messages to output to console
 			 */
-			log.error = function () {
-				var console = window.console;
-				if ( console && console.error && console.error.apply ) {
-					console.error.apply( console, arguments );
-				}
-			};
+			log.error = console && console.error && Function.prototype.bind ?
+				Function.prototype.bind.call( console.error, console ) :
+				$.noop;
 
 			/**
 			 * Create a property in a host object that, when accessed, will produce
