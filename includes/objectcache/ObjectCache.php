@@ -68,6 +68,10 @@ use MediaWiki\Logger\LoggerFactory;
  * - wfGetCache( $cacheType )
  *   Get a specific cache type by key in $wgObjectCaches.
  *
+ * All the above cache instances (BagOStuff and WANObjectCache) have their makeKey()
+ * method scoped to the *current* wiki ID. Use makeGlobalKey() to avoid this scoping
+ * when using keys that need to be shared amongst wikis.
+ *
  * @ingroup Cache
  */
 class ObjectCache {

@@ -283,7 +283,7 @@ class WANObjectCache {
 	 *     $setOpts = Database::getCacheSetOptions( $dbr );
 	 *     // Fetch the row from the DB
 	 *     $row = $dbr->selectRow( ... );
-	 *     $key = wfMemcKey( 'building', $buildingId );
+	 *     $key = $cache->makeKey( 'building', $buildingId );
 	 *     $cache->set( $key, $row, 86400, $setOpts );
 	 * @endcode
 	 *
@@ -372,7 +372,7 @@ class WANObjectCache {
 	 *     ... <execute some stuff> ...
 	 *     // Update the row in the DB
 	 *     $dbw->update( ... );
-	 *     $key = wfMemcKey( 'homes', $homeId );
+	 *     $key = $cache->makeKey( 'homes', $homeId );
 	 *     // Purge the corresponding cache entry just before committing
 	 *     $dbw->onTransactionPreCommitOrIdle( function() use ( $cache, $key ) {
 	 *         $cache->delete( $key );
@@ -536,7 +536,7 @@ class WANObjectCache {
 	 * @code
 	 *     $catInfo = $cache->getWithSetCallback(
 	 *         // Key to store the cached value under
-	 *         wfMemcKey( 'cat-attributes', $catId ),
+	 *         $cache->makeKey( 'cat-attributes', $catId ),
 	 *         // Time-to-live (seconds)
 	 *         60,
 	 *         // Function that derives the new key value
@@ -554,7 +554,7 @@ class WANObjectCache {
 	 * @code
 	 *     $catConfig = $cache->getWithSetCallback(
 	 *         // Key to store the cached value under
-	 *         wfMemcKey( 'site-cat-config' ),
+	 *         $cache->makeKey( 'site-cat-config' ),
 	 *         // Time-to-live (seconds)
 	 *         86400,
 	 *         // Function that derives the new key value
@@ -567,7 +567,7 @@ class WANObjectCache {
 	 *         },
 	 *         array(
 	 *             // Calling touchCheckKey() on this key invalidates the cache
-	 *             'checkKeys' => array( wfMemcKey( 'site-cat-config' ) ),
+	 *             'checkKeys' => array( $cache->makeKey( 'site-cat-config' ) ),
 	 *             // Try to only let one datacenter thread manage cache updates at a time
 	 *             'lockTSE' => 30
 	 *         )
@@ -578,7 +578,7 @@ class WANObjectCache {
 	 * @code
 	 *     $catState = $cache->getWithSetCallback(
 	 *         // Key to store the cached value under
-	 *         wfMemcKey( 'cat-state', $cat->getId() ),
+	 *         $cache->makeKey( 'cat-state', $cat->getId() ),
 	 *         // Time-to-live (seconds)
 	 *         900,
 	 *         // Function that derives the new key value
@@ -594,9 +594,9 @@ class WANObjectCache {
 	 *              // The "check" keys that represent things the value depends on;
 	 *              // Calling touchCheckKey() on any of them invalidates the cache
 	 *             'checkKeys' => array(
-	 *                 wfMemcKey( 'sustenance-bowls', $cat->getRoomId() ),
-	 *                 wfMemcKey( 'people-present', $cat->getHouseId() ),
-	 *                 wfMemcKey( 'cat-laws', $cat->getCityId() ),
+	 *                 $cache->makeKey( 'sustenance-bowls', $cat->getRoomId() ),
+	 *                 $cache->makeKey( 'people-present', $cat->getHouseId() ),
+	 *                 $cache->makeKey( 'cat-laws', $cat->getCityId() ),
 	 *             )
 	 *         )
 	 *     );
@@ -606,7 +606,7 @@ class WANObjectCache {
 	 * @code
 	 *     $lastCatActions = $cache->getWithSetCallback(
 	 *         // Key to store the cached value under
-	 *         wfMemcKey( 'cat-last-actions', 100 ),
+	 *         $cache->makeKey( 'cat-last-actions', 100 ),
 	 *         // Time-to-live (seconds)
 	 *         10,
 	 *         // Function that derives the new key value
@@ -776,6 +776,26 @@ class WANObjectCache {
 		}
 
 		return $value;
+	}
+
+	/**
+	 * @see BagOStuff::makeKey()
+	 * @param string ... Key component
+	 * @return string
+	 * @since 1.27
+	 */
+	public function makeKey() {
+		return call_user_func_array( array( $this->cache, __FUNCTION__ ), func_get_args() );
+	}
+
+	/**
+	 * @see BagOStuff::makeGlobalKey()
+	 * @param string ... Key component
+	 * @return string
+	 * @since 1.27
+	 */
+	public function makeGlobalKey() {
+		return call_user_func_array( array( $this->cache, __FUNCTION__ ), func_get_args() );
 	}
 
 	/**
