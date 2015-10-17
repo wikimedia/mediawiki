@@ -3,6 +3,8 @@
 class WANObjectCacheTest extends MediaWikiTestCase {
 	/** @var WANObjectCache */
 	private $cache;
+	/**@var BagOStuff */
+	private $internalCache;
 
 	protected function setUp() {
 		parent::setUp();
@@ -104,7 +106,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		};
 
 		$wasSet = 0;
-		$v = $cache->getWithSetCallback( $key, $func, 30, array(), array( 'lockTSE' => 5 ) );
+		$v = $cache->getWithSetCallback( $key, 30, $func, array(), array( 'lockTSE' => 5 ) );
 		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated" );
 
@@ -114,7 +116,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertGreaterThanOrEqual( 19, $curTTL, 'Current TTL between 19-20 (overriden)' );
 
 		$wasSet = 0;
-		$v = $cache->getWithSetCallback( $key, $func, 30, array(), array(
+		$v = $cache->getWithSetCallback( $key, 30, $func, array(), array(
 			'lowTTL' => 0,
 			'lockTSE' => 5,
 		) );
@@ -124,7 +126,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$priorTime = microtime( true );
 		usleep( 1 );
 		$wasSet = 0;
-		$v = $cache->getWithSetCallback( $key, $func, 30, array( $cKey1, $cKey2 ) );
+		$v = $cache->getWithSetCallback( $key, 30, $func, array( $cKey1, $cKey2 ) );
 		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated due to check keys" );
 		$t1 = $cache->getCheckKeyTime( $cKey1 );
@@ -134,7 +136,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 		$priorTime = microtime( true );
 		$wasSet = 0;
-		$v = $cache->getWithSetCallback( $key, $func, 30, array( $cKey1, $cKey2 ) );
+		$v = $cache->getWithSetCallback( $key, 30, $func, array( $cKey1, $cKey2 ) );
 		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 1, $wasSet, "Value regenerated due to still-recent check keys" );
 		$t1 = $cache->getCheckKeyTime( $cKey1 );
@@ -149,10 +151,10 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 		$wasSet = 0;
 		$key = wfRandomString();
-		$v = $cache->getWithSetCallback( $key, $func, 30, array(), array( 'pcTTL' => 5 ) );
+		$v = $cache->getWithSetCallback( $key, 30, $func, array(), array( 'pcTTL' => 5 ) );
 		$this->assertEquals( $value, $v, "Value returned" );
 		$cache->delete( $key );
-		$v = $cache->getWithSetCallback( $key, $func, 30, array(), array( 'pcTTL' => 5 ) );
+		$v = $cache->getWithSetCallback( $key, 30, $func, array(), array( 'pcTTL' => 5 ) );
 		$this->assertEquals( $value, $v, "Value still returned after deleted" );
 		$this->assertEquals( 1, $wasSet, "Value process cached while deleted" );
 	}
