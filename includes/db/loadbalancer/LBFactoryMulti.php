@@ -160,7 +160,6 @@ class LBFactoryMulti extends LBFactory {
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
 
-		$this->chronProt = new ChronologyProtector;
 		$this->conf = $conf;
 		$required = array( 'sectionsByDB', 'sectionLoads', 'serverTemplate' );
 		$optional = array( 'groupLoadsBySection', 'groupLoadsByDB', 'hostsByName',
@@ -180,6 +179,16 @@ class LBFactoryMulti extends LBFactory {
 				$this->$key = $conf[$key];
 			}
 		}
+
+		$request = RequestContext::getMain()->getRequest();
+		$this->chronProt = new ChronologyProtector(
+			ObjectCache::getMainStashInstance(),
+			array(
+				'ip' => $request->getIP(),
+				'agent' => $request->getHeader( 'User-Agent' )
+			)
+		);
+		$this->chronProt->setEnabled( PHP_SAPI !== 'cli' );
 	}
 
 	/**
