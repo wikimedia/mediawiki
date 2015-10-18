@@ -710,7 +710,7 @@ class MediaWiki {
 		// Commit and close up!
 		$factory = wfGetLBFactory();
 		$factory->commitMasterChanges();
-		$factory->shutdown();
+		$factory->shutdown( LBFactory::SHUTDOWN_NO_CHRONPROT );
 
 		wfDebug( "Request ended normally\n" );
 	}
