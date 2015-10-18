@@ -67,6 +67,8 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	/** Bitfield constants for get()/getMulti() */
 	const READ_LATEST = 1; // use latest data for replicated stores
 	const READ_VERIFIED = 2; // promise that caller can tell when keys are stale
+	/** Bitfield constants for merge() */
+	const WRITE_ALL = 1; // synchronously write to all locations for replicated stores
 
 	public function __construct( array $params = array() ) {
 		if ( isset( $params['logger'] ) ) {
@@ -158,6 +160,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * @param mixed $casToken
 	 * @param integer $flags Bitfield of BagOStuff::READ_* constants [optional]
 	 * @return mixed Returns false on failure and if the item does not exist
+	 * @throws Exception
 	 */
 	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
 		throw new Exception( __METHOD__ . ' not implemented.' );
@@ -191,10 +194,11 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * @param callable $callback Callback method to be executed
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $attempts The amount of times to attempt a merge in case of failure
+	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
 	 * @return bool Success
 	 * @throws InvalidArgumentException
 	 */
-	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
+	public function merge( $key, $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
 		if ( !is_callable( $callback ) ) {
 			throw new InvalidArgumentException( "Got invalid callback." );
 		}
