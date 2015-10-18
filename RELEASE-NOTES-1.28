@@ -15,6 +15,7 @@ production.
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.
 * Added a new hook, 'UserIsBot', to aid in determining if a user is a bot.
+* Add support for renaming sql tables.
 
 === External library changes in 1.28 ===
 
