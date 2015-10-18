@@ -329,6 +329,19 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Rename a table on an extension database
+	 *
+	 * @since 1.28
+	 *
+	 * @param string $oldTable The old table name
+	 * @param string $newTable The new table name
+	 * @param string $sqlPath The path to the SQL change path
+	 */
+	public function renameExtensionTable( $oldTable, $newTable, $sqlPath ) {
+		$this->extensionUpdates[] = [ 'renameTable', $oldTable, $newTable, $sqlPath, true ];
+	}
+
+	/**
 	 * @since 1.21
 	 *
 	 * @param string $tableName The table name
@@ -833,7 +846,7 @@ abstract class DatabaseUpdater {
 
 		// Third requirement: the old index must exist
 		if ( !$this->db->indexExists( $table, $oldIndex, __METHOD__ ) ) {
-			$this->output( "...skipping: index $oldIndex doesn't exist.\n" );
+			$this->output( "...skipping: index $oldIndex doesn't exists.\n" );
 
 			return true;
 		}
@@ -843,6 +856,36 @@ abstract class DatabaseUpdater {
 			$patch,
 			$fullpath,
 			"Renaming index $oldIndex into $newIndex to table $table"
+		);
+	}
+
+	/**
+	 * Rename a table from an existing table
+	 *
+	 * @param string $oldTable Old name of the table
+	 * @param string $newTable New name of the table
+	 * @param string $patch Path to the patch file
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 */
+	protected function renameTable( $oldTable, $newTable, $patch, $fullpath = false ) {
+		if ( !$this->doTable( $oldTable ) ) {
+			return true;
+		}
+
+		if ( !$this->db->tableExists( $oldTable, __METHOD__ ) ) {
+			$this->output( "...skipping: '$oldTable' table doesn't exist yet.\n" );
+
+			return true;
+		} elseif ( $this->db->tableExists( $newTable, __METHOD__ ) ) {
+			$this->output( "...skipping: '$newTable' already exist's.\n" );
+
+			return true;
+		}
+
+		return $this->applyPatch(
+			$patch,
+			$fullpath,
+			"Renaming table from $oldTable to $newTable"
 		);
 	}
 
