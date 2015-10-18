@@ -38,10 +38,11 @@ class LBFactorySimple extends LBFactory {
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
 
-		$this->chronProt = new ChronologyProtector;
 		$this->loadMonitorClass = isset( $conf['loadMonitorClass'] )
 			? $conf['loadMonitorClass']
 			: null;
+
+		$this->chronProt = $this->newChronologyProtector();
 	}
 
 	/**
@@ -159,14 +160,10 @@ class LBFactorySimple extends LBFactory {
 		}
 	}
 
-	public function shutdown() {
-		if ( $this->mainLB ) {
-			$this->chronProt->shutdownLB( $this->mainLB );
+	public function shutdown( $flags = 0 ) {
+		if ( !( $flags & self::SHUTDOWN_NO_CHRONPROT ) ) {
+			$this->shutdownChronologyProtector( $this->chronProt );
 		}
-		foreach ( $this->extLBs as $extLB ) {
-			$this->chronProt->shutdownLB( $extLB );
-		}
-		$this->chronProt->shutdown();
-		$this->commitMasterChanges();
+		$this->commitMasterChanges(); // sanity
 	}
 }
