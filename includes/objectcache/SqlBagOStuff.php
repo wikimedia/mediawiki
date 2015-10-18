@@ -289,11 +289,6 @@ class SqlBagOStuff extends BagOStuff {
 		return $values;
 	}
 
-	/**
-	 * @param array $data
-	 * @param int $expiry
-	 * @return bool
-	 */
 	public function setMulti( array $data, $expiry = 0 ) {
 		$keysByTable = array();
 		foreach ( $data as $key => $value ) {
@@ -353,23 +348,10 @@ class SqlBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	/**
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime
-	 * @return bool
-	 */
-	public function set( $key, $value, $exptime = 0 ) {
+	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		return $this->setMulti( array( $key => $value ), $exptime );
 	}
 
-	/**
-	 * @param mixed $casToken
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime
-	 * @return bool
-	 */
 	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		try {
@@ -410,10 +392,6 @@ class SqlBagOStuff extends BagOStuff {
 		return (bool)$db->affectedRows();
 	}
 
-	/**
-	 * @param string $key
-	 * @return bool
-	 */
 	public function delete( $key ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		try {
@@ -430,11 +408,6 @@ class SqlBagOStuff extends BagOStuff {
 		return true;
 	}
 
-	/**
-	 * @param string $key
-	 * @param int $step
-	 * @return int|null
-	 */
 	public function incr( $key, $step = 1 ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		try {
@@ -479,7 +452,7 @@ class SqlBagOStuff extends BagOStuff {
 		return $newValue;
 	}
 
-	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
+	public function merge( $key, $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
 		if ( !is_callable( $callback ) ) {
 			throw new Exception( "Got invalid callback." );
 		}

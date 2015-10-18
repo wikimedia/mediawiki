@@ -102,7 +102,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function set( $key, $value, $expiry = 0 ) {
+	public function set( $key, $value, $expiry = 0, $flags = 0 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;

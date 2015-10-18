@@ -98,11 +98,10 @@ class MultiWriteBagOStuff extends BagOStuff {
 		);
 	}
 
-	/**
-	 * @param bool $debug
-	 */
 	public function setDebug( $debug ) {
-		$this->doWrite( self::ALL, 'setDebug', $debug );
+		foreach ( $this->caches as $cache ) {
+			$cache->setDebug( $debug );
+		}
 	}
 
 	protected function doGet( $key, $flags = 0 ) {
@@ -127,75 +126,43 @@ class MultiWriteBagOStuff extends BagOStuff {
 			&& $misses > 0
 			&& ( $flags & self::READ_VERIFIED ) == self::READ_VERIFIED
 		) {
-			$this->doWrite( $misses, 'set', $key, $value, self::UPGRADE_TTL );
+			$this->doWrite( $misses, $this->asyncWrites, 'set', $key, $value, self::UPGRADE_TTL );
 		}
 
 		return $value;
 	}
 
-	/**
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime
-	 * @return bool
-	 */
-	public function set( $key, $value, $exptime = 0 ) {
-		return $this->doWrite( self::ALL, 'set', $key, $value, $exptime );
+	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
+		$asyncWrites = ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC )
+			? false
+			: $this->asyncWrites;
+
+		return $this->doWrite( self::ALL, $asyncWrites, 'set', $key, $value, $exptime );
 	}
 
-	/**
-	 * @param string $key
-	 * @return bool
-	 */
 	public function delete( $key ) {
-		return $this->doWrite( self::ALL, 'delete', $key );
+		return $this->doWrite( self::ALL, $this->asyncWrites, 'delete', $key );
 	}
 
-	/**
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime
-	 * @return bool
-	 */
 	public function add( $key, $value, $exptime = 0 ) {
-		return $this->doWrite( self::ALL, 'add', $key, $value, $exptime );
+		return $this->doWrite( self::ALL, $this->asyncWrites, 'add', $key, $value, $exptime );
 	}
 
-	/**
-	 * @param string $key
-	 * @param int $value
-	 * @return bool|null
-	 */
 	public function incr( $key, $value = 1 ) {
-		return $this->doWrite( self::ALL, 'incr', $key, $value );
+		return $this->doWrite( self::ALL, $this->asyncWrites, 'incr', $key, $value );
 	}
 
-	/**
-	 * @param string $key
-	 * @param int $value
-	 * @return bool
-	 */
 	public function decr( $key, $value = 1 ) {
-		return $this->doWrite( self::ALL, 'decr', $key, $value );
+		return $this->doWrite( self::ALL, $this->asyncWrites, 'decr', $key, $value );
 	}
 
-	/**
-	 * @param string $key
-	 * @param int $timeout
-	 * @param int $expiry
-	 * @param string $rclass
-	 * @return bool
-	 */
 	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
-		// Lock only the first cache, to avoid deadlocks
+		// Only need to lock the first cache; also avoids deadlocks
 		return $this->caches[0]->lock( $key, $timeout, $expiry, $rclass );
 	}
 
-	/**
-	 * @param string $key
-	 * @return bool
-	 */
 	public function unlock( $key ) {
+		// Only the first cache is locked
 		return $this->caches[0]->unlock( $key );
 	}
 
@@ -211,20 +178,21 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * Apply a write method to the first $count backing caches
 	 *
 	 * @param integer $count
+	 * @param bool $asyncWrites
 	 * @param string $method
 	 * @param mixed ...
 	 * @return bool
 	 */
-	protected function doWrite( $count, $method /*, ... */ ) {
+	protected function doWrite( $count, $asyncWrites, $method /*, ... */ ) {
 		$ret = true;
-		$args = array_slice( func_get_args(), 2 );
+		$args = array_slice( func_get_args(), 3 );
 
 		foreach ( $this->caches as $i => $cache ) {
 			if ( $i >= $count ) {
 				break; // ignore the lower tiers
 			}
 
-			if ( $i == 0 || !$this->asyncWrites ) {
+			if ( $i == 0 || !$asyncWrites ) {
 				// First store or in sync mode: write now and get result
 				if ( !call_user_func_array( array( $cache, $method ), $args ) ) {
 					$ret = false;

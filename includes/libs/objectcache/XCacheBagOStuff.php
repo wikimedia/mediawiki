@@ -44,7 +44,7 @@ class XCacheBagOStuff extends BagOStuff {
 		return $val;
 	}
 
-	public function set( $key, $value, $expire = 0 ) {
+	public function set( $key, $value, $expire = 0, $flags = 0 ) {
 		if ( !$this->isInteger( $value ) ) {
 			$value = serialize( $value );
 		}

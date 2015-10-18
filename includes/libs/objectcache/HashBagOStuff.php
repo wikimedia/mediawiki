@@ -60,7 +60,7 @@ class HashBagOStuff extends BagOStuff {
 		return $this->bag[$key][0];
 	}
 
-	public function set( $key, $value, $exptime = 0 ) {
+	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->bag[$key] = array( $value, $this->convertExpiry( $exptime ) );
 		return true;
 	}

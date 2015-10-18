@@ -31,7 +31,7 @@ class EmptyBagOStuff extends BagOStuff {
 		return false;
 	}
 
-	public function set( $key, $value, $exp = 0 ) {
+	public function set( $key, $value, $exp = 0, $flags = 0 ) {
 		return true;
 	}
 
@@ -39,7 +39,7 @@ class EmptyBagOStuff extends BagOStuff {
 		return true;
 	}
 
-	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
+	public function merge( $key, $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
 		return true; // faster
 	}
 }
