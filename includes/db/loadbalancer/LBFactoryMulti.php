@@ -76,7 +76,8 @@
  * @ingroup Database
  */
 class LBFactoryMulti extends LBFactory {
-	// Required settings
+	/** @var ChronologyProtector */
+	private $chronProt;
 
 	/** @var array A map of database names to section names */
 	private $sectionsByDB;
@@ -160,7 +161,6 @@ class LBFactoryMulti extends LBFactory {
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
 
-		$this->chronProt = new ChronologyProtector;
 		$this->conf = $conf;
 		$required = array( 'sectionsByDB', 'sectionLoads', 'serverTemplate' );
 		$optional = array( 'groupLoadsBySection', 'groupLoadsByDB', 'hostsByName',
@@ -180,6 +180,8 @@ class LBFactoryMulti extends LBFactory {
 				$this->$key = $conf[$key];
 			}
 		}
+
+		$this->chronProt = $this->newChronologyProtector();
 	}
 
 	/**
@@ -401,14 +403,10 @@ class LBFactoryMulti extends LBFactory {
 		}
 	}
 
-	public function shutdown() {
-		foreach ( $this->mainLBs as $lb ) {
-			$this->chronProt->shutdownLB( $lb );
+	public function shutdown( $flags = 0 ) {
+		if ( !( $flags & self::SHUTDOWN_NO_CHRONPROT ) ) {
+			$this->shutdownChronologyProtector( $this->chronProt );
 		}
-		foreach ( $this->extLBs as $extLB ) {
-			$this->chronProt->shutdownLB( $extLB );
-		}
-		$this->chronProt->shutdown();
-		$this->commitMasterChanges();
+		$this->commitMasterChanges(); // sanity
 	}
 }
