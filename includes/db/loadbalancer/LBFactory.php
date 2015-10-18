@@ -251,6 +251,24 @@ abstract class LBFactory {
 		} );
 		return $ret;
 	}
+
+	/**
+	 * @return ChronologyProtector
+	 * @throws MWException
+	 */
+	protected function newChronologyProtector() {
+		$request = RequestContext::getMain()->getRequest();
+		$chronProt = new ChronologyProtector(
+			ObjectCache::getMainStashInstance(),
+			array(
+				'ip' => $request->getIP(),
+				'agent' => $request->getHeader( 'User-Agent' )
+			)
+		);
+		$chronProt->setEnabled( PHP_SAPI !== 'cli' );
+
+		return $chronProt;
+	}
 }
 
 /**
