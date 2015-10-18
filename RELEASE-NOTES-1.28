@@ -22,6 +22,7 @@ production.
 * Added a new hook, 'UserIsBot', to aid in determining if a user is a bot.
 * Added a new hook, 'ApiMakeParserOptions', to allow extensions to better
   interact with API parsing.
+* Add support for renaming sql tables.
 
 === External library changes in 1.28 ===
 
