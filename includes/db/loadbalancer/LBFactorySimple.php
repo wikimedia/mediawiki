@@ -38,10 +38,19 @@ class LBFactorySimple extends LBFactory {
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
 
-		$this->chronProt = new ChronologyProtector;
 		$this->loadMonitorClass = isset( $conf['loadMonitorClass'] )
 			? $conf['loadMonitorClass']
 			: null;
+
+		$request = RequestContext::getMain()->getRequest();
+		$this->chronProt = new ChronologyProtector(
+			ObjectCache::getMainStashInstance(),
+			array(
+				'ip' => $request->getIP(),
+				'agent' => $request->getHeader( 'User-Agent' )
+			)
+		);
+		$this->chronProt->setEnabled( PHP_SAPI !== 'cli' );
 	}
 
 	/**
