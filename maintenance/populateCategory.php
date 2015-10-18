@@ -25,7 +25,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Mainteance script to populate the category table.
+ * Maintenance script to populate the category table.
  *
  * @ingroup Maintenance
  */
