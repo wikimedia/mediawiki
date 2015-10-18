@@ -329,6 +329,25 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Rename a table on an extension database
+	 *
+	 * @since 1.27
+	 *
+	 * @param string $oldTable The old table name
+	 * @param string $newTable The new table name
+	 * @param string $patch Path to the patch file
+	 */
+	public function renameExtensionTable( $oldTable, $newTable, $patch = false ) {
+		$this->extensionUpdates[] = array(
+			'renameTable',
+			$oldTable,
+			$newTable,
+			$patch,
+			true
+		);
+	}
+
+	/**
 	 * @since 1.21
 	 *
 	 * @param string $tableName The table name
@@ -844,6 +863,25 @@ abstract class DatabaseUpdater {
 			$fullpath,
 			"Renaming index $oldIndex into $newIndex to table $table"
 		);
+	}
+
+	/**
+	 * Rename a table from an existing table
+	 *
+	 * @param string $oldTable Old name of the table
+	 * @param string $newTable New name of the table
+	 * @param string $patch Path to the patch file
+	 */
+	protected function renameTable( $oldTable, $newTable, $patch = false ) {
+		if ( $this->db->tableExists( $oldTable ) ) {
+			$this->output( "Renaming table $oldTable to $newTable\n" );
+			$oldTable = $this->db->realTableName( $oldTable, "quoted" );
+			$newTable = $this->db->realTableName( $newTable, "quoted" );
+			$this->db->query( "ALTER TABLE $oldTable RENAME TO $newTable" );
+			if ( $patch !== false ) {
+				$this->applyPatch( $patch );
+			}
+		}
 	}
 
 	/**
