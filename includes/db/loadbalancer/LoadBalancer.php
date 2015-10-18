@@ -455,7 +455,8 @@ class LoadBalancer {
 		/** @var DBMasterPos $knownReachedPos */
 		$knownReachedPos = $this->srvCache->get( $key );
 		if ( $knownReachedPos && $knownReachedPos->hasReached( $this->mWaitForPos ) ) {
-			wfDebugLog( 'replication', __METHOD__ . ": Slave $server known to be caught up.\n" );
+			wfDebugLog( 'replication', __METHOD__ .
+				": slave $server known to be caught up (pos >= $knownReachedPos).\n" );
 			return true;
 		}
 
@@ -469,7 +470,7 @@ class LoadBalancer {
 			} else {
 				$conn = $this->openConnection( $index, '' );
 				if ( !$conn ) {
-					wfDebugLog( 'replication', __METHOD__ . ": failed to open connection to $server\n" );
+					wfDebugLog( 'replication', __METHOD__ . ": failed to connect to $server\n" );
 
 					return false;
 				}

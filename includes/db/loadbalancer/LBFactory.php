@@ -32,6 +32,8 @@ abstract class LBFactory {
 	/** @var string|bool Reason all LBs are read-only or false if not */
 	protected $readOnlyReason = false;
 
+	const SHUTDOWN_NO_CHRONPROT = 1; // don't save ChronologyProtector positions (for async code)
+
 	/**
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
 	 * @param array $conf
@@ -170,9 +172,10 @@ abstract class LBFactory {
 
 	/**
 	 * Prepare all tracked load balancers for shutdown
+	 * @param integer $flags Supports SHUTDOWN_* flags
 	 * STUB
 	 */
-	public function shutdown() {
+	public function shutdown( $flags = 0 ) {
 	}
 
 	/**
@@ -253,6 +256,51 @@ abstract class LBFactory {
 			$ret = $ret || $lb->hasOrMadeRecentMasterChanges();
 		} );
 		return $ret;
+	}
+
+	/**
+	 * @return ChronologyProtector
+	 */
+	protected function newChronologyProtector() {
+		$request = RequestContext::getMain()->getRequest();
+		$chronProt = new ChronologyProtector(
+			ObjectCache::getMainStashInstance(),
+			array(
+				'ip' => $request->getIP(),
+				'agent' => $request->getHeader( 'User-Agent' )
+			)
+		);
+		if ( PHP_SAPI === 'cli' ) {
+			$chronProt->setEnabled( false );
+		} elseif ( $request->getHeader( 'ChronologyProtection' ) === 'false' ) {
+			// Request opted out of using position wait logic. This is useful for requests
+			// done by the job queue or background ETL that do not have a meaningful session.
+			$chronProt->setWaitEnabled( false );
+		}
+
+		return $chronProt;
+	}
+
+	/**
+	 * @param ChronologyProtector $cp
+	 */
+	protected function shutdownChronologyProtector( ChronologyProtector $cp ) {
+		// Get all the master positions needed
+		$this->forEachLB( function ( LoadBalancer $lb ) use ( $cp ) {
+			$cp->shutdownLB( $lb );
+		} );
+		// Write them to the stash
+		$unsavedPositions = $cp->shutdown();
+		// If the positions failed to write to the stash, at least wait on local datacenter
+		// slaves to catch up before responding. Even if there are several DCs, this increases
+		// the chance that the user will see their own changes immediately afterwards. As long
+		// as the sticky DC cookie applies (same domain), this is not even an issue.
+		$this->forEachLB( function ( LoadBalancer $lb ) use ( $unsavedPositions ) {
+			$masterName = $lb->getServerName( $lb->getWriterIndex() );
+			if ( isset( $unsavedPositions[$masterName] ) ) {
+				$lb->waitForAll( $unsavedPositions[$masterName] );
+			}
+		} );
 	}
 }
 
