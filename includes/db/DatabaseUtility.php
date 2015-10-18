@@ -323,4 +323,6 @@ interface DBMasterPos {
 	 * @return float UNIX timestamp
 	 */
 	public function asOfTime();
+
+	public function __toString();
 }

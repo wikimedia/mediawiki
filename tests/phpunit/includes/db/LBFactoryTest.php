@@ -146,4 +146,64 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$factory->shutdown();
 		$lb->closeAll();
 	}
+
+	public function testChronologyProtector() {
+		### First HTTP request ###
+		$mPos = new MySQLMasterPos( 'db1034-bin.000976', '843431247' );
+
+		$mockDB = $this->getMockBuilder( 'DatabaseMysql' )
+			->disableOriginalConstructor()
+			->getMock();
+		$mockDB->expects( $this->any() )
+			->method( 'doneWrites' )->will( $this->returnValue( true ) );
+		$mockDB->expects( $this->any() )
+			->method( 'getMasterPos' )->will( $this->returnValue( $mPos ) );
+
+		$lb = $this->getMockBuilder( 'LoadBalancer' )
+			->disableOriginalConstructor()
+			->getMock();
+		$lb->expects( $this->any() )
+			->method( 'getConnection' )->will( $this->returnValue( $mockDB ) );
+		$lb->expects( $this->any() )
+			->method( 'getServerCount' )->will( $this->returnValue( 2 ) );
+		$lb->expects( $this->any() )
+			->method( 'parentInfo' )->will( $this->returnValue( array( 'id' => "main-DEFAULT" ) ) );
+		$lb->expects( $this->any() )
+			->method( 'getAnyOpenConnection' )->will( $this->returnValue( $mockDB ) );
+
+		$bag = new HashBagOStuff();
+		$cp = new ChronologyProtector(
+			$bag,
+			array(
+				'ip' => '127.0.0.1',
+				'agent' => "Totally-Not-FireFox"
+			)
+		);
+
+		$mockDB->expects( $this->exactly( 2 ) )->method( 'doneWrites' );
+
+		// Nothing to wait for
+		$cp->initLB( $lb );
+		// Record in stash
+		$cp->shutdownLB( $lb );
+		$cp->shutdown();
+
+		### Second HTTP request ###
+		$cp = new ChronologyProtector(
+			$bag,
+			array(
+				'ip' => '127.0.0.1',
+				'agent' => "Totally-Not-FireFox"
+			)
+		);
+
+		$lb->expects( $this->once() )
+			->method( 'waitFor' )->with( $this->equalTo( $mPos ) );
+
+		// Wait
+		$cp->initLB( $lb );
+		// Record in stash
+		$cp->shutdownLB( $lb );
+		$cp->shutdown();
+	}
 }
