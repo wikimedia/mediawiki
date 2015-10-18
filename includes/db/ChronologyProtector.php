@@ -26,14 +26,44 @@
  * Kind of like Hawking's [[Chronology Protection Agency]].
  */
 class ChronologyProtector {
-	/** @var array (DB master name => position) */
-	protected $startupPositions = array();
+	/** @var BagOStuff */
+	protected $store;
 
-	/** @var array (DB master name => position) */
+	/** @var string Storage key name */
+	protected $key;
+	/** @var array Map of (ip: <IP>, agent: <user-agent>) */
+	protected $client;
+	/** @var DBMasterPos[] Map of (DB master name => position) */
+	protected $startupPositions = array();
+	/** @var DBMasterPos[] Map of (DB master name => position) */
 	protected $shutdownPositions = array();
 
+	/** @var bool Whether to actually wait on and record positions */
+	protected $enabled = true;
 	/** @var bool Whether the session data was loaded */
 	protected $initialized = false;
+
+	/**
+	 * @param BagOStuff $store
+	 * @param array $client Map of (ip: <IP>, agent: <user-agent>)
+	 * @since 1.27
+	 */
+	public function __construct( BagOStuff $store, array $client ) {
+		$this->store = $store;
+		$this->client = $client;
+		$this->key = $store->makeGlobalKey(
+			'ChronologyProtector',
+			md5( $client['ip'] . "\n" . $client['agent'] )
+		);
+	}
+
+	/**
+	 * @param bool $enabled
+	 * @since 1.27
+	 */
+	public function setEnabled( $enabled ) {
+		$this->enabled = $enabled;
+	}
 
 	/**
 	 * Initialise a LoadBalancer to give it appropriate chronology protection.
@@ -47,15 +77,12 @@ class ChronologyProtector {
 	 * @return void
 	 */
 	public function initLB( LoadBalancer $lb ) {
-		if ( $lb->getServerCount() <= 1 ) {
-			return; // non-replicated setup
+		if ( !$this->enabled || $lb->getServerCount() <= 1 ) {
+			return; // non-replicated setup or disabled
 		}
-		if ( !$this->initialized ) {
-			$this->initialized = true;
-			if ( isset( $_SESSION[__CLASS__] ) && is_array( $_SESSION[__CLASS__] ) ) {
-				$this->startupPositions = $_SESSION[__CLASS__];
-			}
-		}
+
+		$this->initialize();
+
 		$masterName = $lb->getServerName( 0 );
 		if ( !empty( $this->startupPositions[$masterName] ) ) {
 			$info = $lb->parentInfo();
@@ -73,21 +100,26 @@ class ChronologyProtector {
 	 * @return void
 	 */
 	public function shutdownLB( LoadBalancer $lb ) {
-		if ( session_id() == '' || $lb->getServerCount() <= 1 ) {
-			return; // don't start a session; don't bother with non-replicated setups
+		if ( !$this->enabled || $lb->getServerCount() <= 1 ) {
+			return; // non-replicated setup or disabled
 		}
+
+		$info = $lb->parentInfo();
 		$masterName = $lb->getServerName( 0 );
 		if ( isset( $this->shutdownPositions[$masterName] ) ) {
+			wfDebug( __METHOD__ . ": LB {$info['id']} already shut down\n" );
+
 			return; // already done
 		}
+
 		// Only save the position if writes have been done on the connection
 		$db = $lb->getAnyOpenConnection( 0 );
-		$info = $lb->parentInfo();
 		if ( !$db || !$db->doneWrites() ) {
 			wfDebug( __METHOD__ . ": LB {$info['id']}, no writes done\n" );
 
-			return;
+			return; // nothing to do
 		}
+
 		$pos = $db->getMasterPos();
 		wfDebug( __METHOD__ . ": LB {$info['id']} has master pos $pos\n" );
 		$this->shutdownPositions[$masterName] = $pos;
@@ -100,10 +132,49 @@ class ChronologyProtector {
 	 * @return void
 	 */
 	public function shutdown() {
-		if ( session_id() != '' && count( $this->shutdownPositions ) ) {
-			wfDebug( __METHOD__ . ": saving master pos for " .
-				count( $this->shutdownPositions ) . " master(s)\n" );
-			$_SESSION[__CLASS__] = $this->shutdownPositions;
+		if ( !count( $this->shutdownPositions ) ) {
+			return; // nothing to save
+		}
+
+		wfDebug( __METHOD__ . ": saving master pos for " .
+			implode( ', ', array_keys( $this->shutdownPositions ) ) . "\n" );
+
+		$shutdownPositions = $this->shutdownPositions;
+		$this->store->merge(
+			$this->key,
+			function ( $store, $key, $curValue ) use ( $shutdownPositions ) {
+				/** @var $curPositions DBMasterPos[] */
+				if ( $curValue === false ) {
+					$curPositions = $shutdownPositions;
+				} else {
+					$curPositions = $curValue['positions'];
+					// Use the newest positions for each DB master
+					foreach ( $shutdownPositions as $db => $pos ) {
+						if ( !isset( $curPositions[$db] )
+							|| $pos->asOfTime() > $curPositions[$db]->asOfTime()
+						) {
+							$curPositions[$db] = $pos;
+						}
+					}
+				}
+
+				return array( 'positions' => $curPositions );
+			},
+			60,
+			10,
+			BagOStuff::WRITE_SYNC // visible in all datacenters
+		);
+	}
+
+	/**
+	 * Load in previous master positions for the session
+	 */
+	protected function initialize() {
+		if ( !$this->initialized ) {
+			$this->initialized = true;
+			$data = $this->store->get( $this->key );
+			$this->startupPositions = $data ? $data['positions'] : array();
+			wfDebug( __METHOD__ . ": initialized for key {$this->key}\n" );
 		}
 	}
 }
