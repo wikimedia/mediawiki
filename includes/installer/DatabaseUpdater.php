@@ -328,6 +328,32 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Rename a table on an extension database
+	 *
+	 * @since 1.27
+	 *
+	 * @param string $tableName The table name
+	 * @param string $oldTableName The old table name
+	 * @param string $newTableName The new table name
+	 * @param string $sqlPath The path to the SQL change path
+	 * @param bool $skipBothTableExistWarning Whether to warn if both the old
+	 * and the new tables exist. [facultative; by default, false]
+	 */
+	public function renameExtensionTable( $tableName, $oldTableName, $newTableName,
+		$sqlPath, $skipBothTableExistWarning = false
+	) {
+		$this->extensionUpdates[] = array(
+			'renameTable',
+			$tableName,
+			$oldTableName,
+			$newTableName,
+			$skipBothTableExistWarning,
+			$sqlPath,
+			true
+		);
+	}
+
+	/**
 	 * @since 1.21
 	 *
 	 * @param string $tableName The table name
@@ -842,6 +868,62 @@ abstract class DatabaseUpdater {
 			$patch,
 			$fullpath,
 			"Renaming index $oldIndex into $newIndex to table $table"
+		);
+	}
+
+	/**
+	 * Rename a table from an existing table
+	 *
+	 * @param string $table Name of the table to modify
+	 * @param string $oldTable Old name of the table
+	 * @param string $newTable New name of the table
+	 * @param bool $skipBothTableExistWarning Whether to warn if both the
+	 * old and the new tables exist.
+	 * @param string $patch Path to the patch file
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
+	 */
+	protected function renameTable( $table, $oldTable, $newTable,
+		$skipBothTableExistWarning, $patch, $fullpath = false
+	) {
+
+		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
+		// First requirement: the table must exist
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
+
+			return true;
+		}
+
+		// Second requirement: the new table must be missing
+		if ( $this->db->tableExists( $table, $newTable, __METHOD__ ) ) {
+			$this->output( "...table $newTable already created\n" );
+			if ( !$skipBothTableExistWarning &&
+				$this->db->tableExists( $table, $oldTable, __METHOD__ )
+			) {
+				$this->output( "...WARNING: $oldTable still exists, despite it has " .
+					"been renamed to $newTable (which also exists).\n" .
+					"            $oldTable table should be manually removed if not needed anymore.\n" );
+			}
+
+			return true;
+		}
+
+		// Third requirement: the old table must exist
+		if ( !$this->db->tableExists( $table, $oldTable, __METHOD__ ) ) {
+			$this->output( "...skipping: table $oldTable doesn't exist.\n" );
+
+			return true;
+		}
+
+		// Requirements have been satisfied, patch can be applied
+		return $this->applyPatch(
+			$patch,
+			$fullpath,
+			"Renaming table $oldTable to $newTable"
 		);
 	}
 
