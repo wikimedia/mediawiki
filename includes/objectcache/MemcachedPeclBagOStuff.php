@@ -122,33 +122,16 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $result;
 	}
 
-	/**
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime
-	 * @return bool
-	 */
-	public function set( $key, $value, $exptime = 0 ) {
+	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->debugLog( "set($key)" );
 		return $this->checkResult( $key, parent::set( $key, $value, $exptime ) );
 	}
 
-	/**
-	 * @param float $casToken
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime
-	 * @return bool
-	 */
 	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
 		$this->debugLog( "cas($key)" );
 		return $this->checkResult( $key, parent::cas( $casToken, $key, $value, $exptime ) );
 	}
 
-	/**
-	 * @param string $key
-	 * @return bool
-	 */
 	public function delete( $key ) {
 		$this->debugLog( "delete($key)" );
 		$result = parent::delete( $key );
@@ -160,33 +143,17 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		}
 	}
 
-	/**
-	 * @param string $key
-	 * @param int $value
-	 * @param int $exptime
-	 * @return mixed
-	 */
 	public function add( $key, $value, $exptime = 0 ) {
 		$this->debugLog( "add($key)" );
 		return $this->checkResult( $key, parent::add( $key, $value, $exptime ) );
 	}
 
-	/**
-	 * @param string $key
-	 * @param int $value
-	 * @return mixed
-	 */
 	public function incr( $key, $value = 1 ) {
 		$this->debugLog( "incr($key)" );
 		$result = $this->client->increment( $key, $value );
 		return $this->checkResult( $key, $result );
 	}
 
-	/**
-	 * @param string $key
-	 * @param int $value
-	 * @return mixed
-	 */
 	public function decr( $key, $value = 1 ) {
 		$this->debugLog( "decr($key)" );
 		$result = $this->client->decrement( $key, $value );
