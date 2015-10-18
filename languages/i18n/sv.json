@@ -1286,7 +1286,7 @@
 	"recentchanges-page-added-to-category-bundled": "[[:$1]] och {{PLURAL:$2|en sida|$2 sidor}} lades till i kategorin",
 	"recentchanges-page-removed-from-category": "[[:$1]] togs bort från kategorin",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] och {{PLURAL:$2|en sida|$2 sidor}} togs bort från kategorin",
-	"autochange-username": "MediaWiki automatisk ändring",
+	"autochange-username": "Automatisk MediaWiki-ändring",
 	"upload": "Ladda upp fil",
 	"uploadbtn": "Ladda upp fil",
 	"reuploaddesc": "Avbryt uppladdningen och gå tillbaka till uppladdningsformuläret.",

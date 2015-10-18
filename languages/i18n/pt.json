@@ -987,6 +987,7 @@
 	"prefs-help-recentchangescount": "Inclui mudanças recentes, histórico de páginas e registos.",
 	"prefs-help-watchlist-token2": "Esta é a chave secreta para o ''feed'' RSS da sua lista de páginas vigiadas.\nQualquer pessoa que conheça a chave será capaz de ler a sua lista de páginas vigiadas, por isso não a divulgue.\n[[Special:ResetTokens|Clique aqui para redefini-la]].",
 	"savedprefs": "As suas preferências foram gravadas.",
+	"savedrights": "Os privilégios de utilizador para {{GENDER:$1|$1}} foram gravados.",
 	"timezonelegend": "Fuso horário:",
 	"localtime": "Hora local:",
 	"timezoneuseserverdefault": "Usar padrão da wiki ($1)",

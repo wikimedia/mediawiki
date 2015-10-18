@@ -848,6 +848,7 @@
 	"search-section": "(odlomak $1)",
 	"search-category": "(kategorija $1)",
 	"search-suggest": "Mislili ste: $1",
+	"search-rewritten": "Prikazuju se rezultati za $1. Umjesto toga pretraži $2.",
 	"search-interwiki-caption": "Sestrinski projekti",
 	"search-interwiki-default": "$1 rezultati:",
 	"search-interwiki-more": "(više)",

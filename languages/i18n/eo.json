@@ -643,7 +643,7 @@
 	"updated": "(Ŝanĝo registrita)",
 	"note": "'''Noto:'''",
 	"previewnote": "'''Memoru, ke ĉi tio estas nur antaŭrigardo.''' \nViaj ŝanĝoj ne ankoraŭ estas konservitaj!",
-	"continue-editing": "Iru al redakta spaco",
+	"continue-editing": "Iri al redakta spaco",
 	"previewconflict": "La jena antaŭrigardo montras la tekston el la supra tekstujo,\nkiel ĝi aperos se vi elektos konservi la paĝon.",
 	"session_fail_preview": "'''Ni ne povas procezi vian redakton pro perdo de seancaj datenoj.\nBonvolu reprovi.\nSe ankoraŭ ne funkcios, provu [[Special:UserLogout|elsaluti]] kaj reensaluti.'''",
 	"session_fail_preview_html": "'''Bedaŭrinde, ni ne povas trakti vian redakton pro manko de seancaj datenoj.'''\n\n''Ĉar {{SITENAME}} ebligas krudan HTML-kodon, ĉi tiu antaŭrigardo estas kaŝita kiel prevento kontraŭ Ĝavaskriptaj atakoj.''\n\n'''Se ĉi tiu estas taŭga provo por redakti, bonvolu reprovi.'''\nSe ankoraŭ ne funkcias, provu [[Special:UserLogout|elsaluti]] kaj reensaluti.",

@@ -436,6 +436,7 @@
 	"createacct-benefit-body2": "{{PLURAL:$1|Säit|Säiten}}",
 	"createacct-benefit-body3": "rezent {{PLURAL:$1|Mataarbechter}}",
 	"badretype": "Är Passwierder stëmmen net iwwereneen.",
+	"usernameinprogress": "D'Uleeë vun engem Benotzerkont fir dëse Benotzernumm ass schonn am Gaang. Waart w.e.g..",
 	"userexists": "De Benotzernumm deen agi gouf gëtt scho benotzt.\nSicht Iech een anere Benotzernumm.",
 	"loginerror": "Feeler beim Aloggen",
 	"createacct-error": "Feeler beim Uleeë vum Benotzerkont",
@@ -531,7 +532,7 @@
 	"passwordreset-emailsent-capture": "Eng Mail fir d'Passwuert zréckzesetze gouf geschéckt, Dir gesitt se hei drënner.",
 	"passwordreset-emailerror-capture": "Eng Mail fir d'Passwuert zréckzesetze gouf geschéckt, Dir gesitt se hei drënner, awer de {{GENDER:$2|Benotzer}} konnt se net kréien: $1",
 	"changeemail": "E-Mail-Adress änneren oder ewechhuelen",
-	"changeemail-header": "Mailadress vum Benotzerkont änneren",
+	"changeemail-header": "Fëllt dëse Formulaire aus fir Är E-Mailadress z'änneren.  Wann Dir d'Verbindung tëscht Ärer E-Mailadress an Ärem Benotzerkont ewechhuele wëllt, da loosst d'Feld e-Mailadress eidel wann Dir de Formulaire späichert.",
 	"changeemail-passwordrequired": "Dir musst Äert Passwuert agi fir dës Ännerung ze konfirméieren.",
 	"changeemail-no-info": "Dir musst ageloggt sinn, fir direkt op dës Säit ze kommen.",
 	"changeemail-oldemail": "Aktuell Mailadress:",
@@ -659,6 +660,7 @@
 	"permissionserrorstext-withaction": "Dir sidd, aus {{PLURAL:$1|dësem Grond|dëse Grënn}}, net berechtegt $2 :",
 	"recreate-moveddeleted-warn": "'''Opgepasst: Dir sidd am Gaang eng Säit unzeleeën déi schonn eng Kéier geläscht gouf.'''\n\nFrot Iech ob et wierklech sënnvoll ass dës Säit nees nei ze schafen.\nFir Iech z'informéieren fannt Dir hei d'Logbuch vum Läsche mam Grond:",
 	"moveddeleted-notice": "Dës Säit gouf geläscht.\nHei ass den Extrait aus dem Logbuch vum Réckelen a Läsche fir déi Säit.",
+	"moveddeleted-notice-recent": "Leider gouf dëse Säit rezent (bannent de leschte 24 Stonnen) geläscht. D'Logbuch vum Läschen a Réckele vun dëser Säit fannt Dir fir Ar Informatioun hei drënner.",
 	"log-fulllog": "Dat ganzt Logbuch weisen",
 	"edit-hook-aborted": "D'Ännerung gouf ouni Erklärung vun enger Schnëttstell (hook) ofgebrach.",
 	"edit-gone-missing": "D'Säit konnt net aktualiséiert ginn.\nSi gouf anscheinend geläscht.",
@@ -926,6 +928,7 @@
 	"prefs-help-recentchangescount": "Inklusiv Rezent Ännerungen, Versiounshistoriquen a Logbicher.",
 	"prefs-help-watchlist-token2": "Dëst ass de geheime Schlëssel fir de Webfeed vun Ärer Iwwerwaachungslëscht. Jiddwereen deen e kennt kann Är Iwwerwaachungslëscht liesen, dofir sollt Dir en net weider ginn. [[Special:ResetTokens|Klickt hei wann Dir en zrécksetze musst]].",
 	"savedprefs": "Är Astellunge goufe gespäichert.",
+	"savedrights": "D'Benotzerrechter vum {{GENDER:$1|$1}} goufe gespäichert.",
 	"timezonelegend": "Zäitzon:",
 	"localtime": "Lokalzäit:",
 	"timezoneuseserverdefault": "De Standardwäert vun der Wiki ($1) benotzen",
@@ -3248,5 +3251,5 @@
 	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM",
 	"mw-widgets-titleinput-description-new-page": "Säit gëtt et nach net",
 	"mw-widgets-titleinput-description-redirect": "viruleeden op $1",
-	"api-error-blacklisted": "Sicht w.e.g. en aneren Titel, deen méi iwwer de Sujet ausseet."
+	"api-error-blacklisted": "Sicht w.e.g. en aneren Titel, dee méi iwwer de Sujet ausseet."
 }

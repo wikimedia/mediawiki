@@ -4,7 +4,8 @@
 			"AmaryllisGardener",
 			"John Reid",
 			"Seb35",
-			"Macofe"
+			"Macofe",
+			"Aursani"
 		]
 	},
 	"config-desc": "The installer fer MediaWiki",
@@ -36,7 +37,7 @@
 	"config-page-install": "Install,",
 	"config-page-complete": "Compleate!",
 	"config-page-restart": "Restart installâtion",
-	"config-page-readme": "Read me,",
+	"config-page-readme": "مون کي پڙهو،",
 	"config-page-releasenotes": "Release nôtes",
 	"config-page-copying": "Copiein",
 	"config-page-upgradedoc": "Upgradin",

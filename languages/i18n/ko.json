@@ -969,6 +969,7 @@
 	"prefs-help-recentchangescount": "이 설정은 최근 바뀜, 문서 역사와 기록에 적용됩니다.",
 	"prefs-help-watchlist-token2": "내 주시문서 목록의 웹 피드의 비밀 키입니다.\n비밀 키를 알고 있는 사람은 내 주시문서 목록을 읽읅 수 있으니 비밀 키를 알리지 마세요.\n[[Special:ResetTokens|비밀 키를 재설정해야 한다면 여기를 클릭하세요]].",
 	"savedprefs": "설정을 저장했습니다.",
+	"savedrights": "$1의 사용자 권한이 저장되었습니다.",
 	"timezonelegend": "시간대:",
 	"localtime": "현지 시각:",
 	"timezoneuseserverdefault": "위키 기본값 사용 ($1)",

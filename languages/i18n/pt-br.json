@@ -2386,7 +2386,7 @@
 	"tooltip-ca-nstab-main": "Ver a página de conteúdo",
 	"tooltip-ca-nstab-user": "Ver a página de usuário",
 	"tooltip-ca-nstab-media": "Ver a página de mídia",
-	"tooltip-ca-nstab-special": "Esta é uma página especial. Não é possível editar seu conteúdo de forma direta.",
+	"tooltip-ca-nstab-special": "Esta é uma página especial e não pode ser editada",
 	"tooltip-ca-nstab-project": "Ver a página de projeto",
 	"tooltip-ca-nstab-image": "Ver a página de arquivo",
 	"tooltip-ca-nstab-mediawiki": "Ver a mensagem de sistema",

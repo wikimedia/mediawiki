@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mehtab ahmed"
+			"Mehtab ahmed",
+			"Aursani"
 		]
 	},
-	"apihelp-query+allrevisions-description": "سڀني نظر ثانين جي فهرست ٺاهيو."
+	"apihelp-query+allrevisions-description": "سمورن مسودن جي فهرست پيش ڪريو."
 }

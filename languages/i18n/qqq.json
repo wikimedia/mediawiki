@@ -172,7 +172,8 @@
 			"Robin0van0der0vliet",
 			"TTO",
 			"J. 'mach' wust",
-			"Ciencia Al Poder"
+			"Ciencia Al Poder",
+			"Aursani"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1351,7 +1352,7 @@
 	"newuserlogpagetext": "Part of the \"Newuserlog\" extension. It is the description you can see on [[Special:Log/newusers]].",
 	"rightslog": "{{doc-logpage}}\n\nIn [[Special:Log]]",
 	"rightslogtext": "Text in [[Special:Log/rights]].",
-	"action-read": "{{Doc-action|read}}",
+	"action-read": "{{Doc-action|پڙهو}}",
 	"action-edit": "{{Doc-action|edit}}\n{{Identical|Edit this page}}",
 	"action-createpage": "{{Doc-action|createpage}}\n{{Identical|Create page}}",
 	"action-createtalk": "{{Doc-action|createtalk}}",

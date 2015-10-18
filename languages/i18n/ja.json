@@ -994,6 +994,7 @@
 	"prefs-help-recentchangescount": "この設定は最近の更新、ページの履歴、および記録に適用されます。",
 	"prefs-help-watchlist-token2": "これはあなたのウォッチリスト フィードの秘密のコードです。\nこのトークンを知っている人は誰でもあなたのウォッチリストを読めてしまうため、他の人に教えないでください。\n[[Special:ResetTokens|トークンを再設定する必要がある場合はここをクリックしてください]]。",
 	"savedprefs": "個人設定を保存しました。",
+	"savedrights": "{{GENDER:$1|$1}}の利用者権限が保存されました。",
 	"timezonelegend": "タイムゾーン:",
 	"localtime": "地域の時刻:",
 	"timezoneuseserverdefault": "ウィキの既定を使用 ($1)",

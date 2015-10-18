@@ -1355,6 +1355,8 @@
 	"upload-form-label-usage-title": "Выкарыстаньне",
 	"upload-form-label-usage-filename": "Назва файлу",
 	"foreign-structured-upload-form-label-own-work": "Гэта мая ўласная праца",
+	"foreign-structured-upload-form-label-infoform-categories": "Катэгорыі",
+	"foreign-structured-upload-form-label-infoform-date": "Дата",
 	"backend-fail-stream": "Немагчыма накіраваць файл $1.",
 	"backend-fail-backup": "Немагчыма зрабіць рэзэрвовую копію файла $1.",
 	"backend-fail-notexists": "Файл $1 не існуе.",
