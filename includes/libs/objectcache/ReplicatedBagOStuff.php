@@ -84,8 +84,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 			: $this->readStore->getMulti( $keys, $flags );
 	}
 
-	public function set( $key, $value, $exptime = 0 ) {
-		return $this->writeStore->set( $key, $value, $exptime );
+	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
+		return $this->writeStore->set( $key, $value, $exptime, $flags );
 	}
 
 	public function delete( $key ) {
@@ -112,8 +112,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 		return $this->writeStore->unlock( $key );
 	}
 
-	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
-		return $this->writeStore->merge( $key, $callback, $exptime, $attempts );
+	public function merge( $key, $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
+		return $this->writeStore->merge( $key, $callback, $exptime, $attempts, $flags );
 	}
 
 	public function getLastError() {

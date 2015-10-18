@@ -46,7 +46,7 @@ class WinCacheBagOStuff extends BagOStuff {
 		return $val;
 	}
 
-	public function set( $key, $value, $expire = 0 ) {
+	public function set( $key, $value, $expire = 0, $flags = 0 ) {
 		$result = wincache_ucache_set( $key, serialize( $value ), $expire );
 
 		/* wincache_ucache_set returns an empty array on success if $value
@@ -64,7 +64,7 @@ class WinCacheBagOStuff extends BagOStuff {
 		return true;
 	}
 
-	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
+	public function merge( $key, $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
 		if ( !is_callable( $callback ) ) {
 			throw new Exception( "Got invalid callback." );
 		}

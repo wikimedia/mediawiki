@@ -40,7 +40,7 @@ class APCBagOStuff extends BagOStuff {
 		return $val;
 	}
 
-	public function set( $key, $value, $exptime = 0 ) {
+	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		apc_store( $key . self::KEY_SUFFIX, $value, $exptime );
 
 		return true;

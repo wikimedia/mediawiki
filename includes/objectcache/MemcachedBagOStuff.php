@@ -27,6 +27,7 @@
  * @ingroup Cache
  */
 class MemcachedBagOStuff extends BagOStuff {
+	/** @var MWMemcached|Memcached */
 	protected $client;
 
 	/**
@@ -67,49 +68,26 @@ class MemcachedBagOStuff extends BagOStuff {
 		return $this->client->get( $this->encodeKey( $key ), $casToken );
 	}
 
-	/**
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime
-	 * @return bool
-	 */
-	public function set( $key, $value, $exptime = 0 ) {
+	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		return $this->client->set( $this->encodeKey( $key ), $value,
 			$this->fixExpiry( $exptime ) );
 	}
 
-	/**
-	 * @param mixed $casToken
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime
-	 * @return bool
-	 */
 	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
 		return $this->client->cas( $casToken, $this->encodeKey( $key ),
 			$value, $this->fixExpiry( $exptime ) );
 	}
 
-	/**
-	 * @param string $key
-	 * @return bool
-	 */
 	public function delete( $key ) {
 		return $this->client->delete( $this->encodeKey( $key ) );
 	}
 
-	/**
-	 * @param string $key
-	 * @param int $value
-	 * @param int $exptime (default 0)
-	 * @return mixed
-	 */
 	public function add( $key, $value, $exptime = 0 ) {
 		return $this->client->add( $this->encodeKey( $key ), $value,
 			$this->fixExpiry( $exptime ) );
 	}
 
-	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
+	public function merge( $key, $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
 		if ( !is_callable( $callback ) ) {
 			throw new Exception( "Got invalid callback." );
 		}
