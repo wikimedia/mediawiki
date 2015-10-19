@@ -178,18 +178,24 @@ class EnhancedChangesList extends ChangesList {
 		# Collate list of users
 		$userlinks = array();
 		# Other properties
-		$unpatrolled = false;
-		$isnew = false;
-		$allBots = true;
-		$allMinors = true;
 		$curId = 0;
 		# Some catalyst variables...
 		$namehidden = true;
 		$allLogs = true;
 		$RCShowChangedSize = $this->getConfig()->get( 'RCShowChangedSize' );
+		$collectedRcFlags = array(
+			// All are by bots?
+			'bot' => true,
+			// Begins with a new page?
+			'newpage' => false,
+			// All are minor edits?
+			'minor' => true,
+			// Contains an unpatrolled edit?
+			'unpatrolled' => false,
+		);
 		foreach ( $block as $rcObj ) {
 			if ( $rcObj->mAttribs['rc_type'] == RC_NEW ) {
-				$isnew = true;
+				$collectedRcFlags['newpage'] = true;
 			}
 			// If all log actions to this page were hidden, then don't
 			// give the name of the affected page for this block!
@@ -201,7 +207,7 @@ class EnhancedChangesList extends ChangesList {
 				$userlinks[$u] = 0;
 			}
 			if ( $rcObj->unpatrolled ) {
-				$unpatrolled = true;
+				$collectedRcFlags['unpatrolled'] = true;
 			}
 			if ( $rcObj->mAttribs['rc_type'] != RC_LOG ) {
 				$allLogs = false;
@@ -213,10 +219,10 @@ class EnhancedChangesList extends ChangesList {
 			}
 
 			if ( !$rcObj->mAttribs['rc_bot'] ) {
-				$allBots = false;
+				$collectedRcFlags['bot'] = false;
 			}
 			if ( !$rcObj->mAttribs['rc_minor'] ) {
-				$allMinors = false;
+				$collectedRcFlags['minor'] = false;
 			}
 
 			$userlinks[$u]++;
@@ -247,12 +253,9 @@ class EnhancedChangesList extends ChangesList {
 		$r .= "<td>$tl</td>";
 
 		# Main line
-		$r .= '<td class="mw-enhanced-rc">' . $this->recentChangesFlags( array(
-			'newpage' => $isnew, # show, when one have this flag
-			'minor' => $allMinors, # show only, when all have this flag
-			'unpatrolled' => $unpatrolled, # show, when one have this flag
-			'bot' => $allBots, # show only, when all have this flag
-		) );
+		$r .= '<td class="mw-enhanced-rc">' . $this->recentChangesFlags(
+			$collectedRcFlags
+		);
 
 		# Timestamp
 		$r .= '&#160;' . $block[0]->timestamp . '&#160;</td><td>';
@@ -289,7 +292,8 @@ class EnhancedChangesList extends ChangesList {
 			return '';
 		}
 
-		$r .= $this->getLogText( $block, $queryParams, $allLogs, $isnew, $namehidden );
+		$r .= $this->getLogText( $block, $queryParams, $allLogs,
+			$collectedRcFlags['newpage'], $namehidden );
 
 		$r .= ' <span class="mw-changeslist-separator">. .</span> ';
 
