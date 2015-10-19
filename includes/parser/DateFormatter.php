@@ -133,7 +133,7 @@ class DateFormatter {
 			$dateFormatter = $wgMemc->get( $key );
 			if ( !$dateFormatter ) {
 				$dateFormatter = new DateFormatter( $lang );
-				$wgMemc->set( $key, $dateFormatter, 3600 );
+				$wgMemc->set( $key, $dateFormatter, BagOStuff::TTL_HOUR );
 			}
 		}
 		return $dateFormatter;

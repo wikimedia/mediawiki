@@ -192,7 +192,7 @@ class SiteStats {
 					array( 'ug_group' => $group ),
 					__METHOD__
 				);
-				$wgMemc->set( $key, $hit, 3600 );
+				$wgMemc->set( $key, $hit, BagOStuff::TTL_HOUR );
 			}
 			self::$groupMemberCounts[$group] = $hit;
 		}
