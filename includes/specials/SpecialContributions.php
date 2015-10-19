@@ -753,12 +753,21 @@ class ContribsPager extends ReverseChronologicalPager {
 		);
 
 		$result = array();
+		$extraFields = $this->getExtraSortFields();
 
 		// loop all results and collect them in an array
 		foreach ( $data as $query ) {
 			foreach ( $query as $i => $row ) {
+				// the database uses some extra fields to sort the results. To try to
+				// emulate this behavior in ksort/krsort, add these fields to the key.
+				$sortFields = '';
+				foreach( $extraFields as $field ) {
+					if ( property_exists( $row, $field ) ) {
+						$sortFields .= $row->{$field};
+					}
+				}
 				// use index column as key, allowing us to easily sort in PHP
-				$result[$row->{$this->getIndexField()} . "-$i"] = $row;
+				$result[$row->{$this->getIndexField()} . $sortFields . "-$i"] = $row;
 			}
 		}
 
@@ -902,6 +911,10 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	function getIndexField() {
 		return 'rev_timestamp';
+	}
+
+	protected function getExtraSortFields() {
+		return array( 'rev_id' );
 	}
 
 	function doBatchLookups() {
