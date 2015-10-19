@@ -232,7 +232,6 @@ class ResourcesTest extends MediaWikiTestCase {
 			'lists' => array(
 				'scripts',
 				'debugScripts',
-				'loaderScripts',
 				'styles',
 			),
 

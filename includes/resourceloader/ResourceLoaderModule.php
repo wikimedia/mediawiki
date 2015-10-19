@@ -299,23 +299,10 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the loader JS for this module, if set.
-	 *
-	 * @return mixed JavaScript loader code as a string or boolean false if no custom loader set
-	 */
-	public function getLoaderScript() {
-		// Stub, override expected
-		return false;
-	}
-
-	/**
 	 * Get a list of modules this module depends on.
 	 *
 	 * Dependency information is taken into account when loading a module
 	 * on the client side.
-	 *
-	 * To add dependencies dynamically on the client side, use a custom
-	 * loader script, see getLoaderScript()
 	 *
 	 * Note: It is expected that $context will be made non-optional in the near
 	 * future.
