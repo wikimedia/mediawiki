@@ -28,6 +28,8 @@ class RCCacheEntry extends RecentChange {
 	public $userlink;
 	public $usertalklink;
 	public $watched;
+	public $mAttribs;
+	public $mExtra;
 
 	/**
 	 * @param RecentChange $rc
