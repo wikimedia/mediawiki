@@ -2048,8 +2048,11 @@ class Title {
 		if ( is_array( $result ) && count( $result ) && !is_array( $result[0] ) ) {
 			// A single array representing an error
 			$errors[] = $result;
-		} elseif ( is_array( $result ) && is_array( $result[0] ) ) {
-			// A nested array representing multiple errors
+		} elseif ( $result instanceof MessageSpecifier ) {
+			// A single message specifier representing an error
+			$errors[] = $result;
+		} elseif ( is_array( $result ) && ( is_array( $result[0] ) || $result[0] instanceof MessageSpecifier ) ) {
+			// Array or arrays or message specifiers representing multiple errors
 			$errors = array_merge( $errors, $result );
 		} elseif ( $result !== '' && is_string( $result ) ) {
 			// A string representing a message-id

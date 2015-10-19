@@ -1991,10 +1991,18 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Return the error message related to a certain array
-	 * @param array $error Element of a getUserPermissionsErrors()-style array
+	 * @param array|IApiMessage $error Element of a getUserPermissionsErrors()-style array
 	 * @return array('code' => code, 'info' => info)
 	 */
 	public function parseMsg( $error ) {
+		if ( $error instanceof IApiMessage ) {
+			return array(
+				'code' => $error->getApiCode(),
+				'info' => $error->text(),
+				'data' => $error->getApiData()
+			);
+		}
+
 		$error = (array)$error; // It seems strings sometimes make their way in here
 		$key = array_shift( $error );
 
