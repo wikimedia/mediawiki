@@ -508,9 +508,10 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @return string|bool Representing the IM version; false on error
 	 */
 	protected function getMagickVersion() {
-		return ObjectCache::newAccelerator( CACHE_NONE )->getWithSetCallback(
-			"imagemagick-version",
-			3600,
+		$cache = ObjectCache::newAccelerator( CACHE_NONE );
+		return $cache->getWithSetCallback(
+			'imagemagick-version',
+			$cache::TTL_HOUR,
 			function () {
 				global $wgImageMagickConvertCommand;
 
@@ -523,7 +524,6 @@ abstract class TransformationalImageHandler extends ImageHandler {
 				);
 				if ( $x != 1 ) {
 					wfDebug( __METHOD__ . ": ImageMagick version check failed\n" );
-
 					return false;
 				}
 

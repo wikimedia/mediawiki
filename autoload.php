@@ -390,6 +390,7 @@ $wgAutoloadLocalClasses = array(
 	'EventRelayerNull' => __DIR__ . '/includes/libs/eventrelayer/EventRelayer.php',
 	'Exif' => __DIR__ . '/includes/media/Exif.php',
 	'ExifBitmapHandler' => __DIR__ . '/includes/media/ExifBitmap.php',
+	'ExpiringStore' => __DIR__ . '/includes/libs/objectcache/ExpiringStore.php',
 	'ExplodeIterator' => __DIR__ . '/includes/libs/ExplodeIterator.php',
 	'ExportProgressFilter' => __DIR__ . '/maintenance/backup.inc',
 	'ExportSites' => __DIR__ . '/maintenance/exportSites.php',

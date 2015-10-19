@@ -42,7 +42,7 @@ use Psr\Log\NullLogger;
  *
  * @ingroup Cache
  */
-abstract class BagOStuff implements LoggerAwareInterface {
+abstract class BagOStuff extends ExpiringStore implements LoggerAwareInterface {
 	/** @var array[] Lock tracking */
 	protected $locks = array();
 
@@ -220,7 +220,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 		do {
 			$this->clearLastError();
 			$casToken = null; // passed by reference
-			$currentValue = $this->getWithToken( $key, $casToken, BagOStuff::READ_LATEST );
+			$currentValue = $this->getWithToken( $key, $casToken, self::READ_LATEST );
 			if ( $this->getLastError() ) {
 				return false; // don't spam retries (retry only on races)
 			}
@@ -276,7 +276,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 		}
 
 		$this->clearLastError();
-		$currentValue = $this->get( $key, BagOStuff::READ_LATEST );
+		$currentValue = $this->get( $key, self::READ_LATEST );
 		if ( $this->getLastError() ) {
 			$success = false;
 		} else {
@@ -319,7 +319,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 			}
 		}
 
-		$expiry = min( $expiry ?: INF, 86400 );
+		$expiry = min( $expiry ?: INF, self::TTL_DAY );
 
 		$this->clearLastError();
 		$timestamp = microtime( true ); // starting UNIX timestamp
@@ -389,7 +389,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * @since 1.26
 	 */
 	final public function getScopedLock( $key, $timeout = 6, $expiry = 30, $rclass = '' ) {
-		$expiry = min( $expiry ?: INF, 86400 );
+		$expiry = min( $expiry ?: INF, self::TTL_DAY );
 
 		if ( !$this->lock( $key, $timeout, $expiry, $rclass ) ) {
 			return null;
@@ -582,7 +582,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * @return int
 	 */
 	protected function convertExpiry( $exptime ) {
-		if ( ( $exptime != 0 ) && ( $exptime < 86400 * 3650 /* 10 years */ ) ) {
+		if ( $exptime != 0 && $exptime < ( 10 * self::TTL_YEAR ) ) {
 			return time() + $exptime;
 		} else {
 			return $exptime;
@@ -597,7 +597,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * @return int
 	 */
 	protected function convertToRelative( $exptime ) {
-		if ( $exptime >= 86400 * 3650 /* 10 years */ ) {
+		if ( $exptime >= ( 10 * self::TTL_YEAR ) ) {
 			$exptime -= time();
 			if ( $exptime <= 0 ) {
 				$exptime = 1;
