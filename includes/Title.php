@@ -1944,7 +1944,7 @@ class Title {
 	 *   - secure : does cheap and expensive checks, using the master as needed
 	 * @param array $ignoreErrors Array of Strings Set this to a list of message keys
 	 *   whose corresponding errors may be ignored.
-	 * @return array Array of arguments to wfMessage to explain permissions problems.
+	 * @return array Array of arrays of the arguments to wfMessage to explain permissions problems.
 	 */
 	public function getUserPermissionsErrors(
 		$action, $user, $rigor = 'secure', $ignoreErrors = array()
@@ -1953,9 +1953,12 @@ class Title {
 
 		// Remove the errors being ignored.
 		foreach ( $errors as $index => $error ) {
-			$error_key = is_array( $error ) ? $error[0] : $error;
+			$errKey = is_array( $error ) ? $error[0] : $error;
 
-			if ( in_array( $error_key, $ignoreErrors ) ) {
+			if ( in_array( $errKey, $ignoreErrors ) ) {
+				unset( $errors[$index] );
+			}
+			if ( $errKey instanceof MessageSpecifier && in_array( $errKey->getKey(), $ignoreErrors ) ) {
 				unset( $errors[$index] );
 			}
 		}
@@ -2053,6 +2056,9 @@ class Title {
 			$errors = array_merge( $errors, $result );
 		} elseif ( $result !== '' && is_string( $result ) ) {
 			// A string representing a message-id
+			$errors[] = array( $result );
+		} elseif ( $result instanceof MessageSpecifier ) {
+			// A message specifier representing an error
 			$errors[] = array( $result );
 		} elseif ( $result === false ) {
 			// a generic "We don't want them to do that"

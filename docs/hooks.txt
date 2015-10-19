@@ -1521,7 +1521,9 @@ $lang: Language that will be used to render the timestamp
 'getUserPermissionsErrors': Add a permissions error when permissions errors are
 checked for. Use instead of userCan for most cases. Return false if the user
 can't do it, and populate $result with the reason in the form of
-array( messagename, param1, param2, ... ). For consistency, error messages
+array( messagename, param1, param2, ... ) or a MessageSpecifier instance (you
+might want to use ApiMessage to provide machine-readable details for the API).
+For consistency, error messages
 should be plain text with no special coloring, bolding, etc. to show that
 they're errors; presenting them properly to the user as errors is done by the
 caller.
@@ -1534,7 +1536,9 @@ $result: User permissions error to add. If none, return true.
 called only if expensive checks are enabled. Add a permissions error when
 permissions errors are checked for. Return false if the user can't do it, and
 populate $result with the reason in the form of array( messagename, param1,
-param2, ... ). For consistency, error messages should be plain text with no
+param2, ... ) or a MessageSpecifier instance (you might want to use ApiMessage
+to provide machine-readable details for the API). For consistency, error
+messages should be plain text with no
 special coloring, bolding, etc. to show that they're errors; presenting them
 properly to the user as errors is done by the caller.
 $title: Title object being checked against
