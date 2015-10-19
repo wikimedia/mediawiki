@@ -2526,19 +2526,22 @@ class OutputPage extends ContextSource {
 			)->plain() . "\n\n";
 		}
 
-		if ( count( $errors ) > 1 ) {
-			$text .= '<ul class="permissions-errors">' . "\n";
-
-			foreach ( $errors as $error ) {
-				$text .= '<li>';
-				$text .= call_user_func_array( array( $this, 'msg' ), $error )->plain();
-				$text .= "</li>\n";
+		foreach ( $errors as &$error ) {
+			if ( $error instanceof MessageSpecifier ) {
+				$error = $this->msg( $error )->plain();
+			} else {
+				$error = call_user_func_array( array( $this, 'msg' ), $error )->plain();
 			}
-			$text .= '</ul>';
+		}
+
+		if ( count( $errors ) > 1 ) {
+			$text .= '<ul class="permissions-errors">' . "\n" .
+				'<li>' . implode( "</li>\n<li>", $errors ) . "</li>\n" .
+				'</ul>';
 		} else {
 			$text .= "<div class=\"permissions-errors\">\n" .
-					call_user_func_array( array( $this, 'msg' ), reset( $errors ) )->plain() .
-					"\n</div>";
+				reset( $errors ) .
+				"\n</div>";
 		}
 
 		return $text;
