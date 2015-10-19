@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Veeven"
+			"Veeven",
+			"HAUSANRIK"
 		]
 	},
-	"apihelp-feedrecentchanges-example-simple": "ఇటీవలి మార్పులను చూడండి"
+	"apihelp-feedrecentchanges-example-simple": "ఇటీవలి మార్పులను చూడండి",
+	"apihelp-rawfm-description": "బయటకు వచ్చిన సమాచారo, డీబగ్గింగ్ అంశముతొ కలిపి, JSON పద్ధతిలొ (HTMLలో అందంగా-ముద్రించు)"
 }

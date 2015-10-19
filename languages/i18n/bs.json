@@ -933,6 +933,7 @@
 	"columns": "Kolona:",
 	"searchresultshead": "Pretraga",
 	"stub-threshold": "Prag za formatiranje linkova ka stranicama u začetku ($1):",
+	"stub-threshold-sample-link": "primjer",
 	"stub-threshold-disabled": "Isključeno",
 	"recentchangesdays": "Broj dana za prikaz u nedavnim izmjenama:",
 	"recentchangesdays-max": "Najviše $1 {{PLURAL:$1|dan|dana}}",

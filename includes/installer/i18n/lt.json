@@ -3,7 +3,8 @@
 		"authors": [
 			"Eitvys200",
 			"Mantak111",
-			"Zygimantus"
+			"Zygimantus",
+			"Hugo.arg"
 		]
 	},
 	"config-desc": "MediaWiki diegimas",
@@ -44,7 +45,7 @@
 	"config-restart": "Taip, paleiskite jį iš naujo",
 	"config-sidebar": "* [//www.mediawiki.org MediaWiki namų tinklalapis]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Vartotojo gidas]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Administratoriaus gidas]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ DUK]\n----\n* <doclink href=Readme>Skaityk mane</doclink>\n* <doclink href=ReleaseNotes>Leidimo pastabos</doclink>\n* <doclink href=Copying>Kopijavimas</doclink>\n* <doclink href=UpgradeDoc>Atnaujinimas</doclink>",
 	"config-env-good": "Aplinka buvo patikrinta.\nJūs galite įdiegti MediaWiki.",
-	"config-env-bad": "Aplinkai buvo patikrinta.\nJūs negalite įdiegti MediaWiki.",
+	"config-env-bad": "Aplinka buvo patikrinta.\nJūs negalite įdiegti MediaWiki.",
 	"config-env-php": "PHP $1 yra įdiegtas.",
 	"config-env-hhvm": "HHVM $1 yra įdiegtas.",
 	"config-outdated-sqlite": "<strong>Įspėjimas:</strong> jūs turite SQLite $1, kuri yra mažesnė nei minimali reikalinga versija $2. SQLite nebus prieinama.",
@@ -128,9 +129,9 @@
 	"config-install-database": "Tvarkoma duomenų bazė",
 	"config-install-schema": "Kuriama schema",
 	"config-install-pg-schema-not-exist": "PostgreSQL schemos nėra.",
-	"config-install-user": "Kuriamas duomenų bazės vartotojas",
-	"config-install-user-alreadyexists": "Vartotojas „$1“ jau egzistuoja",
-	"config-install-user-create-failed": "Nepavyko sukurti vartotojo „$1“: $2",
+	"config-install-user": "Kuriama naudotojų duomenų bazė",
+	"config-install-user-alreadyexists": "Naudotojas „$1“ jau yra",
+	"config-install-user-create-failed": "Nepavyko sukurti naudotojo „$1“: $2",
 	"config-install-tables": "Kuriamos lentelės",
 	"config-install-stats": "Inicijuojamos statistikos",
 	"config-install-keys": "Generuojami slapti raktai",

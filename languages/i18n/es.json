@@ -2581,6 +2581,7 @@
 	"svg-long-error": "Archivo SVG no válido: $1",
 	"show-big-image": "Archivo original",
 	"show-big-image-preview": "Tamaño de esta previsualización: $1.",
+	"show-big-image-preview-differ": "Tamaño de esta previsualización $3 del archivo $2: $1.",
 	"show-big-image-other": "{{PLURAL:$2|Otra resolución|Otras resoluciones}}: $1.",
 	"show-big-image-size": "$1 × $2 píxeles",
 	"file-info-gif-looped": "bucleado",

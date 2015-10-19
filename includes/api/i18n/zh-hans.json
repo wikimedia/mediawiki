@@ -467,6 +467,7 @@
 	"apihelp-query+allredirects-example-generator": "获取包含重定向的页面。",
 	"apihelp-query+allrevisions-description": "列举所有修订。",
 	"apihelp-query+allrevisions-param-user": "只列出此用户做出的修订。",
+	"apihelp-query+allrevisions-param-excludeuser": "不要列出此用户做出的修订。",
 	"apihelp-query+allrevisions-param-namespace": "只列出此名字空间的页面。",
 	"apihelp-query+allrevisions-param-generatetitles": "当作为生成器使用时，生成标题而不是修订ID。",
 	"apihelp-query+allrevisions-example-user": "列出由用户<kbd>Example</kbd>作出的最近50次贡献。",
