@@ -43,6 +43,7 @@ production.
    PasswordFactory themselves.
 ** A new constructor, User::newSystemUser(), has been added to simplify the
    creation of passwordless "system" users for logged actions.
+* $wgMaxSquidPurgeTitles was removed.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as

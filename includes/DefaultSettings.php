@@ -2620,11 +2620,6 @@ $wgSquidServers = array();
 $wgSquidServersNoPurge = array();
 
 /**
- * Maximum number of titles to purge in any one client operation
- */
-$wgMaxSquidPurgeTitles = 400;
-
-/**
  * Whether to use a Host header in purge requests sent to the proxy servers
  * configured in $wgSquidServers. Set this to false to support Squid
  * configured in forward-proxy mode.
