@@ -308,6 +308,10 @@ function wfMergeErrorArrays( /*...*/ ) {
 	$out = array();
 	foreach ( $args as $errors ) {
 		foreach ( $errors as $params ) {
+			if ( $params[0] instanceof MessageSpecifier ) {
+				$msg = $params[0];
+				$params = array_merge( array( $msg->getKey() ), $msg->getParams() );
+			}
 			# @todo FIXME: Sometimes get nested arrays for $params,
 			# which leads to E_NOTICEs
 			$spec = implode( "\t", $params );

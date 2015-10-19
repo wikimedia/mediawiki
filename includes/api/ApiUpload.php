@@ -363,6 +363,10 @@ class ApiUpload extends ApiBase {
 		$data['invalidparameter'] = $parameter;
 
 		$parsed = $this->parseMsg( $error );
+		if ( isset( $parsed['data'] ) ) {
+			$data = array_merge( $data, $parsed['data'] );
+		}
+
 		$this->dieUsage( $parsed['info'], $parsed['code'], 0, $data );
 	}
 
