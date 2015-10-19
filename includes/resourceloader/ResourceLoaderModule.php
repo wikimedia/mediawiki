@@ -874,14 +874,13 @@ abstract class ResourceLoaderModule {
 	protected function validateScriptFile( $fileName, $contents ) {
 		if ( $this->getConfig()->get( 'ResourceLoaderValidateJS' ) ) {
 			// Try for cache hit
-			// Use CACHE_ANYTHING since parsing JS is much slower than a DB query
-			$key = wfMemcKey(
+			$cache = ObjectCache::getMainClusterInstance();
+			$key = $cache->makeKey(
 				'resourceloader',
 				'jsparse',
 				self::$parseCacheVersion,
 				md5( $contents )
 			);
-			$cache = wfGetCache( CACHE_ANYTHING );
 			$cacheEntry = $cache->get( $key );
 			if ( is_string( $cacheEntry ) ) {
 				return $cacheEntry;
