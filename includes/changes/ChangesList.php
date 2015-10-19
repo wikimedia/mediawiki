@@ -364,12 +364,13 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param string $s HTML to update
 	 * @param RecentChange $rc
 	 * @param bool $unpatrolled
 	 * @param bool $watched
+	 * @return string HTML
+	 * @since 1.26
 	 */
-	public function insertArticleLink( &$s, &$rc, $unpatrolled, $watched ) {
+	public function getArticleLink( &$rc, $unpatrolled, $watched ) {
 		$params = array();
 		if ( $rc->getTitle()->isRedirect() ) {
 			$params = array( 'redirect' => 'no' );
@@ -389,23 +390,23 @@ class ChangesList extends ContextSource {
 		# RTL/LTR marker
 		$articlelink .= $this->getLanguage()->getDirMark();
 
+		# TODO: Deprecate the $s argument, it seems happily unused.
+		$s = '';
 		Hooks::run( 'ChangesListInsertArticleLink',
 			array( &$this, &$articlelink, &$s, &$rc, $unpatrolled, $watched ) );
 
-		$s .= " $articlelink";
+		return "{$s} {$articlelink}";
 	}
 
 	/**
+	 * @param string $s
 	 * @param RecentChange $rc
 	 * @param bool $unpatrolled
 	 * @param bool $watched
-	 * @return string
-	 * @since 1.26
+	 * @deprecated in 1.26. Use getArticleLink instead.
 	 */
-	public function getArticleLink( RecentChange $rc, $unpatrolled, $watched ) {
-		$s = '';
-		$this->insertArticleLink( $s, $rc, $unpatrolled, $watched );
-		return $s;
+	public function insertArticleLink( &$s, RecentChange $rc, $unpatrolled, $watched ) {
+		$s .= $this->getArticleLink( $rc, $unpatrolled, $watched );
 	}
 
 	/**
