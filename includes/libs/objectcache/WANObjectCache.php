@@ -83,7 +83,7 @@ class WANObjectCache {
 	const HOLDOFF_TTL = 14; // MAX_COMMIT_DELAY + MAX_REPLICA_LAG + MAX_SNAPSHOT_LAG + 1
 
 	/** Seconds to keep dependency purge keys around */
-	const CHECK_KEY_TTL = 31536000; // 1 year
+	const CHECK_KEY_TTL = BagOStuff::TTL_YEAR;
 	/** Seconds to keep lock keys around */
 	const LOCK_TTL = 5;
 	/** Default remaining TTL at which to consider pre-emptive regeneration */
@@ -284,7 +284,7 @@ class WANObjectCache {
 	 *     // Fetch the row from the DB
 	 *     $row = $dbr->selectRow( ... );
 	 *     $key = wfMemcKey( 'building', $buildingId );
-	 *     $cache->set( $key, $row, 86400, $setOpts );
+	 *     $cache->set( $key, $row, BagOStuff::TTL_DAY, $setOpts );
 	 * @endcode
 	 *
 	 * @param string $key Cache key
@@ -538,8 +538,8 @@ class WANObjectCache {
 	 *     $catInfo = $cache->getWithSetCallback(
 	 *         // Key to store the cached value under
 	 *         wfMemcKey( 'cat-attributes', $catId ),
-	 *         // Time-to-live (seconds)
-	 *         60,
+	 *         // Time-to-live (in seconds)
+	 *         BagOStuff::TTL_MINUTE,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
@@ -556,8 +556,8 @@ class WANObjectCache {
 	 *     $catConfig = $cache->getWithSetCallback(
 	 *         // Key to store the cached value under
 	 *         wfMemcKey( 'site-cat-config' ),
-	 *         // Time-to-live (seconds)
-	 *         86400,
+	 *         // Time-to-live (in seconds)
+	 *         BagOStuff::TTL_DAY,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
@@ -608,7 +608,7 @@ class WANObjectCache {
 	 *     $lastCatActions = $cache->getWithSetCallback(
 	 *         // Key to store the cached value under
 	 *         wfMemcKey( 'cat-last-actions', 100 ),
-	 *         // Time-to-live (seconds)
+	 *         // Time-to-live (in seconds)
 	 *         10,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {

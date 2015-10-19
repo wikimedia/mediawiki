@@ -1968,7 +1968,7 @@ abstract class UploadBase {
 		if ( $value === false ) {
 			$cache->delete( $key );
 		} else {
-			$cache->set( $key, $value, 86400 );
+			$cache->set( $key, $value, BagOStuff::TTL_DAY );
 		}
 	}
 }

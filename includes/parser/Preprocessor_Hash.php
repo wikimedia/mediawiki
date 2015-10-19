@@ -737,7 +737,7 @@ class Preprocessor_Hash implements Preprocessor {
 
 			// T111289: Cache values should not exceed 1 Mb, but they do.
 			if ( strlen( $cacheValue ) <= 1e6 ) {
-				$wgMemc->set( $cacheKey, $cacheValue, 86400 );
+				$wgMemc->set( $cacheKey, $cacheValue, BagOStuff::TTL_DAY );
 				wfDebugLog( "Preprocessor", "Saved preprocessor Hash to memcached (key $cacheKey)" );
 			}
 		}
