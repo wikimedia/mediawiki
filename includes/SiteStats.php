@@ -186,7 +186,7 @@ class SiteStats {
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $group ) {
 				$dbr = wfGetDB( DB_SLAVE );
 
-				$setOpts += $dbr->getCacheSetOptions();
+				$setOpts += Database::getCacheSetOptions( $dbr );
 
 				return $dbr->selectField(
 					'user_groups',
