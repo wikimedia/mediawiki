@@ -970,7 +970,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$vars = $this->getLessVars( $context );
 		ksort( $vars );
 		$varsHash = hash( 'md4', serialize( $vars ) );
-		$cacheKey = wfGlobalCacheKey( 'LESS', $fileName, $varsHash );
+		$cacheKey = $cache->makeGlobalKey( 'LESS', $fileName, $varsHash );
 		$cachedCompile = $cache->get( $cacheKey );
 
 		// If we got a cached value, we have to validate it by getting a
