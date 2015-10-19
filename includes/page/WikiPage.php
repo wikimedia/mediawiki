@@ -1163,7 +1163,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$title->invalidateCache();
 			if ( $wgUseSquid ) {
 				// Send purge now that page_touched update was committed above
-				$update = SquidUpdate::newSimplePurge( $title );
+				$update = new SquidUpdate( $title->getSquidURLs() );
 				$update->doUpdate();
 			}
 		} );
