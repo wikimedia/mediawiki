@@ -100,7 +100,6 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 */
 	function namespaceForm( $namespace = NS_MAIN, $from = '', $to = '', $hideredirects = false ) {
 		$t = $this->getPageTitle();
-
 		$out = Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
 		$out .= Xml::openElement(
 			'form',
@@ -148,7 +147,6 @@ class SpecialAllPages extends IncludableSpecialPage {
 		$out .= Xml::closeElement( 'fieldset' );
 		$out .= Xml::closeElement( 'form' );
 		$out .= Xml::closeElement( 'div' );
-
 		return $out;
 	}
 
@@ -276,7 +274,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 		$self = $this->getPageTitle();
 
 		$topLinks = array(
-			Linker::link( $self, $this->msg( 'allpages' )->escaped() )
+			Linker::link( $self, $this->msg( 'allpages' )->escaped() ) // XXX is this really needed?
 		);
 		$bottomLinks = array();
 
@@ -325,26 +323,21 @@ class SpecialAllPages extends IncludableSpecialPage {
 			$bottomLinks[] = $nextLink;
 		}
 
-		$nsForm = $this->namespaceForm( $namespace, $from, $to, $hideredirects );
-		$out2 = Xml::openElement( 'table', array( 'class' => 'mw-allpages-table-form' ) ) .
-			'<tr>
-						<td>' .
-			$nsForm .
-			'</td>
-						<td class="mw-allpages-nav">' .
-			$this->getLanguage()->pipeList( $topLinks ) .
-			'</td></tr></table>';
-
-		$output->addHTML( $out2 . $out );
+		$topOut = $this->namespaceForm( $namespace, $from, $to, $hideredirects );
+		$topOut .= Html::rawElement( 'div',
+			array( 'class' => 'mw-allpages-nav' ),
+			$this->getLanguage()->pipeList( $topLinks )
+		);
 
 		if ( count( $bottomLinks ) ) {
-			$output->addHTML(
-				Html::element( 'hr' ) .
-					Html::rawElement( 'div', array( 'class' => 'mw-allpages-nav' ),
-						$this->getLanguage()->pipeList( $bottomLinks )
-					)
-			);
+			$out .= Html::element( 'hr' ) .
+				Html::rawElement( 'div',
+					array( 'class' => 'mw-allpages-nav' ),
+					$this->getLanguage()->pipeList( $bottomLinks )
+				);
 		}
+
+		$output->addHTML( $topOut . $out );
 	}
 
 	/**
