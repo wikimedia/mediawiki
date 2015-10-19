@@ -100,7 +100,7 @@ class ApiDelete extends ApiBase {
 
 		// Apply change tags to the log entry, if requested
 		if ( count( $params['tags'] ) ) {
-			ChangeTags::addTags( $params['tags'], null, null, $status->value, null, $user );
+			ChangeTags::addTags( $params['tags'], null, null, $status->value, null );
 		}
 
 		$r = array(
