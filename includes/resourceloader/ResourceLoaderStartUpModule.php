@@ -1,6 +1,6 @@
 <?php
 /**
- * Module for resource loader initialization.
+ * Module for ResourceLoader initialization.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -163,13 +163,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 *  - array 'dependencies'
 	 *  - string|null 'group'
 	 *  - string 'source'
-	 *  - string|false 'loader'
 	 */
 	public static function compileUnresolvedDependencies( array &$registryData ) {
 		foreach ( $registryData as $name => &$data ) {
-			if ( $data['loader'] !== false ) {
-				continue;
-			}
 			$dependencies = $data['dependencies'];
 			foreach ( $data['dependencies'] as $dependency ) {
 				$implicitDependencies = self::getImplicitDependencies( $registryData, $dependency );
@@ -230,7 +226,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				'dependencies' => $module->getDependencies( $context ),
 				'group' => $module->getGroup(),
 				'source' => $module->getSource(),
-				'loader' => $module->getLoaderScript(),
 				'skip' => $skipFunction,
 			);
 		}
@@ -240,22 +235,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// Register sources
 		$out .= ResourceLoader::makeLoaderSourcesScript( $resourceLoader->getSources() );
 
-		// Concatenate module loader scripts and figure out the different call
-		// signatures for mw.loader.register
+		// Figure out the different call signatures for mw.loader.register
 		$registrations = array();
 		foreach ( $registryData as $name => $data ) {
-			if ( $data['loader'] !== false ) {
-				$out .= ResourceLoader::makeCustomLoaderScript(
-					$name,
-					$data['version'],
-					$data['dependencies'],
-					$data['group'],
-					$data['source'],
-					$data['loader']
-				);
-				continue;
-			}
-
 			// Call mw.loader.register(name, version, dependencies, group, source, skip)
 			$registrations[] = array(
 				$name,
