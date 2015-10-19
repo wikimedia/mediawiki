@@ -687,7 +687,7 @@ class Block {
 		$lines = $wgMemc->get( $key );
 		if ( !$lines ) {
 			$lines = explode( "\n", wfMessage( 'autoblock_whitelist' )->inContentLanguage()->plain() );
-			$wgMemc->set( $key, $lines, 3600 * 24 );
+			$wgMemc->set( $key, $lines, BagOStuff::TTL_DAY );
 		}
 
 		wfDebug( "Checking the autoblock whitelist..\n" );

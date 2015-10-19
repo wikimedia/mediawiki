@@ -635,7 +635,7 @@ class LoginForm extends SpecialPage {
 				$key = wfMemcKey( 'acctcreate', 'ip', $ip );
 				$value = $wgMemc->get( $key );
 				if ( !$value ) {
-					$wgMemc->set( $key, 0, 86400 );
+					$wgMemc->set( $key, 0, BagOStuff::TTL_DAY );
 				}
 				if ( $value >= $wgAccountCreationThrottle ) {
 					return Status::newFatal( 'acct_creation_throttle_hit', $wgAccountCreationThrottle );
