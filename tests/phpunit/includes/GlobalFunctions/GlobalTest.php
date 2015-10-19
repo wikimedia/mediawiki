@@ -707,7 +707,7 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	public function testWfMemcKey() {
-		$cache = ObjectCache::getMainClusterInstance();
+		$cache = ObjectCache::getLocalClusterInstance();
 		$this->assertEquals(
 			$cache->makeKey( 'foo', 123, 'bar' ),
 			wfMemcKey( 'foo', 123, 'bar' )
@@ -715,7 +715,7 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	public function testWfForeignMemcKey() {
-		$cache = ObjectCache::getMainClusterInstance();
+		$cache = ObjectCache::getLocalClusterInstance();
 		$keyspace = $this->readAttribute( $cache, 'keyspace' );
 		$this->assertEquals(
 			wfForeignMemcKey( $keyspace, '', 'foo', 'bar' ),
@@ -724,7 +724,7 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	public function testWfGlobalCacheKey() {
-		$cache = ObjectCache::getMainClusterInstance();
+		$cache = ObjectCache::getLocalClusterInstance();
 		$this->assertEquals(
 			$cache->makeGlobalKey( 'foo', 123, 'bar' ),
 			wfGlobalCacheKey( 'foo', 123, 'bar' )
