@@ -26,25 +26,15 @@
  * @ingroup Cache
  */
 class SquidUpdate implements DeferrableUpdate {
-	/**
-	 * Collection of URLs to purge.
-	 * @var array
-	 */
-	protected $urlArr;
+	/** @var string[] Collection of URLs to purge */
+	protected $urls = array();
 
 	/**
 	 * @param array $urlArr Collection of URLs to purge
 	 */
 	public function __construct( array $urlArr ) {
-		global $wgMaxSquidPurgeTitles;
-
 		// Remove duplicate URLs from list
-		$urlArr = array_unique( $urlArr );
-		if ( count( $urlArr ) > $wgMaxSquidPurgeTitles ) {
-			// Truncate to desired maximum URL count
-			$urlArr = array_slice( $urlArr, 0, $wgMaxSquidPurgeTitles );
-		}
-		$this->urlArr = $urlArr;
+		$this->urls = array_unique( $urlArr );
 	}
 
 	/**
@@ -77,7 +67,7 @@ class SquidUpdate implements DeferrableUpdate {
 	 * Purges the list of URLs passed to the constructor.
 	 */
 	public function doUpdate() {
-		self::purge( $this->urlArr );
+		self::purge( $this->urls );
 	}
 
 	/**
@@ -136,7 +126,7 @@ class SquidUpdate implements DeferrableUpdate {
 	 * @throws MWException
 	 * @param array $urlArr Collection of URLs to purge
 	 */
-	public static function HTCPPurge( $urlArr ) {
+	protected static function HTCPPurge( $urlArr ) {
 		global $wgHTCPRouting, $wgHTCPMulticastTTL;
 
 		// HTCP CLR operation
