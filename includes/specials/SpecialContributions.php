@@ -762,13 +762,6 @@ class ContribsPager extends ReverseChronologicalPager {
 			}
 		}
 
-		// sort results
-		if ( $descending ) {
-			ksort( $result );
-		} else {
-			krsort( $result );
-		}
-
 		// enforce limit
 		$result = array_slice( $result, 0, $limit );
 
@@ -902,6 +895,10 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	function getIndexField() {
 		return 'rev_timestamp';
+	}
+
+	protected function getExtraSortFields() {
+		return array( 'rev_id' );
 	}
 
 	function doBatchLookups() {
