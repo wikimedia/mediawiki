@@ -28,30 +28,6 @@
 	font-style: italic;
 }
 
-/* Special:Allpages */
-.mw-allpages-nav {
-	text-align: right;
-	margin-bottom: 1em;
-}
-table.mw-allpages-table-form {
-	width: 100%;
-}
-table.mw-allpages-table-form tr {
-	vertical-align: top;
-}
-
-/* Special:Prefixindex */
-.mw-prefixindex-nav {
-	text-align: right;
-}
-table#mw-prefixindex-nav-table {
-	width: 100%;
-}
-td#mw-prefixindex-nav-form {
-	margin-bottom: 1em;
-	vertical-align: top;
-}
-
 /* Special:Block */
 p.mw-ipb-conveniencelinks {
 	font-size: 90%;
