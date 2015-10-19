@@ -201,7 +201,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 				)
 			);
 
-			# ## @todo FIXME: Side link to previous
+			// @todo FIXME: Side link to previous
 
 			$n = 0;
 			if ( $res->numRows() > 0 ) {
@@ -239,54 +239,55 @@ class SpecialPrefixindex extends SpecialAllPages {
 			}
 		}
 
-		$footer = '';
+		$output = $this->getOutput();
+
 		if ( $this->including() ) {
-			$out2 = '';
-		} else {
-			$nsForm = $this->namespacePrefixForm( $namespace, $prefix );
-			$self = $this->getPageTitle();
-			$out2 = Xml::openElement( 'table', array( 'id' => 'mw-prefixindex-nav-table' ) ) .
-				'<tr>
-					<td>' .
-				$nsForm .
-				'</td>
-				<td id="mw-prefixindex-nav-form" class="mw-prefixindex-nav">';
-
-			if ( $res && ( $n == $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
-				$query = array(
-					'from' => $s->page_title,
-					'prefix' => $prefix,
-					'hideredirects' => $this->hideRedirects,
-					'stripprefix' => $this->stripPrefix,
-				);
-
-				if ( $namespace || $prefix == '' ) {
-					// Keep the namespace even if it's 0 for empty prefixes.
-					// This tells us we're not just a holdover from old links.
-					$query['namespace'] = $namespace;
-				}
-
-				$nextLink = Linker::linkKnown(
-					$self,
-					$this->msg( 'nextpage', str_replace( '_', ' ', $s->page_title ) )->escaped(),
-					array(),
-					$query
-				);
-
-				$out2 .= $nextLink;
-
-				$footer = "\n" . Html::element( 'hr' ) .
-					Html::rawElement(
-						'div',
-						array( 'class' => 'mw-prefixindex-nav' ),
-						$nextLink
-					);
-			}
-			$out2 .= "</td></tr>" .
-				Xml::closeElement( 'table' );
+			// We don't show the nav-links and the form when included onto other
+			// pages so let's just finish here.
+			$output->addHTML( $out );
+			return;
 		}
 
-		$this->getOutput()->addHTML( $out2 . $out . $footer );
+		$topOut = $this->namespacePrefixForm( $namespace, $prefix );
+
+		if ( $res && ( $n == $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
+			$query = array(
+				'from' => $s->page_title,
+				'prefix' => $prefix,
+				'hideredirects' => $this->hideRedirects,
+				'stripprefix' => $this->stripPrefix,
+			);
+
+			if ( $namespace || $prefix == '' ) {
+				// Keep the namespace even if it's 0 for empty prefixes.
+				// This tells us we're not just a holdover from old links.
+				$query['namespace'] = $namespace;
+			}
+
+			$nextLink = Linker::linkKnown(
+				$this->getPageTitle(),
+				$this->msg( 'nextpage', str_replace( '_', ' ', $s->page_title ) )->escaped(),
+				array(),
+				$query
+			);
+
+			// Link shown at the top of the page below the form
+			$topOut .= Html::rawElement( 'div',
+				array( 'class' => 'mw-prefixindex-nav' ),
+				$nextLink
+			);
+
+			// Link shown at the footer
+			$out .= "\n" . Html::element( 'hr' ) .
+				Html::rawElement(
+					'div',
+					array( 'class' => 'mw-prefixindex-nav' ),
+					$nextLink
+				);
+
+		}
+
+		$output->addHTML( $topOut . $out );
 	}
 
 	protected function getGroupName() {
