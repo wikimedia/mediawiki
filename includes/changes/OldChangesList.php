@@ -98,7 +98,7 @@ class OldChangesList extends ChangesList {
 				),
 				''
 			);
-			$this->insertArticleLink( $html, $rc, $unpatrolled, $watched );
+			$html .= $this->getArticleLink( $rc, $unpatrolled, $watched );
 		}
 		# Edit/log timestamp
 		$this->insertTimestamp( $html, $rc );
