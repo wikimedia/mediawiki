@@ -75,6 +75,7 @@ class SquidUpdate {
 	/**
 	 * @param Title $title
 	 * @return SquidUpdate
+	 * @deprecated 1.27
 	 */
 	public static function newSimplePurge( Title $title ) {
 		$urlArr = $title->getSquidURLs();
