@@ -158,6 +158,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string
 	 */
 	protected function recentChangesBlockGroup( $block ) {
+		global $wgRecentChangesFlags;
 
 		# Add the namespace and title of the block as part of the class
 		$tableClasses = array( 'mw-collapsible', 'mw-collapsed', 'mw-enhanced-rc' );
@@ -196,9 +197,6 @@ class EnhancedChangesList extends ChangesList {
 			'unpatrolled' => false,
 		);
 		foreach ( $block as $rcObj ) {
-			if ( $rcObj->mAttribs['rc_type'] == RC_NEW ) {
-				$collectedRcFlags['newpage'] = true;
-			}
 			// If all log actions to this page were hidden, then don't
 			// give the name of the affected page for this block!
 			if ( !$this->isDeleted( $rcObj, LogPage::DELETED_ACTION ) ) {
@@ -208,9 +206,6 @@ class EnhancedChangesList extends ChangesList {
 			if ( !isset( $userlinks[$u] ) ) {
 				$userlinks[$u] = 0;
 			}
-			if ( $rcObj->unpatrolled ) {
-				$collectedRcFlags['unpatrolled'] = true;
-			}
 			if ( $rcObj->mAttribs['rc_type'] != RC_LOG ) {
 				$allLogs = false;
 			}
@@ -218,13 +213,6 @@ class EnhancedChangesList extends ChangesList {
 			# since logs may not have these.
 			if ( !$curId && $rcObj->mAttribs['rc_cur_id'] ) {
 				$curId = $rcObj->mAttribs['rc_cur_id'];
-			}
-
-			if ( !$rcObj->mAttribs['rc_bot'] ) {
-				$collectedRcFlags['bot'] = false;
-			}
-			if ( !$rcObj->mAttribs['rc_minor'] ) {
-				$collectedRcFlags['minor'] = false;
 			}
 
 			$userlinks[$u]++;
@@ -370,6 +358,27 @@ class EnhancedChangesList extends ChangesList {
 
 			if ( isset( $data['recentChangesFlags'] ) ) {
 				$lineParams['recentChangesFlags'] = $this->recentChangesFlags( $data['recentChangesFlags'] );
+
+				// Roll up flags
+				foreach ( $data['recentChangesFlags'] as $key => $value ) {
+					$flagGrouping = ( isset( $wgRecentChangesFlags[$key]['grouping'] ) ?
+						$wgRecentChangesFlags[$key]['grouping'] : 'any' );
+					switch ( $flagGrouping ) {
+						case 'all':
+							if ( !$value ) {
+								$collectedRcFlags[$key] = false;
+							}
+							break;
+						case 'any':
+							if ( $value ) {
+								$collectedRcFlags[$key] = true;
+							}
+							break;
+						default:
+							throw new RuntimeException( "Unknown grouping type \"{$flagGrouping}\"" );
+					}
+				}
+
 				unset( $data['recentChangesFlags'] );
 			}
 
