@@ -679,16 +679,17 @@ class Block {
 	 * @return bool
 	 */
 	public static function isWhitelistedFromAutoblocks( $ip ) {
-		global $wgMemc;
-
 		// Try to get the autoblock_whitelist from the cache, as it's faster
 		// than getting the msg raw and explode()'ing it.
-		$key = wfMemcKey( 'ipb', 'autoblock', 'whitelist' );
-		$lines = $wgMemc->get( $key );
-		if ( !$lines ) {
-			$lines = explode( "\n", wfMessage( 'autoblock_whitelist' )->inContentLanguage()->plain() );
-			$wgMemc->set( $key, $lines, 3600 * 24 );
-		}
+
+		$lines = ObjectCache::getMainWANInstance()->getWithSetCallback(
+			wfMemcKey( 'ipb', 'autoblock', 'whitelist' ),
+			86400,
+			function () {
+				return explode( "\n",
+					wfMessage( 'autoblock_whitelist' )->inContentLanguage()->plain() );
+			}
+		);
 
 		wfDebug( "Checking the autoblock whitelist..\n" );
 

@@ -91,7 +91,7 @@ class ApiHelp extends ApiBase {
 	 * @return string
 	 */
 	public static function getHelp( IContextSource $context, $modules, array $options ) {
-		global $wgMemc, $wgContLang;
+		global $wgContLang;
 
 		if ( !is_array( $modules ) ) {
 			$modules = array( $modules );
@@ -104,6 +104,7 @@ class ApiHelp extends ApiBase {
 		}
 		$out->setPageTitle( $context->msg( 'api-help-title' ) );
 
+		$cache = ObjectCache::getMainWANInstance();
 		$cacheKey = null;
 		if ( count( $modules ) == 1 && $modules[0] instanceof ApiMain &&
 			$options['recursivesubmodules'] && $context->getLanguage() === $wgContLang
@@ -114,7 +115,7 @@ class ApiHelp extends ApiBase {
 				$cacheKey = wfMemcKey( 'apihelp', $modules[0]->getModulePath(),
 					(int)!empty( $options['toc'] ),
 					str_replace( ' ', '_', SpecialVersion::getVersion( 'nodb' ) ) );
-				$cached = $wgMemc->get( $cacheKey );
+				$cached = $cache->get( $cacheKey );
 				if ( $cached ) {
 					$out->addHTML( $cached );
 					return;
@@ -151,7 +152,7 @@ class ApiHelp extends ApiBase {
 		$out->addHTML( $html );
 
 		if ( $cacheKey !== null ) {
-			$wgMemc->set( $cacheKey, $out->getHTML(), $cacheHelpTimeout );
+			$cache->set( $cacheKey, $out->getHTML(), $cacheHelpTimeout );
 		}
 	}
 
