@@ -1397,11 +1397,17 @@ abstract class ApiBase extends ContextSource {
 		// error messages.
 		if ( $errors[0] instanceof Message ) {
 			$msg = $errors[0];
-			$code = $msg->getKey();
+			if ( $msg instanceof IApiMessage ) {
+				// TODO Handle $msg->getApiData();
+				$code = $msg->getApiCode();
+			} else {
+				$code = $msg->getKey();
+			}
 		} else {
 			$code = array_shift( $errors[0] );
 			$msg = wfMessage( $code, $errors[0] );
 		}
+		// TODO This is very similar to how parseMsg() works yet subtly different
 		if ( isset( ApiBase::$messageMap[$code] ) ) {
 			// Translate message to code, for backwards compatibility
 			$code = ApiBase::$messageMap[$code]['code'];
@@ -1936,8 +1942,12 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function dieReadOnly() {
 		$parsed = $this->parseMsg( array( 'readonlytext' ) );
+		$extraData = array( 'readonlyreason' => wfReadOnlyReason() );
+		if ( isset( $parsed['data'] ) ) {
+			$extraData = array_merge( $extraData, $parsed['data'] );
+		}
 		$this->dieUsage( $parsed['info'], $parsed['code'], /* http error */ 0,
-			array( 'readonlyreason' => wfReadOnlyReason() ) );
+			$extraData );
 	}
 
 	/**
@@ -1952,7 +1962,8 @@ abstract class ApiBase extends ContextSource {
 			$error = array( $error );
 		}
 		$parsed = $this->parseMsg( $error );
-		$this->dieUsage( $parsed['info'], $parsed['code'] );
+		$extraData = isset( $parsed['data'] ) ? $parsed['data'] : null;
+		$this->dieUsage( $parsed['info'], $parsed['code'], 0, $extraData );
 	}
 
 	/**
@@ -2003,6 +2014,14 @@ abstract class ApiBase extends ContextSource {
 		if ( is_array( $key ) ) {
 			$error = $key;
 			$key = array_shift( $error );
+		}
+
+		if ( $key instanceof IApiMessage ) {
+			return array(
+				'code' => $key->getApiCode(),
+				'info' => $key->inLanguage( 'en' )->useDatabase( false )->text(),
+				'data' => $key->getApiData()
+			);
 		}
 
 		if ( isset( self::$messageMap[$key] ) ) {
