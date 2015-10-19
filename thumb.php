@@ -392,7 +392,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 		if ( !$done ) { // transform() gave a fatal
 			global $wgMemc;
 			// Randomize TTL to reduce stampedes
-			$wgMemc->incrWithInit( $key, 3600 + mt_rand( 0, 300 ) );
+			$wgMemc->incrWithInit( $key, BagOStuff::TTL_HOUR + mt_rand( 0, 300 ) );
 		}
 	} );
 
@@ -445,7 +445,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 
 	if ( !$thumb || $thumb->isError() ) {
 		// Randomize TTL to reduce stampedes
-		$wgMemc->incrWithInit( $key, 3600 + mt_rand( 0, 300 ) );
+		$wgMemc->incrWithInit( $key, BagOStuff::TTL_HOUR + mt_rand( 0, 300 ) );
 	}
 
 	return array( $thumb, $errorHtml );

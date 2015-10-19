@@ -167,7 +167,7 @@ class Preprocessor_DOM implements Preprocessor {
 			if ( $xml === false ) {
 				$xml = $this->preprocessToXml( $text, $flags );
 				$cacheValue = sprintf( "%08d", self::CACHE_VERSION ) . $xml;
-				$wgMemc->set( $cacheKey, $cacheValue, 86400 );
+				$wgMemc->set( $cacheKey, $cacheValue, BagOStuff::TTL_DAY );
 				wfDebugLog( "Preprocessor", "Saved preprocessor XML to memcached (key $cacheKey)" );
 			}
 		} else {

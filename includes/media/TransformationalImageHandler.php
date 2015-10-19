@@ -523,7 +523,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 
 				return null;
 			}
-			$wgMemc->set( "imagemagick-version", $matches[1], 3600 );
+			$wgMemc->set( "imagemagick-version", $matches[1], BagOStuff::TTL_HOUR );
 
 			return $matches[1];
 		}
