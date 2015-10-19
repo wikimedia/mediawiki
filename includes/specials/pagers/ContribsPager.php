@@ -127,29 +127,54 @@ class ContribsPager extends ReverseChronologicalPager {
 		);
 
 		$result = [];
+		$extraFields = $this->getExtraSortFields();
 
 		// loop all results and collect them in an array
 		foreach ( $data as $query ) {
 			foreach ( $query as $i => $row ) {
-				// use index column as key, allowing us to easily sort in PHP
-				$result[$row->{$this->getIndexField()} . "-$i"] = $row;
+				// the database uses some extra fields to sort the results. To try to
+				// emulate this behavior in ksort/krsort, add these fields to the key.
+				$sortFields = '';
+				foreach ( $extraFields as $field ) {
+					if ( property_exists( $row, $field ) ) {
+						$sortFields .= $row->{$field};
+					}
+				}
+				// build a multidimensional array using the timestamp as the "first" key and the value
+				// of $sortFields (rev_i) as the key of the containing array, which allows us to sort
+				// the results using the timestamp (as the "first" order criterium) and the rev_id as
+				// a second criterium, if two or more revisions has the same timestamp.
+				$result[$row->{$this->getIndexField()}][$sortFields] = $row;
+
+				// sort the id fields for the current timestamp (can hold multiple entries)
+				if ( $descending ) {
+					ksort( $result[$row->{$this->getIndexField()}] );
+				} else {
+					krsort( $result[$row->{$this->getIndexField()}] );
+				}
 			}
 		}
 
-		// sort results
+		// sort results using the timestamp only
 		if ( $descending ) {
 			ksort( $result );
 		} else {
 			krsort( $result );
 		}
 
+		// resolve timestamp => rev_id => rev_data to rev_id => rev_data
+		$pages = [];
+		foreach ( $result as $timestamp => $page ) {
+			$pages += $page;
+		}
+
 		// enforce limit
-		$result = array_slice( $result, 0, $limit );
+		$pages = array_slice( $pages, 0, $limit );
 
 		// get rid of array keys
-		$result = array_values( $result );
+		$pages = array_values( $pages );
 
-		return new FakeResultWrapper( $result );
+		return new FakeResultWrapper( $pages );
 	}
 
 	function getQueryInfo() {
@@ -285,6 +310,10 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	function getIndexField() {
 		return 'rev_timestamp';
+	}
+
+	protected function getExtraSortFields() {
+		return [ 'rev_id' ];
 	}
 
 	function doBatchLookups() {
