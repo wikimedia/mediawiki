@@ -394,7 +394,11 @@ class JobQueueGroup {
 				return $value['v'];
 			} else {
 				$value = $wgConf->getConfig( $this->wiki, $name );
-				$cache->set( $key, array( 'v' => $value ), 86400 + mt_rand( 0, 86400 ) );
+				$cache->set(
+					$key,
+					array( 'v' => $value ),
+					$cache::TTL_DAY + mt_rand( 0, $cache::TTL_DAY )
+				);
 
 				return $value;
 			}

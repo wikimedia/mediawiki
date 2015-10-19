@@ -180,9 +180,10 @@ class SiteStats {
 	 * @return int
 	 */
 	static function numberingroup( $group ) {
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
+		$cache = ObjectCache::getMainWANInstance();
+		return $cache->getWithSetCallback(
 			wfMemcKey( 'SiteStats', 'groupcounts', $group ),
-			3600,
+			$cache::TTL_HOUR,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $group ) {
 				$dbr = wfGetDB( DB_SLAVE );
 

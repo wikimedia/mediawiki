@@ -681,10 +681,10 @@ class Block {
 	public static function isWhitelistedFromAutoblocks( $ip ) {
 		// Try to get the autoblock_whitelist from the cache, as it's faster
 		// than getting the msg raw and explode()'ing it.
-
-		$lines = ObjectCache::getMainWANInstance()->getWithSetCallback(
+		$cache = ObjectCache::getMainWANInstance();
+		$lines = $cache->getWithSetCallback(
 			wfMemcKey( 'ipb', 'autoblock', 'whitelist' ),
-			86400,
+			$cache::TTL_DAY,
 			function () {
 				return explode( "\n",
 					wfMessage( 'autoblock_whitelist' )->inContentLanguage()->plain() );

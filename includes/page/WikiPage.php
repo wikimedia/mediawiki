@@ -2914,8 +2914,9 @@ class WikiPage implements Page, IDBAccessObject {
 		$status->value = $logid;
 
 		// Show log excerpt on 404 pages rather than just a link
+		$cache = ObjectCache::getMainStashInstance();
 		$key = wfMemcKey( 'page-recent-delete', md5( $logTitle->getPrefixedText() ) );
-		ObjectCache::getMainStashInstance()->set( $key, 1, 86400 );
+		$cache->set( $key, 1, $cache::TTL_DAY );
 
 		return $status;
 	}
