@@ -4286,11 +4286,14 @@ abstract class DatabaseBase implements IDatabase {
 		// no-op
 	}
 
+	public function isReadOnly() {
+		return ( $this->getReadOnlyReason() !== false );
+	}
+
 	/**
 	 * @return string|bool Reason this DB is read-only or false if it is not
-	 * @since 1.27
 	 */
-	public function getReadOnlyReason() {
+	protected function getReadOnlyReason() {
 		$reason = $this->getLBInfo( 'readOnlyReason' );
 
 		return is_string( $reason ) ? $reason : false;
