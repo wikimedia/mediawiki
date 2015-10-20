@@ -97,6 +97,12 @@
 	/* Events */
 
 	/**
+	 * The file has started uploading
+	 *
+	 * @event uploadInitiated
+	 */
+
+	/**
 	 * The file has finished uploading
 	 *
 	 * @event fileUploaded
@@ -172,6 +178,7 @@
 	 *
 	 * @protected
 	 * @fires fileUploaded
+	 * @fires uploadInitiated
 	 * @return {jQuery.Promise}
 	 */
 	mw.Upload.BookletLayout.prototype.uploadFile = function () {
@@ -185,6 +192,7 @@
 		this.upload.setFile( file );
 		// Explicitly set the filename so that the old filename isn't used in case of retry
 		this.upload.setFilenameFromFile();
+		this.emit( 'uploadInitiated' );
 
 		this.uploadPromise = this.upload.uploadToStash();
 		this.uploadPromise.then( function () {

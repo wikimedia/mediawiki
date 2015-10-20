@@ -132,7 +132,8 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.renderInfoForm = function () {
-		var fieldset;
+		var fieldset,
+			layout = this;
 
 		this.filenameWidget = new OO.ui.TextInputWidget( {
 			required: true,
@@ -144,13 +145,19 @@
 			multiline: true,
 			autosize: true
 		} );
+		this.categoriesWidget = new mw.widgets.CategorySelector( {
+			$overlay: this.$overlay
+		} );
 		this.dateWidget = new mw.widgets.DateInputWidget( {
 			$overlay: this.$overlay,
 			required: true,
 			mustBeBefore: moment().add( 1, 'day' ).locale( 'en' ).format( 'YYYY-MM-DD' ) // Tomorrow
 		} );
-		this.categoriesWidget = new mw.widgets.CategorySelector( {
-			$overlay: this.$overlay
+
+		// Set the date to lastModified once the upload starts
+		this.on( 'uploadInitiated', function () {
+			var lastModified = moment( layout.upload.getFile().lastModified );
+			layout.dateWidget.setValue( lastModified.format( 'YYYY-MM-DD' ) );
 		} );
 
 		fieldset = new OO.ui.FieldsetLayout( {
