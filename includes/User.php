@@ -2492,7 +2492,7 @@ class User implements IDBAccessObject {
 			$update['user_newpass_time'] = $dbw->timestamp();
 		}
 
-		$dbw->update( 'user', $update, array( 'user_id' => $id ), __METHOD__ );
+		$dbw->update( 'user', $update, array( 'user_id' => $this->getId() ), __METHOD__ );
 	}
 
 	/**
