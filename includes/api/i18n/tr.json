@@ -3,9 +3,12 @@
 		"authors": [
 			"Sayginer",
 			"Sadrettin",
-			"Uğurkent"
+			"Uğurkent",
+			"Gorizon"
 		]
 	},
+	"apihelp-block-description": "Kullanıcıyı engelle",
+	"apihelp-block-param-reason": "Engelleme sebebi",
 	"apihelp-createaccount-param-name": "Kullanıcı adı.",
 	"apihelp-createaccount-param-password": "Parola (ignored if <var>$1mailpassword</var> is set).",
 	"apihelp-createaccount-param-email": "Kullanıcının e-posta adresi (isteğe bağlı).",

@@ -40,6 +40,7 @@
 	"apihelp-checktoken-param-token": "調べるトークン。",
 	"apihelp-checktoken-example-simple": "<kbd>csrf</kbd> トークンの妥当性を調べる。",
 	"apihelp-clearhasmsg-description": "現在の利用者の <code>hasmsg</code> フラグを消去します。",
+	"apihelp-clearhasmsg-example-1": "現在の利用者の <code>hasmsg</code> フラグを消去する。",
 	"apihelp-compare-description": "2つの版間の差分を取得します。\n\n\"from\" と \"to\" の両方の版番号、ページ名、もしくはページIDを渡す必要があります。",
 	"apihelp-compare-param-fromtitle": "比較する1つ目のページ名。",
 	"apihelp-compare-param-fromid": "比較する1つ目のページID。",

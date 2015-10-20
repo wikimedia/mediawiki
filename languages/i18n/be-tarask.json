@@ -1358,6 +1358,7 @@
 	"foreign-structured-upload-form-label-infoform-categories": "Катэгорыі",
 	"foreign-structured-upload-form-label-infoform-date": "Дата",
 	"foreign-structured-upload-form-label-own-work-message-local": "Я пацьвярджаю, што загружаю гэты файл згодна з правіламі і ліцэнзійнай палітыкай {{GRAMMAR:родны|{{SITENAME}}}}.",
+	"foreign-structured-upload-form-label-not-own-work-message-local": "Калі вы ня можаце загрузіць файл у адпаведнасьці з правіламі {{GRAMMAR:родны|{{SITENAME}}}}, калі ласка, закрыйце гэтае акно і паспрабуйце іншы мэтад.",
 	"backend-fail-stream": "Немагчыма накіраваць файл $1.",
 	"backend-fail-backup": "Немагчыма зрабіць рэзэрвовую копію файла $1.",
 	"backend-fail-notexists": "Файл $1 не існуе.",
