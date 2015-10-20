@@ -301,7 +301,7 @@ LUA;
 					break; // no jobs; nothing to do
 				}
 
-				JobQueue::incrStats( 'job-pop', $this->type );
+				JobQueue::incrStats( 'pops', $this->type );
 				$item = $this->unserialize( $blob );
 				if ( $item === false ) {
 					wfDebugLog( 'JobQueueRedis', "Could not unserialize {$this->type} job." );
@@ -393,7 +393,7 @@ LUA;
 				return false;
 			}
 
-			JobQueue::incrStats( 'job-ack', $this->type );
+			JobQueue::incrStats( 'acks', $this->type );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $conn, $e );
 		}
