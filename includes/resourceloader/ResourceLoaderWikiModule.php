@@ -214,7 +214,8 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( $this->getFlip( $context ) ) {
 				$style = CSSJanus::transform( $style, true, false );
 			}
-			$style = CSSMin::remap( $style, false, $this->getConfig()->get( 'ScriptPath' ), true );
+			$style = MemoizedCallable::call( 'CSSMin::remap',
+				array( $style, false, $this->getConfig()->get( 'ScriptPath' ), true ) );
 			if ( !isset( $styles[$media] ) ) {
 				$styles[$media] = array();
 			}
