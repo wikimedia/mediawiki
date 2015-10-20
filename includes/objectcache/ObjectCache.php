@@ -178,6 +178,9 @@ class ObjectCache {
 			return call_user_func( $params['factory'], $params );
 		} elseif ( isset( $params['class'] ) ) {
 			$class = $params['class'];
+			if ( $class === 'MultiWriteBagOStuff' && !isset( $params['asyncHandler'] ) ) {
+				$params['asyncHandler'] = 'DeferredUpdates::addCallableUpdate';
+			}
 			return new $class( $params );
 		} else {
 			throw new MWException( "The definition of cache type \""
