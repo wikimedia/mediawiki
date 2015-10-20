@@ -49,6 +49,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			// @todo cover the case of non-wikitext content in the main namespace
 			return;
 		}
+		// Make sure SearchEngine is turned on
+		$this->setUp();
 
 		$this->insertPage( 'Not_Main_Page', 'This is not a main page' );
 		$this->insertPage(
