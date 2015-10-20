@@ -374,7 +374,6 @@ class MessageBlobStore {
 			return array();
 		}
 
-		$config = $resourceLoader->getConfig();
 		$retval = array();
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'msg_resource',
@@ -390,13 +389,10 @@ class MessageBlobStore {
 				throw new MWException( __METHOD__ . ' passed an invalid module name' );
 			}
 
-			// Update the module's blobs if the set of messages changed or if the blob is
-			// older than the CacheEpoch setting
-			$keys = array_keys( FormatJson::decode( $row->mr_blob, true ) );
-			$values = array_values( array_unique( $module->getMessages() ) );
-			if ( $keys !== $values
-				|| wfTimestamp( TS_MW, $row->mr_timestamp ) <= $config->get( 'CacheEpoch' )
-			) {
+			// Update the module's blob if the list of messages changed
+			$blobKeys = array_keys( FormatJson::decode( $row->mr_blob, true ) );
+			$moduleMsgs = array_values( array_unique( $module->getMessages() ) );
+			if ( $blobKeys !== $moduleMsgs ) {
 				$retval[$row->mr_resource] = $this->updateModule( $row->mr_resource, $module, $lang );
 			} else {
 				$retval[$row->mr_resource] = $row->mr_blob;
