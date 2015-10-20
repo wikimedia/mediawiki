@@ -699,16 +699,18 @@ interface IDatabase {
 	 *
 	 * Takes the same arguments as IDatabase::select().
 	 *
-	 * @param string $table Table name
+	 * @since 1.27 Added $join_conds parameter
+	 *
+	 * @param array|string $tables Table names
 	 * @param string $vars Unused
 	 * @param array|string $conds Filters on the table
 	 * @param string $fname Function name for profiling
 	 * @param array $options Options for select
+	 * @param array $join_conds Join conditions (since 1.27)
 	 * @return int Row count
-	 * @since 1.24
 	 */
 	public function selectRowCount(
-		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array()
+		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = array(), $join_conds = array()
 	);
 
 	/**

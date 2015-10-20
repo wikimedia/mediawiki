@@ -1707,19 +1707,21 @@ abstract class DatabaseBase implements IDatabase {
 	 *
 	 * Takes the same arguments as DatabaseBase::select().
 	 *
-	 * @param string $table Table name
+	 * @since 1.27 Added $join_conds parameter
+	 *
+	 * @param array|string $tables Table names
 	 * @param string $vars Unused
 	 * @param array|string $conds Filters on the table
 	 * @param string $fname Function name for profiling
 	 * @param array $options Options for select
+	 * @param array $join_conds Join conditions (since 1.27)
 	 * @return int Row count
-	 * @since 1.24
 	 */
 	public function selectRowCount(
-		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array()
+		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = array(), $join_conds = array()
 	) {
 		$rows = 0;
-		$sql = $this->selectSQLText( $table, '1', $conds, $fname, $options );
+		$sql = $this->selectSQLText( $tables, '1', $conds, $fname, $options, $join_conds );
 		$res = $this->query( "SELECT COUNT(*) AS rowcount FROM ($sql) tmp_count", $fname );
 
 		if ( $res ) {
