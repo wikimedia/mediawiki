@@ -21,6 +21,8 @@
 
 namespace MediaWiki\Auth;
 
+use StatusValue;
+
 /**
  * A base class that implements some of the boilerplate for a PrimaryAuthenticationProvider
  *
@@ -46,6 +48,13 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 
 	public function providerAllowsAuthenticationDataChangeType( $type ) {
 		return true;
+	}
+
+	public function providerAllowsAuthenticationDataChange( AuthenticationRequest $req ) {
+		return StatusValue::newGood( 'ignored' );
+	}
+
+	public function providerChangeAuthenticationData( AuthenticationRequest $req ) {
 	}
 
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
