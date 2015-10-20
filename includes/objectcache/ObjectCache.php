@@ -47,12 +47,6 @@ use MediaWiki\Logger\LoggerFactory;
  *   Stored only on the individual web server.
  *   Not associated with other servers.
  *
- * - ObjectCache::getMainClusterInstance()
- *   Purpose: Memory storage for per-cluster coordination and tracking.
- *   Stored centrally within the local data-center.
- *   Not replicated to other DCs.
- *   Also known as $wgMemc. Configured by $wgMainCacheType.
- *
  * - ObjectCache::getMainWANInstance()
  *   Purpose: Cache.
  *   Stored in the local data-center's main cache (uses different cache keys).
@@ -60,10 +54,16 @@ use MediaWiki\Logger\LoggerFactory;
  *
  * - ObjectCache::getMainStashInstance()
  *   Purpose: Ephemeral storage.
- *   Stored centrally within the local data-center.
- *   Changes are replicated to other DCs (eventually consistent).
+ *   Stored centrally within the primary data-center.
+ *   Changes are applied there first and replicated to other DCs (best-effort).
  *   To retrieve the latest value (e.g. not from a slave), use BagOStuff:READ_LATEST.
  *   This store may be subject to LRU style evictions.
+ *
+ * - ObjectCache::getLocalClusterInstance()
+ *   Purpose: Memory storage for per-cluster coordination and tracking.
+ *   A typical use case would be a rate limit counter or cache regeneration mutex.
+ *   Stored centrally within the local data-center. Not replicated to other DCs.
+ *   Also known as $wgMemc. Configured by $wgMainCacheType.
  *
  * - wfGetCache( $cacheType )
  *   Get a specific cache type by key in $wgObjectCaches.
@@ -298,7 +298,7 @@ class ObjectCache {
 	 * @since 1.27
 	 * @return BagOStuff
 	 */
-	public static function getMainClusterInstance() {
+	public static function getLocalClusterInstance() {
 		global $wgMainCacheType;
 
 		return self::getInstance( $wgMainCacheType );

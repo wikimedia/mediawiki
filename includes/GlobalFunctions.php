@@ -3559,7 +3559,7 @@ function wfGetPrecompiledData( $name ) {
  */
 function wfMemcKey( /*...*/ ) {
 	return call_user_func_array(
-		array( ObjectCache::getMainClusterInstance(), 'makeKey' ),
+		array( ObjectCache::getLocalClusterInstance(), 'makeKey' ),
 		func_get_args()
 	);
 }
@@ -3578,7 +3578,7 @@ function wfForeignMemcKey( $db, $prefix /*...*/ ) {
 	$args = array_slice( func_get_args(), 2 );
 	$keyspace = $prefix ? "$db-$prefix" : $db;
 	return call_user_func_array(
-		array( ObjectCache::getMainClusterInstance(), 'makeKeyInternal' ),
+		array( ObjectCache::getLocalClusterInstance(), 'makeKeyInternal' ),
 		array( $keyspace, $args )
 	);
 }
@@ -3596,7 +3596,7 @@ function wfForeignMemcKey( $db, $prefix /*...*/ ) {
  */
 function wfGlobalCacheKey( /*...*/ ) {
 	return call_user_func_array(
-		array( ObjectCache::getMainClusterInstance(), 'makeGlobalKey' ),
+		array( ObjectCache::getLocalClusterInstance(), 'makeGlobalKey' ),
 		func_get_args()
 	);
 }
