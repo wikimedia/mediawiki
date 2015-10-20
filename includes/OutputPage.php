@@ -2705,6 +2705,7 @@ class OutputPage extends ContextSource {
 		$ret .= Html::element( 'title', null, $this->getHTMLTitle() ) . "\n";
 		$ret .= $this->getInlineHeadScripts() . "\n";
 		$ret .= $this->buildCssLinks() . "\n";
+		$ret .= $this->getScriptsForTopQueue() . "\n";
 		$ret .= $this->getExternalHeadScripts() . "\n";
 
 		foreach ( $this->getHeadLinksArray() as $item ) {
@@ -3006,18 +3007,25 @@ class OutputPage extends ContextSource {
 	 * @return string HTML fragment
 	 */
 	function getInlineHeadScripts() {
-		$links = array();
-
 		// Client profile classes for <html>. Allows for easy hiding/showing of UI components.
 		// Must be done synchronously on every page to avoid flashes of wrong content.
 		// Note: This class distinguishes MediaWiki-supported JavaScript from the rest.
 		// The "rest" includes browsers that support JavaScript but not supported by our runtime.
 		// For the performance benefit of the majority, this is added unconditionally here and is
 		// then fixed up by the startup module for unsupported browsers.
-		$links[] = Html::inlineScript(
+		return Html::inlineScript(
 			'document.documentElement.className = document.documentElement.className'
 			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );'
 		);
+	}
+	/**
+	 * JS stuff to put at the 'top', which goes in the <head>
+	 * These are modules marked with position 'top'
+	 *
+	 * @return string HTML fragment
+	  */
+	function getScriptsForTopQueue() {
+		$links = array();
 
 		// Load config before anything else
 		$links[] = ResourceLoader::makeInlineScript(
