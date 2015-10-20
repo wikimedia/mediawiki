@@ -1711,20 +1711,30 @@ return array(
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.pagesWithProp.css',
 	),
-	'mediawiki.special.preferences' => array(
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.preferences.js',
+	'mediawiki.special.preferences.tab' => array(
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.preferences.tab.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.preferences.css',
 		'position' => 'top',
 		'messages' => array(
 			'prefs-tabs-navigation-hint',
-			'prefswarning-warning',
-			'saveprefs',
 			'savedprefs',
 		),
 		'dependencies' => array(
-			'mediawiki.language',
-			'mediawiki.confirmCloseWindow',
 			'mediawiki.notification',
+		),
+	),
+	'mediawiki.special.preferences' => array(
+		'scripts' => array(
+			'resources/src/mediawiki.special/mediawiki.special.preferences.js',
+			'resources/src/mediawiki.special/mediawiki.special.preferences.timezone.js',
+		),
+		'messages' => array(
+			'prefswarning-warning',
+			'saveprefs',
+		),
+		'dependencies' => array(
+			'mediawiki.special.preferences.tab',
+			'mediawiki.confirmCloseWindow',
 		),
 	),
 	'mediawiki.special.recentchanges' => array(

@@ -46,6 +46,7 @@ class SpecialPreferences extends SpecialPage {
 			return;
 		}
 
+		$out->addModules( 'mediawiki.special.preferences.tab' );
 		$out->addModules( 'mediawiki.special.preferences' );
 
 		if ( $this->getRequest()->getCheck( 'success' ) ) {
