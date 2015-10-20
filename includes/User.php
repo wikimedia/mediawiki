@@ -2478,6 +2478,11 @@ class User implements IDBAccessObject {
 	 * @param bool $throttle If true, reset the throttle timestamp to the present
 	 */
 	public function setNewpassword( $str, $throttle = true ) {
+		$id = $this->getId();
+		if ( $id == 0 ) {
+			throw new LogicException( 'Cannot set new password for a user that is not in the database.' );
+		}
+
 		$dbw = wfGetDB( DB_MASTER );
 
 		$passwordFactory = new PasswordFactory();
