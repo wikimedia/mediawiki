@@ -7342,12 +7342,6 @@ $wgUseAjax = true;
 $wgAjaxExportList = array();
 
 /**
- * Enable watching/unwatching pages using AJAX.
- * Requires $wgUseAjax to be true too.
- */
-$wgAjaxWatch = true;
-
-/**
  * Enable AJAX check for file overwrite, pre-upload
  */
 $wgAjaxUploadDestCheck = true;
