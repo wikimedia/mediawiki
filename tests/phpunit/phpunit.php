@@ -72,7 +72,7 @@ class PHPUnitMaintClass extends Maintenance {
 
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgMainWANCache;
 		global $wgMainStash;
-		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
+		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages, $wgSearchType;
 		global $wgLocaltimezone, $wgLocalisationCacheConf;
 		global $wgDevelopmentWarnings;
 		global $wgSessionProviders;
@@ -105,6 +105,23 @@ class PHPUnitMaintClass extends Maintenance {
 		];
 
 		$wgUseDatabaseMessages = false; # Set for future resets
+
+		/*
+		 * Do not bother updating search tables
+		 *
+		 * To actually trigger updates to a search engine one will have to set
+		 * the global such as:
+		 *
+		 *     $this->setMwGlobals( array(
+		 *         'wgSearchType' => $this->db->getSearchEngine(),
+		 *     ) );
+		 *
+		 * If using addDBData(), you will need to set $wgSearchType before
+		 * inserting data or the SearchEngine will stay empty.
+		 *
+		 * See tests/phpunit/includes/search/SearchEngineTest.php
+		 */
+		$wgSearchType = 'SearchEngineDummy';
 
 		// Assume UTC for testing purposes
 		$wgLocaltimezone = 'UTC';
