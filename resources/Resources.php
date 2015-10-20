@@ -2037,6 +2037,8 @@ return array(
 		'dependencies' => array(
 			'oojs-ui',
 			'mediawiki.api',
+			'mediawiki.ForeignApi',
+			'mediawiki.Title',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),

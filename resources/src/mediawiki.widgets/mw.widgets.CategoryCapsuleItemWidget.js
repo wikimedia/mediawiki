@@ -7,42 +7,45 @@
 ( function ( $, mw ) {
 
 	/**
-	 * @class mw.widgets.CategoryCapsuleItemWidget
+	 * @class mw.widgets.PageExistenceCache
+	 * @private
+	 * @param {mw.Api} [api]
 	 */
-
-	var processExistenceCheckQueueDebounced,
-		api = new mw.Api(),
-		currentRequest = null,
-		existenceCache = {},
-		existenceCheckQueue = {};
-
-	// The existence checking code really could be refactored into a separate class.
+	function PageExistenceCache( api ) {
+		this.api = api || new mw.Api();
+		this.processExistenceCheckQueueDebounced = OO.ui.debounce( this.processExistenceCheckQueue );
+		this.currentRequest = null;
+		this.existenceCache = {};
+		this.existenceCheckQueue = {};
+	}
 
 	/**
+	 * Check for existence of pages in the queue.
+	 *
 	 * @private
 	 */
-	function processExistenceCheckQueue() {
+	PageExistenceCache.prototype.processExistenceCheckQueue = function () {
 		var queue, titles;
-		if ( currentRequest ) {
+		if ( this.currentRequest ) {
 			// Don't fire off a million requests at the same time
-			currentRequest.always( function () {
-				currentRequest = null;
-				processExistenceCheckQueueDebounced();
-			} );
+			this.currentRequest.always( function () {
+				this.currentRequest = null;
+				this.processExistenceCheckQueueDebounced();
+			}.bind( this ) );
 			return;
 		}
-		queue = existenceCheckQueue;
-		existenceCheckQueue = {};
+		queue = this.existenceCheckQueue;
+		this.existenceCheckQueue = {};
 		titles = Object.keys( queue ).filter( function ( title ) {
-			if ( existenceCache.hasOwnProperty( title ) ) {
-				queue[ title ].resolve( existenceCache[ title ] );
+			if ( this.existenceCache.hasOwnProperty( title ) ) {
+				queue[ title ].resolve( this.existenceCache[ title ] );
 			}
-			return !existenceCache.hasOwnProperty( title );
-		} );
+			return !this.existenceCache.hasOwnProperty( title );
+		}.bind( this ) );
 		if ( !titles.length ) {
 			return;
 		}
-		currentRequest = api.get( {
+		this.currentRequest = this.api.get( {
 			action: 'query',
 			prop: [ 'info' ],
 			titles: titles
@@ -50,14 +53,12 @@
 			var index, curr, title;
 			for ( index in response.query.pages ) {
 				curr = response.query.pages[ index ];
-				title = mw.Title.newFromText( curr.title ).getPrefixedText();
-				existenceCache[ title ] = curr.missing === undefined;
-				queue[ title ].resolve( existenceCache[ title ] );
+				title = new ForeignTitle( curr.title ).getPrefixedText();
+				this.existenceCache[ title ] = curr.missing === undefined;
+				queue[ title ].resolve( this.existenceCache[ title ] );
 			}
-		} );
-	}
-
-	processExistenceCheckQueueDebounced = OO.ui.debounce( processExistenceCheckQueue );
+		}.bind( this ) );
+	};
 
 	/**
 	 * Register a request to check whether a page exists.
@@ -66,16 +67,35 @@
 	 * @param {mw.Title} title
 	 * @return {jQuery.Promise} Promise resolved with true if the page exists or false otherwise
 	 */
-	function checkPageExistence( title ) {
+	PageExistenceCache.prototype.checkPageExistence = function ( title ) {
 		var key = title.getPrefixedText();
-		if ( !existenceCheckQueue[ key ] ) {
-			existenceCheckQueue[ key ] = $.Deferred();
+		if ( !this.existenceCheckQueue[ key ] ) {
+			this.existenceCheckQueue[ key ] = $.Deferred();
 		}
-		processExistenceCheckQueueDebounced();
-		return existenceCheckQueue[ key ].promise();
-	}
+		this.processExistenceCheckQueueDebounced();
+		return this.existenceCheckQueue[ key ].promise();
+	};
 
 	/**
+	 * @class mw.widgets.ForeignTitle
+	 * @private
+	 * @extends mw.Title
+	 *
+	 * @constructor
+	 * @inheritdoc
+	 */
+	function ForeignTitle() {
+		ForeignTitle.parent.apply( this, arguments );
+	}
+	OO.inheritClass( ForeignTitle, mw.Title );
+	ForeignTitle.prototype.getNamespacePrefix = function () {
+		// We only need to handle categories here...
+		return 'Category:'; // HACK
+	};
+
+	/**
+	 * @class mw.widgets.CategoryCapsuleItemWidget
+	 *
 	 * Category selector capsule item widget. Extends OO.ui.CapsuleItemWidget with the ability to link
 	 * to the given page, and to show its existence status (i.e., whether it is a redlink).
 	 *
@@ -85,6 +105,7 @@
 	 * @constructor
 	 * @param {Object} config Configuration options
 	 * @cfg {mw.Title} title Page title to use (required)
+	 * @cfg {string} [apiUrl] API URL, if not the current wiki's API
 	 */
 	mw.widgets.CategoryCapsuleItemWidget = function MWWCategoryCapsuleItemWidget( config ) {
 		// Parent constructor
@@ -95,6 +116,7 @@
 
 		// Properties
 		this.title = config.title;
+		this.apiUrl = config.apiUrl || '';
 		this.$link = $( '<a>' )
 			.text( this.label )
 			.attr( 'target', '_blank' )
@@ -107,14 +129,38 @@
 		this.setMissing( false );
 		this.$label.replaceWith( this.$link );
 		this.setLabelElement( this.$link );
-		checkPageExistence( this.title ).done( function ( exists ) {
-			this.setMissing( !exists );
-		}.bind( this ) );
+
+		/*jshint -W024*/
+		if ( !this.constructor.static.pageExistenceCaches[ this.apiUrl ] ) {
+			this.constructor.static.pageExistenceCaches[ this.apiUrl ] =
+				new PageExistenceCache( new mw.ForeignApi( this.apiUrl ) );
+		}
+		this.constructor.static.pageExistenceCaches[ this.apiUrl ]
+			.checkPageExistence( new ForeignTitle( this.title.getPrefixedText() ) )
+			.done( function ( exists ) {
+				this.setMissing( !exists );
+			}.bind( this ) );
+		/*jshint +W024*/
 	};
 
 	/* Setup */
 
 	OO.inheritClass( mw.widgets.CategoryCapsuleItemWidget, OO.ui.CapsuleItemWidget );
+
+	/* Static Properties */
+
+	/*jshint -W024*/
+	/**
+	 * Map of API URLs to PageExistenceCache objects.
+	 *
+	 * @static
+	 * @inheritable
+	 * @property {Object}
+	 */
+	mw.widgets.CategoryCapsuleItemWidget.static.pageExistenceCaches = {
+		'': new PageExistenceCache()
+	};
+	/*jshint +W024*/
 
 	/* Methods */
 
@@ -125,13 +171,17 @@
 	 * @param {boolean} missing Whether the page is missing (does not exist)
 	 */
 	mw.widgets.CategoryCapsuleItemWidget.prototype.setMissing = function ( missing ) {
+		var
+			title = new ForeignTitle( this.title.getPrefixedText() ), // HACK
+			prefix = this.apiUrl.replace( '/w/api.php', '' ); // HACK
+
 		if ( !missing ) {
 			this.$link
-				.attr( 'href', this.title.getUrl() )
+				.attr( 'href', prefix + title.getUrl() )
 				.removeClass( 'new' );
 		} else {
 			this.$link
-				.attr( 'href', this.title.getUrl( { action: 'edit', redlink: 1 } ) )
+				.attr( 'href', prefix + title.getUrl( { action: 'edit', redlink: 1 } ) )
 				.addClass( 'new' );
 		}
 	};
