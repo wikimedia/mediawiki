@@ -243,7 +243,7 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function selectRowCount(
-		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array()
+		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = array(), $join_conds = array()
 	) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
