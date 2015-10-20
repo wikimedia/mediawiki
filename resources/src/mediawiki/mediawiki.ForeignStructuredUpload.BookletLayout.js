@@ -132,6 +132,14 @@
 		this.selectFileWidget.on( 'change', this.onUploadFormChange.bind( this ) );
 		this.ownWorkCheckbox.on( 'change', this.onUploadFormChange.bind( this ) );
 
+		// Set the date to lastModified once we have the file
+		this.selectFileWidget.on( 'change', function () {
+			var file = layout.getFile();
+			if ( file && file.lastModified ) {
+				layout.dateWidget.setValue( moment( file.lastModified ).format( 'YYYY-MM-DD' ) );
+			}
+		} );
+
 		return this.uploadForm;
 	};
 
@@ -161,15 +169,15 @@
 			multiline: true,
 			autosize: true
 		} );
-		this.dateWidget = new mw.widgets.DateInputWidget( {
-			$overlay: this.$overlay,
-			required: true,
-			mustBeBefore: moment().add( 1, 'day' ).locale( 'en' ).format( 'YYYY-MM-DD' ) // Tomorrow
-		} );
 		this.categoriesWidget = new mw.widgets.CategorySelector( {
 			// Can't be done here because we don't know the target wiki yet... done in #initialize.
 			// api: new mw.ForeignApi( ... ),
 			$overlay: this.$overlay
+		} );
+		this.dateWidget = new mw.widgets.DateInputWidget( {
+			$overlay: this.$overlay,
+			required: true,
+			mustBeBefore: moment().add( 1, 'day' ).locale( 'en' ).format( 'YYYY-MM-DD' ) // Tomorrow
 		} );
 
 		fieldset = new OO.ui.FieldsetLayout( {
