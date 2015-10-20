@@ -3467,11 +3467,7 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $this->getLinksTimestamp() < $this->getTouched() ) {
 			$params['isOpportunistic'] = true;
 			$params['rootJobTimestamp'] = $parserOutput->getCacheTime();
-
-			JobQueueGroup::singleton()->lazyPush( EnqueueJob::newFromLocalJobs(
-				new JobSpecification( 'refreshLinks', $params,
-					array( 'removeDuplicates' => true ), $this->mTitle )
-			) );
+			JobQueueGroup::singleton()->lazyPush( new RefreshLinksJob( $this->mTitle, $params ) );
 		}
 	}
 
