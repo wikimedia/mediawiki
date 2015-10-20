@@ -1511,4 +1511,10 @@ interface IDatabase {
 	 *   restore the initial value
 	 */
 	public function setBigSelects( $value = true );
+
+	/**
+	 * @return bool Whether this DB is read-only
+	 * @since 1.27
+	 */
+	public function isReadOnly();
 }
