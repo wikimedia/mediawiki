@@ -59,17 +59,14 @@
  */
 
 ( function ( $, mw ) {
-	/* Local scope */
-
 	var ts,
 		parsers = [];
 
 	/* Parser utility functions */
 
 	function getParserById( name ) {
-		var i,
-			len = parsers.length;
-		for ( i = 0; i < len; i++ ) {
+		var i;
+		for ( i = 0; i < parsers.length; i++ ) {
 			if ( parsers[ i ].id.toLowerCase() === name.toLowerCase() ) {
 				return parsers[ i ];
 			}
@@ -88,21 +85,19 @@
 			// Cast any numbers or other stuff to a string, methods
 			// like charAt, toLowerCase and split are expected.
 			return String( data );
-		} else {
-			if ( !node ) {
-				return $node.text();
-			} else if ( node.tagName.toLowerCase() === 'img' ) {
-				return $node.attr( 'alt' ) || ''; // handle undefined alt
-			} else {
-				return $.map( $.makeArray( node.childNodes ), function ( elem ) {
-					if ( elem.nodeType === Node.ELEMENT_NODE ) {
-						return getElementSortKey( elem );
-					} else {
-						return $.text( elem );
-					}
-				} ).join( '' );
-			}
 		}
+		if ( !node ) {
+			return $node.text();
+		}
+		if ( node.tagName.toLowerCase() === 'img' ) {
+			return $node.attr( 'alt' ) || ''; // handle undefined alt
+		}
+		return $.map( $.makeArray( node.childNodes ), function ( elem ) {
+			if ( elem.nodeType === Node.ELEMENT_NODE ) {
+				return getElementSortKey( elem );
+			}
+			return $.text( elem );
+		} ).join( '' );
 	}
 
 	function detectParserForColumn( table, rows, column ) {
@@ -247,7 +242,6 @@
 			pos = normalized[ i ][ checkCell ];
 
 			l = row[ pos ].length;
-
 			for ( j = 0; j < l; j++ ) {
 				fragment.appendChild( row[ pos ][ j ] );
 			}
@@ -299,7 +293,7 @@
 
 	function uniqueElements( array ) {
 		var uniques = [];
-		$.each( array, function ( index, elem ) {
+		$.each( array, function ( i, elem ) {
 			if ( elem !== undefined && $.inArray( elem, uniques ) === -1 ) {
 				uniques.push( elem );
 			}
@@ -322,6 +316,7 @@
 			exploded,
 			$tableHeaders = $( [] ),
 			$tableRows = $( 'thead:eq(0) > tr', table );
+
 		if ( $tableRows.length <= 1 ) {
 			$tableHeaders = $tableRows.children( 'th' );
 		} else {
@@ -413,9 +408,8 @@
 	}
 
 	function isValueInArray( v, a ) {
-		var i,
-				len = a.length;
-		for ( i = 0; i < len; i++ ) {
+		var i;
+		for ( i = 0; i < a.length; i++ ) {
 			if ( a[ i ][ 0 ] === v ) {
 				return true;
 			}
@@ -467,7 +461,8 @@
 		$headers.removeClass( css[ 0 ] ).removeClass( css[ 1 ] ).attr( 'title', msg[ 1 ] );
 
 		for ( var i = 0; i < list.length; i++ ) {
-			$headers.eq( columnToHeader[ list[ i ][ 0 ] ] )
+			$headers
+				.eq( columnToHeader[ list[ i ][ 0 ] ] )
 				.addClass( css[ list[ i ][ 1 ] ] )
 				.attr( 'title', msg[ list[ i ][ 1 ] ] );
 		}
@@ -483,14 +478,14 @@
 
 	function multisort( table, sortList, cache ) {
 		var i,
-			sortFn = [],
-			len = sortList.length;
-		for ( i = 0; i < len; i++ ) {
+			sortFn = [];
+
+		for ( i = 0; i < sortList.length; i++ ) {
 			sortFn[ i ] = ( sortList[ i ][ 1 ] ) ? sortTextDesc : sortText;
 		}
 		cache.normalized.sort( function ( array1, array2 ) {
 			var i, col, ret;
-			for ( i = 0; i < len; i++ ) {
+			for ( i = 0; i < sortList.length; i++ ) {
 				col = sortList[ i ][ 0 ];
 				ret = sortFn[ i ].call( this, array1[ col ], array2[ col ] );
 				if ( ret !== 0 ) {
@@ -518,7 +513,7 @@
 			ascii = separatorTransformTable[ 0 ].split( '\t' ).concat( digitTransformTable[ 0 ].split( '\t' ) );
 			localised = separatorTransformTable[ 1 ].split( '\t' ).concat( digitTransformTable[ 1 ].split( '\t' ) );
 
-			// Construct regex for number identification
+			// Construct regexes for number identification
 			for ( i = 0; i < ascii.length; i++ ) {
 				ts.transformTable[ localised[ i ] ] = ascii[ i ];
 				digits.push( mw.RegExp.escape( localised[ i ] ) );
@@ -588,8 +583,8 @@
 		$table.find( '> tbody > tr' ).each( function () {
 			var i,
 				col = 0,
-				l = this.cells.length;
-			for ( i = 0; i < l; i++ ) {
+				len = this.cells.length;
+			for ( i = 0; i < len; i++ ) {
 				$( this.cells[ i ] ).data( 'tablesorter', {
 					realCellIndex: col,
 					realRowIndex: this.rowIndex
@@ -758,10 +753,9 @@
 	 * Converts sort objects [ { Integer: String }, ... ] to the internally used nested array
 	 * structure [ [ Integer , Integer ], ... ]
 	 *
-	 * @param sortObjects {Array} List of sort objects.
+	 * @param {Array} sortObjects List of sort objects.
 	 * @return {Array} List of internal sort definitions.
 	 */
-
 	function convertSortList( sortObjects ) {
 		var sortList = [];
 		$.each( sortObjects, function ( i, sortObject ) {
@@ -1016,15 +1010,7 @@
 			},
 
 			addParser: function ( parser ) {
-				var i,
-					len = parsers.length,
-					a = true;
-				for ( i = 0; i < len; i++ ) {
-					if ( parsers[ i ].id.toLowerCase() === parser.id.toLowerCase() ) {
-						a = false;
-					}
-				}
-				if ( a ) {
+				if ( !getParserById( parser.id ) ) {
 					parsers.push( parser );
 				}
 			},
@@ -1111,9 +1097,8 @@
 		format: function ( s ) {
 			var i, item,
 				a = s.split( '.' ),
-				r = '',
-				len = a.length;
-			for ( i = 0; i < len; i++ ) {
+				r = '';
+			for ( i = 0; i < a.length; i++ ) {
 				item = a[ i ];
 				if ( item.length === 1 ) {
 					r += '00' + item;
@@ -1156,23 +1141,20 @@
 			return ts.rgx.isoDate[ 0 ].test( s );
 		},
 		format: function ( s ) {
-			var isodate,
-				matches;
+			var isodate, matches;
 			if ( !Date.prototype.toISOString ) {
 				// Old browsers don't understand iso, Fallback to US date parsing and ignore the time part.
 				matches = $.trim( s ).match( ts.rgx.isoDate[ 1 ] );
-				if ( matches ) {
-					isodate = new Date( matches[ 2 ]  + '/' + matches[ 3 ] + '/' + matches[ 1 ] );
-				} else {
+				if ( !matches ) {
 					return $.tablesorter.formatFloat( 0 );
 				}
+				isodate = new Date( matches[ 2 ]  + '/' + matches[ 3 ] + '/' + matches[ 1 ] );
 			} else {
 				matches = s.match( ts.rgx.isoDate[ 0 ] );
-				if ( matches ) {
-					isodate = new Date( $.trim( matches[ 0 ] ) );
-				} else {
+				if ( !matches ) {
 					return $.tablesorter.formatFloat( 0 );
 				}
+				isodate = new Date( $.trim( matches[ 0 ] ) );
 			}
 			return $.tablesorter.formatFloat( ( isodate !== undefined ) ? isodate.getTime() : 0 );
 		},
