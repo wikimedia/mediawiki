@@ -454,12 +454,12 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
-	 * @see JobQueue::doAck()
+	 * @see JobQueue::markJobComplete()
 	 * @param Job $job
 	 * @throws MWException
 	 * @return Job|bool
 	 */
-	protected function doAck( Job $job ) {
+	protected function markJobComplete( Job $job ) {
 		if ( !isset( $job->metadata['id'] ) ) {
 			throw new MWException( "Job of type '{$job->getType()}' has no ID." );
 		}

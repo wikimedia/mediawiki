@@ -306,7 +306,7 @@ class JobQueueFederated extends JobQueue {
 		return false;
 	}
 
-	protected function doAck( Job $job ) {
+	protected function markJobComplete( Job $job ) {
 		if ( !isset( $job->metadata['QueuePartition'] ) ) {
 			throw new MWException( "The given job has no defined partition name." );
 		}

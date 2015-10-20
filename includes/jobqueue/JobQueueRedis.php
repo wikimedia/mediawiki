@@ -354,13 +354,13 @@ LUA;
 	}
 
 	/**
-	 * @see JobQueue::doAck()
+	 * @see JobQueue::markJobComplete()
 	 * @param Job $job
 	 * @return Job|bool
 	 * @throws UnexpectedValueException
 	 * @throws JobQueueError
 	 */
-	protected function doAck( Job $job ) {
+	protected function markJobComplete( Job $job ) {
 		if ( !isset( $job->metadata['uuid'] ) ) {
 			throw new UnexpectedValueException( "Job of type '{$job->getType()}' has no UUID." );
 		}

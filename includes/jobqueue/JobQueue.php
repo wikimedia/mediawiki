@@ -395,14 +395,14 @@ abstract class JobQueue {
 		if ( $job->getType() !== $this->type ) {
 			throw new MWException( "Got '{$job->getType()}' job; expected '{$this->type}'." );
 		}
-		$this->doAck( $job );
+		$this->markJobComplete( $job );
 	}
 
 	/**
 	 * @see JobQueue::ack()
 	 * @param Job $job
 	 */
-	abstract protected function doAck( Job $job );
+	abstract protected function markJobComplete( Job $job );
 
 	/**
 	 * Register the "root job" of a given job into the queue for de-duplication.
