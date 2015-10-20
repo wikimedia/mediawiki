@@ -15,27 +15,28 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	protected $search;
 
 	/**
-	 * Checks for database type & version.
 	 * Will skip current test if DB does not support search.
 	 */
 	protected function setUp() {
 		parent::setUp();
 
+		if ( !$this->dbSupportsFullTextSearch() ) {
+			$this->markTestSkipped( "MySQL or SQLite with FTS3 only" );
+		}
+		$this->search = SearchEngine::create();
+	}
+
+	/**
+	 * Checks for database type & version.
+	 *
+	 * @return bool Whether the database supports Full Text Search
+	 */
+	protected function dbSupportsFullTextSearch() {
 		// Search tests require MySQL or SQLite with FTS
 		$dbType = $this->db->getType();
 		$dbSupported = ( $dbType === 'mysql' )
 			|| ( $dbType === 'sqlite' && $this->db->getFulltextSearchModule() == 'FTS3' );
-
-		if ( !$dbSupported ) {
-			$this->markTestSkipped( "MySQL or SQLite with FTS3 only" );
-		}
-
-		$searchType = $this->db->getSearchEngine();
-		$this->setMwGlobals( array(
-			'wgSearchType' => $searchType
-		) );
-
-		$this->search = new $searchType( $this->db );
+		return $dbSupported;
 	}
 
 	protected function tearDown() {
@@ -49,6 +50,15 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			// @todo cover the case of non-wikitext content in the main namespace
 			return;
 		}
+		if ( !$this->dbSupportsFullTextSearch() ) {
+			// Do not bother injecting data, we will skip all tests.
+			return;
+		}
+
+		// Make sure SearchEngine is turned on
+		$this->setMwGlobals( array(
+			'wgSearchType' => $this->db->getSearchEngine(),
+		) );
 
 		$this->insertPage( 'Not_Main_Page', 'This is not a main page' );
 		$this->insertPage(
