@@ -1712,14 +1712,15 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param array|string $conds Filters on the table
 	 * @param string $fname Function name for profiling
 	 * @param array $options Options for select
+	 * @param string|array $join_conds Join conditions
 	 * @return int Row count
 	 * @since 1.24
 	 */
 	public function selectRowCount(
-		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array()
+		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array(), $join_conds = array()
 	) {
 		$rows = 0;
-		$sql = $this->selectSQLText( $table, '1', $conds, $fname, $options );
+		$sql = $this->selectSQLText( $table, '1', $conds, $fname, $options, $join_conds );
 		$res = $this->query( "SELECT COUNT(*) AS rowcount FROM ($sql) tmp_count", $fname );
 
 		if ( $res ) {

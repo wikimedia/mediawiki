@@ -704,11 +704,12 @@ interface IDatabase {
 	 * @param array|string $conds Filters on the table
 	 * @param string $fname Function name for profiling
 	 * @param array $options Options for select
+	 * @param string|array $join_conds Join conditions
 	 * @return int Row count
 	 * @since 1.24
 	 */
 	public function selectRowCount(
-		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array()
+		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = array(), $join_conds = array()
 	);
 
 	/**
