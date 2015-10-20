@@ -16,6 +16,7 @@ require_once dirname( dirname( __DIR__ ) ) . "/maintenance/Maintenance.php";
 class PHPUnitMaintClass extends Maintenance {
 
 	public static $additionalOptions = array(
+		'profiler' => false,
 		'regex' => false,
 		'file' => false,
 		'use-filebackend' => false,
