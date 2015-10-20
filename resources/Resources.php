@@ -1717,14 +1717,24 @@ return array(
 		'position' => 'top',
 		'messages' => array(
 			'prefs-tabs-navigation-hint',
-			'prefswarning-warning',
-			'saveprefs',
 			'savedprefs',
 		),
 		'dependencies' => array(
-			'mediawiki.language',
-			'mediawiki.confirmCloseWindow',
 			'mediawiki.notification',
+		),
+	),
+	'mediawiki.special.preferences.late' => array(
+		'scripts' => array(
+			'resources/src/mediawiki.special/mediawiki.special.preferences.late.js',
+			'resources/src/mediawiki.special/mediawiki.special.preferences.timezone.js',
+		),
+		'messages' => array(
+			'prefswarning-warning',
+			'saveprefs',
+		),
+		'dependencies' => array(
+			'mediawiki.special.preferences',
+			'mediawiki.confirmCloseWindow',
 		),
 	),
 	'mediawiki.special.recentchanges' => array(

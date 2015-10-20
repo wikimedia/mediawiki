@@ -4,10 +4,7 @@
 ( function ( mw, $ ) {
 	$( function () {
 		var $preftoc, $preferences, $fieldsets,
-			hash, labelFunc,
-			$tzSelect, $tzTextbox, $localtimeHolder, servertime,
-			$checkBoxes, allowCloseWindow,
-			notif;
+			hash, labelFunc, notif;
 
 		labelFunc = function () {
 			return this.id.replace( /^mw-prefsection/g, 'preftab' );
@@ -158,119 +155,5 @@
 				e.preventDefault();
 			} );
 		}
-
-		// Timezone functions.
-		// Guesses Timezone from browser and updates fields onchange.
-
-		$tzSelect = $( '#mw-input-wptimecorrection' );
-		$tzTextbox = $( '#mw-input-wptimecorrection-other' );
-		$localtimeHolder = $( '#wpLocalTime' );
-		servertime = parseInt( $( 'input[name="wpServerTime"]' ).val(), 10 );
-
-		function minutesToHours( min ) {
-			var tzHour = Math.floor( Math.abs( min ) / 60 ),
-				tzMin = Math.abs( min ) % 60,
-				tzString = ( ( min >= 0 ) ? '' : '-' ) + ( ( tzHour < 10 ) ? '0' : '' ) + tzHour +
-					':' + ( ( tzMin < 10 ) ? '0' : '' ) + tzMin;
-			return tzString;
-		}
-
-		function hoursToMinutes( hour ) {
-			var minutes,
-				arr = hour.split( ':' );
-
-			arr[ 0 ] = parseInt( arr[ 0 ], 10 );
-
-			if ( arr.length === 1 ) {
-				// Specification is of the form [-]XX
-				minutes = arr[ 0 ] * 60;
-			} else {
-				// Specification is of the form [-]XX:XX
-				minutes = Math.abs( arr[ 0 ] ) * 60 + parseInt( arr[ 1 ], 10 );
-				if ( arr[ 0 ] < 0 ) {
-					minutes *= -1;
-				}
-			}
-			// Gracefully handle non-numbers.
-			if ( isNaN( minutes ) ) {
-				return 0;
-			} else {
-				return minutes;
-			}
-		}
-
-		function updateTimezoneSelection() {
-			var minuteDiff, localTime,
-				type = $tzSelect.val();
-
-			if ( type === 'guess' ) {
-				// Get browser timezone & fill it in
-				minuteDiff = -( new Date().getTimezoneOffset() );
-				$tzTextbox.val( minutesToHours( minuteDiff ) );
-				$tzSelect.val( 'other' );
-				$tzTextbox.prop( 'disabled', false );
-			} else if ( type === 'other' ) {
-				// Grab data from the textbox, parse it.
-				minuteDiff = hoursToMinutes( $tzTextbox.val() );
-			} else {
-				// Grab data from the $tzSelect value
-				minuteDiff = parseInt( type.split( '|' )[ 1 ], 10 ) || 0;
-				$tzTextbox.val( minutesToHours( minuteDiff ) );
-			}
-
-			// Determine local time from server time and minutes difference, for display.
-			localTime = servertime + minuteDiff;
-
-			// Bring time within the [0,1440) range.
-			localTime = ( ( localTime % 1440 ) + 1440 ) % 1440;
-
-			$localtimeHolder.text( mw.language.convertNumber( minutesToHours( localTime ) ) );
-		}
-
-		if ( $tzSelect.length && $tzTextbox.length ) {
-			$tzSelect.change( updateTimezoneSelection );
-			$tzTextbox.blur( updateTimezoneSelection );
-			updateTimezoneSelection();
-		}
-
-		// Preserve the tab after saving the preferences
-		// Not using cookies, because their deletion results are inconsistent.
-		// Not using jStorage due to its enormous size (for this feature)
-		if ( window.sessionStorage ) {
-			if ( sessionStorage.getItem( 'mediawikiPreferencesTab' ) !== null ) {
-				switchPrefTab( sessionStorage.getItem( 'mediawikiPreferencesTab' ), 'noHash' );
-			}
-			// Deleting the key, the tab states should be reset until we press Save
-			sessionStorage.removeItem( 'mediawikiPreferencesTab' );
-
-			$( '#mw-prefs-form' ).submit( function () {
-				var storageData = $( $preftoc ).find( 'li.selected a' ).attr( 'id' ).replace( 'preftab-', '' );
-				sessionStorage.setItem( 'mediawikiPreferencesTab', storageData );
-			} );
-		}
-
-		// To disable all 'namespace' checkboxes in Search preferences
-		// when 'Search in all namespaces' checkbox is ticked.
-		$checkBoxes = $( '#mw-htmlform-advancedsearchoptions input[id^=mw-input-wpsearchnamespaces]' );
-		if ( $( '#mw-input-wpsearcheverything' ).prop( 'checked' ) ) {
-			$checkBoxes.prop( 'disabled', true );
-		}
-		$( '#mw-input-wpsearcheverything' ).change( function () {
-			$checkBoxes.prop( 'disabled', $( this ).prop( 'checked' ) );
-		} );
-
-		// Set up a message to notify users if they try to leave the page without
-		// saving.
-		$( '#mw-prefs-form' ).data( 'origdata', $( '#mw-prefs-form' ).serialize() );
-		allowCloseWindow = mw.confirmCloseWindow( {
-			test: function () {
-				return $( '#mw-prefs-form' ).serialize() !== $( '#mw-prefs-form' ).data( 'origdata' );
-			},
-
-			message: mw.msg( 'prefswarning-warning', mw.msg( 'saveprefs' ) ),
-			namespace: 'prefswarning'
-		} );
-		$( '#mw-prefs-form' ).submit( $.proxy( allowCloseWindow, 'release' ) );
-		$( '#mw-prefs-restoreprefs' ).click( $.proxy( allowCloseWindow, 'release' ) );
-	} );
+	});
 }( mediaWiki, jQuery ) );

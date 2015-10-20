@@ -47,6 +47,7 @@ class SpecialPreferences extends SpecialPage {
 		}
 
 		$out->addModules( 'mediawiki.special.preferences' );
+		$out->addModules( 'mediawiki.special.preferences.late' );
 
 		if ( $this->getRequest()->getCheck( 'success' ) ) {
 			$out->wrapWikiMsg(
