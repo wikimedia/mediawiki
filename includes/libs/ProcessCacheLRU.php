@@ -55,7 +55,7 @@ class ProcessCacheLRU {
 	 */
 	public function set( $key, $prop, $value ) {
 		if ( isset( $this->cache[$key] ) ) {
-			$this->ping( $key ); // push to top
+			$this->ping( $key );
 		} elseif ( count( $this->cache ) >= $this->maxCacheKeys ) {
 			reset( $this->cache );
 			$evictKey = key( $this->cache );
@@ -94,13 +94,11 @@ class ProcessCacheLRU {
 	 * @return mixed
 	 */
 	public function get( $key, $prop ) {
-		if ( isset( $this->cache[$key][$prop] ) ) {
-			// push to top
-			$this->ping( $key );
-			return $this->cache[$key][$prop];
-		} else {
+		if ( !isset( $this->cache[$key][$prop] ) ) {
 			return null;
 		}
+		$this->ping( $key );
+		return $this->cache[$key][$prop];
 	}
 
 	/**
@@ -130,7 +128,7 @@ class ProcessCacheLRU {
 	 */
 	public function resize( $maxKeys ) {
 		Assert::parameterType( 'integer', $maxKeys, '$maxKeys' );
-		Assert::parameter( $maxKeys >= 1, '$maxKeys', 'must be >= 1' );
+		Assert::parameter( $maxKeys > 0, '$maxKeys', 'must be above zero' );
 
 		$this->maxCacheKeys = $maxKeys;
 		while ( count( $this->cache ) > $this->maxCacheKeys ) {
