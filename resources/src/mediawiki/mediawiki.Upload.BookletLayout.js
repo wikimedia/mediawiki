@@ -106,6 +106,7 @@
 	 * The file has been saved to the database
 	 *
 	 * @event fileSaved
+	 * @param {Object} imageInfo See mw.Upload#getImageInfo
 	 */
 
 	/**
@@ -234,7 +235,7 @@
 				layout.setPage( 'insert' );
 
 				deferred.resolve();
-				layout.emit( 'fileSaved' );
+				layout.emit( 'fileSaved', layout.upload.getImageInfo() );
 			}, function () {
 				var errorMessage = layout.getErrorMessageForStateDetails();
 				deferred.reject( errorMessage );
