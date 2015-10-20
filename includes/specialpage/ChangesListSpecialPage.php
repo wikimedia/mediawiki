@@ -254,7 +254,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $user->getName() );
 			}
 		}
-		if ( $opts['hidecategorization'] === true ) {
+		if ( $this->getConfig()->get( 'RCWatchCategoryMembership' )
+			&& $opts['hidecategorization'] === true
+		) {
 			$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE );
 		}
 
