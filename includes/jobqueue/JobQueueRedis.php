@@ -393,7 +393,7 @@ LUA;
 				return false;
 			}
 
-			JobQueue::incrStats( 'job-ack', $this->type );
+			JobQueue::incrStats( 'jobs.completed' );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $conn, $e );
 		}
