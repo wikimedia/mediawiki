@@ -939,7 +939,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		return array(
 			'wiki' => $this->mDb->getWikiID(),
 			'job'  => new JobSpecification(
-				'refreshLinks',
+				'refreshLinksPrioritized',
 				array( 'prioritize' => true ),
 				array( 'removeDuplicates' => true ),
 				$this->getTitle()
