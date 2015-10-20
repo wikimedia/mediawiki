@@ -209,6 +209,15 @@ class RCCacheEntryFactory {
 			$diffLink = $diffMessage;
 		} elseif ( in_array( $cacheEntry->mAttribs['rc_type'], $logTypes ) ) {
 			$diffLink = $diffMessage;
+		} elseif ( $cacheEntry->getAttribute( 'rc_type' ) == RC_CATEGORIZE ) {
+			$rcCurId = $cacheEntry->getAttribute( 'rc_cur_id' );
+			$pageTitle = Title::newFromID( $rcCurId );
+			if ( $pageTitle === null ) {
+				wfDebugLog( 'RCCacheEntryFactory', 'Could not get Title for rc_cur_id: ' . $rcCurId );
+				return $diffMessage;
+			}
+			$diffUrl = htmlspecialchars( $pageTitle->getLinkURL( $queryParams ) );
+			$diffLink = "<a href=\"$diffUrl\" tabindex=\"$counter\">$diffMessage</a>";
 		} else {
 			$diffUrl = htmlspecialchars( $cacheEntry->getTitle()->getLinkURL( $queryParams ) );
 			$diffLink = "<a href=\"$diffUrl\" tabindex=\"$counter\">$diffMessage</a>";
