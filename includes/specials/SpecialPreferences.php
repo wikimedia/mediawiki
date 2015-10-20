@@ -46,7 +46,9 @@ class SpecialPreferences extends SpecialPage {
 			return;
 		}
 
+		$out->addModules( 'mediawiki.special.preferences.tab' );
 		$out->addModules( 'mediawiki.special.preferences' );
+		$out->addModules( 'mediawiki.special.preferences.timezone' );
 
 		if ( $this->getRequest()->getCheck( 'success' ) ) {
 			$out->wrapWikiMsg(
