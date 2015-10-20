@@ -137,6 +137,55 @@
 		this.selectFileWidget.on( 'change', this.onUploadFormChange.bind( this ) );
 		this.ownWorkCheckbox.on( 'change', this.onUploadFormChange.bind( this ) );
 
+		// Set the date to lastModified once we have the file
+		this.selectFileWidget.on( 'change', function () {
+			var fileDate, fileReader,
+				file = layout.getFile();
+
+			if ( file && file.type === 'image/jpeg' ) {
+				fileReader = new FileReader();
+				fileReader.onload = function () {
+					var fileStr, arr, i, metadata;
+
+					if ( typeof fileReader.result === 'string' ) {
+						fileStr = fileReader.result;
+					} else {
+						// Array buffer; convert to binary string for the library.
+						arr = new Uint8Array( fileReader.result );
+						fileStr = '';
+						for ( i = 0; i < arr.byteLength; i++ ) {
+							fileStr += String.fromCharCode( arr[ i ] );
+						}
+					}
+
+					try {
+						metadata = mw.libs.jpegmeta( this.result, file.name );
+					} catch ( e ) {
+						metadata = null;
+					}
+
+					if ( metadata !== null && metadata.exif !== undefined ) {
+						fileDate = moment( metadata.exif.DateTimeOriginal, 'YYYY:MM:DD' ).format( 'YYYY-MM-DD' );
+					}
+				};
+
+				if ( 'readAsBinaryString' in fileReader ) {
+					fileReader.readAsBinaryString( file );
+				} else if ( 'readAsArrayBuffer' in fileReader ) {
+					fileReader.readAsArrayBuffer( file );
+				} else {
+					// We should never get here. :P
+					throw new Error( 'Cannot read thumbnail as binary string or array buffer.' );
+				}
+			}
+
+			if ( fileDate === undefined  && file && file.lastModified ) {
+				fileDate = moment( file.lastModified ).format( 'YYYY-MM-DD' );
+			}
+
+			layout.dateWidget.setValue( fileDate );
+		} );
+
 		return this.uploadForm;
 	};
 
@@ -166,15 +215,15 @@
 			multiline: true,
 			autosize: true
 		} );
-		this.dateWidget = new mw.widgets.DateInputWidget( {
-			$overlay: this.$overlay,
-			required: true,
-			mustBeBefore: moment().add( 1, 'day' ).locale( 'en' ).format( 'YYYY-MM-DD' ) // Tomorrow
-		} );
 		this.categoriesWidget = new mw.widgets.CategorySelector( {
 			// Can't be done here because we don't know the target wiki yet... done in #initialize.
 			// api: new mw.ForeignApi( ... ),
 			$overlay: this.$overlay
+		} );
+		this.dateWidget = new mw.widgets.DateInputWidget( {
+			$overlay: this.$overlay,
+			required: true,
+			mustBeBefore: moment().add( 1, 'day' ).locale( 'en' ).format( 'YYYY-MM-DD' ) // Tomorrow
 		} );
 
 		fieldset = new OO.ui.FieldsetLayout( {
