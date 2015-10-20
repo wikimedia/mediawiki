@@ -9,7 +9,7 @@ MediaWiki 1.27 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.27 ===
-* Removed $wgUseLinkNamespaceDBFields
+* $wgUseLinkNamespaceDBFields was removed.
 * Deprecated $wgResourceLoaderMinifierStatementsOnOwnLine and
   $wgResourceLoaderMinifierMaxLineLength, because there was little value in
   making the behavior configurable. The default values (`false` for the former,
@@ -44,6 +44,7 @@ production.
 ** A new constructor, User::newSystemUser(), has been added to simplify the
    creation of passwordless "system" users for logged actions.
 * $wgMaxSquidPurgeTitles was removed.
+* $wgAjaxWatch was removed. This is now enabled by default.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
