@@ -59,9 +59,9 @@ interface AuthenticationProvider extends LoggerAwareInterface {
 	 * Return the applicable list of AuthenticationRequests
 	 *
 	 * @see AuthManager::getAuthenticationRequestTypes()
-	 * @param string $which
+	 * @param string $action One of the AuthManager::ACTION_* constants
 	 * @return string[] AuthenticationRequest class names
 	 */
-	public function getAuthenticationRequestTypes( $which );
+	public function getAuthenticationRequestTypes( $action );
 
 }

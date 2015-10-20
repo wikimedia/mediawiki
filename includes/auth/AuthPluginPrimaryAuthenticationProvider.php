@@ -119,8 +119,8 @@ class AuthPluginPrimaryAuthenticationProvider
 		return parent::getUniqueId() . ':' . get_class( $this->auth );
 	}
 
-	public function getAuthenticationRequestTypes( $which ) {
-		switch ( $which ) {
+	public function getAuthenticationRequestTypes( $action ) {
+		switch ( $action ) {
 			case AuthManager::ACTION_LOGIN:
 			case AuthManager::ACTION_CREATE:
 			case AuthManager::ACTION_ALL:

@@ -36,8 +36,8 @@ namespace MediaWiki\Auth;
  */
 class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuthenticationProvider {
 
-	public function getAuthenticationRequestTypes( $which ) {
-		switch ( $which ) {
+	public function getAuthenticationRequestTypes( $action ) {
+		switch ( $action ) {
 			case AuthManager::ACTION_LOGIN_CONTINUE:
 				return (array)$this->getUIType();
 

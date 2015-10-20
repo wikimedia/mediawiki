@@ -30,7 +30,7 @@ abstract class AbstractPreAuthenticationProvider extends AbstractAuthenticationP
 	implements PreAuthenticationProvider
 {
 
-	public function getAuthenticationRequestTypes( $which ) {
+	public function getAuthenticationRequestTypes( $action ) {
 		return array();
 	}
 

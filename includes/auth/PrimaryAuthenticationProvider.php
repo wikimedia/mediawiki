@@ -22,6 +22,8 @@
  */
 
 namespace MediaWiki\Auth;
+use StatusValue;
+use User;
 
 /**
  * A primary authentication provider determines which user is trying to log in.

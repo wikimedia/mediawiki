@@ -42,8 +42,8 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		);
 	}
 
-	public function getAuthenticationRequestTypes( $which ) {
-		switch ( $which ) {
+	public function getAuthenticationRequestTypes( $action ) {
+		switch ( $action ) {
 			case AuthManager::ACTION_LOGIN:
 				return array( 'MediaWiki\\Auth\\PasswordAuthenticationRequest' );
 
