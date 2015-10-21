@@ -1136,4 +1136,9 @@ abstract class DatabaseUpdater {
 			$wgContentHandlerUseDB = $this->holdContentHandlerUseDB;
 		}
 	}
+
+	protected function doFixDefaultJsonContentPages() {
+		$fix = $this->maintenance->runChild( 'FixDefaultJsonContentPages' );
+		$fix->execute();
+	}
 }
