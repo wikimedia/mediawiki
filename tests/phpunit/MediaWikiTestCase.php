@@ -207,7 +207,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( $this->needsDB() && $this->db ) {
 			// Clean up open transactions
 			while ( $this->db->trxLevel() > 0 ) {
-				$this->db->rollback();
+				$this->db->rollback( __METHOD__, 'flush' );
 			}
 		}
 
@@ -241,7 +241,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( $this->needsDB() && $this->db ) {
 			// Clean up open transactions
 			while ( $this->db->trxLevel() > 0 ) {
-				$this->db->rollback();
+				$this->db->rollback( __METHOD__, 'flush' );
 			}
 		}
 
