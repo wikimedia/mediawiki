@@ -37,7 +37,7 @@ class LoadMonitorMySQL implements LoadMonitor {
 		$this->parent = $parent;
 
 		$this->srvCache = ObjectCache::newAccelerator( 'hash' );
-		$this->mainCache = wfGetMainCache();
+		$this->mainCache = ObjectCache::getLocalClusterInstance();
 	}
 
 	public function scaleLoads( &$loads, $group = false, $wiki = false ) {
