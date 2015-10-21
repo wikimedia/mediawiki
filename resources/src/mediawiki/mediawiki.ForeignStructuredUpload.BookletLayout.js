@@ -78,7 +78,8 @@
 			notOwnWorkLocal = mw.message( 'foreign-structured-upload-form-label-not-own-work-local-default' );
 		}
 
-		$ownWorkMessage = $( '<p>' ).html( ownWorkMessage.parse() );
+		$ownWorkMessage = $( '<p>' ).html( ownWorkMessage.parse() )
+			.addClass( 'mw-foreignStructuredUpload-bookletLayout-license' );
 		$notOwnWorkMessage = $( '<div>' ).append(
 			$( '<p>' ).html( notOwnWorkMessage.parse() ),
 			$( '<p>' ).html( notOwnWorkLocal.parse() )
@@ -90,11 +91,7 @@
 			label: $notOwnWorkMessage
 		} );
 		this.ownWorkCheckbox = new OO.ui.CheckboxInputWidget().on( 'change', function ( on ) {
-			if ( on ) {
-				layout.messageLabel.setLabel( $ownWorkMessage );
-			} else {
-				layout.messageLabel.setLabel( $notOwnWorkMessage );
-			}
+			layout.messageLabel.toggle( !on );
 		} );
 
 		fieldset = new OO.ui.FieldsetLayout();
@@ -105,9 +102,14 @@
 			} ),
 			new OO.ui.FieldLayout( this.ownWorkCheckbox, {
 				align: 'inline',
-				label: mw.msg( 'foreign-structured-upload-form-label-own-work' )
+				label: $( '<div>' ).append(
+					$( '<p>' ).text( mw.msg( 'foreign-structured-upload-form-label-own-work' ) ),
+					$ownWorkMessage
+				)
 			} ),
-			this.messageLabel
+			new OO.ui.FieldLayout( this.messageLabel, {
+				align: 'top'
+			} )
 		] );
 		this.uploadForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
 
