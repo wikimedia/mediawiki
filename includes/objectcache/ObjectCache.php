@@ -290,6 +290,9 @@ class ObjectCache {
 		$class = $params['relayerConfig']['class'];
 		$params['relayer'] = new $class( $params['relayerConfig'] );
 		$params['cache'] = self::newFromId( $params['cacheId'] );
+		if ( isset( $params['loggroup'] ) ) {
+			$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] );
+		}
 		$class = $params['class'];
 
 		return new $class( $params );
