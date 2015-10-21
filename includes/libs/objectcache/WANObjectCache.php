@@ -300,6 +300,10 @@ class WANObjectCache {
 	 *               the current time the data was read or (if applicable) the time when
 	 *               the snapshot-isolated transaction the data was read from started.
 	 *               Default: 0 seconds
+	 *   - pending : Whether this data is possibly from an uncommitted write transaction.
+	 *               Generally, other threads should not see values from the future and
+	 *               they certainly should not see ones that ended up getting rolled back.
+	 *               Default: false
 	 *   - lockTSE : if excessive possible snapshot lag is detected,
 	 *               then stash the value into a temporary location
 	 *               with this TTL. This is only useful if the reads
@@ -317,7 +321,7 @@ class WANObjectCache {
 			$ttl = $ttl ? min( $ttl, self::TTL_LAGGED ) : self::TTL_LAGGED;
 		}
 
-		if ( $age > self::MAX_SNAPSHOT_LAG ) {
+		if ( $age > self::MAX_SNAPSHOT_LAG || !empty( $opts['pending'] ) ) {
 			if ( $lockTSE >= 0 ) {
 				$tempTTL = max( 1, (int)$lockTSE ); // set() expects seconds
 				$this->cache->set( self::STASH_KEY_PREFIX . $key, $value, $tempTTL );
