@@ -36,7 +36,7 @@ $namespaceNames = array(
 
 $magicWords = array(
 	'redirect'                  => array( '0', '#RENVIAMENT', '#REDIRECT' ),
-	'img_thumbnail'             => array( '1', 'miniatura', 'thumbnail', 'thumb' ),
+	'img_thumbnail'             => array( '1', 'miniatura', 'thumb', 'thumbnail' ),
 	'img_manualthumb'           => array( '1', 'miniatura=$1', 'thumbnail=$1', 'thumb=$1' ),
 	'img_upright'               => array( '1', 'sidretg', 'sidretg=$1', 'sidretg_$1', 'upright', 'upright=$1', 'upright $1' ),
 );

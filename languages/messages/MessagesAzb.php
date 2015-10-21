@@ -81,6 +81,6 @@ $magicWords = array(
 	'img_right'                 => array( '1', 'ساغ', 'راست', 'right' ),
 	'img_left'                  => array( '1', 'سول', 'چپ', 'left' ),
 	'img_none'                  => array( '1', 'هئچ', 'هیچ', 'none' ),
-	'img_framed'                => array( '1', 'قابیق', 'قاب', 'framed', 'enframed', 'frame' ),
+	'img_framed'                => array( '1', 'قابیق', 'قاب', 'frame', 'framed', 'enframed' ),
 );
 

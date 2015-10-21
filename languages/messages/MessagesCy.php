@@ -53,7 +53,7 @@ $magicWords = array(
 	'subpagenamee'              => array( '1', 'ENWISDUDALENE', 'SUBPAGENAMEE' ),
 	'talkpagename'              => array( '1', 'ENWTUDALENSGWRS', 'TALKPAGENAME' ),
 	'talkpagenamee'             => array( '1', 'ENWTUDALENSGWRSE', 'TALKPAGENAMEE' ),
-	'img_thumbnail'             => array( '1', 'ewin_bawd', 'bawd', 'mân-lun', 'thumbnail', 'thumb' ),
+	'img_thumbnail'             => array( '1', 'bawd', 'ewin_bawd', 'mân-lun', 'thumb', 'thumbnail' ),
 	'img_manualthumb'           => array( '1', 'mân-lun=$1', 'bawd=$1', 'thumbnail=$1', 'thumb=$1' ),
 	'img_right'                 => array( '1', 'de', 'right' ),
 	'img_left'                  => array( '1', 'chwith', 'left' ),
