@@ -515,6 +515,7 @@ class MediaWiki {
 		if ( $factory->laggedSlaveUsed() ) {
 			$maxAge = $this->config->get( 'CdnMaxageLagged' );
 			$this->context->getOutput()->lowerCdnMaxage( $maxAge );
+			$request->response()->header( "X-Database-Lagged: true" );
 			wfDebugLog( 'replication', "Lagged DB used; CDN cache TTL limited to $maxAge seconds" );
 		}
 	}
