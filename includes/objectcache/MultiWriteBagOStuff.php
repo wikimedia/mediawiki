@@ -106,6 +106,13 @@ class MultiWriteBagOStuff extends BagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0 ) {
+		if ( ( $flags & self::READ_LATEST ) == self::READ_LATEST ) {
+			// If the latest write was a delete(), we do NOT want to fallback
+			// to the other tiers and possibly see the old value. Also, this
+			// is used by mergeViaLock(), which only needs to hit the primary.
+			return $this->caches[0]->get( $key, $flags );
+		}
+
 		$misses = 0; // number backends checked
 		$value = false;
 		foreach ( $this->caches as $cache ) {
@@ -190,17 +197,6 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 */
 	public function unlock( $key ) {
 		return $this->caches[0]->unlock( $key );
-	}
-
-	/**
-	 * @param string $key
-	 * @param callable $callback Callback method to be executed
-	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
-	 * @param int $attempts The amount of times to attempt a merge in case of failure
-	 * @return bool Success
-	 */
-	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
-		return $this->doWrite( self::ALL, 'merge', $key, $callback, $exptime );
 	}
 
 	public function getLastError() {
