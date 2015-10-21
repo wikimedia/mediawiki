@@ -39,12 +39,13 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Descusión_usuario', 'female' => 'Descusión_usuaria' ],
 ];
 
+
 $magicWords = [
 	'redirect'                  => [ '0', '#ENDRECERA', '#REENDRECERA', '#REDIRECCIÓN', '#REDIRECCION', '#REDIRECT' ],
 	'namespace'                 => [ '1', 'ESPACIODENOMBRES', 'ESPACIODENOMBRE', 'NAMESPACE' ],
 	'namespacee'                => [ '1', 'ESPACIODENOMBRESE', 'ESPACIODENOMBREC', 'NAMESPACEE' ],
 	'img_right'                 => [ '1', 'dreita', 'derecha', 'dcha', 'der', 'right' ],
-	'img_left'                  => [ '1', 'cucha', 'zurda', 'izquierda', 'izda', 'izq', 'left' ],
+	'img_left'                  => [ '1', 'cucha', 'izquierda', 'zurda', 'izda', 'izq', 'left' ],
 	'ns'                        => [ '0', 'EN:', 'EDN:', 'NS:' ],
 	'displaytitle'              => [ '1', 'TÍTOL', 'MOSTRARTÍTULO', 'MOSTRARTITULO', 'DISPLAYTITLE' ],
 	'currentversion'            => [ '1', 'BERSIÓNAUTUAL', 'BERSIONAUTUAL', 'REVISIÓNACTUAL', 'VERSIONACTUAL', 'VERSIÓNACTUAL', 'CURRENTVERSION' ],
