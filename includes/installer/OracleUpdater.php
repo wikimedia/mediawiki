@@ -108,6 +108,9 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
 			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
 
+			// 1.26
+			array( 'doFixDefaultJsonContentPages' ),
+
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),
 
