@@ -305,3 +305,14 @@
 	path = extensions/TemplateSandbox
 	url = https://github.com/wikimedia/mediawiki-extensions-TemplateSandbox
 	branch = REL1_25
+[submodule "extensions/Josa"]
+	path = extensions/Josa
+	url = https://github.com/wikimedia/mediawiki-extensions-Josa
+	branch = REL1_25
+[submodule "extensions/PageTriage"]
+	path = extensions/PageTriage
+	url = https://github.com/wikimedia/mediawiki-extensions-PageTriage
+	branch = REL1_25
+[submodule "extensions/SectionHide"]
+	path = extensions/SectionHide
+	url = https://github.com/miraheze/SectionHide.git
