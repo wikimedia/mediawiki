@@ -56,6 +56,8 @@ THIS IS NOT A RELEASE YET
   firejail's --output functionality.
 * (T86738, CVE-2020-25814) SECURITY: mediawiki.jqueryMsg: Sanitize URLs and
   'style' attribute.
+* (T115888, CVE-2020-25828) SECURITY: mediawiki.js: Escape HTML in
+  mw.message( ... ).parse().
 
 == MediaWiki 1.34.2 ==
 
