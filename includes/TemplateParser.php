@@ -41,7 +41,7 @@ class TemplateParser {
 	 * @param boolean $forceRecompile
 	 */
 	public function __construct( $templateDir = null, $forceRecompile = false ) {
-		$this->templateDir = $templateDir ? $templateDir : __DIR__ . '/templates';
+		$this->templateDir = $templateDir ?: __DIR__ . '/templates';
 		$this->forceRecompile = $forceRecompile;
 	}
 
@@ -49,7 +49,7 @@ class TemplateParser {
 	 * Constructs the location of the the source Mustache template
 	 * @param string $templateName The name of the template
 	 * @return string
-	 * @throws UnexpectedValueException Disallows upwards directory traversal via $templateName
+	 * @throws UnexpectedValueException If $templateName attempts upwards directory traversal
 	 */
 	protected function getTemplateFilename( $templateName ) {
 		// Prevent upwards directory traversal using same methods as Title::secureAndSplit
@@ -103,10 +103,8 @@ class TemplateParser {
 
 		if ( $secretKey ) {
 			// See if the compiled PHP code is stored in cache.
-			// CACHE_ACCEL throws an exception if no suitable object cache is present, so fall
-			// back to CACHE_ANYTHING.
 			$cache = ObjectCache::newAccelerator( CACHE_ANYTHING );
-			$key = wfMemcKey( 'template', $templateName, $fastHash );
+			$key = $cache->makeKey( 'template', $templateName, $fastHash );
 			$code = $this->forceRecompile ? null : $cache->get( $key );
 
 			if ( !$code ) {
