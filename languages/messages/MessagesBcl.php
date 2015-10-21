@@ -67,7 +67,7 @@ $magicWords = array(
 	'img_left'                  => array( '1', 'wala', 'left' ),
 	'img_none'                  => array( '1', 'mayò', 'none' ),
 	'img_center'                => array( '1', 'sentro', 'tangâ', 'center', 'centre' ),
-	'img_framed'                => array( '1', 'nakakawadro', 'kwadro', 'framed', 'enframed', 'frame' ),
+	'img_framed'                => array( '1', 'nakakawadro', 'kwadro', 'frame', 'framed', 'enframed' ),
 	'img_frameless'             => array( '1', 'daing kwadro', 'frameless' ),
 	'img_page'                  => array( '1', 'pahina=$1', 'pahina $1', 'page=$1', 'page $1' ),
 	'localurl'                  => array( '0', 'LOKALURL', 'LOCALURL:' ),

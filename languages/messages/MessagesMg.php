@@ -67,7 +67,7 @@ $magicWords = array(
 	'img_right'                 => array( '1', 'ankavanana', 'droite', 'right' ),
 	'img_left'                  => array( '1', 'ankavia', 'gauche', 'left' ),
 	'img_none'                  => array( '1', 'tsymisy', 'néant', 'neant', 'none' ),
-	'img_center'                => array( '1', 'ampivoany', 'anivony', 'centré', 'center', 'centre' ),
+	'img_center'                => array( '1', 'centré', 'ampivoany', 'anivony', 'center', 'centre' ),
 	'img_page'                  => array( '1', 'pejy $1', 'page=$1', 'page $1' ),
 	'img_border'                => array( '1', 'sisiny', 'bordure', 'border' ),
 	'img_top'                   => array( '1', 'ambony', 'haut', 'top' ),
