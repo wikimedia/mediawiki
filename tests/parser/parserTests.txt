@@ -14,7 +14,9 @@
 # Plus any combination of these:
 #
 # cat           add category links
+#               (ignored by Parsoid, since it emits <link>s)
 # ill           add inter-language links
+#               (ignored by Parsoid, since it emits <links>s)
 # subpage       enable subpages (disabled by default)
 # noxml         don't check for XML well-formedness
 # title=[[XXX]] run test using article title XXX
@@ -3328,14 +3330,18 @@ parsoid=wt2html,wt2wt
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":" [[Category:foo]]"}},"i":0}}]}'> </span><link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1"> <!-- No pre&#x2D;wrapping -->
 !! end
 
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
 !! test
 7b. Indent-pre and category links
 !! options
-parsoid=wt2html,wt2wt
+parsoid=wt2html
 !! wikitext
  [[Category:foo]] a
  [[Category:foo]] {{echo|b}}
-!! html
+!! html/parsoid
 <pre><link rel="mw:PageProp/Category" href="./Category:Foo"> a
  <link rel="mw:PageProp/Category" href="./Category:Foo"> <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"b"}},"i":0}}]}'>b</span></pre>
 !! end
@@ -4687,12 +4693,43 @@ http://example.com/url_with_entity&#60;
 <a rel="mw:ExtLink" href="http://example.com">http://example.com</a>)
 <a rel="mw:ExtLink" href="http://example.com/url_with_(brackets)">http://example.com/url_with_(brackets)</a>
 (<a rel="mw:ExtLink" href="http://example.com/url_without_brackets">http://example.com/url_without_brackets</a>)
-<a rel="mw:ExtLink" href="http://example.com/url_with_entity ">http://example.com/url_with_entity </a>
-<a rel="mw:ExtLink" href="http://example.com/url_with_entity ">http://example.com/url_with_entity </a>
-<a rel="mw:ExtLink" href="http://example.com/url_with_entity ">http://example.com/url_with_entity </a>
-<a rel="mw:ExtLink" href="http://example.com/url_with_entity">http://example.com/url_with_entity</a><span typeof="mw:Entity">&lt;</span>
-<a rel="mw:ExtLink" href="http://example.com/url_with_entity&lt;">http://example.com/url_with_entity&lt;</a>
-<a rel="mw:ExtLink" href="http://example.com/url_with_entity&lt;">http://example.com/url_with_entity&lt;</a></p>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity&amp;">http://example.com/url_with_entity&amp;</a>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity&amp;">http://example.com/url_with_entity&amp;</a>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity&amp;">http://example.com/url_with_entity&amp;</a>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity">http://example.com/url_with_entity</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity">http://example.com/url_with_entity</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#xA0;","srcContent":" "}'> </span>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity">http://example.com/url_with_entity</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#160;","srcContent":" "}'> </span>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity">http://example.com/url_with_entity</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;lt;","srcContent":"&lt;"}'>&lt;</span>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity">http://example.com/url_with_entity</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#x3C;","srcContent":"&lt;"}'>&lt;</span>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity">http://example.com/url_with_entity</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#60;","srcContent":"&lt;"}'>&lt;</span></p>
+!! end
+
+!! test
+External links: tricky Parsoid html2html case
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+http://example.com/url_with_entity&amp;amp;
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://example.com/url_with_entity&amp;amp">http://example.com/url_with_entity&amp;amp</a>;
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/url_with_entity&amp;amp">http://example.com/url_with_entity&amp;amp</a>;</p>
+!! end
+
+!! test
+External links: Free with trailing quotes (T113666)
+!! wikitext
+'''News:''' Stuff here
+
+news:'a'b''c''d e
+!! html/php
+<p><b>News:</b> Stuff here
+</p><p><a rel="nofollow" class="external free" href="news:'a'b">news:'a'b</a><i>c</i>d e
+</p>
+!! html/parsoid
+<p><b>News:</b> Stuff here</p>
+<p><a rel="mw:ExtLink" href="news:'a'b">news:'a'b</a><i>c</i>d e</p>
 !! end
 
 !! test
@@ -5076,6 +5113,8 @@ External links: link text with spaces
 
 !! test
 External links: wiki links within external link (Bug 3695)
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 [http://example.com [[wikilink]] embedded in ext link]
 !! html/php
@@ -5596,7 +5635,7 @@ Parenthesis in external links, w/ transclusion or comment
 !! test
 Serialize <a> tags with invalid link targets as plain text
 !! options
-parsoid=html2wt
+parsoid={ "modes": ["html2wt"], "suppressErrors": true }
 !! html/parsoid
 <a rel="mw:WikiLink" href="[[foo]]">text</a>
 <a rel="mw:WikiLink" href="[[foo]]">*text</a>
@@ -10088,6 +10127,23 @@ PMID
 1234</p>
 !! end
 
+# <nowiki> nodes shouldn't be inserted during html2wt by Parsoid,
+# since these are ExtLinkText, not MagicLinkText
+!! test
+Magic links: use appropriate serialization for "almost" magic links.
+!! wikitext
+X[[Special:BookSources/0978739256|foo]]
+
+X[//tools.ietf.org/html/rfc1234 foo]
+!! html/php
+<p>X<a href="/wiki/Special:BookSources/0978739256" title="Special:BookSources/0978739256">foo</a>
+</p><p>X<a rel="nofollow" class="external text" href="//tools.ietf.org/html/rfc1234">foo</a>
+</p>
+!! html/parsoid
+<p>X<a rel="mw:WikiLink" href="./Special:BookSources/0978739256" title="Special:BookSources/0978739256">foo</a></p>
+<p>X<a rel="mw:ExtLink" href="//tools.ietf.org/html/rfc1234">foo</a></p>
+!! end
+
 ###
 ### Templates
 ####
@@ -10809,8 +10865,14 @@ Un-closed <includeonly>
 !! html
 !! end
 
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize the include directives to serialize on their own line.
+## Selser will take care of preserving formatting in scenarios where they
+## intermingled with other wikitext.
 !! test
 Includes and comments at SOL
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 <!-- comment --><noinclude><!-- comment --></noinclude><!-- comment -->== hu ==
 
@@ -10991,10 +11053,14 @@ parsoid=wt2html,wt2wt
 </tbody></table>
 !!end
 
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize the include directives to serialize on their own line.
+## Selser will take care of preserving formatting in scenarios where they
+## intermingled with other wikitext.
 !!test
 2. Table tag in SOL posn. should get reparsed correctly with valid TSR
 !!options
-parsoid=wt2html,wt2wt
+parsoid=wt2html
 !!wikitext
 <includeonly>a</includeonly>{| {{{b}}}
 |c
@@ -12913,13 +12979,14 @@ parsoid={
 [[Image:Foobar.jpg|<nowiki>|</nowiki>]]
 !! end
 
+# wgExternalLinkTarget not supported by Parsoid
 !! test
 Image with link parameter, wgExternalLinkTarget
 !! wikitext
 [[Image:foobar.jpg|link=http://example.com/]]
 !! config
 wgExternalLinkTarget='foobar'
-!! html
+!! html/php
 <p><a href="http://example.com/" target="foobar" rel="nofollow"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
 </p>
 !! end
@@ -12946,13 +13013,14 @@ wgNoFollowDomainExceptions='example.com'
 </p>
 !! end
 
+# wgExternalLinkTarget not supported by Parsoid
 !! test
 Image with link parameter, wgExternalLinkTarget, unnamed parameter
 !! wikitext
 [[Image:foobar.jpg|link=http://example.com/|Title]]
 !! config
 wgExternalLinkTarget='foobar'
-!! html
+!! html/php
 <p><a href="http://example.com/" title="Title" target="foobar" rel="nofollow"><img alt="Title" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
 </p>
 !! end
@@ -14207,15 +14275,22 @@ pst
 [[Category:Foo (bar)|Foo]]
 !! end
 
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
 !! test
 Category with link tail
 !! options
 cat
 pst
+parsoid=wt2html
 !! wikitext
 123[[Category:Foo]]456
-!! html
+!! html/php
 123[[Category:Foo]]456
+!! html/parsoid
+<p>123<link rel="mw:PageProp/Category" href="Category:Foo"/>456</p>
 !! end
 
 !! test
@@ -14251,8 +14326,14 @@ pst
 [[Category:{{echo|Foo}}|{{echo|Bar}}]]
 !! end
 
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
 !! test
 Category / paragraph interactions
+!! options
+parsoid=wt2html
 !! wikitext
 Foo [[Category:Baz]] Bar
 
@@ -14279,7 +14360,7 @@ Bar
 [[Category:Baz]]
  {{echo|[[Category:Baz]]}}
 [[Category:Baz]]
-!! html
+!! html/php
 <p>Foo Bar
 </p><p>Foo
 Bar
@@ -14289,20 +14370,32 @@ Bar
 </p><p>Foo
 Bar
 </p>
+!! html/parsoid
+<p>Foo <link rel="mw:PageProp/Category" href="Category:Baz"/> Bar</p>
+<p>Foo <link rel="mw:PageProp/Category" href="Category:Baz"/> Bar</p>
+<p>Foo <link rel="mw:PageProp/Category" href="Category:Baz"/> Bar</p>
+<p>Foo <link rel="mw:PageProp/Category" href="Category:Baz"/> Bar</p>
+<p>Foo <link rel="mw:PageProp/Category" href="Category:Baz"/> <link rel="mw:PageProp/Category" href="Category:Baz"/> <link rel="mw:PageProp/Category" href="Category:Baz"/> Bar <link rel="mw:PageProp/Category" href="Category:Baz"/> <link rel="mw:PageProp/Category" href="Category:Baz"/> <link rel="mw:PageProp/Category" href="Category:Baz"/> <link rel="mw:PageProp/Category" href="Category:Baz"/> <link rel="mw:PageProp/Category" href="Category:Baz" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[[Category:Baz]]"}},"i":0}}]}'/></p>
+<link rel="mw:PageProp/Category" href="Category:Baz"/>
 !! end
 
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
+##
 ## The whitespace on the empty line is part of the test. Please do not delete
 !! test
 1. Categories and newlines: All preceding newlines should be suppressed (courtesy bug 87)
 !! options
-parsoid=wt2html,wt2wt
+parsoid=wt2html
 !! wikitext
 This
    
 [[Category:Foo]] and this should be part of same paragraph (not an indent-pre)
    
 {{echo|[[Category:Foo]] and so should this!}}
-!! html
+!! html/php
 <p>This and this should be part of same paragraph (not an indent-pre) and so should this!
 </p>
 !! html/parsoid
@@ -14400,8 +14493,14 @@ parsoid=wt2html
 <link rel="mw:PageProp/Category" href="./Category:Foo" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo"},"sa":{"href":"Category:Foo"}}'/>
 !! end
 
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
 !! test
 6. Categories and newlines: migrateTrailingCategories dom pass should not migrate categories not preceded by newlines
+!! options
+parsoid=wt2html
 !! wikitext
 * a [[Category:Foo]]
 !! html/parsoid
@@ -14452,13 +14551,20 @@ parsoid
 </p>
 !! end
 
-# html2wt localizes the "Category" namespace.
-# XXX the <link> element needs an empty data-parsoid attribute, or
-# else the html2html test fails because spaces are inserted.
+# We used to, but no longer wt2wt this test since the default serializer
+# will normalize all categories to serialize on their own line.
+# This wikitext usage is going to be fairly uncommon in production and
+# selser will take care of preventing whitespace insertion if this
+# occurs in an article.
+#
+# html2html disabled for the same reason (whitespace insertion between
+# x and y).
+#
+# html2wt disabled because it localizes the "Category" namespace.
 !! test
 Link prefix/suffixes aren't applied to category links
 !! options
-parsoid=wt2html,wt2wt,html2html
+parsoid=wt2html
 language=is
 !! wikitext
 x[[Category:Foo]]y
@@ -19158,16 +19264,24 @@ Category:分類
 blah
 !! endarticle
 
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
 !! test
 Don't convert blue categorylinks to another variant (bug 33210)
 !! options
-language=zh cat
+cat
+language=zh
+parsoid=wt2html
 !! wikitext
 [[A]][[Category:分类]]
-!! html
+!! html/php
 <a href="/wiki/Category:%E5%88%86%E7%B1%BB" title="Category:分类">分类</a>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="A" title="A">A</a></p>
+<link rel="mw:PageProp/Category" href="Category:分类"/>
 !! end
-
 
 !! test
 Stripping -{}- tags (language variants)
@@ -23512,7 +23626,8 @@ parsoid=html2wt
 
  __TOC__ foo
 
-__TOC__ bar
+__TOC__
+ bar
 !! end
 
 #### --------------- HTML tags ---------------
@@ -25258,11 +25373,11 @@ parsoid=html2wt
 <p><b><a href="http://cscott.net">http://cscott.net</a>x</b></p>
 <p><a href="http://cscott.net">http://cscott.net</a>x</p>
 !! wikitext
-http://cscott.net<nowiki/>'''foo'''
+http://cscott.net'''foo'''
 
 http://cscott.net<b>foo</b>
 
-'''http://cscott.net<nowiki/>'''
+'''http://cscott.net'''
 
 '''http://cscott.net '''
 
@@ -25430,7 +25545,7 @@ parsoid=html2wt
 !! test
 T75121: Infer extension name from typeOf if data-mw is not present
 !! options
-parsoid=html2wt
+parsoid={ "modes": ["html2wt"], "suppressErrors": true }
 !! html/parsoid
 <div typeOf="mw:Extension/foo"></div>
 !! wikitext
@@ -25533,7 +25648,7 @@ parsoid={
 !! test
 Never serialize a-tag as html, regardless of what data-parsoid has to say
 !! options
-parsoid=html2wt
+parsoid={ "modes": ["html2wt"], "suppressErrors": true }
 !! html/parsoid
 <a rel="mw:WikiLink" href="./Foo" title="Foo" data-parsoid='{"stx":"html"}'>Foo</a>
 !! wikitext
@@ -25547,7 +25662,7 @@ parsoid=html2wt
 !! test
 Never serialize a-tag as html, no matter what attributes it has
 !! options
-parsoid=html2wt
+parsoid={ "modes": ["html2wt"], "suppressErrors": true }
 !! html/parsoid
 <a bad='true' href='http://boo.org'><img src='http://boohoo.org' /></a>
 !! wikitext
@@ -25570,6 +25685,26 @@ parsoid=html2wt
 # --------------------------------------------
 # Tests spec'ing wikitext serialization norms |
 # --------------------------------------------
+
+!! test
+1. Categories should always be serialized on their own line
+!! options
+parsoid=html2wt
+!! html/parsoid
+foo<link rel="mw:PageProp/Category" href="./Category:Foo">bar
+!! wikitext
+foo
+[[Category:Foo]]
+bar
+!! end
+
+!! test
+2. Categories that are part of templates should not introduce a line break
+!! wikitext
+foo {{echo|<span>bar</span> [[Category:baz]]}} bar
+!! html/parsoid
+<p>foo <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;span>bar&lt;/span> [[Category:baz]]"}},"i":0}}]}'>bar</span><span about="#mwt1"> </span><link rel="mw:PageProp/Category" href="./Category:Baz" about="#mwt1" data-parsoid='{"stx":"simple","a":{"href":"./Category:Baz"},"sa":{"href":"Category:baz"}}'/> bar</p>
+!! end
 
 !! test
 Lists: Add space after bullets
