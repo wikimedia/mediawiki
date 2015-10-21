@@ -94,6 +94,9 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			}
 		}
 
+		$dir = $params['dir'];
+		$this->addTimestampWhereRange( 'rev_timestamp', $dir, $params['start'], $params['end'] );
+
 		if ( $this->fld_tags ) {
 			$this->addTables( 'tag_summary' );
 			$this->addJoinConds(
@@ -140,8 +143,6 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 				$this->addWhere( $db->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask" );
 			}
 		}
-
-		$dir = $params['dir'];
 
 		if ( $params['continue'] !== null ) {
 			$op = ( $dir == 'newer' ? '>' : '<' );
