@@ -826,6 +826,7 @@ return array(
 		'scripts' => array(
 			'resources/lib/phpjs-sha1/sha1.js',
 			'resources/src/mediawiki/mediawiki.js',
+			'resources/src/mediawiki/mediawiki.requestIdleCallback.js',
 			'resources/src/mediawiki/mediawiki.errorLogger.js',
 		),
 		'debugScripts' => 'resources/src/mediawiki/mediawiki.log.js',
