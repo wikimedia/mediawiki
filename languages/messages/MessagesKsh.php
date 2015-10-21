@@ -202,7 +202,7 @@ $magicWords = array(
 	'nogallery'                 => array( '0', '__KEIN_JALLERIE__', '__KEINE_GALERIE__', '__KEINEGALERIE__', '__NOGALLERY__' ),
 	'toc'                       => array( '0', '__ENHALLT__', '__INHALTSVERZEICHNIS__', '__TOC__' ),
 	'img_right'                 => array( '1', 'rähß', 'räts', 'rechts', 'right' ),
-	'img_left'                  => array( '1', 'lengks', 'lenks', 'links', 'left' ),
+	'img_left'                  => array( '1', 'links', 'lengks', 'lenks', 'left' ),
 	'language'                  => array( '0', '#SHPROOCH:', '#SPROCH:', '#SPRACHE:', '#LANGUAGE:' ),
 	'hiddencat'                 => array( '1', '__VERSHTOCHE_SAACHJRUPP__', '__VERSTECKTE_KATEGORIE__', '__WARTUNGSKATEGORIE__', '__HIDDENCAT__' ),
 );

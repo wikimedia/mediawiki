@@ -164,7 +164,7 @@ $magicWords = array(
 	'numberoffiles'             => array( '1', 'FAILŲSKAIČIUS', 'NUMBEROFFILES' ),
 	'numberofusers'             => array( '1', 'NAUDOTOJŲSKAIČIUS', 'NUMBEROFUSERS' ),
 	'numberofedits'             => array( '1', 'KEITIMŲSKAIČIUS', 'NUMBEROFEDITS' ),
-	'img_thumbnail'             => array( '1', 'miniatiūra', 'mini', 'thumbnail', 'thumb' ),
+	'img_thumbnail'             => array( '1', 'miniatiūra', 'mini', 'thumb', 'thumbnail' ),
 	'img_manualthumb'           => array( '1', 'miniatiūra=$1', 'mini=$1', 'thumbnail=$1', 'thumb=$1' ),
 	'img_right'                 => array( '1', 'dešinėje', 'right' ),
 	'img_left'                  => array( '1', 'kairėje', 'left' ),
