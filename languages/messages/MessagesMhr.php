@@ -81,7 +81,7 @@ $specialPageAliases = [
 ];
 
 $magicWords = [
-	'img_right'                 => [ '1', 'пурла', 'справа', 'right' ],
+	'img_right'                 => [ '1', 'справа', 'пурла', 'right' ],
 	'img_left'                  => [ '1', 'шола', 'слева', 'left' ],
 	'img_border'                => [ '1', 'чек', 'граница', 'border' ],
 	'img_sub'                   => [ '1', 'йымалне', 'под', 'sub' ],

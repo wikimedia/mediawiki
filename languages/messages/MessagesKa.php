@@ -126,7 +126,7 @@ $magicWords = [
 	'namespace'                 => [ '1', 'სახელთა_სივრცე', 'NAMESPACE' ],
 	'fullpagename'              => [ '1', 'გვერდის_სრული_სახელი', 'FULLPAGENAME' ],
 	'subst'                     => [ '0', 'მიდგმ:', 'SUBST:' ],
-	'img_thumbnail'             => [ '1', 'მინიატიურა', 'მინი', 'მინიასლი', 'ცეროდენა', 'thumbnail', 'thumb' ],
+	'img_thumbnail'             => [ '1', 'მინი', 'მინიატიურა', 'მინიასლი', 'ცეროდენა', 'thumb', 'thumbnail' ],
 	'img_manualthumb'           => [ '1', 'მინიატიურა=$1', 'მინი=$1', 'thumbnail=$1', 'thumb=$1' ],
 	'img_right'                 => [ '1', 'მარჯვნივ', 'right' ],
 	'img_left'                  => [ '1', 'მარცხნივ', 'left' ],

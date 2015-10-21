@@ -169,7 +169,7 @@ $magicWords = [
 	'numberofpages'             => [ '1', 'ФÆРСТЫНЫМÆЦ', 'КОЛИЧЕСТВО_СТРАНИЦ', 'NUMBEROFPAGES' ],
 	'numberofarticles'          => [ '1', 'УАЦТЫНЫМÆЦ', 'КОЛИЧЕСТВО_СТАТЕЙ', 'NUMBEROFARTICLES' ],
 	'pagename'                  => [ '1', 'ФАРСЫНОМ', 'НАЗВАНИЕ_СТРАНИЦЫ', 'PAGENAME' ],
-	'img_thumbnail'             => [ '1', 'къаддæргонд', 'къаддæр', 'мини', 'миниатюра', 'thumbnail', 'thumb' ],
+	'img_thumbnail'             => [ '1', 'мини', 'къаддæргонд', 'къаддæр', 'миниатюра', 'thumb', 'thumbnail' ],
 	'img_manualthumb'           => [ '1', 'къаддæргонд=$1', 'къаддæр=$1', 'мини=$1', 'миниатюра=$1', 'thumbnail=$1', 'thumb=$1' ],
 	'img_right'                 => [ '1', 'рахиз', 'справа', 'right' ],
 	'img_left'                  => [ '1', 'галиу', 'слева', 'left' ],

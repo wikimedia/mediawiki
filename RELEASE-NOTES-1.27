@@ -276,6 +276,7 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
 * (T113688) Change default numerals from Gurmukhi to Arabic for Punjabi locale.
+* (T116020) Aliases of magic words in MessagesXx.php are sorted by usage.
 
 === Other changes in 1.27 ===
 * ProfilerOutputUdp was removed. Note that there is a ProfilerOutputStats class.

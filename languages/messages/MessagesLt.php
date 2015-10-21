@@ -164,7 +164,7 @@ $magicWords = [
 	'numberoffiles'             => [ '1', 'FAILŲSKAIČIUS', 'NUMBEROFFILES' ],
 	'numberofusers'             => [ '1', 'NAUDOTOJŲSKAIČIUS', 'NUMBEROFUSERS' ],
 	'numberofedits'             => [ '1', 'KEITIMŲSKAIČIUS', 'NUMBEROFEDITS' ],
-	'img_thumbnail'             => [ '1', 'miniatiūra', 'mini', 'thumbnail', 'thumb' ],
+	'img_thumbnail'             => [ '1', 'miniatiūra', 'mini', 'thumb', 'thumbnail' ],
 	'img_manualthumb'           => [ '1', 'miniatiūra=$1', 'mini=$1', 'thumbnail=$1', 'thumb=$1' ],
 	'img_right'                 => [ '1', 'dešinėje', 'right' ],
 	'img_left'                  => [ '1', 'kairėje', 'left' ],
