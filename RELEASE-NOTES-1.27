@@ -45,6 +45,7 @@ production.
    creation of passwordless "system" users for logged actions.
 * $wgMaxSquidPurgeTitles was removed.
 * $wgAjaxWatch was removed. This is now enabled by default.
+* (T116145) Enabling $wgFeed is no longer required to use $wgOverrideSiteFeed feature.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
@@ -67,6 +68,7 @@ production.
 ==== External libraries ====
 
 === Bug fixes in 1.27 ===
+* (T116145) RSS/Atom feeds are no longer advertised if $wgFeed is disabled.
 
 === Action API changes in 1.27 ===
 * Added list=allrevisions.
