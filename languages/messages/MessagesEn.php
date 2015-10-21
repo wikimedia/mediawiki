@@ -198,8 +198,10 @@ $bookstoreList = [
  * CASE is 0 to match all case variants, 1 for case-sensitive
  *
  * Note to translators:
- *   Please include the English words as synonyms.  This allows people
+ *   1. Please include the English words as synonyms.  This allows people
  *   from other wikis to contribute more easily.
+ *   2. The convention is to order the aliases so common aliases are expect to be before
+ *      rare aliases. Automatic tools expect to prefer the first alias.
  *
  * This array can be modified at runtime with the LanguageGetMagic hook
  */
@@ -265,14 +267,14 @@ $magicWords = [
 	'subst'                   => [ 0, 'SUBST:' ],
 	'safesubst'               => [ 0, 'SAFESUBST:' ],
 	'msgnw'                   => [ 0, 'MSGNW:' ],
-	'img_thumbnail'           => [ 1, 'thumbnail', 'thumb' ],
+	'img_thumbnail'           => [ 1, 'thumb', 'thumbnail' ],
 	'img_manualthumb'         => [ 1, 'thumbnail=$1', 'thumb=$1' ],
 	'img_right'               => [ 1, 'right' ],
 	'img_left'                => [ 1, 'left' ],
 	'img_none'                => [ 1, 'none' ],
 	'img_width'               => [ 1, '$1px' ],
 	'img_center'              => [ 1, 'center', 'centre' ],
-	'img_framed'              => [ 1, 'framed', 'enframed', 'frame' ],
+	'img_framed'              => [ 1, 'frame', 'framed', 'enframed' ],
 	'img_frameless'           => [ 1, 'frameless' ],
 	'img_lang'                => [ 1, 'lang=$1' ],
 	'img_page'                => [ 1, 'page=$1', 'page $1' ],

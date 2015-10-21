@@ -108,7 +108,7 @@ $magicWords = [
 	'pagenamee'                 => [ '1', 'ܟܘܢܝܐ_ܕܦܐܬܐ', 'PAGENAMEE' ],
 	'namespace'                 => [ '1', 'ܚܩܠܐ', 'NAMESPACE' ],
 	'msg'                       => [ '0', 'ܐܓܪܬܐ:', 'MSG:' ],
-	'img_thumbnail'             => [ '1', 'ܙܥܘܪܬܐ', 'thumbnail', 'thumb' ],
+	'img_thumbnail'             => [ '1', 'ܙܥܘܪܬܐ', 'thumb', 'thumbnail' ],
 	'img_manualthumb'           => [ '1', 'ܙܥܘܪܬܐ=$1', 'thumbnail=$1', 'thumb=$1' ],
 	'img_right'                 => [ '1', 'ܝܡܝܢܐ', 'right' ],
 	'img_left'                  => [ '1', 'ܣܡܠܐ', 'left' ],
