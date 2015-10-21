@@ -160,6 +160,12 @@ interface IDatabase {
 	public function lastDoneWrites();
 
 	/**
+	 * @return bool Whether there is a transaction open with possible write queries
+	 * @since 1.27
+	 */
+	public function writesPending();
+
+	/**
 	 * Returns true if there is a transaction open with possible write
 	 * queries or transaction pre-commit/idle callbacks waiting on it to finish.
 	 *
