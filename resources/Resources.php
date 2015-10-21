@@ -351,6 +351,9 @@ return array(
 		'dependencies' => 'jquery.client',
 		'targets' => array( 'mobile', 'desktop' ),
 	),
+	'jquery.findWithParent' => array(
+		'scripts' => 'resources/src/jquery/jquery.findWithParent.js',
+	),
 	'jquery.throttle-debounce' => array(
 		'scripts' => 'resources/lib/jquery/jquery.ba-throttle-debounce.js',
 		'targets' => array( 'desktop', 'mobile' ),
