@@ -1075,7 +1075,6 @@ class Article implements Page {
 
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
-		$cache = wfGetMainCache();
 		$rc = false;
 
 		if ( !$this->getTitle()->quickUserCan( 'patrol', $user )
@@ -1100,7 +1099,8 @@ class Article implements Page {
 		}
 
 		// Check for cached results
-		$key = wfMemcKey( 'NotPatrollablePage', $this->getTitle()->getArticleID() );
+		$key = wfMemcKey( 'unpatrollable-page', $this->getTitle()->getArticleID() );
+		$cache = ObjectCache::getMainWANInstance();
 		if ( $cache->get( $key ) ) {
 			return false;
 		}
