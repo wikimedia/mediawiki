@@ -447,6 +447,7 @@ $wgAutoloadLocalClasses = array(
 	'FindHooks' => __DIR__ . '/maintenance/findHooks.php',
 	'FindMissingFiles' => __DIR__ . '/maintenance/findMissingFiles.php',
 	'FixBug20757' => __DIR__ . '/maintenance/storage/fixBug20757.php',
+	'FixDefaultJsonContentPages' => __DIR__ . '/maintenance/fixDefaultJsonContentPages.php',
 	'FixDoubleRedirects' => __DIR__ . '/maintenance/fixDoubleRedirects.php',
 	'FixExtLinksProtocolRelative' => __DIR__ . '/maintenance/fixExtLinksProtocolRelative.php',
 	'FixTimestamps' => __DIR__ . '/maintenance/fixTimestamps.php',
