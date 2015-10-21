@@ -136,9 +136,10 @@ class SwiftFileBackend extends FileBackendStore {
 		// Cache auth token information to avoid RTTs
 		if ( !empty( $config['cacheAuthInfo'] ) ) {
 			if ( PHP_SAPI === 'cli' ) {
-				$this->srvCache = wfGetMainCache(); // preferrably memcached
+				// Preferrably memcached
+				$this->srvCache = ObjectCache::getLocalClusterInstance();
 			} else {
-				// look for APC, XCache, WinCache, ect...
+				// Look for APC, XCache, WinCache, ect...
 				$this->srvCache = ObjectCache::newAccelerator( CACHE_NONE );
 			}
 		} else {
