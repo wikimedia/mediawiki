@@ -1151,6 +1151,20 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Return effective list of advertised feed types
+	 * @see addFeedLink()
+	 *
+	 * @return array Array of feed type names ( 'rss', 'atom' )
+	 */
+	protected function getAdvertisedFeedTypes() {
+		if ( $this->getConfig()->get( 'Feed' ) ) {
+			return $this->getConfig()->get( 'AdvertisedFeedTypes' );
+		} else {
+			return array();
+		}
+	}
+
+	/**
 	 * Add or remove feed links in the page header
 	 * This is mainly kept for backward compatibility, see OutputPage::addFeedLink()
 	 * for the new version
@@ -1178,7 +1192,7 @@ class OutputPage extends ContextSource {
 	public function setFeedAppendQuery( $val ) {
 		$this->mFeedLinks = array();
 
-		foreach ( $this->getConfig()->get( 'AdvertisedFeedTypes' ) as $type ) {
+		foreach ( $this->getAdvertisedFeedTypes() as $type ) {
 			$query = "feed=$type";
 			if ( is_string( $val ) ) {
 				$query .= '&' . $val;
@@ -1194,7 +1208,7 @@ class OutputPage extends ContextSource {
 	 * @param string $href URL
 	 */
 	public function addFeedLink( $format, $href ) {
-		if ( in_array( $format, $this->getConfig()->get( 'AdvertisedFeedTypes' ) ) ) {
+		if ( in_array( $format, $this->getAdvertisedFeedTypes() ) ) {
 			$this->mFeedLinks[$format] = $href;
 		}
 	}
@@ -3512,50 +3526,50 @@ class OutputPage extends ContextSource {
 		}
 
 		# Feeds
-		if ( $config->get( 'Feed' ) ) {
-			foreach ( $this->getSyndicationLinks() as $format => $link ) {
-				# Use the page name for the title.  In principle, this could
-				# lead to issues with having the same name for different feeds
-				# corresponding to the same page, but we can't avoid that at
-				# this low a level.
+		foreach ( $this->getSyndicationLinks() as $format => $link ) {
+			# Use the page name for the title.  In principle, this could
+			# lead to issues with having the same name for different feeds
+			# corresponding to the same page, but we can't avoid that at
+			# this low a level.
+			# Empty if $wgFeed is false.
 
+			$tags[] = $this->feedLink(
+				$format,
+				$link,
+				# Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
+				$this->msg(
+					"page-{$format}-feed", $this->getTitle()->getPrefixedText()
+				)->text()
+			);
+		}
+
+		# Recent changes feed should appear on every page (except recentchanges,
+		# that would be redundant). Put it after the per-page feed to avoid
+		# changing existing behavior. It's still available, probably via a
+		# menu in your browser. Some sites might have a different feed they'd
+		# like to promote instead of the RC feed (maybe like a "Recent New Articles"
+		# or "Breaking news" one). For this, we see if $wgOverrideSiteFeed is defined.
+		# If so, use it instead.
+		$sitename = $config->get( 'Sitename' );
+		$overrideSiteFeed = $config->get( 'OverrideSiteFeed' );
+		if ( $overrideSiteFeed ) {
+			foreach ( $overrideSiteFeed as $type => $feedUrl ) {
+				// Note, this->feedLink escapes the url.
 				$tags[] = $this->feedLink(
-					$format,
-					$link,
-					# Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
-					$this->msg(
-						"page-{$format}-feed", $this->getTitle()->getPrefixedText()
-					)->text()
+					$type,
+					$feedUrl,
+					$this->msg( "site-{$type}-feed", $sitename )->text()
 				);
 			}
-
-			# Recent changes feed should appear on every page (except recentchanges,
-			# that would be redundant). Put it after the per-page feed to avoid
-			# changing existing behavior. It's still available, probably via a
-			# menu in your browser. Some sites might have a different feed they'd
-			# like to promote instead of the RC feed (maybe like a "Recent New Articles"
-			# or "Breaking news" one). For this, we see if $wgOverrideSiteFeed is defined.
-			# If so, use it instead.
-			$sitename = $config->get( 'Sitename' );
-			if ( $config->get( 'OverrideSiteFeed' ) ) {
-				foreach ( $config->get( 'OverrideSiteFeed' ) as $type => $feedUrl ) {
-					// Note, this->feedLink escapes the url.
-					$tags[] = $this->feedLink(
-						$type,
-						$feedUrl,
-						$this->msg( "site-{$type}-feed", $sitename )->text()
-					);
-				}
-			} elseif ( !$this->getTitle()->isSpecial( 'Recentchanges' ) ) {
-				$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
-				foreach ( $config->get( 'AdvertisedFeedTypes' ) as $format ) {
-					$tags[] = $this->feedLink(
-						$format,
-						$rctitle->getLocalURL( array( 'feed' => $format ) ),
-						# For grep: 'site-rss-feed', 'site-atom-feed'
-						$this->msg( "site-{$format}-feed", $sitename )->text()
-					);
-				}
+		} elseif ( !$this->getTitle()->isSpecial( 'Recentchanges' ) ) {
+			$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
+			foreach ( $this->getAdvertisedFeedTypes() as $format ) {
+				$tags[] = $this->feedLink(
+					$format,
+					$rctitle->getLocalURL( array( 'feed' => $format ) ),
+					# For grep: 'site-rss-feed', 'site-atom-feed'
+					$this->msg( "site-{$format}-feed", $sitename )->text()
+				);
 			}
 		}
 
