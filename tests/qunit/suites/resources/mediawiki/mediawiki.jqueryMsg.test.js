@@ -804,6 +804,24 @@
 		mw.jqueryMsg.getMessageFunction = oldGMF;
 	} );
 
+	// Tests that HTML in message parameters is escaped,
+	// whether the message looks like wikitext or not.
+	QUnit.test( 'mw.Message.prototype.parser monkey-patch HTML-escape', function ( assert ) {
+		mw.messages.set( '1x-wikitext', '<span>$1</span>' );
+		assert.htmlEqual(
+			mw.message( '1x-wikitext', '<script>alert( "1x-wikitext test" )</script>' ).parse(),
+			'<span>&lt;script&gt;alert( &quot;1x-wikitext test&quot; )&lt;/script&gt;</span>',
+			'Message parameters are escaped if message contains wikitext'
+		);
+
+		mw.messages.set( '1x-plain', '$1' );
+		assert.htmlEqual(
+			mw.message( '1x-plain', '<script>alert( "1x-plain test" )</script>' ).parse(),
+			'&lt;script&gt;alert( &quot;1x-plain test&quot; )&lt;/script&gt;',
+			'Message parameters are still escaped if message contains no wikitext'
+		);
+	} );
+
 	formatnumTests = [
 		{
 			lang: 'en',

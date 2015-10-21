@@ -297,7 +297,13 @@
 		 * @return {string} Parsed message
 		 */
 		parser: function () {
-			return mw.format.apply( null, [ this.map.get( this.key ) ].concat( this.parameters ) );
+			var text;
+			text = mw.format.apply( null, [ this.map.get( this.key ) ].concat( this.parameters ) );
+			if ( this.format === 'parse' ) {
+				// We don't know how to parse anything, so escape it all
+				text = mw.html.escape( text );
+			}
+			return text;
 		},
 
 		// eslint-disable-next-line valid-jsdoc
