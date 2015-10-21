@@ -126,7 +126,7 @@ $magicWords = [
 	'numberofactiveusers'       => [ '1', 'AKTIIVAGEAVAHEDDJIIDMEARRI', ' AKTIIVAGEAVAHEADDJIMEARRI', ' AKTIIVAGEAVAHEADDJEMEARRI', 'NUMBEROFACTIVEUSERS' ],
 	'numberofedits'             => [ '1', 'RIEVDADUSAIDMEARRI', ' RIEVDADUSMEARRI', 'NUMBEROFEDITS' ],
 	'subst'                     => [ '0', 'LIIBME:', 'SUBST:' ],
-	'img_thumbnail'             => [ '1', 'mini', 'thumbnail', 'thumb' ],
+	'img_thumbnail'             => [ '1', 'mini', 'thumb', 'thumbnail' ],
 	'img_manualthumb'           => [ '1', 'mini=$1', 'thumbnail=$1', 'thumb=$1' ],
 	'img_right'                 => [ '1', 'olgeš', 'right' ],
 	'img_left'                  => [ '1', 'gurut', 'left' ],

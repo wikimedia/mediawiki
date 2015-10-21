@@ -169,7 +169,7 @@ $magicWords = [
 	'subpagename'               => [ '1', 'אונטערבלאטנאמען', 'שם דף המשנה', 'SUBPAGENAME' ],
 	'talkpagename'              => [ '1', 'רעדנבלאטנאמען', 'שם דף השיחה', 'TALKPAGENAME' ],
 	'subst'                     => [ '0', 'ס:', 'SUBST:' ],
-	'img_thumbnail'             => [ '1', 'קליין', 'ממוזער', 'thumbnail', 'thumb' ],
+	'img_thumbnail'             => [ '1', 'קליין', 'ממוזער', 'thumb', 'thumbnail' ],
 	'img_manualthumb'           => [ '1', 'קליין=$1', 'ממוזער=$1', 'thumbnail=$1', 'thumb=$1' ],
 	'img_right'                 => [ '1', 'רעכטס', 'ימין', 'right' ],
 	'img_left'                  => [ '1', 'לינקס', 'שמאל', 'left' ],

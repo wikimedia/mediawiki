@@ -67,7 +67,7 @@ $magicWords = [
 	'img_left'                  => [ '1', 'wala', 'left' ],
 	'img_none'                  => [ '1', 'mayò', 'none' ],
 	'img_center'                => [ '1', 'sentro', 'tangâ', 'center', 'centre' ],
-	'img_framed'                => [ '1', 'nakakawadro', 'kwadro', 'framed', 'enframed', 'frame' ],
+	'img_framed'                => [ '1', 'nakakawadro', 'kwadro', 'frame', 'framed', 'enframed' ],
 	'img_frameless'             => [ '1', 'daing kwadro', 'frameless' ],
 	'img_page'                  => [ '1', 'pahina=$1', 'pahina $1', 'page=$1', 'page $1' ],
 	'localurl'                  => [ '0', 'LOKALURL', 'LOCALURL:' ],
