@@ -1238,6 +1238,7 @@ return array(
 	),
 	'mediawiki.ForeignStructuredUpload.BookletLayout' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.ForeignStructuredUpload.BookletLayout.js',
+		'styles' => 'resources/src/mediawiki/mediawiki.ForeignStructuredUpload.BookletLayout.css',
 		'dependencies' => array(
 			'mediawiki.ForeignStructuredUpload',
 			'mediawiki.Upload.BookletLayout',
