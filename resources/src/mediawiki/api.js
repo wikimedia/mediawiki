@@ -110,8 +110,6 @@
 		/**
 		 * Perform API post request
 		 *
-		 * TODO: Post actions for non-local hostnames will need proxy.
-		 *
 		 * @param {Object} parameters
 		 * @param {Object} [ajaxOptions]
 		 * @return {jQuery.Promise}
