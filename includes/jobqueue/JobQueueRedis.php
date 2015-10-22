@@ -224,6 +224,7 @@ class JobQueueRedis extends JobQueue {
 				throw new RedisException( "Could not insert {$failed} {$this->type} job(s)." );
 			}
 			JobQueue::incrStats( 'inserts', $this->type, count( $items ) );
+			JobQueue::incrStats( 'inserts_actual', $pushed );
 			JobQueue::incrStats( 'dupe_inserts', $this->type,
 				count( $items ) - $failed - $pushed );
 		} catch ( RedisException $e ) {
