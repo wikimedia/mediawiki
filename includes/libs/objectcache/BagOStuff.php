@@ -152,7 +152,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	abstract protected function doGet( $key, $flags = 0 );
 
 	/**
-	 * @note: This method is only needed if cas() is not is used for merge()
+	 * @note: This method is only needed if merge() uses mergeViaCas()
 	 *
 	 * @param string $key
 	 * @param mixed $casToken
