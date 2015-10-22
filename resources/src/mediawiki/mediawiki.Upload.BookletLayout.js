@@ -88,17 +88,6 @@
 				content: [ this.insertForm ]
 			} )
 		] );
-
-		// If the user can't upload anything, don't give them the option to
-		// TODO Check the rights on the target wiki rather than current, they might not be the same
-		mw.user.getRights().done( function ( rights ) {
-			if ( rights.indexOf( 'upload' ) === -1 ) {
-				this.getPage( 'upload' ).$element
-					.empty()
-					// TODO Use a better error message when not all logged-in users can upload
-					.msg( 'api-error-mustbeloggedin' );
-			}
-		}.bind( this ) );
 	};
 
 	/* Setup */
