@@ -1101,7 +1101,7 @@ class ChangeTags {
 			},
 			array(
 				'checkKeys' => array( wfMemcKey( 'active-tags' ) ),
-				'lockTSE' => INF,
+				'lockTSE' => 300,
 				'pcTTL' => 30
 			)
 		);
@@ -1147,7 +1147,7 @@ class ChangeTags {
 			},
 			array(
 				'checkKeys' => array( wfMemcKey( 'valid-tags-db' ) ),
-				'lockTSE' => INF,
+				'lockTSE' => 300,
 				'pcTTL' => 30
 			)
 		);
@@ -1175,7 +1175,7 @@ class ChangeTags {
 			},
 			array(
 				'checkKeys' => array( wfMemcKey( 'valid-tags-hook' ) ),
-				'lockTSE' => INF,
+				'lockTSE' => 300,
 				'pcTTL' => 30
 			)
 		);
@@ -1243,7 +1243,7 @@ class ChangeTags {
 			},
 			array(
 				'checkKeys' => array( wfMemcKey( 'change-tag-statistics' ) ),
-				'lockTSE' => INF,
+				'lockTSE' => 300,
 				'pcTTL' => 30
 			)
 		);
