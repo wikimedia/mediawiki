@@ -196,7 +196,9 @@ class RefreshLinksJob extends Job {
 			}
 		}
 
-		$updates = $content->getSecondaryDataUpdates( $title, null, false, $parserOutput );
+		$updates = $content->getSecondaryDataUpdates(
+			$title, null, !empty( $this->params['useRecursiveLinksUpdate'] ), $parserOutput );
+
 		DataUpdate::runUpdates( $updates );
 
 		InfoAction::invalidateCache( $title );

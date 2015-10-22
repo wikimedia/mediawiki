@@ -943,7 +943,8 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 				array(
 					'prioritize' => true,
 					// Reuse the parser cache if it was saved
-					'rootJobTimestamp' => $this->mParserOutput->getCacheTime()
+					'rootJobTimestamp' => $this->mParserOutput->getCacheTime(),
+					'useRecursiveLinksUpdate' => $this->mRecursive
 				),
 				array( 'removeDuplicates' => true ),
 				$this->getTitle()
