@@ -2792,7 +2792,6 @@
 	"spam_blanking": "Edit summary for spam cleanup script.\n\nUsed when a page is blanked (made to have no content, but still exist) because the script could not find an appropriate revision to set the page to.\n\nParameters:\n* $1 - a spammed domain name",
 	"spam_deleting": "Edit summary for spam cleanup script.\n\nUsed when a page is deleted because all revisions contained a particular link.\n\nParameters:\n* $1 - a spammed domain name",
 	"simpleantispam-label": "Used as label for the input box in \"Edit\" page.\n\nThe label and the input box are always hidden.",
-	"autochange-username": "Used as bot / unknown username.",
 	"pageinfo-header": "{{ignored}}Custom text for the top of the info page (action=info).",
 	"pageinfo-title": "Page title for action=info. Parameters:\n* $1 is the page name",
 	"pageinfo-not-current": "Error message displayed when information for an old revision is requested. Example: [{{fullurl:Project:News|oldid=4266597&action=info}}]",

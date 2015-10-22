@@ -158,6 +158,7 @@
 	"apihelp-feedrecentchanges-param-hideliu": "Ocultar os cambios realizados por usuarios rexistrados.",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "Ocultar os cambios patrullados.",
 	"apihelp-feedrecentchanges-param-hidemyself": "Ocultar os cambios realizados polo usuario actual.",
+	"apihelp-feedrecentchanges-param-hidecategorization": "Agochar os cambios de pertenza á categoría.",
 	"apihelp-feedrecentchanges-param-tagfilter": "Filtrar por etiqueta.",
 	"apihelp-feedrecentchanges-param-target": "Mostrar só os cambios nas páxinas ligadas a esta.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Mostrar os cambios nas páxinas ligadas coa páxina seleccionada.",

@@ -1276,6 +1276,8 @@
 	"rcshowhidemine": "Benim değişikliklerimi $1",
 	"rcshowhidemine-show": "göster",
 	"rcshowhidemine-hide": "gizle",
+	"rcshowhidecategorization-show": "Göster",
+	"rcshowhidecategorization-hide": "Gizle",
 	"rclinks": "Son $2 günde yapılan son $1 değişikliği göster;<br /> $3",
 	"diff": "fark",
 	"hist": "geçmiş",

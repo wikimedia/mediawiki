@@ -169,6 +169,7 @@
 	"apihelp-feedrecentchanges-param-hideliu": "Masquer les modifications faites par des utilisateurs enregistrés.",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "Masquer les modifications contrôlées.",
 	"apihelp-feedrecentchanges-param-hidemyself": "Masquer les modifications faites par l'utilisateur actuel.",
+	"apihelp-feedrecentchanges-param-hidecategorization": "Masquer les changements de la catégorie d'appartenance.",
 	"apihelp-feedrecentchanges-param-tagfilter": "Filtrer par balise.",
 	"apihelp-feedrecentchanges-param-target": "Afficher uniquement les modifications sur les pages liées depuis cette page.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Afficher les modifications plutôt sur les pages liées vers la page sélectionnée.",

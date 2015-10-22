@@ -659,6 +659,7 @@
 	"permissionserrors": "Dat jeit nit, dat darfs De nit.",
 	"permissionserrorstext": "Do häs nit dat Rääch, dat ze maache, {{PLURAL:$1|dä Jrund es:|de Jründe sin:|oohne Jrund.}}",
 	"permissionserrorstext-withaction": "Do häs nit dat Rääch $2, {{PLURAL:$1|dä Jrond es:|de Jrönde sin:|ävver ohne aanjävbahre Jrond.}}",
+	"contentmodelediterror": "Di Väsjohn km_mer nit änndere, weil its content model is <code>$1</code>, but the current content model of the page is <code>$2</code>.",
 	"recreate-moveddeleted-warn": "'''Opjepaß:''' Do bes om bäste Wääsch, en Sigg neu aanzelähje, di doför ald ens fottjeschmeße woode wohr.\n\nBes förseschtesch un övverlääsch Der, of dat en johde Ideh es, di Sigg widder opzemaache. Domet De Bescheid weiß, heh de Endrääsh em Logbohch vum Sigge-Ömnänne, un em Logbohch vum Sigge-Fottschmihße mem Jrond, woröm di Sigg dohmohls fottjeschmeße woode es:",
 	"moveddeleted-notice": "Heh di Sigg es fottjeschmeße.\nE Schtök uß dä Logböhscher fum Sigge_Fottschmihße un fum Sigge-Ömnänne för di Sigg kütt jäz, en dä Hoffnung, dat dat hellef.",
 	"moveddeleted-notice-recent": "Schahd, di Sigg wohd en de läzde 24 Schtonde fottjeschmeße.\nDe Enndrähsch för heh di Sigg em Logbohch fum Sigge Fottschmiiße un Ömnänne küntt heh för zom Nohlohre.",

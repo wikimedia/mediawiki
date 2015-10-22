@@ -1062,6 +1062,8 @@
 	"rcshowhidemine": "$1 manus",
 	"rcshowhidemine-show": "Rādīt",
 	"rcshowhidemine-hide": "Slēpt",
+	"rcshowhidecategorization-show": "Rādīt",
+	"rcshowhidecategorization-hide": "Paslēpt",
 	"rclinks": "Parādīt pēdējās $1 izmaiņas pēdējās $2 dienās.<br />$3",
 	"diff": "izmaiņas",
 	"hist": "hronoloģija",
