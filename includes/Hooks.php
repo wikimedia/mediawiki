@@ -232,8 +232,11 @@ class Hooks {
 
 	/**
 	 * Handle PHP errors issued inside a hook. Catch errors that have to do
-	 * with a function expecting a reference, and pass all others through to
-	 * MWExceptionHandler::handleError() for default processing.
+	 * with a function expecting a reference, missing arguments, or wrong argument
+	 * types. Pass all others through to to the default error handler.
+	 *
+	 * This is useful for throwing errors for major callback invocation errors
+	 * (with regard to parameter signature) which PHP just gives warnings for.
 	 *
 	 * @since 1.18
 	 *
@@ -243,13 +246,11 @@ class Hooks {
 	 * @return bool
 	 */
 	public static function hookErrorHandler( $errno, $errstr ) {
-		if ( strpos( $errstr, 'expected to be a reference, value given' ) !== false ) {
+		if ( preg_match( '/(expected to be a reference|Missing argument | expects parameter )/', $errstr ) === 1 ) {
 			throw new MWHookException( $errstr, $errno );
 		}
 
-		// Delegate unhandled errors to the default MW handler
-		return call_user_func_array(
-			'MWExceptionHandler::handleError', func_get_args()
-		);
+		// Delegate unhandled errors to the default handlers
+		return false;
 	}
 }
