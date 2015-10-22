@@ -89,6 +89,7 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
 === Other changes in 1.27 ===
+* ProfilerOutputUdp was removed. Note that there is a ProfilerOutputStats class.
 
 == Compatibility ==
 
