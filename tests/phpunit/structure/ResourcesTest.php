@@ -19,6 +19,12 @@ class ResourcesTest extends MediaWikiTestCase {
 	 * @dataProvider provideResourceFiles
 	 */
 	public function testFileExistence( $filename, $module, $resource ) {
+		// Fragment after anchor should be ignored in filename, @see T115436
+		$anchor = strpos( $filename, '#' );
+		if ( $anchor !== false ) {
+			$filename = substr( $filename, 0, $anchor );
+		}
+
 		$this->assertFileExists( $filename,
 			"File '$resource' referenced by '$module' must exist."
 		);
