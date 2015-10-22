@@ -5202,80 +5202,85 @@ $wgApplyIpBlocksToXff = false;
  * @par Example:
  * To set a generic maximum of 4 hits in 60 seconds:
  * @code
- * $wgRateLimits = array( 4, 60 );
+ *     $wgRateLimits = array( 4, 60 );
  * @endcode
  *
- * You could also limit per action and then type of users. See the inline
- * code for a template to use.
+ * @par Example:
+ * You could also limit per action and then type of users.
+ * @code
+ *     $wgRateLimits = array(
+ *         'edit' => array(
+ *             'anon' => array( x, y ), // any and all anonymous edits (aggregate)
+ *             'user' => array( x, y ), // each logged-in user
+ *             'newbie' => array( x, y ), // each new autoconfirmed accounts; overrides 'user'
+ *             'ip' => array( x, y ), // each anon and recent account
+ *             'subnet' => array( x, y ), // ... within a /24 subnet in IPv4 or /64 in IPv6
+ *         )
+ *     )
+ * @endcode
  *
- * This option set is experimental and likely to change.
- *
- * @warning Requires memcached.
+ * @warning Requires that $wgMainCacheType is set to something persistent
  */
 $wgRateLimits = array(
+	// Page edits
 	'edit' => array(
-		'anon' => null, // for any and all anonymous edits (aggregate)
-		'user' => null, // for each logged-in user
-		'newbie' => null, // for each recent (autoconfirmed) account; overrides 'user'
-		'ip' => null, // for each anon and recent account
-		'subnet' => null, // ... within a /24 subnet in IPv4 or /64 in IPv6
+		'ip' => array( 8, 60 ),
+		'newbie' => array( 8, 60 ),
 	),
-	'upload' => array(
-		'user' => null,
-		'newbie' => null,
-		'ip' => null,
-		'subnet' => null,
-	),
+	// Page moves
 	'move' => array(
-		'user' => null,
-		'newbie' => null,
-		'ip' => null,
-		'subnet' => null,
+		'newbie' => array( 2, 120 ),
+		'user' => array( 8, 60 ),
 	),
-	'mailpassword' => array( // triggering password resets emails
-		'anon' => null,
+	// File uploads
+	'upload' => array(
+		'ip' => array( 8, 60 ),
+		'newbie' => array( 8, 60 ),
 	),
-	'emailuser' => array( // emailing other users using MediaWiki
-		'user' => null,
+	// Page rollbacks
+	'rollback' => array(
+		'user' => array( 10, 60 ),
+		'newbie' => array( 5, 120 )
 	),
-	'linkpurge' => array( // purges of link tables
-		'anon' => null,
-		'user' => null,
-		'newbie' => null,
-		'ip' => null,
-		'subnet' => null,
+	// Triggering password resets emails
+	'mailpassword' => array(
+		'ip' => array( 5, 3600 ),
 	),
-	'renderfile' => array( // files rendered via thumb.php or thumb_handler.php
-		'anon' => null,
-		'user' => null,
-		'newbie' => null,
-		'ip' => null,
-		'subnet' => null,
+	// Emailing other users using MediaWiki
+	'emailuser' => array(
+		'ip' => array( 5, 86400 ),
+		'newbie' => array( 5, 86400 ),
+		'user' => array( 20, 86400 ),
 	),
-	'renderfile-nonstandard' => array( // same as above but for non-standard thumbnails
-		'anon' => null,
-		'user' => null,
-		'newbie' => null,
-		'ip' => null,
-		'subnet' => null,
+	// Purging pages
+	'purge' => array(
+		'ip' => array( 30, 60 ),
+		'user' => array( 30, 60 ),
 	),
-	'stashedit' => array( // stashing edits into cache before save
-		'anon' => null,
-		'user' => null,
-		'newbie' => null,
-		'ip' => null,
-		'subnet' => null,
+	// Purges of link tables
+	'linkpurge' => array(
+		'ip' => array( 30, 60 ),
+		'user' => array( 30, 60 ),
 	),
-	'changetag' => array( // adding or removing change tags
-		'user' => null,
-		'newbie' => null,
+	// Files rendered via thumb.php or thumb_handler.php
+	'renderfile' => array(
+		'ip' => array( 700, 30 ),
+		'user' => array( 700, 30 ),
 	),
-	'purge' => array( // purging pages
-		'anon' => null,
-		'user' => null,
-		'newbie' => null,
-		'ip' => null,
-		'subnet' => null,
+	// Same as above but for non-standard thumbnails
+	'renderfile-nonstandard' => array(
+		'ip' => array( 70, 30 ),
+		'user' => array( 70, 30 ),
+	),
+	// Stashing edits into cache before save
+	'stashedit' => array(
+		'ip' => array( 30, 60 ),
+		'newbie' => array( 30, 60 ),
+	),
+	// Adding or removing change tags
+	'changetag' => array(
+		'ip' => array( 8, 60 ),
+		'newbie' => array( 8, 60 ),
 	),
 );
 
