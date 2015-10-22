@@ -4476,6 +4476,21 @@ $wgPasswordConfig = array(
 );
 
 /**
+ * Configuration for a generic secret encryption mechanism.
+ * 'classes' maps SecretStore classes to their abbreviated name.
+ * 'defaultClass' is the default SecretStore class used to seal new secrets.
+ * 'secrets' should be an array of secret keys used to seal stored secrets. An array
+ *	is kept so that the secret can be easily rotated in production. If this array
+ *	is empty, $wgSecretKey is added as element 0 in Setup.php.
+ * 'defaultSecret' the current secret to use when sealing.
+ */
+$wgSecretStoreConfig = array(
+	'defaultClass' => 'acs256',
+	'secrets' => array(),
+	'defaultSecret' => 0,
+);
+
+/**
  * Whether to allow password resets ("enter some identifying data, and we'll send an email
  * with a temporary password you can use to get back into the account") identified by
  * various bits of data.  Setting all of these to false (or the whole variable to false)

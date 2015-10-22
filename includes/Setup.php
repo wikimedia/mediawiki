@@ -478,6 +478,11 @@ if ( $wgMaximalPasswordLength !== false ) {
 	$wgPasswordPolicy['policies']['default']['MaximalPasswordLength'] = $wgMaximalPasswordLength;
 }
 
+// Setup default SecretStore
+if ( !$wgSecretStoreConfig['secrets'] ) {
+	$wgSecretStoreConfig['secrets'] = array( $wgSecretKey );
+}
+
 // Backwards compatibility with deprecated alias
 // Must be before call to wfSetupSession()
 if ( $wgSessionsInMemcached ) {

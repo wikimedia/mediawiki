@@ -46,39 +46,14 @@ class Pbkdf2Password extends ParameterizedPassword {
 			$this->args[] = base64_encode( MWCryptRand::generate( 16, true ) );
 		}
 
-		if ( function_exists( 'hash_pbkdf2' ) ) {
-			$hash = hash_pbkdf2(
-				$this->params['algo'],
-				$password,
-				base64_decode( $this->args[0] ),
-				(int)$this->params['rounds'],
-				(int)$this->params['length'],
-				true
-			);
-		} else {
-			$hashLen = strlen( hash( $this->params['algo'], '', true ) );
-			$blockCount = ceil( $this->params['length'] / $hashLen );
-
-			$hash = '';
-			$salt = base64_decode( $this->args[0] );
-			for ( $i = 1; $i <= $blockCount; ++$i ) {
-				$roundTotal = $lastRound = hash_hmac(
-					$this->params['algo'],
-					$salt . pack( 'N', $i ),
-					$password,
-					true
-				);
-
-				for ( $j = 1; $j < $this->params['rounds']; ++$j ) {
-					$lastRound = hash_hmac( $this->params['algo'], $lastRound, $password, true );
-					$roundTotal ^= $lastRound;
-				}
-
-				$hash .= $roundTotal;
-			}
-
-			$hash = substr( $hash, 0, $this->params['length'] );
-		}
+		$hash = Pbkdf2::hash(
+			$this->params['algo'],
+			$password,
+			base64_decode( $this->args[0] ),
+			(int)$this->params['rounds'],
+			(int)$this->params['length'],
+			true
+		);
 
 		$this->hash = base64_encode( $hash );
 	}
