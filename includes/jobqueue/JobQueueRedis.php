@@ -218,14 +218,14 @@ class JobQueueRedis extends JobQueue {
 					$failed += count( $itemBatch );
 				}
 			}
-			if ( $failed > 0 ) {
-				wfDebugLog( 'JobQueueRedis', "Could not insert {$failed} {$this->type} job(s)." );
-
-				throw new RedisException( "Could not insert {$failed} {$this->type} job(s)." );
-			}
 			JobQueue::incrStats( 'inserts', $this->type, count( $items ) );
 			JobQueue::incrStats( 'dupe_inserts', $this->type,
 				count( $items ) - $failed - $pushed );
+			if ( $failed > 0 ) {
+				$err = "Could not insert {$failed} {$this->type} job(s).";
+				wfDebugLog( 'JobQueueRedis', $err );
+				throw new RedisException( $err );
+			}
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $conn, $e );
 		}
