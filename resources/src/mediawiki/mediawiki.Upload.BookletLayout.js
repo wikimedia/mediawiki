@@ -151,10 +151,29 @@
 	 * @return {jQuery.Promise} Promise resolved when everything is initialized
 	 */
 	mw.Upload.BookletLayout.prototype.initialize = function () {
+		var
+			apiPromise,
+			booklet = this,
+			deferred = $.Deferred();
+
 		this.clear();
 		this.upload = this.createUpload();
 		this.setPage( 'upload' );
-		return $.Deferred().resolve().promise();
+
+		apiPromise = this.upload.apiPromise || $.Deferred.resolve( this.upload.api );
+		apiPromise.done( function ( api ) {
+			// If the user can't upload anything, don't give them the option to.
+			api.getUserInfo().done( function ( userInfo ) {
+				if ( userInfo.rights.indexOf( 'upload' ) === -1 ) {
+					// TODO Use a better error message when not all logged-in users can upload
+					booklet.getPage( 'upload' ).$element.msg( 'api-error-mustbeloggedin' );
+				}
+			} ).always( function () {
+				deferred.resolve();
+			} );
+		} );
+
+		return deferred.promise();
 	};
 
 	/**
