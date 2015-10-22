@@ -67,7 +67,6 @@
 	 *  each individual request by passing them to #get or #post (or directly #ajax) later on.
 	 */
 	mw.Api = function ( options ) {
-		// TODO: Share API objects with exact same config.
 		options = options || {};
 
 		// Force a string if we got a mw.Uri object
@@ -90,7 +89,9 @@
 		 */
 		abort: function () {
 			$.each( this.requests, function ( index, request ) {
-				request.abort();
+				if ( request ) {
+					request.abort();
+				}
 			} );
 		},
 
@@ -152,7 +153,8 @@
 		 *  Fail: Error code
 		 */
 		ajax: function ( parameters, ajaxOptions ) {
-			var token,
+			var token, requestIndex,
+				api = this,
 				apiDeferred = $.Deferred(),
 				xhr, key, formData;
 
@@ -233,7 +235,11 @@
 					}
 				} );
 
+			requestIndex = this.requests.length;
 			this.requests.push( xhr );
+			xhr.always( function () {
+				api.requests[ requestIndex ] = null;
+			} );
 			// Return the Promise
 			return apiDeferred.promise( { abort: xhr.abort } ).fail( function ( code, details ) {
 				if ( !( code === 'http' && details && details.textStatus === 'abort' ) ) {

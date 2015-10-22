@@ -30,6 +30,7 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
+	 * @cfg {mw.Api} [api] Instance of mw.Api (or subclass thereof) to use for queries
 	 * @cfg {number} [limit=10] Maximum number of results to load
 	 * @cfg {mw.widgets.CategorySelector.SearchType[]} [searchTypes=[mw.widgets.CategorySelector.SearchType.OpenSearch]]
 	 *   Default search API to use when searching.
@@ -61,7 +62,7 @@
 		this.$input.on( 'change input cut paste', OO.ui.debounce( this.updateMenuItems.bind( this ), 100 ) );
 
 		// Initialize
-		this.api = new mw.Api();
+		this.api = config.api || new mw.Api();
 	}
 
 	/* Setup */
@@ -178,6 +179,7 @@
 	 */
 	CSP.createItemWidget = function ( data ) {
 		return new mw.widgets.CategoryCapsuleItemWidget( {
+			apiUrl: this.api.apiUrl || undefined,
 			title: mw.Title.newFromText( data, NS_CATEGORY )
 		} );
 	};

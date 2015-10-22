@@ -85,12 +85,18 @@
 	 */
 	UP.setFilenameFromFile = function () {
 		var file = this.getFile();
+		if ( !file ) {
+			return;
+		}
 		if ( file.nodeType && file.nodeType === Node.ELEMENT_NODE ) {
 			// File input element, use getBasename to cut out the path
 			this.setFilename( this.getBasename( file.value ) );
-		} else if ( file.name && file.lastModified ) {
+		} else if ( file.name ) {
 			// HTML5 FileAPI File object, but use getBasename to be safe
 			this.setFilename( this.getBasename( file.name ) );
+		} else {
+			// If we ever implement uploading files from clipboard, they might not have a name
+			this.setFilename( '?' );
 		}
 	};
 
