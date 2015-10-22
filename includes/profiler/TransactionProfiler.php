@@ -201,10 +201,10 @@ class TransactionProfiler implements LoggerAwareInterface {
 		}
 		// Report slow queries...
 		if ( !$isWrite && $elapsed > $this->expect['readQueryTime'] ) {
-			$this->reportExpectationViolated( 'readQueryTime', $query );
+			$this->reportExpectationViolated( 'readQueryTime', $query, $elapsed );
 		}
 		if ( $isWrite && $elapsed > $this->expect['writeQueryTime'] ) {
-			$this->reportExpectationViolated( 'writeQueryTime', $query );
+			$this->reportExpectationViolated( 'writeQueryTime', $query, $elapsed );
 		}
 
 		if ( !$this->dbTrxHoldingLocks ) {
@@ -259,8 +259,11 @@ class TransactionProfiler implements LoggerAwareInterface {
 
 		// Warn if too much time was spend writing...
 		if ( $writeTime > $this->expect['writeQueryTime'] ) {
-			$this->reportExpectationViolated( 'writeQueryTime',
-				"[transaction $id writes to {$server} ({$db})]" );
+			$this->reportExpectationViolated(
+				'writeQueryTime',
+				"[transaction $id writes to {$server} ({$db})]",
+				$writeTime
+			);
 			$slow = true;
 		}
 		// Fill in the last non-query period...
@@ -296,14 +299,15 @@ class TransactionProfiler implements LoggerAwareInterface {
 	/**
 	 * @param string $expect
 	 * @param string $query
+	 * @param string|float|int $actual [optional]
 	 */
-	protected function reportExpectationViolated( $expect, $query ) {
-		global $wgRequest;
-
+	protected function reportExpectationViolated( $expect, $query, $actual = null ) {
 		$n = $this->expect[$expect];
 		$by = $this->expectBy[$expect];
+		$actual = ( $actual !== null ) ? " (actual: $actual)" : "";
+
 		$this->logger->info(
-			"[{$wgRequest->getMethod()}] Expectation ($expect <= $n) by $by not met:\n$query\n" .
+			"Expectation ($expect <= $n) by $by not met$actual:\n$query\n" .
 			wfBacktrace( true )
 		);
 	}
