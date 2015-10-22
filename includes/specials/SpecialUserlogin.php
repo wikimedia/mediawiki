@@ -1385,11 +1385,6 @@ class LoginForm extends SpecialPage {
 		) );
 
 		if ( $this->mType == 'signup' ) {
-			// XXX hack pending RL or JS parse() support for complex content messages
-			// https://phabricator.wikimedia.org/T27349
-			$out->addJsConfigVars( 'wgCreateacctImgcaptchaHelp',
-				$this->msg( 'createacct-imgcaptcha-help' )->parse() );
-
 			// Additional styles and scripts for signup form
 			$out->addModules( array(
 				'mediawiki.special.userlogin.signup.js'
