@@ -85,25 +85,16 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 * @param bool $recursive Queue jobs for recursive updates?
 	 * @throws MWException
 	 */
-	function __construct( $title, $parserOutput, $recursive = true ) {
+	function __construct( Title $title, ParserOutput $parserOutput, $recursive = true ) {
 		parent::__construct( false ); // no implicit transaction
-
-		if ( !( $title instanceof Title ) ) {
-			throw new MWException( "The calling convention to LinksUpdate::LinksUpdate() has changed. " .
-				"Please see Article::editUpdates() for an invocation example.\n" );
-		}
-
-		if ( !( $parserOutput instanceof ParserOutput ) ) {
-			throw new MWException( "The calling convention to LinksUpdate::__construct() has changed. " .
-				"Please see WikiPage::doEditUpdates() for an invocation example.\n" );
-		}
 
 		$this->mTitle = $title;
 		$this->mId = $title->getArticleID();
 
 		if ( !$this->mId ) {
-			throw new MWException( "The Title object did not provide an article " .
-				"ID. Perhaps the page doesn't exist?" );
+			throw new InvalidArgumentException(
+				"The Title object yields no ID. Perhaps the page doesn't exist?"
+			);
 		}
 
 		$this->mParserOutput = $parserOutput;
