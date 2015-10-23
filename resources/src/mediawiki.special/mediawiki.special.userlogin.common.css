@@ -38,7 +38,7 @@ section.mw-form-header {
 	margin-top: 6px;
 }
 
-.mw-createacct-captcha-container {
+.fancycaptcha-captcha-container {
 	background-color: #f8f8f8;
 	border: 1px solid #c9c9c9;
 	padding: 10px;
@@ -52,7 +52,7 @@ section.mw-form-header {
 }
 
 /* Put a border around the fancycaptcha-image-container. */
-.mw-createacct-captcha-and-reload {
+.fancycaptcha-captcha-and-reload {
 	border: 1px solid #c9c9c9;
 	/* Other display formats end up too wide */
 	display: table-cell;
