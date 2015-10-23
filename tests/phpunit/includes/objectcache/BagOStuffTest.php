@@ -50,6 +50,11 @@ class BagOStuffTest extends MediaWikiTestCase {
 			$globalKey,
 			'Local key and global key with same parameters should not be equal'
 		);
+
+		$this->assertNotEquals(
+			$cache->makeKeyInternal( 'prefix', array( 'a', 'bc:', 'de' ) ),
+			$cache->makeKeyInternal( 'prefix', array( 'a', 'bc', ':de' ) )
+		);
 	}
 
 	/**
