@@ -1134,8 +1134,11 @@ class WebInstallerOptions extends WebInstallerPage {
 		);
 
 		$caches = array( 'none' );
+		$cacheval_default = 'none';
+
 		if ( count( $this->getVar( '_Caches' ) ) ) {
 			$caches[] = 'accel';
+			$cacheval_default = 'accel';
 		}
 		$caches[] = 'memcached';
 
@@ -1145,7 +1148,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			// We need to set a default here; but don't hardcode it
 			// or we lose it every time we reload the page for validation
 			// or going back!
-			$cacheval = 'none';
+			$cacheval = $cacheval_default;
 		}
 		$hidden = ( $cacheval == 'memcached' ) ? '' : 'display: none';
 		$this->addHTML(
