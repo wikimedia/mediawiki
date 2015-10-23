@@ -35,7 +35,8 @@
 				lastTop = top;
 			}
 
-			$img = $this.find( 'div.thumb a.image img' );
+			// @todo have a clear, reliable way to mark the img/video/audio/canvas/iframe/div/etc
+			$img = $this.find( 'div.thumb img' ).first();
 			if ( $img.length && $img[ 0 ].height ) {
 				imgHeight = $img[ 0 ].height;
 				imgWidth = $img[ 0 ].width;
