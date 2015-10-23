@@ -5763,7 +5763,6 @@ class Parser {
 			throw new MWException( __METHOD__ .
 				" can only be called when actually parsing something" );
 		}
-		$this->mOutput->setCacheTime( -1 ); // old style, for compatibility
 		$this->mOutput->updateCacheExpiry( 0 ); // new style, for consistency
 	}
 
