@@ -93,11 +93,6 @@ class CacheTime {
 		if ( $this->mCacheExpiry === null || $this->mCacheExpiry > $seconds ) {
 			$this->mCacheExpiry = $seconds;
 		}
-
-		// hack: set old-style marker for uncacheable entries.
-		if ( $this->mCacheExpiry !== null && $this->mCacheExpiry <= 0 ) {
-			$this->mCacheTime = -1;
-		}
 	}
 
 	/**
