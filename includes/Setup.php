@@ -377,9 +377,13 @@ if ( $wgResourceLoaderMaxQueryLength === false ) {
 // upload size.
 $wgMinUploadChunkSize = min(
 	$wgMinUploadChunkSize,
-	$wgMaxUploadSize,
-	wfShorthandToInteger( ini_get( 'upload_max_filesize' ), 1e100 ),
-	wfShorthandToInteger( ini_get( 'post_max_size' ), 1e100 ) - 1024 # Leave room for other parameters
+	UploadBase::getMaxUploadSize( 'file' ),
+	UploadBase::getMaxPhpUploadSize(),
+	// Leave some room for other POST parameters
+	( wfShorthandToInteger(
+		ini_get( 'post_max_size' ) ?: ini_get( 'hhvm.server.max_post_size' ),
+		PHP_INT_MAX
+	) ?: PHP_INT_MAX ) - 1024
 );
 
 /**
