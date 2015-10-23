@@ -159,7 +159,6 @@ class WebInstaller extends Installer {
 			$this->settings = $session['settings'] + $this->settings;
 		}
 
-		$this->exportVars();
 		$this->setupLanguage();
 
 		if ( ( $this->getVar( '_InstallDone' ) || $this->getVar( '_UpgradeDone' ) )
@@ -277,6 +276,8 @@ class WebInstaller extends Installer {
 			$this->disableTimeLimit();
 		}
 
+		global $wgMainCacheType;
+		error_log( $pageName . ': $wgMainCacheType = ' . $wgMainCacheType );
 		$result = $page->execute();
 
 		$this->endPageWrapper();
