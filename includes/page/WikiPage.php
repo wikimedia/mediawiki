@@ -1092,7 +1092,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Get a ParserOutput for the given ParserOptions and revision ID.
-	 * The parser cache will be used if possible.
+	 *
+	 * The parser cache will be used if possible. Cache misses that result
+	 * in parser runs are debounced with PoolCounter.
 	 *
 	 * @since 1.19
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse operation
