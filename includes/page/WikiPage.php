@@ -3479,22 +3479,34 @@ class WikiPage implements Page, IDBAccessObject {
 			return;
 		}
 
+		$params = array(
+			'isOpportunistic' => true,
+			'rootJobTimestamp' => $parserOutput->getCacheTime()
+		);
+
 		if ( $this->mTitle->areRestrictionsCascading() ) {
 			// If the page is cascade protecting, the links should really be up-to-date
-			$params = array( 'prioritize' => true );
+			JobQueueGroup::singleton()->lazyPush(
+				RefreshLinksJob::newPrioritized( $this->mTitle, $params )
+			);
 		} elseif ( $parserOutput->hasDynamicContent() ) {
-			// Assume the output contains time/random based magic words
-			$params = array();
-		} else {
-			// If the inclusions are deterministic, the edit-triggered link jobs are enough
-			return;
-		}
-
-		// Check if the last link refresh was before page_touched
-		if ( $this->getLinksTimestamp() < $this->getTouched() ) {
-			$params['isOpportunistic'] = true;
-			$params['rootJobTimestamp'] = $parserOutput->getCacheTime();
-			JobQueueGroup::singleton()->lazyPush( new RefreshLinksJob( $this->mTitle, $params ) );
+			// Assume the output contains "dynamic" time/random based magic words.
+			// Only update pages that expired due to dynamic content and NOT due to edits
+			// to referenced templates/files. When the cache expires due to dynamic content,
+			// page_touched is unchanged. We want to avoid triggering redundant jobs due to
+			// views of pages that were just purged via HTMLCacheUpdateJob. In that case, the
+			// template/file edit already triggered recursive RefreshLinksJob jobs.
+			if ( $this->getLinksTimestamp() > $this->getTouched() ) {
+				// If a page is uncacheable, do not keep spamming a job for it.
+				// Although it would be de-duplicated, it would still waste I/O.
+				$cache = ObjectCache::getLocalClusterInstance();
+				$key = $cache->makeKey( 'dynamic-linksupdate', 'last', $this->getId() );
+				if ( $cache->add( $key, time(), 60 ) ) {
+					JobQueueGroup::singleton()->lazyPush(
+						RefreshLinksJob::newDynamic( $this->mTitle, $params )
+					);
+				}
+			}
 		}
 	}
 
