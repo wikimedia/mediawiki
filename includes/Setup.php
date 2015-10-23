@@ -689,7 +689,7 @@ $wgTitle = null;
 Profiler::instance()->scopedProfileOut( $ps_globals );
 $ps_extensions = Profiler::instance()->scopedProfileIn( $fname . '-extensions' );
 
-// Extension setup functions for extensions other than skins
+// Extension setup functions
 // Entries should be added to this variable during the inclusion
 // of the extension file. This allows the extension to perform
 // any necessary initialisation in the fully initialised environment
