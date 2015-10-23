@@ -421,8 +421,6 @@
 	"createaccountreason": "Raison:",
 	"createacct-reason": "Raison",
 	"createacct-reason-ph": "Why ar ye creating anither accoont",
-	"createacct-captcha": "Security check.",
-	"createacct-imgcaptcha-ph": "Enter the tex ye see abuin",
 	"createacct-submit": "Mak yer accoont",
 	"createacct-another-submit": "Mak anither accoont",
 	"createacct-benefit-heading": "{{SITENAME}} is makit bi fowk like ye.",

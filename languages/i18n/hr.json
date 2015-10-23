@@ -430,8 +430,6 @@
 	"createaccountreason": "Razlog:",
 	"createacct-reason": "Razlog",
 	"createacct-reason-ph": "Zašto stvarate drugi račun",
-	"createacct-captcha": "Sigurnosna provjera",
-	"createacct-imgcaptcha-ph": "Unesite tekst koji vidite iznad",
 	"createacct-submit": "Stvorite svoj suradnički račun",
 	"createacct-another-submit": "Stvori još jedan račun",
 	"createacct-benefit-heading": "{{SITENAME}} su stvorili ljudi poput Vas.",

@@ -497,8 +497,6 @@
 	"createaccountreason": "Sebep:",
 	"createacct-reason": "Gerekçe",
 	"createacct-reason-ph": "Neden başka bir hesap oluşturuyorsunuz",
-	"createacct-captcha": "Güvenlik kontrolü",
-	"createacct-imgcaptcha-ph": "Yukarıda gördüğünüz metni girin",
 	"createacct-submit": "Hesabınızı oluşturun",
 	"createacct-another-submit": "Hesap oluşturun",
 	"createacct-benefit-heading": "{{SITENAME}} sizin gibi insanlar tarafından geliştirilir.",

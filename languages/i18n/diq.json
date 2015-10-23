@@ -419,8 +419,6 @@
 	"createaccountreason": "Sebeb:",
 	"createacct-reason": "Sebeb",
 	"createacct-reason-ph": "Şımaye çı xo re zewbi hesab vırazeni?",
-	"createacct-captcha": "Qontrolê asayişi",
-	"createacct-imgcaptcha-ph": "Nuşteyo ke cor aseno ey cı ke",
 	"createacct-submit": "Hesabê xo vıraze",
 	"createacct-another-submit": "Zewbi hesab vıraz",
 	"createacct-benefit-heading": "{{SITENAME}} meş de merduman şi",

@@ -429,8 +429,6 @@
 	"createaccountreason": "Grond:",
 	"createacct-reason": "Grond",
 	"createacct-reason-ph": "Fir wat Dir een anere Benotzerkonnt uleet",
-	"createacct-captcha": "Sécherheets-Check",
-	"createacct-imgcaptcha-ph": "Gitt den Text an deen Dir hei driwwer gesitt",
 	"createacct-submit": "Äre Benotzerkont uleeën",
 	"createacct-another-submit": "Benotzerkont uleeën",
 	"createacct-benefit-heading": "{{SITENAME}} gëtt vu Leit wéi Iech gemaach.",

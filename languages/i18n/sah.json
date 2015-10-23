@@ -425,8 +425,6 @@
 	"createaccountreason": "Төрүөтэ:",
 	"createacct-reason": "Төрүөтэ",
 	"createacct-reason-ph": "Саҥа аатынан тоҕо киирэҕиний",
-	"createacct-captcha": "Куттал суох буолуутун тургутуу",
-	"createacct-imgcaptcha-ph": "Үөһэ көстөрү хатылаа",
 	"createacct-submit": "Бэлиэтэнии",
 	"createacct-another-submit": "Бэлиэтэн",
 	"createacct-benefit-heading": "{{SITENAME}} ситим-сири эн курдук дьон оҥороллор.",

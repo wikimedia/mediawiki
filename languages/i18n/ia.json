@@ -428,8 +428,6 @@
 	"createaccountreason": "Motivo:",
 	"createacct-reason": "Motivo",
 	"createacct-reason-ph": "Proque crea tu un altere conto?",
-	"createacct-captcha": "Controlo de securitate",
-	"createacct-imgcaptcha-ph": "Scribe le texto que tu vide hic supra",
 	"createacct-submit": "Crear tu conto",
 	"createacct-another-submit": "Crear conto",
 	"createacct-benefit-heading": "{{SITENAME}} es facite per gente como tu.",

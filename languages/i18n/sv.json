@@ -480,8 +480,6 @@
 	"createaccountreason": "Orsak:",
 	"createacct-reason": "Orsak",
 	"createacct-reason-ph": "Varför du skapar ett annat konto",
-	"createacct-captcha": "Säkerhetskontroll",
-	"createacct-imgcaptcha-ph": "Fyll i texten du ser ovan",
 	"createacct-submit": "Skapa ditt konto",
 	"createacct-another-submit": "Skapa konto",
 	"createacct-benefit-heading": "{{SITENAME}} är skapad av människor som dig.",

@@ -466,8 +466,6 @@
 	"createaccountreason": "السبب:",
 	"createacct-reason": "السبب",
 	"createacct-reason-ph": "لماذا تقوم بإنشاء حساب آخر",
-	"createacct-captcha": "تحقق أمني",
-	"createacct-imgcaptcha-ph": "أدخل النص الذي تراه في الأعلى",
 	"createacct-submit": "افتح الحساب",
 	"createacct-another-submit": "أنشئ حسابا",
 	"createacct-benefit-heading": "موقع {{SITENAME}} أنشأه أشخاص مثلك.",

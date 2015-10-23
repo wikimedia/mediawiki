@@ -427,8 +427,6 @@
 	"createaccountreason": "Jrond:",
 	"createacct-reason": "Der Jrond udder Aanlaß",
 	"createacct-reason-ph": "Woröm deihs De noch ene Zohjang aanlääje?",
-	"createacct-captcha": "Zor Sescherheit",
-	"createacct-imgcaptcha-ph": "Jiv dä Täx en, dä De heh drövver sühs!",
 	"createacct-submit": "Lohß Jonn!",
 	"createacct-another-submit": "Donn jäz enne zohsäzlejje Zohjang aanlääje",
 	"createacct-benefit-heading": "{{ucfirst:{{GRAMMAR:Nominative|{{ucfirst:{{SITENAME}}}}}}}} weed vun Minsche wi Dir jemaat.",

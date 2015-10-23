@@ -426,8 +426,6 @@
 	"createaccountreason": "Razlog:",
 	"createacct-reason": "Razlog",
 	"createacct-reason-ph": "Zakaj ustvarjate drug račun",
-	"createacct-captcha": "Varnostno preverjanje",
-	"createacct-imgcaptcha-ph": "Vnesite zgornje besedilo",
 	"createacct-submit": "Ustvarite svoj račun",
 	"createacct-another-submit": "Ustvarite račun",
 	"createacct-benefit-heading": "{{GRAMMAR:tožilnik|{{SITENAME}}}} ustvarjajo ljudje, kot ste vi.",

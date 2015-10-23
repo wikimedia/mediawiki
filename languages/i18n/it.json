@@ -505,8 +505,6 @@
 	"createaccountreason": "Motivo:",
 	"createacct-reason": "Motivo",
 	"createacct-reason-ph": "Perché stai creando un'altra utenza",
-	"createacct-captcha": "Controllo di sicurezza",
-	"createacct-imgcaptcha-ph": "Inserisci il testo che vedi sopra",
 	"createacct-submit": "Crea la tua utenza",
 	"createacct-another-submit": "Crea utenza",
 	"createacct-benefit-heading": "{{SITENAME}} cresce grazie a persone come te.",

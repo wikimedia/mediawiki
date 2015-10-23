@@ -453,8 +453,6 @@
 	"createaccountreason": "Indoklás:",
 	"createacct-reason": "Indoklás",
 	"createacct-reason-ph": "Miért hozol létre egy másik fiókot",
-	"createacct-captcha": "Biztonsági ellenőrzés",
-	"createacct-imgcaptcha-ph": "Írd be a szöveget, amit fent látsz",
 	"createacct-submit": "Felhasználói fiók létrehozása",
 	"createacct-another-submit": "Újabb felhasználói fiók létrehozása",
 	"createacct-benefit-heading": "A(z) {{SITENAME}}-t hozzád hasonló emberek készítik.",

@@ -443,8 +443,6 @@
 	"createaccountreason": "მიზეზი:",
 	"createacct-reason": "მიზეზი",
 	"createacct-reason-ph": "რატომ ქმნით ახალ ანგარიშს?",
-	"createacct-captcha": "უსაფრთხოების შემოწმება",
-	"createacct-imgcaptcha-ph": "შეიყვანეთ ზემოთ მოცემული ტექსტი",
 	"createacct-submit": "შექმენით თქვენი ანგარიში",
 	"createacct-another-submit": "ანგარიშის შექმნა",
 	"createacct-benefit-heading": "{{SITENAME}} შექმნილია თქვენნაირი ადამიანების მიერ.",

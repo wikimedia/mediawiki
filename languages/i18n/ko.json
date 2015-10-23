@@ -464,8 +464,6 @@
 	"createaccountreason": "이유:",
 	"createacct-reason": "이유",
 	"createacct-reason-ph": "왜 다른 계정을 만들어야 합니까",
-	"createacct-captcha": "보안 검사",
-	"createacct-imgcaptcha-ph": "위에 보이는 텍스트를 입력하세요",
 	"createacct-submit": "계정 만들기",
 	"createacct-another-submit": "계정 만들기",
 	"createacct-benefit-heading": "{{SITENAME}} 프로젝트는 여러분과 같은 사람들이 만듭니다.",

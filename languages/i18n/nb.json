@@ -458,8 +458,6 @@
 	"createaccountreason": "Årsak:",
 	"createacct-reason": "Årsak",
 	"createacct-reason-ph": "Hvorfor lager du en annen bruker",
-	"createacct-captcha": "Sikkerhetssjekk",
-	"createacct-imgcaptcha-ph": "Fyll inn teksten du ser ovenfor",
 	"createacct-submit": "Opprett konto",
 	"createacct-another-submit": "Opprett konto",
 	"createacct-benefit-heading": "{{SITENAME}} er laget av folk som deg.",

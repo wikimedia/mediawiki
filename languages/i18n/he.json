@@ -446,8 +446,6 @@
 	"createaccountreason": "סיבה:",
 	"createacct-reason": "סיבה",
 	"createacct-reason-ph": "סיבה ליצירת חשבון נוסף",
-	"createacct-captcha": "בדיקת אבטחה",
-	"createacct-imgcaptcha-ph": "יש להקליד את הטקסט המופיע למעלה",
 	"createacct-submit": "יצירת החשבון שלך",
 	"createacct-another-submit": "יצירת חשבון",
 	"createacct-benefit-heading": "אנשים כמוך יוצרים את {{SITENAME}}.",

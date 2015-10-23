@@ -500,8 +500,6 @@
 	"createaccountreason": "Причина:",
 	"createacct-reason": "Причина",
 	"createacct-reason-ph": "Зачем вы создаёте другую учетную запись",
-	"createacct-captcha": "Проверка безопасности",
-	"createacct-imgcaptcha-ph": "Введите текст, который вы видите выше",
 	"createacct-submit": "Создать учётную запись",
 	"createacct-another-submit": "Создать учётную запись",
 	"createacct-benefit-heading": "{{SITENAME}} — совместный труд таких же людей, как вы.",

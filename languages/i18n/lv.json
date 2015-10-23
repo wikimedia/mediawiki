@@ -418,8 +418,6 @@
 	"createaccountreason": "Iemesls:",
 	"createacct-reason": "Iemesls",
 	"createacct-reason-ph": "Kāpēc jūs veidojat citu kontu",
-	"createacct-captcha": "Drošības pārbaude",
-	"createacct-imgcaptcha-ph": "Ievadiet tekstu, kuru jūs redzat augstāk",
 	"createacct-submit": "Izveidot savu kontu",
 	"createacct-another-submit": "Izveidot citu dalībnieka kontu",
 	"createacct-benefit-heading": "{{SITENAME}} darbojas ar tādu cilvēku kā Tu ieguldījumu.",

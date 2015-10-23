@@ -434,8 +434,6 @@
 	"createaccountreason": "Причина:",
 	"createacct-reason": "Причина",
 	"createacct-reason-ph": "Зошто правите друга сметка",
-	"createacct-captcha": "Безбедносна проверка",
-	"createacct-imgcaptcha-ph": "Внесете го гореприкажаниот текст",
 	"createacct-submit": "Направи ја",
 	"createacct-another-submit": "Создај сметка",
 	"createacct-benefit-heading": "{{SITENAME}} е дело на луѓе како вас.",

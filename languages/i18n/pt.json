@@ -476,8 +476,6 @@
 	"createaccountreason": "Motivo:",
 	"createacct-reason": "Motivo",
 	"createacct-reason-ph": "Porque está a criar outra conta",
-	"createacct-captcha": "Verificação de segurança",
-	"createacct-imgcaptcha-ph": "Digite o texto que vê acima",
 	"createacct-submit": "Crie a sua conta",
 	"createacct-another-submit": "Criar conta",
 	"createacct-benefit-heading": "{{SITENAME}} é feito por pessoas como você.",

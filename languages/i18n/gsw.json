@@ -434,8 +434,6 @@
 	"createaccountreason": "Grund:",
 	"createacct-reason": "Grund",
 	"createacct-reason-ph": "Wurum Du ne ander Benutzerkonto aaleisch",
-	"createacct-captcha": "Sicherheitspriefig",
-	"createacct-imgcaptcha-ph": "Gib dr Tekscht yy, wu Du obe siisch",
 	"createacct-submit": "Dyy Benutzerkonto aalege",
 	"createacct-another-submit": "Benutzerkonto aalege",
 	"createacct-benefit-heading": "{{SITENAME}} wird vu Mänsche wie Dir gschaffe.",

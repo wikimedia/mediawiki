@@ -538,8 +538,6 @@
 	"createaccountreason": "Motivo:",
 	"createacct-reason": "Motivo",
 	"createacct-reason-ph": "Por qué estás creando otra cuenta",
-	"createacct-captcha": "Comprobación de seguridad",
-	"createacct-imgcaptcha-ph": "Escribe el texto de arriba",
 	"createacct-submit": "Crea tu cuenta",
 	"createacct-another-submit": "Crear cuenta",
 	"createacct-benefit-heading": "Personas como tú son las que construyen {{SITENAME}}.",

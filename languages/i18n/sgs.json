@@ -359,8 +359,6 @@
 	"createacct-realname": "Tėkros vardos (nie būtėns)",
 	"createaccountreason": "Dingstės:",
 	"createacct-reason": "Dingstės",
-	"createacct-captcha": "Sargtėis patikrėnėms",
-	"createacct-imgcaptcha-ph": "Ožrašīkėt ženklus, katrus veizėt viršō",
 	"createacct-submit": "Padėrbkat savėi paskīra",
 	"createacct-another-submit": "Padėrbtė kėta paskīra",
 	"createacct-benefit-heading": "{{SITENAME}} īr sokorta prietėliu, tuokiu, kāp Tamsta.",

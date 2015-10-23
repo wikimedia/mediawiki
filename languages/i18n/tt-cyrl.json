@@ -413,8 +413,6 @@
 	"createacct-email-ph": "Электрон почта юлламагызны языгыз",
 	"createaccountmail": "электрон почта аша",
 	"createaccountreason": "Сәбәп:",
-	"createacct-captcha": "Саклыкны тикшерү",
-	"createacct-imgcaptcha-ph": "Өстә күрсәтелгән текстны кертегез",
 	"createacct-submit": "Хисап язмасы төзү",
 	"createacct-benefit-heading": "{{SITENAME}} — сезнең шикелле кешеләрнең хезмәте.",
 	"createacct-benefit-body1": "{{PLURAL:$1|төзәтмә}}",

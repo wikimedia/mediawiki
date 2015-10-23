@@ -446,8 +446,6 @@
 	"createaccountreason": "കാരണം:",
 	"createacct-reason": "കാരണം",
 	"createacct-reason-ph": "താങ്കൾ എന്തുകൊണ്ടാണ് മറ്റൊരു അംഗത്വം എടുക്കുന്നത്",
-	"createacct-captcha": "സുരക്ഷാ പരിശോധന",
-	"createacct-imgcaptcha-ph": "മുകളിൽ കാണുന്ന എഴുത്ത് ഇവിടെ നൽകുക",
 	"createacct-submit": "താങ്കളുടെ അംഗത്വം സൃഷ്ടിക്കുക",
 	"createacct-another-submit": "അംഗത്വമെടുക്കുക",
 	"createacct-benefit-heading": "താങ്കളെപ്പോലെയുള്ളവരാണ്  {{SITENAME}}  പടുത്തുയർത്തിയിരിക്കുന്നത്.",

@@ -415,8 +415,6 @@
 	"createaccountreason": "មូលហេតុ៖",
 	"createacct-reason": "មូលហេតុ",
 	"createacct-reason-ph": "មូលហេតុដែលអ្នកចង់បង្កើតគណនីមួយទៀត",
-	"createacct-captcha": "ត្រួតពិនិត្យសុវត្ថិភាព",
-	"createacct-imgcaptcha-ph": "បញ្ចូលឃ្លាដែលអ្នកឃើញខាងលើ",
 	"createacct-submit": "បង្កើតគណនីរបស់អ្នក",
 	"createacct-another-submit": "បង្កើតគណនី",
 	"createacct-benefit-heading": "{{SITENAME}} ត្រូវបង្កើតឡើងដោយបុគ្គលស្ម័គ្រចិត្តដូចជាអ្នកជាដើម។",

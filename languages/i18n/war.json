@@ -405,8 +405,6 @@
 	"createaccountreason": "Rason:",
 	"createacct-reason": "Rason",
 	"createacct-reason-ph": "Kay ano nahimo ka hin usa pa nga akawnt",
-	"createacct-captcha": "Pagkita han seguridad",
-	"createacct-imgcaptcha-ph": "Igbutang an sinurat nga nakikita mo ha igbaw",
 	"createacct-submit": "Ighimo an im akawnt",
 	"createacct-another-submit": "Paghimo hin lain nga akant",
 	"createacct-benefit-heading": "{{SITENAME}} in ginhimo hin tawo nga sugad ha imo.",

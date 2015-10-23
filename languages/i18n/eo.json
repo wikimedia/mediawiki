@@ -454,8 +454,6 @@
 	"createaccountreason": "Kialo:",
 	"createacct-reason": "Kialo",
 	"createacct-reason-ph": "Kial vi kreas plian konton",
-	"createacct-captcha": "Sekureca kontrolo",
-	"createacct-imgcaptcha-ph": "Entajpu la supran tekston",
 	"createacct-submit": "Krei konton",
 	"createacct-another-submit": "Krei alian konton",
 	"createacct-benefit-heading": "{{SITENAME}} estas kreata de homoj kiel vi.",

@@ -442,8 +442,6 @@
 	"createaccountreason": "Důvod:",
 	"createacct-reason": "Důvod",
 	"createacct-reason-ph": "Proč si vytváříte další účet",
-	"createacct-captcha": "Bezpečnostní kontrola",
-	"createacct-imgcaptcha-ph": "Opište výše zobrazený text",
 	"createacct-submit": "Vytvořit účet",
 	"createacct-another-submit": "Vytvořit účet",
 	"createacct-benefit-heading": "{{grammar:4sg|{{SITENAME}}}} tvoří lidé jako vy.",

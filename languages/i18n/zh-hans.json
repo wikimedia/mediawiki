@@ -502,8 +502,6 @@
 	"createaccountreason": "原因：",
 	"createacct-reason": "原因",
 	"createacct-reason-ph": "您为什么要创建另一个账户",
-	"createacct-captcha": "安全检查",
-	"createacct-imgcaptcha-ph": "请输入上图中的文字",
 	"createacct-submit": "创建您的账户",
 	"createacct-another-submit": "创建账户",
 	"createacct-benefit-heading": "{{SITENAME}}是由同你一样的人们构筑的。",

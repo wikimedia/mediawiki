@@ -454,8 +454,6 @@
 	"createaccountreason": "कारण:",
 	"createacct-reason": "कारण",
 	"createacct-reason-ph": "आपण दुसरे खाते कां बनवीत आहात",
-	"createacct-captcha": "सुरक्षा तपासणी",
-	"createacct-imgcaptcha-ph": "वर दिसत असलेला मजकूर येथे टाका",
 	"createacct-submit": "आपले खाते निर्माण करा",
 	"createacct-another-submit": "खाते तयार करा",
 	"createacct-benefit-heading": "{{SITENAME}} हे आपल्यासारख्याच लोकांनी बनविलेले आहे.",

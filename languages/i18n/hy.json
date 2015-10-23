@@ -409,8 +409,6 @@
 	"createaccountreason": "Պատճառը՝",
 	"createacct-reason": "Պատճառ",
 	"createacct-reason-ph": "Ինչո՞ւ եք փորձում ստեղծել մեկ այլ հաշիվ",
-	"createacct-captcha": "Անվտանգության ստուգում",
-	"createacct-imgcaptcha-ph": "Մուտքագրեք վերը բերված գրվածքը",
 	"createacct-submit": "Ստեղծել ձեր հաշիվը",
 	"createacct-another-submit": "Ստեղծել մեկ այլ հաշիվ",
 	"createacct-benefit-heading": "{{SITENAME}}՝ ստեղծվում է ձեր պես մարդկանց կողմից։",

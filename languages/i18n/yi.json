@@ -432,8 +432,6 @@
 	"createaccountreason": "אורזאַך:",
 	"createacct-reason": "אורזאך",
 	"createacct-reason-ph": "פֿארוואס שאפֿט איר נאך א קאנטע",
-	"createacct-captcha": "פארזיכערן קאנטראל",
-	"createacct-imgcaptcha-ph": "קלאפט ארײַן דעם טעקסט איר זעט אויבן",
 	"createacct-submit": "שאפֿט אײַער קאנטע",
 	"createacct-another-submit": "שאַפֿן קאנטע",
 	"createacct-benefit-heading": "{{SITENAME}} איז געמאכט דורך מענטשן ווי איר.",

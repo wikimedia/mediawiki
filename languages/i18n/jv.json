@@ -403,8 +403,6 @@
 	"createaccountreason": "Alesan:",
 	"createacct-reason": "Alesan",
 	"createacct-reason-ph": "Kenapa sampeyan nggawe akun liyane",
-	"createacct-captcha": "Periksa kamanan",
-	"createacct-imgcaptcha-ph": "Lebokna tulisan ing dhuwur",
 	"createacct-submit": "Gawé akun",
 	"createacct-another-submit": "Gawé akun anyar",
 	"createacct-benefit-heading": "{{SITENAME}} digawe karo wong-wong kaya sampeyan.",

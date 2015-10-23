@@ -348,8 +348,6 @@
 	"createaccountreason": "Syy:",
 	"createacct-reason": "Syy",
 	"createacct-reason-ph": "Mindäh olet luadimas tostu käyttäitilii",
-	"createacct-captcha": "Turvallizusvarmistus",
-	"createacct-imgcaptcha-ph": "Kirjuta ylähän olii tekstu",
 	"createacct-submit": "Luaji tili",
 	"createacct-another-submit": "Luaji tili",
 	"createacct-benefit-heading": "Sivun {{SITENAME}} ollah luajittu sinunjyttymät rahvas.",

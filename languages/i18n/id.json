@@ -451,8 +451,6 @@
 	"createaccountreason": "Alasan:",
 	"createacct-reason": "Alasan",
 	"createacct-reason-ph": "Mengapa Anda membuat akun lain",
-	"createacct-captcha": "Pemeriksaan keamanan",
-	"createacct-imgcaptcha-ph": "Masukkan teks yang Anda lihat di atas",
 	"createacct-submit": "Buat akun Anda",
 	"createacct-another-submit": "Buat akun lain",
 	"createacct-benefit-heading": "{{SITENAME}} dibuat oleh orang-orang seperti Anda.",

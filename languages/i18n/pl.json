@@ -496,8 +496,6 @@
 	"createaccountreason": "Powód:",
 	"createacct-reason": "Powód",
 	"createacct-reason-ph": "Dlaczego zakładasz kolejne konto",
-	"createacct-captcha": "Kontrola bezpieczeństwa",
-	"createacct-imgcaptcha-ph": "Wpisz tekst widoczny powyżej",
 	"createacct-submit": "Utwórz konto",
 	"createacct-another-submit": "Utwórz konto",
 	"createacct-benefit-heading": "{{grammar:B.lp|{{SITENAME}}}} tworzą ludzie tacy jak Ty.",

@@ -227,7 +227,7 @@
 	"api-pageset-param-revids": "Список идентификаторов версий для работы.",
 	"api-help-title": "Справка MediaWiki API",
 	"api-help-main-header": "Главный модуль",
-	"api-help-flag-deprecated": "Этот модуль является устаревшим.",
+	"api-help-flag-deprecated": "Этот модуль устарел.",
 	"api-help-flag-readrights": "Этот модуль требует прав на чтение.",
 	"api-help-flag-writerights": "Этот модуль требует права на запись.",
 	"api-help-flag-mustbeposted": "Этот модуль принимает только Post-запросы.",

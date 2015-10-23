@@ -435,8 +435,6 @@
 	"createaccountreason": "Razlog:",
 	"createacct-reason": "Razlog",
 	"createacct-reason-ph": "Zašto pravite još jedan korisnički račun?",
-	"createacct-captcha": "Sigurnosna provjera",
-	"createacct-imgcaptcha-ph": "Unesite tekst koji vidite iznad",
 	"createacct-submit": "Napravite svoj korisnički račun",
 	"createacct-another-submit": "Napravi još jedan korisnički račun",
 	"createacct-benefit-heading": "{{SITENAME}} je napravljena od strane ljudi kao što ste Vi.",
