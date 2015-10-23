@@ -287,7 +287,7 @@ class LocalSettingsGenerator {
 		$serverSetting = "";
 		if ( array_key_exists( 'wgServer', $this->values ) && $this->values['wgServer'] !== null ) {
 			$serverSetting = "\n## The protocol and server name to use in fully-qualified URLs\n";
-			$serverSetting .= "\$wgServer = \"{$this->values['wgServer']}\";\n";
+			$serverSetting .= "\$wgServer = \"{$this->values['wgServer']}\";";
 		}
 
 		switch ( $this->values['wgMainCacheType'] ) {
