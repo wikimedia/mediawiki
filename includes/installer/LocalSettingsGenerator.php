@@ -62,7 +62,7 @@ class LocalSettingsGenerator {
 				'wgLanguageCode', 'wgEnableEmail', 'wgEnableUserEmail', 'wgDiff3',
 				'wgEnotifUserTalk', 'wgEnotifWatchlist', 'wgEmailAuthentication',
 				'wgDBtype', 'wgSecretKey', 'wgRightsUrl', 'wgSitename', 'wgRightsIcon',
-				'wgRightsText', 'wgMainCacheType', 'wgEnableUploads',
+				'wgRightsText', '_MainCacheType', 'wgEnableUploads',
 				'wgMainCacheType', '_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
 				'wgMetaNamespace', 'wgLogo',
@@ -290,12 +290,12 @@ class LocalSettingsGenerator {
 			$serverSetting .= "\$wgServer = \"{$this->values['wgServer']}\";\n";
 		}
 
-		switch ( $this->values['wgMainCacheType'] ) {
+		switch ( $this->values['_MainCacheType'] ) {
 			case 'anything':
 			case 'db':
 			case 'memcached':
 			case 'accel':
-				$cacheType = 'CACHE_' . strtoupper( $this->values['wgMainCacheType'] );
+				$cacheType = 'CACHE_' . strtoupper( $this->values['_MainCacheType'] );
 				break;
 			case 'none':
 			default:

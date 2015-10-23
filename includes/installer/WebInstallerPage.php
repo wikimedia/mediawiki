@@ -1131,7 +1131,7 @@ class WebInstallerOptions extends WebInstallerPage {
 		$caches[] = 'memcached';
 
 		// We'll hide/show this on demand when the value changes, see config.js.
-		$cacheval = $this->getVar( 'wgMainCacheType' );
+		$cacheval = $this->getVar( '_MainCacheType' );
 		if ( !$cacheval ) {
 			// We need to set a default here; but don't hardcode it
 			// or we lose it every time we reload the page for validation
@@ -1147,7 +1147,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			// For grep: The following messages are used as the item labels:
 			// config-cache-none, config-cache-accel, config-cache-memcached
 			$this->parent->getRadioSet( array(
-				'var' => 'wgMainCacheType',
+				'var' => '_MainCacheType',
 				'label' => 'config-cache-options',
 				'itemLabelPrefix' => 'config-cache-',
 				'values' => $caches,
@@ -1285,7 +1285,7 @@ class WebInstallerOptions extends WebInstallerPage {
 		$this->parent->setVarsFromRequest( array( '_RightsProfile', '_LicenseCode',
 			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUploads', 'wgLogo',
 			'wgEnableUserEmail', 'wgEnotifUserTalk', 'wgEnotifWatchlist',
-			'wgEmailAuthentication', 'wgMainCacheType', '_MemCachedServers',
+			'wgEmailAuthentication', '_MainCacheType', '_MemCachedServers',
 			'wgUseInstantCommons', 'wgDefaultSkin' ) );
 
 		$retVal = true;
@@ -1351,7 +1351,7 @@ class WebInstallerOptions extends WebInstallerPage {
 		}
 		$this->parent->setVar( '_Extensions', $extsToInstall );
 
-		if ( $this->getVar( 'wgMainCacheType' ) == 'memcached' ) {
+		if ( $this->getVar( '_MainCacheType' ) == 'memcached' ) {
 			$memcServers = explode( "\n", $this->getVar( '_MemCachedServers' ) );
 			if ( !$memcServers ) {
 				$this->parent->showError( 'config-memcache-needservers' );
