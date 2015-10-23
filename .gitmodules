@@ -317,6 +317,6 @@
 	path = extensions/SectionHide
 	url = https://github.com/miraheze/SectionHide.git
 [submodule "extensions/SubpageList3"]
-	path = extensions/SubpageList3
+	path = extensions/SubPageList3/
 	url = https://github.com/wikimedia/mediawiki-extensions-SubpageList3
 	branch = REL1_25
