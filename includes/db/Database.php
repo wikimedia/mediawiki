@@ -485,7 +485,11 @@ abstract class DatabaseBase implements IDatabase {
 	 *   - DBO_PERSISTENT: use persistant database connection
 	 */
 	public function setFlag( $flag ) {
+		global $wgDebugDBTransactions;
 		$this->mFlags |= $flag;
+		if ( ( $flag & DBO_TRX ) && $wgDebugDBTransactions ) {
+			wfDebug( "Implicit transactions are now enabled.\n" );
+		}
 	}
 
 	/**
@@ -500,7 +504,11 @@ abstract class DatabaseBase implements IDatabase {
 	 *   - DBO_PERSISTENT: use persistant database connection
 	 */
 	public function clearFlag( $flag ) {
+		global $wgDebugDBTransactions;
 		$this->mFlags &= ~$flag;
+		if ( ( $flag & DBO_TRX ) && $wgDebugDBTransactions ) {
+			wfDebug( "Implicit transactions are now disabled.\n" );
+		}
 	}
 
 	/**
@@ -605,7 +613,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param array $params Parameters passed from DatabaseBase::factory()
 	 */
 	function __construct( array $params ) {
-		global $wgDBprefix, $wgDBmwschema, $wgCommandLineMode;
+		global $wgDBprefix, $wgDBmwschema, $wgCommandLineMode, $wgDebugDBTransactions;
 
 		$this->mTrxAtomicLevels = new SplStack;
 		$this->srvCache = ObjectCache::newAccelerator( 'hash' );
@@ -623,8 +631,14 @@ abstract class DatabaseBase implements IDatabase {
 		if ( $this->mFlags & DBO_DEFAULT ) {
 			if ( $wgCommandLineMode ) {
 				$this->mFlags &= ~DBO_TRX;
+				if ( $wgDebugDBTransactions ) {
+					wfDebug( "Implicit transaction open disabled.\n" );
+				}
 			} else {
 				$this->mFlags |= DBO_TRX;
+				if ( $wgDebugDBTransactions ) {
+					wfDebug( "Implicit transaction open enabled.\n" );
+				}
 			}
 		}
 
@@ -921,7 +935,7 @@ abstract class DatabaseBase implements IDatabase {
 	 *     for a successful read query, or false on failure if $tempIgnore set
 	 */
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
-		global $wgUser;
+		global $wgUser, $wgDebugDBTransactions;
 
 		$this->mLastQuery = $sql;
 
@@ -951,6 +965,9 @@ abstract class DatabaseBase implements IDatabase {
 		$commentedSql = preg_replace( '/\s|$/', " /* $fname $userName */ ", $sql, 1 );
 
 		if ( !$this->mTrxLevel && $this->getFlag( DBO_TRX ) && $this->isTransactableQuery( $sql ) ) {
+			if ( $wgDebugDBTransactions ) {
+				wfDebug( "Implicit transaction start.\n" );
+			}
 			$this->begin( __METHOD__ . " ($fname)" );
 			$this->mTrxAutomatic = true;
 		}
@@ -3424,6 +3441,8 @@ abstract class DatabaseBase implements IDatabase {
 	 * @throws DBError
 	 */
 	final public function begin( $fname = __METHOD__ ) {
+		global $wgDebugDBTransactions;
+
 		if ( $this->mTrxLevel ) { // implicit commit
 			if ( $this->mTrxAtomicLevels ) {
 				// If the current transaction was an automatic atomic one, then we definitely have
@@ -3446,8 +3465,9 @@ abstract class DatabaseBase implements IDatabase {
 					) )
 				);
 			} else {
-				// if the transaction was automatic and has done write operations
-				if ( $this->mTrxDoneWrites ) {
+				// if the transaction was automatic and has done write operations,
+				// log it if $wgDebugDBTransactions is enabled.
+				if ( $this->mTrxDoneWrites && $wgDebugDBTransactions ) {
 					wfDebug( "$fname: Automatic transaction with writes in progress" .
 						" (from {$this->mTrxFname}), performing implicit commit!\n"
 					);

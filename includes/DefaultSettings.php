@@ -5477,6 +5477,13 @@ $wgDebugRawPage = false;
 $wgDebugComments = false;
 
 /**
+ * Extensive database transaction state debugging
+ *
+ * @since 1.20
+ */
+$wgDebugDBTransactions = false;
+
+/**
  * Write SQL queries to the debug log.
  *
  * This setting is only used $wgLBFactoryConf['class'] is set to
@@ -5485,6 +5492,13 @@ $wgDebugComments = false;
  * connection to achieve the same functionality.
  */
 $wgDebugDumpSql = false;
+
+/**
+ * Trim logged SQL queries to this many bytes. Set 0/false/null to do no
+ * trimming.
+ * @since 1.24
+ */
+$wgDebugDumpSqlLength = 500;
 
 /**
  * Performance expectations for DB usage

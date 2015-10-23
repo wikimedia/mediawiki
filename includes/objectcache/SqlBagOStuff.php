@@ -131,6 +131,8 @@ class SqlBagOStuff extends BagOStuff {
 	 * @throws MWException
 	 */
 	protected function getDB( $serverIndex ) {
+		global $wgDebugDBTransactions;
+
 		if ( !isset( $this->conns[$serverIndex] ) ) {
 			if ( $serverIndex >= $this->numServers ) {
 				throw new MWException( __METHOD__ . ": Invalid server index \"$serverIndex\"" );
@@ -145,6 +147,9 @@ class SqlBagOStuff extends BagOStuff {
 
 			# If server connection info was given, use that
 			if ( $this->serverInfos ) {
+				if ( $wgDebugDBTransactions ) {
+					$this->logger->debug( "Using provided serverInfo for SqlBagOStuff" );
+				}
 				$info = $this->serverInfos[$serverIndex];
 				$type = isset( $info['type'] ) ? $info['type'] : 'mysql';
 				$host = isset( $info['host'] ) ? $info['host'] : '[unknown]';
@@ -168,7 +173,9 @@ class SqlBagOStuff extends BagOStuff {
 					$db = wfGetDB( $index );
 				}
 			}
-			$this->logger->debug( sprintf( "Connection %s will be used for SqlBagOStuff", $db ) );
+			if ( $wgDebugDBTransactions ) {
+				$this->logger->debug( sprintf( "Connection %s will be used for SqlBagOStuff", $db ) );
+			}
 			$this->conns[$serverIndex] = $db;
 		}
 
