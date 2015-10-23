@@ -328,7 +328,8 @@ abstract class BagOStuff implements LoggerAwareInterface {
 		} elseif ( $this->getLastError() || $timeout <= 0 ) {
 			$locked = false; // network partition or non-blocking
 		} else {
-			$uRTT = ceil( 1e6 * ( microtime( true ) - $timestamp ) ); // estimate RTT (us)
+			// Estimate the RTT (us); use 1ms minimum for sanity
+			$uRTT = max( 1e3, ceil( 1e6 * ( microtime( true ) - $timestamp ) ) );
 			$sleep = 2 * $uRTT; // rough time to do get()+set()
 
 			$attempts = 0; // failed attempts
