@@ -175,10 +175,39 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 			return $value;
 		};
 
-		$cache->delete( $key );
 		$ret = $cache->getWithSetCallback( $key, 30, $func, array( 'lockTSE' => 5 ) );
 		$this->assertEquals( $value, $ret );
 		$this->assertEquals( 1, $calls, 'Value was populated' );
+
+		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
+		$this->internalCache->lock( $key, 0 );
+		$ret = $cache->getWithSetCallback( $key, 30, $func, array( 'lockTSE' => 5 ) );
+		$this->assertEquals( $value, $ret );
+		$this->assertEquals( 1, $calls, 'Callback was not used' );
+	}
+
+	/**
+	 * @covers WANObjectCache::getWithSetCallback()
+	 */
+	public function testLockTSESlow() {
+		$cache = $this->cache;
+		$key = wfRandomString();
+		$value = wfRandomString();
+
+		$calls = 0;
+		$func = function( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value ) {
+			++$calls;
+			$setOpts['since'] = microtime( true ) - 10;
+			return $value;
+		};
+
+		// Value should be marked as stale due to snapshot lag
+		$curTTL = null;
+		$ret = $cache->getWithSetCallback( $key, 30, $func, array( 'lockTSE' => 5 ) );
+		$this->assertEquals( $value, $ret );
+		$this->assertEquals( $value, $cache->get( $key, $curTTL ), 'Value was populated' );
+		$this->assertLessThan( 0, $curTTL, 'Value has negative curTTL' );
+		$this->assertEquals( 1, $calls, 'Value was generated' );
 
 		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
 		$this->internalCache->lock( $key, 0 );
