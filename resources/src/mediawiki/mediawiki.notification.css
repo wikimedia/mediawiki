@@ -5,6 +5,8 @@
 	width: 20em;
 	line-height: 1.35;
 	z-index: 10000;
+	/* Avoid horizontal scrollbar on fade in and on fade out */
+	overflow: hidden;
 }
 
 .mw-notification {
