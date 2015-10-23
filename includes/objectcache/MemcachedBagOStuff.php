@@ -105,6 +105,37 @@ class MemcachedBagOStuff extends BagOStuff {
 	}
 
 	/**
+	 * Construct a cache key.
+	 *
+	 * @since 1.27
+	 * @param string $keyspace
+	 * @param array $args
+	 * @return string
+	 */
+	public function makeKeyInternal( $keyspace, $args ) {
+		// Memcached keys have a maximum length of 255 characters. From that,
+		// subtract the number of characters we need for the keyspace and for
+		// the separator character needed for each argument.
+		$charsLeft = 255 - strlen( $keyspace ) - count( $args );
+
+		$that = $this;
+		$args = array_map( function ( $arg ) use ( $that, &$charsLeft ) {
+			$arg = $that->encodeKey( $arg );
+			if ( $charsLeft > 17 && strlen( $arg ) > $charsLeft ) {
+				$arg = '!' . md5( $arg );
+			}
+			$charsLeft -= strlen( $arg );
+			return $arg;
+		}, $args );
+
+		if ( $charsLeft < 0 ) {
+			$args = array( '!!' . md5( implode( ':', $args ) ) );
+		}
+
+		return parent::makeKeyInternal( $keyspace, $args );
+	}
+
+	/**
 	 * Encode a key for use on the wire inside the memcached protocol.
 	 *
 	 * We encode spaces and line breaks to avoid protocol errors. We encode
@@ -115,7 +146,7 @@ class MemcachedBagOStuff extends BagOStuff {
 	 * @return string
 	 */
 	public function encodeKey( $key ) {
-		return preg_replace_callback( '/[\x00-\x20\x25\x7f]+/',
+		return preg_replace_callback( '/[^\x22-\x7e]+/',
 			array( $this, 'encodeKeyCallback' ), $key );
 	}
 
