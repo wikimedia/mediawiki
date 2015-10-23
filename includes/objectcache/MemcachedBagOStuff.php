@@ -124,7 +124,11 @@ class MemcachedBagOStuff extends BagOStuff {
 				// Because MemcachedBagOStuff::encodeKey() will be called again
 				// with this input once the key is actually used, we have to
 				// encode pound signs here rather than in encodeKey().
-				$arg = $that->encodeKey( str_replace( '#', '%23', $arg ) );
+				$arg = $that->encodeKey( strtr( $arg, array(
+					'#' => '%23',
+					':' => '%3A',
+					' ' => '_',
+				) ) );
 
 				// 33 = 32 characters for the MD5 + 1 for the '#' prefix.
 				if ( $charsLeft > 33 && strlen( $arg ) > $charsLeft ) {
@@ -138,10 +142,10 @@ class MemcachedBagOStuff extends BagOStuff {
 		);
 
 		if ( $charsLeft < 0 ) {
-			$args = array( '##' . md5( implode( ':', $args ) ) );
+			return $keyspace . ':##' . md5( implode( ':', $args ) );
 		}
 
-		return parent::makeKeyInternal( $keyspace, $args );
+		return $keyspace . ':' . implode( ':', $args );
 	}
 
 	/**
