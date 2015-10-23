@@ -121,6 +121,8 @@ class MemcachedBagOStuff extends BagOStuff {
 		$that = $this;
 		$args = array_map(
 			function ( $arg ) use ( $that, &$charsLeft ) {
+				$arg = strtr( $arg, ' ', '_' );
+
 				// Make sure %, #, and non-ASCII chars are escaped
 				$arg = preg_replace_callback(
 					'/[^\x21-\x22\x24\x26-\x7e]+/',
@@ -142,10 +144,10 @@ class MemcachedBagOStuff extends BagOStuff {
 		);
 
 		if ( $charsLeft < 0 ) {
-			$args = array( '##' . md5( implode( ':', $args ) ) );
+			return $keyspace . ':##' . md5( implode( ':', $args ) );
 		}
 
-		return parent::makeKeyInternal( $keyspace, $args );
+		return $keyspace . ':' . implode( ':', $args );
 	}
 
 	/**

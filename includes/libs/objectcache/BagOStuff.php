@@ -627,7 +627,11 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * @return string
 	 */
 	public function makeKeyInternal( $keyspace, $args ) {
-		$key = $keyspace . ':' . implode( ':', $args );
+		$key = $keyspace;
+		foreach ( $args as $arg ) {
+			$arg = str_replace( ':', '%3A', $arg );
+			$key = $key . ':' . $arg;
+		}
 		return strtr( $key, ' ', '_' );
 	}
 
