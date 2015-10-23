@@ -334,7 +334,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 \$wgScriptPath = \"{$this->values['wgScriptPath']}\";
 ${serverSetting}
 
-## The relative URL path to the logo.  Make sure you change this from the default,
+## The URL path to static resources (images, scripts, etc.)
+\$wgResourceBasePath = \$wgScriptPath;
+
+## The URL path to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
 \$wgLogo = \"{$this->values['wgLogo']}\";
 
