@@ -85,7 +85,7 @@ class WANObjectCache {
 	/** Seconds to keep dependency purge keys around */
 	const CHECK_KEY_TTL = 31536000; // 1 year
 	/** Seconds to keep lock keys around */
-	const LOCK_TTL = 5;
+	const LOCK_TTL = 10;
 	/** Default remaining TTL at which to consider pre-emptive regeneration */
 	const LOW_TTL = 30;
 	/** Default time-since-expiry on a miss that makes a key "hot" */
@@ -100,6 +100,9 @@ class WANObjectCache {
 	/** Max TTL to store keys when a data sourced is lagged */
 	const TTL_LAGGED = 30;
 
+	/** Tiny negative float to use when CTL comes up >= 0 due to clock skew */
+	const TINY_NEGATIVE = -0.000001;
+
 	/** Cache format version number */
 	const VERSION = 1;
 
@@ -107,6 +110,10 @@ class WANObjectCache {
 	const FLD_VALUE = 1;
 	const FLD_TTL = 2;
 	const FLD_TIME = 3;
+	const FLD_FLAGS = 4;
+
+	/** @var integer Treat this value as expired-on-arrival */
+	const FLG_STALE = 1;
 
 	const ERR_NONE = 0; // no error
 	const ERR_NO_RESPONSE = 1; // no response
@@ -149,11 +156,11 @@ class WANObjectCache {
 	/**
 	 * Fetch the value of a key from cache
 	 *
-	 * If passed in, $curTTL is set to the remaining TTL (current time left):
-	 *   - a) INF; if the key exists, has no TTL, and is not expired by $checkKeys
-	 *   - b) float (>=0); if the key exists, has a TTL, and is not expired by $checkKeys
-	 *   - c) float (<0); if the key is tombstoned or existing but expired by $checkKeys
-	 *   - d) null; if the key does not exist and is not tombstoned
+	 * If supplied, $curTTL is set to the remaining TTL (current time left):
+	 *   - a) INF; if $key exists, has no TTL, and is not expired by $checkKeys
+	 *   - b) float (>=0); if $key exists, has a TTL, and is not expired by $checkKeys
+	 *   - c) float (<0); if $key is tombstoned, stale, or existing but expired by $checkKeys
+	 *   - d) null; if $key does not exist and is not tombstoned
 	 *
 	 * If a key is tombstoned, $curTTL will reflect the time since delete().
 	 *
@@ -319,14 +326,17 @@ class WANObjectCache {
 
 		if ( $age > self::MAX_SNAPSHOT_LAG ) {
 			if ( $lockTSE >= 0 ) {
+				// Store the value for "lockTSE" seconds, but mark as stale
 				$tempTTL = max( 1, (int)$lockTSE ); // set() expects seconds
-				$this->cache->set( self::STASH_KEY_PREFIX . $key, $value, $tempTTL );
+				$wrapped = $this->wrap( $value, $tempTTL );
+				$wrapped[self::FLD_FLAGS] = self::FLG_STALE;
+			} else {
+				// Just no-op the write for being unsafe
+				return true;
 			}
-
-			return true; // no-op the write for being unsafe
+		} else {
+			$wrapped = $this->wrap( $value, $ttl );
 		}
-
-		$wrapped = $this->wrap( $value, $ttl );
 
 		$func = function ( $cache, $key, $cWrapped ) use ( $wrapped ) {
 			return ( is_string( $cWrapped ) )
@@ -913,7 +923,7 @@ class WANObjectCache {
 		$purgeTimestamp = self::parsePurgeValue( $wrapped );
 		if ( is_float( $purgeTimestamp ) ) {
 			// Purged values should always have a negative current $ttl
-			$curTTL = min( -0.000001, $purgeTimestamp - $now );
+			$curTTL = min( $purgeTimestamp - $now, self::TINY_NEGATIVE );
 			return array( false, $curTTL );
 		}
 
@@ -924,7 +934,12 @@ class WANObjectCache {
 			return array( false, null );
 		}
 
-		if ( $wrapped[self::FLD_TTL] > 0 ) {
+		$flags = isset( $wrapped[self::FLD_FLAGS] ) ? $wrapped[self::FLD_FLAGS] : 0;
+		if ( ( $flags & self::FLG_STALE ) == self::FLG_STALE ) {
+			// Treat as expired, with the cache time as the expiration
+			$age = $now - $wrapped[self::FLD_TIME];
+			$curTTL = min( -$age, self::TINY_NEGATIVE );
+		} elseif ( $wrapped[self::FLD_TTL] > 0 ) {
 			// Get the approximate time left on the key
 			$age = $now - $wrapped[self::FLD_TIME];
 			$curTTL = max( $wrapped[self::FLD_TTL] - $age, 0.0 );
