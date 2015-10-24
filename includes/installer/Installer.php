@@ -692,17 +692,6 @@ abstract class Installer {
 	}
 
 	/**
-	 * Exports all wg* variables stored by the installer into global scope.
-	 */
-	public function exportVars() {
-		foreach ( $this->settings as $name => $value ) {
-			if ( substr( $name, 0, 2 ) == 'wg' ) {
-				$GLOBALS[$name] = $value;
-			}
-		}
-	}
-
-	/**
 	 * Environment check for DB types.
 	 * @return bool
 	 */
