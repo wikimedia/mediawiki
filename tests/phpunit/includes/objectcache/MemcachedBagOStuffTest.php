@@ -21,8 +21,13 @@ class MemcachedBagOStuffTest extends MediaWikiTestCase {
 		);
 
 		$this->assertEquals(
-			$this->cache->makeKey( 'punctuation_marks_are_ok', '!@$%^&*()' ),
-			'test:punctuation_marks_are_ok:!@$%^&*()'
+			$this->cache->makeKey( 'punctuation_marks_are_ok', '!@$^&*()' ),
+			'test:punctuation_marks_are_ok:!@$^&*()'
+		);
+
+		$this->assertEquals(
+			$this->cache->makeKey( 'percent_is_escaped', '!@$%^&*()' ),
+			'test:percent_is_escaped:!@$%25^&*()'
 		);
 
 		$this->assertEquals(
