@@ -65,25 +65,25 @@ class MemcachedBagOStuff extends BagOStuff {
 	}
 
 	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
-		return $this->client->get( $this->encodeKey( $key ), $casToken );
+		return $this->client->get( $this->validateKeyEncoding( $key ), $casToken );
 	}
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
-		return $this->client->set( $this->encodeKey( $key ), $value,
+		return $this->client->set( $this->validateKeyEncoding( $key ), $value,
 			$this->fixExpiry( $exptime ) );
 	}
 
 	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
-		return $this->client->cas( $casToken, $this->encodeKey( $key ),
+		return $this->client->cas( $casToken, $this->validateKeyEncoding( $key ),
 			$value, $this->fixExpiry( $exptime ) );
 	}
 
 	public function delete( $key ) {
-		return $this->client->delete( $this->encodeKey( $key ) );
+		return $this->client->delete( $this->validateKeyEncoding( $key ) );
 	}
 
 	public function add( $key, $value, $exptime = 0 ) {
-		return $this->client->add( $this->encodeKey( $key ), $value,
+		return $this->client->add( $this->validateKeyEncoding( $key ), $value,
 			$this->fixExpiry( $exptime ) );
 	}
 
@@ -121,10 +121,13 @@ class MemcachedBagOStuff extends BagOStuff {
 		$that = $this;
 		$args = array_map(
 			function ( $arg ) use ( $that, &$charsLeft ) {
-				// Because MemcachedBagOStuff::encodeKey() will be called again
-				// with this input once the key is actually used, we have to
-				// encode pound signs here rather than in encodeKey().
-				$arg = $that->encodeKey( str_replace( '#', '%23', $arg ) );
+				$arg = preg_replace_callback(
+					'/[^\x21-\x24\x26-\x7e]+/',
+					function ( $m ) {
+						return rawurlencode( $m[0] );
+					},
+					$arg
+				);
 
 				// 33 = 32 characters for the MD5 + 1 for the '#' prefix.
 				if ( $charsLeft > 33 && strlen( $arg ) > $charsLeft ) {
@@ -145,26 +148,18 @@ class MemcachedBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Encode a key for use on the wire inside the memcached protocol.
+	 * Ensure that a key is safe to use (contains no control characters and no
+	 * characters above the ASCII range.)
 	 *
-	 * We encode spaces and line breaks to avoid protocol errors. We encode
-	 * the other control characters for compatibility with libmemcached
-	 * verify_key. We leave other punctuation alone, to maximise backwards
-	 * compatibility.
 	 * @param string $key
 	 * @return string
+	 * @throws Exception
 	 */
-	public function encodeKey( $key ) {
-		return preg_replace_callback( '/[^\x21-\x7e]+/',
-			array( $this, 'encodeKeyCallback' ), $key );
-	}
-
-	/**
-	 * @param array $m
-	 * @return string
-	 */
-	protected function encodeKeyCallback( $m ) {
-		return rawurlencode( $m[0] );
+	public function validateKeyEncoding( $key ) {
+		if ( preg_match( '/[^\x21-\x7e]+/', $key ) ) {
+			throw new Exception( "Key contains invalid characters: $key" );
+		}
+		return $key;
 	}
 
 	/**
@@ -181,21 +176,6 @@ class MemcachedBagOStuff extends BagOStuff {
 			$expiry = 2592000;
 		}
 		return (int)$expiry;
-	}
-
-	/**
-	 * Decode a key encoded with encodeKey(). This is provided as a convenience
-	 * function for debugging.
-	 *
-	 * @param string $key
-	 *
-	 * @return string
-	 */
-	public function decodeKey( $key ) {
-		// matches %00-%20, %25, %7F (=decoded alternatives for those encoded in encodeKey)
-		return preg_replace_callback( '/%([0-1][0-9]|20|25|7F)/i', function ( $match ) {
-			return urldecode( $match[0] );
-		}, $key );
 	}
 
 	/**
