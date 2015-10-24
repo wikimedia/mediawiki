@@ -367,26 +367,15 @@ abstract class Installer {
 			$this->settings[$var] = $GLOBALS[$var];
 		}
 
-		$compiledDBs = array();
+		$this->compiledDBs = array();
 		foreach ( self::getDBTypes() as $type ) {
 			$installer = $this->getDBInstaller( $type );
 
 			if ( !$installer->isCompiled() ) {
 				continue;
 			}
-			$compiledDBs[] = $type;
-
-			$defaults = $installer->getGlobalDefaults();
-
-			foreach ( $installer->getGlobalNames() as $var ) {
-				if ( isset( $defaults[$var] ) ) {
-					$this->settings[$var] = $defaults[$var];
-				} else {
-					$this->settings[$var] = $GLOBALS[$var];
-				}
-			}
+			$this->compiledDBs[] = $type;
 		}
-		$this->compiledDBs = $compiledDBs;
 
 		$this->parserTitle = Title::newFromText( 'Installer' );
 		$this->parserOptions = new ParserOptions; // language will  be wrong :(
