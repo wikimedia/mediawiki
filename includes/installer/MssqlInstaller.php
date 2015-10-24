@@ -207,6 +207,7 @@ class MssqlInstaller extends DatabaseInstaller {
 				'password' => $password,
 				'dbname' => false,
 				'flags' => 0,
+				'schema' => $this->getVar( 'wgDBmwschema' ),
 				'tablePrefix' => $this->getVar( 'wgDBprefix' ) ) );
 			$db->prepareStatements( false );
 			$db->scrollableCursor( false );
@@ -610,6 +611,14 @@ class MssqlInstaller extends DatabaseInstaller {
 		}
 
 		return $status;
+	}
+
+	public function getGlobalDefaults() {
+		// The default $wgDBmwschema is null, which breaks Postgres and other DBMSes that require
+		// the use of a schema, so we need to set it here
+		return array_merge( parent::getGlobalDefaults(), array(
+			'wgDBmwschema' => 'mediawiki',
+		) );
 	}
 
 	/**

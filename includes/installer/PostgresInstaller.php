@@ -152,17 +152,18 @@ class PostgresInstaller extends DatabaseInstaller {
 	 * @param string $user User name
 	 * @param string $password Password
 	 * @param string $dbName Database name
+	 * @param string $schema Database schema
 	 * @return Status
 	 */
-	protected function openConnectionWithParams( $user, $password, $dbName ) {
+	protected function openConnectionWithParams( $user, $password, $dbName, $schema ) {
 		$status = Status::newGood();
 		try {
-			$db = new DatabasePostgres(
-				$this->getVar( 'wgDBserver' ),
-				$user,
-				$password,
-				$dbName
-			);
+			$db = Database::factory( 'postgres', array(
+				'host' => $this->getVar( 'wgDBserver' ),
+				'user' => $user,
+				'password' => $password,
+				'dbname' => $dbName,
+				'schema' => $schema ) );
 			$status->value = $db;
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-connection-error', $e->getMessage() );
@@ -231,7 +232,8 @@ class PostgresInstaller extends DatabaseInstaller {
 				return $this->openConnectionWithParams(
 					$this->getVar( '_InstallUser' ),
 					$this->getVar( '_InstallPassword' ),
-					$this->getVar( 'wgDBname' ) );
+					$this->getVar( 'wgDBname' ),
+					$this->getVar( 'wgDBmwschema' ) );
 			case 'create-tables':
 				$status = $this->openPgConnection( 'create-schema' );
 				if ( $status->isOK() ) {
@@ -261,11 +263,11 @@ class PostgresInstaller extends DatabaseInstaller {
 		$status = Status::newGood();
 		foreach ( $dbs as $db ) {
 			try {
-				$conn = new DatabasePostgres(
-					$this->getVar( 'wgDBserver' ),
+				$conn = $this->openConnectionWithParams(
 					$user,
 					$password,
-					$db );
+					$db,
+					$this->getVar( 'wgDBmwschema' ) );
 			} catch ( DBConnectionError $error ) {
 				$conn = false;
 				$status->fatal( 'config-pg-test-error', $db,
@@ -621,6 +623,14 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 
 		return $status;
+	}
+
+	public function getGlobalDefaults() {
+		// The default $wgDBmwschema is null, which breaks Postgres and other DBMSes that require
+		// the use of a schema, so we need to set it here
+		return array_merge( parent::getGlobalDefaults(), array(
+			'wgDBmwschema' => 'mediawiki',
+		) );
 	}
 
 	public function setupPLpgSQL() {
