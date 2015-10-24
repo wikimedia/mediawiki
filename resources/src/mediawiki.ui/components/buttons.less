@@ -243,6 +243,12 @@ a.mw-ui-button {
 	&:focus {
 		text-decoration: none;
 	}
+
+	// a-tags behave different to inputs if the line-height attribute is inherited
+	// from another element (e.g. mw-body-content). They appear bigger as input
+	// tags. See Bug T116427. To fix that, apply the correct line-height (used
+	// for inputs) to a-tags, too.
+	line-height: normal;
 }
 
 // Button groups
