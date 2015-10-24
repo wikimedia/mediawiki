@@ -1752,7 +1752,7 @@ abstract class FileBackendStore extends FileBackend {
 				$pathNames[$this->fileCacheKey( $path )] = $path;
 			}
 		}
-		// Get all cache entries for these container cache keys...
+		// Get all cache entries for these file cache keys...
 		$values = $this->memCache->getMulti( array_keys( $pathNames ) );
 		foreach ( $values as $cacheKey => $val ) {
 			$path = $pathNames[$cacheKey];
