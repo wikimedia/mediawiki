@@ -7768,6 +7768,15 @@ $wgVirtualRestConfig = array(
 $wgSearchRunSuggestedQuery = true;
 
 /**
+ * Max time (in seconds) a user-generated transaction can spend in writes.
+ * If exceeded, the transaction is rolled back with an error instead of committed.
+ *
+ * @var int
+ * @since 1.27
+ */
+$wgMaxUserDBWriteDuration = 3;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

@@ -63,6 +63,8 @@ production.
   setting in the relevant section of $wgLBFactoryConf.
 * User::newSystemUser() may be used to simplify the creation of passwordless
   "system" users for logged actions from scripts and extensions.
+* $wgMaxUserDBWriteDuration added to limit huge user-generated transactions.
+  Regular web request transactions that takes longer than this are aborted.
 
 ==== External libraries ====
 
