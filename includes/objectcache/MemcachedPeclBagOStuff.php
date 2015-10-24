@@ -117,7 +117,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
 		$this->debugLog( "get($key)" );
-		$result = $this->client->get( $this->encodeKey( $key ), null, $casToken );
+		$result = $this->client->get( $this->validateKeyEncoding( $key ), null, $casToken );
 		$result = $this->checkResult( $key, $result );
 		return $result;
 	}
@@ -202,14 +202,10 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 	public function getMulti( array $keys, $flags = 0 ) {
 		$this->debugLog( 'getMulti(' . implode( ', ', $keys ) . ')' );
-		$callback = array( $this, 'encodeKey' );
-		$encodedResult = $this->client->getMulti( array_map( $callback, $keys ) );
-		$encodedResult = $encodedResult ?: array(); // must be an array
-		$result = array();
-		foreach ( $encodedResult as $key => $value ) {
-			$key = $this->decodeKey( $key );
-			$result[$key] = $value;
+		foreach ( $keys as $key ) {
+			$this->validateKeyEncoding( $key );
 		}
+		$result = $this->client->getMulti( $keys ) ?: array();
 		return $this->checkResult( false, $result );
 	}
 
@@ -219,14 +215,10 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * @return bool
 	 */
 	public function setMulti( array $data, $exptime = 0 ) {
-		foreach ( $data as $key => $value ) {
-			$encKey = $this->encodeKey( $key );
-			if ( $encKey !== $key ) {
-				$data[$encKey] = $value;
-				unset( $data[$key] );
-			}
-		}
 		$this->debugLog( 'setMulti(' . implode( ', ', array_keys( $data ) ) . ')' );
+		foreach ( array_keys( $data ) as $key ) {
+			$this->validateKeyEncoding( $key );
+		}
 		$result = $this->client->setMulti( $data, $this->fixExpiry( $exptime ) );
 		return $this->checkResult( false, $result );
 	}
