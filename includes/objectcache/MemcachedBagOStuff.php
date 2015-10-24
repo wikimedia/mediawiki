@@ -37,20 +37,8 @@ class MemcachedBagOStuff extends BagOStuff {
 	 * @return array
 	 */
 	protected function applyDefaultParams( $params ) {
-		if ( !isset( $params['servers'] ) ) {
-			$params['servers'] = $GLOBALS['wgMemCachedServers'];
-		}
-		if ( !isset( $params['debug'] ) ) {
-			$params['debug'] = $GLOBALS['wgMemCachedDebug'];
-		}
-		if ( !isset( $params['persistent'] ) ) {
-			$params['persistent'] = $GLOBALS['wgMemCachedPersistent'];
-		}
 		if ( !isset( $params['compress_threshold'] ) ) {
 			$params['compress_threshold'] = 1500;
-		}
-		if ( !isset( $params['timeout'] ) ) {
-			$params['timeout'] = $GLOBALS['wgMemCachedTimeout'];
 		}
 		if ( !isset( $params['connect_timeout'] ) ) {
 			$params['connect_timeout'] = 0.5;
