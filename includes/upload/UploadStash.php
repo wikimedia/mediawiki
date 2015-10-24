@@ -278,13 +278,21 @@ class UploadStash {
 		wfDebug( __METHOD__ . " inserting $stashPath under $key\n" );
 		$dbw = $this->repo->getMasterDb();
 
+		$serializedFileProps = serialize( $fileProps );
+		if ( strlen( $serializedFileProps ) >= 65535 ) {
+			// Database is going to truncate this and make field invalid.
+			// Prioritize important metadata over file handler metadata
+			$fileProps['metadata'] = false;
+			$serializedFileProps = serialize( $fileProps );
+		}
+
 		$this->fileMetadata[$key] = array(
 			'us_id' => $dbw->nextSequenceValue( 'uploadstash_us_id_seq' ),
 			'us_user' => $this->userId,
 			'us_key' => $key,
 			'us_orig_path' => $path,
 			'us_path' => $stashPath, // virtual URL
-			'us_props' => $dbw->encodeBlob( serialize( $fileProps ) ),
+			'us_props' => $dbw->encodeBlob( $serializedFileProps ),
 			'us_size' => $fileProps['size'],
 			'us_sha1' => $fileProps['sha1'],
 			'us_mime' => $fileProps['mime'],
