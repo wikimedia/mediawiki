@@ -505,9 +505,25 @@ class MediaWiki {
 		// Either all DBs should commit or none
 		ignore_user_abort( true );
 
-		// Commit all changes and record ChronologyProtector positions
+		$config = $context->getConfig();
+
 		$factory = wfGetLBFactory();
+		// Check if any transaction was too big
+		$limit = $config->get( 'MaxUserDBWriteDuration' );
+		$factory->forEachLB( function ( LoadBalancer $lb ) use ( $limit ) {
+			$lb->forEachOpenConnection( function ( IDatabase $db ) use ( $limit ) {
+				$time = $db->pendingWriteQueryDuration();
+				if ( $limit > 0 && $time > $limit ) {
+					throw new DBTransactionError(
+						$db,
+						wfMessage( 'transaction-duration-limit-exceeded', $time, $limit )->plain()
+					);
+				}
+			} );
+		} );
+		// Commit all changes
 		$factory->commitMasterChanges();
+		// Record ChronologyProtector positions
 		$factory->shutdown();
 		wfDebug( __METHOD__ . ': all transactions committed' );
 
@@ -517,7 +533,6 @@ class MediaWiki {
 		// Set a cookie to tell all CDN edge nodes to "stick" the user to the
 		// DC that handles this POST request (e.g. the "master" data center)
 		$request = $context->getRequest();
-		$config = $context->getConfig();
 		if ( $request->wasPosted() && $factory->hasOrMadeRecentMasterChanges() ) {
 			$expires = time() + $config->get( 'DataCenterUpdateStickTTL' );
 			$request->response()->setCookie( 'UseDC', 'master', $expires, array( 'prefix' => '' ) );

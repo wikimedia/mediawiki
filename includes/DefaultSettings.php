@@ -7811,6 +7811,15 @@ $wgSearchRunSuggestedQuery = true;
  */
 $wgPopularPasswordFile = __DIR__ . '/../serialized/commonpasswords.cdb';
 
+/*
+ * Max time (in seconds) a user-generated transaction can spend in writes.
+ * If exceeded, the transaction is rolled back with an error instead of being committed.
+ *
+ * @var int|bool Disabled if false
+ * @since 1.27
+ */
+$wgMaxUserDBWriteDuration = false;
+
 /**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
