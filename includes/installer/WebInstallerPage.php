@@ -523,6 +523,8 @@ class WebInstallerDBConnect extends WebInstallerPage {
 			}
 		}
 
+		$availableDBs = $this->getVar( '_AvailableDBs' );
+
 		$this->startForm();
 
 		$types = "<ul class=\"config-settings-block\">\n";
@@ -538,39 +540,40 @@ class WebInstallerDBConnect extends WebInstallerPage {
 		$this->addHTML( $this->parent->getInfoBox(
 			wfMessage( 'config-support-info', trim( $dbSupport ) )->text() ) );
 
-		// It's possible that the library for the default DB type is not compiled in.
-		// In that case, instead select the first supported DB type in the list.
-		$compiledDBs = $this->parent->getCompiledDBs();
-		if ( !in_array( $defaultType, $compiledDBs ) ) {
-			$defaultType = $compiledDBs[0];
-		}
+		if ( $availableDBs ) {
+			// It's possible that the library for the default DB type is not compiled in.
+			// In that case, instead select the first supported DB type in the list.
+			if ( !in_array( $defaultType, $availableDBs ) ) {
+				$defaultType = $availableDBs[0];
+			}
 
-		foreach ( $compiledDBs as $type ) {
-			$installer = $this->parent->getDBInstaller( $type );
-			$types .=
-				'<li>' .
-				Xml::radioLabel(
-					$installer->getReadableName(),
-					'DBType',
-					$type,
-					"DBType_$type",
-					$type == $defaultType,
-					array( 'class' => 'dbRadio', 'rel' => "DB_wrapper_$type" )
-				) .
-				"</li>\n";
+			foreach ( $availableDBs as $type ) {
+				$installer = $this->parent->getDBInstaller( $type );
+				$types .=
+					'<li>' .
+					Xml::radioLabel(
+						$installer->getReadableName(),
+						'DBType',
+						$type,
+						"DBType_$type",
+						$type == $defaultType,
+						array( 'class' => 'dbRadio', 'rel' => "DB_wrapper_$type" )
+					) .
+					"</li>\n";
 
-			// Messages: config-header-mysql, config-header-postgres, config-header-oracle,
-			// config-header-sqlite
-			$settings .= Html::openElement(
-					'div',
-					array(
-						'id' => 'DB_wrapper_' . $type,
-						'class' => 'dbWrapper'
-					)
-				) .
-				Html::element( 'h3', array(), wfMessage( 'config-header-' . $type )->text() ) .
-				$installer->getConnectForm() .
-				"</div>\n";
+				// Messages: config-header-mysql, config-header-postgres, config-header-oracle,
+				// config-header-sqlite
+				$settings .= Html::openElement(
+						'div',
+						array(
+							'id' => 'DB_wrapper_' . $type,
+							'class' => 'dbWrapper'
+						)
+					) .
+					Html::element( 'h3', array(), wfMessage( 'config-header-' . $type )->text() ) .
+					$installer->getConnectForm() .
+					"</div>\n";
+			}
 		}
 
 		$types .= "</ul><br style=\"clear: left\"/>\n";

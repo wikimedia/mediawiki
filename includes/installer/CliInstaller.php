@@ -188,7 +188,7 @@ class CliInstaller extends Installer {
 	public function showHelpBox( $msg /*, ... */ ) {
 	}
 
-	public function showStatusMessage( Status $status ) {
+	public function displayStatusMessage( Status $status ) {
 		$warnings = array_merge( $status->getWarningsArray(),
 			$status->getErrorsArray() );
 
@@ -197,6 +197,10 @@ class CliInstaller extends Installer {
 				call_user_func_array( array( $this, 'showMessage' ), $w );
 			}
 		}
+	}
+
+	public function showStatusMessage( Status $status ) {
+		$this->displayStatusMessage( $status );
 
 		if ( !$status->isOk() ) {
 			echo "\n";

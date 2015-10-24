@@ -733,11 +733,17 @@ class WebInstaller extends Installer {
 	/**
 	 * @param Status $status
 	 */
-	public function showStatusMessage( Status $status ) {
+	public function displayStatusMessage( Status $status ) {
 		$errors = array_merge( $status->getErrorsArray(), $status->getWarningsArray() );
 		foreach ( $errors as $error ) {
 			call_user_func_array( array( $this, 'showMessage' ), $error );
 		}
+	}
+	/**
+	 * @param Status $status
+	 */
+	public function showStatusMessage( Status $status ) {
+		$this->displayStatusMessage( $status );
 	}
 
 	/**

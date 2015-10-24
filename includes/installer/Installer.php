@@ -201,6 +201,7 @@ abstract class Installer {
 		'_UpgradeDone' => false,
 		'_InstallDone' => false,
 		'_Caches' => array(),
+		'_AvailableDBs' => array(),
 		'_InstallPassword' => '',
 		'_SameAccount' => true,
 		'_CreateDBAccount' => false,
@@ -350,6 +351,14 @@ abstract class Installer {
 
 	/**
 	 * Show a message to the installing user by using a Status object
+	 * Does not exit on fatal error
+	 * @param Status $status
+	 */
+	abstract public function displayStatusMessage( Status $status );
+
+	/**
+	 * Show a message to the installing user by using a Status object
+	 * May exit on fatal error
 	 * @param Status $status
 	 */
 	abstract public function showStatusMessage( Status $status );
@@ -520,7 +529,6 @@ abstract class Installer {
 			$class = ucfirst( $type ) . 'Installer';
 			$this->dbInstallers[$type] = new $class( $this );
 		}
-
 		return $this->dbInstallers[$type];
 	}
 
@@ -724,17 +732,18 @@ abstract class Installer {
 			$installer = $this->getDBInstaller( $db );
 			$status = $installer->checkPrerequisites();
 			if ( !$status->isGood() ) {
-				$this->showStatusMessage( $status );
+				$this->displayStatusMessage( $status );
 			}
 			if ( !$status->isOK() ) {
 				unset( $databases[$db] );
 			}
 		}
 		$databases = array_flip( $databases );
+		$this->setVar( '_AvailableDBs', $databases );
+
 		if ( !$databases ) {
 			$this->showError( 'config-no-db', $wgLang->commaList( $allNames ), count( $allNames ) );
 
-			// @todo FIXME: This only works for the web installer!
 			return false;
 		}
 
