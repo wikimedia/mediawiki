@@ -68,6 +68,7 @@ class SqliteInstaller extends DatabaseInstaller {
 	}
 
 	public function getGlobalDefaults() {
+		$defaults = parent::getGlobalDefaults();
 		if ( isset( $_SERVER['DOCUMENT_ROOT'] ) ) {
 			$path = str_replace(
 				array( '/', '\\' ),
@@ -75,10 +76,9 @@ class SqliteInstaller extends DatabaseInstaller {
 				dirname( $_SERVER['DOCUMENT_ROOT'] ) . '/data'
 			);
 
-			return array( 'wgSQLiteDataDir' => $path );
-		} else {
-			return array();
+			$defaults['wgSQLiteDataDir'] = $path;
 		}
+		return $defaults;
 	}
 
 	public function getConnectForm() {
