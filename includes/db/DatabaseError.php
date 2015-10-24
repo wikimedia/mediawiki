@@ -455,5 +455,5 @@ class DBUnexpectedError extends DBError {
 /**
  * @ingroup Database
  */
-class DBReadOnlyError extends DBError {
+class DBReadOnlyError extends DBExpectedError {
 }
