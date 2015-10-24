@@ -79,11 +79,11 @@ class RedisConnectionPool implements LoggerAwareInterface {
 
 	/**
 	 * @param array $options
-	 * @throws MWException
+	 * @throws Exception
 	 */
 	protected function __construct( array $options ) {
 		if ( !class_exists( 'Redis' ) ) {
-			throw new MWException( __CLASS__ . ' requires a Redis client library. ' .
+			throw new Exception( __CLASS__ . ' requires a Redis client library. ' .
 				'See https://www.mediawiki.org/wiki/Redis#Setup' );
 		}
 		if ( isset( $options['logger'] ) ) {
@@ -102,7 +102,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 		} elseif ( $options['serializer'] === 'none' ) {
 			$this->serializer = Redis::SERIALIZER_NONE;
 		} else {
-			throw new MWException( "Invalid serializer specified." );
+			throw new InvalidArgumentException( "Invalid serializer specified." );
 		}
 	}
 
@@ -219,7 +219,9 @@ class RedisConnectionPool implements LoggerAwareInterface {
 			// TCP connection
 			$hostPort = IP::splitHostAndPort( $server );
 			if ( !$server || !$hostPort ) {
-				throw new MWException( __CLASS__ . ": invalid configured server \"$server\"" );
+				throw new InvalidArgumentException(
+					__CLASS__ . ": invalid configured server \"$server\""
+				);
 			}
 			list( $host, $port ) = $hostPort;
 			if ( $port === false ) {
