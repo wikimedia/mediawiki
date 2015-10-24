@@ -178,8 +178,26 @@ class ObjectCache {
 			return call_user_func( $params['factory'], $params );
 		} elseif ( isset( $params['class'] ) ) {
 			$class = $params['class'];
-			if ( $class === 'MultiWriteBagOStuff' && !isset( $params['asyncHandler'] ) ) {
-				$params['asyncHandler'] = 'DeferredUpdates::addCallableUpdate';
+			// Automatically set the 'async' update handler
+			if ( $class === 'MultiWriteBagOStuff' ) {
+				$params['asyncHandler'] = isset( $params['asyncHandler'] )
+					? $params['asyncHandler']
+					: 'DeferredUpdates::addCallableUpdate';
+			}
+			// Do b/c logic for MemcachedBagOStuff
+			if ( is_subclass_of( $class, 'MemcachedBagOStuff' ) ) {
+				if ( !isset( $params['servers'] ) ) {
+					$params['servers'] = $GLOBALS['wgMemCachedServers'];
+				}
+				if ( !isset( $params['debug'] ) ) {
+					$params['debug'] = $GLOBALS['wgMemCachedDebug'];
+				}
+				if ( !isset( $params['persistent'] ) ) {
+					$params['persistent'] = $GLOBALS['wgMemCachedPersistent'];
+				}
+				if ( !isset( $params['timeout'] ) ) {
+					$params['timeout'] = $GLOBALS['wgMemCachedTimeout'];
+				}
 			}
 			return new $class( $params );
 		} else {
