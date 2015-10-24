@@ -496,9 +496,22 @@ class MediaWiki {
 		// Either all DBs should commit or none
 		ignore_user_abort( true );
 
-		// Commit all changes and record ChronologyProtector positions
 		$factory = wfGetLBFactory();
+		// Check if any transaction was too big
+		$limit = $this->config->get( 'MaxUserDBWriteDuration' );
+		$factory->forEachLB( function ( LoadBalancer $lb ) use ( $limit ) {
+			$dbw = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
+			$time = $dbw ? $dbw->pendingWriteQueryDuration() : 0;
+			if ( $limit > 0 && $time > $limit ) {
+				throw new DBTransactionError(
+					$dbw,
+					wfMessage( 'transaction-duration-limit-exceeded', $time, $limit )->plain()
+				);
+			}
+		} );
+		// Commit all changes
 		$factory->commitMasterChanges();
+		// Record ChronologyProtector positions
 		$factory->shutdown();
 
 		wfDebug( __METHOD__ . ' completed; all transactions committed' );
