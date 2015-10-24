@@ -79,6 +79,35 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 		$this->assertInternalType( 'string', $obj->setterArgs[0] );
 		$this->assertSame( 'unwrapped', $obj->setterArgs[0] );
 	}
+
+	/**
+	 * @covers ObjectFactory::constructClassInstance
+	 * @dataProvider provideConstructClassInstance
+	 */
+	public function testConstructClassInstance( $args ) {
+		$obj = ObjectFactory::constructClassInstance(
+			'ObjectFactoryTestFixture', $args
+		);
+		$this->assertSame( $args, $obj->args );
+	}
+
+	public function provideConstructClassInstance() {
+		// These args go to 11. I thought about making 10 one louder, but 11!
+		return array(
+			'0 args' => array( array() ),
+			'1 args' => array( array( 1, ) ),
+			'2 args' => array( array( 1, 2, ) ),
+			'3 args' => array( array( 1, 2, 3, ) ),
+			'4 args' => array( array( 1, 2, 3, 4, ) ),
+			'5 args' => array( array( 1, 2, 3, 4, 5, ) ),
+			'6 args' => array( array( 1, 2, 3, 4, 5, 6, ) ),
+			'7 args' => array( array( 1, 2, 3, 4, 5, 6, 7, ) ),
+			'8 args' => array( array( 1, 2, 3, 4, 5, 6, 7, 8, ) ),
+			'9 args' => array( array( 1, 2, 3, 4, 5, 6, 7, 8, 9, ) ),
+			'10 args' => array( array( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ) ),
+			'11 args' => array( array( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ) ),
+		);
+	}
 }
 
 class ObjectFactoryTestFixture {
