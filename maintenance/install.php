@@ -64,7 +64,7 @@ class CommandLineInstaller extends Maintenance {
 		$this->addOption( 'dbpass', 'The pasword for the DB user for normal operations', false, true );
 		$this->addOption( 'dbpassfile', 'An alternative way to provide dbpass option, as the contents of this file', false, true );
 		$this->addOption( 'confpath', "Path to write LocalSettings.php to, default $IP", false, true );
-		/* $this->addOption( 'dbschema', 'The schema for the MediaWiki DB in pg (mediawiki)', false, true ); */
+		$this->addOption( 'dbschema', 'The schema for the MediaWiki DB in PostgreSQL/Microsoft SQL Server (mediawiki)', false, true );
 		/* $this->addOption( 'namespace', 'The project namespace (same as the name)', false, true ); */
 		$this->addOption( 'env-checks', "Run environment checks only, don't change anything" );
 	}
