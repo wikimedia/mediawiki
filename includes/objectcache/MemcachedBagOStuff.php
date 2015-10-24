@@ -123,7 +123,7 @@ class MemcachedBagOStuff extends BagOStuff {
 			function ( $arg ) use ( $that, &$charsLeft ) {
 				// Make sure %, #, and non-ASCII chars are escaped
 				$arg = preg_replace_callback(
-					'/[^\x21-\x22\x24\x26-\x7e]+/',
+					'/[^\x21-\x22\x24\x26-\x39\x3b-\x7e]+/',
 					function ( $m ) {
 						return rawurlencode( $m[0] );
 					},
