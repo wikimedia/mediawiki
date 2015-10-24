@@ -27,10 +27,7 @@
  * @ingroup Cache
  */
 class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
-
 	/**
-	 * Constructor.
-	 *
 	 * Available parameters are:
 	 *   - servers:             The list of IP:port combinations holding the memcached servers.
 	 *   - debug:               Whether to set the debug flag in the underlying client.
@@ -50,39 +47,27 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		$this->client->set_debug( $params['debug'] );
 	}
 
-	/**
-	 * @param bool $debug
-	 */
 	public function setDebug( $debug ) {
 		$this->client->set_debug( $debug );
 	}
 
 	public function getMulti( array $keys, $flags = 0 ) {
-		$callback = array( $this, 'encodeKey' );
-		$encodedResult = $this->client->get_multi( array_map( $callback, $keys ) );
-		$result = array();
-		foreach ( $encodedResult as $key => $value ) {
-			$key = $this->decodeKey( $key );
-			$result[$key] = $value;
+		foreach ( $keys as $key ) {
+			$this->validateKeyEncoding( $key );
 		}
-		return $result;
+
+		return $this->client->get_multi( $keys );
 	}
 
-	/**
-	 * @param string $key
-	 * @param int $value
-	 * @return mixed
-	 */
 	public function incr( $key, $value = 1 ) {
-		return $this->client->incr( $this->encodeKey( $key ), $value );
+		$this->validateKeyEncoding( $key );
+
+		return $this->client->incr( $key, $value );
 	}
 
-	/**
-	 * @param string $key
-	 * @param int $value
-	 * @return mixed
-	 */
 	public function decr( $key, $value = 1 ) {
-		return $this->client->decr( $this->encodeKey( $key ), $value );
+		$this->validateKeyEncoding( $key );
+
+		return $this->client->decr( $key, $value );
 	}
 }
