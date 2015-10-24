@@ -31,8 +31,8 @@ class MemcachedBagOStuff extends BagOStuff {
 	protected $client;
 
 	/**
-	 * Fill in the defaults for any parameters missing from $params, using the
-	 * backwards-compatible global variables
+	 * Fill in some defaults for missing keys in $params.
+	 *
 	 * @param array $params
 	 * @return array
 	 */
