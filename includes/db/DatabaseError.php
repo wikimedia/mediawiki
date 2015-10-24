@@ -464,3 +464,9 @@ class DBReadOnlyError extends DBExpectedError {
 		return $this->msg( 'readonly', 'Database is locked' );
 	}
 }
+
+/**
+ * @ingroup Database
+ */
+class DBTransactionError extends DBExpectedError {
+}
