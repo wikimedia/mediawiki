@@ -185,21 +185,8 @@ class User implements IDBAccessObject {
 	public $mName;
 	/** @var string */
 	public $mRealName;
-
-	/**
-	 * These fields were marked "@private", but were defined as public to
-	 * maintain compatibility with PHP4 code since PHP4 didn't support access
-	 * restrictions. AuthManager makes password handling pluggable, meaning
-	 * these fields don't make sense anymore. If this broke something, see
-	 * T89459 for the context of the change.
-	 * @deprecated These are mostly unused, but kept for now to raise errors on attempted access.
-	 */
-	// @{
+	/** @var Password|null */
 	private $mPassword = null;
-	private $mNewpassword;
-	private $mNewpassTime;
-	private $mPasswordExpires;
-	// @}
 
 	/** @var string */
 	public $mEmail;
@@ -4097,13 +4084,13 @@ class User implements IDBAccessObject {
 			__METHOD__
 		);
 		try {
-			$mNewpassword = $passwordFactory->newFromCiphertext( $row->user_newpassword );
+			$newPassword = $passwordFactory->newFromCiphertext( $row->user_newpassword );
 		} catch ( PasswordError $e ) {
 			wfDebug( 'Invalid password hash found in database.' );
-			$mNewpassword = PasswordFactory::newInvalidPassword();
+			$newPassword = PasswordFactory::newInvalidPassword();
 		}
 
-		if ( $mNewpassword->equals( $plaintext ) ) {
+		if ( $newPassword->equals( $plaintext ) ) {
 			if ( is_null( $row->user_newpass_time ) ) {
 				return true;
 			}
