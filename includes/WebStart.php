@@ -141,3 +141,7 @@ if ( !defined( 'MW_NO_SETUP' ) ) {
 if ( isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	ignore_user_abort( true );
 }
+
+if ( !empty( $_REQUEST['idempotent'] ) && !defined( 'MW_API' ) ) {
+	throw new MWException( wfMessage( 'nonidempotent-api-error' )->plain() );
+}
