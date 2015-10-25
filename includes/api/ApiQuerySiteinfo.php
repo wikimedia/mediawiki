@@ -540,17 +540,13 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendInstalledLibraries( $property ) {
 		global $IP;
-		$path = "$IP/composer.lock";
+		$path = "$IP/vendor/composer/installed.json";
 		if ( !file_exists( $path ) ) {
-			// Maybe they're using mediawiki/vendor?
-			$path = "$IP/vendor/composer.lock";
-			if ( !file_exists( $path ) ) {
-				return true;
-			}
-		}
+        	return true;
+    	}
 
 		$data = array();
-		$lock = new ComposerLock( $path );
+		$lock = new ComposerInstalled( $path );
 		foreach ( $lock->getInstalledDependencies() as $name => $info ) {
 			if ( strpos( $info['type'], 'mediawiki-' ) === 0 ) {
 				// Skip any extensions or skins since they'll be listed

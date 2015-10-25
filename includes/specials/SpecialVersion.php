@@ -518,16 +518,12 @@ class SpecialVersion extends SpecialPage {
 	 */
 	protected function getExternalLibraries() {
 		global $IP;
-		$path = "$IP/composer.lock";
+		$path = "$IP/vendor/composer/installed.json";
 		if ( !file_exists( $path ) ) {
-			// Maybe they're using mediawiki/vendor?
-			$path = "$IP/vendor/composer.lock";
-			if ( !file_exists( $path ) ) {
-				return '';
-			}
+			return true;
 		}
 
-		$lock = new ComposerLock( $path );
+		$lock = new ComposerInstalled( $path );
 		$out = Html::element(
 			'h2',
 			array( 'id' => 'mw-version-libraries' ),
