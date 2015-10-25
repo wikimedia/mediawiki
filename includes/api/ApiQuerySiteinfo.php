@@ -540,10 +540,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendInstalledLibraries( $property ) {
 		global $IP;
-		$path = "$IP/composer.lock";
+		$path = "$IP/vendor/composer/installed.json";
 		if ( !file_exists( $path ) ) {
 			// Maybe they're using mediawiki/vendor?
-			$path = "$IP/vendor/composer.lock";
+			$path = "$IP/vendor/composer/installed.json";
 			if ( !file_exists( $path ) ) {
 				return true;
 			}
