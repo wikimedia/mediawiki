@@ -104,8 +104,6 @@
 	"config-db-install-account": "Імя карыстальніка для ўсталяваньня",
 	"config-db-username": "Імя карыстальніка базы зьвестак:",
 	"config-db-password": "Пароль базы зьвестак:",
-	"config-db-password-empty": "Калі ласка, увядзіце пароль для новага карыстальніка базы зьвестак: $1.\nМагчыма стварыць карыстальніка без паролю, але гэта небясьпечна.",
-	"config-db-username-empty": "Вы мусіце ўвесьці значэньне парамэтру «{{int:config-db-username}}»",
 	"config-db-install-username": "Увядзіце імя карыстальніка, якое будзе выкарыстоўвацца для злучэньня з базай зьвестак падчас усталяваньня. Гэта не назва рахунку MediaWiki; гэта імя карыстальніка Вашай базы зьвестак.",
 	"config-db-install-password": "Увядзіце пароль, які будзе выкарыстоўвацца для злучэньня з базай зьвестак падчас усталяваньня. Гэта не пароль рахунку MediaWiki; гэта пароль Вашай базы зьвестак.",
 	"config-db-install-help": "Увядзіце імя карыстальніка і пароль, якія будуць выкарыстаныя для далучэньня да базы зьвестак падчас працэсу ўсталяваньня.",
@@ -328,5 +326,5 @@
 	"config-nofile": "Файл «$1» ня знойдзены. Ці быў ён выдалены?",
 	"config-extension-link": "Ці ведаеце вы, што вашая вікі падтрымлівае [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions пашырэньні]?\n\nВы можаце праглядзець [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category пашырэньні паводле катэгорыяў].",
 	"mainpagetext": "'''MediaWiki пасьпяхова ўсталяваная.'''",
-	"mainpagedocfooter": "Глядзіце [//meta.wikimedia.org/wiki/Help:Contents дапаможнік карыстальніка] для атрыманьня інфармацыі па карыстаньні вікі-праграмамі.\n\n== З чаго пачаць ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Сьпіс парамэтраў канфігурацыі]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Частыя пытаньні MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка паведамленьняў пра зьяўленьне новых вэрсіяў MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Пераклад MediaWiki на вашую мову]"
+	"mainpagedocfooter": "Глядзіце [//meta.wikimedia.org/wiki/Help:Contents дапаможнік карыстальніка] для атрыманьня інфармацыі па карыстаньні вікі-праграмамі.\n\n== З чаго пачаць ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Сьпіс парамэтраў канфігурацыі]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Частыя пытаньні MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка паведамленьняў пра зьяўленьне новых вэрсіяў MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Пераклад MediaWiki на вашую мову]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Даведайцеся, як змагацца з спамам у вашай вікі]"
 }

@@ -105,8 +105,6 @@
 	"config-db-install-account": "Uživatelský účet pro instalaci",
 	"config-db-username": "Databázové uživatelské jméno:",
 	"config-db-password": "Databázové heslo:",
-	"config-db-password-empty": "Zadejte heslo pro nového databázového uživatele: $1.\nPřestože může jít zakládat nové uživatele i bez hesel, není to bezpečné.",
-	"config-db-username-empty": "Musíte zadat hodnotu pro „{{int:config-db-username}}“.",
 	"config-db-install-username": "Zadejte uživatelské jméno, které se použije pro připojení k databázi v průběhu instalace.\nToto není jméno uživatelského účtu MediaWiki; toto je uživatelské jméno k vaší databázi.",
 	"config-db-install-password": "Zadejte heslo, které se použije pro připojení k databázi v průběhu instalace.\nToto není heslo uživatelského účtu MediaWiki; toto je heslo k vaší databázi.",
 	"config-db-install-help": "Zadejte uživatelské jméno a heslo, které se použijí pro připojení k databázi v průběhu instalace.",
@@ -329,5 +327,5 @@
 	"config-nofile": "Soubor „$1“ nelze nalézt. Byl smazán?",
 	"config-extension-link": "Věděli jste, že vaše wiki podporuje [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions rozšíření]?\n\nMůžete si prohlédnout [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category seznam rozšíření po kategoriích].",
 	"mainpagetext": "'''MediaWiki byla úspěšně nainstalována.'''",
-	"mainpagedocfooter": "[//meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak MediaWiki používat.\n\n== Začínáme ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Nastavení konfigurace]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Často kladené otázky o MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-mailová konference oznámení MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Překlad MediaWiki do vašeho jazyka]"
+	"mainpagedocfooter": "[//meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak používat MediaWiki.\n\n== Začínáme ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Nastavení konfigurace]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Často kladené otázky o MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-mailová konference oznámení MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Překlad MediaWiki do vašeho jazyka]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Naučte se bojovat se spamem na vaší wiki]"
 }

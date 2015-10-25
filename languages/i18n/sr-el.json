@@ -2304,7 +2304,7 @@
 	"creditspage": "Autori stranice",
 	"nocredits": "Ne postoje podaci o autoru ove stranice.",
 	"spamprotectiontitle": "Filter za zaštitu od nepoželjnih poruka",
-	"spamprotectiontext": "Filtera protiv neželjenih poruka je blokirao čuvanje ove stranice.\nOvo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj listi.",
+	"spamprotectiontext": "Filtera protiv neželjenih poruka je blokirao čuvanje ove stranice.\nOvo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnom spisku.",
 	"spamprotectionmatch": "Sledeći tekst je aktivirao naš filter za neželjene poruke: $1",
 	"spambot_username": "Čišćenje nepoželjnih poruka u Medijavikiji",
 	"spam_reverting": "Vraćam na poslednju izmenu koja ne sadrži veze do $1",

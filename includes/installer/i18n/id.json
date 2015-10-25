@@ -10,7 +10,8 @@
 			"Seb35",
 			"Arifin.wijaya",
 			"Ilham151096",
-			"Bennylin"
+			"Bennylin",
+			"WongKentir"
 		]
 	},
 	"config-desc": "Penginstal untuk MediaWiki",
@@ -278,8 +279,8 @@
 	"config-memcache-badport": "Nomor porta Memcached harus antara $1 dan $2.",
 	"config-extensions": "Ekstensi",
 	"config-extensions-help": "Ekstensi yang tercantum di atas terdeteksi di direktori <code>./extensions</code>.\n\nEkstensi tersebut mungkin memerlukan konfigurasi tambahan, tetapi Anda dapat mengaktifkannya sekarang.",
-	"config-skins": "Kulit",
-	"config-skins-use-as-default": "Gunakan kulit ini secara baku",
+	"config-skins": "Tampilan",
+	"config-skins-use-as-default": "Gunakan tampilan ini secara baku",
 	"config-install-alreadydone": "'''Peringatan:''' Anda tampaknya telah menginstal MediaWiki dan mencoba untuk menginstalnya lagi.\nLanjutkan ke halaman berikutnya.",
 	"config-install-begin": "Dengan menekan \"{{int:config-continue}}\", Anda akan memulai instalasi MediaWiki.\nJika Anda masih ingin membuat perubahan, tekan \"{{int:config-back}}\".",
 	"config-install-step-done": "selesai",

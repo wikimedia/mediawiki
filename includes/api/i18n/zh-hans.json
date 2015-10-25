@@ -919,6 +919,7 @@
 	"apihelp-query+revisions+base-param-section": "只检索此段落数的内容。",
 	"apihelp-query+revisions+base-param-diffto": "要比较修订差异的修订ID。使用<kbd>prev</kbd>、<kbd>next</kbd>和<kbd>cur</kbd>分别用于上个、下个和当前修订。",
 	"apihelp-query+revisions+base-param-difftotext": "要比较修订差异的文本。只有修订的有限数字内的差异。覆盖<var>$1diffto</var>。如果<var>$1section</var>被设置，只有那个段落将与此文本之间比较差异",
+	"apihelp-query+revisions+base-param-difftotextpst": "在编辑文本前对其执行预保存转换。只当与<var>$1difftotext</var>一起使用时有效。",
 	"apihelp-query+revisions+base-param-contentformat": "序列化用于<var>$1difftotext</var>的格式并预估内容输出。",
 	"apihelp-query+search-description": "执行一次全文本搜索。",
 	"apihelp-query+search-param-search": "搜索所有匹配此值的页面标题或内容。根据wiki的搜索后端工具，您可以使用搜索字符串以调用特殊搜索功能。",

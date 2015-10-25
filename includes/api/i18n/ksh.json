@@ -731,6 +731,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-tags": "Makkehronge vun dä Väsjohn.",
 	"apihelp-query+revisions+base-param-limit": "Wi vill Väsjohne sulle ußjejovve wähde?",
 	"apihelp-query+revisions+base-param-section": "Holl blohß der Ennhald vun däm Affschnett met heh dä Nommer.",
+	"apihelp-query+revisions+base-param-difftotextpst": "Donn dä Täx ömsäze wi vör em Affseschere, ih de Ongerscheijde erus jefonge wähde. Jeihd blohß mem Parramehter <var lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1difftotext</var> zesamme.",
 	"apihelp-query+search-description": "Söhk em jannze Täx.",
 	"apihelp-query+search-param-search": "Söhk noh alle Övverschreffte vun Sigge udder Ennhallde, woh dä Wäät drop paß. Mer kann heh met besönder Aufjahbe beim Söhke schtälle, jeh nohdämm wadd_em Wikki sing Projramm för et Söhke esu alles kann.",
 	"apihelp-query+search-param-namespace": "Söhk blohß en heh dä Appachtemangs.",
