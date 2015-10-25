@@ -22,9 +22,8 @@
 /**
  * @method suggestions
  * @chainable
- * @return {jQuery}
  *
- * @param {Object} options
+ * @param {Object} $ options
  *
  * @param {Function} [options.fetch] Callback that should fetch suggestions and set the suggestions
  *  property. Called in context of the text box.
