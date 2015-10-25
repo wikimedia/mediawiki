@@ -111,12 +111,7 @@ class RefreshLinksJob extends Job {
 	 * @param Title $title
 	 * @return bool
 	 */
-	protected function runForTitle( Title $title = null ) {
-		if ( is_null( $title ) ) {
-			$this->setLastError( "refreshLinks: Invalid title" );
-			return false;
-		}
-
+	protected function runForTitle( Title $title ) {
 		// Wait for the DB of the current/next slave DB handle to catch up to the master.
 		// This way, we get the correct page_latest for templates or files that just changed
 		// milliseconds ago, having triggered this job to begin with.
