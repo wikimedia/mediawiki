@@ -1151,12 +1151,16 @@ class ApiMain extends ApiBase {
 		if ( $module->isWriteMode() ) {
 			if ( !$this->mEnableWrite ) {
 				$this->dieUsageMsg( 'writedisabled' );
-			}
-			if ( !$user->isAllowed( 'writeapi' ) ) {
+			} elseif ( !$user->isAllowed( 'writeapi' ) ) {
 				$this->dieUsageMsg( 'writerequired' );
-			}
-			if ( wfReadOnly() ) {
+			} elseif ( wfReadOnly() ) {
 				$this->dieReadOnly();
+			}
+			if ( $this->getRequest()->getHeader( 'Promise-Non-Write-API-Action' ) ) {
+				$this->dieUsage(
+					"Promise-Non-Write-API-Action HTTP header can only be used for idempotent API modules",
+					'nonidempotent-api'
+				);
 			}
 		}
 
