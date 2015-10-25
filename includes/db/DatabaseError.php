@@ -456,4 +456,7 @@ class DBUnexpectedError extends DBError {
  * @ingroup Database
  */
 class DBReadOnlyError extends DBExpectedError {
+	function getPageTitle() {
+		return $this->msg( 'databaseerror', 'Database error' );
+	}
 }
