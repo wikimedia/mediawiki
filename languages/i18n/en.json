@@ -323,6 +323,7 @@
 	"missingarticle-rev": "(revision#: $1)",
 	"missingarticle-diff": "(Diff: $1, $2)",
 	"readonly_lag": "The database has been automatically locked while the slave database servers catch up to the master",
+	"nonidempotent-api-error" : "The 'Promise-Non-Write-API-Action' HTTP header was sent but the request was not for an idempotent API module.",
 	"internalerror": "Internal error",
 	"internalerror_info": "Internal error: $1",
 	"internalerror-fatal-exception": "Fatal exception of type \"$1\"",
