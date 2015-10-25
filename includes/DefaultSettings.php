@@ -2212,7 +2212,7 @@ $wgObjectCaches = array(
 
 	CACHE_ANYTHING => array( 'factory' => 'ObjectCache::newAnything' ),
 	CACHE_ACCEL => array( 'factory' => 'ObjectCache::newAccelerator' ),
-	CACHE_MEMCACHED => array( 'factory' => 'ObjectCache::newMemcached', 'loggroup' => 'memcached' ),
+	CACHE_MEMCACHED => array( 'class' => 'MemcachedPhpBagOStuff', 'loggroup' => 'memcached' ),
 
 	'db-replicated' => array(
 		'class'       => 'ReplicatedBagOStuff',
