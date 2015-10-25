@@ -141,3 +141,25 @@ if ( !defined( 'MW_NO_SETUP' ) ) {
 if ( isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	ignore_user_abort( true );
 }
+
+if ( !defined( 'MW_API' ) &&
+	RequestContext::getMain()->getRequest()->getHeader( 'Promise-Idempotent' )
+) {
+	header( 'Cache-Control: no-cache' );
+	header( 'Content-Type: text/html; charset=utf-8' );
+	HttpStatus::header( 400 );
+	$error = wfMessage( 'nonidempotent-api-error' )->escaped();
+	$content = <<<EOT
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8" /></head>
+<body>
+$error
+</body>
+</html>
+
+EOT;
+	header( 'Content-Length: ' . strlen( $content ) );
+	echo $content;
+	die();
+}
