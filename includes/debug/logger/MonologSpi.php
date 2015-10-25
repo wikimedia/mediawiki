@@ -205,6 +205,12 @@ class MonologSpi implements Spi {
 	protected function createLogger( $channel, $spec ) {
 		$obj = new Logger( $channel );
 
+		if ( isset( $spec['calls'] ) ) {
+			foreach ( $spec['calls'] as $method => $margs ) {
+				call_user_func_array( array( $obj, $method ), $margs );
+			}
+		}
+
 		if ( isset( $spec['processors'] ) ) {
 			foreach ( $spec['processors'] as $processor ) {
 				$obj->pushProcessor( $this->getProcessor( $processor ) );
