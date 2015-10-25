@@ -200,7 +200,10 @@ abstract class LBFactory {
 	 * Commit changes on all master connections
 	 */
 	public function commitMasterChanges() {
+		$start = microtime( true );
 		$this->forEachLBCallMethod( 'commitMasterChanges' );
+		$timeMs = 1000 * ( microtime( true ) - $start );
+		RequestContext::getMain()->getStats()->timing( "db.commit-masters", $timeMs );
 	}
 
 	/**
