@@ -313,4 +313,32 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$t6 = $this->cache->getCheckKeyTime( $key );
 		$this->assertEquals( $t5, $t6, 'Check key time did not change' );
 	}
+
+	public function testSetWithLag() {
+		$value = 1;
+
+		$key = wfRandomString();
+		$opts = array( 'lag' => 300, 'since' => microtime( true ) );
+		$this->cache->set( $key, $value, 30, $opts );
+		$this->assertEquals( $value, $this->cache->get( $key ), "Rep-lagged value written." );
+
+		$key = wfRandomString();
+		$opts = array( 'lag' => 0, 'since' => microtime( true ) - 300 );
+		$this->cache->set( $key, $value, 30, $opts );
+		$this->assertEquals( false, $this->cache->get( $key ), "Trx-lagged value not written." );
+
+		$key = wfRandomString();
+		$opts = array( 'lag' => 5, 'since' => microtime( true ) - 5 );
+		$this->cache->set( $key, $value, 30, $opts );
+		$this->assertEquals( false, $this->cache->get( $key ), "Lagged value not written." );
+	}
+
+	public function testWritePending() {
+		$value = 1;
+
+		$key = wfRandomString();
+		$opts = array( 'pending' => true );
+		$this->cache->set( $key, $value, 30, $opts );
+		$this->assertEquals( false, $this->cache->get( $key ), "Pending value not written." );
+	}
 }
