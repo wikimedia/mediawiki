@@ -1158,6 +1158,12 @@ class ApiMain extends ApiBase {
 			if ( wfReadOnly() ) {
 				$this->dieReadOnly();
 			}
+			if ( $this->getRequest()->getVal( 'idempotent' ) ) {
+				$this->dieUsage(
+					wfMessage( 'nonidempotent-api-error' )->plain(),
+					'nonidempotent-api'
+				);
+			}
 		}
 
 		// Allow extensions to stop execution for arbitrary reasons.
