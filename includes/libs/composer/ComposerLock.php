@@ -26,7 +26,7 @@ class ComposerLock {
 	 */
 	public function getInstalledDependencies() {
 		$deps = array();
-		foreach ( $this->contents['packages'] as $installed ) {
+		foreach ( $this->contents as $installed ) {
 			$deps[$installed['name']] = array(
 				'version' => ComposerJson::normalizeVersion( $installed['version'] ),
 				'type' => $installed['type'],
