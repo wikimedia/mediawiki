@@ -103,6 +103,14 @@ if ( is_readable( "$IP/vendor/autoload.php" ) ) {
 	require_once "$IP/vendor/autoload.php";
 }
 
+# Register a last-ditch autoloader that lets us throw a friendly error if a
+# class could not be loaded.
+spl_autoload_register( function ( $class ) {
+	// FIXME: The error message should say something about Composer
+	// dependencies being potentially out-of-date.
+	wfMissingVendorError();
+} );
+
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
 	call_user_func( MW_CONFIG_CALLBACK );

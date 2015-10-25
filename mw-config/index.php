@@ -19,14 +19,13 @@
  *
  * @file
  */
+define( 'MEDIAWIKI_INSTALL', true );
 
 // Bail on old versions of PHP, or if composer has not been run yet to install
 // dependencies. Using dirname( __FILE__ ) here because __DIR__ is PHP5.3+.
 require_once dirname( __FILE__ ) . '/../includes/PHPVersionCheck.php';
-wfEntryPointCheck( 'mw-config/index.php' );
 
 define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
-define( 'MEDIAWIKI_INSTALL', true );
 
 // Resolve relative to regular MediaWiki root
 // instead of mw-config subdirectory.

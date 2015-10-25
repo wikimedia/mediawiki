@@ -23,27 +23,12 @@
  */
 
 /**
- * Check php version and that external dependencies are installed, and
- * display an informative error if either condition is not satisfied.
- *
- * @note Since we can't rely on anything, the minimum PHP versions and MW current
- * version are hardcoded here
+ * Since we can't rely on anything, the minimum PHP versions and MW current
+ * version are hardcoded here.
  */
-function wfEntryPointCheck( $entryPoint ) {
-	$mwVersion = '1.27';
-	$minimumVersionPHP = '5.3.3';
-	$phpVersion = PHP_VERSION;
+define( 'MEDIAWIKI_VERSION', '1.27' );
+define( 'MEDIAWIKI_MINIMUM_PHP_VERSION', '5.3.3' );
 
-	if ( !function_exists( 'version_compare' )
-		|| version_compare( $phpVersion, $minimumVersionPHP ) < 0
-	) {
-		wfPHPVersionError( $entryPoint, $mwVersion, $minimumVersionPHP, $phpVersion );
-	}
-
-	if ( !file_exists( dirname( __FILE__ ) . '/../vendor/autoload.php' ) ) {
-		wfMissingVendorError( $entryPoint, $mwVersion );
-	}
-}
 
 /**
  * Display something vaguely comprehensible in the event of a totally unrecoverable error.
@@ -53,45 +38,40 @@ function wfEntryPointCheck( $entryPoint ) {
  *
  * Calling this function kills execution immediately.
  *
- * @param string $type Which entry point we are protecting. One of:
- *   - index.php
- *   - load.php
- *   - api.php
- *   - mw-config/index.php
- *   - cli
- * @param string $mwVersion The number of the MediaWiki version used
  * @param string $title HTML code to be put within an <h2> tag
  * @param string $shortText
  * @param string $longText
  * @param string $longHtml
  */
-function wfGenericError( $type, $mwVersion, $title, $shortText, $longText, $longHtml ) {
+function wfGenericError( $title, $shortText, $longText, $longHtml ) {
+
+	if ( PHP_SAPI === 'cli' ) {
+		echo "$longText\n";
+		die( 1 );
+	}
+
 	$protocol = isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
+	header( "$protocol 500 MediaWiki configuration Error" );
+	header( 'Cache-control: none' );
+	header( 'Pragma: no-cache' );
 
-	if ( $type == 'cli' ) {
-		$finalOutput = $longText;
-	} else {
-		header( "$protocol 500 MediaWiki configuration Error" );
-		// Don't cache error pages!  They cause no end of trouble...
-		header( 'Cache-control: none' );
-		header( 'Pragma: no-cache' );
+	if ( basename( $_SERVER['PHP_SELF'] ) === 'load.php' ) {
+		// So nothing thinks this is JS or CSS
+		echo "/* $shortText */\n";
+		die( 1 );
+	}
 
-		if ( $type == 'index.php' || $type == 'mw-config/index.php' ) {
-			$pathinfo = pathinfo( $_SERVER['SCRIPT_NAME'] );
-			if ( $type == 'mw-config/index.php' ) {
-				$dirname = dirname( $pathinfo['dirname'] );
-			} else {
-				$dirname = $pathinfo['dirname'];
-			}
-			$encLogo = htmlspecialchars(
-				str_replace( '//', '/', $dirname . '/' ) .
-				'resources/assets/mediawiki.png'
-			);
-			$shortHtml = htmlspecialchars( $shortText );
-
-			header( 'Content-type: text/html; charset=UTF-8' );
-
-			$finalOutput = <<<HTML
+	$pathinfo = pathinfo( $_SERVER['SCRIPT_NAME'] );
+	$dirname = defined( 'MEDIAWIKI_INSTALL' )
+		? dirname( $pathinfo['dirname'] ) : $pathinfo['dirname'];
+	$encLogo = htmlspecialchars(
+		str_replace( '//', '/', $dirname . '/' ) .
+		'resources/assets/mediawiki.png'
+	);
+	$shortHtml = htmlspecialchars( $shortText );
+	header( 'Content-type: text/html; charset=UTF-8' );
+	$mwVersion = MEDIAWIKI_VERSION;
+	echo <<<HTML
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<head>
@@ -131,14 +111,8 @@ function wfGenericError( $type, $mwVersion, $title, $shortText, $longText, $long
 		</div>
 	</body>
 </html>
+
 HTML;
-		// Handle everything that's not index.php
-		} else {
-			// So nothing thinks this is JS or CSS
-			$finalOutput = ( $type == 'load.php' ) ? "/* $shortText */" : $shortText;
-		}
-	}
-	echo "$finalOutput\n";
 	die( 1 );
 }
 
@@ -146,11 +120,11 @@ HTML;
  * Display an error for the minimum PHP version requirement not being satisfied.
  *
  * @param string $type See wfGenericError
- * @param string $mwVersion See wfGenericError
- * @param string $minimumVersionPHP The minimum PHP version supported by MediaWiki
- * @param string $phpVersion The current PHP version
  */
-function wfPHPVersionError( $type, $mwVersion, $minimumVersionPHP, $phpVersion ) {
+function wfPHPVersionError() {
+	$mwVersion = MEDIAWIKI_VERSION;
+	$minimumVersionPHP = MEDIAWIKI_MINIMUM_PHP_VERSION;
+	$phpVersion = PHP_VERSION;
 	$shortText = "MediaWiki $mwVersion requires at least "
 		. "PHP version $minimumVersionPHP, you are using PHP $phpVersion.";
 
@@ -170,16 +144,13 @@ function wfPHPVersionError( $type, $mwVersion, $minimumVersionPHP, $phpVersion )
 			<a href="https://www.mediawiki.org/wiki/Compatibility#PHP">compatibility page</a>
 			for details of which versions are compatible with prior versions of PHP.
 HTML;
-	wfGenericError( $type, $mwVersion, 'Supported PHP versions', $shortText, $longText, $longHtml );
+	wfGenericError( 'Supported PHP versions', $shortText, $longText, $longHtml );
 }
 
 /**
  * Display an error for the vendor/autoload.php file not being found.
- *
- * @param string $type See wfGenericError
- * @param string $mwVersion See wfGenericError
  */
-function wfMissingVendorError( $type, $mwVersion ) {
+function wfMissingVendorError() {
 	$shortText = "Installing some external dependencies (e.g. via composer) is also required.";
 
 	$longText = "Error: You are missing some external dependencies. \n"
@@ -197,5 +168,22 @@ function wfMissingVendorError( $type, $mwVersion ) {
 HTML;
 	// @codingStandardsIgnoreEnd
 
-	wfGenericError( $type, $mwVersion, 'External dependencies', $shortText, $longText, $longHtml );
+	wfGenericError( 'External dependencies', $shortText, $longText, $longHtml );
+}
+
+/**
+ * Check php version and that external dependencies are installed, and
+ * display an informative error if either condition is not satisfied.
+ *
+ * @note Since we can't rely on anything, the minimum PHP versions and MW current
+ * version are hardcoded here
+ */
+if ( !function_exists( 'version_compare' )
+	|| version_compare( PHP_VERSION, MEDIAWIKI_MINIMUM_PHP_VERSION ) < 0
+) {
+	wfPHPVersionError();
+}
+
+if ( !file_exists( dirname( __FILE__ ) . '/../vendor/autoload.php' ) ) {
+	wfMissingVendorError();
 }
