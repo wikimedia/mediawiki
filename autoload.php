@@ -242,6 +242,7 @@ $wgAutoloadLocalClasses = array(
 	'CompareParserCache' => __DIR__ . '/maintenance/compareParserCache.php',
 	'CompareParsers' => __DIR__ . '/maintenance/compareParsers.php',
 	'ComposerHookHandler' => __DIR__ . '/includes/composer/ComposerHookHandler.php',
+	'ComposerInstalled' => __DIR__ . '/includes/libs/composer/ComposerInstalled.php',
 	'ComposerJson' => __DIR__ . '/includes/libs/composer/ComposerJson.php',
 	'ComposerLock' => __DIR__ . '/includes/libs/composer/ComposerLock.php',
 	'ComposerPackageModifier' => __DIR__ . '/includes/composer/ComposerPackageModifier.php',
