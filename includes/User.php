@@ -196,9 +196,6 @@ class User implements IDBAccessObject {
 	 */
 	// @{
 	private $mPassword = null;
-	private $mNewpassword;
-	private $mNewpassTime;
-	private $mPasswordExpires;
 	// @}
 
 	/** @var string */
@@ -4097,13 +4094,13 @@ class User implements IDBAccessObject {
 			__METHOD__
 		);
 		try {
-			$mNewpassword = $passwordFactory->newFromCiphertext( $row->user_newpassword );
+			$newPassword = $passwordFactory->newFromCiphertext( $row->user_newpassword );
 		} catch ( PasswordError $e ) {
 			wfDebug( 'Invalid password hash found in database.' );
-			$mNewpassword = PasswordFactory::newInvalidPassword();
+			$newPassword = PasswordFactory::newInvalidPassword();
 		}
 
-		if ( $mNewpassword->equals( $plaintext ) ) {
+		if ( $newPassword->equals( $plaintext ) ) {
 			if ( is_null( $row->user_newpass_time ) ) {
 				return true;
 			}
