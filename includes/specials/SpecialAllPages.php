@@ -100,7 +100,6 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 */
 	function namespaceForm( $namespace = NS_MAIN, $from = '', $to = '', $hideredirects = false ) {
 		$t = $this->getPageTitle();
-
 		$out = Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
 		$out .= Xml::openElement(
 			'form',
@@ -148,7 +147,6 @@ class SpecialAllPages extends IncludableSpecialPage {
 		$out .= Xml::closeElement( 'fieldset' );
 		$out .= Xml::closeElement( 'form' );
 		$out .= Xml::closeElement( 'div' );
-
 		return $out;
 	}
 
@@ -273,14 +271,10 @@ class SpecialAllPages extends IncludableSpecialPage {
 			return;
 		}
 
+		$navLinks = array();
 		$self = $this->getPageTitle();
 
-		$topLinks = array(
-			Linker::link( $self, $this->msg( 'allpages' )->escaped() )
-		);
-		$bottomLinks = array();
-
-		# Do we put a previous link ?
+		// Generate a "previous page" link if needed
 		if ( $prevTitle ) {
 			$query = array( 'from' => $prevTitle->getText() );
 
@@ -292,16 +286,16 @@ class SpecialAllPages extends IncludableSpecialPage {
 				$query['hideredirects'] = $hideredirects;
 			}
 
-			$prevLink = Linker::linkKnown(
+			$navLinks[] = Linker::linkKnown(
 				$self,
 				$this->msg( 'prevpage', $prevTitle->getText() )->escaped(),
 				array(),
 				$query
 			);
-			$topLinks[] = $prevLink;
-			$bottomLinks[] = $prevLink;
+
 		}
 
+		// Generate a "next page" link if needed
 		if ( $n == $this->maxPerPage && $s = $res->fetchObject() ) {
 			# $s is the first link of the next chunk
 			$t = Title::makeTitle( $namespace, $s->page_title );
@@ -315,36 +309,28 @@ class SpecialAllPages extends IncludableSpecialPage {
 				$query['hideredirects'] = $hideredirects;
 			}
 
-			$nextLink = Linker::linkKnown(
+			$navLinks[] = Linker::linkKnown(
 				$self,
 				$this->msg( 'nextpage', $t->getText() )->escaped(),
 				array(),
 				$query
 			);
-			$topLinks[] = $nextLink;
-			$bottomLinks[] = $nextLink;
 		}
 
-		$nsForm = $this->namespaceForm( $namespace, $from, $to, $hideredirects );
-		$out2 = Xml::openElement( 'table', array( 'class' => 'mw-allpages-table-form' ) ) .
-			'<tr>
-						<td>' .
-			$nsForm .
-			'</td>
-						<td class="mw-allpages-nav">' .
-			$this->getLanguage()->pipeList( $topLinks ) .
-			'</td></tr></table>';
+		$topOut = $this->namespaceForm( $namespace, $from, $to, $hideredirects );
 
-		$output->addHTML( $out2 . $out );
-
-		if ( count( $bottomLinks ) ) {
-			$output->addHTML(
-				Html::element( 'hr' ) .
-					Html::rawElement( 'div', array( 'class' => 'mw-allpages-nav' ),
-						$this->getLanguage()->pipeList( $bottomLinks )
-					)
+		if ( count( $navLinks ) ) {
+			// Add pagination links
+			$pagination = Html::rawElement( 'div',
+				array( 'class' => 'mw-allpages-nav' ),
+				$this->getLanguage()->pipeList( $navLinks )
 			);
+
+			$topOut .= $pagination;
+			$out .= Html::element( 'hr' ) . $pagination; // Footer
 		}
+
+		$output->addHTML( $topOut . $out );
 	}
 
 	/**
