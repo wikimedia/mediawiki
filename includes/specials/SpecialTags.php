@@ -100,7 +100,7 @@ class SpecialTags extends SpecialPage {
 			$form = new HTMLForm( $fields, $this->getContext() );
 			$form->setAction( $this->getPageTitle( 'create' )->getLocalURL() );
 			$form->setWrapperLegendMsg( 'tags-create-heading' );
-			$form->setHeaderText( $this->msg( 'tags-create-explanation' )->plain() );
+			$form->setHeaderText( $this->msg( 'tags-create-explanation' )->escaped() );
 			$form->setSubmitCallback( array( $this, 'processCreateTagForm' ) );
 			$form->setSubmitTextMsg( 'tags-create-submit' );
 			$form->show();
