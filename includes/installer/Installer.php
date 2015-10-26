@@ -164,7 +164,6 @@ abstract class Installer {
 		'wgRightsIcon',
 		'wgRightsText',
 		'wgRightsUrl',
-		'wgMainCacheType',
 		'wgEnableEmail',
 		'wgEnableUserEmail',
 		'wgEnotifUserTalk',
