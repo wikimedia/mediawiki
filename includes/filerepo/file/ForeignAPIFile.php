@@ -334,22 +334,20 @@ class ForeignAPIFile extends File {
 	}
 
 	function purgeDescriptionPage() {
-		global $wgMemc, $wgContLang;
+		global $wgContLang;
 
 		$url = $this->repo->getDescriptionRenderUrl( $this->getName(), $wgContLang->getCode() );
 		$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', md5( $url ) );
 
-		$wgMemc->delete( $key );
+		ObjectCache::getMainWANInstance()->delete( $key );
 	}
 
 	/**
 	 * @param array $options
 	 */
 	function purgeThumbnails( $options = array() ) {
-		global $wgMemc;
-
 		$key = $this->repo->getLocalCacheKey( 'ForeignAPIRepo', 'ThumbUrl', $this->getName() );
-		$wgMemc->delete( $key );
+		ObjectCache::getMainWANInstance()->delete( $key );
 
 		$files = $this->getThumbnails();
 		// Give media handler a chance to filter the purge list
