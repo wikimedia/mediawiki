@@ -322,13 +322,15 @@ class ResourceLoader implements LoggerAwareInterface {
 		// Allow multiple modules to be registered in one call
 		$registrations = is_array( $name ) ? $name : array( $name => $info );
 		foreach ( $registrations as $name => $info ) {
-			// Disallow duplicate registrations
+			// Warn on duplicate registrations
 			if ( isset( $this->moduleInfos[$name] ) ) {
 				// A module has already been registered by this name
-				throw new MWException(
-					'ResourceLoader duplicate registration error. ' .
-					'Another module has already been registered as ' . $name
-				);
+				if ( $this->moduleInfos[$name] === $info ) {
+					$this->logger->warning(
+						'ResourceLoader duplicate registration warning. ' .
+						'Another module has already been registered as ' . $name
+					);
+				}
 			}
 
 			// Check $name for validity
