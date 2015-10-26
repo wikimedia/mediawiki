@@ -99,6 +99,7 @@ abstract class QueryPage extends SpecialPage {
 				array( 'UnwatchedpagesPage', 'Unwatchedpages' ),
 				array( 'UnusedtemplatesPage', 'Unusedtemplates' ),
 				array( 'WithoutInterwikiPage', 'Withoutinterwiki' ),
+				array( 'SpecialGadgetUsage', 'GadgetUsage' ),
 			);
 			Hooks::run( 'wgQueryPages', array( &$qp ) );
 		}
