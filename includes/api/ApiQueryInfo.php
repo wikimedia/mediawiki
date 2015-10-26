@@ -827,7 +827,6 @@ class ApiQueryInfo extends ApiQueryBase {
 	public function getAllowedParams() {
 		return array(
 			'prop' => array(
-				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array(
 					'protection',
@@ -851,7 +850,6 @@ class ApiQueryInfo extends ApiQueryBase {
 			),
 			'token' => array(
 				ApiBase::PARAM_DEPRECATED => true,
-				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() )
 			),

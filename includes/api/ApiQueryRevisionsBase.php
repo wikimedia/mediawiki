@@ -485,15 +485,12 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-parse',
 			),
 			'section' => array(
-				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-section',
 			),
 			'diffto' => array(
-				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-diffto',
 			),
 			'difftotext' => array(
-				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-difftotext',
 			),
 			'difftotextpst' => array(
@@ -502,7 +499,6 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			),
 			'contentformat' => array(
 				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
-				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-contentformat',
 			),
 		);

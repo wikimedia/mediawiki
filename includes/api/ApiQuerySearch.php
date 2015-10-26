@@ -308,7 +308,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'what' => array(
-				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_TYPE => array(
 					'title',
 					'text',

@@ -374,7 +374,6 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 				)
 			),
 			'mime' => array(
-				ApiBase::PARAM_DFLT => null,
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'limit' => array(

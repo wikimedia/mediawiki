@@ -78,12 +78,10 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		return array(
 			'filekey' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_DFLT => null
 			),
 			'sessionkey' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DEPRECATED => true,
-				ApiBase::PARAM_DFLT => null
 			),
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
