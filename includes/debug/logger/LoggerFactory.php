@@ -94,18 +94,22 @@ class LoggerFactory {
 	 * @return \\Psr\\Log\\LoggerInterface
 	 */
 	public static function getInstance( $channel ) {
-		if ( !interface_exists( '\Psr\Log\LoggerInterface' ) ) {
-			$message = (
-				'MediaWiki requires the <a href="https://github.com/php-fig/log">PSR-3 logging ' .
-				"library</a> to be present. This library is not embedded directly in MediaWiki's " .
-				"git repository and must be installed separately by the end user.\n\n" .
-				'Please see <a href="https://www.mediawiki.org/wiki/Download_from_Git' .
-				'#Fetch_external_libraries">mediawiki.org</a> for help on installing ' .
-				'the required components.'
-			);
-			echo $message;
-			trigger_error( $message, E_USER_ERROR );
-			die( 1 );
+		static $hasPSR3Interface = null;
+		if ( $hasPSR3Interface === null ) {
+			$hasPSR3Interface = interface_exists( '\Psr\Log\LoggerInterface' );
+			if ( !$hasPSR3Interface ) {
+				$message = (
+					'MediaWiki requires the <a href="https://github.com/php-fig/log">PSR-3 logging ' .
+					"library</a> to be present. This library is not embedded directly in MediaWiki's " .
+					"git repository and must be installed separately by the end user.\n\n" .
+					'Please see <a href="https://www.mediawiki.org/wiki/Download_from_Git' .
+					'#Fetch_external_libraries">mediawiki.org</a> for help on installing ' .
+					'the required components.'
+				);
+				echo $message;
+				trigger_error( $message, E_USER_ERROR );
+				die( 1 );
+			}
 		}
 
 		return self::getProvider()->getLogger( $channel );
