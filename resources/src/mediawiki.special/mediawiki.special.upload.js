@@ -85,7 +85,9 @@
 		},
 
 		setWarning: function ( warning ) {
-			$( '#wpDestFile-warning' ).html( warning );
+			var $warning = $( $.parseHTML( warning ) );
+			mw.hook( 'wikipage.content' ).fire( $warning );
+			$( '#wpDestFile-warning' ).empty().append( $warning );
 
 			// Set a value in the form indicating that the warning is acknowledged and
 			// doesn't need to be redisplayed post-upload
