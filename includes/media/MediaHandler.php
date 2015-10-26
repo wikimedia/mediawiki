@@ -373,7 +373,7 @@ abstract class MediaHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function pageCount( $file ) {
+	function pageCount( File $file ) {
 		return false;
 	}
 
@@ -434,7 +434,7 @@ abstract class MediaHandler {
 	 * @param int $page What page to get dimensions of
 	 * @return array|bool
 	 */
-	function getPageDimensions( $image, $page ) {
+	function getPageDimensions( File $image, $page ) {
 		$gis = $this->getImageSize( $image, $image->getLocalRefPath() );
 		if ( $gis ) {
 			return array(
