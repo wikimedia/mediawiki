@@ -113,6 +113,11 @@ class PHPUnitMaintClass extends Maintenance {
 		);
 		// xdebug's default of 100 is too low for MediaWiki
 		ini_set( 'xdebug.max_nesting_level', 1000 );
+
+		// Bug T116683 serialize_precision of 100
+		// may break testing against floating point values
+		// treated with PHP's serialize()
+		ini_set( 'serialize_precision', 14 );
 	}
 
 	public function execute() {
