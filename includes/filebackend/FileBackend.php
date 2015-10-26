@@ -375,11 +375,6 @@ abstract class FileBackend {
 		if ( empty( $opts['force'] ) ) { // sanity
 			unset( $opts['nonLocking'] );
 		}
-		foreach ( $ops as &$op ) {
-			if ( isset( $op['disposition'] ) ) { // b/c (MW 1.20)
-				$op['headers']['Content-Disposition'] = $op['disposition'];
-			}
-		}
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
 		return $this->doOperationsInternal( $ops, $opts );
@@ -611,9 +606,6 @@ abstract class FileBackend {
 		}
 		foreach ( $ops as &$op ) {
 			$op['overwrite'] = true; // avoids RTTs in key/value stores
-			if ( isset( $op['disposition'] ) ) { // b/c (MW 1.20)
-				$op['headers']['Content-Disposition'] = $op['disposition'];
-			}
 		}
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
