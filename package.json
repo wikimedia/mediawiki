@@ -15,10 +15,10 @@
     "grunt-jscs": "2.1.0",
     "grunt-jsonlint": "1.0.5",
     "grunt-karma": "0.12.1",
-    "karma": "0.13.10",
-    "karma-chrome-launcher": "0.2.0",
+    "karma": "0.13.14",
+    "karma-chrome-launcher": "0.2.1",
     "karma-firefox-launcher": "0.1.6",
-    "karma-qunit": "0.1.5",
-    "qunitjs": "1.18.0"
+    "karma-qunit": "0.1.7",
+    "qunitjs": "1.19.0"
   }
 }
