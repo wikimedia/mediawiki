@@ -243,12 +243,12 @@ class RefreshLinks extends Maintenance {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$dbw->startAtomic( __METHOD__ );
 
 		$updates = $content->getSecondaryDataUpdates( $page->getTitle() );
 		DataUpdate::runUpdates( $updates );
 
-		$dbw->commit( __METHOD__ );
+		$dbw->endAtomic( __METHOD__ );
 	}
 
 	/**
