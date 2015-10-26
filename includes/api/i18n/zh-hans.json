@@ -468,6 +468,8 @@
 	"apihelp-query+allredirects-example-unique-generator": "获取所有目标页面，标记丢失的。",
 	"apihelp-query+allredirects-example-generator": "获取包含重定向的页面。",
 	"apihelp-query+allrevisions-description": "列举所有修订。",
+	"apihelp-query+allrevisions-param-start": "枚举的起始时间戳。",
+	"apihelp-query+allrevisions-param-end": "枚举的结束时间戳。",
 	"apihelp-query+allrevisions-param-user": "只列出此用户做出的修订。",
 	"apihelp-query+allrevisions-param-excludeuser": "不要列出此用户做出的修订。",
 	"apihelp-query+allrevisions-param-namespace": "只列出此名字空间的页面。",

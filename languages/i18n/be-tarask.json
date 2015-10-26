@@ -1367,6 +1367,7 @@
 	"foreign-structured-upload-form-label-own-work-message-default": "Я разумею, што загружаю гэты файл у агульнае сховішча. Я пацьвярджаю, што раблю гэта ў адпаведнасьці з умовамі выкарыстаньня і ліцэнзійнай палітыкай.",
 	"foreign-structured-upload-form-label-not-own-work-message-default": "Калі вы ня можаце загрузіць гэты файл паводле правілаў агульнага сховішча, калі ласка, закрыйце гэты дыялёг і паспрабуйце іншы мэтад.",
 	"foreign-structured-upload-form-label-not-own-work-local-default": "Вы можаце паспрабаваць скарыстацца [[Special:Upload|старонкай загрузкі {{GRAMMAR:родны|{{SITENAME}}}}]], калі гэты файл можна туды загрузіць згодна з правіламі.",
+	"foreign-structured-upload-form-label-own-work-message-shared": "Я пацьвярджаю, што зьяўляюся ўласьнікам аўтарскіх правоў на гэты файл, і згодны незваротна перадаць гэты файл ў Вікісховішча на ўмовах ліцэнзіі [https://creativecommons.org/licenses/by-sa/4.0/ Creative Commons Attribution-ShareAlike 4.0], а таксама згодны з [https://wikimediafoundation.org/wiki/Terms_of_Use умовамі выкарыстаньня].",
 	"backend-fail-stream": "Немагчыма накіраваць файл $1.",
 	"backend-fail-backup": "Немагчыма зрабіць рэзэрвовую копію файла $1.",
 	"backend-fail-notexists": "Файл $1 не існуе.",

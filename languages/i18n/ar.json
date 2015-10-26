@@ -908,7 +908,7 @@
 	"search-category": "(التصنيف $1)",
 	"search-file-match": "(يطابق محتوى الملف)",
 	"search-suggest": "أتقصد: $1",
-	"search-rewritten": "عرض النتائج ل$1. ابحث بدلا من ذلك عن $2.",
+	"search-rewritten": "نتائج البحث المشابه $1 معروضة. يمكنك بدل ذلك البحث عن $2.",
 	"search-interwiki-caption": "المشاريع الشقيقة",
 	"search-interwiki-default": "نتائح من $1:",
 	"search-interwiki-more": "(المزيد)",
