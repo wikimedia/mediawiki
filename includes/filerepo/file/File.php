@@ -1907,7 +1907,7 @@ abstract class File implements IDBAccessObject {
 	 * @param string $reason
 	 * @param bool $suppress Hide content from sysops?
 	 * @param User|null $user
-	 * @return bool Boolean on success, false on some kind of failure
+	 * @return FileRepoStatus
 	 * STUB
 	 * Overridden by LocalFile
 	 */
