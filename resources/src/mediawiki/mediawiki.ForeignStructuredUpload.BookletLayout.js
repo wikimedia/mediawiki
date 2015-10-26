@@ -225,7 +225,8 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.getText = function () {
-		this.upload.addDescription( 'en', this.descriptionWidget.getValue() );
+		var language = mw.config.get( 'wgContentLanguage' );
+		this.upload.addDescription( language, this.descriptionWidget.getValue() );
 		this.upload.setDate( this.dateWidget.getValue() );
 		this.upload.addCategories( this.categoriesWidget.getItemsData() );
 		return this.upload.getText();
