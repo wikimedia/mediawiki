@@ -258,12 +258,18 @@ abstract class PrefixSearch {
 		return $array;
 	}
 
+	/**
+	 * Get a redirect's destination from a title
+	 * @param Title $title A title to redirect. It may not redirect or even exist
+	 * @return null|string If title exists and redirects, get the destination's prefixed name
+	 */
 	private function getRedirectTarget( $title ) {
 		$page = WikiPage::factory( $title );
 		if ( !$page->exists() ) {
 			return null;
 		}
-		return $page->getRedirectTarget()->getPrefixedText();
+		$redir = $page->getRedirectTarget();
+		return $redir ? $redir->getPrefixedText() : null;
 	}
 
 	/**
