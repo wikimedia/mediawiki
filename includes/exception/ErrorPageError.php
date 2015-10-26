@@ -44,7 +44,7 @@ class ErrorPageError extends MWException {
 		// passing to the parent constructor. Our overridden report() below
 		// makes sure that the page shown to the user is not forced to English.
 		if ( $msg instanceof Message ) {
-			$enMsg = clone( $msg );
+			$enMsg = clone $msg;
 		} else {
 			$enMsg = wfMessage( $msg, $params );
 		}
