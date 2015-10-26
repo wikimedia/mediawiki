@@ -124,18 +124,23 @@ class DateFormatter {
 	 * 		Defaults to the site content language
 	 * @return DateFormatter
 	 */
-	public static function &getInstance( $lang = null ) {
-		global $wgMemc, $wgContLang;
-		static $dateFormatter = false;
+	public static function getInstance( $lang = null ) {
+		global $wgContLang, $wgMainCacheType;
+
 		$lang = $lang ? wfGetLangObj( $lang ) : $wgContLang;
-		$key = wfMemcKey( 'dateformatter', $lang->getCode() );
+		$cache = ObjectCache::newAccelerator( $wgMainCacheType );
+
+		static $dateFormatter = false;
 		if ( !$dateFormatter ) {
-			$dateFormatter = $wgMemc->get( $key );
-			if ( !$dateFormatter ) {
-				$dateFormatter = new DateFormatter( $lang );
-				$wgMemc->set( $key, $dateFormatter, 3600 );
-			}
+			$dateFormatter = $cache->getWithSetCallback(
+				$cache->makeKey( 'dateformatter', $lang->getCode() ),
+				3600,
+				function () use ( $lang ) {
+					return new DateFormatter( $lang );
+				}
+			);
 		}
+
 		return $dateFormatter;
 	}
 
