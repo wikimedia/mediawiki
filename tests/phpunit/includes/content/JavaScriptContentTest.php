@@ -258,7 +258,9 @@ class JavaScriptContentTest extends TextContentTest {
 	public function testUpdateRedirect( $oldText, $expectedText ) {
 		$this->setMwGlobals( array(
 			'wgServer' => '//example.org',
-			'wgScriptPath' => '/w/index.php',
+			'wgScriptPath' => '/w',
+			'wgScript' => '/w/index.php',
+			'wgResourceBasePath' => '/w',
 		) );
 		$target = Title::newFromText( "testUpdateRedirect_target" );
 
@@ -317,7 +319,9 @@ class JavaScriptContentTest extends TextContentTest {
 	public function testGetRedirectTarget( $title, $text ) {
 		$this->setMwGlobals( array(
 			'wgServer' => '//example.org',
-			'wgScriptPath' => '/w/index.php',
+			'wgScriptPath' => '/w',
+			'wgScript' => '/w/index.php',
+			'wgResourceBasePath' => '/w',
 		) );
 		$content = new JavaScriptContent( $text );
 		$target = $content->getRedirectTarget();
