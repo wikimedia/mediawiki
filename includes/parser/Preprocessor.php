@@ -46,9 +46,11 @@ abstract class Preprocessor {
 		}
 
 		$key = wfMemcKey(
-			defined( 'self::CACHE_PREFIX' ) ? self::CACHE_PREFIX : __CLASS__,
+			// TODO: Once we require PHP 5.5, use static::class instead of
+			// get_called_class() or get_class( $this ).
+			defined( 'static::CACHE_PREFIX' ) ? static::CACHE_PREFIX : get_called_class(),
 			md5( $text ), $flags );
-		$value = sprintf( "%08d", self::CACHE_VERSION ) . $tree;
+		$value = sprintf( "%08d", static::CACHE_VERSION ) . $tree;
 
 		$cache = ObjectCache::getInstance( $config->get( 'MainCacheType' ) );
 		$cache->set( $key, $value, 86400 );
@@ -77,7 +79,9 @@ abstract class Preprocessor {
 		$cache = ObjectCache::getInstance( $config->get( 'MainCacheType' ) );
 
 		$key = wfMemcKey(
-			defined( 'self::CACHE_PREFIX' ) ? self::CACHE_PREFIX : __CLASS__,
+			// TODO: Once we require PHP 5.5, use static::class instead of
+			// get_called_class() or get_class( $this ).
+			defined( 'static::CACHE_PREFIX' ) ? static::CACHE_PREFIX : get_called_class(),
 			md5( $text ), $flags );
 
 		$value = $cache->get( $key );
@@ -86,7 +90,7 @@ abstract class Preprocessor {
 		}
 
 		$version = intval( substr( $value, 0, 8 ) );
-		if ( $version !== self::CACHE_VERSION ) {
+		if ( $version !== static::CACHE_VERSION ) {
 			return false;
 		}
 
