@@ -289,7 +289,7 @@ class DjVuHandler extends ImageHandler {
 	 * @param bool $gettext DOCUMENT (Default: false)
 	 * @return bool|SimpleXMLElement
 	 */
-	function getMetaTree( $image, $gettext = false ) {
+	public function getMetaTree( $image, $gettext = false ) {
 		if ( $gettext && isset( $image->djvuTextTree ) ) {
 			return $image->djvuTextTree;
 		}
@@ -375,56 +375,52 @@ class DjVuHandler extends ImageHandler {
 		return !empty( $metadata ) && $metadata != serialize( array() );
 	}
 
-	function pageCount( $image ) {
-		global $wgMemc;
+	function pageCount( File $image ) {
+		$info = $this->getDimensionInfo( $image );
 
-		$key = wfMemcKey( 'file-djvu', 'pageCount', $image->getSha1() );
-
-		$count = $wgMemc->get( $key );
-		if ( $count === false ) {
-			$tree = $this->getMetaTree( $image );
-			if ( !$tree ) {
-				return false;
-			}
-			$count = count( $tree->xpath( '//OBJECT' ) );
-			$wgMemc->set( $key, $count );
-		}
-
-		return $count;
+		return $info ? $info['pageCount'] : false;
 	}
 
-	function getPageDimensions( $image, $page ) {
-		global $wgMemc;
-
-		$key = wfMemcKey( 'file-djvu', 'dimensions', $image->getSha1() );
-
-		$dimsByPage = $wgMemc->get( $key );
-		if ( !is_array( $dimsByPage ) ) {
-			$tree = $this->getMetaTree( $image );
-			if ( !$tree ) {
-				return false;
-			}
-
-			$dimsByPage = array();
-			$count = count( $tree->xpath( '//OBJECT' ) );
-			for ( $i = 0; $i < $count; ++$i ) {
-				$o = $tree->BODY[0]->OBJECT[$i];
-				if ( $o ) {
-					$dimsByPage[$i] = array(
-						'width' => (int)$o['width'],
-						'height' => (int)$o['height']
-					);
-				} else {
-					$dimsByPage[$i] = false;
-				}
-			}
-
-			$wgMemc->set( $key, $dimsByPage );
-		}
-
+	function getPageDimensions( File $image, $page ) {
 		$index = $page - 1; // MW starts pages at 1
 
-		return isset( $dimsByPage[$index] ) ? $dimsByPage[$index] : false;
+		$info = $this->getDimensionInfo( $image );
+		if ( $info && isset( $info['dimensionsByPage'][$index] ) ) {
+			return $info['dimensionsByPage'][$index];
+		}
+
+		return false;
+	}
+
+	protected function getDimensionInfo( File $file ) {
+		$that = $this;
+
+		return ObjectCache::getMainWANInstance()->getWithSetCallback(
+			wfMemcKey( 'file-djvu', 'dimensions', $file->getSha1() ),
+			WANObjectCache::TTL_INDEFINITE,
+			function () use ( $that, $file ) {
+				$tree = $that->getMetaTree( $file );
+				if ( !$tree ) {
+					return false;
+				}
+
+				$dimsByPage = array();
+				$count = count( $tree->xpath( '//OBJECT' ) );
+				for ( $i = 0; $i < $count; ++$i ) {
+					$o = $tree->BODY[0]->OBJECT[$i];
+					if ( $o ) {
+						$dimsByPage[$i] = array(
+							'width' => (int)$o['width'],
+							'height' => (int)$o['height']
+						);
+					} else {
+						$dimsByPage[$i] = false;
+					}
+				}
+
+				return array( 'pageCount' => $count, 'dimensionsByPage' => $dimsByPage );
+			}
+		);
 	}
 
 	/**
@@ -432,7 +428,7 @@ class DjVuHandler extends ImageHandler {
 	 * @param int $page Page number to get information for
 	 * @return bool|string Page text or false when no text found.
 	 */
-	function getPageText( $image, $page ) {
+	function getPageText( File $image, $page ) {
 		$tree = $this->getMetaTree( $image, true );
 		if ( !$tree ) {
 			return false;
