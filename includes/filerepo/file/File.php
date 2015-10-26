@@ -1137,6 +1137,7 @@ abstract class File implements IDBAccessObject {
 		if ( !$thumb ) { // bad params?
 			$thumb = false;
 		} elseif ( $thumb->isError() ) { // transform error
+			/** @var $thumb MediaTransformError */
 			$this->lastError = $thumb->toText();
 			// Ignore errors if requested
 			if ( $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
@@ -2019,15 +2020,19 @@ abstract class File implements IDBAccessObject {
 	 * @return string
 	 */
 	function getDescriptionText( $lang = false ) {
-		global $wgMemc, $wgLang;
+		global $wgLang;
+
 		if ( !$this->repo || !$this->repo->fetchDescription ) {
 			return false;
 		}
-		if ( !$lang ) {
-			$lang = $wgLang;
-		}
+
+		$lang = $lang ?: $wgLang;
+
 		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName(), $lang->getCode() );
 		if ( $renderUrl ) {
+			$cache = ObjectCache::getMainWANInstance();
+
+			$key = null;
 			if ( $this->repo->descriptionCacheExpiry > 0 ) {
 				wfDebug( "Attempting to get the description from cache..." );
 				$key = $this->repo->getLocalCacheKey(
@@ -2036,7 +2041,7 @@ abstract class File implements IDBAccessObject {
 					$lang->getCode(),
 					$this->getName()
 				);
-				$obj = $wgMemc->get( $key );
+				$obj = $cache->get( $key );
 				if ( $obj ) {
 					wfDebug( "success!\n" );
 
@@ -2046,8 +2051,8 @@ abstract class File implements IDBAccessObject {
 			}
 			wfDebug( "Fetching shared description from $renderUrl\n" );
 			$res = Http::get( $renderUrl, array(), __METHOD__ );
-			if ( $res && $this->repo->descriptionCacheExpiry > 0 ) {
-				$wgMemc->set( $key, $res, $this->repo->descriptionCacheExpiry );
+			if ( $res && $key ) {
+				$cache->set( $key, $res, $this->repo->descriptionCacheExpiry );
 			}
 
 			return $res;

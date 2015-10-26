@@ -39,7 +39,7 @@ class ApiStashEdit extends ApiBase {
 	const ERROR_UNCACHEABLE = 'uncacheable';
 
 	public function execute() {
-		global $wgMemc;
+		$cache = ObjectCache::getLocalClusterInstance();
 
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
@@ -111,11 +111,10 @@ class ApiStashEdit extends ApiBase {
 		// De-duplicate requests on the same key
 		if ( $user->pingLimiter( 'stashedit' ) ) {
 			$status = 'ratelimited';
-		} elseif ( $wgMemc->lock( $key, 0, 30 ) ) {
+		} elseif ( $cache->lock( $key, 0, 30 ) ) {
 			/** @noinspection PhpUnusedLocalVariableInspection */
-			$unlocker = new ScopedCallback( function() use ( $key ) {
-				global $wgMemc;
-				$wgMemc->unlock( $key );
+			$unlocker = new ScopedCallback( function() use ( $cache, $key ) {
+				$cache->unlock( $key );
 			} );
 			$status = self::parseAndStash( $page, $content, $user );
 		} else {
@@ -133,7 +132,7 @@ class ApiStashEdit extends ApiBase {
 	 * @since 1.25
 	 */
 	public static function parseAndStash( WikiPage $page, Content $content, User $user ) {
-		global $wgMemc;
+		$cache = ObjectCache::getLocalClusterInstance();
 
 		$format = $content->getDefaultFormat();
 		$editInfo = $page->prepareContentForEdit( $content, null, $user, $format, false );
@@ -146,7 +145,7 @@ class ApiStashEdit extends ApiBase {
 			);
 
 			if ( $stashInfo ) {
-				$ok = $wgMemc->set( $key, $stashInfo, $ttl );
+				$ok = $cache->set( $key, $stashInfo, $ttl );
 				if ( $ok ) {
 					wfDebugLog( 'StashEdit', "Cached parser output for key '$key'." );
 					return self::ERROR_NONE;
@@ -173,7 +172,7 @@ class ApiStashEdit extends ApiBase {
 	 * will do nothing. Provided the values are cacheable, they will be stored
 	 * in memcached so that final edit submission might make use of them.
 	 *
-	 * @param Article|WikiPage $page Page title
+	 * @param Page|Article|WikiPage $page Page title
 	 * @param Content $content Proposed page content
 	 * @param Content $pstContent The result of preSaveTransform() on $content
 	 * @param ParserOutput $pOut The result of getParserOutput() on $pstContent
@@ -186,7 +185,7 @@ class ApiStashEdit extends ApiBase {
 		Page $page, Content $content, Content $pstContent, ParserOutput $pOut,
 		ParserOptions $pstOpts, ParserOptions $pOpts, $timestamp
 	) {
-		global $wgMemc;
+		$cache = ObjectCache::getLocalClusterInstance();
 
 		// getIsPreview() controls parser function behavior that references things
 		// like user/revision that don't exists yet. The user/text should already
@@ -219,7 +218,7 @@ class ApiStashEdit extends ApiBase {
 			return false;
 		}
 
-		$ok = $wgMemc->set( $key, $stashInfo, $ttl );
+		$ok = $cache->set( $key, $stashInfo, $ttl );
 		if ( !$ok ) {
 			wfDebugLog( 'StashEdit', "Failed to cache preview parser output for key '$key'." );
 		} else {
@@ -247,17 +246,17 @@ class ApiStashEdit extends ApiBase {
 	 * @return stdClass|bool Returns false on cache miss
 	 */
 	public static function checkCache( Title $title, Content $content, User $user ) {
-		global $wgMemc;
+		$cache = ObjectCache::getLocalClusterInstance();
 
 		$key = self::getStashKey( $title, $content, $user );
-		$editInfo = $wgMemc->get( $key );
+		$editInfo = $cache->get( $key );
 		if ( !is_object( $editInfo ) ) {
 			$start = microtime( true );
 			// We ignore user aborts and keep parsing. Block on any prior parsing
 			// so as to use it's results and make use of the time spent parsing.
-			if ( $wgMemc->lock( $key, 30, 30 ) ) {
-				$editInfo = $wgMemc->get( $key );
-				$wgMemc->unlock( $key );
+			if ( $cache->lock( $key, 30, 30 ) ) {
+				$editInfo = $cache->get( $key );
+				$cache->unlock( $key );
 			}
 			$sec = microtime( true ) - $start;
 			if ( $sec > .01 ) {

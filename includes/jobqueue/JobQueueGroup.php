@@ -286,18 +286,17 @@ class JobQueueGroup {
 	 * @since 1.23
 	 */
 	public function queuesHaveJobs( $type = self::TYPE_ANY ) {
-		global $wgMemc;
-
 		$key = wfMemcKey( 'jobqueue', 'queueshavejobs', $type );
+		$cache = ObjectCache::getLocalClusterInstance();
 
-		$value = $wgMemc->get( $key );
+		$value = $cache->get( $key );
 		if ( $value === false ) {
 			$queues = $this->getQueuesWithJobs();
 			if ( $type == self::TYPE_DEFAULT ) {
 				$queues = array_intersect( $queues, $this->getDefaultQueueTypes() );
 			}
 			$value = count( $queues ) ? 'true' : 'false';
-			$wgMemc->add( $key, $value, 15 );
+			$cache->add( $key, $value, 15 );
 		}
 
 		return ( $value === 'true' );
@@ -382,19 +381,20 @@ class JobQueueGroup {
 	 * @return mixed
 	 */
 	private function getCachedConfigVar( $name ) {
-		global $wgConf, $wgMemc;
+		global $wgConf;
 
 		if ( $this->wiki === wfWikiID() ) {
 			return $GLOBALS[$name]; // common case
 		} else {
+			$cache = ObjectCache::getLocalClusterInstance();
 			list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
 			$key = wfForeignMemcKey( $db, $prefix, 'configvalue', $name );
-			$value = $wgMemc->get( $key ); // ('v' => ...) or false
+			$value = $cache->get( $key ); // ('v' => ...) or false
 			if ( is_array( $value ) ) {
 				return $value['v'];
 			} else {
 				$value = $wgConf->getConfig( $this->wiki, $name );
-				$wgMemc->set( $key, array( 'v' => $value ), 86400 + mt_rand( 0, 86400 ) );
+				$cache->set( $key, array( 'v' => $value ), 86400 + mt_rand( 0, 86400 ) );
 
 				return $value;
 			}

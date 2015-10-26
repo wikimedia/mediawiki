@@ -1739,8 +1739,6 @@ class User implements IDBAccessObject {
 			return false;
 		}
 
-		global $wgMemc;
-
 		$limits = $wgRateLimits[$action];
 		$keys = array();
 		$id = $this->getId();
@@ -1795,11 +1793,13 @@ class User implements IDBAccessObject {
 			$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $userLimit;
 		}
 
+		$cache = ObjectCache::getLocalClusterInstance();
+
 		$triggered = false;
 		foreach ( $keys as $key => $limit ) {
 			list( $max, $period ) = $limit;
 			$summary = "(limit $max in {$period}s)";
-			$count = $wgMemc->get( $key );
+			$count = $cache->get( $key );
 			// Already pinged?
 			if ( $count ) {
 				if ( $count >= $max ) {
@@ -1812,11 +1812,11 @@ class User implements IDBAccessObject {
 			} else {
 				wfDebug( __METHOD__ . ": adding record for $key $summary\n" );
 				if ( $incrBy > 0 ) {
-					$wgMemc->add( $key, 0, intval( $period ) ); // first ping
+					$cache->add( $key, 0, intval( $period ) ); // first ping
 				}
 			}
 			if ( $incrBy > 0 ) {
-				$wgMemc->incr( $key, $incrBy );
+				$cache->incr( $key, $incrBy );
 			}
 		}
 

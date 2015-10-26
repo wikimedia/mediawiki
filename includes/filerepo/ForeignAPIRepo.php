@@ -329,7 +329,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @return bool|string
 	 */
 	function getThumbUrlFromCache( $name, $width, $height, $params = "" ) {
-		global $wgMemc;
+		$cache = ObjectCache::getMainWANInstance();
 		// We can't check the local cache using FileRepo functions because
 		// we override fileExistsBatch(). We have to use the FileBackend directly.
 		$backend = $this->getBackend(); // convenience
@@ -342,7 +342,7 @@ class ForeignAPIRepo extends FileRepo {
 		$sizekey = "$width:$height:$params";
 
 		/* Get the array of urls that we already know */
-		$knownThumbUrls = $wgMemc->get( $key );
+		$knownThumbUrls = $cache->get( $key );
 		if ( !$knownThumbUrls ) {
 			/* No knownThumbUrls for this file */
 			$knownThumbUrls = array();
@@ -388,7 +388,7 @@ class ForeignAPIRepo extends FileRepo {
 			if ( $remoteModified < $modified && $diff < $this->fileCacheExpiry ) {
 				/* Use our current and already downloaded thumbnail */
 				$knownThumbUrls[$sizekey] = $localUrl;
-				$wgMemc->set( $key, $knownThumbUrls, $this->apiThumbCacheExpiry );
+				$cache->set( $key, $knownThumbUrls, $this->apiThumbCacheExpiry );
 
 				return $localUrl;
 			}
@@ -410,7 +410,7 @@ class ForeignAPIRepo extends FileRepo {
 			return $foreignUrl;
 		}
 		$knownThumbUrls[$sizekey] = $localUrl;
-		$wgMemc->set( $key, $knownThumbUrls, $this->apiThumbCacheExpiry );
+		$cache->set( $key, $knownThumbUrls, $this->apiThumbCacheExpiry );
 		wfDebug( __METHOD__ . " got local thumb $localUrl, saving to cache \n" );
 
 		return $localUrl;
