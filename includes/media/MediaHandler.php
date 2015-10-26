@@ -373,7 +373,7 @@ abstract class MediaHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function pageCount( $file ) {
+	function pageCount( File $file ) {
 		return false;
 	}
 
