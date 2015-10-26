@@ -54,6 +54,7 @@
 class UploadStash {
 	// Format of the key for files -- has to be suitable as a filename itself (e.g. ab12cd34ef.jpg)
 	const KEY_FORMAT_REGEX = '/^[\w-\.]+\.\w*$/';
+	const MAX_US_PROPS_SIZE = 65535;
 
 	/**
 	 * repository that this uses to store temp files
@@ -277,13 +278,22 @@ class UploadStash {
 		wfDebug( __METHOD__ . " inserting $stashPath under $key\n" );
 		$dbw = $this->repo->getMasterDb();
 
+		$serializedFileProps = serialize( $fileProps );
+		if ( strlen( $serializedFileProps ) > self::MAX_US_PROPS_SIZE ) {
+			// Database is going to truncate this and make the field invalid.
+			// Prioritize important metadata over file handler metadata.
+			// File handler should be prepared to regenerate invalid metadata if needed.
+			$fileProps['metadata'] = false;
+			$serializedFileProps = serialize( $fileProps );
+		}
+
 		$this->fileMetadata[$key] = array(
 			'us_id' => $dbw->nextSequenceValue( 'uploadstash_us_id_seq' ),
 			'us_user' => $this->userId,
 			'us_key' => $key,
 			'us_orig_path' => $path,
 			'us_path' => $stashPath, // virtual URL
-			'us_props' => $dbw->encodeBlob( serialize( $fileProps ) ),
+			'us_props' => $dbw->encodeBlob( $serializedFileProps ),
 			'us_size' => $fileProps['size'],
 			'us_sha1' => $fileProps['sha1'],
 			'us_mime' => $fileProps['mime'],
