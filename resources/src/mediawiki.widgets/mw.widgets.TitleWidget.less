@@ -22,7 +22,7 @@
 			min-height: 3.75em;
 			padding-left: 4.75em;
 
-			&:not(:last-child) {
+			&:not( :last-child ) {
 				margin-bottom: 2px;
 			}
 
@@ -31,26 +31,27 @@
 			}
 
 			&.oo-ui-iconElement {
-				>.oo-ui-iconElement-icon {
+				> .oo-ui-iconElement-icon {
 					display: block;
 					width: 3.75em;
 					height: 3.75em;
 					left: 0;
-					background-color: #ccc;
-					opacity: 0.4;
-				}
-
-				> .mw-widget-titleOptionWidget-hasImage {
-					border: 0;
-					background-size: cover;
-					opacity: 0.7;
+					&:not( .mw-widget-titleOptionWidget-hasImage ) {
+						background-color: #ccc;
+						opacity: 0.4;
+					}
+					&.mw-widget-titleOptionWidget-hasImage {
+						border: 0;
+						background-size: cover;
+						opacity: 0.7;
+					}
 				}
 			}
-		}
 
-		&.oo-ui-optionWidget-highlighted, &.oo-ui-optionWidget-selected {
-			&.oo-ui-iconElement > .mw-widget-titleOptionWidget-hasImage {
-				opacity: 1;
+			&.oo-ui-optionWidget-highlighted, &.oo-ui-optionWidget-selected {
+				&.oo-ui-iconElement > .mw-widget-titleOptionWidget-hasImage {
+					opacity: 1;
+				}
 			}
 		}
 	}
