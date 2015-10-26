@@ -505,30 +505,31 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * Retrieve the version of the installed ImageMagick
 	 * You can use PHPs version_compare() to use this value
 	 * Value is cached for one hour.
-	 * @return string Representing the IM version.
+	 * @return string|bool Representing the IM version; false on error
 	 */
 	protected function getMagickVersion() {
-		global $wgMemc;
+		return ObjectCache::newAccelerator( CACHE_NONE )->getWithSetCallback(
+			"imagemagick-version",
+			3600,
+			function () {
+				global $wgImageMagickConvertCommand;
 
-		$cache = $wgMemc->get( "imagemagick-version" );
-		if ( !$cache ) {
-			global $wgImageMagickConvertCommand;
-			$cmd = wfEscapeShellArg( $wgImageMagickConvertCommand ) . ' -version';
-			wfDebug( __METHOD__ . ": Running convert -version\n" );
-			$retval = '';
-			$return = wfShellExec( $cmd, $retval );
-			$x = preg_match( '/Version: ImageMagick ([0-9]*\.[0-9]*\.[0-9]*)/', $return, $matches );
-			if ( $x != 1 ) {
-				wfDebug( __METHOD__ . ": ImageMagick version check failed\n" );
+				$cmd = wfEscapeShellArg( $wgImageMagickConvertCommand ) . ' -version';
+				wfDebug( __METHOD__ . ": Running convert -version\n" );
+				$retval = '';
+				$return = wfShellExec( $cmd, $retval );
+				$x = preg_match(
+					'/Version: ImageMagick ([0-9]*\.[0-9]*\.[0-9]*)/', $return, $matches
+				);
+				if ( $x != 1 ) {
+					wfDebug( __METHOD__ . ": ImageMagick version check failed\n" );
 
-				return null;
+					return false;
+				}
+
+				return $matches[1];
 			}
-			$wgMemc->set( "imagemagick-version", $matches[1], 3600 );
-
-			return $matches[1];
-		}
-
-		return $cache;
+		);
 	}
 
 	/**
