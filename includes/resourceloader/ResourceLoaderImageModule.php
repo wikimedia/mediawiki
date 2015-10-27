@@ -184,7 +184,6 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 					break;
 
 				case 'position':
-					$this->isPositionDefined = true;
 				case 'prefix':
 				case 'selectorWithoutVariant':
 				case 'selectorWithVariant':
@@ -455,10 +454,5 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	public function getPosition() {
 		$this->loadFromDefinition();
 		return $this->position;
-	}
-
-	public function isPositionDefault() {
-		$this->loadFromDefinition();
-		return parent::isPositionDefault();
 	}
 }
