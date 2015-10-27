@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.12
+ * OOjs UI v0.13.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-10-13T20:38:26Z
+ * Date: 2015-10-27T17:53:00Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -123,10 +123,6 @@
 	width: 1.875em;
 	height: 1.875em;
 }
-.oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
-	/* Don't animate opacities for now, causes wiggling in Chrome (bug 63020) */
-	/*.oo-ui-transition(opacity @medium-ease);*/
-}
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:focus {
 	outline: none;
@@ -176,8 +172,6 @@
 	border: 1px #c9c9c9 solid;
 	-webkit-transition: border-color 100ms ease;
 	   -moz-transition: border-color 100ms ease;
-	    -ms-transition: border-color 100ms ease;
-	     -o-transition: border-color 100ms ease;
 	        transition: border-color 100ms ease;
 	background: #eeeeee;
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#ffffff', endColorstr='#dddddd');
@@ -218,7 +212,6 @@
 	margin-right: 0.3em;
 }
 .oo-ui-buttonElement-framed.oo-ui-indicatorElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
-	/* -0.5 - 0.475 */
 	margin-left: -0.005em;
 	margin-right: -0.005em;
 }
@@ -308,11 +301,6 @@
 }
 .oo-ui-draggableElement {
 	cursor: -webkit-grab -moz-grab, url(images/grab.cur), move;
-	/*
-	 * HACK: In order to style horizontally, we must override
-	 * OO.ui.OptionWidget's display rule that is currently set
-	 * to be 'block'
-	 */
 }
 .oo-ui-draggableElement-dragging {
 	cursor: -webkit-grabbing -moz-grabbing, url(images/grabbing.cur), move;
@@ -575,8 +563,6 @@
 	position: absolute;
 	-webkit-transition: all 200ms ease;
 	   -moz-transition: all 200ms ease;
-	    -ms-transition: all 200ms ease;
-	     -o-transition: all 200ms ease;
 	        transition: all 200ms ease;
 }
 .oo-ui-menuLayout-menu {
@@ -724,8 +710,6 @@
 	border: 1px solid transparent;
 	-webkit-transition: border-color 250ms ease;
 	   -moz-transition: border-color 250ms ease;
-	    -ms-transition: border-color 250ms ease;
-	     -o-transition: border-color 250ms ease;
 	        transition: border-color 250ms ease;
 }
 .oo-ui-toolGroup-empty {
@@ -1085,6 +1069,9 @@
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/apex/images/icons/check.svg");
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/apex/images/icons/check.svg");
 	background-image:      -o-linear-gradient(transparent, transparent), url("themes/apex/images/icons/check.png");
+	background-size: contain;
+	background-position: center center;
+	background-repeat: no-repeat;
 }
 .oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget-enabled:hover {
 	background-color: #e1f3ff;
@@ -1182,7 +1169,6 @@
 .oo-ui-toolbar-actions > .oo-ui-buttonElement-frameless:last-child.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
 	margin: 0 1em;
 	line-height: 3.40625em;
-	/* 43/12.8 */
 }
 .oo-ui-toolbar-shadow {
 	background-image: /* @embed */ url(themes/apex/images/toolbar-shadow.png);
@@ -1191,8 +1177,6 @@
 	opacity: 0.5;
 	-webkit-transition: opacity 500ms ease;
 	   -moz-transition: opacity 500ms ease;
-	    -ms-transition: opacity 500ms ease;
-	     -o-transition: opacity 500ms ease;
 	        transition: opacity 500ms ease;
 }
 .oo-ui-optionWidget {
@@ -1404,7 +1388,6 @@
 	-webkit-transform: translateZ(0px);
 	   -moz-transform: translateZ(0px);
 	    -ms-transform: translateZ(0px);
-	     -o-transform: translateZ(0px);
 	        transform: translateZ(0px);
 	height: 2em;
 	width: 4em;
@@ -1462,8 +1445,6 @@
 	border: 1px #c9c9c9 solid;
 	-webkit-transition: left 250ms ease, margin-left 250ms ease;
 	   -moz-transition: left 250ms ease, margin-left 250ms ease;
-	    -ms-transition: left 250ms ease, margin-left 250ms ease;
-	     -o-transition: left 250ms ease, margin-left 250ms ease;
 	        transition: left 250ms ease, margin-left 250ms ease;
 	background: #eeeeee;
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#ffffff', endColorstr='#dddddd');
@@ -1482,8 +1463,6 @@
 	box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.07);
 	-webkit-transition: opacity 250ms ease;
 	   -moz-transition: opacity 250ms ease;
-	    -ms-transition: opacity 250ms ease;
-	     -o-transition: opacity 250ms ease;
 	        transition: opacity 250ms ease;
 	background: #cde7f4;
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#b0d9ee', endColorstr='#eaf4fa');
@@ -1519,8 +1498,6 @@
 	border-right: 1px solid #cccccc;
 	-webkit-transition: width 250ms ease, margin-left 250ms ease;
 	   -moz-transition: width 250ms ease, margin-left 250ms ease;
-	    -ms-transition: width 250ms ease, margin-left 250ms ease;
-	     -o-transition: width 250ms ease, margin-left 250ms ease;
 	        transition: width 250ms ease, margin-left 250ms ease;
 	background: #cde7f4;
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#eaf4fa', endColorstr='#b0d9ee');
@@ -1533,8 +1510,6 @@
 .oo-ui-progressBarWidget-indeterminate .oo-ui-progressBarWidget-bar {
 	-webkit-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
 	   -moz-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
-	    -ms-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
-	     -o-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
 	        animation: oo-ui-progressBarWidget-slide 2s infinite linear;
 	width: 40%;
 	margin-left: -10%;
@@ -1620,8 +1595,6 @@
 .oo-ui-popupWidget-transitioning .oo-ui-popupWidget-popup {
 	-webkit-transition: width 100ms ease, height 100ms ease, left 100ms ease;
 	   -moz-transition: width 100ms ease, height 100ms ease, left 100ms ease;
-	    -ms-transition: width 100ms ease, height 100ms ease, left 100ms ease;
-	     -o-transition: width 100ms ease, height 100ms ease, left 100ms ease;
 	        transition: width 100ms ease, height 100ms ease, left 100ms ease;
 }
 .oo-ui-popupWidget-head {
@@ -1724,6 +1697,9 @@
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
 }
+.oo-ui-textInputWidget textarea {
+	overflow: auto;
+}
 .oo-ui-textInputWidget input[type="search"] {
 	-webkit-appearance: none;
 }
@@ -1795,8 +1771,6 @@
 	border-radius: 0.25em;
 	-webkit-transition: border-color 250ms ease, box-shadow 250ms ease;
 	   -moz-transition: border-color 250ms ease, box-shadow 250ms ease;
-	    -ms-transition: border-color 250ms ease, box-shadow 250ms ease;
-	     -o-transition: border-color 250ms ease, box-shadow 250ms ease;
 	        transition: border-color 250ms ease, box-shadow 250ms ease;
 }
 .oo-ui-textInputWidget input.oo-ui-pendingElement-pending,
@@ -2010,7 +1984,6 @@
 	opacity: 0;
 	z-index: 1;
 	cursor: pointer;
-	/* Push the button part of the native control out of view, as it changes the cursor */
 	padding-top: 100px;
 }
 .oo-ui-selectFileWidget-selectButton.oo-ui-widget-disabled > .oo-ui-buttonElement-button > input[type="file"] {
@@ -2804,7 +2777,6 @@
 .oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement-framed .oo-ui-buttonElement-button {
 	padding: 0 1em;
 	vertical-align: middle;
-	/* Adjust for border so text aligns with title */
 	margin: -1px;
 }
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless,
@@ -2916,8 +2888,6 @@
 	opacity: 0;
 	-webkit-transition: opacity 250ms ease;
 	   -moz-transition: opacity 250ms ease;
-	    -ms-transition: opacity 250ms ease;
-	     -o-transition: opacity 250ms ease;
 	        transition: opacity 250ms ease;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog > .oo-ui-window-frame {
@@ -2928,25 +2898,19 @@
 	-webkit-transform: scale(0.5);
 	   -moz-transform: scale(0.5);
 	    -ms-transform: scale(0.5);
-	     -o-transform: scale(0.5);
 	        transform: scale(0.5);
 	-webkit-transition: all 250ms ease;
 	   -moz-transition: all 250ms ease;
-	    -ms-transition: all 250ms ease;
-	     -o-transition: all 250ms ease;
 	        transition: all 250ms ease;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-ready {
-	/* Fade window overlay */
 	opacity: 1;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-ready > .oo-ui-window-frame {
-	/* Fade frame */
 	opacity: 1;
 	-webkit-transform: scale(1);
 	   -moz-transform: scale(1);
 	    -ms-transform: scale(1);
-	     -o-transform: scale(1);
 	        transform: scale(1);
 }
 .oo-ui-windowManager-modal.oo-ui-windowManager-floating > .oo-ui-dialog > .oo-ui-window-frame {

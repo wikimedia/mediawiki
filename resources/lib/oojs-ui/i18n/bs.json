@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"DzWiki",
-			"Semso98"
+			"Semso98",
+			"Srdjan m"
 		]
 	},
 	"ooui-outline-control-move-down": "Premjesti stavku dolje",
@@ -16,5 +17,6 @@
 	"ooui-dialog-process-error": "Nešto je pošlo naopako",
 	"ooui-dialog-process-dismiss": "Odbaci",
 	"ooui-dialog-process-retry": "Pokušajte ponovo",
-	"ooui-dialog-process-continue": "Nastavi"
+	"ooui-dialog-process-continue": "Nastavi",
+	"ooui-selectfile-placeholder": "Nijedna datoteka nije izabrana"
 }
