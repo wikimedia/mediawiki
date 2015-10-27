@@ -80,13 +80,41 @@
 }
 
 .column-width(@value) {
-	-webkit-column-width: @value;// Chrome Any, Safari 3+, Opera 11.1+
-	-moz-column-width: @value;// Firefox 1.5+
-	column-width: @value;// IE 10+
+	-webkit-column-width: @value; // Chrome Any, Safari 3+, Opera 11.1+
+	-moz-column-width: @value; // Firefox 1.5+
+	column-width: @value; // IE 10+
 }
 
 .column-break-inside-avoid() {
 	-webkit-column-break-inside: avoid; // Chrome Any, Safari 3+, Opera 11.1+
 	page-break-inside: avoid; // Firefox 1.5+
 	break-inside: avoid-column; // IE 10+
+}
+
+.flex-display(@display: flex) {
+	display: ~"-webkit-@{display}"; // iOS 6-, Safari 3.1-6
+	display: ~"-moz-@{display}"; // Firefox 21-
+	display: ~"-ms-@{display}box"; // IE 10
+	display: @display;
+}
+.flex(@grow: 1, @shrink: 1, @width: auto, @order: 1) {
+	/* For 2009/2012 spec alignment consistency with current default */
+	-webkit-box-pack: justify; // iOS 6-, Safari 3.1-6
+	-moz-box-pack: justify; // Firefox 21-
+	-ms-flex-pack: justify; // IE10 (2012 spec)
+	justify-content: space-between; // Current default
+
+	/* 2009 spec only supports 'flexible' as opposed to grow (flexPositive)
+	and shrink (flexNegative); default to grow value */
+	-webkit-box-flex: @grow; // iOS 6-, Safari 3.1-6
+	-moz-box-flex: @grow; // Firefox 21-
+	width: @width; // Fallback for flex-basis
+
+	-ms-flex: @grow @shrink @width; // IE10
+	flex: @grow @shrink @width;
+
+	-webkit-box-ordinal-group: @order; // iOS 6-, Safari 3.1-6
+	-moz-box-ordinal-group: @order; // Firefox 21-
+	-ms-flex-order: @order; // IE10
+	order: @order;
 }
