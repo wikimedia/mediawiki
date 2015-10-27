@@ -43,7 +43,7 @@ class CommandLineInstaller extends Maintenance {
 		global $IP;
 
 		$this->addDescription( "CLI-based MediaWiki installation and configuration.\n" .
-			"Defaut options are indicated in parenthesis." );
+			"Default options are indicated in parentheses." );
 
 		$this->addArg( 'name', 'The name of the wiki (MediaWiki)', false );
 
