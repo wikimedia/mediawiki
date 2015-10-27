@@ -2041,7 +2041,7 @@ class EditPage {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param User $user
 	 * @param string $oldModel
 	 * @param string $newModel
 	 * @param string $reason
@@ -2059,26 +2059,26 @@ class EditPage {
 		$log->publish( $logid );
 	}
 
-
 	/**
 	 * Register the change of watch status
 	 */
 	protected function updateWatchlist() {
 		global $wgUser;
 
-		if ( $wgUser->isLoggedIn()
-			&& $this->watchthis != $wgUser->isWatched( $this->mTitle, WatchedItem::IGNORE_USER_RIGHTS )
-		) {
-			$fname = __METHOD__;
-			$title = $this->mTitle;
-			$watch = $this->watchthis;
-
-			// Do this in its own transaction to reduce contention...
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->onTransactionIdle( function () use ( $dbw, $title, $watch, $wgUser, $fname ) {
-				WatchAction::doWatchOrUnwatch( $watch, $title, $wgUser );
-			} );
+		if ( !$wgUser->isLoggedIn() ) {
+			return;
 		}
+
+		$user = $wgUser;
+		$title = $this->mTitle;
+		$watch = $this->watchthis;
+		// Do this in its own transaction to reduce contention...
+		DeferredUpdates::addCallableUpdate( function () use ( $user, $title, $watch ) {
+			if ( $watch == $user->isWatched( $title, WatchedItem::IGNORE_USER_RIGHTS ) ) {
+				return; // nothing to change
+			}
+			WatchAction::doWatchOrUnwatch( $watch, $title, $user );
+		} );
 	}
 
 	/**
