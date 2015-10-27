@@ -336,7 +336,7 @@ class EmailNotification {
 		# named variables when composing your notification emails while
 		# simply editing the Meta pages
 
-		$keys = array();
+		$keys = $keysHtml = array();
 		$postTransformKeys = array();
 		$pageTitleUrl = $this->title->getCanonicalURL();
 		$pageTitle = $this->title->getPrefixedText();
@@ -346,6 +346,9 @@ class EmailNotification {
 			$keys['$NEWPAGE'] = "\n\n" . wfMessage( 'enotif_lastdiff',
 					$this->title->getCanonicalURL( array( 'diff' => 'next', 'oldid' => $this->oldid ) ) )
 					->inContentLanguage()->text();
+			$keysHtml['$NEWPAGE'] = wfMessage( 'enotif_lastdiff_html',
+					$this->title->getCanonicalURL( array( 'diff' => 'next', 'oldid' => $this->oldid ) ) )
+					->inContentLanguage()->plain();
 
 			if ( !$wgEnotifImpersonal ) {
 				// For personal mail, also show a link to the diff of all changes
@@ -353,6 +356,9 @@ class EmailNotification {
 				$keys['$NEWPAGE'] .= "\n\n" . wfMessage( 'enotif_lastvisited',
 						$this->title->getCanonicalURL( array( 'diff' => '0', 'oldid' => $this->oldid ) ) )
 						->inContentLanguage()->text();
+				$keysHtml['$NEWPAGE'] .= wfMessage( 'enotif_lastvisited_html',
+						$this->title->getCanonicalURL( array( 'diff' => '0', 'oldid' => $this->oldid ) ) )
+						->inContentLanguage()->plain();
 			}
 			$keys['$OLDID'] = $this->oldid;
 			// Deprecated since MediaWiki 1.21, not used by default. Kept for backwards-compatibility.
@@ -390,7 +396,7 @@ class EmailNotification {
 		);
 
 		# Replace this after transforming the message, bug 35019
-		$postTransformKeys['$PAGESUMMARY'] = $this->summary == '' ? ' - ' : $this->summary;
+		$postTransformKeys['$PAGESUMMARY'] = $this->summary == '' ? wfMessage( 'enotif_empty_summary' )->text() : $this->summary;
 
 		// Now build message's subject and body
 
@@ -406,11 +412,25 @@ class EmailNotification {
 		$keys['$PAGEINTRO'] = wfMessage( 'enotif_body_intro_' . $this->pageStatus )
 			->inContentLanguage()->params( $pageTitle, $keys['$PAGEEDITOR'], $pageTitleUrl )
 			->text();
+		$keysHtml['$PAGEINTRO'] = wfMessage( 'enotif_body_intro_' . $this->pageStatus )
+			->inContentLanguage()->params( htmlspecialchars( $pageTitle ), htmlspecialchars( $keys['$PAGEEDITOR'] ),
+				'<a href="'.$pageTitleUrl.'">'.htmlspecialchars( urldecode( $this->title->getCanonicalUrl() ) ).'</a>' )
+			->plain();
 
 		$body = wfMessage( 'enotif_body' )->inContentLanguage()->plain();
 		$body = strtr( $body, $keys );
 		$body = MessageCache::singleton()->transform( $body, false, null, $this->title );
 		$this->body = wordwrap( strtr( $body, $postTransformKeys ), 72 );
+
+		foreach ( $keys as $k => $v ) {
+			if ( !isset( $keysHtml[$k] ) ) {
+				$keysHtml[$k] = htmlspecialchars( $v );
+			}
+		}
+		$bodyHtml = wfMessage( 'enotif_body_html' )->inContentLanguage()->plain();
+		$bodyHtml = strtr( $bodyHtml, $keysHtml );
+		$bodyHtml = MessageCache::singleton()->transform( $bodyHtml, false, null, $this->title );
+		$this->bodyHtml = strtr( $bodyHtml, $postTransformKeys );
 
 		# Reveal the page editor's address as REPLY-TO address only if
 		# the user has not opted-out and the option is enabled at the
@@ -487,15 +507,19 @@ class EmailNotification {
 		# $PAGEEDITDATE is the time and date of the page change
 		# expressed in terms of individual local time of the notification
 		# recipient, i.e. watching user
-		$body = str_replace(
-			array( '$WATCHINGUSERNAME',
-				'$PAGEEDITDATE',
-				'$PAGEEDITTIME' ),
-			array( $wgEnotifUseRealName && $watchingUser->getRealName() !== ''
+		$repl = array(
+			'$WATCHINGUSERNAME' => $wgEnotifUseRealName && $watchingUser->getRealName() !== ''
 				? $watchingUser->getRealName() : $watchingUser->getName(),
-				$wgContLang->userDate( $this->timestamp, $watchingUser ),
-				$wgContLang->userTime( $this->timestamp, $watchingUser ) ),
-			$this->body );
+			'$PAGEEDITDATE' => $wgContLang->userDate( $this->timestamp, $watchingUser ),
+			'$PAGEEDITTIME' => $wgContLang->userTime( $this->timestamp, $watchingUser ),
+		);
+		$body = strtr( $this->body, $repl );
+		$repl['$WATCHINGUSERNAME'] = htmlspecialchars( $repl['$WATCHINGUSERNAME'] );
+		$bodyHtml = strtr( $this->bodyHtml, $repl );
+		$body = array(
+			'text' => $body,
+			'html' => $bodyHtml,
+		);
 
 		$headers = array();
 		if ( $source === self::WATCHLIST ) {
