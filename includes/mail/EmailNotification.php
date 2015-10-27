@@ -86,13 +86,15 @@ class EmailNotification {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
+		$tbl = $dbw->tableName( 'user_properties' );
 		$res = $dbw->select( array( 'watchlist' ),
 			array( 'wl_user' ),
 			array(
 				'wl_user != ' . intval( $editor->getID() ),
 				'wl_namespace' => $title->getNamespace(),
 				'wl_title' => $title->getDBkey(),
-				'wl_notificationtimestamp IS NULL',
+				"(wl_notificationtimestamp IS NULL OR EXISTS (SELECT * FROM $tbl".
+					" WHERE up_user=wl_user AND up_property IN ('enotifsendmultiple', 'enotifsenddiff') AND up_value=1))",
 			), __METHOD__
 		);
 
@@ -395,6 +397,18 @@ class EmailNotification {
 			Skin::makeInternalOrExternalUrl( wfMessage( 'helppage' )->inContentLanguage()->text() )
 		);
 
+		// Generate diff
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$out = new OutputPage( $context );
+		$context->setOutput( $out );
+		$de = new DifferenceEngine( $context, $keys['$OLDID'], 'next' );
+		$de->showDiffPage( true );
+		$diff = $out->getHTML();
+		$diff = preg_replace( '#^(.*?)<tr[^<>]*>.*?</tr\s*>#is', '\1', $diff, 1 );
+		$diff = preg_replace( '#class=[\"\']?diff-deletedline[\"\']?#is', 'style="background-color: #ffffaa"', $diff );
+		$diff = preg_replace( '#class=[\"\']?diff-addedline[\"\']?#is', 'style="background-color: #ccffcc"', $diff );
+		$this->diff = preg_replace( '#class=[\"\']?diffchange\s*diffchange-inline[\"\']?#is', 'style="color: red; font-weight: bold"', $diff );
+
 		# Replace this after transforming the message, bug 35019
 		$postTransformKeys['$PAGESUMMARY'] = $this->summary == '' ? wfMessage( 'enotif_empty_summary' )->text() : $this->summary;
 
@@ -504,6 +518,10 @@ class EmailNotification {
 		//   this properly while talking with the MTA.
 		$to = MailAddress::newFromUser( $watchingUser );
 
+		$nofurther = $watchingUser->getOption( 'enotifsenddiffs' ) ||
+			$watchingUser->getOption( 'enotifsendmultiple' )
+			? '' : wfMessage( 'enotif_no_further_notice' )->inContentLanguage()->text();
+
 		# $PAGEEDITDATE is the time and date of the page change
 		# expressed in terms of individual local time of the notification
 		# recipient, i.e. watching user
@@ -512,9 +530,12 @@ class EmailNotification {
 				? $watchingUser->getRealName() : $watchingUser->getName(),
 			'$PAGEEDITDATE' => $wgContLang->userDate( $this->timestamp, $watchingUser ),
 			'$PAGEEDITTIME' => $wgContLang->userTime( $this->timestamp, $watchingUser ),
+			'$NOFURTHERNOTICE' => $nofurther ? "\n\n$nofurther" : '',
 		);
 		$body = strtr( $this->body, $repl );
 		$repl['$WATCHINGUSERNAME'] = htmlspecialchars( $repl['$WATCHINGUSERNAME'] );
+		$repl['$NOFURTHERNOTICE'] = $nofurther ? "\n<p>$nofurther</p>" : '';
+		$repl['$DIFF'] = $watchingUser->getOption( 'enotifsenddiffs' ) ? $this->diff : '';
 		$bodyHtml = strtr( $this->bodyHtml, $repl );
 		$body = array(
 			'text' => $body,

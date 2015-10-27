@@ -551,7 +551,18 @@ class Preferences {
 					'label-message' => 'tog-enotifminoredits',
 					'disabled' => $disableEmailPrefs,
 				);
-
+				$defaultPreferences['enotifsenddiffs'] = array(
+					'type' => 'toggle',
+					'section' => 'personal/email',
+					'label-message' => 'tog-enotifsenddiffs',
+					'disabled' => $disableEmailPrefs,
+				);
+				$defaultPreferences['enotifsendmultiple'] = array(
+					'type' => 'toggle',
+					'section' => 'personal/email',
+					'label-message' => 'tog-enotifsendmultiple',
+					'disabled' => $disableEmailPrefs,
+				);
 				if ( $config->get( 'EnotifRevealEditorAddress' ) ) {
 					$defaultPreferences['enotifrevealaddr'] = array(
 						'type' => 'toggle',
