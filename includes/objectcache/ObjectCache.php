@@ -137,19 +137,14 @@ class ObjectCache {
 	 * @return string
 	 */
 	public static function getDefaultKeyspace() {
-		global $wgCachePrefix, $wgDBname, $wgDBprefix;
+		global $wgCachePrefix;
 
 		$keyspace = $wgCachePrefix;
 		if ( is_string( $keyspace ) && $keyspace !== '' ) {
 			return $keyspace;
 		}
 
-		$keyspace = $wgDBname;
-		if ( is_string( $wgDBprefix ) && $wgDBprefix !== '' ) {
-			$keyspace .= '-' . $wgDBprefix;
-		}
-
-		return $keyspace;
+		return wfWikiID();
 	}
 
 	/**
