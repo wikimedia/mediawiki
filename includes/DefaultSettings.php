@@ -7324,13 +7324,6 @@ $wgAPIMaxResultSize = 8388608;
 $wgAPIMaxUncachedDiffs = 1;
 
 /**
- * Maximum amount of DB lag on a majority of DB slaves to tolerate
- * before forcing bots to retry any write requests via API errors.
- * This should be lower than the 'max lag' value in $wgLBFactoryConf.
- */
-$wgAPIMaxLagThreshold = 7;
-
-/**
  * Log file or URL (TCP or UDP) to log API requests to, or false to disable
  * API request logging
  */
