@@ -215,8 +215,15 @@ class RefreshLinksJob extends Job {
 		$updates = $content->getSecondaryDataUpdates(
 			$title, null, !empty( $this->params['useRecursiveLinksUpdate'] ), $parserOutput );
 		foreach ( $updates as $key => $update ) {
-			if ( $update instanceof LinksUpdate && isset( $this->params['triggeredRecursive'] ) ) {
-				$update->setTriggeredRecursive();
+			if ( $update instanceof LinksUpdate ) {
+				if ( isset( $this->params['triggeredRecursive'] ) ) {
+					$update->setTriggeredRecursive();
+				}
+				if ( isset( $this->params['triggeringUser'] ) ) {
+					$update->setTriggeringUser(
+						User::newFromName( $this->params['triggeringUser'], false )
+					);
+				}
 			}
 		}
 
