@@ -90,3 +90,23 @@
 	page-break-inside: avoid; // Firefox 1.5+
 	break-inside: avoid-column; // IE 10+
 }
+
+.flexDisplay() {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.flex(@grow: 1, @shrink: 1, @width: auto, @order: 1) {
+	width: @width;
+	-webkit-box-flex: @grow @shrink @width;
+	-webkit-flex: @grow @shrink;
+	-moz-box-flex: @grow @shrink @width;
+	flex: @grow @shrink @width;
+
+	-webkit-box-ordinal-group: @order;
+	-moz-box-ordinal-group: @order;
+	-ms-flex-order: @order;
+	order: @order;
+}
