@@ -54,6 +54,8 @@ THIS IS NOT A RELEASE YET
   LogEventsList.
 * (T258763, CVE-2020-17367, CVE-2020-17368) SECURITY: Prevent invoking
   firejail's --output functionality.
+* (T86738, CVE-2020-25814) SECURITY: mediawiki.jqueryMsg: Sanitize URLs and
+  'style' attribute.
 
 == MediaWiki 1.34.2 ==
 
