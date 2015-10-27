@@ -12,7 +12,7 @@
 		return;
 	}
 	$( function () {
-		var $patrolLinks = $( '.patrollink a' );
+		var $patrolLinks = $( '.patrollink a.mw-patrollink' );
 		$patrolLinks.on( 'click', function ( e ) {
 			var $spinner, href, rcid, apiRequest;
 
