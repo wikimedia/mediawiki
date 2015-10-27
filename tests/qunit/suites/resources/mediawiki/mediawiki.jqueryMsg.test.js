@@ -621,6 +621,16 @@
 			'External link message processed when format is \'parse\''
 		);
 		assert.htmlEqual(
+			formatParse( 'external-link-replace', '/wiki/Special:Version' ),
+			'Foo <a href="/wiki/Special:Version">bar</a>',
+			'External link message allows relative URL when processed'
+		);
+		assert.htmlEqual(
+			formatParse( 'external-link-replace', '//example.com' ),
+			'Foo <a href="//example.com">bar</a>',
+			'External link message allows protocol-relative URL when processed'
+		);
+		assert.htmlEqual(
 			formatParse( 'external-link-replace', $( '<i>' ) ),
 			'Foo <i>bar</i>',
 			'External link message processed as jQuery object when format is \'parse\''
@@ -1171,6 +1181,38 @@
 				cases[ i ].key
 			);
 		}
+	} );
+
+	QUnit.test( 'Do not allow javascript: urls', function ( assert ) {
+		mw.messages.set( 'illegal-url', '[javascript:alert(1) foo]' );
+		mw.messages.set( 'illegal-url-param', '[$1 foo]' );
+
+		this.suppressWarnings();
+
+		assert.strictEqual(
+			formatParse( 'illegal-url' ),
+			'[javascript:alert(1) foo]',
+			'illegal-url: \'parse\' format'
+		);
+
+		assert.strictEqual(
+			// eslint-disable-next-line no-script-url
+			formatParse( 'illegal-url-param', 'javascript:alert(1)' ),
+			'[javascript:alert(1) foo]',
+			'illegal-url-param: \'parse\' format'
+		);
+	} );
+
+	QUnit.test( 'Do not allow arbitrary style', function ( assert ) {
+		mw.messages.set( 'illegal-style', '<span style="background-image:url( http://example.com )">bar</span>' );
+
+		this.suppressWarnings();
+
+		assert.strictEqual(
+			formatParse( 'illegal-style' ),
+			'&lt;span style="background-image:url( http://example.com )"&gt;bar&lt;/span&gt;',
+			'illegal-style: \'parse\' format'
+		);
 	} );
 
 	QUnit.test( 'Integration', function ( assert ) {
