@@ -393,16 +393,17 @@ class SpecialSearch extends SpecialPage {
 			if ( $textStatus ) {
 				$out->addHTML( '<div class="error">' .
 					$textStatus->getMessage( 'search-error' ) . '</div>' );
-			} else {
+			} elseif ( !$hasOtherResults ) {
 				$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
-				$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>",
-					array( $hasOtherResults ? 'search-nonefound-thiswiki' : 'search-nonefound',
-							wfEscapeWikiText( $term )
-					) );
+				$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>", array(
+					'search-nonefound',
+					wfEscapeWikiText( $term )
+				) );
 			}
 		}
 
 		if ( $hasOtherResults ) {
+			$inlineInterwikiHtml = '';
 			foreach ( $textMatches->getInterwikiResults( SearchResultSet::INLINE_RESULTS )
 						as $interwiki => $interwikiResult ) {
 				if ( $interwikiResult instanceof Status || $interwikiResult->numRows() == 0 ) {
@@ -410,7 +411,14 @@ class SpecialSearch extends SpecialPage {
 					continue;
 				}
 				// TODO: wiki header
-				$out->addHTML( $this->showMatches( $interwikiResult, $interwiki ) );
+				$inlineInterwikiHtml .= $this->showMatches( $interwikiResult, $interwiki );
+			}
+			if ( $inlineInterwikiHtml !== '' ) {
+				$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>", array(
+					'search-nonefound-thiswiki',
+					wfEscapeWikiText( $term )
+				) );
+				$out->addHtml( $inlineInterwikiHtml );
 			}
 		}
 
