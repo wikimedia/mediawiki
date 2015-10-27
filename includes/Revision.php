@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Storage\TextTable\ArchiveTableRevisionSlot;
 use MediaWiki\Storage\TextTable\TextTable;
 use MediaWiki\Storage\TextTable\TextTableRevisionSlot;
 
@@ -44,21 +45,13 @@ class Revision implements IDBAccessObject {
 	protected $mSha1;
 	protected $mParentId;
 	protected $mComment;
-	protected $mText;
-	protected $mTextId;
-
-	/**
-	 * @var stdClass|null
-	 */
-	protected $mTextRow;
+	protected $mUnpatrolled;
 
 	/**
 	 * @var null|Title
 	 */
 	protected $mTitle;
 	protected $mCurrent;
-	protected $mContentModel;
-	protected $mContentFormat;
 
 	/**
 	 * @var Content|null|bool
@@ -66,19 +59,9 @@ class Revision implements IDBAccessObject {
 	protected $mContent;
 
 	/**
-	 * @var null|TextTableRevisionSlot
+	 * @var TextTableRevisionSlot
 	 */
 	protected $mMainSlot;
-
-	/**
-	 * @var null|ContentHandler
-	 */
-	protected $mContentHandler;
-
-	/**
-	 * @var int
-	 */
-	protected $mQueryFlags = 0;
 
 	// Revision deletion constants
 	const DELETED_TEXT = 1;
@@ -192,8 +175,6 @@ class Revision implements IDBAccessObject {
 			'deleted'    => $row->ar_deleted,
 			'len'        => $row->ar_len,
 			'sha1'       => isset( $row->ar_sha1 ) ? $row->ar_sha1 : null,
-			'content_model'   => isset( $row->ar_content_model ) ? $row->ar_content_model : null,
-			'content_format'  => isset( $row->ar_content_format ) ? $row->ar_content_format : null,
 		);
 
 		if ( !$wgContentHandlerUseDB ) {
@@ -206,6 +187,7 @@ class Revision implements IDBAccessObject {
 			&& isset( $row->ar_title )
 		) {
 			$attribs['title'] = Title::makeTitle( $row->ar_namespace, $row->ar_title );
+			$attribs['main_slot'] = new ArchiveTableRevisionSlot( $attribs['title'], $row );
 		}
 
 		if ( isset( $row->ar_text ) && !$row->ar_text_id ) {
@@ -242,6 +224,11 @@ class Revision implements IDBAccessObject {
 	 * @return Revision
 	 */
 	public static function newFromRow( $row ) {
+		if ( isset( $row->page_namespace ) && isset( $row->page_title ) ) {
+			$row->title = Title::makeTitle( $row->page_namespace, $row->page_title );
+			$row->main_slot = new TextTableRevisionSlot( $row->title, $row );
+		}
+
 		return new self( $row );
 	}
 
@@ -637,6 +624,16 @@ class Revision implements IDBAccessObject {
 				$this->mUserText = $row->user_name; // logged-in user
 			}
 			$this->mOrigUserText = $row->rev_user_text;
+
+			if ( isset( $row->title ) ) {
+				$this->mTitle = $row->title;
+			}
+
+			if ( isset( $row->main_slot ) ) {
+				$this->mMainSlot = $row->main_slot;
+			} else {
+				$this->mMainSlot = new TextTableRevisionSlot( $this->getTitle(), $row );
+			}
 		} elseif ( is_array( $row ) ) {
 			// Build a new revision to be saved...
 			global $wgUser; // ugh
@@ -724,9 +721,12 @@ class Revision implements IDBAccessObject {
 				$this->mSha1 = $this->mText === null ? null : self::base36Sha1( $this->mText );
 			}
 
-			// force lazy init
-			$this->getContentModel();
-			$this->getContentFormat();
+			if ( isset( $row['main_slot'] ) ) {
+				$this->mMainSlot = $row['main_slot'];
+			} else {
+				$rowObj = (object)$this->getRevisionRow();
+				$this->mMainSlot = new TextTableRevisionSlot( $this->getTitle(), $rowObj );
+			}
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
@@ -776,6 +776,10 @@ class Revision implements IDBAccessObject {
 	 * @return int|null
 	 */
 	public function getSize() {
+		if ( $this->mSize == null ) {
+			$this->mSize = $this->getMainSlot( self::RAW )->getSize();
+		}
+
 		return $this->mSize;
 	}
 
@@ -1085,37 +1089,27 @@ class Revision implements IDBAccessObject {
 
 	/**
 	 * Returns the content model for this revision.
-	 *
-	 * If no content model was stored in the database, the default content model for the title is
-	 * used to determine the content model to use. If no title is know, CONTENT_MODEL_WIKITEXT
-	 * is used as a last resort.
+	 * This will return the main slot's content model.
 	 *
 	 * @return string The content model id associated with this revision,
 	 *     see the CONTENT_MODEL_XXX constants.
 	 **/
 	public function getContentModel() {
-		if ( $this->mContentModel === null ) {
-			$this->mContentModel = $this->getMainSlot( self::RAW )->getContentModel();
-		}
-
-		return $this->mContentModel;
+		return $this->getMainSlot( self::RAW )->getContentModel();
 	}
 
 	/**
 	 * Returns the content format for this revision.
+	 * This will return the format of the main slot.
 	 *
-	 * If no content format was stored in the database, the default format for this
-	 * revision's content model is returned.
+	 * @warning The serialization format is an internal detail of the storage layer. It should
+	 * really not be exposed here. There should be no reason to call this method.
 	 *
 	 * @return string The content format id associated with this revision,
 	 *     see the CONTENT_FORMAT_XXX constants.
 	 **/
 	public function getContentFormat() {
-		if ( $this->mContentFormat === null ) {
-			$this->mContentFormat = $this->getMainSlot( self::RAW )->getContentFormat();
-		}
-
-		return $this->mContentFormat;
+		return $this->getMainSlot( self::RAW )->getContentFormat();
 	}
 
 	/**

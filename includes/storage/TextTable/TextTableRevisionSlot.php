@@ -142,6 +142,9 @@ class TextTableRevisionSlot implements RevisionSlot {
 	}
 
 	/**
+	 * @warning The serialization format is an internal detail of the storage layer. It should
+	 * really not be exposed here. There should be no reason to call this method.
+	 *
 	 * @throws RevisionContentException
 	 * @return string
 	 */
