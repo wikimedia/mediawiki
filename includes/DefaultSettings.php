@@ -2263,7 +2263,8 @@ $wgMainWANCache = false;
  * the value is an associative array of parameters. The "cacheId" parameter is
  * a cache identifier from $wgObjectCaches. The "relayerConfig" parameter is an
  * array used to construct an EventRelayer object. The "pool" parameter is a
- * string that is used as a PubSub channel prefix.
+ * string that is used as a PubSub channel prefix. The "loggroup" parameter
+ * controls where log events are sent.
  *
  * @since 1.26
  */

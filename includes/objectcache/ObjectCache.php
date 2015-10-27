@@ -167,8 +167,6 @@ class ObjectCache {
 		if ( isset( $params['loggroup'] ) ) {
 			$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] );
 		} else {
-			// For backwards-compatability with custom parameters, lets not
-			// have all logging suddenly disappear
 			$params['logger'] = LoggerFactory::getInstance( 'objectcache' );
 		}
 		if ( !isset( $params['keyspace'] ) ) {
@@ -294,6 +292,11 @@ class ObjectCache {
 		$class = $params['relayerConfig']['class'];
 		$params['relayer'] = new $class( $params['relayerConfig'] );
 		$params['cache'] = self::newFromId( $params['cacheId'] );
+		if ( isset( $params['loggroup'] ) ) {
+			$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] );
+		} else {
+			$params['logger'] = LoggerFactory::getInstance( 'objectcache' );
+		}
 		$class = $params['class'];
 
 		return new $class( $params );

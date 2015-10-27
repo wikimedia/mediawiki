@@ -442,6 +442,14 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
+	 * @return bool Whether there is a transaction open with possible write queries
+	 * @since 1.27
+	 */
+	public function writesPending() {
+		return $this->mTrxLevel && $this->mTrxDoneWrites;
+	}
+
+	/**
 	 * Returns true if there is a transaction open with possible write
 	 * queries or transaction pre-commit/idle callbacks waiting on it to finish.
 	 *
@@ -3819,16 +3827,20 @@ abstract class DatabaseBase implements IDatabase {
 	 *
 	 * @param IDatabase $db1
 	 * @param IDatabase ...
-	 * @return array ('lag': highest lag, 'since': lowest estimate UNIX timestamp)
+	 * @return array Map of values:
+	 *   - lag: highest lag of any of the DBs
+	 *   - since: oldest UNIX timestamp of any of the DB lag estimates
+	 *   - pending: whether any of the DBs have uncommitted changes
 	 * @since 1.27
 	 */
 	public static function getCacheSetOptions( IDatabase $db1 ) {
-		$res = array( 'lag' => 0, 'since' => INF );
+		$res = array( 'lag' => 0, 'since' => INF, 'pending' => false );
 		foreach ( func_get_args() as $db ) {
 			/** @var IDatabase $db */
 			$status = $db->getSessionLagStatus();
 			$res['lag'] = max( $res['lag'], $status['lag'] );
 			$res['since'] = min( $res['since'], $status['since'] );
+			$res['pending'] = $res['pending'] ?: $db->writesPending();
 		}
 
 		return $res;

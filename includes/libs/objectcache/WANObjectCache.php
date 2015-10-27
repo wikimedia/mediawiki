@@ -20,6 +20,10 @@
  * @author Aaron Schulz
  */
 
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+
 /**
  * Multi-datacenter aware caching interface
  *
@@ -60,7 +64,7 @@
  * @ingroup Cache
  * @since 1.26
  */
-class WANObjectCache {
+class WANObjectCache implements LoggerAwareInterface {
 	/** @var BagOStuff The local datacenter cache */
 	protected $cache;
 	/** @var HashBagOStuff Script instance PHP cache */
@@ -69,6 +73,8 @@ class WANObjectCache {
 	protected $pool;
 	/** @var EventRelayer Bus that handles purge broadcasts */
 	protected $relayer;
+	/** @var LoggerInterface */
+	protected $logger;
 
 	/** @var int ERR_* constant for the "last error" registry */
 	protected $lastRelayError = self::ERR_NONE;
@@ -125,12 +131,18 @@ class WANObjectCache {
 	 *   - cache   : BagOStuff object
 	 *   - pool    : pool name
 	 *   - relayer : EventRelayer object
+	 *   - logger  : LoggerInterface object
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
 		$this->pool = $params['pool'];
 		$this->relayer = $params['relayer'];
 		$this->procCache = new HashBagOStuff();
+		$this->setLogger( isset( $params['logger'] ) ? $params['logger'] : new NullLogger() );
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
 	}
 
 	/**
@@ -300,6 +312,10 @@ class WANObjectCache {
 	 *               the current time the data was read or (if applicable) the time when
 	 *               the snapshot-isolated transaction the data was read from started.
 	 *               Default: 0 seconds
+	 *   - pending : Whether this data is possibly from an uncommitted write transaction.
+	 *               Generally, other threads should not see values from the future and
+	 *               they certainly should not see ones that ended up getting rolled back.
+	 *               Default: false
 	 *   - lockTSE : if excessive possible snapshot lag is detected,
 	 *               then stash the value into a temporary location
 	 *               with this TTL. This is only useful if the reads
@@ -312,9 +328,16 @@ class WANObjectCache {
 		$age = isset( $opts['since'] ) ? max( 0, microtime( true ) - $opts['since'] ) : 0;
 		$lag = isset( $opts['lag'] ) ? $opts['lag'] : 0;
 
+		if ( !empty( $opts['pending'] ) ) {
+			$this->logger->info( "Rejected set() for $key due to pending writes." );
+
+			return true; // no-op the write for being unsafe
+		}
+
 		if ( $lag > self::MAX_REPLICA_LAG ) {
 			// Too much lag detected; lower TTL so it converges faster
 			$ttl = $ttl ? min( $ttl, self::TTL_LAGGED ) : self::TTL_LAGGED;
+			$this->logger->warning( "Lowered set() TTL for $key due to replication lag." );
 		}
 
 		if ( $age > self::MAX_SNAPSHOT_LAG ) {
@@ -322,6 +345,7 @@ class WANObjectCache {
 				$tempTTL = max( 1, (int)$lockTSE ); // set() expects seconds
 				$this->cache->set( self::STASH_KEY_PREFIX . $key, $value, $tempTTL );
 			}
+			$this->logger->warning( "Rejected set() for $key due to snapshot lag." );
 
 			return true; // no-op the write for being unsafe
 		}
