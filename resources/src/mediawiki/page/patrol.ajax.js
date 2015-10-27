@@ -12,7 +12,7 @@
 		return;
 	}
 	$( function () {
-		var $patrolLinks = $( '.patrollink a' );
+		var $patrolLinks = $( '.patrollink[data-mw="interface"] a' );
 		$patrolLinks.on( 'click', function ( e ) {
 			var $spinner, rcid, apiRequest;
 
