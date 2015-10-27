@@ -267,7 +267,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		// Which ever runs first generally no-ops the other one.
 		$jobs = array();
 		foreach ( $bc->getCascadeProtectedLinks() as $title ) {
-			$jobs[] = new RefreshLinksJob( $title, array( 'prioritize' => true ) );
+			$jobs[] = RefreshLinksJob::newPrioritized( $title, array() );
 		}
 		JobQueueGroup::singleton()->push( $jobs );
 	}
@@ -985,7 +985,6 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 			'job'  => new JobSpecification(
 				'refreshLinksPrioritized',
 				array(
-					'prioritize' => true,
 					// Reuse the parser cache if it was saved
 					'rootJobTimestamp' => $this->mParserOutput->getCacheTime(),
 					'useRecursiveLinksUpdate' => $this->mRecursive

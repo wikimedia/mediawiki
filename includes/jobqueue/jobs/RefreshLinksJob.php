@@ -41,10 +41,6 @@ class RefreshLinksJob extends Job {
 
 	function __construct( Title $title, array $params ) {
 		parent::__construct( 'refreshLinks', $title, $params );
-		// A separate type is used just for cascade-protected backlinks
-		if ( !empty( $this->params['prioritize'] ) ) {
-			$this->command .= 'Prioritized';
-		}
 		// Base backlink update jobs and per-title update jobs can be de-duplicated.
 		// If template A changes twice before any jobs run, a clean queue will have:
 		// 		(A base, A base)
@@ -62,6 +58,30 @@ class RefreshLinksJob extends Job {
 		// and/or the backlink sets for pages A and B are almost identical.
 		$this->removeDuplicates = !isset( $params['range'] )
 			&& ( !isset( $params['pages'] ) || count( $params['pages'] ) == 1 );
+	}
+
+	/**
+	 * @param Title $title
+	 * @param array $params
+	 * @return RefreshLinksJob
+	 */
+	public static function newPrioritized( Title $title, array $params ) {
+		$job = new self( $title, $params );
+		$job->command = 'refreshLinksPrioritized';
+
+		return $job;
+	}
+
+	/**
+	 * @param Title $title
+	 * @param array $params
+	 * @return RefreshLinksJob
+	 */
+	public static function newDynamic( Title $title, array $params ) {
+		$job = new self( $title, $params );
+		$job->command = 'refreshLinksDynamic';
+
+		return $job;
 	}
 
 	function run() {

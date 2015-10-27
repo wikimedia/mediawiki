@@ -64,12 +64,17 @@ abstract class Job implements IJobSpecification {
 	 */
 	public static function factory( $command, Title $title, $params = array() ) {
 		global $wgJobClasses;
+
 		if ( isset( $wgJobClasses[$command] ) ) {
 			$class = $wgJobClasses[$command];
 
-			return new $class( $title, $params );
+			$job = new $class( $title, $params );
+			$job->command = $command;
+
+			return $job;
 		}
-		throw new MWException( "Invalid job command `{$command}`" );
+
+		throw new InvalidArgumentException( "Invalid job command '{$command}'" );
 	}
 
 	/**
