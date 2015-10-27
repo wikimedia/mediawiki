@@ -2186,6 +2186,7 @@ class WikiPage implements Page, IDBAccessObject {
 			foreach ( $updates as $update ) {
 				if ( $update instanceof LinksUpdate ) {
 					$update->setRevision( $revision );
+					$update->setTriggeringUser( $user );
 				}
 				DeferredUpdates::addUpdate( $update );
 			}
