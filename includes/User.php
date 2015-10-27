@@ -390,6 +390,25 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * @since 1.27
+	 * @param string $wikiId
+	 * @param integer $userId
+	 */
+	public static function purge( $wikiId, $userId ) {
+		$cache = ObjectCache::getMainWANInstance();
+		$cache->delete( $cache->makeGlobalKey( 'user', 'id', $wikiId, $userId ) );
+	}
+
+	/**
+	 * @since 1.27
+	 * @param WANObjectCache $cache
+	 * @return string
+	 */
+	protected function getCacheKey( WANObjectCache $cache ) {
+		return $cache->makeGlobalKey( 'user', 'id', wfWikiID(), $this->mId );
+	}
+
+	/**
 	 * Load user data from shared cache, given mId has already been set.
 	 *
 	 * @return bool false if the ID does not exist or data is invalid, true otherwise
@@ -401,8 +420,8 @@ class User implements IDBAccessObject {
 			return false;
 		}
 
-		$key = wfMemcKey( 'user', 'id', $this->mId );
-		$data = ObjectCache::getMainWANInstance()->get( $key );
+		$cache = ObjectCache::getMainWANInstance();
+		$data = $cache->get( $this->getCacheKey( $cache ) );
 		if ( !is_array( $data ) || $data['mVersion'] < self::VERSION ) {
 			// Object is expired
 			return false;
@@ -438,10 +457,11 @@ class User implements IDBAccessObject {
 			$data[$name] = $this->$name;
 		}
 		$data['mVersion'] = self::VERSION;
-		$key = wfMemcKey( 'user', 'id', $this->mId );
-
 		$opts = Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
-		ObjectCache::getMainWANInstance()->set( $key, $data, 3600, $opts );
+
+		$cache = ObjectCache::getMainWANInstance();
+		$key = $this->getCacheKey( $cache );
+		$cache->set( $key, $data, 3600, $opts );
 	}
 
 	/** @name newFrom*() static factory methods */
@@ -2229,17 +2249,17 @@ class User implements IDBAccessObject {
 	 * @param string $mode Use 'refresh' to clear now; otherwise before DB commit
 	 */
 	public function clearSharedCache( $mode = 'changed' ) {
-		$id = $this->getId();
-		if ( !$id ) {
+		if ( !$this->getId() ) {
 			return;
 		}
 
-		$key = wfMemcKey( 'user', 'id', $id );
+		$cache = ObjectCache::getMainWANInstance();
+		$key = $this->getCacheKey( $cache );
 		if ( $mode === 'refresh' ) {
-			ObjectCache::getMainWANInstance()->delete( $key, 1 );
+			$cache->delete( $key, 1 );
 		} else {
-			wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle( function() use ( $key ) {
-				ObjectCache::getMainWANInstance()->delete( $key );
+			wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle( function() use ( $cache, $key ) {
+				$cache->delete( $key );
 			} );
 		}
 	}
