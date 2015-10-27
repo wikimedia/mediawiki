@@ -325,12 +325,10 @@ class ResourceLoader implements LoggerAwareInterface {
 			// Warn on duplicate registrations
 			if ( isset( $this->moduleInfos[$name] ) ) {
 				// A module has already been registered by this name
-				if ( $this->moduleInfos[$name] === $info ) {
-					$this->logger->warning(
-						'ResourceLoader duplicate registration warning. ' .
-						'Another module has already been registered as ' . $name
-					);
-				}
+				$this->logger->warning(
+					'ResourceLoader duplicate registration warning. ' .
+					'Another module has already been registered as ' . $name
+				);
 			}
 
 			// Check $name for validity
