@@ -3691,8 +3691,9 @@ class Language {
 				# We got the first byte only of a multibyte char; remove it.
 				$string = substr( $string, 0, -1 );
 			} elseif ( $char >= 0x80 &&
+				// Use the /s modifier (PCRE_DOTALL) so (.*) also matches newlines
 				preg_match( '/^(.*)(?:[\xe0-\xef][\x80-\xbf]|' .
-					'[\xf0-\xf7][\x80-\xbf]{1,2})$/', $string, $m )
+					'[\xf0-\xf7][\x80-\xbf]{1,2})$/s', $string, $m )
 			) {
 				# We chopped in the middle of a character; remove it
 				$string = $m[1];
