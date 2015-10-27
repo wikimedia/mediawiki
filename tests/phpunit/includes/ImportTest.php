@@ -9,16 +9,8 @@
  */
 class ImportTest extends MediaWikiLangTestCase {
 
-	private function getInputStreamSource( $xml ) {
-		if ( ini_get( 'allow_url_fopen' ) != 1 ) {
-			$this->markTestSkipped( 'bug 73283: this test needs allow_url_fopen to be enabled' );
-		}
-		$file = 'data:application/xml,' . $xml;
-		$status = ImportStreamSource::newFromFile( $file );
-		if ( !$status->isGood() ) {
-			throw new MWException( "Cannot create InputStreamSource." );
-		}
-		return $status->value;
+	private function getDataSource( $xml ) {
+		return new ImportStringSource( $xml );
 	}
 
 	/**
@@ -28,7 +20,7 @@ class ImportTest extends MediaWikiLangTestCase {
 	 * @param string|null $redirectTitle
 	 */
 	public function testHandlePageContainsRedirect( $xml, $redirectTitle ) {
-		$source = $this->getInputStreamSource( $xml );
+		$source = $this->getDataSource( $xml );
 
 		$redirect = null;
 		$callback = function ( Title $title, ForeignTitle $foreignTitle, $revCount,
@@ -114,7 +106,7 @@ EOF
 	 * @param array|null $namespaces
 	 */
 	public function testSiteInfoContainsNamespaces( $xml, $namespaces ) {
-		$source = $this->getInputStreamSource( $xml );
+		$source = $this->getDataSource( $xml );
 
 		$importNamespaces = null;
 		$callback = function ( array $siteinfo, $innerImporter ) use ( &$importNamespaces ) {
