@@ -18,6 +18,8 @@
  * @file
  */
 
+use RunningStat\RunningStat;
+
 /**
  * Convenience class for working with XHProf
  * <https://github.com/phacility/xhprof>. XHProf can be installed as a PECL
