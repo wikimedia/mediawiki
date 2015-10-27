@@ -485,7 +485,7 @@ class LoginForm extends SpecialPage {
 	 * @return Status
 	 */
 	public function addNewAccountInternal() {
-		global $wgAuth, $wgMemc, $wgAccountCreationThrottle, $wgEmailConfirmToEdit;
+		global $wgAuth, $wgAccountCreationThrottle, $wgEmailConfirmToEdit;
 
 		// If the user passes an invalid domain, something is fishy
 		if ( !$wgAuth->validDomain( $this->mDomain ) ) {
@@ -565,8 +565,9 @@ class LoginForm extends SpecialPage {
 			return Status::newFatal( 'noname' );
 		}
 
+		$cache = ObjectCache::getLocalClusterInstance();
 		# Make sure the user does not exist already
-		$lock = $wgMemc->getScopedLock( wfGlobalCacheKey( 'account', md5( $this->mUsername ) ) );
+		$lock = $cache->getScopedLock( wfGlobalCacheKey( 'account', md5( $this->mUsername ) ) );
 		if ( !$lock ) {
 			return Status::newFatal( 'usernameinprogress' );
 		} elseif ( $u->idForName( User::READ_LOCKING ) ) {
@@ -633,14 +634,14 @@ class LoginForm extends SpecialPage {
 		} else {
 			if ( ( $wgAccountCreationThrottle && $currentUser->isPingLimitable() ) ) {
 				$key = wfMemcKey( 'acctcreate', 'ip', $ip );
-				$value = $wgMemc->get( $key );
+				$value = $cache->get( $key );
 				if ( !$value ) {
-					$wgMemc->set( $key, 0, 86400 );
+					$cache->set( $key, 0, 86400 );
 				}
 				if ( $value >= $wgAccountCreationThrottle ) {
 					return Status::newFatal( 'acct_creation_throttle_hit', $wgAccountCreationThrottle );
 				}
-				$wgMemc->incr( $key );
+				$cache->incr( $key );
 			}
 		}
 
@@ -869,7 +870,7 @@ class LoginForm extends SpecialPage {
 	 * @return bool|int The integer hit count or True if it is already at the limit
 	 */
 	public static function incLoginThrottle( $username ) {
-		global $wgPasswordAttemptThrottle, $wgMemc, $wgRequest;
+		global $wgPasswordAttemptThrottle, $wgRequest;
 		$username = trim( $username ); // sanity
 
 		$throttleCount = 0;
@@ -878,11 +879,12 @@ class LoginForm extends SpecialPage {
 			$count = $wgPasswordAttemptThrottle['count'];
 			$period = $wgPasswordAttemptThrottle['seconds'];
 
-			$throttleCount = $wgMemc->get( $throttleKey );
+			$cache = ObjectCache::getLocalClusterInstance();
+			$throttleCount = $cache->get( $throttleKey );
 			if ( !$throttleCount ) {
-				$wgMemc->add( $throttleKey, 1, $period ); // start counter
+				$cache->add( $throttleKey, 1, $period ); // start counter
 			} elseif ( $throttleCount < $count ) {
-				$wgMemc->incr( $throttleKey );
+				$cache->incr( $throttleKey );
 			} elseif ( $throttleCount >= $count ) {
 				return true;
 			}
@@ -897,11 +899,11 @@ class LoginForm extends SpecialPage {
 	 * @return void
 	 */
 	public static function clearLoginThrottle( $username ) {
-		global $wgMemc, $wgRequest;
+		global $wgRequest;
 		$username = trim( $username ); // sanity
 
 		$throttleKey = wfMemcKey( 'password-throttle', $wgRequest->getIP(), md5( $username ) );
-		$wgMemc->delete( $throttleKey );
+		ObjectCache::getLocalClusterInstance()->delete( $throttleKey );
 	}
 
 	/**
@@ -960,9 +962,9 @@ class LoginForm extends SpecialPage {
 	}
 
 	function processLogin() {
-		global $wgMemc, $wgLang, $wgSecureLogin, $wgPasswordAttemptThrottle,
-			$wgInvalidPasswordReset;
+		global $wgLang, $wgSecureLogin, $wgPasswordAttemptThrottle, $wgInvalidPasswordReset;
 
+		$cache = ObjectCache::getLocalClusterInstance();
 		$authRes = $this->authenticateUserData();
 		switch ( $authRes ) {
 			case self::SUCCESS:
@@ -984,7 +986,7 @@ class LoginForm extends SpecialPage {
 				// Reset the throttle
 				$request = $this->getRequest();
 				$key = wfMemcKey( 'password-throttle', $request->getIP(), md5( $this->mUsername ) );
-				$wgMemc->delete( $key );
+				$cache->delete( $key );
 
 				if ( $this->hasSessionCookie() || $this->mSkipCookieCheck ) {
 					/* Replace the language object to provide user interface in

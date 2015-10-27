@@ -144,15 +144,13 @@ class JobQueueDB extends JobQueue {
 	 * @throws MWException
 	 */
 	protected function doGetAbandonedCount() {
-		global $wgMemc;
-
 		if ( $this->claimTTL <= 0 ) {
 			return 0; // no acknowledgements
 		}
 
 		$key = $this->getCacheKey( 'abandonedcount' );
 
-		$count = $wgMemc->get( $key );
+		$count = $this->cache->get( $key );
 		if ( is_int( $count ) ) {
 			return $count;
 		}
@@ -170,7 +168,8 @@ class JobQueueDB extends JobQueue {
 		} catch ( DBError $e ) {
 			$this->throwDBException( $e );
 		}
-		$wgMemc->set( $key, $count, self::CACHE_TTL_SHORT );
+
+		$this->cache->set( $key, $count, self::CACHE_TTL_SHORT );
 
 		return $count;
 	}
