@@ -552,19 +552,16 @@ class ForeignAPIRepo extends FileRepo {
 		}
 
 		if ( !isset( $this->mQueryCache[$url] ) ) {
-			global $wgMemc;
-
-			$key = $this->getLocalCacheKey( get_class( $this ), $target, md5( $url ) );
-			$data = $wgMemc->get( $key );
+			$data = ObjectCache::getMainWANInstance()->getWithSetCallback(
+				$this->getLocalCacheKey( get_class( $this ), $target, md5( $url ) ),
+				$cacheTTL,
+				function () use ( $url ) {
+					return ForeignAPIRepo::httpGet( $url );
+				}
+			);
 
 			if ( !$data ) {
-				$data = self::httpGet( $url );
-
-				if ( !$data ) {
-					return null;
-				}
-
-				$wgMemc->set( $key, $data, $cacheTTL );
+				return null;
 			}
 
 			if ( count( $this->mQueryCache ) > 100 ) {
