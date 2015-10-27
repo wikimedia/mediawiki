@@ -78,6 +78,10 @@ class DBExpectedError extends DBError {
 		return $s;
 	}
 
+	function getPageTitle() {
+		return $this->msg( 'databaseerror', 'Database error' );
+	}
+
 	/**
 	 * @return string
 	 */
@@ -456,4 +460,7 @@ class DBUnexpectedError extends DBError {
  * @ingroup Database
  */
 class DBReadOnlyError extends DBExpectedError {
+	function getPageTitle() {
+		return $this->msg( 'readonly', 'Database is locked' );
+	}
 }
