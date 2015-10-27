@@ -45,7 +45,7 @@ production.
    creation of passwordless "system" users for logged actions.
 * $wgMaxSquidPurgeTitles was removed.
 * $wgAjaxWatch was removed. This is now enabled by default.
-* $wgUseInstantCommons now hotlinks Commons images by default instead of 
+* $wgUseInstantCommons now hotlinks Commons images by default instead of
   downloading originals and thumbnailing them locally. This allows wikis to save
   on CPU and bandwidth while reducing time to first byte for pages, even without
   a thumbnail handler. See $wgForeignFileRepos documentation for tweaks.
@@ -73,6 +73,10 @@ production.
   by using ApiMessage instances instead of strings for the $result value.
 * $wgAPIMaxLagThreshold was added to limit bot changes when databases lag
   becomes too high.
+* Skins and extensions can now use FlexBox mixins (.flex-display(@display: flex)
+  and .flex(@grow: 1, @shrink: 1, @width: auto, @order: 1)) in Less to create
+  cross-browser-compatible FlexBox rules. Users will still need to add fallback
+  float rules or the like for compatibility with IE9- separately.
 
 ==== External libraries ====
 
