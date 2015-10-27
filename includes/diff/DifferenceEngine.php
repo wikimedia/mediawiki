@@ -474,7 +474,7 @@ class DifferenceEngine extends ContextSource {
 			if ( !$linkInfo ) {
 				$this->mMarkPatrolledLink = '';
 			} else {
-				$this->mMarkPatrolledLink = ' <span class="patrollink">[' . Linker::linkKnown(
+				$this->mMarkPatrolledLink = ' <span class="patrollink" data-mw="interface">[' . Linker::linkKnown(
 					$this->mNewPage,
 					$this->msg( 'markaspatrolleddiff' )->escaped(),
 					[],
