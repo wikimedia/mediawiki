@@ -279,7 +279,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					break;
 				// Single strings
 				case 'position':
-					$this->isPositionDefined = true;
 				case 'group':
 				case 'skipFunction':
 					$this->{$member} = (string)$option;
