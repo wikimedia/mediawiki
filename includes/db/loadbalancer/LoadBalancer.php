@@ -68,9 +68,7 @@ class LoadBalancer {
 	/** @var integer Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
 	/** @var integer Default 'max lag' when unspecified */
-	const MAX_LAG = 10;
-	/** @var integer Max time to wait for a slave to catch up (e.g. ChronologyProtector) */
-	const POS_WAIT_TIMEOUT = 10;
+	const MAX_LAG = 30;
 
 	/**
 	 * @param array $params Array with keys:
@@ -84,7 +82,7 @@ class LoadBalancer {
 			throw new MWException( __CLASS__ . ': missing servers parameter' );
 		}
 		$this->mServers = $params['servers'];
-		$this->mWaitTimeout = self::POS_WAIT_TIMEOUT;
+		$this->mWaitTimeout = 10;
 
 		$this->mReadIndex = -1;
 		$this->mWriteIndex = -1;
