@@ -32,6 +32,8 @@
 	"ooui-dialog-process-dismiss": "Sluiten",
 	"ooui-dialog-process-retry": "Opnieuw proberen",
 	"ooui-dialog-process-continue": "Doorgaan",
+	"ooui-selectfile-button-select": "Selecteer een bestand",
 	"ooui-selectfile-not-supported": "Selectie van een bestand wordt niet ondersteund",
-	"ooui-selectfile-placeholder": "Er is geen bestand geselecteerd"
+	"ooui-selectfile-placeholder": "Er is geen bestand geselecteerd",
+	"ooui-selectfile-dragdrop-placeholder": "Sleep hier een bestand heen"
 }

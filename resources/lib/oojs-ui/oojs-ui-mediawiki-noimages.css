@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.12
+ * OOjs UI v0.13.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-10-13T20:38:26Z
+ * Date: 2015-10-27T17:53:00Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -206,8 +206,6 @@
 	position: relative;
 	-webkit-transition: background 100ms ease, color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
 	   -moz-transition: background 100ms ease, color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
-	    -ms-transition: background 100ms ease, color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
-	     -o-transition: background 100ms ease, color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
 	        transition: background 100ms ease, color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:hover,
@@ -407,11 +405,6 @@
 }
 .oo-ui-draggableElement {
 	cursor: -webkit-grab -moz-grab, url(images/grab.cur), move;
-	/*
-	 * HACK: In order to style horizontally, we must override
-	 * OO.ui.OptionWidget's display rule that is currently set
-	 * to be 'block'
-	 */
 }
 .oo-ui-draggableElement-dragging {
 	cursor: -webkit-grabbing -moz-grabbing, url(images/grabbing.cur), move;
@@ -673,8 +666,6 @@
 	position: absolute;
 	-webkit-transition: all 200ms ease;
 	   -moz-transition: all 200ms ease;
-	    -ms-transition: all 200ms ease;
-	     -o-transition: all 200ms ease;
 	        transition: all 200ms ease;
 }
 .oo-ui-menuLayout-menu {
@@ -1236,7 +1227,6 @@
 .oo-ui-toolbar-actions > .oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
 	margin: 0 1em;
 	line-height: 3.125em;
-	/* 40/12.8 */
 }
 .oo-ui-optionWidget {
 	position: relative;
@@ -1443,19 +1433,16 @@
 	-webkit-transform: translateZ(0px);
 	   -moz-transform: translateZ(0px);
 	    -ms-transform: translateZ(0px);
-	     -o-transform: translateZ(0px);
 	        transform: translateZ(0px);
 	height: 2em;
 	width: 3.5em;
+	border: 1px solid #777777;
 	border-radius: 1em;
-	border: 1px #555555 solid;
-	background: #ffffff;
-	-webkit-transition: background-color 100ms ease;
-	   -moz-transition: background-color 100ms ease;
-	    -ms-transition: background-color 100ms ease;
-	     -o-transition: background-color 100ms ease;
-	        transition: background-color 100ms ease;
+	background-color: #ffffff;
 	margin-right: 0.5em;
+	-webkit-transition: background-color 100ms ease, border-color 100ms ease;
+	   -moz-transition: background-color 100ms ease, border-color 100ms ease;
+	        transition: background-color 100ms ease, border-color 100ms ease;
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-disabled {
 	cursor: default;
@@ -1485,29 +1472,37 @@
 .oo-ui-toggleSwitchWidget:last-child {
 	margin-right: 0;
 }
-.oo-ui-toggleSwitchWidget-grip {
-	top: 0.5em;
-	left: 0.5em;
-	width: 1em;
-	height: 1em;
-	margin-top: -1px;
+.oo-ui-toggleSwitchWidget:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	border: 1px solid transparent;
 	border-radius: 1em;
-	background: #555555;
+	z-index: 1;
+}
+.oo-ui-toggleSwitchWidget-grip {
+	top: 0.35em;
+	width: 1.2em;
+	height: 1.2em;
+	border-radius: 1.2em;
+	background-color: #555555;
 	-webkit-transition: left 100ms ease, margin-left 100ms ease;
 	   -moz-transition: left 100ms ease, margin-left 100ms ease;
-	    -ms-transition: left 100ms ease, margin-left 100ms ease;
-	     -o-transition: left 100ms ease, margin-left 100ms ease;
 	        transition: left 100ms ease, margin-left 100ms ease;
 }
 .oo-ui-toggleSwitchWidget-glow {
 	display: none;
 }
 .oo-ui-toggleSwitchWidget.oo-ui-toggleWidget-on .oo-ui-toggleSwitchWidget-grip {
-	left: 2em;
+	left: 1.9em;
 	margin-left: -2px;
 }
 .oo-ui-toggleSwitchWidget.oo-ui-toggleWidget-off .oo-ui-toggleSwitchWidget-grip {
-	left: 0.5em;
+	left: 0.4em;
 	margin-left: 0;
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on {
@@ -1516,25 +1511,34 @@
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on .oo-ui-toggleSwitchWidget-grip {
 	background: #ffffff;
-}
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus {
-	outline: none;
-	border-color: #347bff;
-}
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus.oo-ui-toggleWidget-on {
-	border-color: #ffffff;
-	box-shadow: 0 0 0 1px #347bff;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover {
 	border-color: #2962cc;
-	box-shadow: 0 0 0 1px #2962cc;
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover.oo-ui-toggleWidget-on {
 	background: #2962cc;
 	border-color: #2962cc;
 }
-.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover.oo-ui-toggleWidget-on .oo-ui-toggleSwitchWidget-grip {
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus {
+	border-color: #347bff;
+	outline: none;
+}
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus.oo-ui-toggleWidget-on {
+	border-color: #347bff;
+}
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus.oo-ui-toggleWidget-on:before {
+	border-color: #ffffff;
+}
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active,
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active:hover {
+	background-color: #347bff;
+	border-color: #347bff;
+}
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active .oo-ui-toggleSwitchWidget-grip,
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active:hover .oo-ui-toggleSwitchWidget-grip {
 	background: #ffffff;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-disabled {
 	background: #dddddd;
@@ -1555,15 +1559,11 @@
 	background: #dddddd;
 	-webkit-transition: width 200ms, margin-left 200ms;
 	   -moz-transition: width 200ms, margin-left 200ms;
-	    -ms-transition: width 200ms, margin-left 200ms;
-	     -o-transition: width 200ms, margin-left 200ms;
 	        transition: width 200ms, margin-left 200ms;
 }
 .oo-ui-progressBarWidget-indeterminate .oo-ui-progressBarWidget-bar {
 	-webkit-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
 	   -moz-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
-	    -ms-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
-	     -o-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
 	        animation: oo-ui-progressBarWidget-slide 2s infinite linear;
 	width: 40%;
 	margin-left: -10%;
@@ -1646,8 +1646,6 @@
 .oo-ui-popupWidget-transitioning .oo-ui-popupWidget-popup {
 	-webkit-transition: width 100ms ease, height 100ms ease, left 100ms ease;
 	   -moz-transition: width 100ms ease, height 100ms ease, left 100ms ease;
-	    -ms-transition: width 100ms ease, height 100ms ease, left 100ms ease;
-	     -o-transition: width 100ms ease, height 100ms ease, left 100ms ease;
 	        transition: width 100ms ease, height 100ms ease, left 100ms ease;
 }
 .oo-ui-popupWidget-head {
@@ -1715,8 +1713,6 @@
 .oo-ui-checkboxInputWidget input[type="checkbox"] + span {
 	-webkit-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	   -moz-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	    -ms-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	     -o-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	        transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
@@ -1751,8 +1747,10 @@
 .oo-ui-checkboxInputWidget input[type="checkbox"]:hover + span {
 	border-bottom-width: 3px;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"]:disabled + span {
+.oo-ui-checkboxInputWidget input[type="checkbox"]:disabled {
 	cursor: default;
+}
+.oo-ui-checkboxInputWidget input[type="checkbox"]:disabled + span {
 	background-color: #eeeeee;
 	border-color: #eeeeee;
 }
@@ -1824,8 +1822,6 @@
 .oo-ui-radioInputWidget input[type="radio"] + span {
 	-webkit-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	   -moz-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	    -ms-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	     -o-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	        transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
@@ -1860,8 +1856,10 @@
 .oo-ui-radioInputWidget input[type="radio"]:hover + span {
 	border-bottom-width: 3px;
 }
-.oo-ui-radioInputWidget input[type="radio"]:disabled + span {
+.oo-ui-radioInputWidget input[type="radio"]:disabled {
 	cursor: default;
+}
+.oo-ui-radioInputWidget input[type="radio"]:disabled + span {
 	background-color: #eeeeee;
 	border-color: #eeeeee;
 }
@@ -1891,6 +1889,9 @@
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
+}
+.oo-ui-textInputWidget textarea {
+	overflow: auto;
 }
 .oo-ui-textInputWidget input[type="search"] {
 	-webkit-appearance: none;
@@ -1964,8 +1965,6 @@
 	border-radius: 0.1em;
 	-webkit-transition: box-shadow 100ms ease;
 	   -moz-transition: box-shadow 100ms ease;
-	    -ms-transition: box-shadow 100ms ease;
-	     -o-transition: box-shadow 100ms ease;
 	        transition: box-shadow 100ms ease;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
@@ -1982,8 +1981,6 @@
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea {
 	-webkit-transition: border 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
 	   -moz-transition: border 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
-	    -ms-transition: border 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
-	     -o-transition: border 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
 	        transition: border 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled input:focus,
@@ -2219,7 +2216,6 @@
 	opacity: 0;
 	z-index: 1;
 	cursor: pointer;
-	/* Push the button part of the native control out of view, as it changes the cursor */
 	padding-top: 100px;
 }
 .oo-ui-selectFileWidget-selectButton.oo-ui-widget-disabled > .oo-ui-buttonElement-button > input[type="file"] {
@@ -3081,8 +3077,6 @@
 	opacity: 0;
 	-webkit-transition: opacity 250ms ease;
 	   -moz-transition: opacity 250ms ease;
-	    -ms-transition: opacity 250ms ease;
-	     -o-transition: opacity 250ms ease;
 	        transition: opacity 250ms ease;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog > .oo-ui-window-frame {
@@ -3093,25 +3087,19 @@
 	-webkit-transform: scale(0.5);
 	   -moz-transform: scale(0.5);
 	    -ms-transform: scale(0.5);
-	     -o-transform: scale(0.5);
 	        transform: scale(0.5);
 	-webkit-transition: all 250ms ease;
 	   -moz-transition: all 250ms ease;
-	    -ms-transition: all 250ms ease;
-	     -o-transition: all 250ms ease;
 	        transition: all 250ms ease;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-ready {
-	/* Fade window overlay */
 	opacity: 1;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-ready > .oo-ui-window-frame {
-	/* Fade frame */
 	opacity: 1;
 	-webkit-transform: scale(1);
 	   -moz-transform: scale(1);
 	    -ms-transform: scale(1);
-	     -o-transform: scale(1);
 	        transform: scale(1);
 }
 .oo-ui-windowManager-modal.oo-ui-windowManager-floating > .oo-ui-dialog > .oo-ui-window-frame {
