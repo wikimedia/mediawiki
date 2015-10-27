@@ -18,6 +18,8 @@
  * @file
  */
 
+use RunningStat\RunningStat;
+
 /**
  * Convenience class for working with XHProf
  * <https://github.com/phacility/xhprof>. XHProf can be installed as a PECL
@@ -254,7 +256,7 @@ class Xhprof {
 					}
 
 					for ( $i = 0; $i < $stats['ct']; $i++ ) {
-						$this->inclusive[$child][$stat]->push(
+						$this->inclusive[$child][$stat]->addObservation(
 							$value / $stats['ct']
 						);
 					}
