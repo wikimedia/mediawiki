@@ -261,6 +261,16 @@ class LanguageTest extends LanguageClassesTestCase {
 			$this->getLang()->truncate( "1234567890", 5, 'XXX', false ),
 			'truncate without adjustment'
 		);
+		$this->assertEquals(
+			"泰乐菌...",
+			$this->getLang()->truncate( "泰乐菌素123456789", 11, '...', false ),
+			'truncate does not chop Unicode characters in half'
+		);
+		$this->assertEquals(
+			"\n泰乐菌...",
+			$this->getLang()->truncate( "\n泰乐菌素123456789", 12, '...', false ),
+			'truncate does not chop Unicode characters in half if there is a preceding newline'
+		);
 	}
 
 	/**
