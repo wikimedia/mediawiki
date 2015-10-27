@@ -257,29 +257,6 @@
 
 	mw.jqueryMsg.parser.prototype = {
 		/**
-		 * Cache mapping MediaWiki message keys and the value onlyCurlyBraceTransform, to the AST of the message.
-		 *
-		 * In most cases, the message is a string so this is identical.
-		 * (This is why we would like to move this functionality server-side).
-		 *
-		 * The two parts of the key are separated by colon.  For example:
-		 *
-		 *     "message-key:true": ast
-		 *
-		 * if they key is "message-key" and onlyCurlyBraceTransform is true.
-		 *
-		 * This cache is shared by all instances of mw.jqueryMsg.parser.
-		 *
-		 * NOTE: We promise, it's static - when you create this empty object
-		 * in the prototype, each new instance of the class gets a reference
-		 * to the same object.
-		 *
-		 * @static
-		 * @property {Object}
-		 */
-		astCache: {},
-
-		/**
 		 * Where the magic happens.
 		 * Parses a message from the key, and swaps in replacements as necessary, wraps in jQuery
 		 * If an error is thrown, returns original key, and logs the error
@@ -300,17 +277,11 @@
 		 * @return {string|Array} string of '[key]' if message missing, simple string if possible, array of arrays if needs parsing
 		 */
 		getAst: function ( key ) {
-			var wikiText,
-				cacheKey = [ key, this.settings.onlyCurlyBraceTransform ].join( ':' );
-
-			if ( this.astCache[ cacheKey ] === undefined ) {
-				wikiText = this.settings.messages.get( key );
-				if ( typeof wikiText !== 'string' ) {
-					wikiText = '\\[' + key + '\\]';
-				}
-				this.astCache[ cacheKey ] = this.wikiTextToAst( wikiText );
+			var wikiText = this.settings.messages.get( key );
+			if ( typeof wikiText !== 'string' ) {
+				wikiText = '\\[' + key + '\\]';
 			}
-			return this.astCache[ cacheKey ];
+			return this.wikiTextToAst( wikiText );
 		},
 
 		/**
@@ -899,7 +870,6 @@
 			// I am deferring the work of turning it into prototypes & objects. It's quite fast enough
 			// finally let's do some actual work...
 
-			// If you add another possible rootExpression, you must update the astCache key scheme.
 			result = start( this.settings.onlyCurlyBraceTransform ? curlyBraceTransformExpression : expression );
 
 			/*
