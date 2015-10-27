@@ -502,7 +502,7 @@ class DifferenceEngine extends ContextSource {
 					$this->mMarkPatrolledLink = ' <span class="patrollink">[' . Linker::linkKnown(
 						$this->mNewPage,
 						$this->msg( 'markaspatrolleddiff' )->escaped(),
-						array(),
+						array( 'class' => 'mw-patrollink' ),
 						array(
 							'action' => 'markpatrolled',
 							'rcid' => $rcid,
