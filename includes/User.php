@@ -399,8 +399,9 @@ class User implements IDBAccessObject {
 			return false;
 		}
 
-		$key = wfMemcKey( 'user', 'id', $this->mId );
-		$data = ObjectCache::getMainWANInstance()->get( $key );
+		$cache = ObjectCache::getMainWANInstance();
+		$key = $cache->makeGlobalKey( 'user', 'id', wfWikiID(), $this->mId );
+		$data = $cache->get( $key );
 		if ( !is_array( $data ) || $data['mVersion'] < self::VERSION ) {
 			// Object is expired
 			return false;
@@ -439,7 +440,7 @@ class User implements IDBAccessObject {
 		$opts = Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
 
 		$cache = ObjectCache::getMainWANInstance();
-		$key = wfMemcKey( 'user', 'id', $this->mId );
+		$key = $cache->makeGlobalKey( 'user', 'id', wfWikiID(), $this->mId );
 		$cache->set( $key, $data, $cache::TTL_HOUR, $opts );
 	}
 
@@ -2233,12 +2234,13 @@ class User implements IDBAccessObject {
 			return;
 		}
 
-		$key = wfMemcKey( 'user', 'id', $id );
+		$cache = ObjectCache::getMainWANInstance();
+		$key = $cache->makeGlobalKey( 'user', 'id', wfWikiID(), $id );
 		if ( $mode === 'refresh' ) {
-			ObjectCache::getMainWANInstance()->delete( $key, 1 );
+			$cache->delete( $key, 1 );
 		} else {
-			wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle( function() use ( $key ) {
-				ObjectCache::getMainWANInstance()->delete( $key );
+			wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle( function() use ( $cache, $key ) {
+				$cache->delete( $key );
 			} );
 		}
 	}

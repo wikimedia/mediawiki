@@ -278,9 +278,11 @@ class UserRightsProxy {
 			array( 'user_id' => $this->id ),
 			__METHOD__ );
 
-		$key = wfForeignMemcKey( $this->database, false, 'user', 'id', $this->id );
-		$this->db->onTransactionPreCommitOrIdle( function() use ( $key ) {
-			ObjectCache::getMainWANInstance()->delete( $key );
+		// See User::saveToCache()
+		$cache = ObjectCache::getMainWANInstance();
+		$key = $cache->makeGlobalKey( 'user', 'id', $this->db->getWikiID(), $this->id );
+		$this->db->onTransactionPreCommitOrIdle( function() use ( $cache, $key ) {
+			$cache->delete( $key );
 		} );
 	}
 }
