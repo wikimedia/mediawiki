@@ -267,13 +267,13 @@ class SpecialPasswordReset extends FormSpecialPage {
 			$username,
 			$passwordBlock,
 			count( $passwords ),
-			'<' . Title::newMainPage()->getCanonicalURL() . '>',
+			Title::newMainPage()->getCanonicalURL(),
 			round( $this->getConfig()->get( 'NewPasswordExpiry' ) / 86400 )
 		);
 
 		$title = $this->msg( 'passwordreset-emailtitle' )->inLanguage( $userLanguage );
 
-		$this->result = $firstUser->sendMail( $title->text(), $this->email->text() );
+		$this->result = $firstUser->sendMail( $title->text(), $this->email );
 
 		if ( isset( $data['Capture'] ) && $data['Capture'] ) {
 			// Save the user, will be used if an error occurs when sending the email
