@@ -382,7 +382,7 @@
 	"createacct-yourpasswordagain": "Бакъе пароль",
 	"createacct-yourpasswordagain-ph": "Кхин цкъа язъе пароль",
 	"remembermypassword": "Даглаца сан дӀаяздар хӀокху компьютеран тӀехь (цхьан $1 {{PLURAL:$1|дийнахь}})",
-	"userlogin-remembermypassword": "Дагахь латт ве/е со",
+	"userlogin-remembermypassword": "Системин чохь Ӏойла",
 	"userlogin-signwithsecure": "Ларийна цхьаьнакхетар",
 	"yourdomainname": "Хьан машан меттиг:",
 	"password-change-forbidden": "Хьан йиш яц хӀокху вики чохь пароль хийца.",

@@ -3276,7 +3276,7 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|laddade upp}} $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|laddade upp}} en ny version av $3",
 	"logentry-upload-revert": "$1 {{GENDER:$2|laddade upp}} $3",
-	"log-name-managetags": "Tagghanterings logg",
+	"log-name-managetags": "Tagghanteringslogg",
 	"log-description-managetags": "Denna sida innehåller administrativa [[Special:Tags|märke]]srelaterade uppgifter. Loggen innehåller bara åtgärder som utförts manuellt av en administratör; märken kan skapas eller raderas av wikins mjukvara utan att en post registreras i loggen.",
 	"logentry-managetags-create": "$1 {{GENDER:$2|skapade}} taggen \"$4\"",
 	"logentry-managetags-delete": "$1 {{GENDER:$2|raderade}} taggen \"$4\" (borttagen från $5 {{PLURAL:$5|version eller loggpost|versioner och/eller loggposter}})",

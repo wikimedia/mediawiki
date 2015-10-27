@@ -6,7 +6,8 @@
 			"ערן",
 			"아라",
 			"Inkbug",
-			"Yona b"
+			"Yona b",
+			"Rotemliss"
 		]
 	},
 	"config-desc": "תכנית ההתקנה של מדיה־ויקי",
@@ -104,8 +105,6 @@
 	"config-db-install-account": "חשבון משתמש להתקנה",
 	"config-db-username": "שם המשתמש במסד הנתונים:",
 	"config-db-password": "הססמה במסד הנתונים:",
-	"config-db-password-empty": "נא להזין ססמה למשתמש מסד הנתונים החדש: $1.\nאף־על־פי שאפשר ליצור חשבונות ללא ססמה, זה לא מאובטח.",
-	"config-db-username-empty": "יש להזין ערך עבור \"{{int:config-db-username}}\".",
 	"config-db-install-username": "יש להכניס שם משתמש שישמש לחיבור למסד נתונים במהלך ההתקנה.\nזהו לא שם משתמש לחשבון במדיה־ויקי; זהו שם משתמש בשרת מסד נתונים.",
 	"config-db-install-password": "יש להקליד ססמה שתשמש אותך לצורך חיבור למסד נתונים במהלך ההתקנה.\nזוהי לא ססמה של חשבון במדיה־ויקי; זוהי ססמה לשרת מסד נתונים.",
 	"config-db-install-help": "יש להקליד את שם המשתמש ואת הססמה להתחברות למסד הנתונים במהלך ההתקנה.",
@@ -325,5 +324,5 @@
 	"config-nofile": "הקובץ \"$1\" לא נמצא. האם הוא נמחק?",
 	"config-extension-link": "הידעת שמדיה־ויקי תומכת ב־[//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions הרחבות]?\n\nבאפשרותך לעיין ב־[//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category הרחבות לפי קטגוריה].",
 	"mainpagetext": "'''תוכנת מדיה־ויקי הותקנה בהצלחה.'''",
-	"mainpagedocfooter": "היעזרו ב[//meta.wikimedia.org/wiki/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.\n\n== קישורים שימושיים ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings רשימת ההגדרות]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ שאלות ותשובות על מדיה־ויקי]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources תרגום מדיה־ויקי לשפה שלך]"
+	"mainpagedocfooter": "היעזרו ב[//meta.wikimedia.org/wiki/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.\n\n== קישורים שימושיים ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings רשימת ההגדרות]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ שאלות ותשובות על מדיה־ויקי]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources תרגום מדיה־ויקי לשפה שלך]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam איך להיאבק נגד ספאם באתר הוויקי שלך]"
 }

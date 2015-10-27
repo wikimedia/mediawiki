@@ -531,7 +531,7 @@
 	"passwordreset-emailerror-capture": "En <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„de eläktrohnesche Poß“\">e-mail</i> met Aanjahbe zom neue Paßwoot för der Zohjang heh sullt verschek wääde, ävver dat Verscheke aan {{GENDER:$2|dä|dat|dä Metmaacher|de|dat}} $2 hät nit jeflup: $1",
 	"changeemail": "Donn en Adräß för de <i lang=\"en\">e-mail</i> ändere udder fott schmiiße",
 	"changeemail-header": "Donn heh dat Fommulaa ußfölle, öm Ding Adräß för de <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„de eläktrohnesche Poß“\">e-mail</i> ze ändere. Wann De en Adräß loß wähde wells, maach dat Fäld läddesch, ih dat De dat Fommolaa loß scheks.",
-	"changeemail-passwordrequired": "Do moß Ding Paßwood enjävve, öm di änderong ze beschtähteje.",
+	"changeemail-passwordrequired": "Do moß Ding Paßwood enjävve, öm di Änderong ze beschtähteje.",
 	"changeemail-no-info": "Do mööts ald enjelogg sin, öm tiräk op di Sigg jonn ze dörve",
 	"changeemail-oldemail": "Ding Address för de <i lang=\"en\">e-mail</i> es jäz:",
 	"changeemail-newemail": "Ding neue Address för de <i lang=\"en\">e-mail</i> sull wääde:",

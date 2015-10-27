@@ -124,7 +124,8 @@
 			"JasterTDC",
 			"Laurenslimb",
 			"Tusca",
-			"Tadol"
+			"Tadol",
+			"Nelson6e65"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -154,7 +155,7 @@
 	"tog-oldsig": "Firma actual:",
 	"tog-fancysig": "Tratar la firma como wikitexto (sin un enlace automático)",
 	"tog-uselivepreview": "Usar previsualización dinámica",
-	"tog-forceeditsummary": "Avisarme cuando grabe la página sin escribir un resumen de edición",
+	"tog-forceeditsummary": "Avisarme cuando deje en blanco el resumen de la edición",
 	"tog-watchlisthideown": "Ocultar mis ediciones de la lista de seguimiento",
 	"tog-watchlisthidebots": "Ocultar las ediciones de bots de la lista de seguimiento",
 	"tog-watchlisthideminor": "Ocultar las ediciones menores de la lista de seguimiento",
