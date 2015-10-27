@@ -371,7 +371,7 @@ class MovePage {
 
 		$dbw->endAtomic( __METHOD__ );
 
-		$params = array( $this->oldTitle, $this->newTitle, $user, $pageid, $redirid, $reason );
+		$params = array( &$this->oldTitle, &$this->newTitle, &$user, $pageid, $redirid, $reason );
 		$dbw->onTransactionIdle( function () use ( $params ) {
 			Hooks::run( 'TitleMoveComplete', $params );
 		} );
