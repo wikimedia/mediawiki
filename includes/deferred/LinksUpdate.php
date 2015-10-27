@@ -78,6 +78,11 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	private $linkDeletions = null;
 
 	/**
+	 * @var User|null
+	 */
+	private $user;
+
+	/**
 	 * Constructor
 	 *
 	 * @param Title $title Title of the page we're updating
@@ -908,6 +913,24 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	}
 
 	/**
+	 * Set the User who triggered this LinksUpdate
+	 *
+	 * @since 1.27
+	 * @param User $user
+	 */
+	public function setTriggeringUser( User $user ) {
+		$this->user = $user;
+	}
+
+	/**
+	 * @since 1.27
+	 * @return null|User
+	 */
+	public function getTriggeringUser() {
+		return $this->user;
+	}
+
+	/**
 	 * Invalidate any necessary link lists related to page property changes
 	 * @param array $changed
 	 */
@@ -980,6 +1003,14 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	}
 
 	public function getAsJobSpecification() {
+		if ( $this->user ) {
+			$userInfo = array(
+				'userId' => $this->user->getId(),
+				'userName' => $this->user->getName(),
+			);
+		} else {
+			$userInfo = false;
+		}
 		return array(
 			'wiki' => $this->mDb->getWikiID(),
 			'job'  => new JobSpecification(
@@ -987,7 +1018,8 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 				array(
 					// Reuse the parser cache if it was saved
 					'rootJobTimestamp' => $this->mParserOutput->getCacheTime(),
-					'useRecursiveLinksUpdate' => $this->mRecursive
+					'useRecursiveLinksUpdate' => $this->mRecursive,
+					'triggeringUser' => $userInfo,
 				),
 				array( 'removeDuplicates' => true ),
 				$this->getTitle()
