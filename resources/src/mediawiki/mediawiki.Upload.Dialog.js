@@ -174,7 +174,7 @@
 	mw.Upload.Dialog.prototype.getSetupProcess = function ( data ) {
 		return mw.Upload.Dialog.parent.prototype.getSetupProcess.call( this, data )
 			.next( function () {
-				this.uploadBooklet.initialize();
+				return this.uploadBooklet.initialize();
 			}, this );
 	};
 
