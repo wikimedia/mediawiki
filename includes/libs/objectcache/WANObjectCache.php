@@ -89,7 +89,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/** Seconds to keep dependency purge keys around */
 	const CHECK_KEY_TTL = self::TTL_YEAR;
 	/** Seconds to keep lock keys around */
-	const LOCK_TTL = 5;
+	const LOCK_TTL = 10;
 	/** Default remaining TTL at which to consider pre-emptive regeneration */
 	const LOW_TTL = 30;
 	/** Default time-since-expiry on a miss that makes a key "hot" */
@@ -104,6 +104,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/** Max TTL to store keys when a data sourced is lagged */
 	const TTL_LAGGED = 30;
 
+	/** Tiny negative float to use when CTL comes up >= 0 due to clock skew */
+	const TINY_NEGATIVE = -0.000001;
+
 	/** Cache format version number */
 	const VERSION = 1;
 
@@ -111,6 +114,10 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	const FLD_VALUE = 1;
 	const FLD_TTL = 2;
 	const FLD_TIME = 3;
+	const FLD_FLAGS = 4;
+
+	/** @var integer Treat this value as expired-on-arrival */
+	const FLG_STALE = 1;
 
 	const ERR_NONE = 0; // no error
 	const ERR_NO_RESPONSE = 1; // no response
@@ -159,11 +166,11 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/**
 	 * Fetch the value of a key from cache
 	 *
-	 * If passed in, $curTTL is set to the remaining TTL (current time left):
-	 *   - a) INF; if the key exists, has no TTL, and is not expired by $checkKeys
-	 *   - b) float (>=0); if the key exists, has a TTL, and is not expired by $checkKeys
-	 *   - c) float (<0); if the key is tombstoned or existing but expired by $checkKeys
-	 *   - d) null; if the key does not exist and is not tombstoned
+	 * If supplied, $curTTL is set to the remaining TTL (current time left):
+	 *   - a) INF; if $key exists, has no TTL, and is not expired by $checkKeys
+	 *   - b) float (>=0); if $key exists, has a TTL, and is not expired by $checkKeys
+	 *   - c) float (<0); if $key is tombstoned, stale, or existing but expired by $checkKeys
+	 *   - d) null; if $key does not exist and is not tombstoned
 	 *
 	 * If a key is tombstoned, $curTTL will reflect the time since delete().
 	 *
@@ -314,10 +321,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *               Generally, other threads should not see values from the future and
 	 *               they certainly should not see ones that ended up getting rolled back.
 	 *               Default: false
-	 *   - lockTSE : if excessive possible snapshot lag is detected,
-	 *               then stash the value into a temporary location
-	 *               with this TTL. This is only useful if the reads
-	 *               use getWithSetCallback() with "lockTSE" set.
+	 *   - lockTSE : if excessive replication/snapshot lag is detected, then store the value
+	 *               with this TTL and flag it as stale. This is only useful if the reads for
+	 *               this key use getWithSetCallback() with "lockTSE" set.
 	 *               Default: WANObjectCache::TSE_NONE
 	 * @return bool Success
 	 */
@@ -325,29 +331,31 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
 		$age = isset( $opts['since'] ) ? max( 0, microtime( true ) - $opts['since'] ) : 0;
 		$lag = isset( $opts['lag'] ) ? $opts['lag'] : 0;
-		// Disallow set() if the source data is uncommitted as it might get rolled back
+
+		// Do not cache potentially uncommitted data as it might get rolled back
 		if ( !empty( $opts['pending'] ) ) {
 			$this->logger->info( "Rejected set() for $key due to pending writes." );
 
 			return true; // no-op the write for being unsafe
 		}
+
+		$wrapExtra = array(); // additional wrapped value fields
 		// Check if there's a risk of writing stale data after the purge tombstone expired
 		if ( ( $lag + $age ) > self::MAX_READ_LAG ) {
+			// Case A: read lag with "lockTSE"; save but record value as stale
 			if ( $lockTSE >= 0 ) {
-				// Focus on avoiding stampedes; stash the value with a low TTL
-				$tempTTL = max( 1, (int)$lockTSE ); // set() expects seconds
-				$this->cache->set( self::STASH_KEY_PREFIX . $key, $value, $tempTTL );
-			}
-			// Case A: any long-running transaction; ignore this set()
-			if ( $age > self::MAX_READ_LAG ) {
+				$ttl = max( 1, (int)$lockTSE ); // set() expects seconds
+				$wrapExtra[self::FLD_FLAGS] = self::FLG_STALE; // mark as stale
+			// Case B: any long-running transaction; ignore this set()
+			} elseif ( $age > self::MAX_READ_LAG ) {
 				$this->logger->warning( "Rejected set() for $key due to snapshot lag." );
 
 				return true; // no-op the write for being unsafe
-			// Case B: replication lag is high; lower TTL instead of ignoring all set()s
+			// Case C: high replication lag; lower TTL instead of ignoring all set()s
 			} elseif ( $lag > self::MAX_READ_LAG ) {
 				$ttl = $ttl ? min( $ttl, self::TTL_LAGGED ) : self::TTL_LAGGED;
 				$this->logger->warning( "Lowered set() TTL for $key due to replication lag." );
-			// Case C: medium length request during medium lag; ignore this set()
+			// Case D: medium length request with medium replication lag; ignore this set()
 			} else {
 				$this->logger->warning( "Rejected set() for $key due to high read lag." );
 
@@ -355,7 +363,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			}
 		}
 
-		$wrapped = $this->wrap( $value, $ttl );
+		// Wrap that value with time/TTL/version metadata
+		$wrapped = $this->wrap( $value, $ttl ) + $wrapExtra;
 
 		$func = function ( $cache, $key, $cWrapped ) use ( $wrapped ) {
 			return ( is_string( $cWrapped ) )
@@ -922,7 +931,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * @param mixed $value
 	 * @param integer $ttl [0=forever]
-	 * @return string
+	 * @return array
 	 */
 	protected function wrap( $value, $ttl ) {
 		return array(
@@ -945,7 +954,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$purgeTimestamp = self::parsePurgeValue( $wrapped );
 		if ( is_float( $purgeTimestamp ) ) {
 			// Purged values should always have a negative current $ttl
-			$curTTL = min( -0.000001, $purgeTimestamp - $now );
+			$curTTL = min( $purgeTimestamp - $now, self::TINY_NEGATIVE );
 			return array( false, $curTTL );
 		}
 
@@ -956,7 +965,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			return array( false, null );
 		}
 
-		if ( $wrapped[self::FLD_TTL] > 0 ) {
+		$flags = isset( $wrapped[self::FLD_FLAGS] ) ? $wrapped[self::FLD_FLAGS] : 0;
+		if ( ( $flags & self::FLG_STALE ) == self::FLG_STALE ) {
+			// Treat as expired, with the cache time as the expiration
+			$age = $now - $wrapped[self::FLD_TIME];
+			$curTTL = min( -$age, self::TINY_NEGATIVE );
+		} elseif ( $wrapped[self::FLD_TTL] > 0 ) {
 			// Get the approximate time left on the key
 			$age = $now - $wrapped[self::FLD_TIME];
 			$curTTL = max( $wrapped[self::FLD_TTL] - $age, 0.0 );
