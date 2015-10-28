@@ -608,7 +608,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# Diff and hist links
-		if ( $type  == RC_LOG && $type != RC_CATEGORIZE ) {
+		if ( $type != RC_LOG && $type != RC_CATEGORIZE ) {
 			$query['action'] = 'history';
 			$data['historyLink'] = $this->getDiffHistLinks( $rcObj, $query );
 		}
