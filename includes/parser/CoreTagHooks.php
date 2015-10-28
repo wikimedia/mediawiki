@@ -37,6 +37,7 @@ class CoreTagHooks {
 		$parser->setHook( 'gallery', [ __CLASS__, 'gallery' ] );
 		$parser->setHook( 'indicator', [ __CLASS__, 'indicator' ] );
 		$parser->setHook( 'mw-icon', [ __CLASS__, 'mwicon' ] );
+		$parser->setHook( 'mw-button', [ __CLASS__, 'mwbutton' ] );
 		if ( $wgRawHtml ) {
 			$parser->setHook( 'html', [ __CLASS__, 'html' ] );
 		}
@@ -225,5 +226,103 @@ class CoreTagHooks {
 
 		// Prevent further parsing
 		return [ $icon, 'markerType' => 'nowiki' ];
+	}
+
+	/**
+	 * XML-style tag for OOUI clickable button links.
+	 *
+	 * A button must have a valid `link` attribute, and content or valid `icon` (or both).
+	 * All other attributes are optional.
+	 *
+	 * @param string $content Button label
+	 * @param array $attributes
+	 *   - `link`: internal or external link target, treated like 'link' parameter in image syntax
+	 *   - `title`: link tooltip, default is generated from `link`
+	 *   - `icon`: name of the icon to display next to button label
+	 *   - `flags`: space-separated list of flags to apply, e.g. progressive/destructive/primary
+	 *   - `frameless`: whether to show a covert button that pretends not to be one (boolean)
+	 * @param Parser $parser
+	 * @param PPFrame $frame
+	 * @return string
+	 * @since 1.32
+	 */
+	public static function mwbutton( $content, array $attributes, Parser $parser, PPFrame $frame ) {
+		$parser->enableOOUI();
+
+		$config = [];
+
+		if ( $content ) {
+			$parsed = $parser->recursiveTagParseFully( $content, $frame );
+			$stripped = Parser::stripOuterParagraph( $parsed );
+			if ( $parsed === $stripped ) {
+				return '<span class="error">' .
+					wfMessage( 'tag-mw-button-must-be-single-line' )->inContentLanguage()->parse() .
+					'</span>';
+			}
+			if ( strpos( $stripped, '<a ' ) !== false ) {
+				return '<span class="error">' .
+					wfMessage( 'tag-mw-button-must-not-nest-links' )->inContentLanguage()->parse() .
+					'</span>';
+			}
+			$config['label'] = new OOUI\HtmlSnippet( $stripped );
+		}
+
+		if ( isset( $attributes['icon'] ) ) {
+			if ( preg_match( '/^[\w-]{1,100}$/', $attributes['icon'] ) ) {
+				$config['icon'] = $attributes['icon'];
+				$parser->getOutput()->addModuleStyles( "oojs-ui.styles.icon.{$attributes['icon']}" );
+			} else {
+				return '<span class="error">' .
+					wfMessage( 'tag-mw-icon-invalid-icon' )->inContentLanguage()->parse() .
+					'</span>';
+			}
+		}
+
+		if ( !isset( $config['label'] ) && !isset( $config['icon'] ) ) {
+			return '<span class="error">' .
+				wfMessage( 'tag-mw-button-must-have-content' )->inContentLanguage()->parse() .
+				'</span>';
+		}
+
+		if ( isset( $attributes['link'] ) ) {
+			list( $type, $target ) = $parser->parseLinkParameter( $attributes['link'] );
+			// We intentionally do not add any classes like 'new' or 'redirect' to button links
+			if ( $type === 'link-url' ) {
+				$config['href'] = $target;
+				if ( $parser->mOptions->getExternalLinkTarget() ) {
+					$config['target'] = $parser->mOptions->getExternalLinkTarget();
+				}
+				$config['noFollow'] = Parser::getExternalLinkRel( $target ) === 'nofollow';
+			} elseif ( $type === 'link-title' ) {
+				$config['href'] = $target->getLinkURL();
+				$config['title'] = $target->getPrefixedText();
+				$config['noFollow'] = false;
+			}
+		}
+		if ( !isset( $config['href'] ) ) {
+			return '<span class="error">' .
+				wfMessage( 'tag-mw-button-must-have-link' )->inContentLanguage()->parse() .
+				'</span>';
+		}
+		if ( isset( $attributes['title'] ) ) {
+			// Overwrites the default from 'link', if any
+			$config['title'] = $attributes['title'];
+		}
+
+		if ( isset( $attributes['frameless'] ) ) {
+			$config['framed'] = false;
+		}
+		if ( isset( $attributes['flags'] ) ) {
+			$config['flags'] = array_filter( array_map( 'trim', explode( ' ', $attributes['flags'] ) ) );
+		}
+
+		$button = new OOUI\ButtonWidget( $config );
+		$button = $button->toString();
+		if ( MWTidy::singleton() instanceof MediaWiki\Tidy\RaggettBase ) {
+			// Prevent Tidy from removing empty <span> tags (used to display the icon)
+			$button = str_replace( '></span>', '><!-- --></span>', $button );
+		}
+		// Prevent further parsing
+		return [ $button, 'markerType' => 'nowiki' ];
 	}
 }
