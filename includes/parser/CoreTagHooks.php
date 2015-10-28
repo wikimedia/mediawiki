@@ -36,6 +36,7 @@ class CoreTagHooks {
 		$parser->setHook( 'nowiki', [ __CLASS__, 'nowiki' ] );
 		$parser->setHook( 'gallery', [ __CLASS__, 'gallery' ] );
 		$parser->setHook( 'indicator', [ __CLASS__, 'indicator' ] );
+		$parser->setHook( 'mw-button', [ __CLASS__, 'mw_button' ] );
 		if ( $wgRawHtml ) {
 			$parser->setHook( 'html', [ __CLASS__, 'html' ] );
 		}
@@ -159,5 +160,97 @@ class CoreTagHooks {
 		);
 
 		return '';
+	}
+
+	/**
+	 * XML-style tag for OOjs UI clickable button links.
+	 *
+	 * A button must have a valid `link` attribute, and content or valid `icon` (or both).
+	 * All other attributes are optional.
+	 *
+	 * @param string $content Button label
+	 * @param array $attributes
+	 *   - `link`: any internal or external link target, treated like the 'link' parameter in image syntax
+	 *   - `title`: link tooltip, default is generated from `link`
+	 *   - `icon`: name of the icon to display next to button label
+	 *   - `flags`: space-separated list of flags to apply, progressive/constructive/destructive/primary
+	 *   - `frameless`: whether to show a covert button that pretends not to be one (boolean)
+	 * @param Parser $parser
+	 * @param PPFrame $frame
+	 * @return string
+	 * @since 1.27
+	 */
+	public static function mw_button( $content, array $attributes, Parser $parser, PPFrame $frame ) {
+		$parser->enableOOUI();
+
+		$config = array();
+
+		if ( $content ) {
+			$parsed = $parser->recursiveTagParseFully( $content, $frame );
+			$stripped = Parser::stripOuterParagraph( $parsed );
+			if ( $parsed === $stripped ) {
+				return '<span class="error">' .
+					wfMessage( 'tag-mw-button-must-be-single-line' )->inContentLanguage()->parse() .
+					'</span>';
+			}
+			if ( strpos( $stripped, '<a ') !== false ) {
+				return '<span class="error">' .
+					wfMessage( 'tag-mw-button-must-not-nest-links' )->inContentLanguage()->parse() .
+					'</span>';
+			}
+			$config['label'] = new OOUI\HtmlSnippet( $stripped );
+		}
+		if ( isset( $attributes['icon'] ) ) {
+			// TODO Validate and load required additional modules
+			$config['icon'] = $attributes['icon'];
+		}
+		if ( !isset( $config['label'] ) && !isset( $config['icon'] ) ) {
+			return '<span class="error">' .
+				wfMessage( 'tag-mw-button-must-have-content' )->inContentLanguage()->parse() .
+				'</span>';
+		}
+
+		if ( isset( $attributes['link'] ) ) {
+			list( $type, $target ) = $parser->parseLinkParameter( $attributes['link'] );
+			// We intentionally do not add any classes like 'new' or 'redirect' to button links
+			if ( $type === 'link-url' ) {
+				$config['href'] = $target;
+				if ( $parser->mOptions->getExternalLinkTarget() ) {
+					$config['target'] = $parser->mOptions->getExternalLinkTarget();
+				}
+				$config['noFollow'] = Parser::getExternalLinkRel( $target ) === 'nofollow';
+			} elseif ( $type === 'link-title' ) {
+				$config['href'] = $target->getLinkURL();
+				$config['title'] = $target->getPrefixedText();
+				$config['noFollow'] = false;
+			}
+		}
+		if ( !isset( $config['href'] ) ) {
+			return '<span class="error">' .
+				wfMessage( 'tag-mw-button-must-have-link' )->inContentLanguage()->parse() .
+				'</span>';
+		}
+		if ( isset( $attributes['title'] ) ) {
+			// Overwrites the default from 'link', if any
+			$config['title'] = $attributes['title'];
+		}
+
+		if ( isset( $attributes['frameless'] ) ) {
+			$config['framed'] = false;
+		}
+		if ( isset( $attributes['flags'] ) ) {
+			$config['flags'] = array_filter( array_map( 'trim', explode( ' ', $attributes['flags'] ) ) );
+		}
+
+		$button = new OOUI\ButtonWidget( $config );
+		// Prevent paragraphs breaking on the <div> tag
+		$prop = new ReflectionProperty( 'OOUI\\ButtonWidget', 'tag' );
+		$prop->setAccessible( true );
+		$prop->setValue( $button, 'span' );
+		$button = $button->toString();
+		// Prevent Tidy from removing empty <span> tags (used to display the icon)
+		$button = str_replace( '></span>', '><!-- --></span>', $button );
+		// Prevent further parsing
+		return array( $button, 'markerType' => 'nowiki' );
 	}
 }
