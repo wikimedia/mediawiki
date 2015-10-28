@@ -167,9 +167,11 @@ class InfoAction extends FormlessAction {
 		return $table .
 			Html::rawElement(
 				'tr',
-				$id === null ? array() : array( 'id' => 'mw-' . $id ),
-				Html::rawElement( 'td', array( 'style' => 'vertical-align: top;' ), $name ) .
-					Html::rawElement( 'td', array(), $value )
+				$id === null ? array() : array( 'id' => 'mw-'. $id ),
+				Html::rawElement( 'td', array( 'style' => 'vertical-align: top;' ), 
+					$id === null ? $name :
+							Html::rawElement( 'a', array( 'href' => '#mw-' . $id ), $name ) ) .
+						Html::rawElement( 'td', array(), $value )
 			);
 	}
 
