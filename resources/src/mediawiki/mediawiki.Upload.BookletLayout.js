@@ -147,11 +147,14 @@
 
 	/**
 	 * Initialize for a new upload
+	 *
+	 * @return {jQuery.Promise} Promise resolved when everything is initialized
 	 */
 	mw.Upload.BookletLayout.prototype.initialize = function () {
 		this.clear();
 		this.upload = this.createUpload();
 		this.setPage( 'upload' );
+		return $.Deferred().resolve().promise();
 	};
 
 	/**
