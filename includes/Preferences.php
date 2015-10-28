@@ -1641,7 +1641,8 @@ class PreferencesForm extends HTMLForm {
 	 * @return string
 	 */
 	function getBody() {
-		return $this->displaySection( $this->mFieldTree, '', 'mw-prefsection-' );
+		$visibleFields = false;
+		return $this->displaySection( $this->mFieldTree, '', 'mw-prefsection-', $visibleFields, true );
 	}
 
 	/**
