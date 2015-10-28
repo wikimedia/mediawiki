@@ -376,23 +376,28 @@ function wfStreamThumb( array $params ) {
  * @return array (MediaTransformOutput|bool, string|bool error message HTML)
  */
 function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath ) {
-	global $wgMemc, $wgAttemptFailureEpoch;
+	global $wgAttemptFailureEpoch;
 
-	$key = wfMemcKey( 'attempt-failures', $wgAttemptFailureEpoch,
-		$file->getRepo()->getName(), $file->getSha1(), md5( $thumbName ) );
+	$cache = ObjectCache::getLocalClusterInstance();
+	$key = $cache->makeKey(
+		'attempt-failures',
+		$wgAttemptFailureEpoch,
+		$file->getRepo()->getName(),
+		$file->getSha1(),
+		md5( $thumbName )
+	);
 
 	// Check if this file keeps failing to render
-	if ( $wgMemc->get( $key ) >= 4 ) {
+	if ( $cache->get( $key ) >= 4 ) {
 		return array( false, wfMessage( 'thumbnail_image-failure-limit', 4 ) );
 	}
 
 	$done = false;
 	// Record failures on PHP fatals in addition to caching exceptions
-	register_shutdown_function( function () use ( &$done, $key ) {
+	register_shutdown_function( function () use ( $cache, &$done, $key ) {
 		if ( !$done ) { // transform() gave a fatal
-			global $wgMemc;
 			// Randomize TTL to reduce stampedes
-			$wgMemc->incrWithInit( $key, $wgMemc::TTL_HOUR + mt_rand( 0, 300 ) );
+			$cache->incrWithInit( $key, $cache::TTL_HOUR + mt_rand( 0, 300 ) );
 		}
 	} );
 
@@ -445,7 +450,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 
 	if ( !$thumb || $thumb->isError() ) {
 		// Randomize TTL to reduce stampedes
-		$wgMemc->incrWithInit( $key, $wgMemc::TTL_HOUR + mt_rand( 0, 300 ) );
+		$cache->incrWithInit( $key, $cache::TTL_HOUR + mt_rand( 0, 300 ) );
 	}
 
 	return array( $thumb, $errorHtml );
