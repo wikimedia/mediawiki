@@ -572,14 +572,25 @@ class Xml {
 	 * @param string $content Pre-escaped content for the fieldset. If false,
 	 *   only open fieldset is returned.
 	 * @param array $attribs Any attributes to fieldset-element.
+	 * @param bool $linkLegend True if the legend tag should link to the fieldset id
 	 *
 	 * @return string
 	 */
-	public static function fieldset( $legend = false, $content = false, $attribs = array() ) {
+	public static function fieldset( $legend = false, $content = false, $attribs = array(), $linkLegend = false ) {
 		$s = Xml::openElement( 'fieldset', $attribs ) . "\n";
 
 		if ( $legend ) {
-			$s .= Xml::element( 'legend', null, $legend ) . "\n";
+			if ( $linkLegend && $attribs[ 'id' ] ) {
+				$legend = Xml::element( 'a',
+					array( 'href' => '#' . $attribs[ 'id' ], 'class' => 'mw-legend-link' ),
+					$legend
+				);
+				$s .= Xml::tags( 'legend', null, $legend );
+			} else {
+				$s .= Xml::element( 'legend', null, $legend );
+			}
+
+			$s .= "\n";
 		}
 
 		if ( $content !== false ) {
