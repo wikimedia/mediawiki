@@ -1571,7 +1571,7 @@ class FormatMetadata extends ContextSource {
 	 * @since 1.23
 	 */
 	public function fetchExtendedMetadata( File $file ) {
-		global $wgMemc;
+		$cache = ObjectCache::getMainWANInstance();
 
 		// If revision deleted, exit immediately
 		if ( $file->isDeleted( File::DELETED_FILE ) ) {
@@ -1585,7 +1585,7 @@ class FormatMetadata extends ContextSource {
 			$file->getSha1()
 		);
 
-		$cachedValue = $wgMemc->get( $cacheKey );
+		$cachedValue = $cache->get( $cacheKey );
 		if (
 			$cachedValue
 			&& Hooks::run( 'ValidateExtendedMetadataCache', array( $cachedValue['timestamp'], $file ) )
@@ -1605,7 +1605,7 @@ class FormatMetadata extends ContextSource {
 			// computation on a cache hit.
 			$this->sanitizeArrayForAPI( $extendedMetadata );
 			$valueToCache = array( 'data' => $extendedMetadata, 'timestamp' => wfTimestampNow() );
-			$wgMemc->set( $cacheKey, $valueToCache, $maxCacheTime );
+			$cache->set( $cacheKey, $valueToCache, $maxCacheTime );
 		}
 
 		return $extendedMetadata;
