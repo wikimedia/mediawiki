@@ -1369,13 +1369,15 @@ class HTMLForm extends ContextSource {
 	 * @param string $fieldsetIDPrefix ID prefix for the "<fieldset>" tag of
 	 *   each subsection, ignored if empty.
 	 * @param bool &$hasUserVisibleFields Whether the section had user-visible fields.
+	 * @param bool $linkLegend Whether section legends should be linked to the form element IDs
 	 *
 	 * @return string
 	 */
 	public function displaySection( $fields,
 		$sectionName = '',
 		$fieldsetIDPrefix = '',
-		&$hasUserVisibleFields = false ) {
+		&$hasUserVisibleFields = false,
+		$linkLegend = false ) {
 		$displayFormat = $this->getDisplayFormat();
 
 		$html = array();
@@ -1408,7 +1410,8 @@ class HTMLForm extends ContextSource {
 					$this->displaySection( $value,
 						"mw-htmlform-$key",
 						"$fieldsetIDPrefix$key-",
-						$subsectionHasVisibleFields );
+						$subsectionHasVisibleFields,
+						$linkLegend );
 				$legend = null;
 
 				if ( $subsectionHasVisibleFields === true ) {
@@ -1425,7 +1428,7 @@ class HTMLForm extends ContextSource {
 					if ( $fieldsetIDPrefix ) {
 						$attributes['id'] = Sanitizer::escapeId( "$fieldsetIDPrefix$key" );
 					}
-					$subsectionHtml .= Xml::fieldset( $legend, $section, $attributes ) . "\n";
+					$subsectionHtml .= Xml::fieldset( $legend, $section, $attributes, $linkLegend ) . "\n";
 				} else {
 					// Just return the inputs, nothing fancy.
 					$subsectionHtml .= $section;
