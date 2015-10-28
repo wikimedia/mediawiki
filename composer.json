@@ -31,7 +31,7 @@
 		"wikimedia/composer-merge-plugin": "1.2.1",
 		"wikimedia/ip-set": "1.0.1",
 		"wikimedia/relpath": "1.0.3",
-		"wikimedia/running-stat": "1.0.0",
+		"wikimedia/running-stat": "1.1.0",
 		"wikimedia/utfnormal": "1.0.3",
 		"wikimedia/wrappedstring": "2.0.0",
 		"zordius/lightncandy": "0.21"

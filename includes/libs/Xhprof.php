@@ -256,7 +256,7 @@ class Xhprof {
 					}
 
 					for ( $i = 0; $i < $stats['ct']; $i++ ) {
-						$this->inclusive[$child][$stat]->push(
+						$this->inclusive[$child][$stat]->addObservation(
 							$value / $stats['ct']
 						);
 					}
