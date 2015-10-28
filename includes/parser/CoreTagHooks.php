@@ -36,6 +36,7 @@ class CoreTagHooks {
 		$parser->setHook( 'nowiki', [ __CLASS__, 'nowiki' ] );
 		$parser->setHook( 'gallery', [ __CLASS__, 'gallery' ] );
 		$parser->setHook( 'indicator', [ __CLASS__, 'indicator' ] );
+		$parser->setHook( 'mw-icon', [ __CLASS__, 'mwicon' ] );
 		if ( $wgRawHtml ) {
 			$parser->setHook( 'html', [ __CLASS__, 'html' ] );
 		}
@@ -172,5 +173,49 @@ class CoreTagHooks {
 		);
 
 		return '';
+	}
+
+	/**
+	 * XML-style tag for OOjs UI icons.
+	 *
+	 * @param string $content Icon name
+	 * @param array $attributes
+	 *   - `title`: icon tooltip for accessibility
+	 *   - `size`: size multiplier
+	 * @param Parser $parser
+	 * @param PPFrame $frame
+	 * @return string
+	 * @since 1.28
+	 */
+	public static function mwicon( $content, array $attributes, Parser $parser, PPFrame $frame ) {
+		$parser->enableOOUI();
+
+		$config = [];
+
+		if ( $content ) {
+			// TODO Validate and load required additional modules
+			$config['icon'] = $content;
+		} else {
+			return '<span class="error">' .
+				wfMessage( 'tag-mw-icon-must-have-content' )->inContentLanguage()->parse() .
+				'</span>';
+		}
+
+		if ( isset( $attributes['title'] ) ) {
+			$config['title'] = $attributes['title'];
+		}
+
+		$icon = new OOUI\IconWidget( $config );
+		$icon = $icon->toString();
+		// Prevent Tidy from removing empty <span> tags (used to display the icon)
+		$icon = str_replace( '></span>', '><!-- --></span>', $icon );
+
+		if ( isset( $attributes['size'] ) ) {
+			$size = floatval( $attributes['size'] ) * 100;
+			$icon = "<span style=\"font-size: $size%;\">$icon</span>";
+		}
+
+		// Prevent further parsing
+		return [ $icon, 'markerType' => 'nowiki' ];
 	}
 }
