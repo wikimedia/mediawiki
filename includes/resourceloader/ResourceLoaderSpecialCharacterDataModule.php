@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource loader module for populating special characters data for some
+ * ResourceLoader module for populating special characters data for some
  * editing extensions to use.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -22,7 +22,7 @@
  */
 
 /**
- * Resource loader module for populating special characters data for some
+ * ResourceLoader module for populating special characters data for some
  * editing extensions to use.
  */
 class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {

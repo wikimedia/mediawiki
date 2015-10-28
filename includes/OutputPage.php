@@ -50,7 +50,7 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * @var array Additional stylesheets. Looks like this is for extensions.
-	 *   Might be replaced by resource loader.
+	 *   Might be replaced by ResourceLoader.
 	 */
 	protected $mExtStyles = array();
 
@@ -132,7 +132,7 @@ class OutputPage extends ContextSource {
 	private $mLanguageLinks = array();
 
 	/**
-	 * Used for JavaScript (pre resource loader)
+	 * Used for JavaScript (predates ResourceLoader)
 	 * @todo We should split JS / CSS.
 	 * mScripts content is inserted as is in "<head>" by Skin. This might
 	 * contain either a link to a stylesheet or inline CSS.
@@ -150,8 +150,6 @@ class OutputPage extends ContextSource {
 
 	/** @var array Array of elements in "<head>". Parser might add its own headers! */
 	protected $mHeadItems = array();
-
-	// @todo FIXME: Next 5 variables probably come from the resource loader
 
 	/** @var array */
 	protected $mModules = array();
@@ -224,7 +222,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * @var bool Comes from the parser. This was probably made to load CSS/JS
 	 * only if we had "<gallery>". Used directly in CategoryPage.php.
-	 * Looks like resource loader can replace this.
+	 * Looks like ResourceLoader can replace this.
 	 */
 	public $mNoGallery = false;
 
@@ -568,8 +566,8 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add one or more modules recognized by the resource loader. Modules added
-	 * through this function will be loaded by the resource loader when the
+	 * Add one or more modules recognized by ResourceLoader. Modules added
+	 * through this function will be loaded by ResourceLoader when the
 	 * page loads.
 	 *
 	 * @param string|array $modules Module name (string) or array of module names
@@ -591,8 +589,8 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add only JS of one or more modules recognized by the resource loader. Module
-	 * scripts added through this function will be loaded by the resource loader when
+	 * Add only JS of one or more modules recognized by ResourceLoader. Module
+	 * scripts added through this function will be loaded by ResourceLoader when
 	 * the page loads.
 	 *
 	 * @param string|array $modules Module name (string) or array of module names
@@ -614,7 +612,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add only CSS of one or more modules recognized by the resource loader.
+	 * Add only CSS of one or more modules recognized by ResourceLoader.
 	 *
 	 * Module styles added through this function will be added using standard link CSS
 	 * tags, rather than as a combined Javascript and CSS package. Thus, they will

@@ -108,19 +108,17 @@ class ParserOutput extends CacheTime {
 	public $mHeadItems = array();
 
 	/**
-	 * @var array $mModules Modules to be loaded by the resource loader
+	 * @var array $mModules Modules to be loaded by ResourceLoader
 	 */
 	public $mModules = array();
 
 	/**
-	 * @var array $mModuleScripts Modules of which only the JS will be loaded by
-	 *  the resource loader.
+	 * @var array $mModuleScripts Modules of which only the JS will be loaded by ResourceLoader.
 	 */
 	public $mModuleScripts = array();
 
 	/**
-	 * @var array $mModuleStyles Modules of which only the CSSS will be loaded by
-	 *  the resource loader.
+	 * @var array $mModuleStyles Modules of which only the CSSS will be loaded by ResourceLoader.
 	 */
 	public $mModuleStyles = array();
 

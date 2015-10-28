@@ -3397,14 +3397,14 @@ $wgMangleFlashPolicy = true;
 /** @} */ # End of output format settings }
 
 /*************************************************************************//**
- * @name   Resource loader settings
+ * @name   ResourceLoader settings
  * @{
  */
 
 /**
  * Client-side resource modules.
  *
- * Extensions should add their resource loader module definitions
+ * Extensions should add their ResourceLoader module definitions
  * to the $wgResourceModules variable.
  *
  * @par Example:
@@ -3529,7 +3529,7 @@ $wgResourceLoaderSources = array();
 $wgResourceBasePath = null;
 
 /**
- * Maximum time in seconds to cache resources served by the resource loader.
+ * Maximum time in seconds to cache resources served by ResourceLoader.
  * Used to set last modified headers (max-age/s-maxage).
  *
  * Following options to distinguish:
@@ -3736,7 +3736,7 @@ $wgResourceLoaderStorageVersion = 1;
  */
 $wgAllowSiteCSSOnRestrictedPages = false;
 
-/** @} */ # End of resource loader settings }
+/** @} */ # End of ResourceLoader settings }
 
 /*************************************************************************//**
  * @name   Page title and interwiki link settings

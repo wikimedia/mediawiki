@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource message blobs storage used by the resource loader.
+ * Resource message blobs storage used by ResourceLoader.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,8 +23,8 @@
  */
 
 /**
- * This class provides access to the resource message blobs storage used by
- * the ResourceLoader.
+ * This class provides access to the resource message blobs storage used
+ * by ResourceLoader.
  *
  * A message blob is a JSON object containing the interface messages for a
  * certain resource in a certain language. These message blobs are cached
