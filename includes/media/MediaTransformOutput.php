@@ -57,6 +57,30 @@ abstract class MediaTransformOutput {
 	protected $storagePath = false;
 
 	/**
+	 * @var array $mModules Modules to be loaded by ResourceLoader
+	 * @since 1.27
+	 */
+	protected $mModules = array();
+
+	/**
+	 * @var array $mModuleScripts Modules of which only the JS will be loaded by ResourceLoader.
+	 * @since 1.27
+	 */
+	protected $mModuleScripts = array();
+
+	/**
+	 * @var array $mModuleStyles Modules of which only the CSS will be loaded by ResourceLoader.
+	 * @since 1.27
+	 */
+	protected $mModuleStyles = array();
+
+	/**
+	 * @var array $mJsConfigVars JavaScript config variable for mw.config combined with this page.
+	 * @since 1.27
+	 */
+	protected $mJsConfigVars = array();
+
+	/**
 	 * @return int Width of the output box
 	 */
 	public function getWidth() {
@@ -132,6 +156,26 @@ abstract class MediaTransformOutput {
 	 * @return string
 	 */
 	abstract public function toHtml( $options = array() );
+
+	/** @since 1.27 */
+	public function getModules() {
+		return $this->mModules;
+	}
+
+	/** @since 1.27 */
+	public function getModuleScripts() {
+		return $this->mModuleScripts;
+	}
+
+	/** @since 1.27 */
+	public function getModuleStyles() {
+		return $this->mModuleStyles;
+	}
+
+	/** @since 1.27 */
+	public function getJsConfigVars() {
+		return $this->mJsConfigVars;
+	}
 
 	/**
 	 * This will be overridden to return true in error classes

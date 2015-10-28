@@ -628,7 +628,7 @@ class Linker {
 			if ( $fp['align'] == '' ) {
 				$fp['align'] = $parser->getTargetLanguage()->alignEnd();
 			}
-			return $prefix . self::makeThumbLink2( $title, $file, $fp, $hp, $time, $query ) . $postfix;
+			return $prefix . self::makeThumbLink3( $parser, $title, $file, $fp, $hp, $time, $query ) . $postfix;
 		}
 
 		if ( $file && isset( $fp['frameless'] ) ) {
@@ -663,6 +663,7 @@ class Linker {
 			$params = self::getImageLinkMTOParams( $fp, $query, $parser ) + $params;
 
 			$s = $thumb->toHtml( $params );
+			$parser->getOutput()->addMediaMetadata( $thumb );
 		}
 		if ( $fp['align'] != '' ) {
 			$s = "<div class=\"float{$fp['align']}\">{$s}</div>";
@@ -743,6 +744,12 @@ class Linker {
 		return self::makeThumbLink2( $title, $file, $frameParams, $params );
 	}
 
+	public static function makeThumbLink2( Title $title, $file, $frameParams = array(),
+		$handlerParams = array(), $time = false, $query = ""
+	) {
+		return self::makeThumbLink3( null, $title, $file, $frameParams, $params );
+	}
+
 	/**
 	 * @param Title $title
 	 * @param File $file
@@ -752,7 +759,7 @@ class Linker {
 	 * @param string $query
 	 * @return string
 	 */
-	public static function makeThumbLink2( Title $title, $file, $frameParams = array(),
+	public static function makeThumbLink3( Parser $parser, Title $title, $file, $frameParams = array(),
 		$handlerParams = array(), $time = false, $query = ""
 	) {
 		$exists = $file && $file->exists();
@@ -855,6 +862,9 @@ class Linker {
 			);
 			$params = self::getImageLinkMTOParams( $fp, $query ) + $params;
 			$s .= $thumb->toHtml( $params );
+			if ( $parser ) {
+				$parser->getOutput()->addMediaMetadata( $thumb );
+			}
 			if ( isset( $fp['framed'] ) ) {
 				$zoomIcon = "";
 			} else {

@@ -641,6 +641,35 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
+	 * Copy items from the Media object into this one
+	 * @since 1.27
+	 *
+	 * @param MediaTransformOutput $media
+	 */
+	public function addMediaMetadata( MediaTransformOutput $media ) {
+		$this->addModules( $media->getModules() );
+		$this->addModuleScripts( $media->getModuleScripts() );
+		$this->addModuleStyles( $media->getModuleStyles() );
+		$this->addJsConfigVars( $media->getJsConfigVars() );
+	}
+
+	/**
+	 * Copy items from the Media object into this one
+	 * @since 1.27
+	 *
+	 * @param MediaTransformOutput $media
+	 * @param array $transformOptions passed to MediaTransformOutput::toHtml()
+	 */
+	public function addMedia( MediaTransformOutput $media, array $transformOptions = null ) {
+		$this->addModules( $media->getModules() );
+		$this->addModuleScripts( $media->getModuleScripts() );
+		$this->addModuleStyles( $media->getModuleStyles() );
+		$this->addJsConfigVars( $media->getJsConfigVars() );
+		$this->addHTML( $media->toHtml( $transformOptions ) );
+	}
+
+
+	/**
 	 * Copy items from the OutputPage object into this one
 	 *
 	 * @param OutputPage $out
