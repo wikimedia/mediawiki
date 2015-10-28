@@ -169,6 +169,7 @@ abstract class Installer {
 		'wgEnotifUserTalk',
 		'wgEnotifWatchlist',
 		'wgEmailAuthentication',
+		'wgDBname',
 		'wgDBtype',
 		'wgDiff3',
 		'wgImageMagickConvertCommand',
