@@ -1226,28 +1226,25 @@ abstract class Skin extends ContextSource {
 		global $wgEnableSidebarCache, $wgSidebarCacheExpiry;
 
 		$cache = ObjectCache::getMainWANInstance();
-		$key = wfMemcKey( 'sidebar', $this->getLanguage()->getCode() );
 
-		if ( $wgEnableSidebarCache ) {
-			$cachedsidebar = $cache->get( $key );
-			if ( $cachedsidebar ) {
-				Hooks::run( 'SidebarBeforeOutput', array( $this, &$cachedsidebar ) );
+		$that = $this;
+		$sidebar = $cache->getWithSetCallback(
+			$cache->makeKey( 'sidebar', $this->getLanguage()->getCode() ),
+			$wgEnableSidebarCache ? $wgSidebarCacheExpiry : $cache::TTL_UNCACHEABLE,
+			function () use ( $that ) {
+				$bar = array();
+				$that->addToSidebar( $bar, 'sidebar' );
+				Hooks::run( 'SkinBuildSidebar', array( $that, &$bar ) );
 
-				return $cachedsidebar;
-			}
-		}
+				return $bar;
+			},
+			array( 'lockTSE' => 30 )
+		);
 
-		$bar = array();
-		$this->addToSidebar( $bar, 'sidebar' );
+		// Apply post-processing to the cached value
+		Hooks::run( 'SidebarBeforeOutput', array( $this, &$sidebar ) );
 
-		Hooks::run( 'SkinBuildSidebar', array( $this, &$bar ) );
-		if ( $wgEnableSidebarCache ) {
-			$cache->set( $key, $bar, $wgSidebarCacheExpiry );
-		}
-
-		Hooks::run( 'SidebarBeforeOutput', array( $this, &$bar ) );
-
-		return $bar;
+		return $sidebar;
 	}
 
 	/**
@@ -1259,7 +1256,7 @@ abstract class Skin extends ContextSource {
 	 * @param array $bar
 	 * @param string $message
 	 */
-	function addToSidebar( &$bar, $message ) {
+	public function addToSidebar( &$bar, $message ) {
 		$this->addToSidebarPlain( $bar, wfMessage( $message )->inContentLanguage()->plain() );
 	}
 
