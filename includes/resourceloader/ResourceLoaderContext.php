@@ -158,8 +158,16 @@ class ResourceLoaderContext {
 	 */
 	public function getLanguage() {
 		if ( $this->language === null ) {
-			// Must be a valid language code after this point (bug 62849)
-			$this->language = RequestContext::sanitizeLangCode( $this->getRequest()->getVal( 'lang' ) );
+			// Must be a valid language code after this point (T64849)
+			// Only support uselang values that follow built-in conventions (T102058)
+			$lang = $this->getRequest()->getVal( 'lang', '' );
+			// Stricter version of RequestContext::sanitizeLangCode()
+			if ( Language::isValidBuiltInCode( $lang ) ) {
+				wfDebug( "Invalid user language code\n" );
+				global $wgLanguageCode;
+				$lang = $wgLanguageCode;
+			}
+			$this->language = $lang;
 		}
 		return $this->language;
 	}
