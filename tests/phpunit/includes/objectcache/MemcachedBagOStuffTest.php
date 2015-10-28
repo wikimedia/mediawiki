@@ -67,4 +67,39 @@ class MemcachedBagOStuffTest extends MediaWikiTestCase {
 			$this->cache->makeKey( 'long_key_part_hashed', str_repeat( 'y', 500 ) )
 		);
 	}
+
+	/**
+	 * @dataProvider validKeyProvider
+	 */
+	public function testValidateKeyEncoding( $key ) {
+		$this->assertSame( $key, $this->cache->validateKeyEncoding( $key ) );
+	}
+
+	public function validKeyProvider() {
+		return array(
+			'empty' => array( '' ),
+			'space' => array( ' ' ),
+			'digits' => array( '09' ),
+			'letters' => array( 'AZaz' ),
+			'ASCII special characters' => array( '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~' ),
+		);
+	}
+
+	/**
+	 * @dataProvider invalidKeyProvider
+	 */
+	public function testValidateKeyEncodingThrowsException( $key ) {
+		$this->setExpectedException( 'Exception' );
+		$this->cache->validateKeyEncoding( $key );
+	}
+
+	public function invalidKeyProvider() {
+		return array(
+			array( "\x00" ),
+			array( "\x1F" ),
+			array( "\x7F" ),
+			array( "\x80" ),
+			array( "\xFF" ),
+		);
+	}
 }
