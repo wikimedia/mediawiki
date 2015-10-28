@@ -134,7 +134,7 @@ class DateFormatter {
 		if ( !$dateFormatter ) {
 			$dateFormatter = $cache->getWithSetCallback(
 				$cache->makeKey( 'dateformatter', $lang->getCode() ),
-				3600,
+				$cache::TTL_HOUR,
 				function () use ( $lang ) {
 					return new DateFormatter( $lang );
 				}

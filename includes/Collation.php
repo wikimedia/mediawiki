@@ -508,7 +508,7 @@ class IcuCollation extends Collation {
 
 		// Save to cache
 		$this->firstLetterData = $data;
-		$cache->set( $cacheKey, $data, 86400 * 7 /* 1 week */ );
+		$cache->set( $cacheKey, $data, $cache::TTL_WEEK );
 		return $data;
 	}
 

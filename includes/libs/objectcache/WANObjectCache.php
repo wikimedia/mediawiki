@@ -64,7 +64,7 @@ use Psr\Log\NullLogger;
  * @ingroup Cache
  * @since 1.26
  */
-class WANObjectCache implements LoggerAwareInterface {
+class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/** @var BagOStuff The local datacenter cache */
 	protected $cache;
 	/** @var HashBagOStuff Script instance PHP cache */
@@ -89,7 +89,7 @@ class WANObjectCache implements LoggerAwareInterface {
 	const HOLDOFF_TTL = 14; // MAX_COMMIT_DELAY + MAX_REPLICA_LAG + MAX_SNAPSHOT_LAG + 1
 
 	/** Seconds to keep dependency purge keys around */
-	const CHECK_KEY_TTL = 31536000; // 1 year
+	const CHECK_KEY_TTL = self::TTL_YEAR;
 	/** Seconds to keep lock keys around */
 	const LOCK_TTL = 5;
 	/** Default remaining TTL at which to consider pre-emptive regeneration */
@@ -296,7 +296,7 @@ class WANObjectCache implements LoggerAwareInterface {
 	 *     // Fetch the row from the DB
 	 *     $row = $dbr->selectRow( ... );
 	 *     $key = $cache->makeKey( 'building', $buildingId );
-	 *     $cache->set( $key, $row, 86400, $setOpts );
+	 *     $cache->set( $key, $row, $cache::TTL_DAY, $setOpts );
 	 * @endcode
 	 *
 	 * @param string $key Cache key
@@ -562,8 +562,8 @@ class WANObjectCache implements LoggerAwareInterface {
 	 *     $catInfo = $cache->getWithSetCallback(
 	 *         // Key to store the cached value under
 	 *         $cache->makeKey( 'cat-attributes', $catId ),
-	 *         // Time-to-live (seconds)
-	 *         60,
+	 *         // Time-to-live (in seconds)
+	 *         $cache::TTL_MINUTE,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
@@ -580,8 +580,8 @@ class WANObjectCache implements LoggerAwareInterface {
 	 *     $catConfig = $cache->getWithSetCallback(
 	 *         // Key to store the cached value under
 	 *         $cache->makeKey( 'site-cat-config' ),
-	 *         // Time-to-live (seconds)
-	 *         86400,
+	 *         // Time-to-live (in seconds)
+	 *         $cache::TTL_DAY,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             $dbr = wfGetDB( DB_SLAVE );
@@ -632,7 +632,7 @@ class WANObjectCache implements LoggerAwareInterface {
 	 *     $lastCatActions = $cache->getWithSetCallback(
 	 *         // Key to store the cached value under
 	 *         $cache->makeKey( 'cat-last-actions', 100 ),
-	 *         // Time-to-live (seconds)
+	 *         // Time-to-live (in seconds)
 	 *         10,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {

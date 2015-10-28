@@ -541,6 +541,7 @@ $wgAutoloadLocalClasses = array(
 	'IDatabase' => __DIR__ . '/includes/db/IDatabase.php',
 	'IEContentAnalyzer' => __DIR__ . '/includes/libs/IEContentAnalyzer.php',
 	'IEUrlExtension' => __DIR__ . '/includes/libs/IEUrlExtension.php',
+	'IExpiringStore' => __DIR__ . '/includes/libs/objectcache/IExpiringStore.php',
 	'IJobSpecification' => __DIR__ . '/includes/jobqueue/JobSpecification.php',
 	'IORMRow' => __DIR__ . '/includes/db/IORMRow.php',
 	'IORMTable' => __DIR__ . '/includes/db/IORMTable.php',

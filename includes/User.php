@@ -438,10 +438,11 @@ class User implements IDBAccessObject {
 			$data[$name] = $this->$name;
 		}
 		$data['mVersion'] = self::VERSION;
-		$key = wfMemcKey( 'user', 'id', $this->mId );
-
 		$opts = Database::getCacheSetOptions( wfGetDB( DB_SLAVE ) );
-		ObjectCache::getMainWANInstance()->set( $key, $data, 3600, $opts );
+
+		$cache = ObjectCache::getMainWANInstance();
+		$key = wfMemcKey( 'user', 'id', $this->mId );
+		$cache->set( $key, $data, $cache::TTL_HOUR, $opts );
 	}
 
 	/** @name newFrom*() static factory methods */
