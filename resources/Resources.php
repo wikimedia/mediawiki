@@ -294,6 +294,10 @@ return array(
 		'messages' => array( 'collapsible-expand', 'collapsible-collapse' ),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'jquery.mobile' => array(
+		'scripts' => 'resources/lib/jquery.mobile/jquery.mobile.js',
+		'styles' => 'resources/lib/jquery.mobile/jquery.mobile.css',
+	),
 	'jquery.mockjax' => array(
 		'scripts' => 'resources/lib/jquery/jquery.mockjax.js',
 	),
