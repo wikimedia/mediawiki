@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource loader module for user tokens.
+ * ResourceLoader module for user tokens.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource loader module for providing language names.
+ * ResourceLoader module for providing language names.
  *
  * By default these names will be autonyms however other extensions may
  * provided language names in the context language (e.g. cldr extension)

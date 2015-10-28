@@ -1,6 +1,6 @@
 <?php
 /**
- * Context for resource loader modules.
+ * Context for ResourceLoader modules.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

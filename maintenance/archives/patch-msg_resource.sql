@@ -1,4 +1,4 @@
--- Table for storing JSON message blobs for the resource loader
+-- Table for storing JSON message blobs for ResourceLoader
 CREATE TABLE /*_*/msg_resource (
   -- Resource name
   mr_resource varbinary(255) NOT NULL,

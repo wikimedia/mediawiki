@@ -149,9 +149,6 @@ class WfTimestampTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * The Resource Loader uses wfTimestamp() to convert timestamps
-	 * from If-Modified-Since header. Thus it must be able to parse all
-	 * rfc2616 date formats
 	 * @see http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.3.1
 	 * @dataProvider provideHttpDates
 	 */

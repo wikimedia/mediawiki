@@ -1,6 +1,6 @@
 <?php
 /**
- * Abstraction for resource loader modules which pull from wiki pages.
+ * Abstraction for ResourceLoader modules that pull from wiki pages.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
  */
 
 /**
- * Abstraction for resource loader modules which pull from wiki pages
+ * Abstraction for ResourceLoader modules which pull from wiki pages
  *
  * This can only be used for wiki pages in the MediaWiki and User namespaces,
  * because of its dependence on the functionality of Title::isCssJsSubpage.

@@ -1,6 +1,6 @@
 <?php
 /**
- * Module for resource loader initialization.
+ * Module for ResourceLoader initialization.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

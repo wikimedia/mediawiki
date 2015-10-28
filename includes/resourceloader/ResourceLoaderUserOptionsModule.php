@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource loader module for user preference customizations.
+ * ResourceLoader module for user preference customizations.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

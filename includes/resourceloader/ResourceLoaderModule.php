@@ -1,6 +1,6 @@
 <?php
 /**
- * Abstraction for resource loader modules.
+ * Abstraction for ResourceLoader modules.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
  */
 
 /**
- * Abstraction for resource loader modules, with name registration and maxage functionality.
+ * Abstraction for ResourceLoader modules, with name registration and maxage functionality.
  */
 abstract class ResourceLoaderModule {
 	# Type of resource
