@@ -5163,29 +5163,16 @@ class Parser {
 							$value = $this->stripAltText( $value, $holders );
 							break;
 						case 'link':
-							$chars = self::EXT_LINK_URL_CLASS;
-							$addr = self::EXT_LINK_ADDR;
-							$prots = $this->mUrlProtocols;
-							if ( $value === '' ) {
-								$paramName = 'no-link';
-								$value = true;
+							list( $paramName, $value ) = $this->parseLinkParameter( $value );
+							if ( $paramName ) {
 								$validated = true;
-							} elseif ( preg_match( "/^((?i)$prots)/", $value ) ) {
-								if ( preg_match( "/^((?i)$prots)$addr$chars*$/u", $value, $m ) ) {
-									$paramName = 'link-url';
-									$this->mOutput->addExternalLink( $value );
+								if ( $paramName === 'no-link' ) {
+									$value = true;
+								}
+								if ( $paramName === 'link-url' ) {
 									if ( $this->mOptions->getExternalLinkTarget() ) {
 										$params[$type]['link-target'] = $this->mOptions->getExternalLinkTarget();
 									}
-									$validated = true;
-								}
-							} else {
-								$linkTitle = Title::newFromText( $value );
-								if ( $linkTitle ) {
-									$paramName = 'link-title';
-									$value = $linkTitle;
-									$this->mOutput->addLink( $linkTitle );
-									$validated = true;
 								}
 							}
 							break;
@@ -5278,6 +5265,47 @@ class Parser {
 		}
 
 		return $ret;
+	}
+
+	/**
+	 * Parse the value of 'link' parameter in image syntax (`[[File:Foo.jpg|link=<val>]]`).
+	 *
+	 * Adds an entry to appropriate link tables.
+	 *
+	 * @return array `array( type, target )`, where:
+	 *   - `type` is one of:
+	 *     - `null`: Given value is not a valid link target, use default
+	 *     - `'no-link'`: Given value is empty, do not generate a link
+	 *     - `'link-url'`: Given value is a valid external link
+	 *     - `'link-title'`: Given value is a valid internal link
+	 *   - `target` is:
+	 *     - When `type` is `null` or `'no-link'`: `false`
+	 *     - When `type` is `'link-url'`: URL string corresponding to given value
+	 *     - When `type` is `'link-title'`: Title object corresponding to given value
+	 */
+	public function parseLinkParameter( $value ) {
+		$chars = self::EXT_LINK_URL_CLASS;
+		$addr = self::EXT_LINK_ADDR;
+		$prots = $this->mUrlProtocols;
+		$type = null;
+		$target = false;
+		if ( $value === '' ) {
+			$type = 'no-link';
+		} elseif ( preg_match( "/^((?i)$prots)/", $value ) ) {
+			if ( preg_match( "/^((?i)$prots)$addr$chars*$/u", $value, $m ) ) {
+				$this->mOutput->addExternalLink( $value );
+				$type = 'link-url';
+				$target = $value;
+			}
+		} else {
+			$linkTitle = Title::newFromText( $value );
+			if ( $linkTitle ) {
+				$this->mOutput->addLink( $linkTitle );
+				$type = 'link-title';
+				$target = $linkTitle;
+			}
+		}
+		return array( $type, $target );
 	}
 
 	/**
