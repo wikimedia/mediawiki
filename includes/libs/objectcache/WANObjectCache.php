@@ -81,12 +81,10 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 	/** Max time expected to pass between delete() and DB commit finishing */
 	const MAX_COMMIT_DELAY = 3;
-	/** Max replication lag before applying TTL_LAGGED to set() */
-	const MAX_REPLICA_LAG = 5;
-	/** Max time since snapshot transaction start to avoid no-op of set() */
-	const MAX_SNAPSHOT_LAG = 5;
+	/** Max replication+snapshot lag before applying TTL_LAGGED or disallowing set() */
+	const MAX_READ_LAG = 7;
 	/** Seconds to tombstone keys on delete() */
-	const HOLDOFF_TTL = 14; // MAX_COMMIT_DELAY + MAX_REPLICA_LAG + MAX_SNAPSHOT_LAG + 1
+	const HOLDOFF_TTL = 11; // MAX_COMMIT_DELAY + MAX_READ_LAG + 1
 
 	/** Seconds to keep dependency purge keys around */
 	const CHECK_KEY_TTL = self::TTL_YEAR;
@@ -327,27 +325,34 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : self::TSE_NONE;
 		$age = isset( $opts['since'] ) ? max( 0, microtime( true ) - $opts['since'] ) : 0;
 		$lag = isset( $opts['lag'] ) ? $opts['lag'] : 0;
-
+		// Disallow set() if the source data is uncommitted as it might get rolled back
 		if ( !empty( $opts['pending'] ) ) {
 			$this->logger->info( "Rejected set() for $key due to pending writes." );
 
 			return true; // no-op the write for being unsafe
 		}
-
-		if ( $lag > self::MAX_REPLICA_LAG ) {
-			// Too much lag detected; lower TTL so it converges faster
-			$ttl = $ttl ? min( $ttl, self::TTL_LAGGED ) : self::TTL_LAGGED;
-			$this->logger->warning( "Lowered set() TTL for $key due to replication lag." );
-		}
-
-		if ( $age > self::MAX_SNAPSHOT_LAG ) {
+		// Check if there's a risk of writing stale data after the purge tombstone expired
+		if ( ( $lag + $age ) > self::MAX_READ_LAG ) {
 			if ( $lockTSE >= 0 ) {
+				// Focus on avoiding stampedes; stash the value with a low TTL
 				$tempTTL = max( 1, (int)$lockTSE ); // set() expects seconds
 				$this->cache->set( self::STASH_KEY_PREFIX . $key, $value, $tempTTL );
 			}
-			$this->logger->warning( "Rejected set() for $key due to snapshot lag." );
+			// Case A: any long-running transaction; ignore this set()
+			if ( $age > self::MAX_READ_LAG ) {
+				$this->logger->warning( "Rejected set() for $key due to snapshot lag." );
 
-			return true; // no-op the write for being unsafe
+				return true; // no-op the write for being unsafe
+			// Case B: replication lag is high; lower TTL instead of ignoring all set()s
+			} elseif ( $lag > self::MAX_READ_LAG ) {
+				$ttl = $ttl ? min( $ttl, self::TTL_LAGGED ) : self::TTL_LAGGED;
+				$this->logger->warning( "Lowered set() TTL for $key due to replication lag." );
+			// Case C: medium length request during medium lag; ignore this set()
+			} else {
+				$this->logger->warning( "Rejected set() for $key due to high read lag." );
+
+				return true; // no-op the write for being unsafe
+			}
 		}
 
 		$wrapped = $this->wrap( $value, $ttl );
