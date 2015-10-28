@@ -51,7 +51,8 @@
 			"Xavier Dengra",
 			"Pginer",
 			"Eduardo Martinez",
-			"Matma Rex"
+			"Matma Rex",
+			"KRLS"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -3239,11 +3240,11 @@
 	"revdelete-uname-unhid": "ha revelat un nom d'usuari que era ocult",
 	"revdelete-restricted": "ha aplicat restriccions als administradors",
 	"revdelete-unrestricted": "ha tret les restriccions als administradors",
-	"logentry-block-block": "$1 {{GENDER:$2|ha estat blocat|ha estat blocada}} {{GENDER:$4|$3}} per un període de temps de $5 $6",
+	"logentry-block-block": "$1 {{GENDER:$2|ha blocat}} {{GENDER:$4|$3}} per un temps de $5 $6",
 	"logentry-block-unblock": "$1 {{GENDER:$2|va desblocar}} {{GENDER:$4|$3}}",
-	"logentry-block-reblock": "$1 {{GENDER:$2|ha canviat}} la configuració del blocatge de {{GENDER:$4|$3}} per un període de temps de $5 $6",
-	"logentry-suppress-block": "$1 {{GENDER:$2|ha blocat}} {{GENDER:$4|$3}} per un període de temps de $5 $6",
-	"logentry-suppress-reblock": "$1 {{GENDER:$2|ha canviat}} la configuració de blocatge de {{GENDER:$4|$3}} per un període de temps de $5 $6",
+	"logentry-block-reblock": "$1 {{GENDER:$2|ha canviat}} la configuració del blocatge de {{GENDER:$4|$3}} per un temps de $5 $6",
+	"logentry-suppress-block": "$1 {{GENDER:$2|ha blocat}} {{GENDER:$4|$3}} per un temps de $5 $6",
+	"logentry-suppress-reblock": "$1 {{GENDER:$2|ha canviat}} la configuració de blocatge de {{GENDER:$4|$3}} per un temps de $5 $6",
 	"logentry-import-upload": "$1 {{GENDER:$2|va importar}} $3 a través de càrrega de fitxer",
 	"logentry-import-interwiki": "$1 {{GENDER:$2|va importar}} $3 d'un altre wiki",
 	"logentry-merge-merge": "$1 {{GENDER:$2|ha fusionat}} $3 en $4 (revisions fins a $5)",

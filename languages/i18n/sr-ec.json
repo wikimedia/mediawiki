@@ -716,7 +716,7 @@
 	"parser-template-recursion-depth-warning": "Дубина укључивања шаблона је прекорачена ($1)",
 	"language-converter-depth-warning": "Прекорачена је граница дубине језичког претварача ($1)",
 	"node-count-exceeded-category": "Странице у којима је прекорачен број чворова",
-	"node-count-exceeded-category-desc": "Страница је прекорачила број чворова.",
+	"node-count-exceeded-category-desc": "Странице са превише чворова (node).",
 	"node-count-exceeded-warning": "Страница у којој је прекорачен број чворова",
 	"expansion-depth-exceeded-category": "Странице у којима је прекорачена дубина проширења",
 	"expansion-depth-exceeded-category-desc": "Страница је прекорачила највећу дубину проширења.",
