@@ -92,6 +92,7 @@ changes to languages because of Bugzilla reports.
 * ProfilerOutputUdp was removed. Note that there is a ProfilerOutputStats class.
 * WikiPage::doDeleteArticleReal() and WikiPage::doDeleteArticle() now
   ignore the 2nd and 3rd arguments (formerly $id and $commit).
+* Removed "loaderScripts" option from ResourceLoaderFileModule class.
 
 == Compatibility ==
 

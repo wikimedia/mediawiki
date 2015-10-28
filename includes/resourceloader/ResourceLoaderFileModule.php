@@ -74,15 +74,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected $debugScripts = array();
 
 	/**
-	 * @var array List of paths to JavaScript files to include in the startup module
-	 * @par Usage:
-	 * @code
-	 * array( [file-path], [file-path], ... )
-	 * @endcode
-	 */
-	protected $loaderScripts = array();
-
-	/**
 	 * @var array List of paths to CSS files to always include
 	 * @par Usage:
 	 * @code
@@ -195,8 +186,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *         ),
 	 *         // Scripts to include in debug contexts
 	 *         'debugScripts' => [file path string or array of file path strings],
-	 *         // Scripts to include in the startup module
-	 *         'loaderScripts' => [file path string or array of file path strings],
 	 *         // Modules which must be loaded before this module
 	 *         'dependencies' => [module name string or array of module name strings],
 	 *         'templates' => array(
@@ -239,7 +228,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				// Lists of file paths
 				case 'scripts':
 				case 'debugScripts':
-				case 'loaderScripts':
 				case 'styles':
 					$this->{$member} = (array)$option;
 					break;
@@ -391,18 +379,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get loader script.
-	 *
-	 * @return string|bool JavaScript code to be added to startup module
-	 */
-	public function getLoaderScript() {
-		if ( count( $this->loaderScripts ) === 0 ) {
-			return false;
-		}
-		return $this->readScriptFiles( $this->loaderScripts );
-	}
-
-	/**
 	 * Get all styles for a given context.
 	 *
 	 * @param ResourceLoaderContext $context
@@ -551,8 +527,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$this->templates,
 			$context->getDebug() ? $this->debugScripts : array(),
 			$this->getLanguageScripts( $context->getLanguage() ),
-			self::tryForKey( $this->skinScripts, $context->getSkin(), 'default' ),
-			$this->loaderScripts
+			self::tryForKey( $this->skinScripts, $context->getSkin(), 'default' )
 		);
 		if ( $this->skipFunction ) {
 			$files[] = $this->skipFunction;
@@ -592,7 +567,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			// - position (only used by OutputPage)
 			'scripts',
 			'debugScripts',
-			'loaderScripts',
 			'styles',
 			'languageScripts',
 			'skinScripts',
