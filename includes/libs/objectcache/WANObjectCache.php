@@ -406,13 +406,16 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *     $dbw->commit(); // end of request
 	 * @endcode
 	 *
-	 * If called twice on the same key, then the last hold-off TTL takes
-	 * precedence. For idempotence, the $ttl should not vary for different
-	 * delete() calls on the same key. Also note that lowering $ttl reduces
-	 * the effective range of the 'lockTSE' parameter to getWithSetCallback().
+	 * The $ttl parameter can be used when purging values that have not actually changed
+	 * recently. For example, a cleanup script to purge cache entries does not really need
+	 * a hold-off period, so it can use the value 1. Likewise for user-requested purge.
+	 * Note that $ttl limits the effective range of 'lockTSE' for getWithSetCallback().
+	 *
+	 * If called twice on the same key, then the last hold-off TTL takes precedence. For
+	 * idempotence, the $ttl should not vary for different delete() calls on the same key.
 	 *
 	 * @param string $key Cache key
-	 * @param integer $ttl How long to block writes to the key [seconds]
+	 * @param integer $ttl Tombstone TTL; Default: WANObjectCache::HOLDOFF_TTL
 	 * @return bool True if the item was purged or not found, false on failure
 	 */
 	final public function delete( $key, $ttl = self::HOLDOFF_TTL ) {
@@ -605,7 +608,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *         // Key to store the cached value under
 	 *         $cache->makeKey( 'cat-state', $cat->getId() ),
 	 *         // Time-to-live (seconds)
-	 *         900,
+	 *         $cache::TTL_HOUR,
 	 *         // Function that derives the new key value
 	 *         function ( $oldValue, &$ttl, array &$setOpts ) {
 	 *             // Determine new value from the DB
