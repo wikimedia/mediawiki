@@ -384,8 +384,6 @@ class SpecialSearch extends SpecialPage {
 				$out->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults(
 						SearchResultSet::SECONDARY_RESULTS ), $term ) );
 			}
-
-			$textMatches->free();
 		}
 
 		$hasOtherResults = $textMatches &&
@@ -416,6 +414,10 @@ class SpecialSearch extends SpecialPage {
 			}
 		}
 
+		if ( $textMatches ) {
+			$textMatches->free();
+		}
+
 		$out->addHTML( '<div class="visualClear"></div>' );
 
 		if ( $prevnext ) {
@@ -432,6 +434,7 @@ class SpecialSearch extends SpecialPage {
 	 * Produce wiki header for interwiki results
 	 * @param string $interwiki Interwiki name
 	 * @param SearchResultSet $interwikiResult The result set
+	 * @return string
 	 */
 	protected function interwikiHeader( $interwiki, $interwikiResult ) {
 		// TODO: we need to figure out how to name wikis correctly
