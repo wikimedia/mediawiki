@@ -327,7 +327,7 @@ class Category {
 			array( 'LOCK IN SHARE MODE' )
 		);
 
-		if ( $this->mId ) {
+		if ( $this->mID ) {
 			# The category row already exists, so do a plain UPDATE instead
 			# of INSERT...ON DUPLICATE KEY UPDATE to avoid creating a gap
 			# in the cat_id sequence. The row may or may not be "affected".
