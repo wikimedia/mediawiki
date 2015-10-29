@@ -800,7 +800,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'subscribers' => array_map( array( 'SpecialVersion', 'arrayToString' ), $subscribers ),
 			);
 
-			ApiResult::setArrayType( $arr['subscribers'], 'BCarray' );
+			ApiResult::setArrayType( $arr['subscribers'], 'array' );
 			ApiResult::setIndexedTagName( $arr['subscribers'], 's' );
 			$data[] = $arr;
 		}
