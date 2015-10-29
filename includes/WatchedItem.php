@@ -160,7 +160,7 @@ class WatchedItem {
 		# Pages and their talk pages are considered equivalent for watching;
 		# remember that talk namespaces are numbered as page namespace+1.
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
 		$row = $dbr->selectRow( 'watchlist', 'wl_notificationtimestamp',
 			$this->dbCond(), __METHOD__ );
 
