@@ -12,7 +12,7 @@ class MemcachedBagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers MemcachedBagOStuff::makeKeyInternal
+	 * @covers MemcachedBagOStuff::makeKey
 	 */
 	public function testKeyNormalization() {
 		$this->assertEquals(
@@ -65,6 +65,41 @@ class MemcachedBagOStuffTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			'test:long_key_part_hashed:#0244f7b1811d982dd932dd7de01465ac',
 			$this->cache->makeKey( 'long_key_part_hashed', str_repeat( 'y', 500 ) )
+		);
+	}
+
+	/**
+	 * @dataProvider validKeyProvider
+	 */
+	public function testValidateKeyEncoding( $key ) {
+		$this->assertSame( $key, $this->cache->validateKeyEncoding( $key ) );
+	}
+
+	public function validKeyProvider() {
+		return array(
+			'empty' => array( '' ),
+			'digits' => array( '09' ),
+			'letters' => array( 'AZaz' ),
+			'ASCII special characters' => array( '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~' ),
+		);
+	}
+
+	/**
+	 * @dataProvider invalidKeyProvider
+	 */
+	public function testValidateKeyEncodingThrowsException( $key ) {
+		$this->setExpectedException( 'Exception' );
+		$this->cache->validateKeyEncoding( $key );
+	}
+
+	public function invalidKeyProvider() {
+		return array(
+			array( "\x00" ),
+			array( ' ' ),
+			array( "\x1F" ),
+			array( "\x7F" ),
+			array( "\x80" ),
+			array( "\xFF" ),
 		);
 	}
 }
