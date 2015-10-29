@@ -574,7 +574,7 @@ class MessageCache {
 
 		foreach ( $codes as $code ) {
 			$sidebarKey = wfMemcKey( 'sidebar', $code );
-			$this->wanCache->delete( $sidebarKey, 5 );
+			$this->wanCache->delete( $sidebarKey );
 		}
 
 		// Update the message in the message blob store
