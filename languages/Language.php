@@ -207,10 +207,7 @@ class Language {
 	 * @return Language
 	 */
 	protected static function newFromCode( $code ) {
-		// Protect against path traversal below
-		if ( !Language::isValidCode( $code )
-			|| strcspn( $code, ":/\\\000" ) !== strlen( $code )
-		) {
+		if ( !Language::isValidCode( $code ) ) {
 			throw new MWException( "Invalid language code \"$code\"" );
 		}
 
@@ -224,7 +221,6 @@ class Language {
 
 		// Check if there is a language class for the code
 		$class = self::classFromCode( $code );
-		self::preloadLanguageClass( $class );
 		if ( class_exists( $class ) ) {
 			$lang = new $class;
 			return $lang;
@@ -238,7 +234,6 @@ class Language {
 			}
 
 			$class = self::classFromCode( $fallbackCode );
-			self::preloadLanguageClass( $class );
 			if ( class_exists( $class ) ) {
 				$lang = Language::newFromCode( $fallbackCode );
 				$lang->setCode( $code );
@@ -341,17 +336,16 @@ class Language {
 	 */
 	public static function isValidCode( $code ) {
 		static $cache = array();
-		if ( isset( $cache[$code] ) ) {
-			return $cache[$code];
+		if ( !isset( $cache[$code] ) ) {
+			// People think language codes are html safe, so enforce it.
+			// Ideally we should only allow a-zA-Z0-9-
+			// but, .+ and other chars are often used for {{int:}} hacks
+			// see bugs 37564, 37587, 36938
+			$cache[$code] =
+				// Protect against path traversal
+				strcspn( $code, ":/\\\000&<>'\"" ) === strlen( $code )
+				&& !preg_match( MediaWikiTitleCodec::getTitleInvalidRegex(), $code );
 		}
-		// People think language codes are html safe, so enforce it.
-		// Ideally we should only allow a-zA-Z0-9-
-		// but, .+ and other chars are often used for {{int:}} hacks
-		// see bugs 37564, 37587, 36938
-		$cache[$code] =
-			strcspn( $code, ":/\\\000&<>'\"" ) === strlen( $code )
-			&& !preg_match( MediaWikiTitleCodec::getTitleInvalidRegex(), $code );
-
 		return $cache[$code];
 	}
 
@@ -409,35 +403,6 @@ class Language {
 		}
 
 		return false;
-	}
-
-	/**
-	 * @param string $code
-	 * @return string Name of the language class
-	 */
-	public static function classFromCode( $code ) {
-		if ( $code == 'en' ) {
-			return 'Language';
-		} else {
-			return 'Language' . str_replace( '-', '_', ucfirst( $code ) );
-		}
-	}
-
-	/**
-	 * Includes language class files
-	 *
-	 * @param string $class Name of the language class
-	 */
-	public static function preloadLanguageClass( $class ) {
-		global $IP;
-
-		if ( $class === 'Language' ) {
-			return;
-		}
-
-		if ( file_exists( "$IP/languages/classes/$class.php" ) ) {
-			include_once "$IP/languages/classes/$class.php";
-		}
 	}
 
 	/**
@@ -4408,22 +4373,6 @@ class Language {
 	}
 
 	/**
-	 * Get the name of a file for a certain language code
-	 * @param string $prefix Prepend this to the filename
-	 * @param string $code Language code
-	 * @param string $suffix Append this to the filename
-	 * @throws MWException
-	 * @return string $prefix . $mangledCode . $suffix
-	 */
-	public static function getFileName( $prefix = 'Language', $code, $suffix = '.php' ) {
-		if ( !self::isValidBuiltInCode( $code ) ) {
-			throw new MWException( "Invalid language code \"$code\"" );
-		}
-
-		return $prefix . str_replace( '-', '_', ucfirst( $code ) ) . $suffix;
-	}
-
-	/**
 	 * Get the language code from a file name. Inverse of getFileName()
 	 * @param string $filename $prefix . $languageCode . $suffix
 	 * @param string $prefix Prefix before the language code
@@ -4438,6 +4387,34 @@ class Language {
 			return false;
 		}
 		return str_replace( '_', '-', strtolower( $m[1] ) );
+	}
+
+	/**
+	 * @param string $code
+	 * @return string Name of the language class
+	 */
+	public static function classFromCode( $code ) {
+		if ( $code == 'en' ) {
+			return 'Language';
+		} else {
+			return 'Language' . str_replace( '-', '_', ucfirst( $code ) );
+		}
+	}
+
+	/**
+	 * Get the name of a file for a certain language code
+	 * @param string $prefix Prepend this to the filename
+	 * @param string $code Language code
+	 * @param string $suffix Append this to the filename
+	 * @throws MWException
+	 * @return string $prefix . $mangledCode . $suffix
+	 */
+	public static function getFileName( $prefix = 'Language', $code, $suffix = '.php' ) {
+		if ( !self::isValidBuiltInCode( $code ) ) {
+			throw new MWException( "Invalid language code \"$code\"" );
+		}
+
+		return $prefix . str_replace( '-', '_', ucfirst( $code ) ) . $suffix;
 	}
 
 	/**
@@ -4464,15 +4441,6 @@ class Language {
 		}
 
 		return "$IP/languages/i18n/$code.json";
-	}
-
-	/**
-	 * @param string $code
-	 * @return string
-	 */
-	public static function getClassFileName( $code ) {
-		global $IP;
-		return self::getFileName( "$IP/languages/classes/Language", $code, '.php' );
 	}
 
 	/**
