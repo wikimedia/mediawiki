@@ -20,6 +20,7 @@
  * @file
  * @ingroup Cache
  */
+use Wikimedia\Assert\Assert;
 
 /**
  * This is a test of the interface, mainly. It stores things in an associative
@@ -28,18 +29,28 @@
  * @ingroup Cache
  */
 class HashBagOStuff extends BagOStuff {
-	/** @var array */
-	protected $bag;
+	/** @var mixed[] */
+	protected $bag = array();
+	/** @var integer Max entries allowed */
+	protected $maxCacheKeys;
 
+	const KEY_VAL = 0;
+	const KEY_EXP = 1;
+
+	/**
+	 * @param array $params Additional parameters include:
+	 *   - maxKeys : only allow this many keys (using oldest-first eviction)
+	 */
 	function __construct( $params = array() ) {
 		parent::__construct( $params );
-		$this->bag = array();
+
+		$this->maxCacheKeys = isset( $params['maxKeys'] ) ? $params['maxKeys'] : INF;
+		Assert::parameter( $this->maxCacheKeys > 0, 'maxKeys', 'must be above zero' );
 	}
 
 	protected function expire( $key ) {
-		$et = $this->bag[$key][1];
-
-		if ( ( $et == 0 ) || ( $et > time() ) ) {
+		$et = $this->bag[$key][self::KEY_EXP];
+		if ( $et == 0 || $et > time() ) {
 			return false;
 		}
 
@@ -57,15 +68,25 @@ class HashBagOStuff extends BagOStuff {
 			return false;
 		}
 
-		return $this->bag[$key][0];
+		return $this->bag[$key][self::KEY_VAL];
 	}
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
-		$this->bag[$key] = array( $value, $this->convertExpiry( $exptime ) );
+		$this->bag[$key] = array(
+			self::KEY_VAL => $value,
+			self::KEY_EXP => $this->convertExpiry( $exptime )
+		);
+
+		if ( count( $this->bag ) > $this->maxCacheKeys ) {
+			reset( $this->bag );
+			$evictKey = key( $this->bag );
+			unset( $this->bag[$evictKey] );
+		}
+
 		return true;
 	}
 
-	function delete( $key ) {
+	public function delete( $key ) {
 		unset( $this->bag[$key] );
 
 		return true;

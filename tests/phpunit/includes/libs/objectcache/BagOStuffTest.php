@@ -240,4 +240,17 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->assertType( 'ScopedCallback', $value1, 'First reentrant call returned lock' );
 		$this->assertType( 'ScopedCallback', $value1, 'Second reentrant call returned lock' );
 	}
+
+	public function testHashBagEviction() {
+		$cache = new HashBagOStuff( array( 'maxKeys' => 10 ) );
+		for ( $i=0; $i<10; ++$i ) {
+			$cache->set( "key$i", 1 );
+			$this->assertEquals( 1, $cache->get( "key$i" ) );
+		}
+		for ( $i=10; $i<20; ++$i ) {
+			$cache->set( "key$i", 1 );
+			$this->assertEquals( 1, $cache->get( "key$i" ) );
+			$this->assertEquals( false, $cache->get( "key" . $i - 10 ) );
+		}
+	}
 }
