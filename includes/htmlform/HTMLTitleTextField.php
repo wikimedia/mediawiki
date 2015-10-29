@@ -80,4 +80,12 @@ class HTMLTitleTextField extends HTMLTextField {
 		$params['relative'] = $this->mParams['relative'];
 		return new TitleInputWidget( $params );
 	}
+
+	public function getInputHtml( $value ) {
+		// add mw-searchInput class to enable search suggestions for non-OOUI, too
+		$this->mClass .= 'mw-searchInput';
+
+		// return the HTMLTextField html
+		return call_user_func_array( array( 'parent', 'getInputHtml' ), array( $value ) );
+	}
 }
