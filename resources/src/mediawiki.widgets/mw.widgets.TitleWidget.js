@@ -180,7 +180,9 @@
 				redirect: suggestionPage.redirect !== undefined,
 				disambiguation: OO.getProp( suggestionPage, 'pageprops', 'disambiguation' ) !== undefined,
 				imageUrl: OO.getProp( suggestionPage, 'thumbnail', 'source' ),
-				description: OO.getProp( suggestionPage, 'terms', 'description' )
+				description: OO.getProp( suggestionPage, 'terms', 'description' ),
+				// sort index
+				index: suggestionPage.index
 			};
 
 			// Throw away pages from wrong namespaces. This can happen when 'showRedirectTargets' is true
@@ -200,6 +202,10 @@
 				titles.push( redirects[ i ] );
 			}
 		}
+
+		titles.sort( function ( a, b ) {
+			return pageData[ a ].index - pageData[ b ].index;
+		} );
 
 		// If not found, run value through mw.Title to avoid treating a match as a
 		// mismatch where normalisation would make them matching (bug 48476)
