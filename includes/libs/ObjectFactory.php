@@ -128,8 +128,11 @@ class ObjectFactory {
 	 * @return mixed Constructed instance
 	 */
 	public static function constructClassInstance( $clazz, $args ) {
+		// args are sometimes specified in a 'name' => $value format for readability
+		$args = array_values( $args );
+
 		// TODO: when PHP min version supported is >=5.6.0 replace this
-		// function body with `return new $clazz( ... $args );`.
+		// with `return new $clazz( ... $args );`.
 		$obj = null;
 		switch ( count( $args ) ) {
 			case 0:
