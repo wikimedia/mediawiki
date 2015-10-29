@@ -40,9 +40,9 @@ class HTMLRadioField extends HTMLFormField {
 
 	function getInputOOUI( $value ) {
 		$options = array();
-		foreach ( $this->getOptions() as $label => $value ) {
+		foreach ( $this->getOptions() as $label => $optValue ) {
 			$options[] = array(
-				'data' => $value,
+				'data' => $optValue,
 				'label' => $this->mOptionsLabelsNotFromMessage ? new OOUI\HtmlSnippet( $label ) : $label,
 			);
 		}
