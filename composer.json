@@ -26,6 +26,7 @@
 		"php": ">=5.3.3",
 		"psr/log": "1.0.0",
 		"wikimedia/assert": "0.2.2",
+		"wikimedia/base-convert": "1.0.1",
 		"wikimedia/cdb": "1.3.0",
 		"wikimedia/cldr-plural-rule-parser": "1.0.0",
 		"wikimedia/composer-merge-plugin": "1.2.1",
