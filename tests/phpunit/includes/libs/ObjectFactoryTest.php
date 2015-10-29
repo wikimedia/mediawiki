@@ -108,6 +108,14 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 			'11 args' => array( array( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ) ),
 		);
 	}
+
+	public function testNamedArgs() {
+		$args = array( 'foo' => 1, 'bar' => 2, 'baz' => 3 );
+		$obj = ObjectFactory::constructClassInstance(
+			'ObjectFactoryTestFixture', $args
+		);
+		$this->assertSame( array( 1, 2, 3 ), $obj->args );
+	}
 }
 
 class ObjectFactoryTestFixture {
