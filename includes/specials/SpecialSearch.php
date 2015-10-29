@@ -387,7 +387,8 @@ class SpecialSearch extends SpecialPage {
 			$textMatches->free();
 		}
 
-		$hasOtherResults = $textMatches->hasInterwikiResults( SearchResultSet::INLINE_RESULTS );
+		$hasOtherResults = $textMatches &&
+			$textMatches->hasInterwikiResults( SearchResultSet::INLINE_RESULTS );
 
 		if ( $num === 0 ) {
 			if ( $textStatus ) {
