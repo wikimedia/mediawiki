@@ -954,7 +954,7 @@ class MagicWordArray {
 			$matches = array();
 			$matched = preg_match_all( $regex, $text, $matches, PREG_SET_ORDER );
 			if ( $matched === false ) {
-				throw new Exception( __METHOD__ . ': preg_match_all returned false' );
+				throw new Exception( __METHOD__ . ': preg_match_all returned false with error code ' . preg_last_error() );
 			}
 			if ( $matched ) {
 				foreach ( $matches as $m ) {
@@ -966,7 +966,7 @@ class MagicWordArray {
 			if ( $replaced !== null ) {
 				$text = $replaced;
 			} else {
-				throw new Exception( __METHOD__ . ': preg_replace returned null' );
+				throw new Exception( __METHOD__ . ': preg_replace returned null with error code ' . preg_last_error() );
 			}
 		}
 		return $found;
