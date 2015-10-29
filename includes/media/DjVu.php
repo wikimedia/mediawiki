@@ -309,7 +309,7 @@ class DjVuHandler extends ImageHandler {
 			// Set to false rather than null to avoid further attempts
 			$image->dejaMetaTree = false;
 			$image->djvuTextTree = false;
-			$tree = new SimpleXMLElement( $metadata );
+			$tree = new SimpleXMLElement( $metadata, LIBXML_PARSEHUGE );
 			if ( $tree->getName() == 'mw-djvu' ) {
 				/** @var SimpleXMLElement $b */
 				foreach ( $tree->children() as $b ) {
