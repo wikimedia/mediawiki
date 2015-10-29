@@ -109,12 +109,14 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
 	public function testNamedArgs() {
 		$args = array( 'foo' => 1, 'bar' => 2, 'baz' => 3 );
 		$obj = ObjectFactory::constructClassInstance(
 			'ObjectFactoryTestFixture', $args
 		);
-		$this->assertSame( array( 1, 2, 3 ), $obj->args );
 	}
 }
 

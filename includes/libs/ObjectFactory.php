@@ -128,8 +128,10 @@ class ObjectFactory {
 	 * @return mixed Constructed instance
 	 */
 	public static function constructClassInstance( $clazz, $args ) {
-		// args are sometimes specified in a 'name' => $value format for readability
-		$args = array_values( $args );
+		// $args should be a non-associative array; show nice error if that's not the case
+		if ( $args && array_keys( $args ) !== range( 0, count( $args ) - 1 ) ) {
+			throw new InvalidArgumentException( __METHOD__ . ': $args cannot be an associative array' );
+		}
 
 		// TODO: when PHP min version supported is >=5.6.0 replace this
 		// with `return new $clazz( ... $args );`.
