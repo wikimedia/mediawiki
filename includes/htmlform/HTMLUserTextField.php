@@ -44,4 +44,13 @@ class HTMLUserTextField extends HTMLTextField {
 
 		return new UserInputWidget( $params );
 	}
+
+	public function getInputHtml( $value ) {
+		// add the required module and css class for user suggestions in non-OOUI mode
+		$this->mParent->getOutput()->addModules( 'mediawiki.userSuggest' );
+		$this->mClass = 'mw-autocomplete-user';
+
+		// return parent html
+		return call_user_func_array( array( 'parent', 'getInputHtml' ), array( $value ) );
+	}
 }
