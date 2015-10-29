@@ -131,6 +131,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 	const PURGE_VAL_PREFIX = 'PURGED:';
 
+	const MAX_PC_KEYS = 1000; // max keys to process cache
+
 	/**
 	 * @param array $params
 	 *   - cache   : BagOStuff object
@@ -142,7 +144,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$this->cache = $params['cache'];
 		$this->pool = $params['pool'];
 		$this->relayer = $params['relayer'];
-		$this->procCache = new HashBagOStuff();
+		$this->procCache = new HashBagOStuff( array( 'maxKeys' => self::MAX_PC_KEYS ) );
 		$this->setLogger( isset( $params['logger'] ) ? $params['logger'] : new NullLogger() );
 	}
 
