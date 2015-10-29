@@ -209,7 +209,7 @@ class Language {
 	protected static function newFromCode( $code ) {
 		// Protect against path traversal below
 		if ( !Language::isValidCode( $code )
-			|| strcspn( $code, ":/\\\000" ) !== strlen( $code )
+			|| strcspn( $code, ":/\\\000&<>'\"" ) !== strlen( $code )
 		) {
 			throw new MWException( "Invalid language code \"$code\"" );
 		}
@@ -409,35 +409,6 @@ class Language {
 		}
 
 		return false;
-	}
-
-	/**
-	 * @param string $code
-	 * @return string Name of the language class
-	 */
-	public static function classFromCode( $code ) {
-		if ( $code == 'en' ) {
-			return 'Language';
-		} else {
-			return 'Language' . str_replace( '-', '_', ucfirst( $code ) );
-		}
-	}
-
-	/**
-	 * Includes language class files
-	 *
-	 * @param string $class Name of the language class
-	 */
-	public static function preloadLanguageClass( $class ) {
-		global $IP;
-
-		if ( $class === 'Language' ) {
-			return;
-		}
-
-		if ( file_exists( "$IP/languages/classes/$class.php" ) ) {
-			include_once "$IP/languages/classes/$class.php";
-		}
 	}
 
 	/**
@@ -4408,22 +4379,6 @@ class Language {
 	}
 
 	/**
-	 * Get the name of a file for a certain language code
-	 * @param string $prefix Prepend this to the filename
-	 * @param string $code Language code
-	 * @param string $suffix Append this to the filename
-	 * @throws MWException
-	 * @return string $prefix . $mangledCode . $suffix
-	 */
-	public static function getFileName( $prefix = 'Language', $code, $suffix = '.php' ) {
-		if ( !self::isValidBuiltInCode( $code ) ) {
-			throw new MWException( "Invalid language code \"$code\"" );
-		}
-
-		return $prefix . str_replace( '-', '_', ucfirst( $code ) ) . $suffix;
-	}
-
-	/**
 	 * Get the language code from a file name. Inverse of getFileName()
 	 * @param string $filename $prefix . $languageCode . $suffix
 	 * @param string $prefix Prefix before the language code
@@ -4442,6 +4397,51 @@ class Language {
 
 	/**
 	 * @param string $code
+	 * @return string Name of the language class
+	 */
+	public static function classFromCode( $code ) {
+		if ( $code == 'en' ) {
+			return 'Language';
+		} else {
+			return 'Language' . str_replace( '-', '_', ucfirst( $code ) );
+		}
+	}
+
+	/**
+	 * Get the name of a file for a certain language code
+	 * @param string $prefix Prepend this to the filename
+	 * @param string $code Language code
+	 * @param string $suffix Append this to the filename
+	 * @throws MWException
+	 * @return string $prefix . $mangledCode . $suffix
+	 */
+	public static function getFileName( $prefix = 'Language', $code, $suffix = '.php' ) {
+		if ( !self::isValidBuiltInCode( $code ) ) {
+			throw new MWException( "Invalid language code \"$code\"" );
+		}
+
+		return $prefix . str_replace( '-', '_', ucfirst( $code ) ) . $suffix;
+	}
+
+	/**
+	 * Includes language class files
+	 *
+	 * @param string $class Name of the language class
+	 */
+	public static function preloadLanguageClass( $class ) {
+		global $IP;
+
+		if ( $class === 'Language' ) {
+			return;
+		}
+
+		if ( file_exists( "$IP/languages/classes/$class.php" ) ) {
+			include_once "$IP/languages/classes/$class.php";
+		}
+	}
+
+	/**
+	 * @param string $code
 	 * @return string
 	 */
 	public static function getMessagesFileName( $code ) {
@@ -4449,6 +4449,15 @@ class Language {
 		$file = self::getFileName( "$IP/languages/messages/Messages", $code, '.php' );
 		Hooks::run( 'Language::getMessagesFileName', array( $code, &$file ) );
 		return $file;
+	}
+
+	/**
+	 * @param string $code
+	 * @return string
+	 */
+	public static function getClassFileName( $code ) {
+		global $IP;
+		return self::getFileName( "$IP/languages/classes/Language", $code, '.php' );
 	}
 
 	/**
@@ -4464,15 +4473,6 @@ class Language {
 		}
 
 		return "$IP/languages/i18n/$code.json";
-	}
-
-	/**
-	 * @param string $code
-	 * @return string
-	 */
-	public static function getClassFileName( $code ) {
-		global $IP;
-		return self::getFileName( "$IP/languages/classes/Language", $code, '.php' );
 	}
 
 	/**
