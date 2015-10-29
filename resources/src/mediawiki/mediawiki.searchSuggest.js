@@ -106,19 +106,27 @@
 
 		// The function used to render the suggestions.
 		function renderFunction( text, context ) {
-			var formData = getFormData( context );
+			var formData = getFormData( context ),
+				textboxConfig = context.data.$textbox.data( 'suggestionsconfig' ) || {};
 
 			// linkParams object is modified and reused
 			formData.linkParams[ formData.textParam ] = text;
 
-			// this is the container <div>, jQueryfied
-			this.text( text )
-				.wrap(
+			// this is the container <div>, jQueryfield
+			this.text( text );
+
+			// wrap only as link, if the config doesn't disallow it
+			if (
+				!textboxConfig.hasOwnProperty( 'wrapAsLink' ) ||
+				textboxConfig.wrapAsLink !== false
+			) {
+				this.wrap(
 					$( '<a>' )
 						.attr( 'href', formData.baseHref + $.param( formData.linkParams ) )
 						.attr( 'title', text )
 						.addClass( 'mw-searchSuggest-link' )
 				);
+			}
 		}
 
 		// The function used when the user makes a selection

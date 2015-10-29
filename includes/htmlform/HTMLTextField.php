@@ -22,7 +22,7 @@ class HTMLTextField extends HTMLFormField {
 				'value' => $value,
 				'dir' => $this->mDir,
 				'spellcheck' => $this->getSpellCheck(),
-			) + $this->getTooltipAndAccessKey();
+			) + $this->getTooltipAndAccessKey() + $this->getDataAttribs();
 
 		if ( $this->mClass !== '' ) {
 			$attribs['class'] = $this->mClass;
@@ -125,5 +125,14 @@ class HTMLTextField extends HTMLFormField {
 
 	protected function getInputWidget( $params ) {
 		return new OOUI\TextInputWidget( $params );
+	}
+
+	/**
+	 * Returns an array of data-* attributes to add to the field.
+	 *
+	 * @return array
+	 */
+	protected function getDataAttribs() {
+		return array();
 	}
 }
