@@ -386,15 +386,19 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * Show an error message in a box. Parameters are like wfMessage().
-	 * @param string $msg
+	 * Show an error message in a box. Parameters are like wfMessage(), or
+	 * alternatively, pass a Message object in.
+	 * @param string|Message $msg
 	 */
 	public function showError( $msg /*...*/ ) {
-		$args = func_get_args();
-		array_shift( $args );
-		$args = array_map( 'htmlspecialchars', $args );
-		$msg = wfMessage( $msg, $args )->useDatabase( false )->plain();
-		$this->output->addHTML( $this->getErrorBox( $msg ) );
+		if ( !( $msg instanceof Message ) ) {
+			$args = func_get_args();
+			array_shift( $args );
+			$args = array_map( 'htmlspecialchars', $args );
+			$msg = wfMessage( $msg, $args );
+		}
+		$text = $msg->useDatabase( false )->plain();
+		$this->output->addHTML( $this->getErrorBox( $text ) );
 	}
 
 	/**

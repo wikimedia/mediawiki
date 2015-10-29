@@ -833,6 +833,8 @@ class WebInstallerName extends WebInstallerPage {
 	 * @return bool
 	 */
 	public function submit() {
+		global $wgPasswordPolicy;
+
 		$retVal = true;
 		$this->parent->setVarsFromRequest( array( 'wgSitename', '_NamespaceType',
 			'_AdminName', '_AdminPassword', '_AdminPasswordConfirm', '_AdminEmail',
@@ -909,14 +911,21 @@ class WebInstallerName extends WebInstallerPage {
 		$pwd = $this->getVar( '_AdminPassword' );
 		$user = User::newFromName( $cname );
 		if ( $user ) {
-			$status = $user->checkPasswordValidity( $pwd, 'create' );
-			$valid = $status->isGood() ? true : $status->getMessage()->escaped();
+			$upp = new UserPasswordPolicy(
+				$wgPasswordPolicy['policies'],
+				$wgPasswordPolicy['checks']
+			);
+			$status = $upp->checkUserPasswordForGroups(
+				$user,
+				$pwd,
+				array( 'bureaucrat', 'sysop' )  // per Installer::createSysop()
+			);
+			$valid = $status->isGood() ? true : $status->getMessage();
 		} else {
 			$valid = 'config-admin-name-invalid';
 		}
 		if ( strval( $pwd ) === '' ) {
-			# $user->getPasswordValidity just checks for $wgMinimalPasswordLength.
-			# This message is more specific and helpful.
+			// Provide a more specific and helpful message if password field is left blank
 			$msg = 'config-admin-password-blank';
 		} elseif ( $pwd !== $this->getVar( '_AdminPasswordConfirm' ) ) {
 			$msg = 'config-admin-password-mismatch';
@@ -924,7 +933,7 @@ class WebInstallerName extends WebInstallerPage {
 			$msg = $valid;
 		}
 		if ( $msg !== false ) {
-			call_user_func_array( array( $this->parent, 'showError' ), (array)$msg );
+			call_user_func( array( $this->parent, 'showError' ), $msg );
 			$this->setVar( '_AdminPassword', '' );
 			$this->setVar( '_AdminPasswordConfirm', '' );
 			$retVal = false;
