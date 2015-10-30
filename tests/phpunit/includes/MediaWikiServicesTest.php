@@ -35,4 +35,8 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 		$this->assertGetterReturnType( 'SiteLookup', 'getSiteLookup' );
 	}
 
+	public function testGetInterwikiLookup() {
+		$this->assertGetterReturnType( 'MediaWiki\Interwiki\InterwikiLookup', 'getInterwikiLookup' );
+	}
+
 }
