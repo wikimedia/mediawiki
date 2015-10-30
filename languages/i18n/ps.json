@@ -402,7 +402,7 @@
 	"createacct-reason-ph": "ولې تاسې بل گڼون جوړول غوااړۍ",
 	"createacct-submit": "گڼون مو جوړ کړئ",
 	"createacct-another-submit": "گڼون جوړول",
-	"createacct-benefit-heading": "{{SITENAME}} ستاسې په شان خلکو لخوا جوړ شوی.",
+	"createacct-benefit-heading": "{{SITENAME}} ستاسې په څېر خلکو جوړ کړی.",
 	"createacct-benefit-body1": "{{PLURAL:$1|سمون|سمونونه}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|مخ|مخونه}}",
 	"createacct-benefit-body3": "{{PLURAL:$1|وروستنی ونډه وال|وروستني ونډه وال}}",

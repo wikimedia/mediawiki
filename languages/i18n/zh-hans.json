@@ -3358,7 +3358,7 @@
 	"feedback-submit": "提交",
 	"feedback-terms": "我理解我的用户代理信息包括有关我确切使用的浏览器和操作系统版本，并将在我的反馈旁公开分享。",
 	"feedback-termsofuse": "我同意依照使用条款提供反馈。",
-	"feedback-thanks": "谢谢！你的反馈已发布至页面“[$2 $1]”。",
+	"feedback-thanks": "谢谢！您的反馈已发布至页面“[$2 $1]”。",
 	"feedback-thanks-title": "谢谢您！",
 	"feedback-useragent": "用户代理：",
 	"searchsuggest-search": "搜索",

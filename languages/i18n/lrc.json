@@ -3291,7 +3291,7 @@
 	"duration-days": "$1{{PLURAL:$1|روز|روزیا}}",
 	"duration-weeks": "$1 {{PLURAL:$1|هفته|هفته یا}}",
 	"duration-years": "$1{{PLURAL:$1| سال|سالیا}}",
-	"duration-decades": "$1 {{PLURAL:$1|دهه|دهه یا}}",
+	"duration-decades": "$1 {{PLURAL:$1|دأھە|دأھە یا}}",
 	"duration-centuries": "$1 {{PLURAL:$1|سده|سده یا}}",
 	"duration-millennia": "$1 {{PLURAL:$1|میلینیوم|ملینا}}",
 	"rotate-comment": "عسگ وا $1 {{PLURAL:$1|گرینج|گرینج}} ساعت گرد در حرده",
