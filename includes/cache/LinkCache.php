@@ -114,8 +114,8 @@ class LinkCache {
 	 * Get a field of a title object from cache.
 	 * If this link is not good, it will return NULL.
 	 * @param Title $title
-	 * @param string $field ('length','redirect','revision','model')
-	 * @return string|null
+	 * @param string $field ('length','redirect','revision','model', 'displaytitle')
+	 * @return string|false|null null if title not found or null value, false if title found but no value set
 	 */
 	public function getGoodLinkFieldObj( $title, $field ) {
 		$dbkey = $title->getPrefixedDBkey();
@@ -145,18 +145,25 @@ class LinkCache {
 	 * @param int $redir Whether the page is a redirect
 	 * @param int $revision Latest revision's ID
 	 * @param string|null $model Latest revision's content model ID
+	 * @param string|false|null $displaytitle Display title of page
 	 */
 	public function addGoodLinkObj( $id, $title, $len = -1, $redir = null,
-		$revision = 0, $model = null
+		$revision = 0, $model = null, $displaytitle = false
 	) {
 		$dbkey = $title->getPrefixedDBkey();
-		$this->mGoodLinks->set( $dbkey, array(
+		$cache = array(
 			'id' => (int)$id,
 			'length' => (int)$len,
 			'redirect' => (int)$redir,
 			'revision' => (int)$revision,
 			'model' => $model ? (string)$model : null,
-		) );
+		);
+		if ( $displaytitle !== false ) {
+			$cache['displaytitle'] = $displaytitle ? (string)$displaytitle : null;
+		} else {
+			$cache['displaytitle'] = false;
+		}
+		$this->mGoodLinks->set( $dbkey, $cache );
 	}
 
 	/**
@@ -164,17 +171,23 @@ class LinkCache {
 	 * @since 1.19
 	 * @param Title $title
 	 * @param stdClass $row Object which has the fields page_id, page_is_redirect,
-	 *  page_latest and page_content_model
+	 *  page_latest, page_content_model, and displaytitle
 	 */
 	public function addGoodLinkObjFromRow( $title, $row ) {
 		$dbkey = $title->getPrefixedDBkey();
-		$this->mGoodLinks->set( $dbkey, array(
+		$cache = array(
 			'id' => intval( $row->page_id ),
 			'length' => intval( $row->page_len ),
 			'redirect' => intval( $row->page_is_redirect ),
 			'revision' => intval( $row->page_latest ),
 			'model' => !empty( $row->page_content_model ) ? strval( $row->page_content_model ) : null,
-		) );
+		);
+		if ( !empty( $row->displaytitle ) ) {
+			$cache['displaytitle'] = $row->displaytitle ? strval( $row->displaytitle ) : null;
+		} else {
+			$cache['displaytitle'] = false;
+		}
+		$this->mGoodLinks->set( $dbkey, $cache );
 	}
 
 	/**
@@ -255,7 +268,13 @@ class LinkCache {
 		}
 		$id = $this->getGoodLinkID( $key );
 		if ( $id != 0 ) {
-			return $id;
+			// if this title was cached from a database row, it is possible that it
+			// was cached without the displaytitle; if so, re-cache it with the
+			// displaytitle
+			$displaytitle = $this->getGoodLinkFieldObj( $nt, 'displaytitle' );
+			if ( $displaytitle !== false ) {
+				return $id;
+			}
 		}
 
 		if ( $key === '' ) {
@@ -269,14 +288,30 @@ class LinkCache {
 			$db = wfGetDB( DB_SLAVE );
 		}
 
-		$f = array( 'page_id', 'page_len', 'page_is_redirect', 'page_latest' );
+		$f = array(
+			'page_id',
+			'page_len',
+			'page_is_redirect',
+			'page_latest',
+			'displaytitle' => 'pp_value'
+			);
 		if ( $wgContentHandlerUseDB ) {
 			$f[] = 'page_content_model';
 		}
 
-		$s = $db->selectRow( 'page', $f,
-			array( 'page_namespace' => $nt->getNamespace(), 'page_title' => $nt->getDBkey() ),
-			__METHOD__ );
+		$s = $db->selectRow( array( 'page', 'page_props' ),
+			$f,
+			array(
+				'page_namespace' => $nt->getNamespace(),
+				'page_title' => $nt->getDBkey()
+			),
+			__METHOD__,
+			array(),
+			array( 'page_props' => array( 'LEFT JOIN', array(
+				'pp_propname' => 'displaytitle',
+				'pp_page = page_id'
+			) ) )
+			);
 		# Set fields...
 		if ( $s !== false ) {
 			$this->addGoodLinkObjFromRow( $nt, $s );
