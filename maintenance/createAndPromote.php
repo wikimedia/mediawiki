@@ -106,6 +106,12 @@ class CreateAndPromote extends Maintenance {
 			}
 		}
 
+		if ( !$exists ) {
+			# Insert the account into the database
+			$user->addToDatabase();
+			$user->saveSettings();
+		}
+
 		if ( $password ) {
 			# Try to set the password
 			try {
@@ -117,12 +123,6 @@ class CreateAndPromote extends Maintenance {
 			} catch ( PasswordError $pwe ) {
 				$this->error( $pwe->getText(), true );
 			}
-		}
-
-		if ( !$exists ) {
-			# Insert the account into the database
-			$user->addToDatabase();
-			$user->saveSettings();
 		}
 
 		# Promote user

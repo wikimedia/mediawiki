@@ -185,8 +185,6 @@ class User implements IDBAccessObject {
 	public $mName;
 	/** @var string */
 	public $mRealName;
-	/** @var Password|null */
-	private $mPassword = null;
 
 	/** @var string */
 	public $mEmail;
@@ -2400,32 +2398,32 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Actually set the password and such
+	 * @since 1.27 cannot set a password for a user not in the database
 	 * @param string|null $str New password to set or null to set an invalid
 	 *  password hash meaning that the user will not be able to log in
 	 *  through the web interface.
 	 */
 	private function setPasswordInternal( $str ) {
 		$id = self::idFromName( $this->getName() );
-		if ( $id ) {
-			$passwordFactory = new PasswordFactory();
-			$passwordFactory->init( RequestContext::getMain()->getConfig() );
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->update(
-				'user',
-				array(
-					'user_password' => $passwordFactory->newFromPlaintext( $str )->toString(),
-					'user_newpassword' => PasswordFactory::newInvalidPassword()->toString(),
-					'user_newpass_time' => $dbw->timestampOrNull( null ),
-				),
-				array(
-					'user_id' => $id,
-				),
-				__METHOD__
-			);
-			$this->mPassword = null;
-		} else {
-			$this->mPassword = $str;
+		if ( $id == 0 ) {
+			throw new LogicException( 'Cannot set a password for a user that is not in the database.' );
 		}
+
+		$passwordFactory = new PasswordFactory();
+		$passwordFactory->init( RequestContext::getMain()->getConfig() );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->update(
+			'user',
+			array(
+				'user_password' => $passwordFactory->newFromPlaintext( $str )->toString(),
+				'user_newpassword' => PasswordFactory::newInvalidPassword()->toString(),
+				'user_newpass_time' => $dbw->timestampOrNull( null ),
+			),
+			array(
+				'user_id' => $id,
+			),
+			__METHOD__
+		);
 	}
 
 	/**
@@ -3881,11 +3879,6 @@ class User implements IDBAccessObject {
 			return Status::newFatal( 'userexists' );
 		}
 		$this->mId = $dbw->insertId();
-
-		// Set the password now that it's in the DB, if applicable
-		if ( $this->mPassword !== null ) {
-			$this->setPasswordInternal( $this->mPassword );
-		}
 
 		// Clear instance cache other than user table data, which is already accurate
 		$this->clearInstanceCache();
