@@ -88,7 +88,11 @@ class LinkCache {
 	}
 
 	/**
-	 * General accessor to get/set whether SELECT FOR UPDATE should be used
+	 * General accessor to get/set whether the master DB should be used
+	 *
+	 * This used to also set the FOR UPDATE option (in order to avoid link
+	 * table inconsistency), which was later removed for performance on
+	 * wikis with a high edit rate.
 	 *
 	 * @param bool $update
 	 * @return bool
