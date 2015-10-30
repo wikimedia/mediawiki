@@ -1,5 +1,6 @@
 <?php
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
+use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -25,6 +26,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SiteStore' => [ 'getSiteStore', SiteStore::class ],
 			'SiteLookup' => [ 'getSiteLookup', SiteLookup::class ],
 			'StatsdDataFactory' => [ 'getStatsdDataFactory', StatsdDataFactory::class ],
+			'InterwikiLookup' => [ 'getInterwikiLookup', InterwikiLookup::class ],
 			'EventRelayerGroup' => [ 'getEventRelayerGroup', EventRelayerGroup::class ],
 			'SearchEngine' => [ 'newSearchEngine', SearchEngine::class ],
 			'SearchEngineFactory' => [ 'getSearchEngineFactory', SearchEngineFactory::class ],
@@ -54,6 +56,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SiteStore' => [ 'SiteStore', SiteStore::class ],
 			'SiteLookup' => [ 'SiteLookup', SiteLookup::class ],
 			'StatsdDataFactory' => [ 'StatsdDataFactory', StatsdDataFactory::class ],
+			'InterwikiLookup' => [ 'InterwikiLookup', InterwikiLookup::class ],
 			'EventRelayerGroup' => [ 'EventRelayerGroup', EventRelayerGroup::class ],
 			'SearchEngineFactory' => [ 'SearchEngineFactory', SearchEngineFactory::class ],
 			'SearchEngineConfig' => [ 'SearchEngineConfig', SearchEngineConfig::class ],
