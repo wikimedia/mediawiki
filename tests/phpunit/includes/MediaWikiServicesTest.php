@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -23,6 +24,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'MainConfig' => [ 'getMainConfig', Config::class ],
 			'SiteStore' => [ 'getSiteStore', SiteStore::class ],
 			'SiteLookup' => [ 'getSiteLookup', SiteLookup::class ],
+			'InterwikiLookup' => [ 'getInterwikiLookup', InterwikiLookup::class ],
 		];
 	}
 
@@ -46,6 +48,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'MainConfig' => [ 'MainConfig', Config::class ],
 			'SiteStore' => [ 'SiteStore', SiteStore::class ],
 			'SiteLookup' => [ 'SiteLookup', SiteLookup::class ],
+			'InterwikiLookup' => [ 'InterwikiLookup', InterwikiLookup::class ],
 		];
 	}
 
