@@ -269,7 +269,7 @@ class ObjectCache {
 			}
 			$id = $fallback;
 		}
-		return self::newFromId( $id );
+		return self::getInstance( $id );
 	}
 
 	/**
