@@ -186,9 +186,11 @@ class Title {
 		}
 
 		if ( !$titleCodec ) {
+			// @todo: move this into MediaWikiServices
 			$titleCodec = new MediaWikiTitleCodec(
 				$wgContLang,
 				GenderCache::singleton(),
+				MediaWikiServices::getInstance()->getInterwikiLookup(),
 				$wgLocalInterwikis
 			);
 			$titleCodecFingerprint = $fingerprint;

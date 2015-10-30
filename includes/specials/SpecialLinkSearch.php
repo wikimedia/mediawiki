@@ -71,7 +71,11 @@ class LinkSearchPage extends QueryPage {
 		global $wgLanguageCode;
 		if ( !$this->linkRenderer ) {
 			$lang = Language::factory( $wgLanguageCode );
-			$titleFormatter = new MediaWikiTitleCodec( $lang, GenderCache::singleton() );
+			$titleFormatter = new MediaWikiTitleCodec(
+				$lang,
+				GenderCache::singleton(),
+				MediaWikiServices::getInstance()->getInterwikiLookup()
+			);
 			$this->linkRenderer = new MediaWikiPageLinkRenderer( $titleFormatter );
 		}
 	}
