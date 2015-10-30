@@ -84,6 +84,12 @@ class Title {
 	/** @var bool|int ID of most recent revision */
 	protected $mLatestID = false;
 
+	/** @var null|array page properties */
+	protected $mProperties = null;
+
+	/** @var string display title of page */
+	protected $mDisplayTitle = null;
+
 	/**
 	 * @var bool|string ID of the page's content model, i.e. one of the
 	 *   CONTENT_MODEL_XXX constants
@@ -493,6 +499,8 @@ class Title {
 			$this->mLatestID = 0;
 			$this->mContentModel = false; # initialized lazily in getContentModel()
 		}
+		$this->mProperties = null;
+		$this->mDisplayTitle = null;
 	}
 
 	/**
@@ -3280,6 +3288,97 @@ class Title {
 	}
 
 	/**
+	 * Get all page property values.
+	 *
+	 * @since 1.27
+	 *
+	 * @param int $flags A bit field; may be Title::GAID_FOR_UPDATE to select for update
+	 *
+	 * @return string|bool property value array or false if not found
+	 */
+	public function getProperties( $flags = 0 ) {
+		if ( !( $flags & Title::GAID_FOR_UPDATE ) && $this->mProperties !== null ) {
+			return $this->mProperties;
+		}
+		if ( !$this->getArticleID( $flags ) ) {
+			$this->mProperties = null;
+			return $this->mProperties;
+		}
+		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		$result = $db->select(
+			'page_props',
+			array(
+				'pp_propname',
+				'pp_value'
+			),
+			array(
+				'pp_page' => $this->mArticleID
+			),
+			__METHOD__
+		);
+		$pageProperties = array();
+		foreach ( $result as $row ) {
+			$pageProperties[$row->pp_propname] = strval( $row->pp_value );
+		}
+		$this->mProperties = $pageProperties;
+		if ( array_key_exists( 'displaytitle', $this->mProperties ) ) {
+			$this->mDisplayTitle = $this->mProperties['displaytitle'];
+		}
+		return $this->mProperties;
+	}
+
+	/**
+	 * Get page property value for a given property name.
+	 *
+	 * @since 1.27
+	 *
+	 * @param string $propertyName name of property being queried
+	 * @param int $flags A bit field; may be Title::GAID_FOR_UPDATE to select for update
+	 *
+	 * @return string|bool property value or false if not found
+	 */
+	public function getProperty( $propertyName, $flags = 0 ) {
+
+		$this->getProperties( $flags );
+		if ( array_key_exists( $propertyName, $this->mProperties ) ) {
+			return $this->mProperties[$propertyName];
+		}
+		return false;
+	}
+
+	/**
+	 * What is the display title for this page?
+	 * Although displaytitle is a page property, its value cached for
+	 * performance reasons, so it has special handling.
+	 *
+	 * @since 1.27
+	 *
+	 * @param int $flags A bit field; may be Title::GAID_FOR_UPDATE to select for update
+	 * @return string or null if the page doesn't exist
+	 */
+	public function getDisplayTitle( $flags = 0 ) {
+		if ( !( $flags & Title::GAID_FOR_UPDATE ) && $this->mDisplayTitle !== null ) {
+			return strval( $this->mDisplayTitle );
+		}
+		if ( !$this->getArticleID( $flags ) ) {
+			$this->mDisplayTitle = null;
+			return $this->mDisplayTitle;
+		}
+		$linkCache = LinkCache::singleton();
+		$linkCache->addLinkObj( $this ); # in case we already had an article ID
+		$cached = $linkCache->getGoodLinkFieldObj( $this, 'displaytitle' );
+		if ( $cached === null ) {
+			# Trust LinkCache's state over our own, as for isRedirect()
+			$this->mDisplayTitle = null;
+			return $this->mDisplayTitle;
+		}
+
+		$this->mDisplayTitle = strval( $cached );
+
+		return $this->mDisplayTitle;
+	}
+
+	/**
 	 * This clears some fields in this object, and clears any associated
 	 * keys in the "bad links" section of the link cache.
 	 *
@@ -3304,6 +3403,8 @@ class Title {
 		$this->mRedirect = null;
 		$this->mLength = -1;
 		$this->mLatestID = false;
+		$this->mProperties = null;
+		$this->mDisplayTitle = null;
 		$this->mContentModel = false;
 		$this->mEstimateRevisions = null;
 		$this->mPageLanguage = false;
