@@ -37,6 +37,7 @@
  *      MediaWiki code base.
  */
 
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MediaWikiServices;
 
 return [
@@ -86,6 +87,19 @@ return [
 	'MainConfig' => function( MediaWikiServices $services ) {
 		// Use the 'main' config from the ConfigFactory service.
 		return $services->getConfigFactory()->makeConfig( 'main' );
+	},
+
+	'InterwikiLookup' => function( MediaWikiServices $services ) {
+		global $wgContLang; // TODO: manage $wgContLang as a service
+		$config = $services->getMainConfig();
+		return new ClassicInterwikiLookup(
+			$wgContLang,
+			ObjectCache::getMainWANInstance(),
+			$config->get( 'InterwikiExpiry' ),
+			$config->get( 'InterwikiCache' ),
+			$config->get( 'InterwikiScopes' ),
+			$config->get( 'InterwikiFallbackSite' )
+		);
 	},
 
 	'StatsdDataFactory' => function( MediaWikiServices $services ) {
