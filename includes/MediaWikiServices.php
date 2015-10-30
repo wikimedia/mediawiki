@@ -6,6 +6,9 @@ use SiteLookup;
 use SiteStore;
 use DBSiteStore;
 
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
+use MediaWiki\Interwiki\InterwikiLookup;
+
 /**
  * Service locator for MediaWiki core services.
  *
@@ -121,6 +124,26 @@ class MediaWikiServices {
 	 */
 	private function newSiteStore() {
 		return new DBSiteStore();
+	}
+
+	/**
+	 * @return InterwikiLookup
+	 */
+	public function getInterwikiLookup() {
+		return $this->getService( 'InterwikiLookup' );
+	}
+
+	/**
+	 * @note should be called by createService() only!
+	 */
+	private function newInterwikiLookup() {
+		return new ClassicInterwikiLookup(
+			$this->getConfig()->get( 'ContLang' ),
+			$this->getConfig()->get( 'InterwikiExpiry' ),
+			$this->getConfig()->get( 'InterwikiCache' ),
+			$this->getConfig()->get( 'InterwikiScopes' ),
+			$this->getConfig()->get( 'InterwikiFallbackSite' )
+		);
 	}
 
 }
