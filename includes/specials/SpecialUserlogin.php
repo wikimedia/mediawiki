@@ -784,7 +784,7 @@ class LoginForm extends SpecialPage {
 		// Give general extensions, such as a captcha, a chance to abort logins
 		$abort = self::ABORTED;
 		if ( !Hooks::run( 'AbortLogin', array( $u, $this->mPassword, &$abort, &$msg ) ) ) {
-			if ( !in_array( $abort, self::$statusCodes, true ) ) {
+			if ( !in_array( $abort, array_keys( self::$statusCodes ), true ) ) {
 				throw new Exception( 'Invalid status code returned from AbortLogin hook: ' . $abort );
 			}
 			$this->mAbortLoginErrorMsg = $msg;
