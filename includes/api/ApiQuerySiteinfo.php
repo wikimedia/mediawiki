@@ -23,6 +23,7 @@
  *
  * @file
  */
+use MediaWiki\Interwiki\InterwikiLookup;
 
 /**
  * A query action to return meta information about the wiki site.
@@ -31,8 +32,15 @@
  */
 class ApiQuerySiteinfo extends ApiQueryBase {
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/**
+	 * @var InterwikiLookup
+	 */
+	private $interwikiLookup;
+
+	public function __construct( InterwikiLookup $interwikiLookup, ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'si' );
+
+		$this->interwikiLookup = $interwikiLookup;
 	}
 
 	public function execute() {
@@ -374,7 +382,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$langCode = isset( $params['inlanguagecode'] ) ? $params['inlanguagecode'] : '';
 		$langNames = Language::fetchLanguageNames( $langCode );
 
-		$getPrefixes = Interwiki::getAllPrefixes( $local );
+		$getPrefixes = $this->interwikiLookup->getAllPrefixes( $local );
 		$extraLangPrefixes = $this->getConfig()->get( 'ExtraInterlanguageLinkPrefixes' );
 		$localInterwikis = $this->getConfig()->get( 'LocalInterwikis' );
 		$data = [];
