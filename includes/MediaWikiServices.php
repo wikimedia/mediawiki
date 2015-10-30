@@ -1,5 +1,8 @@
 <?php
 namespace MediaWiki;
+
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
+use MediaWiki\Interwiki\InterwikiLookup;
 use Config;
 use SiteLookup;
 use SiteStore;
@@ -125,6 +128,26 @@ class MediaWikiServices {
 		$siteStore = new DBSiteStore();
 
 		return new CachingSiteStore( $siteStore, $cache );
+	}
+
+	/**
+	 * @return InterwikiLookup
+	 */
+	public function getInterwikiLookup() {
+		return $this->getService( 'InterwikiLookup' );
+	}
+
+	/**
+	 * @note should be called by createService() only!
+	 */
+	private function newInterwikiLookup() {
+		return new ClassicInterwikiLookup(
+			$this->getConfig()->get( 'ContLang' ),
+			$this->getConfig()->get( 'InterwikiExpiry' ),
+			$this->getConfig()->get( 'InterwikiCache' ),
+			$this->getConfig()->get( 'InterwikiScopes' ),
+			$this->getConfig()->get( 'InterwikiFallbackSite' )
+		);
 	}
 
 }
