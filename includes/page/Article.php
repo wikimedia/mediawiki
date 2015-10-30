@@ -782,14 +782,26 @@ class Article implements Page {
 			return;
 		}
 
+
+		$engine = $request->getVal( 'engine' );
+		switch ( $engine ) {
+			case 'inline':
+				$diffEngineClass = 'InlineDifferenceEngine';
+				break;
+			default:
+				$diffEngineClass = '';
+		}
+
 		$contentHandler = $rev->getContentHandler();
+
 		$de = $contentHandler->createDifferenceEngine(
 			$this->getContext(),
 			$oldid,
 			$diff,
 			$rcid,
 			$purge,
-			$unhide
+			$unhide,
+			$diffEngineClass
 		);
 
 		// DifferenceEngine directly fetched the revision:

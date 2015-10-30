@@ -34,6 +34,8 @@ define( 'MW_DIFF_VERSION', '1.11a' );
  * @ingroup DifferenceEngine
  */
 class DifferenceEngine extends ContextSource {
+	/** @var string */
+	public $engineName = 'default';
 
 	/** @var int */
 	public $mOldid;
@@ -52,6 +54,9 @@ class DifferenceEngine extends ContextSource {
 
 	/** @var Language */
 	protected $mDiffLang;
+
+	/** @var array */
+	protected $revisionTools;
 
 	/** @var Title */
 	public $mOldPage;
@@ -235,6 +240,108 @@ class DifferenceEngine extends ContextSource {
 		$out->addHtml( $msg );
 	}
 
+	/**
+	 * Build a wikitext link toward a deleted revision, if viewable.
+	 *
+	 * @param bool $samePage whether the two revisions being compared are the same page or not.
+	 * @param array $query of query string parameters
+	 * @param bool $diffOnly whether only the diff is being shown or whether the article is included below
+	 * @param string [$rollback] link allowing rollback
+	 *
+	 * @return string html
+	 */
+	protected function getHeaderTemplateData( $samePage, $query, $diffOnly, $rollback='' ) {
+		# Make "next revision link"
+		# Skip next link on the top revision
+		if ( $samePage && !$this->mNewRev->isCurrent() ) {
+			$nextlink = Linker::linkKnown(
+				$this->mNewPage,
+				$this->msg( 'nextdiff' )->escaped(),
+				array( 'id' => 'differences-nextlink' ),
+				array( 'diff' => 'next', 'oldid' => $this->mNewid ) + $query
+			);
+		} else {
+			$nextlink = '&#160;';
+		}
+
+		if ( $this->mNewRev->isMinor() ) {
+			$newminor = ChangesList::flag( 'minor' );
+		} else {
+			$newminor = '';
+		}
+
+		# Handle RevisionDelete links...
+		$rdel = $this->revisionDeleteLink( $this->mNewRev );
+
+		$formattedRevisionTools = array();
+		// Put each one in parentheses (poor man's button)
+		foreach ( $this->revisionTools as $key => $tool ) {
+			$toolClass = is_string( $key ) ? $key : 'mw-diff-tool';
+			$element = Html::rawElement(
+				'span',
+				array( 'class' => $toolClass ),
+				$this->msg( 'parentheses' )->rawParams( $tool )->escaped()
+			);
+			$formattedRevisionTools[] = $element;
+		}
+
+		$newRevisionHeader = $this->getRevisionHeader( $this->mNewRev, 'complete' ) .
+			' ' . implode( ' ', $formattedRevisionTools );
+		$newChangeTags = ChangeTags::formatSummaryRow( $this->mNewTags, 'diff' );
+
+		# Make "previous revision link"
+		$ldel = $this->revisionDeleteLink( $this->mOldRev );
+		if ( $samePage && $this->mOldRev->getPrevious() ) {
+			$prevlink = Linker::linkKnown(
+				$this->mOldPage,
+				$this->msg( 'previousdiff' )->escaped(),
+				array( 'id' => 'differences-prevlink' ),
+				array( 'diff' => 'prev', 'oldid' => $this->mOldid ) + $query
+			);
+		} else {
+			$prevlink = '&#160;';
+		}
+		$oldChangeTags = ChangeTags::formatSummaryRow( $this->mOldTags, 'diff' );
+		if ( $this->mOldRev->isMinor() ) {
+			$oldminor = ChangesList::flag( 'minor' );
+		} else {
+			$oldminor = '';
+		}
+
+		return array(
+			'old' => array(
+				'prefix' => 'mw-diff-otitle',
+				'tools' => array(
+					Linker::revUserTools( $this->mOldRev, !$this->unhide ),
+				),
+				'deleted' => $ldel,
+				'minor' => $oldminor,
+				'tags' => $oldChangeTags[0],
+				'links' => array(
+					$prevlink,
+				),
+				'header' => $this->getRevisionHeader( $this->mOldRev, 'complete' ),
+				'comment' => Linker::revComment( $this->mOldRev, !$diffOnly, !$this->unhide ),
+			),
+			'new' => array(
+				'prefix' => 'mw-diff-ntitle',
+				'tools' => array(
+					Linker::revUserTools( $this->mNewRev, !$this->unhide ),
+					$rollback,
+				),
+				'deleted' => $rdel,
+				'minor' => $newminor,
+				'tags' => $newChangeTags[0],
+				'links' => array(
+					$nextlink,
+					$this->markPatrolledLink(),
+				),
+				'header' => $newRevisionHeader,
+				'comment' => Linker::revComment( $this->mNewRev, !$diffOnly, !$this->unhide ),
+			),
+		);
+	}
+
 	public function showDiffPage( $diffOnly = false ) {
 
 		# Allow frames except in certain special cases
@@ -260,7 +367,9 @@ class DifferenceEngine extends ContextSource {
 
 		$rollback = '';
 
-		$query = array();
+		$query = array(
+			'engine' => $this->engineName,
+		);
 		# Carry over 'diffonly' param via navigation links
 		if ( $diffOnly != $user->getBoolOption( 'diffonly' ) ) {
 			$query['diffonly'] = $diffOnly;
@@ -322,36 +431,6 @@ class DifferenceEngine extends ContextSource {
 				}
 			}
 
-			# Make "previous revision link"
-			if ( $samePage && $this->mOldRev->getPrevious() ) {
-				$prevlink = Linker::linkKnown(
-					$this->mOldPage,
-					$this->msg( 'previousdiff' )->escaped(),
-					array( 'id' => 'differences-prevlink' ),
-					array( 'diff' => 'prev', 'oldid' => $this->mOldid ) + $query
-				);
-			} else {
-				$prevlink = '&#160;';
-			}
-
-			if ( $this->mOldRev->isMinor() ) {
-				$oldminor = ChangesList::flag( 'minor' );
-			} else {
-				$oldminor = '';
-			}
-
-			$ldel = $this->revisionDeleteLink( $this->mOldRev );
-			$oldRevisionHeader = $this->getRevisionHeader( $this->mOldRev, 'complete' );
-			$oldChangeTags = ChangeTags::formatSummaryRow( $this->mOldTags, 'diff' );
-
-			$oldHeader = '<div id="mw-diff-otitle1"><strong>' . $oldRevisionHeader . '</strong></div>' .
-				'<div id="mw-diff-otitle2">' .
-				Linker::revUserTools( $this->mOldRev, !$this->unhide ) . '</div>' .
-				'<div id="mw-diff-otitle3">' . $oldminor .
-				Linker::revComment( $this->mOldRev, !$diffOnly, !$this->unhide ) . $ldel . '</div>' .
-				'<div id="mw-diff-otitle5">' . $oldChangeTags[0] . '</div>' .
-				'<div id="mw-diff-otitle4">' . $prevlink . '</div>';
-
 			if ( $this->mOldRev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$deleted = true; // old revisions text is hidden
 				if ( $this->mOldRev->isDeleted( Revision::DELETED_RESTRICTED ) ) {
@@ -365,52 +444,16 @@ class DifferenceEngine extends ContextSource {
 			}
 		}
 
-		# Make "next revision link"
-		# Skip next link on the top revision
-		if ( $samePage && !$this->mNewRev->isCurrent() ) {
-			$nextlink = Linker::linkKnown(
-				$this->mNewPage,
-				$this->msg( 'nextdiff' )->escaped(),
-				array( 'id' => 'differences-nextlink' ),
-				array( 'diff' => 'next', 'oldid' => $this->mNewid ) + $query
-			);
-		} else {
-			$nextlink = '&#160;';
-		}
-
-		if ( $this->mNewRev->isMinor() ) {
-			$newminor = ChangesList::flag( 'minor' );
-		} else {
-			$newminor = '';
-		}
-
-		# Handle RevisionDelete links...
-		$rdel = $this->revisionDeleteLink( $this->mNewRev );
 
 		# Allow extensions to define their own revision tools
 		Hooks::run( 'DiffRevisionTools', array( $this->mNewRev, &$revisionTools, $this->mOldRev ) );
-		$formattedRevisionTools = array();
-		// Put each one in parentheses (poor man's button)
-		foreach ( $revisionTools as $key => $tool ) {
-			$toolClass = is_string( $key ) ? $key : 'mw-diff-tool';
-			$element = Html::rawElement(
-				'span',
-				array( 'class' => $toolClass ),
-				$this->msg( 'parentheses' )->rawParams( $tool )->escaped()
-			);
-			$formattedRevisionTools[] = $element;
-		}
-		$newRevisionHeader = $this->getRevisionHeader( $this->mNewRev, 'complete' ) .
-			' ' . implode( ' ', $formattedRevisionTools );
-		$newChangeTags = ChangeTags::formatSummaryRow( $this->mNewTags, 'diff' );
 
-		$newHeader = '<div id="mw-diff-ntitle1"><strong>' . $newRevisionHeader . '</strong></div>' .
-			'<div id="mw-diff-ntitle2">' . Linker::revUserTools( $this->mNewRev, !$this->unhide ) .
-			" $rollback</div>" .
-			'<div id="mw-diff-ntitle3">' . $newminor .
-			Linker::revComment( $this->mNewRev, !$diffOnly, !$this->unhide ) . $rdel . '</div>' .
-			'<div id="mw-diff-ntitle5">' . $newChangeTags[0] . '</div>' .
-			'<div id="mw-diff-ntitle4">' . $nextlink . $this->markPatrolledLink() . '</div>';
+		// Generate headers
+		$this->revisionTools = $revisionTools;
+		$templateParser = new TemplateParser();
+		$data = $this->getHeaderTemplateData( $samePage, $query, $diffOnly, $rollback='' );
+		$oldHeader = $templateParser->processTemplate( 'diffHeader', $data['old'] );
+		$newHeader = $templateParser->processTemplate( 'diffHeader', $data['new'] );
 
 		if ( $this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$deleted = true; // new revisions text is hidden

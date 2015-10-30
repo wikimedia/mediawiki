@@ -653,12 +653,13 @@ abstract class ContentHandler {
 	 * @param int $rcid FIXME: Deprecated, no longer used. Defaults to 0.
 	 * @param bool $refreshCache If set, refreshes the diff cache. Defaults to false.
 	 * @param bool $unhide If set, allow viewing deleted revs. Defaults to false.
+	 * @param string|false [$diffEngineClass] if set changes the difference engine used
 	 *
 	 * @return DifferenceEngine
 	 */
 	public function createDifferenceEngine( IContextSource $context, $old = 0, $new = 0,
 		$rcid = 0, // FIXME: Deprecated, no longer used
-		$refreshCache = false, $unhide = false ) {
+		$refreshCache = false, $unhide = false, $diffEngineClass = false ) {
 
 		// hook: get difference engine
 		$differenceEngine = null;
@@ -667,7 +668,7 @@ abstract class ContentHandler {
 		) ) {
 			return $differenceEngine;
 		}
-		$diffEngineClass = $this->getDiffEngineClass();
+		$diffEngineClass = $diffEngineClass ? $diffEngineClass : $this->getDiffEngineClass();
 		return new $diffEngineClass( $context, $old, $new, $rcid, $refreshCache, $unhide );
 	}
 
