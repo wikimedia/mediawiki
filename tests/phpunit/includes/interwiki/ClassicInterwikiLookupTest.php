@@ -46,6 +46,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'MainConfig' => array( 'MainConfig', 'Config' ),
 			'SiteStore' => array( 'SiteStore', 'SiteStore' ),
 			'SiteLookup' => array( 'SiteLookup', 'SiteLookup' ),
+			'InterwikiLookup' => array( 'InterwikiLookup', 'MediaWiki\Interwiki\InterwikiLookup' ),
 		);
 	}
 
@@ -72,10 +73,6 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			$service = $services->getService( $name );
 			$this->assertInternalType( 'object', $service );
 		}
-	}
-
-	public function testGetInterwikiLookup() {
-		$this->assertGetterReturnType( 'MediaWiki\Interwiki\InterwikiLookup', 'getInterwikiLookup' );
 	}
 
 }
