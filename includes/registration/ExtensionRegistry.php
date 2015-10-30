@@ -176,6 +176,8 @@ class ExtensionRegistry {
 		$processor = new ExtensionProcessor();
 		$incompatible = array();
 		$coreVersionParser = new CoreVersionChecker( $wgVersion );
+		$extVersionParser = new ExtVersionChecker();
+		$extDependencies = array();
 		foreach ( $queue as $path => $mtime ) {
 			$json = file_get_contents( $path );
 			if ( $json === false ) {
@@ -208,9 +210,15 @@ class ExtensionRegistry {
 					. '.';
 				continue;
 			}
+			if ( is_array( $requires ) && $requires && isset($info['name']) ) {
+				$extDependencies[$info['name']] = $requires;
+			}
 			// Compatible, read and extract info
 			$processor->extractInfo( $path, $info, $version );
 		}
+		$data = $processor->getExtractedInfo();
+		// check for incompatible extensions and add them to the list of incompatible extensions
+		$incompatible += $extVersionParser->checkArray( $extDependencies, $data['credits'] );
 		if ( $incompatible ) {
 			if ( count( $incompatible ) === 1 ) {
 				throw new Exception( $incompatible[0] );
@@ -218,7 +226,6 @@ class ExtensionRegistry {
 				throw new Exception( implode( "\n", $incompatible ) );
 			}
 		}
-		$data = $processor->getExtractedInfo();
 		// Need to set this so we can += to it later
 		$data['globals']['wgAutoloadClasses'] = array();
 		foreach ( $data['credits'] as $credit ) {
