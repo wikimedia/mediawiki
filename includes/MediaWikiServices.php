@@ -12,6 +12,9 @@ use MediaWiki\Services\ServiceContainer;
 use SiteLookup;
 use SiteStore;
 
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
+use MediaWiki\Interwiki\InterwikiLookup;
+
 /**
  * Service locator for MediaWiki core services.
  *
@@ -146,10 +149,17 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * @return StatsdDataFactory
+	 * @return InterwikiLookup
 	 */
-	public function getStatsdDataFactory() {
-		return $this->getService( 'StatsdDataFactory' );
+	public function getInterwikiLookup() {
+		return $this->getService( 'InterwikiLookup' );
+	}
+
+	/**
+	 * @return InterwikiLookup
+	 */
+	public function getInterwikiLookup() {
+		return $this->getService( 'InterwikiLookup' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
