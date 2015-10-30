@@ -1,46 +1,11 @@
 <?php
-use MediaWiki\MediaWikiServices;
-
 /**
- * @covers Interwiki
+ * @covers MediaWiki\Interwiki\ClassicInterwikiLookup
  *
  * @group MediaWiki
  * @group Database
  */
-class InterwikiTest extends MediaWikiTestCase {
-
-	public function testConstructor() {
-		$interwiki = new Interwiki(
-			'xyz',
-			'http://xyz.acme.test/wiki/$1',
-			'http://xyz.acme.test/w/api.php',
-			'xyzwiki',
-			1,
-			0
-		);
-
-		$this->setContentLang( 'qqx' );
-
-		$this->assertSame( '(interwiki-name-xyz)', $interwiki->getName() );
-		$this->assertSame( '(interwiki-desc-xyz)', $interwiki->getDescription() );
-		$this->assertSame( 'http://xyz.acme.test/w/api.php', $interwiki->getAPI() );
-		$this->assertSame( 'http://xyz.acme.test/wiki/$1', $interwiki->getURL() );
-		$this->assertSame( 'xyzwiki', $interwiki->getWikiID() );
-		$this->assertTrue( $interwiki->isLocal() );
-		$this->assertFalse( $interwiki->isTranscludable() );
-	}
-
-	public function testGetUrl() {
-		$interwiki = new Interwiki(
-			'xyz',
-			'http://xyz.acme.test/wiki/$1'
-		);
-
-		$this->assertSame( 'http://xyz.acme.test/wiki/$1', $interwiki->getURL() );
-		$this->assertSame( 'http://xyz.acme.test/wiki/Foo%26Bar', $interwiki->getURL( 'Foo&Bar' ) );
-	}
-
-	//// tests for static data access methods below ///////////////////////////////////////////////
+class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 
 	private function populateDB( $iwrows ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -49,15 +14,7 @@ class InterwikiTest extends MediaWikiTestCase {
 		$this->tablesUsed[] = 'interwiki';
 	}
 
-	private function setWgInterwikiCache( $interwikiCache ) {
-		$this->overrideMwServices();
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'InterwikiLookup' );
-		$this->setMwGlobals( 'wgInterwikiCache', $interwikiCache );
-	}
-
 	public function testDatabaseStorage() {
-		$this->markTestSkipped( 'Needs I37b8e8018b3 <https://gerrit.wikimedia.org/r/#/c/270555/>' );
-
 		// NOTE: database setup is expensive, so we only do
 		//  it once and run all the tests in one go.
 		$dewiki = [
@@ -79,34 +36,40 @@ class InterwikiTest extends MediaWikiTestCase {
 		];
 
 		$this->populateDB( [ $dewiki, $zzwiki ] );
-
-		$this->setWgInterwikiCache( false );
+		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
+			Language::factory( 'en' ),
+			WANObjectCache::newEmpty(),
+			60*60,
+			false,
+			3,
+			'en'
+		);
 
 		$this->assertEquals(
 			[ $dewiki, $zzwiki ],
-			Interwiki::getAllPrefixes(),
+			$lookup->getAllPrefixes(),
 			'getAllPrefixes()'
 		);
 		$this->assertEquals(
 			[ $dewiki ],
-			Interwiki::getAllPrefixes( true ),
+			$lookup->getAllPrefixes( true ),
 			'getAllPrefixes()'
 		);
 		$this->assertEquals(
 			[ $zzwiki ],
-			Interwiki::getAllPrefixes( false ),
+			$lookup->getAllPrefixes( false ),
 			'getAllPrefixes()'
 		);
 
-		$this->assertTrue( Interwiki::isValidInterwiki( 'de' ), 'known prefix is valid' );
-		$this->assertFalse( Interwiki::isValidInterwiki( 'xyz' ), 'unknown prefix is valid' );
+		$this->assertTrue( $lookup->isValidInterwiki( 'de' ), 'known prefix is valid' );
+		$this->assertFalse( $lookup->isValidInterwiki( 'xyz' ), 'unknown prefix is valid' );
 
-		$this->assertNull( Interwiki::fetch( null ), 'no prefix' );
-		$this->assertFalse( Interwiki::fetch( 'xyz' ), 'unknown prefix' );
+		$this->assertNull( $lookup->fetch( null ), 'no prefix' );
+		$this->assertFalse( $lookup->fetch( 'xyz' ), 'unknown prefix' );
 
-		$interwiki = Interwiki::fetch( 'de' );
+		$interwiki = $lookup->fetch( 'de' );
 		$this->assertInstanceOf( 'Interwiki', $interwiki );
-		$this->assertSame( $interwiki, Interwiki::fetch( 'de' ), 'in-process caching' );
+		$this->assertSame( $interwiki, $lookup->fetch( 'de' ), 'in-process caching' );
 
 		$this->assertSame( 'http://de.wikipedia.org/wiki/', $interwiki->getURL(), 'getURL' );
 		$this->assertSame( 'http://de.wikipedia.org/w/api.php', $interwiki->getAPI(), 'getAPI' );
@@ -114,8 +77,8 @@ class InterwikiTest extends MediaWikiTestCase {
 		$this->assertSame( true, $interwiki->isLocal(), 'isLocal' );
 		$this->assertSame( false, $interwiki->isTranscludable(), 'isTranscludable' );
 
-		Interwiki::invalidateCache( 'de' );
-		$this->assertNotSame( $interwiki, Interwiki::fetch( 'de' ), 'invalidate cache' );
+		$lookup->invalidateCache( 'de' );
+		$this->assertNotSame( $interwiki, $lookup->fetch( 'de' ), 'invalidate cache' );
 	}
 
 	/**
@@ -187,25 +150,31 @@ class InterwikiTest extends MediaWikiTestCase {
 			[ $dewiki ],
 			[ $zzwiki ]
 		);
-
-		$this->setWgInterwikiCache( $cdbFile );
+		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
+			Language::factory( 'en' ),
+			WANObjectCache::newEmpty(),
+			60*60,
+			$cdbFile,
+			3,
+			'en'
+		);
 
 		$this->assertEquals(
 			[ $dewiki, $zzwiki ],
-			Interwiki::getAllPrefixes(),
+			$lookup->getAllPrefixes(),
 			'getAllPrefixes()'
 		);
 
-		$this->assertTrue( Interwiki::isValidInterwiki( 'de' ), 'known prefix is valid' );
-		$this->assertTrue( Interwiki::isValidInterwiki( 'zz' ), 'known prefix is valid' );
+		$this->assertTrue( $lookup->isValidInterwiki( 'de' ), 'known prefix is valid' );
+		$this->assertTrue( $lookup->isValidInterwiki( 'zz' ), 'known prefix is valid' );
 
-		$interwiki = Interwiki::fetch( 'de' );
+		$interwiki = $lookup->fetch( 'de' );
 		$this->assertInstanceOf( 'Interwiki', $interwiki );
 
 		$this->assertSame( 'http://de.wikipedia.org/wiki/', $interwiki->getURL(), 'getURL' );
 		$this->assertSame( true, $interwiki->isLocal(), 'isLocal' );
 
-		$interwiki = Interwiki::fetch( 'zz' );
+		$interwiki = $lookup->fetch( 'zz' );
 		$this->assertInstanceOf( 'Interwiki', $interwiki );
 
 		$this->assertSame( 'http://zzwiki.org/wiki/', $interwiki->getURL(), 'getURL' );
@@ -228,30 +197,36 @@ class InterwikiTest extends MediaWikiTestCase {
 			'iw_local' => 0
 		];
 
-		$cdbData = $this->populateHash(
+		$hash = $this->populateHash(
 			'en',
 			[ $dewiki ],
 			[ $zzwiki ]
 		);
-
-		$this->setWgInterwikiCache( $cdbData );
+		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
+			Language::factory( 'en' ),
+			WANObjectCache::newEmpty(),
+			60*60,
+			$hash,
+			3,
+			'en'
+		);
 
 		$this->assertEquals(
 			[ $dewiki, $zzwiki ],
-			Interwiki::getAllPrefixes(),
+			$lookup->getAllPrefixes(),
 			'getAllPrefixes()'
 		);
 
-		$this->assertTrue( Interwiki::isValidInterwiki( 'de' ), 'known prefix is valid' );
-		$this->assertTrue( Interwiki::isValidInterwiki( 'zz' ), 'known prefix is valid' );
+		$this->assertTrue( $lookup->isValidInterwiki( 'de' ), 'known prefix is valid' );
+		$this->assertTrue( $lookup->isValidInterwiki( 'zz' ), 'known prefix is valid' );
 
-		$interwiki = Interwiki::fetch( 'de' );
+		$interwiki = $lookup->fetch( 'de' );
 		$this->assertInstanceOf( 'Interwiki', $interwiki );
 
 		$this->assertSame( 'http://de.wikipedia.org/wiki/', $interwiki->getURL(), 'getURL' );
 		$this->assertSame( true, $interwiki->isLocal(), 'isLocal' );
 
-		$interwiki = Interwiki::fetch( 'zz' );
+		$interwiki = $lookup->fetch( 'zz' );
 		$this->assertInstanceOf( 'Interwiki', $interwiki );
 
 		$this->assertSame( 'http://zzwiki.org/wiki/', $interwiki->getURL(), 'getURL' );
