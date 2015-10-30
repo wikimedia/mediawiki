@@ -393,6 +393,7 @@ $wgAutoloadLocalClasses = array(
 	'ExplodeIterator' => __DIR__ . '/includes/libs/ExplodeIterator.php',
 	'ExportProgressFilter' => __DIR__ . '/maintenance/backup.inc',
 	'ExportSites' => __DIR__ . '/maintenance/exportSites.php',
+	'ExtVersionChecker' => __DIR__ . '/includes/registration/ExtVersionChecker.php',
 	'ExtensionLanguages' => __DIR__ . '/maintenance/language/languages.inc',
 	'ExtensionProcessor' => __DIR__ . '/includes/registration/ExtensionProcessor.php',
 	'ExtensionRegistry' => __DIR__ . '/includes/registration/ExtensionRegistry.php',
