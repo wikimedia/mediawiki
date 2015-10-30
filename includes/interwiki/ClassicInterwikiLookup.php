@@ -99,7 +99,13 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 * @param int $interwikiScopes
 	 * @param string $fallbackSite
 	 */
-	function __construct( Language $contentLanguage, $objectCacheExpiry, $cdbFile, $interwikiScopes, $fallbackSite ) {
+	function __construct(
+		Language $contentLanguage,
+		$objectCacheExpiry,
+		$cdbFile,
+		$interwikiScopes,
+		$fallbackSite
+	) {
 		$this->contentLanguage = $contentLanguage;
 		$this->objectCacheExpiry = $objectCacheExpiry;
 		$this->cdbFile = $cdbFile;
@@ -159,8 +165,8 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 * @param string $prefix
 	 */
 	public function invalidateCache( $prefix ) {
-		$cache = ObjectCache::getMainWANInstance(); //TODO: inject!
-		$key = wfMemcKey( 'interwiki', $prefix ); //TODO: inject!
+		$cache = ObjectCache::getMainWANInstance(); // TODO: inject!
+		$key = wfMemcKey( 'interwiki', $prefix ); // TODO: inject!
 		$cache->delete( $key );
 	}
 
@@ -197,7 +203,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 		$value = false;
 		try {
 			if ( !$this->cdb ) {
-				$this->cdb = CdbReader::open( $this->cdbFile ); //TODO: inject factory
+				$this->cdb = CdbReader::open( $this->cdbFile ); // TODO: inject factory
 			}
 			/* Resolve site name */
 			if ( $this->interwikiScopes >= 3 && !$this->thisSite ) {
@@ -250,7 +256,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 			wfMemcKey( 'interwiki', $prefix ),
 			$this->objectCacheExpiry,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $prefix ) {
-				$dbr = wfGetDB( DB_SLAVE ); //TODO: inject LoadBalancer
+				$dbr = wfGetDB( DB_SLAVE ); // TODO: inject LoadBalancer
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
@@ -363,7 +369,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 * @return array List of prefixes
 	 */
 	private function getAllPrefixesDB( $local ) {
-		$db = wfGetDB( DB_SLAVE ); //TODO: inject DB LoadBalancer
+		$db = wfGetDB( DB_SLAVE ); // TODO: inject DB LoadBalancer
 
 		$where = array();
 
