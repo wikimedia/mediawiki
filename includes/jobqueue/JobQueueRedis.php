@@ -219,7 +219,7 @@ class JobQueueRedis extends JobQueue {
 				}
 			}
 			JobQueue::incrStats( 'inserts', $this->type, count( $items ) );
-			JobQueue::incrStats( 'inserts_actual', $pushed );
+			JobQueue::incrStats( 'inserts_actual', $this->type, $pushed );
 			JobQueue::incrStats( 'dupe_inserts', $this->type,
 				count( $items ) - $failed - $pushed );
 			if ( $failed > 0 ) {
