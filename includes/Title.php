@@ -22,7 +22,6 @@
  * @file
  */
 use MediaWiki\Linker\LinkTarget;
-
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -184,9 +183,11 @@ class Title implements LinkTarget {
 		}
 
 		if ( !$titleCodec ) {
+			// @todo: move this into MediaWikiServices
 			$titleCodec = new MediaWikiTitleCodec(
 				$wgContLang,
 				GenderCache::singleton(),
+				MediaWikiServices::getInstance()->getInterwikiLookup(),
 				$wgLocalInterwikis
 			);
 			$titleCodecFingerprint = $fingerprint;

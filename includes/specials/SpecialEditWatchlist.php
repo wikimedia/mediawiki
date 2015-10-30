@@ -3,6 +3,7 @@
  * @defgroup Watchlist Users watchlist handling
  */
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Implements Special:EditWatchlist
@@ -26,8 +27,6 @@ use MediaWiki\Linker\LinkTarget;
  * @ingroup SpecialPage
  * @ingroup Watchlist
  */
-
-use MediaWiki\MediaWikiServices;
 
 /**
  * Provides the UI through which users can perform editing
@@ -68,7 +67,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private function initServices() {
 		if ( !$this->titleParser ) {
 			$lang = $this->getContext()->getLanguage();
-			$this->titleParser = new MediaWikiTitleCodec( $lang, GenderCache::singleton() );
+			$this->titleParser = new MediaWikiTitleCodec(
+				$lang,
+				GenderCache::singleton(),
+				MediaWikiServices::getInstance()->getInterwikiLookup()
+			);
 		}
 	}
 
