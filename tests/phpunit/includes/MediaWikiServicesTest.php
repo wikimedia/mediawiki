@@ -46,6 +46,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'MainConfig' => array( 'MainConfig', 'Config' ),
 			'SiteStore' => array( 'SiteStore', 'SiteStore' ),
 			'SiteLookup' => array( 'SiteLookup', 'SiteLookup' ),
+			'InterwikiLookup' => array( 'InterwikiLookup', 'MediaWiki\Interwiki\InterwikiLookup' ),
 		);
 	}
 

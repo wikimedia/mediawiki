@@ -37,6 +37,7 @@
  *      MediaWiki code base.
  */
 
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MediaWikiServices;
 
 return array(
@@ -71,6 +72,18 @@ return array(
 		// Use the 'main' config from the ConfigFactory service.
 		return $services->getConfigFactory()->makeConfig( 'main' );
 	},
+
+	'InterwikiLookup' => function( MediaWikiServices $services ) {
+		$config = $services->getMainConfig();
+		return new ClassicInterwikiLookup(
+			$config->get( 'ContLang' ),
+			ObjectCache::getMainWANInstance(),
+			$config->get( 'InterwikiExpiry' ),
+			$config->get( 'InterwikiCache' ),
+			$config->get( 'InterwikiScopes' ),
+			$config->get( 'InterwikiFallbackSite' )
+		);
+	}
 
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
