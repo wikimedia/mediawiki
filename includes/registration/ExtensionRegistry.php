@@ -174,8 +174,7 @@ class ExtensionRegistry {
 		global $wgVersion;
 		$autoloadClasses = array();
 		$processor = new ExtensionProcessor();
-		$incompatible = array();
-		$coreVersionParser = new CoreVersionChecker( $wgVersion );
+		$extDependencies = array();
 		foreach ( $queue as $path => $mtime ) {
 			$json = file_get_contents( $path );
 			if ( $json === false ) {
@@ -197,20 +196,26 @@ class ExtensionRegistry {
 			// Set up the autoloader now so custom processors will work
 			$GLOBALS['wgAutoloadClasses'] += $autoload;
 			$autoloadClasses += $autoload;
-			// Check any constraints against MediaWiki core
+
+			// get all requirements/dependencies for this extension
 			$requires = $processor->getRequirements( $info );
-			if ( isset( $requires[self::MEDIAWIKI_CORE] )
-				&& !$coreVersionParser->check( $requires[self::MEDIAWIKI_CORE] )
-			) {
-				// Doesn't match, mark it as incompatible.
-				$incompatible[] = "{$info['name']} is not compatible with the current "
-					. "MediaWiki core (version {$wgVersion}), it requires: " . $requires[self::MEDIAWIKI_CORE]
-					. '.';
-				continue;
+
+			// validate the information needed and add the requirements
+			if ( is_array( $requires ) && $requires && isset( $info['name'] ) ) {
+				$extDependencies[$info['name']] = $requires;
 			}
 			// Compatible, read and extract info
 			$processor->extractInfo( $path, $info, $version );
 		}
+		$data = $processor->getExtractedInfo();
+
+		// check for incompatible extensions
+		$versionParser = new VersionChecker();
+		$incompatible = $versionParser
+			->setCoreVersion( $wgVersion )
+			->setLoaded( $data['credits'] )
+			->checkArray( $extDependencies );
+
 		if ( $incompatible ) {
 			if ( count( $incompatible ) === 1 ) {
 				throw new Exception( $incompatible[0] );
@@ -218,7 +223,6 @@ class ExtensionRegistry {
 				throw new Exception( implode( "\n", $incompatible ) );
 			}
 		}
-		$data = $processor->getExtractedInfo();
 		// Need to set this so we can += to it later
 		$data['globals']['wgAutoloadClasses'] = array();
 		foreach ( $data['credits'] as $credit ) {
