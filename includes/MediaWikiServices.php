@@ -20,6 +20,8 @@ use SiteStore;
 use WatchedItemStore;
 use SkinFactory;
 
+use MediaWiki\Interwiki\InterwikiLookup;
+
 /**
  * Service locator for MediaWiki core services.
  *
@@ -375,6 +377,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getSiteStore() {
 		return $this->getService( 'SiteStore' );
+	}
+
+	/**
+	 * @return InterwikiLookup
+	 */
+	public function getInterwikiLookup() {
+		return $this->getService( 'InterwikiLookup' );
 	}
 
 	/**

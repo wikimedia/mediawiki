@@ -1,5 +1,6 @@
 <?php
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
+use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Services\ServiceDisabledException;
 
@@ -231,6 +232,7 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SiteStore' => [ 'SiteStore', SiteStore::class ],
 			'SiteLookup' => [ 'SiteLookup', SiteLookup::class ],
 			'StatsdDataFactory' => [ 'StatsdDataFactory', StatsdDataFactory::class ],
+			'InterwikiLookup' => [ 'InterwikiLookup', InterwikiLookup::class ],
 			'EventRelayerGroup' => [ 'EventRelayerGroup', EventRelayerGroup::class ],
 			'SearchEngineFactory' => [ 'SearchEngineFactory', SearchEngineFactory::class ],
 			'SearchEngineConfig' => [ 'SearchEngineConfig', SearchEngineConfig::class ],
