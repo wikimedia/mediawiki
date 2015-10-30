@@ -23,6 +23,8 @@
  * @ingroup Parser
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * This class encapsulates "magic words" such as "#redirect", __NOTOC__, etc.
  *
@@ -951,13 +953,28 @@ class MagicWordArray {
 				continue;
 			}
 			$matches = array();
-			if ( preg_match_all( $regex, $text, $matches, PREG_SET_ORDER ) ) {
+			$res = preg_match_all( $regex, $text, $matches, PREG_SET_ORDER );
+			if ( $res === false ) {
+				LoggerFactory::getInstance( 'parser' )->warning( 'preg_match_all returned false', array(
+					'code' => preg_last_error(),
+					'regex' => $regex,
+					'text' => $text,
+				) );
+			} elseif ( $res ) {
 				foreach ( $matches as $m ) {
 					list( $name, $param ) = $this->parseMatch( $m );
 					$found[$name] = $param;
 				}
 			}
-			$text = preg_replace( $regex, '', $text );
+			$res = preg_replace( $regex, '', $text );
+			if ( $res === null ) {
+				LoggerFactory::getInstance( 'parser' )->warning( 'preg_replace returned null', array(
+					'code' => preg_last_error(),
+					'regex' => $regex,
+					'text' => $text,
+				) );
+			}
+			$text = $res;
 		}
 		return $found;
 	}
