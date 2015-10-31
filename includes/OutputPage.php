@@ -456,6 +456,8 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Add raw HTML to the list of scripts (including \<script\> tag, etc.)
+	 * Internal use only. Use OutputPage::addModules() or OutputPage::addJsConfigVars()
+	 * if possible.
 	 *
 	 * @param string $script Raw HTML
 	 */
@@ -466,26 +468,31 @@ class OutputPage extends ContextSource {
 	/**
 	 * Register and add a stylesheet from an extension directory.
 	 *
+	 * @deprecated since 1.27 use addModuleStyles() or addStyle() instead
 	 * @param string $url Path to sheet.  Provide either a full url (beginning
 	 *             with 'http', etc) or a relative path from the document root
 	 *             (beginning with '/').  Otherwise it behaves identically to
 	 *             addStyle() and draws from the /skins folder.
 	 */
 	public function addExtensionStyle( $url ) {
+		wfDeprecated( __METHOD__, '1.27' );
 		array_push( $this->mExtStyles, $url );
 	}
 
 	/**
 	 * Get all styles added by extensions
 	 *
+	 * @deprecated since 1.27
 	 * @return array
 	 */
 	function getExtStyle() {
+		wfDeprecated( __METHOD__, '1.27' );
 		return $this->mExtStyles;
 	}
 
 	/**
 	 * Add a JavaScript file out of skins/common, or a given relative path.
+	 * Internal use only. Use OutputPage::addModules() if possible.
 	 *
 	 * @param string $file Filename in skins/common or complete on-server path
 	 *              (/foo/bar.js)
@@ -506,6 +513,7 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Add a self-contained script tag with the given contents
+	 * Internal use only. Use OutputPage::addModules() if possible.
 	 *
 	 * @param string $script JavaScript text, no "<script>" tags
 	 */
@@ -690,6 +698,12 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Add or replace an header item to the output
+	 *
+	 * Whenever possible, use more specific options like ResourceLoader modules,
+	 * OutputPage::addLink(), OutputPage::addMetaLink() and OutputPage::addFeedLink()
+	 * Fallback options for those are: OutputPage::addStyle, OutputPage::addScript(),
+	 * OutputPage::addInlineScript() and OutputPage::addInlineStyle()
+	 * This would be you your very LAST fallback.
 	 *
 	 * @param string $name Item name
 	 * @param string $value Raw HTML
@@ -1025,6 +1039,7 @@ class OutputPage extends ContextSource {
 	 * @param string|Message $str String or Message to add to the subtitle
 	 */
 	public function appendSubtitle( $str ) {
+		wfDeprecated( __METHOD__, '1.19' );
 		$this->addSubtitle( $str );
 	}
 
@@ -1748,6 +1763,7 @@ class OutputPage extends ContextSource {
 	 * @param ParserOutput $parserOutput
 	 */
 	public function addParserOutputNoText( $parserOutput ) {
+		wfDeprecated( __METHOD__, '1.24' );
 		$this->addParserOutputMetadata( $parserOutput );
 	}
 
@@ -2328,6 +2344,7 @@ class OutputPage extends ContextSource {
 	 * @deprecated since 1.18
 	 */
 	function blockedPage() {
+		wfDeprecated( __METHOD__, '1.18' );
 		throw new UserBlockedError( $this->getUser()->mBlock );
 	}
 
@@ -2479,6 +2496,7 @@ class OutputPage extends ContextSource {
 	 * @throws PermissionsError
 	 */
 	public function permissionRequired( $permission ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		throw new PermissionsError( $permission );
 	}
 
@@ -2488,6 +2506,7 @@ class OutputPage extends ContextSource {
 	 * @deprecated since 1.19; throw the exception directly
 	 */
 	public function loginToUse() {
+		wfDeprecated( __METHOD__, '1.19' );
 		throw new PermissionsError( 'read' );
 	}
 
@@ -3601,7 +3620,7 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Add a local or specified stylesheet, with the given media options.
-	 * Meant primarily for internal use...
+	 * Internal use only. Use OutputPage::addModuleStyles() if possible.
 	 *
 	 * @param string $style URL to the file
 	 * @param string $media To specify a media type, 'screen', 'printable', 'handheld' or any.
@@ -3626,6 +3645,8 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Adds inline CSS styles
+	 * Internal use only. Use OutputPage::addModuleStyles() if possible.
+	 *
 	 * @param mixed $style_css Inline CSS
 	 * @param string $flip Set to 'flip' to flip the CSS if needed
 	 */
@@ -3940,6 +3961,7 @@ class OutputPage extends ContextSource {
 	 * @deprecated since 1.17
 	 */
 	public function includeJQuery( array $modules = array() ) {
+		wfDeprecated( __METHOD__, '1.17' );
 		return array();
 	}
 
