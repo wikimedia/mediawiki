@@ -71,6 +71,7 @@ return array(
 			'tests/qunit/suites/resources/mediawiki/mediawiki.storage.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.template.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.test.js',
+			'tests/qunit/suites/resources/mediawiki/mediawiki.html.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.Title.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.toc.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.track.test.js',
