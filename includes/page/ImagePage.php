@@ -426,9 +426,9 @@ class ImagePage extends Article {
 						'alt' => $this->displayImg->getTitle()->getPrefixedText(),
 						'file-link' => true,
 					);
-					$out->addHTML( '<div class="fullImageLink" id="file">' .
-						$thumbnail->toHtml( $options ) .
-						$anchorclose . "</div>\n" );
+					$out->addHTML( '<div class="fullImageLink" id="file">' );
+					$out->addParserOutputContent( $thumbnail->toParserOutput( $options ) );
+					$out->addHTML( $anchorclose . "</div>\n" );
 				}
 
 				if ( $isMulti ) {
@@ -504,9 +504,9 @@ class ImagePage extends Article {
 				# if direct link is allowed but it's not a renderable image, show an icon.
 				$icon = $this->displayImg->iconThumb();
 
-				$out->addHTML( '<div class="fullImageLink" id="file">' .
-					$icon->toHtml( array( 'file-link' => true ) ) .
-					"</div>\n" );
+				$out->addHTML( '<div class="fullImageLink" id="file">' );
+				$out->addParserOutputContent( $icon->toParserOutput( array( 'file-link' => true ) ) );
+				$out->addHTML( "</div>\n" );
 			}
 
 			$longDesc = $this->getContext()->msg( 'parentheses', $this->displayImg->getLongDesc() )->text();

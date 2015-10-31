@@ -133,6 +133,12 @@ abstract class MediaTransformOutput {
 	 */
 	abstract public function toHtml( $options = array() );
 
+	public function toParserOutput( $options = array() ) {
+		$pout = new ParserOutput();
+		$pout->setText( $this->toHtml( $options ) );
+		return $pout;
+	}
+
 	/**
 	 * This will be overridden to return true in error classes
 	 * @return bool

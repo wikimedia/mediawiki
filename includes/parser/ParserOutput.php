@@ -655,6 +655,13 @@ class ParserOutput extends CacheTime {
 		$this->mPreventClickjacking = $this->mPreventClickjacking || $out->getPreventClickjacking();
 	}
 
+	public function addParserOutputMetadata( ParserOutput $pout ) {
+		$this->addModules( $pout->getModules() );
+		$this->addModuleScripts( $pout->getModuleScripts() );
+		$this->addModuleStyles( $pout->getModuleStyles() );
+		$this->addJsConfigVars( $pout->getJsConfigVars() );
+	}
+
 	/**
 	 * Add a tracking category, getting the title from a system message,
 	 * or print a debug message if the title is invalid.

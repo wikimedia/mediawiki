@@ -152,8 +152,9 @@ class FileDuplicateSearchPage extends QueryPage {
 				$thumb = $img->transform( array( 'width' => 120, 'height' => 120 ) );
 				if ( $thumb ) {
 					$out->addModuleStyles( 'mediawiki.special' );
-					$out->addHTML( '<div id="mw-fileduplicatesearch-icon">' .
-						$thumb->toHtml( array( 'desc-link' => false ) ) . '<br />' .
+					$out->addHTML( '<div id="mw-fileduplicatesearch-icon">' );
+					$out->addParserOutputContent( $thumb->toParserOutput( array( 'desc-link' => false ) ) );
+					$out->addHTML( '<br />' .
 						$this->msg( 'fileduplicatesearch-info' )->numParams(
 							$img->getWidth(), $img->getHeight() )->params(
 								$this->getLanguage()->formatSize( $img->getSize() ),
