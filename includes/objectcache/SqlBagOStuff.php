@@ -349,7 +349,12 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
-		return $this->setMulti( array( $key => $value ), $exptime );
+		$ok = $this->setMulti( array( $key => $value ), $exptime );
+		if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
+			$ok = $ok && $this->waitForSlaves();
+		}
+
+		return $ok;
 	}
 
 	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
@@ -457,7 +462,12 @@ class SqlBagOStuff extends BagOStuff {
 			throw new Exception( "Got invalid callback." );
 		}
 
-		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
+		$ok = $this->mergeViaCas( $key, $callback, $exptime, $attempts );
+		if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
+			$ok = $ok && $this->waitForSlaves();
+		}
+
+		return $ok;
 	}
 
 	/**
@@ -727,6 +737,16 @@ class SqlBagOStuff extends BagOStuff {
 					' LIKE ' . $db->tableName( 'objectcache' ),
 					__METHOD__ );
 			}
+		}
+	}
+
+	protected function waitForSlaves() {
+		if ( $this->serverInfos == false ) {
+			// Main LB is used; wait for any slaves to catch up
+			return wfWaitForSlaves( null, false, false, 3 );
+		} else {
+			// Custom DB server list; probably doesn't use replication
+			return true;
 		}
 	}
 }
