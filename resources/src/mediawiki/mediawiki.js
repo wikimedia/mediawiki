@@ -2377,8 +2377,8 @@
 				 * Create an HTML element string, with safe escaping.
 				 *
 				 * @param {string} name The tag name.
-				 * @param {Object} attrs An object with members mapping element names to values
-				 * @param {Mixed} contents The contents of the element. May be either:
+				 * @param {Object} [attrs] An object with members mapping element names to values.
+				 * @param {Mixed} [contents] The contents of the element. May be either:
 				 *
 				 *  - string: The string is escaped.
 				 *  - null or undefined: The short closing form is used, e.g. `<br/>`.
