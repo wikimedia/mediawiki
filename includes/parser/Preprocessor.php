@@ -31,6 +31,27 @@ abstract class Preprocessor {
 	const CACHE_VERSION = 1;
 
 	/**
+	 * @var array Brace matching rules.
+	 */
+	protected $rules = array(
+		'{' => array(
+			'end' => '}',
+			'names' => array(
+				2 => 'template',
+				3 => 'tplarg',
+			),
+			'min' => 2,
+			'max' => 3,
+		),
+		'[' => array(
+			'end' => ']',
+			'names' => array( 2 => null ),
+			'min' => 2,
+			'max' => 2,
+		)
+	);
+
+	/**
 	 * Store a document tree in the cache.
 	 *
 	 * @param string $text
