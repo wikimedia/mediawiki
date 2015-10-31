@@ -180,7 +180,7 @@ HTML;
  * @param string $mwVersion See wfGenericError
  */
 function wfMissingVendorError( $type, $mwVersion ) {
-	$shortText = "Installing some external dependencies (e.g. via composer) is also required.";
+	$shortText = "Installing some external dependencies (e.g. via composer) is required.";
 
 	$longText = "Error: You are missing some external dependencies. \n"
 		. "MediaWiki now also has some external dependencies that need to be installed\n"
