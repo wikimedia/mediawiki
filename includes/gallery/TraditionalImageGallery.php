@@ -46,12 +46,13 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			array( 'class' => 'gallery mw-gallery-' . $this->mMode ), $this->mAttribs );
 
 		$modules = $this->getModules();
-		$modules[] = 'mediawiki.page.gallery.styles';
 
 		if ( $this->mParser ) {
 			$this->mParser->getOutput()->addModules( $modules );
+			$this->mParser->getOutput()->addModuleStyles( 'mediawiki.page.gallery.styles' );
 		} else {
 			$this->getOutput()->addModules( $modules );
+			$this->getOutput()->addModuleStyles( 'mediawiki.page.gallery.styles' );
 		}
 		$output = Xml::openElement( 'ul', $attribs );
 		if ( $this->mCaption ) {
