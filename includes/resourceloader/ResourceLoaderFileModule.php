@@ -935,7 +935,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		static $cache;
 
 		if ( !$cache ) {
-			$cache = ObjectCache::newAccelerator( CACHE_ANYTHING );
+			$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
 		}
 
 		// Construct a cache key from the LESS file name and a hash digest

@@ -615,7 +615,7 @@ abstract class DatabaseBase implements IDatabase {
 	function __construct( array $params ) {
 		global $wgDBprefix, $wgDBmwschema, $wgCommandLineMode;
 
-		$this->srvCache = ObjectCache::newAccelerator( 'hash' );
+		$this->srvCache = ObjectCache::getLocalServerInstance( 'hash' );
 
 		$server = $params['host'];
 		$user = $params['user'];
