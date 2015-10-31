@@ -31,7 +31,7 @@ class FileContentsHasher {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->cache = ObjectCache::newAccelerator( 'hash' );
+		$this->cache = ObjectCache::getLocalServerInstance( 'hash' );
 	}
 
 	/**

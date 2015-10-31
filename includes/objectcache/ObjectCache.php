@@ -42,22 +42,15 @@ use MediaWiki\Logger\LoggerFactory;
  *
  * Primary entry points:
  *
- * - ObjectCache::newAccelerator( $fallbackType )
- *   Purpose: Cache for very hot keys.
- *   Stored only on the individual web server.
- *   Not associated with other servers.
- *
  * - ObjectCache::getMainWANInstance()
- *   Purpose: Cache.
+ *   Purpose: Memory cache.
  *   Stored in the local data-center's main cache (uses different cache keys).
  *   Delete events are broadcasted to other DCs. See WANObjectCache for details.
  *
- * - ObjectCache::getMainStashInstance()
- *   Purpose: Ephemeral storage.
- *   Stored centrally within the primary data-center.
- *   Changes are applied there first and replicated to other DCs (best-effort).
- *   To retrieve the latest value (e.g. not from a slave), use BagOStuff:READ_LATEST.
- *   This store may be subject to LRU style evictions.
+ * - ObjectCache::getLocalServerInstance( $fallbackType )
+ *   Purpose: Memory cache for very hot keys.
+ *   Stored only on the individual web server (often EmptyBagOStuff in CLI mode).
+ *   Not replicated to the other servers.
  *
  * - ObjectCache::getLocalClusterInstance()
  *   Purpose: Memory storage for per-cluster coordination and tracking.
@@ -65,7 +58,15 @@ use MediaWiki\Logger\LoggerFactory;
  *   Stored centrally within the local data-center. Not replicated to other DCs.
  *   Also known as $wgMemc. Configured by $wgMainCacheType.
  *
- * - wfGetCache( $cacheType )
+ * - ObjectCache::getMainStashInstance()
+ *   Purpose: Ephemeral global storage.
+ *   Stored centrally within the primary data-center.
+ *   Changes are applied there first and replicated to other DCs (best-effort).
+ *   To retrieve the latest value (e.g. not from a slave), use BagOStuff:READ_LATEST.
+ *   This store may be subject to LRU style evictions.
+ *
+ * - ObjectCache::getInstance( $cacheType )
+ *   Purpose: Special cases (like tiered memory/disk caches).
  *   Get a specific cache type by key in $wgObjectCaches.
  *
  * All the above cache instances (BagOStuff and WANObjectCache) have their makeKey()
@@ -236,15 +237,39 @@ class ObjectCache {
 	 * A fallback cache can be specified if none is found.
 	 *
 	 *     // Direct calls
-	 *     ObjectCache::newAccelerator( $fallbackType );
+	 *     ObjectCache::getLocalServerInstance( $fallbackType );
 	 *
 	 *     // From $wgObjectCaches via newFromParams()
-	 *     ObjectCache::newAccelerator( array( 'fallback' => $fallbackType ) );
+	 *     ObjectCache::getLocalServerInstance( array( 'fallback' => $fallbackType ) );
 	 *
+	 * @param int|string|array $fallback Fallback cache or parameter map with 'fallback'
+	 * @return BagOStuff
+	 * @throws MWException
+	 * @since 1.27
+	 */
+	public static function getLocalServerInstance( $fallback = CACHE_NONE ) {
+		if ( function_exists( 'apc_fetch' ) ) {
+			$id = 'apc';
+		} elseif ( function_exists( 'xcache_get' ) && wfIniGetBool( 'xcache.var_size' ) ) {
+			$id = 'xcache';
+		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
+			$id = 'wincache';
+		} else {
+			if ( is_array( $fallback ) ) {
+				$id = isset( $fallback['fallback'] ) ? $fallback['fallback'] : CACHE_NONE;
+			} else {
+				$id = $fallback;
+			}
+		}
+
+		return self::getInstance( $id );
+	}
+
+	/**
 	 * @param array $params [optional] Array key 'fallback' for $fallback.
 	 * @param int|string $fallback Fallback cache, e.g. (CACHE_NONE, "hash") (since 1.24)
 	 * @return BagOStuff
-	 * @throws MWException
+	 * @deprecated 1.27
 	 */
 	public static function newAccelerator( $params = array(), $fallback = null ) {
 		if ( $fallback === null ) {
@@ -256,20 +281,8 @@ class ObjectCache {
 				$fallback = $params;
 			}
 		}
-		if ( function_exists( 'apc_fetch' ) ) {
-			$id = 'apc';
-		} elseif ( function_exists( 'xcache_get' ) && wfIniGetBool( 'xcache.var_size' ) ) {
-			$id = 'xcache';
-		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
-			$id = 'wincache';
-		} else {
-			if ( $fallback === null ) {
-				throw new MWException( 'CACHE_ACCEL requested but no suitable object ' .
-					'cache is present. You may want to install APC.' );
-			}
-			$id = $fallback;
-		}
-		return self::getInstance( $id );
+
+		return self::getLocalServerInstance( $fallback );
 	}
 
 	/**

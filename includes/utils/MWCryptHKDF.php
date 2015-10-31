@@ -176,7 +176,7 @@ class MWCryptHKDF {
 		$context[] = gethostname();
 
 		// Setup salt cache. Use APC, or fallback to the main cache if it isn't setup
-		$cache = ObjectCache::newAccelerator( $wgMainCacheType );
+		$cache = ObjectCache::getLocalServerInstance( $wgMainCacheType );
 
 		if ( is_null( self::$singleton ) ) {
 			self::$singleton = new self( $secret, $wgHKDFAlgorithm, $cache, $context );

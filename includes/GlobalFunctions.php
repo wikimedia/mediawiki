@@ -4010,7 +4010,7 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 		return $bad;
 	}
 
-	$cache = ObjectCache::newAccelerator( 'hash' );
+	$cache = ObjectCache::getLocalServerInstance( 'hash' );
 	$key = wfMemcKey( 'bad-image-list', ( $blacklist === null ) ? 'default' : md5( $blacklist ) );
 	$badImages = $cache->get( $key );
 
