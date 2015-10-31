@@ -6,8 +6,7 @@
 		var $preftoc, $preferences, $fieldsets, $legends,
 			hash, labelFunc,
 			$tzSelect, $tzTextbox, $localtimeHolder, servertime,
-			$checkBoxes, allowCloseWindow,
-			notif;
+			allowCloseWindow, notif;
 
 		labelFunc = function () {
 			return this.id.replace( /^mw-prefsection/g, 'preftab' );
@@ -280,16 +279,6 @@
 				sessionStorage.setItem( 'mediawikiPreferencesTab', storageData );
 			} );
 		}
-
-		// To disable all 'namespace' checkboxes in Search preferences
-		// when 'Search in all namespaces' checkbox is ticked.
-		$checkBoxes = $( '#mw-htmlform-advancedsearchoptions input[id^=mw-input-wpsearchnamespaces]' );
-		if ( $( '#mw-input-wpsearcheverything' ).prop( 'checked' ) ) {
-			$checkBoxes.prop( 'disabled', true );
-		}
-		$( '#mw-input-wpsearcheverything' ).change( function () {
-			$checkBoxes.prop( 'disabled', $( this ).prop( 'checked' ) );
-		} );
 
 		// Set up a message to notify users if they try to leave the page without
 		// saving.
