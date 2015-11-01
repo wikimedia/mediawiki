@@ -2495,6 +2495,37 @@ class FileBackendTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function testSanitizeOpHeaders() {
+		$be = TestingAccessWrapper::newFromObject( new MemoryFileBackend( array(
+			'name' => 'localtesting',
+			'wikiId' => wfWikiID()
+		) ) );
+
+		$name = wfRandomString( 300 );
+
+		$input = array(
+			'headers' => array(
+				'content-Disposition' => FileBackend::makeContentDisposition( 'inline', $name ),
+				'Content-dUration' => 25.6,
+				'X-LONG-VALUE' => str_pad( '0', 300 ),
+				'CONTENT-LENGTH' => 855055,
+			)
+		);
+		$expected = array(
+			'headers' => array(
+				'content-disposition' => FileBackend::makeContentDisposition( 'inline', $name ),
+				'content-duration' => 25.6,
+				'content-length' => 855055
+			)
+		);
+
+		MediaWiki\suppressWarnings();
+		$actual = $be->sanitizeOpHeaders( $input );
+		MediaWiki\restoreWarnings();
+
+		$this->assertEquals( $expected, $actual, "Header sanitized properly" );
+	}
+
 	// helper function
 	private function listToArray( $iter ) {
 		return is_array( $iter ) ? $iter : iterator_to_array( $iter );
