@@ -1727,6 +1727,10 @@ return array(
 			'mediawiki.notification',
 		),
 	),
+	'mediawiki.special.preferences.styles' => array(
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.preferences.css',
+		'position' => 'top',
+	),
 	'mediawiki.special.recentchanges' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.recentchanges.js',
 		'dependencies' => 'mediawiki.special',
