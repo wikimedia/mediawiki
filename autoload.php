@@ -736,6 +736,7 @@ $wgAutoloadLocalClasses = array(
 	'MaintenanceFormatInstallDoc' => __DIR__ . '/maintenance/formatInstallDoc.php',
 	'MalformedTitleException' => __DIR__ . '/includes/title/MalformedTitleException.php',
 	'ManualLogEntry' => __DIR__ . '/includes/logging/LogEntry.php',
+	'MapCache' => __DIR__ . '/includes/libs/MapCacheLRU.php',
 	'MapCacheLRU' => __DIR__ . '/includes/libs/MapCacheLRU.php',
 	'MappedDiff' => __DIR__ . '/includes/diff/DairikiDiff.php',
 	'MappedIterator' => __DIR__ . '/includes/libs/MappedIterator.php',
