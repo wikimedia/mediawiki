@@ -2377,30 +2377,32 @@
 				 * Create an HTML element string, with safe escaping.
 				 *
 				 * @param {string} name The tag name.
-				 * @param {Object} attrs An object with members mapping element names to values
-				 * @param {Mixed} contents The contents of the element. May be either:
+				 * @param {Object} [attrs] An object with members mapping element names to values
+				 * @param {string|mw.html.Raw|mw.html.Cdata|null} [contents=null] The contents of the element.
 				 *
-				 *  - string: The string is escaped.
-				 *  - null or undefined: The short closing form is used, e.g. `<br/>`.
-				 *  - this.Raw: The value attribute is included without escaping.
-				 *  - this.Cdata: The value attribute is included, and an exception is
-				 *    thrown if it contains an illegal ETAGO delimiter.
-				 *    See <http://www.w3.org/TR/1999/REC-html401-19991224/appendix/notes.html#h-B.3.2>.
+				 *  - string: Text to be escaped.
+				 *  - null: The element is treated as void with short closing form, e.g. `<br/>`.
+				 *  - this.Raw: The raw value is directly included.
+				 *  - this.Cdata: The raw value is directly included. An exception is
+				 *    thrown if it contains any illegal ETAGO delimiter.
+				 *    See <http://www.w3.org/TR/html401/appendix/notes.html#h-B.3.2>.
 				 * @return {string} HTML
 				 */
 				element: function ( name, attrs, contents ) {
 					var v, attrName, s = '<' + name;
 
-					for ( attrName in attrs ) {
-						v = attrs[ attrName ];
-						// Convert name=true, to name=name
-						if ( v === true ) {
-							v = attrName;
-						// Skip name=false
-						} else if ( v === false ) {
-							continue;
+					if ( attrs ) {
+						for ( attrName in attrs ) {
+							v = attrs[ attrName ];
+							// Convert name=true, to name=name
+							if ( v === true ) {
+								v = attrName;
+							// Skip name=false
+							} else if ( v === false ) {
+								continue;
+							}
+							s += ' ' + attrName + '="' + this.escape( String( v ) ) + '"';
 						}
-						s += ' ' + attrName + '="' + this.escape( String( v ) ) + '"';
 					}
 					if ( contents === undefined || contents === null ) {
 						// Self close tag
