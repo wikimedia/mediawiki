@@ -1655,4 +1655,18 @@ class PreferencesForm extends HTMLForm {
 		Hooks::run( 'PreferencesGetLegend', array( $this, $key, &$legend ) );
 		return $legend;
 	}
+
+	/**
+	 * Get the keys of each top level preference section.
+	 * @return array of section keys
+	 */
+	function getPreferenceSections() {
+		$sectionMap = array();
+		foreach ( $this->mFieldTree as $key => $value ) {
+			if ( is_array( $value ) ) {
+				$sectionMap[] = $key;
+			}
+		}
+		return $sectionMap;
+	}
 }
