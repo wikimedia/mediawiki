@@ -3231,7 +3231,7 @@
 	"logentry-merge-merge": "$1 {{GENDER:$2|spojio|spojila}} je $3 u $4 (sve do izmjene $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|premjestio|premjestila}} je stranicu $3 na $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|premjestio|premjestila}} je stranicu $3 na $4 bez ostavljanja preusmjerenja",
-	"logentry-move-move_redir": "$1 {{GENDER:$2|premjestio|premjestila}} je stranicu $3 na $4 preko preusmjeravanja",
+	"logentry-move-move_redir": "$1 {{GENDER:$2|premjestio|premjestila}} je stranicu $3 na $4 preko preusmjerenja",
 	"logentry-move-move_redir-noredirect": "$1 {{GENDER:$2|premjestio|premjestila}} je stranicu $3 na $4 preko preusmjeravanja bez ostavljanja preusmjeravanja",
 	"logentry-patrol-patrol": "$1 {{GENDER:$2|označio|označila}} je izmjenu $4 stranice $3 pregledanom",
 	"logentry-patrol-patrol-auto": "$1 automatski je {{GENDER:$2|označio|označila}} verziju $4 stranice $3 pregledanom",

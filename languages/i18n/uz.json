@@ -1020,7 +1020,7 @@
 	"addwatch": "Kuzatuv ro'yxatiga qo'shish",
 	"addedwatchtext": "„[[:$1]]“ sahifasi (va uning munozara sahifasi) [[Special:Watchlist|kuzatuv roʻyxatingizga]] qoʻshildi.",
 	"removewatch": "Kuzatuv roʻyxatidan oʻchirish",
-	"removedwatchtext": "\"[[:$1]]\" sahifasi [[Special:Watchlist|kuzatuv roʻyxatingizdan]] oʻchirildi.",
+	"removedwatchtext": "„[[:$1]]“ sahifasi (va uning munozara sahifasi) [[Special:Watchlist|kuzatuv roʻyxatingizdan]] oʻchirildi.",
 	"watch": "Kuzatish",
 	"watchthispage": "Sahifani kuzatish",
 	"unwatch": "Kuzatmaslik",

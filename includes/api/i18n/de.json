@@ -450,7 +450,7 @@
 	"apihelp-userrights-param-user": "Benutzername.",
 	"apihelp-userrights-param-userid": "Benutzerkennung.",
 	"apihelp-watch-example-watch": "Die Seite <kbd>Main Page</kbd> beobachten.",
-	"apihelp-watch-example-unwatch": "Entbeobachtet die Seite <kbd>Main Page</kbd>.",
+	"apihelp-watch-example-unwatch": "Die Seite <kbd>Main Page</kbd> nicht beobachten.",
 	"apihelp-format-example-generic": "Das Abfrageergebnis im $1-Format ausgeben.",
 	"apihelp-dbg-description": "Daten im PHP-<code>var_export()</code>-Format ausgeben.",
 	"apihelp-dbgfm-description": "Daten im PHP-<code>var_export()</code>-Format ausgeben (schöngedruckt in HTML).",
