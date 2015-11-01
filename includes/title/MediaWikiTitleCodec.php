@@ -255,7 +255,8 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 			$m = array();
 			if ( preg_match( $prefixRegexp, $dbkey, $m ) ) {
 				$p = $m[1];
-				if ( ( $ns = $this->language->getNsIndex( $p ) ) !== false ) {
+				$ns = $this->language->getNsIndex( $p );
+				if ( $ns !== false ) {
 					# Ordinary namespace
 					$dbkey = $m[2];
 					$parts['namespace'] = $ns;
