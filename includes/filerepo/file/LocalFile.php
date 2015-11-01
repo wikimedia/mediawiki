@@ -316,7 +316,7 @@ class LocalFile extends File {
 	/**
 	 * Purge the file object/metadata cache
 	 */
-	function invalidateCache() {
+	public function invalidateCache() {
 		$key = $this->getCacheKey();
 		if ( !$key ) {
 			return;
@@ -1209,21 +1209,15 @@ class LocalFile extends File {
 	 * @param null|User $user
 	 * @return bool
 	 */
-	function recordUpload2( $oldver, $comment, $pageText, $props = false, $timestamp = false,
-		$user = null
+	function recordUpload2(
+		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null
 	) {
-
 		if ( is_null( $user ) ) {
 			global $wgUser;
 			$user = $wgUser;
 		}
 
 		$dbw = $this->repo->getMasterDB();
-		$dbw->begin( __METHOD__ );
-
-		if ( !$props ) {
-			$props = $this->repo->getFileProps( $this->getVirtualUrl() );
-		}
 
 		# Imports or such might force a certain timestamp; otherwise we generate
 		# it and can fudge it slightly to keep (name,timestamp) unique on re-upload.
@@ -1234,6 +1228,7 @@ class LocalFile extends File {
 			$allowTimeKludge = false;
 		}
 
+		$props = $props ?: $this->repo->getFileProps( $this->getVirtualUrl() );
 		$props['description'] = $comment;
 		$props['user'] = $user->getId();
 		$props['user_text'] = $user->getName();
@@ -1243,12 +1238,11 @@ class LocalFile extends File {
 		# Fail now if the file isn't there
 		if ( !$this->fileExists ) {
 			wfDebug( __METHOD__ . ": File " . $this->getRel() . " went missing!\n" );
-			$dbw->rollback( __METHOD__ );
 
 			return false;
 		}
 
-		$reupload = false;
+		$dbw->startAtomic( __METHOD__ );
 
 		# Test to see if the row exists using INSERT IGNORE
 		# This avoids race conditions by locking the row until the commit, and also
@@ -1273,13 +1267,18 @@ class LocalFile extends File {
 			__METHOD__,
 			'IGNORE'
 		);
-		if ( $dbw->affectedRows() == 0 ) {
+
+		$reupload = ( $dbw->affectedRows() == 0 );
+		if ( $reupload ) {
 			if ( $allowTimeKludge ) {
 				# Use LOCK IN SHARE MODE to ignore any transaction snapshotting
-				$ltimestamp = $dbw->selectField( 'image', 'img_timestamp',
+				$ltimestamp = $dbw->selectField(
+					'image',
+					'img_timestamp',
 					array( 'img_name' => $this->getName() ),
 					__METHOD__,
-					array( 'LOCK IN SHARE MODE' ) );
+					array( 'LOCK IN SHARE MODE' )
+				);
 				$lUnixtime = $ltimestamp ? wfTimestamp( TS_UNIX, $ltimestamp ) : false;
 				# Avoid a timestamp that is not newer than the last version
 				# TODO: the image/oldimage tables should be like page/revision with an ID field
@@ -1294,8 +1293,6 @@ class LocalFile extends File {
 			# version of the file was broken. Allow registration of the new
 			# version to continue anyway, because that's better than having
 			# an image that's not fixable by user operations.
-
-			$reupload = true;
 			# Collision, this is an update of a file
 			# Insert previous contents into oldimage
 			$dbw->insertSelect( 'oldimage', 'image',
@@ -1322,7 +1319,7 @@ class LocalFile extends File {
 
 			# Update the current image row
 			$dbw->update( 'image',
-				array( /* SET */
+				array(
 					'img_size' => $this->size,
 					'img_width' => intval( $this->width ),
 					'img_height' => intval( $this->height ),
@@ -1340,23 +1337,17 @@ class LocalFile extends File {
 				array( 'img_name' => $this->getName() ),
 				__METHOD__
 			);
-		} else {
-			# This is a new file, so update the image count
-			DeferredUpdates::addUpdate( SiteStatsUpdate::factory( array( 'images' => 1 ) ) );
 		}
 
 		$descTitle = $this->getTitle();
 		$wikiPage = new WikiFilePage( $descTitle );
 		$wikiPage->setFile( $this );
 
-		# Add the log entry
-		$action = $reupload ? 'overwrite' : 'upload';
-
-		$logEntry = new ManualLogEntry( 'upload', $action );
+		// Add the log entry...
+		$logEntry = new ManualLogEntry( 'upload', $reupload ? 'overwrite' : 'upload' );
 		$logEntry->setPerformer( $user );
 		$logEntry->setComment( $comment );
 		$logEntry->setTarget( $descTitle );
-
 		// Allow people using the api to associate log entries with the upload.
 		// Log has a timestamp, but sometimes different from upload timestamp.
 		$logEntry->setParameters(
@@ -1373,15 +1364,9 @@ class LocalFile extends File {
 		// now and wait until the page exists.
 		$logId = $logEntry->insert();
 
-		$exists = $descTitle->exists();
-		if ( $exists ) {
-			// Page exists, do RC entry now (otherwise we wait for later).
+		if ( $descTitle->exists() ) {
+			// Page exists, do RC entry now (otherwise we wait for later)
 			$logEntry->publish( $logId );
-		}
-
-		if ( $exists ) {
-			# Create a null revision
-			$latest = $descTitle->getLatestRevID();
 			// Use own context to get the action text in content language
 			$formatter = LogFormatter::newFromEntry( $logEntry );
 			$formatter->setContext( RequestContext::newExtraneousContext( $descTitle ) );
@@ -1394,60 +1379,69 @@ class LocalFile extends File {
 				false,
 				$user
 			);
-			if ( !is_null( $nullRevision ) ) {
+			if ( $nullRevision ) {
 				$nullRevision->insertOn( $dbw );
-
-				Hooks::run( 'NewRevisionFromEditComplete', array( $wikiPage, $nullRevision, $latest, $user ) );
+				Hooks::run(
+					'NewRevisionFromEditComplete',
+					array( $wikiPage, $nullRevision, $nullRevision->getParentId(), $user )
+				);
 				$wikiPage->updateRevisionOn( $dbw, $nullRevision );
 			}
-		}
 
-		# Commit the transaction now, in case something goes wrong later
-		# The most important thing is that files don't get lost, especially archives
-		# NOTE: once we have support for nested transactions, the commit may be moved
-		#       to after $wikiPage->doEdit has been called.
-		$dbw->commit( __METHOD__ );
-
-		# Update memcache after the commit
-		$this->invalidateCache();
-
-		if ( $exists ) {
-			# Invalidate the cache for the description page
-			$descTitle->invalidateCache();
-			$descTitle->purgeSquid();
+			$newPageContent = null;
 		} else {
-			# New file; create the description page.
-			# There's already a log entry, so don't make a second RC entry
-			# Squid and file cache for the description page are purged by doEditContent.
-			$content = ContentHandler::makeContent( $pageText, $descTitle );
-			$status = $wikiPage->doEditContent(
-				$content,
-				$comment,
-				EDIT_NEW | EDIT_SUPPRESS_RC,
-				false,
-				$user
-			);
-
-			// Now that the page exists, make an RC entry.
-			// This relies on the resetArticleID() call in WikiPage::insertOn(),
-			// which is triggered on $descTitle by doEditContent() above.
-			$logEntry->publish( $logId );
-			if ( isset( $status->value['revision'] ) ) {
-				$dbw->update( 'logging',
-					array( 'log_page' => $status->value['revision']->getPage() ),
-					array( 'log_id' => $logId ),
-					__METHOD__
-				);
-			}
+			// Make the description page and RC log entry post-commit
+			$newPageContent = ContentHandler::makeContent( $pageText, $descTitle );
 		}
+
+		# Defer purges, page creation, and link updates in case they error out.
+		# The most important thing is that files and the DB registry stay synced.
+		$dbw->endAtomic( __METHOD__ );
 
 		# Do some cache purges after final commit so that:
 		# a) Changes are more likely to be seen post-purge
 		# b) They won't cause rollback of the log publish/update above
 		$that = $this;
-		$dbw->onTransactionIdle( function () use ( $that, $reupload, $descTitle ) {
+		$dbw->onTransactionIdle( function () use (
+			$that, $reupload, $wikiPage, $newPageContent, $comment, $user, $logEntry, $logId
+		) {
+			# Update memcache after the commit
+			$that->invalidateCache();
+
+			if ( $newPageContent ) {
+				# New file page; create the description page.
+				# There's already a log entry, so don't make a second RC entry
+				# Squid and file cache for the description page are purged by doEditContent.
+				$status = $wikiPage->doEditContent(
+					$newPageContent,
+					$comment,
+					EDIT_NEW | EDIT_SUPPRESS_RC,
+					false,
+					$user
+				);
+
+				// Now that the page exists, make an RC entry.
+				// This relies on the resetArticleID() call in WikiPage::insertOn(),
+				// which is triggered on $descTitle by doEditContent() above.
+				$logEntry->publish( $logId );
+				if ( isset( $status->value['revision'] ) ) {
+					/** @var $rev Revision */
+					$rev = $status->value['revision'];
+					$that->getRepo()->getMasterDB()->update(
+						'logging',
+						array( 'log_page' => $rev->getPage() ),
+						array( 'log_id' => $logId ),
+						__METHOD__
+					);
+				}
+			} else {
+				# Existing file page: invalidate description page cache
+				$wikiPage->getTitle()->invalidateCache();
+				$wikiPage->getTitle()->purgeSquid();
+			}
+
 			# Run hook for other updates (typically more cache purging)
-			Hooks::run( 'FileUpload', array( $that, $reupload, $descTitle->exists() ) );
+			Hooks::run( 'FileUpload', array( $that, $reupload, !$newPageContent ) );
 
 			if ( $reupload ) {
 				# Delete old thumbnails
@@ -1459,6 +1453,11 @@ class LocalFile extends File {
 				LinksUpdate::queueRecursiveJobsForTable( $that->getTitle(), 'imagelinks' );
 			}
 		} );
+
+		if ( !$reupload ) {
+			# This is a new file, so update the image count
+			DeferredUpdates::addUpdate( SiteStatsUpdate::factory( array( 'images' => 1 ) ) );
+		}
 
 		# Invalidate cache for all pages using this file
 		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' ) );
