@@ -14,7 +14,15 @@ require_once $basePath . '/maintenance/Maintenance.php';
  */
 class ImportSites extends Maintenance {
 
-	public function __construct() {
+	/**
+	 * @var SiteImporter
+	 */
+	private $importer;
+
+	/**
+	 * @param SiteImporter $importer
+	 */
+	public function __construct( SiteImporter $importer ) {
 		$this->addDescription( 'Imports site definitions from XML into the sites table.' );
 
 		$this->addArg( 'file', 'An XML file containing site definitions (see docs/sitelist.txt). ' .
@@ -22,6 +30,8 @@ class ImportSites extends Maintenance {
 		);
 
 		parent::__construct();
+
+		$this->importer = $importer;
 	}
 
 	/**
@@ -30,11 +40,9 @@ class ImportSites extends Maintenance {
 	public function execute() {
 		$file = $this->getArg( 0 );
 
-		$siteStore = \MediaWiki\MediaWikiServices::getInstance()->getSiteStore();
-		$importer = new SiteImporter( $siteStore );
-		$importer->setExceptionCallback( array( $this, 'reportException' ) );
+		$this->importer->setExceptionCallback( array( $this, 'reportException' ) );
 
-		$importer->importFromFile( $file );
+		$this->importer->importFromFile( $file );
 
 		$this->output( "Done.\n" );
 	}
@@ -50,5 +58,10 @@ class ImportSites extends Maintenance {
 	}
 }
 
-$maintClass = 'ImportSites';
+$maintConstructor = function() {
+	return new ImportSites(
+		new SiteImporter( MediaWikiServices::getInstance()->getSiteStore() )
+	);
+};
+
 require_once RUN_MAINTENANCE_IF_MAIN;
