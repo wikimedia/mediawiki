@@ -137,7 +137,7 @@ class Interwiki {
 		$value = self::getInterwikiCacheEntry( $prefix );
 
 		$s = new Interwiki( $prefix );
-		if ( $value != '' ) {
+		if ( $value ) {
 			// Split values
 			list( $local, $url ) = explode( ' ', $value, 2 );
 			$s->mURL = $url;
@@ -165,7 +165,9 @@ class Interwiki {
 		$value = false;
 		try {
 			if ( !$db ) {
-				$db = CdbReader::open( $wgInterwikiCache );
+				$db = is_array( $wgInterwikiCache )
+					? MapCache( $wgInterwikiCache )
+					: CdbReader::open( $wgInterwikiCache );
 			}
 			/* Resolve site name */
 			if ( $wgInterwikiScopes >= 3 && !$site ) {
@@ -177,15 +179,12 @@ class Interwiki {
 
 			$value = $db->get( wfMemcKey( $prefix ) );
 			// Site level
-			if ( $value == '' && $wgInterwikiScopes >= 3 ) {
+			if ( !$value && $wgInterwikiScopes >= 3 ) {
 				$value = $db->get( "_{$site}:{$prefix}" );
 			}
 			// Global Level
-			if ( $value == '' && $wgInterwikiScopes >= 2 ) {
+			if ( !$value && $wgInterwikiScopes >= 2 ) {
 				$value = $db->get( "__global:{$prefix}" );
-			}
-			if ( $value == 'undef' ) {
-				$value = '';
 			}
 		} catch ( CdbException $e ) {
 			wfDebug( __METHOD__ . ": CdbException caught, error message was "
