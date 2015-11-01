@@ -33,7 +33,9 @@ class HashBagOStuff extends BagOStuff {
 
 	function __construct( $params = array() ) {
 		parent::__construct( $params );
-		$this->bag = array();
+		$this->bag = isset( $params['initialData'] )
+			? $params['initialData']
+			: array();
 	}
 
 	protected function expire( $key ) {
