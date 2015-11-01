@@ -31,10 +31,7 @@ use Wikimedia\Assert\Assert;
  * @ingroup Cache
  * @since 1.23
  */
-class MapCacheLRU {
-	/** @var array */
-	protected $cache = array(); // (key => value)
-
+class MapCacheLRU extends MapCache {
 	protected $maxCacheKeys; // integer; max entries
 
 	/**
@@ -65,17 +62,7 @@ class MapCacheLRU {
 			$evictKey = key( $this->cache );
 			unset( $this->cache[$evictKey] );
 		}
-		$this->cache[$key] = $value;
-	}
-
-	/**
-	 * Check if a key exists
-	 *
-	 * @param string $key
-	 * @return bool
-	 */
-	public function has( $key ) {
-		return array_key_exists( $key, $this->cache );
+		parent::set( $key, $value );
 	}
 
 	/**
@@ -87,35 +74,10 @@ class MapCacheLRU {
 	 * @return mixed
 	 */
 	public function get( $key ) {
-		if ( !array_key_exists( $key, $this->cache ) ) {
-			return null;
+		if ( $this->has( $key ) ) {
+			$this->ping( $key );
 		}
-		$this->ping( $key );
-		return $this->cache[$key];
-	}
-
-	/**
-	 * @return array
-	 * @since 1.25
-	 */
-	public function getAllKeys() {
-		return array_keys( $this->cache );
-	}
-
-	/**
-	 * Clear one or several cache entries, or all cache entries
-	 *
-	 * @param string|array $keys
-	 * @return void
-	 */
-	public function clear( $keys = null ) {
-		if ( $keys === null ) {
-			$this->cache = array();
-		} else {
-			foreach ( (array)$keys as $key ) {
-				unset( $this->cache[$key] );
-			}
-		}
+		return parent::get( $key );
 	}
 
 	/**
