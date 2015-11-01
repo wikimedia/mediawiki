@@ -3,7 +3,7 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var $preftoc, $preferences, $fieldsets, $legends,
+		var $preftoc, $preferences, $fieldsets,
 			hash, labelFunc,
 			$tzSelect, $tzTextbox, $localtimeHolder, servertime,
 			$checkBoxes, allowCloseWindow,
@@ -14,25 +14,22 @@
 		};
 
 		$( '#prefsubmit' ).attr( 'id', 'prefcontrol' );
-		$preftoc = $( '<ul>' )
-			.attr( {
-				id: 'preftoc',
-				role: 'tablist'
-			} );
-		$preferences = $( '#preferences' )
-			.addClass( 'jsprefs' )
-			.before( $preftoc );
+		$preftoc = $( '#preftoc' );
+		$preferences = $( '#preferences' );
+
 		$fieldsets = $preferences.children( 'fieldset' )
-			.hide()
 			.attr( {
 				role: 'tabpanel',
-				'aria-hidden': 'true',
 				'aria-labelledby': labelFunc
 			} )
-			.addClass( 'prefsection' );
-		$legends = $fieldsets
-			.children( 'legend' )
-			.addClass( 'mainLegend' );
+			.not( '#mw-prefsection-personal' )
+				.hide()
+				.attr( 'aria-hidden', 'true' );
+
+		// T115692: The following is kept for backwards compatibility with older skins
+		$preferences.addClass( 'jsprefs' );
+		$fieldsets.addClass( 'prefsection' );
+		$fieldsets.children( 'legend' ).addClass( 'mainLegend' );
 
 		// Make sure the accessibility tip is selectable so that screen reader users take notice,
 		// but hide it per default to reduce interface clutter. Also make sure it becomes visible
@@ -106,35 +103,9 @@
 			}
 		}
 
-		// Populate the prefToc
-		$legends.each( function ( i, legend ) {
-			var $legend = $( legend ),
-				ident, $li, $a;
-			if ( i === 0 ) {
-				$legend.parent().show();
-			}
-			ident = $legend.parent().attr( 'id' );
-
-			$li = $( '<li>' )
-				.attr( 'role', 'presentation' )
-				.addClass( i === 0 ? 'selected' : '' );
-			$a = $( '<a>' )
-				.attr( {
-					id: ident.replace( 'mw-prefsection', 'preftab' ),
-					href: '#' + ident,
-					role: 'tab',
-					tabIndex: i === 0 ? 0 : -1,
-					'aria-selected': i === 0 ? 'true' : 'false',
-					'aria-controls': ident
-				} )
-				.text( $legend.text() );
-			$li.append( $a );
-			$preftoc.append( $li );
-		} );
-
 		// Disable the button to save preferences unless preferences have changed
 		$( '#prefcontrol' ).prop( 'disabled', true );
-		$( '.prefsection' ).one( 'change keydown mousedown', function () {
+		$( '#preferences > fieldset' ).one( 'change keydown mousedown', function () {
 			$( '#prefcontrol' ).prop( 'disabled', false );
 		} );
 
