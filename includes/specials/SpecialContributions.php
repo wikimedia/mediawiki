@@ -107,7 +107,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			)->inContentLanguage() );
 		}
 
-		if ( ( $ns = $request->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {
+		$ns = $request->getVal( 'namespace', null )
+		if ( $ns !== null && $ns !== '' ) {
 			$this->opts['namespace'] = intval( $ns );
 		} else {
 			$this->opts['namespace'] = '';

@@ -119,7 +119,8 @@ TEXT;
 
 	private function getNsIndex( $namespace ) {
 		global $wgContLang;
-		if ( ( $result = $wgContLang->getNsIndex( $namespace ) ) !== false ) {
+		$result = $wgContLang->getNsIndex( $namespace );
+		if ( $result !== false ) {
 			return $result;
 		}
 		$ns = intval( $namespace );

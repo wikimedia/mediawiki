@@ -708,8 +708,11 @@ class ResourceLoader implements LoggerAwareInterface {
 
 		// Capture any PHP warnings from the output buffer and append them to the
 		// error list if we're in debug mode.
-		if ( $context->getDebug() && strlen( $warnings = ob_get_contents() ) ) {
-			$this->errors[] = $warnings;
+		if ( $context->getDebug() ) {
+			$warnings = ob_get_contents();
+			if ( strlen( $warnings ) ) {
+				$this->errors[] = $warnings;
+			}
 		}
 
 		// Save response to file cache unless there are errors
@@ -877,8 +880,11 @@ class ResourceLoader implements LoggerAwareInterface {
 			$response = $fileCache->fetchText();
 			// Capture any PHP warnings from the output buffer and append them to the
 			// response in a comment if we're in debug mode.
-			if ( $context->getDebug() && strlen( $warnings = ob_get_contents() ) ) {
-				$response = self::makeComment( $warnings ) . $response;
+			if ( $context->getDebug() ) {
+				$warnings = ob_get_contents();
+				if ( strlen( $warnings ) ) {
+					$response = self::makeComment( $warnings ) . $response;
+				}
 			}
 			// Remove the output buffer and output the response
 			ob_end_clean();

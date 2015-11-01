@@ -413,7 +413,8 @@ class DeletedContributionsPage extends SpecialPage {
 		$target = $userObj->getName();
 		$out->addSubtitle( $this->getSubTitle( $userObj ) );
 
-		if ( ( $ns = $request->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {
+		$ns = $request->getVal( 'namespace', null )
+		if ( $ns !== null && $ns !== '' ) {
 			$options['namespace'] = intval( $ns );
 		} else {
 			$options['namespace'] = '';

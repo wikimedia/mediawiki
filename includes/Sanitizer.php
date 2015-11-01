@@ -476,7 +476,8 @@ class Sanitizer {
 				}
 
 				$badtag = false;
-				if ( isset( $htmlelements[$t = strtolower( $t )] ) ) {
+				$t = strtolower( $t );
+				if ( isset( $htmlelements[$t] ) ) {
 					# Check our stack
 					if ( $slash && isset( $htmlsingleonly[$t] ) ) {
 						$badtag = true;
@@ -596,7 +597,8 @@ class Sanitizer {
 					list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
 
 					$badtag = false;
-					if ( isset( $htmlelements[$t = strtolower( $t )] ) ) {
+					$t = strtolower( $t );
+					if ( isset( $htmlelements[$t] ) ) {
 						if ( is_callable( $processCallback ) ) {
 							call_user_func_array( $processCallback, array( &$params, $args ) );
 						}
