@@ -35,6 +35,7 @@ define( 'RUN_MAINTENANCE_IF_MAIN', __DIR__ . '/doMaintenance.php' );
 define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 
 $maintClass = false;
+$maintConstructor = false;
 
 use MediaWiki\Logger\LoggerFactory;
 
@@ -485,32 +486,53 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Run a child maintenance script. Pass all of the current arguments
+	 * Create and run a child maintenance script. Pass all of the current arguments
 	 * to it.
-	 * @param string $maintClass A name of a child maintenance class
-	 * @param string $classFile Full path of where the child is
+	 * @param string|callable $maintScript A name of a child maintenance class,
+	 *        or a constructor callback.
+	 * @param string|null $classFile Full path of where the maintenance class is defined.
 	 * @return Maintenance
 	 */
-	public function runChild( $maintClass, $classFile = null ) {
-		// Make sure the class is loaded first
-		if ( !class_exists( $maintClass ) ) {
+	public function runChild( $maintScript, $classFile = null ) {
+		$child = $this->createChild( $maintScript, $classFile );
+		$child->loadParamsAndArgs( $this->mSelf, $this->mOptions, $this->mArgs );
+		if ( !is_null( $this->mDb ) ) {
+			$child->setDB( $this->mDb );
+		}
+
+		return $child;
+	}
+
+	/**
+	 * Create a child maintenance script.
+	 *
+	 * @param string|callable $maintScript A name of a child maintenance class,
+	 *        or a constructor callback.
+	 * @param string|null $classFile Full path of where the maintenance class is defined.
+	 * @return Maintenance
+	 */
+	public function createChild( $maintScript, $classFile = null ) {
+		if ( !is_string( $maintScript ) && is_callable( $maintScript ) ) {
 			if ( $classFile ) {
 				require_once $classFile;
 			}
-			if ( !class_exists( $maintClass ) ) {
-				$this->error( "Cannot spawn child: $maintClass" );
+			return call_user_func( $maintScript );
+		}
+
+		// Make sure the class is loaded first
+		if ( !class_exists( $maintScript ) ) {
+			if ( $classFile ) {
+				require_once $classFile;
+			}
+			if ( !class_exists( $maintScript ) ) {
+				$this->error( "Cannot spawn child: $maintScript" );
 			}
 		}
 
 		/**
 		 * @var $child Maintenance
 		 */
-		$child = new $maintClass();
-		$child->loadParamsAndArgs( $this->mSelf, $this->mOptions, $this->mArgs );
-		if ( !is_null( $this->mDb ) ) {
-			$child->setDB( $this->mDb );
-		}
-
+		$child = new $maintScript();
 		return $child;
 	}
 
