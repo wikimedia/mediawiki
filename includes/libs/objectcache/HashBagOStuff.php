@@ -30,7 +30,7 @@ use Wikimedia\Assert\Assert;
  */
 class HashBagOStuff extends BagOStuff {
 	/** @var mixed[] */
-	protected $bag = array();
+	protected $bag;
 	/** @var integer[] */
 	protected $expiries = array();
 	/** @var integer Max entries allowed */
@@ -39,12 +39,16 @@ class HashBagOStuff extends BagOStuff {
 	/**
 	 * @param array $params Additional parameters include:
 	 *   - maxKeys : only allow this many keys (using oldest-first eviction)
+	 *   - initialData : an associative array of data that should be preloaded.
 	 */
 	function __construct( $params = array() ) {
 		parent::__construct( $params );
 
 		$this->maxCacheKeys = isset( $params['maxKeys'] ) ? $params['maxKeys'] : INF;
 		Assert::parameter( $this->maxCacheKeys > 0, 'maxKeys', 'must be above zero' );
+
+		$this->bag = isset( $params['initialData'] ) ? $params['initialData'] : array();
+		Assert::parameter( is_array( $this->bag ), 'initialData', 'must be an array' );
 	}
 
 	protected function expire( $key ) {
