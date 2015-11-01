@@ -32,6 +32,8 @@ class Interwiki {
 	// Cache - removes oldest entry when it hits limit
 	protected static $smCache = array();
 	const CACHE_LIMIT = 100; // 0 means unlimited, any other value is max number of entries.
+	const DB_TYPE_ARRAY = 1;
+	const DB_TYPE_CDB = 2;
 
 	/** @var string The interwiki prefix, (e.g. "Meatball", or the language prefix "de") */
 	protected $mPrefix;
@@ -137,7 +139,7 @@ class Interwiki {
 		$value = self::getInterwikiCacheEntry( $prefix );
 
 		$s = new Interwiki( $prefix );
-		if ( $value != '' ) {
+		if ( $value ) {
 			// Split values
 			list( $local, $url ) = explode( ' ', $value, 2 );
 			$s->mURL = $url;
@@ -158,34 +160,28 @@ class Interwiki {
 	 * @return string The interwiki entry
 	 */
 	protected static function getInterwikiCacheEntry( $prefix ) {
-		global $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
-		static $db, $site;
+		global $wgInterwikiScopes, $wgInterwikiFallbackSite;
+		static $site;
 
 		wfDebug( __METHOD__ . "( $prefix )\n" );
 		$value = false;
 		try {
-			if ( !$db ) {
-				$db = CdbReader::open( $wgInterwikiCache );
-			}
-			/* Resolve site name */
+			// Resolve site name
 			if ( $wgInterwikiScopes >= 3 && !$site ) {
-				$site = $db->get( '__sites:' . wfWikiID() );
+				$site = self::getCacheValue( '__sites:' . wfWikiID() );
 				if ( $site == '' ) {
 					$site = $wgInterwikiFallbackSite;
 				}
 			}
 
-			$value = $db->get( wfMemcKey( $prefix ) );
+			$value = self::getCacheValue( wfMemcKey( $prefix ) );
 			// Site level
-			if ( $value == '' && $wgInterwikiScopes >= 3 ) {
-				$value = $db->get( "_{$site}:{$prefix}" );
+			if ( !$value && $wgInterwikiScopes >= 3 ) {
+				$value = self::getCacheValue( "_{$site}:{$prefix}" );
 			}
 			// Global Level
-			if ( $value == '' && $wgInterwikiScopes >= 2 ) {
-				$value = $db->get( "__global:{$prefix}" );
-			}
-			if ( $value == 'undef' ) {
-				$value = '';
+			if ( !$value && $wgInterwikiScopes >= 2 ) {
+				$value = self::getCacheValue( "__global:{$prefix}" );
 			}
 		} catch ( CdbException $e ) {
 			wfDebug( __METHOD__ . ": CdbException caught, error message was "
@@ -193,6 +189,19 @@ class Interwiki {
 		}
 
 		return $value;
+	}
+
+	private static function getCacheValue( $key ) {
+		global $wgInterwikiCache;
+		static $reader;
+		if ( $reader === null ) {
+			$reader = is_array( $wgInterwikiCache ) ? false : CdbReader::open( $wgInterwikiCache );
+		}
+		if ( $reader ) {
+			return $reader->get( $key );
+		} else {
+			return $wgInterwikiCache[$key];
+		}
 	}
 
 	/**
