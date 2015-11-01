@@ -47,6 +47,7 @@ class SpecialPreferences extends SpecialPage {
 		}
 
 		$out->addModules( 'mediawiki.special.preferences' );
+		$out->addModuleStyles( 'mediawiki.special.preferences.styles' );
 
 		if ( $this->getRequest()->getCheck( 'success' ) ) {
 			$out->wrapWikiMsg(
@@ -66,7 +67,37 @@ class SpecialPreferences extends SpecialPage {
 
 		$htmlForm = Preferences::getFormObject( $this->getUser(), $this->getContext() );
 		$htmlForm->setSubmitCallback( array( 'Preferences', 'tryUISubmit' ) );
+		$sectionTitles = $htmlForm->getPreferenceSections();
 
+		$prefTabs = '';
+		foreach ( $sectionTitles as $key ) {
+			$prefTabs .= Html::rawElement( 'li',
+				array(
+					'role' => 'presentation',
+					'class' => ( $key === 'personal' ) ? 'selected' : null
+				),
+				Html::rawElement( 'a',
+					array(
+						'id' => 'preftab-' . $key,
+						'role' => 'tab',
+						'href' => '#mw-prefsection-' . $key,
+						'aria-controls' => 'mw-prefsection-' . $key,
+						'aria-selected' => ( $key === 'personal' ) ? 'true' : 'false',
+						'tabIndex' => ( $key === 'personal' ) ? 0 : -1,
+					),
+					$htmlForm->getLegend( $key )
+				)
+			);
+		}
+
+		$out->addHTML(
+			Html::rawElement( 'ul',
+				array(
+					'id' => 'preftoc',
+					'role' => 'tablist'
+				),
+				$prefTabs )
+		);
 		$htmlForm->show();
 	}
 
