@@ -31,11 +31,10 @@ use Wikimedia\Assert\Assert;
 class HashBagOStuff extends BagOStuff {
 	/** @var mixed[] */
 	protected $bag = array();
+	/** @var integer[] */
+	protected $expiries = array();
 	/** @var integer Max entries allowed */
 	protected $maxCacheKeys;
-
-	const KEY_VAL = 0;
-	const KEY_EXP = 1;
 
 	/**
 	 * @param array $params Additional parameters include:
@@ -49,8 +48,7 @@ class HashBagOStuff extends BagOStuff {
 	}
 
 	protected function expire( $key ) {
-		$et = $this->bag[$key][self::KEY_EXP];
-		if ( $et == 0 || $et > time() ) {
+		if ( empty( $this->expiries[$key] ) || $this->expiries[$key] > time() ) {
 			return false;
 		}
 
@@ -68,19 +66,17 @@ class HashBagOStuff extends BagOStuff {
 			return false;
 		}
 
-		return $this->bag[$key][self::KEY_VAL];
+		return $this->bag[$key];
 	}
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
-		$this->bag[$key] = array(
-			self::KEY_VAL => $value,
-			self::KEY_EXP => $this->convertExpiry( $exptime )
-		);
+		$this->bag[$key] = $value;
+		$this->expiries[$key] = $this->convertExpiry( $exptime );
 
 		if ( count( $this->bag ) > $this->maxCacheKeys ) {
 			reset( $this->bag );
 			$evictKey = key( $this->bag );
-			unset( $this->bag[$evictKey] );
+			$this->delete( $evictKey );
 		}
 
 		return true;
@@ -88,6 +84,7 @@ class HashBagOStuff extends BagOStuff {
 
 	public function delete( $key ) {
 		unset( $this->bag[$key] );
+		unset( $this->expiries[$key] );
 
 		return true;
 	}
