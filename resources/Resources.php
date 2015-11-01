@@ -1713,7 +1713,6 @@ return array(
 	),
 	'mediawiki.special.preferences' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.preferences.js',
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.preferences.css',
 		'position' => 'top',
 		'messages' => array(
 			'prefs-tabs-navigation-hint',
@@ -1726,6 +1725,10 @@ return array(
 			'mediawiki.confirmCloseWindow',
 			'mediawiki.notification',
 		),
+	),
+	'mediawiki.special.preferences.styles' => array(
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.preferences.styles.css',
+		'position' => 'top',
 	),
 	'mediawiki.special.recentchanges' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.recentchanges.js',
