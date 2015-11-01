@@ -38,14 +38,18 @@ if ( !Maintenance::shouldExecute() && $maintClass != 'CommandLineInc' ) {
 	return;
 }
 
-if ( !$maintClass || !class_exists( $maintClass ) ) {
+if ( !$maintConstructor && ( !$maintClass || !class_exists( $maintClass ) ) ) {
 	echo "\$maintClass is not set or is set to a non-existent class.\n";
 	exit( 1 );
 }
 
 // Get an object to start us off
 /** @var Maintenance $maintenance */
-$maintenance = new $maintClass();
+if ( $maintConstructor ) {
+	$maintenance = call_user_func( $maintConstructor );
+} else {
+	$maintenance = new $maintClass();
+}
 
 // Basic sanity checks and such
 $maintenance->setup();
