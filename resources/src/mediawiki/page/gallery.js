@@ -25,7 +25,7 @@
 			rows = [],
 			$gallery = $( this );
 
-		$gallery.children( 'li' ).each( function () {
+		$gallery.children( 'li.gallerybox' ).each( function () {
 			// Math.floor to be paranoid if things are off by 0.00000000001
 			var top = Math.floor( $( this ).position().top ),
 				$this = $( this );
@@ -205,7 +205,7 @@
 	}
 
 	function handleResizeStart() {
-		$galleries.children( 'li' ).each( function () {
+		$galleries.children( 'li.gallerybox' ).each( function () {
 			var imgWidth = $( this ).data( 'imgWidth' ),
 				imgHeight = $( this ).data( 'imgHeight' ),
 				width = $( this ).data( 'width' ),
