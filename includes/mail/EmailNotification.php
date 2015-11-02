@@ -218,6 +218,7 @@ class EmailNotification {
 		# we use $wgPasswordSender as sender's address
 		global $wgEnotifWatchlist, $wgBlockDisablesLogin;
 		global $wgEnotifMinorEdits, $wgEnotifUserTalk;
+		global $wgUsersNotifiedOnAllChanges;
 
 		# The following code is only run, if several conditions are met:
 		# 1. EmailNotification for pages (other than user_talk pages) must be enabled
@@ -262,6 +263,7 @@ class EmailNotification {
 						&& ( !$minorEdit || $watchingUser->getOption( 'enotifminoredits' ) )
 						&& $watchingUser->isEmailConfirmed()
 						&& $watchingUser->getID() != $userTalkId
+						&& !in_array( $watchingUser->getName(), $wgUsersNotifiedOnAllChanges )
 						&& !( $wgBlockDisablesLogin && $watchingUser->isBlocked() )
 					) {
 						if ( Hooks::run( 'SendWatchlistEmailNotification', array( $watchingUser, $title, $this ) ) ) {
@@ -272,7 +274,6 @@ class EmailNotification {
 			}
 		}
 
-		global $wgUsersNotifiedOnAllChanges;
 		foreach ( $wgUsersNotifiedOnAllChanges as $name ) {
 			if ( $editor->getName() == $name ) {
 				// No point notifying the user that actually made the change!
