@@ -56,7 +56,7 @@ use MediaWiki\Logger\LoggerFactory;
  *   Purpose: Memory storage for per-cluster coordination and tracking.
  *   A typical use case would be a rate limit counter or cache regeneration mutex.
  *   Stored centrally within the local data-center. Not replicated to other DCs.
- *   Also known as $wgMemc. Configured by $wgMainCacheType.
+ *   Configured by $wgMainCacheType.
  *
  * - ObjectCache::getMainStashInstance()
  *   Purpose: Ephemeral global storage.

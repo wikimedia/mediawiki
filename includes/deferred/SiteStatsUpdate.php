@@ -207,8 +207,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	 * @param int $delta Delta (positive or negative)
 	 */
 	protected function adjustPending( $type, $delta ) {
-		global $wgMemc;
-
+		$cache = ObjectCache::getMainStashInstance();
 		if ( $delta < 0 ) { // decrement
 			$key = $this->getTypeCacheKey( $type, '-' );
 		} else { // increment
@@ -216,11 +215,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 		}
 
 		$magnitude = abs( $delta );
-		if ( !$wgMemc->incr( $key, $magnitude ) ) { // not there?
-			if ( !$wgMemc->add( $key, $magnitude ) ) { // race?
-				$wgMemc->incr( $key, $magnitude );
-			}
-		}
+		$cache->incrWithInit( $key, 0, $magnitude, $magnitude );
 	}
 
 	/**
@@ -228,15 +223,16 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	 * @return array Positive and negative deltas for each type
 	 */
 	protected function getPendingDeltas() {
-		global $wgMemc;
+		$cache = ObjectCache::getMainStashInstance();
 
 		$pending = array();
 		foreach ( array( 'ss_total_edits',
 			'ss_good_articles', 'ss_total_pages', 'ss_users', 'ss_images' ) as $type
 		) {
 			// Get pending increments and pending decrements
-			$pending[$type]['+'] = (int)$wgMemc->get( $this->getTypeCacheKey( $type, '+' ) );
-			$pending[$type]['-'] = (int)$wgMemc->get( $this->getTypeCacheKey( $type, '-' ) );
+			$flg = BagOStuff::READ_LATEST;
+			$pending[$type]['+'] = (int)$cache->get( $this->getTypeCacheKey( $type, '+' ), $flg );
+			$pending[$type]['-'] = (int)$cache->get( $this->getTypeCacheKey( $type, '-' ), $flg );
 		}
 
 		return $pending;
@@ -247,12 +243,12 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	 * @param array $pd Result of getPendingDeltas(), used for DB update
 	 */
 	protected function removePendingDeltas( array $pd ) {
-		global $wgMemc;
+		$cache = ObjectCache::getMainStashInstance();
 
 		foreach ( $pd as $type => $deltas ) {
 			foreach ( $deltas as $sign => $magnitude ) {
 				// Lower the pending counter now that we applied these changes
-				$wgMemc->decr( $this->getTypeCacheKey( $type, $sign ), $magnitude );
+				$cache->decr( $this->getTypeCacheKey( $type, $sign ), $magnitude );
 			}
 		}
 	}

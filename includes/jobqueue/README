@@ -61,7 +61,6 @@ large amounts of time polling empty queues, aggregators exists to keep track
 of which queues are ready.
 
 The following queue aggregator classes are available:
-* JobQueueAggregatorMemc (uses $wgMemc to track ready queues)
 * JobQueueAggregatorRedis (uses a redis server to track ready queues)
 
 Some aggregators cache data for a few minutes while others may be always up to date.

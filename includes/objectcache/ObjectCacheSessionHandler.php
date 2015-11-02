@@ -47,7 +47,7 @@ class ObjectCacheSessionHandler {
 
 		// It's necessary to register a shutdown function to call session_write_close(),
 		// because by the time the request shutdown function for the session module is
-		// called, $wgMemc has already been destroyed. Shutdown functions registered
+		// called, the BagOStuff has already been destroyed. Shutdown functions registered
 		// this way are called before object destruction.
 		register_shutdown_function( array( __CLASS__, 'handleShutdown' ) );
 	}
