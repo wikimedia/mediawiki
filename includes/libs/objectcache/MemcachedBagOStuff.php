@@ -103,8 +103,9 @@ class MemcachedBagOStuff extends BagOStuff {
 	public function makeKeyInternal( $keyspace, $args ) {
 		// Memcached keys have a maximum length of 255 characters. From that,
 		// subtract the number of characters we need for the keyspace and for
-		// the separator character needed for each argument.
-		$charsLeft = 255 - strlen( $keyspace ) - count( $args );
+		// the separator character needed for each argument. To handle some
+		// custom prefixes used by thing like WANObjectCache, limit to 205.
+		$charsLeft = 205 - strlen( $keyspace ) - count( $args );
 
 		$args = array_map(
 			function ( $arg ) use ( &$charsLeft ) {
