@@ -103,7 +103,7 @@ class TemplateParser {
 
 		if ( $secretKey ) {
 			// See if the compiled PHP code is stored in cache.
-			$cache = ObjectCache::newAccelerator( CACHE_ANYTHING );
+			$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
 			$key = $cache->makeKey( 'template', $templateName, $fastHash );
 			$code = $this->forceRecompile ? null : $cache->get( $key );
 

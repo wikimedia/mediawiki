@@ -128,7 +128,7 @@ class DateFormatter {
 		global $wgContLang, $wgMainCacheType;
 
 		$lang = $lang ? wfGetLangObj( $lang ) : $wgContLang;
-		$cache = ObjectCache::newAccelerator( $wgMainCacheType );
+		$cache = ObjectCache::getLocalServerInstance( $wgMainCacheType );
 
 		static $dateFormatter = false;
 		if ( !$dateFormatter ) {

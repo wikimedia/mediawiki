@@ -508,7 +508,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @return string|bool Representing the IM version; false on error
 	 */
 	protected function getMagickVersion() {
-		$cache = ObjectCache::newAccelerator( CACHE_NONE );
+		$cache = ObjectCache::getLocalServerInstance( CACHE_NONE );
 		return $cache->getWithSetCallback(
 			'imagemagick-version',
 			$cache::TTL_HOUR,

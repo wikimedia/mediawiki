@@ -2211,7 +2211,7 @@ $wgObjectCaches = array(
 	CACHE_DB => array( 'class' => 'SqlBagOStuff', 'loggroup' => 'SQLBagOStuff' ),
 
 	CACHE_ANYTHING => array( 'factory' => 'ObjectCache::newAnything' ),
-	CACHE_ACCEL => array( 'factory' => 'ObjectCache::newAccelerator' ),
+	CACHE_ACCEL => array( 'factory' => 'ObjectCache::getLocalServerInstance' ),
 	CACHE_MEMCACHED => array( 'class' => 'MemcachedPhpBagOStuff', 'loggroup' => 'memcached' ),
 
 	'db-replicated' => array(

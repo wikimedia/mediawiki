@@ -140,7 +140,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$this->srvCache = ObjectCache::getLocalClusterInstance();
 			} else {
 				// Look for APC, XCache, WinCache, ect...
-				$this->srvCache = ObjectCache::newAccelerator( CACHE_NONE );
+				$this->srvCache = ObjectCache::getLocalServerInstance( CACHE_NONE );
 			}
 		} else {
 			$this->srvCache = new EmptyBagOStuff();
