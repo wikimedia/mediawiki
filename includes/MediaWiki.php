@@ -506,7 +506,10 @@ class MediaWiki {
 		// Set a cookie to tell all CDN edge nodes to "stick" the user to the
 		// DC that handles this POST request (e.g. the "master" data center)
 		$request = $this->context->getRequest();
-		if ( $request->wasPosted() && $factory->hasOrMadeRecentMasterChanges() ) {
+		if ( $request->wasPosted()
+			&& $factory->hasOrMadeRecentMasterChanges()
+			&& !headers_sent() // bug T115413
+		) {
 			$expires = time() + $this->config->get( 'DataCenterUpdateStickTTL' );
 			$request->response()->setCookie( 'UseDC', 'master', $expires );
 		}
