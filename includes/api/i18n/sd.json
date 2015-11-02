@@ -6,6 +6,8 @@
 		]
 	},
 	"apihelp-query+allrevisions-description": "سمورن مسودن جي فهرست پيش ڪريو.",
+	"apihelp-query+watchlist-param-type": "ڪهڙن قسمن جون تبديليون ڏيکارڻ لاءِ:",
+	"apihelp-query+watchlist-paramvalue-type-edit": "عام صفحي ترميمون.",
 	"apihelp-query+watchlist-paramvalue-type-external": "خارجي تبديليون.",
 	"apihelp-query+watchlist-paramvalue-type-new": "صفحن جون تخليقون.",
 	"apihelp-query+watchlist-paramvalue-type-log": "لاگ داخلائون."

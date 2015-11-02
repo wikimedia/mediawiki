@@ -3168,6 +3168,7 @@
 	"htmlform-cloner-create": "Дадаць больш",
 	"htmlform-cloner-delete": "Выдаліць",
 	"htmlform-cloner-required": "Патрабуецца як мінімум яшчэ адно значэньне.",
+	"htmlform-title-badnamespace": "[[:$1]] знаходзіцца не ў прасторы назваў «{{ns:$2}}».",
 	"htmlform-user-not-exists": "<strong>$1</strong> не існуе.",
 	"htmlform-user-not-valid": "<strong>$1</strong> — некарэктнае імя карыстальніка.",
 	"sqlite-has-fts": "$1 з падтрымкай поўнатэкстнага пошуку",

@@ -326,6 +326,7 @@
 	"nstab-template": "Sablon",
 	"nstab-help": "Segítség",
 	"nstab-category": "Kategória",
+	"mainpage-nstab": "Kezdőlap",
 	"nosuchaction": "Nincs ilyen művelet",
 	"nosuchactiontext": "Az URL-ben megadott művelet érvénytelen.\nValószínűleg elgépelted vagy hibás hivatkozásra kattintottál.\nAz is előfordulhat, hogy a(z) {{SITENAME}} wiki szoftverében hiba található.",
 	"nosuchspecialpage": "Nem létezik ilyen speciális lap",

@@ -393,7 +393,7 @@
 	"title-invalid-too-long": "El títol de la pàgina sol·licitada és massa llarg. No ha d’excedir $1 {{PLURAL:$1|byte|bytes}} en codificació UTF-8.",
 	"title-invalid-leading-colon": "El títol de la pàgina sol·licitada conté dos punts a l’inici.",
 	"perfcached": "Les dades següents es troben a la memòria cau i podrien no estar al dia. Hi ha un màxim {{PLURAL:$1|d'un resultat|de $1 resultats}} disponibles a la memòria cau.",
-	"perfcachedts": "Les dades següents es troben a la memòria cau i es van actualitzar per darrera vegada el $1. Hi ha un màxim {{PLURAL:$4|d'un resultat|de $4 resultats}} disponibles a la memòria cau.",
+	"perfcachedts": "Les dades següents es troben a la memòria cau i la darrera actualització és en data: $1. Hi ha un màxim {{PLURAL:$4|d'un resultat|de $4 resultats}} disponibles a la memòria cau.",
 	"querypage-no-updates": "S'ha inhabilitat l'actualització d'aquesta pàgina. Les dades que hi contenen podrien no estar al dia.",
 	"viewsource": "Mostra el codi",
 	"viewsource-title": "Mostra la font per a $1",
