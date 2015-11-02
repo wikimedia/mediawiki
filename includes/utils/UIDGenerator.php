@@ -282,11 +282,7 @@ class UIDGenerator {
 		// Counter values would not survive accross script instances in CLI mode.
 		$cache = null;
 		if ( ( $flags & self::QUICK_VOLATILE ) && PHP_SAPI !== 'cli' ) {
-			try {
-				$cache = ObjectCache::getLocalServerInstance();
-			} catch ( Exception $e ) {
-				// not supported
-			}
+			$cache = ObjectCache::getLocalServerInstance();
 		}
 		if ( $cache ) {
 			$counter = $cache->incr( $bucket, $count );

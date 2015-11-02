@@ -95,12 +95,7 @@ abstract class DBLockManager extends QuorumLockManager {
 			if ( count( $bucket ) > 1 ) { // multiple peers
 				// Tracks peers that couldn't be queried recently to avoid lengthy
 				// connection timeouts. This is useless if each bucket has one peer.
-				try {
-					$this->statusCache = ObjectCache::getLocalServerInstance();
-				} catch ( Exception $e ) {
-					trigger_error( __CLASS__ .
-						" using multiple DB peers without apc, xcache, or wincache." );
-				}
+				$this->statusCache = ObjectCache::getLocalServerInstance();
 				break;
 			}
 		}
