@@ -132,6 +132,14 @@ interface IContextSource {
 	public function getStats();
 
 	/**
+	 * Get the timing object
+	 *
+	 * @since 1.27
+	 * @return Timing
+	 */
+	public function getTiming();
+
+	/**
 	 * Get a Message object with context set.  See wfMessage for parameters.
 	 *
 	 * @param mixed ...
