@@ -17,7 +17,7 @@
 	 * @cfg {number} [limit=10] Number of results to show
 	 * @cfg {number} [namespace] Namespace to prepend to queries
 	 * @cfg {number} [maxLength=255] Maximum query length
-	 * @cfg {boolean} [relative=true] If a namespace is set, return a title relative to it
+	 * @cfg {boolean} [relative=true] If a namespace is set, display titles relative to it
 	 * @cfg {boolean} [suggestions=true] Display search suggestions
 	 * @cfg {boolean} [showRedirectTargets=true] Show the targets of redirects
 	 * @cfg {boolean} [showRedlink] Show red link to exact match if it doesn't exist
