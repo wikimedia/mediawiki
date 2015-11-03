@@ -1,6 +1,6 @@
 <?php
 /**
- * Object caching using PHP arrays.
+ * Per-process memory cache for storing items.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,8 +23,9 @@
 use Wikimedia\Assert\Assert;
 
 /**
- * This is a test of the interface, mainly. It stores things in an associative
- * array, which is not going to persist between program runs.
+ * Simple store for keeping values in an associative array for the current process.
+ *
+ * Data will not persist and is not shared with other processes.
  *
  * @ingroup Cache
  */
@@ -72,6 +73,8 @@ class HashBagOStuff extends BagOStuff {
 	}
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
+		// Unset first so to refresh key for maxCacheKeys eviction.
+		unset( $this->bag[$key] );
 		$this->bag[$key] = array(
 			self::KEY_VAL => $value,
 			self::KEY_EXP => $this->convertExpiry( $exptime )
