@@ -33,7 +33,7 @@ class JobQueueDB extends JobQueue {
 	const MAX_JOB_RANDOM = 2147483647; // integer; 2^31 - 1, used for job_random
 	const MAX_OFFSET = 255; // integer; maximum number of rows to skip
 
-	/** @var BagOStuff */
+	/** @var WANObjectCache */
 	protected $cache;
 
 	/** @var bool|string Name of an external DB cluster. False if not set */
@@ -48,13 +48,10 @@ class JobQueueDB extends JobQueue {
 	 * @param array $params
 	 */
 	protected function __construct( array $params ) {
-		global $wgMemc;
-
 		parent::__construct( $params );
 
 		$this->cluster = isset( $params['cluster'] ) ? $params['cluster'] : false;
-		// Make sure that we don't use the SQL cache, which would be harmful
-		$this->cache = ( $wgMemc instanceof SqlBagOStuff ) ? new EmptyBagOStuff() : $wgMemc;
+		$this->cache = ObjectCache::getMainWANInstance();
 	}
 
 	protected function supportedOrders() {
