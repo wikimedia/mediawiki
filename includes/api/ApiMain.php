@@ -1864,6 +1864,7 @@ class ApiMain extends ApiBase {
 			'errorsuselocal' => [
 				ApiBase::PARAM_DFLT => false,
 			],
+			'variant' => null,
 		];
 	}
 
