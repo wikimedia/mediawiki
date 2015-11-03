@@ -844,7 +844,7 @@ abstract class ResourceLoaderModule {
 	protected function validateScriptFile( $fileName, $contents ) {
 		if ( $this->getConfig()->get( 'ResourceLoaderValidateJS' ) ) {
 			// Try for cache hit
-			$cache = ObjectCache::getLocalClusterInstance();
+			$cache = ObjectCache::getMainWANInstance();
 			$key = $cache->makeKey(
 				'resourceloader',
 				'jsparse',
