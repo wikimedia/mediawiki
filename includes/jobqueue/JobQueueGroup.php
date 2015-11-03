@@ -381,27 +381,24 @@ class JobQueueGroup {
 	 * @return mixed
 	 */
 	private function getCachedConfigVar( $name ) {
-		global $wgConf;
-
+		// @TODO: cleanup this whole method with a proper config system
 		if ( $this->wiki === wfWikiID() ) {
 			return $GLOBALS[$name]; // common case
 		} else {
-			$cache = ObjectCache::getLocalClusterInstance();
-			list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
-			$key = wfForeignMemcKey( $db, $prefix, 'configvalue', $name );
-			$value = $cache->get( $key ); // ('v' => ...) or false
-			if ( is_array( $value ) ) {
-				return $value['v'];
-			} else {
-				$value = $wgConf->getConfig( $this->wiki, $name );
-				$cache->set(
-					$key,
-					array( 'v' => $value ),
-					$cache::TTL_DAY + mt_rand( 0, $cache::TTL_DAY )
-				);
+			$wiki = $this->wiki;
+			$cache = ObjectCache::getMainWANInstance();
+			$value = $cache->getWithSetCallback(
+				$cache->makeGlobalKey( $wiki, 'configvalue', $name ),
+				$cache::TTL_DAY + mt_rand( 0, $cache::TTL_DAY ),
+				function () use ( $wiki, $name ) {
+					global $wgConf;
 
-				return $value;
-			}
+					return array( 'v' => $wgConf->getConfig( $wiki, $name ) );
+				},
+				array( 'pcTTL' => 30 )
+			);
+
+			return $value['v'];
 		}
 	}
 
