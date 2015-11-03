@@ -907,22 +907,41 @@ class ApiMain extends ApiBase {
 		//    Use 0 because we can guess caching is probably the wrong thing to do.
 		// Use $this->getParameter( 'maxage' ), which already defaults to 0.
 		$maxage = 0;
+		$cacheMode = $this->mCacheMode;
 		if ( isset( $this->mCacheControl['max-age'] ) ) {
 			$maxage = $this->mCacheControl['max-age'];
 		} elseif ( ( $this->mModule && !$this->mModule->isWriteMode() ) ||
-			$this->mCacheMode !== 'private'
+			$cacheMode !== 'private'
 		) {
 			$maxage = $this->getParameter( 'maxage' );
 		}
 		$privateCache = 'private, must-revalidate, max-age=' . $maxage;
 
-		if ( $this->mCacheMode == 'private' ) {
+		if ( $cacheMode === 'private' ) {
 			$response->header( "Cache-Control: $privateCache" );
 			return;
 		}
 
+		// Check whether language conversion was done to a non-default
+		// variant (from a logged-in user's preference), and restrict caching
+		// if so.
+		$lang = $this->getLanguage();
+		if (
+			$cacheMode === 'public' &&
+			$lang->hasVariants() &&
+			$this->getParameter( 'variant' ) === null &&
+			$lang->getDefaultVariant() !== $lang->getPreferredVariant()
+		) {
+			wfDebug(
+				__METHOD__ . ": downgrading cache mode 'public' to " .
+				"'anon-public-user-private' due to non-default language " .
+				"conversion variant\n"
+			);
+			$cacheMode = 'anon-public-user-private';
+		}
+
 		$useKeyHeader = $config->get( 'UseKeyHeader' );
-		if ( $this->mCacheMode == 'anon-public-user-private' ) {
+		if ( $cacheMode === 'anon-public-user-private' ) {
 			$out->addVaryHeader( 'Cookie' );
 			$response->header( $out->getVaryHeader() );
 			if ( $useKeyHeader ) {
@@ -1864,6 +1883,7 @@ class ApiMain extends ApiBase {
 			'errorsuselocal' => [
 				ApiBase::PARAM_DFLT => false,
 			],
+			'variant' => null,
 		];
 	}
 
