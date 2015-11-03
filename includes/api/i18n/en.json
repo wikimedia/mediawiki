@@ -322,6 +322,7 @@
 	"apihelp-parse-param-disabletoc": "Omit table of contents in output.",
 	"apihelp-parse-param-contentformat": "Content serialization format used for the input text. Only valid when used with $1text.",
 	"apihelp-parse-param-contentmodel": "Content model of the input text. If omitted, $1title must be specified, and default will be the model of the specified title. Only valid when used with $1text.",
+	"apihelp-parse-param-variant": "Variant of the language. Only works if the page content language supports variant conversion.",
 	"apihelp-parse-example-page": "Parse a page.",
 	"apihelp-parse-example-text": "Parse wikitext.",
 	"apihelp-parse-example-texttitle": "Parse wikitext, specifying the page title.",

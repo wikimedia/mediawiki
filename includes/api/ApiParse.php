@@ -818,7 +818,8 @@ class ApiParse extends ApiBase {
 			),
 			'contentmodel' => array(
 				ApiBase::PARAM_TYPE => ContentHandler::getContentModels(),
-			)
+			),
+			'variant' => null
 		);
 	}
 
