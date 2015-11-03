@@ -37,4 +37,6 @@ interface IExpiringStore {
 	const TTL_WEEK = 604800; // 7 * 24 * 3600
 	const TTL_MONTH = 2592000; // 30 * 24 * 3600
 	const TTL_YEAR = 31536000; // 365 * 24 * 3600
+
+	const TTL_INDEFINITE = 0;
 }

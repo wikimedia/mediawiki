@@ -95,8 +95,6 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/** Default time-since-expiry on a miss that makes a key "hot" */
 	const LOCK_TSE = 1;
 
-	/** Idiom for set()/getWithSetCallback() TTL being "forever" */
-	const TTL_INDEFINITE = 0;
 	/** Idiom for getWithSetCallback() callbacks to avoid calling set() */
 	const TTL_UNCACHEABLE = -1;
 	/** Idiom for getWithSetCallback() callbacks to 'lockTSE' logic */
