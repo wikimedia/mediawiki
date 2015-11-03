@@ -310,12 +310,13 @@ class LinkHolderArray {
 					continue;
 				}
 
+				$id = ( $id = $linkCache->getGoodLinkID( $pdbk ) ) != 0;
 				# Check if it's a static known link, e.g. interwiki
 				if ( $title->isAlwaysKnown() ) {
 					$colours[$pdbk] = '';
 				} elseif ( $ns == NS_SPECIAL ) {
 					$colours[$pdbk] = 'new';
-				} elseif ( ( $id = $linkCache->getGoodLinkID( $pdbk ) ) != 0 ) {
+				} elseif ( $id ) {
 					$colours[$pdbk] = Linker::getLinkColour( $title, $threshold );
 					$output->addLink( $title, $id );
 					$linkcolour_ids[$id] = $pdbk;
