@@ -118,24 +118,6 @@ class Preprocessor_Hash extends Preprocessor {
 			return unserialize( $tree );
 		}
 
-		$rules = array(
-			'{' => array(
-				'end' => '}',
-				'names' => array(
-					2 => 'template',
-					3 => 'tplarg',
-				),
-				'min' => 2,
-				'max' => 3,
-			),
-			'[' => array(
-				'end' => ']',
-				'names' => array( 2 => null ),
-				'min' => 2,
-				'max' => 2,
-			)
-		);
-
 		$forInclusion = $flags & Parser::PTD_FOR_INCLUSION;
 
 		$xmlishElements = $this->parser->getStripList();
@@ -252,9 +234,9 @@ class Preprocessor_Hash extends Preprocessor {
 						}
 					} elseif ( $curChar == $currentClosing ) {
 						$found = 'close';
-					} elseif ( isset( $rules[$curChar] ) ) {
+					} elseif ( isset( $this->rules[$curChar] ) ) {
 						$found = 'open';
-						$rule = $rules[$curChar];
+						$rule = $this->rules[$curChar];
 					} else {
 						# Some versions of PHP have a strcspn which stops on null characters
 						# Ignore and continue
@@ -557,7 +539,7 @@ class Preprocessor_Hash extends Preprocessor {
 
 				# check for maximum matching characters (if there are 5 closing
 				# characters, we will probably need only 3 - depending on the rules)
-				$rule = $rules[$piece->open];
+				$rule = $this->rules[$piece->open];
 				if ( $count > $rule['max'] ) {
 					# The specified maximum exists in the callback array, unless the caller
 					# has made an error
@@ -668,7 +650,7 @@ class Preprocessor_Hash extends Preprocessor {
 					$piece->parts = array( new PPDPart_Hash );
 					$piece->count -= $matchingCount;
 					# do we still qualify for any callback with remaining count?
-					$min = $rules[$piece->open]['min'];
+					$min = $this->rules[$piece->open]['min'];
 					if ( $piece->count >= $min ) {
 						$stack->push( $piece );
 						$accum =& $stack->getAccum();
