@@ -136,6 +136,19 @@ class WebResponse {
 				$options['httpOnly'] );
 		}
 	}
+
+	/**
+	 * Unset a browser cookie.
+	 * This sets the cookie with an empty value and an expiry set to a time in the past,
+	 * which will cause the browser to remove any cookie with the given name, domain and
+	 * path from its cookie store. Options other than these (and prefix) have no effect.
+	 * @param string $name Cookie name
+	 * @param array $options Cookie options, see {@link setCookie()}
+	 * @since 1.27
+	 */
+	public function clearCookie( $name, $options = array() ) {
+		$this->setCookie( $name, '', time() - 31536000 /* 1 year */, $options );
+	}
 }
 
 /**
