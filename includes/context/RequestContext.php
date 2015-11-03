@@ -67,6 +67,11 @@ class RequestContext implements IContextSource, MutableContext {
 	private $stats;
 
 	/**
+	 * @var Timing
+	 */
+	private $timing;
+
+	/**
 	 * @var Config
 	 */
 	private $config;
@@ -137,6 +142,18 @@ class RequestContext implements IContextSource, MutableContext {
 			$this->stats = new BufferingStatsdDataFactory( $prefix );
 		}
 		return $this->stats;
+	}
+
+	/**
+	 * Get the timing object
+	 *
+	 * @return Timing
+	 */
+	public function getTiming() {
+		if ( $this->timing === null ) {
+			$this->timing = new Timing();
+		}
+		return $this->timing;
 	}
 
 	/**
