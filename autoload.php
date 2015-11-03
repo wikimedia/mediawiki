@@ -446,6 +446,7 @@ $wgAutoloadLocalClasses = array(
 	'FileRepoStatus' => __DIR__ . '/includes/filerepo/FileRepoStatus.php',
 	'FindHooks' => __DIR__ . '/maintenance/findHooks.php',
 	'FindMissingFiles' => __DIR__ . '/maintenance/findMissingFiles.php',
+	'FindOrphanedFiles' => __DIR__ . '/maintenance/findOrphanedFiles.php',
 	'FixBug20757' => __DIR__ . '/maintenance/storage/fixBug20757.php',
 	'FixDoubleRedirects' => __DIR__ . '/maintenance/fixDoubleRedirects.php',
 	'FixExtLinksProtocolRelative' => __DIR__ . '/maintenance/fixExtLinksProtocolRelative.php',
