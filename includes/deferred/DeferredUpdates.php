@@ -130,11 +130,13 @@ class DeferredUpdates {
 					wfGetLBFactory()->commitMasterChanges();
 				} catch ( Exception $e ) {
 					// We don't want exceptions thrown during deferred updates to
-					// be reported to the user since the output is already sent.
-					// Instead we just log them.
+					// be reported to the user since the output is already sent
 					if ( !$e instanceof ErrorPageError ) {
 						MWExceptionHandler::logException( $e );
 					}
+					// Make sure incomplete transactions are not committed and end any
+					// open atomic sections so that other DB updates have a chance to run
+					wfGetLBFactory()->rollbackMasterChanges();
 				}
 			}
 
