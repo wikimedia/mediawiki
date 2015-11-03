@@ -140,6 +140,18 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 	/**
+	 * Get the timing object
+	 *
+	 * @return Timing
+	 */
+	public function getTiming() {
+		if ( $this->timing === null ) {
+			$this->timing = new Timing();
+		}
+		return $this->timing;
+	}
+
+	/**
 	 * Set the Title object
 	 *
 	 * @param Title $title
