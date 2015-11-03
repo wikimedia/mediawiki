@@ -116,6 +116,19 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	}
 
 	/**
+	 * Get the timing object
+	 *
+	 * @return Timing
+	 */
+	public function getTiming() {
+		if ( !is_null( $this->timing ) ) {
+			return $this->timing;
+		} else {
+			return $this->getContext()->getTiming();
+		}
+	}
+
+	/**
 	 * Set the WebRequest object
 	 *
 	 * @param WebRequest $r
