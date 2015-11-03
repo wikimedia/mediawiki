@@ -204,31 +204,6 @@ class LinkCache {
 		$this->mGoodLinks->clear( array( $dbkey ) );
 	}
 
-
-	/**
-	 * @deprecated since 1.26
-	 * @return array
-	 */
-	public function getGoodLinks() {
-		wfDeprecated( __METHOD__, '1.26' );
-		$links = array();
-		foreach ( $this->mGoodLinks->getAllKeys() as $key ) {
-			$info = $this->mGoodLinks->get( $key );
-			$links[$key] = $info['id'];
-		}
-
-		return $links;
-	}
-
-	/**
-	 * @deprecated since 1.26
-	 * @return array
-	 */
-	public function getBadLinks() {
-		wfDeprecated( __METHOD__, '1.26' );
-		return $this->mBadLinks->getAllKeys();
-	}
-
 	/**
 	 * Add a title to the link cache, return the page_id or zero if non-existent
 	 *

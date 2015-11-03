@@ -95,6 +95,7 @@ changes to languages because of Bugzilla reports.
   ignore the 2nd and 3rd arguments (formerly $id and $commit).
 * Removed "loaderScripts" option from ResourceLoaderFileModule class.
 * Removed ORM-like wrapper added in 1.20.
+* LinkCache::getGoodLinks and LinkCache::getBadLinks were removed (deprecated in 1.26).
 
 == Compatibility ==
 
