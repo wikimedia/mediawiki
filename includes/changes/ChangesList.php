@@ -36,8 +36,8 @@ class ChangesList extends ContextSource {
 	protected $rclistOpen;
 	protected $rcMoveIndex;
 
-	/** @var MapCacheLRU */
-	protected $watchingCache;
+	/** @var BagOStuff */
+	protected $watchMsgCache;
 
 	/**
 	 * Changeslist constructor
@@ -53,7 +53,7 @@ class ChangesList extends ContextSource {
 			$this->skin = $obj;
 		}
 		$this->preCacheMessages();
-		$this->watchingCache = new MapCacheLRU( 50 );
+		$this->watchMsgCache = new HashBagOStuff( array( 'maxKeys' => 50 ) );
 	}
 
 	/**
@@ -500,17 +500,16 @@ class ChangesList extends ContextSource {
 	 * @return string
 	 */
 	protected function numberofWatchingusers( $count ) {
-		$cache = $this->watchingCache;
-		if ( $count > 0 ) {
-			if ( !$cache->has( $count ) ) {
-				$cache->set( $count, $this->msg( 'number_of_watching_users_RCview' )
-					->numParams( $count )->escaped() );
-			}
-
-			return $cache->get( $count );
-		} else {
+		if ( $count <= 0 ) {
 			return '';
 		}
+		$cache = $this->watchMsgCache;
+		return $cache->getWithSetCallback( $count, $cache::TTL_INDEFINITE,
+			function () use ( $count ) {
+				return $this->msg( 'number_of_watching_users_RCview' )
+					->numParams( $count )->escaped() );
+			}
+		);
 	}
 
 	/**
