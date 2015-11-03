@@ -27,19 +27,6 @@ class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
 		}
 	}
 
-	public function testEvictionOrder() {
-		$cache = new HashBagOStuff( array( 'maxKeys' => 10 ) );
-		for ( $i = 0; $i < 10; $i++ ) {
-			$cache->set( "key$i", 1 );
-			$this->assertEquals( 1, $cache->get( "key$i" ) );
-		}
-		for ( $i = 10; $i < 20; $i++ ) {
-			$cache->set( "key$i", 1 );
-			$this->assertEquals( 1, $cache->get( "key$i" ) );
-			$this->assertEquals( false, $cache->get( "key" . $i - 10 ) );
-		}
-	}
-
 	public function testExpire() {
 		$cache = new HashBagOStuff();
 		$cacheInternal = TestingAccessWrapper::newFromObject( $cache );
@@ -56,7 +43,27 @@ class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( false, $cache->get( 'baz' ), 'Key expired' );
 	}
 
-	public function testKeyOrder() {
+	/**
+	 * Ensure maxKeys eviction prefers keeping new keys.
+	 */
+	public function testEvictionAdd() {
+		$cache = new HashBagOStuff( array( 'maxKeys' => 10 ) );
+		for ( $i = 0; $i < 10; $i++ ) {
+			$cache->set( "key$i", 1 );
+			$this->assertEquals( 1, $cache->get( "key$i" ) );
+		}
+		for ( $i = 10; $i < 20; $i++ ) {
+			$cache->set( "key$i", 1 );
+			$this->assertEquals( 1, $cache->get( "key$i" ) );
+			$this->assertEquals( false, $cache->get( "key" . $i - 10 ) );
+		}
+	}
+
+	/**
+	 * Ensure maxKeys eviction prefers recently set keys
+	 * even if the keys pre-exist.
+	 */
+	public function testEvictionSet() {
 		$cache = new HashBagOStuff( array( 'maxKeys' => 3 ) );
 
 		foreach ( array( 'foo', 'bar', 'baz' ) as $key ) {
@@ -65,6 +72,29 @@ class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
 
 		// Set existing key
 		$cache->set( 'foo', 1 );
+
+		// Add a 4th key (beyond the allowed maximum)
+		$cache->set( 'quux', 1 );
+
+		// Foo's life should have been extended over Bar
+		foreach ( array( 'foo', 'baz', 'quux' ) as $key ) {
+			$this->assertEquals( 1, $cache->get( $key ), "Kept $key" );
+		}
+		$this->assertEquals( false, $cache->get( 'bar' ), 'Evicted bar' );
+	}
+
+	/**
+	 * Ensure maxKeys eviction prefers recently retrieved keys (LRU).
+	 */
+	public function testEvictionGet() {
+		$cache = new HashBagOStuff( array( 'maxKeys' => 3 ) );
+
+		foreach ( array( 'foo', 'bar', 'baz' ) as $key ) {
+			$cache->set( $key, 1 );
+		}
+
+		// Get existing key
+		$cache->get( 'foo', 1 );
 
 		// Add a 4th key (beyond the allowed maximum)
 		$cache->set( 'quux', 1 );

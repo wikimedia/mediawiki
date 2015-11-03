@@ -69,6 +69,11 @@ class HashBagOStuff extends BagOStuff {
 			return false;
 		}
 
+		// Refresh key position for maxCacheKeys eviction
+		$temp = $this->bag[$key];
+		unset( $this->bag[$key] );
+		$this->bag[$key] = $temp;
+
 		return $this->bag[$key][self::KEY_VAL];
 	}
 
