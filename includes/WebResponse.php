@@ -136,6 +136,16 @@ class WebResponse {
 				$options['httpOnly'] );
 		}
 	}
+
+	/**
+	 * Delete a browser cookie.
+	 * @param string $name Cookie name
+	 * @param array $options Cookie options, see {@link setCookie()}
+	 * @since 1.27
+	 */
+	public function deleteCookie( $name, $options = array() ) {
+		$this->setCookie( $name, '', time() - 86400, $options );
+	}
 }
 
 /**
