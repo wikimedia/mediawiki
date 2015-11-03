@@ -94,4 +94,8 @@ class HashBagOStuff extends BagOStuff {
 
 		return true;
 	}
+
+	public function clear() {
+		$this->bag = array();
+	}
 }

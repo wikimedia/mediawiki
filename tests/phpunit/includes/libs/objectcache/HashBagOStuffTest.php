@@ -5,6 +5,28 @@
  */
 class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
 
+	public function testDelete() {
+		$cache = new HashBagOStuff();
+		for ( $i = 0; $i < 10; $i++ ) {
+			$cache->set( "key$i", 1 );
+			$this->assertEquals( 1, $cache->get( "key$i" ) );
+			$cache->delete( "key$i" );
+			$this->assertEquals( false, $cache->get( "key$i" ) );
+		}
+	}
+
+	public function testClear() {
+		$cache = new HashBagOStuff();
+		for ( $i = 0; $i < 10; $i++ ) {
+			$cache->set( "key$i", 1 );
+			$this->assertEquals( 1, $cache->get( "key$i" ) );
+		}
+		$cache->clear();
+		for ( $i = 0; $i < 10; $i++ ) {
+			$this->assertEquals( false, $cache->get( "key$i" ) );
+		}
+	}
+
 	public function testEvictionOrder() {
 		$cache = new HashBagOStuff( array( 'maxKeys' => 10 ) );
 		for ( $i = 0; $i < 10; $i++ ) {
