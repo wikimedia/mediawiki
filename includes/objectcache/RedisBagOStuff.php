@@ -328,7 +328,8 @@ class RedisBagOStuff extends BagOStuff {
 			}
 		}
 
-		while ( ( $tag = array_shift( $candidates ) ) !== null ) {
+		$tag = ( $tag = array_shift( $candidates ) ) !== null;
+		while ( $tag ) {
 			$server = $this->serverTagMap[$tag];
 			$conn = $this->redisPool->getConnection( $server );
 			if ( !$conn ) {
@@ -355,6 +356,8 @@ class RedisBagOStuff extends BagOStuff {
 					continue;
 				}
 			}
+
+			$tag = ( $tag = array_shift( $candidates ) ) !== null;
 
 			return array( $server, $conn );
 		}
