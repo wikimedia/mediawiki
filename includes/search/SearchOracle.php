@@ -191,8 +191,7 @@ class SearchOracle extends SearchDatabase {
 					foreach ( $temp_terms as $t ) {
 						$searchon .= ( $terms[1] == '-' ? ' ~' : ' & ' ) . $this->escapeTerm( $t );
 					}
-				}
-				else {
+				} else {
 					$searchon .= ( $terms[1] == '-' ? ' ~' : ' & ' ) . $this->escapeTerm( $terms[2] );
 				}
 				if ( !empty( $terms[3] ) ) {

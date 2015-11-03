@@ -84,14 +84,11 @@ class SearchPostgres extends SearchDatabase {
 				}
 				if ( strtolower( $terms[2] ) === 'and' ) {
 					$searchstring .= ' & ';
-				}
-				elseif ( strtolower( $terms[2] ) === 'or' || $terms[2] === '|' ) {
+				} elseif ( strtolower( $terms[2] ) === 'or' || $terms[2] === '|' ) {
 					$searchstring .= ' | ';
-				}
-				elseif ( strtolower( $terms[2] ) === 'not' ) {
+				} elseif ( strtolower( $terms[2] ) === 'not' ) {
 					$searchstring .= ' & !';
-				}
-				else {
+				} else {
 					$searchstring .= " & $terms[2]";
 				}
 			}
@@ -147,8 +144,7 @@ class SearchPostgres extends SearchDatabase {
 			$query = "SELECT page_id, page_namespace, page_title, 0 AS score " .
 				"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
 				"AND r.rev_text_id = c.old_id AND 1=0";
-		}
-		else {
+		} else {
 			$m = array();
 			if ( preg_match_all( "/'([^']+)'/", $top, $m, PREG_SET_ORDER ) ) {
 				foreach ( $m as $terms ) {
@@ -157,9 +153,9 @@ class SearchPostgres extends SearchDatabase {
 			}
 
 			$query = "SELECT page_id, page_namespace, page_title, " .
-			"ts_rank($fulltext, to_tsquery($searchstring), 5) AS score " .
-			"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
-			"AND r.rev_text_id = c.old_id AND $fulltext @@ to_tsquery($searchstring)";
+				"ts_rank($fulltext, to_tsquery($searchstring), 5) AS score " .
+				"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
+				"AND r.rev_text_id = c.old_id AND $fulltext @@ to_tsquery($searchstring)";
 		}
 
 		# # Namespaces - defaults to 0
