@@ -73,6 +73,11 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	private $stats;
 
 	/**
+	 * @var Timing
+	 */
+	private $timing;
+
+	/**
 	 * Constructor
 	 * @param IContextSource $context Context to inherit from
 	 */
@@ -112,6 +117,19 @@ class DerivativeContext extends ContextSource implements MutableContext {
 			return $this->stats;
 		} else {
 			return $this->getContext()->getStats();
+		}
+	}
+
+	/**
+	 * Get the timing object
+	 *
+	 * @return Timing
+	 */
+	public function getTiming() {
+		if ( !is_null( $this->timing ) ) {
+			return $this->timing;
+		} else {
+			return $this->getContext()->getTiming();
 		}
 	}
 

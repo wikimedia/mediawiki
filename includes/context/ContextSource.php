@@ -153,6 +153,16 @@ abstract class ContextSource implements IContextSource {
 	}
 
 	/**
+	 * Get the Timing object
+	 *
+	 * @since 1.27
+	 * @return Timing
+	 */
+	public function getTiming() {
+		return $this->getContext()->getTiming();
+	}
+
+	/**
 	 * Get the Stats object
 	 *
 	 * @since 1.25
