@@ -295,7 +295,8 @@ class SquidPurgeClient {
 		}
 
 		$this->readBuffer .= $buf;
-		while ( $this->socket && $this->processReadBuffer() === 'continue' );
+		$this->socket = $this->socket && $this->processReadBuffer() === 'continue';
+		while ( $this->socket );
 	}
 
 	/**

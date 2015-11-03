@@ -584,11 +584,13 @@ class Sanitizer {
 				$text .= '&lt;' . str_replace( '>', '&gt;', $x );
 			}
 			# Close off any remaining tags
-			while ( is_array( $tagstack ) && ( $t = array_pop( $tagstack ) ) ) {
+			$tag_stack = is_array( $tagstack ) && ( $t = array_pop( $tagstack ) );
+			while ( $tag_stack ) {
 				$text .= "</$t>\n";
 				if ( $t == 'table' ) {
 					$tagstack = array_pop( $tablestack );
 				}
+				$tag_stack = is_array( $tagstack ) && ( $t = array_pop( $tagstack ) );
 			}
 		} else {
 			# this might be possible using tidy itself
@@ -631,7 +633,8 @@ class Sanitizer {
 	 * @return string
 	 */
 	public static function removeHTMLcomments( $text ) {
-		while ( ( $start = strpos( $text, '<!--' ) ) !== false ) {
+		$start = ( $start = strpos( $text, '<!--' ) ) !== false;
+		while ( $start ) {
 			$end = strpos( $text, '-->', $start + 4 );
 			if ( $end === false ) {
 				# Unterminated comment; bail out
@@ -660,6 +663,7 @@ class Sanitizer {
 				# Remove just the comment.
 				$text = substr_replace( $text, '', $start, $end - $start );
 			}
+			$start = ( $start = strpos( $text, '<!--' ) ) !== false;
 		}
 		return $text;
 	}

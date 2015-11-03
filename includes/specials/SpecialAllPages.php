@@ -207,7 +207,8 @@ class SpecialAllPages extends IncludableSpecialPage {
 			if ( $res->numRows() > 0 ) {
 				$out = Html::openElement( 'ul', array( 'class' => 'mw-allpages-chunk' ) );
 
-				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
+				$n_per = ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() );
+				while ( $n ) {
 					$t = Title::newFromRow( $s );
 					if ( $t ) {
 						$out .= '<li' .
@@ -219,6 +220,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 						$out .= '<li>[[' . htmlspecialchars( $s->page_title ) . "]]</li>\n";
 					}
 					$n++;
+					$n_per = ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() );
 				}
 				$out .= Html::closeElement( 'ul' );
 
@@ -291,7 +293,8 @@ class SpecialAllPages extends IncludableSpecialPage {
 		}
 
 		// Generate a "next page" link if needed
-		if ( $n == $this->maxPerPage && $s = $res->fetchObject() ) {
+		$n_max = $n == $this->maxPerPage && $s = $res->fetchObject();
+		if ( $n_max ) {
 			# $s is the first link of the next chunk
 			$t = Title::makeTitle( $namespace, $s->page_title );
 			$query = array( 'from' => $t->getText() );
