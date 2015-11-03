@@ -114,16 +114,18 @@ class SpecialStatistics extends SpecialPage {
 	 * @return string
 	 */
 	private function getPageStats() {
+		$specialAllPagesTitle = SpecialPage::getTitleFor( 'Allpages' );
 		$pageStatsHtml = Xml::openElement( 'tr' ) .
 			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-header-pages' )
 				->parse() ) .
 			Xml::closeElement( 'tr' ) .
-				$this->formatRow( Linker::linkKnown( SpecialPage::getTitleFor( 'Allpages' ),
-					$this->msg( 'statistics-articles' )->parse() ),
+				$this->formatRow( Linker::linkKnown( $specialAllPagesTitle,
+					$this->msg( 'statistics-articles' )->parse(), array(), array( 'hideredirects' => 1 ) ),
 					$this->getLanguage()->formatNum( $this->good ),
 					array( 'class' => 'mw-statistics-articles' ),
 					'statistics-articles-desc' ) .
-				$this->formatRow( $this->msg( 'statistics-pages' )->parse(),
+				$this->formatRow( Linker::linkKnown( $specialAllPagesTitle,
+					$this->msg( 'statistics-pages' )->parse() ),
 					$this->getLanguage()->formatNum( $this->total ),
 					array( 'class' => 'mw-statistics-pages' ),
 					'statistics-pages-desc' );
