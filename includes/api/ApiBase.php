@@ -986,6 +986,17 @@ abstract class ApiBase extends ContextSource {
 			// Set a warning if a deprecated parameter has been passed
 			if ( $deprecated && $value !== false ) {
 				$this->setWarning( "The $encParamName parameter has been deprecated." );
+
+				$feature = $encParamName;
+				$m = $this;
+				while ( !$m->isMain() ) {
+					$p = $m->getParent();
+					$name = $m->getModuleName();
+					$param = $p->encodeParamName( $p->getModuleManager()->getModuleGroup( $name ) );
+					$feature = "{$param}={$name}&{$feature}";
+					$m = $p;
+				}
+				$this->logFeatureUsage( $feature );
 			}
 		} elseif ( $required ) {
 			$this->dieUsageMsg( array( 'missingparam', $paramName ) );

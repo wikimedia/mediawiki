@@ -101,9 +101,6 @@ class ApiProtect extends ApiBase {
 
 		$cascade = $params['cascade'];
 
-		if ( $params['watch'] ) {
-			$this->logFeatureUsage( 'action=protect&watch' );
-		}
 		$watch = $params['watch'] ? 'watch' : $params['watchlist'];
 		$this->setWatch( $watch, $titleObj, 'watchdefault' );
 

@@ -52,7 +52,6 @@ class ApiParamInfo extends ApiBase {
 		}
 
 		if ( is_array( $params['querymodules'] ) ) {
-			$this->logFeatureUsage( 'action=paraminfo&querymodules' );
 			$queryModules = $params['querymodules'];
 			foreach ( $queryModules as $m ) {
 				$modules[] = 'query+' . $m;
@@ -62,7 +61,6 @@ class ApiParamInfo extends ApiBase {
 		}
 
 		if ( is_array( $params['formatmodules'] ) ) {
-			$this->logFeatureUsage( 'action=paraminfo&formatmodules' );
 			$formatModules = $params['formatmodules'];
 			foreach ( $formatModules as $m ) {
 				$modules[] = $m;
@@ -109,12 +107,10 @@ class ApiParamInfo extends ApiBase {
 		}
 
 		if ( $params['mainmodule'] ) {
-			$this->logFeatureUsage( 'action=paraminfo&mainmodule' );
 			$res['mainmodule'] = $this->getModuleInfo( $this->getMain() );
 		}
 
 		if ( $params['pagesetmodule'] ) {
-			$this->logFeatureUsage( 'action=paraminfo&pagesetmodule' );
 			$pageSet = new ApiPageSet( $this->getMain()->getModuleManager()->getModule( 'query' ) );
 			$res['pagesetmodule'] = $this->getModuleInfo( $pageSet );
 			unset( $res['pagesetmodule']['name'] );

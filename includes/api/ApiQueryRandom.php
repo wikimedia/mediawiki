@@ -130,10 +130,6 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 			$this->requireMaxOneParameter( $params, 'filterredir', 'redirect' );
 		}
 
-		if ( $params['redirect'] ) {
-			$this->logFeatureUsage( "list=random&rnredirect=" );
-		}
-
 		if ( isset( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 4 );
