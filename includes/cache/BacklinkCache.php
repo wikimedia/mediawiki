@@ -53,6 +53,7 @@ class BacklinkCache {
 	 * @see BacklinkCache::partitionResult()
 	 *
 	 * Cleared with BacklinkCache::clear()
+	 * @var array[]
 	 */
 	protected $partitionCache = array();
 
@@ -62,6 +63,7 @@ class BacklinkCache {
 	 *
 	 * Initialized with BacklinkCache::getLinks()
 	 * Cleared with BacklinkCache::clear()
+	 * @var ResultWrapper[]
 	 */
 	protected $fullResultCache = array();
 
