@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.13.0
+ * OOjs UI v0.13.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-10-27T17:53:00Z
+ * Date: 2015-11-03T21:42:28Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -1777,9 +1777,6 @@
 .oo-ui-textInputWidget textarea.oo-ui-pendingElement-pending {
 	background-color: transparent;
 }
-.oo-ui-textInputWidget-icon {
-	width: 2em;
-}
 .oo-ui-textInputWidget.oo-ui-widget-enabled input:focus,
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea:focus {
 	outline: none;
@@ -1815,6 +1812,7 @@
 }
 .oo-ui-textInputWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
 	width: 1.875em;
+	max-height: 2.375em;
 	margin-left: 0.3em;
 }
 .oo-ui-textInputWidget.oo-ui-indicatorElement input,
@@ -1823,6 +1821,7 @@
 }
 .oo-ui-textInputWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
 	width: 0.9375em;
+	max-height: 2.375em;
 	margin-right: 0.775em;
 }
 .oo-ui-textInputWidget > .oo-ui-labelElement-label {

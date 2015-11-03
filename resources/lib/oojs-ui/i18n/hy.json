@@ -19,6 +19,8 @@
 	"ooui-dialog-process-dismiss": "Փակել",
 	"ooui-dialog-process-retry": "Կրկին փորձել",
 	"ooui-dialog-process-continue": "Շարունակել",
+	"ooui-selectfile-button-select": "Ընտրել նիշք",
 	"ooui-selectfile-not-supported": "Ֆայլի ընտրությունը չի պաշտպանվում",
-	"ooui-selectfile-placeholder": "Ֆայլն ընտրված չէ"
+	"ooui-selectfile-placeholder": "Ֆայլն ընտրված չէ",
+	"ooui-selectfile-dragdrop-placeholder": "Ֆայլը գցել այստե"
 }

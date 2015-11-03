@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.13.0
+ * OOjs UI v0.13.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-10-27T17:53:00Z
+ * Date: 2015-11-03T21:42:28Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -1974,9 +1974,6 @@
 .oo-ui-textInputWidget textarea.oo-ui-pendingElement-pending {
 	background-color: transparent;
 }
-.oo-ui-textInputWidget-icon {
-	width: 2em;
-}
 .oo-ui-textInputWidget.oo-ui-widget-enabled input,
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea {
 	-webkit-transition: border 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -2031,6 +2028,7 @@
 .oo-ui-textInputWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
 	left: 0;
 	width: 1.875em;
+	max-height: 2.375em;
 	margin-left: 0.5em;
 	height: 100%;
 	background-position: right center;
@@ -2041,6 +2039,7 @@
 }
 .oo-ui-textInputWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
 	width: 0.9375em;
+	max-height: 2.375em;
 	margin: 0 0.775em;
 	height: 100%;
 }
@@ -2053,7 +2052,7 @@
 	margin-right: 2.0875em;
 }
 .oo-ui-textInputWidget-labelPosition-before.oo-ui-iconElement > .oo-ui-labelElement-label {
-	margin-right: 2.475em;
+	margin-left: 2.475em;
 }
 .oo-ui-menuSelectWidget {
 	position: absolute;

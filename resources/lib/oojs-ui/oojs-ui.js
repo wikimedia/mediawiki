@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.13.0
+ * OOjs UI v0.13.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-10-27T17:52:51Z
+ * Date: 2015-11-03T21:42:20Z
  */
 ( function ( OO ) {
 
@@ -1289,17 +1289,25 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 			}
 		}
 	} );
+	// allow widgets to reuse parts of the DOM
+	data = cls.static.reusePreInfuseDOM( $elem[ 0 ], data );
 	// pick up dynamic state, like focus, value of form inputs, scroll position, etc.
-	state = cls.static.gatherPreInfuseState( $elem, data );
+	state = cls.static.gatherPreInfuseState( $elem[ 0 ], data );
+	// rebuild widget
 	// jscs:disable requireCapitalizedConstructors
-	obj = new cls( data ); // rebuild widget
+	obj = new cls( data );
+	// jscs:enable requireCapitalizedConstructors
 	// now replace old DOM with this new DOM.
 	if ( top ) {
-		$elem.replaceWith( obj.$element );
-		// This element is now gone from the DOM, but if anyone is holding a reference to it,
-		// let's allow them to OO.ui.infuse() it and do what they expect (T105828).
-		// Do not use jQuery.data(), as using it on detached nodes leaks memory in 1.x line by design.
-		$elem[ 0 ].oouiInfused = obj;
+		// An efficient constructor might be able to reuse the entire DOM tree of the original element,
+		// so only mutate the DOM if we need to.
+		if ( $elem[ 0 ] !== obj.$element[ 0 ] ) {
+			$elem.replaceWith( obj.$element );
+			// This element is now gone from the DOM, but if anyone is holding a reference to it,
+			// let's allow them to OO.ui.infuse() it and do what they expect (T105828).
+			// Do not use jQuery.data(), as using it on detached nodes leaks memory in 1.x line by design.
+			$elem[ 0 ].oouiInfused = obj;
+		}
 		top.resolve();
 	}
 	obj.$element.data( 'ooui-infused', obj );
@@ -1308,6 +1316,22 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 	// restore dynamic state after the new element is inserted into DOM
 	domPromise.done( obj.restorePreInfuseState.bind( obj, state ) );
 	return obj;
+};
+
+/**
+ * Pick out parts of `node`'s DOM to be reused when infusing a widget.
+ *
+ * This method **must not** make any changes to the DOM, only find interesting pieces and add them
+ * to `config` (which should then be returned). Actual DOM juggling should then be done by the
+ * constructor, which will be given the enhanced config.
+ *
+ * @protected
+ * @param {HTMLElement} node
+ * @param {Object} config
+ * @return {Object}
+ */
+OO.ui.Element.static.reusePreInfuseDOM = function ( node, config ) {
+	return config;
 };
 
 /**
@@ -9021,7 +9045,7 @@ OO.ui.ProcessDialog.prototype.getTeardownProcess = function ( data ) {
  * @throws {Error} An error is thrown if no widget is specified
  */
 OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
-	var hasInputWidget, div, i;
+	var hasInputWidget, div;
 
 	// Allow passing positional parameters inside the config object
 	if ( OO.isPlainObject( fieldWidget ) && config === undefined ) {
@@ -9048,8 +9072,8 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 
 	// Properties
 	this.fieldWidget = fieldWidget;
-	this.errors = config.errors || [];
-	this.notices = config.notices || [];
+	this.errors = [];
+	this.notices = [];
 	this.$field = $( '<div>' );
 	this.$messages = $( '<ul>' );
 	this.$body = $( '<' + ( hasInputWidget ? 'label' : 'div' ) + '>' );
@@ -9085,9 +9109,6 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	this.$element
 		.addClass( 'oo-ui-fieldLayout' )
 		.append( this.$help, this.$body );
-	if ( this.errors.length || this.notices.length ) {
-		this.$element.append( this.$messages );
-	}
 	this.$body.addClass( 'oo-ui-fieldLayout-body' );
 	this.$messages.addClass( 'oo-ui-fieldLayout-messages' );
 	this.$field
@@ -9095,13 +9116,8 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 		.toggleClass( 'oo-ui-fieldLayout-disable', this.fieldWidget.isDisabled() )
 		.append( this.fieldWidget.$element );
 
-	for ( i = 0; i < this.notices.length; i++ ) {
-		this.$messages.append( this.makeMessage( 'notice', this.notices[ i ] ) );
-	}
-	for ( i = 0; i < this.errors.length; i++ ) {
-		this.$messages.append( this.makeMessage( 'error', this.errors[ i ] ) );
-	}
-
+	this.setErrors( config.errors || [] );
+	this.setNotices( config.notices || [] );
 	this.setAlignment( config.align );
 };
 
@@ -9144,6 +9160,7 @@ OO.ui.FieldLayout.prototype.getField = function () {
 };
 
 /**
+ * @protected
  * @param {string} kind 'error' or 'notice'
  * @param {string|OO.ui.HtmlSnippet} text
  * @return {jQuery}
@@ -9197,6 +9214,56 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
 	}
 
 	return this;
+};
+
+/**
+ * Set the list of error messages.
+ *
+ * @param {Array} errors Error messages about the widget, which will be displayed below the widget.
+ *  The array may contain strings or OO.ui.HtmlSnippet instances.
+ * @chainable
+ */
+OO.ui.FieldLayout.prototype.setErrors = function ( errors ) {
+	this.errors = errors.slice();
+	this.updateMessages();
+	return this;
+};
+
+/**
+ * Set the list of notice messages.
+ *
+ * @param {Array} notices Notices about the widget, which will be displayed below the widget.
+ *  The array may contain strings or OO.ui.HtmlSnippet instances.
+ * @chainable
+ */
+OO.ui.FieldLayout.prototype.setNotices = function ( notices ) {
+	this.notices = notices.slice();
+	this.updateMessages();
+	return this;
+};
+
+/**
+ * Update the rendering of error and notice messages.
+ *
+ * @private
+ */
+OO.ui.FieldLayout.prototype.updateMessages = function () {
+	var i;
+	this.$messages.empty();
+
+	if ( this.errors.length || this.notices.length ) {
+		this.$body.after( this.$messages );
+	} else {
+		this.$messages.remove();
+		return;
+	}
+
+	for ( i = 0; i < this.notices.length; i++ ) {
+		this.$messages.append( this.makeMessage( 'notice', this.notices[ i ] ) );
+	}
+	for ( i = 0; i < this.errors.length; i++ ) {
+		this.$messages.append( this.makeMessage( 'error', this.errors[ i ] ) );
+	}
 };
 
 /**
@@ -14569,7 +14636,7 @@ OO.ui.IndicatorWidget.static.tagName = 'span';
  * @param {Object} [config] Configuration options
  * @cfg {string} [name=''] The value of the input’s HTML `name` attribute.
  * @cfg {string} [value=''] The value of the input.
- * @cfg {string} [accessKey=''] The access key of the input.
+ * @cfg {string} [dir] The directionality of the input (ltr/rtl).
  * @cfg {Function} [inputFilter] The name of an input filter function. Input filters modify the value of an input
  *  before it is accepted.
  */
@@ -14604,6 +14671,9 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 		.append( this.$input );
 	this.setValue( config.value );
 	this.setAccessKey( config.accessKey );
+	if ( config.dir ) {
+		this.setDir( config.dir );
+	}
 };
 
 /* Setup */
@@ -14623,13 +14693,21 @@ OO.ui.InputWidget.static.supportsSimpleLabel = true;
 /**
  * @inheritdoc
  */
+OO.ui.InputWidget.static.reusePreInfuseDOM = function ( node, config ) {
+	config = OO.ui.InputWidget.parent.static.reusePreInfuseDOM( node, config );
+	// Reusing $input lets browsers preserve inputted values across page reloads (T114134)
+	config.$input = $( node ).find( '.oo-ui-inputWidget-input' );
+	return config;
+};
+
+/**
+ * @inheritdoc
+ */
 OO.ui.InputWidget.static.gatherPreInfuseState = function ( node, config ) {
-	var
-		state = OO.ui.InputWidget.parent.static.gatherPreInfuseState( node, config ),
-		$input = state.$input || $( node ).find( '.oo-ui-inputWidget-input' );
-	state.value = $input.val();
+	var state = OO.ui.InputWidget.parent.static.gatherPreInfuseState( node, config );
+	state.value = config.$input.val();
 	// Might be better in TabIndexedElement, but it's awkward to do there because mixins are awkward
-	state.focus = $input.is( ':focus' );
+	state.focus = config.$input.is( ':focus' );
 	return state;
 };
 
@@ -14655,8 +14733,9 @@ OO.ui.InputWidget.static.gatherPreInfuseState = function ( node, config ) {
  * @param {Object} config Configuration options
  * @return {jQuery} Input element
  */
-OO.ui.InputWidget.prototype.getInputElement = function () {
-	return $( '<input>' );
+OO.ui.InputWidget.prototype.getInputElement = function ( config ) {
+	// See #reusePreInfuseDOM about config.$input
+	return config.$input || $( '<input>' );
 };
 
 /**
@@ -14691,13 +14770,26 @@ OO.ui.InputWidget.prototype.getValue = function () {
 };
 
 /**
- * Set the direction of the input, either RTL (right-to-left) or LTR (left-to-right).
+ * Set the directionality of the input, either RTL (right-to-left) or LTR (left-to-right).
  *
- * @param {boolean} isRTL
- * Direction is right-to-left
+ * @deprecated since v0.13.1, use #setDir directly
+ * @param {boolean} isRTL Directionality is right-to-left
+ * @chainable
  */
 OO.ui.InputWidget.prototype.setRTL = function ( isRTL ) {
-	this.$input.prop( 'dir', isRTL ? 'rtl' : 'ltr' );
+	this.setDir( isRTL ? 'rtl' : 'ltr' );
+	return this;
+};
+
+/**
+ * Set the directionality of the input.
+ *
+ * @param {string} dir Text directionality: 'ltr', 'rtl' or 'auto'
+ * @chainable
+ */
+OO.ui.InputWidget.prototype.setDir = function ( dir ) {
+	this.$input.prop( 'dir', dir );
+	return this;
 };
 
 /**
@@ -14906,9 +14998,12 @@ OO.ui.ButtonInputWidget.static.supportsSimpleLabel = false;
  * @protected
  */
 OO.ui.ButtonInputWidget.prototype.getInputElement = function ( config ) {
-	var type = [ 'button', 'submit', 'reset' ].indexOf( config.type ) !== -1 ?
-		config.type :
-		'button';
+	var type;
+	// See InputWidget#reusePreInfuseDOM about config.$input
+	if ( config.$input ) {
+		return config.$input.empty();
+	}
+	type = [ 'button', 'submit', 'reset' ].indexOf( config.type ) !== -1 ? config.type : 'button';
 	return $( '<' + ( config.useInputTag ? 'input' : 'button' ) + ' type="' + type + '">' );
 };
 
@@ -15022,11 +15117,8 @@ OO.inheritClass( OO.ui.CheckboxInputWidget, OO.ui.InputWidget );
  * @inheritdoc
  */
 OO.ui.CheckboxInputWidget.static.gatherPreInfuseState = function ( node, config ) {
-	var
-		state = OO.ui.CheckboxInputWidget.parent.static.gatherPreInfuseState( node, config ),
-		$input = $( node ).find( '.oo-ui-inputWidget-input' );
-	state.$input = $input; // shortcut for performance, used in InputWidget
-	state.checked = $input.prop( 'checked' );
+	var state = OO.ui.CheckboxInputWidget.parent.static.gatherPreInfuseState( node, config );
+	state.checked = config.$input.prop( 'checked' );
 	return state;
 };
 
@@ -15162,7 +15254,11 @@ OO.mixinClass( OO.ui.DropdownInputWidget, OO.ui.mixin.TitledElement );
  * @inheritdoc
  * @protected
  */
-OO.ui.DropdownInputWidget.prototype.getInputElement = function () {
+OO.ui.DropdownInputWidget.prototype.getInputElement = function ( config ) {
+	// See InputWidget#reusePreInfuseDOM about config.$input
+	if ( config.$input ) {
+		return config.$input.addClass( 'oo-ui-element-hidden' );
+	}
 	return $( '<input type="hidden">' );
 };
 
@@ -15313,11 +15409,8 @@ OO.inheritClass( OO.ui.RadioInputWidget, OO.ui.InputWidget );
  * @inheritdoc
  */
 OO.ui.RadioInputWidget.static.gatherPreInfuseState = function ( node, config ) {
-	var
-		state = OO.ui.RadioInputWidget.parent.static.gatherPreInfuseState( node, config ),
-		$input = $( node ).find( '.oo-ui-inputWidget-input' );
-	state.$input = $input; // shortcut for performance, used in InputWidget
-	state.checked = $input.prop( 'checked' );
+	var state = OO.ui.RadioInputWidget.parent.static.gatherPreInfuseState( node, config );
+	state.checked = config.$input.prop( 'checked' );
 	return state;
 };
 
@@ -15604,6 +15697,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	this.maxRows = config.maxRows || Math.max( 2 * ( this.minRows || 0 ), 10 );
 	this.validate = null;
 	this.styleHeight = null;
+	this.scrollWidth = null;
 
 	// Clone for resizing
 	if ( this.autosize ) {
@@ -15696,12 +15790,9 @@ OO.ui.TextInputWidget.static.validationPatterns = {
  * @inheritdoc
  */
 OO.ui.TextInputWidget.static.gatherPreInfuseState = function ( node, config ) {
-	var
-		state = OO.ui.TextInputWidget.parent.static.gatherPreInfuseState( node, config ),
-		$input = $( node ).find( '.oo-ui-inputWidget-input' );
-	state.$input = $input; // shortcut for performance, used in InputWidget
+	var state = OO.ui.TextInputWidget.parent.static.gatherPreInfuseState( node, config );
 	if ( config.multiline ) {
-		state.scrollTop = $input.scrollTop();
+		state.scrollTop = config.$input.scrollTop();
 	}
 	return state;
 };
@@ -15914,47 +16005,67 @@ OO.ui.TextInputWidget.prototype.installParentChangeDetector = function () {
  * @fires resize
  */
 OO.ui.TextInputWidget.prototype.adjustSize = function () {
-	var scrollHeight, innerHeight, outerHeight, maxInnerHeight, measurementError, idealHeight, newHeight;
+	var scrollHeight, innerHeight, outerHeight, maxInnerHeight, measurementError,
+		idealHeight, newHeight, scrollWidth, property;
 
-	if ( this.multiline && this.autosize && this.$input.val() !== this.valCache ) {
-		this.$clone
-			.val( this.$input.val() )
-			.attr( 'rows', this.minRows )
-			// Set inline height property to 0 to measure scroll height
-			.css( 'height', 0 );
+	if ( this.multiline && this.$input.val() !== this.valCache ) {
+		if ( this.autosize ) {
+			this.$clone
+				.val( this.$input.val() )
+				.attr( 'rows', this.minRows )
+				// Set inline height property to 0 to measure scroll height
+				.css( 'height', 0 );
 
-		this.$clone.removeClass( 'oo-ui-element-hidden' );
+			this.$clone.removeClass( 'oo-ui-element-hidden' );
 
-		this.valCache = this.$input.val();
+			this.valCache = this.$input.val();
 
-		scrollHeight = this.$clone[ 0 ].scrollHeight;
+			scrollHeight = this.$clone[ 0 ].scrollHeight;
 
-		// Remove inline height property to measure natural heights
-		this.$clone.css( 'height', '' );
-		innerHeight = this.$clone.innerHeight();
-		outerHeight = this.$clone.outerHeight();
+			// Remove inline height property to measure natural heights
+			this.$clone.css( 'height', '' );
+			innerHeight = this.$clone.innerHeight();
+			outerHeight = this.$clone.outerHeight();
 
-		// Measure max rows height
-		this.$clone
-			.attr( 'rows', this.maxRows )
-			.css( 'height', 'auto' )
-			.val( '' );
-		maxInnerHeight = this.$clone.innerHeight();
+			// Measure max rows height
+			this.$clone
+				.attr( 'rows', this.maxRows )
+				.css( 'height', 'auto' )
+				.val( '' );
+			maxInnerHeight = this.$clone.innerHeight();
 
-		// Difference between reported innerHeight and scrollHeight with no scrollbars present
-		// Equals 1 on Blink-based browsers and 0 everywhere else
-		measurementError = maxInnerHeight - this.$clone[ 0 ].scrollHeight;
-		idealHeight = Math.min( maxInnerHeight, scrollHeight + measurementError );
+			// Difference between reported innerHeight and scrollHeight with no scrollbars present
+			// Equals 1 on Blink-based browsers and 0 everywhere else
+			measurementError = maxInnerHeight - this.$clone[ 0 ].scrollHeight;
+			idealHeight = Math.min( maxInnerHeight, scrollHeight + measurementError );
 
-		this.$clone.addClass( 'oo-ui-element-hidden' );
+			this.$clone.addClass( 'oo-ui-element-hidden' );
 
-		// Only apply inline height when expansion beyond natural height is needed
-		// Use the difference between the inner and outer height as a buffer
-		newHeight = idealHeight > innerHeight ? idealHeight + ( outerHeight - innerHeight ) : '';
-		if ( newHeight !== this.styleHeight ) {
-			this.$input.css( 'height', newHeight );
-			this.styleHeight = newHeight;
-			this.emit( 'resize' );
+			// Only apply inline height when expansion beyond natural height is needed
+			// Use the difference between the inner and outer height as a buffer
+			newHeight = idealHeight > innerHeight ? idealHeight + ( outerHeight - innerHeight ) : '';
+			if ( newHeight !== this.styleHeight ) {
+				this.$input.css( 'height', newHeight );
+				this.styleHeight = newHeight;
+				this.emit( 'resize' );
+			}
+		}
+		scrollWidth = this.$input[ 0 ].offsetWidth - this.$input[ 0 ].clientWidth;
+		if ( scrollWidth !== this.scrollWidth ) {
+			property = this.$element.css( 'direction' ) === 'rtl' ? 'left' : 'right';
+			// Reset
+			this.$label.css( { right: '', left: '' } );
+			this.$indicator.css( { right: '', left: '' } );
+
+			if ( scrollWidth ) {
+				this.$indicator.css( property, scrollWidth );
+				if ( this.labelPosition === 'after' ) {
+					this.$label.css( property, scrollWidth );
+				}
+			}
+
+			this.scrollWidth = scrollWidth;
+			this.positionLabel();
 		}
 	}
 	return this;
@@ -16221,6 +16332,9 @@ OO.ui.TextInputWidget.prototype.updatePosition = function () {
 		.toggleClass( 'oo-ui-textInputWidget-labelPosition-after', !!this.label && after )
 		.toggleClass( 'oo-ui-textInputWidget-labelPosition-before', !!this.label && !after );
 
+	this.valCache = null;
+	this.scrollWidth = null;
+	this.adjustSize();
 	this.positionLabel();
 
 	return this;
@@ -16267,7 +16381,7 @@ OO.ui.TextInputWidget.prototype.positionLabel = function () {
 	rtl = this.$element.css( 'direction' ) === 'rtl';
 	property = after === rtl ? 'padding-left' : 'padding-right';
 
-	this.$input.css( property, this.$label.outerWidth( true ) );
+	this.$input.css( property, this.$label.outerWidth( true ) + ( after ? this.scrollWidth : 0 ) );
 
 	return this;
 };
