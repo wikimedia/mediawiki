@@ -473,12 +473,37 @@ abstract class QueryPage extends SpecialPage {
 	 * Returns limit and offset, as returned by $this->getRequest()->getLimitOffset().
 	 * Subclasses may override this to further restrict or modify limit and offset.
 	 *
+	 * @note Restricts the offset parameter, as most query pages have inefficient paging
 	 * @since 1.26
 	 *
 	 * @return int[] list( $limit, $offset )
 	 */
 	protected function getLimitOffset() {
-		return $this->getRequest()->getLimitOffset();
+		list( $limit, $offset ) = $this->getRequest()->getLimitOffset();
+		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
+			$maxResults = $this->getMaxResults();
+			// Can't display more than max results on a page
+			$limit = min( $limit, $maxResults );
+			// Can't skip over more than $maxResults
+			$offset = min( $offset, $maxResults );
+			// Can't let $offset + $limit > $maxResults
+			$limit = min( $limit, $maxResults - $offset );
+		}
+		return array( $limit, $offset );
+	}
+
+	/**
+	 * Get max number of results we can return in miser mode.
+	 *
+	 * Most QueryPage subclasses use inefficient paging, so limit the max amount we return
+	 * This matters for uncached query pages that might otherwise accept an offset of 3 million
+	 *
+	 * @since 1.27
+	 * @return int
+	 */
+	protected function getMaxResults() {
+		// Max of 10000, unless we store more than 5000 in query cache.
+		return max( $this->getConfig()->get( 'QueryCacheLimit' ), 10000 );
 	}
 
 	/**
@@ -562,8 +587,10 @@ abstract class QueryPage extends SpecialPage {
 					min( $this->numRows, $this->limit ), # do not show the one extra row, if exist
 					$this->offset + 1, ( min( $this->numRows, $this->limit ) + $this->offset ) )->parseAsBlock() );
 				# Disable the "next" link when we reach the end
+				$atEnd = ( $this->numRows <= $this->limit )
+					|| ( $this->offset + $this-> limit  >= $this->getMaxResults() );
 				$paging = $this->getLanguage()->viewPrevNext( $this->getPageTitle( $par ), $this->offset,
-					$this->limit, $this->linkParameters(), ( $this->numRows <= $this->limit ) );
+					$this->limit, $this->linkParameters(), $atEnd );
 				$out->addHTML( '<p>' . $paging . '</p>' );
 			} else {
 				# No results to show, so don't bother with "showing X of Y" etc.
