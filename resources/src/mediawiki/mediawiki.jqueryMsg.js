@@ -1270,4 +1270,20 @@
 		return messageFunction( this.key, this.parameters );
 	};
 
+	/**
+	 * Parse the message to DOM nodes, rather than HTML string like #parse.
+	 *
+	 * This method is only available when jqueryMsg is loaded.
+	 *
+	 * @method parseDom
+	 * @member mw.Message
+	 * @return {jQuery}
+	 */
+	mw.Message.prototype.parseDom = ( function () {
+		var reusableParent = $( '<div>' );
+		return function () {
+			return reusableParent.msg( this.key, this.parameters ).contents().detach();
+		};
+	} )();
+
 }( mediaWiki, jQuery ) );
