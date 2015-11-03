@@ -62,11 +62,14 @@ class HashBagOStuff extends BagOStuff {
 	protected function doGet( $key, $flags = 0 ) {
 		if ( !isset( $this->bag[$key] ) ) {
 			return false;
-		}
-
-		if ( $this->expire( $key ) ) {
+		} elseif ( $this->expire( $key ) ) {
 			return false;
 		}
+
+		// Refresh key position for maxCacheKeys eviction
+		$temp = $this->bag[$key];
+		unset( $this->bag[$key] );
+		$this->bag[$key] = $temp;
 
 		return $this->bag[$key][self::KEY_VAL];
 	}
