@@ -79,6 +79,8 @@
 	"apihelp-edit-param-redirect": "Автоматически разрешать редиректы.",
 	"apihelp-edit-param-contentformat": "Формат сериализации содержимого, используемый для ввода текста.",
 	"apihelp-edit-example-edit": "Редактировать страницу",
+	"apihelp-edit-example-prepend": "Добавить магическое слово <kbd>_&#95;NOTOC_&#95;</kbd> в начало страницы.",
+	"apihelp-edit-example-undo": "Отменить изменения с 13579 по 13585 с добавлением автоматического описания правки.",
 	"apihelp-emailuser-description": "Письмо участнику",
 	"apihelp-emailuser-param-target": "Адресат электронного письма",
 	"apihelp-emailuser-param-subject": "Заголовок темы.",

@@ -995,7 +995,7 @@
 	"search-category": "(catégorie $1)",
 	"search-file-match": "(correspond au contenu du fichier)",
 	"search-suggest": "Essayez avec cette orthographe : $1",
-	"search-rewritten": "Affiche les résultats pour $1. Recherchez à sa place pour $2.",
+	"search-rewritten": "Résultats affichés pour $1. Rechercher $2 à la place.",
 	"search-interwiki-caption": "Projets frères",
 	"search-interwiki-default": "Résultats de $1 :",
 	"search-interwiki-more": "(plus)",
