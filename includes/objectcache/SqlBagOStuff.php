@@ -29,37 +29,29 @@
 class SqlBagOStuff extends BagOStuff {
 	/** @var LoadBalancer */
 	protected $lb;
-
 	/** @var array */
 	protected $serverInfos;
-
 	/** @var array */
 	protected $serverNames;
-
 	/** @var int */
 	protected $numServers;
+	/** @var int */
+	protected $lastExpireAll = 0;
+	/** @var int */
+	protected $purgePeriod = 100;
+	/** @var int */
+	protected $shards = 1;
+	/** @var string */
+	protected $tableName = 'objectcache';
+	/** @var bool */
+	protected $slaveOnly = false;
+	/** @var int */
+	protected $syncTimeout = 3;
 
 	/** @var array */
 	protected $conns;
-
-	/** @var int */
-	protected $lastExpireAll = 0;
-
-	/** @var int */
-	protected $purgePeriod = 100;
-
-	/** @var int */
-	protected $shards = 1;
-
-	/** @var string */
-	protected $tableName = 'objectcache';
-
-	/** @var bool */
-	protected $slaveOnly = false;
-
 	/** @var array UNIX timestamps */
 	protected $connFailureTimes = array();
-
 	/** @var array Exceptions */
 	protected $connFailureErrors = array();
 
@@ -92,6 +84,7 @@ class SqlBagOStuff extends BagOStuff {
 	 *                  garbage collection logic of expired items. This only
 	 *                  makes sense if the primary DB is used and only if get()
 	 *                  calls will be used. This is used by ReplicatedBagOStuff.
+	 *   - syncTimeout: Max seconds to wait for slaves to catch up for WRITE_SYNC.
 	 *
 	 * @param array $params
 	 */
@@ -119,6 +112,9 @@ class SqlBagOStuff extends BagOStuff {
 		}
 		if ( isset( $params['shards'] ) ) {
 			$this->shards = intval( $params['shards'] );
+		}
+		if ( isset( $params['syncTimeout'] ) ) {
+			$this->syncTimeout = $params['syncTimeout'];
 		}
 		$this->slaveOnly = !empty( $params['slaveOnly'] );
 	}
@@ -349,7 +345,12 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
-		return $this->setMulti( array( $key => $value ), $exptime );
+		$ok = $this->setMulti( array( $key => $value ), $exptime );
+		if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
+			$ok = $ok && $this->waitForSlaves();
+		}
+
+		return $ok;
 	}
 
 	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
@@ -457,7 +458,12 @@ class SqlBagOStuff extends BagOStuff {
 			throw new Exception( "Got invalid callback." );
 		}
 
-		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
+		$ok = $this->mergeViaCas( $key, $callback, $exptime, $attempts );
+		if ( ( $flags & self::WRITE_SYNC ) == self::WRITE_SYNC ) {
+			$ok = $ok && $this->waitForSlaves();
+		}
+
+		return $ok;
 	}
 
 	/**
@@ -727,6 +733,16 @@ class SqlBagOStuff extends BagOStuff {
 					' LIKE ' . $db->tableName( 'objectcache' ),
 					__METHOD__ );
 			}
+		}
+	}
+
+	protected function waitForSlaves() {
+		if ( !$this->serverInfos ) {
+			// Main LB is used; wait for any slaves to catch up
+			return wfWaitForSlaves( null, false, false, $this->syncTimeout );
+		} else {
+			// Custom DB server list; probably doesn't use replication
+			return true;
 		}
 	}
 }
