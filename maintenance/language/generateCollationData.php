@@ -220,7 +220,8 @@ class GenerateCollationData extends Maintenance {
 		// For each character with an entry in allkeys.txt, overwrite the implicit
 		// entry in $this->weights that came from the UCD.
 		// Also gather a list of tertiary weights, for use in selecting the group header
-		while ( false !== ( $line = fgets( $file ) ) ) {
+		$while = false !== ( $line = fgets( $file ) );
+		while ( $while ) {
 			// We're only interested in single-character weights, pick them out with a regex
 			$line = trim( $line );
 			if ( !preg_match( '/^([0-9A-F]+)\s*;\s*([^#]*)/', $line, $m ) ) {
@@ -253,6 +254,7 @@ class GenerateCollationData extends Maintenance {
 			) {
 				$goodTertiaryChars[$cp] = true;
 			}
+			$while = false !== ( $line = fgets( $file ) );
 		}
 		fclose( $file );
 
@@ -365,8 +367,6 @@ class UcdXmlReader {
 		$xml = $this->open();
 		$this->callback = $callback;
 
-		while ( $xml->name !== 'repertoire' && $xml->next() );
-
 		while ( $xml->read() ) {
 			if ( $xml->nodeType == XMLReader::ELEMENT ) {
 				if ( $xml->name === 'group' ) {
@@ -389,7 +389,6 @@ class UcdXmlReader {
 		if ( !$this->xml ) {
 			throw new MWException( __METHOD__ . ": unable to open {$this->fileName}" );
 		}
-		while ( $this->xml->name !== 'ucd' && $this->xml->read() );
 		$this->xml->read();
 
 		return $this->xml;
@@ -450,7 +449,6 @@ class UcdXmlReader {
 		}
 
 		$xml = $this->open();
-		while ( $xml->name !== 'blocks' && $xml->read() );
 
 		while ( $xml->read() ) {
 			if ( $xml->nodeType == XMLReader::ELEMENT ) {

@@ -1173,11 +1173,12 @@ abstract class File implements IDBAccessObject {
 	 * @return bool Whether at least one bucket was generated
 	 */
 	protected function generateBucketsIfNeeded( $params, $flags = 0 ) {
-		if ( !$this->repo
+		$repo = !$this->repo
 			|| !isset( $params['physicalWidth'] )
 			|| !isset( $params['physicalHeight'] )
 			|| !( $bucket = $this->getThumbnailBucket( $params['physicalWidth'] ) )
-			|| $bucket == $params['physicalWidth'] ) {
+			|| $bucket == $params['physicalWidth'];
+		if ( $repo ) {
 			return false;
 		}
 
@@ -1225,11 +1226,11 @@ abstract class File implements IDBAccessObject {
 	 * @return array Source path and width/height of the source
 	 */
 	public function getThumbnailSource( $params ) {
-		if ( $this->repo
+		$repo = $this->repo
 			&& $this->getHandler()->supportsBucketing()
 			&& isset( $params['physicalWidth'] )
-			&& $bucket = $this->getThumbnailBucket( $params['physicalWidth'] )
-		) {
+			&& $bucket = $this->getThumbnailBucket( $params['physicalWidth'] );
+		if ( $repo ) {
 			if ( $this->getWidth() != 0 ) {
 				$bucketHeight = round( $this->getHeight() * ( $bucket / $this->getWidth() ) );
 			} else {

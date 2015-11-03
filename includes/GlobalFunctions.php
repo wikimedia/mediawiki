@@ -256,11 +256,13 @@ function wfArrayDiff2_cmp( $a, $b ) {
 	} else {
 		reset( $a );
 		reset( $b );
-		while ( ( list( , $valueA ) = each( $a ) ) && ( list( , $valueB ) = each( $b ) ) ) {
+		$list = ( list( , $valueA ) = each( $a ) ) && ( list( , $valueB ) = each( $b ) );
+		while ( $list ) {
 			$cmp = strcmp( $valueA, $valueB );
 			if ( $cmp !== 0 ) {
 				return $cmp;
 			}
+			$list = ( list( , $valueA ) = each( $a ) ) && ( list( , $valueB ) = each( $b ) );
 		}
 		return 0;
 	}
@@ -2204,7 +2206,8 @@ function wfResetOutputBuffers( $resetGzipEncoding = true ) {
 		global $wgDisableOutputCompression;
 		$wgDisableOutputCompression = true;
 	}
-	while ( $status = ob_get_status() ) {
+	$status = ob_get_status();
+	while ( $status ) {
 		if ( isset( $status['flags'] ) ) {
 			$flags = PHP_OUTPUT_HANDLER_CLEANABLE | PHP_OUTPUT_HANDLER_REMOVABLE;
 			$deleteable = ( $status['flags'] & $flags ) === $flags;
