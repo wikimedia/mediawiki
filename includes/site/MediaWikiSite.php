@@ -231,9 +231,8 @@ class MediaWikiSite extends Site {
 					default:
 						return false;
 				}
-			}
-			// If on the pages structure we should prepare for returning.
-			elseif ( $fieldId === 'title' && is_array( $collectedHits ) ) {
+			} elseif ( $fieldId === 'title' && is_array( $collectedHits ) ) {
+				// If on the pages structure we should prepare for returning.
 				switch ( count( $collectedHits ) ) {
 					case 0:
 						return false;

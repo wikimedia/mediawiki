@@ -855,7 +855,9 @@ class MimeMagic {
 		$opendocRegex = "/^mimetype(application\/vnd\.oasis\.opendocument\.$types)/";
 
 		$openxmlRegex = "/^\[Content_Types\].xml/";
-
+		$substr = substr( $header, 0, 8 ) == "\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1" &&
+				( $headerpos = strpos( $tail, "PK\x03\x04" ) ) !== false &&
+				preg_match( $openxmlRegex, substr( $tail, $headerpos + 30 ) )
 		if ( preg_match( $opendocRegex, substr( $header, 30 ), $matches ) ) {
 			$mime = $matches[1];
 			wfDebug( __METHOD__ . ": detected $mime from ZIP archive\n" );
@@ -877,9 +879,7 @@ class MimeMagic {
 				}
 			}
 			wfDebug( __METHOD__ . ": detected an Open Packaging Conventions archive: $mime\n" );
-		} elseif ( substr( $header, 0, 8 ) == "\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1" &&
-				( $headerpos = strpos( $tail, "PK\x03\x04" ) ) !== false &&
-				preg_match( $openxmlRegex, substr( $tail, $headerpos + 30 ) ) ) {
+		} elseif ( $substr ) {
 			if ( substr( $header, 512, 4 ) == "\xEC\xA5\xC1\x00" ) {
 				$mime = "application/msword";
 			}
