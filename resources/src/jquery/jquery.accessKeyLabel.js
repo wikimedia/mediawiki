@@ -175,7 +175,7 @@ $.fn.updateTooltipAccessKeys = function () {
 };
 
 /**
- * Exposed for testing.
+ * Expose getAccessKeyPrefix
  *
  * @method updateTooltipAccessKeys_getAccessKeyPrefix
  * @inheritdoc #getAccessKeyPrefix
