@@ -1253,6 +1253,7 @@ $wgAutoloadLocalClasses = array(
 	'TidyUpBug37714' => __DIR__ . '/maintenance/tidyUpBug37714.php',
 	'TiffHandler' => __DIR__ . '/includes/media/Tiff.php',
 	'TimestampException' => __DIR__ . '/includes/exception/TimestampException.php',
+	'Timing' => __DIR__ . '/includes/libs/Timing.php',
 	'Title' => __DIR__ . '/includes/Title.php',
 	'TitleArray' => __DIR__ . '/includes/TitleArray.php',
 	'TitleArrayFromResult' => __DIR__ . '/includes/TitleArrayFromResult.php',
