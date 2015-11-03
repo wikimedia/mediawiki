@@ -433,16 +433,19 @@ class DiffEngine {
 				$k = 0;
 				$matches = $ymatches[$line];
 				reset( $matches );
-				while ( list( , $y ) = each( $matches ) ) {
+				$list = list( , $y ) = each( $matches );
+				while ( $list ) {
 					if ( empty( $this->in_seq[$y] ) ) {
 						$k = $this->lcsPos( $y );
 						assert( '$k > 0' );
 						$ymids[$k] = $ymids[$k - 1];
 						break;
 					}
+					$list = list( , $y ) = each( $matches );
 				}
 
-				while ( list( , $y ) = each( $matches ) ) {
+				$list = list( , $y ) = each( $matches );
+				while ( $list ) {
 					if ( $y > $this->seq[$k - 1] ) {
 						assert( '$y < $this->seq[$k]' );
 						// Optimization: this is a common case:
@@ -455,6 +458,7 @@ class DiffEngine {
 						assert( '$k > 0' );
 						$ymids[$k] = $ymids[$k - 1];
 					}
+					$list = list( , $y ) = each( $matches );
 				}
 			}
 		}
@@ -559,9 +563,11 @@ class DiffEngine {
 			// Use the partitions to split this problem into subproblems.
 			reset( $seps );
 			$pt1 = $seps[0];
-			while ( $pt2 = next( $seps ) ) {
+			$pt2 = next( $seps )
+			while ( $pt2 ) {
 				$this->compareSeq( $pt1[0], $pt2[0], $pt1[1], $pt2[1] );
 				$pt1 = $pt2;
+				$pt2 = next( $seps )
 			}
 		}
 	}
