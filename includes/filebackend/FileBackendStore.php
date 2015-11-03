@@ -58,7 +58,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackend::__construct()
 	 * Additional $config params include:
-	 *   - wanCache     : WANOBjectCache object to use for persistent caching.
+	 *   - wanCache     : WANObjectCache object to use for persistent caching.
 	 *   - mimeCallback : Callback that takes (storage path, content, file system path) and
 	 *                    returns the MIME type of the file or 'unknown/unknown'. The file
 	 *                    system path parameter should be used if the content one is null.
@@ -69,10 +69,7 @@ abstract class FileBackendStore extends FileBackend {
 		parent::__construct( $config );
 		$this->mimeCallback = isset( $config['mimeCallback'] )
 			? $config['mimeCallback']
-			: function ( $storagePath, $content, $fsPath ) {
-				// @todo handle the case of extension-less files using the contents
-				return StreamFile::contentTypeFromPath( $storagePath ) ?: 'unknown/unknown';
-			};
+			: null;
 		$this->memCache = WANObjectCache::newEmpty(); // disabled by default
 		$this->cheapCache = new ProcessCacheLRU( self::CACHE_CHEAP_SIZE );
 		$this->expensiveCache = new ProcessCacheLRU( self::CACHE_EXPENSIVE_SIZE );
@@ -1828,7 +1825,18 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return string MIME type
 	 */
 	protected function getContentType( $storagePath, $content, $fsPath ) {
-		return call_user_func_array( $this->mimeCallback, func_get_args() );
+		if ( $this->mimeCallback ) {
+			return call_user_func_array( $this->mimeCallback, func_get_args() );
+		}
+
+		$mime = null;
+		if ( $fsPath !== null && function_exists( 'finfo_file' ) ) {
+			$finfo = finfo_open( FILEINFO_MIME_TYPE );
+			$mime = finfo_file( $finfo, $fsPath );
+			finfo_close( $finfo );
+		}
+
+		return is_string( $mime ) ? $mime : 'unknown/unknown';
 	}
 }
 
