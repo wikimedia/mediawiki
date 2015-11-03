@@ -51,7 +51,6 @@ class ApiQueryIWLinks extends ApiQueryBase {
 		// Handle deprecated param
 		$this->requireMaxOneParameter( $params, 'url', 'prop' );
 		if ( $params['url'] ) {
-			$this->logFeatureUsage( 'prop=iwlinks&iwurl' );
 			$prop = array( 'url' => 1 );
 		}
 

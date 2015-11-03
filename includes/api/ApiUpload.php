@@ -53,7 +53,6 @@ class ApiUpload extends ApiBase {
 
 		// Copy the session key to the file key, for backward compatibility.
 		if ( !$this->mParams['filekey'] && $this->mParams['sessionkey'] ) {
-			$this->logFeatureUsage( 'action=upload&sessionkey' );
 			$this->mParams['filekey'] = $this->mParams['sessionkey'];
 		}
 
@@ -730,7 +729,6 @@ class ApiUpload extends ApiBase {
 
 		// Deprecated parameters
 		if ( $this->mParams['watch'] ) {
-			$this->logFeatureUsage( 'action=upload&watch' );
 			$watch = true;
 		}
 

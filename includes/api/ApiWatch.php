@@ -85,7 +85,6 @@ class ApiWatch extends ApiBase {
 				);
 			}
 
-			$this->logFeatureUsage( 'action=watch&title' );
 			$title = Title::newFromText( $params['title'] );
 			if ( !$title || !$title->isWatchable() ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );

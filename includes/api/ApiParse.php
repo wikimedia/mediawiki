@@ -427,9 +427,6 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['parsetree'] ) || $params['generatexml'] ) {
-			if ( !isset( $prop['parsetree'] ) ) {
-				$this->logFeatureUsage( 'action=parse&generatexml' );
-			}
 			if ( $this->content->getModel() != CONTENT_MODEL_WIKITEXT ) {
 				$this->dieUsage( "parsetree is only supported for wikitext content", "notwikitext" );
 			}

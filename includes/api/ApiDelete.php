@@ -88,10 +88,8 @@ class ApiDelete extends ApiBase {
 
 		// Deprecated parameters
 		if ( $params['watch'] ) {
-			$this->logFeatureUsage( 'action=delete&watch' );
 			$watch = 'watch';
 		} elseif ( $params['unwatch'] ) {
-			$this->logFeatureUsage( 'action=delete&unwatch' );
 			$watch = 'unwatch';
 		} else {
 			$watch = $params['watchlist'];

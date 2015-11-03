@@ -224,7 +224,6 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		$show = $this->params['show'];
 		if ( $this->params['toponly'] ) { // deprecated/old param
-			$this->logFeatureUsage( 'list=usercontribs&uctoponly' );
 			$show[] = 'top';
 		}
 		if ( !is_null( $show ) ) {

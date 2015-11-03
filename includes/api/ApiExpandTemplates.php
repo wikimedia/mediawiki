@@ -80,10 +80,6 @@ class ApiExpandTemplates extends ApiBase {
 		$retval = array();
 
 		if ( isset( $prop['parsetree'] ) || $params['generatexml'] ) {
-			if ( !isset( $prop['parsetree'] ) ) {
-				$this->logFeatureUsage( 'action=expandtemplates&generatexml' );
-			}
-
 			$wgParser->startExternalParse( $title_obj, $options, Parser::OT_PREPROCESS );
 			$dom = $wgParser->preprocessToDom( $params['text'] );
 			if ( is_callable( array( $dom, 'saveXML' ) ) ) {

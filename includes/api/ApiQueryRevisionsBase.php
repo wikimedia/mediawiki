@@ -276,9 +276,6 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 		}
 		if ( $this->fld_parsetree || ( $this->fld_content && $this->generateXML ) ) {
-			if ( !$this->fld_parsetree ) {
-				$this->logFeatureUsage( 'action=query&prop=revisions+base&generatexml' );
-			}
 			if ( $content ) {
 				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
 					$t = $content->getNativeData(); # note: don't set $text
