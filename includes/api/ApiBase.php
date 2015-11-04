@@ -1386,10 +1386,11 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @since 1.23
 	 * @param Status $status
+	 * @param array|null &$extraData Set if extra data from IApiMessage is available (since 1.27)
 	 * @return array Array of code and error string
 	 * @throws MWException
 	 */
-	public function getErrorFromStatus( $status ) {
+	public function getErrorFromStatus( $status, &$extraData = null ) {
 		if ( $status->isGood() ) {
 			throw new MWException( 'Successful status passed to ApiBase::dieStatus' );
 		}
@@ -1408,7 +1409,12 @@ abstract class ApiBase extends ContextSource {
 		// error messages.
 		if ( $errors[0] instanceof Message ) {
 			$msg = $errors[0];
-			$code = $msg->getKey();
+			if ( $msg instanceof IApiMessage ) {
+				$extraData = $msg->getApiData();
+				$code = $msg->getApiCode();
+			} else {
+				$code = $msg->getKey();
+			}
 		} else {
 			$code = array_shift( $errors[0] );
 			$msg = wfMessage( $code, $errors[0] );
@@ -1429,8 +1435,9 @@ abstract class ApiBase extends ContextSource {
 	 * @throws UsageException always
 	 */
 	public function dieStatus( $status ) {
-		list( $code, $msg ) = $this->getErrorFromStatus( $status );
-		$this->dieUsage( $msg, $code );
+		$extraData = null;
+		list( $code, $msg ) = $this->getErrorFromStatus( $status, $extraData );
+		$this->dieUsage( $msg, $code, 0, $extraData );
 	}
 
 	// @codingStandardsIgnoreStart Allow long lines. Cannot split these.
@@ -1963,7 +1970,8 @@ abstract class ApiBase extends ContextSource {
 			$error = array( $error );
 		}
 		$parsed = $this->parseMsg( $error );
-		$this->dieUsage( $parsed['info'], $parsed['code'] );
+		$extraData = isset( $parsed['data'] ) ? $parsed['data'] : null;
+		$this->dieUsage( $parsed['info'], $parsed['code'], 0, $extraData );
 	}
 
 	/**
@@ -2014,6 +2022,14 @@ abstract class ApiBase extends ContextSource {
 		if ( is_array( $key ) ) {
 			$error = $key;
 			$key = array_shift( $error );
+		}
+
+		if ( $key instanceof IApiMessage ) {
+			return array(
+				'code' => $key->getApiCode(),
+				'info' => $key->inLanguage( 'en' )->useDatabase( false )->text(),
+				'data' => $key->getApiData()
+			);
 		}
 
 		if ( isset( self::$messageMap[$key] ) ) {
