@@ -41,9 +41,17 @@ class ApiTokens extends ApiBase {
 			ApiResult::META_TYPE => 'assoc',
 		);
 
+		// Legacy callbacks
 		$types = $this->getTokenTypes();
+		// Salt-based tokens
+		$salts = ApiQueryTokens::getTokenTypeSalts();
 		foreach ( $params['type'] as $type ) {
-			$val = call_user_func( $types[$type], null, null );
+			if ( isset( $types[$type] ) ) {
+				$val = call_user_func( $types[$type], null, null );
+			} else {
+				$salt = $salts[$type];
+				$val = $this->getUser()->getEditToken( $salt, $this->getRequest() );
+			}
 
 			if ( $val === false ) {
 				$this->setWarning( "Action '$type' is not allowed for the current user" );
@@ -66,15 +74,25 @@ class ApiTokens extends ApiBase {
 		if ( $types ) {
 			return $types;
 		}
+
 		$types = array( 'patrol' => array( 'ApiQueryRecentChanges', 'getPatrolToken' ) );
-		$names = array( 'edit', 'delete', 'protect', 'move', 'block', 'unblock',
-			'email', 'import', 'watch', 'options' );
+		$names = array(
+			'edit',
+			'delete',
+			'protect',
+			'move',
+			'block',
+			'unblock',
+			'email',
+			'import',
+			'watch',
+			'options',
+		);
 		foreach ( $names as $name ) {
 			$types[$name] = array( 'ApiQueryInfo', 'get' . ucfirst( $name ) . 'Token' );
 		}
 		Hooks::run( 'ApiTokensGetTokenTypes', array( &$types ) );
 		ksort( $types );
-
 		return $types;
 	}
 
@@ -87,7 +105,10 @@ class ApiTokens extends ApiBase {
 			'type' => array(
 				ApiBase::PARAM_DFLT => 'edit',
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array_keys( $this->getTokenTypes() ),
+				ApiBase::PARAM_TYPE => array_keys( array_merge(
+					$this->getTokenTypes(),
+					ApiQueryTokens::getTokenTypeSalts()
+				) ),
 			),
 		);
 	}
