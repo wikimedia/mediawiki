@@ -86,6 +86,15 @@ abstract class HTMLFormField {
 		return call_user_func_array( $callback, $args );
 	}
 
+	/**
+	 * If this field has a user-visible output or not. If not,
+	 * it will not be rendered
+	 *
+	 * @return bool
+	 */
+	public function hasVisibleOutput() {
+		return true;
+	}
 
 	/**
 	 * Fetch a field value from $alldata for the closest field matching a given
