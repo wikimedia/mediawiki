@@ -350,9 +350,3 @@ class SiteList extends GenericArrayObject {
 		return $serializationData;
 	}
 }
-
-/**
- * @deprecated since 1.21
- */
-class SiteArray extends SiteList {
-}
