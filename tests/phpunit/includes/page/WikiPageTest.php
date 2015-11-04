@@ -213,25 +213,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers WikiPage::doQuickEdit
-	 */
-	public function testDoQuickEdit() {
-		global $wgUser;
-
-		$this->hideDeprecated( "WikiPage::doQuickEdit" );
-
-		// NOTE: assume help namespace will default to wikitext
-		$page = $this->createPage( "Help:WikiPageTest_testDoQuickEdit", "original text" );
-
-		$text = "quick text";
-		$page->doQuickEdit( $text, $wgUser, "testing q" );
-
-		# ---------------------
-		$page = new WikiPage( $page->getTitle() );
-		$this->assertEquals( $text, $page->getText() );
-	}
-
-	/**
 	 * @covers WikiPage::doQuickEditContent
 	 */
 	public function testDoQuickEditContent() {
