@@ -216,7 +216,7 @@ class SiteListTest extends MediaWikiTestCase {
 	public function testSerialization( SiteList $list ) {
 		$serialization = serialize( $list );
 		/**
-		 * @var SiteArray $copy
+		 * @var SiteList $copy
 		 */
 		$copy = unserialize( $serialization );
 

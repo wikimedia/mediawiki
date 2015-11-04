@@ -698,9 +698,3 @@ class Site implements Serializable {
 		$this->setInternalId( $fields['internalid'] );
 	}
 }
-
-/**
- * @deprecated since 1.21
- */
-class SiteObject extends Site {
-}
