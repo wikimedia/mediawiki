@@ -1386,7 +1386,7 @@ class HTMLForm extends ContextSource {
 		$getFieldHtmlMethod = $displayFormat == 'table' ? 'getTableRow' : ( 'get' . $displayFormat );
 
 		foreach ( $fields as $key => $value ) {
-			if ( $value instanceof HTMLFormField ) {
+			if ( $value instanceof HTMLFormField && $value->hasVisibleOutput() ) {
 				$v = empty( $value->mParams['nodata'] )
 					? $this->mFieldData[$key]
 					: $value->getDefault();
@@ -1397,11 +1397,7 @@ class HTMLForm extends ContextSource {
 					$hasLabel = true;
 				}
 
-				if ( get_class( $value ) !== 'HTMLHiddenField' &&
-					get_class( $value ) !== 'HTMLApiField'
-				) {
-					$hasUserVisibleFields = true;
-				}
+				$hasUserVisibleFields = true;
 			} elseif ( is_array( $value ) ) {
 				$subsectionHasVisibleFields = false;
 				$section =
