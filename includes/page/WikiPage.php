@@ -2284,25 +2284,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 * The article must already exist; link tables etc
 	 * are not updated, caches are not flushed.
 	 *
-	 * @param string $text Text submitted
-	 * @param User $user The relevant user
-	 * @param string $comment Comment submitted
-	 * @param bool $minor Whereas it's a minor modification
-	 *
-	 * @deprecated since 1.21, use doEditContent() instead.
-	 */
-	public function doQuickEdit( $text, User $user, $comment = '', $minor = 0 ) {
-		ContentHandler::deprecated( __METHOD__, "1.21" );
-
-		$content = ContentHandler::makeContent( $text, $this->getTitle() );
-		$this->doQuickEditContent( $content, $user, $comment, $minor );
-	}
-
-	/**
-	 * Edit an article without doing all that other stuff
-	 * The article must already exist; link tables etc
-	 * are not updated, caches are not flushed.
-	 *
 	 * @param Content $content Content submitted
 	 * @param User $user The relevant user
 	 * @param string $comment Comment submitted

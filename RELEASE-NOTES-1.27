@@ -96,6 +96,7 @@ changes to languages because of Bugzilla reports.
 * Removed "loaderScripts" option from ResourceLoaderFileModule class.
 * Removed ORM-like wrapper added in 1.20.
 * LinkCache::getGoodLinks and LinkCache::getBadLinks were removed (deprecated in 1.26).
+* WikiPage::doQuickEdit() was removed (deprecated since 1.21).
 
 == Compatibility ==
 
