@@ -137,7 +137,9 @@ class MediaWikiSite extends Site {
 
 			// Go on call the external site
 			// @todo we need a good way to specify a timeout here.
-			$ret = Http::get( $url, array(), __METHOD__ );
+			$ret = Http::get( $url, array(
+				'followRedirects' => true
+			), __METHOD__ );
 		}
 
 		if ( $ret === false ) {
