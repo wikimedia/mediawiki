@@ -55,37 +55,40 @@ class FindOrphanedFiles extends Maintenance {
 			$this->error( "Could not get file listing.", 1 );
 		}
 
-		$nameBatch = array();
+		$pathBatch = array();
 		foreach ( $list as $path ) {
 			if ( preg_match( '#^(thumb|deleted)/#', $path ) ) {
 				continue; // handle ugly nested containers on stock installs
 			}
 
-			$nameBatch[] = basename( $path );
-			if ( count( $nameBatch ) >= $this->mBatchSize ) {
-				$this->checkFiles( $repo, $nameBatch, $verbose );
-				$nameBatch = array();
+			$pathBatch[] = $path;
+			if ( count( $pathBatch ) >= $this->mBatchSize ) {
+				$this->checkFiles( $repo, $pathBatch, $verbose );
+				$pathBatch = array();
 			}
 		}
-		$this->checkFiles( $repo, $nameBatch, $verbose );
+		$this->checkFiles( $repo, $pathBatch, $verbose );
 	}
 
-	protected function checkFiles( LocalRepo $repo, array $names, $verbose ) {
-		if ( !count( $names ) ) {
+	protected function checkFiles( LocalRepo $repo, array $paths, $verbose ) {
+		if ( !count( $paths ) ) {
 			return;
 		}
 
 		$dbr = $repo->getSlaveDB();
 
+		$names = array();
 		$imgIN = array();
 		$oiWheres = array();
-		foreach ( $names as $name ) {
-			if ( strpos( $name, '!' ) !== false ) {
+		foreach ( $paths as $path ) {
+			$name = basename( $path );
+			$names[] = $name;
+			if ( preg_match( '#^archive/#', $path ) ) {
 				if ( $verbose ) {
 					$this->output( "Checking old file $name\n" );
 				}
 
-				list( , $base ) = explode( '!', $name ); // <TS_MW>!<img_name>
+				list( , $base ) = explode( '!', $name, 2 ); // <TS_MW>!<img_name>
 				$oiWheres[] = $dbr->makeList(
 					array( 'oi_name' => $base, 'oi_archive_name' => $name ),
 					LIST_AND
