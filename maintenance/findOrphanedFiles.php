@@ -77,17 +77,18 @@ class FindOrphanedFiles extends Maintenance {
 
 		$dbr = $repo->getSlaveDB();
 
-		$names = array();
+		$curNames = array();
+		$oldNames = array();
 		$imgIN = array();
 		$oiWheres = array();
 		foreach ( $paths as $path ) {
 			$name = basename( $path );
-			$names[] = $name;
 			if ( preg_match( '#^archive/#', $path ) ) {
 				if ( $verbose ) {
 					$this->output( "Checking old file $name\n" );
 				}
 
+				$oldNames[] = $name;
 				list( , $base ) = explode( '!', $name, 2 ); // <TS_MW>!<img_name>
 				$oiWheres[] = $dbr->makeList(
 					array( 'oi_name' => $base, 'oi_archive_name' => $name ),
@@ -98,6 +99,7 @@ class FindOrphanedFiles extends Maintenance {
 					$this->output( "Checking current file $name\n" );
 				}
 
+				$curNames[] = $name;
 				$imgIN[] = $name;
 			}
 		}
@@ -107,12 +109,12 @@ class FindOrphanedFiles extends Maintenance {
 				array(
 					$dbr->selectSQLText(
 						'image',
-						array( 'name' => 'img_name' ),
+						array( 'name' => 'img_name', 'old' => 0 ),
 						$imgIN ? array( 'img_name' => $imgIN ) : '1=0'
 					),
 					$dbr->selectSQLText(
 						'oldimage',
-						array( 'name' => 'oi_archive_name' ),
+						array( 'name' => 'oi_archive_name', 'old' => 1 ),
 						$oiWheres ? $dbr->makeList( $oiWheres, LIST_OR ) : '1=0'
 					)
 				),
@@ -121,20 +123,26 @@ class FindOrphanedFiles extends Maintenance {
 			__METHOD__
 		);
 
-		$namesFound = array();
+		$curNamesFound = array();
+		$oldNamesFound = array();
 		foreach ( $res as $row ) {
-			$namesFound[] = $row->name;
+			if ( $row->old ) {
+				$oldNamesFound[] = $row->name;
+			} else {
+				$curNamesFound[] = $row->name;
+			}
 		}
 
-		$namesOrphans = array_diff( $names, $namesFound );
-		foreach ( $namesOrphans as $name ) {
+		foreach ( array_diff( $curNames, $curNamesFound ) as $name ) {
+			$file = $repo->newFile( $name );
 			// Print name and public URL to ease recovery
-			if ( strpos( $name, '!' ) !== false ) {
-				list( , $base ) = explode( '!', $name ); // <TS_MW>!<img_name>
-				$file = $repo->newFromArchiveName( Title::makeTitle( NS_FILE, $base ), $name );
-			} else {
-				$file = $repo->newFile( $name );
-			}
+			$this->output( $name . "\n" . $file->getCanonicalUrl() . "\n\n" );
+		}
+
+		foreach ( array_diff( $oldNames, $oldNamesFound ) as $name ) {
+			list( , $base ) = explode( '!', $name, 2 ); // <TS_MW>!<img_name>
+			$file = $repo->newFromArchiveName( Title::makeTitle( NS_FILE, $base ), $name );
+			// Print name and public URL to ease recovery
 			$this->output( $name . "\n" . $file->getCanonicalUrl() . "\n\n" );
 		}
 	}
