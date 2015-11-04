@@ -51,11 +51,10 @@ class SpecialComparePages extends SpecialPage {
 		$this->outputHeader();
 
 		# Form (.mw-searchInput enables suggestions)
-		$form = new HTMLForm( array(
+		$form = HTMLForm::factory( 'ooui', array(
 			'Page1' => array(
-				'type' => 'text',
+				'type' => 'title',
 				'name' => 'page1',
-				'cssclass' => 'mw-searchInput',
 				'label-message' => 'compare-page1',
 				'size' => '40',
 				'section' => 'page1',
@@ -70,9 +69,8 @@ class SpecialComparePages extends SpecialPage {
 				'validation-callback' => array( $this, 'checkExistingRevision' ),
 			),
 			'Page2' => array(
-				'type' => 'text',
+				'type' => 'title',
 				'name' => 'page2',
-				'cssclass' => 'mw-searchInput',
 				'label-message' => 'compare-page2',
 				'size' => '40',
 				'section' => 'page2',
