@@ -4675,6 +4675,17 @@ class Title {
 			return $wgLang;
 		}
 
+		// Checking if DB language is set
+		if ( $this->mDbPageLanguage ) {
+			$pageLang = wfGetLangObj( $this->mDbPageLanguage );
+			$variant = $pageLang->getPreferredVariant();
+			if ( $pageLang->getCode() !== $variant ) {
+				$pageLang = Language::factory( $variant );
+			}
+
+			return $pageLang;
+		}
+
 		// @note Can't be cached persistently, depends on user settings.
 		// @note ContentHandler::getPageViewLanguage() may need to load the
 		//   content to determine the page language!
