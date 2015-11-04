@@ -10,8 +10,8 @@ event
      page is saved. A wiki page is deleted. Often there are two events
      associated with a single action: one before the code is run to make the
      event happen, and one after. Each event has a name, preferably in
-     CamelCase. For example, 'UserLogin', 'ArticleSave', 'ArticleSaveComplete',
-     'ArticleDelete'.
+     CamelCase. For example, 'UserLogin', 'PageContentSave',
+     'PageContentSaveComplete', 'ArticleDelete'.
 
 hook
      A clump of code and data that should be run when an event happens. This can
@@ -170,8 +170,8 @@ different: 'onArticleSave', 'onUserLogin', etc.
 The extra data is useful if we want to use the same function or object for
 different purposes. For example:
 
-	$wgHooks['ArticleSaveComplete'][] = array( 'ircNotify', 'TimStarling' );
-	$wgHooks['ArticleSaveComplete'][] = array( 'ircNotify', 'brion' );
+	$wgHooks['PageContentSaveComplete'][] = array( 'ircNotify', 'TimStarling' );
+	$wgHooks['PageContentSaveComplete'][] = array( 'ircNotify', 'brion' );
 
 This code would result in ircNotify being run twice when an article is saved:
 once for 'TimStarling', and once for 'brion'.
