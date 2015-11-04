@@ -1696,10 +1696,11 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @since 1.21
 	 * @throws MWException
 	 */
-	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
+	public function doEditContent(
+		Content $content, $summary, $flags = 0, $baseRevId = false,
 		User $user = null, $serialFormat = null
 	) {
-		global $wgUser, $wgUseAutomaticEditSummaries, $wgUseRCPatrol, $wgUseNPPatrol;
+		global $wgUser, $wgUseAutomaticEditSummaries;
 
 		// Low-level sanity check
 		if ( $this->mTitle->getText() === '' ) {
@@ -1740,19 +1741,12 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Silently ignore EDIT_MINOR if not allowed
 		$isminor = ( $flags & EDIT_MINOR ) && $user->isAllowed( 'minoredit' );
-		$bot = $flags & EDIT_FORCE_BOT;
 
 		$old_content = $this->getContent( Revision::RAW ); // current revision's content
 
-		$oldsize = $old_content ? $old_content->getSize() : 0;
-		$oldid = $this->getLatest();
-		$oldIsRedirect = $this->isRedirect();
-		$oldcountable = $this->isCountable();
-
-		$handler = $content->getContentHandler();
-
 		// Provide autosummaries if one is not provided and autosummaries are enabled.
 		if ( $wgUseAutomaticEditSummaries && $flags & EDIT_AUTOSUMMARY && $summary == '' ) {
+			$handler = $content->getContentHandler();
 			if ( !$old_content ) {
 				$old_content = null;
 			}
@@ -1760,213 +1754,28 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$editInfo = $this->prepareContentForEdit( $content, null, $user, $serialFormat );
-		$serialized = $editInfo->pst;
 
-		/**
-		 * @var Content $content
-		 */
+		/** @var Content $content */
 		$content = $editInfo->pstContent;
-		$newsize = $content->getSize();
-
-		$dbw = wfGetDB( DB_MASTER );
-		$now = wfTimestampNow();
+		$meta = array(
+			'bot' => $flags & EDIT_FORCE_BOT,
+			'serialized' => $editInfo->pst,
+			'serialFormat' => $serialFormat,
+			'baseRevId' => $baseRevId,
+			'oldContent' => $old_content,
+			'oldId' => $this->getLatest(),
+			'oldIsRedirect' => $this->isRedirect(),
+			'oldCountable' => $this->isCountable()
+		);
 
 		if ( $flags & EDIT_UPDATE ) {
-			// Update article, but only if changed.
-			$status->value['new'] = false;
-
-			if ( !$oldid ) {
-				// Article gone missing
-				wfDebug( __METHOD__ . ": EDIT_UPDATE specified but article doesn't exist\n" );
-				$status->fatal( 'edit-gone-missing' );
-
-				return $status;
-			} elseif ( !$old_content ) {
-				// Sanity check for bug 37225
-				throw new MWException( "Could not find text for current revision {$oldid}." );
-			}
-
-			$revision = new Revision( array(
-				'page'       => $this->getId(),
-				'title'      => $this->getTitle(), // for determining the default content model
-				'comment'    => $summary,
-				'minor_edit' => $isminor,
-				'text'       => $serialized,
-				'len'        => $newsize,
-				'parent_id'  => $oldid,
-				'user'       => $user->getId(),
-				'user_text'  => $user->getName(),
-				'timestamp'  => $now,
-				'content_model' => $content->getModel(),
-				'content_format' => $serialFormat,
-			) ); // XXX: pass content object?!
-
-			$changed = !$content->equals( $old_content );
-
-			if ( $changed ) {
-				$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
-				$status->merge( $prepStatus );
-
-				if ( !$status->isOK() ) {
-					return $status;
-				}
-
-				$dbw->begin( __METHOD__ );
-				// Get the latest page_latest value while locking it.
-				// Do a CAS style check to see if it's the same as when this method
-				// started. If it changed then bail out before touching the DB.
-				$latestNow = $this->lock();
-				if ( $latestNow != $oldid ) {
-					$dbw->commit( __METHOD__ );
-					// Page updated or deleted in the mean time
-					$status->fatal( 'edit-conflict' );
-
-					return $status;
-				}
-
-				// At this point we are now comitted to returning an OK
-				// status unless some DB query error or other exception comes up.
-				// This way callers don't have to call rollback() if $status is bad
-				// unless they actually try to catch exceptions (which is rare).
-
-				$revisionId = $revision->insertOn( $dbw );
-
-				// Update page_latest and friends to reflect the new revision
-				if ( !$this->updateRevisionOn( $dbw, $revision, null, $oldIsRedirect ) ) {
-					$dbw->rollback( __METHOD__ );
-					throw new MWException( "Failed to update page row to use new revision." );
-				}
-
-				Hooks::run( 'NewRevisionFromEditComplete',
-					array( $this, $revision, $baseRevId, $user ) );
-
-				// Update recentchanges
-				if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
-					// Mark as patrolled if the user can do so
-					$patrolled = $wgUseRCPatrol && !count(
-						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
-					// Add RC row to the DB
-					RecentChange::notifyEdit(
-						$now, $this->mTitle, $isminor, $user, $summary,
-						$oldid, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
-						$revisionId, $patrolled
-					);
-				}
-
-				$user->incEditCount();
-
-				$dbw->commit( __METHOD__ );
-				$this->mTimestamp = $now;
-			} else {
-				// Bug 32948: revision ID must be set to page {{REVISIONID}} and
-				// related variables correctly
-				$revision->setId( $this->getLatest() );
-			}
-
-			// Update links tables, site stats, etc.
-			$this->doEditUpdates(
-				$revision,
-				$user,
-				array(
-					'changed' => $changed,
-					'oldcountable' => $oldcountable
-				)
-			);
-
-			if ( !$changed ) {
-				$status->warning( 'edit-no-change' );
-				$revision = null;
-				// Update page_touched, this is usually implicit in the page update
-				// Other cache updates are done in onArticleEdit()
-				$this->mTitle->invalidateCache( $now );
-			}
+			$status = $this->doUpdate( $content, $flags, $user, $summary, $isminor, $meta );
 		} else {
-			// Create new article
-			$status->value['new'] = true;
-
-			$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
-			$status->merge( $prepStatus );
-			if ( !$status->isOK() ) {
-				return $status;
-			}
-
-			$dbw->begin( __METHOD__ );
-
-			// Add the page record unless one already exists for the title
-			$newid = $this->insertOn( $dbw );
-			if ( $newid === false ) {
-				$dbw->commit( __METHOD__ ); // nothing inserted
-				$status->fatal( 'edit-already-exists' );
-
-				return $status; // nothing done
-			}
-
-			// At this point we are now comitted to returning an OK
-			// status unless some DB query error or other exception comes up.
-			// This way callers don't have to call rollback() if $status is bad
-			// unless they actually try to catch exceptions (which is rare).
-
-			// Save the revision text...
-			$revision = new Revision( array(
-				'page'       => $newid,
-				'title'      => $this->getTitle(), // for determining the default content model
-				'comment'    => $summary,
-				'minor_edit' => $isminor,
-				'text'       => $serialized,
-				'len'        => $newsize,
-				'user'       => $user->getId(),
-				'user_text'  => $user->getName(),
-				'timestamp'  => $now,
-				'content_model' => $content->getModel(),
-				'content_format' => $serialFormat,
-			) );
-			$revisionId = $revision->insertOn( $dbw );
-
-			// Bug 37225: use accessor to get the text as Revision may trim it
-			$content = $revision->getContent(); // sanity; get normalized version
-
-			if ( $content ) {
-				$newsize = $content->getSize();
-			}
-
-			// Update the page record with revision data
-			if ( !$this->updateRevisionOn( $dbw, $revision, 0 ) ) {
-				$dbw->rollback( __METHOD__ );
-				throw new MWException( "Failed to update page row to use new revision." );
-			}
-
-			Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, false, $user ) );
-
-			// Update recentchanges
-			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
-				// Mark as patrolled if the user can do so
-				$patrolled = ( $wgUseRCPatrol || $wgUseNPPatrol ) && !count(
-					$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
-				// Add RC row to the DB
-				RecentChange::notifyNew(
-					$now, $this->mTitle, $isminor, $user, $summary, $bot,
-					'', $newsize, $revisionId, $patrolled
-				);
-			}
-
-			$user->incEditCount();
-
-			$dbw->commit( __METHOD__ );
-			$this->mTimestamp = $now;
-
-			// Update links, etc.
-			$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
-
-			$hook_args = array( &$this, &$user, $content, $summary,
-								$flags & EDIT_MINOR, null, null, &$flags, $revision );
-
-			ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $hook_args );
-			Hooks::run( 'PageContentInsertComplete', $hook_args );
+			$status = $this->doCreate( $content, $flags, $user, $summary, $isminor, $meta );
 		}
 
-		// Return the new revision (or null) to the caller
-		$status->value['revision'] = $revision;
-
+		// Return the new revision to hooks
+		$revision = $status->value['revision'];
 		$hook_args = array( &$this, &$user, $content, $summary,
 			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId );
 
@@ -1978,6 +1787,272 @@ class WikiPage implements Page, IDBAccessObject {
 			$user->addAutopromoteOnceGroups( 'onEdit' );
 			$user->addAutopromoteOnceGroups( 'onView' ); // b/c
 		} );
+
+		return $status;
+	}
+
+	/**
+	 * @param Content $content Pre-save transform content
+	 * @param integer $flags
+	 * @param User $user
+	 * @param string $summary
+	 * @param bool $isminor
+	 * @param array $meta
+	 * @return Status
+	 * @throws DBUnexpectedError
+	 * @throws Exception
+	 * @throws FatalError
+	 * @throws MWException
+	 */
+	private function doUpdate(
+		Content $content, $flags, User $user, $summary, $isminor, array $meta
+	) {
+		global $wgUseRCPatrol;
+
+		// Update article, but only if changed.
+		$status = Status::newGood( array( 'new' => false, 'revision' => null ) );
+
+		// Convenience variables
+		$now = wfTimestampNow();
+		$oldid = $meta['oldId'];
+		/** @var $oldContent Content|null $newsize */
+		$oldContent = $meta['oldContent'];
+		$newsize = $content->getSize();
+
+		if ( !$oldid ) {
+			// Article gone missing
+			wfDebug( __METHOD__ . ": EDIT_UPDATE specified but article doesn't exist\n" );
+			$status->fatal( 'edit-gone-missing' );
+
+			return $status;
+		} elseif ( !$oldContent ) {
+			// Sanity check for bug 37225
+			throw new MWException( "Could not find text for current revision {$oldid}." );
+		}
+
+		$revision = new Revision( array(
+			'page'       => $this->getId(),
+			'title'      => $this->getTitle(), // for determining the default content model
+			'comment'    => $summary,
+			'minor_edit' => $isminor,
+			'text'       => $meta['serialized'],
+			'len'        => $newsize,
+			'parent_id'  => $oldid,
+			'user'       => $user->getId(),
+			'user_text'  => $user->getName(),
+			'timestamp'  => $now,
+			'content_model' => $content->getModel(),
+			'content_format' => $meta['serialFormat'],
+		) ); // XXX: pass content object?!
+
+		$changed = !$content->equals( $oldContent );
+
+		if ( $changed ) {
+			$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
+			$status->merge( $prepStatus );
+
+			if ( !$status->isOK() ) {
+				return $status;
+			}
+
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->begin( __METHOD__ );
+			// Get the latest page_latest value while locking it.
+			// Do a CAS style check to see if it's the same as when this method
+			// started. If it changed then bail out before touching the DB.
+			$latestNow = $this->lock();
+			if ( $latestNow != $oldid ) {
+				$dbw->commit( __METHOD__ );
+				// Page updated or deleted in the mean time
+				$status->fatal( 'edit-conflict' );
+
+				return $status;
+			}
+
+			// At this point we are now comitted to returning an OK
+			// status unless some DB query error or other exception comes up.
+			// This way callers don't have to call rollback() if $status is bad
+			// unless they actually try to catch exceptions (which is rare).
+
+			$revisionId = $revision->insertOn( $dbw );
+
+			// Update page_latest and friends to reflect the new revision
+			if ( !$this->updateRevisionOn( $dbw, $revision, null, $meta['oldIsRedirect'] ) ) {
+				$dbw->rollback( __METHOD__ );
+				throw new MWException( "Failed to update page row to use new revision." );
+			}
+
+			Hooks::run( 'NewRevisionFromEditComplete',
+				array( $this, $revision, $meta['baseRevId'], $user ) );
+
+			// Update recentchanges
+			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
+				// Mark as patrolled if the user can do so
+				$patrolled = $wgUseRCPatrol && !count(
+						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+				// Add RC row to the DB
+				RecentChange::notifyEdit(
+					$now,
+					$this->mTitle,
+					$isminor,
+					$user,
+					$summary,
+					$oldid,
+					$this->getTimestamp(),
+					$meta['bot'],
+					'',
+					$oldContent ? $oldContent->getSize() : 0,
+					$newsize,
+					$revisionId,
+					$patrolled
+				);
+			}
+
+			$user->incEditCount();
+
+			$dbw->commit( __METHOD__ );
+			$this->mTimestamp = $now;
+		} else {
+			// Bug 32948: revision ID must be set to page {{REVISIONID}} and
+			// related variables correctly
+			$revision->setId( $this->getLatest() );
+		}
+
+		// Update links tables, site stats, etc.
+		$this->doEditUpdates(
+			$revision,
+			$user,
+			array(
+				'changed' => $changed,
+				'oldcountable' => $meta['oldCountable']
+			)
+		);
+
+		if ( !$changed ) {
+			$status->warning( 'edit-no-change' );
+			$revision = null;
+			// Update page_touched, this is usually implicit in the page update
+			// Other cache updates are done in onArticleEdit()
+			$this->mTitle->invalidateCache( $now );
+		}
+
+		// Return the new revision to the caller
+		$status->value['revision'] = $revision;
+
+		return $status;
+	}
+
+	/**
+	 * @param Content $content Pre-save transform content
+	 * @param integer $flags
+	 * @param User $user
+	 * @param string $summary
+	 * @param bool $isminor
+	 * @param array $meta
+	 * @return Status
+	 * @throws DBUnexpectedError
+	 * @throws Exception
+	 * @throws FatalError
+	 * @throws MWException
+	 */
+	private function doCreate(
+		Content $content, $flags, User $user, $summary, $isminor, array $meta
+	) {
+		global $wgUseRCPatrol, $wgUseNPPatrol;
+
+		$status = Status::newGood( array( 'new' => true, 'revision' => null ) );
+
+		$newsize = $content->getSize();
+		$prepStatus = $content->prepareSave( $this, $flags, $meta['oldId'], $user );
+		$status->merge( $prepStatus );
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin( __METHOD__ );
+
+		// Add the page record unless one already exists for the title
+		$newid = $this->insertOn( $dbw );
+		if ( $newid === false ) {
+			$dbw->commit( __METHOD__ ); // nothing inserted
+			$status->fatal( 'edit-already-exists' );
+
+			return $status; // nothing done
+		}
+
+		$now = wfTimestampNow();
+		// At this point we are now comitted to returning an OK
+		// status unless some DB query error or other exception comes up.
+		// This way callers don't have to call rollback() if $status is bad
+		// unless they actually try to catch exceptions (which is rare).
+
+		// Save the revision text...
+		$revision = new Revision( array(
+			'page'       => $newid,
+			'title'      => $this->getTitle(), // for determining the default content model
+			'comment'    => $summary,
+			'minor_edit' => $isminor,
+			'text'       => $meta['serialized'],
+			'len'        => $newsize,
+			'user'       => $user->getId(),
+			'user_text'  => $user->getName(),
+			'timestamp'  => $now,
+			'content_model' => $content->getModel(),
+			'content_format' => $meta['serialFormat'],
+		) );
+		$revisionId = $revision->insertOn( $dbw );
+
+		// Bug 37225: use accessor to get the text as Revision may trim it
+		$content = $revision->getContent(); // sanity; get normalized version
+		if ( $content ) {
+			$newsize = $content->getSize();
+		}
+
+		// Update the page record with revision data
+		if ( !$this->updateRevisionOn( $dbw, $revision, 0 ) ) {
+			$dbw->rollback( __METHOD__ );
+			throw new MWException( "Failed to update page row to use new revision." );
+		}
+
+		Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, false, $user ) );
+
+		// Update recentchanges
+		if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
+			// Mark as patrolled if the user can do so
+			$patrolled = ( $wgUseRCPatrol || $wgUseNPPatrol ) &&
+				!count( $this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+			// Add RC row to the DB
+			RecentChange::notifyNew(
+				$now,
+				$this->mTitle,
+				$revision->isMinor(),
+				$user,
+				$summary,
+				$meta['bot'],
+				'',
+				$newsize,
+				$revisionId,
+				$patrolled
+			);
+		}
+
+		$user->incEditCount();
+
+		$dbw->commit( __METHOD__ );
+		$this->mTimestamp = $now;
+
+		// Update links, etc.
+		$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
+
+		$hook_args = array( &$this, &$user, $content, $summary,
+			$flags & EDIT_MINOR, null, null, &$flags, $revision );
+
+		ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $hook_args );
+		Hooks::run( 'PageContentInsertComplete', $hook_args );
+
+		// Return the new revision to the caller
+		$status->value['revision'] = $revision;
 
 		return $status;
 	}
