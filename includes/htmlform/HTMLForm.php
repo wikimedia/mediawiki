@@ -1386,7 +1386,7 @@ class HTMLForm extends ContextSource {
 		$getFieldHtmlMethod = $displayFormat == 'table' ? 'getTableRow' : ( 'get' . $displayFormat );
 
 		foreach ( $fields as $key => $value ) {
-			if ( $value instanceof HTMLFormField ) {
+			if ( $value instanceof HTMLFormField && $value->hasVisibleOutput() ) {
 				$v = empty( $value->mParams['nodata'] )
 					? $this->mFieldData[$key]
 					: $value->getDefault();
@@ -1425,7 +1425,7 @@ class HTMLForm extends ContextSource {
 					if ( $fieldsetIDPrefix ) {
 						$attributes['id'] = Sanitizer::escapeId( "$fieldsetIDPrefix$key" );
 					}
-					$subsectionHtml .= Xml::fieldset( $legend, $section, $attributes ) . "\n";
+					$subsectionHtml .= $this->wrapFieldSetSection( $legend, $section, $attributes );
 				} else {
 					// Just return the inputs, nothing fancy.
 					$subsectionHtml .= $section;
