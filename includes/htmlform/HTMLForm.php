@@ -1386,7 +1386,7 @@ class HTMLForm extends ContextSource {
 		$getFieldHtmlMethod = $displayFormat == 'table' ? 'getTableRow' : ( 'get' . $displayFormat );
 
 		foreach ( $fields as $key => $value ) {
-			if ( $value instanceof HTMLFormField ) {
+			if ( $value instanceof HTMLFormField && $value->hasVisibleOutput() ) {
 				$v = empty( $value->mParams['nodata'] )
 					? $this->mFieldData[$key]
 					: $value->getDefault();
