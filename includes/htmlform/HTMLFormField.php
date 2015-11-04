@@ -11,7 +11,7 @@ abstract class HTMLFormField {
 	protected $mFilterCallback;
 	protected $mName;
 	protected $mDir;
-	protected $mLabel; # String label.  Set on construction
+	protected $mLabel; # String label, as HTML. Set on construction.
 	protected $mID;
 	protected $mClass = '';
 	protected $mVFormClass = '';
@@ -601,7 +601,7 @@ abstract class HTMLFormField {
 		$config = array(
 			'classes' => array( "mw-htmlform-field-$fieldType", $this->mClass ),
 			'align' => $this->getLabelAlignOOUI(),
-			'label' => $this->getLabel(),
+			'label' => new OOUI\HtmlSnippet( $this->getLabel() ),
 			'help' => $helpText !== null ? new OOUI\HtmlSnippet( $helpText ) : null,
 			'errors' => $errors,
 			'infusable' => $infusable,
