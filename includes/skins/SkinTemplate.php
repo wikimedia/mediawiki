@@ -207,7 +207,7 @@ class SkinTemplate extends Skin {
 		$this->loggedin = $user->isLoggedIn();
 		$this->username = $user->getName();
 
-		if ( $this->loggedin || $this->showIPinHeader() ) {
+		if ( $this->loggedin ) {
 			$this->userpageUrlDetails = self::makeUrlDetails( $this->userpage );
 		} else {
 			# This won't be used in the standard skins, but we define it to preserve the interface
@@ -660,21 +660,28 @@ class SkinTemplate extends Skin {
 				'active' => $title->isSpecial( 'Userlogin' ) && $is_signup,
 			);
 
-			if ( $this->showIPinHeader() ) {
-				$href = &$this->userpageUrlDetails['href'];
+			// No need to show Talk and Contributions to anons if they can't contribute!
+			if ( User::groupHasPermission( '*', 'edit' ) ) {
+				// Show the text "Not logged in"
 				$personal_urls['anonuserpage'] = array(
-					'text' => $this->username,
-					'href' => $href,
-					'class' => $this->userpageUrlDetails['exists'] ? false : 'new',
-					'active' => ( $pageurl == $href )
+					'text' => $this->msg( 'notloggedin' )->text()
 				);
-				$usertalkUrlDetails = $this->makeTalkUrlDetails( $this->userpage );
-				$href = &$usertalkUrlDetails['href'];
+
+				// Because of caching, we can't link directly to the IP talk and
+				// contributions pages. Instead we use the special page shortcuts
+				// (which work correctly regardless of caching). This means we can't
+				// determine whether these links are active or not, but since major
+				// skins (MonoBook, Vector) don't use this information, it's not a
+				// huge loss.
 				$personal_urls['anontalk'] = array(
-					'text' => $this->msg( 'anontalk' )->text(),
-					'href' => $href,
-					'class' => $usertalkUrlDetails['exists'] ? false : 'new',
-					'active' => ( $pageurl == $href )
+					'text' => $this->msg( 'anontalkshort' )->text(),
+					'href' => self::makeSpecialUrlSubpage( 'MyTalk', false ),
+					'active' => false
+				);
+				$personal_urls['anoncontribs'] = array(
+					'text' => $this->msg( 'anoncontribs' )->text(),
+					'href' => self::makeSpecialUrlSubpage( 'MyContributions', false ),
+					'active' => false
 				);
 			}
 

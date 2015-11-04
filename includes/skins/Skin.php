@@ -232,7 +232,7 @@ abstract class Skin extends ContextSource {
 		$title = $this->getRelevantTitle();
 
 		// User/talk link
-		if ( $user->isLoggedIn() || $this->showIPinHeader() ) {
+		if ( $user->isLoggedIn() ) {
 			$titles[] = $user->getUserPage();
 			$titles[] = $user->getTalkPage();
 		}
@@ -725,12 +725,12 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Returns true if the IP should be shown in the header
-	 * @return bool
+	 * @deprecated since 1.27, feature removed
+	 * @return bool Always false
 	 */
 	function showIPinHeader() {
-		global $wgShowIPinHeader;
-		return $wgShowIPinHeader && session_id() != '';
+		wfDeprecated( __METHOD__, '1.27' );
+		return false;
 	}
 
 	/**
