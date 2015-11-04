@@ -1110,7 +1110,6 @@ $wgAutoloadLocalClasses = array(
 	'SiteImporter' => __DIR__ . '/includes/site/SiteImporter.php',
 	'SiteList' => __DIR__ . '/includes/site/SiteList.php',
 	'SiteLookup' => __DIR__ . '/includes/site/SiteLookup.php',
-	'SiteObject' => __DIR__ . '/includes/site/Site.php',
 	'SiteSQLStore' => __DIR__ . '/includes/site/SiteSQLStore.php',
 	'SiteStats' => __DIR__ . '/includes/SiteStats.php',
 	'SiteStatsInit' => __DIR__ . '/includes/SiteStats.php',
