@@ -73,6 +73,19 @@ class ApiTokens extends ApiBase {
 			$types[$name] = array( 'ApiQueryInfo', 'get' . ucfirst( $name ) . 'Token' );
 		}
 		Hooks::run( 'ApiTokensGetTokenTypes', array( &$types ) );
+
+		// For forwards-compat, copy any token types from ApiQueryTokens that
+		// we don't already have something for.
+		$user = $this->getUser();
+		$request = $this->getRequest();
+		foreach ( ApiQueryTokens::getTokenTypeSalts() as $name => $salt ) {
+			if ( !isset( $types[$name] ) ) {
+				$types[$name] = function () use ( $salt, $user, $request ) {
+					return $user->getEditToken( $salt, $request );
+				};
+			}
+		}
+
 		ksort( $types );
 
 		return $types;
