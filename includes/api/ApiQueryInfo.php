@@ -387,7 +387,11 @@ class ApiQueryInfo extends ApiQueryBase {
 		$dbkey = $title->getDBkey();
 
 		$pageInfo['contentmodel'] = $title->getContentModel();
-		$pageInfo['pagelanguage'] = $title->getPageLanguage()->getCode();
+
+		$pageLanguage = $title->getPageLanguage();
+		$pageInfo['pagelanguage'] = $pageLanguage->getCode();
+		$pageInfo['pagelanguagehtmlcode'] = $pageLanguage->getHtmlCode();
+		$pageInfo['pagelanguagedir'] = $pageLanguage->getDir();
 
 		if ( $titleExists ) {
 			$pageInfo['touched'] = wfTimestamp( TS_ISO_8601, $this->pageTouched[$pageid] );
