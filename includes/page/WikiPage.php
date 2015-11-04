@@ -1832,7 +1832,10 @@ class WikiPage implements Page, IDBAccessObject {
 				$revisionId = $revision->insertOn( $dbw );
 
 				// Update page_latest and friends to reflect the new revision
-				$this->updateRevisionOn( $dbw, $revision, null, $oldIsRedirect );
+				if ( !$this->updateRevisionOn( $dbw, $revision, null, $oldIsRedirect ) ) {
+					$dbw->rollback( __METHOD__ );
+					throw new MWException( "Failed to update page row to use new revision." );
+				}
 
 				Hooks::run( 'NewRevisionFromEditComplete',
 					array( $this, $revision, $baseRevId, $user ) );
