@@ -253,6 +253,7 @@
 	"apihelp-userrights-param-userid": "ID utente.",
 	"apihelp-watch-description": "Aggiunge o rimuove pagine dagli osservati speciali dell'utente attuale.",
 	"api-pageset-param-titles": "Un elenco di titoli su cui lavorare.",
+	"api-pageset-param-pageids": "Un elenco di ID pagina su cui lavorare.",
 	"api-pageset-param-revids": "Un elenco di ID versioni su cui lavorare.",
 	"api-pageset-param-redirects-generator": "Risolvi automaticamente redirect in <var>$1titles</var>, <var>$1pageids</var>, e <var>$1revids</var>, e nelle pagine restituite da <var>$1generator</var>.",
 	"api-pageset-param-converttitles": "Converte i titoli in altre varianti, se necessario. Funziona solo se la lingua del contenuto del wiki supporta la conversione in varianti. Le lingue che supportano la conversione in varianti includono $1",

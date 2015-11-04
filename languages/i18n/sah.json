@@ -3272,6 +3272,7 @@
 	"limitreport-title": "Анализатор дааннайдара:",
 	"limitreport-cputime": "Процессору туһаныы",
 	"limitreport-cputime-value": "$1 сөкүүндэ",
+	"limitreport-walltime": "Тута көрдөрөр эрэсиим",
 	"limitreport-walltime-value": "$1 {{PLURAL:$1|сөкүүндэ|сөкүүндэ}}",
 	"limitreport-ppvisitednodes": "Препроцессор көрбүт сирдэрин ахсаана",
 	"limitreport-ppgeneratednodes": "Препроцессор оҥорбут түмүктэрин (node) ахсаана",
@@ -3294,6 +3295,7 @@
 	"expand_templates_generate_xml": "XML-ы мас курдук көрдөр",
 	"expand_templates_generate_rawhtml": "HTML-ы көрдөр",
 	"expand_templates_preview": "Холоон көрүү",
+	"pagelanguage": "Сирэй тылын талыы",
 	"pagelang-name": "Сирэй",
 	"pagelang-language": "Омугун тыла",
 	"pagelang-use-default": "Сүрүн тылы тутун",
@@ -3301,9 +3303,12 @@
 	"right-pagelang": "Сирэй тылын уларыт",
 	"action-pagelang": "сирэй тылын уларытар буол",
 	"log-name-pagelang": "Тылы уларытыы сурунаала",
+	"log-description-pagelang": "Сирэй тылын талыы сурунаала.",
+	"logentry-pagelang-pagelang": "$1 кыттааччы $3 сирэй тылын мантан $4 манныкка $5 {{GENDER:$2|уларыппыт}}.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (холбоммут)",
 	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''арахсыбыт''')",
 	"mediastatistics": "Миэдьийэ ыстатыыстыката",
+	"mediastatistics-summary": "Киирбит билэ көрүҥүн ыстатыыстыката. Билэ тиһэх эрэ торумун көрдөрөр. Урукку уонна сотуллубут билэлэр ааҕыллыбаттар.",
 	"mediastatistics-nbytes": "$1 баайт ($2; $3%)",
 	"mediastatistics-table-mimetype": "MIME көрүҥэ",
 	"mediastatistics-table-extensions": "Туһаныллыан сөптөөх кэҥэтиилэр",
@@ -3354,5 +3359,6 @@
 	"special-characters-title-minus": "минус бэлиэтэ",
 	"mw-widgets-dateinput-no-date": "Күнэ-дьыла ыйыллыбатах",
 	"mw-widgets-titleinput-description-new-page": "сирэй суох эбит",
-	"mw-widgets-titleinput-description-redirect": "манна $1 утаарыы"
+	"mw-widgets-titleinput-description-redirect": "манна $1 утаарыы",
+	"api-error-blacklisted": "Бука диэн өйдөнөр аатта тал дуу."
 }

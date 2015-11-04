@@ -849,7 +849,7 @@
 	"mergehistory-into": "Kohdesivu:",
 	"mergehistory-list": "Sivuhistoria, joka voidaan yhdistää",
 	"mergehistory-merge": "Seuraavat versiot sivusta [[:$1]] voidaan yhdistää sivuun [[:$2]]. \n\nValintamerkin sijoituksella voit yhdistää vain ne versiot, jotka on luotu valittuna ajankohtana tai sitä ennen (listassa alaspäin). \nOta huomioon, että jos käytät navigaatiolinkkejä, tekemäsi valinta poistuu.",
-	"mergehistory-go": "Etsi muokkaukset, jotka voidaan yhdistää",
+	"mergehistory-go": "Näytä muokkaukset, jotka voidaan yhdistää",
 	"mergehistory-submit": "Yhdistä versiot",
 	"mergehistory-empty": "Mitään versioita ei voida yhdistää.",
 	"mergehistory-done": "$3 {{PLURAL:$3|versio|versiota}} sivusta $1 yhdistettiin onnistuneesti sivuun [[:$2]].",
