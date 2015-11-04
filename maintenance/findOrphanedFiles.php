@@ -105,12 +105,12 @@ class FindOrphanedFiles extends Maintenance {
 					$dbr->selectSQLText(
 						'image',
 						array( 'name' => 'img_name' ),
-						array( 'img_name' => $imgIN )
+						$imgIN ? array( 'img_name' => $imgIN ) : '1=0'
 					),
 					$dbr->selectSQLText(
 						'oldimage',
 						array( 'name' => 'oi_archive_name' ),
-						$dbr->makeList( $oiWheres, LIST_OR )
+						$oiWheres ? $dbr->makeList( $oiWheres, LIST_OR ) : '1=0'
 					)
 				),
 				true // UNION ALL (performance)
@@ -132,7 +132,7 @@ class FindOrphanedFiles extends Maintenance {
 			} else {
 				$file = $repo->newFile( $name );
 			}
-			$this->output( $name . "\n" . $file->getUrl() . "\n\n" );
+			$this->output( $name . "\n" . $file->getCanonicalUrl() . "\n\n" );
 		}
 	}
 }
