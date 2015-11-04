@@ -1094,7 +1094,7 @@
 					$el.attr( 'href', textify( arg ) );
 				}
 			}
-			return appendWithoutParsing( $el, contents );
+			return appendWithoutParsing( $el.empty(), contents );
 		},
 
 		/**
