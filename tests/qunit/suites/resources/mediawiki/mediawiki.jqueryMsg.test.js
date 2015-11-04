@@ -1079,7 +1079,7 @@
 	} );
 
 	QUnit.test( 'Integration', 4, function ( assert ) {
-		var expected, logSpy;
+		var expected, logSpy, msg;
 
 		expected = '<b><a title="Bold" href="/wiki/Bold">Bold</a>!</b>';
 		mw.messages.set( 'integration-test', '<b>[[Bold]]!</b>' );
@@ -1104,6 +1104,18 @@
 			$( '<span>' ).msg( 'integration-test' ).html(),
 			expected,
 			'jQuery plugin $.fn.msg() works correctly'
+		);
+
+		mw.messages.set( 'integration-test-extlink', '[$1 Link]' );
+		msg = mw.message(
+			'integration-test-extlink',
+			$( '<a>' ).attr( 'href', 'http://example.com/' )
+		);
+		msg.parse(); // Not a no-op
+		assert.equal(
+			msg.parse(),
+			'<a href="http://example.com/">Link</a>',
+			'Calling .parse() multiple times does not duplicate link contents'
 		);
 	} );
 
