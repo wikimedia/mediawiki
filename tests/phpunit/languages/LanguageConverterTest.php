@@ -50,6 +50,19 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * Test the replacement of the deprecated language code 'sr-el' by 'sr-latn'
+	 *
+	 * @covers LanguageConverter::getPreferredVariant
+	 * @covers LanguageConverter::getHeaderVariant
+	 */
+	public function testGetPreferredVariantHeadersWithDeprecatedLang() {
+		global $wgRequest;
+		$wgRequest->setHeader( 'Accept-Language', 'sr-el' );
+
+		$this->assertEquals( 'sr-latn', $this->lc->getPreferredVariant() );
+	}
+
+	/**
 	 * @covers LanguageConverter::getPreferredVariant
 	 * @covers LanguageConverter::getHeaderVariant
 	 */
