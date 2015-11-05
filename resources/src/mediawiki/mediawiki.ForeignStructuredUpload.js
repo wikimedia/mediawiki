@@ -70,6 +70,7 @@
 	 */
 	ForeignStructuredUpload.prototype.getText = function () {
 		return (
+			'== {{int:filedesc}} ==\n' +
 			'{{' +
 			this.getTemplateName() +
 			'\n|description=' +
@@ -81,6 +82,7 @@
 			'\n|author=' +
 			this.getUser() +
 			'\n}}\n\n' +
+			'== {{int:license-header}} ==\n' +
 			this.getLicense() +
 			'\n\n' +
 			this.getCategories()
