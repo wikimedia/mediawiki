@@ -184,6 +184,7 @@
 	"apihelp-help-param-wrap": "{{doc-apihelp-param|help|wrap}}",
 	"apihelp-help-param-toc": "{{doc-apihelp-param|help|toc}}",
 	"apihelp-help-example-main": "{{doc-apihelp-example|help}}",
+	"apihelp-help-example-submodules": "{{doc-apihelp-example|help}}",
 	"apihelp-help-example-recursive": "{{doc-apihelp-example|help}}",
 	"apihelp-help-example-help": "{{doc-apihelp-example|help}}",
 	"apihelp-help-example-query": "{{doc-apihelp-example|help}}",

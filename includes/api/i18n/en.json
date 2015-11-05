@@ -191,6 +191,7 @@
 	"apihelp-help-param-wrap": "Wrap the output in a standard API response structure.",
 	"apihelp-help-param-toc": "Include a table of contents in the HTML output.",
 	"apihelp-help-example-main": "Help for the main module.",
+	"apihelp-help-example-submodules": "Help for <kbd>action=query</kbd> and all its submodules.",
 	"apihelp-help-example-recursive": "All help in one page.",
 	"apihelp-help-example-help": "Help for the help module itself.",
 	"apihelp-help-example-query": "Help for two query submodules.",
