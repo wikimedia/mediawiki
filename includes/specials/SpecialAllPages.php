@@ -133,7 +133,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 				'value' => $hideRedirects,
 			),
 		);
-		$form = HTMLForm::factory( 'table', $fields, $this->getContext() );
+		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$form->setMethod( 'get' )
 			->setWrapperLegendMsg( 'allpages' )
 			->setSubmitTextMsg( 'allpagessubmit' )
