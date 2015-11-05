@@ -126,7 +126,7 @@ class UIDGenerator {
 	 */
 	protected function getTimestampedID88( array $info ) {
 		list( $time, $counter ) = $info;
-		// Take the 46 MSBs of "milliseconds since epoch"
+		// Take the 46 LSBs of "milliseconds since epoch"
 		$id_bin = $this->millisecondsSinceEpochBinary( $time );
 		// Add a 10 bit counter resulting in 56 bits total
 		$id_bin .= str_pad( decbin( $counter ), 10, '0', STR_PAD_LEFT );
@@ -172,7 +172,7 @@ class UIDGenerator {
 	 */
 	protected function getTimestampedID128( array $info ) {
 		list( $time, $counter, $clkSeq ) = $info;
-		// Take the 46 MSBs of "milliseconds since epoch"
+		// Take the 46 LSBs of "milliseconds since epoch"
 		$id_bin = $this->millisecondsSinceEpochBinary( $time );
 		// Add a 20 bit counter resulting in 66 bits total
 		$id_bin .= str_pad( decbin( $counter ), 20, '0', STR_PAD_LEFT );
@@ -438,7 +438,7 @@ class UIDGenerator {
 
 	/**
 	 * @param array $time Result of UIDGenerator::millitime()
-	 * @return string 46 MSBs of "milliseconds since epoch" in binary (rolls over in 4201)
+	 * @return string 46 LSBs of "milliseconds since epoch" in binary (rolls over in 4201)
 	 * @throws RuntimeException
 	 */
 	protected function millisecondsSinceEpochBinary( array $time ) {
