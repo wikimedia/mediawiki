@@ -182,13 +182,16 @@ class ResourceLoader {
 
 		// Try for cache hit
 		// Use CACHE_ANYTHING since filtering is very slow compared to DB queries
-		$key = wfMemcKey( 'resourceloader', 'filter', $filter, self::$filterCacheVersion, md5( $data ) );
+
+		// Don't cache to keep Redis memory usage sane
+		// -- Southparkfan 2015-11-05
+		/* $key = wfMemcKey( 'resourceloader', 'filter', $filter, self::$filterCacheVersion, md5( $data ) );
 		$cache = wfGetCache( CACHE_ANYTHING );
 		$cacheEntry = $cache->get( $key );
 		if ( is_string( $cacheEntry ) ) {
 			wfIncrStats( "rl-$filter-cache-hits" );
 			return $cacheEntry;
-		}
+		} */
 
 		$result = '';
 		// Run the filter - we've already verified one of these will work
@@ -200,15 +203,15 @@ class ResourceLoader {
 						$this->config->get( 'ResourceLoaderMinifierStatementsOnOwnLine' ),
 						$this->config->get( 'ResourceLoaderMinifierMaxLineLength' )
 					);
-					if ( $cacheReport ) {
-						$result .= "\n/* cache key: $key */";
-					}
+					//if ( $cacheReport ) {
+						// $result .= "\n/* cache key: $key */";
+					//}
 					break;
 				case 'minify-css':
 					$result = CSSMin::minify( $data );
-					if ( $cacheReport ) {
-						$result .= "\n/* cache key: $key */";
-					}
+					//if ( $cacheReport ) {
+						// $result .= "\n/* cache key: $key */";
+					//}
 					break;
 			}
 

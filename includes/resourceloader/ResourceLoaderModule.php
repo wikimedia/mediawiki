@@ -605,7 +605,7 @@ abstract class ResourceLoaderModule {
 				$result = "throw new Error(" . Xml::encodeJsVar( "JavaScript parse error: $err" ) . ");";
 			}
 
-			$cache->set( $key, $result );
+			// $cache->set( $key, $result );
 			return $result;
 		} else {
 			return $contents;
