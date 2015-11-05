@@ -437,7 +437,8 @@ class UIDGenerator {
 
 	/**
 	 * @param array $time Result of UIDGenerator::millitime()
-	 * @return string 46 MSBs of "milliseconds since epoch" in binary (rolls over in 4201)
+	 * @return string 46 most significant bytes (MS)Bs of "milliseconds since epoch" in
+	 *  binary (rolls over in 4201)
 	 * @throws MWException
 	 */
 	protected function millisecondsSinceEpochBinary( array $time ) {
@@ -448,7 +449,7 @@ class UIDGenerator {
 				': sorry, this function doesn\'t work after the year 144680' );
 		}
 
-		return substr( wfBaseConvert( $ts, 10, 2, 46 ), -46 );
+		return substr( wfBaseConvert( $ts, 10, 2, 46 ), 0, 46 );
 	}
 
 	/**
