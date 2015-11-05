@@ -19961,7 +19961,7 @@ Latin proverb: -{Ne nuntium necare}-
 !! test
 Prevent conversion with -{}- tags (language variants)
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 !! wikitext
 Latinski: -{Ne nuntium necare}-
 !! html
@@ -19973,7 +19973,7 @@ Latinski: -{Ne nuntium necare}-
 !! test
 Prevent conversion of text with -{}- tags (language variants)
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 !! wikitext
 Latinski: -{Ne nuntium necare}-
 !! html
@@ -19985,7 +19985,7 @@ Latinski: -{Ne nuntium necare}-
 !! test
 Prevent conversion of links with -{}- tags (language variants)
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 !! wikitext
 -{[[Main Page]]}-
 !! html
@@ -19997,7 +19997,7 @@ language=sr variant=sr-ec
 !! test
 -{}- tags within headlines (within html for parserConvert())
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 !! wikitext
 == -{Naslov}- ==
 !! html
@@ -20021,10 +20021,10 @@ language=zh variant=zh-tw
 !! test
 Conversion around HTML tags
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 !! wikitext
--{H|span=>sr-ec:script;title=>sr-ec:src;}-
-<span title="La-{sr-el:L;sr-ec:C;}-tin">ski</span>
+-{H|span=>sr-cyrl:script;title=>sr-cyrl:src;}-
+<span title="La-{sr-latn:L;sr-cyrl:C;}-tin">ski</span>
 !! html
 <p>
 <span title="ЛаCтин">ски</span>
@@ -20221,7 +20221,7 @@ Nested: -{zh-hans:Hi -{zh-cn:China;zh-sg:Singapore;}-;zh-hant:Hello -{zh-tw:Taiw
 !! test
 Proper conversion of text in external links
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 parsoid=wt2html
 !! wikitext
 http://www.google.com
@@ -20253,7 +20253,7 @@ gopher://www.google.com
 !! test
 Do not convert roman numbers to language variants
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 !! wikitext
 Fridrih IV je car.
 !! html
@@ -20286,7 +20286,7 @@ language=sr
 !! test
 Don't break link parsing if language converter markup is in the caption.
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 !! wikitext
 [[Main Page|-{R|main page}-]]
 !! html
@@ -20325,7 +20325,7 @@ language=zh variant=zh-cn
 !! test
 Don't break table handling if language converter markup is in the cell.
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 !! wikitext
 {|
 |-
