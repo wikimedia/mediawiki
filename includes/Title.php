@@ -252,7 +252,7 @@ class Title {
 	 * Create a new Title from text, such as what one would find in a link. De-
 	 * codes any HTML entities in the text.
 	 *
-	 * @param string $text The link text; spaces, prefixes, and an
+	 * @param string|null $text The link text; spaces, prefixes, and an
 	 *   initial ':' indicating the main namespace are accepted.
 	 * @param int $defaultNamespace The namespace to use if none is specified
 	 *   by a prefix.  If you want to force a specific namespace even if
@@ -264,13 +264,13 @@ class Title {
 	public static function newFromText( $text, $defaultNamespace = NS_MAIN ) {
 		if ( is_object( $text ) ) {
 			throw new InvalidArgumentException( '$text must be a string.' );
-		} elseif ( !is_string( $text ) ) {
+		}
+		if ( $text !== null && !is_string( $text ) ) {
 			wfDebugLog( 'T76305', wfGetAllCallers( 5 ) );
-			wfWarn(
-				__METHOD__ . ': $text must be a string. ' .
-					'This will throw an InvalidArgumentException in future.',
-				2
-			);
+			return null;
+		}
+		if ( $text === null ) {
+			return null;
 		}
 
 		try {
@@ -296,7 +296,7 @@ class Title {
 	 */
 	public static function newFromTextThrow( $text, $defaultNamespace = NS_MAIN ) {
 		if ( is_object( $text ) ) {
-			throw new MWException( 'Title::newFromTextThrow given an object' );
+			throw new MWException( '$text must be a string, given an object' );
 		}
 
 		$cache = self::getTitleCache();
