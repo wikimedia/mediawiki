@@ -231,8 +231,10 @@
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.getText = function () {
 		var language = mw.config.get( 'wgContentLanguage' );
+		this.upload.clearDescriptions();
 		this.upload.addDescription( language, this.descriptionWidget.getValue() );
 		this.upload.setDate( this.dateWidget.getValue() );
+		this.upload.clearCategories();
 		this.upload.addCategories( this.categoriesWidget.getItemsData() );
 		return this.upload.getText();
 	};
