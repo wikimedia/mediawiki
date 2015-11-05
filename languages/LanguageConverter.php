@@ -215,6 +215,9 @@ class LanguageConverter {
 	 * @return mixed Returns the variant if it is valid, null otherwise
 	 */
 	public function validateVariant( $variant = null ) {
+		// Replace deprecated language codes
+		$variant = LanguageCode::replaceDeprecatedCodes( $variant );
+
 		if ( $variant !== null && in_array( $variant, $this->mVariants ) ) {
 			return $variant;
 		}
