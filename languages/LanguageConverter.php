@@ -210,6 +210,12 @@ class LanguageConverter {
 	 * @return mixed Returns the variant if it is valid, null otherwise
 	 */
 	public function validateVariant( $variant = null ) {
+		global $wgDummyLanguageCodes;
+
+		if ( isset( $wgDummyLanguageCodes[$variant] ) ) {
+			$variant = $wgDummyLanguageCodes[$variant];
+		}
+
 		if ( $variant !== null && in_array( $variant, $this->mVariants ) ) {
 			return $variant;
 		}
