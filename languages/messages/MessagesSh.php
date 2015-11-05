@@ -13,7 +13,7 @@
  * @author לערי ריינהארט
  */
 
-$fallback = 'bs, sr-el, hr';
+$fallback = 'bs, sr-latn, hr';
 
 $namespaceNames = [
 	NS_SPECIAL          => 'Posebno',
