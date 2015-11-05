@@ -420,18 +420,15 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 				'doWork' => function () use ( $file, $params ) {
 					return $file->transform( $params, File::RENDER_NOW );
 				},
-				'getCachedWork' => function () use ( $file, $params, $thumbPath ) {
+				'doCachedWork' => function () use ( $file, $params, $thumbPath ) {
 					// If the worker that finished made this thumbnail then use it.
 					// Otherwise, it probably made a different thumbnail for this file.
 					return $file->getRepo()->fileExists( $thumbPath )
 						? $file->transform( $params, File::RENDER_NOW )
 						: false; // retry once more in exclusive mode
 				},
-				'fallback' => function () {
-					return wfMessage( 'generic-pool-error' )->parse();
-				},
 				'error' => function ( Status $status ) {
-					return $status->getHTML();
+					return wfMessage( 'generic-pool-error' )->parse() . '<hr>' . $status->getHTML();
 				}
 			)
 		);
