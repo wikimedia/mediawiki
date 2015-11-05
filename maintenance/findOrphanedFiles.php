@@ -136,7 +136,11 @@ class FindOrphanedFiles extends Maintenance {
 		foreach ( array_diff( $curNames, $curNamesFound ) as $name ) {
 			$file = $repo->newFile( $name );
 			// Print name and public URL to ease recovery
-			$this->output( $name . "\n" . $file->getCanonicalUrl() . "\n\n" );
+			if ( $file ) {
+				$this->output( $name . "\n" . $file->getCanonicalUrl() . "\n\n" );
+			} else {
+				$this->error( "Cannot get URL for bad file title '$name'" );
+			}
 		}
 
 		foreach ( array_diff( $oldNames, $oldNamesFound ) as $name ) {
