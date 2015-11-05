@@ -85,7 +85,6 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			'Text' => array(
 				'type' => 'textarea',
 				'rows' => 20,
-				'cols' => 80,
 				'label-message' => 'emailmessage',
 				'required' => true,
 			),
@@ -99,11 +98,15 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 	public function execute( $par ) {
 		$out = $this->getOutput();
+		$request = $this->getRequest();
 		$out->addModuleStyles( 'mediawiki.special' );
 
 		$this->mTarget = is_null( $par )
-			? $this->getRequest()->getVal( 'wpTarget', $this->getRequest()->getVal( 'target', '' ) )
+			? $request->getVal( 'wpTarget', '' )
 			: $par;
+
+		// make sure, that HTMLForm uses the correct target
+		$request->setVal( 'wpTarget', $this->mTarget );
 
 		// This needs to be below assignment of $this->mTarget because
 		// getDescription() needs it to determine the correct page title.
@@ -135,41 +138,16 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				list( $title, $msg, $params ) = $error;
 				throw new ErrorPageError( $title, $msg, $params );
 		}
-		// Got a valid target user name? Else ask for one.
-		$ret = self::getTarget( $this->mTarget );
-		if ( !$ret instanceof User ) {
-			if ( $this->mTarget != '' ) {
-				// Messages used here: notargettext, noemailtext, nowikiemailtext
-				$ret = ( $ret == 'notarget' ) ? 'emailnotarget' : ( $ret . 'text' );
-				$out->wrapWikiMsg( "<p class='error'>$1</p>", $ret );
-			}
-			$out->addHTML( $this->userForm( $this->mTarget ) );
 
-			return;
-		}
-
-		$this->mTargetObj = $ret;
-
-		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$form = new HTMLForm( $this->getFormFields(), $context );
-		// By now we are supposed to be sure that $this->mTarget is a user name
-		$form->addPreText( $this->msg( 'emailpagetext', $this->mTarget )->parse() );
-		$form->setSubmitTextMsg( 'emailsend' );
-		$form->setSubmitCallback( array( __CLASS__, 'uiSubmit' ) );
-		$form->setWrapperLegendMsg( 'email-legend' );
-		$form->loadData();
-
-		if ( !Hooks::run( 'EmailUserForm', array( &$form ) ) ) {
-			return;
-		}
-
-		$result = $form->show();
-
-		if ( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
-			$out->setPageTitle( $this->msg( 'emailsent' ) );
-			$out->addWikiMsg( 'emailsenttext', $this->mTarget );
-			$out->returnToMain( false, $this->mTargetObj->getUserPage() );
+		// a little hack: HTMLForm will check $this->mTarget only, if the form was posted, not
+		// if the user opens Special:EmailUser/Florian (e.g.). So check, if the user did that,
+		// and show the "Send email to user" form directly, if so. Show the "enter username"
+		// form, otherwise.
+		$this->mTargetObj = self::getTarget( $this->mTarget );
+		if ( !$this->mTargetObj instanceof User ) {
+			$this->userForm( $this->mTarget );
+		} else {
+			$this->sendEmailForm();
 		}
 	}
 
@@ -260,31 +238,63 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @return string Form asking for user name.
 	 */
 	protected function userForm( $name ) {
-		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
-		$string = Xml::openElement(
-			'form',
-			array( 'method' => 'get', 'action' => wfScript(), 'id' => 'askusername' )
-		) .
-			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
-			Xml::openElement( 'fieldset' ) .
-			Html::rawElement( 'legend', null, $this->msg( 'emailtarget' )->parse() ) .
-			Xml::inputLabel(
-				$this->msg( 'emailusername' )->text(),
-				'target',
-				'emailusertarget',
-				30,
-				$name,
-				array(
-					'class' => 'mw-autocomplete-user',  // used by mediawiki.userSuggest
-					'autofocus' => true,
-				)
-			) .
-			' ' .
-			Xml::submitButton( $this->msg( 'emailusernamesubmit' )->text() ) .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' ) . "\n";
+		$form = HTMLForm::factory( 'ooui', array(
+			'Target' => array(
+				'type' => 'user',
+				'exists' => true,
+				'label' => $this->msg( 'emailusername' )->text(),
+				'id' => 'emailusertarget',
+				'autofocus' => true,
+				'value' => $name,
+			),
+		), $this->getContext() );
 
-		return $string;
+		$form
+			->setMethod( 'post' )
+			->setSubmitCallback( array( $this, 'sendEmailForm' ) )
+			->setSubmitProgressive()
+			->setId( 'askusername' )
+			->addHiddenField( 'title', $this->getPageTitle()->getPrefixedText() )
+			->setWrapperLegendMsg( 'emailtarget' )
+			->setSubmitTextMsg( 'emailusernamesubmit' )
+			->show();
+	}
+
+	public function sendEmailForm() {
+		$out = $this->getOutput();
+
+		$ret = $this->mTargetObj;
+		if ( !$ret instanceof User ) {
+			if ( $this->mTarget != '' ) {
+				// Messages used here: notargettext, noemailtext, nowikiemailtext
+				$ret = ( $ret == 'notarget' ) ? 'emailnotarget' : ( $ret . 'text' );
+				return Status::newFatal( $ret );
+			}
+			return false;
+		}
+
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getPageTitle() ); // Remove subpage
+		$form = HTMLForm::factory( 'ooui', $this->getFormFields(), $context );
+		// By now we are supposed to be sure that $this->mTarget is a user name
+		$form->addPreText( $this->msg( 'emailpagetext', $this->mTarget )->parse() );
+		$form->setSubmitTextMsg( 'emailsend' );
+		$form->setSubmitCallback( array( __CLASS__, 'uiSubmit' ) );
+		$form->setWrapperLegendMsg( 'email-legend' );
+		$form->loadData();
+
+		if ( !Hooks::run( 'EmailUserForm', array( &$form ) ) ) {
+			return false;
+		}
+
+		$result = $form->show();
+
+		if ( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
+			$out->setPageTitle( $this->msg( 'emailsent' ) );
+			$out->addWikiMsg( 'emailsenttext', $this->mTarget );
+			$out->returnToMain( false, $ret->getUserPage() );
+		}
+		return true;
 	}
 
 	/**
