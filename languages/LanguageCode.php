@@ -43,6 +43,8 @@ class LanguageCode {
 		'be-x-old' => 'be-tarask',
 		'fiu-vro' => 'vro',
 		'roa-rup' => 'rup',
+		'sr-ec' => 'sr-cyrl',
+		'sr-el' => 'sr-latn',
 		'zh-classical' => 'lzh',
 		'zh-min-nan' => 'nan',
 		'zh-yue' => 'yue',
