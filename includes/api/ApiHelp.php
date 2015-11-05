@@ -759,6 +759,8 @@ class ApiHelp extends ApiBase {
 		return array(
 			'action=help'
 				=> 'apihelp-help-example-main',
+			'action=help&modules=query&submodules=1'
+				=> 'apihelp-help-example-submodules',
 			'action=help&recursivesubmodules=1'
 				=> 'apihelp-help-example-recursive',
 			'action=help&modules=help'
