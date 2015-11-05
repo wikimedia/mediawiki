@@ -26,6 +26,7 @@
 	"apihelp-main-param-curtimestamp": "{{doc-apihelp-param|main|curtimestamp}}",
 	"apihelp-main-param-origin": "{{doc-apihelp-param|main|origin}}",
 	"apihelp-main-param-uselang": "{{doc-apihelp-param|main|uselang}}",
+	"apihelp-main-param-variant": "{{doc-apihelp-param|main|variant}}",
 	"apihelp-block-description": "{{doc-apihelp-description|block}}",
 	"apihelp-block-param-user": "{{doc-apihelp-param|block|user}}",
 	"apihelp-block-param-expiry": "{{doc-apihelp-param|block|expiry}}\n{{doc-important|Do not translate \"5 months\", \"2 weeks\", \"infinite\", \"indefinite\" or \"never\"!}}",
