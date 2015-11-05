@@ -3178,7 +3178,7 @@
 	"htmlform-cloner-required": "적어도 하나의 값이 필요합니다.",
 	"htmlform-title-badnamespace": "[[:$1]] 문서는 \"{{ns:$2}}\" 이름공간에 없습니다.",
 	"htmlform-title-not-creatable": "\"$1\"은 만들 수 없는 문서 제목입니다.",
-	"htmlform-title-not-exists": "[[:$1]] 문서는 존재하지 않습니다.",
+	"htmlform-title-not-exists": "$1 문서는 존재하지 않습니다.",
 	"htmlform-user-not-exists": "<strong>$1</strong> 문서는 존재하지 않습니다.",
 	"htmlform-user-not-valid": "<strong>$1</strong>은 올바른 사용자 이름이 아닙니다.",
 	"sqlite-has-fts": "$1 (본문 전체 검색 지원)",

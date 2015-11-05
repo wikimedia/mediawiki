@@ -3181,7 +3181,7 @@
 	"htmlform-cloner-required": "Vähemalt üks väärtus on nõutav.",
 	"htmlform-title-badnamespace": "[[:$1]] pole nimeruumis \"{{ns:$2}}\".",
 	"htmlform-title-not-creatable": "Pealkirja \"$1\" all ei saa lehekülge alustada.",
-	"htmlform-title-not-exists": "Lehekülge [[:$1]] pole olemas.",
+	"htmlform-title-not-exists": "Lehekülge $1 pole olemas.",
 	"htmlform-user-not-exists": "Kasutajat <strong>$1</strong> pole olemas.",
 	"htmlform-user-not-valid": "<strong>$1</strong> pole sobiv kasutajanimi.",
 	"sqlite-has-fts": "$1 koos täistekstiotsingu toega",

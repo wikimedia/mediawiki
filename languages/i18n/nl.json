@@ -3236,7 +3236,7 @@
 	"htmlform-cloner-required": "Ten minste één waarde is vereist.",
 	"htmlform-title-badnamespace": "[[:$1]] bevindt zich niet in de naamruimte \"{{ns:$2}}\".",
 	"htmlform-title-not-creatable": "\"$1\" is geen paginanaam die aangemaakt kan worden",
-	"htmlform-title-not-exists": "[[:$1]] bestaat niet.",
+	"htmlform-title-not-exists": "$1 bestaat niet.",
 	"htmlform-user-not-exists": "<strong>$1</strong> bestaat niet.",
 	"htmlform-user-not-valid": "<strong>$1</strong> is geen geldige gebruikersnaam.",
 	"sqlite-has-fts": "Versie $1 met ondersteuning voor \"full-text\" zoeken",

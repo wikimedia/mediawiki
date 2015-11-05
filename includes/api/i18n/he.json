@@ -183,6 +183,7 @@
 	"apihelp-help-param-wrap": "לעטוף את הפלט במבנה תשובת API תקני.",
 	"apihelp-help-param-toc": "לכלול תוכן עניינים בפלט HTML.",
 	"apihelp-help-example-main": "עזרה ליחידה הראשית.",
+	"apihelp-help-example-submodules": "עזרה עבור <kbd>action=query</kbd> וכל התת־מודולים שלו.",
 	"apihelp-help-example-recursive": "כל העזרה בדף אחד.",
 	"apihelp-help-example-help": "עזרה ליחידת העזרה עצמה.",
 	"apihelp-help-example-query": "עזרה לשתי תת־יחידות של שאילתה.",

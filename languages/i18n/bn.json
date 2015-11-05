@@ -3131,7 +3131,7 @@
 	"htmlform-cloner-required": "অন্তত একটি মূল্য আবশ্যক।",
 	"htmlform-title-badnamespace": "[[:$1]] \"{{ns:$2}}\" নামস্থানে খুঁজে পাওয়া যায়নি।",
 	"htmlform-title-not-creatable": "\"$1\" সৃষ্টিযোগ্য পাতার শিরোনাম নয়",
-	"htmlform-title-not-exists": "[[:$1]]-এর অস্তিত্ব নেই।",
+	"htmlform-title-not-exists": "$1-এর অস্তিত্ব নেই।",
 	"htmlform-user-not-exists": "<strong>$1</strong>-এর অস্তিত্ব নেই।",
 	"htmlform-user-not-valid": "<strong>$1</strong> একটি বৈধ ব্যবহারকারীর নাম নয়।",
 	"sqlite-has-fts": "$1 সহ পূর্ণ টেক্সট সার্চ সমর্থন",

@@ -2989,7 +2989,7 @@
 	"htmlform-cloner-required": "ان آزی بیر دیَر گرکلیدیر.",
 	"htmlform-title-badnamespace": "[[:$1]]، «{{ns:$2}}» آدفضاسیندا دئییل.",
 	"htmlform-title-not-creatable": "«$1» بیر یارانا بیلن صفحه آدی دئییل",
-	"htmlform-title-not-exists": "[[:$1]] یوخدور.",
+	"htmlform-title-not-exists": "$1 یوخدور.",
 	"htmlform-user-not-exists": "<strong>$1</strong> یوخدور.",
 	"htmlform-user-not-valid": "<strong>$1</strong> بیر دوزگون ایشلدن آدی دئییل.",
 	"sqlite-has-fts": "$1 بوتون یازی آختارما دستگی‌له",

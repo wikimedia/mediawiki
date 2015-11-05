@@ -3141,7 +3141,7 @@
 	"htmlform-cloner-required": "Кемінде бір мән қажет етеді.",
 	"htmlform-title-badnamespace": "[[:$1]] беті «{{ns:$2}}» есім кеңістігінде емес.",
 	"htmlform-title-not-creatable": "«$1» беті бастауға болатын бет атауы емес",
-	"htmlform-title-not-exists": "[[:$1]] беті жоқ.",
+	"htmlform-title-not-exists": "$1 беті жоқ.",
 	"htmlform-user-not-exists": "<strong>$1</strong> есімді қатысушы жоқ.",
 	"htmlform-user-not-valid": "<strong>$1</strong> жарамды қатысушы есімі емес.",
 	"sqlite-has-fts": "$1 дегенмен барлық мәтінде іздеуді қолдайды",

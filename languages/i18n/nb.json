@@ -3178,7 +3178,7 @@
 	"htmlform-cloner-required": "Minst én verdi kreves.",
 	"htmlform-title-badnamespace": "[[:$1]] er ikke i «{{ns:$2}}»-navnerommet",
 	"htmlform-title-not-creatable": "«$1» er ikke en opprettbar sidetittel",
-	"htmlform-title-not-exists": "[[:$1]] forefinnes ikke.",
+	"htmlform-title-not-exists": "$1 forefinnes ikke.",
 	"htmlform-user-not-exists": "<strong>$1</strong> eksisterer ikke.",
 	"htmlform-user-not-valid": "<strong>$1</strong> er ikke et gyldig brukernavn.",
 	"sqlite-has-fts": "$1 med støtte for fulltekstsøk",

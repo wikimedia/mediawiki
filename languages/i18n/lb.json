@@ -3056,7 +3056,7 @@
 	"htmlform-cloner-delete": "Ewechhuelen",
 	"htmlform-cloner-required": "Mindestens ee Wäert ass obligatoresch.",
 	"htmlform-title-badnamespace": "[[:$1]] ass net am Nummraum \"{{ns:$2}}\".",
-	"htmlform-title-not-exists": "[[:$1]] gëtt et net.",
+	"htmlform-title-not-exists": "$1 gëtt et net.",
 	"htmlform-user-not-exists": "<strong>$1</strong> gëtt et net.",
 	"htmlform-user-not-valid": "<strong>$1</strong> ass kee valabele Benotzernumm.",
 	"sqlite-has-fts": "$1 ënnerstëtzt d'Volltextsich",

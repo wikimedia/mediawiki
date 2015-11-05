@@ -3169,7 +3169,7 @@
 	"htmlform-cloner-required": "Pelo menos um valor é necessário.",
 	"htmlform-title-badnamespace": "[[:$1]] não se encontra no domínio \"{{ns:$2}}\".",
 	"htmlform-title-not-creatable": "\"$1\" não é um título que possa ser atribuído a uma página",
-	"htmlform-title-not-exists": "[[:$1]] não existe.",
+	"htmlform-title-not-exists": "$1 não existe.",
 	"htmlform-user-not-exists": "<strong>$1</strong> não existe.",
 	"htmlform-user-not-valid": "<strong>$1</strong> não é um nome de utilizador válido.",
 	"sqlite-has-fts": "$1 com suporte de pesquisa de texto completo",

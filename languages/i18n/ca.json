@@ -3216,7 +3216,7 @@
 	"htmlform-cloner-required": "Cal com a mínim un valor.",
 	"htmlform-title-badnamespace": "[[:$1]] no es troba en l'espai de noms \"{{ns:$2}}\".",
 	"htmlform-title-not-creatable": "\"$1\" és un títol de pàgina no editable",
-	"htmlform-title-not-exists": "[[:$1]] no existeix.",
+	"htmlform-title-not-exists": "$1 no existeix.",
 	"htmlform-user-not-exists": "<strong>$1</strong> no existeix.",
 	"htmlform-user-not-valid": "<strong>$1</strong> no és nom d'usuari vàlid.",
 	"sqlite-has-fts": "$1, amb suport de búsqueda de text íntegre",

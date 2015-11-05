@@ -7,7 +7,8 @@
 			"Base",
 			"Dars",
 			"Umherirrender",
-			"Macofe"
+			"Macofe",
+			"Mix Gerder"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документація]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Список розсилки]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Оголошення API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Баґи і запити]\n</div>\n<strong>Статус:</strong> Усі функції, вказані на цій сторінці, мають працювати, але API далі перебуває в активній розробці і може змінитися у будь-який момент. Підпишіться на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ список розсилки mediawiki-api-announce], щоб помічати оновлення.\n\n<strong>Хибні запити:</strong> Коли до API надсилаються хибні запити, буде відіслано HTTP-шапку з ключем «MediaWiki-API-Error», а тоді і значення шапки, і код помилки, надіслані назад, будуть встановлені з тим же значенням. Більше інформації див. на [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -155,6 +156,7 @@
 	"apihelp-feedrecentchanges-param-hideliu": "Приховати редагування зареєстрованих користувачів.",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "Приховати відпатрульовані редагування.",
 	"apihelp-feedrecentchanges-param-hidemyself": "Приховати редагування поточного користувача.",
+	"apihelp-feedrecentchanges-param-hidecategorization": "Приховати зміни в членстві в категорії.",
 	"apihelp-feedrecentchanges-param-tagfilter": "Фільтрувати за теґом.",
 	"apihelp-feedrecentchanges-param-target": "Показати лише зміни на сторінках, на які посилається ця сторінка.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Показати натомість лише зміни на сторінках, які посилаються на цю сторінку.",
@@ -1127,6 +1129,10 @@
 	"apihelp-query+watchlist-paramvalue-prop-loginfo": "Додає інформацію журналу, де це доречно.",
 	"apihelp-query+watchlist-param-show": "Показати лише елементи, що задовільняють ці критерії. Наприклад, для перегляду лише незначних змін, здійснених користувачами, що увійшли до системи, вкажіть $1show=minor|!anon.",
 	"apihelp-query+watchlist-param-type": "Які типи змін показувати:\n;edit:Звичайні редагування сторінки.\n;external:Зовнішні зміни.\n;new:Створення сторінок.\n;log:Записи журналу.",
+	"apihelp-query+watchlist-paramvalue-type-edit": "Регулярні сторінки правок.",
+	"apihelp-query+watchlist-paramvalue-type-external": "Зовнішні зміни.",
+	"apihelp-query+watchlist-paramvalue-type-new": "Сторінка створена.",
+	"apihelp-query+watchlist-paramvalue-type-log": "Записи в журналі.",
 	"apihelp-query+watchlist-param-owner": "Використовується разом з $1token для доступу до списку спостереження різних користувачів.",
 	"apihelp-query+watchlist-param-token": "Токен безпеки (доступний у [[Special:Preferences#mw-prefsection-watchlist|налаштуваннях]] користувача) для отримання доступу до списку спостереження іншого користувача.",
 	"apihelp-query+watchlist-example-simple": "Перелічити верхні версії для нещодавно змінених сторінок у списку спостереження поточного користувача.",

@@ -3256,7 +3256,7 @@
 	"htmlform-cloner-required": "مطلوب قيمة واحدة على الأقل.",
 	"htmlform-title-badnamespace": "[[:$1]] ليس في نطاق \"{{ns:$2}}\".",
 	"htmlform-title-not-creatable": "\"$1\" ليس عنوان صفحة يمكن إنشاؤه",
-	"htmlform-title-not-exists": "[[:$1]] غير موجود.",
+	"htmlform-title-not-exists": "$1 غير موجود.",
 	"htmlform-user-not-exists": "<strong>$1</strong> غير موجود",
 	"htmlform-user-not-valid": "اسم المستخدم <strong>$1</strong> غير صالح.",
 	"sqlite-has-fts": "$1 بدعم البحث في كامل النص",

@@ -3173,7 +3173,7 @@
 	"htmlform-cloner-required": "Bent viena reikšmė būtina.",
 	"htmlform-title-badnamespace": "[[:$1]] nėra \"{{ns:$2}}\" vardų srityje.",
 	"htmlform-title-not-creatable": "\"$1\" nėra tinkamas sukūrimui puslapio pavadinimas",
-	"htmlform-title-not-exists": "[[:$1]] neegzistuoja.",
+	"htmlform-title-not-exists": "$1 neegzistuoja.",
 	"htmlform-user-not-exists": "<strong>$1</strong> neegzistuoja.",
 	"htmlform-user-not-valid": "<strong>$1</strong> nėra tinkamas naudotojo vardas.",
 	"sqlite-has-fts": "$1 su visatekstės paieškos palaikymu",

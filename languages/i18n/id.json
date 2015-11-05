@@ -3185,7 +3185,7 @@
 	"htmlform-cloner-create": "Tambahkan lebih banyak",
 	"htmlform-cloner-delete": "Hapus",
 	"htmlform-cloner-required": "Paling sedikit satu nilai diperlukan.",
-	"htmlform-title-not-exists": "[[:$1]] tidak ada.",
+	"htmlform-title-not-exists": "$1 tidak ada.",
 	"sqlite-has-fts": "$1 dengan dukungan pencarian teks lengkap",
 	"sqlite-no-fts": "$1 tanpa dukungan pencarian teks lengkap",
 	"logentry-delete-delete": "$1 {{GENDER:$2|menghapus}} halaman $3",

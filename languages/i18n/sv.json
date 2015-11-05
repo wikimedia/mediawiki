@@ -3223,7 +3223,7 @@
 	"htmlform-cloner-required": "Det krävs minst ett värde.",
 	"htmlform-title-badnamespace": "[[:$1]] är inte i \"{{ns:$2}}\"-namnrymden.",
 	"htmlform-title-not-creatable": "\"$1\" är inte en sidtitel som kan skapas",
-	"htmlform-title-not-exists": "[[:$1]] finns inte.",
+	"htmlform-title-not-exists": "$1 finns inte.",
 	"htmlform-user-not-exists": "<strong>$1</strong> finns inte.",
 	"htmlform-user-not-valid": "<strong>$1</strong> är inte ett giltigt användarnamn.",
 	"sqlite-has-fts": "$1 med stöd för fulltextsökning",

@@ -3154,7 +3154,7 @@
 	"htmlform-cloner-create": "Προσθήκη περισσοτέρων",
 	"htmlform-cloner-delete": "Αφαίρεση",
 	"htmlform-cloner-required": "Απαιτείται τουλάχιστον μία τιμή.",
-	"htmlform-title-not-exists": "Ο τίτλος [[:$1]] δεν υπάρχει.",
+	"htmlform-title-not-exists": "Ο τίτλος $1 δεν υπάρχει.",
 	"htmlform-user-not-exists": "Δεν υπάρχει χρήστης με όνομα <strong>$1</strong>.",
 	"htmlform-user-not-valid": "Το <strong>$1</strong> δεν είναι έγκυρο όνομα χρήστη.",
 	"sqlite-has-fts": "$1 με υποστήριξη αναζήτησης πλήρους κειμένου",

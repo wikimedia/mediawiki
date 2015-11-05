@@ -3210,7 +3210,7 @@
 	"htmlform-cloner-delete": "Sil",
 	"htmlform-cloner-required": "En az bir değer gereklidir.",
 	"htmlform-title-not-creatable": "\"$1\"oluşturulabilir bir sayfa ismi değil.",
-	"htmlform-title-not-exists": "[[:$1]] mevcut değil",
+	"htmlform-title-not-exists": "$1 mevcut değil",
 	"htmlform-user-not-exists": "<strong>$1</strong> mevcut değil.",
 	"htmlform-user-not-valid": "<strong>$1</strong> geçerli bir kullanıcı ismi değildir.",
 	"sqlite-has-fts": "$1 tam-metin arama desteği ile",

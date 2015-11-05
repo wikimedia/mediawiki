@@ -3150,7 +3150,7 @@
 	"htmlform-cloner-required": "Es bruucht mindistens ei Wärt.",
 	"htmlform-title-badnamespace": "[[:$1]] isch nid im Namensruum «{{ns:$2}}».",
 	"htmlform-title-not-creatable": "«$1» isch kei Sytename, wo sech lat la alege",
-	"htmlform-title-not-exists": "[[:$1]] git’s nid.",
+	"htmlform-title-not-exists": "$1 git’s nid.",
 	"htmlform-user-not-exists": "<strong>$1</strong> git’s nid.",
 	"htmlform-user-not-valid": "<strong>$1</strong> isch ke gültige Name.",
 	"sqlite-has-fts": "$1 mit Unterstitzig vu dr Volltextsuechi",

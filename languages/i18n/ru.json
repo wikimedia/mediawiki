@@ -3313,7 +3313,7 @@
 	"htmlform-cloner-required": "Требуется по крайней мере одно значение.",
 	"htmlform-title-badnamespace": "[[:$1]] находится не в пространстве имён «{{ns:$2}}».",
 	"htmlform-title-not-creatable": "«$1» — заголовок страницы, которая не может быть создана",
-	"htmlform-title-not-exists": "[[:$1]] не существует.",
+	"htmlform-title-not-exists": "$1 не существует.",
 	"htmlform-user-not-exists": "<strong>$1</strong> не существует.",
 	"htmlform-user-not-valid": "<strong>$1</strong> — недопустимое имя учётной записи.",
 	"sqlite-has-fts": "$1 с поддержкой полнотекстового поиска",

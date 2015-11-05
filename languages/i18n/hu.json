@@ -3141,7 +3141,7 @@
 	"htmlform-cloner-required": "Legalább egy érték szükséges.",
 	"htmlform-title-badnamespace": "[[:$1]] nem a(z) „{{ns:$2}}” névtérben található.",
 	"htmlform-title-not-creatable": "„$1” nem egy létrehozható lapcím",
-	"htmlform-title-not-exists": "[[:$1]] nem létezik.",
+	"htmlform-title-not-exists": "$1 nem létezik.",
 	"htmlform-user-not-exists": "<strong>$1</strong> nem létezik.",
 	"htmlform-user-not-valid": "<strong>$1</strong> nem egy érvényes felhasználónév.",
 	"sqlite-has-fts": "$1 teljes szöveges keresés támogatással",

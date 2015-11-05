@@ -3342,7 +3342,7 @@
 	"htmlform-cloner-required": "少なくとも 1 つの値が必要です。",
 	"htmlform-title-badnamespace": "[[:$1]]は、\"{{ns:$2}}\"名前空間にありません。",
 	"htmlform-title-not-creatable": "\"$1\" は、作成可能なページ名では、ありません。",
-	"htmlform-title-not-exists": "[[:$1]] は存在しません。",
+	"htmlform-title-not-exists": "$1 は存在しません。",
 	"htmlform-user-not-exists": "<strong>$1</strong>は存在しません。",
 	"htmlform-user-not-valid": "<strong>$1</strong>は有効な利用者名ではありません。",
 	"sqlite-has-fts": "$1 (全文検索あり)",

@@ -3289,7 +3289,7 @@
 	"htmlform-cloner-delete": "Live",
 	"htmlform-cloner-required": "Almene 'nu valore l'a mettere.",
 	"htmlform-title-badnamespace": "[[:$1]] non ge stè jndr'à 'u namespace \"{{ns:$2}}\".",
-	"htmlform-title-not-exists": "[[:$1]] non g'esiste.",
+	"htmlform-title-not-exists": "$1 non g'esiste.",
 	"htmlform-user-not-exists": "<strong>$1</strong> non g'esiste.",
 	"htmlform-user-not-valid": "<strong>$1</strong> non g'è 'nu nome utende valide.",
 	"sqlite-has-fts": "$1 cu 'u supporte d'a ricerche full-text",

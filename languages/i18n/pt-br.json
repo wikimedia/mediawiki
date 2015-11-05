@@ -3184,7 +3184,7 @@
 	"htmlform-cloner-delete": "Remover",
 	"htmlform-cloner-required": "Pelo menos um valor é requerido",
 	"htmlform-title-not-creatable": "\"$1\" não é um título que possa ser atribuído a uma página",
-	"htmlform-title-not-exists": "[[:$1]] não existe.",
+	"htmlform-title-not-exists": "$1 não existe.",
 	"htmlform-user-not-exists": "<strong>$1</strong> não existe.",
 	"htmlform-user-not-valid": "<strong>$1</strong> não é um nome de usuário válido.",
 	"sqlite-has-fts": "$1 com suporte de pesquisa de texto completo",
