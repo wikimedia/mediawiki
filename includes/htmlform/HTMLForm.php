@@ -1151,6 +1151,8 @@ class HTMLForm extends ContextSource {
 	 */
 	public function setSubmitDestructive() {
 		$this->mSubmitFlags = array( 'destructive', 'primary' );
+
+		return $this;
 	}
 
 	/**
@@ -1159,6 +1161,8 @@ class HTMLForm extends ContextSource {
 	 */
 	public function setSubmitProgressive() {
 		$this->mSubmitFlags = array( 'progressive', 'primary' );
+
+		return $this;
 	}
 
 	/**
