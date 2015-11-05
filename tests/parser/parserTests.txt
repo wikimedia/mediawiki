@@ -21699,7 +21699,7 @@ Latin proverb: -{Ne nuntium necare}-
 !! test
 Prevent conversion with -{}- tags (language variants)
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 !! wikitext
 Latinski: -{Ne nuntium necare}-
 !! html/php
@@ -21713,7 +21713,7 @@ Latinski: -{Ne nuntium necare}-
 !! test
 Prevent conversion of text with -{}- tags (language variants)
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 !! wikitext
 Latinski: -{Ne nuntium necare}-
 !! html/php
@@ -21727,7 +21727,7 @@ Latinski: -{Ne nuntium necare}-
 !! test
 Prevent conversion of links with -{}- tags (language variants)
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 !! wikitext
 -{[[Main Page]]}-
 !! html/php
@@ -21741,7 +21741,7 @@ language=sr variant=sr-ec
 !! test
 -{}- tags within headlines (within html for parserConvert())
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 !! wikitext
 == -{Naslov}- ==
 
@@ -21796,17 +21796,17 @@ foo-{zh;zh-hans;zh-hant|blog, WEBJOURNAL, WEBLOG}-quux
 !! test
 Conversion around HTML tags
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 !! wikitext
--{H|span=>sr-ec:script;title=>sr-ec:src}-
-<span title="La-{sr-el:L;sr-ec:C}-tin">ski</span>
+-{H|span=>sr-cyrl:script;title=>sr-cyrl:src}-
+<span title="La-{sr-latn:L;sr-cyrl:C}-tin">ski</span>
 !! html/php
 <p>
 <span title="ЛаCтин">ски</span>
 </p>
 !! html/parsoid
-<p><meta typeof="mw:LanguageVariant" data-parsoid='{"tSp":[8]}' data-mw-variant='{"add":true,"oneway":[{"f":"span","l":"sr-ec","t":"script"},{"f":"title","l":"sr-ec","t":"src"}]}'/>
-<span title="Latin" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"title"},{"html":"La&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"twoway\":[{\"l\":\"sr-el\",\"t\":\"L\"},{\"l\":\"sr-ec\",\"t\":\"C\"}]}&#39; data-parsoid=&#39;{\"fl\":[],\"tSp\":[6],\"dsr\":[57,76,null,2]}&#39;>&lt;/span>tin"}]]}'>ski</span></p>
+<p><meta typeof="mw:LanguageVariant" data-parsoid='{"tSp":[8]}' data-mw-variant='{"add":true,"oneway":[{"f":"span","l":"sr-cyrl","t":"script"},{"f":"title","l":"sr-cyrl","t":"src"}]}'/>
+<span title="Latin" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"title"},{"html":"La&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&#39;{\"twoway\":[{\"l\":\"sr-latn\",\"t\":\"L\"},{\"l\":\"sr-cyrl\",\"t\":\"C\"}]}&#39; data-parsoid=&#39;{\"fl\":[],\"tSp\":[6],\"dsr\":[57,76,null,2]}&#39;>&lt;/span>tin"}]]}'>ski</span></p>
 !! end
 
 !! test
@@ -22024,7 +22024,7 @@ language=zh variant=zh-cn
 
 -{N|zh-tw}-
 
--{N|sr-ec}-
+-{N|sr-cyrl}-
 !! html/php
 <p>大陆
 </p><p>台灣
@@ -22033,7 +22033,7 @@ language=zh variant=zh-cn
 !! html/parsoid
 <p><span typeof="mw:LanguageVariant" data-mw-variant='{"name":{"t":"zh-cn"}}'></span></p>
 <p><span typeof="mw:LanguageVariant" data-mw-variant='{"name":{"t":"zh-tw"}}'></span></p>
-<p><span typeof="mw:LanguageVariant" data-mw-variant='{"name":{"t":"sr-ec"}}'></span></p>
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"name":{"t":"sr-cyrl"}}'></span></p>
 !! end
 
 # html2wt suppresses the bogus 'D' flag, so this is wt2html only
@@ -22423,7 +22423,7 @@ parsoid={
 !! test
 Proper conversion of text in external links
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 parsoid=wt2html
 !! wikitext
 http://www.google.com
@@ -22455,7 +22455,7 @@ gopher://www.google.com
 !! test
 Do not convert roman numbers to language variants
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 !! wikitext
 Fridrih IV je car.
 !! html/php
@@ -22492,7 +22492,7 @@ language=sr
 !! test
 Don't break link parsing if language converter markup is in the caption.
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 !! wikitext
 [[Main Page|-{R|main page}-]]
 !! html/php
@@ -22505,7 +22505,7 @@ language=sr variant=sr-ec
 !! test
 T146304: Don't break template parsing if language converter markup is in the parameter.
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 !! wikitext
 {{echo|-{R|foo}-}}
 !! html/php
@@ -22640,7 +22640,7 @@ language=zh variant=zh-cn
 !! test
 T153140: Don't break table handling if language converter markup is in the cell.
 !! options
-language=sr variant=sr-ec
+language=sr variant=sr-cyrl
 parsoid=wt2html,wt2wt,html2html
 !! wikitext
 {|
