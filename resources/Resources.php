@@ -801,7 +801,7 @@ return array(
 			'sl' => 'resources/lib/moment/locale/sl.js',
 			'sq' => 'resources/lib/moment/locale/sq.js',
 			'sr' => 'resources/lib/moment/locale/sr.js',
-			'sr-ec' => 'resources/lib/moment/locale/sr-cyrl.js',
+			'sr-cyrl' => 'resources/lib/moment/locale/sr-cyrl.js',
 			'sv' => 'resources/lib/moment/locale/sv.js',
 			'ta' => 'resources/lib/moment/locale/ta.js',
 			'th' => 'resources/lib/moment/locale/th.js',
