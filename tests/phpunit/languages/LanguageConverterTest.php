@@ -136,6 +136,27 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * Test the replacement of the deprecated language code 'sr-el' by 'sr-latn'
+	 *
+	 * @covers LanguageConverter::getPreferredVariant
+	 * @covers LanguageConverter::getUserVariant
+	 * @covers LanguageConverter::getURLVariant
+	 */
+	public function testGetPreferredVariantWithDeprecatedLang() {
+		global $wgContLang, $wgRequest, $wgUser;
+
+		$wgContLang = Language::factory( 'sr-latn' );
+		$wgRequest->setVal( 'variant', 'sr-el' );
+		$wgUser = User::newFromId( "admin" );
+		$wgUser->setId( 1 );
+		$wgUser->mFrom = 'defaults';
+		$wgUser->mOptionsLoaded = true;
+		// The user's data is ignored because the variant is set in the URL.
+		$wgUser->setOption( 'variant', 'sr' );
+		$this->assertEquals( 'sr-latn', $this->lc->getPreferredVariant() );
+	}
+
+	/**
 	 * @covers LanguageConverter::getPreferredVariant
 	 */
 	public function testGetPreferredVariantDefaultLanguageVariant() {
