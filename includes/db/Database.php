@@ -3438,7 +3438,7 @@ abstract class DatabaseBase implements IDatabase {
 				$levels = implode( ', ', $this->mTrxAtomicLevels );
 				throw new DBUnexpectedError(
 					$this,
-					"Got explicit BEGIN while atomic sections $levels are still open."
+					"Got explicit BEGIN from $fname while atomic section(s) $levels are open."
 				);
 			} elseif ( !$this->mTrxAutomatic ) {
 				// We want to warn about inadvertently nested begin/commit pairs, but not about
