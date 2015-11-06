@@ -92,6 +92,12 @@ table.toc td {
 .tocnumber,
 .toctext {
 	display: table-cell;
+	/*
+	Text decorations are not propagated to the contents of inline blocks and inline tables,
+	according to <http://www.w3.org/TR/css-text-decor-3/#line-decoration>, and 'display: table-cell'
+	generates an inline table when used without any parent table-rows and tables.
+	*/
+	text-decoration: inherit;
 }
 
 /* Space between the columns for tocnumber and toctext */
