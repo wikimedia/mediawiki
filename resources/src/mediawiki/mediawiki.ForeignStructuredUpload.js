@@ -41,6 +41,13 @@
 	};
 
 	/**
+	 * Empty the list of categories for the upload.
+	 */
+	ForeignStructuredUpload.prototype.clearCategories = function () {
+		this.categories = [];
+	};
+
+	/**
 	 * Add a description to the upload.
 	 *
 	 * @param {string} language The language code for the description's language. Must have a template on the target wiki to work properly.
@@ -51,6 +58,13 @@
 			language: language,
 			text: description
 		} );
+	};
+
+	/**
+	 * Empty the list of descriptions for the upload.
+	 */
+	ForeignStructuredUpload.prototype.clearDescriptions = function () {
+		this.descriptions = [];
 	};
 
 	/**
