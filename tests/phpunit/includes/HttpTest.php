@@ -62,6 +62,29 @@ class HttpTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function testGetProxy() {
+		// Without proxy set
+		$this->assertEquals( '', Http::getProxy() );
+
+		// http_proxy in env
+		$actualHttpProxy = getenv ( 'http_proxy' );
+		putenv ( 'http_proxy=proxy-env.domain.tld' );
+		$this->assertEquals(
+			'proxy-env.domain.tld',
+			Http::getProxy()
+		);
+
+		// $wgHttpProxy supersedes http_proxy
+		$this->setMwGlobals( 'wgHTTPProxy', 'proxy.domain.tld' );
+		$this->assertEquals(
+			'proxy.domain.tld',
+			Http::getProxy()
+		);
+
+		// Resets env
+		putenv ( "http_proxy=$actualHttpProxy" );
+	}
+
 	/**
 	 * Feeds URI to test a long regular expression in Http::isValidURI
 	 */
