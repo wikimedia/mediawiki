@@ -698,12 +698,6 @@ CREATE TABLE msg_resource (
 );
 CREATE UNIQUE INDEX mr_resource_lang ON msg_resource (mr_resource, mr_lang);
 
-CREATE TABLE msg_resource_links (
-  mrl_resource  TEXT  NOT NULL,
-  mrl_message   TEXT  NOT NULL
-);
-CREATE UNIQUE INDEX mrl_message_resource ON msg_resource_links (mrl_message, mrl_resource);
-
 CREATE TABLE module_deps (
   md_module  TEXT  NOT NULL,
   md_skin    TEXT  NOT NULL,
