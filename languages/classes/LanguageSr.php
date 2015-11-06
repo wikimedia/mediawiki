@@ -71,8 +71,8 @@ class SrConverter extends LanguageConverter {
 
 	function loadDefaultTables() {
 		$this->mTables = array(
-			'sr-ec' => new ReplacementArray( $this->mToCyrillics ),
-			'sr-el' => new ReplacementArray( $this->mToLatin ),
+			'sr-cyrl' => new ReplacementArray( $this->mToCyrillics ),
+			'sr-latn' => new ReplacementArray( $this->mToLatin ),
 			'sr' => new ReplacementArray()
 		);
 	}
@@ -181,9 +181,9 @@ class SrConverter extends LanguageConverter {
 		$numCyrillic = preg_match_all( "/[шђчћжШЂЧЋЖ]/u", $text, $dummy );
 		$numLatin = preg_match_all( "/[šđčćžŠĐČĆŽ]/u", $text, $dummy );
 
-		if ( $variant == 'sr-ec' ) {
+		if ( $variant == 'sr-cyrl' ) {
 			return $numCyrillic > $numLatin;
-		} elseif ( $variant == 'sr-el' ) {
+		} elseif ( $variant == 'sr-latn' ) {
 			return $numLatin > $numCyrillic;
 		} else {
 			return false;
@@ -204,11 +204,11 @@ class LanguageSr extends Language {
 
 		parent::__construct();
 
-		$variants = array( 'sr', 'sr-ec', 'sr-el' );
+		$variants = array( 'sr', 'sr-cyrl', 'sr-latn' );
 		$variantfallbacks = array(
-			'sr' => 'sr-ec',
-			'sr-ec' => 'sr',
-			'sr-el' => 'sr',
+			'sr' => 'sr-cyrl',
+			'sr-cyrl' => 'sr',
+			'sr-latn' => 'sr',
 		);
 
 		$flags = array(
