@@ -151,14 +151,24 @@ class DoubleRedirectsPage extends QueryPage {
 			array( 'redirect' => 'no' )
 		);
 
-		$edit = Linker::linkKnown(
-			$titleA,
-			$this->msg( 'parentheses', $this->msg( 'editlink' )->text() )->escaped(),
-			array(),
-			array(
-				'action' => 'edit'
-			)
-		);
+		// if the page is editable, add an edit link
+		if (
+			// check user permissions
+			$this->getUser()->isAllowed( 'edit' ) &&
+			// check, if the content model is editable through action=edit
+			ContentHandler::getForTitle( $titleA )->supportsDirectEditing()
+		) {
+			$edit = Linker::linkKnown(
+				$titleA,
+				$this->msg( 'parentheses', $this->msg( 'editlink' )->text() )->escaped(),
+				array(),
+				array(
+					'action' => 'edit'
+				)
+			);
+		} else {
+			$edit = '';
+		}
 
 		$linkB = Linker::linkKnown(
 			$titleB,
@@ -173,6 +183,35 @@ class DoubleRedirectsPage extends QueryPage {
 		$arr = $lang->getArrow() . $lang->getDirMark();
 
 		return ( "{$linkA} {$edit} {$arr} {$linkB} {$arr} {$linkC}" );
+	}
+
+	/**
+	 * Cache page content model and gender distinction for performance
+	 *
+	 * @param IDatabase $db
+	 * @param ResultWrapper $res
+	 */
+	function preprocessResults( $db, $res ) {
+		if ( !$res->numRows() ) {
+			return;
+		}
+
+		$batch = new LinkBatch;
+		foreach ( $res as $row ) {
+			$batch->add( $row->namespace, $row->title );
+			if ( isset( $row->nsb ) ) {
+				// lazy loaded when using cached results
+				$batch->add( $row->nsb, $row->tb );
+			}
+			if ( isset( $row->iwc ) && !$row->iwc ) {
+				// lazy loaded when using cached result, not added when interwiki link
+				$batch->add( $row->nsc, $row->tc );
+			}
+		}
+		$batch->execute();
+
+		// Back to start for display
+		$res->seek( 0 );
 	}
 
 	protected function getGroupName() {
