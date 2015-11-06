@@ -92,6 +92,8 @@ table.toc td {
 .tocnumber,
 .toctext {
 	display: table-cell;
+	/* Workaround for a quirks mode in Firefox T92481#1789674 */
+	text-decoration: inherit;
 }
 
 /* Space between the columns for tocnumber and toctext */
