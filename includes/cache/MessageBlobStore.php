@@ -41,6 +41,16 @@ class MessageBlobStore {
 	 */
 	protected $blobCache = array();
 
+	/* @var ResourceLoader */
+	protected $resourceloader;
+
+	/**
+	 * @param ResourceLoader $resourceloader
+	 */
+	public function __construct( ResourceLoader $resourceloader = null ) {
+		$this->resourceloader = $resourceloader;
+	}
+
 	/**
 	 * Get the singleton instance
 	 *
@@ -131,29 +141,14 @@ class MessageBlobStore {
 				array( 'IGNORE' )
 			);
 
-			if ( $success ) {
-				if ( $dbw->affectedRows() == 0 ) {
-					// Blob was already present, fetch it
-					$blob = $dbw->selectField( 'msg_resource', 'mr_blob', array(
-							'mr_resource' => $name,
-							'mr_lang' => $lang,
-						),
-						__METHOD__
-					);
-				} else {
-					// Update msg_resource_links
-					$rows = array();
-
-					foreach ( $module->getMessages() as $key ) {
-						$rows[] = array(
-							'mrl_resource' => $name,
-							'mrl_message' => $key
-						);
-					}
-					$dbw->insert( 'msg_resource_links', $rows,
-						__METHOD__, array( 'IGNORE' )
-					);
-				}
+			if ( $success && $dbw->affectedRows() == 0 ) {
+				// Blob was already present, fetch it
+				$blob = $dbw->selectField( 'msg_resource', 'mr_blob', array(
+						'mr_resource' => $name,
+						'mr_lang' => $lang,
+					),
+					__METHOD__
+				);
 			}
 		} catch ( DBError $e ) {
 			wfDebug( __METHOD__ . " failed to update DB: $e\n" );
@@ -180,8 +175,6 @@ class MessageBlobStore {
 			return null;
 		}
 
-		// Save the old and new blobs for later
-		$oldBlob = $row->mr_blob;
 		$newBlob = $this->generateMessageBlob( $module, $lang );
 
 		try {
@@ -196,36 +189,6 @@ class MessageBlobStore {
 				array( array( 'mr_resource', 'mr_lang' ) ),
 				$newRow, __METHOD__
 			);
-
-			// Figure out which messages were added and removed
-			$oldMessages = array_keys( FormatJson::decode( $oldBlob, true ) );
-			$newMessages = array_keys( FormatJson::decode( $newBlob, true ) );
-			$added = array_diff( $newMessages, $oldMessages );
-			$removed = array_diff( $oldMessages, $newMessages );
-
-			// Delete removed messages, insert added ones
-			if ( $removed ) {
-				$dbw->delete( 'msg_resource_links', array(
-						'mrl_resource' => $name,
-						'mrl_message' => $removed
-					), __METHOD__
-				);
-			}
-
-			$newLinksRows = array();
-
-			foreach ( $added as $message ) {
-				$newLinksRows[] = array(
-					'mrl_resource' => $name,
-					'mrl_message' => $message
-				);
-			}
-
-			if ( $newLinksRows ) {
-				$dbw->insert( 'msg_resource_links', $newLinksRows, __METHOD__,
-					array( 'IGNORE' ) // just in case
-				);
-			}
 		} catch ( Exception $e ) {
 			wfDebug( __METHOD__ . " failed to update DB: $e\n" );
 		}
@@ -273,24 +236,34 @@ class MessageBlobStore {
 				}
 			} while ( count( $updates ) );
 
-			// No need to update msg_resource_links because we didn't add
-			// or remove any messages, we just changed their contents.
 		} catch ( Exception $e ) {
 			wfDebug( __METHOD__ . " failed to update DB: $e\n" );
 		}
 	}
 
 	public function clear() {
-		// TODO: Give this some more thought
 		try {
 			// Not using TRUNCATE, because that needs extra permissions,
 			// which maybe not granted to the database user.
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->delete( 'msg_resource', '*', __METHOD__ );
-			$dbw->delete( 'msg_resource_links', '*', __METHOD__ );
 		} catch ( Exception $e ) {
 			wfDebug( __METHOD__ . " failed to update DB: $e\n" );
 		}
+	}
+
+	/**
+	 * @return ResourceLoader
+	 */
+	protected function getResourceLoader() {
+		// For back-compat this class supports instantiation without passing ResourceLoader
+		// Lazy-initialise this property because most callers don't need it.
+		if ( $this->resourceloader === null ) {
+			wfDebug( __CLASS__ . ' created without a ResourceLoader instance' );
+			$this->resourceloader = new ResourceLoader();
+		}
+
+		return $this->resourceloader;
 	}
 
 	/**
@@ -304,11 +277,15 @@ class MessageBlobStore {
 		$dbw = wfGetDB( DB_MASTER );
 
 		if ( is_null( $prevUpdates ) ) {
+			$rl = $this->getResourceLoader();
+			$moduleNames = $rl->getModulesByMessage( $key );
 			// Fetch all blobs referencing $key
 			$res = $dbw->select(
-				array( 'msg_resource', 'msg_resource_links' ),
+				array( 'msg_resource' ),
 				array( 'mr_resource', 'mr_lang', 'mr_blob', 'mr_timestamp' ),
-				array( 'mrl_message' => $key, 'mr_resource=mrl_resource' ),
+				array(
+					'mr_resource' => $moduleNames,
+				),
 				__METHOD__
 			);
 		} else {
