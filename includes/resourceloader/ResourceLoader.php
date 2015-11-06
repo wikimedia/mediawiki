@@ -274,7 +274,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			$this->registerTestModules();
 		}
 
-		$this->setMessageBlobStore( new MessageBlobStore() );
+		$this->setMessageBlobStore( new MessageBlobStore( $this ) );
 	}
 
 	/**
@@ -1067,6 +1067,23 @@ MESSAGE;
 		}
 
 		return $out;
+	}
+
+	/**
+	 * Get names of modules that use a certain message.
+	 *
+	 * @param string $messageKey
+	 * @return array List of module names
+	 */
+	public function getModulesByMessage( $messageKey ) {
+		$moduleNames = array();
+		foreach ( $this->getModuleNames() as $moduleName ) {
+			$module = $this->getModule( $moduleName );
+			if ( in_array( $messageKey, $module->getMessages() ) ) {
+				$moduleNames[] = $moduleName;
+			}
+		}
+		return $moduleNames;
 	}
 
 	/* Static Methods */
