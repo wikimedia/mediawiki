@@ -964,7 +964,7 @@ class ParserTest {
 			'site_stats', 'ipblocks', 'image', 'oldimage',
 			'recentchanges', 'watchlist', 'interwiki', 'logging',
 			'querycache', 'objectcache', 'job', 'l10n_cache', 'redirect', 'querycachetwo',
-			'archive', 'user_groups', 'page_props', 'category', 'msg_resource', 'msg_resource_links'
+			'archive', 'user_groups', 'page_props', 'category', 'msg_resource'
 		);
 
 		if ( in_array( $this->db->getType(), array( 'mysql', 'sqlite', 'oracle' ) ) ) {
