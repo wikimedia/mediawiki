@@ -209,7 +209,8 @@ class LocalisationCache {
 					$storeClass = 'LCStoreStaticArray';
 					break;
 				case 'detect':
-					$storeClass = $wgCacheDirectory ? 'LCStoreCDB' : 'LCStoreDB';
+					$cacheDir = $wgCacheDirectory ?: wfTempDir();
+					$storeClass = $cacheDir ? 'LCStoreCDB' : 'LCStoreDB';
 					break;
 				default:
 					throw new MWException(
