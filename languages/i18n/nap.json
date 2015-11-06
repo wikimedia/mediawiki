@@ -405,7 +405,7 @@
 	"userlogout": "Jèsce",
 	"notloggedin": "Acciesso nun affettuato",
 	"userlogin-noaccount": "Nun tenite ancora n'acciesso?",
-	"userlogin-joinproject": "Fà 'o riggistro ncopp'a {{SITENAME}}",
+	"userlogin-joinproject": "Facite 'o riggistro ncopp'a {{SITENAME}}",
 	"nologin": "Nun tenite ancora n'acciesso? '''$1'''.",
 	"nologinlink": "Crialo mmo",
 	"createaccount": "Cria nu cunto nuovo",

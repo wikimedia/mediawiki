@@ -3214,7 +3214,7 @@
 	"logentry-newusers-autocreate": "A conta de utilizador $1 foi criada automaticamente",
 	"logentry-protect-move_prot": "$1 {{GENDER:$2|moveu}} as preferências de proteção de $4 para $3",
 	"logentry-protect-unprotect": "$1 {{GENDER:$2|removido}} proteção de $3",
-	"logentry-protect-protect": "$1 {{GENDER:$2|protegidas}} $3 $4",
+	"logentry-protect-protect": "$1 {{GENDER:$2|protegeu}} $3 $4",
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|protegido}} $3 $4 [cascading]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|alterado}} nível de proteção para $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|alterado}} nível de proteção para us$3 $4 [cascading]",

@@ -642,7 +642,7 @@
 	"recentchanges-label-bot": "Este trocamiento era hecho por la parte de un bot",
 	"recentchanges-label-unpatrolled": "Este trocamiento no fue patrullado daínda",
 	"recentchanges-legend-plusminus": "(''±123'')",
-	"rcnotefrom": "Debasho se amostran los trokamientos desde '''$2''' (amostrados fina <b>$1</b>)",
+	"rcnotefrom": "Debasho se amostran {{PLURAL:$5|el trokamiento|los trokamientos}} desde '''$2''' (amostrados fina <b>$1</b>)",
 	"rclistfrom": "Amostrar los trocamientos muevos empeçando el $3 $2",
 	"rcshowhideminor": "$1 trocamientos chiquiticos",
 	"rcshowhidebots": "$1 botes",

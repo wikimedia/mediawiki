@@ -3184,6 +3184,7 @@
 	"logentry-newusers-create2": "$1 létrehozta $3 felhasználói fiókját",
 	"logentry-newusers-byemail": "Szerkesztői lap $3 néven létrehozva $1 által, jelszó kiküldve emailben.",
 	"logentry-newusers-autocreate": "$1 felhasználói fiók automatikusan létrehozva",
+	"logentry-protect-protect": "$1 {{GENDER:$2|levédte}} a(z) $3 lapot $4",
 	"logentry-rights-rights": "$1 megváltoztatta $3 csoporttagságát erről: $4 erre: $5",
 	"logentry-rights-rights-legacy": "$1 megváltoztatta $3 csoporttagságát",
 	"logentry-rights-autopromote": "$1 automatikusan előléptetve erről: $4 erre: $5",

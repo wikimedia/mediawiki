@@ -187,6 +187,7 @@
 	"apihelp-help-param-wrap": "在一个标准API响应结构中包裹输出。",
 	"apihelp-help-param-toc": "在HTML输出中包括目录。",
 	"apihelp-help-example-main": "主模块帮助。",
+	"apihelp-help-example-submodules": "用于<kbd>action=query</kbd>及其所有子模块的帮助。",
 	"apihelp-help-example-recursive": "一个页面中的所有帮助。",
 	"apihelp-help-example-help": "帮助模块本身的帮助。",
 	"apihelp-help-example-query": "两个查询子模块的帮助。",

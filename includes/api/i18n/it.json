@@ -111,6 +111,7 @@
 	"apihelp-filerevert-description": "Ripristina un file ad una versione precedente.",
 	"apihelp-filerevert-param-filename": "Nome del file di destinazione, senza il prefisso 'File:'.",
 	"apihelp-filerevert-example-revert": "Ripristina <kbd>Wiki.png</kbd> alla versione del <kbd>2011-03-05T15:27:40Z</kbd>.",
+	"apihelp-help-example-submodules": "Aiuto per <kbd>action=query</kbd> e tutti i suoi sotto-moduli.",
 	"apihelp-imagerotate-description": "Ruota una o più immagini.",
 	"apihelp-imagerotate-param-rotation": "Gradi di rotazione dell'immagine in senso orario.",
 	"apihelp-imagerotate-example-simple": "Ruota <kbd>File:Example.png</kbd> di <kbd>90</kbd> gradi.",

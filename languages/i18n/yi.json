@@ -2949,6 +2949,7 @@
 	"htmlform-yes": "יא",
 	"htmlform-cloner-create": "צולייגן נאך",
 	"htmlform-cloner-delete": "אַראָפּנעמען",
+	"htmlform-title-not-exists": "$1 עקזיסטירט נישט",
 	"sqlite-has-fts": "$1 מיט פולן-טעקסט זוכן שטיץ",
 	"sqlite-no-fts": "$1 אָן פֿולן-טעקסט זוכן שטיץ",
 	"logentry-delete-delete": "$1 {{GENDER:$2|האט אויסגעמעקט}} בלאט $3",

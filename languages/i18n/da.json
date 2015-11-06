@@ -53,7 +53,8 @@
 			"Jyllanj",
 			"Matma Rex",
 			"Poullindholm",
-			"Mads Haupt"
+			"Mads Haupt",
+			"Stefan2"
 		]
 	},
 	"tog-underline": "Understreg henvisninger:",
@@ -2939,7 +2940,7 @@
 	"version-poweredby-others": "andre",
 	"version-poweredby-translators": "translatewiki.net oversættere",
 	"version-credits-summary": "Vi vil gerne anerkende følgende personer for deres bidrag til [[Special:Version|MediaWiki]].",
-	"version-license-info": "MediaWiki er fri software; du kan redistribuere det og/eller ændre det under betingelserne i GNU General Public License som offentliggjort af Free Software Foundation; enten version 2 af licensen eller (efter eget valg) enhver senere version. \n\nMediaWiki distribueres i håb om at det vil være nyttigt, men UDEN NOGEN GARANTI; uden selv de underforståede garantier SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Se GNU General Public License for yderligere detaljer. \n\nDu skulle have modtaget [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi af GNU General Public License] sammen med dette program; og hvis ikke, så skriv til Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or [//www.gnu.org/licenses/old-licenses/gpl-2.0.html læs den online].",
+	"version-license-info": "MediaWiki er fri software; du kan redistribuere det og/eller ændre det under betingelserne i GNU General Public License som offentliggjort af Free Software Foundation; enten version 2 af licensen eller (efter eget valg) enhver senere version. \n\nMediaWiki distribueres i håb om at det vil være nyttigt, men UDEN NOGEN GARANTI; uden selv de underforståede garantier SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Se GNU General Public License for yderligere detaljer. \n\nDu skulle have modtaget [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi af GNU General Public License] sammen med dette program; og hvis ikke, så skriv til Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA eller [//www.gnu.org/licenses/old-licenses/gpl-2.0.html læs den online].",
 	"version-software": "Installeret software",
 	"version-software-product": "Produkt",
 	"version-software-version": "Version",
