@@ -121,12 +121,20 @@ class BrokenRedirectsPage extends QueryPage {
 			array( 'redirect' => 'no' )
 		);
 		$links = array();
-		$links[] = Linker::linkKnown(
-			$fromObj,
-			$this->msg( 'brokenredirects-edit' )->escaped(),
-			array(),
-			array( 'action' => 'edit' )
-		);
+		// if the page is editable, add an edit link
+		if (
+			// check user permissions
+			$this->getUser()->isAllowed( 'edit' ) &&
+			// check, if the content model is editable through action=edit
+			ContentHandler::getForTitle( $fromObj )->supportsDirectEditing()
+		) {
+			$links[] = Linker::linkKnown(
+				$fromObj,
+				$this->msg( 'brokenredirects-edit' )->escaped(),
+				array(),
+				array( 'action' => 'edit' )
+			);
+		}
 		$to = Linker::link(
 			$toObj,
 			null,
@@ -147,11 +155,35 @@ class BrokenRedirectsPage extends QueryPage {
 			);
 		}
 
-		$out .= $this->msg( 'parentheses' )->rawParams( $this->getLanguage()
-			->pipeList( $links ) )->escaped();
+		if ( $links ) {
+			$out .= $this->msg( 'parentheses' )->rawParams( $this->getLanguage()
+				->pipeList( $links ) )->escaped();
+		}
 		$out .= " {$arr} {$to}";
 
 		return $out;
+	}
+
+
+	/**
+	 * Cache page content model for performance
+	 *
+	 * @param IDatabase $db
+	 * @param ResultWrapper $res
+	 */
+	function preprocessResults( $db, $res ) {
+		if ( !$res->numRows() ) {
+			return;
+		}
+
+		$batch = new LinkBatch;
+		foreach ( $res as $row ) {
+			$batch->add( $row->namespace, $row->title );
+		}
+		$batch->execute();
+
+		// Back to start for display
+		$res->seek( 0 );
 	}
 
 	protected function getGroupName() {
