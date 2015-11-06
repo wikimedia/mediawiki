@@ -578,7 +578,8 @@ class MessageCache {
 		}
 
 		// Update the message in the message blob store
-		$blobStore = new MessageBlobStore();
+		$resourceloader = RequestContext::getMain()->getOutput()->getResourceLoader()
+		$blobStore = $resourceloader->getMessageBlobStore();
 		$blobStore->updateMessage( $wgContLang->lcfirst( $msg ) );
 
 		Hooks::run( 'MessageCacheReplace', array( $title, $text ) );
