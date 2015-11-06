@@ -39,6 +39,9 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 		if ( isset( $config['suggestions'] ) ) {
 			$this->suggestions = $config['suggestions'];
 		}
+		if ( isset( $config['highlight'] ) ) {
+			$this->highlight = $config['highlight'];
+		}
 
 		// Initialization
 		$this->addClasses( array( 'mw-widget-titleInputWidget' ) );
@@ -57,6 +60,9 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 		}
 		if ( $this->suggestions !== null ) {
 			$config['suggestions'] = $this->suggestions;
+		}
+		if ( $this->highlight !== null ) {
+			$config['highlight'] = $this->highlight;
 		}
 		return parent::getConfig( $config );
 	}
