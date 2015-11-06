@@ -421,11 +421,9 @@ if ( is_array( $wgExtraNamespaces ) ) {
 // To determine the user language, use $wgLang->getCode()
 $wgContLanguageCode = $wgLanguageCode;
 
-// Easy to forget to falsify $wgShowIPinHeader for static caches.
+// Easy to forget to falsify $wgDebugToolbar for static caches.
 // If file cache or squid cache is on, just disable this (DWIMD).
-// Do the same for $wgDebugToolbar.
 if ( $wgUseFileCache || $wgUseSquid ) {
-	$wgShowIPinHeader = false;
 	$wgDebugToolbar = false;
 }
 
