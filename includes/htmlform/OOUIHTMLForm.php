@@ -108,6 +108,29 @@ class OOUIHTMLForm extends HTMLForm {
 		return $html;
 	}
 
+	protected function wrapFieldSetSection( $legend, $section, $attributes ) {
+		// to get a user visible effect, wrap the fieldset into a framed panel layout
+		$layout = new OOUI\PanelLayout( array(
+			'expanded' => false,
+			'padded' => true,
+			'framed' => true,
+			'infusable' => false,
+		) );
+
+		$layout->appendContent(
+			new OOUI\FieldsetLayout( array(
+				'label' => $legend,
+				'infusable' => false,
+				'items' => array(
+					new OOUI\Widget( array(
+						'content' => new OOUI\HtmlSnippet( $section )
+					) ),
+				),
+			) + $attributes )
+		);
+		return $layout;
+	}
+
 	/**
 	 * Put a form section together from the individual fields' HTML, merging it and wrapping.
 	 * @param OOUI\\FieldLayout[] $fieldsHtml

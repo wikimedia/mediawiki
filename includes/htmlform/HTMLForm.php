@@ -1360,6 +1360,18 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
+	 * Wraps the given $section into an user-visible fieldset.
+	 *
+	 * @param string $legend Legend text for the fieldset
+	 * @param string $section The section content in plain Html
+	 * @param array $attributes Additional attributes for the fieldset
+	 * @return string The fieldset's Html
+	 */
+	protected function wrapFieldSetSection( $legend, $section, $attributes ) {
+		return Xml::fieldset( $legend, $section, $attributes ) . "\n";
+	}
+
+	/**
 	 * @todo Document
 	 *
 	 * @param array[]|HTMLFormField[] $fields Array of fields (either arrays or
@@ -1425,7 +1437,7 @@ class HTMLForm extends ContextSource {
 					if ( $fieldsetIDPrefix ) {
 						$attributes['id'] = Sanitizer::escapeId( "$fieldsetIDPrefix$key" );
 					}
-					$subsectionHtml .= Xml::fieldset( $legend, $section, $attributes ) . "\n";
+					$subsectionHtml .= $this->wrapFieldSetSection( $legend, $section, $attributes );
 				} else {
 					// Just return the inputs, nothing fancy.
 					$subsectionHtml .= $section;
