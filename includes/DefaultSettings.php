@@ -2440,10 +2440,8 @@ $wgStyleVersion = '303';
 
 /**
  * This will cache static pages for non-logged-in users to reduce
- * database traffic on public sites.
- * Automatically sets $wgShowIPinHeader = false
- * ResourceLoader requests to default language and skins are cached
- * as well as single module requests.
+ * database traffic on public sites. ResourceLoader requests to default
+ * language and skins are cached as well as single module requests.
  */
 $wgUseFileCache = false;
 
@@ -3161,13 +3159,6 @@ $wgWellFormedXml = true;
  * This is ignored if $wgMimeType is set to a non-XML MIME type.
  */
 $wgXhtmlNamespaces = array();
-
-/**
- * Show IP address, for non-logged in users. It's necessary to switch this off
- * for some forms of caching.
- * @warning Will disable file cache.
- */
-$wgShowIPinHeader = true;
 
 /**
  * Site notice shown at the top of each page
