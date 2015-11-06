@@ -179,7 +179,9 @@
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getUser = function () {
-		return mw.config.get( 'wgUserName' );
+		var username = mw.config.get( 'wgUserName' );
+		// Do not localise 'User:', we don't know the language of target wiki
+		return '[[User:' + username + '|' + username + ']]';
 	};
 
 	mw.ForeignStructuredUpload = ForeignStructuredUpload;
