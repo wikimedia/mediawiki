@@ -667,12 +667,6 @@ CREATE TABLE &mw_prefix.msg_resource (
 );
 CREATE UNIQUE INDEX &mw_prefix.msg_resource_u01 ON &mw_prefix.msg_resource (mr_resource, mr_lang);
 
-CREATE TABLE &mw_prefix.msg_resource_links (
-  mrl_resource VARCHAR2(255) NOT NULL,
-  mrl_message VARCHAR2(255) NOT NULL
-);
-CREATE UNIQUE INDEX &mw_prefix.msg_resource_links_u01 ON &mw_prefix.msg_resource_links (mrl_message, mrl_resource);
-
 CREATE TABLE &mw_prefix.module_deps (
   md_module VARCHAR2(255) NOT NULL,
   md_skin VARCHAR2(32) NOT NULL,
