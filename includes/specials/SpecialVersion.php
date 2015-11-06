@@ -1062,7 +1062,7 @@ class SpecialVersion extends SpecialPage {
 
 		foreach ( scandir( $extDir ) as $file ) {
 			$fullPath = $extDir . DIRECTORY_SEPARATOR . $file;
-			if ( preg_match( '/^((AUTHORS)|(CREDITS))(\.txt)?$/', $file ) &&
+			if ( preg_match( '/^((AUTHORS)|(CREDITS))(\.txt|\.wiki|\.mediawiki)?$/', $file ) &&
 				is_readable( $fullPath ) &&
 				is_file( $fullPath )
 			) {
