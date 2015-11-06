@@ -2075,7 +2075,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// The edit may have already been prepared via api.php?action=stashedit
-		$cachedEdit = $useCache && $wgAjaxEditStash && !$user->isAllowed( 'bot' )
+		$cachedEdit = $useCache && $wgAjaxEditStash
 			? ApiStashEdit::checkCache( $this->getTitle(), $content, $user )
 			: false;
 
