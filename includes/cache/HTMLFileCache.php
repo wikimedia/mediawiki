@@ -96,12 +96,12 @@ class HTMLFileCache extends FileCacheBase {
 	 * @return bool
 	 */
 	public static function useFileCache( IContextSource $context ) {
-		global $wgUseFileCache, $wgShowIPinHeader, $wgDebugToolbar, $wgContLang;
+		global $wgUseFileCache, $wgDebugToolbar, $wgContLang;
 		if ( !$wgUseFileCache ) {
 			return false;
 		}
-		if ( $wgShowIPinHeader || $wgDebugToolbar ) {
-			wfDebug( "HTML file cache skipped. Either \$wgShowIPinHeader and/or \$wgDebugToolbar on\n" );
+		if ( $wgDebugToolbar ) {
+			wfDebug( "HTML file cache skipped. \$wgDebugToolbar on\n" );
 
 			return false;
 		}
