@@ -22,75 +22,74 @@
 /**
  * @method suggestions
  * @chainable
- * @return {jQuery}
  *
- * @param {Object} options
+ * @param {Object} $
  *
- * @param {Function} [options.fetch] Callback that should fetch suggestions and set the suggestions
+ * @param {Function} [$.fetch] Callback that should fetch suggestions and set the suggestions
  *  property. Called in context of the text box.
- * @param {string} options.fetch.query
- * @param {Function} options.fetch.response Callback to receive the suggestions with
- * @param {Array} options.fetch.response.suggestions
- * @param {number} options.fetch.maxRows
+ * @param {string} $.fetch.query
+ * @param {Function} $.fetch.response Callback to receive the suggestions with
+ * @param {Array} $.fetch.response.suggestions
+ * @param {number} $.fetch.maxRows
  *
- * @param {Function} [options.cancel] Callback function to call when any pending asynchronous
+ * @param {Function} [$.cancel] Callback function to call when any pending asynchronous
  *  suggestions fetches. Called in context of the text box.
  *
- * @param {Object} [options.special] Set of callbacks for rendering and selecting.
+ * @param {Object} [$.special] Set of callbacks for rendering and selecting.
  *
- * @param {Function} options.special.render Called in context of the suggestions-special element.
- * @param {string} options.special.render.query
- * @param {Object} options.special.render.context
+ * @param {Function} $.special.render Called in context of the suggestions-special element.
+ * @param {string} $.special.render.query
+ * @param {Object} $.special.render.context
  *
- * @param {Function} options.special.select Called in context of the suggestions-result-current element.
- * @param {jQuery} options.special.select.$textbox
+ * @param {Function} $.special.select Called in context of the suggestions-result-current element.
+ * @param {jQuery} $.special.select.$textbox
  *
- * @param {Object} [options.result] Set of callbacks for rendering and selecting
+ * @param {Object} [$.result] Set of callbacks for rendering and selecting
  *
- * @param {Function} options.result.render Called in context of the suggestions-result element.
- * @param {string} options.result.render.suggestion
- * @param {Object} options.result.render.context
+ * @param {Function} $.result.render Called in context of the suggestions-result element.
+ * @param {string} $.result.render.suggestion
+ * @param {Object} $.result.render.context
  *
- * @param {Function} options.result.select Called in context of the suggestions-result-current element.
- * @param {jQuery} options.result.select.$textbox
+ * @param {Function} $.result.select Called in context of the suggestions-result-current element.
+ * @param {jQuery} $.result.select.$textbox
  *
- * @param {Object} [options.update] Set of callbacks for listening to a change in the text input.
+ * @param {Object} [$.update] Set of callbacks for listening to a change in the text input.
  *
- * @param {Function} options.update.before Called right after the user changes the textbox text.
- * @param {Function} options.update.after Called after results are updated either from the cache or
+ * @param {Function} $.update.before Called right after the user changes the textbox text.
+ * @param {Function} $.update.after Called after results are updated either from the cache or
  * the API as a result of the user input.
  *
- * @param {jQuery} [options.$region=this] The element to place the suggestions below and match width of.
+ * @param {jQuery} [$.$region=this] The element to place the suggestions below and match width of.
  *
- * @param {string[]} [options.suggestions] Array of suggestions to display.
+ * @param {string[]} [$.suggestions] Array of suggestions to display.
  *
- * @param {number} [options.maxRows=10] Maximum number of suggestions to display at one time.
+ * @param {number} [$.maxRows=10] Maximum number of suggestions to display at one time.
  *  Must be between 1 and 100.
  *
- * @param {number} [options.delay=120] Number of milliseconds to wait for the user to stop typing.
+ * @param {number} [$.delay=120] Number of milliseconds to wait for the user to stop typing.
  *  Must be between 0 and 1200.
  *
- * @param {boolean} [options.cache=false] Whether to cache results from a fetch.
+ * @param {boolean} [$.cache=false] Whether to cache results from a fetch.
  *
- * @param {number} [options.cacheMaxAge=60000] Number of milliseconds to cache results from a fetch.
+ * @param {number} [$.cacheMaxAge=60000] Number of milliseconds to cache results from a fetch.
  *  Must be higher than 1. Defaults to 1 minute.
  *
- * @param {boolean} [options.submitOnClick=false] Whether to submit the form containing the textbox
+ * @param {boolean} [$.submitOnClick=false] Whether to submit the form containing the textbox
  *  when a suggestion is clicked.
  *
- * @param {number} [options.maxExpandFactor=3] Maximum suggestions box width relative to the textbox
+ * @param {number} [$.maxExpandFactor=3] Maximum suggestions box width relative to the textbox
  *  width. If set to e.g. 2, the suggestions box will never be grown beyond 2 times the width of
  *  the textbox. Must be higher than 1.
  *
- * @param {string} [options.expandFrom=auto] Which direction to offset the suggestion box from.
+ * @param {string} [$.expandFrom=auto] Which direction to offset the suggestion box from.
  *  Values 'start' and 'end' translate to left and right respectively depending on the directionality
  *   of the current document, according to `$( 'html' ).css( 'direction' )`.
  *   Valid values: "left", "right", "start", "end", and "auto".
  *
- * @param {boolean} [options.positionFromLeft] Sets `expandFrom=left`, for backwards
+ * @param {boolean} [$.positionFromLeft] Sets `expandFrom=left`, for backwards
  *  compatibility.
  *
- * @param {boolean} [options.highlightInput=false] Whether to highlight matched portions of the
+ * @param {boolean} [$.highlightInput=false] Whether to highlight matched portions of the
  *  input or not.
  */
 
