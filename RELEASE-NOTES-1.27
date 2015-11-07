@@ -98,6 +98,8 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* (T113688) Change default numerals from Gurmukhi to Arabic for Punjabi locale.
+
 === Other changes in 1.27 ===
 * ProfilerOutputUdp was removed. Note that there is a ProfilerOutputStats class.
 * WikiPage::doDeleteArticleReal() and WikiPage::doDeleteArticle() now
