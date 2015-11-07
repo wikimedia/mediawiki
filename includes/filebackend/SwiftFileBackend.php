@@ -861,7 +861,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( !empty( $params['topOnly'] ) ) {
 			$status = $this->objectListing( $fullCont, 'names', $limit, $after, $prefix, '/' );
 			if ( !$status->isOk() ) {
-				return $dirs; // error
+				throw new FileBackendError( "Iterator page I/O error: {$status->getMessage()}" );
 			}
 			$objects = $status->value;
 			foreach ( $objects as $object ) { // files and directories
@@ -880,7 +880,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$status = $this->objectListing( $fullCont, 'names', $limit, $after, $prefix );
 
 			if ( !$status->isOk() ) {
-				return $dirs; // error
+				throw new FileBackendError( "Iterator page I/O error: {$status->getMessage()}" );
 			}
 
 			$objects = $status->value;
@@ -956,7 +956,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		// Reformat this list into a list of (name, stat array or null) entries
 		if ( !$status->isOk() ) {
-			return $files; // error
+			throw new FileBackendError( "Iterator page I/O error: {$status->getMessage()}" );
 		}
 
 		$objects = $status->value;
