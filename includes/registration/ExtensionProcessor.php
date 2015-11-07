@@ -90,6 +90,8 @@ class ExtensionProcessor implements Processor {
 	 */
 	protected static $notAttributes = array(
 		'callback',
+		'Require',
+		'RequireOnce',
 		'Hooks',
 		'namespaces',
 		'ResourceFileModulePaths',
@@ -150,9 +152,11 @@ class ExtensionProcessor implements Processor {
 	 * @return array
 	 */
 	public function extractInfo( $path, array $info, $version ) {
+		$dir = dirname( $path );
+		$this->extractRequire( $dir, $info );
+		$this->extractRequireOnce( $dir, $info );
 		$this->extractConfig( $info );
 		$this->extractHooks( $info );
-		$dir = dirname( $path );
 		$this->extractExtensionMessagesFiles( $dir, $info );
 		$this->extractMessagesDirs( $dir, $info );
 		$this->extractNamespaces( $info );
@@ -200,6 +204,22 @@ class ExtensionProcessor implements Processor {
 		}
 
 		return $requirements;
+	}
+
+	protected function extractRequire( $dir, array $info ) {
+		if ( isset( $info['Require'] ) ) {
+			foreach ( $info['Require'] as $path ) {
+				$this->globals['wgRequire'] = require "$dir/$path";
+			}
+		}
+	}
+
+	protected function extractRequireOnce( $dir, array $info ) {
+		if ( isset( $info['RequireOnce'] ) ) {
+			foreach ( $info['RequireOnce'] as $path ) {
+				$this->globals['wgRequireOnce'] = require_once "$dir/$path"
+			}
+		}
 	}
 
 	protected function extractHooks( array $info ) {
