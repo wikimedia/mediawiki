@@ -264,7 +264,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 
 			if ( $fld_implicitgroups || $fld_groups || $fld_rights ) {
-				$user = User::newFromId( $row->user_id );
 				$implicitGroups = User::newFromId( $row->user_id )->getAutomaticGroups();
 				if ( isset( $row->groups ) && $row->groups !== '' ) {
 					$groups = array_merge( $implicitGroups, explode( '|', $row->groups ) );

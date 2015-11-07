@@ -225,8 +225,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @return array|null Key-val array of 'width' and 'height', or null
 	 */
 	public function getScale( $params ) {
-		$p = $this->getModulePrefix();
-
 		if ( $params['urlwidth'] != -1 ) {
 			$scale = array();
 			$scale['width'] = $params['urlwidth'];

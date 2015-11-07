@@ -56,7 +56,6 @@ class ApiProtect extends ApiBase {
 		}
 
 		$restrictionTypes = $titleObj->getRestrictionTypes();
-		$db = $this->getDB();
 
 		$protections = array();
 		$expiryarray = array();

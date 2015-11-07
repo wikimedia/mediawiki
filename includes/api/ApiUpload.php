@@ -627,7 +627,6 @@ class ApiUpload extends ApiBase {
 	protected function transformWarnings( $warnings ) {
 		if ( $warnings ) {
 			// Add indices
-			$result = $this->getResult();
 			ApiResult::setIndexedTagName( $warnings, 'warning' );
 
 			if ( isset( $warnings['duplicate'] ) ) {

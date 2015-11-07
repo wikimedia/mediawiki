@@ -357,7 +357,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		// Parse and validate continuation parameter
 		$this->cont = array();
 		if ( $this->params['continue'] !== null ) {
-			$db = $this->getDB();
 			$cont = explode( '|', $this->params['continue'] );
 
 			switch ( count( $cont ) ) {
