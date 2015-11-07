@@ -310,6 +310,7 @@ class ApiHelp extends ApiBase {
 				);
 			}
 
+			$flags = $module->getHelpFlags();
 			$help['flags'] .= Html::openElement( 'div',
 				array( 'class' => 'apihelp-block apihelp-flags' ) );
 			$msg = $context->msg( 'api-help-flags' );
@@ -319,7 +320,7 @@ class ApiHelp extends ApiBase {
 				);
 			}
 			$help['flags'] .= Html::openElement( 'ul' );
-			foreach ( $module->getHelpFlags() as $flag ) {
+			foreach ( $flags as $flag ) {
 				$help['flags'] .= Html::rawElement( 'li', null,
 					self::wrap( $context->msg( "api-help-flag-$flag" ), "apihelp-flag-$flag" )
 				);
