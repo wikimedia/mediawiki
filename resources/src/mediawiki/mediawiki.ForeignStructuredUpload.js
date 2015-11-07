@@ -17,11 +17,36 @@
 	 * @inheritdoc
 	 */
 	function ForeignStructuredUpload( target, apiconfig ) {
+		var crossWikiMsg;
+
 		this.date = undefined;
 		this.descriptions = [];
 		this.categories = [];
 
+		// parent constructor
 		mw.ForeignUpload.call( this, target, apiconfig );
+
+		if ( target !== 'local' ) {
+			// preload information template message
+			this.apiPromise = this.apiPromise.then( function ( api ) {
+				api.loadMessages( [
+					// Use this template, instead of a pre-defined Template:Information, if defined
+					'upload-information-template',
+					// Use this as the {{own}} template, instead of {{own}}, if defined
+					'upload-information-own',
+					// If this message exists, don't wrap the descriptions into language templates
+					'upload-information-language',
+					'upload-information-crosswikifrom'
+				] );
+
+				crossWikiMsg = mw.message( 'upload-information-crosswikifrom' );
+				if ( crossWikiMsg.exists() ) {
+					this.setComment( crossWikiMsg.replace( '$HOST', location.host ) );
+				}
+
+				return api;
+			} );
+		}
 	}
 
 	OO.inheritClass( ForeignStructuredUpload, mw.ForeignUpload );
@@ -83,24 +108,17 @@
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getText = function () {
-		return (
-			'== {{int:filedesc}} ==\n' +
-			'{{' +
-			this.getTemplateName() +
-			'\n|description=' +
-			this.getDescriptions() +
-			'\n|date=' +
-			this.getDate() +
-			'\n|source=' +
-			this.getSource() +
-			'\n|author=' +
-			this.getUser() +
-			'\n}}\n\n' +
-			'== {{int:license-header}} ==\n' +
-			this.getLicense() +
-			'\n\n' +
-			this.getCategories()
-		);
+		var infoMsg = mw.message( 'upload-information-template' );
+
+		return infoMsg.plain()
+			// replace "magic words" with the given information
+			.replace( '$TEMPLATENAME', this.getTemplateName() )
+			.replace( '$DESCRIPTION', this.getDescriptions() )
+			.replace( '$DATE', this.getDate() )
+			.replace( '$SOURCE', this.getSource() )
+			.replace( '$AUTHOR', this.getUser() )
+			.replace( '$LICENSE', this.getLicense() )
+			.replace( '$CATEGORIES', this.getCategories() );
 	};
 
 	/**
@@ -136,11 +154,17 @@
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getDescriptions = function () {
-		var i, desc, templateCalls = [];
+		var i, desc,
+			templateCalls = [],
+			useLang = mw.message( 'upload-information-language' ).plain() === '-';
 
 		for ( i = 0; i < this.descriptions.length; i++ ) {
 			desc = this.descriptions[ i ];
-			templateCalls.push( '{{' + desc.language + '|1=' + desc.text + '}}' );
+			if ( useLang ) {
+				templateCalls.push( '{{' + desc.language + '|1=' + desc.text + '}}' );
+			} else {
+				templateCalls.push( desc.text );
+			}
 		}
 
 		return templateCalls.join( '\n' );
@@ -187,7 +211,12 @@
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getSource = function () {
-		return '{{own}}';
+		var msg = mw.message( 'upload-information-own' );
+		if ( msg.plain() !== '-' ) {
+			return msg.plain();
+		} else {
+			return '{{own}}';
+		}
 	};
 
 	/**

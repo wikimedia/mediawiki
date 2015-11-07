@@ -1166,8 +1166,14 @@ return [
 	'mediawiki.ForeignStructuredUpload' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.ForeignStructuredUpload.js',
 		'dependencies' => [
+			'mediawiki.api.messages',
 			'mediawiki.ForeignUpload',
 		],
+		'messages' => [
+			'upload-information-template',
+			'upload-information-own',
+			'upload-information-language',
+		]
 	],
 	'mediawiki.Upload.Dialog' => [
 		'scripts' => [
