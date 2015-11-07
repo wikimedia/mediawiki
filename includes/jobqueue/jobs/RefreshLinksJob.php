@@ -216,10 +216,10 @@ class RefreshLinksJob extends Job {
 			$title, null, !empty( $this->params['useRecursiveLinksUpdate'] ), $parserOutput );
 		foreach ( $updates as $key => $update ) {
 			if ( $update instanceof LinksUpdate ) {
-				if ( isset( $this->params['triggeredRecursive'] ) ) {
+				if ( !empty( $this->params['triggeredRecursive'] ) ) {
 					$update->setTriggeredRecursive();
 				}
-				if ( isset( $this->params['triggeringUser'] ) && $this->params['triggeringUser'] ) {
+				if ( !empty( $this->params['triggeringUser'] ) ) {
 					$userInfo = $this->params['triggeringUser'];
 					if ( $userInfo['userId'] ) {
 						$user = User::newFromId( $userInfo['userId'] );
@@ -229,7 +229,7 @@ class RefreshLinksJob extends Job {
 					}
 					$update->setTriggeringUser( $user );
 				}
-				if ( isset( $this->params['triggeringRevisionId'] ) && $this->params['triggeringRevisionId'] ) {
+				if ( !empty( $this->params['triggeringRevisionId'] ) ) {
 					$revision = Revision::newFromId( $this->params['triggeringRevisionId'] );
 					if ( $revision === null ) {
 						$revision = Revision::newFromId(
