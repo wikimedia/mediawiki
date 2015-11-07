@@ -148,7 +148,7 @@ class HTMLFileCache extends FileCacheBase {
 
 		$context->getOutput()->sendCacheControl();
 		header( "Content-Type: $wgMimeType; charset=UTF-8" );
-		header( "Content-Language: $wgLanguageCode" );
+		header( 'Content-Language: ' . wfBCP47( $wgLanguageCode ) );
 		if ( $this->useGzip() ) {
 			if ( wfClientAcceptsGzip() ) {
 				header( 'Content-Encoding: gzip' );
