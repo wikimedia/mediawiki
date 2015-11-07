@@ -912,6 +912,12 @@ return array(
 			'mediawiki.api',
 		),
 	),
+	'mediawiki.api.messages' => array(
+		'scripts' => 'resources/src/mediawiki/api/messages.js',
+		'dependencies' => array(
+			'mediawiki.api',
+		),
+	),
 	'mediawiki.content.json' => array(
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki/mediawiki.content.json.css',
