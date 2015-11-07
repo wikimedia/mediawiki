@@ -1365,8 +1365,6 @@ class LocalFile extends File {
 		$logId = $logEntry->insert();
 
 		if ( $descTitle->exists() ) {
-			// Page exists, do RC entry now (otherwise we wait for later)
-			$logEntry->publish( $logId );
 			// Use own context to get the action text in content language
 			$formatter = LogFormatter::newFromEntry( $logEntry );
 			$formatter->setContext( RequestContext::newExtraneousContext( $descTitle ) );
@@ -1407,6 +1405,8 @@ class LocalFile extends File {
 		) {
 			# Update memcache after the commit
 			$that->invalidateCache();
+			# Page exists, do RC entry now (otherwise we wait for later)
+			$logEntry->publish( $logId );
 
 			if ( $newPageContent ) {
 				# New file page; create the description page.
@@ -1423,7 +1423,6 @@ class LocalFile extends File {
 				// Now that the page exists, make an RC entry.
 				// This relies on the resetArticleID() call in WikiPage::insertOn(),
 				// which is triggered on $descTitle by doEditContent() above.
-				$logEntry->publish( $logId );
 				if ( isset( $status->value['revision'] ) ) {
 					/** @var $rev Revision */
 					$rev = $status->value['revision'];
