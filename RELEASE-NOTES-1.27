@@ -45,7 +45,11 @@ production.
    creation of passwordless "system" users for logged actions.
 * $wgMaxSquidPurgeTitles was removed.
 * $wgAjaxWatch was removed. This is now enabled by default.
-* (T27397) WebP is enabled by default as an uploadable filetype
+* $wgUseInstantCommons now hotlinks Commons images by default instead of 
+  downloading originals and thumbnailing them locally. This allows wikis to save
+  on CPU and bandwidth while reducing time to first byte for pages, even without
+  a thumbnail handler. See $wgForeignFileRepos documentation for tweaks.
+* (T27397) WebP is enabled by default as an uploadable filetype.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
