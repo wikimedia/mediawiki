@@ -800,7 +800,6 @@ class RecentChange {
 		$ip = '',
 		$deleted = 0
 	) {
-
 		$rc = new RecentChange;
 		$rc->mTitle = $categoryTitle;
 		$rc->mPerformer = $user;

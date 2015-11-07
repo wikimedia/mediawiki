@@ -229,6 +229,16 @@ class RefreshLinksJob extends Job {
 					}
 					$update->setTriggeringUser( $user );
 				}
+				if ( isset( $this->params['triggeringRevisionId'] ) && $this->params['triggeringRevisionId'] ) {
+					$revision = Revision::newFromId( $this->params['triggeringRevisionId'] );
+					if ( $revision === null ) {
+						$revision = Revision::newFromId(
+							$this->params['triggeringRevisionId'],
+							Revision::READ_LATEST
+						);
+					}
+					$update->setRevision( $revision );
+				}
 			}
 		}
 

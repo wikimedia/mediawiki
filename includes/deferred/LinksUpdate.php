@@ -1011,6 +1011,13 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		} else {
 			$userInfo = false;
 		}
+
+		if ( $this->mRevision ) {
+			$triggeringRevisionId = $this->mRevision->getId();
+		} else {
+			$triggeringRevisionId = false;
+		}
+
 		return array(
 			'wiki' => $this->mDb->getWikiID(),
 			'job'  => new JobSpecification(
@@ -1020,6 +1027,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 					'rootJobTimestamp' => $this->mParserOutput->getCacheTime(),
 					'useRecursiveLinksUpdate' => $this->mRecursive,
 					'triggeringUser' => $userInfo,
+					'triggeringRevisionId' => $triggeringRevisionId,
 				),
 				array( 'removeDuplicates' => true ),
 				$this->getTitle()
