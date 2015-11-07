@@ -1166,6 +1166,7 @@ return [
 	'mediawiki.ForeignStructuredUpload' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.ForeignStructuredUpload.js',
 		'dependencies' => [
+			'mediawiki.api.messages',
 			'mediawiki.ForeignUpload',
 		],
 	],
