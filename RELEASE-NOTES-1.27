@@ -73,6 +73,7 @@ production.
   by using ApiMessage instances instead of strings for the $result value.
 * $wgAPIMaxLagThreshold was added to limit bot changes when databases lag
   becomes too high.
+* Upgrade jQuery hoverIntent to v1.8.1.
 
 ==== External libraries ====
 
