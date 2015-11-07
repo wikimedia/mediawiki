@@ -39,6 +39,7 @@ class ApiContinuationManager {
 	 * @param ApiBase $module Module starting the continuation
 	 * @param ApiBase[] $allModules Contains ApiBase instances that will be executed
 	 * @param array $generatedModules Names of modules that depend on the generator
+	 * @throws UsageException
 	 */
 	public function __construct(
 		ApiBase $module, array $allModules = array(), array $generatedModules = array()

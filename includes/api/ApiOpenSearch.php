@@ -311,7 +311,7 @@ class ApiOpenSearch extends ApiBase {
 	 * Extension:ActiveAbstract.
 	 *
 	 * @param string $text
-	 * @param int $len Target length; actual result will continue to the end of a sentence.
+	 * @param int $length Target length; actual result will continue to the end of a sentence.
 	 * @return string
 	 */
 	public static function trimExtract( $text, $length ) {
