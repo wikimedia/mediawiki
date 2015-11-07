@@ -515,7 +515,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$vals['thumberror'] = $mto->toText();
 				}
 			}
-			$vals['url'] = wfExpandUrl( $file->getFullURL(), PROTO_CURRENT );
+			$vals['url'] = wfExpandUrl( $file->getFullUrl(), PROTO_CURRENT );
 			$vals['descriptionurl'] = wfExpandUrl( $file->getDescriptionUrl(), PROTO_CURRENT );
 		}
 

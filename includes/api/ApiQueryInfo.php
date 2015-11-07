@@ -222,7 +222,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	public static function getEmailToken( $pageid, $title ) {
 		global $wgUser;
-		if ( !$wgUser->canSendEmail() || $wgUser->isBlockedFromEmailUser() ) {
+		if ( !$wgUser->canSendEmail() || $wgUser->isBlockedFromEmailuser() ) {
 			return false;
 		}
 
@@ -747,7 +747,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->addFieldsIf( 'wl_notificationtimestamp', $this->fld_notificationtimestamp );
 		$this->addWhere( array(
 			$lb->constructSet( 'wl', $db ),
-			'wl_user' => $user->getID()
+			'wl_user' => $user->getId()
 		) );
 
 		$res = $this->select( __METHOD__ );

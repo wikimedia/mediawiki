@@ -84,7 +84,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					$this->dieUsageMsg( array( 'nosuchrevid', $params['diffto'] ) );
 				}
 				if ( !$difftoRev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
-					$this->setWarning( "Couldn't diff to r{$difftoRev->getID()}: content is hidden" );
+					$this->setWarning( "Couldn't diff to r{$difftoRev->getId()}: content is hidden" );
 					$params['diffto'] = null;
 				}
 			}
@@ -392,7 +392,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 						$engine->setContent( $content, $difftocontent );
 					}
 				} else {
-					$engine = $handler->createDifferenceEngine( $context, $revision->getID(), $this->diffto );
+					$engine = $handler->createDifferenceEngine( $context, $revision->getId(), $this->diffto );
 					$vals['diff']['from'] = $engine->getOldid();
 					$vals['diff']['to'] = $engine->getNewid();
 				}

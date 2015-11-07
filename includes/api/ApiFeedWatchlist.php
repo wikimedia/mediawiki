@@ -181,7 +181,7 @@ class ApiFeedWatchlist extends ApiBase {
 			// Probably a formerly-valid title that's now conflicting with an
 			// interwiki prefix or the like.
 			if ( isset( $info['pageid'] ) ) {
-				$title = Title::newFromId( $info['pageid'] );
+				$title = Title::newFromID( $info['pageid'] );
 				$curidParam = array( 'curid' => $info['pageid'] );
 			}
 			if ( !$title || $title->isExternal() ) {

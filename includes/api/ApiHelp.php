@@ -180,7 +180,7 @@ class ApiHelp extends ApiBase {
 					$href = $m[2] === '' ? '#' . $m[1] : $m[2];
 				} elseif ( $helptitle !== null ) {
 					$href = Title::newFromText( str_replace( '$1', $m[1], $helptitle ) . $m[2] )
-						->getFullUrl();
+						->getFullURL();
 				} else {
 					$href = wfAppendQuery( wfScript( 'api' ), array(
 						'action' => 'help',
