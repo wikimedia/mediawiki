@@ -26,6 +26,8 @@
  */
 class ApiFeedRecentChanges extends ApiBase {
 
+	private $params;
+
 	/**
 	 * This module uses a custom feed wrapper printer.
 	 *
