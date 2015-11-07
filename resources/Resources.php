@@ -1154,6 +1154,7 @@ return array(
 	'mediawiki.ForeignStructuredUpload' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.ForeignStructuredUpload.js',
 		'dependencies' => array(
+			'mediawiki.api.messages',
 			'mediawiki.ForeignUpload',
 		),
 	),
