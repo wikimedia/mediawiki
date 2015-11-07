@@ -98,7 +98,8 @@ table.toc td {
 /* Ignored by IE7 and lower */
 .tocnumber:after {
 	content: "";
-	padding-right: 0.5em;
+	display: inline-block;
+	width: 0.5em;
 }
 
 /* Warning */
