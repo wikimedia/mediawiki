@@ -340,6 +340,7 @@
 	"missingarticle-rev": "(versija#: $1)",
 	"missingarticle-diff": "(Skirt.: $1, $2)",
 	"readonly_lag": "Duomenų bazė buvo automatiškai užrakinta, kol pagalbinės duomenų bazės prisivys pagrindinę",
+	"nonwrite-api-promise-error": "'Promise-Non-Write-API-Action' HTTP antraštė buvo išsiųsta, bet užklausa buvo API įrašymo moduliui.",
 	"internalerror": "Vidinė klaida",
 	"internalerror_info": "Vidinė klaida: $1",
 	"internalerror-fatal-exception": " \"$1\" tipo lemiama išimtis",

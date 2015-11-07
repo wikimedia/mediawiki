@@ -317,6 +317,7 @@
 	"missingarticle-rev": "(nummero 'e verzione: $1)",
 	"missingarticle-diff": "(Diff: $1, $2)",
 	"readonly_lag": "'O database s'è bloccato automaticamente pe' tramente ca 'e servers 'e database schiave sincronizzano c' 'o server masto.",
+	"nonwrite-api-promise-error": "'O cap' 'e paggena HTTP 'Promise-Non-Write-API-Action' s'è mannato ma 'a richiesta era a nu modulo API 'e screttura.",
 	"internalerror": "Errore 'nterno",
 	"internalerror_info": "Errore 'nterno: $1",
 	"internalerror-fatal-exception": "Errore irreversibbele 'e tipo \"$1\"",

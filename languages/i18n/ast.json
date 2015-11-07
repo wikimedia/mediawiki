@@ -317,6 +317,7 @@
 	"missingarticle-rev": "(núm. revisión: $1)",
 	"missingarticle-diff": "(Diff: $1, $2)",
 	"readonly_lag": "La base de datos candóse automáticamente mentes los sirvidores de la base de datos esclava se sincronicen cola maestra",
+	"nonwrite-api-promise-error": "Unvióse la testera HTTP 'Promise-Non-Write-API-Action', pero la solicitú foi pa un módulu d'escritura de la API.",
 	"internalerror": "Fallu internu",
 	"internalerror_info": "Fallu internu: $1",
 	"internalerror-fatal-exception": "Escepción fatal de tipu «$1»",

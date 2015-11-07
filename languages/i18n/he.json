@@ -338,6 +338,7 @@
 	"missingarticle-rev": "(מספר גרסה: $1)",
 	"missingarticle-diff": "(השוואת הגרסאות: $1, $2)",
 	"readonly_lag": "בסיס הנתונים ננעל אוטומטית כדי לאפשר לבסיסי הנתונים המשניים להתעדכן מהבסיס הראשי.",
+	"nonwrite-api-promise-error": "כותרת ה־HTTP‏ 'Promise-Non-Write-API-Action' נשלחה, אבל הבקשה הייתה למודול כתיבה של API.",
 	"internalerror": "שגיאה פנימית",
 	"internalerror_info": "שגיאה פנימית: $1",
 	"internalerror-fatal-exception": "שגיאה חמורה מסוג \"$1\"",

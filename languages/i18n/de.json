@@ -389,6 +389,7 @@
 	"missingarticle-rev": "(Versionsnummer: $1)",
 	"missingarticle-diff": "(Unterschied zwischen Versionen: $1, $2)",
 	"readonly_lag": "Die Datenbank wurde automatisch für Schreibzugriffe gesperrt, damit sich die verteilten Datenbankserver (slaves) mit dem Hauptdatenbankserver (master) abgleichen können.",
+	"nonwrite-api-promise-error": "Der HTTP-Header „Promise-Non-Write-API-Action“ wurde gesendet, aber die Anfrage richtete sich an ein API-Schreibmodul.",
 	"internalerror": "Interner Fehler",
 	"internalerror_info": "Interner Fehler: $1",
 	"internalerror-fatal-exception": "Fataler Ausnahmefehler des Typs „$1“",

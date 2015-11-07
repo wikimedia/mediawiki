@@ -322,6 +322,7 @@
 	"missingarticle-rev": "(вэрсія № $1)",
 	"missingarticle-diff": "(Розьніца: $1, $2)",
 	"readonly_lag": "База зьвестак была аўтаматычна заблякаваная да выкананьня рэплікацыі галоўнай базы зьвестак з другаснымі",
+	"nonwrite-api-promise-error": "Быў дасланы HTTP-загаловак «Promise-Non-Write-API-Action», але запыт быў зроблены да модулю запісу API.",
 	"internalerror": "Унутраная памылка",
 	"internalerror_info": "Унутраная памылка: $1",
 	"internalerror-fatal-exception": "Фатальнае выключэньне тыпу «$1»",

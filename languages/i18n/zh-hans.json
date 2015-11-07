@@ -394,6 +394,7 @@
 	"missingarticle-rev": "（版本#：$1）",
 	"missingarticle-diff": "（差异：$1，$2）",
 	"readonly_lag": "附属数据库服务器正在将缓存更新到主服务器上，数据库已被自动锁定",
+	"nonwrite-api-promise-error": "“Promise-Non-Write-API-Action”HTTP报头已发送，但请求是一个API编写模块。",
 	"internalerror": "内部错误",
 	"internalerror_info": "内部错误：$1",
 	"internalerror-fatal-exception": "类型“$1”的致命错误",

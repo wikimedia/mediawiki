@@ -40,7 +40,8 @@
 			"Grin",
 			"Macofe",
 			"Nyuszika7H",
-			"Matma Rex"
+			"Matma Rex",
+			"JulesWinnfield-hu"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -1533,7 +1534,7 @@
 	"statistics-header-edits": "Szerkesztési statisztika",
 	"statistics-header-users": "Szerkesztői statisztika",
 	"statistics-header-hooks": "További statisztikák",
-	"statistics-articles": "Tartalommal rendelkező lapok",
+	"statistics-articles": "Tartalmi lapok",
 	"statistics-pages": "Lapok száma",
 	"statistics-pages-desc": "A wikiben található összes lap, beleértve a vitalapokat és az átirányításokat is",
 	"statistics-files": "Feltöltött fájlok",
