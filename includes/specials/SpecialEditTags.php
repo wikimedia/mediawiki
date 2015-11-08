@@ -285,11 +285,13 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		// If there is just one item, provide the user with a multi-select field
 		$list = $this->getList();
 		$tags = [];
+		$disallowedTags = ChangeTags::listSoftwareDefinedTags();
 		if ( $list->length() == 1 ) {
 			$list->reset();
 			$tags = $list->current()->getTags();
 			if ( $tags ) {
 				$tags = explode( ',', $tags );
+				$tags = array_diff( $tags, $disallowedTags );
 			} else {
 				$tags = [];
 			}
@@ -317,21 +319,25 @@ class SpecialEditTags extends UnlistedSpecialPage {
 					$tags = array_merge( $tags, explode( ',', $currentTags ) );
 				}
 			}
-			$tags = array_unique( $tags );
+			$tags = array_diff( array_unique( $tags ), $disallowedTags );
 
-			$html = '<table id="mw-edittags-tags-selector-multi"><tr><td>';
-			$tagSelect = $this->getTagSelect( [], $this->msg( 'tags-edit-add' )->plain() );
-			$html .= '<p>' . $tagSelect[0] . '</p>' . $tagSelect[1] . '</td><td>';
-			$html .= Xml::element( 'p', null, $this->msg( 'tags-edit-remove' )->plain() );
-			$html .= Xml::checkLabel( $this->msg( 'tags-edit-remove-all-tags' )->plain(),
-				'wpRemoveAllTags', 'mw-edittags-remove-all' );
-			$i = 0; // used for generating checkbox IDs only
-			foreach ( $tags as $tag ) {
-				$html .= Xml::element( 'br' ) . "\n" . Xml::checkLabel( $tag,
-					'wpTagsToRemove[]', 'mw-edittags-remove-' . $i++, false, [
-						'value' => $tag,
-						'class' => 'mw-edittags-remove-checkbox',
-					] );
+			if ( $tags ) {
+				$html = '<table id="mw-edittags-tags-selector-multi"><tr><td>';
+				$tagSelect = $this->getTagSelect( [], $this->msg( 'tags-edit-add' )->plain() );
+				$html .= '<p>' . $tagSelect[0] . '</p>' . $tagSelect[1] . '</td><td>';
+				$html .= Xml::element( 'p', null, $this->msg( 'tags-edit-remove' )->plain() );
+				$html .= Xml::checkLabel( $this->msg( 'tags-edit-remove-all-tags' )->plain(),
+					'wpRemoveAllTags', 'mw-edittags-remove-all' );
+				$i = 0; // used for generating checkbox IDs only
+				foreach ( $tags as $tag ) {
+					$html .= Xml::element( 'br' ) . "\n" . Xml::checkLabel( $tag,
+						'wpTagsToRemove[]', 'mw-edittags-remove-' . $i++, false, [
+							'value' => $tag,
+							'class' => 'mw-edittags-remove-checkbox',
+						] );
+				}
+			} else {
+				$html .= $this->msg( 'tags-edit-existing-tags-none' )->parse();
 			}
 		}
 

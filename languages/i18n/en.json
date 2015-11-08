@@ -3739,7 +3739,7 @@
 	"tags-edit-revision-legend": "Add or remove tags from {{PLURAL:$1|this revision|all $1 revisions}}",
 	"tags-edit-logentry-legend": "Add or remove tags from {{PLURAL:$1|this log entry|all $1 log entries}}",
 	"tags-edit-existing-tags": "Existing tags:",
-	"tags-edit-existing-tags-none": "<em>None</em>",
+	"tags-edit-existing-tags-none": "<em>None can be removed</em>",
 	"tags-edit-new-tags": "New tags:",
 	"tags-edit-add": "Add these tags:",
 	"tags-edit-remove": "Remove these tags:",
