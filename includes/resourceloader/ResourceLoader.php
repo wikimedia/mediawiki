@@ -216,7 +216,7 @@ class ResourceLoader {
 			}
 
 			// Save filtered text to Memcached
-			$cache->set( $key, $result );
+			// $cache->set( $key, $result );
 		} catch ( Exception $e ) {
 			MWExceptionHandler::logException( $e );
 			wfDebugLog( 'resourceloader', __METHOD__ . ": minification failed: $e" );
