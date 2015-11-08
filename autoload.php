@@ -491,6 +491,7 @@ $wgAutoloadLocalClasses = array(
 	'HTMLCacheUpdateJob' => __DIR__ . '/includes/jobqueue/jobs/HTMLCacheUpdateJob.php',
 	'HTMLCheckField' => __DIR__ . '/includes/htmlform/HTMLCheckField.php',
 	'HTMLCheckMatrix' => __DIR__ . '/includes/htmlform/HTMLCheckMatrix.php',
+	'HTMLComboboxField' => __DIR__ . '/includes/htmlform/HTMLComboboxField.php',
 	'HTMLEditTools' => __DIR__ . '/includes/htmlform/HTMLEditTools.php',
 	'HTMLFileCache' => __DIR__ . '/includes/cache/HTMLFileCache.php',
 	'HTMLFloatField' => __DIR__ . '/includes/htmlform/HTMLFloatField.php',
