@@ -172,7 +172,6 @@ class ApiRawMessage extends RawMessage implements IApiMessage {
 	 *  - string: passed to RawMessage::__construct
 	 * @param string|null $code
 	 * @param array|null $data
-	 * @return ApiMessage
 	 */
 	public function __construct( $msg, $code = null, array $data = null ) {
 		if ( $msg instanceof RawMessage ) {

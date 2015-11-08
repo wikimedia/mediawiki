@@ -327,6 +327,7 @@ class ApiResult implements ApiSerializable {
 	/**
 	 * Validate a value for addition to the result
 	 * @param mixed $value
+	 * @return array|mixed|string
 	 */
 	private static function validateValue( $value ) {
 		global $wgContLang;
@@ -738,7 +739,7 @@ class ApiResult implements ApiSerializable {
 	 * Set the array data type for a path
 	 * @since 1.25
 	 * @param array|string|null $path See ApiResult::addValue()
-	 * @param string $type See ApiResult::META_TYPE
+	 * @param string $tag See ApiResult::META_TYPE
 	 * @param string $kvpKeyName See ApiResult::META_KVP_KEY_NAME
 	 */
 	public function addArrayType( $path, $tag, $kvpKeyName = null ) {
@@ -766,7 +767,7 @@ class ApiResult implements ApiSerializable {
 	 * Set the array data type for a path recursively
 	 * @since 1.25
 	 * @param array|string|null $path See ApiResult::addValue()
-	 * @param string $type See ApiResult::META_TYPE
+	 * @param string $tag See ApiResult::META_TYPE
 	 * @param string $kvpKeyName See ApiResult::META_KVP_KEY_NAME
 	 */
 	public function addArrayTypeRecursive( $path, $tag, $kvpKeyName = null ) {
@@ -796,7 +797,7 @@ class ApiResult implements ApiSerializable {
 	 *
 	 * @see ApiResult::getResultData()
 	 * @since 1.25
-	 * @param array $data
+	 * @param array $dataIn
 	 * @param array $transforms
 	 * @return array|object
 	 */
