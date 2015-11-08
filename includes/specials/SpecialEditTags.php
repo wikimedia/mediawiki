@@ -51,8 +51,17 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	/** @var string */
 	private $reason;
 
+	/** @var array Tags that can be added */
+	protected $tagsAllowedForAddition = null;
+
+	/** @var array Tags that cannot be removed */
+	protected $tagsDisallowedForRemoval = null;
+
+
 	public function __construct() {
 		parent::__construct( 'EditTags', 'changetags' );
+		$this->tagsAllowedForAddition = ChangeTags::listExplicitlyDefinedTags();
+		$this->tagsDisallowedForRemoval = ChangeTags::listExtensionDefinedTags();
 	}
 
 	public function execute( $par ) {
@@ -281,6 +290,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$tags = $list->current()->getTags();
 			if ( $tags ) {
 				$tags = explode( ',', $tags );
+				$tags = array_diff( $tags, $this->tagsDisallowedForRemoval );
 			} else {
 				$tags = array();
 			}
@@ -309,20 +319,25 @@ class SpecialEditTags extends UnlistedSpecialPage {
 				}
 			}
 			$tags = array_unique( $tags );
+			$tags = array_diff( $tags, $this->tagsDisallowedForRemoval );
 
 			$html = '<table id="mw-edittags-tags-selector-multi"><tr><td>';
 			$tagSelect = $this->getTagSelect( array(), $this->msg( 'tags-edit-add' )->plain() );
 			$html .= '<p>' . $tagSelect[0] . '</p>' . $tagSelect[1] . '</td><td>';
-			$html .= Xml::element( 'p', null, $this->msg( 'tags-edit-remove' )->plain() );
-			$html .= Xml::checkLabel( $this->msg( 'tags-edit-remove-all-tags' )->plain(),
-				'wpRemoveAllTags', 'mw-edittags-remove-all' );
-			$i = 0; // used for generating checkbox IDs only
-			foreach ( $tags as $tag ) {
-				$html .= Xml::element( 'br' ) . "\n" . Xml::checkLabel( $tag,
-					'wpTagsToRemove[]', 'mw-edittags-remove-' . $i++, false, array(
-						'value' => $tag,
-						'class' => 'mw-edittags-remove-checkbox',
-					) );
+			if ( $tags ) {
+				$html .= Xml::element( 'p', null, $this->msg( 'tags-edit-remove' )->plain() );
+				$html .= Xml::checkLabel( $this->msg( 'tags-edit-remove-all-tags' )->plain(),
+					'wpRemoveAllTags', 'mw-edittags-remove-all' );
+				$i = 0; // used for generating checkbox IDs only
+				foreach ( $tags as $tag ) {
+					$html .= Xml::element( 'br' ) . "\n" . Xml::checkLabel( $tag,
+						'wpTagsToRemove[]', 'mw-edittags-remove-' . $i++, false, array(
+							'value' => $tag,
+							'class' => 'mw-edittags-remove-checkbox',
+						) );
+				}
+			} else {
+				$html .= $this->msg( 'tags-edit-existing-tags-none' )->parse();
 			}
 		}
 
@@ -340,7 +355,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	 *
 	 * @param array $selectedTags The tags that should be preselected in the
 	 * list. Any tags in this list, but not in the list returned by
-	 * ChangeTags::listExplicitlyDefinedTags, will be appended to the <select>
+	 * $this->tagsAllowedForAddition, will be appended to the <select>
 	 * element.
 	 * @param string $label The text of a <label> to precede the <select>
 	 * @return array HTML <label> element at index 0, HTML <select> element at
@@ -354,7 +369,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$select->setAttribute( 'multiple', 'multiple' );
 		$select->setAttribute( 'size', '8' );
 
-		$tags = ChangeTags::listExplicitlyDefinedTags();
+		$tags = $this->tagsAllowedForAddition;
 		$tags = array_unique( array_merge( $tags, $selectedTags ) );
 
 		// Values of $tags are also used as <option> labels
