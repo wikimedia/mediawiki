@@ -50,9 +50,9 @@ class SpecialPagesWithProp extends QueryPage {
 
 		$propnames = $this->getExistingPropNames();
 
-		$form = new HTMLForm( array(
+		$form = HTMLForm::factory( 'ooui', array(
 			'propname' => array(
-				'type' => 'selectorother',
+				'type' => 'combobox',
 				'name' => 'propname',
 				'options' => $propnames,
 				'default' => $propname,
