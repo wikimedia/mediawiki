@@ -77,6 +77,8 @@ production.
 ==== External libraries ====
 
 === Bug fixes in 1.27 ===
+* Special:Upload will now display correct maximum allowed file size when running
+  under HHVM (T116347).
 
 === Action API changes in 1.27 ===
 * Added list=allrevisions.
