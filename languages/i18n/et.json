@@ -333,6 +333,7 @@
 	"missingarticle-rev": "(redaktsioon: $1)",
 	"missingarticle-diff": "(redaktsioonid: $1, $2)",
 	"readonly_lag": "Andmebaas on automaatselt lukustatud, seniks kuni sekundaarsed andmebaasiserverid on primaarserveriga samal järjel.",
+	"nonwrite-api-promise-error": "Saadeti HTTP päis \"Promise-Non-Write-API-Action\", kuid päring tehti API kirjutusmoodulisse.",
 	"internalerror": "Sisemine viga",
 	"internalerror_info": "Sisemine viga: $1",
 	"internalerror-fatal-exception": "Saatuslik erandtöötluse tõrge: $1",

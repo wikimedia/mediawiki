@@ -1558,7 +1558,7 @@
 	"filepage-nofile": "Не існує файлу з такою назвою.",
 	"filepage-nofile-link": "Не існує файлу з такою назвою, але ви можете [$1 завантажити його].",
 	"uploadnewversion-linktext": "Завантажити нову версію цього файлу",
-	"shared-repo-from": "з $1",
+	"shared-repo-from": "з {{GRAMMAR:genitive|$1}}",
 	"shared-repo": "спільного сховища",
 	"shared-repo-name-wikimediacommons": "Вікісховища",
 	"filepage.css": "/* Розміщений тут CSS-код розміщений на сторінці опису файла, також і для іноземних користувачів вікі */",

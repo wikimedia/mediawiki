@@ -2903,6 +2903,7 @@
 	"tags-tag": "Naziv oznake",
 	"tags-display-header": "Izgled na popisima izmjena",
 	"tags-description-header": "Puni opis značenja",
+	"tags-active-header": "Aktivno?",
 	"tags-hitcount-header": "Označene izmjene",
 	"tags-active-yes": "Da",
 	"tags-active-no": "Ne",
@@ -3109,5 +3110,6 @@
 	"special-characters-group-khmer": "kmerski",
 	"mw-widgets-dateinput-placeholder-day": "GGGG-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "GGGG-MM",
+	"mw-widgets-titleinput-description-new-page": "stranica još ne postoji",
 	"mw-widgets-titleinput-description-redirect": "preusmjeravanje na $1"
 }

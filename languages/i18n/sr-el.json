@@ -569,7 +569,7 @@
 	"preview": "Pregled",
 	"showpreview": "Prikaži pretpregled",
 	"showdiff": "Prikaži izmene",
-	"blankarticle": "<strong>Upozorenje:</strong> stranica koju pravite nema nikakav sadržaj.\nAko još jednom pritisnete „{{int:savearticle}}“ napravićete stranicu bez sadržaja.",
+	"blankarticle": "<strong>Upozorenje:</strong> stranica koju pravite nema nikakav sadržaj.\nAko još jednom pritisnete „{{int:savearticle}}“ napravićete praznu stranicu.",
 	"anoneditwarning": "<strong>Upozorenje:</strong> niste prijavljeni. Vaša IP adresa će biti javno vidljiva u istoriji ove stranice ako načinite bilo kakvu izmenu. Ako se <strong>[$1 prijavite]</strong> ili <strong>[$2 otvorite nalog]</strong> vaše izmene će biti pripisane vašem korisničkom imenu.",
 	"anonpreviewwarning": "''Niste prijavljeni. Vaša IP adresa će biti zabeležena u istoriji ove stranice.''",
 	"missingsummary": "'''Napomena:''' niste uneli opis izmene.\nAko ponovo kliknete na „{{int:savearticle}}“, vaša izmena će biti sačuvana bez opisa.",
