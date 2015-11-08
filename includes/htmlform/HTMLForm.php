@@ -128,6 +128,7 @@ class HTMLForm extends ContextSource {
 		'textwithbutton' => 'HTMLTextFieldWithButton',
 		'textarea' => 'HTMLTextAreaField',
 		'select' => 'HTMLSelectField',
+		'combobox' => 'HTMLComboboxField',
 		'radio' => 'HTMLRadioField',
 		'multiselect' => 'HTMLMultiSelectField',
 		'limitselect' => 'HTMLSelectLimitField',

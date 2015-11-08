@@ -2,6 +2,8 @@
 
 /**
  * Select dropdown field, with an additional "other" textbox.
+ *
+ * @deprecated since 1.27 Use HTMLComboboxField if possible.
  */
 class HTMLSelectOrOtherField extends HTMLTextField {
 	function __construct( $params ) {
