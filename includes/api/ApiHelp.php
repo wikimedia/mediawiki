@@ -711,7 +711,6 @@ class ApiHelp extends ApiBase {
 					$suboptions,
 					$haveModules
 				);
-				$numSubmodules = count( $submodules );
 			}
 
 			$module->modifyHelp( $help, $suboptions, $haveModules );

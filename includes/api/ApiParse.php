@@ -714,7 +714,6 @@ class ApiParse extends ApiBase {
 
 	private function formatLimitReportData( $limitReportData ) {
 		$result = array();
-		$apiResult = $this->getResult();
 
 		foreach ( $limitReportData as $name => $value ) {
 			$entry = array();

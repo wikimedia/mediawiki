@@ -177,7 +177,6 @@ class ApiParamInfo extends ApiBase {
 	 * @return ApiResult
 	 */
 	private function getModuleInfo( $module ) {
-		$result = $this->getResult();
 		$ret = array();
 		$path = $module->getModulePath();
 

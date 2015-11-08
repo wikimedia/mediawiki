@@ -830,7 +830,6 @@ class ApiResult implements ApiSerializable {
 
 		// BC transformations
 		$boolKeys = null;
-		$forceKVP = false;
 		if ( isset( $transforms['BC'] ) ) {
 			if ( !is_array( $transforms['BC'] ) ) {
 				throw new InvalidArgumentException( __METHOD__ . ':Value for "BC" must be an array' );
