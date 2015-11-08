@@ -317,7 +317,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param bool $sort
 	 */
 	protected function addTimestampWhereRange( $field, $dir, $start, $end, $sort = true ) {
-		$db = $this->getDb();
+		$db = $this->getDB();
 		$this->addWhereRange( $field, $dir,
 			$db->timestampOrNull( $start ), $db->timestampOrNull( $end ), $sort );
 	}
@@ -384,7 +384,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return null|string
 	 */
 	public function prepareUrlQuerySearchString( $query = null, $protocol = null ) {
-		$db = $this->getDb();
+		$db = $this->getDB();
 		if ( !is_null( $query ) || $query != '' ) {
 			if ( is_null( $protocol ) ) {
 				$protocol = 'http://';
@@ -529,7 +529,7 @@ abstract class ApiQueryBase extends ApiBase {
 			$this->dieUsageMsg( array( 'invalidtitle', $titlePart ) );
 		}
 
-		return substr( $t->getDbKey(), 0, -1 );
+		return substr( $t->getDBkey(), 0, -1 );
 	}
 
 	/**
@@ -547,7 +547,7 @@ abstract class ApiQueryBase extends ApiBase {
 			$this->dieUsageMsg( array( 'invalidtitle', $titlePart ) );
 		}
 
-		return array( $t->getNamespace(), substr( $t->getDbKey(), 0, -1 ) );
+		return array( $t->getNamespace(), substr( $t->getDBkey(), 0, -1 ) );
 	}
 
 	/**

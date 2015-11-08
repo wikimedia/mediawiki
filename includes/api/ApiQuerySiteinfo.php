@@ -497,7 +497,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$arr['number'] = SiteStats::users();
 				// '*' and autopromote groups have no size
 				} elseif ( $group !== '*' && !isset( $autopromote[$group] ) ) {
-					$arr['number'] = SiteStats::numberInGroup( $group );
+					$arr['number'] = SiteStats::numberingroup( $group );
 				}
 			}
 

@@ -103,7 +103,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		if ( $params['entirewatchlist'] ) {
 			// Entire watchlist mode: Just update the thing and return a success indicator
 			$dbw->update( 'watchlist', array( 'wl_notificationtimestamp' => $timestamp ),
-				array( 'wl_user' => $user->getID() ),
+				array( 'wl_user' => $user->getId() ),
 				__METHOD__
 			);
 
@@ -135,7 +135,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 				// Now process the valid titles
 				$lb = new LinkBatch( $pageSet->getTitles() );
 				$dbw->update( 'watchlist', array( 'wl_notificationtimestamp' => $timestamp ),
-					array( 'wl_user' => $user->getID(), $lb->constructSet( 'wl', $dbw ) ),
+					array( 'wl_user' => $user->getId(), $lb->constructSet( 'wl', $dbw ) ),
 					__METHOD__
 				);
 
@@ -144,7 +144,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 				$res = $dbw->select(
 					'watchlist',
 					array( 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ),
-					array( 'wl_user' => $user->getID(), $lb->constructSet( 'wl', $dbw ) ),
+					array( 'wl_user' => $user->getId(), $lb->constructSet( 'wl', $dbw ) ),
 					__METHOD__
 				);
 				foreach ( $res as $row ) {

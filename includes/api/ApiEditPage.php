@@ -244,12 +244,12 @@ class ApiEditPage extends ApiBase {
 				$this->dieUsageMsg( array( 'nosuchrevid', $params['undoafter'] ) );
 			}
 
-			if ( $undoRev->getPage() != $pageObj->getID() ) {
-				$this->dieUsageMsg( array( 'revwrongpage', $undoRev->getID(),
+			if ( $undoRev->getPage() != $pageObj->getId() ) {
+				$this->dieUsageMsg( array( 'revwrongpage', $undoRev->getId(),
 					$titleObj->getPrefixedText() ) );
 			}
-			if ( $undoafterRev->getPage() != $pageObj->getID() ) {
-				$this->dieUsageMsg( array( 'revwrongpage', $undoafterRev->getID(),
+			if ( $undoafterRev->getPage() != $pageObj->getId() ) {
+				$this->dieUsageMsg( array( 'revwrongpage', $undoafterRev->getId(),
 					$titleObj->getPrefixedText() ) );
 			}
 
@@ -268,7 +268,7 @@ class ApiEditPage extends ApiBase {
 			// If no summary was given and we only undid one rev,
 			// use an autosummary
 			if ( is_null( $params['summary'] ) &&
-				$titleObj->getNextRevisionID( $undoafterRev->getID() ) == $params['undo']
+				$titleObj->getNextRevisionID( $undoafterRev->getId() ) == $params['undo']
 			) {
 				$params['summary'] = wfMessage( 'undo-summary' )
 					->params( $params['undo'], $undoRev->getUserText() )->inContentLanguage()->text();

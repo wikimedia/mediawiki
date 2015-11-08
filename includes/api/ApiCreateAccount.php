@@ -95,7 +95,7 @@ class ApiCreateAccount extends ApiBase {
 		Hooks::run( 'AddNewAccountApiForm', array( $this, $loginForm ) );
 		$loginForm->load();
 
-		$status = $loginForm->addNewaccountInternal();
+		$status = $loginForm->addNewAccountInternal();
 		LoggerFactory::getInstance( 'authmanager' )->info( 'Account creation attempt via API', array(
 			'event' => 'accountcreation',
 			'status' => $status,

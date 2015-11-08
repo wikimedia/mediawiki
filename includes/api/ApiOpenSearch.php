@@ -140,7 +140,7 @@ class ApiOpenSearch extends ApiBase {
 			$redirects = array();
 			$lb = new LinkBatch( $titles );
 			if ( !$lb->isEmpty() ) {
-				$db = $this->getDb();
+				$db = $this->getDB();
 				$res = $db->select(
 					array( 'page', 'redirect' ),
 					array( 'page_namespace', 'page_title', 'rd_namespace', 'rd_title' ),
@@ -170,7 +170,7 @@ class ApiOpenSearch extends ApiBase {
 				}
 				if ( !isset( $seen[$ns][$dbkey] ) ) {
 					$seen[$ns][$dbkey] = true;
-					$resultId = $title->getArticleId();
+					$resultId = $title->getArticleID();
 					if ( $resultId === 0 ) {
 						$resultId = $nextSpecialPageId;
 						$nextSpecialPageId -= 1;
@@ -181,7 +181,7 @@ class ApiOpenSearch extends ApiBase {
 						'extract' => false,
 						'extract trimmed' => false,
 						'image' => false,
-						'url' => wfExpandUrl( $title->getFullUrl(), PROTO_CURRENT ),
+						'url' => wfExpandUrl( $title->getFullURL(), PROTO_CURRENT ),
 					);
 				}
 			}

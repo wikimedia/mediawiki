@@ -151,7 +151,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$this->addWhereRange( 'cl_from', $dir, null, null );
 			} else {
 				if ( $params['startsortkeyprefix'] !== null ) {
-					$startsortkey = Collation::singleton()->getSortkey( $params['startsortkeyprefix'] );
+					$startsortkey = Collation::singleton()->getSortKey( $params['startsortkeyprefix'] );
 				} elseif ( $params['starthexsortkey'] !== null ) {
 					if ( !$this->validateHexSortkey( $params['starthexsortkey'] ) ) {
 						$this->dieUsage( 'The starthexsortkey provided is not valid', 'bad_starthexsortkey' );
@@ -161,7 +161,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					$startsortkey = $params['startsortkey'];
 				}
 				if ( $params['endsortkeyprefix'] !== null ) {
-					$endsortkey = Collation::singleton()->getSortkey( $params['endsortkeyprefix'] );
+					$endsortkey = Collation::singleton()->getSortKey( $params['endsortkeyprefix'] );
 				} elseif ( $params['endhexsortkey'] !== null ) {
 					if ( !$this->validateHexSortkey( $params['endhexsortkey'] ) ) {
 						$this->dieUsage( 'The endhexsortkey provided is not valid', 'bad_endhexsortkey' );

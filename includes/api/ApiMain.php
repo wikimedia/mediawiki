@@ -895,7 +895,7 @@ class ApiMain extends ApiBase {
 		}
 		if ( $config->get( 'ShowHostnames' ) ) {
 			// servedby is especially useful when debugging errors
-			$result->addValue( null, 'servedby', wfHostName(), ApiResult::NO_SIZE_CHECK );
+			$result->addValue( null, 'servedby', wfHostname(), ApiResult::NO_SIZE_CHECK );
 		}
 		if ( $warnings !== null ) {
 			$result->addValue( null, 'warnings', $warnings, ApiResult::NO_SIZE_CHECK );
@@ -1535,7 +1535,7 @@ class ApiMain extends ApiBase {
 			$tocnumber = &$options['tocnumber'];
 
 			$header = $this->msg( 'api-help-datatypes-header' )->parse();
-			$help['datatypes'] .= Html::rawelement( 'h' . min( 6, $level ),
+			$help['datatypes'] .= Html::rawElement( 'h' . min( 6, $level ),
 				array( 'id' => 'main/datatypes', 'class' => 'apihelp-header' ),
 				Html::element( 'span', array( 'id' => Sanitizer::escapeId( 'main/datatypes' ) ) ) .
 				$header
@@ -1554,7 +1554,7 @@ class ApiMain extends ApiBase {
 			}
 
 			$header = $this->msg( 'api-credits-header' )->parse();
-			$help['credits'] .= Html::rawelement( 'h' . min( 6, $level ),
+			$help['credits'] .= Html::rawElement( 'h' . min( 6, $level ),
 				array( 'id' => 'main/credits', 'class' => 'apihelp-header' ),
 				Html::element( 'span', array( 'id' => Sanitizer::escapeId( 'main/credits' ) ) ) .
 				$header

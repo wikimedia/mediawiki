@@ -200,7 +200,7 @@ class ApiParamInfo extends ApiBase {
 				$ret['sourcename'] = $ret['source'];
 			}
 
-			$link = SpecialPage::getTitleFor( 'Version', 'License/' . $sourceInfo['name'] )->getFullUrl();
+			$link = SpecialPage::getTitleFor( 'Version', 'License/' . $sourceInfo['name'] )->getFullURL();
 			if ( isset( $sourceInfo['license-name'] ) ) {
 				$ret['licensetag'] = $sourceInfo['license-name'];
 				$ret['licenselink'] = (string)$link;
