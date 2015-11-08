@@ -23,6 +23,7 @@
  *      the 'other' message.
  *   other - Raw text to use for the 'other' message
  *
+ * @deprecated since 1.27 Use HTMLComboboxField if possible.
  */
 class HTMLAutoCompleteSelectField extends HTMLTextField {
 	protected $autocomplete = array();
