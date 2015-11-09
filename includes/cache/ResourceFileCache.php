@@ -64,7 +64,7 @@ class ResourceFileCache extends FileCacheBase {
 	 * @return bool
 	 */
 	public static function useFileCache( ResourceLoaderContext $context ) {
-		global $wgUseFileCache, $wgDefaultSkin, $wgLanguageCode;
+		global $wgUseFileCache, $wgDefaultSkin, $wgContLang;
 		if ( !$wgUseFileCache ) {
 			return false;
 		}
@@ -76,7 +76,7 @@ class ResourceFileCache extends FileCacheBase {
 				continue; // note: &* added as IE fix
 			} elseif ( $query === 'skin' && $val === $wgDefaultSkin ) {
 				continue;
-			} elseif ( $query === 'lang' && $val === $wgLanguageCode ) {
+			} elseif ( $query === 'lang' && $val === $wgContLang->getCode() ) {
 				continue;
 			} elseif ( $query === 'only' && in_array( $val, array( 'styles', 'scripts' ) ) ) {
 				continue;

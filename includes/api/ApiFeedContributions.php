@@ -57,7 +57,7 @@ class ApiFeedContributions extends ApiBase {
 
 		$msg = wfMessage( 'Contributions' )->inContentLanguage()->text();
 		$feedTitle = $config->get( 'Sitename' ) . ' - ' . $msg .
-			' [' . $config->get( 'LanguageCode' ) . ']';
+			' [' . $config->get( 'ContLang' )->getCode() . ']';
 		$feedUrl = SpecialPage::getTitleFor( 'Contributions', $params['user'] )->getFullURL();
 
 		$target = $params['user'] == 'newbies'

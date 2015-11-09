@@ -3231,8 +3231,7 @@ class Parser {
 			case 'directionmark':
 				return $pageLang->getDirMark();
 			case 'contentlanguage':
-				global $wgLanguageCode;
-				return $wgLanguageCode;
+				return $wgContLang->getCode();
 			case 'cascadingsources':
 				$value = CoreParserFunctions::cascadingsources( $this );
 				break;

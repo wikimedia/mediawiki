@@ -428,7 +428,7 @@ class MessageCache {
 	 * @return array Loaded messages for storing in caches
 	 */
 	function loadFromDB( $code, $mode = null ) {
-		global $wgMaxMsgCacheEntrySize, $wgLanguageCode, $wgAdaptiveMessageCache;
+		global $wgMaxMsgCacheEntrySize, $wgContLang, $wgAdaptiveMessageCache;
 
 		$dbr = wfGetDB( ( $mode == self::FOR_UPDATE ) ? DB_MASTER : DB_SLAVE );
 
@@ -441,11 +441,11 @@ class MessageCache {
 		);
 
 		$mostused = array();
-		if ( $wgAdaptiveMessageCache && $code !== $wgLanguageCode ) {
-			if ( !isset( $this->mCache[$wgLanguageCode] ) ) {
-				$this->load( $wgLanguageCode );
+		if ( $wgAdaptiveMessageCache && $code !== $wgContLang->getCode() ) {
+			if ( !isset( $this->mCache[$wgContLang->getCode()] ) ) {
+				$this->load( $wgContLang->getCode() );
 			}
-			$mostused = array_keys( $this->mCache[$wgLanguageCode] );
+			$mostused = array_keys( $this->mCache[$wgContLang->getCode()] );
 			foreach ( $mostused as $key => $value ) {
 				$mostused[$key] = "$value/$code";
 			}
@@ -453,7 +453,7 @@ class MessageCache {
 
 		if ( count( $mostused ) ) {
 			$conds['page_title'] = $mostused;
-		} elseif ( $code !== $wgLanguageCode ) {
+		} elseif ( $code !== $wgContLang->getCode() ) {
 			$conds[] = 'page_title' . $dbr->buildLike( $dbr->anyString(), '/', $code );
 		} else {
 			# Effectively disallows use of '/' character in NS_MEDIAWIKI for uses
@@ -516,14 +516,14 @@ class MessageCache {
 	 * @param mixed $text New contents of the page.
 	 */
 	public function replace( $title, $text ) {
-		global $wgMaxMsgCacheEntrySize, $wgContLang, $wgLanguageCode;
+		global $wgMaxMsgCacheEntrySize, $wgContLang;
 
 		if ( $this->mDisable ) {
 			return;
 		}
 
 		list( $msg, $code ) = $this->figureMessage( $title );
-		if ( strpos( $title, '/' ) !== false && $code === $wgLanguageCode ) {
+		if ( strpos( $title, '/' ) !== false && $code === $wgContLang->getCode() ) {
 			// Content language overrides do not use the /<code> suffix
 			return;
 		}
@@ -814,14 +814,14 @@ class MessageCache {
 	 * @return string|bool The message, or false if not found
 	 */
 	protected function getMessageFromFallbackChain( $lang, $lckey, $uckey, $useDB ) {
-		global $wgLanguageCode, $wgContLang;
+		global $wgContLang;
 
 		$langcode = $lang->getCode();
 		$message = false;
 
 		// First try the requested language.
 		if ( $useDB ) {
-			if ( $langcode === $wgLanguageCode ) {
+			if ( $langcode === $wgContLang->getCode() ) {
 				// Messages created in the content language will not have the /lang extension
 				$message = $this->getMsgFromNamespace( $uckey, $langcode );
 			} else {
@@ -845,7 +845,7 @@ class MessageCache {
 		// Next try checking the database for all of the fallback languages of the requested language.
 		if ( $useDB ) {
 			foreach ( $fallbackChain as $code ) {
-				if ( $code === $wgLanguageCode ) {
+				if ( $code === $wgContLang->getCode() ) {
 					// Messages created in the content language will not have the /lang extension
 					$message = $this->getMsgFromNamespace( $uckey, $code );
 				} else {
@@ -861,7 +861,7 @@ class MessageCache {
 
 		// Now try checking the site language.
 		if ( $useDB ) {
-			$message = $this->getMsgFromNamespace( $uckey, $wgLanguageCode );
+			$message = $this->getMsgFromNamespace( $uckey, $wgContLang->getCode() );
 			if ( $message !== false ) {
 				return $message;
 			}
@@ -876,7 +876,7 @@ class MessageCache {
 		if ( $useDB ) {
 			foreach ( $siteFallbackChain as $code ) {
 				$message = $this->getMsgFromNamespace( "$uckey/$code", $code );
-				if ( $message === false && $code === $wgLanguageCode ) {
+				if ( $message === false && $code === $wgContLang->getCode() ) {
 					// Messages created in the content language will not have the /lang extension
 					$message = $this->getMsgFromNamespace( $uckey, $code );
 				}
@@ -1110,16 +1110,16 @@ class MessageCache {
 	 * @return array
 	 */
 	public function figureMessage( $key ) {
-		global $wgLanguageCode;
+		global $wgContLang;
 
 		$pieces = explode( '/', $key );
 		if ( count( $pieces ) < 2 ) {
-			return array( $key, $wgLanguageCode );
+			return array( $key, $wgContLang->getCode() );
 		}
 
 		$lang = array_pop( $pieces );
 		if ( !Language::fetchLanguageName( $lang, null, 'mw' ) ) {
-			return array( $key, $wgLanguageCode );
+			return array( $key, $wgContLang->getCode() );
 		}
 
 		$message = implode( '/', $pieces );

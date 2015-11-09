@@ -127,7 +127,7 @@ class ApiFeedWatchlist extends ApiBase {
 			$msg = wfMessage( 'watchlist' )->inContentLanguage()->text();
 
 			$feedTitle = $this->getConfig()->get( 'Sitename' ) . ' - ' . $msg .
-				' [' . $this->getConfig()->get( 'LanguageCode' ) . ']';
+				' [' . $this->getConfig()->get( 'ContLang' )->getCode() . ']';
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullURL();
 
 			$feed = new $feedClasses[$params['feedformat']] (
@@ -144,7 +144,7 @@ class ApiFeedWatchlist extends ApiBase {
 			// @todo FIXME: Localise  brackets
 			$feedTitle = $this->getConfig()->get( 'Sitename' ) . ' - Error - ' .
 				wfMessage( 'watchlist' )->inContentLanguage()->text() .
-				' [' . $this->getConfig()->get( 'LanguageCode' ) . ']';
+				' [' . $this->getConfig()->get( 'ContLang' )->getCode() . ']';
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullURL();
 
 			$feedFormat = isset( $params['feedformat'] ) ? $params['feedformat'] : 'rss';

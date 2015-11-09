@@ -315,7 +315,7 @@ class Preferences {
 
 		// Language
 		$languages = Language::fetchLanguageNames( null, 'mw' );
-		$languageCode = $config->get( 'LanguageCode' );
+		$languageCode = $config->get( 'ContLang' )->getCode();
 		if ( !array_key_exists( $languageCode, $languages ) ) {
 			$languages[$languageCode] = $languageCode;
 		}

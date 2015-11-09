@@ -756,7 +756,7 @@ abstract class QueryPage extends SpecialPage {
 
 	function feedTitle() {
 		$desc = $this->getDescription();
-		$code = $this->getConfig()->get( 'LanguageCode' );
+		$code = $this->getConfig()->get( 'ContLang' )->getCode();
 		$sitename = $this->getConfig()->get( 'Sitename' );
 		return "$sitename - $desc [$code]";
 	}

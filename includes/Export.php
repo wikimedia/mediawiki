@@ -483,7 +483,7 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	function openStream() {
-		global $wgLanguageCode;
+		global $wgContLang;
 		$ver = WikiExporter::schemaVersion();
 		return Xml::element( 'mediawiki', array(
 			'xmlns'              => "http://www.mediawiki.org/xml/export-$ver/",
@@ -501,7 +501,7 @@ class XmlDumpWriter {
 			'xsi:schemaLocation' => "http://www.mediawiki.org/xml/export-$ver/ " .
 				"http://www.mediawiki.org/xml/export-$ver.xsd",
 			'version'            => $ver,
-			'xml:lang'           => $wgLanguageCode ),
+			'xml:lang'           => $wgContLang->getCode() ),
 			null ) .
 			"\n" .
 			$this->siteInfo();

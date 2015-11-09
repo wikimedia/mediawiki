@@ -80,7 +80,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 			'type' => 'select',
 			'options' => $options,
 			'label-message' => 'pagelang-language',
-			'default' => $this->getConfig()->get( 'LanguageCode' ),
+			'default' => $this->getConfig()->get( 'ContLang' )->getCode(),
 		);
 
 		return $page;

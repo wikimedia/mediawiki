@@ -188,7 +188,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @return string
 	 */
 	function fetchImageQuery( $query ) {
-		global $wgLanguageCode;
+		global $wgContLang;
 
 		$query = array_merge( $query,
 			array(
@@ -198,7 +198,7 @@ class ForeignAPIRepo extends FileRepo {
 			) );
 
 		if ( !isset( $query['uselang'] ) ) { // uselang is unset or null
-			$query['uselang'] = $wgLanguageCode;
+			$query['uselang'] = $wgContLang->getCode();
 		}
 
 		$data = $this->httpGetCached( 'Metadata', $query );

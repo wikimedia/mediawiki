@@ -48,7 +48,7 @@ class ChangesFeed {
 	 * @return ChannelFeed|bool ChannelFeed subclass or false on failure
 	 */
 	public function getFeedObject( $title, $description, $url ) {
-		global $wgSitename, $wgLanguageCode, $wgFeedClasses;
+		global $wgSitename, $wgContLang, $wgFeedClasses;
 
 		if ( !isset( $wgFeedClasses[$this->format] ) ) {
 			return false;
@@ -59,7 +59,7 @@ class ChangesFeed {
 			$this->format = 'atom';
 		}
 
-		$feedTitle = "$wgSitename  - {$title} [$wgLanguageCode]";
+		$feedTitle = "$wgSitename  - {$title} [{$wgContLang->getCode()}]";
 		return new $wgFeedClasses[$this->format](
 			$feedTitle, htmlspecialchars( $description ), $url );
 	}

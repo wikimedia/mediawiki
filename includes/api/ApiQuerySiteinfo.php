@@ -193,7 +193,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		// 'case-insensitive' option is reserved for future
 		$data['case'] = $config->get( 'CapitalLinks' ) ? 'first-letter' : 'case-sensitive';
-		$data['lang'] = $config->get( 'LanguageCode' );
+		$data['lang'] = $config->get( 'ContLang' )->getCode();
 
 		$fallbacks = array();
 		foreach ( $wgContLang->getFallbackLanguages() as $code ) {

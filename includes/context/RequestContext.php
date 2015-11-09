@@ -295,12 +295,12 @@ class RequestContext implements IContextSource, MutableContext {
 
 	/**
 	 * Accepts a language code and ensures it's sane. Outputs a cleaned up language
-	 * code and replaces with $wgLanguageCode if not sane.
+	 * code and replaces with content language code if not sane.
 	 * @param string $code Language code
 	 * @return string
 	 */
 	public static function sanitizeLangCode( $code ) {
-		global $wgLanguageCode;
+		global $wgContLang;
 
 		// BCP 47 - letter case MUST NOT carry meaning
 		$code = strtolower( $code );
@@ -308,7 +308,7 @@ class RequestContext implements IContextSource, MutableContext {
 		# Validate $code
 		if ( !$code || !Language::isValidCode( $code ) || $code === 'qqq' ) {
 			wfDebug( "Invalid user language code\n" );
-			$code = $wgLanguageCode;
+			$code = $wgContLang->getCode();
 		}
 
 		return $code;
