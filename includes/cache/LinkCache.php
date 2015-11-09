@@ -28,11 +28,11 @@
  */
 class LinkCache {
 	/**
-	 * @var MapCacheLRU
+	 * @var HashBagOStuff
 	 */
 	private $mGoodLinks;
 	/**
-	 * @var MapCacheLRU
+	 * @var HashBagOStuff
 	 */
 	private $mBadLinks;
 	private $mForUpdate = false;
@@ -49,8 +49,8 @@ class LinkCache {
 	protected static $instance;
 
 	public function __construct() {
-		$this->mGoodLinks = new MapCacheLRU( self::MAX_SIZE );
-		$this->mBadLinks = new MapCacheLRU( self::MAX_SIZE );
+		$this->mGoodLinks = new HashBagOStuff( array( 'maxKeys' => self::MAX_SIZE ) );
+		$this->mBadLinks = new HashBagOStuff( array( 'maxKeys' => self::MAX_SIZE ) );
 	}
 
 	/**
@@ -109,10 +109,10 @@ class LinkCache {
 	 * @return int Page ID or zero
 	 */
 	public function getGoodLinkID( $title ) {
-		if ( !$this->mGoodLinks->has( $title ) ) {
+		$info = $this->mGoodLinks->get( $title );
+		if ( !$info ) {
 			return 0;
 		}
-		$info = $this->mGoodLinks->get( $title );
 		return $info['id'];
 	}
 
@@ -125,10 +125,10 @@ class LinkCache {
 	 */
 	public function getGoodLinkFieldObj( $title, $field ) {
 		$dbkey = $title->getPrefixedDBkey();
-		if ( !$this->mGoodLinks->has( $dbkey ) ) {
+		$info = $this->mGoodLinks->get( $dbkey );
+		if ( !$info ) {
 			return null;
 		}
-		$info = $this->mGoodLinks->get( $dbkey );
 		return $info[$field];
 	}
 
@@ -138,7 +138,7 @@ class LinkCache {
 	 */
 	public function isBadLink( $title ) {
 		// Use get() to ensure it records as used for LRU.
-		return $this->mBadLinks->get( $title ) !== null;
+		return $this->mBadLinks->get( $title ) !== false;
 	}
 
 	/**
@@ -201,8 +201,8 @@ class LinkCache {
 	 */
 	public function clearLink( $title ) {
 		$dbkey = $title->getPrefixedDBkey();
-		$this->mBadLinks->clear( array( $dbkey ) );
-		$this->mGoodLinks->clear( array( $dbkey ) );
+		$this->mBadLinks->delete( $dbkey );
+		$this->mGoodLinks->delete( $dbkey );
 	}
 
 	/**
