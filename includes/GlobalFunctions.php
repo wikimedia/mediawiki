@@ -1414,8 +1414,12 @@ function wfGetLangObj( $langcode = false ) {
 		return $langcode;
 	}
 
+	# $wgLanguageCode and $wgContLang->getCode() differ on DummyLanguageCodes
 	global $wgContLang, $wgLanguageCode;
-	if ( $langcode === true || $langcode === $wgLanguageCode ) {
+	if ( $langcode === true ||
+		$langcode === $wgLanguageCode ||
+		$langcode === $wgContLang->getCode()
+	) {
 		# $langcode is the language code of the wikis content language object.
 		# or it is a boolean and value is true
 		return $wgContLang;
