@@ -20,8 +20,8 @@
 			.attr( {
 				role: 'tabpanel',
 				'aria-labelledby': labelFunc
-			} )
-			.not( '#mw-prefsection-personal' )
+			} );
+		$fieldsets.not( '#mw-prefsection-personal' )
 				.hide()
 				.attr( 'aria-hidden', 'true' );
 
