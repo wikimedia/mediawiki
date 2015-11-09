@@ -205,8 +205,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 			);
 
 			if ( $res->numRows() > 0 ) {
-				$out = Html::openElement( 'div', array( 'class' => 'mw-allpages-body' ) );
-				$out .= Html::openElement( 'ul', array( 'class' => 'mw-allpages-chunk' ) );
+				$out = Html::openElement( 'ul', array( 'class' => 'mw-allpages-chunk' ) );
 
 				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 					$t = Title::newFromRow( $s );
@@ -222,7 +221,12 @@ class SpecialAllPages extends IncludableSpecialPage {
 					$n++;
 				}
 				$out .= Html::closeElement( 'ul' );
-				$out .= Html::closeElement( 'div' );
+
+				if ( $res->numRows() > 2 ) {
+					// Only apply CSS column styles if there's more than 2 entries.
+					// Otherwise, rendering is broken as "mw-allpages-body"'s CSS column count is 3.
+					$out = Html::rawElement( 'div', array( 'class' => 'mw-allpages-body' ), $out );
+				}
 			} else {
 				$out = '';
 			}
