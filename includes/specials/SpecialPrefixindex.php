@@ -205,8 +205,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 			$n = 0;
 			if ( $res->numRows() > 0 ) {
-				$out = Html::openElement( 'div', array( 'class' => 'mw-prefixindex-body' ) );
-				$out .= Html::openElement( 'ul', array( 'class' => 'mw-prefixindex-list' ) );
+				$out = Html::openElement( 'ul', array( 'class' => 'mw-prefixindex-list' ) );
 
 				$prefixLength = strlen( $prefix );
 				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
@@ -228,12 +227,17 @@ class SpecialPrefixindex extends SpecialAllPages {
 						$link = '[[' . htmlspecialchars( $s->page_title ) . ']]';
 					}
 
-					$out .= "<li> $link </li>\n";
+					$out .= "<li>$link</li>\n";
 					$n++;
 
 				}
 				$out .= Html::closeElement( 'ul' );
-				$out .= Html::closeElement( 'div' );
+
+				if ( $res->numRows() > 2 ) {
+					// Only apply CSS column styles if there's more than 2 entries.
+					// Otherwise rendering is broken as "mw-prefixindex-body"'s CSS column count is 3.
+					$out = Html::rawElement( 'div', array( 'class' => 'mw-prefixindex-body' ), $out );
+				}
 			} else {
 				$out = '';
 			}
