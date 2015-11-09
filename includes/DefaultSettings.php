@@ -6185,6 +6185,7 @@ $wgRCFeeds = array();
 $wgRCEngines = array(
 	'redis' => 'RedisPubSubFeedEngine',
 	'udp' => 'UDPRCFeedEngine',
+	'event' => 'EventBusFeedEngine',
 );
 
 /**

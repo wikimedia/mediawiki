@@ -52,6 +52,8 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 			'timestamp' => (int)wfTimestamp( TS_UNIX, $rc->getAttribute( 'rc_timestamp' ) ),
 			'user' => $rc->getAttribute( 'rc_user_text' ),
 			'bot' => (bool)$rc->getAttribute( 'rc_bot' ),
+			'page_id' => $rc->getAttribute( 'rc_cur_id' ),
+			'user_id' => $rc->getAttribute( 'rc_user' ),
 		);
 
 		if ( isset( $feed['channel'] ) ) {
