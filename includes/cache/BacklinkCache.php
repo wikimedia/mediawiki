@@ -40,8 +40,11 @@
  * Introduced by r47317
  */
 class BacklinkCache {
-	/** @var ProcessCacheLRU */
-	protected static $cache;
+	/** @var BacklinkCache */
+	protected static $instance;
+
+	/** @var string DB key of Title */
+	protected static $instanceTitle;
 
 	/**
 	 * Multi dimensions array representing batches. Keys are:
@@ -101,15 +104,12 @@ class BacklinkCache {
 	 * @return BacklinkCache
 	 */
 	public static function get( Title $title ) {
-		if ( !self::$cache ) { // init cache
-			self::$cache = new ProcessCacheLRU( 1 );
-		}
 		$dbKey = $title->getPrefixedDBkey();
-		if ( !self::$cache->has( $dbKey, 'obj', 3600 ) ) {
-			self::$cache->set( $dbKey, 'obj', new self( $title ) );
+		if ( self::$instanceTitle !== $dbKey || !self::$instance ) {
+			self::$instance = new self( $title );
+			self::$instanceTitle = $dbKey;
 		}
-
-		return self::$cache->get( $dbKey, 'obj' );
+		return self::$instance;
 	}
 
 	/**
