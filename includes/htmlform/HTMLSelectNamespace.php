@@ -5,7 +5,11 @@
 class HTMLSelectNamespace extends HTMLFormField {
 	public function __construct( $params ) {
 		parent::__construct( $params );
-		$this->mAllValue = isset( $this->mParams['all'] ) ? $this->mParams['all'] : 'all';
+
+		$this->mAllValue = array_key_exists( 'all', $params )
+			? $params['all']
+			: 'all';
+
 	}
 
 	function getInputHTML( $value ) {
