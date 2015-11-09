@@ -1354,6 +1354,21 @@ class MySQLMasterPos implements DBMasterPos {
 		$this->asOfTime = microtime( true );
 	}
 
+	function asOfTime() {
+		return $this->asOfTime;
+	}
+
+	function hasReached( DBMasterPos $pos ) {
+		if ( !( $pos instanceof self ) ) {
+			throw new InvalidArgumentException( "Position not an instance of " . __CLASS__ );
+		}
+
+		$thisPos = $this->getCoordinates();
+		$thatPos = $pos->getCoordinates();
+
+		return ( $thisPos && $thatPos && $thisPos >= $thatPos );
+	}
+
 	function __toString() {
 		// e.g db1034-bin.000976/843431247
 		return "{$this->file}/{$this->pos}";
@@ -1369,16 +1384,5 @@ class MySQLMasterPos implements DBMasterPos {
 		}
 
 		return false;
-	}
-
-	function hasReached( MySQLMasterPos $pos ) {
-		$thisPos = $this->getCoordinates();
-		$thatPos = $pos->getCoordinates();
-
-		return ( $thisPos && $thatPos && $thisPos >= $thatPos );
-	}
-
-	function asOfTime() {
-		return $this->asOfTime;
 	}
 }

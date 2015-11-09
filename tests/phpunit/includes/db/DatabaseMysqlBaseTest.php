@@ -247,4 +247,13 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 		);
 	}
 
+	function testMasterPos() {
+		$pos1 = new MySQLMasterPos( 'db1034-bin.000976', '843431247' );
+		$pos2 = new MySQLMasterPos( 'db1034-bin.000976', '843431248' );
+
+		$this->assertTrue( $pos1->hasReached( $pos1 ) );
+		$this->assertTrue( $pos2->hasReached( $pos2 ) );
+		$this->assertTrue( $pos2->hasReached( $pos1 ) );
+		$this->assertFalse( $pos1->hasReached( $pos2 ) );
+	}
 }

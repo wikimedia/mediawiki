@@ -60,7 +60,7 @@ class ChronologyProtector {
 		if ( !empty( $this->startupPositions[$masterName] ) ) {
 			$info = $lb->parentInfo();
 			$pos = $this->startupPositions[$masterName];
-			wfDebug( __METHOD__ . ": LB " . $info['id'] . " waiting for master pos $pos\n" );
+			wfDebug( __METHOD__ . ": LB '" . $info['id'] . "' waiting for master pos $pos\n" );
 			$lb->waitFor( $pos );
 		}
 	}
