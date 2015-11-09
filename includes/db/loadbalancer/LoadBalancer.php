@@ -47,6 +47,8 @@ class LoadBalancer {
 	private $mLoadMonitorClass;
 	/** @var LoadMonitor */
 	private $mLoadMonitor;
+	/** @var BagOStuff */
+	private $srvCache;
 
 	/** @var bool|DatabaseBase Database connection that caused a problem */
 	private $mErrorConnection;
@@ -123,6 +125,8 @@ class LoadBalancer {
 				}
 			}
 		}
+
+		$this->srvCache = ObjectCache::getLocalServerInstance();
 	}
 
 	/**
@@ -445,17 +449,27 @@ class LoadBalancer {
 	protected function doWait( $index, $open = false, $timeout = null ) {
 		$close = false; // close the connection afterwards
 
-		# Find a connection to wait on, creating one if needed and allowed
+		// Check if we already know that the DB has reached this point
+		$server = $this->getServerName( $index );
+		$key = $this->srvCache->makeGlobalKey( __CLASS__, 'last-known-pos', $server );
+		/** @var DBMasterPos $knownReachedPos */
+		$knownReachedPos = $this->srvCache->get( $key );
+		if ( $knownReachedPos && $knownReachedPos->hasReached( $this->mWaitForPos ) ) {
+			wfDebugLog( 'replication', __METHOD__ . ": Slave $server is known to be catch up.\n" );
+			return true;
+		}
+
+		// Find a connection to wait on, creating one if needed and allowed
 		$conn = $this->getAnyOpenConnection( $index );
 		if ( !$conn ) {
 			if ( !$open ) {
-				wfDebug( __METHOD__ . ": no connection open\n" );
+				wfDebugLog( 'replication', __METHOD__ . ": no connection open for $server\n" );
 
 				return false;
 			} else {
 				$conn = $this->openConnection( $index, '' );
 				if ( !$conn ) {
-					wfDebug( __METHOD__ . ": failed to open connection\n" );
+					wfDebugLog( 'replication', __METHOD__ . ": failed to open connection to $server\n" );
 
 					return false;
 				}
@@ -465,20 +479,21 @@ class LoadBalancer {
 			}
 		}
 
-		wfDebug( __METHOD__ . ": Waiting for slave #$index to catch up...\n" );
+		wfDebugLog( 'replication', __METHOD__ . ": Waiting for slave $server to catch up...\n" );
 		$timeout = $timeout ?: $this->mWaitTimeout;
 		$result = $conn->masterPosWait( $this->mWaitForPos, $timeout );
 
 		if ( $result == -1 || is_null( $result ) ) {
-			# Timed out waiting for slave, use master instead
-			$server = $server = $this->getServerName( $index );
+			// Timed out waiting for slave, use master instead
 			$msg = __METHOD__ . ": Timed out waiting on $server pos {$this->mWaitForPos}";
-			wfDebug( "$msg\n" );
+			wfDebugLog( 'replication', "$msg\n" );
 			wfDebugLog( 'DBPerformance', "$msg:\n" . wfBacktrace( true ) );
 			$ok = false;
 		} else {
-			wfDebug( __METHOD__ . ": Done\n" );
+			wfDebugLog( 'replication', __METHOD__ . ": Done\n" );
 			$ok = true;
+			// Remember that the DB reached this point
+			$this->srvCache->set( $key, $this->mWaitForPos, BagOStuff::TTL_DAY );
 		}
 
 		if ( $close ) {
