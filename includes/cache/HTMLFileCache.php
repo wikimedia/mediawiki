@@ -154,7 +154,7 @@ class HTMLFileCache extends FileCacheBase {
 	 * @return void
 	 */
 	public function loadFromFileCache( IContextSource $context, $mode = self::MODE_NORMAL ) {
-		global $wgMimeType, $wgLanguageCode;
+		global $wgMimeType, $wgContLang;
 
 		wfDebug( __METHOD__ . "()\n" );
 		$filename = $this->cachePath();
@@ -166,7 +166,7 @@ class HTMLFileCache extends FileCacheBase {
 
 		$context->getOutput()->sendCacheControl();
 		header( "Content-Type: $wgMimeType; charset=UTF-8" );
-		header( "Content-Language: $wgLanguageCode" );
+		header( 'Content-Language: ' . $wgContLang->getHtmlCode() );
 		if ( $this->useGzip() ) {
 			if ( wfClientAcceptsGzip() ) {
 				header( 'Content-Encoding: gzip' );
