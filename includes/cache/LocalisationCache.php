@@ -1147,29 +1147,32 @@ interface LCStore {
  * This will work on any MediaWiki installation.
  */
 class LCStoreDB implements LCStore {
+	/** @var string */
 	private $currentLang;
+	/** @var bool */
 	private $writesDone = false;
-
-	/** @var DatabaseBase */
+	/** @var IDatabase */
 	private $dbw;
 	/** @var array */
 	private $batch = array();
-
+	/** @var bool */
 	private $readOnly = false;
 
 	public function get( $code, $key ) {
-		if ( $this->writesDone ) {
-			$db = wfGetDB( DB_MASTER );
+		if ( $this->writesDone && $this->dbw ) {
+			$db = $this->dbw; // see the changes in finishWrite()
 		} else {
 			$db = wfGetDB( DB_SLAVE );
 		}
-		$row = $db->selectRow( 'l10n_cache', array( 'lc_value' ),
-			array( 'lc_lang' => $code, 'lc_key' => $key ), __METHOD__ );
-		if ( $row ) {
-			return unserialize( $db->decodeBlob( $row->lc_value ) );
-		} else {
-			return null;
-		}
+
+		$value = $db->selectField(
+			'l10n_cache',
+			'lc_value',
+			array( 'lc_lang' => $code, 'lc_key' => $key ),
+			__METHOD__
+		);
+
+		return ( $value !== false ) ? unserialize( $db->decodeBlob( $value ) ) : null;
 	}
 
 	public function startWrite( $code ) {
@@ -1180,6 +1183,7 @@ class LCStoreDB implements LCStore {
 		}
 
 		$this->dbw = wfGetDB( DB_MASTER );
+		$this->readOnly = $this->dbw->isReadOnly();
 
 		$this->currentLang = $code;
 		$this->batch = array();
@@ -1192,10 +1196,13 @@ class LCStoreDB implements LCStore {
 			throw new MWException( __CLASS__ . ': must call startWrite() before finishWrite()' );
 		}
 
-		$this->dbw->begin( __METHOD__ );
+		$this->dbw->startAtomic( __METHOD__ );
 		try {
-			$this->dbw->delete( 'l10n_cache',
-				array( 'lc_lang' => $this->currentLang ), __METHOD__ );
+			$this->dbw->delete(
+				'l10n_cache',
+				array( 'lc_lang' => $this->currentLang ),
+				__METHOD__
+			);
 			foreach ( array_chunk( $this->batch, 500 ) as $rows ) {
 				$this->dbw->insert( 'l10n_cache', $rows, __METHOD__ );
 			}
@@ -1207,7 +1214,7 @@ class LCStoreDB implements LCStore {
 				throw $e;
 			}
 		}
-		$this->dbw->commit( __METHOD__ );
+		$this->dbw->endAtomic( __METHOD__ );
 
 		$this->currentLang = null;
 		$this->batch = array();
@@ -1223,7 +1230,8 @@ class LCStoreDB implements LCStore {
 		$this->batch[] = array(
 			'lc_lang' => $this->currentLang,
 			'lc_key' => $key,
-			'lc_value' => $this->dbw->encodeBlob( serialize( $value ) ) );
+			'lc_value' => $this->dbw->encodeBlob( serialize( $value ) )
+		);
 	}
 }
 
