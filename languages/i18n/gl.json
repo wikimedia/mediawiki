@@ -1376,7 +1376,7 @@
 	"foreign-structured-upload-form-label-not-own-work-local-local": "Quizais tamén queira probar [[Special:Upload|a páxina predeterminada de subidas]].",
 	"foreign-structured-upload-form-label-own-work-message-default": "Comprendo que estou a cargar este ficheiro nun repositorio compartido. Confirmo que fago isto seguindo os termos de uso e políticas de licenza existentes alí.",
 	"foreign-structured-upload-form-label-not-own-work-message-default": "Se non é capaz de cargar este ficheiro baixo as políticas do repositorio compartido, por favor peche este diálogo e intente outro método.",
-	"foreign-structured-upload-form-label-not-own-work-local-default": "Tamén pode interesarlle usar [[Especial:Upload|a páxina de carga en {{SITENAME}}]], se este ficheiro pode ser cargado alí baixo as súas políticas.",
+	"foreign-structured-upload-form-label-not-own-work-local-default": "Tamén pode interesarlle usar [[Special:Upload|a páxina de carga en {{SITENAME}}]], se este ficheiro pode ser cargado alí baixo as súas políticas.",
 	"backend-fail-stream": "Non se puido transmitir o ficheiro \"$1\".",
 	"backend-fail-backup": "Non se puido facer unha copia de seguridade do ficheiro \"$1\".",
 	"backend-fail-notexists": "O ficheiro \"$1\" non existe.",

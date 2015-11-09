@@ -168,6 +168,7 @@
 	"apihelp-help-param-helpformat": "Formato de salida de la ayuda.",
 	"apihelp-help-param-toc": "Incluir una tabla de contenidos en la salida HTML.",
 	"apihelp-help-example-main": "Ayuda del módulo principal",
+	"apihelp-help-example-submodules": "Ayuda para <kbd>action=query</kbd> y todos sus submódulos.",
 	"apihelp-help-example-recursive": "Toda la ayuda en una página",
 	"apihelp-help-example-help": "Ayuda del módulo de ayuda en sí",
 	"apihelp-help-example-query": "Ayuda para dos submódulos de consulta.",

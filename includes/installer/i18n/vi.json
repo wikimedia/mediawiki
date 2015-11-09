@@ -4,7 +4,8 @@
 			"පසිඳු කාවින්ද",
 			"Minh Nguyen",
 			"Withoutaname",
-			"Dinhxuanduyet"
+			"Dinhxuanduyet",
+			"Nguyên Lê"
 		]
 	},
 	"config-desc": "Trình cài đặt MediaWiki",
@@ -22,7 +23,7 @@
 	"config-no-session": "Đã mất dữ liệu phiên làm việc của bạn! Kiểm tra tập tin php.ini và đảm bảo rằng <code>session.save_path</code> đã được đặt thành một thư mục thích hợp.",
 	"config-your-language": "Ngôn ngữ của bạn:",
 	"config-your-language-help": "Chọn một ngôn ngữ để sử dụng trong quá trình cài đặt.",
-	"config-wiki-language": "Ngôn ngữ wiki:",
+	"config-wiki-language": "Ngôn ngữ của wiki:",
 	"config-wiki-language-help": "Chọn ngôn ngữ chủ yếu của nội dung trong wiki này.",
 	"config-back": "← Lùi",
 	"config-continue": "Tiếp →",

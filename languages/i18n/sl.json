@@ -318,6 +318,7 @@
 	"missingarticle-rev": "(redakcija št.: $1)",
 	"missingarticle-diff": "(Primerjanje: $1, $2)",
 	"readonly_lag": "Podatkovna zbirka se je samodejno zaklenila, dokler se podrejeni strežniki ne uskladijo z glavnim.",
+	"nonwrite-api-promise-error": "Prejeli smo glavo HTTP 'Promise-Non-Write-API-Action', vendar zahteva je bila poslana na modul API za zapisovanje.",
 	"internalerror": "Notranja napaka",
 	"internalerror_info": "Notranja napaka: $1",
 	"internalerror-fatal-exception": "Usodna izjema vrste »$1«",

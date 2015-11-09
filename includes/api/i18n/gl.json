@@ -183,6 +183,7 @@
 	"apihelp-help-param-wrap": "Incluír a saída nunha estrutura de resposta API estándar.",
 	"apihelp-help-param-toc": "Incluír unha táboa de contidos na saída por HTML",
 	"apihelp-help-example-main": "Axuda para o módulo principal",
+	"apihelp-help-example-submodules": "Axuda para <kbd>action=query</kbd> e todos os seus submódulos.",
 	"apihelp-help-example-recursive": "Toda a axuda nunha páxina",
 	"apihelp-help-example-help": "Axuda do módulo de axuda en si",
 	"apihelp-help-example-query": "Axuda para dous submódulos de consulta.",

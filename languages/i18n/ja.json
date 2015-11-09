@@ -1210,7 +1210,7 @@
 	"action-browsearchive": "削除されたページの検索",
 	"action-undelete": "このページの復元",
 	"action-suppressrevision": "隠された版の確認と復元",
-	"action-suppressionlog": "この非公開記録の閲覧",
+	"action-suppressionlog": "非公開記録の閲覧",
 	"action-block": "この利用者の編集ブロック",
 	"action-protect": "このページの保護レベルの変更",
 	"action-rollback": "特定ページを最後に編集した利用者の編集の即時巻き戻し",

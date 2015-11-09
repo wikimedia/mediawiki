@@ -61,5 +61,5 @@
 	"config-install-tables-failed": "<strong>त्रूटी:</strong>खालील त्रूटीमुळे सारणी बनविणे अयशस्वी:$1",
 	"config-help": "साहाय्य",
 	"mainpagetext": "'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण.'''",
-	"mainpagedocfooter": "विकी सॉफ्टवेअर वापरण्याकरिता [//meta.wikimedia.org/wiki/Help:Contents यूजर गाईड] पहा.\n\n== सुरुवात ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings कॉन्फिगरेशन सेटींगची यादी]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ मीडियाविकी नेहमी विचारले जाणारे प्रश्न]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मीडियाविकि मेलिंग लिस्ट]"
+	"mainpagedocfooter": "विकी सॉफ्टवेअर वापरण्याकरिता [//meta.wikimedia.org/wiki/Help:Contents यूजर गाईड] पहा.\n\n== सुरुवात करा ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings रचित मांडण्याची यादी]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ मिडियाविकि FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-मिडियाविकिची मेलिंग यादीचे विमोचनाची उद्घोषणाannounce MediaWiki release mailing list]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources आपल्या भाषेसाठी मिडियाविकिचे स्थानिकिकरण करा]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam आपल्या विकिवर स्पॅमशी दोन हात कशे करावे ते शिका]"
 }
