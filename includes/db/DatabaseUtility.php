@@ -321,6 +321,20 @@ class LikeMatch {
 interface DBMasterPos {
 	/**
 	 * @return float UNIX timestamp
+	 * @since 1.25
 	 */
 	public function asOfTime();
+
+	/**
+	 * @param DBMasterPos $pos
+	 * @return bool Whether this position is at or higher than $pos
+	 * @since 1.27
+	 */
+	public function hasReached( DBMasterPos $pos );
+
+	/**
+	 * @return string
+	 * @since 1.27
+	 */
+	public function __toString();
 }
