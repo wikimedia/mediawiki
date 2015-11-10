@@ -440,6 +440,10 @@ class ApiMain extends ApiBase {
 		// Log the request whether or not there was an error
 		$this->logRequest( microtime( true ) - $t );
 
+		// Commit DBs and send any related cookies and headers
+		$mediawiki = new MediaWiki();
+		$mediawiki->doPreOutputCommit();
+
 		// Send cache headers after any code which might generate an error, to
 		// avoid sending public cache headers for errors.
 		$this->sendCacheHeaders( $isError );
