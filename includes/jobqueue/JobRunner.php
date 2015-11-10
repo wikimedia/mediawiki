@@ -467,7 +467,7 @@ class JobRunner implements LoggerAwareInterface {
 
 		$ms = intval( 1000 * $dbwSerial->pendingWriteQueryDuration() );
 		$msg = $job->toString() . " COMMIT ENQUEUED [{$ms}ms of writes]";
-		$this->logger->info( $msg );
+		$this->logger->warning( $msg );
 		$this->debugCallback( $msg );
 
 		// Wait for an exclusive lock to commit
