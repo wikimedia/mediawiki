@@ -1,7 +1,7 @@
 /* HTMLForm styles */
 
 table.mw-htmlform-nolabel td.mw-label {
-	width: 1px !important;
+	width: 1px;
 }
 
 .mw-htmlform-invalid-input td.mw-input input {

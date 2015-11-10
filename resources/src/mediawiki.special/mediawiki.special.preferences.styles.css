@@ -10,7 +10,7 @@
 .mw-email-authenticated .mw-input { }
 */
 /* This breaks due to nolabel styling */
-#preferences > fieldset td.mw-label {
+#preferences > fieldset table:not(.mw-htmlform-nolabel) td.mw-label {
 	width: 20%;
 }
 
