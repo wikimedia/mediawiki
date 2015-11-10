@@ -2277,15 +2277,13 @@
 					},
 
 					/**
-					 * Sync modules to localStorage.
+					 * Sync in-memory store back to localStorage.
 					 *
-					 * This function debounces localStorage updates. When called multiple times in
-					 * quick succession, the calls are coalesced into a single update operation.
-					 * This allows us to call #update without having to consider the module load
-					 * queue; the call to localStorage.setItem will be naturally deferred until the
-					 * page is quiescent.
+					 * This function debounces updates. When called with a flush already pending,
+					 * the call is coalesced into the pending update. The call to
+					 * localStorage.setItem will be naturally deferred until the page is quiescent.
 					 *
-					 * Because localStorage is shared by all pages with the same origin, if multiple
+					 * Because localStorage is shared by all pages from the same origin, if multiple
 					 * pages are loaded with different module sets, the possibility exists that
 					 * modules saved by one page will be clobbered by another. But the impact would
 					 * be minor and the problem would be corrected by subsequent page views.
@@ -2293,16 +2291,16 @@
 					 * @method
 					 */
 					update: ( function () {
-						var timer;
+						var hasPendingWrite = false;
 
-						function flush() {
-							var data,
-								key = mw.loader.store.getStoreKey();
-
-							if ( !mw.loader.store.enabled ) {
-								return false;
+						function flushWrites() {
+							var data, key;
+							if ( !hasPendingWrite || !mw.loader.store.enabled ) {
+								return;
 							}
+
 							mw.loader.store.prune();
+							key = mw.loader.store.getStoreKey();
 							try {
 								// Replacing the content of the module store might fail if the new
 								// contents would exceed the browser's localStorage size limit. To
@@ -2314,11 +2312,15 @@
 							} catch ( e ) {
 								mw.track( 'resourceloader.exception', { exception: e, source: 'store-localstorage-update' } );
 							}
+
+							hasPendingWrite = false;
 						}
 
 						return function () {
-							clearTimeout( timer );
-							timer = setTimeout( flush, 2000 );
+							if ( !hasPendingWrite ) {
+								hasPendingWrite = true;
+								mw.requestIdleCallback( flushWrites );
+							}
 						};
 					}() )
 				}
