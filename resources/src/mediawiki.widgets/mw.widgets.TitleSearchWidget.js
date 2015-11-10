@@ -72,11 +72,18 @@
 	mw.widgets.TitleSearchWidget.prototype.onQueryChange = function () {
 		var widget = this;
 
-		this.getSuggestionsPromise().done( function ( response ) {
+		if ( this.currentRequest ) {
+			this.currentRequest.abort();
+		}
+
+		this.currentRequest = this.getSuggestionsPromise();
+		this.currentRequest.done( function ( response ) {
 			// Parent method
 			mw.widgets.TitleSearchWidget.parent.prototype.onQueryChange.call( widget );
 
 			widget.results.addItems( widget.getOptionsFromData( response.query || {} ) );
+
+			widget.currentRequest = false;
 		} );
 	};
 
