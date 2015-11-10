@@ -627,7 +627,10 @@ $wgMemc = wfGetMainCache();
 $messageMemc = wfGetMessageCacheStorage();
 $parserMemc = wfGetParserCacheStorage();
 
-wfDebugLog( 'caches', 'main: ' . get_class( $wgMemc ) .
+wfDebugLog( 'caches',
+	'cluster: ' . get_class( $wgMemc ) .
+	', WAN: ' . $wgMainWANCache .
+	', stash: ' . $wgMainStash .
 	', message: ' . get_class( $messageMemc ) .
 	', parser: ' . get_class( $parserMemc ) );
 
