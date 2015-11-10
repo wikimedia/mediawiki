@@ -594,7 +594,6 @@ class LoadBalancer {
 		$refCount = $conn->getLBInfo( 'foreignPoolRefCount' );
 		if ( $serverIndex === null || $refCount === null ) {
 			wfDebug( __METHOD__ . ": this connection was not opened as a foreign connection\n" );
-
 			/**
 			 * This can happen in code like:
 			 *   foreach ( $dbs as $db ) {
@@ -605,7 +604,6 @@ class LoadBalancer {
 			 * When a connection to the local DB is opened in this way, reuseConnection()
 			 * should be ignored
 			 */
-
 			return;
 		}
 
@@ -1173,7 +1171,8 @@ class LoadBalancer {
 		if ( !$this->laggedSlaveMode && $this->getServerCount() > 1 ) {
 			try {
 				// See if laggedSlaveMode gets set
-				$this->getConnection( DB_SLAVE, false, $wiki );
+				$conn = $this->getConnection( DB_SLAVE, false, $wiki );
+				$this->reuseConnection( $conn );
 			} catch ( DBConnectionError $e ) {
 				// Avoid expensive re-connect attempts and failures
 				$this->slavesDownMode = true;
