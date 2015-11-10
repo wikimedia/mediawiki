@@ -322,6 +322,19 @@ class MessageBlobStore {
 	}
 
 	/**
+	 * @param string $key Message key
+	 * @param string $lang Language code
+	 * @return string
+	 */
+	private function fetchMessage( $key, $lang ) {
+		$message = wfMessage( $key )->inLanguage( $lang );
+		if ( !$message->exists() ) {
+			wfDebugLog( 'resourceloader', __METHOD__ . " failed to find: '$key' ($lang)" );
+		}
+		return $message->plain();
+	}
+
+	/**
 	 * Reencode a message blob with the updated value for a message
 	 *
 	 * @param string $blob Message blob (JSON object)
@@ -331,8 +344,7 @@ class MessageBlobStore {
 	 */
 	private function reencodeBlob( $blob, $key, $lang ) {
 		$decoded = FormatJson::decode( $blob, true );
-		$decoded[$key] = wfMessage( $key )->inLanguage( $lang )->plain();
-
+		$decoded[$key] = $this->fetchMessage( $key, $lang );
 		return FormatJson::encode( (object)$decoded );
 	}
 
@@ -390,7 +402,7 @@ class MessageBlobStore {
 		$messages = array();
 
 		foreach ( $module->getMessages() as $key ) {
-			$messages[$key] = wfMessage( $key )->inLanguage( $lang )->plain();
+			$messages[$key] = $this->fetchMessage( $key, $lang );
 		}
 
 		return FormatJson::encode( (object)$messages );
