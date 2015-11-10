@@ -241,7 +241,8 @@ class ResourceLoader implements LoggerAwareInterface {
 
 	/**
 	 * Register core modules and runs registration hooks.
-	 * @param Config|null $config
+	 * @param Config $config [optional]
+	 * @param LoggerInterface $logger [optional]
 	 */
 	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
 		global $IP;
@@ -284,8 +285,20 @@ class ResourceLoader implements LoggerAwareInterface {
 		return $this->config;
 	}
 
+	/**
+	 * @since 1.26
+	 * @param LoggerInterface $logger
+	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
+	}
+
+	/**
+	 * @since 1.27
+	 * @return LoggerInterface
+	 */
+	public function getLogger() {
+		return $this->logger;
 	}
 
 	/**
