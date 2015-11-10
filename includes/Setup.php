@@ -516,6 +516,21 @@ MWExceptionHandler::installHandler();
 
 require_once "$IP/includes/compat/normal/UtfNormalUtil.php";
 
+
+$ps_validation = Profiler::instance()->scopedProfileIn( $fname . '-validation' );
+
+// T48998: Bail out early if $wgArticlePath is non-absolute
+if ( !preg_match( '/^https?:\/\/|\//', $wgArticlePath ) ) {
+	throw new FatalError(
+		'If you use a relative URL on $wgArticlePath, it must start ' .
+		'with a slash (/).<br><br>See ' .
+		'<a href="https://www.mediawiki.org/wiki/Manual:$wgArticlePath">' .
+		'https://www.mediawiki.org/wiki/Manual:$wgArticlePath</a>'
+	);
+}
+
+Profiler::instance()->scopedProfileOut( $ps_validation );
+
 $ps_default2 = Profiler::instance()->scopedProfileIn( $fname . '-defaults2' );
 
 if ( $wgCanonicalServer === false ) {
