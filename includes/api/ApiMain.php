@@ -417,9 +417,10 @@ class ApiMain extends ApiBase {
 			return;
 		}
 
+		$request = $this->getRequest();
 		// Exit here if the request method was OPTIONS
 		// (assume there will be a followup GET or POST)
-		if ( $this->getRequest()->getMethod() === 'OPTIONS' ) {
+		if ( $request->getMethod() === 'OPTIONS' ) {
 			return;
 		}
 
@@ -439,6 +440,15 @@ class ApiMain extends ApiBase {
 
 		// Log the request whether or not there was an error
 		$this->logRequest( microtime( true ) - $t );
+
+		// Set a cookie to tell all CDN edge nodes to "stick" the user to the
+		// DC that handles this POST request (e.g. the "master" data center)
+		if ( $request->wasPosted() && wfGetLBFactory()->hasOrMadeRecentMasterChanges() ) {
+			$expires = time() + $this->getConfig()->get( 'DataCenterUpdateStickTTL' );
+			$request->response()->setCookie(
+				'UseDC', 'master', $expires, array( 'prefix' => '' )
+			);
+		}
 
 		// Send cache headers after any code which might generate an error, to
 		// avoid sending public cache headers for errors.
