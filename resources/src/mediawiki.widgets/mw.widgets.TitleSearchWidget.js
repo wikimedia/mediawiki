@@ -70,9 +70,17 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.TitleSearchWidget.prototype.onQueryChange = function () {
-		var widget = this;
+		var query = this.getQueryValue(),
+			widget = this;
 
 		this.getSuggestionsPromise().done( function ( response ) {
+			if ( widget.getQueryValue() !== query ) {
+				// The query has changed from the time we started. This means that another
+				// promise will have been fired off anyway. Sometimes, because of the joys
+				// of network operations, these will resolve out of order. So, just abandon
+				// this.
+				return;
+			}
 			// Parent method
 			mw.widgets.TitleSearchWidget.parent.prototype.onQueryChange.call( widget );
 
