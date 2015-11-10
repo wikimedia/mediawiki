@@ -3314,6 +3314,11 @@ abstract class DatabaseBase implements IDatabase {
 						MWExceptionHandler::logException( $ePrior );
 					}
 					$ePrior = $e;
+					// Some callbacks may use startAtomic/endAtomic, so make sure
+					// their transactions are ended so other callbacks don't fail
+					if ( $this->trxLevel() ) {
+						$this->rollback( __METHOD__ );
+					}
 				}
 			}
 		} while ( count( $this->mTrxIdleCallbacks ) );
