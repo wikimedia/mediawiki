@@ -642,3 +642,7 @@
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git
 	branch = wmf/1.27.0-wmf.5
+[submodule "extensions/QuickSurveys"]
+	path = extensions/QuickSurveys
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/QuickSurveys.git
+	branch = wmf/1.27.0-wmf.6
