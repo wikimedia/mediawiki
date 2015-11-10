@@ -17173,8 +17173,8 @@ Special page transclusion
 !! wikitext
 {{Special:Prefixindex/Xyzzyx}}
 !! html
-<div class="mw-prefixindex-body"><ul class="mw-prefixindex-list"><li> <a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a> </li>
-</ul></div>
+<ul class="mw-prefixindex-list"><li><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></li>
+</ul>
 
 !! end
 
@@ -17185,10 +17185,10 @@ Special page transclusion twice (bug 5021)
 {{Special:Prefixindex/Xyzzyx}}
 {{Special:Prefixindex/Xyzzyx}}
 !! html
-<div class="mw-prefixindex-body"><ul class="mw-prefixindex-list"><li> <a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a> </li>
-</ul></div>
-<div class="mw-prefixindex-body"><ul class="mw-prefixindex-list"><li> <a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a> </li>
-</ul></div>
+<ul class="mw-prefixindex-list"><li><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></li>
+</ul>
+<ul class="mw-prefixindex-list"><li><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></li>
+</ul>
 
 !! end
 
