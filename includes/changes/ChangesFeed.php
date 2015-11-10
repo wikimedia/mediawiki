@@ -83,7 +83,8 @@ class ChangesFeed {
 		}
 
 		$optionsHash = md5( serialize( $opts->getAllValues() ) ) . $wgRenderHashAppend;
-		$timekey = wfMemcKey( $this->type, $this->format, $wgLang->getCode(), $optionsHash, 'timestamp' );
+		$timekey = wfMemcKey(
+			$this->type, $this->format, $wgLang->getCode(), $optionsHash, 'timestamp' );
 		$key = wfMemcKey( $this->type, $this->format, $wgLang->getCode(), $optionsHash );
 
 		FeedUtils::checkPurge( $timekey, $key );
@@ -110,21 +111,21 @@ class ChangesFeed {
 	}
 
 	/**
-	 * Save to feed result to $messageMemc
+	 * Save to feed result to cache
 	 *
 	 * @param string $feed Feed's content
 	 * @param string $timekey Memcached key of the last modification
 	 * @param string $key Memcached key of the content
 	 */
 	public function saveToCache( $feed, $timekey, $key ) {
-		global $messageMemc;
+		$cache = ObjectCache::getMainWANInstance();
 		$expire = 3600 * 24; # One day
-		$messageMemc->set( $key, $feed, $expire );
-		$messageMemc->set( $timekey, wfTimestamp( TS_MW ), $expire );
+		$cache->set( $key, $feed, $expire );
+		$cache->set( $timekey, wfTimestamp( TS_MW ), $expire );
 	}
 
 	/**
-	 * Try to load the feed result from $messageMemc
+	 * Try to load the feed result from cache
 	 *
 	 * @param int $lastmod Timestamp of the last item in the recentchanges table
 	 * @param string $timekey Memcached key of the last modification
@@ -132,9 +133,10 @@ class ChangesFeed {
 	 * @return string|bool Feed's content on cache hit or false on cache miss
 	 */
 	public function loadFromCache( $lastmod, $timekey, $key ) {
-		global $wgFeedCacheTimeout, $wgOut, $messageMemc;
+		global $wgFeedCacheTimeout, $wgOut;
 
-		$feedLastmod = $messageMemc->get( $timekey );
+		$cache = ObjectCache::getMainWANInstance();
+		$feedLastmod = $cache->get( $timekey );
 
 		if ( ( $wgFeedCacheTimeout > 0 ) && $feedLastmod ) {
 			/**
@@ -153,7 +155,7 @@ class ChangesFeed {
 				if ( $feedLastmodUnix < $lastmodUnix ) {
 					$wgOut->setLastModified( $feedLastmod ); // bug 21916
 				}
-				return $messageMemc->get( $key );
+				return $cache->get( $key );
 			} else {
 				wfDebug( "RC: cached feed timestamp check failed ($feedLastmod; $lastmod)\n" );
 			}
@@ -164,7 +166,7 @@ class ChangesFeed {
 	/**
 	 * Generate the feed items given a row from the database, printing the feed.
 	 * @param object $rows DatabaseBase resource with recentchanges rows
-	 * @param Feed $feed
+	 * @param ChannelFeed $feed
 	 */
 	public static function generateFeed( $rows, &$feed ) {
 		$items = self::buildItems( $rows );

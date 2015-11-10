@@ -30,18 +30,19 @@ class FeedUtils {
 
 	/**
 	 * Check whether feed's cache should be cleared; for changes feeds
-	 * If the feed should be purged; $timekey and $key will be removed from
-	 * $messageMemc
+	 * If the feed should be purged; $timekey and $key will be removed from cache
 	 *
 	 * @param string $timekey Cache key of the timestamp of the last item
 	 * @param string $key Cache key of feed's content
 	 */
 	public static function checkPurge( $timekey, $key ) {
-		global $wgRequest, $wgUser, $messageMemc;
+		global $wgRequest, $wgUser;
+
 		$purge = $wgRequest->getVal( 'action' ) === 'purge';
 		if ( $purge && $wgUser->isAllowed( 'purge' ) ) {
-			$messageMemc->delete( $timekey );
-			$messageMemc->delete( $key );
+			$cache = ObjectCache::getMainWANInstance();
+			$cache->delete( $timekey, 1 );
+			$cache->delete( $key, 1 );
 		}
 	}
 
