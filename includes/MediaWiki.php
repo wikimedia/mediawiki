@@ -487,12 +487,21 @@ class MediaWiki {
 	}
 
 	/**
-	 * This function commits all DB changes as needed before
-	 * the user can receive a response (in case commit fails)
-	 *
+	 * @see MediaWiki::preOutputCommit()
 	 * @since 1.26
 	 */
 	public function doPreOutputCommit() {
+		self::preOutputCommit( $this->context );
+	}
+
+	/**
+	 * This function commits all DB changes as needed before
+	 * the user can receive a response (in case commit fails)
+	 *
+	 * @param IContextSource $context
+	 * @since 1.27
+	 */
+	public static function preOutputCommit( IContextSource $context ) {
 		// Either all DBs should commit or none
 		ignore_user_abort( true );
 
@@ -505,16 +514,17 @@ class MediaWiki {
 
 		// Set a cookie to tell all CDN edge nodes to "stick" the user to the
 		// DC that handles this POST request (e.g. the "master" data center)
-		$request = $this->context->getRequest();
+		$request = $context->getRequest();
+		$config = $context->getConfig();
 		if ( $request->wasPosted() && $factory->hasOrMadeRecentMasterChanges() ) {
-			$expires = time() + $this->config->get( 'DataCenterUpdateStickTTL' );
-			$request->response()->setCookie( 'UseDC', 'master', $expires );
+			$expires = time() + $config->get( 'DataCenterUpdateStickTTL' );
+			$request->response()->setCookie( 'UseDC', 'master', $expires, array( 'prefix' => '' ) );
 		}
 
 		// Avoid letting a few seconds of slave lag cause a month of stale data
 		if ( $factory->laggedSlaveUsed() ) {
-			$maxAge = $this->config->get( 'CdnMaxageLagged' );
-			$this->context->getOutput()->lowerCdnMaxage( $maxAge );
+			$maxAge = $config->get( 'CdnMaxageLagged' );
+			$context->getOutput()->lowerCdnMaxage( $maxAge );
 			$request->response()->header( "X-Database-Lagged: true" );
 			wfDebugLog( 'replication', "Lagged DB used; CDN cache TTL limited to $maxAge seconds" );
 		}
