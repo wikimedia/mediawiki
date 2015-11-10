@@ -29,11 +29,12 @@ use MediaWiki\Logger\LoggerFactory;
  * of a specific loader request
  */
 class ResourceLoaderContext {
-	/* Protected Members */
-
 	protected $resourceLoader;
 	protected $request;
+	protected $logger;
+
 	protected $modules;
+
 	protected $language;
 	protected $direction;
 	protected $skin;
@@ -41,15 +42,16 @@ class ResourceLoaderContext {
 	protected $debug;
 	protected $only;
 	protected $version;
+
 	protected $hash;
 	protected $raw;
+
 	protected $image;
 	protected $variant;
 	protected $format;
+
 	protected $userObj;
 	protected $imageObj;
-
-	/* Methods */
 
 	/**
 	 * @param ResourceLoader $resourceLoader
@@ -58,6 +60,7 @@ class ResourceLoaderContext {
 	public function __construct( ResourceLoader $resourceLoader, WebRequest $request ) {
 		$this->resourceLoader = $resourceLoader;
 		$this->request = $request;
+		$this->logger = $resourceLoader->getLogger();
 
 		// List of modules
 		$modules = $request->getVal( 'modules' );
@@ -144,6 +147,14 @@ class ResourceLoaderContext {
 	 */
 	public function getRequest() {
 		return $this->request;
+	}
+
+	/**
+	 * @since 1.27
+	 * @return \\Psr\\Log\\LoggerInterface
+	 */
+	public function getLogger() {
+		return $this->logger;
 	}
 
 	/**

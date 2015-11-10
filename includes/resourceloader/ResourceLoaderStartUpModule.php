@@ -211,6 +211,13 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 			$versionHash = $module->getVersionHash( $context );
 			if ( strlen( $versionHash ) !== 8 ) {
+				$context->getLogger()->warning(
+					"Module '{module}' produced an invalid version hash: '{version}'.",
+					array(
+						'module' => $name,
+						'version' => $versionHash,
+					)
+				);
 				// Module implementation either broken or deviated from ResourceLoader::makeHash
 				// Asserted by tests/phpunit/structure/ResourcesTest.
 				$versionHash = ResourceLoader::makeHash( $versionHash );
