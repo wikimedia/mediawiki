@@ -42,7 +42,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		parent::__construct( $params );
 		$params = $this->applyDefaultParams( $params );
 
-		$this->client = new MWMemcached( $params );
+		$this->client = new MemcachedClient( $params );
 		$this->client->set_servers( $params['servers'] );
 		$this->client->set_debug( $params['debug'] );
 	}

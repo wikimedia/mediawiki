@@ -27,7 +27,7 @@
  * @ingroup Cache
  */
 class MemcachedBagOStuff extends BagOStuff {
-	/** @var MWMemcached|Memcached */
+	/** @var MemcachedClient|Memcached */
 	protected $client;
 
 	/**
@@ -86,7 +86,7 @@ class MemcachedBagOStuff extends BagOStuff {
 	/**
 	 * Get the underlying client object. This is provided for debugging
 	 * purposes.
-	 * @return BagOStuff
+	 * @return MemcachedClient|Memcached
 	 */
 	public function getClient() {
 		return $this->client;

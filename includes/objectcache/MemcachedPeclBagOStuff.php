@@ -43,7 +43,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 *                          values, but serialization is much slower unless the php.ini option
 	 *                          igbinary.compact_strings is off.
 	 * @param array $params
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 */
 	function __construct( $params ) {
 		parent::__construct( $params );
@@ -89,7 +89,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		// is as good as any. There's no way to configure libmemcached to use
 		// hashes identical to the ones currently in use by the PHP client, and
 		// even implementing one of the libmemcached hashes in pure PHP for
-		// forwards compatibility would require MWMemcached::get_sock() to be
+		// forwards compatibility would require MemcachedClient::get_sock() to be
 		// rewritten.
 		$this->client->setOption( Memcached::OPT_LIBKETAMA_COMPATIBLE, true );
 

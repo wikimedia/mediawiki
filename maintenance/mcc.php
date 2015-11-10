@@ -35,7 +35,7 @@ if ( $help ) {
 	mccShowUsage();
 	exit( 0 );
 }
-$mcc = new MWMemcached( array(
+$mcc = new MemcachedClient( array(
 	'persistent' => true,
 	'debug' => $debug,
 ) );

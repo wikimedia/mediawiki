@@ -41,43 +41,42 @@
  */
 
 /**
- * This is the PHP client for memcached - a distributed memory cache daemon.
+ * This is a PHP client for memcached - a distributed memory cache daemon.
+ *
  * More information is available at http://www.danga.com/memcached/
  *
  * Usage example:
  *
- * require_once 'memcached.php';
+ *     $mc = new MemcachedClient(array(
+ *         'servers' => array(
+ *             '127.0.0.1:10000',
+ *             array( '192.0.0.1:10010', 2 ),
+ *             '127.0.0.1:10020'
+ *         ),
+ *         'debug'   => false,
+ *         'compress_threshold' => 10240,
+ *         'persistent' => true
+ *     ));
  *
- * $mc = new MWMemcached(array(
- *              'servers' => array('127.0.0.1:10000',
- *                                 array('192.0.0.1:10010', 2),
- *                                 '127.0.0.1:10020'),
- *              'debug'   => false,
- *              'compress_threshold' => 10240,
- *              'persistent' => true));
+ *     $mc->add( 'key', array( 'some', 'array' ) );
+ *     $mc->replace( 'key', 'some random string' );
+ *     $val = $mc->get( 'key' );
  *
- * $mc->add( 'key', array( 'some', 'array' ) );
- * $mc->replace( 'key', 'some random string' );
- * $val = $mc->get( 'key' );
- *
- * @author  Ryan T. Dean <rtdean@cytherianage.net>
+ * @author Ryan T. Dean <rtdean@cytherianage.net>
  * @version 0.1.2
  */
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
-// {{{ requirements
-// }}}
-
-// {{{ class MWMemcached
+// {{{ class MemcachedClient
 /**
  * memcached client class implemented using (p)fsockopen()
  *
  * @author  Ryan T. Dean <rtdean@cytherianage.net>
  * @ingroup Cache
  */
-class MWMemcached {
+class MemcachedClient {
 	// {{{ properties
 	// {{{ public
 
@@ -659,7 +658,7 @@ class MWMemcached {
 	// {{{ set_compress_threshold()
 
 	/**
-	 * Sets the compression threshold
+	 * Set the compression threshold
 	 *
 	 * @param int $thresh Threshold to compress if larger than
 	 */
@@ -671,11 +670,10 @@ class MWMemcached {
 	// {{{ set_debug()
 
 	/**
-	 * Sets the debug flag
+	 * Set the debug flag
 	 *
+	 * @see __construct()
 	 * @param bool $dbg True for debugging, false otherwise
-	 *
-	 * @see MWMemcached::__construct
 	 */
 	public function set_debug( $dbg ) {
 		$this->_debug = $dbg;
@@ -685,11 +683,10 @@ class MWMemcached {
 	// {{{ set_servers()
 
 	/**
-	 * Sets the server list to distribute key gets and puts between
+	 * Set the server list to distribute key gets and puts between
 	 *
+	 * @see __construct()
 	 * @param array $list Array of servers to connect to
-	 *
-	 * @see MWMemcached::__construct()
 	 */
 	public function set_servers( $list ) {
 		$this->_servers = $list;
@@ -1271,6 +1268,3 @@ class MWMemcached {
 }
 
 // }}}
-
-class MemCachedClientforWiki extends MWMemcached {
-}
