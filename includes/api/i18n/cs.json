@@ -36,6 +36,8 @@
 	"apihelp-block-example-user-complex": "Trvale zablokovat uživatele <kbd>Vandal</kbd> s odůvodněním <kbd>Vandalism</kbd> a zabránit vytváření nových účtů a odesílání e-mailů.",
 	"apihelp-checktoken-param-type": "Typ testovaného tokenu.",
 	"apihelp-checktoken-param-token": "Token, který se má otestovat.",
+	"apihelp-checktoken-param-maxtokenage": "Nejvyšší povolené stáří tokenu v sekundách.",
+	"apihelp-checktoken-example-simple": "Testuje správnost tokenu <kbd>csrf</kbd>.",
 	"apihelp-compare-description": "Vrátí rozdíl dvou stránek.\n\nVe „from“ i „to“ musíte zadat číslo revize, název stránky nebo ID stránky.",
 	"apihelp-compare-param-fromtitle": "Název první stránky k porovnání.",
 	"apihelp-compare-param-fromid": "ID první stránky k porovnání.",

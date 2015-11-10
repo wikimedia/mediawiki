@@ -1816,7 +1816,7 @@
 	"deletepage": "Izbrišite stranicu",
 	"confirm": "Potvrdi / Потврди",
 	"excontent": "sadržaj je bio: '$1'",
-	"excontentauthor": "sadržaj je bio: „$1“, a jedini urednik [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]])",
+	"excontentauthor": "sadržaj je bio: \"$1\", a jedini urednik \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|razgovor]])",
 	"exbeforeblank": "sadržaj prije brisanja je bio: '$1'",
 	"delete-confirm": "Brisanje \"$1\"",
 	"delete-legend": "Obriši",

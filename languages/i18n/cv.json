@@ -541,6 +541,8 @@
 	"enhancedrc-history": "истори",
 	"recentchanges": "Улшăнусем",
 	"recentchanges-legend": "Çĕнĕ улшăнусен ĕнерлевĕ",
+	"recentchanges-label-newpage": "Çĕнĕ страница тунă пулнă",
+	"recentchanges-label-minor": "Нумайах мар улăштарни",
 	"recentchanges-label-bot": "Ку улшăнăва бот тунă",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (пăхăр [[Special:NewPages|çĕнĕ страницăсен списокĕ]])",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",

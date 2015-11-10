@@ -398,6 +398,7 @@
 	"missingarticle-rev": "(numero della versione: $1)",
 	"missingarticle-diff": "(Diff: $1, $2)",
 	"readonly_lag": "Il database è stato bloccato automaticamente per consentire ai server con i database slave di sincronizzarsi con il master",
+	"nonwrite-api-promise-error": "È stata inviata l'intestazione HTTP 'Promise-Non-Write-API-Action', ma la richiesta era di un modulo API in scrittura.",
 	"internalerror": "Errore interno",
 	"internalerror_info": "Errore interno: $1",
 	"internalerror-fatal-exception": "Errore irreversibile di tipo \"$1\"",
