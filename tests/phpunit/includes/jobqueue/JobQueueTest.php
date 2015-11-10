@@ -128,8 +128,6 @@ class JobQueueTest extends MediaWikiTestCase {
 		$queue->flushCaches();
 		if ( $recycles ) {
 			$this->assertEquals( 1, $queue->getAcquiredCount(), "Active job count ($desc)" );
-		} else {
-			$this->assertEquals( 0, $queue->getAcquiredCount(), "Active job count ($desc)" );
 		}
 
 		$job2 = $queue->pop();
@@ -139,8 +137,6 @@ class JobQueueTest extends MediaWikiTestCase {
 		$queue->flushCaches();
 		if ( $recycles ) {
 			$this->assertEquals( 2, $queue->getAcquiredCount(), "Active job count ($desc)" );
-		} else {
-			$this->assertEquals( 0, $queue->getAcquiredCount(), "Active job count ($desc)" );
 		}
 
 		$queue->ack( $job1 );
@@ -148,8 +144,6 @@ class JobQueueTest extends MediaWikiTestCase {
 		$queue->flushCaches();
 		if ( $recycles ) {
 			$this->assertEquals( 1, $queue->getAcquiredCount(), "Active job count ($desc)" );
-		} else {
-			$this->assertEquals( 0, $queue->getAcquiredCount(), "Active job count ($desc)" );
 		}
 
 		$queue->ack( $job2 );
@@ -215,14 +209,35 @@ class JobQueueTest extends MediaWikiTestCase {
 		$this->assertEquals( 0, $queue->getSize(), "Queue is empty ($desc)" );
 		if ( $recycles ) {
 			$this->assertEquals( 1, $queue->getAcquiredCount(), "Active job count ($desc)" );
-		} else {
-			$this->assertEquals( 0, $queue->getAcquiredCount(), "Active job count ($desc)" );
 		}
 
 		$queue->ack( $job1 );
 
 		$queue->flushCaches();
 		$this->assertEquals( 0, $queue->getAcquiredCount(), "Active job count ($desc)" );
+	}
+
+	/**
+	 * @dataProvider provider_queueLists
+	 * @covers JobQueue
+	 */
+	public function testDeduplicationWhileClaimed( $queue, $recycles, $desc ) {
+		$queue = $this->$queue;
+		if ( !$queue ) {
+			$this->markTestSkipped( $desc );
+		}
+
+		$job = $this->newDedupedJob();
+		$queue->push( $job );
+
+		// De-duplication does not apply to already-claimed jobs
+		$j = $queue->pop();
+		$queue->push( $job );
+		$queue->ack( $j );
+
+		$j = $queue->pop();
+		// Make sure ack() of the twin did not delete the sibling data
+		$this->assertType( 'NullJob', $j );
 	}
 
 	/**
