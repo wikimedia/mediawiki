@@ -22,8 +22,6 @@
  */
 
 namespace MediaWiki\Auth;
-use StatusValue;
-use User;
 
 use StatusValue;
 use User;
@@ -206,7 +204,7 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	 * @param User $user User being created (has been added to the database now).
 	 *   This may become a "UserValue" in the future, or User may be refactored
 	 *   into such.
-	 * @param AuthenticationResponse PASS response returned earlier
+	 * @param AuthenticationResponse $response PASS response returned earlier
 	 */
 	public function finishAccountCreation( $user, AuthenticationResponse $response );
 

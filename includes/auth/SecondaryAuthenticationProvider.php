@@ -23,6 +23,9 @@
 
 namespace MediaWiki\Auth;
 
+use StatusValue;
+use User;
+
 /**
  * A secondary authentication provider performs additional authentication steps
  * after a PrimaryAuthenticationProvider has done its thing.

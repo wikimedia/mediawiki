@@ -23,6 +23,9 @@
 
 namespace MediaWiki\Auth;
 
+use StatusValue;
+use User;
+
 /**
  * A pre-authentication provider is a check that must pass for authentication
  * to proceed.

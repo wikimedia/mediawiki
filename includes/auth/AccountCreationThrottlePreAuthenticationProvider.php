@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Auth;
 
+use BagOStuff;
 use Config;
 
 /**

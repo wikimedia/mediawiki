@@ -21,6 +21,8 @@
 
 namespace MediaWiki\Auth;
 
+use User;
+
 /**
  * This represents additional user data requested on the account creation form
  *
@@ -54,7 +56,7 @@ class UserDataAuthenticationRequest extends AuthenticationRequest {
 			),
 		);
 
-		if ( in_array( 'realname', $config->get( 'HiddenPrefs' ) ) ) {
+		if ( in_array( 'realname', $config->get( 'HiddenPrefs' ), true ) ) {
 			unset( $ret['realname'] );
 		}
 

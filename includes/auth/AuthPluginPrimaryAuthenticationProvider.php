@@ -23,6 +23,8 @@
 
 namespace MediaWiki\Auth;
 
+use User;
+
 /**
  * Primary authentication provider wrapper for AuthPlugin
  * @warning If anything depends on the wrapped AuthPlugin being $wgAuth, it won't work with this!

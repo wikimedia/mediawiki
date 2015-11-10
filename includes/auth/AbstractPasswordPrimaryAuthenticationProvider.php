@@ -21,6 +21,11 @@
 
 namespace MediaWiki\Auth;
 
+use Password;
+use PasswordFactory;
+use Status;
+use stdClass;
+
 /**
  * Basic framework for a primary authentication provider that uses passwords
  * @ingroup Auth

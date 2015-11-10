@@ -19,6 +19,7 @@
  */
 
 namespace MediaWiki\Auth;
+use User;
 
 /**
  * Backwards-compatibility wrapper for AuthManager via $wgAuth
@@ -30,7 +31,7 @@ class AuthManagerAuthPlugin extends \AuthPlugin {
 	protected $domain = null;
 
 	public function userExists( $name ) {
-		return AuthManager::singleton()->exists( $name );
+		return AuthManager::singleton()->userExists( $name );
 	}
 
 	public function authenticate( $username, $password ) {
@@ -77,7 +78,7 @@ class AuthManagerAuthPlugin extends \AuthPlugin {
 
 	public function validDomain( $domain ) {
 		$domainList = $this->domainList();
-		return $domainList ? in_array( $domain, $domainList ) : $domain === '';
+		return $domainList ? in_array( $domain, $domainList, true ) : $domain === '';
 	}
 
 	public function updateUser( &$user ) {
@@ -146,7 +147,7 @@ class AuthManagerAuthPlugin extends \AuthPlugin {
 	}
 
 	public function canCreateAccounts() {
-		return AuthenticationManager::singleton()->canCreateAccounts();
+		return AuthManager::singleton()->canCreateAccounts();
 	}
 
 	public function addUser( $user, $password, $email = '', $realname = '' ) {
@@ -215,6 +216,7 @@ class AuthManagerAuthPlugin extends \AuthPlugin {
  * @deprecated since 1.27
  */
 class AuthManagerAuthPluginUser extends \AuthPluginUser {
+	/** @var User */
 	private $user;
 
 	function __construct( $user ) {
