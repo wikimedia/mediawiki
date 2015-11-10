@@ -749,11 +749,7 @@ class MessageCache {
 
 		Hooks::run( 'MessageCache::get', array( &$lckey ) );
 
-		if ( ord( $lckey ) < 128 ) {
-			$uckey = ucfirst( $lckey );
-		} else {
-			$uckey = $wgContLang->ucfirst( $lckey );
-		}
+		$uckey = $wgContLang->ucfirst( $lckey );
 
 		// Loop through each language in the fallback list until we find something useful
 		$lang = wfGetLangObj( $langcode );
