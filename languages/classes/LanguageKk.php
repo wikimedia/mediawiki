@@ -422,13 +422,13 @@ class LanguageKk extends LanguageKk_cyrl {
 	 * @return string
 	 */
 	function ucfirst( $string ) {
-		$variant = $this->getPreferredVariant();
-		if ( ( $variant == 'kk-latn' || $variant == 'kk-tr' ) && $string[0] == 'i' ) {
-			$string = 'İ' . substr( $string, 1 );
-		} else {
-			$string = parent::ucfirst( $string );
+		if ( $string[0] == 'i' ) {
+			$variant = $this->getPreferredVariant();
+			if ( $variant == 'kk-latn' || $variant == 'kk-tr' ) {
+				return 'İ' . substr( $string, 1 );
+			}
 		}
-		return $string;
+		return parent::ucfirst( $string );
 	}
 
 	/**
@@ -439,13 +439,13 @@ class LanguageKk extends LanguageKk_cyrl {
 	 * @return string
 	 */
 	function lcfirst( $string ) {
-		$variant = $this->getPreferredVariant();
-		if ( ( $variant == 'kk-latn' || $variant == 'kk-tr' ) && $string[0] == 'I' ) {
-			$string = 'ı' . substr( $string, 1 );
-		} else {
-			$string = parent::lcfirst( $string );
+		if ( $string[0] == 'I' ) {
+			$variant = $this->getPreferredVariant();
+			if ( $variant == 'kk-latn' || $variant == 'kk-tr' ) {
+				return 'ı' . substr( $string, 1 );
+			}
 		}
-		return $string;
+		return parent::lcfirst( $string );
 	}
 
 	/**
