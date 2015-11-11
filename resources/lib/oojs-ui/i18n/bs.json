@@ -18,5 +18,6 @@
 	"ooui-dialog-process-dismiss": "Odbaci",
 	"ooui-dialog-process-retry": "Pokušajte ponovo",
 	"ooui-dialog-process-continue": "Nastavi",
+	"ooui-selectfile-button-select": "Izaberi datoteku",
 	"ooui-selectfile-placeholder": "Nijedna datoteka nije izabrana"
 }

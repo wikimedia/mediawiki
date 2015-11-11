@@ -13,7 +13,7 @@
 			"ltr": "images/icons/find-ltr.svg",
 			"rtl": "images/icons/find-rtl.svg"
 		} },
-		"insert": { "file": "images/icons/insert.svg" },
+		"insert": { "file": "images/icons/add.svg" },
 		"layout": { "file": {
 			"ltr": "images/icons/layout-ltr.svg",
 			"rtl": "images/icons/layout-rtl.svg"

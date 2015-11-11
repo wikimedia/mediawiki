@@ -11,7 +11,8 @@
 			"Polda18",
 			"Tchoř",
 			"ශ්වෙත",
-			"Vojtěch Dostál"
+			"Vojtěch Dostál",
+			"Matěj Suchánek"
 		]
 	},
 	"ooui-outline-control-move-down": "Přesunout položku dolů",
@@ -28,5 +29,6 @@
 	"ooui-dialog-process-continue": "Pokračovat",
 	"ooui-selectfile-button-select": "Vybrat soubor",
 	"ooui-selectfile-not-supported": "Výběr souboru není podporován",
-	"ooui-selectfile-placeholder": "Nebyl vybrán žádný soubor"
+	"ooui-selectfile-placeholder": "Nebyl vybrán žádný soubor",
+	"ooui-selectfile-dragdrop-placeholder": "Umístěte soubor sem"
 }

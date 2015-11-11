@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.13.1
+ * OOjs UI v0.13.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-11-03T21:42:28Z
+ * Date: 2015-11-10T23:33:07Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -1550,6 +1550,7 @@
 }
 .oo-ui-progressBarWidget {
 	max-width: 50em;
+	background-color: #ffffff;
 	border: 1px solid #cccccc;
 	border-radius: 0.1em;
 	overflow: hidden;
@@ -1613,9 +1614,9 @@
 	overflow: hidden;
 }
 .oo-ui-popupWidget-popup {
+	background-color: #ffffff;
 	border: 1px solid #aaaaaa;
 	border-radius: 0.2em;
-	background-color: #ffffff;
 	box-shadow: 0 0.15em 0 0 rgba(0, 0, 0, 0.15);
 }
 .oo-ui-popupWidget-anchored .oo-ui-popupWidget-popup {
@@ -1778,7 +1779,7 @@
 	        box-sizing: border-box;
 }
 .oo-ui-dropdownInputWidget select {
-	background: #ffffff;
+	background-color: #ffffff;
 	height: 2.275em;
 	font-size: inherit;
 	font-family: inherit;
@@ -2056,7 +2057,7 @@
 }
 .oo-ui-menuSelectWidget {
 	position: absolute;
-	background: #ffffff;
+	background-color: #ffffff;
 	margin-top: -1px;
 	border: 1px solid #aaaaaa;
 	border-radius: 0 0 0.2em 0.2em;
@@ -2106,7 +2107,7 @@
 	position: relative;
 	width: 100%;
 	max-width: 50em;
-	background: #ffffff;
+	background-color: #ffffff;
 	margin-right: 0.5em;
 }
 .oo-ui-dropdownWidget-handle {
@@ -2139,6 +2140,7 @@
 .oo-ui-dropdownWidget-handle {
 	padding: 0.5em 0;
 	height: 2.275em;
+	line-height: 1.275;
 	border: 1px solid #cccccc;
 	border-radius: 0.1em;
 }
@@ -2267,6 +2269,7 @@
 }
 .oo-ui-selectFileWidget-info {
 	height: 2.4em;
+	background-color: #ffffff;
 	border: 1px solid #cccccc;
 	border-radius: 0.1em;
 }
@@ -2349,10 +2352,10 @@
 }
 .oo-ui-selectFileWidget-dropTarget {
 	line-height: 3.5em;
+	background-color: #ffffff;
 	border: 1px dashed #cccccc;
 	padding: 0.5em 1em;
 	margin-bottom: 0.5em;
-	background: #ffffff;
 	text-align: center;
 	vertical-align: middle;
 }
@@ -2644,25 +2647,37 @@
 .oo-ui-capsuleItemWidget.oo-ui-widget-disabled > .oo-ui-indicatorElement-indicator {
 	opacity: 0.2;
 }
-.oo-ui-comboBoxWidget {
+.oo-ui-comboBoxInputWidget {
 	display: inline-block;
 	position: relative;
 	width: 100%;
 	max-width: 50em;
 	margin-right: 0.5em;
 }
-.oo-ui-comboBoxWidget > .oo-ui-menuSelectWidget {
+.oo-ui-comboBoxInputWidget > .oo-ui-menuSelectWidget {
 	z-index: 1;
 	width: 100%;
 }
-.oo-ui-comboBoxWidget > .oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator {
+.oo-ui-comboBoxInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator {
 	cursor: pointer;
 }
-.oo-ui-comboBoxWidget:last-child {
+.oo-ui-comboBoxInputWidget-php input::-webkit-calendar-picker-indicator {
+	opacity: 0 !important;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 2.5em;
+	width: 2.5em;
+	padding: 0;
+}
+.oo-ui-comboBoxInputWidget-php > .oo-ui-indicatorElement-indicator {
+	pointer-events: none;
+}
+.oo-ui-comboBoxInputWidget:last-child {
 	margin-right: 0;
 }
-.oo-ui-comboBoxWidget .oo-ui-textInputWidget input,
-.oo-ui-comboBoxWidget .oo-ui-textInputWidget textarea {
+.oo-ui-comboBoxInputWidget input,
+.oo-ui-comboBoxInputWidget textarea {
 	height: 2.35em;
 }
 .oo-ui-searchWidget-query {
