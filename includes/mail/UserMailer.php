@@ -43,8 +43,8 @@ class UserMailer {
 	protected static function sendWithPear( $mailer, $dest, $headers, $body ) {
 		$mailResult = $mailer->send( $dest, $headers, $body );
 
-		// Based on the result return an error string,
-		if ( PEAR::isError( $mailResult ) ) {
+		// Based on the result return an error string
+		if ( is_a( $mailResult, 'PEAR_Error' ) ) {
 			wfDebug( "PEAR::Mail failed: " . $mailResult->getMessage() . "\n" );
 			return Status::newFatal( 'pear-mail-error', $mailResult->getMessage() );
 		} else {
@@ -366,7 +366,7 @@ class UserMailer {
 
 			// Create the mail object using the Mail::factory method
 			$mail_object =& Mail::factory( 'smtp', $wgSMTP );
-			if ( PEAR::isError( $mail_object ) ) {
+			if ( is_a( $mail_object, 'PEAR_Error' ) ) {
 				wfDebug( "PEAR::Mail factory failed: " . $mail_object->getMessage() . "\n" );
 				MediaWiki\restoreWarnings();
 				return Status::newFatal( 'pear-mail-error', $mail_object->getMessage() );
