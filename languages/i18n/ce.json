@@ -122,7 +122,7 @@
 	"november-date": "Ноябрь $1",
 	"december-date": "Декабрь $1",
 	"pagecategories": "{{PLURAL:$1|1=Категори|Категореш}}",
-	"category_header": "АгӀонаш категоречохь «$1»",
+	"category_header": "«$1» категори чура агӀонаш",
 	"subcategories": "Бухаркатегореш",
 	"category-media-header": "Файлаш оцу категори чохь «$1»",
 	"category-empty": "''ХӀара категори хӀинца яьсса ю.''",
