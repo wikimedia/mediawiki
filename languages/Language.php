@@ -147,7 +147,7 @@ class Language {
 
 	/**
 	 * Cache for language names
-	 * @var MapCacheLRU|null
+	 * @var HashBagOStuff|null
 	 */
 	static private $languageNameCache;
 
@@ -851,11 +851,11 @@ class Language {
 		$cacheKey = $inLanguage === null ? 'null' : $inLanguage;
 		$cacheKey .= ":$include";
 		if ( self::$languageNameCache === null ) {
-			self::$languageNameCache = new MapCacheLRU( 20 );
+			self::$languageNameCache = new HashBagOStuff( array( 'maxKeys' => 20 ) );
 		}
-		if ( self::$languageNameCache->has( $cacheKey ) ) {
-			$ret = self::$languageNameCache->get( $cacheKey );
-		} else {
+
+		$ret = self::$languageNameCache->get( $cacheKey );
+		if ( !$ret ) {
 			$ret = self::fetchLanguageNamesUncached( $inLanguage, $include );
 			self::$languageNameCache->set( $cacheKey, $ret );
 		}
