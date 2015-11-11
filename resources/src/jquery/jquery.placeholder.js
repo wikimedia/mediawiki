@@ -1,4 +1,4 @@
-/**
+/*!
  * HTML5 placeholder emulation for jQuery plugin
  *
  * This will automatically use the HTML5 placeholder attribute if supported, or emulate this behavior if not.
@@ -13,6 +13,7 @@
  * @version 2.1.0
  * @license MIT
  */
+
 ( function ( $ ) {
 
 	var isInputSupported = 'placeholder' in document.createElement( 'input' ),
