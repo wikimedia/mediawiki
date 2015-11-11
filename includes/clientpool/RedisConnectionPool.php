@@ -471,24 +471,34 @@ class RedisConnRef {
 
 	public function __call( $name, $arguments ) {
 		$conn = $this->conn; // convenience
+		$_arguments = $arguments; //Necessary for the iterator reference fix below to work.
 
 		// Work around https://github.com/nicolasff/phpredis/issues/70
 		$lname = strtolower( $name );
 		if ( ( $lname === 'blpop' || $lname == 'brpop' )
-			&& is_array( $arguments[0] ) && isset( $arguments[1] )
+			&& is_array( $_arguments[0] ) && isset( $_arguments[1] )
 		) {
-			$this->pool->resetTimeout( $conn, $arguments[1] + 1 );
-		} elseif ( $lname === 'brpoplpush' && isset( $arguments[2] ) ) {
-			$this->pool->resetTimeout( $conn, $arguments[2] + 1 );
+			$this->pool->resetTimeout( $conn, $_arguments[1] + 1 );
+		} elseif ( $lname === 'brpoplpush' && isset( $_arguments[2] ) ) {
+			$this->pool->resetTimeout( $conn, $_arguments[2] + 1 );
+		}
+
+		if ( $lname === 'scan' || $lname === 'hscan' || $lname === 'sscan' || $lname === 'zscan' ) {
+			//Work around for iterator reference in scan functions.
+			//http://stackoverflow.com/questions/8101071/call-user-func-array-with-references
+			$_arguments = array();
+			foreach ( $arguments as $key => $value ) {
+				$_arguments[$key] = &$arguments[$key];
+			}
 		}
 
 		$conn->clearLastError();
 		try {
-			$res = call_user_func_array( array( $conn, $name ), $arguments );
+			$res = call_user_func_array( array( $conn, $name ), $_arguments );
 			if ( preg_match( '/^ERR operation not permitted\b/', $conn->getLastError() ) ) {
 				$this->pool->reauthenticateConnection( $this->server, $conn );
 				$conn->clearLastError();
-				$res = call_user_func_array( array( $conn, $name ), $arguments );
+				$res = call_user_func_array( array( $conn, $name ), $_arguments );
 				$this->logger->info(
 					"Used automatic re-authentication for method '$name'.",
 					array( 'redis_server' => $this->server )
