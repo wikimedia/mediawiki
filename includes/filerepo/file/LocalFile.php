@@ -256,7 +256,6 @@ class LocalFile extends File {
 
 		// Check if the key existed and belongs to this version of MediaWiki
 		if ( is_array( $cachedValues ) && $cachedValues['version'] == MW_FILE_VERSION ) {
-			wfDebug( "Pulling file metadata from cache key $key\n" );
 			$this->fileExists = $cachedValues['fileExists'];
 			if ( $this->fileExists ) {
 				$this->setProps( $cachedValues );
