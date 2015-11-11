@@ -409,7 +409,10 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	 * @param int $timeout Optional
 	 */
 	public function resetTimeout( Redis $conn, $timeout = null ) {
-		$conn->setOption( Redis::OPT_READ_TIMEOUT, $timeout ?: $this->readTimeout );
+		$conn->setOption(
+			Redis::OPT_READ_TIMEOUT,
+			( $timeout !== null ? $timeout : $this->readTimeout )
+		);
 	}
 
 	/**
@@ -447,6 +450,27 @@ class RedisConnRef {
 	protected $logger;
 
 	/**
+	 * No authentication errors.
+	 *
+	 * @var		constant
+	 */
+	const AUTH_NO_ERROR = 200;
+
+	/**
+	 * Temporary authentication error; recovered by reauthenticating.
+	 *
+	 * @var		constant
+	 */
+	const AUTH_ERROR_TEMPORARY = 201;
+
+	/**
+	 * Authentication error was permanent and could not be recovered.
+	 *
+	 * @var		constant
+	 */
+	const AUTH_ERROR_PERMANENT = 202;
+
+	/**
 	 * @param RedisConnectionPool $pool
 	 * @param string $server
 	 * @param Redis $conn
@@ -477,41 +501,163 @@ class RedisConnRef {
 		$this->lastError = null;
 	}
 
+	/**
+	 * Magic __call handler for most Redis functions.
+	 *
+	 * @access	public
+	 * @param	string	Function Name
+	 * @param	array	Function Arguments
+	 * @return	mixed	Results
+	 * @throws	RedisException
+	 */
 	public function __call( $name, $arguments ) {
-		$conn = $this->conn; // convenience
-
 		// Work around https://github.com/nicolasff/phpredis/issues/70
 		$lname = strtolower( $name );
-		if ( ( $lname === 'blpop' || $lname == 'brpop' )
-			&& is_array( $arguments[0] ) && isset( $arguments[1] )
-		) {
-			$this->pool->resetTimeout( $conn, $arguments[1] + 1 );
-		} elseif ( $lname === 'brpoplpush' && isset( $arguments[2] ) ) {
-			$this->pool->resetTimeout( $conn, $arguments[2] + 1 );
+		if ( ( $lname === 'blpop' || $lname === 'brpop' || $lname === 'brpoplpush' ) && count( $arguments ) > 1 ) {
+			// Get timeout off the end since the timeout is always required and argument length can vary.
+			$timeout = end( $arguments );
+			///Only give the additional one second buffer if not requesting an infinite timeout.
+			$this->pool->resetTimeout( $this->conn, ( $timeout > 0 ? $timeout + 1 : $timeout ) );
 		}
 
-		$conn->clearLastError();
+		$res = $this->tryCall( $name, $arguments );
+
+		return $res;
+	}
+
+	/**
+	 * Do the method call in the common try catch handler.
+	 *
+	 * @access	private
+	 * @param	string	Redis method name.
+	 * @param	array	Arguments
+	 * @return	mixed	Results
+	 * @throws	RedisException
+	 */
+	private function tryCall( $method, $arguments ) {
+		$this->conn->clearLastError();
 		try {
-			$res = call_user_func_array( [ $conn, $name ], $arguments );
-			if ( preg_match( '/^ERR operation not permitted\b/', $conn->getLastError() ) ) {
-				$this->pool->reauthenticateConnection( $this->server, $conn );
-				$conn->clearLastError();
-				$res = call_user_func_array( [ $conn, $name ], $arguments );
-				$this->logger->info(
-					"Used automatic re-authentication for method '$name'.",
-					[ 'redis_server' => $this->server ]
-				);
+			$res = call_user_func_array( [ $this->conn, $method ], $arguments );
+			$authError = $this->handleAuthError();
+			if ( $authError === self::AUTH_ERROR_TEMPORARY ) {
+				$res = call_user_func_array( [ $this->conn, $method ], $arguments );
+			}
+			if ( $authError === self::AUTH_ERROR_PERMANENT ) {
+				throw new RedisException( "There was a permanent failure reauthenticating to Redis." );
 			}
 		} catch ( RedisException $e ) {
-			$this->pool->resetTimeout( $conn ); // restore
+			$this->postCallCleanup();
 			throw $e;
 		}
 
-		$this->lastError = $conn->getLastError() ?: $this->lastError;
-
-		$this->pool->resetTimeout( $conn ); // restore
+		$this->postCallCleanup();
 
 		return $res;
+	}
+
+	/**
+	 * Key Scan
+	 * Handle this explicity due to needing the iterator passed by reference.
+	 * See: https://github.com/phpredis/phpredis#scan
+	 *
+	 * @access	public
+	 * @param	integer	Iterator reference
+	 * @param	string	[Optional] Pattern Match - Use null to skip this parameter.
+	 * @param	integer	[Optional] Iterator reference
+	 * @return	array	Results for this pass.
+	 */
+	public function scan( &$iterator, $pattern = null, $count = null ) {
+		$res = $this->tryCall( 'scan', [ &$iterator, $pattern, $count ] );
+
+		return $res;
+	}
+
+	/**
+	 * Set Scan
+	 * Handle this explicity due to needing the iterator passed by reference.
+	 * See: https://github.com/phpredis/phpredis#sScan
+	 *
+	 * @access	public
+	 * @param	string	Redis set to scan against.
+	 * @param	integer	Iterator reference
+	 * @param	string	[Optional] Pattern Match - Use null to skip this parameter.
+	 * @param	integer	[Optional] Iterator reference
+	 * @return	array	Results for this pass.
+	 */
+	public function sScan( $key, &$iterator, $pattern = null, $count = null ) {
+		$res = $this->tryCall( 'sScan', [ $key, &$iterator, $pattern, $count ] );
+
+		return $res;
+	}
+
+	/**
+	 * Hash Scan
+	 * Handle this explicity due to needing the iterator passed by reference.
+	 * See: https://github.com/phpredis/phpredis#hScan
+	 *
+	 * @access	public
+	 * @param	string	Redis hash to scan against.
+	 * @param	integer	Iterator reference
+	 * @param	string	[Optional] Pattern Match - Use null to skip this parameter.
+	 * @param	integer	[Optional] Iterator reference
+	 * @return	array	Results for this pass.
+	 */
+	public function hScan( $key, &$iterator, $pattern = null, $count = null ) {
+		$res = $this->tryCall( 'hScan', [ $key, &$iterator, $pattern, $count ] );
+
+		return $res;
+	}
+
+	/**
+	 * Sorted Set Scan
+	 * Handle this explicity due to needing the iterator passed by reference.
+	 * See: https://github.com/phpredis/phpredis#hScan
+	 *
+	 * @access	public
+	 * @param	string	Redis sort set to scan against.
+	 * @param	integer	Iterator reference
+	 * @param	string	[Optional] Pattern Match - Use null to skip this parameter.
+	 * @param	integer	[Optional] Iterator reference
+	 * @return	array	Results for this pass.
+	 */
+	public function zScan( $key, &$iterator, $pattern = null, $count = null ) {
+		$res = $this->tryCall( 'zScan', [ $key, &$iterator, $pattern, $count ] );
+
+		return $res;
+	}
+
+	/**
+	 * Handle authentication errors and automatically reauthenticate.
+	 *
+	 * @access	private
+	 * @return	constant	self::AUTH_NO_ERROR, self::AUTH_ERROR_TEMPORARY, or self::AUTH_ERROR_PERMANENT
+	 */
+	private function handleAuthError() {
+		if ( preg_match( '/^ERR operation not permitted\b/', $this->conn->getLastError() ) ) {
+			if ( !$this->pool->reauthenticateConnection( $this->server, $this->conn ) ) {
+				return self::AUTH_ERROR_PERMANENT;
+			}
+			$this->conn->clearLastError();
+			$this->logger->info(
+				"Used automatic re-authentication for Redis.",
+				[ 'redis_server' => $this->server ]
+			);
+			return self::AUTH_ERROR_TEMPORARY;
+		}
+		return self::AUTH_NO_ERROR;
+	}
+
+	/**
+	 * Post Redis call cleanup.
+	 *
+	 * @access	private
+	 * @return	void
+	 */
+	private function postCallCleanup() {
+		$this->lastError = $this->conn->getLastError() ?: $this->lastError;
+
+		// Restore original timeout in the case of blocking calls.
+		$this->pool->resetTimeout( $this->conn );
 	}
 
 	/**
