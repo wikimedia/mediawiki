@@ -31,7 +31,7 @@
  *       and does not rely on global state or the database.
  */
 class Title {
-	/** @var MapCacheLRU */
+	/** @var HashBagOStuff */
 	static private $titleCache = null;
 
 	/**
@@ -299,21 +299,20 @@ class Title {
 			throw new MWException( '$text must be a string, given an object' );
 		}
 
-		$cache = self::getTitleCache();
+		$titleCache = self::getTitleCache();
 
-		/**
-		 * Wiki pages often contain multiple links to the same page.
-		 * Title normalization and parsing can become expensive on
-		 * pages with many links, so we can save a little time by
-		 * caching them.
-		 *
-		 * In theory these are value objects and won't get changed...
-		 */
-		if ( $defaultNamespace == NS_MAIN && $cache->has( $text ) ) {
-			return $cache->get( $text );
+		// Wiki pages often contain multiple links to the same page.
+		// Title normalization and parsing can become expensive on pages with many
+		// links, so we can save a little time by caching them.
+		// In theory these are value objects and won't get changed...
+		if ( $defaultNamespace == NS_MAIN ) {
+			$t = $titleCache->get( $text );
+			if ( $t ) {
+				return $t;
+			}
 		}
 
-		# Convert things like &eacute; &#257; or &#x3017; into normalized (bug 14952) text
+		// Convert things like &eacute; &#257; or &#x3017; into normalized (bug 14952) text
 		$filteredText = Sanitizer::decodeCharReferencesAndNormalize( $text );
 
 		$t = new Title();
@@ -322,7 +321,7 @@ class Title {
 
 		$t->secureAndSplit();
 		if ( $defaultNamespace == NS_MAIN ) {
-			$cache->set( $text, $t );
+			$titleCache->set( $text, $t );
 		}
 		return $t;
 	}
@@ -363,11 +362,11 @@ class Title {
 	}
 
 	/**
-	 * @return MapCacheLRU
+	 * @return HashBagOStuff
 	 */
 	private static function getTitleCache() {
 		if ( self::$titleCache == null ) {
-			self::$titleCache = new MapCacheLRU( self::CACHE_MAX );
+			self::$titleCache = new HashBagOStuff( array( 'maxKeys' => self::CACHE_MAX ) );
 		}
 		return self::$titleCache;
 	}
