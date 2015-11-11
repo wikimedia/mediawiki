@@ -106,8 +106,15 @@
 		"name": "Upstream",
 		"groups": [
 			{
-				"name": "OOJS",
-				"classes": ["OO", "OO.*"]
+				"name": "OOjs",
+				"classes": [
+					"OO",
+					"OO.EmitterList",
+					"OO.EventEmitter",
+					"OO.Factory",
+					"OO.Registry",
+					"OO.SortedEmitterList"
+				]
 			},
 			{
 				"name": "jQuery",
