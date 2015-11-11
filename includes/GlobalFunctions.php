@@ -588,12 +588,17 @@ function wfAppendQuery( $url, $query ) {
  *    For protocol-relative URLs, use the protocol of $wgCanonicalServer
  * PROTO_INTERNAL: Like PROTO_CANONICAL, but uses $wgInternalServer instead of $wgCanonicalServer
  *
+ * When $wgServer is not protocol-relative, PROTO_HTTP, PROTO_HTTPS, PROTO_RELATIVE
+ *    and PROTO_CURRENT are ignored and the protocol of $wgServer is used instead.
+ *
  * @todo this won't work with current-path-relative URLs
  * like "subdir/foo.html", etc.
  *
- * @param string $url Either fully-qualified or a local path + query
+ * @param string $url An URL; can be absolute (e.g. https://example.com/foo),
+ *    protocol-relative (//example.com/foo) or relative (/foo).
  * @param string $defaultProto One of the PROTO_* constants. Determines the
- *    protocol to use if $url or $wgServer is protocol-relative
+ *    protocol to use if $url is protocol-relative, and the domain to use if
+ *    $url is relative
  * @return string Fully-qualified URL, current-path-relative URL or false if
  *    no valid URL can be constructed
  */
