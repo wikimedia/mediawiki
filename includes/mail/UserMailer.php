@@ -64,7 +64,7 @@ class UserMailer {
 	 *
 	 * @return string
 	 */
-	static function arrayToHeaderString( $headers, $endl = "\n" ) {
+	static function arrayToHeaderString( $headers, $endl = PHP_EOL ) {
 		$strings = array();
 		foreach ( $headers as $name => $value ) {
 			// Prevent header injection by stripping newlines from value
@@ -292,11 +292,7 @@ class UserMailer {
 
 		// Line endings need to be different on Unix and Windows due to
 		// the bug described at http://trac.wordpress.org/ticket/2603
-		if ( wfIsWindows() ) {
-			$endl = "\r\n";
-		} else {
-			$endl = "\n";
-		}
+		$endl = PHP_EOL;
 
 		if ( is_array( $body ) ) {
 			// we are sending a multipart message
