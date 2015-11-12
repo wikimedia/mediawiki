@@ -448,6 +448,7 @@ $wgAutoloadLocalClasses = array(
 	'FindMissingFiles' => __DIR__ . '/maintenance/findMissingFiles.php',
 	'FindOrphanedFiles' => __DIR__ . '/maintenance/findOrphanedFiles.php',
 	'FixBug20757' => __DIR__ . '/maintenance/storage/fixBug20757.php',
+	'FixClType' => __DIR__ . '/maintenance/fixClType.php',
 	'FixDoubleRedirects' => __DIR__ . '/maintenance/fixDoubleRedirects.php',
 	'FixExtLinksProtocolRelative' => __DIR__ . '/maintenance/fixExtLinksProtocolRelative.php',
 	'FixTimestamps' => __DIR__ . '/maintenance/fixTimestamps.php',
