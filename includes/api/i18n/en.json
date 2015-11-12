@@ -1356,8 +1356,6 @@
 	"apihelp-watch-example-generator": "Watch the first few pages in the main namespace.",
 
 	"apihelp-format-example-generic": "Return the query result in the $1 format.",
-	"apihelp-dbg-description": "Output data in PHP's <code>var_export()</code> format.",
-	"apihelp-dbgfm-description": "Output data in PHP's <code>var_export()</code> format (pretty-print in HTML).",
 	"apihelp-json-description": "Output data in JSON format.",
 	"apihelp-json-param-callback": "If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.",
 	"apihelp-json-param-utf8": "If specified, encodes most (but not all) non-ASCII characters as UTF-8 instead of replacing them with hexadecimal escape sequences. Default when <var>formatversion</var> is not <kbd>1</kbd>.",
@@ -1369,14 +1367,10 @@
 	"apihelp-php-param-formatversion": "Output formatting:\n;1:Backwards-compatible format (XML-style booleans, <samp>*</samp> keys for content nodes, etc.).\n;2:Experimental modern format. Details may change!\n;latest:Use the latest format (currently <kbd>2</kbd>), may change without warning.",
 	"apihelp-phpfm-description": "Output data in serialized PHP format (pretty-print in HTML).",
 	"apihelp-rawfm-description": "Output data, including debugging elements, in JSON format (pretty-print in HTML).",
-	"apihelp-txt-description": "Output data in PHP's <code>print_r()</code> format.",
-	"apihelp-txtfm-description": "Output data in PHP's <code>print_r()</code> format (pretty-print in HTML).",
 	"apihelp-xml-description": "Output data in XML format.",
 	"apihelp-xml-param-xslt": "If specified, adds the named page as an XSL stylesheet. The value must be a title in the {{ns:mediawiki}} namespace ending in <code>.xsl</code>.",
 	"apihelp-xml-param-includexmlnamespace": "If specified, adds an XML namespace.",
 	"apihelp-xmlfm-description": "Output data in XML format (pretty-print in HTML).",
-	"apihelp-yaml-description": "Output data in YAML format.",
-	"apihelp-yamlfm-description": "Output data in YAML format (pretty-print in HTML).",
 
 	"api-format-title": "MediaWiki API result",
 	"api-format-prettyprint-header": "This is the HTML representation of the $1 format. HTML is good for debugging, but is unsuitable for application use.\n\nSpecify the <var>format</var> parameter to change the output format. To see the non-HTML representation of the $1 format, set <kbd>format=$2</kbd>.\n\nSee the [[mw:API|complete documentation]], or the [[Special:ApiHelp/main|API help]] for more information.",
