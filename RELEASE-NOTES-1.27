@@ -115,6 +115,7 @@ changes to languages because of Bugzilla reports.
 * LinkCache::getGoodLinks and LinkCache::getBadLinks were removed (deprecated in 1.26).
 * WikiPage::doQuickEdit() was removed (deprecated since 1.21).
 * Removed SiteObject and SiteArray classes (deprecated in 1.21).
+* MessageBlobStore::getInstance() was removed (deprecated since 1.25).
 
 == Compatibility ==
 

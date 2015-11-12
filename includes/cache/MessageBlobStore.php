@@ -52,18 +52,6 @@ class MessageBlobStore {
 	}
 
 	/**
-	 * Get the singleton instance
-	 *
-	 * @since 1.24
-	 * @deprecated since 1.25
-	 * @return MessageBlobStore
-	 */
-	public static function getInstance() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return new self;
-	}
-
-	/**
 	 * Get the message blobs for a set of modules
 	 *
 	 * @param ResourceLoader $resourceLoader
