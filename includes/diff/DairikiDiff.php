@@ -324,7 +324,8 @@ class DiffEngine {
 
 			for ( $yi = $skip; $yi < $n_to - $endskip; $yi++ ) {
 				$line = $to_lines[$yi];
-				if ( ( $this->ychanged[$yi] = empty( $xhash[$this->lineHash( $line )] ) ) ) {
+				$this->ychanged[$yi] = empty( $xhash[$this->lineHash( $line )] );
+				if ( $this->ychanged[$yi] ) {
 					continue;
 				}
 				$yhash[$this->lineHash( $line )] = 1;
@@ -333,7 +334,8 @@ class DiffEngine {
 			}
 			for ( $xi = $skip; $xi < $n_from - $endskip; $xi++ ) {
 				$line = $from_lines[$xi];
-				if ( ( $this->xchanged[$xi] = empty( $yhash[$this->lineHash( $line )] ) ) ) {
+				$this->xchanged[$xi] = empty( $yhash[$this->lineHash( $line )] );
+				if ( $this->xchanged[$xi] ) {
 					continue;
 				}
 				$this->xv[] = $line;

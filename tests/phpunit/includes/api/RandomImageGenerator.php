@@ -256,7 +256,8 @@ class RandomImageGenerator {
 			$shape->addAttribute( 'points', self::shapePointsToString( $drawSpec['shape'] ) );
 		}
 
-		if ( !$fh = fopen( $filename, 'w' ) ) {
+		$fh = fopen( $filename, 'w' );
+		if ( !$fh ) {
 			throw new Exception( "couldn't open $filename for writing" );
 		}
 		fwrite( $fh, $svg->asXML() );
