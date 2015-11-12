@@ -1801,6 +1801,7 @@
 	"wlheader-showupdated": "Le paginas que ha essite modificate post tu ultime visita se monstra in litteras '''grasse'''.",
 	"wlnote": "Ecce le ultime {{PLURAL:$1|modification|<strong>$1</strong> modificationes}} durante le ultime {{PLURAL:$2|hora|<strong>$2</strong> horas}}, a partir del $3 a $4.",
 	"wlshowlast": "Monstrar le ultime $1 horas $2 dies",
+	"watchlistall2": "totes",
 	"watchlist-options": "Optiones del observatorio",
 	"watching": "Observation in curso...",
 	"unwatching": "Disobservation in curso...",

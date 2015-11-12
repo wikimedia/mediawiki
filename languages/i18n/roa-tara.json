@@ -1782,6 +1782,7 @@
 	"wlheader-showupdated": "* Le pàggene ca onne state cangiate da l'urtema visite avènene fatte vedè in '''grascette'''",
 	"wlnote": "Aqquà sotte {{PLURAL:$1|ste l'urteme cangiamende|stonne l'urteme <strong>$1</strong> cangiaminde}} jndr'à {{PLURAL:$2|l'urtema ore|l'urteme <strong>$2</strong> ore}}, jndr'à $3, $4.",
 	"wlshowlast": "Vide l'urteme $1 ore $2 sciurne",
+	"watchlistall2": "tutte",
 	"watchlist-options": "Opzione d'a liste de le pàggene condrollete",
 	"watching": "Fà vedè...",
 	"unwatching": "No fà vedè...",

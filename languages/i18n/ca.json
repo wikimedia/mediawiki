@@ -1836,6 +1836,7 @@
 	"wlheader-showupdated": "Les pàgines que s'han canviat des de la vostra darrera visita es mostren en '''negreta'''.",
 	"wlnote": "A sota hi ha {{PLURAL:$1|el darrer canvi|els darrers <strong>$1</strong> canvis}} en {{PLURAL:$2|la darrera hora|les <strong>$2</strong> darreres hores}}, a $4 del $3.",
 	"wlshowlast": "Mostra les darreres $1 hores, els darrers $2 dies",
+	"watchlistall2": "totes",
 	"watchlist-options": "Opcions de la llista de seguiment",
 	"watching": "S'està vigilant...",
 	"unwatching": "S'està desatenent...",

@@ -1798,6 +1798,7 @@
 	"wlheader-showupdated": "Halaman-halaman yang telah berubah sejak kunjungan terakhir Anda ditampilkan dengan '''huruf tebal'''.",
 	"wlnote": "Dibawah {{PLURAL:$1|is the last change|are the last <strong>$1</strong> changes}} in the last {{PLURAL:$2|hour|<strong>$2</strong> hours}}, sebagai $3, $4.",
 	"wlshowlast": "Tampilkan terakhir $1 jam $2 hari",
+	"watchlistall2": "semua",
 	"watchlist-options": "Opsi daftar pantauan",
 	"watching": "Memantau...",
 	"unwatching": "Menghilangkan pemantauan...",

@@ -1235,6 +1235,7 @@
 	"watchlist-details": "弗包括讨论页，有 $1 页徕你侬关注表里向。",
 	"wlnote": "下底是{{PLURAL:$2|过去<strong>$2</strong>个钟头}}个{{PLURAL:$1|最后<strong>$1</strong>届更改}}，截至$3 $4。",
 	"wlshowlast": "显示上$1个钟头$2日天",
+	"watchlistall2": "全部",
 	"watchlist-options": "监控列表选项",
 	"watching": "监控……",
 	"unwatching": "解除监控……",

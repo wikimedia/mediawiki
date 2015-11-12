@@ -1766,6 +1766,7 @@
 	"wlheader-showupdated": "Nei feranert sidjen wurd '''fäät''' uunwiset.",
 	"wlnote": "Diar {{PLURAL:$1|stäänt det leetst feranrang|stun a leetst <strong>$1</strong> feranrangen}} faan a leetst {{PLURAL:$2|stünj|<strong>$2</strong> stünjen}}. Stant: $3, klook $4.",
 	"wlshowlast": "Wise a feranrangen faan a leetst $1 stünjen, $2 daar.",
+	"watchlistall2": "aaltumaal",
 	"watchlist-options": "Iinstelangen för't uunwisin",
 	"watching": "Uun't uug behual ...",
 	"unwatching": "Ei uun't uug behual ...",

@@ -1670,6 +1670,7 @@
 	"wlheader-showupdated": "Bladsye wat verander is sedert u hulle laas besoek het word in '''vetdruk''' uitgewys.",
 	"wlnote": "Hier volg die laaste {{PLURAL:$1|verandering|'''$1''' veranderings}} binne die laaste {{PLURAL:$2|uur|'''$2''' ure}}, soos vanaf $3 om $4.",
 	"wlshowlast": "Wys afgelope $1 ure, $2 dae of",
+	"watchlistall2": "alles",
 	"watchlist-options": "Opsies vir dophoulys",
 	"watching": "Plaas op dophoulys...",
 	"unwatching": "Verwyder van dophoulys...",

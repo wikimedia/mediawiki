@@ -1825,6 +1825,7 @@
 	"wlheader-showupdated": "Sivut, joita on muokattu viimeisen käyntisi jälkeen, on '''lihavoitu'''.",
 	"wlnote": "Alla {{PLURAL:$1|on viimeisin muutos|ovat viimeisimmät <strong>$1</strong> muutosta}} edellisen {{PLURAL:$2|tunnin|<strong>$2</strong> tunnin}} ajalta $3 kello $4 lukien.",
 	"wlshowlast": "Näytä edelliset $1 tuntia tai $2 päivää",
+	"watchlistall2": "koko historia",
 	"watchlist-options": "Tarkkailulistan asetukset",
 	"watching": "Lisätään tarkkailulistalle...",
 	"unwatching": "Poistetaan tarkkailulistalta...",

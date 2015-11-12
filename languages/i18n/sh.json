@@ -1791,6 +1791,7 @@
 	"wlheader-showupdated": "* Stranice koje su izmijenjene od kad ste ih posljednji put posjetili su prikazane '''podebljanim slovima'''",
 	"wlnote": "Ispod {{PLURAL:$1|je najskorija izmjena|su <strong>$1</strong> najskorije izmjene|<strong>$1</strong> najskorijih izmjena}} načinjenih {{PLURAL:$2|posljednjeg sata|u posljednjih <strong>$2</strong> sata|u posljednjih <strong>$2</strong> sati}}, od $3, $4.",
 	"wlshowlast": "Prikaži posljednjih $1 sati $2 dana",
+	"watchlistall2": "sve",
 	"watchlist-options": "Opcije liste praćenja",
 	"watching": "Pratim... / Додавање на списак надгледања...",
 	"unwatching": "Ne pratim…",

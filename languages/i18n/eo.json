@@ -1775,6 +1775,7 @@
 	"wlheader-showupdated": "Paĝoj montriĝis per '''dikaj literoj''' kiuj estis ŝanĝitaj ekde vi laste vizitis.",
 	"wlnote": "Jen la {{PLURAL:$1|lasta redakto|lastaj <strong>$1</strong> redaktoj}} dum la {{PLURAL:$2|lasta horo|lastaj <strong>$2</strong> horoj}}, ekde $3, $4.",
 	"wlshowlast": "Montri el lastaj $1 horoj $2 tagoj",
+	"watchlistall2": "ĉiuj",
 	"watchlist-options": "Opcioj por atentaro",
 	"watching": "Aldonata al la atentaro...",
 	"unwatching": "Malatentante...",

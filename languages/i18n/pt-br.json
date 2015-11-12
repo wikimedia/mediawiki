@@ -1846,6 +1846,7 @@
 	"wlheader-showupdated": "Páginas modificadas desde a sua última visita são mostradas em '''negrito'''",
 	"wlnote": "A seguir {{PLURAL:$1|está a última alteração ocorrida|estão as últimas <strong>$1</strong> alterações ocorridas}} {{PLURAL:$2|na última hora|nas últimas <strong>$2</strong> horas}} até $3, $4.",
 	"wlshowlast": "Ver últimas $1 horas $2 dias",
+	"watchlistall2": "todas",
 	"watchlist-options": "Opções da lista de páginas vigiadas",
 	"watching": "Vigiando...",
 	"unwatching": "Deixando de vigiar...",

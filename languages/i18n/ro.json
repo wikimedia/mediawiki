@@ -1818,6 +1818,7 @@
 	"wlheader-showupdated": "Paginile care au fost modificate după ultima dumneavoastră vizită sunt afișate '''îngroșat'''.",
 	"wlnote": "Mai jos se află {{PLURAL:$1|ultima schimbare|ultimele <strong>$1</strong> schimbări|ultimele <strong>$1</strong> de schimbări}} din {{PLURAL:$2|ultima oră|ultimele <strong>$2</strong> ore|ultimele <strong>$2</strong> de ore}}, așa cum era situația la $3, $4.",
 	"wlshowlast": "Arată ultimele $1 ore $2 zile",
+	"watchlistall2": "toate",
 	"watchlist-options": "Opțiuni listă de pagini urmărite",
 	"watching": "Se urmărește...",
 	"unwatching": "Așteptați...",

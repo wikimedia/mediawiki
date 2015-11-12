@@ -1643,6 +1643,7 @@
 	"wlheader-showupdated": "Sider som har vorte endra sidan du sist såg på dei er '''utheva'''",
 	"wlnote": "Nedanfor er {{PLURAL:$1|den siste endringa|dei siste '''$1''' endringane}} {{PLURAL:$2|den siste timen|dei siste '''$2''' timane}}, for $3, kl. $4.",
 	"wlshowlast": "Vis siste $1 timane $2 dagane",
+	"watchlistall2": "alle",
 	"watchlist-options": "Alternativ for overvakingslista",
 	"watching": "Overvakar...",
 	"unwatching": "Fjernar frå overvakinglista...",
