@@ -79,7 +79,12 @@ class ConvertExtensionToRegistration extends Maintenance {
 			$$var = array();
 		}
 		unset( $var );
-		require $this->getArg( 0 );
+		$arg = $this->getArg( 0 );
+		if ( !is_file( $arg ) ) {
+			$this->error( "$arg is not a file.", true );
+		}
+		require $arg;
+		unset( $arg );
 		// Try not to create any local variables before this line
 		$vars = get_defined_vars();
 		unset( $vars['this'] );
