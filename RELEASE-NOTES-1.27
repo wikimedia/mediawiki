@@ -51,6 +51,7 @@ production.
   a thumbnail handler. See $wgForeignFileRepos documentation for tweaks.
 * (T27397) WebP is enabled by default as an uploadable filetype.
 * (T48998) $wgArticlePath must now be either a full url, or start with a "/".
+* Deprecated API formats dbg, txt, and yaml have been removed.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
@@ -95,9 +96,14 @@ production.
   "was-deleted" warning.
 * Added difftotextpst to query=revisions which preforms a pre-save transform on
   the text before diffing it.
+* Deprecated formats dbg, txt, and yaml have been removed.
 
 === Action API internal changes in 1.27 ===
 * ApiQueryORM removed.
+* The following classes have been removed:
+** ApiFormatDbg
+** ApiFormatTxt
+** ApiFormatYaml
 
 === Languages updated in 1.27 ===
 
