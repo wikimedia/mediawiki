@@ -22,19 +22,25 @@ class SearchInputWidget extends TitleInputWidget {
 	 *  "pending", while requesting suggestions (default: true)
 	 */
 	public function __construct( array $config = [] ) {
+		$config = array_merge( [
+			'infusable' => true,
+			'maxLength' => null,
+			'type' => 'search',
+			'icon' => 'search',
+			'dataLocation' => 'content',
+		], $config );
+
 		// Parent constructor
-		parent::__construct(
-			array_merge( [
-				'infusable' => true,
-				'maxLength' => null,
-				'type' => 'search',
-				'icon' => 'search'
-			], $config )
-		);
+		parent::__construct( $config );
 
 		// Properties, which are ignored in PHP and just shipped back to JS
 		if ( isset( $config['pushPending'] ) ) {
 			$this->pushPending = $config['pushPending'];
+		}
+
+		if ( $config['dataLocation'] ) {
+			// identifies the location of the search bar for tracking purposes
+			$this->dataLocation = $config['dataLocation'];
 		}
 
 		// Initialization
@@ -47,6 +53,9 @@ class SearchInputWidget extends TitleInputWidget {
 
 	public function getConfig( &$config ) {
 		$config['pushPending'] = $this->pushPending;
+		if ( $this->dataLocation ) {
+			$config['dataLocation'] = $this->dataLocation;
+		}
 		return parent::getConfig( $config );
 	}
 }
