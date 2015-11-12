@@ -33,8 +33,7 @@
 
 		// Change the header search links to what user entered
 		$headerLinks = $( '.search-types a' );
-		$( '#searchText, #powerSearchText' ).change( function () {
-			var searchterm = $( this ).val();
+		OO.ui.infuse( 'searchText' ).on( 'change', function () {
 			$headerLinks.each( function () {
 				var parts = $( this ).attr( 'href' ).split( 'search=' ),
 					lastpart = '',
@@ -44,9 +43,9 @@
 				} else {
 					prefix = '&search=';
 				}
-				this.href = parts[ 0 ] + prefix + encodeURIComponent( searchterm ) + lastpart;
+				this.href = parts[ 0 ] + prefix + encodeURIComponent( $( this ).val() ) + lastpart;
 			} );
-		} ).trigger( 'change' );
+		} ).emit( 'change' );
 
 		// When saving settings, use the proper request method (POST instead of GET).
 		$( '#mw-search-powersearch-remember' ).change( function () {
