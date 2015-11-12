@@ -245,18 +245,6 @@ abstract class ApiFormatBase extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/API:Data_formats';
 	}
 
-	/**
-	 * To avoid code duplication with the deprecation of dbg, txt
-	 * and yaml, this method is added to do the necessary work. It should be
-	 * removed when those deprecated formats are removed.
-	 */
-	protected function markDeprecated() {
-		$fm = $this->getIsHtml() ? 'fm' : '';
-		$name = $this->getModuleName();
-		$this->logFeatureUsage( "format=$name" );
-		$this->setWarning( "format=$name has been deprecated. Please use format=json$fm instead." );
-	}
-
 	/************************************************************************//**
 	 * @name   Deprecated
 	 * @{
