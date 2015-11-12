@@ -3,7 +3,7 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var $checkboxes, $headerLinks;
+		var $checkboxes, $headerLinks, updateHeaderLinks, searchWidget;
 
 		// Emulate HTML5 autofocus behavior in non HTML5 compliant browsers
 		if ( !( 'autofocus' in document.createElement( 'input' ) ) ) {
@@ -33,8 +33,8 @@
 
 		// Change the header search links to what user entered
 		$headerLinks = $( '.search-types a' );
-		$( '#searchText, #powerSearchText' ).change( function () {
-			var searchterm = $( this ).val();
+		searchWidget = OO.ui.infuse( 'searchText' );
+		updateHeaderLinks = function ( value ) {
 			$headerLinks.each( function () {
 				var parts = $( this ).attr( 'href' ).split( 'search=' ),
 					lastpart = '',
@@ -44,9 +44,11 @@
 				} else {
 					prefix = '&search=';
 				}
-				this.href = parts[ 0 ] + prefix + encodeURIComponent( searchterm ) + lastpart;
+				this.href = parts[ 0 ] + prefix + encodeURIComponent( value ) + lastpart;
 			} );
-		} ).trigger( 'change' );
+		};
+		searchWidget.on( 'change', updateHeaderLinks );
+		updateHeaderLinks( searchWidget.getValue() );
 
 		// When saving settings, use the proper request method (POST instead of GET).
 		$( '#mw-search-powersearch-remember' ).change( function () {
