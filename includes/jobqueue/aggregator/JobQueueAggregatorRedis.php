@@ -24,6 +24,8 @@
 /**
  * Class to handle tracking information about all queues using PhpRedis
  *
+ * The mediawiki/services/jobrunner background service must be set up and running.
+ *
  * @ingroup JobQueue
  * @ingroup Redis
  * @since 1.21
@@ -54,43 +56,11 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	}
 
 	protected function doNotifyQueueEmpty( $wiki, $type ) {
-		$conn = $this->getConnection();
-		if ( !$conn ) {
-			return false;
-		}
-		try {
-			// Make sure doNotifyQueueNonEmpty() takes precedence to avoid races
-			$conn->watch( $this->getReadyQueueKey() );
-			$conn->multi()
-				->hDel( $this->getReadyQueueKey(), $this->encQueueName( $type, $wiki ) )
-				->exec();
-
-			return true;
-		} catch ( RedisException $e ) {
-			$this->handleException( $conn, $e );
-
-			return false;
-		}
+		return true; // managed by the service
 	}
 
 	protected function doNotifyQueueNonEmpty( $wiki, $type ) {
-		$conn = $this->getConnection();
-		if ( !$conn ) {
-			return false;
-		}
-		try {
-			$conn->multi( Redis::PIPELINE );
-			$conn->hSetNx( $this->getQueueTypesKey(), $type, 'enabled' );
-			$conn->sAdd( $this->getWikiSetKey(), $wiki );
-			$conn->hSet( $this->getReadyQueueKey(), $this->encQueueName( $type, $wiki ), time() );
-			$conn->exec();
-
-			return true;
-		} catch ( RedisException $e ) {
-			$this->handleException( $conn, $e );
-
-			return false;
-		}
+		return true; // managed by the service
 	}
 
 	protected function doGetAllReadyWikiQueues() {
@@ -121,17 +91,14 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 
 				$pendingDBs = $this->findPendingWikiQueues(); // (type => list of wikis)
 
-				$conn->multi( Redis::PIPELINE );
 				$now = time();
 				$map = array( '_epoch' => time() ); // dummy key for empty Redis collections
 				foreach ( $pendingDBs as $type => $wikis ) {
-					$conn->hSetNx( $this->getQueueTypesKey(), $type, 'enabled' );
 					foreach ( $wikis as $wiki ) {
 						$map[$this->encQueueName( $type, $wiki )] = $now;
 					}
 				}
 				$conn->hMSet( $this->getReadyQueueKey(), $map );
-				$conn->exec();
 
 				$conn->delete( $this->getReadyQueueKey() . ":lock" ); // unlock
 			}
@@ -151,7 +118,6 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 		}
 		try {
 			$conn->delete( $this->getReadyQueueKey() );
-			// leave key at getQueueTypesKey() alone
 		} catch ( RedisException $e ) {
 			$this->handleException( $conn, $e );
 
@@ -193,20 +159,6 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	 */
 	private function getReadyQueueKey() {
 		return "jobqueue:aggregator:h-ready-queues:v2"; // global
-	}
-
-	/**
-	 * @return string
-	 */
-	private function getQueueTypesKey() {
-		return "jobqueue:aggregator:h-queue-types:v2"; // global
-	}
-
-	/**
-	 * @return string
-	 */
-	private function getWikiSetKey() {
-		return "jobqueue:aggregator:s-wikis:v2"; // global
 	}
 
 	/**
