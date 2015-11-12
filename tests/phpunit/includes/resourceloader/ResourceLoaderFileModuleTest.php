@@ -21,7 +21,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 
 	private static function getModules() {
 		$base = array(
-			'localBasePath' => realpath( dirname( __FILE__ ) ),
+			'localBasePath' => realpath( __DIR__ ),
 		);
 
 		return array(

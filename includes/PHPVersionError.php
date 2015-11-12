@@ -21,4 +21,6 @@
  * @deprecated 1.25
  * @file
  */
+// @codingStandardsIgnoreStart MediaWiki.Usage.DirUsage.FunctionFound
 require_once dirname( __FILE__ ) . '/PHPVersionCheck.php';
+// @codingStandardsIgnoreEnd
