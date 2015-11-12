@@ -1841,6 +1841,7 @@ return [
 		'position' => 'top',
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.search.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.search.css',
+		'dependencies' => 'mediawiki.widgets.SearchInputWidget',
 		'messages' => [
 			'powersearch-togglelabel',
 			'powersearch-toggleall',
