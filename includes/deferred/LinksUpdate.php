@@ -145,7 +145,11 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	public function doUpdate() {
 		Hooks::run( 'LinksUpdate', array( &$this ) );
 		$this->doIncrementalUpdate();
-		Hooks::run( 'LinksUpdateComplete', array( &$this ) );
+
+		$that = $this;
+		$this->mDb->onTransactionIdle( function() use ( $that ) {
+			Hooks::run( 'LinksUpdateComplete', array( &$that ) );
+		} );
 	}
 
 	protected function doIncrementalUpdate() {
