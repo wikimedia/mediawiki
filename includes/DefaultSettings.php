@@ -4334,6 +4334,21 @@ $wgActiveUserDays = 30;
  */
 
 /**
+ * Central ID lookup providers
+ * Key is the provider ID, value is a specification for ObjectFactory
+ * @since 1.27
+ */
+$wgCentralIdLookupProviders = array(
+	'local' => array( 'class' => 'LocalIdLookup' ),
+);
+
+/**
+ * Central ID lookup provider to use by default
+ * @var string
+ */
+$wgCentralIdLookupProvider = 'local';
+
+/**
  * Password policy for local wiki users. A user's effective policy
  * is the superset of all policy statements from the policies for the
  * groups where the user is a member. If more than one group policy

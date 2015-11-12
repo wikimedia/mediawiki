@@ -84,6 +84,9 @@ production.
 * Added MWTimestamp::getTimezoneString() which returns the localized timezone
   string, if available. To localize this string, see the comments of
   $wgLocaltimezone in includes/DefaultSettings.php.
+* Added CentralIdLookup, a service that allows extensions needing a concept of
+  "central" users to get that without having to know about specific central
+  authentication extensions.
 
 === External library changes in 1.27 ===
 ==== Upgraded external libraries ====

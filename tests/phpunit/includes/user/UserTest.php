@@ -509,11 +509,11 @@ class UserTest extends MediaWikiTestCase {
 		$setcookieInvocation = end( $setcookieInvocations );
 		$actualExpiry = $setcookieInvocation->parameters[2];
 
-		// TODO: ± 300 seconds compensates for
+		// TODO: ± 600 seconds compensates for
 		// slow-running tests. However, the dependency on the time
 		// function should be removed.  This requires some way
 		// to mock/isolate User->setExtendedLoginCookie's call to time()
-		$this->assertEquals( $expectedExpiry, $actualExpiry, '', 300 );
+		$this->assertEquals( $expectedExpiry, $actualExpiry, '', 600 );
 	}
 }
 
