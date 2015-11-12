@@ -517,8 +517,13 @@ class SpecialContributions extends IncludableSpecialPage {
 					'mw-ui-input-inline',
 					'mw-autocomplete-user', // used by mediawiki.userSuggest
 				),
-			) + ( $this->opts['target'] ? array() : array( 'autofocus' ) )
+			) + (
+				// Only autofocus if target hasn't been specified or in non-newbies mode
+				( $this->opts['contribs'] === 'newbie' || $this->opts['target'] )
+					? array() : array( 'autofocus' => true )
+				)
 		);
+
 		$targetSelection = Html::rawElement(
 			'td',
 			array( 'colspan' => 2 ),
