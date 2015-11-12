@@ -23,13 +23,12 @@
  */
 
 /**
- * This class provides access to the resource message blobs storage used
- * by ResourceLoader.
+ * This class provides access to the message blobs used by ResourceLoader modules.
  *
  * A message blob is a JSON object containing the interface messages for a
- * certain resource in a certain language. These message blobs are cached
- * in the msg_resource table and automatically invalidated when one of their
- * constituent messages or the resource itself is changed.
+ * certain module in a certain language. These message blobs are cached
+ * in the automatically invalidated when one of their constituent messages,
+ * or the module definition, is changed.
  */
 class MessageBlobStore {
 	/**
@@ -72,13 +71,13 @@ class MessageBlobStore {
 			if ( isset( $this->blobCache[$lang][$name] ) ) {
 				$blobs[$name] = $this->blobCache[$lang][$name];
 			} else {
-				$missingFromCache[] = $name;
+				$missingFromCache[$name] = $module;
 			}
 		}
 
 		// Try DB cache
 		if ( $missingFromCache ) {
-			$blobs += $this->getFromDB( $resourceLoader, $missingFromCache, $lang );
+			$blobs += $this->getFromDB( $missingFromCache, $lang );
 		}
 
 		// Generate new blobs for any remaining modules and store in DB
@@ -340,13 +339,12 @@ class MessageBlobStore {
 	 * Get the message blobs for a set of modules from the database.
 	 * Modules whose blobs are not in the database are silently dropped.
 	 *
-	 * @param ResourceLoader $resourceLoader
-	 * @param array $modules Array of module names
+	 * @param array $modules Array of module objects by name
 	 * @param string $lang Language code
 	 * @throws MWException
 	 * @return array Array mapping module names to blobs
 	 */
-	private function getFromDB( ResourceLoader $resourceLoader, $modules, $lang ) {
+	private function getFromDB( $modules, $lang ) {
 		if ( !count( $modules ) ) {
 			return array();
 		}
@@ -355,16 +353,16 @@ class MessageBlobStore {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'msg_resource',
 			array( 'mr_blob', 'mr_resource', 'mr_timestamp' ),
-			array( 'mr_resource' => $modules, 'mr_lang' => $lang ),
+			array( 'mr_resource' => array_keys( $modules ), 'mr_lang' => $lang ),
 			__METHOD__
 		);
 
 		foreach ( $res as $row ) {
-			$module = $resourceLoader->getModule( $row->mr_resource );
-			if ( !$module ) {
+			if ( !isset( $modules[ $row->mr_resource ] ) {
 				// This shouldn't be possible
 				throw new MWException( __METHOD__ . ' passed an invalid module name' );
 			}
+			$module = $modules[ $row->mr_resource ];
 
 			// Update the module's blob if the list of messages changed
 			$blobKeys = array_keys( FormatJson::decode( $row->mr_blob, true ) );
