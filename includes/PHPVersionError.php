@@ -21,4 +21,4 @@
  * @deprecated 1.25
  * @file
  */
-require_once dirname( __FILE__ ) . '/PHPVersionCheck.php';
+require_once __DIR__ . '/PHPVersionCheck.php';
