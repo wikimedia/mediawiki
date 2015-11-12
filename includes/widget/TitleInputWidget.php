@@ -15,6 +15,8 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 	protected $namespace = null;
 	protected $relative = null;
 	protected $suggestions = null;
+	protected $highlightFirst = null;
+	protected $flagEmpty = null;
 
 	/**
 	 * @param array $config Configuration options
@@ -22,6 +24,9 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 	 * @param bool|null $config['relative'] If a namespace is set,
 	 *  return a title relative to it (default: true)
 	 * @param bool|null $config['suggestions'] Display search suggestions (default: true)
+	 * @param bool|null $config['highlightFirst'] Automatically highlight
+	 *  the first result (default: true)
+	 * @param bool|null $config['flagEmpty'] Flag empty value (default: true)
 	 */
 	public function __construct( array $config = array() ) {
 		// Parent constructor
@@ -41,6 +46,9 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 		}
 		if ( isset( $config['highlightFirst'] ) ) {
 			$this->highlightFirst = $config['highlightFirst'];
+		}
+		if ( isset( $config['flagEmpty'] ) ) {
+			$this->flagEmpty = $config['flagEmpty'];
 		}
 
 		// Initialization
@@ -63,6 +71,9 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 		}
 		if ( $this->highlightFirst !== null ) {
 			$config['highlightFirst'] = $this->highlightFirst;
+		}
+		if ( $this->flagEmpty !== null ) {
+			$config['flagEmpty'] = $this->flagEmpty;
 		}
 		return parent::getConfig( $config );
 	}
