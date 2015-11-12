@@ -1404,8 +1404,6 @@ class LocalFile extends File {
 		) {
 			# Update memcache after the commit
 			$that->invalidateCache();
-			# Page exists, do RC entry now (otherwise we wait for later)
-			$logEntry->publish( $logId );
 
 			if ( $newPageContent ) {
 				# New file page; create the description page.
@@ -1419,7 +1417,6 @@ class LocalFile extends File {
 					$user
 				);
 
-				// Now that the page exists, make an RC entry.
 				// This relies on the resetArticleID() call in WikiPage::insertOn(),
 				// which is triggered on $descTitle by doEditContent() above.
 				if ( isset( $status->value['revision'] ) ) {
@@ -1438,6 +1435,8 @@ class LocalFile extends File {
 				$wikiPage->getTitle()->purgeSquid();
 			}
 
+			# Now that the page exists, make an RC entry.
+			$logEntry->publish( $logId );
 			# Run hook for other updates (typically more cache purging)
 			Hooks::run( 'FileUpload', array( $that, $reupload, !$newPageContent ) );
 
