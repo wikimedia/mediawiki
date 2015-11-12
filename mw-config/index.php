@@ -22,16 +22,20 @@
 
 // Bail on old versions of PHP, or if composer has not been run yet to install
 // dependencies. Using dirname( __FILE__ ) here because __DIR__ is PHP5.3+.
+// @codingStandardsIgnoreStart MediaWiki.Usage.DirUsage.FunctionFound
 require_once dirname( __FILE__ ) . '/../includes/PHPVersionCheck.php';
 wfEntryPointCheck( 'mw-config/index.php' );
+// @codingStandardsIgnoreEnd
 
 define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
 define( 'MEDIAWIKI_INSTALL', true );
 
 // Resolve relative to regular MediaWiki root
 // instead of mw-config subdirectory.
+// @codingStandardsIgnoreStart MediaWiki.Usage.DirUsage.FunctionFound
 chdir( dirname( __DIR__ ) );
 require dirname( __DIR__ ) . '/includes/WebStart.php';
+// @codingStandardsIgnoreEnd
 
 wfInstallerMain();
 
