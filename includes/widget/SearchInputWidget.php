@@ -13,6 +13,7 @@ namespace MediaWiki\Widget;
 class SearchInputWidget extends TitleInputWidget {
 
 	protected $pushPending = false;
+	protected $performSearchOnClick = true;
 	protected $validateTitle = false;
 	protected $highlightFirst = false;
 
@@ -20,21 +21,34 @@ class SearchInputWidget extends TitleInputWidget {
 	 * @param array $config Configuration options
 	 * @param int|null $config['pushPending'] Whether the input should be visually marked as
 	 *  "pending", while requesting suggestions (default: true)
+	 * @param boolean|null $config['performSearchOnClick'] If true, the script will start a search when-
+	 *  ever a user hits a suggestion. If false, the text of the suggestion is inserted into the
+	 *  text field only (default: true)
 	 */
 	public function __construct( array $config = [] ) {
+		$config = array_merge( [
+			'infusable' => true,
+			'maxLength' => null,
+			'type' => 'search',
+			'icon' => 'search',
+			'dataLocation' => 'content',
+		], $config );
+
 		// Parent constructor
-		parent::__construct(
-			array_merge( [
-				'infusable' => true,
-				'maxLength' => null,
-				'type' => 'search',
-				'icon' => 'search'
-			], $config )
-		);
+		parent::__construct( $config );
 
 		// Properties, which are ignored in PHP and just shipped back to JS
 		if ( isset( $config['pushPending'] ) ) {
 			$this->pushPending = $config['pushPending'];
+		}
+
+		if ( isset( $config['performSearchOnClick'] ) ) {
+			$this->performSearchOnClick = $config['performSearchOnClick'];
+		}
+
+		if ( $config['dataLocation'] ) {
+			// identifies the location of the search bar for tracking purposes
+			$this->dataLocation = $config['dataLocation'];
 		}
 
 		// Initialization
@@ -47,6 +61,10 @@ class SearchInputWidget extends TitleInputWidget {
 
 	public function getConfig( &$config ) {
 		$config['pushPending'] = $this->pushPending;
+		$config['performSearchOnClick'] = $this->performSearchOnClick;
+		if ( $this->dataLocation ) {
+			$config['dataLocation'] = $this->dataLocation;
+		}
 		return parent::getConfig( $config );
 	}
 }
