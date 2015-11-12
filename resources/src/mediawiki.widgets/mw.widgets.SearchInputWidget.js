@@ -32,6 +32,9 @@
 		if ( !config.pushPending ) {
 			this.pushPending = false;
 		}
+		if ( config.dataLocation ) {
+			this.dataLocation = config.dataLocation;
+		}
 		this.setLookupsDisabled( !this.suggestions );
 	};
 
@@ -45,19 +48,38 @@
 	 * @inheritdoc mw.widgets.TitleWidget
 	 */
 	mw.widgets.SearchInputWidget.prototype.getSuggestionsPromise = function () {
-		var api = new mw.Api();
+		var api = new mw.Api(),
+			promise;
 
 		// reuse the searchSuggest function from mw.searchSuggest
-		return mw.searchSuggest.request( api, this.getQueryValue(), $.noop, this.limit );
+		promise = mw.searchSuggest.request( api, this.getQueryValue(), $.noop, this.limit );
+
+		// tracking purposes
+		promise.done( function ( data, jqXHR ) {
+			this.requestType = jqXHR.getResponseHeader( 'X-OpenSearch-Type' );
+		} );
+
+		return promise;
 	};
 
 	/**
 	 * @inheritdoc mw.widgets.TitleInputWidget
 	 */
 	mw.widgets.SearchInputWidget.prototype.getLookupCacheDataFromResponse = function ( response ) {
+		var resp;
+
 		// mw.widgets.TitleInputWidget uses response.query, which doesn't exist for opensearch,
 		// so return the whole response (titles only, and links)
-		return response || {};
+		resp = {
+			data: response || {},
+			metadata: {
+				type: this.requestType || 'unknown',
+				query: this.getQueryValue()
+			}
+		};
+		this.requestType = undefined;
+
+		return resp;
 	};
 
 	/**
@@ -70,17 +92,19 @@
 		// mw.widgets.TitleWidget does a lot more work here, because the TitleOptionWidgets can
 		// differ a lot, depending on the returned data from the request. With the request used here
 		// we get only the search results.
-		$.each( data[ 1 ], function ( i, result ) {
+		$.each( data.data[ 1 ], function ( i, result ) {
 			items.push( new mw.widgets.TitleOptionWidget(
 				// data[ 3 ][ i ] is the link for this result
-				self.getOptionWidgetData( result, null, data[ 3 ][ i ] )
+				self.getOptionWidgetData( result, null, data.data[ 3 ][ i ] )
 			) );
 		} );
 
 		mw.track( 'mw.widgets.SearchInputWidget', {
 			action: 'impression-results',
 			numberOfResults: items.length,
-			resultSetType: mw.searchSuggest.type
+			resultSetType: data.metadata.type,
+			query: data.metadata.query,
+			inputLocation: this.dataLocation || 'header'
 		} );
 
 		return items;
