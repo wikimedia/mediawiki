@@ -332,6 +332,25 @@ class JobQueueTest extends MediaWikiTestCase {
 		$this->assertEquals( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
 	}
 
+	/**
+	 * @covers JobQueue
+	 */
+	public function testQueueAggregateTable() {
+		$queue = $this->queueFifo;
+		if ( !$queue || !method_exists( $queue, 'getServerQueuesWithJobs' ) ) {
+			$this->markTestSkipped();
+		}
+
+		$this->assertArrayEquals( array(), $queue->getServerQueuesWithJobs() );
+
+		$queue->push( $this->newJob( 0 ) );
+
+		$this->assertArrayEquals(
+			array( array( $queue->getType(), $queue->getWiki() ) ),
+			$queue->getServerQueuesWithJobs()
+		);
+	}
+
 	public static function provider_queueLists() {
 		return array(
 			array( 'queueRand', false, 'Random queue without ack()' ),
