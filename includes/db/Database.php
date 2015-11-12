@@ -989,7 +989,7 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		if ( $this->debug() ) {
-			wfDebugLog( 'queries', sprintf( "%s: %s", $this->mDBname, $sql ) );
+			wfDebugLog( 'queries', sprintf( "%s: %s", $this->mDBname, $commentedSql ) );
 		}
 
 		$queryId = MWDebug::query( $sql, $fname, $isMaster );
