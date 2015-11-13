@@ -103,34 +103,49 @@ class ApiQueryUsers extends ApiQueryBase {
 			$this->prop = array();
 		}
 
-		$users = (array)$params['users'];
-		$goodNames = $done = array();
-		$result = $this->getResult();
-		// Canonicalize user names
-		foreach ( $users as $u ) {
-			$n = User::getCanonicalName( $u );
-			if ( $n === false || $n === '' ) {
-				$vals = array( 'name' => $u, 'invalid' => true );
-				$fit = $result->addValue( array( 'query', $this->getModuleName() ),
-					null, $vals );
-				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'users',
-						implode( '|', array_diff( $users, $done ) ) );
-					$goodNames = array();
-					break;
-				}
-				$done[] = $u;
-			} else {
-				$goodNames[] = $n;
-			}
+		if( !is_null( $params['ids'] ) ) {
+			$usingIds = true;
+			$users = (array)$params['ids'];
+		} else {
+			$usingIds = false;
+			$users = (array)$params['users'];
 		}
 
+		$goodNames = $done = array();
 		$result = $this->getResult();
 
-		if ( count( $goodNames ) ) {
+		if( !$usingIds ) {
+			// Canonicalize user names
+			foreach ( $users as $u ) {
+				$n = User::getCanonicalName( $u );
+				if ( $n === false || $n === '' ) {
+					$vals = array( 'name' => $u, 'invalid' => true );
+					$fit = $result->addValue( array( 'query', $this->getModuleName() ),
+						null, $vals );
+					if ( !$fit ) {
+						$this->setContinueEnumParameter( 'users',
+							implode( '|', array_diff( $users, $done ) ) );
+						$goodNames = array();
+						break;
+					}
+					$done[] = $u;
+				} else {
+					$goodNames[] = $n;
+				}
+			}
+
+			$result = $this->getResult();
+		}
+
+		if ( count( $goodNames ) || $usingIds ) {
 			$this->addTables( 'user' );
 			$this->addFields( User::selectFields() );
-			$this->addWhereFld( 'user_name', $goodNames );
+
+			if( $usingIds ) {
+				$this->addWhereFld( 'user_id', $ids );
+			} else {
+				$this->addWhereFld( 'user_name', $goodNames );
+			}
 
 			$this->showHiddenUsersAddBlockInfo( isset( $this->prop['blockinfo'] ) );
 
@@ -143,7 +158,13 @@ class ApiQueryUsers extends ApiQueryBase {
 				$userGroups = array();
 
 				$this->addTables( 'user' );
-				$this->addWhereFld( 'user_name', $goodNames );
+
+				if( $usingIds ) {
+					$this->addWhereFld( 'user_id', $ids );
+				} else {
+					$this->addWhereFld( 'user_name', $goodNames );
+				}
+
 				$this->addTables( 'user_groups' );
 				$this->addJoinConds( array( 'user_groups' => array( 'INNER JOIN', 'ug_user=user_id' ) ) );
 				$this->addFields( array( 'user_name', 'ug_group' ) );
@@ -166,6 +187,10 @@ class ApiQueryUsers extends ApiQueryBase {
 					$user = User::newFromRow( $row, array( 'user_groups' => $userGroups[$row->user_name] ) );
 				}
 				$name = $user->getName();
+
+				if( $usingIds ) {
+					$goodNames[] = $name;
+				}
 
 				$data[$name]['userid'] = $user->getId();
 				$data[$name]['name'] = $name;
@@ -308,6 +333,9 @@ class ApiQueryUsers extends ApiQueryBase {
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'users' => array(
+				ApiBase::PARAM_ISMULTI => true
+			),
+			'ids' => array(
 				ApiBase::PARAM_ISMULTI => true
 			),
 			'token' => array(
