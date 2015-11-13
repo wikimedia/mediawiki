@@ -1029,7 +1029,7 @@ class LocalisationCache {
 		# can't write to the MessageBlobStore either
 		if ( $purgeBlobs && !$this->store instanceof LCStoreNull ) {
 			$blobStore = new MessageBlobStore();
-			$blobStore->clear();
+			$blobStore->clear(); // FIXME
 		}
 
 	}
