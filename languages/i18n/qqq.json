@@ -4203,5 +4203,22 @@
 	"sessionprovider-generic": "Used to create a generic session type description when one isn't provided via the proper message. Should be phrased to make sense when added to a message such as {{msg-mw|cannotloginnow-text}}.\n\nParameters:\n* $1 - PHP classname.",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "Description of the sessions provided by the CookieSessionProvider class, which use HTTP cookies. Should be phrased to make sense when added to a message such as {{msg-mw|cannotloginnow-text}}.",
 	"sessionprovider-nocookies": "Used to inform the user that sessions may be missing due to lack of cookies.",
-	"randomrootpage": "{{doc-special|RandomRootPage}}"
+	"randomrootpage": "{{doc-special|RandomRootPage}}",
+	"log-action-filter-block": "Which type of action to filter for in this log",
+	"log-action-filter-delete": "Which type of action to filter for in this log",
+	"log-action-filter-protect": "Which type of action to filter for in this log",
+	"log-action-filter-upload": "Which type of action to filter for in this log",
+	"log-action-filter-all": "All types of action are allowed",
+	"log-action-filter-block-block": "Action to filter for in this log",
+	"log-action-filter-block-reblock": "Action to filter for in this log",
+	"log-action-filter-block-unblock": "Action to filter for in this log",
+	"log-action-filter-delete-delete": "Action to filter for in this log",
+	"log-action-filter-delete-restore": "Action to filter for in this log",
+	"log-action-filter-delete-event": "Action to filter for in this log",
+	"log-action-filter-delete-revision": "Action to filter for in this log",
+	"log-action-filter-protect-protect": "Action to filter for in this log",
+	"log-action-filter-protect-modify": "Action to filter for in this log",
+	"log-action-filter-protect-unprotect": "Action to filter for in this log",
+	"log-action-filter-upload-upload": "Action to filter for in this log",
+	"log-action-filter-upload-overwrite": "Action to filter for in this log"
 }
