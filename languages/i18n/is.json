@@ -21,7 +21,8 @@
 			"Macofe",
 			"Sveinn í Felli",
 			"Jonbg",
-			"Matma Rex"
+			"Matma Rex",
+			"Xð"
 		]
 	},
 	"tog-underline": "Undirstrika tengla:",
@@ -406,8 +407,6 @@
 	"createaccountreason": "Ástæða:",
 	"createacct-reason": "Ástæða",
 	"createacct-reason-ph": "Afhverju ertu að búa til annan aðgang",
-	"createacct-captcha": "Öryggis athugun",
-	"createacct-imgcaptcha-ph": "Sláðu inn textann að ofan",
 	"createacct-submit": "Búa til aðganginn",
 	"createacct-another-submit": "Stofna annan aðgang",
 	"createacct-benefit-heading": "{{SITENAME}} er skrifuð af fólki eins og þér.",
@@ -1093,7 +1092,7 @@
 	"enhancedrc-history": "breytingaskrá",
 	"recentchanges": "Nýlegar breytingar",
 	"recentchanges-legend": "Stillingar nýlegra breytinga",
-	"recentchanges-summary": "Hér geturðu fylgst með nýjustu breytingunum.",
+	"recentchanges-summary": "Hér geturðu fylgst með nýjustu breytingunum. Hin {{SITENAME}} inniheldur '''[[Special:NewPages|{{NUMBEROFARTICLES}}]]''' {{PLURAL:{{NUMBEROFARTICLES}}|grein|greinar}} og hefur '''[[Special:Statistics|{{NUMBEROFEDITS}}]]''' {{PLURAL:{{NUMBEROFEDITS}}|breytingu|breytingar}} og '''[[Special:ActiveUsers|{{NUMBEROFACTIVEUSERS}}]]''' {{PLURAL:{{NUMBEROFACTIVEUSERS}}|notandi|notendur}} í þessum mánuði.",
 	"recentchanges-noresult": "Engar breytingar í uppgefna tímabilinu sem passa við þessa mælikvarða.",
 	"recentchanges-feed-description": "Hér er hægt að fylgjast með nýlegum breytingum á {{SITENAME}}.",
 	"recentchanges-label-newpage": "Þessi breyting skapaði nýja síðu",
@@ -1639,6 +1638,7 @@
 	"wlheader-showupdated": "Síðum sem hefur verið breytt síðan þú skoðaðir þær síðast eru '''feitletraðar'''.",
 	"wlnote": "Hér fyrir neðan {{PLURAL:$1|er síðasta <strong>$1</strong> breyting|eru síðustu <strong>$1</strong> breytingar}} {{PLURAL:$2|síðasta <strong>$2</strong> klukkutímann|síðustu <strong>$2</strong> klukkutímana}}, frá $3, $4.",
 	"wlshowlast": "Sýna síðustu $1 klukkutíma, $2 daga",
+	"watchlistall2": "allt",
 	"watchlist-options": "Vaktlistastillingar",
 	"watching": "Vakta...",
 	"unwatching": "Afvakta...",

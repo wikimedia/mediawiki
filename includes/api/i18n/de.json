@@ -124,6 +124,8 @@
 	"apihelp-expandtemplates-param-revid": "Versionsnummer, die für die Anzeige von <nowiki>{{REVISIONID}}</nowiki> und ähnlichen Variablen verwendet wird.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Der expandierte Wikitext.",
 	"apihelp-expandtemplates-paramvalue-prop-ttl": "Die maximale Zeit, nach der der Ergebnis-Cache ungültig wird.",
+	"apihelp-expandtemplates-paramvalue-prop-jsconfigvars": "Gibt die JavaScript-Konfigurationsvariablen speziell für die Seite aus.",
+	"apihelp-expandtemplates-paramvalue-prop-encodedjsconfigvars": "Gibt die JavaScript-Konfigurationsvariablen speziell für die Seite als JSON-Zeichenfolge aus.",
 	"apihelp-expandtemplates-paramvalue-prop-parsetree": "Der XML-Parserbaum der Eingabe.",
 	"apihelp-expandtemplates-param-includecomments": "Ob HTML-Kommentare in der Ausgabe eingeschlossen werden sollen.",
 	"apihelp-expandtemplates-param-generatexml": "XML-Parserbaum erzeugen (ersetzt durch $1prop=parsetree).",
