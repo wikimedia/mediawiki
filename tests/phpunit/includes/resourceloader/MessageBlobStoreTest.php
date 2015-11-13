@@ -1,12 +1,31 @@
 <?php
 
 /**
- * @group Database
  * @group Cache
  * @covers MessageBlobStore
  */
-class MessageBlobStoreTest extends ResourceLoaderTestCase {
-	protected $tablesUsed = array( 'msg_resource' );
+class MessageBlobStoreTest extends PHPUnit_Framework_TestCase {
+
+	protected function setUp() {
+		parent::setUp();
+		// MediaWiki tests defaults $wgMainWANCache to CACHE_NONE.
+		// Use hash instead so that caching is observed
+		$this->wanCache = $this->getMockBuilder( 'WANObjectCache' )
+			->setConstructorArgs( array( array(
+				'cache' => new HashBagOStuff(),
+				'pool' => 'test',
+				'relayer' => new EventRelayerNull( array() )
+			) ) )
+			->setMethods( array( 'makePurgeValue' ) )
+			->getMock();
+
+		$this->wanCache->expects( $this->any() )
+			->method( 'makePurgeValue' )
+			->will( $this->returnCallback( function ( $timestamp, $holdoff ) {
+				// Disable holdoff as it messes with testing
+				return WANObjectCache::PURGE_VAL_PREFIX . (float)$timestamp . ':0';
+			} ) );
+	}
 
 	protected function makeBlobStore( $methods = null, $rl = null ) {
 		$blobStore = $this->getMockBuilder( 'MessageBlobStore' )
@@ -14,6 +33,8 @@ class MessageBlobStoreTest extends ResourceLoaderTestCase {
 			->setMethods( $methods )
 			->getMock();
 
+		$access = TestingAccessWrapper::newFromObject( $blobStore );
+		$access->wanCache = $this->wanCache;
 		return $blobStore;
 	}
 
@@ -67,9 +88,9 @@ class MessageBlobStoreTest extends ResourceLoaderTestCase {
 		$rl = new ResourceLoader();
 		$rl->register( $module->getName(), $module );
 		$blobStore = $this->makeBlobStore( array( 'fetchMessage' ), $rl );
-		$blobStore->expects( $this->exactly( 2 ) )
+		$blobStore->expects( $this->once() )
 			->method( 'fetchMessage' )
-			->will( $this->onConsecutiveCalls( 'First', 'Second' ) );
+			->will( $this->returnValue( 'First' ) );
 
 		$blob = $blobStore->getBlob( $module, 'en' );
 		$this->assertEquals( '{"example":"First"}', $blob, 'Generated blob' );
@@ -80,9 +101,9 @@ class MessageBlobStoreTest extends ResourceLoaderTestCase {
 		$rl = new ResourceLoader();
 		$rl->register( $module->getName(), $module );
 		$blobStore = $this->makeBlobStore( array( 'fetchMessage' ), $rl );
-		$blobStore->expects( $this->never() )
+		$blobStore->expects( $this->once() )
 			->method( 'fetchMessage' )
-			->will( $this->returnValue( 'Wrong' ) );
+			->will( $this->returnValue( 'Second' ) );
 
 		$blob = $blobStore->getBlob( $module, 'en' );
 		$this->assertEquals( '{"example":"Second"}', $blob, 'Updated blob' );
