@@ -78,6 +78,8 @@ production.
   and .flex(@grow: 1, @shrink: 1, @width: auto, @order: 1)) in Less to create
   cross-browser-compatible FlexBox rules. Users will still need to add fallback
   float rules or the like for compatibility with IE9- separately.
+* $wgCdnReboundPurgeDelay was added to provide secondary delayed purges of URLs
+  from CDN to mitigate DB replication lag and WAN cache purge lag.
 
 ==== External libraries ====
 
