@@ -1391,13 +1391,17 @@ MESSAGE;
 	 * only if the client has adequate support for MediaWiki JavaScript code.
 	 *
 	 * @param string $script JavaScript code
+	 * @param string $nonce Content-security-policy nonce, from OutputPage::getCSPNonce()
 	 * @return WrappedString HTML
 	 */
-	public static function makeInlineScript( $script ) {
+	public static function makeInlineScript( $script, $nonce = null ) {
 		$js = self::makeLoaderConditionalScript( $script );
+		// nonce should be only base64 characters, so should be safe,
+		// but better to be safe.
+		$escNonce = htmlspecialchars( $nonce );
 		return new WrappedString(
-			Html::inlineScript( $js ),
-			"<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n",
+			Html::inlineScript( $js, $nonce ),
+			"<script nonce=\"$escNonce\">window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n",
 			"\n} );</script>"
 		);
 	}
