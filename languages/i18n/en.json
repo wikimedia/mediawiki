@@ -3865,5 +3865,22 @@
 	"mw-widgets-dateinput-placeholder-month": "YYYY-MM",
 	"mw-widgets-titleinput-description-new-page": "page does not exist yet",
 	"mw-widgets-titleinput-description-redirect": "redirect to $1",
-	"api-error-blacklisted": "Please choose a different, descriptive title."
+	"api-error-blacklisted": "Please choose a different, descriptive title.",
+	"log-action-filter-block": "Type of block:",
+	"log-action-filter-delete": "Type of deletion:",
+	"log-action-filter-protect": "Type of protection:",
+	"log-action-filter-upload": "Type of upload:",
+	"log-action-filter-all": "All",
+	"log-action-block-block": "Block",
+	"log-action-block-reblock": "Block modification",
+	"log-action-block-unblock": "Unblock",
+	"log-action-delete-delete": "Page deletion",
+	"log-action-delete-restore": "Page undeletion",
+	"log-action-delete-event": "Log deletion",
+	"log-action-delete-revision": "Revision deletion",
+	"log-action-protect-protect": "Protection",
+	"log-action-protect-modify": "Protection modification",
+	"log-action-protect-unprotect": "Unprotection",
+	"log-action-upload-upload": "New upload",
+	"log-action-upload-overwrite": "Reupload"
 }
