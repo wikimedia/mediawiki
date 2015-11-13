@@ -3856,7 +3856,7 @@ HTML
 		}
 
 		$script .= '});';
-		$wgOut->addScript( ResourceLoader::makeInlineScript( $script ) );
+		$wgOut->addScript( ResourceLoader::makeInlineScript( $script, $wgOut->getCSPNonce() ) );
 
 		$toolbar = '<div id="toolbar"></div>';
 
