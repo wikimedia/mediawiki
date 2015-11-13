@@ -29,8 +29,6 @@ class LBFactorySimple extends LBFactory {
 	private $mainLB;
 	/** @var LoadBalancer[] */
 	private $extLBs = array();
-	/** @var ChronologyProtector */
-	private $chronProt;
 
 	/** @var string */
 	private $loadMonitorClass;
@@ -41,8 +39,6 @@ class LBFactorySimple extends LBFactory {
 		$this->loadMonitorClass = isset( $conf['loadMonitorClass'] )
 			? $conf['loadMonitorClass']
 			: null;
-
-		$this->chronProt = $this->newChronologyProtector();
 	}
 
 	/**
