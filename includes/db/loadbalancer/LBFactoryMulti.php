@@ -76,9 +76,6 @@
  * @ingroup Database
  */
 class LBFactoryMulti extends LBFactory {
-	/** @var ChronologyProtector */
-	private $chronProt;
-
 	/** @var array A map of database names to section names */
 	private $sectionsByDB;
 
@@ -180,8 +177,6 @@ class LBFactoryMulti extends LBFactory {
 				$this->$key = $conf[$key];
 			}
 		}
-
-		$this->chronProt = $this->newChronologyProtector();
 	}
 
 	/**

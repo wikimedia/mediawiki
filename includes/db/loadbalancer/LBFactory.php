@@ -26,6 +26,9 @@
  * @ingroup Database
  */
 abstract class LBFactory {
+	/** @var ChronologyProtector */
+	protected $chronProt;
+
 	/** @var LBFactory */
 	private static $instance;
 
@@ -42,6 +45,8 @@ abstract class LBFactory {
 		if ( isset( $conf['readOnlyReason'] ) && is_string( $conf['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $conf['readOnlyReason'];
 		}
+
+		$this->chronProt = $this->newChronologyProtector();
 	}
 
 	/**
@@ -256,6 +261,17 @@ abstract class LBFactory {
 			$ret = $ret || $lb->hasOrMadeRecentMasterChanges();
 		} );
 		return $ret;
+	}
+
+	/**
+	 * Disable the ChronologyProtector for all load balancers
+	 *
+	 * This can be called at the start of special API entry points
+	 *
+	 * @since 1.27
+	 */
+	public function disableChronologyProtection() {
+		$this->chronProt->setEnabled( false );
 	}
 
 	/**
