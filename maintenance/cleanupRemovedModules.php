@@ -58,20 +58,6 @@ class CleanupRemovedModules extends Maintenance {
 			wfWaitForSlaves();
 		} while ( $numRows > 0 );
 		$this->output( "done\n" );
-
-		$this->output( "Cleaning up msg_resource table...\n" );
-		$i = 1;
-
-		$mrRes = $dbw->tableName( 'msg_resource' );
-		do {
-			$where = $moduleList ? "mr_resource NOT IN ($moduleList)" : '1=1';
-			$dbw->query( "DELETE FROM $mrRes WHERE $where LIMIT $limit", __METHOD__ );
-			$numRows = $dbw->affectedRows();
-			$this->output( "Batch $i: $numRows rows\n" );
-			$i++;
-			wfWaitForSlaves();
-		} while ( $numRows > 0 );
-		$this->output( "done\n" );
 	}
 }
 
