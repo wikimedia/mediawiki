@@ -1188,7 +1188,8 @@
 	"apihelp-query+users-paramvalue-prop-registration": "Adds the user's registration timestamp.",
 	"apihelp-query+users-paramvalue-prop-emailable": "Tags if the user can and wants to receive email through [[Special:Emailuser]].",
 	"apihelp-query+users-paramvalue-prop-gender": "Tags the gender of the user. Returns \"male\", \"female\", or \"unknown\".",
-	"apihelp-query+users-param-users": "A list of users to obtain information for.",
+	"apihelp-query+users-param-users": "A list of users to obtain information for. If <kbd>usids</kbd> is provided, this is ignored.",
+	"apihelp-query+users-param-ids": "A list of user ids to obtain information for.",
 	"apihelp-query+users-param-token": "Use <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd> instead.",
 	"apihelp-query+users-example-simple": "Return information for user <kbd>Example</kbd>.",
 
