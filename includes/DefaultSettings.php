@@ -7048,6 +7048,35 @@ $wgLogActionsHandlers = array(
 );
 
 /**
+ * List of log types that can be filtered by action, with each action assigned
+ * to the respective message to display in the drop down menu
+ * Extensions may append to this array
+ * @since 1.27
+ */
+$wgActionFilteredLogs = array(
+	'block' => array(
+		'block' => 'log-action-block-block',
+		'reblock' => 'log-action-block-reblock',
+		'unblock' => 'log-action-block-unblock',
+	),
+	'delete' => array(
+		'delete' => 'log-action-delete-delete',
+		'restore' => 'log-action-delete-restore',
+		'event' => 'log-action-delete-event',
+		'revision' => 'log-action-delete-revision',
+	),
+	'protect' => array(
+		'protect' => 'log-action-protect-protect',
+		'modify' => 'log-action-protect-modify',
+		'unprotect' => 'log-action-protect-unprotect',
+	),
+	'upload' => array(
+		'upload' => 'log-action-upload-upload',
+		'overwrite' => 'log-action-upload-overwrite',
+	),
+);
+
+/**
  * Maintain a log of newusers at Log/newusers?
  */
 $wgNewUserLog = true;
