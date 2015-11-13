@@ -101,11 +101,11 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * requests its own information. This sacrifice of modularity yields a substantial
 	 * performance improvement.
 	 *
-	 * @param array $modules List of module names to preload information for
+	 * @param array $moduleNames List of module names to preload information for
 	 * @param ResourceLoaderContext $context Context to load the information within
 	 */
-	public function preloadModuleInfo( array $modules, ResourceLoaderContext $context ) {
-		if ( !count( $modules ) ) {
+	public function preloadModuleInfo( array $moduleNames, ResourceLoaderContext $context ) {
+		if ( !count( $moduleNames ) ) {
 			// Or else Database*::select() will explode, plus it's cheaper!
 			return;
 		}
@@ -116,11 +116,12 @@ class ResourceLoader implements LoggerAwareInterface {
 		// Batched version of ResourceLoaderModule::getFileDependencies
 		$vary = "$skin|$lang";
 		$res = $dbr->select( 'module_deps', array( 'md_module', 'md_deps' ), array(
-				'md_module' => $modules,
+				'md_module' => $moduleNames,
 				'md_skin' => $vary,
 			), __METHOD__
 		);
-		// Prime in-object cache values for each module
+
+		// Prime in-object cache for file dependencies
 		$modulesWithDeps = array();
 		foreach ( $res as $row ) {
 			$module = $this->getModule( $row->md_module );
@@ -132,41 +133,25 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 		}
 		// Register the absence of a dependency row too
-		foreach ( array_diff( $modules, $modulesWithDeps ) as $name ) {
+		foreach ( array_diff( $moduleNames, $modulesWithDeps ) as $name ) {
 			$module = $this->getModule( $name );
 			if ( $module ) {
 				$this->getModule( $name )->setFileDependencies( $context, array() );
 			}
 		}
 
-		// Get message blob mtimes. Only do this for modules with messages
-		$modulesWithMessages = array();
-		foreach ( $modules as $name ) {
+		// Prime in-object cache for message blobs for modules with messages
+		$modules = array();
+		foreach ( $moduleNames as $name ) {
 			$module = $this->getModule( $name );
-			if ( $module && count( $module->getMessages() ) ) {
-				$modulesWithMessages[] = $name;
+			if ( $module && $module->getMessages() ) {
+				$modules[$name] = $module;
 			}
 		}
-		$modulesWithoutMessages = array_flip( $modules ); // Will be trimmed down by the loop below
-		if ( count( $modulesWithMessages ) ) {
-			$res = $dbr->select( 'msg_resource', array( 'mr_resource', 'mr_timestamp' ), array(
-					'mr_resource' => $modulesWithMessages,
-					'mr_lang' => $lang
-				), __METHOD__
-			);
-			foreach ( $res as $row ) {
-				$module = $this->getModule( $row->mr_resource );
-				if ( $module ) {
-					$module->setMsgBlobMtime( $lang, wfTimestamp( TS_UNIX, $row->mr_timestamp ) );
-					unset( $modulesWithoutMessages[$row->mr_resource] );
-				}
-			}
-		}
-		foreach ( array_keys( $modulesWithoutMessages ) as $name ) {
-			$module = $this->getModule( $name );
-			if ( $module ) {
-				$module->setMsgBlobMtime( $lang, 1 );
-			}
+		$store = $this->getMessageBlobStore();
+		$blobs = $store->getBlobs( $modules, $lang );
+		foreach ( $blobs as $name => $blob ) {
+			$modules[$name]->setMessageBlob( $blob, $lang );
 		}
 	}
 
@@ -246,10 +231,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
 		global $IP;
 
-		if ( !$logger ) {
-			$logger = new NullLogger();
-		}
-		$this->setLogger( $logger );
+		$this->logger = $logger ?: new NullLogger();
 
 		if ( !$config ) {
 			$this->logger->debug( __METHOD__ . ' was called without providing a Config instance' );
@@ -274,7 +256,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			$this->registerTestModules();
 		}
 
-		$this->setMessageBlobStore( new MessageBlobStore( $this ) );
+		$this->setMessageBlobStore( new MessageBlobStore( $this, $this->logger ) );
 	}
 
 	/**
@@ -284,6 +266,10 @@ class ResourceLoader implements LoggerAwareInterface {
 		return $this->config;
 	}
 
+	/**
+	 * @since 1.26
+	 * @param LoggerInterface $logger
+	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
 	}
@@ -664,7 +650,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 
 		try {
-			// Preload for getCombinedVersion()
+			// Preload for getCombinedVersion() and for batch makeModuleResponse()
 			$this->preloadModuleInfo( array_keys( $modules ), $context );
 		} catch ( Exception $e ) {
 			MWExceptionHandler::logException( $e );
@@ -962,19 +948,6 @@ MESSAGE;
 				$this->errors[] = 'Image generation failed';
 			}
 			return $data;
-		}
-
-		// Pre-fetch blobs
-		if ( $context->shouldIncludeMessages() ) {
-			try {
-				$this->blobStore->get( $this, $modules, $context->getLanguage() );
-			} catch ( Exception $e ) {
-				MWExceptionHandler::logException( $e );
-				$this->logger->warning( 'Prefetching MessageBlobStore failed: {exception}', array(
-					'exception' => $e
-				) );
-				$this->errors[] = self::formatExceptionNoComment( $e );
-			}
 		}
 
 		foreach ( $missing as $name ) {
