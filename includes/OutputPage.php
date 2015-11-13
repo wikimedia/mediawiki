@@ -308,6 +308,11 @@ class OutputPage extends ContextSource {
 	private $copyrightUrl;
 
 	/**
+	 * @var string The nonce for CSP
+	 */
+	private $CSPNonce;
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -508,7 +513,8 @@ class OutputPage extends ContextSource {
 		if ( is_null( $version ) ) {
 			$version = $this->getConfig()->get( 'StyleVersion' );
 		}
-		$this->addScript( Html::linkedScript( wfAppendQuery( $path, $version ) ) );
+		$nonce = $this->getCSPNonce();
+		$this->addScript( Html::linkedScript( wfAppendQuery( $path, $version ), $nonce ) );
 	}
 
 	/**
@@ -518,7 +524,7 @@ class OutputPage extends ContextSource {
 	 * @param string $script JavaScript text, no "<script>" tags
 	 */
 	public function addInlineScript( $script ) {
-		$this->mScripts .= Html::inlineScript( "\n$script\n" ) . "\n";
+		$this->mScripts .= Html::inlineScript( "\n$script\n", $this->getCSPNonce() ) . "\n";
 	}
 
 	/**
@@ -2253,6 +2259,7 @@ class OutputPage extends ContextSource {
 					$this->addVaryHeader( 'X-Forwarded-Proto' );
 				}
 				$this->sendCacheControl();
+				// FIXME: Are we supposed to send on redir $this->sendCSPHeader();
 
 				$response->header( "Content-Type: text/html; charset=utf-8" );
 				if ( $config->get( 'DebugRedirects' ) ) {
@@ -2263,6 +2270,7 @@ class OutputPage extends ContextSource {
 				} else {
 					$response->header( 'Location: ' . $redirect );
 				}
+
 			}
 
 			return;
@@ -2323,6 +2331,7 @@ class OutputPage extends ContextSource {
 		Hooks::run( 'AfterFinalPageOutput', array( $this ) );
 
 		$this->sendCacheControl();
+		$this->sendCSPHeader();
 
 		ob_end_flush();
 
@@ -2891,7 +2900,8 @@ class OutputPage extends ContextSource {
 						);
 					} else {
 						$links['html'][] = ResourceLoader::makeInlineScript(
-							$resourceLoader->makeModuleResponse( $context, $grpModules )
+							$resourceLoader->makeModuleResponse( $context, $grpModules ),
+							$this->getCSPNonce()
 						);
 					}
 					continue;
@@ -2924,7 +2934,8 @@ class OutputPage extends ContextSource {
 						) );
 					} else {
 						$link = ResourceLoader::makeInlineScript(
-							Xml::encodeJsCall( 'mw.loader.load', array( $url ) )
+							Xml::encodeJsCall( 'mw.loader.load', array( $url ) ),
+							$this->getCSPNonce()
 						);
 					}
 
@@ -2952,9 +2963,10 @@ class OutputPage extends ContextSource {
 	/**
 	 * Build html output from an array of links from makeResourceLoaderLink.
 	 * @param array $links
+	 * @param string $nonce Value from OutputPage::getCSPNonce()
 	 * @return string HTML
 	 */
-	protected static function getHtmlFromLoaderLinks( array $links ) {
+	protected static function getHtmlFromLoaderLinks( array $links, $nonce = null ) {
 		$html = array();
 		$states = array();
 		foreach ( $links as $link ) {
@@ -2970,7 +2982,8 @@ class OutputPage extends ContextSource {
 
 		if ( count( $states ) ) {
 			array_unshift( $html, ResourceLoader::makeInlineScript(
-				ResourceLoader::makeLoaderStateScript( $states )
+				ResourceLoader::makeLoaderStateScript( $states ),
+				$nonce
 			) );
 		}
 
@@ -3000,7 +3013,7 @@ class OutputPage extends ContextSource {
 		// manifest and loads jquery and mediawiki base modules
 		$links[] = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS );
 
-		return self::getHtmlFromLoaderLinks( $links );
+		return self::getHtmlFromLoaderLinks( $links, $this->getCSPNonce() );
 	}
 
 	/**
@@ -3019,12 +3032,14 @@ class OutputPage extends ContextSource {
 		// then fixed up by the startup module for unsupported browsers.
 		$links[] = Html::inlineScript(
 			'document.documentElement.className = document.documentElement.className'
-			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );'
+			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );',
+			$this->getCSPNonce()
 		);
 
 		// Load config before anything else
 		$links[] = ResourceLoader::makeInlineScript(
-			ResourceLoader::makeConfigSetScript( $this->getJSVars() )
+			ResourceLoader::makeConfigSetScript( $this->getJSVars() ),
+			$this->getCSPNonce()
 		);
 
 		// Load embeddable private modules before any loader links
@@ -3046,7 +3061,8 @@ class OutputPage extends ContextSource {
 		$modules = $this->getModules( true, 'top' );
 		if ( $modules ) {
 			$links[] = ResourceLoader::makeInlineScript(
-				Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
+				Xml::encodeJsCall( 'mw.loader.load', array( $modules ) ),
+				$this->getCSPNonce()
 			);
 		}
 
@@ -3056,7 +3072,7 @@ class OutputPage extends ContextSource {
 			ResourceLoaderModule::TYPE_SCRIPTS
 		);
 
-		return self::getHtmlFromLoaderLinks( $links );
+		return self::getHtmlFromLoaderLinks( $links, $this->getCSPNonce() );
 	}
 
 	/**
@@ -3082,7 +3098,8 @@ class OutputPage extends ContextSource {
 		$modules = $this->getModules( true, 'bottom' );
 		if ( $modules ) {
 			$links[] = ResourceLoader::makeInlineScript(
-				Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
+				Xml::encodeJsCall( 'mw.loader.load', array( $modules ) ),
+				$this->getCSPNonce()
 			);
 		}
 
@@ -3114,7 +3131,8 @@ class OutputPage extends ContextSource {
 							) )
 							. '}'
 					)
-				) )
+				) ),
+				$this->getCSPNonce()
 			);
 
 			// FIXME: If the user is previewing, say, ./vector.js, his ./common.js will be loaded
@@ -3134,7 +3152,7 @@ class OutputPage extends ContextSource {
 			ResourceLoaderModule::TYPE_COMBINED
 		);
 
-		return self::getHtmlFromLoaderLinks( $links );
+		return self::getHtmlFromLoaderLinks( $links, $this->getCSPNonce() );
 	}
 
 	/**
@@ -3765,7 +3783,7 @@ class OutputPage extends ContextSource {
 		}
 
 		// Add stuff in $otherTags (previewed user CSS if applicable)
-		return self::getHtmlFromLoaderLinks( $links ) . implode( '', $otherTags );
+		return self::getHtmlFromLoaderLinks( $links, $this->getCSPNonce() ) . implode( '', $otherTags );
 	}
 
 	/**
@@ -4035,5 +4053,147 @@ class OutputPage extends ContextSource {
 			'oojs-ui.styles.textures',
 			'mediawiki.widgets.styles',
 		) );
+	}
+
+	/**
+	 * Get (and set if not yet set) the CSP nonce.
+	 *
+	 * This value needs to be included in any <script> tags on the
+	 * page.
+	 */
+	public function getCSPNonce() {
+		if ( $this->CSPNonce === null ) {
+			// XXX is it expensive to generate randomness on every request
+			$rand = MWCryptRand::generate( 15 );
+			$this->CSPNonce = base64_encode( $rand );
+		}
+		return $this->CSPNonce;
+	}
+
+	/**
+	 * Send CSP header
+	 */
+	private function sendCSPHeader() {
+		$csp = $this->getConfig()->get( 'CSPHeader' );
+		$policy = $this->makeCSPDirectives( $csp );
+		if ( $policy ) {
+			$this->getRequest()->response()->header(
+				"Content-Security-Policy: $policy"
+			);
+		}
+
+		// FIXME Would be nice to have a different report uri
+		$cspReport = $this->getConfig()->get( 'CSPReportOnlyHeader' );
+		$policyReport = $this->makeCSPDirectives( $cspReport );
+		if ( $policyReport ) {
+			$this->getRequest()->response()->header(
+				"Content-Security-Policy-Report-Only: $policyReport"
+			);
+		}
+	}
+
+	/**
+	 * Determine what CSP policies to set for this page
+	 *
+	 * @param $config array|bool Policy configuration (Either $wgCSPHeader or $wgCSPReportOnlyHeader)
+	 * @return string Policy directives, or empty string for no policy.
+	 */
+	private function makeCSPDirectives( $config ) {
+		if ( !$config ) {
+			return '';
+		}
+
+		$mwConfig = $this->getConfig();
+
+		$reportUri = wfAppendQuery( wfScript( 'api' ), array( 'action' => 'cspreport', 'format' => 'json' ) );
+		// Per spec, ';' and ',' must be hex-escaped in report uri
+		$reportUri = str_replace( array( ';', ',' ), array( '%3B', '%2C' ), $reportUri );
+
+
+		// XXX on a foreign repo, the included description page can have anything on it(!)
+
+		// In principle, you can have even more complex configs... (i.e. The urlsByExt option)
+
+		$pathUrls = array();
+		$callback = function ( $repo, &$urls ) {
+			$urls[] = $repo->getZoneUrl( 'public' );
+			$urls[] = $repo->getZoneUrl( 'transcoded' );
+			$urls[] = $repo->getZoneUrl( 'thumb' );
+			$urls[] = $repo->getDescriptionStylesheetUrl();
+		};
+		$localRepo = RepoGroup::singleton()->getRepo( 'local' );
+		$callback( $localRepo, $pathUrls );
+		RepoGroup::singleton()->forEachForeignRepo( $callback, array( &$pathUrls ) );
+
+		$additionalSelfUrls = array();
+
+		// Globals that might point to a different domain
+		$pathGlobals = array( 'LoadScript', 'ExtensionAssetsPath', 'StylePath', 'ResourceBasePath' );
+		foreach ( $pathGlobals as $path ) {
+			$pathUrls[] = $mwConfig->get( $path );;
+		}
+		foreach ( $pathUrls as $path ) {
+			$bits = wfParseUrl( $path );
+			if ( $bits && isset( $bits['host'] ) && $bits['host'] !== $mwConfig->get( 'ServerName' ) ) {
+				// XXX is it better to include path in whitelisted url or just hostname?
+				$host = $bits['scheme'] === '' ? $bits['host']	: $bits['scheme'] . $bits['delimiter'] . $bits['host'];
+				$additionalSelfUrls[] = str_replace( array( ';', ',' ), array( '%3B', '%2C' ), $host );
+			}
+		}
+		$additionalSelfUrls = array_unique( $additionalSelfUrls );
+
+		$additionalSelfUrlsScript = array();
+		$bits = wfParseUrl( $mwConfig->get( 'LoadScript' ) );
+		if ( $bits && isset( $bits['host'] ) && $bits['host'] !== $mwConfig->get( 'ServerName' ) ) {
+			$host = $bits['scheme'] === '' ? $bits['host']	: $bits['scheme'] . $bits['delimiter'] . $bits['host'];
+			$additionalSelfUrlsScript[] = str_replace( array( ';', ',' ), array( '%3B', '%2C' ), $host );
+		}
+
+		$defaultSrc = false;
+		$cssSrc = false;
+		$scriptSrc = array( "'unsafe-eval'", "'self'", "'nonce-" . $this->getCSPNonce() . "'");
+		$scriptSrc = array_merge( $scriptSrc, $additionalSelfUrlsScript );
+		if ( is_array( $config ) ) {
+			if ( isset( $config['script-src'] ) && is_array( $config['script-src'] ) ) {
+				foreach( $config['script-src'] as $src ) {
+					$src = str_replace( array( ';', ',' ), array( '%3B', '%2C' ), $src );
+					$scriptSrc[] = $src;
+				}
+			}
+			if ( isset( $config['default-src'] ) && $config['default-src'] ) {
+// FIXME, blob: for UpWiz?
+				$defaultSrc = array_merge( array( "'self'", 'data:' ), $additionalSelfUrls );
+				if ( is_array( $config['default-src'] ) ) {
+					foreach( $config['default-src'] as $src ) {
+						$src = str_replace( array( ';', ',' ), array( '%3B', '%2C' ), $src );
+						$defaultSrc[] = $src;
+					}
+				}
+			}
+		}
+
+		if ( is_array( $defaultSrc ) ) {
+			$cssSrc = array_merge( $defaultSrc, array( "'unsafe-inline'" ) );
+		}
+
+		if ( isset( $config['report-uri'] ) && $config['report-uri'] !== true ) {
+			$reportUri = $config['report-uri'];
+		}
+// FIXME Add hooks
+		$directives = array();
+		if ( $scriptSrc ) {
+			$directives[] = 'script-src ' . implode( $scriptSrc, ' ' );
+		}
+		if ( $defaultSrc ) {
+			$directives[] = 'default-src ' . implode( $defaultSrc, ' ' );
+		}
+		if ( $cssSrc ) {
+			$directives[] = 'style-src ' . implode( $cssSrc, ' ' );
+		}
+		if ( $reportUri ) {
+			$directives[] = 'report-uri ' . $reportUri;
+		}
+
+		return implode( $directives, '; ' );
 	}
 }

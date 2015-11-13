@@ -7777,6 +7777,28 @@ $wgVirtualRestConfig = array(
 $wgSearchRunSuggestedQuery = true;
 
 /**
+ * Controls Content-Security-Policy header [Experimental]
+ *
+ * @since 1.27
+ * @var bool|array true to send default version, false to not send.
+ *  If an array, can have parameters:
+ *  'default-src' If present, limit places you can load stuff from to urls
+ *    in the array (Stuff required for MW will be added automatically)
+ *  'script-src' Array of additional places that are allowed to have JS be loaded from.
+ *  'report-uri' true to use MW api [default], false to disable, string for alternate uri
+ */
+
+$wgCSPHeader = false;
+
+/**
+ * Controls Content-Security-Policy-Report-Only header
+ *
+ * @since 1.27
+ * @var bool|array Same as $wgCSPHeader
+ */
+$wgCSPReportOnlyHeader = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

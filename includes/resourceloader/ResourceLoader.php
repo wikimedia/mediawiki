@@ -1393,11 +1393,14 @@ MESSAGE;
 	 * @param string $script JavaScript code
 	 * @return WrappedString HTML
 	 */
-	public static function makeInlineScript( $script ) {
+	public static function makeInlineScript( $script, $nonce = null ) {
 		$js = self::makeLoaderConditionalScript( $script );
+		// nonce should be only base64 characters, so should be safe,
+		// but better to be safe.
+		$escNonce = htmlspecialchars( $nonce );
 		return new WrappedString(
-			Html::inlineScript( $js ),
-			"<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n",
+			Html::inlineScript( $js, $nonce ),
+			"<script nonce=\"" . htmlspecialchars( $nonce ) . "\">window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n",
 			"\n} );</script>"
 		);
 	}
