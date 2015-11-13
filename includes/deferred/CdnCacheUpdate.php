@@ -38,6 +38,13 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		$this->urls = $urlArr;
 	}
 
+	public function merge( MergeableUpdate $update ) {
+		/** @var CdnCacheUpdate $update */
+		Assert::parameterType( __CLASS__, $update, '$update' );
+
+		$this->urls = array_merge( $this->urls, $update->urls );
+	}
+
 	/**
 	 * Create an update object from an array of Title objects, or a TitleArray object
 	 *
@@ -67,14 +74,19 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * Purges the list of URLs passed to the constructor.
 	 */
 	public function doUpdate() {
+		global $wgCdnReboundPurgeDelay;
+
 		self::purge( $this->urls );
-	}
 
-	public function merge( MergeableUpdate $update ) {
-		/** @var CdnCacheUpdate $update */
-		Assert::parameterType( __CLASS__, $update, '$update' );
-
-		$this->urls = array_merge( $this->urls, $update->urls );
+		if ( $wgCdnReboundPurgeDelay > 0 ) {
+			JobQueueGroup::singleton()->lazyPush( new CdnPurgeJob(
+				Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __CLASS__ ),
+				array(
+					'urls' => $this->urls,
+					'jobReleaseTimestamp' => time() + $wgCdnReboundPurgeDelay
+				)
+			) );
+		}
 	}
 
 	/**
