@@ -47,7 +47,7 @@ class SquidUpdate implements DeferrableUpdate {
 	public static function newFromTitles( $titles, $urlArr = array() ) {
 		/** @var Title $title */
 		foreach ( $titles as $title ) {
-			$urlArr[] = $title->getInternalURL();
+			$urlArr = array_merge( $urlArr, $title->getSquidURLs() );
 		}
 
 		return new SquidUpdate( $urlArr );
