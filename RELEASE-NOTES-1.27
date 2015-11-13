@@ -87,6 +87,8 @@ production.
 * Added CentralIdLookup, a service that allows extensions needing a concept of
   "central" users to get that without having to know about specific central
   authentication extensions.
+* $wgCdnReboundPurgeDelay was added to provide secondary delayed purges of URLs
+  from CDN to mitigate DB replication lag and WAN cache purge lag.
 
 === External library changes in 1.27 ===
 ==== Upgraded external libraries ====
