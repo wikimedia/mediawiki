@@ -180,7 +180,7 @@ HTML;
 					'function () {' . Xml::encodeJsCall( 'mw.loader.load', array( $modules ) ) . '}'
 				)
 			) )
-		) );
+		), $out->getCSPNonce() );
 	}
 
 	/**
