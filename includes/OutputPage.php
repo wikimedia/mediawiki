@@ -308,6 +308,11 @@ class OutputPage extends ContextSource {
 	private $copyrightUrl;
 
 	/**
+	 * @var string The nonce for CSP
+	 */
+	private $CSPNonce;
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -508,7 +513,8 @@ class OutputPage extends ContextSource {
 		if ( is_null( $version ) ) {
 			$version = $this->getConfig()->get( 'StyleVersion' );
 		}
-		$this->addScript( Html::linkedScript( wfAppendQuery( $path, $version ) ) );
+		$nonce = $this->getCSPNonce();
+		$this->addScript( Html::linkedScript( wfAppendQuery( $path, $version ), $nonce ) );
 	}
 
 	/**
@@ -518,7 +524,7 @@ class OutputPage extends ContextSource {
 	 * @param string $script JavaScript text, no "<script>" tags
 	 */
 	public function addInlineScript( $script ) {
-		$this->mScripts .= Html::inlineScript( "\n$script\n" ) . "\n";
+		$this->mScripts .= Html::inlineScript( "\n$script\n", $this->getCSPNonce() ) . "\n";
 	}
 
 	/**
@@ -2253,6 +2259,7 @@ class OutputPage extends ContextSource {
 					$this->addVaryHeader( 'X-Forwarded-Proto' );
 				}
 				$this->sendCacheControl();
+				// FIXME: Are we supposed to send on redir $this->sendCSPHeader();
 
 				$response->header( "Content-Type: text/html; charset=utf-8" );
 				if ( $config->get( 'DebugRedirects' ) ) {
@@ -2263,6 +2270,7 @@ class OutputPage extends ContextSource {
 				} else {
 					$response->header( 'Location: ' . $redirect );
 				}
+
 			}
 
 			return;
@@ -2323,6 +2331,7 @@ class OutputPage extends ContextSource {
 		Hooks::run( 'AfterFinalPageOutput', array( $this ) );
 
 		$this->sendCacheControl();
+		CSP::sendHeaders( $this );
 
 		ob_end_flush();
 
@@ -2891,7 +2900,8 @@ class OutputPage extends ContextSource {
 						);
 					} else {
 						$links['html'][] = ResourceLoader::makeInlineScript(
-							$resourceLoader->makeModuleResponse( $context, $grpModules )
+							$resourceLoader->makeModuleResponse( $context, $grpModules ),
+							$this->getCSPNonce()
 						);
 					}
 					continue;
@@ -2924,7 +2934,8 @@ class OutputPage extends ContextSource {
 						) );
 					} else {
 						$link = ResourceLoader::makeInlineScript(
-							Xml::encodeJsCall( 'mw.loader.load', array( $url ) )
+							Xml::encodeJsCall( 'mw.loader.load', array( $url ) ),
+							$this->getCSPNonce()
 						);
 					}
 
@@ -2952,9 +2963,10 @@ class OutputPage extends ContextSource {
 	/**
 	 * Build html output from an array of links from makeResourceLoaderLink.
 	 * @param array $links
+	 * @param string $nonce Value from OutputPage::getCSPNonce()
 	 * @return string HTML
 	 */
-	protected static function getHtmlFromLoaderLinks( array $links ) {
+	protected static function getHtmlFromLoaderLinks( array $links, $nonce = null ) {
 		$html = array();
 		$states = array();
 		foreach ( $links as $link ) {
@@ -2970,7 +2982,8 @@ class OutputPage extends ContextSource {
 
 		if ( count( $states ) ) {
 			array_unshift( $html, ResourceLoader::makeInlineScript(
-				ResourceLoader::makeLoaderStateScript( $states )
+				ResourceLoader::makeLoaderStateScript( $states ),
+				$nonce
 			) );
 		}
 
@@ -3000,7 +3013,7 @@ class OutputPage extends ContextSource {
 		// manifest and loads jquery and mediawiki base modules
 		$links[] = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS );
 
-		return self::getHtmlFromLoaderLinks( $links );
+		return self::getHtmlFromLoaderLinks( $links, $this->getCSPNonce() );
 	}
 
 	/**
@@ -3019,12 +3032,14 @@ class OutputPage extends ContextSource {
 		// then fixed up by the startup module for unsupported browsers.
 		$links[] = Html::inlineScript(
 			'document.documentElement.className = document.documentElement.className'
-			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );'
+			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );',
+			$this->getCSPNonce()
 		);
 
 		// Load config before anything else
 		$links[] = ResourceLoader::makeInlineScript(
-			ResourceLoader::makeConfigSetScript( $this->getJSVars() )
+			ResourceLoader::makeConfigSetScript( $this->getJSVars() ),
+			$this->getCSPNonce()
 		);
 
 		// Load embeddable private modules before any loader links
@@ -3046,7 +3061,8 @@ class OutputPage extends ContextSource {
 		$modules = $this->getModules( true, 'top' );
 		if ( $modules ) {
 			$links[] = ResourceLoader::makeInlineScript(
-				Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
+				Xml::encodeJsCall( 'mw.loader.load', array( $modules ) ),
+				$this->getCSPNonce()
 			);
 		}
 
@@ -3056,7 +3072,7 @@ class OutputPage extends ContextSource {
 			ResourceLoaderModule::TYPE_SCRIPTS
 		);
 
-		return self::getHtmlFromLoaderLinks( $links );
+		return self::getHtmlFromLoaderLinks( $links, $this->getCSPNonce() );
 	}
 
 	/**
@@ -3082,7 +3098,8 @@ class OutputPage extends ContextSource {
 		$modules = $this->getModules( true, 'bottom' );
 		if ( $modules ) {
 			$links[] = ResourceLoader::makeInlineScript(
-				Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
+				Xml::encodeJsCall( 'mw.loader.load', array( $modules ) ),
+				$this->getCSPNonce()
 			);
 		}
 
@@ -3114,7 +3131,8 @@ class OutputPage extends ContextSource {
 							) )
 							. '}'
 					)
-				) )
+				) ),
+				$this->getCSPNonce()
 			);
 
 			// FIXME: If the user is previewing, say, ./vector.js, his ./common.js will be loaded
@@ -3134,7 +3152,7 @@ class OutputPage extends ContextSource {
 			ResourceLoaderModule::TYPE_COMBINED
 		);
 
-		return self::getHtmlFromLoaderLinks( $links );
+		return self::getHtmlFromLoaderLinks( $links, $this->getCSPNonce() );
 	}
 
 	/**
@@ -3765,7 +3783,7 @@ class OutputPage extends ContextSource {
 		}
 
 		// Add stuff in $otherTags (previewed user CSS if applicable)
-		return self::getHtmlFromLoaderLinks( $links ) . implode( '', $otherTags );
+		return self::getHtmlFromLoaderLinks( $links, $this->getCSPNonce() ) . implode( '', $otherTags );
 	}
 
 	/**
@@ -4035,5 +4053,20 @@ class OutputPage extends ContextSource {
 			'oojs-ui.styles.textures',
 			'mediawiki.widgets.styles',
 		) );
+	}
+
+	/**
+	 * Get (and set if not yet set) the CSP nonce.
+	 *
+	 * This value needs to be included in any <script> tags on the
+	 * page.
+	 */
+	public function getCSPNonce() {
+		if ( $this->CSPNonce === null ) {
+			// XXX is it expensive to generate randomness on every request
+			$rand = MWCryptRand::generate( 15 );
+			$this->CSPNonce = base64_encode( $rand );
+		}
+		return $this->CSPNonce;
 	}
 }
