@@ -98,7 +98,7 @@ class MessageCache {
 	 * @return MessageCache
 	 */
 	public static function singleton() {
-		if ( is_null( self::$instance ) ) {
+		if ( self::$instance === null ) {
 			global $wgUseDatabaseMessages, $wgMsgCacheExpiry;
 			self::$instance = new self(
 				wfGetMessageCacheStorage(),
