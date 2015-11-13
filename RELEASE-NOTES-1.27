@@ -84,6 +84,8 @@ production.
 * Added MWTimestamp::getTimezoneString() which returns the localized timezone
   string, if available. To localize this string, see the comments of
   $wgLocaltimezone in includes/DefaultSettings.php.
+* $wgCdnReboundPurgeDelay was added to provide secondary delayed purges of URLs
+  from CDN to mitigate DB replication lag and WAN cache purge lag.
 
 === External library changes in 1.27 ===
 ==== Upgraded external libraries ====

@@ -29,6 +29,8 @@ class SquidUpdate implements DeferrableUpdate {
 	/** @var string[] Collection of URLs to purge */
 	protected $urls = array();
 
+	const PURGE_NO_REBOUND = 1; // do NOT enqueue a rebound purge
+
 	/**
 	 * @param string[] $urlArr Collection of URLs to purge
 	 */
@@ -66,9 +68,11 @@ class SquidUpdate implements DeferrableUpdate {
 
 	/**
 	 * Purges the list of URLs passed to the constructor.
+	 *
+	 * @param integer $flags Bitfield of SquidUpdate::PURGE_* constants
 	 */
-	public function doUpdate() {
-		self::purge( $this->urls );
+	public function doUpdate( $flags = 0 ) {
+		self::purge( $this->urls, $flags );
 	}
 
 	/**
@@ -78,9 +82,10 @@ class SquidUpdate implements DeferrableUpdate {
 	 * XXX report broken Squids per mail or log
 	 *
 	 * @param string[] $urlArr List of full URLs to purge
+	 * @param integer $flags Bitfield of SquidUpdate::PURGE_* constants
 	 */
-	public static function purge( array $urlArr ) {
-		global $wgSquidServers, $wgHTCPRouting;
+	public static function purge( array $urlArr, $flags = 0 ) {
+		global $wgSquidServers, $wgHTCPRouting, $wgCdnReboundPurgeDelay;
 
 		if ( !$urlArr ) {
 			return;
@@ -118,6 +123,16 @@ class SquidUpdate implements DeferrableUpdate {
 			}
 
 			$pool->run();
+		}
+
+		if ( $wgCdnReboundPurgeDelay > 0 && !( $flags & self::PURGE_NO_REBOUND ) ) {
+			JobQueueGroup::singleton()->lazyPush( new CdnPurgeJob(
+				Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __CLASS__ ),
+				array(
+					'urls' => $urlArr,
+					'jobReleaseTimestamp' => time() + $wgCdnReboundPurgeDelay
+				)
+			) );
 		}
 	}
 
