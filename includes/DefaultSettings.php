@@ -2601,6 +2601,15 @@ $wgSquidMaxage = 18000;
 $wgCdnMaxageLagged = 30;
 
 /**
+ * If set, any SquidPurge call on a URL or URLs will send a second purge no less than
+ * this many seconds later via the job queue. This requires delayed job support.
+ * This should be safely higher than the 'max lag' value in $wgLBFactoryConf.
+ *
+ * @since 1.27
+ */
+$wgCdnReboundPurgeDelay = 0;
+
+/**
  * Default maximum age for raw CSS/JS accesses
  *
  * 300 seconds = 5 minutes.
@@ -6762,10 +6771,11 @@ $wgJobClasses = array(
 	'PublishStashedFile' => 'PublishStashedFileJob',
 	'ThumbnailRender' => 'ThumbnailRenderJob',
 	'recentChangesUpdate' => 'RecentChangesUpdateJob',
-	'refreshLinksPrioritized' => 'RefreshLinksJob', // for cascading protection
-	'refreshLinksDynamic' => 'RefreshLinksJob', // for pages with dynamic content
+	'refreshLinksPrioritized' => 'RefreshLinksJob',
+	'refreshLinksDynamic' => 'RefreshLinksJob',
 	'activityUpdateJob' => 'ActivityUpdateJob',
 	'categoryMembershipChange' => 'CategoryMembershipChangeJob',
+	'cdnPurge' => 'CdnPurgeJob',
 	'enqueue' => 'EnqueueJob', // local queue for multi-DC setups
 	'null' => 'NullJob'
 );

@@ -30,12 +30,25 @@ use Wikimedia\Assert\Assert;
 class SquidUpdate implements DeferrableUpdate, MergeableUpdate {
 	/** @var string[] Collection of URLs to purge */
 	protected $urls = array();
+	/** @var integer Bitfield of SquidUpdate::PURGE_* constants */
+	protected $flags = 0;
+
+	const PURGE_NO_REBOUND = 1; // do NOT enqueue a rebound purge
 
 	/**
 	 * @param string[] $urlArr Collection of URLs to purge
+	 * @param integer $flags Bitfield of SquidUpdate::PURGE_* constants
 	 */
-	public function __construct( array $urlArr ) {
+	public function __construct( array $urlArr, $flags = 0 ) {
 		$this->urls = $urlArr;
+		$this->flags = $flags;
+	}
+
+	public function merge( MergeableUpdate $update ) {
+		/** @var SquidUpdate $update */
+		Assert::parameterType( __CLASS__, $update, '$update' );
+
+		$this->urls = array_merge( $this->urls, $update->urls );
 	}
 
 	/**
@@ -67,14 +80,19 @@ class SquidUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * Purges the list of URLs passed to the constructor.
 	 */
 	public function doUpdate() {
+		global $wgCdnReboundPurgeDelay;
+
 		self::purge( $this->urls );
-	}
 
-	public function merge( MergeableUpdate $update ) {
-		/** @var SquidUpdate $update */
-		Assert::parameterType( __CLASS__, $update, '$update' );
-
-		$this->urls = array_merge( $this->urls, $update->urls );
+		if ( $wgCdnReboundPurgeDelay > 0 && !( $this->flags & self::PURGE_NO_REBOUND ) ) {
+			JobQueueGroup::singleton()->lazyPush( new CdnPurgeJob(
+				Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __CLASS__ ),
+				array(
+					'urls' => $this->urls,
+					'jobReleaseTimestamp' => time() + $wgCdnReboundPurgeDelay
+				)
+			) );
+		}
 	}
 
 	/**
