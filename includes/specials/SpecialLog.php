@@ -49,6 +49,7 @@ class SpecialLog extends SpecialPage {
 		$opts->add( 'offset', '' );
 		$opts->add( 'dir', '' );
 		$opts->add( 'offender', '' );
+		$opts->add( 'action', '' );
 
 		// Set values
 		$opts->fetchValuesFromRequest( $this->getRequest() );
@@ -167,6 +168,26 @@ class SpecialLog extends SpecialPage {
 			null,
 			LogEventsList::USE_CHECKBOXES
 		);
+
+		$subType = null;
+		// Allow to filter the log by actions
+		$type = $opts->getValue( 'type' );
+		if ( $type !== '' ) {
+			$actions = $this->getConfig()->get( 'ActionFilteredLogs' );
+			if ( isset( $actions[$type] ) ) {
+				// log type can be filtered by actions
+				$loglist->setAllowedActions( array_keys( $actions[$type] ) );
+				$action = $opts->getValue( 'action' );
+				if ( $action !== '' && isset( $actions[$type][$action] ) ) {
+					// add condition to query
+					$extraConds['log_action'] = $actions[$type][$action];
+				} else {
+					// no action or invalid action
+					$action = '';
+				}
+			}
+		}
+
 		$pager = new LogPager(
 			$loglist,
 			$opts->getValue( 'type' ),
@@ -195,7 +216,8 @@ class SpecialLog extends SpecialPage {
 			$pager->getYear(),
 			$pager->getMonth(),
 			$pager->getFilterParams(),
-			$opts->getValue( 'tagfilter' )
+			$opts->getValue( 'tagfilter' ),
+			$action
 		);
 
 		# Insert list

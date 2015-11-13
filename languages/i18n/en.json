@@ -4027,5 +4027,22 @@
 	"sessionprovider-generic": "$1 sessions",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "cookie-based sessions",
 	"sessionprovider-nocookies": "Cookies may be disabled. Ensure you have cookies enabled and start again.",
-	"randomrootpage": "Random root page"
+	"randomrootpage": "Random root page",
+	"log-action-filter-block": "Type of block:",
+	"log-action-filter-delete": "Type of deletion:",
+	"log-action-filter-protect": "Type of protection:",
+	"log-action-filter-upload": "Type of upload:",
+	"log-action-filter-all": "All",
+	"log-action-filter-block-block": "Block",
+	"log-action-filter-block-reblock": "Block modification",
+	"log-action-filter-block-unblock": "Unblock",
+	"log-action-filter-delete-delete": "Page deletion",
+	"log-action-filter-delete-restore": "Page undeletion",
+	"log-action-filter-delete-event": "Log deletion",
+	"log-action-filter-delete-revision": "Revision deletion",
+	"log-action-filter-protect-protect": "Protection",
+	"log-action-filter-protect-modify": "Protection modification",
+	"log-action-filter-protect-unprotect": "Unprotection",
+	"log-action-filter-upload-upload": "New upload",
+	"log-action-filter-upload-overwrite": "Reupload"
 }
