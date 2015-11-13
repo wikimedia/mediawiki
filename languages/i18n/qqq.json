@@ -4045,5 +4045,22 @@
 	"mw-widgets-dateinput-placeholder-month": "Placeholder displayed in a date input field when it's empty, representing a date format with 4 digits for year and 2 digits for month, separated with hyphens (without a day). This should be uppercase, if possible, and must not include any additional explanations. If there is no good way to translate it, make this message blank.",
 	"mw-widgets-titleinput-description-new-page": "Description label for a new page in the title input widget.",
 	"mw-widgets-titleinput-description-redirect": "Description label for a redirect in the title input widget.",
-	"api-error-blacklisted": "Used as error message.\n\nFollowed by the link {{msg-mw|Mwe-upwiz-feedback-blacklist-info-prompt}}."
+	"api-error-blacklisted": "Used as error message.\n\nFollowed by the link {{msg-mw|Mwe-upwiz-feedback-blacklist-info-prompt}}.",
+	"log-action-filter-block": "Which type of action to filter for in this log",
+	"log-action-filter-delete": "Which type of action to filter for in this log",
+	"log-action-filter-protect": "Which type of action to filter for in this log",
+	"log-action-filter-upload": "Which type of action to filter for in this log",
+	"log-action-filter-all": "All types of action are allowed",
+	"log-action-filter-block-block": "Action to filter for in this log",
+	"log-action-filter-block-reblock": "Action to filter for in this log",
+	"log-action-filter-block-unblock": "Action to filter for in this log",
+	"log-action-filter-delete-delete": "Action to filter for in this log",
+	"log-action-filter-delete-restore": "Action to filter for in this log",
+	"log-action-filter-delete-event": "Action to filter for in this log",
+	"log-action-filter-delete-revision": "Action to filter for in this log",
+	"log-action-filter-protect-protect": "Action to filter for in this log",
+	"log-action-filter-protect-modify": "Action to filter for in this log",
+	"log-action-filter-protect-unprotect": "Action to filter for in this log",
+	"log-action-filter-upload-upload": "Action to filter for in this log",
+	"log-action-filter-upload-overwrite": "Action to filter for in this log"
 }
