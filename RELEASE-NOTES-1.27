@@ -97,6 +97,8 @@ production.
 * $wgMaxUserDBWriteDuration added to limit huge user-generated transactions.
   Regular web request transactions that takes longer than this are aborted.
 * Added a new hook, 'TitleMoveCompleting', which runs before a page move is committed.
+* $wgCdnReboundPurgeDelay was added to provide secondary delayed purges of URLs
+  from CDN to mitigate DB replication lag and WAN cache purge lag.
 
 === External library changes in 1.27 ===
 ==== Upgraded external libraries ====
