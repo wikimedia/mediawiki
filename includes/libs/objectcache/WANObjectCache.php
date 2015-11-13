@@ -307,11 +307,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				: false;
 			if ( $purge === false ) {
 				// Key is not set or invalid; regenerate
-				$this->cache->add( $timeKey,
-					$this->makePurgeValue( $now, self::HOLDOFF_TTL ),
-					self::CHECK_KEY_TTL
-				);
-				$purge = array( self::FLD_TIME => $now, self::FLD_HOLDOFF => self::HOLDOFF_TTL );
+				$newVal = $this->makePurgeValue( $now, self::HOLDOFF_TTL );
+				$this->cache->add( $timeKey, $newVal, self::CHECK_KEY_TTL );
+				$purge = self::parsePurgeValue( $newVal );
 			}
 			$purgeValues[] = $purge;
 		}
