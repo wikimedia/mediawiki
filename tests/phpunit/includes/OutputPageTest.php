@@ -375,7 +375,6 @@ class NullMessageBlobStore extends MessageBlobStore {
 	}
 
 	public function updateModule( $name, ResourceLoaderModule $module, $lang ) {
-		return;
 	}
 
 	public function updateMessage( $key ) {

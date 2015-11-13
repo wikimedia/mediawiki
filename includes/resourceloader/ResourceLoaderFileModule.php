@@ -583,7 +583,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$summary[] = array(
 			'options' => $options,
 			'fileHashes' => $this->getFileHashes( $context ),
-			'msgBlobMtime' => $this->getMsgBlobMtime( $context->getLanguage() ),
+			'messageBlob' => $this->getMessageBlob( $context->getLanguage() ),
 		);
 		return $summary;
 	}
