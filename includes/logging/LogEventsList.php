@@ -41,6 +41,11 @@ class LogEventsList extends ContextSource {
 	protected $showTagEditUI;
 
 	/**
+	 * @var array
+	 */
+	protected $allowedActions = null;
+
+	/**
 	 * Constructor.
 	 * The first two parameters used to be $skin and $out, but now only a context
 	 * is needed, that's why there's a second unused parameter.
@@ -74,9 +79,10 @@ class LogEventsList extends ContextSource {
 	 * @param int $month Month
 	 * @param array $filter
 	 * @param string $tagFilter Tag to select by default
+	 * @param string $action
 	 */
 	public function showOptions( $types = array(), $user = '', $page = '', $pattern = '', $year = 0,
-		$month = 0, $filter = null, $tagFilter = ''
+		$month = 0, $filter = null, $tagFilter = '', $action = null
 	) {
 		global $wgScript, $wgMiserMode;
 
@@ -111,6 +117,11 @@ class LogEventsList extends ContextSource {
 		// Filter links
 		if ( $filter ) {
 			$html .= Xml::tags( 'p', null, $this->getFilterLinks( $filter ) );
+		}
+
+		// Action filter
+		if ( $action !== null ) {
+			$html .= Xml::tags( 'p', null, $this->getActionSelector( $types, $action ) );
 		}
 
 		// Submit button
@@ -285,6 +296,41 @@ class LogEventsList extends ContextSource {
 		}
 
 		return '';
+	}
+
+	/**
+	 * Drop down menu for selection of actions that can be used to filter the log
+	 * @param array $types
+	 * @param string $action
+	 * @return string
+	 * @since 1.27
+	 */
+	private function getActionSelector( $types, $action ) {
+		if ( $this->allowedActions === null || !count( $this->allowedActions ) ) {
+			return '';
+		}
+		$html = '';
+		$html .= xml::label( wfMessage( 'log-action-filter-' . $types[0] )->text(),
+			'action-filter-' .$types[0] ) . "\n";
+		$select = new XmlSelect( 'action' );
+		$select->addOption( wfMessage( 'log-action-filter-all' )->text(), '' );
+		foreach ( $this->allowedActions as $value ) {
+			$msgKey = 'log-action-filter-' . $types[0] . '-' . $value;
+			$select->addOption( wfMessage( $msgKey )->text(), $value );
+		}
+		$select->setDefault( $action );
+		$html .= $select->getHtml();
+		return $html;
+	}
+
+	/**
+	 * Sets the action types allowed for log filtering
+	 * To one action type may correspond several log_actions
+	 * @param array $actions
+	 * @since 1.27
+	 */
+	public function setAllowedActions( $actions ) {
+		$this->allowedActions = $actions;
 	}
 
 	/**
