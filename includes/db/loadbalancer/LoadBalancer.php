@@ -208,8 +208,6 @@ class LoadBalancer {
 			return false;
 		}
 
-		# wfDebugLog( 'connect', var_export( $loads, true ) );
-
 		# Return a random representative of the remainder
 		return ArrayUtils::pickRandom( $loads );
 	}
@@ -247,7 +245,7 @@ class LoadBalancer {
 				$nonErrorLoads = $this->mGroupLoads[$group];
 			} else {
 				# No loads for this group, return false and the caller can use some other group
-				wfDebug( __METHOD__ . ": no loads for group $group\n" );
+				wfDebugLog( 'connect', __METHOD__ . ": no loads for group $group\n" );
 
 				return false;
 			}
@@ -347,7 +345,8 @@ class LoadBalancer {
 				}
 			}
 			$serverName = $this->getServerName( $i );
-			wfDebug( __METHOD__ . ": using server $serverName for group '$group'\n" );
+			wfDebugLog( 'connect', __METHOD__ .
+				": using server $serverName for group '$group'\n" );
 		}
 
 		return $i;
@@ -686,10 +685,10 @@ class LoadBalancer {
 			$conn = $this->reallyOpenConnection( $server, false );
 			$serverName = $this->getServerName( $i );
 			if ( $conn->isOpen() ) {
-				wfDebug( "Connected to database $i at $serverName\n" );
+				wfDebugLog( 'connect', "Connected to database $i at $serverName\n" );
 				$this->mConns['local'][$i][0] = $conn;
 			} else {
-				wfDebug( "Failed to connect to database $i at $serverName\n" );
+				wfDebugLog( 'connect', "Failed to connect to database $i at $serverName\n" );
 				$this->mErrorConnection = $conn;
 				$conn = false;
 			}
@@ -964,14 +963,10 @@ class LoadBalancer {
 			for ( $i = 1; $i < $serverCount; $i++ ) {
 				$conn = $this->getAnyOpenConnection( $i );
 				if ( $conn ) {
-					wfDebug( "Master pos fetched from slave\n" );
-
 					return $conn->getSlavePos();
 				}
 			}
 		} else {
-			wfDebug( "Master pos fetched from master\n" );
-
 			return $masterConn->getMasterPos();
 		}
 
