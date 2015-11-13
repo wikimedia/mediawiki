@@ -198,6 +198,7 @@ $wgAutoloadLocalClasses = array(
 	'CdbException' => __DIR__ . '/includes/compat/CdbCompat.php',
 	'CdbReader' => __DIR__ . '/includes/compat/CdbCompat.php',
 	'CdbWriter' => __DIR__ . '/includes/compat/CdbCompat.php',
+	'CdnPurgeJob' => __DIR__ . '/includes/jobqueue/jobs/CdnPurgeJob.php',
 	'CgzCopyTransaction' => __DIR__ . '/maintenance/storage/recompressTracked.php',
 	'ChangePassword' => __DIR__ . '/maintenance/changePassword.php',
 	'ChangeTags' => __DIR__ . '/includes/changetags/ChangeTags.php',
