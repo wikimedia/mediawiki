@@ -60,8 +60,8 @@ abstract class ResourceLoaderModule {
 
 	// In-object cache for file dependencies
 	protected $fileDeps = array();
-	// In-object cache for message blob mtime
-	protected $msgBlobMtime = array();
+	// In-object cache for message blob (keyed by language)
+	protected $msgBlobs = array();
 	// In-object cache for version hash
 	protected $versionHash = array();
 	// In-object cache for module content
@@ -453,45 +453,37 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the last modification timestamp of the messages in this module for a given language.
-	 * @param string $lang Language code
-	 * @return int UNIX timestamp
+	 * Get the hash of the message blob.
+	 *
+	 * @since 1.27
+	 * @param ResourceLoaderContext $context
+	 * @return string|null JSON blob or null if module has no messages
 	 */
-	public function getMsgBlobMtime( $lang ) {
-		if ( !isset( $this->msgBlobMtime[$lang] ) ) {
-			if ( !count( $this->getMessages() ) ) {
-				return 1;
-			}
-
-			$dbr = wfGetDB( DB_SLAVE );
-			$msgBlobMtime = $dbr->selectField( 'msg_resource',
-				'mr_timestamp',
-				array(
-					'mr_resource' => $this->getName(),
-					'mr_lang' => $lang
-				),
-				__METHOD__
-			);
-			// If no blob was found, but the module does have messages, that means we need
-			// to regenerate it. Return NOW
-			if ( $msgBlobMtime === false ) {
-				$msgBlobMtime = wfTimestampNow();
-			}
-			$this->msgBlobMtime[$lang] = wfTimestamp( TS_UNIX, $msgBlobMtime );
+	protected function getMessageBlob( ResourceLoaderContext $context ) {
+		if ( !$this->getMessages() ) {
+			// Don't bother consulting MessageBlobStore
+			return null;
 		}
-		return $this->msgBlobMtime[$lang];
+		// Message blobs may only vary language, not by context keys
+		$lang = $context->getLanguage();
+		if ( !isset( $lang, $this->msgBlobs ) ) {
+			$store = $context->getResourceLoader()->getMessageBlobStore();
+			$this->msgBlobs[$lang] = $store->getBlob( $this, $lang );
+		}
+		return $this->msgBlobs[$lang];
 	}
 
 	/**
-	 * Set in-object cache for message blob time.
+	 * Set in-object cache for message blobs..
 	 *
-	 * This is used to retrieve data in batches. See ResourceLoader::preloadModuleInfo().
+	 * Used to allow fetching of message blobs in batches. See ResourceLoader::preloadModuleInfo().
 	 *
+	 * @since 1.27
+	 * @param string|null $blob JSON blob or null
 	 * @param string $lang Language code
-	 * @param int $mtime UNIX timestamp
 	 */
-	public function setMsgBlobMtime( $lang, $mtime ) {
-		$this->msgBlobMtime[$lang] = $mtime;
+	public function setMessageBlob( $lang, $blob ) {
+		$this->msgBlobs[$lang] = $blob;
 	}
 
 	/**
@@ -607,13 +599,9 @@ abstract class ResourceLoaderModule {
 		}
 
 		// Messages
-		$blobs = $rl->getMessageBlobStore()->get(
-			$rl,
-			array( $this->getName() => $this ),
-			$context->getLanguage()
-		);
-		if ( isset( $blobs[$this->getName()] ) ) {
-			$content['messagesBlob'] = $blobs[$this->getName()];
+		$blob = $this->getMessageBlob( $context );
+		if ( $blob ) {
+			$content['messagesBlob'] = $blob;
 		}
 
 		$templates = $this->getTemplates();
@@ -746,7 +734,7 @@ abstract class ResourceLoaderModule {
 	 * A number of utility methods are available to help you gather data. These are not
 	 * called by default and must be included by the subclass' getDefinitionSummary().
 	 *
-	 * - getMsgBlobMtime()
+	 * - getMessageBlob()
 	 *
 	 * @since 1.23
 	 * @param ResourceLoaderContext $context
@@ -814,6 +802,32 @@ abstract class ResourceLoaderModule {
 		}
 		// Dummy that is > 1
 		return 2;
+	}
+
+	/**
+	 * Get the last modification timestamp of the message blob for this module in a given language.
+	 *
+	 * @deprecated since 1.27 Superseded by getVersionHash()
+	 * @param string $lang Language code
+	 * @return int UNIX timestamp
+	 */
+	public function getMsgBlobMtime( $lang ) {
+		if ( !$this->getMessages() ) {
+			return 1;
+		}
+		// Dummy that is > 1
+		return 2;
+	}
+
+	/**
+	 * Set in-object cache for message blob time. Obsolete.
+	 *
+	 * @deprecated since 1.27 Superseded by setMessageBlob()
+	 * @param string $lang Language code
+	 * @param int $mtime UNIX timestamp
+	 */
+	public function setMsgBlobMtime( $lang, $mtime ) {
+		// No-op
 	}
 
 	/**
