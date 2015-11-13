@@ -630,12 +630,18 @@ class Html {
 	 * literal "</script>" or (for XML) literal "]]>".
 	 *
 	 * @param string $contents JavaScript
+	 * @param $nonce string Nonce for CSP header, from OutputPage::getCSPNonce()
 	 * @return string Raw HTML
 	 */
-	public static function inlineScript( $contents ) {
+	public static function inlineScript( $contents, $nonce = null ) {
 		global $wgWellFormedXml;
 
 		$attrs = array();
+		if ( $nonce !== null ) {
+			$attrs['nonce'] = $nonce;
+		} else {
+			wfWarn( "no nonce set on script. CSP will break it" );
+		}
 
 		if ( $wgWellFormedXml && preg_match( '/[<&]/', $contents ) ) {
 			$contents = "/*<![CDATA[*/$contents/*]]>*/";
@@ -648,11 +654,17 @@ class Html {
 	 * Output a "<script>" tag linking to the given URL, e.g.,
 	 * "<script src=foo.js></script>".
 	 *
-	 * @param string $url
+	 * @param $url string
+	 * @param $nonce string Nonce for CSP header, from OutputPage::getCSPNonce()
 	 * @return string Raw HTML
 	 */
-	public static function linkedScript( $url ) {
+	public static function linkedScript( $url, $nonce = null ) {
 		$attrs = array( 'src' => $url );
+		if ( $nonce !== null ) {
+			$attrs['nonce'] = $nonce;
+		} else {
+			wfWarn( "no nonce set on script. CSP will break it" );
+		}
 
 		return self::element( 'script', $attrs );
 	}
