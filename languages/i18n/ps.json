@@ -399,7 +399,7 @@
 	"createacct-realname": "آر نوم (اختياري)",
 	"createaccountreason": "سبب:",
 	"createacct-reason": "سبب",
-	"createacct-reason-ph": "ولې تاسې بل گڼون جوړول غوااړۍ",
+	"createacct-reason-ph": "تاسې ولې بل گڼون جوړوئ؟",
 	"createacct-submit": "گڼون مو جوړ کړئ",
 	"createacct-another-submit": "گڼون جوړول",
 	"createacct-benefit-heading": "{{SITENAME}} ستاسې په څېر خلکو جوړ کړی.",

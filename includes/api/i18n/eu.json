@@ -12,6 +12,7 @@
 	"apihelp-createaccount-param-email": "Erabiltzailearen helbide elektronikoa (aukerakoa).",
 	"apihelp-createaccount-param-realname": "Erabiltzailearen benetako izena (aukerakoa).",
 	"apihelp-delete-description": "Orrialde bat ezabatu.",
+	"apihelp-delete-example-simple": "Ezabatu <kbd>Main Page</kbd>.",
 	"apihelp-edit-description": "Orrialdeak sortu eta aldatu.",
 	"apihelp-edit-param-minor": "Aldaketa txikia.",
 	"apihelp-edit-example-edit": "Orrialde bat aldatu",

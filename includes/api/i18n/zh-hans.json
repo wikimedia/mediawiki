@@ -166,6 +166,8 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "按标签过滤。",
 	"apihelp-feedrecentchanges-param-target": "仅仅显示从该页面链出的那些页面的变更。",
 	"apihelp-feedrecentchanges-param-showlinkedto": "仅仅显示链入到该页面的那些页面的变更。",
+	"apihelp-feedrecentchanges-param-categories": "只显示所有这些分类中的页面上的更改。",
+	"apihelp-feedrecentchanges-param-categories_any": "只显示这些分类以外页面的更改。",
 	"apihelp-feedrecentchanges-example-simple": "显示最近更改。",
 	"apihelp-feedrecentchanges-example-30days": "显示最近30天的更改。",
 	"apihelp-feedwatchlist-description": "返回监视列表纲要。",

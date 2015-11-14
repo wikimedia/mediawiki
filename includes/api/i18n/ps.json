@@ -33,6 +33,7 @@
 	"apihelp-query+search-example-simple": "د <kbd>meaning</kbd> پلټل.",
 	"apihelp-query+search-example-text": "د <kbd>مانا</kbd> لپاره متنونه پلټل.",
 	"apihelp-query+watchlist-paramvalue-prop-title": "د يو مخ سرليک ورگډوي.",
+	"apihelp-query+watchlist-paramvalue-type-new": "مخ جوړونې.",
 	"apihelp-stashedit-param-sectiontitle": "د يوې نوې برخې سرليک.",
 	"apihelp-tag-param-reason": "د بدلون سبب.",
 	"apihelp-unblock-param-reason": "د بنديز ليرې کولو سبب.",
