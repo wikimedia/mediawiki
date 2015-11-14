@@ -141,6 +141,12 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 					$this->titlePartToKey( $params['prefix'], NS_FILE ),
 					$db->anyString() ) );
 			}
+
+			if ( isset( $params['suffix'] ) ) {
+				$this->addWhere( 'img_name' . $db->buildLike(
+					$db->anyString(),
+					$this->titlePartToKey( $params['suffix'], NS_FILE ) ) );
+			}
 		} else {
 			// Check mutually exclusive params
 			$disallowed = array( 'from', 'to', 'prefix' );
