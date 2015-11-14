@@ -396,6 +396,7 @@
 	"apihelp-query+allimages-param-start": "{{doc-apihelp-param|query+allimages|start}}",
 	"apihelp-query+allimages-param-end": "{{doc-apihelp-param|query+allimages|end}}",
 	"apihelp-query+allimages-param-prefix": "{{doc-apihelp-param|query+allimages|prefix}}",
+	"apihelp-query+allimages-param-suffix": "{{doc-apihelp-param|query+allimages|suffix}}",
 	"apihelp-query+allimages-param-minsize": "{{doc-apihelp-param|query+allimages|minsize}}",
 	"apihelp-query+allimages-param-maxsize": "{{doc-apihelp-param|query+allimages|maxsize}}",
 	"apihelp-query+allimages-param-sha1": "{{doc-apihelp-param|query+allimages|sha1}}",

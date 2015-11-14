@@ -421,6 +421,7 @@
 	"apihelp-query+allimages-param-start": "The timestamp to start enumerating from. Can only be used with $1sort=timestamp.",
 	"apihelp-query+allimages-param-end": "The timestamp to end enumerating. Can only be used with $1sort=timestamp.",
 	"apihelp-query+allimages-param-prefix": "Search for all image titles that begin with this value. Can only be used with $1sort=name.",
+	"apihelp-query+allimages-param-suffix": "Search for all image titles that end with this value. Can only be used with $1sort=name.",
 	"apihelp-query+allimages-param-minsize": "Limit to images with at least this many bytes.",
 	"apihelp-query+allimages-param-maxsize": "Limit to images with at most this many bytes.",
 	"apihelp-query+allimages-param-sha1": "SHA1 hash of image. Overrides $1sha1base36.",

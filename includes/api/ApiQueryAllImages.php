@@ -141,9 +141,15 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 					$this->titlePartToKey( $params['prefix'], NS_FILE ),
 					$db->anyString() ) );
 			}
+
+			if ( isset( $params['suffix'] ) ) {
+				$this->addWhere( 'img_name' . $db->buildLike(
+					$db->anyString(),
+					$this->titlePartToKey( $params['suffix'], NS_FILE ) ) );
+			}
 		} else {
 			// Check mutually exclusive params
-			$disallowed = array( 'from', 'to', 'prefix' );
+			$disallowed = array( 'from', 'to', 'prefix', 'suffix' );
 			foreach ( $disallowed as $pname ) {
 				if ( isset( $params[$pname] ) ) {
 					$this->dieUsage(
@@ -354,6 +360,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 					ApiQueryImageInfo::getPropertyMessages( $this->propertyFilter ),
 			),
 			'prefix' => null,
+			'suffix' => null,
 			'minsize' => array(
 				ApiBase::PARAM_TYPE => 'integer',
 			),
