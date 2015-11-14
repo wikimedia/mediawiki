@@ -7218,6 +7218,7 @@ $wgLogActionsHandlers = [
 	'move/move' => 'MoveLogFormatter',
 	'move/move_redir' => 'MoveLogFormatter',
 	'patrol/patrol' => 'PatrolLogFormatter',
+	'patrol/autopatrol' => 'PatrolLogFormatter',
 	'protect/modify' => 'ProtectLogFormatter',
 	'protect/move_prot' => 'ProtectLogFormatter',
 	'protect/protect' => 'ProtectLogFormatter',
@@ -7259,6 +7260,10 @@ $wgActionFilteredLogs = [
 		'protect' => [ 'protect' ],
 		'modify' => [ 'modify' ],
 		'unprotect' => [ 'unprotect' ],
+	],
+	'upload' => [
+		'upload' => [ 'upload' ],
+		'overwrite' => [ 'overwrite' ],
 	],
 	'upload' => [
 		'upload' => [ 'upload' ],
