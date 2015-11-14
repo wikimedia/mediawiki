@@ -56,7 +56,9 @@ class PatrolLog {
 			$user = $wgUser;
 		}
 
-		$entry = new ManualLogEntry( 'patrol', 'patrol' );
+		$action = $auto ? 'autopatrol' : 'patrol';
+
+		$entry = new ManualLogEntry( 'patrol', $action );
 		$entry->setTarget( $rc->getTitle() );
 		$entry->setParameters( self::buildParams( $rc, $auto ) );
 		$entry->setPerformer( $user );

@@ -4062,5 +4062,8 @@
 	"log-action-filter-protect-modify": "Action to filter for in this log",
 	"log-action-filter-protect-unprotect": "Action to filter for in this log",
 	"log-action-filter-upload-upload": "Action to filter for in this log",
-	"log-action-filter-upload-overwrite": "Action to filter for in this log"
+	"log-action-filter-upload-overwrite": "Action to filter for in this log",
+	"log-action-filter-patrol": "Which type of action to filter for in this log",
+	"log-action-filter-patrol-patrol": "Action to filter for in this log",
+	"log-action-filter-patrol-autopatrol": "Action to filter for in this log"
 }
