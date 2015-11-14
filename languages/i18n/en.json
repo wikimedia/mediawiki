@@ -3882,5 +3882,8 @@
 	"log-action-protect-modify": "Protection modification",
 	"log-action-protect-unprotect": "Unprotection",
 	"log-action-upload-upload": "New upload",
-	"log-action-upload-overwrite": "Reupload"
+	"log-action-upload-overwrite": "Reupload",
+	"log-action-filter-patrol": "Type of patrol:",
+	"log-action-patrol-manualpatrol": "Manual patrol",
+	"log-action-patrol-autopatrol": "Automatic patrol"
 }
