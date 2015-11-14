@@ -1815,7 +1815,7 @@ class WikiPage implements Page, IDBAccessObject {
 				// Get the latest page_latest value while locking it.
 				// Do a CAS style check to see if it's the same as when this method
 				// started. If it changed then bail out before touching the DB.
-				$latestNow = $this->lock();
+				$latestNow = $this->lockAndGetLatest();
 				if ( $latestNow != $oldid ) {
 					$dbw->commit( __METHOD__ );
 					// Page updated or deleted in the mean time
@@ -2794,7 +2794,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// WikiPage::READ_LOCKING as that will carry over the FOR UPDATE to
 		// the revisions queries (which also JOIN on user). Only lock the page
 		// row and CAS check on page_latest to see if the trx snapshot matches.
-		$lockedLatest = $this->lock();
+		$lockedLatest = $this->lockAndGetLatest();
 		if ( $id == 0 || $this->getLatest() != $lockedLatest ) {
 			$dbw->endAtomic( __METHOD__ );
 			// Page not there or trx snapshot is stale
@@ -2916,8 +2916,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Lock the page row for this title+id and return page_latest (or 0)
 	 *
 	 * @return integer Returns 0 if no row was found with this title+id
+	 * @since 1.27
 	 */
-	protected function lock() {
+	public function lockAndGetLatest() {
 		return (int)wfGetDB( DB_MASTER )->selectField(
 			'page',
 			'page_latest',
