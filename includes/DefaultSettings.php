@@ -6188,7 +6188,14 @@ $wgRCEngines = array(
 );
 
 /**
- * Treat category membership changes as a RecentChange
+ * Treat category membership changes as a RecentChange.
+ * Changes are mentioned in RC for page actions as follows:
+ *   - creation: pages created with categories are mentioned
+ *   - edit: category additions/removals to existing pages are mentioned
+ *   - move: nothing is mentioned (unless templates used depend on the title)
+ *   - deletion: nothing is mentioned
+ *   - undeletion: nothing is mentioned
+ *
  * @since 1.27
  */
 $wgRCWatchCategoryMembership = false;
@@ -6744,6 +6751,7 @@ $wgJobClasses = array(
 	'refreshLinksPrioritized' => 'RefreshLinksJob', // for cascading protection
 	'refreshLinksDynamic' => 'RefreshLinksJob', // for pages with dynamic content
 	'activityUpdateJob' => 'ActivityUpdateJob',
+	'categoryMembershipChange' => 'CategoryMembershipChangeJob',
 	'enqueue' => 'EnqueueJob', // local queue for multi-DC setups
 	'null' => 'NullJob'
 );

@@ -147,6 +147,7 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		$title = Title::newFromText( 'Testing' );
 		$wikiPage = new WikiPage( $title );
 		$wikiPage->doEditContent( new WikitextContent( '[[Category:Foo]]' ), 'added category' );
+		$this->runAllRelatedJobs();
 
 		$this->assertRecentChangeByCategorization(
 			$title,
@@ -155,7 +156,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 			array( array( 'Foo', '[[:Testing]] added to category' ) )
 		);
 
-		$wikiPage->doEditContent( new WikitextContent( '[[Category:Bar]]' ), 'added category' );
+		$wikiPage->doEditContent( new WikitextContent( '[[Category:Bar]]' ), 'replaced category' );
+		$this->runAllRelatedJobs();
+
 		$this->assertRecentChangeByCategorization(
 			$title,
 			$wikiPage->getParserOutput( new ParserOptions() ),
@@ -184,9 +187,12 @@ class LinksUpdateTest extends MediaWikiTestCase {
 
 		$wikiPage = new WikiPage( Title::newFromText( 'Testing' ) );
 		$wikiPage->doEditContent( new WikitextContent( '{{TestingTemplate}}' ), 'added template' );
+		$this->runAllRelatedJobs();
 		$otherWikiPage = new WikiPage( Title::newFromText( 'Some_other_page' ) );
 		$otherWikiPage->doEditContent( new WikitextContent( '{{TestingTemplate}}' ), 'added template' );
+		$this->runAllRelatedJobs();
 		$templatePage->doEditContent( new WikitextContent( '[[Category:Foo]]' ), 'added category' );
+		$this->runAllRelatedJobs();
 
 		$this->assertRecentChangeByCategorization(
 			$templateTitle,
@@ -347,5 +353,17 @@ class LinksUpdateTest extends MediaWikiTestCase {
 			),
 			$expectedRows
 		);
+	}
+
+	private function runAllRelatedJobs() {
+		$queueGroup = JobQueueGroup::singleton();
+		while ( $job = $queueGroup->pop( 'refreshLinksPrioritized' ) ) {
+			$job->run();
+			$queueGroup->ack( $job );
+		}
+		while ( $job = $queueGroup->pop( 'categoryMembershipChange' ) ) {
+			$job->run();
+			$queueGroup->ack( $job );
+		}
 	}
 }
