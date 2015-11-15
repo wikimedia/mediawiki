@@ -178,6 +178,7 @@ class CategoryMembershipChange {
 			}
 		}
 
+		/** @var RecentChange $rc */
 		$rc = call_user_func_array(
 			$this->newForCategorizationCallback,
 			array(
