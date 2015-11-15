@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group LinksUpdate
  * @group Database
  * ^--- make sure temporary tables are used.
  */
@@ -147,6 +148,7 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		$title = Title::newFromText( 'Testing' );
 		$wikiPage = new WikiPage( $title );
 		$wikiPage->doEditContent( new WikitextContent( '[[Category:Foo]]' ), 'added category' );
+		$this->runAllRelatedJobs();
 
 		$this->assertRecentChangeByCategorization(
 			$title,
@@ -155,7 +157,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 			array( array( 'Foo', '[[:Testing]] added to category' ) )
 		);
 
-		$wikiPage->doEditContent( new WikitextContent( '[[Category:Bar]]' ), 'added category' );
+		$wikiPage->doEditContent( new WikitextContent( '[[Category:Bar]]' ), 'replaced category' );
+		$this->runAllRelatedJobs();
+
 		$this->assertRecentChangeByCategorization(
 			$title,
 			$wikiPage->getParserOutput( new ParserOptions() ),
@@ -184,15 +188,27 @@ class LinksUpdateTest extends MediaWikiTestCase {
 
 		$wikiPage = new WikiPage( Title::newFromText( 'Testing' ) );
 		$wikiPage->doEditContent( new WikitextContent( '{{TestingTemplate}}' ), 'added template' );
+		$this->runAllRelatedJobs();
+
 		$otherWikiPage = new WikiPage( Title::newFromText( 'Some_other_page' ) );
 		$otherWikiPage->doEditContent( new WikitextContent( '{{TestingTemplate}}' ), 'added template' );
-		$templatePage->doEditContent( new WikitextContent( '[[Category:Foo]]' ), 'added category' );
+		$this->runAllRelatedJobs();
 
 		$this->assertRecentChangeByCategorization(
 			$templateTitle,
 			$templatePage->getParserOutput( new ParserOptions() ),
-			Title::newFromText( 'Foo' ),
-			array( array( 'Foo', '[[:Template:TestingTemplate]] and 2 pages added to category' ) )
+			Title::newFromText( 'Baz' ),
+			array()
+		);
+
+		$templatePage->doEditContent( new WikitextContent( '[[Category:Baz]]' ), 'added category' );
+		$this->runAllRelatedJobs();
+
+		$this->assertRecentChangeByCategorization(
+			$templateTitle,
+			$templatePage->getParserOutput( new ParserOptions() ),
+			Title::newFromText( 'Baz' ),
+			array( array( 'Baz', '[[:Template:TestingTemplate]] and 2 pages added to category' ) )
 		);
 	}
 
@@ -330,13 +346,6 @@ class LinksUpdateTest extends MediaWikiTestCase {
 	protected function assertRecentChangeByCategorization(
 		Title $pageTitle, ParserOutput $parserOutput, Title $categoryTitle, $expectedRows
 	) {
-		$update = new LinksUpdate( $pageTitle, $parserOutput );
-		$revision = Revision::newFromTitle( $pageTitle );
-		$update->setRevision( $revision );
-		$update->beginTransaction();
-		$update->doUpdate();
-		$update->commitTransaction();
-
 		$this->assertSelect(
 			'recentchanges',
 			'rc_title, rc_comment',
@@ -347,5 +356,17 @@ class LinksUpdateTest extends MediaWikiTestCase {
 			),
 			$expectedRows
 		);
+	}
+
+	private function runAllRelatedJobs() {
+		$queueGroup = JobQueueGroup::singleton();
+		while ( $job = $queueGroup->pop( 'refreshLinksPrioritized' ) ) {
+			$job->run();
+			$queueGroup->ack( $job );
+		}
+		while ( $job = $queueGroup->pop( 'categoryMembershipChange' ) ) {
+			$job->run();
+			$queueGroup->ack( $job );
+		}
 	}
 }
