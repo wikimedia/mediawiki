@@ -5,7 +5,12 @@
 			"C.R."
 		]
 	},
+	"apihelp-main-param-servedby": "Include 'o risultato 'e nomme d' 'o host ca servette 'a richiesta.",
+	"apihelp-main-param-curtimestamp": "Include dint' 'o risultato 'o timestamp 'e mò.",
 	"apihelp-block-description": "Blocca n'utente.",
+	"apihelp-block-param-user": "Nomme utente, indirizzo IP o range IP 'a bluccà.",
+	"apihelp-block-param-reason": "Mutive p' 'o blocco.",
+	"apihelp-block-param-nocreate": "Nun premmmettere 'a criazione 'e cunte",
 	"apihelp-compare-param-fromtitle": "Primmo titolo 'a cunfruntà.",
 	"apihelp-compare-param-fromid": "Primmo ID 'e paggena a cunfruntà.",
 	"apihelp-compare-param-fromrev": "Primma verziona a cunfruntà.",

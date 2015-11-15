@@ -65,7 +65,8 @@
 			"Macofe",
 			"578985s",
 			"Matma Rex",
-			"范"
+			"范",
+			"Jasonzhuocn"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -1855,6 +1856,7 @@
 	"wlnote": "以下為自 $3 $4 之後的 <strong>$2</strong> 小時內所做的 <strong>$1</strong> 次變更。",
 	"wlshowlast": "顯示最近 $1 小時 $2 天",
 	"watchlistall2": "全部",
+	"wlshowhidemine": "我的編輯",
 	"watchlist-options": "監視清單選項",
 	"watching": "正在監視...",
 	"unwatching": "正在停止監視...",
@@ -2382,7 +2384,7 @@
 	"tooltip-n-mainpage": "前往首頁",
 	"tooltip-n-mainpage-description": "前往首頁",
 	"tooltip-n-portal": "關於本專案、您可以做什麼、哪裡可以找到您需要的事物",
-	"tooltip-n-currentevents": "於新聞動態中尋找該事件的背景資料",
+	"tooltip-n-currentevents": "於新聞事件中找到相關背景資料",
 	"tooltip-n-recentchanges": "列出此 Wiki 中的最近更改清單",
 	"tooltip-n-randompage": "隨機進入一個頁面",
 	"tooltip-n-help": "尋求協助的地方",

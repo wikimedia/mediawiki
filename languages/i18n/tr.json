@@ -1253,7 +1253,7 @@
 	"recentchanges-label-unpatrolled": "Bu değişiklik henüz gözlenmemiş",
 	"recentchanges-label-plusminus": "Sayfa boyutundaki değişikliğin bayt bazında değeri",
 	"recentchanges-legend-heading": "'''Gösterge:'''",
-	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (Aynı zamanda bkz: [[Special:NewPages|Yeni sayfaların listesi]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ayrıca [[Special:NewPages|yeni sayfalar listesine]] bakınız)",
 	"rcnotefrom": "<strong>$3, $4</strong> tarihinden itibaren yapılan {{PLURAL:$5|değişiklik|değişiklik}} aşağıdadır (<strong>$1</strong> tarhine kadar olanlar gösterilmektedir).",
 	"rclistfrom": "$3 $2 tarihinden itibaren yeni değişiklikleri göster",
 	"rcshowhideminor": "Küçük değişiklikleri $1",
