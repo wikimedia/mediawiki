@@ -3309,7 +3309,11 @@ class OutputPage extends ContextSource {
 	 */
 	public function userCanPreview() {
 		$request = $this->getRequest();
-		if ( $request->getVal( 'action' ) !== 'submit' || !$request->wasPosted() ) {
+		if (
+			$request->getVal( 'action' ) !== 'submit' ||
+			!$request->getCheck( 'wpPreview' ) ||
+			!$request->wasPosted()
+		) {
 			return false;
 		}
 
