@@ -139,10 +139,6 @@ class RefreshLinksJob extends Job {
 			wfGetLB()->waitFor( $this->params['masterPos'] );
 		}
 
-		// Clear out title cache data from prior job transaction snapshots
-		$linkCache = LinkCache::singleton();
-		$linkCache->clear();
-
 		// Fetch the current page and revision...
 		$page = WikiPage::factory( $title );
 		$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );

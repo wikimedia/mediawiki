@@ -191,7 +191,10 @@ class JobRunner implements LoggerAwareInterface {
 				}
 				// Commit all outstanding connections that are in a transaction
 				// to get a fresh repeatable read snapshot on every connection.
+				// Note that jobs are still responsible for handling slave lag.
 				wfGetLBFactory()->commitAll();
+				// Clear out title cache data from prior snapshots
+				LinkCache::singleton()->clear();
 				$timeMs = intval( ( microtime( true ) - $jobStartTime ) * 1000 );
 				$timeMsTotal += $timeMs;
 
