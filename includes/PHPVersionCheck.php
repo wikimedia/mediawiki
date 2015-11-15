@@ -40,7 +40,9 @@ function wfEntryPointCheck( $entryPoint ) {
 		wfPHPVersionError( $entryPoint, $mwVersion, $minimumVersionPHP, $phpVersion );
 	}
 
+	// @codingStandardsIgnoreStart MediaWiki.Usage.DirUsage.FunctionFound
 	if ( !file_exists( dirname( __FILE__ ) . '/../vendor/autoload.php' ) ) {
+		// @codingStandardsIgnoreEnd
 		wfMissingVendorError( $entryPoint, $mwVersion );
 	}
 }
