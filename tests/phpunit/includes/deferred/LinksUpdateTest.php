@@ -143,10 +143,14 @@ class LinksUpdateTest extends MediaWikiTestCase {
 
 	public function testOnAddingAndRemovingCategory_recentChangesRowIsAdded() {
 		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
+		$queueGroup = JobQueueGroup::singleton();
 
 		$title = Title::newFromText( 'Testing' );
 		$wikiPage = new WikiPage( $title );
 		$wikiPage->doEditContent( new WikitextContent( '[[Category:Foo]]' ), 'added category' );
+		$job = $queueGroup->pop( 'categoryMembershipChange' );
+		$job->run();
+		$queueGroup->ack( $job );
 
 		$this->assertRecentChangeByCategorization(
 			$title,
@@ -155,7 +159,11 @@ class LinksUpdateTest extends MediaWikiTestCase {
 			array( array( 'Foo', '[[:Testing]] added to category' ) )
 		);
 
-		$wikiPage->doEditContent( new WikitextContent( '[[Category:Bar]]' ), 'added category' );
+		$wikiPage->doEditContent( new WikitextContent( '[[Category:Bar]]' ), 'replaced category' );
+		$job = $queueGroup->pop( 'categoryMembershipChange' );
+		$job->run();
+		$queueGroup->ack( $job );
+
 		$this->assertRecentChangeByCategorization(
 			$title,
 			$wikiPage->getParserOutput( new ParserOptions() ),
