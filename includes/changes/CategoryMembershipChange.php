@@ -31,11 +31,6 @@ class CategoryMembershipChange {
 	const CATEGORY_REMOVAL = -1;
 
 	/**
-	 * @var string Current timestamp, set during CategoryMembershipChange::__construct()
-	 */
-	private $timestamp;
-
-	/**
 	 * @var Title Title instance of the categorized page
 	 */
 	private $pageTitle;
@@ -65,7 +60,6 @@ class CategoryMembershipChange {
 	 */
 	public function __construct( Title $pageTitle, Revision $revision = null ) {
 		$this->pageTitle = $pageTitle;
-		$this->timestamp = wfTimestampNow();
 		$this->revision = $revision;
 		$this->newForCategorizationCallback = array( 'RecentChange', 'newForCategorization' );
 	}
@@ -120,7 +114,6 @@ class CategoryMembershipChange {
 	 */
 	private function createRecentChangesEntry( Title $categoryTitle, $type ) {
 		$this->notifyCategorization(
-			$this->timestamp,
 			$categoryTitle,
 			$this->getUser(),
 			$this->getChangeMessageText( $type, array(
@@ -134,7 +127,6 @@ class CategoryMembershipChange {
 	}
 
 	/**
-	 * @param string $timestamp Timestamp of the recent change to occur in TS_MW format
 	 * @param Title $categoryTitle Title of the category a page is being added to or removed from
 	 * @param User $user User object of the user that made the change
 	 * @param string $comment Change summary
@@ -145,7 +137,6 @@ class CategoryMembershipChange {
 	 * @throws MWException
 	 */
 	private function notifyCategorization(
-		$timestamp,
 		Title $categoryTitle,
 		User $user = null,
 		$comment,
@@ -178,10 +169,11 @@ class CategoryMembershipChange {
 			}
 		}
 
+		/** @var RecentChange $rc */
 		$rc = call_user_func_array(
 			$this->newForCategorizationCallback,
 			array(
-				$timestamp,
+				$revision->getTimestamp(),
 				$categoryTitle,
 				$user,
 				$comment,

@@ -1742,6 +1742,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$isminor = ( $flags & EDIT_MINOR ) && $user->isAllowed( 'minoredit' );
 		$bot = $flags & EDIT_FORCE_BOT;
 
+		$old_revision = $this->getRevision(); // current revision
 		$old_content = $this->getContent( Revision::RAW ); // current revision's content
 
 		$oldsize = $old_content ? $old_content->getSize() : 0;
@@ -1869,7 +1870,8 @@ class WikiPage implements Page, IDBAccessObject {
 				$user,
 				array(
 					'changed' => $changed,
-					'oldcountable' => $oldcountable
+					'oldcountable' => $oldcountable,
+					'oldrevision' => $old_revision
 				)
 			);
 
@@ -1955,7 +1957,11 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->mTimestamp = $now;
 
 			// Update links, etc.
-			$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
+			$this->doEditUpdates(
+				$revision,
+				$user,
+				array( 'created' => true, 'oldrevision' => $old_revision )
+			);
 
 			$hook_args = array( &$this, &$user, $content, $summary,
 								$flags & EDIT_MINOR, null, null, &$flags, $revision );
@@ -2153,6 +2159,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * - changed: boolean, whether the revision changed the content (default true)
 	 * - created: boolean, whether the revision created the page (default false)
 	 * - moved: boolean, whether the page was moved (default false)
+	 * - restored: boolean, whether the page was undeleted (default false)
+	 * - oldrevision: Revision object for the pre-update revision (default null)
 	 * - oldcountable: boolean, null, or string 'no-change' (default null):
 	 *   - boolean: whether the page was counted as an article before that
 	 *     revision, only used in changed is true and created is false
@@ -2161,10 +2169,14 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   - 'no-change': don't update the article count, ever
 	 */
 	public function doEditUpdates( Revision $revision, User $user, array $options = array() ) {
+		global $wgRCWatchCategoryMembership;
+
 		$options += array(
 			'changed' => true,
 			'created' => false,
 			'moved' => false,
+			'restored' => false,
+			'oldrevision' => null,
 			'oldcountable' => null
 		);
 		$content = $revision->getContent();
@@ -2191,13 +2203,36 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $content ) {
 			$recursive = $options['changed']; // bug 50785
 			$updates = $content->getSecondaryDataUpdates(
-				$this->getTitle(), null, $recursive, $editInfo->output );
+				$this->getTitle(), null, $recursive, $editInfo->output
+			);
 			foreach ( $updates as $update ) {
 				if ( $update instanceof LinksUpdate ) {
 					$update->setRevision( $revision );
 					$update->setTriggeringUser( $user );
 				}
 				DeferredUpdates::addUpdate( $update );
+			}
+			if ( $wgRCWatchCategoryMembership
+				&& ( $options['changed'] || $options['created'] )
+				&& !$options['restored']
+			) {
+				if ( $options['created'] ) {
+					$priorRevId = null;
+				} else { // changed
+					$priorRevId = ( $options['oldrevision'] instanceof Revision )
+						? $options['oldrevision']->getId()
+						: $revision->getParentId();
+				}
+				// Note: jobs are pushed after deferred updates, so the job should be able to see
+				// the recent change entry (also done via deferred updates) and carry over any
+				// bot/deletion/IP flags, ect.
+				JobQueueGroup::singleton()->lazyPush( new CategoryMembershipChangeJob(
+					$this->getTitle(),
+					array(
+						'revId' => $revision->getId(),
+						'priorRevId' => $priorRevId
+					)
+				) );
 			}
 		}
 
