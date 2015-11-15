@@ -625,11 +625,14 @@ class PageArchive {
 		$wasnew = $article->updateIfNewerOn( $dbw, $revision, $previousRevId );
 		if ( $created || $wasnew ) {
 			// Update site stats, link tables, etc
-			$user = User::newFromName( $revision->getUserText( Revision::RAW ), false );
 			$article->doEditUpdates(
 				$revision,
-				$user,
-				array( 'created' => $created, 'oldcountable' => $oldcountable )
+				User::newFromName( $revision->getUserText( Revision::RAW ), false ),
+				array(
+					'created' => $created,
+					'oldcountable' => $oldcountable,
+					'restored' => true
+				)
 			);
 		}
 

@@ -6188,7 +6188,14 @@ $wgRCEngines = array(
 );
 
 /**
- * Treat category membership changes as a RecentChange
+ * Treat category membership changes as a RecentChange.
+ * Changes are mentioned in RC for page actions as follows:
+ *   - creation: pages created with categories are mentioned
+ *   - edit: category additions/removals to existing pages are mention
+ *   - move: nothing is mentioned (unless templates used depend on the title)
+ *   - deletion: nothing is mentioned
+ *   - undeletion: nothing is mentioned
+ *
  * @since 1.27
  */
 $wgRCWatchCategoryMembership = false;
