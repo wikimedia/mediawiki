@@ -2078,7 +2078,7 @@
 	"undeleterevision-missing": "Version incorrecte ou manquante.\nVous avez peut-être un mauvais lien, ou la version a pu être restaurée ou supprimée de l’archive.",
 	"undelete-nodiff": "Aucune version précédente trouvée.",
 	"undeletebtn": "Restaurer",
-	"undeletelink": "visualiser/rétablir",
+	"undeletelink": "afficher/restaurer",
 	"undeleteviewlink": "voir",
 	"undeleteinvert": "Inverser la sélection",
 	"undeletecomment": "Motif :",

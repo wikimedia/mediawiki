@@ -148,7 +148,7 @@
 	"apihelp-feedcontributions-param-newonly": "仅仅显示那些作为页面创建的编辑。",
 	"apihelp-feedcontributions-param-showsizediff": "显示修订版本之间的大小差别。",
 	"apihelp-feedcontributions-example-simple": "返回用户<kbd>Example</kbd>的贡献。",
-	"apihelp-feedrecentchanges-description": "返回最新变更纲要。",
+	"apihelp-feedrecentchanges-description": "返回最近更改的摘要。",
 	"apihelp-feedrecentchanges-param-feedformat": "纲要的格式。",
 	"apihelp-feedrecentchanges-param-namespace": "用于限制结果的命名空间。",
 	"apihelp-feedrecentchanges-param-invert": "除所选定者外的所有命名空间。",
