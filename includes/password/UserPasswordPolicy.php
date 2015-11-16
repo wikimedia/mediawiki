@@ -105,11 +105,18 @@ class UserPasswordPolicy {
 		);
 	}
 
+	/**
+	 * @param User $user
+	 * @param string $password
+	 * @param array $policies
+	 * @param array $policyCheckFunctions
+	 * @return Status
+	 */
 	private function checkPolicies( User $user, $password, $policies, $policyCheckFunctions ) {
 		$status = Status::newGood();
 		foreach ( $policies as $policy => $value ) {
 			if ( !isset( $policyCheckFunctions[$policy] ) ) {
-				throw new DomainException( 'Invalid password policy config' );
+				throw new DomainException( "Invalid password policy config. No check defined for `$policy`." );
 			}
 			$status->merge(
 				call_user_func(
