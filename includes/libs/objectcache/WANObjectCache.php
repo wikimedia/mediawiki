@@ -235,7 +235,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$now = microtime( true );
 
 		// Get/initialize the timestamp of all the "check" keys
-		$checkKeyTimes = array();
+		$checkKeyTime = null;
 		foreach ( $checkKeys as $checkKey ) {
 			$timestamp = isset( $wrappedValues[$checkKey] )
 				? self::parsePurgeValue( $wrappedValues[$checkKey] )
@@ -247,7 +247,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				$timestamp = $now;
 			}
 
-			$checkKeyTimes[] = $timestamp;
+			$checkKeyTime = $checkKeyTime ? min( $checkKeyTime, $timestamp ) : $timestamp;
 		}
 
 		// Get the main cache value for each key and validate them
@@ -261,7 +261,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			list( $value, $curTTL ) = $this->unwrap( $wrappedValues[$vKey], $now );
 			if ( $value !== false ) {
 				$result[$key] = $value;
-				foreach ( $checkKeyTimes as $checkKeyTime ) {
+				if ( $checkKeyTime ) {
 					// Force dependant keys to be invalid for a while after purging
 					// to reduce race conditions involving stale data getting cached
 					$safeTimestamp = $checkKeyTime + self::HOLDOFF_TTL;
