@@ -1505,11 +1505,18 @@ class Revision implements IDBAccessObject {
 		}
 
 		$content = $this->getContent( Revision::RAW );
+		$prefixedDBkey = $title->getPrefixedDBkey();
+		$revId = $this->mId;
 
-		if ( !$content || !$content->isValid() ) {
-			$t = $title->getPrefixedDBkey();
-
-			throw new MWException( "Content of $t is not valid! Content model is $model" );
+		if ( !$content ) {
+			throw new MWException(
+				"Content of revision $revId ($prefixedDBkey) could not be loaded for validation!"
+			);
+		}
+		if ( !$content->isValid() ) {
+			throw new MWException(
+				"Content of revision $revId ($prefixedDBkey) is not valid! Content model is $model"
+			);
 		}
 	}
 
