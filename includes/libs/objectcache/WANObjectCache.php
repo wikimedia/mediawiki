@@ -217,7 +217,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * @param array $keys List of cache keys
 	 * @param array $curTTLs Map of (key => approximate TTL left) for existing keys [returned]
-	 * @param array $checkKeys List of "check" keys to apply to all of $keys
+	 * @param array $checkKeys List of check keys to apply to all $keys. May also apply "check"
+	 *  keys to specific cache keys only by using cache keys as keys in the $checkKeys array.
 	 * @return array Map of (key => value) for keys that exist
 	 */
 	final public function getMulti(
@@ -228,26 +229,32 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		$vPrefixLen = strlen( self::VALUE_KEY_PREFIX );
 		$valueKeys = self::prefixCacheKeys( $keys, self::VALUE_KEY_PREFIX );
-		$checkKeys = self::prefixCacheKeys( $checkKeys, self::TIME_KEY_PREFIX );
+
+		$checksForAll = array();
+		$checksByKey = array();
+		$checkKeysFlat = array();
+		foreach ( $checkKeys as $i => $keys ) {
+			$prefixed = self::prefixCacheKeys( (array)$keys, self::TIME_KEY_PREFIX );
+			$checkKeysFlat = array_merge( $checkKeysFlat, $prefixed );
+			// Is this check keys for a specific cache key, or for all keys being fetched?
+			if ( is_int( $i ) ) {
+				$checksForAll = array_merge( $checksForAll, $prefixed );
+			} else {
+				$checksByKey[$i] = isset( $checksByKey[$i] )
+					? array_merge( $checksByKey[$i], $prefixed )
+					: $prefixed;
+			}
+		}
 
 		// Fetch all of the raw values
-		$wrappedValues = $this->cache->getMulti( array_merge( $valueKeys, $checkKeys ) );
+		$wrappedValues = $this->cache->getMulti( array_merge( $valueKeys, $checkKeysFlat ) );
 		$now = microtime( true );
 
-		// Get/initialize the timestamp of all the "check" keys
-		$checkKeyTimes = array();
-		foreach ( $checkKeys as $checkKey ) {
-			$timestamp = isset( $wrappedValues[$checkKey] )
-				? self::parsePurgeValue( $wrappedValues[$checkKey] )
-				: false;
-			if ( !is_float( $timestamp ) ) {
-				// Key is not set or invalid; regenerate
-				$this->cache->add( $checkKey,
-					self::PURGE_VAL_PREFIX . $now, self::CHECK_KEY_TTL );
-				$timestamp = $now;
-			}
-
-			$checkKeyTimes[] = $timestamp;
+		// Collect timestamps from all "check" keys
+		$checkKeyTimesForAll = $this->processCheckKeys( $checksForAll, $wrappedValues, $now );
+		$checkKeyTimesByKey = array();
+		foreach ( $checksByKey as $cacheKey => $checks ) {
+			$checkKeyTimesByKey[$cacheKey] = $this->processCheckKeys( $checks, $wrappedValues, $now );
 		}
 
 		// Get the main cache value for each key and validate them
@@ -261,20 +268,47 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			list( $value, $curTTL ) = $this->unwrap( $wrappedValues[$vKey], $now );
 			if ( $value !== false ) {
 				$result[$key] = $value;
+
+				// Force dependant keys to be invalid for a while after purging
+				// to reduce race conditions involving stale data getting cached
+				$checkKeyTimes = $checkKeyTimesForAll;
+				if ( isset( $checkKeyTimesByKey[$key] ) ) {
+					$checkKeyTimes = array_merge( $checkKeyTimes, $checkKeyTimesByKey[$key] );
+				}
 				foreach ( $checkKeyTimes as $checkKeyTime ) {
-					// Force dependant keys to be invalid for a while after purging
-					// to reduce race conditions involving stale data getting cached
 					$safeTimestamp = $checkKeyTime + self::HOLDOFF_TTL;
 					if ( $safeTimestamp >= $wrappedValues[$vKey][self::FLD_TIME] ) {
 						$curTTL = min( $curTTL, $checkKeyTime - $now );
 					}
 				}
 			}
-
 			$curTTLs[$key] = $curTTL;
 		}
 
 		return $result;
+	}
+
+	/**
+	 * @since 1.27
+	 * @param array $timeKeys List of prefixed time check keys
+	 * @param array $wrappedValues
+	 * @param float $now
+	 * @return array List of timestamps
+	 */
+	private function processCheckKeys( array $timeKeys, array $wrappedValues, $now ) {
+		$times = array();
+		foreach ( $timeKeys as $timeKey ) {
+			$timestamp = isset( $wrappedValues[$timeKey] )
+				? self::parsePurgeValue( $wrappedValues[$timeKey] )
+				: false;
+			if ( !is_float( $timestamp ) ) {
+				// Key is not set or invalid; regenerate
+				$this->cache->add( $timeKey, self::PURGE_VAL_PREFIX . $now, self::CHECK_KEY_TTL );
+				$timestamp = $now;
+			}
+			$times[] = $timestamp;
+		}
+		return $times;
 	}
 
 	/**
