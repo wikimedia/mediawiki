@@ -265,6 +265,13 @@ class ApiFeedWatchlist extends ApiBase {
 				if ( !isset( $p[ApiBase::PARAM_HELP_MSG] ) ) {
 					$p[ApiBase::PARAM_HELP_MSG] = "apihelp-query+watchlist-param-$from";
 				}
+				if ( is_array( $p[ApiBase::PARAM_TYPE] ) && isset( $p[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
+					foreach ( $p[ApiBase::PARAM_TYPE] as $v ) {
+						if ( !isset( $p[ApiBase::PARAM_HELP_MSG_PER_VALUE][$v] ) ) {
+							$p[ApiBase::PARAM_HELP_MSG_PER_VALUE][$v] = "apihelp-query+watchlist-paramvalue-$from-$v";
+						}
+					}
+				}
 				$ret[$to] = $p;
 			}
 		} else {
