@@ -292,6 +292,67 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers WANObjectCache::getMulti()
+	 * @covers WANObjectCache::processCheckKeys()
+	 */
+	public function testGetMultiCheckKeys() {
+		$cache = $this->cache;
+
+		$checkAll = wfRandomString();
+		$check1 = wfRandomString();
+		$check2 = wfRandomString();
+		$check3 = wfRandomString();
+		$value1 = wfRandomString();
+		$value2 = wfRandomString();
+
+		// Fake initial check key to be set in the past. Otherwise we'd have to sleep for
+		// several seconds during the test to assert the behaviour.
+		foreach ( array( $checkAll, $check1, $check2 ) as $checkKey ) {
+			$this->internalCache->set( $cache::TIME_KEY_PREFIX . $checkKey,
+				$cache::PURGE_VAL_PREFIX . microtime( true ) - $cache::HOLDOFF_TTL, $cache::CHECK_KEY_TTL );
+		}
+
+		$cache->set( 'key1', $value1, 10 );
+		$cache->set( 'key2', $value2, 10 );
+
+		$curTTLs = array();
+		$result = $cache->getMulti( array( 'key1', 'key2', 'key3' ), $curTTLs, array(
+			'key1' => array( $check1 ),
+			$checkAll,
+			'key2' => array( $check2 ),
+			'key3' => array( $check3 ),
+		) );
+		$this->assertEquals(
+			array( 'key1' => $value1, 'key2' => $value2 ),
+			$result,
+			'Initial values'
+		);
+		$this->assertEquals(
+			array( 'key1' => 0, 'key2' => 0 ),
+			$curTTLs,
+			'Initial ttls'
+		);
+
+		$cache->touchCheckKey( $check1 );
+		usleep( 100 );
+
+		$curTTLs = array();
+		$result = $cache->getMulti( array( 'key1', 'key2', 'key3' ), $curTTLs, array(
+			'key1' => array( $check1 ),
+			$checkAll,
+			'key2' => array( $check2 ),
+			'key3' => array( $check3 ),
+		) );
+		$this->assertEquals(
+			array( 'key1' => $value1, 'key2' => $value2 ),
+			$result,
+			'key1 expired by checkKey, but value still provided'
+		);
+		$this->assertLessThan( 0, $curTTLs['key1'], 'key1 TTL expired' );
+		$this->assertEquals( 0, $curTTLs['key2'], 'key2 still valid' );
+	}
+
+	/**
 	 * @covers WANObjectCache::delete()
 	 */
 	public function testDelete() {

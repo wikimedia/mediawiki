@@ -217,7 +217,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * @param array $keys List of cache keys
 	 * @param array $curTTLs Map of (key => approximate TTL left) for existing keys [returned]
-	 * @param array $checkKeys List of "check" keys to apply to all of $keys
+	 * @param array $checkKeys List of "check" keys to apply to all $keys. Or associative array
+	 *  of "check key" lists keyed by cache keys.
 	 * @return array Map of (key => value) for keys that exist
 	 */
 	final public function getMulti(
@@ -228,26 +229,32 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		$vPrefixLen = strlen( self::VALUE_KEY_PREFIX );
 		$valueKeys = self::prefixCacheKeys( $keys, self::VALUE_KEY_PREFIX );
-		$checkKeys = self::prefixCacheKeys( $checkKeys, self::TIME_KEY_PREFIX );
+
+		$checksForAll = array();
+		$checksByKey = array();
+		$checkKeysFlat = array();
+		foreach ( $checkKeys as $key => $checks ) {
+			$prefixed = self::prefixCacheKeys( (array)$checks, self::TIME_KEY_PREFIX );
+			$checkKeysFlat = array_merge( $checkKeysFlat, $prefixed );
+			// Is this check keys for a specific cache key, or for all keys being fetched?
+			if ( is_array( $checks ) ) {
+				$checksByKey[$key] = isset( $checksByKey[$key] )
+					? array_merge( $checksByKey[$key], $prefixed )
+					: $prefixed;
+			} else {
+				$checksForAll = array_merge( $checksForAll, $prefixed );
+			}
+		}
 
 		// Fetch all of the raw values
-		$wrappedValues = $this->cache->getMulti( array_merge( $valueKeys, $checkKeys ) );
+		$wrappedValues = $this->cache->getMulti( array_merge( $valueKeys, $checkKeysFlat ) );
 		$now = microtime( true );
 
-		// Get/initialize the timestamp of all the "check" keys
-		$checkKeyTimes = array();
-		foreach ( $checkKeys as $checkKey ) {
-			$timestamp = isset( $wrappedValues[$checkKey] )
-				? self::parsePurgeValue( $wrappedValues[$checkKey] )
-				: false;
-			if ( !is_float( $timestamp ) ) {
-				// Key is not set or invalid; regenerate
-				$this->cache->add( $checkKey,
-					self::PURGE_VAL_PREFIX . $now, self::CHECK_KEY_TTL );
-				$timestamp = $now;
-			}
-
-			$checkKeyTimes[] = $timestamp;
+		// Get the lowest timestamp of all the "check" keys
+		$checkKeyTimeForAll = $this->processCheckKeys( $checksForAll, $wrappedValues, $now );
+		$checkKeyTimeByKey = array();
+		foreach ( $checksByKey as $key => $checks ) {
+			$checkKeyTimeByKey[$key] = $this->processCheckKeys( $checks, $wrappedValues, $now );
 		}
 
 		// Get the main cache value for each key and validate them
@@ -261,20 +268,44 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			list( $value, $curTTL ) = $this->unwrap( $wrappedValues[$vKey], $now );
 			if ( $value !== false ) {
 				$result[$key] = $value;
+
+				// Force dependant keys to be invalid for a while after purging
+				// to reduce race conditions involving stale data getting cached
+				$checkKeyTimes = $checkKeyTimeForAll;
+				if ( isset( $checkKeyTimeByKey[$key] ) ) {
+					$checkKeyTimes = array_merge( $checkKeyTimes, $checkKeyTimeByKey[$key] );
+				}
 				foreach ( $checkKeyTimes as $checkKeyTime ) {
-					// Force dependant keys to be invalid for a while after purging
-					// to reduce race conditions involving stale data getting cached
 					$safeTimestamp = $checkKeyTime + self::HOLDOFF_TTL;
 					if ( $safeTimestamp >= $wrappedValues[$vKey][self::FLD_TIME] ) {
 						$curTTL = min( $curTTL, $checkKeyTime - $now );
 					}
 				}
 			}
-
 			$curTTLs[$key] = $curTTL;
 		}
 
 		return $result;
+	}
+
+	/**
+	 * @since 1.27
+	 * @return array List of timestamps
+	 */
+	private function processCheckKeys( Array $checks, Array $wrappedValues, $now ) {
+		$times = array();
+		foreach ( $checks as $check ) {
+			$timestamp = isset( $wrappedValues[$check] )
+				? self::parsePurgeValue( $wrappedValues[$check] )
+				: false;
+			if ( !is_float( $timestamp ) ) {
+				// Key is not set or invalid; regenerate
+				$this->cache->add( $check, self::PURGE_VAL_PREFIX . $now, self::CHECK_KEY_TTL );
+				$timestamp = $now;
+			}
+			$times[] = $timestamp;
+		}
+		return $times;
 	}
 
 	/**
