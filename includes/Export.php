@@ -876,6 +876,9 @@ class XmlDumpWriter {
 		global $wgContLang;
 		$prefix = $wgContLang->getFormattedNsText( $title->getNamespace() );
 
+		// @todo Emit some kind of warning to the user if $title->getNamespace() !==
+		// NS_MAIN and $prefix === '' (viz. pages in an unregistered namespace)
+
 		if ( $prefix !== '' ) {
 			$prefix .= ':';
 		}
