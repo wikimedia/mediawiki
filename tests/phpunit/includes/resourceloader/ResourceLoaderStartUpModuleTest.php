@@ -2,6 +2,17 @@
 
 class ResourceLoaderStartUpModuleTest extends ResourceLoaderTestCase {
 
+	// Version hash for a blank file module.
+	// Result of ResourceLoader::makeHash(), ResourceLoaderTestModule
+	// and ResourceLoaderFileModule::getDefinitionSummary().
+	protected static $blankVersion = 'wvTifjse';
+
+	protected static function expandPlaceholders( $text ) {
+		return strtr( $text, array(
+			'{blankVer}' => self::$blankVersion
+		) );
+	}
+
 	public static function provideGetModuleRegistrations() {
 		return array(
 			array( array(
@@ -25,7 +36,7 @@ mw.loader.addSource( {
 mw.loader.register( [
     [
         "test.blank",
-        "wvTifjse"
+        "{blankVer}"
     ]
 ] );',
 			) ),
@@ -43,17 +54,17 @@ mw.loader.addSource( {
 mw.loader.register( [
     [
         "test.blank",
-        "wvTifjse"
+        "{blankVer}"
     ],
     [
         "test.group.foo",
-        "wvTifjse",
+        "{blankVer}",
         [],
         "x-foo"
     ],
     [
         "test.group.bar",
-        "wvTifjse",
+        "{blankVer}",
         [],
         "x-bar"
     ]
@@ -72,7 +83,7 @@ mw.loader.addSource( {
 mw.loader.register( [
     [
         "test.blank",
-        "wvTifjse"
+        "{blankVer}"
     ]
 ] );'
 			) ),
@@ -95,7 +106,7 @@ mw.loader.addSource( {
 mw.loader.register( [
     [
         "test.blank",
-        "wvTifjse",
+        "{blankVer}",
         [],
         null,
         "example"
@@ -132,11 +143,11 @@ mw.loader.addSource( {
 mw.loader.register( [
     [
         "test.x.core",
-        "wvTifjse"
+        "{blankVer}"
     ],
     [
         "test.x.polyfill",
-        "wvTifjse",
+        "{blankVer}",
         [],
         null,
         null,
@@ -144,7 +155,7 @@ mw.loader.register( [
     ],
     [
         "test.y.polyfill",
-        "wvTifjse",
+        "{blankVer}",
         [],
         null,
         null,
@@ -152,7 +163,7 @@ mw.loader.register( [
     ],
     [
         "test.z.foo",
-        "wvTifjse",
+        "{blankVer}",
         [
             0,
             1,
@@ -229,36 +240,36 @@ mw.loader.addSource( {
 mw.loader.register( [
     [
         "test.blank",
-        "wvTifjse"
+        "{blankVer}"
     ],
     [
         "test.x.core",
-        "wvTifjse"
+        "{blankVer}"
     ],
     [
         "test.x.util",
-        "wvTifjse",
+        "{blankVer}",
         [
             1
         ]
     ],
     [
         "test.x.foo",
-        "wvTifjse",
+        "{blankVer}",
         [
             1
         ]
     ],
     [
         "test.x.bar",
-        "wvTifjse",
+        "{blankVer}",
         [
             2
         ]
     ],
     [
         "test.x.quux",
-        "wvTifjse",
+        "{blankVer}",
         [
             3,
             4,
@@ -267,25 +278,25 @@ mw.loader.register( [
     ],
     [
         "test.group.foo.1",
-        "wvTifjse",
+        "{blankVer}",
         [],
         "x-foo"
     ],
     [
         "test.group.foo.2",
-        "wvTifjse",
+        "{blankVer}",
         [],
         "x-foo"
     ],
     [
         "test.group.bar.1",
-        "wvTifjse",
+        "{blankVer}",
         [],
         "x-bar"
     ],
     [
         "test.group.bar.2",
-        "wvTifjse",
+        "{blankVer}",
         [],
         "x-bar",
         "example"
@@ -309,12 +320,12 @@ mw.loader.register( [
 
 		$context = $this->getResourceLoaderContext();
 		$rl = $context->getResourceLoader();
-
 		$rl->register( $case['modules'] );
-
 		$module = new ResourceLoaderStartUpModule();
+		$out = ltrim( $case['out'], "\n" );
+
 		$this->assertEquals(
-			ltrim( $case['out'], "\n" ),
+			self::expandPlaceholders( $out ),
 			$module->getModuleRegistrations( $context ),
 			$case['msg']
 		);
@@ -348,13 +359,15 @@ mw.loader.register( [
 		$rl = $context->getResourceLoader();
 		$rl->register( $modules );
 		$module = new ResourceLoaderStartUpModule();
+		$out = 'mw.loader.addSource({"local":"/w/load.php"});' . "\n"
+		. 'mw.loader.register(['
+		. '["test.blank","{blankVer}"],'
+		. '["test.min","{blankVer}",[0],null,null,'
+		. '"return!!(window.JSON\u0026\u0026JSON.parse\u0026\u0026JSON.stringify);"'
+		. ']]);';
+
 		$this->assertEquals(
-'mw.loader.addSource({"local":"/w/load.php"});' . "\n"
-. 'mw.loader.register(['
-. '["test.blank","wvTifjse"],'
-. '["test.min","wvTifjse",[0],null,null,'
-. '"return!!(window.JSON\u0026\u0026JSON.parse\u0026\u0026JSON.stringify);"'
-. ']]);',
+			self::expandPlaceholders( $out ),
 			$module->getModuleRegistrations( $context ),
 			'Minified output'
 		);
@@ -368,18 +381,18 @@ mw.loader.register( [
 		$rl = $context->getResourceLoader();
 		$rl->register( $modules );
 		$module = new ResourceLoaderStartUpModule();
-		$this->assertEquals(
+		$out =
 'mw.loader.addSource( {
     "local": "/w/load.php"
 } );
 mw.loader.register( [
     [
         "test.blank",
-        "wvTifjse"
+        "{blankVer}"
     ],
     [
         "test.min",
-        "wvTifjse",
+        "{blankVer}",
         [
             0
         ],
@@ -387,7 +400,10 @@ mw.loader.register( [
         null,
         "return !!(    window.JSON \u0026\u0026    JSON.parse \u0026\u0026    JSON.stringify);"
     ]
-] );',
+] );';
+
+		$this->assertEquals(
+			self::expandPlaceholders( $out ),
 			$module->getModuleRegistrations( $context ),
 			'Unminified output'
 		);
