@@ -26,7 +26,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provider_testSetAndGet
+	 * @dataProvider provideSetAndGet
 	 * @covers WANObjectCache::set()
 	 * @covers WANObjectCache::get()
 	 * @param mixed $value
@@ -46,7 +46,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		}
 	}
 
-	public static function provider_testSetAndGet() {
+	public static function provideSetAndGet() {
 		return array(
 			array( 14141, 3 ),
 			array( 3535.666, 3 ),
@@ -60,6 +60,9 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers WANObjectCache::get()
+	 */
 	public function testGetNotExists() {
 		$key = wfRandomString();
 		$curTTL = null;
@@ -69,6 +72,9 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertNull( $curTTL, "Non-existing key has null current TTL" );
 	}
 
+	/**
+	 * @covers WANObjectCache::set()
+	 */
 	public function testSetOver() {
 		$key = wfRandomString();
 		for ( $i = 0; $i < 3; ++$i ) {
@@ -79,6 +85,9 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		}
 	}
 
+	/**
+	 * @covers WANObjectCache::set()
+	 */
 	public function testStaleSet() {
 		$key = wfRandomString();
 		$value = wfRandomString();
@@ -89,6 +98,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers WANObjectCache::getWithSetCallback()
+	 * @covers WANObjectCache::doGetWithSetCallback()
 	 */
 	public function testGetWithSetCallback() {
 		$cache = $this->cache;
@@ -163,6 +173,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers WANObjectCache::getWithSetCallback()
+	 * @covers WANObjectCache::doGetWithSetCallback()
 	 */
 	public function testLockTSE() {
 		$cache = $this->cache;
@@ -188,6 +199,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers WANObjectCache::getWithSetCallback()
+	 * @covers WANObjectCache::doGetWithSetCallback()
 	 */
 	public function testLockTSESlow() {
 		$cache = $this->cache;
@@ -343,6 +355,9 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertEquals( $t5, $t6, 'Check key time did not change' );
 	}
 
+	/**
+	 * @covers WANObjectCache::set()
+	 */
 	public function testSetWithLag() {
 		$value = 1;
 
@@ -362,6 +377,9 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertEquals( false, $this->cache->get( $key ), "Lagged value not written." );
 	}
 
+	/**
+	 * @covers WANObjectCache::set()
+	 */
 	public function testWritePending() {
 		$value = 1;
 
