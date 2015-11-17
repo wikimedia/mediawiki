@@ -82,11 +82,6 @@ table.toc td {
 	margin: 0 0 0 2em;
 }
 
-#toc .toctoggle,
-.toc .toctoggle {
-	font-size: 94%;
-}
-
 /* Separate columns for tocnumber and toctext */
 /* Ignored by IE7 and lower */
 .tocnumber,
