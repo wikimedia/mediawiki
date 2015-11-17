@@ -1320,7 +1320,8 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.raggett' => array(
-		'styles' => 'resources/src/mediawiki/mediawiki.raggett.css'
+		'styles' => 'resources/src/mediawiki/mediawiki.raggett.css',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	/* MediaWiki Action */
