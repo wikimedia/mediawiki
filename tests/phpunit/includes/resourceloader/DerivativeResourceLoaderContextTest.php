@@ -25,7 +25,7 @@ class DerivativeResourceLoaderContextTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( $derived->getModules(), array( 'test.context' ) );
 		$this->assertEquals( $derived->getOnly(), 'scripts' );
 		$this->assertEquals( $derived->getSkin(), 'fallback' );
-		$this->assertEquals( $derived->getHash(), 'zh|ltr|fallback||||||scripts|' );
+		$this->assertEquals( $derived->getHash(), 'zh|fallback||||||scripts|' );
 	}
 
 	public function testSetLanguage() {
@@ -72,7 +72,7 @@ class DerivativeResourceLoaderContextTest extends PHPUnit_Framework_TestCase {
 
 		$derived->setLanguage( 'nl' );
 		// Assert that subclass is able to clear parent class "hash" member
-		$this->assertEquals( $derived->getHash(), 'nl|ltr|fallback||||||scripts|' );
+		$this->assertEquals( $derived->getHash(), 'nl|fallback||||||scripts|' );
 	}
 
 }
