@@ -60,11 +60,7 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 			return false;
 		}
 		try {
-			// Make sure doNotifyQueueNonEmpty() takes precedence to avoid races
-			$conn->watch( $this->getReadyQueueKey() );
-			$conn->multi()
-				->hDel( $this->getReadyQueueKey(), $this->encQueueName( $type, $wiki ) )
-				->exec();
+			$conn->hDel( $this->getReadyQueueKey(), $this->encQueueName( $type, $wiki ) );
 
 			return true;
 		} catch ( RedisException $e ) {
