@@ -10,7 +10,6 @@ class DiffHistoryBlobTest extends MediaWikiTestCase {
 
 		if ( !function_exists( 'xdiff_string_rabdiff' ) ) {
 			$this->markTestSkipped( 'The version of xdiff extension is lower than 1.5.0' );
-
 			return;
 		}
 	}
@@ -28,7 +27,13 @@ class DiffHistoryBlobTest extends MediaWikiTestCase {
 			"Hash of " . addcslashes( $input, "\0..\37!@\@\177..\377" ) );
 	}
 
-	public static function provideXdiffAdler32() {
+	public function provideXdiffAdler32() {
+		// Hack non-empty early return since PHPUnit expands this provider before running
+		// the setUp() which marks the test as skipped.
+		if ( !function_exists( 'xdiff_string_rabdiff' ) ) {
+			return array( array( '', 'Empty string' ) );
+		}
+
 		return array(
 			array( '', 'Empty string' ),
 			array( "\0", 'Null' ),
