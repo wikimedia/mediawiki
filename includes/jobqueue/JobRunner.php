@@ -451,7 +451,7 @@ class JobRunner implements LoggerAwareInterface {
 		global $wgJobSerialCommitThreshold;
 
 		$lb = wfGetLB( wfWikiID() );
-		if ( $wgJobSerialCommitThreshold !== false ) {
+		if ( $wgJobSerialCommitThreshold !== false && $lb->getServerCount() > 1 ) {
 			// Generally, there is one master connection to the local DB
 			$dbwSerial = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
 		} else {
