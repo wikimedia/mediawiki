@@ -2358,8 +2358,14 @@ $wgMemCachedPersistent = false;
 $wgMemCachedTimeout = 500000;
 
 /**
- * Set this to true to make a local copy of the message cache, for use in
- * addition to memcached. The files will be put in $wgCacheDirectory.
+ * Set this to true to maintain a copy of the message cache on the local server.
+ * The main message cache is in Memcached (configured by $wgMessageCacheType).
+ *
+ * The local copy is put in APC. If APC is not installed, this settings does nothing.
+ *
+ * Note that this is about the message cache which stores interface messages
+ * stored on wiki page. The localisation cache for interface messages provided
+ * by the software is configured by $wgLocalisationCacheConf.
  */
 $wgUseLocalMessageCache = false;
 
