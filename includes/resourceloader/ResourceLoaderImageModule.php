@@ -371,9 +371,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	protected function getCssDeclarations( $primary, $fallback ) {
 		return array(
 			"background-image: url($fallback);",
-			"background-image: -webkit-linear-gradient(transparent, transparent), url($primary);",
 			"background-image: linear-gradient(transparent, transparent), url($primary);",
-			"background-image: -o-linear-gradient(transparent, transparent), url($fallback);",
 		);
 	}
 
