@@ -29,6 +29,13 @@ class DiffHistoryBlobTest extends MediaWikiTestCase {
 	}
 
 	public static function provideXdiffAdler32() {
+		// Prevent PHPUnit from expanding this provider, which it otherwise does
+		// regardless of setUp marking the test as skipped. This helps keep
+		// the Jenkins output cleaner.
+		if ( !function_exists( 'xdiff_string_rabdiff' ) ) {
+			return array();
+		}
+
 		return array(
 			array( '', 'Empty string' ),
 			array( "\0", 'Null' ),
