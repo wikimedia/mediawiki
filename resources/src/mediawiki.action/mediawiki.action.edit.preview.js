@@ -274,7 +274,6 @@
 					'class': 'portal',
 					id: 'p-lang',
 					role: 'navigation',
-					title: mw.msg( 'tooltip-p-lang' ),
 					'aria-labelledby': 'p-lang-label'
 				} )
 				.append( $( '<h3>' ).attr( 'id', 'p-lang-label' ).text( mw.msg( 'otherlanguages' ) ) )

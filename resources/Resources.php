@@ -1369,7 +1369,6 @@ return array(
 			'editingsection',
 			'pagetitle',
 			'otherlanguages',
-			'tooltip-p-lang',
 			'summary-preview',
 			'subject-preview',
 			'parentheses',
