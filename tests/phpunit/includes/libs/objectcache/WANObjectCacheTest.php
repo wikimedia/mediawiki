@@ -343,6 +343,30 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertEquals( $t5, $t6, 'Check key time did not change' );
 	}
 
+	public function testGetWithSeveralCheckKeys() {
+		$key = wfRandomString();
+		$tKey1 = wfRandomString();
+		$tKey2 = wfRandomString();
+		$value = 'meow';
+
+		// One check key is newer (given hold-off) than $key, another is older
+		$this->internalCache->set(
+			WANObjectCache::TIME_KEY_PREFIX . $tKey1,
+			WANObjectCache::PURGE_VAL_PREFIX . ( microtime( true ) - 30 )
+		);
+		$this->internalCache->set(
+			WANObjectCache::TIME_KEY_PREFIX . $tKey2,
+			WANObjectCache::PURGE_VAL_PREFIX . ( microtime( true ) - 5 )
+		);
+		$this->cache->set( $key, $value, 30 );
+
+		$curTTL = null;
+		$v = $this->cache->get( $key, $curTTL, array( $tKey1, $tKey2 ) );
+		$this->assertEquals( $value, $v, "Value matches" );
+		$this->assertLessThan( -5, $curTTL, "Correct CTL" );
+		$this->assertGreaterThan( -5.1, $curTTL, "Correct CTL" );
+	}
+
 	public function testSetWithLag() {
 		$value = 1;
 
