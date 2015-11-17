@@ -1246,6 +1246,7 @@ return array(
 			'mediawiki.widgets.CategorySelector',
 			'mediawiki.widgets.DateInputWidget',
 			'mediawiki.jqueryMsg',
+			'moment',
 		),
 		'messages' => array(
 			'foreign-structured-upload-form-label-own-work',
