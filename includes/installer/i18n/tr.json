@@ -13,7 +13,9 @@
 			"Sadrettin",
 			"Captantrips",
 			"Stultiwikia",
-			"Meelo"
+			"Meelo",
+			"HakanIST",
+			"McAang"
 		]
 	},
 	"config-desc": "MediaWiki yükleyicisi",
@@ -96,8 +98,6 @@
 	"config-db-install-account": "Yükleme için kullanıcı hesabı",
 	"config-db-username": "Veritabanı kullanıcı adı:",
 	"config-db-password": "Veritabanı parolası:",
-	"config-db-password-empty": "Şu yeni veritabanı kullanıcısı için bir parola belirleyin: $1\nParolası olmayan hesaplar yaratmak mümkün olabilirse de, güvenli değildir.",
-	"config-db-username-empty": "\"{{int:config-db-username}}\" için bir değer girmelisiniz.",
 	"config-db-install-username": "Yükleme sırasında veritabanına bağlanmak için kullanılan kullanıcı adını girin.\nBu MediaWiki hesabının kullanıcı adı değildir; Bu veritabanın kullanıcı adıdır.",
 	"config-db-install-password": "Kurulum işlemi boyunca veritabanına bağlanmak için kullanılacak şifreyi girin.\nBu şifre MediaWiki hesap şifresi değil, veritabanınızın şifresidir.",
 	"config-db-install-help": "Kurulum işlemi boyunca veritabanına bağlanmak için kullanıcı adı ve şifre giriniz.",
@@ -245,5 +245,5 @@
 	"config-nofile": "\"$1\" dosyası bulunamadı. Silindi mi?",
 	"config-extension-link": "Vikinizin [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions eklentileri] desteklediğini biliyor musunuz?\n\n[//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category Eklentileri kategorilerine göre] inceleyebilir ya da tüm eklentilerin listesini görmek için [//www.mediawiki.org/wiki/Extension_Matrix Eklenti Matrisine] bakabilirsiniz.",
 	"mainpagetext": "'''MediaWiki başarı ile kuruldu.'''",
-	"mainpagedocfooter": "Viki yazılımının kullanımı hakkında bilgi almak için [//meta.wikimedia.org/wiki/Help:Contents kullanıcı rehberine] bakınız.\n\n== Yeni Başlayanlar ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Yapılandırma ayarlarının listesi]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki SSS]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-posta listesi]"
+	"mainpagedocfooter": "Viki yazılımının kullanımı hakkında bilgi almak için [//meta.wikimedia.org/wiki/Help:Contents kullanıcı rehberine] bakınız.\n\n== Yeni Başlayanlar ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Yapılandırma ayarlarının listesi]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki SSS]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-posta listesi]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Kendi diliniz için MediaWiki yerelleştirmesi]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Kendi vikinizde spam ile nasıl savaşılacağını öğrennin]"
 }

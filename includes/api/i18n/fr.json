@@ -173,6 +173,8 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "Filtrer par balise.",
 	"apihelp-feedrecentchanges-param-target": "Afficher uniquement les modifications sur les pages liées depuis cette page.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Afficher les modifications plutôt sur les pages liées vers la page sélectionnée.",
+	"apihelp-feedrecentchanges-param-categories": "Afficher uniquement les modifications sur les pages dans toutes ces catégories",
+	"apihelp-feedrecentchanges-param-categories_any": "Afficher plutôt uniquement les modifications sur les pages dans n’importe laquelle de ces catégories.",
 	"apihelp-feedrecentchanges-example-simple": "Afficher les modifications récentes",
 	"apihelp-feedrecentchanges-example-30days": "Afficher les modifications récentes sur 30 jours",
 	"apihelp-feedwatchlist-description": "Renvoie un flux de liste de suivi.",
