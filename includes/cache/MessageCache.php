@@ -724,8 +724,6 @@ class MessageCache {
 	 *   message (which can be empty)
 	 */
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
-		global $wgContLang;
-
 		if ( is_int( $key ) ) {
 			// Fix numerical strings that somehow become ints
 			// on their way here
@@ -749,14 +747,11 @@ class MessageCache {
 
 		Hooks::run( 'MessageCache::get', array( &$lckey ) );
 
-		$uckey = $wgContLang->ucfirst( $lckey );
-
 		// Loop through each language in the fallback list until we find something useful
 		$lang = wfGetLangObj( $langcode );
 		$message = $this->getMessageFromFallbackChain(
 			$lang,
 			$lckey,
-			$uckey,
 			!$this->mDisable && $useDB
 		);
 
@@ -798,21 +793,21 @@ class MessageCache {
 	}
 
 	/**
-	 * Given a language, try and fetch a message from that language, then the
-	 * fallbacks of that language, then the site language, then the fallbacks for the
-	 * site language.
+	 * Given a language, try and fetch messages from that language.
 	 *
-	 * @param Language $lang Requested language
-	 * @param string $lckey Lowercase key for the message
-	 * @param string $uckey Uppercase key for the message
-	 * @param bool $useDB Whether to use the database
+	 * Will also consider fallbacks of that language, the site language, and fallbacks for
+	 * the site language.
 	 *
 	 * @see MessageCache::get
+	 * @param Language|StubObject $lang Preferred language
+	 * @param string $lckey Lowercase key for the message (as for localisation cache)
+	 * @param bool $useDB Whether to include messages from the wiki database
 	 * @return string|bool The message, or false if not found
 	 */
-	protected function getMessageFromFallbackChain( $lang, $lckey, $uckey, $useDB ) {
+	protected function getMessageFromFallbackChain( $lang, $lckey, $useDB ) {
 		global $wgLanguageCode, $wgContLang;
 
+		$uckey = $wgContLang->ucfirst( $lckey );
 		$langcode = $lang->getCode();
 		$message = false;
 
@@ -889,6 +884,14 @@ class MessageCache {
 	}
 
 	/**
+	 * Warm up cache for getMsgFromNamespace() using a batch query.
+	 * @param string[] $titles Page titles in the MediaWiki namespace.
+	 * @param string $code Language code related to the
+	 */
+	protected function preloadMessagesFromNamespace( $titles, $code ) {
+	}
+
+	/**
 	 * Get a message from the MediaWiki namespace, with caching. The key must
 	 * first be converted to two-part lang/msg form if necessary.
 	 *
@@ -900,7 +903,7 @@ class MessageCache {
 	 * @param string $code Code denoting the language to try.
 	 * @return string|bool The message, or false if it does not exist or on error
 	 */
-	function getMsgFromNamespace( $title, $code ) {
+	public function getMsgFromNamespace( $title, $code ) {
 		$this->load( $code );
 		if ( isset( $this->mCache[$code][$title] ) ) {
 			$entry = $this->mCache[$code][$title];
