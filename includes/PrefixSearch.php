@@ -368,10 +368,7 @@ abstract class PrefixSearch {
 			$ns = NS_MAIN; // if searching on many always default to main
 		}
 
-		$t = null;
-		if ( is_string( $search ) ) {
-			$t = Title::newFromText( $search, $ns );
-		}
+		$t = Title::newFromText( $search, $ns );
 
 		$prefix = $t ? $t->getDBkey() : '';
 		$dbr = wfGetDB( DB_SLAVE );
