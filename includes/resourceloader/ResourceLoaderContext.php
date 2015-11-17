@@ -333,12 +333,20 @@ class ResourceLoaderContext {
 	}
 
 	/**
+	 * All factors that uniquely identify this request, except 'modules'.
+	 *
+	 * The list of modules is excluded here for legacy reasons as most callers already
+	 * split up handling of individual modules. Including it here would massively fragment
+	 * the cache and decrease its usefulness.
+	 *
+	 * E.g. Used by RequestFileCache to form a cache key for storing the reponse output.
+	 *
 	 * @return string
 	 */
 	public function getHash() {
 		if ( !isset( $this->hash ) ) {
 			$this->hash = implode( '|', array(
-				$this->getLanguage(), $this->getDirection(), $this->getSkin(), $this->getUser(),
+				$this->getLanguage(), $this->getSkin(), $this->getUser(),
 				$this->getImage(), $this->getVariant(), $this->getFormat(),
 				$this->getDebug(), $this->getOnly(), $this->getVersion()
 			) );
