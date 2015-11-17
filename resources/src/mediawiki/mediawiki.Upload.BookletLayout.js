@@ -181,9 +181,13 @@
 	mw.Upload.BookletLayout.prototype.uploadFile = function () {
 		var deferred = $.Deferred(),
 			layout = this,
-			file = this.getFile();
+			file = this.getFile(),
+			fileName = file.name;
 
-		this.filenameWidget.setValue( file.name );
+		// Remove extension
+		fileName = fileName.substr(0, fileName.lastIndexOf('.')) || fileName;
+
+		this.filenameWidget.setValue( fileName );
 		this.setPage( 'info' );
 
 		this.upload.setFile( file );
@@ -426,11 +430,13 @@
 		fieldset.addItems( [
 			new OO.ui.FieldLayout( this.filenameWidget, {
 				label: mw.msg( 'upload-form-label-infoform-name' ),
-				align: 'top'
+				align: 'top',
+				help: mw.msg( 'upload-form-label-infoform-name-tooltip' ),
 			} ),
 			new OO.ui.FieldLayout( this.descriptionWidget, {
 				label: mw.msg( 'upload-form-label-infoform-description' ),
-				align: 'top'
+				align: 'top',
+				help: mw.msg( 'upload-form-label-infoform-description-tooltip' ),
 			} )
 		] );
 		this.infoForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
