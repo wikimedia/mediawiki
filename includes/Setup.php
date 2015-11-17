@@ -614,15 +614,13 @@ if ( !$wgDBerrorLogTZ ) {
 	$wgDBerrorLogTZ = $wgLocaltimezone;
 }
 
+// initialize the request object in $wgRequest
+RequestContext::getMain()->getRequest(); // BackCompat
+
 // Useful debug output
 if ( $wgCommandLineMode ) {
-	$wgRequest = new FauxRequest( array() );
-
 	wfDebug( "\n\nStart command line script $self\n" );
 } else {
-	// Can't stub this one, it sets up $_GET and $_REQUEST in its constructor
-	$wgRequest = new WebRequest;
-
 	$debug = "\n\nStart request {$wgRequest->getMethod()} {$wgRequest->getRequestURL()}\n";
 
 	if ( $wgDebugPrintHttpHeaders ) {
