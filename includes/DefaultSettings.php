@@ -5293,13 +5293,6 @@ $wgRateLimits = array(
 );
 
 /**
- * Set to a filename to log rate limiter hits.
- *
- * @deprecated since 1.23, use $wgDebugLogGroups['ratelimit'] instead
- */
-$wgRateLimitLog = null;
-
-/**
  * Array of IPs which should be excluded from rate limits.
  * This may be useful for whitelisting NAT gateways for conferences, etc.
  */

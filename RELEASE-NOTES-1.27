@@ -51,6 +51,7 @@ production.
   a thumbnail handler. See $wgForeignFileRepos documentation for tweaks.
 * (T27397) WebP is enabled by default as an uploadable filetype.
 * (T48998) $wgArticlePath must now be either a full url, or start with a "/".
+* $wgRateLimitLog was removed; use $wgDebugLogGroups['ratelimit'] instead.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
