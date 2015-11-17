@@ -1270,6 +1270,12 @@ return array(
 	),
 	'mediawiki.toc' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.toc.js',
+		'styles' => array(
+			'resources/src/mediawiki/mediawiki.toc.css'
+				=> array( 'media' => 'screen' ),
+			'resources/src/mediawiki/mediawiki.toc.print.css'
+				=> array( 'media' => 'print' ),
+		),
 		'dependencies' => 'mediawiki.cookie',
 		'messages' => array( 'showtoc', 'hidetoc' ),
 		'targets' => array( 'desktop', 'mobile' ),
