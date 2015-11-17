@@ -356,6 +356,37 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers WANObjectCache::getMulti()
+	 */
+	public function testGetWithSeveralCheckKeys() {
+		$key = wfRandomString();
+		$tKey1 = wfRandomString();
+		$tKey2 = wfRandomString();
+		$value = 'meow';
+
+		// Two check keys are newer (given hold-off) than $key, another is older
+		$this->internalCache->set(
+			WANObjectCache::TIME_KEY_PREFIX . $tKey2,
+			WANObjectCache::PURGE_VAL_PREFIX . ( microtime( true ) - 3 )
+		);
+		$this->internalCache->set(
+			WANObjectCache::TIME_KEY_PREFIX . $tKey2,
+			WANObjectCache::PURGE_VAL_PREFIX . ( microtime( true ) - 5 )
+		);
+		$this->internalCache->set(
+			WANObjectCache::TIME_KEY_PREFIX . $tKey1,
+			WANObjectCache::PURGE_VAL_PREFIX . ( microtime( true ) - 30 )
+		);
+		$this->cache->set( $key, $value, 30 );
+
+		$curTTL = null;
+		$v = $this->cache->get( $key, $curTTL, array( $tKey1, $tKey2 ) );
+		$this->assertEquals( $value, $v, "Value matches" );
+		$this->assertLessThan( -5, $curTTL, "Correct CTL" );
+		$this->assertGreaterThan( -5.1, $curTTL, "Correct CTL" );
+	}
+
+	/**
 	 * @covers WANObjectCache::set()
 	 */
 	public function testSetWithLag() {
