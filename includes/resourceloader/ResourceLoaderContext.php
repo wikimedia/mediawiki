@@ -359,6 +359,7 @@ class ResourceLoaderContext {
 				// Request vary
 				$this->getOnly(),
 				$this->getVersion(),
+				$this->getRaw(),
 				$this->getImage(),
 				$this->getVariant(),
 				$this->getFormat(),
