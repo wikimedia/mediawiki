@@ -13,7 +13,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 				'modules' => 'startup',
 				'only' => 'scripts',
 				'skin' => 'vector',
-				'target' => 'test',
+				'target' => 'phpunit',
 		) );
 		$ctx = $this->getMockBuilder( 'ResourceLoaderContext' )
 			->setConstructorArgs( array( $resourceLoader, $request ) )
@@ -67,7 +67,7 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	protected $styles = '';
 	protected $skipFunction = null;
 	protected $isRaw = false;
-	protected $targets = array( 'test' );
+	protected $targets = array( 'phpunit' );
 
 	public function __construct( $options = array() ) {
 		foreach ( $options as $key => $value ) {
