@@ -33,19 +33,24 @@ class ResourceLoaderContext {
 
 	protected $resourceLoader;
 	protected $request;
-	protected $modules;
-	protected $language;
-	protected $direction;
+
+	// Module content vary
 	protected $skin;
-	protected $user;
+	protected $language;
 	protected $debug;
+	protected $user;
+
+	// Request vary (in addition to cache vary)
+	protected $modules;
 	protected $only;
 	protected $version;
-	protected $hash;
 	protected $raw;
 	protected $image;
 	protected $variant;
 	protected $format;
+
+	protected $direction;
+	protected $hash;
 	protected $userObj;
 	protected $imageObj;
 
@@ -346,9 +351,17 @@ class ResourceLoaderContext {
 	public function getHash() {
 		if ( !isset( $this->hash ) ) {
 			$this->hash = implode( '|', array(
-				$this->getLanguage(), $this->getSkin(), $this->getUser(),
-				$this->getImage(), $this->getVariant(), $this->getFormat(),
-				$this->getDebug(), $this->getOnly(), $this->getVersion()
+				// Module content vary
+				$this->getLanguage(),
+				$this->getSkin(),
+				$this->getDebug(),
+				$this->getUser(),
+				// Request vary
+				$this->getOnly(),
+				$this->getVersion(),
+				$this->getImage(),
+				$this->getVariant(),
+				$this->getFormat(),
 			) );
 		}
 		return $this->hash;
