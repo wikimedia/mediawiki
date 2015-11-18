@@ -20,9 +20,13 @@
 			"ltr": "images/icons/imageLock-ltr.svg",
 			"rtl": "images/icons/imageLock-rtl.svg"
 		} },
+		"imageGallery": { "file": {
+			"ltr": "images/icons/imageGallery-ltr.svg",
+			"rtl": "images/icons/imageGallery-rtl.svg"
+		} },
 		"photoGallery": { "file": {
-			"ltr": "images/icons/photoGallery-ltr.svg",
-			"rtl": "images/icons/photoGallery-rtl.svg"
+			"ltr": "images/icons/imageGallery-ltr.svg",
+			"rtl": "images/icons/imageGallery-rtl.svg"
 		} },
 		"play": { "file": {
 			"ltr": "images/icons/play-ltr.svg",

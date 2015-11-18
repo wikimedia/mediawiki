@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.13.2
+ * OOjs UI v0.13.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-11-10T23:33:07Z
+ * Date: 2015-11-18T01:09:30Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -198,7 +198,6 @@
 	padding-left: 2.4em;
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button {
-	margin: 0.1em 0;
 	padding: 0.5em 1em;
 	min-height: 1.2em;
 	min-width: 1em;
@@ -547,19 +546,19 @@
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
 	width: 60%;
 }
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline {
+	margin-bottom: 1.25em;
+}
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
-	padding: 0.5em;
+	padding: 0.25em;
 	padding-left: 1em;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
-	padding: 0.5em 0;
-}
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
-	padding: 0.5em 0;
+	padding-top: 0.25em;
+	padding-bottom: 0.5em;
 }
 .oo-ui-fieldLayout > .oo-ui-popupButtonWidget {
 	margin-right: 0;
-	margin-top: 0.25em;
 }
 .oo-ui-fieldLayout > .oo-ui-popupButtonWidget:last-child {
 	margin-right: 0;
@@ -2265,7 +2264,7 @@
 	margin-right: 0;
 }
 .oo-ui-selectFileWidget-selectButton > .oo-ui-buttonElement-button {
-	margin: 0 0 0 0.5em;
+	margin-left: 0.5em;
 }
 .oo-ui-selectFileWidget-info {
 	height: 2.4em;
@@ -2734,9 +2733,7 @@
 .oo-ui-numberInputWidget-field > .oo-ui-buttonWidget > .oo-ui-buttonElement-button {
 	box-sizing: border-box;
 }
-.oo-ui-numberInputWidget-field > .oo-ui-buttonWidget,
-.oo-ui-numberInputWidget-field > .oo-ui-buttonWidget > .oo-ui-buttonElement-button {
-	margin: 0;
+.oo-ui-numberInputWidget-field > .oo-ui-buttonWidget {
 	width: 2.5em;
 }
 .oo-ui-numberInputWidget-minusButton.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
@@ -3106,7 +3103,7 @@
 	   -moz-transition: all 250ms ease;
 	        transition: all 250ms ease;
 }
-.oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-ready {
+.oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-setup {
 	opacity: 1;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-ready > .oo-ui-window-frame {

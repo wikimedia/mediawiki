@@ -24,7 +24,7 @@
 		"add": { "file": "images/icons/add.svg", "variants": [ "constructive" ] },
 		"advanced": { "file": "images/icons/advanced.svg" },
 		"alert": { "file": "images/icons/alert.svg", "variants": [ "warning" ] },
-		"cancel": { "file": "images/icons/cancel.svg" },
+		"cancel": { "file": "images/icons/cancel.svg", "variants": [ "destructive" ] },
 		"check": { "file": "images/icons/check.svg", "variants": [ "constructive", "progressive", "destructive" ] },
 		"circle": { "file": "images/icons/circle.svg", "variants": [ "constructive" ] },
 		"close": { "file": {
@@ -51,7 +51,10 @@
 			"rtl": "images/icons/move-rtl.svg"
 		} },
 		"notice": { "file": "images/icons/notice.svg" },
-		"picture": { "file": "images/icons/picture.svg" },
+		"picture": { "file": {
+			"ltr": "images/icons/image-rtl.svg",
+			"rtl": "images/icons/image-ltr.svg"
+		} },
 		"previous": { "file": {
 			"ltr": "images/icons/move-rtl.svg",
 			"rtl": "images/icons/move-ltr.svg"

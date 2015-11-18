@@ -1,0 +1,15 @@
+{
+	"prefix": "oo-ui-icon",
+	"intro": "@import '../../../../src/styles/common';",
+	"images": {
+		"image": { "file": "images/icons/image.svg" },
+		"imageGallery": { "file": {
+			"ltr": "images/icons/imageGallery-ltr.svg",
+			"rtl": "images/icons/imageGallery-rtl.svg"
+		} },
+		"photoGallery": { "file": {
+			"ltr": "images/icons/imageGallery-ltr.svg",
+			"rtl": "images/icons/imageGallery-rtl.svg"
+		} }
+	}
+}

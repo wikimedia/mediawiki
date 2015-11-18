@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.13.2
+ * OOjs UI v0.13.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-11-10T23:32:59Z
+ * Date: 2015-11-18T01:09:23Z
  */
 ( function ( OO ) {
 
@@ -350,7 +350,6 @@ OO.ui.infuse = function ( idOrNode ) {
 	 * Alternative implementations of OO.ui.msg may use any substitution system they like, as long as
 	 * they support unnamed, ordered message parameters.
 	 *
-	 * @abstract
 	 * @param {string} key Message key
 	 * @param {Mixed...} [params] Message parameters
 	 * @return {string} Translated message with parameters substituted
@@ -2407,7 +2406,6 @@ OO.ui.Window.prototype.getDir = function () {
  * To add window content that persists between openings, you may wish to use the #initialize method
  * instead.
  *
- * @abstract
  * @param {Object} [data] Window opening data
  * @return {OO.ui.Process} Setup process
  */
@@ -2426,7 +2424,6 @@ OO.ui.Window.prototype.getSetupProcess = function () {
  * provides using the {@link OO.ui.Process#first first} and {@link OO.ui.Process#next next}
  * methods of OO.ui.Process.
  *
- * @abstract
  * @param {Object} [data] Window opening data
  * @return {OO.ui.Process} Ready process
  */
@@ -2445,7 +2442,6 @@ OO.ui.Window.prototype.getReadyProcess = function () {
  * using the {@link OO.ui.Process#first first} and {@link OO.ui.Process#next next} methods
  * of OO.ui.Process.
  *
- * @abstract
  * @param {Object} [data] Window closing data
  * @return {OO.ui.Process} Hold process
  */
@@ -2464,7 +2460,6 @@ OO.ui.Window.prototype.getHoldProcess = function () {
  * using the {@link OO.ui.Process#first first} and {@link OO.ui.Process#next next} methods
  * of OO.ui.Process.
  *
- * @abstract
  * @param {Object} [data] Window closing data
  * @return {OO.ui.Process} Teardown process
  */
@@ -2669,22 +2664,18 @@ OO.ui.Window.prototype.close = function ( data ) {
  * @return {jQuery.Promise} Promise resolved when window is setup
  */
 OO.ui.Window.prototype.setup = function ( data ) {
-	var win = this,
-		deferred = $.Deferred();
+	var win = this;
 
 	this.toggle( true );
 
 	this.focusTrapHandler = OO.ui.bind( this.onFocusTrapFocused, this );
 	this.$focusTraps.on( 'focus', this.focusTrapHandler );
 
-	this.getSetupProcess( data ).execute().done( function () {
+	return this.getSetupProcess( data ).execute().then( function () {
 		// Force redraw by asking the browser to measure the elements' widths
 		win.$element.addClass( 'oo-ui-window-active oo-ui-window-setup' ).width();
 		win.$content.addClass( 'oo-ui-window-content-setup' ).width();
-		deferred.resolve();
 	} );
-
-	return deferred.promise();
 };
 
 /**
@@ -2697,18 +2688,14 @@ OO.ui.Window.prototype.setup = function ( data ) {
  * @return {jQuery.Promise} Promise resolved when window is ready
  */
 OO.ui.Window.prototype.ready = function ( data ) {
-	var win = this,
-		deferred = $.Deferred();
+	var win = this;
 
 	this.$content.focus();
-	this.getReadyProcess( data ).execute().done( function () {
+	return this.getReadyProcess( data ).execute().then( function () {
 		// Force redraw by asking the browser to measure the elements' widths
 		win.$element.addClass( 'oo-ui-window-ready' ).width();
 		win.$content.addClass( 'oo-ui-window-content-ready' ).width();
-		deferred.resolve();
 	} );
-
-	return deferred.promise();
 };
 
 /**
@@ -2721,10 +2708,9 @@ OO.ui.Window.prototype.ready = function ( data ) {
  * @return {jQuery.Promise} Promise resolved when window is held
  */
 OO.ui.Window.prototype.hold = function ( data ) {
-	var win = this,
-		deferred = $.Deferred();
+	var win = this;
 
-	this.getHoldProcess( data ).execute().done( function () {
+	return this.getHoldProcess( data ).execute().then( function () {
 		// Get the focused element within the window's content
 		var $focus = win.$content.find( OO.ui.Element.static.getDocument( win.$content ).activeElement );
 
@@ -2736,10 +2722,7 @@ OO.ui.Window.prototype.hold = function ( data ) {
 		// Force redraw by asking the browser to measure the elements' widths
 		win.$element.removeClass( 'oo-ui-window-ready' ).width();
 		win.$content.removeClass( 'oo-ui-window-content-ready' ).width();
-		deferred.resolve();
 	} );
-
-	return deferred.promise();
 };
 
 /**
@@ -2754,14 +2737,13 @@ OO.ui.Window.prototype.hold = function ( data ) {
 OO.ui.Window.prototype.teardown = function ( data ) {
 	var win = this;
 
-	return this.getTeardownProcess( data ).execute()
-		.done( function () {
-			// Force redraw by asking the browser to measure the elements' widths
-			win.$element.removeClass( 'oo-ui-window-active oo-ui-window-setup' ).width();
-			win.$content.removeClass( 'oo-ui-window-content-setup' ).width();
-			win.$focusTraps.off( 'focus', win.focusTrapHandler );
-			win.toggle( false );
-		} );
+	return this.getTeardownProcess( data ).execute().then( function () {
+		// Force redraw by asking the browser to measure the elements' widths
+		win.$element.removeClass( 'oo-ui-window-active oo-ui-window-setup' ).width();
+		win.$content.removeClass( 'oo-ui-window-content-setup' ).width();
+		win.$focusTraps.off( 'focus', win.focusTrapHandler );
+		win.toggle( false );
+	} );
 };
 
 /**
@@ -2958,7 +2940,6 @@ OO.ui.Dialog.prototype.getActions = function () {
  * accept steps to the process the parent method provides using the {@link OO.ui.Process#first 'first'}
  * and {@link OO.ui.Process#next 'next'} methods of OO.ui.Process.
  *
- * @abstract
  * @param {string} [action] Symbolic name of action
  * @return {OO.ui.Process} Action process
  */
@@ -3479,8 +3460,18 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data ) {
 							manager.opening = null;
 							manager.opened = $.Deferred();
 							opening.resolve( manager.opened.promise(), data );
+						}, function () {
+							manager.opening = null;
+							manager.opened = $.Deferred();
+							opening.reject();
+							manager.closeWindow( win );
 						} );
 					}, manager.getReadyDelay() );
+				}, function () {
+					manager.opening = null;
+					manager.opened = $.Deferred();
+					opening.reject();
+					manager.closeWindow( win );
 				} );
 			}, manager.getSetupDelay() );
 		} );
@@ -3531,7 +3522,7 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 		// If the window is currently opening, close it when it's done
 		this.preparingToClose = $.when( this.opening );
 		// Ensure handlers get called after preparingToClose is set
-		this.preparingToClose.done( function () {
+		this.preparingToClose.always( function () {
 			manager.closing = closing;
 			manager.preparingToClose = null;
 			manager.emit( 'closing', win, closing, data );
@@ -4286,6 +4277,132 @@ OO.ui.Theme.prototype.updateElementClasses = function ( element ) {
 		.removeClass( classes.off.join( ' ' ) )
 		.addClass( classes.on.join( ' ' ) );
 };
+
+/**
+ * RequestManager is a mixin that manages the lifecycle of a promise-backed request for a widget, such as
+ * the {@link OO.ui.mixin.LookupElement}.
+ *
+ * @class
+ * @abstract
+ *
+ * @constructor
+ */
+OO.ui.mixin.RequestManager = function OoUiMixinRequestManager() {
+	this.requestCache = {};
+	this.requestQuery = null;
+	this.requestRequest = null;
+};
+
+/* Setup */
+
+OO.initClass( OO.ui.mixin.RequestManager );
+
+/**
+ * Get request results for the current query.
+ *
+ * @return {jQuery.Promise} Promise object which will be passed response data as the first argument of
+ *   the done event. If the request was aborted to make way for a subsequent request, this promise
+ *   may not be rejected, depending on what jQuery feels like doing.
+ */
+OO.ui.mixin.RequestManager.prototype.getRequestData = function () {
+	var widget = this,
+		value = this.getRequestQuery(),
+		deferred = $.Deferred(),
+		ourRequest;
+
+	this.abortRequest();
+	if ( Object.prototype.hasOwnProperty.call( this.requestCache, value ) ) {
+		deferred.resolve( this.requestCache[ value ] );
+	} else {
+		if ( this.pushPending ) {
+			this.pushPending();
+		}
+		this.requestQuery = value;
+		ourRequest = this.requestRequest = this.getRequest();
+		ourRequest
+			.always( function () {
+				// We need to pop pending even if this is an old request, otherwise
+				// the widget will remain pending forever.
+				// TODO: this assumes that an aborted request will fail or succeed soon after
+				// being aborted, or at least eventually. It would be nice if we could popPending()
+				// at abort time, but only if we knew that we hadn't already called popPending()
+				// for that request.
+				if ( widget.popPending ) {
+					widget.popPending();
+				}
+			} )
+			.done( function ( response ) {
+				// If this is an old request (and aborting it somehow caused it to still succeed),
+				// ignore its success completely
+				if ( ourRequest === widget.requestRequest ) {
+					widget.requestQuery = null;
+					widget.requestRequest = null;
+					widget.requestCache[ value ] = widget.getRequestCacheDataFromResponse( response );
+					deferred.resolve( widget.requestCache[ value ] );
+				}
+			} )
+			.fail( function () {
+				// If this is an old request (or a request failing because it's being aborted),
+				// ignore its failure completely
+				if ( ourRequest === widget.requestRequest ) {
+					widget.requestQuery = null;
+					widget.requestRequest = null;
+					deferred.reject();
+				}
+			} );
+	}
+	return deferred.promise();
+};
+
+/**
+ * Abort the currently pending request, if any.
+ *
+ * @private
+ */
+OO.ui.mixin.RequestManager.prototype.abortRequest = function () {
+	var oldRequest = this.requestRequest;
+	if ( oldRequest ) {
+		// First unset this.requestRequest to the fail handler will notice
+		// that the request is no longer current
+		this.requestRequest = null;
+		this.requestQuery = null;
+		oldRequest.abort();
+	}
+};
+
+/**
+ * Get the query to be made.
+ *
+ * @protected
+ * @method
+ * @abstract
+ * @return {string} query to be used
+ */
+OO.ui.mixin.RequestManager.prototype.getRequestQuery = null;
+
+/**
+ * Get a new request object of the current query value.
+ *
+ * @protected
+ * @method
+ * @abstract
+ * @return {jQuery.Promise} jQuery AJAX object, or promise object with an .abort() method
+ */
+OO.ui.mixin.RequestManager.prototype.getRequest = null;
+
+/**
+ * Pre-process data returned by the request from #getRequest.
+ *
+ * The return value of this function will be cached, and any further queries for the given value
+ * will use the cache rather than doing API requests.
+ *
+ * @protected
+ * @method
+ * @abstract
+ * @param {Mixed} response Response from server
+ * @return {Mixed} Cached result data
+ */
+OO.ui.mixin.RequestManager.prototype.getRequestCacheDataFromResponse = null;
 
 /**
  * The TabIndexedElement class is an attribute mixin used to add additional functionality to an
@@ -5915,6 +6032,9 @@ OO.ui.mixin.LookupElement = function OoUiMixinLookupElement( config ) {
 	// Configuration initialization
 	config = $.extend( { highlightFirst: true }, config );
 
+	// Mixin constructors
+	OO.ui.mixin.RequestManager.call( this, config );
+
 	// Properties
 	this.$overlay = config.$overlay || this.$element;
 	this.lookupMenu = new OO.ui.FloatingMenuSelectWidget( {
@@ -5925,9 +6045,6 @@ OO.ui.mixin.LookupElement = function OoUiMixinLookupElement( config ) {
 
 	this.allowSuggestionsWhenEmpty = config.allowSuggestionsWhenEmpty || false;
 
-	this.lookupCache = {};
-	this.lookupQuery = null;
-	this.lookupRequest = null;
 	this.lookupsDisabled = false;
 	this.lookupInputFocused = false;
 	this.lookupHighlightFirstItem = config.highlightFirst;
@@ -5949,6 +6066,10 @@ OO.ui.mixin.LookupElement = function OoUiMixinLookupElement( config ) {
 	this.lookupMenu.$element.addClass( 'oo-ui-lookupElement-menu' );
 	this.$overlay.append( this.lookupMenu.$element );
 };
+
+/* Setup */
+
+OO.mixinClass( OO.ui.mixin.LookupElement, OO.ui.mixin.RequestManager );
 
 /* Methods */
 
@@ -6138,49 +6259,9 @@ OO.ui.mixin.LookupElement.prototype.initializeLookupMenuSelection = function () 
  *   will not be rejected: it will remain pending forever.
  */
 OO.ui.mixin.LookupElement.prototype.getLookupMenuItems = function () {
-	var widget = this,
-		value = this.getValue(),
-		deferred = $.Deferred(),
-		ourRequest;
-
-	this.abortLookupRequest();
-	if ( Object.prototype.hasOwnProperty.call( this.lookupCache, value ) ) {
-		deferred.resolve( this.getLookupMenuOptionsFromData( this.lookupCache[ value ] ) );
-	} else {
-		this.pushPending();
-		this.lookupQuery = value;
-		ourRequest = this.lookupRequest = this.getLookupRequest();
-		ourRequest
-			.always( function () {
-				// We need to pop pending even if this is an old request, otherwise
-				// the widget will remain pending forever.
-				// TODO: this assumes that an aborted request will fail or succeed soon after
-				// being aborted, or at least eventually. It would be nice if we could popPending()
-				// at abort time, but only if we knew that we hadn't already called popPending()
-				// for that request.
-				widget.popPending();
-			} )
-			.done( function ( response ) {
-				// If this is an old request (and aborting it somehow caused it to still succeed),
-				// ignore its success completely
-				if ( ourRequest === widget.lookupRequest ) {
-					widget.lookupQuery = null;
-					widget.lookupRequest = null;
-					widget.lookupCache[ value ] = widget.getLookupCacheDataFromResponse( response );
-					deferred.resolve( widget.getLookupMenuOptionsFromData( widget.lookupCache[ value ] ) );
-				}
-			} )
-			.fail( function () {
-				// If this is an old request (or a request failing because it's being aborted),
-				// ignore its failure completely
-				if ( ourRequest === widget.lookupRequest ) {
-					widget.lookupQuery = null;
-					widget.lookupRequest = null;
-					deferred.reject();
-				}
-			} );
-	}
-	return deferred.promise();
+	return this.getRequestData().then( function ( data ) {
+		return this.getLookupMenuOptionsFromData( data );
+	}.bind( this ) );
 };
 
 /**
@@ -6189,27 +6270,18 @@ OO.ui.mixin.LookupElement.prototype.getLookupMenuItems = function () {
  * @private
  */
 OO.ui.mixin.LookupElement.prototype.abortLookupRequest = function () {
-	var oldRequest = this.lookupRequest;
-	if ( oldRequest ) {
-		// First unset this.lookupRequest to the fail handler will notice
-		// that the request is no longer current
-		this.lookupRequest = null;
-		this.lookupQuery = null;
-		oldRequest.abort();
-	}
+	this.abortRequest();
 };
 
 /**
  * Get a new request object of the current lookup query value.
  *
  * @protected
+ * @method
  * @abstract
  * @return {jQuery.Promise} jQuery AJAX object, or promise object with an .abort() method
  */
-OO.ui.mixin.LookupElement.prototype.getLookupRequest = function () {
-	// Stub, implemented in subclass
-	return null;
-};
+OO.ui.mixin.LookupElement.prototype.getLookupRequest = null;
 
 /**
  * Pre-process data returned by the request from #getLookupRequest.
@@ -6218,28 +6290,24 @@ OO.ui.mixin.LookupElement.prototype.getLookupRequest = function () {
  * will use the cache rather than doing API requests.
  *
  * @protected
+ * @method
  * @abstract
  * @param {Mixed} response Response from server
  * @return {Mixed} Cached result data
  */
-OO.ui.mixin.LookupElement.prototype.getLookupCacheDataFromResponse = function () {
-	// Stub, implemented in subclass
-	return [];
-};
+OO.ui.mixin.LookupElement.prototype.getLookupCacheDataFromResponse = null;
 
 /**
  * Get a list of menu option widgets from the (possibly cached) data returned by
  * #getLookupCacheDataFromResponse.
  *
  * @protected
+ * @method
  * @abstract
  * @param {Mixed} data Cached result data, usually an array
  * @return {OO.ui.MenuOptionWidget[]} Menu items
  */
-OO.ui.mixin.LookupElement.prototype.getLookupMenuOptionsFromData = function () {
-	// Stub, implemented in subclass
-	return [];
-};
+OO.ui.mixin.LookupElement.prototype.getLookupMenuOptionsFromData = null;
 
 /**
  * Set the read-only state of the widget.
@@ -6260,6 +6328,27 @@ OO.ui.mixin.LookupElement.prototype.setReadOnly = function ( readOnly ) {
 	}
 
 	return this;
+};
+
+/**
+ * @inheritdoc OO.ui.mixin.RequestManager
+ */
+OO.ui.mixin.LookupElement.prototype.getRequestQuery = function () {
+	return this.getValue();
+};
+
+/**
+ * @inheritdoc OO.ui.mixin.RequestManager
+ */
+OO.ui.mixin.LookupElement.prototype.getRequest = function () {
+	return this.getLookupRequest();
+};
+
+/**
+ * @inheritdoc OO.ui.mixin.RequestManager
+ */
+OO.ui.mixin.LookupElement.prototype.getRequestCacheDataFromResponse = function ( response ) {
+	return this.getLookupCacheDataFromResponse( response );
 };
 
 /**
@@ -6593,7 +6682,8 @@ OO.ui.mixin.TitledElement.prototype.setTitledElement = function ( $titled ) {
  * @chainable
  */
 OO.ui.mixin.TitledElement.prototype.setTitle = function ( title ) {
-	title = typeof title === 'string' ? OO.ui.resolveMsg( title ) : null;
+	title = typeof title === 'function' ? OO.ui.resolveMsg( title ) : title;
+	title = ( typeof title === 'string' && title.length ) ? title : null;
 
 	if ( this.title !== title ) {
 		if ( this.$titled ) {
@@ -7326,28 +7416,22 @@ OO.ui.Tool.static.isCompatibleWith = function () {
  *
  * This is an abstract method that must be overridden in a concrete subclass.
  *
+ * @method
  * @protected
  * @abstract
  */
-OO.ui.Tool.prototype.onUpdateState = function () {
-	throw new Error(
-		'OO.ui.Tool.onUpdateState not implemented in this subclass:' + this.constructor
-	);
-};
+OO.ui.Tool.prototype.onUpdateState = null;
 
 /**
  * Handle the tool being selected.
  *
  * This is an abstract method that must be overridden in a concrete subclass.
  *
+ * @method
  * @protected
  * @abstract
  */
-OO.ui.Tool.prototype.onSelect = function () {
-	throw new Error(
-		'OO.ui.Tool.onSelect not implemented in this subclass:' + this.constructor
-	);
-};
+OO.ui.Tool.prototype.onSelect = null;
 
 /**
  * Check if the tool is active.
@@ -7451,7 +7535,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *
  * Individual tools are customized and then registered with a {@link OO.ui.ToolFactory tool factory}, which creates
  * the tools on demand. Each tool has a symbolic name (used when registering the tool), a title (e.g., ‘Insert
- * picture’), and an icon.
+ * image’), and an icon.
  *
  * Individual tools are organized in {@link OO.ui.ToolGroup toolgroups}, which can be {@link OO.ui.MenuToolGroup menus}
  * of tools, {@link OO.ui.ListToolGroup lists} of tools, or a single {@link OO.ui.BarToolGroup bar} of tools.
@@ -7473,23 +7557,23 @@ OO.ui.Tool.prototype.destroy = function () {
  *     // Define the tools that we're going to place in our toolbar
  *
  *     // Create a class inheriting from OO.ui.Tool
- *     function PictureTool() {
- *         PictureTool.parent.apply( this, arguments );
+ *     function ImageTool() {
+ *         ImageTool.parent.apply( this, arguments );
  *     }
- *     OO.inheritClass( PictureTool, OO.ui.Tool );
+ *     OO.inheritClass( ImageTool, OO.ui.Tool );
  *     // Each tool must have a 'name' (used as an internal identifier, see later) and at least one
  *     // of 'icon' and 'title' (displayed icon and text).
- *     PictureTool.static.name = 'picture';
- *     PictureTool.static.icon = 'picture';
- *     PictureTool.static.title = 'Insert picture';
+ *     ImageTool.static.name = 'image';
+ *     ImageTool.static.icon = 'image';
+ *     ImageTool.static.title = 'Insert image';
  *     // Defines the action that will happen when this tool is selected (clicked).
- *     PictureTool.prototype.onSelect = function () {
- *         $area.text( 'Picture tool clicked!' );
+ *     ImageTool.prototype.onSelect = function () {
+ *         $area.text( 'Image tool clicked!' );
  *         // Never display this tool as "active" (selected).
  *         this.setActive( false );
  *     };
  *     // Make this tool available in our toolFactory and thus our toolbar
- *     toolFactory.register( PictureTool );
+ *     toolFactory.register( ImageTool );
  *
  *     // Register two more tools, nothing interesting here
  *     function SettingsTool() {
@@ -7541,7 +7625,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *         {
  *             // 'bar' tool groups display tools' icons only, side-by-side.
  *             type: 'bar',
- *             include: [ 'picture', 'help' ]
+ *             include: [ 'image', 'help' ]
  *         },
  *         {
  *             // 'list' tool groups display both the titles and icons, in a dropdown list.
@@ -7589,28 +7673,28 @@ OO.ui.Tool.prototype.destroy = function () {
  *     // Define the tools that we're going to place in our toolbar
  *
  *     // Create a class inheriting from OO.ui.Tool
- *     function PictureTool() {
- *         PictureTool.parent.apply( this, arguments );
+ *     function ImageTool() {
+ *         ImageTool.parent.apply( this, arguments );
  *     }
- *     OO.inheritClass( PictureTool, OO.ui.Tool );
+ *     OO.inheritClass( ImageTool, OO.ui.Tool );
  *     // Each tool must have a 'name' (used as an internal identifier, see later) and at least one
  *     // of 'icon' and 'title' (displayed icon and text).
- *     PictureTool.static.name = 'picture';
- *     PictureTool.static.icon = 'picture';
- *     PictureTool.static.title = 'Insert picture';
+ *     ImageTool.static.name = 'image';
+ *     ImageTool.static.icon = 'image';
+ *     ImageTool.static.title = 'Insert image';
  *     // Defines the action that will happen when this tool is selected (clicked).
- *     PictureTool.prototype.onSelect = function () {
- *         $area.text( 'Picture tool clicked!' );
+ *     ImageTool.prototype.onSelect = function () {
+ *         $area.text( 'Image tool clicked!' );
  *         // Never display this tool as "active" (selected).
  *         this.setActive( false );
  *     };
  *     // The toolbar can be synchronized with the state of some external stuff, like a text
  *     // editor's editing area, highlighting the tools (e.g. a 'bold' tool would be shown as active
  *     // when the text cursor was inside bolded text). Here we simply disable this feature.
- *     PictureTool.prototype.onUpdateState = function () {
+ *     ImageTool.prototype.onUpdateState = function () {
  *     };
  *     // Make this tool available in our toolFactory and thus our toolbar
- *     toolFactory.register( PictureTool );
+ *     toolFactory.register( ImageTool );
  *
  *     // Register two more tools, nothing interesting here
  *     function SettingsTool() {
@@ -7676,7 +7760,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *         {
  *             // 'bar' tool groups display tools' icons only, side-by-side.
  *             type: 'bar',
- *             include: [ 'picture', 'help' ]
+ *             include: [ 'image', 'help' ]
  *         },
  *         {
  *             // 'menu' tool groups display both the titles and icons, in a dropdown menu.
@@ -11401,23 +11485,23 @@ OO.mixinClass( OO.ui.HorizontalLayout, OO.ui.mixin.GroupElement );
  *     // Define the tools that we're going to place in our toolbar
  *
  *     // Create a class inheriting from OO.ui.Tool
- *     function PictureTool() {
- *         PictureTool.parent.apply( this, arguments );
+ *     function ImageTool() {
+ *         ImageTool.parent.apply( this, arguments );
  *     }
- *     OO.inheritClass( PictureTool, OO.ui.Tool );
+ *     OO.inheritClass( ImageTool, OO.ui.Tool );
  *     // Each tool must have a 'name' (used as an internal identifier, see later) and at least one
  *     // of 'icon' and 'title' (displayed icon and text).
- *     PictureTool.static.name = 'picture';
- *     PictureTool.static.icon = 'picture';
- *     PictureTool.static.title = 'Insert picture';
+ *     ImageTool.static.name = 'image';
+ *     ImageTool.static.icon = 'image';
+ *     ImageTool.static.title = 'Insert image';
  *     // Defines the action that will happen when this tool is selected (clicked).
- *     PictureTool.prototype.onSelect = function () {
- *         $area.text( 'Picture tool clicked!' );
+ *     ImageTool.prototype.onSelect = function () {
+ *         $area.text( 'Image tool clicked!' );
  *         // Never display this tool as "active" (selected).
  *         this.setActive( false );
  *     };
  *     // Make this tool available in our toolFactory and thus our toolbar
- *     toolFactory.register( PictureTool );
+ *     toolFactory.register( ImageTool );
  *
  *     // This is a PopupTool. Rather than having a custom 'onSelect' action, it will display a
  *     // little popup window (a PopupWidget).
@@ -11441,7 +11525,7 @@ OO.mixinClass( OO.ui.HorizontalLayout, OO.ui.mixin.GroupElement );
  *         {
  *             // 'bar' tool groups display tools by icon only
  *             type: 'bar',
- *             include: [ 'picture', 'help' ]
+ *             include: [ 'image', 'help' ]
  *         }
  *     ] );
  *
@@ -11762,7 +11846,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
  *             type: 'list',
  *             label: 'ListToolGroup',
  *             indicator: 'down',
- *             icon: 'picture',
+ *             icon: 'image',
  *             title: 'This is the title, displayed when user moves the mouse over the list toolgroup',
  *             header: 'This is the header',
  *             include: [ 'settings', 'stuff' ],
@@ -16125,7 +16209,7 @@ OO.ui.TextInputWidget.prototype.isAutosizing = function () {
  */
 OO.ui.TextInputWidget.prototype.selectRange = function ( from, to ) {
 	var textRange, isBackwards, start, end,
-		element = this.$input[ 0 ];
+		input = this.$input[ 0 ];
 
 	to = to || from;
 
@@ -16135,17 +16219,34 @@ OO.ui.TextInputWidget.prototype.selectRange = function ( from, to ) {
 
 	this.focus();
 
-	if ( element.setSelectionRange ) {
-		element.setSelectionRange( start, end, isBackwards ? 'backward' : 'forward' );
-	} else if ( element.createTextRange ) {
+	if ( input.setSelectionRange ) {
+		input.setSelectionRange( start, end, isBackwards ? 'backward' : 'forward' );
+	} else if ( input.createTextRange ) {
 		// IE 8 and below
-		textRange = element.createTextRange();
+		textRange = input.createTextRange();
 		textRange.collapse( true );
 		textRange.moveStart( 'character', start );
 		textRange.moveEnd( 'character', end - start );
 		textRange.select();
 	}
 	return this;
+};
+
+/**
+ * Get an object describing the current selection range in a directional manner
+ *
+ * @return {Object} Object containing 'from' and 'to' offsets
+ */
+OO.ui.TextInputWidget.prototype.getRange = function () {
+	var input = this.$input[ 0 ],
+		start = input.selectionStart,
+		end = input.selectionEnd,
+		isBackwards = input.selectionDirection === 'backward';
+
+	return {
+		from: isBackwards ? end : start,
+		to: isBackwards ? start : end
+	};
 };
 
 /**
