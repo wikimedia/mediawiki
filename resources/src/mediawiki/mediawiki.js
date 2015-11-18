@@ -995,6 +995,17 @@
 			}
 
 			/**
+			 * Get the script value for given module, assuming it has already executed.
+			 *
+			 * @private
+			 * @param {string} module
+			 * @return {Object}
+			 */
+			function getScriptValue( module ) {
+				return registry[ module ].scriptValue;
+			}
+
+			/**
 			 * Determine whether all dependencies are in state 'ready', which means we may
 			 * execute the module or job now.
 			 *
@@ -1059,7 +1070,7 @@
 								}
 							} else {
 								if ( $.isFunction( job.ready ) ) {
-									job.ready();
+									job.ready.apply( job, job.dependencies.map( getScriptValue ) );
 								}
 							}
 						} catch ( e ) {
@@ -1177,7 +1188,40 @@
 			 * @return {jQuery.Promise}
 			 */
 			function addScript( src ) {
-				return $.ajax( {
+				var
+					oldOnError = window.onerror,
+					isHandlingError = false,
+					deferred = $.Deferred();
+
+				window.onerror = function ( message, url, line, column, error ) {
+					if ( src !== url ) {
+						oldOnError( message, url, line, column, error );
+						return;
+					}
+					if ( error instanceof SyntaxError ) {
+						isHandlingError = true;
+						// Maybe they're trying to return a value? This will be less useful when debugging,
+						// but at least it'll still work
+						$.ajax( {
+							url: url,
+							dataType: 'text',
+							cache: true
+						} ).done( function ( result ) {
+							var fun;
+							try {
+								/*jshint evil:true */
+								fun = new Function( result );
+							} catch ( err ) {
+								deferred.reject();
+							}
+							deferred.resolve( fun() );
+						} ).fail( function () {
+							deferred.reject();
+						} );
+					}
+				};
+
+				$.ajax( {
 					url: src,
 					dataType: 'script',
 					// Force jQuery behaviour to be for crossDomain. Otherwise jQuery would use
@@ -1187,7 +1231,17 @@
 					// text, so we'd need to $.globalEval, which then messes up line numbers.
 					crossDomain: true,
 					cache: true
+				} ).done( function () {
+					setTimeout( function () {
+						if ( !isHandlingError ) {
+							deferred.resolve( null );
+						}
+					}, 0 );
+				} ).fail( function () {
+					deferred.reject();
 				} );
+
+				return deferred.promise();
 			}
 
 			/**
@@ -1230,6 +1284,7 @@
 
 				runScript = function () {
 					var script, markModuleReady, nestedAddScript, legacyWait,
+						scriptValue = null,
 						// Expand to include dependencies since we have to exclude both legacy modules
 						// and their dependencies from the legacyWait (to prevent a circular dependency).
 						legacyModules = resolve( mw.config.get( 'wgResourceLoaderLegacyModules', [] ) );
@@ -1237,18 +1292,22 @@
 						script = registry[ module ].script;
 						markModuleReady = function () {
 							registry[ module ].state = 'ready';
+							registry[ module ].scriptValue = scriptValue;
 							handlePending( module );
 						};
-						nestedAddScript = function ( arr, callback, i ) {
+						nestedAddScript = function ( arr, callback, i, val ) {
 							// Recursively call addScript() in its own callback
 							// for each element of arr.
 							if ( i >= arr.length ) {
 								// We're at the end of the array
+								scriptValue = val;
 								callback();
 								return;
 							}
 
-							addScript( arr[ i ] ).always( function () {
+							addScript( arr[ i ] ).done( function ( val ) {
+								nestedAddScript( arr, callback, i + 1, val );
+							} ).fail( function () {
 								nestedAddScript( arr, callback, i + 1 );
 							} );
 						};
@@ -1263,7 +1322,7 @@
 							} else if ( $.isFunction( script ) ) {
 								// Pass jQuery twice so that the signature of the closure which wraps
 								// the script can bind both '$' and 'jQuery'.
-								script( $, $ );
+								scriptValue = script( $, $ );
 								markModuleReady();
 							} else if ( typeof script === 'string' ) {
 								// Site and user modules are a legacy scripts that run in the global scope.
@@ -1273,11 +1332,11 @@
 									// Implicit dependency on the site module. Not real dependency because
 									// it should run after 'site' regardless of whether it succeeds or fails.
 									mw.loader.using( 'site' ).always( function () {
-										$.globalEval( script );
+										scriptValue = $.globalEval( script );
 										markModuleReady();
 									} );
 								} else {
-									$.globalEval( script );
+									scriptValue = $.globalEval( script );
 									markModuleReady();
 								}
 							} else {
@@ -1403,11 +1462,7 @@
 				// Add ready and error callbacks if they were given
 				if ( ready !== undefined || error !== undefined ) {
 					jobs.push( {
-						// Narrow down the list to modules that are worth waiting for
-						dependencies: $.grep( dependencies, function ( module ) {
-							var state = mw.loader.getState( module );
-							return state === 'registered' || state === 'loaded' || state === 'loading' || state === 'executing';
-						} ),
+						dependencies: dependencies,
 						ready: ready,
 						error: error
 					} );
@@ -1855,20 +1910,21 @@
 				 *         OO.compare( [ 1 ], [ 1 ] );
 				 *     } );
 				 *
-				 * @param {string|Array} dependencies Module name or array of modules names the callback
+				 * @param {string|Array} modules Module name or array of modules names the callback
 				 *  dependends on to be ready before executing
 				 * @param {Function} [ready] Callback to execute when all dependencies are ready
 				 * @param {Function} [error] Callback to execute if one or more dependencies failed
 				 * @return {jQuery.Promise}
 				 * @since 1.23 this returns a promise
 				 */
-				using: function ( dependencies, ready, error ) {
-					var deferred = $.Deferred();
+				using: function ( modules, ready, error ) {
+					var dependencies,
+						deferred = $.Deferred();
 
 					// Allow calling with a single dependency as a string
-					if ( typeof dependencies === 'string' ) {
-						dependencies = [ dependencies ];
-					} else if ( !$.isArray( dependencies ) ) {
+					if ( typeof modules === 'string' ) {
+						modules = [ modules ];
+					} else if ( !$.isArray( modules ) ) {
 						// Invalid input
 						throw new Error( 'Dependencies must be a string or an array' );
 					}
@@ -1881,10 +1937,10 @@
 					}
 
 					// Resolve entire dependency map
-					dependencies = resolve( dependencies );
+					dependencies = resolve( modules );
 					if ( allReady( dependencies ) ) {
 						// Run ready immediately
-						deferred.resolve();
+						deferred.resolve.apply( deferred, modules.map( getScriptValue ) );
 					} else if ( anyFailed( dependencies ) ) {
 						// Execute error immediately if any dependencies have errors
 						deferred.reject(
@@ -1897,6 +1953,29 @@
 					}
 
 					return deferred.promise();
+				},
+
+				/**
+				 * Check that modules are already loaded and get their public interfaces.
+				 *
+				 * @param {string|Array} modules Module name or array of modules names
+				 * @param {Function} ready Callback to execute with modules' public interfaces
+				 * @throws {Error} If any modules are not loaded yet
+				 */
+				with: function ( modules, ready ) {
+					// Allow calling with a single dependency as a string
+					if ( typeof modules === 'string' ) {
+						modules = [ modules ];
+					} else if ( !$.isArray( modules ) ) {
+						// Invalid input
+						throw new Error( 'Dependencies must be a string or an array' );
+					}
+
+					if ( !allReady( modules ) ) {
+						throw new Error( 'Not all modules are loaded!' );
+					}
+
+					ready.apply( null, modules.map( getScriptValue ) );
 				},
 
 				/**

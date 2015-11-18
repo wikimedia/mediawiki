@@ -14,15 +14,13 @@
 * @author Amir Aharoni
 */
 
-( function ( mw ) {
 /**
  * Evaluates a plural rule in CLDR syntax for a number
  * @param {string} rule
  * @param {integer} number
  * @return {boolean} true if evaluation passed, false if evaluation failed.
  */
-
-function pluralRuleParser(rule, number) {
+return function pluralRuleParser(rule, number) {
 	'use strict';
 
 	/*
@@ -587,9 +585,4 @@ function pluralRuleParser(rule, number) {
 	}
 
 	return result;
-}
-
-/* pluralRuleParser ends here */
-mw.libs.pluralRuleParser = pluralRuleParser;
-
-} )( mediaWiki );
+};

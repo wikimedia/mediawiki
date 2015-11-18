@@ -1,6 +1,8 @@
 ( function ( mw ) {
 	'use strict';
 
+	mw.loader.with( 'mediawiki.libs.pluralruleparser', function ( pluralRuleParser ) {
+
 	/**
 	 * Namespace for CLDR-related utility methods.
 	 *
@@ -21,12 +23,14 @@
 		getPluralForm: function ( number, pluralRules ) {
 			var i;
 			for ( i = 0; i < pluralRules.length; i++ ) {
-				if ( mw.libs.pluralRuleParser( pluralRules[ i ], number ) ) {
+				if ( pluralRuleParser( pluralRules[ i ], number ) ) {
 					break;
 				}
 			}
 			return i;
 		}
 	};
+
+	} );
 
 }( mediaWiki ) );
