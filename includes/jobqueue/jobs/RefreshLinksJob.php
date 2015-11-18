@@ -115,16 +115,27 @@ class RefreshLinksJob extends Job {
 			JobQueueGroup::singleton()->push( $jobs );
 		// Job to update link tables for a set of titles
 		} elseif ( isset( $this->params['pages'] ) ) {
+			$this->waitForMasterPosition();
 			foreach ( $this->params['pages'] as $pageId => $nsAndKey ) {
 				list( $ns, $dbKey ) = $nsAndKey;
 				$this->runForTitle( Title::makeTitleSafe( $ns, $dbKey ) );
 			}
 		// Job to update link tables for a given title
 		} else {
+			$this->waitForMasterPosition();
 			$this->runForTitle( $this->title );
 		}
 
 		return true;
+	}
+
+	protected function waitForMasterPosition() {
+		if ( !empty( $this->params['masterPos'] ) && wfGetLB()->getServerCount() > 1 ) {
+			// Wait for the current/next slave DB handle to catch up to the master.
+			// This way, we get the correct page_latest for templates or files that just
+			// changed milliseconds ago, having triggered this job to begin with.
+			wfGetLB()->waitFor( $this->params['masterPos'] );
+		}
 	}
 
 	/**
@@ -132,19 +143,22 @@ class RefreshLinksJob extends Job {
 	 * @return bool
 	 */
 	protected function runForTitle( Title $title ) {
-		// Wait for the DB of the current/next slave DB handle to catch up to the master.
-		// This way, we get the correct page_latest for templates or files that just changed
-		// milliseconds ago, having triggered this job to begin with.
-		if ( isset( $this->params['masterPos'] ) && $this->params['masterPos'] !== false ) {
-			wfGetLB()->waitFor( $this->params['masterPos'] );
+		$page = WikiPage::factory( $title );
+		if ( !empty( $this->params['triggeringRevisionId'] ) ) {
+			// Fetch the specified revision; lockAndGetLatest() below detects if the page
+			// was edited since and aborts in order to avoid corrupting the link tables
+			$revision = Revision::newFromId(
+				$this->params['triggeringRevisionId'],
+				Revision::READ_LATEST
+			);
+		} else {
+			// Fetch current revision; READ_LATEST reduces lockAndGetLatest() check failures
+			$revision = Revision::newFromTitle( $title, false, Revision::READ_LATEST );
 		}
 
-		// Fetch the current page and revision...
-		$page = WikiPage::factory( $title );
-		$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
 		if ( !$revision ) {
-			$this->setLastError( "refreshLinks: Article not found {$title->getPrefixedDBkey()}" );
-			return false; // XXX: what if it was just deleted?
+			$this->setLastError( "Revision not found for {$title->getPrefixedDBkey()}" );
+			return false; // just deleted?
 		}
 
 		$content = $revision->getContent( Revision::RAW );
@@ -209,8 +223,16 @@ class RefreshLinksJob extends Job {
 		}
 
 		$updates = $content->getSecondaryDataUpdates(
-			$title, null, !empty( $this->params['useRecursiveLinksUpdate'] ), $parserOutput );
+			$title,
+			null,
+			!empty( $this->params['useRecursiveLinksUpdate'] ),
+			$parserOutput
+		);
+
 		foreach ( $updates as $key => $update ) {
+			// FIXME: move category change RC stuff to a separate update.
+			// RC entry addition aborts if edits where since made, which is not necessary.
+			// It's also an SoC violation for links update code to care about RC.
 			if ( $update instanceof LinksUpdate ) {
 				if ( !empty( $this->params['triggeredRecursive'] ) ) {
 					$update->setTriggeredRecursive();
@@ -226,16 +248,19 @@ class RefreshLinksJob extends Job {
 					$update->setTriggeringUser( $user );
 				}
 				if ( !empty( $this->params['triggeringRevisionId'] ) ) {
-					$revision = Revision::newFromId( $this->params['triggeringRevisionId'] );
-					if ( $revision === null ) {
-						$revision = Revision::newFromId(
-							$this->params['triggeringRevisionId'],
-							Revision::READ_LATEST
-						);
-					}
 					$update->setRevision( $revision );
 				}
 			}
+		}
+
+		$latestNow = $page->lockAndGetLatest();
+		if ( !$latestNow || $revision->getId() != $latestNow ) {
+			// Do not clobber over newer updates with older ones. If all jobs where FIFO and
+			// serialized, it would be OK to update links based on older revisions since it
+			// would eventually get to the latest. Since that is not the case (by design),
+			// only update the link tables to a state matching the current revision's output.
+			$this->setLastError( "page_latest changed from {$revision->getId()} to $latestNow" );
+			return false;
 		}
 
 		DataUpdate::runUpdates( $updates );
