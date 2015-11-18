@@ -436,7 +436,7 @@ if ( isset( $_REQUEST['filter'] ) ) {
 	}
 	$points[] = $s;
 
-	usort( $points, 'compare_point' );
+	@usort( $points, 'compare_point' );
 
 	foreach ( $points as $point ) {
 		if ( strlen( $filter ) && !strstr( $point->name(), $filter ) ) {
