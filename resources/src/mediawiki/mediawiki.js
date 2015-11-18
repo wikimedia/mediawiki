@@ -773,6 +773,9 @@
 				// List of modules which will be loaded as when ready
 				batch = [],
 
+				// pending ajax requests
+				pendingRequests = [],
+
 				// List of modules to be loaded
 				queue = [],
 
@@ -1163,23 +1166,50 @@
 
 			/**
 			 * Load and execute a script.
+			 * When in debug mode scripts will be dealt with one at a time and never run in parallel.
 			 *
 			 * @private
 			 * @param {string} src URL to script, will be used as the src attribute in the script tag
-			 * @return {jQuery.Promise}
+			 * @param {string} [moduleName] that the script is running in if applicable.
+			 * @return {jQuery.Deferred}
 			 */
-			function addScript( src ) {
-				return $.ajax( {
-					url: src,
-					dataType: 'script',
-					// Force jQuery behaviour to be for crossDomain. Otherwise jQuery would use
-					// XHR for a same domain request instead of <script>, which changes the request
-					// headers (potentially missing a cache hit), and reduces caching in general
-					// since browsers cache XHR much less (if at all). And XHR means we retreive
-					// text, so we'd need to $.globalEval, which then messes up line numbers.
-					crossDomain: true,
-					cache: true
+			function addScript( src, moduleName ) {
+				var r = $.Deferred();
+				pendingRequests.push( function () {
+					if ( moduleName && registry[ moduleName ] ) {
+						window.require = mw.loader.require;
+						window.module = registry[ moduleName ].module;
+					}
+					$.ajax( {
+						url: src,
+						dataType: 'script',
+						// Force jQuery behaviour to be for crossDomain. Otherwise jQuery would use
+						// XHR for a same domain request instead of <script>, which changes the request
+						// headers (potentially missing a cache hit), and reduces caching in general
+						// since browsers cache XHR much less (if at all). And XHR means we retreive
+						// text, so we'd need to $.globalEval, which then messes up line numbers.
+						crossDomain: true,
+						cache: true
+					} ).always( function () {
+						window.require = null;
+						window.module = null;
+						r.resolve.apply( this, arguments );
+						// remove completed request from the stack
+						pendingRequests = pendingRequests.slice( 1 );
+						if ( pendingRequests.length > 0 ) {
+							// execute the next one immediately
+							pendingRequests[ 0 ]();
+						}
+					} );
 				} );
+				if ( !mw.config.get( 'debug' ) ) {
+					// when not in debug mode all pending requests can be run in parallel
+					pendingRequests.pop()();
+				} else if ( pendingRequests.length === 1 ) {
+					// execute immediately
+					pendingRequests[ 0 ]();
+				}
+				return r;
 			}
 
 			/**
@@ -1240,7 +1270,7 @@
 								return;
 							}
 
-							addScript( arr[ i ] ).always( function () {
+							addScript( arr[ i ], module ).always( function () {
 								nestedAddScript( arr, callback, i + 1 );
 							} );
 						};
@@ -1255,8 +1285,9 @@
 							} else if ( $.isFunction( script ) ) {
 								// Pass jQuery twice so that the signature of the closure which wraps
 								// the script can bind both '$' and 'jQuery'.
-								script( $, $ );
+								script( $, $, mw.loader.require, registry[ module ].module );
 								markModuleReady();
+
 							} else if ( typeof script === 'string' ) {
 								// Site and user modules are a legacy scripts that run in the global scope.
 								// This is transported as a string instead of a function to avoid needing
@@ -1748,6 +1779,9 @@
 					}
 					// List the module as registered
 					registry[ module ] = {
+						module: {
+							exports: {}
+						},
 						version: version !== undefined ? String( version ) : '',
 						dependencies: [],
 						group: typeof group === 'string' ? group : null,
@@ -2015,6 +2049,27 @@
 					return $.map( registry, function ( i, key ) {
 						return key;
 					} );
+				},
+
+				/**
+				 * Obtains exported values of a given ResourceLoader module
+				 * Where that module contains `module.exports`
+				 *
+				 * @return {Array}
+				 */
+				require: function ( moduleName ) {
+					var state,
+						registeredModule = registry[ moduleName ];
+
+					state = registeredModule.state ? registeredModule.state : null;
+
+					// Only ready or executing states can be required
+					// (An executing module may require modules in itself)
+					if ( registeredModule && state === 'ready' || state === 'executing' ) {
+						return registeredModule.module.exports;
+					} else {
+						throw 'Module `' + moduleName + '` is not registered or is not available.';
+					}
 				},
 
 				/**
