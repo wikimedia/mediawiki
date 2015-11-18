@@ -19,6 +19,8 @@
 	"browser": true,
 
 	"globals": {
+		"require": true,
+		"module": true,
 		"mediaWiki": true,
 		"JSON": true,
 		"OO": true,

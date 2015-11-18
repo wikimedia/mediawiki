@@ -735,6 +735,7 @@ return array(
 	'moment' => array(
 		'scripts' => array(
 			'resources/lib/moment/moment.js',
+			'resources/src/moment-backwards-compatible.js',
 			'resources/src/moment-local-dmy.js',
 		),
 		'languageScripts' => array(
@@ -2122,6 +2123,18 @@ return array(
 			'es5-shim',
 			'json',
 		),
+	),
+
+	'test1' => array(
+		'targets' => array( 'desktop', 'mobile' ),
+		'dependencies' => array(
+			'test2',
+		),
+		'scripts' => 'resources/test1.js',
+	),
+	'test2' => array(
+		'targets' => array( 'desktop', 'mobile' ),
+		'scripts' => 'resources/test2.js',
 	),
 
 	/* OOjs UI */
