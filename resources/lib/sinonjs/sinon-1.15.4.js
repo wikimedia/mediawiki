@@ -1,3 +1,4 @@
+require = null;
 /**
  * Sinon.JS 1.15.4, 2015/06/27
  *
