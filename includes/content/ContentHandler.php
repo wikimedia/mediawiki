@@ -732,7 +732,7 @@ abstract class ContentHandler {
 			// If the user chooses a variant, the content is actually
 			// in a language whose code is the variant code.
 			$variant = $pageLang->getPreferredVariant();
-			if ( $pageLang->getCode() !== $variant ) {
+			if ( !$pageLang->hasCode( $variant ) ) {
 				$pageLang = Language::factory( $variant );
 			}
 		}

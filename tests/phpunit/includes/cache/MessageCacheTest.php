@@ -68,7 +68,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		if ( $content === null ) {
 			$content = $lang;
 		}
-		if ( $lang !== $wgContLang->getCode() ) {
+		if ( !$wgContLang->hasCode( $lang ) ) {
 			$title = "$title/$lang";
 		}
 

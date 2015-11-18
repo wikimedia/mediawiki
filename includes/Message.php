@@ -426,7 +426,7 @@ class Message implements MessageSpecifier, Serializable {
 		$code = $this->language->getCode();
 		$title = $this->key;
 		if (
-			$wgContLang->getCode() !== $code
+			!$wgContLang->hasCode( $code )
 			&& in_array( $this->key, (array)$wgForceUIMsgAsContentMsg )
 		) {
 			$title .= '/' . $code;
@@ -668,7 +668,7 @@ class Message implements MessageSpecifier, Serializable {
 		if ( $lang instanceof Language || $lang instanceof StubUserLang ) {
 			$this->language = $lang;
 		} elseif ( is_string( $lang ) ) {
-			if ( !$this->language instanceof Language || $this->language->getCode() != $lang ) {
+			if ( !$this->language instanceof Language || !$this->language->hasCode( $lang ) ) {
 				$this->language = Language::factory( $lang );
 			}
 		} else {

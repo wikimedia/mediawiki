@@ -258,7 +258,7 @@ class LanguageConverter {
 		// Don't call this on stub objects because that causes infinite
 		// recursion during initialisation
 		if ( $wgUser->isLoggedIn() ) {
-			if ( $this->mMainLanguageCode == $wgContLang->getCode() ) {
+			if ( $wgContLang->hasCode( $this->mMainLanguageCode ) ) {
 				$ret = $wgUser->getOption( 'variant' );
 			} else {
 				$ret = $wgUser->getOption( 'variant-' . $this->mMainLanguageCode );

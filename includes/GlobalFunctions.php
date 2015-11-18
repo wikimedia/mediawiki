@@ -1422,7 +1422,7 @@ function wfGetLangObj( $langcode = false ) {
 	}
 
 	global $wgLang;
-	if ( $langcode === false || $langcode === $wgLang->getCode() ) {
+	if ( $langcode === false || $wgLang->hasCode( $langcode ) ) {
 		# $langcode is the language code of user language object.
 		# or it was a boolean and value is false
 		return $wgLang;

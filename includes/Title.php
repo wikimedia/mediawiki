@@ -1762,7 +1762,7 @@ class Title {
 
 				if ( $url === false
 					&& $wgVariantArticlePath
-					&& $wgContLang->getCode() === $this->getPageLanguage()->getCode()
+					&& $this->getPageLanguage()->hasCode( $wgContLang->getCode() )
 					&& $this->getPageLanguage()->hasVariants()
 					&& preg_match( '/^variant=([^&]*)$/', $query, $matches )
 				) {
@@ -4673,7 +4673,7 @@ class Title {
 			// If the user chooses a variant, the content is actually
 			// in a language whose code is the variant code.
 			$variant = $wgLang->getPreferredVariant();
-			if ( $wgLang->getCode() !== $variant ) {
+			if ( !$wgLang->hasCode( $variant ) ) {
 				return Language::factory( $variant );
 			}
 

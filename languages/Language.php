@@ -4363,6 +4363,16 @@ class Language {
 	}
 
 	/**
+	 * Check if $code a valid code for this language object
+	 *
+	 * @since 1.27
+	 * @return bool
+	 */
+	public function hasCode( $code ) {
+		return $code === $this->mCode;
+	}
+
+	/**
 	 * @param string $code
 	 */
 	public function setCode( $code ) {

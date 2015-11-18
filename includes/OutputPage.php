@@ -2087,7 +2087,7 @@ class OutputPage extends ContextSource {
 			$variants = $lang->getVariants();
 			$aloption = array();
 			foreach ( $variants as $variant ) {
-				if ( $variant === $lang->getCode() ) {
+				if ( $lang->hasCode( $variant ) ) {
 					continue;
 				} else {
 					$aloption[] = 'substr=' . $variant;

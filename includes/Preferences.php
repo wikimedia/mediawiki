@@ -350,7 +350,7 @@ class Preferences {
 		// see if there are multiple language variants to choose from
 		if ( !$config->get( 'DisableLangConversion' ) ) {
 			foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
-				if ( $langCode == $wgContLang->getCode() ) {
+				if ( $wgContLang->hasCode( $langCode ) ) {
 					$variants = $wgContLang->getVariants();
 
 					if ( count( $variants ) <= 1 ) {

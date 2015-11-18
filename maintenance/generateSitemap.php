@@ -366,7 +366,7 @@ class GenerateSitemap extends Maintenance {
 				if ( $wgContLang->hasVariants() ) {
 					$variants = $wgContLang->getVariants();
 					foreach ( $variants as $vCode ) {
-						if ( $vCode == $wgContLang->getCode() ) {
+						if ( $wgContLang->getCode( $vCode ) ) {
 							continue; // we don't want default variant
 						}
 						$entry = $this->fileEntry(

@@ -691,7 +691,7 @@ class ParserOptions {
 		}
 		// Check the object and lazy-loaded options
 		return (
-			$this->mUserLang->getCode() === $other->mUserLang->getCode() &&
+			$this->mUserLang->hasCode( $other->mUserLang->getCode() ) &&
 			$this->getDateFormat() === $other->getDateFormat()
 		);
 	}

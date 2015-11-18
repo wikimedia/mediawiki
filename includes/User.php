@@ -1494,7 +1494,7 @@ class User implements IDBAccessObject {
 		// Default language setting
 		$defOpt['language'] = $wgContLang->getCode();
 		foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
-			$defOpt[$langCode == $wgContLang->getCode() ? 'variant' : "variant-$langCode"] = $langCode;
+			$defOpt[$wgContLang->hasCode( $langCode ) ? 'variant' : "variant-$langCode"] = $langCode;
 		}
 		foreach ( SearchEngine::searchableNamespaces() as $nsnum => $nsname ) {
 			$defOpt['searchNs' . $nsnum] = !empty( $wgNamespacesToBeSearchedDefault[$nsnum] );

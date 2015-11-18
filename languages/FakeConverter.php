@@ -113,7 +113,7 @@ class FakeConverter {
 	}
 
 	function validateVariant( $variant = null ) {
-		return $variant === $this->mLang->getCode() ? $variant : null;
+		return $this->mLang->hasCode( $variant ) ? $variant : null;
 	}
 
 	function translate( $text, $variant ) {
