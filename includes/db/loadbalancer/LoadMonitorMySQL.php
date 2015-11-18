@@ -90,9 +90,15 @@ class LoadMonitorMySQL implements LoadMonitor {
 		foreach ( $serverIndexes as $i ) {
 			if ( $i == 0 ) { # Master
 				$lagTimes[$i] = 0;
-			} elseif ( false !== ( $conn = $this->parent->getAnyOpenConnection( $i ) ) ) {
+				continue;
+			}
+			$conn = $this->parent->getAnyOpenConnection( $i );
+			if ( $conn !== false ) {
 				$lagTimes[$i] = $conn->getLag();
-			} elseif ( false !== ( $conn = $this->parent->openConnection( $i, $wiki ) ) ) {
+				continue;
+			}
+			$conn = $this->parent->openConnection( $i, $wiki );
+			if ( $conn !== false ) {
 				$lagTimes[$i] = $conn->getLag();
 				# Close the connection to avoid sleeper connections piling up.
 				# Note that the caller will pick one of these DBs and reconnect,

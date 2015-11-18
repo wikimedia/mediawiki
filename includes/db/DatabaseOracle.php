@@ -395,7 +395,8 @@ class DatabaseOracle extends Database {
 
 		MediaWiki\suppressWarnings();
 
-		if ( ( $this->mLastResult = $stmt = oci_parse( $this->mConn, $sql ) ) === false ) {
+		$this->mLastResult = $stmt = oci_parse( $this->mConn, $sql );
+		if ( $stmt === false ) {
 			$e = oci_error( $this->mConn );
 			$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
 
@@ -637,7 +638,8 @@ class DatabaseOracle extends Database {
 		}
 		$sql .= ')';
 
-		if ( ( $this->mLastResult = $stmt = oci_parse( $this->mConn, $sql ) ) === false ) {
+		$this->mLastResult = $stmt = oci_parse( $this->mConn, $sql );
+		if ( $stmt === false ) {
 			$e = oci_error( $this->mConn );
 			$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
 
@@ -668,7 +670,8 @@ class DatabaseOracle extends Database {
 				}
 			} else {
 				/** @var OCI_Lob[] $lob */
-				if ( ( $lob[$col] = oci_new_descriptor( $this->mConn, OCI_D_LOB ) ) === false ) {
+				$lob[$col] = oci_new_descriptor( $this->mConn, OCI_D_LOB ) );
+				if ( $lob[$col] === false ) {
 					$e = oci_error( $stmt );
 					throw new DBUnexpectedError( $this, "Cannot create LOB descriptor: " . $e['message'] );
 				}
@@ -731,7 +734,8 @@ class DatabaseOracle extends Database {
 			$srcTable = $this->tableName( $srcTable );
 		}
 
-		if ( ( $sequenceData = $this->getSequenceData( $destTable ) ) !== false &&
+		$sequenceData = $this->getSequenceData( $destTable );
+		if ( $sequenceData !== false &&
 			!isset( $varMap[$sequenceData['column']] )
 		) {
 			$varMap[$sequenceData['column']] = 'GET_SEQUENCE_VALUE(\'' . $sequenceData['sequence'] . '\')';
@@ -987,7 +991,8 @@ class DatabaseOracle extends Database {
 			'SELECT version FROM product_component_version ' .
 				'WHERE UPPER(product) LIKE \'ORACLE DATABASE%\''
 		);
-		if ( !( $row = $rset->fetchRow() ) ) {
+		$row = $rset->fetchRow();
+		if ( !$row ) {
 			return oci_server_version( $this->mConn );
 		}
 
@@ -1428,7 +1433,8 @@ class DatabaseOracle extends Database {
 			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
 		}
 
-		if ( ( $this->mLastResult = $stmt = oci_parse( $this->mConn, $sql ) ) === false ) {
+		$this->mLastResult = $stmt = oci_parse( $this->mConn, $sql );
+		if ( $stmt === false ) {
 			$e = oci_error( $this->mConn );
 			$this->reportQueryError( $e['message'], $e['code'], $sql, __METHOD__ );
 
@@ -1458,7 +1464,8 @@ class DatabaseOracle extends Database {
 				}
 			} else {
 				/** @var OCI_Lob[] $lob */
-				if ( ( $lob[$col] = oci_new_descriptor( $this->mConn, OCI_D_LOB ) ) === false ) {
+				$lob[$col] = oci_new_descriptor( $this->mConn, OCI_D_LOB ) );
+				if ( $lob[$col] === false ) {
 					$e = oci_error( $stmt );
 					throw new DBUnexpectedError( $this, "Cannot create LOB descriptor: " . $e['message'] );
 				}

@@ -512,7 +512,8 @@ END;
 		if ( !$res ) {
 			return null;
 		}
-		if ( !( $r = $this->db->fetchRow( $res ) ) ) {
+		$r = $this->db->fetchRow( $res );
+		if ( !$r ) {
 			return null;
 		}
 
@@ -532,7 +533,8 @@ END;
 			if ( !$r2 ) {
 				return null;
 			}
-			if ( !( $row2 = $this->db->fetchRow( $r2 ) ) ) {
+			$row2 = $this->db->fetchRow( $r2 );
+			if ( !$row2 ) {
 				return null;
 			}
 			$colnames[] = $row2[0];
@@ -555,7 +557,8 @@ END;
 				$this->db->addQuotes( $fkey )
 			)
 		);
-		if ( !( $row = $this->db->fetchRow( $r ) ) ) {
+		$row = $this->db->fetchRow( $r );
+		if ( !$row ) {
 			return null;
 		}
 
