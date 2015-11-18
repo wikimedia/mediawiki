@@ -1255,8 +1255,9 @@
 							} else if ( $.isFunction( script ) ) {
 								// Pass jQuery twice so that the signature of the closure which wraps
 								// the script can bind both '$' and 'jQuery'.
-								script( $, $ );
+								script( $, $, mw.loader.require, registry[ module ].module );
 								markModuleReady();
+
 							} else if ( typeof script === 'string' ) {
 								// Site and user modules are a legacy scripts that run in the global scope.
 								// This is transported as a string instead of a function to avoid needing
@@ -1748,6 +1749,9 @@
 					}
 					// List the module as registered
 					registry[ module ] = {
+						module: {
+							exports: {}
+						},
 						version: version !== undefined ? String( version ) : '',
 						dependencies: [],
 						group: typeof group === 'string' ? group : null,
@@ -2015,6 +2019,21 @@
 					return $.map( registry, function ( i, key ) {
 						return key;
 					} );
+				},
+
+				/**
+				 * Obtains exported values of a given ResourceLoader module
+				 * Where that module contains `module.exports`
+				 *
+				 * @return {Array}
+				 */
+				require: function ( moduleName ) {
+					var registeredModule = registry[ moduleName ];
+					if ( registeredModule && registeredModule.state === 'ready' ) {
+						return registeredModule.module.exports;
+					} else {
+						throw 'Module `' + moduleName + '` does not exist or is not ready to be used.'
+					}
 				},
 
 				/**
