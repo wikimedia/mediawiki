@@ -735,6 +735,7 @@ return array(
 	'moment' => array(
 		'scripts' => array(
 			'resources/lib/moment/moment.js',
+			'resources/src/moment-backwards-compatible.js',
 			'resources/src/moment-local-dmy.js',
 		),
 		'languageScripts' => array(
