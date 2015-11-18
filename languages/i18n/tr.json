@@ -80,7 +80,8 @@
 			"McAang",
 			"Captantrips",
 			"Diyapazon",
-			"Matma Rex"
+			"Matma Rex",
+			"HakanIST"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -423,7 +424,7 @@
 	"viewsource": "Kaynağı gör",
 	"viewsource-title": "$1 sayfasının kaynağını görüntüle",
 	"actionthrottled": "Eylem kısılmıştır",
-	"actionthrottledtext": "Spam'e karşı alınan önlemler dahilinde belirli bir süre aralığında bu eylemin gerçekleştirilmesine izin verilen miktarı aştınız.\nLütfen birkaç dakika sonra yeniden deneyin.",
+	"actionthrottledtext": "Suistimallere karşı alınan önlemler dahilinde belirli bir süre aralığında bu eylemin gerçekleştirilmesine izin verilen miktarı aştınız.\nLütfen birkaç dakika sonra yeniden deneyin.",
 	"protectedpagetext": "Bu sayfa değişiklik ya da diğer eylemlerin yapılmasını engellemek için koruma altına alınmıştır.",
 	"viewsourcetext": "Bu sayfanın kaynağını görebilir ve kopyalayabilirsiniz.",
 	"viewyourtext": "Bu sayfada <strong>yaptığınız değişikliklerin</strong> kaynağını görünteleyip kopyalayabilirsiniz.",
@@ -3211,7 +3212,7 @@
 	"htmlform-cloner-delete": "Sil",
 	"htmlform-cloner-required": "En az bir değer gereklidir.",
 	"htmlform-title-not-creatable": "\"$1\"oluşturulabilir bir sayfa ismi değil.",
-	"htmlform-title-not-exists": "$1 mevcut değil",
+	"htmlform-title-not-exists": "$1 mevcut değil.",
 	"htmlform-user-not-exists": "<strong>$1</strong> mevcut değil.",
 	"htmlform-user-not-valid": "<strong>$1</strong> geçerli bir kullanıcı ismi değildir.",
 	"sqlite-has-fts": "$1 tam-metin arama desteği ile",
