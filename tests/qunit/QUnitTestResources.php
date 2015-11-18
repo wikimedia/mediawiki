@@ -8,6 +8,7 @@ return array(
 
 	'test.sinonjs' => array(
 		'scripts' => array(
+			'tests/qunit/suites/resources/test.sinonjs/index.js',
 			'resources/lib/sinonjs/sinon-1.15.4.js',
 			// We want tests to work in IE, but can't include this as it
 			// will break the placeholders in Sinon because the hack it uses
