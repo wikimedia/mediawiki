@@ -735,6 +735,7 @@ return array(
 	'moment' => array(
 		'scripts' => array(
 			'resources/lib/moment/moment.js',
+			'resources/src/moment-backwards-compatible.js',
 			'resources/src/moment-local-dmy.js',
 		),
 		'languageScripts' => array(
@@ -2106,6 +2107,8 @@ return array(
 	'oojs' => array(
 		'scripts' => array(
 			'resources/lib/oojs/oojs.jquery.js',
+			// This is here for legacy reasons.
+			'resources/src/global-oojs.js',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 		'dependencies' => array(
