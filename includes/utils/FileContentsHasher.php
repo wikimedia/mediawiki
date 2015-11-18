@@ -62,7 +62,7 @@ class FileContentsHasher {
 			return false;
 		}
 
-		$cacheKey = wfGlobalCacheKey( __CLASS__, $filePath, $mtime, $algo );
+		$cacheKey = $this->cache->makeGlobalKey( __CLASS__, $filePath, $mtime, $algo );
 		$hash = $this->cache->get( $cacheKey );
 
 		if ( $hash ) {

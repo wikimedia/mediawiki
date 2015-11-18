@@ -567,7 +567,7 @@ class LoginForm extends SpecialPage {
 
 		$cache = ObjectCache::getLocalClusterInstance();
 		# Make sure the user does not exist already
-		$lock = $cache->getScopedLock( wfGlobalCacheKey( 'account', md5( $this->mUsername ) ) );
+		$lock = $cache->getScopedLock( $cache->makeGlobalKey( 'account', md5( $this->mUsername ) ) );
 		if ( !$lock ) {
 			return Status::newFatal( 'usernameinprogress' );
 		} elseif ( $u->idForName( User::READ_LOCKING ) ) {

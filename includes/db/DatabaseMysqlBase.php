@@ -687,7 +687,7 @@ abstract class DatabaseMysqlBase extends Database {
 			return parent::getApproximateLagStatus();
 		}
 
-		$key = wfGlobalCacheKey( 'mysql-lag', $this->getServer() );
+		$key = $this->srvCache->makeGlobalKey( 'mysql-lag', $this->getServer() );
 		$approxLag = $this->srvCache->get( $key );
 		if ( !$approxLag ) {
 			$approxLag = parent::getApproximateLagStatus();
