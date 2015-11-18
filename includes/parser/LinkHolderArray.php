@@ -315,15 +315,18 @@ class LinkHolderArray {
 					$colours[$pdbk] = '';
 				} elseif ( $ns == NS_SPECIAL ) {
 					$colours[$pdbk] = 'new';
-				} elseif ( ( $id = $linkCache->getGoodLinkID( $pdbk ) ) != 0 ) {
-					$colours[$pdbk] = Linker::getLinkColour( $title, $threshold );
-					$output->addLink( $title, $id );
-					$linkcolour_ids[$id] = $pdbk;
-				} elseif ( $linkCache->isBadLink( $pdbk ) ) {
-					$colours[$pdbk] = 'new';
 				} else {
-					# Not in the link cache, add it to the query
-					$queries[$ns][] = $title->getDBkey();
+					$id = $linkCache->getGoodLinkID( $pdbk );
+					if ( $id != 0 ) {
+						$colours[$pdbk] = Linker::getLinkColour( $title, $threshold );
+						$output->addLink( $title, $id );
+						$linkcolour_ids[$id] = $pdbk;
+					} elseif ( $linkCache->isBadLink( $pdbk ) ) {
+						$colours[$pdbk] = 'new';
+					} else {
+						# Not in the link cache, add it to the query
+						$queries[$ns][] = $title->getDBkey();
+					}
 				}
 			}
 		}

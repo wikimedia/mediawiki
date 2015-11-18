@@ -640,11 +640,12 @@ class NewParserTest extends MediaWikiTestCase {
 			$backend->delete( array( 'src' => $file ), array( 'force' => 1 ) );
 		}
 		foreach ( $files as $file ) {
-			$tmp = $file;
-			while ( $tmp = FileBackend::parentStoragePath( $tmp ) ) {
+			$tmp = FileBackend::parentStoragePath( $file );
+			while ( $tmp ) {
 				if ( !$backend->clean( array( 'dir' => $tmp ) )->isOK() ) {
 					break;
 				}
+				$tmp = FileBackend::parentStoragePath( $tmp );
 			}
 		}
 	}

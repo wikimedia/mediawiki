@@ -100,7 +100,8 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 
 		$this->assertTrue( $re !== false, 'query failed' );
 
-		if ( $row = $re->fetchRow() ) {
+		$row = $re->fetchRow();
+		if ( $row ) {
 			if ( $value instanceof Blob ) {
 				$value = $value->fetch();
 			}
