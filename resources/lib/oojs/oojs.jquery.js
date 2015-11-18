@@ -1531,6 +1531,7 @@ oo.Factory.prototype.create = function ( name ) {
 /*jshint node:true */
 if ( typeof module !== 'undefined' && module.exports ) {
 	module.exports = oo;
+	global.OO = oo;
 } else {
 	global.OO = oo;
 }
