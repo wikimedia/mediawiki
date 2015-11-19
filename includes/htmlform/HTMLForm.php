@@ -1402,16 +1402,19 @@ class HTMLForm extends ContextSource {
 				$v = empty( $value->mParams['nodata'] )
 					? $this->mFieldData[$key]
 					: $value->getDefault();
-				$html[] = $value->$getFieldHtmlMethod( $v );
 
-				$labelValue = trim( $value->getLabel() );
-				if ( $labelValue != '&#160;' && $labelValue !== '' ) {
-					$hasLabel = true;
-				}
+				$retval = $value->$getFieldHtmlMethod( $v );
 
-				if ( get_class( $value ) !== 'HTMLHiddenField' &&
-					get_class( $value ) !== 'HTMLApiField'
-				) {
+				// check, if the form field should be added to
+				// the output.
+				if ( $value->hasVisibleOutput() ) {
+					$html[] = $retval;
+
+					$labelValue = trim( $value->getLabel() );
+					if ( $labelValue != '&#160;' && $labelValue !== '' ) {
+						$hasLabel = true;
+					}
+
 					$hasUserVisibleFields = true;
 				}
 			} elseif ( is_array( $value ) ) {

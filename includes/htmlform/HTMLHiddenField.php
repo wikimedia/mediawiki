@@ -59,4 +59,8 @@ class HTMLHiddenField extends HTMLFormField {
 	public function canDisplayErrors() {
 		return false;
 	}
+
+	public function hasVisibleOutput() {
+		return false;
+	}
 }

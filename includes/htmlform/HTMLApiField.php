@@ -16,4 +16,8 @@ class HTMLApiField extends HTMLFormField {
 	public function getInputHTML( $value ) {
 		return '';
 	}
+
+	public function hasVisibleOutput() {
+		return false;
+	}
 }
