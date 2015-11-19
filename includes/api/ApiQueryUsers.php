@@ -48,6 +48,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		'registration',
 		'emailable',
 		'gender',
+		'centralids',
 	);
 
 	public function __construct( ApiQuery $query, $moduleName ) {
@@ -213,6 +214,12 @@ class ApiQueryUsers extends ApiQueryBase {
 					$data[$name]['gender'] = $gender;
 				}
 
+				if ( isset( $this->prop['centralids'] ) ) {
+					$data[$name] += ApiQueryUserInfo::getCentralUserInfo(
+						$this->getConfig(), $user, $params['attachedwiki']
+					);
+				}
+
 				if ( !is_null( $params['token'] ) ) {
 					$tokenFunctions = $this->getTokenFunctions();
 					foreach ( $params['token'] as $t ) {
@@ -304,9 +311,11 @@ class ApiQueryUsers extends ApiQueryBase {
 					'registration',
 					'emailable',
 					'gender',
+					'centralids',
 				),
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
+			'attachedwiki' => null,
 			'users' => array(
 				ApiBase::PARAM_ISMULTI => true
 			),
