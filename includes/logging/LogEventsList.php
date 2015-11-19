@@ -233,7 +233,7 @@ class LogEventsList extends ContextSource {
 			array( 'class' => 'mw-autocomplete-user' )
 		);
 
-		return '<span style="white-space: nowrap">' . $label . '</span>';
+		return '<span class="mw-input-with-label">' . $label . '</span>';
 	}
 
 	/**
@@ -249,7 +249,7 @@ class LogEventsList extends ContextSource {
 			$title
 		);
 
-		return '<span style="white-space: nowrap">' . $label .	'</span>';
+		return '<span class="mw-input-with-label">' . $label .	'</span>';
 	}
 
 	/**
@@ -257,7 +257,7 @@ class LogEventsList extends ContextSource {
 	 * @return string Checkbox
 	 */
 	private function getTitlePattern( $pattern ) {
-		return '<span style="white-space: nowrap">' .
+		return '<span class="mw-input-with-label">' .
 			Xml::checkLabel( $this->msg( 'log-title-wildcard' )->text(), 'pattern', 'pattern', $pattern ) .
 			'</span>';
 	}

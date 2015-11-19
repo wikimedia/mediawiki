@@ -543,7 +543,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			) . '&#160;' .
 				Html::rawElement(
 					'span',
-					array( 'style' => 'white-space: nowrap' ),
+					array( 'class' => 'mw-input-with-label' ),
 					Xml::checkLabel(
 						$this->msg( 'invert' )->text(),
 						'nsInvert',
@@ -555,7 +555,7 @@ class SpecialContributions extends IncludableSpecialPage {
 						)
 					) . '&#160;'
 				) .
-				Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
+				Html::rawElement( 'span', array( 'class' => 'mw-input-with-label' ),
 					Xml::checkLabel(
 						$this->msg( 'namespace_association' )->text(),
 						'associated',
@@ -572,7 +572,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
 			$deletedOnlyCheck = Html::rawElement(
 				'span',
-				array( 'style' => 'white-space: nowrap' ),
+				array( 'class' => 'mw-input-with-label' ),
 				Xml::checkLabel(
 					$this->msg( 'history-show-deleted' )->text(),
 					'deletedOnly',
@@ -587,7 +587,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$checkLabelTopOnly = Html::rawElement(
 			'span',
-			array( 'style' => 'white-space: nowrap' ),
+			array( 'class' => 'mw-input-with-label' ),
 			Xml::checkLabel(
 				$this->msg( 'sp-contributions-toponly' )->text(),
 				'topOnly',
@@ -598,7 +598,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		);
 		$checkLabelNewOnly = Html::rawElement(
 			'span',
-			array( 'style' => 'white-space: nowrap' ),
+			array( 'class' => 'mw-input-with-label' ),
 			Xml::checkLabel(
 				$this->msg( 'sp-contributions-newonly' )->text(),
 				'newOnly',
