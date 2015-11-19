@@ -480,21 +480,21 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				'id' => 'namespace',
 				'class' => 'namespaceselector',
 			)
-		) . '&#160;';
-		$form .= Xml::checkLabel(
+		) . "\n";
+		$form .= '<span class="mw-input-with-label">' . Xml::checkLabel(
 			$this->msg( 'invert' )->text(),
 			'invert',
 			'nsinvert',
 			$opts['invert'],
 			array( 'title' => $this->msg( 'tooltip-invert' )->text() )
-		) . '&#160;';
-		$form .= Xml::checkLabel(
+		) . "</span>\n";
+		$form .= '<span class="mw-input-with-label">' . Xml::checkLabel(
 			$this->msg( 'namespace_association' )->text(),
 			'associated',
 			'nsassociated',
 			$opts['associated'],
 			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
-		) . '&#160;';
+		) . "</span>\n";
 		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "</p>\n";
 		foreach ( $hiddenFields as $key => $value ) {
 			$form .= Html::hidden( $key, $value ) . "\n";
@@ -598,12 +598,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	protected function showHideCheck( $options, $message, $name, $value ) {
 		$options[$name] = 1 - (int)$value;
 
-		return Xml::checkLabel(
+		return '<span class="mw-input-with-label">' . Xml::checkLabel(
 			$this->msg( $message, '' )->text(),
 			$name,
 			$name,
 			(int)$value
-		);
+		) . '</span>';
 	}
 
 	/**
