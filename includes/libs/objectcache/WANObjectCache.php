@@ -276,7 +276,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 					$checkKeyTimes = array_merge( $checkKeyTimes, $checkKeyTimesByKey[$key] );
 				}
 				foreach ( $checkKeyTimes as $checkKeyTime ) {
-					$safeTimestamp = $checkKeyTime + self::HOLDOFF_TTL;
+					$safeTimestamp = $checkKeyTime + $this->getHoldOffTTL();
 					if ( $safeTimestamp >= $wrappedValues[$vKey][self::FLD_TIME] ) {
 						$curTTL = min( $curTTL, $checkKeyTime - $now );
 					}
@@ -1043,5 +1043,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		} else {
 			return false;
 		}
+	}
+
+	protected function getHoldOffTTL() {
+		return self::HOLDOFF_TTL;
 	}
 }
