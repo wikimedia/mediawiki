@@ -800,10 +800,9 @@
 				// Selector cache for the marker element. Use getMarker() to get/use the marker!
 				$marker = null,
 
-				// Buffer for #addEmbeddedCSS
+				// For #addEmbeddedCSS
 				cssBuffer = '',
-
-				// Callbacks for #addEmbeddedCSS
+				cssBufferTimer = null,
 				cssCallbacks = $.Callbacks();
 
 			function getMarker() {
@@ -872,40 +871,35 @@
 					cssCallbacks.add( callback );
 				}
 
-				// Yield once before inserting the <style> tag. There are likely
-				// more calls coming up which we can combine this way.
-				// Appending a stylesheet and waiting for the browser to repaint
-				// is fairly expensive, this reduces that (bug 45810)
+				// Yield once before creating the <style> tag. This lets multiple stylesheets
+				// accumulate into one buffer, allowing us to reduce how often new stylesheets
+				// are inserted in the browser. Appending a stylesheet and waiting for the
+				// browser to repaint is fairly expensive. (T47810)
 				if ( cssText ) {
-					// Be careful not to extend the buffer with css that needs a new stylesheet.
-					// cssText containing `@import` rules needs to go at the start of a buffer,
-					// since those only work when placed at the start of a stylesheet; bug 35562.
+					// Don't extend the buffer if the item needs its own stylesheet.
+					// Keywords like `@import` are only valid at the start of a stylesheet (T37562).
 					if ( !cssBuffer || cssText.slice( 0, '@import'.length ) !== '@import' ) {
 						// Linebreak for somewhat distinguishable sections
-						// (the rl-cachekey comment separating each)
 						cssBuffer += '\n' + cssText;
-						// TODO: Use requestAnimationFrame in the future which will
-						// perform even better by not injecting styles while the browser
-						// is painting.
-						setTimeout( function () {
-							// Can't pass addEmbeddedCSS to setTimeout directly because Firefox
-							// (below version 13) has the non-standard behaviour of passing a
-							// numerical "lateness" value as first argument to this callback
-							// http://benalman.com/news/2009/07/the-mysterious-firefox-settime/
-							addEmbeddedCSS();
-						} );
+						// TODO: Using requestAnimationFrame would perform better by not injecting
+						// styles while the browser is busy painting.
+						if ( !cssBufferTimer ) {
+							cssBufferTimer = setTimeout( function () {
+								// Support: Firefox < 13
+								// Firefox 12 has non-standard behaviour of passing a number
+								// as first argument to a setTimeout callback.
+								// http://benalman.com/news/2009/07/the-mysterious-firefox-settime/
+								addEmbeddedCSS();
+							} );
+						}
 						return;
 					}
 
-				// This is a delayed call and we got a buffer still
-				} else if ( cssBuffer ) {
+				// This is a scheduled flush for the buffer
+				} else {
+					cssBufferTimer = null;
 					cssText = cssBuffer;
 					cssBuffer = '';
-
-				} else {
-					// This is a delayed call, but buffer was already cleared by
-					// another delayed call.
-					return;
 				}
 
 				// By default, always create a new <style>. Appending text to a <style>
