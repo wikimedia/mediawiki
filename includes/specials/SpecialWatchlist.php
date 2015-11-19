@@ -466,7 +466,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		# Namespace filter and put the whole form together.
 		$form .= $wlInfo;
 		$form .= $cutofflinks;
-		$form .= $this->msg( 'hide' ) .
+		$form .= $this->msg( 'watchlist-hide' ) .
 			$this->msg( 'colon-separator' )->escaped() .
 			implode( ' ', $links );
 		$form .= "\n<hr />\n<p>";

@@ -2100,6 +2100,7 @@
 	"wlnote": "Used on [[Special:Watchlist]] when a maximum number of hours or days is specified.\n\nParameters:\n* $1 - the number of changes shown\n* $2 - the number of hours for which the changes are shown\n* $3 - a date alone\n* $4 - a time alone",
 	"wlshowlast": "Appears on [[Special:Watchlist]]. Parameters:\n* $1 - a choice of different numbers of hours (\"1 | 2 | 6 | 12\")\n* $2 - a choice of different numbers of days (\"1 | 3 | 7\" and the maximum number of days available)\nClicking on your choice changes the list of changes you see (without changing the default in my preferences).",
 	"watchlistall2": "Appears on [[Special:Watchlist]], after {{msg-mw|wlshowtime}}, as the option to display all available data regardless of age.\n{{Identical|All}}",
+	"watchlist-hide": "Appears on [[Special:Watchlist]]. It is the first word on a new line with checkboxes to hide/unhide options",
 	"wlshowtime": "Appears on [[Special:Watchlist]].",
 	"wlshowhideminor": "Option text in [[Special:Watchlist]]. Cf. {{msg-mw|rcshowhideminor}}.\n{{Identical|Minor edit}}",
 	"wlshowhidebots": "Option text in [[Special:Watchlist]]. Cf. {{msg-mw|rcshowhidebots}}.\n{{Identical|Bot}}",
