@@ -11,6 +11,7 @@
 	 *
 	 * @class
 	 * @extends OO.ui.SearchWidget
+	 * @mixins OO.ui.mixin.RequestManager
 	 * @mixins mw.widgets.TitleWidget
 	 *
 	 * @constructor
@@ -23,6 +24,7 @@
 
 		// Mixin constructors
 		mw.widgets.TitleWidget.call( this, config );
+		OO.ui.mixin.RequestManager.call( this, config );
 
 		this.query.setValidation( this.isQueryValid.bind( this ) );
 
@@ -46,6 +48,7 @@
 	/* Setup */
 
 	OO.inheritClass( mw.widgets.TitleSearchWidget, OO.ui.SearchWidget );
+	OO.mixinClass( mw.widgets.TitleSearchWidget, OO.ui.mixin.RequestManager );
 	OO.mixinClass( mw.widgets.TitleSearchWidget, mw.widgets.TitleWidget );
 
 	/* Methods */
@@ -72,19 +75,30 @@
 	mw.widgets.TitleSearchWidget.prototype.onQueryChange = function () {
 		var widget = this;
 
-		if ( this.currentRequest ) {
-			this.currentRequest.abort();
-		}
-
-		this.currentRequest = this.getSuggestionsPromise();
-		this.currentRequest.done( function ( response ) {
+		this.getRequestData().done( function ( data ) {
 			// Parent method
 			mw.widgets.TitleSearchWidget.parent.prototype.onQueryChange.call( widget );
-
-			widget.results.addItems( widget.getOptionsFromData( response.query || {} ) );
-
-			widget.currentRequest = false;
+			widget.results.addItems( widget.getOptionsFromData( data ) );
 		} );
+	};
+
+	/**
+	 * @inheritdoc OO.ui.mixin.RequestManager
+	 */
+	mw.widgets.TitleSearchWidget.prototype.getRequestQuery = function () {
+		return this.getQueryValue();
+	};
+	/**
+	 * @inheritdoc OO.ui.mixin.RequestManager
+	 */
+	mw.widgets.TitleSearchWidget.prototype.getRequest = function () {
+		return this.getSuggestionsPromise();
+	};
+	/**
+	 * @inheritdoc OO.ui.mixin.RequestManager
+	 */
+	mw.widgets.TitleSearchWidget.prototype.getRequestCacheDataFromResponse = function ( response ) {
+		return response.query || {};
 	};
 
 }( jQuery, mediaWiki ) );
