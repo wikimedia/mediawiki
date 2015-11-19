@@ -1819,6 +1819,7 @@
 	"wlnote": "Níže {{PLURAL:$1|je poslední změna|jsou poslední <strong>$1</strong> změny|je posledních <strong>$1</strong> změn}} za {{PLURAL:$2|poslední hodinu|poslední <strong>$2</strong> hodiny|posledních <strong>$2</strong> hodin}} do $4, $3.",
 	"wlshowlast": "Ukázat posledních $1 hodin $2 dnů",
 	"watchlistall2": "všechny",
+	"watchlist-hide": "Skrýt",
 	"wlshowtime": "Ukázat posledních:",
 	"wlshowhideminor": "malé editace",
 	"wlshowhidebots": "boty",

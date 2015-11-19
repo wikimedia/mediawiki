@@ -92,7 +92,8 @@
 			"CassiodoroVicinetti",
 			"Bultro",
 			"Oggioniale",
-			"Wim b"
+			"Wim b",
+			"V6rg"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -242,7 +243,7 @@
 	"faq": "Domande frequenti",
 	"faqpage": "Project:Domande frequenti",
 	"actions": "Azioni",
-	"namespaces": "Namespace",
+	"namespaces": "نؤمفضا",
 	"variants": "Varianti",
 	"navigation-heading": "Menu di navigazione",
 	"errorpagetitle": "Errore",
@@ -1783,7 +1784,7 @@
 	"sp-deletedcontributions-contribs": "contributi",
 	"linksearch": "Ricerca collegamenti esterni",
 	"linksearch-pat": "Pattern di ricerca:",
-	"linksearch-ns": "Namespace:",
+	"linksearch-ns": "نؤمفضا:",
 	"linksearch-ok": "Cerca",
 	"linksearch-text": "È possibile fare uso di metacaratteri, ad esempio \"*.wikipedia.org\".\nÈ necessario almeno un dominio di primo livello, ad esempio \"*.org\".<br />\n{{PLURAL:$2|Protocollo supportato|Protocolli supportati}}: $1 (predefinito http:// se nessun protocollo è specificato).",
 	"linksearch-line": "$1 presente nella pagina $2",

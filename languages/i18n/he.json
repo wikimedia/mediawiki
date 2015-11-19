@@ -1823,6 +1823,7 @@
 	"wlnote": "להלן {{PLURAL:$1|השינוי האחרון|<strong>$1</strong> השינויים האחרונים}} {{PLURAL:$2|בשעה האחרונה|בשעתיים האחרונות|ב־<strong>$2</strong> השעות האחרונות}}, עד $4, $3.",
 	"wlshowlast": "הצגת $1 שעות אחרונות $2 ימים אחרונים",
 	"watchlistall2": "הכול",
+	"watchlist-hide": "הסתרה",
 	"wlshowtime": "להציג מאז:",
 	"wlshowhideminor": "עריכות משניות",
 	"wlshowhidebots": "בוטים",

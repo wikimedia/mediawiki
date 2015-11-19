@@ -3105,6 +3105,7 @@
 	"feedback-subject": "විෂයය:",
 	"feedback-submit": "යොමන්න",
 	"feedback-thanks": "ස්තුතියි! ඔබේ ප්‍රතිචාරය \"[$2 $1]\" පිටුවට එක් කරන ලදී.",
+	"feedback-useragent": "පරිශීලක නියෝජිත:",
 	"searchsuggest-search": "ගවේශණය කරන්න",
 	"searchsuggest-containing": "ඇතුළත් වෙමින් පවතී...",
 	"api-error-badaccess-groups": "මෙම විකියට ගොනු උඩුගතකිරීම සඳහා ඔබට අවසර නැත.",

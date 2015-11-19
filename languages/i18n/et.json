@@ -1817,6 +1817,7 @@
 	"wlnote": "Allpool on {{PLURAL:$1|viimane muudatus|viimased <strong>$1</strong> muudatust}} viimase {{PLURAL:$2|tunni|<strong>$2</strong> tunni}} jooksul seisuga $3, kell $4.",
 	"wlshowlast": "Näita viimast $1 tundi $2 päeva.",
 	"watchlistall2": "kõike",
+	"watchlist-hide": "Peida",
 	"wlshowtime": "Näita viimast:",
 	"wlshowhideminor": "pisimuudatused",
 	"wlshowhidebots": "robotid",

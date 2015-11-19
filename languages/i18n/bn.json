@@ -981,7 +981,7 @@
 	"youremail": "ইমেইল *",
 	"username": "{{GENDER:$1|ব্যবহারকারী নাম}}:",
 	"prefs-memberingroups": "{{PLURAL:$1|দলের|দলসমূহের}} {{GENDER:$2|সদস্য}}:",
-	"prefs-registration": "নিবন্ধের সময়:",
+	"prefs-registration": "নিবন্ধনের সময়:",
 	"yourrealname": "আসল নাম *",
 	"yourlanguage": "ভাষা:",
 	"yourvariant": "বিষয়বস্তুর ভাষার বিকল্প:",

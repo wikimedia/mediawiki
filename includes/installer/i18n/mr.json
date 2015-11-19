@@ -8,7 +8,7 @@
 	"config-information": "माहिती",
 	"config-localsettings-key": "दर्जोन्नती कळ:",
 	"config-localsettings-badkey": "आपण दिलेली कळ चुकीची आहे.",
-	"config-session-error": "सत्र सुरू करण्यात त्रूटी:$1",
+	"config-session-error": "सत्र सुरू करण्यात त्रुटी:$1",
 	"config-your-language": "आपली भाषा:",
 	"config-your-language-help": "उभारणी प्रक्रियेत वापरावयाची भाषा निवडा.",
 	"config-wiki-language": "विकी भाषा:",
@@ -58,7 +58,7 @@
 	"config-install-step-done": "झाले",
 	"config-install-extensions": "विस्तारके अंतर्भूत करून",
 	"config-install-tables": "सारण्या बनवित आहे",
-	"config-install-tables-failed": "<strong>त्रूटी:</strong>खालील त्रूटीमुळे सारणी बनविणे अयशस्वी:$1",
+	"config-install-tables-failed": "<strong>त्रुटी:</strong>खालील त्रुटीमुळे सारणी बनविणे अयशस्वी:$1",
 	"config-help": "साहाय्य",
 	"mainpagetext": "'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण.'''",
 	"mainpagedocfooter": "विकी सॉफ्टवेअर वापरण्याकरिता [//meta.wikimedia.org/wiki/Help:Contents यूजर गाईड] पहा.\n\n== सुरुवात करा ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings रचित मांडण्याची यादी]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ मिडियाविकि FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-मिडियाविकिची मेलिंग यादीचे विमोचनाची उद्घोषणाannounce MediaWiki release mailing list]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources आपल्या भाषेसाठी मिडियाविकिचे स्थानिकिकरण करा]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam आपल्या विकिवर स्पॅमशी दोन हात कशे करावे ते शिका]"

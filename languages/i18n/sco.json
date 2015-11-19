@@ -21,7 +21,8 @@
 			"Macofe",
 			"Caliburn",
 			"Matma Rex",
-			"Aursani"
+			"Aursani",
+			"V6rg"
 		]
 	},
 	"tog-underline": "Unnerline airtins:",
@@ -1643,7 +1644,7 @@
 	"listgrouprights-addgroup-self-all": "Eik aw groops til yer accoont",
 	"listgrouprights-removegroup-self-all": "Remuiv aw groops fae yer accoont",
 	"listgrouprights-namespaceprotection-header": "Namespace restreections",
-	"listgrouprights-namespaceprotection-namespace": "Namespace",
+	"listgrouprights-namespaceprotection-namespace": "نؤمفضا",
 	"listgrouprights-namespaceprotection-restrictedto": "Richt(s) allooing ae uiser tae eedit",
 	"trackingcategories": "Keepin track o categeries",
 	"trackingcategories-summary": "This page leets the trackin categeries that ar autæmateecallie populatit bi the MediaWiki saffware. Thair names can be chynged bi alterin the reelavant system messages in the {{ns:8}} namespace.",
@@ -1711,6 +1712,7 @@
 	"wlheader-showupdated": "Pages that hae been chynged sin ye last veesitit thaim ar shawn in '''baud'''.",
 	"wlnote": "Ablo {{PLURAL:$1|is the laist chynge|ae the laist <strong>$1</strong> chynges}} in the laist {{PLURAL:$2|hoor|<strong>$2</strong> hoors}}, aes o $3, $4.",
 	"wlshowlast": "Shaw the hainmaist $1 hoors $2 days",
+	"watchlistall2": "aw",
 	"watchlist-options": "Watchleet opties",
 	"watching": "Watchin...",
 	"unwatching": "Onwatchin...",
@@ -1865,7 +1867,7 @@
 	"undelete-error-long": "Mistaks were encoontered while ondelytin the file:\n\n$1",
 	"undelete-show-file-confirm": "Ar ye sair that ye want tae see the delytit reveesion o the file \"<nowiki>$1</nowiki>\" fae $2 at $3?",
 	"undelete-show-file-submit": "Ay",
-	"namespace": "Namespace:",
+	"namespace": "نؤمفضا:",
 	"invert": "Invert selection",
 	"tooltip-invert": "Check this kist tae skauk chynges til pages wiin the selectit namespace (n the associatit namespace gif checked)",
 	"namespace_association": "Associatit namespace",

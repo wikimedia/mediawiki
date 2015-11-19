@@ -18,7 +18,8 @@
 			"Sprüngli",
 			"아라",
 			"Ninonino",
-			"Macofe"
+			"Macofe",
+			"V6rg"
 		]
 	},
 	"tog-underline": "Sutulinia i ligam",
@@ -165,7 +166,7 @@
 	"faq": "FAQ",
 	"faqpage": "Project:Dumand frequent",
 	"actions": "Azión",
-	"namespaces": "Namespace",
+	"namespaces": "نؤمفضا",
 	"variants": "Variant",
 	"navigation-heading": "Menù de navigasiù",
 	"errorpagetitle": "Erur",
@@ -391,8 +392,6 @@
 	"createaccountreason": "Mutìf:",
 	"createacct-reason": "Mutìf:",
 	"createacct-reason-ph": "Che fòza che sét dré a creà 'n ótra ütènsa?",
-	"createacct-captcha": "Contròl de sigürèsa",
-	"createacct-imgcaptcha-ph": "Mèt dét el tèst che te èdet ché sura",
 	"createacct-submit": "Créa la tò ütènsa",
 	"createacct-another-submit": "Créa 'n ótra ütènsa",
 	"createacct-benefit-heading": "{{SITENAME}} la crès gràsie a le persùne compagn de té.",
@@ -1110,6 +1109,7 @@
 	"unwatchthispage": "Desmèt de tègner d'öcc",
 	"watchlist-details": "{{PLURAL:$1|$1 pagina|$1 paginn}} tegnüü sot ögg, fö che i paginn de discüssión.",
 	"wlshowlast": "Fa vidé i ültim $1 ur $2 dì",
+	"watchlistall2": "tücc",
 	"watchlist-options": "Upzión lista d'ussevazión",
 	"watching": "Giuntà ai pagin da ten d'ögg...",
 	"unwatching": "Eliminà dai pagin da ten d'ögg...",

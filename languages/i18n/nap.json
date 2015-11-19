@@ -11,7 +11,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Candalua",
-			"Macofe"
+			"Macofe",
+			"V6rg"
 		]
 	},
 	"tog-underline": "Sottolinia 'e jonte:",
@@ -1727,7 +1728,7 @@
 	"listgrouprights-addgroup-self-all": "Miette tutt' 'e gruppe ncopp' 'o cunto d' 'o mio",
 	"listgrouprights-removegroup-self-all": "Lèva tutt' 'e gruppe 'a 'o cunto utente d' 'o mio",
 	"listgrouprights-namespaceprotection-header": "Restriziune d' 'o namespace",
-	"listgrouprights-namespaceprotection-namespace": "Namespace",
+	"listgrouprights-namespaceprotection-namespace": "نؤمفضا",
 	"listgrouprights-namespaceprotection-restrictedto": "Diritto 'e cagnamiento 'e l'utente",
 	"trackingcategories": "Categurìe 'e cuntrollo",
 	"trackingcategories-summary": "Sta paggena elenca 'e categurìe ca stann'automaticamente popolate 'a 'o software Mediawiki. 'E nomme 'e lloro se ponno cagnà quanno se cagnano 'e relative mmasciate 'e sistema dint' 'o namespace {{ns:8}}.",
@@ -1796,6 +1797,7 @@
 	"wlnote": "Ccà abbascio {{PLURAL:$1|è elencato 'o cagnamiento cchiù ricente|songo elencate 'e <strong>$1</strong> cagnamiente cchiù recente}} {{PLURAL:$2|int'a ll'urdema ora|int' 'e ll'urdeme <strong>$2</strong> ore}}; 'e date songo agghiurnate 'o $3, $4.",
 	"wlshowlast": "Mmusta ll'urdeme $1 ore $2 ghiuorne",
 	"watchlistall2": "tuttuquante",
+	"watchlist-hide": "Annascunne",
 	"wlshowtime": "Mmusta ll'urdeme:",
 	"wlshowhideminor": "cagnamiente piccerille",
 	"wlshowhidebots": "bot",
@@ -1970,7 +1972,7 @@
 	"undelete-error-long": "Errore pe' tramente ca s'arrepigliava na paggena:\n\n$1",
 	"undelete-show-file-confirm": "Site sicuro/a ca vulite veré 'a verziona scancellata d' 'o file \"<nowiki>$1</nowiki>\" d' 'o $2 a 'e $3?",
 	"undelete-show-file-submit": "Sì",
-	"namespace": "Namespace:",
+	"namespace": "نؤمفضا:",
 	"invert": "abbarruca 'a sceveta",
 	"tooltip-invert": "Nzegna sta casciulella p'annaconnere 'e cagnamiente a 'e paggene ca stanno dint' 'o namespace c'avite scigliuto (e 'o namespace stesso si l'avite scigliuto)",
 	"tooltip-whatlinkshere-invert": "Nzignate sta casciulella pe' putè annaconnere 'e link 'e paggene dint' 'o namespace scigliuto.",
