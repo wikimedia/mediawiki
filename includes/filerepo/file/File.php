@@ -1176,8 +1176,13 @@ abstract class File implements IDBAccessObject {
 		if ( !$this->repo
 			|| !isset( $params['physicalWidth'] )
 			|| !isset( $params['physicalHeight'] )
-			|| !( $bucket = $this->getThumbnailBucket( $params['physicalWidth'] ) )
-			|| $bucket == $params['physicalWidth'] ) {
+		) {
+			return false;
+		}
+
+		$bucket = $this->getThumbnailBucket( $params['physicalWidth'] );
+
+		if ( !$bucket || $bucket == $params['physicalWidth'] ) {
 			return false;
 		}
 

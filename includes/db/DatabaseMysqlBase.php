@@ -722,10 +722,13 @@ abstract class DatabaseMysqlBase extends Database {
 		$res = $this->doQuery( $sql );
 
 		$status = false;
-		if ( $res && $row = $this->fetchRow( $res ) ) {
-			$status = $row[0]; // can be NULL, -1, or 0+ per the MySQL manual
-			if ( ctype_digit( $status ) ) { // success
-				$this->lastKnownSlavePos = $pos;
+		if ( $res ) {
+			$row = $this->fetchRow( $res );
+			if ( $row ) {
+				$status = $row[0]; // can be NULL, -1, or 0+ per the MySQL manual
+				if ( ctype_digit( $status ) ) { // success
+					$this->lastKnownSlavePos = $pos;
+				}
 			}
 		}
 
