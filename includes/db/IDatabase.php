@@ -1369,7 +1369,7 @@ interface IDatabase {
 	 * installations. Most callers should use LoadBalancer::safeGetLag()
 	 * instead.
 	 *
-	 * @return int Database replication lag in seconds
+	 * @return int|bool Database replication lag in seconds or false on error
 	 */
 	public function getLag();
 
@@ -1383,7 +1383,7 @@ interface IDatabase {
 	 * safe to be pessimistic. In AUTO-COMMIT mode, this still gives an
 	 * indication of the staleness of subsequent reads.
 	 *
-	 * @return array ('lag': seconds, 'since': UNIX timestamp of BEGIN)
+	 * @return array ('lag': seconds or false on error, 'since': UNIX timestamp of BEGIN)
 	 * @since 1.27
 	 */
 	public function getSessionLagStatus();
