@@ -3898,6 +3898,7 @@ class User implements IDBAccessObject {
 			return Status::newFatal( 'userexists' );
 		}
 		$this->mId = $dbw->insertId();
+		self::$idCacheByName[$this->mName] = $this->mId;
 
 		// Clear instance cache other than user table data, which is already accurate
 		$this->clearInstanceCache();
