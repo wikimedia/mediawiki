@@ -207,6 +207,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		$user->addToDatabase();
 		// Set user ID to match the test value
 		$this->db->update( 'user', array( 'user_id' => 14146 ), array( 'user_id' => $user->getId() ) );
+		User::resetIdByNameCache();
 
 		// Foreign perspective (blockee not on current wiki)...
 		$blockOptions = array(
