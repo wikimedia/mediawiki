@@ -23,7 +23,7 @@
 	 * @cfg {boolean} [showRedlink] Show red link to exact match if it doesn't exist
 	 * @cfg {boolean} [showImages] Show page images
 	 * @cfg {boolean} [showDescriptions] Show page descriptions
-	 * @cfg {boolean} [validate=true] Whether the input must be a valid title
+	 * @cfg {boolean} [validateTitle=true] Whether the input must be a valid title
 	 * @cfg {Object} [cache] Result cache which implements a 'set' method, taking keyed values as an argument
 	 */
 	mw.widgets.TitleWidget = function MwWidgetsTitleWidget( config ) {
@@ -45,7 +45,7 @@
 		this.showRedlink = !!config.showRedlink;
 		this.showImages = !!config.showImages;
 		this.showDescriptions = !!config.showDescriptions;
-		this.validate = config.validate !== undefined ? config.validate : true;
+		this.validateTitle = config.validateTitle !== undefined ? config.validateTitle : true;
 		this.cache = config.cache;
 
 		// Initialization
@@ -287,7 +287,7 @@
 	 * @return {boolean} The query is valid
 	 */
 	mw.widgets.TitleWidget.prototype.isQueryValid = function () {
-		return this.validate ? !!this.getTitle() : true;
+		return this.validateTitle ? !!this.getTitle() : true;
 	};
 
 }( jQuery, mediaWiki ) );
