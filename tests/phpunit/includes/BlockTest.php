@@ -204,9 +204,8 @@ class BlockTest extends MediaWikiLangTestCase {
 
 		// Local perspective (blockee on current wiki)...
 		$user = User::newFromName( 'UserOnForeignWiki' );
+		$user->setId( 14146 );
 		$user->addToDatabase();
-		// Set user ID to match the test value
-		$this->db->update( 'user', array( 'user_id' => 14146 ), array( 'user_id' => $user->getId() ) );
 
 		// Foreign perspective (blockee not on current wiki)...
 		$blockOptions = array(
