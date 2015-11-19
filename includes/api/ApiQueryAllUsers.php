@@ -59,9 +59,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$fld_rights = isset( $prop['rights'] );
 			$fld_registration = isset( $prop['registration'] );
 			$fld_implicitgroups = isset( $prop['implicitgroups'] );
+			$fld_centralids = isset( $prop['centralids'] );
 		} else {
 			$fld_blockinfo = $fld_editcount = $fld_groups = $fld_registration =
-				$fld_rights = $fld_implicitgroups = false;
+				$fld_rights = $fld_implicitgroups = $fld_centralids = false;
 		}
 
 		$limit = $params['limit'];
@@ -239,6 +240,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				'name' => $row->user_name,
 			);
 
+			if ( $fld_centralids ) {
+				$data += ApiQueryUserInfo::getCentralUserInfo(
+					$this->getConfig(), User::newFromId( $row->user_id ), $params['attachedwiki']
+				);
+			}
+
 			if ( $fld_blockinfo && !is_null( $row->ipb_by_text ) ) {
 				$data['blockid'] = (int)$row->ipb_id;
 				$data['blockedby'] = $row->ipb_by_text;
@@ -338,7 +345,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					'implicitgroups',
 					'rights',
 					'editcount',
-					'registration'
+					'registration',
+					'centralids',
 				),
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
@@ -357,6 +365,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					$this->getConfig()->get( 'ActiveUserDays' )
 				),
 			),
+			'attachedwiki' => null,
 		);
 	}
 
