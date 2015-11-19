@@ -620,13 +620,6 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	abstract protected function mysqlPing();
 
-	/**
-	 * Returns slave lag.
-	 *
-	 * This will do a SHOW SLAVE STATUS
-	 *
-	 * @return int
-	 */
 	function getLag() {
 		if ( $this->lagDetectionMethod === 'pt-heartbeat' ) {
 			return $this->getLagFromPtHeartbeat();

@@ -3773,19 +3773,6 @@ abstract class DatabaseBase implements IDatabase {
 		return true;
 	}
 
-	/**
-	 * Get the slave lag when the current transaction started
-	 * or a general lag estimate if not transaction is active
-	 *
-	 * This is useful when transactions might use snapshot isolation
-	 * (e.g. REPEATABLE-READ in innodb), so the "real" lag of that data
-	 * is this lag plus transaction duration. If they don't, it is still
-	 * safe to be pessimistic. In AUTO-COMMIT mode, this still gives an
-	 * indication of the staleness of subsequent reads.
-	 *
-	 * @return array ('lag': seconds, 'since': UNIX timestamp of BEGIN)
-	 * @since 1.27
-	 */
 	public function getSessionLagStatus() {
 		return $this->getTransactionLagStatus() ?: $this->getApproximateLagStatus();
 	}
@@ -3798,7 +3785,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * is this lag plus transaction duration. If they don't, it is still
 	 * safe to be pessimistic. This returns null if there is no transaction.
 	 *
-	 * @return array|null ('lag': seconds, 'since': UNIX timestamp of BEGIN)
+	 * @return array|null ('lag': seconds or false on error, 'since': UNIX timestamp of BEGIN)
 	 * @since 1.27
 	 */
 	public function getTransactionLagStatus() {
@@ -3810,7 +3797,7 @@ abstract class DatabaseBase implements IDatabase {
 	/**
 	 * Get a slave lag estimate for this server
 	 *
-	 * @return array ('lag': seconds, 'since': UNIX timestamp of estimate)
+	 * @return array ('lag': seconds or false on error, 'since': UNIX timestamp of estimate)
 	 * @since 1.27
 	 */
 	public function getApproximateLagStatus() {
@@ -3851,15 +3838,6 @@ abstract class DatabaseBase implements IDatabase {
 		return $res;
 	}
 
-	/**
-	 * Get slave lag. Currently supported only by MySQL.
-	 *
-	 * Note that this function will generate a fatal error on many
-	 * installations. Most callers should use LoadBalancer::safeGetLag()
-	 * instead.
-	 *
-	 * @return int Database replication lag in seconds
-	 */
 	public function getLag() {
 		return 0;
 	}
