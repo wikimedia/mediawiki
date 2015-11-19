@@ -30,7 +30,7 @@ class SquidUpdate implements DeferrableUpdate {
 	protected $urls = array();
 
 	/**
-	 * @param array $urlArr Collection of URLs to purge
+	 * @param string[] $urlArr Collection of URLs to purge
 	 */
 	public function __construct( array $urlArr ) {
 		// Remove duplicate URLs from list
@@ -41,7 +41,7 @@ class SquidUpdate implements DeferrableUpdate {
 	 * Create a SquidUpdate from an array of Title objects, or a TitleArray object
 	 *
 	 * @param Traversable|array $titles
-	 * @param array $urlArr
+	 * @param string[] $urlArr
 	 * @return SquidUpdate
 	 */
 	public static function newFromTitles( $titles, $urlArr = array() ) {
@@ -77,7 +77,7 @@ class SquidUpdate implements DeferrableUpdate {
 	 * (example: $urlArr[] = 'http://my.host/something')
 	 * XXX report broken Squids per mail or log
 	 *
-	 * @param array $urlArr List of full URLs to purge
+	 * @param string[] $urlArr List of full URLs to purge
 	 */
 	public static function purge( array $urlArr ) {
 		global $wgSquidServers, $wgHTCPRouting;
@@ -125,9 +125,9 @@ class SquidUpdate implements DeferrableUpdate {
 	 * Send Hyper Text Caching Protocol (HTCP) CLR requests.
 	 *
 	 * @throws MWException
-	 * @param array $urlArr Collection of URLs to purge
+	 * @param string[] $urlArr Collection of URLs to purge
 	 */
-	protected static function HTCPPurge( $urlArr ) {
+	protected static function HTCPPurge( array $urlArr ) {
 		global $wgHTCPRouting, $wgHTCPMulticastTTL;
 
 		// HTCP CLR operation
