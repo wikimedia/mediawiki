@@ -136,8 +136,9 @@ class BlockTest extends MediaWikiLangTestCase {
 	public function testBlockedUserCanNotCreateAccount() {
 		$username = 'BlockedUserToCreateAccountWith';
 		$u = User::newFromName( $username );
-		$u->setId( 14146 );
 		$u->addToDatabase();
+		$userId = $u->getId();
+		$this->assertNotEquals( 0, $userId, 'sanity' );
 		TestUser::setPasswordForUser( $u, 'NotRandomPass' );
 		unset( $u );
 
@@ -157,7 +158,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		// Foreign perspective (blockee not on current wiki)...
 		$blockOptions = array(
 			'address' => $username,
-			'user' => 14146,
+			'user' => $userId,
 			'reason' => 'crosswiki block...',
 			'timestamp' => wfTimestampNow(),
 			'expiry' => $this->db->getInfinity(),
@@ -205,13 +206,13 @@ class BlockTest extends MediaWikiLangTestCase {
 		// Local perspective (blockee on current wiki)...
 		$user = User::newFromName( 'UserOnForeignWiki' );
 		$user->addToDatabase();
-		// Set user ID to match the test value
-		$this->db->update( 'user', array( 'user_id' => 14146 ), array( 'user_id' => $user->getId() ) );
+		$userId = $user->getId();
+		$this->assertNotEquals( 0, $userId, 'sanity' );
 
 		// Foreign perspective (blockee not on current wiki)...
 		$blockOptions = array(
 			'address' => 'UserOnForeignWiki',
-			'user' => 14146,
+			'user' => $user->getId(),
 			'reason' => 'crosswiki block...',
 			'timestamp' => wfTimestampNow(),
 			'expiry' => $this->db->getInfinity(),
@@ -234,7 +235,7 @@ class BlockTest extends MediaWikiLangTestCase {
 			$block->getTarget()->getName(),
 			'Correct blockee name'
 		);
-		$this->assertEquals( '14146', $block->getTarget()->getId(), 'Correct blockee id' );
+		$this->assertEquals( $userId, $block->getTarget()->getId(), 'Correct blockee id' );
 		$this->assertEquals( 'MetaWikiUser', $block->getBlocker(), 'Correct blocker name' );
 		$this->assertEquals( 'MetaWikiUser', $block->getByName(), 'Correct blocker name' );
 		$this->assertEquals( 0, $block->getBy(), 'Correct blocker id' );
