@@ -2423,7 +2423,7 @@ class User implements IDBAccessObject {
 	 *  through the web interface.
 	 */
 	private function setPasswordInternal( $str ) {
-		$id = self::idFromName( $this->getName() );
+		$id = self::idFromName( $this->getName(), self::READ_LATEST );
 		if ( $id == 0 ) {
 			throw new LogicException( 'Cannot set a password for a user that is not in the database.' );
 		}
@@ -3898,6 +3898,7 @@ class User implements IDBAccessObject {
 			return Status::newFatal( 'userexists' );
 		}
 		$this->mId = $dbw->insertId();
+		unset( self::$idCacheByName[$this->mName] );
 
 		// Clear instance cache other than user table data, which is already accurate
 		$this->clearInstanceCache();
