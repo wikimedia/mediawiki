@@ -33,6 +33,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 	const WL_UNREAD_LIMIT = 1000;
 
+	private $params = array();
 	private $prop = array();
 
 	public function __construct( ApiQuery $query, $moduleName ) {
@@ -40,11 +41,11 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$params = $this->extractRequestParams();
+		$this->params = $this->extractRequestParams();
 		$result = $this->getResult();
 
-		if ( !is_null( $params['prop'] ) ) {
-			$this->prop = array_flip( $params['prop'] );
+		if ( !is_null( $this->params['prop'] ) ) {
+			$this->prop = array_flip( $this->params['prop'] );
 		}
 
 		$r = $this->getCurrentUserInfo();
@@ -74,6 +75,45 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$block->getExpiry(), TS_ISO_8601, 'infinite'
 		);
 		return $vals;
+	}
+
+	/**
+	 * Get central user info
+	 * @param Config $config
+	 * @param User $user
+	 * @param string|null $attachedWiki
+	 * @return array Central user info
+	 *  - centralids: Array mapping non-local Central ID provider names to IDs
+	 *  - attachedlocal: Array mapping Central ID provider names to booleans
+	 *    indicating whether the local user is attached.
+	 *  - attachedwiki: Array mapping Central ID provider names to booleans
+	 *    indicating whether the user is attached to $attachedWiki.
+	 */
+	public static function getCentralUserInfo( Config $config, User $user, $attachedWiki = null ) {
+		$providerIds = array_keys( $config->get( 'CentralIdLookupProviders' ) );
+
+		$ret = array(
+			'centralids' => array(),
+			'attachedlocal' => array(),
+		);
+		ApiResult::setArrayType( $ret['centralids'], 'assoc' );
+		ApiResult::setArrayType( $ret['attachedlocal'], 'assoc' );
+		if ( $attachedWiki ) {
+			$ret['attachedwiki'] = array();
+			ApiResult::setArrayType( $ret['attachedwiki'], 'assoc' );
+		}
+
+		$name = $user->getName();
+		foreach ( $providerIds as $providerId ) {
+			$provider = CentralIdLookup::factory( $providerId );
+			$ret['centralids'][$providerId] = $provider->centralIdFromName( $name );
+			$ret['attachedlocal'][$providerId] = $provider->isAttached( $user );
+			if ( $attachedWiki ) {
+				$ret['attachedwiki'][$providerId] = $provider->isAttached( $user, $attachedWiki );
+			}
+		}
+
+		return $ret;
 	}
 
 	protected function getCurrentUserInfo() {
@@ -205,6 +245,12 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			}
 		}
 
+		if ( isset( $this->prop['centralids'] ) ) {
+			$vals += self::getCentralUserInfo(
+				$this->getConfig(), $this->getUser(), $this->params['attachedwiki']
+			);
+		}
+
 		return $vals;
 	}
 
@@ -267,6 +313,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'acceptlang',
 					'registrationdate',
 					'unreadcount',
+					'centralids',
 				),
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(
 					'unreadcount' => array(
@@ -275,7 +322,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 						self::WL_UNREAD_LIMIT . '+',
 					),
 				),
-			)
+			),
+			'attachedwiki' => null,
 		);
 	}
 
