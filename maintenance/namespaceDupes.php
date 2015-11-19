@@ -390,7 +390,8 @@ class NamespaceConflictChecker extends Maintenance {
 						$titleField => $row->$titleField,
 						$fromField => $row->$fromField
 					),
-					__METHOD__
+					__METHOD__,
+					array( 'IGNORE' )
 				);
 				$this->output( "$table $logTitle -> " .
 					$destTitle->getPrefixedDBkey() . "\n" );
