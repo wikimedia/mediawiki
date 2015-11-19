@@ -100,17 +100,16 @@ class SpecialProtectedpages extends SpecialPage {
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), $this->msg( 'protectedpages' )->text() ) .
 			Html::hidden( 'title', $title->getPrefixedDBkey() ) . "\n" .
-			$this->getNamespaceMenu( $namespace ) . "&#160;\n" .
-			$this->getTypeMenu( $type ) . "&#160;\n" .
-			$this->getLevelMenu( $level ) . "&#160;\n" .
-			"<br /><span style='white-space: nowrap'>" .
-			$this->getExpiryCheck( $indefOnly ) . "&#160;\n" .
-			$this->getCascadeCheck( $cascadeOnly ) . "&#160;\n" .
-			$this->getRedirectCheck( $noRedirect ) . "&#160;\n" .
-			"</span><br /><span style='white-space: nowrap'>" .
-			$this->getSizeLimit( $sizetype, $size ) . "&#160;\n" .
-			"</span>" .
-			"&#160;" . Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "\n" .
+			$this->getNamespaceMenu( $namespace ) . "\n" .
+			$this->getTypeMenu( $type ) . "\n" .
+			$this->getLevelMenu( $level ) . "\n" .
+			"<br />\n" .
+			$this->getExpiryCheck( $indefOnly ) . "\n" .
+			$this->getCascadeCheck( $cascadeOnly ) . "\n" .
+			$this->getRedirectCheck( $noRedirect ) . "\n" .
+			"<br />\n" .
+			$this->getSizeLimit( $sizetype, $size ) . "\n" .
+			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "\n" .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );
 	}
@@ -123,7 +122,7 @@ class SpecialProtectedpages extends SpecialPage {
 	 * @return string
 	 */
 	protected function getNamespaceMenu( $namespace = null ) {
-		return Html::rawElement( 'span', array( 'style' => 'white-space: nowrap;' ),
+		return Html::rawElement( 'span', array( 'class' => 'mw-input-with-label' ),
 			Html::namespaceSelector(
 				array(
 					'selected' => $namespace,
@@ -143,12 +142,12 @@ class SpecialProtectedpages extends SpecialPage {
 	 * @return string Formatted HTML
 	 */
 	protected function getExpiryCheck( $indefOnly ) {
-		return Xml::checkLabel(
+		return '<span class="mw-input-with-label">' . Xml::checkLabel(
 			$this->msg( 'protectedpages-indef' )->text(),
 			'indefonly',
 			'indefonly',
 			$indefOnly
-		) . "\n";
+		) . "</span>\n";
 	}
 
 	/**
@@ -156,12 +155,12 @@ class SpecialProtectedpages extends SpecialPage {
 	 * @return string Formatted HTML
 	 */
 	protected function getCascadeCheck( $cascadeOnly ) {
-		return Xml::checkLabel(
+		return '<span class="mw-input-with-label">' . Xml::checkLabel(
 			$this->msg( 'protectedpages-cascade' )->text(),
 			'cascadeonly',
 			'cascadeonly',
 			$cascadeOnly
-		) . "\n";
+		) . "</span>\n";
 	}
 
 	/**
@@ -169,12 +168,12 @@ class SpecialProtectedpages extends SpecialPage {
 	 * @return string Formatted HTML
 	 */
 	protected function getRedirectCheck( $noRedirect ) {
-		return Xml::checkLabel(
+		return '<span class="mw-input-with-label">' . Xml::checkLabel(
 			$this->msg( 'protectedpages-noredirect' )->text(),
 			'noredirect',
 			'noredirect',
 			$noRedirect
-		) . "\n";
+		) . "</span>\n";
 	}
 
 	/**
@@ -185,14 +184,14 @@ class SpecialProtectedpages extends SpecialPage {
 	protected function getSizeLimit( $sizetype, $size ) {
 		$max = $sizetype === 'max';
 
-		return Xml::radioLabel(
+		return '<span class="mw-input-with-label">' . Xml::radioLabel(
 			$this->msg( 'minimum-size' )->text(),
 			'sizetype',
 			'min',
 			'wpmin',
 			!$max
 		) .
-			'&#160;' .
+			' ' .
 			Xml::radioLabel(
 				$this->msg( 'maximum-size' )->text(),
 				'sizetype',
@@ -200,10 +199,10 @@ class SpecialProtectedpages extends SpecialPage {
 				'wpmax',
 				$max
 			) .
-			'&#160;' .
+			' ' .
 			Xml::input( 'size', 9, $size, array( 'id' => 'wpsize' ) ) .
-			'&#160;' .
-			Xml::label( $this->msg( 'pagesize' )->text(), 'wpsize' );
+			' ' .
+			Xml::label( $this->msg( 'pagesize' )->text(), 'wpsize' ) . "</span>\n";
 	}
 
 	/**
@@ -228,7 +227,7 @@ class SpecialProtectedpages extends SpecialPage {
 			$options[] = Xml::option( $text, $type, $selected ) . "\n";
 		}
 
-		return "<span style='white-space: nowrap'>" .
+		return '<span class="mw-input-with-label">' .
 			Xml::label( $this->msg( 'restriction-type' )->text(), $this->IdType ) . '&#160;' .
 			Xml::tags( 'select',
 				array( 'id' => $this->IdType, 'name' => $this->IdType ),
@@ -260,7 +259,7 @@ class SpecialProtectedpages extends SpecialPage {
 			$options[] = Xml::option( $text, $type, $selected );
 		}
 
-		return "<span style='white-space: nowrap'>" .
+		return '<span class="mw-input-with-label">' .
 			Xml::label( $this->msg( 'restriction-level' )->text(), $this->IdLevel ) . ' ' .
 			Xml::tags( 'select',
 				array( 'id' => $this->IdLevel, 'name' => $this->IdLevel ),
