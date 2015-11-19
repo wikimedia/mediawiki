@@ -250,7 +250,7 @@ class MediaWiki {
 						$this->action = null;
 						$title = $target;
 						$output->addJsConfigVars( array(
-							'wgInternalRedirectTargetUrl' => $target->getFullURL(),
+							'wgInternalRedirectTargetUrl' => $target->getFullURL( $query ),
 						) );
 						$output->addModules( 'mediawiki.action.view.redirect' );
 					}
