@@ -1687,14 +1687,13 @@
 				/**
 				 * Register a source.
 				 *
-				 * The #work method will use this information to split up requests by source.
+				 * The #work() method will use this information to split up requests by source.
 				 *
 				 *     mw.loader.addSource( 'mediawikiwiki', '//www.mediawiki.org/w/load.php' );
 				 *
-				 * @param {string} id Short string representing a source wiki, used internally for
-				 *  registered modules to indicate where they should be loaded from (usually lowercase a-z).
-				 * @param {Object|string} loadUrl load.php url, may be an object for backwards-compatibility
-				 * @return {boolean}
+				 * @param {string|Object} id Source ID, or object mapping ids to load urls
+				 * @param {string} loadUrl Url to a load.php end point
+				 * @throws {Error} If source id is already registered
 				 */
 				addSource: function ( id, loadUrl ) {
 					var source;
@@ -1703,20 +1702,14 @@
 						for ( source in id ) {
 							mw.loader.addSource( source, id[ source ] );
 						}
-						return true;
+						return;
 					}
 
 					if ( hasOwn.call( sources, id ) ) {
 						throw new Error( 'source already registered: ' + id );
 					}
 
-					if ( typeof loadUrl === 'object' ) {
-						loadUrl = loadUrl.loadScript;
-					}
-
 					sources[ id ] = loadUrl;
-
-					return true;
 				},
 
 				/**
