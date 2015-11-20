@@ -81,6 +81,9 @@ production.
   and .flex(@grow: 1, @shrink: 1, @width: auto, @order: 1)) in Less to create
   cross-browser-compatible FlexBox rules. Users will still need to add fallback
   float rules or the like for compatibility with IE9- separately.
+* Added MWTimestamp::getTimezoneString() which returns the localized timezone
+  string, if available. To localize this string, see the comments of
+  $wgLocaltimezone in includes/DefaultSettings.php.
 
 == External libraries ==
 === Upgraded external libraries ===
@@ -131,6 +134,8 @@ changes to languages because of Bugzilla reports.
 * MessageBlobStore::getInstance() was removed (deprecated since 1.25).
 * (T84937) Free external links ("autolinked" urls) will now be terminated
   by &nbsp; and HTML entity encodings of &nbsp, <, and >.
+* (T36948) The default file revert message's timestamp is now in $wgLocaltimezone,
+  instead of UTC.
 
 == Compatibility ==
 
