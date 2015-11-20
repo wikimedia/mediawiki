@@ -27,8 +27,8 @@ production.
   MediaWiki 1.26, in where ResourceLoader became fully asynchronous.
 * $wgMasterWaitTimeout was removed (deprecated in 1.24).
 * Fields in ParserOptions are now private. Use the accessors instead.
-* Custom LESS functions (defined via $wgResourceLoaderLESSFunctions)
-  have been removed, after being deprecated in 1.24.
+* Custom LESS functions (defined via $wgResourceLoaderLESSFunctions or
+  in extension.json) have been removed, after being deprecated in 1.24.
 * $wgAlwaysUseTidy has been removed.
 * ResetSessionID hook has been removed. Nothing seems to use it.
 * Certain AuthPlugin methods are deprecated in favor of new hooks:
@@ -97,13 +97,46 @@ production.
   documentation for mw.Upload.Dialog, mw.Upload.BookletLayout and its
   subclasses for more information.
 
-==== External libraries ====
-* Update es5-shim from v4.0.0 to v4.1.5.
-* Update json2 from revision 2014-02-04 to 2015-05-03.
-* Update Sinon.JS from 1.10.3 to 1.15.4.
-* Upgrade jQuery Client from v1.0.0 to v2.0.0.
-* Added mediawiki/at-ease 1.0.0.
-* Update QUnit from v1.17.1 to v1.18.0.
+== extension.json changes in 1.26 ==
+* (T99344) The extension.json schema is now versioned. All extensions
+  and skins should set a "manifest_version" property corresponding to
+  the schema version they were written for. The only supported version
+  currently is "1".
+* (T102523) The error message if a non-array attribute is set was improved.
+* (T107646) Configuration settings can now specify how they should be merged,
+  which is necessary for arrays using integer keys.
+* (T110389) Adding namespaces through extension.json now actually works
+* $wgNamespaceProtection can now be set in extension.json.
+* $wgCapitalLinkOverrides can now be set in extension.json.
+* (T97186) Extensions using a custom prefix for their configuration settings
+  can now set a "_prefix" key to override the default of "wg".
+* (T99084) Extensions can now specify what MediaWiki core versions they
+  depend upon.
+* (T105236) The extension.json schema now validates custom classes in
+  the "ResourceModules" property properly.
+
+== External libraries ==
+=== Upgraded external libraries ===
+* Updated es5-shim from v4.0.0 to v4.1.5.
+* Updated json2 from revision 2014-02-04 to 2015-05-03.
+* Updated Sinon.JS from 1.10.3 to 1.15.4.
+* Updated jQuery Client from v1.0.0 to v2.0.0.
+* Updated QUnit from v1.17.1 to v1.18.0.
+* Updated liuggio/statsd-php-client from v1.0.12 to v1.0.16
+* Updated oojs/oojs-ui from v0.9.8 to v0.12.9.
+* Updated wikimedia/utfnormal from v1.0.2 to v1.0.3
+* Updated wikimedia/composer-merge-plugin from v1.0.0 to v1.2.1.
+* Updated zordius/lightncandy from v0.18 to v0.21.
+
+=== New external libraries ===
+* Added composer/semver v0.1.0.
+* Added mediawiki/at-ease v1.1.0.
+* Added wikimedia/assert v0.2.2.
+* Added wikimedia/ip-set v1.0.1.
+* Added wikimedia/wrappedstring v2.0.0.
+
+=== Removed and replaced external libraries ===
+* Replaced leafo/lessphp v0.5.0 with oyejorge/less.php: v1.7.0.8
 
 === Bug fixes in 1.26 ===
 * (T53283) load.php sometimes sends 304 response without full headers
