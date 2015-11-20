@@ -137,6 +137,8 @@ changes to languages because of Bugzilla reports.
   by &nbsp; and HTML entity encodings of &nbsp, <, and >.
 * (T36948) The default file revert message's timestamp is now in $wgLocaltimezone,
   instead of UTC.
+* The default name of the 'suppress' group page has been changed from
+  'Project:Oversight' to 'Project:Suppress'.
 
 == Compatibility ==
 
