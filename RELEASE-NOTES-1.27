@@ -106,6 +106,7 @@ production.
 * Added difftotextpst to query=revisions which preforms a pre-save transform on
   the text before diffing it.
 * Deprecated formats dbg, txt, and yaml have been removed.
+* (T47988) The protect log event details now use new-style formatting.
 
 === Action API internal changes in 1.27 ===
 * ApiQueryORM removed.
