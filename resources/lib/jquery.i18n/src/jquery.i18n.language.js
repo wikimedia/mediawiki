@@ -467,6 +467,6 @@
 	};
 
 	$.extend( $.i18n.languages, {
-		default: language
+		'default': language
 	} );
 }( jQuery ) );
