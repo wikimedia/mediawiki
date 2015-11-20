@@ -124,6 +124,8 @@ changes to languages because of Bugzilla reports.
 * WikiPage::doQuickEdit() was removed (deprecated since 1.21).
 * Removed SiteObject and SiteArray classes (deprecated in 1.21).
 * MessageBlobStore::getInstance() was removed (deprecated since 1.25).
+* (T84937) Free external links ("autolinked" urls) will now be terminated
+  by &nbsp; and HTML entity encodings of &nbsp, <, and >.
 
 == Compatibility ==
 
