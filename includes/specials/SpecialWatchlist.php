@@ -507,21 +507,26 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	function cutoffselector( $options ) {
+		$user = $this->getUser();
 		$list = array();
 		$selectOptions = '';
 		$hours = array( 1, 2, 6, 12 );
 		$days = array( 1, 3, 7 );
+		// add the user preference, if it isn't available already
+		if ( !in_array( $user->getOption( 'watchlistdays' ), $days ) ) {
+			$days[] = $user->getOption( 'watchlistdays' );
+		}
 		foreach ( $hours as $h ) {
 			$name = $this->msg( 'hours', $h );
 			$value = $h / 24;
-			$selected = ( $value == $options['days'] ) ? true : false;
+			$selected = $value == $options['days'];
 
 			$selectOptions .= Xml::option( $name, $value, $selected );
 		}
 		foreach ( $days as $d ) {
 			$name = $this->msg( 'days', $d );
 			$value = $d;
-			$selected = ( $value == $options['days'] ) ? true : false;
+			$selected = $value == $options['days'];
 
 			$selectOptions .= Xml::option( $name, $value, $selected );
 		}
