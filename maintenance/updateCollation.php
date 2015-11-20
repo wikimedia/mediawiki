@@ -86,7 +86,7 @@ TEXT;
 
 		$options = array(
 			'LIMIT' => self::BATCH_SIZE,
-			'ORDER BY' => 'cl_to, cl_type, cl_from',
+			'ORDER BY' => 'cl_from, cl_to',
 			'STRAIGHT_JOIN',
 		);
 
@@ -132,7 +132,7 @@ TEXT;
 			$res = $dbw->select(
 				array( 'categorylinks', 'page' ),
 				array( 'cl_from', 'cl_to', 'cl_sortkey_prefix', 'cl_collation',
-					'cl_sortkey', 'cl_type', 'page_namespace', 'page_title'
+					'cl_sortkey', 'page_namespace', 'page_title'
 				),
 				array_merge( $collationConds, $batchConds, array( 'cl_from = page_id' ) ),
 				__METHOD__,
@@ -216,13 +216,13 @@ TEXT;
 
 	/**
 	 * Return an SQL expression selecting rows which sort above the given row,
-	 * assuming an ordering of cl_to, cl_type, cl_from
+	 * assuming an ordering of cl_from, cl_to
 	 * @param stdClass $row
 	 * @param DatabaseBase $dbw
 	 * @return string
 	 */
 	function getBatchCondition( $row, $dbw ) {
-		$fields = array( 'cl_to', 'cl_type', 'cl_from' );
+		$fields = array( 'cl_from', 'cl_to' );
 		$first = true;
 		$cond = false;
 		$prefix = false;
