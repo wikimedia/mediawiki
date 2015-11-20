@@ -1808,6 +1808,7 @@
 	"wlnote": "A continuación {{PLURAL:$1|está a última modificación|están as últimas <strong>$1</strong> modificacións}} {{PLURAL:$2|na última hora|nas últimas <strong>$2</strong> horas}} ata o $3 ás $4.",
 	"wlshowlast": "Mostrar as últimas $1 horas e os últimos $2 días",
 	"watchlistall2": "todo",
+	"watchlist-hide": "Agochar",
 	"wlshowtime": "Mostrar último:",
 	"wlshowhideminor": "edicións menores",
 	"wlshowhidebots": "bots",

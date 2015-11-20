@@ -1871,6 +1871,7 @@
 	"wlnote": "$3 $4 までの{{PLURAL:$2|<strong>$2</strong>時間}}になされた{{PLURAL:$1|<strong>$1</strong>件の変更}}は以下の通りです。",
 	"wlshowlast": "表示する期間: $1時間、$2日間",
 	"watchlistall2": "すべて",
+	"watchlist-hide": "非表示",
 	"wlshowhideminor": "細部の編集",
 	"wlshowhidebots": "ボット",
 	"wlshowhideliu": "登録利用者",

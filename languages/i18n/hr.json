@@ -910,6 +910,7 @@
 	"prefs-help-recentchangescount": "Ovo uključuje nedavne promjene, stare izmjene, i evidencije.",
 	"prefs-help-watchlist-token2": "Ovo je tajni ključ prema sažetku Vašeg popisa praćenja. Svaki suradnik kojem je poznat, moći će čitati Vaš popis praćenih stranica. Ne dijelite ga ni s kim. [[Special:ResetTokens|Kliknite ovdje ako ga želite ponovo postaviti]].",
 	"savedprefs": "Vaše postavke su sačuvane.",
+	"savedrights": "Suradnička prava {{GENDER:suradnika $1|suradnice $1}} su spremljena.",
 	"timezonelegend": "Vremenska zona:",
 	"localtime": "Lokalno vrijeme:",
 	"timezoneuseserverdefault": "Koristi postavke wikija ($1)",

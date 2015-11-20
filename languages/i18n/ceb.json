@@ -9,7 +9,8 @@
 			"Palang hernan",
 			"Reedy",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Leeheonjin"
 		]
 	},
 	"tog-underline": "Binadlisan nga mga sumpay:",
@@ -676,6 +677,8 @@
 	"unwatch": "Pasagdi",
 	"watchlist-details": "{{PLURAL:$1|$1 ka panid|$1 ka mga panid}} ang imong gibantayan, way labot ang mga panid sa hisgot.",
 	"wlshowlast": "Ipakita ang miaging $1 ka oras $2 ka mga adlaw",
+	"watchlistall2": "tanan",
+	"watchlist-hide": "Tagoa",
 	"watchlist-options": "Mga opsyon sa akong gibantayan",
 	"watching": "Gibantayan...",
 	"unwatching": "Gipasagdan...",
@@ -753,7 +756,6 @@
 	"block-log-flags-nocreate": "ang paghimo'g akawnt gipugngan",
 	"movepagetext": "Gamit ang form sa ubos moilis og ngalan sa panid, mabalhin ang tanang kaagi niini ngadto sa bag-ong ngalan.\nAng karaang titulo mahimong panid sa redirekta ngadto sa bag-ong titulo.\nPuyde nimo awtomatik nga i-update ang mga redirekta nga mipunterya sa orihinal nga titulo.\nKon dili nimo kini pilion, siguradoha nga i-tsek nimo ang [[Special:DoubleRedirects|duble]] o [[Special:BrokenRedirects|buak nga redirek]].\nIkaw ang responsable sa pagsigurado nga ang mga sumpay padayon nga magpuntirya ngadto sa saktong adtoan.\n\nBantayi nga ang panid '''dili''' ibalhin kon aduna nay panid sa bag-ong titulo, waylabot kon kini walay sulod o kaha redirek lang ug walay kaagi sa pag-usab.\nBuot ipasabot nga puyde nimo ibalik ang pag-ilis sa ngalan ngadto sa karaang ngalan kon ikaw nasayop, ug dili ka maka-overwrite sa panid nga anaa na.\n\n'''Pahibalo!'''\nMahimo nga drastiko ug wala damha nga kausaban kini sa usa ka panid nga popular;\npalihog siguradoha nga nasabtan nimo ang idangat niini bag-o nimo kini ipadayon.",
 	"movepagetalktext": "Ang kaubang panid sa hisgot awtomatikong mabalhin uban sa meyn nga panid '''waylabot kon:'''\n*Usa ka may-sulod nga panid sa hisgot anaa na ubos sa bag-ong ngalan, o\n*Imo gi-uncheck ang kahon sa ubos.\n\nSa maong mga kaso, manwal nga imo ibalhin o i-merge ang panid kon gustohon.",
-	"movearticle": "Ibalhin ang panid:",
 	"newtitle": "Ngadto sa bag-ong titulo:",
 	"move-watch": "Bantayi kining panid",
 	"movepagebtn": "Ibalhin ang panid",

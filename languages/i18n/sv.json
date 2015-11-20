@@ -1859,6 +1859,7 @@
 	"wlnote": "Nedan finns {{PLURAL:$1|den senaste ändringen|de senaste <strong>$1</strong> ändringarna}} under {{PLURAL:$2|den senaste timmen|de senaste <strong>$2</strong> timmarna}} från den $3 kl. $4.",
 	"wlshowlast": "Visa senaste $1 timmarna $2 dygnen",
 	"watchlistall2": "alla",
+	"watchlist-hide": "Dölj",
 	"wlshowtime": "Visa senaste:",
 	"wlshowhideminor": "mindre redigering",
 	"wlshowhidebots": "robotar",

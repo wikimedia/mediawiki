@@ -1927,6 +1927,7 @@
 	"wlnote": "Ci-dessous {{PLURAL:$1|figure la dernière modification effectuée|figurent les <strong>$1</strong> dernières modifications effectuées}} durant {{PLURAL:$2|la dernière heure|les <strong>$2</strong> dernières heures}}, depuis $3, $4.",
 	"wlshowlast": "Montrer les dernières $1 heures, les derniers $2 jours",
 	"watchlistall2": "tout",
+	"watchlist-hide": "Masquer",
 	"wlshowtime": "Afficher le dernier :",
 	"wlshowhideminor": "modifications mineures",
 	"wlshowhidebots": "robots",

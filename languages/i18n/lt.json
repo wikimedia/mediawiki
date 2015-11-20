@@ -1823,6 +1823,7 @@
 	"wlnote": "{{PLURAL:$1|Rodomas '''$1''' paskutinis pakeitimas, atliktas|Rodomi '''$1''' paskutiniai pakeitimai, atlikti|Rodoma '''$1''' paskutinių pakeitimų, atliktų}} per '''$2''' {{PLURAL:$2|paskutinę valandą|paskutines valandas|paskutinių valandų}}, nuo $3 $4.",
 	"wlshowlast": "Rodyti paskutinių $1 valandų, $2 dienų",
 	"watchlistall2": "visi",
+	"watchlist-hide": "Slėpti",
 	"wlshowtime": "Rodyti paskutinį:",
 	"wlshowhideminor": "smulkūs pakeitimai",
 	"wlshowhidebots": "robotai",
