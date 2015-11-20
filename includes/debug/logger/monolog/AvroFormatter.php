@@ -38,6 +38,10 @@ use Monolog\Formatter\FormatterInterface;
  */
 class AvroFormatter implements FormatterInterface {
 	/**
+	 * @var Magic byte to encode schema revision id.
+	 */
+	const MAGIC = 0x0;
+	/**
 	 * @var array Map from schema name to schema definition
 	 */
 	protected $schemas;
@@ -80,6 +84,7 @@ class AvroFormatter implements FormatterInterface {
 	public function format( array $record ) {
 		$this->io->truncate();
 		$schema = $this->getSchema( $record['channel'] );
+		$revId = $this->getSchemaRevisionId( $record['channel'] );
 		if ( $schema === null ) {
 			trigger_error( "The schema for channel '{$record['channel']}' is not available" );
 			return null;
@@ -92,7 +97,21 @@ class AvroFormatter implements FormatterInterface {
 			trigger_error( "Avro failed to serialize record for {$record['channel']} : {$json}" );
 			return null;
 		}
+		if( $revId !== null ) {
+			return chr( self::MAGIC ) . $this->encode_long( $revId ) . $this->io->string();
+		}
 		return $this->io->string();
+	}
+
+	/**
+	 * Get the writer for the named channel
+	 *
+	 * @var string $channel Name of the schema
+	 * @return int|null
+	 */
+	public function getSchemaRevisionId( $channel ) {
+		// @todo: implement
+		return null;
 	}
 
 	/**
@@ -135,5 +154,17 @@ class AvroFormatter implements FormatterInterface {
 			}
 		}
 		return $this->schemas[$channel];
+	}
+
+	/**
+	 * convert an integer to a 64bits big endian long (Java compatible)
+	 * NOTE: certainly only compatible with PHP 64bits
+	 * @param int $id
+	 * @return string the binary representation of $id
+	 */
+	private function encode_long( $id ) {
+		$high   = ($id & 0xffffffff00000000) >> 32;
+		$low    = $id & 0x00000000ffffffff;
+		return pack('NN', $high, $low);
 	}
 }
