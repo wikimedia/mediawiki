@@ -27,8 +27,8 @@ production.
   MediaWiki 1.26, in where ResourceLoader became fully asynchronous.
 * $wgMasterWaitTimeout was removed (deprecated in 1.24).
 * Fields in ParserOptions are now private. Use the accessors instead.
-* Custom LESS functions (defined via $wgResourceLoaderLESSFunctions)
-  have been removed, after being deprecated in 1.24.
+* Custom LESS functions (defined via $wgResourceLoaderLESSFunctions or
+  in extension.json) have been removed, after being deprecated in 1.24.
 * $wgAlwaysUseTidy has been removed.
 * ResetSessionID hook has been removed. Nothing seems to use it.
 * Certain AuthPlugin methods are deprecated in favor of new hooks:
@@ -100,6 +100,24 @@ production.
 * Added OOUI dialogs and layout for file upload interfaces. See
   documentation for mw.Upload.Dialog, mw.Upload.BookletLayout and its
   subclasses for more information.
+
+== extension.json changes in 1.26 ==
+* (T99344) The extension.json schema is now versioned. All extensions
+  and skins should set a "manifest_version" property corresponding to
+  the schema version they were written for. The only supported version
+  currently is "1".
+* (T102523) The error message if a non-array attribute is set was improved.
+* (T107646) Configuration settings can now specify how they should be merged,
+  which is necessary for arrays using integer keys.
+* (T110389) Adding namespaces through extension.json now actually works
+* $wgNamespaceProtection can now be set in extension.json.
+* $wgCapitalLinkOverrides can now be set in extension.json.
+* (T97186) Extensions using a custom prefix for their configuration settings
+  can now set a "_prefix" key to override the default of "wg".
+* (T99084) Extensions can now specify what MediaWiki core versions they
+  depend upon.
+* (T105236) The extension.json schema now validates custom classes in
+  the "ResourceModules" property properly.
 
 == External libraries ==
 === Upgraded external libraries ===
