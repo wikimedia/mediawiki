@@ -51,14 +51,28 @@ class MessageBlobStore {
 	}
 
 	/**
+	 * Get the message blob for a module
+	 *
+	 * @since 1.27
+	 * @param ResourceLoaderModule $module
+	 * @param string $lang Language code
+	 * @return string JSON
+	 */
+	public function getBlob( ResourceLoaderModule $module, $lang ) {
+		$blobs = $this->getBlobs( array( $module->getName() => $module ), $lang );
+		return $blobs[$module->getName()];
+	}
+
+	/**
 	 * Get the message blobs for a set of modules
 	 *
+	 * @since 1.27
 	 * @param ResourceLoader $resourceLoader
 	 * @param array $modules Array of module objects keyed by module name
 	 * @param string $lang Language code
 	 * @return array An array mapping module names to message blobs
 	 */
-	public function get( ResourceLoader $resourceLoader, $modules, $lang ) {
+	public function getBlobs( $modules, $lang ) {
 		if ( !count( $modules ) ) {
 			return array();
 		}
@@ -97,6 +111,16 @@ class MessageBlobStore {
 		}
 
 		return $blobs;
+	}
+
+	/**
+	 * Get the message blobs for a set of modules
+	 *
+	 * @deprecated since 1.27 Use getBlobs() instead
+	 * @return array
+	 */
+	public function get( ResourceLoader $resourceLoader, $modules, $lang ) {
+		return $this->getBlobs( $modules, $lang );
 	}
 
 	/**
@@ -313,7 +337,7 @@ class MessageBlobStore {
 	 * @param string $lang Language code
 	 * @return string
 	 */
-	private function fetchMessage( $key, $lang ) {
+	protected function fetchMessage( $key, $lang ) {
 		$message = wfMessage( $key )->inLanguage( $lang );
 		if ( !$message->exists() ) {
 			wfDebugLog( 'resourceloader', __METHOD__ . " failed to find: '$key' ($lang)" );
