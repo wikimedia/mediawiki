@@ -435,6 +435,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	/**
 	 * Add a foreign source of modules.
 	 *
+	 * Source IDs are typically the same as the Wiki ID or database name (e.g. lowercase a-z).
+	 *
 	 * @param array|string $id Source ID (string), or array( id1 => loadUrl, id2 => loadUrl, ... )
 	 * @param string|array $loadUrl load.php url (string), or array with loadUrl key for
 	 *  backwards-compatibility.
