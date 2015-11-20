@@ -446,7 +446,7 @@
 		} );
 	} );
 
-	QUnit.asyncTest( 'mw.loader.using( .. ).promise', 2, function ( assert ) {
+	QUnit.asyncTest( 'mw.loader.using( .. ) Promise', 2, function ( assert ) {
 		var isAwesomeDone;
 
 		mw.loader.testCallback = function () {
@@ -631,7 +631,7 @@
 	} );
 
 	// @import (bug 31676)
-	QUnit.asyncTest( 'mw.loader.implement( styles has @import)', 7, function ( assert ) {
+	QUnit.asyncTest( 'mw.loader.implement( styles has @import )', 7, function ( assert ) {
 		var isJsExecuted, $element;
 
 		mw.loader.implement(
@@ -747,7 +747,7 @@
 		} );
 	} );
 
-	QUnit.test( 'mw.loader erroneous indirect dependency', 4, function ( assert ) {
+	QUnit.test( 'mw.loader with broken indirect dependency', 4, function ( assert ) {
 		// don't emit an error event
 		this.sandbox.stub( mw, 'track' );
 
@@ -764,6 +764,17 @@
 		assert.strictEqual( mw.loader.getState( 'test.module3' ), 'error', 'Expected "error" state for test.module3' );
 
 		assert.strictEqual( mw.track.callCount, 1 );
+	} );
+
+	QUnit.test( 'mw.loader with circular dependency', 1, function ( assert ) {
+		mw.loader.register( [
+			[ 'test.circle1', '0', [ 'test.circle2' ] ],
+			[ 'test.circle2', '0', [ 'test.circle3' ] ],
+			[ 'test.circle3', '0', [ 'test.circle1' ] ]
+		] );
+		assert.throws( function () {
+			mw.loader.using( 'test.circle3' );
+		}, /Circular/, 'Detect circular dependency' );
 	} );
 
 	QUnit.test( 'mw.loader out-of-order implementation', 9, function ( assert ) {

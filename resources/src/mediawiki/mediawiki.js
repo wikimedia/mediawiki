@@ -284,7 +284,7 @@
 		 */
 		params: function ( parameters ) {
 			var i;
-			for ( i = 0; i < parameters.length; i += 1 ) {
+			for ( i = 0; i < parameters.length; i++ ) {
 				this.parameters.push( parameters[ i ] );
 			}
 			return this;
@@ -1045,7 +1045,7 @@
 				}
 
 				// Execute all jobs whose dependencies are either all satisfied or contain at least one failed module.
-				for ( j = 0; j < jobs.length; j += 1 ) {
+				for ( j = 0; j < jobs.length; j++ ) {
 					hasErrors = anyFailed( jobs[ j ].dependencies );
 					if ( hasErrors || allReady( jobs[ j ].dependencies ) ) {
 						// All dependencies satisfied, or some have errors
@@ -1097,7 +1097,7 @@
 			 * @throws {Error} If any unregistered module or a dependency loop is encountered
 			 */
 			function sortDependencies( module, resolved, unresolved ) {
-				var n, deps, len, skip;
+				var i, deps, skip;
 
 				if ( !hasOwn.call( registry, module ) ) {
 					throw new Error( 'Unknown dependency: ' + module );
@@ -1134,23 +1134,21 @@
 				}
 				// Tracks down dependencies
 				deps = registry[ module ].dependencies;
-				len = deps.length;
-				for ( n = 0; n < len; n += 1 ) {
-					if ( $.inArray( deps[ n ], resolved ) === -1 ) {
-						if ( unresolved[ deps[ n ] ] ) {
+				for ( i = 0; i < deps.length; i++ ) {
+					if ( $.inArray( deps[ i ], resolved ) === -1 ) {
+						if ( unresolved[ deps[ i ] ] ) {
 							throw new Error(
 								'Circular reference detected: ' + module +
-								' -> ' + deps[ n ]
+								' -> ' + deps[ i ]
 							);
 						}
 
 						// Add to unresolved
 						unresolved[ module ] = true;
-						sortDependencies( deps[ n ], resolved, unresolved );
-						delete unresolved[ module ];
+						sortDependencies( deps[ i ], resolved, unresolved );
 					}
 				}
-				resolved[ resolved.length ] = module;
+				resolved.push( module );
 			}
 
 			/**
@@ -1357,7 +1355,7 @@
 						// Array of css strings in key 'css',
 						// or back-compat array of urls from media-type
 						if ( $.isArray( value ) ) {
-							for ( i = 0; i < value.length; i += 1 ) {
+							for ( i = 0; i < value.length; i++ ) {
 								if ( key === 'bc-url' ) {
 									// back-compat: { <media>: [url, ..] }
 									addLink( media, value[ i ] );
@@ -1372,7 +1370,7 @@
 							// { "url": { <media>: [url, ..] } }
 							for ( media in value ) {
 								urls = value[ media ];
-								for ( i = 0; i < urls.length; i += 1 ) {
+								for ( i = 0; i < urls.length; i++ ) {
 									addLink( media, urls[ i ] );
 								}
 							}
@@ -1443,7 +1441,7 @@
 					}
 				}
 				a.sort();
-				for ( key = 0; key < a.length; key += 1 ) {
+				for ( key = 0; key < a.length; key++ ) {
 					sorted[ a[ key ] ] = o[ a[ key ] ];
 				}
 				return sorted;
@@ -1542,12 +1540,12 @@
 					maxQueryLength = mw.config.get( 'wgResourceLoaderMaxQueryLength', 2000 );
 
 					// Appends a list of modules from the queue to the batch
-					for ( q = 0; q < queue.length; q += 1 ) {
+					for ( q = 0; q < queue.length; q++ ) {
 						// Only request modules which are registered
 						if ( hasOwn.call( registry, queue[ q ] ) && registry[ queue[ q ] ].state === 'registered' ) {
 							// Prevent duplicate entries
 							if ( $.inArray( queue[ q ], batch ) === -1 ) {
-								batch[ batch.length ] = queue[ q ];
+								batch.push( queue[ q ] );
 								// Mark registered modules as loading
 								registry[ queue[ q ] ].state = 'loading';
 							}
@@ -1604,7 +1602,7 @@
 					batch.sort();
 
 					// Split batch by source and by group.
-					for ( b = 0; b < batch.length; b += 1 ) {
+					for ( b = 0; b < batch.length; b++ ) {
 						bSource = registry[ batch[ b ] ].source;
 						bGroup = registry[ batch[ b ] ].group;
 						if ( !hasOwn.call( splits, bSource ) ) {
@@ -1614,7 +1612,7 @@
 							splits[ bSource ][ bGroup ] = [];
 						}
 						bSourceGroup = splits[ bSource ][ bGroup ];
-						bSourceGroup[ bSourceGroup.length ] = batch[ b ];
+						bSourceGroup.push( batch[ b ] );
 					}
 
 					// Clear the batch - this MUST happen before we append any
@@ -1648,7 +1646,7 @@
 
 							moduleMap = {}; // { prefix: [ suffixes ] }
 
-							for ( i = 0; i < modules.length; i += 1 ) {
+							for ( i = 0; i < modules.length; i++ ) {
 								// Determine how many bytes this module would add to the query string
 								lastDotIndex = modules[ i ].lastIndexOf( '.' );
 
@@ -1732,11 +1730,11 @@
 				 * @param {string} [skip=null] Script body of the skip function
 				 */
 				register: function ( module, version, dependencies, group, source, skip ) {
-					var i, len;
+					var i;
 					// Allow multiple registration
 					if ( typeof module === 'object' ) {
 						resolveIndexedDependencies( module );
-						for ( i = 0, len = module.length; i < len; i++ ) {
+						for ( i = 0; i < module.length; i++ ) {
 							// module is an array of module names
 							if ( typeof module[ i ] === 'string' ) {
 								mw.loader.register( module[ i ] );
