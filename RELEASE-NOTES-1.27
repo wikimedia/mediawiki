@@ -53,6 +53,7 @@ production.
 * (T48998) $wgArticlePath must now be either a full url, or start with a "/".
 * $wgRateLimitLog was removed; use $wgDebugLogGroups['ratelimit'] instead.
 * Deprecated API formats dbg, txt, and yaml have been removed.
+* CLDRPluralRule* classes have been replaced with wikimedia/cldr-plural-rule-parser.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
@@ -81,7 +82,11 @@ production.
   cross-browser-compatible FlexBox rules. Users will still need to add fallback
   float rules or the like for compatibility with IE9- separately.
 
-==== External libraries ====
+== External libraries ==
+=== Upgraded external libraries ===
+
+=== New external libraries ===
+* Added wikimedia/cldr-plural-rule-parser v1.0.0
 
 === Bug fixes in 1.27 ===
 * Special:Upload will now display correct maximum allowed file size when running
