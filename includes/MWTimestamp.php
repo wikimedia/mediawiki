@@ -377,7 +377,7 @@ class MWTimestamp {
 	 * Premade translations are not shipped as format() may return whatever the
 	 * system uses, localized or not, so translation must be done through wiki.
 	 *
-	 * @since 1.25
+	 * @since 1.27
 	 * @return Message The localized timezone message
 	 */
 	public function getTimezoneMessage() {
