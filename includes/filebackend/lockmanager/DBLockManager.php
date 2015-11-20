@@ -389,7 +389,7 @@ class PostgreSqlLockManager extends DBLockManager {
 				: "pg_try_advisory_lock({$db->addQuotes( $bigint )}) AS K$bigint";
 		}
 		$res = $db->query( 'SELECT ' . implode( ', ', $fields ), __METHOD__ );
-		$row = (array)$res->fetchObject();
+		$row = $res->fetchRow();
 
 		if ( in_array( 'f', $row ) ) {
 			// Release any acquired locks if some could not be acquired...
