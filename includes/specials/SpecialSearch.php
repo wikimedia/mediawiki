@@ -853,6 +853,7 @@ class SpecialSearch extends SpecialPage {
 		$html = null;
 
 		$score = '';
+		$related = '';
 		if ( Hooks::run( 'ShowSearchHit', array(
 			$this, $result, $terms,
 			&$link, &$redirect, &$section, &$extract,
