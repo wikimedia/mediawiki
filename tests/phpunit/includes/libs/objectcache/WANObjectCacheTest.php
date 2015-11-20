@@ -461,7 +461,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$curTTL = null;
 		$v = $this->cache->get( $key, $curTTL, array( $tKey1, $tKey2 ) );
 		$this->assertEquals( $value, $v, "Value matches" );
-		$this->assertLessThan( -5, $curTTL, "Correct CTL" );
+		$this->assertLessThan( -4.9, $curTTL, "Correct CTL" );
 		$this->assertGreaterThan( -5.1, $curTTL, "Correct CTL" );
 	}
 
