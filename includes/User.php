@@ -699,7 +699,7 @@ class User implements IDBAccessObject {
 			return null;
 		}
 
-		if ( isset( self::$idCacheByName[$name] ) ) {
+		if ( !( $flags & self::READ_LATEST ) && isset( self::$idCacheByName[$name] ) ) {
 			return self::$idCacheByName[$name];
 		}
 
