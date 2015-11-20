@@ -248,8 +248,6 @@ changes to languages because of Phabricator reports.
 * DatabaseBase::errorCount() was removed (unused).
 * $wgDeferredUpdateList was removed.
 * DeferredUpdates::addHTMLCacheUpdate() was removed.
-* The default name of the 'suppress' group page has been changed from
-  'Project:Oversight' to 'Project:Suppress'.
 * DatabaseBase::resultObject() is now protected (use outside Database classes
   not necessary since 1.11).
 * Calling ResourceLoaderFileModule::readStyleFiles() without a
