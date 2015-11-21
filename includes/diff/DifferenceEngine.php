@@ -388,7 +388,8 @@ class DifferenceEngine extends ContextSource {
 		$rdel = $this->revisionDeleteLink( $this->mNewRev );
 
 		# Allow extensions to define their own revision tools
-		Hooks::run( 'DiffRevisionTools', array( $this->mNewRev, &$revisionTools, $this->mOldRev ) );
+		Hooks::run( 'DiffRevisionTools',
+			array( $this->mNewRev, &$revisionTools, $this->mOldRev, $user ) );
 		$formattedRevisionTools = array();
 		// Put each one in parentheses (poor man's button)
 		foreach ( $revisionTools as $key => $tool ) {
