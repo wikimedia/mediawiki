@@ -735,7 +735,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			}
 		}
 		// Allow extension to add their own links here
-		Hooks::run( 'HistoryRevisionTools', array( $rev, &$tools ) );
+		Hooks::run( 'HistoryRevisionTools', array( $rev, &$tools, $prevRev, $user ) );
 
 		if ( $tools ) {
 			$s2 .= ' ' . $this->msg( 'parentheses' )->rawParams( $lang->pipeList( $tools ) )->escaped();

@@ -1094,6 +1094,7 @@ diff view, i.e. undo, etc.
 $newRev: Revision object of the "new" revision
 &$links: Array of HTML links
 $oldRev: Revision object of the "old" revision (may be null)
+$user: Current user object
 
 'DiffViewHeader': Called before diff display
 $diff: DifferenceEngine object that's calling
@@ -1554,6 +1555,8 @@ Special:Version, use this to change the list.
 page history view, i.e. undo, rollback, etc.
 $rev: Revision object
 &$links: Array of HTML links
+$prevRev: Revision object, next in line in page history, or null
+$user: Current user object
 
 'HTMLFileCache::useFileCache': Override whether a page should be cached in file
 cache.
