@@ -80,7 +80,8 @@ class Http {
 		} else {
 			$errors = $status->getErrorsByType( 'error' );
 			$logger = LoggerFactory::getInstance( 'http' );
-			$logger->warning( $status->getWikiText(), array( 'caller' => $caller ) );
+			$logger->warning( $status->getWikiText(),
+				array( 'error' => $errors, 'caller' => $caller, 'content' => $req->getContent() ) );
 			return false;
 		}
 	}
