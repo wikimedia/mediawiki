@@ -1,0 +1,5 @@
+{
+	"project.name": "MediaWiki-Core",
+	"phabricator.uri": "https://phabricator.wikimedia.org/",
+	"repository.callsign": "MW"
+}
