@@ -119,7 +119,7 @@ production.
 
 MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
-changes to languages because of Bugzilla reports.
+changes to languages because of Phabricator reports.
 
 * (T113688) Change default numerals from Gurmukhi to Arabic for Punjabi locale.
 
