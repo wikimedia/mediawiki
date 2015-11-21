@@ -287,7 +287,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 *
 	 * @return array
 	 */
-	private function getFeedQuery() {
+	protected function getFeedQuery() {
 		$query = array_filter( $this->getOptions()->getAllValues(), function ( $value ) {
 			// API handles empty parameters in a different way
 			return $value !== '';
