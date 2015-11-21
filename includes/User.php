@@ -4177,7 +4177,7 @@ class User implements IDBAccessObject {
 			$salt, $request ?: $this->getRequest(), $timestamp
 		);
 
-		if ( $val != $sessionToken ) {
+		if ( !hash_equals( $sessionToken, $val ) ) {
 			wfDebug( "User::matchEditToken: broken session data\n" );
 		}
 
