@@ -60,6 +60,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 /* Stubs */
 
 class ResourceLoaderTestModule extends ResourceLoaderModule {
+	protected $messages = array();
 	protected $dependencies = array();
 	protected $group = null;
 	protected $source = 'local';
@@ -81,6 +82,10 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 
 	public function getStyles( ResourceLoaderContext $context ) {
 		return array( '' => $this->styles );
+	}
+
+	public function getMessages() {
+		return $this->messages;
 	}
 
 	public function getDependencies( ResourceLoaderContext $context = null ) {
