@@ -65,6 +65,10 @@ $wgAutoloadClasses += [
 	'UserWrapper' => "$testDir/phpunit/includes/api/UserWrapper.php",
 	'RandomImageGenerator' => "$testDir/phpunit/includes/api/RandomImageGenerator.php",
 
+	# tests/phpunit/includes/auth
+	'MediaWiki\\Auth\\AuthenticationRequestTestCase' =>
+		"$testDir/phpunit/includes/auth/AuthenticationRequestTestCase.php",
+
 	# tests/phpunit/includes/changes
 	'TestRecentChangesHelper' => "$testDir/phpunit/includes/changes/TestRecentChangesHelper.php",
 
