@@ -357,14 +357,23 @@ final class SessionManager implements SessionManagerInterface {
 	/**
 	 * Auto-create the given user, if necessary
 	 * @private Don't call this yourself. Let Setup.php do it for you at the right time.
-	 * @note This more properly belongs in AuthManager, but we need it now.
-	 *  When AuthManager comes, this will be deprecated and will pass-through
-	 *  to the corresponding AuthManager method.
+	 * @deprecated since 1.27, use MediaWiki\Auth\AuthManager::autoCreateUser instead
 	 * @param User $user User to auto-create
 	 * @return bool Success
 	 */
 	public static function autoCreateUser( User $user ) {
-		global $wgAuth;
+		global $wgAuth, $wgDisableAuthManager;
+
+		// @codeCoverageIgnoreStart
+		if ( !$wgDisableAuthManager ) {
+			wfDeprecated( __METHOD__, '1.27' );
+			return \MediaWiki\Auth\AuthManager::singleton()->autoCreateUser(
+				$user,
+				\MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_SESSSION,
+				false
+			)->isGood();
+		}
+		// @codeCoverageIgnoreEnd
 
 		$logger = self::singleton()->logger;
 
