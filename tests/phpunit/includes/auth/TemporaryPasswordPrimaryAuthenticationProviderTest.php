@@ -1,0 +1,698 @@
+<?php
+
+namespace MediaWiki\Auth;
+
+/**
+ * @group AuthManager
+ * @group Database
+ * @covers MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider
+ */
+class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
+
+	private $manager = null;
+	private $config = null;
+	private $validity = null;
+
+	protected function setUp() {
+		global $wgDisableAuthManager;
+
+		parent::setUp();
+		if ( $wgDisableAuthManager ) {
+			$this->markTestSkipped( '$wgDisableAuthManager is set' );
+		}
+	}
+
+	/**
+	 * Get an instance of the provider
+	 *
+	 * $provider->checkPasswordValidity is mocked to return $this->validity,
+	 * because we don't need to test that here.
+	 *
+	 * @param array $params
+	 * @return TemporaryPasswordPrimaryAuthenticationProvider
+	 */
+	protected function getProvider( $params = [] ) {
+		if ( !$this->config ) {
+			$this->config = new \HashConfig( [
+				'EmailEnabled' => true,
+			] );
+		}
+		$config = new \MultiConfig( [
+			$this->config,
+			\ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+		] );
+
+		if ( !$this->manager ) {
+			$this->manager = new AuthManager( new \FauxRequest(), $config );
+		}
+		$this->validity = \Status::newGood();
+
+		$mockedMethods[] = 'checkPasswordValidity';
+		$provider = $this->getMock(
+			TemporaryPasswordPrimaryAuthenticationProvider::class,
+			$mockedMethods,
+			[ $params ]
+		);
+		$provider->expects( $this->any() )->method( 'checkPasswordValidity' )
+			->will( $this->returnCallback( function () {
+				return $this->validity;
+			} ) );
+		$provider->setConfig( $config );
+		$provider->setLogger( new \Psr\Log\NullLogger() );
+		$provider->setManager( $this->manager );
+
+		return $provider;
+	}
+
+	protected function hookMailer( $func = null ) {
+		\Hooks::clear( 'AlternateUserMailer' );
+		if ( $func ) {
+			\Hooks::register( 'AlternateUserMailer', $func );
+			// Safety
+			\Hooks::register( 'AlternateUserMailer', function () {
+				return false;
+			} );
+		} else {
+			\Hooks::register( 'AlternateUserMailer', function () {
+				$this->fail( 'AlternateUserMailer hook called unexpectedly' );
+				return false;
+			} );
+		}
+
+		return new \ScopedCallback( function () {
+			\Hooks::clear( 'AlternateUserMailer' );
+			\Hooks::register( 'AlternateUserMailer', function () {
+				return false;
+			} );
+		} );
+	}
+
+	public function testBasics() {
+		$provider = new TemporaryPasswordPrimaryAuthenticationProvider();
+
+		$this->assertSame(
+			PrimaryAuthenticationProvider::TYPE_CREATE,
+			$provider->accountCreationType()
+		);
+
+		$this->assertTrue( $provider->testUserExists( 'UTSysop' ) );
+		$this->assertFalse( $provider->testUserExists( 'DoesNotExist' ) );
+	}
+
+	public function testConfig() {
+		$config = new \HashConfig( [
+			'EnableEmail' => false,
+			'NewPasswordExpiry' => 100,
+			'PasswordReminderResendTime' => 101,
+		] );
+
+		$p = \TestingAccessWrapper::newFromObject( new TemporaryPasswordPrimaryAuthenticationProvider() );
+		$p->setConfig( $config );
+		$this->assertSame( false, $p->emailEnabled );
+		$this->assertSame( 100, $p->newPasswordExpiry );
+		$this->assertSame( 101, $p->passwordReminderResendTime );
+
+		$p = \TestingAccessWrapper::newFromObject( new TemporaryPasswordPrimaryAuthenticationProvider( [
+			'emailEnabled' => true,
+			'newPasswordExpiry' => 42,
+			'passwordReminderResendTime' => 43,
+		] ) );
+		$p->setConfig( $config );
+		$this->assertSame( true, $p->emailEnabled );
+		$this->assertSame( 42, $p->newPasswordExpiry );
+		$this->assertSame( 43, $p->passwordReminderResendTime );
+	}
+
+	public function testTestUserCanAuthenticate() {
+		$dbw = wfGetDB( DB_MASTER );
+
+		$passwordFactory = new \PasswordFactory();
+		$passwordFactory->init( \RequestContext::getMain()->getConfig() );
+		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
+		$passwordFactory->setDefaultType( 'A' );
+		$pwhash = $passwordFactory->newFromPlaintext( 'password' )->toString();
+
+		$provider = $this->getProvider();
+		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
+
+		$this->assertFalse( $provider->testUserCanAuthenticate( 'DoesNotExist' ) );
+
+		$dbw->update(
+			'user',
+			[
+				'user_newpassword' => \PasswordFactory::newInvalidPassword()->toString(),
+				'user_newpass_time' => null,
+			],
+			[ 'user_name' => 'UTSysop' ]
+		);
+		$this->assertFalse( $provider->testUserCanAuthenticate( 'UTSysop' ) );
+
+		$dbw->update(
+			'user',
+			[
+				'user_newpassword' => $pwhash,
+				'user_newpass_time' => null,
+			],
+			[ 'user_name' => 'UTSysop' ]
+		);
+		$this->assertTrue( $provider->testUserCanAuthenticate( 'UTSysop' ) );
+
+		$dbw->update(
+			'user',
+			[
+				'user_newpassword' => $pwhash,
+				'user_newpass_time' => $dbw->timestamp( time() - 10 ),
+			],
+			[ 'user_name' => 'UTSysop' ]
+		);
+		$providerPriv->newPasswordExpiry = 100;
+		$this->assertTrue( $provider->testUserCanAuthenticate( 'UTSysop' ) );
+		$providerPriv->newPasswordExpiry = 1;
+		$this->assertFalse( $provider->testUserCanAuthenticate( 'UTSysop' ) );
+
+		$dbw->update(
+			'user',
+			[
+				'user_newpassword' => \PasswordFactory::newInvalidPassword()->toString(),
+				'user_newpass_time' => null,
+			],
+			[ 'user_name' => 'UTSysop' ]
+		);
+	}
+
+	/**
+	 * @dataProvider provideGetAuthenticationRequests
+	 * @param string $action
+	 * @param array $options
+	 * @param array $expected
+	 */
+	public function testGetAuthenticationRequests( $action, $options, $expected ) {
+		$actual = $this->getProvider()->getAuthenticationRequests( $action, $options );
+		foreach ( $actual as $req ) {
+			if ( $req instanceof TemporaryPasswordAuthenticationRequest && $req->password !== null ) {
+				$req->password = 'random';
+			}
+		}
+		$this->assertEquals( $expected, $actual );
+	}
+
+	public static function provideGetAuthenticationRequests() {
+		$anon = [ 'username' => null ];
+		$loggedIn = [ 'username' => 'UTSysop' ];
+
+		return [
+			[ AuthManager::ACTION_LOGIN, $anon, [
+				new PasswordAuthenticationRequest
+			] ],
+			[ AuthManager::ACTION_LOGIN, $loggedIn, [
+				new PasswordAuthenticationRequest
+			] ],
+			[ AuthManager::ACTION_CREATE, $anon, [] ],
+			[ AuthManager::ACTION_CREATE, $loggedIn, [
+				new TemporaryPasswordAuthenticationRequest( 'random' )
+			] ],
+			[ AuthManager::ACTION_LINK, $anon, [] ],
+			[ AuthManager::ACTION_LINK, $loggedIn, [] ],
+			[ AuthManager::ACTION_CHANGE, $anon, [
+				new TemporaryPasswordAuthenticationRequest( 'random' )
+			] ],
+			[ AuthManager::ACTION_CHANGE, $loggedIn, [
+				new TemporaryPasswordAuthenticationRequest( 'random' )
+			] ],
+			[ AuthManager::ACTION_REMOVE, $anon, [
+				new TemporaryPasswordAuthenticationRequest
+			] ],
+			[ AuthManager::ACTION_REMOVE, $loggedIn, [
+				new TemporaryPasswordAuthenticationRequest
+			] ],
+		];
+	}
+
+	public function testAuthentication() {
+		$password = 'TemporaryPassword';
+		$hash = ':A:' . md5( $password );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->update(
+			'user',
+			[ 'user_newpassword' => $hash, 'user_newpass_time' => $dbw->timestamp( time() - 10 ) ],
+			[ 'user_name' => 'UTSysop' ]
+		);
+
+		$req = new PasswordAuthenticationRequest();
+		$reqs = [ PasswordAuthenticationRequest::class => $req ];
+
+		$provider = $this->getProvider();
+		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
+
+		$providerPriv->newPasswordExpiry = 100;
+
+		// General failures
+		$this->assertEquals(
+			AuthenticationResponse::newAbstain(),
+			$provider->beginPrimaryAuthentication( [] )
+		);
+
+		$req->username = 'foo';
+		$req->password = null;
+		$this->assertEquals(
+			AuthenticationResponse::newAbstain(),
+			$provider->beginPrimaryAuthentication( $reqs )
+		);
+
+		$req->username = null;
+		$req->password = 'bar';
+		$this->assertEquals(
+			AuthenticationResponse::newAbstain(),
+			$provider->beginPrimaryAuthentication( $reqs )
+		);
+
+		$req->username = 'DoesNotExist';
+		$req->password = 'DoesNotExist';
+		$ret = $provider->beginPrimaryAuthentication( $reqs );
+		$this->assertEquals(
+			AuthenticationResponse::newAbstain(),
+			$provider->beginPrimaryAuthentication( $reqs )
+		);
+
+		// Validation failure
+		$req->username = 'UTSysop';
+		$req->password = $password;
+		$this->validity = \Status::newFatal( 'arbitrary-failure' );
+		$ret = $provider->beginPrimaryAuthentication( $reqs );
+		$this->assertEquals(
+			AuthenticationResponse::FAIL,
+			$ret->status
+		);
+		$this->assertEquals(
+			'arbitrary-failure',
+			$ret->message->getKey()
+		);
+
+		// Successful auth
+		$this->manager->removeAuthenticationSessionData( null );
+		$this->validity = \Status::newGood();
+		$this->assertEquals(
+			AuthenticationResponse::newPass( 'UTSysop' ),
+			$provider->beginPrimaryAuthentication( $reqs )
+		);
+		$this->assertNotNull( $this->manager->getAuthenticationSessionData( 'reset-pass' ) );
+
+		// Expired password
+		$providerPriv->newPasswordExpiry = 1;
+		$ret = $provider->beginPrimaryAuthentication( $reqs );
+		$this->assertEquals(
+			AuthenticationResponse::FAIL,
+			$ret->status
+		);
+		$this->assertEquals(
+			'wrongpassword',
+			$ret->message->getKey()
+		);
+
+		// Bad password
+		$providerPriv->newPasswordExpiry = 100;
+		$this->validity = \Status::newGood();
+		$req->password = 'Wrong';
+		$ret = $provider->beginPrimaryAuthentication( $reqs );
+		$this->assertEquals(
+			AuthenticationResponse::FAIL,
+			$ret->status
+		);
+		$this->assertEquals(
+			'wrongpassword',
+			$ret->message->getKey()
+		);
+
+	}
+
+	/**
+	 * @dataProvider provideProviderAllowsAuthenticationDataChange
+	 * @param string $type
+	 * @param string $user
+	 * @param Status $validity
+	 */
+	public function testProviderAllowsAuthenticationDataChange( $type, $user, $validity ) {
+		$expect1 = $validity->getValue() === 'ignored'
+			? \StatusValue::newGood( 'ignored' )
+			: \StatusValue::newGood();
+		$expect2 = \StatusValue::newGood();
+		$expect2->merge( $validity, true );
+
+		if ( $type === PasswordAuthenticationRequest::class ||
+			$type === TemporaryPasswordAuthenticationRequest::class
+		) {
+			$req = new $type();
+		} else {
+			$req = $this->getMock( $type );
+		}
+		$req->action = AuthManager::ACTION_CHANGE;
+		$req->username = $user;
+		$req->password = 'NewPassword';
+
+		$provider = $this->getProvider();
+		$this->validity = $validity;
+		$this->assertEquals( $expect1, $provider->providerAllowsAuthenticationDataChange( $req, false ) );
+		$this->assertEquals( $expect2, $provider->providerAllowsAuthenticationDataChange( $req, true ) );
+	}
+
+	public static function provideProviderAllowsAuthenticationDataChange() {
+		$err = \Status::newGood();
+		$err->error( 'arbitrary-warning' );
+
+		return [
+			[ AuthenticationRequest::class, 'UTSysop', \Status::newGood( 'ignored' ) ],
+			[ PasswordAuthenticationRequest::class, 'UTSysop', \Status::newGood( 'ignored' ) ],
+			[ TemporaryPasswordAuthenticationRequest::class, 'UTSysop', \Status::newGood() ],
+			[ TemporaryPasswordAuthenticationRequest::class, 'UTSysop', $err ],
+			[ TemporaryPasswordAuthenticationRequest::class, 'UTSysop',
+				\Status::newFatal( 'arbitrary-error' ) ],
+			[ TemporaryPasswordAuthenticationRequest::class, 'DoesNotExist', \Status::newGood( 'ignored' ) ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideProviderChangeAuthenticationData
+	 * @param string $type
+	 * @param bool $changed
+	 */
+	public function testProviderChangeAuthenticationData( $type, $changed ) {
+		$user = 'UTSysop';
+		$oldpass = 'OldTempPassword';
+		$newpass = 'NewTempPassword';
+
+		$hash = ':A:' . md5( $oldpass );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->update(
+			'user',
+			[ 'user_newpassword' => $hash, 'user_newpass_time' => $dbw->timestamp( time() + 10 ) ],
+			[ 'user_name' => 'UTSysop' ]
+		);
+
+		$dbw = wfGetDB( DB_MASTER );
+		$oldHash = $dbw->selectField( 'user', 'user_newpassword', [ 'user_name' => $user ] );
+		$cb = new \ScopedCallback( function () use ( $dbw, $user, $oldHash ) {
+			$dbw->update( 'user', [ 'user_newpassword' => $oldHash ], [ 'user_name' => $user ] );
+		} );
+
+		$provider = $this->getProvider();
+
+		// Sanity check
+		$req = new PasswordAuthenticationRequest();
+		$req->username = $user;
+		$req->password = $oldpass;
+		$reqs = [ PasswordAuthenticationRequest::class => $req ];
+		$this->assertEquals(
+			AuthenticationResponse::newPass( $user ),
+			$provider->beginPrimaryAuthentication( $reqs ),
+			'Sanity check'
+		);
+
+		if ( $type === PasswordAuthenticationRequest::class ||
+			$type === TemporaryPasswordAuthenticationRequest::class
+		) {
+			$req2 = new $type();
+		} else {
+			$req2 = $this->getMock( $type );
+		}
+		$req2->username = $user;
+		$req2->password = $newpass;
+		$resetMailer = $this->hookMailer();
+		$provider->providerChangeAuthenticationData( $req2 );
+		\ScopedCallback::consume( $resetMailer );
+
+		$req->password = $oldpass;
+		$ret = $provider->beginPrimaryAuthentication( $reqs );
+		$this->assertEquals(
+			AuthenticationResponse::FAIL,
+			$ret->status,
+			'old password should fail'
+		);
+		$this->assertEquals(
+			'wrongpassword',
+			$ret->message->getKey(),
+			'old password should fail'
+		);
+
+		$req->password = $newpass;
+		$ret = $provider->beginPrimaryAuthentication( $reqs );
+		if ( $changed ) {
+			$this->assertEquals(
+				AuthenticationResponse::newPass( $user ),
+				$ret,
+				'new password should pass'
+			);
+		} else {
+			$this->assertEquals(
+				AuthenticationResponse::FAIL,
+				$ret->status,
+				'new password should fail'
+			);
+			$this->assertEquals(
+				'wrongpassword',
+				$ret->message->getKey(),
+				'new password should fail'
+			);
+		}
+	}
+
+	public static function provideProviderChangeAuthenticationData() {
+		return [
+			[ AuthenticationRequest::class, false ],
+			[ PasswordAuthenticationRequest::class, false ],
+			[ TemporaryPasswordAuthenticationRequest::class, true ],
+		];
+	}
+
+	public function testProviderChangeAuthenticationDataEmail() {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->update(
+			'user',
+			[ 'user_newpass_time' => $dbw->timestamp( time() - 5 * 3600 ) ],
+			[ 'user_name' => 'UTSysop' ]
+		);
+
+		$user = \User::newFromName( 'UTSysop' );
+		$reset = new \ScopedCallback( function ( $email ) use ( $user ) {
+			$user->setEmail( $email );
+			$user->saveSettings();
+		}, [ $user->getEmail() ] );
+
+		$user->setEmail( 'test@localhost.localdomain' );
+		$user->saveSettings();
+
+		$req = TemporaryPasswordAuthenticationRequest::newRandom();
+		$req->username = $user->getName();
+		$req->mailpassword = true;
+
+		$provider = $this->getProvider( [ 'emailEnabled' => false ] );
+		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
+		$this->assertEquals( \StatusValue::newFatal( 'passwordreset-emaildisabled' ), $status );
+		$req->hasBackchannel = true;
+		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
+		$this->assertFalse( $status->hasMessage( 'passwordreset-emaildisabled' ) );
+		$req->hasBackchannel = false;
+
+		$provider = $this->getProvider( [ 'passwordReminderResendTime' => 10 ] );
+		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
+		$this->assertEquals( \StatusValue::newFatal( 'throttled-mailpassword', 10 ), $status );
+
+		$provider = $this->getProvider( [ 'passwordReminderResendTime' => 3 ] );
+		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
+		$this->assertFalse( $status->hasMessage( 'throttled-mailpassword' ) );
+
+		$dbw->update(
+			'user',
+			[ 'user_newpass_time' => $dbw->timestamp( time() + 5 * 3600 ) ],
+			[ 'user_name' => 'UTSysop' ]
+		);
+		$provider = $this->getProvider( [ 'passwordReminderResendTime' => 0 ] );
+		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
+		$this->assertFalse( $status->hasMessage( 'throttled-mailpassword' ) );
+
+		$req->caller = null;
+		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
+		$this->assertEquals( \StatusValue::newFatal( 'passwordreset-nocaller' ), $status );
+
+		$req->caller = '127.0.0.256';
+		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
+		$this->assertEquals( \StatusValue::newFatal( 'passwordreset-nosuchcaller', '127.0.0.256' ),
+			$status );
+
+		$req->caller = '<Invalid>';
+		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
+		$this->assertEquals( \StatusValue::newFatal( 'passwordreset-nosuchcaller', '<Invalid>' ),
+			$status );
+
+		$req->caller = '127.0.0.1';
+		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
+		$this->assertEquals( \StatusValue::newGood(), $status );
+
+		$req->caller = 'UTSysop';
+		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
+		$this->assertEquals( \StatusValue::newGood(), $status );
+
+		$mailed = false;
+		$resetMailer = $this->hookMailer( function ( $headers, $to, $from, $subject, $body )
+			use ( &$mailed, $req )
+		{
+			$mailed = true;
+			$this->assertSame( 'test@localhost.localdomain', $to[0]->address );
+			$this->assertContains( $req->password, $body );
+			return false;
+		} );
+		$provider->providerChangeAuthenticationData( $req );
+		\ScopedCallback::consume( $resetMailer );
+		$this->assertTrue( $mailed );
+	}
+
+	public function testTestForAccountCreation() {
+		$user = \User::newFromName( 'foo' );
+		$req = new TemporaryPasswordAuthenticationRequest();
+		$req->username = 'Foo';
+		$req->password = 'Bar';
+		$reqs = [ TemporaryPasswordAuthenticationRequest::class => $req ];
+
+		$provider = $this->getProvider();
+		$this->assertEquals(
+			\StatusValue::newGood(),
+			$provider->testForAccountCreation( $user, $user, [] ),
+			'No password request'
+		);
+
+		$this->assertEquals(
+			\StatusValue::newGood(),
+			$provider->testForAccountCreation( $user, $user, $reqs ),
+			'Password request, validated'
+		);
+
+		$this->validity->error( 'arbitrary warning' );
+		$expect = \StatusValue::newGood();
+		$expect->error( 'arbitrary warning' );
+		$this->assertEquals(
+			$expect,
+			$provider->testForAccountCreation( $user, $user, $reqs ),
+			'Password request, not validated'
+		);
+	}
+
+	public function testAccountCreation() {
+		$resetMailer = $this->hookMailer();
+
+		$user = \User::newFromName( 'Foo' );
+
+		$req = new TemporaryPasswordAuthenticationRequest();
+		$reqs = [ TemporaryPasswordAuthenticationRequest::class => $req ];
+
+		$authreq = new PasswordAuthenticationRequest();
+		$authreqs = [ PasswordAuthenticationRequest::class => $authreq ];
+
+		$provider = $this->getProvider();
+
+		$this->assertEquals(
+			AuthenticationResponse::newAbstain(),
+			$provider->beginPrimaryAccountCreation( $user, $user, [] )
+		);
+
+		$req->username = 'foo';
+		$req->password = null;
+		$this->assertEquals(
+			AuthenticationResponse::newAbstain(),
+			$provider->beginPrimaryAccountCreation( $user, $user, $reqs )
+		);
+
+		$req->username = null;
+		$req->password = 'bar';
+		$this->assertEquals(
+			AuthenticationResponse::newAbstain(),
+			$provider->beginPrimaryAccountCreation( $user, $user, $reqs )
+		);
+
+		$req->username = 'foo';
+		$req->password = 'bar';
+
+		$expect = AuthenticationResponse::newPass( 'Foo' );
+		$expect->createRequest = clone( $req );
+		$expect->createRequest->username = 'Foo';
+		$this->assertEquals( $expect, $provider->beginPrimaryAccountCreation( $user, $user, $reqs ) );
+		$this->assertNull( $this->manager->getAuthenticationSessionData( 'no-email' ) );
+
+		// We have to cheat a bit to avoid having to add a new user to
+		// the database to test the actual setting of the password works right
+		$user = \User::newFromName( 'UTSysop' );
+		$req->username = $authreq->username = $user->getName();
+		$req->password = $authreq->password = 'NewPassword';
+		$expect = AuthenticationResponse::newPass( 'UTSysop' );
+		$expect->createRequest = $req;
+
+		$res2 = $provider->beginPrimaryAccountCreation( $user, $user, $reqs );
+		$this->assertEquals( $expect, $res2, 'Sanity check' );
+
+		$ret = $provider->beginPrimaryAuthentication( $authreqs );
+		$this->assertEquals( AuthenticationResponse::FAIL, $ret->status, 'sanity check' );
+
+		$this->assertSame( null, $provider->finishAccountCreation( $user, $user, $res2 ) );
+
+		$ret = $provider->beginPrimaryAuthentication( $authreqs );
+		$this->assertEquals( AuthenticationResponse::PASS, $ret->status, 'new password is set' );
+	}
+
+	public function testAccountCreationEmail() {
+		$creator = \User::newFromName( 'Foo' );
+		$user = \User::newFromName( 'UTSysop' );
+		$reset = new \ScopedCallback( function ( $email ) use ( $user ) {
+			$user->setEmail( $email );
+			$user->saveSettings();
+		}, [ $user->getEmail() ] );
+
+		$user->setEmail( null );
+
+		$req = TemporaryPasswordAuthenticationRequest::newRandom();
+		$req->username = $user->getName();
+		$req->mailpassword = true;
+
+		$provider = $this->getProvider( [ 'emailEnabled' => false ] );
+		$status = $provider->testForAccountCreation( $user, $creator, [ $req ] );
+		$this->assertEquals( \StatusValue::newFatal( 'emaildisabled' ), $status );
+		$req->hasBackchannel = true;
+		$status = $provider->testForAccountCreation( $user, $creator, [ $req ] );
+		$this->assertFalse( $status->hasMessage( 'emaildisabled' ) );
+		$req->hasBackchannel = false;
+
+		$provider = $this->getProvider( [ 'emailEnabled' => true ] );
+		$status = $provider->testForAccountCreation( $user, $creator, [ $req ] );
+		$this->assertEquals( \StatusValue::newFatal( 'noemailcreate' ), $status );
+		$req->hasBackchannel = true;
+		$status = $provider->testForAccountCreation( $user, $creator, [ $req ] );
+		$this->assertFalse( $status->hasMessage( 'noemailcreate' ) );
+		$req->hasBackchannel = false;
+
+		$user->setEmail( 'test@localhost.localdomain' );
+		$status = $provider->testForAccountCreation( $user, $creator, [ $req ] );
+		$this->assertEquals( \StatusValue::newGood(), $status );
+
+		$mailed = false;
+		$resetMailer = $this->hookMailer( function ( $headers, $to, $from, $subject, $body )
+			use ( &$mailed, $req )
+		{
+			$mailed = true;
+			$this->assertSame( 'test@localhost.localdomain', $to[0]->address );
+			$this->assertContains( $req->password, $body );
+			return false;
+		} );
+
+		$expect = AuthenticationResponse::newPass( 'UTSysop' );
+		$expect->createRequest = clone( $req );
+		$expect->createRequest->username = 'UTSysop';
+		$res = $provider->beginPrimaryAccountCreation( $user, $creator, [ $req ] );
+		$this->assertEquals( $expect, $res );
+		$this->assertTrue( $this->manager->getAuthenticationSessionData( 'no-email' ) );
+		$this->assertFalse( $mailed );
+
+		$this->assertSame( 'byemail', $provider->finishAccountCreation( $user, $creator, $res ) );
+		$this->assertTrue( $mailed );
+
+		\ScopedCallback::consume( $resetMailer );
+		$this->assertTrue( $mailed );
+	}
+
+}
