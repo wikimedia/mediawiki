@@ -61,7 +61,7 @@ do {
 		exit;
 	}
 
-	$args = explode( ' ', $line );
+	$args = explode( ' ', $line, 2 );
 	$command = array_shift( $args );
 
 	// process command
