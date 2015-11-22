@@ -4407,6 +4407,102 @@ $wgPasswordPolicy = [
 ];
 
 /**
+ * Disable AuthManager
+ * @since 1.27
+ * @deprecated since 1.27, for use during development only
+ */
+$wgDisableAuthManager = true;
+
+/**
+ * Configure AuthManager
+ *
+ * All providers are constructed using ObjectFactory, see that for the general
+ * structure.
+ *
+ * Elements are:
+ * - preauth: Array (keys ignored) of specifications for PreAuthenticationProviders
+ * - primaryauth: Array (keys ignored) of specifications for PrimaryAuthenticationProviders
+ * - secondaryauth: Array (keys ignored) of specifications for SecondaryAuthenticationProviders
+ *
+ * @since 1.27
+ * @note If this is null or empty, the value from $wgAuthManagerAutoConfig is used instead.
+ *  Local customization should generally set this variable from scratch to the desired configuration.
+ *  Extensions that want to auto-configure themselves should use $wgAuthManagerAutoConfig instead.
+ */
+$wgAuthManagerConfig = null;
+
+/**
+ * @see $wgAuthManagerConfig
+ * @since 1.27
+ */
+$wgAuthManagerAutoConfig = [
+	'preauth' => [
+		MediaWiki\Auth\LegacyHookPreAuthenticationProvider::class => [
+			'class' => MediaWiki\Auth\LegacyHookPreAuthenticationProvider::class,
+		],
+		MediaWiki\Auth\ThrottlePreAuthenticationProvider::class => [
+			'class' => MediaWiki\Auth\ThrottlePreAuthenticationProvider::class,
+		],
+	],
+	'primaryauth' => [
+		// TemporaryPasswordPrimaryAuthenticationProvider should come before
+		// any other PasswordAuthenticationRequest-based
+		// PrimaryAuthenticationProvider, or password reset won't work right.
+		// Do not remove this (or change the key) or auto-configuration of
+		// other such providers in extensions will probably auto-insert
+		// themselves in the wrong place.
+		MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider::class => [
+			'class' => MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider::class,
+			'args' => [ [
+				// Fall through to LocalPasswordPrimaryAuthenticationProvider
+				'authoritative' => false,
+			] ],
+		],
+		MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider::class => [
+			'class' => MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider::class,
+			'args' => [ [
+				// Last one should be authoritative, or else the user will get
+				// a less-than-helpful error message (something like "supplied
+				// authentication info not supported" rather than "wrong
+				// password") if it too fails.
+				'authoritative' => true,
+			] ],
+		],
+	],
+	'secondaryauth' => [
+		MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider::class => [
+			'class' => MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider::class,
+		],
+		MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider::class => [
+			'class' => MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider::class,
+		],
+		MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class => [
+			'class' => MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class,
+		],
+	],
+];
+
+/**
+ * If it has been this long since the last authentication, recommend
+ * re-authentication before security-sensitive operations (e.g. password or
+ * email changes). Set negative to disable.
+ * @since 1.27
+ * @var int[] operation => time in seconds. A 'default' key must always be provided.
+ */
+$wgReauthenticateTime = [
+	'default' => 300,
+];
+
+/**
+ * Whether to allow security-sensitive operations when authentication is not possible.
+ * @since 1.27
+ * @var bool[] operation => boolean. A 'default' key must always be provided.
+ */
+$wgAllowSecuritySensitiveOperationIfCannotReauthenticate = [
+	'default' => true,
+];
+
+/**
  * For compatibility with old installations set to false
  * @deprecated since 1.24 will be removed in future
  */
