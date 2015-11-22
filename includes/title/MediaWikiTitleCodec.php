@@ -198,7 +198,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @param int $defaultNamespace
 	 *
 	 * @throws MalformedTitleException If $text is not a valid title string.
-	 * @return array A mapp with the fields 'interwiki', 'fragment', 'namespace',
+	 * @return array A map with the fields 'interwiki', 'fragment', 'namespace',
 	 *         'user_case_dbkey', and 'dbkey'.
 	 */
 	public function splitTitleString( $text, $defaultNamespace = NS_MAIN ) {
