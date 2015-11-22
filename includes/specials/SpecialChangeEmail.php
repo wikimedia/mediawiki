@@ -159,8 +159,6 @@ class SpecialChangeEmail extends FormSpecialPage {
 	 * @return Status
 	 */
 	private function attemptChange( User $user, $pass, $newaddr ) {
-		global $wgAuth;
-
 		if ( $newaddr != '' && !Sanitizer::validateEmail( $newaddr ) ) {
 			return Status::newFatal( 'invalidemailaddress' );
 		}
@@ -199,8 +197,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 		Hooks::run( 'PrefsEmailAudit', array( $user, $oldaddr, $newaddr ) );
 
 		$user->saveSettings();
-
-		$wgAuth->updateExternalDB( $user );
+		MediaWiki\Auth\AuthManager::callLegacyAuthPlugin( 'updateExternalDB', array( $user ) );
 
 		return $status;
 	}
