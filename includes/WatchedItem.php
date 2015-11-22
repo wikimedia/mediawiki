@@ -290,7 +290,7 @@ class WatchedItem {
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'watchlist',
-				array( 'wl_notificationtimestamp' => $notificationTimestamp ),
+				array( 'wl_notificationtimestamp' => $dbw->timestampOrNull( $notificationTimestamp ) ),
 				$this->dbCond(),
 				__METHOD__
 			);
