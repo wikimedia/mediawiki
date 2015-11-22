@@ -66,7 +66,8 @@
 			"578985s",
 			"Matma Rex",
 			"范",
-			"Jasonzhuocn"
+			"Jasonzhuocn",
+			"Bowleerin"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -1856,6 +1857,7 @@
 	"wlnote": "以下為自 $3 $4 之後的 <strong>$2</strong> 小時內所做的 <strong>$1</strong> 次變更。",
 	"wlshowlast": "顯示最近 $1 小時 $2 天",
 	"watchlistall2": "全部",
+	"watchlist-hide": "隱藏",
 	"wlshowtime": "顯示最近：",
 	"wlshowhideminor": "小編輯",
 	"wlshowhidebots": "機器人",

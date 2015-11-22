@@ -2101,7 +2101,7 @@
 	"wlshowlast": "Appears on [[Special:Watchlist]]. Parameters:\n* $1 - a choice of different numbers of hours (\"1 | 2 | 6 | 12\")\n* $2 - a choice of different numbers of days (\"1 | 3 | 7\" and the maximum number of days available)\nClicking on your choice changes the list of changes you see (without changing the default in my preferences).",
 	"watchlistall2": "Appears on [[Special:Watchlist]], after {{msg-mw|wlshowtime}}, as the option to display all available data regardless of age.\n{{Identical|All}}",
 	"watchlist-hide": "Appears on [[Special:Watchlist]]. It is the first word on a new line with checkboxes to hide/unhide options\n{{Identical|Hide}}",
-	"wlshowtime": "Appears on [[Special:Watchlist]].",
+	"wlshowtime": "Appears on [[Special:Watchlist]]. Label of a drop-down list used to specify the period of time to display in the watchlist. This period can be {{msg-mw|days}}, {{msg-mw|hours}}, or {{msg-mw|watchlistall2}}.",
 	"wlshowhideminor": "Option text in [[Special:Watchlist]]. Cf. {{msg-mw|rcshowhideminor}}.\n{{Identical|Minor edit}}",
 	"wlshowhidebots": "Option text in [[Special:Watchlist]]. Cf. {{msg-mw|rcshowhidebots}}.\n{{Identical|Bot}}",
 	"wlshowhideliu": "Option text in [[Special:Watchlist]]. Cf. {{msg-mw|rcshowhideliu}}.\n{{Identical|Registered user}}",

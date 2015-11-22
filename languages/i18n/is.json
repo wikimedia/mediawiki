@@ -1092,7 +1092,7 @@
 	"enhancedrc-history": "breytingaskrá",
 	"recentchanges": "Nýlegar breytingar",
 	"recentchanges-legend": "Stillingar nýlegra breytinga",
-	"recentchanges-summary": "Hér geturðu fylgst með nýjustu breytingunum. Hin {{SITENAME}} inniheldur '''[[Special:NewPages|{{NUMBEROFARTICLES}}]]''' {{PLURAL:{{NUMBEROFARTICLES}}|grein|greinar}} og hefur '''[[Special:Statistics|{{NUMBEROFEDITS}}]]''' {{PLURAL:{{NUMBEROFEDITS}}|breytingu|breytingar}} og '''[[Special:ActiveUsers|{{NUMBEROFACTIVEUSERS}}]]''' {{PLURAL:{{NUMBEROFACTIVEUSERS}}|notandi|notendur}} í þessum mánuði.",
+	"recentchanges-summary": "Hér geturðu fylgst með nýjustu breytingunum. {{SITENAME}} inniheldur '''[[Special:NewPages|{{NUMBEROFARTICLES}}]]''' {{PLURAL:{{NUMBEROFARTICLES}}|grein|greinar}} og '''[[Special:Statistics|{{NUMBEROFEDITS}}]]''' {{PLURAL:{{NUMBEROFEDITS}}|breytingu|breytingar}}. '''[[Special:ActiveUsers|{{NUMBEROFACTIVEUSERS}}]]''' {{PLURAL:{{NUMBEROFACTIVEUSERS}}|notandi|notendur}} hafa hjálpað til í þessum mánuði.",
 	"recentchanges-noresult": "Engar breytingar í uppgefna tímabilinu sem passa við þessa mælikvarða.",
 	"recentchanges-feed-description": "Hér er hægt að fylgjast með nýlegum breytingum á {{SITENAME}}.",
 	"recentchanges-label-newpage": "Þessi breyting skapaði nýja síðu",

@@ -125,7 +125,8 @@
 			"Laurenslimb",
 			"Tusca",
 			"Tadol",
-			"Nelson6e65"
+			"Nelson6e65",
+			"Matiia"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -1903,6 +1904,8 @@
 	"wlnote": "A continuación {{PLURAL:$1|se muestra el último cambio|se muestran los últimos <strong>$1</strong> cambios}} en {{PLURAL:$2|la última hora|las últimas <strong>$2</strong> horas}} a fecha de $4 $3.",
 	"wlshowlast": "Ver los cambios de las últimas $1 horas, $2 días",
 	"watchlistall2": "todos",
+	"watchlist-hide": "Ocultar",
+	"wlshowtime": "Mostrar cambios desde hace:",
 	"wlshowhideminor": "ediciones menores",
 	"wlshowhidebots": "bots",
 	"wlshowhideliu": "usuarios registrados",

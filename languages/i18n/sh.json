@@ -10,7 +10,8 @@
 			"Milicevic01",
 			"Macofe",
 			"KWiki",
-			"Matma Rex"
+			"Matma Rex",
+			"Srdjan m"
 		]
 	},
 	"tog-underline": "Podvuci linkove:",
@@ -147,7 +148,7 @@
 	"moredotdotdot": "Još...",
 	"morenotlisted": "Ovaj spisak nije kompletan.",
 	"mypage": "Moja stranica",
-	"mytalk": "Moj razgovor / Мој разговор",
+	"mytalk": "Razgovor / Разговор",
 	"anontalk": "Razgovor za ovu IP adresu",
 	"navigation": "Navigacija - Навигација",
 	"and": "&#32;i",
@@ -889,7 +890,7 @@
 	"searchdisabled": "Pretraga teksta na ovoj Wiki je trenutno onemogućena.\nU međuvremenu možete pretraživati preko Googlea.\nUzmite u obzir da njegovi indeksi za ovu Wiki ne moraju biti ažurirani.",
 	"search-error": "Dogodila se pogreška prilikom pretraživanja: $1",
 	"preferences": "Postavke / Подешавања",
-	"mypreferences": "Moje postavke / Моја подешавања",
+	"mypreferences": "Postavke / Подешавања",
 	"prefs-edits": "Broj izmjena:",
 	"prefsnologintext2": "Molimo Vas prijavite se da biste promijenili postavke.",
 	"prefs-skin": "Izgled (skin)",
@@ -1769,7 +1770,7 @@
 	"usermessage-summary": "Ostavljanje sistemske poruke.",
 	"usermessage-editor": "Sistem za poruke",
 	"watchlist": "Spisak praćenja / Списак праћења",
-	"mywatchlist": "Moj popis praćenja / Списак надгледања",
+	"mywatchlist": "Popis praćenja / Списак надгледања",
 	"watchlistfor2": "Za $1 $2",
 	"nowatchlist": "Nemate ništa na svom spisku praćenih članaka.",
 	"watchlistanontext": "Morate biti prijavljeni kako biste vidjeli ili uređivali svoj spisak praćenih članaka.",

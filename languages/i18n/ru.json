@@ -85,7 +85,8 @@
 			"WindEwriX",
 			"Nzeemin",
 			"INS Pirat",
-			"Краснорядцева Елена"
+			"Краснорядцева Елена",
+			"Frhdkazan"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -1879,6 +1880,7 @@
 	"wlnote": "Ниже {{PLURAL:$1|показано последнее изменение|показаны <strong>$1</strong> последние изменения|показаны <strong>$1</strong> последних изменений}} за {{PLURAL:$2|последний час|последние <strong>$2</strong> часа|последние <strong>$2</strong> часов}}, по состоянию на $3 $4.",
 	"wlshowlast": "Показать за последние $1 часов $2 дней",
 	"watchlistall2": "все",
+	"watchlist-hide": "Скрыть",
 	"wlshowtime": "Показать последние:",
 	"wlshowhideminor": "малые правки",
 	"wlshowhidebots": "ботов",

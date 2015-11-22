@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gorizon"
+		]
+	},
+	"apihelp-createaccount-param-name": "Nameyê karberi.",
+	"apihelp-delete-description": "Pele bestere.",
+	"apihelp-edit-param-text": "Zerreki pele",
+	"apihelp-edit-example-edit": "Şeker bıvurne",
+	"apihelp-login-param-name": "Nameyê karberi.",
+	"apihelp-login-param-password": "Parola.",
+	"apihelp-login-param-domain": "Domain (optional).",
+	"apihelp-login-example-login": "Dekew."
+}

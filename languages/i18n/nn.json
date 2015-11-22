@@ -632,6 +632,7 @@
 	"edit-gone-missing": "Kunne ikkje oppdatere sida.\nDet ser ut til at ho er sletta.",
 	"edit-conflict": "Endringskonflikt.",
 	"edit-no-change": "Endringa di vart ignorert fordi det ikkje vart gjort endringar i teksten.",
+	"postedit-confirmation-created": "Sida vart oppretta.",
 	"postedit-confirmation-saved": "Endringa di vart lagra.",
 	"edit-already-exists": "Kunne ikkje opprette ny side fordi ho alt eksisterer.",
 	"defaultmessagetext": "Standard meldingstekst",
