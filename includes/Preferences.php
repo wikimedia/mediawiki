@@ -1404,8 +1404,6 @@ class Preferences {
 	 * @return bool|Status|string
 	 */
 	static function tryFormSubmit( $formData, $form ) {
-		global $wgAuth;
-
 		$user = $form->getModifiedUser();
 		$hiddenPrefs = $form->getConfig()->get( 'HiddenPrefs' );
 		$result = true;
@@ -1456,7 +1454,7 @@ class Preferences {
 			Hooks::run( 'PreferencesFormPreSave', array( $formData, $form, $user, &$result ) );
 		}
 
-		$wgAuth->updateExternalDB( $user );
+		MediaWiki\Auth\AuthManager::callLegacyAuthPlugin( 'updateExternalDB', array( $user ) );
 		$user->saveSettings();
 
 		return $result;
