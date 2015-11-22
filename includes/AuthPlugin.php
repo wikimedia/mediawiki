@@ -32,6 +32,8 @@
  * accounts authenticate externally, or use it only as a fallback; also
  * you can transparently create internal wiki accounts the first time
  * someone logs in who can be authenticated externally.
+ *
+ * @deprecated since 1.27
  */
 class AuthPlugin {
 	/**
@@ -322,6 +324,9 @@ class AuthPlugin {
 	}
 }
 
+/**
+ * @deprecated since 1.27
+ */
 class AuthPluginUser {
 	function __construct( $user ) {
 		# Override this!
