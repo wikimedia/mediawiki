@@ -839,7 +839,11 @@ class SessionManagerTest extends MediaWikiTestCase {
 	}
 
 	public function testAutoCreateUser() {
-		global $wgGroupPermissions;
+		global $wgGroupPermissions, $wgDisableAuthManager;
+
+		if ( !$wgDisableAuthManager ) {
+			$this->markTestSkipped( 'AuthManager is not disabled' );
+		}
 
 		\ObjectCache::$instances[__METHOD__] = new TestBagOStuff();
 		$this->setMwGlobals( [ 'wgMainCacheType' => __METHOD__ ] );
