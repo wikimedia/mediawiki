@@ -112,4 +112,43 @@ class PasswordPolicyChecks {
 		return $status;
 	}
 
+	/**
+	 * Ensure that password isn't in top X most popular passwords
+	 *
+	 * @param $policyVal int Cut off to use. Will automatically shrink to the max
+	 *   supported for error messages if set to more than max number of passwords on file,
+	 *   so you can use the PHP_INT_MAX constant here safely.
+	 * @param $user User
+	 * @param $password String
+	 * @return Status
+	 */
+	public static function checkPopularPasswordBlacklist( $policyVal, User $user, $password ) {
+		global $IP, $wgPopularPasswordFile;
+		$status = Status::newGood();
+		if ( $policyVal > 0 ) {
+			$langEn = Language::Factory( 'en' );
+			$passwordKey = $langEn->lc( trim( $password ) );
+
+			// This could throw an exception, but there's not a good way
+			// of failing gracefully, if say the file is missing, so just
+			// let the exception fall through.
+			// Format of cdb file is mapping password => popularity rank.
+			// See maintenance/createCommonPasswordCdb.php
+			$db = \Cdb\Reader::open( $wgPopularPasswordFile );
+
+			$res = $db->get( $passwordKey );
+			if ( $res && (int)$res <= $policyVal ) {
+
+				$maxKnownPasswords = (int)$db->get( '_TOTALENTRIES' );
+				if ( $maxKnownPasswords < $policyVal ) {
+					$policyVal = $maxKnownPasswords;
+				}
+				$msg = wfMessage( 'passwordtoopopular' )
+					->numParams( $res, $policyVal );
+				$status->error( $msg );
+			}
+		}
+		return $status;
+	}
+
 }
