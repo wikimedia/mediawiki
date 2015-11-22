@@ -90,6 +90,9 @@ class UploadFromUrlTest extends ApiTestCase {
 		}
 		$this->assertTrue( $exception, "Got exception" );
 
+		$this->markTestIncomplete();
+		return;
+
 		$this->user->removeGroup( 'sysop' );
 		$exception = false;
 		try {
