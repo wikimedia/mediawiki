@@ -1631,7 +1631,7 @@ class Sanitizer {
 
 			# 10.2
 			'ul'         => array_merge( $common, array( 'type' ) ),
-			'ol'         => array_merge( $common, array( 'type', 'start' ) ),
+			'ol'         => array_merge( $common, array( 'type', 'start', 'reversed' ) ),
 			'li'         => array_merge( $common, array( 'type', 'value' ) ),
 
 			# 10.3
