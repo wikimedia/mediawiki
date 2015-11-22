@@ -1233,7 +1233,6 @@ return array(
 			'filename-bad-prefix',
 			'filename-thumb-name',
 			'badfilename',
-			'api-error-duplicate-archive',
 			'api-error-blacklisted', // HACK
 		),
 	),
