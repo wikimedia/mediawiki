@@ -677,8 +677,19 @@ $wgContLang->initContLang();
 $wgRequest->interpolateTitle();
 
 if ( !is_object( $wgAuth ) ) {
-	$wgAuth = new AuthPlugin;
+	$wgAuth = new MediaWiki\Auth\AuthManagerAuthPlugin;
 	Hooks::run( 'AuthPluginSetup', array( &$wgAuth ) );
+}
+if ( $wgAuth && !$wgAuth instanceof MediaWiki\Auth\AuthManagerAuthPlugin ) {
+	MediaWiki\Auth\AuthManager::singleton()->forcePrimaryAuthenticationProviders( array(
+		new MediaWiki\Auth\AuthPluginPrimaryAuthenticationProvider( $wgAuth ),
+		new MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider( array(
+			'authoritative' => false,
+		) ),
+		new MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider( array(
+			'authoritative' => true,
+		) ),
+	), '$wgAuth is ' . get_class( $wgAuth ) );
 }
 
 // Set up the session
@@ -763,7 +774,7 @@ foreach ( $wgExtensionFunctions as $func ) {
 $sessionUser = MediaWiki\Session\SessionManager::getGlobalSession()->getUser();
 if ( $sessionUser->getId() === 0 && User::isValidUserName( $sessionUser->getName() ) ) {
 	$ps_autocreate = Profiler::instance()->scopedProfileIn( $fname . '-autocreate' );
-	MediaWiki\Session\SessionManager::autoCreateUser( $sessionUser );
+	MediaWiki\Auth\AuthManager::singleton()->autoCreateUser( $sessionUser, true );
 	Profiler::instance()->scopedProfileOut( $ps_autocreate );
 }
 unset( $sessionUser );
