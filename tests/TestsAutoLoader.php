@@ -38,6 +38,7 @@ $wgAutoloadClasses += array(
 	'TidySupport' => "$testDir/testHelpers.inc",
 
 	# tests/phpunit
+	'InvokedAtMost' => "$testDir/phpunit/InvokedAtMost.php",
 	'MediaWikiTestCase' => "$testDir/phpunit/MediaWikiTestCase.php",
 	'MediaWikiPHPUnitTestListener' => "$testDir/phpunit/MediaWikiPHPUnitTestListener.php",
 	'MediaWikiLangTestCase' => "$testDir/phpunit/MediaWikiLangTestCase.php",
