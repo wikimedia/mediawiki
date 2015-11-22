@@ -77,6 +77,7 @@ class PHPUnitMaintClass extends Maintenance {
 		global $wgDevelopmentWarnings;
 		global $wgSessionProviders;
 		global $wgJobTypeConf;
+		global $wgAuthManagerConfig, $wgAuth, $wgDisableAuthManager;
 
 		// Inject test autoloader
 		require_once __DIR__ . '/../TestsAutoLoader.php';
@@ -123,6 +124,27 @@ class PHPUnitMaintClass extends Maintenance {
 				] ],
 			],
 		];
+
+		// Generic AuthManager configuration for testing
+		$wgAuthManagerConfig = [
+			'preauth' => [],
+			'primaryauth' => [
+				[
+					'class' => MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider::class,
+					'args' => [ [
+						'authoritative' => false,
+					] ],
+				],
+				[
+					'class' => MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider::class,
+					'args' => [ [
+						'authoritative' => true,
+					] ],
+				],
+			],
+			'secondaryauth' => [],
+		];
+		$wgAuth = $wgDisableAuthManager ? new AuthPlugin : new MediaWiki\Auth\AuthManagerAuthPlugin();
 
 		// Bug 44192 Do not attempt to send a real e-mail
 		Hooks::clear( 'AlternateUserMailer' );
