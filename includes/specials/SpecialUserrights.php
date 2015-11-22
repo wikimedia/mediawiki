@@ -250,8 +250,6 @@ class UserrightsPage extends SpecialPage {
 	 * @return array Tuple of added, then removed groups
 	 */
 	function doSaveUserGroups( $user, $add, $remove, $reason = '' ) {
-		global $wgAuth;
-
 		// Validate input set...
 		$isself = $user->getName() == $this->getUser()->getName();
 		$groups = $user->getGroups();
@@ -293,7 +291,9 @@ class UserrightsPage extends SpecialPage {
 
 		// update groups in external authentication database
 		Hooks::run( 'UserGroupsChanged', [ $user, $add, $remove, $this->getUser(), $reason ] );
-		$wgAuth->updateExternalDBGroups( $user, $add, $remove );
+		MediaWiki\Auth\AuthManager::callLegacyAuthPlugin(
+			'updateExternalDBGroups', [ $user, $add, $remove ]
+		);
 
 		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) . "\n" );
 		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) . "\n" );

@@ -37,7 +37,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		];
 
 		$this->setMwGlobals( [
-			'wgAuth' => new StubObject( 'wgAuth', 'AuthPlugin' ),
+			'wgAuth' => new MediaWiki\Auth\AuthManagerAuthPlugin,
 			'wgRequest' => new FauxRequest( [] ),
 			'wgUser' => self::$users['sysop']->user,
 		] );
@@ -101,6 +101,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$wgRequest = new FauxRequest( $params, true, $session );
 		RequestContext::getMain()->setRequest( $wgRequest );
 		RequestContext::getMain()->setUser( $wgUser );
+		MediaWiki\Auth\AuthManager::resetCache();
 
 		// set up local environment
 		$context = $this->apiContext->newTestContext( $wgRequest, $wgUser );
