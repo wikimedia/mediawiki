@@ -1,0 +1,191 @@
+<?php
+
+namespace MediaWiki\Auth;
+
+use BagOStuff;
+use HashBagOStuff;
+use InvalidArgumentException;
+use Psr\Log\AbstractLogger;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+
+/**
+ * @group AuthManager
+ * @covers MediaWiki\Auth\Throttler
+ */
+class ThrottlerTest extends \MediaWikiTestCase {
+	protected function setUp() {
+		global $wgDisableAuthManager;
+
+		parent::setUp();
+		if ( $wgDisableAuthManager ) {
+			$this->markTestSkipped( '$wgDisableAuthManager is set' );
+		}
+	}
+
+	public function testConstructor() {
+		$cache = new \HashBagOStuff();
+		$logger = $this->getMockBuilder( AbstractLogger::class )
+			->setMethods( [ 'log' ] )
+			->getMockForAbstractClass();
+
+		$throttler = new Throttler(
+			[ [ 'count' => 123, 'seconds' => 456 ] ],
+			[ 'type' => 'foo', 'cache' => $cache ]
+		);
+		$throttler->setLogger( $logger );
+		$throttlerPriv = \TestingAccessWrapper::newFromObject( $throttler );
+		$this->assertSame( [ [ 'count' => 123, 'seconds' => 456 ] ], $throttlerPriv->conditions );
+		$this->assertSame( 'foo', $throttlerPriv->type );
+		$this->assertSame( $cache, $throttlerPriv->cache );
+		$this->assertSame( $logger, $throttlerPriv->logger );
+
+		$throttler = new Throttler( [ [ 'count' => 123, 'seconds' => 456 ] ] );
+		$throttler->setLogger( new NullLogger() );
+		$throttlerPriv = \TestingAccessWrapper::newFromObject( $throttler );
+		$this->assertSame( [ [ 'count' => 123, 'seconds' => 456 ] ], $throttlerPriv->conditions );
+		$this->assertSame( 'custom', $throttlerPriv->type );
+		$this->assertInstanceOf( BagOStuff::class, $throttlerPriv->cache );
+		$this->assertInstanceOf( LoggerInterface::class, $throttlerPriv->logger );
+
+		$this->setMwGlobals( [ 'wgPasswordAttemptThrottle' => [ [ 'count' => 321,
+			'seconds' => 654 ] ] ] );
+		$throttler = new Throttler();
+		$throttler->setLogger( new NullLogger() );
+		$throttlerPriv = \TestingAccessWrapper::newFromObject( $throttler );
+		$this->assertSame( [ [ 'count' => 321, 'seconds' => 654 ] ], $throttlerPriv->conditions );
+		$this->assertSame( 'password', $throttlerPriv->type );
+		$this->assertInstanceOf( BagOStuff::class, $throttlerPriv->cache );
+		$this->assertInstanceOf( LoggerInterface::class, $throttlerPriv->logger );
+	}
+
+	/**
+	 * @dataProvider provideNormalizeThrottleConditions
+	 */
+	public function testNormalizeThrottleConditions( $condition, $normalized ) {
+		$throttler = new Throttler( $condition );
+		$throttler->setLogger( new NullLogger() );
+		$throttlerPriv = \TestingAccessWrapper::newFromObject( $throttler );
+		$this->assertSame( $normalized, $throttlerPriv->conditions );
+	}
+
+	public function provideNormalizeThrottleConditions() {
+		return [
+			[
+				[],
+				[],
+			],
+			[
+				[ 'count' => 1, 'seconds' => 2 ],
+				[ [ 'count' => 1, 'seconds' => 2 ] ],
+			],
+			[
+				[ [ 'count' => 1, 'seconds' => 2 ], [ 'count' => 2, 'seconds' => 3 ] ],
+				[ [ 'count' => 1, 'seconds' => 2 ], [ 'count' => 2, 'seconds' => 3 ] ],
+			],
+		];
+	}
+
+	public function testIncrease() {
+		$cache = new \HashBagOStuff();
+		$throttler = new Throttler( [
+			[ 'count' => 2, 'seconds' => 10, ],
+			[ 'count' => 4, 'seconds' => 15, 'allIPs' => true ],
+		], [ 'cache' => $cache ] );
+		$throttler->setLogger( new NullLogger() );
+
+		$result = $throttler->increase( 'SomeUser', '1.2.3.4' );
+		$this->assertFalse( $result, 'should not throttle' );
+
+		$result = $throttler->increase( 'SomeUser', '1.2.3.4' );
+		$this->assertFalse( $result, 'should not throttle' );
+
+		$result = $throttler->increase( 'SomeUser', '1.2.3.4' );
+		$this->assertSame( [ 'throttleIndex' => 0, 'count' => 2, 'wait' => 10 ], $result );
+
+		$result = $throttler->increase( 'OtherUser', '1.2.3.4' );
+		$this->assertFalse( $result, 'should not throttle' );
+
+		$result = $throttler->increase( 'SomeUser', '2.3.4.5' );
+		$this->assertFalse( $result, 'should not throttle' );
+
+		$result = $throttler->increase( 'SomeUser', '3.4.5.6' );
+		$this->assertFalse( $result, 'should not throttle' );
+
+		$result = $throttler->increase( 'SomeUser', '3.4.5.6' );
+		$this->assertSame( [ 'throttleIndex' => 1, 'count' => 4, 'wait' => 15 ], $result );
+	}
+
+	public function testExpiration() {
+		$cache = $this->getMock( HashBagOStuff::class, [ 'add' ] );
+		$throttler = new Throttler( [ [ 'count' => 3, 'seconds' => 10 ] ], [ 'cache' => $cache ] );
+		$throttler->setLogger( new NullLogger() );
+
+		$cache->expects( $this->once() )->method( 'add' )->with( $this->anything(), 1, 10 );
+		$throttler->increase( 'SomeUser' );
+	}
+
+	/**
+	 * @expectedException \InvalidArgumentException
+	 */
+	public function testException() {
+		$throttler = new Throttler( [ [ 'count' => 3, 'seconds' => 10 ] ] );
+		$throttler->setLogger( new NullLogger() );
+		$throttler->increase();
+	}
+
+	public function testLog() {
+		$cache = new \HashBagOStuff();
+		$throttler = new Throttler( [ [ 'count' => 1, 'seconds' => 10 ] ], [ 'cache' => $cache ] );
+
+		$logger = $this->getMockBuilder( AbstractLogger::class )
+			->setMethods( [ 'log' ] )
+			->getMockForAbstractClass();
+		$logger->expects( $this->never() )->method( 'log' );
+		$throttler->setLogger( $logger );
+		$result = $throttler->increase( 'SomeUser', '1.2.3.4' );
+		$this->assertFalse( $result, 'should not throttle' );
+
+		$logger = $this->getMockBuilder( AbstractLogger::class )
+			->setMethods( [ 'log' ] )
+			->getMockForAbstractClass();
+		$logger->expects( $this->once() )->method( 'log' )->with( $this->anything(), $this->anything(), [
+			'type' => 'custom',
+			'index' => 0,
+			'ip' => '1.2.3.4',
+			'username' => 'SomeUser',
+			'count' => 1,
+			'expiry' => 10,
+			'method' => 'foo',
+		] );
+		$throttler->setLogger( $logger );
+		$result = $throttler->increase( 'SomeUser', '1.2.3.4', 'foo' );
+		$this->assertSame( [ 'throttleIndex' => 0, 'count' => 1, 'wait' => 10 ], $result );
+	}
+
+	public function testClear() {
+		$cache = new \HashBagOStuff();
+		$throttler = new Throttler( [ [ 'count' => 1, 'seconds' => 10 ] ], [ 'cache' => $cache ] );
+		$throttler->setLogger( new NullLogger() );
+
+		$result = $throttler->increase( 'SomeUser', '1.2.3.4' );
+		$this->assertFalse( $result, 'should not throttle' );
+
+		$result = $throttler->increase( 'SomeUser', '1.2.3.4' );
+		$this->assertSame( [ 'throttleIndex' => 0, 'count' => 1, 'wait' => 10 ], $result );
+
+		$result = $throttler->increase( 'OtherUser', '1.2.3.4' );
+		$this->assertFalse( $result, 'should not throttle' );
+
+		$result = $throttler->increase( 'OtherUser', '1.2.3.4' );
+		$this->assertSame( [ 'throttleIndex' => 0, 'count' => 1, 'wait' => 10 ], $result );
+
+		$throttler->clear( 'SomeUser', '1.2.3.4' );
+
+		$result = $throttler->increase( 'SomeUser', '1.2.3.4' );
+		$this->assertFalse( $result, 'should not throttle' );
+
+		$result = $throttler->increase( 'OtherUser', '1.2.3.4' );
+		$this->assertSame( [ 'throttleIndex' => 0, 'count' => 1, 'wait' => 10 ], $result );
+	}
+}
