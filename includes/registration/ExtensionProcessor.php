@@ -23,6 +23,7 @@ class ExtensionProcessor implements Processor {
 		'AvailableRights',
 		'ContentHandlers',
 		'ConfigRegistry',
+		'AuthManagerAutoConfig',
 		'CentralIdLookupProviders',
 		'RateLimits',
 		'RecentChangesFlags',
@@ -67,6 +68,7 @@ class ExtensionProcessor implements Processor {
 		'wgNamespaceProtection' => 'array_plus',
 		'wgCapitalLinkOverrides' => 'array_plus',
 		'wgRateLimits' => 'array_plus_2d',
+		'wgAuthManagerAutoConfig' => 'array_plus_2d',
 	];
 
 	/**

@@ -508,6 +508,25 @@
 			"type": "object",
 			"description": "Registry of factory functions to create Config objects"
 		},
+		"AuthManagerAutoConfig": {
+			"type": "object",
+			"description": "AuthManager auto-configuration",
+			"additionalProperties": false,
+			"properties": {
+				"preauth": {
+					"type": "object",
+					"description": "Pre-authentication providers"
+				},
+				"primaryauth": {
+					"type": "object",
+					"description": "Primary authentication providers"
+				},
+				"secondaryauth": {
+					"type": "object",
+					"description": "Secondary authentication providers"
+				}
+			}
+		},
 		"CentralIdLookupProviders": {
 			"type": "object",
 			"description": "Central ID lookup providers"
