@@ -20,6 +20,8 @@
  * @file
  */
 
+use \Cdb\Reader as CdbReader;
+
 /**
  * Functions to check passwords against a policy requirement
  * @since 1.26
@@ -108,6 +110,41 @@ class PasswordPolicyChecks {
 			&& $password == $blockedLogins[$username]
 		) {
 			$status->error( 'password-login-forbidden' );
+		}
+		return $status;
+	}
+
+	/**
+	 * Ensure that password isn't in top X most popular passwords
+	 *
+	 * @param $policyVal int Cut off to use. Will automatically shrink to the max
+	 *   supported for error messages if set to more than max number of passwords on file,
+	 *   so you can use the PHP_INT_MAX constant here safely.
+	 * @param $user User
+	 * @param $password String
+	 * @return Status
+	 */
+	public static function checkPopularPasswordBlacklist( $policyVal, User $user, $password ) {
+		global $wgPopularPasswordFile;
+		$status = Status::newGood();
+		if ( $policyVal > 0 ) {
+			$langEn = Language::factory( 'en' );
+			$passwordKey = $langEn->lc( trim( $password ) );
+
+			// This could throw an exception, but there's not a good way
+			// of failing gracefully, if say the file is missing, so just
+			// let the exception fall through.
+			// Format of cdb file is mapping password => popularity rank.
+			// See maintenance/createCommonPasswordCdb.php
+			$db = CdbReader::open( $wgPopularPasswordFile );
+
+			$res = $db->get( $passwordKey );
+			if ( $res && (int)$res <= $policyVal ) {
+				// Note: If you want to find the true number of common
+				// passwords stored (for reporting the error), you have to take
+				// the max of the policyVal and $db->get( '_TOTALENTRIES' ).
+				$status->error( 'passwordtoopopular' );
+			}
 		}
 		return $status;
 	}
