@@ -19,7 +19,7 @@
 		"composer/semver": "1.0.0",
 		"cssjanus/cssjanus": "1.1.1",
 		"ext-iconv": "*",
-		"liuggio/statsd-php-client": "1.0.16",
+		"liuggio/statsd-php-client": "1.0.18",
 		"mediawiki/at-ease": "1.1.0",
 		"oojs/oojs-ui": "0.13.3",
 		"oyejorge/less.php": "1.7.0.9",

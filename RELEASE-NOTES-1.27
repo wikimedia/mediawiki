@@ -87,6 +87,7 @@ production.
 
 == External libraries ==
 === Upgraded external libraries ===
+* Update liuggio/statsd-php-client to 1.0.18
 
 === New external libraries ===
 * Added wikimedia/cldr-plural-rule-parser v1.0.0
