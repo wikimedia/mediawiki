@@ -275,6 +275,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'dropTable', 'hitcounter' ),
 			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
 			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
+
+			// 1.27
+			array( 'addTable', 'auth_blacklist', 'auth_blacklist.sql' ),
 		);
 	}
 
