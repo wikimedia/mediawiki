@@ -49,7 +49,7 @@ abstract class HTMLFormField {
 	 * Defaults to false, which getOOUI will interpret as "use the HTML version"
 	 *
 	 * @param string $value
-	 * @return OOUI\\Widget|false
+	 * @return OOUI\Widget|false
 	 */
 	function getInputOOUI( $value ) {
 		return false;
@@ -576,7 +576,7 @@ abstract class HTMLFormField {
 	 *
 	 * @param string $value The value to set the input to.
 	 *
-	 * @return OOUI\\FieldLayout|OOUI\\ActionFieldLayout
+	 * @return OOUI\FieldLayout|OOUI\ActionFieldLayout
 	 */
 	public function getOOUI( $value ) {
 		$inputField = $this->getInputOOUI( $value );
@@ -629,7 +629,7 @@ abstract class HTMLFormField {
 
 	/**
 	 * Get a FieldLayout (or subclass thereof) to wrap this field in when using OOUI output.
-	 * @return OOUI\\FieldLayout|OOUI\\ActionFieldLayout
+	 * @return OOUI\FieldLayout|OOUI\ActionFieldLayout
 	 */
 	protected function getFieldLayoutOOUI( $inputField, $config ) {
 		if ( isset( $this->mClassWithButton ) ) {

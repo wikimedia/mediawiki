@@ -41,7 +41,7 @@ use UDPTransport;
  * See documentation in DefaultSettings.php for detailed explanations of each
  * variable.
  *
- * @see \\MediaWiki\\Logger\\LoggerFactory
+ * @see \MediaWiki\Logger\LoggerFactory
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
@@ -54,7 +54,7 @@ class LegacyLogger extends AbstractLogger {
 	protected $channel;
 
 	/**
-	 * Convert Psr\\Log\\LogLevel constants into int for sane comparisons
+	 * Convert \Psr\Log\LogLevel constants into int for sane comparisons
 	 * These are the same values that Monlog uses
 	 *
 	 * @var array $levelMapping
@@ -101,7 +101,7 @@ class LegacyLogger extends AbstractLogger {
 	 *
 	 * @param string $channel
 	 * @param string $message
-	 * @param string|int $level Psr\\Log\\LogEvent constant or Monlog level int
+	 * @param string|int $level \Psr\Log\LogEvent constant or Monlog level int
 	 * @param array $context
 	 * @return bool True if message should be sent to disk/network, false
 	 * otherwise
