@@ -501,7 +501,6 @@ if ( !$wgSessionsInObjectCache && !$wgSessionsInMemcached ) {
 	);
 }
 $wgSessionsInObjectCache = true;
-
 if ( $wgPHPSessionHandling !== 'enable' &&
 	$wgPHPSessionHandling !== 'warn' &&
 	$wgPHPSessionHandling !== 'disable'
@@ -680,6 +679,7 @@ if ( !is_object( $wgAuth ) ) {
 	$wgAuth = new MediaWiki\Auth\AuthManagerAuthPlugin;
 	Hooks::run( 'AuthPluginSetup', array( &$wgAuth ) );
 }
+
 if ( $wgAuth && !$wgAuth instanceof MediaWiki\Auth\AuthManagerAuthPlugin ) {
 	MediaWiki\Auth\AuthManager::singleton()->forcePrimaryAuthenticationProviders( array(
 		new MediaWiki\Auth\AuthPluginPrimaryAuthenticationProvider( $wgAuth ),
