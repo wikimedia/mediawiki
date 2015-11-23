@@ -739,6 +739,14 @@ viewing.
 redirect was followed.
 &$article: target article (object)
 
+'AuthChangeFormFields': After converting a field information array obtained
+from a set of AuthenticationRequest classes into a form descriptor; hooks
+can tweak the array to change how login etc. forms should look.
+$fieldInfo: field information array (union of all AuthenticationRequest::getFieldInfo() responses).
+&$formDescriptor: HTMLForm descriptor. The special key 'weight' can be set
+  to change the order of the fields.
+$action: one of the AuthManager::ACTION_* constants.
+
 'AuthManagerLoginAuthenticateAudit': A login attempt either succeeded or failed
 for a reason other than misconfiguration or session loss. No return data is
 accepted; this hook is for auditing only.
@@ -3221,7 +3229,8 @@ messages!" message, return false to not delete it.
 &$user: User (object) that will clear the message
 $oldid: ID of the talk page revision being viewed (0 means the most recent one)
 
-'UserCreateForm': change to manipulate the login form
+'UserCreateForm': DEPRECATED! Create an AuthenticationProvider instead.
+Manipulate the login form.
 &$template: SimpleTemplate instance for the form
 
 'UserEffectiveGroups': Called in User::getEffectiveGroups().
@@ -3326,7 +3335,8 @@ $user: User object for the logged-in user
 &$user: the user object that was created on login
 &$inject_html: Any HTML to inject after the "logged in" message.
 
-'UserLoginForm': change to manipulate the login form
+'UserLoginForm': DEPRECATED! Create an AuthenticationProvider instead.
+Manipulate the login form.
 &$template: SimpleTemplate instance for the form
 
 'UserLogout': Before a user logs out.
