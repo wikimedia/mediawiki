@@ -10,7 +10,7 @@
 class ApiCreateAccountTest extends ApiTestCase {
 	protected function setUp() {
 		parent::setUp();
-		LoginForm::setCreateaccountToken();
+		SpecialUserLogin::setAuthenticationToken();
 		$this->setMwGlobals( array( 'wgEnableEmail' => true ) );
 	}
 
@@ -114,7 +114,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 	public function testNoName() {
 		$this->doApiRequest( array(
 			'action' => 'createaccount',
-			'token' => LoginForm::getCreateaccountToken(),
+			'token' => SpecialUserLogin::getAuthenticationToken(),
 			'password' => 'password',
 		) );
 	}
@@ -127,7 +127,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 		$this->doApiRequest( array(
 			'action' => 'createaccount',
 			'name' => 'testName',
-			'token' => LoginForm::getCreateaccountToken(),
+			'token' => SpecialUserLogin::getAuthenticationToken(),
 		) );
 	}
 
@@ -139,7 +139,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 		$this->doApiRequest( array(
 			'action' => 'createaccount',
 			'name' => 'Apitestsysop',
-			'token' => LoginForm::getCreateaccountToken(),
+			'token' => SpecialUserLogin::getAuthenticationToken(),
 			'password' => 'password',
 			'email' => 'test@domain.test',
 		) );
@@ -153,7 +153,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 		$this->doApiRequest( array(
 			'action' => 'createaccount',
 			'name' => 'Test User',
-			'token' => LoginForm::getCreateaccountToken(),
+			'token' => SpecialUserLogin::getAuthenticationToken(),
 			'password' => 'password',
 			'email' => 'invalid',
 		) );
