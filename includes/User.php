@@ -148,7 +148,6 @@ class User implements IDBAccessObject {
 		'patrol',
 		'patrolmarks',
 		'protect',
-		'proxyunbannable',
 		'purge',
 		'read',
 		'reupload',
@@ -1556,9 +1555,7 @@ class User implements IDBAccessObject {
 		$block = Block::newFromTarget( $this, $ip, !$bFromSlave );
 
 		// Proxy blocking
-		if ( !$block instanceof Block && $ip !== null && !$this->isAllowed( 'proxyunbannable' )
-			&& !in_array( $ip, $wgProxyWhitelist )
-		) {
+		if ( !$block instanceof Block && $ip !== null && !in_array( $ip, $wgProxyWhitelist ) ) {
 			// Local list
 			if ( self::isLocallyBlockedProxy( $ip ) ) {
 				$block = new Block;
@@ -1577,7 +1574,6 @@ class User implements IDBAccessObject {
 		if ( !$block instanceof Block
 			&& $wgApplyIpBlocksToXff
 			&& $ip !== null
-			&& !$this->isAllowed( 'proxyunbannable' )
 			&& !in_array( $ip, $wgProxyWhitelist )
 		) {
 			$xff = $this->getRequest()->getHeader( 'X-Forwarded-For' );

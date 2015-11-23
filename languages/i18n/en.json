@@ -1141,7 +1141,6 @@
 	"right-blockemail": "Block a user from sending email",
 	"right-hideuser": "Block a username, hiding it from the public",
 	"right-ipblock-exempt": "Bypass IP blocks, auto-blocks and range blocks",
-	"right-proxyunbannable": "Bypass automatic blocks of proxies",
 	"right-unblockself": "Unblock oneself",
 	"right-protect": "Change protection levels and edit cascade-protected pages",
 	"right-editprotected": "Edit pages protected as \"{{int:protect-level-sysop}}\"",
