@@ -3292,6 +3292,7 @@
 	"revdelete-unrestricted": "أزال الضوابط لمديري النظام",
 	"logentry-block-block": "{{GENDER:$2|منع|منعت}} $1 {{GENDER:$4|$3}} لفترة زمنية مدتها $5 $6",
 	"logentry-block-unblock": "$1 {{GENDER:$2|رفع منع}} {{GENDER:$4|$3}}",
+	"logentry-block-reblock": " {{GENDER:$2|غير|غيرت}} $1 إعدادات المنع ل{{GENDER:$4|$3}} بتاريخ انتهاء $5 $6",
 	"logentry-suppress-block": "{{GENDER:$2|منع|منعت}} $1 {{GENDER:$4|$3}} لفترة زمنية مدتها $5 $6",
 	"logentry-import-upload": "$1 {{GENDER:$2|استورد}} $3 بواسطة رفع ملف",
 	"logentry-import-interwiki": "$1 {{GENDER:$2|استورد|استوردت}} $3 من ويكي أخرى",
