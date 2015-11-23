@@ -501,10 +501,9 @@ if ( !$wgSessionsInObjectCache && !$wgSessionsInMemcached ) {
 	);
 }
 $wgSessionsInObjectCache = true;
-
 if ( $wgPHPSessionHandling !== 'enable' &&
-	$wgPHPSessionHandling !== 'warn' &&
-	$wgPHPSessionHandling !== 'disable'
+		$wgPHPSessionHandling !== 'warn' &&
+		$wgPHPSessionHandling !== 'disable'
 ) {
 	$wgPHPSessionHandling = 'warn';
 }
@@ -677,30 +676,19 @@ $wgContLang->initContLang();
 $wgRequest->interpolateTitle();
 
 if ( !is_object( $wgAuth ) ) {
-	$wgAuth = new MediaWiki\Auth\AuthManagerAuthPlugin;
+	$wgAuth = new AuthPlugin;
 	Hooks::run( 'AuthPluginSetup', array( &$wgAuth ) );
 }
-if ( $wgAuth && !$wgAuth instanceof MediaWiki\Auth\AuthManagerAuthPlugin ) {
-	MediaWiki\Auth\AuthManager::singleton()->forcePrimaryAuthenticationProviders( array(
-		new MediaWiki\Auth\AuthPluginPrimaryAuthenticationProvider( $wgAuth ),
-		new MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider( array(
-			'authoritative' => false,
-		) ),
-		new MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider( array(
-			'authoritative' => true,
-		) ),
-	), '$wgAuth is ' . get_class( $wgAuth ) );
-}
 
-// Set up the session
+// Set up the session 
 $ps_session = Profiler::instance()->scopedProfileIn( $fname . '-session' );
 if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
-	// If session.auto_start is there, we can't touch session name
+	// If session.auto_start is there, we can't touch session name 
 	if ( $wgPHPSessionHandling !== 'disable' && !wfIniGetBool( 'session.auto_start' ) ) {
 		session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
 	}
 
-	// Create the SessionManager singleton and set up our session handler
+	// Create the SessionManager singleton and set up our session handler 
 	MediaWiki\Session\PHPSessionHandler::install(
 		MediaWiki\Session\SessionManager::singleton()
 	);
@@ -709,7 +697,7 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	$session = MediaWiki\Session\SessionManager::getGlobalSession();
 	$session->renew();
 	if ( MediaWiki\Session\PHPSessionHandler::isEnabled() &&
-		( $session->isPersistent() || $session->shouldRememberUser() )
+			( $session->isPersistent() || $session->shouldRememberUser() )
 	) {
 		// Start the PHP-session for backwards compatibility
 		session_id( $session->getId() );
@@ -774,7 +762,7 @@ foreach ( $wgExtensionFunctions as $func ) {
 $sessionUser = MediaWiki\Session\SessionManager::getGlobalSession()->getUser();
 if ( $sessionUser->getId() === 0 && User::isValidUserName( $sessionUser->getName() ) ) {
 	$ps_autocreate = Profiler::instance()->scopedProfileIn( $fname . '-autocreate' );
-	MediaWiki\Auth\AuthManager::singleton()->autoCreateUser( $sessionUser, true );
+	MediaWiki\Session\SessionManager::autoCreateUser( $sessionUser );
 	Profiler::instance()->scopedProfileOut( $ps_autocreate );
 }
 unset( $sessionUser );
