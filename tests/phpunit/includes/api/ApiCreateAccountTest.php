@@ -10,7 +10,7 @@
 class ApiCreateAccountTest extends ApiTestCase {
 	protected function setUp() {
 		parent::setUp();
-		LoginForm::setCreateaccountToken();
+		SpecialUserLogin::setAuthenticationToken();
 		$this->setMwGlobals( array( 'wgEnableEmail' => true ) );
 	}
 
