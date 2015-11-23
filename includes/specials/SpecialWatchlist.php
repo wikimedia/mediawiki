@@ -507,53 +507,43 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	function cutoffselector( $options ) {
-		$userWatchlistOption = $this->getUser()->getOption( 'watchlistdays' );
+		// Cast everything to strings immediately, so that we know all of the values have the same
+		// precision, and can be compared with '==='. 2/24 has a few more decimal places than its
+		// default string representation, for example, and would confuse comparisons.
 
-		$list = array();
-		$selectOptions = '';
-		$hours = array( 1, 2, 6, 12 );
-		$days = array( 1, 3, 7 );
+		// Misleadingly, the 'days' option supports hours too.
+		$days = array_map( 'strval', array( 1/24, 2/24, 6/24, 12/24, 1, 3, 7 ) );
+
+		$userWatchlistOption = (string)$this->getUser()->getOption( 'watchlistdays' );
 		// add the user preference, if it isn't available already
-		if ( $userWatchlistOption >= 1 && !in_array( $userWatchlistOption, $days ) ) {
+		if ( !in_array( $userWatchlistOption, $days ) ) {
 			$days[] = $userWatchlistOption;
-			asort( $days );
-		} elseif ( $userWatchlistOption < 1 && !in_array( $userWatchlistOption * 24, $hours ) ) {
-			$hours[] = $userWatchlistOption * 24;
-			asort( $hours );
-		}
-		foreach ( $hours as $h ) {
-			$name = $this->msg( 'hours' )->numParams( $h );
-			$value = $h / 24;
-			// due to the possible addition of a user value, it's possible, that both
-			// values ($value and $options['days']) are floats with unexpected comparison
-			// behaviour. Comparing them directly can result in a "not equality" result,
-			// even if the "visible" floats would be the same (e.g. if the user value is
-			// float(0.4)). See PHP docs about Comparing floats.
-			$selected = abs( $value - $options['days'] ) < 0.00001;
-
-			$selectOptions .= Xml::option( $name, $value, $selected );
-		}
-		foreach ( $days as $d ) {
-			$name = $this->msg( 'days' )->numParams( $d );
-			$value = $d;
-			$selected = $value == $options['days'];
-
-			$selectOptions .= Xml::option( $name, $value, $selected );
 		}
 
-		// all option
-		$name = $this->msg( 'watchlistall2' );
+		$selected = (string)$options['days'];
+		// add the currently selected value, if it isn't available already
+		if ( !in_array( $selected, $days ) ) {
+			$days[] = $selected;
+		}
+
+		$select = new XmlSelect( 'days', 'days', $selected );
+
+		asort( $days );
+		foreach ( $days as $value ) {
+			if ( $value < 1 ) {
+				$name = $this->msg( 'hours' )->numParams( $value * 24 )->text();
+			} else {
+				$name = $this->msg( 'days' )->numParams( $value )->text();
+			}
+			$select->addOption( $name, $value );
+		}
+
+		// 'all' option
+		$name = $this->msg( 'watchlistall2' )->text();
 		$value = 0;
-		$selected = ( $value == $options['days'] ) ? true : false;
-		$selectOptions .= Xml::option( $name, $value, $selected );
+		$select->addOption( $name, $value );
 
-		$attribs = array( "name" => "days", "id" => "days" );
-		return Xml::openElement( 'select', $attribs )
-			. "\n"
-			. $selectOptions
-			. "\n"
-			. Xml::closeElement( 'select' )
-			. "<br />\n";
+		return $select->getHTML() . "\n<br />\n";
 	}
 
 	function setTopText( FormOptions $opts ) {
