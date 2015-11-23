@@ -28,10 +28,12 @@
 
 			expectedEntrypoints = '<a href="https://www.mediawiki.org/wiki/Manual:index.php">index.php</a>';
 
+			delete mw.jqueryMsg.map.text;
 			formatText = mw.jqueryMsg.getMessageFunction( {
 				format: 'text'
 			} );
 
+			delete mw.jqueryMsg.map.parse;
 			formatParse = mw.jqueryMsg.getMessageFunction( {
 				format: 'parse'
 			} );
@@ -739,6 +741,7 @@
 			message[ format ]();
 			assert.strictEqual( outerCalled, shouldCall, 'Outer function called for ' + key );
 			assert.strictEqual( innerCalled, shouldCall, 'Inner function called for ' + key );
+			delete mw.messages[ format ];
 		}
 
 		verifyGetMessageFunction( 'curly-brace', 'parse', true );
