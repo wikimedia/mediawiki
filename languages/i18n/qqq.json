@@ -1320,7 +1320,6 @@
 	"right-blockemail": "{{doc-right|blockemail}}",
 	"right-hideuser": "{{doc-right|hideuser}}\nThis user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.\nIt can be given to the group {{msg-mw|group-suppress}}, although that group is disabled by default.\n\nSee also\n* {{msg-mw|right-suppressionlog}}\n* {{msg-mw|right-suppressrevision}}\n* {{msg-mw|right-deletelogentry}}\n* {{msg-mw|right-deleterevision}}",
 	"right-ipblock-exempt": "{{doc-right|ipblock-exempt}}\nThis user automatically bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncertain",
-	"right-proxyunbannable": "{{doc-right|proxyunbannable}}",
 	"right-unblockself": "{{doc-right|unblockself}}",
 	"right-protect": "{{doc-right|protect}}",
 	"right-editprotected": "{{doc-right|editprotected}}\nRefers to {{msg-mw|Protect-level-sysop}}.\n\nSee also:\n* {{msg-mw|Right-editsemiprotected}}",
