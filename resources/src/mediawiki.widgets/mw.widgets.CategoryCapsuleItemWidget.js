@@ -175,13 +175,17 @@
 			title = new ForeignTitle( this.title.getPrefixedText() ), // HACK
 			prefix = this.apiUrl.replace( '/w/api.php', '' ); // HACK
 
+		this.missing = missing;
+
 		if ( !missing ) {
 			this.$link
 				.attr( 'href', prefix + title.getUrl() )
+				.attr( 'title', title.getPrefixedText() )
 				.removeClass( 'new' );
 		} else {
 			this.$link
 				.attr( 'href', prefix + title.getUrl( { action: 'edit', redlink: 1 } ) )
+				.attr( 'title', mw.message( 'red-link-title', title.getPrefixedText() ) )
 				.addClass( 'new' );
 		}
 	};

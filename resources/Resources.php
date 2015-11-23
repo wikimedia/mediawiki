@@ -2042,6 +2042,9 @@ return array(
 			'mediawiki.ForeignApi',
 			'mediawiki.Title',
 		),
+		'messages' => array(
+			'red-link-title',
+		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.widgets.UserInputWidget' => array(
