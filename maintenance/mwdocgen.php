@@ -86,8 +86,7 @@ class MWDocGen extends Maintenance {
 
 		$this->output = $this->getOption( 'output', "$IP/docs" );
 
-		$this->inputFilter = wfShellWikiCmd(
-			$IP . '/maintenance/mwdoc-filter.php' );
+		$this->inputFilter = wfShellWikiCmd( $IP . '/maintenance/mwdoc-filter.php' );
 		$this->template = $IP . '/maintenance/Doxyfile';
 		$this->excludes = array(
 			'vendor',
