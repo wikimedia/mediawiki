@@ -87,6 +87,7 @@ production.
 
 == External libraries ==
 === Upgraded external libraries ===
+* Updated cssjanus/cssjanus to 1.1.2
 
 === New external libraries ===
 * Added wikimedia/cldr-plural-rule-parser v1.0.0
