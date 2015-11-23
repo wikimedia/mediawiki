@@ -220,6 +220,22 @@ CREATE TABLE /*_*/user_properties (
 CREATE UNIQUE INDEX /*i*/user_properties_user_property ON /*_*/user_properties (up_user,up_property);
 CREATE INDEX /*i*/user_properties_property ON /*_*/user_properties (up_property);
 
+
+--
+-- System users (as declared with AuthManager::revokeAccessForUser())
+-- who should not be usable as normal users (ie. are not allowed to
+-- log in). This is not important for normal login as the password will
+-- be scrambled anyway, but some login methods (e.g. OAuthAuthentication)
+-- cannot be easily disabled.
+--
+CREATE TABLE /*_*/auth_blacklist (
+  -- Key to user_name
+  ab_name varchar(255) binary NOT NULL default ''
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/auth_blacklist_name ON /*_*/auth_blacklist (ab_name);
+
+
 --
 -- Core of the wiki: each page has an entry here which identifies
 -- it by title and contains some essential metadata.
