@@ -304,6 +304,8 @@ changes to languages because of Phabricator reports.
   together but instead pick the final one, similar to image syntax.
 * XML-like parser tags (such as <gallery>), when unclosed, will be left unparsed
   rather than consume everything until the end of the page.
+* New maintenance script resetUserEmail.php allows sysadmins to reset user emails in case
+  a user forgot password/account was stolen.
 
 == Compatibility ==
 
