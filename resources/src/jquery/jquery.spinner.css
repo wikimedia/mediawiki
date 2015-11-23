@@ -38,3 +38,17 @@
 	zoom: 1;
 	*display: inline;
 }
+
+@media
+	only screen and (-webkit-min-device-pixel-ratio: 1.25),
+	only screen and (min-resolution: 120dpi)
+{
+	.mw-spinner-small {
+		background-image: url(images/spinner-2x.gif);
+		background-size: 20px 20px;
+	}
+	.mw-spinner-large {
+		background-image: url(images/spinner-large-2x.gif);
+		background-size: 32px 32px;
+	}
+}
