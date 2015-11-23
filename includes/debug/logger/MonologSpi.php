@@ -178,7 +178,7 @@ class MonologSpi implements Spi {
 	 * name will return the cached instance.
 	 *
 	 * @param string $channel Logging channel
-	 * @return \\Psr\\Log\\LoggerInterface Logger instance
+	 * @return \Psr\Log\LoggerInterface Logger instance
 	 */
 	public function getLogger( $channel ) {
 		if ( !isset( $this->singletons['loggers'][$channel] ) ) {
@@ -200,7 +200,7 @@ class MonologSpi implements Spi {
 	 * Create a logger.
 	 * @param string $channel Logger channel
 	 * @param array $spec Configuration
-	 * @return \\Monolog\\Logger
+	 * @return \Monolog\Logger
 	 */
 	protected function createLogger( $channel, $spec ) {
 		$obj = new Logger( $channel );
@@ -244,7 +244,7 @@ class MonologSpi implements Spi {
 	/**
 	 * Create or return cached handler.
 	 * @param string $name Processor name
-	 * @return \\Monolog\\Handler\\HandlerInterface
+	 * @return \Monolog\Handler\HandlerInterface
 	 */
 	public function getHandler( $name ) {
 		if ( !isset( $this->singletons['handlers'][$name] ) ) {
@@ -267,7 +267,7 @@ class MonologSpi implements Spi {
 	/**
 	 * Create or return cached formatter.
 	 * @param string $name Formatter name
-	 * @return \\Monolog\\Formatter\\FormatterInterface
+	 * @return \Monolog\Formatter\FormatterInterface
 	 */
 	public function getFormatter( $name ) {
 		if ( !isset( $this->singletons['formatters'][$name] ) ) {
