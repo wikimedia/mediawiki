@@ -132,7 +132,7 @@ CITE_BIB_FILES         =
 #---------------------------------------------------------------------------
 # Configuration options related to warning and progress messages
 #---------------------------------------------------------------------------
-QUIET                  = NO
+QUIET                  = YES
 WARNINGS               = YES
 WARN_IF_UNDOCUMENTED   = YES
 WARN_IF_DOC_ERROR      = YES
@@ -322,8 +322,6 @@ MAN_LINKS              = NO
 #---------------------------------------------------------------------------
 GENERATE_XML           = NO
 XML_OUTPUT             = xml
-XML_SCHEMA             =
-XML_DTD                =
 XML_PROGRAMLISTING     = YES
 #---------------------------------------------------------------------------
 # Configuration options related to the DOCBOOK output
