@@ -121,6 +121,9 @@ production.
 ** ApiFormatDbg
 ** ApiFormatTxt
 ** ApiFormatYaml
+* ApiQueryBase::getDirectionDescription is now marked as deprecated. It should
+  have been so marked since 1.25 when ApiBase::getParamDescription was
+  deprecated, but was overlooked at the time.
 
 === Languages updated in 1.27 ===
 
