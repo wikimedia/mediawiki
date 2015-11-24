@@ -1816,10 +1816,11 @@ abstract class DatabaseBase implements IDatabase {
 	public function tableExists( $table, $fname = __METHOD__ ) {
 		$table = $this->tableName( $table );
 		$old = $this->ignoreErrors( true );
-		$res = $this->query( "SELECT 1 FROM $table LIMIT 1", $fname );
+		$res = $this->query( "SHOW TABLES LIKE $table", $fname );
+		$row = $this->fetchRow( $res );
 		$this->ignoreErrors( $old );
 
-		return (bool)$res;
+		return (bool)$row;
 	}
 
 	/**
