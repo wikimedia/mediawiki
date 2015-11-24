@@ -1383,7 +1383,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * must exist and must not be deleted
 	 * @param Revision $undo
 	 * @param Revision $undoafter Must be an earlier revision than $undo
-	 * @return mixed String on success, false on failure
+	 * @return Content|bool String on success, false on failure
 	 * @since 1.21
 	 * Before we had the Content object, this was done in getUndoText
 	 */
@@ -2012,6 +2012,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Prepare text which is about to be saved.
 	 * Returns a stdClass with source, pst and output members
 	 *
+	 * @param string $text
+	 * @param int|null $revid
+	 * @param User|null $user
 	 * @deprecated since 1.21: use prepareContentForEdit instead.
 	 * @return object
 	 */
