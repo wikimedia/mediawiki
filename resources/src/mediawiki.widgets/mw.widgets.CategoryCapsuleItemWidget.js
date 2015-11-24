@@ -185,7 +185,7 @@
 		} else {
 			this.$link
 				.attr( 'href', prefix + title.getUrl( { action: 'edit', redlink: 1 } ) )
-				.attr( 'title', mw.message( 'red-link-title', title.getPrefixedText() ) )
+				.attr( 'title', mw.message( 'red-link-title', title.getPrefixedText() ).text() )
 				.addClass( 'new' );
 		}
 	};
