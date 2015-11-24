@@ -21,11 +21,12 @@
  */
 
 /**
- * Class for generating HTML <select> elements.
+ * Class for generating HTML <select> or <datalist> elements.
  */
 class XmlSelect {
 	protected $options = array();
 	protected $default = false;
+	protected $tagName = 'select';
 	protected $attributes = array();
 
 	public function __construct( $name = false, $id = false, $default = false ) {
@@ -47,6 +48,13 @@ class XmlSelect {
 	 */
 	public function setDefault( $default ) {
 		$this->default = $default;
+	}
+
+	/**
+	 * @param string|array $tagName
+	 */
+	public function setTagName( $tagName ) {
+		$this->tagName = $tagName;
 	}
 
 	/**
@@ -127,6 +135,6 @@ class XmlSelect {
 			$contents .= self::formatOptions( $options, $this->default );
 		}
 
-		return Html::rawElement( 'select', $this->attributes, rtrim( $contents ) );
+		return Html::rawElement( $this->tagName, $this->attributes, rtrim( $contents ) );
 	}
 }
