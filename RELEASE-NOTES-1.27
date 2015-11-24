@@ -85,12 +85,18 @@ production.
   string, if available. To localize this string, see the comments of
   $wgLocaltimezone in includes/DefaultSettings.php.
 
-== External libraries ==
-=== Upgraded external libraries ===
-* Upgraded composer/semver from v1.0.0 to v1.2.0
+=== External library changes in 1.27 ===
+==== Upgraded external libraries ====
+* Updated oojs/oojs-ui from v0.12.12 to v0.13.3.
+* Updated composer/semver from v1.0.0 to v1.2.0.
 
-=== New external libraries ===
-* Added wikimedia/cldr-plural-rule-parser v1.0.0
+==== New external libraries ====
+* Added wikimedia/base-convert v1.0.1.
+* Added wikimedia/cldr-plural-rule-parser v1.0.0.
+* Added wikimedia/relpath v1.0.3.
+* Added wikimedia/running-stat v1.1.0.
+
+==== Removed and replaced external libraries ====
 
 === Bug fixes in 1.27 ===
 * Special:Upload will now display correct maximum allowed file size when running
