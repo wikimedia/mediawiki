@@ -464,10 +464,10 @@ class Preprocessor_DOM extends Preprocessor {
 						$i = $matches[0][1] + strlen( $matches[0][0] );
 						$close = '<close>' . htmlspecialchars( $matches[0][0] ) . '</close>';
 					} else {
-						// No end tag -- let it run out to the end of the text.
-						$inner = substr( $text, $tagEndPos + 1 );
-						$i = $lengthText;
-						$close = '';
+						// No end tag -- don't match the tag, treat opening tag as literal and resume parsing.
+						$i = $tagEndPos + 1;
+						$accum .= htmlspecialchars( substr( $text, $tagStartPos, $tagEndPos + 1 - $tagStartPos ) );
+						continue;
 					}
 				}
 				// <includeonly> and <noinclude> just become <ignore> tags
