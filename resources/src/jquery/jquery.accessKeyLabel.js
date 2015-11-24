@@ -33,12 +33,12 @@ function getAccessKeyPrefix( ua ) {
 	var profile = $.client.profile( ua ),
 		accessKeyPrefix = 'alt-';
 
-	// Opera on any platform
-	if ( profile.name === 'opera' ) {
+	// Classic Opera on any platform
+	if ( profile.name === 'opera' && profile.versionNumber < 15 ) {
 		accessKeyPrefix = 'shift-esc-';
 
-	// Chrome on any platform
-	} else if ( profile.name === 'chrome' ) {
+	// Chrome and modern Opera on any platform
+	} else if ( profile.name === 'chrome' || profile.name === 'opera' ) {
 		accessKeyPrefix = (
 			profile.platform === 'mac'
 				// Chrome on Mac
