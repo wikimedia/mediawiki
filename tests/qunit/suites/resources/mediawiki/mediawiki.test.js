@@ -57,6 +57,19 @@
 		this.restoreWarnings();
 	} );
 
+	QUnit.test( 'mw.format', 2, function ( assert ) {
+		assert.equal(
+			mw.format( 'Format $1 $2', 'foo', 'bar' ),
+			'Format foo bar',
+			'Simple parameters'
+		);
+		assert.equal(
+			mw.format( 'Format $1 $2' ),
+			'Format $1 $2',
+			'Missing parameters'
+		);
+	} );
+
 	QUnit.test( 'mw.Map', 35, function ( assert ) {
 		var arry, conf, funky, globalConf, nummy, someValues;
 
