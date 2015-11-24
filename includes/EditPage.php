@@ -334,6 +334,8 @@ class EditPage {
 
 	/** @var string */
 	public $edittime = '';
+	/** @var integer */
+	private $editRevId = null;
 
 	/** @var string */
 	public $section = '';
@@ -839,6 +841,7 @@ class EditPage {
 			$this->sectiontitle = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->sectiontitle );
 
 			$this->edittime = $request->getVal( 'wpEdittime' );
+			$this->editRevId = $request->getIntOrNull( 'editRevId' );
 			$this->starttime = $request->getVal( 'wpStarttime' );
 
 			$undidRev = $request->getInt( 'wpUndidRevision' );
@@ -935,6 +938,7 @@ class EditPage {
 			$this->summary = '';
 			$this->sectiontitle = '';
 			$this->edittime = '';
+			$this->editRevId = null;
 			$this->starttime = wfTimestampNow();
 			$this->edit = false;
 			$this->preview = false;
@@ -1020,6 +1024,7 @@ class EditPage {
 	function initialiseForm() {
 		global $wgUser;
 		$this->edittime = $this->page->getTimestamp();
+		$this->editRevId = $this->page->getLatest();
 
 		$content = $this->getContentObject( false ); # TODO: track content object?!
 		if ( $content === false ) {
@@ -1862,10 +1867,14 @@ class EditPage {
 
 			$this->page->clear(); # Force reload of dates, etc.
 			$timestamp = $this->page->getTimestamp();
+			$latest = $this->page->getLatest();
 
 			wfDebug( "timestamp: {$timestamp}, edittime: {$this->edittime}\n" );
 
-			if ( $timestamp != $this->edittime ) {
+			// Check editRevId if set, which handles same-second timestamp collisions
+			if ( $timestamp != $this->edittime
+				|| ( $this->editRevId !== null && $this->editRevId != $latest )
+			) {
 				$this->isConflict = true;
 				if ( $this->section == 'new' ) {
 					if ( $this->page->getUserText() == $wgUser->getName() &&
@@ -1906,13 +1915,22 @@ class EditPage {
 				wfDebug( __METHOD__
 					. ": conflict! getting section '{$this->section}' for time '{$this->edittime}'"
 					. " (article time '{$timestamp}')\n" );
-
-				$content = $this->page->replaceSectionContent(
-					$this->section,
-					$textbox_content,
-					$sectionTitle,
-					$this->edittime
-				);
+				// @TODO: replaceSectionAtRev() with base (not prior current) ID
+				if ( $this->editRevId !== null ) {
+					$content = $this->page->replaceSectionAtRev(
+						$this->section,
+						$textbox_content,
+						$sectionTitle,
+						$this->editRevId
+					);
+				} else {
+					$content = $this->page->replaceSectionContent(
+						$this->section,
+						$textbox_content,
+						$sectionTitle,
+						$this->edittime
+					);
+				}
 			} else {
 				wfDebug( __METHOD__ . ": getting section '{$this->section}'\n" );
 				$content = $this->page->replaceSectionContent(
@@ -2172,8 +2190,9 @@ class EditPage {
 	function getBaseRevision() {
 		if ( !$this->mBaseRevision ) {
 			$db = wfGetDB( DB_MASTER );
-			$this->mBaseRevision = Revision::loadFromTimestamp(
-				$db, $this->mTitle, $this->edittime );
+			$this->mBaseRevision = $this->editRevId
+				? Revision::newFromId( $this->editRevId, Revision::READ_LATEST )
+				: Revision::loadFromTimestamp( $db, $this->mTitle, $this->edittime );
 		}
 		return $this->mBaseRevision;
 	}
@@ -2745,7 +2764,7 @@ class EditPage {
 
 		if ( $this->isConflict ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1\n</div>", 'explainconflict' );
-			$this->edittime = $this->page->getTimestamp();
+			$this->editRevId = $this->page->getLatest();
 		} else {
 			if ( $this->section != '' && !$this->isSectionEditSupported() ) {
 				// We use $this->section to much before this and getVal('wgSection') directly in other places
@@ -3052,6 +3071,7 @@ class EditPage {
 <input type='hidden' value="{$section}" name="wpSection"/>
 <input type='hidden' value="{$this->starttime}" name="wpStarttime" />
 <input type='hidden' value="{$this->edittime}" name="wpEdittime" />
+<input type='hidden' value="{$this->editRevId}" name="editRevId" />
 <input type='hidden' value="{$this->scrolltop}" name="wpScrolltop" id="wpScrolltop" />
 
 HTML
@@ -3260,10 +3280,15 @@ HTML
 		}
 
 		$textboxContent = $this->toEditContent( $this->textbox1 );
-
-		$newContent = $this->page->replaceSectionContent(
-							$this->section, $textboxContent,
-							$this->summary, $this->edittime );
+		if ( $this->editRevId !== null ) {
+			$newContent = $this->page->replaceSectionAtRev(
+				$this->section, $textboxContent, $this->summary, $this->editRevId
+			);
+		} else {
+			$newContent = $this->page->replaceSectionContent(
+				$this->section, $textboxContent, $this->summary, $this->edittime
+			);
+		}
 
 		if ( $newContent ) {
 			ContentHandler::runLegacyHooks( 'EditPageGetDiffText', [ $this, &$newContent ] );
