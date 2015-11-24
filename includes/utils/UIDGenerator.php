@@ -73,8 +73,8 @@ class UIDGenerator {
 			}
 			file_put_contents( $this->nodeIdFile, $nodeId ); // cache
 		}
-		$this->nodeId32 = wfBaseConvert( substr( sha1( $nodeId ), 0, 8 ), 16, 2, 32 );
-		$this->nodeId48 = wfBaseConvert( $nodeId, 16, 2, 48 );
+		$this->nodeId32 = Wikimedia\base_convert( substr( sha1( $nodeId ), 0, 8 ), 16, 2, 32 );
+		$this->nodeId48 = Wikimedia\base_convert( $nodeId, 16, 2, 48 );
 		// If different processes run as different users, they may have different temp dirs.
 		// This is dealt with by initializing the clock sequence number and counters randomly.
 		$this->lockFile88 = wfTempDir() . '/mw-' . __CLASS__ . '-UID-88';
@@ -115,7 +115,7 @@ class UIDGenerator {
 		$gen = self::singleton();
 		$time = $gen->getTimestampAndDelay( 'lockFile88', 1, 1024 );
 
-		return wfBaseConvert( $gen->getTimestampedID88( $time ), 2, $base );
+		return Wikimedia\base_convert( $gen->getTimestampedID88( $time ), 2, $base );
 	}
 
 	/**
@@ -161,7 +161,7 @@ class UIDGenerator {
 		$gen = self::singleton();
 		$time = $gen->getTimestampAndDelay( 'lockFile128', 16384, 1048576 );
 
-		return wfBaseConvert( $gen->getTimestampedID128( $time ), 2, $base );
+		return Wikimedia\base_convert( $gen->getTimestampedID128( $time ), 2, $base );
 	}
 
 	/**
@@ -448,7 +448,7 @@ class UIDGenerator {
 				': sorry, this function doesn\'t work after the year 144680' );
 		}
 
-		return substr( wfBaseConvert( $ts, 10, 2, 46 ), -46 );
+		return substr( Wikimedia\base_convert( $ts, 10, 2, 46 ), -46 );
 	}
 
 	/**

@@ -213,7 +213,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 			if ( $revision->userCan( Revision::DELETED_TEXT, $user ) ) {
 				if ( $revision->getSha1() != '' ) {
-					$vals['sha1'] = wfBaseConvert( $revision->getSha1(), 36, 16, 40 );
+					$vals['sha1'] = Wikimedia\base_convert( $revision->getSha1(), 36, 16, 40 );
 				} else {
 					$vals['sha1'] = '';
 				}

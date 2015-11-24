@@ -411,7 +411,7 @@ class IP {
 				}
 			}
 			if ( $n !== false ) {
-				# Floating points can handle the conversion; faster than wfBaseConvert()
+				# Floating points can handle the conversion; faster than Wikimedia\base_convert()
 				$n = strtoupper( str_pad( base_convert( $n, 10, 16 ), 8, '0', STR_PAD_LEFT ) );
 			}
 		} else {
@@ -551,11 +551,11 @@ class IP {
 			} else {
 				# Native 32 bit functions WONT work here!!!
 				# Convert to a padded binary number
-				$network = wfBaseConvert( $network, 16, 2, 128 );
+				$network = Wikimedia\base_convert( $network, 16, 2, 128 );
 				# Truncate the last (128-$bits) bits and replace them with zeros
 				$network = str_pad( substr( $network, 0, $bits ), 128, 0, STR_PAD_RIGHT );
 				# Convert back to an integer
-				$network = wfBaseConvert( $network, 2, 10 );
+				$network = Wikimedia\base_convert( $network, 2, 10 );
 			}
 		} else {
 			$network = false;
@@ -587,13 +587,13 @@ class IP {
 			if ( $network === false ) {
 				$start = $end = false;
 			} else {
-				$start = wfBaseConvert( $network, 10, 16, 32, false );
+				$start = Wikimedia\base_convert( $network, 10, 16, 32, false );
 				# Turn network to binary (again)
-				$end = wfBaseConvert( $network, 10, 2, 128 );
+				$end = Wikimedia\base_convert( $network, 10, 2, 128 );
 				# Truncate the last (128-$bits) bits and replace them with ones
 				$end = str_pad( substr( $end, 0, $bits ), 128, 1, STR_PAD_RIGHT );
 				# Convert to hex
-				$end = wfBaseConvert( $end, 2, 16, 32, false );
+				$end = Wikimedia\base_convert( $end, 2, 16, 32, false );
 				# see toHex() comment
 				$start = "v6-$start";
 				$end = "v6-$end";

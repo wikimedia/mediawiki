@@ -18,7 +18,7 @@ class UIDGeneratorTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( true, ctype_digit( $id ), "UID made of digit characters" );
 		$this->assertLessThanOrEqual( $digitlen, strlen( $id ),
 			"UID has the right number of digits" );
-		$this->assertLessThanOrEqual( $bits, strlen( wfBaseConvert( $id, 10, 2 ) ),
+		$this->assertLessThanOrEqual( $bits, strlen( Wikimedia\base_convert( $id, 10, 2 ) ),
 			"UID has the right number of bits" );
 
 		$ids = array();
@@ -31,8 +31,8 @@ class UIDGeneratorTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame( array_unique( $ids ), $ids, "All generated IDs are unique." );
 
 		foreach ( $ids as $id ) {
-			$id_bin = wfBaseConvert( $id, 10, 2 );
-			$lastId_bin = wfBaseConvert( $lastId, 10, 2 );
+			$id_bin = Wikimedia\base_convert( $id, 10, 2 );
+			$lastId_bin = Wikimedia\base_convert( $lastId, 10, 2 );
 
 			$this->assertGreaterThanOrEqual(
 				substr( $lastId_bin, 0, $tbits ),

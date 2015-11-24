@@ -78,7 +78,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 		$be = FileBackendGroup::singleton()->get( $backend );
 		if ( $be instanceof FileBackend ) {
 			// Get three random base 36 characters to act as shard directories
-			$rand = wfBaseConvert( mt_rand( 0, 46655 ), 10, 36, 3 );
+			$rand = Wikimedia\base_convert( mt_rand( 0, 46655 ), 10, 36, 3 );
 			// Make sure ID is roughly lexicographically increasing for performance
 			$id = str_pad( UIDGenerator::newTimestampedUID128( 32 ), 26, '0', STR_PAD_LEFT );
 			// Segregate items by wiki ID for the sake of bookkeeping

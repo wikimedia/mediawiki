@@ -1716,7 +1716,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( strlen( $fileBContents ),
 			$this->backend->getFileSize( array( 'src' => $fileC ) ),
 			"Correct file size of $fileC" );
-		$this->assertEquals( wfBaseConvert( sha1( $fileBContents ), 16, 36, 31 ),
+		$this->assertEquals( Wikimedia\base_convert( sha1( $fileBContents ), 16, 36, 31 ),
 			$this->backend->getFileSha1Base36( array( 'src' => $fileC ) ),
 			"Correct file SHA-1 of $fileC" );
 	}
@@ -1815,7 +1815,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( strlen( $fileBContents ),
 			$this->backend->getFileSize( array( 'src' => $fileC ) ),
 			"Correct file size of $fileC" );
-		$this->assertEquals( wfBaseConvert( sha1( $fileBContents ), 16, 36, 31 ),
+		$this->assertEquals( Wikimedia\base_convert( sha1( $fileBContents ), 16, 36, 31 ),
 			$this->backend->getFileSha1Base36( array( 'src' => $fileC ) ),
 			"Correct file SHA-1 of $fileC" );
 	}
@@ -1892,7 +1892,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( strlen( $fileBContents ),
 			$this->backend->getFileSize( array( 'src' => $fileA ) ),
 			"Correct file size of $fileA" );
-		$this->assertEquals( wfBaseConvert( sha1( $fileBContents ), 16, 36, 31 ),
+		$this->assertEquals( Wikimedia\base_convert( sha1( $fileBContents ), 16, 36, 31 ),
 			$this->backend->getFileSha1Base36( array( 'src' => $fileA ) ),
 			"Correct file SHA-1 of $fileA" );
 	}

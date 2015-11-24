@@ -261,7 +261,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		$sha1Hash = wfBaseConvert( sha1( $params['content'] ), 16, 36, 31 );
+		$sha1Hash = Wikimedia\base_convert( sha1( $params['content'] ), 16, 36, 31 );
 		$contentType = isset( $params['headers']['content-type'] )
 			? $params['headers']['content-type']
 			: $this->getContentType( $params['dst'], $params['content'], null );
@@ -319,7 +319,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 			return $status;
 		}
-		$sha1Hash = wfBaseConvert( $sha1Hash, 16, 36, 31 );
+		$sha1Hash = Wikimedia\base_convert( $sha1Hash, 16, 36, 31 );
 		$contentType = isset( $params['headers']['content-type'] )
 			? $params['headers']['content-type']
 			: $this->getContentType( $params['dst'], null, $params['src'] );

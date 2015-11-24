@@ -552,7 +552,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 			if ( Revision::userCanBitfield( $row->rev_deleted, Revision::DELETED_TEXT, $user ) ) {
 				if ( $row->rev_sha1 !== '' ) {
-					$vals['sha1'] = wfBaseConvert( $row->rev_sha1, 36, 16, 40 );
+					$vals['sha1'] = Wikimedia\base_convert( $row->rev_sha1, 36, 16, 40 );
 				} else {
 					$vals['sha1'] = '';
 				}

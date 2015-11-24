@@ -244,7 +244,7 @@ class ForeignAPIFile extends File {
 	 */
 	function getSha1() {
 		return isset( $this->mInfo['sha1'] )
-			? wfBaseConvert( strval( $this->mInfo['sha1'] ), 16, 36, 31 )
+			? Wikimedia\base_convert( strval( $this->mInfo['sha1'] ), 16, 36, 31 )
 			: null;
 	}
 

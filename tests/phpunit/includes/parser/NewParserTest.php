@@ -243,7 +243,7 @@ class NewParserTest extends MediaWikiTestCase {
 					'media_type' => MEDIATYPE_BITMAP,
 					'mime' => 'image/jpeg',
 					'metadata' => serialize( array() ),
-					'sha1' => wfBaseConvert( '1', 16, 36, 31 ),
+					'sha1' => Wikimedia\base_convert( '1', 16, 36, 31 ),
 					'fileExists' => true ),
 				$this->db->timestamp( '20010115123500' ), $user
 			);
@@ -263,7 +263,7 @@ class NewParserTest extends MediaWikiTestCase {
 					'media_type' => MEDIATYPE_BITMAP,
 					'mime' => 'image/png',
 					'metadata' => serialize( array() ),
-					'sha1' => wfBaseConvert( '2', 16, 36, 31 ),
+					'sha1' => Wikimedia\base_convert( '2', 16, 36, 31 ),
 					'fileExists' => true ),
 				$this->db->timestamp( '20130225203040' ), $user
 			);
@@ -284,7 +284,7 @@ class NewParserTest extends MediaWikiTestCase {
 					'media_type' => MEDIATYPE_BITMAP,
 					'mime' => 'image/jpeg',
 					'metadata' => serialize( array() ),
-					'sha1' => wfBaseConvert( '3', 16, 36, 31 ),
+					'sha1' => Wikimedia\base_convert( '3', 16, 36, 31 ),
 					'fileExists' => true ),
 				$this->db->timestamp( '20010115123500' ), $user
 			);
@@ -299,7 +299,7 @@ class NewParserTest extends MediaWikiTestCase {
 					'media_type'  => MEDIATYPE_DRAWING,
 					'mime'        => 'image/svg+xml',
 					'metadata'    => serialize( array() ),
-					'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
+					'sha1'        => Wikimedia\base_convert( '', 16, 36, 31 ),
 					'fileExists'  => true
 			), $this->db->timestamp( '20010115123500' ), $user );
 		}
@@ -340,7 +340,7 @@ class NewParserTest extends MediaWikiTestCase {
 </OBJECT>
 </BODY>
 </DjVuXML>',
-				'sha1' => wfBaseConvert( '', 16, 36, 31 ),
+				'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
 				'fileExists' => true
 			), $this->db->timestamp( '20140115123600' ), $user );
 		}

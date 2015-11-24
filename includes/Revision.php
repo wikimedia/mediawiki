@@ -1526,7 +1526,7 @@ class Revision implements IDBAccessObject {
 	 * @return string
 	 */
 	public static function base36Sha1( $text ) {
-		return wfBaseConvert( sha1( $text ), 16, 36, 31 );
+		return Wikimedia\base_convert( sha1( $text ), 16, 36, 31 );
 	}
 
 	/**

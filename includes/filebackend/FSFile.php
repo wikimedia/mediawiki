@@ -208,7 +208,7 @@ class FSFile {
 		MediaWiki\restoreWarnings();
 
 		if ( $this->sha1Base36 !== false ) {
-			$this->sha1Base36 = wfBaseConvert( $this->sha1Base36, 16, 36, 31 );
+			$this->sha1Base36 = Wikimedia\base_convert( $this->sha1Base36, 16, 36, 31 );
 		}
 
 		return $this->sha1Base36;

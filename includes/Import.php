@@ -1499,7 +1499,7 @@ class WikiRevision {
 	 */
 	function getSha1() {
 		if ( $this->sha1base36 ) {
-			return wfBaseConvert( $this->sha1base36, 36, 16 );
+			return Wikimedia\base_convert( $this->sha1base36, 36, 16 );
 		}
 		return false;
 	}

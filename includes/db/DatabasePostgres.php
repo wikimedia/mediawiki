@@ -1611,7 +1611,7 @@ SQL;
 	 * @return string Integer
 	 */
 	private function bigintFromLockName( $lockName ) {
-		return wfBaseConvert( substr( sha1( $lockName ), 0, 15 ), 16, 10 );
+		return Wikimedia\base_convert( substr( sha1( $lockName ), 0, 15 ), 16, 10 );
 	}
 } // end DatabasePostgres class
 

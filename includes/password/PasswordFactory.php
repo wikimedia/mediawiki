@@ -204,7 +204,7 @@ final class PasswordFactory {
 		// Generate random hex chars
 		$hex = MWCryptRand::generateHex( $length );
 		// Convert from base 16 to base 32 to get a proper password like string
-		return wfBaseConvert( $hex, 16, 32 );
+		return Wikimedia\base_convert( $hex, 16, 32 );
 	}
 
 	/**

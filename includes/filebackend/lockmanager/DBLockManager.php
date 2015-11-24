@@ -376,7 +376,7 @@ class PostgreSqlLockManager extends DBLockManager {
 		$db = $this->getConnection( $lockSrv ); // checked in isServerUp()
 		$bigints = array_unique( array_map(
 			function ( $key ) {
-				return wfBaseConvert( substr( $key, 0, 15 ), 16, 10 );
+				return Wikimedia\base_convert( substr( $key, 0, 15 ), 16, 10 );
 			},
 			array_map( array( $this, 'sha1Base16Absolute' ), $paths )
 		) );

@@ -727,7 +727,7 @@ class JobQueueDB extends JobQueue {
 			// Additional job metadata
 			'job_id' => $dbw->nextSequenceValue( 'job_job_id_seq' ),
 			'job_timestamp' => $dbw->timestamp(),
-			'job_sha1' => wfBaseConvert(
+			'job_sha1' => Wikimedia\base_convert(
 				sha1( serialize( $job->getDeduplicationInfo() ) ),
 				16, 36, 31
 			),

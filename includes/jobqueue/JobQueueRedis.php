@@ -639,7 +639,7 @@ LUA;
 			// Additional job metadata
 			'uuid' => UIDGenerator::newRawUUIDv4( UIDGenerator::QUICK_RAND ),
 			'sha1' => $job->ignoreDuplicates()
-				? wfBaseConvert( sha1( serialize( $job->getDeduplicationInfo() ) ), 16, 36, 31 )
+				? Wikimedia\base_convert( sha1( serialize( $job->getDeduplicationInfo() ) ), 16, 36, 31 )
 				: '',
 			'timestamp' => time() // UNIX timestamp
 		);

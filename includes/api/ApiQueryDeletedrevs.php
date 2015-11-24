@@ -362,7 +362,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				}
 				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_TEXT, $user ) ) {
 					if ( $row->ar_sha1 != '' ) {
-						$rev['sha1'] = wfBaseConvert( $row->ar_sha1, 36, 16, 40 );
+						$rev['sha1'] = Wikimedia\base_convert( $row->ar_sha1, 36, 16, 40 );
 					} else {
 						$rev['sha1'] = '';
 					}

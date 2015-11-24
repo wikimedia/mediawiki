@@ -518,7 +518,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( $sha1 ) {
-			$vals['sha1'] = wfBaseConvert( $file->getSha1(), 36, 16, 40 );
+			$vals['sha1'] = Wikimedia\base_convert( $file->getSha1(), 36, 16, 40 );
 		}
 
 		if ( $meta ) {

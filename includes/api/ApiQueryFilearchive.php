@@ -114,7 +114,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				if ( !$this->validateSha1Hash( $sha1 ) ) {
 					$this->dieUsage( 'The SHA1 hash provided is not valid', 'invalidsha1hash' );
 				}
-				$sha1 = wfBaseConvert( $sha1, 16, 36, 31 );
+				$sha1 = Wikimedia\base_convert( $sha1, 16, 36, 31 );
 			} elseif ( $sha1base36Set ) {
 				$sha1 = strtolower( $params['sha1base36'] );
 				if ( !$this->validateSha1Base36Hash( $sha1 ) ) {
@@ -183,7 +183,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['user'] = $row->fa_user_text;
 			}
 			if ( $fld_sha1 ) {
-				$file['sha1'] = wfBaseConvert( $row->fa_sha1, 36, 16, 40 );
+				$file['sha1'] = Wikimedia\base_convert( $row->fa_sha1, 36, 16, 40 );
 			}
 			if ( $fld_timestamp ) {
 				$file['timestamp'] = wfTimestamp( TS_ISO_8601, $row->fa_timestamp );
