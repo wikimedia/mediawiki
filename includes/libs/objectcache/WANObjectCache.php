@@ -101,6 +101,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	const TSE_NONE = -1;
 	/** Max TTL to store keys when a data sourced is lagged */
 	const TTL_LAGGED = 30;
+	/** Idiom for delete() for "no hold-off" */
+	const HOLDOFF_NONE = 0;
 
 	/** Tiny negative float to use when CTL comes up >= 0 due to clock skew */
 	const TINY_NEGATIVE = -0.000001;
@@ -254,7 +256,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$checkKeyTimesForAll = $this->processCheckKeys( $checksForAll, $wrappedValues, $now );
 		$checkKeyTimesByKey = array();
 		foreach ( $checksByKey as $cacheKey => $checks ) {
-			$checkKeyTimesByKey[$cacheKey] = $this->processCheckKeys( $checks, $wrappedValues, $now );
+			$checkKeyTimesByKey[$cacheKey] =
+				$this->processCheckKeys( $checks, $wrappedValues, $now );
 		}
 
 		// Get the main cache value for each key and validate them
@@ -456,7 +459,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * The $ttl parameter can be used when purging values that have not actually changed
 	 * recently. For example, a cleanup script to purge cache entries does not really need
-	 * a hold-off period, so it can use the value 1. Likewise for user-requested purge.
+	 * a hold-off period, so it can use HOLDOFF_NONE. Likewise for user-requested purge.
 	 * Note that $ttl limits the effective range of 'lockTSE' for getWithSetCallback().
 	 *
 	 * If called twice on the same key, then the last hold-off TTL takes precedence. For
@@ -468,12 +471,20 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	final public function delete( $key, $ttl = self::HOLDOFF_TTL ) {
 		$key = self::VALUE_KEY_PREFIX . $key;
-		// Avoid indefinite key salting for sanity
-		$ttl = max( $ttl, 1 );
-		// Update the local datacenter immediately
-		$ok = $this->cache->set( $key, self::PURGE_VAL_PREFIX . microtime( true ), $ttl );
-		// Publish the purge to all datacenters
-		return $this->relayPurge( $key, $ttl ) && $ok;
+
+		if ( $ttl <= 0 ) {
+			// Update the local datacenter immediately
+			$ok = $this->cache->delete( $key );
+			// Publish the purge to all datacenters
+			$ok = $this->relayDelete( $key ) && $ok;
+		} else {
+			// Update the local datacenter immediately
+			$ok = $this->cache->set( $key, self::PURGE_VAL_PREFIX . microtime( true ), $ttl );
+			// Publish the purge to all datacenters
+			$ok = $this->relayPurge( $key, $ttl ) && $ok;
+		}
+
+		return $ok;
 	}
 
 	/**

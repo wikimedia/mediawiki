@@ -391,8 +391,22 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertLessThan( 0, $curTTL, "Deleted key has current TTL < 0" );
 
 		$this->cache->set( $key, $value . 'more' );
+		$v = $this->cache->get( $key, $curTTL );
 		$this->assertFalse( $v, "Deleted key is tombstoned and has false value" );
 		$this->assertLessThan( 0, $curTTL, "Deleted key is tombstoned and has current TTL < 0" );
+
+		$this->cache->set( $key, $value );
+		$this->cache->delete( $key, WANObjectCache::HOLDOFF_NONE );
+
+		$curTTL = null;
+		$v = $this->cache->get( $key, $curTTL );
+		$this->assertFalse( $v, "Deleted key has false value" );
+		$this->assertNull( $curTTL, "Deleted key has null current TTL" );
+
+		$this->cache->set( $key, $value );
+		$v = $this->cache->get( $key, $curTTL );
+		$this->assertEquals( $value, $v, "Key was created with value" );
+		$this->assertGreaterThan( 0, $curTTL, "Existing key has current TTL > 0" );
 	}
 
 	/**
