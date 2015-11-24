@@ -155,6 +155,7 @@ changes to languages because of Phabricator reports.
   ResourceLoaderContext instance is deprecated.
 * ResourceLoader::getLessCompiler() now takes an optional parameter of
   additional LESS variables to set for the compiler.
+* wfBaseConvert() marked as deprecated.
 
 == Compatibility ==
 

@@ -3330,6 +3330,8 @@ function wfRelativePath( $path, $from ) {
  * Supports base 2 through 36; digit values 10-36 are represented
  * as lowercase letters a-z. Input is case-insensitive.
  *
+ * @deprecated 1.27 Use Wikimedia\base_convert() directly
+ *
  * @param string $input Input number
  * @param int $sourceBase Base of the input number
  * @param int $destBase Desired base of the output
