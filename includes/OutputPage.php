@@ -2404,7 +2404,9 @@ class OutputPage extends ContextSource {
 		ob_start();
 
 		$response->header( 'Content-type: ' . $config->get( 'MimeType' ) . '; charset=UTF-8' );
-		$response->header( 'Content-language: ' . $wgContLang->getHtmlCode() );
+		$title = $this->getTitle();
+		$contentLanguage = $title ? $title->getPageViewLanguage() : $wgContLang;
+		$response->header( 'Content-language: ' . $contentLanguage->getHtmlCode() );
 
 		// Avoid Internet Explorer "compatibility view" in IE 8-10, so that
 		// jQuery etc. can work correctly.
