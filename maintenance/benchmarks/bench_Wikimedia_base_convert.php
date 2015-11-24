@@ -1,6 +1,6 @@
 <?php
 /**
- * Benchmark for Wikimedia\base_convert
+ * Benchmark for Wikimedia\base_convert()
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,12 +27,14 @@ require_once __DIR__ . '/Benchmarker.php';
 /**
  * Maintenance script that benchmarks Wikimedia\base_convert().
  *
+ * Code exists in vendor repository brought in via composer.
+ *
  * @ingroup Benchmark
  */
-class BenchWfBaseConvert extends Benchmarker {
+class BenchWikimediaBaseConvert extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Benchmark for Wikimedia\base_convert.";
+		$this->mDescription = "Benchmark for Wikimedia\\base_convert.";
 		$this->addOption( "inbase", "Input base", false, true );
 		$this->addOption( "outbase", "Output base", false, true );
 		$this->addOption( "length", "Size in digits to generate for input", false, true );
@@ -73,5 +75,5 @@ class BenchWfBaseConvert extends Benchmarker {
 	}
 }
 
-$maintClass = 'BenchWfBaseConvert';
+$maintClass = 'BenchWikimediaBaseConvert';
 require_once RUN_MAINTENANCE_IF_MAIN;
