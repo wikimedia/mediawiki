@@ -133,7 +133,7 @@ class OOUIHTMLForm extends HTMLForm {
 
 	/**
 	 * Put a form section together from the individual fields' HTML, merging it and wrapping.
-	 * @param OOUI\\FieldLayout[] $fieldsHtml
+	 * @param OOUI\FieldLayout[] $fieldsHtml
 	 * @param string $sectionName
 	 * @param bool $anyFieldHasLabel Unused
 	 * @return string HTML
