@@ -132,10 +132,9 @@
 	 * @return {jQuery} return.return
 	 */
 	function getFailableParserFn( options ) {
-		var parser = new mw.jqueryMsg.parser( options );
-
 		return function ( args ) {
 			var fallback,
+				parser = new mw.jqueryMsg.parser( options ),
 				key = args[ 0 ],
 				argsArray = $.isArray( args[ 1 ] ) ? args[ 1 ] : slice.call( args, 1 );
 			try {
@@ -265,6 +264,7 @@
 	mw.jqueryMsg.parser = function ( options ) {
 		this.settings = $.extend( {}, parserDefaults, options );
 		this.settings.onlyCurlyBraceTransform = ( this.settings.format === 'text' || this.settings.format === 'escaped' );
+		this.astCache = {};
 
 		this.emitter = new mw.jqueryMsg.htmlEmitter( this.settings.language, this.settings.magic );
 	};
@@ -280,7 +280,8 @@
 		 * @return {jQuery}
 		 */
 		parse: function ( key, replacements ) {
-			return this.emitter.emit( this.getAst( key ), replacements );
+			var ast = this.getAst( key );
+			return this.emitter.emit( ast, replacements );
 		},
 
 		/**
@@ -291,11 +292,16 @@
 		 * @return {string|Array} string of '[key]' if message missing, simple string if possible, array of arrays if needs parsing
 		 */
 		getAst: function ( key ) {
-			var wikiText = this.settings.messages.get( key );
-			if ( typeof wikiText !== 'string' ) {
-				wikiText = '\\[' + key + '\\]';
+			var wikiText;
+
+			if ( !this.astCache.hasOwnProperty( key ) ) {
+				wikiText = this.settings.messages.get( key );
+				if ( typeof wikiText !== 'string' ) {
+					wikiText = '\\[' + key + '\\]';
+				}
+				this.astCache[ key ] = this.wikiTextToAst( wikiText );
 			}
-			return this.wikiTextToAst( wikiText );
+			return this.astCache[ key ];
 		},
 
 		/**
@@ -1260,23 +1266,19 @@
 	// Replace the default message parser with jqueryMsg
 	oldParser = mw.Message.prototype.parser;
 	mw.Message.prototype.parser = function () {
-		var messageFunction;
-
-		// TODO: should we cache the message function so we don't create a new one every time? Benchmark this maybe?
-		// Caching is somewhat problematic, because we do need different message functions for different maps, so
-		// we'd have to cache the parser as a member of this.map, which sounds a bit ugly.
-		// Do not use mw.jqueryMsg unless required
 		if ( this.format === 'plain' || !/\{\{|[\[<>&]/.test( this.map.get( this.key ) ) ) {
 			// Fall back to mw.msg's simple parser
 			return oldParser.apply( this );
 		}
 
-		messageFunction = mw.jqueryMsg.getMessageFunction( {
-			messages: this.map,
-			// For format 'escaped', escaping part is handled by mediawiki.js
-			format: this.format
-		} );
-		return messageFunction( this.key, this.parameters );
+		if ( !this.map.hasOwnProperty( this.format ) ) {
+			this.map[ this.format ] = mw.jqueryMsg.getMessageFunction( {
+				messages: this.map,
+				// For format 'escaped', escaping part is handled by mediawiki.js
+				format: this.format
+			} );
+		}
+		return this.map[ this.format ]( this.key, this.parameters );
 	};
 
 	/**

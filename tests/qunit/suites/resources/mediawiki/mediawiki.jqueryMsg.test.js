@@ -739,6 +739,7 @@
 			message[ format ]();
 			assert.strictEqual( outerCalled, shouldCall, 'Outer function called for ' + key );
 			assert.strictEqual( innerCalled, shouldCall, 'Inner function called for ' + key );
+			delete mw.messages[ format ];
 		}
 
 		verifyGetMessageFunction( 'curly-brace', 'parse', true );
