@@ -2008,7 +2008,7 @@
 	"tooltip-whatlinkshere-invert": "Laita rasti tähän ruutuun, kun haluat piilottaa linkit niistä sivuista, jotka kuuluvat valittuun nimiavaruuteen.",
 	"namespace_association": "Liittyvä nimiavaruus",
 	"tooltip-namespace_association": "Valitse tämä kohta, jos haluat haun sisältävän myös valittuun nimiavaruuteen liittyvän keskustelu- tai aihenimiavaruuden.",
-	"blanknamespace": "(sivut)",
+	"blanknamespace": "(pääavaruus)",
 	"contributions": "{{GENDER:$1|Käyttäjän}} muokkaukset",
 	"contributions-title": "Käyttäjän $1 muokkaukset",
 	"mycontris": "Omat muokkaukset",

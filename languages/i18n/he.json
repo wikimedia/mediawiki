@@ -30,7 +30,8 @@
 			"GilCahana",
 			"Ldorfman",
 			"LaG roiL",
-			"Eraab"
+			"Eraab",
+			"Geagea"
 		]
 	},
 	"tog-underline": "סימון קישורים בקו תחתי:",
@@ -1273,7 +1274,7 @@
 	"uploadlogpage": "יומן העלאות",
 	"uploadlogpagetext": "להלן רשימה של העלאות הקבצים האחרונות שבוצעו.\nראו את [[Special:NewFiles|גלריית הקבצים החדשים]] להצגה ויזואלית שלהם.",
 	"filename": "שם הקובץ",
-	"filedesc": "תקציר",
+	"filedesc": "<div style=\"direction: rtl;\">תקציר</div>",
 	"fileuploadsummary": "תיאור:",
 	"filereuploadsummary": "השינויים בקובץ:",
 	"filestatus": "מעמד זכויות יוצרים:",
@@ -1461,7 +1462,7 @@
 	"upload-curl-error28": "הסתיים זמן ההמתנה להעלאה",
 	"upload-curl-error28-text": "לאתר לקח זמן רב מדי לענות. אנא בדקו שהאתר זמין, המתינו מעט ונסו שוב. ייתכן שתרצו לנסות בזמן פחות עמוס.",
 	"license": "רישיון:",
-	"license-header": "רישיון",
+	"license-header": "<div style=\"direction: rtl;\">רישיון</div>",
 	"nolicense": "אין",
 	"licenses-edit": "עריכת אפשרויות רישיון",
 	"license-nopreview": "(תצוגה מקדימה לא זמינה)",
@@ -3292,7 +3293,9 @@
 	"logentry-suppress-block": "$1 {{GENDER:$2|חסם|חסמה}} את {{GENDER:$4|$3}} עם זמן פקיעה של $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|שינה|שינתה}} את הגדרות החסימה של {{GENDER:$4|$3}} עם זמן פקיעה של $5 $6",
 	"logentry-import-upload": "$1 {{GENDER:$2|ייבא|ייבאה}} את $3 באמצעות העלאת קובץ",
+	"logentry-import-upload-details": "$1 {{GENDER:$2|ייבא|ייבאה}} את $3 באמצעות העלאת קובץ ({{PLURAL:$4|גרסה אחת|$4 גרסאות}})",
 	"logentry-import-interwiki": "$1 {{GENDER:$2|ייבא|ייבאה}} את $3 מאתר ויקי אחר",
+	"logentry-import-interwiki-details": "$1 {{GENDER:$2|ייבא|ייבאה}} את $3 מ־$5 ({{PLURAL:$4|גרסה אחת|$4 גרסאות}})",
 	"logentry-merge-merge": "$1 {{GENDER:$2|מיזג|מיזגה}} את $3 לתוך $4 (גרסאות עד $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|העביר|העבירה}} את הדף $3 ל{{GRAMMAR:תחילית|$4}}",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|העביר|העבירה}} את הדף $3 ל{{GRAMMAR:תחילית|$4}} בלי להשאיר הפניה",

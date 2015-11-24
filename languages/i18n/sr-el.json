@@ -536,6 +536,7 @@
 	"changeemail-password": "Vaša lozinka:",
 	"changeemail-submit": "Promeni",
 	"changeemail-throttled": "Previše puta ste pokušali da se prijavite.\nMolimo vas da sačekate $1 pre nego što pokušate ponovo.",
+	"changeemail-nochange": "Unesite drugu imejl adresu.",
 	"resettokens": "Resetovanje žetona",
 	"resettokens-no-tokens": "Nema žetona za resetovanje.",
 	"resettokens-tokens": "Žetoni:",
