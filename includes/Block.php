@@ -308,8 +308,8 @@ class Block {
 			if ( $block->getType() == self::TYPE_RANGE ) {
 				# This is the number of bits that are allowed to vary in the block, give
 				# or take some floating point errors
-				$end = wfBaseconvert( $block->getRangeEnd(), 16, 10 );
-				$start = wfBaseconvert( $block->getRangeStart(), 16, 10 );
+				$end = Wikimedia\base_convert( $block->getRangeEnd(), 16, 10 );
+				$start = Wikimedia\base_convert( $block->getRangeStart(), 16, 10 );
 				$size = log( $end - $start + 1, 2 );
 
 				# This has the nice property that a /32 block is ranked equally with a
