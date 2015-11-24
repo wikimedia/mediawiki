@@ -596,30 +596,29 @@ class ImportReporter extends ContextSource {
 					"</li>\n"
 			);
 
+			$logParams = array( '4:number:count' => $successCount );
 			if ( $this->mIsUpload ) {
 				$detail = $this->msg( 'import-logentry-upload-detail' )->numParams(
 					$successCount )->inContentLanguage()->text();
-				if ( $this->reason ) {
-					$detail .= $this->msg( 'colon-separator' )->inContentLanguage()->text()
-						. $this->reason;
-				}
 				$action = 'upload';
 			} else {
-				$interwiki = '[[:' . $this->mInterwiki . ':' .
-					$foreignTitle->getFullText() . ']]';
+				$interwikiTitleStr = $this->mInterwiki . ':' . $foreignTitle->getFullText();
+				$interwiki = '[[:' . $interwikiTitleStr . ']]';
 				$detail = $this->msg( 'import-logentry-interwiki-detail' )->numParams(
 					$successCount )->params( $interwiki )->inContentLanguage()->text();
-				if ( $this->reason ) {
-					$detail .= $this->msg( 'colon-separator' )->inContentLanguage()->text()
-						. $this->reason;
-				}
 				$action = 'interwiki';
+				$logParams['5:title-link:interwiki'] = $interwikiTitleStr;
+			}
+			if ( $this->reason ) {
+				$detail .= $this->msg( 'colon-separator' )->inContentLanguage()->text()
+					. $this->reason;
 			}
 
 			$logEntry = new ManualLogEntry( 'import', $action );
 			$logEntry->setTarget( $title );
-			$logEntry->setComment( $detail );
+			$logEntry->setComment( $this->reason );
 			$logEntry->setPerformer( $this->getUser() );
+			$logEntry->setParameters( $logParams );
 			$logid = $logEntry->insert();
 			$logEntry->publish( $logid );
 
