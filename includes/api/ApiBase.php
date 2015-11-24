@@ -44,6 +44,8 @@ abstract class ApiBase extends ContextSource {
 	// Boolean, do we accept more than one item for this parameter (e.g.: titles)?
 	const PARAM_ISMULTI = 1;
 	// Can be either a string type (e.g.: 'integer') or an array of allowed values
+	// Some supported values are boolean, integer, limit, namespace, password, string, submodule,
+	// text, timestamp, upload, user
 	const PARAM_TYPE = 2;
 	// Max value allowed for a parameter. Only applies if TYPE='integer'
 	const PARAM_MAX = 3;
