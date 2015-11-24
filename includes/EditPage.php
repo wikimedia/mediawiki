@@ -201,6 +201,8 @@ class EditPage {
 
 	/** @var Article */
 	public $mArticle;
+	/** @var WikiPage */
+	private $page;
 
 	/** @var Title */
 	public $mTitle;
@@ -399,6 +401,7 @@ class EditPage {
 	 */
 	public function __construct( Article $article ) {
 		$this->mArticle = $article;
+		$this->page = $article->getPage(); // model object
 		$this->mTitle = $article->getTitle();
 
 		$this->contentModel = $this->mTitle->getContentModel();
@@ -1002,6 +1005,7 @@ class EditPage {
 	 * for saving, preview parsing and so on...
 	 *
 	 * @param WebRequest $request
+	 * @return string|null
 	 */
 	protected function importContentFormData( &$request ) {
 		return; // Don't do anything, EditPage already extracted wpTextbox1
@@ -1014,7 +1018,7 @@ class EditPage {
 	 */
 	function initialiseForm() {
 		global $wgUser;
-		$this->edittime = $this->mArticle->getTimestamp();
+		$this->edittime = $this->page->getTimestamp();
 
 		$content = $this->getContentObject( false ); # TODO: track content object?!
 		if ( $content === false ) {
@@ -1098,13 +1102,13 @@ class EditPage {
 						!$undorev->isDeleted( Revision::DELETED_TEXT ) &&
 						!$oldrev->isDeleted( Revision::DELETED_TEXT )
 					) {
-						$content = $this->mArticle->getUndoContent( $undorev, $oldrev );
+						$content = $this->page->getUndoContent( $undorev, $oldrev );
 
 						if ( $content === false ) {
 							# Warn the user that something went wrong
 							$undoMsg = 'failure';
 						} else {
-							$oldContent = $this->mArticle->getPage()->getContent( Revision::RAW );
+							$oldContent = $this->page->getContent( Revision::RAW );
 							$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
 							$newContent = $content->preSaveTransform( $this->mTitle, $wgUser, $popts );
 
@@ -1207,7 +1211,7 @@ class EditPage {
 	 * @return Content
 	 */
 	protected function getCurrentContent() {
-		$rev = $this->mArticle->getRevision();
+		$rev = $this->page->getRevision();
 		$content = $rev ? $rev->getContent( Revision::RAW ) : null;
 
 		if ( $content === false || $content === null ) {
@@ -1337,7 +1341,7 @@ class EditPage {
 	 * @param int $statusValue The status value (to check for new article status)
 	 */
 	protected function setPostEditCookie( $statusValue ) {
-		$revisionId = $this->mArticle->getLatest();
+		$revisionId = $this->page->getLatest();
 		$postEditKey = self::POST_EDIT_COOKIE_KEY_PREFIX . $revisionId;
 
 		$val = 'saved';
@@ -1760,8 +1764,8 @@ class EditPage {
 
 		# Load the page data from the master. If anything changes in the meantime,
 		# we detect it by using page_latest like a token in a 1 try compare-and-swap.
-		$this->mArticle->loadPageData( 'fromdbmaster' );
-		$new = !$this->mArticle->exists();
+		$this->page->loadPageData( 'fromdbmaster' );
+		$new = !$this->page->exists();
 
 		if ( $new ) {
 			// Late check for create permission, just in case *PARANOIA*
@@ -1813,16 +1817,16 @@ class EditPage {
 
 			# Article exists. Check for edit conflict.
 
-			$this->mArticle->clear(); # Force reload of dates, etc.
-			$timestamp = $this->mArticle->getTimestamp();
+			$this->page->clear(); # Force reload of dates, etc.
+			$timestamp = $this->page->getTimestamp();
 
 			wfDebug( "timestamp: {$timestamp}, edittime: {$this->edittime}\n" );
 
 			if ( $timestamp != $this->edittime ) {
 				$this->isConflict = true;
 				if ( $this->section == 'new' ) {
-					if ( $this->mArticle->getUserText() == $wgUser->getName() &&
-						$this->mArticle->getComment() == $this->newSectionSummary()
+					if ( $this->page->getUserText() == $wgUser->getName() &&
+						$this->page->getComment() == $this->newSectionSummary()
 					) {
 						// Probably a duplicate submission of a new comment.
 						// This can happen when squid resends a request after
@@ -1860,7 +1864,7 @@ class EditPage {
 					. ": conflict! getting section '{$this->section}' for time '{$this->edittime}'"
 					. " (article time '{$timestamp}')\n" );
 
-				$content = $this->mArticle->replaceSectionContent(
+				$content = $this->page->replaceSectionContent(
 					$this->section,
 					$textbox_content,
 					$sectionTitle,
@@ -1868,7 +1872,7 @@ class EditPage {
 				);
 			} else {
 				wfDebug( __METHOD__ . ": getting section '{$this->section}'\n" );
-				$content = $this->mArticle->replaceSectionContent(
+				$content = $this->page->replaceSectionContent(
 					$this->section,
 					$textbox_content,
 					$sectionTitle
@@ -1983,7 +1987,7 @@ class EditPage {
 			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
 			( $bot ? EDIT_FORCE_BOT : 0 );
 
-		$doEditStatus = $this->mArticle->doEditContent(
+		$doEditStatus = $this->page->doEditContent(
 			$content,
 			$this->summary,
 			$flags,
@@ -2630,7 +2634,7 @@ class EditPage {
 			Linker::formatTemplates( $this->getTemplates(), $this->preview, $this->section != '' ) ) );
 
 		$wgOut->addHTML( Html::rawElement( 'div', array( 'class' => 'hiddencats' ),
-			Linker::formatHiddenCategories( $this->mArticle->getHiddenCategories() ) ) );
+			Linker::formatHiddenCategories( $this->page->getHiddenCategories() ) ) );
 
 		$wgOut->addHTML( Html::rawElement( 'div', array( 'class' => 'limitreport' ),
 			self::getPreviewLimitReport( $this->mParserOutput ) ) );
@@ -2707,7 +2711,7 @@ class EditPage {
 
 		if ( $this->isConflict ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1\n</div>", 'explainconflict' );
-			$this->edittime = $this->mArticle->getTimestamp();
+			$this->edittime = $this->page->getTimestamp();
 		} else {
 			if ( $this->section != '' && !$this->isSectionEditSupported() ) {
 				// We use $this->section to much before this and getVal('wgSection') directly in other places
@@ -2848,6 +2852,7 @@ class EditPage {
 		}
 		if ( $this->mTitle->isCascadeProtected() ) {
 			# Is this page under cascading protection from some source pages?
+			/** @var Title[] $cascadeSources */
 			list( $cascadeSources, /* $restrictions */ ) = $this->mTitle->getCascadeProtectionSources();
 			$notice = "<div class='mw-cascadeprotectedwarning'>\n$1\n";
 			$cascadeSourcesCount = count( $cascadeSources );
@@ -3217,7 +3222,7 @@ HTML
 
 		$textboxContent = $this->toEditContent( $this->textbox1 );
 
-		$newContent = $this->mArticle->replaceSectionContent(
+		$newContent = $this->page->replaceSectionContent(
 							$this->section, $textboxContent,
 							$this->summary, $this->edittime );
 
@@ -3607,7 +3612,7 @@ HTML
 				$note = wfMessage( 'previewnote' )->plain() . ' ' . $continueEditing;
 			}
 
-			$parserOptions = $this->mArticle->makeParserOptions( $this->mArticle->getContext() );
+			$parserOptions = $this->page->makeParserOptions( $this->mArticle->getContext() );
 			$parserOptions->setIsPreview( true );
 			$parserOptions->setIsSectionPreview( !is_null( $this->section ) && $this->section !== '' );
 
@@ -3679,6 +3684,8 @@ HTML
 			if ( count( $parserOutput->getWarnings() ) ) {
 				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
 			}
+
+			ScopedCallback::consume( $scopedCallback );
 		} catch ( MWContentSerializationException $ex ) {
 			$m = wfMessage(
 				'content-failed-to-parse',
