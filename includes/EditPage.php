@@ -2147,7 +2147,9 @@ class EditPage {
 	}
 
 	/**
-	 * @return Revision
+	 * @note: this method is very poorly named. If the user opened the form with ?oldid=X,
+	 *        one might think of X as the "base revision", which is NOT what this returns.
+	 * @return Revision Current version when the edit was started
 	 */
 	function getBaseRevision() {
 		if ( !$this->mBaseRevision ) {
