@@ -2520,7 +2520,6 @@ Barack Obama <President> of the United States
 </p>
 !! end
 
-## PHP parser discards the "<pre " string
 !! test
 Handle broken pre-like tags (bug 64025)
 !! options
@@ -2531,7 +2530,14 @@ parsoid=wt2html
 <table><pre </table>
 !! html/php
 <pre>x</pre>
-<table><pre></pre></table>
+<table>&lt;pre </table>
+
+!! html/php+tidy
+<pre>
+x
+</pre>
+<p>&lt;pre</p>
+
 
 !! html/parsoid
 <pre about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"a":{"&lt;pre":null},"sa":{"&lt;pre":""},"stx":"html","pi":[[{"k":"1","spc":["","","",""]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;pre &lt;pre>x&lt;/pre>"}},"i":0}}]}'>x</pre>
@@ -10876,6 +10882,8 @@ Un-closed <includeonly>
 !! wikitext
 <includeonly>
 !! html
+<p>&lt;includeonly&gt;
+</p>
 !! end
 
 ## We used to, but no longer wt2wt this test since the default serializer
