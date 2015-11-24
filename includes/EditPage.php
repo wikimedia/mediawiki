@@ -1199,6 +1199,26 @@ class EditPage {
 	}
 
 	/**
+	 * Get the edit's parent revision ID
+	 *
+	 * The "parent" revision is the ancestor that should be recorded in this
+	 * page's revision history.  It is either the revision ID of the in-memory
+	 * article content, or in the case of a 3-way merge in order to rebase
+	 * across a recoverable edit conflict, the ID of the newer revision to
+	 * which we have rebased this page.
+	 *
+	 * @since 1.25
+	 * @return int Revision ID
+	 */
+	public function getParentRevId() {
+		if ( $this->parentRevId ) {
+			return $this->parentRevId;
+		} else {
+			return $this->mArticle->getRevIdFetched();
+		}
+	}
+
+	/**
 	 * Get the current content of the page. This is basically similar to
 	 * WikiPage::getContent( Revision::RAW ) except that when the page doesn't exist an empty
 	 * content object is returned instead of null.
@@ -2118,6 +2138,8 @@ class EditPage {
 
 		if ( $result ) {
 			$editContent = $result;
+			// Update parentRevId to what we just merged.
+			$this->parentRevId = $currentRevision->getId();
 			return true;
 		}
 
@@ -2578,8 +2600,7 @@ class EditPage {
 		$wgOut->addHTML( Html::hidden( 'wpAutoSummary', $autosumm ) );
 
 		$wgOut->addHTML( Html::hidden( 'oldid', $this->oldid ) );
-		$wgOut->addHTML( Html::hidden( 'parentRevId',
-			$this->parentRevId ?: $this->mArticle->getRevIdFetched() ) );
+		$wgOut->addHTML( Html::hidden( 'parentRevId', $this->getParentRevId() ) );
 
 		$wgOut->addHTML( Html::hidden( 'format', $this->contentFormat ) );
 		$wgOut->addHTML( Html::hidden( 'model', $this->contentModel ) );
