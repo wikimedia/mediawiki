@@ -140,6 +140,15 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 * Update link tables with outgoing links from an updated article
 	 */
 	public function doUpdate() {
+		# For categories, check if an associated editnotice exists
+		# If it does, set property so that these can be recovered when editing a page,
+		# without having to check all categories the page is in
+		if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
+			$editnoticeMsg = wfMessage( 'editnotice-category-' . $this->mTitle->getDBkey() );
+			if ( $editnoticeMsg->exists() ) {
+				$this->mProperties['editnoticecat'] = '';
+			}
+		}
 		Hooks::run( 'LinksUpdate', [ &$this ] );
 		$this->doIncrementalUpdate();
 

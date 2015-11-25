@@ -2496,7 +2496,24 @@ class EditPage {
 
 		$this->setHeaders();
 
-		if ( $this->showHeader() === false ) {
+		// get categories with either "hiddencat" or "editnoticecat" properties
+		$categories =  $this->page->getCategoriesWithProperties(
+			[ 'hiddencat', 'editnoticecat' ]
+		);
+		$hiddenCategories = [];
+		$editnoticeCategories = [];
+		foreach ( $categories as $cat => $props ) {
+			// make list of hidden categories
+			if ( isset( $props['hiddencat'] ) ) {
+				$hiddenCategories[] = Title::makeTitle( NS_CATEGORY, $cat );
+			}
+			// make list of categories to check for per-category editnotices
+			if ( isset( $props['editnoticecat'] ) ) {
+				$editnoticeCategories[] = $cat;
+			}
+		}
+
+		if ( $this->showHeader( $editnoticeCategories ) === false ) {
 			return;
 		}
 
@@ -2668,7 +2685,7 @@ class EditPage {
 			Linker::formatTemplates( $this->getTemplates(), $this->preview, $this->section != '' ) ) );
 
 		$wgOut->addHTML( Html::rawElement( 'div', [ 'class' => 'hiddencats' ],
-			Linker::formatHiddenCategories( $this->page->getHiddenCategories() ) ) );
+			Linker::formatHiddenCategories( $hiddenCategories ) ) );
 
 		$wgOut->addHTML( Html::rawElement( 'div', [ 'class' => 'limitreport' ],
 			self::getPreviewLimitReport( $this->mParserOutput ) ) );
@@ -2718,9 +2735,10 @@ class EditPage {
 	}
 
 	/**
+	 * @param array Array of categories to check for per-category editnotices
 	 * @return bool
 	 */
-	protected function showHeader() {
+	protected function showHeader( $editnoticeCategories ) {
 		global $wgOut, $wgUser, $wgMaxArticleSize, $wgLang;
 		global $wgAllowUserCss, $wgAllowUserJs;
 
@@ -2729,7 +2747,7 @@ class EditPage {
 		}
 
 		// Add edit notices
-		$editNotices = $this->mTitle->getEditNotices( $this->oldid );
+		$editNotices = $this->mTitle->getEditNotices( $this->oldid, $editnoticeCategories );
 		if ( count( $editNotices ) ) {
 			$wgOut->addHTML( implode( "\n", $editNotices ) );
 		} else {
