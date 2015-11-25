@@ -3256,6 +3256,21 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$other->purgeSquid();
 
+		// Add per-category editnotice page_prop
+		if ( $title->getNamespace() == NS_MEDIAWIKI
+			&& strpos( $title->getDBkey(), 'Editnotice-category-' ) === 0 ) {
+			$category = substr( $title->getDBkey(), 20 );
+			if ( $category !== '' ) {
+				$categoryTitle = Title::makeTitle( NS_CATEGORY, $category );
+				$dbw = wfGetDB( DB_MASTER );
+				$dbw->insert( 'page_props', array(
+					'pp_page' => $categoryTitle->getArticleID(),
+					'pp_propname' => 'editnoticecat',
+					'pp_value' => ''
+				) );
+			}
+		}
+
 		$title->touchLinks();
 		$title->purgeSquid();
 		$title->deleteTitleProtection();
@@ -3282,6 +3297,19 @@ class WikiPage implements Page, IDBAccessObject {
 		// Messages
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
 			MessageCache::singleton()->replace( $title->getDBkey(), false );
+
+			// Clear per-category editnotice page_prop
+			if ( strpos( $title->getDBkey(), 'Editnotice-category-' ) === 0 ) {
+				$category = substr( $title->getDBkey(), 20 );
+				if ( $category !== '' ) {
+					$categoryTitle = Title::makeTitle( NS_CATEGORY, $category );
+					$dbw = wfGetDB( DB_MASTER );
+					$dbw->delete( 'page_props', array(
+						'pp_page' => $categoryTitle->getArticleID(),
+						'pp_propname' => 'editnoticecat'
+					) );
+				}
+			}
 		}
 
 		// Images
@@ -3374,6 +3402,70 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $res !== false ) {
 			foreach ( $res as $row ) {
 				$result[] = Title::makeTitle( NS_CATEGORY, $row->cl_to );
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Returns a list of categories with an associated editnotice this page is a member of.
+	 * Uses the page_props and categorylinks tables.
+	 *
+	 * @since 1.27
+	 * @return array Array
+	 */
+	public function getEditnoticeCategories() {
+		$result = array();
+		$id = $this->getId();
+
+		if ( $id == 0 ) {
+			return array();
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( array( 'categorylinks', 'page_props', 'page' ),
+			array( 'cl_to' ),
+			array( 'cl_from' => $id, 'pp_page=page_id', 'pp_propname' => 'editnoticecat',
+				'page_namespace' => NS_CATEGORY, 'page_title=cl_to' ),
+			__METHOD__ );
+
+		if ( $res !== false ) {
+			foreach ( $res as $row ) {
+				$result[] = $row->cl_to;
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Returns a list of categories with properties specific to categorization:
+	 * hidden categories, and categories with an associated editnotice
+	 * Uses the page_props and categorylinks tables.
+	 *
+	 * @since 1.27
+	 * @return array Array of Title objects
+	 */
+	public function getCategoriesWithProperties() {
+		$result = array();
+		$id = $this->getId();
+
+		if ( $id == 0 ) {
+			return array();
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( array( 'categorylinks', 'page_props', 'page' ),
+			array( 'cl_to', 'pp_propname' ),
+			array( 'cl_from' => $id, 'pp_page=page_id',
+				'pp_propname' => array( 'hiddencat', 'editnoticecat' ),
+				'page_namespace' => NS_CATEGORY, 'page_title=cl_to' ),
+			__METHOD__ );
+
+		if ( $res !== false ) {
+			foreach ( $res as $row ) {
+				$result[$row->cl_to][$row->pp_propname] = true;
 			}
 		}
 
