@@ -2212,6 +2212,25 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.widgets.SearchInputWidget' => [
+		'scripts' => [
+			'resources/src/mediawiki.widgets/mw.widgets.SearchInputWidget.js',
+		],
+		'dependencies' => [
+			'mediawiki.searchSuggest',
+			// FIXME: Needs TitleInputWidget only
+			'mediawiki.widgets',
+		],
+	],
+	'mediawiki.widgets.SearchInputWidget.styles' => [
+		'skinStyles' => [
+			'default' => [
+				'resources/src/mediawiki.widgets/mw.widgets.SearchInputWidget.css',
+			],
+		],
+		'position' => 'top',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 
 	/* es5-shim */
 	'es5-shim' => [
