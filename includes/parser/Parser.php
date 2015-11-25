@@ -1263,6 +1263,16 @@ class Parser {
 
 		$text = $this->doDoubleUnderscore( $text );
 
+		# For categories, check if an associated editnotice exists
+		# If it does, set property so that these can be recovered when editing a page,
+		# without having to check all categories the page is in
+		if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
+			$editnoticeMsg = wfMessage( 'editnotice-category-' . $this->mTitle->getDBkey() );
+			if ( $editnoticeMsg->exists() ) {
+				$this->mOutput->setProperty( 'editnoticecat', '' );
+			}
+		}
+
 		$text = $this->doHeadings( $text );
 		$text = $this->replaceInternalLinks( $text );
 		$text = $this->doAllQuotes( $text );

@@ -4676,9 +4676,10 @@ class Title {
 	 *
 	 * @since 1.21
 	 * @param int $oldid Revision ID that's being edited
+	 * @param array $categories Categories checked for per-category editnotices
 	 * @return array
 	 */
-	public function getEditNotices( $oldid = 0 ) {
+	public function getEditNotices( $oldid = 0, $categories = null ) {
 		$notices = array();
 
 		// Optional notice for the entire namespace
@@ -4739,6 +4740,21 @@ class Title {
 						$html
 					);
 				}
+			}
+		}
+
+		// Optional notices on a per-category basis
+		if ( $categories === null ) {
+			$page = WikiPage::factory( $this );
+			$categories = $page->getEditnoticeCategories();
+		}
+		foreach ( $categories as $cat ) {
+			$editnoticeCategory = 'editnotice-category-' . $cat;
+			$editnoticeCategoryMessage = wfMessage( $editnoticeCategory );
+			if ( $editnoticeCategoryMessage->exists() ) {
+				$notices[$editnoticeCategory] = '<div class="mw-editnotice mw-editnotice-category ' .
+					Sanitizer::escapeClass( "mw-$editnoticeCategory" ) . '">' .
+					$editnoticeCategoryMessage->parseAsBlock() . '</div>';
 			}
 		}
 
