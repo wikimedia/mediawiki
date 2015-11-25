@@ -49,6 +49,7 @@ class SpecialTrackingCategories extends SpecialPage {
 		'post-expand-template-argument-category',
 		'post-expand-template-inclusion-category',
 		'hidden-category-category',
+		'editnotice-category-category',
 		'broken-file-category',
 		'node-count-exceeded-category',
 		'expansion-depth-exceeded-category',

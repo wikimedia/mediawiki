@@ -3331,6 +3331,71 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
+	 * Returns a list of editnotice categories this page is a member of.
+	 * These are categories with the __EDITNOTICECAT__ magic word.
+	 * Uses the page_props and categorylinks tables.
+	 *
+	 * @since 1.27
+	 * @param int $id Article id
+	 * @return array Array
+	 */
+	public static function getEditnoticeCategories( $id = 0 ) {
+		$result = array();
+
+		if ( $id == 0 ) {
+			return array();
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( array( 'categorylinks', 'page_props', 'page' ),
+			array( 'cl_to' ),
+			array( 'cl_from' => $id, 'pp_page=page_id', 'pp_propname' => 'editnoticecat',
+				'page_namespace' => NS_CATEGORY, 'page_title=cl_to' ),
+			__METHOD__ );
+
+		if ( $res !== false ) {
+			foreach ( $res as $row ) {
+				$result[] = $row->cl_to;
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Returns a list of categories with properties specific to categorization:
+	 * hidden categories, and categories with editnotice
+	 * Uses the page_props and categorylinks tables.
+	 *
+	 * @since 1.27
+	 * @param int $id Article id
+	 * @return array Array of Title objects
+	 */
+	public static function getCategoriesWithProperties( $id = 0 ) {
+		$result = array();
+
+		if ( $id == 0 ) {
+			return array();
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( array( 'categorylinks', 'page_props', 'page' ),
+			array( 'cl_to', 'pp_propname' ),
+			array( 'cl_from' => $id, 'pp_page=page_id',
+				'pp_propname' => array( 'hiddencat', 'editnoticecat' ),
+				'page_namespace' => NS_CATEGORY, 'page_title=cl_to' ),
+			__METHOD__ );
+
+		if ( $res !== false ) {
+			foreach ( $res as $row ) {
+				$result[$row->cl_to][$row->pp_propname] = true;
+			}
+		}
+
+		return $result;
+	}
+
+	/**
 	 * Return an applicable autosummary if one exists for the given edit.
 	 * @param string|null $oldtext The previous text of the page.
 	 * @param string|null $newtext The submitted text of the page.

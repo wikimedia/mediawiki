@@ -4360,6 +4360,11 @@ class Parser {
 		) {
 			$this->addTrackingCategory( 'hidden-category-category' );
 		}
+		if ( isset( $this->mDoubleUnderscores['editnoticecat'] )
+			&& $this->mTitle->getNamespace() == NS_CATEGORY
+		) {
+			$this->addTrackingCategory( 'editnotice-category-category' );
+		}
 		# (bug 8068) Allow control over whether robots index a page.
 		#
 		# @todo FIXME: Bug 14899: __INDEX__ always overrides __NOINDEX__ here!  This
