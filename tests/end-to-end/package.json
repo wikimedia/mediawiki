@@ -1,0 +1,15 @@
+{
+  "name": "mw-core-e2e",
+  "version": "0.0.0",
+  "description": "End to end tests for MediaWiki core",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jasmine": "^2.3.2",
+    "selenium-webdriver": "^2.48.2"
+  }
+}
