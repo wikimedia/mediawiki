@@ -2055,6 +2055,25 @@ return array(
 			'oojs-ui',
 		),
 	),
+	'mediawiki.widgets.SearchInputWidget' => array(
+		'scripts' => array(
+			'resources/src/mediawiki.widgets/mw.widgets.SearchInputWidget.js',
+		),
+		'dependencies' => array(
+			'mediawiki.searchSuggest',
+			// FIXME: Needs TitleInputWidget only
+			'mediawiki.widgets',
+		),
+	),
+	'mediawiki.widgets.SearchInputWidget.styles' => array(
+		'skinStyles' => array(
+			'default' => array(
+				'resources/src/mediawiki.widgets/mw.widgets.SearchInputWidget.css',
+			),
+		),
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 
 	/* es5-shim */
 	'es5-shim' => array(
