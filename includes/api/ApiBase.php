@@ -37,68 +37,148 @@
  * @ingroup API
  */
 abstract class ApiBase extends ContextSource {
-	// These constants allow modules to specify exactly how to treat incoming parameters.
 
-	// Default value of the parameter
+	/**
+	 * @name Constants for ::getAllowedParams() arrays
+	 * These constants are keys in the arrays returned by ::getAllowedParams()
+	 * and accepted by ::getParameterFromSettings() that define how the
+	 * parameters coming in from the request are to be interpreted.
+	 * @{
+	 */
+
+	/** (null|boolean|integer|string) Default value of the parameter. */
 	const PARAM_DFLT = 0;
-	// Boolean, do we accept more than one item for this parameter (e.g.: titles)?
+
+	/** (boolean) Accept multiple pipe-separated values for this parameter (e.g. titles)? */
 	const PARAM_ISMULTI = 1;
-	// Can be either a string type (e.g.: 'integer') or an array of allowed values
+
+	/**
+	 * (string|string[]) Either an array of allowed value strings, or a string
+	 * type as described below. If not specified, will be determined from the
+	 * type of PARAM_DFLT.
+	 *
+	 * Supported string types are:
+	 * - boolean: A boolean parameter, returned as false if the parameter is
+	 *   omitted and true if present (even with a falsey value, i.e. it works
+	 *   like HTML checkboxes). PARAM_DFLT must be boolean false, if specified.
+	 *   Cannot be used with PARAM_ISMULTI.
+	 * - integer: An integer value. See also PARAM_MIN, PARAM_MAX, and
+	 *   PARAM_RANGE_ENFORCE.
+	 * - limit: An integer or the string 'max'. Default lower limit is 0 (but
+	 *   see PARAM_MIN), and requires that PARAM_MAX and PARAM_MAX2 be
+	 *   specified. Cannot be used with PARAM_ISMULTI.
+	 * - namespace: An integer representing a MediaWiki namespace.
+	 * - NULL: Any string.
+	 * - password: Any non-empty string. Input value is private or sensitive.
+	 *   <input type="password"> would be an appropriate HTML form field.
+	 * - string: Any non-empty string, not expected to be very long or contain newlines.
+	 *   <input type="text"> would be an appropriate HTML form field.
+	 * - submodule: The name of a submodule of this module, see PARAM_SUBMODULE_MAP.
+	 * - text: Any non-empty string, expected to be very long or contain newlines.
+	 *   <textarea> would be an appropriate HTML form field.
+	 * - timestamp: A timestamp in any format recognized by MWTimestamp, or the
+	 *   string 'now' representing the current timestamp. Will be returned in
+	 *   TS_MW format.
+	 * - user: A MediaWiki username. Will be returned normalized but not canonicalized.
+	 * - upload: An uploaded file. Will be returned as a WebRequestUpload
+	 *   object. Cannot be used with PARAM_ISMULTI.
+	 */
 	const PARAM_TYPE = 2;
-	// Max value allowed for a parameter. Only applies if TYPE='integer'
+
+	/** (integer) Max value allowed for the parameter, for PARAM_TYPE 'integer' and 'limit'. */
 	const PARAM_MAX = 3;
-	// Max value allowed for a parameter for bots and sysops. Only applies if TYPE='integer'
+
+	/**
+	 * (integer) Max value allowed for the parameter for users with the
+	 * apihighlimits right, for PARAM_TYPE 'limit'.
+	 */
 	const PARAM_MAX2 = 4;
-	// Lowest value allowed for a parameter. Only applies if TYPE='integer'
+
+	/** (integer) Lowest value allowed for the parameter, for PARAM_TYPE 'integer' and 'limit'. */
 	const PARAM_MIN = 5;
-	// Boolean, do we allow the same value to be set more than once when ISMULTI=true
+
+	/** (boolean) Allow the same value to be set more than once when PARAM_MULTI is true? */
 	const PARAM_ALLOW_DUPLICATES = 6;
-	// Boolean, is the parameter deprecated (will show a warning)
+
+	/** (boolean) Is the parameter deprecated (will show a warning)? */
 	const PARAM_DEPRECATED = 7;
-	/// @since 1.17
-	const PARAM_REQUIRED = 8; // Boolean, is the parameter required?
-	/// @since 1.17
-	// Boolean, if MIN/MAX are set, enforce (die) these?
-	// Only applies if TYPE='integer' Use with extreme caution
+
+	/**
+	 * (boolean) Is the parameter required?
+	 * @since 1.17
+	 */
+	const PARAM_REQUIRED = 8;
+
+	/**
+	 * (boolean) For PARAM_TYPE 'integer', enforce PARAM_MIN and PARAM_MAX?
+	 * @since 1.17
+	 */
 	const PARAM_RANGE_ENFORCE = 9;
-	/// @since 1.25
-	// Specify an alternative i18n message for this help parameter.
-	// Value is $msg for ApiBase::makeMessage()
+
+	/**
+	 * (string|array|Message) Specify an alternative i18n documentation message
+	 * for this parameter. Default is apihelp-{$path}-param-{$param}.
+	 * @since 1.25
+	 */
 	const PARAM_HELP_MSG = 10;
-	/// @since 1.25
-	// Specify additional i18n messages to append to the normal message. Value
-	// is an array of $msg for ApiBase::makeMessage()
+
+	/**
+	 * ((string|array|Message)[]) Specify additional i18n messages to append to
+	 * the normal message for this parameter.
+	 * @since 1.25
+	 */
 	const PARAM_HELP_MSG_APPEND = 11;
-	/// @since 1.25
-	// Specify additional information tags for the parameter. Value is an array
-	// of arrays, with the first member being the 'tag' for the info and the
-	// remaining members being the values. In the help, this is formatted using
-	// apihelp-{$path}-paraminfo-{$tag}, which is passed $1 = count, $2 =
-	// comma-joined list of values, $3 = module prefix.
+
+	/**
+	 * (array) Specify additional information tags for the parameter. Value is
+	 * an array of arrays, with the first member being the 'tag' for the info
+	 * and the remaining members being the values. In the help, this is
+	 * formatted using apihelp-{$path}-paraminfo-{$tag}, which is passed
+	 * $1 = count, $2 = comma-joined list of values, $3 = module prefix.
+	 * @since 1.25
+	 */
 	const PARAM_HELP_MSG_INFO = 12;
-	/// @since 1.25
-	// When PARAM_TYPE is an array, this may be an array mapping those values
-	// to page titles which will be linked in the help.
+
+	/**
+	 * (string[]) When PARAM_TYPE is an array, this may be an array mapping
+	 * those values to page titles which will be linked in the help.
+	 * @since 1.25
+	 */
 	const PARAM_VALUE_LINKS = 13;
-	/// @since 1.25
-	// When PARAM_TYPE is an array, this is an array mapping those values to
-	// $msg for ApiBase::makeMessage(). Any value not having a mapping will use
-	// apihelp-{$path}-paramvalue-{$param}-{$value} is used.
+
+	/**
+	 * ((string|array|Message)[]) When PARAM_TYPE is an array, this is an array
+	 * mapping those values to $msg for ApiBase::makeMessage(). Any value not
+	 * having a mapping will use apihelp-{$path}-paramvalue-{$param}-{$value}.
+	 * @since 1.25
+	 */
 	const PARAM_HELP_MSG_PER_VALUE = 14;
-	/// @since 1.26
-	// When PARAM_TYPE is 'submodule', map parameter values to submodule paths.
-	// Default is to use all modules in $this->getModuleManager() in the group
-	// matching the parameter name.
+
+	/**
+	 * (string[]) When PARAM_TYPE is 'submodule', map parameter values to
+	 * submodule paths. Default is to use all modules in
+	 * $this->getModuleManager() in the group matching the parameter name.
+	 * @since 1.26
+	 */
 	const PARAM_SUBMODULE_MAP = 15;
-	/// @since 1.26
-	// When PARAM_TYPE is 'submodule', used to indicate the 'g' prefix added by
-	// ApiQueryGeneratorBase (and similar if anything else ever does that).
+
+	/**
+	 * (string) When PARAM_TYPE is 'submodule', used to indicate the 'g' prefix
+	 * added by ApiQueryGeneratorBase (and similar if anything else ever does that).
+	 * @since 1.26
+	 */
 	const PARAM_SUBMODULE_PARAM_PREFIX = 16;
 
-	const LIMIT_BIG1 = 500; // Fast query, std user limit
-	const LIMIT_BIG2 = 5000; // Fast query, bot/sysop limit
-	const LIMIT_SML1 = 50; // Slow query, std user limit
-	const LIMIT_SML2 = 500; // Slow query, bot/sysop limit
+	/**@}*/
+
+	/** Fast query, standard limit. */
+	const LIMIT_BIG1 = 500;
+	/** Fast query, apihighlimits limit. */
+	const LIMIT_BIG2 = 5000;
+	/** Slow query, standard limit. */
+	const LIMIT_SML1 = 50;
+	/** Slow query, apihighlimits limit. */
+	const LIMIT_SML2 = 500;
 
 	/**
 	 * getAllowedParams() flag: When set, the result could take longer to generate,
