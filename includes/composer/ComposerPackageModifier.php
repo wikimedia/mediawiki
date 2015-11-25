@@ -1,7 +1,6 @@
 <?php
 
 use Composer\Package\Link;
-use Composer\Package\LinkConstraint\VersionConstraint;
 use Composer\Package\Package;
 
 /**
@@ -50,7 +49,15 @@ class ComposerPackageModifier {
 		$mvVersion = $this->versionFetcher->fetchVersion();
 		$mvVersion = $this->versionNormalizer->normalizeSuffix( $mvVersion );
 
-		$version = new VersionConstraint(
+		if ( class_exists( 'Composer\Semver\Constraint\Constraint' ) ) {
+			// VersionConstraint was renamed to just Constraint in newer
+			// versions of composer: T119590
+			$class = 'Composer\Semver\Constraint\Constraint';
+		} else {
+			$class = 'Composer\Package\LinkConstraint\VersionConstraint';
+		}
+		/** @var Composer\Semver\Constraint\Constraint $version */
+		$version = new $class(
 			'==',
 			$this->versionNormalizer->normalizeLevelCount( $mvVersion )
 		);
