@@ -23,7 +23,8 @@
 	 * @cfg {boolean} [showRedlink] Show red link to exact match if it doesn't exist
 	 * @cfg {boolean} [showImages] Show page images
 	 * @cfg {boolean} [showDescriptions] Show page descriptions
-	 * @cfg {boolean} [validateTitle=true] Whether the input must be a valid title
+	 * @cfg {boolean} [validateTitle=true] Whether the input must be a valid title (if set to true,
+	 *  the widget will marks itself red for invalid inputs (including an empty query).
 	 * @cfg {Object} [cache] Result cache which implements a 'set' method, taking keyed values as an argument
 	 */
 	mw.widgets.TitleWidget = function MwWidgetsTitleWidget( config ) {
