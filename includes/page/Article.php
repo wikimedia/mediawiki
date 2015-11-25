@@ -614,6 +614,10 @@ class Article implements Page {
 							} else {
 								wfDebug( __METHOD__ . ": showing parser cache contents\n" );
 							}
+
+							# Specifies which type of categories should be displayed
+							$outputPage->setCategoryPolicy( $this->mParserOutput->getCategoryPolicy() );
+
 							$outputPage->addParserOutput( $this->mParserOutput );
 							# Ensure that UI elements requiring revision ID have
 							# the correct version information.

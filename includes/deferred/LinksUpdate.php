@@ -83,6 +83,11 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	private $user;
 
 	/**
+	 * @var WikiPage|null
+	 */
+	private $mArticle = null;
+
+	/**
 	 * Constructor
 	 *
 	 * @param Title $title Title of the page we're updating
@@ -108,9 +113,41 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		$this->mImages = $parserOutput->getImages();
 		$this->mTemplates = $parserOutput->getTemplates();
 		$this->mExternals = $parserOutput->getExternalLinks();
-		$this->mCategories = $parserOutput->getCategories();
 		$this->mProperties = $parserOutput->getProperties();
 		$this->mInterwikis = $parserOutput->getInterwikiLinks();
+
+		$this->mArticle = WikiPage::factory( $title );
+		$categoryPolicy = $parserOutput->getCategoryPolicy();
+		$parsedCategories = $parserOutput->getCategories();
+		if ( $categoryPolicy === 'standard' ) {
+			$this->mCategories = $parsedCategories;
+		} elseif ( $categoryPolicy === 'displayonly' ) {
+			$this->mCategories = array();
+
+			# Add categories to a LinkBatch
+			$arr = array( NS_CATEGORY => $parsedCategories );
+			$lb = new LinkBatch;
+			$lb->setArray( $arr );
+
+			# Fetch hidden categories among those
+			$dbr = wfGetDB( DB_SLAVE );
+			$fields = array( 'page_id', 'page_title', 'pp_value' );
+
+			$where = array( $lb->constructSet( 'page', $dbr ) );
+			$where['pp_propname'] = 'hiddencat';
+			$where[] = 'pp_page = page_id';
+
+			$res = $dbr->select( array( 'page', 'page_props' ),
+				$fields, $where, __METHOD__ );
+
+			foreach ( $res as $row ) {
+				if ( isset( $row->pp_value ) ) {
+					$this->mCategories[$row->page_title] = $parsedCategories[$row->page_title];
+				}
+			}
+		} else {
+			throw new MWException( 'Invalid category policy in LinksUpdate' );
+		}
 
 		# Convert the format of the interlanguage links
 		# I didn't want to change it in the ParserOutput, because that array is passed all
@@ -316,8 +353,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 * @param array $deleted Associative array of category name => sort key
 	 */
 	function updateCategoryCounts( $added, $deleted ) {
-		$a = WikiPage::factory( $this->mTitle );
-		$a->updateCategoryCounts(
+		$this->mArticle->updateCategoryCounts(
 			array_keys( $added ), array_keys( $deleted )
 		);
 	}

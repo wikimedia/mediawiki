@@ -4331,6 +4331,7 @@ class Parser {
 	 * @return string
 	 */
 	public function doDoubleUnderscore( $text ) {
+		global $wgNamespacesAlwaysCategorized;
 
 		# The position of __TOC__ needs to be recorded
 		$mw = MagicWord::get( 'toc' );
@@ -4359,6 +4360,11 @@ class Parser {
 			&& $this->mTitle->getNamespace() == NS_CATEGORY
 		) {
 			$this->addTrackingCategory( 'hidden-category-category' );
+		}
+		if ( isset( $this->mDoubleUnderscores['nocategory'] )
+			&& !in_array( $this->mTitle->getNamespace(), $wgNamespacesAlwaysCategorized ) ) {
+			$this->mOutput->setCategoryPolicy( 'displayonly' );
+			$this->addTrackingCategory( 'nocategory-category' );
 		}
 		# (bug 8068) Allow control over whether robots index a page.
 		#

@@ -308,6 +308,11 @@ class OutputPage extends ContextSource {
 	private $copyrightUrl;
 
 	/**
+	 * @var string Which categories should be set
+	 */
+	private $mCategoryPolicy = 'standard';
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -1338,8 +1343,15 @@ class OutputPage extends ContextSource {
 		# Add the results to the link cache
 		$lb->addResultToCache( LinkCache::singleton(), $res );
 
-		# Set all the values to 'normal'.
-		$categories = array_fill_keys( array_keys( $categories ), 'normal' );
+		if ( $this->mCategoryPolicy === 'standard' ) {
+			# Set all the values to 'normal'.
+			$categories = array_fill_keys( array_keys( $categories ), 'normal' );
+		} elseif ( $this->mCategoryPolicy === 'displayonly' ) {
+			# Set all the values to 'displayonly'.
+			$categories = array_fill_keys( array_keys( $categories ), 'displayonly' );
+		} else {
+			throw new MWException( 'Invalid category policy in OutputPage' );
+		}
 
 		# Mark hidden categories
 		foreach ( $res as $row ) {
@@ -4039,5 +4051,14 @@ class OutputPage extends ContextSource {
 			'oojs-ui.styles.textures',
 			'mediawiki.widgets.styles',
 		) );
+	}
+
+	/**
+	 * Allows to specify which categories should be outputted
+	 *
+	 * @since 1.27
+	 */
+	public function setCategoryPolicy( $policy ) {
+		$this->mCategoryPolicy = (string)$policy;
 	}
 }

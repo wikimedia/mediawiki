@@ -3868,5 +3868,8 @@
 	"mw-widgets-dateinput-placeholder-month": "YYYY-MM",
 	"mw-widgets-titleinput-description-new-page": "page does not exist yet",
 	"mw-widgets-titleinput-description-redirect": "redirect to $1",
-	"api-error-blacklisted": "Please choose a different, descriptive title."
+	"api-error-blacklisted": "Please choose a different, descriptive title.",
+	"nocategory-category": "Pages displaying no categories",
+	"nocategory-category-desc": "The page contains <code><nowiki>__NOCATEGORY__</nowiki></code> in its page content, which prevents it from being categorised except by hidden categories.",
+	"pagecategories-displayonly": "Categories (for display only)"
 }

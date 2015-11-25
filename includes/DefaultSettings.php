@@ -6846,10 +6846,16 @@ $wgPagePropLinkInvalidations = array(
 $wgUseCategoryBrowser = false;
 
 /**
- *  On  category pages, show thumbnail gallery for images belonging to that
+ * On  category pages, show thumbnail gallery for images belonging to that
  * category instead of listing them as articles.
  */
 $wgCategoryMagicGallery = true;
+
+/**
+ * Namespaces where the magic word __NOCATEGORY__ cannot be used
+ * @since 1.27
+ */
+$wgNamespacesAlwaysCategorized = array( NS_MAIN );
 
 /**
  * Paging limit for categories

@@ -4041,5 +4041,8 @@
 	"mw-widgets-dateinput-placeholder-month": "Placeholder displayed in a date input field when it's empty, representing a date format with 4 digits for year and 2 digits for month, separated with hyphens (without a day). This should be uppercase, if possible, and must not include any additional explanations. If there is no good way to translate it, make this message blank.",
 	"mw-widgets-titleinput-description-new-page": "Description label for a new page in the title input widget.",
 	"mw-widgets-titleinput-description-redirect": "Description label for a redirect in the title input widget.",
-	"api-error-blacklisted": "Used as error message.\n\nFollowed by the link {{msg-mw|Mwe-upwiz-feedback-blacklist-info-prompt}}."
+	"api-error-blacklisted": "Used as error message.\n\nFollowed by the link {{msg-mw|Mwe-upwiz-feedback-blacklist-info-prompt}}.",
+	"nocategory-category": "Name of the tracking category for pages that do not get categorized, except in hidden categories (with magic word __NOCATEGORY__)",
+	"nocategory-category-desc": "Description of the [[mw:Special:MyLanguage/Help:Tracking categories|tracking category]] for pages that do not get categorized, except in hidden categories",
+	"pagecategories-displayonly": "Equivalent of pagecategories, but on a page where __NOCATEGORY__ is used"
 }

@@ -208,6 +208,11 @@ class ParserOutput extends CacheTime {
 	 */
 	private $mFlags = array();
 
+	/**
+	 * @var string Which categories should be set
+	 */
+	private $mCategoryPolicy = 'standard';
+
 	const EDITSECTION_REGEX =
 		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
@@ -364,6 +369,10 @@ class ParserOutput extends CacheTime {
 
 	public function getIndexPolicy() {
 		return $this->mIndexPolicy;
+	}
+
+	public function getCategoryPolicy() {
+		return $this->mCategoryPolicy;
 	}
 
 	public function getTOCHTML() {
@@ -638,6 +647,15 @@ class ParserOutput extends CacheTime {
 		}
 
 		$this->mJsConfigVars[$keys] = $value;
+	}
+
+	/**
+	 * Allows to specify which categories should be outputted
+	 *
+	 * @since 1.27
+	 */
+	public function setCategoryPolicy( $policy ) {
+		$this->mCategoryPolicy = (string)$policy;
 	}
 
 	/**

@@ -480,6 +480,19 @@ abstract class Skin extends ContextSource {
 				$link . $colon . '<ul>' . $t . '</ul>' . '</div>';
 		}
 
+		# Categories to display but that do not categorize (for sandboxes, drafts, etc)
+		if ( isset( $allCats['displayonly'] ) ) {
+			$t = $embed . implode( "{$pop}{$embed}", $allCats['displayonly'] ) . $pop;
+
+			$msg = $this->msg( 'pagecategories-displayonly' )
+				->numParams( count( $allCats['displayonly'] ) )->escaped();
+			$linkPage = wfMessage( 'pagecategorieslink' )->inContentLanguage()->text();
+			$title = Title::newFromText( $linkPage );
+			$link = $title ? Linker::link( $title, $msg ) : $msg;
+			$s .= '<div id="mw-displayonly-catlinks" class="mw-displayonly-catlinks">' .
+				$link . $colon . '<ul>' . $t . '</ul>' . '</div>';
+		}
+
 		# Hidden categories
 		if ( isset( $allCats['hidden'] ) ) {
 			if ( $this->getUser()->getBoolOption( 'showhiddencats' ) ) {
