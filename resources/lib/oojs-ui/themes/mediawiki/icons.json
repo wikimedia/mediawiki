@@ -63,7 +63,7 @@
 			"ltr": "images/icons/arched-arrow-ltr.svg",
 			"rtl": "images/icons/arched-arrow-rtl.svg"
 		} },
-		"remove": { "file": "images/icons/remove.svg", "variants": [ "destructive" ] },
+		"remove": { "file": "images/icons/trash.svg", "variants": [ "destructive" ] },
 		"search": { "file": {
 			"ltr": "images/icons/search-ltr.svg",
 			"rtl": "images/icons/search-rtl.svg"

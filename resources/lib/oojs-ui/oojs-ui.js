@@ -1,20 +1,12 @@
-/*
- * Local backports:
- *
- * - 4fbbc737c86b500c11bbb471ec1001c50ab8853c
- *   SelectFileWidget: Use i18n string for button label
- *   We totally forgot to use a localisation message we carefully introduced.
- */
-
 /*!
- * OOjs UI v0.13.3
+ * OOjs UI v0.14.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-11-18T01:09:23Z
+ * Date: 2015-11-25T01:06:47Z
  */
 ( function ( OO ) {
 
@@ -14390,10 +14382,6 @@ OO.ui.SelectFileWidget.prototype.updateUI = function () {
 			this.setLabel( this.placeholder );
 		}
 	}
-
-	if ( this.$input ) {
-		this.$input.attr( 'title', this.getLabel() );
-	}
 };
 
 /**
@@ -14414,8 +14402,7 @@ OO.ui.SelectFileWidget.prototype.addInput = function () {
 	this.$input = $( '<input type="file">' );
 	this.$input.on( 'change', this.onFileSelectedHandler );
 	this.$input.attr( {
-		tabindex: -1,
-		title: this.getLabel()
+		tabindex: -1
 	} );
 	if ( this.accept ) {
 		this.$input.attr( 'accept', this.accept.join( ', ' ) );
@@ -16297,6 +16284,47 @@ OO.ui.TextInputWidget.prototype.moveCursorToEnd = function () {
 };
 
 /**
+ * Insert new content into the input.
+ *
+ * @param {string} content Content to be inserted
+ * @chainable
+ */
+OO.ui.TextInputWidget.prototype.insertContent = function ( content ) {
+	var start, end,
+		range = this.getRange(),
+		value = this.getValue();
+
+	start = Math.min( range.from, range.to );
+	end = Math.max( range.from, range.to );
+
+	this.setValue( value.slice( 0, start ) + content + value.slice( end ) );
+	this.selectRange( start + content.length );
+	return this;
+};
+
+/**
+ * Insert new content either side of a selection.
+ *
+ * @param {string} pre Content to be inserted before the selection
+ * @param {string} post Content to be inserted after the selection
+ * @chainable
+ */
+OO.ui.TextInputWidget.prototype.encapsulateContent = function ( pre, post ) {
+	var start, end,
+		range = this.getRange(),
+		offset = pre.length;
+
+	start = Math.min( range.from, range.to );
+	end = Math.max( range.from, range.to );
+
+	this.selectRange( start ).insertContent( pre );
+	this.selectRange( offset + end ).insertContent( post );
+
+	this.selectRange( offset + start, offset + end );
+	return this;
+};
+
+/**
  * Set the validation pattern.
  *
  * The validation pattern is either a regular expression, a function, or the symbolic name of a
@@ -16420,14 +16448,6 @@ OO.ui.TextInputWidget.prototype.setLabelPosition = function ( labelPosition ) {
 	this.updatePosition();
 	return this;
 };
-
-/**
- * Deprecated alias of #setLabelPosition
- *
- * @deprecated Use setLabelPosition instead.
- */
-OO.ui.TextInputWidget.prototype.setPosition =
-	OO.ui.TextInputWidget.prototype.setLabelPosition;
 
 /**
  * Update the position of the inline label.
