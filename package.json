@@ -20,5 +20,10 @@
     "karma-firefox-launcher": "0.1.6",
     "karma-qunit": "0.1.5",
     "qunitjs": "1.18.0"
+  },
+  "dependencies": {
+    "chromedriver": "^2.20.0",
+    "jasmine": "^2.3.2",
+    "selenium-webdriver": "^2.48.2"
   }
 }
