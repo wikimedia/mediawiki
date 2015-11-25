@@ -2382,7 +2382,9 @@ class WikiPage implements Page, IDBAccessObject {
 				$msgtext = '';
 			}
 
-			MessageCache::singleton()->replace( $shortTitle, $msgtext );
+			MessageCache::singleton()->replace( $shortTitle, $msgtext,
+				[ 'created' => $options['created'] ]
+			);
 
 			if ( $wgContLang->hasVariants() ) {
 				$wgContLang->updateConversionTable( $this->mTitle );
@@ -3531,6 +3533,48 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $res !== false ) {
 			foreach ( $res as $row ) {
 				$result[] = Title::makeTitle( NS_CATEGORY, $row->cl_to );
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Returns a list of categories with the specified page_props properties
+	 *
+	 * @param array|string $properties Array of page_props properties, or page_props property
+	 * @since 1.28
+	 * @return array
+	 * - If $properties was an array, array of category DB keys containing this page with
+	 * at least one of these properties, mapped to possessed properties
+	 * - If $properties was a string, array of category DB keys containing this page with
+	 * the given property
+	 */
+	public function getCategoriesWithProperties( $properties ) {
+		$result = [];
+		$id = $this->getId();
+
+		if ( $id == 0 ) {
+			return [];
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( [ 'categorylinks', 'page_props', 'page' ],
+			[ 'cl_to', 'pp_propname' ],
+			[ 'cl_from' => $id, 'pp_page=page_id',
+				'pp_propname' => $properties,
+				'page_namespace' => NS_CATEGORY, 'page_title=cl_to' ],
+			__METHOD__ );
+
+		if ( $res !== false ) {
+			if ( is_array( $properties ) ) {
+				foreach ( $res as $row ) {
+					$result[$row->cl_to][$row->pp_propname] = true;
+				}
+			} else {
+				foreach ( $res as $row ) {
+					$result[] = $row->cl_to;
+				}
 			}
 		}
 

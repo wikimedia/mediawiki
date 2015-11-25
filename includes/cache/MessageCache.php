@@ -524,11 +524,17 @@ class MessageCache {
 	/**
 	 * Updates cache as necessary when message page is changed
 	 *
-	 * @param string|bool $title Name of the page changed (false if deleted)
-	 * @param mixed $text New contents of the page.
+	 * @param string $title Name of the page changed
+	 * @param string|bool $text New contents of the page or false if deleted
+	 * @param array $options An array of boolean options
+	 * Set 'created' => true when the change is due to the message page being created
 	 */
-	public function replace( $title, $text ) {
+	public function replace( $title, $text, array $options = [] ) {
 		global $wgMaxMsgCacheEntrySize, $wgContLang, $wgLanguageCode;
+
+		$options += [
+			'created' => false,
+		];
 
 		if ( $this->mDisable ) {
 			return;
@@ -595,6 +601,29 @@ class MessageCache {
 		$blobStore->updateMessage( $wgContLang->lcfirst( $msg ) );
 
 		Hooks::run( 'MessageCacheReplace', [ $title, $text ] );
+
+		// handle per-category editnotices
+		if ( ( $options['created'] || $text === false ) &&
+			strpos( $title, 'Editnotice-category-' ) === 0
+		) {
+			// per-category editnotices are checked via the 'editnoticecat' page_prop,
+			// set in LinksUpdate if the editnotice message exists
+			// run a RefreshLinksJob on the associated category so that the user
+			// doesn't have to edit it
+			$category = substr( $title, 20 );
+			if ( $category !== '' ) {
+				$categoryTitle = Title::makeTitle( NS_CATEGORY, $category );
+				$jobs = [];
+				if ( $options['created'] ) {
+					// should be done quickly on creation
+					$jobs[] = RefreshLinksJob::newPrioritized( $categoryTitle, [] );
+				} else {
+					// not time-sensitive on deletion
+					$jobs[] = RefreshLinksJob::newDynamic( $categoryTitle, [] );
+				}
+				JobQueueGroup::singleton()->push( $jobs );
+			}
+		}
 	}
 
 	/**

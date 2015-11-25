@@ -4713,9 +4713,11 @@ class Title implements LinkTarget {
 	 *
 	 * @since 1.21
 	 * @param int $oldid Revision ID that's being edited
+	 * @param array $categories An array containing the names of categories
+	 * (without namespace prefix) that are checked for per-category editnotices
 	 * @return array
 	 */
-	public function getEditNotices( $oldid = 0 ) {
+	public function getEditNotices( $oldid = 0, $categories = null ) {
 		$notices = [];
 
 		// Optional notice for the entire namespace
@@ -4772,6 +4774,30 @@ class Title implements LinkTarget {
 							'mw-editnotice',
 							'mw-editnotice-page',
 							Sanitizer::escapeClass( "mw-$editnoticeText" )
+						] ],
+						$html
+					);
+				}
+			}
+		}
+
+		// Optional notices on a per-category basis
+		if ( $categories === null ) {
+			$page = new WikiPage( $this );
+			$categories = $page->getCategoriesWithProperties( 'editnoticecat' );
+		}
+		foreach ( $categories as $cat ) {
+			$editnoticeCategory = 'editnotice-category-' . $cat;
+			$msg = wfMessage( $editnoticeCategory );
+			if ( $msg->exists() ) {
+				$html = $msg->parseAsBlock();
+				if ( trim( $html ) !== '' ) {
+					$notices[$editnoticeCategory] = Html::rawElement(
+						'div',
+						[ 'class' => [
+							'mw-editnotice',
+							'mw-editnotice-category',
+							Sanitizer::escapeClass( "mw-category-$editnoticeCategory" )
 						] ],
 						$html
 					);
