@@ -17,6 +17,7 @@
 
 	// Environment
 	"browser": true,
+	"jasmine": true,
 
 	"globals": {
 		"mediaWiki": true,
