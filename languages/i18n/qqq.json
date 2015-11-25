@@ -2536,6 +2536,7 @@
 	"export-download": "A label of checkbox option in [[Special:Export]]\n\nSee also:\n* {{msg-mw|Exportlistauthors}}",
 	"export-templates": "A label of checkbox option in [[Special:Export]]",
 	"export-pagelinks": "This is an input in [[Special:Export]]",
+	"export-manual": "The label for the textarea input on [[Special:Export]]",
 	"allmessages": "The title of the special page [[Special:AllMessages]].",
 	"allmessagesname": "Used on [[Special:Allmessages]] meaning \"the name of the message\".\n{{Identical|Name}}",
 	"allmessagesdefault": "The header for the lower row of each column in the table of [[Special:AllMessages]].",

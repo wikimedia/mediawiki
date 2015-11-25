@@ -2362,6 +2362,7 @@
 	"export-download": "Save as file",
 	"export-templates": "Include templates",
 	"export-pagelinks": "Include linked pages to a depth of:",
+	"export-manual": "Add pages manually:",
 	"allmessages": "System messages",
 	"allmessagesname": "Name",
 	"allmessagesdefault": "Default message text",
