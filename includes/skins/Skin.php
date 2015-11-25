@@ -480,6 +480,19 @@ abstract class Skin extends ContextSource {
 				$link . $colon . '<ul>' . $t . '</ul>' . '</div>';
 		}
 
+		# Categories to display but that do not categorize (for sandboxes, drafts, etc)
+		if ( isset( $allCats['displayonly'] ) ) {
+			$t = $embed . implode( "{$pop}{$embed}", $allCats['displayonly'] ) . $pop;
+
+			$msg = $this->msg( 'pagecategories-displayonly' )
+				->numParams( count( $allCats['displayonly'] ) )->escaped();
+			$linkPage = wfMessage( 'pagecategorieslink' )->inContentLanguage()->text();
+			$title = Title::newFromText( $linkPage );
+			$link = $title ? Linker::link( $title, $msg ) : $msg;
+			$s .= '<div id="mw-displayonly-catlinks" class="mw-displayonly-catlinks">' .
+				$link . $colon . '<ul>' . $t . '</ul>' . '</div>';
+		}
+
 		# Hidden categories
 		if ( isset( $allCats['hidden'] ) ) {
 			if ( $this->getUser()->getBoolOption( 'showhiddencats' ) ) {
@@ -494,6 +507,24 @@ abstract class Skin extends ContextSource {
 				$this->msg( 'hidden-categories' )->numParams( count( $allCats['hidden'] ) )->escaped() .
 				$colon . '<ul>' . $embed . implode( "{$pop}{$embed}", $allCats['hidden'] ) . $pop . '</ul>' .
 				'</div>';
+		}
+
+		# Hidden categories to display but that do not categorize (for sandboxes, etc)
+		if ( isset( $allCats['hidden-displayonly'] ) ) {
+			if ( $this->getUser()->getBoolOption( 'showhiddencats' ) ) {
+				$class = ' mw-hidden-cats-user-shown';
+			} elseif ( $this->getTitle()->getNamespace() == NS_CATEGORY ) {
+				$class = ' mw-hidden-cats-ns-shown';
+			} else {
+				$class = ' mw-hidden-cats-hidden';
+			}
+			$t = $embed . implode( "{$pop}{$embed}", $allCats['hidden-displayonly'] ) . $pop;
+
+			$s .= '<div id="mw-hidden-displayonly-catlinks" ' .
+				"class=\"mw-hidden-displayonly-catlinks$class\">" .
+				$this->msg( 'hidden-categories-displayonly' )
+					->numParams( count( $allCats['hidden-displayonly'] ) )->escaped() .
+				$colon . '<ul>' . $t . '</ul>' . '</div>';
 		}
 
 		# optional 'dmoz-like' category browser. Will be shown under the list
@@ -554,9 +585,11 @@ abstract class Skin extends ContextSource {
 		// Check what we're showing
 		$allCats = $out->getCategoryLinks();
 		$showHidden = $this->getUser()->getBoolOption( 'showhiddencats' ) ||
-						$this->getTitle()->getNamespace() == NS_CATEGORY;
+			$this->getTitle()->getNamespace() == NS_CATEGORY;
 
-		if ( empty( $allCats['normal'] ) && !( !empty( $allCats['hidden'] ) && $showHidden ) ) {
+		if ( empty( $allCats['normal'] ) && !( !empty( $allCats['hidden'] ) && $showHidden )
+			&& empty( $allCats['displayonly'] )
+			&& !( !empty( $allCats['hidden-displayonly'] ) && $showHidden ) ) {
 			$classes .= ' catlinks-allhidden';
 		}
 

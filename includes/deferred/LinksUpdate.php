@@ -83,6 +83,11 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	private $user;
 
 	/**
+	 * @var WikiPage|null
+	 */
+	private $mArticle = null;
+
+	/**
 	 * Constructor
 	 *
 	 * @param Title $title Title of the page we're updating
@@ -108,9 +113,89 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		$this->mImages = $parserOutput->getImages();
 		$this->mTemplates = $parserOutput->getTemplates();
 		$this->mExternals = $parserOutput->getExternalLinks();
-		$this->mCategories = $parserOutput->getCategories();
 		$this->mProperties = $parserOutput->getProperties();
 		$this->mInterwikis = $parserOutput->getInterwikiLinks();
+
+		$this->mArticle = WikiPage::factory( $title );
+		$categoryPolicy = $parserOutput->getCategoryPolicy();
+		$parsedCategories = $parserOutput->getCategories();
+
+		switch ( $categoryPolicy ) {
+			case CATEGORY_POLICY_STANDARD:
+				$this->mCategories = $parsedCategories;
+				break;
+
+			case CATEGORY_POLICY_DRAFT:
+				$this->mCategories = array();
+
+				# Add categories to a LinkBatch
+				$arr = array( NS_CATEGORY => $parsedCategories );
+				$lb = new LinkBatch;
+				$lb->setArray( $arr );
+
+				# Fetch hidden and exempted categories among those
+				$dbr = wfGetDB( DB_SLAVE );
+				$fields = array( 'page_id', 'page_title' );
+
+				$where = array( $lb->constructSet( 'page', $dbr ) );
+				$where['pp_propname'] = array( 'hiddencat', 'alwayscategorize' );
+				$where[] = 'pp_page = page_id';
+
+				$res = $dbr->select( array( 'page', 'page_props' ),
+					$fields, $where, __METHOD__ );
+
+				foreach ( $res as $row ) {
+					$this->mCategories[$row->page_title] = $parsedCategories[$row->page_title];
+				}
+
+				# Force update of associated tracking category, if enabled
+				$trackingCat = wfMessage( 'onlyhiddencat-category' )
+					->title( $this->mTitle )
+					->inContentLanguage()
+					->text();
+				if ( $trackingCat !== '-' ) {
+					$trackingCat = strtr( $trackingCat, ' ', '_');
+					$this->mCategories[$trackingCat] = $parsedCategories[$trackingCat];
+				}
+				break;
+
+			case CATEGORY_POLICY_SANDBOX:
+				$this->mCategories = array();
+
+				# Add categories to a LinkBatch
+				$arr = array( NS_CATEGORY => $parsedCategories );
+				$lb = new LinkBatch;
+				$lb->setArray( $arr );
+
+				# Fetch exempted categories among those
+				$dbr = wfGetDB( DB_SLAVE );
+				$fields = array( 'page_id', 'page_title' );
+
+				$where = array( $lb->constructSet( 'page', $dbr ) );
+				$where['pp_propname'] = 'alwayscategorize';
+				$where[] = 'pp_page = page_id';
+
+				$res = $dbr->select( array( 'page', 'page_props' ),
+					$fields, $where, __METHOD__ );
+
+				foreach ( $res as $row ) {
+					$this->mCategories[$row->page_title] = $parsedCategories[$row->page_title];
+				}
+
+				# Force update of associated tracking category, if enabled
+				$trackingCat = wfMessage( 'nocategory-category' )
+					->title( $this->mTitle )
+					->inContentLanguage()
+					->text();
+				if ( $trackingCat !== '-' ) {
+					$trackingCat = strtr( $trackingCat, ' ', '_');
+					$this->mCategories[$trackingCat] = $parsedCategories[$trackingCat];
+				}
+				break;
+
+			default:
+				throw new MWException( 'Invalid category policy in LinksUpdate: ' . $categoryPolicy );
+		}
 
 		# Convert the format of the interlanguage links
 		# I didn't want to change it in the ParserOutput, because that array is passed all
@@ -316,8 +401,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 * @param array $deleted Associative array of category name => sort key
 	 */
 	function updateCategoryCounts( $added, $deleted ) {
-		$a = WikiPage::factory( $this->mTitle );
-		$a->updateCategoryCounts(
+		$this->mArticle->updateCategoryCounts(
 			array_keys( $added ), array_keys( $deleted )
 		);
 	}

@@ -1302,9 +1302,10 @@ class OutputPage extends ContextSource {
 	 * Add an array of categories, with names in the keys
 	 *
 	 * @param array $categories Mapping category name => sort key
+	 * @param string $categoryPolicy Category policy to apply
 	 */
-	public function addCategoryLinks( array $categories ) {
-		global $wgContLang;
+	public function addCategoryLinks( array $categories, $categoryPolicy = null ) {
+		global $wgContLang, $wgMandatoryCategoryPolicy;
 
 		if ( !is_array( $categories ) || count( $categories ) == 0 ) {
 			return;
@@ -1318,7 +1319,7 @@ class OutputPage extends ContextSource {
 		# Fetch existence plus the hiddencat property
 		$dbr = wfGetDB( DB_SLAVE );
 		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_len',
-			'page_is_redirect', 'page_latest', 'pp_value' );
+			'page_is_redirect', 'page_latest', 'pp_value', 'pp_propname' );
 
 		if ( $this->getConfig()->get( 'ContentHandlerUseDB' ) ) {
 			$fields[] = 'page_content_model';
@@ -1330,7 +1331,7 @@ class OutputPage extends ContextSource {
 			__METHOD__,
 			array(),
 			array( 'page_props' => array( 'LEFT JOIN', array(
-				'pp_propname' => 'hiddencat',
+				'pp_propname' => array( 'hiddencat', 'alwayscategorize' ),
 				'pp_page = page_id'
 			) ) )
 		);
@@ -1338,14 +1339,100 @@ class OutputPage extends ContextSource {
 		# Add the results to the link cache
 		$lb->addResultToCache( LinkCache::singleton(), $res );
 
-		# Set all the values to 'normal'.
-		$categories = array_fill_keys( array_keys( $categories ), 'normal' );
-
-		# Mark hidden categories
-		foreach ( $res as $row ) {
-			if ( isset( $row->pp_value ) ) {
-				$categories[$row->page_title] = 'hidden';
+		// If no category policy to apply was provided, try to get the
+		// mandatory category policy for this namespace if it exists,
+		// otherwise use default
+		if ( $categoryPolicy === null ) {
+			$key = 'Ns: ' . $this->getTitle()->getNamespace();
+			if ( isset( $wgMandatoryCategoryPolicy[$key] ) ) {
+				$categoryPolicy = $wgMandatoryCategoryPolicy[$key];
+			} else {
+				$categoryPolicy = CATEGORY_POLICY_STANDARD;
 			}
+		}
+
+		switch ( $categoryPolicy ) {
+			case CATEGORY_POLICY_STANDARD:
+				# Set all the values to 'normal'
+				$categories = array_fill_keys( array_keys( $categories ), 'normal' );
+				# Mark hidden categories
+				foreach ( $res as $row ) {
+					if ( isset( $row->pp_value ) && ( $row->pp_propname === 'hiddencat' ) ) {
+						# Set to 'hidden'
+						$categories[$row->page_title] = 'hidden';
+					}
+				}
+				break;
+
+			case CATEGORY_POLICY_DRAFT:
+				# Set all the values to 'displayonly'.
+				$categories = array_fill_keys( array_keys( $categories ), 'displayonly' );
+				# Force associated tracking category to 'normal', if enabled
+				$trackingCat = wfMessage( 'onlyhiddencat-category' )
+					->title( $this->getTitle() )
+					->inContentLanguage()
+					->text();
+				if ( $trackingCat !== '-' ) {
+					$trackingCat = strtr( $trackingCat, ' ', '_');
+					$categories[$trackingCat] = 'normal';
+				}
+				# Override for exempted categories
+				foreach ( $res as $row ) {
+					if ( isset( $row->pp_value ) &&
+						( $row->pp_propname === 'alwayscategorize' ) ) {
+						# Set to 'normal'
+						$categories[$row->page_title] = 'normal';
+					}
+				}
+				# Mark hidden categories
+				foreach ( $res as $row ) {
+					if ( isset( $row->pp_value ) && ( $row->pp_propname === 'hiddencat' ) ) {
+						# Set to 'hidden'
+						$categories[$row->page_title] = 'hidden';
+					}
+				}
+				break;
+
+			case CATEGORY_POLICY_SANDBOX:
+				# Set all the values to 'displayonly'
+				$categories = array_fill_keys( array_keys( $categories ), 'displayonly' );
+				# Force associated tracking category to 'normal', if enabled
+				$trackingCat = wfMessage( 'nocategory-category' )
+					->title( $this->getTitle() )
+					->inContentLanguage()
+					->text();
+				if ( $trackingCat !== '-' ) {
+					$trackingCat = strtr( $trackingCat, ' ', '_');
+					$categories[$trackingCat] = 'normal';
+				}
+				# Override for exempted categories
+				foreach ( $res as $row ) {
+					if ( isset( $row->pp_value ) &&
+						( $row->pp_propname === 'alwayscategorize' ) ) {
+						# Set to 'normal'
+						$categories[$row->page_title] = 'normal';
+					}
+				}
+				# Mark hidden categories
+				foreach ( $res as $row ) {
+					if ( isset( $row->pp_value ) && ( $row->pp_propname === 'hiddencat' ) ) {
+						if ( $categories[$row->page_title] === 'normal' ) {
+							# Set to 'hidden'
+							$categories[$row->page_title] = 'hidden';
+						} else {
+							# Set to 'hidden' and 'displayonly'
+							$categories[$row->page_title] = 'hidden-displayonly';
+						}
+					}
+				}
+				# Change to 'hidden' if tracking category was marked 'hidden-displayonly'
+				if ( $trackingCat !== '-' && $categories[$trackingCat] === 'hidden-displayonly' ) {
+					$categories[$trackingCat] = 'hidden';
+				}
+				break;
+		
+			default:
+				throw new MWException( 'Invalid category policy in OutputPage: ' . $categoryPolicy );
 		}
 
 		# Add the remaining categories to the skin
@@ -1777,7 +1864,10 @@ class OutputPage extends ContextSource {
 	 */
 	public function addParserOutputMetadata( $parserOutput ) {
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
-		$this->addCategoryLinks( $parserOutput->getCategories() );
+		$this->addCategoryLinks(
+			$parserOutput->getCategories(),
+			$parserOutput->getCategoryPolicy()
+		);
 		$this->setIndicators( $parserOutput->getIndicators() );
 		$this->mNewSectionLink = $parserOutput->getNewSection();
 		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();

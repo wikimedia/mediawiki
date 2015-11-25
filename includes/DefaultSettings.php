@@ -6846,10 +6846,23 @@ $wgPagePropLinkInvalidations = array(
 $wgUseCategoryBrowser = false;
 
 /**
- *  On  category pages, show thumbnail gallery for images belonging to that
+ * On  category pages, show thumbnail gallery for images belonging to that
  * category instead of listing them as articles.
  */
 $wgCategoryMagicGallery = true;
+
+/**
+ * Namespaces with a mandatory category policy
+ * By default, it is CATEGORY_POLICY_STANDARD but can be
+ * overriden by magic words
+ * Listing namespaces here sets the category policy for
+ * the namespace and disables these magic words there
+ * Prefix "Ns: " used to force the array keys as strings
+ * @since 1.27
+ */
+$wgMandatoryCategoryPolicy = array(
+	'Ns: '. NS_MAIN => CATEGORY_POLICY_STANDARD,
+);
 
 /**
  * Paging limit for categories

@@ -208,6 +208,11 @@ class ParserOutput extends CacheTime {
 	 */
 	private $mFlags = array();
 
+	/**
+	 * @var string Category policy retrieved by the ParserOutput
+	 */
+	private $mCategoryPolicy = CATEGORY_POLICY_STANDARD;
+
 	const EDITSECTION_REGEX =
 		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
@@ -638,6 +643,24 @@ class ParserOutput extends CacheTime {
 		}
 
 		$this->mJsConfigVars[$keys] = $value;
+	}
+
+	/**
+	 * Allows to set the category policy for this OutputPage
+	 *
+	 * @param string $policy
+	 * @since 1.27
+	 */
+	public function setCategoryPolicy( $policy ) {
+		$this->mCategoryPolicy = (string)$policy;
+	}
+
+	/**
+	 * @return string Category policy
+	 * @since 1.27
+	 */
+	public function getCategoryPolicy() {
+		return $this->mCategoryPolicy;
 	}
 
 	/**
