@@ -1740,6 +1740,7 @@ return array(
 		'position' => 'top',
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.search.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.search.css',
+		'dependencies' => 'mediawiki.widgets.SearchInputWidget',
 		'messages' => array(
 			'powersearch-togglelabel',
 			'powersearch-toggleall',
@@ -2054,6 +2055,25 @@ return array(
 		'dependencies' => array(
 			'oojs-ui',
 		),
+	),
+	'mediawiki.widgets.SearchInputWidget' => array(
+		'scripts' => array(
+			'resources/src/mediawiki.widgets/mw.widgets.SearchInputWidget.js',
+		),
+		'dependencies' => array(
+			'mediawiki.searchSuggest',
+			// FIXME: Needs TitleInputWidget only
+			'mediawiki.widgets',
+		),
+	),
+	'mediawiki.widgets.SearchInputWidget.styles' => array(
+		'skinStyles' => array(
+			'default' => array(
+				'resources/src/mediawiki.widgets/mw.widgets.SearchInputWidget.css',
+			),
+		),
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	/* es5-shim */
