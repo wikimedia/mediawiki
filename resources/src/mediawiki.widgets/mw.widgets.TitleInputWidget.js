@@ -16,6 +16,8 @@
 	 *
 	 * @constructor
 	 * @cfg {boolean} [suggestions=true] Display search suggestions
+	 * @cfg {boolean} [pushPending=true] Visually mark the input field as "pending", while
+	 *  requesting suggestions.
 	 */
 	mw.widgets.TitleInputWidget = function MwWidgetsTitleInputWidget( config ) {
 		config = config || {};
@@ -41,6 +43,9 @@
 		}
 		if ( this.showDescriptions ) {
 			this.lookupMenu.$element.addClass( 'mw-widget-titleWidget-menu-withDescriptions' );
+		}
+		if ( !config.pushPending ) {
+			this.pushPending = false;
 		}
 		this.setLookupsDisabled( !this.suggestions );
 	};

@@ -17,6 +17,7 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 	protected $suggestions = null;
 	protected $highlightFirst = null;
 	protected $validateTitle = null;
+	protected $pushPending = null;
 
 	/**
 	 * @param array $config Configuration options
@@ -28,6 +29,8 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 	 *  the first result (default: true)
 	 * @param bool|null $config['validateTitle'] Whether the input must
 	 *  be a valid title (default: true)
+	 * @param bool|null $config['pushPending'] Whether the input should be visually marked as
+	 *  "pending", while requesting suggestions (default: true)
 	 */
 	public function __construct( array $config = array() ) {
 		// Parent constructor
@@ -50,6 +53,9 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 		}
 		if ( isset( $config['validateTitle'] ) ) {
 			$this->validateTitle = $config['validateTitle'];
+		}
+		if ( isset( $config['pushPending'] ) ) {
+			$this->pushPending = $config['pushPending'];
 		}
 
 		// Initialization
@@ -75,6 +81,9 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 		}
 		if ( $this->validateTitle !== null ) {
 			$config['validateTitle'] = $this->validateTitle;
+		}
+		if ( $this->pushPending !== null ) {
+			$config['pushPending'] = $this->pushPending;
 		}
 		return parent::getConfig( $config );
 	}
