@@ -6,19 +6,23 @@
     "postdoc": "grunt copy:jsduck"
   },
   "devDependencies": {
+    "chromedriver": "^2.20.0",
     "grunt": "0.4.5",
-    "grunt-cli": "0.1.13",
     "grunt-banana-checker": "0.4.0",
+    "grunt-cli": "0.1.13",
     "grunt-contrib-copy": "0.8.1",
     "grunt-contrib-jshint": "0.11.3",
     "grunt-contrib-watch": "0.6.1",
+    "grunt-jasmine-nodejs": "^1.4.3",
     "grunt-jscs": "2.1.0",
     "grunt-jsonlint": "1.0.5",
     "grunt-karma": "0.12.1",
+    "jasmine": "^2.4.0",
     "karma": "0.13.10",
     "karma-chrome-launcher": "0.2.0",
     "karma-firefox-launcher": "0.1.6",
     "karma-qunit": "0.1.5",
-    "qunitjs": "1.18.0"
+    "qunitjs": "1.18.0",
+    "selenium-webdriver": "^2.48.2"
   }
 }
