@@ -38,7 +38,9 @@ use WrappedString\WrappedString;
  *
  * @todo document
  */
-class OutputPage extends ContextSource {
+class OutputPage implements IContextSource {
+	use TContextSource;
+
 	/** @var array Should be private. Used with addMeta() which adds "<meta>" */
 	protected $mMetatags = array();
 
