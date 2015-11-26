@@ -881,7 +881,8 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $row && !is_null( $row->rd_fragment ) && !is_null( $row->rd_interwiki ) ) {
 			$this->mRedirectTarget = Title::makeTitle(
 				$row->rd_namespace, $row->rd_title,
-				$row->rd_fragment, $row->rd_interwiki );
+				$row->rd_fragment, $row->rd_interwiki
+			);
 			return $this->mRedirectTarget;
 		}
 
@@ -891,39 +892,54 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Insert an entry for this page into the redirect table.
+	 * Insert an entry for this page into the redirect table if the content is a redirect
+	 *
+	 * The database update will be deferred via DeferredUpdates
 	 *
 	 * Don't call this function directly unless you know what you're doing.
 	 * @return Title|null Title object or null if not a redirect
 	 */
 	public function insertRedirect() {
-		// recurse through to only get the final target
 		$content = $this->getContent();
 		$retval = $content ? $content->getUltimateRedirectTarget() : null;
 		if ( !$retval ) {
 			return null;
 		}
-		$this->insertRedirectEntry( $retval );
+
+		// Update the DB post-send if the page has not cached since now
+		$that = $this;
+		$latest = $this->getLatest();
+		DeferredUpdates::addCallableUpdate( function() use ( $that, $retval, $latest ) {
+			$that->insertRedirectEntry( $retval, $latest );
+		} );
+
 		return $retval;
 	}
 
 	/**
-	 * Insert or update the redirect table entry for this page to indicate
-	 * it redirects to $rt .
+	 * Insert or update the redirect table entry for this page to indicate it redirects to $rt
 	 * @param Title $rt Redirect target
+	 * @param int|null $oldLatest Prior page_latest for check and set
 	 */
-	public function insertRedirectEntry( $rt ) {
+	public function insertRedirectEntry( Title $rt, $oldLatest = null ) {
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->replace( 'redirect', array( 'rd_from' ),
-			array(
-				'rd_from' => $this->getId(),
-				'rd_namespace' => $rt->getNamespace(),
-				'rd_title' => $rt->getDBkey(),
-				'rd_fragment' => $rt->getFragment(),
-				'rd_interwiki' => $rt->getInterwiki(),
-			),
-			__METHOD__
-		);
+		$dbw->startAtomic( __METHOD__ );
+
+		if ( !$oldLatest || $oldLatest == $this->lockAndGetLatest() ) {
+			$dbw->replace( 'redirect',
+				array( 'rd_from' ),
+				array(
+					'rd_from' => $this->getId(),
+					'rd_namespace' => $rt->getNamespace(),
+					'rd_title' => $rt->getDBkey(),
+					'rd_fragment' => $rt->getFragment(),
+					'rd_interwiki' => $rt->getInterwiki(),
+				),
+				__METHOD__
+			);
+		}
+
+		$dbw->endAtomic( __METHOD__ );
 	}
 
 	/**
