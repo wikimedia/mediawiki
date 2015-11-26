@@ -310,6 +310,7 @@ class ClassCollector {
 		case T_NAMESPACE:
 		case T_CLASS:
 		case T_INTERFACE:
+		case T_TRAIT:
 			$this->startToken = $token;
 		}
 	}
@@ -331,6 +332,7 @@ class ClassCollector {
 
 		case T_CLASS:
 		case T_INTERFACE:
+		case T_TRAIT:
 			$this->tokens[] = $token;
 			if ( is_array( $token ) && $token[0] === T_STRING ) {
 				$this->classes[] = $this->namespace . $this->implodeTokens();
