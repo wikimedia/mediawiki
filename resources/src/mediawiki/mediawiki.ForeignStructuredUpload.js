@@ -140,7 +140,7 @@
 
 		for ( i = 0; i < this.descriptions.length; i++ ) {
 			desc = this.descriptions[ i ];
-			templateCalls.push( '{{' + desc.language + '|' + desc.text + '}}' );
+			templateCalls.push( '{{' + desc.language + '|1=' + desc.text + '}}' );
 		}
 
 		return templateCalls.join( '\n' );
