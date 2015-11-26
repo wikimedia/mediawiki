@@ -143,7 +143,6 @@ $specialPageAliases = array(
 	'Newimages'                 => array( 'НовеДатотеке', 'НовиФајлови', 'НовеСлике' ),
 	'Newpages'                  => array( 'НовеСтране' ),
 	'PermanentLink'             => array( 'Привремена_веза' ),
-
 	'Preferences'               => array( 'Подешавања', 'Поставке' ),
 	'Protectedpages'            => array( 'ЗаштићенеСтранице', 'Заштићене_странице' ),
 	'Protectedtitles'           => array( 'ЗаштићениНаслови', 'Заштићени_наслови' ),

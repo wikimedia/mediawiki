@@ -20,6 +20,7 @@
  * @file
  * @author Aaron Schulz
  */
+use Wikimedia\Assert\Assert;
 
 /**
  * Class for getting statistically unique IDs
@@ -51,7 +52,7 @@ class UIDGenerator {
 		}
 		// Try to get some ID that uniquely identifies this machine (RFC 4122)...
 		if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			if ( wfIsWindows() ) {
 				// http://technet.microsoft.com/en-us/library/bb490913.aspx
 				$csv = trim( wfShellExec( 'getmac /NH /FO CSV' ) );
@@ -65,7 +66,7 @@ class UIDGenerator {
 					wfShellExec( '/sbin/ifconfig -a' ), $m );
 				$nodeId = isset( $m[1] ) ? str_replace( ':', '', $m[1] ) : '';
 			}
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
 				$nodeId = MWCryptRand::generateHex( 12, true );
 				$nodeId[1] = dechex( hexdec( $nodeId[1] ) | 0x1 ); // set multicast bit
@@ -107,9 +108,10 @@ class UIDGenerator {
 	 * @throws MWException
 	 */
 	public static function newTimestampedUID88( $base = 10 ) {
-		if ( !is_integer( $base ) || $base > 36 || $base < 2 ) {
-			throw new MWException( "Base must an integer be between 2 and 36" );
-		}
+		Assert::parameterType( 'integer', $base, '$base' );
+		Assert::parameter( $base <= 36, '$base', 'must be <= 36' );
+		Assert::parameter( $base >= 2, '$base', 'must be >= 2' );
+
 		$gen = self::singleton();
 		$time = $gen->getTimestampAndDelay( 'lockFile88', 1, 1024 );
 
@@ -152,9 +154,10 @@ class UIDGenerator {
 	 * @throws MWException
 	 */
 	public static function newTimestampedUID128( $base = 10 ) {
-		if ( !is_integer( $base ) || $base > 36 || $base < 2 ) {
-			throw new MWException( "Base must be an integer between 2 and 36" );
-		}
+		Assert::parameterType( 'integer', $base, '$base' );
+		Assert::parameter( $base <= 36, '$base', 'must be <= 36' );
+		Assert::parameter( $base >= 2, '$base', 'must be >= 2' );
+
 		$gen = self::singleton();
 		$time = $gen->getTimestampAndDelay( 'lockFile128', 16384, 1048576 );
 
@@ -280,7 +283,7 @@ class UIDGenerator {
 		$cache = null;
 		if ( ( $flags & self::QUICK_VOLATILE ) && PHP_SAPI !== 'cli' ) {
 			try {
-				$cache = ObjectCache::newAccelerator( array() );
+				$cache = ObjectCache::newAccelerator();
 			} catch ( Exception $e ) {
 				// not supported
 			}

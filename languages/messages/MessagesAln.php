@@ -44,7 +44,6 @@ $namespaceGenderAliases = array(
 );
 
 $specialPageAliases = array(
-
 	'Search'                    => array( 'Kërko' ),
 );
 

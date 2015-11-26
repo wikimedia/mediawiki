@@ -1,10 +1,12 @@
 /*!
  * Styling for Special:Version
  */
-.mw-version-ext-name {
+.mw-version-ext-name,
+.mw-version-library-name {
 	font-weight: bold;
 }
 
+.mw-version-ext-license,
 .mw-version-ext-vcs-timestamp {
 	white-space: nowrap;
 }

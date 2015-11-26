@@ -30,7 +30,7 @@ class HashConfigTest extends MediaWikiTestCase {
 	public function testGet() {
 		$conf = new HashConfig( array(
 			'one' => '1',
-		));
+		) );
 		$this->assertEquals( '1', $conf->get( 'one' ) );
 		$this->setExpectedException( 'ConfigException', 'HashConfig::get: undefined option' );
 		$conf->get( 'two' );

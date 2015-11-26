@@ -320,16 +320,16 @@ class IcuCollation extends Collation {
 		// intl extension produces non null-terminated
 		// strings. Appending '' fixes it so that it doesn't generate
 		// a warning on each access in debug php.
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$key = $this->mainCollator->getSortKey( $string ) . '';
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		return $key;
 	}
 
 	function getPrimarySortKey( $string ) {
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$key = $this->primaryCollator->getSortKey( $string ) . '';
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		return $key;
 	}
 

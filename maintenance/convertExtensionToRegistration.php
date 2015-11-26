@@ -6,7 +6,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 
 	protected $custom = array(
 		'MessagesDirs' => 'handleMessagesDirs',
-		'ExtensionMessagesFiles' => 'removeAbsolutePath',
+		'ExtensionMessagesFiles' => 'handleExtensionMessagesFiles',
 		'AutoloadClasses' => 'removeAbsolutePath',
 		'ExtensionCredits' => 'handleCredits',
 		'ResourceModules' => 'handleResourceModules',
@@ -31,7 +31,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 	 * @var array
 	 */
 	protected $noLongerSupportedGlobals = array(
-		'SpecialPageGroups' => 'deprecated',
+		'SpecialPageGroups' => 'deprecated', // Deprecated 1.21, removed in 1.26
 	);
 
 	/**
@@ -56,7 +56,8 @@ class ConvertExtensionToRegistration extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = 'Converts extension entry points to the new JSON registration format';
-		$this->addArg( 'path', 'Location to the PHP entry point you wish to convert', /* $required = */ true );
+		$this->addArg( 'path', 'Location to the PHP entry point you wish to convert',
+			/* $required = */ true );
 		$this->addOption( 'skin', 'Whether to write to skin.json', false, false );
 	}
 
@@ -95,7 +96,8 @@ class ConvertExtensionToRegistration extends Maintenance {
 			}
 
 			if ( isset( $this->custom[$realName] ) ) {
-				call_user_func_array( array( $this, $this->custom[$realName] ), array( $realName, $value ) );
+				call_user_func_array( array( $this, $this->custom[$realName] ),
+					array( $realName, $value, $vars ) );
 			} elseif ( in_array( $realName, $globalSettings ) ) {
 				$this->json[$realName] = $value;
 			} elseif ( array_key_exists( $realName, $this->noLongerSupportedGlobals ) ) {
@@ -118,7 +120,8 @@ class ConvertExtensionToRegistration extends Maintenance {
 			}
 		}
 		$out += $this->json;
-
+		// Put this at the bottom
+		$out['manifest_version'] = ExtensionRegistry::MANIFEST_VERSION;
 		$type = $this->hasOption( 'skin' ) ? 'skin' : 'extension';
 		$fname = "{$this->dir}/$type.json";
 		$prettyJSON = FormatJson::encode( $out, "\t", FormatJson::ALL_OK );
@@ -132,7 +135,9 @@ class ConvertExtensionToRegistration extends Maintenance {
 	protected function handleExtensionFunctions( $realName, $value ) {
 		foreach ( $value as $func ) {
 			if ( $func instanceof Closure ) {
-				$this->error( "Error: Closures cannot be converted to JSON. Please move your extension function somewhere else.", 1 );
+				$this->error( "Error: Closures cannot be converted to JSON. " .
+					"Please move your extension function somewhere else.", 1
+				);
 			}
 		}
 
@@ -143,6 +148,21 @@ class ConvertExtensionToRegistration extends Maintenance {
 		foreach ( $value as $key => $dirs ) {
 			foreach ( (array)$dirs as $dir ) {
 				$this->json[$realName][$key][] = $this->stripPath( $dir, $this->dir );
+			}
+		}
+	}
+
+	protected function handleExtensionMessagesFiles( $realName, $value, $vars ) {
+		foreach ( $value as $key => $file ) {
+			$strippedFile = $this->stripPath( $file, $this->dir );
+			if ( isset( $vars['wgMessagesDirs'][$key] ) ) {
+				$this->output(
+					"Note: Ignoring PHP shim $strippedFile. " .
+					"If your extension no longer supports versions of MediaWiki " .
+					"older than 1.23.0, you can safely delete it.\n"
+				);
+			} else {
+				$this->json[$realName][$key] = $strippedFile;
 			}
 		}
 	}
@@ -166,7 +186,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		$this->json[$realName] = $out;
 	}
 
-	protected function handleCredits( $realName, $value) {
+	protected function handleCredits( $realName, $value ) {
 		$keys = array_keys( $value );
 		$this->json['type'] = $keys[0];
 		$values = array_values( $value );
@@ -181,7 +201,9 @@ class ConvertExtensionToRegistration extends Maintenance {
 		foreach ( $value as $hookName => $handlers ) {
 			foreach ( $handlers as $func ) {
 				if ( $func instanceof Closure ) {
-					$this->error( "Error: Closures cannot be converted to JSON. Please move the handler for $hookName somewhere else.", 1 );
+					$this->error( "Error: Closures cannot be converted to JSON. " .
+						"Please move the handler for $hookName somewhere else.", 1
+					);
 				}
 			}
 		}
@@ -212,7 +234,6 @@ class ConvertExtensionToRegistration extends Maintenance {
 					}
 				}
 			}
-
 
 			$this->json[$realName][$name] = $data;
 		}

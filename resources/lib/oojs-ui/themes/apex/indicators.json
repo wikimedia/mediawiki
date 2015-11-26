@@ -1,0 +1,23 @@
+{
+	"prefix": "oo-ui-indicator",
+	"intro": "@import '../../../../src/styles/common';",
+	"images": {
+		"alert": { "file": "images/indicators/alert.svg" },
+		"clear": { "file": "images/indicators/clear.svg" },
+		"up": { "file": "images/indicators/arrow-up.svg" },
+		"down": { "file": "images/indicators/arrow-down.svg" },
+		"next": { "file": {
+			"ltr": "images/indicators/arrow-ltr.svg",
+			"rtl": "images/indicators/arrow-rtl.svg"
+		} },
+		"previous": { "file": {
+			"ltr": "images/indicators/arrow-rtl.svg",
+			"rtl": "images/indicators/arrow-ltr.svg"
+		} },
+		"required": { "file": "images/indicators/required.svg" },
+		"search": { "file": {
+			"ltr": "images/indicators/search-ltr.svg",
+			"rtl": "images/indicators/search-rtl.svg"
+		} }
+	}
+}

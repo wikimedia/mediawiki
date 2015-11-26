@@ -21,6 +21,8 @@
  * @author Antoine Musso "<hashar at free dot fr>", Aaron Schulz
  */
 
+use IPSet\IPSet;
+
 // Some regex definition to "play" with IP address and IP address blocks
 
 // An IPv4 address is made of 4 bytes from x00 to xFF which is d0 to d255
@@ -240,7 +242,7 @@ class IP {
 	 * A bare IPv6 address is accepted despite the lack of square brackets.
 	 *
 	 * @param string $both The string with the host and port
-	 * @return array
+	 * @return array|false Array normally, false on certain failures
 	 */
 	public static function splitHostAndPort( $both ) {
 		if ( substr( $both, 0, 1 ) === '[' ) {
@@ -375,6 +377,8 @@ class IP {
 				'127.0.0.0/8', # loopback
 				'fc00::/7', # RFC 4193 (local)
 				'0:0:0:0:0:0:0:1', # loopback
+				'169.254.0.0/16', # link-local
+				'fe80::/10', # link-local
 			) );
 		}
 		return !$privateSet->match( $ip );

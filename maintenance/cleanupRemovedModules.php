@@ -36,13 +36,6 @@ class CleanupRemovedModules extends Maintenance {
 		parent::__construct();
 		$this->mDescription = 'Remove cache entries for removed ResourceLoader modules from the database';
 		$this->addOption( 'batchsize', 'Delete rows in batches of this size. Default: 500', false, true );
-		$this->addOption(
-			'max-slave-lag',
-			'If the slave lag exceeds this many seconds, wait until it drops below this value. '
-				. 'Default: 5',
-			false,
-			true
-		);
 	}
 
 	public function execute() {
@@ -51,7 +44,6 @@ class CleanupRemovedModules extends Maintenance {
 		$moduleNames = $rl->getModuleNames();
 		$moduleList = implode( ', ', array_map( array( $dbw, 'addQuotes' ), $moduleNames ) );
 		$limit = max( 1, intval( $this->getOption( 'batchsize', 500 ) ) );
-		$maxlag = intval( $this->getOption( 'max-slave-lag', 5 ) );
 
 		$this->output( "Cleaning up module_deps table...\n" );
 		$i = 1;
@@ -63,7 +55,7 @@ class CleanupRemovedModules extends Maintenance {
 			$numRows = $dbw->affectedRows();
 			$this->output( "Batch $i: $numRows rows\n" );
 			$i++;
-			wfWaitForSlaves( $maxlag );
+			wfWaitForSlaves();
 		} while ( $numRows > 0 );
 		$this->output( "done\n" );
 
@@ -77,7 +69,7 @@ class CleanupRemovedModules extends Maintenance {
 			$numRows = $dbw->affectedRows();
 			$this->output( "Batch $i: $numRows rows\n" );
 			$i++;
-			wfWaitForSlaves( $maxlag );
+			wfWaitForSlaves();
 		} while ( $numRows > 0 );
 		$this->output( "done\n" );
 
@@ -90,7 +82,7 @@ class CleanupRemovedModules extends Maintenance {
 			$numRows = $dbw->affectedRows();
 			$this->output( "Batch $i: $numRows rows\n" );
 			$i++;
-			wfWaitForSlaves( $maxlag );
+			wfWaitForSlaves();
 		} while ( $numRows > 0 );
 		$this->output( "done\n" );
 	}

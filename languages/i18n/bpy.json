@@ -1188,5 +1188,21 @@
 	"rightsnone": "(নেই)",
 	"revdelete-summary": "সারাংশ পতানি",
 	"searchsuggest-search": "বিসারা",
-	"searchsuggest-containing": "আসেতা..."
+	"searchsuggest-containing": "আসেতা...",
+	"special-characters-group-latin": "লাতিন",
+	"special-characters-group-latinextended": "সালকরিসি লাতিন",
+	"special-characters-group-ipa": "আইপিএ (IPA)",
+	"special-characters-group-symbols": "চিন্নতহানি",
+	"special-characters-group-greek": "গ্রিক",
+	"special-characters-group-cyrillic": "সিরিলিক",
+	"special-characters-group-arabic": "আরবীয়",
+	"special-characters-group-persian": "ফারসি",
+	"special-characters-group-hebrew": "হিব্রু",
+	"special-characters-group-bangla": "বাংলা",
+	"special-characters-group-telugu": "তেলেগু",
+	"special-characters-group-sinhala": "শিংহলী",
+	"special-characters-group-gujarati": "গুজরাতি",
+	"special-characters-group-thai": "থাই",
+	"special-characters-group-lao": "লাও",
+	"special-characters-group-khmer": "খেমার"
 }

@@ -55,8 +55,8 @@
 		getData: function ( langCode, dataKey ) {
 			var langData = mw.language.data;
 			langCode = langCode.toLowerCase();
-			if ( langData && langData[langCode] instanceof mw.Map ) {
-				return langData[langCode].get( dataKey );
+			if ( langData && langData[ langCode ] instanceof mw.Map ) {
+				return langData[ langCode ].get( dataKey );
 			}
 			return undefined;
 		},
@@ -73,10 +73,10 @@
 		setData: function ( langCode, dataKey, value ) {
 			var langData = mw.language.data;
 			langCode = langCode.toLowerCase();
-			if ( !( langData[langCode] instanceof mw.Map ) ) {
-				langData[langCode] = new mw.Map();
+			if ( !( langData[ langCode ] instanceof mw.Map ) ) {
+				langData[ langCode ] = new mw.Map();
 			}
-			langData[langCode].set( dataKey, value );
+			langData[ langCode ].set( dataKey, value );
 		}
 	};
 

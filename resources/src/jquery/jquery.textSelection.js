@@ -138,7 +138,7 @@
 							insertText = '',
 							selTextArr = selText.split( '\n' );
 						for ( i = 0; i < selTextArr.length; i++ ) {
-							insertText += pre + selTextArr[i] + post;
+							insertText += pre + selTextArr[ i ] + post;
 							if ( i !== selTextArr.length - 1 ) {
 								insertText += '\n';
 							}
@@ -160,7 +160,7 @@
 								context.fn.restoreCursorAndScrollTop();
 							}
 							if ( options.selectionStart !== undefined ) {
-								$( this ).textSelection( 'setSelection', { 'start': options.selectionStart, 'end': options.selectionEnd } );
+								$( this ).textSelection( 'setSelection', { start: options.selectionStart, end: options.selectionEnd } );
 							}
 
 							selText = $( this ).textSelection( 'getSelection' );
@@ -203,7 +203,7 @@
 
 							$( this ).focus();
 							if ( options.selectionStart !== undefined ) {
-								$( this ).textSelection( 'setSelection', { 'start': options.selectionStart, 'end': options.selectionEnd } );
+								$( this ).textSelection( 'setSelection', { start: options.selectionStart, end: options.selectionEnd } );
 							}
 
 							selText = $( this ).textSelection( 'getSelection' );
@@ -411,7 +411,8 @@
 			 *
 			 * Scroll a textarea to the current cursor position. You can set the cursor
 			 * position with setSelection()
-			 * @param options boolean Whether to force a scroll even if the caret position
+			 *
+			 * @param {boolean} options Whether to force a scroll even if the caret position
 			 *  is already visible. Defaults to false
 			 *
 			 * @fixme document the options parameters (function body suggests options.force is a boolean, not options itself)
@@ -576,7 +577,7 @@
 			context.fn.restoreSelection();
 			needSave = true;
 		}
-		retval = ( alternateFn && alternateFn[command] || fn[command] ).call( this, options );
+		retval = ( alternateFn && alternateFn[ command ] || fn[ command ] ).call( this, options );
 		if ( hasWikiEditor && needSave ) {
 			context.fn.saveSelection();
 		}

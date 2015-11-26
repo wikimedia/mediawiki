@@ -204,6 +204,9 @@ class LocalisationCache {
 				case 'db':
 					$storeClass = 'LCStoreDB';
 					break;
+				case 'array':
+					$storeClass = 'LCStoreStaticArray';
+					break;
 				case 'detect':
 					$storeClass = $wgCacheDirectory ? 'LCStoreCDB' : 'LCStoreDB';
 					break;
@@ -506,15 +509,15 @@ class LocalisationCache {
 	 */
 	protected function readPHPFile( $_fileName, $_fileType ) {
 		// Disable APC caching
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$_apcEnabled = ini_set( 'apc.cache_by_default', '0' );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		include $_fileName;
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		ini_set( 'apc.cache_by_default', $_apcEnabled );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( $_fileType == 'core' || $_fileType == 'extension' ) {
 			$data = compact( self::$allKeys );
@@ -536,13 +539,11 @@ class LocalisationCache {
 	public function readJSONFile( $fileName ) {
 
 		if ( !is_readable( $fileName ) ) {
-
 			return array();
 		}
 
 		$json = file_get_contents( $fileName );
 		if ( $json === false ) {
-
 			return array();
 		}
 

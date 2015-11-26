@@ -43,7 +43,7 @@ class UserMailer {
 	protected static function sendWithPear( $mailer, $dest, $headers, $body ) {
 		$mailResult = $mailer->send( $dest, $headers, $body );
 
-		# Based on the result return an error string,
+		// Based on the result return an error string,
 		if ( PEAR::isError( $mailResult ) ) {
 			wfDebug( "PEAR::Mail failed: " . $mailResult->getMessage() . "\n" );
 			return Status::newFatal( 'pear-mail-error', $mailResult->getMessage() );
@@ -102,16 +102,35 @@ class UserMailer {
 	 * @param MailAddress $from Sender's email
 	 * @param string $subject Email's subject.
 	 * @param string $body Email's text or Array of two strings to be the text and html bodies
-	 * @param MailAddress $replyto Optional reply-to email (default: null).
-	 * @param string $contentType Optional custom Content-Type (default: text/plain; charset=UTF-8)
+	 * @param array $options:
+	 * 		'replyTo' MailAddress
+	 * 		'contentType' string default 'text/plain; charset=UTF-8'
+	 * 		'headers' array Extra headers to set
+	 *
+	 * Previous versions of this function had $replyto as the 5th argument and $contentType
+	 * as the 6th. These are still supported for backwards compatability, but deprecated.
+	 *
 	 * @throws MWException
 	 * @throws Exception
 	 * @return Status
 	 */
-	public static function send( $to, $from, $subject, $body, $replyto = null,
-		$contentType = 'text/plain; charset=UTF-8'
-	) {
+	public static function send( $to, $from, $subject, $body, $options = array() ) {
 		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams, $wgAllowHTMLEmail;
+		$contentType = 'text/plain; charset=UTF-8';
+		$headers = array();
+		if ( is_array( $options ) ) {
+			$replyto = isset( $options['replyTo'] ) ? $options['replyTo'] : null;
+			$contentType = isset( $options['contentType'] ) ? $options['contentType'] : $contentType;
+			$headers = isset( $options['headers'] ) ? $options['headers'] : $headers;
+		} else {
+			// Old calling style
+			wfDeprecated( __METHOD__ . ' with $replyto as 5th parameter', '1.26' );
+			$replyto = $options;
+			if ( func_num_args() === 6 ) {
+				$contentType = func_get_arg( 5 );
+			}
+		}
+
 		$mime = null;
 		if ( !is_array( $to ) ) {
 			$to = array( $to );
@@ -147,7 +166,7 @@ class UserMailer {
 
 		wfDebug( __METHOD__ . ': sending mail to ' . implode( ', ', $to ) . "\n" );
 
-		# Make sure we have at least one address
+		// Make sure we have at least one address
 		$has_address = false;
 		foreach ( $to as $u ) {
 			if ( $u->address ) {
@@ -159,32 +178,32 @@ class UserMailer {
 			return Status::newFatal( 'user-mail-no-addy' );
 		}
 
-		# Forge email headers
-		# -------------------
-		#
-		# WARNING
-		#
-		# DO NOT add To: or Subject: headers at this step. They need to be
-		# handled differently depending upon the mailer we are going to use.
-		#
-		# To:
-		#  PHP mail() first argument is the mail receiver. The argument is
-		#  used as a recipient destination and as a To header.
-		#
-		#  PEAR mailer has a recipient argument which is only used to
-		#  send the mail. If no To header is given, PEAR will set it to
-		#  to 'undisclosed-recipients:'.
-		#
-		#  NOTE: To: is for presentation, the actual recipient is specified
-		#  by the mailer using the Rcpt-To: header.
-		#
-		# Subject:
-		#  PHP mail() second argument to pass the subject, passing a Subject
-		#  as an additional header will result in a duplicate header.
-		#
-		#  PEAR mailer should be passed a Subject header.
-		#
-		# -- hashar 20120218
+		// Forge email headers
+		// -------------------
+		//
+		// WARNING
+		//
+		// DO NOT add To: or Subject: headers at this step. They need to be
+		// handled differently depending upon the mailer we are going to use.
+		//
+		// To:
+		//  PHP mail() first argument is the mail receiver. The argument is
+		//  used as a recipient destination and as a To header.
+		//
+		//  PEAR mailer has a recipient argument which is only used to
+		//  send the mail. If no To header is given, PEAR will set it to
+		//  to 'undisclosed-recipients:'.
+		//
+		//  NOTE: To: is for presentation, the actual recipient is specified
+		//  by the mailer using the Rcpt-To: header.
+		//
+		// Subject:
+		//  PHP mail() second argument to pass the subject, passing a Subject
+		//  as an additional header will result in a duplicate header.
+		//
+		//  PEAR mailer should be passed a Subject header.
+		//
+		// -- hashar 20120218
 
 		$headers['From'] = $from->toString();
 		$returnPath = $from->address;
@@ -192,9 +211,9 @@ class UserMailer {
 
 		// Hook to generate custom VERP address for 'Return-Path'
 		Hooks::run( 'UserMailerChangeReturnPath', array( $to, &$returnPath ) );
-		# Add the envelope sender address using the -f command line option when PHP mail() is used.
-		# Will default to the $from->address when the UserMailerChangeReturnPath hook fails and the
-		# generated VERP address when the hook runs effectively.
+		// Add the envelope sender address using the -f command line option when PHP mail() is used.
+		// Will default to the $from->address when the UserMailerChangeReturnPath hook fails and the
+		// generated VERP address when the hook runs effectively.
 		$extraParams .= ' -f ' . $returnPath;
 
 		$headers['Return-Path'] = $returnPath;
@@ -206,9 +225,11 @@ class UserMailer {
 		$headers['Date'] = MWTimestamp::getLocalInstance()->format( 'r' );
 		$headers['Message-ID'] = self::makeMsgId();
 		$headers['X-Mailer'] = 'MediaWiki mailer';
+		$headers['List-Unsubscribe'] = '<' . SpecialPage::getTitleFor( 'Preferences' )
+			->getFullURL( '', false, PROTO_CANONICAL ) . '>';
 
-		# Line endings need to be different on Unix and Windows due to
-		# the bug described at http://trac.wordpress.org/ticket/2603
+		// Line endings need to be different on Unix and Windows due to
+		// the bug described at http://trac.wordpress.org/ticket/2603
 		if ( wfIsWindows() ) {
 			$endl = "\r\n";
 		} else {
@@ -223,7 +244,10 @@ class UserMailer {
 				// remove the html body for text email fall back
 				$body = $body['text'];
 			} else {
-				require_once 'Mail/mime.php';
+				// Check if pear/mail_mime is already loaded (via composer)
+				if ( !class_exists( 'Mail_mime' ) ) {
+					require_once 'Mail/mime.php';
+				}
 				if ( wfIsWindows() ) {
 					$body['text'] = str_replace( "\n", "\r\n", $body['text'] );
 					$body['html'] = str_replace( "\n", "\r\n", $body['html'] );
@@ -260,22 +284,22 @@ class UserMailer {
 		}
 
 		if ( is_array( $wgSMTP ) ) {
-			#
-			# PEAR MAILER
-			#
-
-			if ( !stream_resolve_include_path( 'Mail.php' ) ) {
-				throw new MWException( 'PEAR mail package is not installed' );
+			// Check if pear/mail is already loaded (via composer)
+			if ( !class_exists( 'Mail' ) ) {
+				// PEAR MAILER
+				if ( !stream_resolve_include_path( 'Mail.php' ) ) {
+					throw new MWException( 'PEAR mail package is not installed' );
+				}
+				require_once 'Mail.php';
 			}
-			require_once 'Mail.php';
 
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 
 			// Create the mail object using the Mail::factory method
 			$mail_object =& Mail::factory( 'smtp', $wgSMTP );
 			if ( PEAR::isError( $mail_object ) ) {
 				wfDebug( "PEAR::Mail factory failed: " . $mail_object->getMessage() . "\n" );
-				wfRestoreWarnings();
+				MediaWiki\restoreWarnings();
 				return Status::newFatal( 'pear-mail-error', $mail_object->getMessage() );
 			}
 
@@ -283,28 +307,28 @@ class UserMailer {
 
 			$headers['Subject'] = self::quotedPrintable( $subject );
 
-			# When sending only to one recipient, shows it its email using To:
+			// When sending only to one recipient, shows it its email using To:
 			if ( count( $to ) == 1 ) {
 				$headers['To'] = $to[0]->toString();
 			}
 
-			# Split jobs since SMTP servers tends to limit the maximum
-			# number of possible recipients.
+			// Split jobs since SMTP servers tends to limit the maximum
+			// number of possible recipients.
 			$chunks = array_chunk( $to, $wgEnotifMaxRecips );
 			foreach ( $chunks as $chunk ) {
 				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
-				# FIXME : some chunks might be sent while others are not!
+				// FIXME : some chunks might be sent while others are not!
 				if ( !$status->isOK() ) {
-					wfRestoreWarnings();
+					MediaWiki\restoreWarnings();
 					return $status;
 				}
 			}
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			return Status::newGood();
 		} else {
-			#
-			# PHP mail()
-			#
+			//
+			// PHP mail()
+			//
 			if ( count( $to ) > 1 ) {
 				$headers['To'] = 'undisclosed-recipients:;';
 			}
@@ -400,7 +424,7 @@ class UserMailer {
 	 * @return string
 	 */
 	public static function quotedPrintable( $string, $charset = '' ) {
-		# Probably incomplete; see RFC 2045
+		// Probably incomplete; see RFC 2045
 		if ( empty( $charset ) ) {
 			$charset = 'UTF-8';
 		}

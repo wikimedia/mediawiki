@@ -20,7 +20,7 @@
  */
 
 /**
- * Prepare and edit in shared cache so that it can be reused on edit
+ * Prepare an edit in shared cache so that it can be reused on edit
  *
  * This endpoint can be called via AJAX as the user focuses on the edit
  * summary box. By the time of submission, the parse may have already
@@ -112,6 +112,7 @@ class ApiStashEdit extends ApiBase {
 		if ( $user->pingLimiter( 'stashedit' ) ) {
 			$status = 'ratelimited';
 		} elseif ( $wgMemc->lock( $key, 0, 30 ) ) {
+			/** @noinspection PhpUnusedLocalVariableInspection */
 			$unlocker = new ScopedCallback( function() use ( $key ) {
 				global $wgMemc;
 				$wgMemc->unlock( $key );
@@ -350,7 +351,7 @@ class ApiStashEdit extends ApiBase {
 			$content->getDefaultFormat(),
 			sha1( $content->serialize( $content->getDefaultFormat() ) ),
 			$user->getId() ?: md5( $user->getName() ), // account for user parser options
-			$user->getId() ? $user->getTouched() : '-' // handle preference change races
+			$user->getId() ? $user->getDBTouched() : '-' // handle preference change races
 		) ) );
 
 		return wfMemcKey( 'prepared-edit', md5( $title->getPrefixedDBkey() ), $hash );
@@ -399,7 +400,7 @@ class ApiStashEdit extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string'
 			),
 			'text' => array(
-				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_TYPE => 'text',
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'contentmodel' => array(

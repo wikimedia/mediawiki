@@ -123,9 +123,9 @@ class DjVuImage {
 	}
 
 	function getInfo() {
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$file = fopen( $this->mFilename, 'rb' );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( $file === false ) {
 			wfDebug( __METHOD__ . ": missing or failed file read\n" );
 
@@ -150,7 +150,7 @@ class DjVuImage {
 				wfDebug( __METHOD__ . ": not a DjVu file\n" );
 			} elseif ( $subtype == 'DJVU' ) {
 				// Single-page document
-				$info = $this->getPageInfo( $file, $formLength );
+				$info = $this->getPageInfo( $file );
 			} elseif ( $subtype == 'DJVM' ) {
 				// Multi-page document
 				$info = $this->getMultiPageInfo( $file, $formLength );
@@ -202,7 +202,7 @@ class DjVuImage {
 				if ( $subtype == 'DJVU' ) {
 					wfDebug( __METHOD__ . ": found first subpage\n" );
 
-					return $this->getPageInfo( $file, $length );
+					return $this->getPageInfo( $file );
 				}
 				$this->skipChunk( $file, $length - 4 );
 			} else {
@@ -216,7 +216,7 @@ class DjVuImage {
 		return false;
 	}
 
-	private function getPageInfo( $file, $formLength ) {
+	private function getPageInfo( $file ) {
 		list( $chunk, $length ) = $this->readChunk( $file );
 		if ( $chunk != 'INFO' ) {
 			wfDebug( __METHOD__ . ": expected INFO chunk, got '$chunk'\n" );

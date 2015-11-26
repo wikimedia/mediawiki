@@ -35,7 +35,7 @@ class HttpError extends MWException {
 	 *
 	 * @param int $httpCode HTTP status code to send to the client
 	 * @param string|Message $content Content of the message
-	 * @param string|Message $header Content of the header (\<title\> and \<h1\>)
+	 * @param string|Message|null $header Content of the header (\<title\> and \<h1\>)
 	 */
 	public function __construct( $httpCode, $content, $header = null ) {
 		parent::__construct( $content );
@@ -74,9 +74,7 @@ class HttpError extends MWException {
 	public function report() {
 		$this->doLog();
 
-		$httpMessage = HttpStatus::getMessage( $this->httpCode );
-
-		header( "Status: {$this->httpCode} {$httpMessage}", true, $this->httpCode );
+		HttpStatus::header( $this->httpCode );
 		header( 'Content-type: text/html; charset=utf-8' );
 
 		print $this->getHTML();
@@ -113,21 +111,21 @@ class HttpError extends MWException {
 	 */
 	public function getHTML() {
 		if ( $this->header === null ) {
-			$header = HttpStatus::getMessage( $this->httpCode );
+			$titleHtml = htmlspecialchars( HttpStatus::getMessage( $this->httpCode ) );
 		} elseif ( $this->header instanceof Message ) {
-			$header = $this->header->escaped();
+			$titleHtml = $this->header->escaped();
 		} else {
-			$header = htmlspecialchars( $this->header );
+			$titleHtml = htmlspecialchars( $this->header );
 		}
 
 		if ( $this->content instanceof Message ) {
-			$content = $this->content->escaped();
+			$contentHtml = $this->content->escaped();
 		} else {
-			$content = htmlspecialchars( $this->content );
+			$contentHtml = nl2br( htmlspecialchars( $this->content ) );
 		}
 
 		return "<!DOCTYPE html>\n" .
-		"<html><head><title>$header</title></head>\n" .
-		"<body><h1>$header</h1><p>$content</p></body></html>\n";
+		"<html><head><title>$titleHtml</title></head>\n" .
+		"<body><h1>$titleHtml</h1><p>$contentHtml</p></body></html>\n";
 	}
 }

@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Рустам Нурыев"
+		]
+	},
+	"apihelp-feedcontributions-param-toponly": "Һуңғы өлгө булған төҙәтеүҙәрҙе генә күрһәтергә",
+	"apihelp-feedcontributions-param-showsizediff": "Өлгәоәр араһыдағы күләм айырмаһын күрһәтергә",
+	"apihelp-feedrecentchanges-param-from": "Теге ваҡыттын булған үҙгәрештәрҙе күрһәтергә",
+	"apihelp-feedrecentchanges-param-target": "Был биттән һылтанған биттәрҙә һуңғы үҙгәртеүҙәрҙе күрһәтергә",
+	"apihelp-feedrecentchanges-example-simple": "Һуңғы үҙгәртеүҙәрҙе күрһәтергә.",
+	"apihelp-feedwatchlist-example-default": "Күҙәтеү каналын күрһәтергә"
+}

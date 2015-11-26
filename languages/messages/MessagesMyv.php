@@ -22,21 +22,21 @@ $fallback = 'ru';
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Медия',
-	NS_SPECIAL          => 'Башка тевень',
+	NS_SPECIAL          => 'Башка_тевень',
 	NS_TALK             => 'Кортамо',
 	NS_USER             => 'Теиця',
-	NS_USER_TALK        => 'Теицянь кортамось',
-	NS_PROJECT_TALK     => '$1 кортамось',
+	NS_USER_TALK        => 'Теицянь_кортамось',
+	NS_PROJECT_TALK     => '$1_кортамось',
 	NS_FILE             => 'Артовкс',
-	NS_FILE_TALK        => 'Артовксто кортамось',
+	NS_FILE_TALK        => 'Артовксто_кортамось',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki-нь кортамось',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki-нь_кортамось',
 	NS_TEMPLATE         => 'ЛопаПарцун',
-	NS_TEMPLATE_TALK    => 'ЛопаПарцундо кортамось',
+	NS_TEMPLATE_TALK    => 'ЛопаПарцундо_кортамось',
 	NS_HELP             => 'Лезкс',
-	NS_HELP_TALK        => 'Лезкстэ кортамось',
+	NS_HELP_TALK        => 'Лезкстэ_кортамось',
 	NS_CATEGORY         => 'Категория',
-	NS_CATEGORY_TALK    => 'Категориядо кортамось',
+	NS_CATEGORY_TALK    => 'Категориядо_кортамось',
 );
 
 // Remove Russian aliases
@@ -79,7 +79,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'МоньКортамом' ),
 	'Newimages'                 => array( 'ОдАртовкст' ),
 	'Newpages'                  => array( 'ОдЛопат' ),
-
 	'Protectedpages'            => array( 'ВанстоньЛопат' ),
 	'Protectedtitles'           => array( 'ВанстоньКонякст' ),
 	'Randompage'                => array( 'КодамоПонгсьЛопа' ),

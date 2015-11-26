@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"VASANTH S.N."
+			"VASANTH S.N.",
+			"Pavanaja"
 		]
 	},
+	"config-title": "ಮೀಡಿಯಾವಿಕಿ ಆವೃತ್ತಿ $1 ರ ಅನುಸ್ಥಾಪನೆ",
 	"config-information": "ಮಾಹಿತಿ",
 	"config-localsettings-key": "ಉನ್ನತೀಕರಣ ಕೀಲಿ",
 	"config-localsettings-badkey": "ನೀವು ನೀಡಿದ ಕೀಲಿ ಸರಿಯಾಗಿಲ್ಲ",

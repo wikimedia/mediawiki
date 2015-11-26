@@ -14,7 +14,7 @@
 		 */
 		saveOption: function ( name, value ) {
 			var param = {};
-			param[name] = value;
+			param[ name ] = value;
 			return this.saveOptions( param );
 		},
 
@@ -38,7 +38,7 @@
 				deferreds = [];
 
 			for ( name in options ) {
-				value = options[name] === null ? null : String( options[name] );
+				value = options[ name ] === null ? null : String( options[ name ] );
 
 				// Can we bundle this option, or does it need a separate request?
 				bundleable =

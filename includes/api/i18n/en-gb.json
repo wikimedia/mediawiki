@@ -6,7 +6,7 @@
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API Announcements]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & requests]\n</div>\n<strong>Status:</strong> All features shown on this page should be working, but the API is still in active development, and may change at any time. Subscribe to [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] for notice of updates.\n\n<strong>Erroneous requests:</strong> When erroneous requests are sent to the API, an HTTP header will be sent with the key \"MediaWiki-API-Error\" and then both the value of the header and the error code sent back will be set to the same value. For more information see [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
-	"apihelp-main-param-maxage": "Set the <code>max-age</code> header to this many seconds. Errors are never cached.",
+	"apihelp-main-param-maxage": "Set the <code>max-age</code> HTTP cache control header to this many seconds. Errors are never cached.",
 	"apihelp-main-param-assert": "Verify the user is logged in if set to <kbd>user</kbd>, or has the bot userright if <kbd>bot</kbd>.",
 	"apihelp-block-param-user": "Username, IP address, or IP range to block.",
 	"apihelp-block-param-allowusertalk": "Allow the user to edit their own talk page (depends on <var>[[mw:Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",

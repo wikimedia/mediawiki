@@ -65,7 +65,7 @@ class VFormHTMLForm extends HTMLForm {
 
 	protected function getFormAttributes() {
 		$attribs = parent::getFormAttributes();
-		array_push( $attribs['class'], 'mw-ui-vform', 'mw-ui-container' );
+		$attribs['class'] = array( 'mw-ui-vform', 'mw-ui-container', 'visualClear' );
 		return $attribs;
 	}
 
@@ -95,8 +95,10 @@ class VFormHTMLForm extends HTMLForm {
 			$attribs['class'] = array(
 				'mw-htmlform-submit',
 				'mw-ui-button mw-ui-big mw-ui-block',
-				$this->mSubmitModifierClass,
 			);
+			foreach ( $this->mSubmitFlags as $flag ) {
+				$attribs['class'][] = 'mw-ui-' . $flag;
+			}
 
 			$buttons .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
 		}

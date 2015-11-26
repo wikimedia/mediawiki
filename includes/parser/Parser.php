@@ -87,7 +87,11 @@ class Parser {
 	# \p{Zs} is unicode 'separator, space' category. It covers the space 0x20
 	# as well as U+3000 is IDEOGRAPHIC SPACE for bug 19052
 	const EXT_LINK_URL_CLASS = '[^][<>"\\x00-\\x20\\x7F\p{Zs}]';
-	const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)([^][<>"\\x00-\\x20\\x7F\p{Zs}]+)
+	# Simplified expression to match an IPv4 or IPv6 address, or
+	# at least one character of a host name (embeds EXT_LINK_URL_CLASS)
+	const EXT_LINK_ADDR = '(?:[0-9.]+|\\[(?i:[0-9a-f:.]+)\\]|[^][<>"\\x00-\\x20\\x7F\p{Zs}])';
+	# RegExp to make image URLs (embeds IPv6 part of EXT_LINK_ADDR)
+	const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)((?:\\[(?i:[0-9a-f:.]+)\\])?[^][<>"\\x00-\\x20\\x7F\p{Zs}]+)
 		\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/Sxu';
 
 	# Regular expression for a non-newline space
@@ -114,8 +118,20 @@ class Parser {
 	const OT_MSG = 3;
 	const OT_PLAIN = 4; # like extractSections() - portions of the original are returned unchanged.
 
-	# Marker Suffix needs to be accessible staticly.
+	/**
+	 * @var string Prefix and suffix for temporary replacement strings
+	 * for the multipass parser.
+	 *
+	 * \x7f should never appear in input as it's disallowed in XML.
+	 * Using it at the front also gives us a little extra robustness
+	 * since it shouldn't match when butted up against identifier-like
+	 * string constructs.
+	 *
+	 * Must not consist of all title characters, or else it will change
+	 * the behavior of <nowiki> in a link.
+	 */
 	const MARKER_SUFFIX = "-QINU\x7f";
+	const MARKER_PREFIX = "\x7fUNIQ-";
 
 	# Markers used for wrapping the table of contents
 	const TOC_START = '<mw:toc>';
@@ -206,9 +222,10 @@ class Parser {
 	public $mInputSize = false; # For {{PAGESIZE}} on current page.
 
 	/**
-	 * @var string
-	 */
-	public $mUniqPrefix;
+	 * @var string Deprecated accessor for the strip marker prefix.
+	 * @deprecated since 1.26; use Parser::MARKER_PREFIX instead.
+	 **/
+	public $mUniqPrefix = Parser::MARKER_PREFIX;
 
 	/**
 	 * @var array Array with the language name of each language link (i.e. the
@@ -241,7 +258,8 @@ class Parser {
 		$this->mConf = $conf;
 		$this->mUrlProtocols = wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->mUrlProtocols . ')' .
-			self::EXT_LINK_URL_CLASS . '+)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F]*?)\]/Su';
+			self::EXT_LINK_ADDR .
+			self::EXT_LINK_URL_CLASS . '*)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F]*?)\]/Su';
 		if ( isset( $conf['preprocessorClass'] ) ) {
 			$this->mPreprocessorClass = $conf['preprocessorClass'];
 		} elseif ( defined( 'HPHP_VERSION' ) ) {
@@ -336,18 +354,7 @@ class Parser {
 		$this->mLangLinkLanguages = array();
 		$this->currentRevisionCache = null;
 
-		/**
-		 * Prefix for temporary replacement strings for the multipass parser.
-		 * \x07 should never appear in input as it's disallowed in XML.
-		 * Using it at the front also gives us a little extra robustness
-		 * since it shouldn't match when butted up against identifier-like
-		 * string constructs.
-		 *
-		 * Must not consist of all title characters, or else it will change
-		 * the behavior of <nowiki> in a link.
-		 */
-		$this->mUniqPrefix = "\x7fUNIQ" . self::getRandomString();
-		$this->mStripState = new StripState( $this->mUniqPrefix );
+		$this->mStripState = new StripState;
 
 		# Clear these on every parse, bug 4549
 		$this->mTplRedirCache = $this->mTplDomCache = array();
@@ -399,6 +406,9 @@ class Parser {
 		global $wgShowHostnames;
 
 		if ( $clearState ) {
+			// We use U+007F DELETE to construct strip markers, so we have to make
+			// sure that this character does not occur in the input text.
+			$text = strtr( $text, "\x7f", "?" );
 			$magicScopeVariable = $this->lock();
 		}
 
@@ -408,11 +418,6 @@ class Parser {
 		$this->mInputSize = strlen( $text );
 		if ( $this->mOptions->getEnableLimitReport() ) {
 			$this->mOutput->resetParseStartTime();
-		}
-
-		# Remove the strip marker tag prefix from the input, if present.
-		if ( $clearState ) {
-			$text = str_replace( $this->mUniqPrefix, '', $text );
 		}
 
 		$oldRevisionId = $this->mRevisionId;
@@ -504,6 +509,9 @@ class Parser {
 			if ( $wgShowHostnames ) {
 				$limitReport .= 'Parsed by ' . wfHostname() . "\n";
 			}
+			$limitReport .= 'Cached time: ' . $this->mOutput->getCacheTime() . "\n";
+			$limitReport .= 'Cache expiry: ' . $this->mOutput->getCacheExpiry() . "\n";
+			$limitReport .= 'Dynamic content: ' . ( $this->mOutput->hasDynamicContent() ? 'true' : 'false' ) . "\n";
 			foreach ( $this->mOutput->getLimitReportData() as $key => $value ) {
 				if ( Hooks::run( 'ParserLimitReportFormat',
 					array( $key, &$value, &$limitReport, false, false )
@@ -686,8 +694,10 @@ class Parser {
 	 * Get a random string
 	 *
 	 * @return string
+	 * @deprecated since 1.26; use wfRandomString() instead.
 	 */
 	public static function getRandomString() {
+		wfDeprecated( __METHOD__, '1.26' );
 		return wfRandomString( 16 );
 	}
 
@@ -705,18 +715,11 @@ class Parser {
 	 * Accessor for mUniqPrefix.
 	 *
 	 * @return string
+	 * @deprecated since 1.26; use Parser::MARKER_PREFIX instead.
 	 */
 	public function uniqPrefix() {
-		if ( !isset( $this->mUniqPrefix ) ) {
-			# @todo FIXME: This is probably *horribly wrong*
-			# LanguageConverter seems to want $wgParser's uniqPrefix, however
-			# if this is called for a parser cache hit, the parser may not
-			# have ever been initialized in the first place.
-			# Not really sure what the heck is supposed to be going on here.
-			return '';
-			# throw new MWException( "Accessing uninitialized mUniqPrefix" );
-		}
-		return $this->mUniqPrefix;
+		wfDeprecated( __METHOD__, '1.26' );
+		return self::MARKER_PREFIX;
 	}
 
 	/**
@@ -907,10 +910,14 @@ class Parser {
 	 * @param array $elements List of element names. Comments are always extracted.
 	 * @param string $text Source text string.
 	 * @param array $matches Out parameter, Array: extracted tags
-	 * @param string $uniq_prefix
+	 * @param string|null $uniq_prefix
 	 * @return string Stripped text
+	 * @since 1.26 The uniq_prefix argument is deprecated.
 	 */
-	public static function extractTagsAndParams( $elements, $text, &$matches, $uniq_prefix = '' ) {
+	public static function extractTagsAndParams( $elements, $text, &$matches, $uniq_prefix = null ) {
+		if ( $uniq_prefix !== null ) {
+			wfDeprecated( __METHOD__ . ' called with $prefix argument', '1.26' );
+		}
 		static $n = 1;
 		$stripped = '';
 		$matches = array();
@@ -938,7 +945,7 @@ class Parser {
 				$inside = $p[4];
 			}
 
-			$marker = "$uniq_prefix-$element-" . sprintf( '%08X', $n++ ) . self::MARKER_SUFFIX;
+			$marker = self::MARKER_PREFIX . "-$element-" . sprintf( '%08X', $n++ ) . self::MARKER_SUFFIX;
 			$stripped .= $marker;
 
 			if ( $close === '/>' ) {
@@ -991,10 +998,10 @@ class Parser {
 	 * @return string
 	 */
 	public function insertStripItem( $text ) {
-		$rnd = "{$this->mUniqPrefix}-item-{$this->mMarkerIndex}-" . self::MARKER_SUFFIX;
+		$marker = self::MARKER_PREFIX . "-item-{$this->mMarkerIndex}-" . self::MARKER_SUFFIX;
 		$this->mMarkerIndex++;
-		$this->mStripState->addGeneral( $rnd, $text );
-		return $rnd;
+		$this->mStripState->addGeneral( $marker, $text );
+		return $marker;
 	}
 
 	/**
@@ -1024,9 +1031,10 @@ class Parser {
 			}
 
 			$first_character = $line[0];
+			$first_two = substr( $line, 0, 2 );
 			$matches = array();
 
-			if ( preg_match( '/^(:*)\{\|(.*)$/', $line, $matches ) ) {
+			if ( preg_match( '/^(:*)\s*\{\|(.*)$/', $line, $matches ) ) {
 				# First check if we are starting a new table
 				$indent_level = strlen( $matches[1] );
 
@@ -1043,7 +1051,7 @@ class Parser {
 				# Don't do any of the following
 				$out .= $outLine . "\n";
 				continue;
-			} elseif ( substr( $line, 0, 2 ) === '|}' ) {
+			} elseif ( $first_two === '|}' ) {
 				# We are ending a table
 				$line = '</table>' . substr( $line, 2 );
 				$last_tag = array_pop( $last_tag_history );
@@ -1061,7 +1069,7 @@ class Parser {
 				}
 				array_pop( $tr_attributes );
 				$outLine = $line . str_repeat( '</dd></dl>', $indent_level );
-			} elseif ( substr( $line, 0, 2 ) === '|-' ) {
+			} elseif ( $first_two === '|-' ) {
 				# Now we have a table row
 				$line = preg_replace( '#^\|-+#', '', $line );
 
@@ -1090,15 +1098,15 @@ class Parser {
 				array_push( $last_tag_history, '' );
 			} elseif ( $first_character === '|'
 				|| $first_character === '!'
-				|| substr( $line, 0, 2 ) === '|+'
+				|| $first_two === '|+'
 			) {
 				# This might be cell elements, td, th or captions
-				if ( substr( $line, 0, 2 ) === '|+' ) {
+				if ( $first_two === '|+' ) {
 					$first_character = '+';
+					$line = substr( $line, 2 );
+				} else {
 					$line = substr( $line, 1 );
 				}
-
-				$line = substr( $line, 1 );
 
 				if ( $first_character === '!' ) {
 					$line = str_replace( '!!', '||', $line );
@@ -1257,7 +1265,7 @@ class Parser {
 
 		# replaceInternalLinks may sometimes leave behind
 		# absolute URLs, which have to be masked to hide them from replaceExternalLinks
-		$text = str_replace( $this->mUniqPrefix . 'NOPARSE', '', $text );
+		$text = str_replace( self::MARKER_PREFIX . 'NOPARSE', '', $text );
 
 		$text = $this->doMagicLinks( $text );
 		$text = $this->formatHeadings( $text, $origText, $isMain );
@@ -1275,9 +1283,11 @@ class Parser {
 	 * @return string
 	 */
 	private function internalParseHalfParsed( $text, $isMain = true, $linestart = true ) {
-		global $wgUseTidy, $wgAlwaysUseTidy;
-
 		$text = $this->mStripState->unstripGeneral( $text );
+
+		if ( $isMain ) {
+			Hooks::run( 'ParserAfterUnstrip', array( &$this, &$text ) );
+		}
 
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
 		$fixtags = array(
@@ -1323,7 +1333,7 @@ class Parser {
 
 		$text = Sanitizer::normalizeCharReferences( $text );
 
-		if ( ( $wgUseTidy && $this->mOptions->getTidy() ) || $wgAlwaysUseTidy ) {
+		if ( MWTidy::isEnabled() && $this->mOptions->getTidy() ) {
 			$text = MWTidy::tidy( $text );
 		} else {
 			# attempt to sanitize at least some nesting problems
@@ -1374,20 +1384,23 @@ class Parser {
 	public function doMagicLinks( $text ) {
 		$prots = wfUrlProtocolsWithoutProtRel();
 		$urlChar = self::EXT_LINK_URL_CLASS;
+		$addr = self::EXT_LINK_ADDR;
 		$space = self::SPACE_NOT_NL; #  non-newline space
 		$spdash = "(?:-|$space)"; # a dash or a non-newline space
 		$spaces = "$space++"; # possessive match of 1 or more spaces
 		$text = preg_replace_callback(
-			'!(?:                           # Start cases
-				(<a[ \t\r\n>].*?</a>) |     # m[1]: Skip link text
-				(<.*?>) |                   # m[2]: Skip stuff inside HTML elements' . "
-				(\b(?i:$prots)$urlChar+) |  # m[3]: Free external links
-				\b(?:RFC|PMID) $spaces      # m[4]: RFC or PMID, capture number
+			'!(?:                            # Start cases
+				(<a[ \t\r\n>].*?</a>) |      # m[1]: Skip link text
+				(<.*?>) |                    # m[2]: Skip stuff inside
+				                             #       HTML elements' . "
+				(\b(?i:$prots)($addr$urlChar*)) | # m[3]: Free external links
+				                             # m[4]: Post-protocol path
+				\b(?:RFC|PMID) $spaces       # m[5]: RFC or PMID, capture number
 					([0-9]+)\b |
-				\bISBN $spaces (            # m[5]: ISBN, capture number
-					(?: 97[89] $spdash? )?   # optional 13-digit ISBN prefix
-					(?: [0-9]  $spdash? ){9} # 9 digits with opt. delimiters
-					[0-9Xx]                 # check digit
+				\bISBN $spaces (             # m[6]: ISBN, capture number
+					(?: 97[89] $spdash? )?   #  optional 13-digit ISBN prefix
+					(?: [0-9]  $spdash? ){9} #  9 digits with opt. delimiters
+					[0-9Xx]                  #  check digit
 				)\b
 			)!xu", array( &$this, 'magicLinkCallback' ), $text );
 		return $text;
@@ -1407,35 +1420,35 @@ class Parser {
 			return $m[0];
 		} elseif ( isset( $m[3] ) && $m[3] !== '' ) {
 			# Free external link
-			return $this->makeFreeExternalLink( $m[0] );
-		} elseif ( isset( $m[4] ) && $m[4] !== '' ) {
+			return $this->makeFreeExternalLink( $m[0], strlen( $m[4] ) );
+		} elseif ( isset( $m[5] ) && $m[5] !== '' ) {
 			# RFC or PMID
 			if ( substr( $m[0], 0, 3 ) === 'RFC' ) {
 				$keyword = 'RFC';
 				$urlmsg = 'rfcurl';
 				$cssClass = 'mw-magiclink-rfc';
-				$id = $m[4];
+				$id = $m[5];
 			} elseif ( substr( $m[0], 0, 4 ) === 'PMID' ) {
 				$keyword = 'PMID';
 				$urlmsg = 'pubmedurl';
 				$cssClass = 'mw-magiclink-pmid';
-				$id = $m[4];
+				$id = $m[5];
 			} else {
 				throw new MWException( __METHOD__ . ': unrecognised match type "' .
 					substr( $m[0], 0, 20 ) . '"' );
 			}
 			$url = wfMessage( $urlmsg, $id )->inContentLanguage()->text();
 			return Linker::makeExternalLink( $url, "{$keyword} {$id}", true, $cssClass );
-		} elseif ( isset( $m[5] ) && $m[5] !== '' ) {
+		} elseif ( isset( $m[6] ) && $m[6] !== '' ) {
 			# ISBN
-			$isbn = $m[5];
+			$isbn = $m[6];
 			$space = self::SPACE_NOT_NL; #  non-newline space
 			$isbn = preg_replace( "/$space/", ' ', $isbn );
 			$num = strtr( $isbn, array(
 				'-' => '',
 				' ' => '',
 				'x' => 'X',
-			));
+			) );
 			$titleObj = SpecialPage::getTitleFor( 'Booksources', $num );
 			return '<a href="' .
 				htmlspecialchars( $titleObj->getLocalURL() ) .
@@ -1449,11 +1462,12 @@ class Parser {
 	 * Make a free external link, given a user-supplied URL
 	 *
 	 * @param string $url
-	 *
+	 * @param int $numPostProto
+	 *   The number of characters after the protocol.
 	 * @return string HTML
 	 * @private
 	 */
-	public function makeFreeExternalLink( $url ) {
+	public function makeFreeExternalLink( $url, $numPostProto ) {
 
 		$trail = '';
 
@@ -1478,7 +1492,7 @@ class Parser {
 		# Don't break a trailing HTML entity by moving the ; into $trail
 		# This is in hot code, so use substr_compare to avoid having to
 		# create a new string object for the comparison
-		if ( $numSepChars && substr_compare( $url, ";", -$numSepChars, 1 ) === 0) {
+		if ( $numSepChars && substr_compare( $url, ";", -$numSepChars, 1 ) === 0 ) {
 			# more optimization: instead of running preg_match with a $
 			# anchor, which can be slow, do the match on the reversed
 			# string starting at the desired offset.
@@ -1490,6 +1504,12 @@ class Parser {
 		if ( $numSepChars ) {
 			$trail = substr( $url, -$numSepChars ) . $trail;
 			$url = substr( $url, 0, -$numSepChars );
+		}
+
+		# Verify that we still have a real URL after trail removal, and
+		# not just lone protocol
+		if ( strlen( $trail ) >= $numPostProto ) {
+			return $url . $trail;
 		}
 
 		$url = Sanitizer::cleanUrl( $url );
@@ -1609,12 +1629,10 @@ class Parser {
 							$firstspace = $i;
 						}
 					} elseif ( $x2 === ' ' ) {
-						if ( $firstsingleletterword == -1 ) {
-							$firstsingleletterword = $i;
-							// if $firstsingleletterword is set, we don't
-							// look at the other options, so we can bail early.
-							break;
-						}
+						$firstsingleletterword = $i;
+						// if $firstsingleletterword is set, we don't
+						// look at the other options, so we can bail early.
+						break;
 					} else {
 						if ( $firstmultiletterword == -1 ) {
 							$firstmultiletterword = $i;
@@ -2143,7 +2161,8 @@ class Parser {
 				$link = substr( $link, 1 );
 			}
 
-			$nt = Title::newFromText( $this->mStripState->unstripNoWiki( $link ) );
+			$unstrip = $this->mStripState->unstripNoWiki( $link );
+			$nt = is_string( $unstrip ) ? Title::newFromText( $unstrip ) : null;
 			if ( $nt === null ) {
 				$s .= $prefix . '[[' . $line;
 				continue;
@@ -2351,7 +2370,7 @@ class Parser {
 	 */
 	public function armorLinks( $text ) {
 		return preg_replace( '/\b((?i)' . $this->mUrlProtocols . ')/',
-			"{$this->mUniqPrefix}NOPARSE$1", $text );
+			self::MARKER_PREFIX . "NOPARSE$1", $text );
 	}
 
 	/**
@@ -2623,7 +2642,7 @@ class Parser {
 				$closematch = preg_match(
 					'/(?:<\\/table|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|'
 						. '<td|<th|<\\/?blockquote|<\\/?div|<hr|<\\/pre|<\\/p|<\\/mw:|'
-						. $this->mUniqPrefix
+						. self::MARKER_PREFIX
 						. '-pre|<\\/li|<\\/ul|<\\/ol|<\\/dl|<\\/?center)/iS',
 					$t
 				);
@@ -3305,7 +3324,8 @@ class Parser {
 	 */
 	public function replaceVariables( $text, $frame = false, $argsOnly = false ) {
 		# Is there any text? Also, Prevent too big inclusions!
-		if ( strlen( $text ) < 1 || strlen( $text ) > $this->mOptions->getMaxIncludeSize() ) {
+		$textSize = strlen( $text );
+		if ( $textSize < 1 || $textSize > $this->mOptions->getMaxIncludeSize() ) {
 			return $text;
 		}
 
@@ -3435,7 +3455,6 @@ class Parser {
 
 		# SUBST
 		if ( !$found ) {
-
 			$substMatch = $this->mSubstWords->matchStartAndRemove( $part1 );
 
 			# Possibilities for substMatch: "subst", "safesubst" or FALSE
@@ -3493,7 +3512,6 @@ class Parser {
 
 		# Parser functions
 		if ( !$found ) {
-
 			$colonPos = strpos( $part1, ':' );
 			if ( $colonPos !== false ) {
 				$func = substr( $part1, 0, $colonPos );
@@ -3892,7 +3910,11 @@ class Parser {
 		// Defaults to Parser::statelessFetchTemplate()
 		$templateCb = $this->mOptions->getTemplateCallback();
 		$stuff = call_user_func( $templateCb, $title, $this );
+		// We use U+007F DELETE to distinguish strip markers from regular text.
 		$text = $stuff['text'];
+		if ( is_string( $stuff['text'] ) ) {
+			$text = strtr( $text, "\x7f", "?" );
+		}
 		$finalTitle = isset( $stuff['finalTitle'] ) ? $stuff['finalTitle'] : $title;
 		if ( isset( $stuff['deps'] ) ) {
 			foreach ( $stuff['deps'] as $dep ) {
@@ -4186,7 +4208,7 @@ class Parser {
 		$name = $frame->expand( $params['name'] );
 		$attrText = !isset( $params['attr'] ) ? null : $frame->expand( $params['attr'] );
 		$content = !isset( $params['inner'] ) ? null : $frame->expand( $params['inner'] );
-		$marker = "{$this->mUniqPrefix}-$name-"
+		$marker = self::MARKER_PREFIX . "-$name-"
 			. sprintf( '%08X', $this->mMarkerIndex++ ) . self::MARKER_SUFFIX;
 
 		$isFunctionTag = isset( $this->mFunctionTagHooks[strtolower( $name )] ) &&
@@ -4431,7 +4453,7 @@ class Parser {
 		$prevlevel = 0;
 		$toclevel = 0;
 		$prevtoclevel = 0;
-		$markerRegex = "{$this->mUniqPrefix}-h-(\d+)-" . self::MARKER_SUFFIX;
+		$markerRegex = self::MARKER_PREFIX . "-h-(\d+)-" . self::MARKER_SUFFIX;
 		$baseTitleText = $this->mTitle->getPrefixedDBkey();
 		$oldType = $this->mOutputType;
 		$this->setOutputType( self::OT_WIKI );
@@ -4442,7 +4464,9 @@ class Parser {
 		$tocraw = array();
 		$refers = array();
 
-		foreach ( $matches[3] as $headline ) {
+		$headlines = $numMatches !== false ? $matches[3] : array();
+
+		foreach ( $headlines as $headline ) {
 			$isTemplate = false;
 			$titleText = false;
 			$sectionIndex = false;
@@ -4547,6 +4571,12 @@ class Parser {
 				array( '', '<$1>' ),
 				$safeHeadline
 			);
+
+			# Strip '<span></span>', which is the result from the above if
+			# <span id="foo"></span> is used to produce an additional anchor
+			# for a section.
+			$tocline = str_replace( '<span></span>', '', $tocline );
+
 			$tocline = trim( $tocline );
 
 			# For the anchor, strip out HTML-y stuff period
@@ -5068,7 +5098,7 @@ class Parser {
 	 * in the Parser class.
 	 *
 	 * This interface (introduced r61913) appears to be undocumented, but
-	 * 'markerName' is used by some core tag hooks to override which strip
+	 * 'markerType' is used by some core tag hooks to override which strip
 	 * array their results are placed in. **Use great caution if attempting
 	 * this interface, as it is not documented and injudicious use could smash
 	 * private variables.**
@@ -5391,9 +5421,10 @@ class Parser {
 						case 'gallery-internal-link':
 							$linkValue = strip_tags( $this->replaceLinkHoldersText( $match ) );
 							$chars = self::EXT_LINK_URL_CLASS;
+							$addr = self::EXT_LINK_ADDR;
 							$prots = $this->mUrlProtocols;
 							//check to see if link matches an absolute url, if not then it must be a wiki link.
-							if ( preg_match( "/^($prots)$chars+$/u", $linkValue ) ) {
+							if ( preg_match( "/^($prots)$addr$chars*$/u", $linkValue ) ) {
 								$link = $linkValue;
 							} else {
 								$localLinkTitle = Title::newFromText( $linkValue );
@@ -5575,13 +5606,14 @@ class Parser {
 							break;
 						case 'link':
 							$chars = self::EXT_LINK_URL_CLASS;
+							$addr = self::EXT_LINK_ADDR;
 							$prots = $this->mUrlProtocols;
 							if ( $value === '' ) {
 								$paramName = 'no-link';
 								$value = true;
 								$validated = true;
 							} elseif ( preg_match( "/^((?i)$prots)/", $value ) ) {
-								if ( preg_match( "/^((?i)$prots)$chars+$/u", $value, $m ) ) {
+								if ( preg_match( "/^((?i)$prots)$addr$chars*$/u", $value, $m ) ) {
 									$paramName = 'link-url';
 									$this->mOutput->addExternalLink( $value );
 									if ( $this->mOptions->getExternalLinkTarget() ) {
@@ -5770,7 +5802,7 @@ class Parser {
 	public function replaceTransparentTags( $text ) {
 		$matches = array();
 		$elements = array_keys( $this->mTransparentTagHooks );
-		$text = self::extractTagsAndParams( $elements, $text, $matches, $this->mUniqPrefix );
+		$text = self::extractTagsAndParams( $elements, $text, $matches );
 		$replacements = array();
 
 		foreach ( $matches as $marker => $data ) {
@@ -6229,7 +6261,7 @@ class Parser {
 		$i = 0;
 		$out = '';
 		while ( $i < strlen( $s ) ) {
-			$markerStart = strpos( $s, $this->mUniqPrefix, $i );
+			$markerStart = strpos( $s, self::MARKER_PREFIX, $i );
 			if ( $markerStart === false ) {
 				$out .= call_user_func( $callback, substr( $s, $i ) );
 				break;
@@ -6419,5 +6451,16 @@ class Parser {
 		} else {
 			return $this;
 		}
+	}
+
+	/**
+	 * Set's up the PHP implementation of OOUI for use in this request
+	 * and instructs OutputPage to enable OOUI for itself.
+	 *
+	 * @since 1.26
+	 */
+	public function enableOOUI() {
+		OutputPage::setupOOUI();
+		$this->mOutput->setEnableOOUI( true );
 	}
 }

@@ -104,27 +104,26 @@ class Html {
 	/**
 	 * Modifies a set of attributes meant for button elements
 	 * and apply a set of default attributes when $wgUseMediaWikiUIEverywhere enabled.
-	 * @param array $attrs
-	 * @param string[] $modifiers to add to the button
+	 * @param array $attrs HTML attributes in an associative array
+	 * @param string[] $modifiers classes to add to the button
 	 * @see https://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return array $attrs A modified attribute array
 	 */
-	public static function buttonAttributes( $attrs, $modifiers = array() ) {
+	public static function buttonAttributes( array $attrs, array $modifiers = array() ) {
 		global $wgUseMediaWikiUIEverywhere;
 		if ( $wgUseMediaWikiUIEverywhere ) {
 			if ( isset( $attrs['class'] ) ) {
 				if ( is_array( $attrs['class'] ) ) {
 					$attrs['class'][] = 'mw-ui-button';
-					$attrs = array_merge( $attrs, $modifiers );
+					$attrs['class'] = array_merge( $attrs['class'], $modifiers );
 					// ensure compatibility with Xml
 					$attrs['class'] = implode( ' ', $attrs['class'] );
 				} else {
 					$attrs['class'] .= ' mw-ui-button ' . implode( ' ', $modifiers );
 				}
 			} else {
-				$attrs['class'] = array( 'mw-ui-button' );
 				// ensure compatibility with Xml
-				$attrs['class'] = implode( ' ', array_merge( $attrs['class'], $modifiers ) );
+				$attrs['class'] = 'mw-ui-button ' . implode( ' ', $modifiers );
 			}
 		}
 		return $attrs;
@@ -137,11 +136,8 @@ class Html {
 	 * @param array $attrs An attribute array.
 	 * @return array $attrs A modified attribute array
 	 */
-	public static function getTextInputAttributes( $attrs ) {
+	public static function getTextInputAttributes( array $attrs ) {
 		global $wgUseMediaWikiUIEverywhere;
-		if ( !$attrs ) {
-			$attrs = array();
-		}
 		if ( $wgUseMediaWikiUIEverywhere ) {
 			if ( isset( $attrs['class'] ) ) {
 				if ( is_array( $attrs['class'] ) ) {
@@ -165,11 +161,11 @@ class Html {
 	 * @param array $attrs Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ). See expandAttributes() for
 	 *   further documentation.
-	 * @param string[] $modifiers to add to the button
+	 * @param string[] $modifiers classes to add to the button
 	 * @see http://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return string Raw HTML
 	 */
-	public static function linkButton( $contents, $attrs, $modifiers = array() ) {
+	public static function linkButton( $contents, array $attrs, array $modifiers = array() ) {
 		return self::element( 'a',
 			self::buttonAttributes( $attrs, $modifiers ),
 			$contents
@@ -185,11 +181,11 @@ class Html {
 	 * @param array $attrs Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ). See expandAttributes() for
 	 *   further documentation.
-	 * @param string[] $modifiers to add to the button
+	 * @param string[] $modifiers classes to add to the button
 	 * @see http://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return string Raw HTML
 	 */
-	public static function submitButton( $contents, $attrs, $modifiers = array() ) {
+	public static function submitButton( $contents, array $attrs, array $modifiers = array() ) {
 		$attrs['type'] = 'submit';
 		$attrs['value'] = $contents;
 		return self::element( 'input', self::buttonAttributes( $attrs, $modifiers ) );
@@ -337,8 +333,7 @@ class Html {
 	 *   further documentation.
 	 * @return array An array of attributes functionally identical to $attribs
 	 */
-	private static function dropDefaults( $element, $attribs ) {
-
+	private static function dropDefaults( $element, array $attribs ) {
 		// Whenever altering this array, please provide a covering test case
 		// in HtmlTest::provideElementsWithAttributesHavingDefaultValues
 		static $attribDefaults = array(
@@ -485,11 +480,10 @@ class Html {
 	 * @return string HTML fragment that goes between element name and '>'
 	 *   (starting with a space if at least one attribute is output)
 	 */
-	public static function expandAttributes( $attribs ) {
+	public static function expandAttributes( array $attribs ) {
 		global $wgWellFormedXml;
 
 		$ret = '';
-		$attribs = (array)$attribs;
 		foreach ( $attribs as $key => $value ) {
 			// Support intuitive array( 'checked' => true/false ) form
 			if ( $value === false || is_null( $value ) ) {
@@ -714,12 +708,15 @@ class Html {
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
-	public static function input( $name, $value = '', $type = 'text', $attribs = array() ) {
+	public static function input( $name, $value = '', $type = 'text', array $attribs = array() ) {
 		$attribs['type'] = $type;
 		$attribs['value'] = $value;
 		$attribs['name'] = $name;
 		if ( in_array( $type, array( 'text', 'search', 'email', 'password', 'number' ) ) ) {
 			$attribs = self::getTextInputAttributes( $attribs );
+		}
+		if ( in_array( $type, array( 'button', 'reset', 'submit' ) ) ) {
+			$attribs = self::buttonAttributes( $attribs );
 		}
 		return self::element( 'input', $attribs );
 	}
@@ -794,7 +791,7 @@ class Html {
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
-	public static function hidden( $name, $value, $attribs = array() ) {
+	public static function hidden( $name, $value, array $attribs = array() ) {
 		return self::input( $name, $value, 'hidden', $attribs );
 	}
 
@@ -810,7 +807,7 @@ class Html {
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
-	public static function textarea( $name, $value = '', $attribs = array() ) {
+	public static function textarea( $name, $value = '', array $attribs = array() ) {
 		$attribs['name'] = $name;
 
 		if ( substr( $value, 0, 1 ) == "\n" ) {
@@ -823,6 +820,47 @@ class Html {
 			$spacedValue = $value;
 		}
 		return self::element( 'textarea', self::getTextInputAttributes( $attribs ), $spacedValue );
+	}
+
+	/**
+	 * Helper for Html::namespaceSelector().
+	 * @param array $params See Html::namespaceSelector()
+	 * @return array
+	 */
+	public static function namespaceSelectorOptions( array $params = array() ) {
+		global $wgContLang;
+
+		$options = array();
+
+		if ( !isset( $params['exclude'] ) || !is_array( $params['exclude'] ) ) {
+			$params['exclude'] = array();
+		}
+
+		if ( isset( $params['all'] ) ) {
+			// add an option that would let the user select all namespaces.
+			// Value is provided by user, the name shown is localized for the user.
+			$options[$params['all']] = wfMessage( 'namespacesall' )->text();
+		}
+		// Add all namespaces as options (in the content language)
+		$options += $wgContLang->getFormattedNamespaces();
+
+		$optionsOut = array();
+		// Filter out namespaces below 0 and massage labels
+		foreach ( $options as $nsId => $nsName ) {
+			if ( $nsId < NS_MAIN || in_array( $nsId, $params['exclude'] ) ) {
+				continue;
+			}
+			if ( $nsId === NS_MAIN ) {
+				// For other namespaces use the namespace prefix as label, but for
+				// main we don't use "" but the user message describing it (e.g. "(Main)" or "(Article)")
+				$nsName = wfMessage( 'blanknamespace' )->text();
+			} elseif ( is_int( $nsId ) ) {
+				$nsName = $wgContLang->convertNamespace( $nsId );
+			}
+			$optionsOut[ $nsId ] = $nsName;
+		}
+
+		return $optionsOut;
 	}
 
 	/**
@@ -844,8 +882,6 @@ class Html {
 	public static function namespaceSelector( array $params = array(),
 		array $selectAttribs = array()
 	) {
-		global $wgContLang;
-
 		ksort( $selectAttribs );
 
 		// Is a namespace selected?
@@ -862,37 +898,16 @@ class Html {
 			$params['selected'] = '';
 		}
 
-		if ( !isset( $params['exclude'] ) || !is_array( $params['exclude'] ) ) {
-			$params['exclude'] = array();
-		}
 		if ( !isset( $params['disable'] ) || !is_array( $params['disable'] ) ) {
 			$params['disable'] = array();
 		}
 
 		// Associative array between option-values and option-labels
-		$options = array();
+		$options = self::namespaceSelectorOptions( $params );
 
-		if ( isset( $params['all'] ) ) {
-			// add an option that would let the user select all namespaces.
-			// Value is provided by user, the name shown is localized for the user.
-			$options[$params['all']] = wfMessage( 'namespacesall' )->text();
-		}
-		// Add all namespaces as options (in the content language)
-		$options += $wgContLang->getFormattedNamespaces();
-
-		// Convert $options to HTML and filter out namespaces below 0
+		// Convert $options to HTML
 		$optionsHtml = array();
 		foreach ( $options as $nsId => $nsName ) {
-			if ( $nsId < NS_MAIN || in_array( $nsId, $params['exclude'] ) ) {
-				continue;
-			}
-			if ( $nsId === NS_MAIN ) {
-				// For other namespaces use the namespace prefix as label, but for
-				// main we don't use "" but the user message describing it (e.g. "(Main)" or "(Article)")
-				$nsName = wfMessage( 'blanknamespace' )->text();
-			} elseif ( is_int( $nsId ) ) {
-				$nsName = $wgContLang->convertNamespace( $nsId );
-			}
 			$optionsHtml[] = self::element(
 				'option', array(
 					'disabled' => in_array( $nsId, $params['disable'] ),
@@ -937,7 +952,7 @@ class Html {
 	 *   attributes, passed to Html::element() of html tag.
 	 * @return string Raw HTML
 	 */
-	public static function htmlHeader( $attribs = array() ) {
+	public static function htmlHeader( array $attribs = array() ) {
 		$ret = '';
 
 		global $wgHtml5Version, $wgMimeType, $wgXhtmlNamespaces;
@@ -1047,7 +1062,7 @@ class Html {
 	 * @param string[] $urls
 	 * @return string
 	 */
-	static function srcSet( $urls ) {
+	static function srcSet( array $urls ) {
 		$candidates = array();
 		foreach ( $urls as $density => $url ) {
 			// Cast density to float to strip 'x'.

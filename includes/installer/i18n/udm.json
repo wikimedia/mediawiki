@@ -1,8 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
-			"Andrewboltachev"
+			"Andrewboltachev",
+			"AlnashPiyash2"
 		]
 	},
+	"config-title": "MediaWiki $1 пуктон",
+	"config-your-language": "Тӥляд кылды:",
+	"config-back": "← Берлань",
+	"config-continue": "Азьлань →",
+	"config-page-language": "Кыл",
+	"config-page-options": "Настройкаос",
+	"config-page-complete": "Быдэстэмын!",
+	"config-page-readme": "Лыдӟы монэ",
+	"config-page-copying": "Лицензия",
 	"mainpagetext": "'''MediaWiki движок азинлыко пуктэмын.'''"
 }

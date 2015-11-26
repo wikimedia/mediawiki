@@ -99,7 +99,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'PáginasNuevas', 'Páginas_nuevas' ),
 	'PasswordReset'             => array( 'RestablecerContraseña' ),
 	'PermanentLink'             => array( 'EnlacePermanente' ),
-
 	'Preferences'               => array( 'Preferencias' ),
 	'Prefixindex'               => array( 'PáginasPorPrefijo', 'Páginas_por_prefijo' ),
 	'Protectedpages'            => array( 'PáginasProtegidas', 'Páginas_protegidas' ),

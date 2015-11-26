@@ -53,7 +53,7 @@ class SiteExporterTest extends PHPUnit_Framework_TestCase {
 		$exporter->exportSites( array( $foo, $acme ) );
 
 		fseek( $tmp, 0 );
-		$xml = fread( $tmp, 16*1024 );
+		$xml = fread( $tmp, 16 * 1024 );
 
 		$this->assertContains( '<sites ', $xml );
 		$this->assertContains( '<site>', $xml );
@@ -133,7 +133,7 @@ class SiteExporterTest extends PHPUnit_Framework_TestCase {
 		$exporter->exportSites( $sites );
 
 		fseek( $tmp, 0 );
-		$xml = fread( $tmp, 16*1024 );
+		$xml = fread( $tmp, 16 * 1024 );
 
 		$actualSites = new SiteList();
 		$store = $this->newSiteStore( $actualSites );

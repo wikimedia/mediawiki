@@ -194,8 +194,8 @@ class Revision implements IDBAccessObject {
 
 		if ( !isset( $attribs['title'] )
 			&& isset( $row->ar_namespace )
-			&& isset( $row->ar_title ) ) {
-
+			&& isset( $row->ar_title )
+		) {
 			$attribs['title'] = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 		}
 
@@ -1087,7 +1087,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Returns the content model for this revision.
 	 *
-	 * If no content model was stored in the database, $this->getTitle()->getContentModel() is
+	 * If no content model was stored in the database, the default content model for the title is
 	 * used to determine the content model to use. If no title is know, CONTENT_MODEL_WIKITEXT
 	 * is used as a last resort.
 	 *
@@ -1097,7 +1097,11 @@ class Revision implements IDBAccessObject {
 	public function getContentModel() {
 		if ( !$this->mContentModel ) {
 			$title = $this->getTitle();
-			$this->mContentModel = ( $title ? $title->getContentModel() : CONTENT_MODEL_WIKITEXT );
+			if ( $title ) {
+				$this->mContentModel = ContentHandler::getDefaultModelFor( $title );
+			} else {
+				$this->mContentModel = CONTENT_MODEL_WIKITEXT;
+			}
 
 			assert( !empty( $this->mContentModel ) );
 		}
@@ -1284,8 +1288,14 @@ class Revision implements IDBAccessObject {
 
 		if ( $wgCompressRevisions ) {
 			if ( function_exists( 'gzdeflate' ) ) {
-				$text = gzdeflate( $text );
-				$flags[] = 'gzip';
+				$deflated = gzdeflate( $text );
+
+				if ( $deflated === false ) {
+					wfLogWarning( __METHOD__ . ': gzdeflate() failed' );
+				} else {
+					$text = $deflated;
+					$flags[] = 'gzip';
+				}
 			} else {
 				wfDebug( __METHOD__ . " -- no zlib support, not compressing\n" );
 			}
@@ -1306,6 +1316,11 @@ class Revision implements IDBAccessObject {
 			# This can be done periodically via maintenance/compressOld.php, and
 			# as pages are saved if $wgCompressRevisions is set.
 			$text = gzinflate( $text );
+
+			if ( $text === false ) {
+				wfLogWarning( __METHOD__ . ': gzinflate() failed' );
+				return false;
+			}
 		}
 
 		if ( in_array( 'object', $flags ) ) {
@@ -1626,8 +1641,9 @@ class Revision implements IDBAccessObject {
 				$row['content_format'] = $current->rev_content_format;
 			}
 
+			$row['title'] = Title::makeTitle( $current->page_namespace, $current->page_title );
+
 			$revision = new Revision( $row );
-			$revision->setTitle( Title::makeTitle( $current->page_namespace, $current->page_title ) );
 		} else {
 			$revision = null;
 		}

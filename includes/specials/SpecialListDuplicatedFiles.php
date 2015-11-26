@@ -34,7 +34,7 @@ class ListDuplicatedFilesPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 
@@ -53,7 +53,7 @@ class ListDuplicatedFilesPage extends QueryPage {
 	 * with however we are doing cached special pages.
 	 * @return array
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return array(
 			'tables' => array( 'image' ),
 			'fields' => array(

@@ -322,7 +322,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Талқылауым' ),
 	'Newimages'                 => array( 'Жаңа_суреттер' ),
 	'Newpages'                  => array( 'Жаңа_беттер' ),
-
 	'Preferences'               => array( 'Бапталымдар', 'Баптау' ),
 	'Prefixindex'               => array( 'Бастауыш_тізімі' ),
 	'Protectedpages'            => array( 'Қорғалған_беттер' ),

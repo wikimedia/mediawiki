@@ -5,8 +5,8 @@
 
 mediaWiki.language.convertGrammar = function ( word, form ) {
 	var grammarForms = mediaWiki.language.getData( 'la', 'grammarForms' );
-	if ( grammarForms && grammarForms[form] ) {
-		return grammarForms[form][word];
+	if ( grammarForms && grammarForms[ form ] ) {
+		return grammarForms[ form ][ word ];
 	}
 	switch ( form ) {
 		case 'genitive':
@@ -30,7 +30,7 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 			word = word.replace( /nuntii$/i, 'nuntios' );// 2nd declension plural (partly)
 			word = word.replace( /tio$/i, 'tionem' ); // 3rd declension singular (partly)
 			word = word.replace( /ns$/i, 'ntem' );
-			word = word.replace( /as$/i, 'atem');
+			word = word.replace( /as$/i, 'atem' );
 			word = word.replace( /es$/i, 'em' ); // 5th declension singular
 			break;
 		case 'ablative':
@@ -42,7 +42,7 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 			word = word.replace( /nuntii$/i, 'nuntiis' ); // 2nd declension plural (partly)
 			word = word.replace( /tio$/i, 'tione' ); // 3rd declension singular (partly)
 			word = word.replace( /ns$/i, 'nte' );
-			word = word.replace( /as$/i, 'ate');
+			word = word.replace( /as$/i, 'ate' );
 			word = word.replace( /es$/i, 'e' ); // 5th declension singular
 			break;
 	}

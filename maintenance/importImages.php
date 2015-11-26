@@ -88,23 +88,23 @@ if ( isset( $options['check-userblock'] ) ) {
 }
 
 # Get --from
-wfSuppressWarnings();
+MediaWiki\suppressWarnings();
 $from = $options['from'];
-wfRestoreWarnings();
+MediaWiki\restoreWarnings();
 
 # Get sleep time.
-wfSuppressWarnings();
+MediaWiki\suppressWarnings();
 $sleep = $options['sleep'];
-wfRestoreWarnings();
+MediaWiki\restoreWarnings();
 
 if ( $sleep ) {
 	$sleep = (int)$sleep;
 }
 
 # Get limit number
-wfSuppressWarnings();
+MediaWiki\suppressWarnings();
 $limit = $options['limit'];
-wfRestoreWarnings();
+MediaWiki\restoreWarnings();
 
 if ( $limit ) {
 	$limit = (int)$limit;

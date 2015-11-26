@@ -16,7 +16,7 @@ class ApiUnblockTest extends ApiTestCase {
 	/**
 	 * @expectedException UsageException
 	 */
-	public function testWithNoToken( ) {
+	public function testWithNoToken() {
 		$this->doApiRequest(
 			array(
 				'action' => 'unblock',
@@ -25,7 +25,7 @@ class ApiUnblockTest extends ApiTestCase {
 			),
 			null,
 			false,
-			self::$users['sysop']->user
+			self::$users['sysop']->getUser()
 		);
 	}
 }

@@ -23,7 +23,7 @@
 
 /**
  * ProfilerSimpleUDP class, that sends out messages for 'udpprofile' daemon
- * (see http://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile)
+ * (see https://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile)
  *
  * @ingroup Profiler
  * @since 1.25

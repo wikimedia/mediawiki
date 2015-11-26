@@ -218,7 +218,7 @@ class SpecialPageFactory {
 		global $wgSpecialPages;
 		global $wgDisableInternalSearch, $wgEmailAuthentication;
 		global $wgEnableEmail, $wgEnableJavaScriptTest;
-		global $wgPageLanguageUseDB;
+		global $wgPageLanguageUseDB, $wgContentHandlerUseDB;
 
 		if ( !is_array( self::$list ) ) {
 
@@ -244,6 +244,9 @@ class SpecialPageFactory {
 			if ( $wgPageLanguageUseDB ) {
 				self::$list['PageLanguage'] = 'SpecialPageLanguage';
 			}
+			if ( $wgContentHandlerUseDB ) {
+				self::$list['ChangeContentModel'] = 'SpecialChangeContentModel';
+			}
 
 			self::$list['Activeusers'] = 'SpecialActiveUsers';
 
@@ -260,14 +263,13 @@ class SpecialPageFactory {
 	}
 
 	/**
-	 * Initialise and return the list of special page aliases.  Returns an object with
-	 * properties which can be accessed $obj->pagename - each property name is an
-	 * alias, with the value being the canonical name of the special page. All
-	 * registered special pages are guaranteed to map to themselves.
-	 * @return object
+	 * Initialise and return the list of special page aliases. Returns an array where
+	 * the key is an alias, and the value is the canonical name of the special page.
+	 * All registered special pages are guaranteed to map to themselves.
+	 * @return array
 	 */
-	private static function getAliasListObject() {
-		if ( !is_object( self::$aliases ) ) {
+	private static function getAliasList() {
+		if ( is_null( self::$aliases ) ) {
 			global $wgContLang;
 			$aliases = $wgContLang->getSpecialPageAliases();
 			$pageList = self::getPageList();
@@ -310,9 +312,6 @@ class SpecialPageFactory {
 					}
 				}
 			}
-
-			// Cast to object: func()[$key] doesn't work, but func()->$key does
-			self::$aliases = (object)self::$aliases;
 		}
 
 		return self::$aliases;
@@ -332,8 +331,9 @@ class SpecialPageFactory {
 
 		$caseFoldedAlias = $wgContLang->caseFold( $bits[0] );
 		$caseFoldedAlias = str_replace( ' ', '_', $caseFoldedAlias );
-		if ( isset( self::getAliasListObject()->$caseFoldedAlias ) ) {
-			$name = self::getAliasListObject()->$caseFoldedAlias;
+		$aliases = self::getAliasList();
+		if ( isset( $aliases[$caseFoldedAlias] ) ) {
+			$name = $aliases[$caseFoldedAlias];
 		} else {
 			return array( null, null );
 		}
@@ -345,34 +345,6 @@ class SpecialPageFactory {
 		}
 
 		return array( $name, $par );
-	}
-
-	/**
-	 * Add a page to a certain display group for Special:SpecialPages
-	 *
-	 * @param SpecialPage|string $page
-	 * @param string $group
-	 * @deprecated since 1.21 Override SpecialPage::getGroupName
-	 */
-	public static function setGroup( $page, $group ) {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		global $wgSpecialPageGroups;
-		$name = is_object( $page ) ? $page->getName() : $page;
-		$wgSpecialPageGroups[$name] = $group;
-	}
-
-	/**
-	 * Get the group that the special page belongs in on Special:SpecialPage
-	 *
-	 * @param SpecialPage $page
-	 * @return string
-	 * @deprecated since 1.21 Use SpecialPage::getFinalGroupName
-	 */
-	public static function getGroup( &$page ) {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		return $page->getFinalGroupName();
 	}
 
 	/**
@@ -572,7 +544,6 @@ class SpecialPageFactory {
 				$context->setTitle( $page->getPageTitle( $par ) );
 			}
 		} elseif ( !$page->isIncludable() ) {
-
 			return false;
 		}
 
@@ -638,7 +609,7 @@ class SpecialPageFactory {
 	public static function getLocalNameFor( $name, $subpage = false ) {
 		global $wgContLang;
 		$aliases = $wgContLang->getSpecialPageAliases();
-		$aliasList = self::getAliasListObject();
+		$aliasList = self::getAliasList();
 
 		// Find the first alias that maps back to $name
 		if ( isset( $aliases[$name] ) ) {
@@ -646,8 +617,8 @@ class SpecialPageFactory {
 			foreach ( $aliases[$name] as $alias ) {
 				$caseFoldedAlias = $wgContLang->caseFold( $alias );
 				$caseFoldedAlias = str_replace( ' ', '_', $caseFoldedAlias );
-				if ( isset( $aliasList->$caseFoldedAlias ) &&
-					$aliasList->$caseFoldedAlias === $name
+				if ( isset( $aliasList[$caseFoldedAlias] ) &&
+					$aliasList[$caseFoldedAlias] === $name
 				) {
 					$name = $alias;
 					$found = true;

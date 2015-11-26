@@ -523,9 +523,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( $meta ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$metadata = unserialize( $file->getMetadata() );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			if ( $metadata && $version !== 'latest' ) {
 				$metadata = $file->convertMetadataVersion( $metadata, $version );
 			}
@@ -798,6 +798,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Properties#imageinfo_.2F_ii';
+		return 'https://www.mediawiki.org/wiki/API:Imageinfo';
 	}
 }

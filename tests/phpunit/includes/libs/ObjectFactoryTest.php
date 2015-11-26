@@ -26,11 +26,20 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 	public function testClosureExpansionDisabled() {
 		$obj = ObjectFactory::getObjectFromSpec( array(
 			'class' => 'ObjectFactoryTest_Fixture',
-			'args' => array( function (){ return 'unwrapped'; }, ),
+			'args' => array( function() {
+				return 'unwrapped';
+			}, ),
+			'calls' => array(
+				'setter' => array( function() {
+					return 'unwrapped';
+				}, ),
+			),
 			'closure_expansion' => false,
 		) );
 		$this->assertInstanceOf( 'Closure', $obj->args[0] );
 		$this->assertSame( 'unwrapped', $obj->args[0]() );
+		$this->assertInstanceOf( 'Closure', $obj->setterArgs[0] );
+		$this->assertSame( 'unwrapped', $obj->setterArgs[0]() );
 	}
 
 	/**
@@ -39,22 +48,46 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 	public function testClosureExpansionEnabled() {
 		$obj = ObjectFactory::getObjectFromSpec( array(
 			'class' => 'ObjectFactoryTest_Fixture',
-			'args' => array( function (){ return 'unwrapped'; }, ),
+			'args' => array( function() {
+				return 'unwrapped';
+			}, ),
+			'calls' => array(
+				'setter' => array( function() {
+					return 'unwrapped';
+				}, ),
+			),
 			'closure_expansion' => true,
 		) );
 		$this->assertInternalType( 'string', $obj->args[0] );
 		$this->assertSame( 'unwrapped', $obj->args[0] );
+		$this->assertInternalType( 'string', $obj->setterArgs[0] );
+		$this->assertSame( 'unwrapped', $obj->setterArgs[0] );
 
 		$obj = ObjectFactory::getObjectFromSpec( array(
 			'class' => 'ObjectFactoryTest_Fixture',
-			'args' => array( function (){ return 'unwrapped'; }, ),
+			'args' => array( function() {
+				return 'unwrapped';
+			}, ),
+			'calls' => array(
+				'setter' => array( function() {
+					return 'unwrapped';
+				}, ),
+			),
 		) );
 		$this->assertInternalType( 'string', $obj->args[0] );
 		$this->assertSame( 'unwrapped', $obj->args[0] );
+		$this->assertInternalType( 'string', $obj->setterArgs[0] );
+		$this->assertSame( 'unwrapped', $obj->setterArgs[0] );
 	}
 }
 
 class ObjectFactoryTest_Fixture {
 	public $args;
-	public function __construct( /*...*/ ) { $this->args = func_get_args(); }
+	public $setterArgs;
+	public function __construct( /*...*/ ) {
+		$this->args = func_get_args();
+	}
+	public function setter( /*...*/ ) {
+		$this->setterArgs = func_get_args();
+	}
 }

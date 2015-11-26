@@ -13,7 +13,8 @@
 			"Southparkfan",
 			"Seb35",
 			"Mar(c)",
-			"Sjoerddebruin"
+			"Sjoerddebruin",
+			"Esketti"
 		]
 	},
 	"config-desc": "Het installatieprogramma voor MediaWiki",
@@ -59,7 +60,6 @@
 	"config-env-bad": "De omgeving is gecontroleerd.\nU kunt MediaWiki niet installeren.",
 	"config-env-php": "PHP $1 is op dit moment geïnstalleerd.",
 	"config-env-hhvm": "HHVM $1 is geïnstalleerd.",
-	"config-unicode-using-utf8": "Voor Unicode-normalisatie wordt utf8_normalize.so van Brion Vibber gebruikt.",
 	"config-unicode-using-intl": "Voor Unicode-normalisatie wordt de [http://pecl.php.net/intl PECL-extensie intl] gebruikt.",
 	"config-unicode-pure-php-warning": "'''Waarschuwing''': de [http://pecl.php.net/intl PECL-extensie intl] is niet beschikbaar om de Unicodenormalisatie af te handelen en daarom wordt de langzame PHP-implementatie gebruikt.\nAls u MediaWiki voor een website met veel verkeer installeert, lees u dan in over [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicodenormalisatie].",
 	"config-unicode-update-warning": "'''Waarschuwing''': de geïnstalleerde versie van de Unicodenormalisatiewrapper maakt gebruik van een oudere versie van [http://site.icu-project.org/ de bibliotheek van het ICU-project].\nU moet [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations bijwerken] als Unicode voor u van belang is.",
@@ -72,7 +72,7 @@
 	"config-magic-quotes-sybase": "'''Onherstelbare fout: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_sybase] is actief!'''\nDeze instelling zorgt voor onvoorspelbare gegevenscorruptie.\nU kunt MediaWiki niet installeren tenzij deze instelling is uitgeschakeld.",
 	"config-mbstring": "'''Onherstelbare fout: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] is actief!'''\nDeze instelling zorgt voor onvoorspelbare gegevenscorruptie.\nU kunt MediaWiki niet installeren tenzij deze instelling is uitgeschakeld.",
 	"config-safe-mode": "'''Waarschuwing:'''\n'''PHP's [http://www.php.net/features.safe-mode veilige modus] is actief.'''\nDit kan problemen veroorzaken, vooral bij het uploaden van bestanden en ondersteuning van <code>math</code>.",
-	"config-xml-bad": "De XML-module van PHP ontbreekt.\nMediaWiki heeft de functies van deze module nodig en werkt niet zonder deze module.\nAls u gebruik maakt van Mandrake, installeer dan het package php-xml.",
+	"config-xml-bad": "PHP-XML-module ontbreekt.\nMediaWiki is vereist functies in deze module en zal niet werken in deze configuratie.\nMoet u de php-xml-RPM pakket.",
 	"config-pcre-old": "'''Onherstelbare fout:''' PCRE $1 of een latere versie is vereist.\nUw uitvoerbare versie van PHP is gekoppeld met PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Meer informatie].",
 	"config-pcre-no-utf8": "'''Fataal:''' de module PRCE van PHP lijkt te zijn gecompileerd zonder ondersteuning voor PCRE_UTF8.\nMediaWiki heeft ondersteuning voor UTF-8 nodig om correct te kunnen werken.",
 	"config-memory-raised": "PHP's <code>memory_limit</code> is $1 en is verhoogd tot $2.",

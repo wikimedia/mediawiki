@@ -22,5 +22,7 @@
 	"ooui-dialog-process-error": "Ada yang tidak beres",
 	"ooui-dialog-process-dismiss": "Tutup",
 	"ooui-dialog-process-retry": "Coba lagi",
-	"ooui-dialog-process-continue": "Lanjutkan"
+	"ooui-dialog-process-continue": "Lanjutkan",
+	"ooui-selectfile-not-supported": "Peilihan berkas tidak didukung",
+	"ooui-selectfile-placeholder": "Tidak ada berkas yang terpilih"
 }

@@ -141,53 +141,36 @@ class OutputPageTest extends MediaWikiTestCase {
 			// Load module script only
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ),
-				'<script>if(window.mw){
-document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.foo\u0026amp;only=scripts\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");
-}</script>
-'
+				"<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n"
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.foo\u0026only=scripts\u0026skin=fallback");'
+					. "\n} );</script>"
 			),
 			array(
 				// Don't condition wrap raw modules (like the startup module)
 				array( 'test.raw', ResourceLoaderModule::TYPE_SCRIPTS ),
-				'<script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.raw&amp;only=scripts&amp;skin=fallback&amp;*"></script>
-'
+				'<script async src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.raw&amp;only=scripts&amp;skin=fallback"></script>'
 			),
 			// Load module styles only
 			// This also tests the order the modules are put into the url
 			array(
 				array( array( 'test.baz', 'test.foo', 'test.bar' ), ResourceLoaderModule::TYPE_STYLES ),
-				'<link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=fallback&amp;*">
-'
+
+				'<link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=fallback">'
 			),
 			// Load private module (only=scripts)
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ),
-				'<script>if(window.mw){
-mw.test.baz({token:123});mw.loader.state({"test.quux":"ready"});
-
-}</script>
-'
+				"<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n"
+					. "mw.test.baz({token:123});mw.loader.state({\"test.quux\":\"ready\"});\n"
+					. "} );</script>"
 			),
 			// Load private module (combined)
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_COMBINED ),
-				'<script>if(window.mw){
-mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"css":[".mw-icon{transition:none}\n"]});
-
-}</script>
-'
-			),
-			// Load module script with ESI
-			array(
-				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS, true ),
-				'<script><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=scripts&amp;skin=fallback&amp;*" /></script>
-'
-			),
-			// Load module styles with ESI
-			array(
-				array( 'test.foo', ResourceLoaderModule::TYPE_STYLES, true ),
-				'<style><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=styles&amp;skin=fallback&amp;*" /></style>
-',
+				"<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n"
+					. "mw.loader.implement(\"test.quux\",function($,jQuery){"
+					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}"
+					. "\"]});\n} );</script>"
 			),
 			// Load no modules
 			array(
@@ -197,19 +180,17 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 			// noscript group
 			array(
 				array( 'test.noscript', ResourceLoaderModule::TYPE_STYLES ),
-				'<noscript><link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.noscript&amp;only=styles&amp;skin=fallback&amp;*"></noscript>
-'
+				'<noscript><link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.noscript&amp;only=styles&amp;skin=fallback"></noscript>'
 			),
 			// Load two modules in separate groups
 			array(
 				array( array( 'test.group.foo', 'test.group.bar' ), ResourceLoaderModule::TYPE_COMBINED ),
-				'<script>if(window.mw){
-document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.bar\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");
-}</script>
-<script>if(window.mw){
-document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.foo\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");
-}</script>
-'
+				"<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n"
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.group.bar\u0026skin=fallback");'
+					. "\n} );</script>\n"
+					. "<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n"
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.group.foo\u0026skin=fallback");'
+					. "\n} );</script>"
 			),
 		);
 	}
@@ -226,7 +207,6 @@ document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\
 	public function testMakeResourceLoaderLink( $args, $expectedHtml ) {
 		$this->setMwGlobals( array(
 			'wgResourceLoaderDebug' => false,
-			'wgResourceLoaderUseESI' => true,
 			'wgLoadScript' => 'http://127.0.0.1:8080/w/load.php',
 			// Affects whether CDATA is inserted
 			'wgWellFormedXml' => false,
@@ -244,41 +224,120 @@ document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\
 			'test.foo' => new ResourceLoaderTestModule( array(
 				'script' => 'mw.test.foo( { a: true } );',
 				'styles' => '.mw-test-foo { content: "style"; }',
-			)),
+			) ),
 			'test.bar' => new ResourceLoaderTestModule( array(
 				'script' => 'mw.test.bar( { a: true } );',
 				'styles' => '.mw-test-bar { content: "style"; }',
-			)),
+			) ),
 			'test.baz' => new ResourceLoaderTestModule( array(
 				'script' => 'mw.test.baz( { a: true } );',
 				'styles' => '.mw-test-baz { content: "style"; }',
-			)),
+			) ),
 			'test.quux' => new ResourceLoaderTestModule( array(
 				'script' => 'mw.test.baz( { token: 123 } );',
 				'styles' => '/* pref-animate=off */ .mw-icon { transition: none; }',
 				'group' => 'private',
-			)),
+			) ),
 			'test.raw' => new ResourceLoaderTestModule( array(
 				'script' => 'mw.test.baz( { token: 123 } );',
 				'isRaw' => true,
-			)),
+			) ),
 			'test.noscript' => new ResourceLoaderTestModule( array(
 				'styles' => '.mw-test-noscript { content: "style"; }',
 				'group' => 'noscript',
-			)),
+			) ),
 			'test.group.bar' => new ResourceLoaderTestModule( array(
 				'styles' => '.mw-group-bar { content: "style"; }',
 				'group' => 'bar',
-			)),
+			) ),
 			'test.group.foo' => new ResourceLoaderTestModule( array(
 				'styles' => '.mw-group-foo { content: "style"; }',
 				'group' => 'foo',
-			)),
+			) ),
 		) );
 		$links = $method->invokeArgs( $out, $args );
-		// Strip comments to avoid variation due to wgDBname in WikiID and cache key
-		$actualHtml = preg_replace( '#/\*[^*]+\*/#', '', $links['html'] );
+		$actualHtml = implode( "\n", $links['html'] );
 		$this->assertEquals( $expectedHtml, $actualHtml );
+	}
+
+	/**
+	 * @dataProvider provideVaryHeaders
+	 * @covers OutputPage::addVaryHeader
+	 * @covers OutputPage::getVaryHeader
+	 * @covers OutputPage::getXVO
+	 */
+	public function testVaryHeaders( $calls, $vary, $xvo ) {
+		// get rid of default Vary fields
+		$outputPage = $this->getMockBuilder( 'OutputPage' )
+			->setConstructorArgs( array( new RequestContext() ) )
+			->setMethods( array( 'getCacheVaryCookies' ) )
+			->getMock();
+		$outputPage->expects( $this->any() )
+			->method( 'getCacheVaryCookies' )
+			->will( $this->returnValue( array() ) );
+		TestingAccessWrapper::newFromObject( $outputPage )->mVaryHeader = array();
+
+		foreach ( $calls as $call ) {
+			call_user_func_array( array( $outputPage, 'addVaryHeader' ), $call );
+		}
+		$this->assertEquals( $vary, $outputPage->getVaryHeader(), 'Vary:' );
+		$this->assertEquals( $xvo, $outputPage->getXVO(), 'X-Vary-Options:' );
+	}
+
+	public function provideVaryHeaders() {
+		// note: getXVO() automatically adds Vary: Cookie
+		return array(
+			array( // single header
+				array(
+					array( 'Cookie' ),
+				),
+				'Vary: Cookie',
+				'X-Vary-Options: Cookie',
+			),
+			array( // non-unique headers
+				array(
+					array( 'Cookie' ),
+					array( 'Accept-Language' ),
+					array( 'Cookie' ),
+				),
+				'Vary: Cookie, Accept-Language',
+				'X-Vary-Options: Cookie,Accept-Language',
+			),
+			array( // two headers with single options
+				array(
+					array( 'Cookie', array( 'string-contains=phpsessid' ) ),
+					array( 'Accept-Language', array( 'string-contains=en' ) ),
+				),
+				'Vary: Cookie, Accept-Language',
+				'X-Vary-Options: Cookie;string-contains=phpsessid,Accept-Language;string-contains=en',
+			),
+			array( // one header with multiple options
+				array(
+					array( 'Cookie', array( 'string-contains=phpsessid', 'string-contains=userId' ) ),
+				),
+				'Vary: Cookie',
+				'X-Vary-Options: Cookie;string-contains=phpsessid;string-contains=userId',
+			),
+			array( // Duplicate option
+				array(
+					array( 'Cookie', array( 'string-contains=phpsessid' ) ),
+					array( 'Cookie', array( 'string-contains=phpsessid' ) ),
+					array( 'Accept-Language', array( 'string-contains=en', 'string-contains=en' ) ),
+
+
+				),
+				'Vary: Cookie, Accept-Language',
+				'X-Vary-Options: Cookie;string-contains=phpsessid,Accept-Language;string-contains=en',
+			),
+			array( // Same header, different options
+				array(
+					array( 'Cookie', array( 'string-contains=phpsessid' ) ),
+					array( 'Cookie', array( 'string-contains=userId' ) ),
+				),
+				'Vary: Cookie',
+				'X-Vary-Options: Cookie;string-contains=phpsessid;string-contains=userId',
+			),
+		);
 	}
 }
 
@@ -286,21 +345,20 @@ document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\
  * MessageBlobStore that doesn't do anything
  */
 class NullMessageBlobStore extends MessageBlobStore {
-	public function get ( ResourceLoader $resourceLoader, $modules, $lang ) {
+	public function get( ResourceLoader $resourceLoader, $modules, $lang ) {
 		return array();
 	}
 
-	public function insertMessageBlob ( $name, ResourceLoaderModule $module, $lang ) {
+	public function insertMessageBlob( $name, ResourceLoaderModule $module, $lang ) {
 		return false;
 	}
 
-	public function updateModule ( $name, ResourceLoaderModule $module, $lang ) {
+	public function updateModule( $name, ResourceLoaderModule $module, $lang ) {
 		return;
 	}
 
-	public function updateMessage ( $key ) {
+	public function updateMessage( $key ) {
 	}
 	public function clear() {
 	}
 }
-

@@ -29,6 +29,7 @@ sftp-config.json
 /docs/js
 /images/[0-9a-f]
 /images/archive
+/images/cache
 /images/deleted
 /images/lockdir
 /images/temp

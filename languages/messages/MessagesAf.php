@@ -151,7 +151,6 @@ $specialPageAliases = array(
 	'Newimages'                 => array( 'Nuwe_beelde', 'Nuwebeelde', 'Nuwe_lêers', 'Nuwelêers' ),
 	'Newpages'                  => array( 'Nuwe_bladsye', 'Nuwebladsye' ),
 	'PasswordReset'             => array( 'WagwoordHerstel' ),
-
 	'Preferences'               => array( 'Voorkeure' ),
 	'Prefixindex'               => array( 'VoorvoegselIndeks' ),
 	'Protectedpages'            => array( 'BeskermdeBladsye' ),

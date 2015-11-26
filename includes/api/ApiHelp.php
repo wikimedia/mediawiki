@@ -45,6 +45,7 @@ class ApiHelp extends ApiBase {
 		$context->setLanguage( $this->getMain()->getLanguage() );
 		$context->setTitle( SpecialPage::getTitleFor( 'ApiHelp' ) );
 		$out = new OutputPage( $context );
+		$out->setCopyrightUrl( 'https://www.mediawiki.org/wiki/Special:MyLanguage/Copyright' );
 		$context->setOutput( $out );
 
 		self::getHelp( $context, $modules, $params );
@@ -82,6 +83,7 @@ class ApiHelp extends ApiBase {
 	 *  - submodules: (bool) Include help for submodules of the current module
 	 *  - recursivesubmodules: (bool) Include help for submodules recursively
 	 *  - helptitle: (string) Title to link for additional modules' help. Should contain $1.
+	 *  - toc: (bool) Include a table of contents
 	 *
 	 * @param IContextSource $context
 	 * @param ApiBase[]|ApiBase $modules
@@ -97,6 +99,9 @@ class ApiHelp extends ApiBase {
 
 		$out = $context->getOutput();
 		$out->addModules( 'mediawiki.apihelp' );
+		if ( !empty( $options['toc'] ) ) {
+			$out->addModules( 'mediawiki.toc' );
+		}
 		$out->setPageTitle( $context->msg( 'api-help-title' ) );
 
 		$cacheKey = null;
@@ -107,6 +112,7 @@ class ApiHelp extends ApiBase {
 			if ( $cacheHelpTimeout > 0 ) {
 				// Get help text from cache if present
 				$cacheKey = wfMemcKey( 'apihelp', $modules[0]->getModulePath(),
+					(int)!empty( $options['toc'] ),
 					str_replace( ' ', '_', SpecialVersion::getVersion( 'nodb' ) ) );
 				$cached = $wgMemc->get( $cacheKey );
 				if ( $cached ) {
@@ -133,7 +139,11 @@ class ApiHelp extends ApiBase {
 		}
 
 		$haveModules = array();
-		$out->addHTML( self::getHelpInternal( $context, $modules, $options, $haveModules ) );
+		$html = self::getHelpInternal( $context, $modules, $options, $haveModules );
+		if ( !empty( $options['toc'] ) && $haveModules ) {
+			$out->addHTML( Linker::generateTOC( $haveModules, $context->getLanguage() ) );
+		}
+		$out->addHTML( $html );
 
 		$helptitle = isset( $options['helptitle'] ) ? $options['helptitle'] : null;
 		$html = self::fixHelpLinks( $out->getHTML(), $helptitle, $haveModules );
@@ -150,7 +160,7 @@ class ApiHelp extends ApiBase {
 	 *
 	 * @param string $html
 	 * @param string|null $helptitle Title to link to rather than api.php, must contain '$1'
-	 * @param array $localModules Modules to link within the current page
+	 * @param array $localModules Keys are modules to link within the current page, values are ignored
 	 * @return string
 	 */
 	public static function fixHelpLinks( $html, $helptitle = null, $localModules = array() ) {
@@ -164,17 +174,17 @@ class ApiHelp extends ApiBase {
 				$old = $href;
 				$href = rawurldecode( $href );
 			} while ( $old !== $href );
-			if ( preg_match( '!Special:ApiHelp/([^&/|]+)!', $href, $m ) ) {
+			if ( preg_match( '!Special:ApiHelp/([^&/|#]+)((?:#.*)?)!', $href, $m ) ) {
 				if ( isset( $localModules[$m[1]] ) ) {
-					$href = '#' . $m[1];
+					$href = $m[2] === '' ? '#' . $m[1] : $m[2];
 				} elseif ( $helptitle !== null ) {
-					$href = Title::newFromText( str_replace( '$1', $m[1], $helptitle ) )
+					$href = Title::newFromText( str_replace( '$1', $m[1], $helptitle ) . $m[2] )
 						->getFullUrl();
 				} else {
 					$href = wfAppendQuery( wfScript( 'api' ), array(
 						'action' => 'help',
 						'modules' => $m[1],
-					) );
+					) ) . $m[2];
 				}
 				$node->setAttribute( 'href', $href );
 				$node->removeAttribute( 'title' );
@@ -212,11 +222,16 @@ class ApiHelp extends ApiBase {
 	) {
 		$out = '';
 
-		$level = min( 6, empty( $options['headerlevel'] ) ? 2 : $options['headerlevel'] );
-		$options['headerlevel'] = $level;
+		$level = empty( $options['headerlevel'] ) ? 2 : $options['headerlevel'];
+		if ( empty( $options['tocnumber'] ) ) {
+			$tocnumber = array( 2 => 0 );
+		} else {
+			$tocnumber = &$options['tocnumber'];
+		}
 
 		foreach ( $modules as $module ) {
-			$haveModules[$module->getModulePath()] = true;
+			$tocnumber[$level]++;
+			$path = $module->getModulePath();
 			$module->setContext( $context );
 			$help = array(
 				'header' => '',
@@ -228,8 +243,13 @@ class ApiHelp extends ApiBase {
 				'submodules' => '',
 			);
 
-			if ( empty( $options['noheader'] ) ) {
-				$path = $module->getModulePath();
+			if ( empty( $options['noheader'] ) || !empty( $options['toc'] ) ) {
+				$anchor = $path;
+				$i = 1;
+				while ( isset( $haveModules[$anchor] ) ) {
+					$anchor = $path . '|' . ++$i;
+				}
+
 				if ( $module->isMain() ) {
 					$header = $context->msg( 'api-help-main-header' )->parse();
 				} else {
@@ -241,10 +261,22 @@ class ApiHelp extends ApiBase {
 							$context->msg( 'parentheses', $module->getModulePrefix() )->parse();
 					}
 				}
-				$help['header'] .= Html::element( "h$level",
-					array( 'id' => $path, 'class' => 'apihelp-header' ),
-					$header
+				$haveModules[$anchor] = array(
+					'toclevel' => count( $tocnumber ),
+					'level' => $level,
+					'anchor' => $anchor,
+					'line' => $header,
+					'number' => join( '.', $tocnumber ),
+					'index' => false,
 				);
+				if ( empty( $options['noheader'] ) ) {
+					$help['header'] .= Html::element( 'h' . min( 6, $level ),
+						array( 'id' => $anchor, 'class' => 'apihelp-header' ),
+						$header
+					);
+				}
+			} else {
+				$haveModules[$path] = true;
 			}
 
 			$links = array();
@@ -277,25 +309,55 @@ class ApiHelp extends ApiBase {
 				);
 			}
 
-			$flags = $module->getHelpFlags();
-			if ( $flags ) {
-				$help['flags'] .= Html::openElement( 'div',
-					array( 'class' => 'apihelp-block apihelp-flags' ) );
-				$msg = $context->msg( 'api-help-flags' );
-				if ( !$msg->isDisabled() ) {
-					$help['flags'] .= self::wrap(
-						$msg->numParams( count( $flags ) ), 'apihelp-block-head', 'div'
-					);
-				}
-				$help['flags'] .= Html::openElement( 'ul' );
-				foreach ( $flags as $flag ) {
-					$help['flags'] .= Html::rawElement( 'li', null,
-						self::wrap( $context->msg( "api-help-flag-$flag" ), "apihelp-flag-$flag" )
-					);
-				}
-				$help['flags'] .= Html::closeElement( 'ul' );
-				$help['flags'] .= Html::closeElement( 'div' );
+			$help['flags'] .= Html::openElement( 'div',
+				array( 'class' => 'apihelp-block apihelp-flags' ) );
+			$msg = $context->msg( 'api-help-flags' );
+			if ( !$msg->isDisabled() ) {
+				$help['flags'] .= self::wrap(
+					$msg->numParams( count( $flags ) ), 'apihelp-block-head', 'div'
+				);
 			}
+			$help['flags'] .= Html::openElement( 'ul' );
+			foreach ( $module->getHelpFlags() as $flag ) {
+				$help['flags'] .= Html::rawElement( 'li', null,
+					self::wrap( $context->msg( "api-help-flag-$flag" ), "apihelp-flag-$flag" )
+				);
+			}
+			$sourceInfo = $module->getModuleSourceInfo();
+			if ( $sourceInfo ) {
+				if ( isset( $sourceInfo['namemsg'] ) ) {
+					$extname = $context->msg( $sourceInfo['namemsg'] )->text();
+				} else {
+					$extname = $sourceInfo['name'];
+				}
+				$help['flags'] .= Html::rawElement( 'li', null,
+					self::wrap(
+						$context->msg( 'api-help-source', $extname, $sourceInfo['name'] ),
+						'apihelp-source'
+					)
+				);
+
+				$link = SpecialPage::getTitleFor( 'Version', 'License/' . $sourceInfo['name'] );
+				if ( isset( $sourceInfo['license-name'] ) ) {
+					$msg = $context->msg( 'api-help-license', $link, $sourceInfo['license-name'] );
+				} elseif ( SpecialVersion::getExtLicenseFileName( dirname( $sourceInfo['path'] ) ) ) {
+					$msg = $context->msg( 'api-help-license-noname', $link );
+				} else {
+					$msg = $context->msg( 'api-help-license-unknown' );
+				}
+				$help['flags'] .= Html::rawElement( 'li', null,
+					self::wrap( $msg, 'apihelp-license' )
+				);
+			} else {
+				$help['flags'] .= Html::rawElement( 'li', null,
+					self::wrap( $context->msg( 'api-help-source-unknown' ), 'apihelp-source' )
+				);
+				$help['flags'] .= Html::rawElement( 'li', null,
+					self::wrap( $context->msg( 'api-help-license-unknown' ), 'apihelp-license' )
+				);
+			}
+			$help['flags'] .= Html::closeElement( 'ul' );
+			$help['flags'] .= Html::closeElement( 'div' );
 
 			foreach ( $module->getFinalDescription() as $msg ) {
 				$msg->setContext( $context );
@@ -429,19 +491,30 @@ class ApiHelp extends ApiBase {
 							switch ( $type ) {
 								case 'submodule':
 									$groups[] = $name;
-									$submodules = $module->getModuleManager()->getNames( $name );
+									if ( isset( $settings[ApiBase::PARAM_SUBMODULE_MAP] ) ) {
+										$map = $settings[ApiBase::PARAM_SUBMODULE_MAP];
+										ksort( $map );
+										$submodules = array();
+										foreach ( $map as $v => $m ) {
+											$submodules[] = "[[Special:ApiHelp/{$m}|{$v}]]";
+										}
+									} else {
+										$submodules = $module->getModuleManager()->getNames( $name );
+										sort( $submodules );
+										$prefix = $module->isMain()
+											? '' : ( $module->getModulePath() . '+' );
+										$submodules = array_map( function ( $name ) use ( $prefix ) {
+											return "[[Special:ApiHelp/{$prefix}{$name}|{$name}]]";
+										}, $submodules );
+									}
 									$count = count( $submodules );
-									sort( $submodules );
-									$prefix = $module->isMain()
-										? '' : ( $module->getModulePath() . '+' );
-									$submodules = array_map( function ( $name ) use ( $prefix ) {
-										return "[[Special:ApiHelp/{$prefix}{$name}|{$name}]]";
-									}, $submodules );
 									$info[] = $context->msg( 'api-help-param-list' )
 										->params( $multi ? 2 : 1 )
 										->params( $context->getLanguage()->commaList( $submodules ) )
 										->parse();
 									$hintPipeSeparated = false;
+									// No type message necessary, we have a list of values.
+									$type = null;
 									break;
 
 								case 'namespace':
@@ -452,6 +525,8 @@ class ApiHelp extends ApiBase {
 										->params( $context->getLanguage()->commaList( $namespaces ) )
 										->parse();
 									$hintPipeSeparated = false;
+									// No type message necessary, we have a list of values.
+									$type = null;
 									break;
 
 								case 'limit':
@@ -494,7 +569,26 @@ class ApiHelp extends ApiBase {
 								case 'upload':
 									$info[] = $context->msg( 'api-help-param-upload' )
 										->parse();
+									// No type message necessary, api-help-param-upload should handle it.
+									$type = null;
 									break;
+
+								case 'string':
+								case 'text':
+									// Displaying a type message here would be useless.
+									$type = null;
+									break;
+							}
+						}
+
+						// Add type. Messages for grep: api-help-param-type-limit
+						// api-help-param-type-integer api-help-param-type-boolean
+						// api-help-param-type-timestamp api-help-param-type-user
+						// api-help-param-type-password
+						if ( is_string( $type ) ) {
+							$msg = $context->msg( "api-help-param-type-$type" );
+							if ( !$msg->isDisabled() ) {
+								$info[] = $msg->params( $multi ? 2 : 1 )->parse();
 							}
 						}
 
@@ -590,6 +684,15 @@ class ApiHelp extends ApiBase {
 				$help['examples'] .= Html::closeElement( 'div' );
 			}
 
+			$subtocnumber = $tocnumber;
+			$subtocnumber[$level + 1] = 0;
+			$suboptions = array(
+				'submodules' => $options['recursivesubmodules'],
+				'headerlevel' => $level + 1,
+				'tocnumber' => &$subtocnumber,
+				'noheader' => false,
+			) + $options;
+
 			if ( $options['submodules'] && $module->getModuleManager() ) {
 				$manager = $module->getModuleManager();
 				$submodules = array();
@@ -600,16 +703,13 @@ class ApiHelp extends ApiBase {
 						$submodules[] = $manager->getModule( $name );
 					}
 				}
-				$help['submodules'] .= self::getHelpInternal( $context, $submodules, array(
-					'submodules' => $options['recursivesubmodules'],
-					'headerlevel' => $level + 1,
-					'noheader' => false,
-				) + $options, $haveModules );
+				$help['submodules'] .= self::getHelpInternal( $context, $submodules, $suboptions, $haveModules );
+				$numSubmodules = count( $submodules );
 			}
 
-			$module->modifyHelp( $help, $options );
+			$module->modifyHelp( $help, $suboptions, $haveModules );
 
-			Hooks::run( 'APIHelpModifyOutput', array( $module, &$help, $options ) );
+			Hooks::run( 'APIHelpModifyOutput', array( $module, &$help, $suboptions, &$haveModules ) );
 
 			$out .= join( "\n", $help );
 		}

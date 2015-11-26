@@ -18,37 +18,47 @@
  * @file
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Handler class for MWExceptions
  * @ingroup Exception
  */
 class MWExceptionHandler {
 
+	/**
+	 * @var string $reservedMemory
+	 */
 	protected static $reservedMemory;
+	/**
+	 * @var array $fatalErrorTypes
+	 */
 	protected static $fatalErrorTypes = array(
 		E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR,
 		/* HHVM's FATAL_ERROR level */ 16777217,
 	);
+	/**
+	 * @var bool $handledFatalCallback
+	 */
+	protected static $handledFatalCallback = false;
 
 	/**
 	 * Install handlers with PHP.
 	 */
 	public static function installHandler() {
-		set_exception_handler( array( 'MWExceptionHandler', 'handleException' ) );
-		set_error_handler( array( 'MWExceptionHandler', 'handleError' ) );
+		set_exception_handler( 'MWExceptionHandler::handleException' );
+		set_error_handler( 'MWExceptionHandler::handleError' );
 
 		// Reserve 16k of memory so we can report OOM fatals
 		self::$reservedMemory = str_repeat( ' ', 16384 );
-		register_shutdown_function(
-			array( 'MWExceptionHandler', 'handleFatalError' )
-		);
+		register_shutdown_function( 'MWExceptionHandler::handleFatalError' );
 	}
 
 	/**
 	 * Report an exception to the user
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 */
-	protected static function report( Exception $e ) {
+	protected static function report( $e ) {
 		global $wgShowExceptionDetails;
 
 		$cmdLine = MWException::isCommandLine();
@@ -86,7 +96,7 @@ class MWExceptionHandler {
 			$message = "Exception encountered, of type \"" . get_class( $e ) . "\"";
 
 			if ( $wgShowExceptionDetails ) {
-				$message .= "\n" . MWExceptionHandler::getLogMessage( $e ) . "\nBacktrace:\n" .
+				$message .= "\n" . self::getLogMessage( $e ) . "\nBacktrace:\n" .
 					self::getRedactedTraceAsString( $e ) . "\n";
 			}
 
@@ -122,15 +132,16 @@ class MWExceptionHandler {
 	 * transaction could be aborted properly.
 	 *
 	 * @since 1.23
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 */
-	public static function rollbackMasterChangesAndLog( Exception $e ) {
+	public static function rollbackMasterChangesAndLog( $e ) {
 		$factory = wfGetLBFactory();
 		if ( $factory->hasMasterChanges() ) {
-			wfDebugLog( 'Bug56269',
+			$logger = LoggerFactory::getInstance( 'Bug56269' );
+			$logger->warning(
 				'Exception thrown with an uncommited database transaction: ' .
-					MWExceptionHandler::getLogMessage( $e ) . "\n" .
-					$e->getTraceAsString()
+				self::getLogMessage( $e ),
+				self::getLogContext( $e )
 			);
 			$factory->rollbackMasterChanges();
 		}
@@ -148,9 +159,9 @@ class MWExceptionHandler {
 	 *   }
 	 *
 	 * @since 1.25
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 */
-	public static function handleException( Exception $e ) {
+	public static function handleException( $e ) {
 		try {
 			// Rollback DBs to avoid transaction notices. This may fail
 			// to rollback some DB due to connection issues or exceptions.
@@ -173,24 +184,36 @@ class MWExceptionHandler {
 	}
 
 	/**
+	 * Handler for set_error_handler() callback notifications.
+	 *
+	 * Receive a callback from the interpreter for a raised error, create an
+	 * ErrorException, and log the exception to the 'error' logging
+	 * channel(s). If the raised error is a fatal error type (only under HHVM)
+	 * delegate to handleFatalError() instead.
+	 *
 	 * @since 1.25
+	 *
 	 * @param int $level Error level raised
 	 * @param string $message
 	 * @param string $file
 	 * @param int $line
+	 *
+	 * @see logError()
 	 */
-	public static function handleError( $level, $message, $file = null, $line = null ) {
-		// Map error constant to error name (reverse-engineer PHP error reporting)
-		$channel = 'error';
+	public static function handleError(
+		$level, $message, $file = null, $line = null
+	) {
+		if ( in_array( $level, self::$fatalErrorTypes ) ) {
+			return call_user_func_array(
+				'MWExceptionHandler::handleFatalError', func_get_args()
+			);
+		}
+
+		// Map error constant to error name (reverse-engineer PHP error
+		// reporting)
 		switch ( $level ) {
-			case E_ERROR:
-			case E_CORE_ERROR:
-			case E_COMPILE_ERROR:
-			case E_USER_ERROR:
 			case E_RECOVERABLE_ERROR:
-			case E_PARSE:
 				$levelName = 'Error';
-				$channel = 'fatal';
 				break;
 			case E_WARNING:
 			case E_CORE_WARNING:
@@ -209,17 +232,13 @@ class MWExceptionHandler {
 			case E_USER_DEPRECATED:
 				$levelName = 'Deprecated';
 				break;
-			case /* HHVM's FATAL_ERROR */ 16777217:
-				$levelName = 'Fatal';
-				$channel = 'fatal';
-				break;
 			default:
 				$levelName = 'Unknown error';
 				break;
 		}
 
 		$e = new ErrorException( "PHP $levelName: $message", 0, $level, $file, $line );
-		self::logError( $e, $channel );
+		self::logError( $e, 'error' );
 
 		// This handler is for logging only. Return false will instruct PHP
 		// to continue regular handling.
@@ -228,42 +247,101 @@ class MWExceptionHandler {
 
 
 	/**
-	 * Look for a fatal error as the cause of the request termination and log
-	 * as an exception.
+	 * Dual purpose callback used as both a set_error_handler() callback and
+	 * a registered shutdown function. Receive a callback from the interpreter
+	 * for a raised error or system shutdown, check for a fatal error, and log
+	 * to the 'fatal' logging channel.
 	 *
 	 * Special handling is included for missing class errors as they may
 	 * indicate that the user needs to install 3rd-party libraries via
 	 * Composer or other means.
 	 *
 	 * @since 1.25
+	 *
+	 * @param int $level Error level raised
+	 * @param string $message Error message
+	 * @param string $file File that error was raised in
+	 * @param int $line Line number error was raised at
+	 * @param array $context Active symbol table point of error
+	 * @param array $trace Backtrace at point of error (undocumented HHVM
+	 *     feature)
+	 * @return bool Always returns false
 	 */
-	public static function handleFatalError() {
+	public static function handleFatalError(
+		$level = null, $message = null, $file = null, $line = null,
+		$context = null, $trace = null
+	) {
+		// Free reserved memory so that we have space to process OOM
+		// errors
 		self::$reservedMemory = null;
-		$lastError = error_get_last();
 
-		if ( $lastError &&
-			isset( $lastError['type'] ) &&
-			in_array( $lastError['type'], self::$fatalErrorTypes )
-		) {
-			$msg = "Fatal Error: {$lastError['message']}";
-			// HHVM: Class undefined: foo
-			// PHP5: Class 'foo' not found
-			if ( preg_match( "/Class (undefined: \w+|'\w+' not found)/",
-				$lastError['message']
-			) ) {
-				// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
-				$msg = <<<TXT
+		if ( $level === null ) {
+			// Called as a shutdown handler, get data from error_get_last()
+			if ( static::$handledFatalCallback ) {
+				// Already called once (probably as an error handler callback
+				// under HHVM) so don't log again.
+				return false;
+			}
+
+			$lastError = error_get_last();
+			if ( $lastError !== null ) {
+				$level = $lastError['type'];
+				$message = $lastError['message'];
+				$file = $lastError['file'];
+				$line = $lastError['line'];
+			} else {
+				$level = 0;
+				$message = '';
+			}
+		}
+
+		if ( !in_array( $level, self::$fatalErrorTypes ) ) {
+			// Only interested in fatal errors, others should have been
+			// handled by MWExceptionHandler::handleError
+			return false;
+		}
+
+		$msg = "[{exception_id}] PHP Fatal Error: {$message}";
+
+		// Look at message to see if this is a class not found failure
+		// HHVM: Class undefined: foo
+		// PHP5: Class 'foo' not found
+		if ( preg_match( "/Class (undefined: \w+|'\w+' not found)/", $msg ) ) {
+			// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
+			$msg = <<<TXT
 {$msg}
 
 MediaWiki or an installed extension requires this class but it is not embedded directly in MediaWiki's git repository and must be installed separately by the end user.
 
 Please see <a href="https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries">mediawiki.org</a> for help on installing the required components.
 TXT;
-				// @codingStandardsIgnoreEnd
-			}
-			$e = new ErrorException( $msg, 0, $lastError['type'] );
-			self::logError( $e, 'fatal' );
+			// @codingStandardsIgnoreEnd
 		}
+
+		// We can't just create an exception and log it as it is likely that
+		// the interpreter has unwound the stack already. If that is true the
+		// stacktrace we would get would be functionally empty. If however we
+		// have been called as an error handler callback *and* HHVM is in use
+		// we will have been provided with a useful stacktrace that we can
+		// log.
+		$trace = $trace ?: debug_backtrace();
+		$logger = LoggerFactory::getInstance( 'fatal' );
+		$logger->error( $msg, array(
+			'exception' => array(
+				'class' => 'ErrorException',
+				'message' => "PHP Fatal Error: {$message}",
+				'code' => $level,
+				'file' => $file,
+				'line' => $line,
+				'trace' => static::redactTrace( $trace ),
+			),
+			'exception_id' => wfRandomString( 8 ),
+		) );
+
+		// Remember call so we don't double process via HHVM's fatal
+		// notifications and the shutdown hook behavior
+		static::$handledFatalCallback = true;
+		return false;
 	}
 
 	/**
@@ -272,20 +350,34 @@ TXT;
 	 * Like Exception::getTraceAsString, but replaces argument values with
 	 * argument type or class name.
 	 *
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return string
+	 * @see prettyPrintTrace()
 	 */
-	public static function getRedactedTraceAsString( Exception $e ) {
+	public static function getRedactedTraceAsString( $e ) {
+		return self::prettyPrintTrace( self::getRedactedTrace( $e ) );
+	}
+
+	/**
+	 * Generate a string representation of a stacktrace.
+	 *
+	 * @param array $trace
+	 * @param string $pad Constant padding to add to each line of trace
+	 * @return string
+	 * @since 1.26
+	 */
+	public static function prettyPrintTrace( array $trace, $pad = '' ) {
 		$text = '';
 
-		foreach ( self::getRedactedTrace( $e ) as $level => $frame ) {
+		foreach ( $trace as $level => $frame ) {
 			if ( isset( $frame['file'] ) && isset( $frame['line'] ) ) {
-				$text .= "#{$level} {$frame['file']}({$frame['line']}): ";
+				$text .= "{$pad}#{$level} {$frame['file']}({$frame['line']}): ";
 			} else {
-				// 'file' and 'line' are unset for calls via call_user_func (bug 55634)
-				// This matches behaviour of Exception::getTraceAsString to instead
-				// display "[internal function]".
-				$text .= "#{$level} [internal function]: ";
+				// 'file' and 'line' are unset for calls via call_user_func
+				// (bug 55634) This matches behaviour of
+				// Exception::getTraceAsString to instead display "[internal
+				// function]".
+				$text .= "{$pad}#{$level} [internal function]: ";
 			}
 
 			if ( isset( $frame['class'] ) ) {
@@ -302,7 +394,7 @@ TXT;
 		}
 
 		$level = $level + 1;
-		$text .= "#{$level} {main}";
+		$text .= "{$pad}#{$level} {main}";
 
 		return $text;
 	}
@@ -315,10 +407,24 @@ TXT;
 	 * or its type (if the element is a PHP primitive).
 	 *
 	 * @since 1.22
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return array
 	 */
-	public static function getRedactedTrace( Exception $e ) {
+	public static function getRedactedTrace( $e ) {
+		return static::redactTrace( $e->getTrace() );
+	}
+
+	/**
+	 * Redact a stacktrace generated by Exception::getTrace(),
+	 * debug_backtrace() or similar means. Replaces each element in each
+	 * frame's argument array with the name of its class (if the element is an
+	 * object) or its type (if the element is a PHP primitive).
+	 *
+	 * @since 1.26
+	 * @param array $trace Stacktrace
+	 * @return array Stacktrace with arugment values converted to data types
+	 */
+	public static function redactTrace( array $trace ) {
 		return array_map( function ( $frame ) {
 			if ( isset( $frame['args'] ) ) {
 				$frame['args'] = array_map( function ( $arg ) {
@@ -326,7 +432,7 @@ TXT;
 				}, $frame['args'] );
 			}
 			return $frame;
-		}, $e->getTrace() );
+		}, $trace );
 	}
 
 	/**
@@ -336,10 +442,10 @@ TXT;
 	 * $wgShowExceptionDetails is set to false), to the entry in the debug log.
 	 *
 	 * @since 1.22
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return string
 	 */
-	public static function getLogId( Exception $e ) {
+	public static function getLogId( $e ) {
 		if ( !isset( $e->_mwLogId ) ) {
 			$e->_mwLogId = wfRandomString( 8 );
 		}
@@ -365,10 +471,10 @@ TXT;
 	 * Get a message formatting the exception message and its origin.
 	 *
 	 * @since 1.22
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return string
 	 */
-	public static function getLogMessage( Exception $e ) {
+	public static function getLogMessage( $e ) {
 		$id = self::getLogId( $e );
 		$type = get_class( $e );
 		$file = $e->getFile();
@@ -377,6 +483,65 @@ TXT;
 		$url = self::getURL() ?: '[no req]';
 
 		return "[$id] $url   $type from line $line of $file: $message";
+	}
+
+	/**
+	 * Get a PSR-3 log event context from an Exception.
+	 *
+	 * Creates a structured array containing information about the provided
+	 * exception that can be used to augment a log message sent to a PSR-3
+	 * logger.
+	 *
+	 * @param Exception|Throwable $e
+	 * @return array
+	 */
+	public static function getLogContext( $e ) {
+		return array(
+			'exception' => $e,
+			'exception_id' => static::getLogId( $e ),
+		);
+	}
+
+	/**
+	 * Get a structured representation of an Exception.
+	 *
+	 * Returns an array of structured data (class, message, code, file,
+	 * backtrace) derived from the given exception. The backtrace information
+	 * will be redacted as per getRedactedTraceAsArray().
+	 *
+	 * @param Exception|Throwable $e
+	 * @return array
+	 * @since 1.26
+	 */
+	public static function getStructuredExceptionData( $e ) {
+		global $wgLogExceptionBacktrace;
+		$data = array(
+			'id' => self::getLogId( $e ),
+			'type' => get_class( $e ),
+			'file' => $e->getFile(),
+			'line' => $e->getLine(),
+			'message' => $e->getMessage(),
+			'code' => $e->getCode(),
+			'url' => self::getURL() ?: null,
+		);
+
+		if ( $e instanceof ErrorException &&
+			( error_reporting() & $e->getSeverity() ) === 0
+		) {
+			// Flag surpressed errors
+			$data['suppressed'] = true;
+		}
+
+		if ( $wgLogExceptionBacktrace ) {
+			$data['backtrace'] = self::getRedactedTrace( $e );
+		}
+
+		$previous = $e->getPrevious();
+		if ( $previous !== null ) {
+			$data['previous'] = self::getStructuredExceptionData( $previous );
+		}
+
+		return $data;
 	}
 
 	/**
@@ -427,39 +592,14 @@ TXT;
 	 * @endcode
 	 *
 	 * @since 1.23
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @param bool $pretty Add non-significant whitespace to improve readability (default: false).
 	 * @param int $escaping Bitfield consisting of FormatJson::.*_OK class constants.
 	 * @return string|false JSON string if successful; false upon failure
 	 */
-	public static function jsonSerializeException( Exception $e, $pretty = false, $escaping = 0 ) {
-		global $wgLogExceptionBacktrace;
-
-		$exceptionData = array(
-			'id' => self::getLogId( $e ),
-			'type' => get_class( $e ),
-			'file' => $e->getFile(),
-			'line' => $e->getLine(),
-			'message' => $e->getMessage(),
-		);
-
-		if ( $e instanceof ErrorException && ( error_reporting() & $e->getSeverity() ) === 0 ) {
-			// Flag surpressed errors
-			$exceptionData['suppressed'] = true;
-		}
-
-		// Because MediaWiki is first and foremost a web application, we set a
-		// 'url' key unconditionally, but set it to null if the exception does
-		// not occur in the context of a web request, as a way of making that
-		// fact visible and explicit.
-		$exceptionData['url'] = self::getURL() ?: null;
-
-		if ( $wgLogExceptionBacktrace ) {
-			// Argument values may not be serializable, so redact them.
-			$exceptionData['backtrace'] = self::getRedactedTrace( $e );
-		}
-
-		return FormatJson::encode( $exceptionData, $pretty, $escaping );
+	public static function jsonSerializeException( $e, $pretty = false, $escaping = 0 ) {
+		$data = self::getStructuredExceptionData( $e );
+		return FormatJson::encode( $data, $pretty, $escaping );
 	}
 
 	/**
@@ -469,22 +609,20 @@ TXT;
 	 * it is also used to handle PHP exceptions or exceptions from other libraries.
 	 *
 	 * @since 1.22
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 */
-	public static function logException( Exception $e ) {
-		global $wgLogExceptionBacktrace;
-
+	public static function logException( $e ) {
 		if ( !( $e instanceof MWException ) || $e->isLoggable() ) {
-			$log = self::getLogMessage( $e );
-			if ( $wgLogExceptionBacktrace ) {
-				wfDebugLog( 'exception', $log . "\n" . $e->getTraceAsString() );
-			} else {
-				wfDebugLog( 'exception', $log );
-			}
+			$logger = LoggerFactory::getInstance( 'exception' );
+			$logger->error(
+				self::getLogMessage( $e ),
+				self::getLogContext( $e )
+			);
 
 			$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK );
 			if ( $json !== false ) {
-				wfDebugLog( 'exception-json', $json, 'private' );
+				$logger = LoggerFactory::getInstance( 'exception-json' );
+				$logger->error( $json, array( 'private' => true ) );
 			}
 
 			Hooks::run( 'LogException', array( $e, false ) );
@@ -499,24 +637,23 @@ TXT;
 	 * @param string $channel
 	*/
 	protected static function logError( ErrorException $e, $channel ) {
-		global $wgLogExceptionBacktrace;
-
 		// The set_error_handler callback is independent from error_reporting.
-		// Filter out unwanted errors manually (e.g. when wfSuppressWarnings is active).
+		// Filter out unwanted errors manually (e.g. when
+		// MediaWiki\suppressWarnings is active).
 		$suppressed = ( error_reporting() & $e->getSeverity() ) === 0;
 		if ( !$suppressed ) {
-			$log = self::getLogMessage( $e );
-			if ( $wgLogExceptionBacktrace ) {
-				wfDebugLog( $channel, $log . "\n" . $e->getTraceAsString() );
-			} else {
-				wfDebugLog( $channel, $log );
-			}
+			$logger = LoggerFactory::getInstance( $channel );
+			$logger->error(
+				self::getLogMessage( $e ),
+				self::getLogContext( $e )
+			);
 		}
 
 		// Include all errors in the json log (surpressed errors will be flagged)
 		$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK );
 		if ( $json !== false ) {
-			wfDebugLog( "$channel-json", $json, 'private' );
+			$logger = LoggerFactory::getInstance( "{$channel}-json" );
+			$logger->error( $json, array( 'private' => true ) );
 		}
 
 		Hooks::run( 'LogException', array( $e, $suppressed ) );

@@ -4,9 +4,18 @@
 			"Peter Alberti",
 			"Christian List",
 			"Tjernobyl",
-			"Thomsen"
+			"Thomsen",
+			"MGA73"
 		]
 	},
+	"config-desc": "Installationsprogrammet til MediaWiki",
+	"config-title": "Installation af MediaWiki $1",
+	"config-information": "Information",
+	"config-localsettings-upgrade": "En <code>LocalSettings.php</code>-fil er blevet fundet.\nFor at opgradere imstallationen, skriv venligst værdien af <code>$wgUpgradeKey</code> i boksen nedenfor.\nDu finder denne i <code>LocalSettings.php</code>.",
+	"config-localsettings-cli-upgrade": "En <code>LocalSettings.php</code>-fil er blevet fundet.\nFor at opgradere installationen skal du køre <code>update.php</code> i stedet for",
+	"config-localsettings-key": "Opgraderingsnøgle:",
+	"config-localsettings-badkey": "Den nøgle du indtastede er forkert.",
+	"config-upgrade-key-missing": "En eksisterende installation af MediaWiki er blevet fundet.\nFor at opgradere denne installation skal du tilføje følgende linje i bunden af din <code>LocalSettings.php</code>:\n\n$1",
 	"config-page-language": "Sprog",
 	"config-page-welcome": "Velkommen til MediaWiki!",
 	"config-page-dbconnect": "Forbind til database",

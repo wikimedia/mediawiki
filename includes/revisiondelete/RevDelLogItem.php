@@ -48,11 +48,26 @@ class RevDelLogItem extends RevDelItem {
 	}
 
 	public function getBits() {
-		return $this->row->log_deleted;
+		return (int)$this->row->log_deleted;
 	}
 
 	public function setBits( $bits ) {
 		$dbw = wfGetDB( DB_MASTER );
+
+		$dbw->update( 'logging',
+			array( 'log_deleted' => $bits ),
+			array(
+				'log_id' => $this->row->log_id,
+				'log_deleted' => $this->getBits() // cas
+			),
+			__METHOD__
+		);
+
+		if ( !$dbw->affectedRows() ) {
+			// Concurrent fail!
+			return false;
+		}
+
 		$dbw->update( 'recentchanges',
 			array(
 				'rc_deleted' => $bits,
@@ -64,16 +79,8 @@ class RevDelLogItem extends RevDelItem {
 			),
 			__METHOD__
 		);
-		$dbw->update( 'logging',
-			array( 'log_deleted' => $bits ),
-			array(
-				'log_id' => $this->row->log_id,
-				'log_deleted' => $this->getBits()
-			),
-			__METHOD__
-		);
 
-		return (bool)$dbw->affectedRows();
+		return true;
 	}
 
 	public function getHTML() {

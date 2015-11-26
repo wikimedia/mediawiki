@@ -66,7 +66,7 @@ class SeeTag < CommonTag
     <<-EOHTML
       <h3 class="pa">Related</h3>
       <ul>
-      #{ context[@tagname].map { |tag| tag[:doc] }.join("\n") }
+      #{context[@tagname].map { |tag| tag[:doc] }.join("\n")}
       </ul>
     EOHTML
   end
@@ -102,7 +102,7 @@ class ContextTag < CommonTag
   def to_html(context)
     <<-EOHTML
       <h3 class="pa">Context</h3>
-      #{ context[@tagname].last[:doc] }
+      #{context[@tagname].last[:doc]}
     EOHTML
   end
 

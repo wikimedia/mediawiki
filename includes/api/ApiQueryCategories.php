@@ -184,7 +184,8 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 					'sortkey',
 					'timestamp',
 					'hidden',
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'show' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -226,6 +227,6 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Properties#categories_.2F_cl';
+		return 'https://www.mediawiki.org/wiki/API:Categories';
 	}
 }

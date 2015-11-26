@@ -109,7 +109,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'НогФæрстæ' ),
 	'PasswordReset'             => array( 'ПарольНогКæнын' ),
 	'PermanentLink'             => array( 'УдгасÆрвитæн' ),
-
 	'Preferences'               => array( 'Уагæвæрдтæ' ),
 	'Prefixindex'               => array( 'РазæфтуантыИндекс' ),
 	'Protectedpages'            => array( 'ÆхгæдФæрстæ' ),

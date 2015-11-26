@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"AntanO",
+			"கலைவாணன்"
+		]
+	},
+	"apihelp-import-param-namespace": "இதனைப் பெயர்வெளிக்கு இறக்குமதி செய்யவும். <kbd>$1rootpage</kbd> அளவுருவை மீறச்செய்யும்.",
+	"apihelp-import-param-rootpage": "இப்பக்கத்தின் துணைப்பக்கமாக இறக்குமதி செய்யவும். <kbd>$1namespace</kbd> அளவுரு வழங்கப்பட்டிருந்தால் இது புறக்கணிக்கப்படும்.",
+	"api-help-source": "மூலம்: $1",
+	"api-help-license": "அனுமதி: [[$1|$2]]",
+	"api-help-license-noname": "அனுமதி: [[$1|இணைப்பைப் பார்]]"
+}

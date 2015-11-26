@@ -87,9 +87,9 @@ class Preprocessor_DOM implements Preprocessor {
 		$xml .= "</list>";
 
 		$dom = new DOMDocument();
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$result = $dom->loadXML( $xml );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( !$result ) {
 			// Try running the XML through UtfNormal to get rid of invalid characters
 			$xml = UtfNormal\Validator::cleanUp( $xml );
@@ -154,7 +154,6 @@ class Preprocessor_DOM implements Preprocessor {
 		$cacheable = ( $wgPreprocessorCacheThreshold !== false
 			&& strlen( $text ) > $wgPreprocessorCacheThreshold );
 		if ( $cacheable ) {
-
 			$cacheKey = wfMemcKey( 'preprocess-xml', md5( $text ), $flags );
 			$cacheValue = $wgMemc->get( $cacheKey );
 			if ( $cacheValue ) {
@@ -186,9 +185,9 @@ class Preprocessor_DOM implements Preprocessor {
 		}
 
 		$dom = new DOMDocument;
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$result = $dom->loadXML( $xml );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( !$result ) {
 			// Try running the XML through UtfNormal to get rid of invalid characters
 			$xml = UtfNormal\Validator::cleanUp( $xml );
@@ -853,7 +852,8 @@ class PPDStackElement {
 		$close,             // Matching closing character
 		$count,             // Number of opening characters found (number of "=" for heading)
 		$parts,             // Array of PPDPart objects describing pipe-separated parts.
-		$lineStart;         // True if the open char appeared at the start of the input line. Not set for headings.
+		$lineStart;         // True if the open char appeared at the start of the input line.
+		                    // Not set for headings.
 
 	public $partClass = 'PPDPart';
 
@@ -1029,6 +1029,10 @@ class PPFrame_DOM implements PPFrame {
 					$index = $nameNodes->item( 0 )->attributes->getNamedItem( 'index' )->textContent;
 					$index = $index - $indexOffset;
 					if ( isset( $namedArgs[$index] ) || isset( $numberedArgs[$index] ) ) {
+						$this->parser->getOutput()->addWarning( wfMessage( 'duplicate-args-warning',
+							wfEscapeWikiText( $this->title ),
+							wfEscapeWikiText( $title ),
+							wfEscapeWikiText( $index ) )->text() );
 						$this->parser->addTrackingCategory( 'duplicate-args-category' );
 					}
 					$numberedArgs[$index] = $value->item( 0 );
@@ -1037,6 +1041,10 @@ class PPFrame_DOM implements PPFrame {
 					// Named parameter
 					$name = trim( $this->expand( $nameNodes->item( 0 ), PPFrame::STRIP_COMMENTS ) );
 					if ( isset( $namedArgs[$name] ) || isset( $numberedArgs[$name] ) ) {
+						$this->parser->getOutput()->addWarning( wfMessage( 'duplicate-args-warning',
+							wfEscapeWikiText( $this->title ),
+							wfEscapeWikiText( $title ),
+							wfEscapeWikiText( $name ) )->text() );
 						$this->parser->addTrackingCategory( 'duplicate-args-category' );
 					}
 					$namedArgs[$name] = $value->item( 0 );
@@ -1195,9 +1203,11 @@ class PPFrame_DOM implements PPFrame {
 				} elseif ( $contextNode->nodeName == 'comment' ) {
 					# HTML-style comment
 					# Remove it in HTML, pre+remove and STRIP_COMMENTS modes
-					if ( $this->parser->ot['html']
+					# Not in RECOVER_COMMENTS mode (msgnw) though.
+					if ( ( $this->parser->ot['html']
 						|| ( $this->parser->ot['pre'] && $this->parser->mOptions->getRemoveComments() )
 						|| ( $flags & PPFrame::STRIP_COMMENTS )
+						) && !( $flags & PPFrame::RECOVER_COMMENTS )
 					) {
 						$out .= '';
 					} elseif ( $this->parser->ot['wiki'] && !( $flags & PPFrame::RECOVER_COMMENTS ) ) {
@@ -1263,7 +1273,7 @@ class PPFrame_DOM implements PPFrame {
 						$titleText = $this->title->getPrefixedDBkey();
 						$this->parser->mHeadings[] = array( $titleText, $headingIndex );
 						$serial = count( $this->parser->mHeadings ) - 1;
-						$marker = "{$this->parser->mUniqPrefix}-h-$serial-" . Parser::MARKER_SUFFIX;
+						$marker = Parser::MARKER_PREFIX . "-h-$serial-" . Parser::MARKER_SUFFIX;
 						$count = $contextNode->getAttribute( 'level' );
 						$s = substr( $s, 0, $count ) . $marker . substr( $s, $count );
 						$this->parser->mStripState->addGeneral( $marker, '' );

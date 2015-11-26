@@ -577,9 +577,9 @@ class StoreFileOp extends FileOp {
 	}
 
 	protected function getSourceSha1Base36() {
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$hash = sha1_file( $this->params['src'] );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( $hash !== false ) {
 			$hash = wfBaseConvert( $hash, 16, 36, 31 );
 		}

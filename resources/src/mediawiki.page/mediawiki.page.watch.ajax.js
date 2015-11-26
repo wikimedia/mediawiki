@@ -84,12 +84,12 @@
 		actionPaths = mw.config.get( 'wgActionPaths' );
 		for ( key in actionPaths ) {
 			if ( actionPaths.hasOwnProperty( key ) ) {
-				parts = actionPaths[key].split( '$1' );
+				parts = actionPaths[ key ].split( '$1' );
 				for ( i = 0; i < parts.length; i++ ) {
-					parts[i] = $.escapeRE( parts[i] );
+					parts[ i ] = mw.RegExp.escape( parts[ i ] );
 				}
 				m = new RegExp( parts.join( '(.+)' ) ).exec( url );
-				if ( m && m[1] ) {
+				if ( m && m[ 1 ] ) {
 					return key;
 				}
 
@@ -116,7 +116,7 @@
 			var action, api, $link;
 
 			// Start preloading the notification module (normally loaded by mw.notify())
-			mw.loader.load( ['mediawiki.notification'], null, true );
+			mw.loader.load( 'mediawiki.notification' );
 
 			action = mwUriGetAction( this.href );
 
@@ -138,7 +138,7 @@
 
 			api = new mw.Api();
 
-			api[action]( title )
+			api[ action ]( title )
 				.done( function ( watchResponse ) {
 					var otherAction = action === 'watch' ? 'unwatch' : 'watch';
 
@@ -170,7 +170,10 @@
 					msg = mw.message( 'watcherrortext', link );
 
 					// Report to user about the error
-					mw.notify( msg, { tag: 'watch-self' } );
+					mw.notify( msg, {
+						tag: 'watch-self',
+						type: 'error'
+					} );
 				} );
 		} );
 	} );

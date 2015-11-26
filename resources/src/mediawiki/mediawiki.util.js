@@ -33,7 +33,7 @@
 				];
 
 				for ( i = 0, l = selectors.length; i < l; i++ ) {
-					$node = $( selectors[i] );
+					$node = $( selectors[ i ] );
 					if ( $node.length ) {
 						return $node.first();
 					}
@@ -82,6 +82,7 @@
 				.replace( /%29/g, ')' )
 				.replace( /%2C/g, ',' )
 				.replace( /%2F/g, '/' )
+				.replace( /%7E/g, '~' )
 				.replace( /%3A/g, ':' );
 		},
 
@@ -111,8 +112,8 @@
 		 * For index.php use `mw.config.get( 'wgScript' )`.
 		 *
 		 * @since 1.18
-		 * @param str string Name of script (eg. 'api'), defaults to 'index'
-		 * @return string Address to script (eg. '/w/api.php' )
+		 * @param {string} str Name of script (e.g. 'api'), defaults to 'index'
+		 * @return {string} Address to script (e.g. '/w/api.php' )
 		 */
 		wikiScript: function ( str ) {
 			str = str || 'index';
@@ -159,12 +160,12 @@
 				url = location.href;
 			}
 			// Get last match, stop at hash
-			var	re = new RegExp( '^[^#]*[&?]' + $.escapeRE( param ) + '=([^&#]*)' ),
+			var	re = new RegExp( '^[^#]*[&?]' + mw.RegExp.escape( param ) + '=([^&#]*)' ),
 				m = re.exec( url );
 			if ( m ) {
 				// Beware that decodeURIComponent is not required to understand '+'
 				// by spec, as encodeURIComponent does not produce it.
-				return decodeURIComponent( m[1].replace( /\+/g, '%20' ) );
+				return decodeURIComponent( m[ 1 ].replace( /\+/g, '%20' ) );
 			}
 			return null;
 		},
@@ -298,7 +299,7 @@
 					// Error: Invalid nextnode
 					nextnode = undefined;
 				}
-				if ( nextnode && ( nextnode.length !== 1 || nextnode[0].parentNode !== $ul[0] ) ) {
+				if ( nextnode && ( nextnode.length !== 1 || nextnode[ 0 ].parentNode !== $ul[ 0 ] ) ) {
 					// Error: nextnode must resolve to a single node
 					// Error: nextnode must have the associated <ul> as its parent
 					nextnode = undefined;
@@ -317,7 +318,7 @@
 			// to get a localized access key label (bug 67946).
 			$link.updateTooltipAccessKeys();
 
-			return $item[0];
+			return $item[ 0 ];
 		},
 
 		/**

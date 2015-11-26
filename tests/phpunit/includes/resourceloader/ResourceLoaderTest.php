@@ -6,17 +6,8 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		parent::setUp();
 
 		$this->setMwGlobals( array(
-			'wgResourceLoaderLESSFunctions' => array(
-				'test-sum' => function ( $frame, $less ) {
-					$sum = 0;
-					foreach ( $frame[2] as $arg ) {
-						$sum += (int)$arg[1];
-					}
-					return $sum;
-				},
-			),
 			'wgResourceLoaderLESSImportPaths' => array(
-				dirname( dirname( __DIR__  ) ) . '/data/less/common',
+				dirname( dirname( __DIR__ ) ) . '/data/less/common',
 			),
 			'wgResourceLoaderLESSVars' => array(
 				'foo'  => '2px',

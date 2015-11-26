@@ -117,12 +117,12 @@ class SqliteMaintenance extends Maintenance {
 		$this->db->query( 'BEGIN IMMEDIATE TRANSACTION', __METHOD__ );
 		$ourFile = $this->db->getDbFilePath();
 		$this->output( "   Copying database file $ourFile to $fileName... " );
-		wfSuppressWarnings( false );
+		MediaWiki\suppressWarnings( false );
 		if ( !copy( $ourFile, $fileName ) ) {
 			$err = error_get_last();
 			$this->error( "      {$err['message']}" );
 		}
-		wfSuppressWarnings( true );
+		MediaWiki\suppressWarnings( true );
 		$this->output( "   Releasing lock...\n" );
 		$this->db->query( 'COMMIT TRANSACTION', __METHOD__ );
 	}

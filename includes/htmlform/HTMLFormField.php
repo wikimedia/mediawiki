@@ -10,6 +10,7 @@ abstract class HTMLFormField {
 	protected $mValidationCallback;
 	protected $mFilterCallback;
 	protected $mName;
+	protected $mDir;
 	protected $mLabel; # String label.  Set on construction
 	protected $mID;
 	protected $mClass = '';
@@ -48,7 +49,7 @@ abstract class HTMLFormField {
 	 * Defaults to false, which getOOUI will interpret as "use the HTML version"
 	 *
 	 * @param string $value
-	 * @return OOUI\Widget|false
+	 * @return OOUI\\Widget|false
 	 */
 	function getInputOOUI( $value ) {
 		return false;
@@ -388,6 +389,10 @@ abstract class HTMLFormField {
 			$this->mName = $params['name'];
 		}
 
+		if ( isset( $params['dir'] ) ) {
+			$this->mDir = $params['dir'];
+		}
+
 		$validName = Sanitizer::escapeId( $this->mName );
 		$validName = str_replace( array( '.5B', '.5D' ), array( '[', ']' ), $validName );
 		if ( $this->mName != $validName && !isset( $params['nodata'] ) ) {
@@ -519,12 +524,20 @@ abstract class HTMLFormField {
 			'mw-htmlform-nolabel' => ( $label === '' )
 		);
 
-		$field = Html::rawElement(
-			'div',
-			array( 'class' => $outerDivClass ) + $cellAttributes,
-			$inputHtml . "\n$errors"
-		);
-		$divCssClasses = array( "mw-htmlform-field-$fieldType", $this->mClass, $this->mVFormClass, $errorClass );
+		$horizontalLabel = isset( $this->mParams['horizontal-label'] )
+			? $this->mParams['horizontal-label'] : false;
+
+		if ( $horizontalLabel ) {
+			$field = '&#160;' . $inputHtml . "\n$errors";
+		} else {
+			$field = Html::rawElement(
+				'div',
+				array( 'class' => $outerDivClass ) + $cellAttributes,
+				$inputHtml . "\n$errors"
+			);
+		}
+		$divCssClasses = array( "mw-htmlform-field-$fieldType",
+			$this->mClass, $this->mVFormClass, $errorClass );
 
 		$wrapperAttributes = array(
 			'class' => $divCssClasses,
@@ -545,38 +558,47 @@ abstract class HTMLFormField {
 	 *
 	 * @param string $value The value to set the input to.
 	 *
-	 * @return string
+	 * @return OOUI\\FieldLayout|OOUI\\ActionFieldLayout
 	 */
 	public function getOOUI( $value ) {
-		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
-
 		$inputField = $this->getInputOOUI( $value );
 
 		if ( !$inputField ) {
-			// This field doesn't have an OOUI implementation yet at all.
-			// OK, use this trick:
-			return $this->getDiv( $value );
+			// This field doesn't have an OOUI implementation yet at all. Fall back to getDiv() to
+			// generate the whole field, label and errors and all, then wrap it in a Widget.
+			// It might look weird, but it'll work OK.
+			return $this->getFieldLayoutOOUI(
+				new OOUI\Widget( array( 'content' => new OOUI\HtmlSnippet( $this->getDiv( $value ) ) ) ),
+				array( 'infusable' => false )
+			);
 		}
 
 		$infusable = true;
 		if ( is_string( $inputField ) ) {
-			// Mmm… We have an OOUI implementation, but it's not complete, and we got a load of HTML.
-			// Cheat a little and wrap it in a widget! It won't be infusable, though, since client-side
+			// We have an OOUI implementation, but it's not proper, and we got a load of HTML.
+			// Cheat a little and wrap it in a widget. It won't be infusable, though, since client-side
 			// JavaScript doesn't know how to rebuilt the contents.
 			$inputField = new OOUI\Widget( array( 'content' => new OOUI\HtmlSnippet( $inputField ) ) );
 			$infusable = false;
 		}
 
 		$fieldType = get_class( $this );
-		$field = new OOUI\FieldLayout( $inputField, array(
-			'classes' => array( "mw-htmlform-field-$fieldType", $this->mClass, $errorClass ),
+		$helpText = $this->getHelpText();
+		$errors = $this->getErrorsRaw( $value );
+		foreach ( $errors as &$error ) {
+			$error = new OOUI\HtmlSnippet( $error );
+		}
+
+		$config = array(
+			'classes' => array( "mw-htmlform-field-$fieldType", $this->mClass ),
 			'align' => $this->getLabelAlignOOUI(),
 			'label' => $this->getLabel(),
-			'help' => $this->getHelpText(),
+			'help' => $helpText !== null ? new OOUI\HtmlSnippet( $helpText ) : null,
+			'errors' => $errors,
 			'infusable' => $infusable,
-		) );
+		);
 
-		return $field . $errors;
+		return $this->getFieldLayoutOOUI( $inputField, $config );
 	}
 
 	/**
@@ -585,6 +607,18 @@ abstract class HTMLFormField {
 	 */
 	protected function getLabelAlignOOUI() {
 		return 'top';
+	}
+
+	/**
+	 * Get a FieldLayout (or subclass thereof) to wrap this field in when using OOUI output.
+	 * @return OOUI\\FieldLayout|OOUI\\ActionFieldLayout
+	 */
+	protected function getFieldLayoutOOUI( $inputField, $config ) {
+		if ( isset( $this->mClassWithButton ) ) {
+			$buttonWidget = $this->mClassWithButton->getInputOOUI( '' );
+			return new OOUI\ActionFieldLayout( $inputField, $buttonWidget, $config );
+		}
+		return new OOUI\FieldLayout( $inputField, $config );
 	}
 
 	/**
@@ -716,7 +750,7 @@ abstract class HTMLFormField {
 	/**
 	 * Determine the help text to display
 	 * @since 1.20
-	 * @return string
+	 * @return string HTML
 	 */
 	public function getHelpText() {
 		$helptext = null;
@@ -751,7 +785,7 @@ abstract class HTMLFormField {
 	 * @since 1.20
 	 *
 	 * @param string $value The value of the input
-	 * @return array
+	 * @return array array( $errors, $errorClass )
 	 */
 	public function getErrorsAndErrorClass( $value ) {
 		$errors = $this->validate( $value, $this->mParent->mFieldData );
@@ -765,6 +799,32 @@ abstract class HTMLFormField {
 		}
 
 		return array( $errors, $errorClass );
+	}
+
+	/**
+	 * Determine form errors to display, returning them in an array.
+	 *
+	 * @since 1.26
+	 * @param string $value The value of the input
+	 * @return string[] Array of error HTML strings
+	 */
+	public function getErrorsRaw( $value ) {
+		$errors = $this->validate( $value, $this->mParent->mFieldData );
+
+		if ( is_bool( $errors ) || !$this->mParent->wasSubmitted() ) {
+			$errors = array();
+		}
+
+		if ( !is_array( $errors ) ) {
+			$errors = array( $errors );
+		}
+		foreach ( $errors as &$error ) {
+			if ( $error instanceof Message ) {
+				$error = $error->parse();
+			}
+		}
+
+		return $errors;
 	}
 
 	/**
@@ -791,6 +851,8 @@ abstract class HTMLFormField {
 
 		$displayFormat = $this->mParent->getDisplayFormat();
 		$html = '';
+		$horizontalLabel = isset( $this->mParams['horizontal-label'] )
+			? $this->mParams['horizontal-label'] : false;
 
 		if ( $displayFormat === 'table' ) {
 			$html =
@@ -798,7 +860,7 @@ abstract class HTMLFormField {
 					array( 'class' => 'mw-label' ) + $cellAttributes,
 					Html::rawElement( 'label', $for, $labelValue ) );
 		} elseif ( $hasLabel || $this->mShowEmptyLabels ) {
-			if ( $displayFormat === 'div' ) {
+			if ( $displayFormat === 'div' && !$horizontalLabel ) {
 				$html =
 					Html::rawElement( 'div',
 						array( 'class' => 'mw-label' ) + $cellAttributes,
@@ -866,7 +928,7 @@ abstract class HTMLFormField {
 
 			if ( in_array( $key, $boolAttribs ) ) {
 				if ( !empty( $this->mParams[$key] ) ) {
-					$ret[$mappedKey] = '';
+					$ret[$mappedKey] = $mappedKey;
 				}
 			} elseif ( isset( $this->mParams[$key] ) ) {
 				$ret[$mappedKey] = $this->mParams[$key];

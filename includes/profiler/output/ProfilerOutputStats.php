@@ -37,13 +37,11 @@ class ProfilerOutputStats extends ProfilerOutput {
 	 * @param array $stats
 	 */
 	public function log( array $stats ) {
+		$prefix = isset( $this->params['prefix'] ) ? $this->params['prefix'] : '';
 		$contextStats = $this->collector->getContext()->getStats();
 
 		foreach ( $stats as $stat ) {
-			// Sanitize the key
-			$key = str_replace( '::', '.', $stat['name'] );
-			$key = preg_replace( '/[^a-z.]+/i', '_', $key );
-			$key = trim( $key, '_.' );
+			$key = "{$prefix}.{$stat['name']}";
 
 			// Convert fractional seconds to whole milliseconds
 			$cpu = round( $stat['cpu'] * 1000 );

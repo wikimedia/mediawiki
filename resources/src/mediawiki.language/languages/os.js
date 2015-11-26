@@ -14,8 +14,8 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 		// Variable for ending
 		ending = '';
 
-	if ( grammarForms && grammarForms[form] ) {
-		return grammarForms[form][word];
+	if ( grammarForms && grammarForms[ form ] ) {
+		return grammarForms[ form ][ word ];
 	}
 	// Checking if the $word is in plural form
 	if ( word.match( /тæ$/i ) ) {

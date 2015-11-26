@@ -8,7 +8,7 @@ function serializeControls( controls ) {
 		len = controls.length;
 
 	for ( i = 0; i < len; i++ ) {
-		data[ controls[i].name ] = controls[i].value;
+		data[ controls[ i ].name ] = controls[ i ].value;
 	}
 
 	return data;
@@ -23,7 +23,7 @@ function serializeControls( controls ) {
  * @return {Object}
  */
 jQuery.fn.getAttrs = function () {
-	return serializeControls( this[0].attributes );
+	return serializeControls( this[ 0 ].attributes );
 };
 
 /**

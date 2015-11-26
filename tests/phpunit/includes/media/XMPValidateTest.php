@@ -1,5 +1,7 @@
 <?php
 
+use Psr\Log\NullLogger;
+
 /**
  * @group Media
  */
@@ -11,7 +13,8 @@ class XMPValidateTest extends MediaWikiTestCase {
 	 */
 	public function testValidateDate( $value, $expected ) {
 		// The method should modify $value.
-		XMPValidate::validateDate( array(), $value, true );
+		$validate = new XMPValidate( new NullLogger() );
+		$validate->validateDate( array(), $value, true );
 		$this->assertEquals( $expected, $value );
 	}
 

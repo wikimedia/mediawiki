@@ -31,6 +31,9 @@ class CSSMin {
 
 	/* Constants */
 
+	/** @var string Strip marker for comments. **/
+	const PLACEHOLDER = "\x7fPLACEHOLDER\x7f";
+
 	/**
 	 * Internet Explorer data URI length limit. See encodeImageAsDataURI().
 	 */
@@ -57,13 +60,15 @@ class CSSMin {
 	/* Static Methods */
 
 	/**
-	 * Gets a list of local file paths which are referenced in a CSS style sheet
+	 * Gets a list of local file paths which are referenced in a CSS style sheet.
 	 *
-	 * This function will always return an empty array if the second parameter is not given or null
-	 * for backwards-compatibility.
+	 * If you wish non-existent files to be listed too, use getAllLocalFileReferences().
 	 *
-	 * @param string $source CSS data to remap
-	 * @param string $path File path where the source was read from (optional)
+	 * For backwards-compatibility, if the second parameter is not given or null,
+	 * this function will return an empty array instead of erroring out.
+	 *
+	 * @param string $source CSS stylesheet source to process
+	 * @param string $path File path where the source was read from
 	 * @return array List of local file references
 	 */
 	public static function getLocalFileReferences( $source, $path = null ) {
@@ -71,11 +76,31 @@ class CSSMin {
 			return array();
 		}
 
+		$files = self::getAllLocalFileReferences( $source, $path );
+
+		// Skip non-existent files
+		$files = array_filter( $files, function ( $file ) {
+			return file_exists( $file );
+		} );
+
+		return $files;
+	}
+
+	/**
+	 * Gets a list of local file paths which are referenced in a CSS style sheet, including
+	 * non-existent files.
+	 *
+	 * @param string $source CSS stylesheet source to process
+	 * @param string $path File path where the source was read from
+	 * @return array List of local file references
+	 */
+	public static function getAllLocalFileReferences( $source, $path ) {
+		$stripped = preg_replace( '/' . self::COMMENT_REGEX . '/s', '', $source );
 		$path = rtrim( $path, '/' ) . '/';
 		$files = array();
 
 		$rFlags = PREG_OFFSET_CAPTURE | PREG_SET_ORDER;
-		if ( preg_match_all( '/' . self::URL_REGEX . '/', $source, $matches, $rFlags ) ) {
+		if ( preg_match_all( '/' . self::URL_REGEX . '/', $stripped, $matches, $rFlags ) ) {
 			foreach ( $matches as $match ) {
 				$url = $match['file'][0];
 
@@ -84,13 +109,7 @@ class CSSMin {
 					break;
 				}
 
-				$file = $path . $url;
-				// Skip non-existent files
-				if ( file_exists( $file ) ) {
-					break;
-				}
-
-				$files[] = $file;
+				$files[] = $path . $url;
 			}
 		}
 		return $files;
@@ -232,19 +251,22 @@ class CSSMin {
 			$remote = substr( $remote, 0, -1 );
 		}
 
+		// Disallow U+007F DELETE, which is illegal anyway, and which
+		// we use for comment placeholders.
+		$source = str_replace( "\x7f", "?", $source );
+
 		// Replace all comments by a placeholder so they will not interfere with the remapping.
 		// Warning: This will also catch on anything looking like the start of a comment between
 		// quotation marks (e.g. "foo /* bar").
 		$comments = array();
-		$placeholder = uniqid( '', true );
 
 		$pattern = '/(?!' . CSSMin::EMBED_REGEX . ')(' . CSSMin::COMMENT_REGEX . ')/s';
 
 		$source = preg_replace_callback(
 			$pattern,
-			function ( $match ) use ( &$comments, $placeholder ) {
+			function ( $match ) use ( &$comments ) {
 				$comments[] = $match[ 0 ];
-				return $placeholder . ( count( $comments ) - 1 ) . 'x';
+				return CSSMin::PLACEHOLDER . ( count( $comments ) - 1 ) . 'x';
 			},
 			$source
 		);
@@ -257,13 +279,13 @@ class CSSMin {
 
 		$source = preg_replace_callback(
 			$pattern,
-			function ( $matchOuter ) use ( $local, $remote, $embedData, $placeholder ) {
+			function ( $matchOuter ) use ( $local, $remote, $embedData ) {
 				$rule = $matchOuter[0];
 
 				// Check for global @embed comment and remove it. Allow other comments to be present
 				// before @embed (they have been replaced with placeholders at this point).
 				$embedAll = false;
-				$rule = preg_replace( '/^((?:\s+|' . $placeholder . '(\d+)x)*)' . CSSMin::EMBED_REGEX . '\s*/', '$1', $rule, 1, $embedAll );
+				$rule = preg_replace( '/^((?:\s+|' . CSSMin::PLACEHOLDER . '(\d+)x)*)' . CSSMin::EMBED_REGEX . '\s*/', '$1', $rule, 1, $embedAll );
 
 				// Build two versions of current rule: with remapped URLs
 				// and with embedded data: URIs (where possible).
@@ -328,7 +350,7 @@ class CSSMin {
 			}, $source );
 
 		// Re-insert comments
-		$pattern = '/' . $placeholder . '(\d+)x/';
+		$pattern = '/' . CSSMin::PLACEHOLDER . '(\d+)x/';
 		$source = preg_replace_callback( $pattern, function( $match ) use ( &$comments ) {
 			return $comments[ $match[1] ];
 		}, $source );
@@ -393,16 +415,16 @@ class CSSMin {
 
 		if ( $local === false ) {
 			// Assume that all paths are relative to $remote, and make them absolute
-			return $remote . '/' . $url;
+			$url = $remote . '/' . $url;
 		} else {
 			// We drop the query part here and instead make the path relative to $remote
 			$url = "{$remote}/{$file}";
 			// Path to the actual file on the filesystem
 			$localFile = "{$local}/{$file}";
 			if ( file_exists( $localFile ) ) {
-				// Add version parameter as a time-stamp in ISO 8601 format,
-				// using Z for the timezone, meaning GMT
-				$url .= '?' . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $localFile ), -2 ) );
+				// Add version parameter as the first five hex digits
+				// of the MD5 hash of the file's contents.
+				$url .= '?' . substr( md5_file( $localFile ), 0, 5 );
 				if ( $embed ) {
 					$data = self::encodeImageAsDataURI( $localFile );
 					if ( $data !== false ) {
@@ -412,8 +434,11 @@ class CSSMin {
 			}
 			// If any of these conditions failed (file missing, we don't want to embed it
 			// or it's not embeddable), return the URL (possibly with ?timestamp part)
-			return $url;
 		}
+		if ( function_exists( 'wfRemoveDotSegments' ) ) {
+			$url = wfRemoveDotSegments( $url );
+		}
+		return $url;
 	}
 
 	/**

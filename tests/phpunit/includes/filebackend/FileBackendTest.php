@@ -2376,7 +2376,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$status = Status::newGood();
 		$sl = $this->backend->getScopedFileLocks( $paths, LockManager::LOCK_EX, $status );
-		$this->assertType( 'ScopedLock', $sl,
+		$this->assertInstanceOf( 'ScopedLock', $sl,
 			"Scoped locking of files succeeded ($backendName)." );
 		$this->assertEquals( array(), $status->errors,
 			"Scoped locking of files succeeded ($backendName)." );
@@ -2390,6 +2390,56 @@ class FileBackendTest extends MediaWikiTestCase {
 			"Scoped unlocking of files succeeded ($backendName)." );
 		$this->assertEquals( true, $status->isOK(),
 			"Scoped unlocking of files succeeded with OK status ($backendName)." );
+	}
+
+	public function testReadAffinity() {
+		$be = TestingAccessWrapper::newFromObject(
+			new FileBackendMultiWrite( array(
+				'name' => 'localtesting',
+				'wikiId' => wfWikiId() . mt_rand(),
+				'backends' => array(
+					array( // backend 0
+						'name' => 'multitesting0',
+						'class' => 'MemoryFileBackend',
+						'isMultiMaster' => false,
+						'readAffinity' => true
+					),
+					array( // backend 1
+						'name' => 'multitesting1',
+						'class' => 'MemoryFileBackend',
+						'isMultiMaster' => true
+					)
+				)
+			) )
+		);
+
+		$this->assertEquals(
+			1,
+			$be->getReadIndexFromParams( array( 'latest' => 1 ) ),
+			'Reads with "latest" flag use backend 1'
+		);
+		$this->assertEquals(
+			0,
+			$be->getReadIndexFromParams( array( 'latest' => 0 ) ),
+			'Reads without "latest" flag use backend 0'
+		);
+
+		$p = 'container/test-cont/file.txt';
+		$be->backends[0]->quickCreate( array(
+			'dst' => "mwstore://multitesting0/$p", 'content' => 'cattitude' ) );
+		$be->backends[1]->quickCreate( array(
+			'dst' => "mwstore://multitesting1/$p", 'content' => 'princess of power' ) );
+
+		$this->assertEquals(
+			'cattitude',
+			$be->getFileContents( array( 'src' => "mwstore://localtesting/$p" ) ),
+			"Non-latest read came from backend 0"
+		);
+		$this->assertEquals(
+			'princess of power',
+			$be->getFileContents( array( 'src' => "mwstore://localtesting/$p", 'latest' => 1 ) ),
+			"Latest read came from backend1"
+		);
 	}
 
 	// helper function

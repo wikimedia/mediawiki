@@ -78,7 +78,6 @@ if ( $IP === false ) {
 
 # Grab profiling functions
 require_once "$IP/includes/profiler/ProfilerFunctions.php";
-$wgRUstart = wfGetRusage() ?: array();
 
 # Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
@@ -136,4 +135,9 @@ if ( ob_get_level() == 0 ) {
 
 if ( !defined( 'MW_NO_SETUP' ) ) {
 	require_once "$IP/includes/Setup.php";
+}
+
+# Multiple DBs or commits might be used; keep the request as transactional as possible
+if ( isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+	ignore_user_abort( true );
 }

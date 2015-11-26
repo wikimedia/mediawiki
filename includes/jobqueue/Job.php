@@ -32,7 +32,7 @@ abstract class Job implements IJobSpecification {
 	/** @var string */
 	public $command;
 
-	/** @var array|bool Array of job parameters or false if none */
+	/** @var array Array of job parameters */
 	public $params;
 
 	/** @var array Additional queue metadata */
@@ -58,11 +58,11 @@ abstract class Job implements IJobSpecification {
 	 *
 	 * @param string $command Job command
 	 * @param Title $title Associated title
-	 * @param array|bool $params Job parameters
+	 * @param array $params Job parameters
 	 * @throws MWException
 	 * @return Job
 	 */
-	public static function factory( $command, Title $title, $params = false ) {
+	public static function factory( $command, Title $title, $params = array() ) {
 		global $wgJobClasses;
 		if ( isset( $wgJobClasses[$command] ) ) {
 			$class = $wgJobClasses[$command];
@@ -80,7 +80,7 @@ abstract class Job implements IJobSpecification {
 	public function __construct( $command, $title, $params = false ) {
 		$this->command = $command;
 		$this->title = $title;
-		$this->params = $params;
+		$this->params = is_array( $params ) ? $params : array(); // sanity
 
 		// expensive jobs may set this to true
 		$this->removeDuplicates = false;
@@ -132,6 +132,24 @@ abstract class Job implements IJobSpecification {
 		return isset( $this->params['jobReleaseTimestamp'] )
 			? wfTimestampOrNull( TS_UNIX, $this->params['jobReleaseTimestamp'] )
 			: null;
+	}
+
+	/**
+	 * @return int|null UNIX timestamp of when the job was queued, or null
+	 * @since 1.26
+	 */
+	public function getQueuedTimestamp() {
+		return isset( $this->metadata['timestamp'] )
+			? wfTimestampOrNull( TS_UNIX, $this->metadata['timestamp'] )
+			: null;
+	}
+
+	/**
+	 * @return int|null UNIX timestamp of when the job was runnable, or null
+	 * @since 1.26
+	 */
+	public function getReadyTimestamp() {
+		return $this->getReleaseTimestamp() ?: $this->getQueuedTimestamp();
 	}
 
 	/**
@@ -196,15 +214,27 @@ abstract class Job implements IJobSpecification {
 	}
 
 	/**
+	 * Get "root job" parameters for a task
+	 *
+	 * This is used to no-op redundant jobs, including child jobs of jobs,
+	 * as long as the children inherit the root job parameters. When a job
+	 * with root job parameters and "rootJobIsSelf" set is pushed, the
+	 * deduplicateRootJob() method is automatically called on it. If the
+	 * root job is only virtual and not actually pushed (e.g. the sub-jobs
+	 * are inserted directly), then call deduplicateRootJob() directly.
+	 *
 	 * @see JobQueue::deduplicateRootJob()
+	 *
 	 * @param string $key A key that identifies the task
 	 * @return array Map of:
+	 *   - rootJobIsSelf    : true
 	 *   - rootJobSignature : hash (e.g. SHA1) that identifies the task
 	 *   - rootJobTimestamp : TS_MW timestamp of this instance of the task
 	 * @since 1.21
 	 */
 	public static function newRootJobParams( $key ) {
 		return array(
+			'rootJobIsSelf'    => true,
 			'rootJobSignature' => sha1( $key ),
 			'rootJobTimestamp' => wfTimestampNow()
 		);
@@ -234,6 +264,14 @@ abstract class Job implements IJobSpecification {
 	public function hasRootJobParams() {
 		return isset( $this->params['rootJobSignature'] )
 			&& isset( $this->params['rootJobTimestamp'] );
+	}
+
+	/**
+	 * @see JobQueue::deduplicateRootJob()
+	 * @return bool Whether this is job is a root job
+	 */
+	public function isRootJob() {
+		return $this->hasRootJobParams() && !empty( $this->params['rootJobIsSelf'] );
 	}
 
 	/**

@@ -57,7 +57,7 @@ class LocalSettingsGenerator {
 
 		$confItems = array_merge(
 			array(
-				'wgServer', 'wgScriptPath', 'wgScriptExtension',
+				'wgServer', 'wgScriptPath',
 				'wgPasswordSender', 'wgImageMagickConvertCommand', 'wgShellLocale',
 				'wgLanguageCode', 'wgEnableEmail', 'wgEnableUserEmail', 'wgDiff3',
 				'wgEnotifUserTalk', 'wgEnotifWatchlist', 'wgEmailAuthentication',
@@ -331,13 +331,12 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## (like /w/index.php/Page_title to /wiki/Page_title) please see:
 ## https://www.mediawiki.org/wiki/Manual:Short_URL
 \$wgScriptPath = \"{$this->values['wgScriptPath']}\";
-\$wgScriptExtension = \"{$this->values['wgScriptExtension']}\";
 ${serverSetting}
-## The relative URL path to the skins directory
-\$wgStylePath = \"\$wgScriptPath/skins\";
+
+## The URL path to static resources (images, scripts, etc.)
 \$wgResourceBasePath = \$wgScriptPath;
 
-## The relative URL path to the logo.  Make sure you change this from the default,
+## The URL path to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
 \$wgLogo = \"{$this->values['wgLogo']}\";
 
@@ -372,7 +371,7 @@ ${serverSetting}
 {$magic}\$wgUseImageMagick = true;
 {$magic}\$wgImageMagickConvertCommand = \"{$this->values['wgImageMagickConvertCommand']}\";
 
-# InstantCommons allows wiki to use images from http://commons.wikimedia.org
+# InstantCommons allows wiki to use images from https://commons.wikimedia.org
 \$wgUseInstantCommons = {$this->values['wgUseInstantCommons']};
 
 ## If you use ImageMagick (or any other shell command) on a

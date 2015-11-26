@@ -1,0 +1,25 @@
+{
+	"prefix": "oo-ui-icon",
+	"intro": "@import '../../../../src/styles/common';",
+	"variants": {
+		"invert": {
+			"color": "#FFFFFF",
+			"global": true
+		}
+	},
+	"images": {
+		"userActive": { "file": {
+			"ltr": "images/icons/userActive-ltr.svg",
+			"rtl": "images/icons/userActive-rtl.svg"
+		} },
+		"userAvatar": { "file": "images/icons/userAvatar.svg" },
+		"userInactive": { "file": {
+			"ltr": "images/icons/userInactive-ltr.svg",
+			"rtl": "images/icons/userInactive-rtl.svg"
+		} },
+		"userTalk": { "file": {
+			"ltr": "images/icons/userTalk-ltr.svg",
+			"rtl": "images/icons/userTalk-rtl.svg"
+		} }
+	}
+}

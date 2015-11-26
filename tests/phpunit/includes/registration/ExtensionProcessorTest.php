@@ -14,7 +14,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	 *
 	 * @var array
 	 */
-	static $default = array(
+	public static $default = array(
 		'name' => 'FooBar',
 	);
 
@@ -28,7 +28,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 			'@metadata' => array( 'foobarbaz' ),
 			'AnAttribute' => array( 'omg' ),
 			'AutoloadClasses' => array( 'FooBar' => 'includes/FooBar.php' ),
-		) );
+		), 1 );
 
 		$extracted = $processor->getExtractedInfo();
 		$attributes = $extracted['attributes'];
@@ -96,7 +96,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	 */
 	public function testRegisterHooks( $pre, $info, $expected ) {
 		$processor = new MockExtensionProcessor( array( 'wgHooks' => $pre ) );
-		$processor->extractInfo( $this->dir, $info );
+		$processor->extractInfo( $this->dir, $info, 1 );
 		$extracted = $processor->getExtractedInfo();
 		$this->assertEquals( $expected, $extracted['globals']['wgHooks'] );
 	}
@@ -119,8 +119,8 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				'Bar' => 'somevalue'
 			),
 		) + self::$default;
-		$processor->extractInfo( $this->dir, $info );
-		$processor->extractInfo( $this->dir, $info2 );
+		$processor->extractInfo( $this->dir, $info, 1 );
+		$processor->extractInfo( $this->dir, $info2, 1 );
 		$extracted = $processor->getExtractedInfo();
 		$this->assertEquals( 'somevalue', $extracted['globals']['wgBar'] );
 		$this->assertEquals( 10, $extracted['globals']['wgFoo'] );
@@ -159,7 +159,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	 */
 	public function testExtracttExtensionMessagesFiles( $input, $expected ) {
 		$processor = new ExtensionProcessor();
-		$processor->extractInfo( $this->dir, $input + self::$default );
+		$processor->extractInfo( $this->dir, $input + self::$default, 1 );
 		$out = $processor->getExtractedInfo();
 		foreach ( $expected as $key => $value ) {
 			$this->assertEquals( $value, $out['globals'][$key] );
@@ -187,7 +187,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	 */
 	public function testExtractMessagesDirs( $input, $expected ) {
 		$processor = new ExtensionProcessor();
-		$processor->extractInfo( $this->dir, $input + self::$default );
+		$processor->extractInfo( $this->dir, $input + self::$default, 1 );
 		$out = $processor->getExtractedInfo();
 		foreach ( $expected as $key => $value ) {
 			$this->assertEquals( $value, $out['globals'][$key] );
@@ -200,7 +200,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	 */
 	public function testExtractResourceLoaderModules( $input, $expected ) {
 		$processor = new ExtensionProcessor();
-		$processor->extractInfo( $this->dir, $input + self::$default );
+		$processor->extractInfo( $this->dir, $input + self::$default, 1 );
 		$out = $processor->getExtractedInfo();
 		foreach ( $expected as $key => $value ) {
 			$this->assertEquals( $value, $out['globals'][$key] );

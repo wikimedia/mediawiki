@@ -45,11 +45,7 @@ class LessFileCompilationTest extends ResourceLoaderTestCase {
 		$method->setAccessible( true );
 		$compiler = $method->invoke( $this->module, $rlContext );
 
-		$this->assertNotNull( $compiler->compileFile( $this->file ) );
-	}
-
-	public function getName( $withDataSet = true ) {
-		return $this->toString();
+		$this->assertNotNull( $compiler->parseFile( $this->file )->getCss() );
 	}
 
 	public function toString() {

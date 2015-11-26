@@ -1,26 +1,28 @@
 ( function ( mw, $ ) {
 
-	// We allow people to omit these default parameters from API requests
-	// there is very customizable error handling here, on a per-call basis
-	// wondering, would it be simpler to make it easy to clone the api object,
-	// change error handling, and use that instead?
-	var defaultOptions = {
+	/**
+	 * @class mw.Api
+	 */
 
-			// Query parameters for API requests
+	/**
+	 * @property {Object} defaultOptions Default options for #ajax calls. Can be overridden by passing
+	 *     `options` to mw.Api constructor.
+	 * @property {Object} defaultOptions.parameters Default query parameters for API requests.
+	 * @property {Object} defaultOptions.ajax Default options for jQuery#ajax.
+	 * @private
+	 */
+	var defaultOptions = {
 			parameters: {
 				action: 'query',
 				format: 'json'
 			},
-
-			// Ajax options for jQuery.ajax()
 			ajax: {
 				url: mw.util.wikiScript( 'api' ),
-
 				timeout: 30 * 1000, // 30 seconds
-
 				dataType: 'json'
 			}
 		},
+
 		// Keyed by ajax url and symbolic name for the individual request
 		promises = {};
 
@@ -39,37 +41,33 @@
 	 * Constructor to create an object to interact with the API of a particular MediaWiki server.
 	 * mw.Api objects represent the API of a particular MediaWiki server.
 	 *
-	 * TODO: Share API objects with exact same config.
-	 *
 	 *     var api = new mw.Api();
 	 *     api.get( {
 	 *         action: 'query',
 	 *         meta: 'userinfo'
-	 *     } ).done ( function ( data ) {
+	 *     } ).done( function ( data ) {
 	 *         console.log( data );
 	 *     } );
 	 *
-	 * Multiple values for a parameter can be specified using an array (since MW 1.25):
+	 * Since MW 1.25, multiple values for a parameter can be specified using an array:
 	 *
 	 *     var api = new mw.Api();
 	 *     api.get( {
 	 *         action: 'query',
 	 *         meta: [ 'userinfo', 'siteinfo' ] // same effect as 'userinfo|siteinfo'
-	 *     } ).done ( function ( data ) {
+	 *     } ).done( function ( data ) {
 	 *         console.log( data );
 	 *     } );
 	 *
-	 * @class
+	 * Since MW 1.26, boolean values for a parameter can be specified directly. If the value is
+	 * `false` or `undefined`, the parameter will be omitted from the request, as required by the API.
 	 *
 	 * @constructor
-	 * @param {Object} options See defaultOptions documentation above. Ajax options can also be
-	 *  overridden for each individual request to {@link jQuery#ajax} later on.
+	 * @param {Object} [options] See #defaultOptions documentation above. Can also be overridden for
+	 *  each individual request by passing them to #get or #post (or directly #ajax) later on.
 	 */
 	mw.Api = function ( options ) {
-
-		if ( options === undefined ) {
-			options = {};
-		}
+		options = options || {};
 
 		// Force a string if we got a mw.Uri object
 		if ( options.ajax && options.ajax.url !== undefined ) {
@@ -80,9 +78,22 @@
 		options.ajax = $.extend( {}, defaultOptions.ajax, options.ajax );
 
 		this.defaults = options;
+		this.requests = [];
 	};
 
 	mw.Api.prototype = {
+		/**
+		 * Abort all unfinished requests issued by this Api object.
+		 *
+		 * @method
+		 */
+		abort: function () {
+			$.each( this.requests, function ( index, request ) {
+				if ( request ) {
+					request.abort();
+				}
+			} );
+		},
 
 		/**
 		 * Perform API get request
@@ -113,6 +124,27 @@
 		},
 
 		/**
+		 * Massage parameters from the nice format we accept into a format suitable for the API.
+		 *
+		 * @private
+		 * @param {Object} parameters (modified in-place)
+		 */
+		preprocessParameters: function ( parameters ) {
+			var key;
+			// Handle common MediaWiki API idioms for passing parameters
+			for ( key in parameters ) {
+				// Multiple values are pipe-separated
+				if ( $.isArray( parameters[ key ] ) ) {
+					parameters[ key ] = parameters[ key ].join( '|' );
+				}
+				// Boolean values are only false when not given at all
+				if ( parameters[ key ] === false || parameters[ key ] === undefined ) {
+					delete parameters[ key ];
+				}
+			}
+		},
+
+		/**
 		 * Perform the API call.
 		 *
 		 * @param {Object} parameters
@@ -121,7 +153,8 @@
 		 *  Fail: Error code
 		 */
 		ajax: function ( parameters, ajaxOptions ) {
-			var token,
+			var token, requestIndex,
+				api = this,
 				apiDeferred = $.Deferred(),
 				xhr, key, formData;
 
@@ -134,11 +167,7 @@
 				delete parameters.token;
 			}
 
-			for ( key in parameters ) {
-				if ( $.isArray( parameters[key] ) ) {
-					parameters[key] = parameters[key].join( '|' );
-				}
-			}
+			this.preprocessParameters( parameters );
 
 			// If multipart/form-data has been requested and emulation is possible, emulate it
 			if (
@@ -150,7 +179,7 @@
 				formData = new FormData();
 
 				for ( key in parameters ) {
-					formData.append( key, parameters[key] );
+					formData.append( key, parameters[ key ] );
 				}
 				// If we extracted a token parameter, add it back in.
 				if ( token ) {
@@ -206,6 +235,11 @@
 					}
 				} );
 
+			requestIndex = this.requests.length;
+			this.requests.push( xhr );
+			xhr.always( function () {
+				api.requests[ requestIndex ] = null;
+			} );
 			// Return the Promise
 			return apiDeferred.promise( { abort: xhr.abort } ).fail( function ( code, details ) {
 				if ( !( code === 'http' && details && details.textStatus === 'abort' ) ) {
@@ -242,11 +276,9 @@
 					// Error handler
 					function ( code ) {
 						if ( code === 'badtoken' ) {
-							// Clear from cache
-							promises[ api.defaults.ajax.url ][ tokenType + 'Token' ] =
-								params.token = undefined;
-
+							api.badToken( tokenType );
 							// Try again, once
+							params.token = undefined;
 							return api.getToken( tokenType, params.assert ).then( function ( token ) {
 								params.token = token;
 								return api.post( params, ajaxOptions );
@@ -281,17 +313,16 @@
 
 				d = apiPromise
 					.then( function ( data ) {
-						// If token type is not available for this user,
-						// key '...token' is either missing or set to boolean false
-						if ( data.tokens && data.tokens[type + 'token'] ) {
-							return data.tokens[type + 'token'];
+						if ( data.tokens && data.tokens[ type + 'token' ] ) {
+							return data.tokens[ type + 'token' ];
 						}
 
+						// If token type is not available for this user,
+						// key '...token' is either missing or set to boolean false
 						return $.Deferred().reject( 'token-missing', data );
 					}, function () {
 						// Clear promise. Do not cache errors.
 						delete promiseGroup[ type + 'Token' ];
-
 						// Pass on to allow the caller to handle the error
 						return this;
 					} )
@@ -306,6 +337,23 @@
 			}
 
 			return d;
+		},
+
+		/**
+		 * Indicate that the cached token for a certain action of the API is bad.
+		 *
+		 * Call this if you get a 'badtoken' error when using the token returned by #getToken.
+		 * You may also want to use #postWithToken instead, which invalidates bad cached tokens
+		 * automatically.
+		 *
+		 * @param {string} type Token type
+		 * @since 1.26
+		 */
+		badToken: function ( type ) {
+			var promiseGroup = promises[ this.defaults.ajax.url ];
+			if ( promiseGroup ) {
+				delete promiseGroup[ type + 'Token' ];
+			}
 		}
 	};
 

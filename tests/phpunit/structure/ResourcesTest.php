@@ -36,9 +36,20 @@ class ResourcesTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function testVersionHash() {
+		$data = self::getAllModules();
+		foreach ( $data['modules'] as $moduleName => $module ) {
+			$version = $module->getVersionHash( $data['context'] );
+			$this->assertEquals( 8, strlen( $version ), "$moduleName must use ResourceLoader::makeHash" );
+		}
+	}
+
 	/**
 	 * Verify that nothing explicitly depends on the 'jquery' and 'mediawiki' modules.
 	 * They are always loaded, depending on them is unsupported and leads to unexpected behaviour.
+	 * TODO Modules can dynamically choose dependencies based on context. This method does not
+	 * test such dependencies. The same goes for testMissingDependencies() and
+	 * testUnsatisfiableDependencies().
 	 */
 	public function testIllegalDependencies() {
 		$data = self::getAllModules();
@@ -49,7 +60,7 @@ class ResourcesTest extends MediaWikiTestCase {
 			foreach ( $illegalDeps as $illegalDep ) {
 				$this->assertNotContains(
 					$illegalDep,
-					$module->getDependencies(),
+					$module->getDependencies( $data['context'] ),
 					"Module '$moduleName' must not depend on '$illegalDep'"
 				);
 			}
@@ -65,7 +76,7 @@ class ResourcesTest extends MediaWikiTestCase {
 
 		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
-			foreach ( $module->getDependencies() as $dep ) {
+			foreach ( $module->getDependencies( $data['context'] ) as $dep ) {
 				$this->assertContains(
 					$dep,
 					$validDeps,
@@ -89,7 +100,7 @@ class ResourcesTest extends MediaWikiTestCase {
 		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			$moduleTargets = $module->getTargets();
-			foreach ( $module->getDependencies() as $dep ) {
+			foreach ( $module->getDependencies( $data['context'] ) as $dep ) {
 				if ( !isset( $data['modules'][$dep] ) ) {
 					// Missing dependencies reported by testMissingDependencies
 					continue;
@@ -105,6 +116,22 @@ class ResourcesTest extends MediaWikiTestCase {
 				}
 			}
 		}
+	}
+
+	/**
+	 * CSSMin::getAllLocalFileReferences should ignore url(...) expressions
+	 * that have been commented out.
+	 */
+	public function testCommentedLocalFileReferences() {
+		$basepath = __DIR__ . '/../data/css/';
+		$css = file_get_contents( $basepath . 'comments.css' );
+		$files = CSSMin::getAllLocalFileReferences( $css, $basepath );
+		$expected = array( $basepath . 'not-commented.gif' );
+		$this->assertArrayEquals(
+			$expected,
+			$files,
+			'Url(...) expression in comment should be omitted.'
+		);
 	}
 
 	/**
@@ -263,6 +290,25 @@ class ResourcesTest extends MediaWikiTestCase {
 					$method->invoke( $module, $file ),
 					$moduleName,
 					( $file instanceof ResourceLoaderFilePath ? $file->getPath() : $file ),
+				);
+			}
+
+			// To populate missingLocalFileRefs. Not sure how sane this is inside this test...
+			$module->readStyleFiles(
+				$module->getStyleFiles( $data['context'] ),
+				$module->getFlip( $data['context'] ),
+				$data['context']
+			);
+
+			$property = $reflectedModule->getProperty( 'missingLocalFileRefs' );
+			$property->setAccessible( true );
+			$missingLocalFileRefs = $property->getValue( $module );
+
+			foreach ( $missingLocalFileRefs as $file ) {
+				$cases[] = array(
+					$file,
+					$moduleName,
+					$file,
 				);
 			}
 		}

@@ -71,7 +71,9 @@ class ApiParse extends ApiBase {
 		if ( isset( $params['section'] ) ) {
 			$this->section = $params['section'];
 			if ( !preg_match( '/^((T-)?\d+|new)$/', $this->section ) ) {
-				$this->dieUsage( "The section parameter must be a valid section id or 'new'", "invalidsection" );
+				$this->dieUsage(
+					"The section parameter must be a valid section id or 'new'", "invalidsection"
+				);
 			}
 		} else {
 			$this->section = false;
@@ -89,7 +91,10 @@ class ApiParse extends ApiBase {
 
 		if ( !is_null( $oldid ) || !is_null( $pageid ) || !is_null( $page ) ) {
 			if ( $this->section === 'new' ) {
-					$this->dieUsage( 'section=new cannot be combined with oldid, pageid or page parameters. Please use text', 'params' );
+					$this->dieUsage(
+						'section=new cannot be combined with oldid, pageid or page parameters. ' .
+						'Please use text', 'params'
+					);
 			}
 			if ( !is_null( $oldid ) ) {
 				// Don't use the parser cache
@@ -107,7 +112,10 @@ class ApiParse extends ApiBase {
 				$popts = $this->makeParserOptions( $pageObj, $params );
 
 				// If for some reason the "oldid" is actually the current revision, it may be cached
-				if ( $rev->isCurrent() ) {
+				// Deliberately comparing $pageObj->getLatest() with $rev->getId(), rather than
+				// checking $rev->isCurrent(), because $pageObj is what actually ends up being used,
+				// and if its ->getLatest() is outdated, $rev->isCurrent() won't tell us that.
+				if ( $rev->getId() == $pageObj->getLatest() ) {
 					// May get from/save to parser cache
 					$p_result = $this->getParsedContent( $pageObj, $popts,
 						$pageid, isset( $prop['wikitext'] ) );
@@ -161,9 +169,24 @@ class ApiParse extends ApiBase {
 
 				$popts = $this->makeParserOptions( $pageObj, $params );
 
-				// Potentially cached
-				$p_result = $this->getParsedContent( $pageObj, $popts, $pageid,
-					isset( $prop['wikitext'] ) );
+				// Don't pollute the parser cache when setting options that aren't
+				// in ParserOptions::optionsHash()
+				/// @todo: This should be handled closer to the actual cache instead of here, see T110269
+				$suppressCache =
+					$params['disablepp'] ||
+					$params['disablelimitreport'] ||
+					$params['preview'] ||
+					$params['sectionpreview'] ||
+					$params['disabletidy'];
+
+				if ( $suppressCache ) {
+					$this->content = $this->getContent( $pageObj, $pageid );
+					$p_result = $this->content->getParserOutput( $titleObj, null, $popts );
+				} else {
+					// Potentially cached
+					$p_result = $this->getParsedContent( $pageObj, $popts, $pageid,
+						isset( $prop['wikitext'] ) );
+				}
 			}
 		} else { // Not $oldid, $pageid, $page. Hence based on $text
 			$titleObj = Title::newFromText( $title );
@@ -252,6 +275,7 @@ class ApiParse extends ApiBase {
 		$result_array = array();
 
 		$result_array['title'] = $titleObj->getPrefixedText();
+		$result_array['pageid'] = $pageid ? $pageid : $pageObj->getId();
 
 		if ( !is_null( $oldid ) ) {
 			$result_array['revid'] = intval( $oldid );
@@ -347,7 +371,28 @@ class ApiParse extends ApiBase {
 			$result_array['modules'] = array_values( array_unique( $p_result->getModules() ) );
 			$result_array['modulescripts'] = array_values( array_unique( $p_result->getModuleScripts() ) );
 			$result_array['modulestyles'] = array_values( array_unique( $p_result->getModuleStyles() ) );
-			$result_array['modulemessages'] = array_values( array_unique( $p_result->getModuleMessages() ) );
+			// To be removed in 1.27
+			$result_array['modulemessages'] = array();
+			$this->setWarning( 'modulemessages is deprecated since MediaWiki 1.26' );
+		}
+
+		if ( isset( $prop['jsconfigvars'] ) ) {
+			$result_array['jsconfigvars'] =
+				ApiResult::addMetadataToResultVars( $p_result->getJsConfigVars() );
+		}
+
+		if ( isset( $prop['encodedjsconfigvars'] ) ) {
+			$result_array['encodedjsconfigvars'] = FormatJson::encode(
+				$p_result->getJsConfigVars(), false, FormatJson::ALL_OK
+			);
+			$result_array[ApiResult::META_SUBELEMENTS][] = 'encodedjsconfigvars';
+		}
+
+		if ( isset( $prop['modules'] ) &&
+			!isset( $prop['jsconfigvars'] ) && !isset( $prop['encodedjsconfigvars'] ) ) {
+			$this->setWarning( "Property 'modules' was set but not 'jsconfigvars' " .
+				"or 'encodedjsconfigvars'. Configuration variables are necessary " .
+				"for proper module usage." );
 		}
 
 		if ( isset( $prop['indicators'] ) ) {
@@ -381,9 +426,12 @@ class ApiParse extends ApiBase {
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'limitreporthtml';
 		}
 
-		if ( $params['generatexml'] ) {
+		if ( isset( $prop['parsetree'] ) || $params['generatexml'] ) {
+			if ( !isset( $prop['parsetree'] ) ) {
+				$this->logFeatureUsage( 'action=parse&generatexml' );
+			}
 			if ( $this->content->getModel() != CONTENT_MODEL_WIKITEXT ) {
-				$this->dieUsage( "generatexml is only supported for wikitext content", "notwikitext" );
+				$this->dieUsage( "parsetree is only supported for wikitext content", "notwikitext" );
 			}
 
 			$wgParser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
@@ -431,10 +479,13 @@ class ApiParse extends ApiBase {
 	protected function makeParserOptions( WikiPage $pageObj, array $params ) {
 
 		$popts = $pageObj->makeParserOptions( $this->getContext() );
-		$popts->enableLimitReport( !$params['disablepp'] );
+		$popts->enableLimitReport( !$params['disablepp'] && !$params['disablelimitreport'] );
 		$popts->setIsPreview( $params['preview'] || $params['sectionpreview'] );
 		$popts->setIsSectionPreview( $params['sectionpreview'] );
 		$popts->setEditSection( !$params['disableeditsection'] );
+		if ( $params['disabletidy'] ) {
+			$popts->setTidy( false );
+		}
 
 		return $popts;
 	}
@@ -447,14 +498,9 @@ class ApiParse extends ApiBase {
 	 * @return ParserOutput
 	 */
 	private function getParsedContent( WikiPage $page, $popts, $pageId = null, $getWikitext = false ) {
-		$this->content = $page->getContent( Revision::RAW ); //XXX: really raw?
+		$this->content = $this->getContent( $page, $pageId );
 
 		if ( $this->section !== false && $this->content !== null ) {
-			$this->content = $this->getSectionContent(
-				$this->content,
-				!is_null( $pageId ) ? 'page id ' . $pageId : $page->getTitle()->getPrefixedText()
-			);
-
 			// Not cached (save or load)
 			return $this->content->getParserOutput( $page->getTitle(), null, $popts );
 		}
@@ -473,6 +519,27 @@ class ApiParse extends ApiBase {
 	}
 
 	/**
+	 * Get the content for the given page and the requested section.
+	 *
+	 * @param WikiPage $page
+	 * @param int $pageId
+	 * @return Content
+	 */
+	private function getContent( WikiPage $page, $pageId = null ) {
+		$content = $page->getContent( Revision::RAW ); //XXX: really raw?
+
+		if ( $this->section !== false && $content !== null ) {
+			$content = $this->getSectionContent(
+				$content,
+				!is_null( $pageId ) ? 'page id ' . $pageId : $page->getTitle()->getPrefixedText()
+			);
+		}
+		return $content;
+	}
+
+	/**
+	 * Extract the requested section from the given Content
+	 *
 	 * @param Content $content
 	 * @param string $what Identifies the content in error messages, e.g. page title.
 	 * @return Content|bool
@@ -504,12 +571,13 @@ class ApiParse extends ApiBase {
 		$sectionTitle = !is_null( $params['sectiontitle'] ) ? $params['sectiontitle'] : '';
 
 		if ( $this->section === 'new' && ( $sectionTitle === '' || $summary === '' ) ) {
-			if( $sectionTitle !== '' ) {
+			if ( $sectionTitle !== '' ) {
 				$summary = $params['sectiontitle'];
 			}
 			if ( $summary !== '' ) {
-				$summary = wfMessage( 'newsectionsummary' )->rawParams( $wgParser->stripSectionName( $summary ) )
-					->inContentLanguage()->text();
+				$summary = wfMessage( 'newsectionsummary' )
+					->rawParams( $wgParser->stripSectionName( $summary ) )
+						->inContentLanguage()->text();
 			}
 		}
 		return Linker::formatComment( $summary, $title, $this->section === 'new' );
@@ -676,7 +744,9 @@ class ApiParse extends ApiBase {
 	public function getAllowedParams() {
 		return array(
 			'title' => null,
-			'text' => null,
+			'text' => array(
+				ApiBase::PARAM_TYPE => 'text',
+			),
 			'summary' => null,
 			'page' => null,
 			'pageid' => array(
@@ -705,13 +775,19 @@ class ApiParse extends ApiBase {
 					'headitems',
 					'headhtml',
 					'modules',
+					'jsconfigvars',
+					'encodedjsconfigvars',
 					'indicators',
 					'iwlinks',
 					'wikitext',
 					'properties',
 					'limitreportdata',
 					'limitreporthtml',
-				)
+					'parsetree',
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(
+					'parsetree' => array( 'apihelp-parse-paramvalue-prop-parsetree', CONTENT_MODEL_WIKITEXT ),
+				),
 			),
 			'pst' => false,
 			'onlypst' => false,
@@ -720,13 +796,19 @@ class ApiParse extends ApiBase {
 			'sectiontitle' => array(
 				ApiBase::PARAM_TYPE => 'string',
 			),
-			'disablepp' => false,
+			'disablepp' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
+			'disablelimitreport' => false,
 			'disableeditsection' => false,
+			'disabletidy' => false,
 			'generatexml' => array(
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => array(
 					'apihelp-parse-param-generatexml', CONTENT_MODEL_WIKITEXT
 				),
+				ApiBase::PARAM_DEPRECATED => true,
 			),
 			'preview' => false,
 			'sectionpreview' => false,

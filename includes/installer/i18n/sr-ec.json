@@ -4,7 +4,8 @@
 			"Rancher",
 			"Михајло Анђелковић",
 			"Milicevic01",
-			"Aktron"
+			"Aktron",
+			"Сербијана"
 		]
 	},
 	"config-desc": "Инсталација за Медијавики",
@@ -37,6 +38,7 @@
 	"config-help-restart": "Желите ли да обришете све сачуване податке које сте унели и поново покренете инсталацију?",
 	"config-restart": "Да, покрени поново",
 	"config-env-php": "PHP $1 је инсталиран.",
+	"config-env-hhvm": "HHVM $1 је инсталиран.",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] је инсталиран",
 	"config-apc": "[http://www.php.net/apc APC] је инсталиран",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] је инсталиран",
@@ -44,7 +46,6 @@
 	"config-db-host": "Хост базе података",
 	"config-db-name": "Назив базе података:",
 	"config-db-password": "Лозинка за базу података:",
-	"config-db-password-empty": "Унесите лозинку за новог корисника базе података: ($1).\n\nМада је могуће отворити налоге без лозинки, то се не препоручује.",
 	"config-type-mysql": "MySQL (или компактибилан)",
 	"config-type-postgres": "PostgreSQL",
 	"config-type-sqlite": "SQLite",

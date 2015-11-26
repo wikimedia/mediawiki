@@ -32,7 +32,7 @@
 function wfGetRusage() {
 	if ( !function_exists( 'getrusage' ) ) {
 		return false;
-	} elseif ( defined ( 'HHVM_VERSION' ) ) {
+	} elseif ( defined( 'HHVM_VERSION' ) ) {
 		return getrusage( 2 /* RUSAGE_THREAD */ );
 	} else {
 		return getrusage( 0 /* RUSAGE_SELF */ );

@@ -25,7 +25,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 	}
 
 	public function testHidingRevisions() {
-		$user = self::$users['sysop']->user;
+		$user = self::$users['sysop']->getUser();
 		$revid = array_shift( $this->revs );
 		$out = $this->doApiRequest( array(
 			'action' => 'revisiondelete',
@@ -80,7 +80,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 	}
 
 	public function testUnhidingOutput() {
-		$user = self::$users['sysop']->user;
+		$user = self::$users['sysop']->getUser();
 		$revid = array_shift( $this->revs );
 		// Hide revisions
 		$this->doApiRequest( array(

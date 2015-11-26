@@ -91,10 +91,10 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		// Enum mode can only be used when exactly one page is provided.
 		// Enumerating revisions on multiple pages make it extremely
 		// difficult to manage continuations and require additional SQL indexes
-		$enumRevMode = ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ||
-			!is_null( $params['limit'] ) || !is_null( $params['startid'] ) ||
-			!is_null( $params['endid'] ) || $params['dir'] === 'newer' ||
-			!is_null( $params['start'] ) || !is_null( $params['end'] ) );
+		$enumRevMode = ( $params['user'] !== null || $params['excludeuser'] !== null ||
+			$params['limit'] !== null || $params['startid'] !== null ||
+			$params['endid'] !== null || $params['dir'] === 'newer' ||
+			$params['start'] !== null || $params['end'] !== null );
 
 		$pageSet = $this->getPageSet();
 		$pageCount = $pageSet->getGoodTitleCount();
@@ -149,7 +149,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			}
 		} else {
 			$this->limit = $this->getParameter( 'limit' ) ?: 10;
-			$this->addFields( array( 'rev_id', 'rev_page' ) );
+			$this->addFields( array( 'rev_id', 'rev_timestamp', 'rev_page' ) );
 		}
 
 		if ( $this->fld_tags ) {
@@ -160,7 +160,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$this->addFields( 'ts_tags' );
 		}
 
-		if ( !is_null( $params['tag'] ) ) {
+		if ( $params['tag'] !== null ) {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds(
 				array( 'change_tag' => array( 'INNER JOIN', array( 'rev_id=ct_rev_id' ) ) )
@@ -196,58 +196,63 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		}
 
 		if ( $enumRevMode ) {
+			// Indexes targeted:
+			//  page_timestamp if we don't have rvuser
+			//  page_user_timestamp if we have a logged-in rvuser
+			//  page_timestamp or usertext_timestamp if we have an IP rvuser
+
 			// This is mostly to prevent parameter errors (and optimize SQL?)
-			if ( !is_null( $params['startid'] ) && !is_null( $params['start'] ) ) {
+			if ( $params['startid'] !== null && $params['start'] !== null ) {
 				$this->dieUsage( 'start and startid cannot be used together', 'badparams' );
 			}
 
-			if ( !is_null( $params['endid'] ) && !is_null( $params['end'] ) ) {
+			if ( $params['endid'] !== null && $params['end'] !== null ) {
 				$this->dieUsage( 'end and endid cannot be used together', 'badparams' );
 			}
 
-			if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
+			if ( $params['user'] !== null && $params['excludeuser'] !== null ) {
 				$this->dieUsage( 'user and excludeuser cannot be used together', 'badparams' );
 			}
 
-			// Continuing effectively uses startid. But we can't use rvstartid
-			// directly, because there is no way to tell the client to ''not''
-			// send rvstart if it sent it in the original query. So instead we
-			// send the continuation startid as rvcontinue, and ignore both
-			// rvstart and rvstartid when that is supplied.
-			if ( !is_null( $params['continue'] ) ) {
-				$params['startid'] = $params['continue'];
-				$params['start'] = null;
+			if ( $params['continue'] !== null ) {
+				$cont = explode( '|', $params['continue'] );
+				$this->dieContinueUsageIf( count( $cont ) != 2 );
+				$op = ( $params['dir'] === 'newer' ? '>' : '<' );
+				$continueTimestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
+				$continueId = (int)$cont[1];
+				$this->dieContinueUsageIf( $continueId != $cont[1] );
+				$this->addWhere( "rev_timestamp $op $continueTimestamp OR " .
+					"(rev_timestamp = $continueTimestamp AND " .
+					"rev_id $op= $continueId)"
+				);
 			}
 
-			// This code makes an assumption that sorting by rev_id and rev_timestamp produces
-			// the same result. This way users may request revisions starting at a given time,
-			// but to page through results use the rev_id returned after each page.
-			// Switching to rev_id removes the potential problem of having more than
-			// one row with the same timestamp for the same page.
-			// The order needs to be the same as start parameter to avoid SQL filesort.
-			if ( is_null( $params['startid'] ) && is_null( $params['endid'] ) ) {
-				$this->addTimestampWhereRange( 'rev_timestamp', $params['dir'],
-					$params['start'], $params['end'] );
-			} else {
-				$this->addWhereRange( 'rev_id', $params['dir'],
-					$params['startid'], $params['endid'] );
-				// One of start and end can be set
-				// If neither is set, this does nothing
-				$this->addTimestampWhereRange( 'rev_timestamp', $params['dir'],
-					$params['start'], $params['end'], false );
-			}
+			$this->addTimestampWhereRange( 'rev_timestamp', $params['dir'],
+				$params['start'], $params['end'] );
+			$this->addWhereRange( 'rev_id', $params['dir'],
+				$params['startid'], $params['endid'] );
 
 			// There is only one ID, use it
 			$ids = array_keys( $pageSet->getGoodTitles() );
 			$this->addWhereFld( 'rev_page', reset( $ids ) );
 
-			if ( !is_null( $params['user'] ) ) {
-				$this->addWhereFld( 'rev_user_text', $params['user'] );
-			} elseif ( !is_null( $params['excludeuser'] ) ) {
-				$this->addWhere( 'rev_user_text != ' .
-					$db->addQuotes( $params['excludeuser'] ) );
+			if ( $params['user'] !== null ) {
+				$user = User::newFromName( $params['user'] );
+				if ( $user && $user->getId() > 0 ) {
+					$this->addWhereFld( 'rev_user', $user->getId() );
+				} else {
+					$this->addWhereFld( 'rev_user_text', $params['user'] );
+				}
+			} elseif ( $params['excludeuser'] !== null ) {
+				$user = User::newFromName( $params['excludeuser'] );
+				if ( $user && $user->getId() > 0 ) {
+					$this->addWhere( 'rev_user != ' . $user->getId() );
+				} else {
+					$this->addWhere( 'rev_user_text != ' .
+						$db->addQuotes( $params['excludeuser'] ) );
+				}
 			}
-			if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
+			if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
 				// Paranoia: avoid brute force searches (bug 17342)
 				if ( !$this->getUser()->isAllowed( 'deletedhistory' ) ) {
 					$bitmask = Revision::DELETED_USER;
@@ -261,16 +266,20 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 				}
 			}
 		} elseif ( $revCount > 0 ) {
+			// Always targets the PRIMARY index
+
 			$revs = $pageSet->getLiveRevisionIDs();
 
 			// Get all revision IDs
 			$this->addWhereFld( 'rev_id', array_keys( $revs ) );
 
-			if ( !is_null( $params['continue'] ) ) {
+			if ( $params['continue'] !== null ) {
 				$this->addWhere( 'rev_id >= ' . intval( $params['continue'] ) );
 			}
 			$this->addOption( 'ORDER BY', 'rev_id' );
 		} elseif ( $pageCount > 0 ) {
+			// Always targets the rev_page_id index
+
 			$titles = $pageSet->getGoodTitles();
 
 			// When working in multi-page non-enumeration mode,
@@ -282,7 +291,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			// Every time someone relies on equality propagation, god kills a kitten :)
 			$this->addWhereFld( 'rev_page', array_keys( $titles ) );
 
-			if ( !is_null( $params['continue'] ) ) {
+			if ( $params['continue'] !== null ) {
 				$cont = explode( '|', $params['continue'] );
 				$this->dieContinueUsageIf( count( $cont ) != 2 );
 				$pageid = intval( $cont[0] );
@@ -312,7 +321,8 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...
 				if ( $enumRevMode ) {
-					$this->setContinueEnumParameter( 'continue', intval( $row->rev_id ) );
+					$this->setContinueEnumParameter( 'continue',
+						$row->rev_timestamp . '|' . intval( $row->rev_id ) );
 				} elseif ( $revCount > 0 ) {
 					$this->setContinueEnumParameter( 'continue', intval( $row->rev_id ) );
 				} else {
@@ -344,7 +354,8 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 				$fit = $this->addPageSubItem( $row->rev_page, $rev, 'rev' );
 				if ( !$fit ) {
 					if ( $enumRevMode ) {
-						$this->setContinueEnumParameter( 'continue', intval( $row->rev_id ) );
+						$this->setContinueEnumParameter( 'continue',
+							$row->rev_timestamp . '|' . intval( $row->rev_id ) );
 					} elseif ( $revCount > 0 ) {
 						$this->setContinueEnumParameter( 'continue', intval( $row->rev_id ) );
 					} else {
@@ -443,6 +454,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Properties#revisions_.2F_rv';
+		return 'https://www.mediawiki.org/wiki/API:Revisions';
 	}
 }

@@ -93,6 +93,8 @@ class JobQueueFederated extends JobQueue {
 		) {
 			unset( $baseConfig[$o] ); // partition queue doesn't care about this
 		}
+		// The class handles all aggregator calls already
+		unset( $baseConfig['aggregator'] );
 		// Get the partition queue objects
 		foreach ( $partitionMap as $partition => $w ) {
 			if ( !isset( $params['configByPartition'][$partition] ) ) {
@@ -328,7 +330,7 @@ class JobQueueFederated extends JobQueue {
 		return false;
 	}
 
-	protected function doDeduplicateRootJob( Job $job ) {
+	protected function doDeduplicateRootJob( IJobSpecification $job ) {
 		$params = $job->getRootJobParams();
 		$sigature = $params['rootJobSignature'];
 		$partition = $this->partitionRing->getLiveLocation( $sigature );
@@ -373,27 +375,7 @@ class JobQueueFederated extends JobQueue {
 		$this->throwErrorIfAllPartitionsDown( $failed );
 	}
 
-	protected function doGetPeriodicTasks() {
-		$tasks = array();
-		/** @var JobQueue $queue */
-		foreach ( $this->partitionQueues as $partition => $queue ) {
-			foreach ( $queue->getPeriodicTasks() as $task => $def ) {
-				$tasks["{$partition}:{$task}"] = $def;
-			}
-		}
-
-		return $tasks;
-	}
-
 	protected function doFlushCaches() {
-		static $types = array(
-			'empty',
-			'size',
-			'acquiredcount',
-			'delayedcount',
-			'abandonedcount'
-		);
-
 		/** @var JobQueue $queue */
 		foreach ( $this->partitionQueues as $queue ) {
 			$queue->doFlushCaches();
@@ -417,6 +399,17 @@ class JobQueueFederated extends JobQueue {
 		/** @var JobQueue $queue */
 		foreach ( $this->partitionQueues as $queue ) {
 			$iterator->append( $queue->getAllDelayedJobs() );
+		}
+
+		return $iterator;
+	}
+
+	public function getAllAcquiredJobs() {
+		$iterator = new AppendIterator();
+
+		/** @var JobQueue $queue */
+		foreach ( $this->partitionQueues as $queue ) {
+			$iterator->append( $queue->getAllAcquiredJobs() );
 		}
 
 		return $iterator;

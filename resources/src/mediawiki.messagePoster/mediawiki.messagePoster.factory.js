@@ -24,11 +24,11 @@
 	 * @param {Function} messagePosterConstructor Constructor for MessagePoster
 	 */
 	MwMessagePosterFactory.prototype.register = function ( contentModel, messagePosterConstructor ) {
-		if ( this.contentModelToClass[contentModel] !== undefined ) {
+		if ( this.contentModelToClass[ contentModel ] !== undefined ) {
 			throw new Error( 'The content model \'' + contentModel + '\' is already registered.' );
 		}
 
-		this.contentModelToClass[contentModel] = messagePosterConstructor;
+		this.contentModelToClass[ contentModel ] = messagePosterConstructor;
 	};
 
 	/**
@@ -38,7 +38,7 @@
 	 * @param {string} contentModel Content model to unregister
 	 */
 	MwMessagePosterFactory.prototype.unregister = function ( contentModel ) {
-		delete this.contentModelToClass[contentModel];
+		delete this.contentModelToClass[ contentModel ];
 	};
 
 	/**
@@ -67,9 +67,9 @@
 			indexpageids: 1,
 			titles: title.getPrefixedDb()
 		} ).then( function ( result ) {
-			if ( result.query.pageids.length > 0 ) {
-				pageId = result.query.pageids[0];
-				page = result.query.pages[pageId];
+			if ( result.query.pageids && result.query.pageids.length > 0 ) {
+				pageId = result.query.pageids[ 0 ];
+				page = result.query.pages[ pageId ];
 
 				contentModel = page.contentmodel;
 				moduleName = 'mediawiki.messagePoster.' + contentModel;
@@ -100,7 +100,7 @@
 	 *
 	 */
 	MwMessagePosterFactory.prototype.createForContentModel = function ( contentModel, title ) {
-		return new this.contentModelToClass[contentModel]( title );
+		return new this.contentModelToClass[ contentModel ]( title );
 	};
 
 	mw.messagePoster = {

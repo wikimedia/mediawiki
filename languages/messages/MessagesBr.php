@@ -71,7 +71,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'MaC\'haozeadennoù' ),
 	'Newimages'                 => array( 'RestroùNevez', 'SkeudennoùNevez' ),
 	'Newpages'                  => array( 'PajennoùNevez' ),
-
 	'Preferences'               => array( 'Penndibaboù' ),
 	'Protectedpages'            => array( 'PajennoùGwarezet' ),
 	'Protectedtitles'           => array( 'TitloùGwarezet' ),

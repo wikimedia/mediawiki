@@ -28,7 +28,7 @@
  * @ingroup JobQueue
  */
 class EmaillingJob extends Job {
-	function __construct( $title, $params ) {
+	function __construct( Title $title = null, array $params ) {
 		parent::__construct( 'sendMail', Title::newMainPage(), $params );
 	}
 
@@ -38,7 +38,7 @@ class EmaillingJob extends Job {
 			$this->params['from'],
 			$this->params['subj'],
 			$this->params['body'],
-			$this->params['replyto']
+			array( 'replyTo' => $this->params['replyto'] )
 		);
 
 		return $status->isOK();

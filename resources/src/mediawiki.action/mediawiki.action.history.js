@@ -9,7 +9,7 @@ jQuery( function ( $ ) {
 	/**
 	 * @ignore
 	 * @context {Element} input
-	 * @param e {jQuery.Event}
+	 * @param {jQuery.Event} e
 	 */
 	function updateDiffRadios() {
 		var nextState = 'before',

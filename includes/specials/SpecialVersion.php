@@ -92,7 +92,14 @@ class SpecialVersion extends SpecialPage {
 					if ( $file ) {
 						$wikiText = file_get_contents( $file );
 						if ( substr( $file, -4 ) === '.txt' ) {
-							$wikiText = Html::element( 'pre', array(), $wikiText );
+							$wikiText = Html::element(
+								'pre',
+								array(
+									'lang' => 'en',
+									'dir' => 'ltr',
+								),
+								$wikiText
+							);
 						}
 					}
 				}
@@ -109,7 +116,14 @@ class SpecialVersion extends SpecialPage {
 					$file = $this->getExtLicenseFileName( dirname( $extNode['path'] ) );
 					if ( $file ) {
 						$wikiText = file_get_contents( $file );
-						$wikiText = "<pre>$wikiText</pre>";
+						$wikiText = Html::element(
+							'pre',
+							array(
+								'lang' => 'en',
+								'dir' => 'ltr',
+							),
+							$wikiText
+						);
 					}
 				}
 
@@ -214,6 +228,10 @@ class SpecialVersion extends SpecialPage {
 			$software['[https://php.net/ PHP]'] = PHP_VERSION . " (" . PHP_SAPI . ")";
 		}
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerInfo();
+
+		if ( IcuCollation::getICUVersion() ) {
+			$software['[http://site.icu-project.org/ ICU]'] = IcuCollation::getICUVersion();
+		}
 
 		// Allow a hook to add/remove items.
 		Hooks::run( 'SoftwareInfo', array( &$software ) );
@@ -522,6 +540,9 @@ class SpecialVersion extends SpecialPage {
 		$out .= Html::openElement( 'tr' )
 			. Html::element( 'th', array(), $this->msg( 'version-libraries-library' )->text() )
 			. Html::element( 'th', array(), $this->msg( 'version-libraries-version' )->text() )
+			. Html::element( 'th', array(), $this->msg( 'version-libraries-license' )->text() )
+			. Html::element( 'th', array(), $this->msg( 'version-libraries-description' )->text() )
+			. Html::element( 'th', array(), $this->msg( 'version-libraries-authors' )->text() )
 			. Html::closeElement( 'tr' );
 
 		foreach ( $lock->getInstalledDependencies() as $name => $info ) {
@@ -530,13 +551,32 @@ class SpecialVersion extends SpecialPage {
 				// in their proper section
 				continue;
 			}
+			$authors = array_map( function( $arr ) {
+				// If a homepage is set, link to it
+				if ( isset( $arr['homepage'] ) ) {
+					return "[{$arr['homepage']} {$arr['name']}]";
+				}
+				return $arr['name'];
+			}, $info['authors'] );
+			$authors = $this->listAuthors( $authors, false, "$IP/vendor/$name" );
+
+			// We can safely assume that the libraries' names and descriptions
+			// are written in English and aren't going to be translated,
+			// so set appropriate lang and dir attributes
 			$out .= Html::openElement( 'tr' )
 				. Html::rawElement(
 					'td',
 					array(),
-					Linker::makeExternalLink( "https://packagist.org/packages/$name", $name )
+					Linker::makeExternalLink(
+						"https://packagist.org/packages/$name", $name,
+						true, '',
+						array( 'class' => 'mw-version-library-name' )
+					)
 				)
-				. Html::element( 'td', array(), $info['version'] )
+				. Html::element( 'td', array( 'dir' => 'auto' ), $info['version'] )
+				. Html::element( 'td', array( 'dir' => 'auto' ), $this->listToText( $info['licenses'] ) )
+				. Html::element( 'td', array( 'lang' => 'en', 'dir' => 'ltr' ), $info['description'] )
+				. Html::rawElement( 'td', array(), $authors )
 				. Html::closeElement( 'tr' );
 		}
 		$out .= Html::closeElement( 'table' );
@@ -557,7 +597,10 @@ class SpecialVersion extends SpecialPage {
 		if ( count( $tags ) ) {
 			$out = Html::rawElement(
 				'h2',
-				array( 'class' => 'mw-headline plainlinks' ),
+				array(
+					'class' => 'mw-headline plainlinks',
+					'id' => 'mw-version-parser-extensiontags',
+				),
 				Linker::makeExternalLink(
 					'//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Tag_extensions',
 					$this->msg( 'version-parser-extensiontags' )->parse(),
@@ -597,7 +640,10 @@ class SpecialVersion extends SpecialPage {
 		if ( count( $fhooks ) ) {
 			$out = Html::rawElement(
 				'h2',
-				array( 'class' => 'mw-headline plainlinks' ),
+				array(
+					'class' => 'mw-headline plainlinks',
+					'id' => 'mw-version-parser-function-hooks',
+				),
 				Linker::makeExternalLink(
 					'//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Parser_functions',
 					$this->msg( 'version-parser-function-hooks' )->parse(),
@@ -842,7 +888,7 @@ class SpecialVersion extends SpecialPage {
 		// Finally! Create the table
 		$html = Html::openElement( 'tr', array(
 				'class' => 'mw-version-ext',
-				'id' => "mw-version-ext-{$extension['name']}"
+				'id' => Sanitizer::escapeId( 'mw-version-ext-' . $extension['name'] )
 			)
 		);
 
@@ -959,7 +1005,8 @@ class SpecialVersion extends SpecialPage {
 	 *   'and others' will be added to the end of the credits.
 	 *
 	 * @param string|array $authors
-	 * @param string $extName Name of the extension for link creation
+	 * @param string|bool $extName Name of the extension for link creation,
+	 *   false if no links should be created
 	 * @param string $extDir Path to the extension root directory
 	 *
 	 * @return string HTML fragment
@@ -972,7 +1019,7 @@ class SpecialVersion extends SpecialPage {
 			if ( $item == '...' ) {
 				$hasOthers = true;
 
-				if ( $this->getExtAuthorsFileName( $extDir ) ) {
+				if ( $extName && $this->getExtAuthorsFileName( $extDir ) ) {
 					$text = Linker::link(
 						$this->getPageTitle( "Credits/$extName" ),
 						$this->msg( 'version-poweredby-others' )->escaped()
@@ -991,7 +1038,7 @@ class SpecialVersion extends SpecialPage {
 			}
 		}
 
-		if ( !$hasOthers && $this->getExtAuthorsFileName( $extDir ) ) {
+		if ( $extName && !$hasOthers && $this->getExtAuthorsFileName( $extDir ) ) {
 			$list[] = $text = Linker::link(
 				$this->getPageTitle( "Credits/$extName" ),
 				$this->msg( 'version-poweredby-others' )->escaped()
@@ -1091,7 +1138,10 @@ class SpecialVersion extends SpecialPage {
 		if ( is_array( $list ) && count( $list ) == 1 ) {
 			$list = $list[0];
 		}
-		if ( is_object( $list ) ) {
+		if ( $list instanceof Closure ) {
+			// Don't output stuff like "Closure$;1028376090#8$48499d94fe0147f7c633b365be39952b$"
+			return 'Closure';
+		} elseif ( is_object( $list ) ) {
 			$class = wfMessage( 'parentheses' )->params( get_class( $list ) )->escaped();
 
 			return $class;
@@ -1146,9 +1196,9 @@ class SpecialVersion extends SpecialPage {
 			}
 
 			// SimpleXml whines about the xmlns...
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$xml = simplexml_load_file( $entries );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 
 			if ( $xml ) {
 				foreach ( $xml->entry as $entry ) {

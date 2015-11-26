@@ -117,9 +117,9 @@ class FSLockManager extends LockManager {
 			if ( isset( $this->handles[$path] ) ) {
 				$handle = $this->handles[$path];
 			} else {
-				wfSuppressWarnings();
+				MediaWiki\suppressWarnings();
 				$handle = fopen( $this->getLockPath( $path ), 'a+' );
-				wfRestoreWarnings();
+				MediaWiki\restoreWarnings();
 				if ( !$handle ) { // lock dir missing?
 					wfMkdirParents( $this->lockDir );
 					$handle = fopen( $this->getLockPath( $path ), 'a+' ); // try again

@@ -4,6 +4,7 @@
 ( function ( mw, $ ) {
 	/**
 	 * Given an email validity status (true, false, null) update the label CSS class
+	 *
 	 * @ignore
 	 */
 	function updateMailValidityLabel( mail ) {

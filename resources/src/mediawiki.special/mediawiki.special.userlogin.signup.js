@@ -65,7 +65,7 @@
 				ususers: username // '|' in usernames is handled below
 			} )
 				.done( function ( resp ) {
-					var userinfo = resp.query.users[0];
+					var userinfo = resp.query.users[ 0 ];
 
 					if ( resp.query.users.length !== 1 ) {
 						// Happens if the user types '|' into the field

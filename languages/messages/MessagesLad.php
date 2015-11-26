@@ -129,7 +129,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'HojasMuevas' ),
 	'PasswordReset'             => array( 'Meter_á_zero_el_kóddiche' ),
 	'PermanentLink'             => array( 'AtamientoPermanente' ),
-
 	'Preferences'               => array( 'Preferencias' ),
 	'Prefixindex'               => array( 'Fijhrist_de_prefiksos' ),
 	'Protectedpages'            => array( 'HojasGuardadas' ),

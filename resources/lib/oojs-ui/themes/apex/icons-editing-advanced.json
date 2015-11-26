@@ -1,0 +1,79 @@
+{
+	"prefix": "oo-ui-icon",
+	"intro": "@import '../../../../src/styles/common';",
+	"images": {
+		"alignCentre": { "file": "images/icons/align-center.svg" },
+		"alignLeft": { "file": "images/icons/align-float-left.svg" },
+		"alignRight": { "file": "images/icons/align-float-right.svg" },
+		"calendar": { "file": {
+			"ltr": "images/icons/calendar-ltr.svg",
+			"rtl": "images/icons/calendar-rtl.svg"
+		} },
+		"find": { "file": {
+			"ltr": "images/icons/find-ltr.svg",
+			"rtl": "images/icons/find-rtl.svg"
+		} },
+		"insert": { "file": "images/icons/insert.svg" },
+		"layout": { "file": {
+			"ltr": "images/icons/layout-ltr.svg",
+			"rtl": "images/icons/layout-rtl.svg"
+		} },
+		"newline": { "file": {
+			"ltr": "images/icons/newline-ltr.svg",
+			"rtl": "images/icons/newline-rtl.svg"
+		} },
+		"redirect": { "file": {
+			"ltr": "images/icons/redirect-ltr.svg",
+			"rtl": "images/icons/redirect-rtl.svg"
+		} },
+		"noWikiText": { "file": {
+			"ltr": "images/icons/noWikiText-ltr.svg",
+			"rtl": "images/icons/noWikiText-rtl.svg"
+		} },
+		"outline": { "file": {
+			"ltr": "images/icons/outline-ltr.svg",
+			"rtl": "images/icons/outline-rtl.svg"
+		} },
+		"puzzle": { "file": {
+			"ltr": "images/icons/puzzle-ltr.svg",
+			"rtl": "images/icons/puzzle-rtl.svg"
+		} },
+		"quotes": { "file": {
+			"ltr": "images/icons/quotes-ltr.svg",
+			"rtl": "images/icons/quotes-rtl.svg"
+		} },
+		"quotesAdd": { "file": {
+			"ltr": "images/icons/quotesAdd-ltr.svg",
+			"rtl": "images/icons/quotesAdd-rtl.svg"
+		} },
+		"redirect": { "file": {
+			"ltr": "images/icons/redirect-ltr.svg",
+			"rtl": "images/icons/redirect-rtl.svg"
+		} },
+		"searchCaseSensitive": { "file": "images/icons/case-sensitive.svg" },
+		"searchRegularExpression": { "file": "images/icons/regular-expression.svg" },
+		"specialCharacter": { "file": "images/icons/specialCharacter.svg" },
+		"table": { "file": "images/icons/table.svg" },
+		"tableAddColumnAfter": { "file": {
+			"ltr": "images/icons/table-insert-column-rtl.svg",
+			"rtl": "images/icons/table-insert-column-ltr.svg"
+		} },
+		"tableAddColumnBefore": { "file": {
+			"ltr": "images/icons/table-insert-column-ltr.svg",
+			"rtl": "images/icons/table-insert-column-rtl.svg"
+		} },
+		"tableAddRowAfter": { "file": "images/icons/table-insert-row-after.svg" },
+		"tableAddRowBefore": { "file": "images/icons/table-insert-row-before.svg" },
+		"tableCaption": { "file": "images/icons/table-caption.svg" },
+		"tableMergeCells": { "file": "images/icons/table-merge-cells.svg" },
+		"templateAdd": { "file": {
+			"ltr": "images/icons/templateAdd-ltr.svg",
+			"rtl": "images/icons/templateAdd-rtl.svg"
+		} },
+		"translation": { "file": {
+			"ltr": "images/icons/translation-ltr.svg",
+			"rtl": "images/icons/translation-rtl.svg"
+		} },
+		"wikiText": { "file": "images/icons/wikiText.svg" }
+	}
+}

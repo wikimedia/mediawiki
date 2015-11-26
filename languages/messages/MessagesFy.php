@@ -94,7 +94,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Myn oerlis' ),
 	'Newimages'                 => array( 'Nije ôfbylden', 'Nije ôfbyldings', 'Nije ôfbyldingen', 'List mei nije ôfbylden', 'Nije Ofbylden' ),
 	'Newpages'                  => array( 'Nije siden' ),
-
 	'Preferences'               => array( 'Ynstellings', 'Ynsteld' ),
 	'Prefixindex'               => array( 'Alle siden neffens foarheaksel' ),
 	'Protectedpages'            => array( 'Befeilige siden', 'Skoattele siden' ),

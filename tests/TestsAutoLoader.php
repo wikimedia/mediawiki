@@ -66,8 +66,10 @@ $wgAutoloadClasses += array(
 	'TestRecentChangesHelper' => "$testDir/phpunit/includes/changes/TestRecentChangesHelper.php",
 
 	# tests/phpunit/includes/content
-	'DummyContentHandlerForTesting' => "$testDir/phpunit/includes/content/ContentHandlerTest.php",
-	'DummyContentForTesting' => "$testDir/phpunit/includes/content/ContentHandlerTest.php",
+	'DummyContentHandlerForTesting' => "$testDir/phpunit/mocks/content/DummyContentHandlerForTesting.php",
+	'DummyContentForTesting' => "$testDir/phpunit/mocks/content/DummyContentForTesting.php",
+	'DummyNonTextContentHandler' => "$testDir/phpunit/mocks/content/DummyNonTextContentHandler.php",
+	'DummyNonTextContent' => "$testDir/phpunit/mocks/content/DummyNonTextContent.php",
 	'ContentHandlerTest' => "$testDir/phpunit/includes/content/ContentHandlerTest.php",
 	'JavaScriptContentTest' => "$testDir/phpunit/includes/content/JavaScriptContentTest.php",
 	'TextContentTest' => "$testDir/phpunit/includes/content/TextContentTest.php",
@@ -82,12 +84,18 @@ $wgAutoloadClasses += array(
 	# tests/phpunit/includes/diff
 	'FakeDiffOp' => "$testDir/phpunit/includes/diff/FakeDiffOp.php",
 
+	# tests/phpunit/includes/logging
+	'LogFormatterTestCase' => "$testDir/phpunit/includes/logging/LogFormatterTestCase.php",
+
 	# tests/phpunit/includes/password
 	'PasswordTestCase' => "$testDir/phpunit/includes/password/PasswordTestCase.php",
 
 	# tests/phpunit/includes/resourceloader
 	'ResourceLoaderImageModuleTest' => "$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
 	'ResourceLoaderImageModuleTestable' => "$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
+
+	# tests/phpunit/includes/specials
+	'SpecialPageTestBase' => "$testDir/phpunit/includes/specials/SpecialPageTestBase.php",
 
 	# tests/phpunit/languages
 	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",
@@ -109,6 +117,7 @@ $wgAutoloadClasses += array(
 	'MockImageHandler' => "$testDir/phpunit/mocks/media/MockImageHandler.php",
 	'MockSvgHandler' => "$testDir/phpunit/mocks/media/MockSvgHandler.php",
 	'MockDjVuHandler' => "$testDir/phpunit/mocks/media/MockDjVuHandler.php",
+	'MockWebRequest' => "$testDir/phpunit/mocks/MockWebRequest.php",
 
 	# tests/parser
 	'NewParserTest' => "$testDir/phpunit/includes/parser/NewParserTest.php",

@@ -51,14 +51,14 @@
 
 	/**
 	 * CompletenessTest
-	 * @constructor
 	 *
+	 * @constructor
 	 * @example
 	 *  var myTester = new CompletenessTest( myLib );
-	 * @param masterVariable {Object} The root variable that contains all object
+	 * @param {Object} masterVariable The root variable that contains all object
 	 *  members. CompletenessTest will recursively traverse objects and keep track
 	 *  of all methods.
-	 * @param ignoreFn {Function} Optionally pass a function to filter out certain
+	 * @param {Function} [ignoreFn] Optionally pass a function to filter out certain
 	 *  methods. Example: You may want to filter out instances of jQuery or some
 	 *  other constructor. Otherwise "missingTests" will include all methods that
 	 *  were not called from that instance.
@@ -132,7 +132,7 @@
 				elOutputWrapper.appendChild( elContainer );
 
 				util.each( style, function ( key, value ) {
-					elOutputWrapper.style[key] = value;
+					elOutputWrapper.style[ key ] = value;
 				} );
 				return elOutputWrapper;
 			}
@@ -186,12 +186,12 @@
 		 * Depending on the action it either injects our listener into the methods, or
 		 * reads from our tracker and records which methods have not been called by the test suite.
 		 *
-		 * @param currName {String|Null} Name of the given object member (Initially this is null).
-		 * @param currVar {mixed} The variable to check (initially an object,
+		 * @param {String|Null} currName Name of the given object member (Initially this is null).
+		 * @param {mixed} currVar The variable to check (initially an object,
 		 *  further down it could be anything).
-		 * @param masterVariable {Object} Throughout our interation, always keep track of the master/root.
+		 * @param {Object} masterVariable Throughout our interation, always keep track of the master/root.
 		 *  Initially this is the same as currVar.
-		 * @param parentPathArray {Array} Array of names that indicate our breadcrumb path starting at
+		 * @param {Array} parentPathArray Array of names that indicate our breadcrumb path starting at
 		 *  masterVariable. Not including currName.
 		 */
 		walkTheObject: function ( currObj, currName, masterVariable, parentPathArray ) {
@@ -201,7 +201,7 @@
 
 			if ( currName ) {
 				currPathArray.push( currName );
-				currVal = currObj[currName];
+				currVal = currObj[ currName ];
 			} else {
 				currName = '(root)';
 				currVal = currObj;
@@ -258,12 +258,12 @@
 		 * was called during the test suite (as far as the tracker knows).
 		 * If not it adds it to missingTests.
 		 *
-		 * @param fnName {String}
+		 * @param {String} fnName
 		 * @return {Boolean}
 		 */
 		hasTest: function ( fnName ) {
 			if ( !( fnName in this.methodCallTracker ) ) {
-				this.missingTests[fnName] = true;
+				this.missingTests[ fnName ] = true;
 				return false;
 			}
 			return true;
@@ -275,9 +275,9 @@
 		 * Injects a function (such as a spy that updates methodCallTracker when
 		 * it's called) inside another function.
 		 *
-		 * @param masterVariable {Object}
-		 * @param objectPathArray {Array}
-		 * @param injectFn {Function}
+		 * @param {Object} masterVariable
+		 * @param {Array} objectPathArray
+		 * @param {Function} injectFn
 		 */
 		injectCheck: function ( obj, key, injectFn ) {
 			var spy,
@@ -291,8 +291,11 @@
 			// Make the spy inherit from the original so that its static methods are also
 			// visible in the spy (e.g. when we inject a check into mw.log, mw.log.warn
 			// must remain accessible).
+			// XXX: https://github.com/jshint/jshint/issues/2656
+			/*jshint ignore:start */
 			/*jshint proto:true */
 			spy.__proto__ = val;
+			/*jshint ignore:end */
 
 			// Objects are by reference, members (unless objects) are not.
 			obj[ key ] = spy;

@@ -56,6 +56,11 @@ class UserloginTemplate extends BaseTemplate {
 				</div>
 			<?php } ?>
 
+			<?php if ( $this->data['formheader'] ) { ?>
+				<div class="mw-form-formheader">
+					<?php $this->html( 'formheader' ); /* extensions such as MobileFrontend add html here */ ?>
+				</div>
+			<?php } ?>
 			<div class="mw-ui-vform-field">
 				<label for='wpName1'>
 					<?php

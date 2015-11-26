@@ -368,6 +368,9 @@ class HistoryPager extends ReverseChronologicalPager {
 	 */
 	protected $parentLens;
 
+	/** @var bool Whether to show the tag editing UI */
+	protected $showTagEditUI;
+
 	/**
 	 * @param HistoryAction $historyPage
 	 * @param string $year
@@ -381,6 +384,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->tagFilter = $tagFilter;
 		$this->getDateCond( $year, $month );
 		$this->conds = $conds;
+		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getUser() );
 	}
 
 	// For hook compatibility...
@@ -432,8 +436,13 @@ class HistoryPager extends ReverseChronologicalPager {
 			$latest = ( $this->counter == 1 && $this->mIsFirst );
 			$firstInList = $this->counter == 1;
 			$this->counter++;
-			$s = $this->historyLine( $this->lastRow, $row,
-				$this->getTitle()->getNotificationTimestamp( $this->getUser() ), $latest, $firstInList );
+
+			$notifTimestamp = $this->getConfig()->get( 'ShowUpdatedMarker' )
+				? $this->getTitle()->getNotificationTimestamp( $this->getUser() )
+				: false;
+
+			$s = $this->historyLine(
+				$this->lastRow, $row, $notifTimestamp, $latest, $firstInList );
 		} else {
 			$s = '';
 		}
@@ -443,6 +452,10 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	function doBatchLookups() {
+		if ( !Hooks::run( 'PageHistoryPager::doBatchLookups', array( $this, $this->mResult ) ) ) {
+			return;
+		}
+
 		# Do a link batch query
 		$this->mResult->seek( 0 );
 		$batch = new LinkBatch();
@@ -495,7 +508,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		if ( $user->isAllowed( 'deleterevision' ) ) {
 			$actionButtons .= $this->getRevisionButton( 'revisiondelete', 'showhideselectedversions' );
 		}
-		if ( ChangeTags::showTagEditingUI( $user ) ) {
+		if ( $this->showTagEditUI ) {
 			$actionButtons .= $this->getRevisionButton( 'editchangetags', 'history-edit-tags' );
 		}
 		if ( $actionButtons ) {
@@ -542,8 +555,13 @@ class HistoryPager extends ReverseChronologicalPager {
 				$next = $this->mPastTheEndRow;
 			}
 			$this->counter++;
-			$s = $this->historyLine( $this->lastRow, $next,
-				$this->getTitle()->getNotificationTimestamp( $this->getUser() ), $latest, $firstInList );
+
+			$notifTimestamp = $this->getConfig()->get( 'ShowUpdatedMarker' )
+				? $this->getTitle()->getNotificationTimestamp( $this->getUser() )
+				: false;
+
+			$s = $this->historyLine(
+				$this->lastRow, $next, $notifTimestamp, $latest, $firstInList );
 		} else {
 			$s = '';
 		}
@@ -617,6 +635,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$del = '';
 		$user = $this->getUser();
 		$canRevDelete = $user->isAllowed( 'deleterevision' );
+<<<<<<< HEAD
 		$showTagEditUI = ChangeTags::showTagEditingUI( $user );
 		// Show checkboxes for each revision, to allow for revision deletion and
 		// change tags
@@ -625,6 +644,15 @@ class HistoryPager extends ReverseChronologicalPager {
 			// If revision was hidden from sysops and we don't need the checkbox
 			// for anything else, disable it
 			if ( !$showTagEditUI && !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
+=======
+		// Show checkboxes for each revision, to allow for revision deletion and
+		// change tags
+		if ( $canRevDelete || $this->showTagEditUI ) {
+			$this->preventClickjacking();
+			// If revision was hidden from sysops and we don't need the checkbox
+			// for anything else, disable it
+			if ( !$this->showTagEditUI && !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
+>>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 				$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
 			// Otherwise, enable the checkbox...
 			} else {

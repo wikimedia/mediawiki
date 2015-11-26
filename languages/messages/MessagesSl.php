@@ -81,7 +81,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'MojPogovor' ),
 	'Newimages'                 => array( 'NoveDatoteke', 'NoveSlike' ),
 	'Newpages'                  => array( 'NoveStrani' ),
-
 	'Preferences'               => array( 'Nastavitve' ),
 	'Protectedpages'            => array( 'ZaščiteneStrani' ),
 	'Protectedtitles'           => array( 'ZaščiteniNaslovi' ),

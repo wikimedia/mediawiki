@@ -28,15 +28,7 @@
  * @ingroup Cache
  */
 class WinCacheBagOStuff extends BagOStuff {
-
-	/**
-	 * Get a value from the WinCache object cache
-	 *
-	 * @param string $key Cache key
-	 * @param int $casToken [optional] Cas token
-	 * @return mixed
-	 */
-	public function get( $key, &$casToken = null ) {
+	public function get( $key, &$casToken = null, $flags = 0 ) {
 		$val = wincache_ucache_get( $key );
 
 		$casToken = $val;
@@ -48,14 +40,6 @@ class WinCacheBagOStuff extends BagOStuff {
 		return $val;
 	}
 
-	/**
-	 * Store a value in the WinCache object cache
-	 *
-	 * @param string $key Cache key
-	 * @param mixed $value Value to store
-	 * @param int $expire Expiration time
-	 * @return bool
-	 */
 	public function set( $key, $value, $expire = 0 ) {
 		$result = wincache_ucache_set( $key, serialize( $value ), $expire );
 
@@ -64,25 +48,10 @@ class WinCacheBagOStuff extends BagOStuff {
 		return ( is_array( $result ) && $result === array() ) || $result;
 	}
 
-	/**
-	 * Store a value in the WinCache object cache, race condition-safe
-	 *
-	 * @param int $casToken Cas token
-	 * @param string $key Cache key
-	 * @param int $value Object to store
-	 * @param int $exptime Expiration time
-	 * @return bool
-	 */
 	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
 		return wincache_ucache_cas( $key, $casToken, serialize( $value ) );
 	}
 
-	/**
-	 * Remove a value from the WinCache object cache
-	 *
-	 * @param string $key Cache key
-	 * @return bool
-	 */
 	public function delete( $key ) {
 		wincache_ucache_delete( $key );
 

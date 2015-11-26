@@ -89,9 +89,9 @@ class SectionProfiler {
 	 * @return array List of method entries arrays, each having:
 	 *   - name    : method name
 	 *   - calls   : the number of invoking calls
-	 *   - real    : real time ellapsed (ms)
+	 *   - real    : real time elapsed (ms)
 	 *   - %real   : percent real time
-	 *   - cpu     : real time ellapsed (ms)
+	 *   - cpu     : real time elapsed (ms)
 	 *   - %cpu    : percent real time
 	 *   - memory  : memory used (bytes)
 	 *   - %memory : percent memory used
@@ -451,15 +451,14 @@ class SectionProfiler {
 	}
 
 	/**
-	 * Get the initial time of the request, based either on $wgRequestTime or
-	 * $wgRUstart. Will return null if not able to find data.
+	 * Get the initial time of the request, based on getrusage()
 	 *
 	 * @param string|bool $metric Metric to use, with the following possibilities:
 	 *   - user: User CPU time (without system calls)
 	 *   - cpu: Total CPU time (user and system calls)
 	 *   - wall (or any other string): elapsed time
 	 *   - false (default): will fall back to default metric
-	 * @return float|null
+	 * @return float
 	 */
 	protected function getTime( $metric = 'wall' ) {
 		if ( $metric === 'cpu' || $metric === 'user' ) {

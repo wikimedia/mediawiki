@@ -1,0 +1,59 @@
+{
+	"prefix": "oo-ui-icon",
+	"intro": "@import '../../../../src/styles/common';",
+	"variants": {
+		"invert": {
+			"color": "#FFFFFF",
+			"global": true
+		},
+		"progressive": {
+			"color": "#347BFF"
+		},
+		"constructive": {
+			"color": "#00AF89"
+		},
+		"destructive": {
+			"color": "#D11D13"
+		},
+		"warning": {
+			"color": "#FF5D00"
+		}
+	},
+	"images": {
+		"block": { "file": "images/icons/block.svg", "variants": [ "destructive" ] },
+		"blockUndo": { "file": {
+			"ltr": "images/icons/blockUndo-ltr.svg",
+			"rtl": "images/icons/blockUndo-rtl.svg"
+		} },
+		"flag": { "file": {
+			"ltr": "images/icons/flag-ltr.svg",
+			"rtl": "images/icons/flag-rtl.svg"
+		} },
+		"flagUndo": { "file": {
+			"ltr": "images/icons/flagUndo-ltr.svg",
+			"rtl": "images/icons/flagUndo-rtl.svg"
+		} },
+		"lock": { "file": {
+			"ltr": "images/icons/lock-ltr.svg",
+			"rtl": "images/icons/lock-rtl.svg"
+		}, "variants": [ "destructive" ] },
+		"ongoingConversation": {
+			"file": {
+				"ltr": "images/icons/ongoingConversation-ltr.svg",
+				"rtl": "images/icons/ongoingConversation-rtl.svg"
+			},
+			"variants": [ "progressive" ]
+		},
+		"star": { "file": "images/icons/star.svg", "variants": [ "constructive" ] },
+		"trash": { "file": "images/icons/trash.svg" },
+		"trashUndo": { "file": {
+			"ltr": "images/icons/trashUndo-ltr.svg",
+			"rtl": "images/icons/trashUndo-rtl.svg"
+		} },
+		"unLock": { "file": {
+			"ltr": "images/icons/unLock-ltr.svg",
+			"rtl": "images/icons/unLock-rtl.svg"
+		}, "variants": [ "destructive" ] },
+		"unStar": { "file": "images/icons/unStar.svg", "variants": [ "constructive" ] }
+	}
+}

@@ -106,7 +106,6 @@ $specialPageAliases = array(
 	'Newimages'                 => array( 'Nowe_dataje' ),
 	'Newpages'                  => array( 'Nowe_strony' ),
 	'PermanentLink'             => array( 'Trajny_wotkaz' ),
-
 	'Preferences'               => array( 'Nastajenja' ),
 	'Prefixindex'               => array( 'Prefiksindeks' ),
 	'Protectedpages'            => array( 'Škitane_strony' ),

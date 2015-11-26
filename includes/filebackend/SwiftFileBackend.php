@@ -128,7 +128,9 @@ class SwiftFileBackend extends FileBackendStore {
 		// HTTP helper client
 		$this->http = new MultiHttpClient( array() );
 		// Cache container information to mask latency
-		$this->memCache = wfGetMainCache();
+		if ( isset( $config['wanCache'] ) && $config['wanCache'] instanceof WANObjectCache ) {
+			$this->memCache = $config['wanCache'];
+		}
 		// Process cache for container info
 		$this->containerStatCache = new ProcessCacheLRU( 300 );
 		// Cache auth token information to avoid RTTs
@@ -136,13 +138,12 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( PHP_SAPI === 'cli' ) {
 				$this->srvCache = wfGetMainCache(); // preferrably memcached
 			} else {
-				try { // look for APC, XCache, WinCache, ect...
-					$this->srvCache = ObjectCache::newAccelerator( array() );
-				} catch ( Exception $e ) {
-				}
+				// look for APC, XCache, WinCache, ect...
+				$this->srvCache = ObjectCache::newAccelerator( CACHE_NONE );
 			}
+		} else {
+			$this->srvCache = new EmptyBagOStuff();
 		}
-		$this->srvCache = $this->srvCache ?: new EmptyBagOStuff();
 	}
 
 	public function getFeatures() {
@@ -171,30 +172,40 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * Sanitize and filter the custom headers from a $params array.
-	 * We only allow certain Content- and X-Content- headers.
+	 * Only allows certain "standard" Content- and X-Content- headers.
 	 *
 	 * @param array $params
 	 * @return array Sanitized value of 'headers' field in $params
 	 */
 	protected function sanitizeHdrs( array $params ) {
+		return isset( $params['headers'] )
+			? $this->getCustomHeaders( $params['headers'] )
+			: array();
+
+	}
+
+	/**
+	 * @param array $rawHeaders
+	 * @return array Custom non-metadata HTTP headers
+	 */
+	protected function getCustomHeaders( array $rawHeaders ) {
 		$headers = array();
 
 		// Normalize casing, and strip out illegal headers
-		if ( isset( $params['headers'] ) ) {
-			foreach ( $params['headers'] as $name => $value ) {
-				$name = strtolower( $name );
-				if ( preg_match( '/^content-(type|length)$/', $name ) ) {
-					continue; // blacklisted
-				} elseif ( preg_match( '/^(x-)?content-/', $name ) ) {
-					$headers[$name] = $value; // allowed
-				} elseif ( preg_match( '/^content-(disposition)/', $name ) ) {
-					$headers[$name] = $value; // allowed
-				}
+		foreach ( $rawHeaders as $name => $value ) {
+			$name = strtolower( $name );
+			if ( preg_match( '/^content-(type|length)$/', $name ) ) {
+				continue; // blacklisted
+			} elseif ( preg_match( '/^(x-)?content-/', $name ) ) {
+				$headers[$name] = $value; // allowed
+			} elseif ( preg_match( '/^content-(disposition)/', $name ) ) {
+				$headers[$name] = $value; // allowed
 			}
 		}
 		// By default, Swift has annoyingly low maximum header value limits
 		if ( isset( $headers['content-disposition'] ) ) {
 			$disposition = '';
+			// @note: assume FileBackend::makeContentDisposition() already used
 			foreach ( explode( ';', $headers['content-disposition'] ) as $part ) {
 				$part = trim( $part );
 				$new = ( $disposition === '' ) ? $part : "{$disposition};{$part}";
@@ -208,6 +219,35 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		return $headers;
+	}
+
+	/**
+	 * @param array $rawHeaders
+	 * @return array Custom metadata headers
+	 */
+	protected function getMetadataHeaders( array $rawHeaders ) {
+		$headers = array();
+		foreach ( $rawHeaders as $name => $value ) {
+			$name = strtolower( $name );
+			if ( strpos( $name, 'x-object-meta-' ) === 0 ) {
+				$headers[$name] = $value;
+			}
+		}
+
+		return $headers;
+	}
+
+	/**
+	 * @param array $rawHeaders
+	 * @return array Custom metadata headers with prefix removed
+	 */
+	protected function getMetadata( array $rawHeaders ) {
+		$metadata = array();
+		foreach ( $this->getMetadataHeaders( $rawHeaders ) as $name => $value ) {
+			$metadata[substr( $name, strlen( 'x-object-meta-' ) )] = $value;
+		}
+
+		return $metadata;
 	}
 
 	protected function doCreateInternal( array $params ) {
@@ -235,16 +275,16 @@ class SwiftFileBackend extends FileBackendStore {
 			'body' => $params['content']
 		) );
 
-		$be = $this;
+		$that = $this;
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $be, $method, $params ) {
+		$handler = function ( array $request, Status $status ) use ( $that, $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $rcode === 201 ) {
 				// good
 			} elseif ( $rcode === 412 ) {
 				$status->fatal( 'backend-fail-contenttype', $params['dst'] );
 			} else {
-				$be->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$that->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
 		};
 
@@ -268,9 +308,9 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$sha1Hash = sha1_file( $params['src'] );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( $sha1Hash === false ) { // source doesn't exist?
 			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
 
@@ -298,16 +338,16 @@ class SwiftFileBackend extends FileBackendStore {
 			'body' => $handle // resource
 		) );
 
-		$be = $this;
+		$that = $this;
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $be, $method, $params ) {
+		$handler = function ( array $request, Status $status ) use ( $that, $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $rcode === 201 ) {
 				// good
 			} elseif ( $rcode === 412 ) {
 				$status->fatal( 'backend-fail-contenttype', $params['dst'] );
 			} else {
-				$be->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$that->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
 		};
 
@@ -347,16 +387,16 @@ class SwiftFileBackend extends FileBackendStore {
 			) + $this->sanitizeHdrs( $params ), // extra headers merged into object
 		) );
 
-		$be = $this;
+		$that = $this;
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $be, $method, $params ) {
+		$handler = function ( array $request, Status $status ) use ( $that, $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $rcode === 201 ) {
 				// good
 			} elseif ( $rcode === 404 ) {
 				$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 			} else {
-				$be->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$that->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
 		};
 
@@ -405,9 +445,9 @@ class SwiftFileBackend extends FileBackendStore {
 			);
 		}
 
-		$be = $this;
+		$that = $this;
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $be, $method, $params ) {
+		$handler = function ( array $request, Status $status ) use ( $that, $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $request['method'] === 'PUT' && $rcode === 201 ) {
 				// good
@@ -416,7 +456,7 @@ class SwiftFileBackend extends FileBackendStore {
 			} elseif ( $rcode === 404 ) {
 				$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
 			} else {
-				$be->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$that->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
 		};
 
@@ -446,9 +486,9 @@ class SwiftFileBackend extends FileBackendStore {
 			'headers' => array()
 		) );
 
-		$be = $this;
+		$that = $this;
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $be, $method, $params ) {
+		$handler = function ( array $request, Status $status ) use ( $that, $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $rcode === 204 ) {
 				// good
@@ -457,7 +497,7 @@ class SwiftFileBackend extends FileBackendStore {
 					$status->fatal( 'backend-fail-delete', $params['src'] );
 				}
 			} else {
-				$be->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$that->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
 		};
 
@@ -505,16 +545,16 @@ class SwiftFileBackend extends FileBackendStore {
 			'headers' => $metaHdrs + $customHdrs
 		) );
 
-		$be = $this;
+		$that = $this;
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $be, $method, $params ) {
+		$handler = function ( array $request, Status $status ) use ( $that, $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $rcode === 202 ) {
 				// good
 			} elseif ( $rcode === 404 ) {
 				$status->fatal( 'backend-fail-describe', $params['src'] );
 			} else {
-				$be->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$that->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
 		};
 
@@ -664,17 +704,24 @@ class SwiftFileBackend extends FileBackendStore {
 			return $objHdrs; // nothing to do
 		}
 
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
-		trigger_error( "$path was not stored with SHA-1 metadata.", E_USER_WARNING );
+		wfDebugLog( 'SwiftBackend', __METHOD__ . ": $path was not stored with SHA-1 metadata." );
+
+		$objHdrs['x-object-meta-sha1base36'] = false;
 
 		$auth = $this->getAuthentication();
 		if ( !$auth ) {
-			$objHdrs['x-object-meta-sha1base36'] = false;
-
 			return $objHdrs; // failed
 		}
 
+		// Find prior custom HTTP headers
+		$postHeaders = $this->getCustomHeaders( $objHdrs );
+		// Find prior metadata headers
+		$postHeaders += $this->getMetadataHeaders( $objHdrs );
+
 		$status = Status::newGood();
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scopeLockS = $this->getScopedFileLocks( array( $path ), LockManager::LOCK_UW, $status );
 		if ( $status->isOK() ) {
 			$tmpFile = $this->getLocalCopy( array( 'src' => $path, 'latest' => 1 ) );
@@ -682,20 +729,24 @@ class SwiftFileBackend extends FileBackendStore {
 				$hash = $tmpFile->getSha1Base36();
 				if ( $hash !== false ) {
 					$objHdrs['x-object-meta-sha1base36'] = $hash;
+					// Merge new SHA1 header into the old ones
+					$postHeaders['x-object-meta-sha1base36'] = $hash;
 					list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $path );
-					list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->http->run( array(
+					list( $rcode ) = $this->http->run( array(
 						'method' => 'POST',
 						'url' => $this->storageUrl( $auth, $srcCont, $srcRel ),
-						'headers' => $this->authTokenHeaders( $auth ) + $objHdrs
+						'headers' => $this->authTokenHeaders( $auth ) + $postHeaders
 					) );
 					if ( $rcode >= 200 && $rcode <= 299 ) {
+						$this->deleteFileCache( $path );
+
 						return $objHdrs; // success
 					}
 				}
 			}
 		}
-		trigger_error( "Unable to set SHA-1 metadata for $path", E_USER_WARNING );
-		$objHdrs['x-object-meta-sha1base36'] = false;
+
+		wfDebugLog( 'SwiftBackend', __METHOD__ . ": unable to set SHA-1 metadata for $path" );
 
 		return $objHdrs; // failed
 	}
@@ -1544,22 +1595,16 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	protected function getStatFromHeaders( array $rhdrs ) {
 		// Fetch all of the custom metadata headers
-		$metadata = array();
-		foreach ( $rhdrs as $name => $value ) {
-			if ( strpos( $name, 'x-object-meta-' ) === 0 ) {
-				$metadata[substr( $name, strlen( 'x-object-meta-' ) )] = $value;
-			}
-		}
+		$metadata = $this->getMetadata( $rhdrs );
 		// Fetch all of the custom raw HTTP headers
 		$headers = $this->sanitizeHdrs( array( 'headers' => $rhdrs ) );
+
 		return array(
 			// Convert various random Swift dates to TS_MW
 			'mtime' => $this->convertSwiftDate( $rhdrs['last-modified'], TS_MW ),
 			// Empty objects actually return no content-length header in Ceph
 			'size'  => isset( $rhdrs['content-length'] ) ? (int)$rhdrs['content-length'] : 0,
-			'sha1'  => isset( $rhdrs['x-object-meta-sha1base36'] )
-				? $rhdrs['x-object-meta-sha1base36']
-				: null,
+			'sha1'  => isset( $metadata['sha1base36'] ) ? $metadata['sha1base36'] : null,
 			// Note: manifiest ETags are not an MD5 of the file
 			'md5'   => ctype_xdigit( $rhdrs['etag'] ) ? $rhdrs['etag'] : null,
 			'xattr' => array( 'metadata' => $metadata, 'headers' => $headers )

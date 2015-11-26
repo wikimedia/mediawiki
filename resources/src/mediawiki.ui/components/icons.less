@@ -1,13 +1,9 @@
 @import "mediawiki.mixins";
-
-// Variables
-@iconSize: 1.4em;
-@gutterWidth: 1em;
+@import "mediawiki.ui/variables";
 
 // Mixins
 .mixin-mw-ui-icon-bgimage(@iconSvg, @iconPng) {
 	&.mw-ui-icon {
-		&:after,
 		&:before {
 			.background-image-svg(@iconSvg, @iconPng);
 		}
@@ -42,7 +38,7 @@
 	//
 	// Styleguide 6.1.1.
 	&.mw-ui-icon-element {
-		@width: @iconSize + ( 2 * @gutterWidth );
+		@width: @iconSize + ( 2 * @iconGutterWidth );
 
 		text-indent: -999px;
 		overflow: hidden;
@@ -53,11 +49,10 @@
 			left: 0;
 			right: 0;
 			position: absolute;
-			margin: 0 @gutterWidth;
+			margin: 0 @iconGutterWidth;
 		}
 	}
 
-	&.mw-ui-icon-after:after,
 	&.mw-ui-icon-before:before,
 	&.mw-ui-icon-element:before {
 		background-position: 50% 50%;
@@ -81,27 +76,7 @@
 		&:before {
 			position: relative;
 			width: @iconSize;
-			margin-right: @gutterWidth;
+			margin-right: @iconGutterWidth;
 		}
 	}
-
-	// Icons with text before
-	//
-	// Markup:
-	// <div class="mw-ui-icon mw-ui-icon-after mw-ui-icon-ok mw-ui-progressive mw-ui-button">OK</div>
-	//
-	// Styleguide 6.1.3
-	&.mw-ui-icon-after {
-		&:after {
-			position: relative;
-			float: right;
-			width: @iconSize;
-			margin-left: @gutterWidth;
-		}
-	}
-}
-
-// Icons
-.mw-ui-icon-ok {
-	.mixin-mw-ui-icon-bgimage('images/ok.svg', 'images/ok.png');
 }

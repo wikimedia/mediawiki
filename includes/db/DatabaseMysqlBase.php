@@ -59,22 +59,16 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	function open( $server, $user, $password, $dbName ) {
 		global $wgAllDBsAreLocalhost, $wgSQLMode;
 
-		# Debugging hack -- fake cluster
-		if ( $wgAllDBsAreLocalhost ) {
-			$realServer = 'localhost';
-		} else {
-			$realServer = $server;
-		}
+		# Close/unset connection handle
 		$this->close();
+
+		# Debugging hack -- fake cluster
+		$realServer = $wgAllDBsAreLocalhost ? 'localhost' : $server;
 		$this->mServer = $server;
 		$this->mUser = $user;
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
 
-		# The kernel's default SYN retransmission period is far too slow for us,
-		# so we use a short timeout plus a manual retry. Retrying means that a small
-		# but finite rate of SYN packet loss won't cause user-visible errors.
-		$this->mConn = false;
 		$this->installErrorHandler();
 		try {
 			$this->mConn = $this->mysqlConnect( $realServer );
@@ -104,9 +98,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		}
 
 		if ( $dbName != '' ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$success = $this->selectDB( $dbName );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			if ( !$success ) {
 				wfLogDBError(
 					"Error selecting database {db_name} on server {db_server}",
@@ -131,6 +125,15 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		// Set SQL mode, default is turning them all off, can be overridden or skipped with null
 		if ( is_string( $wgSQLMode ) ) {
 			$set[] = 'sql_mode = ' . $this->addQuotes( $wgSQLMode );
+		}
+		// Set any custom settings defined by site config
+		// (e.g. https://dev.mysql.com/doc/refman/4.1/en/innodb-parameters.html)
+		foreach ( $this->mSessionVars as $var => $val ) {
+			// Escape strings but not numbers to avoid MySQL complaining
+			if ( !is_int( $val ) && !is_float( $val ) ) {
+				$val = $this->addQuotes( $val );
+			}
+			$set[] = $this->addIdentifierQuotes( $var ) . ' = ' . $val;
 		}
 
 		if ( $set ) {
@@ -194,9 +197,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$ok = $this->mysqlFreeResult( $res );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( !$ok ) {
 			throw new DBUnexpectedError( $this, "Unable to free MySQL result" );
 		}
@@ -219,9 +222,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$row = $this->mysqlFetchObject( $res );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		$errno = $this->lastErrno();
 		// Unfortunately, mysql_fetch_object does not reset the last errno.
@@ -255,9 +258,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$row = $this->mysqlFetchArray( $res );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		$errno = $this->lastErrno();
 		// Unfortunately, mysql_fetch_array does not reset the last errno.
@@ -291,9 +294,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$n = $this->mysqlNumRows( $res );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		// Unfortunately, mysql_num_rows does not reset the last errno.
 		// We are not checking for any errors here, since
@@ -404,12 +407,12 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	function lastError() {
 		if ( $this->mConn ) {
 			# Even if it's non-zero, it can still be invalid
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$error = $this->mysqlError( $this->mConn );
 			if ( !$error ) {
 				$error = $this->mysqlError();
 			}
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		} else {
 			$error = $this->mysqlError();
 		}
@@ -577,9 +580,12 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	function ping() {
 		$ping = $this->mysqlPing();
 		if ( $ping ) {
+			// Connection was good or lost but reconnected...
+			// @note: mysqlnd (php 5.6+) does not support this (PHP bug 52561)
 			return true;
 		}
 
+		// Try a full disconnect/reconnect cycle if ping() failed
 		$this->closeConnection();
 		$this->mOpened = false;
 		$this->mConn = false;
@@ -873,6 +879,10 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		return ( $row->lockstatus == 1 );
 	}
 
+	public function namedLocksEnqueue() {
+		return true;
+	}
+
 	/**
 	 * @param array $read
 	 * @param array $write
@@ -930,7 +940,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 				$value = $this->mDefaultBigSelects;
 			}
 		} elseif ( $this->mDefaultBigSelects === null ) {
-			$this->mDefaultBigSelects = (bool)$this->selectField( false, '@@sql_big_selects' );
+			$this->mDefaultBigSelects = (bool)$this->selectField( false, '@@sql_big_selects', '', __METHOD__ );
 		}
 		$encValue = $value ? '1' : '0';
 		$this->query( "SET sql_big_selects=$encValue", __METHOD__ );
@@ -1043,6 +1053,32 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	function wasReadOnlyError() {
 		return $this->lastErrno() == 1223 ||
 			( $this->lastErrno() == 1290 && strpos( $this->lastError(), '--read-only' ) !== false );
+	}
+
+	function wasConnectionError( $errno ) {
+		return $errno == 2013 || $errno == 2006;
+	}
+
+	/**
+	 * Get the underlying binding handle, mConn
+	 *
+	 * Makes sure that mConn is set (disconnects and ping() failure can unset it).
+	 * This catches broken callers than catch and ignore disconnection exceptions.
+	 * Unlike checking isOpen(), this is safe to call inside of open().
+	 *
+	 * @return resource|object
+	 * @throws DBUnexpectedError
+	 * @since 1.26
+	 */
+	protected function getBindingHandle() {
+		if ( !$this->mConn ) {
+			throw new DBUnexpectedError(
+				$this,
+				'DB connection was already closed or the connection dropped.'
+			);
+		}
+
+		return $this->mConn;
 	}
 
 	/**

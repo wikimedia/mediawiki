@@ -19,7 +19,8 @@
 			"Umherirrender",
 			"Zawthet",
 			"ကိုရာဝီ",
-			"아라"
+			"아라",
+			"9.sinistra"
 		]
 	},
 	"tog-underline": "လင့်ကို မျဉ်းသားသည့် ပုံစံ -",
@@ -347,6 +348,8 @@
 	"login-throttled": "သင်သည် login ဝင်ရန် အကြိမ်မြောက်မြားစွာ အားထုတ်ခဲ့ပြီးဖြစ်သည်။\nကျေးဇူးပြု၍ ထပ်မဝင်ခင် စောင့်ပေးပါ။",
 	"login-abort-generic": "Login ဝင်ခြင်း မအောင်မြင်ပါ - ထွက်သွားပြီ",
 	"loginlanguagelabel": "ဘာသာ: $1",
+	"pt-login": "အကောင့်ဝင်ရန်",
+	"pt-createaccount": "အကောင့် ဖန်တီးရန်",
 	"changepassword": "စကားဝှက် ပြောင်းရန်",
 	"resetpass_announce": "သင်သည် ယာယီ စကားဝှက်ဖြင့် ဝင်ရောက်ခြင်းဖြစ်သည်။\nစကားဝှက် အသစ်အား ဤနေရာတွင်ရိုက်ပါ :",
 	"resetpass_header": "အကောင့်စကားဝှက်ပြောင်းရန်",
@@ -757,6 +760,7 @@
 	"boteditletter": "ဘော့",
 	"number_of_watching_users_pageview": "[စောင့်ကြည့်နေသော အသုံးပြုသူ $1 {{PLURAL:$1|ဦး|ဦး}}]",
 	"rc_categories_any": "မည်သည်မဆို",
+	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} ပြောင်းလဲပြီးနောက်",
 	"newsectionsummary": "/* $1 */ အပိုင်းသစ်",
 	"rc-enhanced-expand": "အသေးစိတ် ပြရန် (JavaScript လိုအပ်သည်)",
 	"rc-enhanced-hide": "အသေးစိတ် မပြရန်",
@@ -1433,6 +1437,7 @@
 	"revdelete-unrestricted": "အက်ဒမင်များအတွက် ကန့်သတ်ချက်များကို ဖယ်ရှားရန်",
 	"rightsnone": "(ဘာမှမရှိ)",
 	"revdelete-summary": "အကျဉ်းချုပ်ကို တည်းဖြတ်ရန်",
+	"searchsuggest-search": "ရှာဖွေရန်",
 	"api-error-filename-tooshort": "ဖိုင်အမည်သည် တိုလွန်းသည်။",
 	"api-error-filetype-banned": "ဤဖိုင်အမျိုးအစားကို တားမြစ်ထားသည်။",
 	"api-error-http": "အတွင်းပိုင်းအမှား - ဆာဗာကို မဆက်သွယ်နိုင်ပါ။",

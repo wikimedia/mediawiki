@@ -106,7 +106,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Mas_discussions', 'Masdiscussions' ),
 	'Newimages'                 => array( 'Imatges_novèls', 'ImatgesNovèls' ),
 	'Newpages'                  => array( 'Paginas_novèlas' ),
-
 	'Preferences'               => array( 'Preferéncias' ),
 	'Prefixindex'               => array( 'Indèx' ),
 	'Protectedpages'            => array( 'Paginas_protegidas' ),

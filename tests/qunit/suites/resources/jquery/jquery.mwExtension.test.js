@@ -1,5 +1,14 @@
 ( function ( $ ) {
-	QUnit.module( 'jquery.mwExtension', QUnit.newMwEnvironment() );
+	QUnit.module( 'jquery.mwExtension', QUnit.newMwEnvironment( {
+		// This entire module is deprecated.
+		// Surpress deprecation warnings in test output.
+		setup: function () {
+			this.suppressWarnings();
+		},
+		teardown: function () {
+			this.restoreWarnings();
+		}
+	} ) );
 
 	QUnit.test( 'String functions', 7, function ( assert ) {
 		assert.equal( $.trimLeft( '  foo bar  ' ), 'foo bar  ', 'trimLeft' );
@@ -43,9 +52,9 @@
 	} );
 
 	QUnit.test( 'Comparison functions', 5, function ( assert ) {
-		assert.ok( $.compareArray( [0, 'a', [], [2, 'b'] ], [0, 'a', [], [2, 'b'] ] ),
+		assert.ok( $.compareArray( [ 0, 'a', [], [ 2, 'b' ] ], [ 0, 'a', [], [ 2, 'b' ] ] ),
 			'compareArray: Two deep arrays that are excactly the same' );
-		assert.ok( !$.compareArray( [1], [2] ), 'compareArray: Two different arrays (false)' );
+		assert.ok( !$.compareArray( [ 1 ], [ 2 ] ), 'compareArray: Two different arrays (false)' );
 
 		assert.ok( $.compareObject( {}, {} ), 'compareObject: Two empty objects' );
 		assert.ok( $.compareObject( { foo: 1 }, { foo: 1 } ), 'compareObject: Two the same objects' );

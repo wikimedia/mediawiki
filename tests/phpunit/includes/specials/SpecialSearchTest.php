@@ -136,9 +136,113 @@ class SpecialSearchTest extends MediaWikiTestCase {
 
 		# Compare :-]
 		$this->assertRegExp(
-			'/' . preg_quote( $term ) . '/',
+			'/' . preg_quote( $term, '/' ) . '/',
 			$pageTitle,
 			"Search term '{$term}' should not be expanded in Special:Search <title>"
 		);
+	}
+
+	public function provideRewriteQueryWithSuggestion() {
+		return array(
+			array(
+				'With suggestion and no rewritten query shows did you mean',
+				'/Did you mean: <a[^>]+>first suggestion/',
+				new SpecialSearchTestMockResultSet( 'first suggestion', null, array(
+					SearchResult::newFromTitle( Title::newMainPage() ),
+				) ),
+			),
+
+			array(
+				'With rewritten query informs user of change',
+				'/Showing results for <a[^>]+>first suggestion/',
+				new SpecialSearchTestMockResultSet( 'asdf', 'first suggestion', array(
+					SearchResult::newFromTitle( Title::newMainPage() ),
+				) ),
+			),
+
+			array(
+				'When both queries have no results user gets no results',
+				'/There were no results matching the query/',
+				new SpecialSearchTestMockResultSet( 'first suggestion', 'first suggestion', array() ),
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider provideRewriteQueryWithSuggestion
+	 */
+	public function testRewriteQueryWithSuggestion( $message, $expectRegex, $results ) {
+		$mockSearchEngine = $this->mockSearchEngine( $results );
+		$search = $this->getMockBuilder( 'SpecialSearch' )
+			->setMethods( array( 'getSearchEngine' ) )
+			->getMock();
+		$search->expects( $this->any() )
+			->method( 'getSearchEngine' )
+			->will( $this->returnValue( $mockSearchEngine ) );
+
+		$search->getContext()->setTitle( Title::makeTitle( NS_SPECIAL, 'Search' ) );
+		$search->load();
+		$search->showResults( 'this is a fake search' );
+
+		$html = $search->getContext()->getOutput()->getHTML();
+		foreach ( (array)$expectRegex as $regex ) {
+			$this->assertRegExp( $regex, $html, $message );
+		}
+	}
+
+	protected function mockSearchEngine( $results ) {
+		$mock = $this->getMockBuilder( 'SearchEngine' )
+			->setMethods( array( 'searchText', 'searchTitle' ) )
+			->getMock();
+
+		$mock->expects( $this->any() )
+			->method( 'searchText' )
+			->will( $this->returnValue( $results ) );
+
+		return $mock;
+	}
+}
+
+class SpecialSearchTestMockResultSet extends SearchResultSet {
+	protected $results;
+	protected $suggestion;
+
+	public function __construct( $suggestion = null, $rewrittenQuery = null, array $results = array(), $containedSyntax = false) {
+		$this->suggestion = $suggestion;
+		$this->rewrittenQuery = $rewrittenQuery;
+		$this->results = $results;
+		$this->containedSyntax = $containedSyntax;
+	}
+
+	public function numRows() {
+		return count( $this->results );
+	}
+
+	public function getTotalHits() {
+		return $this->numRows();
+	}
+
+	public function hasSuggestion() {
+		return $this->suggestion !== null;
+	}
+
+	public function getSuggestionQuery() {
+		return $this->suggestion;
+	}
+
+	public function getSuggestionSnippet() {
+		return $this->suggestion;
+	}
+
+	public function hasRewrittenQuery() {
+		return $this->rewrittenQuery !== null;
+	}
+
+	public function getQueryAfterRewrite() {
+		return $this->rewrittenQuery;
+	}
+
+	public function getQueryAfterRewriteSnippet() {
+		return htmlspecialchars( $this->rewrittenQuery );
 	}
 }

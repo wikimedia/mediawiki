@@ -87,6 +87,7 @@ class UploadStashCleanup extends Maintenance {
 					$this->output( "Failed removing stashed upload with key: $key ($type)\n" );
 				}
 				if ( $i % 100 == 0 ) {
+					wfWaitForSlaves();
 					$this->output( "$i\n" );
 				}
 			}

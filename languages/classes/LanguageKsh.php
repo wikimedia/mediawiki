@@ -91,7 +91,7 @@ class LanguageKsh extends Language {
 	function convertGrammar( $word, $case ) {
 		$lord = strtolower( $word );
 		$gender = 'm'; // Nuutnaarel // default
-		if ( preg_match ( '/wiki$/', $lord ) ) {
+		if ( preg_match( '/wiki$/', $lord ) ) {
 			$gender = 'n';	// Dat xyz-wiki
 		}
 		if ( isset( self::$familygender[$lord] ) ) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Wait until slave lag goes under a certain value.
+ * Wait for the slaves to catch up to the master position.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,18 +25,13 @@
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script to wait until slave lag goes under a certain value.
+ * Maintenance script to wait for the slaves to catch up to the master position.
  *
  * @ingroup Maintenance
  */
 class WaitForSlave extends Maintenance {
-	public function __construct() {
-		parent::__construct();
-		$this->addArg( 'maxlag', 'How long to wait for the slaves, default 10 seconds', false );
-	}
-
 	public function execute() {
-		wfWaitForSlaves( $this->getArg( 0, 10 ) );
+		wfWaitForSlaves();
 	}
 }
 

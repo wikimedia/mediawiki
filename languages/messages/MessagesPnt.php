@@ -48,8 +48,6 @@ $datePreferences = array(
 
 $defaultDateFormat = 'pnt';
 
-
-
 $dateFormats = array(
 	'pnt time' => 'H:i',
 	'pnt date' => 'j xg Y',

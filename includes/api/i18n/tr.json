@@ -1,9 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sayginer"
+			"Sayginer",
+			"Sadrettin",
+			"Uğurkent"
 		]
 	},
+	"apihelp-createaccount-param-name": "Kullanıcı adı.",
+	"apihelp-createaccount-param-password": "Parola (ignored if <var>$1mailpassword</var> is set).",
+	"apihelp-createaccount-param-email": "Kullanıcının e-posta adresi (isteğe bağlı).",
+	"apihelp-createaccount-param-realname": "Kullanıcının gerçek adı (isteğe bağlı).",
+	"apihelp-delete-description": "Sayfayı sil.",
+	"apihelp-edit-description": "Sayfa oluştur ve düzenle.",
 	"apihelp-edit-param-text": "Sayfa içeriği.",
 	"apihelp-edit-param-minor": "Küçük değişiklik.",
 	"apihelp-edit-param-nocreate": "Sayfa mevcut değilse hata oluştur.",
@@ -27,6 +35,8 @@
 	"apihelp-feedrecentchanges-example-simple": "Son değişiklikleri göster",
 	"apihelp-feedrecentchanges-example-30days": "Son 30 gündeki değişiklikleri göster",
 	"apihelp-filerevert-description": "Bir dosyayı eski bir sürümüne geri döndür.",
+	"apihelp-login-param-name": "Kullanıcı adı.",
+	"apihelp-login-param-password": "Parola.",
 	"apihelp-move-description": "Bir sayfayı taşı.",
 	"apihelp-move-param-from": "Taşımak istediğiniz sayfanın başlığı. $1fromid ile birlikte kullanılamaz.",
 	"apihelp-move-param-noredirect": "Yönlendirme oluşturmayın.",

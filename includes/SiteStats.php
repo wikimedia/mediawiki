@@ -68,6 +68,8 @@ class SiteStats {
 	 * @return bool|ResultWrapper
 	 */
 	static function loadAndLazyInit() {
+		global $wgMiserMode;
+
 		wfDebug( __METHOD__ . ": reading site_stats from slave\n" );
 		$row = self::doLoad( wfGetDB( DB_SLAVE ) );
 
@@ -77,7 +79,7 @@ class SiteStats {
 			$row = self::doLoad( wfGetDB( DB_MASTER ) );
 		}
 
-		if ( !self::isSane( $row ) ) {
+		if ( !$wgMiserMode && !self::isSane( $row ) ) {
 			// Normally the site_stats table is initialized at install time.
 			// Some manual construction scenarios may leave the table empty or
 			// broken, however, for instance when importing from a dump into a

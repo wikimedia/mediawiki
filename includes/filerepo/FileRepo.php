@@ -49,6 +49,9 @@ class FileRepo {
 	/** @var int */
 	public $descriptionCacheExpiry;
 
+	/** @var bool */
+	protected $hasSha1Storage = false;
+
 	/** @var FileBackend */
 	protected $backend;
 
@@ -63,7 +66,7 @@ class FileRepo {
 	protected $transformVia404;
 
 	/** @var string URL of image description pages, e.g.
-	 *    http://en.wikipedia.org/wiki/File:
+	 *    https://en.wikipedia.org/wiki/File:
 	 */
 	protected $descBaseUrl;
 
@@ -76,7 +79,7 @@ class FileRepo {
 	 *    to $wgScriptExtension, e.g. .php5 defaults to .php */
 	protected $scriptExtension;
 
-	/** @var string Equivalent to $wgArticlePath, e.g. http://en.wikipedia.org/wiki/$1 */
+	/** @var string Equivalent to $wgArticlePath, e.g. https://en.wikipedia.org/wiki/$1 */
 	protected $articleUrl;
 
 	/** @var bool Equivalent to $wgCapitalLinks (or $wgCapitalLinkOverrides[NS_FILE],
@@ -433,16 +436,17 @@ class FileRepo {
 			$img = $this->newFile( $title, $time );
 			if ( $img ) {
 				$img->load( $flags );
-			}
-			if ( $img && $img->exists() ) {
-				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
-					return $img; // always OK
-				} elseif ( !empty( $options['private'] ) &&
-					$img->userCan( File::DELETED_FILE,
-						$options['private'] instanceof User ? $options['private'] : null
-					)
-				) {
-					return $img;
+				if ( $img->exists() ) {
+					if ( !$img->isDeleted( File::DELETED_FILE ) ) {
+						return $img; // always OK
+					} elseif ( !empty( $options['private'] ) &&
+						$img->userCan( File::DELETED_FILE,
+							$options['private'] instanceof User ? $options['private'] : null
+						)
+					) {
+						return $img;
+					}
+				}
 				}
 			}
 		}
@@ -909,9 +913,9 @@ class FileRepo {
 		$status->merge( $backend->doOperations( $operations, $opts ) );
 		// Cleanup for disk source files...
 		foreach ( $sourceFSFilesToDelete as $file ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			unlink( $file ); // FS cleanup
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		}
 
 		return $status;
@@ -1297,9 +1301,9 @@ class FileRepo {
 		}
 		// Cleanup for disk source files...
 		foreach ( $sourceFSFilesToDelete as $file ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			unlink( $file ); // FS cleanup
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		}
 
 		return $status;
@@ -1884,6 +1888,14 @@ class FileRepo {
 		}
 
 		return $ret;
+	}
+
+	/**
+	 * Returns whether or not storage is SHA-1 based
+	 * @return boolean
+	 */
+	public function hasSha1Storage() {
+		return $this->hasSha1Storage;
 	}
 }
 

@@ -135,9 +135,6 @@ class Hooks {
 	 *   returning null) is equivalent to returning true.
 	 */
 	public static function run( $event, array $args = array(), $deprecatedVersion = null ) {
-		$profiler = Profiler::instance();
-		$eventPS = $profiler->scopedProfileIn( 'hook: ' . $event );
-
 		foreach ( self::getHandlers( $event ) as $hook ) {
 			// Turn non-array values into an array. (Can't use casting because of objects.)
 			if ( !is_array( $hook ) ) {
@@ -196,8 +193,6 @@ class Hooks {
 			$badhookmsg = null;
 			$hook_args = array_merge( $hook, $args );
 
-			// Profile first in case the Profiler causes errors
-			$funcPS = $profiler->scopedProfileIn( $func );
 			set_error_handler( 'Hooks::hookErrorHandler' );
 
 			// mark hook as deprecated, if deprecation version is specified
@@ -215,7 +210,6 @@ class Hooks {
 			}
 
 			restore_error_handler();
-			$profiler->scopedProfileOut( $funcPS );
 
 			// Process the return value.
 			if ( is_string( $retval ) ) {
@@ -237,22 +231,25 @@ class Hooks {
 	}
 
 	/**
-	 * Handle PHP errors issued inside a hook. Catch errors that have to do with
-	 * a function expecting a reference, and let all others pass through.
-	 *
-	 * This REALLY should be protected... but it's public for compatibility
+	 * Handle PHP errors issued inside a hook. Catch errors that have to do
+	 * with a function expecting a reference, and pass all others through to
+	 * MWExceptionHandler::handleError() for default processing.
 	 *
 	 * @since 1.18
 	 *
 	 * @param int $errno Error number (unused)
 	 * @param string $errstr Error message
 	 * @throws MWHookException If the error has to do with the function signature
-	 * @return bool Always returns false
+	 * @return bool
 	 */
 	public static function hookErrorHandler( $errno, $errstr ) {
 		if ( strpos( $errstr, 'expected to be a reference, value given' ) !== false ) {
 			throw new MWHookException( $errstr, $errno );
 		}
-		return false;
+
+		// Delegate unhandled errors to the default MW handler
+		return call_user_func_array(
+			'MWExceptionHandler::handleError', func_get_args()
+		);
 	}
 }

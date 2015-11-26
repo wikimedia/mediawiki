@@ -187,7 +187,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'Fitenim-pejy', 'Fitenimpejy' ),
 	'PasswordReset'             => array( 'Famerenan-tenimiafina', 'Famerenantenimiafina' ),
 	'PermanentLink'             => array( 'Rohy_maharitra', 'RohyMaharitra' ),
-
 	'Preferences'               => array( 'Safidy' ),
 	'Prefixindex'               => array( 'Index' ),
 	'Protectedpages'            => array( 'Pejy_voaaro' ),

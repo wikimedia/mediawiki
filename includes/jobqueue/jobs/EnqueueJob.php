@@ -40,13 +40,13 @@ final class EnqueueJob extends Job {
 	 * @param Title $title
 	 * @param array $params Job parameters
 	 */
-	function __construct( $title, $params ) {
+	function __construct( Title $title, array $params ) {
 		parent::__construct( 'enqueue', $title, $params );
 	}
 
 	/**
-	 * @param Job|JobSpecification|array $jobs
-	 * @return JobRouteJob
+	 * @param JobSpecification|JobSpecification[] $jobs
+	 * @return EnqueueJob
 	 */
 	public static function newFromLocalJobs( $jobs ) {
 		$jobs = is_array( $jobs ) ? $jobs : array( $jobs );
@@ -56,9 +56,11 @@ final class EnqueueJob extends Job {
 
 	/**
 	 * @param array $jobsByWiki Map of (wiki => JobSpecification list)
-	 * @return JobRouteJob
+	 * @return EnqueueJob
 	 */
 	public static function newFromJobsByWiki( array $jobsByWiki ) {
+		$deduplicate = true;
+
 		$jobMapsByWiki = array();
 		foreach ( $jobsByWiki as $wiki => $jobs ) {
 			$jobMapsByWiki[$wiki] = array();
@@ -68,10 +70,19 @@ final class EnqueueJob extends Job {
 				} else {
 					throw new InvalidArgumentException( "Jobs must be of type JobSpecification." );
 				}
+				$deduplicate = $deduplicate && $job->ignoreDuplicates();
 			}
 		}
 
-		return new self( Title::newMainPage(), array( 'jobsByWiki' => $jobMapsByWiki ) );
+		$eJob = new self(
+			Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __CLASS__ ),
+			array( 'jobsByWiki' => $jobMapsByWiki )
+		);
+		// If *all* jobs to be pushed are to be de-duplicated (a common case), then
+		// de-duplicate this whole job itself to avoid build up in high traffic cases
+		$eJob->removeDuplicates = $deduplicate;
+
+		return $eJob;
 	}
 
 	public function run() {

@@ -17,6 +17,7 @@
 		$editform = $( '#editform' );
 		$textbox = $editform.find( '#wpTextbox1' );
 		$summary = $editform.find( '#wpSummary' );
+		$spinner = $( '.mw-spinner-preview' );
 		$errorBox = $( '.errorbox' );
 		section = $editform.find( '[name="wpSection"]' ).val();
 
@@ -36,7 +37,7 @@
 		$wikiPreview.show();
 
 		// Jump to where the preview will appear
-		$wikiPreview[0].scrollIntoView();
+		$wikiPreview[ 0 ].scrollIntoView();
 
 		copySelectors = [
 			// Main
@@ -55,14 +56,17 @@
 		// Not shown during normal preview, to be removed if present
 		$( '.mw-newarticletext' ).remove();
 
-		$spinner = $.createSpinner( {
-			size: 'large',
-			type: 'block'
-		} );
-		$wikiPreview.before( $spinner );
-		$spinner.css( {
-			marginTop: $spinner.height()
-		} );
+		if ( $spinner.length === 0 ) {
+			$spinner = $.createSpinner( {
+				size: 'large',
+				type: 'block'
+			} )
+				.addClass( 'mw-spinner-preview' )
+				.css( 'margin-top', '1em' );
+			$wikiPreview.before( $spinner );
+		} else {
+			$spinner.show();
+		}
 
 		// Can't use fadeTo because it calls show(), and we might want to keep some elements hidden
 		// (e.g. empty #catlinks)
@@ -98,7 +102,7 @@
 					indexpageids: '',
 					prop: 'revisions',
 					titles: mw.config.get( 'wgPageName' ),
-					rvdifftotext: response.parse.text['*'],
+					rvdifftotext: response.parse.text[ '*' ],
 					rvprop: ''
 				};
 				if ( section !== '' ) {
@@ -106,8 +110,8 @@
 				}
 				return api.post( postData ).done( function ( result2 ) {
 					try {
-						var diffHtml = result2.query.pages[result2.query.pageids[0]]
-							.revisions[0].diff['*'];
+						var diffHtml = result2.query.pages[ result2.query.pageids[ 0 ] ]
+							.revisions[ 0 ].diff[ '*' ];
 						$wikiDiff.find( 'table.diff tbody' ).html( diffHtml );
 					} catch ( e ) {
 						// "result.blah is undefined" error, ignore
@@ -121,12 +125,15 @@
 			$.extend( postData, {
 				pst: '',
 				preview: '',
-				prop: 'text|displaytitle|modules|categorieshtml|templates|langlinks|limitreporthtml',
+				prop: 'text|displaytitle|modules|jsconfigvars|categorieshtml|templates|langlinks|limitreporthtml',
 				disableeditsection: true
 			} );
 			request = api.post( postData );
 			request.done( function ( response ) {
 				var li, newList, $displaytitle, $content, $parent, $list;
+				if ( response.parse.jsconfigvars ) {
+					mw.config.set( response.parse.jsconfigvars );
+				}
 				if ( response.parse.modules ) {
 					mw.loader.load( response.parse.modules.concat(
 						response.parse.modulescripts,
@@ -148,7 +155,7 @@
 					);
 				}
 				if ( response.parse.categorieshtml ) {
-					$( '#catlinks' ).replaceWith( response.parse.categorieshtml['*'] );
+					$( '#catlinks' ).replaceWith( response.parse.categorieshtml[ '*' ] );
 				}
 				if ( response.parse.templates ) {
 					newList = [];
@@ -156,10 +163,10 @@
 						li = $( '<li>' )
 							.append( $( '<a>' )
 								.attr( {
-									'href': mw.util.getUrl( template['*'] ),
+									href: mw.util.getUrl( template[ '*' ] ),
 									'class': ( template.exists !== undefined ? '' : 'new' )
 								} )
-								.text( template['*'] )
+								.text( template[ '*' ] )
 							);
 						newList.push( li );
 					} );
@@ -167,7 +174,7 @@
 					$editform.find( '.templatesUsed .mw-editfooter-list' ).detach().empty().append( newList ).appendTo( '.templatesUsed' );
 				}
 				if ( response.parse.limitreporthtml ) {
-					$( '.limitreport' ).html( response.parse.limitreporthtml['*'] );
+					$( '.limitreport' ).html( response.parse.limitreporthtml[ '*' ] );
 				}
 				if ( response.parse.langlinks && mw.config.get( 'skin' ) === 'vector' ) {
 					newList = [];
@@ -176,10 +183,10 @@
 							.addClass( 'interlanguage-link interwiki-' + langlink.lang )
 							.append( $( '<a>' )
 								.attr( {
-									'href': langlink.url,
-									'title': langlink['*'] + ' - ' + langlink.langname,
-									'lang': langlink.lang,
-									'hreflang': langlink.lang
+									href: langlink.url,
+									title: langlink[ '*' ] + ' - ' + langlink.langname,
+									lang: langlink.lang,
+									hreflang: langlink.lang
 								} )
 								.text( langlink.autonym )
 							);
@@ -190,11 +197,11 @@
 					$list.detach().empty().append( newList ).prependTo( $parent );
 				}
 
-				if ( response.parse.text['*'] ) {
+				if ( response.parse.text[ '*' ] ) {
 					$content = $wikiPreview.children( '.mw-content-ltr,.mw-content-rtl' );
 					$content
 						.detach()
-						.html( response.parse.text['*'] );
+						.html( response.parse.text[ '*' ] );
 
 					mw.hook( 'wikipage.content' ).fire( $content );
 
@@ -208,23 +215,23 @@
 		}
 		request.done( function ( response ) {
 			var isSubject = ( section === 'new' ),
-				summaryMsg = isSubject ? 'subject-preview' : 'summary-preview';
-			if ( response.parse.parsedsummary ) {
-				$editform.find( '.mw-summary-preview' )
-					.empty()
-					.append(
-						mw.message( summaryMsg ).parse(),
-						' ',
-						$( '<span>' ).addClass( 'comment' ).html(
-							// There is no equivalent to rawParams
-							mw.message( 'parentheses' ).escaped()
-								.replace( '$1', response.parse.parsedsummary['*'] )
-						)
-					);
+				summaryMsg = isSubject ? 'subject-preview' : 'summary-preview',
+				$summaryPreview = $editform.find( '.mw-summary-preview' ).empty();
+			if ( response.parse.parsedsummary && response.parse.parsedsummary[ '*' ] !== '' ) {
+				$summaryPreview.append(
+					mw.message( summaryMsg ).parse(),
+					' ',
+					$( '<span>' ).addClass( 'comment' ).html(
+						// There is no equivalent to rawParams
+						mw.message( 'parentheses' ).escaped()
+							.replace( '$1', response.parse.parsedsummary[ '*' ] )
+					)
+				);
 			}
+			mw.hook( 'wikipage.editform' ).fire( $editform );
 		} );
 		request.always( function () {
-			$spinner.remove();
+			$spinner.hide();
 			$copyElements.animate( {
 				opacity: 1
 			}, 'fast' );
@@ -265,9 +272,9 @@
 			$( '.portal:last' ).after(
 				$( '<div>' ).attr( {
 					'class': 'portal',
-					'id': 'p-lang',
-					'role': 'navigation',
-					'title': mw.msg( 'tooltip-p-lang' ),
+					id: 'p-lang',
+					role: 'navigation',
+					title: mw.msg( 'tooltip-p-lang' ),
 					'aria-labelledby': 'p-lang-label'
 				} )
 				.append( $( '<h3>' ).attr( 'id', 'p-lang-label' ).text( mw.msg( 'otherlanguages' ) ) )

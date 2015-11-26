@@ -20,11 +20,18 @@
  * @file
  */
 
+/**
+ * Redis-based caching module for redis server >= 2.6.12
+ *
+ * @note: avoid use of Redis::MULTI transactions for twemproxy support
+ */
 class RedisBagOStuff extends BagOStuff {
 	/** @var RedisConnectionPool */
 	protected $redisPool;
 	/** @var array List of server names */
 	protected $servers;
+	/** @var array Map of (tag => server name) */
+	protected $serverTagMap;
 	/** @var bool */
 	protected $automaticFailover;
 
@@ -34,7 +41,8 @@ class RedisBagOStuff extends BagOStuff {
 	 *   - servers: An array of server names. A server name may be a hostname,
 	 *     a hostname/port combination or the absolute path of a UNIX socket.
 	 *     If a hostname is specified but no port, the standard port number
-	 *     6379 will be used. Required.
+	 *     6379 will be used. Arrays keys can be used to specify the tag to
+	 *     hash on in place of the host/port. Required.
 	 *
 	 *   - connectTimeout: The timeout for new connections, in seconds. Optional,
 	 *     default is 1 second.
@@ -66,6 +74,10 @@ class RedisBagOStuff extends BagOStuff {
 		$this->redisPool = RedisConnectionPool::singleton( $redisConf );
 
 		$this->servers = $params['servers'];
+		foreach ( $this->servers as $key => $server ) {
+			$this->serverTagMap[is_int( $key ) ? $server : $key] = $server;
+		}
+
 		if ( isset( $params['automaticFailover'] ) ) {
 			$this->automaticFailover = $params['automaticFailover'];
 		} else {
@@ -73,8 +85,7 @@ class RedisBagOStuff extends BagOStuff {
 		}
 	}
 
-	public function get( $key, &$casToken = null ) {
-
+	public function get( $key, &$casToken = null, $flags = 0 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -93,7 +104,6 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	public function set( $key, $value, $expiry = 0 ) {
-
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -115,41 +125,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	protected function cas( $casToken, $key, $value, $expiry = 0 ) {
-
-		list( $server, $conn ) = $this->getConnection( $key );
-		if ( !$conn ) {
-			return false;
-		}
-		$expiry = $this->convertToRelative( $expiry );
-		try {
-			$conn->watch( $key );
-
-			if ( $this->serialize( $this->get( $key ) ) !== $casToken ) {
-				$conn->unwatch();
-				return false;
-			}
-
-			// multi()/exec() will fail atomically if the key changed since watch()
-			$conn->multi();
-			if ( $expiry ) {
-				$conn->setex( $key, $expiry, $this->serialize( $value ) );
-			} else {
-				// No expiry, that is very different from zero expiry in Redis
-				$conn->set( $key, $this->serialize( $value ) );
-			}
-			$result = ( $conn->exec() == array( true ) );
-		} catch ( RedisException $e ) {
-			$result = false;
-			$this->handleException( $conn, $e );
-		}
-
-		$this->logRequest( 'cas', $key, $server, $result );
-		return $result;
-	}
-
 	public function delete( $key ) {
-
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -167,8 +143,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function getMulti( array $keys ) {
-
+	public function getMulti( array $keys, $flags = 0 ) {
 		$batches = array();
 		$conns = array();
 		foreach ( $keys as $key ) {
@@ -213,7 +188,6 @@ class RedisBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function setMulti( array $data, $expiry = 0 ) {
-
 		$batches = array();
 		$conns = array();
 		foreach ( $data as $key => $value ) {
@@ -257,10 +231,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-
-
 	public function add( $key, $value, $expiry = 0 ) {
-
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -268,10 +239,11 @@ class RedisBagOStuff extends BagOStuff {
 		$expiry = $this->convertToRelative( $expiry );
 		try {
 			if ( $expiry ) {
-				$conn->multi();
-				$conn->setnx( $key, $this->serialize( $value ) );
-				$conn->expire( $key, $expiry );
-				$result = ( $conn->exec() == array( true, true ) );
+				$result = $conn->set(
+					$key,
+					$this->serialize( $value ),
+					array( 'nx', 'ex' => $expiry )
+				);
 			} else {
 				$result = $conn->setnx( $key, $this->serialize( $value ) );
 			}
@@ -297,7 +269,6 @@ class RedisBagOStuff extends BagOStuff {
 	 * @return int|bool New value or false on failure
 	 */
 	public function incr( $key, $value = 1 ) {
-
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -306,6 +277,7 @@ class RedisBagOStuff extends BagOStuff {
 			return null;
 		}
 		try {
+			// @FIXME: on races, the key may have a 0 TTL
 			$result = $conn->incrBy( $key, $value );
 		} catch ( RedisException $e ) {
 			$result = false;
@@ -316,12 +288,12 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
-		if ( !is_callable( $callback ) ) {
-			throw new Exception( "Got invalid callback." );
+	public function modifySimpleRelayEvent( array $event ) {
+		if ( array_key_exists( 'val', $event ) ) {
+			$event['val'] = serialize( $event['val'] ); // this class uses PHP serialization
 		}
 
-		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
+		return $event;
 	}
 
 	/**
@@ -348,24 +320,62 @@ class RedisBagOStuff extends BagOStuff {
 	 * @return array (server, RedisConnRef) or (false, false)
 	 */
 	protected function getConnection( $key ) {
-		if ( count( $this->servers ) === 1 ) {
-			$candidates = $this->servers;
-		} else {
-			$candidates = $this->servers;
+		$candidates = array_keys( $this->serverTagMap );
+
+		if ( count( $this->servers ) > 1 ) {
 			ArrayUtils::consistentHashSort( $candidates, $key, '/' );
 			if ( !$this->automaticFailover ) {
 				$candidates = array_slice( $candidates, 0, 1 );
 			}
 		}
 
-		foreach ( $candidates as $server ) {
+		while ( ( $tag = array_shift( $candidates ) ) !== null ) {
+			$server = $this->serverTagMap[$tag];
 			$conn = $this->redisPool->getConnection( $server );
-			if ( $conn ) {
-				return array( $server, $conn );
+			if ( !$conn ) {
+				continue;
 			}
+
+			// If automatic failover is enabled, check that the server's link
+			// to its master (if any) is up -- but only if there are other
+			// viable candidates left to consider. Also, getMasterLinkStatus()
+			// does not work with twemproxy, though $candidates will be empty
+			// by now in such cases.
+			if ( $this->automaticFailover && $candidates ) {
+				try {
+					if ( $this->getMasterLinkStatus( $conn ) === 'down' ) {
+						// If the master cannot be reached, fail-over to the next server.
+						// If masters are in data-center A, and slaves in data-center B,
+						// this helps avoid the case were fail-over happens in A but not
+						// to the corresponding server in B (e.g. read/write mismatch).
+						continue;
+					}
+				} catch ( RedisException $e ) {
+					// Server is not accepting commands
+					$this->handleException( $conn, $e );
+					continue;
+				}
+			}
+
+			return array( $server, $conn );
 		}
+
 		$this->setLastError( BagOStuff::ERR_UNREACHABLE );
+
 		return array( false, false );
+	}
+
+	/**
+	 * Check the master link status of a Redis server that is configured as a slave.
+	 * @param RedisConnRef $conn
+	 * @return string|null Master link status (either 'up' or 'down'), or null
+	 *  if the server is not a slave.
+	 */
+	protected function getMasterLinkStatus( RedisConnRef $conn ) {
+		$info = $conn->info();
+		return isset( $info['master_link_status'] )
+			? $info['master_link_status']
+			: null;
 	}
 
 	/**

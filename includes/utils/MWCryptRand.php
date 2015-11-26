@@ -96,9 +96,9 @@ class MWCryptRand {
 		}
 
 		foreach ( $files as $file ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$stat = stat( $file );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			if ( $stat ) {
 				// stat() duplicates data into numeric and string keys so kill off all the numeric ones
 				foreach ( $stat as $k => $v ) {
@@ -363,9 +363,9 @@ class MWCryptRand {
 			}
 			// /dev/urandom is generally considered the best possible commonly
 			// available random source, and is available on most *nix systems.
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$urandom = fopen( "/dev/urandom", "rb" );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 
 			// Attempt to read all our random data from urandom
 			// php's fread always does buffered reads based on the stream's chunk_size

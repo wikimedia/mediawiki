@@ -2,6 +2,7 @@
  * Implement AJAX navigation for multi-page images so the user may browse without a full page reload.
  */
 ( function ( mw, $ ) {
+	/*jshint latedef:false */
 	var jqXhr, $multipageimage, $spinner,
 		cache = {},
 		cacheOrder = [];
@@ -18,11 +19,11 @@
 		jqXhr = undefined;
 
 		// Try the cache
-		if ( cache[url] ) {
+		if ( cache[ url ] ) {
 			// Update access freshness
 			cacheOrder.splice( $.inArray( url, cacheOrder ), 1 );
 			cacheOrder.push( url );
-			return $.Deferred().resolve( cache[url] ).promise();
+			return $.Deferred().resolve( cache[ url ] ).promise();
 		}
 
 		// @todo Don't fetch the entire page. Ideally we'd only fetch the content portion or the data
@@ -36,12 +37,12 @@
 			jqXhr = undefined;
 
 			// Cache the newly loaded page
-			cache[url] = $contents;
+			cache[ url ] = $contents;
 			cacheOrder.push( url );
 
 			// Remove the oldest entry if we're over the limit
 			if ( cacheOrder.length > 10 ) {
-				delete cache[ cacheOrder[0] ];
+				delete cache[ cacheOrder[ 0 ] ];
 				cacheOrder = cacheOrder.slice( 1 );
 			}
 		} );

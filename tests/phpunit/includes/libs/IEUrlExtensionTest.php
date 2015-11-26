@@ -170,4 +170,37 @@ class IEUrlExtensionTest extends PHPUnit_Framework_TestCase {
 			'Two dots'
 		);
 	}
+
+	/**
+	 * @covers IEUrlExtension::findIE6Extension
+	 */
+	public function testScriptQuery() {
+		$this->assertEquals(
+			'php',
+			IEUrlExtension::findIE6Extension( 'example.php?foo=a&bar=b' ),
+			'Script with query'
+		);
+	}
+
+	/**
+	 * @covers IEUrlExtension::findIE6Extension
+	 */
+	public function testEscapedScriptQuery() {
+		$this->assertEquals(
+			'',
+			IEUrlExtension::findIE6Extension( 'example%2Ephp?foo=a&bar=b' ),
+			'Script with urlencoded dot and query'
+		);
+	}
+
+	/**
+	 * @covers IEUrlExtension::findIE6Extension
+	 */
+	public function testEscapedScriptQueryDot() {
+		$this->assertEquals(
+			'y',
+			IEUrlExtension::findIE6Extension( 'example%2Ephp?foo=a.x&bar=b.y' ),
+			'Script with urlencoded dot and query with dot'
+		);
+	}
 }

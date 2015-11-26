@@ -223,7 +223,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Իմքննարկումները' ),
 	'Newimages'                 => array( 'Նորպատկերներ' ),
 	'Newpages'                  => array( 'Նորէջերը' ),
-
 	'Preferences'               => array( 'Նախընտրությունները' ),
 	'Prefixindex'               => array( 'Որոնումնախածանցով' ),
 	'Randompage'                => array( 'Պատահականէջ' ),

@@ -1,10 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chelin"
+			"Chelin",
+			"C.R."
 		]
 	},
 	"apihelp-block-description": "Blocca n'utente.",
 	"apihelp-createaccount-param-name": "Nomme utente.",
-	"apihelp-delete-description": "Scancella 'na paggena."
+	"apihelp-delete-description": "Scancella 'na paggena.",
+	"apihelp-edit-example-edit": "Cagna paggena.",
+	"apihelp-emailuser-description": "E-mail a n'utente.",
+	"apihelp-feedwatchlist-param-feedformat": "'O furmato d' 'o feed.",
+	"apihelp-login-example-login": "Tràse.",
+	"apihelp-move-description": "Mòve paggena.",
+	"apihelp-opensearch-param-search": "Ascìa stringa.",
+	"apihelp-opensearch-param-format": "'O furmato 'e ll'output."
 }

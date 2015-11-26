@@ -58,8 +58,8 @@ class MultiHttpClient {
 
 	/**
 	 * @param array $options
-	 *   - connTimeout     : default connection timeout
-	 *   - reqTimeout      : default request timeout
+	 *   - connTimeout     : default connection timeout (seconds)
+	 *   - reqTimeout      : default request timeout (seconds)
 	 *   - proxy           : HTTP proxy to use
 	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
@@ -72,7 +72,9 @@ class MultiHttpClient {
 				throw new Exception( "Cannot find CA bundle: " . $this->caBundlePath );
 			}
 		}
-		static $opts = array( 'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost', 'proxy' );
+		static $opts = array(
+			'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost', 'proxy'
+		);
 		foreach ( $opts as $key ) {
 			if ( isset( $options[$key] ) ) {
 				$this->$key = $options[$key];
@@ -84,19 +86,19 @@ class MultiHttpClient {
 	 * Execute an HTTP(S) request
 	 *
 	 * This method returns a response map of:
- 	 *   - code    : HTTP response code or 0 if there was a serious cURL error
- 	 *   - reason  : HTTP response reason (empty if there was a serious cURL error)
- 	 *   - headers : <header name/value associative array>
- 	 *   - body    : HTTP response body or resource (if "stream" was set)
+	 *   - code    : HTTP response code or 0 if there was a serious cURL error
+	 *   - reason  : HTTP response reason (empty if there was a serious cURL error)
+	 *   - headers : <header name/value associative array>
+	 *   - body    : HTTP response body or resource (if "stream" was set)
 	 *   - error     : Any cURL error string
- 	 * The map also stores integer-indexed copies of these values. This lets callers do:
-	 *	<code>
+	 * The map also stores integer-indexed copies of these values. This lets callers do:
+	 * @code
 	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $http->run( $req );
-	 *  </code>
+	 * @endcode
 	 * @param array $req HTTP request array
 	 * @param array $opts
-	 *   - connTimeout    : connection timeout per request
-	 *   - reqTimeout     : post-connection timeout per request
+	 *   - connTimeout    : connection timeout per request (seconds)
+	 *   - reqTimeout     : post-connection timeout per request (seconds)
 	 * @return array Response array for request
 	 */
 	final public function run( array $req, array $opts = array() ) {
@@ -114,17 +116,17 @@ class MultiHttpClient {
 	 *   - body    : HTTP response body or resource (if "stream" was set)
 	 *   - error   : Any cURL error string
 	 * The map also stores integer-indexed copies of these values. This lets callers do:
-	 *    <code>
+	 * @code
 	 *        list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $req['response'];
-	 *  </code>
+	 * @endcode
 	 * All headers in the 'headers' field are normalized to use lower case names.
 	 * This is true for the request headers and the response headers. Integer-indexed
 	 * method/URL entries will also be changed to use the corresponding string keys.
 	 *
 	 * @param array $reqs Map of HTTP request arrays
 	 * @param array $opts
-	 *   - connTimeout     : connection timeout per request
-	 *   - reqTimeout      : post-connection timeout per request
+	 *   - connTimeout     : connection timeout per request (seconds)
+	 *   - reqTimeout      : post-connection timeout per request (seconds)
 	 *   - usePipelining   : whether to use HTTP pipelining if possible
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
 	 * @return array $reqs With response array populated for each
@@ -189,6 +191,7 @@ class MultiHttpClient {
 
 		// @TODO: use a per-host rolling handle window (e.g. CURLMOPT_MAX_HOST_CONNECTIONS)
 		$batches = array_chunk( $indexes, $this->maxConnsPerHost );
+		$infos = array();
 
 		foreach ( $batches as $batch ) {
 			// Attach all cURL handles for this batch
@@ -201,6 +204,10 @@ class MultiHttpClient {
 				// Do any available work...
 				do {
 					$mrc = curl_multi_exec( $chm, $active );
+					$info = curl_multi_info_read( $chm );
+					if ( $info !== false ) {
+						$infos[(int)$info['handle']] = $info;
+					}
 				} while ( $mrc == CURLM_CALL_MULTI_PERFORM );
 				// Wait (if possible) for available work...
 				if ( $active > 0 && $mrc == CURLM_OK ) {
@@ -216,10 +223,20 @@ class MultiHttpClient {
 		foreach ( $reqs as $index => &$req ) {
 			$ch = $handles[$index];
 			curl_multi_remove_handle( $chm, $ch );
-			if ( curl_errno( $ch ) !== 0 ) {
-				$req['response']['error'] = "(curl error: " .
-					curl_errno( $ch ) . ") " . curl_error( $ch );
+
+			if ( isset( $infos[(int)$ch] ) ) {
+				$info = $infos[(int)$ch];
+				$errno = $info['result'];
+				if ( $errno !== 0 ) {
+					$req['response']['error'] = "(curl error: $errno)";
+					if ( function_exists( 'curl_strerror' ) ) {
+						$req['response']['error'] .= " " . curl_strerror( $errno );
+					}
+				}
+			} else {
+				$req['response']['error'] = "(curl error: no status set)";
 			}
+
 			// For convenience with the list() operator
 			$req['response'][0] = $req['response']['code'];
 			$req['response'][1] = $req['response']['reason'];

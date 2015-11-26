@@ -41,6 +41,8 @@ class DeleteAction extends FormlessAction {
 	}
 
 	public function show() {
+		$this->useTransactionalTimeLimit();
+
 		$out = $this->getOutput();
 		if ( $this->getContext()->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
 			$out->addModuleStyles( array(

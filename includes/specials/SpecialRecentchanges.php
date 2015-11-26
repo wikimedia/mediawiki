@@ -57,6 +57,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			return;
 		}
 
+		$this->addHelpLink(
+			'//meta.wikimedia.org/wiki/Special:MyLanguage/Help:Recent_changes',
+			true
+		);
 		parent::execute( $subpage );
 	}
 
@@ -233,14 +237,21 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			return false;
 		}
 
-		// rc_new is not an ENUM, but adding a redundant rc_new IN (0,1) gives mysql enough
-		// knowledge to use an index merge if it wants (it may use some other index though).
+		// array_merge() is used intentionally here so that hooks can, should
+		// they so desire, override the ORDER BY / LIMIT condition(s); prior to
+		// MediaWiki 1.26 this used to use the plus operator instead, which meant
+		// that extensions weren't able to change these conditions
+		$query_options = array_merge( array(
+			'ORDER BY' => 'rc_timestamp DESC',
+			'LIMIT' => $opts['limit'] ), $query_options );
 		$rows = $dbr->select(
 			$tables,
 			$fields,
+			// rc_new is not an ENUM, but adding a redundant rc_new IN (0,1) gives mysql enough
+			// knowledge to use an index merge if it wants (it may use some other index though).
 			$conds + array( 'rc_new' => array( 0, 1 ) ),
 			__METHOD__,
-			array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $opts['limit'] ) + $query_options,
+			$query_options,
 			$join_conds
 		);
 
@@ -263,6 +274,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			);
 	}
 
+	protected function getDB() {
+		return wfGetDB( DB_SLAVE, 'recentchanges' );
+	}
+
 	public function outputFeedLinks() {
 		$this->addFeedLinks( $this->getFeedQuery() );
 	}
@@ -272,7 +287,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 *
 	 * @return array
 	 */
-	private function getFeedQuery() {
+	protected function getFeedQuery() {
 		$query = array_filter( $this->getOptions()->getAllValues(), function ( $value ) {
 			// API handles empty parameters in a different way
 			return $value !== '';

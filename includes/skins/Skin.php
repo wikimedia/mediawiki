@@ -180,8 +180,7 @@ abstract class Skin extends ContextSource {
 	 * @return array Array of modules with helper keys for easy overriding
 	 */
 	public function getDefaultModules() {
-		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil, $wgUseAjax,
-			$wgAjaxWatch, $wgEnableAPI, $wgEnableWriteAPI;
+		global $wgUseAjax, $wgAjaxWatch, $wgEnableAPI, $wgEnableWriteAPI;
 
 		$out = $this->getOutput();
 		$user = $out->getUser();
@@ -191,7 +190,7 @@ abstract class Skin extends ContextSource {
 				'mediawiki.page.ready',
 			),
 			// modules that exist for legacy reasons
-			'legacy' => array(),
+			'legacy' => ResourceLoaderStartUpModule::getLegacyModules(),
 			// modules relating to search functionality
 			'search' => array(),
 			// modules relating to functionality relating to watching an article
@@ -199,27 +198,17 @@ abstract class Skin extends ContextSource {
 			// modules which relate to the current users preferences
 			'user' => array(),
 		);
-		if ( $wgIncludeLegacyJavaScript ) {
-			$modules['legacy'][] = 'mediawiki.legacy.wikibits';
-		}
-
-		if ( $wgPreloadJavaScriptMwUtil ) {
-			$modules['legacy'][] = 'mediawiki.util';
-		}
 
 		// Add various resources if required
-		if ( $wgUseAjax ) {
-			$modules['legacy'][] = 'mediawiki.legacy.ajax';
-
-			if ( $wgEnableAPI ) {
-				if ( $wgEnableWriteAPI && $wgAjaxWatch && $user->isLoggedIn()
-					&& $user->isAllowed( 'writeapi' )
-				) {
-					$modules['watch'][] = 'mediawiki.page.watch.ajax';
-				}
-
-				$modules['search'][] = 'mediawiki.searchSuggest';
+		if ( $wgUseAjax && $wgEnableAPI ) {
+			if ( $wgEnableWriteAPI && $wgAjaxWatch && $user->isLoggedIn()
+				&& $user->isAllowedAll( 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
+				&& $this->getRelevantTitle()->canExist()
+			) {
+				$modules['watch'][] = 'mediawiki.page.watch.ajax';
 			}
+
+			$modules['search'][] = 'mediawiki.searchSuggest';
 		}
 
 		if ( $user->getBoolOption( 'editsectiononrightclick' ) ) {
@@ -248,8 +237,8 @@ abstract class Skin extends ContextSource {
 			$titles[] = $user->getTalkPage();
 		}
 
-		// Other tab link
-		if ( $title->isSpecialPage() ) {
+		// Check, if the page can hold some kind of content, otherwise do nothing
+		if ( !$title->canExist() ) {
 			// nothing
 		} elseif ( $title->isTalkPage() ) {
 			$titles[] = $title->getSubjectPage();
@@ -365,8 +354,8 @@ abstract class Skin extends ContextSource {
 	 */
 	static function makeVariablesScript( $data ) {
 		if ( $data ) {
-			return Html::inlineScript(
-				ResourceLoader::makeLoaderConditionalScript( ResourceLoader::makeConfigSetScript( $data ) )
+			return ResourceLoader::makeInlineScript(
+				ResourceLoader::makeConfigSetScript( $data )
 			);
 		} else {
 			return '';
@@ -650,7 +639,7 @@ abstract class Skin extends ContextSource {
 		}
 
 		return $this->msg( 'retrievedfrom' )
-			->rawParams( '<a dir="ltr" href="' . $url. '">' . $url . '</a>' )
+			->rawParams( '<a dir="ltr" href="' . $url . '">' . $url . '</a>' )
 			->parse();
 	}
 
@@ -1234,12 +1223,13 @@ abstract class Skin extends ContextSource {
 	 * @return array
 	 */
 	function buildSidebar() {
-		global $wgMemc, $wgEnableSidebarCache, $wgSidebarCacheExpiry;
+		global $wgEnableSidebarCache, $wgSidebarCacheExpiry;
 
+		$cache = ObjectCache::getMainWANInstance();
 		$key = wfMemcKey( 'sidebar', $this->getLanguage()->getCode() );
 
 		if ( $wgEnableSidebarCache ) {
-			$cachedsidebar = $wgMemc->get( $key );
+			$cachedsidebar = $cache->get( $key );
 			if ( $cachedsidebar ) {
 				Hooks::run( 'SidebarBeforeOutput', array( $this, &$cachedsidebar ) );
 
@@ -1252,7 +1242,7 @@ abstract class Skin extends ContextSource {
 
 		Hooks::run( 'SkinBuildSidebar', array( $this, &$bar ) );
 		if ( $wgEnableSidebarCache ) {
-			$wgMemc->set( $key, $bar, $wgSidebarCacheExpiry );
+			$cache->set( $key, $bar, $wgSidebarCacheExpiry );
 		}
 
 		Hooks::run( 'SidebarBeforeOutput', array( $this, &$bar ) );

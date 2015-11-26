@@ -14,7 +14,7 @@
 #   export MEDIAWIKI_USER=Selenium_user2
 #   bundle exec cucumber
 #
-mw-vagrant-host:
+mw-vagrant-host: &default
   mediawiki_url: http://127.0.0.1:8080/wiki/
   mediawiki_user: Selenium_user
   mediawiki_password: vagrant
@@ -33,3 +33,5 @@ test2:
   mediawiki_url: http://test2.wikipedia.org/wiki/
   mediawiki_user: Selenium_user
   # mediawiki_password: SET THIS IN THE ENVIRONMENT!
+
+default: *default

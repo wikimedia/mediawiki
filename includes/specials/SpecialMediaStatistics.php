@@ -36,7 +36,7 @@ class MediaStatisticsPage extends QueryPage {
 		$this->shownavigation = false;
 	}
 
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 
@@ -111,7 +111,11 @@ class MediaStatisticsPage extends QueryPage {
 	protected function outputResults( $out, $skin, $dbr, $res, $num, $offset ) {
 		$prevMediaType = null;
 		foreach ( $res as $row ) {
-			list( $mediaType, $mime, $totalCount, $totalBytes ) = $this->splitFakeTitle( $row->title );
+			$mediaStats = $this->splitFakeTitle( $row->title );
+			if ( count( $mediaStats ) < 4 ) {
+				continue;
+			}
+			list( $mediaType, $mime, $totalCount, $totalBytes ) = $mediaStats;
 			if ( $prevMediaType !== $mediaType ) {
 				if ( $prevMediaType !== null ) {
 					// We're not at beginning, so we have to
@@ -232,7 +236,7 @@ class MediaStatisticsPage extends QueryPage {
 					'mw-mediastats-table-' . strtolower( $mediaType ),
 					'sortable',
 					'wikitable'
-				))
+				) )
 			)
 		);
 		$this->getOutput()->addHTML( $this->getTableHeaderRow() );
@@ -271,7 +275,7 @@ class MediaStatisticsPage extends QueryPage {
 				array( 'class' => array(
 					'mw-mediastats-mediatype',
 					'mw-mediastats-mediatype-' . strtolower( $mediaType )
-				)),
+				) ),
 				// for grep
 				// mediastatistics-header-unknown, mediastatistics-header-bitmap,
 				// mediastatistics-header-drawing, mediastatistics-header-audio,

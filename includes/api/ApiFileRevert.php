@@ -38,6 +38,8 @@ class ApiFileRevert extends ApiBase {
 	protected $params;
 
 	public function execute() {
+		$this->useTransactionalTimeLimit();
+
 		$this->params = $this->extractRequestParams();
 		// Extract the file and archiveName from the request parameters
 		$this->validateParameters();

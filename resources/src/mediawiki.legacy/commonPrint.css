@@ -16,7 +16,6 @@ div#jump-to-nav,
 .mw-jump,
 div.top,
 div#column-one,
-#colophon,
 .mw-editsection,
 .mw-editsection-like,
 .toctoggle,
@@ -29,9 +28,6 @@ li#mobileview,
 li#privacy,
 #footer-places,
 .mw-hidden-catlinks,
-tr.mw-metadata-show-hide-extended,
-span.mw-filepage-other-resolutions,
-#filetoc,
 .usermessage,
 .patrollink,
 .ns-0 .mw-redirectedfrom,
@@ -123,7 +119,6 @@ pre, .mw-code {
 	border: 1px solid #aaaaaa;
 	background-color: #f9f9f9;
 	padding: 5px;
-	display: -moz-inline-block;
 	display: inline-block;
 	display: table;
 	/* IE7 and earlier */
@@ -283,45 +278,6 @@ div.tleft {
 
 img.thumbborder {
 	border: 1px solid #dddddd;
-}
-
-/**
- * Galleries (see shared.css for more info)
- */
-li.gallerybox {
-	vertical-align: top;
-	display: inline-block;
-}
-
-ul.gallery, li.gallerybox {
-	zoom: 1;
-	*display: inline;
-}
-
-ul.gallery {
-	margin: 2px;
-	padding: 2px;
-	display: block;
-}
-
-li.gallerycaption {
-	font-weight: bold;
-	text-align: center;
-	display: block;
-	word-wrap: break-word;
-}
-
-li.gallerybox div.thumb {
-	text-align: center;
-	border: 1px solid #ccc;
-	margin: 2px;
-}
-
-div.gallerytext {
-	overflow: hidden;
-	font-size: 94%;
-	padding: 2px 4px;
-	word-wrap: break-word;
 }
 
 /**

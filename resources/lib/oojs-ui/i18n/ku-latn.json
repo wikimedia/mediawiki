@@ -1,13 +1,26 @@
 {
 	"@metadata": {
 		"authors": [
+<<<<<<< HEAD
 			"George Animal"
 		]
 	},
+=======
+			"George Animal",
+			"Bikarhêner"
+		]
+	},
+	"ooui-toolbar-more": "Bêhtir",
+>>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 	"ooui-toolgroup-expand": "Bêhtir",
 	"ooui-toolgroup-collapse": "Kêmtir",
 	"ooui-dialog-message-accept": "Baş e",
 	"ooui-dialog-message-reject": "Betal bike",
 	"ooui-dialog-process-retry": "Dîsa hewl bide",
+<<<<<<< HEAD
 	"ooui-dialog-process-continue": "Bidomîne"
+=======
+	"ooui-dialog-process-continue": "Bidomîne",
+	"ooui-selectfile-placeholder": "Ti dosye nehatiye hilbijartin"
+>>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 }

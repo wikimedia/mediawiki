@@ -874,7 +874,7 @@ class XmlDumpWriter {
 		}
 
 		global $wgContLang;
-		$prefix = str_replace( '_', ' ', $wgContLang->getNsText( $title->getNamespace() ) );
+		$prefix = $wgContLang->getFormattedNsText( $title->getNamespace() );
 
 		if ( $prefix !== '' ) {
 			$prefix .= ':';
@@ -1191,7 +1191,7 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	 * @return string
 	 */
 	function setup7zCommand( $file ) {
-		$command = "7za a -bd -si " . wfEscapeShellArg( $file );
+		$command = "7za a -bd -si -mx=4 " . wfEscapeShellArg( $file );
 		// Suppress annoying useless crap from p7zip
 		// Unfortunately this could suppress real error messages too
 		$command .= ' >' . wfGetNull() . ' 2>&1';

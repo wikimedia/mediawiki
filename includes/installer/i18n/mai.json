@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Umeshberma",
-			"बिप्लब आनन्द"
+			"बिप्लब आनन्द",
+			"Bijay chaurasia"
 		]
 	},
+	"config-desc": "मेडिया-विकी के लेल इंस्टॉलर",
 	"config-information": "जानकारी",
 	"config-your-language": "अहाँक भाषा:",
 	"config-your-language-help": "प्रतिस्थापन होएतकाल भाषाके चयन करू",

@@ -485,7 +485,7 @@ class ArchivedFile {
 		if ( $type == 'text' ) {
 			return $this->user_text;
 		} elseif ( $type == 'id' ) {
-			return $this->user;
+			return (int)$this->user;
 		}
 
 		throw new MWException( "Unknown type '$type'." );
@@ -587,6 +587,6 @@ class ArchivedFile {
 		$this->load();
 
 		$title = $this->getTitle();
-		return Revision::userCanBitfield( $this->deleted, $field, $user, $title ? : null );
+		return Revision::userCanBitfield( $this->deleted, $field, $user, $title ?: null );
 	}
 }

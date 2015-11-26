@@ -6,6 +6,11 @@
 class PrefixSearchTest extends MediaWikiLangTestCase {
 
 	public function addDBData() {
+		if ( !$this->isWikitextNS( NS_MAIN ) ) {
+			// tests are skipped if NS_MAIN is not wikitext
+			return;
+		}
+
 		$this->insertPage( 'Sandbox' );
 		$this->insertPage( 'Bar' );
 		$this->insertPage( 'Example' );

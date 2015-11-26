@@ -695,7 +695,7 @@ class DelayedParserTest {
 	 * @throws MWException
 	 */
 	public function unleash( &$parserTest ) {
-		if ( !( $parserTest instanceof ParserTest || $parserTest instanceof NewParserTest )	) {
+		if ( !( $parserTest instanceof ParserTest || $parserTest instanceof NewParserTest ) ) {
 			throw new MWException( __METHOD__ . " must be passed an instance of ParserTest or "
 				. "NewParserTest classes\n" );
 		}

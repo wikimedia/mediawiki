@@ -207,26 +207,26 @@ abstract class ContentHandler {
 			}
 		}
 
-		// Could this page contain custom CSS or JavaScript, based on the title?
-		$isCssOrJsPage = NS_MEDIAWIKI == $ns && preg_match( '!\.(css|js)$!u', $title->getText(), $m );
-		if ( $isCssOrJsPage ) {
+		// Could this page contain code based on the title?
+		$isCodePage = NS_MEDIAWIKI == $ns && preg_match( '!\.(css|js|json)$!u', $title->getText(), $m );
+		if ( $isCodePage ) {
 			$ext = $m[1];
 		}
 
 		// Hook can force JS/CSS
-		Hooks::run( 'TitleIsCssOrJsPage', array( $title, &$isCssOrJsPage ), '1.25' );
+		Hooks::run( 'TitleIsCssOrJsPage', array( $title, &$isCodePage ), '1.25' );
 
-		// Is this a .css subpage of a user page?
-		$isJsCssSubpage = NS_USER == $ns
-			&& !$isCssOrJsPage
-			&& preg_match( "/\\/.*\\.(js|css)$/", $title->getText(), $m );
-		if ( $isJsCssSubpage ) {
+		// Is this a user subpage containing code?
+		$isCodeSubpage = NS_USER == $ns
+			&& !$isCodePage
+			&& preg_match( "/\\/.*\\.(js|css|json)$/", $title->getText(), $m );
+		if ( $isCodeSubpage ) {
 			$ext = $m[1];
 		}
 
 		// Is this wikitext, according to $wgNamespaceContentModels or the DefaultModelFor hook?
 		$isWikitext = is_null( $model ) || $model == CONTENT_MODEL_WIKITEXT;
-		$isWikitext = $isWikitext && !$isCssOrJsPage && !$isJsCssSubpage;
+		$isWikitext = $isWikitext && !$isCodePage && !$isCodeSubpage;
 
 		// Hook can override $isWikitext
 		Hooks::run( 'TitleIsWikitextPage', array( $title, &$isWikitext ), '1.25' );
@@ -237,6 +237,8 @@ abstract class ContentHandler {
 					return CONTENT_MODEL_JAVASCRIPT;
 				case 'css':
 					return CONTENT_MODEL_CSS;
+				case 'json':
+					return CONTENT_MODEL_JSON;
 				default:
 					return is_null( $model ) ? CONTENT_MODEL_TEXT : $model;
 			}
@@ -353,16 +355,20 @@ abstract class ContentHandler {
 	 *
 	 * @param string $name The content model ID, as given by a CONTENT_MODEL_XXX
 	 *    constant or returned by Revision::getContentModel().
+	 * @param Language|null $lang The language to parse the message in (since 1.26)
 	 *
 	 * @throws MWException If the model ID isn't known.
 	 * @return string The content model's localized name.
 	 */
-	public static function getLocalizedName( $name ) {
+	public static function getLocalizedName( $name, Language $lang = null ) {
 		// Messages: content-model-wikitext, content-model-text,
 		// content-model-javascript, content-model-css
 		$key = "content-model-$name";
 
 		$msg = wfMessage( $key );
+		if ( $lang ) {
+			$msg->inLanguage( $lang );
+		}
 
 		return $msg->exists() ? $msg->plain() : $name;
 	}
@@ -629,7 +635,7 @@ abstract class ContentHandler {
 
 		// hook: get difference engine
 		$differenceEngine = null;
-		if ( !wfRunHooks( 'GetDifferenceEngine',
+		if ( !Hooks::run( 'GetDifferenceEngine',
 			array( $context, $old, $new, $refreshCache, $unhide, &$differenceEngine )
 		) ) {
 			return $differenceEngine;
@@ -1021,7 +1027,7 @@ abstract class ContentHandler {
 
 	/**
 	 * Returns true for content models that support caching using the
-	 * ParserCache mechanism. See WikiPage::isParserCacheUsed().
+	 * ParserCache mechanism. See WikiPage::shouldCheckParserCache().
 	 *
 	 * @since 1.21
 	 *
@@ -1055,6 +1061,24 @@ abstract class ContentHandler {
 	 */
 	public function supportsRedirects() {
 		return false;
+	}
+
+	/**
+	 * Return true if this content model supports direct editing, such as via EditPage.
+	 *
+	 * @return bool Default is false, and true for TextContent and it's derivatives.
+	 */
+	public function supportsDirectEditing() {
+		return false;
+	}
+
+	/**
+	 * Whether or not this content model supports direct editing via ApiEditPage
+	 *
+	 * @return bool Default is false, and true for TextContent and derivatives.
+	 */
+	public function supportsDirectApiEditing() {
+		return $this->supportsDirectEditing();
 	}
 
 	/**
@@ -1112,7 +1136,7 @@ abstract class ContentHandler {
 			$handlers = Hooks::getHandlers( $event );
 			$handlerInfo = array();
 
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 
 			foreach ( $handlers as $handler ) {
 				if ( is_array( $handler ) ) {
@@ -1135,7 +1159,7 @@ abstract class ContentHandler {
 				$handlerInfo[] = $info;
 			}
 
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 
 			wfWarn( "Using obsolete hook $event via ContentHandler::runLegacyHooks()! Handlers: " .
 				implode( ', ', $handlerInfo ), 2 );

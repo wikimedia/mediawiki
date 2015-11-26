@@ -123,6 +123,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	public function selectNamedDB( $name, $db, $groups ) {
 		$this->mDb = $this->getQuery()->getNamedDB( $name, $db, $groups );
+		return $this->mDb;
 	}
 
 	/**
@@ -503,7 +504,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * capitalization settings.
 	 *
 	 * @param string $titlePart Title part
-	 * @param int $defaultNamespace Namespace of the title
+	 * @param int $namespace Namespace of the title
 	 * @return string DBkey (no namespace prefix)
 	 */
 	public function titlePartToKey( $titlePart, $namespace = NS_MAIN ) {
@@ -522,6 +523,24 @@ abstract class ApiQueryBase extends ApiBase {
 		}
 
 		return substr( $t->getDbKey(), 0, -1 );
+	}
+
+	/**
+	 * Convert an input title or title prefix into a namespace constant and dbkey.
+	 *
+	 * @since 1.26
+	 * @param string $titlePart Title part
+	 * @param int $defaultNamespace Default namespace if none is given
+	 * @return array (int, string) Namespace number and DBkey
+	 */
+	public function prefixedTitlePartToKey( $titlePart, $defaultNamespace = NS_MAIN ) {
+		$t = Title::newFromText( $titlePart . 'x', $defaultNamespace );
+		if ( !$t || $t->hasFragment() || $t->isExternal() ) {
+			// Invalid title (e.g. bad chars) or contained a '#'.
+			$this->dieUsageMsg( array( 'invalidtitle', $titlePart ) );
+		}
+
+		return array( $t->getNamespace(), substr( $t->getDbKey(), 0, -1 ) );
 	}
 
 	/**

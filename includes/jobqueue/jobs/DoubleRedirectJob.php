@@ -41,6 +41,16 @@ class DoubleRedirectJob extends Job {
 	private static $user;
 
 	/**
+	 * @param Title $title
+	 * @param array $params
+	 */
+	function __construct( Title $title, array $params ) {
+		parent::__construct( 'fixDoubleRedirect', $title, $params );
+		$this->reason = $params['reason'];
+		$this->redirTitle = Title::newFromText( $params['redirTitle'] );
+	}
+
+	/**
 	 * Insert jobs into the job queue to fix redirects to the given title
 	 * @param string $reason The reason for the fix, see message
 	 *   "double-redirect-fixed-<reason>"
@@ -79,16 +89,6 @@ class DoubleRedirectJob extends Job {
 			}
 		}
 		JobQueueGroup::singleton()->push( $jobs );
-	}
-
-	/**
-	 * @param Title $title
-	 * @param array|bool $params
-	 */
-	function __construct( $title, $params = false ) {
-		parent::__construct( 'fixDoubleRedirect', $title, $params );
-		$this->reason = $params['reason'];
-		$this->redirTitle = Title::newFromText( $params['redirTitle'] );
 	}
 
 	/**

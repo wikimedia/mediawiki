@@ -57,12 +57,7 @@ class MemcachedBagOStuff extends BagOStuff {
 		return $params;
 	}
 
-	/**
-	 * @param string $key
-	 * @param mixed $casToken [optional]
-	 * @return mixed
-	 */
-	public function get( $key, &$casToken = null ) {
+	public function get( $key, &$casToken = null, $flags = 0 ) {
 		return $this->client->get( $this->encodeKey( $key ), $casToken );
 	}
 
@@ -182,5 +177,13 @@ class MemcachedBagOStuff extends BagOStuff {
 	 */
 	protected function debugLog( $text ) {
 		$this->logger->debug( $text );
+	}
+
+	public function modifySimpleRelayEvent( array $event ) {
+		if ( array_key_exists( 'val', $event ) ) {
+			$event['flg'] = 0; // data is not serialized nor gzipped (for memcached driver)
+		}
+
+		return $event;
 	}
 }

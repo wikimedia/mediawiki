@@ -31,7 +31,7 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'Картинка' => NS_FILE,
-	'Картинка беседа' => NS_FILE_TALK,
+	'Картинка_беседа' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(
@@ -85,7 +85,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Моята_беседа' ),
 	'Newimages'                 => array( 'Нови_файлове' ),
 	'Newpages'                  => array( 'Нови_страници' ),
-
 	'Preferences'               => array( 'Настройки' ),
 	'Prefixindex'               => array( 'Всички_страници_с_представка', 'Представка' ),
 	'Protectedpages'            => array( 'Защитени_страници' ),

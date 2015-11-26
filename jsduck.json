@@ -7,7 +7,7 @@
 	"--builtin-classes": true,
 	"--processes": "0",
 	"--warnings-exit-nonzero": true,
-	"--external": "HTMLElement,HTMLDocument,Window,File,MouseEvent,KeyboardEvent",
+	"--external": "HTMLElement,HTMLDocument,Window,File,MouseEvent,KeyboardEvent,HTMLIframeElement,HTMLInputElement,XMLDocument",
 	"--output": "docs/js",
 	"--": [
 		"maintenance/jsduck/external.js",
@@ -19,6 +19,7 @@
 		"resources/src/mediawiki.page",
 		"resources/src/mediawiki.special",
 		"resources/src/mediawiki.toolbar",
+		"resources/src/mediawiki.widgets",
 		"resources/src/jquery/jquery.accessKeyLabel.js",
 		"resources/src/jquery/jquery.arrowSteps.js",
 		"resources/src/jquery/jquery.autoEllipsis.js",

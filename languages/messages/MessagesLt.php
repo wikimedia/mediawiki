@@ -107,7 +107,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Mano_aptarimas' ),
 	'Newimages'                 => array( 'Nauji_paveikslėliai' ),
 	'Newpages'                  => array( 'Naujausi_puslapiai' ),
-
 	'Preferences'               => array( 'Nustatymai' ),
 	'Prefixindex'               => array( 'Prasidedantys' ),
 	'Protectedpages'            => array( 'Užrakinti_puslapiai' ),

@@ -348,7 +348,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'تالقىلاۋىم' ),
 	'Newimages'                 => array( 'جاڭا_سۋرەتتەر' ),
 	'Newpages'                  => array( 'جاڭا_بەتتەر' ),
-
 	'Preferences'               => array( 'باپتالىمدار', 'باپتاۋ' ),
 	'Prefixindex'               => array( 'ٴباستاۋىش_ٴتىزىمى' ),
 	'Protectedpages'            => array( 'قورعالعان_بەتتەر' ),

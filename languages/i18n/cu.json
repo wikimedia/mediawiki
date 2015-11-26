@@ -6,7 +6,8 @@
 			"Svetko",
 			"Wolliger Mensch",
 			"ОйЛ",
-			"아라"
+			"아라",
+			"Илья Драконов"
 		]
 	},
 	"tog-oldsig": "нꙑнѣшьн҄ь аѵтографъ :",
@@ -395,6 +396,7 @@
 	"minoreditletter": "м҃л",
 	"newpageletter": "н҃в",
 	"boteditletter": "а҃ѵ",
+	"rc_categories_any": "Любы из выбраных",
 	"rc-change-size-new": "$1 {{PLURAL:$1|баитъ|баита|баитъ}} послѣди мѣнꙑ",
 	"rc-old-title": "напрьва страница створѥна ꙗко ⁖ $1 ⁖",
 	"recentchangeslinked": "съвѧꙁанꙑ страницѧ",
@@ -517,6 +519,7 @@
 	"protectedarticle": "⁖ [[$1]] ⁖ ꙁабранѥна ѥстъ",
 	"prot_1movedto2": "⁖ [[$1]] ⁖ нарєчєнъ ⁖ [[$2]] ⁖ ѥстъ",
 	"protectcomment": "какъ съмꙑслъ :",
+	"protect-cascadeon": "Эта страница защищена от редактирования {{PLURAL:$1|page, which has|pages, which have}}.",
 	"protect-level-sysop": "толико съмотритєлє",
 	"protect-othertime": "ино врѣмѧ :",
 	"protect-othertime-op": "ино врѣмѧ",

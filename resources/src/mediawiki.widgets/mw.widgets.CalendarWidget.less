@@ -1,0 +1,243 @@
+/*!
+ * MediaWiki Widgets – CalendarWidget styles.
+ *
+ * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license The MIT License (MIT); see LICENSE.txt
+ */
+
+@calendarWidth: 21em;
+@calendarHeight: 14em;
+
+.mw-widget-calendarWidget {
+	width: @calendarWidth;
+}
+
+.mw-widget-calendarWidget-header {
+	position: relative;
+	line-height: 2.5em;
+}
+
+.mw-widget-calendarWidget-header .oo-ui-buttonWidget {
+	margin-right: 0;
+}
+
+.mw-widget-calendarWidget-header .mw-widget-calendarWidget-labelButton {
+	margin: 0 auto;
+	display: block;
+	width: @calendarWidth - 2*3em;
+
+	.oo-ui-buttonElement-button {
+		width: @calendarWidth - 2*3em;
+		text-align: center;
+	}
+}
+
+.mw-widget-calendarWidget-upButton {
+	position: absolute;
+	right: 3em;
+}
+
+.mw-widget-calendarWidget-prevButton {
+	float: left;
+}
+
+.mw-widget-calendarWidget-nextButton {
+	float: right;
+}
+
+.mw-widget-calendarWidget-body-outer-wrapper {
+	clear: both;
+	position: relative;
+	overflow: hidden;
+	// Fit 7 days, 3em each
+	width: @calendarWidth;
+	// Fit 6 weeks + heading line, 2em each
+	height: @calendarHeight;
+}
+
+.mw-widget-calendarWidget-body-wrapper {
+	.mw-widget-calendarWidget-body {
+		display: inline-block;
+		// Fit 7 days, 3em each
+		width: @calendarWidth;
+		// Fit 6 weeks + heading line, 2em each
+		height: @calendarHeight;
+	}
+
+	.mw-widget-calendarWidget-old-body {
+		// background: #fdd;
+	}
+
+	.mw-widget-calendarWidget-body:not(.mw-widget-calendarWidget-old-body):first-child {
+		margin-top: -@calendarHeight;
+		margin-left: -@calendarWidth;
+	}
+
+	.mw-widget-calendarWidget-body:not(.mw-widget-calendarWidget-old-body):last-child {
+		margin-top: 0;
+		margin-left: 0;
+	}
+}
+
+.mw-widget-calendarWidget-body-wrapper-fade-previous {
+	width: @calendarWidth * 2;
+	height: @calendarHeight;
+
+	.mw-widget-calendarWidget-body:first-child {
+		margin-top: 0 !important;
+		margin-left: 0 !important;
+		transition: 0.5s margin-left;
+	}
+}
+
+.mw-widget-calendarWidget-body-wrapper-fade-next {
+	width: @calendarWidth * 2;
+	height: @calendarHeight;
+
+	.mw-widget-calendarWidget-body:first-child {
+		margin-left: -@calendarWidth !important;
+		margin-top: 0 !important;
+		transition: 0.5s margin-left;
+	}
+}
+
+.mw-widget-calendarWidget-body-wrapper-fade-up {
+	width: @calendarWidth;
+	height: @calendarHeight * 2;
+
+	.mw-widget-calendarWidget-body {
+		display: block;
+	}
+
+	.mw-widget-calendarWidget-body:first-child {
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		transition: 0.5s margin-top;
+	}
+}
+
+.mw-widget-calendarWidget-body-wrapper-fade-down {
+	width: @calendarWidth;
+	height: @calendarHeight * 2;
+
+	.mw-widget-calendarWidget-body {
+		display: block;
+	}
+
+	.mw-widget-calendarWidget-body:first-child {
+		margin-left: 0 !important;
+		margin-top: -@calendarHeight !important;
+		transition: 0.5s margin-top;
+	}
+}
+
+.mw-widget-calendarWidget-day,
+.mw-widget-calendarWidget-day-heading,
+.mw-widget-calendarWidget-month,
+.mw-widget-calendarWidget-year {
+	display: inline-block;
+	vertical-align: middle;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: center;
+}
+
+.mw-widget-calendarWidget-day,
+.mw-widget-calendarWidget-day-heading {
+	// 7x7 grid
+	width: @calendarWidth / 7;
+	line-height: @calendarHeight / 7;
+	// Don't overlap the hacked-up fake box-shadow border we get when focussed
+	&:nth-child(7n) {
+		width: @calendarWidth / 7 - 0.2em;
+		margin-right: 0.2em;
+	}
+	&:nth-child(7n+1) {
+		width: @calendarWidth / 7 - 0.2em;
+		margin-left: 0.2em;
+	}
+	&:nth-child(42) ~ & {
+		line-height: @calendarHeight / 7 - 0.2em;
+		margin-bottom: 0.2em;
+	}
+}
+
+.mw-widget-calendarWidget-month {
+	// 2x6 grid
+	width: @calendarWidth / 2;
+	line-height: @calendarHeight / 6;
+	// Don't overlap the hacked-up fake box-shadow border we get when focussed
+	&:nth-child(2n) {
+		width: @calendarWidth / 2 - 0.2em;
+		margin-right: 0.2em;
+	}
+	&:nth-child(2n+1) {
+		width: @calendarWidth / 2 - 0.2em;
+		margin-left: 0.2em;
+	}
+	&:nth-child(10) ~ & {
+		line-height: @calendarHeight / 6 - 0.2em;
+		margin-bottom: 0.2em;
+	}
+}
+
+.mw-widget-calendarWidget-year {
+	// 5x4 grid
+	width: @calendarWidth / 5;
+	line-height: @calendarHeight / 4;
+	// Don't overlap the hacked-up fake box-shadow border we get when focussed
+	&:nth-child(5n) {
+		width: @calendarWidth / 5 - 0.2em;
+		margin-right: 0.2em;
+	}
+	&:nth-child(5n+1) {
+		width: @calendarWidth / 5 - 0.2em;
+		margin-left: 0.2em;
+	}
+	&:nth-child(15) ~ & {
+		line-height: @calendarHeight / 4 - 0.2em;
+		margin-bottom: 0.2em;
+	}
+}
+
+.mw-widget-calendarWidget-item {
+	cursor: pointer;
+}
+
+/* Theme-specific */
+.mw-widget-calendarWidget {
+	box-shadow: inset 0 0 0 1px #ccc;
+}
+
+.mw-widget-calendarWidget:focus {
+	outline: none;
+	box-shadow: inset 0 0 0 2px #347bff;
+}
+
+.mw-widget-calendarWidget-day {
+	color: #444;
+	border-radius: 0.1em;
+}
+
+.mw-widget-calendarWidget-day-heading {
+	font-weight: bold;
+	color: #555;
+}
+
+.mw-widget-calendarWidget-day-additional {
+	color: #aaa;
+}
+
+.mw-widget-calendarWidget-day-today {
+	box-shadow: inset 0 0 0 1px #3787fb;
+}
+
+.mw-widget-calendarWidget-item-selected {
+	background-color: #d8e6fe;
+	color: #3787fb;
+}
+
+.mw-widget-calendarWidget-item:hover {
+	background-color: #eee;
+}

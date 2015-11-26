@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ruleset name="MediaWiki">
+	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki"/>
+	<file>.</file>
+	<arg name="encoding" value="utf8"/>
+	<arg name="extensions" value="php,php5,inc,sample"/>
+	<rule ref="Generic.Files.LineLength">
+		<exclude-pattern>*/languages/messages/Messages*.php</exclude-pattern>
+	</rule>
+	<exclude-pattern>node_modules</exclude-pattern>
+	<exclude-pattern>vendor</exclude-pattern>
+	<exclude-pattern>extensions</exclude-pattern>
+	<exclude-pattern>skins</exclude-pattern>
+</ruleset>

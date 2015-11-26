@@ -1,0 +1,312 @@
+Security reminder: If you have PHP's register_globals option set, you must
+turn it off. MediaWiki will not work with it enabled.
+
+== MediaWiki 1.26 ==
+
+=== Configuration changes in 1.26 ===
+* $wgPasswordResetRoutes['email'] = true by default.
+* $wgEnableParserCache was deprecated, set $wgParserCacheType to CACHE_NONE
+  instead if you want to disable the parser cache.
+* New-style continuation is now the default for API action=continue. Clients may
+  use the 'rawcontinue' parameter to receive raw query-continue data, but the
+  new style is encouraged as it's harder to implement incorrectly.
+* Deprecated API formats dump and wddx have been completely removed.
+* (T7645) The "Signature" button on the edit toolbar is now hidden by default
+  in non-talk namespaces. A new configuration variable,
+  $wgExtraSignatureNamespaces, controls in which subject (non-talk) namespaces
+  the "Signature" button on the edit toolbar will be displayed.
+* $wgResourceLoaderUseESI was deprecated and removed. This was an experimental
+  feature that was never enabled by default.
+* $wgResourceLoaderExperimentalAsyncLoading was deprecated and removed.
+  This experimental feature was never enabled by default and is obsolete as of
+  MediaWiki 1.26, in where ResourceLoader became fully asynchronous.
+* $wgMasterWaitTimeout was removed (deprecated in 1.24).
+* Fields in ParserOptions are now private. Use the accessors instead.
+* Custom LESS functions (defined via $wgResourceLoaderLESSFunctions or
+  in extension.json) have been removed, after being deprecated in 1.24.
+* $wgAlwaysUseTidy has been removed.
+* ResetSessionID hook has been removed. Nothing seems to use it.
+* Certain AuthPlugin methods are deprecated in favor of new hooks:
+** AuthPlugin::initUser() is replaced by LocalUserCreated.
+** AuthPlugin::updateUser() is replaced by UserLoggedIn.
+** AuthPlugin::updateExternalDB() is replaced by the existing UserSaveSettings.
+** AuthPlugin::updateExternalDBGroups() is replaced by UserGroupsChanged.
+** AuthPluginUser::isHidden() is replaced by UserIsHidden.
+** AuthPluginUser::isLocked() is replaced by UserIsLocked.
+* The UserRights hook is deprecated in favor of the new UserGroupsChanged hook.
+* AuthPlugin::initUser() and AuthPlugin::updateUser() should no longer replace
+  the passed User object.
+* $wgBlockAllowsUTEdit is now set to true by default. This allows
+  blocked users to edit their talk pages unless explicitly disabled
+  when they are being blocked.
+
+=== New features in 1.26 ===
+* (T51506) Now action=info gives estimates of actual watchers for a page.
+  See $wgRCMaxAge, $wgWatchersMaxAge and $wgUnwatchedPageSecret
+  to learn how to configure if needed.
+* Change tags can now be hidden in the interface by disabling the associated
+  "tag-<id>" interface message.
+* ':' (colon) is now invalid in usernames for new accounts. Existing accounts
+  are not affected.
+* Added a new hook, 'LogException', to log exceptions in nonstandard ways.
+* Revive the 'SpecialSearchResultsAppend' hook which occurs after the list of
+  search results are rendered. The initial use case is to append a "give us
+  feedback" link beneath the search results.
+* Added a new hook, 'RejectParserCacheValue', which allows extensions to
+  reject an otherwise-successful parser cache lookup. The intent is to allow
+  extensions to manage the eviction of archaic HTML output from the cache.
+* (T68699) The expiration of the UserID and Token login cookies
+  ($wgExtendedLoginCookieExpiration) can be configured independently of the
+  expiration of all other cookies ($wgCookieExpiration).
+* (T50519) Support for generating JPEG/PNG thumbnails from WebP images added
+  if ImageMagick is used as image scaler ($wgUseImageMagick = true). Uploading
+  of WebP images still disabled by default. Add $wgFileExtensions[] =
+  'webp'; to LocalSettings.php to enable uploading of WebP images.
+* Added new hooks 'EnhancedChangesListModifyLineData' &
+  'EnhancedChangesListModifyBlockLineData', to modify the data used to build
+  lines in enhanced recentchanges and watchlist.
+* Caches that need purging ability now use the WANObjectCache interface.
+  This corresponds to a new $wgMainWANCache setting, which defaults to using
+  the $wgMainCacheType settings.
+* Callers needing fast light-weight data stores use $wgMainStash to select
+  the store type from $wgObjectCaches. The default is the local database.
+* Interface message overrides in the MediaWiki namespace will now be cached in
+  memcached and APC (if available), rather than memcached and local files.
+* Added a new hook, 'RandomPageQuery', to allow modification of the query used
+  by Special:Random to select random pages.
+* $wgTransactionalTimeLimit was added, which controls the request time limit
+  for potentially slow POST requests that need to be as atomic as possible.
+* ResourceLoader now loads all scripts asynchronously. The top-queue and
+  startup modules are no longer synchronously loaded.
+* 'mediawiki.ui.button' styles are no longer unconditionally loaded on every
+  page. During the deprecation period, the styles will only be loaded on pages
+  which contain 'mw-ui-button' in their HTML. Starting in 1.28, the styles will
+  only be loaded if explicitly required.
+* If search returns zero results and current search engine has a "did you mean"
+  suggestion, results for suggestion will be shown. Can be disabled by setting
+  $wgSearchRunSuggestedQuery to false.
+* Added several JavaScript libraries for uploading files to MediaWiki
+  from the client-side. See documentation for mw.Upload and its
+  subclasses for more information.
+* Added OOUI dialogs and layout for file upload interfaces. See
+  documentation for mw.Upload.Dialog, mw.Upload.BookletLayout and its
+  subclasses for more information.
+
+== extension.json changes in 1.26 ==
+* (T99344) The extension.json schema is now versioned. All extensions
+  and skins should set a "manifest_version" property corresponding to
+  the schema version they were written for. The only supported version
+  currently is "1".
+* (T102523) The error message if a non-array attribute is set was improved.
+* (T107646) Configuration settings can now specify how they should be merged,
+  which is necessary for arrays using integer keys.
+* (T110389) Adding namespaces through extension.json now actually works
+* $wgNamespaceProtection can now be set in extension.json.
+* $wgCapitalLinkOverrides can now be set in extension.json.
+* (T97186) Extensions using a custom prefix for their configuration settings
+  can now set a "_prefix" key to override the default of "wg".
+* (T99084) Extensions can now specify what MediaWiki core versions they
+  depend upon.
+* (T105236) The extension.json schema now validates custom classes in
+  the "ResourceModules" property properly.
+
+=== External library changes in 1.26 ===
+==== Upgraded external libraries ====
+* Updated es5-shim from v4.0.0 to v4.1.5.
+* Updated json2 from revision 2014-02-04 to 2015-05-03.
+* Updated Sinon.JS from 1.10.3 to 1.15.4.
+* Updated jQuery Client from v1.0.0 to v2.0.0.
+* Updated QUnit from v1.17.1 to v1.18.0.
+* Updated liuggio/statsd-php-client from v1.0.12 to v1.0.16.
+* Updated oojs/oojs-ui from v0.11.3 to v0.12.12.
+* Updated wikimedia/cdb from v1.0.1 to v1.3.0.
+* Updated wikimedia/utfnormal from v1.0.2 to v1.0.3.
+* Updated wikimedia/composer-merge-plugin from v1.0.0 to v1.3.0.
+* Updated zordius/lightncandy from v0.18 to v0.21.
+
+==== New external libraries ====
+* Added composer/semver v1.0.0.
+* Added mediawiki/at-ease v1.1.0.
+* Added wikimedia/assert v0.2.2.
+* Added wikimedia/ip-set v1.0.1.
+* Added wikimedia/wrappedstring v2.0.0.
+
+==== Removed and replaced external libraries ====
+* Replaced leafo/lessphp v0.5.0 with oyejorge/less.php v1.7.0.9.
+
+=== Bug fixes in 1.26 ===
+* (T53283) load.php sometimes sends 304 response without full headers
+* (T65198) Talk page tabs now have a "rel=discussion" attribute
+* (T98841) {{msgnw:}} now preserves comments even when subst: is not used.
+* (T104142) $wgEmergencyContact and $wgPasswordSender now use their default
+  value if set to an empty string.
+
+=== Action API changes in 1.26 ===
+* New-style continuation is now the default for action=continue. Clients may
+  use the 'rawcontinue' parameter to receive raw query-continue data, but the
+  new style is encouraged as it's harder to implement incorrectly.
+* Deprecated API formats dump and wddx have been completely removed.
+* API action=query&list=tags: The displayname can now be boolean false if the
+  tag is meant to be hidden from user interfaces.
+* action=import no longer allows both the namespace= and rootpage= parameters
+  to be set. If they are both set, the value of rootpage= will be ignored.
+* prop=revision output in enum mode is now sorted by timestamp rather than
+  revision ID. This usually won't make any difference.
+* (T102645) Namespace list from meta=siteinfo&siprop=namespaces is now an array
+  with formatversion=2.
+* Various other output from meta=siteinfo will now always be arrays instead of
+  sometimes being numerically-indexed objects with formatversion=2.
+* When errors about users being blocked are returned, they now include
+  information about the relevant block.
+* (T99926) list=random has higher limits, in line with other API modules.
+* list=random's rnredirect parameter is deprecated in favor of a new
+  rnfilterredir parameter that also allows for listing both redirects and
+  non-redirects.
+* list=random now supports continuation.
+* API responses to GET requests may now include ETag and Last-Modified headers,
+  and will honor corresponding If-None-Match and If-Modified-Since on such
+  requests.
+
+=== Action API internal changes in 1.26 ===
+* New metadata item ApiResult::META_KVP_MERGE to allow for merging the KVP key
+  into the value when the value is an assoc.
+* API action modules may now provide values for the RFC 7232 ETag and
+  Last-Modified headers. The API will check these against If-None-Match and
+  If-Modified-Since request headers on GET requests and avoid executing the
+  module when appropriate.
+
+=== Languages updated in 1.26 ===
+
+MediaWiki supports over 350 languages. Many localisations are updated
+regularly. Below only new and removed languages are listed, as well as
+changes to languages because of Phabricator reports.
+
+* Languages added:
+** ase (American sign language), thanks to translator Icemandeaf
+** dty (डोटेली/Doteli), thanks to translators जनक राज भट्ट, बिप्लब आनन्द,
+   मेश सिंह बोहरा, and राम प्रसाद जोशी
+** luz (لئری دوٙمینی / Southern Luri)
+** olo (Livvinкarjala / Livvi-Karelian), thanks to translators Denö, Hiloin Natoi,
+   Ilja.mos, and Mashoi7
+
+=== Other changes in 1.26 ===
+* ChangeTags::tagDescription() will return false if the interface message
+  for the tag is disabled.
+* Added PageHistoryPager::doBatchLookups hook.
+* Added $wikiId parameter to FormatAutocomments hook.
+* Added ParserCacheSaveComplete to ParserCache
+* supportsDirectEditing and supportsDirectApiEditing methods added to
+  ContentHandler, to provide a way for ApiEditPage and EditPage to check
+  if direct editing of content is allowed. These methods return false,
+  by default for the ContentHandler base class and true for TextContentHandler
+  and it's derivative classes (everything in core). For Content types that
+  do not support direct editing, an alternative mechanism should be provided
+  for editing, such as action overrides or specific api modules.
+* mediaWiki.confirmCloseWindow now returns an object of functions, instead of
+  one function. The callback can't be called directly any more. The callback
+  function is replaced with confirmCloseWindow.release().
+* BREAKING CHANGE: Added an optional ResouceLoaderContext parameter to
+  ResourceLoaderModule::getDependencies(). Extension classes that override that
+  method should be updated. If they aren't updated, PHP Strict standards
+  warnings will appear when E_STRICT error reporting is enabled. Note: in the
+  near future, this parameter will probably become non-optional.
+* Removed maintenance script deleteImageMemcached.php.
+* MWFunction::newObj() was removed (deprecated in 1.25).
+  ObjectFactory::getObjectFromSpec() should be used instead.
+* The parser will no longer randomize the string it uses to mark the place of
+  items that were stripped during parsing. It will use a fixed string instead.
+  This causes the parser to re-use the regular expressions it uses to search
+  and replace markers rather than generate novel expressions on each parse.
+  Re-using regular expressions will improve performance on HHVM and the
+  forthcoming PHP 7. The interfaces changes accompanying this change are:
+  - Parser::getRandomString() and Parser::uniqPrefix() have been deprecated.
+  - The $uniq_prefix argument for Parser::extractTagsAndParams() and the
+    $prefix argument for StripState::_construct() are deprecated and their
+    value is ignored.
+* wfSuppressWarnings() and wfRestoreWarnings() were split into a separate library,
+  mediawiki/at-ease, and are now deprecated. Callers should use
+  MediaWiki\suppressWarnings() and MediaWiki\restoreWarnings() directly.
+* The Block class constructor now takes an associative array of parameters
+  instead of many optional positional arguments. Calling the constructor the old
+  way will issue a deprecation warning.
+* The jquery.mwExtension module was deprecated.
+* $wgSpecialPageGroups was removed (deprecated in 1.21).
+* SpecialPageFactory::setGroup was removed (deprecated in 1.21).
+* SpecialPageFactory::getGroup was removed (deprecated in 1.21).
+* DatabaseBase::ignoreErrors() is now protected.
+* BREAKING CHANGE: mediawiki.legacy.ajax has been removed, following
+  a lengthy deprecation period.
+* The ScopedPHPTimeout class was removed.
+* Removed maintenance script fixSlaveDesync.php.
+* Watchlist tokens, SpecialResetTokens, and User::getTokenFromOption()
+  are deprecated. Applications using those can work via the OAuth
+  extension instead. New tokens types should not be added.
+* DatabaseBase::errorCount() was removed (unused).
+* $wgDeferredUpdateList was removed.
+* DeferredUpdates::addHTMLCacheUpdate() was removed.
+
+== Compatibility ==
+
+MediaWiki 1.26 requires PHP 5.3.3 or later. There is experimental support for
+HHVM 3.3.0.
+
+MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but
+support for them is somewhat less mature. There is experimental support for
+Oracle and Microsoft SQL Server.
+
+The supported versions are:
+
+* MySQL 5.0.3 or later
+* PostgreSQL 8.3 or later
+* SQLite 3.3.7 or later
+* Oracle 9.0.1 or later
+* Microsoft SQL Server 2005 (9.00.1399)
+
+== Upgrading ==
+
+1.26 has several database changes since 1.25, and will not work without schema
+updates. Note that due to changes to some very large tables like the revision
+table, the schema update may take quite long (minutes on a medium sized site,
+many hours on a large site).
+
+If upgrading from before 1.11, and you are using a wiki as a commons
+repository, make sure that it is updated as well. Otherwise, errors may arise
+due to database schema changes.
+
+If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
+new database fields are filled with data.
+
+If you are upgrading from MediaWiki 1.4.x or earlier, you should upgrade to
+1.5 first. The upgrade script maintenance/upgrade1_5.php has been removed
+with MediaWiki 1.21.
+
+Don't forget to always back up your database before upgrading!
+
+See the file UPGRADE for more detailed upgrade instructions.
+
+For notes on 1.25.x and older releases, see HISTORY.
+
+== Online documentation ==
+
+Documentation for both end-users and site administrators is available on
+MediaWiki.org, and is covered under the GNU Free Documentation License (except
+for pages that explicitly state that their contents are in the public domain):
+
+	https://www.mediawiki.org/wiki/Documentation
+
+== Mailing list ==
+
+A mailing list is available for MediaWiki user support and discussion:
+
+	https://lists.wikimedia.org/mailman/listinfo/mediawiki-l
+
+A low-traffic announcements-only list is also available:
+
+	https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce
+
+It's highly recommended that you sign up for one of these lists if you're
+going to run a public MediaWiki, so you can be notified of security fixes.
+
+== IRC help ==
+
+There's usually someone online in #mediawiki on irc.freenode.net.

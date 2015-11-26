@@ -4,7 +4,6 @@
  * Run all updaters.
  *
  * This is used when the database schema is modified and we need to apply patches.
- * It is kept compatible with php 4 parsing so that it can give out a meaningful error.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,13 +57,11 @@ class UpdateMediaWiki extends Maintenance {
 	}
 
 	function getDbType() {
-		/* If we used the class constant PHP4 would give a parser error here */
-		return 2; /* Maintenance::DB_ADMIN */
+		return Maintenance::DB_ADMIN;
 	}
 
 	function compatChecks() {
-		// Avoid syntax error in PHP4
-		$minimumPcreVersion = constant( 'Installer::MINIMUM_PCRE_VERSION' );
+		$minimumPcreVersion = Installer::MINIMUM_PCRE_VERSION;
 
 		list( $pcreVersion ) = explode( ' ', PCRE_VERSION, 2 );
 		if ( version_compare( $pcreVersion, $minimumPcreVersion, '<' ) ) {
@@ -121,7 +118,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		$this->output( "MediaWiki {$wgVersion} Updater\n\n" );
 
-		wfWaitForSlaves( 5 ); // let's not kill databases, shall we? ;) --tor
+		wfWaitForSlaves();
 
 		if ( !$this->hasOption( 'skip-compat-checks' ) ) {
 			$this->compatChecks();
@@ -156,7 +153,7 @@ class UpdateMediaWiki extends Maintenance {
 			wfCountDown( 5 );
 		}
 
-		$time1 = new MWTimestamp();
+		$time1 = microtime( true );
 
 		$shared = $this->hasOption( 'doshared' );
 
@@ -175,7 +172,7 @@ class UpdateMediaWiki extends Maintenance {
 			$child = $this->runChild( $maint );
 
 			// LoggedUpdateMaintenance is checking the updatelog itself
-			$isLoggedUpdate = is_a( $child, 'LoggedUpdateMaintenance' );
+			$isLoggedUpdate = $child instanceof LoggedUpdateMaintenance;
 
 			if ( !$isLoggedUpdate && $updater->updateRowExists( $maint ) ) {
 				continue;
@@ -192,9 +189,10 @@ class UpdateMediaWiki extends Maintenance {
 			$updater->purgeCache();
 		}
 
-		$time2 = new MWTimestamp();
-		$timeDiff = $time2->diff( $time1 );
-		$this->output( "\nDone in " . $timeDiff->format( "%i:%S" ) . ".\n" );
+		$time2 = microtime( true );
+
+		$timeDiff = $wgLang->formatTimePeriod( $time2 - $time1 );
+		$this->output( "\nDone in $timeDiff.\n" );
 	}
 
 	function afterFinalSetup() {

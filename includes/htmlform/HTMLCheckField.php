@@ -20,9 +20,15 @@ class HTMLCheckField extends HTMLFormField {
 			$attr['class'] = $this->mClass;
 		}
 
-		$chkLabel = Xml::check( $this->mName, $value, $attr )
-		. '&#160;'
-		. Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+		$attrLabel = array( 'for' => $this->mID );
+		if ( isset( $attr['title'] ) ) {
+			// propagate tooltip to label
+			$attrLabel['title'] = $attr['title'];
+		}
+
+		$chkLabel = Xml::check( $this->mName, $value, $attr ) .
+			'&#160;' .
+			Html::rawElement( 'label', $attrLabel, $this->mLabel );
 
 		if ( $wgUseMediaWikiUIEverywhere || $this->mParent instanceof VFormHTMLForm ) {
 			$chkLabel = Html::rawElement(
@@ -39,7 +45,7 @@ class HTMLCheckField extends HTMLFormField {
 	 * Get the OOUI version of this field.
 	 * @since 1.26
 	 * @param string $value
-	 * @return OOUI\CheckboxInputWidget The checkbox widget.
+	 * @return OOUI\\CheckboxInputWidget The checkbox widget.
 	 */
 	public function getInputOOUI( $value ) {
 		if ( !empty( $this->mParams['invert'] ) ) {
@@ -74,6 +80,11 @@ class HTMLCheckField extends HTMLFormField {
 	function getLabel() {
 		if ( $this->mParent instanceof OOUIHTMLForm ) {
 			return $this->mLabel;
+		} elseif (
+			$this->mParent instanceof HTMLForm &&
+			$this->mParent->getDisplayFormat() === 'div'
+		) {
+			return '';
 		} else {
 			return '&#160;';
 		}

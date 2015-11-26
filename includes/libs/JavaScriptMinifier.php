@@ -565,6 +565,14 @@ class JavaScriptMinifier {
 				$out .= ' ';
 				$lineLength++;
 			}
+			if (
+				$type === self::TYPE_LITERAL
+				&& ( $token === 'true' || $token === 'false' )
+				&& ( $state === self::EXPRESSION || $state === self::PROPERTY_EXPRESSION )
+				&& $last !== '.'
+			) {
+				$token = ( $token === 'true' ) ? '!0' : '!1';
+			}
 
 			$out .= $token;
 			$lineLength += $end - $pos; // += strlen( $token )

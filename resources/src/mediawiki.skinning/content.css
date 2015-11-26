@@ -23,14 +23,13 @@
  * We use display:table. Even though it should only contain other table-* display
  * elements, there are no known problems with using this.
  *
- * Because IE < 8, FF 2 and other older browsers don't support display:table, we fallback to
+ * Because IE < 8 and other older browsers don't support display:table, we fallback to
  * using inline-block mode, which features at least intrinsic width, but won't clear preceding
  * inline elements. In practice inline elements surrounding the TOC are uncommon enough that
  * this is an acceptable sacrifice.
  */
 #toc,
 .toc {
-	display: -moz-inline-block;
 	display: inline-block;
 	display: table;
 

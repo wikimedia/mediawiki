@@ -34,16 +34,42 @@ class TestingAccessWrapper {
 		return $methodReflection->invokeArgs( $this->object, $args );
 	}
 
-	public function __set( $name, $value ) {
+	/**
+	 * ReflectionClass::getProperty() fails if the private property is defined
+	 * in a parent class. This works more like ReflectionClass::getMethod().
+	 */
+	private function getProperty( $name ) {
 		$classReflection = new ReflectionClass( $this->object );
-		$propertyReflection = $classReflection->getProperty( $name );
+		try {
+			return $classReflection->getProperty( $name );
+		} catch ( ReflectionException $ex ) {
+			while ( true ) {
+				$classReflection = $classReflection->getParentClass();
+				if ( !$classReflection ) {
+					throw $ex;
+				}
+				try {
+					$propertyReflection = $classReflection->getProperty( $name );
+				} catch ( ReflectionException $ex2 ) {
+					continue;
+				}
+				if ( $propertyReflection->isPrivate() ) {
+					return $propertyReflection;
+				} else {
+					throw $ex;
+				}
+			}
+		}
+	}
+
+	public function __set( $name, $value ) {
+		$propertyReflection = $this->getProperty( $name );
 		$propertyReflection->setAccessible( true );
 		$propertyReflection->setValue( $this->object, $value );
 	}
 
 	public function __get( $name ) {
-		$classReflection = new ReflectionClass( $this->object );
-		$propertyReflection = $classReflection->getProperty( $name );
+		$propertyReflection = $this->getProperty( $name );
 		$propertyReflection->setAccessible( true );
 		return $propertyReflection->getValue( $this->object );
 	}

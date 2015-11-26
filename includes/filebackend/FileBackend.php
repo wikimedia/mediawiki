@@ -380,12 +380,15 @@ abstract class FileBackend {
 				$op['headers']['Content-Disposition'] = $op['disposition'];
 			}
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
 		return $this->doOperationsInternal( $ops, $opts );
 	}
 
 	/**
 	 * @see FileBackend::doOperations()
+	 * @param array $ops
+	 * @param array $opts
 	 */
 	abstract protected function doOperationsInternal( array $ops, array $opts );
 
@@ -612,12 +615,14 @@ abstract class FileBackend {
 				$op['headers']['Content-Disposition'] = $op['disposition'];
 			}
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
 		return $this->doQuickOperationsInternal( $ops );
 	}
 
 	/**
 	 * @see FileBackend::doQuickOperations()
+	 * @param array $ops
 	 * @since 1.20
 	 */
 	abstract protected function doQuickOperationsInternal( array $ops );
@@ -756,12 +761,14 @@ abstract class FileBackend {
 		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
 		return $this->doPrepare( $params );
 	}
 
 	/**
 	 * @see FileBackend::prepare()
+	 * @param array $params
 	 */
 	abstract protected function doPrepare( array $params );
 
@@ -785,12 +792,14 @@ abstract class FileBackend {
 		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
 		return $this->doSecure( $params );
 	}
 
 	/**
 	 * @see FileBackend::secure()
+	 * @param array $params
 	 */
 	abstract protected function doSecure( array $params );
 
@@ -816,12 +825,14 @@ abstract class FileBackend {
 		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
 		return $this->doPublish( $params );
 	}
 
 	/**
 	 * @see FileBackend::publish()
+	 * @param array $params
 	 */
 	abstract protected function doPublish( array $params );
 
@@ -840,12 +851,14 @@ abstract class FileBackend {
 		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
 		return $this->doClean( $params );
 	}
 
 	/**
 	 * @see FileBackend::clean()
+	 * @param array $params
 	 */
 	abstract protected function doClean( array $params );
 
@@ -1289,7 +1302,7 @@ abstract class FileBackend {
 	 *
 	 * @param array $ops List of file operations to FileBackend::doOperations()
 	 * @param Status $status Status to update on lock/unlock
-	 * @return array List of ScopedFileLocks or null values
+	 * @return ScopedLock|null
 	 * @since 1.20
 	 */
 	abstract public function getScopedLocksForOps( array $ops, Status $status );

@@ -96,7 +96,6 @@ $specialPageAliases = array(
 	'Myuploads'                 => array( 'NgarkimeteMia' ),
 	'Newimages'                 => array( 'SkedaTëReja' ),
 	'Newpages'                  => array( 'FaqeteReja' ),
-
 	'Preferences'               => array( 'Preferencat' ),
 	'Protectedpages'            => array( 'FaqeteMbrojtura' ),
 	'Protectedtitles'           => array( 'TitujteMbrojtur' ),
@@ -195,7 +194,6 @@ $magicWords = array(
 	'fullurl'                   => array( '0', 'URLEPLOTË', 'FULLURL:' ),
 	'language'                  => array( '0', '#GJUHA:', '#LANGUAGE:' ),
 	'numberofadmins'            => array( '1', 'NUMRIIADMINISTRUESVE', 'NUMBEROFADMINS' ),
-	'special'                   => array( '0', 'speciale', 'special' ),
 	'hiddencat'                 => array( '1', '__KATEGORIEFSHEHUR__', '__HIDDENCAT__' ),
 	'pagesize'                  => array( '1', 'MADHËSIAEFAQES', 'PAGESIZE' ),
 );

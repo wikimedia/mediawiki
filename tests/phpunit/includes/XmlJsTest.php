@@ -3,7 +3,7 @@
 /**
  * @group Xml
  */
-class XmlJs extends MediaWikiTestCase {
+class XmlJs extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @covers XmlJsCode::__construct

@@ -21,6 +21,7 @@
  *
  * @file
  */
+use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Unit to authenticate account registration attempts to the current wiki.
@@ -48,7 +49,12 @@ class ApiCreateAccount extends ApiBase {
 			);
 		}
 		if ( $this->getUser()->isBlockedFromCreateAccount() ) {
-			$this->dieUsage( 'You cannot create a new account because you are blocked', 'blocked' );
+			$this->dieUsage(
+				'You cannot create a new account because you are blocked',
+				'blocked',
+				0,
+				array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $this->getUser()->getBlock() ) )
+			);
 		}
 
 		$params = $this->extractRequestParams();
@@ -90,6 +96,10 @@ class ApiCreateAccount extends ApiBase {
 		$loginForm->load();
 
 		$status = $loginForm->addNewaccountInternal();
+		LoggerFactory::getInstance( 'authmanager' )->info( 'Account creation attempt via API', array(
+			'event' => 'accountcreation',
+			'status' => $status,
+		) );
 		$result = array();
 		if ( $status->isGood() ) {
 			// Success!
@@ -186,7 +196,9 @@ class ApiCreateAccount extends ApiBase {
 				ApiBase::PARAM_TYPE => 'user',
 				ApiBase::PARAM_REQUIRED => true
 			),
-			'password' => null,
+			'password' => array(
+				ApiBase::PARAM_TYPE => 'password',
+			),
 			'domain' => null,
 			'token' => null,
 			'email' => array(

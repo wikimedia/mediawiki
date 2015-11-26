@@ -25,6 +25,7 @@
  * Let users reset tokens like the watchlist token.
  *
  * @ingroup SpecialPage
+ * @deprecated 1.26
  */
 class SpecialResetTokens extends FormSpecialPage {
 	private $tokensList;
@@ -121,6 +122,10 @@ class SpecialResetTokens extends FormSpecialPage {
 		} else {
 			$form->suppressDefaultSubmit();
 		}
+	}
+
+	protected function getDisplayFormat() {
+		return 'ooui';
 	}
 
 	public function onSubmit( array $formData ) {

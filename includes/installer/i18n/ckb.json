@@ -38,6 +38,7 @@
 	"config-db-username": "ناوی بەکارھێنەری بنکەدراوە:",
 	"config-db-password": "تێپەڕوشەی بنکەدراوە",
 	"config-site-name": "ناوی ویکی:",
+	"config-site-name-blank": "ناوی پێگە داخڵ بکە.",
 	"config-ns-generic": "پرۆژە",
 	"config-admin-name": "ناوی بەکارھێنەرییەکەت:",
 	"config-admin-password": "تێپەڕوشە:",

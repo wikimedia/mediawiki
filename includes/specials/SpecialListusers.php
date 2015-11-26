@@ -263,6 +263,8 @@ class UsersPager extends AlphabeticPager {
 	function getPageHeader() {
 		list( $self ) = explode( '/', $this->getTitle()->getPrefixedDBkey() );
 
+		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
+
 		# Form tag
 		$out = Xml::openElement(
 			'form',
@@ -271,13 +273,14 @@ class UsersPager extends AlphabeticPager {
 			Xml::fieldset( $this->msg( 'listusers' )->text() ) .
 			Html::hidden( 'title', $self );
 
-		# Username field
+		# Username field (with autocompletion support)
 		$out .= Xml::label( $this->msg( 'listusersfrom' )->text(), 'offset' ) . ' ' .
 			Html::input(
 				'username',
 				$this->requestedUser,
 				'text',
 				array(
+					'class' => 'mw-autocomplete-user',
 					'id' => 'offset',
 					'size' => 20,
 					'autofocus' => $this->requestedUser === ''
@@ -285,13 +288,14 @@ class UsersPager extends AlphabeticPager {
 			) . ' ';
 
 		# Group drop-down list
-		$out .= Xml::label( $this->msg( 'group' )->text(), 'group' ) . ' ' .
-			Xml::openElement( 'select', array( 'name' => 'group', 'id' => 'group' ) ) .
-			Xml::option( $this->msg( 'group-all' )->text(), '' );
+		$sel = new XmlSelect( 'group', 'group', $this->requestedGroup );
+		$sel->addOption( $this->msg( 'group-all' )->text(), '' );
 		foreach ( $this->getAllGroups() as $group => $groupText ) {
-			$out .= Xml::option( $groupText, $group, $group == $this->requestedGroup );
+			$sel->addOption( $groupText, $group );
 		}
-		$out .= Xml::closeElement( 'select' ) . '<br />';
+
+		$out .= Xml::label( $this->msg( 'group' )->text(), 'group' ) . ' ';
+		$out .= $sel->getHTML() . '<br />';
 		$out .= Xml::checkLabel(
 			$this->msg( 'listusers-editsonly' )->text(),
 			'editsOnly',

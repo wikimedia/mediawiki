@@ -123,7 +123,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				}
 
 				if ( isset( $prop['userid'] ) || /*B/C*/isset( $prop['user'] ) ) {
-					$vals['userid'] = $row->pt_user;
+					$vals['userid'] = (int)$row->pt_user;
 				}
 
 				if ( isset( $prop['comment'] ) ) {
@@ -216,7 +216,8 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 					'parsedcomment',
 					'expiry',
 					'level'
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'continue' => array(
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',

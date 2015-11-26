@@ -76,7 +76,7 @@ class ReplacementArray {
 	 * @param array $data
 	 */
 	public function mergeArray( $data ) {
-		$this->data = array_merge( $this->data, $data );
+		$this->data = $data + $this->data;
 		$this->fss = false;
 	}
 
@@ -84,7 +84,7 @@ class ReplacementArray {
 	 * @param ReplacementArray $other
 	 */
 	public function merge( ReplacementArray $other ) {
-		$this->data = array_merge( $this->data, $other->data );
+		$this->data = $other->data + $this->data;
 		$this->fss = false;
 	}
 
@@ -111,7 +111,10 @@ class ReplacementArray {
 	 * @return string
 	 */
 	public function replace( $subject ) {
-		if ( function_exists( 'fss_prep_replace' ) ) {
+		if (
+			function_exists( 'fss_prep_replace' )  &&
+			version_compare( PHP_VERSION, '5.5.0' ) < 0
+		) {
 			if ( $this->fss === false ) {
 				$this->fss = fss_prep_replace( $this->data );
 			}

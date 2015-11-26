@@ -372,7 +372,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		);
 
 		$status = new Status();
-		$status->warning( new Message( 'fooBar!', array( 'foo', 'bar' )  ) );
+		$status->warning( new Message( 'fooBar!', array( 'foo', 'bar' ) ) );
 		$testCases['1MessageWarning'] = array(
 			$status,
 			"<fooBar!>",
@@ -449,7 +449,7 @@ class StatusTest extends MediaWikiLangTestCase {
 //		);
 
 		$status = new Status();
-		$status->warning( new Message( 'fooBar!', array( 'foo', 'bar' )  ) );
+		$status->warning( new Message( 'fooBar!', array( 'foo', 'bar' ) ) );
 		$testCases['1MessageWarning'] = array(
 			$status,
 			array( 'foo', 'bar' ),

@@ -173,6 +173,7 @@ abstract class ApiFormatBase extends ApiBase {
 		$mime = $this->getMimeType();
 		if ( $this->getIsHtml() && $mime !== null ) {
 			$format = $this->getFormat();
+			$lcformat = strtolower( $format );
 			$result = $this->getBuffer();
 
 			$context = new DerivativeContext( $this->getMain() );
@@ -181,12 +182,17 @@ abstract class ApiFormatBase extends ApiBase {
 			$out = new OutputPage( $context );
 			$context->setOutput( $out );
 
-			$out->addModules( 'mediawiki.apipretty' );
+			$out->addModuleStyles( 'mediawiki.apipretty' );
 			$out->setPageTitle( $context->msg( 'api-format-title' ) );
 
-			$header = $context->msg( 'api-format-prettyprint-header' )
-				->params( $format, strtolower( $format ) )
-				->parseAsBlock();
+			// When the format without suffix 'fm' is defined, there is a non-html version
+			if ( $this->getMain()->getModuleManager()->isDefined( $lcformat, 'format' ) ) {
+				$msg = $context->msg( 'api-format-prettyprint-header' )->params( $format, $lcformat );
+			} else {
+				$msg = $context->msg( 'api-format-prettyprint-header-only-html' )->params( $format );
+			}
+
+			$header = $msg->parseAsBlock();
 			$out->addHTML(
 				Html::rawElement( 'div', array( 'class' => 'api-pretty-header' ),
 					ApiHelp::fixHelpLinks( $header )
@@ -240,7 +246,7 @@ abstract class ApiFormatBase extends ApiBase {
 	}
 
 	/**
-	 * To avoid code duplication with the deprecation of dbg, dump, txt, wddx,
+	 * To avoid code duplication with the deprecation of dbg, txt
 	 * and yaml, this method is added to do the necessary work. It should be
 	 * removed when those deprecated formats are removed.
 	 */
@@ -306,7 +312,7 @@ abstract class ApiFormatBase extends ApiBase {
 		// Escape everything first for full coverage
 		$text = htmlspecialchars( $text );
 
-		if ( $this->mFormat === 'XML' || $this->mFormat === 'WDDX' ) {
+		if ( $this->mFormat === 'XML' ) {
 			// encode all comments or tags as safe blue strings
 			$text = str_replace( '&lt;', '<span style="color:blue;">&lt;', $text );
 			$text = str_replace( '&gt;', '&gt;</span>', $text );
@@ -381,10 +387,11 @@ abstract class ApiFormatBase extends ApiBase {
 	 * are required to ignore it or filter it out.
 	 *
 	 * @deprecated since 1.25
-	 * @return bool
+	 * @return bool Always true
 	 */
 	public function getNeedsRawData() {
-		return false;
+		wfDeprecated( __METHOD__, '1.25' );
+		return true;
 	}
 
 	/**@}*/

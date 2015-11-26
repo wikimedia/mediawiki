@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Janatkg"
+		]
+	},
+	"apihelp-block-description": "Колдонуучуну бөгөттөө",
+	"apihelp-block-param-reason": "Бөгөттөө себеби.",
+	"apihelp-block-example-ip-simple": " <kbd>192.0.2.5</kbd> IP дарегин үч күнгө <kbd>First strike</kbd> себеби менен бөгөттөө.",
+	"apihelp-checktoken-param-token": "Текшерүү белгиси.",
+	"apihelp-createaccount-param-name": "Колдонуучунун аты:",
+	"apihelp-createaccount-param-email": "Колдонуучунун email дареги (милдеттүү эмес)",
+	"apihelp-createaccount-param-realname": "Колдонуучунун чыныгы аты (милдеттүү эмес)",
+	"apihelp-delete-description": "Баракты өчүрүү",
+	"apihelp-delete-example-simple": "<kbd>Башбарагын</kbd> өчүрүү.",
+	"apihelp-edit-description": "Барактарды түзүү жана оңдоо.",
+	"apihelp-edit-param-text": "Барактын мазмуну.",
+	"apihelp-edit-param-minor": "Майда оңдоо."
+}

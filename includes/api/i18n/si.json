@@ -17,6 +17,7 @@
 	"apihelp-help-example-main": "ප්‍රධාන ඒකකය සදහා උදවු කරන්න",
 	"apihelp-help-example-recursive": "සියලුම උදවු එක පිටුවක් තුල",
 	"apihelp-help-example-query": "සැකසහිත අනුඒකක සදහා උදවු කරන්න",
+	"apihelp-parse-paramvalue-prop-jsconfigvars": "මෙම පිටුව සඳහා වූ JavaScript වින්‍යාස විචල්‍යයන් ලබා දෙයි.",
 	"apihelp-format-example-generic": "$1 ආකෘතියේ ඇති සැක සහිත ප්‍රථිපල පරිවර්තනය කරන්න",
 	"apihelp-dbg-description": "ප්‍රතිදාන දත්ත PHP හි var_export() ආකෘතියෙන් පවතී.",
 	"apihelp-dbgfm-description": "ප්‍රතිදාන දත්ත PHP හි var_export() ආකෘතියෙන් පවතී (හොදම පිටපත HTML භාෂාවෙනි).",

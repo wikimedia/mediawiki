@@ -1,5 +1,6 @@
 ( function ( mw, $ ) {
-	var formatText, formatParse, formatnumTests, specialCharactersPageName, expectedListUsers, expectedEntrypoints,
+	var formatText, formatParse, formatnumTests, specialCharactersPageName, expectedListUsers,
+		expectedListUsersSitename, expectedEntrypoints,
 		mwLanguageCache = {},
 		hasOwn = Object.hasOwnProperty;
 
@@ -16,6 +17,8 @@
 			specialCharactersPageName = '"Who" wants to be a millionaire & live on \'Exotic Island\'?';
 
 			expectedListUsers = '注册<a title="Special:ListUsers" href="/wiki/Special:ListUsers">用户</a>';
+			expectedListUsersSitename = '注册<a title="Special:ListUsers" href="/wiki/Special:ListUsers">用户' +
+				mw.config.get( 'wgSiteName' ) + '</a>';
 
 			expectedEntrypoints = '<a href="https://www.mediawiki.org/wiki/Manual:index.php">index.php</a>';
 
@@ -52,6 +55,7 @@
 			'see-portal-url': '{{Int:portal-url}} is an important community page.',
 
 			'jquerymsg-test-statistics-users': '注册[[Special:ListUsers|用户]]',
+			'jquerymsg-test-statistics-users-sitename': '注册[[Special:ListUsers|用户{{SITENAME}}]]',
 
 			'jquerymsg-test-version-entrypoints-index-php': '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
 
@@ -70,7 +74,7 @@
 	 */
 	function getMwLanguage( langCode ) {
 		if ( !hasOwn.call( mwLanguageCache, langCode ) ) {
-			mwLanguageCache[langCode] = $.ajax( {
+			mwLanguageCache[ langCode ] = $.ajax( {
 				url: mw.util.wikiScript( 'load' ),
 				data: {
 					skin: mw.config.get( 'skin' ),
@@ -88,25 +92,37 @@
 				return mw.language;
 			} );
 		}
-		return mwLanguageCache[langCode];
+		return mwLanguageCache[ langCode ];
 	}
 
 	/**
 	 * @param {Function[]} tasks List of functions that perform tasks
 	 *  that may be asynchronous. Invoke the callback parameter when done.
-	 * @param {Function} done When all tasks are done.
-	 * @return
+	 * @param {Function} complete Called when all tasks are done, or when the sequence is aborted.
 	 */
-	function process( tasks, done ) {
-		function run() {
+	function process( tasks, complete ) {
+		/*jshint latedef:false */
+		function abort() {
+			tasks.splice( 0, tasks.length );
+			next();
+		}
+		function next() {
+			if ( !tasks ) {
+				// This happens if after the process is completed, one of our callbacks is
+				// invoked. This can happen if a test timed out but the process was still
+				// running. In that case, ignore it. Don't invoke complete() a second time.
+				return;
+			}
 			var task = tasks.shift();
 			if ( task ) {
-				task( run );
+				task( next, abort );
 			} else {
-				done();
+				// Remove tasks list to indicate the process is final.
+				tasks = null;
+				complete();
 			}
 		}
-		run();
+		next();
 	}
 
 	QUnit.test( 'Replace', 16, function ( assert ) {
@@ -306,9 +322,9 @@
 	QUnit.test( 'Match PHP parser', mw.libs.phpParserData.tests.length, function ( assert ) {
 		mw.messages.set( mw.libs.phpParserData.messages );
 		var tasks = $.map( mw.libs.phpParserData.tests, function ( test ) {
-			return function ( next ) {
+			return function ( next, abort ) {
 				getMwLanguage( test.lang )
-					.done( function ( langClass ) {
+					.then( function ( langClass ) {
 						mw.config.set( 'wgUserLanguage', test.lang );
 						var parser = new mw.jqueryMsg.parser( { language: langClass } );
 						assert.equal(
@@ -316,11 +332,10 @@
 							test.result,
 							test.name
 						);
-					} )
-					.fail( function () {
+					}, function () {
 						assert.ok( false, 'Language "' + test.lang + '" failed to load.' );
 					} )
-					.always( next );
+					.then( next, abort );
 			};
 		} );
 
@@ -328,8 +343,9 @@
 		process( tasks, QUnit.start );
 	} );
 
-	QUnit.test( 'Links', 6, function ( assert ) {
-		var expectedDisambiguationsText,
+	QUnit.test( 'Links', 14, function ( assert ) {
+		var testCases,
+			expectedDisambiguationsText,
 			expectedMultipleBars,
 			expectedSpecialCharacters;
 
@@ -360,11 +376,23 @@
 
 		// Pipe trick is not supported currently, but should not parse as text either.
 		mw.messages.set( 'pipe-trick', '[[Tampa, Florida|]]' );
+		mw.messages.set( 'reverse-pipe-trick', '[[|Tampa, Florida]]' );
+		mw.messages.set( 'empty-link', '[[]]' );
 		this.suppressWarnings();
 		assert.equal(
 			formatParse( 'pipe-trick' ),
 			'[[Tampa, Florida|]]',
 			'Pipe trick should not be parsed.'
+		);
+		assert.equal(
+			formatParse( 'reverse-pipe-trick' ),
+			'[[|Tampa, Florida]]',
+			'Reverse pipe trick should not be parsed.'
+		);
+		assert.equal(
+			formatParse( 'empty-link' ),
+			'[[]]',
+			'Empty link should not be parsed.'
 		);
 		this.restoreWarnings();
 
@@ -384,20 +412,159 @@
 			expectedSpecialCharacters,
 			'Special characters'
 		);
+
+		mw.messages.set( 'leading-colon', '[[:File:Foo.jpg]]' );
+		assert.htmlEqual(
+			formatParse( 'leading-colon' ),
+			'<a title="File:Foo.jpg" href="/wiki/File:Foo.jpg">File:Foo.jpg</a>',
+			'Leading colon in links is stripped'
+		);
+
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-test-statistics-users-sitename' ),
+			expectedListUsersSitename,
+			'Piped wikilink with parser function in the text'
+		);
+
+		testCases = [
+			[
+				'extlink-html-full',
+				'asd [http://example.org <strong>Example</strong>] asd',
+				'asd <a href="http://example.org"><strong>Example</strong></a> asd'
+			],
+			[
+				'extlink-html-partial',
+				'asd [http://example.org foo <strong>Example</strong> bar] asd',
+				'asd <a href="http://example.org">foo <strong>Example</strong> bar</a> asd'
+			],
+			[
+				'wikilink-html-full',
+				'asd [[Example|<strong>Example</strong>]] asd',
+				'asd <a title="Example" href="/wiki/Example"><strong>Example</strong></a> asd'
+			],
+			[
+				'wikilink-html-partial',
+				'asd [[Example|foo <strong>Example</strong> bar]] asd',
+				'asd <a title="Example" href="/wiki/Example">foo <strong>Example</strong> bar</a> asd'
+			]
+		];
+
+		$.each( testCases, function () {
+			var
+				key = this[ 0 ],
+				input = this[ 1 ],
+				output = this[ 2 ];
+			mw.messages.set( key, input );
+			assert.htmlEqual(
+				formatParse( key ),
+				output,
+				'HTML in links: ' + key
+			);
+		} );
 	} );
 
-// Tests that {{-transformation vs. general parsing are done as requested
+	QUnit.test( 'Replacements in links', 14, function ( assert ) {
+		var testCases = [
+			[
+				'extlink-param-href-full',
+				'asd [$1 Example] asd',
+				'asd <a href="http://example.com">Example</a> asd'
+			],
+			[
+				'extlink-param-href-partial',
+				'asd [$1/example Example] asd',
+				'asd <a href="http://example.com/example">Example</a> asd'
+			],
+			[
+				'extlink-param-text-full',
+				'asd [http://example.org $2] asd',
+				'asd <a href="http://example.org">Text</a> asd'
+			],
+			[
+				'extlink-param-text-partial',
+				'asd [http://example.org Example $2] asd',
+				'asd <a href="http://example.org">Example Text</a> asd'
+			],
+			[
+				'extlink-param-both-full',
+				'asd [$1 $2] asd',
+				'asd <a href="http://example.com">Text</a> asd'
+			],
+			[
+				'extlink-param-both-partial',
+				'asd [$1/example Example $2] asd',
+				'asd <a href="http://example.com/example">Example Text</a> asd'
+			],
+			[
+				'wikilink-param-href-full',
+				'asd [[$1|Example]] asd',
+				'asd <a title="Example" href="/wiki/Example">Example</a> asd'
+			],
+			[
+				'wikilink-param-href-partial',
+				'asd [[$1/Test|Example]] asd',
+				'asd <a title="Example/Test" href="/wiki/Example/Test">Example</a> asd'
+			],
+			[
+				'wikilink-param-text-full',
+				'asd [[Example|$2]] asd',
+				'asd <a title="Example" href="/wiki/Example">Text</a> asd'
+			],
+			[
+				'wikilink-param-text-partial',
+				'asd [[Example|Example $2]] asd',
+				'asd <a title="Example" href="/wiki/Example">Example Text</a> asd'
+			],
+			[
+				'wikilink-param-both-full',
+				'asd [[$1|$2]] asd',
+				'asd <a title="Example" href="/wiki/Example">Text</a> asd'
+			],
+			[
+				'wikilink-param-both-partial',
+				'asd [[$1/Test|Example $2]] asd',
+				'asd <a title="Example/Test" href="/wiki/Example/Test">Example Text</a> asd'
+			],
+			[
+				'wikilink-param-unpiped-full',
+				'asd [[$1]] asd',
+				'asd <a title="Example" href="/wiki/Example">Example</a> asd'
+			],
+			[
+				'wikilink-param-unpiped-partial',
+				'asd [[$1/Test]] asd',
+				'asd <a title="Example/Test" href="/wiki/Example/Test">Example/Test</a> asd'
+			]
+		];
+
+		$.each( testCases, function () {
+			var
+				key = this[ 0 ],
+				input = this[ 1 ],
+				output = this[ 2 ],
+				paramHref = key.slice( 0, 8 ) === 'wikilink' ? 'Example' : 'http://example.com',
+				paramText = 'Text';
+			mw.messages.set( key, input );
+			assert.htmlEqual(
+				formatParse( key, paramHref, paramText ),
+				output,
+				'Replacements in links: ' + key
+			);
+		} );
+	} );
+
+	// Tests that {{-transformation vs. general parsing are done as requested
 	QUnit.test( 'Curly brace transformation', 16, function ( assert ) {
 		var oldUserLang = mw.config.get( 'wgUserLanguage' );
 
-		assertBothModes( assert, ['gender-msg', 'Bob', 'male'], 'Bob: blue', 'gender is resolved' );
+		assertBothModes( assert, [ 'gender-msg', 'Bob', 'male' ], 'Bob: blue', 'gender is resolved' );
 
-		assertBothModes( assert, ['plural-msg', 5], 'Found 5 items', 'plural is resolved' );
+		assertBothModes( assert, [ 'plural-msg', 5 ], 'Found 5 items', 'plural is resolved' );
 
-		assertBothModes( assert, ['grammar-msg'], 'Przeszukaj ' + mw.config.get( 'wgSiteName' ), 'grammar is resolved' );
+		assertBothModes( assert, [ 'grammar-msg' ], 'Przeszukaj ' + mw.config.get( 'wgSiteName' ), 'grammar is resolved' );
 
 		mw.config.set( 'wgUserLanguage', 'en' );
-		assertBothModes( assert, ['formatnum-msg', '987654321.654321'], '987,654,321.654', 'formatnum is resolved' );
+		assertBothModes( assert, [ 'formatnum-msg', '987654321.654321' ], '987,654,321.654', 'formatnum is resolved' );
 
 		// Test non-{{ wikitext, where behavior differs
 
@@ -501,7 +668,7 @@
 			'curly-brace': '{{int:message}}',
 			'single-square-bracket': '[https://www.mediawiki.org/ MediaWiki]',
 			'double-square-bracket': '[[Some page]]',
-			'regular': 'Other message'
+			regular: 'Other message'
 		} );
 
 		oldGMF = mw.jqueryMsg.getMessageFunction;
@@ -518,7 +685,7 @@
 			outerCalled = false;
 			innerCalled = false;
 			message = mw.message( key );
-			message[format]();
+			message[ format ]();
 			assert.strictEqual( outerCalled, shouldCall, 'Outer function called for ' + key );
 			assert.strictEqual( innerCalled, shouldCall, 'Inner function called for ' + key );
 		}
@@ -645,9 +812,9 @@
 		mw.messages.set( 'formatnum-msg', '{{formatnum:$1}}' );
 		mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
 		var queue = $.map( formatnumTests, function ( test ) {
-			return function ( next ) {
+			return function ( next, abort ) {
 				getMwLanguage( test.lang )
-					.done( function ( langClass ) {
+					.then( function ( langClass ) {
 						mw.config.set( 'wgUserLanguage', test.lang );
 						var parser = new mw.jqueryMsg.parser( { language: langClass } );
 						assert.equal(
@@ -656,11 +823,10 @@
 							test.result,
 							test.description
 						);
-					} )
-					.fail( function () {
+					}, function () {
 						assert.ok( false, 'Language "' + test.lang + '" failed to load' );
 					} )
-					.always( next );
+					.then( next, abort );
 			};
 		} );
 		QUnit.stop();
@@ -671,16 +837,16 @@
 	QUnit.test( 'HTML', 26, function ( assert ) {
 		mw.messages.set( 'jquerymsg-italics-msg', '<i>Very</i> important' );
 
-		assertBothModes( assert, ['jquerymsg-italics-msg'], mw.messages.get( 'jquerymsg-italics-msg' ), 'Simple italics unchanged' );
+		assertBothModes( assert, [ 'jquerymsg-italics-msg' ], mw.messages.get( 'jquerymsg-italics-msg' ), 'Simple italics unchanged' );
 
 		mw.messages.set( 'jquerymsg-bold-msg', '<b>Strong</b> speaker' );
-		assertBothModes( assert, ['jquerymsg-bold-msg'], mw.messages.get( 'jquerymsg-bold-msg' ), 'Simple bold unchanged' );
+		assertBothModes( assert, [ 'jquerymsg-bold-msg' ], mw.messages.get( 'jquerymsg-bold-msg' ), 'Simple bold unchanged' );
 
 		mw.messages.set( 'jquerymsg-bold-italics-msg', 'It is <b><i>key</i></b>' );
-		assertBothModes( assert, ['jquerymsg-bold-italics-msg'], mw.messages.get( 'jquerymsg-bold-italics-msg' ), 'Bold and italics nesting order preserved' );
+		assertBothModes( assert, [ 'jquerymsg-bold-italics-msg' ], mw.messages.get( 'jquerymsg-bold-italics-msg' ), 'Bold and italics nesting order preserved' );
 
 		mw.messages.set( 'jquerymsg-italics-bold-msg', 'It is <i><b>vital</b></i>' );
-		assertBothModes( assert, ['jquerymsg-italics-bold-msg'], mw.messages.get( 'jquerymsg-italics-bold-msg' ), 'Italics and bold nesting order preserved' );
+		assertBothModes( assert, [ 'jquerymsg-italics-bold-msg' ], mw.messages.get( 'jquerymsg-italics-bold-msg' ), 'Italics and bold nesting order preserved' );
 
 		mw.messages.set( 'jquerymsg-italics-with-link', 'An <i>italicized [[link|wiki-link]]</i>' );
 
@@ -737,19 +903,17 @@
 			'Mismatched HTML start and end tag treated as text'
 		);
 
-		// TODO (mattflaschen, 2013-03-18): It's not a security issue, but there's no real
-		// reason the htmlEmitter span needs to be here. It's an artifact of how emitting works.
 		mw.messages.set( 'jquerymsg-script-and-external-link', '<script>alert( "jquerymsg-script-and-external-link test" );</script> [http://example.com <i>Foo</i> bar]' );
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-script-and-external-link' ),
-			'&lt;script&gt;alert( "jquerymsg-script-and-external-link test" );&lt;/script&gt; <a href="http://example.com"><span class="mediaWiki_htmlEmitter"><i>Foo</i> bar</span></a>',
+			'&lt;script&gt;alert( "jquerymsg-script-and-external-link test" );&lt;/script&gt; <a href="http://example.com"><i>Foo</i> bar</a>',
 			'HTML tags in external links not interfering with escaping of other tags'
 		);
 
 		mw.messages.set( 'jquerymsg-link-script', '[http://example.com <script>alert( "jquerymsg-link-script test" );</script>]' );
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-link-script' ),
-			'<a href="http://example.com"><span class="mediaWiki_htmlEmitter">&lt;script&gt;alert( "jquerymsg-link-script test" );&lt;/script&gt;</span></a>',
+			'<a href="http://example.com">&lt;script&gt;alert( "jquerymsg-link-script test" );&lt;/script&gt;</a>',
 			'Non-whitelisted HTML tag in external link anchor treated as text'
 		);
 
@@ -792,7 +956,7 @@
 		mw.messages.set( 'jquerymsg-wikitext-contents-script', '<i><script>Script inside</script></i>' );
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-wikitext-contents-script' ),
-			'<i><span class="mediaWiki_htmlEmitter">&lt;script&gt;Script inside&lt;/script&gt;</span></i>',
+			'<i>&lt;script&gt;Script inside&lt;/script&gt;</i>',
 			'Contents of valid tag are treated as wikitext, so invalid HTML element is treated as text'
 		);
 
@@ -830,6 +994,35 @@
 		);
 
 		assert.equal( logSpy.callCount, 2, 'mw.log.warn calls' );
+	} );
+
+	QUnit.test( 'Integration', 4, function ( assert ) {
+		var expected, logSpy;
+
+		expected = '<b><a title="Bold" href="/wiki/Bold">Bold</a>!</b>';
+		mw.messages.set( 'integration-test', '<b>[[Bold]]!</b>' );
+
+		this.suppressWarnings();
+		logSpy = this.sandbox.spy( mw.log, 'warn' );
+		assert.equal(
+			window.gM( 'integration-test' ),
+			expected,
+			'Global function gM() works correctly'
+		);
+		assert.equal( logSpy.callCount, 1, 'mw.log.warn called' );
+		this.restoreWarnings();
+
+		assert.equal(
+			mw.message( 'integration-test' ).parse(),
+			expected,
+			'mw.message().parse() works correctly'
+		);
+
+		assert.equal(
+			$( '<span>' ).msg( 'integration-test' ).html(),
+			expected,
+			'jQuery plugin $.fn.msg() works correctly'
+		);
 	} );
 
 }( mediaWiki, jQuery ) );

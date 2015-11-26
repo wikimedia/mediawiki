@@ -66,7 +66,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'مون سان ڳالهه' ),
 	'Newimages'                 => array( 'نوان عڪس' ),
 	'Newpages'                  => array( 'نوان صفحا' ),
-
 	'Preferences'               => array( 'ترجيحات' ),
 	'Prefixindex'               => array( 'اڳياڙي ڏسڻي' ),
 	'Protectedpages'            => array( 'تحفظيل صفحا' ),

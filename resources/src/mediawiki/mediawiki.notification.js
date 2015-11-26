@@ -39,6 +39,12 @@
 			}
 		}
 
+		if ( options.type ) {
+			// Sanitize options.type
+			options.type = options.type.replace( /[ _\-]+/g, '-' ).replace( /[^\-a-z0-9]+/ig, '' );
+			$notification.addClass( 'mw-notification-type-' + options.type );
+		}
+
 		if ( options.title ) {
 			$notificationTitle = $( '<div class="mw-notification-title"></div>' )
 				.text( options.title )
@@ -356,7 +362,7 @@
 		$notifications.each( function () {
 			var notif = $( this ).data( 'mw.notification' );
 			if ( notif ) {
-				notif[fn]();
+				notif[ fn ]();
 			}
 		} );
 	}
@@ -364,6 +370,7 @@
 	/**
 	 * Initialisation.
 	 * Must only be called once, and not before the document is ready.
+	 *
 	 * @ignore
 	 */
 	function init() {
@@ -414,6 +421,7 @@
 		/**
 		 * Pause auto-hide timers for all notifications.
 		 * Notifications will not auto-hide until resume is called.
+		 *
 		 * @see mw.Notification#pause
 		 */
 		pause: function () {
@@ -479,11 +487,16 @@
 		 * - title:
 		 *   An optional title for the notification. Will be displayed above the
 		 *   content. Usually in bold.
+		 *
+		 * - type:
+		 *   An optional string for the type of the message used for styling:
+		 *   Examples: 'info', 'warn', 'error'.
 		 */
 		defaults: {
 			autoHide: true,
 			tag: false,
-			title: undefined
+			title: undefined,
+			type: false
 		},
 
 		/**

@@ -25,16 +25,23 @@
  * Compact stacked vertical format for forms, implemented using OOUI widgets.
  */
 class OOUIHTMLForm extends HTMLForm {
+<<<<<<< HEAD
 	/**
 	 * Wrapper and its legend are never generated in OOUI mode.
 	 * @var boolean
 	 */
 	protected $mWrapperLegend = false;
+=======
+	private $oouiErrors;
+>>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 
 	public function __construct( $descriptor, $context = null, $messagePrefix = '' ) {
 		parent::__construct( $descriptor, $context, $messagePrefix );
 		$this->getOutput()->enableOOUI();
+<<<<<<< HEAD
 		$this->getOutput()->addModules( 'mediawiki.htmlform.ooui' );
+=======
+>>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 		$this->getOutput()->addModuleStyles( 'mediawiki.htmlform.ooui.styles' );
 	}
 
@@ -54,7 +61,11 @@ class OOUIHTMLForm extends HTMLForm {
 		$buttons = '';
 
 		if ( $this->mShowSubmit ) {
+<<<<<<< HEAD
 			$attribs = array();
+=======
+			$attribs = array( 'infusable' => true );
+>>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 
 			if ( isset( $this->mSubmitID ) ) {
 				$attribs['id'] = $this->mSubmitID;
@@ -68,6 +79,7 @@ class OOUIHTMLForm extends HTMLForm {
 				$attribs += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
 			}
 
+<<<<<<< HEAD
 			$attribs['classes'] = array(
 				'mw-htmlform-submit',
 				$this->mSubmitModifierClass,
@@ -77,6 +89,13 @@ class OOUIHTMLForm extends HTMLForm {
 			$attribs['label'] = $this->getSubmitText();
 			$attribs['value'] = $this->getSubmitText();
 			$attribs['flags'] = array( 'primary', 'constructive' );
+=======
+			$attribs['classes'] = array( 'mw-htmlform-submit' );
+			$attribs['type'] = 'submit';
+			$attribs['label'] = $this->getSubmitText();
+			$attribs['value'] = $this->getSubmitText();
+			$attribs['flags'] = $this->mSubmitFlags;
+>>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 
 			$buttons .= new OOUI\ButtonInputWidget( $attribs );
 		}
@@ -115,6 +134,7 @@ class OOUIHTMLForm extends HTMLForm {
 		return $html;
 	}
 
+<<<<<<< HEAD
 	function getFormAttributes() {
 		$attribs = parent::getFormAttributes();
 		if ( !isset( $attribs['class'] ) ) {
@@ -133,5 +153,118 @@ class OOUIHTMLForm extends HTMLForm {
 	function wrapForm( $html ) {
 		// Always discard $this->mWrapperLegend
 		return Html::rawElement( 'form', $this->getFormAttributes(), $html );
+=======
+	/**
+	 * Put a form section together from the individual fields' HTML, merging it and wrapping.
+	 * @param OOUI\\FieldLayout[] $fieldsHtml
+	 * @param string $sectionName
+	 * @param bool $anyFieldHasLabel Unused
+	 * @return string HTML
+	 */
+	protected function formatSection( array $fieldsHtml, $sectionName, $anyFieldHasLabel ) {
+		$config = array(
+			'items' => $fieldsHtml,
+		);
+		if ( $sectionName ) {
+			$config['id'] = Sanitizer::escapeId( $sectionName );
+		}
+		if ( is_string( $this->mWrapperLegend ) ) {
+			$config['label'] = $this->mWrapperLegend;
+		}
+		return new OOUI\FieldsetLayout( $config );
+	}
+
+	/**
+	 * @param string|array|Status $err
+	 * @return string
+	 */
+	function getErrors( $err ) {
+		if ( !$err ) {
+			$errors = array();
+		} else if ( $err instanceof Status ) {
+			if ( $err->isOK() ) {
+				$errors = array();
+			} else {
+				$errors = $err->getErrorsByType( 'error' );
+				foreach ( $errors as &$error ) {
+					// Input:  array( 'message' => 'foo', 'errors' => array( 'a', 'b', 'c' ) )
+					// Output: array( 'foo', 'a', 'b', 'c' )
+					$error = array_merge( array( $error['message'] ), $error['params'] );
+				}
+			}
+		} else {
+			$errors = $err;
+			if ( !is_array( $errors ) ) {
+				$errors = array( $errors );
+			}
+		}
+
+		foreach ( $errors as &$error ) {
+			if ( is_array( $error ) ) {
+				$msg = array_shift( $error );
+			} else {
+				$msg = $error;
+				$error = array();
+			}
+			$error = $this->msg( $msg, $error )->parse();
+			$error = new OOUI\HtmlSnippet( $error );
+		}
+
+		// Used in getBody()
+		$this->oouiErrors = $errors;
+		return '';
+	}
+
+	function getHeaderText( $section = null ) {
+		if ( is_null( $section ) ) {
+			// We handle $this->mHeader elsewhere, in getBody()
+			return '';
+		} else {
+			return parent::getHeaderText( $section );
+		}
+	}
+
+	function getBody() {
+		$fieldset = parent::getBody();
+		// FIXME This only works for forms with no subsections
+		if ( $fieldset instanceof OOUI\FieldsetLayout ) {
+			$classes = array( 'mw-htmlform-ooui-header' );
+			if ( !$this->mHeader ) {
+				$classes[] = 'mw-htmlform-ooui-header-empty';
+			}
+			if ( $this->oouiErrors ) {
+				$classes[] = 'mw-htmlform-ooui-header-errors';
+			}
+			$fieldset->addItems( array(
+				new OOUI\FieldLayout(
+					new OOUI\LabelWidget( array( 'label' => new OOUI\HtmlSnippet( $this->mHeader ) ) ),
+					array(
+						'align' => 'top',
+						'errors' => $this->oouiErrors,
+						'classes' => $classes,
+					)
+				)
+			), 0 );
+		}
+		return $fieldset;
+	}
+
+	function wrapForm( $html ) {
+		$form = new OOUI\FormLayout( $this->getFormAttributes() + array(
+			'classes' => array( 'mw-htmlform-ooui' ),
+			'content' => new OOUI\HtmlSnippet( $html ),
+		) );
+
+		// Include a wrapper for style, if requested.
+		$form = new OOUI\PanelLayout( array(
+			'classes' => array( 'mw-htmlform-ooui-wrapper' ),
+			'expanded' => false,
+			'padded' => $this->mWrapperLegend !== false,
+			'framed' => $this->mWrapperLegend !== false,
+			'content' => $form,
+		) );
+
+		return $form;
+>>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 	}
 }

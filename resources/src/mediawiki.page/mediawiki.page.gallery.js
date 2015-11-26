@@ -12,6 +12,7 @@
 
 	/**
 	 * Perform the layout justification.
+	 *
 	 * @ignore
 	 * @context {HTMLElement} A `ul.mw-gallery-*` element
 	 */
@@ -30,14 +31,14 @@
 				$this = $( this );
 
 			if ( top !== lastTop ) {
-				rows[rows.length] = [];
+				rows[ rows.length ] = [];
 				lastTop = top;
 			}
 
 			$img = $this.find( 'div.thumb a.image img' );
-			if ( $img.length && $img[0].height ) {
-				imgHeight = $img[0].height;
-				imgWidth = $img[0].width;
+			if ( $img.length && $img[ 0 ].height ) {
+				imgHeight = $img[ 0 ].height;
+				imgWidth = $img[ 0 ].width;
 			} else {
 				// If we don't have a real image, get the containing divs width/height.
 				// Note that if we do have a real image, using this method will generally
@@ -54,7 +55,7 @@
 			}
 
 			captionWidth = $this.children().children( 'div.gallerytextwrapper' ).width();
-			rows[rows.length - 1][rows[rows.length - 1].length] = {
+			rows[ rows.length - 1 ][ rows[ rows.length - 1 ].length ] = {
 				$elm: $this,
 				width: $this.outerWidth(),
 				imgWidth: imgWidth,
@@ -96,25 +97,25 @@
 				maxWidth = $gallery.width();
 				combinedAspect = 0;
 				combinedPadding = 0;
-				curRow = rows[i];
+				curRow = rows[ i ];
 				curRowHeight = 0;
 
 				for ( j = 0; j < curRow.length; j++ ) {
 					if ( curRowHeight === 0 ) {
-						if ( isFinite( curRow[j].height ) ) {
+						if ( isFinite( curRow[ j ].height ) ) {
 							// Get the height of this row, by taking the first
 							// non-out of bounds height
-							curRowHeight = curRow[j].height;
+							curRowHeight = curRow[ j ].height;
 						}
 					}
 
-					if ( curRow[j].aspect === 0 || !isFinite( curRow[j].aspect ) ) {
+					if ( curRow[ j ].aspect === 0 || !isFinite( curRow[ j ].aspect ) ) {
 						// One of the dimensions are 0. Probably should
 						// not try to resize.
-						combinedPadding += curRow[j].width;
+						combinedPadding += curRow[ j ].width;
 					} else {
-						combinedAspect += curRow[j].aspect;
-						combinedPadding += curRow[j].width - curRow[j].imgWidth;
+						combinedAspect += curRow[ j ].aspect;
+						combinedPadding += curRow[ j ].width - curRow[ j ].imgWidth;
 					}
 				}
 
@@ -162,13 +163,13 @@
 				}
 
 				for ( j = 0; j < curRow.length; j++ ) {
-					newWidth = preferredHeight * curRow[j].aspect;
-					padding = curRow[j].width - curRow[j].imgWidth;
-					$outerDiv = curRow[j].$elm;
+					newWidth = preferredHeight * curRow[ j ].aspect;
+					padding = curRow[ j ].width - curRow[ j ].imgWidth;
+					$outerDiv = curRow[ j ].$elm;
 					$innerDiv = $outerDiv.children( 'div' ).first();
 					$imageDiv = $innerDiv.children( 'div.thumb' );
 					$imageElm = $imageDiv.find( 'img' ).first();
-					imageElm = $imageElm.length ? $imageElm[0] : null;
+					imageElm = $imageElm.length ? $imageElm[ 0 ] : null;
 					$caption = $outerDiv.find( 'div.gallerytextwrapper' );
 
 					// Since we are going to re-adjust the height, the vertical
@@ -187,7 +188,7 @@
 						$outerDiv.width( newWidth + padding );
 						$innerDiv.width( newWidth + padding );
 						$imageDiv.width( newWidth );
-						$caption.width( curRow[j].captionWidth + ( newWidth - curRow[j].imgWidth ) );
+						$caption.width( curRow[ j ].captionWidth + ( newWidth - curRow[ j ].imgWidth ) );
 					}
 
 					if ( imageElm ) {
@@ -220,7 +221,7 @@
 			$( this ).find( 'div.gallerytextwrapper' ).width( captionWidth );
 
 			$imageElm = $( this ).find( 'img' ).first();
-			imageElm = $imageElm.length ? $imageElm[0] : null;
+			imageElm = $imageElm.length ? $imageElm[ 0 ] : null;
 			if ( imageElm ) {
 				imageElm.width = imgWidth;
 				imageElm.height = imgHeight;

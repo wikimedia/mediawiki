@@ -3,7 +3,7 @@
 /**
  * @group Media
  */
-class ExifBitmapTest extends MediaWikiTestCase {
+class ExifBitmapTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @var ExifBitmapHandler
@@ -142,5 +142,42 @@ class ExifBitmapTest extends MediaWikiTestCase {
 		);
 		$res = $this->handler->convertMetadataVersion( $metadata, 1 );
 		$this->assertEquals( $expected, $res );
+	}
+
+	/**
+	 * @dataProvider provideSwappingICCProfile
+	 * @covers BitmapHandler::swapICCProfile
+	 */
+	public function testSwappingICCProfile( $sourceFilename, $controlFilename, $newProfileFilename, $oldProfileName ) {
+		global $wgExiftool;
+
+		if ( !$wgExiftool || !is_file( $wgExiftool ) ) {
+			$this->markTestSkipped( "Exiftool not installed, cannot test ICC profile swapping" );
+		}
+
+		$this->setMwGlobals( 'wgUseTinyRGBForJPGThumbnails', true );
+
+		$sourceFilepath = $this->filePath . $sourceFilename;
+		$controlFilepath = $this->filePath . $controlFilename;
+		$profileFilepath = $this->filePath . $newProfileFilename;
+		$filepath = $this->getNewTempFile();
+
+		copy( $sourceFilepath, $filepath );
+
+		$file = $this->dataFile( $sourceFilename, 'image/jpeg' );
+		$this->handler->swapICCProfile( $filepath, $oldProfileName, $profileFilepath );
+
+		$this->assertEquals( sha1( file_get_contents( $filepath ) ), sha1( file_get_contents( $controlFilepath ) ) );
+	}
+
+	public function provideSwappingICCProfile() {
+		return array(
+			// File with sRGB should end up with TinyRGB
+			array( 'srgb.jpg', 'tinyrgb.jpg', 'tinyrgb.icc', 'IEC 61966-2.1 Default RGB colour space - sRGB' ),
+			// File with TinyRGB should be left unchanged
+			array( 'tinyrgb.jpg', 'tinyrgb.jpg', 'tinyrgb.icc', 'IEC 61966-2.1 Default RGB colour space - sRGB' ),
+			// File with no profile should be left unchanged
+			array( 'test.jpg', 'test.jpg', 'tinyrgb.icc', 'IEC 61966-2.1 Default RGB colour space - sRGB' )
+		);
 	}
 }

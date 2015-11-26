@@ -73,7 +73,8 @@ abstract class DatabaseUpdater {
 		'PopulateImageSha1',
 		'FixExtLinksProtocolRelative',
 		'PopulateFilearchiveSha1',
-		'PopulateBacklinkNamespace'
+		'PopulateBacklinkNamespace',
+		'FixDefaultJsonContentPages'
 	);
 
 	/**

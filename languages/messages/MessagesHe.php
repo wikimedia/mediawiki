@@ -108,7 +108,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'שפת_הדף' ),
 	'PasswordReset'             => array( 'איפוס_סיסמה' ),
 	'PermanentLink'             => array( 'קישור_קבוע' ),
-
 	'Preferences'               => array( 'העדפות', 'ההעדפות_שלי' ),
 	'Prefixindex'               => array( 'דפים_המתחילים_ב' ),
 	'Protectedpages'            => array( 'דפים_מוגנים' ),

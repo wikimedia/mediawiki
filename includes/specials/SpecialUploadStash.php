@@ -58,6 +58,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @return bool Success
 	 */
 	public function execute( $subPage ) {
+		$this->useTransactionalTimeLimit();
+
 		$this->stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $this->getUser() );
 		$this->checkPermissions();
 
@@ -226,7 +228,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 */
 	private function outputRemoteScaledThumb( $file, $params, $flags ) {
 		// This option probably looks something like
-		// 'http://upload.wikimedia.org/wikipedia/test/thumb/temp'. Do not use
+		// '//upload.wikimedia.org/wikipedia/test/thumb/temp'. Do not use
 		// trailing slash.
 		$scalerBaseUrl = $this->getConfig()->get( 'UploadStashScalerBaseUrl' );
 

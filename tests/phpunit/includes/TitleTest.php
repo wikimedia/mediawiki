@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Database
  * @group Title
  */
 class TitleTest extends MediaWikiTestCase {
@@ -79,22 +80,22 @@ class TitleTest extends MediaWikiTestCase {
 
 	public static function provideInvalidSecureAndSplit() {
 		return array(
-			array( '' ),
-			array( ':' ),
-			array( '__  __' ),
-			array( '  __  ' ),
+			array( '', 'title-invalid-empty' ),
+			array( ':', 'title-invalid-empty' ),
+			array( '__  __', 'title-invalid-empty' ),
+			array( '  __  ', 'title-invalid-empty' ),
 			// Bad characters forbidden regardless of wgLegalTitleChars
-			array( 'A [ B' ),
-			array( 'A ] B' ),
-			array( 'A { B' ),
-			array( 'A } B' ),
-			array( 'A < B' ),
-			array( 'A > B' ),
-			array( 'A | B' ),
+			array( 'A [ B', 'title-invalid-characters' ),
+			array( 'A ] B', 'title-invalid-characters' ),
+			array( 'A { B', 'title-invalid-characters' ),
+			array( 'A } B', 'title-invalid-characters' ),
+			array( 'A < B', 'title-invalid-characters' ),
+			array( 'A > B', 'title-invalid-characters' ),
+			array( 'A | B', 'title-invalid-characters' ),
 			// URL encoding
-			array( 'A%20B' ),
-			array( 'A%23B' ),
-			array( 'A%2523B' ),
+			array( 'A%20B', 'title-invalid-characters' ),
+			array( 'A%23B', 'title-invalid-characters' ),
+			array( 'A%2523B', 'title-invalid-characters' ),
 			// XML/HTML character entity references
 			// Note: Commented out because they are not marked invalid by the PHP test as
 			// Title::newFromText runs Sanitizer::decodeCharReferencesAndNormalize first.
@@ -102,29 +103,30 @@ class TitleTest extends MediaWikiTestCase {
 			//'A &#233; B',
 			//'A &#x00E9; B',
 			// Subject of NS_TALK does not roundtrip to NS_MAIN
-			array( 'Talk:File:Example.svg' ),
+			array( 'Talk:File:Example.svg', 'title-invalid-talk-namespace' ),
 			// Directory navigation
-			array( '.' ),
-			array( '..' ),
-			array( './Sandbox' ),
-			array( '../Sandbox' ),
-			array( 'Foo/./Sandbox' ),
-			array( 'Foo/../Sandbox' ),
-			array( 'Sandbox/.' ),
-			array( 'Sandbox/..' ),
+			array( '.', 'title-invalid-relative' ),
+			array( '..', 'title-invalid-relative' ),
+			array( './Sandbox', 'title-invalid-relative' ),
+			array( '../Sandbox', 'title-invalid-relative' ),
+			array( 'Foo/./Sandbox', 'title-invalid-relative' ),
+			array( 'Foo/../Sandbox', 'title-invalid-relative' ),
+			array( 'Sandbox/.', 'title-invalid-relative' ),
+			array( 'Sandbox/..', 'title-invalid-relative' ),
 			// Tilde
-			array( 'A ~~~ Name' ),
-			array( 'A ~~~~ Signature' ),
-			array( 'A ~~~~~ Timestamp' ),
-			array( str_repeat( 'x', 256 ) ),
+			array( 'A ~~~ Name', 'title-invalid-magic-tilde' ),
+			array( 'A ~~~~ Signature', 'title-invalid-magic-tilde' ),
+			array( 'A ~~~~~ Timestamp', 'title-invalid-magic-tilde' ),
+			// Length
+			array( str_repeat( 'x', 256 ), 'title-invalid-too-long' ),
 			// Namespace prefix without actual title
-			array( 'Talk:' ),
-			array( 'Talk:#' ),
-			array( 'Category: ' ),
-			array( 'Category: #bar' ),
+			array( 'Talk:', 'title-invalid-empty' ),
+			array( 'Talk:#', 'title-invalid-empty' ),
+			array( 'Category: ', 'title-invalid-empty' ),
+			array( 'Category: #bar', 'title-invalid-empty' ),
 			// interwiki prefix
-			array( 'localtestiw: Talk: # anchor' ),
-			array( 'localtestiw: Talk:' )
+			array( 'localtestiw: Talk: # anchor', 'title-invalid-empty' ),
+			array( 'localtestiw: Talk:', 'title-invalid-empty' )
 		);
 	}
 
@@ -143,7 +145,7 @@ class TitleTest extends MediaWikiTestCase {
 					}
 				)
 			)
-		));
+		) );
 	}
 
 	/**
@@ -163,9 +165,14 @@ class TitleTest extends MediaWikiTestCase {
 	 * @dataProvider provideInvalidSecureAndSplit
 	 * @note This mainly tests MediaWikiTitleCodec::parseTitle().
 	 */
-	public function testSecureAndSplitInvalid( $text ) {
+	public function testSecureAndSplitInvalid( $text, $expectedErrorMessage ) {
 		$this->secureAndSplitGlobals();
-		$this->assertNull( Title::newFromText( $text ), "Invalid: $text" );
+		try {
+			Title::newFromTextThrow( $text ); // should throw
+			$this->assertTrue( false, "Invalid: $text" );
+		} catch ( MalformedTitleException $ex ) {
+			$this->assertEquals( $expectedErrorMessage, $ex->getErrorMessage(), "Invalid: $text" );
+		}
 	}
 
 	public static function provideConvertByteClassToUnicodeClass() {
@@ -630,5 +637,27 @@ class TitleTest extends MediaWikiTestCase {
 	public function testIsAlwaysKnownOnInterwiki() {
 		$title = Title::makeTitle( NS_MAIN, 'Interwiki link', '', 'externalwiki' );
 		$this->assertTrue( $title->isAlwaysKnown() );
+	}
+
+	/**
+	 * @covers Title::exists
+	 */
+	public function testExists() {
+		$title = Title::makeTitle( NS_PROJECT, 'New page' );
+		$linkCache = LinkCache::singleton();
+
+		$article = new Article( $title );
+		$page = $article->getPage();
+		$page->doEditContent( new WikitextContent( 'Some [[link]]' ), 'summary' );
+
+		// Tell Title it doesn't know whether it exists
+		$title->mArticleID = -1;
+
+		// Tell the link cache it doesn't exists when it really does
+		$linkCache->clearLink( $title );
+		$linkCache->addBadLinkObj( $title );
+
+		$this->assertEquals( false, $title->exists(), 'exists() should rely on link cache unless GAID_FOR_UPDATE is used' );
+		$this->assertEquals( true, $title->exists( Title::GAID_FOR_UPDATE ), 'exists() should re-query database when GAID_FOR_UPDATE is used' );
 	}
 }

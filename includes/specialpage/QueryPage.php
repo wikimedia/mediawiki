@@ -70,7 +70,7 @@ abstract class QueryPage extends SpecialPage {
 				array( 'DeadendPagesPage', 'Deadendpages' ),
 				array( 'DoubleRedirectsPage', 'DoubleRedirects' ),
 				array( 'FileDuplicateSearchPage', 'FileDuplicateSearch' ),
-				array( 'ListDuplicatedFilesPage', 'ListDuplicatedFiles'),
+				array( 'ListDuplicatedFilesPage', 'ListDuplicatedFiles' ),
 				array( 'LinkSearchPage', 'LinkSearch' ),
 				array( 'ListredirectsPage', 'Listredirects' ),
 				array( 'LonelyPagesPage', 'Lonelypages' ),
@@ -141,7 +141,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return array
 	 * @since 1.18
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return null;
 	}
 
@@ -178,7 +178,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return bool
 	 * @since 1.18
 	 */
-	function usesTimestamps() {
+	public function usesTimestamps() {
 		return false;
 	}
 
@@ -198,7 +198,7 @@ abstract class QueryPage extends SpecialPage {
 	 *
 	 * @return bool
 	 */
-	function isExpensive() {
+	public function isExpensive() {
 		return $this->getConfig()->get( 'DisableQueryPages' );
 	}
 
@@ -219,7 +219,7 @@ abstract class QueryPage extends SpecialPage {
 	 *
 	 * @return bool
 	 */
-	function isCached() {
+	public function isCached() {
 		return $this->isExpensive() && $this->getConfig()->get( 'MiserMode' );
 	}
 
@@ -253,6 +253,17 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
+	 * Outputs some kind of an informative message (via OutputPage) to let the
+	 * user know that the query returned nothing and thus there's nothing to
+	 * show.
+	 *
+	 * @since 1.26
+	 */
+	protected function showEmptyText() {
+		$this->getOutput()->addWikiMsg( 'specialpage-empty' );
+	}
+
+	/**
 	 * If using extra form wheely-dealies, return a set of parameters here
 	 * as an associative array. They will be encoded and added to the paging
 	 * links (prev/next/lengths).
@@ -283,7 +294,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @throws DBError|Exception
 	 * @return bool|int
 	 */
-	function recache( $limit, $ignoreErrors = true ) {
+	public function recache( $limit, $ignoreErrors = true ) {
 		if ( !$this->isCacheable() ) {
 			return 0;
 		}
@@ -359,7 +370,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return ResultWrapper
 	 * @since 1.18
 	 */
-	function reallyDoQuery( $limit, $offset = false ) {
+	public function reallyDoQuery( $limit, $offset = false ) {
 		$fname = get_class( $this ) . "::reallyDoQuery";
 		$dbr = $this->getRecacheDB();
 		$query = $this->getQueryInfo();
@@ -410,7 +421,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @param int|bool $limit
 	 * @return ResultWrapper
 	 */
-	function doQuery( $offset = false, $limit = false ) {
+	public function doQuery( $offset = false, $limit = false ) {
 		if ( $this->isCached() && $this->isCacheable() ) {
 			return $this->fetchFromCache( $limit, $offset );
 		} else {
@@ -425,7 +436,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return ResultWrapper
 	 * @since 1.18
 	 */
-	function fetchFromCache( $limit, $offset = false ) {
+	public function fetchFromCache( $limit, $offset = false ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$options = array();
 		if ( $limit !== false ) {
@@ -460,11 +471,23 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
+	 * Returns limit and offset, as returned by $this->getRequest()->getLimitOffset().
+	 * Subclasses may override this to further restrict or modify limit and offset.
+	 *
+	 * @since 1.26
+	 *
+	 * @return int[] list( $limit, $offset )
+	 */
+	protected function getLimitOffset() {
+		return $this->getRequest()->getLimitOffset();
+	}
+
+	/**
 	 * This is the actual workhorse. It does everything needed to make a
 	 * real, honest-to-gosh query page.
 	 * @param string $par
 	 */
-	function execute( $par ) {
+	public function execute( $par ) {
 		$user = $this->getUser();
 		if ( !$this->userCanExecute( $user ) ) {
 			$this->displayRestrictionError();
@@ -484,7 +507,7 @@ abstract class QueryPage extends SpecialPage {
 		$out->setSyndicated( $this->isSyndicated() );
 
 		if ( $this->limit == 0 && $this->offset == 0 ) {
-			list( $this->limit, $this->offset ) = $this->getRequest()->getLimitOffset();
+			list( $this->limit, $this->offset ) = $this->getLimitOffset();
 		}
 
 		// @todo Use doQuery()
@@ -527,7 +550,7 @@ abstract class QueryPage extends SpecialPage {
 
 		$this->numRows = $res->numRows();
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getRecacheDB();
 		$this->preprocessResults( $dbr, $res );
 
 		$out->addHTML( Xml::openElement( 'div', array( 'class' => 'mw-spcontent' ) ) );
@@ -546,7 +569,7 @@ abstract class QueryPage extends SpecialPage {
 			} else {
 				# No results to show, so don't bother with "showing X of Y" etc.
 				# -- just let the user know and give up now
-				$out->addWikiMsg( 'specialpage-empty' );
+				$this->showEmptyText();
 				$out->addHTML( Xml::closeElement( 'div' ) );
 				return;
 			}

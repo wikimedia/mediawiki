@@ -38,6 +38,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->outputHeader();
 		$out = $this->getOutput();
 		$out->addModuleStyles( 'mediawiki.special' );
+		$this->addHelpLink( 'Help:User contributions' );
 
 		$this->opts = array();
 		$request = $this->getRequest();
@@ -724,7 +725,6 @@ class ContribsPager extends ReverseChronologicalPager {
 			$limit,
 			$descending
 		);
-		$pager = $this;
 
 		/*
 		 * This hook will allow extensions to add in additional queries, so they can get their data
@@ -749,7 +749,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		) );
 		Hooks::run(
 			'ContribsPager::reallyDoQuery',
-			array( &$data, $pager, $offset, $limit, $descending )
+			array( &$data, $this, $offset, $limit, $descending )
 		);
 
 		$result = array();
@@ -965,14 +965,14 @@ class ContribsPager extends ReverseChronologicalPager {
 		 * we're definitely dealing with revision data and we may proceed, if not, we'll leave it
 		 * to extensions to subscribe to the hook to parse the row.
 		 */
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		try {
 			$rev = new Revision( $row );
 			$validRevision = (bool)$rev->getId();
 		} catch ( Exception $e ) {
 			$validRevision = false;
 		}
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( $validRevision ) {
 			$classes = array();

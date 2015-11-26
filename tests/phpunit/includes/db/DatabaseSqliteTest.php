@@ -1,12 +1,13 @@
 <?php
 
-class MockDatabaseSqlite extends DatabaseSqlite {
+class DatabaseSqliteMock extends DatabaseSqlite {
 	private $lastQuery;
 
 	public static function newInstance( array $p = array() ) {
 		$p['dbFilePath'] = ':memory:';
+		$p['schema'] = false;
 
-		return new self( $p );
+		return DatabaseBase::factory( 'SqliteMock', $p );
 	}
 
 	function query( $sql, $fname = '', $tempIgnore = false ) {
@@ -29,7 +30,7 @@ class MockDatabaseSqlite extends DatabaseSqlite {
  * @group medium
  */
 class DatabaseSqliteTest extends MediaWikiTestCase {
-	/** @var MockDatabaseSqlite */
+	/** @var DatabaseSqliteMock */
 	protected $db;
 
 	protected function setUp() {
@@ -38,7 +39,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		if ( !Sqlite::isPresent() ) {
 			$this->markTestSkipped( 'No SQLite support detected' );
 		}
-		$this->db = MockDatabaseSqlite::newInstance();
+		$this->db = DatabaseSqliteMock::newInstance();
 		if ( version_compare( $this->db->getServerVersion(), '3.6.0', '<' ) ) {
 			$this->markTestSkipped( "SQLite at least 3.6 required, {$this->db->getServerVersion()} found" );
 		}
@@ -188,18 +189,34 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	public function testDuplicateTableStructure() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$db->query( 'CREATE TABLE foo(foo, barfoo)' );
+		$db->query( 'CREATE INDEX index1 ON foo(foo)' );
+		$db->query( 'CREATE UNIQUE INDEX index2 ON foo(barfoo)' );
 
 		$db->duplicateTableStructure( 'foo', 'bar' );
 		$this->assertEquals( 'CREATE TABLE "bar"(foo, barfoo)',
 			$db->selectField( 'sqlite_master', 'sql', array( 'name' => 'bar' ) ),
 			'Normal table duplication'
 		);
+		$indexList = $db->query( 'PRAGMA INDEX_LIST("bar")' );
+		$index = $indexList->next();
+		$this->assertEquals( 'bar_index1', $index->name );
+		$this->assertEquals( '0', $index->unique );
+		$index = $indexList->next();
+		$this->assertEquals( 'bar_index2', $index->name );
+		$this->assertEquals( '1', $index->unique );
 
 		$db->duplicateTableStructure( 'foo', 'baz', true );
 		$this->assertEquals( 'CREATE TABLE "baz"(foo, barfoo)',
 			$db->selectField( 'sqlite_temp_master', 'sql', array( 'name' => 'baz' ) ),
 			'Creation of temporary duplicate'
 		);
+		$indexList = $db->query( 'PRAGMA INDEX_LIST("baz")' );
+		$index = $indexList->next();
+		$this->assertEquals( 'baz_index1', $index->name );
+		$this->assertEquals( '0', $index->unique );
+		$index = $indexList->next();
+		$this->assertEquals( 'baz_index2', $index->name );
+		$this->assertEquals( '1', $index->unique );
 		$this->assertEquals( 0,
 			$db->selectField( 'sqlite_master', 'COUNT(*)', array( 'name' => 'baz' ) ),
 			'Create a temporary duplicate only'

@@ -1,7 +1,23 @@
 /* OOUIHTMLForm styles */
 
+<<<<<<< HEAD
 .mw-htmlform-ooui {
 	width: 50em;
+=======
+.mw-htmlform-ooui-wrapper {
+	width: 50em;
+	margin: 1em 0;
+}
+
+.oo-ui-fieldLayout.mw-htmlform-ooui-header-empty,
+.oo-ui-fieldLayout.mw-htmlform-ooui-header-empty .oo-ui-fieldLayout-body {
+	display: none;
+}
+
+.oo-ui-fieldLayout.mw-htmlform-ooui-header-errors {
+	/* Override 'display: none' from above */
+	display: block;
+>>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 }
 
 .mw-htmlform-ooui .mw-htmlform-submit-buttons {

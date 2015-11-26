@@ -267,7 +267,6 @@ class LinksUpdate extends SqlDataUpdate {
 			);
 
 			JobQueueGroup::singleton()->push( $job );
-			JobQueueGroup::singleton()->deduplicateRootJob( $job );
 		}
 	}
 
@@ -934,89 +933,5 @@ class LinksUpdate extends SqlDataUpdate {
 				__METHOD__
 			);
 		}
-	}
-}
-
-/**
- * Update object handling the cleanup of links tables after a page was deleted.
- **/
-class LinksDeletionUpdate extends SqlDataUpdate {
-	/** @var WikiPage The WikiPage that was deleted */
-	protected $mPage;
-
-	/**
-	 * Constructor
-	 *
-	 * @param WikiPage $page Page we are updating
-	 * @throws MWException
-	 */
-	function __construct( WikiPage $page ) {
-		parent::__construct( false ); // no implicit transaction
-
-		$this->mPage = $page;
-
-		if ( !$page->exists() ) {
-			throw new MWException( "Page ID not known, perhaps the page doesn't exist?" );
-		}
-	}
-
-	/**
-	 * Do some database updates after deletion
-	 */
-	public function doUpdate() {
-		$title = $this->mPage->getTitle();
-		$id = $this->mPage->getId();
-
-		# Delete restrictions for it
-		$this->mDb->delete( 'page_restrictions', array( 'pr_page' => $id ), __METHOD__ );
-
-		# Fix category table counts
-		$cats = array();
-		$res = $this->mDb->select( 'categorylinks', 'cl_to', array( 'cl_from' => $id ), __METHOD__ );
-
-		foreach ( $res as $row ) {
-			$cats[] = $row->cl_to;
-		}
-
-		$this->mPage->updateCategoryCounts( array(), $cats );
-
-		# If using cascading deletes, we can skip some explicit deletes
-		if ( !$this->mDb->cascadingDeletes() ) {
-			# Delete outgoing links
-			$this->mDb->delete( 'pagelinks', array( 'pl_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'imagelinks', array( 'il_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'categorylinks', array( 'cl_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'templatelinks', array( 'tl_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'externallinks', array( 'el_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'langlinks', array( 'll_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'iwlinks', array( 'iwl_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'redirect', array( 'rd_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'page_props', array( 'pp_page' => $id ), __METHOD__ );
-		}
-
-		# If using cleanup triggers, we can skip some manual deletes
-		if ( !$this->mDb->cleanupTriggers() ) {
-			# Clean up recentchanges entries...
-			$this->mDb->delete( 'recentchanges',
-				array( 'rc_type != ' . RC_LOG,
-					'rc_namespace' => $title->getNamespace(),
-					'rc_title' => $title->getDBkey() ),
-				__METHOD__ );
-			$this->mDb->delete( 'recentchanges',
-				array( 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ),
-				__METHOD__ );
-		}
-	}
-
-	/**
-	 * Update all the appropriate counts in the category table.
-	 * @param array $added Associative array of category name => sort key
-	 * @param array $deleted Associative array of category name => sort key
-	 */
-	function updateCategoryCounts( $added, $deleted ) {
-		$a = WikiPage::factory( $this->mTitle );
-		$a->updateCategoryCounts(
-			array_keys( $added ), array_keys( $deleted )
-		);
 	}
 }

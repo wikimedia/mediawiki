@@ -55,7 +55,6 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 
 		$result = $this->getResult();
 		$pageSet = $this->getPageSet();
-		$titles = $pageSet->getTitles();
 
 		// This module operates in two modes:
 		// 'user': List deleted revs by a certain user
@@ -83,6 +82,21 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			}
 		}
 
+		// If we're generating titles only, we can use DISTINCT for a better
+		// query. But we can't do that in 'user' mode (wrong index), and we can
+		// only do it when sorting ASC (because MySQL apparently can't use an
+		// index backwards for grouping even though it can for ORDER BY, WTF?)
+		$dir = $params['dir'];
+		$optimizeGenerateTitles = false;
+		if ( $mode === 'all' && $params['generatetitles'] && $resultPageSet !== null ) {
+			if ( $dir === 'newer' ) {
+				$optimizeGenerateTitles = true;
+			} else {
+				$p = $this->getModulePrefix();
+				$this->setWarning( "For better performance when generating titles, set {$p}dir=newer" );
+			}
+		}
+
 		$this->addTables( 'archive' );
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
@@ -90,7 +104,12 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			$this->addFields( array( 'ar_title', 'ar_namespace' ) );
 		} else {
 			$this->limit = $this->getParameter( 'limit' ) ?: 10;
-			$this->addFields( array( 'ar_title', 'ar_namespace', 'ar_timestamp', 'ar_rev_id', 'ar_id' ) );
+			$this->addFields( array( 'ar_title', 'ar_namespace' ) );
+			if ( $optimizeGenerateTitles ) {
+				$this->addOption( 'DISTINCT' );
+			} else {
+				$this->addFields( array( 'ar_timestamp', 'ar_rev_id', 'ar_id' ) );
+			}
 		}
 
 		if ( $this->fld_tags ) {
@@ -130,7 +149,6 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			}
 		}
 
-		$dir = $params['dir'];
 		$miser_ns = null;
 
 		if ( $mode == 'all' ) {
@@ -229,7 +247,14 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
 			$op = ( $dir == 'newer' ? '>' : '<' );
-			if ( $mode == 'all' ) {
+			if ( $optimizeGenerateTitles ) {
+				$this->dieContinueUsageIf( count( $cont ) != 2 );
+				$ns = intval( $cont[0] );
+				$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
+				$title = $db->addQuotes( $cont[1] );
+				$this->addWhere( "ar_namespace $op $ns OR " .
+					"(ar_namespace = $ns AND ar_title $op= $title)" );
+			} elseif ( $mode == 'all' ) {
 				$this->dieContinueUsageIf( count( $cont ) != 4 );
 				$ns = intval( $cont[0] );
 				$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
@@ -259,7 +284,13 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 
 		$sort = ( $dir == 'newer' ? '' : ' DESC' );
 		$orderby = array();
-		if ( $mode == 'all' ) {
+		if ( $optimizeGenerateTitles ) {
+			// Targeting index name_title_timestamp
+			if ( $params['namespace'] === null || count( array_unique( $params['namespace'] ) ) > 1 ) {
+				$orderby[] = "ar_namespace $sort";
+			}
+			$orderby[] = "ar_title $sort";
+		} elseif ( $mode == 'all' ) {
 			// Targeting index name_title_timestamp
 			if ( $params['namespace'] === null || count( array_unique( $params['namespace'] ) ) > 1 ) {
 				$orderby[] = "ar_namespace $sort";
@@ -283,7 +314,9 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		foreach ( $res as $row ) {
 			if ( ++$count > $this->limit ) {
 				// We've had enough
-				if ( $mode == 'all' ) {
+				if ( $optimizeGenerateTitles ) {
+					$this->setContinueEnumParameter( 'continue', "$row->ar_namespace|$row->ar_title" );
+				} elseif ( $mode == 'all' ) {
 					$this->setContinueEnumParameter( 'continue',
 						"$row->ar_namespace|$row->ar_title|$row->ar_timestamp|$row->ar_id"
 					);

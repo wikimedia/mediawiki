@@ -110,7 +110,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'หน้าใหม่' ),
 	'PasswordReset'             => array( 'ตั้งรหัสผ่านใหม่' ),
 	'PermanentLink'             => array( 'ลิงก์ถาวร' ),
-
 	'Preferences'               => array( 'การตั้งค่า', 'ตั้งค่า' ),
 	'Prefixindex'               => array( 'ดัชนีตามคำขึ้นต้น' ),
 	'Protectedpages'            => array( 'หน้าที่ถูกป้องกัน' ),

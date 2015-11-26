@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mashoi7"
+		]
+	},
+	"apihelp-createaccount-param-name": "Käyttäitunnus.",
+	"apihelp-delete-description": "Ota sivu iäre.",
+	"apihelp-login-param-name": "Käyttäitunnus.",
+	"apihelp-login-param-password": "Peittosana.",
+	"apihelp-login-example-login": "Kirjuttai."
+}

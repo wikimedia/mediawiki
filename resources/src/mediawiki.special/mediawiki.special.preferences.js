@@ -5,7 +5,8 @@ jQuery( function ( $ ) {
 	var $preftoc, $preferences, $fieldsets, $legends,
 		hash, labelFunc,
 		$tzSelect, $tzTextbox, $localtimeHolder, servertime,
-		$checkBoxes, allowCloseWindowFn;
+		$checkBoxes, allowCloseWindow,
+		notif;
 
 	labelFunc = function () {
 		return this.id.replace( /^mw-prefsection/g, 'preftab' );
@@ -50,8 +51,8 @@ jQuery( function ( $ ) {
 	 * It uses document.getElementById for security reasons (HTML injections in $()).
 	 *
 	 * @ignore
-	 * @param String name: the name of a tab without the prefix ("mw-prefsection-")
-	 * @param String mode: [optional] A hash will be set according to the current
+	 * @param {String} name the name of a tab without the prefix ("mw-prefsection-")
+	 * @param {String} [mode] A hash will be set according to the current
 	 *  open section. Set mode 'noHash' to surpress this.
 	 */
 	function switchPrefTab( name, mode ) {
@@ -81,6 +82,26 @@ jQuery( function ( $ ) {
 
 			$preferences.children( 'fieldset' ).hide().attr( 'aria-hidden', 'true' );
 			$( document.getElementById( 'mw-prefsection-' + name ) ).show().attr( 'aria-hidden', 'false' );
+		}
+	}
+
+	// Check for messageboxes (.successbox, .warningbox, .errorbox) to replace with notifications
+	if ( $( '.mw-preferences-messagebox' ).length ) {
+		// If there is a #mw-preferences-success box and javascript is enabled, use a slick notification instead!
+		if ( $( '#mw-preferences-success' ).length ) {
+			notif = mediaWiki.notification.notify( mediaWiki.message( 'savedprefs' ), { autoHide: false } );
+			// 'change' event not reliable!
+			$( '#preftoc, .prefsection' ).one( 'change keydown mousedown', function () {
+				if ( notif ) {
+					notif.close();
+					notif = null;
+				}
+			} );
+
+			// Remove now-unnecessary success=1 querystring to prevent reappearance of notification on reload
+			if ( history.replaceState ) {
+				history.replaceState( {}, document.title, location.href.replace( /&?success=1/, '' ) );
+			}
 		}
 	}
 
@@ -183,15 +204,15 @@ jQuery( function ( $ ) {
 		var minutes,
 			arr = hour.split( ':' );
 
-		arr[0] = parseInt( arr[0], 10 );
+		arr[ 0 ] = parseInt( arr[ 0 ], 10 );
 
 		if ( arr.length === 1 ) {
 			// Specification is of the form [-]XX
-			minutes = arr[0] * 60;
+			minutes = arr[ 0 ] * 60;
 		} else {
 			// Specification is of the form [-]XX:XX
-			minutes = Math.abs( arr[0] ) * 60 + parseInt( arr[1], 10 );
-			if ( arr[0] < 0 ) {
+			minutes = Math.abs( arr[ 0 ] ) * 60 + parseInt( arr[ 1 ], 10 );
+			if ( arr[ 0 ] < 0 ) {
 				minutes *= -1;
 			}
 		}
@@ -218,7 +239,7 @@ jQuery( function ( $ ) {
 			minuteDiff = hoursToMinutes( $tzTextbox.val() );
 		} else {
 			// Grab data from the $tzSelect value
-			minuteDiff = parseInt( type.split( '|' )[1], 10 ) || 0;
+			minuteDiff = parseInt( type.split( '|' )[ 1 ], 10 ) || 0;
 			$tzTextbox.val( minutesToHours( minuteDiff ) );
 		}
 
@@ -266,7 +287,7 @@ jQuery( function ( $ ) {
 	// Set up a message to notify users if they try to leave the page without
 	// saving.
 	$( '#mw-prefs-form' ).data( 'origdata', $( '#mw-prefs-form' ).serialize() );
-	allowCloseWindowFn = mediaWiki.confirmCloseWindow( {
+	allowCloseWindow = mediaWiki.confirmCloseWindow( {
 		test: function () {
 			return $( '#mw-prefs-form' ).serialize() !== $( '#mw-prefs-form' ).data( 'origdata' );
 		},
@@ -274,6 +295,6 @@ jQuery( function ( $ ) {
 		message: mediaWiki.msg( 'prefswarning-warning', mediaWiki.msg( 'saveprefs' ) ),
 		namespace: 'prefswarning'
 	} );
-	$( '#mw-prefs-form' ).submit( allowCloseWindowFn );
-	$( '#mw-prefs-restoreprefs' ).click( allowCloseWindowFn );
+	$( '#mw-prefs-form' ).submit( $.proxy( allowCloseWindow, 'release' ) );
+	$( '#mw-prefs-restoreprefs' ).click( $.proxy( allowCloseWindow, 'release' ) );
 } );

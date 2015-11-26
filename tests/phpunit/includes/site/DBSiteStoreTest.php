@@ -130,4 +130,28 @@ class DBSiteStoreTest extends MediaWikiTestCase {
 		$sites = $store->getSites();
 		$this->assertEquals( 0, $sites->count() );
 	}
+
+	/**
+	 * @covers DBSiteStore::getSites
+	 */
+	public function testGetSitesDefaultOrder() {
+		$store = new DBSiteStore();
+		$siteB = new Site();
+		$siteB->setGlobalId( 'B' );
+		$siteA = new Site();
+		$siteA->setGlobalId( 'A' );
+		$store->saveSites( array( $siteB, $siteA ) );
+
+		$sites = $store->getSites();
+		$siteIdentifiers = array();
+		/** @var Site $site */
+		foreach ( $sites as $site ) {
+			$siteIdentifiers[] = $site->getGlobalId();
+		}
+		$this->assertSame( array( 'A', 'B' ), $siteIdentifiers );
+
+		// Note: SiteList::getGlobalIdentifiers uses an other internal state. Iteration must be
+		// tested separately.
+		$this->assertSame( array( 'A', 'B' ), $sites->getGlobalIdentifiers() );
+	}
 }

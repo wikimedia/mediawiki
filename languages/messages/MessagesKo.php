@@ -35,6 +35,7 @@
  * @author Pi.C.Noizecehx
  * @author Priviet
  * @author PuzzletChung
+ * @author Revi
  * @author TheAlpha for knowledge
  * @author ToePeu
  * @author Yjs5497
@@ -139,7 +140,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( '문서언어' ),
 	'PasswordReset'             => array( '비밀번호재설정', '비밀번호초기화' ),
 	'PermanentLink'             => array( '고유링크', '영구링크' ),
-
 	'Preferences'               => array( '환경설정' ),
 	'Prefixindex'               => array( '접두어찾기' ),
 	'Protectedpages'            => array( '보호된문서' ),
@@ -339,7 +339,7 @@ $magicWords = array(
 	'numberingroup'             => array( '1', '권한별사용자수', '그룹별사용자수', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'            => array( '1', '__넘겨주기고정__', '__STATICREDIRECT__' ),
 	'protectionlevel'           => array( '1', '보호수준', 'PROTECTIONLEVEL' ),
-	'cascadingsources'          => array( '1', '계단식원본', 'CASCADINGSOURCES' ),
+	'cascadingsources'          => array( '1', '연쇄식원본', '계단식원본', 'CASCADINGSOURCES' ),
 	'formatdate'                => array( '0', '날짜형식', 'formatdate', 'dateformat' ),
 	'url_path'                  => array( '0', '경로', 'PATH' ),
 	'url_wiki'                  => array( '0', '위키', 'WIKI' ),

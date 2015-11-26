@@ -3,7 +3,8 @@
 		"authors": [
 			"An13sa",
 			"පසිඳු කාවින්ද",
-			"Subi"
+			"Subi",
+			"Sator"
 		]
 	},
 	"config-desc": "MediaWiki instalatzailea",
@@ -74,6 +75,7 @@
 	"config-email-settings": "E-posta hobespenak",
 	"config-logo": "Logo URL:",
 	"config-extensions": "Luzapenak",
+	"config-skins": "Itxurak",
 	"config-install-step-done": "egina",
 	"config-help": "Laguntza",
 	"mainpagetext": "'''MediaWiki arrakastaz instalatu da.'''",

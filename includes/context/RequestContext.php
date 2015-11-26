@@ -25,7 +25,7 @@
 /**
  * Group all the pieces relevant to the context of a request into one instance
  */
-class RequestContext implements IContextSource {
+class RequestContext implements IContextSource, MutableContext {
 	/**
 	 * @var WebRequest
 	 */
@@ -62,7 +62,7 @@ class RequestContext implements IContextSource {
 	private $skin;
 
 	/**
-	 * @var StatsdDataFactory
+	 * @var \Liuggio\StatsdClient\Factory\StatsdDataFactory
 	 */
 	private $stats;
 
@@ -131,7 +131,7 @@ class RequestContext implements IContextSource {
 	public function getStats() {
 		if ( $this->stats === null ) {
 			$config = $this->getConfig();
-			$prefix = $config->has( 'StatsdMetricPrefix' )
+			$prefix = $config->get( 'StatsdMetricPrefix' )
 				? rtrim( $config->get( 'StatsdMetricPrefix' ), '.' )
 				: 'MediaWiki';
 			$this->stats = new BufferingStatsdDataFactory( $prefix );
@@ -380,7 +380,6 @@ class RequestContext implements IContextSource {
 	 */
 	public function getSkin() {
 		if ( $this->skin === null ) {
-
 			$skin = null;
 			Hooks::run( 'RequestContextCreateSkin', array( $this, &$skin ) );
 			$factory = SkinFactory::getDefaultInstance();
@@ -428,6 +427,7 @@ class RequestContext implements IContextSource {
 	 * Get a Message object with context set
 	 * Parameters are the same as wfMessage()
 	 *
+	 * @param mixed ...
 	 * @return Message
 	 */
 	public function msg() {
@@ -495,15 +495,17 @@ class RequestContext implements IContextSource {
 	/**
 	 * Import an client IP address, HTTP headers, user ID, and session ID
 	 *
-	 * This sets the current session and sets $wgUser and $wgRequest.
+	 * This sets the current session, $wgUser, and $wgRequest from $params.
 	 * Once the return value falls out of scope, the old context is restored.
-	 * This method should only be called in contexts (CLI or HTTP job runners)
-	 * where there is no session ID or end user receiving the response. This
+	 * This method should only be called in contexts where there is no session
+	 * ID or end user receiving the response (CLI or HTTP job runners). This
 	 * is partly enforced, and is done so to avoid leaking cookies if certain
 	 * error conditions arise.
 	 *
-	 * This will setup the session from the given ID. This is useful when
-	 * background scripts inherit context when acting on behalf of a user.
+	 * This is useful when background scripts inherit context when acting on
+	 * behalf of a user. In general the 'sessionId' parameter should be set
+	 * to an empty string unless session importing is *truly* needed. This
+	 * feature is somewhat deprecated.
 	 *
 	 * @note suhosin.session.encrypt may interfere with this method.
 	 *

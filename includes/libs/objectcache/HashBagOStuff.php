@@ -48,7 +48,7 @@ class HashBagOStuff extends BagOStuff {
 		return true;
 	}
 
-	public function get( $key, &$casToken = null ) {
+	public function get( $key, &$casToken = null, $flags = 0 ) {
 		if ( !isset( $this->bag[$key] ) ) {
 			return false;
 		}
@@ -68,20 +68,8 @@ class HashBagOStuff extends BagOStuff {
 	}
 
 	function delete( $key ) {
-		if ( !isset( $this->bag[$key] ) ) {
-			return false;
-		}
-
 		unset( $this->bag[$key] );
 
-		return true;
-	}
-
-	public function lock( $key, $timeout = 6, $expiry = 6 ) {
-		return true;
-	}
-
-	function unlock( $key ) {
 		return true;
 	}
 }

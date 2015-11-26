@@ -39,4 +39,22 @@
 			assert.assertTrue( this.timeStamp >= now, 'thisValue has sane timestamp' );
 		} );
 	} );
+
+	QUnit.test( 'trackUnsubscribe', 1, function ( assert ) {
+		var sequence = [];
+		function unsubber( topic, data ) {
+			sequence.push( [ topic, data ] );
+		}
+
+		mw.track( 'unsub', { key: 1 } );
+		mw.trackSubscribe( 'unsub', unsubber );
+		mw.track( 'unsub', { key: 2 } );
+		mw.trackUnsubscribe( unsubber );
+		mw.track( 'unsub', { key: 3 } );
+
+		assert.deepEqual( sequence, [
+			[ 'unsub', { key: 1 } ],
+			[ 'unsub', { key: 2 } ]
+		], 'Stop when unsubscribing' );
+	} );
 }( mediaWiki ) );

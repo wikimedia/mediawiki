@@ -2,6 +2,8 @@
 
 /**
  * Parser-related tests that don't suit for parserTests.txt
+ *
+ * @group Database
  */
 class ExtraParserTest extends MediaWikiTestCase {
 
@@ -20,7 +22,6 @@ class ExtraParserTest extends MediaWikiTestCase {
 			'wgContLang' => $contLang,
 			'wgLang' => Language::factory( 'en' ),
 			'wgMemc' => new EmptyBagOStuff,
-			'wgAlwaysUseTidy' => false,
 			'wgCleanSignatures' => true,
 		) );
 

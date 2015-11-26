@@ -40,7 +40,7 @@ class SpecialPagesWithProp extends QueryPage {
 		return false;
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->getOutput()->addModuleStyles( 'mediawiki.special.pagesWithProp' );
@@ -100,7 +100,7 @@ class SpecialPagesWithProp extends QueryPage {
 		return false;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return array(
 			'tables' => array( 'page_props', 'page' ),
 			'fields' => array(
@@ -113,8 +113,10 @@ class SpecialPagesWithProp extends QueryPage {
 				'pp_value',
 			),
 			'conds' => array(
-				'page_id = pp_page',
 				'pp_propname' => $this->propName,
+			),
+			'join_conds' => array(
+				'page' => array( 'INNER JOIN', 'page_id = pp_page' )
 			),
 			'options' => array()
 		);

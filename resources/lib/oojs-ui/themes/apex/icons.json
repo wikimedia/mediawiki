@@ -1,0 +1,51 @@
+{
+	"prefix": "oo-ui-icon",
+	"intro": "@import '../../../../src/styles/common';",
+	"images": {
+		"add": { "file": "images/icons/add.svg" },
+		"advanced": { "file": "images/icons/advanced.svg" },
+		"alert": { "file": "images/icons/alert.svg" },
+		"cancel": { "file": "images/icons/cancel.svg" },
+		"check": { "file": "images/icons/check.svg" },
+		"circle": { "file": "images/icons/circle.svg" },
+		"close": { "file": "images/icons/close.svg" },
+		"code": { "file": "images/icons/code.svg" },
+		"collapse": { "file": "images/icons/collapse.svg" },
+		"comment": { "file": "images/icons/comment.svg" },
+		"ellipsis": { "file": "images/icons/ellipsis.svg" },
+		"expand": { "file": "images/icons/expand.svg" },
+		"help": { "file": {
+			"ltr": "images/icons/help-ltr.svg",
+			"rtl": "images/icons/help-rtl.svg",
+			"lang": {
+				"he,yi": "images/icons/help-ltr.svg"
+			}
+		} },
+		"history": { "file": "images/icons/history.svg" },
+		"info": { "file": "images/icons/info.svg" },
+		"menu": { "file": "images/icons/menu.svg" },
+		"next": { "file": {
+			"ltr": "images/icons/move-ltr.svg",
+			"rtl": "images/icons/move-rtl.svg"
+		} },
+		"notice": { "file": "images/icons/notice.svg" },
+		"picture": { "file": "images/icons/picture.svg" },
+		"previous": { "file": {
+			"ltr": "images/icons/move-rtl.svg",
+			"rtl": "images/icons/move-ltr.svg"
+		} },
+		"redo": { "file": {
+			"ltr": "images/icons/arched-arrow-ltr.svg",
+			"rtl": "images/icons/arched-arrow-rtl.svg"
+		} },
+		"remove": { "file": "images/icons/remove.svg" },
+		"search": { "file": "images/icons/search.svg" },
+		"settings": { "file": "images/icons/settings.svg" },
+		"tag": { "file": "images/icons/tag.svg" },
+		"undo": { "file": {
+			"ltr": "images/icons/arched-arrow-rtl.svg",
+			"rtl": "images/icons/arched-arrow-ltr.svg"
+		} },
+		"window": { "file": "images/icons/window.svg" }
+	}
+}

@@ -7,7 +7,8 @@
 			"Manuae",
 			"SPS",
 			"Xqt",
-			"아라"
+			"아라",
+			"Purodha"
 		]
 	},
 	"tog-underline": "Ling'g unnaschdraische",
@@ -343,7 +344,6 @@
 	"resetpass-abort-generic": "S'Passwoad weggsle isch vunna Eawaidarung unnabroche worre.",
 	"resetpass-expired": "Doi Passwoad isch abgloffe. Gebbä naijes Passwoad oi.",
 	"passwordreset": "Kennword zriggsedze",
-	"passwordreset-legend": "Kennword zriggsedze",
 	"passwordreset-username": "Middawaida:",
 	"passwordreset-capture": "E-Mail õgugge?",
 	"changeemail": "E-Mail-Adress ännare",

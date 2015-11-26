@@ -36,6 +36,8 @@ define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 
 $maintClass = false;
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Abstract maintenance class for quickly writing and churning out
  * maintenance scripts with minimal effort. All that _must_ be defined
@@ -599,17 +601,27 @@ abstract class Maintenance {
 	 * Activate the profiler (assuming $wgProfiler is set)
 	 */
 	protected function activateProfiler() {
-		global $wgProfiler;
+		global $wgProfiler, $wgProfileLimit, $wgTrxProfilerLimits;
 
 		$output = $this->getOption( 'profiler' );
-		if ( $output && is_array( $wgProfiler ) && isset( $wgProfiler['class'] ) ) {
+		if ( !$output ) {
+			return;
+		}
+
+		if ( is_array( $wgProfiler ) && isset( $wgProfiler['class'] ) ) {
 			$class = $wgProfiler['class'];
 			$profiler = new $class(
-				array( 'sampling' => 1, 'output' => $output ) + $wgProfiler
+				array( 'sampling' => 1, 'output' => array( $output ) )
+					+ $wgProfiler
+					+ array( 'threshold' => $wgProfileLimit )
 			);
 			$profiler->setTemplated( true );
 			Profiler::replaceStubInstance( $profiler );
 		}
+
+		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
+		$trxProfiler->setExpectations( $wgTrxProfilerLimits['Maintenance'], __METHOD__ );
 	}
 
 	/**
@@ -945,10 +957,9 @@ abstract class Maintenance {
 
 		$wgShowSQLErrors = true;
 
-		// @codingStandardsIgnoreStart Allow error suppression. wfSuppressWarnings()
-		// is not available.
-		@set_time_limit( 0 );
-		// @codingStandardsIgnoreStart
+		MediaWiki\suppressWarnings();
+		set_time_limit( 0 );
+		MediaWiki\restoreWarnings();
 
 		$this->adjustMemoryLimit();
 	}

@@ -1,0 +1,33 @@
+{
+	"prefix": "oo-ui-icon",
+	"intro": "@import '../../../../src/styles/common';",
+	"variants": {
+		"invert": {
+			"color": "#FFFFFF",
+			"global": true
+		}
+	},
+	"images": {
+		"arrowNext": { "file": {
+			"ltr": "images/icons/arrow-ltr.svg",
+			"rtl": "images/icons/arrow-rtl.svg"
+		} },
+		"arrowLast": { "file": {
+			"ltr": "images/icons/arrow-rtl.svg",
+			"rtl": "images/icons/arrow-ltr.svg"
+		} },
+		"caretNext": { "file": {
+			"ltr": "images/icons/caret-rtl.svg",
+			"rtl": "images/icons/caret-ltr.svg"
+		} },
+		"caretLast": { "file": {
+			"ltr": "images/icons/caret-ltr.svg",
+			"rtl": "images/icons/caret-rtl.svg"
+		} },
+		"caretDown": { "file": "images/icons/caretDown.svg" },
+		"caretUp": { "file": "images/icons/caretUp.svg" },
+		"downTriangle": { "file": "images/icons/downTriangle.svg" },
+		"move": { "file": "images/icons/move.svg" },
+		"upTriangle": { "file": "images/icons/upTriangle.svg" }
+	}
+}

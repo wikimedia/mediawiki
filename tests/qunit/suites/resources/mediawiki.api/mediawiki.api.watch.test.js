@@ -17,12 +17,12 @@
 		} );
 
 		api.watch( [ 'Foo' ] ).done( function ( items ) {
-			assert.equal( items[0].title, 'Foo' );
+			assert.equal( items[ 0 ].title, 'Foo' );
 		} );
 
 		api.watch( [ 'Foo', 'Bar' ] ).done( function ( items ) {
-			assert.equal( items[0].title, 'Foo' );
-			assert.equal( items[1].title, 'Bar' );
+			assert.equal( items[ 0 ].title, 'Foo' );
+			assert.equal( items[ 1 ].title, 'Bar' );
 		} );
 
 		// Requests are POST, match requestBody instead of url

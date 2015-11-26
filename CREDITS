@@ -1,6 +1,6 @@
 {{int:version-credits-summary}}
 <!--
-MediaWiki 1.25 is a collaborative project released under the
+MediaWiki 1.26 is a collaborative project released under the
 GNU General Public License v2. We would like to recognize the
 following names for their contribution to the product.
 -->
@@ -24,6 +24,7 @@ following names for their contribution to the product.
 * Bryan Tong Minh
 * Chad Horohoe
 * Charles Melbye
+* Chris Steipp
 * church of emacs
 * Daniel Friesen
 * Daniel Kinzler
@@ -43,6 +44,7 @@ following names for their contribution to the product.
 * Jack D. Pond
 * Jack Phoenix
 * Jackmcbarn
+* James Forrester
 * Jan Paul Posma
 * Jason Richey
 * Jeroen De Dauw
@@ -91,6 +93,7 @@ following names for their contribution to the product.
 * Tim Starling
 * Timo Tijhof
 * Trevor Parscal
+* Tyler Anthony Romeo
 * Victor Vasiliev
 * Yesid Carrillo
 * Yuri Astrakhan
@@ -116,7 +119,6 @@ following names for their contribution to the product.
 * Brianna Laugher
 * Carlin
 * Carsten Nielsen
-* Chris Steipp
 * Christian Aistleitner
 * Christian Neubauer
 * Conrad Irwin
@@ -139,6 +141,7 @@ following names for their contribution to the product.
 * fomafix
 * FunPika
 * Gabriel Wicke
+* Geoffrey Mon
 * Gero Scholz
 * Gilles van den Hoven
 * Grunny
@@ -227,6 +230,7 @@ following names for their contribution to the product.
 * Simon Walker
 * Solitarius
 * Søren Løvborg
+* Southparkfan
 * Srikanth Lakshmanan
 * Stefano Codari
 * Str4nd
@@ -235,11 +239,11 @@ following names for their contribution to the product.
 * The Evil IP address
 * Tim Landscheidt
 * Tisane
-* Tyler Anthony Romeo
 * Umherirrender
 * Van de Bugger
 * Ville Stadista
 * Vitaliy Filippov
+* Vivek Ghaisas
 * Waldir Pimenta
 * William Demchick
 * Yusuke Matsubara

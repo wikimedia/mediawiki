@@ -82,6 +82,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			SearchEngine::create( $params['backend'] ) : SearchEngine::create();
 		$search->setLimitOffset( $limit + 1, $params['offset'] );
 		$search->setNamespaces( $params['namespace'] );
+		$search->setFeatureData( 'rewrite', (bool)$params['enablerewrites'] );
 
 		$query = $search->transformSearchTerm( $query );
 		$query = $search->replacePrefixes( $query );
@@ -92,7 +93,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		} elseif ( $what == 'title' ) {
 			$matches = $search->searchTitle( $query );
 		} elseif ( $what == 'nearmatch' ) {
-			$matches = SearchEngine::getNearMatchResultSet( $query );
+			// near matches must receive the user input as provided, otherwise
+			// the near matches within namespaces are lost.
+			$matches = SearchEngine::getNearMatchResultSet( $params['search'] );
 		} else {
 			// We default to title searches; this is a terrible legacy
 			// of the way we initially set up the MySQL fulltext-based
@@ -129,6 +132,14 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			if ( isset( $searchInfo['suggestion'] ) && $matches->hasSuggestion() ) {
 				$apiResult->addValue( array( 'query', 'searchinfo' ),
 					'suggestion', $matches->getSuggestionQuery() );
+				$apiResult->addValue( array( 'query', 'searchinfo' ),
+					'suggestionsnippet', $matches->getSuggestionSnippet() );
+			}
+			if ( isset( $searchInfo['rewrittenquery'] ) && $matches->hasRewrittenQuery() ) {
+				$apiResult->addValue( array( 'query', 'searchinfo' ),
+					'rewrittenquery', $matches->getQueryAfterRewrite() );
+				$apiResult->addValue( array( 'query', 'searchinfo' ),
+					'rewrittenquerysnippet', $matches->getQueryAfterRewriteSnippet() );
 			}
 		}
 
@@ -172,6 +183,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				if ( isset( $prop['titlesnippet'] ) ) {
 					$vals['titlesnippet'] = $result->getTitleSnippet();
 				}
+				if ( isset( $prop['categorysnippet'] ) ) {
+					$vals['categorysnippet'] = $result->getCategorySnippet();
+				}
 				if ( !is_null( $result->getRedirectTitle() ) ) {
 					if ( isset( $prop['redirecttitle'] ) ) {
 						$vals['redirecttitle'] = $result->getRedirectTitle()->getPrefixedText();
@@ -187,6 +201,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					if ( isset( $prop['sectionsnippet'] ) ) {
 						$vals['sectionsnippet'] = $result->getSectionSnippet();
 					}
+				}
+				if ( isset( $prop['isfilematch'] ) ) {
+					$vals['isfilematch'] = $result->isFileMatch();
 				}
 
 				// Add item to results and see whether it fits
@@ -228,7 +245,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 						// Add item to results and see whether it fits
 						$fit = $apiResult->addValue(
-							array( 'query', 'interwiki' . $this->getModuleName(), $result->getInterwikiPrefix()  ),
+							array( 'query', 'interwiki' . $this->getModuleName(), $result->getInterwikiPrefix() ),
 							null,
 							$vals
 						);
@@ -293,10 +310,11 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				)
 			),
 			'info' => array(
-				ApiBase::PARAM_DFLT => 'totalhits|suggestion',
+				ApiBase::PARAM_DFLT => 'totalhits|suggestion|rewrittenquery',
 				ApiBase::PARAM_TYPE => array(
 					'totalhits',
 					'suggestion',
+					'rewrittenquery',
 				),
 				ApiBase::PARAM_ISMULTI => true,
 			),
@@ -306,16 +324,19 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					'size',
 					'wordcount',
 					'timestamp',
-					'score',
 					'snippet',
 					'titlesnippet',
 					'redirecttitle',
 					'redirectsnippet',
 					'sectiontitle',
 					'sectionsnippet',
-					'hasrelated',
+					'isfilematch',
+					'categorysnippet',
+					'score', // deprecated
+					'hasrelated', // deprecated
 				),
 				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'offset' => array(
 				ApiBase::PARAM_DFLT => 0,
@@ -329,6 +350,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_SML2
 			),
 			'interwiki' => false,
+			'enablerewrites' => false,
 		);
 
 		$alternatives = SearchEngine::getSearchTypes();

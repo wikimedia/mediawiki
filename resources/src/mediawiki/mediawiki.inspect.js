@@ -13,7 +13,7 @@
 	function sortByProperty( array, prop, descending ) {
 		var order = descending ? -1 : 1;
 		return array.sort( function ( a, b ) {
-			return a[prop] > b[prop] ? order : a[prop] < b[prop] ? -order : 0;
+			return a[ prop ] > b[ prop ] ? order : a[ prop ] < b[ prop ] ? -order : 0;
 		} );
 	}
 
@@ -25,7 +25,7 @@
 		for ( ; bytes >= 1024; bytes /= 1024 ) { i++; }
 		// Maintain one decimal for kB and above, but don't
 		// add ".0" for bytes.
-		return bytes.toFixed( i > 0 ? 1 : 0 ) + units[i];
+		return bytes.toFixed( i > 0 ? 1 : 0 ) + units[ i ];
 	}
 
 	/**
@@ -45,18 +45,18 @@
 				graph = {};
 
 			$.each( modules, function ( moduleIndex, moduleName ) {
-				var dependencies = mw.loader.moduleRegistry[moduleName].dependencies || [];
+				var dependencies = mw.loader.moduleRegistry[ moduleName ].dependencies || [];
 
 				if ( !hasOwn.call( graph, moduleName ) ) {
-					graph[moduleName] = { requiredBy: [] };
+					graph[ moduleName ] = { requiredBy: [] };
 				}
-				graph[moduleName].requires = dependencies;
+				graph[ moduleName ].requires = dependencies;
 
 				$.each( dependencies, function ( depIndex, depName ) {
 					if ( !hasOwn.call( graph, depName ) ) {
-						graph[depName] = { requiredBy: [] };
+						graph[ depName ] = { requiredBy: [] };
 					}
-					graph[depName].requiredBy.push( moduleName );
+					graph[ depName ].requiredBy.push( moduleName );
 				} );
 			} );
 			return graph;
@@ -101,7 +101,7 @@
 		 * document.
 		 *
 		 * @param {string} css CSS source
-		 * @return Selector counts
+		 * @return {Object} Selector counts
 		 * @return {number} return.selectors Total number of selectors
 		 * @return {number} return.matched Number of matched selectors
 		 */
@@ -117,9 +117,15 @@
 			rules = sheet.cssRules || sheet.rules;
 			$.each( rules, function ( index, rule ) {
 				selectors.total++;
-				if ( document.querySelector( rule.selectorText ) !== null ) {
-					selectors.matched++;
-				}
+				// document.querySelector() on prefixed pseudo-elements can throw exceptions
+				// in Firefox and Safari. Ignore these exceptions.
+				// https://bugs.webkit.org/show_bug.cgi?id=149160
+				// https://bugzilla.mozilla.org/show_bug.cgi?id=1204880
+				try {
+					if ( document.querySelector( rule.selectorText ) !== null ) {
+						selectors.matched++;
+					}
+				} catch ( e ) {}
 			} );
 			document.body.removeChild( style );
 			return selectors;
@@ -173,7 +179,7 @@
 				$.map( inspect.reports, function ( v, k ) { return k; } );
 
 			$.each( reports, function ( index, name ) {
-				inspect.dumpTable( inspect.reports[name]() );
+				inspect.dumpTable( inspect.reports[ name ]() );
 			} );
 		},
 
@@ -214,7 +220,7 @@
 				var modules = [];
 
 				$.each( inspect.getLoadedModules(), function ( index, name ) {
-					var css, stats, module = mw.loader.moduleRegistry[name];
+					var css, stats, module = mw.loader.moduleRegistry[ name ];
 
 					try {
 						css = module.style.css.join();
@@ -247,7 +253,7 @@
 						stats.totalSize = humanSize( $.byteLength( raw ) );
 					} catch ( e ) {}
 				}
-				return [stats];
+				return [ stats ];
 			}
 		},
 
@@ -261,12 +267,11 @@
 		 */
 		grep: function ( pattern ) {
 			if ( typeof pattern.test !== 'function' ) {
-				// Based on Y.Escape.regex from YUI v3.15.0
-				pattern = new RegExp( pattern.replace( /[\-$\^*()+\[\]{}|\\,.?\s]/g, '\\$&' ), 'g' );
+				pattern = new RegExp( mw.RegExp.escape( pattern ), 'g' );
 			}
 
 			return $.grep( inspect.getLoadedModules(), function ( moduleName ) {
-				var module = mw.loader.moduleRegistry[moduleName];
+				var module = mw.loader.moduleRegistry[ moduleName ];
 
 				// Grep module's JavaScript
 				if ( $.isFunction( module.script ) && pattern.test( module.script.toString() ) ) {

@@ -37,7 +37,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$fld_notificationtimestamp = false,
 		$fld_preload = false, $fld_displaytitle = false;
 
-	private $params, $titles, $missing, $everything, $pageCounter;
+	private $params, $titles, $missing, $everything;
 
 	private $pageRestrictions, $pageIsRedir, $pageIsNew, $pageTouched,
 		$pageLatest, $pageLength;
@@ -799,6 +799,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	public function getCacheMode( $params ) {
+		// Other props depend on something about the current user
 		$publicProps = array(
 			'protection',
 			'talkid',
@@ -807,13 +808,15 @@ class ApiQueryInfo extends ApiQueryBase {
 			'preload',
 			'displaytitle',
 		);
-		if ( !is_null( $params['prop'] ) ) {
-			foreach ( $params['prop'] as $prop ) {
-				if ( !in_array( $prop, $publicProps ) ) {
-					return 'private';
-				}
-			}
+		if ( array_diff( (array)$params['prop'], $publicProps ) ) {
+			return 'private';
 		}
+
+		// testactions also depends on the current user
+		if ( $params['testactions'] ) {
+			return 'private';
+		}
+
 		if ( !is_null( $params['token'] ) ) {
 			return 'private';
 		}
@@ -868,6 +871,6 @@ class ApiQueryInfo extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Properties#info_.2F_in';
+		return 'https://www.mediawiki.org/wiki/API:Info';
 	}
 }

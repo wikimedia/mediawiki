@@ -1,0 +1,39 @@
+{
+	"@metadata": {
+		"authors": [
+			"EileenSanda"
+		]
+	},
+	"apihelp-block-description": "Sperra ein brúkara.",
+	"apihelp-block-param-user": "Brúkaranavn, IP adressa ella IP interval ið tú ynskir at sperra.",
+	"apihelp-block-param-expiry": "Lokadagur. Kann vera relativt (t.d. <kbd>5 months</kbd> ella <kbd>2 weeks</kbd>) ella absolutt (t.d. <kbd>2014-09-18T12:34:56Z</kbd>). Um ásett til <kbd>infinite</kbd>, <kbd>indefinite</kbd>, ella <kbd>never</kbd>, so gongur sperringin aldri út.",
+	"apihelp-block-param-reason": "Orsøk til sperring.",
+	"apihelp-block-param-anononly": "Sperra bara dulnevndir brúkarar (t.d. ger rættingar frá dulnendum óvirknar fyri hesa IP adressuna).",
+	"apihelp-block-param-nocreate": "Forða fyri upprættan av konto.",
+	"apihelp-block-param-autoblock": "Sperrað sjálvvirkandi tað seinastu IP adressuna og allar fylgjandi IP adressur, sum viðkomandi roynir at rætta/skriva frá.",
+	"apihelp-block-param-noemail": "Forða brúkaranum í at senda teldupost gjøgnum wikiina. (Krevur <code>blockemail</code> rættindini).",
+	"apihelp-block-param-hidename": "Fjal brúkaranavnið frá sperringarlogginum. (Krevur <code>hideuser</code> rættindi).",
+	"apihelp-block-param-allowusertalk": "Loyv brúkaranum at skriva á sína egnu síðu (avhongur av <var>[[mw:Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
+	"apihelp-block-param-reblock": "Um brúkarin longu er sperraður, yvirskriva so tað verandi sperringina.",
+	"apihelp-block-example-ip-simple": "Sperra IP adressuna <kbd>192.0.2.5</kbd> í tríggjar dagar við orsøkini <kbd>First strike</kbd>.",
+	"apihelp-block-example-user-complex": "Sperra brúkara <kbd>Vandal</kbd> í óvissa tíð við orsøkini  <kbd>Vandalism</kbd>, og forða fyri upprættan av nýggjum kontum og at senda teldupost.",
+	"apihelp-createaccount-description": "Upprætta eina nýggja brúkarakonto.",
+	"apihelp-createaccount-param-name": "Brúkaranavn.",
+	"apihelp-createaccount-param-password": "Loyniorð (síggj burtur frá <var>$1mailpassword</var> um er upplýst).",
+	"apihelp-createaccount-param-email": "Teldupostadressan hjá brúkaranum (valfrítt).",
+	"apihelp-createaccount-param-realname": "Veruliga navnið hjá brúkaranum (valfrítt).",
+	"apihelp-createaccount-example-pass": "Upprætta brúkara <kbd>testuser</kbd> við loyniorðinum <kbd>test123</kbd>.",
+	"apihelp-createaccount-example-mail": "Upprætta brúkaran <kbd>testmailuser</kbd> og send eitt tilvildarliga stovnað loyniorð við telduposti.",
+	"apihelp-delete-description": "Strika eina síðu.",
+	"apihelp-edit-example-edit": "Rætta eina síðu.",
+	"apihelp-emailuser-description": "Send t-post til ein brúkara.",
+	"apihelp-emailuser-param-subject": "Evni teigur.",
+	"apihelp-emailuser-param-text": "Innihaldið í teldubrævinum.",
+	"apihelp-emailuser-param-ccme": "Send mær eitt avrit av hesum telduposti.",
+	"apihelp-emailuser-example-email": "Send ein teldupost til brúkaran <kbd>WikiSysop</kbd> við tekstinum <kbd>Content</kbd>.",
+	"apihelp-expandtemplates-description": "Víðkar allar fyrimyndir í wikitekstinum.",
+	"apihelp-expandtemplates-param-title": "Heiti á síðuni.",
+	"apihelp-login-param-name": "Brúkaranavn.",
+	"apihelp-login-param-password": "Loyniorð.",
+	"apihelp-move-description": "Flyt eina síðu."
+}

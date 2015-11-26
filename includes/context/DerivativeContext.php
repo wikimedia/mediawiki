@@ -26,7 +26,7 @@
  *     a different Title instance set on it.
  * @since 1.19
  */
-class DerivativeContext extends ContextSource {
+class DerivativeContext extends ContextSource implements MutableContext {
 	/**
 	 * @var WebRequest
 	 */
@@ -66,6 +66,11 @@ class DerivativeContext extends ContextSource {
 	 * @var Config
 	 */
 	private $config;
+
+	/**
+	 * @var Stats
+	 */
+	private $stats;
 
 	/**
 	 * Constructor

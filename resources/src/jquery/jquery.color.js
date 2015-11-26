@@ -28,7 +28,7 @@
 	}
 
 	// We override the animation for all of these color styles
-	$.each([
+	$.each( [
 		'backgroundColor',
 		'borderBottomColor',
 		'borderLeftColor',
@@ -37,17 +37,17 @@
 		'color',
 		'outlineColor'
 	], function ( i, attr ) {
-		$.fx.step[attr] = function ( fx ) {
+		$.fx.step[ attr ] = function ( fx ) {
 			if ( !fx.colorInit ) {
 				fx.start = getColor( fx.elem, attr );
 				fx.end = $.colorUtil.getRGB( fx.end );
 				fx.colorInit = true;
 			}
 
-			fx.elem.style[attr] = 'rgb(' + [
-				Math.max( Math.min( parseInt( (fx.pos * (fx.end[0] - fx.start[0])) + fx.start[0], 10 ), 255 ), 0 ),
-				Math.max( Math.min( parseInt( (fx.pos * (fx.end[1] - fx.start[1])) + fx.start[1], 10 ), 255 ), 0 ),
-				Math.max( Math.min( parseInt( (fx.pos * (fx.end[2] - fx.start[2])) + fx.start[2], 10 ), 255 ), 0 )
+			fx.elem.style[ attr ] = 'rgb(' + [
+				Math.max( Math.min( parseInt( ( fx.pos * ( fx.end[ 0 ] - fx.start[ 0 ] ) ) + fx.start[ 0 ], 10 ), 255 ), 0 ),
+				Math.max( Math.min( parseInt( ( fx.pos * ( fx.end[ 1 ] - fx.start[ 1 ] ) ) + fx.start[ 1 ], 10 ), 255 ), 0 ),
+				Math.max( Math.min( parseInt( ( fx.pos * ( fx.end[ 2 ] - fx.start[ 2 ] ) ) + fx.start[ 2 ], 10 ), 255 ), 0 )
 			].join( ',' ) + ')';
 		};
 	} );

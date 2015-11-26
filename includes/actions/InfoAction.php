@@ -62,14 +62,18 @@ class InfoAction extends FormlessAction {
 	 *
 	 * @since 1.22
 	 * @param Title $title Title to clear cache for
+	 * @param int|null $revid Revision id to clear
 	 */
-	public static function invalidateCache( Title $title ) {
-		global $wgMemc;
+	public static function invalidateCache( Title $title, $revid = null ) {
+		$cache = ObjectCache::getMainWANInstance();
 
-		$revision = Revision::newFromTitle( $title, 0, Revision::READ_LATEST );
-		if ( $revision !== null ) {
-			$key = wfMemcKey( 'infoaction', sha1( $title->getPrefixedText() ), $revision->getId() );
-			$wgMemc->delete( $key );
+		if ( !$revid ) {
+			$revision = Revision::newFromTitle( $title, 0, Revision::READ_LATEST );
+			$revid = $revision ? $revision->getId() : null;
+		}
+		if ( $revid !== null ) {
+			$key = wfMemcKey( 'infoaction', sha1( $title->getPrefixedText() ), $revid );
+			$cache->delete( $key );
 		}
 	}
 
@@ -193,7 +197,7 @@ class InfoAction extends FormlessAction {
 	 * @return array
 	 */
 	protected function pageInfo() {
-		global $wgContLang, $wgMemc;
+		global $wgContLang;
 
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
@@ -201,16 +205,17 @@ class InfoAction extends FormlessAction {
 		$id = $title->getArticleID();
 		$config = $this->context->getConfig();
 
+		$cache = ObjectCache::getMainWANInstance();
 		$memcKey = wfMemcKey( 'infoaction',
 			sha1( $title->getPrefixedText() ), $this->page->getLatest() );
-		$pageCounts = $wgMemc->get( $memcKey );
+		$pageCounts = $cache->get( $memcKey );
 		$version = isset( $pageCounts['cacheversion'] ) ? $pageCounts['cacheversion'] : false;
 		if ( $pageCounts === false || $version !== self::CACHE_VERSION ) {
 			// Get page information that would be too "expensive" to retrieve by normal means
 			$pageCounts = $this->pageCounts( $title );
 			$pageCounts['cacheversion'] = self::CACHE_VERSION;
 
-			$wgMemc->set( $memcKey, $pageCounts );
+			$cache->set( $memcKey, $pageCounts );
 		}
 
 		// Get page properties
@@ -233,7 +238,7 @@ class InfoAction extends FormlessAction {
 
 		// Display title
 		$displayTitle = $title->getPrefixedText();
-		if ( !empty( $pageProperties['displaytitle'] ) ) {
+		if ( isset( $pageProperties['displaytitle'] ) ) {
 			$displayTitle = $pageProperties['displaytitle'];
 		}
 
@@ -258,7 +263,7 @@ class InfoAction extends FormlessAction {
 
 		// Default sort key
 		$sortKey = $title->getCategorySortkey();
-		if ( !empty( $pageProperties['defaultsort'] ) ) {
+		if ( isset( $pageProperties['defaultsort'] ) ) {
 			$sortKey = $pageProperties['defaultsort'];
 		}
 
@@ -324,8 +329,27 @@ class InfoAction extends FormlessAction {
 		) {
 			// Number of page watchers
 			$pageInfo['header-basic'][] = array(
-				$this->msg( 'pageinfo-watchers' ), $lang->formatNum( $pageCounts['watchers'] )
+				$this->msg( 'pageinfo-watchers' ),
+				$lang->formatNum( $pageCounts['watchers'] )
 			);
+			if (
+				$config->get( 'ShowUpdatedMarker' ) &&
+				isset( $pageCounts['visitingWatchers'] )
+			) {
+				$minToDisclose = $config->get( 'UnwatchedPageSecret' );
+				if ( $pageCounts['visitingWatchers'] > $minToDisclose ||
+					$user->isAllowed( 'unwatchedpages' ) ) {
+					$pageInfo['header-basic'][] = array(
+						$this->msg( 'pageinfo-visiting-watchers' ),
+						$lang->formatNum( $pageCounts['visitingWatchers'] )
+					);
+				} else {
+					$pageInfo['header-basic'][] = array(
+						$this->msg( 'pageinfo-visiting-watchers' ),
+						$this->msg( 'pageinfo-few-visiting-watchers' )
+					);
+				}
+			}
 		} elseif ( $unwatchedPageThreshold !== false ) {
 			$pageInfo['header-basic'][] = array(
 				$this->msg( 'pageinfo-watchers' ),
@@ -373,18 +397,30 @@ class InfoAction extends FormlessAction {
 
 		if ( $title->inNamespace( NS_CATEGORY ) ) {
 			$category = Category::newFromTitle( $title );
+
+			// $allCount is the total number of cat members,
+			// not the count of how many members are normal pages.
+			$allCount = (int)$category->getPageCount();
+			$subcatCount = (int)$category->getSubcatCount();
+			$fileCount = (int)$category->getFileCount();
+			$pagesCount = $allCount - $subcatCount - $fileCount;
+
 			$pageInfo['category-info'] = array(
 				array(
+					$this->msg( 'pageinfo-category-total' ),
+					$lang->formatNum( $allCount )
+				),
+				array(
 					$this->msg( 'pageinfo-category-pages' ),
-					$lang->formatNum( $category->getPageCount() )
+					$lang->formatNum( $pagesCount )
 				),
 				array(
 					$this->msg( 'pageinfo-category-subcats' ),
-					$lang->formatNum( $category->getSubcatCount() )
+					$lang->formatNum( $subcatCount )
 				),
 				array(
 					$this->msg( 'pageinfo-category-files' ),
-					$lang->formatNum( $category->getFileCount() )
+					$lang->formatNum( $fileCount )
 				)
 			);
 		}
@@ -434,6 +470,10 @@ class InfoAction extends FormlessAction {
 					$message = $message->escaped();
 				}
 			}
+			$expiry = $title->getRestrictionExpiry( $restrictionType );
+			$formattedexpiry = $this->msg( 'parentheses',
+				$this->getLanguage()->formatExpiry( $expiry ) )->escaped();
+			$message .= $this->msg( 'word-separator' )->escaped() . $formattedexpiry;
 
 			// Messages: restriction-edit, restriction-move, restriction-create,
 			// restriction-upload
@@ -639,11 +679,11 @@ class InfoAction extends FormlessAction {
 		$id = $title->getArticleID();
 		$config = $this->context->getConfig();
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbrWatchlist = wfGetDB( DB_SLAVE, 'watchlist' );
 		$result = array();
 
 		// Number of page watchers
-		$watchers = (int)$dbr->selectField(
+		$watchers = (int)$dbrWatchlist->selectField(
 			'watchlist',
 			'COUNT(*)',
 			array(
@@ -654,6 +694,27 @@ class InfoAction extends FormlessAction {
 		);
 		$result['watchers'] = $watchers;
 
+		if ( $config->get( 'ShowUpdatedMarker' ) ) {
+			// Threshold: last visited about 26 weeks before latest edit
+			$updated = wfTimestamp( TS_UNIX, $this->page->getTimestamp() );
+			$age = $config->get( 'WatchersMaxAge' );
+			$threshold = $dbrWatchlist->timestamp( $updated - $age );
+			// Number of page watchers who also visited a "recent" edit
+			$visitingWatchers = (int)$dbrWatchlist->selectField(
+				'watchlist',
+				'COUNT(*)',
+				array(
+					'wl_namespace' => $title->getNamespace(),
+					'wl_title' => $title->getDBkey(),
+					'wl_notificationtimestamp >= ' . $dbrWatchlist->addQuotes( $threshold ) .
+					' OR wl_notificationtimestamp IS NULL'
+				),
+				__METHOD__
+			);
+			$result['visitingWatchers'] = $visitingWatchers;
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
 		// Total number of edits
 		$edits = (int)$dbr->selectField(
 			'revision',

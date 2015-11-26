@@ -64,7 +64,7 @@ class WatchAction extends FormAction {
 		$this->checkCanExecute( $user );
 
 		// Must have valid token for this action/title
-		$salt = array( $this->getName(), $this->getTitle()->getDBkey() );
+		$salt = array( $this->getName(), $this->getTitle()->getPrefixedDBkey() );
 
 		if ( $user->matchEditToken( $this->getRequest()->getVal( 'token' ), $salt ) ) {
 			$this->onSubmit( array() );

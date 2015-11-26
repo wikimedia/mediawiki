@@ -1,9 +1,11 @@
 /*
  * JavaScript backwards-compatibility alternatives and other convenience functions
+ *
+ * @deprecated since 1.26 Dated collection of miscellaneous utilities. Methods are
+ *  either trivially inline, obsolete, or have a better place elsewhere.
  */
-( function ( $ ) {
-
-	$.extend( {
+( function ( $, mw ) {
+	$.each( {
 		trimLeft: function ( str ) {
 			return str === null ? '' : str.toString().replace( /^\s+/, '' );
 		},
@@ -13,9 +15,6 @@
 		},
 		ucFirst: function ( str ) {
 			return str.charAt( 0 ).toUpperCase() + str.slice( 1 );
-		},
-		escapeRE: function ( str ) {
-			return str.replace( /([\\{}()|.?*+\-\^$\[\]])/g, '\\$1' );
 		},
 		isDomElement: function ( el ) {
 			return !!el && !!el.nodeType;
@@ -28,7 +27,7 @@
 				return true;
 			}
 			// the for-loop could potentially contain prototypes
-			// to avoid that we check it's length first
+			// to avoid that we check its length first
 			if ( v.length === 0 ) {
 				return true;
 			}
@@ -45,11 +44,11 @@
 				return false;
 			}
 			for ( var i = 0; i < arrThis.length; i++ ) {
-				if ( $.isArray( arrThis[i] ) ) {
-					if ( !$.compareArray( arrThis[i], arrAgainst[i] ) ) {
+				if ( $.isArray( arrThis[ i ] ) ) {
+					if ( !$.compareArray( arrThis[ i ], arrAgainst[ i ] ) ) {
 						return false;
 					}
-				} else if ( arrThis[i] !== arrAgainst[i] ) {
+				} else if ( arrThis[ i ] !== arrAgainst[ i ] ) {
 					return false;
 				}
 			}
@@ -72,24 +71,24 @@
 							// Check if this property is also present in the other object
 							if ( prop in objectB ) {
 								// Compare the types of the properties
-								type = typeof objectA[prop];
-								if ( type === typeof objectB[prop] ) {
+								type = typeof objectA[ prop ];
+								if ( type === typeof objectB[ prop ] ) {
 									// Recursively check objects inside this one
 									switch ( type ) {
 										case 'object' :
-											if ( !$.compareObject( objectA[prop], objectB[prop] ) ) {
+											if ( !$.compareObject( objectA[ prop ], objectB[ prop ] ) ) {
 												return false;
 											}
 											break;
 										case 'function' :
 											// Functions need to be strings to compare them properly
-											if ( objectA[prop].toString() !== objectB[prop].toString() ) {
+											if ( objectA[ prop ].toString() !== objectB[ prop ].toString() ) {
 												return false;
 											}
 											break;
 										default:
 											// Strings, numbers
-											if ( objectA[prop] !== objectB[prop] ) {
+											if ( objectA[ prop ] !== objectB[ prop ] ) {
 												return false;
 											}
 											break;
@@ -117,6 +116,12 @@
 			}
 			return true;
 		}
+	}, function ( key, value ) {
+		mw.log.deprecate( $, key, value );
 	} );
 
-}( jQuery ) );
+	mw.log.deprecate( $, 'escapeRE', function ( str ) {
+		return str.replace( /([\\{}()|.?*+\-\^$\[\]])/g, '\\$1' );
+	}, 'Use mediawiki.RegExp instead.' );
+
+} )( jQuery, mediaWiki );

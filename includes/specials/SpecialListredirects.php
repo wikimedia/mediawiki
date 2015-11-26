@@ -33,7 +33,7 @@ class ListredirectsPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 
@@ -45,7 +45,7 @@ class ListredirectsPage extends QueryPage {
 		return false;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return array(
 			'tables' => array( 'p1' => 'page', 'redirect', 'p2' => 'page' ),
 			'fields' => array( 'namespace' => 'p1.page_namespace',

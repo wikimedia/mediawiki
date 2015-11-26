@@ -41,11 +41,11 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 	 * If the special page is a redirect, then get the Title object it redirects to.
 	 * False otherwise.
 	 *
-	 * @param string $par Subpage string
-	 * @return Title|bool
+	 * @param string|null $subpage
+	 * @return Title
 	 */
-	public function getRedirect( $par ) {
-		$title = $this->findTitle( $par );
+	public function getRedirect( $subpage ) {
+		$title = $this->findTitle( $subpage );
 		// Go to the main page if given invalid title.
 		if ( !$title ) {
 			$title = Title::newMainPage();
@@ -59,18 +59,22 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 	 * it returns Page/fi if it exists, otherwise Page/de if it exists,
 	 * otherwise Page.
 	 *
-	 * @param string $par
+	 * @param string|null $subpage
 	 * @return Title|null
 	 */
-	public function findTitle( $par ) {
+	public function findTitle( $subpage ) {
 		// base = title without language code suffix
 		// provided = the title as it was given
-		$base = $provided = Title::newFromText( $par );
+		$base = $provided = null;
+		if ( $subpage !== null ) {
+			$provided = Title::newFromText( $subpage );
+			$base = $provided;
+		}
 
-		if ( $base && strpos( $par, '/' ) !== false ) {
-			$pos = strrpos( $par, '/' );
-			$basepage = substr( $par, 0, $pos );
-			$code = substr( $par, $pos + 1 );
+		if ( $provided && strpos( $subpage, '/' ) !== false ) {
+			$pos = strrpos( $subpage, '/' );
+			$basepage = substr( $subpage, 0, $pos );
+			$code = substr( $subpage, $pos + 1 );
 			if ( strlen( $code ) && Language::isKnownLanguageTag( $code ) ) {
 				$base = Title::newFromText( $basepage );
 			}

@@ -120,7 +120,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Disputatio_mea' ),
 	'Newimages'                 => array( 'Fasciculi_novi', 'Imagines_novae' ),
 	'Newpages'                  => array( 'Paginae_novae' ),
-
 	'Preferences'               => array( 'Praeferentiae' ),
 	'Prefixindex'               => array( 'Praefixa', 'Quaerere_per_praefixa' ),
 	'Protectedpages'            => array( 'Paginae_protectae' ),

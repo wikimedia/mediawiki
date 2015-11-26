@@ -105,7 +105,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'Seitensprache' ),
 	'PasswordReset'             => array( 'Passwort_neu_vergeben' ),
 	'PermanentLink'             => array( 'Permanenter_Link', 'Permalink' ),
-
 	'Preferences'               => array( 'Einstellungen' ),
 	'Prefixindex'               => array( 'Präfixindex' ),
 	'Protectedpages'            => array( 'Geschützte_Seiten' ),

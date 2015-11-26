@@ -24,7 +24,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point" );
 }
 
-use Liuggio\StatsdClient\StatsdClient;
 use Liuggio\StatsdClient\Sender\SocketSender;
 use MediaWiki\Logger\LoggerFactory;
 
@@ -172,6 +171,7 @@ if ( !function_exists( 'hash_equals' ) ) {
  *
  * @param string $ext Name of the extension to load
  * @param string|null $path Absolute path of where to find the extension.json file
+ * @since 1.25
  */
 function wfLoadExtension( $ext, $path = null ) {
 	if ( !$path ) {
@@ -192,6 +192,7 @@ function wfLoadExtension( $ext, $path = null ) {
  *
  * @see wfLoadExtension
  * @param string[] $exts Array of extension names to load
+ * @since 1.25
  */
 function wfLoadExtensions( array $exts ) {
 	global $wgExtensionDirectory;
@@ -207,6 +208,7 @@ function wfLoadExtensions( array $exts ) {
  * @see wfLoadExtension
  * @param string $skin Name of the extension to load
  * @param string|null $path Absolute path of where to find the skin.json file
+ * @since 1.25
  */
 function wfLoadSkin( $skin, $path = null ) {
 	if ( !$path ) {
@@ -221,6 +223,7 @@ function wfLoadSkin( $skin, $path = null ) {
  *
  * @see wfLoadExtensions
  * @param string[] $skins Array of extension names to load
+ * @since 1.25
  */
 function wfLoadSkins( array $skins ) {
 	global $wgStyleDirectory;
@@ -402,12 +405,17 @@ function wfRandomString( $length = 32 ) {
  *
  * ;:@&=$-_.+!*'(),
  *
+ * RFC 1738 says ~ is unsafe, however RFC 3986 considers it an unreserved
+ * character which should not be encoded. More importantly, google chrome
+ * always converts %7E back to ~, and converting it in this function can
+ * cause a redirect loop (T105265).
+ *
  * But + is not safe because it's used to indicate a space; &= are only safe in
  * paths and not in queries (and we don't distinguish here); ' seems kind of
  * scary; and urlencode() doesn't touch -_. to begin with.  Plus, although /
  * is reserved, we don't care.  So the list we unescape is:
  *
- * ;:@$!*(),/
+ * ;:@$!*(),/~
  *
  * However, IIS7 redirects fail when the url contains a colon (Bug 22709),
  * so no fancy : for IIS7.
@@ -426,7 +434,7 @@ function wfUrlencode( $s ) {
 	}
 
 	if ( is_null( $needle ) ) {
-		$needle = array( '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F' );
+		$needle = array( '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F', '%7E' );
 		if ( !isset( $_SERVER['SERVER_SOFTWARE'] ) ||
 			( strpos( $_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS/7' ) === false )
 		) {
@@ -437,7 +445,7 @@ function wfUrlencode( $s ) {
 	$s = urlencode( $s );
 	$s = str_ireplace(
 		$needle,
-		array( ';', '@', '$', '!', '*', '(', ')', ',', '/', ':' ),
+		array( ';', '@', '$', '!', '*', '(', ')', ',', '/', '~', ':' ),
 		$s
 	);
 
@@ -860,9 +868,9 @@ function wfParseUrl( $url ) {
 	if ( $wasRelative ) {
 		$url = "http:$url";
 	}
-	wfSuppressWarnings();
+	MediaWiki\suppressWarnings();
 	$bits = parse_url( $url );
-	wfRestoreWarnings();
+	MediaWiki\restoreWarnings();
 	// parse_url() returns an array without scheme for some invalid URLs, e.g.
 	// parse_url("%0Ahttp://example.com") == array( 'host' => '%0Ahttp', 'path' => 'example.com' )
 	if ( !$bits || !isset( $bits['scheme'] ) ) {
@@ -1248,13 +1256,17 @@ function wfLogProfilingData() {
 	$profiler->logData();
 
 	$config = $context->getConfig();
-	if ( $config->has( 'StatsdServer' ) ) {
-		$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
-		$statsdHost = $statsdServer[0];
-		$statsdPort = isset( $statsdServer[1] ) ? $statsdServer[1] : 8125;
-		$statsdSender = new SocketSender( $statsdHost, $statsdPort );
-		$statsdClient = new StatsdClient( $statsdSender );
-		$statsdClient->send( $context->getStats()->getBuffer() );
+	if ( $config->get( 'StatsdServer' ) ) {
+		try {
+			$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
+			$statsdHost = $statsdServer[0];
+			$statsdPort = isset( $statsdServer[1] ) ? $statsdServer[1] : 8125;
+			$statsdSender = new SocketSender( $statsdHost, $statsdPort );
+			$statsdClient = new SamplingStatsdClient( $statsdSender, true, false );
+			$statsdClient->send( $context->getStats()->getBuffer() );
+		} catch ( Exception $ex ) {
+			MWExceptionHandler::logException( $ex );
+		}
 	}
 
 	# Profiling must actually be enabled...
@@ -1344,6 +1356,17 @@ function wfReadOnlyReason() {
 		} else {
 			$wgReadOnly = false;
 		}
+		// Callers use this method to be aware that data presented to a user
+		// may be very stale and thus allowing submissions can be problematic.
+		try {
+			if ( $wgReadOnly === false && wfGetLB()->getLaggedSlaveMode() ) {
+				$wgReadOnly = 'The database has been automatically locked ' .
+					'while the slave database servers catch up to the master';
+			}
+		} catch ( DBConnectionError $e ) {
+			$wgReadOnly = 'The database has been automatically locked ' .
+				'until the slave database servers become available';
+		}
 	}
 
 	return $wgReadOnly;
@@ -1405,7 +1428,7 @@ function wfGetLangObj( $langcode = false ) {
  *
  * This function replaces all old wfMsg* functions.
  *
- * @param string|string[] $key Message key, or array of keys
+ * @param string|string[]|MessageSpecifier $key Message key, or array of keys, or a MessageSpecifier
  * @param mixed $params,... Normal message parameters
  * @return Message
  *
@@ -1745,7 +1768,7 @@ function wfMsgExt( $key, $options ) {
 	}
 
 	if ( in_array( 'escape', $options, true ) ) {
-		$string = htmlspecialchars ( $string );
+		$string = htmlspecialchars( $string );
 	} elseif ( in_array( 'escapenoentities', $options, true ) ) {
 		$string = Sanitizer::escapeHtmlAllowEntities( $string );
 	}
@@ -2118,15 +2141,14 @@ function wfVarDump( $var ) {
  */
 function wfHttpError( $code, $label, $desc ) {
 	global $wgOut;
-	header( "HTTP/1.0 $code $label" );
-	header( "Status: $code $label" );
+	HttpStatus::header( $code );
 	if ( $wgOut ) {
 		$wgOut->disable();
 		$wgOut->sendCacheControl();
 	}
 
 	header( 'Content-type: text/html; charset=utf-8' );
-	print "<!doctype html>" .
+	print '<!DOCTYPE html>' .
 		'<html><head><title>' .
 		htmlspecialchars( $label ) .
 		'</title></head><body><h1>' .
@@ -2161,12 +2183,22 @@ function wfResetOutputBuffers( $resetGzipEncoding = true ) {
 		$wgDisableOutputCompression = true;
 	}
 	while ( $status = ob_get_status() ) {
-		if ( $status['type'] == 0 /* PHP_OUTPUT_HANDLER_INTERNAL */ ) {
-			// Probably from zlib.output_compression or other
-			// PHP-internal setting which can't be removed.
-			//
+		if ( isset( $status['flags'] ) ) {
+			$flags = PHP_OUTPUT_HANDLER_CLEANABLE | PHP_OUTPUT_HANDLER_REMOVABLE;
+			$deleteable = ( $status['flags'] & $flags ) === $flags;
+		} elseif ( isset( $status['del'] ) ) {
+			$deleteable = $status['del'];
+		} else {
+			// Guess that any PHP-internal setting can't be removed.
+			$deleteable = $status['type'] !== 0; /* PHP_OUTPUT_HANDLER_INTERNAL */
+		}
+		if ( !$deleteable ) {
 			// Give up, and hope the result doesn't break
 			// output behavior.
+			break;
+		}
+		if ( $status['name'] === 'MediaWikiTestCase::wfResetOutputBuffersBarrier' ) {
+			// Unit testing barrier to prevent this function from breaking PHPUnit.
 			break;
 		}
 		if ( !ob_end_clean() ) {
@@ -2312,40 +2344,19 @@ function wfNegotiateType( $cprefs, $sprefs ) {
 /**
  * Reference-counted warning suppression
  *
+ * @deprecated since 1.26, use MediaWiki\suppressWarnings() directly
  * @param bool $end
  */
 function wfSuppressWarnings( $end = false ) {
-	static $suppressCount = 0;
-	static $originalLevel = false;
-
-	if ( $end ) {
-		if ( $suppressCount ) {
-			--$suppressCount;
-			if ( !$suppressCount ) {
-				error_reporting( $originalLevel );
-			}
-		}
-	} else {
-		if ( !$suppressCount ) {
-			$originalLevel = error_reporting( E_ALL & ~(
-				E_WARNING |
-				E_NOTICE |
-				E_USER_WARNING |
-				E_USER_NOTICE |
-				E_DEPRECATED |
-				E_USER_DEPRECATED |
-				E_STRICT
-			) );
-		}
-		++$suppressCount;
-	}
+	MediaWiki\suppressWarnings( $end );
 }
 
 /**
+ * @deprecated since 1.26, use MediaWiki\restoreWarnings() directly
  * Restore error level to previous value
  */
 function wfRestoreWarnings() {
-	wfSuppressWarnings( true );
+	MediaWiki\suppressWarnings( true );
 }
 
 # Autodetect, convert and provide timestamps of various types
@@ -2453,7 +2464,7 @@ function wfTimestampNow() {
 function wfIsWindows() {
 	static $isWindows = null;
 	if ( $isWindows === null ) {
-		$isWindows = substr( php_uname(), 0, 7 ) == 'Windows';
+		$isWindows = strtoupper( substr( PHP_OS, 0, 3 ) ) === 'WIN';
 	}
 	return $isWindows;
 }
@@ -2515,7 +2526,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 		wfDebug( "$caller: called wfMkdirParents($dir)\n" );
 	}
 
-	if ( strval( $dir ) === '' || ( file_exists( $dir ) && is_dir( $dir ) ) ) {
+	if ( strval( $dir ) === '' || is_dir( $dir ) ) {
 		return true;
 	}
 
@@ -2526,9 +2537,9 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	}
 
 	// Turn off the normal warning, we're doing our own below
-	wfSuppressWarnings();
+	MediaWiki\suppressWarnings();
 	$ok = mkdir( $dir, $mode, true ); // PHP5 <3
-	wfRestoreWarnings();
+	MediaWiki\restoreWarnings();
 
 	if ( !$ok ) {
 		//directory may have been created on another request since we last checked
@@ -2769,7 +2780,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 
 	$useLogPipe = false;
 	if ( is_executable( '/bin/bash' ) ) {
-		$time = intval ( isset( $limits['time'] ) ? $limits['time'] : $wgMaxShellTime );
+		$time = intval( isset( $limits['time'] ) ? $limits['time'] : $wgMaxShellTime );
 		if ( isset( $limits['walltime'] ) ) {
 			$wallTime = intval( $limits['walltime'] );
 		} elseif ( isset( $limits['time'] ) ) {
@@ -2777,8 +2788,8 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 		} else {
 			$wallTime = intval( $wgMaxShellWallClockTime );
 		}
-		$mem = intval ( isset( $limits['memory'] ) ? $limits['memory'] : $wgMaxShellMemory );
-		$filesize = intval ( isset( $limits['filesize'] ) ? $limits['filesize'] : $wgMaxShellFileSize );
+		$mem = intval( isset( $limits['memory'] ) ? $limits['memory'] : $wgMaxShellMemory );
+		$filesize = intval( isset( $limits['filesize'] ) ? $limits['filesize'] : $wgMaxShellFileSize );
 
 		if ( $time > 0 || $mem > 0 || $filesize > 0 || $wallTime > 0 ) {
 			$cmd = '/bin/bash ' . escapeshellarg( "$IP/includes/limit.sh" ) . ' ' .
@@ -3023,9 +3034,9 @@ function wfMerge( $old, $mine, $yours, &$result ) {
 
 	# This check may also protect against code injection in
 	# case of broken installations.
-	wfSuppressWarnings();
+	MediaWiki\suppressWarnings();
 	$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
-	wfRestoreWarnings();
+	MediaWiki\restoreWarnings();
 
 	if ( !$haveDiff3 ) {
 		wfDebug( "diff3 not found\n" );
@@ -3102,9 +3113,9 @@ function wfDiff( $before, $after, $params = '-u' ) {
 	}
 
 	global $wgDiff;
-	wfSuppressWarnings();
+	MediaWiki\suppressWarnings();
 	$haveDiff = $wgDiff && file_exists( $wgDiff );
-	wfRestoreWarnings();
+	MediaWiki\restoreWarnings();
 
 	# This check may also protect against code injection in
 	# case of broken installations.
@@ -3205,6 +3216,7 @@ function wfUsePHP( $req_ver ) {
  *
  * @see perldoc -f use
  *
+ * @deprecated since 1.26, use the "requires' property of extension.json
  * @param string|int|float $req_ver The version to check, can be a string, an integer, or a float
  * @throws MWException
  */
@@ -3455,7 +3467,6 @@ function wfResetSessionID() {
 		$_SESSION = $tmp;
 	}
 	$newSessionId = session_id();
-	Hooks::run( 'ResetSessionID', array( $oldSessionId, $newSessionId ) );
 }
 
 /**
@@ -3464,15 +3475,17 @@ function wfResetSessionID() {
  * @param bool $sessionId
  */
 function wfSetupSession( $sessionId = false ) {
-	global $wgSessionsInMemcached, $wgSessionsInObjectCache, $wgCookiePath, $wgCookieDomain,
-			$wgCookieSecure, $wgCookieHttpOnly, $wgSessionHandler;
-	if ( $wgSessionsInObjectCache || $wgSessionsInMemcached ) {
+	global $wgSessionsInObjectCache, $wgSessionHandler;
+	global $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly;
+
+	if ( $wgSessionsInObjectCache ) {
 		ObjectCacheSessionHandler::install();
 	} elseif ( $wgSessionHandler && $wgSessionHandler != ini_get( 'session.save_handler' ) ) {
 		# Only set this if $wgSessionHandler isn't null and session.save_handler
 		# hasn't already been set to the desired value (that causes errors)
 		ini_set( 'session.save_handler', $wgSessionHandler );
 	}
+
 	session_set_cookie_params(
 		0, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
 	session_cache_limiter( 'private, must-revalidate' );
@@ -3481,9 +3494,14 @@ function wfSetupSession( $sessionId = false ) {
 	} else {
 		wfFixSessionID();
 	}
-	wfSuppressWarnings();
+
+	MediaWiki\suppressWarnings();
 	session_start();
-	wfRestoreWarnings();
+	MediaWiki\restoreWarnings();
+
+	if ( $wgSessionsInObjectCache ) {
+		ObjectCacheSessionHandler::renewCurrentSession();
+	}
 }
 
 /**
@@ -3506,7 +3524,7 @@ function wfGetPrecompiledData( $name ) {
 }
 
 /**
- * Get a cache key
+ * Make a cache key for the local wiki.
  *
  * @param string $args,...
  * @return string
@@ -3516,12 +3534,13 @@ function wfMemcKey( /*...*/ ) {
 	$prefix = $wgCachePrefix === false ? wfWikiID() : $wgCachePrefix;
 	$args = func_get_args();
 	$key = $prefix . ':' . implode( ':', $args );
-	$key = str_replace( ' ', '_', $key );
-	return $key;
+	return strtr( $key, ' ', '_' );
 }
 
 /**
- * Get a cache key for a foreign DB
+ * Make a cache key for a foreign DB.
+ *
+ * Must match what wfMemcKey() would produce in context of the foreign wiki.
  *
  * @param string $db
  * @param string $prefix
@@ -3531,11 +3550,29 @@ function wfMemcKey( /*...*/ ) {
 function wfForeignMemcKey( $db, $prefix /*...*/ ) {
 	$args = array_slice( func_get_args(), 2 );
 	if ( $prefix ) {
+		// Match wfWikiID() logic
 		$key = "$db-$prefix:" . implode( ':', $args );
 	} else {
 		$key = $db . ':' . implode( ':', $args );
 	}
-	return str_replace( ' ', '_', $key );
+	return strtr( $key, ' ', '_' );
+}
+
+/**
+ * Make a cache key with database-agnostic prefix.
+ *
+ * Doesn't have a wiki-specific namespace. Uses a generic 'global' prefix
+ * instead. Must have a prefix as otherwise keys that use a database name
+ * in the first segment will clash with wfMemcKey/wfForeignMemcKey.
+ *
+ * @since 1.26
+ * @param string $args,...
+ * @return string
+ */
+function wfGlobalCacheKey( /*...*/ ) {
+	$args = func_get_args();
+	$key = 'global:' . implode( ':', $args );
+	return strtr( $key, ' ', '_' );
 }
 
 /**
@@ -3744,6 +3781,7 @@ function wfWaitForSlaves(
 	}
 
 	// Figure out which clusters need to be checked
+	/** @var LoadBalancer[] $lbs */
 	$lbs = array();
 	if ( $cluster === '*' ) {
 		wfGetLBFactory()->forEachLB( function ( LoadBalancer $lb ) use ( &$lbs ) {
@@ -3760,20 +3798,14 @@ function wfWaitForSlaves(
 	// time needed to wait on the next clusters.
 	$masterPositions = array_fill( 0, count( $lbs ), false );
 	foreach ( $lbs as $i => $lb ) {
-		// bug 27975 - Don't try to wait for slaves if there are none
-		// Prevents permission error when getting master position
-		if ( $lb->getServerCount() > 1 ) {
-			if ( $ifWritesSince && !$lb->hasMasterConnection() ) {
-				continue; // assume no writes done
-			}
-			// Use the empty string to not trigger selectDB() since the connection
-			// may have been to a server that does not have a DB for the current wiki.
-			$dbw = $lb->getConnection( DB_MASTER, array(), '' );
-			if ( $ifWritesSince && $dbw->lastDoneWrites() < $ifWritesSince ) {
-				continue; // no writes since the last wait
-			}
-			$masterPositions[$i] = $dbw->getMasterPos();
+		if ( $lb->getServerCount() <= 1 ) {
+			// Bug 27975 - Don't try to wait for slaves if there are none
+			// Prevents permission error when getting master position
+			continue;
+		} elseif ( $ifWritesSince && $lb->lastMasterChangeTimestamp() < $ifWritesSince ) {
+			continue; // no writes since the last wait
 		}
+		$masterPositions[$i] = $lb->getMasterPos();
 	}
 
 	$ok = true;
@@ -3830,9 +3862,9 @@ function wfStripIllegalFilenameChars( $name ) {
 }
 
 /**
- * Set PHP's memory limit to the larger of php.ini or $wgMemoryLimit;
+ * Set PHP's memory limit to the larger of php.ini or $wgMemoryLimit
  *
- * @return int Value the memory limit was set to.
+ * @return int Resulting value of the memory limit.
  */
 function wfMemoryLimit() {
 	global $wgMemoryLimit;
@@ -3841,15 +3873,15 @@ function wfMemoryLimit() {
 		$conflimit = wfShorthandToInteger( $wgMemoryLimit );
 		if ( $conflimit == -1 ) {
 			wfDebug( "Removing PHP's memory limit\n" );
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			ini_set( 'memory_limit', $conflimit );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			return $conflimit;
 		} elseif ( $conflimit > $memlimit ) {
 			wfDebug( "Raising PHP's memory limit to $conflimit bytes\n" );
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			ini_set( 'memory_limit', $conflimit );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			return $conflimit;
 		}
 	}
@@ -3857,10 +3889,30 @@ function wfMemoryLimit() {
 }
 
 /**
+ * Set PHP's time limit to the larger of php.ini or $wgTransactionalTimeLimit
+ *
+ * @return int Prior time limit
+ * @since 1.26
+ */
+function wfTransactionalTimeLimit() {
+	global $wgTransactionalTimeLimit;
+
+	$timeLimit = ini_get( 'max_execution_time' );
+	// Note that CLI scripts use 0
+	if ( $timeLimit > 0 && $wgTransactionalTimeLimit > $timeLimit ) {
+		set_time_limit( $wgTransactionalTimeLimit );
+	}
+
+	ignore_user_abort( true ); // ignore client disconnects
+
+	return $timeLimit;
+}
+
+/**
  * Converts shorthand byte notation to integer form
  *
  * @param string $string
- * @param int $default Return if $string is empty
+ * @param int $default Returned if $string is empty
  * @return int
  */
 function wfShorthandToInteger( $string = '', $default = -1 ) {
@@ -3917,13 +3969,13 @@ function wfBCP47( $code ) {
 }
 
 /**
- * Get a cache object.
+ * Get a specific cache object.
  *
- * @param int $inputType Cache type, one of the CACHE_* constants.
+ * @param int|string $cacheType A CACHE_* constants, or other key in $wgObjectCaches
  * @return BagOStuff
  */
-function wfGetCache( $inputType ) {
-	return ObjectCache::getInstance( $inputType );
+function wfGetCache( $cacheType ) {
+	return ObjectCache::getInstance( $cacheType );
 }
 
 /**
@@ -3995,9 +4047,9 @@ function wfUnpack( $format, $data, $length = false ) {
 		}
 	}
 
-	wfSuppressWarnings();
+	MediaWiki\suppressWarnings();
 	$result = unpack( $format, $data );
-	wfRestoreWarnings();
+	MediaWiki\restoreWarnings();
 
 	if ( $result === false ) {
 		// If it cannot extract the packed data.
@@ -4235,4 +4287,29 @@ function wfThumbIsStandard( File $file, array $params ) {
 	}
 
 	return true;
+}
+
+/**
+ * Merges two (possibly) 2 dimensional arrays into the target array ($baseArray).
+ *
+ * Values that exist in both values will be combined with += (all values of the array
+ * of $newValues will be added to the values of the array of $baseArray, while values,
+ * that exists in both, the value of $baseArray will be used).
+ *
+ * @param array $baseArray The array where you want to add the values of $newValues to
+ * @param array $newValues An array with new values
+ * @return array The combined array
+ * @since 1.26
+ */
+function wfArrayPlus2d( array $baseArray, array $newValues ) {
+	// First merge items that are in both arrays
+	foreach ( $baseArray as $name => &$groupVal ) {
+		if ( isset( $newValues[$name] ) ) {
+			$groupVal += $newValues[$name];
+		}
+	}
+	// Now add items that didn't exist yet
+	$baseArray += $newValues;
+
+	return $baseArray;
 }

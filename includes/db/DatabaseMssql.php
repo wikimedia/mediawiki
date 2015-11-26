@@ -119,9 +119,9 @@ class DatabaseMssql extends DatabaseBase {
 			$connectionInfo['PWD'] = $password;
 		}
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$this->mConn = sqlsrv_connect( $server, $connectionInfo );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( $this->mConn === false ) {
 			throw new DBConnectionError( $this, $this->lastError() );
@@ -1089,7 +1089,9 @@ class DatabaseMssql extends DatabaseBase {
 	 * @param string $s
 	 * @return string
 	 */
-	public function strencode( $s ) { # Should not be called by us
+	public function strencode( $s ) {
+		// Should not be called by us
+
 		return str_replace( "'", "''", $s );
 	}
 

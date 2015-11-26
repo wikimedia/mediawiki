@@ -84,14 +84,26 @@ class ImageListPager extends TablePager {
 	function __construct( IContextSource $context, $userName = null, $search = '',
 		$including = false, $showAll = false
 	) {
+		$this->setContext( $context );
 		$this->mIncluding = $including;
 		$this->mShowAll = $showAll;
 
 		if ( $userName !== null && $userName !== '' ) {
 			$nt = Title::newFromText( $userName, NS_USER );
+			$user = User::newFromName( $userName, false );
 			if ( !is_null( $nt ) ) {
 				$this->mUserName = $nt->getText();
 			}
+			if ( !$user || ( $user->isAnon() && !User::isIP( $user->getName() ) ) ) {
+				$this->getOutput()->wrapWikiMsg(
+					"<div class=\"mw-userpage-userdoesnotexist error\">\n$1\n</div>",
+					array(
+						'listfiles-userdoesnotexist',
+						wfEscapeWikiText( $userName ),
+					)
+				);
+			}
+
 		}
 
 		if ( $search !== '' && !$this->getConfig()->get( 'MiserMode' ) ) {
@@ -107,7 +119,7 @@ class ImageListPager extends TablePager {
 		}
 
 		if ( !$including ) {
-			if ( $context->getRequest()->getText( 'sort', 'img_date' ) == 'img_date' ) {
+			if ( $this->getRequest()->getText( 'sort', 'img_date' ) == 'img_date' ) {
 				$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 			} else {
 				$this->mDefaultDirection = IndexPager::DIR_ASCENDING;

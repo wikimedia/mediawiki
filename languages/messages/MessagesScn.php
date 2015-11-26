@@ -43,7 +43,7 @@ $namespaceNames = array(
 $namespaceAliases = array(
 	'Discussioni_Utenti' => NS_USER_TALK,
 	'Mmàggini' => NS_FILE,
-	'Discussioni mmàggini' => NS_FILE_TALK,
+	'Discussioni_mmàggini' => NS_FILE_TALK,
 	'Discussioni_Template' => NS_TEMPLATE_TALK,
 	'Discussioni_Aiutu' => NS_HELP_TALK,
 	'Discussioni_Catigurìa' => NS_CATEGORY_TALK,
@@ -110,7 +110,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'PaginePiùRecenti' ),
 	'PasswordReset'             => array( 'ReimpostaPassword' ),
 	'PermanentLink'             => array( 'LinkPermanente' ),
-
 	'Preferences'               => array( 'Preferenze' ),
 	'Prefixindex'               => array( 'Prefissi' ),
 	'Protectedpages'            => array( 'PagineProtette' ),

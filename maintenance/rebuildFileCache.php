@@ -131,9 +131,9 @@ class RebuildFileCache extends Maintenance {
 					ob_start( array( &$cache, 'saveToFileCache' ) ); // save on ob_end_clean()
 					$wgUseFileCache = false; // hack, we don't want $article fiddling with filecache
 					$article->view();
-					wfSuppressWarnings(); // header notices
+					MediaWiki\suppressWarnings(); // header notices
 					$wgOut->output();
-					wfRestoreWarnings();
+					MediaWiki\restoreWarnings();
 					$wgUseFileCache = true;
 					ob_end_clean(); // clear buffer
 					if ( $rebuilt ) {

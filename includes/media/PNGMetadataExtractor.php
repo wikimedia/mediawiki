@@ -201,9 +201,9 @@ class PNGMetadataExtractor {
 					// if compressed
 					if ( $items[2] == "\x01" ) {
 						if ( function_exists( 'gzuncompress' ) && $items[4] === "\x00" ) {
-							wfSuppressWarnings();
+							MediaWiki\suppressWarnings();
 							$items[5] = gzuncompress( $items[5] );
-							wfRestoreWarnings();
+							MediaWiki\restoreWarnings();
 
 							if ( $items[5] === false ) {
 								// decompression failed
@@ -245,9 +245,9 @@ class PNGMetadataExtractor {
 					fseek( $fh, self::$crcSize, SEEK_CUR );
 					continue;
 				}
-				wfSuppressWarnings();
+				MediaWiki\suppressWarnings();
 				$content = iconv( 'ISO-8859-1', 'UTF-8', $content );
-				wfRestoreWarnings();
+				MediaWiki\restoreWarnings();
 
 				if ( $content === false ) {
 					throw new Exception( __METHOD__ . ": Read error (error with iconv)" );
@@ -285,9 +285,9 @@ class PNGMetadataExtractor {
 						continue;
 					}
 
-					wfSuppressWarnings();
+					MediaWiki\suppressWarnings();
 					$content = gzuncompress( $content );
-					wfRestoreWarnings();
+					MediaWiki\restoreWarnings();
 
 					if ( $content === false ) {
 						// decompression failed
@@ -296,9 +296,9 @@ class PNGMetadataExtractor {
 						continue;
 					}
 
-					wfSuppressWarnings();
+					MediaWiki\suppressWarnings();
 					$content = iconv( 'ISO-8859-1', 'UTF-8', $content );
-					wfRestoreWarnings();
+					MediaWiki\restoreWarnings();
 
 					if ( $content === false ) {
 						throw new Exception( __METHOD__ . ": Read error (error with iconv)" );

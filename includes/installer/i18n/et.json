@@ -5,9 +5,12 @@
 			"Pikne",
 			"Boxmein",
 			"Cumbril",
-			"Roland"
+			"Roland",
+			"Postituvi"
 		]
 	},
+	"config-desc": "MediaWiki paigaldaja",
+	"config-title": "MediaWiki $1 install",
 	"config-information": "Teave",
 	"config-upgrade-key-missing": "Tuvastati olemasolev MediaWiki install.\nSelle installi täiendamiseks lisa palun järgmine rida faili <code>LocalSettings.php</code> lõppu:\n\n$1",
 	"config-session-error": "Tõrge seansi alustamisel: $1",
@@ -66,7 +69,7 @@
 	"config-license-cc-by": "Creative Commonsi litsents \"Autorile viitamine\"",
 	"config-license-cc-by-nc-sa": "Creative Commonsi litsents \"Autorile viitamine + mitteäriline eesmärk + jagamine samadel tingimustel\"",
 	"config-email-settings": "E-posti sätted",
-	"config-email-sender": "Saatja e-aadress:",
+	"config-email-sender": "Saatja e-posti aadress:",
 	"config-logo": "Logo internetiaadress:",
 	"config-cc-again": "Vali uuesti...",
 	"config-extensions": "Lisad",

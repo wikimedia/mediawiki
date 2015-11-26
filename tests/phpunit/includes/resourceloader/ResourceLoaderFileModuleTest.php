@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Database
  * @group ResourceLoader
  */
 class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
@@ -157,7 +158,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoaderFileModule::getStyles
 	 * @covers ResourceLoaderFileModule::getStyleFiles
 	 */
-	public function testMixedCssAnnotations(  ) {
+	public function testMixedCssAnnotations() {
 		$basePath = __DIR__ . '/../../data/css';
 		$testModule = new ResourceLoaderFileModule( array(
 			'localBasePath' => $basePath,
@@ -224,24 +225,5 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		$rl = new ResourceLoaderFileModule( $module );
 
 		$this->assertEquals( $rl->getTemplates(), $expected );
-	}
-
-	public static function providerGetModifiedTime() {
-		$modules = self::getModules();
-
-		return array(
-			// Check the default value when no templates present in module is 1
-			array( $modules['noTemplateModule'], 1 ),
-		);
-	}
-
-	/**
-	 * @dataProvider providerGetModifiedTime
-	 * @covers ResourceLoaderFileModule::getModifiedTime
-	 */
-	public function testGetModifiedTime( $module, $expected ) {
-		$rl = new ResourceLoaderFileModule( $module );
-		$ts = $rl->getModifiedTime( $this->getResourceLoaderContext() );
-		$this->assertEquals( $ts, $expected );
 	}
 }

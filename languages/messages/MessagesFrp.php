@@ -102,7 +102,6 @@ $specialPageAliases = array(
 	'Newimages'                 => array( 'Novéls_fichiérs', 'NovélsFichiérs', 'Émâges_novèles', 'ÉmâgesNovèles' ),
 	'Newpages'                  => array( 'Pâges_novèles', 'PâgesNovèles' ),
 	'PermanentLink'             => array( 'Lim_fixo', 'LimFixo' ),
-
 	'Preferences'               => array( 'Prèferences' ),
 	'Prefixindex'               => array( 'Endèxe_des_prèfixos', 'EndèxeDesPrèfixos' ),
 	'Protectedpages'            => array( 'Pâges_protègiês', 'PâgesProtègiês' ),

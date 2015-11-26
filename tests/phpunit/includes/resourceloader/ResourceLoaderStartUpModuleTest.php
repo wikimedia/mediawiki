@@ -10,7 +10,8 @@ class ResourceLoaderStartUpModuleTest extends ResourceLoaderTestCase {
 				'out' => '
 mw.loader.addSource( {
     "local": "/w/load.php"
-} );mw.loader.register( [] );'
+} );
+mw.loader.register( [] );'
 			) ),
 			array( array(
 				'msg' => 'Basic registry',
@@ -20,10 +21,11 @@ mw.loader.addSource( {
 				'out' => '
 mw.loader.addSource( {
     "local": "/w/load.php"
-} );mw.loader.register( [
+} );
+mw.loader.register( [
     [
         "test.blank",
-        1388534400
+        "wvTifjse"
     ]
 ] );',
 			) ),
@@ -37,20 +39,21 @@ mw.loader.addSource( {
 				'out' => '
 mw.loader.addSource( {
     "local": "/w/load.php"
-} );mw.loader.register( [
+} );
+mw.loader.register( [
     [
         "test.blank",
-        1388534400
+        "wvTifjse"
     ],
     [
         "test.group.foo",
-        1388534400,
+        "wvTifjse",
         [],
         "x-foo"
     ],
     [
         "test.group.bar",
-        1388534400,
+        "wvTifjse",
         [],
         "x-bar"
     ]
@@ -65,10 +68,11 @@ mw.loader.addSource( {
 				'out' => '
 mw.loader.addSource( {
     "local": "/w/load.php"
-} );mw.loader.register( [
+} );
+mw.loader.register( [
     [
         "test.blank",
-        1388534400
+        "wvTifjse"
     ]
 ] );'
 			) ),
@@ -87,10 +91,11 @@ mw.loader.addSource( {
 mw.loader.addSource( {
     "local": "/w/load.php",
     "example": "http://example.org/w/load.php"
-} );mw.loader.register( [
+} );
+mw.loader.register( [
     [
         "test.blank",
-        1388534400,
+        "wvTifjse",
         [],
         null,
         "example"
@@ -123,14 +128,15 @@ mw.loader.addSource( {
 				'out' => '
 mw.loader.addSource( {
     "local": "/w/load.php"
-} );mw.loader.register( [
+} );
+mw.loader.register( [
     [
         "test.x.core",
-        1388534400
+        "wvTifjse"
     ],
     [
         "test.x.polyfill",
-        1388534400,
+        "wvTifjse",
         [],
         null,
         null,
@@ -138,7 +144,7 @@ mw.loader.addSource( {
     ],
     [
         "test.y.polyfill",
-        1388534400,
+        "wvTifjse",
         [],
         null,
         null,
@@ -146,7 +152,7 @@ mw.loader.addSource( {
     ],
     [
         "test.z.foo",
-        1388534400,
+        "wvTifjse",
         [
             0,
             1,
@@ -219,39 +225,40 @@ mw.loader.addSource( {
 mw.loader.addSource( {
     "local": "/w/load.php",
     "example": "http://example.org/w/load.php"
-} );mw.loader.register( [
+} );
+mw.loader.register( [
     [
         "test.blank",
-        1388534400
+        "wvTifjse"
     ],
     [
         "test.x.core",
-        1388534400
+        "wvTifjse"
     ],
     [
         "test.x.util",
-        1388534400,
+        "wvTifjse",
         [
             1
         ]
     ],
     [
         "test.x.foo",
-        1388534400,
+        "wvTifjse",
         [
             1
         ]
     ],
     [
         "test.x.bar",
-        1388534400,
+        "wvTifjse",
         [
             2
         ]
     ],
     [
         "test.x.quux",
-        1388534400,
+        "wvTifjse",
         [
             3,
             4,
@@ -260,25 +267,25 @@ mw.loader.addSource( {
     ],
     [
         "test.group.foo.1",
-        1388534400,
+        "wvTifjse",
         [],
         "x-foo"
     ],
     [
         "test.group.foo.2",
-        1388534400,
+        "wvTifjse",
         [],
         "x-foo"
     ],
     [
         "test.group.bar.1",
-        1388534400,
+        "wvTifjse",
         [],
         "x-bar"
     ],
     [
         "test.group.bar.2",
-        1388534400,
+        "wvTifjse",
         [],
         "x-bar",
         "example"
@@ -342,10 +349,10 @@ mw.loader.addSource( {
 		$rl->register( $modules );
 		$module = new ResourceLoaderStartUpModule();
 		$this->assertEquals(
-'mw.loader.addSource({"local":"/w/load.php"});'
+'mw.loader.addSource({"local":"/w/load.php"});' . "\n"
 . 'mw.loader.register(['
-. '["test.blank",1388534400],'
-. '["test.min",1388534400,[0],null,null,'
+. '["test.blank","wvTifjse"],'
+. '["test.min","wvTifjse",[0],null,null,'
 . '"return!!(window.JSON\u0026\u0026JSON.parse\u0026\u0026JSON.stringify);"'
 . ']]);',
 			$module->getModuleRegistrations( $context ),
@@ -364,14 +371,15 @@ mw.loader.addSource( {
 		$this->assertEquals(
 'mw.loader.addSource( {
     "local": "/w/load.php"
-} );mw.loader.register( [
+} );
+mw.loader.register( [
     [
         "test.blank",
-        1388534400
+        "wvTifjse"
     ],
     [
         "test.min",
-        1388534400,
+        "wvTifjse",
         [
             0
         ],

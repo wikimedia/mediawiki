@@ -49,6 +49,8 @@ class ApiImageRotate extends ApiBase {
 	}
 
 	public function execute() {
+		$this->useTransactionalTimeLimit();
+
 		$params = $this->extractRequestParams();
 		$rotation = $params['rotation'];
 
@@ -60,7 +62,7 @@ class ApiImageRotate extends ApiBase {
 
 		$result = array();
 
-		self::addValues( $result, $pageSet->getInvalidTitles(), 'invalid', 'title' );
+		self::addValues( $result, $pageSet->getInvalidTitlesAndReasons(), 'invalid' );
 		self::addValues( $result, $pageSet->getSpecialTitles(), 'special', 'title' );
 		self::addValues( $result, $pageSet->getMissingPageIDs(), 'missing', 'pageid' );
 		self::addValues( $result, $pageSet->getMissingRevisionIDs(), 'missing', 'revid' );

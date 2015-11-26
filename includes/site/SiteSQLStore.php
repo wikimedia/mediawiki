@@ -41,7 +41,7 @@ class SiteSQLStore extends CachingSiteStore {
 	 */
 	public static function newInstance( ORMTable $sitesTable = null, BagOStuff $cache = null ) {
 		if ( $cache === null ) {
-			$cache = wfGetMainCache();
+			$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
 		}
 
 		$siteStore = new DBSiteStore();

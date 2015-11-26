@@ -53,6 +53,12 @@
  * @param {Function} options.result.select Called in context of the suggestions-result-current element.
  * @param {jQuery} options.result.select.$textbox
  *
+ * @param {Object} [options.update] Set of callbacks for listening to a change in the text input.
+ *
+ * @param {Function} options.update.before Called right after the user changes the textbox text.
+ * @param {Function} options.update.after Called after results are updated either from the cache or
+ * the API as a result of the user input.
+ *
  * @param {jQuery} [options.$region=this] The element to place the suggestions below and match width of.
  *
  * @param {string[]} [options.suggestions] Array of suggestions to display.
@@ -83,7 +89,7 @@
  * @param {boolean} [options.positionFromLeft] Sets `expandFrom=left`, for backwards
  *  compatibility.
  *
- * @param {boolean} [options.highlightInput=false] Whether to hightlight matched portions of the
+ * @param {boolean} [options.highlightInput=false] Whether to highlight matched portions of the
  *  input or not.
  */
 ( function ( $ ) {
@@ -136,6 +142,7 @@ $.suggestions = {
 	 * call to this function still pending will be canceled. If the value in the
 	 * textbox is empty or hasn't changed since the last time suggestions were fetched,
 	 * this function does nothing.
+	 *
 	 * @param {boolean} delayed Whether or not to delay this by the currently configured amount of time
 	 */
 	update: function ( context, delayed ) {
@@ -143,6 +150,10 @@ $.suggestions = {
 			var val = context.data.$textbox.val(),
 				cache = context.data.cache,
 				cacheHit;
+
+			if ( typeof context.config.update.before === 'function' ) {
+				context.config.update.before.call( context.data.$textbox );
+			}
 
 			// Only fetch if the value in the textbox changed and is not empty, or if the results were hidden
 			// if the textbox is empty then clear the result div, but leave other settings intouched
@@ -158,6 +169,9 @@ $.suggestions = {
 				if ( context.config.cache && hasOwn.call( cache, val ) ) {
 					if ( +new Date() - cache[ val ].timestamp < context.config.cacheMaxAge ) {
 						context.data.$textbox.suggestions( 'suggestions', cache[ val ].suggestions );
+						if ( typeof context.config.update.after === 'function' ) {
+							context.config.update.after.call( context.data.$textbox );
+						}
 						cacheHit = true;
 					} else {
 						// Cache expired
@@ -171,6 +185,9 @@ $.suggestions = {
 						function ( suggestions ) {
 							suggestions = suggestions.slice( 0, context.config.maxRows );
 							context.data.$textbox.suggestions( 'suggestions', suggestions );
+							if ( typeof context.config.update.after === 'function' ) {
+								context.config.update.after.call( context.data.$textbox );
+							}
 							if ( context.config.cache ) {
 								cache[ val ] = {
 									suggestions: suggestions,
@@ -213,6 +230,7 @@ $.suggestions = {
 
 	/**
 	 * Sets the value of a property, and updates the widget accordingly
+	 *
 	 * @param {string} property Name of property
 	 * @param {Mixed} value Value to set property with
 	 */
@@ -227,12 +245,13 @@ $.suggestions = {
 			case 'cancel':
 			case 'special':
 			case 'result':
+			case 'update':
 			case '$region':
 			case 'expandFrom':
-				context.config[property] = value;
+				context.config[ property ] = value;
 				break;
 			case 'suggestions':
-				context.config[property] = value;
+				context.config[ property ] = value;
 				// Update suggestions
 				if ( context.data !== undefined ) {
 					if ( context.data.$textbox.val().length === 0 ) {
@@ -260,7 +279,7 @@ $.suggestions = {
 								expandFrom = 'left';
 
 							// Catch invalid values, default to 'auto'
-							} else if ( $.inArray( expandFrom, ['left', 'right', 'start', 'end', 'auto'] ) === -1 ) {
+							} else if ( $.inArray( expandFrom, [ 'left', 'right', 'start', 'end', 'auto' ] ) === -1 ) {
 								expandFrom = 'auto';
 							}
 
@@ -319,11 +338,11 @@ $.suggestions = {
 						expWidth = -1;
 						for ( i = 0; i < context.config.suggestions.length; i++ ) {
 							/*jshint loopfunc:true */
-							text = context.config.suggestions[i];
+							text = context.config.suggestions[ i ];
 							$result = $( '<div>' )
 								.addClass( 'suggestions-result' )
 								.attr( 'rel', i )
-								.data( 'text', context.config.suggestions[i] )
+								.data( 'text', context.config.suggestions[ i ] )
 								.mousemove( function () {
 									context.data.selectedWithMouse = true;
 									$.suggestions.highlight(
@@ -335,7 +354,7 @@ $.suggestions = {
 								.appendTo( $results );
 							// Allow custom rendering
 							if ( typeof context.config.result.render === 'function' ) {
-								context.config.result.render.call( $result, context.config.suggestions[i], context );
+								context.config.result.render.call( $result, context.config.suggestions[ i ], context );
 							} else {
 								$result.text( text );
 							}
@@ -376,28 +395,29 @@ $.suggestions = {
 				}
 				break;
 			case 'maxRows':
-				context.config[property] = Math.max( 1, Math.min( 100, value ) );
+				context.config[ property ] = Math.max( 1, Math.min( 100, value ) );
 				break;
 			case 'delay':
-				context.config[property] = Math.max( 0, Math.min( 1200, value ) );
+				context.config[ property ] = Math.max( 0, Math.min( 1200, value ) );
 				break;
 			case 'cacheMaxAge':
-				context.config[property] = Math.max( 1, value );
+				context.config[ property ] = Math.max( 1, value );
 				break;
 			case 'maxExpandFactor':
-				context.config[property] = Math.max( 1, value );
+				context.config[ property ] = Math.max( 1, value );
 				break;
 			case 'cache':
 			case 'submitOnClick':
 			case 'positionFromLeft':
 			case 'highlightInput':
-				context.config[property] = !!value;
+				context.config[ property ] = !!value;
 				break;
 		}
 	},
 
 	/**
 	 * Highlight a result in the results table
+	 *
 	 * @param {jQuery|string} result `<tr>` to highlight, or 'prev' or 'next'
 	 * @param {boolean} updateTextbox If true, put the suggestion in the textbox
 	 */
@@ -467,6 +487,7 @@ $.suggestions = {
 
 	/**
 	 * Respond to keypress event
+	 *
 	 * @param {number} key Code of key pressed
 	 */
 	keypress: function ( e, context, key ) {
@@ -559,6 +580,7 @@ $.fn.suggestions = function () {
 					cancel: function () {},
 					special: {},
 					result: {},
+					update: {},
 					$region: $( this ),
 					suggestions: [],
 					maxRows: 10,
@@ -577,18 +599,18 @@ $.fn.suggestions = function () {
 
 		// Handle various calling styles
 		if ( args.length > 0 ) {
-			if ( typeof args[0] === 'object' ) {
+			if ( typeof args[ 0 ] === 'object' ) {
 				// Apply set of properties
-				for ( key in args[0] ) {
-					$.suggestions.configure( context, key, args[0][key] );
+				for ( key in args[ 0 ] ) {
+					$.suggestions.configure( context, key, args[ 0 ][ key ] );
 				}
-			} else if ( typeof args[0] === 'string' ) {
+			} else if ( typeof args[ 0 ] === 'string' ) {
 				if ( args.length > 1 ) {
 					// Set property values
-					$.suggestions.configure( context, args[0], args[1] );
+					$.suggestions.configure( context, args[ 0 ], args[ 1 ] );
 				} else if ( returnValue === null || returnValue === undefined ) {
 					// Get property values, but don't give access to internal data - returns only the first
-					returnValue = ( args[0] in context.config ? undefined : context.config[args[0]] );
+					returnValue = ( args[ 0 ] in context.config ? undefined : context.config[ args[ 0 ] ] );
 				}
 			}
 		}

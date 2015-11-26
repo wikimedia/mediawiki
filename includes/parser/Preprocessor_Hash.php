@@ -112,7 +112,6 @@ class Preprocessor_Hash implements Preprocessor {
 	 * @return PPNode_Hash_Tree
 	 */
 	public function preprocessToObj( $text, $flags = 0 ) {
-
 		// Check cache.
 		global $wgMemc, $wgPreprocessorCacheThreshold;
 
@@ -120,7 +119,6 @@ class Preprocessor_Hash implements Preprocessor {
 			&& strlen( $text ) > $wgPreprocessorCacheThreshold;
 
 		if ( $cacheable ) {
-
 			$cacheKey = wfMemcKey( 'preprocess-hash', md5( $text ), $flags );
 			$cacheValue = $wgMemc->get( $cacheKey );
 			if ( $cacheValue ) {
@@ -736,8 +734,12 @@ class Preprocessor_Hash implements Preprocessor {
 		// Cache
 		if ( $cacheable ) {
 			$cacheValue = sprintf( "%08d", self::CACHE_VERSION ) . serialize( $rootNode );
-			$wgMemc->set( $cacheKey, $cacheValue, 86400 );
-			wfDebugLog( "Preprocessor", "Saved preprocessor Hash to memcached (key $cacheKey)" );
+
+			// T111289: Cache values should not exceed 1 Mb, but they do.
+			if ( strlen( $cacheValue ) <= 1e6 ) {
+				$wgMemc->set( $cacheKey, $cacheValue, 86400 );
+				wfDebugLog( "Preprocessor", "Saved preprocessor Hash to memcached (key $cacheKey)" );
+			}
 		}
 
 		return $rootNode;
@@ -972,6 +974,10 @@ class PPFrame_Hash implements PPFrame {
 					// Numbered parameter
 					$index = $bits['index'] - $indexOffset;
 					if ( isset( $namedArgs[$index] ) || isset( $numberedArgs[$index] ) ) {
+						$this->parser->getOutput()->addWarning( wfMessage( 'duplicate-args-warning',
+							wfEscapeWikiText( $this->title ),
+							wfEscapeWikiText( $title ),
+							wfEscapeWikiText( $index ) )->text() );
 						$this->parser->addTrackingCategory( 'duplicate-args-category' );
 					}
 					$numberedArgs[$index] = $bits['value'];
@@ -980,6 +986,10 @@ class PPFrame_Hash implements PPFrame {
 					// Named parameter
 					$name = trim( $this->expand( $bits['name'], PPFrame::STRIP_COMMENTS ) );
 					if ( isset( $namedArgs[$name] ) || isset( $numberedArgs[$name] ) ) {
+						$this->parser->getOutput()->addWarning( wfMessage( 'duplicate-args-warning',
+							wfEscapeWikiText( $this->title ),
+							wfEscapeWikiText( $title ),
+							wfEscapeWikiText( $name ) )->text() );
 						$this->parser->addTrackingCategory( 'duplicate-args-category' );
 					}
 					$namedArgs[$name] = $bits['value'];
@@ -1118,9 +1128,11 @@ class PPFrame_Hash implements PPFrame {
 				} elseif ( $contextNode->name == 'comment' ) {
 					# HTML-style comment
 					# Remove it in HTML, pre+remove and STRIP_COMMENTS modes
-					if ( $this->parser->ot['html']
+					# Not in RECOVER_COMMENTS mode (msgnw) though.
+					if ( ( $this->parser->ot['html']
 						|| ( $this->parser->ot['pre'] && $this->parser->mOptions->getRemoveComments() )
 						|| ( $flags & PPFrame::STRIP_COMMENTS )
+						) && !( $flags & PPFrame::RECOVER_COMMENTS )
 					) {
 						$out .= '';
 					} elseif ( $this->parser->ot['wiki'] && !( $flags & PPFrame::RECOVER_COMMENTS ) ) {
@@ -1177,7 +1189,7 @@ class PPFrame_Hash implements PPFrame {
 						$titleText = $this->title->getPrefixedDBkey();
 						$this->parser->mHeadings[] = array( $titleText, $bits['i'] );
 						$serial = count( $this->parser->mHeadings ) - 1;
-						$marker = "{$this->parser->mUniqPrefix}-h-$serial-" . Parser::MARKER_SUFFIX;
+						$marker = Parser::MARKER_PREFIX . "-h-$serial-" . Parser::MARKER_SUFFIX;
 						$s = substr( $s, 0, $bits['level'] ) . $marker . substr( $s, $bits['level'] );
 						$this->parser->mStripState->addGeneral( $marker, '' );
 						$out .= $s;

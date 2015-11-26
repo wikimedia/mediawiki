@@ -36,7 +36,7 @@
  * @since 1.19
  */
 abstract class FileBackendStore extends FileBackend {
-	/** @var BagOStuff */
+	/** @var WANObjectCache */
 	protected $memCache;
 	/** @var ProcessCacheLRU Map of paths to small (RAM/disk) cache items */
 	protected $cheapCache;
@@ -58,6 +58,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackend::__construct()
 	 * Additional $config params include:
+	 *   - wanCache     : WANOBjectCache object to use for persistent caching.
 	 *   - mimeCallback : Callback that takes (storage path, content, file system path) and
 	 *                    returns the MIME type of the file or 'unknown/unknown'. The file
 	 *                    system path parameter should be used if the content one is null.
@@ -72,7 +73,7 @@ abstract class FileBackendStore extends FileBackend {
 				// @todo handle the case of extension-less files using the contents
 				return StreamFile::contentTypeFromPath( $storagePath ) ?: 'unknown/unknown';
 			};
-		$this->memCache = new EmptyBagOStuff(); // disabled by default
+		$this->memCache = WANObjectCache::newEmpty(); // disabled by default
 		$this->cheapCache = new ProcessCacheLRU( self::CACHE_CHEAP_SIZE );
 		$this->expensiveCache = new ProcessCacheLRU( self::CACHE_EXPENSIVE_SIZE );
 	}
@@ -376,9 +377,9 @@ abstract class FileBackendStore extends FileBackend {
 		unset( $params['latest'] ); // sanity
 
 		// Check that the specified temp file is valid...
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$ok = ( is_file( $tmpPath ) && filesize( $tmpPath ) == 0 );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( !$ok ) { // not present or not empty
 			$status->fatal( 'backend-fail-opentemp', $tmpPath );
 
@@ -693,9 +694,9 @@ abstract class FileBackendStore extends FileBackend {
 	protected function doGetFileContentsMulti( array $params ) {
 		$contents = array();
 		foreach ( $this->doGetLocalReferenceMulti( $params ) as $path => $fsFile ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$contents[$path] = $fsFile ? file_get_contents( $fsFile->getPath() ) : false;
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		}
 
 		return $contents;
@@ -1057,7 +1058,7 @@ abstract class FileBackendStore extends FileBackend {
 	public function getScopedLocksForOps( array $ops, Status $status ) {
 		$paths = $this->getPathsToLockForOpsInternal( $this->getOperationsInternal( $ops ) );
 
-		return array( $this->getScopedFileLocks( $paths, 'mixed', $status ) );
+		return $this->getScopedFileLocks( $paths, 'mixed', $status );
 	}
 
 	final protected function doOperationsInternal( array $ops, array $opts ) {
@@ -1075,6 +1076,7 @@ abstract class FileBackendStore extends FileBackend {
 			// Build up a list of files to lock...
 			$paths = $this->getPathsToLockForOpsInternal( $performOps );
 			// Try to lock those files for the scope of this function...
+
 			$scopeLock = $this->getScopedFileLocks( $paths, 'mixed', $status );
 			if ( !$status->isOK() ) {
 				return $status; // abort
@@ -1363,19 +1365,38 @@ abstract class FileBackendStore extends FileBackend {
 	abstract protected function directoriesAreVirtual();
 
 	/**
-	 * Check if a container name is valid.
+	 * Check if a short container name is valid
+	 *
 	 * This checks for length and illegal characters.
+	 * This may disallow certain characters that can appear
+	 * in the prefix used to make the full container name.
+	 *
+	 * @param string $container
+	 * @return bool
+	 */
+	final protected static function isValidShortContainerName( $container ) {
+		// Suffixes like '.xxx' (hex shard chars) or '.seg' (file segments)
+		// might be used by subclasses. Reserve the dot character for sanity.
+		// The only way dots end up in containers (e.g. resolveStoragePath)
+		// is due to the wikiId container prefix or the above suffixes.
+		return self::isValidContainerName( $container ) && !preg_match( '/[.]/', $container );
+	}
+
+	/**
+	 * Check if a full container name is valid
+	 *
+	 * This checks for length and illegal characters.
+	 * Limiting the characters makes migrations to other stores easier.
 	 *
 	 * @param string $container
 	 * @return bool
 	 */
 	final protected static function isValidContainerName( $container ) {
-		// This accounts for Swift and S3 restrictions while leaving room
-		// for things like '.xxx' (hex shard chars) or '.seg' (segments).
-		// This disallows directory separators or traversal characters.
+		// This accounts for NTFS, Swift, and Ceph restrictions
+		// and disallows directory separators or traversal characters.
 		// Note that matching strings URL encode to the same string;
-		// in Swift, the length restriction is *after* URL encoding.
-		return preg_match( '/^[a-z0-9][a-z0-9-_]{0,199}$/i', $container );
+		// in Swift/Ceph, the length restriction is *after* URL encoding.
+		return (bool)preg_match( '/^[a-z0-9][a-z0-9-_.]{0,199}$/i', $container );
 	}
 
 	/**
@@ -1392,17 +1413,17 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return array (container, path, container suffix) or (null, null, null) if invalid
 	 */
 	final protected function resolveStoragePath( $storagePath ) {
-		list( $backend, $container, $relPath ) = self::splitStoragePath( $storagePath );
+		list( $backend, $shortCont, $relPath ) = self::splitStoragePath( $storagePath );
 		if ( $backend === $this->name ) { // must be for this backend
 			$relPath = self::normalizeContainerPath( $relPath );
-			if ( $relPath !== null ) {
+			if ( $relPath !== null && self::isValidShortContainerName( $shortCont ) ) {
 				// Get shard for the normalized path if this container is sharded
-				$cShard = $this->getContainerShard( $container, $relPath );
+				$cShard = $this->getContainerShard( $shortCont, $relPath );
 				// Validate and sanitize the relative path (backend-specific)
-				$relPath = $this->resolveContainerPath( $container, $relPath );
+				$relPath = $this->resolveContainerPath( $shortCont, $relPath );
 				if ( $relPath !== null ) {
 					// Prepend any wiki ID prefix to the container name
-					$container = $this->fullContainerName( $container );
+					$container = $this->fullContainerName( $shortCont );
 					if ( self::isValidContainerName( $container ) ) {
 						// Validate and sanitize the container name (backend-specific)
 						$container = $this->resolveContainerName( "{$container}{$cShard}" );
@@ -1592,7 +1613,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param array $val Information to cache
 	 */
 	final protected function setContainerCache( $container, array $val ) {
-		$this->memCache->add( $this->containerCacheKey( $container ), $val, 14 * 86400 );
+		$this->memCache->set( $this->containerCacheKey( $container ), $val, 14 * 86400 );
 	}
 
 	/**
@@ -1602,7 +1623,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $container Resolved container name
 	 */
 	final protected function deleteContainerCache( $container ) {
-		if ( !$this->memCache->set( $this->containerCacheKey( $container ), 'PURGED', 300 ) ) {
+		if ( !$this->memCache->delete( $this->containerCacheKey( $container ), 300 ) ) {
 			trigger_error( "Unable to delete stat cache for container $container." );
 		}
 	}
@@ -1682,21 +1703,8 @@ abstract class FileBackendStore extends FileBackend {
 		$age = time() - wfTimestamp( TS_UNIX, $val['mtime'] );
 		$ttl = min( 7 * 86400, max( 300, floor( .1 * $age ) ) );
 		$key = $this->fileCacheKey( $path );
-		// Set the cache unless it is currently salted with the value "PURGED".
-		// Using add() handles this except it also is a no-op in that case where
-		// the current value is not "latest" but $val is, so use CAS in that case.
-		if ( !$this->memCache->add( $key, $val, $ttl ) && !empty( $val['latest'] ) ) {
-			$this->memCache->merge(
-				$key,
-				function ( BagOStuff $cache, $key, $cValue ) use ( $val ) {
-					return ( is_array( $cValue ) && empty( $cValue['latest'] ) )
-						? $val // update the stat cache with the lastest info
-						: false; // do nothing (cache is salted or some error happened)
-				},
-				$ttl,
-				1
-			);
-		}
+		// Set the cache unless it is currently salted.
+		$this->memCache->set( $key, $val, $ttl );
 	}
 
 	/**
@@ -1712,7 +1720,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $path === null ) {
 			return; // invalid storage path
 		}
-		if ( !$this->memCache->set( $this->fileCacheKey( $path ), 'PURGED', 300 ) ) {
+		if ( !$this->memCache->delete( $this->fileCacheKey( $path ), 300 ) ) {
 			trigger_error( "Unable to delete stat cache for file $path." );
 		}
 	}

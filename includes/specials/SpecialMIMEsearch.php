@@ -34,8 +34,8 @@ class MIMEsearchPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	function isExpensive() {
-		return false;
+	public function isExpensive() {
+		return true;
 	}
 
 	function isSyndicated() {
@@ -109,7 +109,6 @@ class MIMEsearchPage extends QueryPage {
 	 * Return HTML to put just before the results.
 	 */
 	function getPageHeader() {
-
 		return Xml::openElement(
 				'form',
 				array( 'id' => 'specialmimesearch', 'method' => 'get', 'action' => wfScript() )
@@ -124,7 +123,7 @@ class MIMEsearchPage extends QueryPage {
 					Xml::closeElement( 'form' );
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->mime = $par ? $par : $this->getRequest()->getText( 'mime' );
 		$this->mime = trim( $this->mime );
 		list( $this->major, $this->minor ) = File::splitMime( $this->mime );

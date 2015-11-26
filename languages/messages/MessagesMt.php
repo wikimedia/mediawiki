@@ -100,7 +100,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'DiskussjonijietTiegħi' ),
 	'Newimages'                 => array( 'StampiĠodda', 'FajlsĠodda' ),
 	'Newpages'                  => array( 'PaġniĠodda' ),
-
 	'Preferences'               => array( 'Preferenzi' ),
 	'Prefixindex'               => array( 'IndiċiPrefiss' ),
 	'Protectedpages'            => array( 'PaġniProtetti' ),

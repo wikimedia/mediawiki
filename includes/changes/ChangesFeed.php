@@ -187,6 +187,10 @@ class ChangesFeed {
 		$sorted = array();
 		$n = 0;
 		foreach ( $rows as $obj ) {
+			if ( $obj->rc_type == RC_EXTERNAL ) {
+				continue;
+			}
+
 			if ( $n > 0 &&
 				$obj->rc_type == RC_EDIT &&
 				$obj->rc_namespace >= 0 &&

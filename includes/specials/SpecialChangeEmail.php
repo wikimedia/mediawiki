@@ -92,14 +92,14 @@ class SpecialChangeEmail extends FormSpecialPage {
 			'NewEmail' => array(
 				'type' => 'email',
 				'label-message' => 'changeemail-newemail',
+				'autofocus' => true
 			),
 		);
 
 		if ( $this->getConfig()->get( 'RequirePasswordforEmailChange' ) ) {
 			$fields['Password'] = array(
 				'type' => 'password',
-				'label-message' => 'changeemail-password',
-				'autofocus' => true,
+				'label-message' => 'changeemail-password'
 			);
 		}
 
@@ -107,7 +107,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 	}
 
 	protected function getDisplayFormat() {
-		return 'vform';
+		return 'ooui';
 	}
 
 	protected function alterForm( HTMLForm $form ) {
@@ -129,7 +129,8 @@ class SpecialChangeEmail extends FormSpecialPage {
 	public function onSuccess() {
 		$request = $this->getRequest();
 
-		$titleObj = Title::newFromText( $request->getVal( 'returnto' ) );
+		$returnto = $request->getVal( 'returnto' );
+		$titleObj = $returnto !== null ? Title::newFromText( $returnto ) : null;
 		if ( !$titleObj instanceof Title ) {
 			$titleObj = Title::newMainPage();
 		}
@@ -157,6 +158,10 @@ class SpecialChangeEmail extends FormSpecialPage {
 
 		if ( $newaddr != '' && !Sanitizer::validateEmail( $newaddr ) ) {
 			return Status::newFatal( 'invalidemailaddress' );
+		}
+
+		if ( $newaddr === $user->getEmail() ) {
+			return Status::newFatal( 'changeemail-nochange' );
 		}
 
 		$throttleCount = LoginForm::incLoginThrottle( $user->getName() );

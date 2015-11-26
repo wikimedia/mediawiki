@@ -53,7 +53,7 @@ class ApiBlockTest extends ApiTestCase {
 			'action' => 'block',
 			'user' => 'UTApiBlockee',
 			'reason' => 'Some reason',
-			'token' => $tokens['blocktoken'] ), null, false, self::$users['sysop']->user );
+			'token' => $tokens['blocktoken'] ), null, false, self::$users['sysop']->getUser() );
 
 		$block = Block::newFromTarget( 'UTApiBlockee' );
 
@@ -68,7 +68,7 @@ class ApiBlockTest extends ApiTestCase {
 	 * @expectedException UsageException
 	 * @expectedExceptionMessage The token parameter must be set
 	 */
-	public function testBlockingActionWithNoToken( ) {
+	public function testBlockingActionWithNoToken() {
 		$this->doApiRequest(
 			array(
 				'action' => 'block',
@@ -77,7 +77,7 @@ class ApiBlockTest extends ApiTestCase {
 			),
 			null,
 			false,
-			self::$users['sysop']->user
+			self::$users['sysop']->getUser()
 		);
 	}
 }

@@ -90,9 +90,7 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 				$packet['log_type'] = $rc->getAttribute( 'rc_log_type' );
 				$packet['log_action'] = $rc->getAttribute( 'rc_log_action' );
 				if ( $rc->getAttribute( 'rc_params' ) ) {
-					wfSuppressWarnings();
-					$params = unserialize( $rc->getAttribute( 'rc_params' ) );
-					wfRestoreWarnings();
+					$params = $rc->parseParams();
 					if (
 						// If it's an actual serialised false...
 						$rc->getAttribute( 'rc_params' ) == serialize( false ) ||

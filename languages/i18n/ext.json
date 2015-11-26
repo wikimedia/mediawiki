@@ -8,7 +8,8 @@
 			"Xuacu",
 			"아라",
 			"Babanwalia",
-			"Henares"
+			"Henares",
+			"MarcoAurelio"
 		]
 	},
 	"tog-underline": "Surrayal atihus:",
@@ -620,7 +621,7 @@
 	"prefs-custom-css": "CSS pressonalizau",
 	"prefs-custom-js": "JS pressonalizau",
 	"youremail": "Email:",
-	"username": "Nombri d'usuáriu:",
+	"username": "{{GENDER:$1|Nombri d'usuáriu|Nombri d'usuária}}:",
 	"prefs-memberingroups": "Miembru de {{PLURAL:$1|grupu|groupus}}:",
 	"yourrealname": "Nombri verdaeru:",
 	"yourlanguage": "Palra:",
@@ -905,7 +906,6 @@
 	"nlinks": "$1 {{PLURAL:$1|atihu|atihus}}",
 	"nmembers": "$1 {{PLURAL:$1|miembru|miembrus}}",
 	"nrevisions": "$1 {{PLURAL:$1|revisión|revisionis}}",
-
 	"specialpage-empty": "Esta páhina está vacia.",
 	"lonelypages": "Páhinas güérfanas",
 	"lonelypagestext": "Las siguientis páginas nu están atijás (dendi otras páginas) ena {{SITENAME}}.",
@@ -989,7 +989,6 @@
 	"mailnologin": "Nu envial direción",
 	"mailnologintext": "Ebis estal [[Special:UserLogin|rutrau]]\ni tenel una direción d´email correta enas tus [[Special:Preferences|preferéncias]]\npa envial correus a otrus usuárius.",
 	"emailuser": "Envial un email a esti usuáriu",
-	"emailpage": "E-mail el usuáriu",
 	"emailpagetext": "Si esti usuáriu á escrebiu una direción email enas sus preferéncias, con el hormulariu d'embahu se l'enviará un mensahi.\nLa direción email qu'aigas escrebiu enas tus preferéncias apaicirá cumu remitenti el mensahi, d'esta horma, el destinatariu pudrá contestalti.",
 	"defemailsubject": "E-mail de {{SITENAME}}",
 	"noemailtitle": "Nu ai direción d´e-mail",
@@ -1303,7 +1302,6 @@
 	"import-interwiki-history": "Copial tolas velsionis estóricas d'esta páhina",
 	"import-interwiki-templates": "Encruil tolos cuairus",
 	"import-interwiki-submit": "Emporteal",
-	"import-interwiki-namespace": "Movel páginas al espáciu nombris:",
 	"import-upload-filename": "Nombri del archivu:",
 	"import-comment": "Comentáriu:",
 	"importstart": "Emporteandu páhinas...",

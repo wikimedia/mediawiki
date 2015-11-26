@@ -1,5 +1,6 @@
 /**
  * Try to catch errors in modules which don't do their own error handling.
+ *
  * @class mw.errorLogger
  * @singleton
  */
@@ -24,6 +25,7 @@
 		/**
 		 * Install a window.onerror handler that will report via mw.track, while preserving
 		 * any previous handler.
+		 *
 		 * @param {Object} window
 		 */
 		installGlobalHandler: function ( window ) {
@@ -35,6 +37,7 @@
 
 			/**
 			 * Dumb window.onerror handler which forwards the errors via mw.track.
+			 *
 			 * @fires global_error
 			 */
 			window.onerror = function ( errorMessage, url, lineNumber, columnNumber, errorObject ) {

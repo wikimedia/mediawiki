@@ -1,4 +1,550 @@
-Change notes from older releases. For current info see RELEASE-NOTES-1.25.
+Change notes from older releases. For current info see RELEASE-NOTES-1.26.
+
+== MediaWiki 1.25 ==
+
+=== Configuration changes in 1.25 ===
+* $wgPageShowWatchingUsers was removed.
+* $wgLocalVirtualHosts has been added to replace $wgConf->localVHosts.
+* $wgAntiLockFlags was removed.
+* $wgJavaScriptTestConfig was removed.
+* Edit tokens returned from User::getEditToken may change on every call. Token
+  validity must be checked by passing the user-supplied token to
+  User::matchEditToken rather than by testing for equality with a
+  newly-generated token.
+* (T74951) The UserGetLanguageObject hook may be passed any IContextSource
+  for its $context parameter. Formerly it was documented as receiving a
+  RequestContext specifically.
+* Profiling was restructured and $wgProfiler now requires an 'output' parameter.
+  See StartProfiler.sample for details.
+* $wgMangleFlashPolicy was added to make MediaWiki's mangling of anything that
+  might be a flash policy directive configurable.
+* ApiOpenSearch now supports XML output. The OpenSearchXml extension should no
+  longer be used. If extracts and page images are desired, the TextExtracts and
+  PageImages extensions are required.
+* $wgOpenSearchTemplate is deprecated in favor of $wgOpenSearchTemplates.
+* Edits are now prepared via AJAX as users type edit summaries. This behavior
+  can be disabled via $wgAjaxEditStash.
+* (T46740) The temporary option $wgIncludejQueryMigrate was removed, along
+  with the jQuery Migrate library, as indicated when this option was provided in
+  MediaWiki 1.24.
+* ProfilerStandard and ProfilerSimpleTrace were removed. Make sure that any
+  StartProfiler.php config is updated to reflect this. Xhprof is available
+  for zend/hhvm. Also, for hhvm, one can consider using its xenon profiler.
+* Default value of $wgSVGConverters['rsvg'] now uses the 'rsvg-convert' binary
+  rather than 'rsvg'.
+* Default value of $wgSVGConverters['ImageMagick'] now uses transparent
+  background with white fallback color, rather than just white background.
+ * MediaWikiBagOStuff class removed, make sure any object cache config
+   uses SqlBagOStuff instead.
+* The 'daemonized' flag must be set to true in $wgJobTypeConf for any redis
+  job queues. This means that mediawiki/services/jobrunner service has to
+  be installed and running for any such queues to work.
+* $wgAutopromoteOnce no longer supports the 'view' event. For keeping some
+  compatibility, any 'view' event triggers will still trigger on 'edit'.
+* $wgExtensionDirectory was added for when your extensions directory is somewhere
+  other than $IP/extensions (as $wgStyleDirectory does with the skins directory).
+
+=== New features in 1.25 ===
+* (T64861) Updated plural rules to CLDR 26. Includes incompatible changes
+  for plural forms in Russian, Prussian, Tagalog, Manx and several languages
+  that fall back to Russian.
+* (T60139) ResourceLoaderFileModule now supports language fallback
+  for 'languageScripts'.
+* Added a new hook, "ContentAlterParserOutput", to allow extensions to modify the
+  parser output for a content object before links update.
+* (T37785) Enhanced recent changes and extended watchlist are now default.
+  Documentation: https://meta.wikimedia.org/wiki/Help:Enhanced_recent_changes
+  and https://www.mediawiki.org/wiki/Manual:$wgDefaultUserOptions.
+* (T69341) SVG images will no longer be base64-encoded when being embedded
+  in CSS. This results in slight size increase before gzip compression (due to
+  percent-encoding), but up to 20% decrease after it.
+* Update jStorage to v0.4.12.
+* MediaWiki now natively supports page status indicators: icons (or short text
+  snippets) usually displayed in the top-right corner of the page. They have
+  been in use on Wikipedia for a long time, implemented using templates and CSS
+  absolute positioning.
+  - Basic wikitext syntax: <indicator name="foo">[[File:Foo.svg|20px]]</indicator>
+  - Usage instructions: https://www.mediawiki.org/wiki/Help:Page_status_indicators
+  - Adjusting custom skins to support indicators:
+    https://www.mediawiki.org/wiki/Manual:Skinning#Page_status_indicators
+* Edit tokens may now be time-limited: passing a maximum age to
+  User::matchEditToken will reject any older tokens.
+* The debug logging internals have been overhauled, and are now using the
+  PSR-3 interfaces.
+* Update CSSJanus to v1.1.1.
+* Update lessphp to v0.5.0.
+* Added a hook, "ApiOpenSearchSuggest", to allow extensions to provide extracts
+  and images for ApiOpenSearch output. The semantics are identical to the
+  "OpenSearchXml" hook provided by the OpenSearchXml extension.
+* PrefixSearchBackend hook now has an $offset parameter. Combined with $limit,
+  this allows for pagination of prefix results. Extensions using this hook
+  should implement supporting behavior. Not doing so can result in undefined
+  behavior from API clients trying to continue through prefix results.
+* Update jQuery from v1.11.1 to v1.11.3.
+* External libraries installed via composer will now be displayed
+  on Special:Version in their own section. Extensions or skins that are
+  installed via composer will not be shown in this section as it is assumed
+  they will add the proper credits to the skins or extensions section. They
+  can also be accessed through the API via the new siprop=libraries to
+  ApiQuerySiteInfo.
+* Update QUnit from v1.14.0 to v1.16.0.
+* Update Moment.js from v2.8.3 to v2.8.4.
+* Special:Tags now allows for manipulating the list of user-modifiable change
+  tags.
+* Added 'managetags' user right and 'ChangeTagCanCreate', 'ChangeTagCanDelete',
+  and 'ChangeTagCanCreate' hooks to allow for managing user-modifiable change
+  tags.
+* Added 'ChangeTagsListActive' hook, to separate the concepts of "defined" and
+  "active" formerly conflated by the 'ListDefinedTags' hook.
+* Added TemplateParser class that provides a server-side interface to cachable
+  dynamically-compiled Mustache templates (currently uses lightncandy library).
+* Clickable anchors for each section heading in the content are now generated
+  and appear in the gutter on hovering over the heading.
+* Added 'CategoryViewer::doCategoryQuery' and 'CategoryViewer::generateLink' hooks
+  to allow extensions to override how links to pages are rendered within NS_CATEGORY
+* (T19665) Special:WantedPages only lists page which having at least one red link
+  pointing to it.
+* New hooks 'ApiMain::moduleManager' and 'ApiQuery::moduleManager', can be
+  used for conditional registration of API modules.
+* New hook 'EnhancedChangesList::getLogText' to alter, remove or add to the
+  links of a group of changes in EnhancedChangesList.
+* A full interface for StatsD metric reporting has been added to the context
+  interface, reachable via IContextSource::getStats().
+* Move the jQuery Client library from being mastered in MediaWiki as v0.1.0 to a
+  proper, published library, which is now tagged as v1.0.0.
+* A new message (defaulting to blank), 'editnotice-notext', can be shown to users
+  when they are editing if no edit notices apply to the page being edited.
+* (T94536) You can now make the sitenotice appear to logged-in users only by
+  editing MediaWiki:Anonnotice and replacing its content with "". Setting it to
+  "-" (default) will continue disable it and fallback to MediaWiki:Sitenotice.
+* Modifying the tagging of a revision or log entry is now available via
+  Special:EditTags, generally accessed via the revision-deletion-like interface
+  on history pages and Special:Log is likely to be more useful.
+* Added 'applychangetags' and 'changetags' user rights.
+* (T35235) LogFormatter subclasses are now responsible for formatting the
+  parameters for API log event output. Extensions should implement the new
+  getParametersForApi() method in their log formatters.
+
+==== External libraries ====
+* MediaWiki now requires certain external libraries to be installed. In the past
+  these were bundled inside the Git repository of MediaWiki core, but now they
+  need to be installed separately. For users using the tarball, this will be taken
+  care of and no action will be required. Users using Git will either need to use
+  composer to fetch dependencies or use the mediawiki/vendor repository which includes
+  all dependencies for MediaWiki core and ones used in Wikimedia deployment. Detailed
+  instructions can be found at:
+  https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries
+* The following libraries are now required:
+** psr/log
+   This library provides the interfaces set by the PSR-3 standard (http://www.php-fig.org/psr/psr-3/)
+   which are used by MediaWiki internally via the
+   MediaWiki\Logger\LoggerFactory class.
+   See the structured logging RfC (https://www.mediawiki.org/wiki/Requests_for_comment/Structured_logging)
+   for more background information.
+** cssjanus/cssjanus
+   This library was formerly bundled with MediaWiki core and has been removed.
+   It automatically flips CSS for RTL support.
+** leafo/lessphp
+   This library was formerly bundled with MediaWiki core and has been removed.
+   It compiles LESS files into CSS.
+** wikimedia/cdb
+   This library was formerly a part of MediaWiki core, and has been moved into a separate library.
+   It provides CDB functions which are used in the Interwiki and Localization caches.
+   More information about the library can be found at https://www.mediawiki.org/wiki/CDB.
+** liuggio/statsd-php-client
+   This library provides a StatsD client API for logging application metrics to a remote server.
+
+=== Bug fixes in 1.25 ===
+* (T73003) No additional code will be generated to try to load CSS-embedded
+  SVG images in Internet Explorer 6 and 7, as they don't support them anyway.
+* (T69021) On Special:BookSources, corrected validation of ISBNs (both
+  10- and 13-digit forms) containing "X".
+* Page moving was refactored into a MovePage class. As part of that:
+** The AbortMove hook was removed.
+** MovePageIsValidMove is for extensions to specify whether a page
+   cannot be moved for technical reasons, and should not be overridden.
+** MovePageCheckPermissions is for checking whether the given user is
+   allowed to make the move.
+** Title::moveNoAuth() was deprecated. Use the MovePage class instead.
+** Title::moveTo() was deprecated. Use the MovePage class instead.
+** Title::isValidMoveOperation() broken down into MovePage::isValidMove()
+   and MovePage::checkPermissions().
+* (T18530) Multiple autocomments are now formatted in an edit summary.
+* (T70361) Autocomments containing "/*" are parsed correctly.
+* The Special:WhatLinksHere page linked from 'Number of redirects to this page'
+  on action=info about a file page does not list file links anymore.
+* (T78637) Search bar is not autofocused unless it is empty so that proper scrolling using arrow keys is possible.
+* (T50853) Database::makeList() modified to handle 'NULL' separately when building IN clause
+* (T85192) Captcha position modified in Usercreate template. As a result:
+** extrafields parameter added to Usercreate.php to insert additional data
+** 'extend' method added to QuickTemplate to append additional values to any field of data array
+* (T86974) Several Title methods now load from the database when necessary
+  (instead of returning incorrect results) even when the page ID is known.
+* (T74070) Duplicate search for archived files on file upload now omits the extension.
+  This requires the fa_sha1 field being populated.
+* Removed rel="archives" from the "View history" link, as it did not pass
+  HTML validation.
+* $wgUseTidy is now set when parserTests are run with the tidy option to match
+  output on wiki.
+* (T37472) update.php will purge ResourceLoader cache unless --nopurge is passed to it.
+* (T72109) mediawiki.language should respect $wgTranslateNumerals in convertNumber().
+
+=== Action API changes in 1.25 ===
+* (T67403) XML tag highlighting is now only performed for formats
+  "xmlfm" and "wddxfm".
+* action=paraminfo supports generalized submodules (modules=query+value),
+  querymodules and formatmodules are deprecated
+* action=paraminfo no longer outputs descriptions and other help text by
+  default. If needed, it may be requested using the new 'helpformat' parameter.
+* action=help has been completely rewritten, and outputs help in HTML
+  rather than plain text.
+* Hitting api.php without specifying an action now displays only the help for
+  the main module, with links to submodule help.
+* API help is no longer displayed on errors.
+* 'uselang' is now a recognized API parameter; "uselang=user" may be used to
+  explicitly select the language from the current user's preferences, and
+  "uselang=content" may be used to select the wiki's content language.
+* Default output format for the API is now jsonfm.
+* Simplified continuation will return a "batchcomplete" property in the result
+  when a batch of pages is complete.
+* Pretty-printed HTML output now has nicer formatting and (if available)
+  better syntax highlighting.
+* Deprecated list=deletedrevs in favor of newly-added prop=deletedrevisions and
+  list=alldeletedrevisions.
+* prop=revisions will gracefully continue when given too many revids or titles,
+  rather than just ignoring the extras.
+* prop=revisions will no longer die if rvcontentformat doesn't match a
+  revision's content model; it will instead warn and omit the content.
+* If the user has the 'deletedhistory' right, action=query's revids parameter
+  will now recognize deleted revids.
+* prop=revisions may be used as a generator, generating revids.
+* (T68776) format=json results will no longer be corrupted when
+  $wgMangleFlashPolicy is in effect. format=php results will cleanly return an
+  error instead of returning invalid serialized data.
+* Generators may now return data for the generated pages when used with
+  action=query.
+* Query page data for generator=search and generator=prefixsearch will now
+  include an "index" field, which may be used by the client for sorting the
+  search results.
+* ApiOpenSearch now supports XML output.
+* ApiOpenSearch will now output descriptions and URLs as array indexes 2 and 3
+  in JSON format.
+* (T76051) list=tags will now continue correctly.
+* (T76052) list=tags can now indicate whether a tag is defined.
+* (T75522) list=prefixsearch now supports continuation
+* (T78737) action=expandtemplates can now return page properties.
+* (T78690) list=allimages now accepts multiple pipe-separated values
+  for the 'aimime' parameter.
+* prop=info with inprop=protections will now return applicable protection types
+  with the 'restrictiontypes' key.
+* (T85417) When resolving redirects, ApiPageSet will now add the targets of
+  interwiki redirects to the list of interwiki titles.
+* (T85417) When outputting the list of redirect titles, a 'tointerwiki'
+  property (like the existing 'tofragment' property) will be set.
+* Added action=managetags to allow for managing the list of
+  user-modifiable change tags. Actually modifying the tagging of a revision or
+  log entry is not implemented yet.
+* list=tags has additional properties to indicate 'active' status and tag
+  sources.
+* siprop=libraries was added to ApiQuerySiteInfo to list installed external libraries.
+* (T88010) Added action=checktoken, to test a CSRF token's validity.
+* (T88010) Added intestactions to prop=info, to allow querying of
+  Title::userCan() via the API.
+* Default type param for query list=watchlist and list=recentchanges has
+  been changed from all types (e.g. including 'external') to 'edit|new|log'.
+* Added formatversion to format=json. Still "experimental" as further changes
+  to the output formatting might still be made.
+* (T73020) Log event details are now always under a 'params' subkey for
+  list=logevents, and a 'logparams' subkey for list=watchlist and
+  list=recentchanges.
+* Log event details are changing formatting:
+  * block events now report flags as an array rather than as a comma-separated
+    list.
+  * patrol events now report the 'auto' flag as a boolean (absent/empty string
+    for BC formats) rather than as an integer.
+  * rights events now report the old and new group lists as arrays rather than
+    as comma-separated lists.
+  * merge events use new-style formatting.
+  * delete/event and delete/revision events use new-style formatting.
+* The root node and various other nodes will now always be an object in formats
+  such as json that distinguish between arrays and objects.
+  * Except for action=opensearch where the spec requires an array.
+
+=== Action API internal changes in 1.25 ===
+* ApiHelp has been rewritten to support i18n and paginated HTML output.
+  Most existing modules should continue working without changes, but should do
+  the following:
+  * Add an i18n message "apihelp-{$moduleName}-description" to replace getDescription().
+  * Add i18n messages "apihelp-{$moduleName}-param-{$param}" for each parameter
+    to replace getParamDescription(). If necessary, the settings array returned
+    by getParams() can use the new ApiBase::PARAM_HELP_MSG key to override the
+    message.
+  * Implement getExamplesMessages() to replace getExamples().
+* Modules with submodules (like action=query) must have their submodules
+  override ApiBase::getParent() to return the correct parent object.
+* The 'APIGetDescription' and 'APIGetParamDescription' hooks are deprecated,
+  and will have no effect for modules using i18n messages. Use
+  'APIGetDescriptionMessages' and 'APIGetParamDescriptionMessages' instead.
+* Api formatters will no longer be asked to display the help screen on errors.
+* ApiMain::getCredits() was removed. The credits are available in the
+  'api-credits' i18n message.
+* ApiFormatBase has been changed to support i18n and syntax highlighting via
+  extensions with the new 'ApiFormatHighlight' hook. Core syntax highlighting
+  has been removed.
+* ApiFormatBase now always buffers. Output is done when
+  ApiFormatBase::closePrinter is called.
+* Much of the logic in ApiQueryRevisions has been split into ApiQueryRevisionsBase.
+* The 'revids' parameter supplied by ApiPageSet will now count deleted
+  revisions as "good" if the user has the 'deletedhistory' right. New methods
+  ApiPageSet::getLiveRevisionIDs() and ApiPageSet::getDeletedRevisionIDs() are
+  provided to access just the live or just the deleted revids.
+* Added ApiPageSet::setGeneratorData() and ApiPageSet::populateGeneratorData()
+  to allow generators to include data in the action=query result.
+* New hooks 'ApiMain::moduleManager' and 'ApiQuery::moduleManager', can be
+  used for conditional registration of API modules.
+* Added ApiBase::lacksSameOriginSecurity() to allow modules to easily check if
+  the current request was sent with the 'callback' parameter (or any future
+  method that breaks the same-origin policy).
+* Profiling methods in ApiBase are deprecated and no longer need to be called.
+* ApiResult was greatly overhauled. See inline documentation for details.
+* ApiResult will automatically convert objects to strings or arrays (depending
+  on whether a __toString() method exists on the object), and will refuse to
+  add unsupported value types.
+  * An informal interface, ApiSerializable, exists to override the default
+    object conversion.
+* ApiResult/ApiFormatBase "raw mode" is deprecated.
+* ApiFormatXml now assumes defaults and so on instead of throwing errors when
+  metadata isn't set.
+* (T35235) LogFormatter subclasses are now responsible for formatting log event
+  parameters for the API.
+* Many modules have changed result data formats. While this shouldn't affect
+  clients not using the experimental formatversion=2, code using
+  ApiResult::getResultData() without the transformations for backwards
+  compatibility may need updating, as will code that wasn't following the old
+  conventions for API boolean output.
+* The following methods have been deprecated and may be removed in a future
+  release:
+  * ApiBase::getDescription
+  * ApiBase::getParamDescription
+  * ApiBase::getExamples
+  * ApiBase::makeHelpMsg
+  * ApiBase::makeHelpArrayToString
+  * ApiBase::makeHelpMsgParameters
+  * ApiBase::getModuleProfileName
+  * ApiBase::profileIn
+  * ApiBase::profileOut
+  * ApiBase::safeProfileOut
+  * ApiBase::getProfileTime
+  * ApiBase::profileDBIn
+  * ApiBase::profileDBOut
+  * ApiBase::getProfileDBTime
+  * ApiBase::getResultData
+  * ApiFormatBase::setUnescapeAmps
+  * ApiFormatBase::getWantsHelp
+  * ApiFormatBase::setHelp
+  * ApiFormatBase::formatHTML
+  * ApiFormatBase::setBufferResult
+  * ApiFormatBase::getDescription
+  * ApiFormatBase::getNeedsRawData
+  * ApiMain::setHelp
+  * ApiMain::reallyMakeHelpMsg
+  * ApiMain::makeHelpMsgHeader
+  * ApiResult::setRawMode
+  * ApiResult::getIsRawMode
+  * ApiResult::getData
+  * ApiResult::setElement
+  * ApiResult::setContent
+  * ApiResult::setIndexedTagName_recursive
+  * ApiResult::setIndexedTagName_internal
+  * ApiResult::setParsedLimit
+  * ApiResult::beginContinuation
+  * ApiResult::setContinueParam
+  * ApiResult::setGeneratorContinueParam
+  * ApiResult::endContinuation
+  * ApiResult::size
+  * ApiResult::convertStatusToArray
+  * ApiQueryImageInfo::getPropertyDescriptions
+  * ApiQueryLogEvents::addLogParams
+* The following classes have been deprecated and may be removed in a future
+  release:
+  * ApiQueryDeletedrevs
+
+=== Languages updated in 1.25 ===
+
+MediaWiki supports over 350 languages. Many localisations are updated
+regularly. Below only new and removed languages are listed, as well as
+changes to languages because of Bugzilla reports.
+
+* Languages added:
+** awa (अवधी / Awadhi), thanks to translator 1AnuraagPandey;
+** bgn (بلوچی رخشانی / Western Balochi), thanks to translators
+   Baloch Afghanistan, Ibrahim khashrowdi and Rachitrali;
+** ses (Koyraboro Senni), thanks to translator Songhay.
+* (T66440) Kazakh (kk) wikis should no longer forcefully reset the user's
+  interface language to kk where unexpected.
+* The Chinese conversion table was substantially updated to fix a lot of
+  bugs and ensure better reading experience for different variants.
+
+=== Other changes in 1.25 ===
+* (T45591) Links to MediaWiki.org translatable help were added to indicators,
+  mostly in special pages. Local custom target titles can be placed in the
+  relevant '(namespace-X|action name|special page name)-helppage' system
+  message. Extensions can use the addHelpLink() function to do the same.
+* The skin autodiscovery mechanism, deprecated in MediaWiki 1.23, has been
+  removed. See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery for
+  migration guide for creators and users of custom skins that relied on it.
+* Javascript variables 'wgFileCanRotate' and 'wgFileExtensions' now only
+  available on Special:Upload.
+* (T58257) Set site logo from mediawiki.skinning.interface module instead of
+  inline styles in the HTML.
+* Removed ApiQueryUsers::getAutoGroups(). (deprecated since 1.20)
+* Removed XmlDumpWriter::schemaVersion(). (deprecated since 1.20)
+* Removed LogEventsList::getDisplayTitle(). (deprecated since 1.20)
+* Removed Preferences::trySetUserEmail(). (deprecated since 1.20)
+* Removed mw.user.name() and mw.user.anonymous() methods. (deprecated since 1.20)
+* Removed 'ok' and 'err' parameters in the mediawiki.api modules. (deprecated
+  since 1.20)
+* Removed 'async' parameter from the  mw.Api#getCategories() method. (deprecated
+  since 1.20)
+* Removed 'jquery.json' module. (deprecated since 1.24)
+  Use the 'json' module and global JSON object instead.
+* Deprecated OutputPage::readOnlyPage() and OutputPage::rateLimited().
+  Also, the former will now throw an MWException if called with one or more
+  arguments.
+* Removed hitcounters and associated code.
+* The "temp" zone of the upload respository is now considered private. If it
+  already exists (such as under the images/ directory), please make sure that
+  the directory is not web readable (e.g. via a .htaccess file).
+* BREAKING CHANGE: In the XML dump format used by Special:Export and
+  dumpBackup.php, the <model> and <format> tags now apprear before the <text>
+  tag, instead of after the <text> and <sha1> tags.
+  The new schema version is 0.10, the new schema URI is:
+  https://www.mediawiki.org/xml/export-0.10.xsd
+* MWFunction::call() and MWFunction::callArray() were removed, having being
+  deprecated in 1.22.
+* Deprecated the getInternalLinkAttributes, getInternalLinkAttributesObj,
+  and getInternalLinkAttributes methods in Linker, and removed
+  getExternalLinkAttributes method, which was deprecated in MediaWiki 1.18.
+* Removed Sites class, which was deprecated in 1.21 and replaced by SiteSQLStore.
+* Added wgRelevantArticleId to the client-side config, for use on special pages.
+* Deprecated the TitleIsCssOrJsPage hook. Superseded by the
+  ContentHandlerDefaultModelFor hook since MediaWiki 1.21.
+* Deprecated the TitleIsWikitextPage hook. Superseded by the
+  ContentHandlerDefaultModelFor hook since MediaWiki 1.21.
+* Changed parsing of variables in schema (.sql) files:
+** The substituted values are no longer parsed. (Formerly, several passes
+   were made for each variable, so depending on the order in which variables
+   were defined, variables might have been found inside encoded values. This
+   is no longer the case.)
+** Variables are no longer string encoded when the /*$var*/ syntax is used.
+   If string encoding is necessary, use the '{$var}' syntax instead.
+** Variable names must only consist of one or more of the characters
+   "A-Za-z0-9_".
+** In source text of the form '{$A}'{$B}' or `{$A}`{$B}`, where variable A
+   does not exist yet variable B does, the latter may not be replaced.
+   However, this difference is unlikely to arise in practice.
+* (T67278) RFC, PMID, and ISBN "magic links" must be surrounded by non-word
+  characters on both sides.
+* The FormatAutocomments hook will now receive $pre and $post as booleans,
+  rather than as strings that must be prepended or appended to $comment.
+* (T30950, T31025) RFC, PMID, and ISBN "magic links" can no longer contain
+  newlines; but they can contain &nbsp; and other non-newline whitespace.
+* The 'mediawiki.action.edit' ResourceLoader module no longer generates the edit
+  toolbar, which has been moved to a separate 'mediawiki.toolbar' module. If you
+  relied on this behavior, update your scripts' dependencies.
+* HTMLForm's 'vform' display style has been separated to a subclass. Therefore:
+  * HTMLForm::isVForm() is now deprecated.
+  * You can no longer do this:
+      $form = new HTMLForm( … );
+      $form->setDisplayFormat( 'vform' ); // throws exception
+    Instead, do this:
+      $form = HTMLForm::factory( 'vform', … );
+* Deprecated Revision methods getRawUser(), getRawUserText() and getRawComment().
+* BREAKING CHANGE: mediawiki.user.generateRandomSessionId:
+  The alphabet of the prior string returned was A-Za-z0-9 and now it is 0-9A-F
+* (T87504) Avoid serving SVG background-images in CSS for Opera 12, which
+  renders them incorrectly when combined with border-radius or background-size.
+* Removed maintenance script dumpSisterSites.php.
+* DatabaseBase class constructors must be called using the array argument style.
+  Ideally, DatabaseBase:factory() should be used instead in most cases.
+* Deprecated ParserOutput::addSecondaryDataUpdate and ParserOutput::getSecondaryDataUpdates.
+  This is a hard deprecation, with getSecondaryDataUpdates returning an empty array and
+  addSecondaryDataUpdate throwing an exception. These functions will be removed in 1.26,
+  since they interfere with caching of ParserOutput objects.
+* Introduced new hook 'SecondaryDataUpdates' that allows extensions to inject custom updates.
+* Introduced new hook 'OpportunisticLinksUpdate' that allows extensions to perform
+  updates when a page is re-rendered.
+* EditPage::attemptSave has been modified not to call handleStatus itself and
+  instead just returns the Status object. Extension calling it should be aware of
+  this.
+* Removed class DBObject. (unused since 1.10)
+* wfDiff() is deprecated.
+* The -m (maximum replication lag) option of refreshLinks.php was removed.
+  It had no effect since MediaWiki 1.18 and should be removed from any cron
+  jobs or similar scripts you may have set up.
+* (T85864) The following messages no longer support raw html: redirectto,
+  thisisdeleted, viewdeleted, editlink, retrievedfrom, version-poweredby-others,
+  retrievedfrom, thisisdeleted, viewsourcelink, lastmodifiedat, laggedslavemode,
+  protect-summary-cascade
+* All BloomCache related code has been removed. This was largely experimental.
+* $wgResourceModuleSkinStyles no longer supports per-module local or remote paths. They
+  can only be set for the entire skin.
+* Removed global function swap(). (deprecated since 1.24)
+* Deprecated the ".php5" file extension entry points and the $wgScriptExtension
+  configuration variable. Refer to the ".php" files instead. If you want
+  ".php5" URLs to continue to work, set up redirects. In Apache, this can be
+  done by enabling mod_rewrite and adding the following rules to your
+  configuration:
+
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^(.*)\.php5 $1.php [R=301,L]
+
+* The global importScriptURI and importStylesheetURI functions, as well as the
+  loadedScripts object, from wikibits.js (deprecated since 1.17) now emit
+  warnings through mw.log.warn when accessed.
+
+
+== Compatibility ==
+
+MediaWiki 1.25 requires PHP 5.3.3 or later. There is experimental support for
+HHVM 3.3.0.
+
+MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but
+support for them is somewhat less mature. There is experimental support for
+Oracle and Microsoft SQL Server.
+
+The supported versions are:
+
+* MySQL 5.0.3 or later
+* PostgreSQL 8.3 or later
+* SQLite 3.3.7 or later
+* Oracle 9.0.1 or later
+* Microsoft SQL Server 2005 (9.00.1399)
+
+== Upgrading ==
+
+1.25 has several database changes since 1.24, and will not work without schema
+updates. Note that due to changes to some very large tables like the revision
+table, the schema update may take quite long (minutes on a medium sized site,
+many hours on a large site).
+
+If upgrading from before 1.11, and you are using a wiki as a commons
+repository, make sure that it is updated as well. Otherwise, errors may arise
+due to database schema changes.
+
+If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
+new database fields are filled with data.
+
+If you are upgrading from MediaWiki 1.4.x or earlier, you should upgrade to
+1.5 first. The upgrade script maintenance/upgrade1_5.php has been removed
+with MediaWiki 1.21.
+
+Don't forget to always back up your database before upgrading!
+
+See the file UPGRADE for more detailed upgrade instructions.
+
+For notes on 1.24.x and older releases, see HISTORY.
 
 == MediaWiki 1.24 ==
 
@@ -194,6 +740,13 @@ Change notes from older releases. For current info see RELEASE-NOTES-1.25.
   Special:DeletedContributions
 * Added DeletedContributionsLineEnding hook allowing extensions to format
   Special:DeletedContributions lines
+* (T69525) You can now make MediaWiki speed up its thumbnail rendering by using
+  intermediary thumbnails. $wgThumbnailBuckets must be set to a list of target
+  thumbnail widths; when a new thumbnail needs to be rendered, MediaWiki will
+  find the smallest bucket smaller than the original but larger than the target
+  width + $wgThumbnailMinimumBucketDistance, and it will scale that thumbnail,
+  rather than the original, down to the target size at greater speed in return
+  for minor loss of fidelity.
 
 === Bug fixes in 1.24 ===
 * (bug 50572) MediaWiki:Blockip should support gender

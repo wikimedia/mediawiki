@@ -88,15 +88,13 @@ class DeletedContribsPager extends IndexPager {
 	 * @return ResultWrapper
 	 */
 	function reallyDoQuery( $offset, $limit, $descending ) {
-		$pager = $this;
-
 		$data = array( parent::reallyDoQuery( $offset, $limit, $descending ) );
 
 		// This hook will allow extensions to add in additional queries, nearly
 		// identical to ContribsPager::reallyDoQuery.
 		Hooks::run(
 			'DeletedContribsPager::reallyDoQuery',
-			array( &$data, $pager, $offset, $limit, $descending )
+			array( &$data, $this, $offset, $limit, $descending )
 		);
 
 		$result = array();
@@ -203,14 +201,14 @@ class DeletedContribsPager extends IndexPager {
 		 * we're definitely dealing with revision data and we may proceed, if not, we'll leave it
 		 * to extensions to subscribe to the hook to parse the row.
 		 */
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		try {
 			$rev = Revision::newFromArchiveRow( $row );
 			$validRevision = (bool)$rev->getId();
 		} catch ( Exception $e ) {
 			$validRevision = false;
 		}
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( $validRevision ) {
 			$ret = $this->formatRevisionRow( $row );

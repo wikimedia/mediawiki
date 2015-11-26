@@ -86,7 +86,7 @@ class AjaxResponse {
 
 		$this->mDisabled = false;
 		$this->mText = '';
-		$this->mResponseCode = '200 OK';
+		$this->mResponseCode = 200;
 		$this->mLastModified = false;
 		$this->mContentType = 'application/x-wiki';
 
@@ -158,16 +158,20 @@ class AjaxResponse {
 	 */
 	function sendHeaders() {
 		if ( $this->mResponseCode ) {
-			$n = preg_replace( '/^ *(\d+)/', '\1', $this->mResponseCode );
-			header( "Status: " . $this->mResponseCode, true, (int)$n );
+			// For back-compat, it is supported that mResponseCode be a string like " 200 OK"
+			// (with leading space and the status message after). Cast response code to an integer
+			// to take advantage of PHP's conversion rules which will turn "  200 OK" into 200.
+			// http://php.net/string#language.types.string.conversion
+			$n = intval( trim( $this->mResponseCode ) );
+			HttpStatus::header( $n );
 		}
 
-		header ( "Content-Type: " . $this->mContentType );
+		header( "Content-Type: " . $this->mContentType );
 
 		if ( $this->mLastModified ) {
-			header ( "Last-Modified: " . $this->mLastModified );
+			header( "Last-Modified: " . $this->mLastModified );
 		} else {
-			header ( "Last-Modified: " . gmdate( "D, d M Y H:i:s" ) . " GMT" );
+			header( "Last-Modified: " . gmdate( "D, d M Y H:i:s" ) . " GMT" );
 		}
 
 		if ( $this->mCacheDuration ) {
@@ -189,20 +193,20 @@ class AjaxResponse {
 
 			} else {
 				# Let the client do the caching. Cache is not purged.
-				header ( "Expires: " . gmdate( "D, d M Y H:i:s", time() + $this->mCacheDuration ) . " GMT" );
-				header ( "Cache-Control: s-maxage={$this->mCacheDuration}," .
+				header( "Expires: " . gmdate( "D, d M Y H:i:s", time() + $this->mCacheDuration ) . " GMT" );
+				header( "Cache-Control: s-maxage={$this->mCacheDuration}," .
 					"public,max-age={$this->mCacheDuration}" );
 			}
 
 		} else {
 			# always expired, always modified
-			header ( "Expires: Mon, 26 Jul 1997 05:00:00 GMT" );    // Date in the past
-			header ( "Cache-Control: no-cache, must-revalidate" );  // HTTP/1.1
-			header ( "Pragma: no-cache" );                          // HTTP/1.0
+			header( "Expires: Mon, 26 Jul 1997 05:00:00 GMT" );    // Date in the past
+			header( "Cache-Control: no-cache, must-revalidate" );  // HTTP/1.1
+			header( "Pragma: no-cache" );                          // HTTP/1.0
 		}
 
 		if ( $this->mVary ) {
-			header ( "Vary: " . $this->mVary );
+			header( "Vary: " . $this->mVary );
 		}
 	}
 
@@ -246,7 +250,7 @@ class AjaxResponse {
 				$ismodsince >= $wgCacheEpoch
 			) {
 				ini_set( 'zlib.output_compression', 0 );
-				$this->setResponseCode( "304 Not Modified" );
+				$this->setResponseCode( 304 );
 				$this->disable();
 				$this->mLastModified = $lastmod;
 

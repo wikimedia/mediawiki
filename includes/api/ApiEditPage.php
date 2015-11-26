@@ -35,6 +35,8 @@
  */
 class ApiEditPage extends ApiBase {
 	public function execute() {
+		$this->useTransactionalTimeLimit();
+
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
@@ -96,8 +98,14 @@ class ApiEditPage extends ApiBase {
 			$contentHandler = ContentHandler::getForModelID( $params['contentmodel'] );
 		}
 
-		// @todo Ask handler whether direct editing is supported at all! make
-		// allowFlatEdit() method or some such
+		$name = $titleObj->getPrefixedDBkey();
+		$model = $contentHandler->getModelID();
+		if ( $contentHandler->supportsDirectApiEditing() === false ) {
+			$this->dieUsage(
+				"Direct editing via API is not supported for content model $model used by $name",
+				'no-direct-editing'
+			);
+		}
 
 		if ( !isset( $params['contentformat'] ) || $params['contentformat'] == '' ) {
 			$params['contentformat'] = $contentHandler->getDefaultFormat();
@@ -106,8 +114,6 @@ class ApiEditPage extends ApiBase {
 		$contentFormat = $params['contentformat'];
 
 		if ( !$contentHandler->isSupportedFormat( $contentFormat ) ) {
-			$name = $titleObj->getPrefixedDBkey();
-			$model = $contentHandler->getModelID();
 
 			$this->dieUsage( "The requested format $contentFormat is not supported for content model " .
 				" $model used by $name", 'badformat' );
@@ -126,7 +132,30 @@ class ApiEditPage extends ApiBase {
 			$errors = array_merge( $errors, $titleObj->getUserPermissionsErrors( 'create', $user ) );
 		}
 		if ( count( $errors ) ) {
-			$this->dieUsageMsg( $errors[0] );
+			if ( is_array( $errors[0] ) ) {
+				switch ( $errors[0][0] ) {
+					case 'blockedtext':
+						$this->dieUsage(
+							'You have been blocked from editing',
+							'blocked',
+							0,
+							array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) )
+						);
+						break;
+					case 'autoblockedtext':
+						$this->dieUsage(
+							'Your IP address has been blocked automatically, because it was used by a blocked user',
+							'autoblocked',
+							0,
+							array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) )
+						);
+						break;
+					default:
+						$this->dieUsageMsg( $errors[0] );
+				}
+			} else {
+				$this->dieUsageMsg( $errors[0] );
+			}
 		}
 
 		$toMD5 = $params['text'];
@@ -242,7 +271,7 @@ class ApiEditPage extends ApiBase {
 				$titleObj->getNextRevisionID( $undoafterRev->getID() ) == $params['undo']
 			) {
 				$params['summary'] = wfMessage( 'undo-summary' )
-					->params ( $params['undo'], $undoRev->getUserText() )->inContentLanguage()->text();
+					->params( $params['undo'], $undoRev->getUserText() )->inContentLanguage()->text();
 			}
 		}
 
@@ -277,16 +306,16 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpUndidRevision'] = $params['undo'];
 		}
 
-		// Watch out for basetimestamp == ''
-		// wfTimestamp() treats it as NOW, almost certainly causing an edit conflict
-		if ( !is_null( $params['basetimestamp'] ) && $params['basetimestamp'] != '' ) {
-			$requestArray['wpEdittime'] = wfTimestamp( TS_MW, $params['basetimestamp'] );
+		// Watch out for basetimestamp == '' or '0'
+		// It gets treated as NOW, almost certainly causing an edit conflict
+		if ( $params['basetimestamp'] !== null && (bool)$this->getMain()->getVal( 'basetimestamp' ) ) {
+			$requestArray['wpEdittime'] = $params['basetimestamp'];
 		} else {
 			$requestArray['wpEdittime'] = $pageObj->getTimestamp();
 		}
 
-		if ( !is_null( $params['starttimestamp'] ) && $params['starttimestamp'] != '' ) {
-			$requestArray['wpStarttime'] = wfTimestamp( TS_MW, $params['starttimestamp'] );
+		if ( $params['starttimestamp'] !== null ) {
+			$requestArray['wpStarttime'] = $params['starttimestamp'];
 		} else {
 			$requestArray['wpStarttime'] = wfTimestampNow(); // Fake wpStartime
 		}
@@ -362,9 +391,7 @@ class ApiEditPage extends ApiBase {
 
 		$ep = new EditPage( $articleObject );
 
-		// allow editing of non-textual content.
-		$ep->allowNonTextContent = true;
-
+		$ep->setApiEditOverride( true );
 		$ep->setContextTitle( $titleObj );
 		$ep->importFormData( $req );
 		$content = $ep->textbox1;
@@ -448,7 +475,12 @@ class ApiEditPage extends ApiBase {
 				$this->dieUsageMsg( array( 'spamdetected', $result['spam'] ) );
 
 			case EditPage::AS_BLOCKED_PAGE_FOR_USER:
-				$this->dieUsageMsg( 'blockedtext' );
+				$this->dieUsage(
+					'You have been blocked from editing',
+					'blocked',
+					0,
+					array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) )
+				);
 
 			case EditPage::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case EditPage::AS_CONTENT_TOO_BIG:
@@ -495,7 +527,7 @@ class ApiEditPage extends ApiBase {
 				$r['result'] = 'Success';
 				$r['pageid'] = intval( $titleObj->getArticleID() );
 				$r['title'] = $titleObj->getPrefixedText();
-				$r['contentmodel'] = $titleObj->getContentModel();
+				$r['contentmodel'] = $articleObject->getContentModel();
 				$newRevId = $articleObject->getLatest();
 				if ( $newRevId == $oldRevId ) {
 					$r['nochange'] = true;
@@ -541,7 +573,9 @@ class ApiEditPage extends ApiBase {
 			'sectiontitle' => array(
 				ApiBase::PARAM_TYPE => 'string',
 			),
-			'text' => null,
+			'text' => array(
+				ApiBase::PARAM_TYPE => 'text',
+			),
 			'summary' => null,
 			'tags' => array(
 				ApiBase::PARAM_TYPE => ChangeTags::listExplicitlyDefinedTags(),
@@ -550,8 +584,12 @@ class ApiEditPage extends ApiBase {
 			'minor' => false,
 			'notminor' => false,
 			'bot' => false,
-			'basetimestamp' => null,
-			'starttimestamp' => null,
+			'basetimestamp' => array(
+				ApiBase::PARAM_TYPE => 'timestamp',
+			),
+			'starttimestamp' => array(
+				ApiBase::PARAM_TYPE => 'timestamp',
+			),
 			'recreate' => false,
 			'createonly' => false,
 			'nocreate' => false,
@@ -573,8 +611,12 @@ class ApiEditPage extends ApiBase {
 				),
 			),
 			'md5' => null,
-			'prependtext' => null,
-			'appendtext' => null,
+			'prependtext' => array(
+				ApiBase::PARAM_TYPE => 'text',
+			),
+			'appendtext' => array(
+				ApiBase::PARAM_TYPE => 'text',
+			),
 			'undo' => array(
 				ApiBase::PARAM_TYPE => 'integer'
 			),

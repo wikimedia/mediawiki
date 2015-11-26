@@ -18,7 +18,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 	protected function setUp() {
 		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc, $wgUser,
 			$wgLang, $wgOut, $wgRequest, $wgStyleDirectory,
-			$wgEnableParserCache, $wgNamespaceAliases, $wgNamespaceProtection,
+			$wgParserCacheType, $wgNamespaceAliases, $wgNamespaceProtection,
 			$parserMemc;
 
 		$tmpGlobals = array();
@@ -56,7 +56,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		$wgNamespaceAliases['Image'] = NS_FILE;
 		$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
 
-		$wgEnableParserCache = false;
+		$wgParserCacheType = CACHE_NONE;
 		DeferredUpdates::clearPendingUpdates();
 		$wgMemc = wfGetMainCache();
 		$messageMemc = wfGetMessageCacheStorage();

@@ -101,7 +101,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'МоньКорхнемазе' ),
 	'Newimages'                 => array( 'ОдНяйфне' ),
 	'Newpages'                  => array( 'ОдЛопат' ),
-
 	'Preferences'               => array( 'Латцематне' ),
 	'Prefixindex'               => array( 'ВалынгольксИндекс' ),
 	'Protectedpages'            => array( 'АралафЛопат' ),

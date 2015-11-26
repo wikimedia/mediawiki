@@ -16,5 +16,7 @@
 	"ooui-dialog-process-error": "Dogoggorri wayii ummameera",
 	"ooui-dialog-process-dismiss": "Didi",
 	"ooui-dialog-process-retry": "Itti deebi'ii yaali",
-	"ooui-dialog-process-continue": "Itti fufi"
+	"ooui-dialog-process-continue": "Itti fufi",
+	"ooui-selectfile-not-supported": "Faayilii filachuun hin danda'amu.",
+	"ooui-selectfile-placeholder": "Faayiliin wayiiyyuu hin filatamne"
 }

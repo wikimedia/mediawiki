@@ -102,7 +102,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 			case self::EDIT_NORMAL:
 			default:
-			$this->executeViewEditWatchlist();
+				$this->executeViewEditWatchlist();
 				break;
 		}
 	}
@@ -299,7 +299,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	private function getWatchlist() {
 		$list = array();
-		$dbr = wfGetDB( DB_MASTER );
+
+		$index = $this->getRequest()->wasPosted() ? DB_MASTER : DB_SLAVE;
+		$dbr = wfGetDB( $index );
 
 		$res = $dbr->select(
 			'watchlist',
@@ -312,6 +314,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		);
 
 		if ( $res->numRows() > 0 ) {
+			/** @var Title[] $titles */
 			$titles = array();
 			foreach ( $res as $row ) {
 				$title = Title::makeTitleSafe( $row->wl_namespace, $row->wl_title );

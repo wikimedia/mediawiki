@@ -43,6 +43,10 @@ class EmailConfirmation extends UnlistedSpecialPage {
 	 * @throws UserNotLoggedIn
 	 */
 	function execute( $code ) {
+		// Ignore things like master queries/connections on GET requests.
+		// It's very convenient to just allow formless link usage.
+		Profiler::instance()->getTransactionProfiler()->resetExpectations();
+
 		$this->setHeaders();
 
 		$this->checkReadOnly();
@@ -151,6 +155,10 @@ class EmailInvalidation extends UnlistedSpecialPage {
 	}
 
 	function execute( $code ) {
+		// Ignore things like master queries/connections on GET requests.
+		// It's very convenient to just allow formless link usage.
+		Profiler::instance()->getTransactionProfiler()->resetExpectations();
+
 		$this->setHeaders();
 		$this->checkReadOnly();
 		$this->checkPermissions();

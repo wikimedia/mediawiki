@@ -126,7 +126,8 @@ class ApiFeedWatchlist extends ApiBase {
 
 			$msg = wfMessage( 'watchlist' )->inContentLanguage()->text();
 
-			$feedTitle = $this->getConfig()->get( 'Sitename' ) . ' - ' . $msg . ' [' . $this->getConfig()->get( 'LanguageCode' ) . ']';
+			$feedTitle = $this->getConfig()->get( 'Sitename' ) . ' - ' . $msg .
+				' [' . $this->getConfig()->get( 'LanguageCode' ) . ']';
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullURL();
 
 			$feed = new $feedClasses[$params['feedformat']] (
@@ -168,6 +169,11 @@ class ApiFeedWatchlist extends ApiBase {
 	 * @return FeedItem
 	 */
 	private function createFeedItem( $info ) {
+		if ( !isset( $info['title'] ) ) {
+			// Probably a revdeled log entry, skip it.
+			return null;
+		}
+
 		$titleStr = $info['title'];
 		$title = Title::newFromText( $titleStr );
 		$curidParam = array();
@@ -204,9 +210,14 @@ class ApiFeedWatchlist extends ApiBase {
 		}
 
 		$timestamp = $info['timestamp'];
-		$user = $info['user'];
 
-		$completeText = "$comment ($user)";
+		if ( isset( $info['user'] ) ) {
+			$user = $info['user'];
+			$completeText = "$comment ($user)";
+		} else {
+			$user = '';
+			$completeText = (string)$comment;
+		}
 
 		return new FeedItem( $titleStr, $completeText, $titleUrl, $timestamp, $user );
 	}

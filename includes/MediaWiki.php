@@ -51,6 +51,7 @@ class MediaWiki {
 	/**
 	 * Parse the request to get the Title object
 	 *
+	 * @throws MalformedTitleException If a title has been provided by the user, but is invalid.
 	 * @return Title Title object to be $wgTitle
 	 */
 	private function parseTitle() {
@@ -110,7 +111,10 @@ class MediaWiki {
 		}
 
 		if ( $ret === null || ( $ret->getDBkey() == '' && !$ret->isExternal() ) ) {
-			$ret = SpecialPage::getTitleFor( 'Badtitle' );
+			// If we get here, we definitely don't have a valid title; throw an exception.
+			// Try to get detailed invalid title exception first, fall back to MalformedTitleException.
+			Title::newFromTextThrow( $title );
+			throw new MalformedTitleException( 'badtitletext', $title );
 		}
 
 		return $ret;
@@ -122,7 +126,11 @@ class MediaWiki {
 	 */
 	public function getTitle() {
 		if ( !$this->context->hasTitle() ) {
-			$this->context->setTitle( $this->parseTitle() );
+			try {
+				$this->context->setTitle( $this->parseTitle() );
+			} catch ( MalformedTitleException $ex ) {
+				$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
+			}
 		}
 		return $this->context->getTitle();
 	}
@@ -174,6 +182,11 @@ class MediaWiki {
 			|| $title->isSpecial( 'Badtitle' )
 		) {
 			$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
+			try {
+				$this->parseTitle();
+			} catch ( MalformedTitleException $ex ) {
+				throw new BadTitleError( $ex );
+			}
 			throw new BadTitleError();
 		}
 
@@ -219,65 +232,116 @@ class MediaWiki {
 				$output->redirect( $url, 301 );
 			} else {
 				$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
+				try {
+					$this->parseTitle();
+				} catch ( MalformedTitleException $ex ) {
+					throw new BadTitleError( $ex );
+				}
 				throw new BadTitleError();
 			}
-		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
-		} elseif ( $request->getVal( 'action', 'view' ) == 'view' && !$request->wasPosted()
-			&& ( $request->getVal( 'title' ) === null
-				|| $title->getPrefixedDBkey() != $request->getVal( 'title' ) )
-			&& !count( $request->getValueNames( array( 'action', 'title' ) ) )
-			&& Hooks::run( 'TestCanonicalRedirect', array( $request, $title, $output ) )
-		) {
-			if ( $title->isSpecialPage() ) {
-				list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
-				if ( $name ) {
-					$title = SpecialPage::getTitleFor( $name, $subpage );
-				}
-			}
-			$targetUrl = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
-			// Redirect to canonical url, make it a 301 to allow caching
-			if ( $targetUrl == $request->getFullRequestURL() ) {
-				$message = "Redirect loop detected!\n\n" .
-					"This means the wiki got confused about what page was " .
-					"requested; this sometimes happens when moving a wiki " .
-					"to a new server or changing the server configuration.\n\n";
+		// Handle any other redirects.
+		// Redirect loops, titleless URL, $wgUsePathInfo URLs, and URLs with a variant
+		} elseif ( !$this->tryNormaliseRedirect( $title ) ) {
 
-				if ( $this->config->get( 'UsePathInfo' ) ) {
-					$message .= "The wiki is trying to interpret the page " .
-						"title from the URL path portion (PATH_INFO), which " .
-						"sometimes fails depending on the web server. Try " .
-						"setting \"\$wgUsePathInfo = false;\" in your " .
-						"LocalSettings.php, or check that \$wgArticlePath " .
-						"is correct.";
+			// Special pages
+			if ( NS_SPECIAL == $title->getNamespace() ) {
+				// Actions that need to be made when we have a special pages
+				SpecialPageFactory::executePath( $title, $this->context );
+			} else {
+				// ...otherwise treat it as an article view. The article
+				// may still be a wikipage redirect to another article or URL.
+				$article = $this->initializeArticle();
+				if ( is_object( $article ) ) {
+					$this->performAction( $article, $requestTitle );
+				} elseif ( is_string( $article ) ) {
+					$output->redirect( $article );
 				} else {
-					$message .= "Your web server was detected as possibly not " .
-						"supporting URL path components (PATH_INFO) correctly; " .
-						"check your LocalSettings.php for a customized " .
-						"\$wgArticlePath setting and/or toggle \$wgUsePathInfo " .
-						"to true.";
+					throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle()"
+						. " returned neither an object nor a URL" );
 				}
-				throw new HttpError( 500, $message );
-			} else {
-				$output->setSquidMaxage( 1200 );
-				$output->redirect( $targetUrl, '301' );
-			}
-		// Special pages
-		} elseif ( NS_SPECIAL == $title->getNamespace() ) {
-			// Actions that need to be made when we have a special pages
-			SpecialPageFactory::executePath( $title, $this->context );
-		} else {
-			// ...otherwise treat it as an article view. The article
-			// may be a redirect to another article or URL.
-			$article = $this->initializeArticle();
-			if ( is_object( $article ) ) {
-				$this->performAction( $article, $requestTitle );
-			} elseif ( is_string( $article ) ) {
-				$output->redirect( $article );
-			} else {
-				throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle()"
-					. " returned neither an object nor a URL" );
 			}
 		}
+	}
+
+	/**
+	 * Handle redirects for uncanonical title requests.
+	 *
+	 * Handles:
+	 * - Redirect loops.
+	 * - No title in URL.
+	 * - $wgUsePathInfo URLs.
+	 * - URLs with a variant.
+	 * - Other non-standard URLs (as long as they have no extra query parameters).
+	 *
+	 * Behaviour:
+	 * - Normalise title values:
+	 *   /wiki/Foo%20Bar -> /wiki/Foo_Bar
+	 * - Normalise empty title:
+	 *   /wiki/ -> /wiki/Main
+	 *   /w/index.php?title= -> /wiki/Main
+	 * - Normalise non-standard title urls:
+	 *   /w/index.php?title=Foo_Bar -> /wiki/Foo_Bar
+	 * - Don't redirect anything with query parameters other than 'title' or 'action=view'.
+	 *
+	 * @param Title $title
+	 * @return bool True if a redirect was set.
+	 * @throws HttpError
+	 */
+	private function tryNormaliseRedirect( Title $title ) {
+		$request = $this->context->getRequest();
+		$output = $this->context->getOutput();
+
+		if ( $request->getVal( 'action', 'view' ) != 'view'
+			|| $request->wasPosted()
+			|| count( $request->getValueNames( array( 'action', 'title' ) ) )
+			|| !Hooks::run( 'TestCanonicalRedirect', array( $request, $title, $output ) )
+		) {
+			return false;
+		}
+
+		if ( $title->isSpecialPage() ) {
+			list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
+			if ( $name ) {
+				$title = SpecialPage::getTitleFor( $name, $subpage );
+			}
+		}
+		// Redirect to canonical url, make it a 301 to allow caching
+		$targetUrl = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
+
+		if ( $targetUrl != $request->getFullRequestURL() ) {
+			$output->setSquidMaxage( 1200 );
+			$output->redirect( $targetUrl, '301' );
+			return true;
+		}
+
+		// If there is no title, or the title is in a non-standard encoding, we demand
+		// a redirect. If cgi somehow changed the 'title' query to be non-standard while
+		// the url is standard, the server is misconfigured.
+		if ( $request->getVal( 'title' ) === null
+			|| $title->getPrefixedDBkey() != $request->getVal( 'title' )
+		) {
+			$message = "Redirect loop detected!\n\n" .
+				"This means the wiki got confused about what page was " .
+				"requested; this sometimes happens when moving a wiki " .
+				"to a new server or changing the server configuration.\n\n";
+
+			if ( $this->config->get( 'UsePathInfo' ) ) {
+				$message .= "The wiki is trying to interpret the page " .
+					"title from the URL path portion (PATH_INFO), which " .
+					"sometimes fails depending on the web server. Try " .
+					"setting \"\$wgUsePathInfo = false;\" in your " .
+					"LocalSettings.php, or check that \$wgArticlePath " .
+					"is correct.";
+			} else {
+				$message .= "Your web server was detected as possibly not " .
+					"supporting URL path components (PATH_INFO) correctly; " .
+					"check your LocalSettings.php for a customized " .
+					"\$wgArticlePath setting and/or toggle \$wgUsePathInfo " .
+					"to true.";
+			}
+			throw new HttpError( 500, $message );
+		}
+		return false;
 	}
 
 	/**
@@ -301,9 +365,8 @@ class MediaWiki {
 			$this->context->setWikiPage( $article->getPage() );
 		}
 
-		// NS_MEDIAWIKI has no redirects.
-		// It is also used for CSS/JS, so performance matters here...
-		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
+		// Skip some unnecessary code if the content model doesn't support redirects
+		if ( !ContentHandler::getForTitle( $title )->supportsRedirects() ) {
 			return $article;
 		}
 
@@ -404,8 +467,7 @@ class MediaWiki {
 	}
 
 	/**
-	 * Run the current MediaWiki instance
-	 * index.php just calls this
+	 * Run the current MediaWiki instance; index.php just calls this
 	 */
 	public function run() {
 		try {
@@ -416,16 +478,71 @@ class MediaWiki {
 				// Bug 62091: while exceptions are convenient to bubble up GUI errors,
 				// they are not internal application faults. As with normal requests, this
 				// should commit, print the output, do deferred updates, jobs, and profiling.
-				wfGetLBFactory()->commitMasterChanges();
+				$this->doPreOutputCommit();
 				$e->report(); // display the GUI error
 			}
-			if ( function_exists( 'fastcgi_finish_request' ) ) {
-				fastcgi_finish_request();
-			}
-			$this->triggerJobs();
-			$this->restInPeace();
 		} catch ( Exception $e ) {
 			MWExceptionHandler::handleException( $e );
+		}
+
+		$this->doPostOutputShutdown( 'normal' );
+	}
+
+	/**
+	 * This function commits all DB changes as needed before
+	 * the user can receive a response (in case commit fails)
+	 *
+	 * @since 1.26
+	 */
+	public function doPreOutputCommit() {
+		// Either all DBs should commit or none
+		ignore_user_abort( true );
+
+		// Commit all changes and record ChronologyProtector positions
+		$factory = wfGetLBFactory();
+		$factory->commitMasterChanges();
+		$factory->shutdown();
+
+		wfDebug( __METHOD__ . ' completed; all transactions committed' );
+	}
+
+	/**
+	 * This function does work that can be done *after* the
+	 * user gets the HTTP response so they don't block on it
+	 *
+	 * This manages deferred updates, job insertion,
+	 * final commit, and the logging of profiling data
+	 *
+	 * @param string $mode Use 'fast' to always skip job running
+	 * @since 1.26
+	 */
+	public function doPostOutputShutdown( $mode = 'normal' ) {
+		// Show visible profiling data if enabled (which cannot be post-send)
+		Profiler::instance()->logDataPageOutputOnly();
+
+		$that = $this;
+		$callback = function () use ( $that, $mode ) {
+			try {
+				$that->restInPeace( $mode );
+			} catch ( Exception $e ) {
+				MWExceptionHandler::handleException( $e );
+			}
+		};
+
+		// Defer everything else...
+		if ( function_exists( 'register_postsend_function' ) ) {
+			// https://github.com/facebook/hhvm/issues/1230
+			register_postsend_function( $callback );
+		} else {
+			if ( function_exists( 'fastcgi_finish_request' ) ) {
+				fastcgi_finish_request();
+			} else {
+				// Either all DB and deferred updates should happen or none.
+				// The later should not be cancelled due to client disconnect.
+				ignore_user_abort( true );
+			}
+
+			$callback();
 		}
 	}
 
@@ -440,7 +557,7 @@ class MediaWiki {
 			list( $host, $lag ) = wfGetLB()->getMaxLag();
 			if ( $lag > $maxLag ) {
 				$resp = $this->context->getRequest()->response();
-				$resp->header( 'HTTP/1.1 503 Service Unavailable' );
+				$resp->statusHeader( 503 );
 				$resp->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
 				$resp->header( 'X-Database-Lag: ' . intval( $lag ) );
 				$resp->header( 'Content-Type: text/plain' );
@@ -457,7 +574,7 @@ class MediaWiki {
 	}
 
 	private function main() {
-		global $wgTitle;
+		global $wgTitle, $wgTrxProfilerLimits;
 
 		$request = $this->context->getRequest();
 
@@ -489,10 +606,9 @@ class MediaWiki {
 		if ( !$request->wasPosted()
 			&& in_array( $action, array( 'view', 'edit', 'history' ) )
 		) {
-			$trxProfiler->setExpectation( 'masterConns', 0, __METHOD__ );
-			$trxProfiler->setExpectation( 'writes', 0, __METHOD__ );
+			$trxProfiler->setExpectations( $wgTrxProfilerLimits['GET'], __METHOD__ );
 		} else {
-			$trxProfiler->setExpectation( 'maxAffected', 500, __METHOD__ );
+			$trxProfiler->setExpectations( $wgTrxProfilerLimits['POST'], __METHOD__ );
 		}
 
 		// If the user has forceHTTPS set to true, or if the user
@@ -565,28 +681,38 @@ class MediaWiki {
 		// Actually do the work of the request and build up any output
 		$this->performRequest();
 
-		// Either all DB and deferred updates should happen or none.
-		// The later should not be cancelled due to client disconnect.
-		ignore_user_abort( true );
 		// Now commit any transactions, so that unreported errors after
-		// output() don't roll back the whole DB transaction
-		wfGetLBFactory()->commitMasterChanges();
+		// output() don't roll back the whole DB transaction and so that
+		// we avoid having both success and error text in the response
+		$this->doPreOutputCommit();
 
 		// Output everything!
 		$this->context->getOutput()->output();
-
 	}
 
 	/**
 	 * Ends this task peacefully
+	 * @param string $mode Use 'fast' to always skip job running
 	 */
-	public function restInPeace() {
+	public function restInPeace( $mode = 'fast' ) {
+		// Assure deferred updates are not in the main transaction
+		wfGetLBFactory()->commitMasterChanges();
+
 		// Ignore things like master queries/connections on GET requests
 		// as long as they are in deferred updates (which catch errors).
 		Profiler::instance()->getTransactionProfiler()->resetExpectations();
 
 		// Do any deferred jobs
 		DeferredUpdates::doUpdates( 'commit' );
+
+		// Make sure any lazy jobs are pushed
+		JobQueueGroup::pushLazyJobs();
+
+		// Now that everything specific to this request is done,
+		// try to occasionally run jobs (if enabled) from the queues
+		if ( $mode === 'normal' ) {
+			$this->triggerJobs();
+		}
 
 		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();
@@ -604,7 +730,7 @@ class MediaWiki {
 	 * to run a specified number of jobs. This registers a callback to cleanup
 	 * the socket once it's done.
 	 */
-	protected function triggerJobs() {
+	public function triggerJobs() {
 		$jobRunRate = $this->config->get( 'JobRunRate' );
 		if ( $jobRunRate <= 0 || wfReadOnly() ) {
 			return;
@@ -647,7 +773,7 @@ class MediaWiki {
 
 		$errno = $errstr = null;
 		$info = wfParseUrl( $this->config->get( 'Server' ) );
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$sock = fsockopen(
 			$info['host'],
 			isset( $info['port'] ) ? $info['port'] : 80,
@@ -657,7 +783,7 @@ class MediaWiki {
 			// is a problem elsewhere.
 			0.1
 		);
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( !$sock ) {
 			$runJobsLogger->error( "Failed to start cron API (socket error $errno): $errstr" );
 			// Fall back to running the job here while the user waits

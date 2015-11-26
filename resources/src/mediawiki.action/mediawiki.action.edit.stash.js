@@ -3,7 +3,7 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var idleTimeout = 4000,
+		var idleTimeout = 3000,
 			api = new mw.Api(),
 			pending = null,
 			$form = $( '#editform' ),

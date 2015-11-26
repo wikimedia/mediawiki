@@ -132,6 +132,24 @@ class ApiMessage extends Message implements IApiMessage {
 	public function setApiData( array $data ) {
 		$this->apiData = $data;
 	}
+<<<<<<< HEAD
+=======
+
+	public function serialize() {
+		return serialize( array(
+			'parent' => parent::serialize(),
+			'apiCode' => $this->apiCode,
+			'apiData' => $this->apiData,
+		) );
+	}
+
+	public function unserialize( $serialized ) {
+		$data = unserialize( $serialized );
+		parent::unserialize( $data['parent'] );
+		$this->apiCode = $data['apiCode'];
+		$this->apiData = $data['apiData'];
+	}
+>>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 }
 
 /**
@@ -188,4 +206,22 @@ class ApiRawMessage extends RawMessage implements IApiMessage {
 	public function setApiData( array $data ) {
 		$this->apiData = $data;
 	}
+<<<<<<< HEAD
+=======
+
+	public function serialize() {
+		return serialize( array(
+			'parent' => parent::serialize(),
+			'apiCode' => $this->apiCode,
+			'apiData' => $this->apiData,
+		) );
+	}
+
+	public function unserialize( $serialized ) {
+		$data = unserialize( $serialized );
+		parent::unserialize( $data['parent'] );
+		$this->apiCode = $data['apiCode'];
+		$this->apiData = $data['apiData'];
+	}
+>>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 }

@@ -144,15 +144,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected $hasGeneratedStyles = false;
 
 	/**
-	 * @var array Cache for mtime
-	 * @par Usage:
-	 * @code
-	 * array( [hash] => [mtime], [hash] => [mtime], ... )
-	 * @endcode
-	 */
-	protected $modifiedTime = array();
-
-	/**
 	 * @var array Place where readStyleFile() tracks file dependencies
 	 * @par Usage:
 	 * @code
@@ -160,6 +151,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @endcode
 	 */
 	protected $localFileRefs = array();
+
+	/**
+	 * @var array Place where readStyleFile() tracks file dependencies for non-existent files.
+	 * Used in tests to detect missing dependencies.
+	 */
+	protected $missingLocalFileRefs = array();
 
 	/* Methods */
 
@@ -281,8 +278,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					$this->{$member} = $option;
 					break;
 				// Single strings
-				case 'group':
 				case 'position':
+					$this->isPositionDefined = true;
+				case 'group':
 				case 'skipFunction':
 					$this->{$member} = (string)$option;
 					break;
@@ -486,10 +484,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Gets list of names of modules this module depends on.
-	 *
+	 * @param ResourceLoaderContext context
 	 * @return array List of module names
 	 */
-	public function getDependencies() {
+	public function getDependencies( ResourceLoaderContext $context = null ) {
 		return $this->dependencies;
 	}
 
@@ -522,24 +520,28 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the last modified timestamp of this module.
+	 * Disable module content versioning.
 	 *
-	 * Last modified timestamps are calculated from the highest last modified
-	 * timestamp of this module's constituent files as well as the files it
-	 * depends on. This function is context-sensitive, only performing
-	 * calculations on files relevant to the given language, skin and debug
-	 * mode.
+	 * This class uses getDefinitionSummary() instead, to avoid filesystem overhead
+	 * involved with building the full module content inside a startup request.
 	 *
-	 * @param ResourceLoaderContext $context Context in which to calculate
-	 *     the modified time
-	 * @return int UNIX timestamp
-	 * @see ResourceLoaderModule::getFileDependencies
+	 * @return bool
 	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		if ( isset( $this->modifiedTime[$context->getHash()] ) ) {
-			return $this->modifiedTime[$context->getHash()];
-		}
+	public function enableModuleContentVersion() {
+		return false;
+	}
 
+	/**
+	 * Helper method to gather file hashes for getDefinitionSummary.
+	 *
+	 * This function is context-sensitive, only computing hashes of files relevant to the
+	 * given language, skin, etc.
+	 *
+	 * @see ResourceLoaderModule::getFileDependencies
+	 * @param ResourceLoaderContext $context
+	 * @return array
+	 */
+	protected function getFileHashes( ResourceLoaderContext $context ) {
 		$files = array();
 
 		// Flatten style files into $files
@@ -578,22 +580,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// entry point Less file we already know about.
 		$files = array_values( array_unique( $files ) );
 
-		// If a module is nothing but a list of dependencies, we need to avoid
-		// giving max() an empty array
-		if ( count( $files ) === 0 ) {
-			$this->modifiedTime[$context->getHash()] = 1;
-			return $this->modifiedTime[$context->getHash()];
-		}
-
-		$filesMtime = max( array_map( array( __CLASS__, 'safeFilemtime' ), $files ) );
-
-		$this->modifiedTime[$context->getHash()] = max(
-			$filesMtime,
-			$this->getMsgBlobMtime( $context->getLanguage() ),
-			$this->getDefinitionMtime( $context )
-		);
-
-		return $this->modifiedTime[$context->getHash()];
+		// Don't include keys or file paths here, only the hashes. Including that would needlessly
+		// cause global cache invalidation when files move or if e.g. the MediaWiki path changes.
+		// Any significant ordering is already detected by the definition summary.
+		return array_map( array( __CLASS__, 'safeFileHash' ), $files );
 	}
 
 	/**
@@ -604,7 +594,17 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
 		$summary = parent::getDefinitionSummary( $context );
+
+		$options = array();
 		foreach ( array(
+			// The following properties are omitted because they don't affect the module reponse:
+			// - localBasePath (Per T104950; Changes when absolute directory name changes. If
+			//    this affects 'scripts' and other file paths, getFileHashes accounts for that.)
+			// - remoteBasePath (Per T104950)
+			// - dependencies (provided via startup module)
+			// - targets
+			// - group (provided via startup module)
+			// - position (only used by OutputPage)
 			'scripts',
 			'debugScripts',
 			'loaderScripts',
@@ -612,24 +612,22 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			'languageScripts',
 			'skinScripts',
 			'skinStyles',
-			'dependencies',
 			'messages',
-			'targets',
 			'templates',
-			'group',
-			'position',
 			'skipFunction',
-			'localBasePath',
-			'remoteBasePath',
 			'debugRaw',
 			'raw',
 		) as $member ) {
-			$summary[$member] = $this->{$member};
+			$options[$member] = $this->{$member};
 		};
+
+		$summary[] = array(
+			'options' => $options,
+			'fileHashes' => $this->getFileHashes( $context ),
+			'msgBlobMtime' => $this->getMsgBlobMtime( $context->getLanguage() ),
+		);
 		return $summary;
 	}
-
-	/* Protected Methods */
 
 	/**
 	 * @param string|ResourceLoaderFilePath $path
@@ -925,10 +923,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$localDir = dirname( $localPath );
 		$remoteDir = dirname( $remotePath );
 		// Get and register local file references
-		$this->localFileRefs = array_merge(
-			$this->localFileRefs,
-			CSSMin::getLocalFileReferences( $style, $localDir )
-		);
+		$localFileRefs = CSSMin::getAllLocalFileReferences( $style, $localDir );
+		foreach ( $localFileRefs as $file ) {
+			if ( file_exists( $file ) ) {
+				$this->localFileRefs[] = $file;
+			} else {
+				$this->missingLocalFileRefs[] = $file;
+			}
+		}
 		return CSSMin::remap(
 			$style, $localDir, $remoteDir, true
 		);
@@ -958,17 +960,17 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Keeps track of all used files and adds them to localFileRefs.
 	 *
 	 * @since 1.22
-	 * @throws Exception If lessc encounters a parse error
+	 * @throws Exception If less.php encounters a parse error
 	 * @param string $fileName File path of LESS source
-	 * @param lessc $compiler Compiler to use, if not default
+	 * @param Less_Parser $parser Compiler to use, if not default
 	 * @return string CSS source
 	 */
 	protected function compileLessFile( $fileName, $compiler = null ) {
 		if ( !$compiler ) {
 			$compiler = $this->getLessCompiler();
 		}
-		$result = $compiler->compileFile( $fileName );
-		$this->localFileRefs += array_keys( $compiler->allParsedFiles() );
+		$result = $compiler->parseFile( $fileName )->getCss();
+		$this->localFileRefs += array_keys( $compiler->AllParsedFiles() );
 		return $result;
 	}
 
@@ -980,7 +982,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @throws MWException
 	 * @since 1.24
-	 * @return lessc
+	 * @return Less_Parser
 	 */
 	protected function getLessCompiler( ResourceLoaderContext $context = null ) {
 		return ResourceLoader::getLessCompiler( $this->getConfig() );

@@ -292,7 +292,8 @@ class ApiQuery extends ApiBase {
 
 		// Write the continuation data into the result
 		$this->setContinuationManager( null );
-		if ( $this->mParams['continue'] === null ) {
+		if ( $this->mParams['rawcontinue'] ) {
+>>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 			$data = $continuationManager->getRawContinuation();
 			if ( $data ) {
 				$this->getResult()->addValue( null, 'query-continue', $data,
@@ -302,15 +303,14 @@ class ApiQuery extends ApiBase {
 			$continuationManager->setContinuationIntoResult( $this->getResult() );
 		}
 
+		/// @todo: Remove this after a suitable period of time. When REL1_26 is cut, if not before.
 		if ( $this->mParams['continue'] === null && !$this->mParams['rawcontinue'] &&
-			$this->getResult()->getResultData( 'query-continue' ) !== null
+			$this->getResult()->getResultData( 'continue' ) !== null
 		) {
-			$this->logFeatureUsage( 'action=query&!rawcontinue&!continue' );
 			$this->setWarning(
-				'Formatting of continuation data will be changing soon. ' .
-				'To continue using the current formatting, use the \'rawcontinue\' parameter. ' .
-				'To begin using the new format, pass an empty string for \'continue\' ' .
-				'in the initial query.'
+				'Formatting of continuation data has changed. ' .
+				'To receive raw query-continue data, use the \'rawcontinue\' parameter. ' .
+				'To silence this warning, pass an empty string for \'continue\' in the initial query.'
 			);
 		}
 	}
@@ -407,8 +407,8 @@ class ApiQuery extends ApiBase {
 			$pages[$fakeId] = $vals;
 		}
 		// Report any invalid titles
-		foreach ( $pageSet->getInvalidTitles() as $fakeId => $title ) {
-			$pages[$fakeId] = array( 'title' => $title, 'invalid' => true );
+		foreach ( $pageSet->getInvalidTitlesAndReasons() as $fakeId => $data ) {
+			$pages[$fakeId] = $data + array( 'invalid' => true );
 		}
 		// Report any missing page ids
 		foreach ( $pageSet->getMissingPageIDs() as $pageid ) {
@@ -485,7 +485,7 @@ class ApiQuery extends ApiBase {
 	public function setGeneratorContinue( $module, $paramName, $paramValue ) {
 		wfDeprecated( __METHOD__, '1.24' );
 		$this->getContinuationManager()->addGeneratorContinueParam( $module, $paramName, $paramValue );
-		return $this->getParameter( 'continue' ) !== null;
+		return !$this->getParameter( 'rawcontinue' );
 	}
 
 	/**
@@ -549,7 +549,9 @@ class ApiQuery extends ApiBase {
 			'export' => false,
 			'exportnowrap' => false,
 			'iwurl' => false,
-			'continue' => null,
+			'continue' => array(
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
+			),
 			'rawcontinue' => false,
 		);
 		if ( $flags ) {

@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"Silovan"
+		]
+	},
+	"config-desc": "MediaWiki-შ ინსტალატორი",
+	"config-title": "MediaWiki $1 ინსტალაცია",
+	"config-information": "ინფორმაცია",
+	"config-localsettings-key": "გოახალაფაშ კილა:",
+	"config-localsettings-badkey": "კილა, ნამუთ თქვა წჷმარინეთინ ცაგანა რე.",
+	"config-session-error": "ჩილათაშ დოჭყაფაშ სესია: $1",
+	"config-your-language": "თქვან ნინა:",
+	"config-your-language-help": "გეგშაგორით ნინა, ნამუსჷთ ინსტალაციაშ პროცესის გიმირინუანთინ.",
+	"config-wiki-language": "ვიკიშ ნინა:",
+	"config-back": "← უკახალე",
+	"config-continue": "უკული →",
+	"config-page-language": "ნინა",
+	"config-page-welcome": "ბედინერ ორდას თქვანი მოზოჯუა მედიავიკიშა!",
+	"config-page-dbconnect": "მუნაჩემეფიშ ბაზაწჷმა მერსხუალა",
+	"config-page-dbsettings": "მუნაჩემეფიშ ბაზაშ კონფიგურაცია",
+	"config-page-name": "ჯოხო",
+	"config-page-options": "პარამეტრეფი",
+	"config-page-install": "ინსტალაცია",
+	"config-page-complete": "თებული რე!",
+	"config-page-restart": "ინსტალაციაშ დუდშე დოჭყაფა",
+	"config-page-readme": "წემკითხი",
+	"config-page-releasenotes": "გიშაშქუმალაშ მეღანკუეფი",
+	"config-page-upgradedoc": "გოახალაფა",
+	"config-help-restart": "გოკონანო თქვან მიშნაჸონეფი არძო ჩუალირ მუნაჩემიშ ლასუა დო ინსტალაციაშ დუდშე დოჭყაფა?",
+	"config-restart": "ქო, დუდშე დიჭყით",
+	"config-env-php": "PHP $1 დოინსტალირაფირი რე."
+}

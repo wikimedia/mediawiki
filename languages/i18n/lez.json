@@ -14,7 +14,8 @@
 			"Reedy",
 			"Soul Train",
 			"Умар",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "ЭлячӀунрин кӀаникай цӀар чӀугун",
@@ -296,11 +297,10 @@
 	"resetpass-submit-loggedin": "Парол дегишарун",
 	"resetpass-submit-cancel": "Гьич авун",
 	"passwordreset": "Парол алудна гадрун",
-	"passwordreset-legend": "Парол алудна гадрун",
 	"passwordreset-username": "Уртахдин тlвар:",
 	"passwordreset-domain": "Домен:",
 	"passwordreset-email": "E-mail адрес",
-	"passwordreset-emailelement": "Уртахдин тIвар: $1\nВахтуналди тир пароль: $2",
+	"passwordreset-emailelement": "Уртахдин тIвар: \n$1\n\nВахтуналди тир пароль: \n$2",
 	"changeemail": "Э-почта дегишарун",
 	"changeemail-none": "(садни)",
 	"changeemail-submit": "E-адрес дегишун",
@@ -454,8 +454,8 @@
 	"powersearch-togglelabel": "Акун",
 	"powersearch-toggleall": "Вири",
 	"powersearch-togglenone": "Садни",
-	"preferences": "Туькlуьрун",
-	"mypreferences": "низамарунар",
+	"preferences": "ТуькӀуьрун",
+	"mypreferences": "Низамарунар",
 	"prefs-edits": "Дьузар хъувунрин кьадар",
 	"prefs-skin": "Къайдадиз ттунин тема",
 	"skin-preview": "Сифтедин килигун",

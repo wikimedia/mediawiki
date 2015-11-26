@@ -1,5 +1,38 @@
 {
-	"@metadata": [],
+	"@metadata": {
+		"authors": [
+			"Vahe Gharakhanyan"
+		]
+	},
+	"config-title": "ՄեդիաՎիքի $1-ի տեղադրում",
+	"config-information": "Տեղեկատվություն",
+	"config-localsettings-key": "Թարմացման բանալի`",
+	"config-your-language": "Ձեր լեզուն`",
+	"config-wiki-language": "Վիքի լեզու`",
+	"config-back": "← Վերադառնալ",
+	"config-continue": "Շարունակել →",
+	"config-page-language": "Լեզու",
+	"config-page-welcome": "Բարի գալուստ ՄեդիաՎիքի:",
+	"config-page-dbconnect": "Միացում տվյալների բազային",
+	"config-page-name": "Անվանում",
+	"config-page-options": "Ընտրանքներ",
+	"config-page-install": "Տեղադրում",
+	"config-page-complete": "Պատրաստ է:",
+	"config-page-readme": "Կարդա ինձ",
+	"config-page-releasenotes": "Տեղեկություն տարբերակի մասին",
+	"config-page-existingwiki": "Գոյություն ունեցող վիքի",
+	"config-restart": "Այո, նորից սկսել",
+	"config-admin-password": "Գաղտնաբառ՝",
+	"config-admin-password-confirm": "Գաղտնաբառը կրկին`",
+	"config-admin-email": "Էլ-փոստի հասցեն՝",
+	"config-license": "Հեղինակային իրավունք և արտոնագիր`",
+	"config-license-cc-by-sa": "Creative Commons Attribution-ShareAlike",
+	"config-license-cc-by": "Creative Commons Attribution",
+	"config-license-cc-by-nc-sa": "Creative Commons Attribution-NonCommercial-ShareAlike",
+	"config-license-cc-0": "Creative Commons Zero (հանրային սեփականություն)",
+	"config-license-gfdl": "GNU Free Documentation License 1.3 կամ ավելի ուշ",
+	"config-license-pd": "Հանրային սեփականություն",
+	"config-help": "օգնություն",
 	"mainpagetext": "'''«MediaWiki» ծրագիրը հաջողությամբ տեղադրվեց։'''",
 	"mainpagedocfooter": "Այցելեք [//meta.wikimedia.org/wiki/Help:Contents User's Guide]՝ վիքի ծրագրային ապահովման օգտագործման մասին տեղեկությունների համար։\n\n== Որոշ օգտակար ռեսուրսներ ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]"
 }

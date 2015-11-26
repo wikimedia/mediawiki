@@ -27,7 +27,7 @@
  * @since 1.25
  */
 class RecentChangesUpdateJob extends Job {
-	function __construct( $title, $params ) {
+	function __construct( Title $title, array $params ) {
 		parent::__construct( 'recentChangesUpdate', $title, $params );
 
 		if ( !isset( $params['type'] ) ) {
@@ -75,11 +75,13 @@ class RecentChangesUpdateJob extends Job {
 		$lockKey = wfWikiID() . ':recentchanges-prune';
 
 		$dbw = wfGetDB( DB_MASTER );
-		if ( !$dbw->lock( $lockKey, __METHOD__, 1 ) ) {
+		if ( !$dbw->lockIsFree( $lockKey, __METHOD__ )
+			|| !$dbw->lock( $lockKey, __METHOD__, 1 )
+		) {
 			return; // already in progress
 		}
-		$batchSize = 100; // Avoid slave lag
 
+		$batchSize = 100; // avoid slave lag
 		$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
 		do {
 			$rcIds = $dbw->selectFieldValues( 'recentchanges',

@@ -234,6 +234,13 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
+	 * @return stdClass
+	 */
+	protected function getCurrentRow() {
+		return $this->mCurrentRow;
+	}
+
+	/**
 	 * Get any extra attributes to be applied to the given cell. Don't
 	 * take this as an excuse to hardcode styles; use classes and
 	 * CSS instead.  Row context is available in $this->mCurrentRow

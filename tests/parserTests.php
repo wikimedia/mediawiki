@@ -80,7 +80,7 @@ if ( isset( $options['file'] ) ) {
 }
 
 # Print out software version to assist with locating regressions
-$version = SpecialVersion::getVersion();
+$version = SpecialVersion::getVersion( 'nodb' );
 echo "This is MediaWiki version {$version}.\n\n";
 
 if ( isset( $options['fuzz'] ) ) {

@@ -5,8 +5,8 @@
 
 mediaWiki.language.convertGrammar = function ( word, form ) {
 	var grammarForms = mediaWiki.language.getData( 'hu', 'grammarForms' );
-	if ( grammarForms && grammarForms[form] ) {
-		return grammarForms[form][word];
+	if ( grammarForms && grammarForms[ form ] ) {
+		return grammarForms[ form ][ word ];
 	}
 	switch ( form ) {
 		case 'rol':

@@ -192,7 +192,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * @return void
 	 */
 	private function limitTitle( $page, $pattern ) {
-		global $wgMiserMode;
+		global $wgMiserMode, $wgUserrightsInterwikiDelimiter;
 
 		if ( $page instanceof Title ) {
 			$title = $page;
@@ -209,7 +209,6 @@ class LogPager extends ReverseChronologicalPager {
 
 		$doUserRightsLogLike = false;
 		if ( $this->types == array( 'rights' ) ) {
-			global $wgUserrightsInterwikiDelimiter;
 			$parts = explode( $wgUserrightsInterwikiDelimiter, $title->getDBKey() );
 			if ( count( $parts ) == 2 ) {
 				list( $name, $database ) = array_map( 'trim', $parts );
@@ -249,7 +248,7 @@ class LogPager extends ReverseChronologicalPager {
 		$user = $this->getUser();
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
 			$this->mConds[] = $db->bitAnd( 'log_deleted', LogPage::DELETED_ACTION ) . ' = 0';
-		} elseif ( !$user->isAllowed( 'suppressrevision' ) ) {
+		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 			$this->mConds[] = $db->bitAnd( 'log_deleted', LogPage::SUPPRESSED_ACTION ) .
 				' != ' . LogPage::SUPPRESSED_ACTION;
 		}

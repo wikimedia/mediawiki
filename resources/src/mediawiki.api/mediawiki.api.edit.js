@@ -11,10 +11,11 @@
 		 * cached token and start over.
 		 *
 		 * @param {Object} params API parameters
+		 * @param {Object} [ajaxOptions]
 		 * @return {jQuery.Promise} See #post
 		 */
-		postWithEditToken: function ( params ) {
-			return this.postWithToken( 'edit', params );
+		postWithEditToken: function ( params, ajaxOptions ) {
+			return this.postWithToken( 'edit', params, ajaxOptions );
 		},
 
 		/**
@@ -30,6 +31,7 @@
 
 		/**
 		 * Post a new section to the page.
+		 *
 		 * @see #postWithEditToken
 		 * @param {mw.Title|String} title Target page
 		 * @param {string} header

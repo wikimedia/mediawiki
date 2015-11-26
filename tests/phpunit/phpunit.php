@@ -55,7 +55,7 @@ class PHPUnitMaintClass extends Maintenance {
 	public function finalSetup() {
 		parent::finalSetup();
 
-		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
+		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgMainWANCache;
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
 		global $wgLocaltimezone, $wgLocalisationCacheConf;
 		global $wgDevelopmentWarnings;
@@ -67,6 +67,7 @@ class PHPUnitMaintClass extends Maintenance {
 		$wgDevelopmentWarnings = true;
 
 		$wgMainCacheType = CACHE_NONE;
+		$wgMainWANCache = CACHE_NONE;
 		$wgMessageCacheType = CACHE_NONE;
 		$wgParserCacheType = CACHE_NONE;
 		$wgLanguageConverterCacheType = CACHE_NONE;
@@ -215,25 +216,35 @@ if ( version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
 
 $ok = false;
 
-foreach ( array(
-	stream_resolve_include_path( 'phpunit.phar' ),
-	'PHPUnit/Runner/Version.php',
-	'PHPUnit/Autoload.php'
-) as $includePath ) {
-	@include_once $includePath;
-	if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
-		$ok = true;
-		break;
+if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
+	echo "PHPUnit already present\n";
+	$ok = true;
+} else {
+	foreach ( array(
+				stream_resolve_include_path( 'phpunit.phar' ),
+				'PHPUnit/Runner/Version.php',
+				'PHPUnit/Autoload.php'
+			) as $includePath ) {
+		// @codingStandardsIgnoreStart
+		@include_once $includePath;
+		// @codingStandardsIgnoreEnd
+		if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
+			$ok = true;
+			echo "Using PHPUnit from $includePath\n";
+			break;
+		}
 	}
 }
 
 if ( !$ok ) {
-	die( "Couldn't find a usable PHPUnit.\n" );
+	echo "Couldn't find a usable PHPUnit.\n";
+	exit( 1 );
 }
 
 $puVersion = PHPUnit_Runner_Version::id();
 if ( $puVersion !== '@package_version@' && version_compare( $puVersion, '3.7.0', '<' ) ) {
-	die( "PHPUnit 3.7.0 or later required; you have {$puVersion}.\n" );
+	echo "PHPUnit 3.7.0 or later required; you have {$puVersion}.\n";
+	exit( 1 );
 }
 
 PHPUnit_TextUI_Command::main();

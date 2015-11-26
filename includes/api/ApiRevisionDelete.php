@@ -32,6 +32,8 @@
 class ApiRevisionDelete extends ApiBase {
 
 	public function execute() {
+		$this->useTransactionalTimeLimit();
+
 		$params = $this->extractRequestParams();
 		$user = $this->getUser();
 
@@ -137,10 +139,8 @@ class ApiRevisionDelete extends ApiBase {
 		if ( !$messages ) {
 			return array();
 		}
-		$result = $this->getResult();
 		$ret = array();
 		foreach ( $messages as $m ) {
-			$message = array();
 			if ( $m['message'] instanceof Message ) {
 				$msg = $m['message'];
 				$message = array( 'message' => $msg->getKey() );

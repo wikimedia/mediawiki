@@ -96,17 +96,17 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 			->getMock();
 
 		// php 5.3 compatibility!
-		$self = $this;
+		$that = $this;
 
 		$dbSiteStore->expects( $this->any() )
 			->method( 'getSite' )
-			->will( $this->returnValue( $self->getTestSite() ) );
+			->will( $this->returnValue( $that->getTestSite() ) );
 
 		$dbSiteStore->expects( $this->any() )
 			->method( 'getSites' )
-			->will( $this->returnCallback( function() use( $self ) {
+			->will( $this->returnCallback( function() use ( $that ) {
 				$siteList = new SiteList();
-				$siteList->setSite( $self->getTestSite() );
+				$siteList->setSite( $that->getTestSite() );
 
 				return $siteList;
 			} ) );

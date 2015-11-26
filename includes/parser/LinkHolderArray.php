@@ -560,7 +560,6 @@ class LinkHolderArray {
 
 			// for each found variants, figure out link holders and replace
 			foreach ( $varRes as $s ) {
-
 				$variantTitle = Title::makeTitle( $s->page_namespace, $s->page_title );
 				$varPdbk = $variantTitle->getPrefixedDBkey();
 				$vardbk = $variantTitle->getDBkey();

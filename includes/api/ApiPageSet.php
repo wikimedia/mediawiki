@@ -58,7 +58,7 @@ class ApiPageSet extends ApiBase {
 	private $mGoodTitles = array();
 	private $mMissingPages = array(); // [ns][dbkey] => fake page_id
 	private $mMissingTitles = array();
-	private $mInvalidTitles = array();
+	private $mInvalidTitles = array(); // [fake_page_id] => array( 'title' => $title, 'invalidreason' => $reason )
 	private $mMissingPageIDs = array();
 	private $mRedirectTitles = array();
 	private $mSpecialTitles = array();
@@ -66,6 +66,7 @@ class ApiPageSet extends ApiBase {
 	private $mInterwikiTitles = array();
 	/** @var Title[] */
 	private $mPendingRedirectIDs = array();
+	private $mResolvedRedirectTitles = array();
 	private $mConvertedTitles = array();
 	private $mGoodRevIDs = array();
 	private $mLiveRevIDs = array();
@@ -396,9 +397,22 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Titles that were deemed invalid by Title::newFromText()
 	 * The array's index will be unique and negative for each item
+	 * @deprecated since 1.26, use self::getInvalidTitlesAndReasons()
 	 * @return string[] Array of strings (not Title objects)
 	 */
 	public function getInvalidTitles() {
+		wfDeprecated( __METHOD__, '1.26' );
+		return array_map( function ( $t ) {
+			return $t['title'];
+		}, $this->mInvalidTitles );
+	}
+
+	/**
+	 * Titles that were deemed invalid by Title::newFromText()
+	 * The array's index will be unique and negative for each item
+	 * @return array[] Array of arrays with 'title' and 'invalidreason' properties
+	 */
+	public function getInvalidTitlesAndReasons() {
 		return $this->mInvalidTitles;
 	}
 
@@ -421,7 +435,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Get a list of redirect resolutions - maps a title to its redirect
-	 * target.
+	 * target. Includes generator data for redirect source when available.
 	 * @param ApiResult $result
 	 * @return array Array of prefixed_title (string) => Title object
 	 * @since 1.21
@@ -439,6 +453,15 @@ class ApiPageSet extends ApiBase {
 			if ( $titleTo->isExternal() ) {
 				$r['tointerwiki'] = $titleTo->getInterwiki();
 			}
+			if ( isset( $this->mResolvedRedirectTitles[$titleStrFrom] ) ) {
+				$titleFrom = $this->mResolvedRedirectTitles[$titleStrFrom];
+				$ns = $titleFrom->getNamespace();
+				$dbkey = $titleFrom->getDBkey();
+				if ( isset( $this->mGeneratorData[$ns][$dbkey] ) ) {
+					$r = array_merge( $this->mGeneratorData[$ns][$dbkey], $r );
+				}
+			}
+
 			$values[] = $r;
 		}
 		if ( !empty( $values ) && $result ) {
@@ -552,7 +575,7 @@ class ApiPageSet extends ApiBase {
 	 *
 	 * @param array $invalidChecks List of types of invalid titles to include.
 	 *   Recognized values are:
-	 *   - invalidTitles: Titles from $this->getInvalidTitles()
+	 *   - invalidTitles: Titles and reasons from $this->getInvalidTitlesAndReasons()
 	 *   - special: Titles from $this->getSpecialTitles()
 	 *   - missingIds: ids from $this->getMissingPageIDs()
 	 *   - missingRevIds: ids from $this->getMissingRevisionIDs()
@@ -566,7 +589,7 @@ class ApiPageSet extends ApiBase {
 	) {
 		$result = array();
 		if ( in_array( "invalidTitles", $invalidChecks ) ) {
-			self::addValues( $result, $this->getInvalidTitles(), 'invalid', 'title' );
+			self::addValues( $result, $this->getInvalidTitlesAndReasons(), 'invalid' );
 		}
 		if ( in_array( "special", $invalidChecks ) ) {
 			self::addValues( $result, $this->getSpecialTitles(), 'special', 'title' );
@@ -1017,6 +1040,7 @@ class ApiPageSet extends ApiBase {
 				$row->rd_fragment,
 				$row->rd_interwiki
 			);
+			$this->mResolvedRedirectTitles[$from] = $this->mPendingRedirectIDs[$rdfrom];
 			unset( $this->mPendingRedirectIDs[$rdfrom] );
 			if ( $to->isExternal() ) {
 				$this->mInterwikiTitles[$to->getPrefixedText()] = $to->getInterwiki();
@@ -1037,7 +1061,9 @@ class ApiPageSet extends ApiBase {
 					continue;
 				}
 				$lb->addObj( $rt );
-				$this->mRedirectTitles[$title->getPrefixedText()] = $rt;
+				$from = $title->getPrefixedText();
+				$this->mResolvedRedirectTitles[$from] = $title;
+				$this->mRedirectTitles[$from] = $rt;
 				unset( $this->mPendingRedirectIDs[$id] );
 			}
 		}
@@ -1077,16 +1103,20 @@ class ApiPageSet extends ApiBase {
 
 		foreach ( $titles as $title ) {
 			if ( is_string( $title ) ) {
-				$titleObj = Title::newFromText( $title, $this->mDefaultNamespace );
+				try {
+					$titleObj = Title::newFromTextThrow( $title, $this->mDefaultNamespace );
+				} catch ( MalformedTitleException $ex ) {
+					// Handle invalid titles gracefully
+					$this->mAllPages[0][$title] = $this->mFakePageId;
+					$this->mInvalidTitles[$this->mFakePageId] = array(
+						'title' => $title,
+						'invalidreason' => $ex->getMessage(),
+					);
+					$this->mFakePageId--;
+					continue; // There's nothing else we can do
+				}
 			} else {
 				$titleObj = $title;
-			}
-			if ( !$titleObj ) {
-				// Handle invalid titles gracefully
-				$this->mAllPages[0][$title] = $this->mFakePageId;
-				$this->mInvalidTitles[$this->mFakePageId] = $title;
-				$this->mFakePageId--;
-				continue; // There's nothing else we can do
 			}
 			$unconvertedTitle = $titleObj->getPrefixedText();
 			$titleWasConverted = false;
@@ -1287,8 +1317,8 @@ class ApiPageSet extends ApiBase {
 			),
 			'generator' => array(
 				ApiBase::PARAM_TYPE => null,
-				ApiBase::PARAM_VALUE_LINKS => array(),
 				ApiBase::PARAM_HELP_MSG => 'api-pageset-param-generator',
+				ApiBase::PARAM_SUBMODULE_PARAM_PREFIX => 'g',
 			),
 			'redirects' => array(
 				ApiBase::PARAM_DFLT => false,
@@ -1314,10 +1344,8 @@ class ApiPageSet extends ApiBase {
 		if ( !$this->mAllowGenerator ) {
 			unset( $result['generator'] );
 		} elseif ( $flags & ApiBase::GET_VALUES_FOR_HELP ) {
-			foreach ( $this->getGenerators() as $g ) {
-				$result['generator'][ApiBase::PARAM_TYPE][] = $g;
-				$result['generator'][ApiBase::PARAM_VALUE_LINKS][$g] = "Special:ApiHelp/query+$g";
-			}
+			$result['generator'][ApiBase::PARAM_TYPE] = 'submodule';
+			$result['generator'][ApiBase::PARAM_SUBMODULE_MAP] = $this->getGenerators();
 		}
 
 		return $result;
@@ -1338,13 +1366,14 @@ class ApiPageSet extends ApiBase {
 				$query = $this->getMain()->getModuleManager()->getModule( 'query' );
 			}
 			$gens = array();
+			$prefix = $query->getModulePath() . '+';
 			$mgr = $query->getModuleManager();
 			foreach ( $mgr->getNamesWithClasses() as $name => $class ) {
 				if ( is_subclass_of( $class, 'ApiQueryGeneratorBase' ) ) {
-					$gens[] = $name;
+					$gens[$name] = $prefix . $name;
 				}
 			}
-			sort( $gens );
+			ksort( $gens );
 			self::$generators = $gens;
 		}
 

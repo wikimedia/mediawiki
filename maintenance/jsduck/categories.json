@@ -23,13 +23,16 @@
 				"classes": [
 					"mw.Title",
 					"mw.Uri",
+					"mw.RegExp",
 					"mw.messagePoster.*",
 					"mw.notification",
 					"mw.Notification_",
+					"mw.storage",
 					"mw.user",
 					"mw.util",
 					"mw.plugin.*",
-					"mw.cookie"
+					"mw.cookie",
+					"mw.experiments"
 				]
 			},
 			{
@@ -38,7 +41,7 @@
 			},
 			{
 				"name": "API",
-				"classes": ["mw.Api*"]
+				"classes": ["mw.Api*", "mw.ForeignApi*"]
 			},
 			{
 				"name": "Language",
@@ -57,8 +60,16 @@
 			{
 				"name": "Interfaces",
 				"classes": [
-					"mw.Feedback",
-					"mw.Feedback.Dialog"
+					"mw.Feedback*",
+					"mw.Upload*",
+					"mw.ForeignUpload",
+					"mw.ForeignStructuredUpload*"
+				]
+			},
+			{
+				"name": "Widgets",
+				"classes": [
+					"mw.widgets*"
 				]
 			},
 			{

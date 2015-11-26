@@ -386,15 +386,19 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * Show an error message in a box. Parameters are like wfMessage().
-	 * @param string $msg
+	 * Show an error message in a box. Parameters are like wfMessage(), or
+	 * alternatively, pass a Message object in.
+	 * @param string|Message $msg
 	 */
 	public function showError( $msg /*...*/ ) {
-		$args = func_get_args();
-		array_shift( $args );
-		$args = array_map( 'htmlspecialchars', $args );
-		$msg = wfMessage( $msg, $args )->useDatabase( false )->plain();
-		$this->output->addHTML( $this->getErrorBox( $msg ) );
+		if ( !( $msg instanceof Message ) ) {
+			$args = func_get_args();
+			array_shift( $args );
+			$args = array_map( 'htmlspecialchars', $args );
+			$msg = wfMessage( $msg, $args );
+		}
+		$text = $msg->useDatabase( false )->plain();
+		$this->output->addHTML( $this->getErrorBox( $text ) );
 	}
 
 	/**
@@ -696,11 +700,11 @@ class WebInstaller extends Installer {
 		$text = wfMessage( $msg, $args )->useDatabase( false )->plain();
 		$html = $this->parse( $text, true );
 
-		return "<div class=\"mw-help-field-container\">\n" .
-			"<span class=\"mw-help-field-hint\" title=\"" .
+		return "<div class=\"config-help-field-container\">\n" .
+			"<span class=\"config-help-field-hint\" title=\"" .
 			wfMessage( 'config-help-tooltip' )->escaped() . "\">" .
 			wfMessage( 'config-help' )->escaped() . "</span>\n" .
-			"<span class=\"mw-help-field-data\">" . $html . "</span>\n" .
+			"<span class=\"config-help-field-data\">" . $html . "</span>\n" .
 			"</div>\n";
 	}
 
@@ -1184,12 +1188,11 @@ class WebInstaller extends Installer {
 		}
 		if ( $path !== false ) {
 			$scriptPath = preg_replace( '{^(.*)/(mw-)?config.*$}', '$1', $path );
-			$scriptExtension = $this->getVar( 'wgScriptExtension' );
 
 			$this->setVar( 'wgScriptPath', "$scriptPath" );
 			// Update variables set from Setup.php that are derived from wgScriptPath
-			$this->setVar( 'wgScript', "$scriptPath/index$scriptExtension" );
-			$this->setVar( 'wgLoadScript', "$scriptPath/load$scriptExtension" );
+			$this->setVar( 'wgScript', "$scriptPath/index.php" );
+			$this->setVar( 'wgLoadScript', "$scriptPath/load.php" );
 			$this->setVar( 'wgStylePath', "$scriptPath/skins" );
 			$this->setVar( 'wgLocalStylePath', "$scriptPath/skins" );
 			$this->setVar( 'wgExtensionAssetsPath', "$scriptPath/extensions" );

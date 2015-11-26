@@ -83,6 +83,28 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			);
 		}
 
+		if ( isset( $params['fromtitle'] ) ) {
+			list( $ns, $title ) = $this->prefixedTitlePartToKey( $params['fromtitle'] );
+			$title = $this->getDB()->addQuotes( $title );
+			$op = $params['dir'] == 'ascending' ? '>' : '<';
+			$this->addWhere(
+				"wl_namespace $op $ns OR " .
+				"(wl_namespace = $ns AND " .
+				"wl_title $op= $title)"
+			);
+		}
+
+		if ( isset( $params['totitle'] ) ) {
+			list( $ns, $title ) = $this->prefixedTitlePartToKey( $params['totitle'] );
+			$title = $this->getDB()->addQuotes( $title );
+			$op = $params['dir'] == 'ascending' ? '<' : '>'; // Reversed from above!
+			$this->addWhere(
+				"wl_namespace $op $ns OR " .
+				"(wl_namespace = $ns AND " .
+				"wl_title $op= $title)"
+			);
+		}
+
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		// Don't ORDER BY wl_namespace if it's constant in the WHERE clause
 		if ( count( $params['namespace'] ) == 1 ) {
@@ -149,7 +171,8 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array(
 					'changed',
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'show' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -171,6 +194,12 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 					'descending'
 				),
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
+			),
+			'fromtitle' => array(
+				ApiBase::PARAM_TYPE => 'string'
+			),
+			'totitle' => array(
+				ApiBase::PARAM_TYPE => 'string'
 			),
 		);
 	}

@@ -1,0 +1,24 @@
+{
+	"prefix": "oo-ui-icon",
+	"intro": "@import '../../../../src/styles/common';",
+	"images": {
+		"edit": { "file": {
+			"ltr": "images/icons/edit-ltr.svg",
+			"rtl": "images/icons/edit-rtl.svg"
+		} },
+		"editLock": { "file": {
+			"ltr": "images/icons/editLock-ltr.svg",
+			"rtl": "images/icons/editLock-rtl.svg"
+		} },
+		"editUndo": { "file": {
+			"ltr": "images/icons/editUndo-ltr.svg",
+			"rtl": "images/icons/editUndo-rtl.svg"
+		} },
+		"link": { "file": "images/icons/link.svg" },
+		"linkExternal": { "file": {
+			"ltr": "images/icons/external-link-ltr.svg",
+			"rtl": "images/icons/external-link-rtl.svg"
+		} },
+		"linkSecure": { "file": "images/icons/secure-link.svg" }
+	}
+}

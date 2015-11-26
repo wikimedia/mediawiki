@@ -3,20 +3,17 @@
 ( function ( $, mw, QUnit ) {
 	'use strict';
 
-	var mwTestIgnore, mwTester,
-		addons,
-		ELEMENT_NODE = 1,
-		TEXT_NODE = 3;
+	var mwTestIgnore, mwTester, addons;
 
 	/**
 	 * Add bogus to url to prevent IE crazy caching
 	 *
-	 * @param value {String} a relative path (eg. 'data/foo.js'
+	 * @param {String} value a relative path (eg. 'data/foo.js'
 	 * or 'data/test.php?foo=bar').
 	 * @return {String} Such as 'data/foo.js?131031765087663960'
 	 */
 	QUnit.fixurl = function ( value ) {
-		return value + (/\?/.test( value ) ? '&' : '?')
+		return value + ( /\?/.test( value ) ? '&' : '?' )
 			+ String( new Date().getTime() )
 			+ String( parseInt( Math.random() * 100000, 10 ) );
 	};
@@ -69,7 +66,7 @@
 	sinon.config = {
 		injectIntoThis: true,
 		injectInto: null,
-		properties: ['spy', 'stub', 'mock', 'sandbox'],
+		properties: [ 'spy', 'stub', 'mock', 'sandbox' ],
 		// Don't fake timers by default
 		useFakeTimers: false,
 		useFakeServer: false
@@ -90,11 +87,11 @@
 					}
 				},
 				teardown: function () {
-					this.sandbox.verifyAndRestore();
-
 					if ( localEnv.teardown ) {
 						localEnv.teardown.call( this );
 					}
+
+					this.sandbox.verifyAndRestore();
 				}
 			} );
 		};
@@ -165,34 +162,32 @@
 	}
 
 	/**
-	 * Test environment recommended for all QUnit test modules
-	 *
-	 * Whether to log environment changes to the console
-	 */
-	QUnit.config.urlConfig.push( 'mwlogenv' );
-
-	/**
 	 * Reset mw.config and others to a fresh copy of the live config for each test(),
 	 * and restore it back to the live one afterwards.
-	 * @param localEnv {Object} [optional]
+	 *
+	 * @param {Object} [localEnv]
 	 * @example (see test suite at the bottom of this file)
 	 * </code>
 	 */
 	QUnit.newMwEnvironment = ( function () {
-		var warn, log, liveConfig, liveMessages;
+		var warn, error, liveConfig, liveMessages,
+			ajaxRequests = [];
 
 		liveConfig = mw.config.values;
 		liveMessages = mw.messages.values;
 
 		function suppressWarnings() {
 			warn = mw.log.warn;
-			mw.log.warn = $.noop;
+			error = mw.log.error;
+			mw.log.warn = mw.log.error = $.noop;
 		}
 
 		function restoreWarnings() {
+			// Guard against calls not balanced with suppressWarnings()
 			if ( warn !== undefined ) {
 				mw.log.warn = warn;
-				warn = undefined;
+				mw.log.error = error;
+				warn = error = undefined;
 			}
 		}
 
@@ -217,7 +212,14 @@
 			return $.extend( /*deep=*/true, {}, liveMessages, custom );
 		}
 
-		log = QUnit.urlParams.mwlogenv ? mw.log : function () {};
+		/**
+		 * @param {jQuery.Event} event
+		 * @param {jqXHR} jqXHR
+		 * @param {Object} ajaxOptions
+		 */
+		function trackAjax( event, jqXHR, ajaxOptions ) {
+			ajaxRequests.push( { xhr: jqXHR, options: ajaxOptions } );
+		}
 
 		return function ( localEnv ) {
 			localEnv = $.extend( {
@@ -231,8 +233,6 @@
 
 			return {
 				setup: function () {
-					log( 'MwEnvironment> SETUP    for "' + QUnit.config.current.module
-						+ ': ' + QUnit.config.current.testName + '"' );
 
 					// Greetings, mock environment!
 					mw.config.values = freshConfigCopy( localEnv.config );
@@ -240,15 +240,19 @@
 					this.suppressWarnings = suppressWarnings;
 					this.restoreWarnings = restoreWarnings;
 
+					// Start tracking ajax requests
+					$( document ).on( 'ajaxSend', trackAjax );
+
 					localEnv.setup.call( this );
 				},
 
 				teardown: function () {
-					var timers;
-					log( 'MwEnvironment> TEARDOWN for "' + QUnit.config.current.module
-						+ ': ' + QUnit.config.current.testName + '"' );
+					var timers, pending, $activeLen;
 
 					localEnv.teardown.call( this );
+
+					// Stop tracking ajax requests
+					$( document ).off( 'ajaxSend', trackAjax );
 
 					// Farewell, mock environment!
 					mw.config.values = liveConfig;
@@ -258,15 +262,14 @@
 					// still suppressed by the end of the test.
 					restoreWarnings();
 
-					// Check for incomplete animations/requests/etc and throw
-					// error if there are any.
+					// Tests should use fake timers or wait for animations to complete
+					// Check for incomplete animations/requests/etc and throw if there are any.
 					if ( $.timers && $.timers.length !== 0 ) {
 						timers = $.timers.length;
-						// Tests shoulld use fake timers or wait for animations to complete
 						$.each( $.timers, function ( i, timer ) {
 							var node = timer.elem;
 							mw.log.warn( 'Unfinished animation #' + i + ' in ' + timer.queue + ' queue on ' +
-								mw.html.element( node.nodeName.toLowerCase(), $(node).getAttrs() )
+								mw.html.element( node.nodeName.toLowerCase(), $( node ).getAttrs() )
 							);
 						} );
 						// Force animations to stop to give the next test a clean start
@@ -274,10 +277,24 @@
 
 						throw new Error( 'Unfinished animations: ' + timers );
 					}
-					if ( $.active !== undefined && $.active !== 0 ) {
-						// Test may need to use fake XHR, wait for requests or
-						// call abort().
-						throw new Error( 'Unfinished AJAX requests: ' + $.active );
+
+					// Test should use fake XHR, wait for requests, or call abort()
+					$activeLen = $.active;
+					if ( $activeLen !== undefined && $activeLen !== 0 ) {
+						pending = $.grep( ajaxRequests, function ( ajax ) {
+							return ajax.xhr.state() === 'pending';
+						} );
+						if ( pending.length !== $activeLen ) {
+							mw.log.warn( 'Pending requests does not match jQuery.active count' );
+						}
+						// Force requests to stop to give the next test a clean start
+						$.each( pending, function ( i, ajax ) {
+							mw.log.warn( 'Pending AJAX request #' + i, ajax.options );
+							ajax.xhr.abort();
+						} );
+						ajaxRequests = [];
+
+						throw new Error( 'Pending AJAX requests: ' + pending.length + ' (active: ' + $activeLen + ')' );
 					}
 				}
 			};
@@ -313,12 +330,12 @@
 	function getDomStructure( node ) {
 		var $node, children, processedChildren, i, len, el;
 		$node = $( node );
-		if ( node.nodeType === ELEMENT_NODE ) {
+		if ( node.nodeType === Node.ELEMENT_NODE ) {
 			children = $node.contents();
 			processedChildren = [];
 			for ( i = 0, len = children.length; i < len; i++ ) {
-				el = children[i];
-				if ( el.nodeType === ELEMENT_NODE || el.nodeType === TEXT_NODE ) {
+				el = children[ i ];
+				if ( el.nodeType === Node.ELEMENT_NODE || el.nodeType === Node.TEXT_NODE ) {
 					processedChildren.push( getDomStructure( el ) );
 				}
 			}
@@ -340,7 +357,7 @@
 	 * @param {string} html HTML markup for one or more nodes.
 	 */
 	function getHtmlStructure( html ) {
-		var el = $( '<div>' ).append( html )[0];
+		var el = $( '<div>' ).append( html )[ 0 ];
 		return getDomStructure( el );
 	}
 
@@ -472,11 +489,11 @@
 			missing = [];
 
 		for ( i = 0, len = modules.length; i < len; i++ ) {
-			state = mw.loader.getState( modules[i] );
+			state = mw.loader.getState( modules[ i ] );
 			if ( state === 'error' ) {
-				error.push( modules[i] );
+				error.push( modules[ i ] );
 			} else if ( state === 'missing' ) {
-				missing.push( modules[i] );
+				missing.push( modules[ i ] );
 			}
 		}
 

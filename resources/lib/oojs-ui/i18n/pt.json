@@ -10,7 +10,8 @@
 			"Jdforrester",
 			"Luckas",
 			"Vitorvicentevalente",
-			"SandroHc"
+			"SandroHc",
+			"Jkb8"
 		]
 	},
 	"ooui-outline-control-move-down": "Mover item para baixo",
@@ -24,5 +25,8 @@
 	"ooui-dialog-process-error": "Algo correu mal",
 	"ooui-dialog-process-dismiss": "Ignorar",
 	"ooui-dialog-process-retry": "Tentar novamente",
-	"ooui-dialog-process-continue": "Continuar"
+	"ooui-dialog-process-continue": "Continuar",
+	"ooui-selectfile-not-supported": "A seleção de ficheiros não é suportada",
+	"ooui-selectfile-placeholder": "Nenhum ficheiro selecionado",
+	"ooui-selectfile-dragdrop-placeholder": "Soltar ficheiro aqui"
 }

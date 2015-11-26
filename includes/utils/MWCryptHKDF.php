@@ -161,7 +161,7 @@ class MWCryptHKDF {
 	 * @throws MWException
 	 */
 	protected static function singleton() {
-		global $wgHKDFAlgorithm, $wgHKDFSecret, $wgSecretKey;
+		global $wgHKDFAlgorithm, $wgHKDFSecret, $wgSecretKey, $wgMainCacheType;
 
 		$secret = $wgHKDFSecret ?: $wgSecretKey;
 		if ( !$secret ) {
@@ -176,11 +176,7 @@ class MWCryptHKDF {
 		$context[] = gethostname();
 
 		// Setup salt cache. Use APC, or fallback to the main cache if it isn't setup
-		try {
-			$cache = ObjectCache::newAccelerator( array() );
-		} catch ( Exception $e ) {
-			$cache = wfGetMainCache();
-		}
+		$cache = ObjectCache::newAccelerator( $wgMainCacheType );
 
 		if ( is_null( self::$singleton ) ) {
 			self::$singleton = new self( $secret, $wgHKDFAlgorithm, $cache, $context );

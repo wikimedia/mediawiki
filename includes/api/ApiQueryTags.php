@@ -163,7 +163,8 @@ class ApiQueryTags extends ApiQueryBase {
 					'source',
 					'active',
 				),
-				ApiBase::PARAM_ISMULTI => true
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			)
 		);
 	}

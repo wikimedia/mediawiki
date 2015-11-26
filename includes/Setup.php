@@ -68,17 +68,18 @@ if ( !empty( $wgActionPaths ) && !isset( $wgActionPaths['view'] ) ) {
 	$wgActionPaths['view'] = $wgArticlePath;
 }
 
+if ( $wgResourceBasePath === null ) {
+	$wgResourceBasePath = $wgScriptPath;
+}
 if ( $wgStylePath === false ) {
-	$wgStylePath = "$wgScriptPath/skins";
+	$wgStylePath = "$wgResourceBasePath/skins";
 }
 if ( $wgLocalStylePath === false ) {
+	// Avoid wgResourceBasePath here since that may point to a different domain (e.g. CDN)
 	$wgLocalStylePath = "$wgScriptPath/skins";
 }
 if ( $wgExtensionAssetsPath === false ) {
-	$wgExtensionAssetsPath = "$wgScriptPath/extensions";
-}
-if ( $wgResourceBasePath === null ) {
-	$wgResourceBasePath = $wgScriptPath;
+	$wgExtensionAssetsPath = "$wgResourceBasePath/extensions";
 }
 
 if ( $wgLogo === false ) {
@@ -103,6 +104,10 @@ if ( $wgDeletedDirectory === false ) {
 
 if ( $wgGitInfoCacheDirectory === false && $wgCacheDirectory !== false ) {
 	$wgGitInfoCacheDirectory = "{$wgCacheDirectory}/gitinfo";
+}
+
+if ( $wgEnableParserCache === false ) {
+	$wgParserCacheType = CACHE_NONE;
 }
 
 // Fix path to icon images after they were moved in 1.24
@@ -359,13 +364,13 @@ if ( $wgMetaNamespace === false ) {
 
 // Default value is 2000 or the suhosin limit if it is between 1 and 2000
 if ( $wgResourceLoaderMaxQueryLength === false ) {
-	$suhosinMaxValueLength = (int) ini_get( 'suhosin.get.max_value_length' );
+	$suhosinMaxValueLength = (int)ini_get( 'suhosin.get.max_value_length' );
 	if ( $suhosinMaxValueLength > 0 && $suhosinMaxValueLength < 2000 ) {
 		$wgResourceLoaderMaxQueryLength = $suhosinMaxValueLength;
 	} else {
 		$wgResourceLoaderMaxQueryLength = 2000;
 	}
-	unset($suhosinMaxValueLength);
+	unset( $suhosinMaxValueLength );
 }
 
 // Ensure the minimum chunk size is less than PHP upload limits or the maximum
@@ -434,12 +439,12 @@ if ( !$wgHtml5Version && $wgAllowRdfaAttributes ) {
 }
 
 // Blacklisted file extensions shouldn't appear on the "allowed" list
-$wgFileExtensions = array_values( array_diff ( $wgFileExtensions, $wgFileBlacklist ) );
+$wgFileExtensions = array_values( array_diff( $wgFileExtensions, $wgFileBlacklist ) );
 
 if ( $wgInvalidateCacheOnLocalSettingsChange ) {
-	// @codingStandardsIgnoreStart Generic.PHP.NoSilencedErrors.Discouraged - No GlobalFunction here yet.
-	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', @filemtime( "$IP/LocalSettings.php" ) ) );
-	// @codingStandardsIgnoreEnd
+	MediaWiki\suppressWarnings();
+	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', filemtime( "$IP/LocalSettings.php" ) ) );
+	MediaWiki\restoreWarnings();
 }
 
 if ( $wgNewUserLog ) {
@@ -473,6 +478,21 @@ if ( $wgProfileOnly ) {
 	$wgDebugLogFile = '';
 }
 
+// Backwards compatibility with old password limits
+if ( $wgMinimalPasswordLength !== false ) {
+	$wgPasswordPolicy['policies']['default']['MinimalPasswordLength'] = $wgMinimalPasswordLength;
+}
+
+if ( $wgMaximalPasswordLength !== false ) {
+	$wgPasswordPolicy['policies']['default']['MaximalPasswordLength'] = $wgMaximalPasswordLength;
+}
+
+// Backwards compatibility with deprecated alias
+// Must be before call to wfSetupSession()
+if ( $wgSessionsInMemcached ) {
+	$wgSessionsInObjectCache = true;
+}
+
 Profiler::instance()->scopedProfileOut( $ps_default );
 
 // Disable MWDebug for command line mode, this prevents MWDebug from eating up
@@ -488,7 +508,7 @@ if ( !class_exists( 'AutoLoader' ) ) {
 
 MWExceptionHandler::installHandler();
 
-require_once "$IP/includes/libs/normal/UtfNormalUtil.php";
+require_once "$IP/includes/compat/normal/UtfNormalUtil.php";
 
 $ps_default2 = Profiler::instance()->scopedProfileIn( $fname . '-defaults2' );
 
@@ -525,11 +545,11 @@ if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
 		. 'HTTP or HTTPS. Disabling secure login.' );
 }
 
+$wgVirtualRestConfig['global']['domain'] = $wgCanonicalServer;
+
 // Now that GlobalFunctions is loaded, set defaults that depend on it.
 if ( $wgTmpDirectory === false ) {
-	$ps_tmpdir = Profiler::instance()->scopedProfileIn( $fname . '-tempDir' );
 	$wgTmpDirectory = wfTempDir();
-	Profiler::instance()->scopedProfileOut( $ps_tmpdir );
 }
 
 // We don't use counters anymore. Left here for extensions still
@@ -537,6 +557,21 @@ if ( $wgTmpDirectory === false ) {
 if ( !isset( $wgDisableCounters ) ) {
 	$wgDisableCounters = true;
 }
+<<<<<<< HEAD
+=======
+
+if ( $wgMainWANCache === false ) {
+	// Setup a WAN cache from $wgMainCacheType with no relayer.
+	// Sites using multiple datacenters can configure a relayer.
+	$wgMainWANCache = 'mediawiki-main-default';
+	$wgWANObjectCaches[$wgMainWANCache] = array(
+		'class'         => 'WANObjectCache',
+		'cacheId'       => $wgMainCacheType,
+		'pool'          => 'mediawiki-main-default',
+		'relayerConfig' => array( 'class' => 'EventRelayerNull' )
+	);
+}
+>>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 
 Profiler::instance()->scopedProfileOut( $ps_default2 );
 
@@ -551,14 +586,18 @@ wfMemoryLimit();
  * explicitly set. Inspired by phpMyAdmin's treatment of the problem.
  */
 if ( is_null( $wgLocaltimezone ) ) {
-	wfSuppressWarnings();
+	MediaWiki\suppressWarnings();
 	$wgLocaltimezone = date_default_timezone_get();
-	wfRestoreWarnings();
+	MediaWiki\restoreWarnings();
 }
 
 date_default_timezone_set( $wgLocaltimezone );
 if ( is_null( $wgLocalTZoffset ) ) {
 	$wgLocalTZoffset = date( 'Z' ) / 60;
+}
+
+if ( !$wgDBerrorLogTZ ) {
+	$wgDBerrorLogTZ = $wgLocaltimezone;
 }
 
 // Useful debug output
@@ -653,12 +692,6 @@ if ( !is_object( $wgAuth ) ) {
  * @var Title $wgTitle
  */
 $wgTitle = null;
-
-/**
- * @deprecated since 1.24 Use DeferredUpdates::addUpdate instead
- * @var array
- */
-$wgDeferredUpdateList = array();
 
 Profiler::instance()->scopedProfileOut( $ps_globals );
 $ps_extensions = Profiler::instance()->scopedProfileIn( $fname . '-extensions' );

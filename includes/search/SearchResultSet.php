@@ -25,6 +25,12 @@
  * @ingroup Search
  */
 class SearchResultSet {
+	protected $containedSyntax = false;
+
+	public function __construct( $containedSyntax = false ) {
+		$this->containedSyntax = $containedSyntax;
+	}
+
 	/**
 	 * Fetch an array of regular expression fragments for matching
 	 * the search terms as parsed by this engine in a text extract.
@@ -51,6 +57,33 @@ class SearchResultSet {
 	 * @return int
 	 */
 	function getTotalHits() {
+		return null;
+	}
+
+	/**
+	 * Some search modes will run an alternative query that it thinks gives
+	 * a better result than the provided search. Returns true if this has
+	 * occured.
+	 *
+	 * @return bool
+	 */
+	function hasRewrittenQuery() {
+		return false;
+	}
+
+	/**
+	 * @return string|null The search the query was internally rewritten to,
+	 *  or null when the result of the original query was returned.
+	 */
+	function getQueryAfterRewrite() {
+		return null;
+	}
+
+	/**
+	 * @return string|null Same as self::getQueryAfterRewrite(), but in HTML
+	 *  and with changes highlighted. Null when the query was not rewritten.
+	 */
+	function getQueryAfterRewriteSnippet() {
 		return null;
 	}
 
@@ -120,7 +153,7 @@ class SearchResultSet {
 	 * @return bool
 	 */
 	public function searchContainedSyntax() {
-		return false;
+		return $this->containedSyntax;
 	}
 }
 

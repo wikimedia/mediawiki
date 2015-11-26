@@ -7,9 +7,11 @@
 }
 
 /*
- * Titles, including username links, are especially prone for getting jumbled up
+ * Titles, including username links, and also tag names
+ * are prone to getting jumbled up
  * with other titles, usernames, etc. in mixed RTL-LTR environment.
  */
+.mw-changeslist .mw-tag-marker,
 .mw-changeslist .mw-title {
 	unicode-bidi: embed;
 }

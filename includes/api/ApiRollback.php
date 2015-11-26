@@ -40,6 +40,8 @@ class ApiRollback extends ApiBase {
 	private $mUser = null;
 
 	public function execute() {
+		$this->useTransactionalTimeLimit();
+
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 

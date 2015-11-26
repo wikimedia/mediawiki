@@ -47,7 +47,7 @@ class CacheTime {
 	/**
 	 * setCacheTime() sets the timestamp expressing when the page has been rendered.
 	 * This does not control expiry, see updateCacheExpiry() for that!
-	 * @param string $t
+	 * @param string $t TS_MW timestamp
 	 * @return string
 	 */
 	public function setCacheTime( $t ) {

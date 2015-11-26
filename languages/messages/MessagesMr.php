@@ -54,7 +54,7 @@ $namespaceNames = array(
 	NS_SPECIAL          => 'विशेष',
 	NS_TALK             => 'चर्चा',
 	NS_USER             => 'सदस्य',
-	NS_USER_TALK        => 'सदस्य चर्चा',
+	NS_USER_TALK        => 'सदस्य_चर्चा',
 	NS_PROJECT_TALK     => '$1_चर्चा',
 	NS_FILE             => 'चित्र',
 	NS_FILE_TALK        => 'चित्र_चर्चा',
@@ -128,7 +128,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'माझ्या_चर्चा' ),
 	'Newimages'                 => array( 'नवीन_संचिका', 'नवीन_चित्रे' ),
 	'Newpages'                  => array( 'नवीन_पाने' ),
-
 	'Preferences'               => array( 'पसंती' ),
 	'Prefixindex'               => array( 'उपसर्गसुची' ),
 	'Protectedpages'            => array( 'सुरक्षित_पाने' ),

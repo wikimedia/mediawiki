@@ -35,7 +35,8 @@ class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	protected function getData() {
-		return json_decode( file_get_contents( $this->path ) );
+		global $IP;
+		return json_decode( file_get_contents( "$IP/{$this->path}" ) );
 	}
 
 	/**
@@ -53,25 +54,17 @@ class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param ResourceLoaderContext $context
-	 * @return int UNIX timestamp
+	 * @return bool
 	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		return static::safeFilemtime( $this->path );
+	public function enableModuleContentVersion() {
+		return true;
 	}
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @return string Hash
-	 */
-	public function getModifiedHash( ResourceLoaderContext $context ) {
-		return md5( serialize( $this->getData() ) );
-	}
-
-	/**
 	 * @return array
 	 */
-	public function getDependencies() {
+	public function getDependencies( ResourceLoaderContext $context = null ) {
 		return array( 'mediawiki.language' );
 	}
 

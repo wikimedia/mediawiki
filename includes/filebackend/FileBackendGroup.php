@@ -160,6 +160,8 @@ class FileBackendGroup {
 			$config['fileJournal'] = isset( $config['fileJournal'] )
 				? FileJournal::factory( $config['fileJournal'], $name )
 				: FileJournal::factory( array( 'class' => 'NullFileJournal' ), $name );
+			$config['wanCache'] = ObjectCache::getMainWANInstance();
+
 			$this->backends[$name]['instance'] = new $class( $config );
 		}
 

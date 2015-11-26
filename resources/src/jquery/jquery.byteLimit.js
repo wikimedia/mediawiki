@@ -10,17 +10,17 @@
 	 * "fobo", not "foba". Basically emulating the native maxlength by
 	 * reconstructing where the insertion occurred.
 	 *
-	 * @private
+	 * @static
 	 * @param {string} safeVal Known value that was previously returned by this
 	 * function, if none, pass empty string.
 	 * @param {string} newVal New value that may have to be trimmed down.
 	 * @param {number} byteLimit Number of bytes the value may be in size.
-	 * @param {Function} [fn] See jQuery.byteLimit.
+	 * @param {Function} [fn] See jQuery#byteLimit.
 	 * @return {Object}
 	 * @return {string} return.newVal
 	 * @return {boolean} return.trimmed
 	 */
-	function trimValForByteLength( safeVal, newVal, byteLimit, fn ) {
+	$.trimByteLength = function ( safeVal, newVal, byteLimit, fn ) {
 		var startMatches, endMatches, matchesLen, inpParts,
 			oldVal = safeVal;
 
@@ -77,22 +77,22 @@
 		// until the limit is statisfied.
 		if ( fn ) {
 			// stop, when there is nothing to slice - bug 41450
-			while ( $.byteLength( fn( inpParts.join( '' ) ) ) > byteLimit && inpParts[1].length > 0 ) {
-				inpParts[1] = inpParts[1].slice( 0, -1 );
+			while ( $.byteLength( fn( inpParts.join( '' ) ) ) > byteLimit && inpParts[ 1 ].length > 0 ) {
+				inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -1 );
 			}
 		} else {
 			while ( $.byteLength( inpParts.join( '' ) ) > byteLimit ) {
-				inpParts[1] = inpParts[1].slice( 0, -1 );
+				inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -1 );
 			}
 		}
 
-		newVal = inpParts.join( '' );
-
 		return {
-			newVal: newVal,
-			trimmed: true
+			newVal: inpParts.join( '' ),
+			// For pathological fn() that always returns a value longer than the limit, we might have
+			// ended up not trimming - check for this case to avoid infinite loops
+			trimmed: newVal !== inpParts.join( '' )
 		};
-	}
+	};
 
 	var eventKeys = [
 		'keyup.byteLimit',
@@ -206,7 +206,7 @@
 			// See http://www.w3.org/TR/DOM-Level-3-Events/#events-keyboard-event-order for
 			// the order and characteristics of the key events.
 			$el.on( eventKeys, function () {
-				var res = trimValForByteLength(
+				var res = $.trimByteLength(
 					prevSafeVal,
 					this.value,
 					elLimit,
@@ -219,9 +219,12 @@
 				// This is a side-effect of limiting after the fact.
 				if ( res.trimmed === true ) {
 					this.value = res.newVal;
+					// Trigger a 'change' event to let other scripts attached to this node know that the value
+					// was changed. This will also call ourselves again, but that's okay, it'll be a no-op.
+					$el.trigger( 'change' );
 				}
 				// Always adjust prevSafeVal to reflect the input value. Not doing this could cause
-				// trimValForByteLength to compare the new value to an empty string instead of the
+				// trimByteLength to compare the new value to an empty string instead of the
 				// old value, resulting in trimming always from the end (bug 40850).
 				prevSafeVal = res.newVal;
 			} );

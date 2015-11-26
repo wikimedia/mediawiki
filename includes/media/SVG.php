@@ -95,7 +95,7 @@ class SvgHandler extends ImageHandler {
 			$metadata = $this->unpackMetadata( $metadata );
 			if ( isset( $metadata['translations'] ) ) {
 				foreach ( $metadata['translations'] as $lang => $langType ) {
-					if ( $langType === SvgReader::LANG_FULL_MATCH ) {
+					if ( $langType === SVGReader::LANG_FULL_MATCH ) {
 						$langList[] = $lang;
 					}
 				}
@@ -205,11 +205,12 @@ class SvgHandler extends ImageHandler {
 		$tmpDir = wfTempDir() . '/svg_' . wfRandomString( 24 );
 		$lnPath = "$tmpDir/" . basename( $srcPath );
 		$ok = mkdir( $tmpDir, 0771 ) && symlink( $srcPath, $lnPath );
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$cleaner = new ScopedCallback( function () use ( $tmpDir, $lnPath ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			unlink( $lnPath );
 			rmdir( $tmpDir );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		} );
 		if ( !$ok ) {
 			wfDebugLog( 'thumbnail',
@@ -307,9 +308,9 @@ class SvgHandler extends ImageHandler {
 	 */
 	function getImageSize( $file, $path, $metadata = false ) {
 		if ( $metadata === false ) {
-			$metadata = $file->getMetaData();
+			$metadata = $file->getMetadata();
 		}
-		$metadata = $this->unpackMetaData( $metadata );
+		$metadata = $this->unpackMetadata( $metadata );
 
 		if ( isset( $metadata['width'] ) && isset( $metadata['height'] ) ) {
 			return array( $metadata['width'], $metadata['height'], 'SVG',
@@ -375,9 +376,9 @@ class SvgHandler extends ImageHandler {
 	}
 
 	function unpackMetadata( $metadata ) {
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$unser = unserialize( $metadata );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( isset( $unser['version'] ) && $unser['version'] == self::SVG_METADATA_VERSION ) {
 			return $unser;
 		} else {

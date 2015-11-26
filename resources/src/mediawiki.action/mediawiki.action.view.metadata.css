@@ -14,3 +14,9 @@ table.collapsed tr.collapsable {
 	-ms-user-select: none;
 	user-select: none;
 }
+
+@media print {
+	tr.mw-metadata-show-hide-extended {
+		display: none;
+	}
+}

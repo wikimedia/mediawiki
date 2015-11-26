@@ -137,7 +137,7 @@ class JpegHandler extends ExifBitmapHandler {
 
 		$rotation = ( $params['rotation'] + $this->getRotation( $file ) ) % 360;
 
-		if ( $wgJpegTran && is_file( $wgJpegTran ) ) {
+		if ( $wgJpegTran && is_executable( $wgJpegTran ) ) {
 			$cmd = wfEscapeShellArg( $wgJpegTran ) .
 				" -rotate " . wfEscapeShellArg( $rotation ) .
 				" -outfile " . wfEscapeShellArg( $params['dstPath'] ) .

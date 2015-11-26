@@ -68,19 +68,25 @@
 		if ( val === undefined || val === null || val === '' ) {
 			return '';
 		}
+		/* jshint latedef:false */
 		return pre + ( raw ? val : mw.Uri.encode( val ) ) + post;
+		/* jshint latedef:true */
 	}
 
 	/**
 	 * Regular expressions to parse many common URIs.
+	 *
+	 * As they are gnarly, they have been moved to separate files to allow us to format them in the
+	 * 'extended' regular expression format (which JavaScript normally doesn't support). The subset of
+	 * features handled is minimal, but just the free whitespace gives us a lot.
 	 *
 	 * @private
 	 * @static
 	 * @property {Object} parser
 	 */
 	var parser = {
-		strict: /^(?:([^:\/?#]+):)?(?:\/\/(?:(?:([^:@\/?#]*)(?::([^:@\/?#]*))?)?@)?([^:\/?#]*)(?::(\d*))?)?((?:[^?#\/]*\/)*[^?#]*)(?:\?([^#]*))?(?:#(.*))?/,
-		loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?(?:(?:([^:@\/?#]*)(?::([^:@\/?#]*))?)?@)?([^:\/?#]*)(?::(\d*))?((?:\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?[^?#\/]*)(?:\?([^#]*))?(?:#(.*))?/
+		strict: mw.template.get( 'mediawiki.Uri', 'strict.regexp' ).render(),
+		loose: mw.template.get( 'mediawiki.Uri', 'loose.regexp' ).render()
 	},
 
 	/**
@@ -169,6 +175,7 @@
 		 * @param {boolean} [options.overrideKeys=false] Whether to let duplicate query parameters
 		 *  override each other (`true`) or automagically convert them to an array (`false`).
 		 */
+		/* jshint latedef:false */
 		function Uri( uri, options ) {
 			var prop,
 				defaultUri = getDefaultUri();
@@ -188,10 +195,10 @@
 						// Only copy direct properties, not inherited ones
 						if ( uri.hasOwnProperty( prop ) ) {
 							// Deep copy object properties
-							if ( $.isArray( uri[prop] ) || $.isPlainObject( uri[prop] ) ) {
-								this[prop] = $.extend( true, {}, uri[prop] );
+							if ( $.isArray( uri[ prop ] ) || $.isPlainObject( uri[ prop ] ) ) {
+								this[ prop ] = $.extend( true, {}, uri[ prop ] );
 							} else {
-								this[prop] = uri[prop];
+								this[ prop ] = uri[ prop ];
 							}
 						}
 					}
@@ -216,7 +223,7 @@
 					this.port = defaultUri.port;
 				}
 			}
-			if ( this.path && this.path.charAt( 0 ) !== '/' ) {
+			if ( this.path && this.path[ 0 ] !== '/' ) {
 				// A real relative URL, relative to defaultUri.path. We can't really handle that since we cannot
 				// figure out whether the last path component of defaultUri.path is a directory or a file.
 				throw new Error( 'Bad constructor arguments' );

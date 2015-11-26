@@ -418,7 +418,10 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	}
 
 	/**
+	 * Broken per T70653.
+	 *
 	 * @group large
+	 * @group Broken
 	 */
 	function testCheckpointPlain() {
 		$this->checkpointHelper();
@@ -434,7 +437,10 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	 * PHP extensions, we go for gzip instead, which triggers the same relevant code
 	 * paths while still being testable on more systems.
 	 *
+	 * Broken per T70653.
+	 *
 	 * @group large
+	 * @group Broken
 	 */
 	function testCheckpointGzip() {
 		$this->checkHasGzip();
@@ -630,7 +636,7 @@ class TextPassDumperDatabaselessTest extends MediaWikiLangTestCase {
 	 */
 	function testBufferSizeSetting( $expected, $size, $msg ) {
 		$dumper = new TextPassDumperAccessor( array( "--buffersize=" . $size ) );
-		$this->assertEquals( $expected, $dumper->getBufferSize(), $msg);
+		$this->assertEquals( $expected, $dumper->getBufferSize(), $msg );
 	}
 
 	/**

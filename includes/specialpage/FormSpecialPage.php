@@ -96,7 +96,11 @@ abstract class FormSpecialPage extends SpecialPage {
 			$this->getMessagePrefix()
 		);
 		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
-		$form->setWrapperLegendMsg( $this->getMessagePrefix() . '-legend' );
+		if ( $this->getDisplayFormat() !== 'ooui' ) {
+			// No legend and wrapper by default in OOUI forms, but can be set manually
+			// from alterForm()
+			$form->setWrapperLegendMsg( $this->getMessagePrefix() . '-legend' );
+		}
 
 		$headerMsg = $this->msg( $this->getMessagePrefix() . '-text' );
 		if ( !$headerMsg->isDisabled() ) {

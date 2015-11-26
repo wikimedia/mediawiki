@@ -8,14 +8,14 @@ return array(
 
 	'test.sinonjs' => array(
 		'scripts' => array(
-			'resources/lib/sinonjs/sinon-1.10.3.js',
+			'resources/lib/sinonjs/sinon-1.15.4.js',
 			// We want tests to work in IE, but can't include this as it
 			// will break the placeholders in Sinon because the hack it uses
 			// to hijack IE globals relies on running in the global scope
 			// and in ResourceLoader this won't be running in the global scope.
 			// Including it results (among other things) in sandboxed timers
 			// being broken due to Date inheritance being undefined.
-			// 'resources/lib/sinonjs/sinon-ie-1.10.3.js',
+			// 'resources/lib/sinonjs/sinon-ie-1.15.4.js',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
@@ -31,6 +31,7 @@ return array(
 			'mediawiki.page.ready',
 			'mediawiki.page.startup',
 			'test.sinonjs',
+			'dom-level2-shim',
 		),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
@@ -66,6 +67,8 @@ return array(
 			'tests/qunit/suites/resources/mediawiki/mediawiki.jqueryMsg.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.jscompat.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.messagePoster.factory.test.js',
+			'tests/qunit/suites/resources/mediawiki/mediawiki.RegExp.test.js',
+			'tests/qunit/suites/resources/mediawiki/mediawiki.storage.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.template.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.Title.test.js',
@@ -78,11 +81,14 @@ return array(
 			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.category.test.js',
 			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.options.test.js',
 			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.parse.test.js',
+			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.upload.test.js',
 			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.watch.test.js',
+			'tests/qunit/suites/resources/mediawiki.api/mediawiki.ForeignApi.test.js',
 			'tests/qunit/suites/resources/mediawiki.special/mediawiki.special.recentchanges.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.language.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cldr.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cookie.test.js',
+			'tests/qunit/suites/resources/mediawiki/mediawiki.experiments.test.js',
 		),
 		'dependencies' => array(
 			'jquery.accessKeyLabel',
@@ -105,9 +111,13 @@ return array(
 			'mediawiki.api.category',
 			'mediawiki.api.options',
 			'mediawiki.api.parse',
+			'mediawiki.api.upload',
 			'mediawiki.api.watch',
+			'mediawiki.ForeignApi.core',
 			'mediawiki.jqueryMsg',
 			'mediawiki.messagePoster',
+			'mediawiki.RegExp',
+			'mediawiki.storage',
 			'mediawiki.Title',
 			'mediawiki.toc',
 			'mediawiki.Uri',
@@ -118,6 +128,7 @@ return array(
 			'mediawiki.language',
 			'mediawiki.cldr',
 			'mediawiki.cookie',
+			'mediawiki.experiments',
 			'test.mediawiki.qunit.testrunner',
 		),
 	)

@@ -115,6 +115,28 @@ abstract class LogEntryBase implements LogEntry {
 	public function isLegacy() {
 		return false;
 	}
+
+	/**
+	 * Create a blob from a parameter array
+	 *
+	 * @param array $params
+	 * @return string
+	 * @since 1.26
+	 */
+	public static function makeParamBlob( $params ) {
+		return serialize( (array)$params );
+	}
+
+	/**
+	 * Extract a parameter array from a blob
+	 *
+	 * @param string $blob
+	 * @return array
+	 * @since 1.26
+	 */
+	public static function extractParams( $blob ) {
+		return unserialize( $blob );
+	}
 }
 
 /**
@@ -224,14 +246,14 @@ class DatabaseLogEntry extends LogEntryBase {
 	public function getParameters() {
 		if ( !isset( $this->params ) ) {
 			$blob = $this->getRawParameters();
-			wfSuppressWarnings();
-			$params = unserialize( $blob );
-			wfRestoreWarnings();
+			MediaWiki\suppressWarnings();
+			$params = LogEntryBase::extractParams( $blob );
+			MediaWiki\restoreWarnings();
 			if ( $params !== false ) {
 				$this->params = $params;
 				$this->legacy = false;
 			} else {
-				$this->params = $blob === '' ? array() : explode( "\n", $blob );
+				$this->params = LogPage::extractParams( $blob );
 				$this->legacy = true;
 			}
 		}
@@ -516,7 +538,7 @@ class ManualLogEntry extends LogEntryBase {
 			'log_title' => $this->getTarget()->getDBkey(),
 			'log_page' => $this->getTarget()->getArticleID(),
 			'log_comment' => $comment,
-			'log_params' => serialize( (array)$this->getParameters() ),
+			'log_params' => LogEntryBase::makeParamBlob( $this->getParameters() ),
 		);
 		if ( isset( $this->deleted ) ) {
 			$data['log_deleted'] = $this->deleted;
@@ -584,7 +606,7 @@ class ManualLogEntry extends LogEntryBase {
 			$this->getSubtype(),
 			$this->getTarget(),
 			$this->getComment(),
-			serialize( (array)$this->getParameters() ),
+			LogEntryBase::makeParamBlob( $this->getParameters() ),
 			$newId,
 			$formatter->getIRCActionComment() // Used for IRC feeds
 		);

@@ -1,0 +1,33 @@
+{
+	"prefix": "oo-ui-icon",
+	"intro": "@import '../../../../src/styles/common';",
+	"variants": {
+		"invert": {
+			"color": "#FFFFFF",
+			"global": true
+		}
+	},
+	"images": {
+		"image": { "file": {
+			"ltr": "images/icons/image-ltr.svg",
+			"rtl": "images/icons/image-rtl.svg"
+		} },
+		"imageAdd": { "file": {
+			"ltr": "images/icons/imageAdd-ltr.svg",
+			"rtl": "images/icons/imageAdd-rtl.svg"
+		} },
+		"imageLock": { "file": {
+			"ltr": "images/icons/imageLock-ltr.svg",
+			"rtl": "images/icons/imageLock-rtl.svg"
+		} },
+		"photoGallery": { "file": {
+			"ltr": "images/icons/photoGallery-ltr.svg",
+			"rtl": "images/icons/photoGallery-rtl.svg"
+		} },
+		"play": { "file": {
+			"ltr": "images/icons/play-ltr.svg",
+			"rtl": "images/icons/play-rtl.svg"
+		} },
+		"stop": { "file": "images/icons/stop.svg" }
+	}
+}

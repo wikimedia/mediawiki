@@ -1,0 +1,15 @@
+{
+	"prefix": "oo-ui-icon",
+	"intro": "@import '../../../../src/styles/common';",
+	"variants": {
+		"invert": {
+			"color": "#FFFFFF",
+			"global": true
+		}
+	},
+	"images": {
+		"logoCC": { "file": "images/icons/logo-cc.svg" },
+		"logoWikimediaCommons": { "file": "images/icons/logo-wikimediaCommons.svg" },
+		"logoWikipedia": { "file": "images/icons/logo-wikipedia.svg" }
+	}
+}

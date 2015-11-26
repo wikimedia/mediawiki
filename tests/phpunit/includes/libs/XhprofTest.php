@@ -255,43 +255,43 @@ class XhprofTest extends PHPUnit_Framework_TestCase {
 	 */
 	protected function getXhprofFixture( array $opts = array() ) {
 		$xhprof = new Xhprof( $opts );
-		$xhprof->loadRawData( array (
-			'foo==>bar' => array (
+		$xhprof->loadRawData( array(
+			'foo==>bar' => array(
 				'ct' => 2,
 				'wt' => 57,
 				'cpu' => 92,
 				'mu' => 1896,
 				'pmu' => 0,
 			),
-			'foo==>strlen' => array (
+			'foo==>strlen' => array(
 				'ct' => 2,
 				'wt' => 21,
 				'cpu' => 141,
 				'mu' => 752,
 				'pmu' => 0,
 			),
-			'bar==>bar@1' => array (
+			'bar==>bar@1' => array(
 				'ct' => 1,
 				'wt' => 18,
 				'cpu' => 19,
 				'mu' => 752,
 				'pmu' => 0,
 			),
-			'main()==>foo' => array (
+			'main()==>foo' => array(
 				'ct' => 1,
 				'wt' => 304,
 				'cpu' => 307,
 				'mu' => 4008,
 				'pmu' => 0,
 			),
-			'main()==>xhprof_disable' => array (
+			'main()==>xhprof_disable' => array(
 				'ct' => 1,
 				'wt' => 8,
 				'cpu' => 10,
 				'mu' => 768,
 				'pmu' => 392,
 			),
-			'main()' => array (
+			'main()' => array(
 				'ct' => 1,
 				'wt' => 353,
 				'cpu' => 351,
@@ -311,7 +311,7 @@ class XhprofTest extends PHPUnit_Framework_TestCase {
 	 */
 	protected function assertArrayStructure( $struct, $actual, $label = null ) {
 		$this->assertInternalType( 'array', $actual, $label );
-		$this->assertCount( count($struct), $actual, $label );
+		$this->assertCount( count( $struct ), $actual, $label );
 		foreach ( $struct as $key => $type ) {
 			$this->assertArrayHasKey( $key, $actual );
 			$this->assertInternalType( $type, $actual[$key] );

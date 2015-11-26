@@ -277,7 +277,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 				$vals = array();
 				if ( $fld_pageid ) {
-					$vals['pageid'] = $row->page_id;
+					$vals['pageid'] = (int)$row->page_id;
 				}
 				if ( $fld_title ) {
 					ApiQueryBase::addTitleInfo( $vals,
@@ -335,6 +335,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 				),
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'pageid|title',
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'namespace' => array(
 				ApiBase::PARAM_ISMULTI => true,
@@ -405,8 +406,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		$name = $this->getModuleName();
-		$prefix = $this->getModulePrefix();
-		return "https://www.mediawiki.org/wiki/API:Properties#{$name}_.2F_{$prefix}";
+		$name = ucfirst( $this->getModuleName() );
+		return "https://www.mediawiki.org/wiki/API:{$name}";
 	}
 }

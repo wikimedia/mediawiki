@@ -46,6 +46,9 @@ class ConfigFactory {
 	 */
 	private static $self;
 
+	/**
+	 * @return ConfigFactory
+	 */
 	public static function getDefaultInstance() {
 		if ( !self::$self ) {
 			self::$self = new self;

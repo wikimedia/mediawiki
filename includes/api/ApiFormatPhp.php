@@ -68,7 +68,8 @@ class ApiFormatPhp extends ApiFormatBase {
 			preg_match( '/\<\s*cross-domain-policy\s*\>/i', $text )
 		) {
 			$this->dieUsage(
-				'This response cannot be represented using format=php. See https://bugzilla.wikimedia.org/show_bug.cgi?id=66776',
+				'This response cannot be represented using format=php. ' .
+				'See https://bugzilla.wikimedia.org/show_bug.cgi?id=66776',
 				'internalerror'
 			);
 		}

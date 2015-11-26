@@ -111,7 +111,6 @@ $specialPageAliases = array(
 	'PagesWithProp'             => array( 'PagineConProprietà' ),
 	'PasswordReset'             => array( 'ReimpostaPassword' ),
 	'PermanentLink'             => array( 'LinkPermanente' ),
-
 	'Preferences'               => array( 'Preferenze' ),
 	'Prefixindex'               => array( 'Prefissi' ),
 	'Protectedpages'            => array( 'PagineProtette' ),
@@ -215,7 +214,6 @@ $magicWords = array(
 	'displaytitle'              => array( '1', 'MOSTRATITOLO', 'DISPLAYTITLE' ),
 	'language'                  => array( '0', '#LINGUA', '#LANGUAGE:' ),
 	'numberofadmins'            => array( '1', 'NUMEROADMIN', 'NUMBEROFADMINS' ),
-	'special'                   => array( '0', 'speciale', 'special' ),
 	'tag'                       => array( '0', 'etichetta', 'tag' ),
 	'pagesincategory'           => array( '1', 'PAGINEINCAT', 'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'                  => array( '1', 'DIMENSIONEPAGINA', 'PESOPAGINA', 'PAGESIZE' ),

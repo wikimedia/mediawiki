@@ -40,7 +40,7 @@ class PackedOverlayImageGallery extends PackedImageGallery {
 
 		# ATTENTION: The newline after <div class="gallerytext"> is needed to
 		# accommodate htmltidy which in version 4.8.6 generated crackpot HTML
-		# in its absence, see: http://bugzilla.wikimedia.org/show_bug.cgi?id=1765
+		# in its absence, see: https://phabricator.wikimedia.org/T3765
 		# -Ævar
 
 		$thumbWidth = $this->getGBWidth( $thumb ) - $this->getThumbPadding() - $this->getGBPadding();

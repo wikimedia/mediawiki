@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Logger;
 
+use MediaWiki\Logger\Monolog\BufferHandler;
 use Monolog\Logger;
 use ObjectFactory;
 
@@ -30,7 +31,7 @@ use ObjectFactory;
  * Configured using an array of configuration data with the keys 'loggers',
  * 'processors', 'handlers' and 'formatters'.
  *
- * The ['loggers']['@default'] configuration will be used to create loggers
+ * The ['loggers']['\@default'] configuration will be used to create loggers
  * for any channel that isn't explicitly named in the 'loggers' configuration
  * section.
  *
@@ -84,6 +85,7 @@ use ObjectFactory;
  *                   'logstash'
  *               ),
  *               'formatter' => 'logstash',
+ *               'buffer' => true,
  *           ),
  *           'udp2log' => array(
  *               'class' => '\\MediaWiki\\Logger\\Monolog\\LegacyHandler',
@@ -129,7 +131,25 @@ class MonologSpi implements Spi {
 	 * @param array $config Configuration data.
 	 */
 	public function __construct( array $config ) {
-		$this->config = $config;
+		$this->config = array();
+		$this->mergeConfig( $config );
+	}
+
+
+	/**
+	 * Merge additional configuration data into the configuration.
+	 *
+	 * @since 1.26
+	 * @param array $config Configuration data.
+	 */
+	public function mergeConfig( array $config ) {
+		foreach ( $config as $key => $value ) {
+			if ( isset( $this->config[$key] ) ) {
+				$this->config[$key] = array_merge( $this->config[$key], $value );
+			} else {
+				$this->config[$key] = $value;
+			}
+		}
 		$this->reset();
 	}
 
@@ -158,7 +178,7 @@ class MonologSpi implements Spi {
 	 * name will return the cached instance.
 	 *
 	 * @param string $channel Logging channel
-	 * @return \Psr\Log\LoggerInterface Logger instance
+	 * @return \\Psr\\Log\\LoggerInterface Logger instance
 	 */
 	public function getLogger( $channel ) {
 		if ( !isset( $this->singletons['loggers'][$channel] ) ) {
@@ -180,7 +200,7 @@ class MonologSpi implements Spi {
 	 * Create a logger.
 	 * @param string $channel Logger channel
 	 * @param array $spec Configuration
-	 * @return \Monolog\Logger
+	 * @return \\Monolog\\Logger
 	 */
 	protected function createLogger( $channel, $spec ) {
 		$obj = new Logger( $channel );
@@ -218,7 +238,7 @@ class MonologSpi implements Spi {
 	/**
 	 * Create or return cached handler.
 	 * @param string $name Processor name
-	 * @return \Monolog\Handler\HandlerInterface
+	 * @return \\Monolog\\Handler\\HandlerInterface
 	 */
 	public function getHandler( $name ) {
 		if ( !isset( $this->singletons['handlers'][$name] ) ) {
@@ -229,6 +249,9 @@ class MonologSpi implements Spi {
 					$this->getFormatter( $spec['formatter'] )
 				);
 			}
+			if ( isset( $spec['buffer'] ) && $spec['buffer'] ) {
+				$handler = new BufferHandler( $handler );
+			}
 			$this->singletons['handlers'][$name] = $handler;
 		}
 		return $this->singletons['handlers'][$name];
@@ -238,7 +261,7 @@ class MonologSpi implements Spi {
 	/**
 	 * Create or return cached formatter.
 	 * @param string $name Formatter name
-	 * @return \Monolog\Formatter\FormatterInterface
+	 * @return \\Monolog\\Formatter\\FormatterInterface
 	 */
 	public function getFormatter( $name ) {
 		if ( !isset( $this->singletons['formatters'][$name] ) ) {

@@ -361,18 +361,18 @@ class WikiPage implements Page, IDBAccessObject {
 			return;
 		}
 
-		if ( $from === self::READ_LOCKING ) {
-			$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle, array( 'FOR UPDATE' ) );
-		} elseif ( $from === self::READ_LATEST ) {
-			$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
-		} elseif ( $from === self::READ_NORMAL ) {
-			$data = $this->pageDataFromTitle( wfGetDB( DB_SLAVE ), $this->mTitle );
+		if ( is_int( $from ) ) {
+			list( $index, $opts ) = DBAccessObjectUtils::getDBOptions( $from );
+			$data = $this->pageDataFromTitle( wfGetDB( $index ), $this->mTitle, $opts );
+
 			if ( !$data
+				&& $index == DB_SLAVE
 				&& wfGetLB()->getServerCount() > 1
 				&& wfGetLB()->hasOrMadeRecentMasterChanges()
 			) {
 				$from = self::READ_LATEST;
-				$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
+				list( $index, $opts ) = DBAccessObjectUtils::getDBOptions( $from );
+				$data = $this->pageDataFromTitle( wfGetDB( $index ), $this->mTitle, $opts );
 			}
 		} else {
 			// No idea from where the caller got this data, assume slave database.
@@ -1082,16 +1082,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Should the parser cache be used?
 	 *
 	 * @param ParserOptions $parserOptions ParserOptions to check
-	 * @param int $oldid
+	 * @param int $oldId
 	 * @return bool
 	 */
-	public function isParserCacheUsed( ParserOptions $parserOptions, $oldid ) {
-		global $wgEnableParserCache;
-
-		return $wgEnableParserCache
-			&& $parserOptions->getStubThreshold() == 0
+	public function shouldCheckParserCache( ParserOptions $parserOptions, $oldId ) {
+		return $parserOptions->getStubThreshold() == 0
 			&& $this->exists()
-			&& ( $oldid === null || $oldid === 0 || $oldid === $this->getLatest() )
+			&& ( $oldId === null || $oldId === 0 || $oldId === $this->getLatest() )
 			&& $this->getContentHandler()->isParserCacheSupported();
 	}
 
@@ -1108,10 +1105,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function getParserOutput( ParserOptions $parserOptions, $oldid = null ) {
 
-		$useParserCache = $this->isParserCacheUsed( $parserOptions, $oldid );
+		$useParserCache = $this->shouldCheckParserCache( $parserOptions, $oldid );
 		wfDebug( __METHOD__ . ': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
 		if ( $parserOptions->getStubThreshold() ) {
-			wfIncrStats( 'pcache_miss_stub' );
+			wfIncrStats( 'pcache.miss.stub' );
 		}
 
 		if ( $useParserCache ) {
@@ -1143,7 +1140,12 @@ class WikiPage implements Page, IDBAccessObject {
 
 		Hooks::run( 'PageViewUpdates', array( $this, $user ) );
 		// Update newtalk / watchlist notification status
-		$user->clearNotification( $this->mTitle, $oldid );
+		try {
+			$user->clearNotification( $this->mTitle, $oldid );
+		} catch ( DBError $e ) {
+			// Avoid outage if the master is not reachable
+			MWExceptionHandler::logException( $e );
+		}
 	}
 
 	/**
@@ -1151,28 +1153,24 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return bool
 	 */
 	public function doPurge() {
-		global $wgUseSquid;
-
 		if ( !Hooks::run( 'ArticlePurge', array( &$this ) ) ) {
 			return false;
 		}
 
-		// Invalidate the cache
-		$this->mTitle->invalidateCache();
-
-		if ( $wgUseSquid ) {
-			// Commit the transaction before the purge is sent
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->commit( __METHOD__ );
-
-			// Send purge
-			$update = SquidUpdate::newSimplePurge( $this->mTitle );
-			$update->doUpdate();
-		}
+		$title = $this->mTitle;
+		wfGetDB( DB_MASTER )->onTransactionIdle( function() use ( $title ) {
+			global $wgUseSquid;
+			// Invalidate the cache in auto-commit mode
+			$title->invalidateCache();
+			if ( $wgUseSquid ) {
+				// Send purge now that page_touched update was committed above
+				$update = SquidUpdate::newSimplePurge( $title );
+				$update->doUpdate();
+			}
+		} );
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			// @todo move this logic to MessageCache
-
 			if ( $this->exists() ) {
 				// NOTE: use transclusion text for messages.
 				//       This is consistent with  MessageCache::getMsgFromNamespace()
@@ -1189,6 +1187,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 			MessageCache::singleton()->replace( $this->mTitle->getDBkey(), $text );
 		}
+
 		return true;
 	}
 
@@ -1200,10 +1199,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Best if all done inside a transaction.
 	 *
 	 * @param DatabaseBase $dbw
-	 * @return int The newly created page_id key, or false if the title already existed
+	 * @return int|bool The newly created page_id key; false if the title already existed
 	 */
 	public function insertOn( $dbw ) {
-
 		$page_id = $dbw->nextSequenceValue( 'page_page_id_seq' );
 		$dbw->insert( 'page', array(
 			'page_id'           => $page_id,
@@ -1224,9 +1222,11 @@ class WikiPage implements Page, IDBAccessObject {
 			$newid = $dbw->insertId();
 			$this->mId = $newid;
 			$this->mTitle->resetArticleID( $newid );
-		}
 
-		return $affected ? $newid : false;
+			return $newid;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -1265,10 +1265,9 @@ class WikiPage implements Page, IDBAccessObject {
 			$conditions['page_latest'] = $lastRevision;
 		}
 
-		$now = wfTimestampNow();
 		$row = array( /* SET */
 			'page_latest'      => $revision->getId(),
-			'page_touched'     => $dbw->timestamp( $now ),
+			'page_touched'     => $dbw->timestamp( $revision->getTimestamp() ),
 			'page_is_new'      => ( $lastRevision === 0 ) ? 1 : 0,
 			'page_is_redirect' => $rt !== null ? 1 : 0,
 			'page_len'         => $len,
@@ -1690,6 +1689,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *     revision: The revision object for the inserted revision, or null.
 	 *
 	 * @since 1.21
+	 * @throws MWException
 	 */
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
 		User $user = null, $serialFormat = null
@@ -1765,7 +1765,6 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$now = wfTimestampNow();
-		$this->mTimestamp = $now;
 
 		if ( $flags & EDIT_UPDATE ) {
 			// Update article, but only if changed.
@@ -1801,57 +1800,50 @@ class WikiPage implements Page, IDBAccessObject {
 
 			if ( $changed ) {
 				$dbw->begin( __METHOD__ );
-				try {
 
-					$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
-					$status->merge( $prepStatus );
+				$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
+				$status->merge( $prepStatus );
 
-					if ( !$status->isOK() ) {
-						$dbw->rollback( __METHOD__ );
-
-						return $status;
-					}
-					$revisionId = $revision->insertOn( $dbw );
-
-					// Update page
-					//
-					// We check for conflicts by comparing $oldid with the current latest revision ID.
-					$ok = $this->updateRevisionOn( $dbw, $revision, $oldid, $oldIsRedirect );
-
-					if ( !$ok ) {
-						// Belated edit conflict! Run away!!
-						$status->fatal( 'edit-conflict' );
-
-						$dbw->rollback( __METHOD__ );
-
-						return $status;
-					}
-
-					Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId, $user ) );
-					// Update recentchanges
-					if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
-						// Mark as patrolled if the user can do so
-						$patrolled = $wgUseRCPatrol && !count(
-						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
-						// Add RC row to the DB
-						$rc = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $user, $summary,
-							$oldid, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
-							$revisionId, $patrolled
-						);
-
-						// Log auto-patrolled edits
-						if ( $patrolled ) {
-							PatrolLog::record( $rc, true, $user );
-						}
-					}
-					$user->incEditCount();
-				} catch ( Exception $e ) {
+				if ( !$status->isOK() ) {
 					$dbw->rollback( __METHOD__ );
-					// Question: Would it perhaps be better if this method turned all
-					// exceptions into $status's?
-					throw $e;
+
+					return $status;
 				}
+				$revisionId = $revision->insertOn( $dbw );
+
+				// Update page
+				//
+				// We check for conflicts by comparing $oldid with the current latest revision ID.
+				$ok = $this->updateRevisionOn( $dbw, $revision, $oldid, $oldIsRedirect );
+
+				if ( !$ok ) {
+					// Belated edit conflict! Run away!!
+					$status->fatal( 'edit-conflict' );
+
+					$dbw->rollback( __METHOD__ );
+
+					return $status;
+				}
+
+				Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId, $user ) );
+
+				// Update recentchanges
+				if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
+					// Mark as patrolled if the user can do so
+					$patrolled = $wgUseRCPatrol && !count(
+						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+					// Add RC row to the DB
+					RecentChange::notifyEdit(
+						$now, $this->mTitle, $isminor, $user, $summary,
+						$oldid, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
+						$revisionId, $patrolled
+					);
+				}
+
+				$user->incEditCount();
+
 				$dbw->commit( __METHOD__ );
+				$this->mTimestamp = $now;
 			} else {
 				// Bug 32948: revision ID must be set to page {{REVISIONID}} and
 				// related variables correctly
@@ -1873,86 +1865,80 @@ class WikiPage implements Page, IDBAccessObject {
 				$revision = null;
 				// Update page_touched, this is usually implicit in the page update
 				// Other cache updates are done in onArticleEdit()
-				$this->mTitle->invalidateCache();
+				$this->mTitle->invalidateCache( $now );
 			}
 		} else {
 			// Create new article
 			$status->value['new'] = true;
 
 			$dbw->begin( __METHOD__ );
-			try {
 
-				$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
-				$status->merge( $prepStatus );
+			$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
+			$status->merge( $prepStatus );
 
-				if ( !$status->isOK() ) {
-					$dbw->rollback( __METHOD__ );
-
-					return $status;
-				}
-
-				$status->merge( $prepStatus );
-
-				// Add the page record; stake our claim on this title!
-				// This will return false if the article already exists
-				$newid = $this->insertOn( $dbw );
-
-				if ( $newid === false ) {
-					$dbw->rollback( __METHOD__ );
-					$status->fatal( 'edit-already-exists' );
-
-					return $status;
-				}
-
-				// Save the revision text...
-				$revision = new Revision( array(
-					'page'       => $newid,
-					'title'      => $this->getTitle(), // for determining the default content model
-					'comment'    => $summary,
-					'minor_edit' => $isminor,
-					'text'       => $serialized,
-					'len'        => $newsize,
-					'user'       => $user->getId(),
-					'user_text'  => $user->getName(),
-					'timestamp'  => $now,
-					'content_model' => $content->getModel(),
-					'content_format' => $serialFormat,
-				) );
-				$revisionId = $revision->insertOn( $dbw );
-
-				// Bug 37225: use accessor to get the text as Revision may trim it
-				$content = $revision->getContent(); // sanity; get normalized version
-
-				if ( $content ) {
-					$newsize = $content->getSize();
-				}
-
-				// Update the page record with revision data
-				$this->updateRevisionOn( $dbw, $revision, 0 );
-
-				Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, false, $user ) );
-
-				// Update recentchanges
-				if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
-					// Mark as patrolled if the user can do so
-					$patrolled = ( $wgUseRCPatrol || $wgUseNPPatrol ) && !count(
-						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
-					// Add RC row to the DB
-					$rc = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $user, $summary, $bot,
-						'', $newsize, $revisionId, $patrolled );
-
-					// Log auto-patrolled edits
-					if ( $patrolled ) {
-						PatrolLog::record( $rc, true, $user );
-					}
-				}
-				$user->incEditCount();
-
-			} catch ( Exception $e ) {
+			if ( !$status->isOK() ) {
 				$dbw->rollback( __METHOD__ );
-				throw $e;
+
+				return $status;
 			}
+
+			$status->merge( $prepStatus );
+
+			// Add the page record; stake our claim on this title!
+			// This will return false if the article already exists
+			$newid = $this->insertOn( $dbw );
+
+			if ( $newid === false ) {
+				$dbw->rollback( __METHOD__ );
+				$status->fatal( 'edit-already-exists' );
+
+				return $status;
+			}
+
+			// Save the revision text...
+			$revision = new Revision( array(
+				'page'       => $newid,
+				'title'      => $this->getTitle(), // for determining the default content model
+				'comment'    => $summary,
+				'minor_edit' => $isminor,
+				'text'       => $serialized,
+				'len'        => $newsize,
+				'user'       => $user->getId(),
+				'user_text'  => $user->getName(),
+				'timestamp'  => $now,
+				'content_model' => $content->getModel(),
+				'content_format' => $serialFormat,
+			) );
+			$revisionId = $revision->insertOn( $dbw );
+
+			// Bug 37225: use accessor to get the text as Revision may trim it
+			$content = $revision->getContent(); // sanity; get normalized version
+
+			if ( $content ) {
+				$newsize = $content->getSize();
+			}
+
+			// Update the page record with revision data
+			$this->updateRevisionOn( $dbw, $revision, 0 );
+
+			Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, false, $user ) );
+
+			// Update recentchanges
+			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
+				// Mark as patrolled if the user can do so
+				$patrolled = ( $wgUseRCPatrol || $wgUseNPPatrol ) && !count(
+					$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+				// Add RC row to the DB
+				RecentChange::notifyNew(
+					$now, $this->mTitle, $isminor, $user, $summary, $bot,
+					'', $newsize, $revisionId, $patrolled
+				);
+			}
+
+			$user->incEditCount();
+
 			$dbw->commit( __METHOD__ );
+			$this->mTimestamp = $now;
 
 			// Update links, etc.
 			$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
@@ -1973,13 +1959,13 @@ class WikiPage implements Page, IDBAccessObject {
 		$status->value['revision'] = $revision;
 
 		$hook_args = array( &$this, &$user, $content, $summary,
-							$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId );
+			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId );
 
 		ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $hook_args );
 		Hooks::run( 'PageContentSaveComplete', $hook_args );
 
 		// Promote user to any groups they meet the criteria for
-		$dbw->onTransactionIdle( function () use ( $user ) {
+		DeferredUpdates::addCallableUpdate( function () use ( $user ) {
 			$user->addAutopromoteOnceGroups( 'onEdit' );
 			$user->addAutopromoteOnceGroups( 'onView' ); // b/c
 		} );
@@ -2079,7 +2065,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// The edit may have already been prepared via api.php?action=stashedit
-		$cachedEdit = $useCache && $wgAjaxEditStash
+		$cachedEdit = $useCache && $wgAjaxEditStash && !$user->isAllowed( 'bot' )
 			? ApiStashEdit::checkCache( $this->getTitle(), $content, $user )
 			: false;
 
@@ -2164,8 +2150,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   - 'no-change': don't update the article count, ever
 	 */
 	public function doEditUpdates( Revision $revision, User $user, array $options = array() ) {
-		global $wgEnableParserCache;
-
 		$options += array(
 			'changed' => true,
 			'created' => false,
@@ -2185,31 +2169,30 @@ class WikiPage implements Page, IDBAccessObject {
 			$editInfo = $this->mPreparedEdit;
 		}
 
-		// Save it to the parser cache
-		if ( $wgEnableParserCache ) {
-			$parserCache = ParserCache::singleton();
-			$parserCache->save(
-				$editInfo->output, $this, $editInfo->popts, $editInfo->timestamp, $editInfo->revid
-			);
-		}
+		// Save it to the parser cache.
+		// Make sure the cache time matches page_touched to avoid double parsing.
+		ParserCache::singleton()->save(
+			$editInfo->output, $this, $editInfo->popts,
+			$revision->getTimestamp(), $editInfo->revid
+		);
 
 		// Update the links tables and other secondary data
 		if ( $content ) {
 			$recursive = $options['changed']; // bug 50785
 			$updates = $content->getSecondaryDataUpdates(
 				$this->getTitle(), null, $recursive, $editInfo->output );
-			DataUpdate::runUpdates( $updates );
+			foreach ( $updates as $update ) {
+				DeferredUpdates::addUpdate( $update );
+			}
 		}
 
 		Hooks::run( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );
 
 		if ( Hooks::run( 'ArticleEditUpdatesDeleteFromRecentchanges', array( &$this ) ) ) {
-			JobQueueGroup::singleton()->push( array(
-				// Flush old entries from the `recentchanges` table
-				RecentChangesUpdateJob::newPurgeJob(),
-				// Update the cached list of active users
-				RecentChangesUpdateJob::newCacheUpdateJob()
-			) );
+			// Flush old entries from the `recentchanges` table
+			if ( mt_rand( 0, 9 ) == 0 ) {
+				JobQueueGroup::singleton()->lazyPush( RecentChangesUpdateJob::newPurgeJob() );
+			}
 		}
 
 		if ( !$this->exists() ) {
@@ -2276,9 +2259,8 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $options['created'] ) {
 			self::onArticleCreate( $this->mTitle );
 		} elseif ( $options['changed'] ) { // bug 50785
-			self::onArticleEdit( $this->mTitle );
+			self::onArticleEdit( $this->mTitle, $revision );
 		}
-
 	}
 
 	/**
@@ -2375,8 +2357,8 @@ class WikiPage implements Page, IDBAccessObject {
 		$dbw = wfGetDB( DB_MASTER );
 
 		foreach ( $restrictionTypes as $action ) {
-			if ( !isset( $expiry[$action] ) ) {
-				$expiry[$action] = $dbw->getInfinity();
+			if ( !isset( $expiry[$action] ) || $expiry[$action] === $dbw->getInfinity() ) {
+				$expiry[$action] = 'infinity';
 			}
 			if ( !isset( $limit[$action] ) ) {
 				$limit[$action] = '';
@@ -2616,10 +2598,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	protected function formatExpiry( $expiry ) {
 		global $wgContLang;
-		$dbr = wfGetDB( DB_SLAVE );
 
-		$encodedExpiry = $dbr->encodeExpiry( $expiry );
-		if ( $encodedExpiry != 'infinity' ) {
+		if ( $expiry != 'infinity' ) {
 			return wfMessage(
 				'protect-expiring',
 				$wgContLang->timeanddate( $expiry, false, false ),
@@ -2784,9 +2764,16 @@ class WikiPage implements Page, IDBAccessObject {
 		$dbw->begin( __METHOD__ );
 
 		if ( $id == 0 ) {
-			$this->loadPageData( 'forupdate' );
+			// T98706: lock the page from various other updates but avoid using
+			// WikiPage::READ_LOCKING as that will carry over the FOR UPDATE to
+			// the revisions queries (which also JOIN on user). Only lock the page
+			// row and CAS check on page_latest to see if the trx snapshot matches.
+			$latest = $this->lock();
+
+			$this->loadPageData( WikiPage::READ_LATEST );
 			$id = $this->getID();
-			if ( $id == 0 ) {
+			if ( $id == 0 || $this->getLatest() != $latest ) {
+				// Page not there or trx snapshot is stale
 				$dbw->rollback( __METHOD__ );
 				$status->error( 'cannotdelete', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
 				return $status;
@@ -2868,7 +2855,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// Clone the title, so we have the information we need when we log
 		$logTitle = clone $this->mTitle;
 
-		// Log the deletion, if the page was suppressed, log it at Oversight instead
+		// Log the deletion, if the page was suppressed, put it in the suppression log instead
 		$logtype = $suppress ? 'suppress' : 'delete';
 
 		$logEntry = new ManualLogEntry( $logtype, 'delete' );
@@ -2886,11 +2873,33 @@ class WikiPage implements Page, IDBAccessObject {
 			$dbw->commit( __METHOD__ );
 		}
 
+		// Show log excerpt on 404 pages rather than just a link
+		$key = wfMemcKey( 'page-recent-delete', md5( $logTitle->getPrefixedText() ) );
+		ObjectCache::getMainStashInstance()->set( $key, 1, 86400 );
+
 		$this->doDeleteUpdates( $id, $content );
 
 		Hooks::run( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id, $content, $logEntry ) );
 		$status->value = $logid;
 		return $status;
+	}
+
+	/**
+	 * Lock the page row for this title and return page_latest (or 0)
+	 *
+	 * @return integer
+	 */
+	protected function lock() {
+		return (int)wfGetDB( DB_MASTER )->selectField(
+			'page',
+			'page_latest',
+			array(
+				'page_namespace' => $this->getTitle()->getNamespace(),
+				'page_title' => $this->getTitle()->getDBkey()
+			),
+			__METHOD__,
+			array( 'FOR UPDATE' )
+		);
 	}
 
 	/**
@@ -3021,7 +3030,7 @@ class WikiPage implements Page, IDBAccessObject {
 			) );
 		}
 
-		// Get the last edit not by this guy...
+		// Get the last edit not by this person...
 		// Note: these may not be public values
 		$user = intval( $current->getUser( Revision::RAW ) );
 		$user_text = $dbw->addQuotes( $current->getUserText( Revision::RAW ) );
@@ -3041,29 +3050,6 @@ class WikiPage implements Page, IDBAccessObject {
 		) {
 			// Only admins can see this text
 			return array( array( 'notvisiblerev' ) );
-		}
-
-		// Set patrolling and bot flag on the edits, which gets rollbacked.
-		// This is done before the rollback edit to have patrolling also on failure (bug 62157).
-		$set = array();
-		if ( $bot && $guser->isAllowed( 'markbotedits' ) ) {
-			// Mark all reverted edits as bot
-			$set['rc_bot'] = 1;
-		}
-
-		if ( $wgUseRCPatrol ) {
-			// Mark all reverted edits as patrolled
-			$set['rc_patrolled'] = 1;
-		}
-
-		if ( count( $set ) ) {
-			$dbw->update( 'recentchanges', $set,
-				array( /* WHERE */
-					'rc_cur_id' => $current->getPage(),
-					'rc_user_text' => $current->getUserText(),
-					'rc_timestamp > ' . $dbw->addQuotes( $s->rev_timestamp ),
-				), __METHOD__
-			);
 		}
 
 		// Generate the edit summary if necessary
@@ -3114,6 +3100,30 @@ class WikiPage implements Page, IDBAccessObject {
 			$guser
 		);
 
+		// Set patrolling and bot flag on the edits, which gets rollbacked.
+		// This is done even on edit failure to have patrolling in that case (bug 62157).
+		$set = array();
+		if ( $bot && $guser->isAllowed( 'markbotedits' ) ) {
+			// Mark all reverted edits as bot
+			$set['rc_bot'] = 1;
+		}
+
+		if ( $wgUseRCPatrol ) {
+			// Mark all reverted edits as patrolled
+			$set['rc_patrolled'] = 1;
+		}
+
+		if ( count( $set ) ) {
+			$dbw->update( 'recentchanges', $set,
+				array( /* WHERE */
+					'rc_cur_id' => $current->getPage(),
+					'rc_user_text' => $current->getUserText(),
+					'rc_timestamp > ' . $dbw->addQuotes( $s->rev_timestamp ),
+				),
+				__METHOD__
+			);
+		}
+
 		if ( !$status->isOK() ) {
 			return $status->getErrorsArray();
 		}
@@ -3157,7 +3167,6 @@ class WikiPage implements Page, IDBAccessObject {
 		// Update existence markers on article/talk tabs...
 		$other = $title->getOtherPage();
 
-		$other->invalidateCache();
 		$other->purgeSquid();
 
 		$title->touchLinks();
@@ -3174,7 +3183,6 @@ class WikiPage implements Page, IDBAccessObject {
 		// Update existence markers on article/talk tabs...
 		$other = $title->getOtherPage();
 
-		$other->invalidateCache();
 		$other->purgeSquid();
 
 		$title->touchLinks();
@@ -3211,20 +3219,24 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Purge caches on page update etc
 	 *
 	 * @param Title $title
+	 * @param Revision|null $revision Revision that was just saved, may be null
 	 */
-	public static function onArticleEdit( Title $title ) {
+	public static function onArticleEdit( Title $title, Revision $revision = null ) {
 		// Invalidate caches of articles which include this page
-		DeferredUpdates::addHTMLCacheUpdate( $title, 'templatelinks' );
+		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $title, 'templatelinks' ) );
 
 		// Invalidate the caches of all pages which redirect here
-		DeferredUpdates::addHTMLCacheUpdate( $title, 'redirect' );
+		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $title, 'redirect' ) );
 
 		// Purge squid for this page only
 		$title->purgeSquid();
-
 		// Clear file cache for this page only
 		HTMLFileCache::clearFileCache( $title );
-		InfoAction::invalidateCache( $title );
+
+		$revid = $revision ? $revision->getId() : null;
+		DeferredUpdates::addCallableUpdate( function() use ( $title, $revid ) {
+			InfoAction::invalidateCache( $title, $revid );
+		} );
 	}
 
 	/**#@-*/
@@ -3411,13 +3423,14 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Check if the last link refresh was before page_touched
 		if ( $this->getLinksTimestamp() < $this->getTouched() ) {
-			JobQueueGroup::singleton()->push( EnqueueJob::newFromLocalJobs(
-				new JobSpecification( 'refreshLinks', $params, array(), $this->mTitle )
-			) );
-			return;
-		}
+			$params['isOpportunistic'] = true;
+			$params['rootJobTimestamp'] = $parserOutput->getCacheTime();
 
-		return;
+			JobQueueGroup::singleton()->lazyPush( EnqueueJob::newFromLocalJobs(
+				new JobSpecification( 'refreshLinks', $params,
+					array( 'removeDuplicates' => true ), $this->mTitle )
+			) );
+		}
 	}
 
 	/**

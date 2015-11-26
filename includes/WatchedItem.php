@@ -27,20 +27,6 @@
  * @ingroup Watchlist
  */
 class WatchedItem {
-	/**
-	 * Constant to specify that user rights 'editmywatchlist' and
-	 * 'viewmywatchlist' should not be checked.
-	 * @since 1.22
-	 */
-	const IGNORE_USER_RIGHTS = 0;
-
-	/**
-	 * Constant to specify that user rights 'editmywatchlist' and
-	 * 'viewmywatchlist' should be checked.
-	 * @since 1.22
-	 */
-	const CHECK_USER_RIGHTS = 1;
-
 	/** @var Title */
 	public $mTitle;
 
@@ -58,6 +44,31 @@ class WatchedItem {
 
 	/** @var string */
 	private $timestamp;
+
+	/**
+	 * Constant to specify that user rights 'editmywatchlist' and
+	 * 'viewmywatchlist' should not be checked.
+	 * @since 1.22
+	 */
+	const IGNORE_USER_RIGHTS = 0;
+
+	/**
+	 * Constant to specify that user rights 'editmywatchlist' and
+	 * 'viewmywatchlist' should be checked.
+	 * @since 1.22
+	 */
+	const CHECK_USER_RIGHTS = 1;
+
+	/**
+	 * Do DB master updates right now
+	 * @since 1.26
+	 */
+	const IMMEDIATE = 0;
+	/**
+	 * Do DB master updates via the job queue
+	 * @since 1.26
+	 */
+	const DEFERRED = 1;
 
 	/**
 	 * Create a WatchedItem object with the given user and title
@@ -208,8 +219,11 @@ class WatchedItem {
 	 * @param bool $force Whether to force the write query to be executed even if the
 	 *    page is not watched or the notification timestamp is already NULL.
 	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
+	 * @mode int $mode WatchedItem::DEFERRED/IMMEDIATE
 	 */
-	public function resetNotificationTimestamp( $force = '', $oldid = 0 ) {
+	public function resetNotificationTimestamp(
+		$force = '', $oldid = 0, $mode = self::IMMEDIATE
+	) {
 		// Only loggedin user can have a watchlist
 		if ( wfReadOnly() || $this->mUser->isAnon() || !$this->isAllowed( 'editmywatchlist' ) ) {
 			return;
@@ -240,11 +254,7 @@ class WatchedItem {
 			} else {
 				// Oldid given and isn't the latest; update the timestamp.
 				// This will result in no further notification emails being sent!
-				$dbr = wfGetDB( DB_SLAVE );
-				$notificationTimestamp = $dbr->selectField(
-					'revision', 'rev_timestamp',
-					array( 'rev_page' => $title->getArticleID(), 'rev_id' => $oldid )
-				);
+				$notificationTimestamp = Revision::getTimestampFromId( $title, $oldid );
 				// We need to go one second to the future because of various strict comparisons
 				// throughout the codebase
 				$ts = new MWTimestamp( $notificationTimestamp );
@@ -262,11 +272,30 @@ class WatchedItem {
 			}
 		}
 
-		// If the page is watched by the user (or may be watched), update the timestamp on any
-		// any matching rows
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->update( 'watchlist', array( 'wl_notificationtimestamp' => $notificationTimestamp ),
-			$this->dbCond(), __METHOD__ );
+		// If the page is watched by the user (or may be watched), update the timestamp
+		if ( $mode === self::DEFERRED ) {
+			$job = new ActivityUpdateJob(
+				$title,
+				array(
+					'type'      => 'updateWatchlistNotification',
+					'userid'    => $this->getUserId(),
+					'notifTime' => $notificationTimestamp,
+					'curTime'   => time()
+				)
+			);
+			// Try to run this post-send
+			DeferredUpdates::addCallableUpdate( function() use ( $job ) {
+				$job->run();
+			} );
+		} else {
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->update( 'watchlist',
+				array( 'wl_notificationtimestamp' => $notificationTimestamp ),
+				$this->dbCond(),
+				__METHOD__
+			);
+		}
+
 		$this->timestamp = null;
 	}
 

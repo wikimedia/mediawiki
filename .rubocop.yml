@@ -1,6 +1,7 @@
 AllCops:
   Exclude:
     - 'extensions/**/*'
+    - 'node_modules/**/*'
     - 'skins/**/*'
     - 'tests/frontend/node_modules/**/*'
     - 'vendor/**/*'

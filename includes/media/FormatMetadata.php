@@ -706,7 +706,7 @@ class FormatMetadata extends ContextSource {
 						break;
 
 					case 'GPSDOP':
-						// See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
+						// See https://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
 						if ( $val <= 2 ) {
 							$val = $this->exifMsg( $tag, 'excellent', $this->formatNum( $val ) );
 						} elseif ( $val <= 5 ) {
@@ -1004,28 +1004,6 @@ class FormatMetadata extends ContextSource {
 	}
 
 	/**
-	 * Flatten an array, using the user language for any messages.
-	 *
-	 * @param array $vals Array of values
-	 * @param string $type Type of array (either lang, ul, ol).
-	 *   lang = language assoc array with keys being the lang code
-	 *   ul = unordered list, ol = ordered list
-	 *   type can also come from the '_type' member of $vals.
-	 * @param bool $noHtml If to avoid returning anything resembling HTML.
-	 *   (Ugly hack for backwards compatibility with old MediaWiki).
-	 * @param bool|IContextSource $context
-	 * @return string Single value (in wiki-syntax).
-	 */
-	public static function flattenArray( $vals, $type = 'ul', $noHtml = false, $context = false ) {
-		$obj = new FormatMetadata;
-		if ( $context ) {
-			$obj->setContext( $context );
-		}
-
-		return $obj->flattenArrayReal( $vals, $type, $noHtml );
-	}
-
-	/**
 	 * A function to collapse multivalued tags into a single value.
 	 * This turns an array of (for example) authors into a bulleted list.
 	 *
@@ -1305,7 +1283,7 @@ class FormatMetadata extends ContextSource {
 	 */
 	private function gcd( $a, $b ) {
 		/*
-			// http://en.wikipedia.org/wiki/Euclidean_algorithm
+			// https://en.wikipedia.org/wiki/Euclidean_algorithm
 			// Recursive form would be:
 			if( $b == 0 )
 				return $a;
@@ -1597,7 +1575,6 @@ class FormatMetadata extends ContextSource {
 
 		// If revision deleted, exit immediately
 		if ( $file->isDeleted( File::DELETED_FILE ) ) {
-
 			return array();
 		}
 
@@ -1755,8 +1732,9 @@ class FormatMetadata extends ContextSource {
 	}
 
 	/**
-	 * Turns an XMP-style multivalue array into a single value by dropping all but the first value.
-	 * If the value is not a multivalue array (or a multivalue array inside a multilang array), it is returned unchanged.
+	 * Turns an XMP-style multivalue array into a single value by dropping all but the first
+	 * value. If the value is not a multivalue array (or a multivalue array inside a multilang
+	 * array), it is returned unchanged.
 	 * See mediawiki.org/wiki/Manual:File_metadata_handling#Multi-language_array_format
 	 * @param mixed $value
 	 * @return mixed The value, or the first value if there were multiple ones
@@ -1765,7 +1743,8 @@ class FormatMetadata extends ContextSource {
 	protected function resolveMultivalueValue( $value ) {
 		if ( !is_array( $value ) ) {
 			return $value;
-		} elseif ( isset( $value['_type'] ) && $value['_type'] === 'lang' ) { // if this is a multilang array, process fields separately
+		} elseif ( isset( $value['_type'] ) && $value['_type'] === 'lang' ) {
+			// if this is a multilang array, process fields separately
 			$newValue = array();
 			foreach ( $value as $k => $v ) {
 				$newValue[$k] = $this->resolveMultivalueValue( $v );

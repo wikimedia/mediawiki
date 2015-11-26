@@ -1,0 +1,25 @@
+{
+	"prefix": "oo-ui-icon",
+	"intro": "@import '../../../../src/styles/common';",
+	"variants": {
+		"invert": {
+			"color": "#FFFFFF",
+			"global": true
+		}
+	},
+	"images": {
+		"map": { "file": {
+			"ltr": "images/icons/map-ltr.svg",
+			"rtl": "images/icons/map-rtl.svg"
+		} },
+		"mapPin": { "file": "images/icons/mapPin.svg" },
+		"mapPinAdd": { "file": {
+			"ltr": "images/icons/mapPinAdd-ltr.svg",
+			"rtl": "images/icons/mapPinAdd-rtl.svg"
+		} },
+		"wikitrail": { "file": {
+			"ltr": "images/icons/wikitrail-ltr.svg",
+			"rtl": "images/icons/wikitrail-rtl.svg"
+		} }
+	}
+}

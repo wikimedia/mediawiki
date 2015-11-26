@@ -29,7 +29,6 @@ class ParserDiffTest
 	public $parsers;
 	public $conf;
 	public $shortOutput = false;
-	public $dtUniqPrefix;
 
 	public function __construct( $conf ) {
 		if ( !isset( $conf['parsers'] ) ) {
@@ -43,12 +42,6 @@ class ParserDiffTest
 			return;
 		}
 
-		global $wgHooks;
-		static $doneHook = false;
-		if ( !$doneHook ) {
-			$doneHook = true;
-			$wgHooks['ParserClearState'][] = array( $this, 'onClearState' );
-		}
 		if ( isset( $this->conf['shortOutput'] ) ) {
 			$this->shortOutput = $this->conf['shortOutput'];
 		}
@@ -125,19 +118,5 @@ class ParserDiffTest
 		foreach ( $this->parsers as $parser ) {
 			$parser->setFunctionHook( $id, $callback, $flags );
 		}
-	}
-
-	/**
-	 * @param Parser $parser
-	 * @return bool
-	 */
-	public function onClearState( &$parser ) {
-		// hack marker prefixes to get identical output
-		if ( !isset( $this->dtUniqPrefix ) ) {
-			$this->dtUniqPrefix = $parser->uniqPrefix();
-		} else {
-			$parser->mUniqPrefix = $this->dtUniqPrefix;
-		}
-		return true;
 	}
 }

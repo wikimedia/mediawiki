@@ -186,7 +186,8 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 			'prop' => array(
 				ApiBase::PARAM_TYPE => array( 'size', 'hidden' ),
 				ApiBase::PARAM_DFLT => '',
-				ApiBase::PARAM_ISMULTI => true
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 		);
 	}

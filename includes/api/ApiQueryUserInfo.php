@@ -51,9 +51,33 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$result->addValue( 'query', $this->getModuleName(), $r );
 	}
 
+	/**
+	 * Get basic info about a given block
+	 * @param Block $block
+	 * @return array Array containing several keys:
+	 *  - blockid - ID of the block
+	 *  - blockedby - username of the blocker
+	 *  - blockedbyid - user ID of the blocker
+	 *  - blockreason - reason provided for the block
+	 *  - blockedtimestamp - timestamp for when the block was placed/modified
+	 *  - blockexpiry - expiry time of the block
+	 */
+	public static function getBlockInfo( Block $block ) {
+		global $wgContLang;
+		$vals = array();
+		$vals['blockid'] = $block->getId();
+		$vals['blockedby'] = $block->getByName();
+		$vals['blockedbyid'] = $block->getBy();
+		$vals['blockreason'] = $block->mReason;
+		$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->mTimestamp );
+		$vals['blockexpiry'] = $wgContLang->formatExpiry(
+			$block->getExpiry(), TS_ISO_8601, 'infinite'
+		);
+		return $vals;
+	}
+
 	protected function getCurrentUserInfo() {
 		$user = $this->getUser();
-		$result = $this->getResult();
 		$vals = array();
 		$vals['id'] = intval( $user->getId() );
 		$vals['name'] = $user->getName();
@@ -62,18 +86,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['anon'] = true;
 		}
 
-		if ( isset( $this->prop['blockinfo'] ) ) {
-			if ( $user->isBlocked() ) {
-				$block = $user->getBlock();
-				$vals['blockid'] = $block->getId();
-				$vals['blockedby'] = $block->getByName();
-				$vals['blockedbyid'] = $block->getBy();
-				$vals['blockreason'] = $user->blockedFor();
-				$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->mTimestamp );
-				$vals['blockexpiry'] = $block->getExpiry() === 'infinity'
-					? 'infinite'
-					: wfTimestamp( TS_ISO_8601, $block->getExpiry() );
-			}
+		if ( isset( $this->prop['blockinfo'] ) && $user->isBlocked() ) {
+			$vals = array_merge( $vals, self::getBlockInfo( $user->getBlock() ) );
 		}
 
 		if ( isset( $this->prop['hasmsg'] ) ) {
@@ -253,10 +267,12 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'registrationdate',
 					'unreadcount',
 				),
-				ApiBase::PARAM_HELP_MSG => array(
-					'apihelp-query+userinfo-param-prop',
-					self::WL_UNREAD_LIMIT - 1,
-					self::WL_UNREAD_LIMIT . '+',
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(
+					'unreadcount' => array(
+						'apihelp-query+userinfo-paramvalue-prop-unreadcount',
+						self::WL_UNREAD_LIMIT - 1,
+						self::WL_UNREAD_LIMIT . '+',
+					),
 				),
 			)
 		);
@@ -272,6 +288,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Meta#userinfo_.2F_ui';
+		return 'https://www.mediawiki.org/wiki/API:Userinfo';
 	}
 }

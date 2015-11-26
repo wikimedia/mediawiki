@@ -16,31 +16,44 @@
 		"wiki": "https://www.mediawiki.org/"
 	},
 	"require": {
+		"composer/semver": "1.0.0",
 		"cssjanus/cssjanus": "1.1.1",
 		"ext-iconv": "*",
-		"leafo/lessphp": "0.5.0",
-		"liuggio/statsd-php-client": "1.0.12",
-		"oojs/oojs-ui": "0.11.3",
+		"liuggio/statsd-php-client": "1.0.16",
+		"oyejorge/less.php": "1.7.0.9",
+		"mediawiki/at-ease": "1.1.0",
+		"oojs/oojs-ui": "0.12.12",
 		"php": ">=5.3.3",
 		"psr/log": "1.0.0",
-		"wikimedia/cdb": "1.0.1",
-		"wikimedia/composer-merge-plugin": "1.0.0",
-		"wikimedia/utfnormal": "1.0.2",
-		"zordius/lightncandy": "0.18"
+		"wikimedia/assert": "0.2.2",
+		"wikimedia/cdb": "1.3.0",
+		"wikimedia/composer-merge-plugin": "1.3.0",
+		"wikimedia/ip-set": "1.0.1",
+		"wikimedia/utfnormal": "1.0.3",
+		"wikimedia/wrappedstring": "2.0.0",
+		"zordius/lightncandy": "0.21"
 	},
 	"require-dev": {
-		"jakub-onderka/php-parallel-lint": "~0.8",
+		"jakub-onderka/php-parallel-lint": "0.9",
 		"justinrainbow/json-schema": "~1.3",
 		"phpunit/phpunit": "3.7.37",
-		"mediawiki/mediawiki-codesniffer": "0.1.0"
+		"mediawiki/mediawiki-codesniffer": "0.3.0",
+		"wikimedia/avro": "1.7.7",
+		"nmred/kafka-php": "0.1.4",
+		"monolog/monolog": "1.14.0"
 	},
 	"suggest": {
-		"ext-fileinfo": "*",
-		"ext-intl": "*",
-		"ext-mbstring": "*",
-		"ext-wikidiff2": "*",
-		"ext-apc": "*",
-		"monolog/monolog": "*"
+		"ext-fileinfo": "Improved mime magic detection",
+		"ext-intl": "ICU integration",
+		"ext-mbstring": "Multibyte string support",
+		"ext-wikidiff2": "Diff accelerator",
+		"ext-apc": "Local data and opcode cache",
+		"monolog/monolog": "Flexible debug logging system",
+		"nmred/kafka-php": "Send debug log events to kafka",
+		"pear/mail": "Mail sending support",
+		"pear/mail_mime": "Mail sending support",
+		"pear/mail_mime-decode": "Mail sending support",
+		"wikimedia/avro": "Binary serialization format used with kafka"
 	},
 	"autoload": {
 		"psr-0": {
@@ -49,7 +62,7 @@
 	},
 	"scripts": {
 		"lint": "parallel-lint --exclude vendor",
-		"phpcs": "phpcs $PHPCS_ARGS -s --standard=vendor/mediawiki/mediawiki-codesniffer/MediaWiki --ignore=vendor --encoding=utf-8 --extensions=php,php5,inc,sample",
+		"phpcs": "phpcs -p $PHPCS_ARGS",
 		"test": [
 			"composer lint",
 			"composer phpcs"
@@ -65,7 +78,8 @@
 		"merge-plugin": {
 			"include": [
 				"composer.local.json"
-			]
+			],
+            "merge-dev": false
 		}
 	}
 }

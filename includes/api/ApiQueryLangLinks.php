@@ -146,7 +146,8 @@ class ApiQueryLangLinks extends ApiQueryBase {
 					'url',
 					'langname',
 					'autonym',
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'lang' => null,
 			'title' => null,
@@ -183,6 +184,6 @@ class ApiQueryLangLinks extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Properties#langlinks_.2F_ll';
+		return 'https://www.mediawiki.org/wiki/API:Langlinks';
 	}
 }

@@ -232,7 +232,7 @@ class LBFactoryMulti extends LBFactory {
 	public function getMainLB( $wiki = false ) {
 		$section = $this->getSectionForWiki( $wiki );
 		if ( !isset( $this->mainLBs[$section] ) ) {
-			$lb = $this->newMainLB( $wiki, $section );
+			$lb = $this->newMainLB( $wiki );
 			$lb->parentInfo( array( 'id' => "main-$section" ) );
 			$this->chronProt->initLB( $lb );
 			$this->mainLBs[$section] = $lb;

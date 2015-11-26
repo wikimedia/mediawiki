@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ianbu"
+			"Ianbu",
+			"唐吉訶德的侍從"
 		]
 	},
 	"config-desc": "MediaWiki的安裝程式",
@@ -9,8 +10,8 @@
 	"config-information": "資訊",
 	"config-localsettings-upgrade": "有一个<code>LocalSettings.php</code>檔案佇咧。若欲升級，請佇下面的框內底拍<code>$wgUpgradeKey</code>的內容。你會使佇<code>LocalSettings.php</code>內底揣著彼項。",
 	"config-localsettings-cli-upgrade": "有一个<code>LocalSettings.php</code>檔案。若欲升級，請直接執行<code>update.php</code>。",
-	"config-localsettings-key": "升級的密碼：",
-	"config-localsettings-badkey": "你提供的密碼無正確。",
+	"config-localsettings-key": "Seng-kip--ê bi̍t-bé:",
+	"config-localsettings-badkey": "Lí phah--ê bi̍t-bé bô chèng-khak.",
 	"config-upgrade-key-missing": "已經有一个MediaWiki矣。若要升級，請共下面這逝加去<code>LocalSettings.php</code>的下跤：\n\n$1",
 	"config-localsettings-incomplete": "這馬的<code>LocalSettings.php</code>可能無齊全，因為無設變量$1。請佇<code>LocalSettings.php</code>設彼个變量，並且揤「{{int:Config-continue}}」。",
 	"config-localsettings-connection-error": "An error was encountered when connecting to the database 用<code>LocalSettings.php</code>的設定去連接資料庫的時陣有一个錯誤發生，請改遮的設定了，才閣試。\n\n$1",
@@ -28,7 +29,7 @@
 	"config-page-dbconnect": "連接去資料庫",
 	"config-page-upgrade": "共這馬的安裝升級",
 	"config-page-dbsettings": "資料庫的設定",
-	"config-page-name": "名稱",
+	"config-page-name": "Miâ",
 	"config-page-options": "選項",
 	"config-page-install": "安裝",
 	"config-page-complete": "完成",
@@ -46,8 +47,6 @@
 	"config-env-good": "環境檢查已完成。\n你會當安裝 MediaWiki。",
 	"config-env-bad": "環境檢查已完成。\n你無法度安裝 MediaWiki。",
 	"config-env-php": "PHP $1 已經安裝。",
-	"config-env-php-toolow": "已經安裝 PHP $1。\n但是 MediaWiki 愛 PHP $2 抑較新的版本。",
-	"config-unicode-using-utf8": "用 Brion Vibber 的 utf8_normalize.so 做 Unicode 正規化。",
 	"config-unicode-using-intl": "用 [http://pecl.php.net/intl intl PECL 擴充套件] 做 Unicode 正規化。",
 	"config-unicode-pure-php-warning": "<strong>警告：</strong> 無法度用 [http://pecl.php.net/intl intl PECL 擴充套件] 處理 Unicode 正規化，所以退回用純 PHP 實作的正規化程式，這種方式處理速度較慢。\n\n若你的網站瀏覽人數誠濟，你應該先看 [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations/zh Unicode 正規化]。",
 	"config-unicode-update-warning": "<strong>警告</strong>：這馬安裝的 Unicode 正規化包裝程式用舊版 [http://site.icu-project.org/ ICU 計劃] 的程式庫。\n若你需要用 Unicode，你應該先進行 [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations 升級]。",

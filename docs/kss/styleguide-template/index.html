@@ -55,10 +55,11 @@
 					{{else}}
 						{{#whenDepth 2}}
 						<a name="section-{{ reference }}"></a>
-						<h2>{{ reference }} {{ header }}</h2>
+						<h2><a href="#section-{{ reference }}">{{ reference }} {{ header }}</a></h2>
 						{{/whenDepth}}
 						{{#whenDepth 3}}
-						<h3>{{ reference }} {{ header }}</h3>
+						<a name="section-{{ reference }}"></a>
+						<h3><a href="#section-{{ reference }}">{{ reference }} {{ header }}</a></h3>
 						{{/whenDepth}}
 					{{/whenDepth}}
 					{{#ifAny markup modifiers}}

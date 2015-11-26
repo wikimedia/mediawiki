@@ -145,8 +145,11 @@ abstract class Profiler {
 	}
 
 	// Kept BC for now, remove when possible
-	public function profileIn( $functionname ) {}
-	public function profileOut( $functionname ) {}
+	public function profileIn( $functionname ) {
+	}
+
+	public function profileOut( $functionname ) {
+	}
 
 	/**
 	 * Mark the start of a custom profiling frame (e.g. DB queries).
@@ -231,6 +234,21 @@ abstract class Profiler {
 	}
 
 	/**
+	 * Output current data to the page output if configured to do so
+	 *
+	 * @throws MWException
+	 * @since 1.26
+	 */
+	public function logDataPageOutputOnly() {
+		foreach ( $this->getOutputs() as $output ) {
+			if ( $output instanceof ProfilerOutputText ) {
+				$stats = $this->getFunctionStats();
+				$output->log( $stats );
+			}
+		}
+	}
+
+	/**
 	 * Get the content type sent out to the client.
 	 * Used for profilers that output instead of store data.
 	 * @return string
@@ -279,9 +297,9 @@ abstract class Profiler {
 	 * @return array List of method entries arrays, each having:
 	 *   - name     : method name
 	 *   - calls    : the number of invoking calls
-	 *   - real     : real time ellapsed (ms)
+	 *   - real     : real time elapsed (ms)
 	 *   - %real    : percent real time
-	 *   - cpu      : CPU time ellapsed (ms)
+	 *   - cpu      : CPU time elapsed (ms)
 	 *   - %cpu     : percent CPU time
 	 *   - memory   : memory used (bytes)
 	 *   - %memory  : percent memory used

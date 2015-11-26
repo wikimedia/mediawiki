@@ -46,11 +46,9 @@ $wgArticlePath = false; # Don't let a "/*" article path clober our action path
 $wgActionPaths = array( "$wgUploadPath/" );
 
 wfImageAuthMain();
-wfLogProfilingData();
-// Commit and close up!
-$factory = wfGetLBFactory();
-$factory->commitMasterChanges();
-$factory->shutdown();
+
+$mediawiki = new MediaWiki();
+$mediawiki->doPostOutputShutdown( 'fast' );
 
 function wfImageAuthMain() {
 	global $wgImgAuthUrlPathMap;
@@ -151,7 +149,7 @@ function wfImageAuthMain() {
 		// Run hook for extension authorization plugins
 		/** @var $result array */
 		$result = null;
-		if ( !wfRunHooks( 'ImgAuthBeforeStream', array( &$title, &$path, &$name, &$result ) ) ) {
+		if ( !Hooks::run( 'ImgAuthBeforeStream', array( &$title, &$path, &$name, &$result ) ) ) {
 			wfForbidden( $result[0], $result[1], array_slice( $result, 2 ) );
 			return;
 		}
@@ -197,7 +195,7 @@ function wfForbidden( $msg1, $msg2 ) {
 			wfMessage( $msg2, $args )->inLanguage( 'en' )->text()
 	);
 
-	header( 'HTTP/1.0 403 Forbidden' );
+	HttpStatus::header( 403 );
 	header( 'Cache-Control: no-cache' );
 	header( 'Content-Type: text/html; charset=utf-8' );
 	echo <<<ENDS

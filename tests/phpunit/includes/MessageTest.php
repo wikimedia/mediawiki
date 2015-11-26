@@ -21,6 +21,17 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $key, $message->getKey() );
 		$this->assertEquals( $params, $message->getParams() );
 		$this->assertEquals( $expectedLang, $message->getLanguage() );
+
+		$messageSpecifier = $this->getMockForAbstractClass( 'MessageSpecifier' );
+		$messageSpecifier->expects( $this->any() )
+			->method( 'getKey' )->will( $this->returnValue( $key ) );
+		$messageSpecifier->expects( $this->any() )
+			->method( 'getParams' )->will( $this->returnValue( $params ) );
+		$message = new Message( $messageSpecifier, array(), $language );
+
+		$this->assertEquals( $key, $message->getKey() );
+		$this->assertEquals( $params, $message->getParams() );
+		$this->assertEquals( $expectedLang, $message->getLanguage() );
 	}
 
 	public static function provideConstructor() {
@@ -547,5 +558,27 @@ class MessageTest extends MediaWikiLangTestCase {
 	 */
 	public function testInLanguageThrows() {
 		wfMessage( 'foo' )->inLanguage( 123 );
+	}
+
+	/**
+	 * @covers Message::serialize
+	 * @covers Message::unserialize
+	 */
+	public function testSerialization() {
+		$msg = new Message( 'parentheses' );
+		$msg->rawParams( '<a>foo</a>' );
+		$msg->title( Title::newFromText( 'Testing' ) );
+		$this->assertEquals( '(<a>foo</a>)', $msg->parse(), 'Sanity check' );
+		$msg = unserialize( serialize( $msg ) );
+		$this->assertEquals( '(<a>foo</a>)', $msg->parse() );
+		$title = TestingAccessWrapper::newFromObject( $msg )->title;
+		$this->assertInstanceOf( 'Title', $title );
+		$this->assertEquals( 'Testing', $title->getFullText() );
+
+		$msg = new Message( 'mainpage' );
+		$msg->inLanguage( 'de' );
+		$this->assertEquals( 'Hauptseite', $msg->plain(), 'Sanity check' );
+		$msg = unserialize( serialize( $msg ) );
+		$this->assertEquals( 'Hauptseite', $msg->plain() );
 	}
 }

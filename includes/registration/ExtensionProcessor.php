@@ -62,6 +62,8 @@ class ExtensionProcessor implements Processor {
 		'wgExtraGenderNamespaces' => 'array_plus',
 		'wgNamespacesWithSubpages' => 'array_plus',
 		'wgNamespaceContentModels' => 'array_plus',
+		'wgNamespaceProtection' => 'array_plus',
+		'wgCapitalLinkOverrides' => 'array_plus',
 	);
 
 	/**
@@ -144,9 +146,10 @@ class ExtensionProcessor implements Processor {
 	/**
 	 * @param string $path
 	 * @param array $info
+	 * @param int $version manifest_version for info
 	 * @return array
 	 */
-	public function extractInfo( $path, array $info ) {
+	public function extractInfo( $path, array $info, $version ) {
 		$this->extractConfig( $info );
 		$this->extractHooks( $info );
 		$dir = dirname( $path );
@@ -189,6 +192,16 @@ class ExtensionProcessor implements Processor {
 		);
 	}
 
+	public function getRequirements( array $info ) {
+		$requirements = array();
+		$key = ExtensionRegistry::MEDIAWIKI_CORE;
+		if ( isset( $info['requires'][$key] ) ) {
+			$requirements[$key] = $info['requires'][$key];
+		}
+
+		return $requirements;
+	}
+
 	protected function extractHooks( array $info ) {
 		if ( isset( $info['Hooks'] ) ) {
 			foreach ( $info['Hooks'] as $name => $value ) {
@@ -221,6 +234,12 @@ class ExtensionProcessor implements Processor {
 				}
 				if ( isset( $ns['defaultcontentmodel'] ) ) {
 					$this->globals['wgNamespaceContentModels'][$id] = $ns['defaultcontentmodel'];
+				}
+				if ( isset( $ns['protection'] ) ) {
+					$this->globals['wgNamespaceProtection'][$id] = $ns['protection'];
+				}
+				if ( isset( $ns['capitallinkoverride'] ) ) {
+					$this->globals['wgCapitalLinkOverrides'][$id] = $ns['capitallinkoverride'];
 				}
 			}
 		}
@@ -320,10 +339,14 @@ class ExtensionProcessor implements Processor {
 
 	/**
 	 * @param string $name
-	 * @param mixed $value
+	 * @param array $value
 	 * @param array &$array
+	 * @throws InvalidArgumentException
 	 */
 	protected function storeToArray( $name, $value, &$array ) {
+		if ( !is_array( $value ) ) {
+			throw new InvalidArgumentException( "The value for '$name' should be an array" );
+		}
 		if ( isset( $array[$name] ) ) {
 			$array[$name] = array_merge_recursive( $array[$name], $value );
 		} else {

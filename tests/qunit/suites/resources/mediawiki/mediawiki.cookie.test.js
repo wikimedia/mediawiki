@@ -102,7 +102,7 @@
 		} );
 
 		call = $.cookie.lastCall.args;
-		assert.strictEqual( call[0], 'myPrefixfoo' );
+		assert.strictEqual( call[ 0 ], 'myPrefixfoo' );
 		assert.deepEqual( call[ 2 ], {
 			expires: expiryDate,
 			domain: 'myDomain',
@@ -122,7 +122,7 @@
 		} );
 
 		call = $.cookie.lastCall.args;
-		assert.strictEqual( call[0], 'myPrefixfoo' );
+		assert.strictEqual( call[ 0 ], 'myPrefixfoo' );
 		assert.deepEqual( call[ 2 ], {
 			expires: date,
 			domain: 'myDomain',

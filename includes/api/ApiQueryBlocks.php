@@ -191,19 +191,19 @@ class ApiQueryBlocks extends ApiQueryBase {
 				ApiResult::META_TYPE => 'assoc',
 			);
 			if ( $fld_id ) {
-				$block['id'] = $row->ipb_id;
+				$block['id'] = (int)$row->ipb_id;
 			}
 			if ( $fld_user && !$row->ipb_auto ) {
 				$block['user'] = $row->ipb_address;
 			}
 			if ( $fld_userid && !$row->ipb_auto ) {
-				$block['userid'] = $row->ipb_user;
+				$block['userid'] = (int)$row->ipb_user;
 			}
 			if ( $fld_by ) {
 				$block['by'] = $row->ipb_by_text;
 			}
 			if ( $fld_byid ) {
-				$block['byid'] = $row->ipb_by;
+				$block['byid'] = (int)$row->ipb_by;
 			}
 			if ( $fld_timestamp ) {
 				$block['timestamp'] = wfTimestamp( TS_ISO_8601, $row->ipb_timestamp );
@@ -303,7 +303,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 					'range',
 					'flags'
 				),
-				ApiBase::PARAM_ISMULTI => true
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'show' => array(
 				ApiBase::PARAM_TYPE => array(

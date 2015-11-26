@@ -218,7 +218,7 @@ class SearchHighlighter {
 			}
 
 			// calc by how much to extend existing snippets
-			$targetchars = intval( ( $contextchars * $contextlines ) / count ( $snippets ) );
+			$targetchars = intval( ( $contextchars * $contextlines ) / count( $snippets ) );
 		}
 
 		foreach ( $snippets as $index => $line ) {

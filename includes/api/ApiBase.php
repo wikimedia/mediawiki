@@ -85,6 +85,15 @@ abstract class ApiBase extends ContextSource {
 	// $msg for ApiBase::makeMessage(). Any value not having a mapping will use
 	// apihelp-{$path}-paramvalue-{$param}-{$value} is used.
 	const PARAM_HELP_MSG_PER_VALUE = 14;
+	/// @since 1.26
+	// When PARAM_TYPE is 'submodule', map parameter values to submodule paths.
+	// Default is to use all modules in $this->getModuleManager() in the group
+	// matching the parameter name.
+	const PARAM_SUBMODULE_MAP = 15;
+	/// @since 1.26
+	// When PARAM_TYPE is 'submodule', used to indicate the 'g' prefix added by
+	// ApiQueryGeneratorBase (and similar if anything else ever does that).
+	const PARAM_SUBMODULE_PARAM_PREFIX = 16;
 
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
 	const LIMIT_BIG2 = 5000; // Fast query, bot/sysop limit
@@ -98,12 +107,17 @@ abstract class ApiBase extends ContextSource {
 	 */
 	const GET_VALUES_FOR_HELP = 1;
 
+	/** @var array Maps extension paths to info arrays */
+	private static $extensionInfo = null;
+
 	/** @var ApiMain */
 	private $mMainModule;
 	/** @var string */
 	private $mModuleName, $mModulePrefix;
 	private $mSlaveDB = null;
 	private $mParamCache = array();
+	/** @var array|null|bool */
+	private $mModuleSource = false;
 
 	/**
 	 * @param ApiMain $mainModule
@@ -328,6 +342,22 @@ abstract class ApiBase extends ContextSource {
 	 * @return string|array|null
 	 */
 	protected function getWebUITokenSalt( array $params ) {
+		return null;
+	}
+
+	/**
+	 * Returns data for HTTP conditional request mechanisms.
+	 *
+	 * @since 1.26
+	 * @param string $condition Condition being queried:
+	 *  - last-modified: Return a timestamp representing the maximum of the
+	 *    last-modified dates for all resources involved in the request. See
+	 *    RFC 7232 § 2.2 for semantics.
+	 *  - etag: Return an entity-tag representing the state of all resources involved
+	 *    in the request. Quotes must be included. See RFC 7232 § 2.3 for semantics.
+	 * @return string|boolean|null As described above, or null if no value is available.
+	 */
+	public function getConditionalRequestData( $condition ) {
 		return null;
 	}
 
@@ -833,7 +863,11 @@ abstract class ApiBase extends ContextSource {
 				$type = MWNamespace::getValidNamespaces();
 			}
 			if ( isset( $value ) && $type == 'submodule' ) {
-				$type = $this->getModuleManager()->getNames( $paramName );
+				if ( isset( $paramSettings[self::PARAM_SUBMODULE_MAP] ) ) {
+					$type = array_keys( $paramSettings[self::PARAM_SUBMODULE_MAP] );
+				} else {
+					$type = $this->getModuleManager()->getNames( $paramName );
+				}
 			}
 		}
 
@@ -854,6 +888,8 @@ abstract class ApiBase extends ContextSource {
 					case 'NULL': // nothing to do
 						break;
 					case 'string':
+					case 'text':
+					case 'password':
 						if ( $required && $value === '' ) {
 							$this->dieUsageMsg( array( 'missingparam', $paramName ) );
 						}
@@ -1036,7 +1072,6 @@ abstract class ApiBase extends ContextSource {
 	 */
 	protected function validateLimit( $paramName, &$value, $min, $max, $botMax = null, $enforceLimits = false ) {
 		if ( !is_null( $min ) && $value < $min ) {
-
 			$msg = $this->encodeParamName( $paramName ) . " may not be less than $min (set to $value)";
 			$this->warnOrDie( $msg, $enforceLimits );
 			$value = $min;
@@ -1073,6 +1108,24 @@ abstract class ApiBase extends ContextSource {
 	 * @return string Validated and normalized parameter
 	 */
 	protected function validateTimestamp( $value, $encParamName ) {
+		// Confusing synonyms for the current time accepted by wfTimestamp()
+		// (wfTimestamp() also accepts various non-strings and the string of 14
+		// ASCII NUL bytes, but those can't get here)
+		if ( !$value ) {
+			$this->logFeatureUsage( 'unclear-"now"-timestamp' );
+			$this->setWarning(
+				"Passing '$value' for timestamp parameter $encParamName has been deprecated." .
+					' If for some reason you need to explicitly specify the current time without' .
+					' calculating it client-side, use "now".'
+			);
+			return wfTimestamp( TS_MW );
+		}
+
+		// Explicit synonym for the current time
+		if ( $value === 'now' ) {
+			return wfTimestamp( TS_MW );
+		}
+
 		$unixTimestamp = wfTimestamp( TS_UNIX, $value );
 		if ( $unixTimestamp === false ) {
 			$this->dieUsage(
@@ -2203,6 +2256,93 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Returns information about the source of this module, if known
+	 *
+	 * Returned array is an array with the following keys:
+	 * - path: Install path
+	 * - name: Extension name, or "MediaWiki" for core
+	 * - namemsg: (optional) i18n message key for a display name
+	 * - license-name: (optional) Name of license
+	 *
+	 * @return array|null
+	 */
+	protected function getModuleSourceInfo() {
+		global $IP;
+
+		if ( $this->mModuleSource !== false ) {
+			return $this->mModuleSource;
+		}
+
+		// First, try to find where the module comes from...
+		$rClass = new ReflectionClass( $this );
+		$path = $rClass->getFileName();
+		if ( !$path ) {
+			// No path known?
+			$this->mModuleSource = null;
+			return null;
+		}
+		$path = realpath( $path ) ?: $path;
+
+		// Build map of extension directories to extension info
+		if ( self::$extensionInfo === null ) {
+			self::$extensionInfo = array(
+				realpath( __DIR__ ) ?: __DIR__ => array(
+					'path' => $IP,
+					'name' => 'MediaWiki',
+					'license-name' => 'GPL-2.0+',
+				),
+				realpath( "$IP/extensions" ) ?: "$IP/extensions" => null,
+			);
+			$keep = array(
+				'path' => null,
+				'name' => null,
+				'namemsg' => null,
+				'license-name' => null,
+			);
+			foreach ( $this->getConfig()->get( 'ExtensionCredits' ) as $group ) {
+				foreach ( $group as $ext ) {
+					if ( !isset( $ext['path'] ) || !isset( $ext['name'] ) ) {
+						// This shouldn't happen, but does anyway.
+						continue;
+					}
+
+					$extpath = $ext['path'];
+					if ( !is_dir( $extpath ) ) {
+						$extpath = dirname( $extpath );
+					}
+					self::$extensionInfo[realpath( $extpath ) ?: $extpath] =
+						array_intersect_key( $ext, $keep );
+				}
+			}
+			foreach ( ExtensionRegistry::getInstance()->getAllThings() as $ext ) {
+				$extpath = $ext['path'];
+				if ( !is_dir( $extpath ) ) {
+					$extpath = dirname( $extpath );
+				}
+				self::$extensionInfo[realpath( $extpath ) ?: $extpath] =
+					array_intersect_key( $ext, $keep );
+			}
+		}
+
+		// Now traverse parent directories until we find a match or run out of
+		// parents.
+		do {
+			if ( array_key_exists( $path, self::$extensionInfo ) ) {
+				// Found it!
+				$this->mModuleSource = self::$extensionInfo[$path];
+				return $this->mModuleSource;
+			}
+
+			$oldpath = $path;
+			$path = dirname( $path );
+		} while ( $path !== $oldpath );
+
+		// No idea what extension this might be.
+		$this->mModuleSource = null;
+		return null;
+	}
+
+	/**
 	 * Called from ApiHelp before the pieces are joined together and returned.
 	 *
 	 * This exists mainly for ApiMain to add the Permissions and Credits
@@ -2210,8 +2350,10 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @param string[] &$help Array of help data
 	 * @param array $options Options passed to ApiHelp::getHelp
+	 * @param array &$tocData If a TOC is being generated, this array has keys
+	 *   as anchors in the page and values as for Linker::generateTOC().
 	 */
-	public function modifyHelp( array &$help, array $options ) {
+	public function modifyHelp( array &$help, array $options, array &$tocData ) {
 	}
 
 	/**@}*/
@@ -2355,7 +2497,7 @@ abstract class ApiBase extends ContextSource {
 	 * Returns the description string for this module
 	 *
 	 * Ignored if an i18n message exists for
-	 * "apihelp-{$this->getModulePathString()}-description".
+	 * "apihelp-{$this->getModulePath()}-description".
 	 *
 	 * @deprecated since 1.25
 	 * @return Message|string|array
@@ -2369,7 +2511,7 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * For each parameter, ignored if an i18n message exists for the parameter.
 	 * By default that message is
-	 * "apihelp-{$this->getModulePathString()}-param-{$param}", but it may be
+	 * "apihelp-{$this->getModulePath()}-param-{$param}", but it may be
 	 * overridden using ApiBase::PARAM_HELP_MSG in the data returned by
 	 * self::getFinalParams().
 	 *
@@ -2519,7 +2661,6 @@ abstract class ApiBase extends ContextSource {
 		wfDeprecated( __METHOD__, '1.25' );
 		$params = $this->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
 		if ( $params ) {
-
 			$paramsDescription = $this->getFinalParamDescription();
 			$msg = '';
 			$paramPrefix = "\n" . str_repeat( ' ', 24 );
@@ -2578,7 +2719,11 @@ abstract class ApiBase extends ContextSource {
 					}
 
 					if ( $type === 'submodule' ) {
-						$type = $this->getModuleManager()->getNames( $paramName );
+						if ( isset( $paramSettings[self::PARAM_SUBMODULE_MAP] ) ) {
+							$type = array_keys( $paramSettings[self::PARAM_SUBMODULE_MAP] );
+						} else {
+							$type = $this->getModuleManager()->getNames( $paramName );
+						}
 						sort( $type );
 					}
 					if ( is_array( $type ) ) {
@@ -2739,6 +2884,16 @@ abstract class ApiBase extends ContextSource {
 	public function getResultData() {
 		wfDeprecated( __METHOD__, '1.25' );
 		return $this->getResult()->getData();
+	}
+
+	/**
+	 * Call wfTransactionalTimeLimit() if this request was POSTed
+	 * @since 1.26
+	 */
+	protected function useTransactionalTimeLimit() {
+		if ( $this->getRequest()->wasPosted() ) {
+			wfTransactionalTimeLimit();
+		}
 	}
 
 	/**@}*/

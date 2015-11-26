@@ -34,7 +34,7 @@ class WikiImporter {
 	private $reader = null;
 	private $foreignNamespaces = null;
 	private $mLogItemCallback, $mUploadCallback, $mRevisionCallback, $mPageCallback;
-	private $mSiteInfoCallback, $mTargetNamespace, $mPageOutCallback;
+	private $mSiteInfoCallback, $mPageOutCallback;
 	private $mNoticeCallback, $mDebug;
 	private $mImportUploads, $mImageBasePath;
 	private $mNoUpdates = false;
@@ -49,8 +49,13 @@ class WikiImporter {
 	 * Creates an ImportXMLReader drawing from the source provided
 	 * @param ImportSource $source
 	 * @param Config $config
+	 * @throws Exception
 	 */
 	function __construct( ImportSource $source, Config $config = null ) {
+		if ( !class_exists( 'XMLReader' ) ) {
+			throw new Exception( 'Import requires PHP to have been compiled with libxml support' );
+		}
+
 		$this->reader = new XMLReader();
 		if ( !$config ) {
 			wfDeprecated( __METHOD__ . ' without a Config instance', '1.25' );
@@ -62,11 +67,22 @@ class WikiImporter {
 			stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
 		}
 		$id = UploadSourceAdapter::registerSource( $source );
+
+		// Enable the entity loader, as it is needed for loading external URLs via
+		// XMLReader::open (T86036)
+		$oldDisable = libxml_disable_entity_loader( false );
 		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
-			$this->reader->open( "uploadsource://$id", null, LIBXML_PARSEHUGE );
+			$status = $this->reader->open( "uploadsource://$id", null, LIBXML_PARSEHUGE );
 		} else {
-			$this->reader->open( "uploadsource://$id" );
+			$status = $this->reader->open( "uploadsource://$id" );
 		}
+		if ( !$status ) {
+			$error = libxml_get_last_error();
+			libxml_disable_entity_loader( $oldDisable );
+			throw new MWException( 'Encountered an internal error while initializing WikiImporter object: ' .
+				$error->message );
+		}
+		libxml_disable_entity_loader( $oldDisable );
 
 		// Default callbacks
 		$this->setPageCallback( array( $this, 'beforeImportPage' ) );
@@ -224,7 +240,6 @@ class WikiImporter {
 	public function setTargetNamespace( $namespace ) {
 		if ( is_null( $namespace ) ) {
 			// Don't override namespaces
-			$this->mTargetNamespace = null;
 			$this->setImportTitleFactory( new NaiveImportTitleFactory() );
 			return true;
 		} elseif (
@@ -232,7 +247,6 @@ class WikiImporter {
 			MWNamespace::exists( intval( $namespace ) )
 		) {
 			$namespace = intval( $namespace );
-			$this->mTargetNamespace = $namespace;
 			$this->setImportTitleFactory( new NamespaceImportTitleFactory( $namespace ) );
 			return true;
 		} else {
@@ -252,10 +266,7 @@ class WikiImporter {
 			$this->setImportTitleFactory( new NaiveImportTitleFactory() );
 		} elseif ( $rootpage !== '' ) {
 			$rootpage = rtrim( $rootpage, '/' ); //avoid double slashes
-			$title = Title::newFromText( $rootpage, !is_null( $this->mTargetNamespace )
-				? $this->mTargetNamespace
-				: NS_MAIN
-			);
+			$title = Title::newFromText( $rootpage );
 
 			if ( !$title || $title->isExternal() ) {
 				$status->fatal( 'import-rootpage-invalid' );
@@ -383,9 +394,9 @@ class WikiImporter {
 			$countKey = 'title_' . $title->getPrefixedText();
 			$countable = $page->isCountable( $editInfo );
 			if ( array_key_exists( $countKey, $this->countableCache ) &&
-				$countable != $this->countableCache[ $countKey ] ) {
+				$countable != $this->countableCache[$countKey] ) {
 				DeferredUpdates::addUpdate( SiteStatsUpdate::factory( array(
-					'articles' => ( (int)$countable - (int)$this->countableCache[ $countKey ] )
+					'articles' => ( (int)$countable - (int)$this->countableCache[$countKey] )
 				) ) );
 			}
 		}
@@ -528,10 +539,10 @@ class WikiImporter {
 		$oldDisable = libxml_disable_entity_loader( true );
 		$this->reader->read();
 
-		if ( $this->reader->name != 'mediawiki' ) {
+		if ( $this->reader->localName != 'mediawiki' ) {
 			libxml_disable_entity_loader( $oldDisable );
 			throw new MWException( "Expected <mediawiki> tag, got " .
-				$this->reader->name );
+				$this->reader->localName );
 		}
 		$this->debug( "<mediawiki> tag is correct." );
 
@@ -542,7 +553,7 @@ class WikiImporter {
 		$rethrow = null;
 		try {
 			while ( $keepReading ) {
-				$tag = $this->reader->name;
+				$tag = $this->reader->localName;
 				$type = $this->reader->nodeType;
 
 				if ( !Hooks::run( 'ImportHandleToplevelXMLTag', array( $this ) ) ) {
@@ -593,14 +604,14 @@ class WikiImporter {
 
 		while ( $this->reader->read() ) {
 			if ( $this->reader->nodeType == XmlReader::END_ELEMENT &&
-					$this->reader->name == 'siteinfo' ) {
+					$this->reader->localName == 'siteinfo' ) {
 				break;
 			}
 
-			$tag = $this->reader->name;
+			$tag = $this->reader->localName;
 
 			if ( $tag == 'namespace' ) {
-				$this->foreignNamespaces[ $this->nodeAttribute( 'key' ) ] =
+				$this->foreignNamespaces[$this->nodeAttribute( 'key' )] =
 					$this->nodeContents();
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$siteInfo[$tag] = $this->nodeContents();
@@ -621,11 +632,11 @@ class WikiImporter {
 
 		while ( $this->reader->read() ) {
 			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
-					$this->reader->name == 'logitem' ) {
+					$this->reader->localName == 'logitem' ) {
 				break;
 			}
 
-			$tag = $this->reader->name;
+			$tag = $this->reader->localName;
 
 			if ( !Hooks::run( 'ImportHandleLogItemXMLTag', array(
 				$this, $logInfo
@@ -685,13 +696,13 @@ class WikiImporter {
 
 		while ( $skip ? $this->reader->next() : $this->reader->read() ) {
 			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
-					$this->reader->name == 'page' ) {
+					$this->reader->localName == 'page' ) {
 				break;
 			}
 
 			$skip = false;
 
-			$tag = $this->reader->name;
+			$tag = $this->reader->localName;
 
 			if ( $badTitle ) {
 				// The title is invalid, bail out of this page
@@ -758,11 +769,11 @@ class WikiImporter {
 
 		while ( $skip ? $this->reader->next() : $this->reader->read() ) {
 			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
-					$this->reader->name == 'revision' ) {
+					$this->reader->localName == 'revision' ) {
 				break;
 			}
 
-			$tag = $this->reader->name;
+			$tag = $this->reader->localName;
 
 			if ( !Hooks::run( 'ImportHandleRevisionXMLTag', array(
 				$this, $pageInfo, $revisionInfo
@@ -850,11 +861,11 @@ class WikiImporter {
 
 		while ( $skip ? $this->reader->next() : $this->reader->read() ) {
 			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
-					$this->reader->name == 'upload' ) {
+					$this->reader->localName == 'upload' ) {
 				break;
 			}
 
-			$tag = $this->reader->name;
+			$tag = $this->reader->localName;
 
 			if ( !Hooks::run( 'ImportHandleUploadXMLTag', array(
 				$this, $pageInfo
@@ -948,11 +959,11 @@ class WikiImporter {
 
 		while ( $this->reader->read() ) {
 			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
-					$this->reader->name == 'contributor' ) {
+					$this->reader->localName == 'contributor' ) {
 				break;
 			}
 
-			$tag = $this->reader->name;
+			$tag = $this->reader->localName;
 
 			if ( in_array( $tag, $fields ) ) {
 				$info[$tag] = $this->nodeContents();
@@ -1846,9 +1857,9 @@ class ImportStreamSource implements ImportSource {
 	 * @return Status
 	 */
 	static function newFromFile( $filename ) {
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$file = fopen( $filename, 'rt' );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( !$file ) {
 			return Status::newFatal( "importcantopen" );
 		}

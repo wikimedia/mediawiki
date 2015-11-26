@@ -103,7 +103,7 @@ class TemplateParser {
 			// See if the compiled PHP code is stored in cache.
 			// CACHE_ACCEL throws an exception if no suitable object cache is present, so fall
 			// back to CACHE_ANYTHING.
-			$cache = ObjectCache::newAccelerator( array(), CACHE_ANYTHING );
+			$cache = ObjectCache::newAccelerator( CACHE_ANYTHING );
 			$key = wfMemcKey( 'template', $templateName, $fastHash );
 			$code = $this->forceRecompile ? null : $cache->get( $key );
 
@@ -130,7 +130,8 @@ class TemplateParser {
 		if ( !is_callable( $renderer ) ) {
 			throw new RuntimeException( "Requested template, {$templateName}, is not callable" );
 		}
-		return $this->renderers[$templateName] = $renderer;
+		$this->renderers[$templateName] = $renderer;
+		return $renderer;
 	}
 
 	/**
@@ -172,7 +173,9 @@ class TemplateParser {
 			array(
 				// Do not add more flags here without discussion.
 				// If you do add more flags, be sure to update unit tests as well.
-				'flags' => LightnCandy::FLAG_ERROR_EXCEPTION
+				'flags' => LightnCandy::FLAG_ERROR_EXCEPTION,
+				'basedir' => $this->templateDir,
+				'fileext' => '.mustache',
 			)
 		);
 	}

@@ -27,10 +27,16 @@ class TextContentTest extends MediaWikiLangTestCase {
 				CONTENT_MODEL_JAVASCRIPT,
 			),
 			'wgUseTidy' => false,
-			'wgAlwaysUseTidy' => false,
 			'wgCapitalLinks' => true,
 			'wgHooks' => array(), // bypass hook ContentGetParserOutput that force custom rendering
 		) );
+
+		MWTidy::destroySingleton();
+	}
+
+	protected function tearDown() {
+		MWTidy::destroySingleton();
+		parent::tearDown();
 	}
 
 	public function newContent( $text ) {

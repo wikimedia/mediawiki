@@ -64,16 +64,16 @@ class DatabaseSqlite extends DatabaseBase {
 		$this->dbDir = isset( $p['dbDirectory'] ) ? $p['dbDirectory'] : $wgSQLiteDataDir;
 
 		if ( isset( $p['dbFilePath'] ) ) {
-			$this->mFlags = isset( $p['flags'] ) ? $p['flags'] : 0;
-			// Standalone .sqlite file mode
+			parent::__construct( $p );
+			// Standalone .sqlite file mode.
+			// Super doesn't open when $user is false, but we can work with $dbName,
+			// which is derived from the file path in this case.
 			$this->openFile( $p['dbFilePath'] );
-			// @FIXME: clean up base constructor so this can call super instead
-			$this->mTrxAtomicLevels = new SplStack;
 		} else {
 			$this->mDBname = $p['dbname'];
-			// Stock wiki mode using standard file names per DB
+			// Stock wiki mode using standard file names per DB.
 			parent::__construct( $p );
-			// parent doesn't open when $user is false, but we can work with $dbName
+			// Super doesn't open when $user is false, but we can work with $dbName
 			if ( $p['dbname'] && !$this->isOpen() ) {
 				if ( $this->open( $p['host'], $p['user'], $p['password'], $p['dbname'] ) ) {
 					if ( $wgSharedDB ) {
@@ -105,8 +105,10 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	public static function newStandaloneInstance( $filename, array $p = array() ) {
 		$p['dbFilePath'] = $filename;
+		$p['schema'] = false;
+		$p['tablePrefix'] = '';
 
-		return new self( $p );
+		return DatabaseBase::factory( 'sqlite', $p );
 	}
 
 	/**
@@ -282,7 +284,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @return bool
 	 */
 	function isWriteQuery( $sql ) {
-		return parent::isWriteQuery( $sql ) && !preg_match( '/^ATTACH\b/i', $sql );
+		return parent::isWriteQuery( $sql ) && !preg_match( '/^(ATTACH|PRAGMA)\b/i', $sql );
 	}
 
 	/**
@@ -962,7 +964,36 @@ class DatabaseSqlite extends DatabaseBase {
 			}
 		}
 
-		return $this->query( $sql, $fname );
+		$res = $this->query( $sql, $fname );
+
+		// Take over indexes
+		$indexList = $this->query( 'PRAGMA INDEX_LIST(' . $this->addQuotes( $oldName ) . ')' );
+		foreach ( $indexList as $index ) {
+			if ( strpos( $index->name, 'sqlite_autoindex' ) === 0 ) {
+				continue;
+			}
+
+			if ( $index->unique ) {
+				$sql = 'CREATE UNIQUE INDEX';
+			} else {
+				$sql = 'CREATE INDEX';
+			}
+			// Try to come up with a new index name, given indexes have database scope in SQLite
+			$indexName = $newName . '_' . $index->name;
+			$sql .= ' ' . $indexName . ' ON ' . $newName;
+
+			$indexInfo = $this->query( 'PRAGMA INDEX_INFO(' . $this->addQuotes( $index->name ) . ')' );
+			$fields = array();
+			foreach ( $indexInfo as $indexInfoRow ) {
+				$fields[ $indexInfoRow->seqno ] = $indexInfoRow->name;
+			}
+
+			$sql .= '(' . implode( ',', $fields ) . ')';
+
+			$this->query( $sql );
+		}
+
+		return $res;
 	}
 
 	/**

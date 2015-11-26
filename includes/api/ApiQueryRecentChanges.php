@@ -458,7 +458,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				}
 
 				if ( $this->fld_userid ) {
-					$vals['userid'] = $row->rc_user;
+					$vals['userid'] = (int)$row->rc_user;
 				}
 
 				if ( !$row->rc_user ) {
@@ -636,7 +636,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					'loginfo',
 					'tags',
 					'sha1',
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'token' => array(
 				ApiBase::PARAM_DEPRECATED => true,

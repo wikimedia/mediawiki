@@ -94,6 +94,11 @@ class MWMemcached {
 	 */
 	const COMPRESSED = 2;
 
+	/**
+	 * Flag: indicates data is an integer
+	 */
+	const INTVAL = 4;
+
 	// }}}
 
 	/**
@@ -745,13 +750,13 @@ class MWMemcached {
 		$timeout = $this->_connect_timeout;
 		$errno = $errstr = null;
 		for ( $i = 0; !$sock && $i < $this->_connect_attempts; $i++ ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			if ( $this->_persistent == 1 ) {
 				$sock = pfsockopen( $ip, $port, $errno, $errstr, $timeout );
 			} else {
 				$sock = fsockopen( $ip, $port, $errno, $errstr, $timeout );
 			}
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		}
 		if ( !$sock ) {
 			$this->_error_log( "Error connecting to $host: $errstr\n" );
@@ -979,6 +984,8 @@ class MWMemcached {
 					 */
 					if ( $flags & self::SERIALIZED ) {
 						$ret[$rkey] = unserialize( $ret[$rkey] );
+					} elseif ( $flags & self::INTVAL ) {
+						$ret[$rkey] = intval( $ret[$rkey] );
 					}
 				}
 
@@ -1027,7 +1034,9 @@ class MWMemcached {
 
 		$flags = 0;
 
-		if ( !is_scalar( $val ) ) {
+		if ( is_int( $val ) ) {
+			$flags |= self::INTVAL;
+		} elseif ( !is_scalar( $val ) ) {
 			$val = serialize( $val );
 			$flags |= self::SERIALIZED;
 			if ( $this->_debug ) {

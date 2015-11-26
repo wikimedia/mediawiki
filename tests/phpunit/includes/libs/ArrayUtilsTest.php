@@ -23,11 +23,11 @@ class ArrayUtilsTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function provideFindLowerBound() {
-		$self = $this;
-		$indexValueCallback = function ( $size ) use ( $self ) {
-			return function ( $val ) use ( $self, $size ) {
-				$self->assertTrue( $val >= 0 );
-				$self->assertTrue( $val < $size );
+		$that = $this;
+		$indexValueCallback = function ( $size ) use ( $that ) {
+			return function ( $val ) use ( $that, $size ) {
+				$that->assertTrue( $val >= 0 );
+				$that->assertTrue( $val < $size );
 				return $val;
 			};
 		};
@@ -212,7 +212,7 @@ class ArrayUtilsTest extends PHPUnit_Framework_TestCase {
 				array(),
 				array( 1 => 1 ),
 				array( 1 ),
-				array( 1 => 1),
+				array( 1 => 1 ),
 			),
 			array(
 				array(),

@@ -1,27 +1,28 @@
-jQuery( document ).ready( function ( $ ) {
-	var collapsibleLists, i, handleOne;
+( function ( mw ) {
+	var collapsibleLists, handleOne;
 
 	// Collapsible lists of categories and templates
 	collapsibleLists = [
 		{
-			$list: $( '.templatesUsed ul' ),
-			$toggler: $( '.mw-templatesUsedExplanation' ),
+			listSel: '.templatesUsed ul',
+			togglerSel: '.mw-templatesUsedExplanation',
 			cookieName: 'templates-used-list'
 		},
 		{
-			$list: $( '.hiddencats ul' ),
-			$toggler: $( '.mw-hiddenCategoriesExplanation' ),
+			listSel: '.hiddencats ul',
+			togglerSel: '.mw-hiddenCategoriesExplanation',
 			cookieName: 'hidden-categories-list'
 		},
 		{
-			$list: $( '.preview-limit-report-wrapper' ),
-			$toggler: $( '.mw-limitReportExplanation' ),
+			listSel: '.preview-limit-report-wrapper',
+			togglerSel: '.mw-limitReportExplanation',
 			cookieName: 'preview-limit-report'
 		}
 	];
 
 	handleOne = function ( $list, $toggler, cookieName ) {
-		var isCollapsed = $.cookie( cookieName ) !== 'expanded';
+		// Collapsed by default
+		var isCollapsed = mw.cookie.get( cookieName ) !== 'expanded';
 
 		// Style the toggler with an arrow icon and add a tabIndex and a role for accessibility
 		$toggler.addClass( 'mw-editfooter-toggler' ).prop( 'tabIndex', 0 ).attr( 'role', 'button' );
@@ -38,17 +39,24 @@ jQuery( document ).ready( function ( $ ) {
 
 		$list.on( 'beforeExpand.mw-collapsible', function () {
 			$toggler.removeClass( 'mw-icon-arrow-collapsed' ).addClass( 'mw-icon-arrow-expanded' );
-			$.cookie( cookieName, 'expanded' );
+			mw.cookie.set( cookieName, 'expanded' );
 		} );
 
 		$list.on( 'beforeCollapse.mw-collapsible', function () {
 			$toggler.removeClass( 'mw-icon-arrow-expanded' ).addClass( 'mw-icon-arrow-collapsed' );
-			$.cookie( cookieName, 'collapsed' );
+			mw.cookie.set( cookieName, 'collapsed' );
 		} );
 	};
 
-	for ( i = 0; i < collapsibleLists.length; i++ ) {
-		// Pass to a function for iteration-local variables
-		handleOne( collapsibleLists[i].$list, collapsibleLists[i].$toggler, collapsibleLists[i].cookieName );
-	}
-} );
+	mw.hook( 'wikipage.editform' ).add( function ( $editForm ) {
+		var i;
+		for ( i = 0; i < collapsibleLists.length; i++ ) {
+			// Pass to a function for iteration-local variables
+			handleOne(
+				$editForm.find( collapsibleLists[ i ].listSel ),
+				$editForm.find( collapsibleLists[ i ].togglerSel ),
+				collapsibleLists[ i ].cookieName
+			);
+		}
+	} );
+}( mediaWiki ) );

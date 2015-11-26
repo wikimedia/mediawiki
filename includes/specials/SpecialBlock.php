@@ -97,7 +97,6 @@ class SpecialBlock extends FormSpecialPage {
 	protected function alterForm( HTMLForm $form ) {
 		$form->setWrapperLegendMsg( 'blockip-legend' );
 		$form->setHeaderText( '' );
-		$form->setSubmitCallback( array( __CLASS__, 'processUIForm' ) );
 		$form->setSubmitDestructive();
 
 		$msg = $this->alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit';
@@ -394,8 +393,8 @@ class SpecialBlock extends FormSpecialPage {
 
 		# Link to edit the block dropdown reasons, if applicable
 		if ( $user->isAllowed( 'editinterface' ) ) {
-			$links[] = Linker::link(
-				Title::makeTitle( NS_MEDIAWIKI, 'Ipbreason-dropdown' ),
+			$links[] = Linker::linkKnown(
+				$this->msg( 'ipbreason-dropdown' )->inContentLanguage()->getTitle(),
 				$this->msg( 'ipb-edit-dropdown' )->escaped(),
 				array(),
 				array( 'action' => 'edit' )
@@ -597,17 +596,8 @@ class SpecialBlock extends FormSpecialPage {
 	}
 
 	/**
-	 * Submit callback for an HTMLForm object, will simply pass
-	 * @param array $data
-	 * @param HTMLForm $form
-	 * @return bool|string
-	 */
-	public static function processUIForm( array $data, HTMLForm $form ) {
-		return self::processForm( $data, $form->getContext() );
-	}
-
-	/**
-	 * Given the form data, actually implement a block
+	 * Given the form data, actually implement a block. This is also called from ApiBlock.
+	 *
 	 * @param array $data
 	 * @param IContextSource $context
 	 * @return bool|string
@@ -672,8 +662,8 @@ class SpecialBlock extends FormSpecialPage {
 		if ( $data['HideUser'] ) {
 			if ( !$performer->isAllowed( 'hideuser' ) ) {
 				# this codepath is unreachable except by a malicious user spoofing forms,
-				# or by race conditions (user has oversight and sysop, loads block form,
-				# and is de-oversighted before submission); so need to fail completely
+				# or by race conditions (user has hideuser and block rights, loads block form,
+				# and loses hideuser rights before submission); so need to fail completely
 				# rather than just silently disable hiding
 				return array( 'badaccess-group0' );
 			}
@@ -797,7 +787,7 @@ class SpecialBlock extends FormSpecialPage {
 		$logParams['5::duration'] = $data['Expiry'];
 		$logParams['6::flags'] = self::blockLogFlags( $data, $type );
 
-		# Make log entry, if the name is hidden, put it in the oversight log
+		# Make log entry, if the name is hidden, put it in the suppression log
 		$log_type = $data['HideUser'] ? 'suppress' : 'block';
 		$logEntry = new ManualLogEntry( $log_type, $logaction );
 		$logEntry->setTarget( Title::makeTitle( NS_USER, $target ) );
@@ -848,16 +838,11 @@ class SpecialBlock extends FormSpecialPage {
 	 * Convert a submitted expiry time, which may be relative ("2 weeks", etc) or absolute
 	 * ("24 May 2034", etc), into an absolute timestamp we can put into the database.
 	 * @param string $expiry Whatever was typed into the form
-	 * @return string Timestamp or "infinity" string for the DB implementation
+	 * @return string Timestamp or 'infinity'
 	 */
 	public static function parseExpiryInput( $expiry ) {
-		static $infinity;
-		if ( $infinity == null ) {
-			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
-		}
-
 		if ( wfIsInfinity( $expiry ) ) {
-			$expiry = $infinity;
+			$expiry = 'infinity';
 		} else {
 			$expiry = strtotime( $expiry );
 
@@ -967,11 +952,11 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Process the form on POST submission.
 	 * @param array $data
+	 * @param HTMLForm $form
 	 * @return bool|array True for success, false for didn't-try, array of errors on failure
 	 */
-	public function onSubmit( array $data ) {
-		// This isn't used since we need that HTMLForm that's passed in the
-		// second parameter. See alterForm for the real function
+	public function onSubmit( array $data, HTMLForm $form = null ) {
+		return self::processForm( $data, $form->getContext() );
 	}
 
 	/**

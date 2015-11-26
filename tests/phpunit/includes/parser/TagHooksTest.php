@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Database
  * @group Parser
  */
 class TagHookTest extends MediaWikiTestCase {
@@ -16,12 +17,6 @@ class TagHookTest extends MediaWikiTestCase {
 
 	public static function provideBadNames() {
 		return array( array( "foo<bar" ), array( "foo>bar" ), array( "foo\nbar" ), array( "foo\rbar" ) );
-	}
-
-	protected function setUp() {
-		parent::setUp();
-
-		$this->setMwGlobals( 'wgAlwaysUseTidy', false );
 	}
 
 	/**

@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Geopoet"
+		]
+	},
+	"apihelp-expandtemplates-paramvalue-prop-categories": "Arinman na mga kategoriyang yaon sa pinapalaog na bakong representado sa laog kan wikitext na kinaluwasan.",
+	"apihelp-query+watchlistraw-param-fromtitle": "Titulo (may espasyong ngaran sa enotang panigmitan) sa pagpopoon kan gikanang pinagkuanan.",
+	"apihelp-query+watchlistraw-param-totitle": "Titulo (may espasyong ngaran sa enotang panigmitan) sa pagpapauntok kan gikanang pinaghalean."
+}

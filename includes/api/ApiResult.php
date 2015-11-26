@@ -108,11 +108,23 @@ class ApiResult implements ApiSerializable {
 	const META_TYPE = '_type';
 
 	/**
-	 * Key (rather than "name" or other default) for when META_TYPE is 'kvp' or
-	 * 'BCkvp'. Value is string.
+	 * Key for the metadata item whose value specifies the name used for the
+	 * kvp key in the alternative output format with META_TYPE 'kvp' or
+	 * 'BCkvp', i.e. the "name" in <container><item name="key">value</item></container>.
+	 * Value is string.
 	 * @since 1.25
 	 */
 	const META_KVP_KEY_NAME = '_kvpkeyname';
+
+	/**
+	 * Key for the metadata item that indicates that the KVP key should be
+	 * added into an assoc value, i.e. {"key":{"val1":"a","val2":"b"}}
+	 * transforms to {"name":"key","val1":"a","val2":"b"} rather than
+	 * {"name":"key","value":{"val1":"a","val2":"b"}}.
+	 * Value is boolean.
+	 * @since 1.26
+	 */
+	const META_KVP_MERGE = '_kvpmerge';
 
 	/**
 	 * Key for the 'BC bools' metadata item. Value is string[].
@@ -132,7 +144,7 @@ class ApiResult implements ApiSerializable {
 	private $errorFormatter;
 
 	// Deprecated fields
-	private $isRawMode, $checkingSize, $mainForContinuation;
+	private $checkingSize, $mainForContinuation;
 
 	/**
 	 * @param int|bool $maxSize Maximum result "size", or false for no limit
@@ -147,7 +159,6 @@ class ApiResult implements ApiSerializable {
 		}
 
 		$this->maxSize = $maxSize;
-		$this->isRawMode = false;
 		$this->checkingSize = true;
 		$this->reset();
 	}
@@ -276,7 +287,7 @@ class ApiResult implements ApiSerializable {
 	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
 	 */
 	public static function setValue( array &$arr, $name, $value, $flags = 0 ) {
-		if ( !( $flags & ApiResult::NO_VALIDATE ) ) {
+		if ( ( $flags & ApiResult::NO_VALIDATE ) !== ApiResult::NO_VALIDATE ) {
 			$value = self::validateValue( $value );
 		}
 
@@ -302,10 +313,14 @@ class ApiResult implements ApiSerializable {
 				$arr[$name] += $value;
 			} else {
 				$keys = join( ', ', array_keys( $conflicts ) );
-				throw new RuntimeException( "Conflicting keys ($keys) when attempting to merge element $name" );
+				throw new RuntimeException(
+					"Conflicting keys ($keys) when attempting to merge element $name"
+				);
 			}
 		} else {
-			throw new RuntimeException( "Attempting to add element $name=$value, existing value is {$arr[$name]}" );
+			throw new RuntimeException(
+				"Attempting to add element $name=$value, existing value is {$arr[$name]}"
+			);
 		}
 	}
 
@@ -386,6 +401,11 @@ class ApiResult implements ApiSerializable {
 		$arr = &$this->path( $path, ( $flags & ApiResult::ADD_ON_TOP ) ? 'prepend' : 'append' );
 
 		if ( $this->checkingSize && !( $flags & ApiResult::NO_SIZE_CHECK ) ) {
+			// self::valueSize needs the validated value. Then flag
+			// to not re-validate later.
+			$value = self::validateValue( $value );
+			$flags |= ApiResult::NO_VALIDATE;
+
 			$newsize = $this->size + self::valueSize( $value );
 			if ( $this->maxSize !== false && $newsize > $this->maxSize ) {
 				/// @todo Add i18n message when replacing calls to ->setWarning()
@@ -703,7 +723,9 @@ class ApiResult implements ApiSerializable {
 	 * @param string $kvpKeyName See ApiResult::META_KVP_KEY_NAME
 	 */
 	public static function setArrayType( array &$arr, $type, $kvpKeyName = null ) {
-		if ( !in_array( $type, array( 'default', 'array', 'assoc', 'kvp', 'BCarray', 'BCassoc', 'BCkvp' ), true ) ) {
+		if ( !in_array( $type, array(
+				'default', 'array', 'assoc', 'kvp', 'BCarray', 'BCassoc', 'BCkvp'
+				), true ) ) {
 			throw new InvalidArgumentException( 'Bad type' );
 		}
 		$arr[self::META_TYPE] = $type;
@@ -935,19 +957,43 @@ class ApiResult implements ApiSerializable {
 						: $transformTypes['ArmorKVP'];
 					$valKey = isset( $transforms['BC'] ) ? '*' : 'value';
 					$assocAsObject = !empty( $transformTypes['AssocAsObject'] );
+					$merge = !empty( $metadata[self::META_KVP_MERGE] );
 
 					$ret = array();
 					foreach ( $data as $k => $v ) {
-						$item = array(
-							$key => $k,
-							$valKey => $v,
-						);
-						if ( $strip === 'none' ) {
-							$item += array(
-								self::META_PRESERVE_KEYS => array( $key ),
-								self::META_CONTENT => $valKey,
-								self::META_TYPE => 'assoc',
+						if ( $merge && ( is_array( $v ) || is_object( $v ) ) ) {
+							$vArr = (array)$v;
+							if ( isset( $vArr[self::META_TYPE] ) ) {
+								$mergeType = $vArr[self::META_TYPE];
+							} elseif ( is_object( $v ) ) {
+								$mergeType = 'assoc';
+							} else {
+								$keys = array_keys( $vArr );
+								sort( $keys, SORT_NUMERIC );
+								$mergeType = ( $keys === array_keys( $keys ) ) ? 'array' : 'assoc';
+							}
+						} else {
+							$mergeType = 'n/a';
+						}
+						if ( $mergeType === 'assoc' ) {
+							$item = $vArr + array(
+								$key => $k,
 							);
+							if ( $strip === 'none' ) {
+								self::setPreserveKeysList( $item, array( $key ) );
+							}
+						} else {
+							$item = array(
+								$key => $k,
+								$valKey => $v,
+							);
+							if ( $strip === 'none' ) {
+								$item += array(
+									self::META_PRESERVE_KEYS => array( $key ),
+									self::META_CONTENT => $valKey,
+									self::META_TYPE => 'assoc',
+								);
+							}
 						}
 						$ret[] = $assocAsObject ? (object)$item : $item;
 					}
@@ -1035,15 +1081,14 @@ class ApiResult implements ApiSerializable {
 	/**
 	 * Get the 'real' size of a result item. This means the strlen() of the item,
 	 * or the sum of the strlen()s of the elements if the item is an array.
-	 * @note Once the deprecated public self::size is removed, we can rename this back to a less awkward name.
-	 * @param mixed $value
+	 * @note Once the deprecated public self::size is removed, we can rename
+	 *       this back to a less awkward name.
+	 * @param mixed $value Validated value (see self::validateValue())
 	 * @return int
 	 */
 	private static function valueSize( $value ) {
 		$s = 0;
-		if ( is_array( $value ) ||
-			is_object( $value ) && !is_callable( array( $value, '__toString' ) )
-		) {
+		if ( is_array( $value ) ) {
 			foreach ( $value as $k => $v ) {
 				if ( !self::isMetadataKey( $s ) ) {
 					$s += self::valueSize( $v );
@@ -1096,6 +1141,61 @@ class ApiResult implements ApiSerializable {
 		return $ret;
 	}
 
+	/**
+	 * Add the correct metadata to an array of vars we want to export through
+	 * the API.
+	 *
+	 * @param array $vars
+	 * @param boolean $forceHash
+	 * @return array
+	 */
+	public static function addMetadataToResultVars( $vars, $forceHash = true ) {
+		// Process subarrays and determine if this is a JS [] or {}
+		$hash = $forceHash;
+		$maxKey = -1;
+		$bools = array();
+		foreach ( $vars as $k => $v ) {
+			if ( is_array( $v ) || is_object( $v ) ) {
+				$vars[$k] = ApiResult::addMetadataToResultVars( (array)$v, is_object( $v ) );
+			} elseif ( is_bool( $v ) ) {
+				// Better here to use real bools even in BC formats
+				$bools[] = $k;
+			}
+			if ( is_string( $k ) ) {
+				$hash = true;
+			} elseif ( $k > $maxKey ) {
+				$maxKey = $k;
+			}
+		}
+		if ( !$hash && $maxKey !== count( $vars ) - 1 ) {
+			$hash = true;
+		}
+
+		// Set metadata appropriately
+		if ( $hash ) {
+			// Get the list of keys we actually care about. Unfortunately, we can't support
+			// certain keys that conflict with ApiResult metadata.
+			$keys = array_diff( array_keys( $vars ), array(
+				ApiResult::META_TYPE, ApiResult::META_PRESERVE_KEYS, ApiResult::META_KVP_KEY_NAME,
+				ApiResult::META_INDEXED_TAG_NAME, ApiResult::META_BC_BOOLS
+			) );
+
+			return array(
+				ApiResult::META_TYPE => 'kvp',
+				ApiResult::META_KVP_KEY_NAME => 'key',
+				ApiResult::META_PRESERVE_KEYS => $keys,
+				ApiResult::META_BC_BOOLS => $bools,
+				ApiResult::META_INDEXED_TAG_NAME => 'var',
+			) + $vars;
+		} else {
+			return array(
+				ApiResult::META_TYPE => 'array',
+				ApiResult::META_BC_BOOLS => $bools,
+				ApiResult::META_INDEXED_TAG_NAME => 'value',
+			) + $vars;
+		}
+	}
+
 	/**@}*/
 
 	/************************************************************************//**
@@ -1104,27 +1204,23 @@ class ApiResult implements ApiSerializable {
 	 */
 
 	/**
-	 * Call this function when special elements such as '_element'
-	 * are needed by the formatter, for example in XML printing.
+	 * Formerly used to enable/disable "raw mode".
 	 * @deprecated since 1.25, you shouldn't have been using it in the first place
 	 * @since 1.23 $flag parameter added
 	 * @param bool $flag Set the raw mode flag to this state
 	 */
 	public function setRawMode( $flag = true ) {
-		// Can't wfDeprecated() here, since we need to set this flag from
-		// ApiMain for BC with stuff using self::getIsRawMode as
-		// "self::getIsXMLMode".
-		$this->isRawMode = $flag;
+		wfDeprecated( __METHOD__, '1.25' );
 	}
 
 	/**
-	 * Returns true whether the formatter requested raw data.
+	 * Returns true, the equivalent of "raw mode" is always enabled now
 	 * @deprecated since 1.25, you shouldn't have been using it in the first place
 	 * @return bool
 	 */
 	public function getIsRawMode() {
-		/// @todo: After Wikibase stops calling this, warn
-		return $this->isRawMode;
+		wfDeprecated( __METHOD__, '1.25' );
+		return true;
 	}
 
 	/**
@@ -1137,7 +1233,7 @@ class ApiResult implements ApiSerializable {
 		return $this->getResultData( null, array(
 			'BC' => array(),
 			'Types' => array(),
-			'Strip' => $this->isRawMode ? 'bc' : 'all',
+			'Strip' => 'all',
 		) );
 	}
 
@@ -1176,7 +1272,7 @@ class ApiResult implements ApiSerializable {
 	 */
 	public static function setElement( &$arr, $name, $value, $flags = 0 ) {
 		wfDeprecated( __METHOD__, '1.25' );
-		return self::setValue( $arr, $name, $value, $flags );
+		self::setValue( $arr, $name, $value, $flags );
 	}
 
 	/**
@@ -1390,7 +1486,7 @@ class ApiResult implements ApiSerializable {
 	 */
 	public static function size( $value ) {
 		wfDeprecated( __METHOD__, '1.25' );
-		return self::valueSize( $value );
+		return self::valueSize( self::validateValue( $value ) );
 	}
 
 	/**

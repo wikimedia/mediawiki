@@ -1,5 +1,5 @@
 <?php
-/** Southern Balochi (بلوچی مکرانی)
+/** Southern Balochi (جهلسری بلوچی)
  *
  * To improve a translation please visit https://translatewiki.net
  *
@@ -97,7 +97,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'منی گپ' ),
 	'Newimages'                 => array( 'نوکین عکسان' ),
 	'Newpages'                  => array( 'نوکین صفحات' ),
-
 	'Preferences'               => array( 'ترجیحات' ),
 	'Prefixindex'               => array( 'ایندکس پیشوند' ),
 	'Protectedpages'            => array( 'صفحات محافظتی' ),

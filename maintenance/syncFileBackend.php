@@ -159,6 +159,7 @@ class SyncFileBackend extends Maintenance {
 			$this->error( "Error: given starting ID greater than ending ID.", 1 );
 		}
 
+		$next = null;
 		do {
 			$limit = min( $this->mBatchSize, $end - $start + 1 ); // don't go pass ending ID
 			$this->output( "Doing id $start to " . ( $start + $limit - 1 ) . "...\n" );

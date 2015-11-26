@@ -3,6 +3,11 @@
 	"description": "MediaWiki extension.json schema",
 	"type": "object",
 	"properties": {
+		"manifest_version": {
+			"type": "integer",
+			"description": "Version of the extension.json schema the extension.json file is in.",
+			"required": true
+		},
 		"name": {
 			"type": "string",
 			"description": "The extension's canonical name.",
@@ -15,19 +20,7 @@
 		"type": {
 			"type": "string",
 			"description": "The extension's type, as an index to $wgExtensionCredits.",
-			"default": "other",
-			"enum": [
-				"api",
-				"antispam",
-				"datavalues",
-				"media",
-				"parserhook",
-				"semantic",
-				"skin",
-				"specialpage",
-				"variable",
-				"other"
-			]
+			"default": "other"
 		},
 		"author": {
 			"type": [
@@ -37,8 +30,7 @@
 			"description": "Extension's authors.",
 			"items": {
 				"type": "string"
-			},
-			"additionalItems": false
+			}
 		},
 		"version": {
 			"type": "string",
@@ -278,6 +270,16 @@
 				"Unlicense"
 			]
 		},
+		"requires": {
+			"type": "object",
+			"description": "Indicates what versions of MediaWiki core are required. This syntax may be extended in the future, for example to check dependencies between other extensions.",
+			"properties": {
+				"MediaWiki": {
+					"type": "string",
+					"description": "Version constraint string against MediaWiki core."
+				}
+			}
+		},
 		"ResourceFileModulePaths": {
 			"type": "object",
 			"description": "Default paths to use for all ResourceLoader file modules",
@@ -302,7 +304,7 @@
 			"description": "ResourceLoader modules to register",
 			"additionalProperties": false,
 			"patternProperties": {
-				"^[a-zA-Z0-9\\.]+$": {
+				"^[a-zA-Z0-9-\\.]+$": {
 					"type": "object",
 					"description": "A single ResourceLoader module descriptor",
 					"properties": {
@@ -319,7 +321,7 @@
 							"description": "Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath"
 						},
 						"scripts": {
-							"type": "array",
+							"type": ["string", "array"],
 							"description": "Scripts to always include (array of file paths)",
 							"items": {
 								"type": "string"
@@ -356,28 +358,28 @@
 							}
 						},
 						"debugScripts": {
-							"type": "array",
+							"type": ["string", "array"],
 							"description": "Scripts to include in debug contexts",
 							"items": {
 								"type": "string"
 							}
 						},
 						"loaderScripts": {
-							"type": "array",
+							"type": ["string", "array"],
 							"description": "Scripts to include in the startup module",
 							"items": {
 								"type": "string"
 							}
 						},
 						"dependencies": {
-							"type": "array",
+							"type": ["string", "array"],
 							"description": "Modules which must be loaded before this module",
 							"items": {
 								"type": "string"
 							}
 						},
 						"styles": {
-							"type": "array",
+							"type": ["string", "array", "object"],
 							"description": "Styles to always load",
 							"items": {
 								"type": "string"
@@ -399,7 +401,7 @@
 							}
 						},
 						"messages": {
-							"type": "array",
+							"type": ["string", "array"],
 							"description": "Messages to always load",
 							"items": {
 								"type": "string"
@@ -416,6 +418,10 @@
 								"bottom",
 								"top"
 							]
+						},
+						"templates": {
+							"type": "object",
+							"description": "Templates to be loaded for client-side usage"
 						}
 					}
 				}
@@ -433,10 +439,6 @@
 			"type": "object",
 			"description": "ResourceLoader LESS variables"
 		},
-		"ResourceLoaderLESSFunctions": {
-			"type": "object",
-			"description": "ResourceLoader LESS functions"
-		},
 		"ResourceLoaderLESSImportPaths": {
 			"type": "object",
 			"description": "ResourceLoader import paths"
@@ -446,40 +448,52 @@
 			"description": "Registry of factory functions to create Config objects"
 		},
 		"namespaces": {
-			"type": "object",
+			"type": "array",
 			"description": "Method to add extra namespaces",
-			"properties": {
-				"id": {
-					"type": "integer"
-				},
-				"constant": {
-					"type": "string"
-				},
-				"name": {
-					"type": "string"
-				},
-				"gender": {
-					"type": "object",
-					"properties": {
-						"male": {
-							"type": "string"
-						},
-						"female": {
-							"type": "string"
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"constant": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"gender": {
+						"type": "object",
+						"properties": {
+							"male": {
+								"type": "string"
+							},
+							"female": {
+								"type": "string"
+							}
 						}
+					},
+					"subpages": {
+						"type": "boolean",
+						"default": false
+					},
+					"content": {
+						"type": "boolean",
+						"default": false
+					},
+					"defaultcontentmodel": {
+						"type": "string"
+					},
+					"protection": {
+						"type": ["string", "array"],
+						"description": "Userright(s) required to edit in this namespace"
+					},
+					"capitallinkoverride": {
+						"type": "boolean",
+						"description": "Set $wgCapitalLinks on a per-namespace basis"
 					}
 				},
-				"subpages": {
-					"type": "boolean",
-					"default": false
-				},
-				"content": {
-					"type": "boolean",
-					"default": false
-				},
-				"defaultcontentmodel": {
-					"type": "string"
-				}
+				"required": ["id", "constant", "name"]
 			}
 		},
 		"TrackingCategories": {
@@ -583,7 +597,7 @@
 			"type": "object"
 		},
 		"FilterLogTypes": {
-			"type": "array"
+			"type": "object"
 		},
 		"LogNames": {
 			"type": "object"
@@ -616,6 +630,9 @@
 			"type": "object"
 		},
 		"ValidSkinNames": {
+			"type": "object"
+		},
+		"SkinOOUIThemes": {
 			"type": "object"
 		},
 		"callback": {

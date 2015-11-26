@@ -41,4 +41,22 @@ class JavaScriptContentHandler extends CodeContentHandler {
 	protected function getContentClass() {
 		return 'JavaScriptContent';
 	}
+
+	public function supportsRedirects() {
+		return true;
+	}
+
+	/**
+	 * Create a redirect that is also valid JavaScript
+	 *
+	 * @param Title $destination
+	 * @param string $text ignored
+	 * @return JavaScriptContent
+	 */
+	public function makeRedirectContent( Title $destination, $text = '' ) {
+		// The parameters are passed as a string so the / is not url-encoded by wfArrayToCgi
+		$url = $destination->getFullURL( 'action=raw&ctype=text/javascript', false, PROTO_RELATIVE );
+		$class = $this->getContentClass();
+		return new $class( '/* #REDIRECT */' . Xml::encodeJsCall( 'mw.loader.load', array( $url ) ) );
+	}
 }

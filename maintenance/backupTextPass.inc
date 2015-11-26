@@ -659,13 +659,13 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	private function getTextSpawned( $id ) {
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		if ( !$this->spawnProc ) {
 			// First time?
 			$this->openSpawn();
 		}
 		$text = $this->getTextSpawnedOnce( $id );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		return $text;
 	}
@@ -712,7 +712,7 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	private function closeSpawn() {
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		if ( $this->spawnRead ) {
 			fclose( $this->spawnRead );
 		}
@@ -729,7 +729,7 @@ class TextPassDumper extends BackupDumper {
 			pclose( $this->spawnProc );
 		}
 		$this->spawnProc = false;
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 	}
 
 	private function getTextSpawnedOnce( $id ) {

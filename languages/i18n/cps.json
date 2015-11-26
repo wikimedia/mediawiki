@@ -293,7 +293,7 @@
 	"protectedpagetext": "Ginkandaduhan ang mini nga pahina para indi ma-islan.",
 	"viewsourcetext": "Pwede mo makita kag makopya ang ginhalinan sang mini nga pahina:",
 	"protectedinterface": "Nagahatag ang mini nga pahina sang teksto nga pangkatapusan (''interface'') para sa software, kag ikandado para mapunggan ang pag-abuso.",
-	"editinginterface": "'''Paandam:''' gin-islan mo ang pahina nga gina-usar nga nagahatag teksto sang interface sa sopwer.\nMakaapekto ang mga gin-islan sa mini nga pahina sa gwaan nga itsura ka interface sang manug-usar sa iban nga mga manug-usar.\nPara sa mga pagtransleyt, palihog konsidera gamit ang [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], ang MediaWiki proyekto sa paglokalisa.",
+	"editinginterface": "'''Paandam:''' gin-islan mo ang pahina nga gina-usar nga nagahatag teksto sang interface sa sopwer.\nMakaapekto ang mga gin-islan sa mini nga pahina sa gwaan nga itsura ka interface sang manug-usar sa iban nga mga manug-usar.",
 	"cascadeprotected": "Ginprotektahan ang mini nga pahina sa pagpangilis, tungod naupod ini sa mga gasunod nga {{PLURAL:$1|pahina, nga|mga pahina, nga}} protektado upod ang \"cascading\" nga pilili-an nga naga-andar:\n$2",
 	"namespaceprotected": "Wala ka sang permiso nga magliwat sang mga pahina nga ara sa namespace nga '''$1'''.",
 	"ns-specialprotected": "Indi pwede bag-uhon ang mga pinasahi nga pahina.",

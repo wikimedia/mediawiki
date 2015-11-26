@@ -32,7 +32,9 @@ require_once __DIR__ . '/Maintenance.php';
 class MwSql extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Send SQL queries to a MediaWiki database";
+		$this->mDescription = "Send SQL queries to a MediaWiki database. " .
+				"Takes a file name containing SQL as argument or runs interactively.";
+		$this->addOption( 'query', 'Run a single query instead of running interactively', false, true );
 		$this->addOption( 'cluster', 'Use an external cluster by name', false, true );
 		$this->addOption( 'wikidb', 'The database wiki ID to use if not the current one', false, true );
 		$this->addOption( 'slave', 'Use a slave server (either "any" or by name)', false, true );
@@ -88,6 +90,13 @@ class MwSql extends Maintenance {
 			}
 		}
 
+		if ( $this->hasOption( 'query' ) ) {
+			$query = $this->getOption( 'query' );
+			$this->sqlDoQuery( $db, $query, /* dieOnError */ true );
+			wfWaitForSlaves();
+			return;
+		}
+
 		$useReadline = function_exists( 'readline_add_history' )
 			&& Maintenance::posix_isatty( 0 /*STDIN*/ );
 
@@ -101,6 +110,7 @@ class MwSql extends Maintenance {
 		$wholeLine = '';
 		$newPrompt = '> ';
 		$prompt = $newPrompt;
+		$doDie = !Maintenance::posix_isatty( 0 );
 		while ( ( $line = Maintenance::readconsole( $prompt ) ) !== false ) {
 			if ( !$line ) {
 				# User simply pressed return key
@@ -121,17 +131,20 @@ class MwSql extends Maintenance {
 				readline_add_history( $wholeLine . $db->getDelimiter() );
 				readline_write_history( $historyFile );
 			}
-			try {
-				$res = $db->query( $wholeLine );
-				$this->sqlPrintResult( $res, $db );
-				$prompt = $newPrompt;
-				$wholeLine = '';
-			} catch ( DBQueryError $e ) {
-				$doDie = !Maintenance::posix_isatty( 0 );
-				$this->error( $e, $doDie );
-			}
+			$this->sqlDoQuery( $db, $wholeLine, $doDie );
+			$prompt = $newPrompt;
+			$wholeLine = '';
 		}
 		wfWaitForSlaves();
+	}
+
+	protected function sqlDoQuery( $db, $line, $dieOnError ) {
+		try {
+			$res = $db->query( $line );
+			$this->sqlPrintResult( $res, $db );
+		} catch ( DBQueryError $e ) {
+			$this->error( $e, $dieOnError );
+		}
 	}
 
 	/**

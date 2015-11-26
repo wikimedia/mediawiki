@@ -1,12 +1,11 @@
 ( function ( mw, $ ) {
 
-	mw.page = {};
+	// Support: MediaWiki < 1.26
+	// Cached HTML will not yet have this from OutputPage::getHeadScripts.
+	document.documentElement.className = document.documentElement.className
+		.replace( /(^|\s)client-nojs(\s|$)/, '$1client-js$2' );
 
-	// Client profile classes for <html>
-	// Allows for easy hiding/showing of JS or no-JS-specific UI elements
-	$( document.documentElement )
-		.addClass( 'client-js' )
-		.removeClass( 'client-nojs' );
+	mw.page = {};
 
 	$( function () {
 		mw.util.init();

@@ -81,7 +81,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'Nov_págines' ),
 	'PasswordReset'             => array( 'Recomensar_parol-clave' ),
 	'PermanentLink'             => array( 'Catenun_permanen' ),
-
 	'Preferences'               => array( 'Preferenties' ),
 	'Prefixindex'               => array( 'Index_de_prefixe' ),
 	'Protectedpages'            => array( 'Págines_gardat' ),

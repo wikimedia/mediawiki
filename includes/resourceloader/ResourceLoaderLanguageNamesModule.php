@@ -32,7 +32,6 @@ class ResourceLoaderLanguageNamesModule extends ResourceLoaderModule {
 
 	protected $targets = array( 'desktop', 'mobile' );
 
-
 	/**
 	 * @param ResourceLoaderContext $context
 	 * @return array
@@ -60,24 +59,19 @@ class ResourceLoaderLanguageNamesModule extends ResourceLoaderModule {
 		);
 	}
 
-	public function getDependencies() {
+	/**
+	 * @param ResourceLoaderContext $context
+	 * @return array
+	 */
+	public function getDependencies( ResourceLoaderContext $context = null ) {
 		return array( 'mediawiki.language.init' );
 	}
 
 	/**
-	 * @param ResourceLoaderContext $context
-	 * @return int UNIX timestamp
+	 * @return bool
 	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		return max( 1, $this->getHashMtime( $context ) );
-	}
-
-	/**
-	 * @param ResourceLoaderContext $context
-	 * @return string Hash
-	 */
-	public function getModifiedHash( ResourceLoaderContext $context ) {
-		return md5( serialize( $this->getData( $context ) ) );
+	public function enableModuleContentVersion() {
+		return true;
 	}
 
 }

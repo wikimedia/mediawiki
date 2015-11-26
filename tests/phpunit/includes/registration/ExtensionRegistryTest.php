@@ -218,6 +218,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 						'user' => array(
 							'right' => true,
 							'somethingtwo' => false,
+							'nonduplicated' => true,
 						),
 						ExtensionRegistry::MERGE_STRATEGY => 'array_plus_2d',
 					),
@@ -233,6 +234,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 						'user' => array(
 							'somethingtwo' => true,
 							'right' => true,
+							'nonduplicated' => true,
 						)
 					),
 				),

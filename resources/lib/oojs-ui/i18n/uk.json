@@ -15,7 +15,9 @@
 			"Tel'et",
 			"Tifinaghes",
 			"Ата",
-			"Piramidion"
+			"Piramidion",
+			"A1",
+			"Dars"
 		]
 	},
 	"ooui-outline-control-move-down": "Перемістити елемент униз",
@@ -29,5 +31,9 @@
 	"ooui-dialog-process-error": "Щось пішло не так",
 	"ooui-dialog-process-dismiss": "Приховати",
 	"ooui-dialog-process-retry": "Спробуйте ще раз",
-	"ooui-dialog-process-continue": "Продовжити"
+	"ooui-dialog-process-continue": "Продовжити",
+	"ooui-selectfile-button-select": "Оберіть файл",
+	"ooui-selectfile-not-supported": "Вибір файлу не підтримується",
+	"ooui-selectfile-placeholder": "Жодного файлу не вибрано",
+	"ooui-selectfile-dragdrop-placeholder": "Помістіть файл сюди"
 }

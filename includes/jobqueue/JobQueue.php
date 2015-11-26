@@ -94,7 +94,7 @@ abstract class JobQueue {
 	 *                  This might be useful for improving concurrency for job acquisition.
 	 *   - claimTTL   : If supported, the queue will recycle jobs that have been popped
 	 *                  but not acknowledged as completed after this many seconds. Recycling
-	 *                  of jobs simple means re-inserting them into the queue. Jobs can be
+	 *                  of jobs simply means re-inserting them into the queue. Jobs can be
 	 *                  attempted up to three times before being discarded.
 	 *
 	 * Queue classes should throw an exception if they do not support the options given.
@@ -286,7 +286,7 @@ abstract class JobQueue {
 	 * This does not require $wgJobClasses to be set for the given job type.
 	 * Outside callers should use JobQueueGroup::push() instead of this function.
 	 *
-	 * @param Job|array $jobs A single job or an array of Jobs
+	 * @param JobSpecification|JobSpecification[] $jobs
 	 * @param int $flags Bitfield (supports JobQueue::QOS_ATOMIC)
 	 * @return void
 	 * @throws JobQueueError
@@ -301,7 +301,7 @@ abstract class JobQueue {
 	 * This does not require $wgJobClasses to be set for the given job type.
 	 * Outside callers should use JobQueueGroup::push() instead of this function.
 	 *
-	 * @param array $jobs List of Jobs
+	 * @param JobSpecification[] $jobs
 	 * @param int $flags Bitfield (supports JobQueue::QOS_ATOMIC)
 	 * @return void
 	 * @throws MWException
@@ -323,11 +323,17 @@ abstract class JobQueue {
 
 		$this->doBatchPush( $jobs, $flags );
 		$this->aggr->notifyQueueNonEmpty( $this->wiki, $this->type );
+
+		foreach ( $jobs as $job ) {
+			if ( $job->isRootJob() ) {
+				$this->deduplicateRootJob( $job );
+			}
+		}
 	}
 
 	/**
 	 * @see JobQueue::batchPush()
-	 * @param array $jobs
+	 * @param JobSpecification[] $jobs
 	 * @param int $flags
 	 */
 	abstract protected function doBatchPush( array $jobs, $flags );
@@ -359,7 +365,7 @@ abstract class JobQueue {
 		// Flag this job as an old duplicate based on its "root" job...
 		try {
 			if ( $job && $this->isRootJobOldDuplicate( $job ) ) {
-				JobQueue::incrStats( 'job-pop-duplicate', $this->type, 1, $this->wiki );
+				JobQueue::incrStats( 'dupe_pops', $this->type );
 				$job = DuplicateJob::newFromJob( $job ); // convert to a no-op
 			}
 		} catch ( Exception $e ) {
@@ -425,11 +431,11 @@ abstract class JobQueue {
 	 *
 	 * This does nothing for certain queue classes.
 	 *
-	 * @param Job $job
+	 * @param IJobSpecification $job
 	 * @throws MWException
 	 * @return bool
 	 */
-	final public function deduplicateRootJob( Job $job ) {
+	final public function deduplicateRootJob( IJobSpecification $job ) {
 		if ( $job->getType() !== $this->type ) {
 			throw new MWException( "Got '{$job->getType()}' job; expected '{$this->type}'." );
 		}
@@ -440,11 +446,11 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::deduplicateRootJob()
-	 * @param Job $job
+	 * @param IJobSpecification $job
 	 * @throws MWException
 	 * @return bool
 	 */
-	protected function doDeduplicateRootJob( Job $job ) {
+	protected function doDeduplicateRootJob( IJobSpecification $job ) {
 		if ( !$job->hasRootJobParams() ) {
 			throw new MWException( "Cannot register root job; missing parameters." );
 		}
@@ -549,35 +555,6 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * Return a map of task names to task definition maps.
-	 * A "task" is a fast periodic queue maintenance action.
-	 * Mutually exclusive tasks must implement their own locking in the callback.
-	 *
-	 * Each task value is an associative array with:
-	 *   - name     : the name of the task
-	 *   - callback : a PHP callable that performs the task
-	 *   - period   : the period in seconds corresponding to the task frequency
-	 *
-	 * @return array
-	 */
-	final public function getPeriodicTasks() {
-		$tasks = $this->doGetPeriodicTasks();
-		foreach ( $tasks as $name => &$def ) {
-			$def['name'] = $name;
-		}
-
-		return $tasks;
-	}
-
-	/**
-	 * @see JobQueue::getPeriodicTasks()
-	 * @return array
-	 */
-	protected function doGetPeriodicTasks() {
-		return array();
-	}
-
-	/**
 	 * Clear any process and persistent caches
 	 *
 	 * @return void
@@ -616,6 +593,20 @@ abstract class JobQueue {
 	}
 
 	/**
+	 * Get an iterator to traverse over all claimed jobs in this queue
+	 *
+	 * Callers should be quick to iterator over it or few results
+	 * will be returned due to jobs being acknowledged and deleted
+	 *
+	 * @return Iterator
+	 * @throws JobQueueError
+	 * @since 1.26
+	 */
+	public function getAllAcquiredJobs() {
+		return new ArrayIterator( array() ); // not implemented
+	}
+
+	/**
 	 * Get an iterator to traverse over all abandoned jobs in this queue
 	 *
 	 * @return Iterator
@@ -646,7 +637,6 @@ abstract class JobQueue {
 	 * @since 1.22
 	 */
 	final public function getSiblingQueuesWithJobs( array $types ) {
-
 		return $this->doGetSiblingQueuesWithJobs( $types );
 	}
 
@@ -670,7 +660,6 @@ abstract class JobQueue {
 	 * @since 1.22
 	 */
 	final public function getSiblingQueueSizes( array $types ) {
-
 		return $this->doGetSiblingQueueSizes( $types );
 	}
 
@@ -689,15 +678,15 @@ abstract class JobQueue {
 	 * @param string $key Event type
 	 * @param string $type Job type
 	 * @param int $delta
-	 * @param string $wiki Wiki ID (added in 1.23)
 	 * @since 1.22
 	 */
-	public static function incrStats( $key, $type, $delta = 1, $wiki = null ) {
-		wfIncrStats( $key, $delta );
-		wfIncrStats( "{$key}-{$type}", $delta );
-		if ( $wiki !== null ) {
-			wfIncrStats( "{$key}-{$type}-{$wiki}", $delta );
+	public static function incrStats( $key, $type, $delta = 1 ) {
+		static $stats;
+		if ( !$stats ) {
+			$stats = RequestContext::getMain()->getStats();
 		}
+		$stats->updateCount( "jobqueue.{$key}.all", $delta );
+		$stats->updateCount( "jobqueue.{$key}.{$type}", $delta );
 	}
 
 	/**

@@ -135,20 +135,26 @@ class RandomPage extends SpecialPage {
 
 	protected function getQueryInfo( $randstr ) {
 		$redirect = $this->isRedirect() ? 1 : 0;
+		$tables = array( 'page' );
+		$conds = array_merge( array(
+			'page_namespace' => $this->namespaces,
+			'page_is_redirect' => $redirect,
+			'page_random >= ' . $randstr
+		), $this->extra );
+		$joinConds = array();
+
+		// Allow extensions to modify the query
+		Hooks::run( 'RandomPageQuery', array( &$tables, &$conds, &$joinConds ) );
 
 		return array(
-			'tables' => array( 'page' ),
+			'tables' => $tables,
 			'fields' => array( 'page_title', 'page_namespace' ),
-			'conds' => array_merge( array(
-				'page_namespace' => $this->namespaces,
-				'page_is_redirect' => $redirect,
-				'page_random >= ' . $randstr
-			), $this->extra ),
+			'conds' => $conds,
 			'options' => array(
 				'ORDER BY' => 'page_random',
 				'LIMIT' => 1,
 			),
-			'join_conds' => array()
+			'join_conds' => $joinConds
 		);
 	}
 

@@ -116,7 +116,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'Sprooch_vun_der_Säit' ),
 	'PasswordReset'             => array( 'Zrécksetze_vum_Passwuert' ),
 	'PermanentLink'             => array( 'Permanente_Link' ),
-
 	'Preferences'               => array( 'Astellungen' ),
 	'Prefixindex'               => array( 'Indexsich' ),
 	'Protectedpages'            => array( 'Protegéiert_Säiten' ),

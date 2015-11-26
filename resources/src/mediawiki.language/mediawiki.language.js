@@ -29,8 +29,8 @@ $.extend( mw.language, {
 			return mw.language.convertPlural( parseInt( count, 10 ), template.parameters );
 		}
 		// Could not process plural return first form or nothing
-		if ( template.parameters[0] ) {
-			return template.parameters[0];
+		if ( template.parameters[ 0 ] ) {
+			return template.parameters[ 0 ];
 		}
 		return '';
 	},
@@ -47,8 +47,8 @@ $.extend( mw.language, {
 		var pluralRules,
 			pluralFormIndex = 0;
 
-		if ( explicitPluralForms && explicitPluralForms[count] ) {
-			return explicitPluralForms[count];
+		if ( explicitPluralForms && explicitPluralForms[ count ] ) {
+			return explicitPluralForms[ count ];
 		}
 
 		if ( !forms || forms.length === 0 ) {
@@ -58,11 +58,11 @@ $.extend( mw.language, {
 		pluralRules = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'pluralRules' );
 		if ( !pluralRules ) {
 			// default fallback.
-			return ( count === 1 ) ? forms[0] : forms[1];
+			return ( count === 1 ) ? forms[ 0 ] : forms[ 1 ];
 		}
 		pluralFormIndex = mw.cldr.getPluralForm( count, pluralRules );
 		pluralFormIndex = Math.min( pluralFormIndex, forms.length - 1 );
-		return forms[pluralFormIndex];
+		return forms[ pluralFormIndex ];
 	},
 
 	/**
@@ -90,7 +90,7 @@ $.extend( mw.language, {
 	 *
 	 * @param {string} gender 'male', 'female', or anything else for neutral.
 	 * @param {Array} forms List of gender forms
-	 * @return string
+	 * @return {string}
 	 */
 	gender: function ( gender, forms ) {
 		if ( !forms || forms.length === 0 ) {
@@ -98,12 +98,12 @@ $.extend( mw.language, {
 		}
 		forms = mw.language.preConvertPlural( forms, 2 );
 		if ( gender === 'male' ) {
-			return forms[0];
+			return forms[ 0 ];
 		}
 		if ( gender === 'female' ) {
-			return forms[1];
+			return forms[ 1 ];
 		}
-		return ( forms.length === 3 ) ? forms[2] : forms[0];
+		return ( forms.length === 3 ) ? forms[ 2 ] : forms[ 0 ];
 	},
 
 	/**
@@ -119,8 +119,8 @@ $.extend( mw.language, {
 	 */
 	convertGrammar: function ( word, form ) {
 		var grammarForms = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'grammarForms' );
-		if ( grammarForms && grammarForms[form] ) {
-			return grammarForms[form][word] || word;
+		if ( grammarForms && grammarForms[ form ] ) {
+			return grammarForms[ form ][ word ] || word;
 		}
 		return word;
 	},
@@ -138,7 +138,7 @@ $.extend( mw.language, {
 			i = 0;
 
 		for ( ; i < list.length; i++ ) {
-			text += list[i];
+			text += list[ i ];
 			if ( list.length - 2 === i ) {
 				text += mw.msg( 'and' ) + mw.msg( 'word-separator' );
 			} else if ( list.length - 1 !== i ) {

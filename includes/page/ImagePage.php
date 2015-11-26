@@ -219,6 +219,9 @@ class ImagePage extends Article {
 		}
 		// always show the local local Filepage.css, bug 29277
 		$out->addModuleStyles( 'filepage' );
+
+		// Add MediaWiki styles for a file page
+		$out->addModuleStyles( 'mediawiki.action.view.filepage' );
 	}
 
 	/**
@@ -296,7 +299,7 @@ class ImagePage extends Article {
 	}
 
 	protected function openShowImage() {
-		global $wgEnableUploads, $wgSend404Code;
+		global $wgEnableUploads, $wgSend404Code, $wgSVGMaxSize;
 
 		$this->loadFile();
 		$out = $this->getContext()->getOutput();
@@ -351,7 +354,7 @@ class ImagePage extends Article {
 					);
 					$linktext = $this->getContext()->msg( 'show-big-image' )->escaped();
 
-					$thumbSizes = $this->getThumbSizes( $width, $height, $width_orig, $height_orig );
+					$thumbSizes = $this->getThumbSizes( $width_orig, $height_orig );
 					# Generate thumbnails or thumbnail links as needed...
 					$otherSizes = array();
 					foreach ( $thumbSizes as $size ) {
@@ -361,10 +364,12 @@ class ImagePage extends Article {
 						// the current thumbnail's size ($width/$height)
 						// since that is added to the message separately, so
 						// it can be denoted as the current size being shown.
-						// Vectorized images are "infinitely" big, so all thumb
-						// sizes are shown.
+						// Vectorized images are limited by $wgSVGMaxSize big,
+						// so all thumbs less than or equal that are shown.
 						if ( ( ( $size[0] <= $width_orig && $size[1] <= $height_orig )
-								|| $this->displayImg->isVectorized() )
+								|| ( $this->displayImg->isVectorized()
+									&& max( $size[0], $size[1] ) <= $wgSVGMaxSize )
+							)
 							&& $size[0] != $width && $size[1] != $height
 						) {
 							$sizeLink = $this->makeSizeLink( $params, $size[0], $size[1] );
@@ -614,8 +619,8 @@ EOT
 			$out->wrapWikiMsg( "<div id='mw-imagepage-nofile' class='plainlinks'>\n$1\n</div>", $nofile );
 			if ( !$this->getID() && $wgSend404Code ) {
 				// If there is no image, no shared image, and no description page,
-				// output a 404, to be consistent with articles.
-				$request->response()->header( 'HTTP/1.1 404 Not Found' );
+				// output a 404, to be consistent with Article::showMissingArticle.
+				$request->response()->statusHeader( 404 );
 			}
 		}
 		$out->setFileVersion( $this->displayImg );
@@ -704,10 +709,10 @@ EOT
 		$out->addHTML( "<ul>\n" );
 
 		# "Upload a new version of this file" link
-		$canUpload = $this->getTitle()->userCan( 'upload', $this->getContext()->getUser() );
+		$canUpload = $this->getTitle()->quickUserCan( 'upload', $this->getContext()->getUser() );
 		if ( $canUpload && UploadBase::userCanReUpload(
 				$this->getContext()->getUser(),
-				$this->mPage->getFile()->name )
+				$this->mPage->getFile() )
 		) {
 			$ulink = Linker::makeExternalLink(
 				$this->getUploadUrl(),
@@ -1515,6 +1520,18 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		$s = '';
 		$this->doQuery();
 		if ( count( $this->mHist ) ) {
+			if ( $this->mImg->isLocal() ) {
+				// Do a batch existence check for user pages and talkpages
+				$linkBatch = new LinkBatch();
+				for ( $i = $this->mRange[0]; $i <= $this->mRange[1]; $i++ ) {
+					$file = $this->mHist[$i];
+					$user = $file->getUser( 'text' );
+					$linkBatch->add( NS_USER, $user );
+					$linkBatch->add( NS_USER_TALK, $user );
+				}
+				$linkBatch->execute();
+			}
+
 			$list = new ImageHistoryList( $this->mImagePage );
 			# Generate prev/next links
 			$navLink = $this->getNavigationBar();

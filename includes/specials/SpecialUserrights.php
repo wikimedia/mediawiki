@@ -106,7 +106,7 @@ class UserrightsPage extends SpecialPage {
 			}
 		}
 
-		if ( User::getCanonicalName( $this->mTarget ) === $user->getName() ) {
+		if ( $this->mTarget !== null && User::getCanonicalName( $this->mTarget ) === $user->getName() ) {
 			$this->isself = true;
 		}
 
@@ -145,6 +145,7 @@ class UserrightsPage extends SpecialPage {
 		if (
 			$request->wasPosted() &&
 			$request->getCheck( 'saveusergroups' ) &&
+			$this->mTarget !== null &&
 			$user->matchEditToken( $request->getVal( 'wpEditToken' ), $this->mTarget )
 		) {
 			// save settings
@@ -249,7 +250,7 @@ class UserrightsPage extends SpecialPage {
 		if ( $remove ) {
 			foreach ( $remove as $index => $group ) {
 				if ( !$user->removeGroup( $group ) ) {
-					unset($remove[$index]);
+					unset( $remove[$index] );
 				}
 			}
 			$newGroups = array_diff( $newGroups, $remove );
@@ -257,7 +258,7 @@ class UserrightsPage extends SpecialPage {
 		if ( $add ) {
 			foreach ( $add as $index => $group ) {
 				if ( !$user->addGroup( $group ) ) {
-					unset($add[$index]);
+					unset( $add[$index] );
 				}
 			}
 			$newGroups = array_merge( $newGroups, $add );
@@ -268,6 +269,7 @@ class UserrightsPage extends SpecialPage {
 		$user->invalidateCache();
 
 		// update groups in external authentication database
+		Hooks::run( 'UserGroupsChanged', array( $user, $add, $remove, $this->getUser() ) );
 		$wgAuth->updateExternalDBGroups( $user, $add, $remove );
 
 		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) . "\n" );

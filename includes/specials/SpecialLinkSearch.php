@@ -80,7 +80,7 @@ class LinkSearchPage extends QueryPage {
 		return false;
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->initServices();
 
 		$this->setHeaders();
@@ -91,7 +91,7 @@ class LinkSearchPage extends QueryPage {
 
 		$request = $this->getRequest();
 		$target = $request->getVal( 'target', $par );
-		$namespace = $request->getIntOrNull( 'namespace', null );
+		$namespace = $request->getIntOrNull( 'namespace' );
 
 		$protocols_list = array();
 		foreach ( $this->getConfig()->get( 'UrlProtocols' ) as $prot ) {
@@ -121,43 +121,41 @@ class LinkSearchPage extends QueryPage {
 			'<nowiki>' . $this->getLanguage()->commaList( $protocols_list ) . '</nowiki>',
 			count( $protocols_list )
 		);
-		$s = Html::openElement(
-			'form',
-			array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => wfScript() )
-		) . "\n" .
-			Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) . "\n" .
-			Html::openElement( 'fieldset' ) . "\n" .
-			Html::element( 'legend', array(), $this->msg( 'linksearch' )->text() ) . "\n" .
-			Xml::inputLabel(
-				$this->msg( 'linksearch-pat' )->text(),
-				'target',
-				'target',
-				50,
-				$target,
-				array(
-					// URLs are always ltr
-					'dir' => 'ltr',
-				)
-			) . "\n";
-
+		$fields = array(
+			'target' => array(
+				'type' => 'text',
+				'name' => 'target',
+				'id' => 'target',
+				'size' => 50,
+				'label-message' => 'linksearch-pat',
+				'default' => $target,
+				'dir' => 'ltr',
+			)
+		);
 		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
-			$s .= Html::namespaceSelector(
-				array(
-					'selected' => $namespace,
-					'all' => '',
-					'label' => $this->msg( 'linksearch-ns' )->text()
-				), array(
+			$fields += array(
+				'namespace' => array(
+					'type' => 'namespaceselect',
 					'name' => 'namespace',
+					'label-message' => 'linksearch-ns',
+					'default' => $namespace,
 					'id' => 'namespace',
-					'class' => 'namespaceselector',
-				)
+					'all' => '',
+					'cssclass' => 'namespaceselector',
+				),
 			);
 		}
-
-		$s .= Xml::submitButton( $this->msg( 'linksearch-ok' )->text() ) . "\n" .
-			Html::closeElement( 'fieldset' ) . "\n" .
-			Html::closeElement( 'form' ) . "\n";
-		$out->addHTML( $s );
+		$hiddenFields = array(
+			'title' => $this->getPageTitle()->getPrefixedDBkey(),
+		);
+		$htmlForm = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
+		$htmlForm->addHiddenFields( $hiddenFields );
+		$htmlForm->setSubmitTextMsg( 'linksearch-ok' );
+		$htmlForm->setWrapperLegendMsg( 'linksearch' );
+		$htmlForm->setAction( wfScript() );
+		$htmlForm->setMethod( 'get' );
+		$htmlForm->prepareForm()->displayForm( false );
+		$this->addHelpLink( 'Help:Linksearch' );
 
 		if ( $target != '' ) {
 			$this->setParams( array(
@@ -220,7 +218,7 @@ class LinkSearchPage extends QueryPage {
 		return $params;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$dbr = wfGetDB( DB_SLAVE );
 		// strip everything past first wildcard, so that
 		// index-based-only lookup would be done

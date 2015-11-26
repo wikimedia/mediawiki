@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pikne"
+		]
+	},
+	"apihelp-query+imageinfo-description": "Tagastab failiteabe ja üleslaadimisajaloo.",
+	"apihelp-query+imageinfo-param-prop": "Millist teavet faili kohta hankida:",
+	"apihelp-query+imageinfo-paramvalue-prop-timestamp": "Lisab üles laaditud versiooni ajatempli.",
+	"apihelp-query+imageinfo-paramvalue-prop-user": "Lisab kasutaja, kes iga failiversiooni üles laadis.",
+	"apihelp-query+imageinfo-paramvalue-prop-userid": "Lisab iga failiversiooni üles laadinud kasutaja identifikaatori.",
+	"apihelp-query+imageinfo-paramvalue-prop-comment": "Versioonikommentaar.",
+	"apihelp-query+imageinfo-paramvalue-prop-parsedcomment": "Parsib versioonikommentaari.",
+	"apihelp-query+imageinfo-paramvalue-prop-canonicaltitle": "Lisab faili kanoonilise pealkirja.",
+	"apihelp-query+imageinfo-paramvalue-prop-url": "Tagastab faili ja kirjelduslehekülje internetiaadressi.",
+	"apihelp-query+imageinfo-paramvalue-prop-size": "Lisab faili suuruse baitides, kõrguse ja laiuse ning lehekülgede arvu, kui see on kohane.",
+	"apihelp-query+imageinfo-paramvalue-prop-dimensions": "Elemendi \"size\" rööpnimi.",
+	"apihelp-query+imageinfo-paramvalue-prop-sha1": "Lisab faili SHA-1 räsiväärtuse.",
+	"apihelp-query+imageinfo-paramvalue-prop-mime": "Lisab faili MIME tüübi.",
+	"apihelp-query+imageinfo-paramvalue-prop-thumbmime": "Lisab faili pisipildi MIME tüübi (vaja elementi \"url\" ja parameetrit \"$1urlwidth\").",
+	"apihelp-query+imageinfo-paramvalue-prop-mediatype": "Lisab faili meediatüübi.",
+	"apihelp-query+imageinfo-paramvalue-prop-metadata": "Loetleb failiversiooni Exif-metaandmed.",
+	"apihelp-query+imageinfo-paramvalue-prop-commonmetadata": "Loetleb failiversiooni vormingu üldised metaandmed.",
+	"apihelp-query+imageinfo-paramvalue-prop-extmetadata": "Loetleb mitme allika vormindatud ühendmetaandmed. Tulemused on HTML-vormingus.",
+	"apihelp-query+imageinfo-paramvalue-prop-archivename": "Lisab praegusest versioonist vanemate arhiiviversioonide failinimed.",
+	"apihelp-query+imageinfo-paramvalue-prop-bitdepth": "Lisab versiooni bitisügavuse.",
+	"apihelp-query+imageinfo-paramvalue-prop-uploadwarning": "Kasutab lehekülg Special:Upload, et saada teavet olemasoleva faili kohta. Pole mõeldud kasutamiseks väljaspool MediaWiki keskosa.",
+	"apihelp-query+imageinfo-param-limit": "Kui palju redaktsioone faili kohta tagastada.",
+	"apihelp-query+imageinfo-param-start": "Ajatempel, millest loetlemist alustada.",
+	"apihelp-query+imageinfo-param-end": "Ajatempel, mille juures loetlemine lõpetada.",
+	"apihelp-query+imageinfo-param-urlwidth": "Kui $2prop=url on määratud, tagastatakse selle laiusega mastaabitud pildi internetiaadress.\nKui seda valikut kasutatakse, siis ei tagastata jõudluskaalutlusel rohkem kui $1 mastaabitud pilti.",
+	"apihelp-query+imageinfo-param-urlheight": "Analoogne parameetriga \"$1urlwidth\".",
+	"apihelp-query+imageinfo-param-metadataversion": "Kasutatavate metaandmete versioon. Kui määratud on <kbd>latest</kbd>, kasutatakse viimast versiooni. Vaikeväärtus on tagasiühilduvuse huvides <kbd>1</kbd>.",
+	"apihelp-query+imageinfo-param-extmetadatalanguage": "Millises keeles metaandmed välja võtta. Sellest oleneb väljavõtte tõlge, juhul kui saadaval on mitu tõlget, ning samuti numbrite ja muude väärtuste vorming.",
+	"apihelp-query+imageinfo-param-extmetadatamultilang": "Kui atribuudi \"extmetadata\" tõlked on saadaval, siis kasuta neid kõiki.",
+	"apihelp-query+imageinfo-param-extmetadatafilter": "Kui määratud ja mittetühi, tagastatakse atribuudi $1prop=extmetadata jaoks ainult need võtmed.",
+	"apihelp-query+imageinfo-param-urlparam": "Töötlusele omane parameetriväärtus. Näiteks PDF-i jaoks võib see olla <kbd>page15-100px</kbd>. Kasutatud peab olema atribuuti <var>$1urlwidth</var> ja see peab olema kooskõlas parameetriga <var>$1urlparam</var>.",
+	"apihelp-query+imageinfo-param-localonly": "Kaasa päringusse ainult kohaliku hoidla failid.",
+	"apihelp-query+imageinfo-example-simple": "Faili [[:File:Albert Einstein Head.jpg|Albert Einstein Head.jpg]] praeguse versiooni teabe väljavõtt.",
+	"apihelp-query+imageinfo-example-dated": "Faili [[:File:Test.jpg|Test.jpg]] teabe väljavõtt alates 2008. aasta versioonidest.",
+	"api-help-param-continue": "Kui saadaval on rohkem tulemusi, kasuta seda jätkamiseks."
+}

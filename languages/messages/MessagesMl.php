@@ -57,7 +57,7 @@ $namespaceAliases = array(
 	'സം' => NS_TALK,
 	'അംഗം' => NS_USER,
 	'ഉ' => NS_USER,
-	'അംഗങ്ങളുടെ സംവാദം' => NS_USER_TALK,
+	'അംഗങ്ങളുടെ_സംവാദം' => NS_USER_TALK,
 	'ഉസം' => NS_USER_TALK,
 	'ചി' => NS_FILE,
 	'ചിസം' => NS_FILE_TALK,
@@ -148,7 +148,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'താളിന്റെഭാഷ' ),
 	'PasswordReset'             => array( 'രഹസ്യവാക്ക്‌‌പുനക്രമീകരണം' ),
 	'PermanentLink'             => array( 'സ്ഥിരംകണ്ണി' ),
-
 	'Preferences'               => array( 'ക്രമീകരണങ്ങൾ' ),
 	'Prefixindex'               => array( 'പൂർവ്വപദസൂചിക' ),
 	'Protectedpages'            => array( 'സംരക്ഷിത_താളുകൾ' ),

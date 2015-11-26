@@ -355,12 +355,7 @@ class LanguageConverter {
 		   2. HTML entities
 		   3. placeholders created by the parser
 		*/
-		global $wgParser;
-		if ( isset( $wgParser ) && $wgParser->UniqPrefix() != '' ) {
-			$marker = '|' . $wgParser->UniqPrefix() . '[\-a-zA-Z0-9]+';
-		} else {
-			$marker = '';
-		}
+		$marker = '|' . Parser::MARKER_PREFIX . '[\-a-zA-Z0-9]+';
 
 		// this one is needed when the text is inside an HTML markup
 		$htmlfix = '|<[^>]+$|^[^<>]*>';
@@ -507,13 +502,9 @@ class LanguageConverter {
 			}
 
 			if ( $action == 'add' ) {
+				// More efficient than array_merge(), about 2.5 times.
 				foreach ( $pair as $from => $to ) {
-					// to ensure that $from and $to not be left blank
-					// so $this->translate() could always return a string
-					if ( $from || $to ) {
-						// more efficient than array_merge(), about 2.5 times.
-						$this->mTables[$variant]->setPair( $from, $to );
-					}
+					$this->mTables[$variant]->setPair( $from, $to );
 				}
 			} elseif ( $action == 'remove' ) {
 				$this->mTables[$variant]->removeArray( $pair );
@@ -1001,7 +992,7 @@ class LanguageConverter {
 		if ( $recursive ) {
 			foreach ( $sublinks as $link ) {
 				$s = $this->parseCachedTable( $code, $link, $recursive );
-				$ret = array_merge( $ret, $s );
+				$ret = $s + $ret;
 			}
 		}
 

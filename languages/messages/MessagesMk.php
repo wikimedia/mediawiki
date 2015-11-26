@@ -159,7 +159,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'ЈазикНаСтраницата' ),
 	'PasswordReset'             => array( 'ПроменаНаЛозинка' ),
 	'PermanentLink'             => array( 'ПостојанаВрска' ),
-
 	'Preferences'               => array( 'Нагодувања' ),
 	'Prefixindex'               => array( 'ИндексНаПретставки' ),
 	'Protectedpages'            => array( 'ЗаштитениСтраници' ),

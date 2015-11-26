@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Xuacu"
+			"Xuacu",
+			"Fitoschido"
 		]
 	},
 	"config-desc": "L'instalador pa MediaWiki",
@@ -47,7 +48,6 @@
 	"config-env-bad": "Comprobóse l'entornu.\nNun pue instalar MediaWiki.",
 	"config-env-php": "PHP $1 ta instaláu.",
 	"config-env-hhvm": "HHVM $1 ta instaláu.",
-	"config-unicode-using-utf8": "Usando utf8_normalize.so de Brion Vibber pa la normalización Unicode.",
 	"config-unicode-using-intl": "Usando la [http://pecl.php.net/intl estensión intl PECL] pa la normalización Unicode.",
 	"config-unicode-pure-php-warning": "'''Avisu:''' La [http://pecl.php.net/intl estensión intl PECL] nun ta disponible pa xestionar la normalización Unicode; volviendo a la implementación lenta en PHP puru.\nSi xestiona un sitiu con un tráficu altu, tendría de lleer una migaya sobro la [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalización Unicode].",
 	"config-unicode-update-warning": "'''Avisu:''' La versión instalada del envoltoriu de normalización Unicode usa una versión antigua de la biblioteca [http://site.icu-project.org/ de los proyeutos ICU].\nTendría [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations d'anovala] si ye importante pa vusté usar Unicode.",
@@ -58,6 +58,10 @@
 	"config-diff3-bad": "Nun s'alcontró GNU diff3.",
 	"config-git": "Alcontróse'l software de control de versiones Git: <code>$1</code>.",
 	"config-git-bad": "Nun s'alcontró el software de control de versiones Git.",
+	"config-db-type": "Tipu de base de datos:",
+	"config-db-name": "Nome de base de datos:",
+	"config-type-mysql": "MySQL (o compatible)",
+	"config-type-mssql": "Microsoft SQL Server",
 	"config-site-name": "Nome de la wiki:",
 	"config-site-name-help": "Esto apaecerá na barra de títulos del navegador y en dellos sitios más.",
 	"config-site-name-blank": "Escriba un nome pal sitiu.",

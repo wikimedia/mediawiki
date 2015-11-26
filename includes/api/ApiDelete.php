@@ -39,6 +39,8 @@ class ApiDelete extends ApiBase {
 	 * result object.
 	 */
 	public function execute() {
+		$this->useTransactionalTimeLimit();
+
 		$params = $this->extractRequestParams();
 
 		$pageObj = $this->getTitleOrPageId( $params, 'fromdbmaster' );
@@ -131,7 +133,7 @@ class ApiDelete extends ApiBase {
 		$error = '';
 
 		// Luckily, Article.php provides a reusable delete function that does the hard work for us
-		return $page->doDeleteArticleReal( $reason, false, 0, true, $error );
+		return $page->doDeleteArticleReal( $reason, false, 0, true, $error, $user );
 	}
 
 	/**

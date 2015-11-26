@@ -332,9 +332,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			}
 			if ( Revision::userCanBitfield( $row->rc_deleted, Revision::DELETED_USER, $user ) ) {
 				if ( $this->fld_userid ) {
-					$vals['userid'] = $row->rc_user;
+					$vals['userid'] = (int)$row->rc_user;
 					// for backwards compatibility
-					$vals['user'] = $row->rc_user;
+					$vals['user'] = (int)$row->rc_user;
 				}
 
 				if ( $this->fld_user ) {
@@ -451,6 +451,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'ids|title|flags',
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 				ApiBase::PARAM_TYPE => array(
 					'ids',
 					'title',

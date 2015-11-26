@@ -168,7 +168,6 @@ img {
 	padding: 5px;
 	font-size: 95%;
 	text-align: center;
-	display: -moz-inline-block;
 	display: inline-block;
 	display: table;
 
@@ -257,14 +256,6 @@ div.htmlform-tip {
 	color: #666;
 }
 
-fieldset.prefsection {
-	margin-top: 1em;
-}
-
-fieldset.operaprefsection {
-	margin-left: 15em;
-}
-
 /* emulate center */
 .center {
 	width: 100%;
@@ -319,10 +310,6 @@ div.gallerybox {
 
 span.comment {
 	font-style: italic;
-}
-
-span.changedby {
-	font-size: 95%;
 }
 
 .previewnote {

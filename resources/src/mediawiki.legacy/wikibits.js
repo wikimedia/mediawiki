@@ -85,7 +85,7 @@
 
 		// Execute the queued functions
 		for ( i = 0; i < functs.length; i++ ) {
-			functs[i]();
+			functs[ i ]();
 		}
 	} );
 
@@ -164,33 +164,26 @@
 	 * See https://www.mediawiki.org/wiki/ResourceLoader/Legacy_JavaScript#wikibits.js
 	 */
 
+	/**
+	 * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
+	 */
+	function importScriptURI( url ) {
+		if ( loadedScripts[ url ] ) {
+			return null;
+		}
+		loadedScripts[ url ] = true;
+		var s = document.createElement( 'script' );
+		s.setAttribute( 'src', url );
+		s.setAttribute( 'type', 'text/javascript' );
+		document.getElementsByTagName( 'head' )[ 0 ].appendChild( s );
+		return s;
+	}
+
 	function importScript( page ) {
 		var uri = mw.config.get( 'wgScript' ) + '?title=' +
 			mw.util.wikiUrlencode( page ) +
 			'&action=raw&ctype=text/javascript';
 		return importScriptURI( uri );
-	}
-
-	/**
-	 * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
-	 */
-	function importScriptURI( url ) {
-		if ( loadedScripts[url] ) {
-			return null;
-		}
-		loadedScripts[url] = true;
-		var s = document.createElement( 'script' );
-		s.setAttribute( 'src', url );
-		s.setAttribute( 'type', 'text/javascript' );
-		document.getElementsByTagName( 'head' )[0].appendChild( s );
-		return s;
-	}
-
-	function importStylesheet( page ) {
-		var uri = mw.config.get( 'wgScript' ) + '?title=' +
-			mw.util.wikiUrlencode( page ) +
-			'&action=raw&ctype=text/css';
-		return importStylesheetURI( uri );
 	}
 
 	/**
@@ -203,8 +196,15 @@
 		if ( media ) {
 			l.media = media;
 		}
-		document.getElementsByTagName( 'head' )[0].appendChild( l );
+		document.getElementsByTagName( 'head' )[ 0 ].appendChild( l );
 		return l;
+	}
+
+	function importStylesheet( page ) {
+		var uri = mw.config.get( 'wgScript' ) + '?title=' +
+			mw.util.wikiUrlencode( page ) +
+			'&action=raw&ctype=text/css';
+		return importStylesheetURI( uri );
 	}
 
 	msg = 'Use mw.loader instead.';
@@ -214,5 +214,13 @@
 	// Not quite deprecated yet.
 	win.importScript = importScript;
 	win.importStylesheet = importStylesheet;
+
+	// Replace document.write/writeln with basic html parsing that appends
+	// to the <body> to avoid blanking pages. Added JavaScript will not run.
+	$.each( [ 'write', 'writeln' ], function ( idx, method ) {
+		mw.log.deprecate( document, method, function () {
+			$( 'body' ).append( $.parseHTML( Array.prototype.join.call( arguments, '' ) ) );
+		}, 'Use jQuery or mw.loader.load instead.' );
+	} );
 
 }( mediaWiki, jQuery ) );

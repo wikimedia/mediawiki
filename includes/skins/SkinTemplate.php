@@ -51,12 +51,22 @@ class SkinTemplate extends Skin {
 	 * @param OutputPage $out
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
-		$out->addModuleStyles( array(
+		$moduleStyles = array(
 			'mediawiki.legacy.shared',
 			'mediawiki.legacy.commonPrint',
-			'mediawiki.ui.button',
 			'mediawiki.sectionAnchor'
-		) );
+		);
+		if ( $out->isSyndicated() ) {
+			$moduleStyles[] = 'mediawiki.feedlink';
+		}
+
+		// Deprecated since 1.26: Unconditional loading of mediawiki.ui.button
+		// on every page is deprecated. Express a dependency instead.
+		if ( strpos( $out->getHTML(), 'mw-ui-button' ) !== false ) {
+			$moduleStyles[] = 'mediawiki.ui.button';
+		}
+
+		$out->addModuleStyles( $moduleStyles );
 	}
 
 	/**
@@ -422,11 +432,9 @@ class SkinTemplate extends Skin {
 
 		# Add a mw-content-ltr/rtl class to be able to style based on text direction
 		# when the content is different from the UI language, i.e.:
-		# not for special pages or file pages AND only when viewing AND if the page exists
-		# (or is in MW namespace, because that has default content)
+		# not for special pages or file pages AND only when viewing
 		if ( !in_array( $title->getNamespace(), array( NS_SPECIAL, NS_FILE ) ) &&
-			Action::getActionName( $this ) === 'view' &&
-			( $title->exists() || $title->getNamespace() == NS_MEDIAWIKI ) ) {
+			Action::getActionName( $this ) === 'view' ) {
 			$pageLang = $title->getPageViewLanguage();
 			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
 			$realBodyAttribs['dir'] = $pageLang->getDir();
@@ -1078,6 +1086,7 @@ class SkinTemplate extends Skin {
 					$xmlID = 'ca-nstab-' . $xmlID;
 				} elseif ( isset( $link['context'] ) && $link['context'] == 'talk' ) {
 					$xmlID = 'ca-talk';
+					$link['rel'] = 'discussion';
 				} elseif ( $section == 'variants' ) {
 					$xmlID = 'ca-varlang-' . $xmlID;
 				} else {

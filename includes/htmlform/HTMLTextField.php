@@ -5,12 +5,23 @@ class HTMLTextField extends HTMLFormField {
 		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 45;
 	}
 
+	function getSpellCheck() {
+		$val = isset( $this->mParams['spellcheck'] ) ? $this->mParams['spellcheck'] : null;
+		if ( is_bool( $val ) ) {
+			// "spellcheck" attribute literally requires "true" or "false" to work.
+			return $val === true ? 'true' : 'false';
+		}
+		return null;
+	}
+
 	function getInputHTML( $value ) {
 		$attribs = array(
 				'id' => $this->mID,
 				'name' => $this->mName,
 				'size' => $this->getSize(),
 				'value' => $value,
+				'dir' => $this->mDir,
+				'spellcheck' => $this->getSpellCheck(),
 			) + $this->getTooltipAndAccessKey();
 
 		if ( $this->mClass !== '' ) {
@@ -104,11 +115,15 @@ class HTMLTextField extends HTMLFormField {
 
 		$type = $this->getType( $attribs );
 
-		return new OOUI\TextInputWidget( array(
+		return $this->getInputWidget( array(
 			'id' => $this->mID,
 			'name' => $this->mName,
 			'value' => $value,
 			'type' => $type,
 		) + $attribs );
+	}
+
+	protected function getInputWidget( $params ) {
+		return new OOUI\TextInputWidget( $params );
 	}
 }

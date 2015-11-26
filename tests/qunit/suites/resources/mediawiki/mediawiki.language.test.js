@@ -11,7 +11,7 @@
 		},
 		messages: {
 			// mw.language.listToText test
-			'and': ' and',
+			and: ' and',
 			'comma-separator': ', ',
 			'word-separator': ' '
 		}
@@ -51,9 +51,9 @@
 
 			for ( var i = 0; i < test.length; i++ ) {
 				assert.equal(
-					mw.language.convertGrammar( test[i].word, test[i].grammarForm ),
-					test[i].expected,
-					test[i].description
+					mw.language.convertGrammar( test[ i ].word, test[ i ].grammarForm ),
+					test[ i ].expected,
+					test[ i ].description
 				);
 			}
 		} );
@@ -481,8 +481,8 @@
 
 	QUnit.test( 'List to text test', 4, function ( assert ) {
 		assert.equal( mw.language.listToText( [] ), '', 'Blank list' );
-		assert.equal( mw.language.listToText( ['a'] ), 'a', 'Single item' );
-		assert.equal( mw.language.listToText( ['a', 'b'] ), 'a and b', 'Two items' );
-		assert.equal( mw.language.listToText( ['a', 'b', 'c'] ), 'a, b and c', 'More than two items' );
+		assert.equal( mw.language.listToText( [ 'a' ] ), 'a', 'Single item' );
+		assert.equal( mw.language.listToText( [ 'a', 'b' ] ), 'a and b', 'Two items' );
+		assert.equal( mw.language.listToText( [ 'a', 'b', 'c' ] ), 'a, b and c', 'More than two items' );
 	} );
 }( mediaWiki, jQuery ) );

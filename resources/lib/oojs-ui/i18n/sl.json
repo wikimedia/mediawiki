@@ -18,5 +18,7 @@
 	"ooui-dialog-process-error": "Nekaj je šlo narobe",
 	"ooui-dialog-process-dismiss": "Skrij",
 	"ooui-dialog-process-retry": "Poskusi znova",
-	"ooui-dialog-process-continue": "Nadaljuj"
+	"ooui-dialog-process-continue": "Nadaljuj",
+	"ooui-selectfile-not-supported": "Izbira datoteke ni podprta",
+	"ooui-selectfile-placeholder": "Nobena datoteka ni izbrana"
 }

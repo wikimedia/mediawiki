@@ -97,7 +97,6 @@ class DeleteBatch extends Maintenance {
 			}
 
 			$this->output( $title->getPrefixedText() );
-			$dbw->begin( __METHOD__ );
 			if ( $title->getNamespace() == NS_FILE ) {
 				$img = wfFindFile( $title, array( 'ignoreRedirect' => true ) );
 				if ( $img && $img->isLocal() && !$img->delete( $reason ) ) {
@@ -106,8 +105,7 @@ class DeleteBatch extends Maintenance {
 			}
 			$page = WikiPage::factory( $title );
 			$error = '';
-			$success = $page->doDeleteArticle( $reason, false, 0, false, $error, $user );
-			$dbw->commit( __METHOD__ );
+			$success = $page->doDeleteArticle( $reason, false, 0, true, $error, $user );
 			if ( $success ) {
 				$this->output( " Deleted!\n" );
 			} else {

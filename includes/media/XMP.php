@@ -21,6 +21,10 @@
  * @ingroup Media
  */
 
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+
 /**
  * Class for reading xmp data containing properties relevant to
  * images, and spitting out an array that FormatMetadata accepts.
@@ -46,7 +50,7 @@
  * read rdf.
  *
  */
-class XMPReader {
+class XMPReader implements LoggerAwareInterface {
 	/** @var array XMP item configuration array */
 	protected $items;
 
@@ -121,20 +125,48 @@ class XMPReader {
 	const PARSABLE_NO = 3;
 
 	/**
+	 * @var LoggerInterface
+	 */
+	private $logger;
+
+	/**
 	 * Constructor.
 	 *
 	 * Primary job is to initialize the XMLParser
 	 */
-	function __construct() {
+	function __construct( LoggerInterface $logger = null ) {
 
 		if ( !function_exists( 'xml_parser_create_ns' ) ) {
 			// this should already be checked by this point
-			throw new MWException( 'XMP support requires XML Parser' );
+			throw new RuntimeException( 'XMP support requires XML Parser' );
+		}
+		if ( $logger ) {
+			$this->setLogger( $logger );
+		} else {
+			$this->setLogger( new NullLogger() );
 		}
 
 		$this->items = XMPInfo::getItems();
 
 		$this->resetXMLParser();
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
+	}
+
+	/**
+	 * free the XML parser.
+	 *
+	 * @note It is unclear to me if we really need to do this ourselves
+	 *  or if php garbage collection will automatically free the xmlParser
+	 *  when it is no longer needed.
+	 */
+	private function destroyXMLParser() {
+		if ( $this->xmlParser ) {
+			xml_parser_free( $this->xmlParser );
+			$this->xmlParser = null;
+		}
 	}
 
 	/**
@@ -143,10 +175,7 @@ class XMPReader {
 	 */
 	private function resetXMLParser() {
 
-		if ( $this->xmlParser ) {
-			//is this needed?
-			xml_parser_free( $this->xmlParser );
-		}
+		$this->destroyXMLParser();
 
 		$this->xmlParser = xml_parser_create_ns( 'UTF-8', ' ' );
 		xml_parser_set_option( $this->xmlParser, XML_OPTION_CASE_FOLDING, 0 );
@@ -160,15 +189,6 @@ class XMPReader {
 
 		$this->parsable = self::PARSABLE_UNKNOWN;
 		$this->xmlParsableBuffer = '';
-	}
-
-	/** Destroy the xml parser
-	 *
-	 * Not sure if this is actually needed.
-	 */
-	function __destruct() {
-		// not sure if this is needed.
-		xml_parser_free( $this->xmlParser );
 	}
 
 	/**
@@ -194,8 +214,6 @@ class XMPReader {
 		// The location fields also use it.
 
 		$data = $this->results;
-
-		Hooks::run( 'XMPGetResults', array( &$data ) );
 
 		if ( isset( $data['xmp-special']['AuthorsPosition'] )
 			&& is_string( $data['xmp-special']['AuthorsPosition'] )
@@ -278,12 +296,11 @@ class XMPReader {
 	 *
 	 * @param string $content XMP data
 	 * @param bool $allOfIt If this is all the data (true) or if its split up (false). Default true
-	 * @param bool $reset Does xml parser need to be reset. Default false
-	 * @throws MWException
+	 * @throws RuntimeException
 	 * @return bool Success.
 	 */
-	public function parse( $content, $allOfIt = true, $reset = false ) {
-		if ( $reset ) {
+	public function parse( $content, $allOfIt = true ) {
+		if ( !$this->xmlParser ) {
 			$this->resetXMLParser();
 		}
 		try {
@@ -313,7 +330,7 @@ class XMPReader {
 							break;
 						default:
 							//this should be impossible to get to
-							throw new MWException( "Invalid BOM" );
+							throw new RuntimeException( "Invalid BOM" );
 					}
 				} else {
 					// standard specifically says, if no bom assume utf-8
@@ -322,16 +339,16 @@ class XMPReader {
 			}
 			if ( $this->charset !== 'UTF-8' ) {
 				//don't convert if already utf-8
-				wfSuppressWarnings();
+				MediaWiki\suppressWarnings();
 				$content = iconv( $this->charset, 'UTF-8//IGNORE', $content );
-				wfRestoreWarnings();
+				MediaWiki\restoreWarnings();
 			}
 
 			// Ensure the XMP block does not have an xml doctype declaration, which
 			// could declare entities unsafe to parse with xml_parse (T85848/T71210).
 			if ( $this->parsable !== self::PARSABLE_OK ) {
 				if ( $this->parsable === self::PARSABLE_NO ) {
-					throw new Exception( 'Unsafe doctype declaration in XML.' );
+					throw new RuntimeException( 'Unsafe doctype declaration in XML.' );
 				}
 
 				$content = $this->xmlParsableBuffer . $content;
@@ -344,26 +361,48 @@ class XMPReader {
 					$msg = ( $this->parsable === self::PARSABLE_NO ) ?
 						'Unsafe doctype declaration in XML.' :
 						'No root element found in XML.';
-					throw new Exception( $msg );
+					throw new RuntimeException( $msg );
 				}
 			}
 
 			$ok = xml_parse( $this->xmlParser, $content, $allOfIt );
 			if ( !$ok ) {
-				$error = xml_error_string( xml_get_error_code( $this->xmlParser ) );
-				$where = 'line: ' . xml_get_current_line_number( $this->xmlParser )
-					. ' column: ' . xml_get_current_column_number( $this->xmlParser )
-					. ' byte offset: ' . xml_get_current_byte_index( $this->xmlParser );
+				$code = xml_get_error_code( $this->xmlParser );
+				$error = xml_error_string( $code );
+				$line = xml_get_current_line_number( $this->xmlParser );
+				$col = xml_get_current_column_number( $this->xmlParser );
+				$offset = xml_get_current_byte_index( $this->xmlParser );
 
-				wfDebugLog( 'XMP', "XMPReader::parse : Error reading XMP content: $error ($where)" );
+				$this->logger->warning(
+					'{method} : Error reading XMP content: {error} ' .
+					'(line: {line} column: {column} byte offset: {offset})',
+					array(
+						'method' => __METHOD__,
+						'error_code' => $code,
+						'error' => $error,
+						'line' => $line,
+						'column' => $col,
+						'offset' => $offset,
+						'content' => $content,
+				) );
 				$this->results = array(); // blank if error.
+				$this->destroyXMLParser();
 				return false;
 			}
 		} catch ( Exception $e ) {
-			wfDebugLog( 'XMP', 'XMP parse error: ' . $e );
+			$this->logger->warning(
+				'{method} Exception caught while parsing: ' . $e->getMessage(),
+				array(
+					'method' => __METHOD__,
+					'exception' => $e,
+					'content' => $content,
+				)
+			);
 			$this->results = array();
-
 			return false;
+		}
+		if ( $allOfIt ) {
+			$this->destroyXMLParser();
 		}
 
 		return true;
@@ -383,7 +422,7 @@ class XMPReader {
 		if ( !isset( $this->results['xmp-special']['HasExtendedXMP'] )
 			|| $this->results['xmp-special']['HasExtendedXMP'] !== $guid
 		) {
-			wfDebugLog( 'XMP', __METHOD__ .
+			$this->logger->info( __METHOD__ .
 				" Ignoring XMPExtended block due to wrong guid (guid= '$guid')" );
 
 			return false;
@@ -391,7 +430,7 @@ class XMPReader {
 		$len = unpack( 'Nlength/Noffset', substr( $content, 32, 8 ) );
 
 		if ( !$len || $len['length'] < 4 || $len['offset'] < 0 || $len['offset'] > $len['length'] ) {
-			wfDebugLog( 'XMP', __METHOD__ . 'Error reading extended XMP block, invalid length or offset.' );
+			$this->logger->info( __METHOD__ . 'Error reading extended XMP block, invalid length or offset.' );
 
 			return false;
 		}
@@ -408,7 +447,7 @@ class XMPReader {
 		// > 128k, and be in the wrong order is very low...
 
 		if ( $len['offset'] !== $this->extendedXMPOffset ) {
-			wfDebugLog( 'XMP', __METHOD__ . 'Ignoring XMPExtended block due to wrong order. (Offset was '
+			$this->logger->info( __METHOD__ . 'Ignoring XMPExtended block due to wrong order. (Offset was '
 				. $len['offset'] . ' but expected ' . $this->extendedXMPOffset . ')' );
 
 			return false;
@@ -430,7 +469,7 @@ class XMPReader {
 			$atEnd = false;
 		}
 
-		wfDebugLog( 'XMP', __METHOD__ . 'Parsing a XMPExtended block' );
+		$this->logger->debug( __METHOD__ . 'Parsing a XMPExtended block' );
 
 		return $this->parse( $actualContent, $atEnd );
 	}
@@ -449,7 +488,7 @@ class XMPReader {
 	 *
 	 * @param XMLParser $parser XMLParser reference to the xml parser
 	 * @param string $data Character data
-	 * @throws MWException On invalid data
+	 * @throws RuntimeException On invalid data
 	 */
 	function char( $parser, $data ) {
 
@@ -459,7 +498,7 @@ class XMPReader {
 		}
 
 		if ( !isset( $this->mode[0] ) ) {
-			throw new MWException( 'Unexpected character data before first rdf:Description element' );
+			throw new RuntimeException( 'Unexpected character data before first rdf:Description element' );
 		}
 
 		if ( $this->mode[0] === self::MODE_IGNORE ) {
@@ -469,7 +508,7 @@ class XMPReader {
 		if ( $this->mode[0] !== self::MODE_SIMPLE
 			&& $this->mode[0] !== self::MODE_QDESC
 		) {
-			throw new MWException( 'character data where not expected. (mode ' . $this->mode[0] . ')' );
+			throw new RuntimeException( 'character data where not expected. (mode ' . $this->mode[0] . ')' );
 		}
 
 		// to check, how does this handle w.s.
@@ -501,6 +540,7 @@ class XMPReader {
 		);
 
 		$oldDisable = libxml_disable_entity_loader( true );
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$reset = new ScopedCallback(
 			'libxml_disable_entity_loader',
 			array( $oldDisable )
@@ -509,7 +549,7 @@ class XMPReader {
 
 		// Even with LIBXML_NOWARNING set, XMLReader::read gives a warning
 		// when parsing truncated XML, which causes unit tests to fail.
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		while ( $reader->read() ) {
 			if ( $reader->nodeType === XMLReader::ELEMENT ) {
 				// Reached the first element without hitting a doctype declaration
@@ -523,7 +563,7 @@ class XMPReader {
 				break;
 			}
 		}
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( !is_null( $result ) ) {
 			return $result;
@@ -597,7 +637,7 @@ class XMPReader {
 	 * This method is called when we hit the "</exif:ISOSpeedRatings>" tag.
 	 *
 	 * @param string $elm Namespace . space . tag name.
-	 * @throws MWException
+	 * @throws RuntimeException
 	 */
 	private function endElementNested( $elm ) {
 
@@ -607,35 +647,38 @@ class XMPReader {
 			&& !( $elm === self::NS_RDF . ' Description'
 				&& $this->mode[0] === self::MODE_STRUCT )
 		) {
-			throw new MWException( "nesting mismatch. got a </$elm> but expected a </" .
+			throw new RuntimeException( "nesting mismatch. got a </$elm> but expected a </" .
 				$this->curItem[0] . '>' );
 		}
 
 		// Validate structures.
 		list( $ns, $tag ) = explode( ' ', $elm, 2 );
 		if ( isset( $this->items[$ns][$tag]['validate'] ) ) {
-
 			$info =& $this->items[$ns][$tag];
 			$finalName = isset( $info['map_name'] )
 				? $info['map_name'] : $tag;
 
-			$validate = is_array( $info['validate'] ) ? $info['validate']
-				: array( 'XMPValidate', $info['validate'] );
+			if ( is_array( $info['validate'] ) ) {
+				$validate = $info['validate'];
+			} else {
+				$validator = new XMPValidate( $this->logger );
+				$validate = array( $validator, $info['validate'] );
+			}
 
 			if ( !isset( $this->results['xmp-' . $info['map_group']][$finalName] ) ) {
 				// This can happen if all the members of the struct failed validation.
-				wfDebugLog( 'XMP', __METHOD__ . " <$ns:$tag> has no valid members." );
+				$this->logger->debug( __METHOD__ . " <$ns:$tag> has no valid members." );
 			} elseif ( is_callable( $validate ) ) {
 				$val =& $this->results['xmp-' . $info['map_group']][$finalName];
 				call_user_func_array( $validate, array( $info, &$val, false ) );
 				if ( is_null( $val ) ) {
 					// the idea being the validation function will unset the variable if
 					// its invalid.
-					wfDebugLog( 'XMP', __METHOD__ . " <$ns:$tag> failed validation." );
+					$this->logger->info( __METHOD__ . " <$ns:$tag> failed validation." );
 					unset( $this->results['xmp-' . $info['map_group']][$finalName] );
 				}
 			} else {
-				wfDebugLog( 'XMP', __METHOD__ . " Validation function for $finalName ("
+				$this->logger->warning( __METHOD__ . " Validation function for $finalName ("
 					. $validate[0] . '::' . $validate[1] . '()) is not callable.' );
 			}
 		}
@@ -664,7 +707,7 @@ class XMPReader {
 	 * hit the "</rdf:li>")
 	 *
 	 * @param string $elm Namespace . ' ' . element name
-	 * @throws MWException
+	 * @throws RuntimeException
 	 */
 	private function endElementModeLi( $elm ) {
 
@@ -676,7 +719,7 @@ class XMPReader {
 		array_shift( $this->mode );
 
 		if ( !isset( $this->results['xmp-' . $info['map_group']][$finalName] ) ) {
-			wfDebugLog( 'XMP', __METHOD__ . " Empty compund element $finalName." );
+			$this->logger->debug( __METHOD__ . " Empty compund element $finalName." );
 
 			return;
 		}
@@ -691,7 +734,7 @@ class XMPReader {
 				$this->results['xmp-' . $info['map_group']][$finalName]['_type'] = 'lang';
 			}
 		} else {
-			throw new MWException( __METHOD__ . " expected </rdf:seq> or </rdf:bag> but instead got $elm." );
+			throw new RuntimeException( __METHOD__ . " expected </rdf:seq> or </rdf:bag> but instead got $elm." );
 		}
 	}
 
@@ -729,7 +772,7 @@ class XMPReader {
 	 *
 	 * @param XMLParser $parser
 	 * @param string $elm Namespace . ' ' . element name
-	 * @throws MWException
+	 * @throws RuntimeException
 	 */
 	function endElement( $parser, $elm ) {
 		if ( $elm === ( self::NS_RDF . ' RDF' )
@@ -743,7 +786,7 @@ class XMPReader {
 		if ( $elm === self::NS_RDF . ' type' ) {
 			// these aren't really supported properly yet.
 			// However, it appears they almost never used.
-			wfDebugLog( 'XMP', __METHOD__ . ' encountered <rdf:type>' );
+			$this->logger->info( __METHOD__ . ' encountered <rdf:type>' );
 		}
 
 		if ( strpos( $elm, ' ' ) === false ) {
@@ -751,7 +794,7 @@ class XMPReader {
 			// However, there is a bug in an adobe product
 			// that forgets the namespace on some things.
 			// (Luckily they are unimportant things).
-			wfDebugLog( 'XMP', __METHOD__ . " Encountered </$elm> which has no namespace. Skipping." );
+			$this->logger->info( __METHOD__ . " Encountered </$elm> which has no namespace. Skipping." );
 
 			return;
 		}
@@ -759,13 +802,13 @@ class XMPReader {
 		if ( count( $this->mode[0] ) === 0 ) {
 			// This should never ever happen and means
 			// there is a pretty major bug in this class.
-			throw new MWException( 'Encountered end element with no mode' );
+			throw new RuntimeException( 'Encountered end element with no mode' );
 		}
 
 		if ( count( $this->curItem ) == 0 && $this->mode[0] !== self::MODE_INITIAL ) {
 			// just to be paranoid. Should always have a curItem, except for initially
 			// (aka during MODE_INITAL).
-			throw new MWException( "Hit end element </$elm> but no curItem" );
+			throw new RuntimeException( "Hit end element </$elm> but no curItem" );
 		}
 
 		switch ( $this->mode[0] ) {
@@ -786,7 +829,7 @@ class XMPReader {
 				if ( $elm === self::NS_RDF . ' Description' ) {
 					array_shift( $this->mode );
 				} else {
-					throw new MWException( 'Element ended unexpectedly while in MODE_INITIAL' );
+					throw new RuntimeException( 'Element ended unexpectedly while in MODE_INITIAL' );
 				}
 				break;
 			case self::MODE_LI:
@@ -797,7 +840,7 @@ class XMPReader {
 				$this->endElementModeQDesc( $elm );
 				break;
 			default:
-				wfDebugLog( 'XMP', __METHOD__ . " no mode (elm = $elm)" );
+				$this->logger->warning( __METHOD__ . " no mode (elm = $elm)" );
 				break;
 		}
 	}
@@ -825,13 +868,13 @@ class XMPReader {
 	 * this should always be <rdf:Bag>
 	 *
 	 * @param string $elm Namespace . ' ' . tag
-	 * @throws MWException If we have an element that's not <rdf:Bag>
+	 * @throws RuntimeException If we have an element that's not <rdf:Bag>
 	 */
 	private function startElementModeBag( $elm ) {
 		if ( $elm === self::NS_RDF . ' Bag' ) {
 			array_unshift( $this->mode, self::MODE_LI );
 		} else {
-			throw new MWException( "Expected <rdf:Bag> but got $elm." );
+			throw new RuntimeException( "Expected <rdf:Bag> but got $elm." );
 		}
 	}
 
@@ -840,18 +883,18 @@ class XMPReader {
 	 * this should always be <rdf:Seq>
 	 *
 	 * @param string $elm Namespace . ' ' . tag
-	 * @throws MWException If we have an element that's not <rdf:Seq>
+	 * @throws RuntimeException If we have an element that's not <rdf:Seq>
 	 */
 	private function startElementModeSeq( $elm ) {
 		if ( $elm === self::NS_RDF . ' Seq' ) {
 			array_unshift( $this->mode, self::MODE_LI );
 		} elseif ( $elm === self::NS_RDF . ' Bag' ) {
 			# bug 27105
-			wfDebugLog( 'XMP', __METHOD__ . ' Expected an rdf:Seq, but got an rdf:Bag. Pretending'
+			$this->logger->info( __METHOD__ . ' Expected an rdf:Seq, but got an rdf:Bag. Pretending'
 				. ' it is a Seq, since some buggy software is known to screw this up.' );
 			array_unshift( $this->mode, self::MODE_LI );
 		} else {
-			throw new MWException( "Expected <rdf:Seq> but got $elm." );
+			throw new RuntimeException( "Expected <rdf:Seq> but got $elm." );
 		}
 	}
 
@@ -867,13 +910,13 @@ class XMPReader {
 	 * we don't care about.
 	 *
 	 * @param string $elm Namespace . ' ' . tag
-	 * @throws MWException If we have an element that's not <rdf:Alt>
+	 * @throws RuntimeException If we have an element that's not <rdf:Alt>
 	 */
 	private function startElementModeLang( $elm ) {
 		if ( $elm === self::NS_RDF . ' Alt' ) {
 			array_unshift( $this->mode, self::MODE_LI_LANG );
 		} else {
-			throw new MWException( "Expected <rdf:Seq> but got $elm." );
+			throw new RuntimeException( "Expected <rdf:Seq> but got $elm." );
 		}
 	}
 
@@ -893,7 +936,7 @@ class XMPReader {
 	 *
 	 * @param string $elm Namespace and tag names separated by space.
 	 * @param array $attribs Attributes of the element.
-	 * @throws MWException
+	 * @throws RuntimeException
 	 */
 	private function startElementModeSimple( $elm, $attribs ) {
 		if ( $elm === self::NS_RDF . ' Description' ) {
@@ -907,10 +950,10 @@ class XMPReader {
 			}
 		} elseif ( $elm === self::NS_RDF . ' value' ) {
 			// This should not be here.
-			throw new MWException( __METHOD__ . ' Encountered <rdf:value> where it was unexpected.' );
+			throw new RuntimeException( __METHOD__ . ' Encountered <rdf:value> where it was unexpected.' );
 		} else {
 			// something else we don't recognize, like a qualifier maybe.
-			wfDebugLog( 'XMP', __METHOD__ .
+			$this->logger->info( __METHOD__ .
 				" Encountered element <$elm> where only expecting character data as value of " .
 				$this->curItem[0] );
 			array_unshift( $this->mode, self::MODE_IGNORE );
@@ -952,7 +995,7 @@ class XMPReader {
 	 * @param string $ns Namespace
 	 * @param string $tag Tag name (without namespace prefix)
 	 * @param array $attribs Array of attributes
-	 * @throws MWException
+	 * @throws RuntimeException
 	 */
 	private function startElementModeInitial( $ns, $tag, $attribs ) {
 		if ( $ns !== self::NS_RDF ) {
@@ -964,7 +1007,7 @@ class XMPReader {
 					// a child of a struct), then something weird is
 					// happening, so ignore this element and its children.
 
-					wfDebugLog( 'XMP', "Encountered <$ns:$tag> outside"
+					$this->logger->warning( "Encountered <$ns:$tag> outside"
 						. " of its expected parent. Ignoring." );
 
 					array_unshift( $this->mode, self::MODE_IGNORE );
@@ -982,11 +1025,11 @@ class XMPReader {
 				if ( $this->charContent !== false ) {
 					// Something weird.
 					// Should not happen in valid XMP.
-					throw new MWException( 'tag nested in non-whitespace characters.' );
+					throw new RuntimeException( 'tag nested in non-whitespace characters.' );
 				}
 			} else {
 				// This element is not on our list of allowed elements so ignore.
-				wfDebugLog( 'XMP', __METHOD__ . " Ignoring unrecognized element <$ns:$tag>." );
+				$this->logger->debug( __METHOD__ . " Ignoring unrecognized element <$ns:$tag>." );
 				array_unshift( $this->mode, self::MODE_IGNORE );
 				array_unshift( $this->curItem, $ns . ' ' . $tag );
 
@@ -1014,7 +1057,7 @@ class XMPReader {
 	 * @param string $ns Namespace
 	 * @param string $tag Tag name (no ns)
 	 * @param array $attribs Array of attribs w/ values.
-	 * @throws MWException
+	 * @throws RuntimeException
 	 */
 	private function startElementModeStruct( $ns, $tag, $attribs ) {
 		if ( $ns !== self::NS_RDF ) {
@@ -1025,7 +1068,7 @@ class XMPReader {
 				) {
 					// This assumes that we don't have inter-namespace nesting
 					// which we don't in all the properties we're interested in.
-					throw new MWException( " <$tag> appeared nested in <" . $this->ancestorStruct
+					throw new RuntimeException( " <$tag> appeared nested in <" . $this->ancestorStruct
 						. "> where it is not allowed." );
 				}
 				array_unshift( $this->mode, $this->items[$ns][$tag]['mode'] );
@@ -1033,7 +1076,7 @@ class XMPReader {
 				if ( $this->charContent !== false ) {
 					// Something weird.
 					// Should not happen in valid XMP.
-					throw new MWException( "tag <$tag> nested in non-whitespace characters (" .
+					throw new RuntimeException( "tag <$tag> nested in non-whitespace characters (" .
 						$this->charContent . ")." );
 				}
 			} else {
@@ -1062,17 +1105,17 @@ class XMPReader {
 	 *
 	 * @param string $elm Namespace . ' ' . tagname
 	 * @param array $attribs Attributes. (needed for BAGSTRUCTS)
-	 * @throws MWException If gets a tag other than <rdf:li>
+	 * @throws RuntimeException If gets a tag other than <rdf:li>
 	 */
 	private function startElementModeLi( $elm, $attribs ) {
 		if ( ( $elm ) !== self::NS_RDF . ' li' ) {
-			throw new MWException( "<rdf:li> expected but got $elm." );
+			throw new RuntimeException( "<rdf:li> expected but got $elm." );
 		}
 
 		if ( !isset( $this->mode[1] ) ) {
 			// This should never ever ever happen. Checking for it
 			// to be paranoid.
-			throw new MWException( 'In mode Li, but no 2xPrevious mode!' );
+			throw new RuntimeException( 'In mode Li, but no 2xPrevious mode!' );
 		}
 
 		if ( $this->mode[1] === self::MODE_BAGSTRUCT ) {
@@ -1083,7 +1126,7 @@ class XMPReader {
 
 			if ( !isset( $this->curItem[1] ) ) {
 				// be paranoid.
-				throw new MWException( 'Can not find parent of BAGSTRUCT.' );
+				throw new RuntimeException( 'Can not find parent of BAGSTRUCT.' );
 			}
 			list( $curNS, $curTag ) = explode( ' ', $this->curItem[1] );
 			$this->ancestorStruct = isset( $this->items[$curNS][$curTag]['map_name'] )
@@ -1112,16 +1155,16 @@ class XMPReader {
 	 *
 	 * @param string $elm Namespace . ' ' . tag
 	 * @param array $attribs Array of elements (most importantly xml:lang)
-	 * @throws MWException If gets a tag other than <rdf:li> or if no xml:lang
+	 * @throws RuntimeException If gets a tag other than <rdf:li> or if no xml:lang
 	 */
 	private function startElementModeLiLang( $elm, $attribs ) {
 		if ( $elm !== self::NS_RDF . ' li' ) {
-			throw new MWException( __METHOD__ . " <rdf:li> expected but got $elm." );
+			throw new RuntimeException( __METHOD__ . " <rdf:li> expected but got $elm." );
 		}
 		if ( !isset( $attribs[self::NS_XML . ' lang'] )
 			|| !preg_match( '/^[-A-Za-z0-9]{2,}$/D', $attribs[self::NS_XML . ' lang'] )
 		) {
-			throw new MWException( __METHOD__
+			throw new RuntimeException( __METHOD__
 				. " <rdf:li> did not contain, or has invalid xml:lang attribute in lang alternative" );
 		}
 
@@ -1143,7 +1186,7 @@ class XMPReader {
 	 * @param XMLParser $parser
 	 * @param string $elm Namespace "<space>" element
 	 * @param array $attribs Attribute name => value
-	 * @throws MWException
+	 * @throws RuntimeException
 	 */
 	function startElement( $parser, $elm, $attribs ) {
 
@@ -1166,12 +1209,12 @@ class XMPReader {
 			//
 			// also it seems as if exiv2 and exiftool do not support
 			// this either (That or I misunderstand the standard)
-			wfDebugLog( 'XMP', __METHOD__ . ' Encountered <rdf:type> which isn\'t currently supported' );
+			$this->logger->info( __METHOD__ . ' Encountered <rdf:type> which isn\'t currently supported' );
 		}
 
 		if ( strpos( $elm, ' ' ) === false ) {
 			// This probably shouldn't happen.
-			wfDebugLog( 'XMP', __METHOD__ . " Encountered <$elm> which has no namespace. Skipping." );
+			$this->logger->info( __METHOD__ . " Encountered <$elm> which has no namespace. Skipping." );
 
 			return;
 		}
@@ -1180,7 +1223,7 @@ class XMPReader {
 
 		if ( count( $this->mode ) === 0 ) {
 			// This should not happen.
-			throw new MWException( 'Error extracting XMP, '
+			throw new RuntimeException( 'Error extracting XMP, '
 				. "encountered <$elm> with no mode" );
 		}
 
@@ -1217,7 +1260,7 @@ class XMPReader {
 				$this->startElementModeQDesc( $elm );
 				break;
 			default:
-				throw new MWException( 'StartElement in unknown mode: ' . $this->mode[0] );
+				throw new RuntimeException( 'StartElement in unknown mode: ' . $this->mode[0] );
 		}
 	}
 
@@ -1236,7 +1279,7 @@ class XMPReader {
 	 * @codingStandardsIgnoreEnd
 	 *
 	 * @param array $attribs Array attribute=>value
-	 * @throws MWException
+	 * @throws RuntimeException
 	 */
 	private function doAttribs( $attribs ) {
 		// first check for rdf:parseType attribute, as that can change
@@ -1253,7 +1296,7 @@ class XMPReader {
 			if ( strpos( $name, ' ' ) === false ) {
 				// This shouldn't happen, but so far some old software forgets namespace
 				// on rdf:about.
-				wfDebugLog( 'XMP', __METHOD__ . ' Encountered non-namespaced attribute: '
+				$this->logger->info( __METHOD__ . ' Encountered non-namespaced attribute: '
 					. " $name=\"$val\". Skipping. " );
 				continue;
 			}
@@ -1266,12 +1309,12 @@ class XMPReader {
 				}
 			} elseif ( isset( $this->items[$ns][$tag] ) ) {
 				if ( $this->mode[0] === self::MODE_SIMPLE ) {
-					throw new MWException( __METHOD__
+					throw new RuntimeException( __METHOD__
 						. " $ns:$tag found as attribute where not allowed" );
 				}
 				$this->saveValue( $ns, $tag, $val );
 			} else {
-				wfDebugLog( 'XMP', __METHOD__ . " Ignoring unrecognized element <$ns:$tag>." );
+				$this->logger->debug( __METHOD__ . " Ignoring unrecognized element <$ns:$tag>." );
 			}
 		}
 	}
@@ -1293,20 +1336,24 @@ class XMPReader {
 		$finalName = isset( $info['map_name'] )
 			? $info['map_name'] : $tag;
 		if ( isset( $info['validate'] ) ) {
-			$validate = is_array( $info['validate'] ) ? $info['validate']
-				: array( 'XMPValidate', $info['validate'] );
+			if ( is_array( $info['validate'] ) ) {
+				$validate = $info['validate'];
+			} else {
+				$validator = new XMPValidate( $this->logger );
+				$validate = array( $validator, $info['validate'] );
+			}
 
 			if ( is_callable( $validate ) ) {
 				call_user_func_array( $validate, array( $info, &$val, true ) );
 				// the reasoning behind using &$val instead of using the return value
 				// is to be consistent between here and validating structures.
 				if ( is_null( $val ) ) {
-					wfDebugLog( 'XMP', __METHOD__ . " <$ns:$tag> failed validation." );
+					$this->logger->info( __METHOD__ . " <$ns:$tag> failed validation." );
 
 					return;
 				}
 			} else {
-				wfDebugLog( 'XMP', __METHOD__ . " Validation function for $finalName ("
+				$this->logger->warning( __METHOD__ . " Validation function for $finalName ("
 					. $validate[0] . '::' . $validate[1] . '()) is not callable.' );
 			}
 		}

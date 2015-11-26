@@ -89,7 +89,7 @@ class ApiQueryContributors extends ApiQueryBase {
 		$res = $this->select( __METHOD__ );
 		foreach ( $res as $row ) {
 			$fit = $result->addValue( array( 'query', 'pages', $row->page ),
-				'anoncontributors', $row->anons
+				'anoncontributors', (int)$row->anons
 			);
 			if ( !$fit ) {
 				// This not fitting isn't reasonable, so it probably means that
@@ -189,7 +189,7 @@ class ApiQueryContributors extends ApiQueryBase {
 			}
 
 			$fit = $this->addPageSubItem( $row->page,
-				array( 'userid' => $row->user, 'name' => $row->username ),
+				array( 'userid' => (int)$row->user, 'name' => $row->username ),
 				'user'
 			);
 			if ( !$fit ) {
@@ -250,6 +250,6 @@ class ApiQueryContributors extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Properties#contributors_.2F_pc';
+		return 'https://www.mediawiki.org/wiki/API:Contributors';
 	}
 }

@@ -33,18 +33,17 @@
 // Button styling
 // ----------------------------------------------------------------------------
 
-.button-colors(@bgColor) {
+.button-colors(@bgColor, @highlightColor, @activeColor) {
 	background: @bgColor;
 
 	&:hover {
 		// The inner bottom bevel should match the active background color.
-		box-shadow: 0 1px rgba(0, 0, 0, 10%), inset 0 -3px rgba(0, 0, 0, 20%);
-		border-bottom-color: mix(#000, @bgColor, 20%);
+		background-color: @highlightColor;
 	}
 
 	&:focus {
-		border-color: rgba(0,0,0,0.2);
-		box-shadow: inset 0 0 0 1px rgba(0,0,0,0.2);
+		border-color: @colorWhite;
+		box-shadow: 0 0 0 1px @highlightColor;
 
 		outline: none;
 		// remove outline in Firefox
@@ -55,15 +54,12 @@
 
 	&:active,
 	&.mw-ui-checked {
-		// lessphp doesn't implement shade (https://github.com/leafo/lessphp/issues/528);
-		// it passes it through, then ResourceLoader drops it.
-		// background: shade(@bgColor, 20%);
-		background: mix(#000, @bgColor, 20%);
+		background: @activeColor;
 		box-shadow: none;
 	}
 }
 
-.button-colors(@bgColor) when (lightness(@bgColor) >= 70%) {
+.button-colors(@bgColor, @highlightColor, @activeColor) when (lightness(@bgColor) >= 70%) {
 	color: @colorButtonText;
 	border: 1px solid @colorGray12;
 
@@ -72,6 +68,10 @@
 	&:visited {
 		// make sure that is isn't inheriting from a general rule
 		color: @colorButtonText;
+	}
+
+	&:focus {
+		background-color: @highlightColor;
 	}
 
 	&:disabled {
@@ -86,7 +86,7 @@
 	}
 }
 
-.button-colors(@bgColor) when (lightness(@bgColor) < 70%) {
+.button-colors(@bgColor, @highlightColor, @activeColor) when (lightness(@bgColor) < 70%) {
 	color: #fff;
 	// border of the same color as background so that light background and
 	// dark background buttons are the same height and width
@@ -106,21 +106,20 @@
 	}
 }
 
-.button-colors-quiet(@textColor) {
+.button-colors-quiet(@textColor, @highlightColor, @activeColor) {
 	// Quiet buttons all start gray, and reveal
 	// constructive/progressive/destructive color on hover and active.
 	color: @colorButtonText;
 
 	&:hover,
 	&:focus {
+		background: transparent;
 		color: @textColor;
 	}
 
 	&:active,
 	&.mw-ui-checked {
-		// lessphp doesn't implement shade, see above
-		// color: shade(@textColor, 20%);
-		color: mix(#000, @textColor, 20%);
+		color: @activeColor;
 	}
 
 	&:disabled {

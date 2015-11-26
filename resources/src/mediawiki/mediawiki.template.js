@@ -17,7 +17,7 @@
 			if ( !compiler.compile ) {
 				throw new Error( 'Compiler must implement compile method.' );
 			}
-			compilers[name] = compiler;
+			compilers[ name ] = compiler;
 		},
 
 		/**
@@ -63,12 +63,12 @@
 			var compiledTemplate,
 				compilerName = this.getCompilerName( templateName );
 
-			if ( !compiledTemplates[moduleName] ) {
-				compiledTemplates[moduleName] = {};
+			if ( !compiledTemplates[ moduleName ] ) {
+				compiledTemplates[ moduleName ] = {};
 			}
 
 			compiledTemplate = this.compile( templateBody, compilerName );
-			compiledTemplates[moduleName][ templateName ] = compiledTemplate;
+			compiledTemplates[ moduleName ][ templateName ] = compiledTemplate;
 			return compiledTemplate;
 		},
 

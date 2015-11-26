@@ -22,6 +22,8 @@
  * @author Trevor Parscal
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 // Bail on old versions of PHP, or if composer has not been run yet to install
 // dependencies. Using dirname( __FILE__ ) here because __DIR__ is PHP5.3+.
 require_once dirname( __FILE__ ) . '/includes/PHPVersionCheck.php';
@@ -38,12 +40,13 @@ if ( !$wgRequest->checkUrlExtension() ) {
 // Respond to resource loading request.
 // foo()->bar() syntax is not supported in PHP4, and this file needs to *parse* in PHP4.
 $configFactory = ConfigFactory::getDefaultInstance();
-$resourceLoader = new ResourceLoader( $configFactory->makeConfig( 'main' ) );
+$resourceLoader = new ResourceLoader(
+	$configFactory->makeConfig( 'main' ),
+	LoggerFactory::getInstance( 'resourceloader' )
+);
 $resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest ) );
 
 Profiler::instance()->setTemplated( true );
-wfLogProfilingData();
 
-// Shut down the database.
-$lb = wfGetLBFactory();
-$lb->shutdown();
+$mediawiki = new MediaWiki();
+$mediawiki->doPostOutputShutdown( 'fast' );

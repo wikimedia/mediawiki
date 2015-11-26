@@ -91,7 +91,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'Яңы_биттәр' ),
 	'PasswordReset'             => array( 'Паролде_яңыртыу' ),
 	'PermanentLink'             => array( 'Даими_һылтанма' ),
-
 	'Preferences'               => array( 'Көйләүҙәр' ),
 	'Protectedpages'            => array( 'Һаҡланған_биттәр' ),
 	'Protectedtitles'           => array( 'Һаҡланған_исемдәр' ),

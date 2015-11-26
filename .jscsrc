@@ -1,7 +1,26 @@
 {
 	"preset": "wikimedia",
+	"es3": true,
 
-	"disallowQuotedKeysInObjects": null,
-	"requireSpacesInsideParentheses": null,
-	"requireSpacesInsideArrayBrackets": null
+	"requireVarDeclFirst": null,
+
+	"disallowQuotedKeysInObjects": "allButReserved",
+	"requireDotNotation": { "allExcept": [ "keywords" ] },
+	"jsDoc": {
+		"requireNewlineAfterDescription": true,
+		"requireParamTypes": true,
+		"requireReturnTypes": true
+	},
+
+	"excludeFiles": [
+		"docs/**",
+		"extensions/**",
+		"node_modules/**",
+		"resources/lib/**",
+		"resources/src/jquery.tipsy/**",
+		"resources/src/jquery/jquery.farbtastic.js",
+		"resources/src/mediawiki.libs/**",
+		"skins/**",
+		"vendor/**"
+	]
 }

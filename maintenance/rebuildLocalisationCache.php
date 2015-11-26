@@ -48,14 +48,6 @@ class RebuildLocalisationCache extends Maintenance {
 			false, true );
 	}
 
-	public function memoryLimit() {
-		if ( $this->hasOption( 'memory-limit' ) ) {
-			return parent::memoryLimit();
-		}
-
-		return '1000M';
-	}
-
 	public function finalSetup() {
 		# This script needs to be run to build the inital l10n cache. But if
 		# $wgLanguageCode is not 'en', it won't be able to run because there is

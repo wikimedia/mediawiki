@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rahuldeshmukh101",
+			"V.narsikar"
+		]
+	},
+	"apihelp-main-param-action": "कोणती कार्यवाही करावयाची.",
+	"apihelp-main-param-curtimestamp": "निकालात सद्य वेळठश्याचा अंतर्भाव करा.",
+	"apihelp-block-description": "सदस्यास प्रतिबंधित करा.",
+	"apihelp-block-param-user": "सदस्याचे नाव, अंक-पत्त्ता, किंवा प्रतिबंध करण्यासाठीचा आयपीचा आवाका."
+}

@@ -76,7 +76,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			array( 'https://', '*.com', 'https://name:pass@secure.com/index.html' ),
 			array( 'http://', 'name:pass@test.com', 'http://test.com' ),
 			array( 'http://', 'test.com', 'http://name:pass@test.com' ),
-			array( 'http://', '*.test.com', 'http://a.b.c.test.com/dir/dir/file?a=6'),
+			array( 'http://', '*.test.com', 'http://a.b.c.test.com/dir/dir/file?a=6' ),
 			array( null, 'http://*.test.com', 'http://www.test.com' ),
 			array( 'mailto:', 'name@mail.test123.com', 'mailto:name@mail.test123.com' ),
 			array( '',
@@ -122,8 +122,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			array( '', 'git://github.com/prwef/abc-def.git', 'git://github.com/prwef/abc-def.git' ),
 			array( 'git://', 'github.com/', 'git://github.com/prwef/abc-def.git' ),
 			array( 'git://', '*.github.com/', 'git://a.b.c.d.e.f.github.com/prwef/abc-def.git' ),
-			array( '', 'gopher://*.test.com/', 'gopher://gopher.test.com/0/v2/vstat'),
-			array( 'telnet://', '*.test.com', 'telnet://shell.test.com/~home/'),
+			array( '', 'gopher://*.test.com/', 'gopher://gopher.test.com/0/v2/vstat' ),
+			array( 'telnet://', '*.test.com', 'telnet://shell.test.com/~home/' ),
 
 			//
 			// The following only work in PHP >= 5.3.7, due to a bug in parse_url which eats
@@ -243,10 +243,10 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			array( 'http://*.test.*' ),
 			array( 'http://*test.com' ),
 			array( 'https://*' ),
-			array( '*://test.com'),
+			array( '*://test.com' ),
 			array( 'mailto:name:pass@t*est.com' ),
-			array( 'http://*:888/'),
-			array( '*http://'),
+			array( 'http://*:888/' ),
+			array( '*http://' ),
 			array( 'test.com/*/index' ),
 			array( 'test.com/dir/index?arg=*' ),
 		);

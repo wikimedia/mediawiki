@@ -76,17 +76,8 @@ class ForeignDBRepo extends LocalRepo {
 	 */
 	function getMasterDB() {
 		if ( !isset( $this->dbConn ) ) {
-			$this->dbConn = DatabaseBase::factory( $this->dbType,
-				array(
-					'host' => $this->dbServer,
-					'user' => $this->dbUser,
-					'password' => $this->dbPassword,
-					'dbname' => $this->dbName,
-					'flags' => $this->dbFlags,
-					'tablePrefix' => $this->tablePrefix,
-					'foreign' => true,
-				)
-			);
+			$func = $this->getDBFactory();
+			$this->dbConn = $func( DB_MASTER );
 		}
 
 		return $this->dbConn;
@@ -97,6 +88,25 @@ class ForeignDBRepo extends LocalRepo {
 	 */
 	function getSlaveDB() {
 		return $this->getMasterDB();
+	}
+
+	/**
+	 * @return Closure
+	 */
+	protected function getDBFactory() {
+		return function( $index ) {
+			return DatabaseBase::factory( $this->dbType,
+				array(
+					'host' => $this->dbServer,
+					'user' => $this->dbUser,
+					'password' => $this->dbPassword,
+					'dbname' => $this->dbName,
+					'flags' => $this->dbFlags,
+					'tablePrefix' => $this->tablePrefix,
+					'foreign' => true,
+				)
+			);
+		};
 	}
 
 	/**

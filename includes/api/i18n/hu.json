@@ -2,15 +2,24 @@
 	"@metadata": {
 		"authors": [
 			"Csega",
-			"Dorgan"
+			"Dorgan",
+			"Tacsipacsi",
+			"ViDam"
 		]
 	},
+	"apihelp-main-param-action": "Milyen műveletet hajtson végre.",
+	"apihelp-main-param-format": "A kimenet formátuma.",
+	"apihelp-main-param-requestid": "Az itt megadott bármilyen érték szerepelni fog a válaszban. Több kérés megkülönböztetésére használható.",
+	"apihelp-main-param-servedby": "Tartalmazza a válasz kérést kiszolgáló gép nevét.",
+	"apihelp-main-param-curtimestamp": "Tartalmazza a válasz az aktuális időbélyeget.",
 	"apihelp-block-description": "Szerkesztő blokkolása",
+	"apihelp-block-param-user": "Blokkolandó felhasználónév, IP-cím vagy IP-címtartomány.",
+	"apihelp-block-param-expiry": "Lejárat ideje. Lehet relatív (pl. <kbd>5 months</kbd>, <kbd>2 weeks</kbd>) vagy abszolút (pl. <kbd>2014-09-18T12:34:56Z</kbd>). Ha <kbd>infinite</kbd>-re, <kbd>indefinite</kbd>-re vagy <kbd>never</kbd>-re állítod, a blokk soha nem fog lejárni.",
 	"apihelp-block-param-reason": "Blokkolás oka.",
 	"apihelp-block-param-nocreate": "Új regisztráció megakadályozása",
 	"apihelp-createaccount-param-name": "Felhasználónév.",
 	"apihelp-delete-description": "Lap törlése.",
-	"apihelp-delete-example-simple": "Kezdőlap törlése.",
+	"apihelp-delete-example-simple": "<kbd>Kezdőlap</kbd> törlése.",
 	"apihelp-edit-example-edit": "Lap szerkesztése",
 	"apihelp-expandtemplates-param-title": "Lap címe.",
 	"apihelp-userrights-param-userid": "Felhasználói azonosító."

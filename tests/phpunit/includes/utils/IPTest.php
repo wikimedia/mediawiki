@@ -11,29 +11,37 @@
 
 class IPTest extends PHPUnit_Framework_TestCase {
 	/**
-	 *  not sure it should be tested with boolean false. hashar 20100924
+	 * @covers IP::isIPAddress
+	 * @dataProvider provideInvalidIPs
+	 */
+	public function isNotIPAddress( $val, $desc ) {
+		$this->assertFalse( IP::isIPAddress( $val ), $desc );
+	}
+
+	/**
+	 * Provide a list of things that aren't IP addresses
+	 */
+	public function provideInvalidIPs() {
+		return array(
+			array( false, 'Boolean false is not an IP' ),
+			array( true, 'Boolean true is not an IP' ),
+			array( '', 'Empty string is not an IP' ),
+			array( 'abc', 'Garbage IP string' ),
+			array( ':', 'Single ":" is not an IP' ),
+			array( '2001:0DB8::A:1::1', 'IPv6 with a double :: occurrence' ),
+			array( '2001:0DB8::A:1::', 'IPv6 with a double :: occurrence, last at end' ),
+			array( '::2001:0DB8::5:1', 'IPv6 with a double :: occurrence, firt at beginning' ),
+			array( '124.24.52', 'IPv4 not enough quads' ),
+			array( '24.324.52.13', 'IPv4 out of range' ),
+			array( '.24.52.13', 'IPv4 starts with period' ),
+			array( 'fc:100:300', 'IPv6 with only 3 words' ),
+		);
+	}
+
+	/**
 	 * @covers IP::isIPAddress
 	 */
 	public function testisIPAddress() {
-		$this->assertFalse( IP::isIPAddress( false ), 'Boolean false is not an IP' );
-		$this->assertFalse( IP::isIPAddress( true ), 'Boolean true is not an IP' );
-		$this->assertFalse( IP::isIPAddress( "" ), 'Empty string is not an IP' );
-		$this->assertFalse( IP::isIPAddress( 'abc' ), 'Garbage IP string' );
-		$this->assertFalse( IP::isIPAddress( ':' ), 'Single ":" is not an IP' );
-		$this->assertFalse( IP::isIPAddress( '2001:0DB8::A:1::1' ), 'IPv6 with a double :: occurrence' );
-		$this->assertFalse(
-			IP::isIPAddress( '2001:0DB8::A:1::' ),
-			'IPv6 with a double :: occurrence, last at end'
-		);
-		$this->assertFalse(
-			IP::isIPAddress( '::2001:0DB8::5:1' ),
-			'IPv6 with a double :: occurrence, firt at beginning'
-		);
-		$this->assertFalse( IP::isIPAddress( '124.24.52' ), 'IPv4 not enough quads' );
-		$this->assertFalse( IP::isIPAddress( '24.324.52.13' ), 'IPv4 out of range' );
-		$this->assertFalse( IP::isIPAddress( '.24.52.13' ), 'IPv4 starts with period' );
-		$this->assertFalse( IP::isIPAddress( 'fc:100:300' ), 'IPv6 with only 3 words' );
-
 		$this->assertTrue( IP::isIPAddress( '::' ), 'RFC 4291 IPv6 Unspecified Address' );
 		$this->assertTrue( IP::isIPAddress( '::1' ), 'RFC 4291 IPv6 Loopback Address' );
 		$this->assertTrue( IP::isIPAddress( '74.24.52.13/20', 'IPv4 range' ) );
@@ -107,20 +115,42 @@ class IPTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @covers IP::isIPv4
+	 * @dataProvider provideInvalidIPv4Addresses
 	 */
-	public function testisIPv4() {
-		$this->assertFalse( IP::isIPv4( false ), 'Boolean false is not an IP' );
-		$this->assertFalse( IP::isIPv4( true ), 'Boolean true is not an IP' );
-		$this->assertFalse( IP::isIPv4( "" ), 'Empty string is not an IP' );
-		$this->assertFalse( IP::isIPv4( 'abc' ) );
-		$this->assertFalse( IP::isIPv4( ':' ) );
-		$this->assertFalse( IP::isIPv4( '124.24.52' ), 'IPv4 not enough quads' );
-		$this->assertFalse( IP::isIPv4( '24.324.52.13' ), 'IPv4 out of range' );
-		$this->assertFalse( IP::isIPv4( '.24.52.13' ), 'IPv4 starts with period' );
+	public function testisNotIPv4( $bogusIP, $desc ) {
+		$this->assertFalse( IP::isIPv4( $bogusIP ), $desc );
+	}
 
-		$this->assertTrue( IP::isIPv4( '124.24.52.13' ) );
-		$this->assertTrue( IP::isIPv4( '1.24.52.13' ) );
-		$this->assertTrue( IP::isIPv4( '74.24.52.13/20', 'IPv4 range' ) );
+	public function provideInvalidIPv4Addresses() {
+		return array(
+			array( false, 'Boolean false is not an IP' ),
+			array( true, 'Boolean true is not an IP' ),
+			array( '', 'Empty string is not an IP' ),
+			array( 'abc', 'Letters are not an IP' ),
+			array( ':', 'A colon is not an IP' ),
+			array( '124.24.52', 'IPv4 not enough quads' ),
+			array( '24.324.52.13', 'IPv4 out of range' ),
+			array( '.24.52.13', 'IPv4 starts with period' ),
+		);
+	}
+
+	/**
+	 * @covers IP::isIPv4
+	 * @dataProvider provideValidIPv4Address
+	 */
+	public function testIsIPv4( $ip, $desc ) {
+		$this->assertTrue( IP::isIPv4( $ip ), $desc );
+	}
+
+	/**
+	 * Provide some IPv4 addresses and ranges
+	 */
+	public function provideValidIPv4Address() {
+		return array(
+			array( '124.24.52.13', 'Valid IPv4 address' ),
+			array( '1.24.52.13', 'Another valid IPv4 address' ),
+			array( '74.24.52.13/20', 'An IPv4 range' ),
+		);
 	}
 
 	/**
@@ -224,49 +254,56 @@ class IPTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @covers IP::isValidBlock
+	 * Provide some valid IP blocks
 	 */
-	public function testValidBlocks() {
-		$valid = array(
-			'116.17.184.5/32',
-			'0.17.184.5/30',
-			'16.17.184.1/24',
-			'30.242.52.14/1',
-			'10.232.52.13/8',
-			'30.242.52.14/0',
-			'::e:f:2001/96',
-			'::c:f:2001/128',
-			'::10:f:2001/70',
-			'::fe:f:2001/1',
-			'::6d:f:2001/8',
-			'::fe:f:2001/0',
+	public function provideValidBlocks() {
+		return array(
+			array( '116.17.184.5/32' ),
+			array( '0.17.184.5/30' ),
+			array( '16.17.184.1/24' ),
+			array( '30.242.52.14/1' ),
+			array( '10.232.52.13/8' ),
+			array( '30.242.52.14/0' ),
+			array( '::e:f:2001/96' ),
+			array( '::c:f:2001/128' ),
+			array( '::10:f:2001/70' ),
+			array( '::fe:f:2001/1' ),
+			array( '::6d:f:2001/8' ),
+			array( '::fe:f:2001/0' ),
 		);
-		foreach ( $valid as $i ) {
-			$this->assertTrue( IP::isValidBlock( $i ), "$i is a valid IP block" );
-		}
 	}
 
 	/**
 	 * @covers IP::isValidBlock
+	 * @dataProvider provideValidBlocks
 	 */
-	public function testInvalidBlocks() {
-		$invalid = array(
-			'116.17.184.5/33',
-			'0.17.184.5/130',
-			'16.17.184.1/-1',
-			'10.232.52.13/*',
-			'7.232.52.13/ab',
-			'11.232.52.13/',
-			'::e:f:2001/129',
-			'::c:f:2001/228',
-			'::10:f:2001/-1',
-			'::6d:f:2001/*',
-			'::86:f:2001/ab',
-			'::23:f:2001/',
+	public function testValidBlocks( $block ) {
+		$this->assertTrue( IP::isValidBlock( $block ), "$block is a valid IP block" );
+	}
+
+	/**
+	 * @covers IP::isValidBlock
+	 * @dataProvider provideInvalidBlocks
+	 */
+	public function testInvalidBlocks( $invalid ) {
+		$this->assertFalse( IP::isValidBlock( $invalid ), "$invalid is not a valid IP block" );
+	}
+
+	public function provideInvalidBlocks() {
+		return array(
+			array( '116.17.184.5/33' ),
+			array( '0.17.184.5/130' ),
+			array( '16.17.184.1/-1' ),
+			array( '10.232.52.13/*' ),
+			array( '7.232.52.13/ab' ),
+			array( '11.232.52.13/' ),
+			array( '::e:f:2001/129' ),
+			array( '::c:f:2001/228' ),
+			array( '::10:f:2001/-1' ),
+			array( '::6d:f:2001/*' ),
+			array( '::86:f:2001/ab' ),
+			array( '::23:f:2001/' ),
 		);
-		foreach ( $invalid as $i ) {
-			$this->assertFalse( IP::isValidBlock( $i ), "$i is not a valid IP block" );
-		}
 	}
 
 	/**
@@ -310,16 +347,31 @@ class IPTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @covers IP::isPublic
+	 * @dataProvider provideIsPublic
 	 */
-	public function testPrivateIPs() {
-		$private = array( 'fc00::3', 'fc00::ff', '::1', '10.0.0.1', '172.16.0.1', '192.168.0.1' );
-		foreach ( $private as $p ) {
-			$this->assertFalse( IP::isPublic( $p ), "$p is not a public IP address" );
-		}
-		$public = array( '2001:5c0:1000:a::133', 'fc::3', '00FC::' );
-		foreach ( $public as $p ) {
-			$this->assertTrue( IP::isPublic( $p ), "$p is a public IP address" );
-		}
+	public function testIsPublic( $expected, $input ) {
+		$result = IP::isPublic( $input );
+		$this->assertEquals( $expected, $result );
+	}
+
+	/**
+	 * Provider for IP::testIsPublic()
+	 */
+	public static function provideIsPublic() {
+		return array(
+			array( false, 'fc00::3' ), # RFC 4193 (local)
+			array( false, 'fc00::ff' ), # RFC 4193 (local)
+			array( false, '127.1.2.3' ), # loopback
+			array( false, '::1' ), # loopback
+			array( false, 'fe80::1' ), # link-local
+			array( false, '169.254.1.1' ), # link-local
+			array( false, '10.0.0.1' ), # RFC 1918 (private)
+			array( false, '172.16.0.1' ), # RFC 1918 (private)
+			array( false, '192.168.0.1' ), # RFC 1918 (private)
+			array( true, '2001:5c0:1000:a::133' ), # public
+			array( true, 'fc::3' ), # public
+			array( true, '00FC::' ) # public
+		);
 	}
 
 	// Private wrapper used to test CIDR Parsing.
@@ -336,40 +388,55 @@ class IPTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @covers IP::hexToQuad
+	 * @dataProvider provideIPsAndHexes
 	 */
-	public function testHexToQuad() {
-		$this->assertEquals( '0.0.0.1', IP::hexToQuad( '00000001' ) );
-		$this->assertEquals( '255.0.0.0', IP::hexToQuad( 'FF000000' ) );
-		$this->assertEquals( '255.255.255.255', IP::hexToQuad( 'FFFFFFFF' ) );
-		$this->assertEquals( '10.188.222.255', IP::hexToQuad( '0ABCDEFF' ) );
-		// hex not left-padded...
-		$this->assertEquals( '0.0.0.0', IP::hexToQuad( '0' ) );
-		$this->assertEquals( '0.0.0.1', IP::hexToQuad( '1' ) );
-		$this->assertEquals( '0.0.0.255', IP::hexToQuad( 'FF' ) );
-		$this->assertEquals( '0.0.255.0', IP::hexToQuad( 'FF00' ) );
+	public function testHexToQuad( $ip, $hex ) {
+		$this->assertEquals( $ip, IP::hexToQuad( $hex ) );
+	}
+
+	/**
+	 * Provide some IP addresses and their equivalent hex representations
+	 */
+	public function provideIPsandHexes() {
+		return array(
+			array( '0.0.0.1', '00000001' ),
+			array( '255.0.0.0', 'FF000000' ),
+			array( '255.255.255.255', 'FFFFFFFF' ),
+			array( '10.188.222.255', '0ABCDEFF' ),
+			// hex not left-padded...
+			array( '0.0.0.0', '0' ),
+			array( '0.0.0.1', '1' ),
+			array( '0.0.0.255', 'FF' ),
+			array( '0.0.255.0', 'FF00' ),
+		);
 	}
 
 	/**
 	 * @covers IP::hexToOctet
+	 * @dataProvider provideOctetsAndHexes
 	 */
-	public function testHexToOctet() {
-		$this->assertEquals( '0:0:0:0:0:0:0:1',
-			IP::hexToOctet( '00000000000000000000000000000001' ) );
-		$this->assertEquals( '0:0:0:0:0:0:FF:3',
-			IP::hexToOctet( '00000000000000000000000000FF0003' ) );
-		$this->assertEquals( '0:0:0:0:0:0:FF00:6',
-			IP::hexToOctet( '000000000000000000000000FF000006' ) );
-		$this->assertEquals( '0:0:0:0:0:0:FCCF:FAFF',
-			IP::hexToOctet( '000000000000000000000000FCCFFAFF' ) );
-		$this->assertEquals( 'FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF',
-			IP::hexToOctet( 'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF' ) );
-		// hex not left-padded...
-		$this->assertEquals( '0:0:0:0:0:0:0:0', IP::hexToOctet( '0' ) );
-		$this->assertEquals( '0:0:0:0:0:0:0:1', IP::hexToOctet( '1' ) );
-		$this->assertEquals( '0:0:0:0:0:0:0:FF', IP::hexToOctet( 'FF' ) );
-		$this->assertEquals( '0:0:0:0:0:0:0:FFD0', IP::hexToOctet( 'FFD0' ) );
-		$this->assertEquals( '0:0:0:0:0:0:FA00:0', IP::hexToOctet( 'FA000000' ) );
-		$this->assertEquals( '0:0:0:0:0:0:FCCF:FAFF', IP::hexToOctet( 'FCCFFAFF' ) );
+	public function testHexToOctet( $octet, $hex ) {
+		$this->assertEquals( $octet, IP::hexToOctet( $hex ) );
+	}
+
+	/**
+	 * Provide some hex and octet representations of the same IPs
+	 */
+	public function provideOctetsAndHexes() {
+		return array(
+			array( '0:0:0:0:0:0:0:1', '00000000000000000000000000000001' ),
+			array( '0:0:0:0:0:0:FF:3', '00000000000000000000000000FF0003' ),
+			array( '0:0:0:0:0:0:FF00:6', '000000000000000000000000FF000006' ),
+			array( '0:0:0:0:0:0:FCCF:FAFF', '000000000000000000000000FCCFFAFF' ),
+			array( 'FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF', 'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF' ),
+			// hex not left-padded...
+			array( '0:0:0:0:0:0:0:0', '0' ),
+			array( '0:0:0:0:0:0:0:1', '1' ),
+			array( '0:0:0:0:0:0:0:FF', 'FF' ),
+			array( '0:0:0:0:0:0:0:FFD0', 'FFD0' ),
+			array( '0:0:0:0:0:0:FA00:0', 'FA000000' ),
+			array( '0:0:0:0:0:0:FCCF:FAFF', 'FCCFFAFF' ),
+		);
 	}
 
 	/**

@@ -4,6 +4,27 @@
 			"George Animal"
 		]
 	},
+	"apihelp-block-description": "Bikarhênerekî asteng bike.",
+	"apihelp-block-param-reason": "Sedemê bo astengkirinê.",
+	"apihelp-createaccount-param-name": "Navê bikarhêner.",
 	"apihelp-delete-description": "Rûpelekê jê bibe.",
-	"apihelp-expandtemplates-param-title": "Sernavê rûpelê."
+	"apihelp-delete-example-simple": "<kbd>Destpêk</kbd>ê Jê bibe.",
+	"apihelp-edit-param-sectiontitle": "Sernavê bo beşeke nû.",
+	"apihelp-edit-param-text": "Naveroka rûpelê.",
+	"apihelp-edit-param-minor": "Guhertina biçûk.",
+	"apihelp-edit-param-createonly": "Heke ku rûpel hebe wê neguherîne.",
+	"apihelp-edit-example-edit": "Rûpelekê biguherîne.",
+	"apihelp-emailuser-description": "Ji bikarhêner re e-nameyekê bişîne.",
+	"apihelp-emailuser-param-target": "Bikarhênerê ku e-name jê rê bê şandin.",
+	"apihelp-expandtemplates-param-title": "Sernavê rûpelê.",
+	"apihelp-feedcontributions-param-deletedonly": "Tenê beşdariyên jêbirî nîşan bide.",
+	"apihelp-feedrecentchanges-example-simple": "Guherandinên dawî nîşan bide.",
+	"apihelp-feedrecentchanges-example-30days": "Guherandinên dawî yên 30 rojan nîşan bide",
+	"apihelp-help-example-recursive": "Hemû alîkarî di rûpelekê de.",
+	"apihelp-login-param-name": "Navê bikarhêner.",
+	"apihelp-login-param-password": "Şîfre.",
+	"apihelp-login-example-login": "Têkeve.",
+	"apihelp-move-param-reason": "Sedemê bo guherandina nav.",
+	"apihelp-move-param-ignorewarnings": "Guh nede hişyariyan.",
+	"apihelp-tag-param-reason": "Sedemê bo guherandinê."
 }

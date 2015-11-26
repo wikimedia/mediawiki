@@ -335,7 +335,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'Paginataal' ),
 	'PasswordReset'             => array( 'WachtwoordOpnieuwInstellen' ),
 	'PermanentLink'             => array( 'PermanenteVerwijzing' ),
-
 	'Preferences'               => array( 'Voorkeuren' ),
 	'Prefixindex'               => array( 'Voorvoegselindex' ),
 	'Protectedpages'            => array( 'BeveiligdePaginas', 'BeveiligdePagina\'s', 'BeschermdePaginas', 'BeschermdePagina’s', 'BeschermdePagina\'s' ),

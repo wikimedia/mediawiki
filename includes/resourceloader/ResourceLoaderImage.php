@@ -54,15 +54,16 @@ class ResourceLoaderImage {
 		$this->variants = $variants;
 
 		// Expand shorthands:
-		// array( "en,de,fr" => "foo.svg" ) → array( "en" => "foo.svg", "de" => "foo.svg", "fr" => "foo.svg" )
+		// array( "en,de,fr" => "foo.svg" )
+		// → array( "en" => "foo.svg", "de" => "foo.svg", "fr" => "foo.svg" )
 		if ( is_array( $this->descriptor ) && isset( $this->descriptor['lang'] ) ) {
 			foreach ( array_keys( $this->descriptor['lang'] ) as $langList ) {
 				if ( strpos( $langList, ',' ) !== false ) {
 					$this->descriptor['lang'] += array_fill_keys(
 						explode( ',', $langList ),
-						$this->descriptor['lang'][ $langList ]
+						$this->descriptor['lang'][$langList]
 					);
-					unset( $this->descriptor['lang'][ $langList ] );
+					unset( $this->descriptor['lang'][$langList] );
 				}
 			}
 		}
@@ -75,11 +76,15 @@ class ResourceLoaderImage {
 		} );
 		$extensions = array_unique( $extensions );
 		if ( count( $extensions ) !== 1 ) {
-			throw new InvalidArgumentException( "File type for different image files of '$name' not the same" );
+			throw new InvalidArgumentException(
+				"File type for different image files of '$name' not the same"
+			);
 		}
 		$ext = $extensions[0];
 		if ( !isset( self::$fileTypes[$ext] ) ) {
-			throw new InvalidArgumentException( "Invalid file type for image files of '$name' (valid: svg, png, gif, jpg)" );
+			throw new InvalidArgumentException(
+				"Invalid file type for image files of '$name' (valid: svg, png, gif, jpg)"
+			);
 		}
 		$this->extension = $ext;
 	}
@@ -117,14 +122,14 @@ class ResourceLoaderImage {
 	 * @param ResourceLoaderContext $context Any context
 	 * @return string
 	 */
-	protected function getPath( ResourceLoaderContext $context ) {
+	public function getPath( ResourceLoaderContext $context ) {
 		$desc = $this->descriptor;
 		if ( is_string( $desc ) ) {
 			return $this->basePath . '/' . $desc;
-		} elseif ( isset( $desc['lang'][ $context->getLanguage() ] ) ) {
-			return $this->basePath . '/' . $desc['lang'][ $context->getLanguage() ];
-		} elseif ( isset( $desc[ $context->getDirection() ] ) ) {
-			return $this->basePath . '/' . $desc[ $context->getDirection() ];
+		} elseif ( isset( $desc['lang'][$context->getLanguage()] ) ) {
+			return $this->basePath . '/' . $desc['lang'][$context->getLanguage()];
+		} elseif ( isset( $desc[$context->getDirection()] ) ) {
+			return $this->basePath . '/' . $desc[$context->getDirection()];
 		} else {
 			return $this->basePath . '/' . $desc['default'];
 		}

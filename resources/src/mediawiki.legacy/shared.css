@@ -2,6 +2,11 @@
  * CSS in this file is used by *all* skins (that have any CSS at all). Be
  * careful what you put in here, since what looks good in one skin may not in
  * another, but don't ignore the poor pre-Monobook users either.
+ *
+ * NOTE: The images which are referenced in this file are no longer in use in
+ * essential interface components. They should NOT be embedded, because that
+ * optimizes for the uncommon case at the cost of bloating the size of render-
+ * blocking CSS common to all pages.
  */
 
 /* GENERAL CLASSES FOR DIRECTIONALITY SUPPORT */
@@ -78,6 +83,14 @@ abbr[title],
 	cursor: help;
 }
 
+@supports (text-decoration: underline dotted) {
+	abbr[title],
+	.explain[title] {
+		border-bottom: none;
+		text-decoration: underline dotted;
+	}
+}
+
 /* Colored watchlist and recent changes numbers */
 .mw-plusminus-pos {
 	color: #006400; /* dark green */
@@ -113,13 +126,9 @@ abbr[title],
 	font-style: italic;
 }
 
-/* Comment and username portions of RC entries */
+/* Comment portions of RC entries */
 span.comment {
 	font-style: italic;
-}
-
-span.changedby {
-	font-size: 95%;
 }
 
 /* Math */
@@ -149,49 +158,6 @@ span.texhtml {
 #toolbar,
 #wpTextbox1 {
 	clear: both;
-}
-
-/**
- * File description page
- */
-
-div.mw-filepage-resolutioninfo {
-	font-size: smaller;
-}
-
-/**
- * File histories
- */
-h2#filehistory {
-	clear: both;
-}
-
-table.filehistory th,
-table.filehistory td {
-	vertical-align: top;
-}
-
-table.filehistory th {
-	text-align: left;
-}
-
-table.filehistory td.mw-imagepage-filesize,
-table.filehistory th.mw-imagepage-filesize {
-	white-space: nowrap;
-}
-
-table.filehistory td.filehistory-selected {
-	font-weight: bold;
-}
-
-/**
- * Add a checkered background image on hover for file
- * description pages. (bug 26470)
- */
-.filehistory a img,
-#file img:hover {
-	/* @embed */
-	background: white url(images/checker.png) repeat;
 }
 
 /**
@@ -237,71 +203,11 @@ td.mw-submit {
 }
 
 td.mw-label {
-	vertical-align: top;
-}
-
-.prefsection td.mw-label {
-	width: 20%;
-}
-
-.prefsection table {
-	width: 100%;
-}
-
-.prefsection table.mw-htmlform-matrix {
-	width: auto;
-}
-
-.mw-icon-question {
-	/* SVG support using a transparent gradient to guarantee cross-browser
-	 * compatibility (browsers able to understand gradient syntax support also SVG).
-	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
-	background-image: url(images/question.png);
-	/* @embed */
-	background-image: -webkit-linear-gradient(transparent, transparent), url(images/question.svg);
-	/* @embed */
-	background-image: linear-gradient(transparent, transparent), url(images/question.svg);
-	background-repeat: no-repeat;
-	background-size: 13px 13px;
-	display: inline-block;
-	height: 13px;
-	width: 13px;
-	margin-left: 4px;
-}
-
-.mw-icon-question:lang(ar),
-.mw-icon-question:lang(fa),
-.mw-icon-question:lang(ur) {
-	-webkit-transform: scaleX(-1);
-	-ms-transform: scaleX(-1);
-	transform: scaleX(-1);
+	vertical-align: middle;
 }
 
 td.mw-submit {
 	white-space: nowrap;
-}
-
-table.mw-htmlform-nolabel td.mw-label {
-	width: 1px;
-}
-
-tr.mw-htmlform-vertical-label td.mw-label {
-	text-align: left !important;
-}
-
-.mw-htmlform-invalid-input td.mw-input input {
-	border-color: red;
-}
-
-.mw-htmlform-flatlist div.mw-htmlform-flatlist-item {
-	display: inline;
-	margin-right: 1em;
-	white-space: nowrap;
-}
-
-.mw-htmlform-matrix td {
-	padding-left: 0.5em;
-	padding-right: 0.5em;
 }
 
 input#wpSummary {
@@ -437,11 +343,6 @@ p.mw-upload-editlicenses {
 	font-weight: bold;
 }
 
-#shared-image-dup,
-#shared-image-conflict {
-	font-style: italic;
-}
-
 /**
  * Recreating deleted page warning
  * Reupload file warning
@@ -479,22 +380,6 @@ th.mw-revdel-checkbox {
 /* red links; see bug 36276 */
 a.new {
 	color: #BA0000;
-}
-
-/* feed links */
-a.feedlink {
-	/* SVG support using a transparent gradient to guarantee cross-browser
-	 * compatibility (browsers able to understand gradient syntax support also SVG).
-	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
-	background-image: url(images/feed-icon.png);
-	/* @embed */
-	background-image: -webkit-linear-gradient(transparent, transparent), url(images/feed-icon.svg);
-	/* @embed */
-	background-image: linear-gradient(transparent, transparent), url(images/feed-icon.svg);
-	background-position: center left;
-	background-repeat: no-repeat;
-	background-size: 12px 12px;
-	padding-left: 16px;
 }
 
 /* Plainlinks - this can be used to switch
@@ -566,7 +451,6 @@ table.wikitable > caption {
 	border: 1px solid;
 	padding: .5em 1em;
 	margin-bottom: 1em;
-	display: -moz-inline-block;
 	display: inline-block;
 	zoom: 1;
 	*display: inline;
@@ -663,24 +547,6 @@ table.wikitable > caption {
 	background-color: #eeeeff;
 }
 
-/* filetoc */
-ul#filetoc {
-	text-align: center;
-	border: 1px solid #aaaaaa;
-	background-color: #f9f9f9;
-	padding: 5px;
-	font-size: 95%;
-	margin-bottom: 0.5em;
-	margin-left: 0;
-	margin-right: 0;
-}
-
-#filetoc li {
-	display: inline;
-	list-style-type: none;
-	padding-right: 2em;
-}
-
 /* Classes for Exif data display */
 table.mw_metadata {
 	font-size: 0.8em;
@@ -773,110 +639,7 @@ table.mw_metadata ul.metadata-langlist {
 	margin-left: 0;
 }
 
-/* Galleries */
-/* These display attributes look nonsensical, but are needed to support IE and FF2 */
-/* Don't forget to update commonPrint.css */
-li.gallerybox {
-	vertical-align: top;
-	display: -moz-inline-box;
-	display: inline-block;
-}
-
-ul.gallery,
-li.gallerybox {
-	zoom: 1;
-	*display: inline;
-}
-
-ul.gallery {
-	margin: 2px;
-	padding: 2px;
-	display: block;
-}
-
-li.gallerycaption {
-	font-weight: bold;
-	text-align: center;
-	display: block;
-	word-wrap: break-word;
-}
-
-li.gallerybox div.thumb {
-	text-align: center;
-	border: 1px solid #ccc;
-	background-color: #f9f9f9;
-	margin: 2px;
-}
-
-li.gallerybox div.thumb img {
-	display: block;
-	margin: 0 auto;
-}
-
-div.gallerytext {
-	overflow: hidden;
-	font-size: 94%;
-	padding: 2px 4px;
-	word-wrap: break-word;
-}
-
-/* new gallery stuff */
-ul.mw-gallery-nolines li.gallerybox div.thumb {
-	background-color: transparent;
-	border: none;
-}
-
-ul.mw-gallery-nolines li.gallerybox div.gallerytext {
-	text-align: center;
-}
-
-/* height constrained gallery */
-
-ul.mw-gallery-packed li.gallerybox div.thumb,
-ul.mw-gallery-packed-overlay li.gallerybox div.thumb,
-ul.mw-gallery-packed-hover li.gallerybox div.thumb {
-	background-color: transparent;
-	border: none;
-}
-
-ul.mw-gallery-packed li.gallerybox div.thumb img,
-ul.mw-gallery-packed-overlay li.gallerybox div.thumb img,
-ul.mw-gallery-packed-hover li.gallerybox div.thumb img {
-	margin: 0 auto;
-}
-
-ul.mw-gallery-packed-hover li.gallerybox,
-ul.mw-gallery-packed-overlay li.gallerybox {
-	position: relative;
-}
-
-ul.mw-gallery-packed-hover div.gallerytextwrapper {
-	overflow: hidden;
-	height: 0;
-}
-
-ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper,
-ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper,
-ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper {
-	position: absolute;
-	background: white;
-	background: rgba(255, 255, 255, 0.8);
-	padding: 5px 10px;
-	bottom: 0;
-	left: 0; /* Needed for IE */
-	height: auto;
-	font-weight: bold;
-	margin: 2px; /* correspond to style on div.thumb */
-}
-
-ul.mw-gallery-packed-hover,
-ul.mw-gallery-packed-overlay,
-ul.mw-gallery-packed {
-	text-align: center;
-}
-
 .mw-ajax-loader {
-	/* @embed */
 	background-image: url(images/ajax-loader.gif);
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -888,7 +651,6 @@ ul.mw-gallery-packed {
 .mw-small-spinner {
 	padding: 10px !important;
 	margin-right: 0.6em;
-	/* @embed */
 	background-image: url(images/spinner.gif);
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -945,6 +707,7 @@ h2:lang(te), h3:lang(te), h4:lang(te), h5:lang(te), h6:lang(te) {
 }
 
 /* Localised ordered list numbering for some languages */
+ol:lang(azb) li,
 ol:lang(bcc) li,
 ol:lang(bgn) li,
 ol:lang(bqi) li,
@@ -952,13 +715,14 @@ ol:lang(fa) li,
 ol:lang(glk) li,
 ol:lang(kk-arab) li,
 ol:lang(lrc) li,
-ol:lang(mzn) li,
-ol:lang(sdh) li {
+ol:lang(luz) li,
+ol:lang(mzn) li {
 	list-style-type: -moz-persian;
 	list-style-type: persian;
 }
 
-ol:lang(ckb) li {
+ol:lang(ckb) li,
+ol:lang(sdh) li {
 	list-style-type: -moz-arabic-indic;
 	list-style-type: arabic-indic;
 }
@@ -1026,7 +790,6 @@ ol:lang(or) li {
 	margin-left: 2px;
 	margin-bottom: -8px;
 	padding: 0 0 0 15px;
-	/* @embed */
 	background-image: url(images/help-question.gif);
 	background-position: left center;
 	background-repeat: no-repeat;
@@ -1037,7 +800,6 @@ ol:lang(or) li {
 }
 
 .mw-help-field-hint:hover {
-	/* @embed */
 	background-image: url(images/help-question-hover.gif);
 }
 

@@ -22,6 +22,8 @@
  * @author Roan Kattouw
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Object passed around to modules which contains information about the state
  * of a specific loader request
@@ -57,24 +59,26 @@ class ResourceLoaderContext {
 		$this->resourceLoader = $resourceLoader;
 		$this->request = $request;
 
-		// Interpret request
 		// List of modules
 		$modules = $request->getVal( 'modules' );
 		$this->modules = $modules ? self::expandModuleNames( $modules ) : array();
+
 		// Various parameters
-		$this->skin = $request->getVal( 'skin' );
 		$this->user = $request->getVal( 'user' );
 		$this->debug = $request->getFuzzyBool(
-			'debug', $resourceLoader->getConfig()->get( 'ResourceLoaderDebug' )
+			'debug',
+			$resourceLoader->getConfig()->get( 'ResourceLoaderDebug' )
 		);
-		$this->only = $request->getVal( 'only' );
-		$this->version = $request->getVal( 'version' );
+		$this->only = $request->getVal( 'only', null );
+		$this->version = $request->getVal( 'version', null );
 		$this->raw = $request->getFuzzyBool( 'raw' );
+
 		// Image requests
 		$this->image = $request->getVal( 'image' );
 		$this->variant = $request->getVal( 'variant' );
 		$this->format = $request->getVal( 'format' );
 
+		$this->skin = $request->getVal( 'skin' );
 		$skinnames = Skin::getSkinNames();
 		// If no skin is specified, or we don't recognize the skin, use the default skin
 		if ( !$this->skin || !isset( $skinnames[$this->skin] ) ) {
@@ -123,7 +127,8 @@ class ResourceLoaderContext {
 	 */
 	public static function newDummyContext() {
 		return new self( new ResourceLoader(
-			ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+			ConfigFactory::getDefaultInstance()->makeConfig( 'main' ),
+			LoggerFactory::getInstance( 'resourceloader' )
 		), new FauxRequest( array() ) );
 	}
 
@@ -154,7 +159,7 @@ class ResourceLoaderContext {
 	public function getLanguage() {
 		if ( $this->language === null ) {
 			// Must be a valid language code after this point (bug 62849)
-			$this->language = RequestContext::sanitizeLangCode( $this->request->getVal( 'lang' ) );
+			$this->language = RequestContext::sanitizeLangCode( $this->getRequest()->getVal( 'lang' ) );
 		}
 		return $this->language;
 	}
@@ -164,7 +169,7 @@ class ResourceLoaderContext {
 	 */
 	public function getDirection() {
 		if ( $this->direction === null ) {
-			$this->direction = $this->request->getVal( 'dir' );
+			$this->direction = $this->getRequest()->getVal( 'dir' );
 			if ( !$this->direction ) {
 				// Determine directionality based on user language (bug 6100)
 				$this->direction = Language::factory( $this->getLanguage() )->getDir();
@@ -174,7 +179,7 @@ class ResourceLoaderContext {
 	}
 
 	/**
-	 * @return string|null
+	 * @return string
 	 */
 	public function getSkin() {
 		return $this->skin;
@@ -227,6 +232,8 @@ class ResourceLoaderContext {
 	}
 
 	/**
+	 * @see ResourceLoaderModule::getVersionHash
+	 * @see OutputPage::makeResourceLoaderLink
 	 * @return string|null
 	 */
 	public function getVersion() {
@@ -285,7 +292,7 @@ class ResourceLoaderContext {
 				return $this->imageObj;
 			}
 
-			$image = $module->getImage( $this->image );
+			$image = $module->getImage( $this->image, $this );
 			if ( !$image ) {
 				return $this->imageObj;
 			}
@@ -300,21 +307,21 @@ class ResourceLoaderContext {
 	 * @return bool
 	 */
 	public function shouldIncludeScripts() {
-		return is_null( $this->getOnly() ) || $this->getOnly() === 'scripts';
+		return $this->getOnly() === null || $this->getOnly() === 'scripts';
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function shouldIncludeStyles() {
-		return is_null( $this->getOnly() ) || $this->getOnly() === 'styles';
+		return $this->getOnly() === null || $this->getOnly() === 'styles';
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function shouldIncludeMessages() {
-		return is_null( $this->getOnly() ) || $this->getOnly() === 'messages';
+		return $this->getOnly() === null;
 	}
 
 	/**

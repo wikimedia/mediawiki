@@ -41,7 +41,7 @@ class CoreParserFunctions {
 		$noHashFunctions = array(
 			'ns', 'nse', 'urlencode', 'lcfirst', 'ucfirst', 'lc', 'uc',
 			'localurl', 'localurle', 'fullurl', 'fullurle', 'canonicalurl',
-			'canonicalurle', 'formatnum', 'grammar', 'gender', 'plural',
+			'canonicalurle', 'formatnum', 'grammar', 'gender', 'plural', 'bidi',
 			'numberofpages', 'numberofusers', 'numberofactiveusers',
 			'numberofarticles', 'numberoffiles', 'numberofadmins',
 			'numberingroup', 'numberofedits', 'language',
@@ -88,9 +88,13 @@ class CoreParserFunctions {
 		if ( strval( $part1 ) !== '' ) {
 			$args = array_slice( func_get_args(), 2 );
 			$message = wfMessage( $part1, $args )
-				->inLanguage( $parser->getOptions()->getUserLangObj() )->plain();
-
-			return array( $message, 'noparse' => false );
+				->inLanguage( $parser->getOptions()->getUserLangObj() );
+			if ( !$message->exists() ) {
+				// When message does not exists, the message name is surrounded by angle
+				// and can result in a tag, therefore escape the angles
+				return $message->escaped();
+			}
+			return array( $message->plain(), 'noparse' => false );
 		} else {
 			return array( 'found' => false );
 		}
@@ -178,7 +182,9 @@ class CoreParserFunctions {
 			default:
 				$func = 'urlencode';
 		}
-		return $parser->markerSkipCallback( $s, $func );
+		// See T105242, where the choice to kill markers and various
+		// other options were discussed.
+		return $func( $parser->killMarkers( $s ) );
 	}
 
 	public static function lcfirst( $parser, $s = '' ) {
@@ -351,6 +357,15 @@ class CoreParserFunctions {
 		$text = $parser->getFunctionLang()->parseFormattedNumber( $text );
 		settype( $text, ctype_digit( $text ) ? 'int' : 'float' );
 		return $parser->getFunctionLang()->convertPlural( $text, $forms );
+	}
+
+	/**
+	 * @param Parser $parser
+	 * @param string $text
+	 * @return string
+	 */
+	public static function bidi( $parser, $text = '' ) {
+		return $parser->getFunctionLang()->embedBidi( $text );
 	}
 
 	/**

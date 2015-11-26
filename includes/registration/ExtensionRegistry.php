@@ -12,6 +12,11 @@
 class ExtensionRegistry {
 
 	/**
+	 * "requires" key that applies to MediaWiki core/$wgVersion
+	 */
+	const MEDIAWIKI_CORE = 'MediaWiki';
+
+	/**
 	 * Version of the highest supported manifest version
 	 */
 	const MANIFEST_VERSION = 1;
@@ -81,7 +86,7 @@ class ExtensionRegistry {
 		// we don't want to fail here if $wgObjectCaches is not configured
 		// properly for APC setup
 		try {
-			$this->cache = ObjectCache::newAccelerator( array() );
+			$this->cache = ObjectCache::newAccelerator();
 		} catch ( MWException $e ) {
 			$this->cache = new EmptyBagOStuff();
 		}
@@ -156,20 +161,52 @@ class ExtensionRegistry {
 	 * @throws Exception
 	 */
 	public function readFromQueue( array $queue ) {
-		$data = array( 'globals' => array( 'wgAutoloadClasses' => array() ) );
+		global $wgVersion;
 		$autoloadClasses = array();
 		$processor = new ExtensionProcessor();
+		$incompatible = array();
+		$coreVersionParser = new CoreVersionChecker( $wgVersion );
 		foreach ( $queue as $path => $mtime ) {
 			$json = file_get_contents( $path );
+			if ( $json === false ) {
+				throw new Exception( "Unable to read $path, does it exist?" );
+			}
 			$info = json_decode( $json, /* $assoc = */ true );
 			if ( !is_array( $info ) ) {
 				throw new Exception( "$path is not a valid JSON file." );
+			}
+			if ( !isset( $info['manifest_version'] ) ) {
+				// For backwards-compatability, assume a version of 1
+				$info['manifest_version'] = 1;
+			}
+			$version = $info['manifest_version'];
+			if ( $version < self::OLDEST_MANIFEST_VERSION || $version > self::MANIFEST_VERSION ) {
+				throw new Exception( "$path: unsupported manifest_version: {$version}" );
 			}
 			$autoload = $this->processAutoLoader( dirname( $path ), $info );
 			// Set up the autoloader now so custom processors will work
 			$GLOBALS['wgAutoloadClasses'] += $autoload;
 			$autoloadClasses += $autoload;
-			$processor->extractInfo( $path, $info );
+			// Check any constraints against MediaWiki core
+			$requires = $processor->getRequirements( $info );
+			if ( isset( $requires[self::MEDIAWIKI_CORE] )
+				&& !$coreVersionParser->check( $requires[self::MEDIAWIKI_CORE] )
+			) {
+				// Doesn't match, mark it as incompatible.
+				$incompatible[] = "{$info['name']} is not compatible with the current "
+					. "MediaWiki core (version {$wgVersion}), it requires: ". $requires[self::MEDIAWIKI_CORE]
+					. '.';
+				continue;
+			}
+			// Compatible, read and extract info
+			$processor->extractInfo( $path, $info, $version );
+		}
+		if ( $incompatible ) {
+			if ( count( $incompatible ) === 1 ) {
+				throw new Exception( $incompatible[0] );
+			} else {
+				throw new Exception( implode( "\n", $incompatible ) );
+			}
 		}
 		$data = $processor->getExtractedInfo();
 		// Need to set this so we can += to it later
@@ -212,14 +249,7 @@ class ExtensionRegistry {
 					$GLOBALS[$key] = array_merge_recursive( $GLOBALS[$key], $val );
 					break;
 				case 'array_plus_2d':
-					// First merge items that are in both arrays
-					foreach ( $GLOBALS[$key] as $name => &$groupVal ) {
-						if ( isset( $val[$name] ) ) {
-							$groupVal += $val[$name];
-						}
-					}
-					// Now add items that didn't exist yet
-					$GLOBALS[$key] += $val;
+					$GLOBALS[$key] = wfArrayPlus2d( $GLOBALS[$key], $val );
 					break;
 				case 'array_plus':
 					$GLOBALS[$key] += $val;

@@ -24,11 +24,6 @@
  * @defgroup Constants MediaWiki constants
  */
 
-/**
- * Version constants for the benefit of extensions
- */
-define( 'MW_SPECIALPAGE_VERSION', 2 );
-
 /**@{
  * Database related constants
  */
@@ -203,7 +198,7 @@ define( 'LIST_OR', 4 );
 /**
  * Unicode and normalisation related
  */
-require_once __DIR__ . '/libs/normal/UtfNormalDefines.php';
+require_once __DIR__ . '/compat/normal/UtfNormalDefines.php';
 
 /**@{
  * Hook support constants

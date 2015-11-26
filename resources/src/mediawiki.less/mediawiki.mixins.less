@@ -52,7 +52,7 @@
 .list-style-image-svg(@svg, @fallback) {
 	list-style-image: e('/* @embed */') url(@svg);
 	/* Fallback to PNG bullet for IE 8 and below using CSS hack */
-	list-style-image: e('/* @embed */') url(@fallback)\9;
+	list-style-image: e('/* @embed */') url(@fallback) e('\9');
 }
 
 .transition(@value) {
@@ -85,7 +85,7 @@
 	column-width: @value;// IE 10+
 }
 
-.column-break-inside-avoid {
+.column-break-inside-avoid() {
 	-webkit-column-break-inside: avoid; // Chrome Any, Safari 3+, Opera 11.1+
 	page-break-inside: avoid; // Firefox 1.5+
 	break-inside: avoid-column; // IE 10+

@@ -45,7 +45,11 @@ class ProfilerOutputDump extends ProfilerOutput {
 
 	public function log( array $stats ) {
 		$data = $this->collector->getRawData();
-		$filename = sprintf( "%s/%s.%s%s", $this->params['outputDir'], uniqid(), $this->collector->getProfileID(), $this->suffix );
+		$filename = sprintf( "%s/%s.%s%s",
+			$this->params['outputDir'],
+			uniqid(),
+			$this->collector->getProfileID(),
+			$this->suffix );
 		file_put_contents( $filename, serialize( $data ) );
 	}
 }

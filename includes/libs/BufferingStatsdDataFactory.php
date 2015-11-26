@@ -20,6 +20,8 @@
  * @file
  */
 
+use Liuggio\StatsdClient\Entity\StatsdData;
+use Liuggio\StatsdClient\Entity\StatsdDataInterface;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 
 /**
@@ -38,11 +40,28 @@ class BufferingStatsdDataFactory extends StatsdDataFactory {
 		$this->prefix = $prefix;
 	}
 
-	public function produceStatsdData( $key, $value = 1, $metric = self::STATSD_METRIC_COUNT ) {
-		$this->buffer[] = $entity = $this->produceStatsdDataEntity();
+	/**
+	 * Normalize a metric key for StatsD
+	 *
+	 * Replace occurences of '::' with dots and any other non-alphanumeric
+	 * characters with underscores. Combine runs of dots or underscores.
+	 * Then trim leading or trailing dots or underscores.
+	 *
+	 * @param string $key
+	 * @since 1.26
+	 */
+	private static function normalizeMetricKey( $key ) {
+		$key = preg_replace( '/[:.]+/', '.', $key );
+		$key = preg_replace( '/[^a-z0-9.]+/i', '_', $key );
+		$key = trim( $key, '_.' );
+		return str_replace( array( '._', '_.' ), '.', $key );
+	}
+
+	public function produceStatsdData( $key, $value = 1, $metric = StatsdDataInterface::STATSD_METRIC_COUNT ) {
+		$entity = $this->produceStatsdDataEntity();
 		if ( $key !== null ) {
-			$prefixedKey = ltrim( $this->prefix . '.' . $key, '.' );
-			$entity->setKey( $prefixedKey );
+			$key = self::normalizeMetricKey( "{$this->prefix}.{$key}" );
+			$entity->setKey( $key );
 		}
 		if ( $value !== null ) {
 			$entity->setValue( $value );
@@ -50,9 +69,16 @@ class BufferingStatsdDataFactory extends StatsdDataFactory {
 		if ( $metric !== null ) {
 			$entity->setMetric( $metric );
 		}
+		// Don't bother buffering a counter update with a delta of zero.
+		if ( !( $metric === StatsdDataInterface::STATSD_METRIC_COUNT && !$value ) ) {
+			$this->buffer[] = $entity;
+		}
 		return $entity;
 	}
 
+	/**
+	 * @return StatsdData[]
+	 */
 	public function getBuffer() {
 		return $this->buffer;
 	}

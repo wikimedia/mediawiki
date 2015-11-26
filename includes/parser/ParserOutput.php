@@ -41,7 +41,6 @@ class ParserOutput extends CacheTime {
 		$mModules = array(),          # Modules to be loaded by the resource loader
 		$mModuleScripts = array(),    # Modules of which only the JS will be loaded by the resource loader
 		$mModuleStyles = array(),     # Modules of which only the CSSS will be loaded by the resource loader
-		$mModuleMessages = array(),   # Modules of which only the messages will be loaded by the resource loader
 		$mJsConfigVars = array(),     # JavaScript config variable for mw.config combined with this page
 		$mOutputHooks = array(),      # Hook tags as per $wgParserOutputHooks
 		$mWarnings = array(),         # Warning text to be returned to the user. Wikitext formatted, in the key only
@@ -50,7 +49,8 @@ class ParserOutput extends CacheTime {
 		$mProperties = array(),       # Name/value pairs to be cached in the DB
 		$mTOCHTML = '',               # HTML of the TOC
 		$mTimestamp,                  # Timestamp of the revision
-		$mTOCEnabled = true;          # Whether TOC should be shown, can't override __NOTOC__
+		$mTOCEnabled = true,          # Whether TOC should be shown, can't override __NOTOC__
+		$mEnableOOUI = false;         # Whether OOUI should be enabled
 	private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
 	private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
 	private $mExtensionData = array(); # extra data used by extensions
@@ -104,7 +104,7 @@ class ParserOutput extends CacheTime {
 			$text = str_replace( array( Parser::TOC_START, Parser::TOC_END ), '', $text );
 		} else {
 			$text = preg_replace(
-				'#' . preg_quote( Parser::TOC_START ) . '.*?' . preg_quote( Parser::TOC_END ) . '#s',
+				'#' . preg_quote( Parser::TOC_START, '#' ) . '.*?' . preg_quote( Parser::TOC_END, '#' ) . '#s',
 				'',
 				$text
 			);
@@ -191,8 +191,13 @@ class ParserOutput extends CacheTime {
 		return $this->mModuleStyles;
 	}
 
+	/**
+	 * @deprecated since 1.26 Obsolete
+	 * @return array
+	 */
 	public function getModuleMessages() {
-		return $this->mModuleMessages;
+		wfDeprecated( __METHOD__, '1.26' );
+		return array();
 	}
 
 	/** @since 1.23 */
@@ -226,6 +231,10 @@ class ParserOutput extends CacheTime {
 
 	public function getTOCEnabled() {
 		return $this->mTOCEnabled;
+	}
+
+	public function getEnableOOUI() {
+		return $this->mEnableOOUI;
 	}
 
 	public function setText( $text ) {
@@ -277,6 +286,17 @@ class ParserOutput extends CacheTime {
 	 */
 	public function setIndicator( $id, $content ) {
 		$this->mIndicators[$id] = $content;
+	}
+
+	/**
+	 * Enables OOUI, if true, in any OutputPage instance this ParserOutput
+	 * object is added to.
+	 *
+	 * @since 1.26
+	 * @param bool $enable If OOUI should be enabled or not
+	 */
+	public function setEnableOOUI( $enable = false ) {
+		$this->mEnableOOUI = $enable;
 	}
 
 	public function addLanguageLink( $t ) {
@@ -445,8 +465,12 @@ class ParserOutput extends CacheTime {
 		$this->mModuleStyles = array_merge( $this->mModuleStyles, (array)$modules );
 	}
 
+	/**
+	 * @deprecated since 1.26 Use addModules() instead
+	 * @param string|array $modules
+	 */
 	public function addModuleMessages( $modules ) {
-		$this->mModuleMessages = array_merge( $this->mModuleMessages, (array)$modules );
+		wfDeprecated( __METHOD__, '1.26' );
 	}
 
 	/**
@@ -476,7 +500,6 @@ class ParserOutput extends CacheTime {
 		$this->addModules( $out->getModules() );
 		$this->addModuleScripts( $out->getModuleScripts() );
 		$this->addModuleStyles( $out->getModuleStyles() );
-		$this->addModuleMessages( $out->getModuleMessages() );
 		$this->addJsConfigVars( $out->getJsConfigVars() );
 
 		$this->mHeadItems = array_merge( $this->mHeadItems, $out->getHeadItemsArray() );
@@ -663,6 +686,8 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Tags a parser option for use in the cache key for this parser output.
 	 * Registered as a watcher at ParserOptions::registerWatcher() by Parser::clearState().
+	 * The information gathered here is available via getUsedOptions(),
+	 * and is used by ParserCache::save().
 	 *
 	 * @see ParserCache::getKey
 	 * @see ParserCache::save

@@ -204,13 +204,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback();
 			}
-
-			// don't ignore DB errors
-			$this->db->ignoreErrors( false );
 		}
 
 		DeferredUpdates::clearPendingUpdates();
 
+		ob_start( 'MediaWikiTestCase::wfResetOutputBuffersBarrier' );
 	}
 
 	protected function addTmpFiles( $files ) {
@@ -218,6 +216,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	protected function tearDown() {
+		$status = ob_get_status();
+		if ( isset( $status['name'] ) && $status['name'] === 'MediaWikiTestCase::wfResetOutputBuffersBarrier' ) {
+			ob_end_flush();
+		}
+
 		$this->called['tearDown'] = true;
 		// Cleaning up temporary files
 		foreach ( $this->tmpFiles as $fileName ) {
@@ -233,9 +236,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback();
 			}
-
-			// don't ignore DB errors
-			$this->db->ignoreErrors( false );
 		}
 
 		// Restore mw globals
@@ -716,9 +716,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param string $function
 	 */
 	public function hideDeprecated( $function ) {
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		wfDeprecated( $function );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 	}
 
 	/**
@@ -1002,9 +1002,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		# This check may also protect against code injection in
 		# case of broken installations.
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( !$haveDiff3 ) {
 			$this->markTestSkipped( "Skip test, since diff3 is not configured" );
@@ -1117,7 +1117,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		// of tidy. In that case however, we can not reliably detect whether a failing validation
 		// is due to malformed HTML, or caused by tidy not being installed as a command line tool.
 		// That would cause all HTML assertions to fail on a system that has no tidy installed.
-		if ( !$GLOBALS['wgTidyInternal'] ) {
+		if ( !$GLOBALS['wgTidyInternal'] || !MWTidy::isEnabled() ) {
 			$this->markTestSkipped( 'Tidy extension not installed' );
 		}
 
@@ -1179,5 +1179,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		//trigger_error(__METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
 		self::assertFalse( self::tagMatch( $matcher, $actual, $isHtml ), $message );
+	}
+
+	/**
+	 * Used as a marker to prevent wfResetOutputBuffers from breaking PHPUnit.
+	 * @return string
+	 */
+	public static function wfResetOutputBuffersBarrier( $buffer ) {
+		return $buffer;
 	}
 }

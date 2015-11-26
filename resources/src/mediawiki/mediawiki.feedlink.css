@@ -1,0 +1,16 @@
+/* Styles for links to RSS/Atom feeds in sidebar */
+
+a.feedlink {
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG).
+	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
+	background-image: url(images/feed-icon.png);
+	/* @embed */
+	background-image: -webkit-linear-gradient(transparent, transparent), url(images/feed-icon.svg);
+	/* @embed */
+	background-image: linear-gradient(transparent, transparent), url(images/feed-icon.svg);
+	background-position: center left;
+	background-repeat: no-repeat;
+	background-size: 12px 12px;
+	padding-left: 16px;
+}

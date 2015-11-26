@@ -72,7 +72,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Мае_размовы' ),
 	'Newimages'                 => array( 'Новыя_файлы' ),
 	'Newpages'                  => array( 'Новыя_старонкі' ),
-
 	'Protectedpages'            => array( 'Абароненыя_старонкі' ),
 	'Protectedtitles'           => array( 'Забароненыя_старонкі' ),
 	'Randompage'                => array( 'Выпадковая_старонка' ),

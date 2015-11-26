@@ -24,6 +24,19 @@
 		cookieVal = mw.cookie.get( cookieKey ),
 		$div, id;
 
+	function removeConfirmation() {
+		$div.remove();
+		mw.hook( 'postEdit.afterRemoval' ).fire();
+	}
+
+	function fadeOutConfirmation() {
+		clearTimeout( id );
+		$div.find( '.postedit' ).addClass( 'postedit postedit-faded' );
+		setTimeout( removeConfirmation, 500 );
+
+		return false;
+	}
+
 	function showConfirmation( data ) {
 		data = data || {};
 		if ( data.message === undefined ) {
@@ -45,19 +58,6 @@
 		id = setTimeout( fadeOutConfirmation, 3000 );
 	}
 
-	function fadeOutConfirmation() {
-		clearTimeout( id );
-		$div.find( '.postedit' ).addClass( 'postedit postedit-faded' );
-		setTimeout( removeConfirmation, 500 );
-
-		return false;
-	}
-
-	function removeConfirmation() {
-		$div.remove();
-		mw.hook( 'postEdit.afterRemoval' ).fire();
-	}
-
 	mw.hook( 'postEdit' ).add( showConfirmation );
 
 	if ( config.wgAction === 'view' && cookieVal ) {
@@ -68,7 +68,7 @@
 			// postedit-confirmation-saved
 			// postedit-confirmation-created
 			// postedit-confirmation-restored
-			'message': mw.msg(
+			message: mw.msg(
 				'postedit-confirmation-' + cookieVal,
 				mw.user
 			)

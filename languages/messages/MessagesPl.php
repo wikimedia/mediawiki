@@ -187,7 +187,6 @@ $specialPageAliases = array(
 	'PagesWithProp'             => array( 'Strony_z_własnością' ),
 	'PasswordReset'             => array( 'Wyczyść_hasło' ),
 	'PermanentLink'             => array( 'Niezmienny_link' ),
-
 	'Preferences'               => array( 'Preferencje' ),
 	'Prefixindex'               => array( 'Strony_według_prefiksu' ),
 	'Protectedpages'            => array( 'Zabezpieczone_strony' ),

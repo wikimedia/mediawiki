@@ -6,6 +6,11 @@
  */
 class SanitizerTest extends MediaWikiTestCase {
 
+	protected function tearDown() {
+		MWTidy::destroySingleton();
+		parent::tearDown();
+	}
+
 	/**
 	 * @covers Sanitizer::decodeCharReferences
 	 */
@@ -93,9 +98,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @param bool $escaped Whether sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
 	 */
 	public function testRemovehtmltagsOnHtml5Tags( $tag, $escaped ) {
-		$this->setMwGlobals( array(
-			'wgUseTidy' => false
-		) );
+		MWTidy::setInstance( false );
 
 		if ( $escaped ) {
 			$this->assertEquals( "&lt;$tag&gt;",
@@ -157,7 +160,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @covers Sanitizer::removeHTMLtags
 	 */
 	public function testRemoveHTMLtags( $input, $output, $msg = null ) {
-		$GLOBALS['wgUseTidy'] = false;
+		MWTidy::setInstance( false );
 		$this->assertEquals( $output, Sanitizer::removeHTMLtags( $input ), $msg );
 	}
 
@@ -360,5 +363,4 @@ class SanitizerTest extends MediaWikiTestCase {
 			array( '&lt;script&gt;foo&lt;/script&gt;', '<script>foo</script>' ),
 		);
 	}
-
 }

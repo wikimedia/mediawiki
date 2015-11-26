@@ -110,6 +110,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	}
 
 	public function execute( $par ) {
+		$this->useTransactionalTimeLimit();
+
 		$this->checkPermissions();
 		$this->checkReadOnly();
 
@@ -158,6 +160,13 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$this->ids
 		);
 
+		# We need a target page!
+		if ( $this->targetObj === null ) {
+			$output->addWikiMsg( 'undelete-header' );
+
+			return;
+		}
+
 		$this->typeLabels = self::$UILabels[$this->typeName];
 		$list = $this->getList();
 		$list->reset();
@@ -168,12 +177,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->mIsAllowed = $this->mIsAllowed && !( $canViewSuppressedOnly && $pageIsSuppressed );
 
 		$this->otherReason = $request->getVal( 'wpReason' );
-		# We need a target page!
-		if ( is_null( $this->targetObj ) ) {
-			$output->addWikiMsg( 'undelete-header' );
-
-			return;
-		}
 		# Give a link to the logs/hist for this page
 		$this->showConvenienceLinks();
 
@@ -449,9 +452,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				Xml::closeElement( 'form' ) . "\n";
 			// Show link to edit the dropdown reasons
 			if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
-				$title = Title::makeTitle( NS_MEDIAWIKI, 'Revdelete-reason-dropdown' );
-				$link = Linker::link(
-					$title,
+				$link = Linker::linkKnown(
+					$this->msg( 'revdelete-reason-dropdown' )->inContentLanguage()->getTitle(),
 					$this->msg( 'revdelete-edit-reasonlist' )->escaped(),
 					array(),
 					array( 'action' => 'edit' )
@@ -585,7 +587,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			throw new PermissionsError( 'suppressrevision' );
 		}
 		# If the save went through, go to success message...
-		$status = $this->save( $bitParams, $comment, $this->targetObj );
+		$status = $this->save( $bitParams, $comment );
 		if ( $status->isGood() ) {
 			$this->success();
 
@@ -605,7 +607,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		// Messages: revdelete-success, logdelete-success
 		$this->getOutput()->setPageTitle( $this->msg( 'actioncomplete' ) );
 		$this->getOutput()->wrapWikiMsg(
-			"<span class=\"success\">\n$1\n</span>",
+			"<div class=\"successbox\">\n$1\n</div>",
 			$this->typeLabels['success']
 		);
 		$this->wasSaved = true;
@@ -620,7 +622,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function failure( $status ) {
 		// Messages: revdelete-failure, logdelete-failure
 		$this->getOutput()->setPageTitle( $this->msg( 'actionfailed' ) );
-		$this->getOutput()->addWikiText( $status->getWikiText( $this->typeLabels['failure'] ) );
+		$this->getOutput()->addWikiText( '<div class="errorbox">' .
+			$status->getWikiText( $this->typeLabels['failure'] ) .
+			'</div>'
+		);
 		$this->showForm();
 	}
 
@@ -648,14 +653,13 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	/**
 	 * Do the write operations. Simple wrapper for RevDel*List::setVisibility().
-	 * @param int $bitfield
+	 * @param array $bitPars ExtractBitParams() bitfield array
 	 * @param string $reason
-	 * @param Title $title
 	 * @return Status
 	 */
-	protected function save( $bitfield, $reason, $title ) {
+	protected function save( array $bitPars, $reason ) {
 		return $this->getList()->setVisibility(
-			array( 'value' => $bitfield, 'comment' => $reason )
+			array( 'value' => $bitPars, 'comment' => $reason )
 		);
 	}
 

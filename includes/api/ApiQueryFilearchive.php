@@ -162,7 +162,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			}
 
 			$file = array();
-			$file['id'] = $row->fa_id;
+			$file['id'] = (int)$row->fa_id;
 			$file['name'] = $row->fa_name;
 			$title = Title::makeTitle( NS_FILE, $row->fa_name );
 			self::addTitleInfo( $file, $title );
@@ -179,7 +179,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			if ( $fld_user &&
 				Revision::userCanBitfield( $row->fa_deleted, File::DELETED_USER, $user )
 			) {
-				$file['userid'] = $row->fa_user;
+				$file['userid'] = (int)$row->fa_user;
 				$file['user'] = $row->fa_user_text;
 			}
 			if ( $fld_sha1 ) {
@@ -274,6 +274,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 					'bitdepth',
 					'archivename',
 				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,

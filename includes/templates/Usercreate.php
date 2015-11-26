@@ -38,8 +38,6 @@ class UsercreateTemplate extends BaseTemplate {
 	}
 
 	function execute() {
-		global $wgCookieExpiration;
-		$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
 ?>
 <div class="mw-ui-container">
 	<?php if ( $this->haveData( 'languages' ) ) { ?>
@@ -72,6 +70,12 @@ class UsercreateTemplate extends BaseTemplate {
 					<?php $this->html( 'message' ); ?>
 			<?php } ?>
 			</div>
+
+			<?php if ( $this->data['formheader'] ) { ?>
+				<div class="mw-form-formheader">
+					<?php $this->html( 'formheader' ); /* extensions such as MobileFrontend add html here */ ?>
+				</div>
+			<?php } ?>
 
 			<div class="mw-ui-vform-field">
 				<label for='wpName2'>

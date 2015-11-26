@@ -52,6 +52,14 @@ class ApiOptions extends ApiBase {
 			$this->dieUsageMsg( array( 'missingparam', 'optionname' ) );
 		}
 
+		// Load the user from the master to reduce CAS errors on double post (T95839)
+		if ( wfGetLB()->getServerCount() > 1 ) {
+			$user = User::newFromId( $user->getId() );
+			if ( !$user->loadFromId( User::READ_LATEST ) ) {
+				$this->dieUsage( 'Anonymous users cannot change preferences', 'notloggedin' );
+			}
+		}
+
 		if ( $params['reset'] ) {
 			$user->resetOptions( $params['resetkinds'], $this->getContext() );
 			$changed = true;
@@ -75,11 +83,17 @@ class ApiOptions extends ApiBase {
 		$prefs = Preferences::getPreferences( $user, $this->getContext() );
 		$prefsKinds = $user->getOptionKinds( $this->getContext(), $changes );
 
+		$htmlForm = null;
 		foreach ( $changes as $key => $value ) {
 			switch ( $prefsKinds[$key] ) {
 				case 'registered':
 					// Regular option.
+					if ( $htmlForm === null ) {
+						// We need a dummy HTMLForm for the validate callback...
+						$htmlForm = new HTMLForm( array(), $this );
+					}
 					$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key] );
+					$field->mParent = $htmlForm;
 					$validation = $field->validate( $value, $user->getOptions() );
 					break;
 				case 'registered-multiselect':

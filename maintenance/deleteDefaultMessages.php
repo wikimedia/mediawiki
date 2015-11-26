@@ -76,10 +76,9 @@ class DeleteDefaultMessages extends Maintenance {
 			$dbw->ping();
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			$page = WikiPage::factory( $title );
-			$dbw->begin( __METHOD__ );
 			$error = ''; // Passed by ref
-			$page->doDeleteArticle( 'No longer required', false, 0, false, $error, $user );
-			$dbw->commit( __METHOD__ );
+			// FIXME: Deletion failures should be reported, not silently ignored.
+			$page->doDeleteArticle( 'No longer required', false, 0, true, $error, $user );
 		}
 
 		$this->output( "done!\n", 'msg' );

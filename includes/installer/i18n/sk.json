@@ -3,7 +3,8 @@
 		"authors": [
 			"Kusavica",
 			"KuboF",
-			"Sudo77(new)"
+			"Sudo77(new)",
+			"Hromoslav"
 		]
 	},
 	"config-desc": "Inštalátor pre MediaWiki",
@@ -50,6 +51,7 @@
 	"config-missing-db-name": "Musíte zadať hodnotu pre \"{{int:config-db-name}}\".",
 	"config-missing-db-host": "Musíte zadať hodnotu pre \"{{int:config-db-host}}\".",
 	"config-missing-db-server-oracle": "Musíte zadať hodnotu pre \"{{int:config-db-host-oracle}}\".",
+	"config-ns-generic": "Projekt",
 	"config-admin-box": "Účet správcu",
 	"config-admin-name": "Vaše používateľské meno:",
 	"config-admin-password": "Heslo:",
@@ -64,6 +66,7 @@
 	"config-optional-skip": "Už ma to nudí, proste nainštaluj wiki.",
 	"config-profile-wiki": "Otvorená wiki",
 	"config-profile-private": "Súkromná wiki",
+	"config-license-pd": "Voľné dielo",
 	"config-email-settings": "Nastavenia e-mailu",
 	"config-install-step-done": "hotovo",
 	"config-install-step-failed": "zlyhalo",

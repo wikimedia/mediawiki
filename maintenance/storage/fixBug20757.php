@@ -312,9 +312,9 @@ class FixBug20757 extends Maintenance {
 		$text = $secondaryRow->old_text;
 		if ( in_array( 'external', $flags ) ) {
 			$url = $text;
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			list( /* $proto */, $path ) = explode( '://', $url, 2 );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 
 			if ( $path == "" ) {
 				return false;

@@ -1030,7 +1030,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		return array(
 			array(
 				0,
-				"0 B",
+				"0 bytes",
 				"Zero bytes"
 			),
 			array(
@@ -1046,7 +1046,7 @@ class LanguageTest extends LanguageClassesTestCase {
 			array(
 				1024 * 1024 * 1024,
 				"1 GB",
-				"1 gigabytes"
+				"1 gigabyte"
 			),
 			array(
 				pow( 1024, 4 ),
@@ -1413,6 +1413,77 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
+	 * @dataProvider provideHebrewNumeralsData
+	 * @covers Language::hebrewNumeral
+	 */
+	public function testHebrewNumeral( $num, $numerals ) {
+		$this->assertEquals(
+			$numerals,
+			Language::hebrewNumeral( $num ),
+			"hebrewNumeral('$num')"
+		);
+	}
+
+	public static function provideHebrewNumeralsData() {
+		return array(
+			array( -1, -1 ),
+			array( 0, 0 ),
+			array( 1, "א'" ),
+			array( 2, "ב'" ),
+			array( 3, "ג'" ),
+			array( 4, "ד'" ),
+			array( 5, "ה'" ),
+			array( 6, "ו'" ),
+			array( 7, "ז'" ),
+			array( 8, "ח'" ),
+			array( 9, "ט'" ),
+			array( 10, "י'" ),
+			array( 11, 'י"א' ),
+			array( 14, 'י"ד' ),
+			array( 15, 'ט"ו' ),
+			array( 16, 'ט"ז' ),
+			array( 17, 'י"ז' ),
+			array( 20, "כ'" ),
+			array( 21, 'כ"א' ),
+			array( 30, "ל'" ),
+			array( 40, "מ'" ),
+			array( 50, "נ'" ),
+			array( 60, "ס'" ),
+			array( 70, "ע'" ),
+			array( 80, "פ'" ),
+			array( 90, "צ'" ),
+			array( 99, 'צ"ט' ),
+			array( 100, "ק'" ),
+			array( 101, 'ק"א' ),
+			array( 110, 'ק"י' ),
+			array( 200, "ר'" ),
+			array( 300, "ש'" ),
+			array( 400, "ת'" ),
+			array( 500, 'ת"ק' ),
+			array( 800, 'ת"ת' ),
+			array( 1000, "א' אלף" ),
+			array( 1001, "א'א'" ),
+			array( 1012, "א'י\"ב" ),
+			array( 1020, "א'ך'" ),
+			array( 1030, "א'ל'" ),
+			array( 1081, "א'פ\"א" ),
+			array( 2000, "ב' אלפים" ),
+			array( 2016, "ב'ט\"ז" ),
+			array( 3000, "ג' אלפים" ),
+			array( 4000, "ד' אלפים" ),
+			array( 4904, "ד'תתק\"ד" ),
+			array( 5000, "ה' אלפים" ),
+			array( 5680, "ה'תר\"ף" ),
+			array( 5690, "ה'תר\"ץ" ),
+			array( 5708, "ה'תש\"ח" ),
+			array( 5720, "ה'תש\"ך" ),
+			array( 5740, "ה'תש\"ם" ),
+			array( 5750, "ה'תש\"ן" ),
+			array( 5775, "ה'תשע\"ה" ),
+		);
+	}
+
+	/**
 	 * @dataProvider providePluralData
 	 * @covers Language::convertPlural
 	 */
@@ -1454,6 +1525,31 @@ class LanguageTest extends LanguageClassesTestCase {
 			array( '', 2, array(
 				'0=explicit zero', '1=explicit one',
 			) ),
+		);
+	}
+
+	/**
+	 * @covers Language::embedBidi()
+	 */
+	public function testEmbedBidi() {
+		$lre = "\xE2\x80\xAA"; // U+202A LEFT-TO-RIGHT EMBEDDING
+		$rle = "\xE2\x80\xAB"; // U+202B RIGHT-TO-LEFT EMBEDDING
+		$pdf = "\xE2\x80\xAC"; // U+202C POP DIRECTIONAL FORMATTING
+		$lang = $this->getLang();
+		$this->assertEquals(
+			'123',
+			$lang->embedBidi( '123' ),
+			'embedBidi with neutral argument'
+		);
+		$this->assertEquals(
+			$lre . 'Ben_(WMF)' . $pdf,
+			$lang->embedBidi( 'Ben_(WMF)' ),
+			'embedBidi with LTR argument'
+		);
+		$this->assertEquals(
+			$rle . 'יהודי (מנוחין)' . $pdf,
+			$lang->embedBidi( 'יהודי (מנוחין)' ),
+			'embedBidi with RTL argument'
 		);
 	}
 

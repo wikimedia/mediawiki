@@ -1,6 +1,6 @@
 <?php
 /**
- * Estonian (Eesti) specific code.
+ * Estonian (eesti) specific code.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,20 +22,18 @@
  */
 
 /**
- * Estonian (Eesti)
+ * Estonian (eesti)
  *
  * @ingroup Language
  */
 class LanguageEt extends Language {
 	/**
-	 * Avoid grouping whole numbers between 0 to 9999
-	 *
+	 * Avoid grouping whole numbers between -9999 to 9999
 	 * @param string $_
-	 *
 	 * @return string
 	 */
 	function commafy( $_ ) {
-		if ( !preg_match( '/^\d{1,4}$/', $_ ) ) {
+		if ( !preg_match( '/^\-?\d{1,4}(\.\d+)?$/', $_ ) ) {
 			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $_ ) ) );
 		} else {
 			return $_;

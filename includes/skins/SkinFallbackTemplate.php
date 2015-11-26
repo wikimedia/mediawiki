@@ -65,7 +65,9 @@ class SkinFallbackTemplate extends BaseTemplate {
 			return $this->getMsg( 'default-skin-not-found' )->params(
 				$defaultSkin,
 				implode( "\n", $skinsInstalledText ),
-				implode( "\n", $skinsInstalledSnippet )
+				implode( "\n", $skinsInstalledSnippet ) )->numParams(
+					count( $skinsInstalledText ),
+					count( $skinsInstalledSnippet )
 			)->parseAsBlock();
 		} else {
 			return $this->getMsg( 'default-skin-not-found-no-skins' )->params(
@@ -85,7 +87,7 @@ class SkinFallbackTemplate extends BaseTemplate {
 		if ( file_exists( "$IP/skins/$skin/skin.json" ) ) {
 			return "wfLoadSkin( '$skin' );";
 		} else {
-			return  "require_once \"\$IP/skins/$skin/$skin.php\";";
+			return "require_once \"\$IP/skins/$skin/$skin.php\";";
 		}
 	}
 

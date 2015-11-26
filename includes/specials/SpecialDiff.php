@@ -37,12 +37,16 @@
  * @since 1.23
  */
 class SpecialDiff extends RedirectSpecialPage {
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Diff' );
 		$this->mAllowedRedirectParams = array();
 	}
 
-	function getRedirect( $subpage ) {
+	/**
+	 * @param string|null $subpage
+	 * @return Title|bool
+	 */
+	public function getRedirect( $subpage ) {
 		$parts = explode( '/', $subpage );
 
 		// Try to parse the values given, generating somewhat pretty URLs if possible

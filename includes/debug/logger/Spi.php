@@ -21,15 +21,15 @@
 namespace MediaWiki\Logger;
 
 /**
- * Service provider interface for \Psr\Log\LoggerInterface implementation
+ * Service provider interface for \\Psr\\Log\\LoggerInterface implementation
  * libraries.
  *
  * MediaWiki can be configured to use a class implementing this interface to
- * create new \Psr\Log\LoggerInterface instances via either the
+ * create new \\Psr\\Log\\LoggerInterface instances via either the
  * $wgMWLoggerDefaultSpi global variable or code that constructs an instance
  * and registers it via the LoggerFactory::registerProvider() static method.
  *
- * @see \MediaWiki\Logger\LoggerFactory
+ * @see \\MediaWiki\\Logger\\LoggerFactory
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
@@ -40,7 +40,7 @@ interface Spi {
 	 * Get a logger instance.
 	 *
 	 * @param string $channel Logging channel
-	 * @return \Psr\Log\LoggerInterface Logger instance
+	 * @return \\Psr\\Log\\LoggerInterface Logger instance
 	 */
 	public function getLogger( $channel );
 

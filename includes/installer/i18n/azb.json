@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mousa",
+			"Koroğlu",
+			"Ebrahimi-amir",
+			"Alp Er Tunqa"
+		]
+	},
+	"config-desc": "مئدیاویکی قوروجوسو",
+	"config-title": "مئدیاویکی $1 قورماغی",
+	"config-information": "بیلگیلر",
+	"config-localsettings-key": "یوکسلتمک کلیدی:",
+	"config-localsettings-badkey": "وئردیگینیز کیلید دوغرو دئییل.",
+	"config-your-language": "دیلینیز:",
+	"config-wiki-language": "ویکی دیلی:",
+	"config-back": "→ دالی",
+	"config-continue": "سونرا ←",
+	"config-page-language": "دیل",
+	"config-page-welcome": "مئدیاویکی‌یه خوش گلدینیز!",
+	"config-page-name": "آد",
+	"config-page-options": "سئچیملر",
+	"config-page-install": "قور",
+	"config-page-readme": "منی اوخو",
+	"config-env-php": "PHP $1 قورولوبدور.",
+	"config-env-hhvm": "HHVM $1 قورولوبدور.",
+	"config-help": "کؤمک",
+	"config-help-tooltip": "گئنیشلتمک اوچون کلیک ائدین",
+	"config-nofile": "«$1» فایلی تاپیلانمادی. سیلینیبدیرمی؟"
+}
