@@ -15,7 +15,8 @@
 			"SNN95",
 			"Macofe",
 			"Matma Rex",
-			"V6rg"
+			"V6rg",
+			"C.R."
 		]
 	},
 	"tog-underline": "Jorr ke niche line khicho:",
@@ -1617,7 +1618,7 @@
 	"sp-deletedcontributions-contribs": "yogdaan",
 	"linksearch": "Bahaari jorr",
 	"linksearch-pat": "Khoje ke pattern:",
-	"linksearch-ns": "نؤمفضا:",
+	"linksearch-ns": "Namespace:",
 	"linksearch-ok": "Khojo",
 	"linksearch-text": "Wildcard jaise ki \"*.wikipedia.org\" ke kaam me lawa jaae sake hae.\nIske khatir ek top-level domain, jaise ki \"*.org\" ke jaruri hae.<br /> \nSupport karaa gais {{PLURAL:$2|protocol|protocols}}: $1 (defaults to http:// if no protocol is specified).",
 	"linksearch-line": "$1, $2 se jurraa hai",
@@ -1649,7 +1650,7 @@
 	"listgrouprights-addgroup-self-all": "Sab group ke aapan account me jorre saktaa hai",
 	"listgrouprights-removegroup-self-all": "Sab group ke aapan account se hatae saktaa hai",
 	"listgrouprights-namespaceprotection-header": "Namespace restrictions",
-	"listgrouprights-namespaceprotection-namespace": "نؤمفضا:",
+	"listgrouprights-namespaceprotection-namespace": "Namespace:",
 	"listgrouprights-namespaceprotection-restrictedto": "Adhikar jon ki sadasya ke badlao kare de hae.",
 	"trackingcategories": "Vibhag ke track karaa jaawe hae",
 	"trackingcategories-summary": "Ii panna me tracking vibhag ke suchi hae, jiske MediaWiki software automatically populate kare hae. Iske naam can be changed by altering the relevant system messages in the {{ns:8}} namespace.",

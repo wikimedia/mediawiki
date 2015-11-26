@@ -72,7 +72,7 @@
 	"apihelp-edit-param-tags": "Cambia i tag da applicare alla revisione.",
 	"apihelp-edit-param-minor": "Modifica minore.",
 	"apihelp-edit-param-notminor": "Modifica non minore.",
-	"apihelp-edit-param-bot": "Segna questa modifica come bot.",
+	"apihelp-edit-param-bot": "Contrassegna questa modifica come bot.",
 	"apihelp-edit-param-createonly": "Non modificare la pagina se già esiste.",
 	"apihelp-edit-param-nocreate": "Genera un errore se la pagina non esiste.",
 	"apihelp-edit-param-watch": "Aggiunge la pagina agli osservati speciali dell'utente attuale.",

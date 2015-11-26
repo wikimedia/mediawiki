@@ -20,7 +20,8 @@
 			"아라",
 			"Macofe",
 			"Matma Rex",
-			"V6rg"
+			"V6rg",
+			"C.R."
 		]
 	},
 	"tog-underline": "Sotołinea i cołegamenti:",
@@ -166,7 +167,7 @@
 	"faq": "Domande frequenti",
 	"faqpage": "Project:Domande frequenti",
 	"actions": "Asion",
-	"namespaces": "نؤمفضا",
+	"namespaces": "Namespace",
 	"variants": "Varianse",
 	"navigation-heading": "Menù de navigassion",
 	"errorpagetitle": "Erore",
@@ -863,7 +864,7 @@
 	"timezoneregion-pacific": "Oceano Pacifico",
 	"allowemail": "Consenti la ricezion de e-mail da altri utenti<sup>1</sup>",
 	"prefs-searchoptions": "Riserca",
-	"prefs-namespaces": "نؤمفضا",
+	"prefs-namespaces": "Namespace",
 	"default": "predefinìo",
 	"prefs-files": "File",
 	"prefs-custom-css": "CSS personalixà",
@@ -1755,7 +1756,7 @@
 	"undelete-error-long": "Se gà verificà dei erori nel tentativo de anular la scancelazion del file:\n\n$1",
 	"undelete-show-file-confirm": "Sito sicuro che te vol vardar na revision del file \"<nowiki>$1</nowiki>\" scancelà da $2 el $3",
 	"undelete-show-file-submit": "Sì",
-	"namespace": "نؤمفضا:",
+	"namespace": "Namespace:",
 	"invert": "Inverti la selession",
 	"tooltip-invert": "Sełesion sta caxeła par scondare łe modifeghe a łe pàjine drento del namespace sełesionà (e 'l rełativo namespace, se sełesionà)",
 	"namespace_association": "Namespace asocià",

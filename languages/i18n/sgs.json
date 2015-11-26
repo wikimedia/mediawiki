@@ -1395,7 +1395,7 @@
 	"autoblocker": "Autuomatėnis ožbluokavėms, nes dalėnaties IP adreso so nauduotuojo \"$1\". Prīžastės - \"$2\".",
 	"blocklogpage": "Ožgīnėmu sārošos",
 	"blocklog-showlog": "Nauduotuos jau bova ožgints pėrmiou.\nApatiuo veiziekat kas ė kāpː",
-	"blocklogentry": "ožgīnė „[[$1]]“ nug dėrbėma, tas vēk ton čiesa - $2 $3",
+	"blocklogentry": "ožgīnė [[$1]] nug dėrbėma, tas vēk ton čiesa - $2 $3",
 	"reblock-logentry": "pakeistė [[$1]] bluokavėma nustatīmā, naus bluokavėma čiesos īr $2 $3",
 	"blocklogtext": "Čė īr nauduotuoju blokavėma ėr atblokavėma sārašos. Autuomatėškā blokoutė IP adresā nier ėšvardėntė. Jeigu nuorėt paveizėtė nūnā blokoujamus adresus, veizėkėt [[Special:BlockList|IP ožbluokavėmu istuorėjė]].",
 	"unblocklogentry": "nug $1 nujėmtė ožgīnėma",
