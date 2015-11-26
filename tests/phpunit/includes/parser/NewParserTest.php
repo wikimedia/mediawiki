@@ -670,6 +670,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/**
 	 * @group medium
+	 * @group ParserTests
 	 * @dataProvider parserTestProvider
 	 * @param string $desc
 	 * @param string $input
