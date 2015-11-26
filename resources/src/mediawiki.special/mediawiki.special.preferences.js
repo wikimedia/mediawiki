@@ -6,7 +6,7 @@
 		var $preftoc, $preferences, $fieldsets,
 			hash, labelFunc,
 			$tzSelect, $tzTextbox, $localtimeHolder, servertime,
-			allowCloseWindow, notif;
+			isPrefsChanged, allowCloseWindow, notif;
 
 		labelFunc = function () {
 			return this.id.replace( /^mw-prefsection/g, 'preftab' );
@@ -245,14 +245,40 @@
 			} );
 		}
 
+		// Check if all of the form values are unchanged
+		isPrefsChanged = function () {
+			var isChanged = false;
+
+			$( '.mw-input :input' ).each( function () {
+				var $this = $( this ), inputType;
+				// Different types of inputs have different methods for accessing defaults
+				if ( $this.is( 'select' ) ) { // <select> has the property defaultSelected for each option
+					$.each( this.options, function ( index, opt ) {
+						if ( opt.selected !== opt.defaultSelected ) {
+							isChanged = true;
+						}
+					} );
+				} else if ( $this.is( 'input' ) ) { // <input> has defaultValue or defaultChecked
+					inputType = this.type;
+					if ( inputType === 'text' ) {
+						if ( this.value !== this.defaultValue ) {
+							isChanged = true;
+						}
+					} else if ( inputType === 'radio' || inputType === 'checkbox' ) {
+						if ( this.checked !== this.defaultChecked ) {
+							isChanged = true;
+						}
+					}
+				}
+			} );
+
+			return isChanged;
+		};
+
 		// Set up a message to notify users if they try to leave the page without
 		// saving.
-		$( '#mw-prefs-form' ).data( 'origdata', $( '#mw-prefs-form' ).serialize() );
 		allowCloseWindow = mw.confirmCloseWindow( {
-			test: function () {
-				return $( '#mw-prefs-form' ).serialize() !== $( '#mw-prefs-form' ).data( 'origdata' );
-			},
-
+			test: isPrefsChanged,
 			message: mw.msg( 'prefswarning-warning', mw.msg( 'saveprefs' ) ),
 			namespace: 'prefswarning'
 		} );
