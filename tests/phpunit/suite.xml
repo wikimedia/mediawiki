@@ -49,6 +49,7 @@ phpunit.php enables colors for other OSs at runtime
 	</testsuites>
 	<groups>
 		<exclude>
+			<group>ParserTests</group>
 			<group>Utility</group>
 			<group>Broken</group>
 			<group>ParserFuzz</group>
