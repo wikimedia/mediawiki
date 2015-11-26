@@ -582,6 +582,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/**
 	 * @group medium
+	 * @group ParserTests
 	 * @dataProvider parserTestProvider
 	 */
 	public function testParserTest( $desc, $input, $result, $opts, $config ) {
