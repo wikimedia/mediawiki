@@ -101,7 +101,7 @@ class SamplingStatsdClient extends StatsdClient {
 	/**
 	 * Throw away some of the data according to the sample rate.
 	 * @param StatsdDataInterface[] $data
-	 * @return array
+	 * @return StatsdDataInterface[]
 	 * @throws LogicException
 	 */
 	protected function sampleData( $data ) {
