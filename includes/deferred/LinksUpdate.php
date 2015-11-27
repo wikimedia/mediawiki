@@ -245,12 +245,12 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		}
 
 		foreach ( $categoryInserts as $categoryName => $value ) {
-			$categoryTitle = Title::newFromText( $categoryName, NS_CATEGORY );
+			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
 			$catMembChange->triggerCategoryAddedNotification( $categoryTitle );
 		}
 
 		foreach ( $categoryDeletes as $categoryName => $value ) {
-			$categoryTitle = Title::newFromText( $categoryName, NS_CATEGORY );
+			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
 			$catMembChange->triggerCategoryRemovedNotification( $categoryTitle );
 		}
 	}
