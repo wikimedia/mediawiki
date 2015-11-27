@@ -4330,6 +4330,7 @@ class Parser {
 	 * @return string
 	 */
 	public function doDoubleUnderscore( $text ) {
+		global $wgMandatoryCategoryPolicy;
 
 		# The position of __TOC__ needs to be recorded
 		$mw = MagicWord::get( 'toc' );
@@ -4358,6 +4359,27 @@ class Parser {
 			&& $this->mTitle->getNamespace() == NS_CATEGORY
 		) {
 			$this->addTrackingCategory( 'hidden-category-category' );
+		}
+		if ( isset( $this->mDoubleUnderscores['alwayscategorize'] )
+			&& $this->mTitle->getNamespace() == NS_CATEGORY
+		) {
+			$this->addTrackingCategory( 'alwayscategorize-category' );
+		}
+		$namespace = $this->mTitle->getNamespace();
+		if ( isset( $wgMandatoryCategoryPolicy[$namespace] ) ) {
+			# Set mandatory category policy for this namespace
+			$this->mOutput->setCategoryPolicy( $wgMandatoryCategoryPolicy[$namespace] );
+			# Destroy these variables as overridden
+			unset( $this->mDoubleUnderscores['onlyhiddencat'] );
+			unset( $this->mDoubleUnderscores['nocategory'] );
+		} elseif ( isset( $this->mDoubleUnderscores['nocategory'] ) ) {
+			$this->mOutput->setCategoryPolicy( CATEGORY_POLICY_SANDBOX );
+			$this->addTrackingCategory( 'nocategory-category' );
+			# NOCATEGORY overrides ONLYHIDDENCAT
+			unset( $this->mDoubleUnderscores['onlyhiddencat'] );
+		} elseif ( isset( $this->mDoubleUnderscores['onlyhiddencat'] ) ) {
+			$this->mOutput->setCategoryPolicy( CATEGORY_POLICY_DRAFT );
+			$this->addTrackingCategory( 'onlyhiddencat-category' );
 		}
 		# (bug 8068) Allow control over whether robots index a page.
 		#

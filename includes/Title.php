@@ -4761,6 +4761,20 @@ class Title implements LinkTarget {
 	}
 
 	/**
+	 * @since 1.27
+	 * @return string
+	 */
+	public function getDefaultCategoryPolicy() {
+		global $wgMandatoryCategoryPolicy;
+		$namespace = $this->getNamespace();
+		if ( isset( $wgMandatoryCategoryPolicy[$namespace] ) ) {
+			return $wgMandatoryCategoryPolicy[$namespace];
+		} else {
+			return CATEGORY_POLICY_STANDARD;
+		}
+	}
+
+	/**
 	 * @return array
 	 */
 	public function __sleep() {
