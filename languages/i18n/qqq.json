@@ -2500,7 +2500,6 @@
 	"move-redirect-text": "{{ignored}}The text that's added to a redirected page when that redirect is created.",
 	"category-move-redirect-override": "{{ignored}}The text that's added to a redirected category page when that redirect is created.",
 	"revertmove": "{{Identical|Revert}}",
-	"delete_and_move": "Button text on the move page when the target page already exists.",
 	"delete_and_move_text": "Used when moving a page, but the destination page already exists and needs deletion.\n\nThis message is to confirm that you really want to delete the page.\n\nParameters:\n* $1 - the destination page title\n\nSee also:\n* {{msg-mw|Delete and move confirm}}",
 	"delete_and_move_confirm": "Used when moving a page, but the destination page already exists and needs deletion.\n\nThis message is for a checkbox to confirm that you really want to delete the page.\n\nSee also:\n* {{msg-mw|Delete and move text}}",
 	"delete_and_move_reason": "Shown as reason in content language in the deletion log. Parameter:\n* $1 - The page name for which this page was deleted.",

@@ -162,7 +162,6 @@ class MovePageForm extends UnlistedSpecialPage {
 			'movepagetext' :
 			'movepagetext-noredirectfixer'
 		);
-		$movepagebtn = $this->msg( 'movepagebtn' )->text();
 		$submitVar = 'wpMove';
 		$confirm = false;
 
@@ -188,7 +187,6 @@ class MovePageForm extends UnlistedSpecialPage {
 			&& $newTitle->quickUserCan( 'delete', $user )
 		) {
 			$out->addWikiMsg( 'delete_and_move_text', $newTitle->getPrefixedText() );
-			$movepagebtn = $this->msg( 'delete_and_move' )->text();
 			$submitVar = 'wpDeleteAndMove';
 			$confirm = true;
 			$err = array();
@@ -446,8 +444,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		$fields[] = new OOUI\FieldLayout(
 			new OOUI\ButtonInputWidget( array(
 				'name' => $submitVar,
-				'value' => $movepagebtn,
-				'label' => $movepagebtn,
+				'value' => $this->msg( 'movepagebtn' )->text(),
+				'label' => $this->msg( 'movepagebtn' )->text(),
 				'flags' => array( 'constructive', 'primary' ),
 				'type' => 'submit',
 			) ),
