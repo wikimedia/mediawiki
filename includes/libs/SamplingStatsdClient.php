@@ -49,10 +49,15 @@ class SamplingStatsdClient extends StatsdClient {
 		return $data;
 	}
 
-	/**
+	/*
+	 * Send the metrics over UDP
 	 * Sample the metrics according to their sample rate and send the remaining ones.
 	 *
-	 * {@inheritDoc}
+	 * @param StatsdDataInterface|StatsdDataInterface[] $data message(s) to sent
+	 *        strings are not allowed here as sampleData requires a StatsdDataInterface
+	 * @param int $sampleRate
+	 *
+	 * @return integer the data sent in bytes
 	 */
 	public function send( $data, $sampleRate = 1 ) {
 		if ( !is_array( $data ) ) {
@@ -74,12 +79,13 @@ class SamplingStatsdClient extends StatsdClient {
 		}
 		$data = $this->sampleData( $data );
 
-		$messages = array_map( 'strval', $data );
-
 		// reduce number of packets
 		if ( $this->getReducePacket() ) {
 			$data = $this->reduceCount( $data );
 		}
+
+		$messages = array_map( 'strval', $data );
+
 		// failures in any of this should be silently ignored if ..
 		$written = 0;
 		try {
