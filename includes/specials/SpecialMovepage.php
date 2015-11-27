@@ -146,6 +146,26 @@ class MovePageForm extends UnlistedSpecialPage {
 		$out->addModuleStyles( 'mediawiki.special.movePage.styles' );
 		$this->addHelpLink( 'Help:Moving a page' );
 
+		if ( $this->oldTitle->getNamespace() == NS_USER && !$this->oldTitle->isSubpage() ) {
+			$out->wrapWikiMsg(
+				"<div class=\"error mw-moveuserpage-warning\">\n$1\n</div>",
+				'moveuserpage-warning'
+			);
+		} elseif ( $this->oldTitle->getNamespace() == NS_CATEGORY ) {
+			$out->wrapWikiMsg(
+				"<div class=\"error mw-movecategorypage-warning\">\n$1\n</div>",
+				'movecategorypage-warning'
+			);
+		}
+
+		$out->addWikiMsg( $this->getConfig()->get( 'FixDoubleRedirects' ) ?
+			'movepagetext' :
+			'movepagetext-noredirectfixer'
+		);
+		$movepagebtn = $this->msg( 'movepagebtn' )->text();
+		$submitVar = 'wpMove';
+		$confirm = false;
+
 		$newTitle = $this->newTitle;
 
 		if ( !$newTitle ) {
@@ -172,26 +192,6 @@ class MovePageForm extends UnlistedSpecialPage {
 			$submitVar = 'wpDeleteAndMove';
 			$confirm = true;
 			$err = array();
-		} else {
-			if ( $this->oldTitle->getNamespace() == NS_USER && !$this->oldTitle->isSubpage() ) {
-				$out->wrapWikiMsg(
-					"<div class=\"error mw-moveuserpage-warning\">\n$1\n</div>",
-					'moveuserpage-warning'
-				);
-			} elseif ( $this->oldTitle->getNamespace() == NS_CATEGORY ) {
-				$out->wrapWikiMsg(
-					"<div class=\"error mw-movecategorypage-warning\">\n$1\n</div>",
-					'movecategorypage-warning'
-				);
-			}
-
-			$out->addWikiMsg( $this->getConfig()->get( 'FixDoubleRedirects' ) ?
-				'movepagetext' :
-				'movepagetext-noredirectfixer'
-			);
-			$movepagebtn = $this->msg( 'movepagebtn' )->text();
-			$submitVar = 'wpMove';
-			$confirm = false;
 		}
 
 		if ( count( $err ) == 1 && isset( $err[0][0] ) && $err[0][0] == 'file-exists-sharedrepo'
