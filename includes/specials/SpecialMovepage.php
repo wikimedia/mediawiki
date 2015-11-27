@@ -146,22 +146,23 @@ class MovePageForm extends UnlistedSpecialPage {
 		$out->addModuleStyles( 'mediawiki.special.movePage.styles' );
 		$this->addHelpLink( 'Help:Moving a page' );
 
-		if ( $this->oldTitle->getNamespace() == NS_USER && !$this->oldTitle->isSubpage() ) {
-			$out->wrapWikiMsg(
-				"<div class=\"error mw-moveuserpage-warning\">\n$1\n</div>",
-				'moveuserpage-warning'
-			);
-		} elseif ( $this->oldTitle->getNamespace() == NS_CATEGORY ) {
-			$out->wrapWikiMsg(
-				"<div class=\"error mw-movecategorypage-warning\">\n$1\n</div>",
-				'movecategorypage-warning'
-			);
-		}
-
 		$out->addWikiMsg( $this->getConfig()->get( 'FixDoubleRedirects' ) ?
 			'movepagetext' :
 			'movepagetext-noredirectfixer'
 		);
+
+		if ( $this->oldTitle->getNamespace() == NS_USER && !$this->oldTitle->isSubpage() ) {
+			$out->wrapWikiMsg(
+				"<div class=\"warningbox mw-moveuserpage-warning\">\n$1\n</div>",
+				'moveuserpage-warning'
+			);
+		} elseif ( $this->oldTitle->getNamespace() == NS_CATEGORY ) {
+			$out->wrapWikiMsg(
+				"<div class=\"warningbox mw-movecategorypage-warning\">\n$1\n</div>",
+				'movecategorypage-warning'
+			);
+		}
+
 		$submitVar = 'wpMove';
 		$confirm = false;
 
@@ -186,7 +187,10 @@ class MovePageForm extends UnlistedSpecialPage {
 		if ( count( $err ) == 1 && isset( $err[0][0] ) && $err[0][0] == 'articleexists'
 			&& $newTitle->quickUserCan( 'delete', $user )
 		) {
-			$out->addWikiMsg( 'delete_and_move_text', $newTitle->getPrefixedText() );
+			$out->wrapWikiMsg(
+				"<div class='warningbox'>\n$1\n</div>\n",
+				array( 'delete_and_move_text', $newTitle->getPrefixedText() )
+			);
 			$submitVar = 'wpDeleteAndMove';
 			$confirm = true;
 			$err = array();
@@ -195,7 +199,13 @@ class MovePageForm extends UnlistedSpecialPage {
 		if ( count( $err ) == 1 && isset( $err[0][0] ) && $err[0][0] == 'file-exists-sharedrepo'
 			&& $user->isAllowed( 'reupload-shared' )
 		) {
-			$out->addWikiMsg( 'move-over-sharedrepo', $newTitle->getPrefixedText() );
+			$out->wrapWikiMsg(
+				"<div class='warningbox'>\n$1\n</div>\n",
+				array(
+					'move-over-sharedrepo',
+					$newTitle->getPrefixedText()
+				)
+			);
 			$submitVar = 'wpMoveOverSharedFile';
 			$err = array();
 		}
@@ -225,7 +235,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		if ( count( $err ) ) {
-			$out->addHTML( "<div class='error'>\n" );
+			$out->addHTML( "<div class='errorbox'>\n" );
 			$action_desc = $this->msg( 'action-move' )->plain();
 			$out->addWikiMsg( 'permissionserrorstext-withaction', count( $err ), $action_desc );
 
