@@ -1338,34 +1338,41 @@ class OutputPage extends ContextSource {
 		# Add the results to the link cache
 		$lb->addResultToCache( LinkCache::singleton(), $res );
 
+		$categoriesByType = array();
 		# Set all the values to 'normal'.
-		$categories = array_fill_keys( array_keys( $categories ), 'normal' );
+		$categoriesByType['normal'] = $categories;
 
 		# Mark hidden categories
 		foreach ( $res as $row ) {
 			if ( isset( $row->pp_value ) ) {
-				$categories[$row->page_title] = 'hidden';
+				$categoriesByType['hidden'][$row->page_title] =
+					$categoriesByType['normal'][$row->page_title];
+				unset( $categoriesByType['normal'][$row->page_title] );
 			}
 		}
 
 		# Add the remaining categories to the skin
 		if ( Hooks::run(
 			'OutputPageMakeCategoryLinks',
-			array( &$this, $categories, &$this->mCategoryLinks ) )
+			array( &$this, $categoriesByType, &$this->mCategoryLinks ) )
 		) {
-			foreach ( $categories as $category => $type ) {
-				$origcategory = $category;
-				$title = Title::makeTitleSafe( NS_CATEGORY, $category );
-				if ( !$title ) {
-					continue;
+			foreach ( $categoriesByType as $type => $categoriesInType ) {
+				foreach ( $categoriesInType as $category => $sortKey ) {
+					$origcategory = $category;
+					$title = Title::makeTitleSafe( NS_CATEGORY, $category );
+					if ( !$title ) {
+						continue;
+					}
+					$wgContLang->findVariantLink( $category, $title, true );
+					// check existence of variant among categories of all type
+					if ( $category != $origcategory
+						&& array_key_exists( $category, $categories ) ) {
+						continue;
+					}
+					$text = $wgContLang->convertHtml( $title->getText() );
+					$this->mCategories[] = $title->getText();
+					$this->mCategoryLinks[$type][] = Linker::link( $title, $text );
 				}
-				$wgContLang->findVariantLink( $category, $title, true );
-				if ( $category != $origcategory && array_key_exists( $category, $categories ) ) {
-					continue;
-				}
-				$text = $wgContLang->convertHtml( $title->getText() );
-				$this->mCategories[] = $title->getText();
-				$this->mCategoryLinks[$type][] = Linker::link( $title, $text );
 			}
 		}
 	}
