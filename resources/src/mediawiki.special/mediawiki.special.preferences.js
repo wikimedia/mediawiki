@@ -281,6 +281,15 @@
 			return false;
 		}
 
+		// Disable the button to save preferences unless preferences have changed
+		// Check if preferences have been changed before JS has finished loading
+		if ( !isPrefsChanged() ) {
+			$( '#prefcontrol' ).prop( 'disabled', true );
+			$( '#preferences > fieldset' ).one( 'change keydown mousedown', function () {
+				$( '#prefcontrol' ).prop( 'disabled', false );
+			} );
+		}
+
 		// Set up a message to notify users if they try to leave the page without
 		// saving.
 		allowCloseWindow = mw.confirmCloseWindow( {
