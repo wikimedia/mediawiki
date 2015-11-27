@@ -1302,72 +1302,42 @@ class OutputPage extends ContextSource {
 	 * Add an array of categories, with names in the keys
 	 *
 	 * @param array $categories Mapping category name => sort key
+	 * @param string $categoryPolicy Category policy to apply
 	 */
-	public function addCategoryLinks( array $categories ) {
+	public function addCategoryLinks( array $categories, $categoryPolicy = null ) {
 		global $wgContLang;
 
 		if ( !is_array( $categories ) || count( $categories ) == 0 ) {
 			return;
 		}
 
-		# Add the links to a LinkBatch
-		$arr = array( NS_CATEGORY => $categories );
-		$lb = new LinkBatch;
-		$lb->setArray( $arr );
-
-		# Fetch existence plus the hiddencat property
-		$dbr = wfGetDB( DB_SLAVE );
-		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_len',
-			'page_is_redirect', 'page_latest', 'pp_value' );
-
-		if ( $this->getConfig()->get( 'ContentHandlerUseDB' ) ) {
-			$fields[] = 'page_content_model';
-		}
-
-		$res = $dbr->select( array( 'page', 'page_props' ),
-			$fields,
-			$lb->constructSet( 'page', $dbr ),
-			__METHOD__,
-			array(),
-			array( 'page_props' => array( 'LEFT JOIN', array(
-				'pp_propname' => 'hiddencat',
-				'pp_page = page_id'
-			) ) )
-		);
-
-		# Add the results to the link cache
-		$lb->addResultToCache( LinkCache::singleton(), $res );
-
-		# Set all the values to 'normal'.
-		$categories = array_fill_keys( array_keys( $categories ), 'normal' );
-
-		# Mark hidden categories
-		foreach ( $res as $row ) {
-			if ( isset( $row->pp_value ) ) {
-				$categories[$row->page_title] = 'hidden';
-			}
-		}
+		# Sort categories for display based on provided category policy
+		$categoriesByType = $this->sortCategoriesByType( $categories, $categoryPolicy );
 
 		# Add the remaining categories to the skin
 		if ( Hooks::run(
 			'OutputPageMakeCategoryLinks',
-			array( &$this, $categories, &$this->mCategoryLinks ) )
+			array( &$this, $categoriesByType, &$this->mCategoryLinks ) )
 		) {
-			foreach ( $categories as $category => $type ) {
-				// array keys will cast numeric category names to ints, so cast back to string
-				$category = (string)$category;
-				$origcategory = $category;
-				$title = Title::makeTitleSafe( NS_CATEGORY, $category );
-				if ( !$title ) {
-					continue;
+			foreach ( $categoriesByType as $type => $categoriesInType ) {
+				foreach ( $categoriesInType as $category => $sortKey ) {
+					// array keys will cast numeric category names to ints, so cast back to string
+					$category = (string)$category;
+					$origcategory = $category;
+					$title = Title::makeTitleSafe( NS_CATEGORY, $category );
+					if ( !$title ) {
+						continue;
+					}
+					$wgContLang->findVariantLink( $category, $title, true );
+					// check existence of variant among categories of all type
+					if ( $category != $origcategory
+						&& array_key_exists( $category, $categories ) ) {
+						continue;
+					}
+					$text = $wgContLang->convertHtml( $title->getText() );
+					$this->mCategories[] = $title->getText();
+					$this->mCategoryLinks[$type][] = Linker::link( $title, $text );
 				}
-				$wgContLang->findVariantLink( $category, $title, true );
-				if ( $category != $origcategory && array_key_exists( $category, $categories ) ) {
-					continue;
-				}
-				$text = $wgContLang->convertHtml( $title->getText() );
-				$this->mCategories[] = $title->getText();
-				$this->mCategoryLinks[$type][] = Linker::link( $title, $text );
 			}
 		}
 	}
@@ -1779,7 +1749,10 @@ class OutputPage extends ContextSource {
 	 */
 	public function addParserOutputMetadata( $parserOutput ) {
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
-		$this->addCategoryLinks( $parserOutput->getCategories() );
+		$this->addCategoryLinks(
+			$parserOutput->getCategories(),
+			$parserOutput->getCategoryPolicy()
+		);
 		$this->setIndicators( $parserOutput->getIndicators() );
 		$this->mNewSectionLink = $parserOutput->getNewSection();
 		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
@@ -4049,5 +4022,176 @@ class OutputPage extends ContextSource {
 			'oojs-ui.styles.textures',
 			'mediawiki.widgets.styles',
 		) );
+	}
+
+	/**
+	 * @since 1.27
+	 */
+	protected function sortCategoriesByType( $categories, $categoryPolicy = null ) {
+		if ( $categoryPolicy === null ) {
+			$categoryPolicy = $this->getTitle()->getDefaultCategoryPolicy();
+		}
+
+		# Add the links to a LinkBatch
+		$arr = array( NS_CATEGORY => $categories );
+		$lb = new LinkBatch;
+		$lb->setArray( $arr );
+
+		# Fetch existence plus the hiddencat property
+		$dbr = wfGetDB( DB_SLAVE );
+		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_len',
+			'page_is_redirect', 'page_latest', 'pp_value' );
+
+		if ( $this->getConfig()->get( 'ContentHandlerUseDB' ) ) {
+			$fields[] = 'page_content_model';
+		}
+
+		$categoriesByType = array();
+		switch ( $categoryPolicy ) {
+			case CATEGORY_POLICY_STANDARD:
+				$res = $dbr->select( array( 'page', 'page_props' ),
+					$fields,
+					$lb->constructSet( 'page', $dbr ),
+					__METHOD__,
+					array(),
+					array( 'page_props' => array( 'LEFT JOIN', array(
+						'pp_propname' => 'hiddencat',
+						'pp_page = page_id'
+					) ) )
+				);
+
+				# Add the results to the link cache
+				$lb->addResultToCache( LinkCache::singleton(), $res );
+
+				# Set all the values to 'normal'.
+				$categoriesByType['normal'] = $categories;
+				# Mark hidden categories
+				foreach ( $res as $row ) {
+					if ( isset( $row->pp_value ) ) {
+						# Transfer from 'normal' to 'hidden' type
+						unset( $categoriesByType['normal'][$row->page_title] );
+						$categoriesByType['hidden'][$row->page_title] =
+							$categories[$row->page_title];
+					}
+				}
+				break;
+
+			case CATEGORY_POLICY_DRAFT:
+				$fields[] = 'pp_propname';
+				$res = $dbr->select( array( 'page', 'page_props' ),
+					$fields,
+					$lb->constructSet( 'page', $dbr ),
+					__METHOD__,
+					array(),
+					array( 'page_props' => array( 'LEFT JOIN', array(
+						'pp_propname' => array( 'hiddencat', 'alwayscategorize' ),
+						'pp_page = page_id'
+					) ) )
+				);
+
+				# Add the results to the link cache
+				$lb->addResultToCache( LinkCache::singleton(), $res );
+
+				# Set all the values to 'displayonly'.
+				$categoriesByType['displayonly'] = $categories;
+				# Force associated tracking category to 'normal', if enabled
+				$trackingCat = wfMessage( 'onlyhiddencat-category' )
+					->title( $this->getTitle() )
+					->inContentLanguage()
+					->text();
+				if ( $trackingCat !== '-' ) {
+					$trackingCat = strtr( $trackingCat, ' ', '_');
+					# Transfer from 'displayonly' to 'normal' type
+					unset( $categoriesByType['displayonly'][$trackingCat] );
+					$categoriesByType['normal'][$trackingCat] = $categories[$trackingCat];
+				}
+				# Override for exempted categories
+				foreach ( $res as $row ) {
+					if ( isset( $row->pp_value ) && $row->pp_propname === 'alwayscategorize' ) {
+						# Transfer from 'displayonly' to 'normal' type
+						unset( $categoriesByType['displayonly'][$row->page_title] );
+						$categoriesByType['normal'][$row->page_title] =
+							$categories[$row->page_title];
+					}
+				}
+				# Mark hidden categories
+				foreach ( $res as $row ) {
+					if ( isset( $row->pp_value ) && $row->pp_propname === 'hiddencat' ) {
+						# Transfer from 'displayonly' or 'normal' to 'hidden' type
+						unset( $categoriesByType['displayonly'][$row->page_title],
+							$categoriesByType['normal'][$row->page_title] );
+						$categoriesByType['hidden'][$row->page_title] =
+							$categories[$row->page_title];
+					}
+				}
+				break;
+
+			case CATEGORY_POLICY_SANDBOX:
+				$fields[] = 'pp_propname';
+				$res = $dbr->select( array( 'page', 'page_props' ),
+					$fields,
+					$lb->constructSet( 'page', $dbr ),
+					__METHOD__,
+					array(),
+					array( 'page_props' => array( 'LEFT JOIN', array(
+						'pp_propname' => array( 'hiddencat', 'alwayscategorize' ),
+						'pp_page = page_id'
+					) ) )
+				);
+
+				# Add the results to the link cache
+				$lb->addResultToCache( LinkCache::singleton(), $res );
+
+				# Set all the values to 'displayonly'
+				$categoriesByType['displayonly'] = $categories;
+				# Force associated tracking category to 'normal', if enabled
+				$trackingCat = wfMessage( 'nocategory-category' )
+					->title( $this->getTitle() )
+					->inContentLanguage()
+					->text();
+				if ( $trackingCat !== '-' ) {
+					$trackingCat = strtr( $trackingCat, ' ', '_');
+					# Transfer from 'displayonly' to 'normal' type
+					unset( $categoriesByType['displayonly'][$trackingCat] );
+					$categoriesByType['normal'][$trackingCat] = $categories[$trackingCat];
+				}
+				# Override for exempted categories
+				foreach ( $res as $row ) {
+					if ( isset( $row->pp_value ) &&
+						( $row->pp_propname === 'alwayscategorize' ) ) {
+						# Transfer from 'displayonly' to 'normal' type
+						unset( $categoriesByType['displayonly'][$row->page_title] );
+						$categoriesByType['normal'][$row->page_title] =
+							$categories[$row->page_title];
+					}
+				}
+				# Mark hidden categories
+				foreach ( $res as $row ) {
+					if ( isset( $row->pp_value ) && ( $row->pp_propname === 'hiddencat' ) ) {
+						if ( isset( $categoriesByType['normal'][$row->page_title] ) ) {
+							# Transfer from 'normal' to 'hidden' type
+							unset( $categoriesByType['normal'][$row->page_title] );
+							$categoriesByType['hidden'][$row->page_title] =
+								$categories[$row->page_title];
+						} else {
+							# Transfer from 'displayonly' to 'hidden-displayonly' type
+							unset( $categoriesByType['displayonly'][$row->page_title] );
+							$categoriesByType['hidden-displayonly'][$row->page_title] =
+								$categories[$row->page_title];
+						}
+					}
+				}
+				# Change back to 'hidden' if tracking category was marked 'hidden-displayonly'
+				if ( $trackingCat !== '-'
+					&& isset( $categoriesByType['hidden-displayonly'][$trackingCat] ) ) {
+					unset( $categoriesByType['hidden-displayonly'][$trackingCat] );
+					$categoriesByType['hidden'][$trackingCat] = $categories[$trackingCat];
+				}
+				break;
+
+			default:
+				throw new MWException( 'Invalid category policy: ' . $categoryPolicy );
+		}
+		return $categoriesByType;
 	}
 }

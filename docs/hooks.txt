@@ -2124,8 +2124,9 @@ since the last visit.
 categories. Implementations should return false if they generate the category
 links, so the default link generation is skipped.
 &$out: OutputPage instance (object)
-$categories: associative array, keys are category names, values are category
-  types ("normal" or "hidden")
+$categories: associative array, keys are category types ("normal", "hidden",
+"displayonly" or "hidden-displayonly"), values are arrays of category names
+mapped to their sort key
 &$links: array, intended to hold the result. Must be an associative array with
   category types as keys and arrays of HTML links as values.
 

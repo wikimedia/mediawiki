@@ -52,6 +52,9 @@ class SpecialTrackingCategories extends SpecialPage {
 		'broken-file-category',
 		'node-count-exceeded-category',
 		'expansion-depth-exceeded-category',
+		'onlyhiddencat-category',
+		'nocategory-category',
+		'alwayscategorize-category',
 	);
 
 	function execute( $par ) {

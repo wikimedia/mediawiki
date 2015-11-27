@@ -305,3 +305,17 @@ define( 'CONTENT_FORMAT_JSON', 'application/json' );
 // for future use with the api, and for use by extensions
 define( 'CONTENT_FORMAT_XML', 'application/xml' );
 /**@}*/
+
+/**@{
+ * Category policies. Used to determine how a page should
+ * handle categories (affects OutputPage and LinksUpdate).
+ * Can be modified by magic words, except in namespaces
+ * with a mandatory category policy
+ */
+// default, all categories are valid
+define( 'CATEGORY_POLICY_STANDARD', 'standard' );
+// only hidden categories are valid
+define( 'CATEGORY_POLICY_DRAFT', 'draft' );
+// disregard all categories
+define( 'CATEGORY_POLICY_SANDBOX', 'sandbox' );
+/**@}*/
