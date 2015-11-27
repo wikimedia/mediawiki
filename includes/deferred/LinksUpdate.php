@@ -105,7 +105,8 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		$this->mImages = $parserOutput->getImages();
 		$this->mTemplates = $parserOutput->getTemplates();
 		$this->mExternals = $parserOutput->getExternalLinks();
-		$this->mCategories = $parserOutput->getCategories();
+		$this->mCategories = $this->filterCategories( $parserOutput->getCategories(),
+			$parserOutput->getCategoryPolicy() );
 		$this->mProperties = $parserOutput->getProperties();
 		$this->mInterwikis = $parserOutput->getInterwikiLinks();
 
@@ -787,6 +788,93 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		}
 
 		return $arr;
+	}
+
+	/**
+	 * @since 1.27
+	 */
+	protected function filterCategories( $categories, $categoryPolicy = null ) {
+		if ( !count( $categories ) ) {
+			return array();
+		}
+		if ( $categoryPolicy === null ) {
+			$categoryPolicy = $this->mTitle->getDefaultCategoryPolicy();
+		}
+
+		switch ( $categoryPolicy ) {
+			case CATEGORY_POLICY_STANDARD:
+				$filteredCategories = $categories;
+				break;
+
+			case CATEGORY_POLICY_DRAFT:
+				# Add categories to a LinkBatch
+				$arr = array( NS_CATEGORY => $categories );
+				$lb = new LinkBatch;
+				$lb->setArray( $arr );
+
+				# Fetch hidden and exempted categories among those
+				$dbr = wfGetDB( DB_SLAVE );
+				$fields = array( 'page_id', 'page_title' );
+
+				$where = array( $lb->constructSet( 'page', $this->mDb ) );
+				$where['pp_propname'] = array( 'hiddencat', 'alwayscategorize' );
+				$where[] = 'pp_page = page_id';
+
+				$res = $this->mDb->select( array( 'page', 'page_props' ),
+					$fields, $where, __METHOD__ );
+
+				$filteredCategories = array();
+				foreach ( $res as $row ) {
+					$filteredCategories[$row->page_title] = $categories[$row->page_title];
+				}
+
+				# Also add associated tracking category, if enabled
+				$trackingCat = wfMessage( 'onlyhiddencat-category' )
+					->title( $this->mTitle )
+					->inContentLanguage()
+					->text();
+				if ( $trackingCat !== '-' ) {
+					$trackingCat = strtr( $trackingCat, ' ', '_');
+					$filteredCategories[$trackingCat] = $categories[$trackingCat];
+				}
+				break;
+
+			case CATEGORY_POLICY_SANDBOX:
+				# Add categories to a LinkBatch
+				$arr = array( NS_CATEGORY => $categories );
+				$lb = new LinkBatch;
+				$lb->setArray( $arr );
+
+				# Fetch exempted categories among those
+				$fields = array( 'page_id', 'page_title' );
+
+				$where = array( $lb->constructSet( 'page', $this->mDb ) );
+				$where['pp_propname'] = 'alwayscategorize';
+				$where[] = 'pp_page = page_id';
+
+				$res = $this->mDb->select( array( 'page', 'page_props' ),
+					$fields, $where, __METHOD__ );
+
+				$filteredCategories = array();
+				foreach ( $res as $row ) {
+					$filteredCategories[$row->page_title] = $categories[$row->page_title];
+				}
+
+				# Also add of associated tracking category, if enabled
+				$trackingCat = wfMessage( 'nocategory-category' )
+					->title( $this->mTitle )
+					->inContentLanguage()
+					->text();
+				if ( $trackingCat !== '-' ) {
+					$trackingCat = strtr( $trackingCat, ' ', '_');
+					$filteredCategories[$trackingCat] = $categories[$trackingCat];
+				}
+				break;
+
+			default:
+				throw new MWException( 'Invalid category policy: ' . $categoryPolicy );
+		}
+		return $filteredCategories;
 	}
 
 	/**

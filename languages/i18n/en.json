@@ -4033,5 +4033,13 @@
 	"sessionprovider-generic": "$1 sessions",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "cookie-based sessions",
 	"sessionprovider-nocookies": "Cookies may be disabled. Ensure you have cookies enabled and start again.",
-	"randomrootpage": "Random root page"
+	"randomrootpage": "Random root page",
+	"pagecategories-displayonly": "{{PLURAL:$1|Category|Categories}} (displayed only)",
+	"hidden-categories-displayonly": "{{PLURAL:$1|Hidden category|Hidden categories}} (displayed only)",
+	"onlyhiddencat-category": "Pages considering only hidden or specified categories",
+	"onlyhiddencat-category-desc": "The page contains <code><nowiki>__ONLYHIDDENCAT__</nowiki></code>, which prevents it from being categorised except by hidden categories, this tracking category, and categories with <code><nowiki>__ALWAYSCATEGORIZE__</nowiki></code>.",
+	"nocategory-category": "Pages considering only specified categories",
+	"nocategory-category-desc": "The page contains <code><nowiki>__NOCATEGORY__</nowiki></code>, which prevents it from being categorised except by this tracking category and categories with <code><nowiki>__ALWAYSCATEGORIZE__</nowiki></code>.",
+	"alwayscategorize-category": "Categories always categorized",
+	"alwayscategorize-category-desc": "The page contains <code><nowiki>__ALWAYSCATEGORIZE__</nowiki></code> in its page content, which forces it to be categorized on all pages where it is present, regardless of <code><nowiki>__HIDDENCAT__</nowiki></code> or <code><nowiki>__NOCATEGORY__</nowiki></code>."
 }
