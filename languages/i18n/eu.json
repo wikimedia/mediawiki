@@ -841,7 +841,7 @@
 	"searchall": "guztia",
 	"showingresults": "Jarraian {{PLURAL:$1|emaitza '''1''' ikus daiteke|'''$1''' emaitza ikus daitezke}}, #'''$2'''.etik hasita.",
 	"showingresultsinrange": "Jarraian {{PLURAL:$1|emaitza '''1''' ikus daiteke|'''$1''' emaitza ikus daitezke}}, #'''$2'''.etik hasi eta #<strong>$3</strong>.eraino.",
-	"search-showingresults": "{{PLURAL:$4|Emaitza <strong>$1</strong><strong>$3</strong>(e)tik|Results <strong>$1 - $2</strong><strong>$3</strong>(e)tik}}",
+	"search-showingresults": "{{PLURAL:$4|<strong>$1.</strong> emaitza (guztira <strong>$3</strong> dira)|<strong>$1 - $2.</strong> emaitzak (guztira <strong>$3</strong> dira)}}",
 	"search-nonefound": "Ez dago eskaerarekin bat egiten duten emaitzarik.",
 	"powersearch-legend": "Bilaketa aurreratua",
 	"powersearch-ns": "Bilatu honako izen-tartetan:",
