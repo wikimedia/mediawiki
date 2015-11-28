@@ -3971,6 +3971,7 @@
 	"expand_templates_preview": "{{Identical|Preview}}",
 	"expand_templates_preview_fail_html": "Used as error message in Preview section of [[Special:ExpandTemplates]] page.",
 	"expand_templates_preview_fail_html_anon": "Used as error message in Preview section of [[Special:ExpandTemplates]] page.",
+	"expand_templates_input_missing": "Used on [[Special:ExpandTemplates]] as an error message, if no input text was provided.",
 	"pagelanguage": "Title for page Special:PageLanguage",
 	"pagelang-name": "Input label for page name on Special:PageLanguage\n{{Identical|Page}}",
 	"pagelang-language": "Language selector label for Special:PageLanguage\n{{Identical|Language}}",
