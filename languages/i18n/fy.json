@@ -13,7 +13,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Robin0van0der0vliet",
-			"Macofe"
+			"Macofe",
+			"Xð"
 		]
 	},
 	"tog-underline": "Keppelings ûnderstreekje:",
@@ -208,7 +209,7 @@
 	"viewhelppage": "Helpside sjen litte",
 	"categorypage": "Besjoch kategoryside",
 	"viewtalkpage": "Oerlisside",
-	"otherlanguages": "Oare talen",
+	"otherlanguages": "In oare talen",
 	"redirectedfrom": "(Trochwiisd fan \"$1\")",
 	"redirectpagesub": "Trochferwiis-side",
 	"lastmodifiedat": "Lêste kear bewurke op $2, $1.",
@@ -377,8 +378,6 @@
 	"createaccountreason": "Reden:",
 	"createacct-reason": "Reden",
 	"createacct-reason-ph": "Wêrom makkesto in oare akkount?",
-	"createacct-captcha": "Feiligenshifking",
-	"createacct-imgcaptcha-ph": "Nim de tekst fan hjirboppe oer",
 	"createacct-submit": "Meitsje in akkount",
 	"createacct-another-submit": "Meitsje in oare akkount",
 	"createacct-benefit-heading": "{{SITENAME}} is makke troch minsken krekt as dy.",
@@ -1330,6 +1329,7 @@
 	"watchlist-details": "Jo folchlist hat {{PLURAL:$1|$1 side|$1 siden}}, oerlissiden net meiteld.",
 	"wlnote": "Dit {{PLURAL:$1|is de lêste feroaring|binne de lêste '''$1''' feroarings}} yn de lêste {{PLURAL:$2|oer|'''$2''' oeren}}.",
 	"wlshowlast": "Lit feroarings sjen fan de lêste $1 oeren $2 dagen",
+	"watchlistall2": "alles",
 	"watching": "Dwaande mei op'e folchlist te setten ...",
 	"unwatching": "Dwaande mei fan'e folchlist ôf te heljen ...",
 	"enotif_impersonal_salutation": "meidogger fan {{SITENAME}}",

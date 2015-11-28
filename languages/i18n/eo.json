@@ -42,7 +42,8 @@
 			"Sudastelaro",
 			"Ochilov",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Xð"
 		]
 	},
 	"tog-underline": "Substreki ligilojn",
@@ -242,7 +243,7 @@
 	"viewhelppage": "Vidi helpopaĝon",
 	"categorypage": "Vidi kategorian paĝon",
 	"viewtalkpage": "Vidi diskuton",
-	"otherlanguages": "Aliaj lingvoj",
+	"otherlanguages": "En aliaj lingvoj",
 	"redirectedfrom": "(Alidirektita el $1)",
 	"redirectpagesub": "Alidirektilo",
 	"redirectto": "Alidirektas al:",

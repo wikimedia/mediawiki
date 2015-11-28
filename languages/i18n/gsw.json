@@ -20,7 +20,8 @@
 			"לערי ריינהארט",
 			"80686",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Xð"
 		]
 	},
 	"tog-underline": "Links unterstryche:",
@@ -222,7 +223,7 @@
 	"viewhelppage": "D Hilf aazeige",
 	"categorypage": "Kategoriesyte aazeige",
 	"viewtalkpage": "Diskussion",
-	"otherlanguages": "Anderi Sproche",
+	"otherlanguages": "In andere Sprooche",
 	"redirectedfrom": "(Witergleitet vun $1)",
 	"redirectpagesub": "Umgleiteti Syte",
 	"redirectto": "Wyterleitig uf:",
