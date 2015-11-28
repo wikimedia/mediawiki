@@ -527,6 +527,21 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
+	 * Same as self::show with the difference, that the form will be
+	 * added to the output, no matter, if the validation was good or not.
+	 * @return bool|Status Whether submission was successful.
+	 */
+	function showAlways() {
+		$this->prepareForm();
+
+		$result = $this->tryAuthorizedSubmit();
+
+		$this->displayForm( $result );
+
+		return $result;
+	}
+
+	/**
 	 * Validate all the fields, and call the submission callback
 	 * function if everything is kosher.
 	 * @throws MWException
