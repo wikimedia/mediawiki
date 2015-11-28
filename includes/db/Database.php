@@ -3820,7 +3820,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param IDatabase $db1
 	 * @param IDatabase ...
 	 * @return array Map of values:
-	 *   - lag: highest lag of any of the DBs
+	 *   - lag: highest lag of any of the DBs or false on error (e.g. replication stopped)
 	 *   - since: oldest UNIX timestamp of any of the DB lag estimates
 	 *   - pending: whether any of the DBs have uncommitted changes
 	 * @since 1.27
@@ -3830,7 +3830,11 @@ abstract class DatabaseBase implements IDatabase {
 		foreach ( func_get_args() as $db ) {
 			/** @var IDatabase $db */
 			$status = $db->getSessionLagStatus();
-			$res['lag'] = max( $res['lag'], $status['lag'] );
+			if ( $status['lag'] === false ) {
+				$res['lag'] = false;
+			} elseif ( $res['lag'] !== false ) {
+				$res['lag'] = max( $res['lag'], $status['lag'] );
+			}
 			$res['since'] = min( $res['since'], $status['since'] );
 			$res['pending'] = $res['pending'] ?: $db->writesPending();
 		}
