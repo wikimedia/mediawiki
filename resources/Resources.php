@@ -1834,6 +1834,9 @@ return array(
 			'mediawiki.util',
 		),
 	),
+	'mediawiki.special.watchlist' => array(
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.js',
+	),
 	'mediawiki.special.javaScriptTest' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.javaScriptTest.js',
 		'messages' => array_merge( Skin::getSkinNameMessages(), array(

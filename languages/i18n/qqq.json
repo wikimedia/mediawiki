@@ -209,6 +209,7 @@
 	"tog-watchlisthidebots": "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide bot edits from watchlist. {{Gender}}\n\n{{Related|Preferences-watchlistrc-toggle}}",
 	"tog-watchlisthideminor": "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide minor edits from watchlist. {{Gender}}\n\n{{Related|Preferences-watchlistrc-toggle}}",
 	"tog-watchlisthideliu": "Option in tab 'Watchlist' of [[Special:Preferences]]. {{Gender}}\n\n{{Related|Preferences-watchlistrc-toggle}}",
+	"tog-watchlistreloadautomatically": "[[Special:Preferences]], tab 'Watchlist'. Offers user to to automatically refresh the watchlist page, when a filter is changed.",
 	"tog-watchlisthideanons": "Option in tab 'Watchlist' of [[Special:Preferences]]. {{Gender}}\n\n{{Related|Preferences-watchlistrc-toggle}}",
 	"tog-watchlisthidepatrolled": "Option in Watchlist tab of [[Special:Preferences]]. {{Gender}}\n\n{{Related|Preferences-watchlistrc-toggle}}",
 	"tog-watchlisthidecategorization": "Option in Watchlist tab of [[Special:Preferences]]. Offers user to hide/show categorization of pages. Appears next to checkboxes with labels such as {{msg-mw|tog-watchlisthideminor}}.",
