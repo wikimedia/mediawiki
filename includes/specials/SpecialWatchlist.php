@@ -403,8 +403,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 */
 	public function doHeader( $opts, $numRows ) {
 		$user = $this->getUser();
+		$out = $this->getOutput();
 
-		$this->getOutput()->addSubtitle(
+		// if the user wishes, that the watchlist is reloaded, whenever a filter changes,
+		// add the module for that
+		if ( $user->getBoolOption( 'watchlistreloadautomatically' ) ) {
+			$out->addModules( array( 'mediawiki.special.watchlist' ) );
+		}
+
+		$out->addSubtitle(
 			$this->msg( 'watchlistfor2', $user->getName() )
 				->rawParams( SpecialEditWatchlist::buildTools( null ) )
 		);

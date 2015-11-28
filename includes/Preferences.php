@@ -1006,6 +1006,11 @@ class Preferences {
 			'section' => 'watchlist/advancedwatchlist',
 			'label-message' => 'tog-watchlisthideliu',
 		);
+		$defaultPreferences['watchlistreloadautomatically'] = array(
+			'type' => 'toggle',
+			'section' => 'watchlist/advancedwatchlist',
+			'label-message' => 'tog-watchlistreloadautomatically',
+		);
 
 		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
 			$defaultPreferences['watchlisthidecategorization'] = array(
