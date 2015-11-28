@@ -35,6 +35,7 @@
 	"tog-watchlisthidebots": "Hide bot edits from the watchlist",
 	"tog-watchlisthideminor": "Hide minor edits from the watchlist",
 	"tog-watchlisthideliu": "Hide edits by logged in users from the watchlist",
+	"tog-watchlistreloadautomatically": "Reload the Watchlist automatically whenever a filter is changed (JavaScript required)",
 	"tog-watchlisthideanons": "Hide edits by anonymous users from the watchlist",
 	"tog-watchlisthidepatrolled": "Hide patrolled edits from the watchlist",
 	"tog-watchlisthidecategorization": "Hide categorization of pages",
