@@ -20191,21 +20191,13 @@ title=[[Main Page]]
 !! end
 
 !! test
-Anchor starting with underscore
+Edit comment with link with more than one pipe (T99346)
+!! options
+comment
 !! wikitext
-[[#_ref|One]]
+[[Main Page|Many|pipes]]
 !! html
-<p><a href="#_ref">One</a>
-</p>
-!! end
-
-!! test
-Id starting with underscore
-!! wikitext
-<div id="_ref"></div>
-!! html
-<div id="_ref"></div>
-
+<a href="/wiki/Main_Page" title="Main Page">Many|pipes</a>
 !! end
 
 !! test
@@ -20227,6 +20219,24 @@ comment
 [[ABC%33D% ++]] [[ABC%33D% ++|+%20]]
 !! html/php
 <a href="/index.php?title=ABC3D%25_%2B%2B&amp;action=edit&amp;redlink=1" class="new" title="ABC3D% ++ (page does not exist)">ABC3D% ++</a> <a href="/index.php?title=ABC3D%25_%2B%2B&amp;action=edit&amp;redlink=1" class="new" title="ABC3D% ++ (page does not exist)">+%20</a>
+!! end
+
+!! test
+Anchor starting with underscore
+!! wikitext
+[[#_ref|One]]
+!! html
+<p><a href="#_ref">One</a>
+</p>
+!! end
+
+!! test
+Id starting with underscore
+!! wikitext
+<div id="_ref"></div>
+!! html
+<div id="_ref"></div>
+
 !! end
 
 # Parsoid doesn't support this yet: see bug 73581
