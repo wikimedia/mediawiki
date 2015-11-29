@@ -20906,6 +20906,16 @@ Id starting with underscore
 !! end
 
 !! test
+Edit comment with link with more than one pipe (T99346)
+!! options
+comment
+!! wikitext
+[[Main Page|Many|pipes]]
+!! html
+<a href="/wiki/Main_Page" title="Main Page">Many|pipes</a>
+!! end
+
+!! test
 Space normalisation on autocomment (bug 22784)
 !! options
 comment
