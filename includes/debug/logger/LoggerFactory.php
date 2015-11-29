@@ -96,7 +96,7 @@ class LoggerFactory {
 	public static function getInstance( $channel ) {
 		static $hasPSR3Interface = null;
 		if ( $hasPSR3Interface === null ) {
-			$hasPSR3Interface = interface_exists( '\Psr\Log\LoggerInterface' );
+			$hasPSR3Interface = interface_exists( 'Psr\Log\LoggerInterface' );
 			if ( !$hasPSR3Interface ) {
 				$message = (
 					'MediaWiki requires the <a href="https://github.com/php-fig/log">PSR-3 logging ' .
