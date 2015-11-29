@@ -296,9 +296,9 @@ class DiffEngine {
 			$this->xchanged = $this->ychanged = array();
 			$this->xv = $this->yv = array();
 			$this->xind = $this->yind = array();
-			unset( $this->seq );
-			unset( $this->in_seq );
-			unset( $this->lcs );
+			$this->seq = array();
+			$this->in_seq = array();
+			$this->lcs = 0;
 
 			// Skip leading common lines.
 			for ( $skip = 0; $skip < $n_from && $skip < $n_to; $skip++ ) {
