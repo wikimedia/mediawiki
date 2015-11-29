@@ -962,6 +962,7 @@
 	"unusedtemplateswlh": "nexus alii",
 	"randompage": "Pagina fortuita",
 	"randompage-nopages": "Non est ulla pagina {{PLURAL:$2|hoc in spatio nominale|in his spatiis nominalibus}}: $1.",
+	"randomincategory-category": "Categoria:",
 	"randomincategory-submit": "Ire",
 	"randomredirect": "Redirectio fortuita",
 	"randomredirect-nopages": "Non est ulla redirectio in spatio nominali \"$1\".",

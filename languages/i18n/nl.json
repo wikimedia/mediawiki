@@ -1860,6 +1860,7 @@
 	"wlnote": "Hieronder {{PLURAL:$1|staat de laaste wijziging|staan de laatste $1 wijzigingen}} in {{PLURAL:$2|het laatste uur|de laatste $2 uur}} per $3 om $4.",
 	"wlshowlast": "Laatste $1 uur, $2 dagen bekijken",
 	"watchlistall2": "alles",
+	"watchlist-hide": "Verbergen",
 	"wlshowtime": "Tijdspanne:",
 	"wlshowhideminor": "kleine bewerkingen",
 	"wlshowhidebots": "bots",

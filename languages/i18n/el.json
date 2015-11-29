@@ -1220,7 +1220,7 @@
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"rcnotefrom": "Παρακάτω {{PLURAL:$5|είναι η αλλαγή|είναι οι αλλαγές}} από <strong>$3, $4</strong> (έως <strong>$1</strong> που εμφανίζεται).",
 	"rclistfrom": "Εμφάνιση νέων αλλαγών αρχίζοντας από τις $3 στις $2",
-	"rcshowhideminor": "$1 μικρών επεξεργασιών",
+	"rcshowhideminor": "$1 μικρών τροποποιήσεων",
 	"rcshowhideminor-show": "Εμφάνιση",
 	"rcshowhideminor-hide": "Απόκρυψη",
 	"rcshowhidebots": "$1 ρομπότ",
