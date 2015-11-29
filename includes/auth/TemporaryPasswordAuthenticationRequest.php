@@ -30,7 +30,7 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	/** @var string|null Temporary password */
 	public $password;
 
-	public static function getFieldInfo() {
+	public function getFieldInfo() {
 		return array();
 	}
 
