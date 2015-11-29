@@ -39,22 +39,21 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 	}
 
 	/**
-	 * @dataProvider provideGetAuthenticationRequestTypes
+	 * @dataProvider provideGetAuthenticationRequests
 	 * @param string $action
 	 * @param array $response
 	 */
-	public function testGetAuthenticationRequestTypes( $action, $response ) {
+	public function testGetAuthenticationRequests( $action, $response ) {
 		$provider = new CheckBlocksSecondaryAuthenticationProvider();
 
-		$this->assertSame( $response, $provider->getAuthenticationRequestTypes( $action ) );
+		$this->assertSame( $response, $provider->getAuthenticationRequests( $action ) );
 	}
 
-	public static function provideGetAuthenticationRequestTypes() {
+	public static function provideGetAuthenticationRequests() {
 		return array(
 			array( AuthManager::ACTION_LOGIN, array() ),
 			array( AuthManager::ACTION_CREATE, array() ),
 			array( AuthManager::ACTION_CHANGE, array() ),
-			array( AuthManager::ACTION_ALL, array() ),
 			array( AuthManager::ACTION_LOGIN_CONTINUE, array() ),
 			array( AuthManager::ACTION_CREATE_CONTINUE, array() ),
 		);

@@ -4,6 +4,7 @@ namespace MediaWiki\Auth;
 
 /**
  * @group AuthManager
+ * @group Database
  * @covers MediaWiki\Auth\AbstractPasswordPrimaryAuthenticationProvider
  */
 class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
@@ -149,30 +150,58 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 	}
 
 	/**
-	 * @dataProvider provideGetAuthenticationRequestTypes
+	 * @dataProvider provideGetAuthenticationRequests
 	 * @param string $action
 	 * @param array $response
 	 */
-	public function testGetAuthenticationRequestTypes( $action, $response ) {
+	public function testGetAuthenticationRequests( $action, $response ) {
 		$provider = $this->getMockForAbstractClass(
 			'MediaWiki\\Auth\\AbstractPasswordPrimaryAuthenticationProvider'
 		);
 
-		$this->assertSame( $response, $provider->getAuthenticationRequestTypes( $action ) );
+		if ( in_array( $action, array( AuthManager::ACTION_CHANGE, AuthManager::ACTION_REMOVE ) ) ) {
+			\RequestContext::getMain()->setUser( \User::newFromName( 'UTSysop' ) );
+		} else {
+			\RequestContext::getMain()->setUser( new \User );
+		}
+
+		$this->assertEquals( $response, $provider->getAuthenticationRequests( $action ) );
 	}
 
-	public static function provideGetAuthenticationRequestTypes() {
-		$arr = array( 'MediaWiki\\Auth\\PasswordAuthenticationRequest' );
+	public static function provideGetAuthenticationRequests() {
+		$arr = array( new PasswordAuthenticationRequest() );
+		$req = new PasswordAuthenticationRequest();
+		$req->username = 'UTSysop';
+		$arr2 = array( $req );
 		return array(
 			array( AuthManager::ACTION_LOGIN, $arr ),
 			array( AuthManager::ACTION_CREATE, $arr ),
-			array( AuthManager::ACTION_CHANGE, $arr ),
-			array( AuthManager::ACTION_ALL, $arr ),
+			array( AuthManager::ACTION_CHANGE, $arr2 ),
+			array( AuthManager::ACTION_REMOVE, $arr2 ),
 			array( AuthManager::ACTION_LOGIN_CONTINUE, array() ),
 			array( AuthManager::ACTION_CREATE_CONTINUE, array() ),
 			array( AuthManager::ACTION_LINK, array() ),
 			array( AuthManager::ACTION_LINK_CONTINUE, array() ),
 		);
+	}
+
+	public function testProviderRemoveAuthenticationData() {
+		$req = new PasswordAuthenticationRequest;
+		$req->username = 'foo';
+		$req->password = null;
+
+		$req2 = new PasswordAuthenticationRequest;
+		$req2->username = 'foo';
+		$req2->password = '123';
+
+		$provider = $this->getMockForAbstractClass(
+			'MediaWiki\\Auth\\AbstractPasswordPrimaryAuthenticationProvider'
+		);
+		$provider->expects( $this->once() )
+			->method( 'providerChangeAuthenticationData' )
+			->with( $this->equalTo( $req2 ) );
+
+		$provider->providerRemoveAuthenticationData( $req );
 	}
 
 	public function testProviderRevokeAccessForUser() {
@@ -184,7 +213,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 			'MediaWiki\\Auth\\AbstractPasswordPrimaryAuthenticationProvider'
 		);
 		$provider->expects( $this->once() )
-			->method( 'providerChangeAuthenticationData' )
+			->method( 'providerRemoveAuthenticationData' )
 			->with( $this->equalTo( $req ) );
 
 		$provider->providerRevokeAccessForUser( 'foo' );

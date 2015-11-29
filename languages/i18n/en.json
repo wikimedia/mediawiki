@@ -3899,5 +3899,11 @@
 	"authmanager-authplugin-setpass-fail": "The authentication plugin denied the password change.",
 	"authmanager-autocreate-noperm": "Automatic account creation is not allowed.",
 	"authmanager-autocreate-exception": "Automatic account creation temporarily disabled due to prior errors.",
-	"authmanager-userdoesnotexist": "User account \"$1\" is not registered."
+	"authmanager-userdoesnotexist": "User account \"$1\" is not registered.",
+	"authmanager-describe-unspecified-provider": "Unspecified",
+	"authmanager-describe-unspecified-account": "Unspecified",
+	"authprovider-confirmautolinking-message": "Based on your recent login attempts, the following accounts can be linked to your wiki account. Linking them enables logging in via those accounts. Please select which ones should be linked.",
+	"authprovider-confirmautolinking-optionname": "$1 ($2)",
+	"authprovider-confirmautolinking-request-label": "Accounts which should be linked",
+	"authprovider-confirmautolinking-request-help": "A list of accounts (by AuthenticationRequest unique id) which are confirmed for linking."
 }

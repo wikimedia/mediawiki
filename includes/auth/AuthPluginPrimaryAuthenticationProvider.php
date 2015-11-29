@@ -121,15 +121,17 @@ class AuthPluginPrimaryAuthenticationProvider
 		return parent::getUniqueId() . ':' . get_class( $this->auth );
 	}
 
-	public function getAuthenticationRequestTypes( $action ) {
+	public function getAuthenticationRequests( $action ) {
+		$clazz = $this->requestType;
+
 		switch ( $action ) {
 			case AuthManager::ACTION_LOGIN:
 			case AuthManager::ACTION_CREATE:
-			case AuthManager::ACTION_ALL:
-				return array( $this->requestType );
+				return array( new $clazz() );
 
 			case AuthManager::ACTION_CHANGE:
-				return $this->auth->allowPasswordChange() ? array( $this->requestType ) : array();
+			case AuthManager::ACTION_REMOVE:
+				return $this->auth->allowPasswordChange() ? array( new $clazz() ) : array();
 
 			default:
 				return array();
@@ -137,11 +139,10 @@ class AuthPluginPrimaryAuthenticationProvider
 	}
 
 	public function beginPrimaryAuthentication( array $reqs ) {
-		if ( !isset( $reqs[$this->requestType] ) ) {
+		$req = AuthenticationRequest::getRequestByClass( $reqs, $this->requestType );
+		if ( !$req ) {
 			return AuthenticationResponse::newAbstain();
 		}
-
-		$req = $reqs[$this->requestType];
 		if ( $req->username === null || $req->password === null ) {
 			return AuthenticationResponse::newAbstain();
 		}
@@ -241,11 +242,10 @@ class AuthPluginPrimaryAuthenticationProvider
 			throw new \BadMethodCallException( 'Shouldn\'t call this when accountCreationType() is NONE' );
 		}
 
-		if ( !isset( $reqs[$this->requestType] ) ) {
+		$req = AuthenticationRequest::getRequestByClass( $reqs, $this->requestType );
+		if ( !$req ) {
 			return AuthenticationResponse::newAbstain();
 		}
-
-		$req = $reqs[$this->requestType];
 		if ( $req->username === null || $req->password === null ) {
 			return AuthenticationResponse::newAbstain();
 		}
