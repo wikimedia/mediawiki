@@ -63,7 +63,9 @@ class AuthenticationResponse {
 	 * query the remote site via its API rather than by following $redirectTarget */
 	public $redirectApiData = null;
 
-	/** @var string[] Needed AuthenticationRequest types to continue after a UI response */
+	/** @var AuthenticationRequest[] Needed AuthenticationRequests to continue after a UI response.
+	 *  This can be used to e.g. build a form for user input; the client is not necessarily
+	 *  required to return each of these requests in the next step, though, */
 	public $neededRequests = array();
 
 	/** @var MessageSpecifier|null I18n message to display in case of UI or FAIL */
@@ -76,27 +78,39 @@ class AuthenticationResponse {
 	public $username = null;
 
 	/**
-	 * @var AuthenticationRequest|null Request to pass to beginCreateAccount() to
+	 * @var AuthenticationRequest|null Request to pass to AuthManager::beginCreateAccount() to
 	 * create an account.
 	 */
 	public $createRequest = null;
 
 	/**
 	 * @var AuthenticationRequest|null After account creation, request to pass
-	 * to beginAuthentication() to log into that account.
+	 * to AuthManager::beginAuthentication() to log into that account.
 	 */
 	public $loginRequest = null;
 
 	/**
+	 * @var AuthenticationRequest|null After successful remote authentication, request to pass
+	 * to PrimaryAuthenticationProvider::finishAccountLink() once a local user has been created.
+	 */
+	public $linkRequest = null;
+
+	/**
 	 * @param string|null $username Local username
 	 * @param AuthenticationRequest $createRequest For chaining to account creation flow
+	 * @param AuthenticationRequest $linkRequest For passing back to provider's finishAccountLink
 	 * @return AuthenticationResponse
 	 */
-	public static function newPass( $username = null, AuthenticationRequest $createRequest = null ) {
+	public static function newPass(
+		$username = null,
+		AuthenticationRequest $createRequest = null,
+		AuthenticationRequest $linkRequest = null
+	) {
 		$ret = new AuthenticationResponse;
 		$ret->status = AuthenticationResponse::PASS;
 		$ret->username = $username;
 		$ret->createRequest = $createRequest;
+		$ret->linkRequest = $linkRequest;
 		return $ret;
 	}
 
@@ -132,14 +146,14 @@ class AuthenticationResponse {
 	}
 
 	/**
-	 * @param string[] $types AuthenticationRequest types
+	 * @param AuthenticationRequest[] $requests
 	 * @param MessageSpecifier $msg
 	 * @return AuthenticationResponse
 	 */
-	public static function newUI( array $types, MessageSpecifier $msg ) {
+	public static function newUI( array $requests, MessageSpecifier $msg ) {
 		$ret = new AuthenticationResponse;
 		$ret->status = AuthenticationResponse::UI;
-		$ret->neededRequests = $types;
+		$ret->neededRequests = $requests;
 		$ret->message = $msg;
 		return $ret;
 	}

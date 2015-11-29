@@ -21,6 +21,8 @@
 
 namespace MediaWiki\Auth;
 
+use RequestContext;
+
 /**
  * A primary authentication provider that uses the temporary password field in
  * the 'user' table.
@@ -42,20 +44,26 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		);
 	}
 
-	public function getAuthenticationRequestTypes( $action ) {
+	public function getAuthenticationRequests( $action ) {
 		switch ( $action ) {
 			case AuthManager::ACTION_LOGIN:
-				return array( 'MediaWiki\\Auth\\PasswordAuthenticationRequest' );
+				return array( new PasswordAuthenticationRequest() );
+
+			case AuthManager::ACTION_CREATE:
+				$user = RequestContext::getMain()->getUser();
+				return $user->isLoggedIn() ?
+					array( new TemporaryPasswordAuthenticationRequest() ) : array();
 
 			case AuthManager::ACTION_CHANGE:
-			case AuthManager::ACTION_CREATE:
-				return array( 'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest' );
+				return array( new TemporaryPasswordAuthenticationRequest() );
 
-			case AuthManager::ACTION_ALL:
-				return array(
-					'MediaWiki\\Auth\\PasswordAuthenticationRequest',
-					'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest'
-				);
+			case AuthManager::ACTION_REMOVE:
+				$user = RequestContext::getMain()->getUser();
+				if ( $this->testUserCanAuthenticate( $user->getName() ) ) {
+					return array( new TemporaryPasswordAuthenticationRequest() );
+				} else {
+					return array();
+				}
 
 			default:
 				return array();
@@ -63,11 +71,12 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	}
 
 	public function beginPrimaryAuthentication( array $reqs ) {
-		if ( !isset( $reqs['MediaWiki\\Auth\\PasswordAuthenticationRequest'] ) ) {
+		/** @var PasswordAuthenticationRequest $req */
+		$req = AuthenticationRequest::getRequestByClass( $reqs,
+			'MediaWiki\\Auth\\PasswordAuthenticationRequest' );
+		if ( !$req ) {
 			return AuthenticationResponse::newAbstain();
 		}
-
-		$req = $reqs['MediaWiki\\Auth\\PasswordAuthenticationRequest'];
 		if ( $req->username === null || $req->password === null ) {
 			return AuthenticationResponse::newAbstain();
 		}
@@ -184,14 +193,23 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		);
 	}
 
+	public function providerRemoveAuthenticationData( AuthenticationRequest $req ) {
+		if ( $req instanceof TemporaryPasswordAuthenticationRequest ) {
+			$req->password = null;
+		}
+		$this->providerChangeAuthenticationData( $req );
+	}
+
 	public function accountCreationType() {
 		return self::TYPE_CREATE;
 	}
 
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
 		$ret = \StatusValue::newGood();
-		if ( isset( $reqs['MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest'] ) ) {
-			$req = $reqs['MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest'];
+		/** @var TemporaryPasswordAuthenticationRequest $req */
+		$req = AuthenticationRequest::getRequestByClass( $reqs,
+			'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest');
+		if ( $req ) {
 			$ret->merge(
 				$this->checkPasswordValidity( $req->username, $req->password )
 			);
@@ -200,8 +218,10 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	}
 
 	public function beginPrimaryAccountCreation( $user, array $reqs ) {
-		if ( isset( $reqs['MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest'] ) ) {
-			$req = $reqs['MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest'];
+		/** @var TemporaryPasswordAuthenticationRequest $req */
+		$req = AuthenticationRequest::getRequestByClass( $reqs,
+			'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest');
+		if ( $req ) {
 			if ( $req->username !== null && $req->password !== null ) {
 				// Nothing we can do yet, because the user isn't in the DB yet
 				if ( $req->username !== $user->getName() ) {

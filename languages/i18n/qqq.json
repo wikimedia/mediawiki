@@ -4068,5 +4068,7 @@
 	"authmanager-authplugin-setpass-fail": "Error message from AuthManager if the AuthPlugin returns false from its allowPasswordChange() method.",
 	"authmanager-autocreate-noperm": "Error message when auto-creation fails due to lack of permission.",
 	"authmanager-autocreate-exception": "Error message when auto-creation fails because we tried recently and an exception was thrown, so we're not going to try again yet.",
-	"authmanager-userdoesnotexist": "Error message when a user account does not exist. Parameters:\n* $1 - User name."
+	"authmanager-userdoesnotexist": "Error message when a user account does not exist. Parameters:\n* $1 - User name.",
+	"authmanager-describe-unspecified-provider": "Fallback text for provider name on [[Special:LinkAccounts]] when it has not been provided.",
+	"authmanager-describe-unspecified-account": "Fallback text for account name on [[Special:LinkAccounts]] when it has not been provided."
 }
