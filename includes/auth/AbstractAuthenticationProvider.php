@@ -56,5 +56,4 @@ abstract class AbstractAuthenticationProvider implements AuthenticationProvider 
 	public function getUniqueId() {
 		return get_class( $this );
 	}
-
 }

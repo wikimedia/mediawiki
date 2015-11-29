@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Auth;
 
+use MessageSpecifier;
 use StatusValue;
 use User;
 
@@ -60,7 +61,7 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	/**
 	 * Start an authentication flow
 	 *
-	 * @param AuthenticationRequest[] $reqs Keys are class names
+	 * @param AuthenticationRequest[] $reqs
 	 * @return AuthenticationResponse Expected responses:
 	 *  - PASS: The user is authenticated. Secondary providers will now run.
 	 *  - FAIL: The user is not authenticated. Fail the authentication process.
@@ -74,7 +75,7 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 
 	/**
 	 * Continue an authentication flow
-	 * @param AuthenticationRequest[] $reqs Keys are class names
+	 * @param AuthenticationRequest[] $reqs
 	 * @return AuthenticationResponse Expected responses:
 	 *  - PASS: The user is authenticated. Secondary providers will now run.
 	 *  - FAIL: The user is not authenticated. Fail the authentication process.
@@ -139,12 +140,43 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	/**
 	 * Change authentication data (e.g. passwords)
 	 *
-	 * If the provider supports the AuthenticationRequest type, using $req
-	 * should result in a successful login in the future.
+	 * Getting a request from getAuthenticationRequests( AuthManager::ACTION_CHANGE ), modifying
+	 * it and passing it to this method should result in the stored authenticaton data being
+	 * updated accordingly. Typically this would mean that passing the modified request should
+	 * result in a successful login in the future.
 	 *
 	 * @param AuthenticationRequest $req
 	 */
 	public function providerChangeAuthenticationData( AuthenticationRequest $req );
+
+	/**
+	 * Indicate whether a type is supported for removal
+	 * @param string $type AuthenticationRequest type
+	 * @return bool False if attempts to remove $type should be denied
+	 */
+	public function providerAllowsAuthenticationDataRemovalType( $type );
+
+	/**
+	 * Validate removal of authentication data (e.g. passwords)
+	 *
+	 * Return StatusValue::newGood( 'ignored' ) if you don't support this
+	 * AuthenticationRequest type.
+	 *
+	 * @param AuthenticationRequest $req
+	 * @return StatusValue
+	 */
+	public function providerAllowsAuthenticationDataRemoval( AuthenticationRequest $req );
+
+	/**
+	 * Remove authentication data (e.g. passwords)
+	 *
+	 * Getting a request from getAuthenticationRequests( AuthManager::ACTION_REMOVE ), modifying
+	 * it and passing it to this method should result in the stored authenticaton data identified
+	 * by that request being deleted.
+	 *
+	 * @param AuthenticationRequest $req
+	 */
+	public function providerRemoveAuthenticationData( AuthenticationRequest $req );
 
 	/**
 	 * Fetch the account-creation type
@@ -163,7 +195,7 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	 *   into such.
 	 * @param User $creator User doing the creation. This may become a
 	 *   "UserValue" in the future, or User may be refactored into such.
-	 * @param AuthenticationRequest[] $reqs Keys are class names
+	 * @param AuthenticationRequest[] $reqs
 	 * @return StatusValue
 	 */
 	public function testForAccountCreation( $user, $creator, array $reqs );
@@ -173,7 +205,7 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	 * @param User $user User being created (not added to the database yet).
 	 *   This may become a "UserValue" in the future, or User may be refactored
 	 *   into such.
-	 * @param AuthenticationRequest[] $reqs Keys are class names
+	 * @param AuthenticationRequest[] $reqs
 	 * @return AuthenticationResponse Expected responses:
 	 *  - PASS: The user may be created. Secondary providers will now run.
 	 *  - FAIL: The user may not be created. Fail the creation process.
@@ -190,7 +222,7 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	 * @param User $user User being created (not added to the database yet).
 	 *   This may become a "UserValue" in the future, or User may be refactored
 	 *   into such.
-	 * @param AuthenticationRequest[] $reqs Keys are class names
+	 * @param AuthenticationRequest[] $reqs
 	 * @return AuthenticationResponse Expected responses:
 	 *  - PASS: The user may be created. Secondary providers will now run.
 	 *  - FAIL: The user may not be created. Fail the creation process.
@@ -207,6 +239,29 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	 * @param AuthenticationResponse $response PASS response returned earlier
 	 */
 	public function finishAccountCreation( $user, AuthenticationResponse $response );
+
+	/**
+	 * Post-login callback in case there was a previous successful login with this provider
+	 * that had to be aborted due to no local user being available.
+	 *
+	 * This is invoked on login by linking: the user logs in successfully with the primary
+	 * provider but no local account exists nor can one be autocreated. The user logs in or creates
+	 * an account with a different primary provider; after that succeeds, the original provider's
+	 * finishAccountLink() method is called so the new local account can be associated with the
+	 * original provider's credentials. The mechanism is set up by the provider returning
+	 * a PASS AuthenticationResponse with $linkRequest set (see last parameter of
+	 * AuthenticationRequest::newPass); that request will be returned here,
+	 *
+	 * @param User $user The local user that needs to be linked.
+	 *   This may become a "UserValue" in the future, or User may be refactored
+	 *   into such.
+	 * @param AuthenticationRequest $req
+	 * @return MessageSpecifier|null A message that will be shown to the user to explain that the account
+	 *   will be linked. Null in case of a no-op (e.g. the account was linked already).
+	 * @see AuthenticationResponse::newPass()
+	 * @see ConfirmAutolinkingSecondaryAuthenticationProvider
+	 */
+	public function finishAccountLink( $user, AuthenticationRequest $req );
 
 	/**
 	 * Determine whether an account may be auto-created

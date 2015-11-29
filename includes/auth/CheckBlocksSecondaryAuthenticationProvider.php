@@ -55,7 +55,7 @@ class CheckBlocksSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 		}
 	}
 
-	public function getAuthenticationRequestTypes( $action ) {
+	public function getAuthenticationRequests( $action ) {
 		return array();
 	}
 
