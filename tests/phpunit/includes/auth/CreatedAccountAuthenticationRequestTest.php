@@ -9,15 +9,13 @@ require_once 'AuthenticationRequestTestCase.php';
  * @covers MediaWiki\Auth\CreatedAccountAuthenticationRequest
  */
 class CreatedAccountAuthenticationRequestTest extends AuthenticationRequestTestCase {
-	protected static $class = 'MediaWiki\\Auth\\CreatedAccountAuthenticationRequest';
-
 	public function testConstructor() {
 		$ret = new CreatedAccountAuthenticationRequest( 42, 'Test' );
 		$this->assertSame( 42, $ret->id );
 		$this->assertSame( 'Test', $ret->username );
 	}
 
-	public function provideNewFromSubmission() {
+	public function provideLoadFromSubmission() {
 		return array(
 			array(
 				'Empty request',
@@ -25,5 +23,9 @@ class CreatedAccountAuthenticationRequestTest extends AuthenticationRequestTestC
 				null
 			),
 		);
+	}
+
+	protected function getInstance() {
+		return new CreatedAccountAuthenticationRequest( null, null );
 	}
 }

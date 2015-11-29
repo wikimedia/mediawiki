@@ -141,13 +141,13 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 		return null;
 	}
 
-	public function getAuthenticationRequestTypes( $action ) {
+	public function getAuthenticationRequests( $action ) {
 		switch ( $action ) {
 			case AuthManager::ACTION_LOGIN:
 			case AuthManager::ACTION_CREATE:
 			case AuthManager::ACTION_CHANGE:
-			case AuthManager::ACTION_ALL:
-				return array( 'MediaWiki\\Auth\\PasswordAuthenticationRequest' );
+			case AuthManager::ACTION_REMOVE:
+				return array( new PasswordAuthenticationRequest() );
 
 			default:
 				return array();

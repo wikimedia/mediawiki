@@ -4,6 +4,7 @@ namespace MediaWiki\Auth;
 
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
+use PHPUnit_Framework_MockObject_Generator;
 use Psr\Log\LogLevel;
 use StatusValue;
 
@@ -13,6 +14,8 @@ use StatusValue;
  * @covers MediaWiki\Auth\AuthManager
  */
 class AuthManagerTest extends \MediaWikiTestCase {
+	protected static $requestCache = array();
+
 	/** @var WebRequest */
 	protected $request;
 	/** @var Config */
@@ -231,7 +234,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 					'provider' => $provider,
 					'id' => \DummySessionProvider::ID,
 					'persisted' => true,
-					'user' => UserInfo::newFromUser( $provideUser, true )
+					'userInfo' => UserInfo::newFromUser( $provideUser, true )
 				) );
 			} ) );
 		$this->initializeManager();
@@ -692,7 +695,6 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$req->pre = $preResponse;
 		$req->primary = $primaryResponses;
 		$req->secondary = $secondaryResponses;
-		$clazz = get_class( $req );
 		$mocks = array();
 		foreach ( array( 'pre', 'primary', 'secondary' ) as $key ) {
 			$class = ucfirst( $key ) . 'AuthenticationProvider';
@@ -713,21 +715,20 @@ class AuthManagerTest extends \MediaWikiTestCase {
 				->will( $this->returnValue( $key . '3' ) );
 		}
 		foreach ( $mocks as $mock ) {
-			$mock->expects( $this->any() )->method( 'getAuthenticationRequestTypes' )
-				->will( $this->returnValue( array( 'X' ) ) );
+			$mock->expects( $this->any() )->method( 'getAuthenticationRequests' )
+				->will( $this->returnValue( array( self::getMockRequest( 'X', AuthManager::ACTION_LOGIN ) ) ) );
 		}
 
 		$mocks['pre']->expects( $this->once() )->method( 'testForAuthentication' )
-			->will( $this->returnCallback( function ( $reqs ) use ( $that, $clazz ) {
-				$that->assertArrayHasKey( $clazz, $reqs );
-				$req = $reqs[$clazz];
+			->will( $this->returnCallback( function ( $reqs ) use ( $that, $req ) {
+				// loose equivalence; requests might be serialized and thus become another object
+				$that->assertContains( $req, $reqs, '', false, false );
 				return $req->pre;
 			} ) );
 
 		$ct = count( $req->primary );
-		$callback = $this->returnCallback( function ( $reqs ) use ( $that, $clazz ) {
-			$that->assertArrayHasKey( $clazz, $reqs );
-			$req = $reqs[$clazz];
+		$callback = $this->returnCallback( function ( $reqs ) use ( $that, $req ) {
+			$that->assertContains( $req, $reqs, '', false, false );
 			return array_shift( $req->primary );
 		} );
 		$mocks['primary']->expects( $this->exactly( min( 1, $ct ) ) )
@@ -742,11 +743,10 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		}
 
 		$ct = count( $req->secondary );
-		$callback = $this->returnCallback( function ( $user, $reqs ) use ( $that, $id, $name, $clazz ) {
+		$callback = $this->returnCallback( function ( $user, $reqs ) use ( $that, $id, $name, $req ) {
 			$that->assertSame( $id, $user->getId() );
 			$that->assertSame( $name, $user->getName() );
-			$that->assertArrayHasKey( $clazz, $reqs );
-			$req = $reqs[$clazz];
+			$that->assertContains( $req, $reqs, '', false, false );
 			return array_shift( $req->secondary );
 		} );
 		$mocks['secondary']->expects( $this->exactly( min( 1, $ct ) ) )
@@ -869,16 +869,19 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$name = $user->getName();
 
 		$req = $this->getMockForAbstractClass( 'MediaWiki\\Auth\\AuthenticationRequest' );
+		$req->action = AuthManager::ACTION_LOGIN;
 		$req->foobar = 'baz';
 		$restartResponse = AuthenticationResponse::newRestart(
 			$this->messageSpecifier( 'authmanager-authn-no-local-user' )
 		);
-		$restartResponse->neededRequests = array( 'X' );
+		$restartResponse->neededRequests = array( self::getMockRequest( 'X',
+			AuthManager::ACTION_LOGIN ) );
 		$restartResponse->createRequest = $req;
 		$restartResponse2 = AuthenticationResponse::newRestart(
 			$this->messageSpecifier( 'authmanager-authn-no-local-user-link' )
 		);
-		$restartResponse2->neededRequests = array( 'X' );
+		$restartResponse2->neededRequests = array( self::getMockRequest( 'X',
+			AuthManager::ACTION_LOGIN ) );
 		$restartResponse2->createRequest = $req;
 
 		return array(
@@ -1412,7 +1415,6 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$req->secondaryTest = $secondaryTest;
 		$req->primary = $primaryResponses;
 		$req->secondary = $secondaryResponses;
-		$clazz = get_class( $req );
 		$mocks = array();
 		foreach ( array( 'pre', 'primary', 'secondary' ) as $key ) {
 			$class = ucfirst( $key ) . 'AuthenticationProvider';
@@ -1424,15 +1426,14 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$mocks[$key]->expects( $this->any() )->method( 'testForAccountCreation' )
 				->will( $this->returnCallback(
 					function ( $user, $creatorIn, $reqs )
-						use ( $that, $username, $creator, $clazz, $key )
+						use ( $that, $username, $creator, $req, $key )
 					{
 						$that->assertSame( $username, $user->getName() );
 						$that->assertSame( $creator, $creatorIn );
 						foreach ( $reqs as $req ) {
 							$that->assertSame( $username, $req->username );
 						}
-						$that->assertArrayHasKey( $clazz, $reqs );
-						$req = $reqs[$clazz];
+						$that->assertContains( $req, $reqs, '', false, false );
 						$k = $key . 'Test';
 						return $req->$k;
 					}
@@ -1454,13 +1455,12 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$mocks['primary']->expects( $this->any() )->method( 'testUserExists' )
 			->will( $this->returnValue( false ) );
 		$ct = count( $req->primary );
-		$callback = $this->returnCallback( function ( $user, $reqs ) use ( $that, $username, $clazz ) {
+		$callback = $this->returnCallback( function ( $user, $reqs ) use ( $that, $username, $req ) {
 			$that->assertSame( $username, $user->getName() );
-			foreach ( $reqs as $req ) {
-				$that->assertSame( $username, $req->username );
+			foreach ( $reqs as $r ) {
+				$that->assertSame( $username, $r->username );
 			}
-			$that->assertArrayHasKey( $clazz, $reqs );
-			$req = $reqs[$clazz];
+			$that->assertContains( $req, $reqs, '', false, false );
 			return array_shift( $req->primary );
 		} );
 		$mocks['primary']->expects( $this->exactly( min( 1, $ct ) ) )
@@ -1471,13 +1471,12 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			->will( $callback );
 
 		$ct = count( $req->secondary );
-		$callback = $this->returnCallback( function ( $user, $reqs ) use ( $that, $username, $clazz ) {
+		$callback = $this->returnCallback( function ( $user, $reqs ) use ( $that, $username, $req ) {
 			$that->assertSame( $username, $user->getName() );
-			foreach ( $reqs as $req ) {
-				$that->assertSame( $username, $req->username );
+			foreach ( $reqs as $r ) {
+				$that->assertSame( $username, $r->username );
 			}
-			$that->assertArrayHasKey( $clazz, $reqs );
-			$req = $reqs[$clazz];
+			$that->assertContains( $req, $reqs, '', false, false );
 			return array_shift( $req->secondary );
 		} );
 		$mocks['secondary']->expects( $this->exactly( min( 1, $ct ) ) )
@@ -2059,13 +2058,36 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$workaroundPHPUnitBug = true;
 	}
 
+	public function testGetAuthenticationRequestTypes() {
+		$class = $this->getMockClass( 'MediaWiki\\Auth\\AuthenticationRequest' );
+		$r1 = new $class;
+		$r2 = new $class;
+		$r3 = new $class;
+		$r1->foo = 1;
+		$r2->foo = 2;
+		$r2->foo = 2;
+
+		$mock = $this->getMockForAbstractClass( 'MediaWiki\\Auth\\PreAuthenticationProvider' );
+		$mock->expects( $this->any() )->method( 'getUniqueId' )
+			->will( $this->returnValue( get_class( $mock ) ) );
+		$mock->expects( $this->any() )->method( 'getAuthenticationRequests' )
+			->will( $this->returnValue( array( $r1, $r2, $r3 ) ) );
+		$this->preauthMocks = array( $mock );
+		$this->primaryauthMocks = array();
+		$this->secondaryauthMocks = array();
+		$this->initializeManager( true );
+
+		$this->assertEquals( array( $class ),
+			$this->manager->getAuthenticationRequestTypes( AuthManager::ACTION_LOGIN ) );
+	}
+
 	/**
-	 * @dataProvider provideGetAuthenticationRequestTypes
+	 * @dataProvider provideGetAuthenticationRequests
 	 * @param string $action
 	 * @param array $expect
 	 * @param array $state
 	 */
-	public function testGetAuthenticationRequestTypes( $action, $expect, $state = array() ) {
+	public function testGetAuthenticationRequests( $action, $expect, $state = array() ) {
 		$mocks = array();
 		foreach ( array( 'pre', 'primary', 'secondary' ) as $key ) {
 			$class = ucfirst( $key ) . 'AuthenticationProvider';
@@ -2074,9 +2096,9 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			);
 			$mocks[$key]->expects( $this->any() )->method( 'getUniqueId' )
 				->will( $this->returnValue( $key ) );
-			$mocks[$key]->expects( $this->any() )->method( 'getAuthenticationRequestTypes' )
+			$mocks[$key]->expects( $this->any() )->method( 'getAuthenticationRequests' )
 				->will( $this->returnCallback( function ( $action ) use ( $key ) {
-					return array( "$key-$action", 'generic' );
+					return self::getMockRequest( array( "$key-$action", 'generic' ), $action );
 				} ) );
 			$mocks[$key]->expects( $this->any() )->method( 'providerAllowsAuthenticationDataChangeType' )
 				->will( $this->returnValue( true ) );
@@ -2096,9 +2118,9 @@ class AuthManagerTest extends \MediaWikiTestCase {
 				->will( $this->returnValue( "primary-$type" ) );
 			$mocks["primary-$type"]->expects( $this->any() )->method( 'accountCreationType' )
 				->will( $this->returnValue( $type ) );
-			$mocks["primary-$type"]->expects( $this->any() )->method( 'getAuthenticationRequestTypes' )
+			$mocks["primary-$type"]->expects( $this->any() )->method( 'getAuthenticationRequests' )
 				->will( $this->returnCallback( function ( $action ) use ( $type ) {
-					return array( "primary-$type-$action", 'generic' );
+					return self::getMockRequest( array( "primary-$type-$action", 'generic' ), $action );
 				} ) );
 			$mocks["primary-$type"]->expects( $this->any() )
 				->method( 'providerAllowsAuthenticationDataChangeType' )
@@ -2106,6 +2128,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$this->primaryauthMocks[] = $mocks["primary-$type"];
 		}
 
+		$genericType = get_class( self::getMockRequest( 'generic', AuthManager::ACTION_CHANGE ) );
 		$mocks['primary2'] = $this->getMockForAbstractClass(
 			'MediaWiki\\Auth\\PrimaryAuthenticationProvider', array(), "MockPrimaryAuthenticationProvider"
 		);
@@ -2113,12 +2136,12 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			->will( $this->returnValue( 'primary2' ) );
 		$mocks['primary2']->expects( $this->any() )->method( 'accountCreationType' )
 			->will( $this->returnValue( PrimaryAuthenticationProvider::TYPE_LINK ) );
-		$mocks['primary2']->expects( $this->any() )->method( 'getAuthenticationRequestTypes' )
+		$mocks['primary2']->expects( $this->any() )->method( 'getAuthenticationRequests' )
 			->will( $this->returnValue( array() ) );
 		$mocks['primary2']->expects( $this->any() )
 			->method( 'providerAllowsAuthenticationDataChangeType' )
-			->will( $this->returnCallback( function ( $type ) {
-				return $type !== 'generic';
+			->will( $this->returnCallback( function ( $type ) use ( $genericType ) {
+				return $type !== $genericType;
 			} ) );
 		$this->primaryauthMocks[] = $mocks['primary2'];
 
@@ -2135,36 +2158,56 @@ class AuthManagerTest extends \MediaWikiTestCase {
 				$this->request->setSessionData( 'AuthManager::accountLinkState', $state );
 			}
 		}
-		$actual = $this->manager->getAuthenticationRequestTypes( $action );
-		sort( $actual );
-		sort( $expect );
-		$this->assertSame( $expect, $actual );
+		$actual = $this->manager->getAuthenticationRequests( $action );
+		$this->assertArrayEquals( $expect, $actual );
 	}
 
-	public static function provideGetAuthenticationRequestTypes() {
+	protected static function getMockRequest( $name, $action ) {
+		if ( $name === array() ) {
+			return array();
+		} elseif ( is_array( $name ) ) {
+			return array_map( array( 'self', 'getMockRequest' ), $name,
+				array_fill( 0, count( $name ), $action ) );
+		}
+
+		$action = preg_replace( '/-continue$/', '', $action );
+		$key = $name . ':' . $action;
+		if ( !isset( self::$requestCache[$key] ) ) {
+			// split PHPUnit class cache by $name
+			$mockedClass = 'AuthenticationRequest_Mock_' . str_replace( '-', '_', $name );
+			self::$requestCache[$key] = PHPUnit_Framework_MockObject_Generator::getMockForAbstractClass(
+				'MediaWiki\\Auth\\AuthenticationRequest', array(), $mockedClass );
+			self::$requestCache[$key]->action = $action;
+		}
+		return self::$requestCache[$key];
+	}
+
+	public static function provideGetAuthenticationRequests() {
+		$userDataReq = new UserDataAuthenticationRequest();
+		$userDataReq->action = AuthManager::ACTION_CREATE;
+
 		return array(
 			array(
 				AuthManager::ACTION_LOGIN,
-				array( 'pre-login', 'primary-none-login', 'primary-create-login',
-					'primary-link-login', 'secondary-login', 'generic' ),
+				self::getMockRequest( array( 'pre-login', 'primary-none-login', 'primary-create-login',
+					'primary-link-login', 'secondary-login', 'generic' ), AuthManager::ACTION_LOGIN ),
 			),
 			array(
 				AuthManager::ACTION_CREATE,
-				array( 'pre-create', 'primary-none-create', 'primary-create-create',
-					'primary-link-create', 'secondary-create', 'generic' ),
+				array_merge(
+					self::getMockRequest( array( 'pre-create', 'primary-none-create', 'primary-create-create',
+						'primary-link-create', 'secondary-create', 'generic' ), AuthManager::ACTION_CREATE ),
+					array( $userDataReq )
+				),
 			),
 			array(
 				AuthManager::ACTION_LINK,
-				array( 'primary-link-link', 'generic' ),
-			),
-			array(
-				AuthManager::ACTION_ALL,
-				array( 'pre-all', 'primary-none-all', 'primary-create-all',
-					'primary-link-all', 'secondary-all', 'generic' ),
+				self::getMockRequest( array( 'primary-link-link', 'generic' ), AuthManager::ACTION_LINK ),
 			),
 			array(
 				AuthManager::ACTION_CHANGE,
-				array( 'primary-none-change', 'primary-create-change', 'primary-link-change' ),
+				self::getMockRequest( array( 'primary-none-change', 'primary-create-change',
+					'primary-link-change' ), AuthManager::ACTION_CHANGE ),
 			),
 			array(
 				AuthManager::ACTION_LOGIN_CONTINUE,
@@ -2172,8 +2215,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			),
 			array(
 				AuthManager::ACTION_LOGIN_CONTINUE,
-				array( 'primary-none-login', 'primary-create-login',
-					'primary-link-login', 'secondary-login', 'generic' ),
+				self::getMockRequest( array( 'primary-none-login', 'primary-create-login',
+					'primary-link-login', 'secondary-login', 'generic' ), AuthManager::ACTION_LOGIN_CONTINUE ),
 				array(
 					'primary' => null,
 					'primaryResponse' => null,
@@ -2182,7 +2225,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			),
 			array(
 				AuthManager::ACTION_LOGIN_CONTINUE,
-				array( 'primary-none-login-continue', 'generic' ),
+				self::getMockRequest( array( 'primary-none-login-continue', 'generic' ),
+					AuthManager::ACTION_LOGIN_CONTINUE ),
 				array(
 					'primary' => 'primary-none',
 					'primaryResponse' => null,
@@ -2218,7 +2262,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			),
 			array(
 				AuthManager::ACTION_LOGIN_CONTINUE,
-				array( 'secondary-login-continue', 'generic' ),
+				self::getMockRequest( array( 'secondary-login-continue', 'generic' ),
+					AuthManager::ACTION_LOGIN_CONTINUE ),
 				array(
 					'primary' => 'primary2',
 					'primaryResponse' => AuthenticationResponse::newPass( '' ),
@@ -2249,7 +2294,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			),
 			array(
 				AuthManager::ACTION_CREATE_CONTINUE,
-				array( 'primary-create-create-continue', 'generic' ),
+				self::getMockRequest( array( 'primary-create-create-continue', 'generic' ),
+					AuthManager::ACTION_CREATE_CONTINUE ),
 				array(
 					'primary' => 'primary-create',
 					'primaryResponse' => null,
@@ -2276,7 +2322,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			),
 			array(
 				AuthManager::ACTION_CREATE_CONTINUE,
-				array( 'secondary-create-continue', 'generic' ),
+				self::getMockRequest( array( 'secondary-create-continue', 'generic' ),
+					AuthManager::ACTION_CREATE_CONTINUE ),
 				array(
 					'primary' => 'primary2',
 					'primaryResponse' => AuthenticationResponse::newPass( '' ),
@@ -2312,12 +2359,45 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			),
 			array(
 				AuthManager::ACTION_LINK_CONTINUE,
-				array( 'primary-link-link-continue', 'generic' ),
+				self::getMockRequest( array( 'primary-link-link-continue', 'generic' ),
+					AuthManager::ACTION_LINK_CONTINUE ),
 				array(
 					'primary' => 'primary-link',
 				),
 			),
 		);
+	}
+
+	public function testGetAuthenticationRequests_props() {
+		$class = $this->getMockClass( 'MediaWiki\\Auth\\AuthenticationRequest' );
+		$r1 = new $class;
+		$r2 = new $class;
+		$r3 = new $class;
+		$r1->foo = 1;
+		$r2->foo = 2;
+		$r3->foo = 2;
+
+		$mock = $this->getMockForAbstractClass( 'MediaWiki\\Auth\\PreAuthenticationProvider' );
+		$mock->expects( $this->any() )->method( 'getUniqueId' )
+			->will( $this->returnValue( get_class( $mock ) ) );
+		$mock->expects( $this->any() )->method( 'getAuthenticationRequests' )
+			->will( $this->returnValue( array( $r1, $r2, $r3 ) ) );
+
+		$this->preauthMocks = array( $mock );
+		$this->primaryauthMocks = array();
+		$this->secondaryauthMocks = array();
+		$this->initializeManager( true );
+
+		$requests = $this->manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN, 'X' );
+		$this->assertCount( 2, $requests );
+		foreach ( $requests as $req ) {
+			$this->assertInstanceOf( $class, $req );
+			$this->assertEquals( 'X', $requests[0]->returnToUrl );
+			$this->assertEquals( AuthManager::ACTION_LOGIN, $requests[0]->action );
+		}
+		$this->assertEquals( array( 1, 2 ), array_map( function ( $item ) {
+			return $item->foo;
+		}, $requests ) );
 	}
 
 	public function testAllowsPropertyChange() {
@@ -2581,7 +2661,6 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$that = $this;
 		$req = $this->getMockForAbstractClass( 'MediaWiki\\Auth\\AuthenticationRequest' );
 		$req->primary = $primaryResponses;
-		$clazz = get_class( $req );
 		$mocks = array();
 
 		foreach ( array( 'pre', 'primary' ) as $key ) {
@@ -2618,14 +2697,13 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$mocks['primary']->expects( $this->any() )->method( 'accountCreationType' )
 			->will( $this->returnValue( PrimaryAuthenticationProvider::TYPE_LINK ) );
 		$ct = count( $req->primary );
-		$callback = $this->returnCallback( function ( $u, $reqs ) use ( $that, $user, $clazz ) {
+		$callback = $this->returnCallback( function ( $u, $reqs ) use ( $that, $user, $req ) {
 			$that->assertSame( $user->getId(), $u->getId() );
 			$that->assertSame( $user->getName(), $u->getName() );
 			foreach ( $reqs as $req ) {
 				$that->assertSame( $user->getName(), $req->username );
 			}
-			$that->assertArrayHasKey( $clazz, $reqs );
-			$req = $reqs[$clazz];
+			$that->assertContains( $req, $reqs, '', false, false );
 			return array_shift( $req->primary );
 		} );
 		$mocks['primary']->expects( $this->exactly( min( 1, $ct ) ) )

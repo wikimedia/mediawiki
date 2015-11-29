@@ -82,12 +82,12 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiTestCas
 	}
 
 	/**
-	 * @dataProvider provideGetAuthenticationRequestTypes
+	 * @dataProvider provideGetAuthenticationRequests
 	 * @param string $action
 	 * @param bool|null $hard
 	 * @param array $response
 	 */
-	public function testGetAuthenticationRequestTypes( $action, $hard, $response ) {
+	public function testGetAuthenticationRequests( $action, $hard, $response ) {
 		$provider = $this->getProvider();
 		if ( $hard === null ) {
 			$this->manager->removeAuthenticationData( 'reset-pass' );
@@ -97,10 +97,10 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiTestCas
 				'hard' => $hard,
 			) );
 		}
-		$this->assertSame( $response, $provider->getAuthenticationRequestTypes( $action ) );
+		$this->assertEquals( $response, $provider->getAuthenticationRequests( $action ) );
 	}
 
-	public static function provideGetAuthenticationRequestTypes() {
+	public static function provideGetAuthenticationRequests() {
 		return array(
 			array( AuthManager::ACTION_LOGIN, true, array() ),
 			array( AuthManager::ACTION_LOGIN, false, array() ),
@@ -111,23 +111,11 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiTestCas
 			array( AuthManager::ACTION_CHANGE, true, array() ),
 			array( AuthManager::ACTION_CHANGE, false, array() ),
 			array( AuthManager::ACTION_CHANGE, null, array() ),
-			array( AuthManager::ACTION_ALL, true, array(
-				'MediaWiki\\Auth\\SoftResetPasswordAuthenticationRequest',
-				'MediaWiki\\Auth\\HardResetPasswordAuthenticationRequest'
-			) ),
-			array( AuthManager::ACTION_ALL, false, array(
-				'MediaWiki\\Auth\\SoftResetPasswordAuthenticationRequest',
-				'MediaWiki\\Auth\\HardResetPasswordAuthenticationRequest'
-			) ),
-			array( AuthManager::ACTION_ALL, null, array(
-				'MediaWiki\\Auth\\SoftResetPasswordAuthenticationRequest',
-				'MediaWiki\\Auth\\HardResetPasswordAuthenticationRequest'
-			) ),
 			array( AuthManager::ACTION_LOGIN_CONTINUE, true, array(
-				'MediaWiki\\Auth\\HardResetPasswordAuthenticationRequest'
+				new HardResetPasswordAuthenticationRequest()
 			) ),
 			array( AuthManager::ACTION_LOGIN_CONTINUE, false, array(
-				'MediaWiki\\Auth\\SoftResetPasswordAuthenticationRequest'
+				new SoftResetPasswordAuthenticationRequest()
 			) ),
 			array( AuthManager::ACTION_LOGIN_CONTINUE, null, array() ),
 			array( AuthManager::ACTION_CREATE_CONTINUE, true, array() ),
@@ -165,7 +153,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiTestCas
 			$this->manager->setAuthenticationData( 'reset-pass', $data );
 
 			$this->assertEquals(
-				AuthenticationResponse::newUI( array( $reqType ), $msg ),
+				AuthenticationResponse::newUI( array( new $reqType ), $msg ),
 				$provider->beginSecondaryAuthentication( $user, array() )
 			);
 			$this->assertNotNull( $this->manager->getAuthenticationData( 'reset-pass' ) );
@@ -174,12 +162,12 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiTestCas
 			$req->username = 'TestUser';
 			$req->password = 'TestPassword';
 			$req->retype = 'BadRetype';
-			$reqs = array( $reqType => $req );
+			$reqs = array( $req );
 
 			$req->skip = true;
 			if ( $hard ) {
 				$this->assertEquals(
-					AuthenticationResponse::newUI( array( $reqType ), $msg ),
+					AuthenticationResponse::newUI( array( new $reqType ), $msg ),
 					$provider->continueSecondaryAuthentication( $user, $reqs )
 				);
 				$this->assertNotNull( $this->manager->getAuthenticationData( 'reset-pass' ) );
@@ -195,7 +183,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiTestCas
 			$req->skip = false;
 			$res = $provider->continueSecondaryAuthentication( $user, $reqs );
 			$this->assertEquals( AuthenticationResponse::UI, $res->status );
-			$this->assertEquals( array( $reqType ), $res->neededRequests );
+			$this->assertEquals( array( new $reqType ), $res->neededRequests );
 			$this->assertEquals( 'badretype', $res->message->getKey() );
 			$this->assertNotNull( $this->manager->getAuthenticationData( 'reset-pass' ) );
 
@@ -214,7 +202,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiTestCas
 				->method( 'providerChangeAuthenticationData' );
 			$res = $provider->continueSecondaryAuthentication( $user, $reqs );
 			$this->assertEquals( AuthenticationResponse::UI, $res->status );
-			$this->assertEquals( array( $reqType ), $res->neededRequests );
+			$this->assertEquals( array( new $reqType ), $res->neededRequests );
 			$this->assertEquals( 'random-failure', $res->message->getKey() );
 			$this->assertNotNull( $this->manager->getAuthenticationData( 'reset-pass' ) );
 

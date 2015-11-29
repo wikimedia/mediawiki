@@ -9,9 +9,7 @@ require_once 'AuthenticationRequestTestCase.php';
  * @covers MediaWiki\Auth\SoftResetPasswordAuthenticationRequest
  */
 class SoftResetPasswordAuthenticationRequestTest extends AuthenticationRequestTestCase {
-	protected static $class = 'MediaWiki\\Auth\\SoftResetPasswordAuthenticationRequest';
-
-	public function provideNewFromSubmission() {
+	public function provideLoadFromSubmission() {
 		return array(
 			array(
 				'Empty request',
@@ -49,5 +47,9 @@ class SoftResetPasswordAuthenticationRequestTest extends AuthenticationRequestTe
 				array( 'username' => null, 'password' => '', 'retype' => '', 'skip' => true ),
 			),
 		);
+	}
+
+	protected function getInstance() {
+		return new SoftResetPasswordAuthenticationRequest();
 	}
 }

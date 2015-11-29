@@ -30,7 +30,7 @@ class SoftResetPasswordAuthenticationRequest extends HardResetPasswordAuthentica
 	/** @var bool skip */
 	public $skip = false;
 
-	public static function getFieldInfo() {
+	public function getFieldInfo() {
 		$fields = parent::getFieldInfo();
 		foreach ( $fields as &$f ) {
 			$f['optional'] = true;
@@ -45,16 +45,19 @@ class SoftResetPasswordAuthenticationRequest extends HardResetPasswordAuthentica
 		);
 	}
 
-	public static function newFromSubmission( array $data ) {
-		$ret = parent::newFromSubmission( $data );
-		if ( !$ret ) {
-			return $ret;
+	public function loadFromSubmission( array $data ) {
+		if ( !parent::loadFromSubmission( $data ) ) {
+			return false;
 		}
 
-		if ( !$ret->skip && !HardResetPasswordAuthenticationRequest::newFromSubmission( $data ) ) {
-			return null;
+		// user must either check the "skip reset for now" option or provide a new password
+		if ( !$this->skip ) {
+			$hardReset = new HardResetPasswordAuthenticationRequest();
+			if ( !$hardReset->loadFromSubmission( $data ) ) {
+				return false;
+			}
 		}
 
-		return $ret;
+		return true;
 	}
 }

@@ -24,16 +24,17 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 		$plugin = $this->getMock( 'AuthPlugin' );
 
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
-		$this->assertSame(
-			array( 'MediaWiki\\Auth\\PasswordAuthenticationRequest' ),
-			$provider->getAuthenticationRequestTypes( AuthManager::ACTION_ALL )
+		$this->assertEquals(
+			array( new PasswordAuthenticationRequest() ),
+			$provider->getAuthenticationRequests( AuthManager::ACTION_LOGIN )
 		);
 
-		$reqType = get_class( $this->getMock( 'MediaWiki\\Auth\\PasswordAuthenticationRequest' ) );
+		$reqMock = $this->getMock( 'MediaWiki\\Auth\\PasswordAuthenticationRequest' );
+		$reqType = get_class( $reqMock );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin, $reqType );
-		$this->assertSame(
-			array( $reqType ),
-			$provider->getAuthenticationRequestTypes( AuthManager::ACTION_ALL )
+		$this->assertEquals(
+			array( $reqMock ),
+			$provider->getAuthenticationRequests( AuthManager::ACTION_LOGIN )
 		);
 
 		$reqType = get_class( $this->getMock( 'MediaWiki\\Auth\\AuthenticationRequest' ) );
@@ -136,21 +137,21 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideGetAuthenticationRequestTypes
+	 * @dataProvider provideGetAuthenticationRequests
 	 * @param string $action
 	 * @param array $response
 	 * @param bool $allowPasswordChange
 	 */
-	public function testGetAuthenticationRequestTypes( $action, $response, $allowPasswordChange ) {
+	public function testGetAuthenticationRequests( $action, $response, $allowPasswordChange ) {
 		$plugin = $this->getMock( 'AuthPlugin' );
 		$plugin->expects( $this->any() )->method( 'allowPasswordChange' )
 			->will( $this->returnValue( $allowPasswordChange ) );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
-		$this->assertSame( $response, $provider->getAuthenticationRequestTypes( $action ) );
+		$this->assertEquals( $response, $provider->getAuthenticationRequests( $action ) );
 	}
 
-	public static function provideGetAuthenticationRequestTypes() {
-		$arr = array( 'MediaWiki\\Auth\\PasswordAuthenticationRequest' );
+	public static function provideGetAuthenticationRequests() {
+		$arr = array( new PasswordAuthenticationRequest() );
 		return array(
 			array( AuthManager::ACTION_LOGIN, $arr, true ),
 			array( AuthManager::ACTION_LOGIN, $arr, false ),
@@ -158,8 +159,6 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			array( AuthManager::ACTION_CREATE, $arr, false ),
 			array( AuthManager::ACTION_CHANGE, $arr, true ),
 			array( AuthManager::ACTION_CHANGE, array(), false ),
-			array( AuthManager::ACTION_ALL, $arr, true ),
-			array( AuthManager::ACTION_ALL, $arr, false ),
 			array( AuthManager::ACTION_LOGIN_CONTINUE, array(), true ),
 			array( AuthManager::ACTION_LOGIN_CONTINUE, array(), false ),
 			array( AuthManager::ACTION_CREATE_CONTINUE, array(), true ),
@@ -173,7 +172,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 
 	public function testAuthentication() {
 		$req = new PasswordAuthenticationRequest();
-		$reqs = array( 'MediaWiki\\Auth\\PasswordAuthenticationRequest' => $req );
+		$reqs = array( $req );
 
 		$plugin = $this->getMockBuilder( 'AuthPlugin' )
 			->setMethods( array( 'authenticate', 'setDomain' ) )
@@ -317,11 +316,10 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			->with( $this->equalTo( 'foo' ), $this->equalTo( 'bar' ) )
 			->will( $this->returnValue( true ) );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
-		list( $reqType ) = $provider->getAuthenticationRequestTypes( AuthManager::ACTION_LOGIN );
-		$req = new $reqType();
+		list( $req ) = $provider->getAuthenticationRequests( AuthManager::ACTION_LOGIN );
 		$req->username = 'foo@Domain2';
 		$req->password = 'bar';
-		$provider->beginPrimaryAuthentication( array( $reqType => $req ) );
+		$provider->beginPrimaryAuthentication( array( $req ) );
 
 		$plugin = $this->getMockBuilder( 'AuthPlugin' )
 			->setMethods( array( 'domainList', 'validDomain', 'setDomain', 'userExists', 'authenticate' ) )
@@ -340,11 +338,10 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			->with( $this->equalTo( 'foo' ), $this->equalTo( 'bar' ) )
 			->will( $this->returnValue( true ) );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
-		list( $reqType ) = $provider->getAuthenticationRequestTypes( AuthManager::ACTION_LOGIN );
-		$req = new $reqType();
+		list( $req ) = $provider->getAuthenticationRequests( AuthManager::ACTION_LOGIN );
 		$req->username = 'foo';
 		$req->password = 'bar';
-		$provider->beginPrimaryAuthentication( array( $reqType => $req ) );
+		$provider->beginPrimaryAuthentication( array( $req ) );
 
 		$plugin = $this->getMockBuilder( 'AuthPlugin' )
 			->setMethods( array( 'domainList', 'validDomain', 'setDomain', 'userExists', 'authenticate' ) )
@@ -363,11 +360,10 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			->with( $this->equalTo( 'foo@Domain3' ), $this->equalTo( 'bar' ) )
 			->will( $this->returnValue( true ) );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
-		list( $reqType ) = $provider->getAuthenticationRequestTypes( AuthManager::ACTION_LOGIN );
-		$req = new $reqType();
+		list( $req ) = $provider->getAuthenticationRequests( AuthManager::ACTION_LOGIN );
 		$req->username = 'foo@Domain3';
 		$req->password = 'bar';
-		$provider->beginPrimaryAuthentication( array( $reqType => $req ) );
+		$provider->beginPrimaryAuthentication( array( $req ) );
 	}
 
 	public function testTestUserExists() {
@@ -557,8 +553,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			} ), $this->equalTo( 'bar' ) )
 			->will( $this->returnValue( true ) );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
-		list( $reqType ) = $provider->getAuthenticationRequestTypes( AuthManager::ACTION_LOGIN );
-		$req = new $reqType();
+		list( $req ) = $provider->getAuthenticationRequests( AuthManager::ACTION_LOGIN );
 		$req->username = 'foo@Domain2';
 		$req->password = 'bar';
 		$provider->providerChangeAuthenticationData( $req );
@@ -578,8 +573,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			} ), $this->equalTo( 'bar' ) )
 			->will( $this->returnValue( true ) );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
-		list( $reqType ) = $provider->getAuthenticationRequestTypes( AuthManager::ACTION_LOGIN );
-		$req = new $reqType();
+		list( $req ) = $provider->getAuthenticationRequests( AuthManager::ACTION_LOGIN );
 		$req->username = 'foo';
 		$req->password = 'bar';
 		$provider->providerChangeAuthenticationData( $req );
@@ -599,8 +593,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			} ), $this->equalTo( 'bar' ) )
 			->will( $this->returnValue( true ) );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
-		list( $reqType ) = $provider->getAuthenticationRequestTypes( AuthManager::ACTION_LOGIN );
-		$req = new $reqType();
+		list( $req ) = $provider->getAuthenticationRequests( AuthManager::ACTION_LOGIN );
 		$req->username = 'foo@Domain3';
 		$req->password = 'bar';
 		$provider->providerChangeAuthenticationData( $req );
@@ -644,7 +637,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 		$user->setRealName( 'realname' );
 
 		$req = new PasswordAuthenticationRequest();
-		$reqs = array( 'MediaWiki\\Auth\\PasswordAuthenticationRequest' => $req );
+		$reqs = array( $req );
 
 		$plugin = $this->getMock( 'AuthPlugin' );
 		$plugin->expects( $this->any() )->method( 'canCreateAccounts' )
@@ -746,11 +739,10 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			} ), $this->equalTo( 'bar' ) )
 			->will( $this->returnValue( true ) );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
-		list( $reqType ) = $provider->getAuthenticationRequestTypes( AuthManager::ACTION_LOGIN );
-		$req = new $reqType();
+		list( $req ) = $provider->getAuthenticationRequests( AuthManager::ACTION_LOGIN );
 		$req->username = 'foo@Domain2';
 		$req->password = 'bar';
-		$provider->beginPrimaryAccountCreation( $user, array( $reqType => $req ) );
+		$provider->beginPrimaryAccountCreation( $user, array( $req ) );
 
 		$plugin = $this->getMock( 'AuthPlugin' );
 		$plugin->expects( $this->any() )->method( 'canCreateAccounts' )
@@ -769,11 +761,10 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			} ), $this->equalTo( 'bar' ) )
 			->will( $this->returnValue( true ) );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
-		list( $reqType ) = $provider->getAuthenticationRequestTypes( AuthManager::ACTION_LOGIN );
-		$req = new $reqType();
+		list( $req ) = $provider->getAuthenticationRequests( AuthManager::ACTION_LOGIN );
 		$req->username = 'foo';
 		$req->password = 'bar';
-		$provider->beginPrimaryAccountCreation( $user, array( $reqType => $req ) );
+		$provider->beginPrimaryAccountCreation( $user, array( $req ) );
 
 		$plugin = $this->getMock( 'AuthPlugin' );
 		$plugin->expects( $this->any() )->method( 'canCreateAccounts' )
@@ -792,11 +783,10 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			} ), $this->equalTo( 'bar' ) )
 			->will( $this->returnValue( true ) );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
-		list( $reqType ) = $provider->getAuthenticationRequestTypes( AuthManager::ACTION_LOGIN );
-		$req = new $reqType();
+		list( $req ) = $provider->getAuthenticationRequests( AuthManager::ACTION_LOGIN );
 		$req->username = 'foo@Domain3';
 		$req->password = 'bar';
-		$provider->beginPrimaryAccountCreation( $user, array( $reqType => $req ) );
+		$provider->beginPrimaryAccountCreation( $user, array( $req ) );
 	}
 
 }

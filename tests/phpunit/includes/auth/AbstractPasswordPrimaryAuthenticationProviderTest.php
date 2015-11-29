@@ -149,25 +149,24 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 	}
 
 	/**
-	 * @dataProvider provideGetAuthenticationRequestTypes
+	 * @dataProvider provideGetAuthenticationRequests
 	 * @param string $action
 	 * @param array $response
 	 */
-	public function testGetAuthenticationRequestTypes( $action, $response ) {
+	public function testGetAuthenticationRequests( $action, $response ) {
 		$provider = $this->getMockForAbstractClass(
 			'MediaWiki\\Auth\\AbstractPasswordPrimaryAuthenticationProvider'
 		);
 
-		$this->assertSame( $response, $provider->getAuthenticationRequestTypes( $action ) );
+		$this->assertEquals( $response, $provider->getAuthenticationRequests( $action ) );
 	}
 
-	public static function provideGetAuthenticationRequestTypes() {
-		$arr = array( 'MediaWiki\\Auth\\PasswordAuthenticationRequest' );
+	public static function provideGetAuthenticationRequests() {
+		$arr = array( new PasswordAuthenticationRequest() );
 		return array(
 			array( AuthManager::ACTION_LOGIN, $arr ),
 			array( AuthManager::ACTION_CREATE, $arr ),
 			array( AuthManager::ACTION_CHANGE, $arr ),
-			array( AuthManager::ACTION_ALL, $arr ),
 			array( AuthManager::ACTION_LOGIN_CONTINUE, array() ),
 			array( AuthManager::ACTION_CREATE_CONTINUE, array() ),
 			array( AuthManager::ACTION_LINK, array() ),

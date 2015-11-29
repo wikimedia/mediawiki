@@ -50,8 +50,10 @@ class AuthManagerAuthPlugin extends \AuthPlugin {
 		if ( $this->domain !== null ) {
 			$data['username'] .= '@' . $this->domain;
 		}
-		$types = AuthManager::singleton()->getAuthenticationRequestTypes( AuthManager::ACTION_LOGIN );
-		$reqs = AuthenticationRequest::requestsFromSubmission( $types, $data, null );
+		$reqs = AuthManager::singleton()->getAuthenticationRequests( AuthManager::ACTION_LOGIN );
+		foreach ( $reqs as $req ) {
+			$req->loadFromSubmission( $data );
+		}
 
 		$res = AuthManager::singleton()->beginAuthentication( $reqs );
 		switch ( $res->status ) {
@@ -104,11 +106,9 @@ class AuthManagerAuthPlugin extends \AuthPlugin {
 	}
 
 	public function allowPasswordChange() {
-		$need = 'PasswordAuthenticationRequest';
-
-		$types = AuthManager::singleton()->getAuthenticationRequestTypes( AuthManager::ACTION_CHANGE );
-		foreach ( $types as $type ) {
-			if ( $type === $need || is_subclass_of( $type, $need ) ) {
+		$reqs = AuthManager::singleton()->getAuthenticationRequests( AuthManager::ACTION_CHANGE );
+		foreach ( $reqs as $req ) {
+			if ( $req instanceof PasswordAuthenticationRequest ) {
 				return true;
 			}
 		}
@@ -129,9 +129,9 @@ class AuthManagerAuthPlugin extends \AuthPlugin {
 		if ( $this->domain !== null ) {
 			$data['username'] .= '@' . $this->domain;
 		}
-		$types = AuthManager::singleton()->getAuthenticationRequestTypes( AuthManager::ACTION_CHANGE );
-		$reqs = AuthenticationRequest::requestsFromSubmission( $types, $data, null );
+		$reqs = AuthManager::singleton()->getAuthenticationRequests( AuthManager::ACTION_CHANGE );
 		foreach ( $reqs as $req ) {
+			$req->loadFromSubmission( $data );
 			$status = AuthManager::singleton()->allowsAuthenticationDataChange( $req );
 			if ( !$status->isOk() ) {
 				$this->logger->info( __METHOD__ . ': Password change rejected: ' . $status->getWikiText() );
@@ -169,13 +169,14 @@ class AuthManagerAuthPlugin extends \AuthPlugin {
 		if ( $this->domain !== null ) {
 			$data['username'] .= '@' . $this->domain;
 		}
-		$types = AuthManager::singleton()->getAuthenticationRequestTypes( AuthManager::ACTION_CREATE );
-		$reqs = AuthenticationRequest::requestsFromSubmission( $types, $data, null );
-
-		$userData = new UserDataAuthenticationRequest();
-		$userData->email = $email;
-		$userData->realname = $realname;
-		$reqs[] = $userData;
+		$reqs = AuthManager::singleton()->getAuthenticationRequests( AuthManager::ACTION_CREATE );
+		foreach ( $reqs as $req ) {
+			$req->loadFromSubmission( $data );
+			if ( $req instanceof UserDataAuthenticationRequest ) {
+				$req->email = $email;
+				$req->realname = $realname;
+			}
+		}
 
 		$res = AuthManager::singleton()->beginAccountCreation( $user->getName(), $wgUser, $reqs );
 		switch ( $res->status ) {

@@ -2336,6 +2336,7 @@ class User implements IDBAccessObject {
 	 * @param string|null $str New password to set or null to set an invalid
 	 *  password hash meaning that the user will not be able to log in
 	 *  through the web interface.
+	 * @return bool Success
 	 */
 	private function setPasswordInternal( $str ) {
 		$manager = AuthManager::singleton();
@@ -2349,9 +2350,9 @@ class User implements IDBAccessObject {
 			'username' => $this->getName(),
 			'password' => $str,
 		);
-		$types = $manager->getAuthenticationRequestTypes( AuthManager::ACTION_CHANGE );
-		$reqs = AuthenticationRequest::requestsFromSubmission( $types, $data, null );
+		$reqs = $manager->getAuthenticationRequests( AuthManager::ACTION_CHANGE );
 		foreach ( $reqs as $req ) {
+			$req->loadFromSubmission( $data, null );
 			$status = $manager->allowsAuthenticationDataChange( $req );
 			if ( !$status->isOk() ) {
 				\MediaWiki\Logger\LoggerFactory::getInstance( 'authentication' )

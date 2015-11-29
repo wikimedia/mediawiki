@@ -58,10 +58,14 @@ interface AuthenticationProvider extends LoggerAwareInterface {
 	/**
 	 * Return the applicable list of AuthenticationRequests
 	 *
-	 * @see AuthManager::getAuthenticationRequestTypes()
-	 * @param string $action One of the AuthManager::ACTION_* constants
-	 * @return string[] AuthenticationRequest class names
+	 * @see AuthManager::getAuthenticationRequests()
+	 * @param string $action One of the AuthManager::ACTION_* constants.
+	 *    ACTION_UNLINK is never used here (as it wouldn't be any different from ACTION_REMOVE).
+	 *    ACTION_CHANGE and ACTION_REMOVE are only used if the provider is a primary one.
+	 *    ACTION_LINK is only used if the provider is a primary one of TYPE_LINK.
+	 *    The other actions might be used with any provider.
+	 * @return AuthenticationRequest[]
 	 */
-	public function getAuthenticationRequestTypes( $action );
+	public function getAuthenticationRequests( $action );
 
 }
