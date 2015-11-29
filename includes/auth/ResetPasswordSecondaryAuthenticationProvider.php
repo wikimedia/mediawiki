@@ -36,16 +36,11 @@ namespace MediaWiki\Auth;
  */
 class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuthenticationProvider {
 
-	public function getAuthenticationRequestTypes( $action ) {
+	public function getAuthenticationRequests( $action ) {
 		switch ( $action ) {
 			case AuthManager::ACTION_LOGIN_CONTINUE:
-				return (array)$this->getUIType();
-
-			case AuthManager::ACTION_ALL:
-				return array(
-					'MediaWiki\\Auth\\SoftResetPasswordAuthenticationRequest',
-					'MediaWiki\\Auth\\HardResetPasswordAuthenticationRequest'
-				);
+				$request = $this->getRequest();
+				return $request ? array( $request ) : array();
 
 			default:
 				return array();
@@ -56,14 +51,12 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 	 * Determine the UI needed based on the session
 	 * @return string|null AuthenticationRequest class name
 	 */
-	private function getUIType() {
+	private function getRequest() {
 		$data = $this->manager->getAuthenticationSessionData( 'reset-pass' );
 		if ( !is_object( $data ) || !isset( $data->msg ) ) {
 			return null;
 		} else {
-			return $data->hard
-				? 'MediaWiki\\Auth\\HardResetPasswordAuthenticationRequest'
-				: 'MediaWiki\\Auth\\SoftResetPasswordAuthenticationRequest';
+			return new ResetPasswordAuthenticationRequest( $data->hard );
 		}
 	}
 
@@ -72,21 +65,21 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 	}
 
 	public function continueSecondaryAuthentication( $user, array $reqs ) {
-		$type = $this->getUIType();
-		if ( !$type ) {
+		$neededRequest = $this->getRequest();
+		if ( !$neededRequest ) {
 			return AuthenticationResponse::newAbstain();
 		}
 
+		$req = AuthenticationRequest::getRequestByClass( $reqs, get_class( $neededRequest ) );
 		$data = $this->manager->getAuthenticationSessionData( 'reset-pass' );
-		if ( !isset( $reqs[$type] ) ) {
-			return AuthenticationResponse::newUI( array( $type ), $data->msg );
+		if ( !$req ) {
+			return AuthenticationResponse::newUI( array( $neededRequest ), $data->msg );
 		}
 
-		$req = $reqs[$type];
 		if ( !empty( $req->skip ) ) {
 			if ( $data->hard ) {
 				// Should never happen, but just in case...
-				return AuthenticationResponse::newUI( array( $type ), $data->msg );
+				return AuthenticationResponse::newUI( array( $neededRequest ), $data->msg );
 			}
 
 			$this->manager->removeAuthenticationSessionData( 'reset-pass' );
@@ -95,14 +88,14 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 
 		if ( $req->password !== $req->retype ) {
 			return AuthenticationResponse::newUI(
-				array( $type ),
+				array( $neededRequest ),
 				new \Message( 'badretype' )
 			);
 		}
 
 		if ( isset( $data->reqType ) ) {
-			$type = $data->reqType;
-			$changeReq = new $type();
+			$neededRequest = new $data->reqType;
+			$changeReq = new $data->reqType;
 			if ( isset( $data->reqData ) ) {
 				foreach ( $data->reqData as $k => $v ) {
 					$changeReq->$k = $v;
@@ -116,7 +109,7 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 		$status = $this->manager->allowsAuthenticationDataChange( $changeReq );
 		if ( !$status->isGood() ) {
 			return AuthenticationResponse::newUI(
-				array( $type ),
+				array( $neededRequest ),
 				$status->getMessage()
 			);
 		}

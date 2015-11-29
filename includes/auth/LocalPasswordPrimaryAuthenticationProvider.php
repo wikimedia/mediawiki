@@ -66,11 +66,11 @@ class LocalPasswordPrimaryAuthenticationProvider
 	}
 
 	public function beginPrimaryAuthentication( array $reqs ) {
-		if ( !isset( $reqs['MediaWiki\\Auth\\PasswordAuthenticationRequest'] ) ) {
+		$req = AuthenticationRequest::getRequestByClass( $reqs,
+			'MediaWiki\\Auth\\PasswordAuthenticationRequest' );
+		if ( !$req ) {
 			return AuthenticationResponse::newAbstain();
 		}
-
-		$req = $reqs['MediaWiki\\Auth\\PasswordAuthenticationRequest'];
 		if ( $req->username === null || $req->password === null ) {
 			return AuthenticationResponse::newAbstain();
 		}
@@ -220,8 +220,10 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
 		$ret = \StatusValue::newGood();
-		if ( !$this->loginOnly && isset( $reqs['MediaWiki\\Auth\\PasswordAuthenticationRequest'] ) ) {
-			$req = $reqs['MediaWiki\\Auth\\PasswordAuthenticationRequest'];
+		$req = AuthenticationRequest::getRequestByClass( $reqs,
+			'MediaWiki\\Auth\\PasswordAuthenticationRequest' );
+
+		if ( !$this->loginOnly && $req ) {
 			$ret->merge(
 				$this->checkPasswordValidity( $req->username, $req->password )
 			);
@@ -234,8 +236,9 @@ class LocalPasswordPrimaryAuthenticationProvider
 			throw new \BadMethodCallException( 'Shouldn\'t call this when accountCreationType() is NONE' );
 		}
 
-		if ( isset( $reqs['MediaWiki\\Auth\\PasswordAuthenticationRequest'] ) ) {
-			$req = $reqs['MediaWiki\\Auth\\PasswordAuthenticationRequest'];
+		$req = AuthenticationRequest::getRequestByClass( $reqs,
+			'MediaWiki\\Auth\\PasswordAuthenticationRequest' );
+		if ( $req ) {
 			if ( $req->username !== null && $req->password !== null ) {
 				// Nothing we can do besides claim it, because the user isn't in
 				// the DB yet

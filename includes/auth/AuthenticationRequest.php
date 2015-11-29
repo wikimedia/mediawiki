@@ -33,6 +33,10 @@ namespace MediaWiki\Auth;
  * @since 1.27
  */
 abstract class AuthenticationRequest {
+	/** @var string|null The action type (an AuthManager::ACTION_* constant) for which the request
+	 * will be used. *_CONTINUE types are not used here as the same request can be used for
+	 * beginning and continuing an authentication process. */
+	public $action = null;
 
 	/** @var string|null Return-to URL, in case of redirect */
 	public $returnToUrl = null;
@@ -41,7 +45,25 @@ abstract class AuthenticationRequest {
 	public $username = null;
 
 	/**
-	 * Fetch input field info
+	 * Return a unique key that will be used for filtering out duplicates in request lists.
+	 *
+	 * Child classes won't need to override this unless they are used by a provider that can
+	 * maintains multiple sets of credentials of the same type for a single user (such as a
+	 * primary provider that can link multiple remote accounts to the same local account).
+	 *
+	 * This value might be exposed to the user in web forms so it should not contain any information
+	 * that is too sensitive for that.
+	 *
+	 * @return string
+	 */
+	public function getUniqueId() {
+		return get_called_class();
+	}
+
+	/**
+	 * Fetch input field info.
+	 *
+	 * $this->action should be set by the time this is called.
 	 *
 	 * The field info is an associative array mapping field names to info
 	 * arrays. The info arrays have the following keys:
@@ -61,54 +83,50 @@ abstract class AuthenticationRequest {
 	 *  - help: (MessageSpecifier) Text suitable as a description of what the field is
 	 *  - optional: (bool) If set and truthy, the field may be left empty
 	 *
-	 * @note Subclasses must reimplement this static method
 	 * @return array As above
 	 */
-	public static function getFieldInfo() {
-		throw new \BadMethodCallException( get_called_class() . ' must override getFieldInfo()' );
+	abstract public function getFieldInfo();
+
+	/**
+	 * Describe the account represented by this authentication request.
+	 * This is intended to be used on requests returned by AuthManager::getAuthenticationRequests
+	 * for the LINK and UNLINK actions. The returned array must contain the following keys:
+	 *  - provider: a string or MessageSpecifier that names the service providing the account.
+	 *    (E.g. the name of the website which is used for remote authentication.)
+	 *  - account: a string identifying the account (e.g. an email address for a Google account).
+	 *    This can be set to null if the provider uniquely identifies the account; it will be
+	 *    ignored unless there are multiple requests with the same provider. Also ignored for
+	 *    LINK actions.
+	 * @return array
+	 */
+	public function describe() {
+		return array(
+			'provider' => wfMessage( 'authmanager-describe-unspecified-provider' ),
+			'account' => wfMessage( 'authmanager-describe-unspecified-account' )->plain(),
+		);
 	}
 
 	/**
-	 * Create all possible AuthenticationRequests from submitted data
+	 * Initialize an AuthenticationRequest from submitted data. A false return value means
+	 * the data is not applicable and this request should not be used.
 	 *
-	 * @param string[] $types Request types to try to create
-	 * @param array $data Submitted data as an associative array
-	 * @param string|null $returnToURL
-	 * @return AuthenticationRequest[] Keys are request types
-	 */
-	public static function requestsFromSubmission( array $types, array $data, $returnToURL ) {
-		$ret = array();
-		foreach ( $types as $type ) {
-			$req = call_user_func( array( $type, 'newFromSubmission' ), $data );
-			if ( $req !== null ) {
-				$req->returnToUrl = $returnToURL;
-				$ret[$type] = $req;
-			}
-		}
-		return $ret;
-	}
-
-	/**
-	 * Create an AuthenticationRequest from submitted data
-	 *
-	 * Always fails if self::getFieldInfo() is falsey
+	 * Always fails if self::getFieldInfo() is falsey.
 	 *
 	 * @param array $data Submitted data as an associative array
-	 * @return AuthenticationRequest|null
+	 * @return bool
 	 */
-	public static function newFromSubmission( array $data ) {
-		$fields = static::getFieldInfo();
+	public function loadFromSubmission( array $data ) {
+		$fields = $this->getFieldInfo();
 		if ( !$fields ) {
-			return null;
+			return false;
 		}
 
-		$ret = new static;
 		foreach ( $fields as $field => $info ) {
 			// Checkboxes and buttons are special.
 			if ( $info['type'] === 'checkbox' || $info['type'] === 'button' ) {
-				$ret->$field = isset( $data[$field] ) || isset( $data["{$field}_x"] );
-				if ( !$ret->$field && empty( $info['optional'] ) ) {
-					return null;
+				$this->$field = isset( $data[$field] ) || isset( $data["{$field}_x"] );
+				if ( !$this->$field && empty( $info['optional'] ) ) {
+					return false;
 				}
 				continue;
 			}
@@ -119,17 +137,17 @@ abstract class AuthenticationRequest {
 			}
 
 			if ( !isset( $data[$field] ) ) {
-				return null;
+				return false;
 			}
 			if ( $data[$field] === '' || $data[$field] === array() ) {
 				if ( empty( $info['optional'] ) ) {
-					return null;
+					return false;
 				}
 			} else {
 				switch ( $info['type'] ) {
 					case 'select':
 						if ( !isset( $info['options'][$data[$field]] ) ) {
-							return null;
+							return false;
 						}
 						break;
 
@@ -137,15 +155,41 @@ abstract class AuthenticationRequest {
 						$data[$field] = (array)$data[$field];
 						$allowed = array_keys( $info['options'] );
 						if ( array_diff( $data[$field], $allowed ) !== array() ) {
-							return null;
+							return false;
 						}
 						break;
 				}
 			}
 
-			$ret->$field = $data[$field];
+			$this->$field = $data[$field];
 		}
-		return $ret;
+		return true;
+	}
+
+	/**
+	 * Update a set of requests with form submit data, discard the ones that failed.
+	 * @param AuthenticationRequest[] $requests
+	 * @param array $data
+	 * @return AuthenticationRequest[]
+	 */
+	public static function loadRequestsFromSubmission( $requests, $data ) {
+		return array_values( array_filter( $requests, function ( $req ) use ( $data ) {
+			return $req->loadFromSubmission( $data );
+		} ) );
+	}
+
+	/**
+	 * Select from a list of requests the one that has the right class. Returns null if there are
+	 * no or multiple such requests.
+	 * @param AuthenticationRequest[] $requests
+	 * @param string $class
+	 * @return AuthenticationRequest|null
+	 */
+	public static function getRequestByClass( array $requests, $class ) {
+		$requests = array_values( array_filter( $requests, function ( $item ) use ( $class ) {
+			return get_class( $item ) === $class;
+		} ) );
+		return ( count( $requests ) === 1 ) ? $requests[0] : null;
 	}
 
 	/**
@@ -160,5 +204,4 @@ abstract class AuthenticationRequest {
 		}
 		return $ret;
 	}
-
 }

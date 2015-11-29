@@ -40,6 +40,14 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 		return $this->testUserExists( $username );
 	}
 
+	public function providerRevokeAccessForUser( $username ) {
+		$reqs = $this->getAuthenticationRequests( AuthManager::ACTION_REMOVE );
+		foreach ( $reqs as $req ) {
+			$this->providerRemoveAuthenticationData( $req );
+		}
+	}
+
+
 	public function providerAllowsPropertyChange( $property ) {
 		return true;
 	}
@@ -47,6 +55,16 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 	public function providerAllowsAuthenticationDataChangeType( $type ) {
 		return true;
 	}
+
+	public function providerAllowsAuthenticationDataRemovalType( $type ) {
+		return $this->providerAllowsAuthenticationDataRemovalType( $type );
+	}
+
+
+	public function providerAllowsAuthenticationDataRemoval( AuthenticationRequest $req ) {
+		return $this->providerAllowsAuthenticationDataChange( $req );
+	}
+
 
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
 		return \StatusValue::newGood();
@@ -57,6 +75,10 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 	}
 
 	public function finishAccountCreation( $user, AuthenticationResponse $response ) {
+	}
+
+	public function finishAccountLink( $user, AuthenticationRequest $req ) {
+		throw new \BadMethodCallException( __METHOD__ . ' is not implemented.' );
 	}
 
 	public function testForAutoCreation( $user ) {

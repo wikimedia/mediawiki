@@ -92,7 +92,7 @@ class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
 				$req->password = $password;
 			}
 			$req->username = $username;
-			$reqs[get_class( $req )] = $req;
+			$reqs[] = $req;
 
 			$h = $this->hook( 'LoginUserMigrated', $this->once() );
 			if ( $msgForLoginUserMigrated !== null ) {

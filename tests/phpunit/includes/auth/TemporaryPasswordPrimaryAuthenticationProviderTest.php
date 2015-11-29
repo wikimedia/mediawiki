@@ -120,34 +120,53 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 	}
 
 	/**
-	 * @dataProvider provideGetAuthenticationRequestTypes
+	 * @dataProvider provideGetAuthenticationRequests
 	 * @param string $action
 	 * @param array $response
 	 */
-	public function testGetAuthenticationRequestTypes( $action, $response ) {
-		$this->assertSame( $response, $this->getProvider()->getAuthenticationRequestTypes( $action ) );
+	public function testGetAuthenticationRequests( $action, $response ) {
+		$this->assertEquals( $response, $this->getProvider()->getAuthenticationRequests( $action ) );
 	}
 
-	public static function provideGetAuthenticationRequestTypes() {
+	public static function provideGetAuthenticationRequests() {
 		return array(
 			array( AuthManager::ACTION_LOGIN, array(
-				'MediaWiki\\Auth\\PasswordAuthenticationRequest'
+				new PasswordAuthenticationRequest()
 			) ),
 			array( AuthManager::ACTION_CREATE, array(
-				'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest'
+				new TemporaryPasswordAuthenticationRequest()
 			) ),
 			array( AuthManager::ACTION_CHANGE, array(
-				'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest'
-			) ),
-			array( AuthManager::ACTION_ALL, array(
-				'MediaWiki\\Auth\\PasswordAuthenticationRequest',
-				'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest'
+				new TemporaryPasswordAuthenticationRequest()
 			) ),
 			array( AuthManager::ACTION_LOGIN_CONTINUE, array() ),
 			array( AuthManager::ACTION_CREATE_CONTINUE, array() ),
 			array( AuthManager::ACTION_LINK, array() ),
 			array( AuthManager::ACTION_LINK_CONTINUE, array() ),
 		);
+	}
+
+	/**
+	 * @group Database
+	 */
+	public function testGetAuthenticationRequests_special() {
+		\RequestContext::getMain()->setUser( \User::newFromName( 'UTSysop' ) );
+		$this->assertEquals( array( new TemporaryPasswordAuthenticationRequest() ),
+			$this->getProvider()->getAuthenticationRequests( AuthManager::ACTION_CREATE ) );
+
+		\RequestContext::getMain()->setUser( new \User() );
+		$this->assertEquals( array(),
+			$this->getProvider()->getAuthenticationRequests( AuthManager::ACTION_CREATE ) );
+
+		$provider = $this->getProvider( array( 'testUserCanAuthenticate' ) );
+		$provider->expects( $this->any() )->method( 'testUserCanAuthenticate' )
+			->will( $this->returnValue( false ) );
+		$this->assertEquals( array(),
+			$this->getProvider()->getAuthenticationRequests( AuthManager::ACTION_REMOVE ) );
+		$provider->expects( $this->any() )->method( 'testUserCanAuthenticate' )
+			->will( $this->returnValue( true ) );
+		$this->assertEquals( array( new TemporaryPasswordAuthenticationRequest() ),
+			$this->getProvider()->getAuthenticationRequests( AuthManager::ACTION_REMOVE ) );
 	}
 
 	public function testAuthentication() {
@@ -161,7 +180,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		);
 
 		$req = new PasswordAuthenticationRequest();
-		$reqs = array( 'MediaWiki\\Auth\\PasswordAuthenticationRequest' => $req );
+		$reqs = array( $req );
 
 		$provider = $this->getProvider();
 
@@ -320,7 +339,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		$req = new PasswordAuthenticationRequest();
 		$req->username = $user;
 		$req->password = $oldpass;
-		$reqs = array( 'MediaWiki\\Auth\\PasswordAuthenticationRequest' => $req );
+		$reqs = array( $req );
 		$this->assertEquals(
 			AuthenticationResponse::newPass( $user, $req ),
 			$provider->beginPrimaryAuthentication( $reqs ),
@@ -386,7 +405,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		$req = new TemporaryPasswordAuthenticationRequest();
 		$req->username = 'Foo';
 		$req->password = 'Bar';
-		$reqs = array( 'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest' => $req );
+		$reqs = array( $req );
 
 		$provider = $this->getProvider();
 		$this->assertEquals(
@@ -415,10 +434,10 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		$user = \User::newFromName( 'Foo' );
 
 		$req = new TemporaryPasswordAuthenticationRequest();
-		$reqs = array( 'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest' => $req );
+		$reqs = array( $req );
 
 		$authreq = new PasswordAuthenticationRequest();
-		$authreqs = array( 'MediaWiki\\Auth\\PasswordAuthenticationRequest' => $authreq );
+		$authreqs = array( $authreq );
 
 		$provider = $this->getProvider();
 
