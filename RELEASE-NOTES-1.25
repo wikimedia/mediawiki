@@ -8,7 +8,8 @@ THIS IS NOT YET A RELEASE!
 === Changes since 1.25.3 ===
 * (T103237) $wgUseGzip had no effect when using file cache.
 * (T114606) mw.notify was not correctly fixed to the page if
-  initialized while not at the top of the page
+  initialized while not at the top of the page.
+* * Fix issue that breaks HHVM Repo Authorative mode.
 
 == MediaWiki 1.25.3 ==
 
