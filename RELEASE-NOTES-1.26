@@ -8,6 +8,7 @@ This is a bug fix release of the MediaWiki 1.26 branch.
 === Changes since 1.26 ===
 * Fixed ConfigException in ExpandTemplates due to AlwaysUseTidy.
 * Fixed stray literal \n in Special:Search.
+* Fix issue that breaks HHVM Repo Authorative mode.
 
 == MediaWiki 1.26 ==
 
