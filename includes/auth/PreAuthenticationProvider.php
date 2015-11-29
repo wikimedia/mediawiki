@@ -45,7 +45,7 @@ interface PreAuthenticationProvider extends AuthenticationProvider {
 	 *
 	 * Called from AuthManager::beginAuthentication()
 	 *
-	 * @param AuthenticationRequest[] $reqs Keys are class names
+	 * @param AuthenticationRequest[] $reqs
 	 * @return StatusValue
 	 */
 	public function testForAuthentication( array $reqs );
@@ -61,7 +61,7 @@ interface PreAuthenticationProvider extends AuthenticationProvider {
 	 *   into such.
 	 * @param User $creator User doing the creation. This may become a
 	 *   "UserValue" in the future, or User may be refactored into such.
-	 * @param AuthenticationRequest[] $reqs Keys are class names
+	 * @param AuthenticationRequest[] $reqs
 	 * @return StatusValue
 	 */
 	public function testForAccountCreation( $user, $creator, array $reqs );

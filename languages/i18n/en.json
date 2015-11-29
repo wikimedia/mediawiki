@@ -3895,5 +3895,7 @@
 	"authmanager-authplugin-setpass-fail": "The authentication plugin denied the password change.",
 	"authmanager-autocreate-noperm": "Automatic account creation is not allowed.",
 	"authmanager-autocreate-exception": "Automatic account creation temporarily disabled due to prior errors.",
-	"authmanager-userdoesnotexist": "User account \"$1\" is not registered."
+	"authmanager-userdoesnotexist": "User account \"$1\" is not registered.",
+	"authmanager-describe-unspecified-provider": "Unspecified",
+	"authmanager-describe-unspecified-account": "Unspecified"
 }

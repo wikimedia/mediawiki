@@ -9,8 +9,6 @@ require_once 'AuthenticationRequestTestCase.php';
  * @covers MediaWiki\Auth\TemporaryPasswordAuthenticationRequest
  */
 class TemporaryPasswordAuthenticationRequestTest extends AuthenticationRequestTestCase {
-	protected static $class = 'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest';
-
 	public function testNewRandom() {
 		global $wgPasswordPolicy;
 
@@ -32,10 +30,15 @@ class TemporaryPasswordAuthenticationRequestTest extends AuthenticationRequestTe
 		$this->assertNull( $ret->password );
 	}
 
-	public function provideNewFromSubmission() {
+	public function provideGetFieldInfo() {
+		return array( array( new TemporaryPasswordAuthenticationRequest() ) );
+	}
+
+	public function provideLoadFromSubmission() {
 		return array(
 			array(
 				'Empty request',
+				new TemporaryPasswordAuthenticationRequest(),
 				array(),
 				null
 			)
