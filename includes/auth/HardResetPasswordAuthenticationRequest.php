@@ -30,7 +30,7 @@ class HardResetPasswordAuthenticationRequest extends PasswordAuthenticationReque
 	/** @var string Password retype */
 	public $retype = null;
 
-	public static function getFieldInfo() {
+	public function getFieldInfo() {
 		$ret = parent::getFieldInfo() + array(
 			'retype' => array(
 				'type' => 'password',

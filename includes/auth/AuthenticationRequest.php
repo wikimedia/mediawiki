@@ -33,6 +33,10 @@ namespace MediaWiki\Auth;
  * @since 1.27
  */
 abstract class AuthenticationRequest {
+	/** @var string|null The action type (an AuthManager::ACTION_* constant) for which the request
+	 * will be used. *_CONTINUE types are not used here as the same request can be used for
+	 * beginning and continuing an authentication process. */
+	public $action = null;
 
 	/** @var string|null Return-to URL, in case of redirect */
 	public $returnToUrl = null;
@@ -41,7 +45,9 @@ abstract class AuthenticationRequest {
 	public $username = null;
 
 	/**
-	 * Fetch input field info
+	 * Fetch input field info.
+	 *
+	 * $this->action should be set by the time this is called.
 	 *
 	 * The field info is an associative array mapping field names to info
 	 * arrays. The info arrays have the following keys:
@@ -64,51 +70,31 @@ abstract class AuthenticationRequest {
 	 * @note Subclasses must reimplement this static method
 	 * @return array As above
 	 */
-	public static function getFieldInfo() {
+	public function getFieldInfo() {
 		throw new \BadMethodCallException( get_called_class() . ' must override getFieldInfo()' );
 	}
 
 	/**
-	 * Create all possible AuthenticationRequests from submitted data
+	 * Initialize an AuthenticationRequest from submitted data. A false return value means
+	 * the data is not applicable and this request should not be used.
 	 *
-	 * @param string[] $types Request types to try to create
-	 * @param array $data Submitted data as an associative array
-	 * @param string|null $returnToURL
-	 * @return AuthenticationRequest[] Keys are request types
-	 */
-	public static function requestsFromSubmission( array $types, array $data, $returnToURL ) {
-		$ret = array();
-		foreach ( $types as $type ) {
-			$req = call_user_func( array( $type, 'newFromSubmission' ), $data );
-			if ( $req !== null ) {
-				$req->returnToUrl = $returnToURL;
-				$ret[$type] = $req;
-			}
-		}
-		return $ret;
-	}
-
-	/**
-	 * Create an AuthenticationRequest from submitted data
-	 *
-	 * Always fails if self::getFieldInfo() is falsey
+	 * Always fails if self::getFieldInfo() is falsey.
 	 *
 	 * @param array $data Submitted data as an associative array
-	 * @return AuthenticationRequest|null
+	 * @return bool
 	 */
-	public static function newFromSubmission( array $data ) {
-		$fields = static::getFieldInfo();
+	public function loadFromSubmission( array $data ) {
+		$fields = $this->getFieldInfo();
 		if ( !$fields ) {
-			return null;
+			return false;
 		}
 
-		$ret = new static;
 		foreach ( $fields as $field => $info ) {
 			// Checkboxes and buttons are special.
 			if ( $info['type'] === 'checkbox' || $info['type'] === 'button' ) {
-				$ret->$field = isset( $data[$field] ) || isset( $data["{$field}_x"] );
-				if ( !$ret->$field && empty( $info['optional'] ) ) {
-					return null;
+				$this->$field = isset( $data[$field] ) || isset( $data["{$field}_x"] );
+				if ( !$this->$field && empty( $info['optional'] ) ) {
+					return false;
 				}
 				continue;
 			}
@@ -119,17 +105,17 @@ abstract class AuthenticationRequest {
 			}
 
 			if ( !isset( $data[$field] ) ) {
-				return null;
+				return false;
 			}
 			if ( $data[$field] === '' || $data[$field] === array() ) {
 				if ( empty( $info['optional'] ) ) {
-					return null;
+					return false;
 				}
 			} else {
 				switch ( $info['type'] ) {
 					case 'select':
 						if ( !isset( $info['options'][$data[$field]] ) ) {
-							return null;
+							return false;
 						}
 						break;
 
@@ -137,15 +123,15 @@ abstract class AuthenticationRequest {
 						$data[$field] = (array)$data[$field];
 						$allowed = array_keys( $info['options'] );
 						if ( array_diff( $data[$field], $allowed ) !== array() ) {
-							return null;
+							return false;
 						}
 						break;
 				}
 			}
 
-			$ret->$field = $data[$field];
+			$this->$field = $data[$field];
 		}
-		return $ret;
+		return true;
 	}
 
 	/**

@@ -57,4 +57,18 @@ abstract class AbstractAuthenticationProvider implements AuthenticationProvider 
 		return get_class( $this );
 	}
 
+	/**
+	 * Select from a list of requests the one that has the right class. Returns null if there are
+	 * no or multiple such requests.
+	 * @param AuthenticationRequest[] $requests
+	 * @param string $clazz
+	 * @return AuthenticationRequest|null
+	 */
+	protected function getRequestByClass( array $requests, $clazz ) {
+		$requests = array_filter( $requests, function ( $item ) use ( $clazz ) {
+			return get_class( $item ) === $clazz;
+		} );
+		return ( count( $requests ) === 1 ) ? $requests[0] : null;
+	}
+
 }

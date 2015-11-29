@@ -31,7 +31,7 @@ class CreatedAccountAuthenticationRequest extends AuthenticationRequest {
 	/** @var int User id */
 	public $id;
 
-	public static function getFieldInfo() {
+	public function getFieldInfo() {
 		return array();
 	}
 

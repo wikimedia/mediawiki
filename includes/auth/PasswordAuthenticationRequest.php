@@ -30,7 +30,7 @@ class PasswordAuthenticationRequest extends AuthenticationRequest {
 	/** @var string Password */
 	public $password = null;
 
-	public static function getFieldInfo() {
+	public function getFieldInfo() {
 		return array(
 			'username' => array(
 				'type' => 'string',

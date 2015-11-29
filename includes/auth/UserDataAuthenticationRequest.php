@@ -26,7 +26,7 @@ use User;
 /**
  * This represents additional user data requested on the account creation form
  *
- * AuthManager::getAuthenticationRequestTypes() won't return this type, but it
+ * AuthManager::getAuthenticationRequests() won't return this type, but it
  * may be passed to AuthManager::beginAccountCreation() anyway.
  *
  * @ingroup Auth
@@ -39,7 +39,7 @@ class UserDataAuthenticationRequest extends AuthenticationRequest {
 	/** @var string|null Real name */
 	public $realname;
 
-	public static function getFieldInfo() {
+	public function getFieldInfo() {
 		$config = \ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
 		$ret = array(
 			'email' => array(

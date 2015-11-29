@@ -9,9 +9,7 @@ require_once 'AuthenticationRequestTestCase.php';
  * @covers MediaWiki\Auth\HardResetPasswordAuthenticationRequest
  */
 class HardResetPasswordAuthenticationRequestTest extends AuthenticationRequestTestCase {
-	protected static $class = 'MediaWiki\\Auth\\HardResetPasswordAuthenticationRequest';
-
-	public function provideNewFromSubmission() {
+	public function provideLoadFromSubmission() {
 		return array(
 			array(
 				'Empty request',
@@ -39,5 +37,9 @@ class HardResetPasswordAuthenticationRequestTest extends AuthenticationRequestTe
 				null
 			),
 		);
+	}
+
+	protected function getInstance() {
+		return new HardResetPasswordAuthenticationRequest();
 	}
 }

@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Auth;
 
+use BadMethodCallException;
+
 /**
  * @group AuthManager
  * @covers MediaWiki\Auth\AuthenticationRequest
@@ -10,75 +12,37 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 
 	/**
 	 * @expectedException BadMethodCallException
-	 * @expectedExceptionMessage AuthenticationRequest must override getFieldInfo()
-	 */
-	public function testGetFieldInfo() {
-		AuthenticationRequest::getFieldInfo();
-	}
-
-	/**
-	 * @expectedException BadMethodCallException
 	 * @expectedExceptionMessage AuthenticationRequestMock must override getFieldInfo()
 	 */
 	public function testGetFieldInfo_subclass() {
-		$class = get_class( $this->getMockForAbstractClass(
+		$request = $this->getMockForAbstractClass(
 			'MediaWiki\\Auth\\AuthenticationRequest', array(), 'AuthenticationRequestMock'
-		) );
-		$class::getFieldInfo();
-	}
-
-	/**
-	 * @dataProvider provideNewFromSubmission
-	 * @param string $label
-	 * @param array $fieldInfo
-	 * @param array $data
-	 * @param array|null $expectState
-	 */
-	public function testNewFromSubmission( $label, $fieldInfo, $data, $expectState ) {
-		AuthenticationRequestTestMockAuthenticationRequest::$fieldInfo = $fieldInfo;
-		$ret = AuthenticationRequestTestMockAuthenticationRequest::newFromSubmission( $data );
-		if ( is_array( $expectState ) ) {
-			$expect = AuthenticationRequestTestMockAuthenticationRequest::__set_state( $expectState );
-		} else {
-			$expect = $expectState;
-		}
-		$this->assertEquals( $expect, $ret );
-	}
-
-	/**
-	 * @dataProvider provideNewFromSubmission
-	 * @param string $label
-	 * @param array $fieldInfo
-	 * @param array $data
-	 * @param array|null $expectState
-	 */
-	public function testRequestsFromSubmission( $label, $fieldInfo, $data, $expectState ) {
-		AuthenticationRequestTestMockAuthenticationRequest::$fieldInfo = $fieldInfo;
-		$ret = AuthenticationRequest::requestsFromSubmission(
-			array( 'MediaWiki\\Auth\\AuthenticationRequestTestMockAuthenticationRequest' ),
-			$data,
-			'http://example.org/test'
 		);
-
-		foreach ( $ret as &$r ) {
-			$this->assertEquals( 'http://example.org/test', $r->returnToUrl );
-			$r->returnToUrl = null;
-		}
-		unset( $r );
-
-		if ( is_array( $expectState ) ) {
-			$expect = array(
-				'MediaWiki\\Auth\\AuthenticationRequestTestMockAuthenticationRequest' =>
-					AuthenticationRequestTestMockAuthenticationRequest::__set_state( $expectState )
-			);
-		} else {
-			$expect = array();
-		}
-
-		$this->assertEquals( $expect, $ret );
+		$request->getFieldInfo();
 	}
 
-	public static function provideNewFromSubmission() {
+	/**
+	 * @dataProvider provideLoadFromSubmission
+	 * @param string $label
+	 * @param array $fieldInfo
+	 * @param array $data
+	 * @param array|null $expectState
+	 */
+	public function testLoadFromSubmission( $label, $fieldInfo, $data, $expectState ) {
+		AuthenticationRequestTestMockAuthenticationRequest::$fieldInfo = $fieldInfo;
+		$request = new AuthenticationRequestTestMockAuthenticationRequest();
+		$success = $request->loadFromSubmission( $data );
+		if ( $success === false ) {
+			$this->assertNull( $expectState );
+		} elseif ( is_array( $expectState ) ) {
+			$expect = AuthenticationRequestTestMockAuthenticationRequest::__set_state( $expectState );
+			$this->assertEquals( $expect, $request );
+		} else {
+			$this->assertEquals( $expectState, $request );
+		}
+	}
+
+	public static function provideLoadFromSubmission() {
 		return array(
 			array(
 				'No fields',
@@ -334,7 +298,7 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 class AuthenticationRequestTestMockAuthenticationRequest extends AuthenticationRequest {
 	public static $fieldInfo = array();
 
-	public static function getFieldInfo() {
+	public function getFieldInfo() {
 		return self::$fieldInfo;
 	}
 }

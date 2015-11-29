@@ -11,10 +11,15 @@ class AbstractPreAuthenticationProviderTest extends \MediaWikiTestCase {
 		$provider = $this->getMockForAbstractClass(
 			'MediaWiki\\Auth\\AbstractPreAuthenticationProvider'
 		);
+		/** @var $provider AbstractPreAuthenticationProvider */
 
 		$this->assertEquals(
 			array(),
-			$provider->getAuthenticationRequestTypes( AuthManager::ACTION_ALL )
+			$provider->getAuthenticationRequests( AuthManager::ACTION_LOGIN )
+		);
+		$this->assertEquals(
+			array(),
+			$provider->getAuthenticationRequests( AuthManager::ACTION_CREATE )
 		);
 		$this->assertEquals(
 			\StatusValue::newGood(),

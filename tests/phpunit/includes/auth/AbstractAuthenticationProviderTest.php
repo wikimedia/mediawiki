@@ -25,4 +25,26 @@ class AbstractAuthenticationProviderTest extends \MediaWikiTestCase {
 
 		$this->assertType( 'string', $provider->getUniqueId(), 'getUniqueId' );
 	}
+
+	public function testGetRequestByClass() {
+		$provider = $this->getMockForAbstractClass( 'MediaWiki\\Auth\\AbstractAuthenticationProvider' );
+		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
+
+		$mock = $this->getMockForAbstractClass( 'MediaWiki\\Auth\\AuthenticationRequest', array(),
+			'AbstractAuthenticationProviderRequest1' );
+		$this->getMockClass( 'MediaWiki\\Auth\\AuthenticationRequest', array(), array(),
+			'AbstractAuthenticationProviderRequest2' );
+		$requests = array(
+			$mock,
+			new \AbstractAuthenticationProviderRequest2(),
+			new \AbstractAuthenticationProviderRequest2(),
+		);
+
+		$this->assertEquals( null, $providerPriv->getRequestByClass( $requests,
+			'AbstractAuthenticationProviderRequest0' ) );
+		$this->assertEquals( $mock, $providerPriv->getRequestByClass( $requests,
+			'AbstractAuthenticationProviderRequest1' ) );
+		$this->assertEquals( null, $providerPriv->getRequestByClass( $requests,
+			'AbstractAuthenticationProviderRequest2' ) );
+	}
 }

@@ -63,7 +63,9 @@ class AuthenticationResponse {
 	 * query the remote site via its API rather than by following $redirectTarget */
 	public $redirectApiData = null;
 
-	/** @var string[] Needed AuthenticationRequest types to continue after a UI response */
+	/** @var AuthenticationRequest[] Needed AuthenticationRequests to continue after a UI response.
+	 *  This can be used to e.g. build a form for user input; the client is not necessarily
+	 *  required to return each of these requests in the next step, though, */
 	public $neededRequests = array();
 
 	/** @var MessageSpecifier|null I18n message to display in case of UI or FAIL */
@@ -132,14 +134,14 @@ class AuthenticationResponse {
 	}
 
 	/**
-	 * @param string[] $types AuthenticationRequest types
+	 * @param AuthenticationRequest[] $requests
 	 * @param MessageSpecifier $msg
 	 * @return AuthenticationResponse
 	 */
-	public static function newUI( array $types, MessageSpecifier $msg ) {
+	public static function newUI( array $requests, MessageSpecifier $msg ) {
 		$ret = new AuthenticationResponse;
 		$ret->status = AuthenticationResponse::UI;
-		$ret->neededRequests = $types;
+		$ret->neededRequests = $requests;
 		$ret->message = $msg;
 		return $ret;
 	}

@@ -9,8 +9,6 @@ require_once 'AuthenticationRequestTestCase.php';
  * @covers MediaWiki\Auth\UserDataAuthenticationRequest
  */
 class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
-	protected static $class = 'MediaWiki\\Auth\\UserDataAuthenticationRequest';
-
 	protected function setUp() {
 		parent::setUp();
 		$this->setMwGlobals( 'wgHiddenPrefs', array() );
@@ -24,7 +22,8 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 		$user->setEmail( 'default@example.com' );
 		$user->setRealName( 'Fake Name' );
 
-		$req = UserDataAuthenticationRequest::newFromSubmission( array(
+		$req = new UserDataAuthenticationRequest();
+		$req->loadFromSubmission( array(
 			'email' => $email,
 			'realname' => $realname,
 		) );
@@ -47,15 +46,15 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 	}
 
 	/**
-	 * @dataProvider provideNewFromSubmission
+	 * @dataProvider provideLoadFromSubmission
 	 */
-	public function testNewFromSubmission( $label, $data, $expectState /* $hiddenPref */ ) {
+	public function testLoadFromSubmission( $label, $data, $expectState /* $hiddenPref */ ) {
 		list( $label, $data, $expectState, $hiddenPref ) = func_get_args();
 		$this->setMwGlobals( 'wgHiddenPrefs', $hiddenPref );
-		parent::testNewFromSubmission( $label, $data, $expectState );
+		parent::testLoadFromSubmission( $label, $data, $expectState );
 	}
 
-	public function provideNewFromSubmission() {
+	public function provideLoadFromSubmission() {
 		$unhidden = array();
 		$hidden = array( 'realname' );
 
@@ -133,5 +132,9 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 				$hidden
 			),
 		);
+	}
+
+	protected function getInstance() {
+		return new UserDataAuthenticationRequest();
 	}
 }

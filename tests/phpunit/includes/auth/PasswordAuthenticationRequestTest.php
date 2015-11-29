@@ -9,9 +9,7 @@ require_once 'AuthenticationRequestTestCase.php';
  * @covers MediaWiki\Auth\PasswordAuthenticationRequest
  */
 class PasswordAuthenticationRequestTest extends AuthenticationRequestTestCase {
-	protected static $class = 'MediaWiki\\Auth\\PasswordAuthenticationRequest';
-
-	public function provideNewFromSubmission() {
+	public function provideLoadFromSubmission() {
 		return array(
 			array(
 				'Empty request',
@@ -34,5 +32,9 @@ class PasswordAuthenticationRequestTest extends AuthenticationRequestTestCase {
 				null
 			),
 		);
+	}
+
+	protected function getInstance() {
+		return new PasswordAuthenticationRequest();
 	}
 }
