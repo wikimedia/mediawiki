@@ -4454,6 +4454,9 @@ $wgAuthManagerConfig = array(
 		'MediaWiki\\Auth\\ResetPasswordSecondaryAuthenticationProvider' => array(
 			'class' => 'MediaWiki\\Auth\\ResetPasswordSecondaryAuthenticationProvider',
 		),
+		'MediaWiki\\Auth\\ConfirmAutolinkingSecondaryAuthenticationProvider' => array(
+			'class' => 'MediaWiki\\Auth\\ConfirmAutolinkingSecondaryAuthenticationProvider',
+		),
 	),
 );
 

@@ -43,6 +43,10 @@ abstract class AbstractSecondaryAuthenticationProvider extends AbstractAuthentic
 		return \StatusValue::newGood( 'ignored' );
 	}
 
+	public function providerAllowsAuthenticationDataRemoval( AuthenticationRequest $req ) {
+		return $this->providerAllowsAuthenticationDataChange( $req );
+	}
+
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
 		return \StatusValue::newGood();
 	}

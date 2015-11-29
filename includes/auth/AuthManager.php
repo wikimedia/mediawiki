@@ -58,9 +58,10 @@ final class AuthManager implements LoggerAwareInterface {
 	const ACTION_LINK_CONTINUE = 'link-continue';
 	/** Change a user's credentials */
 	const ACTION_CHANGE = 'change';
-	/** Used when a method needs to consider all potential actions (e.g. return a list of all
-	 *  possible request types) */
-	const ACTION_ALL = 'all';
+	/** Delete some ceredentials */
+	const ACTION_REMOVE = 'remove';
+	/** Disconnect a remote account (a special case of ACTION_REMOVE) */
+	const ACTION_UNLINK = 'unlink';
 
 	/** Security-sensitive operations are ok. */
 	const SEC_OK = 'ok';
@@ -68,6 +69,13 @@ final class AuthManager implements LoggerAwareInterface {
 	const SEC_REAUTH = 'reauth';
 	/** Security-sensitive should not be performed. */
 	const SEC_FAIL = 'fail';
+
+	/** @var array Map of "continue" actions to the matching "begin" actions */
+	private static $actionRestartMap = array(
+		AuthManager::ACTION_LOGIN_CONTINUE => AuthManager::ACTION_LOGIN,
+		AuthManager::ACTION_CREATE_CONTINUE => AuthManager::ACTION_CREATE,
+		AuthManager::ACTION_LINK_CONTINUE => AuthManager::ACTION_LINK,
+	);
 
 	/** @var AuthManager|null */
 	private static $instance = null;
@@ -238,8 +246,6 @@ final class AuthManager implements LoggerAwareInterface {
 			throw new \LogicException( "Authentication is not possible now" );
 		}
 
-		$reqs = $this->prepareAuthenticationRequestArray( $reqs );
-
 		// @codeCoverageIgnoreStart
 		$guessUserName = null;
 		foreach ( $reqs as $req ) {
@@ -255,8 +261,9 @@ final class AuthManager implements LoggerAwareInterface {
 		// @codeCoverageIgnoreEnd
 
 		// Check for special-case login of a just-created account
-		if ( isset( $reqs['MediaWiki\\Auth\\CreatedAccountAuthenticationRequest'] ) ) {
-			$req = $reqs['MediaWiki\\Auth\\CreatedAccountAuthenticationRequest'];
+		$req = AuthenticationRequest::getRequestByClass( $reqs,
+			'MediaWiki\\Auth\\CreatedAccountAuthenticationRequest' );
+		if ( $req ) {
 			if ( !in_array( $req, $this->createdAccountAuthenticationRequests, true ) ) {
 				throw new \LogicException(
 					'CreatedAccountAuthenticationRequests are only valid on ' .
@@ -306,7 +313,6 @@ final class AuthManager implements LoggerAwareInterface {
 			'primary' => null,
 			'primaryResponse' => null,
 			'secondary' => array(),
-			'maybeLink' => array(),
 		) );
 		$session->persist();
 
@@ -347,8 +353,6 @@ final class AuthManager implements LoggerAwareInterface {
 				throw new \LogicException( "Authentication is not possible now" );
 				// @codeCoverageIgnoreEnd
 			}
-
-			$reqs = $this->prepareAuthenticationRequestArray( $reqs );
 
 			$state = $session->get( 'AuthManager::authnState' );
 			if ( !is_array( $state ) ) {
@@ -465,8 +469,11 @@ final class AuthManager implements LoggerAwareInterface {
 					// @codeCoverageIgnoreEnd
 				}
 
-				if ( $provider->accountCreationType() === PrimaryAuthenticationProvider::TYPE_LINK ) {
-					$state['maybeLink'][] = $res->createRequest;
+				if (
+					$provider->accountCreationType() === PrimaryAuthenticationProvider::TYPE_LINK
+					&& $res->linkRequest
+				) {
+					$this->stashRemoteLogin( $provider, $res );
 					$msg = 'authmanager-authn-no-local-user-link';
 				} else {
 					$msg = 'authmanager-authn-no-local-user';
@@ -481,7 +488,7 @@ final class AuthManager implements LoggerAwareInterface {
 					'secondary' => array(),
 				) + $state );
 				$ret = AuthenticationResponse::newRestart( wfMessage( $msg ) );
-				$ret->neededRequests = $this->getAuthenticationRequestTypes( self::ACTION_LOGIN_CONTINUE );
+				$ret->neededRequests = $this->getAuthenticationRequests( self::ACTION_LOGIN_CONTINUE );
 				$ret->createRequest = $res->createRequest;
 				return $ret;
 			}
@@ -562,6 +569,7 @@ final class AuthManager implements LoggerAwareInterface {
 			$this->removeAuthenticationSessionData( null );
 			$this->setSessionDataForUser( $user );
 			$ret = AuthenticationResponse::newPass( $user->getName() );
+			$ret->linkStatus = $this->processRemoteLogins( $user );
 			\Hooks::run( 'AuthManagerLoginAuthenticateAudit', array( $ret, $user, $user->getName() ) );
 			return $ret;
 		} catch ( \Exception $ex ) {
@@ -726,7 +734,7 @@ final class AuthManager implements LoggerAwareInterface {
 	/**
 	 * Change authentication data (e.g. passwords)
 	 *
-	 * If the provider supports the AuthenticationRequest type, passing $req
+	 * If some provider supports the AuthenticationRequest type, passing $req
 	 * should result in a successful login in the future.
 	 *
 	 * @param AuthenticationRequest $req
@@ -738,6 +746,66 @@ final class AuthManager implements LoggerAwareInterface {
 		);
 		foreach ( $this->getPrimaryAuthenticationProviders() as $provider ) {
 			$provider->providerChangeAuthenticationData( $req );
+		}
+	}
+
+	/**
+	 * Indicate whether an AuthenticationRequest type can be removed
+	 * @param string $type AuthenticationRequest type
+	 * @return bool False if attempts to change $type should be denied
+	 */
+	public function allowsAuthenticationDataRemovalType( $type ) {
+		foreach ( $this->getPrimaryAuthenticationProviders() as $provider ) {
+			if ( !$provider->providerAllowsAuthenticationDataRemovalType( $type ) ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Validate a removal of authentication data (e.g. passwords)
+	 * @param AuthenticationRequest $req
+	 * @return Status
+	 */
+	public function allowsAuthenticationDataRemoval( AuthenticationRequest $req ) {
+		$any = false;
+		foreach ( $this->getPrimaryAuthenticationProviders() as $provider ) {
+			$status = $provider->providerAllowsAuthenticationDataRemoval( $req );
+			if ( !$status->isGood() ) {
+				return Status::wrap( $status );
+			}
+			$any = $any || $status->value !== 'ignored';
+		}
+		if ( !$any ) {
+			$status = Status::newGood( 'ignored' );
+			$status->warning( 'authmanager-change-not-supported' );
+			return $status;
+		}
+		foreach ( $this->getSecondaryAuthenticationProviders() as $provider ) {
+			$status = $provider->providerAllowsAuthenticationDataRemoval( $req );
+			if ( !$status->isGood() ) {
+				return Status::wrap( $status );
+			}
+		}
+		return Status::newGood();
+	}
+
+	/**
+	 * Change authentication data (e.g. passwords)
+	 *
+	 * If the provider supports the AuthenticationRequest type, calling this method
+	 * should stop $req from being accepted in the future.
+	 *
+	 * @param AuthenticationRequest $req
+	 */
+	public function removeAuthenticationData( AuthenticationRequest $req ) {
+		$this->logger->info(
+			'Removing authentication data for ' .
+			( is_string( $req->username ) ? $req->username : get_class( $req ) )
+		);
+		foreach ( $this->getPrimaryAuthenticationProviders() as $provider ) {
+			$provider->providerRemoveAuthenticationData( $req );
 		}
 	}
 
@@ -766,9 +834,6 @@ final class AuthManager implements LoggerAwareInterface {
 	/**
 	 * Start an account creation flow
 	 *
-	 * @note In addition to AuthenticationRequest types from
-	 *   self::getAuthenticationRequestTypes(), a UserDataAuthenticationRequest
-	 *   may be included in $reqs
 	 * @param string $username
 	 * @param User $creator User doing the account creation
 	 * @param AuthenticationRequest[] $reqs
@@ -801,8 +866,6 @@ final class AuthManager implements LoggerAwareInterface {
 				$req->populateUser( $user );
 			}
 		}
-
-		$reqs = $this->prepareAuthenticationRequestArray( $reqs );
 
 		$this->removeAuthenticationSessionData( null );
 
@@ -891,7 +954,6 @@ final class AuthManager implements LoggerAwareInterface {
 			foreach ( $reqs as $req ) {
 				$req->username = $state['username'];
 			}
-			$reqs = $this->prepareAuthenticationRequestArray( $reqs );
 
 			// Step 1: Choose a primary authentication provider and call it until it succeeds.
 
@@ -1051,6 +1113,7 @@ final class AuthManager implements LoggerAwareInterface {
 			$session->set( 'AuthManager::accountCreationState', null );
 			$this->removeAuthenticationSessionData( null );
 			$ret = AuthenticationResponse::newPass( $name );
+			$ret->linkStatus = $this->processRemoteLogins( $user );
 			$ret->loginRequest = $req;
 			$this->createdAccountAuthenticationRequests[] = $req;
 			return $ret;
@@ -1144,7 +1207,7 @@ final class AuthManager implements LoggerAwareInterface {
 			if ( !$status->isGood() ) {
 				$ret = Status::wrap( $status );
 				$this->logger->debug( __METHOD__ . ": Provider denied creation: " . $ret->getWikiText() );
-				$session->set( 'AuthManager::AutoCreateBlacklist', $status, 600 );
+				$e->set( 'AuthManager::AutoCreateBlacklist', $status, 600 );
 				$user->setId( 0 );
 				$user->loadFromId();
 				return $ret;
@@ -1260,8 +1323,6 @@ final class AuthManager implements LoggerAwareInterface {
 			$req->username = $user->getName();
 		}
 
-		$reqs = $this->prepareAuthenticationRequestArray( $reqs );
-
 		$this->removeAuthenticationSessionData( null );
 
 		$providers = $this->getPreAuthenticationProviders();
@@ -1362,7 +1423,6 @@ final class AuthManager implements LoggerAwareInterface {
 			foreach ( $reqs as $req ) {
 				$req->username = $state['username'];
 			}
-			$reqs = $this->prepareAuthenticationRequestArray( $reqs );
 
 			// Step 1: Call the primary again until it succeeds
 
@@ -1416,23 +1476,25 @@ final class AuthManager implements LoggerAwareInterface {
 	 * Possible values for $action:
 	 *  - ACTION_LOGIN: Valid for passing to beginAuthentication
 	 *  - ACTION_LOGIN_CONTINUE: Valid for passing to continueAuthentication in the current state
-	 *  - ACTION_CHANGE: Valid for changeAuthenticationData
 	 *  - ACTION_CREATE: Valid for passing to beginAccountCreation
 	 *  - ACTION_CREATE_CONTINUE: Valid for passing to continueAccountCreation in the current state
 	 *  - ACTION_LINK: Valid for passing to beginAccountLink
 	 *  - ACTION_LINK_CONTINUE: Valid for passing to continueAccountLink in the current state
-	 *  - ALL: All possible
+	 *  - ACTION_CHANGE: Valid for changeAuthenticationData
+	 *  - ACTION_REMOVE: Valid for removeAuthenticationData
+	 *  - ACTION_UNLINK: Same as ACTION_REMOVE, but linking providers only
 	 *
 	 * @param string $action One of the AuthManager::ACTION_* constants
-	 * @return string[] AuthenticationRequest class names
+	 * @param string|null Return-to URL, in case of redirect flow. Not used for CHANGE/REMOVE.
+	 * @return AuthenticationRequest[]
 	 */
-	public function getAuthenticationRequestTypes( $action ) {
+	public function getAuthenticationRequests( $action, $returnToUrl = null ) {
 		// Figure out which providers to query
 		switch ( $action ) {
 			case self::ACTION_LOGIN:
 			case self::ACTION_CREATE:
-			case self::ACTION_ALL:
-				$providers = $this->getPreAuthenticationProviders() +
+				$providers =
+					$this->getPreAuthenticationProviders() +
 					$this->getPrimaryAuthenticationProviders() +
 					$this->getSecondaryAuthenticationProviders();
 				break;
@@ -1452,7 +1514,8 @@ final class AuthManager implements LoggerAwareInterface {
 				if ( $state['primary'] === null ) {
 					if ( $action === self::ACTION_LOGIN_CONTINUE ) {
 						$action = self::ACTION_LOGIN;
-						$providers = $this->getPrimaryAuthenticationProviders() +
+						$providers =
+							$this->getPrimaryAuthenticationProviders() +
 							$this->getSecondaryAuthenticationProviders();
 					} else {
 						return array();
@@ -1477,9 +1540,12 @@ final class AuthManager implements LoggerAwareInterface {
 				break;
 
 			case self::ACTION_LINK:
-				$providers = array_filter( $this->getPrimaryAuthenticationProviders(), function ( $p ) {
-					return $p->accountCreationType() === PrimaryAuthenticationProvider::TYPE_LINK;
-				} );
+			case self::ACTION_UNLINK:
+				$providers =
+					array_filter( $this->getPrimaryAuthenticationProviders(), function ( $p ) {
+						return $p->accountCreationType() ===
+							   PrimaryAuthenticationProvider::TYPE_LINK;
+					} );
 				break;
 
 			case self::ACTION_LINK_CONTINUE:
@@ -1490,7 +1556,7 @@ final class AuthManager implements LoggerAwareInterface {
 				}
 				$provider = $this->getAuthenticationProvider( $state['primary'] );
 				if ( !$provider instanceof PrimaryAuthenticationProvider ||
-					$provider->accountCreationType() !== PrimaryAuthenticationProvider::TYPE_LINK
+					 $provider->accountCreationType() !== PrimaryAuthenticationProvider::TYPE_LINK
 				) {
 					return array();
 				}
@@ -1498,31 +1564,56 @@ final class AuthManager implements LoggerAwareInterface {
 				break;
 
 			case self::ACTION_CHANGE:
+			case self::ACTION_REMOVE:
 				$providers = $this->getPrimaryAuthenticationProviders();
 				break;
 
-				// @codeCoverageIgnoreStart
+			// @codeCoverageIgnoreStart
 			default:
 				throw new \DomainException( __METHOD__ . ": Invalid action \"$action\"" );
 		}
-				// @codeCoverageIgnoreEnd
+		// @codeCoverageIgnoreEnd
 
-		// Query them and merge results
-		$types = array();
-		foreach ( $providers as $provider ) {
-			$types += array_flip( $provider->getAuthenticationRequestTypes( $action ) );
+		// ACTION_UNLINK is an alias for ACTION_REMOVE, limited to linking providers
+		if ( $action === AuthManager::ACTION_UNLINK ) {
+			$action = AuthManager::ACTION_REMOVE;
 		}
 
-		$types = array_keys( $types );
+		/** @var $reqs AuthenticationRequest[] */
+		$reqs = array();
+		foreach ( $providers as $provider ) {
+			$reqs = array_merge( $reqs, $provider->getAuthenticationRequests( $action ) );
+		}
+
+		// For account creation there is an extra request used by AuthManager itself
+		if ( $action === self::ACTION_CREATE ) {
+			$reqs[] = new UserDataAuthenticationRequest();
+		}
+
+		// Filter out duplicates
+		$tmp = array();
+		foreach ( $reqs as $req ) {
+			$tmp[$req->getUniqueId()] = $req;
+		}
+		$reqs = array_values( $tmp );
+
+		$simpleAction = isset( self::$actionRestartMap[$action] ) ?
+			self::$actionRestartMap[$action] : $action;
+		foreach ( $reqs as $req ) {
+			$req->returnToUrl = $returnToUrl;
+			$req->action = $simpleAction;
+		}
 
 		// For self::ACTION_CHANGE, filter out any that something else *doesn't* allow changing
 		if ( $action === self::ACTION_CHANGE ) {
-			$types = array_values( array_filter(
-				$types, array( $this, 'allowsAuthenticationDataChangeType' )
-			) );
+			$that = $this;
+			$reqs = array_values( array_filter( $reqs, function ( $req ) use ( $that ) {
+				// these are placeholder requests so allowsAuthenticationDataChange wouldn't make sense
+				return $that->allowsAuthenticationDataChangeType( get_class( $req ) );
+			} ) );
 		}
 
-		return $types;
+		return $reqs;
 	}
 
 	/**
@@ -1617,27 +1708,6 @@ final class AuthManager implements LoggerAwareInterface {
 				$session->set( 'authData', $arr );
 			}
 		}
-	}
-
-	/**
-	 * Preprocess an array of AuthenticationRequests
-	 * @param AuthenticationRequest[] $reqs
-	 * @return AuthenticationRequest[] Keys are class names
-	 */
-	protected function prepareAuthenticationRequestArray( array $reqs ) {
-		$ret = array();
-		foreach ( $reqs as $req ) {
-			$class = get_class( $req );
-			if ( isset( $ret[$class] ) ) {
-				// @codeCoverageIgnoreStart
-				throw new \InvalidArgumentException(
-					"AuthenticationRequest array cannot contain multiple instances of $class"
-				);
-				// @codeCoverageIgnoreEnd
-			}
-			$ret[$class] = $req;
-		}
-		return $ret;
 	}
 
 	/**
@@ -1760,6 +1830,57 @@ final class AuthManager implements LoggerAwareInterface {
 		\ScopedCallback::consume( $delay );
 
 		\Hooks::run( 'UserLoggedIn', array( $user ) );
+	}
+
+	/**
+	 * Save information for logins without local accounts.
+	 *
+	 * After a successful authentication that could not result in a successful
+	 * login because no local account existed or could be created, stash the
+	 * result so that the remote account can be linked to the local account
+	 * once the user creates one or logs into one via another method.
+	 *
+	 * @param PrimaryAuthenticationProvider $provider
+	 * @param AuthenticationResponse $res
+	 */
+	protected function stashRemoteLogin( $provider, $res ) {
+		$session = $this->request->getSession();
+		$maybeLink = $session->get( 'AuthManager::maybeLink', array() );
+		$maybeLink[$res->linkRequest->getUniqueId()] = array(
+			'provider' => $provider->getUniqueId(),
+			'req' => $res->linkRequest,
+		);
+		$session->set( 'AuthManager::maybeLink', $maybeLink );
+	}
+
+	/**
+	 * Process logins stashed by stashRemoteLogin().
+	 * @param User $user
+	 * @return StatusValue|null One or more UI messages if some accounts have
+	 *  been linked, (These are set as warnings as StatusValue has no option
+	 *  for "good" messages.)
+	 */
+	protected function processRemoteLogins( User $user ) {
+		$session = $this->request->getSession();
+		$maybeLink = $session->get( 'AuthManager::maybeLink', array() );
+		$session->remove( 'AuthManager::maybeLink' );
+
+		$status = null;
+		foreach ( $maybeLink as $item ) {
+			/** @var PrimaryAuthenticationProvider $provider */
+			$provider = $this->getAuthenticationProvider( $item['provider'] );
+			$req = $item['req'];
+			if ( $provider ) {
+				$msg = $provider->finishAccountLink( $user, $req );
+				if ( $msg ) {
+					$status = $status ?: StatusValue::newGood();
+					$status->warning( $msg );
+				}
+			} else {
+				$this->logger->warning( __METHOD__ . ': provider not found: ' . $item['provider'] );
+			}
+		}
+		return $status;
 	}
 
 	/**@}*/

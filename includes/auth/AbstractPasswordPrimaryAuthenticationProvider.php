@@ -141,24 +141,27 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 		return null;
 	}
 
-	public function getAuthenticationRequestTypes( $action ) {
+	public function getAuthenticationRequests( $action ) {
 		switch ( $action ) {
 			case AuthManager::ACTION_LOGIN:
 			case AuthManager::ACTION_CREATE:
+				return array( new PasswordAuthenticationRequest() );
+
 			case AuthManager::ACTION_CHANGE:
-			case AuthManager::ACTION_ALL:
-				return array( 'MediaWiki\\Auth\\PasswordAuthenticationRequest' );
+			case AuthManager::ACTION_REMOVE:
+				$user = \RequestContext::getMain()->getUser();
+				$req = new PasswordAuthenticationRequest();
+				$req->usermame = $user->getName();
+				$req->password = null;
+				return array( $req );
 
 			default:
 				return array();
 		}
 	}
 
-	public function providerRevokeAccessForUser( $username ) {
-		$req = new PasswordAuthenticationRequest;
-		$req->username = $username;
+	public function providerRemoveAuthenticationData( AuthenticationRequest $req ) {
 		$req->password = null;
 		$this->providerChangeAuthenticationData( $req );
 	}
-
 }

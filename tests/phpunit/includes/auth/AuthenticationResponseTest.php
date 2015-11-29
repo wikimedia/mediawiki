@@ -25,6 +25,7 @@ class AuthenticationResponseTest extends \MediaWikiTestCase {
 
 	public function provideConstructors() {
 		$req = $this->getMockForAbstractClass( 'MediaWiki\\Auth\\AuthenticationRequest' );
+		$needed = array( $this->getMockForAbstractClass( 'MediaWiki\\Auth\\AuthenticationRequest' ) );
 		$msg = new \Message( 'mainpage' );
 
 		return array(
@@ -63,9 +64,9 @@ class AuthenticationResponseTest extends \MediaWikiTestCase {
 				'status' => AuthenticationResponse::ABSTAIN,
 			) ),
 
-			array( 'newUI', array( array( 'foo' ), $msg ), array(
+			array( 'newUI', array( $needed, $msg ), array(
 				'status' => AuthenticationResponse::UI,
-				'neededRequests' => array( 'foo' ),
+				'neededRequests' => $needed,
 				'message' => $msg,
 			) ),
 

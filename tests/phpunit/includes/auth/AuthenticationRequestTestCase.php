@@ -6,10 +6,12 @@ namespace MediaWiki\Auth;
  * @group AuthManager
  */
 abstract class AuthenticationRequestTestCase extends \MediaWikiTestCase {
-	protected static $class = null;
-
-	public function testGetFieldInfo() {
-		$info = call_user_func( array( static::$class, 'getFieldInfo' ) );
+	/**
+	 * @dataProvider provideGetFieldInfo
+	 * @param AuthenticationRequest $req
+	 */
+	public function testGetFieldInfo( $req ) {
+		$info = $req->getFieldInfo();
 		$this->assertType( 'array', $info );
 
 		foreach ( $info as $field => $data ) {
@@ -55,21 +57,27 @@ abstract class AuthenticationRequestTestCase extends \MediaWikiTestCase {
 		}
 	}
 
+	abstract public function provideGetFieldInfo();
+
 	/**
-	 * @dataProvider provideNewFromSubmission
+	 * @dataProvider provideLoadFromSubmission
 	 * @param string $label
+	 * @param AuthenticationRequest $req
 	 * @param array $data
 	 * @param array|null $expectState
 	 */
-	public function testNewFromSubmission( $label, $data, $expectState ) {
-		if ( is_array( $expectState ) ) {
-			$expect = call_user_func( array( static::$class, '__set_state' ), $expectState );
+	public function testLoadFromSubmission( $label, $req, $data, $expectState ) {
+		$success = $req->loadFromSubmission( $data );
+		if ( !$success ) {
+			$this->assertNull( $expectState );
+		} elseif ( is_array( $expectState ) ) {
+			$clazz = get_class( $req );
+			$expect = $clazz::__set_state( $expectState );
+			$this->assertEquals( $expect, $req );
 		} else {
-			$expect = $expectState;
+			$this->assertEquals( $expectState, $req );
 		}
-		$ret = call_user_func( array( static::$class, 'newFromSubmission' ), $data );
-		$this->assertEquals( $expect, $ret );
 	}
 
-	abstract public function provideNewFromSubmission();
+	abstract public function provideLoadFromSubmission();
 }

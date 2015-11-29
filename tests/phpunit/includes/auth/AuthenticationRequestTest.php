@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Auth;
 
+use BadMethodCallException;
+
 /**
  * @group AuthManager
  * @covers MediaWiki\Auth\AuthenticationRequest
@@ -9,76 +11,31 @@ namespace MediaWiki\Auth;
 class AuthenticationRequestTest extends \MediaWikiTestCase {
 
 	/**
-	 * @expectedException BadMethodCallException
-	 * @expectedExceptionMessage AuthenticationRequest must override getFieldInfo()
-	 */
-	public function testGetFieldInfo() {
-		AuthenticationRequest::getFieldInfo();
-	}
-
-	/**
-	 * @expectedException BadMethodCallException
-	 * @expectedExceptionMessage AuthenticationRequestMock must override getFieldInfo()
-	 */
-	public function testGetFieldInfo_subclass() {
-		$class = get_class( $this->getMockForAbstractClass(
-			'MediaWiki\\Auth\\AuthenticationRequest', array(), 'AuthenticationRequestMock'
-		) );
-		$class::getFieldInfo();
-	}
-
-	/**
-	 * @dataProvider provideNewFromSubmission
+	 * @dataProvider provideLoadFromSubmission
 	 * @param string $label
 	 * @param array $fieldInfo
 	 * @param array $data
 	 * @param array|null $expectState
 	 */
-	public function testNewFromSubmission( $label, $fieldInfo, $data, $expectState ) {
-		AuthenticationRequestTestMockAuthenticationRequest::$fieldInfo = $fieldInfo;
-		$ret = AuthenticationRequestTestMockAuthenticationRequest::newFromSubmission( $data );
-		if ( is_array( $expectState ) ) {
-			$expect = AuthenticationRequestTestMockAuthenticationRequest::__set_state( $expectState );
+	public function testLoadFromSubmission( $label, $fieldInfo, $data, $expectState ) {
+		$requestClass = $this->getMockClass( 'MediaWiki\\Auth\\AuthenticationRequest',
+			array( 'getFieldInfo' ) );
+		$request = new $requestClass();
+		$request->expects( $this->any() )->method( 'getFieldInfo' )
+			->will( $this->returnValue( $fieldInfo ) );
+
+		$success = $request->loadFromSubmission( $data );
+		if ( $success === false ) {
+			$this->assertNull( $expectState );
+		} elseif ( is_array( $expectState ) ) {
+			$expect = $requestClass::__set_state( $expectState );
+			$this->assertEquals( $expect, $request );
 		} else {
-			$expect = $expectState;
+			$this->assertEquals( $expectState, $request );
 		}
-		$this->assertEquals( $expect, $ret );
 	}
 
-	/**
-	 * @dataProvider provideNewFromSubmission
-	 * @param string $label
-	 * @param array $fieldInfo
-	 * @param array $data
-	 * @param array|null $expectState
-	 */
-	public function testRequestsFromSubmission( $label, $fieldInfo, $data, $expectState ) {
-		AuthenticationRequestTestMockAuthenticationRequest::$fieldInfo = $fieldInfo;
-		$ret = AuthenticationRequest::requestsFromSubmission(
-			array( 'MediaWiki\\Auth\\AuthenticationRequestTestMockAuthenticationRequest' ),
-			$data,
-			'http://example.org/test'
-		);
-
-		foreach ( $ret as &$r ) {
-			$this->assertEquals( 'http://example.org/test', $r->returnToUrl );
-			$r->returnToUrl = null;
-		}
-		unset( $r );
-
-		if ( is_array( $expectState ) ) {
-			$expect = array(
-				'MediaWiki\\Auth\\AuthenticationRequestTestMockAuthenticationRequest' =>
-					AuthenticationRequestTestMockAuthenticationRequest::__set_state( $expectState )
-			);
-		} else {
-			$expect = array();
-		}
-
-		$this->assertEquals( $expect, $ret );
-	}
-
-	public static function provideNewFromSubmission() {
+	public static function provideLoadFromSubmission() {
 		return array(
 			array(
 				'No fields',
@@ -329,12 +286,36 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 			),
 		);
 	}
+
+	public function testGetRequestByClass() {
+		$mock = $this->getMockForAbstractClass( 'MediaWiki\\Auth\\AuthenticationRequest', array(),
+			'AbstractAuthenticationProviderRequest1' );
+		$this->getMockClass( 'MediaWiki\\Auth\\AuthenticationRequest', array(), array(),
+			'AbstractAuthenticationProviderRequest2' );
+		$mock2 = $this->getMockForAbstractClass( 'MediaWiki\\Auth\\AuthenticationRequest', array(),
+			'AbstractAuthenticationProviderRequest3' );
+		$requests = array(
+			$mock,
+			new \AbstractAuthenticationProviderRequest2(),
+			new \AbstractAuthenticationProviderRequest2(),
+			$mock2,
+		);
+
+		$this->assertEquals( null, AuthenticationRequest::getRequestByClass( $requests,
+			'AbstractAuthenticationProviderRequest0' ) );
+		$this->assertEquals( $mock, AuthenticationRequest::getRequestByClass( $requests,
+			'AbstractAuthenticationProviderRequest1' ) );
+		$this->assertEquals( null, AuthenticationRequest::getRequestByClass( $requests,
+			'AbstractAuthenticationProviderRequest2' ) );
+		$this->assertEquals( $mock2, AuthenticationRequest::getRequestByClass( $requests,
+			'AbstractAuthenticationProviderRequest3' ) );
+	}
 }
 
 class AuthenticationRequestTestMockAuthenticationRequest extends AuthenticationRequest {
 	public static $fieldInfo = array();
 
-	public static function getFieldInfo() {
+	public function getFieldInfo() {
 		return self::$fieldInfo;
 	}
 }

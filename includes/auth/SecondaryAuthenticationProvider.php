@@ -49,7 +49,7 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 	 *
 	 * @param User $user User being authenticated. This may become a
 	 *   "UserValue" in the future, or User may be refactored into such.
-	 * @param AuthenticationRequest[] $reqs Keys are class names
+	 * @param AuthenticationRequest[] $reqs
 	 * @return AuthenticationResponse Expected responses:
 	 *  - PASS: The user is authenticated. Additional secondary providers may run.
 	 *  - FAIL: The user is not authenticated. Fail the authentication process.
@@ -63,7 +63,7 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 	 * Continue an authentication flow
 	 * @param User $user User being authenticated. This may become a
 	 *   "UserValue" in the future, or User may be refactored into such.
-	 * @param AuthenticationRequest[] $reqs Keys are class names
+	 * @param AuthenticationRequest[] $reqs
 	 * @return AuthenticationResponse Expected responses:
 	 *  - PASS: The user is authenticated. Additional secondary providers may run.
 	 *  - FAIL: The user is not authenticated. Fail the authentication process.
@@ -89,6 +89,13 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 	public function providerAllowsAuthenticationDataChange( AuthenticationRequest $req );
 
 	/**
+	 * Validate a removal of authentication data (e.g. passwords)
+	 * @param AuthenticationRequest $req
+	 * @return StatusValue
+	 */
+	public function providerAllowsAuthenticationDataRemoval( AuthenticationRequest $req );
+
+	/**
 	 * Determine whether an account creation may begin
 	 *
 	 * Called from AuthManager::beginAccountCreation()
@@ -99,7 +106,7 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 	 *   into such.
 	 * @param User $creator User doing the creation. This may become a
 	 *   "UserValue" in the future, or User may be refactored into such.
-	 * @param AuthenticationRequest[] $reqs Keys are class names
+	 * @param AuthenticationRequest[] $reqs
 	 * @return StatusValue
 	 */
 	public function testForAccountCreation( $user, $creator, array $reqs );
@@ -109,7 +116,7 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 	 * @param User $user User being created (has been added to the database).
 	 *   This may become a "UserValue" in the future, or User may be refactored
 	 *   into such.
-	 * @param AuthenticationRequest[] $reqs Keys are class names
+	 * @param AuthenticationRequest[] $reqs
 	 * @return AuthenticationResponse Expected responses:
 	 *  - PASS: The user creation is ok. Additional secondary providers may run.
 	 *  - ABSTAIN: Additional secondary providers may run.
@@ -123,7 +130,7 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 	 * @param User $user User being created (has been added to the database).
 	 *   This may become a "UserValue" in the future, or User may be refactored
 	 *   into such.
-	 * @param AuthenticationRequest[] $reqs Keys are class names
+	 * @param AuthenticationRequest[] $reqs
 	 * @return AuthenticationResponse Expected responses:
 	 *  - PASS: The user creation is ok. Additional secondary providers may run.
 	 *  - ABSTAIN: Additional secondary providers may run.

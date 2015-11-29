@@ -4074,5 +4074,11 @@
 	"authmanager-authplugin-setpass-fail": "Error message from AuthManager if the AuthPlugin returns false from its allowPasswordChange() method.",
 	"authmanager-autocreate-noperm": "Error message when auto-creation fails due to lack of permission.",
 	"authmanager-autocreate-exception": "Error message when auto-creation fails because we tried recently and an exception was thrown, so we're not going to try again yet.",
-	"authmanager-userdoesnotexist": "Error message when a user account does not exist. Parameters:\n* $1 - User name."
+	"authmanager-userdoesnotexist": "Error message when a user account does not exist. Parameters:\n* $1 - User name.",
+	"authmanager-describe-unspecified-provider": "Fallback text for provider name on [[Special:LinkAccounts]] when it has not been provided.",
+	"authmanager-describe-unspecified-account": "Fallback text for account name on [[Special:LinkAccounts]] when it has not been provided.",
+	"authprovider-confirmautolinking-message": "Form message displayed when the user is presented with a form listing remote accounts they implicitly linked during their login attempts.",
+	"authprovider-confirmautolinking-optionname": "Checkbox label for an item in the autolink confirmation form. Parameters:\n\n* $1: account name\n* $2: provider name",
+	"authprovider-confirmautolinking-request-label": "Label for the whole block of checkboxes in the autolink confirmation form.",
+	"authprovider-confirmautolinking-request-help": "API help message for the autolink confirmation step of an authentication process."
 }

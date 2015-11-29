@@ -34,8 +34,10 @@ use User;
 class LegacyHookPreAuthenticationProvider extends AbstractPreAuthenticationProvider {
 
 	public function testForAuthentication( array $reqs ) {
-		if ( isset( $reqs['MediaWiki\\Auth\\PasswordAuthenticationRequest'] ) ) {
-			$req = $reqs['MediaWiki\\Auth\\PasswordAuthenticationRequest'];
+		$req = AuthenticationRequest::getRequestByClass(
+			$reqs, 'MediaWiki\\Auth\\PasswordAuthenticationRequest'
+		);
+		if ( $req ) {
 			$user = User::newFromName( $req->username );
 			$password = $req->password;
 		} else {
