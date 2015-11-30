@@ -246,6 +246,59 @@ changes to languages because of Phabricator reports.
 
 == MediaWiki 1.25 ==
 
+== MediaWiki 1.25.3 ==
+
+This is a security and maintenance release of the MediaWiki 1.25 branch.
+
+=== Changes since 1.25.2 ===
+
+* (T98975) Fix having multiple callbacks for a single hook.
+* (T107632) maintenance/refreshLinks.php did not always remove all links
+  pointing to nonexistent pages.
+* (T104142) $wgEmergencyContact and $wgPasswordSender now use their default
+  value if set to an empty string.
+* (T62174) Provide fallbacks for use of mb_convert_encoding() in
+  HtmlFormatter. It was causing an error when accessing the api help page
+  if the mbstring PHP extension was not installed.
+* (T105896) Confirmation emails would sometimes contain invalid codes.
+* (T105597) Fixed edit stash inclusion queries.
+* (T91850) SECURITY: Add throttle check in ApiUpload and SpecialUpload
+* (T91203, T91205) SECURITY: API: Improve validation in chunked uploading
+* (T95589) SECURITY: RevDel: Check all revisions for suppression, not just the
+  first
+* (T108616) SECURITY: Avoid exposure of local path in PNG thumbnails
+
+== MediaWiki 1.25.2 ==
+
+This is a security and maintenance release of the MediaWiki 1.25 branch.
+
+=== Changes since 1.25.1 ===
+
+* (T94116) SECURITY: Compare API watchlist token in constant time
+* (T97391) SECURITY: Escape error message strings in thumb.php
+* (T106893) SECURITY: Don't leak autoblocked IP addresses on
+  Special:DeletedContributions
+* (T102562) Fix InstantCommons parameters to handle the new HTTPS-only
+  policy of Wikimedia Commons.
+* (T100767) Setting a configuration setting for skin or extension to
+  false in LocalSettings.php was not working.
+* (T100635) API action=opensearch json output no longer breaks when
+  $wgDebugToolbar is enabled.
+* (T102522) Using an extension.json or skin.json file which has
+  a "manifest_version" property for 1.26 compatability will no longer
+  trigger warnings.
+* (T86156) Running updateSearchIndex.php will not throw an error as
+  page_restrictions has been added to the locked table list.
+* Special:Version would throw notices if using SVN due to an incorrectly
+  named variable. Add an additional check that an index is defined.
+
+== MediaWiki 1.25.1 ==
+
+This is a bug fix release of the MediaWiki 1.25 branch.
+
+=== Changes since 1.25 ===
+* (T100351) Fix syntax errors in extension.json of ConfirmEdit extension
+
 === Configuration changes in 1.25 ===
 * $wgPageShowWatchingUsers was removed.
 * $wgLocalVirtualHosts has been added to replace $wgConf->localVHosts.
@@ -791,6 +844,76 @@ See the file UPGRADE for more detailed upgrade instructions.
 For notes on 1.24.x and older releases, see HISTORY.
 
 == MediaWiki 1.24 ==
+
+== MediaWiki 1.24.4 ==
+
+This is a security and maintenance release of the MediaWiki 1.24 branch.
+
+== Changes since 1.24.3 ==
+
+* (T91653) Minimal PSR-3 debug logger to support backports from 1.25+.
+* (T68650) Fix indexing of moved pages with PostgreSQL. Requires running
+  update.php to fix.
+* (T91850) SECURITY: Add throttle check in ApiUpload and SpecialUpload
+* (T91203, T91205) SECURITY: API: Improve validation in chunked uploading
+* (T95589) SECURITY: RevDel: Check all revisions for suppression, not just the
+  first
+* (T108616) SECURITY: Avoid exposure of local path in PNG thumbnails
+
+== MediaWiki 1.24.3 ==
+
+This is a security and maintenance release of the MediaWiki 1.24 branch.
+
+== Changes since 1.24.2 ==
+
+* (T94116) SECURITY: Compare API watchlist token in constant time
+* (T97391) SECURITY: Escape error message strings in thumb.php
+* (T106893) SECURITY: Don't leak autoblocked IP addresses on
+  Special:DeletedContributions
+* Update jQuery from v1.11.2 to v1.11.3.
+* (T102562) Fix InstantCommons parameters to handle the new HTTPS-only
+  policy of Wikimedia Commons.
+
+== MediaWiki 1.24.2 ==
+
+This is a security and maintenance release of the MediaWiki 1.24 branch.
+
+== Changes since 1.24.1 ==
+
+* (T85848, T71210) SECURITY: Don't parse XMP blocks that contain XML entities,
+  to prevent various DoS attacks.
+* (T85848) SECURITY: Don't allow directly calling Xml::isWellFormed, to reduce
+  likelihood of DoS.
+* (T88310) SECURITY: Always expand xml entities when checking SVG's.
+* (T73394) SECURITY: Escape > in Html::expandAttributes to prevent XSS.
+* (T85855) SECURITY: Don't execute another user's CSS or JS on preview.
+* (T64685) SECURITY: Allow setting maximal password length to prevent DoS when
+  using PBKDF2.
+* (T85349, T85850, T86711) SECURITY: Multiple issues fixed in SVG filtering to
+  prevent XSS and protect viewer's privacy.
+* Fix case of SpecialAllPages/SpecialAllMessages in SpecialPageFactory to fix
+  loading these special pages when $wgAutoloadAttemptLowercase is false.
+* (bug T70087) Fix Special:ActiveUsers page for installations using
+  PostgreSQL.
+* (bug T76254) Fix deleting of pages with PostgreSQL. Requires a schema change
+  and running update.php to fix.
+
+== MediaWiki 1.24.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.24 branch.
+
+== Changes since 1.24.0 ==
+
+* (bug T76686) [SECURITY] thumb.php outputs wikitext message as raw HTML, which
+  could lead to xss. Permission to edit MediaWiki namespace is required to
+  exploit this.
+* (bug T77028) [SECURITY] Malicious site can bypass CORS restrictions in
+  $wgCrossSiteAJAXdomains in API calls if it only included an allowed domain as
+  part of its name.
+* (bug T74222) The original patch for T74222 was reverted as unnecessary.
+* Fixed a couple of entries in RELEASE-NOTES-1.24.
+* (bug T76168) OutputPage: Add accessors for some protected properties.
+* (bug T74834) Make 1.24 branch directly installable under PostgreSQL.
 
 === Configuration changes in 1.24 ===
 * MediaWiki will no longer run if register_globals is enabled. It has been
@@ -1487,6 +1610,174 @@ of files that are no longer available follows.
 
 == MediaWiki 1.23 ==
 
+== MediaWiki 1.23.11 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+== Changes since 1.23.10 ==
+
+* (T91850) SECURITY: Add throttle check in ApiUpload and SpecialUpload
+* (T91203, T91205) SECURITY: API: Improve validation in chunked uploading
+* (T108616) SECURITY: Avoid exposure of local path in PNG thumbnails
+
+== MediaWiki 1.23.10 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+== Changes since 1.23.9 ==
+
+* (T94116) SECURITY: Compare API watchlist token in constant time
+* (T97391) SECURITY: Escape error message strings in thumb.php
+* (T106893) SECURITY: Don't leak autoblocked IP addresses on
+  Special:DeletedContributions
+* (bug 67644) Make AutoLoaderTest handle namespaces
+* (T91653) Minimal PSR-3 debug logger to support backports from 1.25+.
+* (T102562) Fix InstantCommons parameters to handle the new HTTPS-only
+  policy of Wikimedia Commons.
+
+== MediaWiki 1.23.9 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+== Changes since 1.23.8 ==
+
+* (T85848, T71210) SECURITY: Don't parse XMP blocks that contain XML entities,
+  to prevent various DoS attacks.
+* (T85848) SECURITY: Don't allow directly calling Xml::isWellFormed, to reduce
+  likelihood of DoS.
+* (T88310) SECURITY: Always expand xml entities when checking SVG's.
+* (T73394) SECURITY: Escape > in Html::expandAttributes to prevent XSS.
+* (T85855) SECURITY: Don't execute another user's CSS or JS on preview.
+* (T85349, T85850, T86711) SECURITY: Multiple issues fixed in SVG filtering to
+  prevent XSS and protect viewer's privacy.
+* (bug T68650) Fix indexing of moved pages with PostgreSQL. Requires running
+  update.php to fix.
+* (bug T70087) Fix Special:ActiveUsers page for installations using 
+  PostgreSQL.
+
+== MediaWiki 1.23.8 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+== Changes since 1.23.7 ==
+
+* (bug T76686) [SECURITY] thumb.php outputs wikitext message as raw HTML, which
+  could lead to xss. Permission to edit MediaWiki namespace is required to
+  exploit this.
+* (bug T77028) [SECURITY] Malicious site can bypass CORS restrictions in
+  $wgCrossSiteAJAXdomains in API calls if it only included an allowed domain as
+  part of its name.
+* (bug T74222) The original patch for T74222 was reverted as unnecessary.
+
+== MediaWiki 1.23.7 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+== Changes since 1.23.6 ==
+
+* (bugs 66776, 71478) SECURITY:  User PleaseStand reported a way to inject code
+  into API clients that used format=php to process pages that underwent flash
+  policy mangling. This was fixed along with improving how the mangling was done
+  for format=json, and allowing sites to disable the mangling using
+  $wgMangleFlashPolicy.
+* (bug 70901) SECURITY: User Jackmcbarn reported that the ability to update
+  the content model for a page could allow an unprivileged attacker to edit
+  another user's common.js under certain circumstances. The user right
+  "editcontentmodel" was added, and is needed to change a revision's content
+  model.
+* (bug 71111) SECURITY: User PleaseStand reported that on wikis that allow raw
+  HTML, it is not safe to preview wikitext coming from an untrusted source such
+  as a cross-site request. Thus add an edit token to the form, and when raw HTML
+  is allowed, ensure the token is provided before showing the preview. This
+  check is not performed on wikis that both allow raw HTML and anonymous
+  editing, since there are easier ways to exploit that scenario.
+* (bug 72222) SECURITY: Do not show log action when the entry is revdeleted with
+  DELETED_ACTION. NOTICE: this may be reverted in a future release pending a
+  public RFC about the desired functionality. This issue was reported by user
+  Bawolff.
+* (bug 71621) Make allowing site-wide styles on restricted special pages a
+  config option.
+* (bug 42723) Added updated version history from 1.19.2 to 1.22.13
+* $wgMangleFlashPolicy was added to make MediaWiki's mangling of anything that
+  might be a flash policy directive configurable.
+
+== MediaWiki 1.23.6 ==
+
+This is a maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.5 ===
+* (Bug 72274) Job queue not running (HTTP 411) due to missing
+  Content-Length: header
+* (Bug 67440) Allow classes to be registered properly from installer
+
+== MediaWiki 1.23.5 ==
+
+This is a security release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.4 ===
+* (bug 70672) SECURITY: OutputPage: Remove separation of css and js module
+  allowance.
+
+== MediaWiki 1.23.4 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.3 ===
+
+* (bug 69008) SECURITY: Enhance CSS filtering in SVG files. Filter <style>
+  elements; normalize style elements and attributes before filtering; add
+  checks for attributes that contain css; add unit tests for html5sec and
+  reported bugs.
+* (bug 65998) Make MySQLi work with non-standard socket.
+* (bug 66986) GlobalVarConfig shouldn't throw exceptions for null-valued config
+  settings.
+
+== MediaWiki 1.23.3 ==
+
+This is a maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.2 ===
+
+* (bug 68501) Correctly handle incorrect namespace in cleanupTitles.php.
+* (bug 64970) Fix support for blobs on DatabaseOracle::update.
+* (bug 66574) Display MediaWiki:Loginprompt on the login page.
+* (bug 67870) wfShellExec() cuts off stdout at multiples of 8192 bytes.
+* (bug 60629) Handle invalid language code gracefully in
+  Language::fetchLanguageNames.
+* (bug 62017) Restore the number of rows shown on Special:Watchlist.
+* Check for boolean false result from database query in SqlBagOStuff.
+
+== MediaWiki 1.23.2 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.1 ===
+
+* (bug 68187) SECURITY: Prepend jsonp callback with comment.
+* (bug 66608) SECURITY: Fix for XSS issue in bug 66608: Generate the URL used
+  for loading a new page in Javascript,instead of relying on the URL in the link
+  that has been clicked.
+* (bug 65778) SECURITY: Copy prevent-clickjacking between OutputPage and
+  ParserOutput.
+* (bug 68313) Preferences: Turn stubthreshold back into a combo box.
+* (bug 65214) Fix initSiteStats.php maintenance script.
+* (bug 67594) Special:ActiveUsers: Fix to work with PostgreSQL.
+
+== MediaWiki 1.23.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.0 ===
+
+* (bug 65839) SECURITY: Prevent external resources in SVG files.
+* (bug 67025) Special:Watchlist: Don't try to render empty row.
+* (bug 66922) Don't allow some E_NOTICE messages to end up in the LocalSettings.php.
+* (bug 66467) FileBackend: Avoid using popen() when "parallelize" is disabled.
+* (bug 66428) MimeMagic: Don't seek before BOF. This has weird side effects
+  like only extracting the tail of the file partially or not at all.
+* (bug 66182) Removed -x flag on some php files.
+
+
 === Configuration changes in 1.23 ===
 * (bug 13250) Restored method for clearing a watchlist in web UI
   so that users with large watchlists don't have to perform
@@ -1956,6 +2247,44 @@ changes to languages because of Bugzilla reports.
 
 == MediaWiki 1.22 ==
 
+== MediaWiki 1.22.15 ==
+
+This is a security and maintenance release of the MediaWiki 1.22 branch.
+
+=== Changes since 1.22.14 ===
+
+* (bug T76686) [SECURITY] thumb.php outputs wikitext message as raw HTML, which
+  could lead to xss. Permission to edit MediaWiki namespace is required to
+  exploit this.
+* (bug T77028) [SECURITY] Malicious site can bypass CORS restrictions in
+  $wgCrossSiteAJAXdomains in API calls if it only included an allowed domain as
+  part of its name.
+* (bug T74222) The original patch for T74222 was reverted as unnecessary.
+
+== MediaWiki 1.22.14 ==
+
+This is a security and maintenance release of the MediaWiki 1.22 branch.
+
+=== Changes since 1.22.13 ===
+
+* (bugs 66776, 71478) SECURITY:  User PleaseStand reported a way to inject code
+  into API clients that used format=php to process pages that underwent flash
+  policy mangling. This was fixed along with improving how the mangling was done
+  for format=json, and allowing sites to disable the mangling using
+  $wgMangleFlashPolicy.
+* (bug 70901) SECURITY: User Jackmcbarn reported that the ability to update
+  the content model for a page could allow an unprivileged attacker to edit
+  another user's common.js under certain circumstances. The user right
+  "editcontentmodel" was added, and is needed to change a revision's content
+  model.
+* (bug 72222) SECURITY: Do not show log action when the entry is revdeleted with
+  DELETED_ACTION. NOTICE: this may be reverted in a future release pending a
+  public RFC about the desired functionality. This issue was reported by user
+  Bawolff.
+* (bug 71621) Make allowing site-wide styles on restricted special pages a
+  config option.
+* $wgMangleFlashPolicy was added to make MediaWiki's mangling of anything that
+  might be a flash policy directive configurable.
 
 == MediaWiki 1.22.13 ==
 This is a maintenance release of the MediaWiki 1.22 branch.
