@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group DeferredUpdates
+ */
 class DeferredUpdatesTest extends MediaWikiTestCase {
 	public function testDoUpdatesWeb() {
 		$this->setMwGlobals( 'wgCommandLineMode', false );
@@ -34,6 +37,31 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 		$this->expectOutputString( implode( '', $updates ) );
 
 		DeferredUpdates::doUpdates();
+
+		$x = null;
+		$y = null;
+		DeferredUpdates::addCallableUpdate(
+			function () use ( &$x ) {
+				$x = 'Sherity';
+			},
+			DeferredUpdates::PRESEND
+		);
+		DeferredUpdates::addCallableUpdate(
+			function () use ( &$y ) {
+				$y = 'Marychu';
+			},
+			DeferredUpdates::POSTSEND
+		);
+
+		$this->assertNull( $x, "Update not run yet" );
+		$this->assertNull( $y, "Update not run yet" );
+
+		DeferredUpdates::doUpdates( 'run', DeferredUpdates::PRESEND );
+		$this->assertEquals( "Sherity", $x, "PRESEND update ran" );
+		$this->assertNull( $y, "POSTSEND update not run yet" );
+
+		DeferredUpdates::doUpdates( 'run', DeferredUpdates::POSTSEND );
+		$this->assertEquals( "Marychu", $y, "POSTSEND update ran" );
 	}
 
 	public function testDoUpdatesCLI() {

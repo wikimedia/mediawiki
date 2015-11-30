@@ -509,8 +509,10 @@ class MediaWiki {
 		$factory = wfGetLBFactory();
 		$factory->commitMasterChanges();
 		$factory->shutdown();
+		wfDebug( __METHOD__ . ': all transactions committed' );
 
-		wfDebug( __METHOD__ . ' completed; all transactions committed' );
+		DeferredUpdates::doUpdates( 'enqueue', DeferredUpdates::PRESEND );
+		wfDebug( __METHOD__ . ': pre-send deferred updates completed' );
 
 		// Set a cookie to tell all CDN edge nodes to "stick" the user to the
 		// DC that handles this POST request (e.g. the "master" data center)
