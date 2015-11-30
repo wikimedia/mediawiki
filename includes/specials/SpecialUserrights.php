@@ -117,6 +117,11 @@ class UserrightsPage extends SpecialPage {
 		$fetchedStatus = $this->fetchUser( $this->mTarget );
 		if ( $fetchedStatus->isOk() ) {
 			$this->mFetchedUser = $fetchedStatus->value;
+			if ( $this->mFetchedUser instanceof User ) {
+				// Set the 'relevant user' in the skin, so it displays links like Contributions,
+				// User logs, UserRights, etc.
+				$this->getSkin()->setRelevantUser( $this->mFetchedUser );
+			}
 		}
 
 		if ( !$this->userCanChangeRights( $user, true ) ) {
