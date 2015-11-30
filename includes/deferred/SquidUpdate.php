@@ -21,11 +21,13 @@
  * @ingroup Cache
  */
 
+use Wikimedia\Assert\Assert;
+
 /**
  * Handles purging appropriate Squid URLs given a title (or titles)
  * @ingroup Cache
  */
-class SquidUpdate implements DeferrableUpdate {
+class SquidUpdate implements DeferrableUpdate, MergeableUpdate {
 	/** @var string[] Collection of URLs to purge */
 	protected $urls = array();
 
@@ -33,8 +35,7 @@ class SquidUpdate implements DeferrableUpdate {
 	 * @param string[] $urlArr Collection of URLs to purge
 	 */
 	public function __construct( array $urlArr ) {
-		// Remove duplicate URLs from list
-		$this->urls = array_unique( $urlArr );
+		$this->urls = $urlArr;
 	}
 
 	/**
@@ -59,9 +60,7 @@ class SquidUpdate implements DeferrableUpdate {
 	 * @deprecated 1.27
 	 */
 	public static function newSimplePurge( Title $title ) {
-		$urlArr = $title->getSquidURLs();
-
-		return new SquidUpdate( $urlArr );
+		return new SquidUpdate( $title->getSquidURLs() );
 	}
 
 	/**
@@ -69,6 +68,13 @@ class SquidUpdate implements DeferrableUpdate {
 	 */
 	public function doUpdate() {
 		self::purge( $this->urls );
+	}
+
+	public function merge( MergeableUpdate $update ) {
+		/** @var SquidUpdate $update */
+		Assert::parameterType( __CLASS__, $update, '$update' );
+
+		$this->urls = array_merge( $this->urls, $update->urls );
 	}
 
 	/**
@@ -86,6 +92,9 @@ class SquidUpdate implements DeferrableUpdate {
 			return;
 		}
 
+		// Remove duplicate URLs from list
+		$urlArr = array_unique( $urlArr );
+
 		wfDebugLog( 'squid', __METHOD__ . ': ' . implode( ' ', $urlArr ) );
 
 		if ( $wgHTCPRouting ) {
@@ -94,7 +103,6 @@ class SquidUpdate implements DeferrableUpdate {
 
 		if ( $wgSquidServers ) {
 			// Remove duplicate URLs
-			$urlArr = array_unique( $urlArr );
 			// Maximum number of parallel connections per squid
 			$maxSocketsPerSquid = 8;
 			// Number of requests to send per socket
@@ -127,7 +135,7 @@ class SquidUpdate implements DeferrableUpdate {
 	 * @throws MWException
 	 * @param string[] $urlArr Collection of URLs to purge
 	 */
-	protected static function HTCPPurge( array $urlArr ) {
+	private static function HTCPPurge( array $urlArr ) {
 		global $wgHTCPRouting, $wgHTCPMulticastTTL;
 
 		// HTCP CLR operation
@@ -158,8 +166,6 @@ class SquidUpdate implements DeferrableUpdate {
 				$wgHTCPMulticastTTL );
 		}
 
-		// Remove duplicate URLs from collection
-		$urlArr = array_unique( $urlArr );
 		// Get sequential trx IDs for packet loss counting
 		$ids = UIDGenerator::newSequentialPerNodeIDs(
 			'squidhtcppurge', 32, count( $urlArr ), UIDGenerator::QUICK_VOLATILE
