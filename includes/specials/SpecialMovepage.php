@@ -114,9 +114,9 @@ class MovePageForm extends UnlistedSpecialPage {
 		$this->moveTalk = $request->getBool( 'wpMovetalk', $def );
 		$this->fixRedirects = $request->getBool( 'wpFixRedirects', $def );
 		$this->leaveRedirect = $request->getBool( 'wpLeaveRedirect', $def );
-		$this->moveSubpages = $request->getBool( 'wpMovesubpages', false );
-		$this->deleteAndMove = $request->getBool( 'wpDeleteAndMove' ) && $request->getBool( 'wpConfirm' );
-		$this->moveOverShared = $request->getBool( 'wpMoveOverSharedFile', false );
+		$this->moveSubpages = $request->getBool( 'wpMovesubpages' );
+		$this->deleteAndMove = $request->getBool( 'wpDeleteAndMove' );
+		$this->moveOverShared = $request->getBool( 'wpMoveOverSharedFile' );
 		$this->watch = $request->getCheck( 'wpWatch' ) && $user->isLoggedIn();
 
 		if ( 'submit' == $request->getVal( 'action' ) && $request->wasPosted()
@@ -163,8 +163,8 @@ class MovePageForm extends UnlistedSpecialPage {
 			);
 		}
 
-		$submitVar = 'wpMove';
-		$confirm = false;
+		$deleteAndMove = false;
+		$moveOverShared = false;
 
 		$newTitle = $this->newTitle;
 
@@ -191,8 +191,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				"<div class='warningbox'>\n$1\n</div>\n",
 				array( 'delete_and_move_text', $newTitle->getPrefixedText() )
 			);
-			$submitVar = 'wpDeleteAndMove';
-			$confirm = true;
+			$deleteAndMove = true;
 			$err = array();
 		}
 
@@ -206,7 +205,7 @@ class MovePageForm extends UnlistedSpecialPage {
 					$newTitle->getPrefixedText()
 				)
 			);
-			$submitVar = 'wpMoveOverSharedFile';
+			$moveOverShared = true;
 			$err = array();
 		}
 
@@ -437,11 +436,16 @@ class MovePageForm extends UnlistedSpecialPage {
 			);
 		}
 
-		if ( $confirm ) {
+		$hiddenFields = '';
+		if ( $moveOverShared ) {
+			$hiddenFields .= Html::hidden( 'wpMoveOverSharedFile', '1' );
+		}
+
+		if ( $deleteAndMove ) {
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( array(
-					'name' => 'wpConfirm',
-					'id' => 'wpConfirm',
+					'name' => 'wpDeleteAndMove',
+					'id' => 'wpDeleteAndMove',
 					'value' => '1',
 				) ),
 				array(
@@ -453,7 +457,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		$fields[] = new OOUI\FieldLayout(
 			new OOUI\ButtonInputWidget( array(
-				'name' => $submitVar,
+				'name' => 'wpMove',
 				'value' => $this->msg( 'movepagebtn' )->text(),
 				'label' => $this->msg( 'movepagebtn' )->text(),
 				'flags' => array( 'constructive', 'primary' ),
@@ -478,6 +482,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$form->appendContent(
 			$fieldset,
 			new OOUI\HtmlSnippet(
+				$hiddenFields .
 				Html::hidden( 'wpOldTitle', $this->oldTitle->getPrefixedText() ) .
 				Html::hidden( 'wpEditToken', $user->getEditToken() )
 			)
