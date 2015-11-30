@@ -1,8 +1,5 @@
 <?php
 
-/**
- * @group DeferredUpdates
- */
 class DeferredUpdatesTest extends MediaWikiTestCase {
 	public function testDoUpdatesWeb() {
 		$this->setMwGlobals( 'wgCommandLineMode', false );
