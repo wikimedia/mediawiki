@@ -4279,10 +4279,10 @@ class User implements IDBAccessObject {
 				$this->getRequest()->getIP(),
 				$this->getName(),
 				$url,
-				$wgLang->timeanddate( $expiration, false ),
+				$wgLang->userTimeAndDate( $expiration, $this ),
 				$invalidateURL,
-				$wgLang->date( $expiration, false ),
-				$wgLang->time( $expiration, false ) )->text() );
+				$wgLang->userDate( $expiration, $this ),
+				$wgLang->userTime( $expiration, $this ) )->text() );
 	}
 
 	/**
