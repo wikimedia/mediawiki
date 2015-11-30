@@ -1211,7 +1211,7 @@ class EditPage {
 	 * across a recoverable edit conflict, the ID of the newer revision to
 	 * which we have rebased this page.
 	 *
-	 * @since 1.25
+	 * @since 1.27
 	 * @return int Revision ID
 	 */
 	public function getParentRevId() {
