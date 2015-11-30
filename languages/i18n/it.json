@@ -2270,7 +2270,6 @@
 	"movenosubpage": "Questa pagina non ha sottopagine.",
 	"movereason": "Motivo:",
 	"revertmove": "ripristina",
-	"delete_and_move": "Cancella e sposta",
 	"delete_and_move_text": "==Cancellazione richiesta==\n\nLa pagina specificata come destinazione \"[[:$1]]\" esiste già. Vuoi cancellarla per proseguire con lo spostamento?",
 	"delete_and_move_confirm": "Sì, sovrascrivi la pagina esistente",
 	"delete_and_move_reason": "Cancellata per rendere possibile lo spostamento da \"[[$1]]\"",

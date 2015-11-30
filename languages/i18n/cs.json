@@ -2203,7 +2203,6 @@
 	"movenosubpage": "Tato stránka nemá žádné podstránky.",
 	"movereason": "Důvod:",
 	"revertmove": "vrátit",
-	"delete_and_move": "Smazat a přesunout",
 	"delete_and_move_text": "==Je potřeba smazání==\n\nCílová stránka „[[:$1]]“ již existuje. Přejete si ji smazat pro uvolnění místa pro přesun?",
 	"delete_and_move_confirm": "Ano, smazat cílovou stránku",
 	"delete_and_move_reason": "Smazáno pro umožnění přesunu z „[[$1]]“",

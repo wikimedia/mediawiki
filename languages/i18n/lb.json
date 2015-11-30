@@ -2132,7 +2132,6 @@
 	"movenosubpage": "Dës Säit huet keng Ënnersäiten.",
 	"movereason": "Grond:",
 	"revertmove": "zréck réckelen",
-	"delete_and_move": "Läschen a réckelen",
 	"delete_and_move_text": "== Läsche vun der Destinatiounssäit néideg ==\nD'Säit \"[[:$1]]\" existéiert schonn. \nWëll Dir se läsche fir d'Réckelen ze erméiglechen?",
 	"delete_and_move_confirm": "Jo, läsch d'Säit",
 	"delete_and_move_reason": "Geläscht fir Plaz ze maache fir \"[[$1]]\" heihin ze réckelen",

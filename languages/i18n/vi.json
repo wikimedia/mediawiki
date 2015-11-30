@@ -2208,7 +2208,6 @@
 	"movenosubpage": "Trang này không có trang con.",
 	"movereason": "Lý do:",
 	"revertmove": "lùi lại",
-	"delete_and_move": "Xóa và đổi tên",
 	"delete_and_move_text": "==Cần xóa==\n\nTrang với tên “[[:$1]]” đã tồn tại. Bạn có muốn xóa nó để dọn chỗ di chuyển tới tên này không?",
 	"delete_and_move_confirm": "Xóa trang để đổi tên",
 	"delete_and_move_reason": "Xóa để có chỗ đổi tên “[[$1]]”",

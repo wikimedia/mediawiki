@@ -2242,7 +2242,6 @@
 	"movenosubpage": "此頁面沒有任何子頁面。",
 	"movereason": "原因",
 	"revertmove": "還原",
-	"delete_and_move": "刪除並移動",
 	"delete_and_move_text": "== 需要刪除 ==\n目標頁面 \"[[:$1]]\" 已存在。\n您是否要刪除該頁面以完成移動？",
 	"delete_and_move_confirm": "是的，刪除該頁面",
 	"delete_and_move_reason": "已刪除讓來自 [[$1]] 頁面可移動",

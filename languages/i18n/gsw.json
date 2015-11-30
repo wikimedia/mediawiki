@@ -2183,7 +2183,6 @@
 	"movenosubpage": "Die Syte het kei Untersyte.",
 	"movereason": "Grund:",
 	"revertmove": "Zrugg verschiebe",
-	"delete_and_move": "Lösche un Verschiebe",
 	"delete_and_move_text": "== D Ziilsyte isch scho vorhande, lösche?==\n\nD Syte „[[:$1]]“ gits scho. Wottsch du si lösche, zume Platz zum verschiebe mache?",
 	"delete_and_move_confirm": "D Ziilsyte für d Verschiebig lösche",
 	"delete_and_move_reason": "glöscht, zume Platz für s Verschiebe vo „[[$1]]“ z mache",

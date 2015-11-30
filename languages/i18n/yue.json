@@ -2119,7 +2119,6 @@
 	"movenosubpage": "呢版無細頁。",
 	"movereason": "原因",
 	"revertmove": "恢復",
-	"delete_and_move": "刪除並移動",
 	"delete_and_move_text": "==需要刪除==\n\n目標頁「[[:$1]]」已經存在。你要唔要刪咗佢空個位出嚟畀個搬文動作？",
 	"delete_and_move_confirm": "好，刪咗嗰個頁面",
 	"delete_and_move_reason": "已經刪咗「[[$1]]」嚟畀位畀個搬文動作",

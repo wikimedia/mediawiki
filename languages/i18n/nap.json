@@ -2180,7 +2180,6 @@
 	"movenosubpage": "Sta paggena nun tene sottopaggene.",
 	"movereason": "Raggióne",
 	"revertmove": "arrepiglia",
-	"delete_and_move": "Scancèlla e mòve",
 	"delete_and_move_text": "== Scancellamiento richiesto ==\n'A paggena 'e destinazione \"[[:$1]]\" esiste già.\n'A vulite scancellà pe' ne putè ffà 'o spazio abbacante necessario?",
 	"delete_and_move_confirm": "Sì, suprascrivi 'a paggena asistente",
 	"delete_and_move_reason": "Scancellata pe ne fà spazio abbacante e putè spustà 'a \"[[$1]]\"",

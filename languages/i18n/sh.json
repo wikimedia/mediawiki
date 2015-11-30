@@ -2169,7 +2169,6 @@
 	"movenosubpage": "Ova stranica nema podstranica.",
 	"movereason": "Razlog:",
 	"revertmove": "vrati - врати",
-	"delete_and_move": "Brisanje i premještanje",
 	"delete_and_move_text": "==Brisanje neophodno==\nOdredišna stranica \"[[:$1]]\" već postoji.\nDa li je želite obrisati kako bi ste mogli izvršiti premještanje?",
 	"delete_and_move_confirm": "Da, izbriši stranicu - Да, избриши страницу",
 	"delete_and_move_reason": "Obrisano da se oslobodi mjesto za premještanje iz „[[$1]]“",

@@ -2039,7 +2039,6 @@
 	"movenosubpage": "Ova stranica nema podstranica.",
 	"movereason": "Razlog:",
 	"revertmove": "vrati",
-	"delete_and_move": "Izbriši i premjesti",
 	"delete_and_move_text": "==Nužno brisanje==\n\nOdredišni članak \"[[:$1]]\" već postoji. Želite li ga obrisati da biste napravili mjesto za premještaj?",
 	"delete_and_move_confirm": "Da, izbriši stranicu",
 	"delete_and_move_reason": "obrisano kako bi se napravilo mjesto za premještaj, stari naziv \"[[$1]]\"",

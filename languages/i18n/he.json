@@ -2208,7 +2208,6 @@
 	"movenosubpage": "לדף זה אין דפי משנה.",
 	"movereason": "סיבה:",
 	"revertmove": "החזרה",
-	"delete_and_move": "מחיקה והעברה",
 	"delete_and_move_text": "== בקשת מחיקה ==\nדף היעד, \"[[:$1]]\", כבר קיים.\nהאם ברצונך למחוק אותו כדי לאפשר את ההעברה?",
 	"delete_and_move_confirm": "אישור מחיקת הדף",
 	"delete_and_move_reason": "מחיקה כדי לאפשר העברה מהשם \"[[$1]]\"",

@@ -2075,7 +2075,6 @@
 	"movenosubpage": "This page haes naw subpages.",
 	"movereason": "Raison:",
 	"revertmove": "revert",
-	"delete_and_move": "Delyte n muiv",
 	"delete_and_move_text": "==Delytion caad fer==\n\nThe destination airticle \"[[:$1]]\" aareadies exists. Div ye want tae delyte it fer tae mak wey fer the muiv?",
 	"delete_and_move_confirm": "Ai, delyte the page",
 	"delete_and_move_reason": "Delytit fer tae mak wa fer muiv fae \"[[$1]]\"",

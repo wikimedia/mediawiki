@@ -2020,7 +2020,6 @@
 	"movenosubpage": "Orrialde honek ez du azpiorrialderik.",
 	"movereason": "Arrazoia:",
 	"revertmove": "desegin",
-	"delete_and_move": "Ezabatu eta mugitu",
 	"delete_and_move_text": "== Ezabatzeko beharra ==\n\n\"[[:$1]]\" helburua existitzen da. Lekua egiteko ezabatu nahi al duzu?",
 	"delete_and_move_confirm": "Bai, orrialdea ezabatu",
 	"delete_and_move_reason": "[[$1]] mugitzeko ezabatu da",

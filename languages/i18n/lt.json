@@ -2207,7 +2207,6 @@
 	"movenosubpage": "Šis puslapis neturi subpuslapių.",
 	"movereason": "Priežastis:",
 	"revertmove": "atmesti",
-	"delete_and_move": "Ištrinti ir perkelti",
 	"delete_and_move_text": "==Reikia ištrinti==\n\nPaskirties puslapis „[[:$1]]“ jau yra. Ar norite jį ištrinti, kad galėtumėte pervardinti?",
 	"delete_and_move_confirm": "Taip, trinti puslapį",
 	"delete_and_move_reason": "Ištrinta dėl perkėlimo iš \"[[$1]]\"",

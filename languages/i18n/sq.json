@@ -1986,7 +1986,6 @@
 	"movenosubpage": "Kjo faqe nuk ka nën-faqe.",
 	"movereason": "Arsyeja:",
 	"revertmove": "ktheje",
-	"delete_and_move": "Grise dhe zhvendose",
 	"delete_and_move_text": "==Nevojitet grisje==\n\nFaqja \"[[:$1]]\" ekziston, dëshironi ta grisni për të mundësuar zhvendosjen?",
 	"delete_and_move_confirm": "Po, fshi këtë faqe",
 	"delete_and_move_reason": "U gris për të liruar vendin për përcjellim të \"[[$1]]\"",

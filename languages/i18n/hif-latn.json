@@ -2081,7 +2081,6 @@
 	"movenosubpage": "Ii panna me koi subpages nai hai.",
 	"movereason": "Kaaran:",
 	"revertmove": "purana copy pe lae jao",
-	"delete_and_move": "Mitao aur hatao",
 	"delete_and_move_text": "== Mitae ke jaruri hai ==\nDestination panna \"[[:$1]]\" abhi hai.\nKa aap mangta hai ki iske mitae dewa jaae, jisse ki ii naam se duusra paana ke save karaa jaae sake?",
 	"delete_and_move_confirm": "Haan, panna ke mitao",
 	"delete_and_move_reason": "\"[[$1]]\" se move kare ke khatir isk mitaya",

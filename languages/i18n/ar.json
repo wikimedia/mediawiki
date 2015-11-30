@@ -2190,7 +2190,6 @@
 	"movenosubpage": "ليس لهذه الصفحة صفحات فرعية.",
 	"movereason": "السبب:",
 	"revertmove": "استرجع",
-	"delete_and_move": "حذف ونقل",
 	"delete_and_move_text": "==الحذف مطلوب==\nالصفحة الهدف \"[[:$1]]\" موجودة بالفعل.\nهل تريد حذفها لإفساح المجال للنقل؟",
 	"delete_and_move_confirm": "نعم، احذف الصفحة",
 	"delete_and_move_reason": "حُذِفت لإفساح مجال لنقل \"[[$1]]\"",

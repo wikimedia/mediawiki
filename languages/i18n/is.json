@@ -1989,7 +1989,6 @@
 	"movenosubpage": "Þessi síða hefur engar undirsíður.",
 	"movereason": "Ástæða:",
 	"revertmove": "taka til baka",
-	"delete_and_move": "Eyða og flytja",
 	"delete_and_move_text": "==Beiðni um eyðingu==\n\nSíðan „[[:$1]]“ er þegar til. Viltu eyða henni til þess að rýma til fyrir flutningi?",
 	"delete_and_move_confirm": "Já, eyða síðunni",
 	"delete_and_move_reason": "Eytt til að rýma til fyrir flutning frá \"[[$1]]\"",

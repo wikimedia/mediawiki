@@ -1380,7 +1380,6 @@
 	"movenosubpage": "Huic paginae non sunt subpaginae.",
 	"movereason": "Causa:",
 	"revertmove": "reverti",
-	"delete_and_move": "Delere et movere",
 	"delete_and_move_text": "==Deletio necesse est==\nPaginae nomen petitum \"[[:$1]]\" iam existit. Vin tu eam delere ut pagina illic moveatur?",
 	"delete_and_move_confirm": "Ita, paginam delere",
 	"delete_and_move_reason": "Deleta ut moveatur ex \"[[$1]]\"",

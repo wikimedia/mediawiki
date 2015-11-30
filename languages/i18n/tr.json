@@ -2224,7 +2224,6 @@
 	"movenosubpage": "Bu sayfanın altsayfası yoktur.",
 	"movereason": "Neden:",
 	"revertmove": "geri al",
-	"delete_and_move": "Sil ve taşı",
 	"delete_and_move_text": "==Silinmesi gerekiyor==\n\n\"[[:$1]]\" isimli bir sayfa zaten mevcut. O sayfayı silerek, isim değişikliğini gerçekleştirmeye devam etmek istiyor musunuz?",
 	"delete_and_move_confirm": "Evet, sayfayı sil",
 	"delete_and_move_reason": "[[$1]] sayfasının isim değişikliğinin gerçekleşmesi için silindi.",

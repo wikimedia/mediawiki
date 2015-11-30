@@ -2226,7 +2226,6 @@
 	"movenosubpage": "Aquesta pàgina no té subpàgines.",
 	"movereason": "Motiu:",
 	"revertmove": "reverteix",
-	"delete_and_move": "Elimina i trasllada",
 	"delete_and_move_text": "==Cal l'eliminació==\n\nLa pàgina de destinació, «[[:$1]]», ja existeix. Voleu eliminar-la per a fer lloc al trasllat?",
 	"delete_and_move_confirm": "Sí, esborra la pàgina",
 	"delete_and_move_reason": "S'ha eliminat per a permetre el reanomenament de \" [[$1]] \"",

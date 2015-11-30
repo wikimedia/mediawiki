@@ -2244,7 +2244,6 @@
 	"movenosubpage": "Deze pagina heeft geen subpagina's.",
 	"movereason": "Reden:",
 	"revertmove": "terugdraaien",
-	"delete_and_move": "Verwijderen en hernoemen",
 	"delete_and_move_text": "==Verwijdering nodig==\nOnder de naam \"[[:$1]]\" bestaat al een pagina.\nWilt u deze verwijderen om plaats te maken voor de te hernoemen pagina?",
 	"delete_and_move_confirm": "Ja, de pagina verwijderen",
 	"delete_and_move_reason": "Verwijderd in verband met hernoeming van \"[[$1]]\"",

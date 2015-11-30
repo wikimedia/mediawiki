@@ -2143,7 +2143,6 @@
 	"movenosubpage": "Ĉi tiu paĝo havas neniujn subpaĝojn.",
 	"movereason": "Kialo:",
 	"revertmove": "restarigi",
-	"delete_and_move": "Forigi kaj alinomi",
 	"delete_and_move_text": "==Forigo nepras==\n\nLa celartikolo \"[[:$1]]\" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon por la movo?",
 	"delete_and_move_confirm": "Jes, forigu la paĝon",
 	"delete_and_move_reason": "Forigita por ebligi movadon de \"[[$1]]\"",

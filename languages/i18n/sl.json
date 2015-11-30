@@ -2187,7 +2187,6 @@
 	"movenosubpage": "Ta stran nima podstrani.",
 	"movereason": "Razlog:",
 	"revertmove": "vrni",
-	"delete_and_move": "Briši in prestavi",
 	"delete_and_move_text": "==Treba bi bilo brisati==\n\nCiljna stran »[[:$1]]« že obstaja. Ali jo želite, da bi pripravili prostor za prestavitev, izbrisati?",
 	"delete_and_move_confirm": "Da, izbriši stran",
 	"delete_and_move_reason": "Izbrisano z namenom pripraviti prostor za »[[$1]]«",

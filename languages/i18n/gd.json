@@ -2101,7 +2101,6 @@
 	"movenosubpage": "Chan eil fo-dhuilleag aig an duilleag seo.",
 	"movereason": "Adhbhar:",
 	"revertmove": "till",
-	"delete_and_move": "Sguab às agus gluais",
 	"delete_and_move_text": "== Tha sguabadh às a dhìth ==\nTha an duilleag-uidhe \"[[:$1]]\" ann mar-thà.\nA bheil thu airson a sguabadh às ach am bidh rum airson a' ghluasaid ann?",
 	"delete_and_move_confirm": "Siuthad, sguab às an duilleag",
 	"delete_and_move_reason": "Chaidh a sguabadh às gus rum a airson a' ghluasaid o \"[[$1]]\" a chruthachadh",

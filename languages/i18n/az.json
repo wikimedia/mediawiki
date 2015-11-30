@@ -1720,7 +1720,6 @@
 	"movenosubpage": "Bu səhifənin altsəhifəsi yoxdur.",
 	"movereason": "Səbəb:",
 	"revertmove": "Əvvəlki vəziyyətinə",
-	"delete_and_move": "Sil və apar",
 	"delete_and_move_text": "==Hazırki məqalənin silinməsi lazımdır==\n\n\"[[$1]]\" məqaləsi mövcuddur. Bu dəyişikliyin yerinə yetirilə bilməsi üçün həmin məqalənin silinməsini istəyirsinizmi?",
 	"delete_and_move_confirm": "Bəli, səhifəni sil",
 	"delete_and_move_reason": "[[$1]] Ad dəyişməyə yer açmaq üçün silinmişdir",

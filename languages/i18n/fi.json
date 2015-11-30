@@ -2223,7 +2223,6 @@
 	"movenosubpage": "Tällä sivulla ei ole alasivuja.",
 	"movereason": "Syy:",
 	"revertmove": "kumoa siirto",
-	"delete_and_move": "Poista kohdesivu ja siirrä",
 	"delete_and_move_text": "==Poistamista edellyttävä siirto==\nKohdesivu [[:$1]] on jo olemassa. \nHaluatko poistaa sen, jotta nykyinen sivu voitaisiin siirtää?",
 	"delete_and_move_confirm": "Kyllä, poista kohdesivu",
 	"delete_and_move_reason": "Sivu on sivun [[$1]] siirron tiellä.",

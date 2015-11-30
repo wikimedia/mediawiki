@@ -2201,7 +2201,6 @@
 	"movenosubpage": "Denne siden har ingen undersider.",
 	"movereason": "Årsak:",
 	"revertmove": "tilbakestill",
-	"delete_and_move": "Slett og flytt",
 	"delete_and_move_text": "==Sletting nødvendig==\nMålsiden «[[:$1]]» finnes allerede. Vil du slette den så denne siden kan flyttes dit?",
 	"delete_and_move_confirm": "Ja, slett siden",
 	"delete_and_move_reason": "Slettet for å muliggjøre flytting fra \"[[$1]]\"",

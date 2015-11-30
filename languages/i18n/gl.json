@@ -2196,7 +2196,6 @@
 	"movenosubpage": "Esta páxina non ten subpáxinas.",
 	"movereason": "Motivo:",
 	"revertmove": "reverter",
-	"delete_and_move": "Borrar e mover",
 	"delete_and_move_text": "== Cómpre borrar ==\nA páxina de destino, chamada \"[[:$1]]\", xa existe.\nQuérea borrar para deixar sitio para facer o traslado?",
 	"delete_and_move_confirm": "Si, borrar a páxina",
 	"delete_and_move_reason": "Eliminado para facer sitio para mover \"[[$1]]\"",

@@ -2186,7 +2186,6 @@
 	"movenosubpage": "Esta páxina nun tien subpáxines.",
 	"movereason": "Motivu:",
 	"revertmove": "revertir",
-	"delete_and_move": "Esborrar y treslladar",
 	"delete_and_move_text": "==Necesítase esborrar==\n\nLa páxina de destín \"[[:$1]]\" yá esiste. ¿Quies esborrala pa dexar sitiu pal treslláu?",
 	"delete_and_move_confirm": "Sí, esborrar la páxina",
 	"delete_and_move_reason": "Desaniciada pa facer sitiu pa treslladar dende «[[$1]]»",

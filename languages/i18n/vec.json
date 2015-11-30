@@ -1955,7 +1955,6 @@
 	"movenosubpage": "Sta pagina no la gà nissuna sotopagina.",
 	"movereason": "Motivo:",
 	"revertmove": "ripristina",
-	"delete_and_move": "Scanceła e sposta",
 	"delete_and_move_text": "==Scancełassion richiesta==\n\nLa voxe specificà come destinassion \"[[:$1]]\" l'esiste xà. Vóto scancełarla par proseguir con ło spostamento?",
 	"delete_and_move_confirm": "Sì, scancèla la pagina",
 	"delete_and_move_reason": "Scanselà par rendar posibiłe el spostamento da \"[[$1]]\"",

@@ -2201,7 +2201,6 @@
 	"movenosubpage": "Sellel leheküljel pole alamlehekülgi.",
 	"movereason": "Põhjus:",
 	"revertmove": "taasta",
-	"delete_and_move": "Kustuta ja teisalda",
 	"delete_and_move_text": "== Vajalik kustutamine ==\nSihtlehekülg \"[[:$1]]\" on juba olemas.\nKas kustutad selle, et luua võimalus teisaldamiseks?",
 	"delete_and_move_confirm": "Jah, kustuta lehekülg",
 	"delete_and_move_reason": "Kustutatud, et tõsta asemele lehekülg \"[[$1]]\"",

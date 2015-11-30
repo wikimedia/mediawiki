@@ -2237,7 +2237,6 @@
 	"movenosubpage": "Ta strona nie posiada podstron.",
 	"movereason": "Powód:",
 	"revertmove": "cofnij",
-	"delete_and_move": "Usuń i przenieś",
 	"delete_and_move_text": "== Przeniesienie wymaga usunięcia innej strony ==\nStrona docelowa „[[:$1]]” istnieje.\nCzy chcesz ją usunąć, by zrobić miejsce dla przenoszonej strony?",
 	"delete_and_move_confirm": "Tak, usuń stronę",
 	"delete_and_move_reason": "Usunięto, by zrobić miejsce dla przenoszonej strony „[[$1]]”",

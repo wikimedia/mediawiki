@@ -2266,7 +2266,6 @@
 	"movenosubpage": "这个页面没有子页面。",
 	"movereason": "原因：",
 	"revertmove": "恢复",
-	"delete_and_move": "删除并移动",
 	"delete_and_move_text": "==　需要删除　==\n\n目标页面“[[:$1]]”已存在。是否确认删除该页面以便进行移动？",
 	"delete_and_move_confirm": "是，删除该页面",
 	"delete_and_move_reason": "删除以便移动[[$1]]",

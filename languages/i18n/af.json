@@ -2043,7 +2043,6 @@
 	"movenosubpage": "Die bladsy het geen subbladsye nie.",
 	"movereason": "Rede:",
 	"revertmove": "rol terug",
-	"delete_and_move": "Skrap en skuif",
 	"delete_and_move_text": "==Skrapping benodig==\n\nDie teikenartikel \"[[:$1]]\" bestaan reeds. Wil u dit skrap om plek te maak vir die skuif?",
 	"delete_and_move_confirm": "Ja, skrap die bladsy",
 	"delete_and_move_reason": "Geskrap om plek te maak vir skuif vanaf \"[[$1]]\"",

@@ -2264,7 +2264,6 @@
 	"movenosubpage": "Diese Seite hat keine Unterseiten.",
 	"movereason": "Grund:",
 	"revertmove": "zurück verschieben",
-	"delete_and_move": "Löschen und verschieben",
 	"delete_and_move_text": "== Löschung erforderlich ==\n\nDie Seite „[[:$1]]“ existiert bereits. Möchtest du diese löschen, um die Seite verschieben zu können?",
 	"delete_and_move_confirm": "Ja, Seite löschen",
 	"delete_and_move_reason": "gelöscht, um Platz für die Verschiebung von „[[$1]]“ zu machen",

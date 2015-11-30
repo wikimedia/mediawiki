@@ -1433,7 +1433,6 @@
 	"movelogpagetext": "Sārašos parvadintu poslapiu.",
 	"movereason": "Dingstės:",
 	"revertmove": "atmestė",
-	"delete_and_move": "Ėštrintė ė parkeltė",
 	"delete_and_move_text": "==Rēkalings ėštrīnims==\nPaskėrties straipsnis „[[:$1]]“ jau īr. A nuorėt ana ėštrintė, kū galietomiet parvadintė?",
 	"delete_and_move_confirm": "Tēp, trintė poslapi",
 	"delete_and_move_reason": "Ėštrinta, ka $1 galietom būtė parvadints",

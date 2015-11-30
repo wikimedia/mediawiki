@@ -2228,7 +2228,6 @@
 	"movenosubpage": "Esta página não tem subpáginas.",
 	"movereason": "Motivo:",
 	"revertmove": "reverter",
-	"delete_and_move": "Eliminar e mover",
 	"delete_and_move_text": "==Eliminação necessária==\nA página de destino (\"[[:$1]]\") já existe. Deseja eliminá-la de modo a poder mover?",
 	"delete_and_move_confirm": "Sim, eliminar a página",
 	"delete_and_move_reason": "Eliminada para mover \"[[$1]]\"",

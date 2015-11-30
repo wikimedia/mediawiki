@@ -2173,7 +2173,6 @@
 	"movenosubpage": "Laman ini tiada sublaman.",
 	"movereason": "Sebab:",
 	"revertmove": "balik",
-	"delete_and_move": "Hapus dan pindah",
 	"delete_and_move_text": "==Penghapusan diperlukan==\n\nLaman destinasi \"[[:$1]]\" telah pun wujud. Adakah anda mahu menghapuskannya supaya laman ini dapat dipindahkan?",
 	"delete_and_move_confirm": "Ya, hapuskan laman ini",
 	"delete_and_move_reason": "Dihapuskan untuk membuka laluan untuk pemindahan dari \"[[$1]]\"",
