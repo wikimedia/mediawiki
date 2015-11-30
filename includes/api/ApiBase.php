@@ -97,7 +97,7 @@ abstract class ApiBase extends ContextSource {
 	/** (integer) Lowest value allowed for the parameter, for PARAM_TYPE 'integer' and 'limit'. */
 	const PARAM_MIN = 5;
 
-	/** (boolean) Allow the same value to be set more than once when PARAM_MULTI is true? */
+	/** (boolean) Allow the same value to be set more than once when PARAM_ISMULTI is true? */
 	const PARAM_ALLOW_DUPLICATES = 6;
 
 	/** (boolean) Is the parameter deprecated (will show a warning)? */
