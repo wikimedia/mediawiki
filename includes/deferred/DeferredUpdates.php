@@ -95,7 +95,19 @@ class DeferredUpdates {
 	private static function push( array &$queue, DeferrableUpdate $update ) {
 		global $wgCommandLineMode;
 
-		array_push( $queue, $update );
+		if ( $update instanceof MergeableUpdate ) {
+			$class = get_class( $update ); // fully-qualified class
+			if ( isset( $queue[$class] ) ) {
+				/** @var $existingUpdate MergeableUpdate */
+				$existingUpdate = $queue[$class];
+				$existingUpdate->merge( $update );
+			} else {
+				$queue[$class] = $update;
+			}
+		} else {
+			$queue[] = $update;
+		}
+
 		if ( self::$forceDeferral ) {
 			return; // do not run
 		}
