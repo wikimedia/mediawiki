@@ -458,8 +458,10 @@ class UserrightsPage extends SpecialPage {
 				30,
 				str_replace( '_', ' ', $this->mTarget ),
 				array(
-					'autofocus' => '',
 					'class' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
+				) + (
+					// Set autofocus on blank input and error input
+					$this->mFetchedUser === null ? array( 'autofocus' => '' ) : array()
 				)
 			) . ' ' .
 			Xml::submitButton( $this->msg( 'editusergroup' )->text() ) .
