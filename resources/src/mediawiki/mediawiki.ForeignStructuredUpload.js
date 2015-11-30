@@ -136,11 +136,12 @@
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getDescriptions = function () {
-		var i, desc, templateCalls = [];
+		var i, desc, hasEquals, templateCalls = [];
 
 		for ( i = 0; i < this.descriptions.length; i++ ) {
 			desc = this.descriptions[ i ];
-			templateCalls.push( '{{' + desc.language + '|' + desc.text + '}}' );
+			hasEquals = desc.text.indexOf( '=' ) !== -1;
+			templateCalls.push( '{{' + desc.language + ( hasEquals ? '|1=' : '|' ) + desc.text + '}}' );
 		}
 
 		return templateCalls.join( '\n' );
