@@ -46,6 +46,12 @@ class MovePageForm extends UnlistedSpecialPage {
 	protected $deleteAndMove;
 
 	/** @var bool */
+	protected $deleteAssociated;
+
+	/** @var bool */
+	protected $askedAboutAssociated;
+
+	/** @var bool */
 	protected $moveSubpages;
 
 	/** @var bool */
@@ -116,6 +122,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		$this->leaveRedirect = $request->getBool( 'wpLeaveRedirect', $def );
 		$this->moveSubpages = $request->getBool( 'wpMovesubpages' );
 		$this->deleteAndMove = $request->getBool( 'wpDeleteAndMove' );
+		$this->deleteAssociated = $request->getBool( 'wpDeleteAssociated' );
+		$this->askedAboutAssociated = $request->getBool( 'wpAskedAboutAssociated' );
 		$this->moveOverShared = $request->getBool( 'wpMoveOverSharedFile' );
 		$this->watch = $request->getCheck( 'wpWatch' ) && $user->isLoggedIn();
 
@@ -135,7 +143,7 @@ class MovePageForm extends UnlistedSpecialPage {
 	 *    It may either be a string message name or array message name and
 	 *    parameters, like the second argument to OutputPage::wrapWikiMsg().
 	 */
-	function showForm( $err ) {
+	function showForm( $err, $warnings = array(), $confirmations = array() ) {
 		global $wgContLang;
 
 		$this->getSkin()->setRelevantTitle( $this->oldTitle );
@@ -163,9 +171,6 @@ class MovePageForm extends UnlistedSpecialPage {
 			);
 		}
 
-		$deleteAndMove = false;
-		$moveOverShared = false;
-
 		$newTitle = $this->newTitle;
 
 		if ( !$newTitle ) {
@@ -179,34 +184,17 @@ class MovePageForm extends UnlistedSpecialPage {
 			$newerr = $this->oldTitle->isValidMoveOperation( $newTitle );
 			if ( is_array( $newerr ) ) {
 				$err = $newerr;
+				$this->extractArticleExistsError( $err, $newTitle );
 			}
 		}
 
 		$user = $this->getUser();
 
-		if ( count( $err ) == 1 && isset( $err[0][0] ) && $err[0][0] == 'articleexists'
-			&& $newTitle->quickUserCan( 'delete', $user )
-		) {
+		foreach ( $warnings as $warning ) {
 			$out->wrapWikiMsg(
 				"<div class='warningbox'>\n$1\n</div>\n",
-				array( 'delete_and_move_text', $newTitle->getPrefixedText() )
+				$warning
 			);
-			$deleteAndMove = true;
-			$err = array();
-		}
-
-		if ( count( $err ) == 1 && isset( $err[0][0] ) && $err[0][0] == 'file-exists-sharedrepo'
-			&& $user->isAllowed( 'reupload-shared' )
-		) {
-			$out->wrapWikiMsg(
-				"<div class='warningbox'>\n$1\n</div>\n",
-				array(
-					'move-over-sharedrepo',
-					$newTitle->getPrefixedText()
-				)
-			);
-			$moveOverShared = true;
-			$err = array();
 		}
 
 		$oldTalk = $this->oldTitle->getTalkPage();
@@ -437,22 +425,23 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		$hiddenFields = '';
-		if ( $moveOverShared ) {
-			$hiddenFields .= Html::hidden( 'wpMoveOverSharedFile', '1' );
-		}
-
-		if ( $deleteAndMove ) {
-			$fields[] = new OOUI\FieldLayout(
-				new OOUI\CheckboxInputWidget( array(
-					'name' => 'wpDeleteAndMove',
-					'id' => 'wpDeleteAndMove',
-					'value' => '1',
-				) ),
-				array(
-					'label' => $this->msg( 'delete_and_move_confirm' )->text(),
-					'align' => 'inline',
-				)
-			);
+		foreach ( $confirmations as $key => $options ) {
+			if ( $options === 'hidden' ) {
+				$hiddenFields .= Html::hidden( $key, '1' );
+			} else {
+				$fields[] = new OOUI\FieldLayout(
+					new OOUI\CheckboxInputWidget( array(
+						'name' => $key,
+						'id' => $key,
+						'value' => '1',
+						'selected' => $this->getRequest()->getBool( $key ),
+					) ),
+					array(
+						'label' => $this->msg( $options['label'] )->text(),
+						'align' => 'inline',
+					)
+				);
+			}
 		}
 
 		$fields[] = new OOUI\FieldLayout(
@@ -519,44 +508,29 @@ class MovePageForm extends UnlistedSpecialPage {
 			return;
 		}
 
+		$warnings = array();
+		$confirmations = array();
+
 		# Show a warning if the target file exists on a shared repo
 		if ( $nt->getNamespace() == NS_FILE
-			&& !( $this->moveOverShared && $user->isAllowed( 'reupload-shared' ) )
+			&& $user->isAllowed( 'reupload-shared' ) // If not allowed, the user will get an error later
+			&& !$this->moveOverShared
 			&& !RepoGroup::singleton()->getLocalRepo()->findFile( $nt )
 			&& wfFindFile( $nt )
 		) {
-			$this->showForm( array( array( 'file-exists-sharedrepo' ) ) );
-
-			return;
+			$confirmations['wpMoveOverSharedFile'] = 'hidden';
+			$warnings[] = array(
+				'move-over-sharedrepo',
+				$nt->getPrefixedText()
+			);
 		}
 
 		# Delete to make way if requested
 		if ( $this->deleteAndMove ) {
-			$permErrors = $nt->getUserPermissionsErrors( 'delete', $user );
+			$permErrors = $this->deleteToMakeWay( $ot, $nt );
+
 			if ( count( $permErrors ) ) {
-				# Only show the first error
 				$this->showForm( $permErrors );
-
-				return;
-			}
-
-			$reason = $this->msg( 'delete_and_move_reason', $ot )->inContentLanguage()->text();
-
-			// Delete an associated image if there is
-			if ( $nt->getNamespace() == NS_FILE ) {
-				$file = wfLocalFile( $nt );
-				$file->load( File::READ_LATEST );
-				if ( $file->exists() ) {
-					$file->delete( $reason, false, $user );
-				}
-			}
-
-			$error = ''; // passed by ref
-			$page = WikiPage::factory( $nt );
-			$deleteStatus = $page->doDeleteArticleReal( $reason, false, 0, true, $error, $user );
-			if ( !$deleteStatus->isGood() ) {
-				$this->showForm( $deleteStatus->getErrorsArray() );
-
 				return;
 			}
 		}
@@ -571,20 +545,108 @@ class MovePageForm extends UnlistedSpecialPage {
 			$createRedirect = true;
 		}
 
-		# Do the actual move.
+		// Prepare for moving page.
 		$mp = new MovePage( $ot, $nt );
 		$valid = $mp->isValidMove();
 		if ( !$valid->isOK() ) {
-			$this->showForm( $valid->getErrorsArray() );
-			return;
+			$errors = $valid->getErrorsArray();
+			$this->extractArticleExistsError( $errors, $nt, $warnings, $confirmations );
+			if ( $errors ) {
+				$this->showForm( $errors );
+				return;
+			}
 		}
 
 		$permStatus = $mp->checkPermissions( $user, $this->reason );
 		if ( !$permStatus->isOK() ) {
-			$this->showForm( $permStatus->getErrorsArray() );
+			$errors = $permStatus->getErrorsArray();
+			// Do not add to warnings or confirmation here, we should have handled it in the block above,
+			// but the error can appear here too
+			$this->extractArticleExistsError( $errors, $nt );
+			if ( $errors ) {
+				$this->showForm( $errors );
+				return;
+			}
+		}
+
+		// Prepare for moving all the associated pages.
+		// If the old page or the new page is a talk page, we can't move any talk pages.
+		if ( $ot->isTalkPage() || $nt->isTalkPage() ) {
+			$this->moveTalk = false;
+		}
+		// Don't move subpages if user is not allowed to.
+		if ( count( $ot->getUserPermissionsErrors( 'move-subpages', $user ) ) ) {
+			$this->moveSubpages = false;
+		}
+
+		// @todo FIXME: Use Title::moveSubpages() here
+		$extraPages = $this->getExtraTitlesToMove( $ot, $nt );
+
+		$mps = array();
+		$extraErrors = array();
+		foreach ( $extraPages as $oldSubpage ) {
+			if ( $ot->equals( $oldSubpage ) || $nt->equals( $oldSubpage ) ) {
+				# Already did this one.
+				continue;
+			}
+
+			$newPageName = preg_replace(
+				'#^' . preg_quote( $ot->getDBkey(), '#' ) . '#',
+				StringUtils::escapeRegexReplacement( $nt->getDBkey() ), # bug 21234
+				$oldSubpage->getDBkey()
+			);
+
+			if ( $oldSubpage->isSubpage() && ( $ot->isTalkPage() xor $nt->isTalkPage() ) ) {
+				// Moving a subpage from a subject namespace to a talk namespace or vice-versa
+				$newNs = $nt->getNamespace();
+			} elseif ( $oldSubpage->isTalkPage() ) {
+				$newNs = $nt->getTalkPage()->getNamespace();
+			} else {
+				$newNs = $nt->getSubjectPage()->getNamespace();
+			}
+
+			# Bug 14385: we need makeTitleSafe because the new page names may
+			# be longer than 255 characters.
+			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
+			if ( !$newSubpage ) {
+				$extraErrors[ $oldSubpage->getPrefixedText() ] = array( array( 'badtitletext' ) );
+				continue;
+			}
+
+			# Delete to make way if requested
+			if ( $this->deleteAssociated ) {
+				$permErrors = $this->deleteToMakeWay( $oldSubpage, $newSubpage );
+				// We don't care about the errors here. If it failed, the extra associated page won't be
+				// moved, and that's okay.
+			}
+
+			// This is kind of ugly... should MovePage have getters for old and new title?
+			$key = $oldSubpage->getPrefixedText() . '|' . $newSubpage->getPrefixedText();
+			$mps[ $key ] = new MovePage( $oldSubpage, $newSubpage );
+		}
+
+		// Display errors about associated pages as warnings. The user can choose to ignore them,
+		// in which case the talk page or subpage is not moved.
+		foreach ( $mps as $key => $extraMp ) {
+			$extraErrors[ $key ] = wfMergeErrorArrays(
+				$extraMp->isValidMove()->getErrorsArray(),
+				$extraMp->checkPermissions( $user, $this->reason )->getErrorsArray()
+			);
+		}
+		// Remove empty error arrays
+		$extraErrors = array_filter( $extraErrors );
+
+		if ( $extraErrors && !$this->askedAboutAssociated ) {
+			$this->makeExtraPagesWarning( $warnings, $confirmations, $extraErrors );
+			$confirmations['wpAskedAboutAssociated'] = 'hidden';
+		}
+
+		if ( $warnings || $confirmations ) {
+			$this->showForm( array(), $warnings, $confirmations );
 			return;
 		}
 
+		// Do the actual move.
 		$status = $mp->move( $user, $this->reason, $createRedirect );
 		if ( !$status->isOK() ) {
 			$this->showForm( $status->getErrorsArray() );
@@ -629,138 +691,48 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		Hooks::run( 'SpecialMovepageAfterMove', array( &$this, &$ot, &$nt ) );
 
-		# Now we move extra pages we've been asked to move: subpages and talk
-		# pages.  First, if the old page or the new page is a talk page, we
-		# can't move any talk pages: cancel that.
-		if ( $ot->isTalkPage() || $nt->isTalkPage() ) {
-			$this->moveTalk = false;
-		}
-
-		if ( count( $ot->getUserPermissionsErrors( 'move-subpages', $user ) ) ) {
-			$this->moveSubpages = false;
-		}
-
-		/**
-		 * Next make a list of id's.  This might be marginally less efficient
-		 * than a more direct method, but this is not a highly performance-cri-
-		 * tical code path and readable code is more important here.
-		 *
-		 * If the target namespace doesn't allow subpages, moving with subpages
-		 * would mean that you couldn't move them back in one operation, which
-		 * is bad.
-		 * @todo FIXME: A specific error message should be given in this case.
-		 */
-
-		// @todo FIXME: Use Title::moveSubpages() here
-		$dbr = wfGetDB( DB_MASTER );
-		if ( $this->moveSubpages && (
-			MWNamespace::hasSubpages( $nt->getNamespace() ) || (
-				$this->moveTalk
-					&& MWNamespace::hasSubpages( $nt->getTalkPage()->getNamespace() )
-			)
-		) ) {
-			$conds = array(
-				'page_title' . $dbr->buildLike( $ot->getDBkey() . '/', $dbr->anyString() )
-					. ' OR page_title = ' . $dbr->addQuotes( $ot->getDBkey() )
-			);
-			$conds['page_namespace'] = array();
-			if ( MWNamespace::hasSubpages( $nt->getNamespace() ) ) {
-				$conds['page_namespace'][] = $ot->getNamespace();
-			}
-			if ( $this->moveTalk &&
-				MWNamespace::hasSubpages( $nt->getTalkPage()->getNamespace() )
-			) {
-				$conds['page_namespace'][] = $ot->getTalkPage()->getNamespace();
-			}
-		} elseif ( $this->moveTalk ) {
-			$conds = array(
-				'page_namespace' => $ot->getTalkPage()->getNamespace(),
-				'page_title' => $ot->getDBkey()
-			);
-		} else {
-			# Skip the query
-			$conds = null;
-		}
-
-		$extraPages = array();
-		if ( !is_null( $conds ) ) {
-			$extraPages = TitleArray::newFromResult(
-				$dbr->select( 'page',
-					array( 'page_id', 'page_namespace', 'page_title' ),
-					$conds,
-					__METHOD__
-				)
-			);
-		}
-
+		// Do the actual moves of associated pages (at least those that can be moved).
 		$extraOutput = array();
 		$count = 1;
-		foreach ( $extraPages as $oldSubpage ) {
-			if ( $ot->equals( $oldSubpage ) || $nt->equals( $oldSubpage ) ) {
-				# Already did this one.
-				continue;
+		foreach ( $mps as $key => $extraMp ) {
+			$key = explode( '|', $key );
+			$oldSubpage = Title::newFromText( $key[0] );
+			$newSubpage = isset( $key[1] ) ? Title::newFromText( $key[1] ) : null;
+
+			$status = $mp->isValidMove();
+			if ( $status->isGood() ) {
+				$status = $mp->checkPermissions( $user, $this->reason );
 			}
-
-			$newPageName = preg_replace(
-				'#^' . preg_quote( $ot->getDBkey(), '#' ) . '#',
-				StringUtils::escapeRegexReplacement( $nt->getDBkey() ), # bug 21234
-				$oldSubpage->getDBkey()
-			);
-
-			if ( $oldSubpage->isSubpage() && ( $ot->isTalkPage() xor $nt->isTalkPage() ) ) {
-				// Moving a subpage from a subject namespace to a talk namespace or vice-versa
-				$newNs = $nt->getNamespace();
-			} elseif ( $oldSubpage->isTalkPage() ) {
-				$newNs = $nt->getTalkPage()->getNamespace();
-			} else {
-				$newNs = $nt->getSubjectPage()->getNamespace();
+			if ( $status->isGood() ) {
+				$status = $mp->move( $user, $this->reason, $createRedirect );
 			}
-
-			# Bug 14385: we need makeTitleSafe because the new page names may
-			# be longer than 255 characters.
-			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
-			if ( !$newSubpage ) {
-				$oldLink = Linker::linkKnown( $oldSubpage );
-				$extraOutput[] = $this->msg( 'movepage-page-unmoved' )->rawParams( $oldLink )
-					->params( Title::makeName( $newNs, $newPageName ) )->escaped();
-				continue;
-			}
-
-			# This was copy-pasted from Renameuser, bleh.
-			if ( $newSubpage->exists() && !$oldSubpage->isValidMoveTarget( $newSubpage ) ) {
-				$link = Linker::linkKnown( $newSubpage );
-				$extraOutput[] = $this->msg( 'movepage-page-exists' )->rawParams( $link )->escaped();
-			} else {
-				$success = $oldSubpage->moveTo( $newSubpage, true, $this->reason, $createRedirect );
-
-				if ( $success === true ) {
-					if ( $this->fixRedirects ) {
-						DoubleRedirectJob::fixRedirects( 'move', $oldSubpage, $newSubpage );
-					}
-					$oldLink = Linker::link(
-						$oldSubpage,
-						null,
-						array(),
-						array( 'redirect' => 'no' )
-					);
-
-					$newLink = Linker::linkKnown( $newSubpage );
-					$extraOutput[] = $this->msg( 'movepage-page-moved' )
-						->rawParams( $oldLink, $newLink )->escaped();
-					++$count;
-
-					$maximumMovedPages = $this->getConfig()->get( 'MaximumMovedPages' );
-					if ( $count >= $maximumMovedPages ) {
-						$extraOutput[] = $this->msg( 'movepage-max-pages' )
-							->numParams( $maximumMovedPages )->escaped();
-						break;
-					}
-				} else {
-					$oldLink = Linker::linkKnown( $oldSubpage );
-					$newLink = Linker::link( $newSubpage );
-					$extraOutput[] = $this->msg( 'movepage-page-unmoved' )
-						->rawParams( $oldLink, $newLink )->escaped();
+			if ( $status->isGood() ) {
+				if ( $this->fixRedirects ) {
+					DoubleRedirectJob::fixRedirects( 'move', $oldSubpage, $newSubpage );
 				}
+				$oldLink = Linker::link(
+					$oldSubpage,
+					null,
+					array(),
+					array( 'redirect' => 'no' )
+				);
+
+				$newLink = Linker::linkKnown( $newSubpage );
+				$extraOutput[] = $this->msg( 'movepage-page-moved' )
+					->rawParams( $oldLink, $newLink )->escaped();
+				++$count;
+
+				$maximumMovedPages = $this->getConfig()->get( 'MaximumMovedPages' );
+				if ( $count >= $maximumMovedPages ) {
+					$extraOutput[] = $this->msg( 'movepage-max-pages' )
+						->numParams( $maximumMovedPages )->escaped();
+					break;
+				}
+			} else {
+				$oldLink = Linker::linkKnown( $oldSubpage );
+				$newLink = Linker::link( $newSubpage );
+				$extraOutput[] = $this->msg( 'movepage-page-unmoved' )
+					->rawParams( $oldLink, $newLink )->escaped();
 			}
 		}
 
@@ -806,6 +778,176 @@ class MovePageForm extends UnlistedSpecialPage {
 			$out->addHTML( "<li>$link</li>\n" );
 		}
 		$out->addHTML( "</ul>\n" );
+	}
+
+	/**
+	 * Extract and remove the 'articleexists' error if it can be treated as a warning.
+	 *
+	 * @param array $errors Errors to parse
+	 * @param Title $nt Title the errors are about
+	 * @param array|null &$warnings Warnings are added here, if given
+	 * @param array|null &$confirmations Confirmation requirements are added here, if given
+	 */
+	protected function extractArticleExistsError( &$errors, Title $nt, &$warnings = null, &$confirmations = null ) {
+		$user = $this->getUser();
+		if ( count( $errors ) == 1 && isset( $errors[0][0] ) && $errors[0][0] == 'articleexists'
+			&& $nt->quickUserCan( 'delete', $user )
+		) {
+			if ( $warnings !== null ) {
+				$warnings[] = array(
+					'delete_and_move_text',
+					$nt->getPrefixedText(),
+				);
+			}
+			if ( $confirmations !== null ) {
+				$confirmations['wpDeleteAndMove'] = array( 'label' => 'delete_and_move_confirm' );
+			}
+			$errors = array();
+		}
+	}
+
+	/**
+	 * Generate the huge warning message about target associated pages already existing.
+	 *
+	 * @param array &$warnings Warnings are added here
+	 * @param array &$confirmations Confirmation requirements are added here
+	 * @param array $extraErrors Errors to parse
+	 */
+	protected function makeExtraPagesWarning( &$warnings, &$confirmations, $extraErrors ) {
+		$user = $this->getUser();
+
+		$canDeleteAndMove = array();
+		$cantMove = array();
+		foreach ( $extraErrors as $key => $errors ) {
+			$key = explode( '|', $key );
+			$oldTitle = Title::newFromText( $key[0] );
+			$newTitle = isset( $key[1] ) ? Title::newFromText( $key[1] ) : null;
+			$this->extractArticleExistsError( $errors, $newTitle );
+			if ( !$errors ) {
+				// Only error was 'articleexists', which we can ignore
+				$canDeleteAndMove[] = '* [[:' . $newTitle . "]]\n";
+			} else {
+				$cantMove[] = '* [[:' . $oldTitle . "]]\n";
+			}
+		}
+
+		$err = array();
+		if ( $canDeleteAndMove ) {
+			$confirmations['wpDeleteAssociated'] = array( 'label' => 'delete_and_move_confirm_associated' );
+			$warnings[] = array(
+				'delete_and_move_text_associated',
+				count( $canDeleteAndMove ),
+				implode( '', $canDeleteAndMove )
+			);
+		} else {
+			$confirmations['wpDeleteAssociated'] = 'hidden';
+		}
+		if ( $cantMove ) {
+			$warnings[] = array(
+				'move-can-not-move',
+				count( $cantMove ),
+				implode( '', $cantMove )
+			);
+		}
+	}
+
+	/**
+	 * Delete the page using current user with canned reason.
+	 *
+	 * @param Title $ot Title that is going to be moved to target later
+	 * @param Title $nt Target title to delete
+	 * @return array Error messages, if any
+	 */
+	protected function deleteToMakeWay( Title $ot, Title $nt ) {
+		$user = $this->getUser();
+
+		$permErrors = $nt->getUserPermissionsErrors( 'delete', $user );
+		if ( count( $permErrors ) ) {
+			return $permErrors;
+		}
+
+		$reason = $this->msg( 'delete_and_move_reason', $ot )->inContentLanguage()->text();
+
+		// Delete an associated image if there is
+		if ( $nt->getNamespace() == NS_FILE ) {
+			$file = wfLocalFile( $nt );
+			$file->load( File::READ_LATEST );
+			if ( $file->exists() ) {
+				$file->delete( $reason, false, $user );
+			}
+		}
+
+		$error = ''; // passed by ref
+		$page = WikiPage::factory( $nt );
+		$deleteStatus = $page->doDeleteArticleReal( $reason, false, 0, true, $error, $user );
+		if ( !$deleteStatus->isGood() ) {
+			return $deleteStatus->getErrorsArray();
+		}
+
+		return array();
+	}
+
+	/**
+	 * Get extra associated titles to move with the main page move (subpages and talk pages).
+	 *
+	 * @param Title $ot Old title
+	 * @param Title $nt New title
+	 * @return TitleArray
+	 */
+	protected function getExtraTitlesToMove( Title $ot, Title $nt ) {
+		/**
+		 * Next make a list of id's.  This might be marginally less efficient
+		 * than a more direct method, but this is not a highly performance-cri-
+		 * tical code path and readable code is more important here.
+		 *
+		 * If the target namespace doesn't allow subpages, moving with subpages
+		 * would mean that you couldn't move them back in one operation, which
+		 * is bad.
+		 * @todo FIXME: A specific error message should be given in this case.
+		 */
+
+		$dbr = wfGetDB( DB_MASTER );
+		if ( $this->moveSubpages && (
+			MWNamespace::hasSubpages( $nt->getNamespace() ) || (
+				$this->moveTalk
+					&& MWNamespace::hasSubpages( $nt->getTalkPage()->getNamespace() )
+			)
+		) ) {
+			$conds = array(
+				'page_title' . $dbr->buildLike( $ot->getDBkey() . '/', $dbr->anyString() )
+					. ' OR page_title = ' . $dbr->addQuotes( $ot->getDBkey() )
+			);
+			$conds['page_namespace'] = array();
+			if ( MWNamespace::hasSubpages( $nt->getNamespace() ) ) {
+				$conds['page_namespace'][] = $ot->getNamespace();
+			}
+			if ( $this->moveTalk &&
+				MWNamespace::hasSubpages( $nt->getTalkPage()->getNamespace() )
+			) {
+				$conds['page_namespace'][] = $ot->getTalkPage()->getNamespace();
+			}
+		} elseif ( $this->moveTalk ) {
+			$conds = array(
+				'page_namespace' => $ot->getTalkPage()->getNamespace(),
+				'page_title' => $ot->getDBkey()
+			);
+		} else {
+			# Skip the query
+			$conds = null;
+		}
+
+		$extraPages = array();
+		if ( !is_null( $conds ) ) {
+			$extraPages = TitleArray::newFromResult(
+				$dbr->select( 'page',
+					array( 'page_id', 'page_namespace', 'page_title' ),
+					$conds,
+					__METHOD__
+				)
+			);
+		}
+
+		return $extraPages;
 	}
 
 	protected function getGroupName() {
