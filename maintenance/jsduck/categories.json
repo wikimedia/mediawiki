@@ -27,6 +27,7 @@
 					"mw.notification",
 					"mw.Notification_",
 					"mw.storage",
+					"mw.storage.session",
 					"mw.user",
 					"mw.util",
 					"mw.plugin.*",
