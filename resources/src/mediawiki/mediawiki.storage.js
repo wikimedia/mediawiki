@@ -2,15 +2,18 @@
 	'use strict';
 
 	/**
-	 * Library for storing device specific information. It should be used for storing simple
-	 * strings and is not suitable for storing large chunks of data.
+	 * A wrapper for a Storage interface (either localStorage or sessionStorage)
+	 * that is safe to call on all browsers.
 	 *
-	 * @class mw.storage
-	 * @singleton
+	 * @class SafeStorage
+	 *
+	 * @constructor
+	 * @param {Object} [store] The Storage instance to use as the underlying store.
 	 */
-	mw.storage = {
+	function SafeStorage( store ) {
+		var self = this;
 
-		localStorage: window.localStorage,
+		self.store = store;
 
 		/**
 		 * Retrieve value from device storage.
@@ -18,12 +21,12 @@
 		 * @param {string} key Key of item to retrieve
 		 * @return {string|boolean} False when localStorage not available, otherwise string
 		 */
-		get: function ( key ) {
+		self.get = function ( key ) {
 			try {
-				return mw.storage.localStorage.getItem( key );
+				return self.store.getItem( key );
 			} catch ( e ) {}
 			return false;
-		},
+		};
 
 		/**
 		  * Set a value in device storage.
@@ -32,13 +35,13 @@
 		  * @param {string} value Value to be stored
 		  * @return {boolean} Whether the save succeeded or not
 		  */
-		set: function ( key, value ) {
+		self.set = function ( key, value ) {
 			try {
-				mw.storage.localStorage.setItem( key, value );
+				self.store.setItem( key, value );
 				return true;
 			} catch ( e ) {}
 			return false;
-		},
+		};
 
 		/**
 		  * Remove a value from device storage.
@@ -46,13 +49,16 @@
 		  * @param {string} key Key of item to remove
 		  * @return {boolean} Whether the save succeeded or not
 		  */
-		remove: function ( key ) {
+		self.remove = function ( key ) {
 			try {
-				mw.storage.localStorage.removeItem( key );
+				self.store.removeItem( key );
 				return true;
 			} catch ( e ) {}
 			return false;
-		}
-	};
+		};
+	}
+
+	mw.storage = new SafeStorage( window.localStorage );
+	mw.storage.session = new SafeStorage( window.sessionStorage );
 
 }( mediaWiki ) );
