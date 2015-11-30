@@ -291,6 +291,8 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		$handler = ContentHandler::getForTitle( $this->oldTitle );
 
+		$oldEqualNew = $newTitle->getFullText() === $this->oldTitle->getFullText();
+
 		$out->enableOOUI();
 		$fields = array();
 
@@ -306,7 +308,9 @@ class MovePageForm extends UnlistedSpecialPage {
 				'title' => array(
 					'id' => 'wpNewTitleMain',
 					'name' => 'wpNewTitleMain',
-					'value' => $wgContLang->recodeForEdit( $newTitle->getText() ),
+					'autofocus' => $oldEqualNew ? true : false,
+					'value' => ( $oldEqualNew ? '' :
+						$wgContLang->recodeForEdit( $newTitle->getText() ) ),
 					// Inappropriate, since we're expecting the user to input a non-existent page's title
 					'suggestions' => false,
 				),
