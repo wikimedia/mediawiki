@@ -368,6 +368,8 @@
 		 */
 		badToken: function ( type ) {
 			var promiseGroup = promises[ this.defaults.ajax.url ];
+
+			type = mapLegacyToken( type );
 			if ( promiseGroup ) {
 				delete promiseGroup[ type + 'Token' ];
 			}
