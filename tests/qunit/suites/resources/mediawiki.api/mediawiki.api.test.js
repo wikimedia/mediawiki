@@ -220,6 +220,30 @@
 
 	} );
 
+	QUnit.test( 'badToken( legacy )', function ( assert ) {
+		QUnit.expect( 2 );
+		var api = new mw.Api( { ajax: { url: '/badTokenLegacy/api.php' } } );
+			test = this;
+
+		this.server.respondWith( /type=csrf/, sequenceBodies( 200, { 'Content-Type': 'application/json' },
+			[
+				'{ "query": { "tokens": { "csrftoken": "badlegacy" } } }',
+				'{ "query": { "tokens": { "csrftoken": "goodlegacy" } } }'
+			]
+		) );
+
+		api.getToken( 'options' )
+			.then( function () {
+				api.badToken( 'options' );
+				return api.getToken( 'options' );
+			} )
+			.then( function ( token ) {
+				assert.equal( token, 'goodlegacy', 'The token' );
+				assert.equal( test.server.requests.length, 2, 'Request made' );
+			} );
+
+	} );
+
 	QUnit.test( 'postWithToken( tokenType, params )', function ( assert ) {
 		QUnit.expect( 1 );
 		var api = new mw.Api( { ajax: { url: '/postWithToken/api.php' } } );
