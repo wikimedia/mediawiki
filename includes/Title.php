@@ -3591,12 +3591,10 @@ class Title {
 	 * Purge all applicable Squid URLs
 	 */
 	public function purgeSquid() {
-		global $wgUseSquid;
-		if ( $wgUseSquid ) {
-			$urls = $this->getSquidURLs();
-			$u = new SquidUpdate( $urls );
-			$u->doUpdate();
-		}
+		DeferredUpdates::addUpdate(
+			new SquidUpdate( $this->getSquidURLs() ),
+			DeferredUpdates::PRESEND
+		);
 	}
 
 	/**
