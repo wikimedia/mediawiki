@@ -29,7 +29,7 @@
  *   - a) Recursive jobs to purge caches for backlink pages for a given title.
  *        These jobs have (recursive:true,table:<table>) set.
  *   - b) Jobs to purge caches for a set of titles (the job title is ignored).
- *	      These jobs have (pages:(<page ID>:(<namespace>,<title>),...) set.
+ *        These jobs have (pages:(<page ID>:(<namespace>,<title>),...) set.
  *
  * @ingroup JobQueue
  */
@@ -38,6 +38,23 @@ class HTMLCacheUpdateJob extends Job {
 		parent::__construct( 'htmlCacheUpdate', $title, $params );
 		// Base backlink purge jobs can be de-duplicated
 		$this->removeDuplicates = ( !isset( $params['range'] ) && !isset( $params['pages'] ) );
+	}
+
+	/**
+	 * @param Title $title Title to purge backlink pages from
+	 * @param string $table Backlink table name
+	 * @return HTMLCacheUpdateJob
+	 */
+	public static function newForBacklinks( Title $title, $table ) {
+		return new self(
+			$title,
+			array(
+				'table' => $table,
+				'recursive' => true
+			) + Job::newRootJobParams( // "overall" refresh links job info
+				"htmlCacheUpdate:{$table}:{$title->getPrefixedText()}"
+			)
+		);
 	}
 
 	function run() {
