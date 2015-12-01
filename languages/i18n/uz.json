@@ -537,6 +537,7 @@
 	"post-expand-template-inclusion-category": "Qo'llaniladigan andozalarning mumkin bo'lgan miqdoridan oshgan sahifalar",
 	"post-expand-template-argument-category": "Andozalarning to'ldirilmagan o'zgaruvchilariga ega sahifalar",
 	"undo-success": "Tahrirni bekor qilish imkoniyati bor. Iltimos, solishtirish oynasini koʻrib chiqib, aynan shu oʻzgarishlarni bekor qilmoqchiligingizga ishonch hosil qiling va undan keyin «Saqla» tugmasini bosing.",
+	"undo-failure": "Keyingi tahrirlar bilan chalkashib ketgani sababli, ushbu tahrirni alohida oʻzini bekor qilishni iloji yoʻq.",
 	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|mun.]]) tomonidan qilingan $1-sonli tahrir qaytarildi",
 	"cantcreateaccounttitle": "Ro‘yxatdan o‘tib bo‘lmadi",
 	"cantcreateaccount-text": "[[User:$3|$3]] ushbu IP manzil (<strong>$1</strong>) orqali ro‘yxatdan o‘tishni bloklab qo‘ygan.\n\n$3 <em>$2</em>ni sabab qilib ko‘rsatdi",

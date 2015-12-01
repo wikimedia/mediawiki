@@ -9,7 +9,8 @@
 			"Ricordisamoa",
 			"Valepert",
 			"Sannita",
-			"Macofe"
+			"Macofe",
+			"Nemo bis"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentazione (in inglese)]]\n* [[mw:API:FAQ|FAQ (in inglese)]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annunci sull'API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug & richieste]\n</div>\n<strong>Stato:</strong> Tutte le funzioni e caratteristiche mostrate su questa pagina dovrebbero funzionare, ma l'API è ancora in fase d'attivo sviluppo, e potrebbe cambiare in qualsiasi momenento. Iscriviti alla [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] per essere informato sugli aggiornamenti.\n\n<strong>Istruzioni sbagliate:</strong> quando vengono impartite all'API delle istruzioni sbagliate, un'intestazione HTTP verrà inviata col messaggio \"MediaWiki-API-Error\" e sia al valore dell'intestazione sia al codice d'errore verrà impostato lo stesso valore. Per maggiori informazioni leggi [[mw:API:Errors_and_warnings|API:Errori ed avvertimenti (in inglese)]].",
@@ -22,6 +23,7 @@
 	"apihelp-block-description": "Blocca  un utente.",
 	"apihelp-block-param-user": "Nome utente, indirizzo IP o range di IP da bloccare.",
 	"apihelp-block-param-reason": "Motivo del blocco.",
+	"apihelp-block-param-anononly": "Blocca solo gli utenti non registrati (cioè disattiva i contributi anonimi da questo indirizzo IP).",
 	"apihelp-block-param-nocreate": "Impedisci creazione di utenze.",
 	"apihelp-block-param-hidename": "Nascondi il nome utente dal registro dei blocchi (Richiede i permessi di <code>hideuser</code>).",
 	"apihelp-block-param-reblock": "Se l'utente è già bloccato, sovrascrivere il blocco esistente.",
