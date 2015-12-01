@@ -1,0 +1,1267 @@
+<?php
+/**
+ * Tatar specific code.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @author Dinar Qurbanov
+ * @ingroup Language
+ * this file is created by copying LanguageUzTest.php
+ * some history of this file is in https://gerrit.wikimedia.org/r/#/c/164049/
+ *
+ */
+
+require_once __DIR__ . '/../LanguageConverter.php';
+
+/**
+ * @ingroup Language
+ */
+class TtConverter extends LanguageConverter {
+
+	public $test = 0;
+
+	public $toLatin = array(
+		// capital letters are handled outside
+		// ( outside of place this array was planned to use,
+		// and is used , ie outside of parent::translate)
+		'а' => 'a', // 'А' => 'A',
+		'ә' => 'ä', // 'Ә' => 'Ä',
+		'б' => 'b', // 'Б' => 'B',
+		'в' => 'w', // 'В' => 'W',
+		'г' => 'g', // 'Г' => 'G',
+		'д' => 'd', // 'Д' => 'D',
+		'е' => 'e', // 'Е' => 'E',
+		'ё' => 'yo', // 'Ё' => 'Yo',
+		'ж' => 'j', // 'Ж' => 'J',
+		'җ' => 'c', // 'Җ' => 'C',
+		'з' => 'z', // 'З' => 'Z',
+		'и' => 'i', // 'И' => 'İ',
+		'й' => 'y', // 'Й' => 'Y',
+		'к' => 'k', // 'К' => 'K',
+		'л' => 'l', // 'Л' => 'L',
+		'м' => 'm', // 'М' => 'M',
+		'н' => 'n', // 'Н' => 'N',
+		'ң' => 'ñ', // 'Ң' => 'Ñ',
+		'о' => 'o', // 'О' => 'O',
+		'ө' => 'ö', // 'Ө' => 'Ö',
+		'п' => 'p', // 'П' => 'P',
+		'р' => 'r', // 'Р' => 'R',
+		'с' => 's', // 'С' => 'S',
+		'т' => 't', // 'Т' => 'T',
+		'у' => 'u', // 'У' => 'U',
+		'ү' => 'ü', // 'Ү' => 'Ü',
+		'ф' => 'f', // 'Ф' => 'F',
+		'х' => 'x', // 'Х' => 'X',
+		'һ' => 'h', // 'Һ' => 'H',
+		'ц' => 'ts', // 'Ц' => 'Ts',
+		'ч' => 'ç', // 'Ч' => 'Ç',
+		'ш' => 'ş', // 'Ш' => 'Ş',
+		'щ' => 'şç', // 'Щ' => 'Şç',
+		'ъ' => '', // 'Ъ' => '',
+		'ы' => 'ı', // 'Ы' => 'I',
+		// 'ь' => '', // 'Ь' => '',
+		'ь' => '\'', // 'Ь' => '',
+		'э' => 'e', // 'Э' => 'E',
+		'ю' => 'yu', // 'Ю' => 'Yu',
+		'я' => 'ya', // 'Я' => 'Ya',
+	);
+
+	public $toCyrillic = array(
+		'a' => 'а', // 'A' => 'А',
+		// this letter was used in previous, 1999's, official latin alphabet
+		// 'ə' => 'ә', // 'Ə' => 'Ә',
+		'ä' => 'ә', // 'Ä' => 'Ә',
+		'b' => 'б', // 'B' => 'Б',
+		'c' => 'җ', // 'C' => 'Җ',
+		'ç' => 'ч', // 'Ç' => 'Ч',
+		'd' => 'д', // 'D' => 'Д',
+		'e' => 'е', // 'E' => 'Е',
+		'f' => 'ф', // 'F' => 'Ф',
+		'g' => 'г', // 'G' => 'Г',
+		'ğ' => 'г', // 'Ğ' => 'Г',
+		'h' => 'һ', // 'H' => 'Һ',
+		'i' => 'и', // 'İ' => 'И',
+		'ı' => 'ы', // 'I' => 'Ы',
+		'j' => 'ж', // 'J' => 'Ж',
+		'k' => 'к', // 'K' => 'К',
+		'l' => 'л', // 'L' => 'Л',
+		'm' => 'м', // 'M' => 'М',
+		'n' => 'н', // 'N' => 'Н',
+		'ñ' => 'ң', // 'Ñ' => 'Ң',
+		'o' => 'о', // 'O' => 'О',
+		'ɵ' => 'ө', // 'Ɵ' => 'Ө',
+		'ö' => 'ө', // 'Ö' => 'Ө',
+		'p' => 'п', // 'P' => 'П',
+		'q' => 'к', // 'Q' => 'К',
+		'r' => 'р', // 'R' => 'Р',
+		's' => 'с', // 'S' => 'С',
+		'ş' => 'ш', // 'Ş' => 'Ш',
+		't' => 'т', // 'T' => 'Т',
+		'u' => 'у', // 'U' => 'У',
+		'ü' => 'ү', // 'Ü' => 'Ү',
+		'v' => 'в', // 'V' => 'В',
+		'w' => 'в', // 'W' => 'В',
+		'x' => 'х', // 'X' => 'Х',
+		'y' => 'й', // 'Y' => 'Й',
+		'z' => 'з', // 'Z' => 'З',
+		// '\'' => 'э', // '’' => 'э',
+		'\'' => 'ь', // '’' => 'ь',
+		// i have changed this, i think ь is more frequent
+		// so, some regexes should be changed
+	);
+
+	function loadDefaultTables() {
+		$this->mTables = array(
+			'tt-cyrl' => new ReplacementArray( $this->toCyrillic ),
+			'tt-latn' => new ReplacementArray( $this->toLatin ),
+			'tt' => new ReplacementArray()
+		);
+	}
+
+	function convertTatarWordFromCyrillicToLatin( $text ) {
+		// compounds
+		if(
+			// preg_match( '/илбашы|аскорма|аккош|коточкыч/ui', $text )
+			// need to add аскорма, even if its both parts are hard/thick, because else
+				// it goes into russian part/branch because of о at second syllable
+				// i comment this out and add to other checks to split them
+			// no need to add бер(рәт|ничә|дәнбер), because their both parts are soft/mild/thin
+			// preg_match( '/берникадәр/ui', $text )
+			preg_match( '/^[^әэеөүи]+баш/ui', $text )
+		){
+			// $text = $this->convertSimpleTatarWordFromCyrillicToLatin( $text );
+			// $text = '{'. $text. '}';
+			return $this->convertSimpleTatarWordFromCyrillicToLatin( $text );
+		}elseif( preg_match( '/^[кт]өньяк|биектау|күпьеллык/ui', $text ) ){
+			$parts = preg_split( '/(?<=^....)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+			return $this->convertCompoundTatarWord( $parts );
+		}elseif( preg_match( '/^көн(чыгыш|батыш)|гөлбакча|ч[иы]наяк|башкорт|коточкыч'
+			.'|бераз|кайбер|һәрчак/ui', $text ) ){
+			// $parts = preg_split( '/(?<=көн)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+			$parts = preg_split( '/(?<=^...)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+			// $text = $this->convertCompoundTatarWord( $parts );
+			// return parent::translate( $text, 'tt-latn' );
+			return $this->convertCompoundTatarWord( $parts );
+		}elseif( preg_match( '/.+су(?<!басу)(?<!^ысу)/ui', $text ) ){
+			$parts = preg_split( '/(?=су)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+			return $this->convertCompoundTatarWord( $parts );
+		}elseif( preg_match( '/.+сыман/ui', $text ) ){
+			$parts = preg_split( '/(?=сыман)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+			return $this->convertCompoundTatarWord( $parts );
+		}elseif( preg_match( '/(?<!^кукм)(?<!^[аә]нк)(?<!^[бкч])ара$/ui', $text ) ){
+			// except кукмара, анкара, бара, чара, кара
+			$parts = preg_split( '/(?=ара)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+			return $this->convertCompoundTatarWord( $parts );
+		}elseif( preg_match( '/илбашы|аскорма|аккош|суүсем|әрдоган/ui', $text ) ){
+			$parts = preg_split( '/(?<=^..)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+			return $this->convertCompoundTatarWord( $parts );
+		}elseif( preg_match( '/никадәр/ui', $text ) ){
+			$parts = preg_split( '/(?<=^..)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+			$parts[0] = $this->convertSimpleTatarWordFromCyrillicToLatin( $parts[0] );
+			$parts[1] = $this->convertTatarWordWithArabicRootFromCyrillicToLatin( $parts[1] );
+			$text = implode( $parts );
+			return $text;
+		}elseif( preg_match( '/берникадәр/ui', $text ) ){
+			$parts = preg_split( '/(?<=^.....)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+			$parts[0] = $this->convertSimpleTatarWordFromCyrillicToLatin( $parts[0] );
+			$parts[1] = $this->convertTatarWordWithArabicRootFromCyrillicToLatin( $parts[1] );
+			$text = implode( $parts );
+			return $text;
+		}elseif( preg_match( '/оглу/ui', $text ) ){
+			$parts = preg_split( '/(?=оглу)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+			// $text = $this->convertCompoundTatarWord( $parts );
+			// return parent::translate( $text, 'tt-latn' );
+			return $this->convertCompoundTatarWord( $parts );
+		}elseif( preg_match( '/.+стан/ui', $text ) ){
+			// need to add стан even after hard syllables because else if it is after
+			// consonant there are 3 consecutive consonants and it goes to russian branch
+			$parts = preg_split( '/(?=стан)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+			$parts[0] = $this->
+				convertTatarWordFromCyrillicToLatin( $parts[0] ); // recursion
+			$parts[1] = $this->
+				convertSimpleTatarWordFromCyrillicToLatin( $parts[1] );
+			// return $parts[0] . parent::translate( $parts[1], 'tt-latn' );
+			return $parts[0] . $parts[1];
+		}elseif( preg_match( '/.+[ое]ва?([гк]а(ча)?|[дт]а(н|гы|й)?|ның?|ча|лар)/ui', $text ) ){
+			$parts = preg_split( '/(?<=[ое]в)/ui', $text, null, PREG_SPLIT_NO_EMPTY); // i do
+				//not include here а after ов/ев because look behind regex should be fixed length
+			$parts[0] = $this->
+				convertTatarWordFromCyrillicToLatin( $parts[0] );
+			$parts[1] = $this->
+				convertSimpleTatarWordFromCyrillicToLatin( $parts[1] );
+			// return $parts[0] . parent::translate( $parts[1], 'tt-latn' );
+			return $parts[0] . $parts[1];
+		}elseif( preg_match( '/ташъязма|акъегет/ui', $text ) ){
+			$parts = preg_split( '/(?<=ъ)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+			return $this->convertCompoundTatarWord( $parts );
+		}elseif( preg_match( '/известьташ/ui', $text ) ){
+			// this works even without splitting, but а in таш is tatar а, so i better split this
+			$parts = preg_split( '/(?<=ь)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+			return $this->convertRussianWordWithTatarEnding( $parts ); // таш is not
+				// ending but this works
+		}elseif(
+			// arabic words which look like russian words and go into russian branch
+			// before checking for signs of arabic words, so i check them here,
+			// before reaching checking of signs of russian words
+			// and even if i do not allow гаяре, гаебе to
+			// go to russian branch, they are not catched by arabic check and
+			// go into tatar branch
+			preg_match(
+				// әэ for тәэссорат, abnd i remove it from main check of arabic
+				// аэтдин for ризаэтдин (then аэ all are catched by check of russian)
+				// васыят is for васыяте, and also catches васыять.
+				'/әэ|^г(а(яр|еб|йр|лим)е|о(мер|реф|шер))|ка(бер|леб)|маэмай|вилаят|аэтдин'
+				.'|васыят/ui'
+				, $text )
+		){
+			// $text = $this->convertTatarWordWithArabicRootFromCyrillicToLatin( $text );
+			return $this->convertTatarWordWithArabicRootFromCyrillicToLatin( $text );
+		}elseif(
+			// signs of russian words
+			// preg_match( '/^[бвгджзклмнпрстфхцчшщ]{2,2}/ui', $text )
+			preg_match( '/[ёцщ]/ui', $text )
+			|| preg_match( '/[бвгджзклмнпрстфхчш][яюёэ]/ui', $text )
+			// автор etc.
+			// there is rule to not write о in syllables except first:
+			// tatar word соло is written солы
+			// except family names ending with ов(а)
+			|| preg_match( '/.{2,}о(?!ва?$)/ui', $text )
+			//
+			// катер etc; should not catch сараенда
+			// гаяре, гаебе would be catched here, but so i catch such arabic words before
+			// reaching to these checks. i have tried to add here .+ at end of regex but then
+			// they go to tatar branch, if i do not add them in arabic check.
+			// also e at end of word is also possible in russian words: каре, пеле, желе
+			// so i better check them before here
+			// катер, кушкет
+			|| preg_match( '/^[^әөүҗңһ]*[аоу][^әөүҗңһ]*[бвгджзклмнпрстфхцчшщ]+е/ui', $text )
+			// 3 consecutive consonants except артта, астта, антта
+			|| preg_match( '/[бвгджзклмнпрстфхцчшщ]{3,}(?<![рнс]тт)/ui', $text )
+			// || preg_match( '/в[бвгджзклмнпрстфхцчшщ]|[бвгджзклмнпрстфхцчшщ]в/ui', $text )
+			|| preg_match( '/в[вгдзклмнртхцчш]/ui', $text )
+			|| preg_match( '/ия.+[аыоу]/ui', $text )
+			// гектар etc; but should not catch оешмасы, so /^.е.+а/ is not enough
+			|| preg_match( '/^[бвгджзклмнпрстфхцчшщ]е.+а/ui', $text )
+			// натураль etc except шөгыль, мөстәкыйль, гыйльфан
+			|| preg_match( '/(?<![гк]ы)(?<![гк]ый)ль/ui', $text )
+			// синерь etc. should not catch шигырь, шагыйрь, бәгырь
+			// and words like карьер, барьер
+			|| preg_match( '/ерь|рье/ui', $text )
+			// тангаж etc
+			|| preg_match( '/.{3,}ж/ui', $text )
+			// words like винт, грамм, штутгард, бриг,
+			// шпиг, во, волга, вьет, etc
+			// ^ви also catches вилаять, but seems it is only one such arabic words
+			// so i catch it before russian words.
+			// красивый, трамвай
+			// версия, веб
+			|| preg_match( '/^(в[иоье]|ш[тп]|[пгбкт]р|сс)/ui', $text )
+			// акт, пакт, тракт, etc
+			// i do not add here да, га, лар suffixes, because with them it is catched
+			// because of 3 consecutive consonants
+			// поезд
+			|| preg_match( '/(акт|зд)($|ы($|м|ң|[бг]ыз))/ui', $text )
+			// физика etc except шикаять
+			|| preg_match( '/.+(?<!ш)ика/ui', $text )
+			// товар, овал
+			|| preg_match( '/^.?ова/ui', $text )
+			// вариант, авиа, шоу, аэро, поэма, пуэр, ноябрь, ноябре
+			|| preg_match( '/[аоу]э|их?а|оу|бр[ье]/ui', $text )
+			// other russian words
+			// кукмара is tatar word but it work ok as russian word (its у is slightly
+			// different than russian у, but it is not shown in the latin)
+			|| preg_match( '/^к(а(ндидат|бина|маз?)|у(рс|кмара))/ui', $text )
+			|| preg_match( '/^нигерия|актив|импер|^ефрат|тугрик|сигнал/ui', $text )
+			|| preg_match(
+				'/^г((аз|ол?)($|да(н|гы)?|га(ча)?|сыз|чы|ның?)|(о(рилла|а|би)))/ui',
+				$text )
+			// i cannot use here just ^ав because there are tatar words авыр, каравыл, etc
+			// i removed авиа and added иа
+			// i do not add ав$ for состав, because составы then still need to be catched
+			|| preg_match( '/ав(а(тар|рия))/ui', $text )
+			|| preg_match( '/шпага|^дог($|ка(ча)?|та(н|гы)?|ның?)|юмья|кизнер/ui', $text ) // дог
+				// is rare word but it is in the test
+			// these would go into *arabic* branch, that also work ok for now, but i
+			// send багира, тагил here because problems may appear with г, and send химия here,
+			// because problems may appear with thick и. бензинсыз was detected as arabic, but
+			// бензин goes to tatar branch, so add it there.
+			|| preg_match( '/багира|тагил|^хими|маугли|юбиле|лига|система|республика'
+				.'|магнит|органик|извест|нефть|калий/ui', $text )
+			// these would go into *tatar* branch
+			// i was going to add karta into russian but there is also tatar qarta
+			// and other word for karta - xarita in literary language
+			// karta and qarta cannot be distinguished without semantics or context
+			|| preg_match( '/музыка|в(епс|ышка|алда)|пауза|(за|у)каз|состав'
+				.'|канал|энерг|бензин|юлия|фея/ui', $text )
+		){
+			return $this->processWordWithRussianStem( $text );
+		}elseif(
+			// signs of arabic words
+			// и after 2 letters except юри, эшли, // боулинг(?!нг)
+			// i comment this out because there much words like редакцияли
+			// i have added и to next rule, in [әүи].
+			// preg_match( '/.{2,}и(?<!^юри$)(?<!^эшли$)/ui', $text )
+			// i cannot add here е after а becausee of tatar words
+			// like сагаеп
+			// тәкъдим, куәт,
+			preg_match( '/.*[аыоуъ].*[әүи]/ui', $text )
+			|| preg_match( '/.*[әөи].*[аыуъ]/ui', $text )
+			// тәэмин, тәэсир, i do not add аэ for маэмай here, i can catch words
+			// like аэробус with аэро, but i better catch them with аэ, and маэмай
+			// is probably only one word like that, and catch маэмай
+			// before russian words
+			// || preg_match( '/әэ/ui', $text ) // i moved this to first check of arabic
+			// || preg_match( '/ьә/ui', $text ) // replaced by the next replace
+			// гаять etc except яшь юнь etc
+			|| preg_match( '/(?<!^[яю].)ь(?!е)/ui', $text )
+			// әдәбият etc
+			|| preg_match( '/ият/ui', $text )
+			// i cannot catch words гаяре, гаебе with signs because there are
+			// such words in tatar: бая, сагаеп
+			// also they tend to enter russian branch
+			// so i catch them before russian words check.
+			// other arabic words:
+			|| preg_match( '/куф[аи]|^г(ае[пт]|ыйлем|омум)|^рия/ui',
+				$text )
+			// робагый, корбан, әдәби, мәдәни have gone to tatar branch
+			// but i do not need to fix them
+		){
+			// process words with arabic stem
+			// family name with ov(a)
+			// нәгыймов
+			$parts = preg_split( '/(?=ова?$)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+			if(count($parts)==2){
+				// $text = $this->convertArabicWordWithRussianEnding( $parts );
+				// return parent::translate( $text, 'tt-latn' );
+				return $this->convertArabicWordWithRussianEnding( $parts );
+			}
+			// family name with ev(a)
+			// рәмиев, вәлиев
+			if( preg_match( '/.+ева?$/ui', $text ) ){
+				// if( $this->currentWordCapitalisationType == '' )
+					// $this->lengthenInArray( '/(?<=[аоыуәе])е(?=ва?$)/ui',
+						// $text, $this->currentWordTargetLetterCase );
+				$text = preg_replace( '/(?<=[аоыуәе])е(?=ва?$)/ui', 'йе', $text );
+				$parts = preg_split( '/(?=ева?$)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+				$parts[1] = 'э' . mb_substr( $parts[1], 1 );
+				// $text = $this->convertArabicWordWithRussianEnding( $parts );
+				// return parent::translate( $text, 'tt-latn' );
+				return $this->convertArabicWordWithRussianEnding( $parts );
+			}
+			// ...ла,лау,лама,лаучы,...
+			// тасвирлау but not in мөлаем
+			// better not to make го|ләма
+			$parts = preg_split( '/(?=л[аә]($|([уү]|м[аә])(ч[ые])?))(?!л(аем|әма|амә))'
+				.'(?<!^бә)/ui',
+				$text, null, PREG_SPLIT_NO_EMPTY);
+			if(count($parts)==2){
+				// $text = $this->convertArabicWordWithTatarEnding( $parts );
+				// return parent::translate( $text, 'tt-latn' );
+				return $this->convertArabicWordWithTatarEnding( $parts );
+			}
+			// for китабындагы, but it is converted ok without this
+			// // ...сы/сын/etc
+			// $parts = preg_split( '/(?<=[ао])(?=(сы$|сын))/ui',
+				// $text, null, PREG_SPLIT_NO_EMPTY);
+			// if(count($parts)==2){
+				// $text = $this->convertRussianWordWithTatarEnding( $parts );
+				// return parent::translate( $text, 'tt-latn' );
+			// }
+			// // .../ы/ын/etc
+			// $parts = preg_split( '/(?<=[бвгджзклмнпрстфхцчшщ])(?=(ы$|ын))/ui',
+				// $text, null, PREG_SPLIT_NO_EMPTY);
+			// if(count($parts)==2){
+				// $text = $this->convertArabicWordWithTatarEnding( $parts );
+				// return parent::translate( $text, 'tt-latn' );
+			// }elseif(count($parts)>2){
+				// $parts[1] = implode( array_slice( $parts, 1 ) );
+				// array_splice( $parts, 2 );
+				// $text = $this->convertArabicWordWithTatarEnding( $parts );
+				// return parent::translate( $text, 'tt-latn' );
+			// }
+			// ...е
+			// икътисадые
+			if( preg_match( '/ы(?=(е$|ен))/ui', $text ) ){
+				if( $this->currentWordCapitalisationType == '' )
+					$this->lengthenInArray( '/ы(?=(е$|ен))/ui',
+						$text, $this->currentWordTargetLetterCase );
+				$parts = preg_split( '/(?<=ы)(?=(е$|ен))/ui',
+					$text, null, PREG_SPLIT_NO_EMPTY);
+				$parts[0] .= 'й';
+				if( preg_match( '/[әөеүи][^аоыуиәөеүи]+ы(е$|ен)/ui', $text ) ){
+					$parts[1] = 'э' . mb_substr( $parts[1], 1 );
+				}else{
+					$parts[1] = 'ы' . mb_substr( $parts[1], 1 );
+				}
+				// // иҗтимагый should be ictimaği, see
+				// // https://tt.wikipedia.org/wiki/Файл:Tatar_telenen_orfografiase_10.jpg
+				// // so иҗтимагыенда has to be ictimağiyında
+				// if( $parts[0]=='икътисадый' || $parts[0]=='иҗтимагый' ){
+					// $parts[1] = 'й' . $parts[1];
+				// }
+				return $this->convertArabicWordWithTatarEnding( $parts );
+			}
+			// suffixes are not found
+			// $text = $this->convertTatarWordWithArabicRootFromCyrillicToLatin( $text );
+			return $this->convertTatarWordWithArabicRootFromCyrillicToLatin( $text );
+		}else{
+			// process words with turkic stem
+			// word is not recognised as russian nor arabic,
+			// so it is basic/plain/simple/turkic tatar word
+			// family name with ov(a)
+			$parts = preg_split( '/(?=ова?$)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+			if(count($parts)==2){
+				// $text = $this->convertTatarWordWithRussianEnding( $parts );
+				// return parent::translate( $text, 'tt-latn' );
+				return $this->convertTatarWordWithRussianEnding( $parts );
+			}
+			// family name with ev(a)
+			if( preg_match( '/.+ева?$/ui', $text ) ){
+				// if( $this->currentWordCapitalisationType == '' )
+					// $this->lengthenInArray( '/(?<=[аоыуәе])е(?=ва?$)/ui',
+						// $text, $this->currentWordTargetLetterCase );
+				$text = preg_replace( '/(?<=[аоыуәе])е(?=ва?$)/ui', 'йе', $text );
+				$parts = preg_split( '/(?=ева?$)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+				$parts[1] = 'э' . mb_substr( $parts[1], 1 );
+				// $text = $this->convertTatarWordWithRussianEnding( $parts );
+				// return parent::translate( $text, 'tt-latn' );
+				return $this->convertTatarWordWithRussianEnding( $parts );
+			}
+			// russian suffixes are not found
+			// $text = $this->convertSimpleTatarWordFromCyrillicToLatin( $text );
+			return $this->convertSimpleTatarWordFromCyrillicToLatin( $text );
+		}
+		// return parent::translate( $text, 'tt-latn' );
+	}
+
+	function processWordWithRussianStem( $text ){
+		// process words with russian stem
+		// ...лык/лек except электр, молкула, телеграмма
+		$parts = preg_split( '/(?=л[ые][кг])(?!ле(к(тр|ул)|грам))/ui',
+			$text, null, PREG_SPLIT_NO_EMPTY);
+		if(count($parts)==2){
+			// $text = $this->convertRussianWordWithTatarEnding( $parts );
+			// return parent::translate( $text, 'tt-latn' );
+			return $this->convertRussianWordWithTatarEnding( $parts );
+		}
+		// ...ия
+		$parts = preg_split( '/(?=ия)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+		// ^ it is easier to pass the ia suffix into tatar part
+		// this makes aeratsiä, i would like to write aeratsiya, but
+		// aeratsiä is also ok
+		if(count($parts)==2){
+			// $text = $this->convertRussianWordWithTatarEnding( $parts );
+			// return parent::translate( $text, 'tt-latn' );
+			return $this->convertRussianWordWithTatarEnding( $parts );
+		}
+		// ...га/гә/ка/кә/кача/кәчә/гача/гәчә
+		$parts = preg_split(
+			'/((?<!и)(?<!^ёл)(?<!^(шпа|щёт|вол|выш))(?<!ссыл|музы|трич)|(?<=ски))'
+				// убли for республика, публика
+				// тани for ботаника
+				// исти for характеристика
+				// try (?<!и) for them
+				// was (?<!^(ёл|ли))(?<!(физ|мат|тан|убл|ист)и|ссыл|музы)
+				// but i have problem with минскига - fixed
+				// трич - электричка
+			.'(?=[гк][аә](ч[аә])?$)/ui',
+			$text, null, PREG_SPLIT_NO_EMPTY);
+		if(count($parts)==2){
+			// $text = $this->convertRussianWordWithTatarEnding( $parts );
+			// return parent::translate( $text, 'tt-latn' );
+			return $this->convertRussianWordWithTatarEnding( $parts );
+		}
+		// гы, кы, ге, ке, but not го|ген, ве|гетатив, врун|гель.
+		$parts = preg_split( '/(?=[гк][ые]($|[^нт]))(?!гель)/ui',
+			$text, null, PREG_SPLIT_NO_EMPTY);
+		if(count($parts)==2){
+			return $this->convertRussianWordWithTatarEnding( $parts );
+		}
+		// ...ны, не
+		$parts = preg_split( '/(?=н[ые]$)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+		if(count($parts)==2){
+			return $this->convertRussianWordWithTatarEnding( $parts );
+		}
+		// ...сы/сын/etc
+		$parts = preg_split( '/(?<=[ао])(?=(сы$|сын))/ui',
+			$text, null, PREG_SPLIT_NO_EMPTY);
+		if(count($parts)==2){
+			// $text = $this->convertRussianWordWithTatarEnding( $parts );
+			// return parent::translate( $text, 'tt-latn' );
+			return $this->convertRussianWordWithTatarEnding( $parts );
+		}
+		// ...е
+		// юбилее, валдае
+		if( preg_match( '/[еа](?=(е$|ен))/ui', $text ) ){
+			// if( $this->currentWordCapitalisationType == '' )
+				// $this->lengthenInArray( '/е(?=(е$|ен))/ui',
+					// $text, $this->currentWordTargetLetterCase );
+			// $text = preg_replace( '/е(?=(е$|ен))/ui', 'ей', $text );
+			// $parts = preg_split( '/(?<=ей)(?=(е$|ен))/ui',
+				// $text, null, PREG_SPLIT_NO_EMPTY);
+			if( $this->currentWordCapitalisationType == '' )
+				$this->lengthenInArray( '/[еа](?=(е$|ен))/ui',
+					$text, $this->currentWordTargetLetterCase );
+			$parts = preg_split( '/(?<=[еа])(?=(е$|ен))/ui',
+				$text, null, PREG_SPLIT_NO_EMPTY);
+			$parts[0] .= 'й';
+			$parts[1] = 'ы' . mb_substr( $parts[1], 1 );
+			// $text = $this->convertRussianWordWithTatarEnding( $parts );
+			// return parent::translate( $text, 'tt-latn' );
+			return $this->convertRussianWordWithTatarEnding( $parts );
+		}
+		// .../ы/ын/etc
+		// i had to move this after "...е" because "юбилеендагы" had become
+		// юбилеендаг|ы but this is probably not enough
+		// indeed now i have графиктаг|ы so i should move this after "da",
+		// but then графигында will work wrongly: графигын|да, графын|да.
+		// then i will recursively split first part again. i made that but
+		// i have графиктаг|ы, it should be график|та|гы, so, i cannot split
+		// ы after г, or should move this after "да", if move after da, i still will
+		// have problem with кышкы etc. then, i will separate гы separately.
+		$parts = preg_split( '/(?<=[бвгджзклмнпрстфхцчшщ])(?=(ы$|ын))/ui',
+			$text, null, PREG_SPLIT_NO_EMPTY);
+		if(count($parts)==2){
+			// $text = $this->convertRussianWordWithTatarEnding( $parts );
+			// return parent::translate( $text, 'tt-latn' );
+			return $this->convertRussianWordWithTatarEnding( $parts );
+		}
+		// ...да/дан/дагы/дә/та/тә/etc
+		// $parts = preg_split( '/(?=[тд][аә](н|[гк][ые])?$)/ui',
+		$parts = preg_split( '/(?=[тд][аә]н?$)/ui',
+			$text, null, PREG_SPLIT_NO_EMPTY);
+		if(count($parts)==2){
+			// $text = $this->convertRussianWordWithTatarEnding( $parts );
+			// return parent::translate( $text, 'tt-latn' );
+			return $this->convertRussianWordWithTatarEnding( $parts );
+		}
+		// ...лар/etc except семинар, семинария
+		$parts = preg_split( '/(?<!семи)(?=[лн][аә]р)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+		if(count($parts)==2){
+			return $this->convertRussianWordWithTatarEnding( $parts );
+		}
+		// ...чык/etc
+		// каналчык
+		$parts = preg_split( '/(?=ч[ые]к)/ui', $text, null, PREG_SPLIT_NO_EMPTY);
+		if(count($parts)==2){
+			return $this->convertRussianWordWithTatarEnding( $parts );
+		}
+		// ...ла/etc except плаксиха, власть, эндоплазма, молекула
+		// активлаштырылган
+		$parts = preg_split( '/(?<!^.)(?<!леку)(?=л[аә])(?!лазма)/ui',
+			$text, null, PREG_SPLIT_NO_EMPTY);
+		if(count($parts)==2){
+			return $this->convertRussianWordWithTatarEnding( $parts );
+		}
+		// tatar suffixes are not found
+		// $text = $this->convertTatarWordWithRussianRootFromCyrillicToLatin( $text );
+		return $this->convertTatarWordWithRussianRootFromCyrillicToLatin( $text );
+	}
+
+	function convertTatarWordWithRussianRootFromCyrillicToLatin( $text ){
+		$this->saveCaseOfCyrillicWord( $text );
+		$text = mb_strtolower( $text );
+		// dirijabl or dirijabl\' or dirijabel ?
+		// i leave it as it is : dirijabl\'
+		// v
+		$text = preg_replace( '/в(?!еб)/u', 'v', $text );
+		// ya
+		// $text = preg_replace( '/(?<=ь)я/u', 'ya', $text );
+		// ye
+		// премьер, поезд
+		if( $this->currentWordCapitalisationType == '' )
+			$this->lengthenInArray( '/(?<=[ьо])е/u', $text, $this->currentWordTargetLetterCase );
+				// change case array
+		$text = preg_replace( '/(?<=[ьо])е/u', 'ye', $text );
+		if( $this->currentWordCapitalisationType == '' )
+			$this->lengthenInArray( '/^е/u', $text, $this->currentWordTargetLetterCase );
+		$text = preg_replace( '/^е/u', 'ye', $text );
+		// yo
+		if( $this->currentWordCapitalisationType == '' )
+			$this->shortenInArray( '/(?<=[щч])ё/u', $text, $this->currentWordTargetLetterCase );
+		$text = preg_replace( '/(?<=[щч])ё/u', 'o', $text );
+		// yu
+		// $text = preg_replace( '/(?<=ь)ю/u', 'yu', $text );
+		// ау, оу
+		// шоу, боулинг, маугли - w but in пауза it is u
+		$text = preg_replace( '/(?<=[оа])(?<!па)у/u', 'w', $text );
+		// ь before ю
+		// компьютер
+		$text = preg_replace( '/ь(?=ю)/u', '', $text );
+		// ь before е
+		// премьер
+		if( $this->currentWordCapitalisationType == '' )
+			$this->lengthenInArray( '/ь(?=ye)/u', $text, $this->currentWordTargetLetterCase );
+		$text = preg_replace( '/ь(?=ye)/u', '', $text );
+		// брь
+		$text = preg_replace( '/брь/u', 'ber', $text );
+		$text = parent::translate( $text, 'tt-latn' );
+		$this->returnCaseOfCyrillicWord( $text );
+		if( $this->test ) $text = '['. $text. ']';
+		// $text = $text. ']';
+		return $text;
+	}
+
+	function convertTatarWordWithArabicRootFromCyrillicToLatin( $text ){
+		$this->saveCaseOfCyrillicWord( $text );
+		$text = mb_strtolower( $text );
+		// a,ы after soft vowel/syllable
+		// should i also change a to ä after ğq because of previous vowels?
+		// - i do not know, i do not do this for now:
+		$text = preg_replace( '/^рөкъга/u', 'röqğä', $text );
+		$text = preg_replace( '/^бәла/u', 'bälä', $text );
+		$text = preg_replace( '/^бәһа/u', 'bähä', $text );
+		if( $this->currentWordCapitalisationType == '' )
+			$this->replaceIntoArray( '/(?<=^тәрәкк)ы(?=й)/u', '',
+				$text, $this->currentWordTargetLetterCase );
+		$text = preg_replace( '/^тәрәккый/u', 'täräqqi', $text );
+		if( $this->currentWordCapitalisationType == '' )
+			$this->shortenInArray( '/(?<=^тәрәккы)я/u',
+				$text, $this->currentWordTargetLetterCase );
+		$text = preg_replace( '/^тәрәккыя/u', 'täräqqiä', $text );
+		$text = preg_replace( '/^нәгыйм/u', 'näğim', $text );
+		// a, ya before or after soft syllable
+		// no rule of alif -> a in the latin alphabet, so many words
+		// should be written as spoken, some of them with synharmonism
+		// $text = preg_replace( '/(?<=ид)а(?=рә)/u', 'ä', $text ); // i do
+			// not change this one, because sometimes it is pronounced with a
+			// and sometimes it would be ugly with ä
+		// also i do not change әмм(а), мөл(а)ем, әхл(а)к
+		// see some words after replacing g
+		$text = preg_replace( '/(?<=сәл)а(?=м)/u', 'ä', $text );
+		$text = preg_replace( '/(?<=^ри)я/u', 'ya', $text );
+		$text = preg_replace( '/(?<=^(җин|вил|ниһ))а(?=я)/u', 'ä', $text );
+		$text = preg_replace( '/(?<=^вәк)а(?=л)/u', 'ä', $text );
+		// я before soft syllables
+		// should i also change choose я as yä because of next vowels, in
+		// words without ка/кы etc? - i write only exceptions,
+		// because i am not sure that a changes to ä (no rule of alif -> a,
+		// but some words may be pronounced with a) - with adding of сәяси
+		// i decide to add a rule for them all, and commented these out:
+		// $text = preg_replace( '/^ягъни/u', 'yäğni', $text );
+		// $text = preg_replace( '/^яки/u', 'yäki', $text );
+		// $text = preg_replace( '/^җинаят/u', 'cinäyät', $text );
+		// i moved this replaces to after къ,гъ replaces, and commented these out:
+		// $text = preg_replace( '/^я(?=.+[әеүиь])/u', 'yä', $text );
+		// $text = preg_replace( '/(?<=а)я(?=.+[әеүиь])/u', 'yä', $text );
+		// q after thick vowel/syllable
+		// әхлак
+		$text = preg_replace( '/(?<=^әхла)к/u', 'q', $text );
+		// exception to the following къ,гъ replaces
+		$text = preg_replace( '/^камил/u', 'kamil', $text );
+		$text = preg_replace( '/^вәк(?=[аи]л)/u', 'wäk', $text );
+		$text = preg_replace( '/^куф/u', 'kuf', $text );
+		// къ,гъ
+		// $text = preg_replace( '/га(?=.+[әүи])/u', 'ğä', $text );
+		// тәрәккыять, куәт
+		$text = preg_replace( '/к(?=к?[аыоуъ])/u', 'q', $text );
+		// гакыл
+		$text = preg_replace( '/г(?=[аыоъ])/u', 'ğ', $text );
+		// exception to fixing vowels after къ,гъ
+		// галим, гата, гади, мөгаен
+		$text = preg_replace( '/(?<=ğ)а(?=(лим?|та|ди|ен))/u',
+			'a', $text ); // these words are pronounced that way
+		$text = preg_replace( '/(?<=ğ)о(?=мум)/u', 'o', $text ); // leave this
+			// as it is written in cyrillic, because i feel ğömüm strange
+			// also i added гомер here but then removed
+		// кабил, кавия
+		$text = preg_replace( '/(?<=q)а(?=(бил|вия))/u', 'a', $text );
+		// fix vowels after къ,гъ
+		// гамәл
+		$text = preg_replace( '/(?<=[qğ])а(?=.+[әеүиь]|е)/u', 'ä', $text );
+		// коръән
+		$text = preg_replace( '/(?<=[qğ])о(?=.+[әеүиь])/u', 'ö', $text );
+		// шөгыле
+		$text = preg_replace( '/(?<=[qğ])ы(?=[^йяе]+[әеүиь])/u', 'e', $text );
+			// // i
+			// // have to set this replace after previous replaces for ы
+		// куәт
+		$text = preg_replace( '/(?<=q)у(?=ә)/u', 'ü', $text );
+		// // exception to next rule
+		// // иҗтимагый should be ictimaği, see
+		// // https://tt.wikipedia.org/wiki/Файл:Tatar_telenen_orfografiase_10.jpg
+		// this is not mature/elaborate rule: икътисадыенда should be iqtisadiendä then,
+		// and it is hard to make for me, and it is not pronunced so,
+		// so i comment this out for now
+		// $text = preg_replace( '/(?<=^иҗтимаğ)ый/u', 'i', $text );
+		// $text = preg_replace( '/(?<=^иqътисад)ый/u', 'i', $text );
+		// гыйльфан
+		if( $this->currentWordCapitalisationType == '' )
+			$this->replaceIntoArray( '/(?<=[qğ])ы(?=й.+[әеүиь])/u', '',
+				$text, $this->currentWordTargetLetterCase );
+		$text = preg_replace( '/(?<=[qğ])ый(?=.+[әеүиь])/u', 'i', $text );
+		// җәмгыять, тәрәккые
+		$text = preg_replace( '/(?<=[qğ])ы(?=(я.+[әеүиь]|е))/u', 'i', $text );
+		// я after га, before soft syllables or ь
+		// гаять
+		$text = preg_replace( '/(?<=[ğ]ä)я(?=.+[әеүиь])/u', 'yä', $text );
+		// я after кы, гы, before soft syllables or ь
+		if( $this->currentWordCapitalisationType == '' )
+			$this->shortenInArray( '/(?<=[qğ]i)я(?=.+[әеүиь])/u',
+				$text, $this->currentWordTargetLetterCase );
+		$text = preg_replace( '/(?<=[qğ]i)я(?=.+[әеүиь])/u', 'ä', $text );
+		// я before soft syllables
+		// ягъни, яки, җинаять, сәяси
+		$text = preg_replace( '/^я(?=.+[әеүиь])/u', 'yä', $text );
+		$text = preg_replace( '/(?<=[аәä])я(?=.+[әеүиь])/u', 'yä', $text );
+		// ye
+		// ye after ga, ә, а
+		// гаять, хөсәения, мөлаем, мөгаен
+		// latin a is because a in мөгаен is already converted
+		// тәрәккые, мәдәние
+		if( $this->currentWordCapitalisationType == '' )
+			$this->lengthenInArray( '/(?<=[äәаa])е/u', $text,
+				$this->currentWordTargetLetterCase );
+		$text = preg_replace( '/(?<=[äәаa])е/u', 'ye', $text );
+		// // икътисадые
+		// if( $this->currentWordCapitalisationType == '' )
+			// $this->lengthenInArray( '/(?<=ы)е/u', $text,
+				// $this->currentWordTargetLetterCase );
+		// $text = preg_replace( '/(?<=ы)е/u', 'yı', $text );
+		// exceptions to the next ия replace
+		$text = preg_replace( '/әдәбият/u', 'ädäbiyat', $text );
+		$text = preg_replace( '/суфиян/u', 'sufiyan', $text );
+		// ыя
+		// васыять assuming wasiät (may be wasıyät, if thickness/hardness of s is wanted to show)
+		// ия
+		// әдәбият is also replaced by this and i leave it so, because it is very often
+		// pronounced that way, though it is әдәбийат in the cyrillic by its arabic word,
+		// (but there is no such rule in the latin). i change my mind, it was teached to say
+		// әдәбийат in schools, and it is considered correct by many people
+		if( $this->currentWordCapitalisationType == '' )
+			$this->shortenInArray( '/(?<=[иы])я/u', $text, $this->currentWordTargetLetterCase );
+		$text = preg_replace( '/[иы]я/u', 'iä', $text );
+		// э
+		$text = preg_replace( '/э(?=.[аыоуәеөүи])/u', '\'', $text ); // тәэмин
+		if( $this->currentWordCapitalisationType == '' )
+			$this->lengthenInArray( '/э(?=..[аыоуәеөүи])/u',
+				$text, $this->currentWordTargetLetterCase );
+		$text = preg_replace( '/э(?=..[аыоуәеөүи])/u', '\'e', $text ); // ризаэтдин
+		// ь
+		$text = preg_replace( '/(?<=^мәс)ь(?=әлән)/u', '\'', $text );
+		if( $this->currentWordCapitalisationType == '' )
+			$this->replaceIntoArray( '/ь/u', '', $text, $this->currentWordTargetLetterCase );
+		$text = preg_replace( '/ь/u', '', $text );
+		// ъ
+		if( $this->currentWordCapitalisationType == '' )
+			$this->replaceIntoArray( '/(?<=^qöр)ъ(?=ән)/u',
+				'l', $text, $this->currentWordTargetLetterCase );
+		$text = preg_replace( '/(?<=^qöр)ъ(?=ән)/u', '\'', $text );
+		$text = parent::translate( $text, 'tt-latn' );
+		$this->returnCaseOfCyrillicWord( $text );
+		if( $this->test ) $text = '('. $text. ')';
+		return $text;
+	}
+
+	function convertSimpleTatarWordFromCyrillicToLatin( $text ){
+		$this->saveCaseOfCyrillicWord( $text );
+		$text = mb_strtolower( $text );
+		if(
+			preg_match( '/[аоыу]/u', $text )
+			// preg_match( '/[аыу]/u', $text )
+			// || preg_match( '/о(?!ва?$)/u', $text )
+			|| preg_match( '/^([яю].?|е.)$/u', $text ) // ел, як, юк,
+				// е, я, ю
+		){
+			// къ, гъ
+			$text = preg_replace( '/к(?!ь)(?!арават)/u', 'q', $text );
+			$text = preg_replace( '/г/u', 'ğ', $text );
+			// // yı, yev
+			// yı
+			if( $this->currentWordCapitalisationType == '' )
+				$this->lengthenInArray( '/(?<=[аыоу])е/u', $text,
+					$this->currentWordTargetLetterCase );
+			// // ayev
+			// $text = preg_replace( '/(?<=[аыоу])е(?=ва?$)/u', 'ye', $text );
+			// // i added latin e to fix v after previous replace in "ov,ev"
+			// // $text = preg_replace( '/(?<=e)в(?=а?$)/u', 'v', $text );
+			// yı
+			$text = preg_replace( '/(?<=[аыоу])е/u', 'yı', $text );
+			if( $this->currentWordCapitalisationType == '' )
+				$this->lengthenInArray( '/^е/u', $text, $this->currentWordTargetLetterCase );
+			$text = preg_replace( '/^е/u', 'yı', $text );
+			// aw
+			// ау, аяу
+			$text = preg_replace( '/(?<=[ая])у(?<!^ğаğау)/u', 'w', $text );
+			// // ov,ev
+			// // latin e is added because it might be set in "ayev"
+			// $text = preg_replace( '/(?<=[аеe])в(?=а?$)/u', 'v', $text );
+			// moved family name ending check to outer function
+		}else{
+			// yä
+			if( $this->currentWordCapitalisationType == '' )
+				$this->shortenInArray( '/(?<=и)я(?=.+[әүеи])/u', $text,
+					$this->currentWordTargetLetterCase );
+			$text = preg_replace( '/ия(?=.+[әүеи])/u', 'iä', $text );
+			if( $this->currentWordCapitalisationType == '' )
+				$this->shortenInArray( '/(?<=и)я$/u', $text,
+					$this->currentWordTargetLetterCase );
+			$text = preg_replace( '/ия$/u', 'iä', $text );
+			$text = preg_replace( '/я(?!нил)/u', 'yä', $text );
+			// ye
+			// е is by default e so i use lengthen when it becomes ye
+			// "by default" ie in toLatin array
+			if( $this->currentWordCapitalisationType == '' )
+				$this->lengthenInArray( '/(?<=[әө])е/u', $text,
+					$this->currentWordTargetLetterCase );
+			$text = preg_replace( '/(?<=[әө])е/u', 'ye', $text );
+			$text = preg_replace( '/(?<=и)е/u', 'e', $text );
+			$text = preg_replace( '/^е/u', 'ye', $text );
+			// yü
+			$text = preg_replace( '/(?<=[әө])ю/u', 'yü', $text );
+			// ю is by default yu so i use lengthen when it becomes ü
+			// "by default" ie in toLatin array
+			if( $this->currentWordCapitalisationType == '' )
+				$this->shortenInArray( '/(?<=и)ю/u', $text,
+					$this->currentWordTargetLetterCase );
+			$text = preg_replace( '/(?<=и)ю/u', 'ü', $text );
+			$text = preg_replace( '/^ю(?!хиди)/u', 'yü', $text );
+			// äw
+			$text = preg_replace( '/(?<=ә)ү/u', 'w', $text );
+		}
+		// ь
+		if( $this->currentWordCapitalisationType == '' )
+			$this->replaceIntoArray( '/ь/u', '', $text, $this->currentWordTargetLetterCase );
+		$text = preg_replace( '/ь/u', '', $text );
+		$text = parent::translate( $text, 'tt-latn' );
+		$this->returnCaseOfCyrillicWord( $text );
+		if( $this->test ) $text = '|'. $text. '|';
+		return $text;
+	}
+
+	function convertRussianWordWithTatarEnding( $parts ){
+		// $parts[0] = $this->
+			// convertTatarWordWithRussianRootFromCyrillicToLatin( $parts[0] );
+		// $parts[0] = $this->
+			// convertTatarWordFromCyrillicToLatin( $parts[0] ); // i comment this out,
+				// because класслар, detected by 3 consonants.
+				// класс is not detected as russian. this also was recursion.
+		$parts[0] = $this->processWordWithRussianStem( $parts[0] ); //recursion because
+				// there are графиктагы and графигында, etc
+		$parts[1] = $this->convertSimpleTatarWordFromCyrillicToLatin( $parts[1] );
+		$text = implode( $parts );
+		return $text;
+	}
+
+	function convertCompoundTatarWord( $parts ){
+		$parts[0] = $this->
+			convertSimpleTatarWordFromCyrillicToLatin( $parts[0] );
+		$parts[1] = $this->
+			convertSimpleTatarWordFromCyrillicToLatin( $parts[1] );
+		$text = implode( $parts );
+		return $text;
+	}
+
+	function convertTatarWordWithRussianEnding( $parts ){
+		$parts[0] = $this->
+			convertSimpleTatarWordFromCyrillicToLatin( $parts[0] );
+		$parts[1] = $this->
+			convertTatarWordWithRussianRootFromCyrillicToLatin( $parts[1] );
+		$text = implode( $parts );
+		return $text;
+	}
+
+	function convertArabicWordWithRussianEnding( $parts ){
+		$parts[0] = $this->
+			convertTatarWordWithArabicRootFromCyrillicToLatin( $parts[0] );
+		$parts[1] = $this->
+			convertTatarWordWithRussianRootFromCyrillicToLatin( $parts[1] );
+		$text = implode( $parts );
+		return $text;
+	}
+
+	function convertArabicWordWithTatarEnding( $parts ){
+		$parts[0] = $this->
+			convertTatarWordWithArabicRootFromCyrillicToLatin( $parts[0] );
+		$parts[1] = $this->
+			convertSimpleTatarWordFromCyrillicToLatin( $parts[1] );
+		$text = implode( $parts );
+		return $text;
+	}
+
+	function convertTatarWordFromLatinToCyrillic( $text ) {
+		$text = parent::translate( $text, 'tt-cyrl' );
+		// $text = '('. $text. ')';
+		return $text;
+	}
+
+	function toUpper( $text ) {
+		$text = str_replace( 'i', 'İ', $text );
+		$text = mb_strtoupper( $text );
+		// $text=str_replace(array('I','ı'),array('İ','I'),$text ); // i think
+		// this would work without mb_internal_encoding('utf-8');
+		return $text;
+	}
+
+	function toLower( $text ) {
+		$text = str_replace( 'I', 'ı', $text );
+		$text = mb_strtolower( $text );
+		// $text=str_replace(array('i','İ'),array('ı','i'),$text );
+		return $text;
+	}
+
+	function replaceIntoArray( $pattern, $replacement, $subject, &$target ) {
+		$patternCount = preg_match_all(
+			$pattern, $subject, $matches, PREG_OFFSET_CAPTURE
+		);
+		if ( $patternCount > 0 ) {
+			for ( $i = 0; $i < $patternCount; $i++ ){
+				$target[$matches[0][$i][1]] = $replacement;
+			}
+		}
+	}
+
+	function shortenInArray( $pattern, $subject, &$target ) {
+		$patternCount = preg_match_all(
+			$pattern, $subject, $matches, PREG_OFFSET_CAPTURE
+		);
+		// $logfileqdb=fopen('x.txt','a');
+		// fwrite($logfileqdb,
+			// $subject.':'.$patternCount.':'.var_export($matches,true)
+			// .':'.var_export($target,true)
+			// ." ;;;\n"
+			// );
+		if ( $patternCount > 0 ) {
+			for ( $i = 0; $i < $patternCount; $i++ ){
+				$target[$matches[0][$i][1]] = substr( $target[$matches[0][$i][1]], 0, 1 );
+				// ul->u, ll->l
+			}
+		}
+		// fwrite($logfileqdb,
+			// ':'.var_export($target,true)
+			// ." ;;;\n"
+			// );
+	}
+
+	function lengthenInArray( $pattern, $subject, &$target ) {
+		$patternCount = preg_match_all(
+			$pattern, $subject, $matches, PREG_OFFSET_CAPTURE
+		);
+		if ( $patternCount > 0 ) {
+			for ( $i = 0; $i < $patternCount; $i++ ){
+				$target[$matches[0][$i][1]] .= 'l';
+			}
+		}
+	}
+
+	function translate( $text, $toVariant ) {
+		if ( $toVariant == 'tt-cyrl' ) {
+			// separating -{XINHUA}-s is not needed, they are already replaced with 00 bytes.
+			$nw = '[^a-zA-ZäəÄƏöɵÖƟüÜıİşŞçÇñÑğĞ\']';
+			$w = '[a-zA-ZäəÄƏöɵÖƟüÜıİşŞçÇñÑğĞ\']';
+			$words = preg_split( "/(?<=$w)(?=$nw)|(?<=$nw)(?=$w)/u", $text );
+			// $words = preg_split( '/(?<=[aryn])(?= )|(?<= )(?=[tmq])/u', $text );
+			// $words = preg_split( '/\b/u', $text );
+			// $words = preg_split( '/(\b(?!\'))|((?<=\')(?=\W))/u', $text );
+			// $words = preg_split(
+				// '/(?=[^0-9a-zA-ZäəÄƏöɵÖƟüÜıİşŞçÇñÑğĞ\'])'
+				//.'(?<=[0-9a-zA-ZäəÄƏöɵÖƟüÜıİşŞçÇñÑğĞ\'])/u',
+				// $text );
+			// $words = preg_split( '/\b(?!\')|(?<=[\w\'])/u', $text );
+			// $words = preg_split( '/(?<!\w)(?=\w)|(?<=[\w\'])(?![\w^\'])/u', $text );
+			// $words = preg_split( '/((?<=\W)(?=\w))|((?<=[\w\'])(?!\w))/u', $text );
+			// $words = preg_split( '/(?<=[\w\'])(?!\w)/u', $text );
+			$wordsCount = count( $words );
+			$this->currentWordTargetLetterCase = array();
+			for ( $i = 0; $i < $wordsCount; $i++ ) {
+				if ( 0 === preg_match( '/[a-zA-ZäəÄƏöɵÖƟüÜıİşŞçÇñÑğĞ\']/u', $words[$i] ) ) {
+					continue; // no latin
+				} elseif ( preg_match( '/^[A-ZÄƏÖƟÜİŞÇÑĞ][a-zäəöɵüışçñğ\']+$/u', $words[$i] ) ){
+					$this->currentWordCapitalisationType = 'FC'; // first capital
+				} elseif ( preg_match( '/^[a-zäəöɵüışçñğ\']+$/u', $words[$i] ) ){
+					$this->currentWordCapitalisationType = 'AL'; // all low
+				} elseif ( preg_match( '/^[A-ZÄƏÖƟÜİŞÇÑĞ\']$/u', $words[$i] ) ){
+					$this->currentWordCapitalisationType = 'OC'; // only 1
+					// letter and it is upper/capital
+				// } elseif (
+					// i comment this out because style of writing all with upper case while
+					// it is not an abbreviation is probably not used in wikipedia
+					// preg_match( '/^[А-ЯЁӘӨҮҖҢҺ]{2,}$/u', $words[$i] )
+					// && 0===preg_match( '/^ЕРЭ$/u', $words[$i] )
+				// ){
+					// $this->currentWordCapitalisationType = 'AC'; // all upper/capital
+				} else {
+					$tmp=$words[$i];
+					$tmp=preg_replace('/Ye/u','Y', $tmp);
+					$this->currentWordCapitalisationType = '';
+					// $this->currentWordTargetLetterCase = array();
+					$this->replaceIntoArray(
+						'/[a-zäəöɵüışçñğ\']/u', 'l', $tmp,
+						$this->currentWordTargetLetterCase );
+					$this->replaceIntoArray(
+						'/[A-ZÄƏÖƟÜİŞÇÑĞ]/u', 'u', $tmp, $this->currentWordTargetLetterCase
+					);
+					// $this -> replaceIntoArray(
+						// '/[еёяюцщ]/u', 'll', $words[$i], $this->currentWordTargetLetterCase);
+					// $this -> replaceIntoArray(
+						// '/[ЕЁЯЮЦЩ]/u', 'ul', $words[$i], $this->currentWordTargetLetterCase);
+					// $this -> replaceIntoArray(
+						// '/[ьЬъЪ]/u', '', $words[$i], $this->currentWordTargetLetterCase);
+					ksort( $this->currentWordTargetLetterCase );
+					$this->currentWordTargetLetterCase = implode(
+						$this->currentWordTargetLetterCase );
+				}
+				$words[$i] = $this->toLower( $words[$i] );
+				$words[$i] = $this->convertTatarWordFromLatinToCyrillic( $words[$i] );
+				// $words[$i] = implode( $this->currentWordTargetLetterCase ); // uncomment
+					// to see target cases
+				if ( $this->currentWordCapitalisationType == 'FC' ) {
+					$words[$i] =
+						mb_strtoupper( mb_substr( $words[$i], 0, 1 ) )
+						. mb_substr( $words[$i], 1 );
+				} elseif ( $this->currentWordCapitalisationType == 'OC' ) {
+					$words[$i] = mb_strtoupper( $words[$i] );
+					// if ( mb_strlen( $words[$i] ) == 1 ){
+						// $words[$i] = mb_strtoupper( $words[$i] );
+					// }else{
+						// $words[$i] =
+							// mb_strtoupper( mb_substr( $words[$i], 0, 1 ) )
+							// . mb_substr( $words[$i], 1 );
+					// }
+				// } elseif( $this->currentWordCapitalisationType == 'AC' ){
+					// $words[$i] = $this -> toUpper( $words[$i] );
+				} elseif ( $this->currentWordCapitalisationType == '' ) {
+					$targetLength = mb_strlen( $this->currentWordTargetLetterCase );
+					$targetWord = '';
+					for ( $j = 0; $j < $targetLength; $j++ ) {
+						$letter = mb_substr( $words[$i], $j, 1 );
+						if ( mb_substr( $this->currentWordTargetLetterCase, $j, 1 ) == 'u' ) {
+							if( $letter=='е' && $j > 0 ){
+								$letter='э'; // ЕРЭ
+							}
+							$targetWord .= mb_strtoupper( $letter );
+						} else {
+							$targetWord .= $letter;
+						}
+					}
+					$words[$i] = $targetWord;
+				}
+				// $words[$i]=$this->currentWordCapitalisationType.$words[$i];
+				$this->currentWordTargetLetterCase = array();
+			}// i
+			$text = join( $words );
+		} elseif ( $toVariant == 'tt-latn' ) {
+			// separating -{XINHUA}-s is not needed, they are already replaced with 00 bytes.
+			// $words = preg_split( '/\b/u', $text );
+			$words = preg_split(
+				'/(?<![А-ЯЁӘӨҮҖҢҺа-яёәөүҗңһ])(?=[А-ЯЁӘӨҮҖҢҺа-яёәөүҗңһ])|'.
+				'(?<=[А-ЯЁӘӨҮҖҢҺа-яёәөүҗңһ])(?![А-ЯЁӘӨҮҖҢҺа-яёәөүҗңһ])/u',
+				$text );
+			$wordsCount = count( $words );
+			$this->currentWordTargetLetterCase = array();
+			for ( $i = 0; $i < $wordsCount; $i++ ) { // this should be optimised with using i+=2
+				if ( 0 === preg_match( '/[А-ЯЁӘӨҮҖҢҺа-яёәөүҗңһ]/u', $words[$i] ) ){
+					continue; // no cyrillic
+				}
+				/*
+				} elseif ( preg_match( '/^[А-ЯЁӘӨҮҖҢҺ][а-яёәөүҗңһ]+$/u', $words[$i] ) ){
+					$this->currentWordCapitalisationType = 'FC'; // first capital
+				} elseif ( preg_match( '/^[а-яёәөүҗңһ\']+$/u', $words[$i] ) ){
+					$this->currentWordCapitalisationType = 'AL'; // all low
+				} elseif ( preg_match( '/^[А-ЯЁӘӨҮҖҢҺ]$/u', $words[$i] ) ){
+					$this->currentWordCapitalisationType = 'OC'; // only 1 letter
+						// and it is upper/capital
+				// }elseif (
+					// i comment this out because style of writing all with upper case while
+					// it is not an abbreviation is probably not used in wikipedia
+					// preg_match( '/^[А-ЯЁӘӨҮҖҢҺ]{2,}$/u', $words[$i] )
+					// && 0===preg_match( '/^ЕРЭ$/u', $words[$i] )
+				// ){
+					// $this->currentWordCapitalisationType = 'AC';// all upper/capital
+				} else {
+					$this->currentWordCapitalisationType = '';
+					// $this->currentWordTargetLetterCase = array();
+					$this->replaceIntoArray(
+						'/[а-хчшыьэәөүҗңһ]/u', 'l', $words[$i],
+						$this->currentWordTargetLetterCase );
+						// digits also need not to be capitalised
+					$this->replaceIntoArray(
+						'/[А-ХЧШЫЬЭӘӨҮҖҢҺ]/u', 'u', $words[$i],
+						$this->currentWordTargetLetterCase
+					);
+					$this->replaceIntoArray(
+						'/[ёяюцщ]/u', 'll', $words[$i], $this->currentWordTargetLetterCase );
+					$this->replaceIntoArray(
+						'/[ЁЯЮЦЩ]/u', 'ul', $words[$i], $this->currentWordTargetLetterCase );
+					$this->replaceIntoArray(
+						'/[ъЪ]/u', '', $words[$i], $this->currentWordTargetLetterCase );
+					ksort( $this->currentWordTargetLetterCase );
+					// $this->currentWordTargetLetterCase = implode(
+						// $this->currentWordTargetLetterCase );
+				}
+				*/
+				// $words[$i] = $this->toLower( $words[$i] );
+				$words[$i] = $this->convertTatarWordFromCyrillicToLatin( $words[$i] );
+				/*
+				$this->currentWordTargetLetterCase = implode(
+					$this->currentWordTargetLetterCase );
+				// $words[$i] = implode( $this->currentWordTargetLetterCase ); // uncomment
+					// to see target cases
+				if ( $this->currentWordCapitalisationType == 'FC' ) {
+					$words[$i] =
+						$this->toUpper( mb_substr( $words[$i], 0, 1 ) )
+						. mb_substr( $words[$i], 1 );
+				} elseif ( $this->currentWordCapitalisationType == 'OC' ) {
+					if ( mb_strlen( $words[$i] ) == 1 ) {
+						$words[$i] = $this->toUpper( $words[$i] );
+					} else {
+						$words[$i] =
+							$this->toUpper( mb_substr( $words[$i], 0, 1 ) )
+							. mb_substr( $words[$i], 1 );
+					}
+				// }elseif( $this->currentWordCapitalisationType == 'AC' ){
+					// $words[$i] = $this -> toUpper( $words[$i] );
+				} elseif ( $this->currentWordCapitalisationType == '' ){
+					$targetLength = mb_strlen( $this->currentWordTargetLetterCase )+3;
+					$targetWord = '';
+					for ( $j = 0; $j < $targetLength; $j++ ) {
+						$letter = mb_substr( $words[$i], $j, 1 );
+						if ( mb_substr( $this->currentWordTargetLetterCase, $j, 1 ) == 'u' ){
+							$targetWord .= $this->toUpper( $letter );
+						} else {
+							$targetWord .= $letter;
+						}
+					}
+					$words[$i] = $targetWord;
+				}
+				// $words[$i]=$this->currentWordCapitalisationType.$words[$i];
+				$this->currentWordTargetLetterCase = array();
+				*/
+			}// i
+			$text = join( $words );
+			/* // alternative way with using "preg_replace_callback"s
+			// in "convertTatarFromCyrillicToLatin" function
+			// like this:
+			// $text = preg_replace_callback(
+				// '/к(?=арав|амаз)/ui',
+				// function($m){return $m[0]=='к'?'k':'K';},
+				// $text
+			// );
+			// $text = preg_replace_callback(
+				// '/г(?=[аыуъ])/ui',
+				// function($m){return $m[0]=='г'?'ğ':'Ğ';},
+				// $text
+			// );
+			$words = preg_split( '/\b/u', $text );
+			$wordsCount = count($words);
+			for ( $i=0; $i<$wordsCount; $i++ ){
+				if ( 0===preg_match( '/[А-ЯЁӘӨҮҖҢҺ]/ui', $words[$i] ) ){
+					continue; // no cyrillic
+				}
+				$words[$i] = $this -> convertTatarFromCyrillicToLatin2( $words[$i] );
+			}
+			$text=join( $words );*/
+			// return parent::translate( $text, $toVariant );
+		}
+		// $text=str_replace('\'','0', $text );
+		// $text=htmlspecialchars($text );
+		// $text='***'.$text.'***';
+		// file_put_contents('x.txt', $text );
+		// $logfileqdb=fopen('x.txt','a');
+		// fwrite($logfileqdb,$text );
+		return $text;
+	}
+
+	function saveCaseOfCyrillicWord( &$text ) {
+		if ( preg_match( '/^[А-ЯЁӘӨҮҖҢҺ][а-яёәөүҗңһ]+$/u', $text ) ){
+			$this->currentWordCapitalisationType = 'FC'; // first capital
+		} elseif ( preg_match( '/^[а-яёәөүҗңһ\']+$/u', $text ) ){
+			$this->currentWordCapitalisationType = 'AL'; // all low
+		} elseif ( preg_match( '/^[А-ЯЁӘӨҮҖҢҺ]$/u', $text ) ){
+			$this->currentWordCapitalisationType = 'OC'; // only 1 letter
+				// and it is upper/capital
+		} else {
+			$this->currentWordCapitalisationType = '';
+			// $this->currentWordTargetLetterCase = array();
+			$this->replaceIntoArray(
+				'/[а-хчшыьэәөүҗңһ]/u', 'l', $text,
+				$this->currentWordTargetLetterCase );
+				// digits also need not to be capitalised
+			$this->replaceIntoArray(
+				'/[А-ХЧШЫЬЭӘӨҮҖҢҺ]/u', 'u', $text,
+				$this->currentWordTargetLetterCase
+			);
+			$this->replaceIntoArray(
+				'/[ёяюцщ]/u', 'll', $text, $this->currentWordTargetLetterCase );
+			$this->replaceIntoArray(
+				'/[ЁЯЮЦЩ]/u', 'ul', $text, $this->currentWordTargetLetterCase );
+			$this->replaceIntoArray(
+				'/[ъЪ]/u', '', $text, $this->currentWordTargetLetterCase );
+			ksort( $this->currentWordTargetLetterCase );
+			// $this->currentWordTargetLetterCase = implode(
+				// $this->currentWordTargetLetterCase );
+		}
+	}
+
+	function returnCaseOfCyrillicWord( &$text ) {
+		$this->currentWordTargetLetterCase = implode(
+			$this->currentWordTargetLetterCase );
+		// $words[$i] = implode( $this->currentWordTargetLetterCase ); // uncomment
+			// to see target cases
+		if ( $this->currentWordCapitalisationType == 'FC' ) {
+			$text =
+				$this->toUpper( mb_substr( $text, 0, 1 ) )
+				. mb_substr( $text, 1 );
+		} elseif ( $this->currentWordCapitalisationType == 'OC' ) {
+			if ( mb_strlen( $text ) == 1 ) {
+				$text = $this->toUpper( $text );
+			} else {
+				$text =
+					$this->toUpper( mb_substr( $text, 0, 1 ) )
+					. mb_substr( $text, 1 );
+			}
+		// }elseif( $this->currentWordCapitalisationType == 'AC' ){
+			// $text = $this -> toUpper( $text );
+		} elseif ( $this->currentWordCapitalisationType == '' ){
+			$targetLength = mb_strlen( $this->currentWordTargetLetterCase )+3;
+			$targetWord = '';
+			for ( $j = 0; $j < $targetLength; $j++ ) {
+				$letter = mb_substr( $text, $j, 1 );
+				if ( mb_substr( $this->currentWordTargetLetterCase, $j, 1 ) == 'u' ){
+					$targetWord .= $this->toUpper( $letter );
+				} else {
+					$targetWord .= $letter;
+				}
+			}
+			$text = $targetWord;
+		}
+		// $text=$this->currentWordCapitalisationType.$text;
+		$this->currentWordTargetLetterCase = array();
+	}
+}
+
+/**
+ * Tatar
+ *
+ * @ingroup Language
+ */
+class LanguageTt extends Language {
+	function __construct() {
+		global $wgHooks;
+		parent::__construct();
+
+		$variants = array( 'tt', 'tt-latn', 'tt-cyrl' );
+		$variantfallbacks = array(
+			'tt' => 'tt-latn',
+			'tt-cyrl' => 'tt',
+			'tt-latn' => 'tt',
+		);
+
+		$this->mConverter = new TtConverter( $this, 'tt', $variants, $variantfallbacks );
+		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
+	}
+}
