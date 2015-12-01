@@ -948,8 +948,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 					$inv = array( $inv );
 				}
 				foreach ( $inv as $table ) {
-					$update = new HTMLCacheUpdate( $this->mTitle, $table );
-					$update->doUpdate();
+					DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this->mTitle, $table ) );
 				}
 			}
 		}

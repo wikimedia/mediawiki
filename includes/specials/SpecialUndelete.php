@@ -636,8 +636,7 @@ class PageArchive {
 		Hooks::run( 'ArticleUndelete', array( &$this->title, $created, $comment, $oldPageId ) );
 
 		if ( $this->title->getNamespace() == NS_FILE ) {
-			$update = new HTMLCacheUpdate( $this->title, 'imagelinks' );
-			$update->doUpdate();
+			DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this->title, 'imagelinks' ) );
 		}
 
 		return Status::newGood( $restored );
