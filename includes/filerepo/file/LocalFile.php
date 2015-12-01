@@ -879,7 +879,10 @@ class LocalFile extends File {
 		$this->purgeThumbnails( $options );
 
 		// Purge squid cache for this file
-		SquidUpdate::purge( array( $this->getURL() ) );
+		DeferredUpdates::addUpdate(
+			new SquidUpdate( array( $this->getUrl() ) ),
+			DeferredUpdates::PRESEND
+		);
 	}
 
 	/**
@@ -887,8 +890,6 @@ class LocalFile extends File {
 	 * @param string $archiveName Name of the archived file
 	 */
 	function purgeOldThumbnails( $archiveName ) {
-		global $wgUseSquid;
-
 		// Get a list of old thumbnails and URLs
 		$files = $this->getThumbnails( $archiveName );
 
@@ -899,14 +900,11 @@ class LocalFile extends File {
 		$this->purgeThumbList( $dir, $files );
 
 		// Purge the squid
-		if ( $wgUseSquid ) {
-			$urls = array();
-			foreach ( $files as $file ) {
-				$urls[] = $this->getArchiveThumbUrl( $archiveName, $file );
-			}
-			SquidUpdate::purge( $urls );
+		$urls = array();
+		foreach ( $files as $file ) {
+			$urls[] = $this->getArchiveThumbUrl( $archiveName, $file );
 		}
-
+		DeferredUpdates::addUpdate( new SquidUpdate( $urls ), DeferredUpdates::PRESEND );
 	}
 
 	/**
@@ -914,18 +912,14 @@ class LocalFile extends File {
 	 * @param array $options
 	 */
 	public function purgeThumbnails( $options = array() ) {
-		global $wgUseSquid;
-
 		// Delete thumbnails
 		$files = $this->getThumbnails();
 		// Always purge all files from squid regardless of handler filters
 		$urls = array();
-		if ( $wgUseSquid ) {
-			foreach ( $files as $file ) {
-				$urls[] = $this->getThumbUrl( $file );
-			}
-			array_shift( $urls ); // don't purge directory
+		foreach ( $files as $file ) {
+			$urls[] = $this->getThumbUrl( $file );
 		}
+		array_shift( $urls ); // don't purge directory
 
 		// Give media handler a chance to filter the file purge list
 		if ( !empty( $options['forThumbRefresh'] ) ) {
@@ -942,10 +936,7 @@ class LocalFile extends File {
 		$this->purgeThumbList( $dir, $files );
 
 		// Purge the squid
-		if ( $wgUseSquid ) {
-			SquidUpdate::purge( $urls );
-		}
-
+		DeferredUpdates::addUpdate( new SquidUpdate( $urls ), DeferredUpdates::PRESEND );
 	}
 
 	/**
@@ -1444,7 +1435,10 @@ class LocalFile extends File {
 				# Delete old thumbnails
 				$that->purgeThumbnails();
 				# Remove the old file from the squid cache
-				SquidUpdate::purge( array( $that->getURL() ) );
+				DeferredUpdates::addUpdate(
+					new SquidUpdate( array( $that->getUrl() ) ),
+					DeferredUpdates::PRESEND
+				);
 			} else {
 				# Update backlink pages pointing to this title if created
 				LinksUpdate::queueRecursiveJobsForTable( $that->getTitle(), 'imagelinks' );
@@ -1631,23 +1625,19 @@ class LocalFile extends File {
 		$that = $this;
 		$this->getRepo()->getMasterDB()->onTransactionIdle(
 			function () use ( $that, $archiveNames ) {
-				global $wgUseSquid;
-
 				$that->purgeEverything();
 				foreach ( $archiveNames as $archiveName ) {
 					$that->purgeOldThumbnails( $archiveName );
 				}
-
-				if ( $wgUseSquid ) {
-					// Purge the squid
-					$purgeUrls = array();
-					foreach ( $archiveNames as $archiveName ) {
-						$purgeUrls[] = $that->getArchiveUrl( $archiveName );
-					}
-					SquidUpdate::purge( $purgeUrls );
-				}
 			}
 		);
+
+		// Purge the squid
+		$purgeUrls = array();
+		foreach ( $archiveNames as $archiveName ) {
+			$purgeUrls[] = $this->getArchiveUrl( $archiveName );
+		}
+		DeferredUpdates::addUpdate( new SquidUpdate( $purgeUrls ), DeferredUpdates::PRESEND );
 
 		return $status;
 	}
@@ -1668,7 +1658,6 @@ class LocalFile extends File {
 	 * @return FileRepoStatus
 	 */
 	function deleteOld( $archiveName, $reason, $suppress = false, $user = null ) {
-		global $wgUseSquid;
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
 		}
@@ -1685,10 +1674,10 @@ class LocalFile extends File {
 			$this->purgeDescription();
 		}
 
-		if ( $wgUseSquid ) {
-			// Purge the squid
-			SquidUpdate::purge( array( $this->getArchiveUrl( $archiveName ) ) );
-		}
+		DeferredUpdates::addUpdate(
+			new SquidUpdate( array( $this->getArchiveUrl( $archiveName ) ) ),
+			DeferredUpdates::PRESEND
+		);
 
 		return $status;
 	}

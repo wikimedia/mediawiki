@@ -108,16 +108,18 @@ class RevDelFileList extends RevDelList {
 		$file = wfLocalFile( $this->title );
 		$file->purgeCache();
 		$file->purgeDescription();
+
+		// Purge full images from cache
 		$purgeUrls = array();
 		foreach ( $this->ids as $timestamp ) {
 			$archiveName = $timestamp . '!' . $this->title->getDBkey();
 			$file->purgeOldThumbnails( $archiveName );
 			$purgeUrls[] = $file->getArchiveUrl( $archiveName );
 		}
-		if ( $this->getConfig()->get( 'UseSquid' ) ) {
-			// purge full images from cache
-			SquidUpdate::purge( $purgeUrls );
-		}
+		DeferredUpdates::addUpdate(
+			new SquidUpdate( $purgeUrls ),
+			DeferredUpdates::PRESEND
+		);
 
 		return Status::newGood();
 	}
