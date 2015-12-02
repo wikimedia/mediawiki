@@ -115,6 +115,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	const FLD_TTL = 2;
 	const FLD_TIME = 3;
 	const FLD_FLAGS = 4;
+	const FLD_HOLDOFF = 5;
 
 	/** @var integer Treat this value as expired-on-arrival */
 	const FLG_STALE = 1;
@@ -232,18 +233,18 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$vPrefixLen = strlen( self::VALUE_KEY_PREFIX );
 		$valueKeys = self::prefixCacheKeys( $keys, self::VALUE_KEY_PREFIX );
 
-		$checksForAll = array();
-		$checksByKey = array();
+		$checkKeysForAll = array();
+		$checkKeysByKey = array();
 		$checkKeysFlat = array();
 		foreach ( $checkKeys as $i => $keys ) {
 			$prefixed = self::prefixCacheKeys( (array)$keys, self::TIME_KEY_PREFIX );
 			$checkKeysFlat = array_merge( $checkKeysFlat, $prefixed );
 			// Is this check keys for a specific cache key, or for all keys being fetched?
 			if ( is_int( $i ) ) {
-				$checksForAll = array_merge( $checksForAll, $prefixed );
+				$checkKeysForAll = array_merge( $checkKeysForAll, $prefixed );
 			} else {
-				$checksByKey[$i] = isset( $checksByKey[$i] )
-					? array_merge( $checksByKey[$i], $prefixed )
+				$checkKeysByKey[$i] = isset( $checkKeysByKey[$i] )
+					? array_merge( $checkKeysByKey[$i], $prefixed )
 					: $prefixed;
 			}
 		}
@@ -253,10 +254,10 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$now = microtime( true );
 
 		// Collect timestamps from all "check" keys
-		$checkKeyTimesForAll = $this->processCheckKeys( $checksForAll, $wrappedValues, $now );
-		$checkKeyTimesByKey = array();
-		foreach ( $checksByKey as $cacheKey => $checks ) {
-			$checkKeyTimesByKey[$cacheKey] =
+		$purgeValuesForAll = $this->processCheckKeys( $checkKeysForAll, $wrappedValues, $now );
+		$purgeValuesByKey = array();
+		foreach ( $checkKeysByKey as $cacheKey => $checks ) {
+			$purgeValuesByKey[$cacheKey] =
 				$this->processCheckKeys( $checks, $wrappedValues, $now );
 		}
 
@@ -274,14 +275,14 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 				// Force dependant keys to be invalid for a while after purging
 				// to reduce race conditions involving stale data getting cached
-				$checkKeyTimes = $checkKeyTimesForAll;
-				if ( isset( $checkKeyTimesByKey[$key] ) ) {
-					$checkKeyTimes = array_merge( $checkKeyTimes, $checkKeyTimesByKey[$key] );
+				$purgeValues = $purgeValuesForAll;
+				if ( isset( $purgeValuesByKey[$key] ) ) {
+					$purgeValues = array_merge( $purgeValues, $purgeValuesByKey[$key] );
 				}
-				foreach ( $checkKeyTimes as $checkKeyTime ) {
-					$safeTimestamp = $checkKeyTime + self::HOLDOFF_TTL;
+				foreach ( $purgeValues as $purge ) {
+					$safeTimestamp = $purge[self::FLD_TIME] + $purge[self::FLD_HOLDOFF];
 					if ( $safeTimestamp >= $wrappedValues[$vKey][self::FLD_TIME] ) {
-						$curTTL = min( $curTTL, $checkKeyTime - $now );
+						$curTTL = min( $curTTL, $purge[self::FLD_TIME] - $now );
 					}
 				}
 			}
@@ -296,22 +297,25 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param array $timeKeys List of prefixed time check keys
 	 * @param array $wrappedValues
 	 * @param float $now
-	 * @return array List of timestamps
+	 * @return array List of purge value arrays
 	 */
 	private function processCheckKeys( array $timeKeys, array $wrappedValues, $now ) {
-		$times = array();
+		$purgeValues = array();
 		foreach ( $timeKeys as $timeKey ) {
-			$timestamp = isset( $wrappedValues[$timeKey] )
+			$purge = isset( $wrappedValues[$timeKey] )
 				? self::parsePurgeValue( $wrappedValues[$timeKey] )
 				: false;
-			if ( !is_float( $timestamp ) ) {
+			if ( $purge === false ) {
 				// Key is not set or invalid; regenerate
-				$this->cache->add( $timeKey, self::PURGE_VAL_PREFIX . $now, self::CHECK_KEY_TTL );
-				$timestamp = $now;
+				$this->cache->add( $timeKey,
+					$this->makePurgeValue( $now, self::HOLDOFF_TTL ),
+					self::CHECK_KEY_TTL
+				);
+				$purge = array( self::FLD_TIME => $now, self::FLD_HOLDOFF => self::HOLDOFF_TTL );
 			}
-			$times[] = $timestamp;
+			$purgeValues[] = $purge;
 		}
-		return $times;
+		return $purgeValues;
 	}
 
 	/**
@@ -479,9 +483,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			$ok = $this->relayDelete( $key ) && $ok;
 		} else {
 			// Update the local datacenter immediately
-			$ok = $this->cache->set( $key, self::PURGE_VAL_PREFIX . microtime( true ), $ttl );
+			$ok = $this->cache->set( $key,
+				$this->makePurgeValue( microtime( true ), self::HOLDOFF_NONE ),
+				$ttl
+			);
 			// Publish the purge to all datacenters
-			$ok = $this->relayPurge( $key, $ttl ) && $ok;
+			$ok = $this->relayPurge( $key, $ttl, self::HOLDOFF_NONE ) && $ok;
 		}
 
 		return $ok;
@@ -504,17 +511,22 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * Note that "check" keys won't collide with other regular keys.
 	 *
 	 * @param string $key
-	 * @return float UNIX timestamp of the key
+	 * @return float UNIX timestamp of the check key
 	 */
 	final public function getCheckKeyTime( $key ) {
 		$key = self::TIME_KEY_PREFIX . $key;
 
-		$time = self::parsePurgeValue( $this->cache->get( $key ) );
-		if ( $time === false ) {
+		$purge = self::parsePurgeValue( $this->cache->get( $key ) );
+		if ( $purge !== false ) {
+			$time = $purge[self::FLD_TIME];
+		} else {
 			// Casting assures identical floats for the next getCheckKeyTime() calls
-			$time = (string)microtime( true );
-			$this->cache->add( $key, self::PURGE_VAL_PREFIX . $time, self::CHECK_KEY_TTL );
-			$time = (float)$time;
+			$now = (string)microtime( true );
+			$this->cache->add( $key,
+				$this->makePurgeValue( $now, self::HOLDOFF_TTL ),
+				self::CHECK_KEY_TTL
+			);
+			$time = (float)$now;
 		}
 
 		return $time;
@@ -554,9 +566,11 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$key = self::TIME_KEY_PREFIX . $key;
 		// Update the local datacenter immediately
 		$ok = $this->cache->set( $key,
-			self::PURGE_VAL_PREFIX . microtime( true ), self::CHECK_KEY_TTL );
+			$this->makePurgeValue( microtime( true ), self::HOLDOFF_TTL ),
+			self::CHECK_KEY_TTL
+		);
 		// Publish the purge to all datacenters
-		return $this->relayPurge( $key, self::CHECK_KEY_TTL ) && $ok;
+		return $this->relayPurge( $key, self::CHECK_KEY_TTL, self::HOLDOFF_TTL ) && $ok;
 	}
 
 	/**
@@ -904,17 +918,18 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/**
 	 * Do the actual async bus purge of a key
 	 *
-	 * This must set the key to "PURGED:<UNIX timestamp>"
+	 * This must set the key to "PURGED:<UNIX timestamp>:<holdoff>"
 	 *
 	 * @param string $key Cache key
 	 * @param integer $ttl How long to keep the tombstone [seconds]
+	 * @param holdoff $ttl HOLDOFF_* constant controlling how long to ignore sets for this key
 	 * @return bool Success
 	 */
-	protected function relayPurge( $key, $ttl ) {
+	protected function relayPurge( $key, $ttl, $holdoff ) {
 		$event = $this->cache->modifySimpleRelayEvent( array(
 			'cmd' => 'set',
 			'key' => $key,
-			'val' => 'PURGED:$UNIXTIME$',
+			'val' => 'PURGED:$UNIXTIME$:' . (int)$holdoff,
 			'ttl' => max( $ttl, 1 ),
 			'sbt' => true, // substitute $UNIXTIME$ with actual microtime
 		) );
@@ -996,10 +1011,10 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	protected function unwrap( $wrapped, $now ) {
 		// Check if the value is a tombstone
-		$purgeTimestamp = self::parsePurgeValue( $wrapped );
-		if ( is_float( $purgeTimestamp ) ) {
+		$purge = self::parsePurgeValue( $wrapped );
+		if ( $purge !== false ) {
 			// Purged values should always have a negative current $ttl
-			$curTTL = min( $purgeTimestamp - $now, self::TINY_NEGATIVE );
+			$curTTL = min( $purge[self::FLD_TIME] - $now, self::TINY_NEGATIVE );
 			return array( false, $curTTL );
 		}
 
@@ -1042,17 +1057,36 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * @param string $value String like "PURGED:<timestamp>"
-	 * @return float|bool UNIX timestamp or false on failure
+	 * @param string $value Wrapped value like "PURGED:<timestamp>:<holdoff>"
+	 * @return array|bool Array containing a UNIX timestamp (float) and holdoff period (integer),
+	 *  or false if value isn't a valid purge value
 	 */
 	protected static function parsePurgeValue( $value ) {
-		$m = array();
-		if ( is_string( $value ) &&
-			preg_match( '/^' . self::PURGE_VAL_PREFIX . '([^:]+)$/', $value, $m )
-		) {
-			return (float)$m[1];
-		} else {
+		if ( !is_string( $value ) ) {
 			return false;
 		}
+		$segments = explode( ':', $value, 3 );
+		if ( !isset( $segments[0] ) || !isset( $segments[1] )
+			|| "{$segments[0]}:" !== self::PURGE_VAL_PREFIX
+		) {
+			return false;
+		}
+		if ( !isset( $segments[2] ) ) {
+			// Back-compat with old purge values without holdoff
+			$segments[2] = self::HOLDOFF_TTL;
+		}
+		return array(
+			self::FLD_TIME => (float)$segments[1],
+			self::FLD_HOLDOFF => (int)$segments[2],
+		);
+	}
+
+	/**
+	 * @param float $timestamp
+	 * @param int $holdoff In seconds
+	 * @return string Wrapped purge value
+	 */
+	protected static function makePurgeValue( $timestamp, $holdoff ) {
+		return self::PURGE_VAL_PREFIX . (float)$timestamp . ':' . (int)$holdoff;
 	}
 }
