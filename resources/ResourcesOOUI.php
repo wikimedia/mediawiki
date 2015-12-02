@@ -36,6 +36,7 @@ return call_user_func( function () {
 	$modules['oojs-ui'] = array(
 		'scripts' => array(
 			'resources/lib/oojs-ui/oojs-ui.js',
+			'resources/src/oojs-ui-local.js',
 		),
 		'skinScripts' => array_combine(
 			array_keys( $themes ),
@@ -51,6 +52,7 @@ return call_user_func( function () {
 			'oojs-ui.styles.icons',
 			'oojs-ui.styles.indicators',
 			'oojs-ui.styles.textures',
+			'mediawiki.language',
 		),
 		'messages' => array(
 			'ooui-dialog-message-accept',
