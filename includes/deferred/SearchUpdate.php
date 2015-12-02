@@ -38,6 +38,9 @@ class SearchUpdate implements DeferrableUpdate {
 	/** @var Content|bool Content of the page (not text) */
 	private $content;
 
+	/** @var WikiPage **/
+	private $page;
+
 	/**
 	 * Constructor
 	 *
@@ -78,8 +81,6 @@ class SearchUpdate implements DeferrableUpdate {
 			return;
 		}
 
-		$page = WikiPage::newFromID( $this->id, WikiPage::READ_LATEST );
-
 		foreach ( SearchEngine::getSearchTypes() as $type ) {
 			$search = SearchEngine::create( $type );
 			if ( !$search->supports( 'search-update' ) ) {
@@ -88,7 +89,7 @@ class SearchUpdate implements DeferrableUpdate {
 
 			$normalTitle = $this->getNormalizedTitle( $search );
 
-			if ( $page === null ) {
+			if ( $this->getLatestPage() === null ) {
 				$search->delete( $this->id, $normalTitle );
 				continue;
 			} elseif ( $this->content === false ) {
@@ -170,6 +171,23 @@ class SearchUpdate implements DeferrableUpdate {
 		$text = preg_replace( "/''[']*/", " ", $text );
 
 		return $text;
+	}
+
+	/**
+	 * Get WikiPage for the SearchUpdate $id using WikiPage::READ_LATEST
+	 * and ensure using the same WikiPage object if there are multiple
+	 * SearchEngine types.
+	 *
+	 * Returns null if a page has been deleted or is not found.
+	 *
+	 * @return WikiPage|null
+	 */
+	private function getLatestPage() {
+		if ( !isset( $this->page ) ) {
+			$this->page = WikiPage::newFromID( $this->id, WikiPage::READ_LATEST );
+		}
+
+		return $this->page;
 	}
 
 	/**
