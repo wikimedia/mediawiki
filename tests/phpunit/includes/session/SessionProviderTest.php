@@ -174,4 +174,22 @@ class SessionProviderTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function testGetAllowedUserRights() {
+		$provider = $this->getMockForAbstractClass( 'MediaWiki\\Session\\SessionProvider' );
+		$backend = TestUtils::getDummySessionBackend();
+
+		try {
+			$provider->getAllowedUserRights( $backend );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( \InvalidArgumentException $ex ) {
+			$this->assertSame(
+				'Backend\'s provider isn\'t $this',
+				$ex->getMessage()
+			);
+		}
+
+		\TestingAccessWrapper::newFromObject( $backend )->provider = $provider;
+		$this->assertNull( $provider->getAllowedUserRights( $backend ) );
+	}
+
 }

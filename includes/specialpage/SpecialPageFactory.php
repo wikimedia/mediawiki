@@ -96,6 +96,7 @@ class SpecialPageFactory {
 		'ResetTokens' => 'SpecialResetTokens',
 		'Contributions' => 'SpecialContributions',
 		'Listgrouprights' => 'SpecialListGroupRights',
+		'Listgrants' => 'SpecialListGrants',
 		'Listusers' => 'SpecialListUsers',
 		'Listadmins' => 'SpecialListAdmins',
 		'Listbots' => 'SpecialListBots',
