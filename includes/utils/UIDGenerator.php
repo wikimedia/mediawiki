@@ -37,6 +37,7 @@ class UIDGenerator {
 
 	protected $lockFile88; // string; local file path
 	protected $lockFile128; // string; local file path
+	protected $lockFileUUID; // string; local file path
 
 	/** @var array */
 	protected $fileHandles = array(); // cache file handles
@@ -79,6 +80,7 @@ class UIDGenerator {
 		// This is dealt with by initializing the clock sequence number and counters randomly.
 		$this->lockFile88 = wfTempDir() . '/mw-' . __CLASS__ . '-UID-88';
 		$this->lockFile128 = wfTempDir() . '/mw-' . __CLASS__ . '-UID-128';
+		$this->lockFileUUID = wfTempDir() . '/mw-' . __CLASS__ . '-UUID-128';
 	}
 
 	/**
@@ -114,18 +116,25 @@ class UIDGenerator {
 		Assert::parameter( $base >= 2, '$base', 'must be >= 2' );
 
 		$gen = self::singleton();
-		$time = $gen->getTimestampAndDelay( 'lockFile88', 1, 1024 );
-
-		return Wikimedia\base_convert( $gen->getTimestampedID88( $time ), 2, $base );
+		$info = $gen->getTimeAndDelay( 'lockFile88', 1, 1024, 1024 );
+		$info['offsetCounter'] = $info['offsetCounter'] % 1024;
+		return Wikimedia\base_convert( $gen->getTimestampedID88( $info ), 2, $base );
 	}
 
 	/**
-	 * @param array $info (UIDGenerator::millitime(), counter, clock sequence)
+	 * @param array $info The result of UIDGenerator::getTimeAndDelay() or
+	 *  a plain (UIDGenerator::millitime(), counter, clock sequence) array.
 	 * @return string 88 bits
 	 * @throws RuntimeException
 	 */
 	protected function getTimestampedID88( array $info ) {
-		list( $time, $counter ) = $info;
+		if ( isset( $info['time'] ) ) {
+			$time = $info['time'];
+			$counter = $info['offsetCounter'];
+		} else {
+			$time = $info[0];
+			$counter = $info[1];
+		}
 		// Take the 46 MSBs of "milliseconds since epoch"
 		$id_bin = $this->millisecondsSinceEpochBinary( $time );
 		// Add a 10 bit counter resulting in 56 bits total
@@ -160,19 +169,29 @@ class UIDGenerator {
 		Assert::parameter( $base >= 2, '$base', 'must be >= 2' );
 
 		$gen = self::singleton();
-		$time = $gen->getTimestampAndDelay( 'lockFile128', 16384, 1048576 );
+		$info = $gen->getTimeAndDelay( 'lockFile128', 16384, 1048576, 1048576 );
+		$info['offsetCounter'] = $info['offsetCounter'] % 1048576;
 
-		return Wikimedia\base_convert( $gen->getTimestampedID128( $time ), 2, $base );
+		return Wikimedia\base_convert( $gen->getTimestampedID128( $info ), 2, $base );
 	}
 
 	/**
-	 * @param array $info (UIDGenerator::millitime(), counter, clock sequence)
+	 * @param array $info The result of UIDGenerator::getTimeAndDelay() or
+	 *  a plain (UIDGenerator::millitime(), counter, clock sequence) array.
 	 * @return string 128 bits
 	 * @throws RuntimeException
 	 */
 	protected function getTimestampedID128( array $info ) {
-		list( $time, $counter, $clkSeq ) = $info;
-		// Take the 46 MSBs of "milliseconds since epoch"
+		if ( isset( $info['time'] ) ) {
+			$time = $info['time'];
+			$counter = $info['offsetCounter'];
+			$clkSeq = $info['clkSeq'];
+		} else {
+			$time = $info[0];
+			$counter = $info[1];
+			$clkSeq = $info[2];
+		}
+		// Take the 46 bits of "milliseconds since epoch"
 		$id_bin = $this->millisecondsSinceEpochBinary( $time );
 		// Add a 20 bit counter resulting in 66 bits total
 		$id_bin .= str_pad( decbin( $counter ), 20, '0', STR_PAD_LEFT );
@@ -186,6 +205,74 @@ class UIDGenerator {
 		}
 
 		return $id_bin;
+	}
+
+	/**
+	 * Return an RFC4122 compliant v1 UUID
+	 *
+	 * @return string
+	 * @throws RuntimeException
+	 * @since 1.27
+	 */
+	public static function newUUIDv1() {
+		$gen = self::singleton();
+		// There can be up to 10000 intervals for the same millisecond timestamp.
+		// [0,4999] counter + [0,5000] offset is in [0,9999] for the offset counter.
+		// Add this onto the timestamp to allow making up to 5000 IDs per second.
+		return $gen->getUUIDv1( $gen->getTimeAndDelay( 'lockFileUUID', 16384, 5000, 5001 ) );
+	}
+
+	/**
+	 * Return an RFC4122 compliant v1 UUID
+	 *
+	 * @return string 32 hex characters with no hyphens
+	 * @throws RuntimeException
+	 * @since 1.27
+	 */
+	public static function newRawUUIDv1() {
+		return str_replace( '-', '', self::newUUIDv1() );
+	}
+
+	/**
+	 * @param array $info Result of UIDGenerator::getTimeAndDelay()
+	 * @return string 128 bits
+	 */
+	protected function getUUIDv1( array $info ) {
+		$clkSeq_bin = Wikimedia\base_convert( $info['clkSeq'], 10, 2, 14 );
+		$time_bin = $this->intervalsSinceGregorianBinary( $info['time'], $info['offsetCounter'] );
+		// Take the 32 bits of "time low"
+		$id_bin = substr( $time_bin, 28, 32 );
+		// Add 16 bits of "time mid" resulting in 48 bits total
+		$id_bin .= substr( $time_bin, 12, 16 );
+		// Add 4 bit version resulting in 52 bits total
+		$id_bin .= '0001';
+		// Add 12 bits of "time high" resulting in 64 bits total
+		$id_bin .= substr( $time_bin, 0, 12 );
+		// Add 2 bits of "variant" resulting in 66 bits total
+		$id_bin .= '10';
+		// Add 6 bits of "clock seq high" resulting in 72 bits total
+		$id_bin .= substr( $clkSeq_bin, 0, 6 );
+		// Add 8 bits of "clock seq low" resulting in 80 bits total
+		$id_bin .= substr( $clkSeq_bin, 6, 8 );
+		// Add the 48 bit node ID resulting in 128 bits total
+		$id_bin .= $this->nodeId48;
+		// Convert to a 32 char hex string with dashes
+		if ( strlen( $id_bin ) !== 128 ) {
+			throw new RuntimeException( "Detected overflow for millisecond timestamp." );
+		}
+		$hex = Wikimedia\base_convert( $id_bin, 2, 16, 32 );
+		return sprintf( '%s-%s-%s-%s-%s',
+			// "time_low" (32 bits)
+			substr( $hex, 0, 8 ),
+			// "time_mid" (16 bits)
+			substr( $hex, 8, 4 ),
+			// "time_hi_and_version" (16 bits)
+			substr( $hex, 12, 4 ),
+			// "clk_seq_hi_res" (8 bits) and "clk_seq_low" (8 bits)
+			substr( $hex, 16, 4 ),
+			// "node" (48 bits)
+			substr( $hex, 20, 12 )
+		);
 	}
 
 	/**
@@ -207,7 +294,7 @@ class UIDGenerator {
 			substr( $hex, 8, 4 ),
 			// "time_hi_and_version" (16 bits)
 			'4' . substr( $hex, 12, 3 ),
-			// "clk_seq_hi_res (8 bits, variant is binary 10x) and "clk_seq_low" (8 bits)
+			// "clk_seq_hi_res" (8 bits, variant is binary 10x) and "clk_seq_low" (8 bits)
 			dechex( 0x8 | ( hexdec( $hex[15] ) & 0x3 ) ) . $hex[16] . substr( $hex, 17, 2 ),
 			// "node" (48 bits)
 			substr( $hex, 19, 12 )
@@ -345,14 +432,13 @@ class UIDGenerator {
 	 * @return array (result of UIDGenerator::millitime(), counter, clock sequence)
 	 * @throws RuntimeException
 	 */
-	protected function getTimestampAndDelay( $lockFile, $clockSeqSize, $counterSize ) {
+	protected function getTimeAndDelay( $lockFile, $clockSeqSize, $counterSize, $offsetSize ) {
 		// Get the UID lock file handle
-		$path = $this->$lockFile;
-		if ( isset( $this->fileHandles[$path] ) ) {
-			$handle = $this->fileHandles[$path];
+		if ( isset( $this->fileHandles[$lockFile] ) ) {
+			$handle = $this->fileHandles[$lockFile];
 		} else {
-			$handle = fopen( $path, 'cb+' );
-			$this->fileHandles[$path] = $handle ?: null; // cache
+			$handle = fopen( $this->$lockFile, 'cb+' );
+			$this->fileHandles[$lockFile] = $handle ?: null; // cache
 		}
 		// Acquire the UID lock file
 		if ( $handle === false ) {
@@ -387,7 +473,7 @@ class UIDGenerator {
 		} else { // last UID info not initialized
 			$clkSeq = mt_rand( 0, $clockSeqSize - 1 );
 			$counter = 0;
-			$offset = mt_rand( 0, $counterSize - 1 );
+			$offset = mt_rand( 0, $offsetSize - 1 );
 			$time = self::millitime();
 		}
 		// microtime() and gettimeofday() can drift from time() at least on Windows.
@@ -404,7 +490,7 @@ class UIDGenerator {
 			// Bump the clock sequence number and also randomize the counter offset,
 			// which is useful for UIDs that do not include the clock sequence number.
 			$clkSeq = ( $clkSeq + 1 ) % $clockSeqSize;
-			$offset = mt_rand( 0, $counterSize - 1 );
+			$offset = mt_rand( 0, $offsetSize - 1 );
 			trigger_error( "Clock was set back; sequence number incremented." );
 		}
 		// Update the (clock sequence number, timestamp, counter)
@@ -415,7 +501,13 @@ class UIDGenerator {
 		// Release the UID lock file
 		flock( $handle, LOCK_UN );
 
-		return array( $time, ( $counter + $offset ) % $counterSize, $clkSeq );
+		return array(
+			'time'          => $time,
+			'counter'       => $counter,
+			'clkSeq'        => $clkSeq,
+			'offset'        => $offset,
+			'offsetCounter' => $counter + $offset
+		);
 	}
 
 	/**
@@ -450,6 +542,36 @@ class UIDGenerator {
 		}
 
 		return substr( Wikimedia\base_convert( $ts, 10, 2, 46 ), -46 );
+	}
+
+	/**
+	 * @param array $time Result of UIDGenerator::millitime()
+	 * @param integer $delta Number of intervals to add on to the timestamp
+	 * @return string 60 bits of "100ns intervals since 15 October 1582" (rolls over in 3400)
+	 * @throws RuntimeException
+	 */
+	protected function intervalsSinceGregorianBinary( array $time, $delta = 0 ) {
+		list( $sec, $msec ) = $time;
+		$offset = '122192928000000000';
+		if ( PHP_INT_SIZE >= 8 ) { // 64 bit integers
+			$ts = ( 1000 * $sec + $msec ) * 10000 + $offset + $delta;
+			$id_bin = str_pad( decbin( $ts % pow( 2, 60 ) ), 60, '0', STR_PAD_LEFT );
+		} elseif ( extension_loaded( 'gmp' ) ) {
+			$ts = gmp_add( gmp_mul( (string) $sec, '1000' ), (string) $msec ); // ms
+			$ts = gmp_add( gmp_mul( $ts, '10000' ), $offset ); // 100ns intervals
+			$ts = gmp_add( $ts, (string) $delta );
+			$ts = gmp_mod( $ts, gmp_pow( '2', '60' ) ); // wrap around
+			$id_bin = str_pad( gmp_strval( $ts, 2 ), 60, '0', STR_PAD_LEFT );
+		} elseif ( extension_loaded( 'bcmath' ) ) {
+			$ts = bcadd( bcmul( $sec, 1000 ), $msec ); // ms
+			$ts = bcadd( bcmul( $ts, 10000 ), $offset ); // 100ns intervals
+			$ts = bcadd( $ts, $delta );
+			$ts = bcmod( $ts, bcpow( 2, 60 ) ); // wrap around
+			$id_bin = Wikimedia\base_convert( $ts, 10, 2, 60 );
+		} else {
+			throw new RuntimeException( 'bcmath or gmp extension required for 32 bit machines.' );
+		}
+		return $id_bin;
 	}
 
 	/**
