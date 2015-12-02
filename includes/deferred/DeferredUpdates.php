@@ -46,8 +46,6 @@ interface DeferrableUpdate {
 class DeferredUpdates {
 	/** @var DeferrableUpdate[] Updates to be deferred until the end of the request */
 	private static $updates = array();
-	/** @var bool Defer updates fully even in CLI mode */
-	private static $forceDeferral = false;
 
 	/**
 	 * Add an update to the deferred list
@@ -57,9 +55,6 @@ class DeferredUpdates {
 		global $wgCommandLineMode;
 
 		array_push( self::$updates, $update );
-		if ( self::$forceDeferral ) {
-			return;
-		}
 
 		// CLI scripts may forget to periodically flush these updates,
 		// so try to handle that rather than OOMing and losing them.
@@ -150,14 +145,5 @@ class DeferredUpdates {
 	 */
 	public static function clearPendingUpdates() {
 		self::$updates = array();
-	}
-
-	/**
-	 * @note This method is intended for testing purposes
-	 * @param bool $value Whether to *always* defer updates, even in CLI mode
-	 * @since 1.27
-	 */
-	public static function forceDeferral( $value ) {
-		self::$forceDeferral = $value;
 	}
 }
