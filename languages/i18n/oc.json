@@ -14,7 +14,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Xð"
 		]
 	},
 	"tog-underline": "Soslinhar los ligams :",
@@ -214,7 +215,7 @@
 	"viewhelppage": "Vejatz la pagina d'ajuda",
 	"categorypage": "Vejatz la pagina de las categorias",
 	"viewtalkpage": "Pagina de discussion",
-	"otherlanguages": "Autras lengas",
+	"otherlanguages": "En autras lengas",
 	"redirectedfrom": "(Redirigit dempuèi $1)",
 	"redirectpagesub": "Pagina de redireccion",
 	"redirectto": "Redirigir cap a :",
@@ -415,8 +416,6 @@
 	"createaccountreason": "Motiu :",
 	"createacct-reason": "Motiu",
 	"createacct-reason-ph": "Perqué creatz un autre compte",
-	"createacct-captcha": "Contraròtle de seguretat",
-	"createacct-imgcaptcha-ph": "Entratz lo tèxte que vesètz çaisús",
 	"createacct-submit": "Creatz vòstre compte",
 	"createacct-another-submit": "Crear un autre compte",
 	"createacct-benefit-heading": "{{SITENAME}} es escrich per de monde coma vos.",
@@ -1701,6 +1700,7 @@
 	"wlheader-showupdated": "Las paginas que son estadas modificadas dempuèi vòstra darrièra visita son afichadas en '''gras'''.",
 	"wlnote": "Çaijós {{PLURAL:$1|figura la darrièra modificacion efectuada|figuran las <strong>$1</strong> darrièras modificacions efectuadas}} pendent {{PLURAL:$2|la darrièra ora|las <strong>$2</strong> darrièras oras}}, dempuèi $3, $4.",
 	"wlshowlast": "Far veire las darrièras $1 oras, los darrièrs $2 jorns",
+	"watchlistall2": "tot",
 	"watchlist-options": "Opcions de la lista de seguiment",
 	"watching": "Seguit...",
 	"unwatching": "Fin del seguit...",
@@ -2060,7 +2060,6 @@
 	"movenosubpage": "Aquesta pagina a pas cap de sospagina.",
 	"movereason": "Motiu :",
 	"revertmove": "anullar",
-	"delete_and_move": "Suprimir e tornar nomenar",
 	"delete_and_move_text": "==Supression requerida==\nL’article de destinacion « [[:$1]] » existís ja.\nLo volètz suprimir per permetre lo cambiament de nom ?",
 	"delete_and_move_confirm": "Òc, accèpti de suprimir la pagina de destinacion per permetre lo cambiament de nom.",
 	"delete_and_move_reason": "Pagina suprimida per permetre lo cambiament de nom dempuèi « [[$1]] »",
