@@ -42,9 +42,6 @@ class DeferredUpdates {
 	/** @var DeferrableUpdate[] Updates to be deferred until after request end */
 	private static $postSendUpdates = array();
 
-	/** @var bool Defer updates fully even in CLI mode */
-	private static $forceDeferral = false;
-
 	const ALL = 0; // all updates
 	const PRESEND = 1; // for updates that should run before flushing output buffer
 	const POSTSEND = 2; // for updates that should run after flushing output buffer
@@ -106,10 +103,6 @@ class DeferredUpdates {
 			}
 		} else {
 			$queue[] = $update;
-		}
-
-		if ( self::$forceDeferral ) {
-			return; // do not run
 		}
 
 		// CLI scripts may forget to periodically flush these updates,
@@ -180,14 +173,5 @@ class DeferredUpdates {
 	public static function clearPendingUpdates() {
 		self::$preSendUpdates = array();
 		self::$postSendUpdates = array();
-	}
-
-	/**
-	 * @note This method is intended for testing purposes
-	 * @param bool $value Whether to *always* defer updates, even in CLI mode
-	 * @since 1.27
-	 */
-	public static function forceDeferral( $value ) {
-		self::$forceDeferral = $value;
 	}
 }
