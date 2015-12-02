@@ -17,6 +17,7 @@
 
 	// Environment
 	"browser": true,
+	"mocha": true,
 
 	"globals": {
 		"mediaWiki": true,
