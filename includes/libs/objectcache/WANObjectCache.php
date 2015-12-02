@@ -922,7 +922,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * @param string $key Cache key
 	 * @param integer $ttl How long to keep the tombstone [seconds]
-	 * @param holdoff $ttl HOLDOFF_* constant controlling how long to ignore sets for this key
+	 * @param integer $holdoff HOLDOFF_* constant controlling how long to ignore sets for this key
 	 * @return bool Success
 	 */
 	protected function relayPurge( $key, $ttl, $holdoff ) {
