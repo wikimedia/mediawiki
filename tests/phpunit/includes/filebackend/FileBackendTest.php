@@ -80,11 +80,6 @@ class FileBackendTest extends MediaWikiTestCase {
 		) );
 	}
 
-	protected function tearDown() {
-		parent::tearDown();
-		DeferredUpdates::forceDeferral( false );
-	}
-
 	private static function baseStorePath() {
 		return 'mwstore://localtesting';
 	}
@@ -2504,7 +2499,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			) )
 		);
 
-		DeferredUpdates::forceDeferral( true );
+		$this->setMwGlobals( 'wgCommandLineMode', false );
 
 		$p = 'container/test-cont/file.txt';
 		$be->quickCreate( array(
@@ -2522,7 +2517,6 @@ class FileBackendTest extends MediaWikiTestCase {
 		);
 
 		DeferredUpdates::doUpdates();
-		DeferredUpdates::forceDeferral( false );
 
 		$this->assertEquals(
 			'cattitude',
