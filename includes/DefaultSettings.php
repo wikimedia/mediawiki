@@ -5364,6 +5364,138 @@ $wgQueryPageDefaultLimit = 50;
  */
 $wgPasswordAttemptThrottle = array( 'count' => 5, 'seconds' => 300 );
 
+/**
+ * @var Array Map of (grant => right => boolean)
+ * Users authorize consumers (like Apps) to act on their behalf but only with
+ * a subset of the user's normal account rights (signed off on by the user).
+ * The possible rights to grant to a consumer are bundled into groups called
+ * "grants". Each grant defines some rights it lets consumers inherit from the
+ * account they may act on behalf of. Note that a user granting a right does
+ * nothing if that user does not actually have that right to begin with.
+ * @since 1.27
+ */
+$wgGrantPermissions = array();
+
+// @TODO: clean up grants
+// @TODO: auto-include read/editsemiprotected rights?
+
+$wgGrantPermissions['basic']['autoconfirmed'] = true;
+$wgGrantPermissions['basic']['autopatrol'] = true;
+$wgGrantPermissions['basic']['autoreview'] = true;
+$wgGrantPermissions['basic']['editsemiprotected'] = true;
+$wgGrantPermissions['basic']['ipblock-exempt'] = true;
+$wgGrantPermissions['basic']['nominornewtalk'] = true;
+$wgGrantPermissions['basic']['patrolmarks'] = true;
+$wgGrantPermissions['basic']['purge'] = true;
+$wgGrantPermissions['basic']['read'] = true;
+$wgGrantPermissions['basic']['skipcaptcha'] = true;
+$wgGrantPermissions['basic']['torunblocked'] = true;
+$wgGrantPermissions['basic']['writeapi'] = true;
+
+$wgGrantPermissions['highvolume']['bot'] = true;
+$wgGrantPermissions['highvolume']['apihighlimits'] = true;
+$wgGrantPermissions['highvolume']['noratelimit'] = true;
+$wgGrantPermissions['highvolume']['markbotedits'] = true;
+
+$wgGrantPermissions['editpage']['edit'] = true;
+$wgGrantPermissions['editpage']['minoredit'] = true;
+
+$wgGrantPermissions['editprotected'] = $wgGrantPermissions['editpage'];
+$wgGrantPermissions['editprotected']['editprotected'] = true;
+
+$wgGrantPermissions['editmycssjs'] = $wgGrantPermissions['editpage'];
+$wgGrantPermissions['editmycssjs']['editmyusercss'] = true;
+$wgGrantPermissions['editmycssjs']['editmyuserjs'] = true;
+
+$wgGrantPermissions['editmyoptions']['editmyoptions'] = true;
+
+$wgGrantPermissions['editinterface'] = $wgGrantPermissions['editpage'];
+$wgGrantPermissions['editinterface']['editinterface'] = true;
+$wgGrantPermissions['editinterface']['editusercss'] = true;
+$wgGrantPermissions['editinterface']['edituserjs'] = true;
+
+$wgGrantPermissions['createeditmovepage'] = $wgGrantPermissions['editpage'];
+$wgGrantPermissions['createeditmovepage']['createpage'] = true;
+$wgGrantPermissions['createeditmovepage']['createtalk'] = true;
+$wgGrantPermissions['createeditmovepage']['move'] = true;
+$wgGrantPermissions['createeditmovepage']['move-rootuserpages'] = true;
+$wgGrantPermissions['createeditmovepage']['move-subpages'] = true;
+
+$wgGrantPermissions['uploadfile']['upload'] = true;
+$wgGrantPermissions['uploadfile']['reupload-own'] = true;
+
+$wgGrantPermissions['uploadeditmovefile'] = $wgGrantPermissions['uploadfile'];
+$wgGrantPermissions['uploadeditmovefile']['reupload'] = true;
+$wgGrantPermissions['uploadeditmovefile']['reupload-shared'] = true;
+$wgGrantPermissions['uploadeditmovefile']['upload_by_url'] = true;
+$wgGrantPermissions['uploadeditmovefile']['movefile'] = true;
+$wgGrantPermissions['uploadeditmovefile']['suppressredirect'] = true;
+
+$wgGrantPermissions['patrol']['patrol'] = true;
+
+$wgGrantPermissions['rollback']['rollback'] = true;
+
+$wgGrantPermissions['blockusers']['block'] = true;
+$wgGrantPermissions['blockusers']['blockemail'] = true;
+
+$wgGrantPermissions['viewdeleted']['browsearchive'] = true;
+$wgGrantPermissions['viewdeleted']['deletedhistory'] = true;
+$wgGrantPermissions['viewdeleted']['deletedtext'] = true;
+
+$wgGrantPermissions['delete'] = $wgGrantPermissions['editpage'] +
+	$wgGrantPermissions['viewdeleted'];
+$wgGrantPermissions['delete']['delete'] = true;
+$wgGrantPermissions['delete']['bigdelete'] = true;
+$wgGrantPermissions['delete']['deletelogentry'] = true;
+$wgGrantPermissions['delete']['deleterevision'] = true;
+$wgGrantPermissions['delete']['undelete'] = true;
+
+$wgGrantPermissions['protect'] = $wgGrantPermissions['editprotected'];
+$wgGrantPermissions['protect']['protect'] = true;
+
+$wgGrantPermissions['viewmywatchlist']['viewmywatchlist'] = true;
+
+$wgGrantPermissions['editmywatchlist']['editmywatchlist'] = true;
+
+$wgGrantPermissions['sendemail']['sendemail'] = true;
+
+$wgGrantPermissions['createaccount']['createaccount'] = true;
+
+/**
+ * @var Array Map of grants to their UI grouping
+ * @since 1.27
+ */
+$wgGrantPermissionGroups = array(
+	// Hidden grants are implicitly present
+	'basic'            => 'hidden',
+
+	'editpage'            => 'page-interaction',
+	'createeditmovepage'  => 'page-interaction',
+	'editprotected'       => 'page-interaction',
+	'patrol'              => 'page-interaction',
+
+	'uploadfile'          => 'file-interaction',
+	'uploadeditmovefile'  => 'file-interaction',
+
+	'sendemail'           => 'email',
+
+	'viewmywatchlist'     => 'watchlist-interaction',
+	'editviewmywatchlist' => 'watchlist-interaction',
+
+	'editmycssjs'         => 'customization',
+	'editmyoptions'       => 'customization',
+
+	'editinterface'       => 'administration',
+	'rollback'            => 'administration',
+	'blockusers'          => 'administration',
+	'delete'              => 'administration',
+	'viewdeleted'         => 'administration',
+	'protect'             => 'administration',
+	'createaccount'       => 'administration',
+
+	'highvolume'          => 'high-volume',
+);
+
 /** @} */ # end of user rights settings
 
 /************************************************************************//**

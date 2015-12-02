@@ -2982,6 +2982,12 @@ class User implements IDBAccessObject {
 	public function getRights() {
 		if ( is_null( $this->mRights ) ) {
 			$this->mRights = self::getGroupPermissions( $this->getEffectiveGroups() );
+
+			$allowedRights = $this->getRequest()->getSession()->getAllowedUserRights();
+			if ( $allowedRights !== null ) {
+				$this->mRights = array_intersect( $this->mRights, $allowedRights );
+			}
+
 			Hooks::run( 'UserGetRights', array( $this, &$this->mRights ) );
 			// Force reindexation of rights when a hook has unset one of them
 			$this->mRights = array_values( array_unique( $this->mRights ) );
@@ -4529,7 +4535,14 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Check if all users have the given permission
+	 * Check if all users may be assumed to have the given permission
+	 *
+	 * We generally assume so if the right is granted to '*' and isn't revoked
+	 * on any group. It doesn't attempt to take grants or other extension
+	 * limitations on rights into account in the general case, though, as that
+	 * would require it to always return false and defeat the purpose.
+	 * Specifically, session-based rights restrictions (such as OAuth or bot
+	 * passwords) are applied based on the current session.
 	 *
 	 * @since 1.22
 	 * @param string $right Right to check
@@ -4558,7 +4571,14 @@ class User implements IDBAccessObject {
 			}
 		}
 
-		// Allow extensions (e.g. OAuth) to say false
+		// Remove any rights that aren't allowed to the global-session user
+		$allowedRights = SessionManager::getGlobalSession()->getAllowedUserRights();
+		if ( $allowedRights !== null && !in_array( $right, $allowedRights, true ) ) {
+			$cache[$right] = false;
+			return false;
+		}
+
+		// Allow extensions to say false
 		if ( !Hooks::run( 'UserIsEveryoneAllowed', array( $right ) ) ) {
 			$cache[$right] = false;
 			return false;
