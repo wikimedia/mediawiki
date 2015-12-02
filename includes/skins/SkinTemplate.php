@@ -675,12 +675,12 @@ class SkinTemplate extends Skin {
 				// huge loss.
 				$personal_urls['anontalk'] = array(
 					'text' => $this->msg( 'anontalk' )->text(),
-					'href' => self::makeSpecialUrlSubpage( 'MyTalk', false ),
+					'href' => self::makeSpecialUrlSubpage( 'Mytalk', false ),
 					'active' => false
 				);
 				$personal_urls['anoncontribs'] = array(
 					'text' => $this->msg( 'anoncontribs' )->text(),
-					'href' => self::makeSpecialUrlSubpage( 'MyContributions', false ),
+					'href' => self::makeSpecialUrlSubpage( 'Mycontributions', false ),
 					'active' => false
 				);
 			}
