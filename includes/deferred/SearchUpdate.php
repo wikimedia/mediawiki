@@ -82,11 +82,11 @@ class SearchUpdate implements DeferrableUpdate {
 
 		foreach ( SearchEngine::getSearchTypes() as $type ) {
 			$search = SearchEngine::create( $type );
-			$indexTitle = $this->indexTitle( $search );
 			if ( !$search->supports( 'search-update' ) ) {
 				continue;
 			}
 
+			$indexTitle = $this->indexTitle( $search );
 			$normalTitle = $search->normalizeText( $indexTitle );
 
 			if ( $page === null ) {
