@@ -154,6 +154,14 @@ final class Session implements \Countable, \Iterator {
 	}
 
 	/**
+	 * Fetch the rights allowed the user when this session is active.
+	 * @return null|string[] Allowed user rights, or null to allow all.
+	 */
+	public function getAllowedUserRights() {
+		return $this->backend->getAllowedUserRights();
+	}
+
+	/**
 	 * Indicate whether the session user info can be changed
 	 * @return bool
 	 */

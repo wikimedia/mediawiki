@@ -389,6 +389,15 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	}
 
 	/**
+	 * Fetch the rights allowed the user when the specified session is active.
+	 * @param SessionBackend $backend
+	 * @return null|string[] Allowed user rights, or null to allow all.
+	 */
+	public function getAllowedUserRights( SessionBackend $backend ) {
+		return null;
+	}
+
+	/**
 	 * @note Only override this if it makes sense to instantiate multiple
 	 *  instances of the provider. Value returned must be unique across
 	 *  configured providers. If you override this, you'll likely need to

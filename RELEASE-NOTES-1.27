@@ -127,6 +127,15 @@ production.
   other than the usual cookies.
 ** SessionMetadata and SessionCheckInfo hooks allow for setting and checking
    custom session metadata.
+* Added MWGrants and associated configuration settings $wgGrantPermissions and
+  $wgGrantPermissionGroups to hold configuration for authentication features
+  such as OAuth that want to allow restricting the user rights a user may make
+  use of.
+** If you're already using the OAuth extension, these new variables are
+   identical to (and will replace) $wgMWOAuthGrantPermissions and
+   $wgMWOAuthGrantPermissionGroups.
+* Added MWRestrictions as a class to check restrictions on a WebRequest, e.g.
+  to assert that the request comes from a particular IP range.
 
 === External library changes in 1.27 ===
 ==== Upgraded external libraries ====

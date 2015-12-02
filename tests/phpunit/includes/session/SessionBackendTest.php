@@ -743,4 +743,15 @@ class SessionBackendTest extends MediaWikiTestCase {
 		session_write_close();
 	}
 
+	public function testGetAllowedUserRights() {
+		$this->provider = $this->getMockBuilder( 'DummySessionProvider' )
+			->setMethods( array( 'getAllowedUserRights' ) )
+			->getMock();
+		$this->provider->expects( $this->any() )->method( 'getAllowedUserRights' )
+			->will( $this->returnValue( array( 'foo', 'bar' ) ) );
+
+		$backend = $this->getBackend();
+		$this->assertSame( array( 'foo', 'bar' ), $backend->getAllowedUserRights() );
+	}
+
 }
