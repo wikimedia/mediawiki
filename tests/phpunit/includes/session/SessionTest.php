@@ -78,6 +78,7 @@ class SessionTest extends MediaWikiTestCase {
 			array( 'setRememberUser', array( true ), false, false ),
 			array( 'getRequest', array(), true, true ),
 			array( 'getUser', array(), false, true ),
+			array( 'getAllowedUserRights', array(), false, true ),
 			array( 'canSetUser', array(), false, true ),
 			array( 'setUser', array( new \stdClass ), false, false ),
 			array( 'suggestLoginUsername', array(), true, true ),

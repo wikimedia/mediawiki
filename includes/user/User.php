@@ -2982,6 +2982,12 @@ class User implements IDBAccessObject {
 	public function getRights() {
 		if ( is_null( $this->mRights ) ) {
 			$this->mRights = self::getGroupPermissions( $this->getEffectiveGroups() );
+
+			$allowedRights = $this->getRequest()->getSession()->getAllowedUserRights();
+			if ( $allowedRights !== null ) {
+				$this->mRights = array_intersect( $this->mRights, $allowedRights );
+			}
+
 			Hooks::run( 'UserGetRights', array( $this, &$this->mRights ) );
 			// Force reindexation of rights when a hook has unset one of them
 			$this->mRights = array_values( array_unique( $this->mRights ) );
@@ -4556,6 +4562,13 @@ class User implements IDBAccessObject {
 				$cache[$right] = false;
 				return false;
 			}
+		}
+
+		// Remove any rights that aren't allowed to the global-session user
+		$allowedRights = SessionManager::getGlobalSession()->getAllowedUserRights();
+		if ( $allowedRights !== null && !in_array( $right, $allowedRights, true ) ) {
+			$cache[$right] = false;
+			return false;
 		}
 
 		// Allow extensions (e.g. OAuth) to say false
