@@ -7,6 +7,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-jscs' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-karma' );
+	grunt.loadNpmTasks( 'grunt-mocha-test' );
 
 	var wgServer = process.env.MW_SERVER,
 		wgScriptPath = process.env.MW_SCRIPT_PATH,
@@ -80,6 +81,15 @@ module.exports = function ( grunt ) {
 					return require( 'path' ).join( dest, src.replace( 'resources/', '' ) );
 				}
 			}
+		},
+		mochaTest: {
+			test: {
+				options: {
+					reporter: 'spec',
+					timeout: 10000
+				},
+				src: [ 'tests/e2e/scenarios/*.js' ]
+			}
 		}
 	} );
 
@@ -98,6 +108,10 @@ module.exports = function ( grunt ) {
 
 	grunt.registerTask( 'lint', [ 'jshint', 'jscs', 'jsonlint', 'banana' ] );
 	grunt.registerTask( 'qunit', [ 'assert-mw-env', 'karma:main' ] );
+	grunt.registerTask( 'e2e', 'mochaTest' );
+
+	// WIP hack to test CI invocation
+	grunt.registerTask( 'karma:main', 'e2e' );
 
 	grunt.registerTask( 'test', [ 'lint' ] );
 	grunt.registerTask( 'default', 'test' );
