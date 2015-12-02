@@ -54,7 +54,8 @@
 			"Hwangjy9",
 			"Kurousagi",
 			"Macofe",
-			"Yearning"
+			"Yearning",
+			"고솜"
 		]
 	},
 	"tog-underline": "링크에 밑줄:",
@@ -193,7 +194,7 @@
 	"morenotlisted": "이 목록은 완성되지 않았습니다.",
 	"mypage": "문서",
 	"mytalk": "토론",
-	"anontalk": "이 IP 주소의 사용자와 토론",
+	"anontalk": "토론",
 	"navigation": "둘러보기",
 	"and": ",",
 	"qbfind": "찾기",
@@ -2000,6 +2001,7 @@
 	"contributions": "{{GENDER:$1|사용자}} 기여",
 	"contributions-title": "$1 사용자의 기여",
 	"mycontris": "기여",
+	"anoncontribs": "기여",
 	"contribsub2": "{{GENDER:$3|$1}}($2)의 기여",
 	"contributions-userdoesnotexist": "\"$1\" 사용자 계정은 등록되어 있지 않습니다.",
 	"nocontribs": "지정한 조건과 일치하는 바뀜을 찾을 수 없습니다.",
@@ -2326,6 +2328,7 @@
 	"tooltip-pt-preferences": "사용자 환경 설정",
 	"tooltip-pt-watchlist": "주시문서에 대한 바뀜 목록",
 	"tooltip-pt-mycontris": "내 기여의 목록",
+	"tooltip-pt-anoncontribs": "이 IP 주소의 편집 목록",
 	"tooltip-pt-login": "꼭 로그인해야 하는 것은 아니지만, 로그인을 권장합니다.",
 	"tooltip-pt-logout": "로그아웃",
 	"tooltip-pt-createaccount": "계정을 만들고 로그인하는 것이 좋습니다; 하지만, 필수는 아닙니다",
