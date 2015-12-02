@@ -18,6 +18,7 @@
 
 	// Environment
 	"browser": true,
+	"mocha": true,
 
 	"globals": {
 		"require": false,
