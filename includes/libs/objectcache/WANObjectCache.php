@@ -560,17 +560,18 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @see WANObjectCache::resetCheckKey()
 	 *
 	 * @param string $key Cache key
+	 * @param int $holdoff Hold off period
 	 * @return bool True if the item was purged or not found, false on failure
 	 */
-	final public function touchCheckKey( $key ) {
+	final public function touchCheckKey( $key, $holdoff = self::HOLDOFF_TTL ) {
 		$key = self::TIME_KEY_PREFIX . $key;
 		// Update the local datacenter immediately
 		$ok = $this->cache->set( $key,
-			$this->makePurgeValue( microtime( true ), self::HOLDOFF_TTL ),
+			$this->makePurgeValue( microtime( true ), $holdoff ),
 			self::CHECK_KEY_TTL
 		);
 		// Publish the purge to all datacenters
-		return $this->relayPurge( $key, self::CHECK_KEY_TTL, self::HOLDOFF_TTL ) && $ok;
+		return $this->relayPurge( $key, self::CHECK_KEY_TTL, $holdoff ) && $ok;
 	}
 
 	/**
