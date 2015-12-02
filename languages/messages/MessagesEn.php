@@ -425,6 +425,7 @@ $specialPageAliases = array(
 	'Listbots'                  => array( 'ListBots' ),
 	'Listfiles'                 => array( 'ListFiles', 'FileList', 'ImageList' ),
 	'Listgrouprights'           => array( 'ListGroupRights', 'UserGroupRights' ),
+	'Listgrants'                => array( 'ListGrants' ),
 	'Listredirects'             => array( 'ListRedirects' ),
 	'ListDuplicatedFiles'       => array( 'ListDuplicatedFiles', 'ListFileDuplicates' ),
 	'Listusers'                 => array( 'ListUsers', 'UserList' ),
