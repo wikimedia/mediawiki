@@ -374,20 +374,22 @@ function wfObjectToArray( $objOrArray, $recursive = true ) {
  * not likely to give duplicate values for any realistic
  * number of articles.
  *
+ * @note This is designed for use in relation to Special:RandomPage
+ *       and the page_random database field.
+ *
  * @return string
  */
 function wfRandom() {
-	# The maximum random value is "only" 2^31-1, so get two random
-	# values to reduce the chance of dupes
+	// The maximum random value is "only" 2^31-1, so get two random
+	// values to reduce the chance of dupes
 	$max = mt_getrandmax() + 1;
 	$rand = number_format( ( mt_rand() * $max + mt_rand() ) / $max / $max, 12, '.', '' );
-
 	return $rand;
 }
 
 /**
- * Get a random string containing a number of pseudo-random hex
- * characters.
+ * Get a random string containing a number of pseudo-random hex characters.
+ *
  * @note This is not secure, if you are trying to generate some sort
  *       of token please use MWCryptRand instead.
  *
