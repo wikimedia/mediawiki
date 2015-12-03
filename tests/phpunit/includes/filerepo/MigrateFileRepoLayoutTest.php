@@ -11,7 +11,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 
 		$filename = 'Foo.png';
 
-		$this->tmpPrefix = wfTempDir() . '/migratefilelayout-test-' . time() . '-' . mt_rand();
+		$this->tmpPrefix = $this->getNewTempDirectory();
 
 		$backend = new FSFileBackend( array(
 			'name' => 'local-migratefilerepolayouttest',
