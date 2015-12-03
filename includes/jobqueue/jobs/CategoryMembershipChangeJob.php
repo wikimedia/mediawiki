@@ -205,6 +205,13 @@ class CategoryMembershipChangeJob extends Job {
 		return array( $categoryInserts, $categoryDeletes );
 	}
 
+	/**
+	 * @param Title $title
+	 * @param Revision $rev
+	 * @param string $parseTimestamp TS_MW
+	 *
+	 * @return string[] category names
+	 */
 	private function getCategoriesAtRev( Title $title, Revision $rev, $parseTimestamp ) {
 		$content = $rev->getContent();
 		$options = $content->getContentHandler()->makeParserOptions( 'canonical' );
@@ -213,7 +220,9 @@ class CategoryMembershipChangeJob extends Job {
 		// but that's more complicated than it's worth.
 		$output = $content->getParserOutput( $title, $rev->getId(), $options );
 
-		return array_keys( $output->getCategories() );
+		// array_keys will cast numeric category names to ints
+		// so we need to cast them back to strings to avoid breaking things!
+		return array_map( 'strval', array_keys( $output->getCategories() ) );
 	}
 
 	public function getDeduplicationInfo() {
