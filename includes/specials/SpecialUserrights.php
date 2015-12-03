@@ -776,6 +776,24 @@ class UserrightsPage extends SpecialPage {
 		LogEventsList::showLogExtract( $output, 'rights', $user->getUserPage() );
 	}
 
+	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param int $limit Maximum number of results to return (usually 10)
+	 * @param int $offset Number of results to skip (usually 0)
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit, $offset ) {
+		$user = User::newFromName( $search );
+		if ( !$user ) {
+			// No prefix suggestion for invalid user
+			return array();
+		}
+		// Autocomplete subpage as user list - public to allow caching
+		return UserNamePrefixSearch::search( 'public', $search, $limit, $offset );
+	}
+
 	protected function getGroupName() {
 		return 'users';
 	}
