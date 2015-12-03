@@ -115,7 +115,7 @@ class ApiExpandTemplates extends ApiBase {
 						foreach ( $categories as $category => $sortkey ) {
 							$entry = array();
 							$entry['sortkey'] = $sortkey;
-							ApiResult::setContentValue( $entry, 'category', $category );
+							ApiResult::setContentValue( $entry, 'category', (string)$category );
 							$categories_result[] = $entry;
 						}
 						ApiResult::setIndexedTagName( $categories_result, 'category' );
