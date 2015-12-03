@@ -1354,6 +1354,8 @@ class OutputPage extends ContextSource {
 			array( &$this, $categories, &$this->mCategoryLinks ) )
 		) {
 			foreach ( $categories as $category => $type ) {
+				// array keys will cast numeric category names to ints, so cast back to string
+				$category = (string)$category;
 				$origcategory = $category;
 				$title = Title::makeTitleSafe( NS_CATEGORY, $category );
 				if ( !$title ) {

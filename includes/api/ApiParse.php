@@ -634,7 +634,8 @@ class ApiParse extends ApiBase {
 		foreach ( $links as $link => $sortkey ) {
 			$entry = array();
 			$entry['sortkey'] = $sortkey;
-			ApiResult::setContentValue( $entry, 'category', $link );
+			// array keys will cast numeric category names to ints, so cast back to string
+			ApiResult::setContentValue( $entry, 'category', (string)$link );
 			if ( !isset( $hiddencats[$link] ) ) {
 				$entry['missing'] = true;
 			} elseif ( $hiddencats[$link] ) {
