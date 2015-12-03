@@ -126,7 +126,8 @@
 			"Tusca",
 			"Tadol",
 			"Nelson6e65",
-			"Matiia"
+			"Matiia",
+			"SinNovedades"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -265,7 +266,7 @@
 	"morenotlisted": "Esta lista no está completa.",
 	"mypage": "Página",
 	"mytalk": "Discusión",
-	"anontalk": "Discusión para esta IP",
+	"anontalk": "Hablar",
 	"navigation": "Navegación",
 	"and": "&#32;y",
 	"qbfind": "Buscar",
@@ -2090,6 +2091,7 @@
 	"contributions": "Contribuciones {{GENDER:$1|del usuario|de la usuaria}}",
 	"contributions-title": "Contribuciones {{GENDER:$1|del usuario|de la usuaria}} $1",
 	"mycontris": "Contribuciones",
+	"anoncontribs": "Contribuir",
 	"contribsub2": "Para {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "La cuenta de usuario «$1» no está registrada.",
 	"nocontribs": "No se encontraron cambios que cumplieran estos criterios.",
@@ -2415,6 +2417,7 @@
 	"tooltip-pt-preferences": "Tus preferencias",
 	"tooltip-pt-watchlist": "Lista de páginas cuyos cambios vigilas",
 	"tooltip-pt-mycontris": "Lista de tus contribuciones",
+	"tooltip-pt-anoncontribs": "Una lista de modificaciones hechas desde esta dirección IP",
 	"tooltip-pt-login": "Te recomendamos iniciar sesión, aunque no es obligatorio",
 	"tooltip-pt-logout": "Salir de la sesión",
 	"tooltip-pt-createaccount": "Te recomendamos crear una cuenta e iniciar sesión; sin embargo, no es obligatorio",
