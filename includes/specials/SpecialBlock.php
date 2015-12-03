@@ -971,6 +971,23 @@ class SpecialBlock extends FormSpecialPage {
 		$out->addWikiMsg( 'blockipsuccesstext', wfEscapeWikiText( $this->target ) );
 	}
 
+	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param int $limit Maximum number of results to return (usually 10)
+	 * @param int $offset Number of results to skip (usually 0)
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit, $offset ) {
+		if ( $search === '' ) {
+			return array();
+		}
+		// Autocomplete subpage as user list
+		$result = UserNamePrefixSearch::search( $search, $limit, $offset );
+		return $result;
+	}
+
 	protected function getGroupName() {
 		return 'users';
 	}
