@@ -1332,6 +1332,7 @@ $wgAutoloadLocalClasses = array(
 	'UserCache' => __DIR__ . '/includes/cache/UserCache.php',
 	'UserDupes' => __DIR__ . '/maintenance/userDupes.inc',
 	'UserMailer' => __DIR__ . '/includes/mail/UserMailer.php',
+	'UserNamePrefixSearch' => __DIR__ . '/includes/user/UserNamePrefixSearch.php',
 	'UserNotLoggedIn' => __DIR__ . '/includes/exception/UserNotLoggedIn.php',
 	'UserOptions' => __DIR__ . '/maintenance/userOptions.inc',
 	'UserPasswordPolicy' => __DIR__ . '/includes/password/UserPasswordPolicy.php',
