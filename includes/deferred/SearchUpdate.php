@@ -86,8 +86,7 @@ class SearchUpdate implements DeferrableUpdate {
 				continue;
 			}
 
-			$indexTitle = $this->indexTitle( $search );
-			$normalTitle = $search->normalizeText( $indexTitle );
+			$normalTitle = $this->getNormalizedTitle( $search );
 
 			if ( $page === null ) {
 				$search->delete( $this->id, $normalTitle );
@@ -174,13 +173,13 @@ class SearchUpdate implements DeferrableUpdate {
 	}
 
 	/**
-	 * Get a string representation of a title suitable for
+	 * Get a normalized string representation of a title suitable for
 	 * including in a search index
 	 *
 	 * @param SearchEngine $search
 	 * @return string A stripped-down title string ready for the search index
 	 */
-	private function indexTitle( SearchEngine $search ) {
+	private function getNormalizedTitle( SearchEngine $search ) {
 		global $wgContLang;
 
 		$ns = $this->title->getNamespace();
@@ -200,6 +199,7 @@ class SearchUpdate implements DeferrableUpdate {
 		if ( $ns == NS_FILE ) {
 			$t = preg_replace( "/ (png|gif|jpg|jpeg|ogg)$/", "", $t );
 		}
-		return trim( $t );
+
+		return $search->normalizeText( trim( $t ) );
 	}
 }
