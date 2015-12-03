@@ -1292,7 +1292,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @since 1.25
 	 */
 	public function selectFieldValues(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = array()
+		$table, $var, $cond = '', $fname = __METHOD__, $options = array(), $join_conds = array()
 	) {
 		if ( $var === '*' ) { // sanity
 			throw new DBUnexpectedError( $this, "Cannot use a * field: got '$var'" );
@@ -1302,7 +1302,7 @@ abstract class DatabaseBase implements IDatabase {
 			$options = array( $options );
 		}
 
-		$res = $this->select( $table, $var, $cond, $fname, $options );
+		$res = $this->select( $table, $var, $cond, $fname, $options, $join_conds );
 		if ( $res === false ) {
 			return false;
 		}
