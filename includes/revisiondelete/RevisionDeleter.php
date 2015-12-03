@@ -85,7 +85,8 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			throw new MWException( __METHOD__ . ": Unknown RevDel type '$typeName'" );
 		}
-		return new self::$allowedTypes[$typeName]( $context, $title, $ids );
+		$class = self::$allowedTypes[$typeName];
+		return new $class( $context, $title, $ids );
 	}
 
 	/**
