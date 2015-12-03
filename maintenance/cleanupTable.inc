@@ -173,9 +173,3 @@ class TableCleanup extends Maintenance {
 	}
 }
 
-class TableCleanupTest extends TableCleanup {
-	function processRow( $row ) {
-		$this->progress( mt_rand( 0, 1 ) );
-	}
-}
-

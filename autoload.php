@@ -1235,7 +1235,6 @@ $wgAutoloadLocalClasses = array(
 	'SwiftVirtualRESTService' => __DIR__ . '/includes/libs/virtualrest/SwiftVirtualRESTService.php',
 	'SyncFileBackend' => __DIR__ . '/maintenance/syncFileBackend.php',
 	'TableCleanup' => __DIR__ . '/maintenance/cleanupTable.inc',
-	'TableCleanupTest' => __DIR__ . '/maintenance/cleanupTable.inc',
 	'TableDiffFormatter' => __DIR__ . '/includes/diff/TableDiffFormatter.php',
 	'TablePager' => __DIR__ . '/includes/pager/TablePager.php',
 	'TagLogFormatter' => __DIR__ . '/includes/logging/TagLogFormatter.php',
