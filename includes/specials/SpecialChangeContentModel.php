@@ -220,4 +220,8 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		$out->setPageTitle( $this->msg( 'changecontentmodel-success-title' ) );
 		$out->addWikiMsg( 'changecontentmodel-success-text', $this->title );
 	}
+
+	protected function getGroupName() {
+		return 'pagetools';
+	}
 }
