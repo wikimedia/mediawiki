@@ -20542,6 +20542,17 @@ HTML5 data attributes
 !! end
 
 !! test
+HTML5 data attributes restriction
+!! wikitext
+<span data-ooui='{"x":true"}' data-mw='{"x":true"}' data-foo='{"x":true"}'>X</span>
+<span data-ooui="false" data-mw="false" data-foo="false">Y</span>
+!! html
+<p><span data-foo="&#123;&quot;x&quot;:true&quot;}">X</span>
+<span data-foo="false">Y</span>
+</p>
+!! end
+
+!! test
 percent-encoding and + signs in internal links (Bug 26410)
 !! wikitext
 [[User:+%]] [[Page+title%]]
