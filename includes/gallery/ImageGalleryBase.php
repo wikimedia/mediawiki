@@ -98,7 +98,8 @@ abstract class ImageGalleryBase extends ContextSource {
 		$mode = $wgContLang->lc( $mode );
 
 		if ( isset( self::$modeMapping[$mode] ) ) {
-			return new self::$modeMapping[$mode]( $mode, $context );
+			$class = self::$modeMapping[$mode];
+			return new $class( $mode, $context );
 		} else {
 			throw new MWException( "No gallery class registered for mode $mode" );
 		}
