@@ -382,7 +382,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		$wrapExtra = array(); // additional wrapped value fields
 		// Check if there's a risk of writing stale data after the purge tombstone expired
-		if ( ( $lag + $age ) > self::MAX_READ_LAG ) {
+		if ( $lag === false || ( $lag + $age ) > self::MAX_READ_LAG ) {
 			// Case A: read lag with "lockTSE"; save but record value as stale
 			if ( $lockTSE >= 0 ) {
 				$ttl = max( 1, (int)$lockTSE ); // set() expects seconds
@@ -393,7 +393,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 				return true; // no-op the write for being unsafe
 			// Case C: high replication lag; lower TTL instead of ignoring all set()s
-			} elseif ( $lag > self::MAX_READ_LAG ) {
+			} elseif ( $lag === false || $lag > self::MAX_READ_LAG ) {
 				$ttl = $ttl ? min( $ttl, self::TTL_LAGGED ) : self::TTL_LAGGED;
 				$this->logger->warning( "Lowered set() TTL for $key due to replication lag." );
 			// Case D: medium length request with medium replication lag; ignore this set()
