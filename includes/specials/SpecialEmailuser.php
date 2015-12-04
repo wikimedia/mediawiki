@@ -260,6 +260,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @return string Form asking for user name.
 	 */
 	protected function userForm( $name ) {
+		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
 		$string = Xml::openElement(
 			'form',
 			array( 'method' => 'get', 'action' => wfScript(), 'id' => 'askusername' )
@@ -272,7 +273,11 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				'target',
 				'emailusertarget',
 				30,
-				$name
+				$name,
+				array(
+					'class' => 'mw-autocomplete-user',  // used by mediawiki.userSuggest
+					'autofocus' => true,
+				)
 			) .
 			' ' .
 			Xml::submitButton( $this->msg( 'emailusernamesubmit' )->text() ) .
