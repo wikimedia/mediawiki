@@ -529,7 +529,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$selected = (string)$options['days'];
 		// add the currently selected value, if it isn't available already
-		if ( !in_array( $selected, $days ) ) {
+		if ( $selected !== '0' && !in_array( $selected, $days ) ) {
 			$days[] = $selected;
 		}
 
@@ -547,7 +547,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		// 'all' option
 		$name = $this->msg( 'watchlistall2' )->text();
-		$value = 0;
+		$value = '0';
 		$select->addOption( $name, $value );
 
 		return $select->getHTML() . "\n<br />\n";
