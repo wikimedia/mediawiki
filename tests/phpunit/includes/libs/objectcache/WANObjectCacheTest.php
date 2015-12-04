@@ -366,6 +366,39 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers WANObjectCache::get()
+	 * @covers WANObjectCache::processCheckKeys()
+	 */
+	public function testCheckKeyInitHoldoff() {
+		$cache = $this->cache;
+
+		for ( $i = 0; $i < 500; ++$i ) {
+			$key = wfRandomString();
+			$checkKey = wfRandomString();
+			// miss, set, hit
+			$cache->get( $key, $curTTL, array( $checkKey ) );
+			$cache->set( $key, 'val', 10 );
+			$curTTL = null;
+			$v = $cache->get( $key, $curTTL, array( $checkKey ) );
+
+			$this->assertEquals( 'val', $v );
+			$this->assertLessThan( 0, $curTTL, "Step $i: CTL < 0 (miss/set/hit)" );
+		}
+
+		for ( $i = 0; $i < 500; ++$i ) {
+			$key = wfRandomString();
+			$checkKey = wfRandomString();
+			// set, hit
+			$cache->set( $key, 'val', 10 );
+			$curTTL = null;
+			$v = $cache->get( $key, $curTTL, array( $checkKey ) );
+
+			$this->assertEquals( 'val', $v );
+			$this->assertLessThan( 0, $curTTL, "Step $i: CTL < 0 (set/hit)" );
+		}
+	}
+
+	/**
 	 * @covers WANObjectCache::delete()
 	 */
 	public function testDelete() {

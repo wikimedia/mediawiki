@@ -251,6 +251,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		// Fetch all of the raw values
 		$wrappedValues = $this->cache->getMulti( array_merge( $valueKeys, $checkKeysFlat ) );
+		// Time used to compare/init "check" keys (derived after getMulti() to be pessimistic)
 		$now = microtime( true );
 
 		// Collect timestamps from all "check" keys
@@ -282,7 +283,10 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				foreach ( $purgeValues as $purge ) {
 					$safeTimestamp = $purge[self::FLD_TIME] + $purge[self::FLD_HOLDOFF];
 					if ( $safeTimestamp >= $wrappedValues[$vKey][self::FLD_TIME] ) {
-						$curTTL = min( $curTTL, $purge[self::FLD_TIME] - $now );
+						// How long ago this value was expired by *this* check key
+						$ago = min( $purge[self::FLD_TIME] - $now, self::TINY_NEGATIVE );
+						// How long ago this value was expired by *any* known check key
+						$curTTL = min( $curTTL, $ago );
 					}
 				}
 			}
