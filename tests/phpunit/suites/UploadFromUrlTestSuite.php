@@ -86,53 +86,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		RepoGroup::destroySingleton();
 		FileBackendGroup::destroySingleton();
 
-		$this->teardownUploadDir( $this->uploadDir );
-
 		parent::tearDown();
-	}
-
-	private $uploadDir;
-	private $keepUploads;
-
-	/**
-	 * Remove the dummy uploads directory
-	 * @param string $dir
-	 */
-	private function teardownUploadDir( $dir ) {
-		if ( $this->keepUploads ) {
-			return;
-		}
-
-		// delete the files first, then the dirs.
-		self::deleteFiles(
-			array(
-				"$dir/3/3a/Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/640px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg",
-
-				"$dir/0/09/Bad.jpg",
-			)
-		);
-
-		self::deleteDirs(
-			array(
-				"$dir/3/3a",
-				"$dir/3",
-				"$dir/thumb/6/65",
-				"$dir/thumb/6",
-				"$dir/thumb/3/3a/Foobar.jpg",
-				"$dir/thumb/3/3a",
-				"$dir/thumb/3",
-
-				"$dir/0/09/",
-				"$dir/0/",
-
-				"$dir/thumb",
-				"$dir",
-			)
-		);
 	}
 
 	/**
@@ -170,15 +124,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 	private function setupUploadDir() {
 		global $IP;
 
-		if ( $this->keepUploads ) {
-			$dir = wfTempDir() . '/mwParser-images';
-
-			if ( is_dir( $dir ) ) {
-				return $dir;
-			}
-		} else {
-			$dir = $this->getNewTempDirectory();
-		}
+		$dir = $this->getNewTempDirectory();
 
 		wfDebug( "Creating upload directory $dir\n" );
 
