@@ -1028,55 +1028,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Get the last N authors
-	 * @param int $num Number of revisions to get
-	 * @param int|string $revLatest The latest rev_id, selected from the master (optional)
-	 * @return array Array of authors, duplicates not removed
-	 */
-	public function getLastNAuthors( $num, $revLatest = 0 ) {
-		// First try the slave
-		// If that doesn't have the latest revision, try the master
-		$continue = 2;
-		$db = wfGetDB( DB_SLAVE );
-
-		do {
-			$res = $db->select( array( 'page', 'revision' ),
-				array( 'rev_id', 'rev_user_text' ),
-				array(
-					'page_namespace' => $this->mTitle->getNamespace(),
-					'page_title' => $this->mTitle->getDBkey(),
-					'rev_page = page_id'
-				), __METHOD__,
-				array(
-					'ORDER BY' => 'rev_timestamp DESC',
-					'LIMIT' => $num
-				)
-			);
-
-			if ( !$res ) {
-				return array();
-			}
-
-			$row = $db->fetchObject( $res );
-
-			if ( $continue == 2 && $revLatest && $row->rev_id != $revLatest ) {
-				$db = wfGetDB( DB_MASTER );
-				$continue--;
-			} else {
-				$continue = 0;
-			}
-		} while ( $continue );
-
-		$authors = array( $row->rev_user_text );
-
-		foreach ( $res as $row ) {
-			$authors[] = $row->rev_user_text;
-		}
-
-		return $authors;
-	}
-
-	/**
 	 * Should the parser cache be used?
 	 *
 	 * @param ParserOptions $parserOptions ParserOptions to check
