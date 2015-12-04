@@ -33,7 +33,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/** @var MysqlMasterPos */
 	protected $lastKnownSlavePos;
 	/** @var string Method to detect slave lag */
-	protected $lagDetectionMethod;
+	public $lagDetectionMethod;
 
 	/** @var string|null */
 	private $serverVersion = null;
