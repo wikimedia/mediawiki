@@ -269,15 +269,13 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			array( $key1 => $value1, $key2 => $value2 ),
 			$cache->getMulti( array( $key1, $key2, $key3 ), $curTTLs, array( $cKey1, $cKey2 ) ),
-			"Result array populated even with new check keys"
+			'Result array populated even with new check keys'
 		);
 		$t1 = $cache->getCheckKeyTime( $cKey1 );
 		$this->assertGreaterThanOrEqual( $priorTime, $t1, 'Check key 1 generated on miss' );
 		$t2 = $cache->getCheckKeyTime( $cKey2 );
 		$this->assertGreaterThanOrEqual( $priorTime, $t2, 'Check key 2 generated on miss' );
 		$this->assertEquals( 2, count( $curTTLs ), "Current TTLs array set" );
-		$this->assertLessThanOrEqual( 0, $curTTLs[$key1], 'Key 1 has current TTL <= 0' );
-		$this->assertLessThanOrEqual( 0, $curTTLs[$key2], 'Key 2 has current TTL <= 0' );
 
 		usleep( 1 );
 		$curTTLs = array();
@@ -305,12 +303,12 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$value1 = wfRandomString();
 		$value2 = wfRandomString();
 
-		// Fake initial check key to be set in the past. Otherwise we'd have to sleep for
-		// several seconds during the test to assert the behaviour.
+		// Fake initial check key to be set in the past without hold off.
+		// Otherwise we'd have to sleep for several seconds during the test.
 		foreach ( array( $checkAll, $check1, $check2 ) as $checkKey ) {
-			$this->internalCache->set( $cache::TIME_KEY_PREFIX . $checkKey,
-				$cache::PURGE_VAL_PREFIX . microtime( true ) - $cache::HOLDOFF_TTL, $cache::CHECK_KEY_TTL );
+			$cache->touchCheckKey( $checkKey, $cache::HOLDOFF_NONE );
 		}
+		usleep( 100 );
 
 		$cache->set( 'key1', $value1, 10 );
 		$cache->set( 'key2', $value2, 10 );
@@ -327,11 +325,8 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 			$result,
 			'Initial values'
 		);
-		$this->assertEquals(
-			array( 'key1' => 0, 'key2' => 0 ),
-			$curTTLs,
-			'Initial ttls'
-		);
+		$this->assertGreaterThan( 0, $curTTLs['key1'], 'Initial key1 ttls' );
+		$this->assertGreaterThan( 0, $curTTLs['key2'], 'Initial key2 ttls' );
 
 		$cache->touchCheckKey( $check1 );
 		usleep( 100 );
@@ -349,7 +344,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 			'key1 expired by check1, but value still provided'
 		);
 		$this->assertLessThan( 0, $curTTLs['key1'], 'key1 TTL expired' );
-		$this->assertEquals( 0, $curTTLs['key2'], 'key2 still valid' );
+		$this->assertGreaterThan( 0, $curTTLs['key2'], 'key2 still valid' );
 
 		$cache->touchCheckKey( $checkAll );
 		usleep( 100 );
