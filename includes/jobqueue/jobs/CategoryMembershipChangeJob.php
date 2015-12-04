@@ -165,7 +165,7 @@ class CategoryMembershipChangeJob extends Job {
 		$insertCount = 0;
 
 		foreach ( $categoryInserts as $categoryName ) {
-			$categoryTitle = Title::newFromText( $categoryName, NS_CATEGORY );
+			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
 			$catMembChange->triggerCategoryAddedNotification( $categoryTitle );
 			if ( $insertCount++ && ( $insertCount % $batchSize ) == 0 ) {
 				$dbw->commit( __METHOD__, 'flush' );
@@ -174,7 +174,7 @@ class CategoryMembershipChangeJob extends Job {
 		}
 
 		foreach ( $categoryDeletes as $categoryName ) {
-			$categoryTitle = Title::newFromText( $categoryName, NS_CATEGORY );
+			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
 			$catMembChange->triggerCategoryRemovedNotification( $categoryTitle );
 			if ( $insertCount++ && ( $insertCount++ % $batchSize ) == 0 ) {
 				$dbw->commit( __METHOD__, 'flush' );
