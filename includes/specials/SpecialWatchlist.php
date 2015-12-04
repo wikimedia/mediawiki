@@ -476,7 +476,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$form .= $this->msg( 'watchlist-hide' ) .
 			$this->msg( 'colon-separator' )->escaped() .
 			implode( ' ', $links );
-		$form .= "\n<hr />\n<p>";
+		$form .= "\n<br />\n";
 		$form .= Html::namespaceSelector(
 			array(
 				'selected' => $opts['namespace'],
@@ -502,7 +502,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$opts['associated'],
 			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
 		) . "</span>\n";
-		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "</p>\n";
+		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "\n";
 		foreach ( $hiddenFields as $key => $value ) {
 			$form .= Html::hidden( $key, $value ) . "\n";
 		}
