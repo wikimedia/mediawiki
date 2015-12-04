@@ -303,9 +303,9 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		// Fake initial check key to be set in the past. Otherwise we'd have to sleep for
 		// several seconds during the test to assert the behaviour.
 		foreach ( array( $checkAll, $check1, $check2 ) as $checkKey ) {
-			$this->internalCache->set( $cache::TIME_KEY_PREFIX . $checkKey,
-				$cache::PURGE_VAL_PREFIX . microtime( true ) - $cache::HOLDOFF_TTL, $cache::CHECK_KEY_TTL );
+			$cache->touchCheckKey( $checkKey, WANObjectCache::HOLDOFF_NONE );
 		}
+		usleep( 100 );
 
 		$cache->set( 'key1', $value1, 10 );
 		$cache->set( 'key2', $value2, 10 );
@@ -322,14 +322,12 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 			$result,
 			'Initial values'
 		);
-		$this->assertEquals(
-			array( 'key1' => 0, 'key2' => 0 ),
-			$curTTLs,
-			'Initial ttls'
-		);
+		$this->assertGreaterThanOrEqual( 9.5, $curTTLs['key1'], 'Initial ttls' );
+		$this->assertLessThanOrEqual( 10.5, $curTTLs['key1'], 'Initial ttls' );
+		$this->assertGreaterThanOrEqual( 9.5, $curTTLs['key2'], 'Initial ttls' );
+		$this->assertLessThanOrEqual( 10.5, $curTTLs['key2'], 'Initial ttls' );
 
 		$cache->touchCheckKey( $check1 );
-		usleep( 100 );
 
 		$curTTLs = array();
 		$result = $cache->getMulti( array( 'key1', 'key2', 'key3' ), $curTTLs, array(
@@ -344,10 +342,9 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 			'key1 expired by check1, but value still provided'
 		);
 		$this->assertLessThan( 0, $curTTLs['key1'], 'key1 TTL expired' );
-		$this->assertEquals( 0, $curTTLs['key2'], 'key2 still valid' );
+		$this->assertGreaterThan( 0, $curTTLs['key2'], 'key2 still valid' );
 
 		$cache->touchCheckKey( $checkAll );
-		usleep( 100 );
 
 		$curTTLs = array();
 		$result = $cache->getMulti( array( 'key1', 'key2', 'key3' ), $curTTLs, array(
@@ -363,6 +360,39 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		);
 		$this->assertLessThan( 0, $curTTLs['key1'], 'key1 expired by checkAll' );
 		$this->assertLessThan( 0, $curTTLs['key2'], 'key2 expired by checkAll' );
+	}
+
+	/**
+	 * @covers WANObjectCache::get()
+	 * @covers WANObjectCache::processCheckKeys()
+	 */
+	public function testCheckKeyInitHoldoff() {
+		$cache = $this->cache;
+
+		for ( $i = 0; $i < 500; ++$i ) {
+			$key = wfRandomString();
+			$checkKey = wfRandomString();
+			// miss, set, hit
+			$cache->get( $key, $curTTL, array( $checkKey ) );
+			$cache->set( $key, 'val', 10 );
+			$curTTL = null;
+			$v = $cache->get( $key, $curTTL, array( $checkKey ) );
+
+			$this->assertEquals( 'val', $v );
+			$this->assertLessThan( 0, $curTTL, "Step $i: CTL < 0 (miss/set/hit)" );
+		}
+
+		for ( $i = 0; $i < 500; ++$i ) {
+			$key = wfRandomString();
+			$checkKey = wfRandomString();
+			// set, hit
+			$cache->set( $key, 'val', 10 );
+			$curTTL = null;
+			$v = $cache->get( $key, $curTTL, array( $checkKey ) );
+
+			$this->assertEquals( 'val', $v );
+			$this->assertLessThan( 0, $curTTL, "Step $i: CTL < 0 (set/hit)" );
+		}
 	}
 
 	/**
