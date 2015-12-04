@@ -195,34 +195,19 @@ class Hooks {
 
 			// Profile first in case the Profiler causes errors.
 			wfProfileIn( $func );
-			set_error_handler( 'Hooks::hookErrorHandler' );
 
 			// mark hook as deprecated, if deprecation version is specified
 			if ( $deprecatedVersion !== null ) {
 				wfDeprecated( "$event hook (used in $func)", $deprecatedVersion );
 			}
 
-			try {
-				$retval = call_user_func_array( $callback, $hook_args );
-			} catch ( MWHookException $e ) {
-				$badhookmsg = $e->getMessage();
-			} catch ( Exception $e ) {
-				restore_error_handler();
-				throw $e;
-			}
-			restore_error_handler();
+			$retval = call_user_func_array( $callback, $hook_args );
 			wfProfileOut( $func );
 
 			// Process the return value.
 			if ( is_string( $retval ) ) {
 				// String returned means error.
 				throw new FatalError( $retval );
-			} elseif ( $badhookmsg !== null ) {
-				// Exception was thrown from Hooks::hookErrorHandler.
-				throw new MWException(
-					'Detected bug in an extension! ' .
-					"Hook $func has invalid call signature; " . $badhookmsg
-				);
 			} elseif ( $retval === false ) {
 				wfProfileOut( 'hook: ' . $event );
 				// False was returned. Stop processing, but no error.
@@ -232,25 +217,5 @@ class Hooks {
 
 		wfProfileOut( 'hook: ' . $event );
 		return true;
-	}
-
-	/**
-	 * Handle PHP errors issued inside a hook. Catch errors that have to do with
-	 * a function expecting a reference, and let all others pass through.
-	 *
-	 * This REALLY should be protected... but it's public for compatibility
-	 *
-	 * @since 1.18
-	 *
-	 * @param int $errno Error number (unused)
-	 * @param string $errstr Error message
-	 * @throws MWHookException If the error has to do with the function signature
-	 * @return bool Always returns false
-	 */
-	public static function hookErrorHandler( $errno, $errstr ) {
-		if ( strpos( $errstr, 'expected to be a reference, value given' ) !== false ) {
-			throw new MWHookException( $errstr, $errno );
-		}
-		return false;
 	}
 }
