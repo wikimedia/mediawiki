@@ -1597,21 +1597,28 @@ return array(
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
-	'mediawiki.page.patrol.ajax' => array(
+	'mediawiki.page.patrol' => array(
 		'scripts' => 'resources/src/mediawiki/page/patrol.js',
 		'dependencies' => array(
 			'mediawiki.page.startup',
 			'mediawiki.api',
 			'mediawiki.util',
-			'mediawiki.Title',
-			'mediawiki.notify',
-			'jquery.spinner',
-			'user.tokens'
+			'user.tokens',
+			'oojs',
 		),
 		'messages' => array(
 			'markedaspatrollednotify',
 			'markedaspatrollederrornotify',
 			'markedaspatrollederror-noautopatrol'
+		),
+	),
+	'mediawiki.page.patrol.ajax' => array(
+		'scripts' => 'resources/src/mediawiki/page/patrol.ajax.js',
+		'dependencies' => array(
+			'mediawiki.Title',
+			'mediawiki.notify',
+			'jquery.spinner',
+			'mediawiki.page.patrol',
 		),
 	),
 	'mediawiki.page.watch.ajax' => array(
