@@ -42,7 +42,8 @@ abstract class DatabaseMysqlBase extends Database {
 	 * Additional $params include:
 	 *   - lagDetectionMethod : set to one of (Seconds_Behind_Master,pt-heartbeat).
 	 *                          pt-heartbeat assumes the table is at heartbeat.heartbeat
-	 *                          and uses UTC timestamps in the heartbeat.ts column.
+	 *                          and uses UTC timestamps in the heartbeat.ts column. It also
+	 *                          assumes that binlog files use the default <host>-bin naming.
 	 *                          (https://www.percona.com/doc/percona-toolkit/2.2/pt-heartbeat.html)
 	 * @param array $params
 	 */
@@ -621,11 +622,18 @@ abstract class DatabaseMysqlBase extends Database {
 	abstract protected function mysqlPing();
 
 	function getLag() {
-		if ( $this->lagDetectionMethod === 'pt-heartbeat' ) {
+		if ( $this->getLagDetectionMethod() === 'pt-heartbeat' ) {
 			return $this->getLagFromPtHeartbeat();
 		} else {
 			return $this->getLagFromSlaveStatus();
 		}
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getLagDetectionMethod() {
+		return $this->lagDetectionMethod;
 	}
 
 	/**
@@ -645,35 +653,44 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return bool|float
 	 */
 	protected function getLagFromPtHeartbeat() {
-		$key = wfMemcKey( 'mysql', 'master-server-id', $this->getServer() );
-		$masterId = intval( $this->srvCache->get( $key ) );
-		if ( !$masterId ) {
-			$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__ );
-			$row = $res ? $res->fetchObject() : false;
-			if ( $row && strval( $row->Master_Server_Id ) !== '' ) {
-				$masterId = intval( $row->Master_Server_Id );
-				$this->srvCache->set( $key, $masterId, 30 );
-			}
-		}
-
-		if ( !$masterId ) {
+		$masterHost = $this->getLBInfo( 'clusterMasterHost' );
+		if ( $masterHost === null ) {
 			return false;
 		}
 
-		$res = $this->query(
-			"SELECT TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6)) AS Lag " .
-			"FROM heartbeat.heartbeat WHERE server_id = $masterId"
-		);
-		$row = $res ? $res->fetchObject() : false;
-		if ( $row ) {
-			return max( floatval( $row->Lag ) / 1e6, 0.0 );
+		list( $time, $nowUnix ) = $this->getHeartbeatData( $masterHost );
+		if ( $time !== null ) {
+			// @time is in ISO format like "2015-09-25T16:48:10.000510"
+			$dateTime = new DateTime( $time, new DateTimeZone( 'UTC' ) );
+			$timeUnix = (int)$dateTime->format( 'U' ) + $dateTime->format( 'u' ) / 1e6;
+
+			return max( $nowUnix - $timeUnix, 0.0 );
 		}
 
 		return false;
 	}
 
+	/**
+	 * @param string $masterHost
+	 * @return array (`ts` column value from the heartbeat table, UNIX timestamp)
+	 */
+	protected function getHeartbeatData( $masterHost ) {
+		// If the master is "db1052", the column will be like "db1052-bin.002419".
+		// See http://dev.mysql.com/doc/refman/5.7/en/binary-log.html. This assumes
+		// the default host-based binary log naming.
+		$like = $this->buildLike( "{$masterHost}-bin.", $this->anyString() );
+		// Get the status row for this master; use the oldest for sanity in case the master
+		// has entries listed under different server IDs (which should really not happen).
+		// Note: this would use "MAX(TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6)))" but the
+		// percision field is not supported in MySQL <= 5.5.
+		$res = $this->query( "SELECT MIN(ts) AS time FROM heartbeat.heartbeat WHERE file$like" );
+		$row = $res ? $res->fetchObject() : false;
+		// MAX() returns NULL if there are no rows
+		return array( $row ? $row->time : null, microtime( true ) );
+	}
+
 	public function getApproximateLagStatus() {
-		if ( $this->lagDetectionMethod === 'pt-heartbeat' ) {
+		if ( $this->getLagDetectionMethod() === 'pt-heartbeat' ) {
 			// Disable caching since this is fast enough and we don't wan't
 			// to be *too* pessimistic by having both the cache TTL and the
 			// pt-heartbeat interval count as lag in getSessionLagStatus()

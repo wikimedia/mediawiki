@@ -103,9 +103,13 @@ class LBFactoryTest extends MediaWikiTestCase {
 
 		$dbw = $lb->getConnection( DB_MASTER );
 		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
+		$this->assertEquals(
+			$wgDBserver, $dbw->getLBInfo( 'clusterMasterHost' ), 'cluster master set' );
 
 		$dbr = $lb->getConnection( DB_SLAVE );
 		$this->assertTrue( $dbr->getLBInfo( 'slave' ), 'slave shows as slave' );
+		$this->assertEquals(
+			$wgDBserver, $dbr->getLBInfo( 'clusterMasterHost' ), 'cluster master set' );
 
 		$factory->shutdown();
 		$lb->closeAll();
