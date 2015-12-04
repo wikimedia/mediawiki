@@ -4,6 +4,8 @@
  *
  * @since 1.21
  * @author Marius Hoch <hoo@online.de>
+ * @author Timo Tijhof <krinklemail@gmail.com>
+ * @author Florian Schmidt <florian.schmidt.welzow@t-online.de>
  */
 ( function ( mw, $ ) {
 	if ( !mw.user.tokens.exists( 'patrolToken' ) ) {
@@ -13,8 +15,9 @@
 	}
 	$( function () {
 		var $patrolLinks = $( '.patrollink a' );
-		$patrolLinks.on( 'click', function ( e ) {
-			var $spinner, href, rcid, apiRequest;
+
+		mw.page.patrol.setup( $patrolLinks ).on( 'patrol', function ( promise, node ) {
+			var $spinner;
 
 			// Start preloading the notification module (normally loaded by mw.notify())
 			mw.loader.load( 'mediawiki.notification' );
@@ -24,16 +27,9 @@
 				size: 'small',
 				type: 'inline'
 			} );
-			$( this ).hide().after( $spinner );
+			$( node ).hide().after( $spinner );
 
-			href = $( this ).attr( 'href' );
-			rcid = mw.util.getParamValue( 'rcid', href );
-			apiRequest = new mw.Api();
-
-			apiRequest.postWithToken( 'patrol', {
-				action: 'patrol',
-				rcid: rcid
-			} )
+			promise
 			.done( function ( data ) {
 				// Remove all patrollinks from the page (including any spinners inside).
 				$patrolLinks.closest( '.patrollink' ).remove();
@@ -49,7 +45,6 @@
 			.fail( function ( error ) {
 				$spinner.remove();
 				// Restore the patrol link. This allows the user to try again
-				// (or open it in a new window, bypassing this ajax module).
 				$patrolLinks.show();
 				if ( error === 'noautopatrol' ) {
 					// Can't patrol own
@@ -58,8 +53,6 @@
 					mw.notify( mw.msg( 'markedaspatrollederrornotify' ), { type: 'error' } );
 				}
 			} );
-
-			e.preventDefault();
 		} );
 	} );
 }( mediaWiki, jQuery ) );
