@@ -523,13 +523,13 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$userWatchlistOption = (string)$this->getUser()->getOption( 'watchlistdays' );
 		// add the user preference, if it isn't available already
-		if ( !in_array( $userWatchlistOption, $days ) ) {
+		if ( !in_array( $userWatchlistOption, $days ) && $userWatchlistOption !== '0' ) {
 			$days[] = $userWatchlistOption;
 		}
 
 		$selected = (string)$options['days'];
 		// add the currently selected value, if it isn't available already
-		if ( !in_array( $selected, $days ) ) {
+		if ( !in_array( $selected, $days ) && $selected !== '0' ) {
 			$days[] = $selected;
 		}
 
@@ -547,7 +547,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		// 'all' option
 		$name = $this->msg( 'watchlistall2' )->text();
-		$value = 0;
+		$value = '0';
 		$select->addOption( $name, $value );
 
 		return $select->getHTML() . "\n<br />\n";
