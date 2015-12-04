@@ -256,4 +256,59 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 		$this->assertTrue( $pos2->hasReached( $pos1 ) );
 		$this->assertFalse( $pos1->hasReached( $pos2 ) );
 	}
+
+	/**
+	 * @dataProvider provideLagAmounts
+	 */
+	function testPtHeartbeat( $lag ) {
+		$db = $this->getMockBuilder( 'DatabaseMysql' )
+			->disableOriginalConstructor()
+			->setMethods( array(
+				'getLagDetectionMethod', 'getHeartbeatData', 'getMasterServerInfo' ) )
+			->getMock();
+
+		$db->expects( $this->any() )
+			->method( 'getLagDetectionMethod' )
+			->will( $this->returnValue( 'pt-heartbeat' ) );
+
+		$db->expects( $this->any() )
+			->method( 'getMasterServerInfo' )
+			->will( $this->returnValue( array( 'serverId' => 172, 'asOf' => time() ) ) );
+
+		// Fake the current time.
+		list( $nowSecFrac, $nowSec ) = explode( ' ', microtime() );
+		$now = (float)$nowSec + (float)$nowSecFrac;
+		// Fake the heartbeat time.
+		// Work arounds for weak DataTime microseconds support.
+		$ptTime = $now - $lag;
+		$ptSec = (int)$ptTime;
+		$ptSecFrac = ( $ptTime - $ptSec );
+		$ptDateTime = new DateTime( "@$ptSec" );
+		$ptTimeISO = $ptDateTime->format( 'Y-m-d\TH:i:s' );
+		$ptTimeISO .= ltrim( number_format( $ptSecFrac, 6 ), '0' );
+
+		$db->expects( $this->any() )
+			->method( 'getHeartbeatData' )
+			->with( 172 )
+			->will( $this->returnValue( array( $ptTimeISO, $now ) ) );
+
+		$db->setLBInfo( 'clusterMasterHost', 'db1052' );
+		$lagEst = $db->getLag();
+
+		$this->assertGreaterThan( $lag - .010, $lagEst, "Correct heatbeat lag" );
+		$this->assertLessThan( $lag + .010, $lagEst, "Correct heatbeat lag" );
+	}
+
+	function provideLagAmounts() {
+		return array(
+			array( 0 ),
+			array( 0.3 ),
+			array( 6.5 ),
+			array( 10.1 ),
+			array( 200.2 ),
+			array( 400.7 ),
+			array( 600.22 ),
+			array( 1000.77 ),
+		);
+	}
 }

@@ -816,11 +816,14 @@ class LoadBalancer {
 			$server['dbname'] = $dbNameOverride;
 		}
 
+		// Let the handle know what the cluster master is (e.g. "db1052")
+		$masterName = $this->getServerName( 0 );
+		$server['clusterMasterHost'] = $masterName;
+
 		// Log when many connection are made on requests
 		if ( ++$this->connsOpened >= self::CONN_HELD_WARN_THRESHOLD ) {
-			$masterAddr = $this->getServerName( 0 );
 			wfDebugLog( 'DBPerformance', __METHOD__ . ": " .
-				"{$this->connsOpened}+ connections made (master=$masterAddr)\n" .
+				"{$this->connsOpened}+ connections made (master=$masterName)\n" .
 				wfBacktrace( true ) );
 		}
 
@@ -834,6 +837,9 @@ class LoadBalancer {
 		}
 
 		$db->setLBInfo( $server );
+		$db->setLazyMasterHandle(
+			$this->getLazyConnectionRef( DB_MASTER, array(), $db->getWikiID() )
+		);
 
 		return $db;
 	}
