@@ -1160,15 +1160,15 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$title = $this->mTitle;
 		wfGetDB( DB_MASTER )->onTransactionIdle( function() use ( $title ) {
-			global $wgUseSquid;
 			// Invalidate the cache in auto-commit mode
 			$title->invalidateCache();
-			if ( $wgUseSquid ) {
-				// Send purge now that page_touched update was committed above
-				$update = new SquidUpdate( $title->getSquidURLs() );
-				$update->doUpdate();
-			}
 		} );
+
+		// Send purge after above page_touched update was committed
+		DeferredUpdates::addUpdate(
+			new SquidUpdate( $title->getSquidURLs() ),
+			DeferredUpdates::PRESEND
+		);
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			// @todo move this logic to MessageCache

@@ -94,7 +94,7 @@ class HTMLCacheUpdateJob extends Job {
 	 * @param array $pages Map of (page ID => (namespace, DB key)) entries
 	 */
 	protected function invalidateTitles( array $pages ) {
-		global $wgUpdateRowsPerQuery, $wgUseFileCache, $wgUseSquid;
+		global $wgUpdateRowsPerQuery, $wgUseFileCache;
 
 		// Get all page IDs in this query into an array
 		$pageIds = array_keys( $pages );
@@ -140,10 +140,8 @@ class HTMLCacheUpdateJob extends Job {
 		) );
 
 		// Update squid
-		if ( $wgUseSquid ) {
-			$u = SquidUpdate::newFromTitles( $titleArray );
-			$u->doUpdate();
-		}
+		$u = SquidUpdate::newFromTitles( $titleArray );
+		$u->doUpdate();
 
 		// Update file cache
 		if ( $wgUseFileCache ) {
