@@ -21,49 +21,88 @@
  */
 
 /**
- * Interface that deferrable updates should implement. Basically required so we
- * can validate input on DeferredUpdates::addUpdate()
- *
- * @since 1.19
- */
-interface DeferrableUpdate {
-	/**
-	 * Perform the actual work
-	 */
-	function doUpdate();
-}
-
-/**
  * Class for managing the deferred updates
  *
- * Deferred updates can be run at the end of the request,
- * after the HTTP response has been sent. In CLI mode, updates
- * are only deferred until there is no local master DB transaction.
- * When updates are deferred, they go into a simple FIFO queue.
+ * In web request mode, deferred updates can be run at the end of the request, either before or
+ * after the HTTP response has been sent. In either case, they run after the DB commit step. If
+ * an update runs after the response is sent, it will not block clients. If sent before, it will
+ * run synchronously. If such an update works via queueing, it will be more likely to complete by
+ * the time the client makes their next request after this one.
+ *
+ * In CLI mode, updates are only deferred until the current wiki has no DB write transaction
+ * active within this request.
+ *
+ * When updates are deferred, they use a FIFO queue (one for pre-send and one for post-send).
  *
  * @since 1.19
  */
 class DeferredUpdates {
-	/** @var DeferrableUpdate[] Updates to be deferred until the end of the request */
-	private static $updates = array();
+	/** @var DeferrableUpdate[] Updates to be deferred until before request end */
+	private static $preSendUpdates = array();
+	/** @var DeferrableUpdate[] Updates to be deferred until after request end */
+	private static $postSendUpdates = array();
+
 	/** @var bool Defer updates fully even in CLI mode */
 	private static $forceDeferral = false;
 
+	const ALL = 0; // all updates
+	const PRESEND = 1; // for updates that should run before flushing output buffer
+	const POSTSEND = 2; // for updates that should run after flushing output buffer
+
 	/**
 	 * Add an update to the deferred list
+	 *
 	 * @param DeferrableUpdate $update Some object that implements doUpdate()
+	 * @param integer $type DeferredUpdates constant (PRESEND or POSTSEND) (since 1.27)
 	 */
-	public static function addUpdate( DeferrableUpdate $update ) {
+	public static function addUpdate( DeferrableUpdate $update, $type = self::POSTSEND ) {
+		if ( $type === self::PRESEND ) {
+			self::push( self::$preSendUpdates, $update );
+		} else {
+			self::push( self::$postSendUpdates, $update );
+		}
+	}
+
+	/**
+	 * Add a callable update.  In a lot of cases, we just need a callback/closure,
+	 * defining a new DeferrableUpdate object is not necessary
+	 *
+	 * @see MWCallableUpdate::__construct()
+	 *
+	 * @param callable $callable
+	 * @param integer $type DeferredUpdates constant (PRESEND or POSTSEND) (since 1.27)
+	 */
+	public static function addCallableUpdate( $callable, $type = self::POSTSEND ) {
+		self::addUpdate( new MWCallableUpdate( $callable ), $type );
+	}
+
+	/**
+	 * Do any deferred updates and clear the list
+	 *
+	 * @param string $mode Use "enqueue" to use the job queue when possible [Default: "run"]
+	 * @param integer $type DeferredUpdates constant (PRESEND, POSTSEND, or ALL) (since 1.27)
+	 */
+	public static function doUpdates( $mode = 'run', $type = self::ALL ) {
+		if ( $type === self::ALL || $type == self::PRESEND ) {
+			self::execute( self::$preSendUpdates, $mode );
+		}
+
+		if ( $type === self::ALL || $type == self::POSTSEND ) {
+			self::execute( self::$postSendUpdates, $mode );
+		}
+	}
+
+	private static function push( array &$queue, DeferrableUpdate $update ) {
 		global $wgCommandLineMode;
 
-		array_push( self::$updates, $update );
+		array_push( $queue, $update );
 		if ( self::$forceDeferral ) {
-			return;
+			return; // do not run
 		}
 
 		// CLI scripts may forget to periodically flush these updates,
-		// so try to handle that rather than OOMing and losing them.
-		// Try to run the updates as soon as there is no local transaction.
+		// so try to handle that rather than OOMing and losing them entirely.
+		// Try to run the updates as soon as there is no current wiki transaction.
 		static $waitingOnTrx = false; // de-duplicate callback
 		if ( $wgCommandLineMode && !$waitingOnTrx ) {
 			$lb = wfGetLB();
@@ -81,34 +120,12 @@ class DeferredUpdates {
 		}
 	}
 
-	/**
-	 * Add a callable update.  In a lot of cases, we just need a callback/closure,
-	 * defining a new DeferrableUpdate object is not necessary
-	 * @see MWCallableUpdate::__construct()
-	 * @param callable $callable
-	 */
-	public static function addCallableUpdate( $callable ) {
-		self::addUpdate( new MWCallableUpdate( $callable ) );
-	}
+	public static function execute( array &$queue, $mode ) {
+		$updates = $queue; // snapshot of queue
 
-	/**
-	 * Do any deferred updates and clear the list
-	 *
-	 * @param string $mode Use "enqueue" to use the job queue when possible [Default: run]
-	 *   prevent lock contention
-	 * @param string $oldMode Unused
-	 */
-	public static function doUpdates( $mode = 'run', $oldMode = '' ) {
-		// B/C for ( $commit, $mode ) args
-		$mode = $oldMode ?: $mode;
-		if ( $mode === 'commit' ) {
-			$mode = 'run';
-		}
-
-		$updates = self::$updates;
-
+		// Keep doing rounds of updates until none get enqueued
 		while ( count( $updates ) ) {
-			self::clearPendingUpdates();
+			$queue = array(); // clear the queue
 			/** @var DataUpdate[] $dataUpdates */
 			$dataUpdates = array();
 			/** @var DeferrableUpdate[] $otherUpdates */
@@ -140,7 +157,7 @@ class DeferredUpdates {
 				}
 			}
 
-			$updates = self::$updates;
+			$updates = $queue; // new snapshot of queue (check for new entries)
 		}
 	}
 
@@ -149,7 +166,8 @@ class DeferredUpdates {
 	 * want or need to call this. Unit tests need it though.
 	 */
 	public static function clearPendingUpdates() {
-		self::$updates = array();
+		self::$preSendUpdates = array();
+		self::$postSendUpdates = array();
 	}
 
 	/**
