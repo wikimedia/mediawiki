@@ -153,8 +153,6 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	}
 
 	protected function doIncrementalUpdate() {
-		global $wgRCWatchCategoryMembership;
-
 		# Page links
 		$existing = $this->getExistingLinks();
 		$this->linkDeletions = $this->getLinkDeletions( $existing );
@@ -206,14 +204,6 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		$this->invalidateCategories( $categoryUpdates );
 		$this->updateCategoryCounts( $categoryInserts, $categoryDeletes );
 
-		# Category membership changes
-		if (
-			$wgRCWatchCategoryMembership &&
-			!$this->mTriggeredRecursive && ( $categoryInserts || $categoryDeletes )
-		) {
-			$this->triggerCategoryChanges( $categoryInserts, $categoryDeletes );
-		}
-
 		# Page properties
 		$existing = $this->getExistingProperties();
 
@@ -235,24 +225,6 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 			$this->queueRecursiveJobs();
 		}
 
-	}
-
-	private function triggerCategoryChanges( $categoryInserts, $categoryDeletes ) {
-		$catMembChange = new CategoryMembershipChange( $this->mTitle, $this->mRevision );
-
-		if ( $this->mRecursive ) {
-			$catMembChange->checkTemplateLinks();
-		}
-
-		foreach ( $categoryInserts as $categoryName => $value ) {
-			$categoryTitle = Title::newFromText( $categoryName, NS_CATEGORY );
-			$catMembChange->triggerCategoryAddedNotification( $categoryTitle );
-		}
-
-		foreach ( $categoryDeletes as $categoryName => $value ) {
-			$categoryTitle = Title::newFromText( $categoryName, NS_CATEGORY );
-			$catMembChange->triggerCategoryRemovedNotification( $categoryTitle );
-		}
 	}
 
 	/**
