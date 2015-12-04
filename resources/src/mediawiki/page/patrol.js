@@ -1,65 +1,56 @@
 /*!
- * Animate patrol links to use asynchronous API requests to
- * patrol pages, rather than navigating to a different URI.
- *
- * @since 1.21
+ * @since 1.27
  * @author Marius Hoch <hoo@online.de>
+ * @author Timo Tijhof <krinklemail@gmail.com>
+ * @author Florian Schmidt <florian.schmidt.welzow@t-online.de>
  */
-( function ( mw, $ ) {
-	if ( !mw.user.tokens.exists( 'patrolToken' ) ) {
-		// Current user has no patrol right, or an old cached version of user.tokens
-		// that didn't have patrolToken yet.
-		return;
-	}
-	$( function () {
-		var $patrolLinks = $( '.patrollink a' );
-		$patrolLinks.on( 'click', function ( e ) {
-			var $spinner, href, rcid, apiRequest;
+( function ( mw, OO ) {
 
-			// Start preloading the notification module (normally loaded by mw.notify())
-			mw.loader.load( 'mediawiki.notification' );
+	/**
+	 * Bind click handlers to patrol links.
+	 * @class mw.page.patrol
+	 */
+	mw.page.patrol = {
+		/**
+		 * Add click handlers to $patrolLinks that patrol a revision via the API.
+		 *
+		 * A {@link #event-patrol patrol event} is emitted on the returned OO.EventEmitter
+		 * object to allow for a UI to track or represent the state of the request.
+		 *
+		 * @param {jQuery} $patrolLinks jQuery object representing one or more patrol links
+		 * @return {OO.EventEmitter}
+		 */
+		setup: function ( $patrolLinks ) {
+			var emitter = new OO.EventEmitter();
 
-			// Hide the link and create a spinner to show it inside the brackets.
-			$spinner = $.createSpinner( {
-				size: 'small',
-				type: 'inline'
-			} );
-			$( this ).hide().after( $spinner );
+			// Verify the current user has the patrol right
+			if ( mw.user.tokens.exists( 'patrolToken' ) ) {
+				// setup listeners on the given set of links
+				$patrolLinks.on( 'click', function ( e ) {
+					var rcid, api, promise;
 
-			href = $( this ).attr( 'href' );
-			rcid = mw.util.getParamValue( 'rcid', href );
-			apiRequest = new mw.Api();
+					rcid = mw.util.getParamValue( 'rcid', this.href );
+					api = new mw.Api();
 
-			apiRequest.postWithToken( 'patrol', {
-				action: 'patrol',
-				rcid: rcid
-			} )
-			.done( function ( data ) {
-				// Remove all patrollinks from the page (including any spinners inside).
-				$patrolLinks.closest( '.patrollink' ).remove();
-				if ( data.patrol !== undefined ) {
-					// Success
-					var title = new mw.Title( data.patrol.title );
-					mw.notify( mw.msg( 'markedaspatrollednotify', title.toText() ) );
-				} else {
-					// This should never happen as errors should trigger fail
-					mw.notify( mw.msg( 'markedaspatrollederrornotify' ), { type: 'error' } );
-				}
-			} )
-			.fail( function ( error ) {
-				$spinner.remove();
-				// Restore the patrol link. This allows the user to try again
-				// (or open it in a new window, bypassing this ajax module).
-				$patrolLinks.show();
-				if ( error === 'noautopatrol' ) {
-					// Can't patrol own
-					mw.notify( mw.msg( 'markedaspatrollederror-noautopatrol' ), { type: 'warn' } );
-				} else {
-					mw.notify( mw.msg( 'markedaspatrollederrornotify' ), { type: 'error' } );
-				}
-			} );
+					// Perform the patrol action using the API
+					promise = api.postWithToken( 'patrol', {
+						action: 'patrol',
+						rcid: rcid
+					} );
 
-			e.preventDefault();
-		} );
-	} );
-}( mediaWiki, jQuery ) );
+					/**
+					 * @event patrol
+					 * @param {jQuery.Promise} promise API request
+					 * @param {HTMLElement} node Patrol link
+					 */
+					emitter.emit( 'patrol', promise, this );
+
+					// Prevent URL navigation, the action is being performed via AJAX
+					e.preventDefault();
+				} );
+			}
+
+			return emitter;
+		}
+	};
+}( mediaWiki, OO ) );
