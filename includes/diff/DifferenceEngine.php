@@ -459,74 +459,94 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Get a link to mark the change as patrolled, or '' if there's either no
-	 * revision to patrol or the user is not allowed to to it.
+	 * Build a link to mark a change as patrolled.
+	 *
+	 * Returns empty string if there's either no revision to patrol or the user is not allowed to.
 	 * Side effect: When the patrol link is build, this method will call
 	 * OutputPage::preventClickjacking() and load mediawiki.page.patrol.ajax.
 	 *
-	 * @return string
+	 * @return string HTML or empty string
 	 */
 	protected function markPatrolledLink() {
+		if ( $this->mMarkPatrolledLink === null ) {
+			$linkInfo = $this->getMarkPatrolledLinkInfo();
+			// If false, there is no patrol link needed/allowed
+			if ( !$linkInfo ) {
+				$this->mMarkPatrolledLink = '';
+			} else {
+				$this->mMarkPatrolledLink = ' <span class="patrollink">[' . Linker::linkKnown(
+					$this->mNewPage,
+					$this->msg( 'markaspatrolleddiff' )->escaped(),
+					array(),
+					array(
+						'action' => 'markpatrolled',
+						'rcid' => $linkInfo['rcid'],
+						'token' => $linkInfo['token'],
+					)
+				) . ']</span>';
+			}
+		}
+		return $this->mMarkPatrolledLink;
+	}
+
+	/**
+	 * Returns an array of meta data needed to build a "mark as patrolled" link and
+	 * adds the mediawiki.page.patrol.ajax to the output.
+	 *
+	 * @return array|false An array of meta data for a patrol link (rcid & token)
+	 *  or false if no link is needed
+	 */
+	protected function getMarkPatrolledLinkInfo() {
 		global $wgUseRCPatrol, $wgEnableAPI, $wgEnableWriteAPI;
+
 		$user = $this->getUser();
 
-		if ( $this->mMarkPatrolledLink === null ) {
-			// Prepare a change patrol link, if applicable
-			if (
-				// Is patrolling enabled and the user allowed to?
-				$wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $user ) &&
-				// Only do this if the revision isn't more than 6 hours older
-				// than the Max RC age (6h because the RC might not be cleaned out regularly)
-				RecentChange::isInRCLifespan( $this->mNewRev->getTimestamp(), 21600 )
-			) {
-				// Look for an unpatrolled change corresponding to this diff
+		// Prepare a change patrol link, if applicable
+		if (
+			// Is patrolling enabled and the user allowed to?
+			$wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $user ) &&
+			// Only do this if the revision isn't more than 6 hours older
+			// than the Max RC age (6h because the RC might not be cleaned out regularly)
+			RecentChange::isInRCLifespan( $this->mNewRev->getTimestamp(), 21600 )
+		) {
+			// Look for an unpatrolled change corresponding to this diff
+			$db = wfGetDB( DB_SLAVE );
+			$change = RecentChange::newFromConds(
+				array(
+					'rc_timestamp' => $db->timestamp( $this->mNewRev->getTimestamp() ),
+					'rc_this_oldid' => $this->mNewid,
+					'rc_patrolled' => 0
+				),
+				__METHOD__,
+				array( 'USE INDEX' => 'rc_timestamp' )
+			);
 
-				$db = wfGetDB( DB_SLAVE );
-				$change = RecentChange::newFromConds(
-					array(
-						'rc_timestamp' => $db->timestamp( $this->mNewRev->getTimestamp() ),
-						'rc_this_oldid' => $this->mNewid,
-						'rc_patrolled' => 0
-					),
-					__METHOD__
-				);
-
-				if ( $change && !$change->getPerformer()->equals( $user ) ) {
-					$rcid = $change->getAttribute( 'rc_id' );
-				} else {
-					// None found or the page has been created by the current user.
-					// If the user could patrol this it already would be patrolled
-					$rcid = 0;
-				}
-				// Build the link
-				if ( $rcid ) {
-					$this->getOutput()->preventClickjacking();
-					if ( $wgEnableAPI && $wgEnableWriteAPI
-						&& $user->isAllowed( 'writeapi' )
-					) {
-						$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
-					}
-
-					$token = $user->getEditToken( $rcid );
-					$this->mMarkPatrolledLink = ' <span class="patrollink">[' . Linker::linkKnown(
-						$this->mNewPage,
-						$this->msg( 'markaspatrolleddiff' )->escaped(),
-						array(),
-						array(
-							'action' => 'markpatrolled',
-							'rcid' => $rcid,
-							'token' => $token,
-						)
-					) . ']</span>';
-				} else {
-					$this->mMarkPatrolledLink = '';
-				}
+			if ( $change && !$change->getPerformer()->equals( $user ) ) {
+				$rcid = $change->getAttribute( 'rc_id' );
 			} else {
-				$this->mMarkPatrolledLink = '';
+				// None found or the page has been created by the current user.
+				// If the user could patrol this it already would be patrolled
+				$rcid = 0;
+			}
+			// Build the link
+			if ( $rcid ) {
+				$this->getOutput()->preventClickjacking();
+				if ( $wgEnableAPI && $wgEnableWriteAPI
+					&& $user->isAllowed( 'writeapi' )
+				) {
+					$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
+				}
+
+				$token = $user->getEditToken( $rcid );
+				return array(
+					'rcid' => $rcid,
+					'token' => $token,
+				);
 			}
 		}
 
-		return $this->mMarkPatrolledLink;
+		// No mark as patrolled link applicable
+		return false;
 	}
 
 	/**
