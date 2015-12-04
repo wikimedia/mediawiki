@@ -247,7 +247,8 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$curTTLs = array();
 		$this->assertEquals(
 			array( $key1 => $value1, $key2 => $value2 ),
-			$cache->getMulti( array( $key1, $key2, $key3 ), $curTTLs )
+			$cache->getMulti( array( $key1, $key2, $key3 ), $curTTLs ),
+			'Result array populated'
 		);
 
 		$this->assertEquals( 2, count( $curTTLs ), "Two current TTLs in array" );
@@ -256,12 +257,6 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 		$cKey1 = wfRandomString();
 		$cKey2 = wfRandomString();
-		$curTTLs = array();
-		$this->assertEquals(
-			array( $key1 => $value1, $key2 => $value2 ),
-			$cache->getMulti( array( $key1, $key2, $key3 ), $curTTLs ),
-			'Result array populated'
-		);
 
 		$priorTime = microtime( true );
 		usleep( 1 );
