@@ -228,7 +228,7 @@ class SpecialProtectedpages extends SpecialPage {
 		}
 
 		return '<span class="mw-input-with-label">' .
-			Xml::label( $this->msg( 'restriction-type' )->text(), $this->IdType ) . '&#160;' .
+			Xml::label( $this->msg( 'restriction-type' )->text(), $this->IdType ) . ' ' .
 			Xml::tags( 'select',
 				array( 'id' => $this->IdType, 'name' => $this->IdType ),
 				implode( "\n", $options ) ) . "</span>";
