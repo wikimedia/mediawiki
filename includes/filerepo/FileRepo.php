@@ -123,13 +123,13 @@ class FileRepo {
 	/** @var bool Whether all zones should be private (e.g. private wiki repo) */
 	protected $isPrivate;
 
-	/**
-	 * Factory functions for creating new files
-	 * Override these in the base class
-	 */
+	/** @var array callable Override these in the base class */
 	protected $fileFactory = array( 'UnregisteredLocalFile', 'newFromTitle' );
+	/** @var array callable|bool Override these in the base class */
 	protected $oldFileFactory = false;
+	/** @var array callable|bool Override these in the base class */
 	protected $fileFactoryKey = false;
+	/** @var array callable|bool Override these in the base class */
 	protected $oldFileFactoryKey = false;
 
 	/**
@@ -1031,8 +1031,10 @@ class FileRepo {
 				$headers = array( 'Content-Disposition' => $triple[2] );
 			} elseif ( is_array( $triple[2] ) && isset( $triple[2]['headers'] ) ) {
 				$headers = $triple[2]['headers'];
+			} else {
+				$headers = array();
 			}
-			// @fixme: $headers might not be defined
+
 			$operations[] = array(
 				'op' => FileBackend::isStoragePath( $src ) ? 'copy' : 'store',
 				'src' => $src,
