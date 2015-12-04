@@ -19,6 +19,8 @@
  * @author Aaron Schulz
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Prepare an edit in shared cache so that it can be reused on edit
  *
@@ -133,6 +135,7 @@ class ApiStashEdit extends ApiBase {
 	 */
 	public static function parseAndStash( WikiPage $page, Content $content, User $user ) {
 		$cache = ObjectCache::getLocalClusterInstance();
+		$logger = LoggerFactory::getInstance( 'StashEdit' );
 
 		$format = $content->getDefaultFormat();
 		$editInfo = $page->prepareContentForEdit( $content, null, $user, $format, false );
@@ -147,14 +150,14 @@ class ApiStashEdit extends ApiBase {
 			if ( $stashInfo ) {
 				$ok = $cache->set( $key, $stashInfo, $ttl );
 				if ( $ok ) {
-					wfDebugLog( 'StashEdit', "Cached parser output for key '$key'." );
+					$logger->debug( "Cached parser output for key '$key'." );
 					return self::ERROR_NONE;
 				} else {
-					wfDebugLog( 'StashEdit', "Failed to cache parser output for key '$key'." );
+					$logger->error( "Failed to cache parser output for key '$key'." );
 					return self::ERROR_CACHE;
 				}
 			} else {
-				wfDebugLog( 'StashEdit', "Uncacheable parser output for key '$key'." );
+				$logger->info( "Uncacheable parser output for key '$key'." );
 				return self::ERROR_UNCACHEABLE;
 			}
 		}
@@ -186,6 +189,7 @@ class ApiStashEdit extends ApiBase {
 		ParserOptions $pstOpts, ParserOptions $pOpts, $timestamp
 	) {
 		$cache = ObjectCache::getLocalClusterInstance();
+		$logger = LoggerFactory::getInstance( 'StashEdit' );
 
 		// getIsPreview() controls parser function behavior that references things
 		// like user/revision that don't exists yet. The user/text should already
@@ -207,22 +211,22 @@ class ApiStashEdit extends ApiBase {
 		$canonicalPOpts->setIsPreview( true ); // force match
 		$canonicalPOpts->setTimestamp( $pOpts->getTimestamp() ); // force match
 		if ( !$pOpts->matches( $canonicalPOpts ) ) {
-			wfDebugLog( 'StashEdit', "Uncacheable preview output for key '$key' (options)." );
+			$logger->info( "Uncacheable preview output for key '$key' (options)." );
 			return false;
 		}
 
 		// Build a value to cache with a proper TTL
 		list( $stashInfo, $ttl ) = self::buildStashValue( $pstContent, $pOut, $timestamp );
 		if ( !$stashInfo ) {
-			wfDebugLog( 'StashEdit', "Uncacheable parser output for key '$key' (rev/TTL)." );
+			$logger->info( "Uncacheable parser output for key '$key' (rev/TTL)." );
 			return false;
 		}
 
 		$ok = $cache->set( $key, $stashInfo, $ttl );
 		if ( !$ok ) {
-			wfDebugLog( 'StashEdit', "Failed to cache preview parser output for key '$key'." );
+			$logger->error( "Failed to cache preview parser output for key '$key'." );
 		} else {
-			wfDebugLog( 'StashEdit', "Cached preview output for key '$key'." );
+			$logger->debug( "Cached preview output for key '$key'." );
 		}
 
 		return $ok;
@@ -247,6 +251,7 @@ class ApiStashEdit extends ApiBase {
 	 */
 	public static function checkCache( Title $title, Content $content, User $user ) {
 		$cache = ObjectCache::getLocalClusterInstance();
+		$logger = LoggerFactory::getInstance( 'StashEdit' );
 
 		$key = self::getStashKey( $title, $content, $user );
 		$editInfo = $cache->get( $key );
@@ -260,18 +265,18 @@ class ApiStashEdit extends ApiBase {
 			}
 			$sec = microtime( true ) - $start;
 			if ( $sec > .01 ) {
-				wfDebugLog( 'StashEdit', "Waited $sec seconds on '$key'." );
+				$logger->warning( "Waited $sec seconds on '$key'." );
 			}
 		}
 
 		if ( !is_object( $editInfo ) || !$editInfo->output ) {
-			wfDebugLog( 'StashEdit', "No cache value for key '$key'." );
+			$logger->debug( "No cache value for key '$key'." );
 			return false;
 		}
 
 		$time = wfTimestamp( TS_UNIX, $editInfo->output->getTimestamp() );
 		if ( ( time() - $time ) <= 3 ) {
-			wfDebugLog( 'StashEdit', "Timestamp-based cache hit for key '$key'." );
+			$logger->debug( "Timestamp-based cache hit for key '$key'." );
 			return $editInfo; // assume nothing changed
 		}
 
@@ -299,7 +304,7 @@ class ApiStashEdit extends ApiBase {
 			}
 
 			if ( $changed || $res->numRows() != $templateUses ) {
-				wfDebugLog( 'StashEdit', "Stale cache for key '$key'; template changed." );
+				$logger->info( "Stale cache for key '$key'; template changed." );
 				return false;
 			}
 		}
@@ -322,12 +327,12 @@ class ApiStashEdit extends ApiBase {
 			}
 
 			if ( $changed || $res->numRows() != count( $files ) ) {
-				wfDebugLog( 'StashEdit', "Stale cache for key '$key'; file changed." );
+				$logger->info( "Stale cache for key '$key'; file changed." );
 				return false;
 			}
 		}
 
-		wfDebugLog( 'StashEdit', "Cache hit for key '$key'." );
+		$logger->debug( "Cache hit for key '$key'." );
 
 		return $editInfo;
 	}
