@@ -25,12 +25,6 @@
  */
 
 /**
- * @since 1.18
- */
-class MWHookException extends MWException {
-}
-
-/**
  * Hooks class.
  *
  * Used to supersede $wgHooks, because globals are EVIL.
