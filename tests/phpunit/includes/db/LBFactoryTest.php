@@ -103,9 +103,13 @@ class LBFactoryTest extends MediaWikiTestCase {
 
 		$dbw = $lb->getConnection( DB_MASTER );
 		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
+		$this->assertEquals(
+			$wgDBserver, $dbw->getLBInfo( 'clusterMasterHost' ), 'cluster master set' );
 
 		$dbr = $lb->getConnection( DB_SLAVE );
 		$this->assertTrue( $dbr->getLBInfo( 'slave' ), 'slave shows as slave' );
+		$this->assertEquals(
+			$wgDBserver, $dbr->getLBInfo( 'clusterMasterHost' ), 'cluster master set' );
 
 		$factory->shutdown();
 		$lb->closeAll();
@@ -205,5 +209,66 @@ class LBFactoryTest extends MediaWikiTestCase {
 		// Record in stash
 		$cp->shutdownLB( $lb );
 		$cp->shutdown();
+	}
+
+	public function testPtHeartbeat() {
+		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
+
+		$this->setMwGlobals( 'wgDBservers', array(
+			array( // master
+				'host'		=> $wgDBserver,
+				'dbname'    => $wgDBname,
+				'user'		=> $wgDBuser,
+				'password'	=> $wgDBpassword,
+				'type'		=> $wgDBtype,
+				'load'      => 0,
+				'flags'     => DBO_TRX, // REPEATABLE-READ for consistency
+				'lagDetectionMethod' => 'pt-heartbeat',
+			),
+		) );
+
+		$factory = new LBFactorySimple( array() );
+		$lb = $factory->getMainLB();
+		$dbw = $lb->getConnection( DB_MASTER );
+		if ( !$dbw instanceof DatabaseMysqlBase ) {
+			$this->markTestSkipped( "Not using MySQL" );
+		}
+
+		$dbw->setLBInfo( 'clusterMasterHost', 'db1052' );
+
+		// https://www.percona.com/doc/percona-toolkit/2.2/pt-heartbeat.html#options
+		$sql = <<<EOT
+CREATE TEMPORARY TABLE heartbeat.heartbeat (
+  ts                    varchar(26) NOT NULL,
+  server_id             int unsigned NOT NULL PRIMARY KEY,
+  file                  varchar(255) DEFAULT NULL,    -- SHOW MASTER STATUS
+  position              bigint unsigned DEFAULT NULL -- SHOW MASTER STATUS
+);
+EOT;
+		$dbw->query( $sql );
+
+		$expectedLag = 3;
+		$ts = microtime( true ) - $expectedLag;
+		// Work arounds for weak DataTime sub-second support.
+		// It's hard to derive a date in the past with microseconds.
+		$fakeTime = (int)$ts;
+		$fakeDateTime = new DateTime( "@$fakeTime" );
+		$ptTime = $fakeDateTime->format( 'Y-m-d\TH:i:s.u\Z' );
+
+		$dbw->query(
+			"INSERT INTO heartbeat.heartbeat (ts,server_id,file,position) " .
+			"VALUES ('$ptTime','103222','db1052-bin.002419','921714571' )"
+		);
+
+		// Compensate for integer rounding and slow DB updates
+		$expectedLag = ( microtime( true ) - $fakeTime );
+
+		$lag1 = $dbw->getLag();
+
+		$this->assertGreaterThan( $expectedLag - .100, $lag1, "Correct heatbeat lag" );
+		$this->assertLessThan( $expectedLag + .100, $lag1, "Correct heatbeat lag" );
+
+		$factory->shutdown();
+		$lb->closeAll();
 	}
 }
