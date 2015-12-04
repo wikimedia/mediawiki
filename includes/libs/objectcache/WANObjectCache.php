@@ -1087,7 +1087,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param int $holdoff In seconds
 	 * @return string Wrapped purge value
 	 */
-	protected static function makePurgeValue( $timestamp, $holdoff ) {
+	protected function makePurgeValue( $timestamp, $holdoff ) {
 		return self::PURGE_VAL_PREFIX . (float)$timestamp . ':' . (int)$holdoff;
 	}
 }
