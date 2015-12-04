@@ -4365,6 +4365,10 @@ $wgCentralIdLookupProvider = 'local';
  *	- PasswordCannotMatchUsername - Password cannot match username to
  *	- PasswordCannotMatchBlacklist - Username/password combination cannot
  *		match a specific, hardcoded blacklist.
+ *	- PasswordCannotBePopular - Blacklist passwords which are known to be
+ *		commonly chosen. Set to integer n to ban the top n passwords.
+ *		If you want to ban all common passwords on file, use the
+ *		PHP_INT_MAX constant.
  * @since 1.26
  */
 $wgPasswordPolicy = array(
@@ -4373,11 +4377,13 @@ $wgPasswordPolicy = array(
 			'MinimalPasswordLength' => 8,
 			'MinimumPasswordLengthToLogin' => 1,
 			'PasswordCannotMatchUsername' => true,
+			'PasswordCannotBePopular' => 25,
 		),
 		'sysop' => array(
 			'MinimalPasswordLength' => 8,
 			'MinimumPasswordLengthToLogin' => 1,
 			'PasswordCannotMatchUsername' => true,
+			'PasswordCannotBePopular' => 25,
 		),
 		'bot' => array(
 			'MinimalPasswordLength' => 8,
@@ -4397,6 +4403,7 @@ $wgPasswordPolicy = array(
 		'PasswordCannotMatchUsername' => 'PasswordPolicyChecks::checkPasswordCannotMatchUsername',
 		'PasswordCannotMatchBlacklist' => 'PasswordPolicyChecks::checkPasswordCannotMatchBlacklist',
 		'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
+		'PasswordCannotBePopular' => 'PasswordPolicyChecks::checkPopularPasswordBlacklist'
 	),
 );
 
@@ -7790,6 +7797,19 @@ $wgVirtualRestConfig = array(
  * @since 1.26
  */
 $wgSearchRunSuggestedQuery = true;
+
+/**
+ * Where popular password file is located.
+ *
+ * Default in core contains 50,000 most popular. This config
+ * allows you to change which file, in case you want to generate
+ * a password file with > 50000 entries in it.
+ *
+ * @see maintenance/createCommonPasswordCdb.php
+ * @since 1.27
+ * @var string path to file
+ */
+$wgPopularPasswordFile = __DIR__ . '/../serialized/commonpasswords.cdb';
 
 /**
  * For really cool vim folding this needs to be at the end:
