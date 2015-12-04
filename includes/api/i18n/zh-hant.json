@@ -6,7 +6,8 @@
 			"LNDDYL",
 			"EagerLin",
 			"Zhxy 519",
-			"Macofe"
+			"Macofe",
+			"Jasonzhuocn"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|文件]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 郵件清單]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug與請求]\n</div>\n<strong>狀態資訊：</strong>本頁所展示的所有功能都應正常工作，但是 API 仍在開發當中，將會隨時變化。請訂閱[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 郵件清單]以便得到更新通知。\n\n<strong>錯誤請求：</strong>當 API 收到錯誤請求時， HTTP header 將會返回一個包含「MediaWiki-API-Error」的值，隨後 header 的值與錯誤碼將會送回並設定為相同的值。詳細資訊請參閱[[mw:API:Errors_and_warnings|API: 錯誤與警告]]。",
@@ -167,6 +168,7 @@
 	"apihelp-query+categorymembers-param-limit": "回傳的頁面數量上限。",
 	"apihelp-query+contributors-param-limit": "要回傳的貢獻人員數量。",
 	"apihelp-query+duplicatefiles-param-limit": "要回傳的重複檔案數量。",
+	"apihelp-query+embeddedin-param-filterredir": "如何過濾重定向。",
 	"apihelp-query+embeddedin-param-limit": "要回傳的頁面總數。",
 	"apihelp-query+extlinks-description": "回傳所有指定頁面的外部 URL (非 interwiki)。",
 	"apihelp-query+extlinks-param-limit": "要回傳的連結數量。",

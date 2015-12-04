@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hosseinblue"
+		]
+	},
+	"config-desc": "نۀصب کۀر ویکی‌مدیا",
+	"config-title": "نۀصب ویکی‌مدیا $1",
+	"config-information": "اطلاعات",
+	"config-localsettings-upgrade": "یک پرونده <code>LocalSettings.php</code> شناسایی شده‌است.\nبرای ارتقاء این نصب لطفاً مقدار <code>$wgUpgradeKey</code> در جعبه زیر وارد کنید.\nشما می‌توانید آن را در <code>LocalSettings.php</code> پیدا کنید.",
+	"config-localsettings-cli-upgrade": "یک پرونده <code>LocalSettings.php</code> شناسایی شده است.\nبرای ارتقاء این نصب، لطفاً <code>update.php</code> را اجرا کنید.",
+	"config-localsettings-key": ":کلید ارتقا",
+	"config-your-language": "زوون هوومۀ",
+	"config-your-language-help": "زوونئ ئۀرا استفاده در طی کار نۀب انتخب کۀن.",
+	"config-wiki-language": "زوون ویکی:",
+	"config-wiki-language-help": "زوونئ انتخاب کۀن  گِ ویکی ویشتر وۀ ئۀؤۀ مۀنیوسِرئ.",
+	"config-back": "→ ئاهۀتن-بازگشت",
+	"config-continue": "ادامه-دؤم گرتن ←",
+	"config-page-language": "زوون",
+	"config-page-welcome": "خؤۀش هۀتین مدیا ویکی!",
+	"config-page-dbconnect": "اتصال به پایگاه داده",
+	"config-page-upgrade": "ارتقای نصب موجود",
+	"config-page-dbsettings": "تنظیمات پایگاه داده",
+	"config-page-name": "نؤم",
+	"config-page-options": "گزینۀل",
+	"config-page-install": "نۀصب"
+}
