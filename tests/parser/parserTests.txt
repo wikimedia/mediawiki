@@ -2266,6 +2266,15 @@ Entities inside <pre>
 !! end
 
 !! test
+<nowiki> inside of #tag:pre
+!! wikitext
+{{#tag:pre|Foo <nowiki>&rarr;bar</nowiki>}}
+!! html
+<pre>Foo &#8594;bar</pre>
+
+!! end
+
+!! test
 <nowiki> and <pre> preference (first one wins)
 !! wikitext
 <pre>

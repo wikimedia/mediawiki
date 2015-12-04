@@ -121,9 +121,14 @@ class Parser {
 	 *
 	 * Must not consist of all title characters, or else it will change
 	 * the behavior of <nowiki> in a link.
+	 *
+	 * Must have a character that needs escaping in attributes, otherwise
+	 * someone could put a strip marker in an attribute, to get around
+	 * escaping quote marks, and break out of the attribute. Thus we add
+	 * `'".
 	 */
-	const MARKER_SUFFIX = "-QINU\x7f";
-	const MARKER_PREFIX = "\x7fUNIQ-";
+	const MARKER_SUFFIX = "-QINU`\"'\x7f";
+	const MARKER_PREFIX = "\x7f'\"`UNIQ-";
 
 	# Markers used for wrapping the table of contents
 	const TOC_START = '<mw:toc>';
