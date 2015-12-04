@@ -1056,11 +1056,6 @@ class SpecialSearch extends SpecialPage {
 
 		Hooks::run( 'SpecialSearchPowerBox', array( &$showSections, $term, $opts ) );
 
-		$hidden = '';
-		foreach ( $opts as $key => $value ) {
-			$hidden .= Html::hidden( $key, $value );
-		}
-
 		# Stuff to feed saveNamespaces()
 		$remember = '';
 		$user = $this->getUser();
@@ -1086,7 +1081,6 @@ class SpecialSearch extends SpecialPage {
 			Xml::element( 'div', array( 'id' => 'mw-search-togglebox' ), '', false ) .
 			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
 			implode( Xml::element( 'div', array( 'class' => 'divider' ), '', false ), $showSections ) .
-			$hidden .
 			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
 			$remember .
 			Xml::closeElement( 'fieldset' );
