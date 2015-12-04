@@ -211,6 +211,12 @@ class ParserOptions {
 	private $mExtraKey = '';
 
 	/**
+	 * Do post parse XSS filter
+	 * @var Boolean|string true, false, or the value "report-only"
+	 */
+	private $mUsePostParseXSSFilter = false;
+
+	/**
 	 * Function to be called when an option is accessed.
 	 */
 	private $onAccessCallback = null;
@@ -409,6 +415,15 @@ class ParserOptions {
 		return $this->getUserLangObj()->getCode();
 	}
 
+	/**
+	 * Whether to do a post parsing check for scripts
+	 * @return boolean|string true, false, or "report-only"
+	 * @since 1.27
+	 */
+	public function getUsePostParseXSSFilter() {
+		return $this->mUsePostParseXSSFilter;
+	}
+
 	public function setInterwikiMagic( $x ) {
 		return wfSetVar( $this->mInterwikiMagic, $x );
 	}
@@ -568,6 +583,17 @@ class ParserOptions {
 	}
 
 	/**
+	 * Whether to check output for script tags
+	 *
+	 * @param boolean|string true, false, or "report-only"
+	 * @return boolean|string
+	 * @since 1.27
+	 */
+	public function setUsePostParseXSSFilter( $x ) {
+		return wfSetVar( $this->mUsePostParseXSSFilter, $x );
+	}
+
+	/**
 	 * Extra key that should be present in the parser cache key.
 	 * @param string $key
 	 */
@@ -642,7 +668,8 @@ class ParserOptions {
 			$wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion,
 			$wgMaxArticleSize, $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth,
 			$wgCleanSignatures, $wgExternalLinkTarget, $wgExpensiveParserFunctionLimit,
-			$wgMaxGeneratedPPNodeCount, $wgDisableLangConversion, $wgDisableTitleConversion;
+			$wgMaxGeneratedPPNodeCount, $wgDisableLangConversion, $wgDisableTitleConversion,
+			$wgUsePostParseXSSFilter;
 
 		// *UPDATE* ParserOptions::matches() if any of this changes as needed
 		$this->mInterwikiMagic = $wgInterwikiMagic;
@@ -660,6 +687,7 @@ class ParserOptions {
 		$this->mExternalLinkTarget = $wgExternalLinkTarget;
 		$this->mDisableContentConversion = $wgDisableLangConversion;
 		$this->mDisableTitleConversion = $wgDisableLangConversion || $wgDisableTitleConversion;
+		$this->mUsePostParseXSSFilter = $wgUsePostParseXSSFilter;
 
 		$this->mUser = $user;
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
