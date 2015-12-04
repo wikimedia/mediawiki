@@ -1891,4 +1891,83 @@ class Sanitizer {
 
 		return (bool)preg_match( $html5_email_regexp, $addr );
 	}
+
+	/**
+	 * Attempt to check output for scripts.
+	 *
+	 * The goal of this function, is to prevent <script> injection
+	 * into the output of the parser from poorly secured extensions.
+	 *
+	 * When combined with Content-Security-Policy header, it is hoped
+	 * this will prevent most XSS attacks in the parser. However this is
+	 * not meant as a primary protection mechanism - Proper escaping is
+	 * still important. Its only meant as a measure of last resort.
+	 *
+	 * The main attack that is not covered by this + CSP, is injecting
+	 * data attributes that are assumed to be safe input and
+	 * interpreted by javascript.
+	 *
+	 * @todo A future todo might be to do similar things as CSP does, but
+	 *   serverside.
+	 * @warning IMPORTANT: Do NOT rely on this to catch all cases,
+	 *   this is not meant as a replacement for doing proper escaping.
+	 * @note If someone can inject something like:
+	 *  <script class="foo><img src=d onerror=javascript:alert(1)>">
+	 *  This feature will get rid of the <script>, but inadvertently
+	 *  turn the attribute into an actual tag. Presumably, anyone who
+	 *  can inject <script> tags can already insert arbitrary non-script
+	 *  attributes. Nonetheless, this feature should only be used when
+	 *  $wgWellFormedXml is true.
+	 *
+	 * @param $text String HTML to filter
+	 * @param $titleText String Title as string for log
+	 * @param $isPreview boolean Is preview (for log entry)
+	 * @param $isInterface boolean Is interface message (for log entry)
+	 * @param $revId integer Revision id or 0 (for log entry)
+	 * @param $reportOnly boolean true for log only, false for log and modify
+	 * @param $log \Psr\Log\LoggerInterface Where to log reports to or null for xss-filter
+	 * @return string The text to output, sanitized if $reportOnly is false
+	 */
+	public static function filterForXSS(
+		$text,
+		$titleText,
+		$isPreview,
+		$isInterface,
+		$revId,
+		$reportOnly,
+		\Psr\Log\LoggerInterface $log = null
+	) {
+		if ( $log === null ) {
+			$log = \MediaWiki\Logger\LoggerFactory::getInstance( 'xss-filter' );
+		}
+
+		$scriptStartTag = '<\W*script(?:>|[^a-z][^>]*>)';
+		$scriptEndTag = '</\W*script(?:>|[^a-z][^>]*>)';
+
+		$m = array();
+		$result = preg_match( "#$scriptStartTag.{0,70}|$scriptEndTag#si", $text, $m );
+		if ( $result ) {
+			$revId = (int)$revId;
+			$context = array(
+				'method' => __METHOD__,
+				'reportOnly' => $reportOnly,
+				'title' => $titleText,
+				'isPreview' => $isPreview,
+				'isInterface' => $isInterface,
+				'offendingText' => $m[0],
+				'revId' => $revId
+			);
+			$log->error( "XSS detected on $titleText (rev# $revId)", $context );
+
+			if ( !$reportOnly ) {
+				$text = preg_replace( "#$scriptEndTag#i", '</div>', $text );
+				// Not using quote marks ensures that there is no way this
+				// could possibly break out of quote marks, if this regex
+				// replaced something in a quoted attribute.
+				$replaceDiv = '<div style=display:none class=mw-removed-xss>';
+				$text = preg_replace( "#$scriptStartTag#i", $replaceDiv, $text );
+			}
+		}
+		return $text;
+	}
 }

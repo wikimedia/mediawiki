@@ -7785,6 +7785,30 @@ $wgPopularPasswordFile = __DIR__ . '/../serialized/commonpasswords.cdb';
  */
 $wgMaxUserDBWriteDuration = false;
 
+/*
+ * Add a post-processing step to parsing to look for potential XSS.
+ *
+ * Currently experimental, may break some extesions.
+ *
+ * This feature removes <script> tags from parser output. It is meant
+ * to be used with $wgCSPHeader. $wgCSPHeader would prevent methods
+ * of executing scripts other then <script> tags, in supporting browsers.
+ * This feature completes the protection by banning <script> tags from being
+ * output by the parser.
+ *
+ * @warning This feature should *NEVER* be used as a primary defense
+ *   against XSS. It is meant only as a last resort in case something
+ *   really bad happened.
+ * @warning This does not prevent non-parser based XSS attacks.
+ * @warning Do not use this feature with $wgWellFormedXml = false, as it
+ *   may mangle legitimate content in that case.
+ * @note This also bans <script> tags from $wgRawHtml.
+ * @since 1.27
+ * @var boolean|string true to enable, false to disable, "report-only"
+ *   to log hits in channel 'xss-filter' but not remove them.
+ */
+$wgUsePostParseXSSFilter = false;
+
 /**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker

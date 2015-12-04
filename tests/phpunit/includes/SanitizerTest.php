@@ -1,5 +1,7 @@
 <?php
 
+use Psr\Log\NullLogger;
+
 /**
  * @todo Tests covering decodeCharReferences can be refactored into a single
  * method and dataprovider.
@@ -361,6 +363,107 @@ class SanitizerTest extends MediaWikiTestCase {
 			array( 'a¡b', 'a&#161;b' ),
 			array( 'foo&#039;bar', "foo'bar" ),
 			array( '&lt;script&gt;foo&lt;/script&gt;', '<script>foo</script>' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideFilterForXSS
+	 * @covers Sanitizer::filterForXSS
+	 */
+	public function testFilterForXSS( $input, $expected ) {
+		$nullLog = new NullLogger();
+		$actual = Sanitizer::filterForXSS(
+			$input,
+			'PHPUnit test',
+			false,
+			false,
+			0,
+			false /* report only */,
+			$nullLog
+		);
+		$this->assertEquals( $expected, $actual );
+
+		// Also verify in report only mode, that text is not changed
+		$actualReport = Sanitizer::filterForXSS(
+			$input,
+			'PHPUnit test',
+			false,
+			false,
+			0,
+			true /* report only */,
+			$nullLog
+		);
+		$this->assertEquals( $actualReport, $input, "Output changed in report-only mode" );
+	}
+
+	public static function provideFilterForXSS() {
+		return array(
+			array(
+				'<script>alert(1)</script>',
+				'<div style=display:none class=mw-removed-xss>alert(1)</div>'
+			),
+			array(
+				'<script nonce="ABC45D">alert(1)</script>',
+				'<div style=display:none class=mw-removed-xss>alert(1)</div>'
+			),
+			array(
+				'<script src="https://example.com"></script>',
+				'<div style=display:none class=mw-removed-xss></div>'
+			),
+			array(
+				'<script src="https://example.com">No end tag',
+				'<div style=display:none class=mw-removed-xss>No end tag'
+			),
+			array(
+				"<\nscript\n></script>",
+				'<div style=display:none class=mw-removed-xss></div>'
+			),
+			array(
+				'<script src="http://example.com" async >',
+				'<div style=display:none class=mw-removed-xss>'
+			),
+			array(
+				'<SCrIPt></SCrIPt>',
+				'<div style=display:none class=mw-removed-xss></div>'
+			),
+			array(
+				'Normal text that has no &lt;script&gt; and be left alone.',
+				'Normal text that has no &lt;script&gt; and be left alone.'
+			),
+			// From OSWASP evasion cheatsheet
+			array(
+				'<img """><SCRIPT>alert("XSS")</SCRIPT>">',
+				'<img """><div style=display:none class=mw-removed-xss>alert("XSS")</div>">'
+			),
+			array(
+				'<SCRIPT/XSS src="https://example.com"></SCRIPT>',
+				'<div style=display:none class=mw-removed-xss></div>'
+			),
+			array(
+				'<SCRIPT/SRC="http://example.com"></SCRIPT>',
+				'<div style=display:none class=mw-removed-xss></div>'
+			),
+			array(
+				'<<SCRIPT>alert(1);//<</SCRIPT>',
+				'<div style=display:none class=mw-removed-xss>alert(1);//<</div>'
+			),
+			array(
+				'<SCRIPT A=">" SRC="http://example.com"></SCRIPT>',
+				'<div style=display:none class=mw-removed-xss>" SRC="http://example.com"></div>'
+			),
+			// In normal processing, this case should never happen,
+			// as we document this feature requiring $wgWellFormedXml
+			// but, we want to verify that in no circumstances could
+			// this feature be used to create a new xss where one did
+			// not previously exist, by messing with quote marks
+			array(
+				'<div data-foo="<script>"></div>',
+				'<div data-foo="<div style=display:none class=mw-removed-xss>"></div>'
+			),
+			array(
+				"<div data-foo='<script>'></div>",
+				"<div data-foo='<div style=display:none class=mw-removed-xss>'></div>"
+			),
 		);
 	}
 }

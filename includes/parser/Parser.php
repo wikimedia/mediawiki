@@ -1373,6 +1373,17 @@ class Parser {
 			Hooks::run( 'ParserAfterTidy', array( &$this, &$text ) );
 		}
 
+		if ( $this->mOptions->getUsePostParseXSSFilter() ) {
+			$text = Sanitizer::filterForXSS(
+				$text,
+				$this->getTitle()->getFullText(),
+				$this->mOptions->getIsPreview(),
+				$this->mOptions->getInterfaceMessage(),
+				$this->mRevisionId,
+				$this->mOptions->getUsePostParseXSSFilter() === 'report-only'
+			);
+		}
+
 		return $text;
 	}
 
