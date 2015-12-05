@@ -153,7 +153,9 @@ class ForkController {
 		wfGetLBFactory()->destroyInstance();
 		FileBackendGroup::destroySingleton();
 		LockManagerGroup::destroySingletons();
+		JobQueueGroup::destroySingletons();
 		ObjectCache::clear();
+		RedisConnectionPool::destroySingletons();
 		$wgMemc = null;
 	}
 
