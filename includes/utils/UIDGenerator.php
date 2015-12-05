@@ -429,6 +429,7 @@ class UIDGenerator {
 	 * @param string $lockFile Name of a local lock file
 	 * @param int $clockSeqSize The number of possible clock sequence values
 	 * @param int $counterSize The number of possible counter values
+	 * @param int $offsetSize The number of possible offset values
 	 * @return array (result of UIDGenerator::millitime(), counter, clock sequence)
 	 * @throws RuntimeException
 	 */
