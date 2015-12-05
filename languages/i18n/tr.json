@@ -526,6 +526,7 @@
 	"wrongpasswordempty": "Boş parola girdiniz. Lütfen tekrar deneyiniz.",
 	"passwordtooshort": "Parolalar en az {{PLURAL:$1|1 karakter|$1 karakter}} uzunluğunda olmalı.",
 	"passwordtoolong": "Parolalar en az {{PLURAL:$1|1 karakter|$1 karakter}} uzunluğunda olmalı.",
+	"passwordtoopopular": "Sıklıkla seçilen parolalar kullanılamaz. Lütfen daha özgün bir parola belirleyin.",
 	"password-name-match": "Şifreniz kullanıcı adınızdan farklı olmalıdır.",
 	"password-login-forbidden": "Bu kullanıcı adı ve şifre kullanımı yasaklanmıştır",
 	"mailmypassword": "Parolayı sıfırla",

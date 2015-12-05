@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hosseinblue"
+		]
+	},
+	"apihelp-main-param-action": "کام عملیات انجؤم بِ.",
+	"apihelp-main-param-format": "فرمت خروجی",
+	"apihelp-block-description": "بستن کاربر.",
+	"apihelp-createaccount-param-name": ":نؤم بهرۀگر-کاربر",
+	"apihelp-delete-description": "حۀذف وۀلگۀ",
+	"apihelp-edit-description": "دؤرس کردن و دۀسکاری وۀلگۀ",
+	"apihelp-edit-param-sectiontitle": "نام سۀر وۀلگ تازۀ",
+	"apihelp-edit-example-edit": "دۀسکاری وۀلگۀ.",
+	"apihelp-login-param-name": "نام کاربری",
+	"apihelp-login-param-password": ".رمز",
+	"apihelp-login-example-login": "نؤم هۀتن.",
+	"apihelp-logout-description": "دۀرچئن و پاک کردن داده متن"
+}
