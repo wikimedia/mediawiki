@@ -2858,11 +2858,10 @@ $wgAllUnicodeFixes = false;
 $wgLegacyEncoding = false;
 
 /**
- * Browser Blacklist for unicode non compliant browsers. Contains a list of
- * regexps : "/regexp/"  matching problematic browsers. These browsers will
- * be served encoded unicode in the edit box instead of real unicode.
+ * User agent blacklist for Unicode non-compliant browsers, as detected where possible by
+ * the UAP library.
  */
-$wgBrowserBlackList = array(
+$wgUserAgentEditingBlackList = array(
 	/**
 	 * Netscape 2-4 detection
 	 * The minor version may contain strings such as "Gold" or "SGoldC-SGI"
@@ -2873,9 +2872,8 @@ $wgBrowserBlackList = array(
 	 *
 	 * Reference: http://www.psychedelix.com/agents/index.shtml
 	 */
-	'/^Mozilla\/2\.[^ ]+ [^(]*?\((?!compatible).*; [UIN]/',
-	'/^Mozilla\/3\.[^ ]+ [^(]*?\((?!compatible).*; [UIN]/',
-	'/^Mozilla\/4\.[^ ]+ [^(]*?\((?!compatible).*; [UIN]/',
+	// FIXME: This won't catch anything right now. Need to upstream Netscape detection.
+	array( "b_family" => "Netscape", "b_major" => array( "2", "4") ),
 
 	/**
 	 * MSIE on Mac OS 9 is teh sux0r, converts þ to <thorn>, ð to <eth>,
@@ -2890,13 +2888,14 @@ $wgBrowserBlackList = array(
 	 * @link https://en.wikipedia.org/w/index.php?diff=12356041&oldid=12355864
 	 * @link https://en.wikipedia.org/wiki/Template%3AOS9
 	 */
-	'/^Mozilla\/4\.0 \(compatible; MSIE \d+\.\d+; Mac_PowerPC\)/',
+	array( "b_family" => "IE", "o_family" => "Mac OS" ),
 
 	/**
 	 * Google wireless transcoder, seems to eat a lot of chars alive
 	 * https://it.wikipedia.org/w/index.php?title=Luciano_Ligabue&diff=prev&oldid=8857361
 	 */
-	'/^Mozilla\/4\.0 \(compatible; MSIE 6.0; Windows NT 5.0; Google Wireless Transcoder;\)/'
+	 // FIXME: Might want to upstream.
+	array( "b_family" => "IE", "match" => "Google Wireless Transcoder" ),
 );
 
 /**

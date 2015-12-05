@@ -4055,7 +4055,7 @@ HTML
 	 * @return bool
 	 */
 	private function checkUnicodeCompliantBrowser() {
-		global $wgBrowserBlackList, $wgRequest;
+		global $wgUserAgentEditingBlackList, $wgRequest;
 
 		$currentbrowser = $wgRequest->getHeader( 'User-Agent' );
 		if ( $currentbrowser === false ) {
@@ -4063,11 +4063,84 @@ HTML
 			return true;
 		}
 
-		foreach ( $wgBrowserBlackList as $browser ) {
-			if ( preg_match( $browser, $currentbrowser ) ) {
-				return false;
+		use UAParser\Parser;
+		$uaparser = Parser::create();
+		$result = $uaparser->parse( $currentbrowser );
+
+		foreach ( $wgUserAgentEditingBlackList as $entry ) {
+			// If there's a required browser …
+			if ( isset( $entry[ "b_family" ] ) ) {
+				// … and we don't match it, we pass to the next entry
+				if ( $entry[ "b_family" ] !== $result->ua->family ) {
+					continue;
+				}
+
+				// … and there's a version requirement
+				if ( isset( $entry[ "b_major" ] ) {
+					// … the version is a number (so maximum), if we don't match pass to the next entry
+					if (
+						is_int( $entry[ "b_major" ] ) &&
+						$entry[ "b_major" ] < $result->ua->major
+					) {
+						continue;
+					}
+
+					// … the version is an array (so range), if we match return false
+					if (
+						is_array( $entry[ "b_major" ] ) &&
+						$entry[ "b_major" ][1] < $result->ua->major ||
+						$entry[ "b_major" ][0] > $result->ua->major
+					) {
+						continue;
+					}
+				}
 			}
+
+			// If there's a required operating system …
+			if ( isset( $entry[ "o_family" ] ) ) {
+				// … and we don't match it, we pass to the next entry
+				if ( $entry[ "o_family" ] !== $result->os->family ) {
+					continue;
+				}
+
+				// … and there's a version requirement
+				if ( isset( $entry[ "o_major" ] ) {
+					// … the version is a string (so specific), if we don't match pass to the next entry
+					if (
+						is_string( $entry[ "o_major" ] ) &&
+						$entry[ "o_major" ] !== $result->os->major
+					) {
+						continue;
+					}
+
+					// … the version is a number (so maximum), if we don't match pass to the next entry
+					if (
+						is_int( $entry[ "o_major" ] ) &&
+						$entry[ "o_major" ] < $result->os->major
+					) {
+						continue;
+					}
+
+					// … the version is an array (so range), if we match return false
+					if (
+						is_array( $entry[ "b_major" ] ) &&
+						$entry[ "o_major" ][1] < $result->os->major ||
+						$entry[ "o_major" ][0] > $result->os->major
+					) {
+						continue;
+					}
+				}
+			}
+
+			// If there's a required regex and we don't match it, we pass to the next entry
+			if !( isset( $entry[ "match" ] ) && !preg_match( $entry[ "match" ], $currentbrowser ) ) {
+				continue;
+			}
+
+			// If we've got to this point we've matched every single thing, so fail.
+			return false;
 		}
+		// If we've got to this point we've not matched any blacklist entry, so success.
 		return true;
 	}
 
@@ -4150,7 +4223,7 @@ HTML
 	/**
 	 * Reverse the previously applied transliteration of non-ASCII characters
 	 * back to UTF-8. Used to protect data from corruption by broken web browsers
-	 * as listed in $wgBrowserBlackList.
+	 * as listed in $wgUserAgentEditingBlackList.
 	 *
 	 * @param string $invalue
 	 * @return string
