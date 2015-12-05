@@ -15,7 +15,7 @@ $rtl = true;
 
 $namespaceNames = [
 	NS_MEDIA            => 'رسنۍ',
-	NS_SPECIAL          => 'ځانګړی',
+	NS_SPECIAL          => 'ځانگړی',
 	NS_TALK             => 'خبرې_اترې',
 	NS_USER             => 'کارن',
 	NS_USER_TALK        => 'د_کارن_خبرې_اترې',
@@ -33,6 +33,7 @@ $namespaceNames = [
 ];
 
 $namespaceAliases = [
+	'ځﺎﻧګړی' => NS_SPECIAL,
 	'کارونکی' => NS_USER,
 	'د_کارونکي_خبرې_اترې' => NS_USER_TALK,
 	'انځور' => NS_FILE,
