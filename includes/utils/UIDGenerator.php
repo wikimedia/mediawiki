@@ -554,7 +554,7 @@ class UIDGenerator {
 		list( $sec, $msec ) = $time;
 		$offset = '122192928000000000';
 		if ( PHP_INT_SIZE >= 8 ) { // 64 bit integers
-			$ts = ( 1000 * $sec + $msec ) * 10000 + $offset + $delta;
+			$ts = ( 1000 * $sec + $msec ) * 10000 + (int)$offset + $delta;
 			$id_bin = str_pad( decbin( $ts % pow( 2, 60 ) ), 60, '0', STR_PAD_LEFT );
 		} elseif ( extension_loaded( 'gmp' ) ) {
 			$ts = gmp_add( gmp_mul( (string) $sec, '1000' ), (string) $msec ); // ms
