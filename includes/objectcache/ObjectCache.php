@@ -44,12 +44,13 @@ use MediaWiki\Logger\LoggerFactory;
  *
  * - ObjectCache::getMainWANInstance()
  *   Purpose: Memory cache.
- *   Stored in the local data-center's main cache (uses different cache keys).
- *   Delete events are broadcasted to other DCs. See WANObjectCache for details.
+ *   Stored in the local data-center's main cache (keyspace different from local-cluster cache).
+ *   Delete events are broadcasted to other DCs main cache. See WANObjectCache for details.
  *
  * - ObjectCache::getLocalServerInstance( $fallbackType )
  *   Purpose: Memory cache for very hot keys.
- *   Stored only on the individual web server (often EmptyBagOStuff in CLI mode).
+ *   Stored only on the individual web server (typically APC for web requests,
+ *   and EmptyBagOStuff in CLI mode).
  *   Not replicated to the other servers.
  *
  * - ObjectCache::getLocalClusterInstance()
