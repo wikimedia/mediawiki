@@ -451,6 +451,20 @@ class SpecialTags extends SpecialPage {
 		}
 	}
 
+	/**
+	 * Return an array of subpages that this special page will accept.
+	 *
+	 * @return string[] subpages
+	 */
+	public function getSubpagesForPrefixSearch() {
+		return array(
+			'delete',
+			'activate',
+			'deactivate',
+			'create',
+		);
+	}
+
 	protected function getGroupName() {
 		return 'changes';
 	}
