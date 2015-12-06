@@ -481,7 +481,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			$filterSelection = Html::rawElement(
 				'td',
 				array(),
-				array_shift( $tagFilter ) . implode( '&#160', $tagFilter )
+				implode( '&#160', $tagFilter )
 			);
 		} else {
 			$filterSelection = Html::rawElement( 'td', array( 'colspan' => 2 ), '' );
