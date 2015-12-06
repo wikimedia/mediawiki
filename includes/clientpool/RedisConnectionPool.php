@@ -167,6 +167,14 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Destroy all singleton() instances
+	 * @since 1.27
+	 */
+	public static function destroySingletons() {
+		self::$instances = array();
+	}
+
+	/**
 	 * Get a connection to a redis server. Based on code in RedisBagOStuff.php.
 	 *
 	 * @param string $server A hostname/port combination or the absolute path of a UNIX socket.
