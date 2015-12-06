@@ -212,10 +212,20 @@ class ActiveUsersPager extends UsersPager {
 		$out .= Xml::fieldset( $this->msg( 'activeusers' )->text() ) . "\n";
 		$out .= Html::hidden( 'title', $self->getPrefixedDBkey() ) . $limit . "\n";
 
-		# Username field
-		$out .= Xml::inputLabel( $this->msg( 'activeusers-from' )->text(),
-			'username', 'offset', 20, $this->requestedUser,
-			array( 'class' => 'mw-ui-input-inline', 'tabindex' => 1 ) ) . '<br />';
+		# Username field (with autocompletion support)
+		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
+		$out .= Xml::inputLabel(
+			$this->msg( 'activeusers-from' )->text(),
+			'username',
+			'offset',
+			20,
+			$this->requestedUser,
+			array(
+				'class' => 'mw-ui-input-inline mw-autocomplete-user',
+				'tabindex' => 1,
+				'autofocus' => $this->requestedUser === '',
+			)
+		) . '<br />';
 
 		$out .= Xml::checkLabel( $this->msg( 'activeusers-hidebots' )->text(),
 			'hidebots', 'hidebots', $this->opts->getValue( 'hidebots' ), array( 'tabindex' => 2 ) );
