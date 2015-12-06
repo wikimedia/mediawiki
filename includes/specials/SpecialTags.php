@@ -457,11 +457,12 @@ class SpecialTags extends SpecialPage {
 	 * @return string[] subpages
 	 */
 	public function getSubpagesForPrefixSearch() {
+		// The subpages does not have an own form, so not listing it at the moment
 		return array(
-			'delete',
-			'activate',
-			'deactivate',
-			'create',
+			// 'delete',
+			// 'activate',
+			// 'deactivate',
+			// 'create',
 		);
 	}
 
