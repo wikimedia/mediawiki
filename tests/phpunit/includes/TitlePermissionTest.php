@@ -31,7 +31,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$localOffset = date( 'Z' ) / 60;
 
 		$this->setMwGlobals( array(
-			'wgMemc' => new EmptyBagOStuff,
 			'wgContLang' => $langObj,
 			'wgLanguageCode' => 'en',
 			'wgLang' => $langObj,
