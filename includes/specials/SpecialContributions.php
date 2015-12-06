@@ -465,7 +465,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			'month',
 			'topOnly',
 			'newOnly',
-			'associated'
+			'associated',
+			'tagfilter'
 		);
 
 		foreach ( $this->opts as $name => $value ) {
