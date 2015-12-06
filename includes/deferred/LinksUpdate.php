@@ -61,9 +61,6 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	/** @var bool Whether to queue jobs for recursive updates */
 	public $mRecursive;
 
-	/** @var bool Whether this job was triggered by a recursive update job */
-	private $mTriggeredRecursive;
-
 	/** @var Revision Revision for which this update has been triggered */
 	private $mRevision;
 
@@ -866,15 +863,6 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 */
 	public function getImages() {
 		return $this->mImages;
-	}
-
-	/**
-	 * Set this object as being triggered by a recursive LinksUpdate
-	 *
-	 * @since 1.27
-	 */
-	public function setTriggeredRecursive() {
-		$this->mTriggeredRecursive = true;
 	}
 
 	/**
