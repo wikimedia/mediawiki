@@ -884,7 +884,7 @@
 	"search-section": "(sekcija $1)",
 	"search-category": "(kategorija $1)",
 	"search-file-match": "(podudara se sadržaj datoteke)",
-	"search-suggest": "Da li ste mislili: $1",
+	"search-suggest": "Jeste li mislili: $1",
 	"search-rewritten": "Prikazujem rezultate za $1. Umjesto toga potraži $2.",
 	"search-interwiki-caption": "Srodni projekti",
 	"search-interwiki-default": "$1 rezultati:",

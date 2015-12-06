@@ -111,6 +111,7 @@
 	"apihelp-help-param-helpformat": "Format wyjściowy pomocy.",
 	"apihelp-help-param-toc": "Dołącz spis treści do wyjściowego HTML.",
 	"apihelp-help-example-main": "Pomoc dla modułu głównego",
+	"apihelp-help-example-submodules": "Pomoc dla <kbd>action=query</kbd> i wszystkich jej podmodułów.",
 	"apihelp-help-example-recursive": "Cała pomoc na jednej stronie.",
 	"apihelp-help-example-help": "Pomoc dla modułu pomocy",
 	"apihelp-help-example-query": "Pomoc dla dwóch podmodułów zapytań.",

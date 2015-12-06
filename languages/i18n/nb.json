@@ -2003,6 +2003,7 @@
 	"contributions": "{{GENDER:$1|Brukerbidrag}}",
 	"contributions-title": "Brukerbidrag av $1",
 	"mycontris": "Bidrag",
+	"anoncontribs": "Bidrag",
 	"contribsub2": "For {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Brukerkontoen «$1» er ikke registrert.",
 	"nocontribs": "Ingen endringer er funnet som passer disse kriteriene.",

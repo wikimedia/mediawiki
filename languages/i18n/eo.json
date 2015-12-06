@@ -43,7 +43,8 @@
 			"Ochilov",
 			"Macofe",
 			"Matma Rex",
-			"Xð"
+			"Xð",
+			"Robin van der Vliet"
 		]
 	},
 	"tog-underline": "Substreki ligilojn",
@@ -1969,6 +1970,7 @@
 	"contributions": "Kontribuoj de {{GENDER:$1|uzanto|uzantino}}",
 	"contributions-title": "Kontribuoj de uzanto $1",
 	"mycontris": "Kontribuoj",
+	"anoncontribs": "Kontribuoj",
 	"contribsub2": "De {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Uzanto-konto \"$1\" ne estas registrita.",
 	"nocontribs": "Trovis neniajn redaktojn laŭ tiu kriterio.",
@@ -2144,7 +2146,7 @@
 	"cant-move-to-user-page": "Vi ne rajtas movi paĝon al uzantopaĝo (krom al uzantosubpaĝo).",
 	"cant-move-category-page": "Vi ne rajtas movi kategoriajn paĝojn.",
 	"cant-move-to-category-page": "Vi ne rajtas movi paĝon al kategoria paĝo.",
-	"newtitle": "Al nova titolo",
+	"newtitle": "Nova titolo:",
 	"move-watch": "Atenti ĉi tiun paĝon",
 	"movepagebtn": "Alinomi paĝon",
 	"pagemovedsub": "Sukcesis alinomigo",
