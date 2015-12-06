@@ -21,6 +21,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 			$wgParserCacheType, $wgNamespaceAliases, $wgNamespaceProtection,
 			$parserMemc;
 
+		$tmpDir = $this->getNewTempDirectory();
 		$tmpGlobals = array();
 
 		$tmpGlobals['wgScript'] = '/index.php';
@@ -38,10 +39,10 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 				'name' => 'local-backend',
 				'wikiId' => wfWikiId(),
 				'containerPaths' => array(
-					'local-public' => wfTempDir() . '/test-repo/public',
-					'local-thumb' => wfTempDir() . '/test-repo/thumb',
-					'local-temp' => wfTempDir() . '/test-repo/temp',
-					'local-deleted' => wfTempDir() . '/test-repo/delete',
+					'local-public' => "{$tmpDir}/test-repo/public",
+					'local-thumb' => "{$tmpDir}/test-repo/thumb",
+					'local-temp' => "{$tmpDir}/test-repo/temp",
+					'local-deleted' => "{$tmpDir}/test-repo/delete",
 				)
 			) ),
 		);
@@ -176,16 +177,10 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 				return $dir;
 			}
 		} else {
-			$dir = wfTempDir() . "/mwParser-" . mt_rand() . "-images";
+			$dir = $this->getNewTempDirectory();
 		}
 
 		wfDebug( "Creating upload directory $dir\n" );
-
-		if ( file_exists( $dir ) ) {
-			wfDebug( "Already exists!\n" );
-
-			return $dir;
-		}
 
 		wfMkdirParents( $dir . '/3/3a', null, __METHOD__ );
 		copy( "$IP/tests/phpunit/data/upload/headbg.jpg", "$dir/3/3a/Foobar.jpg" );

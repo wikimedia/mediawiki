@@ -18,7 +18,6 @@ class FileBackendTest extends MediaWikiTestCase {
 	protected function setUp() {
 		global $wgFileBackends;
 		parent::setUp();
-		$uniqueId = time() . '-' . mt_rand();
 		$tmpDir = $this->getNewTempDirectory();
 		if ( $this->getCliArg( 'use-filebackend' ) ) {
 			if ( self::$backendToUse ) {
@@ -58,7 +57,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			'name' => 'localtesting',
 			'lockManager' => LockManagerGroup::singleton()->get( 'fsLockManager' ),
 			'parallelize' => 'implicit',
-			'wikiId' => wfWikiId() . $uniqueId,
+			'wikiId' => wfWikiId() . wfRandomString(),
 			'backends' => array(
 				array(
 					'name' => 'localmultitesting1',
