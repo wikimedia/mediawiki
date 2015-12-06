@@ -222,30 +222,6 @@ class RefreshLinksJob extends Job {
 			$parserOutput
 		);
 
-		foreach ( $updates as $key => $update ) {
-			// FIXME: move category change RC stuff to a separate update.
-			// RC entry addition aborts if edits where since made, which is not necessary.
-			// It's also an SoC violation for links update code to care about RC.
-			if ( $update instanceof LinksUpdate ) {
-				if ( !empty( $this->params['triggeredRecursive'] ) ) {
-					$update->setTriggeredRecursive();
-				}
-				if ( !empty( $this->params['triggeringUser'] ) ) {
-					$userInfo = $this->params['triggeringUser'];
-					if ( $userInfo['userId'] ) {
-						$user = User::newFromId( $userInfo['userId'] );
-					} else {
-						// Anonymous, use the username
-						$user = User::newFromName( $userInfo['userName'], false );
-					}
-					$update->setTriggeringUser( $user );
-				}
-				if ( !empty( $this->params['triggeringRevisionId'] ) ) {
-					$update->setRevision( $revision );
-				}
-			}
-		}
-
 		$latestNow = $page->lockAndGetLatest();
 		if ( !$latestNow || $revision->getId() != $latestNow ) {
 			// Do not clobber over newer updates with older ones. If all jobs where FIFO and
