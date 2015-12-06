@@ -40,18 +40,18 @@ class ShowCacheStats extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgMemc;
+		$cache = wfGetParserCacheStorage();
 
 		// Can't do stats if
-		if ( get_class( $wgMemc ) == 'EmptyBagOStuff' ) {
+		if ( get_class( $cache ) == 'EmptyBagOStuff' ) {
 			$this->error( "You are running EmptyBagOStuff, I can not provide any statistics.", true );
 		}
 
 		$this->output( "\nParser cache\n" );
-		$hits = intval( $wgMemc->get( wfMemcKey( 'stats', 'pcache_hit' ) ) );
-		$expired = intval( $wgMemc->get( wfMemcKey( 'stats', 'pcache_miss_expired' ) ) );
-		$absent = intval( $wgMemc->get( wfMemcKey( 'stats', 'pcache_miss_absent' ) ) );
-		$stub = intval( $wgMemc->get( wfMemcKey( 'stats', 'pcache_miss_stub' ) ) );
+		$hits = intval( $cache->get( wfMemcKey( 'stats', 'pcache_hit' ) ) );
+		$expired = intval( $cache->get( wfMemcKey( 'stats', 'pcache_miss_expired' ) ) );
+		$absent = intval( $cache->get( wfMemcKey( 'stats', 'pcache_miss_absent' ) ) );
+		$stub = intval( $cache->get( wfMemcKey( 'stats', 'pcache_miss_stub' ) ) );
 		$total = $hits + $expired + $absent + $stub;
 		if ( $total ) {
 			$this->output( sprintf( "hits:              %-10d %6.2f%%\n", $hits, $hits / $total * 100 ) );
@@ -72,9 +72,9 @@ class ShowCacheStats extends Maintenance {
 		}
 
 		$this->output( "\nImage cache\n" );
-		$hits = intval( $wgMemc->get( wfMemcKey( 'stats', 'image_cache_hit' ) ) );
-		$misses = intval( $wgMemc->get( wfMemcKey( 'stats', 'image_cache_miss' ) ) );
-		$updates = intval( $wgMemc->get( wfMemcKey( 'stats', 'image_cache_update' ) ) );
+		$hits = intval( $cache->get( wfMemcKey( 'stats', 'image_cache_hit' ) ) );
+		$misses = intval( $cache->get( wfMemcKey( 'stats', 'image_cache_miss' ) ) );
+		$updates = intval( $cache->get( wfMemcKey( 'stats', 'image_cache_update' ) ) );
 		$total = $hits + $misses;
 		if ( $total ) {
 			$this->output( sprintf( "hits:              %-10d %6.2f%%\n", $hits, $hits / $total * 100 ) );
@@ -89,9 +89,9 @@ class ShowCacheStats extends Maintenance {
 		}
 
 		$this->output( "\nDiff cache\n" );
-		$hits = intval( $wgMemc->get( wfMemcKey( 'stats', 'diff_cache_hit' ) ) );
-		$misses = intval( $wgMemc->get( wfMemcKey( 'stats', 'diff_cache_miss' ) ) );
-		$uncacheable = intval( $wgMemc->get( wfMemcKey( 'stats', 'diff_uncacheable' ) ) );
+		$hits = intval( $cache->get( wfMemcKey( 'stats', 'diff_cache_hit' ) ) );
+		$misses = intval( $cache->get( wfMemcKey( 'stats', 'diff_cache_miss' ) ) );
+		$uncacheable = intval( $cache->get( wfMemcKey( 'stats', 'diff_uncacheable' ) ) );
 		$total = $hits + $misses + $uncacheable;
 		if ( $total ) {
 			$this->output( sprintf( "hits:              %-10d %6.2f%%\n", $hits, $hits / $total * 100 ) );
