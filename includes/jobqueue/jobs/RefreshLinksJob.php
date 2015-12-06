@@ -35,29 +35,22 @@
  * @ingroup JobQueue
  */
 class RefreshLinksJob extends Job {
+	/** @var float Cache parser output when it takes this long to render */
 	const PARSE_THRESHOLD_SEC = 1.0;
-
+	/** @var integer Lag safety margin when comparing root job times to last-refresh times */
 	const CLOCK_FUDGE = 10;
 
 	function __construct( Title $title, array $params ) {
 		parent::__construct( 'refreshLinks', $title, $params );
-		// Base backlink update jobs and per-title update jobs can be de-duplicated.
-		// If template A changes twice before any jobs run, a clean queue will have:
-		// 		(A base, A base)
-		// The second job is ignored by the queue on insertion.
-		// Suppose, many pages use template A, and that template itself uses template B.
-		// An edit to both will first create two base jobs. A clean FIFO queue will have:
-		// 		(A base, B base)
-		// When these jobs run, the queue will have per-title and remnant partition jobs:
-		// 		(titleX,titleY,titleZ,...,A remnant,titleM,titleN,titleO,...,B remnant)
-		// Some these jobs will be the same, and will automatically be ignored by
-		// the queue upon insertion. Some title jobs will run before the duplicate is
-		// inserted, so the work will still be done twice in those cases. More titles
-		// can be de-duplicated as the remnant jobs continue to be broken down. This
-		// works best when $wgUpdateRowsPerJob, and either the pages have few backlinks
-		// and/or the backlink sets for pages A and B are almost identical.
-		$this->removeDuplicates = !isset( $params['range'] )
-			&& ( !isset( $params['pages'] ) || count( $params['pages'] ) == 1 );
+		// Avoid the overhead of de-duplication when it would be pointless
+		$this->removeDuplicates = (
+			// Master positions won't match
+			!isset( $params['masterPos'] ) &&
+			// Ranges rarely will line up
+			!isset( $params['range'] ) &&
+			// Multiple pages per job make matches unlikely
+			!( isset( $params['pages'] ) && count( $params['pages'] ) != 1 )
+		);
 	}
 
 	/**
@@ -273,8 +266,6 @@ class RefreshLinksJob extends Job {
 	public function getDeduplicationInfo() {
 		$info = parent::getDeduplicationInfo();
 		if ( is_array( $info['params'] ) ) {
-			// Don't let highly unique "masterPos" values ruin duplicate detection
-			unset( $info['params']['masterPos'] );
 			// For per-pages jobs, the job title is that of the template that changed
 			// (or similar), so remove that since it ruins duplicate detection
 			if ( isset( $info['pages'] ) ) {
