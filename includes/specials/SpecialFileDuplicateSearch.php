@@ -232,6 +232,29 @@ class FileDuplicateSearchPage extends QueryPage {
 		return "$plink . . $user . . $time";
 	}
 
+
+	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param int $limit Maximum number of results to return (usually 10)
+	 * @param int $offset Number of results to skip (usually 0)
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit, $offset ) {
+		if ( $search === '' ) {
+			return array();
+		}
+		// Autocomplete subpage the same as a normal search, but just for files
+		$prefixSearcher = new TitlePrefixSearch;
+		$result = $prefixSearcher->search( $search, $limit, array( NS_FILE ), $offset );
+
+		return array_map( function ( Title $t ) {
+			// Remove namespace in search suggestion
+			return $t->getText();
+		}, $result );
+	}
+
 	protected function getGroupName() {
 		return 'media';
 	}
