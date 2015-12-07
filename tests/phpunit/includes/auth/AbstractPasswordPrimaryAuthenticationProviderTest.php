@@ -98,24 +98,24 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 		$provider->setManager( $manager );
 		$providerPriv = \TestingAccessWrapper::newFromObject( $provider );
 
-		$manager->removeAuthenticationData( null );
+		$manager->removeAuthenticationSessionData( null );
 		$status = \Status::newGood();
 		$providerPriv->setPasswordResetFlag( 'Foo', $status );
-		$this->assertNull( $manager->getAuthenticationData( 'reset-pass' ) );
+		$this->assertNull( $manager->getAuthenticationSessionData( 'reset-pass' ) );
 
-		$manager->removeAuthenticationData( null );
+		$manager->removeAuthenticationSessionData( null );
 		$status = \Status::newGood();
 		$status->error( 'testing' );
 		$providerPriv->setPasswordResetFlag( 'Foo', $status );
-		$ret = $manager->getAuthenticationData( 'reset-pass' );
+		$ret = $manager->getAuthenticationSessionData( 'reset-pass' );
 		$this->assertNotNull( $ret );
 		$this->assertSame( 'resetpass-validity-soft', $ret->msg->getKey() );
 		$this->assertFalse( $ret->hard );
 
 		$config->set( 'InvalidPasswordReset', false );
-		$manager->removeAuthenticationData( null );
+		$manager->removeAuthenticationSessionData( null );
 		$providerPriv->setPasswordResetFlag( 'Foo', $status );
-		$ret = $manager->getAuthenticationData( 'reset-pass' );
+		$ret = $manager->getAuthenticationSessionData( 'reset-pass' );
 		$this->assertNull( $ret );
 	}
 

@@ -285,7 +285,7 @@ final class AuthManager implements LoggerAwareInterface {
 			return $ret;
 		}
 
-		$this->removeAuthenticationData( null );
+		$this->removeAuthenticationSessionData( null );
 
 		foreach ( $this->getPreAuthenticationProviders() as $provider ) {
 			$status = $provider->testForAuthentication( $reqs );
@@ -559,7 +559,7 @@ final class AuthManager implements LoggerAwareInterface {
 
 			$this->logger->info( "Login for $user succeeded" );
 			$session->set( 'AuthManager::authnState', null );
-			$this->removeAuthenticationData( null );
+			$this->removeAuthenticationSessionData( null );
 			$this->setSessionDataForUser( $user );
 			$ret = AuthenticationResponse::newPass( $user->getName() );
 			\Hooks::run( 'AuthManagerLoginAuthenticateAudit', array( $ret, $user, $user->getName() ) );
@@ -804,7 +804,7 @@ final class AuthManager implements LoggerAwareInterface {
 
 		$reqs = $this->prepareAuthenticationRequestArray( $reqs );
 
-		$this->removeAuthenticationData( null );
+		$this->removeAuthenticationSessionData( null );
 
 		$providers = $this->getPreAuthenticationProviders() +
 			$this->getPrimaryAuthenticationProviders() +
@@ -1049,7 +1049,7 @@ final class AuthManager implements LoggerAwareInterface {
 
 			$this->logger->debug( __METHOD__ . ": Account creation succeeded for $user" );
 			$session->set( 'AuthManager::accountCreationState', null );
-			$this->removeAuthenticationData( null );
+			$this->removeAuthenticationSessionData( null );
 			$ret = AuthenticationResponse::newPass( $name );
 			$ret->loginRequest = $req;
 			$this->createdAccountAuthenticationRequests[] = $req;
@@ -1262,7 +1262,7 @@ final class AuthManager implements LoggerAwareInterface {
 
 		$reqs = $this->prepareAuthenticationRequestArray( $reqs );
 
-		$this->removeAuthenticationData( null );
+		$this->removeAuthenticationSessionData( null );
 
 		$providers = $this->getPreAuthenticationProviders();
 		foreach ( $providers as $id => $provider ) {
@@ -1575,7 +1575,7 @@ final class AuthManager implements LoggerAwareInterface {
 	 * @param string $key
 	 * @param mixed $data Must be serializable
 	 */
-	public function setAuthenticationData( $key, $data ) {
+	public function setAuthenticationSessionData( $key, $data ) {
 		$session = $this->request->getSession();
 		$arr = $session->get( 'authData' );
 		if ( !is_array( $arr ) ) {
@@ -1592,7 +1592,7 @@ final class AuthManager implements LoggerAwareInterface {
 	 * @param mixed $default
 	 * @return mixed
 	 */
-	public function getAuthenticationData( $key, $default = null ) {
+	public function getAuthenticationSessionData( $key, $default = null ) {
 		$arr = $this->request->getSessionData( 'authData' );
 		if ( is_array( $arr ) && array_key_exists( $key, $arr ) ) {
 			return $arr[$key];
@@ -1606,7 +1606,7 @@ final class AuthManager implements LoggerAwareInterface {
 	 * @protected For use by AuthenticationProviders
 	 * @param string|null $key If null, all data is removed
 	 */
-	public function removeAuthenticationData( $key ) {
+	public function removeAuthenticationSessionData( $key ) {
 		$session = $this->request->getSession();
 		if ( $key === null ) {
 			$session->set( 'authData', null );

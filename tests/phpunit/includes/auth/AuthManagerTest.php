@@ -2440,25 +2440,25 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->assertSame( 0, $session->getUser()->getId() );
 	}
 
-	public function testAuthenticationData() {
+	public function testAuthenticationSessionData() {
 		$this->initializeManager( true );
 
-		$this->assertNull( $this->manager->getAuthenticationData( 'foo' ) );
-		$this->manager->setAuthenticationData( 'foo', 'foo!' );
-		$this->manager->setAuthenticationData( 'bar', 'bar!' );
-		$this->assertSame( 'foo!', $this->manager->getAuthenticationData( 'foo' ) );
-		$this->assertSame( 'bar!', $this->manager->getAuthenticationData( 'bar' ) );
-		$this->manager->removeAuthenticationData( 'foo' );
-		$this->assertNull( $this->manager->getAuthenticationData( 'foo' ) );
-		$this->assertSame( 'bar!', $this->manager->getAuthenticationData( 'bar' ) );
-		$this->manager->removeAuthenticationData( 'bar' );
-		$this->assertNull( $this->manager->getAuthenticationData( 'bar' ) );
+		$this->assertNull( $this->manager->getAuthenticationSessionData( 'foo' ) );
+		$this->manager->setAuthenticationSessionData( 'foo', 'foo!' );
+		$this->manager->setAuthenticationSessionData( 'bar', 'bar!' );
+		$this->assertSame( 'foo!', $this->manager->getAuthenticationSessionData( 'foo' ) );
+		$this->assertSame( 'bar!', $this->manager->getAuthenticationSessionData( 'bar' ) );
+		$this->manager->removeAuthenticationSessionData( 'foo' );
+		$this->assertNull( $this->manager->getAuthenticationSessionData( 'foo' ) );
+		$this->assertSame( 'bar!', $this->manager->getAuthenticationSessionData( 'bar' ) );
+		$this->manager->removeAuthenticationSessionData( 'bar' );
+		$this->assertNull( $this->manager->getAuthenticationSessionData( 'bar' ) );
 
-		$this->manager->setAuthenticationData( 'foo', 'foo!' );
-		$this->manager->setAuthenticationData( 'bar', 'bar!' );
-		$this->manager->removeAuthenticationData( null );
-		$this->assertNull( $this->manager->getAuthenticationData( 'foo' ) );
-		$this->assertNull( $this->manager->getAuthenticationData( 'bar' ) );
+		$this->manager->setAuthenticationSessionData( 'foo', 'foo!' );
+		$this->manager->setAuthenticationSessionData( 'bar', 'bar!' );
+		$this->manager->removeAuthenticationSessionData( null );
+		$this->assertNull( $this->manager->getAuthenticationSessionData( 'foo' ) );
+		$this->assertNull( $this->manager->getAuthenticationSessionData( 'bar' ) );
 
 	}
 

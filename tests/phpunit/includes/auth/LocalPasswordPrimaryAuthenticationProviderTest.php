@@ -129,33 +129,33 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 			__METHOD__
 		);
 
-		$this->manager->removeAuthenticationData( null );
+		$this->manager->removeAuthenticationSessionData( null );
 		$row->user_password_expires = wfTimestamp( TS_MW, time() + 200 );
 		$providerPriv->setPasswordResetFlag( 'UTSysop', \Status::newGood(), $row );
-		$this->assertNull( $this->manager->getAuthenticationData( 'reset-pass' ) );
+		$this->assertNull( $this->manager->getAuthenticationSessionData( 'reset-pass' ) );
 
-		$this->manager->removeAuthenticationData( null );
+		$this->manager->removeAuthenticationSessionData( null );
 		$row->user_password_expires = wfTimestamp( TS_MW, time() - 200 );
 		$providerPriv->setPasswordResetFlag( 'UTSysop', \Status::newGood(), $row );
-		$ret = $this->manager->getAuthenticationData( 'reset-pass' );
+		$ret = $this->manager->getAuthenticationSessionData( 'reset-pass' );
 		$this->assertNotNull( $ret );
 		$this->assertSame( 'resetpass-expired', $ret->msg->getKey() );
 		$this->assertTrue( $ret->hard );
 
-		$this->manager->removeAuthenticationData( null );
+		$this->manager->removeAuthenticationSessionData( null );
 		$row->user_password_expires = wfTimestamp( TS_MW, time() - 1 );
 		$providerPriv->setPasswordResetFlag( 'UTSysop', \Status::newGood(), $row );
-		$ret = $this->manager->getAuthenticationData( 'reset-pass' );
+		$ret = $this->manager->getAuthenticationSessionData( 'reset-pass' );
 		$this->assertNotNull( $ret );
 		$this->assertSame( 'resetpass-expired-soft', $ret->msg->getKey() );
 		$this->assertFalse( $ret->hard );
 
-		$this->manager->removeAuthenticationData( null );
+		$this->manager->removeAuthenticationSessionData( null );
 		$row->user_password_expires = null;
 		$status = \Status::newGood();
 		$status->error( 'testing' );
 		$providerPriv->setPasswordResetFlag( 'UTSysop', $status, $row );
-		$ret = $this->manager->getAuthenticationData( 'reset-pass' );
+		$ret = $this->manager->getAuthenticationSessionData( 'reset-pass' );
 		$this->assertNotNull( $ret );
 		$this->assertSame( 'resetpass-validity-soft', $ret->msg->getKey() );
 		$this->assertFalse( $ret->hard );
@@ -217,22 +217,22 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		);
 
 		// Successful auth
-		$this->manager->removeAuthenticationData( null );
+		$this->manager->removeAuthenticationSessionData( null );
 		$this->validity = \Status::newGood();
 		$this->assertEquals(
 			AuthenticationResponse::newPass( 'UTSysop', $req ),
 			$provider->beginPrimaryAuthentication( $reqs )
 		);
-		$this->assertNull( $this->manager->getAuthenticationData( 'reset-pass' ) );
+		$this->assertNull( $this->manager->getAuthenticationSessionData( 'reset-pass' ) );
 
 		// Successful auth with reset
-		$this->manager->removeAuthenticationData( null );
+		$this->manager->removeAuthenticationSessionData( null );
 		$this->validity->error( 'arbitrary-warning' );
 		$this->assertEquals(
 			AuthenticationResponse::newPass( 'UTSysop', $req ),
 			$provider->beginPrimaryAuthentication( $reqs )
 		);
-		$this->assertNotNull( $this->manager->getAuthenticationData( 'reset-pass' ) );
+		$this->assertNotNull( $this->manager->getAuthenticationSessionData( 'reset-pass' ) );
 
 		// Wrong password
 		$this->validity = \Status::newGood();

@@ -22,7 +22,7 @@
 namespace MediaWiki\Auth;
 
 /**
- * Reset the local password, if signalled via $this->manager->setAuthenticationData()
+ * Reset the local password, if signalled via $this->manager->setAuthenticationSessionData()
  *
  * The authentication data key is 'reset-pass'; the data is an object with the
  * following properties:
@@ -57,7 +57,7 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 	 * @return string|null AuthenticationRequest class name
 	 */
 	private function getUIType() {
-		$data = $this->manager->getAuthenticationData( 'reset-pass' );
+		$data = $this->manager->getAuthenticationSessionData( 'reset-pass' );
 		if ( !is_object( $data ) || !isset( $data->msg ) ) {
 			return null;
 		} else {
@@ -77,7 +77,7 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 			return AuthenticationResponse::newAbstain();
 		}
 
-		$data = $this->manager->getAuthenticationData( 'reset-pass' );
+		$data = $this->manager->getAuthenticationSessionData( 'reset-pass' );
 		if ( !isset( $reqs[$type] ) ) {
 			return AuthenticationResponse::newUI( array( $type ), $data->msg );
 		}
@@ -89,7 +89,7 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 				return AuthenticationResponse::newUI( array( $type ), $data->msg );
 			}
 
-			$this->manager->removeAuthenticationData( 'reset-pass' );
+			$this->manager->removeAuthenticationSessionData( 'reset-pass' );
 			return AuthenticationResponse::newPass();
 		}
 
@@ -122,7 +122,7 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 		}
 		$this->manager->changeAuthenticationData( $changeReq );
 
-		$this->manager->removeAuthenticationData( 'reset-pass' );
+		$this->manager->removeAuthenticationSessionData( 'reset-pass' );
 		return AuthenticationResponse::newPass();
 	}
 

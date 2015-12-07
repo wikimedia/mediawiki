@@ -126,7 +126,7 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 		}
 
 		if ( $reset ) {
-			$this->manager->setAuthenticationData( 'reset-pass', $reset );
+			$this->manager->setAuthenticationSessionData( 'reset-pass', $reset );
 		}
 	}
 

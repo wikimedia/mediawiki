@@ -210,13 +210,13 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		);
 
 		// Successful auth
-		$this->manager->removeAuthenticationData( null );
+		$this->manager->removeAuthenticationSessionData( null );
 		$this->validity = \Status::newGood();
 		$this->assertEquals(
 			AuthenticationResponse::newPass( 'UTSysop', $req ),
 			$provider->beginPrimaryAuthentication( $reqs )
 		);
-		$this->assertNotNull( $this->manager->getAuthenticationData( 'reset-pass' ) );
+		$this->assertNotNull( $this->manager->getAuthenticationSessionData( 'reset-pass' ) );
 
 		// Expired password
 		$this->config->set( 'NewPasswordExpiry', 1 );
