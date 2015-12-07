@@ -360,6 +360,7 @@ $magicWords = array(
 	'numberingroup'           => array( 1, 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'          => array( 1, '__STATICREDIRECT__' ),
 	'protectionlevel'         => array( 1, 'PROTECTIONLEVEL' ),
+	'protectionexpiry'        => array( 1, 'PROTECTIONEXPIRY' ),
 	'cascadingsources'        => array( 1, 'CASCADINGSOURCES' ),
 	'formatdate'              => array( 0, 'formatdate', 'dateformat' ),
 	'url_path'                => array( 0, 'PATH' ),

@@ -46,7 +46,7 @@ class CoreParserFunctions {
 			'numberofarticles', 'numberoffiles', 'numberofadmins',
 			'numberingroup', 'numberofedits', 'language',
 			'padleft', 'padright', 'anchorencode', 'defaultsort', 'filepath',
-			'pagesincategory', 'pagesize', 'protectionlevel',
+			'pagesincategory', 'pagesize', 'protectionlevel', 'protectionexpiry',
 			'namespacee', 'namespacenumber', 'talkspace', 'talkspacee',
 			'subjectspace', 'subjectspacee', 'pagename', 'pagenamee',
 			'fullpagename', 'fullpagenamee', 'rootpagename', 'rootpagenamee',
@@ -772,8 +772,8 @@ class CoreParserFunctions {
 	/**
 	 * Returns the requested protection level for the current page. This
 	 * is an expensive parser function and can't be called too many times
-	 * per page, unless the protection levels for the given title have
-	 * already been retrieved
+	 * per page, unless the protection levels/expiries for the given title
+	 * have already been retrieved
 	 *
 	 * @param Parser $parser
 	 * @param string $type
@@ -791,6 +791,35 @@ class CoreParserFunctions {
 			# Title::getRestrictions returns an array, its possible it may have
 			# multiple values in the future
 			return implode( $restrictions, ',' );
+		}
+		return '';
+	}
+
+	/**
+	 * Returns the requested protection expiry for the current page. This
+	 * is an expensive parser function and can't be called too many times
+	 * per page, unless the protection levels/expiries for the given title
+	 * have already been retrieved
+	 *
+	 * @param Parser $parser
+	 * @param string $type
+	 * @param string $title
+	 *
+	 * @return string
+	 */
+	public static function protectionexpiry( $parser, $type = '', $title = '' ) {
+		$titleObject = Title::newFromText( $title );
+		if ( !( $titleObject instanceof Title ) ) {
+			$titleObject = $parser->mTitle;
+		}
+		if ( $titleObject->areRestrictionsLoaded() || $parser->incrementExpensiveFunctionCount() ) {
+			$expiry = $parser->mTitle->getRestrictionExpiry( strtolower( $type ) );
+			// getRestrictionExpiry() returns false on invalid type; trying to
+			// match protectionlevel() function that returns empty string instead
+			if ( $expiry === false ) {
+				$expiry = '';
+			}
+			return $expiry;
 		}
 		return '';
 	}
