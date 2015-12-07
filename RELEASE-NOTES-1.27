@@ -87,6 +87,8 @@ production.
 * Added CentralIdLookup, a service that allows extensions needing a concept of
   "central" users to get that without having to know about specific central
   authentication extensions.
+* $wgMaxUserDBWriteDuration added to limit huge user-generated transactions.
+  Regular web request transactions that takes longer than this are aborted.
 
 === External library changes in 1.27 ===
 ==== Upgraded external libraries ====
