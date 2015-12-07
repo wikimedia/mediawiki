@@ -1,6 +1,6 @@
 <?php
 
-class CssContentHandlerTest extends MediaWikiTestCase {
+class CssContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideMakeRedirectContent
