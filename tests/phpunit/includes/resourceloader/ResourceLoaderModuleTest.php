@@ -69,6 +69,8 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoaderModule::validateScriptFile
 	 */
 	public function testValidateScriptFile() {
+		$this->setMwGlobals( 'wgResourceLoaderValidateJS', true );
+
 		$context = $this->getResourceLoaderContext();
 
 		$module = new ResourceLoaderTestModule( array(
