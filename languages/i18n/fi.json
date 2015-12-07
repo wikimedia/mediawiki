@@ -1872,7 +1872,7 @@
 	"deletepage": "Poista sivu",
 	"confirm": "Toteuta",
 	"excontent": "sisälsi: ”$1”",
-	"excontentauthor": "sisältö oli: \"$1\", ja ainoa muokkaaja oli \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|keskustelu]])",
+	"excontentauthor": "sisältö oli: \"$1\", ja ainoa muokkaaja oli \"[[Special:Contributions/$2|$2]]\"",
 	"exbeforeblank": "ennen tyhjentämistä sisälsi: ”$1”",
 	"delete-confirm": "Poista ”$1”",
 	"delete-legend": "Sivun poisto",

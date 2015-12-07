@@ -818,6 +818,7 @@
 	"search-section": "(bolken $1)",
 	"search-category": "(kategorien $1)",
 	"search-suggest": "Meinte du: «$1»",
+	"search-rewritten": "Viser resultat for $1. Søk i staden etter $2.",
 	"search-interwiki-caption": "Systerprosjekt",
 	"search-interwiki-default": "Resultat frå $1:",
 	"search-interwiki-more": "(meir)",
