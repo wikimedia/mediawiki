@@ -119,7 +119,7 @@
 	}
 
 	$( function () {
-		if ( mw.config.get( 'wgNamespaceNumber' ) !== 6 ) {
+		if ( mw.config.get( 'wgNamespaceNumber' ) !== mw.config.get( 'wgNamespaceIds' ).file ) {
 			return;
 		}
 		$multipageimage = $( 'table.multipageimage' );
