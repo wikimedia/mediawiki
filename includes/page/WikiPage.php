@@ -33,23 +33,29 @@ interface Page {
  * In the past, this class was part of Article.php and everything was public.
  */
 class WikiPage implements Page, IDBAccessObject {
-	// Constants for $mDataLoadedFrom and related
 
 	/**
 	 * @var Title
 	 */
-	public $mTitle = null;
+	protected $mTitle = null;
 
-	/**@{{
-	 * @protected
+	/**
+	 * @var bool
 	 */
-	public $mDataLoaded = false;         // !< Boolean
-	public $mIsRedirect = false;         // !< Boolean
-	public $mLatest = false;             // !< Integer (false means "not loaded")
-	/**@}}*/
+	protected $mDataLoaded = false;
+
+	/**
+	 * @var bool
+	 */
+	protected $mIsRedirect = false;
+
+	/**
+	 * @var int|bool false means "not loaded"
+	 */
+	protected $mLatest = false;
 
 	/** @var stdClass Map of cache fields (text, parser output, ect) for a proposed/new edit */
-	public $mPreparedEdit = false;
+	protected $mPreparedEdit = false;
 
 	/**
 	 * @var int
