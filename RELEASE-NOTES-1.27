@@ -54,6 +54,9 @@ production.
 * $wgRateLimitLog was removed; use $wgDebugLogGroups['ratelimit'] instead.
 * Deprecated API formats dbg, txt, and yaml have been removed.
 * CLDRPluralRule* classes have been replaced with wikimedia/cldr-plural-rule-parser.
+* Removed $wgProfilePerHost, $wgUDPProfilerHost, $wgUDPProfilerPort,
+  $wgUDPProfilerFormatString, $wgStatsMethod, $wgAggregateStatsID, $wgStatsFormatString,
+  and $wgProfileCallTree (deprecated since 1.20).
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
@@ -162,6 +165,8 @@ changes to languages because of Phabricator reports.
 * ResourceLoader::getLessCompiler() now takes an optional parameter of
   additional LESS variables to set for the compiler.
 * wfBaseConvert() marked as deprecated, use Wikimedia\base_convert() directly instead.
+* Obsolete maintenance scripts clearCacheStats.php and showCacheStats.php
+  were removed. The underlying data is sent to StatsD (see $wgStatsdServer).
 
 == Compatibility ==
 
