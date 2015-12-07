@@ -2008,9 +2008,16 @@ class Article implements Page {
 	 * @return mixed
 	 */
 	public function __get( $fname ) {
-		if ( property_exists( $this->mPage, $fname ) ) {
+		$allowedAccess = array(
+			'mTitle' => 'getTitle',
+			'mDataLoaded' => 'hasDataLoaded',
+			'mIsRedirect' => 'isRedirect',
+			'mLatest' => 'getLatest',
+			'mPreparedEdit' => 'getPreparedEdit',
+		);
+		if ( array_key_exists( $fname, $allowedAccess ) ) {
 			# wfWarn( "Access to raw $fname field " . __CLASS__ );
-			return $this->mPage->$fname;
+			return $this->mPage->$allowedAccess[$fname];
 		}
 		trigger_error( 'Inaccessible property via __get(): ' . $fname, E_USER_NOTICE );
 	}
