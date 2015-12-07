@@ -5709,56 +5709,6 @@ $wgProfilePerHost = null;
 $wgUDPProfilerHost = null;
 
 /**
- * Port for UDP profiler.
- * @see $wgUDPProfilerHost
- *
- * @deprecated set $wgProfiler['udpport'] instead
- */
-$wgUDPProfilerPort = null;
-
-/**
- * Format string for the UDP profiler. The UDP profiler invokes sprintf() with
- * (profile id, count, cpu, cpu_sq, real, real_sq, entry name, memory) as
- * arguments. You can use sprintf's argument numbering/swapping capability to
- * repeat, re-order or omit fields.
- *
- * @see $wgStatsFormatString
- * @since 1.22
- *
- * @deprecated set $wgProfiler['udpformat'] instead
- */
-$wgUDPProfilerFormatString = null;
-
-/**
- * Destination for wfIncrStats() data...
- * 'cache' to go into the system cache, if enabled (memcached)
- * 'udp' to be sent to the UDP profiler (see $wgUDPProfilerHost)
- * false to disable
- */
-$wgStatsMethod = 'cache';
-
-/**
- * When $wgStatsMethod is 'udp', setting this to a string allows statistics to
- * be aggregated over more than one wiki. The string will be used in place of
- * the DB name in outgoing UDP packets. If this is set to false, the DB name
- * will be used.
- */
-$wgAggregateStatsID = false;
-
-/**
- * When $wgStatsMethod is 'udp', this variable specifies how stats should be
- * formatted. Its value should be a format string suitable for a sprintf()
- * invocation with (id, count, key) arguments, where 'id' is either
- * $wgAggregateStatsID or the DB name, 'count' is the value by which the metric
- * is being incremented, and 'key' is the metric name.
- *
- * @see $wgUDPProfilerFormatString
- * @see $wgAggregateStatsID
- * @since 1.22
- */
-$wgStatsFormatString = "stats/%s - %s 1 1 1 1 %s\n";
-
-/**
  * Destination of statsd metrics.
  *
  * A host or host:port of a statsd server. Port defaults to 8125.
