@@ -232,14 +232,6 @@ Special:Recentchanges (feed):
 	Special:Recentchanges?action=purge&feed=atom,
 	but note need $wgGroupPermissions[...]['purge'] permission.
 
-Statistics:
-	controlled by: $wgStatsMethod
-	key: $wgDBname:stats:$key
-	ex: wikibd:stats:request_with_session
-	stores: counter for statistics (see maintenance/showCacheStats.php script)
-	expiry: none (?)
-	cleared by: maintenance/clearCacheStats.php script
-
 User:
 	key: $wgDBname:user:id:$sId
 	ex: wikidb:user:id:51

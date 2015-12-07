@@ -90,9 +90,6 @@ installations.
 	runJobs.php
 	Immediately complete all jobs in the job queue
 
-	showCacheStats.php
-	Show all statistics stored in the cache
-
 	undelete.php
 	Undelete all revisions of a page
 
