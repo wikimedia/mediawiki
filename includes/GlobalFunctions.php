@@ -460,12 +460,12 @@ function wfUrlencode( $s ) {
 }
 
 /**
- * This function takes two arrays as input, and returns a CGI-style string, e.g.
+ * This function takes one or two arrays as input, and returns a CGI-style string, e.g.
  * "days=7&limit=100". Options in the first array override options in the second.
  * Options set to null or false will not be output.
  *
  * @param array $array1 ( String|Array )
- * @param array $array2 ( String|Array )
+ * @param array|null $array2 ( String|Array )
  * @param string $prefix
  * @return string
  */
