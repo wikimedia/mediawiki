@@ -21,7 +21,6 @@ class ExtraParserTest extends MediaWikiTestCase {
 			'wgLanguageCode' => 'en',
 			'wgContLang' => $contLang,
 			'wgLang' => Language::factory( 'en' ),
-			'wgMemc' => new EmptyBagOStuff,
 			'wgCleanSignatures' => true,
 		) );
 

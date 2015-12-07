@@ -19,8 +19,6 @@ class JobQueueTest extends MediaWikiTestCase {
 		global $wgJobTypeConf;
 		parent::setUp();
 
-		$this->setMwGlobals( 'wgMemc', new HashBagOStuff() );
-
 		if ( $this->getCliArg( 'use-jobqueue' ) ) {
 			$name = $this->getCliArg( 'use-jobqueue' );
 			if ( !isset( $wgJobTypeConf[$name] ) ) {

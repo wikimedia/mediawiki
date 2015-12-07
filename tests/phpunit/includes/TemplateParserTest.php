@@ -12,7 +12,6 @@ class TemplateParserTest extends MediaWikiTestCase {
 
 		$this->setMwGlobals( array(
 			'wgSecretKey' => 'foo',
-			'wgMemc' => new EmptyBagOStuff(),
 		) );
 
 		$this->templateDir = dirname( __DIR__ ) . '/data/templates/';
