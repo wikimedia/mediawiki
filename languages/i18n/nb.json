@@ -3448,7 +3448,7 @@
 	"mw-widgets-dateinput-no-date": "Ingen dato valgt",
 	"mw-widgets-dateinput-placeholder-day": "ÅÅÅÅ-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "ÅÅÅÅ-MM",
-	"mw-widgets-titleinput-description-new-page": "siden eksisterer ikke enda",
+	"mw-widgets-titleinput-description-new-page": "siden eksisterer ikke ennå",
 	"mw-widgets-titleinput-description-redirect": "omdiriger til $1",
 	"api-error-blacklisted": "Vennligst velg en annen beskrivende tittel."
 }

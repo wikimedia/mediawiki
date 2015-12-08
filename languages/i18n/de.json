@@ -383,6 +383,7 @@
 	"databaseerror-query": "Abfrage: $1",
 	"databaseerror-function": "Funktion: $1",
 	"databaseerror-error": "Fehler: $1",
+	"transaction-duration-limit-exceeded": "Um eine hohe Nachbildungsverzögerung zu vermeiden, wurde diese Transaktion abgebrochen, da die Schreibdauer ($1) die zweite Grenze von $2 überschritten hat. Falls du viele Objekte auf einmal änderst, versuche stattdessen, mehrere kleine Operationen auszuführen.",
 	"laggedslavemode": "<strong>Achtung:</strong> Die angezeigte Seite könnte unter Umständen nicht die letzten Bearbeitungen enthalten.",
 	"readonly": "Datenbank gesperrt",
 	"enterlockreason": "Bitte gib einen Grund ein, warum die Datenbank gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung",

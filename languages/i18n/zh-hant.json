@@ -340,7 +340,7 @@
 	"site-atom-feed": "$1 的 Atom 摘要",
 	"page-rss-feed": "\"$1\" 的 RSS 摘要",
 	"page-atom-feed": "\"$1\" 的 Atom 摘要",
-	"red-link-title": "$1 (頁面不存在)",
+	"red-link-title": "$1（頁面不存在）",
 	"sort-descending": "降冪排序",
 	"sort-ascending": "昇冪排序",
 	"nstab-main": "頁面",

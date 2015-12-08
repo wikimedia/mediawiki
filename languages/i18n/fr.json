@@ -431,6 +431,7 @@
 	"databaseerror-query": "Requête : $1",
 	"databaseerror-function": "Fonction : $1",
 	"databaseerror-error": "Erreur : $1",
+	"transaction-duration-limit-exceeded": "Pour éviter une trop forte augmentation du délai de réplication, cette transaction a été annulée car la durée d’écriture ($1) a dépassé la limite de $2 secondes. Si vous cherchez à modifier un grand nombre d’éléments simultanément, essayez plutôt d’effectuer l’opération en plusieurs étapes.",
 	"laggedslavemode": "Attention, cette page peut ne pas contenir les toutes dernières modifications effectuées",
 	"readonly": "Base de données verrouillée",
 	"enterlockreason": "Indiquez la raison du verrouillage ainsi qu'une estimation de sa durée",
