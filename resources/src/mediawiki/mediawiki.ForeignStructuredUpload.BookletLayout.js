@@ -49,8 +49,9 @@
 						// Can't reuse the same object, CategorySelector calls #abort on its mw.Api instance
 						this.categoriesWidget.api = new mw.ForeignApi( api.apiUrl );
 					}
+				}.bind( this ) ).always( function () {
 					deferred.resolve();
-				}.bind( this ) );
+				} );
 			}.bind( this ) );
 		return deferred.promise();
 	};

@@ -169,6 +169,9 @@
 			} ).always( function () {
 				deferred.resolve();
 			} );
+		} ).fail( function ( error ) {
+			booklet.getPage( 'upload' ).$element.text( error );
+			deferred.resolve();
 		} );
 
 		return deferred.promise();
