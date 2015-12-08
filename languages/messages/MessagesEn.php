@@ -306,6 +306,7 @@ $magicWords = array(
 	'bidi'                    => array( 0, 'BIDI:' ),
 	'notitleconvert'          => array( 0, '__NOTITLECONVERT__', '__NOTC__' ),
 	'nocontentconvert'        => array( 0, '__NOCONTENTCONVERT__', '__NOCC__' ),
+	'noancestorlink'          => array( 0, '__NOANCESTORLINK__' ),
 	'currentweek'             => array( 1, 'CURRENTWEEK' ),
 	'currentdow'              => array( 1, 'CURRENTDOW' ),
 	'localweek'               => array( 1, 'LOCALWEEK' ),
