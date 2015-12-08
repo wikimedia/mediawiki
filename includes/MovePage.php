@@ -371,8 +371,12 @@ class MovePage {
 
 		$dbw->endAtomic( __METHOD__ );
 
+		// @TODO: most callers could benefit from being atomic with the main transaction above.
+		// Once they fast (or defer) and enqueue any jobs post-commit, this can be changed.
 		$params = array( &$this->oldTitle, &$this->newTitle, &$user, $pageid, $redirid, $reason );
-		$dbw->onTransactionIdle( function () use ( $params ) {
+		$dbw->onTransactionIdle( function () use ( $params, $dbw ) {
+			// Keep each single hook handler atomic
+			$dbw->setFlag( DBO_TRX ); // flag is automatically reset by DB layer
 			Hooks::run( 'TitleMoveComplete', $params );
 		} );
 
