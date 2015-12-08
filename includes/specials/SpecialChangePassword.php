@@ -92,6 +92,11 @@ class SpecialChangePassword extends FormSpecialPage {
 				'label-message' => 'username',
 				'default' => $request->getVal( 'wpName', $user->getName() ),
 			),
+			'Policy' => array(
+				'type' => 'info',
+				'label-message' => 'password-policy',
+				'default' => $this->getPolicyList( $user ),
+			),
 			'Password' => array(
 				'type' => 'password',
 				'label-message' => $oldpassMsg,
@@ -339,5 +344,40 @@ class SpecialChangePassword extends FormSpecialPage {
 
 	protected function getDisplayFormat() {
 		return 'ooui';
+	}
+
+	protected function getPolicyList( User $user ) {
+		$list = array();
+		$policyConfig = $this->getConfig()->get( 'PasswordPolicy' );
+		$upp = new UserPasswordPolicy(
+			$policyConfig['policies'],
+			$policyConfig['checks']
+		);
+		$policy = $upp->getPoliciesForUser( $user );
+
+		// Only show minimal length requirement once
+		if ( isset( $policy['MinimalPasswordLength'] )
+			&& isset( $policy['MinimumPasswordLengthToLogin'] )
+		) {
+
+			$policy['MinimalPasswordLength'] = max(
+				$policy['MinimalPasswordLength'],
+				$policy['MinimumPasswordLengthToLogin']
+			);
+			unset( $policy['MinimumPasswordLengthToLogin'] );
+		} elseif ( isset( $policy['MinimumPasswordLengthToLogin'] ) ) {
+			$policy['MinimalPasswordLength'] = $policy['MinimumPasswordLengthToLogin'];
+			unset( $policy['MinimumPasswordLengthToLogin'] );
+		}
+		foreach ( $policy as $pol => $val ) {
+			// passwordpolicy-minimalpasswordlength
+			// passwordpolicy-passwordcannotmatchusername
+			// passwordpolicy-passwordcannotbepopular
+			// passwordpolicy-passwordcannotmatchblacklist
+			// passwordpolicy-maximalpasswordlength
+			$msg = 'passwordpolicy-' . strtolower( $pol );
+			$list[] = $this->msg( $msg, $val );
+		}
+		return $this->getLanguage()->listToText( $list );
 	}
 }
