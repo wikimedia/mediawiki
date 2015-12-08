@@ -43,7 +43,7 @@
 		mw.ForeignStructuredUpload.BookletLayout.parent.prototype.initialize.call( this )
 			.done( function () {
 				// Point the CategorySelector to the right wiki
-				this.upload.apiPromise.done( function ( api ) {
+				this.upload.getApi().done( function ( api ) {
 					// If this is a ForeignApi, it will have a apiUrl, otherwise we don't need to do anything
 					if ( api.apiUrl ) {
 						// Can't reuse the same object, CategorySelector calls #abort on its mw.Api instance
