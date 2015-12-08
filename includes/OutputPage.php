@@ -227,6 +227,11 @@ class OutputPage extends ContextSource {
 	 */
 	public $mNoGallery = false;
 
+	/**
+	 * @var bool Whether the page contains __NOANCESTORLINK__
+	 */
+	public $mNoAncestorLink = false;
+
 	/** @var string */
 	private $mPageTitleActionText = '';
 
@@ -1809,6 +1814,7 @@ class OutputPage extends ContextSource {
 			$this->enableClientCache( false );
 		}
 		$this->mNoGallery = $parserOutput->getNoGallery();
+		$this->mNoAncestorLink = $parserOutput->mNoAncestorLink;
 		$this->mHeadItems = array_merge( $this->mHeadItems, $parserOutput->getHeadItems() );
 		$this->addModules( $parserOutput->getModules() );
 		$this->addModuleScripts( $parserOutput->getModuleScripts() );
