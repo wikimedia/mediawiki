@@ -1156,6 +1156,10 @@ return array(
 			'mediawiki.Upload',
 			'oojs',
 		),
+		'messages' => array(
+			'uploaddisabledtext',
+			'upload-foreign-cant-upload',
+		)
 	),
 	'mediawiki.ForeignStructuredUpload' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.ForeignStructuredUpload.js',
