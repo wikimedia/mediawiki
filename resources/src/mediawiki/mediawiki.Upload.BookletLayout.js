@@ -152,7 +152,6 @@
 	 */
 	mw.Upload.BookletLayout.prototype.initialize = function () {
 		var
-			apiPromise,
 			booklet = this,
 			deferred = $.Deferred();
 
@@ -160,8 +159,7 @@
 		this.upload = this.createUpload();
 		this.setPage( 'upload' );
 
-		apiPromise = this.upload.apiPromise || $.Deferred.resolve( this.upload.api );
-		apiPromise.done( function ( api ) {
+		this.upload.getApi().done( function ( api ) {
 			// If the user can't upload anything, don't give them the option to.
 			api.getUserInfo().done( function ( userInfo ) {
 				if ( userInfo.rights.indexOf( 'upload' ) === -1 ) {

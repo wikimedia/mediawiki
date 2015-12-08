@@ -110,6 +110,13 @@
 	 */
 
 	/**
+	 * @inheritdoc
+	 */
+	ForeignUpload.prototype.getApi = function () {
+		return this.apiPromise;
+	};
+
+	/**
 	 * Override from mw.Upload to make sure the API info is found and allowed
 	 */
 	ForeignUpload.prototype.upload = function () {
