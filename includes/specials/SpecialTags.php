@@ -392,7 +392,7 @@ class SpecialTags extends SpecialPage {
 		$func = $activate ? 'canActivateTag' : 'canDeactivateTag';
 		$result = ChangeTags::$func( $tag, $user );
 		if ( !$result->isGood() ) {
-			$out->wrapWikiMsg( "<div class=\"error\">\n$1" . $result->getWikiText() .
+			$out->wrapWikiMsg( "<div class=\"error\">\n" . $result->getWikiText() .
 				"\n</div>" );
 			if ( !$result->isOK() ) {
 				return;
