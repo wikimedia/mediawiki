@@ -2755,11 +2755,12 @@ function wfShellExecDisabled() {
  *     including errors from limit.sh
  *   - profileMethod: By default this function will profile based on the calling
  *     method. Set this to a string for an alternative method to profile from
+ * @param string $stdin String to pass in to stdin
  *
  * @return string Collected stdout as a string
  */
 function wfShellExec( $cmd, &$retval = null, $environ = array(),
-	$limits = array(), $options = array()
+	$limits = array(), $options = array(), $stdin = null
 ) {
 	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime,
 		$wgMaxShellWallClockTime, $wgShellCgroup;
@@ -2835,9 +2836,13 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	wfDebug( "wfShellExec: $cmd\n" );
 
 	$desc = array(
-		0 => array( 'file', 'php://stdin', 'r' ),
 		1 => array( 'pipe', 'w' ),
 		2 => array( 'file', 'php://stderr', 'w' ) );
+	if ( $stdin != null ) {
+		$desc[0] = array( 'pipe', 'r' );
+	} else {
+		$desc[0] = array( 'file', 'php://stdin', 'r' );
+	}
 	if ( $useLogPipe ) {
 		$desc[3] = array( 'pipe', 'w' );
 	}
@@ -2853,6 +2858,12 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	$emptyArray = array();
 	$status = false;
 	$logMsg = false;
+
+	// Write string to stdin if present
+	if ( $stdin != null ) {
+		fwrite( $pipes[0], $stdin );
+		fclose( $pipes[0] );
+	}
 
 	/* According to the documentation, it is possible for stream_select()
 	 * to fail due to EINTR. I haven't managed to induce this in testing
