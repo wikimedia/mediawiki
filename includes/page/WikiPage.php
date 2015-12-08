@@ -1690,19 +1690,19 @@ class WikiPage implements Page, IDBAccessObject {
 		$flags = $this->checkFlags( $flags );
 
 		// Trigger pre-save hook (using provided edit summary)
-		$status = Status::newGood( array() );
+		$hookStatus = Status::newGood( array() );
 		$hook_args = array( &$this, &$user, &$content, &$summary,
-							$flags & EDIT_MINOR, null, null, &$flags, &$status );
+							$flags & EDIT_MINOR, null, null, &$flags, &$hookStatus );
 		// Check if the hook rejected the attempted save
 		if ( !Hooks::run( 'PageContentSave', $hook_args )
 			|| !ContentHandler::runLegacyHooks( 'ArticleSave', $hook_args )
 		) {
-			if ( $status->isOK() ) {
+			if ( $hookStatus->isOK() ) {
 				// Hook returned false but didn't call fatal(); use generic message
-				$status->fatal( 'edit-hook-aborted' );
+				$hookStatus->fatal( 'edit-hook-aborted' );
 			}
 
-			return $status;
+			return $hookStatus;
 		}
 
 		$old_revision = $this->getRevision(); // current revision
