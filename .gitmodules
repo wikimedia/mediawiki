@@ -646,3 +646,7 @@
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git
 	branch = wmf/1.27.0-wmf.7
+[submodule "extensions/Cards"]
+	path = extensions/Cards
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Cards.git
+	branch = wmf/1.27.0-wmf.8
