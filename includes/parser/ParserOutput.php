@@ -103,6 +103,11 @@ class ParserOutput extends CacheTime {
 	public $mNoGallery = false;
 
 	/**
+	 * @var bool Whether the page contains __NOANCESTORLINK__
+	 */
+	public $mNoAncestorLink = false;
+
+	/**
 	 * @var array $mHeadItems Items to put in the <head> section
 	 */
 	public $mHeadItems = [];

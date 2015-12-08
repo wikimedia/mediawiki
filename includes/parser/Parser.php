@@ -4352,6 +4352,9 @@ class Parser {
 		if ( isset( $this->mDoubleUnderscores['nogallery'] ) ) {
 			$this->mOutput->mNoGallery = true;
 		}
+		if ( isset( $this->mDoubleUnderscores['noancestorlink'] ) ) {
+			$this->mOutput->mNoAncestorLink = true;
+		}
 		if ( isset( $this->mDoubleUnderscores['notoc'] ) && !$this->mForceTocPosition ) {
 			$this->mShowToc = false;
 		}
