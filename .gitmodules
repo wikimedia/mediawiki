@@ -445,3 +445,199 @@
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git
 	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/AbuseFilter"]
+	path = extensions/AbuseFilter
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AbuseFilter.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/AccountAudit"]
+	path = extensions/AccountAudit
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AccountAudit.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/ActiveAbstract"]
+	path = extensions/ActiveAbstract
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ActiveAbstract.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/AntiSpoof"]
+	path = extensions/AntiSpoof
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AntiSpoof.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/ApiFeatureUsage"]
+	path = extensions/ApiFeatureUsage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ApiFeatureUsage.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/ApiSandbox"]
+	path = extensions/ApiSandbox
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ApiSandbox.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/Babel"]
+	path = extensions/Babel
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Babel.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/BetaFeatures"]
+	path = extensions/BetaFeatures
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/BetaFeatures.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/BounceHandler"]
+	path = extensions/BounceHandler
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/BounceHandler.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/Calendar"]
+	path = extensions/Calendar
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Calendar.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/Campaigns"]
+	path = extensions/Campaigns
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Campaigns.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/Cards"]
+	path = extensions/Cards
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Cards.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/CategoryTree"]
+	path = extensions/CategoryTree
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CategoryTree.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/CentralAuth"]
+	path = extensions/CentralAuth
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CentralAuth.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/CharInsert"]
+	path = extensions/CharInsert
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CharInsert.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/CheckUser"]
+	path = extensions/CheckUser
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CheckUser.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/CirrusSearch"]
+	path = extensions/CirrusSearch
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CirrusSearch.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/Cite"]
+	path = extensions/Cite
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Cite.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/CiteThisPage"]
+	path = extensions/CiteThisPage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CiteThisPage.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/Citoid"]
+	path = extensions/Citoid
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Citoid.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/cldr"]
+	path = extensions/cldr
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/cldr.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/CleanChanges"]
+	path = extensions/CleanChanges
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CleanChanges.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/CodeEditor"]
+	path = extensions/CodeEditor
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CodeEditor.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/CodeReview"]
+	path = extensions/CodeReview
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CodeReview.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/Collection"]
+	path = extensions/Collection
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Collection.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/CommonsMetadata"]
+	path = extensions/CommonsMetadata
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CommonsMetadata.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/ConfirmEdit"]
+	path = extensions/ConfirmEdit
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ConfirmEdit.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/ContactPage"]
+	path = extensions/ContactPage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ContactPage.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/ContentTranslation"]
+	path = extensions/ContentTranslation
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ContentTranslation.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/ContributionTracking"]
+	path = extensions/ContributionTracking
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ContributionTracking.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/CreditsSource"]
+	path = extensions/CreditsSource
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CreditsSource.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/CustomData"]
+	path = extensions/CustomData
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CustomData.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/DisableAccount"]
+	path = extensions/DisableAccount
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DisableAccount.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/Disambiguator"]
+	path = extensions/Disambiguator
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Disambiguator.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/DismissableSiteNotice"]
+	path = extensions/DismissableSiteNotice
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DismissableSiteNotice.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/DonationInterface"]
+	path = extensions/DonationInterface
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DonationInterface.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/DoubleWiki"]
+	path = extensions/DoubleWiki
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DoubleWiki.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/DynamicSidebar"]
+	path = extensions/DynamicSidebar
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DynamicSidebar.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/Echo"]
+	path = extensions/Echo
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Echo.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/EducationProgram"]
+	path = extensions/EducationProgram
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/EducationProgram.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/Elastica"]
+	path = extensions/Elastica
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Elastica.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/EventLogging"]
+	path = extensions/EventLogging
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/EventLogging.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/ExtensionDistributor"]
+	path = extensions/ExtensionDistributor
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ExtensionDistributor.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/FeaturedFeeds"]
+	path = extensions/FeaturedFeeds
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/FeaturedFeeds.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/FlaggedRevs"]
+	path = extensions/FlaggedRevs
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/FlaggedRevs.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/Flow"]
+	path = extensions/Flow
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Flow.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/FundraiserLandingPage"]
+	path = extensions/FundraiserLandingPage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/FundraiserLandingPage.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/FundraisingTranslateWorkflow"]
+	path = extensions/FundraisingTranslateWorkflow
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/FundraisingTranslateWorkflow.git
+	branch = wmf/1.27.0-wmf.8
+[submodule "extensions/Gadgets"]
+	path = extensions/Gadgets
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Gadgets.git
+	branch = wmf/1.27.0-wmf.8
