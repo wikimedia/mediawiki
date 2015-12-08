@@ -1420,6 +1420,7 @@
 	"upload-too-many-redirects": "The URL contained too many redirects",
 	"upload-http-error": "An HTTP error occurred: $1",
 	"upload-copy-upload-invalid-domain": "Copy uploads are not available from this domain.",
+	"upload-foreign-cant-upload": "Can not upload to requested foreign file repository.",
 	"upload-dialog-title": "Upload file",
 	"upload-dialog-button-cancel": "Cancel",
 	"upload-dialog-button-done": "Done",
