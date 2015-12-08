@@ -234,4 +234,30 @@ class DatabaseTest extends MediaWikiTestCase {
 		$this->assertFalse( $this->db->tableExists( 'foobarbaz' ) );
 		$this->assertInternalType( 'int', $res->numRows() );
 	}
+
+	public function testTransactionIdle() {
+		$db = $this->db;
+
+		$db->setFlag( DBO_TRX );
+		$flagSet = null;
+		$db->onTransactionIdle( function() use ( $db, &$flagSet ) {
+			$flagSet = $db->getFlag( DBO_TRX );
+		} );
+		$this->assertFalse( $flagSet, 'DBO_TRX off in callback' );
+		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
+
+		$db->clearFlag( DBO_TRX );
+		$flagSet = null;
+		$db->onTransactionIdle( function() use ( $db, &$flagSet ) {
+			$flagSet = $db->getFlag( DBO_TRX );
+		} );
+		$this->assertFalse( $flagSet, 'DBO_TRX off in callback' );
+		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
+
+		$db->clearFlag( DBO_TRX );
+		$db->onTransactionIdle( function() use ( $db ) {
+			$db->setFlag( DBO_TRX );
+		} );
+		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
+	}
 }
