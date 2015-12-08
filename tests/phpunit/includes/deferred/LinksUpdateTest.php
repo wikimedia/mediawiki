@@ -5,7 +5,7 @@
  * @group Database
  * ^--- make sure temporary tables are used.
  */
-class LinksUpdateTest extends MediaWikiTestCase {
+class LinksUpdateTest extends MediaWikiLangTestCase {
 
 	function __construct( $name = null, array $data = array(), $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );

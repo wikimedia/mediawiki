@@ -3,7 +3,7 @@
 /**
  * @group API
  */
-class ApiErrorFormatterTest extends MediaWikiTestCase {
+class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers ApiErrorFormatter
