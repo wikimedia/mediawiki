@@ -26,6 +26,7 @@
 	"ooui-dialog-process-dismiss": "Ignorar",
 	"ooui-dialog-process-retry": "Tentar novamente",
 	"ooui-dialog-process-continue": "Continuar",
+	"ooui-selectfile-button-select": "Selecionar ficheiro",
 	"ooui-selectfile-not-supported": "A seleção de ficheiros não é suportada",
 	"ooui-selectfile-placeholder": "Nenhum ficheiro selecionado",
 	"ooui-selectfile-dragdrop-placeholder": "Soltar ficheiro aqui"

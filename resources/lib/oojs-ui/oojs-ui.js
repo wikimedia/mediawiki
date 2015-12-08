@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.14.0
+ * OOjs UI v0.14.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-11-25T01:06:47Z
+ * Date: 2015-12-08T21:43:47Z
  */
 ( function ( OO ) {
 
@@ -369,67 +369,150 @@ OO.ui.infuse = function ( idOrNode ) {
 		}
 		return message;
 	};
-
-	/**
-	 * Package a message and arguments for deferred resolution.
-	 *
-	 * Use this when you are statically specifying a message and the message may not yet be present.
-	 *
-	 * @param {string} key Message key
-	 * @param {Mixed...} [params] Message parameters
-	 * @return {Function} Function that returns the resolved message when executed
-	 */
-	OO.ui.deferMsg = function () {
-		var args = arguments;
-		return function () {
-			return OO.ui.msg.apply( OO.ui, args );
-		};
-	};
-
-	/**
-	 * Resolve a message.
-	 *
-	 * If the message is a function it will be executed, otherwise it will pass through directly.
-	 *
-	 * @param {Function|string} msg Deferred message, or message text
-	 * @return {string} Resolved message
-	 */
-	OO.ui.resolveMsg = function ( msg ) {
-		if ( $.isFunction( msg ) ) {
-			return msg();
-		}
-		return msg;
-	};
-
-	/**
-	 * @param {string} url
-	 * @return {boolean}
-	 */
-	OO.ui.isSafeUrl = function ( url ) {
-		var protocol,
-			// Keep in sync with php/Tag.php
-			whitelist = [
-				'bitcoin:', 'ftp:', 'ftps:', 'geo:', 'git:', 'gopher:', 'http:', 'https:', 'irc:', 'ircs:',
-				'magnet:', 'mailto:', 'mms:', 'news:', 'nntp:', 'redis:', 'sftp:', 'sip:', 'sips:', 'sms:', 'ssh:',
-				'svn:', 'tel:', 'telnet:', 'urn:', 'worldwind:', 'xmpp:'
-			];
-
-		if ( url.indexOf( ':' ) === -1 ) {
-			// No protocol, safe
-			return true;
-		}
-
-		protocol = url.split( ':', 1 )[ 0 ] + ':';
-		if ( !protocol.match( /^([A-za-z0-9\+\.\-])+:/ ) ) {
-			// Not a valid protocol, safe
-			return true;
-		}
-
-		// Safe if in the whitelist
-		return whitelist.indexOf( protocol ) !== -1;
-	};
-
 } )();
+
+/**
+ * Package a message and arguments for deferred resolution.
+ *
+ * Use this when you are statically specifying a message and the message may not yet be present.
+ *
+ * @param {string} key Message key
+ * @param {Mixed...} [params] Message parameters
+ * @return {Function} Function that returns the resolved message when executed
+ */
+OO.ui.deferMsg = function () {
+	var args = arguments;
+	return function () {
+		return OO.ui.msg.apply( OO.ui, args );
+	};
+};
+
+/**
+ * Resolve a message.
+ *
+ * If the message is a function it will be executed, otherwise it will pass through directly.
+ *
+ * @param {Function|string} msg Deferred message, or message text
+ * @return {string} Resolved message
+ */
+OO.ui.resolveMsg = function ( msg ) {
+	if ( $.isFunction( msg ) ) {
+		return msg();
+	}
+	return msg;
+};
+
+/**
+ * @param {string} url
+ * @return {boolean}
+ */
+OO.ui.isSafeUrl = function ( url ) {
+	var protocol,
+		// Keep in sync with php/Tag.php
+		whitelist = [
+			'bitcoin:', 'ftp:', 'ftps:', 'geo:', 'git:', 'gopher:', 'http:', 'https:', 'irc:', 'ircs:',
+			'magnet:', 'mailto:', 'mms:', 'news:', 'nntp:', 'redis:', 'sftp:', 'sip:', 'sips:', 'sms:', 'ssh:',
+			'svn:', 'tel:', 'telnet:', 'urn:', 'worldwind:', 'xmpp:'
+		];
+
+	if ( url.indexOf( ':' ) === -1 ) {
+		// No protocol, safe
+		return true;
+	}
+
+	protocol = url.split( ':', 1 )[ 0 ] + ':';
+	if ( !protocol.match( /^([A-za-z0-9\+\.\-])+:/ ) ) {
+		// Not a valid protocol, safe
+		return true;
+	}
+
+	// Safe if in the whitelist
+	return whitelist.indexOf( protocol ) !== -1;
+};
+
+/**
+ * Lazy-initialize and return a global OO.ui.WindowManager instance, used by OO.ui.alert and
+ * OO.ui.confirm.
+ *
+ * @private
+ * @return {OO.ui.WindowManager}
+ */
+OO.ui.getWindowManager = function () {
+	if ( !OO.ui.windowManager ) {
+		OO.ui.windowManager = new OO.ui.WindowManager();
+		$( 'body' ).append( OO.ui.windowManager.$element );
+		OO.ui.windowManager.addWindows( {
+			messageDialog: new OO.ui.MessageDialog()
+		} );
+	}
+	return OO.ui.windowManager;
+};
+
+/**
+ * Display a quick modal alert dialog, using a OO.ui.MessageDialog. While the dialog is open, the
+ * rest of the page will be dimmed out and the user won't be able to interact with it. The dialog
+ * has only one action button, labelled "OK", clicking it will simply close the dialog.
+ *
+ * A window manager is created automatically when this function is called for the first time.
+ *
+ *     @example
+ *     OO.ui.alert( 'Something happened!' ).done( function () {
+ *         console.log( 'User closed the dialog.' );
+ *     } );
+ *
+ * @param {jQuery|string} text Message text to display
+ * @param {Object} [options] Additional options, see OO.ui.MessageDialog#getSetupProcess
+ * @return {jQuery.Promise} Promise resolved when the user closes the dialog
+ */
+OO.ui.alert = function ( text, options ) {
+	return OO.ui.getWindowManager().openWindow( 'messageDialog', $.extend( {
+		message: text,
+		verbose: true,
+		actions: [ OO.ui.MessageDialog.static.actions[ 0 ] ]
+	}, options ) ).then( function ( opened ) {
+		return opened.then( function ( closing ) {
+			return closing.then( function () {
+				return $.Deferred().resolve();
+			} );
+		} );
+	} );
+};
+
+/**
+ * Display a quick modal confirmation dialog, using a OO.ui.MessageDialog. While the dialog is open,
+ * the rest of the page will be dimmed out and the user won't be able to interact with it. The
+ * dialog has two action buttons, one to confirm an operation (labelled "OK") and one to cancel it
+ * (labelled "Cancel").
+ *
+ * A window manager is created automatically when this function is called for the first time.
+ *
+ *     @example
+ *     OO.ui.confirm( 'Are you sure?' ).done( function ( confirmed ) {
+ *         if ( confirmed ) {
+ *             console.log( 'User clicked "OK"!' );
+ *         } else {
+ *             console.log( 'User clicked "Cancel" or closed the dialog.' );
+ *         }
+ *     } );
+ *
+ * @param {jQuery|string} text Message text to display
+ * @param {Object} [options] Additional options, see OO.ui.MessageDialog#getSetupProcess
+ * @return {jQuery.Promise} Promise resolved when the user closes the dialog. If the user chose to
+ *  confirm, the promise will resolve to boolean `true`; otherwise, it will resolve to boolean
+ *  `false`.
+ */
+OO.ui.confirm = function ( text, options ) {
+	return OO.ui.getWindowManager().openWindow( 'messageDialog', $.extend( {
+		message: text,
+		verbose: true
+	}, options ) ).then( function ( opened ) {
+		return opened.then( function ( closing ) {
+			return closing.then( function ( data ) {
+				return $.Deferred().resolve( !!( data && data.action === 'accept' ) );
+			} );
+		} );
+	} );
+};
 
 /*!
  * Mixin namespace.
@@ -4071,10 +4154,10 @@ OO.inheritClass( OO.ui.ToolFactory, OO.Factory );
 /**
  * Get tools from the factory
  *
- * @param {Array} include Included tools
- * @param {Array} exclude Excluded tools
- * @param {Array} promote Promoted tools
- * @param {Array} demote Demoted tools
+ * @param {Array|string} [include] Included tools, see #extract for format
+ * @param {Array|string} [exclude] Excluded tools, see #extract for format
+ * @param {Array|string} [promote] Promoted tools, see #extract for format
+ * @param {Array|string} [demote] Demoted tools, see #extract for format
  * @return {string[]} List of tools
  */
 OO.ui.ToolFactory.prototype.getTools = function ( include, exclude, promote, demote ) {
@@ -4102,17 +4185,24 @@ OO.ui.ToolFactory.prototype.getTools = function ( include, exclude, promote, dem
 /**
  * Get a flat list of names from a list of names or groups.
  *
- * Tools can be specified in the following ways:
+ * Normally, `collection` is an array of tool specifications. Tools can be specified in the
+ * following ways:
  *
- * - A specific tool: `{ name: 'tool-name' }` or `'tool-name'`
- * - All tools in a group: `{ group: 'group-name' }`
- * - All tools: `'*'`
+ * - To include an individual tool, use the symbolic name: `{ name: 'tool-name' }` or `'tool-name'`.
+ * - To include all tools in a group, use the group name: `{ group: 'group-name' }`. (To assign the
+ *   tool to a group, use OO.ui.Tool.static.group.)
+ *
+ * Alternatively, to include all tools that are not yet assigned to any other toolgroup, use the
+ * catch-all selector `'*'`.
+ *
+ * If `used` is passed, tool names that appear as properties in this object will be considered
+ * already assigned, and will not be returned even if specified otherwise. The tool names extracted
+ * by this function call will be added as new properties in the object.
  *
  * @private
- * @param {Array|string} collection List of tools
- * @param {Object} [used] Object with names that should be skipped as properties; extracted
- *  names will be added as properties
- * @return {string[]} List of extracted names
+ * @param {Array|string} collection List of tools, see above
+ * @param {Object} [used] Object containing information about used tools, see above
+ * @return {string[]} List of extracted tool names
  */
 OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
 	var i, len, item, name, tool,
@@ -7224,6 +7314,11 @@ OO.ui.mixin.AccessKeyedElement.prototype.getAccessKey = function () {
  * out when the tool is selected. Tools must also be registered with a {@link OO.ui.ToolFactory tool factory},
  * which creates the tools on demand.
  *
+ * Every Tool subclass must implement two methods:
+ *
+ * - {@link #onUpdateState}
+ * - {@link #onSelect}
+ *
  * Tools are added to toolgroups ({@link OO.ui.ListToolGroup ListToolGroup},
  * {@link OO.ui.BarToolGroup BarToolGroup}, or {@link OO.ui.MenuToolGroup MenuToolGroup}), which determine how
  * the tool is displayed in the toolbar. See {@link OO.ui.Toolbar toolbars} for an example.
@@ -7412,7 +7507,11 @@ OO.ui.Tool.static.isCompatibleWith = function () {
 /* Methods */
 
 /**
- * Handle the toolbar state being updated.
+ * Handle the toolbar state being updated. This method is called when the
+ * {@link OO.ui.Toolbar#event-updateState 'updateState' event} is emitted on the
+ * {@link OO.ui.Toolbar Toolbar} that uses this tool, and should set the state of this tool
+ * depending on application state (usually by calling #setDisabled to enable or disable the tool,
+ * or #setActive to mark is as currently in-use or not).
  *
  * This is an abstract method that must be overridden in a concrete subclass.
  *
@@ -7423,7 +7522,8 @@ OO.ui.Tool.static.isCompatibleWith = function () {
 OO.ui.Tool.prototype.onUpdateState = null;
 
 /**
- * Handle the tool being selected.
+ * Handle the tool being selected. This method is called when the user triggers this tool,
+ * usually by clicking on its label/icon.
  *
  * This is an abstract method that must be overridden in a concrete subclass.
  *
@@ -7542,6 +7642,13 @@ OO.ui.Tool.prototype.destroy = function () {
  * The arrangement and order of the toolgroups is customized when the toolbar is set up. Tools can be presented in
  * any order, but each can only appear once in the toolbar.
  *
+ * The toolbar can be synchronized with the state of the external "application", like a text
+ * editor's editing area, marking tools as active/inactive (e.g. a 'bold' tool would be shown as
+ * active when the text cursor was inside bolded text) or enabled/disabled (e.g. a table caption
+ * tool would be disabled while the user is not editing a table). A state change is signalled by
+ * emitting the {@link #event-updateState 'updateState' event}, which calls Tools'
+ * {@link OO.ui.Tool#onUpdateState onUpdateState method}.
+ *
  * The following is an example of a basic toolbar.
  *
  *     @example
@@ -7557,23 +7664,24 @@ OO.ui.Tool.prototype.destroy = function () {
  *     // Define the tools that we're going to place in our toolbar
  *
  *     // Create a class inheriting from OO.ui.Tool
- *     function ImageTool() {
- *         ImageTool.parent.apply( this, arguments );
+ *     function SearchTool() {
+ *         SearchTool.parent.apply( this, arguments );
  *     }
- *     OO.inheritClass( ImageTool, OO.ui.Tool );
+ *     OO.inheritClass( SearchTool, OO.ui.Tool );
  *     // Each tool must have a 'name' (used as an internal identifier, see later) and at least one
  *     // of 'icon' and 'title' (displayed icon and text).
- *     ImageTool.static.name = 'image';
- *     ImageTool.static.icon = 'image';
- *     ImageTool.static.title = 'Insert image';
+ *     SearchTool.static.name = 'search';
+ *     SearchTool.static.icon = 'search';
+ *     SearchTool.static.title = 'Search...';
  *     // Defines the action that will happen when this tool is selected (clicked).
- *     ImageTool.prototype.onSelect = function () {
- *         $area.text( 'Image tool clicked!' );
+ *     SearchTool.prototype.onSelect = function () {
+ *         $area.text( 'Search tool clicked!' );
  *         // Never display this tool as "active" (selected).
  *         this.setActive( false );
  *     };
+ *     SearchTool.prototype.onUpdateState = function () {};
  *     // Make this tool available in our toolFactory and thus our toolbar
- *     toolFactory.register( ImageTool );
+ *     toolFactory.register( SearchTool );
  *
  *     // Register two more tools, nothing interesting here
  *     function SettingsTool() {
@@ -7587,6 +7695,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *         $area.text( 'Settings tool clicked!' );
  *         this.setActive( false );
  *     };
+ *     SettingsTool.prototype.onUpdateState = function () {};
  *     toolFactory.register( SettingsTool );
  *
  *     // Register two more tools, nothing interesting here
@@ -7601,6 +7710,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *         $area.text( 'More stuff tool clicked!' );
  *         this.setActive( false );
  *     };
+ *     StuffTool.prototype.onUpdateState = function () {};
  *     toolFactory.register( StuffTool );
  *
  *     // This is a PopupTool. Rather than having a custom 'onSelect' action, it will display a
@@ -7625,7 +7735,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *         {
  *             // 'bar' tool groups display tools' icons only, side-by-side.
  *             type: 'bar',
- *             include: [ 'image', 'help' ]
+ *             include: [ 'search', 'help' ]
  *         },
  *         {
  *             // 'list' tool groups display both the titles and icons, in a dropdown list.
@@ -7657,9 +7767,10 @@ OO.ui.Tool.prototype.destroy = function () {
  *     // Here is where the toolbar is actually built. This must be done after inserting it into the
  *     // document.
  *     toolbar.initialize();
+ *     toolbar.emit( 'updateState' );
  *
  * The following example extends the previous one to illustrate 'menu' toolgroups and the usage of
- * 'updateState' event.
+ * {@link #event-updateState 'updateState' event}.
  *
  *     @example
  *     // Create the toolbar
@@ -7673,28 +7784,24 @@ OO.ui.Tool.prototype.destroy = function () {
  *     // Define the tools that we're going to place in our toolbar
  *
  *     // Create a class inheriting from OO.ui.Tool
- *     function ImageTool() {
- *         ImageTool.parent.apply( this, arguments );
+ *     function SearchTool() {
+ *         SearchTool.parent.apply( this, arguments );
  *     }
- *     OO.inheritClass( ImageTool, OO.ui.Tool );
+ *     OO.inheritClass( SearchTool, OO.ui.Tool );
  *     // Each tool must have a 'name' (used as an internal identifier, see later) and at least one
  *     // of 'icon' and 'title' (displayed icon and text).
- *     ImageTool.static.name = 'image';
- *     ImageTool.static.icon = 'image';
- *     ImageTool.static.title = 'Insert image';
+ *     SearchTool.static.name = 'search';
+ *     SearchTool.static.icon = 'search';
+ *     SearchTool.static.title = 'Search...';
  *     // Defines the action that will happen when this tool is selected (clicked).
- *     ImageTool.prototype.onSelect = function () {
- *         $area.text( 'Image tool clicked!' );
+ *     SearchTool.prototype.onSelect = function () {
+ *         $area.text( 'Search tool clicked!' );
  *         // Never display this tool as "active" (selected).
  *         this.setActive( false );
  *     };
- *     // The toolbar can be synchronized with the state of some external stuff, like a text
- *     // editor's editing area, highlighting the tools (e.g. a 'bold' tool would be shown as active
- *     // when the text cursor was inside bolded text). Here we simply disable this feature.
- *     ImageTool.prototype.onUpdateState = function () {
- *     };
+ *     SearchTool.prototype.onUpdateState = function () {};
  *     // Make this tool available in our toolFactory and thus our toolbar
- *     toolFactory.register( ImageTool );
+ *     toolFactory.register( SearchTool );
  *
  *     // Register two more tools, nothing interesting here
  *     function SettingsTool() {
@@ -7713,8 +7820,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *         // To update the menu label
  *         this.toolbar.emit( 'updateState' );
  *     };
- *     SettingsTool.prototype.onUpdateState = function () {
- *     };
+ *     SettingsTool.prototype.onUpdateState = function () {};
  *     toolFactory.register( SettingsTool );
  *
  *     // Register two more tools, nothing interesting here
@@ -7734,8 +7840,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *         // To update the menu label
  *         this.toolbar.emit( 'updateState' );
  *     };
- *     StuffTool.prototype.onUpdateState = function () {
- *     };
+ *     StuffTool.prototype.onUpdateState = function () {};
  *     toolFactory.register( StuffTool );
  *
  *     // This is a PopupTool. Rather than having a custom 'onSelect' action, it will display a
@@ -7760,7 +7865,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *         {
  *             // 'bar' tool groups display tools' icons only, side-by-side.
  *             type: 'bar',
- *             include: [ 'image', 'help' ]
+ *             include: [ 'search', 'help' ]
  *         },
  *         {
  *             // 'menu' tool groups display both the titles and icons, in a dropdown menu.
@@ -7857,6 +7962,18 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 OO.inheritClass( OO.ui.Toolbar, OO.ui.Element );
 OO.mixinClass( OO.ui.Toolbar, OO.EventEmitter );
 OO.mixinClass( OO.ui.Toolbar, OO.ui.mixin.GroupElement );
+
+/* Events */
+
+/**
+ * @event updateState
+ *
+ * An 'updateState' event must be emitted on the Toolbar (by calling `toolbar.emit( 'updateState' )`)
+ * every time the state of the application using the toolbar changes, and an update to the state of
+ * tools is required.
+ *
+ * @param {Mixed...} data Application-defined parameters
+ */
 
 /* Methods */
 
@@ -8037,19 +8154,9 @@ OO.ui.Toolbar.prototype.getToolAccelerator = function () {
  * to which a tool belongs determines how the tool is arranged and displayed in the toolbar. Toolgroups
  * themselves are created on demand with a {@link OO.ui.ToolGroupFactory toolgroup factory}.
  *
- * Toolgroups can contain individual tools, groups of tools, or all available tools:
- *
- * To include an individual tool (or array of individual tools), specify tools by symbolic name:
- *
- *      include: [ 'tool-name' ] or [ { name: 'tool-name' }]
- *
- * To include a group of tools, specify the group name. (The tool's static ‘group’ config is used to assign the tool to a group.)
- *
- *      include: [ { group: 'group-name' } ]
- *
- *  To include all tools that are not yet assigned to a toolgroup, use the catch-all selector, an asterisk (*):
- *
- *      include: '*'
+ * Toolgroups can contain individual tools, groups of tools, or all available tools, as specified
+ * using the `include` config option. See OO.ui.ToolFactory#extract on documentation of the format.
+ * The options `exclude`, `promote`, and `demote` support the same formats.
  *
  * See {@link OO.ui.Toolbar toolbars} for a full example. For more information about toolbars in general,
  * please see the [OOjs UI documentation on MediaWiki][1].
@@ -8064,10 +8171,10 @@ OO.ui.Toolbar.prototype.getToolAccelerator = function () {
  * @constructor
  * @param {OO.ui.Toolbar} toolbar
  * @param {Object} [config] Configuration options
- * @cfg {Array|string} [include=[]] List of tools to include in the toolgroup.
- * @cfg {Array|string} [exclude=[]] List of tools to exclude from the toolgroup.
- * @cfg {Array|string} [promote=[]] List of tools to promote to the beginning of the toolgroup.
- * @cfg {Array|string} [demote=[]] List of tools to demote to the end of the toolgroup.
+ * @cfg {Array|string} [include] List of tools to include in the toolgroup, see above.
+ * @cfg {Array|string} [exclude] List of tools to exclude from the toolgroup, see above.
+ * @cfg {Array|string} [promote] List of tools to promote to the beginning of the toolgroup, see above.
+ * @cfg {Array|string} [demote] List of tools to demote to the end of the toolgroup, see above.
  *  This setting is particularly useful when tools have been added to the toolgroup
  *  en masse (e.g., via the catch-all selector).
  */
@@ -8487,6 +8594,7 @@ OO.ui.MessageDialog.static.title = null;
  */
 OO.ui.MessageDialog.static.message = null;
 
+// Note that OO.ui.alert() and OO.ui.confirm() rely on these.
 OO.ui.MessageDialog.static.actions = [
 	{ action: 'accept', label: OO.ui.deferMsg( 'ooui-dialog-message-accept' ), flags: 'primary' },
 	{ action: 'reject', label: OO.ui.deferMsg( 'ooui-dialog-message-reject' ), flags: 'safe' }
@@ -11485,23 +11593,24 @@ OO.mixinClass( OO.ui.HorizontalLayout, OO.ui.mixin.GroupElement );
  *     // Define the tools that we're going to place in our toolbar
  *
  *     // Create a class inheriting from OO.ui.Tool
- *     function ImageTool() {
- *         ImageTool.parent.apply( this, arguments );
+ *     function SearchTool() {
+ *         SearchTool.parent.apply( this, arguments );
  *     }
- *     OO.inheritClass( ImageTool, OO.ui.Tool );
+ *     OO.inheritClass( SearchTool, OO.ui.Tool );
  *     // Each tool must have a 'name' (used as an internal identifier, see later) and at least one
  *     // of 'icon' and 'title' (displayed icon and text).
- *     ImageTool.static.name = 'image';
- *     ImageTool.static.icon = 'image';
- *     ImageTool.static.title = 'Insert image';
+ *     SearchTool.static.name = 'search';
+ *     SearchTool.static.icon = 'search';
+ *     SearchTool.static.title = 'Search...';
  *     // Defines the action that will happen when this tool is selected (clicked).
- *     ImageTool.prototype.onSelect = function () {
- *         $area.text( 'Image tool clicked!' );
+ *     SearchTool.prototype.onSelect = function () {
+ *         $area.text( 'Search tool clicked!' );
  *         // Never display this tool as "active" (selected).
  *         this.setActive( false );
  *     };
+ *     SearchTool.prototype.onUpdateState = function () {};
  *     // Make this tool available in our toolFactory and thus our toolbar
- *     toolFactory.register( ImageTool );
+ *     toolFactory.register( SearchTool );
  *
  *     // This is a PopupTool. Rather than having a custom 'onSelect' action, it will display a
  *     // little popup window (a PopupWidget).
@@ -11525,7 +11634,7 @@ OO.mixinClass( OO.ui.HorizontalLayout, OO.ui.mixin.GroupElement );
  *         {
  *             // 'bar' tool groups display tools by icon only
  *             type: 'bar',
- *             include: [ 'image', 'help' ]
+ *             include: [ 'search', 'help' ]
  *         }
  *     ] );
  *
@@ -11827,6 +11936,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
  *     SettingsTool.prototype.onSelect = function () {
  *         this.setActive( false );
  *     };
+ *     SettingsTool.prototype.onUpdateState = function () {};
  *     toolFactory.register( SettingsTool );
  *     // Register two more tools, nothing interesting here
  *     function StuffTool() {
@@ -11834,11 +11944,12 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
  *     }
  *     OO.inheritClass( StuffTool, OO.ui.Tool );
  *     StuffTool.static.name = 'stuff';
- *     StuffTool.static.icon = 'ellipsis';
+ *     StuffTool.static.icon = 'search';
  *     StuffTool.static.title = 'Change the world';
  *     StuffTool.prototype.onSelect = function () {
  *         this.setActive( false );
  *     };
+ *     StuffTool.prototype.onUpdateState = function () {};
  *     toolFactory.register( StuffTool );
  *     toolbar.setup( [
  *         {
@@ -11846,7 +11957,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
  *             type: 'list',
  *             label: 'ListToolGroup',
  *             indicator: 'down',
- *             icon: 'image',
+ *             icon: 'ellipsis',
  *             title: 'This is the title, displayed when user moves the mouse over the list toolgroup',
  *             header: 'This is the header',
  *             include: [ 'settings', 'stuff' ],
@@ -12012,8 +12123,7 @@ OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
  * the menu label is empty. The menu can be configured with an indicator, icon, title, and/or header.
  *
  * MenuToolGroups are created by a {@link OO.ui.ToolGroupFactory tool group factory} when the toolbar
- * is set up. Note that all tools must define an {@link OO.ui.Tool#onUpdateState onUpdateState} method if
- * a MenuToolGroup is used.
+ * is set up.
  *
  *     @example
  *     // Example of a MenuToolGroup
@@ -12042,8 +12152,7 @@ OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
  *         // To update the menu label
  *         this.toolbar.emit( 'updateState' );
  *     };
- *     SettingsTool.prototype.onUpdateState = function () {
- *     };
+ *     SettingsTool.prototype.onUpdateState = function () {};
  *     toolFactory.register( SettingsTool );
  *
  *     function StuffTool() {
@@ -12062,8 +12171,7 @@ OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
  *         // To update the menu label
  *         this.toolbar.emit( 'updateState' );
  *     };
- *     StuffTool.prototype.onUpdateState = function () {
- *     };
+ *     StuffTool.prototype.onUpdateState = function () {};
  *     toolFactory.register( StuffTool );
  *
  *     // Finally define which tools and in what order appear in the toolbar. Each tool may only be
@@ -13400,6 +13508,7 @@ OO.ui.CapsuleMultiSelectWidget = function OoUiCapsuleMultiSelectWidget( config )
 	OO.ui.mixin.IconElement.call( this, config );
 
 	// Properties
+	this.$content = $( '<div>' );
 	this.allowArbitrary = !!config.allowArbitrary;
 	this.$overlay = config.$overlay || this.$element;
 	this.menu = new OO.ui.FloatingMenuSelectWidget( $.extend(
@@ -13431,7 +13540,8 @@ OO.ui.CapsuleMultiSelectWidget = function OoUiCapsuleMultiSelectWidget( config )
 		this.$input.on( {
 			focus: this.onInputFocus.bind( this ),
 			blur: this.onInputBlur.bind( this ),
-			'propertychange change click mouseup keydown keyup input cut paste select': this.onInputChange.bind( this ),
+			'propertychange change click mouseup keydown keyup input cut paste select focus':
+				OO.ui.debounce( this.updateInputSize.bind( this ) ),
 			keydown: this.onKeyDown.bind( this ),
 			keypress: this.onKeyPress.bind( this )
 		} );
@@ -13442,7 +13552,7 @@ OO.ui.CapsuleMultiSelectWidget = function OoUiCapsuleMultiSelectWidget( config )
 		remove: 'onMenuItemsChange'
 	} );
 	this.$handle.on( {
-		click: this.onClick.bind( this )
+		mousedown: this.onMouseDown.bind( this )
 	} );
 
 	// Initialization
@@ -13452,21 +13562,23 @@ OO.ui.CapsuleMultiSelectWidget = function OoUiCapsuleMultiSelectWidget( config )
 			role: 'combobox',
 			'aria-autocomplete': 'list'
 		} );
-		this.$input.width( '1em' );
+		this.updateInputSize();
 	}
 	if ( config.data ) {
 		this.setItemsFromData( config.data );
 	}
+	this.$content.addClass( 'oo-ui-capsuleMultiSelectWidget-content' )
+		.append( this.$group );
 	this.$group.addClass( 'oo-ui-capsuleMultiSelectWidget-group' );
 	this.$handle.addClass( 'oo-ui-capsuleMultiSelectWidget-handle' )
-		.append( this.$indicator, this.$icon, this.$group );
+		.append( this.$indicator, this.$icon, this.$content );
 	this.$element.addClass( 'oo-ui-capsuleMultiSelectWidget' )
 		.append( this.$handle );
 	if ( this.popup ) {
-		this.$handle.append( $tabFocus );
+		this.$content.append( $tabFocus );
 		this.$overlay.append( this.popup.$element );
 	} else {
-		this.$handle.append( this.$input );
+		this.$content.append( this.$input );
 		this.$overlay.append( this.menu.$element );
 	}
 	this.onMenuItemsChange();
@@ -13631,6 +13743,7 @@ OO.ui.CapsuleMultiSelectWidget.prototype.addItems = function ( items ) {
 	}
 	if ( !same ) {
 		this.emit( 'change', this.getItemsData() );
+		this.menu.position();
 	}
 
 	return this;
@@ -13655,6 +13768,7 @@ OO.ui.CapsuleMultiSelectWidget.prototype.removeItems = function ( items ) {
 	}
 	if ( !same ) {
 		this.emit( 'change', this.getItemsData() );
+		this.menu.position();
 	}
 
 	return this;
@@ -13667,6 +13781,7 @@ OO.ui.CapsuleMultiSelectWidget.prototype.clearItems = function () {
 	if ( this.items.length ) {
 		OO.ui.mixin.GroupElement.prototype.clearItems.call( this );
 		this.emit( 'change', this.getItemsData() );
+		this.menu.position();
 	}
 	return this;
 };
@@ -13742,15 +13857,17 @@ OO.ui.CapsuleMultiSelectWidget.prototype.onPopupFocusOut = function () {
 };
 
 /**
- * Handle mouse click events.
+ * Handle mouse down events.
  *
  * @private
- * @param {jQuery.Event} e Mouse click event
+ * @param {jQuery.Event} e Mouse down event
  */
-OO.ui.CapsuleMultiSelectWidget.prototype.onClick = function ( e ) {
+OO.ui.CapsuleMultiSelectWidget.prototype.onMouseDown = function ( e ) {
 	if ( e.which === 1 ) {
 		this.focus();
 		return false;
+	} else {
+		this.updateInputSize();
 	}
 };
 
@@ -13784,7 +13901,7 @@ OO.ui.CapsuleMultiSelectWidget.prototype.onKeyPress = function ( e ) {
 			}
 
 			// Make sure the input gets resized.
-			setTimeout( this.onInputChange.bind( this ), 0 );
+			setTimeout( this.updateInputSize.bind( this ), 0 );
 		}
 	}
 };
@@ -13808,14 +13925,42 @@ OO.ui.CapsuleMultiSelectWidget.prototype.onKeyDown = function ( e ) {
 };
 
 /**
- * Handle input change events.
+ * Update the dimensions of the text input field to encompass all available area.
  *
  * @private
  * @param {jQuery.Event} e Event of some sort
  */
-OO.ui.CapsuleMultiSelectWidget.prototype.onInputChange = function () {
+OO.ui.CapsuleMultiSelectWidget.prototype.updateInputSize = function () {
+	var $lastItem, direction, contentWidth, currentWidth, bestWidth;
 	if ( !this.isDisabled() ) {
-		this.$input.width( this.$input.val().length + 'em' );
+		this.$input.css( 'width', '1em' );
+		$lastItem = this.$group.children().last();
+		direction = OO.ui.Element.static.getDir( this.$handle );
+		contentWidth = this.$input[ 0 ].scrollWidth;
+		currentWidth = this.$input.width();
+
+		if ( contentWidth < currentWidth ) {
+			// All is fine, don't perform expensive calculations
+			return;
+		}
+
+		if ( !$lastItem.length ) {
+			bestWidth = this.$content.innerWidth();
+		} else {
+			bestWidth = direction === 'ltr' ?
+				this.$content.innerWidth() - $lastItem.position().left - $lastItem.outerWidth() :
+				$lastItem.position().left;
+		}
+		// Some safety margin for sanity, because I *really* don't feel like finding out where the few
+		// pixels this is off by are coming from.
+		bestWidth -= 10;
+		if ( contentWidth > bestWidth ) {
+			// This will result in the input getting shifted to the next line
+			bestWidth = this.$content.innerWidth() - 10;
+		}
+		this.$input.width( Math.floor( bestWidth ) );
+
+		this.menu.position();
 	}
 };
 
@@ -13849,7 +13994,7 @@ OO.ui.CapsuleMultiSelectWidget.prototype.onMenuItemsChange = function () {
 OO.ui.CapsuleMultiSelectWidget.prototype.clearInput = function () {
 	if ( this.$input ) {
 		this.$input.val( '' );
-		this.$input.width( '1em' );
+		this.updateInputSize();
 	}
 	if ( this.popup ) {
 		this.popup.toggle( false );
@@ -13902,6 +14047,7 @@ OO.ui.CapsuleMultiSelectWidget.prototype.focus = function () {
 				.first()
 				.focus();
 		} else {
+			this.updateInputSize();
 			this.menu.toggle( true );
 			this.$input.focus();
 		}

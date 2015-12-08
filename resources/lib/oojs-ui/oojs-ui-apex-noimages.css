@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.14.0
+ * OOjs UI v0.14.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-11-25T01:06:55Z
+ * Date: 2015-12-08T21:43:53Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -663,11 +663,16 @@
 .oo-ui-horizontalLayout > .oo-ui-layout {
 	display: inline-block;
 }
+.oo-ui-horizontalLayout > .oo-ui-layout,
 .oo-ui-horizontalLayout > .oo-ui-widget {
 	margin-right: 0.5em;
 }
+.oo-ui-horizontalLayout > .oo-ui-layout:last-child,
 .oo-ui-horizontalLayout > .oo-ui-widget:last-child {
 	margin-right: 0;
+}
+.oo-ui-horizontalLayout > .oo-ui-layout {
+	margin-bottom: 0;
 }
 .oo-ui-popupTool .oo-ui-popupWidget-popup,
 .oo-ui-popupTool .oo-ui-popupWidget-anchor {
@@ -2278,6 +2283,12 @@
 	display: inline-block;
 	position: relative;
 }
+.oo-ui-capsuleMultiSelectWidget-content {
+	position: relative;
+}
+.oo-ui-capsuleMultiSelectWidget.oo-ui-widget-disabled .oo-ui-capsuleMultiSelectWidget-content > input {
+	display: none;
+}
 .oo-ui-capsuleMultiSelectWidget-group {
 	display: inline;
 }
@@ -2290,7 +2301,7 @@
 	cursor: text;
 	min-height: 2.4em;
 	margin-right: 0.5em;
-	padding: 0.25em 0;
+	padding: 0.15em 0.25em;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 0.25em;
 	-webkit-box-sizing: border-box;
@@ -2300,21 +2311,17 @@
 .oo-ui-capsuleMultiSelectWidget-handle:last-child {
 	margin-right: 0;
 }
-.oo-ui-capsuleMultiSelectWidget-handle .oo-ui-capsuleMultiSelectWidget-group {
-	margin: 0 0.2em;
-}
 .oo-ui-capsuleMultiSelectWidget-handle > .oo-ui-indicatorElement-indicator,
 .oo-ui-capsuleMultiSelectWidget-handle > .oo-ui-iconElement-icon {
 	position: absolute;
 	background-position: center center;
 	background-repeat: no-repeat;
 }
-.oo-ui-capsuleMultiSelectWidget-handle > input {
+.oo-ui-capsuleMultiSelectWidget-handle > .oo-ui-capsuleMultiSelectWidget-content > input {
 	border: none;
-	min-width: 1em;
-	max-width: 100%;
 	line-height: 1.675em;
 	margin: 0;
+	margin-left: 0.2em;
 	padding: 0;
 	font-size: inherit;
 	font-family: inherit;
@@ -2322,11 +2329,11 @@
 	color: black;
 	vertical-align: middle;
 }
-.oo-ui-capsuleMultiSelectWidget-handle > input:focus {
+.oo-ui-capsuleMultiSelectWidget-handle > .oo-ui-capsuleMultiSelectWidget-content > input:focus {
 	outline: none;
 }
 .oo-ui-capsuleMultiSelectWidget.oo-ui-indicatorElement .oo-ui-capsuleMultiSelectWidget-handle {
-	padding-right: 0.9375em;
+	padding-right: 2.4875em;
 }
 .oo-ui-capsuleMultiSelectWidget.oo-ui-indicatorElement .oo-ui-capsuleMultiSelectWidget-handle > .oo-ui-indicatorElement-indicator {
 	right: 0;
@@ -2336,7 +2343,7 @@
 	margin: 0.775em;
 }
 .oo-ui-capsuleMultiSelectWidget.oo-ui-iconElement .oo-ui-capsuleMultiSelectWidget-handle {
-	padding-left: 1.875em;
+	padding-left: 2.475em;
 }
 .oo-ui-capsuleMultiSelectWidget.oo-ui-iconElement .oo-ui-capsuleMultiSelectWidget-handle > .oo-ui-iconElement-icon {
 	left: 0;
@@ -2374,7 +2381,7 @@
 	        box-sizing: border-box;
 	vertical-align: middle;
 	padding: 0 0.4em;
-	margin: 0 0.1em;
+	margin: 0.1em;
 	height: 1.7em;
 	line-height: 1.7em;
 	background: #eeeeee;
@@ -2627,6 +2634,9 @@
 .oo-ui-messageDialog-message {
 	display: block;
 	text-align: center;
+}
+.oo-ui-messageDialog-title.oo-ui-labelElement,
+.oo-ui-messageDialog-message.oo-ui-labelElement {
 	padding-top: 0.5em;
 }
 .oo-ui-messageDialog-title {
