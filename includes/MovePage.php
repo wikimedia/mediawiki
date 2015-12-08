@@ -369,10 +369,17 @@ class MovePage {
 			WatchedItem::duplicateEntries( $this->oldTitle, $this->newTitle );
 		}
 
+		Hooks::run(
+			'TitleMoveCompleting',
+			array( $this->oldTitle, $this->newTitle, $user, $pageid, $redirid, $reason )
+		);
+
 		$dbw->endAtomic( __METHOD__ );
 
 		$params = array( &$this->oldTitle, &$this->newTitle, &$user, $pageid, $redirid, $reason );
-		$dbw->onTransactionIdle( function () use ( $params ) {
+		$dbw->onTransactionIdle( function () use ( $params, $dbw ) {
+			// Keep each single hook handler atomic
+			$dbw->setFlag( DBO_TRX ); // flag is automatically reset by DB layer
 			Hooks::run( 'TitleMoveComplete', $params );
 		} );
 
