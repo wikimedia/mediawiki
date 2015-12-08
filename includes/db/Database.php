@@ -3308,7 +3308,11 @@ abstract class DatabaseBase implements IDatabase {
 					list( $phpCallback ) = $callback;
 					$this->clearFlag( DBO_TRX ); // make each query its own transaction
 					call_user_func( $phpCallback );
-					$this->setFlag( $autoTrx ? DBO_TRX : 0 ); // restore automatic begin()
+					if ( $autoTrx ) {
+						$this->setFlag( DBO_TRX ); // restore automatic begin()
+					} else {
+						$this->clearFlag( DBO_TRX ); // restore auto-commit
+					}
 				} catch ( Exception $e ) {
 					if ( $ePrior ) {
 						MWExceptionHandler::logException( $ePrior );
