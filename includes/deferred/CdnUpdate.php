@@ -27,7 +27,7 @@ use Wikimedia\Assert\Assert;
  * Handles purging appropriate Squid URLs given a title (or titles)
  * @ingroup Cache
  */
-class SquidUpdate implements DeferrableUpdate, MergeableUpdate {
+class CdnUpdate implements DeferrableUpdate, MergeableUpdate {
 	/** @var string[] Collection of URLs to purge */
 	protected $urls = array();
 
@@ -43,7 +43,7 @@ class SquidUpdate implements DeferrableUpdate, MergeableUpdate {
 	 *
 	 * @param Traversable|array $titles
 	 * @param string[] $urlArr
-	 * @return SquidUpdate
+	 * @return CdnUpdate
 	 */
 	public static function newFromTitles( $titles, $urlArr = array() ) {
 		/** @var Title $title */
@@ -51,16 +51,16 @@ class SquidUpdate implements DeferrableUpdate, MergeableUpdate {
 			$urlArr = array_merge( $urlArr, $title->getSquidURLs() );
 		}
 
-		return new SquidUpdate( $urlArr );
+		return new CdnUpdate( $urlArr );
 	}
 
 	/**
 	 * @param Title $title
-	 * @return SquidUpdate
+	 * @return CdnUpdate
 	 * @deprecated 1.27
 	 */
 	public static function newSimplePurge( Title $title ) {
-		return new SquidUpdate( $title->getSquidURLs() );
+		return new CdnUpdate( $title->getSquidURLs() );
 	}
 
 	/**
@@ -71,7 +71,7 @@ class SquidUpdate implements DeferrableUpdate, MergeableUpdate {
 	}
 
 	public function merge( MergeableUpdate $update ) {
-		/** @var SquidUpdate $update */
+		/** @var CdnUpdate $update */
 		Assert::parameterType( __CLASS__, $update, '$update' );
 
 		$this->urls = array_merge( $this->urls, $update->urls );
@@ -254,4 +254,8 @@ class SquidUpdate implements DeferrableUpdate, MergeableUpdate {
 
 		return false;
 	}
+}
+
+class SquidUpdate extends CdnUpdate {
+	// Keep class name for b/c
 }

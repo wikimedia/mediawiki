@@ -140,7 +140,7 @@ class HTMLCacheUpdateJob extends Job {
 		) );
 
 		// Update squid
-		$u = SquidUpdate::newFromTitles( $titleArray );
+		$u = CdnUpdate::newFromTitles( $titleArray );
 		$u->doUpdate();
 
 		// Update file cache

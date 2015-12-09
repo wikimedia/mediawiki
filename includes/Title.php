@@ -3592,7 +3592,7 @@ class Title {
 	 */
 	public function purgeSquid() {
 		DeferredUpdates::addUpdate(
-			new SquidUpdate( $this->getSquidURLs() ),
+			new CdnUpdate( $this->getSquidURLs() ),
 			DeferredUpdates::PRESEND
 		);
 	}

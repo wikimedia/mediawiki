@@ -135,7 +135,7 @@ class PurgeChangedPages extends Maintenance {
 			}
 
 			// Send batch of purge requests out to squids
-			$squid = new SquidUpdate( $urls, count( $urls ) );
+			$squid = new CdnUpdate( $urls, count( $urls ) );
 			$squid->doUpdate();
 
 			if ( $this->hasOption( 'sleep-per-batch' ) ) {

@@ -196,7 +196,7 @@ class SquidPurgeClient {
 	 */
 	public function queuePurge( $url ) {
 		global $wgSquidPurgeUseHostHeader;
-		$url = SquidUpdate::expand( str_replace( "\n", '', $url ) );
+		$url = CdnUpdate::expand( str_replace( "\n", '', $url ) );
 		$request = array();
 		if ( $wgSquidPurgeUseHostHeader ) {
 			$url = wfParseUrl( $url );

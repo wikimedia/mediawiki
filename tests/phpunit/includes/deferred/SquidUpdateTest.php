@@ -9,14 +9,14 @@ class SquidUpdatesTest extends MediaWikiTestCase {
 		$urls1[] = $title->getCanonicalURL( '?x=1' );
 		$urls1[] = $title->getCanonicalURL( '?x=2' );
 		$urls1[] = $title->getCanonicalURL( '?x=3' );
-		$update1 = new SquidUpdate( $urls1 );
+		$update1 = new CdnUpdate( $urls1 );
 		DeferredUpdates::addUpdate( $update1 );
 
 		$urls2 = array();
 		$urls2[] = $title->getCanonicalURL( '?x=2' );
 		$urls2[] = $title->getCanonicalURL( '?x=3' );
 		$urls2[] = $title->getCanonicalURL( '?x=4' );
-		$update2 = new SquidUpdate( $urls2 );
+		$update2 = new CdnUpdate( $urls2 );
 		DeferredUpdates::addUpdate( $update2 );
 
 		$wrapper = TestingAccessWrapper::newFromObject( $update1 );

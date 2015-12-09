@@ -63,7 +63,7 @@ class BenchmarkPurge extends Benchmarker {
 	private function benchSquid( $urls, $trials = 1 ) {
 		$start = microtime( true );
 		for ( $i = 0; $i < $trials; $i++ ) {
-			SquidUpdate::purge( $urls );
+			CdnUpdate::purge( $urls );
 		}
 		$delta = microtime( true ) - $start;
 		$pertrial = $delta / $trials;

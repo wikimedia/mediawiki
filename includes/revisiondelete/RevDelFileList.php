@@ -117,7 +117,7 @@ class RevDelFileList extends RevDelList {
 			$purgeUrls[] = $file->getArchiveUrl( $archiveName );
 		}
 		DeferredUpdates::addUpdate(
-			new SquidUpdate( $purgeUrls ),
+			new CdnUpdate( $purgeUrls ),
 			DeferredUpdates::PRESEND
 		);
 

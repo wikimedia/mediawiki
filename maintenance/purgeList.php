@@ -129,7 +129,7 @@ class PurgeList extends Maintenance {
 				if ( $this->hasOption( 'verbose' ) ) {
 					$this->output( $url . "\n" );
 				}
-				$u = new SquidUpdate( array( $url ) );
+				$u = new CdnUpdate( array( $url ) );
 				$u->doUpdate();
 				usleep( $delay * 1e6 );
 			}
@@ -137,7 +137,7 @@ class PurgeList extends Maintenance {
 			if ( $this->hasOption( 'verbose' ) ) {
 				$this->output( implode( "\n", $urls ) . "\n" );
 			}
-			$u = new SquidUpdate( $urls );
+			$u = new CdnUpdate( $urls );
 			$u->doUpdate();
 		}
 	}
