@@ -113,11 +113,11 @@ class ResultWrapper implements Iterator {
 	}
 
 	/**
-	 * Fetch the next row from the given result object, in object form.
-	 * Fields can be retrieved with $row->fieldname, with fields acting like
-	 * member variables.
+	 * Fetch the next row from the given result object, in object form. Fields can be retrieved with
+	 * $row->fieldname, with fields acting like member variables. If no more rows are available,
+	 * false is returned.
 	 *
-	 * @return stdClass
+	 * @return stdClass|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchObject() {
@@ -125,10 +125,10 @@ class ResultWrapper implements Iterator {
 	}
 
 	/**
-	 * Fetch the next row from the given result object, in associative array
-	 * form. Fields are retrieved with $row['fieldname'].
+	 * Fetch the next row from the given result object, in associative array form. Fields are
+	 * retrieved with $row['fieldname']. If no more rows are available, false is returned.
 	 *
-	 * @return array
+	 * @return array|bool
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchRow() {
