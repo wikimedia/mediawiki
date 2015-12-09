@@ -65,7 +65,13 @@ class SpecialExport extends SpecialPage {
 					 */
 					$catpages = $this->getPagesFromCategory( $t );
 					if ( $catpages ) {
-						$page .= implode( "\n", $catpages );
+						if ( $page == '') {
+							$page .= implode( "\n", $catpages );
+						}
+						else {
+							$page .= "\n" . implode( "\n", $catpages );
+						}
+
 					}
 				}
 			}
