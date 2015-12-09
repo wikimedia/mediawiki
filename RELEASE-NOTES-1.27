@@ -57,6 +57,10 @@ production.
 * Removed $wgProfilePerHost, $wgUDPProfilerHost, $wgUDPProfilerPort,
   $wgUDPProfilerFormatString, $wgStatsMethod, $wgAggregateStatsID, $wgStatsFormatString,
   and $wgProfileCallTree (deprecated since 1.20).
+* For proper operation of LocalIdLookup with shared user tables, ensure that
+  $wgSharedDB and $wgSharedTables are properly set even on the "central" wiki
+  that all others are sharing from and that $wgLocalDatabases is set to the
+  full list of sharing wikis on all those wikis.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
