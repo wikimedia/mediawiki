@@ -1224,19 +1224,6 @@ CREATE TABLE /*_*/l10n_cache (
 );
 CREATE INDEX /*i*/lc_lang_key ON /*_*/l10n_cache (lc_lang, lc_key);
 
--- Table for caching JSON message texts for ResourceLoader
-CREATE TABLE /*_*/msg_resource (
-  -- Resource name
-  mr_resource nvarchar(255) NOT NULL,
-  -- Language code
-  mr_lang nvarchar(32) NOT NULL,
-  -- JSON blob
-  mr_blob varbinary(max) NOT NULL,
-  -- Timestamp of last update
-  mr_timestamp varchar(14) NOT NULL
-);
-CREATE UNIQUE INDEX /*i*/mr_resource_lang ON /*_*/msg_resource (mr_resource, mr_lang);
-
 -- Table caching which local files a module depends on that aren't
 -- registered directly, used for fast retrieval of file dependency.
 -- Currently only used for tracking images that CSS depends on

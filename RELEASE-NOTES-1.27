@@ -173,6 +173,7 @@ changes to languages because of Phabricator reports.
 * Obsolete maintenance scripts clearCacheStats.php and showCacheStats.php
   were removed. The underlying data is sent to StatsD (see $wgStatsdServer).
 * Removed msg_resource_links database table and associated code.
+* Removed msg_resource database table and associated code.
 
 == Compatibility ==
 

@@ -66,7 +66,6 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'dropIndex', 'iwlinks', 'iwl_prefix', 'patch-kill-iwl_prefix.sql' ),
 			array( 'addField', 'categorylinks', 'cl_collation', 'patch-categorylinks-better-collation.sql' ),
 			array( 'doCollationUpdate' ),
-			array( 'addTable', 'msg_resource', 'patch-msg_resource.sql' ),
 			array( 'addTable', 'module_deps', 'patch-module_deps.sql' ),
 			array( 'dropIndex', 'archive', 'ar_page_revid', 'patch-archive_kill_ar_page_revid.sql' ),
 			array( 'addIndex', 'archive', 'ar_revid', 'patch-archive_ar_revid.sql' ),
@@ -147,6 +146,7 @@ class SqliteUpdater extends DatabaseUpdater {
 
 			// 1.27
 			array( 'dropTable', 'msg_resource_links' ),
+			array( 'dropTable', 'msg_resource' ),
 		);
 	}
 
