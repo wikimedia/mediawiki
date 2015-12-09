@@ -22,7 +22,8 @@
 		"checkTypes": "strictNativeCase",
 		"requireNewlineAfterDescription": true,
 		"requireParamTypes": true,
-		"requireReturnTypes": true
+		"requireReturnTypes": true,
+		"enforceExistence": true
 	},
 
 	"excludeFiles": [
