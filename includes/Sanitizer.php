@@ -750,7 +750,15 @@ class Sanitizer {
 			}
 
 			# Allow any attribute beginning with "data-"
-			if ( !preg_match( '/^data-(?!ooui)/i', $attribute ) && !isset( $whitelist[$attribute] ) ) {
+			# However:
+			# * data-ooui is reserved for ooui
+			# * data-mw and data-parsoid are reserved for parsoid
+			# * data-mw-<ext name here> is reserved for extensions (or core) if
+			#   they need to communicate some data to the client and want to be
+			#   sure that it isn't coming from an untrusted user.
+			if ( !preg_match( '/^data-(?!ooui|mw|parsoid)/i', $attribute )
+				&& !isset( $whitelist[$attribute] )
+			) {
 				continue;
 			}
 

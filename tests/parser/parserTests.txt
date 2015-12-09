@@ -26339,3 +26339,12 @@ Empty LI (T49673)
 <li>b</li>
 </ul>
 !! end
+
+!! test
+reserved data attributes stripped
+!! wikitext
+<div data-mw="foo" data-parsoid="bar" data-mw-someext="baz" data-ok="fred" data-ooui="xyzzy">d</div>
+!! html
+<div data-ok="fred">d</div>
+
+!! end
