@@ -217,6 +217,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['rtl'] = $wgContLang->isRTL();
 		$data['fallback8bitEncoding'] = $wgContLang->fallback8bitEncoding();
 
+		$data['uploadsenabled'] = $config->get( 'EnableUploads' );
+
 		$data['readonly'] = wfReadOnly();
 		if ( $data['readonly'] ) {
 			$data['readonlyreason'] = wfReadOnlyReason();
