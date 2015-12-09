@@ -285,7 +285,7 @@
 	"confirmable-no": "Ne",
 	"thisisdeleted": "Pogledati ili vratiti $1?",
 	"viewdeleted": "Pogledati $1?",
-	"restorelink": "{{PLURAL:$1|obrisanu izmenu|$1 obrisane izmene|$1 obrisanih izmena}}",
+	"restorelink": "{{PLURAL:$1|1=obrisanu izmenu|$1 obrisane izmene|$1 obrisanih izmena}}",
 	"feedlinks": "Dovod:",
 	"feed-invalid": "Neispravna vrsta dovoda.",
 	"feed-unavailable": "Dovodi nisu dostupni",

@@ -1511,6 +1511,7 @@
 	"deletereasonotherlist": "بل سبب",
 	"deletereason-dropdown": "*د ړنگولو ټولگړی سبب\n** چټيات\n** د پوهې سره دښمني\n** د رښتو تېری\n** د ليکوال غوښتنه\n** ناسمه مخ گرځېدنه",
 	"delete-edit-reasonlist": "د ړنگولو سببونه سمول",
+	"deleting-backlinks-warning": "گواښنه:''' دا مخ چې تاسې يې ړنگوی د [[Special:WhatLinksHere/{{FULLPAGENAME}}|نورو مخونو]] سره تړلی او يا هم په نورو مخونو کې نغاړل شوی دی.",
 	"rollbacklink": "په شابېول",
 	"rollbacklinkcount": "$1 {{PLURAL:$1|سمون|سمونونه}} پرشابېول",
 	"editcomment": "د سمون لنډيز دا و: \"''$1''\".",

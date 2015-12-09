@@ -869,7 +869,7 @@
 	"shown-title": "Pokaži $1 {{PLURAL:$1|rezultat|rezultata}} po stranici",
 	"viewprevnext": "Pogledaj ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "'''Postoji stranica pod nazivom \"[[:$1]]\" na ovoj wiki'''",
-	"searchmenu-new": "<strong>Napravi stranicu \"[[:$1]]\" na ovoj wiki!</strong> {{PLURAL:$2|0=|Pogledajte također straniu pronađenu vašom pretragom.|Pogledajte također i vaše rezultate pretrage.}}",
+	"searchmenu-new": "<strong>Napravi stranicu \"[[:$1]]\" na ovoj wiki!</strong> {{PLURAL:$2|0=|Pogledajte također stranicu pronađenu vašom pretragom.|Pogledajte također i vaše rezultate pretrage.}}",
 	"searchprofile-articles": "Stranice sadržaja",
 	"searchprofile-images": "Multimedija",
 	"searchprofile-everything": "Sve",

@@ -162,6 +162,7 @@
 	"tog-watchlisthidebots": "Ocultar las ediciones de bots de la lista de seguimiento",
 	"tog-watchlisthideminor": "Ocultar las ediciones menores de la lista de seguimiento",
 	"tog-watchlisthideliu": "Ocultar las ediciones de los usuarios registrados de la lista de seguimiento",
+	"tog-watchlistreloadautomatically": "Recargar la lista de seguimiento automáticamente cuando se modifica un filtro (requiere JavaScript)",
 	"tog-watchlisthideanons": "Ocultar las ediciones de los usuarios anónimos de la lista de seguimiento",
 	"tog-watchlisthidepatrolled": "Ocultar las ediciones verificadas de la lista de seguimiento",
 	"tog-watchlisthidecategorization": "Ocultar la categorización de páginas",
