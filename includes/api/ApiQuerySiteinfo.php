@@ -245,6 +245,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data['misermode'] = (bool)$config->get( 'MiserMode' );
 
+		$data['uploadsenabled'] = UploadBase::isEnabled();
 		$data['maxuploadsize'] = UploadBase::getMaxUploadSize();
 		$data['minuploadchunksize'] = (int)$this->getConfig()->get( 'MinUploadChunkSize' );
 
