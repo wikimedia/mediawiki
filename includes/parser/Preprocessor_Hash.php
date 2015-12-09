@@ -1745,7 +1745,7 @@ class PPNode_Hash_Tree implements PPNode {
 				$children[] = $child;
 			}
 		}
-		return $children;
+		return new PPNode_Hash_Array( $children );
 	}
 
 	/**
