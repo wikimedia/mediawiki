@@ -659,14 +659,6 @@ CREATE TABLE &mw_prefix.l10n_cache (
 );
 CREATE INDEX &mw_prefix.l10n_cache_u01 ON &mw_prefix.l10n_cache (lc_lang, lc_key);
 
-CREATE TABLE &mw_prefix.msg_resource (
-  mr_resource VARCHAR2(255) NOT NULL,
-  mr_lang varchar2(32) NOT NULL,
-  mr_blob BLOB NOT NULL,
-  mr_timestamp TIMESTAMP(6) WITH TIME ZONE NOT NULL
-);
-CREATE UNIQUE INDEX &mw_prefix.msg_resource_u01 ON &mw_prefix.msg_resource (mr_resource, mr_lang);
-
 CREATE TABLE &mw_prefix.module_deps (
   md_module VARCHAR2(255) NOT NULL,
   md_skin VARCHAR2(32) NOT NULL,

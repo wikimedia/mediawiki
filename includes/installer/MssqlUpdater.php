@@ -67,6 +67,7 @@ class MssqlUpdater extends DatabaseUpdater {
 
 			// 1.27
 			array( 'dropTable', 'msg_resource_links' ),
+			array( 'dropTable', 'msg_resource' ),
 		);
 	}
 

@@ -85,7 +85,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addTable', 'log_search', 'patch-log_search.sql' ),
 			array( 'addTable', 'l10n_cache', 'patch-l10n_cache.sql' ),
 			array( 'addTable', 'iwlinks', 'patch-iwlinks.sql' ),
-			array( 'addTable', 'msg_resource', 'patch-msg_resource.sql' ),
 			array( 'addTable', 'module_deps', 'patch-module_deps.sql' ),
 			array( 'addTable', 'uploadstash', 'patch-uploadstash.sql' ),
 			array( 'addTable', 'user_former_groups', 'patch-user_former_groups.sql' ),
@@ -427,6 +426,7 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.27
 			array( 'dropTable', 'msg_resource_links' ),
+			array( 'dropTable', 'msg_resource' ),
 		);
 	}
 
