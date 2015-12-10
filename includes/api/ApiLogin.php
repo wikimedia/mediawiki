@@ -24,6 +24,7 @@
  *
  * @file
  */
+
 use MediaWiki\Logger\LoggerFactory;
 
 /**
@@ -77,21 +78,52 @@ class ApiLogin extends ApiBase {
 			return;
 		}
 
+		$authRes = false;
 		$context = new DerivativeContext( $this->getContext() );
-		$context->setRequest( new DerivativeRequest(
-			$this->getContext()->getRequest(),
-			array(
-				'wpName' => $params['name'],
-				'wpPassword' => $params['password'],
-				'wpDomain' => $params['domain'],
-				'wpLoginToken' => $params['token'],
-				'wpRemember' => ''
-			)
-		) );
-		$loginForm = new LoginForm();
-		$loginForm->setContext( $context );
 
-		$authRes = $loginForm->authenticateUserData();
+		// Check login token
+		$token = LoginForm::getLoginToken();
+		if ( !$token ) {
+			LoginForm::setLoginToken();
+			$authRes = LoginForm::NEED_TOKEN;
+		} elseif ( !$params['token'] ) {
+			$authRes = LoginForm::NEED_TOKEN;
+		} elseif ( $token !== $params['token'] ) {
+			$authRes = LoginForm::WRONG_TOKEN;
+		}
+
+		// Try bot passwords
+		if ( $authRes === false && $this->getConfig()->get( 'EnableBotPasswords' ) ) {
+			$status = BotPassword::login(
+				$params['name'], $params['password'], $this->getRequest()
+			);
+			if ( $status->isOk() ) {
+				$session = $status->getValue();
+				$authRes = LoginForm::SUCCESS;
+			} else {
+				LoggerFactory::getInstance( 'authmanager' )->info(
+					'BotPassword login failed: ' . $status->getWikiText()
+				);
+			}
+		}
+
+		// Normal login
+		if ( $authRes === false ) {
+			$context->setRequest( new DerivativeRequest(
+				$this->getContext()->getRequest(),
+				array(
+					'wpName' => $params['name'],
+					'wpPassword' => $params['password'],
+					'wpDomain' => $params['domain'],
+					'wpLoginToken' => $params['token'],
+					'wpRemember' => ''
+				)
+			) );
+			$loginForm = new LoginForm();
+			$loginForm->setContext( $context );
+			$authRes = $loginForm->authenticateUserData();
+		}
+
 		switch ( $authRes ) {
 			case LoginForm::SUCCESS:
 				$user = $context->getUser();
@@ -116,7 +148,7 @@ class ApiLogin extends ApiBase {
 
 			case LoginForm::NEED_TOKEN:
 				$result['result'] = 'NeedToken';
-				$result['token'] = $loginForm->getLoginToken();
+				$result['token'] = LoginForm::getLoginToken();
 				$result['cookieprefix'] = $this->getConfig()->get( 'CookiePrefix' );
 				$result['sessionid'] = MediaWiki\Session\SessionManager::getGlobalSession()->getId();
 				break;
