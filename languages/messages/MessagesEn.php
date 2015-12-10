@@ -395,6 +395,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'BlankPage' ),
 	'Block'                     => array( 'Block', 'BlockIP', 'BlockUser' ),
 	'Booksources'               => array( 'BookSources' ),
+	'BotPasswords'              => array( 'BotPasswords' ),
 	'BrokenRedirects'           => array( 'BrokenRedirects' ),
 	'Categories'                => array( 'Categories' ),
 	'ChangeContentModel'        => array( 'ChangeContentModel' ),
