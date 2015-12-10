@@ -42,18 +42,12 @@ class Article implements Page {
 	public $mParserOptions;
 
 	/**
-	 * @var string Text of the revision we are working on
-	 * @todo BC cruft
-	 */
-	public $mContent;
-
-	/**
 	 * @var Content Content of the revision we are working on
 	 * @since 1.21
 	 */
 	public $mContentObject;
 
-	/** @var bool Is the content ($mContent) already loaded? */
+	/** @var bool Is the content ($mContentObject) already loaded? */
 	public $mContentLoaded = false;
 
 	/** @var int|null The oldid of the article that is to be shown, 0 for the current revision */
@@ -334,31 +328,17 @@ class Article implements Page {
 	 * @deprecated since 1.21, use WikiPage::getContent() instead
 	 */
 	function fetchContent() {
-		// BC cruft!
+		$content = $this->mPage->getContent(Revision::FOR_THIS_USER, $this->getContext()->getUser());
 
-		ContentHandler::deprecated( __METHOD__, '1.21' );
+		ContentHandler::runLegacyHooks('ArticleAfterFetchContent', array( &$this, &$content ));
 
-		if ( $this->mContentLoaded && $this->mContent ) {
-			return $this->mContent;
-		}
-
-		$content = $this->fetchContentObject();
-
-		if ( !$content ) {
-			return false;
-		}
-
-		// @todo Get rid of mContent everywhere!
-		$this->mContent = ContentHandler::getContentText( $content );
-		ContentHandler::runLegacyHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) );
-
-		return $this->mContent;
+		return (is_null($content)) ? false : $content;
 	}
 
 	/**
 	 * Get text content object
 	 * Does *NOT* follow redirects.
-	 * @todo When is this null?
+	 * Returns null when user doesn't have ability to view this revision.
 	 *
 	 * @note Code that wants to retrieve page content from the database should
 	 * use WikiPage::getContent().
@@ -373,7 +353,6 @@ class Article implements Page {
 		}
 
 		$this->mContentLoaded = true;
-		$this->mContent = null;
 
 		$oldid = $this->getOldID();
 
