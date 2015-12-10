@@ -880,7 +880,7 @@ class LocalFile extends File {
 
 		// Purge squid cache for this file
 		DeferredUpdates::addUpdate(
-			new SquidUpdate( array( $this->getUrl() ) ),
+			new CdnCacheUpdate( array( $this->getUrl() ) ),
 			DeferredUpdates::PRESEND
 		);
 	}
@@ -904,7 +904,7 @@ class LocalFile extends File {
 		foreach ( $files as $file ) {
 			$urls[] = $this->getArchiveThumbUrl( $archiveName, $file );
 		}
-		DeferredUpdates::addUpdate( new SquidUpdate( $urls ), DeferredUpdates::PRESEND );
+		DeferredUpdates::addUpdate( new CdnCacheUpdate( $urls ), DeferredUpdates::PRESEND );
 	}
 
 	/**
@@ -936,7 +936,7 @@ class LocalFile extends File {
 		$this->purgeThumbList( $dir, $files );
 
 		// Purge the squid
-		DeferredUpdates::addUpdate( new SquidUpdate( $urls ), DeferredUpdates::PRESEND );
+		DeferredUpdates::addUpdate( new CdnCacheUpdate( $urls ), DeferredUpdates::PRESEND );
 	}
 
 	/**
@@ -1436,7 +1436,7 @@ class LocalFile extends File {
 				$that->purgeThumbnails();
 				# Remove the old file from the squid cache
 				DeferredUpdates::addUpdate(
-					new SquidUpdate( array( $that->getUrl() ) ),
+					new CdnCacheUpdate( array( $that->getUrl() ) ),
 					DeferredUpdates::PRESEND
 				);
 			} else {
@@ -1637,7 +1637,7 @@ class LocalFile extends File {
 		foreach ( $archiveNames as $archiveName ) {
 			$purgeUrls[] = $this->getArchiveUrl( $archiveName );
 		}
-		DeferredUpdates::addUpdate( new SquidUpdate( $purgeUrls ), DeferredUpdates::PRESEND );
+		DeferredUpdates::addUpdate( new CdnCacheUpdate( $purgeUrls ), DeferredUpdates::PRESEND );
 
 		return $status;
 	}
@@ -1675,7 +1675,7 @@ class LocalFile extends File {
 		}
 
 		DeferredUpdates::addUpdate(
-			new SquidUpdate( array( $this->getArchiveUrl( $archiveName ) ) ),
+			new CdnCacheUpdate( array( $this->getArchiveUrl( $archiveName ) ) ),
 			DeferredUpdates::PRESEND
 		);
 
