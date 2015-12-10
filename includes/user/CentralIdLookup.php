@@ -62,6 +62,16 @@ abstract class CentralIdLookup implements IDBAccessObject {
 		return self::$instances[$providerId];
 	}
 
+	/**
+	 * Reset internal cache for unit testing
+	 */
+	public static function resetCache() {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new MWException( __METHOD__ . ' may only be called from unit tests!' );
+		}
+		self::$instances = array();
+	}
+
 	final public function getProviderId() {
 		return $this->providerId;
 	}
