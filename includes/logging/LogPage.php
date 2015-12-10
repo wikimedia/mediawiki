@@ -195,10 +195,9 @@ class LogPage {
 	 *
 	 * @return array Array of strings
 	 */
-	public static function validTypes() {
-		global $wgLogTypes;
-
-		return $wgLogTypes;
+	public static function validTypes( $inUseOnly = false ) {
+		global $wgLogTypes, $wgUnusedLogTypes;
+		return $inUseOnly ? array_diff( $wgLogTypes, $wgUnusedLogTypes ) : $wgLogTypes;
 	}
 
 	/**

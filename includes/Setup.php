@@ -468,6 +468,11 @@ if ( $wgPageLanguageUseDB ) {
 	$wgLogActionsHandlers['pagelang/pagelang'] = 'PageLangLogFormatter';
 }
 
+// disregard filtering for unused log types
+foreach ( $wgUnusedLogTypes as $type ) {
+	unset( $wgFilterLogTypes[$type] );
+}
+
 if ( $wgCookieSecure === 'detect' ) {
 	$wgCookieSecure = ( WebRequest::detectProtocol() === 'https' );
 }
