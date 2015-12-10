@@ -478,6 +478,11 @@ if ( $wgPageLanguageUseDB ) {
 	$wgLogActionsHandlers['pagelang/pagelang'] = 'PageLangLogFormatter';
 }
 
+if ( $wgUseRCPatrol || $wgUseNPPatrol || $wgUseFilePatrol ) {
+	$wgLogTypes[] = 'patrol';
+	$wgFilterLogTypes['patrol'] = true;
+}
+
 if ( $wgCookieSecure === 'detect' ) {
 	$wgCookieSecure = ( WebRequest::detectProtocol() === 'https' );
 }

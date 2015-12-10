@@ -7071,7 +7071,6 @@ $wgLogTypes = array(
 	'upload',
 	'move',
 	'import',
-	'patrol',
 	'merge',
 	'suppress',
 	'tag',
@@ -7113,7 +7112,6 @@ $wgLogRestrictions = array(
  * for the link text.
  */
 $wgFilterLogTypes = array(
-	'patrol' => true,
 	'tag' => true,
 );
 
