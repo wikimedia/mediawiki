@@ -97,6 +97,20 @@ class ObjectCache {
 	}
 
 	/**
+	 * Get a cached instance of the specified cache type for a given group.
+	 *
+	 * @param string $name A key in $wgObjectCacheGroups.
+	 * @return BagOStuff
+	 */
+	public static function getGroup( $name ) {
+		global $wgObjectCacheGroups;
+		if ( !isset( $wgObjectCacheGroups[$name] ) ) {
+			return self::getLocalClusterInstance();
+		}
+		return self::getInstance( $wgObjectCacheGroups[$name] );
+	}
+
+	/**
 	 * Get a cached instance of the specified type of WAN cache object.
 	 *
 	 * @since 1.26
@@ -319,7 +333,6 @@ class ObjectCache {
 	 */
 	public static function getLocalClusterInstance() {
 		global $wgMainCacheType;
-
 		return self::getInstance( $wgMainCacheType );
 	}
 
@@ -331,7 +344,6 @@ class ObjectCache {
 	 */
 	public static function getMainWANInstance() {
 		global $wgMainWANCache;
-
 		return self::getWANInstance( $wgMainWANCache );
 	}
 
@@ -355,7 +367,6 @@ class ObjectCache {
 	 */
 	public static function getMainStashInstance() {
 		global $wgMainStash;
-
 		return self::getInstance( $wgMainStash );
 	}
 

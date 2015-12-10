@@ -2146,65 +2146,72 @@ $wgCacheDirectory = false;
  * limited space. By default, it is disabled, since the stock database cache
  * is not fast enough to make it worthwhile.
  *
- * The options are:
- *
- *   - CACHE_ANYTHING:   Use anything, as long as it works
- *   - CACHE_NONE:       Do not cache
- *   - CACHE_DB:         Store cache objects in the DB
- *   - CACHE_MEMCACHED:  MemCached, must specify servers in $wgMemCachedServers
- *   - CACHE_ACCEL:      APC, XCache or WinCache
- *   - (other):          A string may be used which identifies a cache
- *                       configuration in $wgObjectCaches.
- *
- * @see $wgMessageCacheType, $wgParserCacheType
+ * @see $wgObjectCacheGroups
+ * @var string A key in $wgObjectCaches
  */
 $wgMainCacheType = CACHE_NONE;
 
 /**
- * The cache type for storing the contents of the MediaWiki namespace. This
- * cache is used for a small amount of data which is expensive to regenerate.
+ * The cache type for caching the contents of the MediaWiki namespace.
  *
- * For available types see $wgMainCacheType.
+ * This typically contains a small number of keys only.
+ * Values are expensive to regenerate however.
+ *
+ * @deprecated since 1.27 Use $wgObjectCacheGroups['message-cache']
+ * @see MessageCache class
+ * @var string A key in $wgObjectCaches
  */
-$wgMessageCacheType = CACHE_ANYTHING;
+$wgMessageCacheType = false;
 
 /**
- * The cache type for storing article HTML. This is used to store data which
- * is expensive to regenerate, and benefits from having plenty of storage space.
+ * The cache type for storing parser output HTML.
  *
- * For available types see $wgMainCacheType.
+ * These values are expensive to regenerate. Benefits from high storage capacity.
+ * Can be disabled by $wgEnableParserCache.
+ *
+ * @deprecated since 1.27 Use $wgObjectCacheGroups['parser']
+ * @var string A key in $wgObjectCaches
  */
-$wgParserCacheType = CACHE_ANYTHING;
+$wgParserCacheType = false;
 
 /**
- * The cache type for storing session data. Used if $wgSessionsInObjectCache is true.
+ * The cache type for storing session data.
  *
- * For available types see $wgMainCacheType.
+ * Used if $wgSessionsInObjectCache is true.
+ *
+ * @deprecated since 1.27 Use $wgObjectCacheGroups['session']
+ * @var string A key in $wgObjectCaches
  */
-$wgSessionCacheType = CACHE_ANYTHING;
+$wgSessionCacheType = false;
 
 /**
  * The cache type for storing language conversion tables,
  * which are used when parsing certain text and interface messages.
  *
- * For available types see $wgMainCacheType.
- *
+ * @deprecated since 1.27 Use $wgObjectCacheGroups['language-converter']
+ * @var string A key in $wgObjectCaches
  * @since 1.20
  */
-$wgLanguageConverterCacheType = CACHE_ANYTHING;
+$wgLanguageConverterCacheType = false;
 
 /**
  * Advanced object cache configuration.
  *
  * Use this to define the class names and constructor parameters which are used
- * for the various cache types. Custom cache types may be defined here and
- * referenced from $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType,
- * or $wgLanguageConverterCacheType.
+ * for the various cache types (see $wgMainCacheType and $wgObjectCacheGroups).
  *
  * The format is an associative array where the key is a cache identifier, and
  * the value is an associative array of parameters. The "class" parameter is the
  * class name which will be used. Alternatively, a "factory" parameter may be
  * given, giving a callable function which will generate a suitable cache object.
+ *
+ * Special options:
+ *
+ *   - CACHE_ANYTHING:   Shortcut for using $wgMainCacheType with fallback to CACHE_DB.
+ *   - CACHE_NONE:       Do not cache
+ *   - CACHE_DB:         Store cache objects in the database
+ *   - CACHE_MEMCACHED:  Memcached, must specify servers in $wgMemCachedServers
+ *   - CACHE_ACCEL:      Put it one of auto-detected APC, XCache or WinCache
  */
 $wgObjectCaches = array(
 	CACHE_NONE => array( 'class' => 'EmptyBagOStuff' ),
@@ -2233,6 +2240,25 @@ $wgObjectCaches = array(
 	'memcached-php' => array( 'class' => 'MemcachedPhpBagOStuff', 'loggroup' => 'memcached' ),
 	'memcached-pecl' => array( 'class' => 'MemcachedPeclBagOStuff', 'loggroup' => 'memcached' ),
 	'hash' => array( 'class' => 'HashBagOStuff' ),
+);
+
+/**
+ * Map of string cache group names to object cache identifiers.
+ *
+ * Any group not specified defaults to $wgMainCacheType.
+ *
+ * @code
+ * $wgObjectCacheGroups['messsage-cache'] = CACHE_ACCEL;
+ * @endcode
+ *
+ * @see $wgObjectCaches
+ * @since 1.27
+ */
+$wgObjectCacheGroups = array(
+	'message-cache' => CACHE_ANYTHING,
+	'parser' => CACHE_ANYTHING,
+	'session' => CACHE_ANYTHING,
+	'language-converter' => CACHE_ANYTHING,
 );
 
 /**
@@ -2360,7 +2386,8 @@ $wgMemCachedTimeout = 500000;
 /**
  * Set this to true to maintain a copy of the message cache on the local server.
  *
- * This layer of message cache is in addition to the one configured by $wgMessageCacheType.
+ * This layer of message cache is in addition to the one configured
+ * by $wgObjectCacheGroups['message-cache'].
  *
  * The local copy is put in APC. If APC is not installed, this setting does nothing.
  *

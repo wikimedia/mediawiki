@@ -3906,6 +3906,7 @@ function wfBCP47( $code ) {
 /**
  * Get a specific cache object.
  *
+ * @deprecated since 1.27 Use ObjectCache::getInstance
  * @param int|string $cacheType A CACHE_* constants, or other key in $wgObjectCaches
  * @return BagOStuff
  */
@@ -3916,31 +3917,31 @@ function wfGetCache( $cacheType ) {
 /**
  * Get the main cache object
  *
+ * @deprecated since 1.27 Use ObjectCache::getLocalClusterInstance()
  * @return BagOStuff
  */
 function wfGetMainCache() {
-	global $wgMainCacheType;
-	return ObjectCache::getInstance( $wgMainCacheType );
+	return ObjectCache::getLocalClusterInstance();
 }
 
 /**
- * Get the cache object used by the message cache
+ * Get the cache object for MessageCache
  *
+ * @deprecated since 1.27 Use ObjectCache::getGroup( 'message-cache' )
  * @return BagOStuff
  */
 function wfGetMessageCacheStorage() {
-	global $wgMessageCacheType;
-	return ObjectCache::getInstance( $wgMessageCacheType );
+	return ObjectCache::getGroup( 'message-cache' );
 }
 
 /**
- * Get the cache object used by the parser cache
+ * Get the cache object for the parser cache
  *
+ * @deprecated since 1.27 Use ObjectCache::getGroup( 'parser' )
  * @return BagOStuff
  */
 function wfGetParserCacheStorage() {
-	global $wgParserCacheType;
-	return ObjectCache::getInstance( $wgParserCacheType );
+	return ObjectCache::getGroup( 'parser' );
 }
 
 /**
