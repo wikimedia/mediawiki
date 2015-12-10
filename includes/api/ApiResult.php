@@ -64,6 +64,12 @@ class ApiResult implements ApiSerializable {
 	const NO_VALIDATE = 12;
 
 	/**
+	 * For addValue(), setValue() and similar functions, treat data as a single JSON value.
+	 * @since 1.27
+	 */
+	const JSON_VALUE = 16;
+
+	/**
 	 * Key for the 'indexed tag name' metadata item. Value is string.
 	 * @since 1.25
 	 */
@@ -288,7 +294,7 @@ class ApiResult implements ApiSerializable {
 	 */
 	public static function setValue( array &$arr, $name, $value, $flags = 0 ) {
 		if ( ( $flags & ApiResult::NO_VALIDATE ) !== ApiResult::NO_VALIDATE ) {
-			$value = self::validateValue( $value );
+			$value = self::validateValue( $value, $flags );
 		}
 
 		if ( $name === null ) {
@@ -327,10 +333,24 @@ class ApiResult implements ApiSerializable {
 	/**
 	 * Validate a value for addition to the result
 	 * @param mixed $value
+	 * @param int $flags Zero or more OR-ed flags. For now only handles JSON_VALUE
 	 * @return array|mixed|string
 	 */
-	private static function validateValue( $value ) {
+	private static function validateValue( $value, $flags = 0 ) {
 		global $wgContLang;
+
+		if ( $flags & ApiResult::JSON_VALUE ) {
+			// Encode object as a JSON string to ensure its validity
+			$jsonStr = FormatJson::encode( $value, false, FormatJson::ALL_OK );
+			if ( $jsonStr === false ) {
+				throw new InvalidArgumentException( "Cannot encode value as JSON for ApiResult" );
+			}
+			$result = array( self::META_TYPE => 'json', '_value' => $value );
+			// Cache string for XML formatter and size check and skip all further value validation
+			self::setContentValue( $result, 'json', $jsonStr );
+
+			return $result;
+		}
 
 		if ( is_object( $value ) ) {
 			// Note we use is_callable() here instead of instanceof because
@@ -404,7 +424,7 @@ class ApiResult implements ApiSerializable {
 		if ( $this->checkingSize && !( $flags & ApiResult::NO_SIZE_CHECK ) ) {
 			// self::valueSize needs the validated value. Then flag
 			// to not re-validate later.
-			$value = self::validateValue( $value );
+			$value = self::validateValue( $value, $flags );
 			$flags |= ApiResult::NO_VALIDATE;
 
 			$newsize = $this->size + self::valueSize( $value );
@@ -939,6 +959,14 @@ class ApiResult implements ApiSerializable {
 
 			// Apply transformation
 			switch ( $type ) {
+				/** @noinspection PhpMissingBreakStatementInspection */
+				case 'json':
+					if ( !empty( $transformTypes['JsonAsObject'] ) ) {
+						return $metadata['_value'];
+					}
+					// fallthrough - if formatter does not support json objects,
+					// treat the value as an 'assoc'
+
 				case 'assoc':
 					$metadata[self::META_TYPE] = 'assoc';
 					$data += $keepMetadata;
