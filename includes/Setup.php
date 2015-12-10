@@ -110,6 +110,27 @@ if ( $wgEnableParserCache === false ) {
 	$wgParserCacheType = CACHE_NONE;
 }
 
+// Backwards compatibility with deprecated alias
+// Must be before call to wfSetupSession()
+if ( $wgSessionsInMemcached ) {
+	$wgSessionsInObjectCache = true;
+}
+
+// Backwards compatibility for deprecated cache configuration
+if ( $wgMessageCacheType !== false ) {
+	$wgObjectCacheGroups['message-cache'] = $wgMessageCacheType;
+}
+if ( $wgParserCacheType !== false ) {
+	$wgObjectCacheGroups['parser'] = $wgParserCacheType;
+}
+if ( $wgSessionCacheType !== false ) {
+	$wgObjectCacheGroups['session'] = $wgSessionCacheType;
+}
+if ( $wgLanguageConverterCacheType !== false ) {
+	$wgObjectCacheGroups['language-converter'] = $wgLanguageConverterCacheType;
+}
+
+
 // Fix path to icon images after they were moved in 1.24
 if ( $wgRightsIcon ) {
 	$wgRightsIcon = str_replace(
@@ -484,12 +505,6 @@ if ( $wgMinimalPasswordLength !== false ) {
 
 if ( $wgMaximalPasswordLength !== false ) {
 	$wgPasswordPolicy['policies']['default']['MaximalPasswordLength'] = $wgMaximalPasswordLength;
-}
-
-// Backwards compatibility with deprecated alias
-// Must be before call to wfSetupSession()
-if ( $wgSessionsInMemcached ) {
-	$wgSessionsInObjectCache = true;
 }
 
 Profiler::instance()->scopedProfileOut( $ps_default );
