@@ -136,6 +136,7 @@ production.
    $wgMWOAuthGrantPermissionGroups.
 * Added MWRestrictions as a class to check restrictions on a WebRequest, e.g.
   to assert that the request comes from a particular IP range.
+* Added bot passwords, a rights-restricted login mechanism for API-using bots.
 
 === External library changes in 1.27 ===
 ==== Upgraded external libraries ====
@@ -168,6 +169,9 @@ production.
   the text before diffing it.
 * Deprecated formats dbg, txt, and yaml have been removed.
 * (T47988) The protect log event details now use new-style formatting.
+* action=login transparently allows login using bot passwords. Clients should
+  merely need to change the username and password used after setting up a bot
+  password.
 
 === Action API internal changes in 1.27 ===
 * ApiQueryORM removed.
