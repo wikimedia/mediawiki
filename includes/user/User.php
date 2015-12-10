@@ -2409,6 +2409,9 @@ class User implements IDBAccessObject {
 			),
 			__METHOD__
 		);
+
+		// When the main password is changed, invalidate all bot passwords too
+		BotPassword::invalidateAllPasswordsForUser( $this->getName() );
 	}
 
 	/**
