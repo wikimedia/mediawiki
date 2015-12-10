@@ -1,7 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hosseinblue"
+			"Hosseinblue",
+			"Arash71",
+			"Lakzon"
 		]
 	},
 	"apihelp-main-param-action": "کام عملیات انجؤم بِ.",
@@ -11,7 +13,9 @@
 	"apihelp-delete-description": "حۀذف وۀلگۀ",
 	"apihelp-edit-description": "دؤرس کردن و دۀسکاری وۀلگۀ",
 	"apihelp-edit-param-sectiontitle": "نام سۀر وۀلگ تازۀ",
-	"apihelp-edit-example-edit": "دۀسکاری وۀلگۀ.",
+	"apihelp-edit-example-edit": ".دةسکاری وةڵگة",
+	"apihelp-emailuser-param-subject": "موضوع سةر وةڵگ",
+	"apihelp-emailuser-param-text": "متن رایانه.",
 	"apihelp-login-param-name": "نام کاربری",
 	"apihelp-login-param-password": ".رمز",
 	"apihelp-login-example-login": "نؤم هۀتن.",

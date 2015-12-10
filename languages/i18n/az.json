@@ -141,7 +141,7 @@
 	"pagecategories": "$1 {{PLURAL:$1|Kateqoriya|Kateqoriya}}",
 	"category_header": "\"$1\" kateqoriyasındakı məqalələr",
 	"subcategories": "Alt kateqoriyalar",
-	"category-media-header": "\"$1\" kateqoriyasında mediya",
+	"category-media-header": "\"$1\" kateqoriyasındakı fayllar",
 	"category-empty": "\"Bu kateqoriya hal-hazırda boşdur.\"",
 	"hidden-categories": "{{PLURAL:$1|Gizli kateqoriya|Gizli kateqoriyalar}}",
 	"hidden-category-category": "Gizli kateqoriyalar",

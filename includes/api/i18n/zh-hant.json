@@ -103,7 +103,7 @@
 	"apihelp-feedrecentchanges-param-hideanons": "隱藏匿名使用者做的變更。",
 	"apihelp-feedrecentchanges-param-hideliu": "隱藏已註冊使用者做的變更。",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "隱藏已巡查的變更。",
-	"apihelp-feedrecentchanges-example-simple": "顯示最近更改。",
+	"apihelp-feedrecentchanges-example-simple": "顯示最近變更。",
 	"apihelp-feedrecentchanges-example-30days": "顯示近期30天內的變動",
 	"apihelp-feedwatchlist-description": "返回監視清單 feed。",
 	"apihelp-feedwatchlist-param-feedformat": "Feed 的格式。",
