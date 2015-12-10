@@ -1445,7 +1445,7 @@ abstract class Skin extends ContextSource {
 				)->numParams( $plural );
 			}
 			$newMessagesAlert = $newMessagesAlert->text();
-			# Disable Squid cache
+			# Disable CDN cache
 			$out->setCdnMaxage( 0 );
 		} elseif ( count( $newtalks ) ) {
 			$sep = $this->msg( 'newtalkseparator' )->escaped();
