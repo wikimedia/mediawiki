@@ -108,17 +108,17 @@ class ApiStashEdit extends ApiBase {
 		// The user will abort the AJAX request by pressing "save", so ignore that
 		ignore_user_abort( true );
 
+		// Use the master DB for fast blocking locks
+		$dbw = wfGetDB( DB_MASTER );
+
 		// Get a key based on the source text, format, and user preferences
 		$key = self::getStashKey( $title, $content, $user );
 		// De-duplicate requests on the same key
 		if ( $user->pingLimiter( 'stashedit' ) ) {
 			$status = 'ratelimited';
-		} elseif ( $cache->lock( $key, 0, 30 ) ) {
-			/** @noinspection PhpUnusedLocalVariableInspection */
-			$unlocker = new ScopedCallback( function() use ( $cache, $key ) {
-				$cache->unlock( $key );
-			} );
+		} elseif ( $dbw->lock( $key, __METHOD__, 1 ) ) {
 			$status = self::parseAndStash( $page, $content, $user );
+			$dbw->unlock( $key, __METHOD__ );
 		} else {
 			$status = 'busy';
 		}
@@ -258,10 +258,13 @@ class ApiStashEdit extends ApiBase {
 		if ( !is_object( $editInfo ) ) {
 			$start = microtime( true );
 			// We ignore user aborts and keep parsing. Block on any prior parsing
-			// so as to use it's results and make use of the time spent parsing.
-			if ( $cache->lock( $key, 30, 30 ) ) {
+			// so as to use its results and make use of the time spent parsing.
+			// Skip this logic if there no master connection in case this method
+			// is called on an HTTP GET request for some reason.
+			$dbw = wfGetLB()->getAnyOpenConnection( 0 );
+			if ( $dbw && $dbw->lock( $key, __METHOD__, 30 ) ) {
 				$editInfo = $cache->get( $key );
-				$cache->unlock( $key );
+				$dbw->unlock( $key, __METHOD__ );
 			}
 			$sec = microtime( true ) - $start;
 			if ( $sec > .01 ) {
@@ -427,6 +430,10 @@ class ApiStashEdit extends ApiBase {
 	}
 
 	function mustBePosted() {
+		return true;
+	}
+
+	function isWriteMode() {
 		return true;
 	}
 
