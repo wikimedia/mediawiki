@@ -98,10 +98,12 @@ class LogPager extends ReverseChronologicalPager {
 		if ( count( $this->types ) ) {
 			return $filters;
 		}
-		foreach ( $wgFilterLogTypes as $type => $default ) {
-			// Avoid silly filtering
-			if ( $type !== 'patrol' || $this->getUser()->useNPPatrol() ) {
-				$hide = $this->getRequest()->getInt( "hide_{$type}_log", $default );
+		// check if each valid log type has a filter set
+		foreach ( LogPage::validTypes() as $type ) {
+			if ( isset( $wgFilterLogTypes[$type] ) ) {
+				$hide = $this->getRequest()->getInt(
+					"hide_{$type}_log", $wgFilterLogTypes[$type]
+				);
 				$filters[$type] = $hide;
 				if ( $hide ) {
 					$this->mConds[] = 'log_type != ' . $this->mDb->addQuotes( $type );
@@ -154,6 +156,10 @@ class LogPager extends ReverseChronologicalPager {
 			if ( count( $types ) == 1 ) {
 				$this->typeCGI = $types[0];
 			}
+		} elseif ( !$this->getRequest()->getBool( 'unused' ) ) {
+			// show only valid log types, unless specifically requested
+			// to also show unused logs
+			$this->mConds['log_type'] = LogPage::validTypes();
 		}
 	}
 
