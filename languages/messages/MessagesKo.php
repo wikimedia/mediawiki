@@ -20,7 +20,6 @@
  * @author Gjue
  * @author Ha98574
  * @author Hoo
- * @author Hym411
  * @author IRTC1015
  * @author ITurtle
  * @author Idh0854
@@ -128,7 +127,7 @@ $specialPageAliases = array(
 	'Mostlinkedcategories'      => array( '많이쓰는분류' ),
 	'Mostlinkedtemplates'       => array( '많이쓰는틀' ),
 	'Mostrevisions'             => array( '역사긴문서' ),
-	'Movepage'                  => array( '옮기기', '문서옮기기', '이동', '문서이동' ),
+	'Movepage'                  => array( '이동', '문서이동', '옮기기', '문서옮기기' ),
 	'Mycontributions'           => array( '내기여', '내기여목록' ),
 	'MyLanguage'                => array( '내언어' ),
 	'Mypage'                    => array( '내사용자문서' ),
