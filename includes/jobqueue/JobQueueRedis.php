@@ -721,17 +721,22 @@ LUA;
 
 	/**
 	 * @param string $prop
-	 * @param string|null $type
+	 * @param string|null $type Override this for sibling queues
 	 * @return string
 	 */
 	private function getQueueKey( $prop, $type = null ) {
 		$type = is_string( $type ) ? $type : $this->type;
 		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
+		$keyspace = $prefix ? "$db-$prefix" : $db;
+
+		$parts = array( $keyspace, 'jobqueue', $type );
 		if ( strlen( $this->key ) ) { // namespaced queue (for testing)
-			return wfForeignMemcKey( $db, $prefix, 'jobqueue', $type, $this->key, $prop );
-		} else {
-			return wfForeignMemcKey( $db, $prefix, 'jobqueue', $type, $prop );
+			$parts[] = $this->key;
 		}
+		$parts[] = $prop;
+
+		// Parts are typically ASCII, but encode for sanity to escape ":"
+		return implode( ':', array_map( 'rawurlencode', $parts ) );
 	}
 
 	/**
