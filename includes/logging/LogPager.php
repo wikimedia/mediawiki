@@ -86,19 +86,24 @@ class LogPager extends ReverseChronologicalPager {
 
 	// Call ONLY after calling $this->limitType() already!
 	public function getFilterParams() {
-		global $wgFilterLogTypes;
+		global $wgFilterLogTypes, $wgUnusedLogTypes;
 		$filters = array();
 		if ( count( $this->types ) ) {
 			return $filters;
 		}
 		foreach ( $wgFilterLogTypes as $type => $default ) {
 			// Avoid silly filtering
-			if ( $type !== 'patrol' || $this->getUser()->useNPPatrol() ) {
-				$hide = $this->getRequest()->getInt( "hide_{$type}_log", $default );
-				$filters[$type] = $hide;
-				if ( $hide ) {
-					$this->mConds[] = 'log_type != ' . $this->mDb->addQuotes( $type );
-				}
+			$hide = $this->getRequest()->getInt( "hide_{$type}_log", $default );
+			$filters[$type] = $hide;
+			if ( $hide ) {
+				$this->mConds[] = 'log_type != ' . $this->mDb->addQuotes( $type );
+			}
+		}
+
+		// don't show logs marked as unused except when specifically requested
+		if ( !$this->getRequest()->getBool( 'unused' ) ) {
+			foreach ( $wgUnusedLogTypes as $type ) {
+				$this->mConds[] = 'log_type != ' . $this->mDb->addQuotes( $type );
 			}
 		}
 

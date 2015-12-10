@@ -6901,6 +6901,13 @@ $wgFilterLogTypes = array(
 );
 
 /**
+ * Add log types to this list to avoid displaying them in the drop down menu
+ * of Special:Logs unless it is requested to 'show unused logs'
+ * They might still have hits from an earlier configuration
+ */
+$wgUnusedLogTypes = array();
+
+/**
  * Lists the message key string for each log type. The localized messages
  * will be listed in the user interface.
  *

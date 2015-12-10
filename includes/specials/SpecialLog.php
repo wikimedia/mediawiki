@@ -49,6 +49,7 @@ class SpecialLog extends SpecialPage {
 		$opts->add( 'offset', '' );
 		$opts->add( 'dir', '' );
 		$opts->add( 'offender', '' );
+		$opts->add( 'unused', 0 );
 
 		// Set values
 		$opts->fetchValuesFromRequest( $this->getRequest() );
@@ -195,7 +196,8 @@ class SpecialLog extends SpecialPage {
 			$pager->getYear(),
 			$pager->getMonth(),
 			$pager->getFilterParams(),
-			$opts->getValue( 'tagfilter' )
+			$opts->getValue( 'tagfilter' ),
+			$opts->getValue( 'unused' )
 		);
 
 		# Insert list
