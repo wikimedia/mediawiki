@@ -233,8 +233,8 @@ class OutputPage extends ContextSource {
 	private $mParseWarnings = array();
 
 	/** @var int Cache stuff. Looks like mEnableClientCache */
-	protected $mSquidMaxage = 0;
-	/** @var int Upper limit on mSquidMaxage */
+	protected $mCdnMaxage = 0;
+	/** @var int Upper limit on mCdnMaxage */
 	protected $mCdnMaxageLimit = INF;
 
 	/**
@@ -1944,23 +1944,31 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Set the value of the "s-maxage" part of the "Cache-control" HTTP header
-	 *
-	 * @param int $maxage Maximum cache time on the Squid, in seconds.
+	 * @param $maxage
+	 * @deprecated since 1.27
 	 */
 	public function setSquidMaxage( $maxage ) {
-		$this->mSquidMaxage = min( $maxage, $this->mCdnMaxageLimit );
+		$this->setCdnMaxage( $maxage );
+	}
+
+	/**
+	 * Set the value of the "s-maxage" part of the "Cache-control" HTTP header
+	 *
+	 * @param int $maxage Maximum cache time on the CDN, in seconds.
+	 */
+	public function setCdnMaxage( $maxage ) {
+		$this->mCdnMaxage = min( $maxage, $this->mCdnMaxageLimit );
 	}
 
 	/**
 	 * Lower the value of the "s-maxage" part of the "Cache-control" HTTP header
 	 *
-	 * @param int $maxage Maximum cache time on the Squid, in seconds
+	 * @param int $maxage Maximum cache time on the CDN, in seconds
 	 * @since 1.27
 	 */
 	public function lowerCdnMaxage( $maxage ) {
 		$this->mCdnMaxageLimit = min( $maxage, $this->mCdnMaxageLimit );
-		$this->setSquidMaxage( $this->mSquidMaxage );
+		$this->setCdnMaxage( $this->mCdnMaxage );
 	}
 
 	/**
@@ -2181,7 +2189,7 @@ class OutputPage extends ContextSource {
 		if ( $this->mEnableClientCache ) {
 			if (
 				$config->get( 'UseSquid' ) && session_id() == '' && !$this->isPrintable() &&
-				$this->mSquidMaxage != 0 && !$this->haveCacheVaryCookies()
+				$this->mCdnMaxage != 0 && !$this->haveCacheVaryCookies()
 			) {
 				if ( $config->get( 'UseESI' ) ) {
 					# We'll purge the proxy cache explicitly, but require end user agents
@@ -2191,7 +2199,7 @@ class OutputPage extends ContextSource {
 					# start with a shorter timeout for initial testing
 					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
 					$response->header( 'Surrogate-Control: max-age=' . $config->get( 'SquidMaxage' )
-						. '+' . $this->mSquidMaxage . ', content="ESI/1.0"' );
+						. '+' . $this->mCdnMaxage . ', content="ESI/1.0"' );
 					$response->header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
 				} else {
 					# We'll purge the proxy cache for anons explicitly, but require end user agents
@@ -2201,7 +2209,7 @@ class OutputPage extends ContextSource {
 					wfDebug( __METHOD__ . ": local proxy caching; {$this->mLastModified} **\n", 'log' );
 					# start with a shorter timeout for initial testing
 					# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
-					$response->header( 'Cache-Control: s-maxage=' . $this->mSquidMaxage
+					$response->header( 'Cache-Control: s-maxage=' . $this->mCdnMaxage
 						. ', must-revalidate, max-age=0' );
 				}
 			} else {

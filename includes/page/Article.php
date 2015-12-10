@@ -696,7 +696,7 @@ class Article implements Page {
 
 					# Don't cache a dirty ParserOutput object
 					if ( $poolArticleView->getIsDirty() ) {
-						$outputPage->setSquidMaxage( 0 );
+						$outputPage->setCdnMaxage( 0 );
 						$outputPage->addHTML( "<!-- parser cache is expired, " .
 							"sending anyway due to pool overload-->\n" );
 					}

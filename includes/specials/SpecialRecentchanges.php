@@ -50,7 +50,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 
 		// 10 seconds server-side caching max
-		$this->getOutput()->setSquidMaxage( 10 );
+		$this->getOutput()->setCdnMaxage( 10 );
 		// Check if the client has a cached version
 		$lastmod = $this->checkLastModified();
 		if ( $lastmod === false ) {
