@@ -308,7 +308,7 @@ class MediaWiki {
 		$targetUrl = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
 
 		if ( $targetUrl != $request->getFullRequestURL() ) {
-			$output->setSquidMaxage( 1200 );
+			$output->setCdnMaxage( 1200 );
 			$output->redirect( $targetUrl, '301' );
 			return true;
 		}
@@ -451,7 +451,7 @@ class MediaWiki {
 					$requestTitle->getSquidURLs()
 				)
 			) {
-				$output->setSquidMaxage( $this->config->get( 'SquidMaxage' ) );
+				$output->setCdnMaxage( $this->config->get( 'SquidMaxage' ) );
 			}
 
 			$action->show();
