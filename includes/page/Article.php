@@ -43,18 +43,12 @@ class Article implements Page {
 	public $mParserOptions;
 
 	/**
-	 * @var string Text of the revision we are working on
-	 * @todo BC cruft
-	 */
-	public $mContent;
-
-	/**
 	 * @var Content Content of the revision we are working on
 	 * @since 1.21
 	 */
 	public $mContentObject;
 
-	/** @var bool Is the content ($mContent) already loaded? */
+	/** @var bool Is the content ($mContentObject) already loaded? */
 	public $mContentLoaded = false;
 
 	/** @var int|null The oldid of the article that is to be shown, 0 for the current revision */
@@ -306,9 +300,44 @@ class Article implements Page {
 	}
 
 	/**
+<<<<<<< HEAD
+=======
+	 * Load the revision (including text) into this object
+	 *
+	 * @deprecated since 1.19; use fetchContent()
+	 */
+	function loadContent() {
+		wfDeprecated( __METHOD__, '1.19' );
+		$this->fetchContent();
+	}
+
+	/**
+	 * Get text of an article from database
+	 * Does *NOT* follow redirects.
+	 *
+	 * @protected
+	 * @note This is really internal functionality that should really NOT be
+	 * used by other functions. For accessing article content, use the WikiPage
+	 * class, especially WikiBase::getContent(). However, a lot of legacy code
+	 * uses this method to retrieve page text from the database, so the function
+	 * has to remain public for now.
+	 *
+	 * @return string|bool String containing article contents, or false if null
+	 * @deprecated since 1.21, use WikiPage::getContent() instead
+	 */
+	function fetchContent() {
+		$content = $this->mPage->getContent( Revision::FOR_THIS_USER, $this->getContext()->getUser() );
+
+		ContentHandler::runLegacyHooks( 'ArticleAfterFetchContent', array( &$this, &$content ) );
+
+		return ( is_null($content) ) ? false : $content;
+	}
+
+	/**
+>>>>>>> 01d7bc9d25... [WIP] Delete deprecated Article::mContent field
 	 * Get text content object
 	 * Does *NOT* follow redirects.
-	 * @todo When is this null?
+	 * Returns null when user doesn't have ability to view this revision.
 	 *
 	 * @note Code that wants to retrieve page content from the database should
 	 * use WikiPage::getContent().
@@ -323,7 +352,6 @@ class Article implements Page {
 		}
 
 		$this->mContentLoaded = true;
-		$this->mContent = null;
 
 		$oldid = $this->getOldID();
 
