@@ -7071,7 +7071,6 @@ $wgLogTypes = array(
 	'upload',
 	'move',
 	'import',
-	'patrol',
 	'merge',
 	'suppress',
 	'tag',
