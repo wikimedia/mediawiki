@@ -1,6 +1,6 @@
 <?php
 /**
- * Squid cache purging.
+ * CDN cache purging.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 use Wikimedia\Assert\Assert;
 
 /**
- * Handles purging appropriate Squid URLs given a title (or titles)
+ * Handles purging appropriate CDN URLs given a title (or titles)
  * @ingroup Cache
  */
 class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
@@ -78,10 +78,9 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	}
 
 	/**
-	 * Purges a list of Squids defined in $wgSquidServers.
+	 * Purges a list of CDN nodes defined in $wgSquidServers.
 	 * $urlArr should contain the full URLs to purge as values
 	 * (example: $urlArr[] = 'http://my.host/something')
-	 * XXX report broken Squids per mail or log
 	 *
 	 * @param string[] $urlArr List of full URLs to purge
 	 */

@@ -2194,7 +2194,7 @@ class OutputPage extends ContextSource {
 				if ( $config->get( 'UseESI' ) ) {
 					# We'll purge the proxy cache explicitly, but require end user agents
 					# to revalidate against the proxy on each visit.
-					# Surrogate-Control controls our Squid, Cache-Control downstream caches
+					# Surrogate-Control controls our CDN, Cache-Control downstream caches
 					wfDebug( __METHOD__ . ": proxy caching with ESI; {$this->mLastModified} **\n", 'log' );
 					# start with a shorter timeout for initial testing
 					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
@@ -2204,7 +2204,7 @@ class OutputPage extends ContextSource {
 				} else {
 					# We'll purge the proxy cache for anons explicitly, but require end user agents
 					# to revalidate against the proxy on each visit.
-					# IMPORTANT! The Squid needs to replace the Cache-Control header with
+					# IMPORTANT! The CDN needs to replace the Cache-Control header with
 					# Cache-Control: s-maxage=0, must-revalidate, max-age=0
 					wfDebug( __METHOD__ . ": local proxy caching; {$this->mLastModified} **\n", 'log' );
 					# start with a shorter timeout for initial testing
@@ -2911,7 +2911,7 @@ class OutputPage extends ContextSource {
 				// on-wiki like user pages, or user preferences; we need to find the highest
 				// timestamp of these user-changeable modules so we can ensure cache misses on change
 				// This should NOT be done for the site group (bug 27564) because anons get that too
-				// and we shouldn't be putting timestamps in Squid-cached HTML
+				// and we shouldn't be putting timestamps in CDN-cached HTML
 				$version = null;
 				if ( $group === 'user' ) {
 					$query['version'] = $resourceLoader->getCombinedVersion( $context, array_keys( $grpModules ) );

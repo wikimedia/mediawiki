@@ -4109,7 +4109,7 @@ function wfGetIP() {
 /**
  * Checks if an IP is a trusted proxy provider.
  * Useful to tell if X-Forwarded-For data is possibly bogus.
- * Squid cache servers for the site are whitelisted.
+ * CDN cache servers for the site are whitelisted.
  * @deprecated Since 1.24, use IP::isTrustedProxy()
  *
  * @param string $ip

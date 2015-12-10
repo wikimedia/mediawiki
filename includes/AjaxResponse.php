@@ -175,14 +175,14 @@ class AjaxResponse {
 		}
 
 		if ( $this->mCacheDuration ) {
-			# If squid caches are configured, tell them to cache the response,
-			# and tell the client to always check with the squid. Otherwise,
+			# If CDN caches are configured, tell them to cache the response,
+			# and tell the client to always check with the CDN. Otherwise,
 			# tell the client to use a cached copy, without a way to purge it.
 
 			if ( $this->mConfig->get( 'UseSquid' ) ) {
 				# Expect explicit purge of the proxy cache, but require end user agents
 				# to revalidate against the proxy on each visit.
-				# Surrogate-Control controls our Squid, Cache-Control downstream caches
+				# Surrogate-Control controls our CDN, Cache-Control downstream caches
 
 				if ( $this->mConfig->get( 'UseESI' ) ) {
 					header( 'Surrogate-Control: max-age=' . $this->mCacheDuration . ', content="ESI/1.0"' );

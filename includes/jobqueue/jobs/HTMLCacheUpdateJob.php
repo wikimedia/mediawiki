@@ -139,7 +139,7 @@ class HTMLCacheUpdateJob extends Job {
 			__METHOD__
 		) );
 
-		// Update squid
+		// Update CDN
 		$u = CdnCacheUpdate::newFromTitles( $titleArray );
 		$u->doUpdate();
 

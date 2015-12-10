@@ -1849,7 +1849,7 @@ class EditPage {
 						$this->page->getComment() == $this->newSectionSummary()
 					) {
 						// Probably a duplicate submission of a new comment.
-						// This can happen when squid resends a request after
+						// This can happen when CDN resends a request after
 						// a timeout but the first one actually went through.
 						wfDebug( __METHOD__
 							. ": duplicate new section submission; trigger edit conflict!\n" );

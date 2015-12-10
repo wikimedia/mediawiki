@@ -422,7 +422,7 @@ if ( is_array( $wgExtraNamespaces ) ) {
 $wgContLanguageCode = $wgLanguageCode;
 
 // Easy to forget to falsify $wgDebugToolbar for static caches.
-// If file cache or squid cache is on, just disable this (DWIMD).
+// If file cache or CDN cache is on, just disable this (DWIMD).
 if ( $wgUseFileCache || $wgUseSquid ) {
 	$wgDebugToolbar = false;
 }

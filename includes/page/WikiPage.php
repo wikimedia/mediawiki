@@ -3317,7 +3317,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// Invalidate the caches of all pages which redirect here
 		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $title, 'redirect' ) );
 
-		// Purge squid for this page only
+		// Purge CDN for this page only
 		$title->purgeSquid();
 		// Clear file cache for this page only
 		HTMLFileCache::clearFileCache( $title );

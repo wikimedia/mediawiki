@@ -858,14 +858,14 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Refresh metadata in memcached, but don't touch thumbnails or squid
+	 * Refresh metadata in memcached, but don't touch thumbnails or CDN
 	 */
 	function purgeMetadataCache() {
 		$this->invalidateCache();
 	}
 
 	/**
-	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the squid.
+	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the CDN.
 	 *
 	 * @param array $options An array potentially with the key forThumbRefresh.
 	 *
@@ -878,7 +878,7 @@ class LocalFile extends File {
 		// Delete thumbnails
 		$this->purgeThumbnails( $options );
 
-		// Purge squid cache for this file
+		// Purge CDN cache for this file
 		DeferredUpdates::addUpdate(
 			new CdnCacheUpdate( array( $this->getUrl() ) ),
 			DeferredUpdates::PRESEND
@@ -899,7 +899,7 @@ class LocalFile extends File {
 		$dir = array_shift( $files );
 		$this->purgeThumbList( $dir, $files );
 
-		// Purge the squid
+		// Purge the CDN
 		$urls = array();
 		foreach ( $files as $file ) {
 			$urls[] = $this->getArchiveThumbUrl( $archiveName, $file );
@@ -914,7 +914,7 @@ class LocalFile extends File {
 	public function purgeThumbnails( $options = array() ) {
 		// Delete thumbnails
 		$files = $this->getThumbnails();
-		// Always purge all files from squid regardless of handler filters
+		// Always purge all files from CDN regardless of handler filters
 		$urls = array();
 		foreach ( $files as $file ) {
 			$urls[] = $this->getThumbUrl( $file );
@@ -935,7 +935,7 @@ class LocalFile extends File {
 		$dir = array_shift( $files );
 		$this->purgeThumbList( $dir, $files );
 
-		// Purge the squid
+		// Purge the CDN
 		DeferredUpdates::addUpdate( new CdnCacheUpdate( $urls ), DeferredUpdates::PRESEND );
 	}
 
@@ -1399,7 +1399,7 @@ class LocalFile extends File {
 			if ( $newPageContent ) {
 				# New file page; create the description page.
 				# There's already a log entry, so don't make a second RC entry
-				# Squid and file cache for the description page are purged by doEditContent.
+				# CDN and file cache for the description page are purged by doEditContent.
 				$status = $wikiPage->doEditContent(
 					$newPageContent,
 					$comment,
@@ -1434,7 +1434,7 @@ class LocalFile extends File {
 			if ( $reupload ) {
 				# Delete old thumbnails
 				$that->purgeThumbnails();
-				# Remove the old file from the squid cache
+				# Remove the old file from the CDN cache
 				DeferredUpdates::addUpdate(
 					new CdnCacheUpdate( array( $that->getUrl() ) ),
 					DeferredUpdates::PRESEND
@@ -1632,7 +1632,7 @@ class LocalFile extends File {
 			}
 		);
 
-		// Purge the squid
+		// Purge the CDN
 		$purgeUrls = array();
 		foreach ( $archiveNames as $archiveName ) {
 			$purgeUrls[] = $this->getArchiveUrl( $archiveName );
