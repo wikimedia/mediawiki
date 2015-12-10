@@ -135,10 +135,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function getStats() {
 		if ( $this->stats === null ) {
-			$config = $this->getConfig();
-			$prefix = $config->get( 'StatsdMetricPrefix' )
-				? rtrim( $config->get( 'StatsdMetricPrefix' ), '.' )
-				: 'MediaWiki';
+			$prefix = rtrim( $this->getConfig()->get( 'StatsdMetricPrefix' ), '.' );
 			$this->stats = new BufferingStatsdDataFactory( $prefix );
 		}
 		return $this->stats;

@@ -5698,15 +5698,13 @@ $wgProfileOnly = false;
 $wgStatsdServer = false;
 
 /**
- * Prefix for metric names sent to wgStatsdServer.
- *
- * Defaults to "MediaWiki".
+ * Prefix for metric names sent to $wgStatsdServer.
  *
  * @see RequestContext::getStats
  * @see BufferingStatsdDataFactory
  * @since 1.25
  */
-$wgStatsdMetricPrefix = false;
+$wgStatsdMetricPrefix = 'MediaWiki';
 
 /**
  * InfoAction retrieves a list of transclusion links (both to and from).
