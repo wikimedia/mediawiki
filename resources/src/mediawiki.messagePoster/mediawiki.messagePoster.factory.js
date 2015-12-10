@@ -8,7 +8,6 @@
 	 * @singleton
 	 */
 	function MwMessagePosterFactory() {
-		this.api = new mw.Api();
 		this.contentModelToClass = {};
 	}
 
@@ -50,6 +49,7 @@
 	 * API and ResourceLoader requests in the background.
 	 *
 	 * @param {mw.Title} title Title that will be posted to
+	 * @param {string} [apiUrl] api.php URL if the title is on another wiki
 	 * @return {jQuery.Promise} Promise resolving to a mw.messagePoster.MessagePoster.
 	 *   For failure, rejected with up to three arguments:
 	 *
@@ -57,11 +57,17 @@
 	 *   - error Error explanation
 	 *   - details Further error details
 	 */
-	MwMessagePosterFactory.prototype.create = function ( title ) {
-		var pageId, page, contentModel, moduleName,
+	MwMessagePosterFactory.prototype.create = function ( title, apiUrl ) {
+		var pageId, page, contentModel, moduleName, api,
 			factory = this;
 
-		return this.api.get( {
+		if ( apiUrl ) {
+			api = new mw.ForeignApi( apiUrl );
+		} else {
+			api = mw.Api();
+		}
+
+		return api.get( {
 			action: 'query',
 			prop: 'info',
 			indexpageids: true,
@@ -76,7 +82,8 @@
 				return mw.loader.using( moduleName ).then( function () {
 					return factory.createForContentModel(
 						contentModel,
-						title
+						title,
+						api
 					);
 				}, function () {
 					return $.Deferred().reject( 'failed-to-load-module', 'Failed to load the \'' + moduleName + '\' module' );
@@ -96,11 +103,12 @@
 	 *
 	 * @param {string} contentModel Content model of title
 	 * @param {mw.Title} title Title being posted to
+	 * @param {mw.Api} api mw.Api instance that the instance should use
 	 * @return {mw.messagePoster.MessagePoster}
 	 *
 	 */
-	MwMessagePosterFactory.prototype.createForContentModel = function ( contentModel, title ) {
-		return new this.contentModelToClass[ contentModel ]( title );
+	MwMessagePosterFactory.prototype.createForContentModel = function ( contentModel, title, api ) {
+		return new this.contentModelToClass[ contentModel ]( title, api );
 	};
 
 	mw.messagePoster = {

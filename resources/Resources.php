@@ -1065,6 +1065,7 @@ return array(
 		'dependencies' => array(
 			'oojs',
 			'mediawiki.api',
+			'mediawiki.ForeignApi',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),

@@ -8,9 +8,10 @@
 	 *
 	 * @constructor
 	 * @param {mw.Title} title Wikitext page in a talk namespace, to post to
+	 * @param {mw.Api} api mw.Api object to use
 	 */
-	function WikitextMessagePoster( title ) {
-		this.api = new mw.Api();
+	function WikitextMessagePoster( title, api ) {
+		this.api = api;
 		this.title = title;
 	}
 
