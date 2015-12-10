@@ -67,7 +67,7 @@ interface IApiMessage extends MessageSpecifier {
  * Extension of Message implementing IApiMessage
  * @since 1.25
  * @ingroup API
- * @todo: Would be nice to use a Trait here to avoid code duplication
+ * @todo: Use Trait to avoid code duplication after PHP version raise as refered in T118932
  */
 class ApiMessage extends Message implements IApiMessage {
 	protected $apiCode = null;
