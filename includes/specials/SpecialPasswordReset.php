@@ -42,6 +42,11 @@ class SpecialPasswordReset extends FormSpecialPage {
 	 */
 	private $result;
 
+	/**
+	 * @var Method
+	 */
+	 private $method;
+
 	public function __construct() {
 		parent::__construct( 'PasswordReset', 'editmyprivateinfo' );
 	}
@@ -262,6 +267,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 		}
 		$passwordBlock = implode( "\n\n", $passwords );
 
+		$this->method = $method;
+
 		$this->email = $this->msg( $msg )->inLanguage( $userLanguage );
 		$this->email->params(
 			$username,
@@ -310,7 +317,12 @@ class SpecialPasswordReset extends FormSpecialPage {
 			$this->getOutput()->addHTML( Html::rawElement( 'pre', array(), $this->email->escaped() ) );
 		}
 
-		$this->getOutput()->addWikiMsg( 'passwordreset-emailsent' );
+		if ( $this->method == 'email' ){
+			$this->getOutput()->addWikiMsg( 'passwordreset-emailsentemail' );
+		}else{
+			$this->getOutput()->addWikiMsg( 'passwordreset-emailsentusername' );
+		}
+
 		$this->getOutput()->returnToMain();
 	}
 
