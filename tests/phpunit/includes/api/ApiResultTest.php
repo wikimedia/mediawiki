@@ -223,6 +223,49 @@ class ApiResultTest extends MediaWikiTestCase {
 	/**
 	 * @covers ApiResult
 	 */
+	public function testJsonValueType() {
+		$result = new ApiResult( 8388608 );
+
+		$originalJsonStr = '[ { "_type": {} }, [], 25.3, 1, "abc", true, false, null ]';
+		$jsonObj = json_decode( $originalJsonStr );
+		$result->addValue( null, 'value', $jsonObj, ApiResult::JSON_VALUE );
+
+		$jsonStr = FormatJson::encode( $jsonObj, false, FormatJson::ALL_OK );
+		$this->assertSame( array(
+			'value' => array(
+				'*' => $jsonStr,
+				'_type' => 'json',
+				'_value' => $jsonObj,
+				'_content' => '*',
+			),
+			'_type' => 'assoc',
+		), $result->getResultData() );
+		$this->assertSame( strlen( $jsonStr ), $result->getSize() );
+
+		$jsonStrFull = '{"value":' . $jsonStr . '}';
+		$this->assertSame( $jsonStrFull, FormatJson::encode( $result->getResultData( null, array(
+			'BC' => array(),
+			'Types' => array( 'AssocAsObject' => true, 'JsonAsObject' => true ),
+			'Strip' => 'all',
+		) ) ) );
+
+		$this->assertSame( $jsonStrFull, FormatJson::encode( $result->getResultData( null, array(
+			'Types' => array( 'AssocAsObject' => true, 'JsonAsObject' => true ),
+			'Strip' => 'all',
+		) ) ) );
+
+		$this->assertEquals( array(
+			'value' => (object)array( '*' => $jsonStr ),
+			'_type' => 'assoc',
+		), $result->getResultData( null, array(
+			'BC' => array( 'nobool', 'no*', 'nosub' ),
+			'Types' => array( 'ArmorKVP' => '_name' ),
+		) ) );
+	}
+
+	/**
+	 * @covers ApiResult
+	 */
 	public function testInstanceDataMethods() {
 		$result = new ApiResult( 8388608 );
 
