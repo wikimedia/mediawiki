@@ -219,8 +219,8 @@ class MessageBlobStore implements LoggerAwareInterface {
 		$message = wfMessage( $key )->inLanguage( $lang );
 		$value = $message->plain();
 		if ( !$message->exists() ) {
-			$this->logger->warning( __METHOD__ . ' failed to find {message} ({lang})', array(
-				'message' => $key,
+			$this->logger->warning( 'Failed to find {messageKey} ({lang})', array(
+				'messageKey' => $key,
 				'lang' => $lang,
 			) );
 		}
