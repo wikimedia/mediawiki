@@ -74,11 +74,12 @@ class LogEventsList extends ContextSource {
 	 * @param int $month Month
 	 * @param array $filter
 	 * @param string $tagFilter Tag to select by default
+	 * @param bool $unused
 	 */
 	public function showOptions( $types = array(), $user = '', $page = '', $pattern = '', $year = 0,
-		$month = 0, $filter = null, $tagFilter = ''
+		$month = 0, $filter = null, $tagFilter = '', $unused = false
 	) {
-		global $wgScript, $wgMiserMode;
+		global $wgScript, $wgMiserMode, $wgUnusedLogTypes;
 
 		$title = SpecialPage::getTitleFor( 'Log' );
 
@@ -98,6 +99,10 @@ class LogEventsList extends ContextSource {
 		// Title pattern, if allowed
 		if ( !$wgMiserMode ) {
 			$html .= $this->getTitlePattern( $pattern ) . "\n";
+		}
+
+		if ( count( $wgUnusedLogTypes ) ) {
+			$html .= $this->getUnusedLogsCheckbox( $unused ) . "\n";
 		}
 
 		// date menu
@@ -195,7 +200,8 @@ class LogEventsList extends ContextSource {
 	public function getTypeSelector() {
 		$typesByName = array(); // Temporary array
 		// First pass to load the log names
-		foreach ( LogPage::validTypes() as $type ) {
+		$types = LogPage::validTypes( !$this->getRequest()->getBool( 'unused' ) );
+		foreach ( $types as $type ) {
 			$page = new LogPage( $type );
 			$restriction = $page->getRestriction();
 			if ( $this->getUser()->isAllowed( $restriction ) ) {
@@ -260,6 +266,16 @@ class LogEventsList extends ContextSource {
 		return '<span class="mw-input-with-label">' .
 			Xml::checkLabel( $this->msg( 'log-title-wildcard' )->text(), 'pattern', 'pattern', $pattern ) .
 			'</span>';
+	}
+
+	/**
+	 * @param bool $unused
+	 * @return string Checkbox
+	 */
+	private function getUnusedLogsCheckbox( $unused = false ) {
+		return '<span class="mw-input-with-label">' .
+			Xml::checkLabel( $this->msg( 'unused-logs-check' )->text(), 'unused', 'unused', $unused ) .
+		'</span>';
 	}
 
 	/**

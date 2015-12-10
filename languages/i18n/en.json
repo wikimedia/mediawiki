@@ -4033,5 +4033,6 @@
 	"sessionprovider-generic": "$1 sessions",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "cookie-based sessions",
 	"sessionprovider-nocookies": "Cookies may be disabled. Ensure you have cookies enabled and start again.",
-	"randomrootpage": "Random root page"
+	"randomrootpage": "Random root page",
+	"unused-logs-check": "Show unused logs"
 }
