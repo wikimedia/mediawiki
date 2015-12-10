@@ -967,14 +967,19 @@ class ParserOutput extends CacheTime {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string $key The key to look up.
+	 * @param string $key [optional] The key to look up.
 	 *
-	 * @return mixed|null The value previously set for the given key using setExtensionData()
-	 *         or null if no value was set for this key.
+	 * @return mixed|null If a key is specified, the value previously set for the given
+	 *         key using setExtensionData() or null if no value was set for this key. If
+	 *         no key is specified, the entire mExtensionData array.
 	 */
-	public function getExtensionData( $key ) {
-		if ( isset( $this->mExtensionData[$key] ) ) {
-			return $this->mExtensionData[$key];
+	public function getExtensionData( $key = null ) {
+		if ( $key ) {
+			if ( isset( $this->mExtensionData[$key] ) ) {
+				return $this->mExtensionData[$key];
+			}
+		} else {
+			return $this->mExtensionData;
 		}
 
 		return null;
