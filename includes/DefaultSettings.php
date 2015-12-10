@@ -2534,7 +2534,7 @@ $wgExtensionInfoMTime = false;
 /** @} */ # end of cache settings
 
 /************************************************************************//**
- * @name   HTTP proxy (Squid) settings
+ * @name   HTTP proxy (CDN) settings
  *
  * Many of these settings apply to any HTTP proxy used in front of MediaWiki,
  * although they are referred to as Squid settings for historical reasons.
@@ -2547,7 +2547,7 @@ $wgExtensionInfoMTime = false;
  */
 
 /**
- * Enable/disable Squid.
+ * Enable/disable CDN.
  * See https://www.mediawiki.org/wiki/Manual:Squid_caching
  */
 $wgUseSquid = false;
@@ -2575,7 +2575,7 @@ $wgUseKeyHeader = false;
 $wgVaryOnXFP = false;
 
 /**
- * Internal server name as known to Squid, if different.
+ * Internal server name as known to CDN, if different.
  *
  * @par Example:
  * @code
@@ -2587,7 +2587,7 @@ $wgInternalServer = false;
 /**
  * Cache TTL for the CDN sent as s-maxage (without ESI) or
  * Surrogate-Control (with ESI). Without ESI, you should strip
- * out s-maxage in the Squid config.
+ * out s-maxage in the CDN config.
  *
  * 18000 seconds = 5 hours, more cache hits with 2678400 = 31 days.
  */

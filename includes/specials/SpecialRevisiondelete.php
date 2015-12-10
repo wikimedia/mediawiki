@@ -329,10 +329,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			return;
 		}
 		$this->getOutput()->disable();
-		# We mustn't allow the output to be Squid cached, otherwise
+		# We mustn't allow the output to be CDN cached, otherwise
 		# if an admin previews a deleted image, and it's cached, then
 		# a user without appropriate permissions can toddle off and
-		# nab the image, and Squid will serve it
+		# nab the image, and CDN will serve it
 		$this->getRequest()->response()->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
 		$this->getRequest()->response()->header(
 			'Cache-Control: no-cache, no-store, max-age=0, must-revalidate'

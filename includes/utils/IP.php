@@ -713,7 +713,7 @@ class IP {
 	/**
 	 * Checks if an IP is a trusted proxy provider.
 	 * Useful to tell if X-Forwarded-For data is possibly bogus.
-	 * Squid cache servers for the site are whitelisted.
+	 * CDN cache servers for the site are whitelisted.
 	 * @since 1.24
 	 *
 	 * @param string $ip

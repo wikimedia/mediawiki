@@ -162,7 +162,7 @@ function wfMangleFlashPolicy( $s ) {
 }
 
 /**
- * Add a Content-Length header if possible. This makes it cooperate with squid better.
+ * Add a Content-Length header if possible. This makes it cooperate with CDN better.
  *
  * @param int $length
  */

@@ -1824,7 +1824,7 @@ class Title {
 
 	/**
 	 * Get the URL form for an internal link.
-	 * - Used in various Squid-related code, in case we have a different
+	 * - Used in various CDN-related code, in case we have a different
 	 * internal hostname for the server from the exposed one.
 	 *
 	 * This uses $wgInternalServer to qualify the path, or $wgServer
@@ -3557,7 +3557,7 @@ class Title {
 	}
 
 	/**
-	 * Get a list of URLs to purge from the Squid cache when this
+	 * Get a list of URLs to purge from the CDN cache when this
 	 * page changes
 	 *
 	 * @return string[] Array of String the URLs
@@ -3588,7 +3588,7 @@ class Title {
 	}
 
 	/**
-	 * Purge all applicable Squid URLs
+	 * Purge all applicable CDN URLs
 	 */
 	public function purgeSquid() {
 		DeferredUpdates::addUpdate(
@@ -4415,7 +4415,7 @@ class Title {
 	}
 
 	/**
-	 * Update page_touched timestamps and send squid purge messages for
+	 * Update page_touched timestamps and send CDN purge messages for
 	 * pages linking to this title. May be sent to the job queue depending
 	 * on the number of links. Typically called on create and delete.
 	 */
