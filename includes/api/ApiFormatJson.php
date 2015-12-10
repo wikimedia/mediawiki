@@ -78,7 +78,7 @@ class ApiFormatJson extends ApiFormatBase {
 					$opt |= $params['utf8'] ? FormatJson::ALL_OK : FormatJson::XMLMETA_OK;
 					$transform = array(
 						'BC' => array(),
-						'Types' => array( 'AssocAsObject' => true ),
+						'Types' => array( 'AssocAsObject' => true, 'JsonAsObject' => true ),
 						'Strip' => 'all',
 					);
 					break;
@@ -87,7 +87,7 @@ class ApiFormatJson extends ApiFormatBase {
 				case 'latest':
 					$opt |= $params['ascii'] ? FormatJson::XMLMETA_OK : FormatJson::ALL_OK;
 					$transform = array(
-						'Types' => array( 'AssocAsObject' => true ),
+						'Types' => array( 'AssocAsObject' => true, 'JsonAsObject' => true ),
 						'Strip' => 'all',
 					);
 					break;
