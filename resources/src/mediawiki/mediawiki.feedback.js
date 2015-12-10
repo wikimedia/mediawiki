@@ -38,6 +38,7 @@
 	 * @param {Object} [config] Configuration object
 	 * @cfg {mw.Title} [title="Feedback"] The title of the page where you collect
 	 *  feedback.
+	 * @cfg {string} [apiUrl] api.php URL if the feedback page is on another wiki
 	 * @cfg {string} [dialogTitleMessageKey="feedback-dialog-title"] Message key for the
 	 *  title of the dialog box
 	 * @cfg {mw.Uri|string} [bugsLink="//phabricator.wikimedia.org/maniphest/task/create/"] URL where
@@ -57,7 +58,7 @@
 		// Feedback page title
 		this.feedbackPageTitle = config.title || new mw.Title( 'Feedback' );
 
-		this.messagePosterPromise = mw.messagePoster.factory.create( this.feedbackPageTitle );
+		this.messagePosterPromise = mw.messagePoster.factory.create( this.feedbackPageTitle, config.apiUrl );
 
 		// Links
 		this.bugsTaskSubmissionLink = config.bugsLink || '//phabricator.wikimedia.org/maniphest/task/create/';
