@@ -22,6 +22,8 @@
  * @file
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Group all the pieces relevant to the context of a request into one instance
  */
@@ -151,7 +153,9 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function getTiming() {
 		if ( $this->timing === null ) {
-			$this->timing = new Timing();
+			$this->timing = new Timing( array(
+				'logger' => LoggerFactory::getInstance( 'Timing' )
+			) );
 		}
 		return $this->timing;
 	}

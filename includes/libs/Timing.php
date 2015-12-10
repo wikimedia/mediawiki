@@ -18,6 +18,10 @@
  * @file
  */
 
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+
 /**
  * An interface to help developers measure the performance of their applications.
  * This interface closely matches the W3C's User Timing specification.
@@ -38,13 +42,27 @@
  *
  * @since 1.27
  */
-class Timing {
+class Timing implements LoggerAwareInterface {
 
 	/** @var array[] */
 	private $entries = array();
 
-	public function __construct() {
+	/** @var LoggerInterface */
+	protected $logger;
+
+	public function __construct( array $params = array() ) {
 		$this->clearMarks();
+		$this->setLogger( isset( $params['logger'] ) ? $params['logger'] : new NullLogger() );
+	}
+
+	/**
+	 * Sets a logger instance on the object.
+	 *
+	 * @param LoggerInterface $logger
+	 * @return null
+	 */
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
 	}
 
 	/**
@@ -102,14 +120,23 @@ class Timing {
 	 * @param string $measureName
 	 * @param string $startMark
 	 * @param string $endMark
-	 * @return array The measure that has been created.
+	 * @return array|bool The measure that has been created, or false if either
+	 *  the start mark or the end mark do not exist.
 	 */
 	public function measure( $measureName, $startMark = 'requestStart', $endMark = null ) {
 		$start = $this->getEntryByName( $startMark );
+		if ( $start === null ) {
+			$this->logger->error( __METHOD__ . ": The mark '$startMark' does not exist" );
+			return false;
+		}
 		$startTime = $start['startTime'];
 
 		if ( $endMark ) {
 			$end = $this->getEntryByName( $endMark );
+			if ( $end === null ) {
+				$this->logger->error( __METHOD__ . ": The mark '$endMark' does not exist" );
+				return false;
+			}
 			$endTime = $end['startTime'];
 		} else {
 			$endTime = microtime( true );
