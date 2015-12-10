@@ -56,6 +56,9 @@ class ParserOutputTest extends MediaWikiTestCase {
 		$this->assertEquals( "Foo", $po->getExtensionData( "one" ) );
 		$this->assertEquals( "Bar", $po->getExtensionData( "two" ) );
 
+		$this->assertArrayHasKey( "one", $po->getExtensionData() );
+		$this->assertArrayHasKey( "two", $po->getExtensionData() );
+
 		$po->setExtensionData( "one", null );
 		$this->assertNull( $po->getExtensionData( "one" ) );
 		$this->assertEquals( "Bar", $po->getExtensionData( "two" ) );
