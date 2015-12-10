@@ -4666,6 +4666,12 @@ $wgSessionProviders = array(
 			'callUserSetCookiesHook' => true,
 		) ),
 	),
+	'MediaWiki\\Session\\BotPasswordSessionProvider' => array(
+		'class' => 'MediaWiki\\Session\\BotPasswordSessionProvider',
+		'args' => array( array(
+			'priority' => 40,
+		) ),
+	),
 );
 
 /** @} */ # end user accounts }
@@ -5495,6 +5501,29 @@ $wgGrantPermissionGroups = array(
 
 	'highvolume'          => 'high-volume',
 );
+
+/**
+ * @var bool Whether to enable bot passwords
+ * @since 1.27
+ */
+$wgEnableBotPasswords = true;
+
+/**
+ * Cluster for the bot_passwords table
+ * @var string|bool If false, the normal cluster will be used
+ * @since 1.27
+ */
+$wgBotPasswordsCluster = false;
+
+/**
+ * Database name for the bot_passwords table
+ *
+ * To use a database with a table prefix, set this variable to
+ * "{$database}-{$prefix}".
+ * @var string|bool If false, the normal database will be used
+ * @since 1.27
+ */
+$wgBotPasswordsDatabase = false;
 
 /** @} */ # end of user rights settings
 
