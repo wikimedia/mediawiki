@@ -1446,7 +1446,7 @@ abstract class Skin extends ContextSource {
 			}
 			$newMessagesAlert = $newMessagesAlert->text();
 			# Disable Squid cache
-			$out->setSquidMaxage( 0 );
+			$out->setCdnMaxage( 0 );
 		} elseif ( count( $newtalks ) ) {
 			$sep = $this->msg( 'newtalkseparator' )->escaped();
 			$msgs = array();
@@ -1459,7 +1459,7 @@ abstract class Skin extends ContextSource {
 			}
 			$parts = implode( $sep, $msgs );
 			$newMessagesAlert = $this->msg( 'youhavenewmessagesmulti' )->rawParams( $parts )->escaped();
-			$out->setSquidMaxage( 0 );
+			$out->setCdnMaxage( 0 );
 		}
 
 		return $newMessagesAlert;
