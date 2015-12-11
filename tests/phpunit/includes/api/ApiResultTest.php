@@ -458,6 +458,13 @@ class ApiResultTest extends MediaWikiTestCase {
 			);
 		}
 
+		// Add two values and some metadata, but ensure metadata is not counted
+		$result = new ApiResult( 100 );
+		$obj = array( 'attr' => '12345' );
+		ApiResult::setContentValue( $obj, 'content', '1234567890' );
+		$this->assertTrue( $result->addValue( null, 'foo', $obj ) );
+		$this->assertSame( 15, $result->getSize() );
+
 		$result = new ApiResult( 10 );
 		$formatter = new ApiErrorFormatter( $result, Language::factory( 'en' ), 'none', false );
 		$result->setErrorFormatter( $formatter );

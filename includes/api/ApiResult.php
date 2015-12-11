@@ -1090,7 +1090,7 @@ class ApiResult implements ApiSerializable {
 		$s = 0;
 		if ( is_array( $value ) ) {
 			foreach ( $value as $k => $v ) {
-				if ( !self::isMetadataKey( $s ) ) {
+				if ( !self::isMetadataKey( $k ) ) {
 					$s += self::valueSize( $v );
 				}
 			}
