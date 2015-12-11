@@ -91,8 +91,8 @@ class SpecialMergeHistory extends SpecialPage {
 
 		// target page
 		if ( $this->mSubmitted ) {
-			$this->mTargetObj = Title::newFromURL( $this->mTarget );
-			$this->mDestObj = Title::newFromURL( $this->mDest );
+			$this->mTargetObj = Title::newFromText( $this->mTarget );
+			$this->mDestObj = Title::newFromText( $this->mDest );
 		} else {
 			$this->mTargetObj = null;
 			$this->mDestObj = null;

@@ -700,7 +700,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->mTargetObj = null;
 
 		if ( $this->mTarget !== null && $this->mTarget !== '' ) {
-			$this->mTargetObj = Title::newFromURL( $this->mTarget );
+			$this->mTargetObj = Title::newFromText( $this->mTarget );
 		}
 
 		$this->mSearchPrefix = $request->getText( 'prefix' );

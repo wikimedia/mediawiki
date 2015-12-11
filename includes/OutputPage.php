@@ -2439,7 +2439,7 @@ class OutputPage extends ContextSource {
 			# not especially useful as a returnto parameter. Use the title
 			# from the request instead, if there was one.
 			$request = $this->getRequest();
-			$returnto = Title::newFromURL( $request->getVal( 'title', '' ) );
+			$returnto = Title::newFromText( $request->getVal( 'title', '' ) );
 			if ( $action == 'edit' ) {
 				$msg = 'whitelistedittext';
 				$displayReturnto = $returnto;
