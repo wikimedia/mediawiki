@@ -108,7 +108,7 @@ class ImageListPager extends TablePager {
 
 		if ( $search !== '' && !$this->getConfig()->get( 'MiserMode' ) ) {
 			$this->mSearch = $search;
-			$nt = Title::newFromURL( $this->mSearch );
+			$nt = Title::newFromText( $this->mSearch );
 
 			if ( $nt ) {
 				$dbr = wfGetDB( DB_SLAVE );
@@ -147,7 +147,7 @@ class ImageListPager extends TablePager {
 		}
 
 		if ( $this->mSearch !== '' ) {
-			$nt = Title::newFromURL( $this->mSearch );
+			$nt = Title::newFromText( $this->mSearch );
 			if ( $nt ) {
 				$dbr = wfGetDB( DB_SLAVE );
 				$conds[] = 'LOWER(' . $prefix . '_name)' .

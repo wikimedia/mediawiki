@@ -266,13 +266,6 @@ class CoreParserFunctions {
 
 	public static function urlFunction( $func, $s = '', $arg = null ) {
 		$title = Title::newFromText( $s );
-		# Due to order of execution of a lot of bits, the values might be encoded
-		# before arriving here; if that's true, then the title can't be created
-		# and the variable will fail. If we can't get a decent title from the first
-		# attempt, url-decode and try for a second.
-		if ( is_null( $title ) ) {
-			$title = Title::newFromURL( urldecode( $s ) );
-		}
 		if ( !is_null( $title ) ) {
 			# Convert NS_MEDIA -> NS_FILE
 			if ( $title->getNamespace() == NS_MEDIA ) {
