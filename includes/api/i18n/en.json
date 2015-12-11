@@ -514,6 +514,13 @@
 	"apihelp-query+allrevisions-example-user": "List the last 50 contributions by user <kbd>Example</kbd>.",
 	"apihelp-query+allrevisions-example-ns-main": "List the first 50 revisions in the main namespace.",
 
+	"apihelp-query+mystashedimages-description": "Get a list of files in the current user's upload stash.",
+	"apihelp-query+mystashedimages-param-prop": "Which properties to fetch for the files.",
+	"apihelp-query+mystashedimages-paramvalue-prop-size": "Fetch the file size, and image dimensions.",
+	"apihelp-query+mystashedimages-paramvalue-prop-type": "Fetch the file's MIME type and media type.",
+	"apihelp-query+mystashedimages-param-limit": "How many files to get.",
+	"apihelp-query+mystashedimages-example-simple": "Get the filekey, file size, and pixel size of files in the current user's upload stash.",
+
 	"apihelp-query+alltransclusions-description": "List all transclusions (pages embedded using &#123;&#123;x&#125;&#125;), including non-existing.",
 	"apihelp-query+alltransclusions-param-from": "The title of the transclusion to start enumerating from.",
 	"apihelp-query+alltransclusions-param-to": "The title of the transclusion to stop enumerating at.",
