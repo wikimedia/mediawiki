@@ -138,7 +138,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 				'stripprefix',
 				$this->stripPrefix
 			) . ' ' .
-			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
+			Xml::submitButton( $this->msg( 'prefixindex-submit' )->text() ) .
 			"</td>
 			</tr>";
 		$out .= Xml::closeElement( 'table' );

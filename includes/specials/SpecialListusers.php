@@ -322,7 +322,7 @@ class UsersPager extends AlphabeticPager {
 
 		# Submit button and form bottom
 		$out .= Html::hidden( 'limit', $this->mLimit );
-		$out .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() );
+		$out .= Xml::submitButton( $this->msg( 'listusers-submit' )->text() );
 		Hooks::run( 'SpecialListusersHeader', array( $this, &$out ) );
 		$out .= Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );

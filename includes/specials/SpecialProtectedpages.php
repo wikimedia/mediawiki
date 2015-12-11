@@ -109,7 +109,7 @@ class SpecialProtectedpages extends SpecialPage {
 			$this->getRedirectCheck( $noRedirect ) . "\n" .
 			"<br />\n" .
 			$this->getSizeLimit( $sizetype, $size ) . "\n" .
-			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "\n" .
+			Xml::submitButton( $this->msg( 'protectedpages-submit' )->text() ) . "\n" .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );
 	}
