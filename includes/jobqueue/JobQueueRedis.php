@@ -786,10 +786,6 @@ LUA;
 	 */
 	private function getGlobalKey( $name ) {
 		$parts = array( 'global', 'jobqueue', $name );
-		if ( strlen( $this->key ) ) { // namespaced queue (for testing)
-			$parts[] = $this->key;
-		}
-
 		foreach ( $parts as $part ) {
 		    if ( !preg_match( '/[a-zA-Z0-9_-]+/', $part ) ) {
 		        throw new InvalidArgumentException( "Key part characters are out of range." );
@@ -807,18 +803,7 @@ LUA;
 	private function getQueueKey( $prop, $type = null ) {
 		$type = is_string( $type ) ? $type : $this->type;
 		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
-		if ( strlen( $this->key ) ) { // namespaced queue (for testing)
-			return wfForeignMemcKey( $db, $prefix, 'jobqueue', $type, $this->key, $prop );
-		} else {
-			return wfForeignMemcKey( $db, $prefix, 'jobqueue', $type, $prop );
-		}
-	}
 
-	/**
-	 * @param string $key
-	 * @return void
-	 */
-	public function setTestingPrefix( $key ) {
-		$this->key = $key;
+		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $type, $prop );
 	}
 }

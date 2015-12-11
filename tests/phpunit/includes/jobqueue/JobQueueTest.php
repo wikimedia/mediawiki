@@ -41,9 +41,6 @@ class JobQueueTest extends MediaWikiTestCase {
 		foreach ( $variants as $q => $settings ) {
 			try {
 				$this->$q = JobQueue::factory( $settings + $baseConfig );
-				if ( !( $this->$q instanceof JobQueueDB ) ) {
-					$this->$q->setTestingPrefix( 'unittests-' . wfRandomString( 32 ) );
-				}
 			} catch ( MWException $e ) {
 				// unsupported?
 				// @todo What if it was another error?
@@ -341,13 +338,18 @@ class JobQueueTest extends MediaWikiTestCase {
 			$this->markTestSkipped();
 		}
 
-		$this->assertArrayEquals( array(), $queue->getServerQueuesWithJobs() );
+		$this->assertNotContains(
+			array( $queue->getType(), $queue->getWiki() ),
+			$queue->getServerQueuesWithJobs(),
+			"Null queue not in listing"
+		);
 
 		$queue->push( $this->newJob( 0 ) );
 
-		$this->assertArrayEquals(
-			array( array( $queue->getType(), $queue->getWiki() ) ),
-			$queue->getServerQueuesWithJobs()
+		$this->assertContains(
+			array( $queue->getType(), $queue->getWiki() ),
+			$queue->getServerQueuesWithJobs(),
+			"Null queue in listing"
 		);
 	}
 

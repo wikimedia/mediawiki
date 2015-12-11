@@ -688,17 +688,6 @@ abstract class JobQueue {
 		$stats->updateCount( "jobqueue.{$key}.all", $delta );
 		$stats->updateCount( "jobqueue.{$key}.{$type}", $delta );
 	}
-
-	/**
-	 * Namespace the queue with a key to isolate it for testing
-	 *
-	 * @param string $key
-	 * @return void
-	 * @throws MWException
-	 */
-	public function setTestingPrefix( $key ) {
-		throw new MWException( "Queue namespacing not supported for this queue type." );
-	}
 }
 
 /**

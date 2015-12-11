@@ -497,11 +497,4 @@ class JobQueueFederated extends JobQueue {
 			throw new JobQueueError( 'No queue partitions available.' );
 		}
 	}
-
-	public function setTestingPrefix( $key ) {
-		/** @var JobQueue $queue */
-		foreach ( $this->partitionQueues as $queue ) {
-			$queue->setTestingPrefix( $key );
-		}
-	}
 }
