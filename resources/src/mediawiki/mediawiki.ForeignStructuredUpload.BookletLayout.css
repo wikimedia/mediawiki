@@ -1,5 +1,141 @@
+/* All */
+
 .mw-foreignStructuredUpload-bookletLayout-license {
 	font-size: 90%;
 	line-height: 1.4em;
 	color: #555;
+}
+
+/* Option 2 */
+
+.mw-foreignStructuredUpload-bookletLayout-withicon.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline {
+	background-repeat: no-repeat;
+	background-size: 3.5em;
+	min-height: 4em;
+	margin-bottom: 0.25em;
+	display: table;
+	vertical-align: middle;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-withicon.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body {
+	/* Together with 'display: table' above, and FieldLayout styles, this aligns the text */
+	/* vertically to the middle. Don't try this at home, kids. */
+	display: table-row;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-ownwork {
+	/* @embed */
+	background-image: url(bookletlayout/option2/ownwork.png);
+	background-position: left center;
+	padding-left: 4.5em;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-noderiv {
+	/* @embed */
+	background-image: url(bookletlayout/option2/noderiv.png);
+	background-position: right center;
+	padding-right: 4.5em;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-useful {
+	/* @embed */
+	background-image: url(bookletlayout/option2/useful.png);
+	background-position: left center;
+	padding-left: 4.5em;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-ccbysa {
+	/* @embed */
+	background-image: url(bookletlayout/option2/ccbysa.png);
+	background-position: right center;
+	padding-right: 4.5em;
+}
+
+/* Option 3 */
+
+.mw-foreignStructuredUpload-bookletLayout-question .oo-ui-radioOptionWidget {
+	display: inline-block;
+	margin-right: 2em;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-checkbox.oo-ui-fieldLayout-disabled > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
+	/* No unreadable greys, please. This is the lightest WCAG AA compliant grey. */
+	color: #707070;
+}
+
+/* Option 4 */
+
+.mw-foreignStructuredUpload-bookletLayout-guide {
+	position: relative;
+	height: 315px;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-guide-text-wrapper-good,
+.mw-foreignStructuredUpload-bookletLayout-guide-text-wrapper-bad {
+	display: table;
+	width: 150px;
+	height: 140px;
+	position: absolute;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-guide-text-wrapper-good span,
+.mw-foreignStructuredUpload-bookletLayout-guide-text-wrapper-bad span {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-guide-text-wrapper-good {
+	top: 0;
+	left: 0;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-guide-text-wrapper-bad {
+	bottom: 0;
+	right: 0;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-guide-image {
+	position: absolute;
+	width: 200px;
+	height: 122px;
+	background-size: 200px;
+	background-repeat: no-repeat;
+	border: 1px solid #ccc;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-guide-image-camera {
+	/* @embed */
+	background-image: url(bookletlayout/option4/camera.png);
+	top: 0;
+	right: 80px;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-guide-image-graphics {
+	/* @embed */
+	background-image: url(bookletlayout/option4/graphics.png);
+	top: 50px;
+	right: 0;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-guide-image-website {
+	/* @embed */
+	background-image: url(bookletlayout/option4/website.png);
+	left: 0;
+	bottom: 50px;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-guide-image-search {
+	/* @embed */
+	background-image: url(bookletlayout/option4/search.png);
+	left: 80px;
+	bottom: 0;
+}
+
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline.mw-foreignStructuredUpload-bookletLayout-guide-checkbox {
+	/* We're really tight on vertical space. */
+	margin-bottom: 0;
 }
