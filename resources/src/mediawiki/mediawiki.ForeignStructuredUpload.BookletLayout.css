@@ -1,5 +1,41 @@
+/* All */
+
 .mw-foreignStructuredUpload-bookletLayout-license {
 	font-size: 90%;
 	line-height: 1.4em;
 	color: #555;
+}
+
+/* Option 2 */
+
+.mw-foreignStructuredUpload-bookletLayout-ownwork {
+	
+}
+
+.mw-foreignStructuredUpload-bookletLayout-noderiv {
+	
+}
+
+.mw-foreignStructuredUpload-bookletLayout-useful {
+	
+}
+
+.mw-foreignStructuredUpload-bookletLayout-ccbysa {
+	
+}
+
+/* Option 3 */
+
+.mw-foreignStructuredUpload-bookletLayout-question .oo-ui-radioOptionWidget {
+	display: inline-block;
+	margin-right: 2em;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-checkbox.oo-ui-fieldLayout-disabled > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
+	/* No unreadable greys, please. This is the lightest WCAG AA compliant grey. */
+	color: #707070;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-goodBadExamples {
+	
 }
