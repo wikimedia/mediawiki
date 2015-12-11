@@ -91,7 +91,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		parent::__construct( false ); // no implicit transaction
 
 		$this->mTitle = $title;
-		$this->mId = $title->getArticleID();
+		$this->mId = $title->getArticleID( Title::GAID_FOR_UPDATE );
 
 		if ( !$this->mId ) {
 			throw new InvalidArgumentException(
