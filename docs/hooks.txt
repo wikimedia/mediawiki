@@ -1941,6 +1941,11 @@ Special:LonelyPages.
 &$conds: conditions for the query
 &$joinConds: join conditions for the query
 
+'LogPagerModifyTypeConds': Allow extensions to add extra log types
+to search for at Special:Logs, when filtered by log type(s)
+&$typeConds: log types to search for
+$types: log types specified in the initial request
+
 'MagicWordwgVariableIDs': When defining new magic words IDs.
 &$variableIDs: array of strings
 

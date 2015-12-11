@@ -142,7 +142,9 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds[] = $hideLogs;
 		}
 		if ( count( $types ) ) {
-			$this->mConds['log_type'] = $types;
+			$typeConds = $types;
+			Hooks::run( 'LogPagerModifyTypeConds', array( &$typeConds, $types ) );
+			$this->mConds['log_type'] = $typeConds;
 			// Set typeCGI; used in url param for paging
 			if ( count( $types ) == 1 ) {
 				$this->typeCGI = $types[0];
