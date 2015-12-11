@@ -77,6 +77,7 @@ class ApiQuery extends ApiBase {
 		'allpages' => 'ApiQueryAllPages',
 		'allredirects' => 'ApiQueryAllLinks',
 		'allrevisions' => 'ApiQueryAllRevisions',
+		'allstashedfiles' => 'ApiQueryAllStashedFiles',
 		'alltransclusions' => 'ApiQueryAllLinks',
 		'allusers' => 'ApiQueryAllUsers',
 		'backlinks' => 'ApiQueryBacklinks',
