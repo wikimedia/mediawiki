@@ -496,7 +496,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$f .= ' ';
 
 		# Submit
-		$f .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() );
+		$f .= Xml::submitButton( $this->msg( 'whatlinkshere-submit' )->text() );
 
 		# Close
 		$f .= Xml::closeElement( 'fieldset' ) . Xml::closeElement( 'form' ) . "\n";

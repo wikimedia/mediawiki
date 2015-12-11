@@ -240,7 +240,7 @@ class ActiveUsersPager extends UsersPager {
 
 		# Submit button and form bottom
 		$out .= Xml::submitButton(
-			$this->msg( 'allpagessubmit' )->text(),
+			$this->msg( 'activeusers-submit' )->text(),
 			array( 'tabindex' => 4 )
 		) . "\n";
 		$out .= Xml::closeElement( 'fieldset' );
@@ -318,3 +318,5 @@ class SpecialActiveUsers extends SpecialPage {
 		return 'users';
 	}
 }
+
+

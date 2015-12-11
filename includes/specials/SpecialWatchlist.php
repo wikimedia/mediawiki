@@ -502,7 +502,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$opts['associated'],
 			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
 		) . "</span>\n";
-		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "\n";
+		$form .= Xml::submitButton( $this->msg( 'watchlist-submit' )->text() ) . "\n";
 		foreach ( $hiddenFields as $key => $value ) {
 			$form .= Html::hidden( $key, $value ) . "\n";
 		}
