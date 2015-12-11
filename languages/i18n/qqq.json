@@ -1896,8 +1896,8 @@
 	"mostrevisions-summary": "{{notranslate}}\nThe summary displayed at the top of [[Special:Mostrevisions]]. [[mw:Manual:Interface/Special pages summary|mw manual]].",
 	"prefixindex": "{{doc-special|PrefixIndex}}\nWhen the user limits the list to a certain namespace, {{msg-mw|allinnamespace}} is used instead.",
 	"prefixindex-namespace": "The page title of [[Special:PrefixIndex]] limited to a specific namespace. Similar to {{msg-mw|allinnamespace}}. $1 is the name of the namespace",
-	"prefixindex-submit": "Label on submit button in [[Special:PrefixIndex]]",
 	"prefixindex-summary": "{{notranslate}}\n\nThe summary displayed at the top of [[Special:Prefixindex]]. [[mw:Manual:Interface/Special pages summary|MediaWiki manual]].",
+	"prefixindex-submit": "Label on submit button in [[Special:PrefixIndex]]",
 	"prefixindex-strip": "Label for a checkbox. If the checkbox is checked, the prefix searched will be removed from the title displayed in the list. Used in [[Special:PrefixIndex]].\n\nSee the following search results:\n* [{{canonicalurl:Special:PrefixIndex|prefix=Doc&namespace=10}} Special:PrefixIndex?prefix=Doc&namespace=10] (prefix NOT stripped)\n* [{{canonicalurl:Special:PrefixIndex|prefix=Doc&namespace=10&stripprefix=1}} Special:PrefixIndex?prefix=Doc&namespace=10&stripprefix=1] (prefix stripped)",
 	"shortpages": "{{doc-special|ShortPages}}",
 	"shortpages-summary": "{{notranslate}}\nThe summary displayed at the top of [[Special:Shortpages]]. [[mw:Manual:Interface/Special pages summary|mw manual]].",
@@ -4056,5 +4056,3 @@
 	"mw-widgets-titleinput-description-redirect": "Description label for a redirect in the title input widget.",
 	"api-error-blacklisted": "Used as error message.\n\nFollowed by the link {{msg-mw|Mwe-upwiz-feedback-blacklist-info-prompt}}."
 }
-
-

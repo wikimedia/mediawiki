@@ -1161,7 +1161,7 @@
 	"action-deletedhistory": "পাতার মুছে ফেলা ইতিহাস দেখাও",
 	"action-browsearchive": "অপসারিত পাতায় অনুসন্ধান করুন",
 	"action-undelete": "পাতাটি পুনরুদ্ধার করো",
-	"action-suppressrevision": "লুকানো সংস্করণগুলো রিভিউ এবং রিস্টোর করুন",
+	"action-suppressrevision": "লুকানো সংস্করণগুলো পর্যালোচনা এবং পুনঃস্থাপন করুন",
 	"action-suppressionlog": "এই ব্যক্তিগত লগ দেখাও",
 	"action-block": "এই ব্যবহারকারীকে সম্পাদনা করতে বাঁধা দাও",
 	"action-protect": "এই পাতার সুরক্ষার মাত্রা পরিবর্তন করো",

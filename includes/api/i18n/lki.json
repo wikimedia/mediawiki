@@ -10,7 +10,7 @@
 	"apihelp-main-param-format": "فرمت خروجی",
 	"apihelp-block-description": "بستن کاربر.",
 	"apihelp-createaccount-param-name": ":نؤم بهرۀگر-کاربر",
-	"apihelp-delete-description": "حۀذف وۀلگۀ",
+	"apihelp-delete-description": "حةذف وةڵگة",
 	"apihelp-edit-description": "دؤرس کردن و دۀسکاری وۀلگۀ",
 	"apihelp-edit-param-sectiontitle": "نام سۀر وۀلگ تازۀ",
 	"apihelp-edit-example-edit": ".دةسکاری وةڵگة",
@@ -19,5 +19,6 @@
 	"apihelp-login-param-name": "نام کاربری",
 	"apihelp-login-param-password": ".رمز",
 	"apihelp-login-example-login": "نؤم هۀتن.",
-	"apihelp-logout-description": "دۀرچئن و پاک کردن داده متن"
+	"apihelp-logout-description": "دۀرچئن و پاک کردن داده متن",
+	"apihelp-logout-example-logout": "خروج کاربر فعلی"
 }

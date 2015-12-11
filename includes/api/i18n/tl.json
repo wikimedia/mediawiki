@@ -5,6 +5,8 @@
 			"Macofe"
 		]
 	},
+	"apihelp-feedrecentchanges-param-categories": "Ipakita lamang ang mga pagbababgo sa mga pahina sa lahat ng mga kategoriyang ito.",
+	"apihelp-feedrecentchanges-param-categories_any": "Ipakita na lang ang mga pagbabago sa mga pahina sa kahit na anong mga kategoriya.",
 	"apihelp-feedrecentchanges-example-simple": "Ipakit ang mga kamakailangang pagbabago.",
 	"apihelp-feedrecentchanges-example-30days": "Ipakita ang mga huling pagbabago sa loob para sa 30 araw.",
 	"apihelp-help-example-main": "Tulong para sa pangunahing modulo.",
