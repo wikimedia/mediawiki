@@ -372,6 +372,7 @@ class LoginForm extends SpecialPage {
 			return;
 		}
 
+		/** @var User $u */
 		$u = $status->getValue();
 
 		// Wipe the initial password and mail a temporary one
