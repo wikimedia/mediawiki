@@ -1,5 +1,70 @@
+/* All */
+
 .mw-foreignStructuredUpload-bookletLayout-license {
 	font-size: 90%;
 	line-height: 1.4em;
 	color: #555;
+}
+
+/* Option 2 */
+
+.mw-foreignStructuredUpload-bookletLayout-withicon.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline {
+	background-repeat: no-repeat;
+	background-size: 4em;
+	min-height: 4em;
+	margin-bottom: 0.25em;
+	display: table;
+	vertical-align: middle;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-withicon.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body {
+	/* Together with 'display: table' above, and FieldLayout styles, this aligns the text */
+	/* vertically to the middle. Don't try this at home, kids. */
+	display: table-row;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-ownwork {
+	/* @embed */
+	background-image: url(bookletlayout-images/ownwork.png);
+	background-position: left center;
+	padding-left: 5em;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-noderiv {
+	/* @embed */
+	background-image: url(bookletlayout-images/noderiv.png);
+	background-position: right center;
+	padding-right: 5em;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-useful {
+	/* @embed */
+	background-image: url(bookletlayout-images/useful.png);
+	background-position: left center;
+	padding-left: 5em;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-ccbysa {
+	/* @embed */
+	background-image: url(bookletlayout-images/ccbysa.png);
+	background-position: right center;
+	padding-right: 5em;
+}
+
+/* Option 3 */
+
+.mw-foreignStructuredUpload-bookletLayout-question .oo-ui-radioOptionWidget {
+	display: inline-block;
+	margin-right: 2em;
+}
+
+.mw-foreignStructuredUpload-bookletLayout-checkbox.oo-ui-fieldLayout-disabled > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
+	/* No unreadable greys, please. This is the lightest WCAG AA compliant grey. */
+	color: #707070;
+}
+
+/* Option 4 */
+
+.mw-foreignStructuredUpload-bookletLayout-goodBadExamples {
+	
 }
