@@ -791,7 +791,7 @@ LUA;
 		}
 
 		foreach ( $parts as $part ) {
-		    if ( !preg_match( '/[a-zA-Z0-9_-.]+/', $part ) ) {
+		    if ( !preg_match( '/[a-zA-Z0-9_-]+/', $part ) ) {
 		        throw new InvalidArgumentException( "Key part characters are out of range." );
 		    }
 		}
