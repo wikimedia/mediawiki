@@ -186,6 +186,10 @@
 		this.filenameWidget.setValue( file.name );
 		this.setPage( 'info' );
 
+		if ( this.shouldRecordBucket ) {
+			this.upload.bucket = this.bucket;
+		}
+
 		this.upload.setFile( file );
 		// Explicitly set the filename so that the old filename isn't used in case of retry
 		this.upload.setFilenameFromFile();
