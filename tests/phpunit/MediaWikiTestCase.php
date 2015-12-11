@@ -212,6 +212,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 
 		DeferredUpdates::clearPendingUpdates();
+		JobQueueGroup::destroySingletons();
 
 		ob_start( 'MediaWikiTestCase::wfResetOutputBuffersBarrier' );
 	}
