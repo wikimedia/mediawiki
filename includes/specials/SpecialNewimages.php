@@ -113,7 +113,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 
 		if ( !$this->getConfig()->get( 'MiserMode' ) && $this->like !== null ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			$likeObj = Title::newFromURL( $this->like );
+			$likeObj = Title::newFromText( $this->like );
 			if ( $likeObj instanceof Title ) {
 				$like = $dbr->buildLike(
 					$dbr->anyString(),
