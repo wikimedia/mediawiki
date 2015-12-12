@@ -3562,7 +3562,7 @@ class Title {
 	 *
 	 * @return string[] Array of String the URLs
 	 */
-	public function getSquidURLs() {
+	public function getCdnUrls() {
 		$urls = array(
 			$this->getInternalURL(),
 			$this->getInternalURL( 'action=history' )
@@ -3588,11 +3588,18 @@ class Title {
 	}
 
 	/**
+	 * @deprecated since 1.27 use getCdnUrls()
+	 */
+	public function getSquidURLs() {
+		return $this->getCdnUrls();
+	}
+
+	/**
 	 * Purge all applicable CDN URLs
 	 */
 	public function purgeSquid() {
 		DeferredUpdates::addUpdate(
-			new CdnCacheUpdate( $this->getSquidURLs() ),
+			new CdnCacheUpdate( $this->getCdnUrls() ),
 			DeferredUpdates::PRESEND
 		);
 	}

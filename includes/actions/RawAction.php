@@ -81,7 +81,7 @@ class RawAction extends FormlessAction {
 				$smaxage = $config->get( 'SquidMaxage' );
 			} elseif ( $contentType == 'text/css' || $contentType == 'text/javascript' ) {
 				// CSS/JS raw content has its own CDN max age configuration.
-				// Note: Title::getSquidURLs() includes action=raw for css/js pages,
+				// Note: Title::getCdnUrls() includes action=raw for css/js pages,
 				// so if using the canonical url, this will get HTCP purges.
 				$smaxage = intval( $config->get( 'ForcedRawSMaxage' ) );
 			} else {

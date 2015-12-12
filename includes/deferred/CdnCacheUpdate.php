@@ -55,7 +55,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	public static function newFromTitles( $titles, $urlArr = array() ) {
 		/** @var Title $title */
 		foreach ( $titles as $title ) {
-			$urlArr = array_merge( $urlArr, $title->getSquidURLs() );
+			$urlArr = array_merge( $urlArr, $title->getCdnUrls() );
 		}
 
 		return new CdnCacheUpdate( $urlArr );
@@ -67,7 +67,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * @deprecated 1.27
 	 */
 	public static function newSimplePurge( Title $title ) {
-		return new CdnCacheUpdate( $title->getSquidURLs() );
+		return new CdnCacheUpdate( $title->getCdnUrls() );
 	}
 
 	/**

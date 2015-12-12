@@ -1133,7 +1133,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Send purge after above page_touched update was committed
 		DeferredUpdates::addUpdate(
-			new CdnCacheUpdate( $title->getSquidURLs() ),
+			new CdnCacheUpdate( $title->getCdnUrls() ),
 			DeferredUpdates::PRESEND
 		);
 
