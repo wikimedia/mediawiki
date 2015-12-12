@@ -525,7 +525,7 @@
 	"passwordreset-emailtext-ip": "Neko, verovatno Vi, sa IP adrese $1 je zatražio novu lozinku na vikiju {{SITENAME}} ($4).\nSledeći {{PLURAL:$3|korisnički nalog je povezan|korisnički nalozi su povezani}} s ovom e-adresom:\n\n$2\n\n{{PLURAL:$3|Privremena lozinka ističe|Privremene lozinke ističu}} za {{PLURAL:$5|jedan dan|$5 dana}}.\nPrijavite se i izaberite novu lozinku. Ako je neko drugi zahtevao ovu radnju ili ste se setili lozinke i ne želite da je menjate, zanemarite ovu poruku i nastavite koristiti staru lozinku.",
 	"passwordreset-emailtext-user": "{{GENDER:$1|Korisnik je zatražio|Korisnica je zatražila}} podsetnik o podacima za prijavu na vikiju {{SITENAME}} ($4).\nSledeći {{PLURAL:$3|korisnički nalog je povezan|korisnički nalozi su povezani}} s ovom e-adresom:\n\n$2\n\n{{PLURAL:$3|Privremena lozinka ističe|Privremene lozinke ističu}} za {{PLURAL:$5|jedan dan|$5 dana}}.\nPrijavite se i izaberite novu lozinku. Ako je neko drugi zahtevao ovu radnju ili ste se setili lozinke i ne želite da je menjate, zanemarite ovu poruku.",
 	"passwordreset-emailelement": "Korisničko ime: \n$1\n\nPrivremena lozinka: \n$2",
-	"passwordreset-emailsent": "Podsetnik o lozinci je poslat na vašu adresu.",
+	"passwordreset-emailsentemail": "Podsetnik o lozinci je poslat na vašu adresu.",
 	"passwordreset-emailsent-capture": "Poslat je podsetnik preko e-pošte (prikazan dole).",
 	"passwordreset-emailerror-capture": "E-poruka za resetovanje lozinke, prikazana ispod je poslata, ali slanje {{GENDER:$2|korisniku|korisnici}} nije uspelo: $1",
 	"changeemail": "Promeni ili ukloni e-adresu",

@@ -492,7 +492,7 @@
 	"passwordreset-email": "برېښليک پته:",
 	"passwordreset-emailtitle": "د {{SITENAME}} د گڼون څرگندنې",
 	"passwordreset-emailelement": "کارن-نوم: \n$1\n\nلنډمهاله پټنوم: \n$2",
-	"passwordreset-emailsent": "د پټنوم بيا پرځای کېدنې لپاره برېښليک درولېږل شو.",
+	"passwordreset-emailsentemail": "د پټنوم بيا پرځای کېدنې لپاره برېښليک درولېږل شو.",
 	"passwordreset-emailsent-capture": "د پټنوم بياپرځای کېدنې لپار مو يو برېښليک درولېږه، برېښليک په لاندې توگه ښودل شوی.",
 	"changeemail": "برېښليک پته بدلول يا ليرې کول",
 	"changeemail-header": "د گڼون برېښليک پته بدلول",

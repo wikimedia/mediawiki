@@ -439,7 +439,7 @@
 	"passwordreset-capture": "Ozutada-k loptud kirjeine?",
 	"passwordreset-email": "E-počtan adres:",
 	"passwordreset-emailelement": "Kävutajannimi: \n$1\n\nAigaline peitsana: \n$2",
-	"passwordreset-emailsent": "Muštatai kirjeine uden peitsananke oigetihe e-počtadme.",
+	"passwordreset-emailsentemail": "Muštatai kirjeine uden peitsananke oigetihe e-počtadme.",
 	"changeemail": "Toižetada e-počtan adres",
 	"changeemail-no-info": "Miše kirjutada necil lehtpolel, teile pidab kirjutadas sistemha.",
 	"changeemail-oldemail": "Nügüdläine e-počtan adres:",

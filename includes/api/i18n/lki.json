@@ -20,5 +20,6 @@
 	"apihelp-login-param-password": ".رمز",
 	"apihelp-login-example-login": "نؤم هۀتن.",
 	"apihelp-logout-description": "دۀرچئن و پاک کردن داده متن",
-	"apihelp-logout-example-logout": "خروج کاربر فعلی"
+	"apihelp-logout-example-logout": "خروج کاربر فعلی",
+	"apihelp-options-example-reset": "بازنشانی همه تنظیمات."
 }

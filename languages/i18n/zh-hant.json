@@ -580,7 +580,7 @@
 	"passwordreset-emailtext-ip": "不明人士 (可能是您自己，來自 IP 位址 $1) 要求重設在 {{SITENAME}} ($4) 的密碼，下列是與此電子郵件地址有關的使用者{{PLURAL:$3|帳號}}：\n\n$2\n\n{{PLURAL:$3|這個臨時密碼|這些臨時密碼}}將會在{{PLURAL:$5|一天|$5 天}}內到期，\n您應立即登入並更改新的密碼。如果不是您要求重設密碼，或您已想起密碼，並不準備修改，\n您可以忽略本訊息並且繼續使用您原本的密碼。",
 	"passwordreset-emailtext-user": "使用者 $1 要求重設在 {{SITENAME}} ($4) 的密碼，下列是與此電子郵件位址有關的使用者{{PLURAL:$3|帳號}}：\n\n$2\n\n{{PLURAL:$3|這個臨時密碼|這些臨時密碼}}將會在{{PLURAL:$5|一天|$5 天}}內到期，\n您應立即登入並更改新的密碼。如果不是您要求重設密碼，或您已想起密碼，並不準備修改，\n您可以忽略此訊息並且繼續使用您原本的密碼。",
 	"passwordreset-emailelement": "使用者名稱：\n$1\n\n臨時密碼：\n$2",
-	"passwordreset-emailsent": "若此確實為您帳號所登記的電子郵件地址，將會寄出重設密碼的信件給您。",
+	"passwordreset-emailsentemail": "若此確實為您帳號所登記的電子郵件地址，將會寄出重設密碼的信件給您。",
 	"passwordreset-emailsent-capture": "已寄出重設密碼的電子郵件，並於下方顯示。",
 	"passwordreset-emailerror-capture": "下列為重設密碼的電子郵件內容，傳送給{{GENDER:$2|使用者}}失敗：$1",
 	"changeemail": "變更或移除電子郵件地址",

@@ -524,7 +524,7 @@
 	"passwordreset-emailtitle": "Dettaggi account sciu {{SITENAME}}",
 	"passwordreset-emailtext-ip": "Quarcun (probabilmente ti, con adresso IP $1) o l'ha domandòu l'invio de 'na neuva poula segretta per l'accesso a {{SITENAME}} ($4). {{PLURAL:$3|L'utente associòu|I utenti associæ}} a sto addresso e-mail son:\n\n$2\n\n{{PLURAL:$3|Questa poula segretta temporannia a descazziâ|Queste poule segrette temporannie descazzian}} doppo {{PLURAL:$5|un giorno|$5 giorni}}.\nTi doviesci accede e çerne una neuva poula segretta oua. \n\nSe no t'ê stæto ti a fâ a domanda, ò se ti t'hæ aregordòu a poula segretta originale e no ti veu ciù cangiâla, ti peu ignorâ sto messaggio e continuâ a deuviâ a teu vegia poula segretta.",
 	"passwordreset-emailelement": "Nomme utente: \n$1\n\nPoula segretta temporannia: \n$2",
-	"passwordreset-emailsent": "Se questo o l'è un addresso de posta elettronnica registròu pe-a teu utensa, alloa saiâ inviâ un'e-mail pe reimpostâ a poula segretta.",
+	"passwordreset-emailsentemail": "Se questo o l'è un addresso de posta elettronnica registròu pe-a teu utensa, alloa saiâ inviâ un'e-mail pe reimpostâ a poula segretta.",
 	"passwordreset-emailsent-capture": "L'è stæto inviòu un'e-mail de reimpostaçion da poula segretta, o contegnuo o l'è riportòu chì appreuvo.",
 	"passwordreset-emailerror-capture": "L'è stæto generòu un'e-mail de reimpostaçion da poula segretta, riportà chì appreuvo. L'invio {{GENDER:$2|a l'utente}} o no l'è ariêscîo: $1",
 	"changeemail": "Cangia o elimmina l'adresso e-mail",
