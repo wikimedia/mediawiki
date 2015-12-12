@@ -98,7 +98,12 @@ class ApiHelp extends ApiBase {
 		}
 
 		$out = $context->getOutput();
+		// The mediawiki.apihelp module is just CSS, but
+		// it also depends upon mediawiki.hlist, which has
+		// JavaScript so we need to use addModules() for the
+		// dependency, and addModuleStyles() to avoid a FOUC.
 		$out->addModules( 'mediawiki.apihelp' );
+		$out->addModuleStyles( 'mediawiki.apihelp' );
 		if ( !empty( $options['toc'] ) ) {
 			$out->addModules( 'mediawiki.toc' );
 		}
