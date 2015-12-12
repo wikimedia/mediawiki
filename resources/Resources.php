@@ -832,7 +832,6 @@ return array(
 	'mediawiki.apihelp' => array(
 		'styles' => 'resources/src/mediawiki/mediawiki.apihelp.css',
 		'targets' => array( 'desktop' ),
-		'dependencies' => 'mediawiki.hlist',
 		'position' => 'top',
 	),
 	'mediawiki.template' => array(
