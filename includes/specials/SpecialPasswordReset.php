@@ -42,6 +42,11 @@ class SpecialPasswordReset extends FormSpecialPage {
 	 */
 	private $result;
 
+	/**
+	 * @var string $method Identifies which password reset field was specified by the user.
+	 */
+	private $method;
+
 	public function __construct() {
 		parent::__construct( 'PasswordReset', 'editmyprivateinfo' );
 	}
@@ -196,6 +201,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 			return array( $error );
 		}
 
+		$this->method = $method;
+
 		if ( count( $users ) == 0 ) {
 			if ( $method == 'email' ) {
 				// Don't reveal whether or not an email address is in use
@@ -310,7 +317,12 @@ class SpecialPasswordReset extends FormSpecialPage {
 			$this->getOutput()->addHTML( Html::rawElement( 'pre', array(), $this->email->escaped() ) );
 		}
 
-		$this->getOutput()->addWikiMsg( 'passwordreset-emailsent' );
+		if ( $this->method === 'email' ) {
+			$this->getOutput()->addWikiMsg( 'passwordreset-emailsentemail' );
+		} else {
+			$this->getOutput()->addWikiMsg( 'passwordreset-emailsentusername' );
+		}
+
 		$this->getOutput()->returnToMain();
 	}
 
