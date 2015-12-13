@@ -3262,6 +3262,8 @@ abstract class DatabaseBase implements IDatabase {
 	 * after the database is updated so that the jobs will see the data when they actually run.
 	 * It can also be used for updates that easily cause deadlocks if locks are held too long.
 	 *
+	 * Updates are queued in a FIFO manner (if not run immediately).
+	 *
 	 * @param callable $callback
 	 * @since 1.20
 	 */
@@ -3279,6 +3281,8 @@ abstract class DatabaseBase implements IDatabase {
 	 *
 	 * This is useful for updates that easily cause deadlocks if locks are held too long
 	 * but where atomicity is strongly desired for these updates and some related updates.
+	 *
+	 * Updates are queued in a FIFO manner (if not run immediately).
 	 *
 	 * @param callable $callback
 	 * @since 1.22
