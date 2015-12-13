@@ -1051,7 +1051,6 @@ function wfDebug( $text, $dest = 'all', array $context = array() ) {
 
 	$text = trim( $text );
 
-	// Inline logic from deprecated wfDebugTimer()
 	if ( $wgDebugTimestamps ) {
 		$context['seconds_elapsed'] = sprintf(
 			'%6.4f',
@@ -1092,26 +1091,6 @@ function wfIsDebugRawPage() {
 		$cache = false;
 	}
 	return $cache;
-}
-
-/**
- * Get microsecond timestamps for debug logs
- *
- * @deprecated since 1.25
- * @return string
- */
-function wfDebugTimer() {
-	global $wgDebugTimestamps, $wgRequestTime;
-
-	wfDeprecated( __METHOD__, '1.25' );
-
-	if ( !$wgDebugTimestamps ) {
-		return '';
-	}
-
-	$prefix = sprintf( "%6.4f", microtime( true ) - $wgRequestTime );
-	$mem = sprintf( "%5.1fM", ( memory_get_usage( true ) / ( 1024 * 1024 ) ) );
-	return "$prefix $mem  ";
 }
 
 /**
