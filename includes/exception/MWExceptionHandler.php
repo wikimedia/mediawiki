@@ -197,6 +197,7 @@ class MWExceptionHandler {
 	 * @param string $message
 	 * @param string $file
 	 * @param int $line
+	 * @return bool
 	 *
 	 * @see logError()
 	 */
@@ -369,6 +370,7 @@ TXT;
 	public static function prettyPrintTrace( array $trace, $pad = '' ) {
 		$text = '';
 
+		$level = 0;
 		foreach ( $trace as $level => $frame ) {
 			if ( isset( $frame['file'] ) && isset( $frame['line'] ) ) {
 				$text .= "{$pad}#{$level} {$frame['file']}({$frame['line']}): ";
