@@ -938,25 +938,36 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * @return string
 	 */
 	function getStartBody() {
-		return "<ul class=\"mw-contributions-list\">\n";
+		$body = "<table class=\"mw-contributions-list wikitable mw-datatable\">\n";
+
+		$body .= Html::rawElement( 'td', array(), $this->msg( 'contributionstable-timestamp' ) );
+		$body .= Html::rawElement( 'td', array(), $this->msg( 'contributionstable-article' ) );
+		$body .= Html::rawElement( 'td', array(), $this->msg( 'contributionstable-author' ) );
+		$body .= Html::rawElement( 'td' );
+		$body .= Html::rawElement( 'td', array(), $this->msg( 'contributionstable-diff' ) );
+		$body .= Html::rawElement( 'td', array(), $this->msg( 'contributionstable-flags' ) );
+		$body .= Html::rawElement( 'td', array(), $this->msg( 'contributionstable-current' ) );
+		$body .= Html::rawElement( 'td', array(), $this->msg( 'contributionstable-comments' ) );
+		$body .= Html::rawElement( 'td', array(), $this->msg( 'contributionstable-tags' ) );
+
+		return $body;
 	}
 
 	/**
 	 * @return string
 	 */
 	function getEndBody() {
-		return "</ul>\n";
+		return "</table>\n";
 	}
 
 	/**
-	 * Generates each row in the contributions list.
+	 * Generates each row in the contributions table.
 	 *
 	 * Contributions which are marked "top" are currently on top of the history.
 	 * For these contributions, a [rollback] link is shown for users with roll-
 	 * back privileges. The rollback link restores the most recent version that
 	 * was not written by the target user.
 	 *
-	 * @todo This would probably look a lot nicer in a table.
 	 * @param object $row
 	 * @return string
 	 */
@@ -995,7 +1006,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$topmarktext = '';
 			$user = $this->getUser();
 			if ( $row->rev_id == $row->page_latest ) {
-				$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
+				$topmarktext .= '<span class="mw-uctop">' . $this->msg( 'contributionstable-current-marker' ) . '</span>';
 				# Add rollback link
 				if ( !$row->page_is_new && $page->quickUserCan( 'rollback', $user )
 					&& $page->quickUserCan( 'edit', $user )
@@ -1004,6 +1015,7 @@ class ContribsPager extends ReverseChronologicalPager {
 					$topmarktext .= ' ' . Linker::generateRollback( $rev, $this->getContext() );
 				}
 			}
+
 			# Is there a visible previous revision?
 			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) && $rev->getParentId() !== 0 ) {
 				$difftext = Linker::linkKnown(
@@ -1029,22 +1041,18 @@ class ContribsPager extends ReverseChronologicalPager {
 				// For some reason rev_parent_id isn't populated for this row.
 				// Its rumoured this is true on wikipedia for some revisions (bug 34922).
 				// Next best thing is to have the total number of bytes.
-				$chardiff = ' <span class="mw-changeslist-separator">. .</span> ';
-				$chardiff .= Linker::formatRevisionSize( $row->rev_len );
-				$chardiff .= ' <span class="mw-changeslist-separator">. .</span> ';
+				$chardiff = Linker::formatRevisionSize( $row->rev_len );
 			} else {
 				$parentLen = 0;
 				if ( isset( $this->mParentLens[$row->rev_parent_id] ) ) {
 					$parentLen = $this->mParentLens[$row->rev_parent_id];
 				}
 
-				$chardiff = ' <span class="mw-changeslist-separator">. .</span> ';
-				$chardiff .= ChangesList::showCharacterDifference(
+				$chardiff = ChangesList::showCharacterDifference(
 					$parentLen,
 					$row->rev_len,
 					$this->getContext()
 				);
-				$chardiff .= ' <span class="mw-changeslist-separator">. .</span> ';
 			}
 
 			$lang = $this->getLanguage();
@@ -1062,12 +1070,14 @@ class ContribsPager extends ReverseChronologicalPager {
 			}
 			if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$d = '<span class="history-deleted">' . $d . '</span>';
+				$d = '<span class="history-deleted">' . $d . '</span>';
 			}
+
 
 			# Show user names for /newbies as there may be different users.
 			# Note that we already excluded rows with hidden user names.
 			if ( $this->contribs == 'newbie' ) {
-				$userlink = ' . . ' . $lang->getDirMark()
+				$userlink = $lang->getDirMark()
 					. Linker::userLink( $rev->getUser(), $rev->getUserText() );
 				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
 					Linker::userTalkLink( $rev->getUser(), $rev->getUserText() ) )->escaped() . ' ';
@@ -1092,26 +1102,46 @@ class ContribsPager extends ReverseChronologicalPager {
 				$del .= ' ';
 			}
 
-			$diffHistLinks = $this->msg( 'parentheses' )
-				->rawParams( $difftext . $this->messages['pipe-separator'] . $histlink )
-				->escaped();
-			$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$nflag}{$mflag} ";
-			$ret .= "{$link}{$userlink} {$comment} {$topmarktext}";
+			$diffHistLinks = $difftext . $this->messages['pipe-separator'] . $histlink;
+
+			$noWrapStyle = 'white-space: nowrap;';
+			$centerStyle = 'text-align: center';
+			$centerNoWrapStyle = $noWrapStyle.$centerStyle;
+
+			$d = Html::rawElement( 'td', array(), $d );
+			$diffHistLinks = Html::rawElement( 'td',  array( 'style' => $noWrapStyle ), $diffHistLinks );
+			$chardiff = Html::rawElement( 'td', array( 'style' => $centerStyle ), $chardiff );
+			$flags = Html::rawElement( 'td', array( 'style' => $centerStyle ), $nflag.$mflag );
+			$articleLink = Html::rawElement( 'td', array( 'style' =>$centerNoWrapStyle ), $link );
+			$userlink = Html::rawElement( 'td', array( 'style' => $centerNoWrapStyle ), $userlink );
+			$topmarktext = Html::rawElement( 'td', array( 'style' => $centerStyle ), $topmarktext );
 
 			# Denote if username is redacted for this edit
-			if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
-				$ret .= " <strong>" .
-					$this->msg( 'rev-deleted-user-contribs' )->escaped() .
-					"</strong>";
+			if( $rev->isDeleted( Revision::DELETED_USER ) ) {
+				$comment .= Html::rawElement(
+						'strong',
+						array( 'style' => 'display: block' ),
+						$this->msg( 'rev-deleted-user-contribs' )->escaped());
 			}
+
+			$comment = Html::rawElement( 'td', array(), $comment );
 
 			# Tags, if any.
 			list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow(
-				$row->ts_tags,
-				'contributions'
+					$row->ts_tags,
+					'contributions'
 			);
 			$classes = array_merge( $classes, $newClasses );
-			$ret .= " $tagSummary";
+
+			$tagSummary = Html::rawElement(
+					'td',
+					array( 'style' => $centerStyle ),
+					$tagSummary ? $tagSummary : ' - '
+			);
+
+
+			$ret = "{$del} {$d} {$articleLink} {$userlink} {$diffHistLinks}{$chardiff}{$flags} ";
+			$ret .= "{$topmarktext} {$comment} {$tagSummary}";
 		}
 
 		// Let extensions add data
@@ -1121,7 +1151,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			wfDebug( "Dropping Special:Contribution row that could not be formatted\n" );
 			$ret = "<!-- Could not format Special:Contribution row. -->\n";
 		} else {
-			$ret = Html::rawElement( 'li', array( 'class' => $classes ), $ret ) . "\n";
+			$ret = Html::rawElement( 'tr', array( 'class' => $classes, 'background: red; color: white' ), $ret ) . "\n";
 		}
 
 		return $ret;

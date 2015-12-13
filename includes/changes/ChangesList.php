@@ -205,7 +205,7 @@ class ChangesList extends ContextSource {
 	 * @param IContextSource $context
 	 * @return string
 	 */
-	public static function showCharacterDifference( $old, $new, IContextSource $context = null ) {
+	public static function  showCharacterDifference( $old, $new, IContextSource $context = null ) {
 		if ( !$context ) {
 			$context = RequestContext::getMain();
 		}

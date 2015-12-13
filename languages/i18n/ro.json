@@ -3437,5 +3437,14 @@
 	"mw-widgets-dateinput-placeholder-month": "AAAA-LL",
 	"mw-widgets-titleinput-description-new-page": "pagina nu există încă",
 	"mw-widgets-titleinput-description-redirect": "redirecționare către $1",
-	"api-error-blacklisted": "Vă rugăm să alegeți un alt titlu, mai descriptiv."
+	"api-error-blacklisted": "Vă rugăm să alegeți un alt titlu, mai descriptiv.",
+	"contributionstable-timestamp": "Momentul modificării",
+	"contributionstable-article": "Articol",
+	"contributionstable-author": "Autor",
+	"contributionstable-diff": "Diferență",
+	"contributionstable-flags": "Fags",
+	"contributionstable-current": "Curent",
+	"contributionstable-current-marker": "Da",
+	"contributionstable-comments": "Comentarii",
+	"contributionstable-tags": "Etichete"
 }
