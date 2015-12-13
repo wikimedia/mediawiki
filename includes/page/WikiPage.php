@@ -1773,18 +1773,24 @@ class WikiPage implements Page, IDBAccessObject {
 		// Update article, but only if changed.
 		$status = Status::newGood( array( 'new' => false, 'revision' => null ) );
 
-		// Convenience variables
+		// Use one consistent time value
 		$now = wfTimestampNow();
+
+		// Convenience variables
 		$oldid = $meta['oldId'];
+		/** @var $oldRevision Revision|null */
+		$oldRevision = $meta['oldRevision'];
 		/** @var $oldContent Content|null */
 		$oldContent = $meta['oldContent'];
-		$newsize = $content->getSize();
 
-		if ( !$oldid ) {
+		if ( !$oldid || !$oldRevision ) {
 			// Article gone missing
 			$status->fatal( 'edit-gone-missing' );
 
 			return $status;
+		} elseif ( $oldRevision->getTimestamp() >= $now ) {
+			// Sanity check to stop edits from going into the past and breaking history
+			$status->fatal( 'edit-conflict' );
 		} elseif ( !$oldContent ) {
 			// Sanity check for bug 37225
 			throw new MWException( "Could not find text for current revision {$oldid}." );
@@ -1797,7 +1803,7 @@ class WikiPage implements Page, IDBAccessObject {
 			'comment'    => $summary,
 			'minor_edit' => $meta['minor'],
 			'text'       => $meta['serialized'],
-			'len'        => $newsize,
+			'len'        => $content->getSize(),
 			'parent_id'  => $oldid,
 			'user'       => $user->getId(),
 			'user_text'  => $user->getName(),
@@ -1862,7 +1868,7 @@ class WikiPage implements Page, IDBAccessObject {
 					$meta['bot'],
 					'',
 					$oldContent ? $oldContent->getSize() : 0,
-					$newsize,
+					$content->getSize(),
 					$revisionId,
 					$patrolled
 				);
@@ -1885,7 +1891,7 @@ class WikiPage implements Page, IDBAccessObject {
 			array(
 				'changed' => $changed,
 				'oldcountable' => $meta['oldCountable'],
-				'oldrevision' => $meta['oldRevision']
+				'oldrevision' => $oldRevision
 			)
 		);
 
@@ -1921,8 +1927,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$status = Status::newGood( array( 'new' => true, 'revision' => null ) );
 
+		// Use one consistent time value
 		$now = wfTimestampNow();
-		$newsize = $content->getSize();
+
 		$prepStatus = $content->prepareSave( $this, $flags, $meta['oldId'], $user );
 		$status->merge( $prepStatus );
 		if ( !$status->isOK() ) {
@@ -1953,7 +1960,7 @@ class WikiPage implements Page, IDBAccessObject {
 			'comment'    => $summary,
 			'minor_edit' => $meta['minor'],
 			'text'       => $meta['serialized'],
-			'len'        => $newsize,
+			'len'        => $content->getSize(),
 			'user'       => $user->getId(),
 			'user_text'  => $user->getName(),
 			'timestamp'  => $now,
@@ -1985,7 +1992,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$summary,
 				$meta['bot'],
 				'',
-				$newsize,
+				$content->getSize(),
 				$revisionId,
 				$patrolled
 			);
