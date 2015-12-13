@@ -35,14 +35,10 @@ class ApiOptions extends ApiBase {
 	 * Changes preferences of the current user.
 	 */
 	public function execute() {
-		$user = $this->getUser();
-
-		if ( $user->isAnon() ) {
+		if ( $this->getUser()->isAnon() ) {
 			$this->dieUsage( 'Anonymous users cannot change preferences', 'notloggedin' );
-		}
-
-		if ( !$user->isAllowed( 'editmyoptions' ) ) {
-			$this->dieUsage( 'You don\'t have permission to edit your options', 'permissiondenied' );
+		} elseif ( !$this->getUser()->isAllowed( 'editmyoptions' ) ) {
+			$this->dieUsage( "You don't have permission to edit your options", 'permissiondenied' );
 		}
 
 		$params = $this->extractRequestParams();
@@ -53,11 +49,9 @@ class ApiOptions extends ApiBase {
 		}
 
 		// Load the user from the master to reduce CAS errors on double post (T95839)
-		if ( wfGetLB()->getServerCount() > 1 ) {
-			$user = User::newFromId( $user->getId() );
-			if ( !$user->loadFromId( User::READ_EXCLUSIVE ) ) {
-				$this->dieUsage( 'Anonymous users cannot change preferences', 'notloggedin' );
-			}
+		$user = $this->getUser()->getInstanceForUpdate();
+		if ( !$user ) {
+			$this->dieUsage( 'Anonymous users cannot change preferences', 'notloggedin' );
 		}
 
 		if ( $params['reset'] ) {
