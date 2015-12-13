@@ -403,7 +403,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$extraOpts = $this->getExtraOptions( $opts );
 		$extraOptsCount = count( $extraOpts );
 		$count = 0;
-		$submit = ' ' . Xml::submitbutton( $this->msg( 'allpagessubmit' )->text() );
+		$submit = ' ' . Xml::submitbutton( $this->msg( 'recentchanges-submit' )->text() );
 
 		$out = Xml::openElement( 'table', array( 'class' => 'mw-recentchanges-table' ) );
 		foreach ( $extraOpts as $name => $optionRow ) {

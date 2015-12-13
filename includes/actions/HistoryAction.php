@@ -192,7 +192,7 @@ class HistoryAction extends FormlessAction {
 			( $tagSelector ? ( implode( '&#160;', $tagSelector ) . '&#160;' ) : '' ) .
 			$checkDeleted .
 			Html::submitButton(
-				$this->msg( 'allpagessubmit' )->text(),
+				$this->msg( 'historyaction-submit' )->text(),
 				array(),
 				array( 'mw-ui-progressive' )
 			) . "\n" .

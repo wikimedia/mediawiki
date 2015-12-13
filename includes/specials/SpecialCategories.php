@@ -191,7 +191,7 @@ class CategoryPager extends AlphabeticPager {
 						'from', 'from', 20, $from, array( 'class' => 'mw-ui-input-inline' ) ) .
 						' ' .
 						Html::submitButton(
-							$this->msg( 'allpagessubmit' )->text(),
+							$this->msg( 'categories-submit' )->text(),
 							array(), array( 'mw-ui-progressive' )
 						)
 				)
