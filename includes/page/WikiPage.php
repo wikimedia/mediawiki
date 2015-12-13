@@ -1831,7 +1831,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$revisionId = $revision->insertOn( $dbw );
 			// Update page_latest and friends to reflect the new revision
 			if ( !$this->updateRevisionOn( $dbw, $revision, null, $meta['oldIsRedirect'] ) ) {
-				$dbw->rollback( __METHOD__ );
+				$dbw->rollback( __METHOD__ ); // sanity; this should never happen
 				throw new MWException( "Failed to update page row to use new revision." );
 			}
 
@@ -1929,12 +1929,12 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$dbw->startAtomic( __METHOD__ );
 
 		// Add the page record unless one already exists for the title
 		$newid = $this->insertOn( $dbw );
 		if ( $newid === false ) {
-			$dbw->commit( __METHOD__ ); // nothing inserted
+			$dbw->endAtomic( __METHOD__ ); // nothing inserted
 			$status->fatal( 'edit-already-exists' );
 
 			return $status; // nothing done
@@ -1964,7 +1964,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$revisionId = $revision->insertOn( $dbw );
 		// Update the page record with revision data
 		if ( !$this->updateRevisionOn( $dbw, $revision, 0 ) ) {
-			$dbw->rollback( __METHOD__ );
+			$dbw->rollback( __METHOD__ ); // sanity; this should never happen
 			throw new MWException( "Failed to update page row to use new revision." );
 		}
 
@@ -1992,25 +1992,33 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$user->incEditCount();
 
-		$dbw->commit( __METHOD__ );
+		$dbw->endAtomic( __METHOD__ );
 		$this->mTimestamp = $now;
-
-		// Update links, etc.
-		$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
-
-		$hook_args = array( &$this, &$user, $content, $summary,
-			$flags & EDIT_MINOR, null, null, &$flags, $revision );
-		ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $hook_args );
-		Hooks::run( 'PageContentInsertComplete', $hook_args );
 
 		// Return the new revision to the caller
 		$status->value['revision'] = $revision;
 
-		// Trigger post-save hook
-		$hook_args = array( &$this, &$user, $content, $summary,
-			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $meta['baseRevId'] );
-		ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $hook_args );
-		Hooks::run( 'PageContentSaveComplete', $hook_args );
+		// Do secondary updates once the main changes have been committed...
+		$that = $this;
+		$onInsertArgs = array( &$this, &$user, $content, $summary,
+			$flags & EDIT_MINOR, null, null, &$flags, $revision );
+		$onSaveArgs = array_merge( $onInsertArgs, array( &$status, $meta['baseRevId'] ) );
+		$dbw->onTransactionIdle(
+			function () use ( $that, $dbw, $revision, $user, $onInsertArgs, $onSaveArgs ) {
+				// Do per-page updates in a transaction
+				$dbw->setFlag( DBO_TRX );
+				// Update links, etc.
+				$that->doEditUpdates( $revision, $user, array( 'created' => true ) );
+
+				ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $onInsertArgs );
+				Hooks::run( 'PageContentInsertComplete', $onInsertArgs );
+
+				// Trigger post-save hook
+				ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $onSaveArgs );
+				Hooks::run( 'PageContentSaveComplete', $onSaveArgs );
+
+			}
+		);
 
 		return $status;
 	}
