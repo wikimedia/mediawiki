@@ -3301,34 +3301,38 @@ $wgDisableOutputCompression = false;
 $wgExperimentalHtmlIds = false;
 
 /**
- * Abstract list of footer icons for skins in place of old copyrightico and poweredbyico code
+ * Abstract list of footer icons for skins in place of old `copyrightico` and `poweredbyico` code
+ *
  * You can add new icons to the built in copyright or poweredby, or you can create
  * a new block. Though note that you may need to add some custom css to get good styling
- * of new blocks in monobook. vector and modern should work without any special css.
+ * of new blocks in Monobook. vector and modern should work without any special css.
  *
- * $wgFooterIcons itself is a key/value array.
- * The key is the name of a block that the icons will be wrapped in. The final id varies
- * by skin; Monobook and Vector will turn poweredby into f-poweredbyico while Modern
- * turns it into mw_poweredby.
- * The value is either key/value array of icons or a string.
+ * `$wgFooterIcons` itself is a key/value array.
+ *
+ * The **key** is the name of the block that the icons will be wrapped in. Depending on skin, the key becomes:
+ *
+ *  - **Vector** and **Monobook** turn `poweredby` into `f-poweredbyico`
+ *  - **Modern** turns `poweredby` into `mw_poweredby`
+ *
+ * The **value** is either key/value array of icons or a string.
+ *
  * In the key/value array the key may or may not be used by the skin but it can
  * be used to find the icon and unset it or change the icon if needed.
  * This is useful for disabling icons that are set by extensions.
  * The value should be either a string or an array. If it is a string it will be output
  * directly as html, however some skins may choose to ignore it. An array is the preferred format
  * for the icon, the following keys are used:
- * - src: An absolute url to the image to use for the icon, this is recommended
- *        but not required, however some skins will ignore icons without an image
- * - srcset: optional additional-resolution images; see HTML5 specs
- * - url: The url to use in the a element around the text or icon, if not set an a element will
- *        not be outputted
- * - alt: This is the text form of the icon, it will be displayed without an image in
- *        skins like Modern or if src is not set, and will otherwise be used as
- *        the alt="" for the image. This key is required.
- * - width and height: If the icon specified by src is not of the standard size
- *                     you can specify the size of image to use with these keys.
- *                     Otherwise they will default to the standard 88x31.
- * @todo Reformat documentation.
+ * - `src`: An absolute url to the image to use for the icon, this is recommended
+ *          but not required, however some skins will ignore icons without an image
+ * - `srcset`: optional additional-resolution images; see HTML5 specs
+ * - `url`: The url to use in the a element around the text or icon, if not set an a element will
+ *          not be outputted
+ * - `alt`: This is the text form of the icon, it will be displayed without an image in
+ *          skins like Modern or if src is not set, and will otherwise be used as
+ *          the alt="" for the image. This key is required.
+ * - `width` and `height`: If the icon specified by src is not of the standard size
+ *                         you can specify the size of image to use with these keys.
+ *                         Otherwise they will default to the standard 88x31.
  */
 $wgFooterIcons = array(
 	"copyright" => array(
