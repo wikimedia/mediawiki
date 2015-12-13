@@ -181,8 +181,6 @@ class ApiResultTest extends MediaWikiTestCase {
 			);
 		}
 
-<<<<<<< HEAD
-=======
 		ApiResult::setValue( $arr, null, NAN, ApiResult::NO_VALIDATE );
 
 		try {
@@ -196,7 +194,6 @@ class ApiResultTest extends MediaWikiTestCase {
 			);
 		}
 
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 		$arr = array();
 		$result2 = new ApiResult( 8388608 );
 		$result2->addValue( null, 'foo', 'bar' );
@@ -424,8 +421,6 @@ class ApiResultTest extends MediaWikiTestCase {
 			);
 		}
 
-<<<<<<< HEAD
-=======
 		$result->addValue( null, null, NAN, ApiResult::NO_VALIDATE );
 
 		try {
@@ -439,7 +434,6 @@ class ApiResultTest extends MediaWikiTestCase {
 			);
 		}
 
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 		$result->reset();
 		$result->addParsedLimit( 'foo', 12 );
 		$this->assertSame( array(
@@ -476,15 +470,12 @@ class ApiResultTest extends MediaWikiTestCase {
 		$result->removeValue( null, 'foo' );
 		$this->assertTrue( $result->addValue( null, 'foo', '1' ) );
 
-<<<<<<< HEAD
-=======
 		$result = new ApiResult( 10 );
 		$obj = new ApiResultTestSerializableObject( 'ok' );
 		$obj->foobar = 'foobaz';
 		$this->assertTrue( $result->addValue( null, 'foo', $obj ) );
 		$this->assertSame( 2, $result->getSize() );
 
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 		$result = new ApiResult( 8388608 );
 		$result2 = new ApiResult( 8388608 );
 		$result2->addValue( null, 'foo', 'bar' );
@@ -715,13 +706,10 @@ class ApiResultTest extends MediaWikiTestCase {
 				ApiResult::META_TYPE => 'BCkvp',
 				ApiResult::META_KVP_KEY_NAME => 'key',
 			),
-<<<<<<< HEAD
-=======
 			'kvpmerge' => array( 'x' => 'a', 'y' => array( 'b' ), 'z' => array( 'c' => 'd' ),
 				ApiResult::META_TYPE => 'kvp',
 				ApiResult::META_KVP_MERGE => true,
 			),
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 			'emptyDefault' => array( '_dummy' => 1 ),
 			'emptyAssoc' => array( '_dummy' => 1, ApiResult::META_TYPE => 'assoc' ),
 			'_dummy' => 1,
@@ -906,8 +894,6 @@ class ApiResultTest extends MediaWikiTestCase {
 						ApiResult::META_TYPE => 'assoc',
 						ApiResult::META_KVP_KEY_NAME => 'key',
 					),
-<<<<<<< HEAD
-=======
 					'kvpmerge' => array(
 						'x' => 'a',
 						'y' => array( 'b', ApiResult::META_TYPE => 'array' ),
@@ -915,7 +901,6 @@ class ApiResultTest extends MediaWikiTestCase {
 						ApiResult::META_TYPE => 'assoc',
 						ApiResult::META_KVP_MERGE => true,
 					),
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 					'emptyDefault' => array( '_dummy' => 1, ApiResult::META_TYPE => 'array' ),
 					'emptyAssoc' => array( '_dummy' => 1, ApiResult::META_TYPE => 'assoc' ),
 					'_dummy' => 1,
@@ -929,17 +914,12 @@ class ApiResultTest extends MediaWikiTestCase {
 				array( 'Types' => array( 'AssocAsObject' => true ) ),
 				(object)array(
 					'defaultArray' => array( 'b', 'c', 'a', ApiResult::META_TYPE => 'array' ),
-<<<<<<< HEAD
-					'defaultAssoc' => (object)array( 'x' => 'a', 1 => 'b', 0 => 'c', ApiResult::META_TYPE => 'assoc' ),
-					'defaultAssoc2' => (object)array( 2 => 'a', 3 => 'b', 0 => 'c', ApiResult::META_TYPE => 'assoc' ),
-=======
 					'defaultAssoc' => (object)array( 'x' => 'a',
 						1 => 'b', 0 => 'c', ApiResult::META_TYPE => 'assoc'
 					),
 					'defaultAssoc2' => (object)array( 2 => 'a', 3 => 'b',
 						0 => 'c', ApiResult::META_TYPE => 'assoc'
 					),
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 					'array' => array( 'a', 'c', 'b', ApiResult::META_TYPE => 'array' ),
 					'BCarray' => array( 'a', 'c', 'b', ApiResult::META_TYPE => 'array' ),
 					'BCassoc' => (object)array( 'a', 'b', 'c', ApiResult::META_TYPE => 'assoc' ),
@@ -952,8 +932,6 @@ class ApiResultTest extends MediaWikiTestCase {
 						ApiResult::META_TYPE => 'assoc',
 						ApiResult::META_KVP_KEY_NAME => 'key',
 					),
-<<<<<<< HEAD
-=======
 					'kvpmerge' => (object)array(
 						'x' => 'a',
 						'y' => array( 'b', ApiResult::META_TYPE => 'array' ),
@@ -961,7 +939,6 @@ class ApiResultTest extends MediaWikiTestCase {
 						ApiResult::META_TYPE => 'assoc',
 						ApiResult::META_KVP_MERGE => true,
 					),
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 					'emptyDefault' => array( '_dummy' => 1, ApiResult::META_TYPE => 'array' ),
 					'emptyAssoc' => (object)array( '_dummy' => 1, ApiResult::META_TYPE => 'assoc' ),
 					'_dummy' => 1,
@@ -993,8 +970,6 @@ class ApiResultTest extends MediaWikiTestCase {
 						ApiResult::META_TYPE => 'array',
 						ApiResult::META_KVP_KEY_NAME => 'key',
 					),
-<<<<<<< HEAD
-=======
 					'kvpmerge' => array(
 						$kvp( 'name', 'x', 'value', 'a' ),
 						$kvp( 'name', 'y', 'value', array( 'b', ApiResult::META_TYPE => 'array' ) ),
@@ -1002,7 +977,6 @@ class ApiResultTest extends MediaWikiTestCase {
 						ApiResult::META_TYPE => 'array',
 						ApiResult::META_KVP_MERGE => true,
 					),
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 					'emptyDefault' => array( '_dummy' => 1, ApiResult::META_TYPE => 'array' ),
 					'emptyAssoc' => array( '_dummy' => 1, ApiResult::META_TYPE => 'assoc' ),
 					'_dummy' => 1,
@@ -1034,8 +1008,6 @@ class ApiResultTest extends MediaWikiTestCase {
 						ApiResult::META_TYPE => 'array',
 						ApiResult::META_KVP_KEY_NAME => 'key',
 					),
-<<<<<<< HEAD
-=======
 					'kvpmerge' => array(
 						$kvp( 'name', 'x', '*', 'a' ),
 						$kvp( 'name', 'y', '*', array( 'b', ApiResult::META_TYPE => 'array' ) ),
@@ -1043,7 +1015,6 @@ class ApiResultTest extends MediaWikiTestCase {
 						ApiResult::META_TYPE => 'array',
 						ApiResult::META_KVP_MERGE => true,
 					),
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 					'emptyDefault' => array( '_dummy' => 1, ApiResult::META_TYPE => 'array' ),
 					'emptyAssoc' => array( '_dummy' => 1, ApiResult::META_TYPE => 'assoc' ),
 					'_dummy' => 1,
@@ -1057,17 +1028,12 @@ class ApiResultTest extends MediaWikiTestCase {
 				array( 'Types' => array( 'ArmorKVP' => 'name', 'AssocAsObject' => true ) ),
 				(object)array(
 					'defaultArray' => array( 'b', 'c', 'a', ApiResult::META_TYPE => 'array' ),
-<<<<<<< HEAD
-					'defaultAssoc' => (object)array( 'x' => 'a', 1 => 'b', 0 => 'c', ApiResult::META_TYPE => 'assoc' ),
-					'defaultAssoc2' => (object)array( 2 => 'a', 3 => 'b', 0 => 'c', ApiResult::META_TYPE => 'assoc' ),
-=======
 					'defaultAssoc' => (object)array( 'x' => 'a', 1 => 'b',
 						0 => 'c', ApiResult::META_TYPE => 'assoc'
 					),
 					'defaultAssoc2' => (object)array( 2 => 'a', 3 => 'b',
 						0 => 'c', ApiResult::META_TYPE => 'assoc'
 					),
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 					'array' => array( 'a', 'c', 'b', ApiResult::META_TYPE => 'array' ),
 					'BCarray' => array( 'a', 'c', 'b', ApiResult::META_TYPE => 'array' ),
 					'BCassoc' => (object)array( 'a', 'b', 'c', ApiResult::META_TYPE => 'assoc' ),
@@ -1084,8 +1050,6 @@ class ApiResultTest extends MediaWikiTestCase {
 						ApiResult::META_TYPE => 'array',
 						ApiResult::META_KVP_KEY_NAME => 'key',
 					),
-<<<<<<< HEAD
-=======
 					'kvpmerge' => array(
 						(object)$kvp( 'name', 'x', 'value', 'a' ),
 						(object)$kvp( 'name', 'y', 'value', array( 'b', ApiResult::META_TYPE => 'array' ) ),
@@ -1093,7 +1057,6 @@ class ApiResultTest extends MediaWikiTestCase {
 						ApiResult::META_TYPE => 'array',
 						ApiResult::META_KVP_MERGE => true,
 					),
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 					'emptyDefault' => array( '_dummy' => 1, ApiResult::META_TYPE => 'array' ),
 					'emptyAssoc' => (object)array( '_dummy' => 1, ApiResult::META_TYPE => 'assoc' ),
 					'_dummy' => 1,
@@ -1133,14 +1096,11 @@ class ApiResultTest extends MediaWikiTestCase {
 						(object)array( 'key' => 'x', 'value' => 'a' ),
 						(object)array( 'key' => 'y', 'value' => 'b' ),
 					),
-<<<<<<< HEAD
-=======
 					'kvpmerge' => array(
 						(object)array( 'name' => 'x', 'value' => 'a' ),
 						(object)array( 'name' => 'y', 'value' => array( 'b' ) ),
 						(object)array( 'name' => 'z', 'c' => 'd' ),
 					),
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 					'emptyDefault' => array(),
 					'emptyAssoc' => (object)array(),
 					'_dummy' => 1,
@@ -1251,8 +1211,6 @@ class ApiResultTest extends MediaWikiTestCase {
 	/**
 	 * @covers ApiResult
 	 */
-<<<<<<< HEAD
-=======
 	public function testAddMetadataToResultVars() {
 		$arr = array(
 			'a' => "foo",
@@ -1323,19 +1281,14 @@ class ApiResultTest extends MediaWikiTestCase {
 	/**
 	 * @covers ApiResult
 	 */
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 	public function testDeprecatedFunctions() {
 		// Ignore ApiResult deprecation warnings during this test
 		set_error_handler( function ( $errno, $errstr ) use ( &$warnings ) {
 			if ( preg_match( '/Use of ApiResult::\S+ was deprecated in MediaWiki \d+.\d+\./', $errstr ) ) {
 				return true;
 			}
-<<<<<<< HEAD
-			if ( preg_match( '/Use of ApiMain to ApiResult::__construct was deprecated in MediaWiki \d+.\d+\./', $errstr ) ) {
-=======
 			if ( preg_match( '/Use of ApiMain to ApiResult::__construct ' .
 				'was deprecated in MediaWiki \d+.\d+\./', $errstr ) ) {
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 				return true;
 			}
 			return false;
@@ -1368,20 +1321,6 @@ class ApiResultTest extends MediaWikiTestCase {
 			),
 			'*' => 'content',
 		), $result->getData() );
-<<<<<<< HEAD
-		$result->setRawMode();
-		$this->assertSame( array(
-			'foo' => array(
-				'bar' => array(
-					'*' => 'content',
-				),
-			),
-			'*' => 'content',
-			'_element' => 'itn',
-			'_subelements' => array( 'sub' ),
-		), $result->getData() );
-=======
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 
 		$arr = array();
 		ApiResult::setContent( $arr, 'value' );
@@ -1656,12 +1595,9 @@ class ApiResultTest extends MediaWikiTestCase {
 
 		$result = new ApiResult( 8388608 );
 		$result->setMainForContinuation( $main );
-<<<<<<< HEAD
-		$result->beginContinuation( '||mock2', array_slice( $allModules, 0, 2 ), array( 'mock1', 'mock2' ) );
-=======
 		$result->beginContinuation( '||mock2', array_slice( $allModules, 0, 2 ),
 			array( 'mock1', 'mock2' ) );
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
+
 		try {
 			$result->setContinueParam( $allModules[1], 'm2continue', 1 );
 			$this->fail( 'Expected exception not thrown' );
@@ -1677,12 +1613,8 @@ class ApiResultTest extends MediaWikiTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( UnexpectedValueException $ex ) {
 			$this->assertSame(
-<<<<<<< HEAD
-				'Module \'mocklist\' called ApiContinuationManager::addContinueParam but was not passed to ApiContinuationManager::__construct',
-=======
 				'Module \'mocklist\' called ApiContinuationManager::addContinueParam ' .
 					'but was not passed to ApiContinuationManager::__construct',
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 				$ex->getMessage(),
 				'Expected exception'
 			);
@@ -1710,22 +1642,14 @@ class ApiResultTest extends MediaWikiTestCase {
 
 		try {
 			$arr = array();
-<<<<<<< HEAD
-			ApiResult::setValue( $arr, 'foo',  new ApiResultTestSerializableObject(
-=======
 			ApiResult::setValue( $arr, 'foo', new ApiResultTestSerializableObject(
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 				new ApiResultTestStringifiableObject()
 			) );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( UnexpectedValueException $ex ) {
 			$this->assertSame(
-<<<<<<< HEAD
-				'ApiResultTestSerializableObject::serializeForApiResult() returned an object of class ApiResultTestStringifiableObject',
-=======
 				'ApiResultTestSerializableObject::serializeForApiResult() ' .
 					'returned an object of class ApiResultTestStringifiableObject',
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 				$ex->getMessage(),
 				'Expected exception'
 			);
@@ -1733,31 +1657,19 @@ class ApiResultTest extends MediaWikiTestCase {
 
 		try {
 			$arr = array();
-<<<<<<< HEAD
-			ApiResult::setValue( $arr, 'foo',  new ApiResultTestSerializableObject( NAN ) );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( UnexpectedValueException $ex ) {
-			$this->assertSame(
-				'ApiResultTestSerializableObject::serializeForApiResult() returned an invalid value: Cannot add non-finite floats to ApiResult',
-=======
 			ApiResult::setValue( $arr, 'foo', new ApiResultTestSerializableObject( NAN ) );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( UnexpectedValueException $ex ) {
 			$this->assertSame(
 				'ApiResultTestSerializableObject::serializeForApiResult() ' .
 					'returned an invalid value: Cannot add non-finite floats to ApiResult',
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 				$ex->getMessage(),
 				'Expected exception'
 			);
 		}
 
 		$arr = array();
-<<<<<<< HEAD
-		ApiResult::setValue( $arr, 'foo',  new ApiResultTestSerializableObject(
-=======
 		ApiResult::setValue( $arr, 'foo', new ApiResultTestSerializableObject(
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 			array(
 				'one' => new ApiResultTestStringifiableObject( '1' ),
 				'two' => new ApiResultTestSerializableObject( 2 ),
