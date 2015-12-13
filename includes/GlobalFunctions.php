@@ -4094,20 +4094,6 @@ function wfIsInfinity( $str ) {
 }
 
 /**
- * Checks if an IP is a trusted proxy provider.
- * Useful to tell if X-Forwarded-For data is possibly bogus.
- * CDN cache servers for the site are whitelisted.
- * @deprecated Since 1.24, use IP::isTrustedProxy()
- *
- * @param string $ip
- * @return bool
- */
-function wfIsTrustedProxy( $ip ) {
-	wfDeprecated( __METHOD__, '1.24' );
-	return IP::isTrustedProxy( $ip );
-}
-
-/**
  * Checks if an IP matches a proxy we've configured.
  * @deprecated Since 1.24, use IP::isConfiguredProxy()
  *
