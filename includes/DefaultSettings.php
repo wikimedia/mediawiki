@@ -5048,24 +5048,23 @@ $wgAutoConfirmCount = 0;
 /**
  * Automatically add a usergroup to any user who matches certain conditions.
  *
- * @todo Redocument $wgAutopromote
- *
  * The format is
- *   array( '&' or '|' or '^' or '!', cond1, cond2, ... )
- * where cond1, cond2, ... are themselves conditions; *OR*
- *   APCOND_EMAILCONFIRMED, *OR*
- *   array( APCOND_EMAILCONFIRMED ), *OR*
- *   array( APCOND_EDITCOUNT, number of edits ), *OR*
- *   array( APCOND_AGE, seconds since registration ), *OR*
- *   array( APCOND_INGROUPS, group1, group2, ... ), *OR*
- *   array( APCOND_ISIP, ip ), *OR*
- *   array( APCOND_IPINRANGE, range ), *OR*
- *   array( APCOND_AGE_FROM_EDIT, seconds since first edit ), *OR*
- *   array( APCOND_BLOCKED ), *OR*
- *   array( APCOND_ISBOT ), *OR*
- *   similar constructs defined by extensions.
  *
- * If $wgEmailAuthentication is off, APCOND_EMAILCONFIRMED will be true for any
+ *       array( '&' or '|' or '^' or '!', cond1, cond2, ... )
+ *     where cond1, cond2, ... are themselves conditions; OR
+ *       APCOND_EMAILCONFIRMED, OR
+ *       array( APCOND_EMAILCONFIRMED ), OR
+ *       array( APCOND_EDITCOUNT, number of edits ), OR
+ *       array( APCOND_AGE, seconds since registration ), OR
+ *       array( APCOND_INGROUPS, group1, group2, ... ), OR
+ *       array( APCOND_ISIP, ip ), OR
+ *       array( APCOND_IPINRANGE, range ), OR
+ *       array( APCOND_AGE_FROM_EDIT, seconds since first edit ), OR
+ *       array( APCOND_BLOCKED ), OR
+ *       array( APCOND_ISBOT ), OR
+ *       similar constructs defined by extensions.
+ *
+ * If `$wgEmailAuthentication` is off, `APCOND_EMAILCONFIRMED` will be true for any
  * user who has provided an e-mail address.
  */
 $wgAutopromote = array(
