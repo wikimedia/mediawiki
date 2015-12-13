@@ -4461,14 +4461,15 @@ class Language {
 	}
 
 	/**
-	 * @todo Document
+	 * Formats a time given in seconds into a string representation of that time.
+	 *
 	 * @param int|float $seconds
-	 * @param array $format Optional
-	 *   If $format['avoid'] === 'avoidseconds': don't mention seconds if $seconds >= 1 hour.
-	 *   If $format['avoid'] === 'avoidminutes': don't mention seconds/minutes if $seconds > 48 hours.
+	 * @param array $format An optional argument that formats the returned string in different ways:
+	 *   If $format['avoid'] === 'avoidseconds': don't show seconds if $seconds >= 1 hour,
+	 *   If $format['avoid'] === 'avoidminutes': don't show seconds/minutes if $seconds > 48 hours,
 	 *   If $format['noabbrevs'] is true: use 'seconds' and friends instead of 'seconds-abbrev'
 	 *     and friends.
-	 *   For backwards compatibility, $format may also be one of the strings 'avoidseconds'
+	 * @note For backwards compatibility, $format may also be one of the strings 'avoidseconds'
 	 *     or 'avoidminutes'.
 	 * @return string
 	 */
