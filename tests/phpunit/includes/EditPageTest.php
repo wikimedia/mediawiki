@@ -272,6 +272,25 @@ class EditPageTest extends MediaWikiLangTestCase {
 	public function testCreatePage(
 		$desc, $pageTitle, $user, $editText, $expectedCode, $expectedText, $ignoreBlank = false
 	) {
+		$checkId = null;
+
+		$this->setMwGlobals( 'wgHooks', array(
+			'PageContentInsertComplete' => array( function (
+				WikiPage &$page, User &$user, Content $content,
+				$summary, $minor, $u1, $u2, &$flags, Revision $revision
+			) {
+				// types/refs checked
+			} ),
+			'PageContentSaveComplete' => array( function (
+				WikiPage &$page, User &$user, Content $content,
+				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
+				Status &$status, $baseRevId
+			) use ( &$checkId ) {
+				$checkId = $status->value['revision']->getId();
+				// types/refs checked
+			} ),
+		) );
+
 		$edit = array( 'wpTextbox1' => $editText );
 		if ( $ignoreBlank ) {
 			$edit['wpIgnoreBlankArticle'] = 1;
@@ -280,7 +299,67 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$page = $this->assertEdit( $pageTitle, null, $user, $edit, $expectedCode, $expectedText, $desc );
 
 		if ( $expectedCode != EditPage::AS_BLANK_ARTICLE ) {
+			$latest = $page->getLatest();
 			$page->doDeleteArticleReal( $pageTitle );
+
+			$this->assertGreaterThan( 0, $latest, "Page revision ID updated in object" );
+			$this->assertEquals( $latest, $checkId, "Revision in Status for hook" );
+		}
+	}
+
+	/**
+	 * @dataProvider provideCreatePages
+	 * @covers EditPage
+	 */
+	public function testCreatePageTrx(
+		$desc, $pageTitle, $user, $editText, $expectedCode, $expectedText, $ignoreBlank = false
+	) {
+		$checkIds = array();
+		$this->setMwGlobals( 'wgHooks', array(
+			'PageContentInsertComplete' => array( function (
+				WikiPage &$page, User &$user, Content $content,
+				$summary, $minor, $u1, $u2, &$flags, Revision $revision
+			) {
+				// types/refs checked
+			} ),
+			'PageContentSaveComplete' => array( function (
+				WikiPage &$page, User &$user, Content $content,
+				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
+				Status &$status, $baseRevId
+			) use ( &$checkIds ) {
+				$checkIds[] = $status->value['revision']->getId();
+				// types/refs checked
+			} ),
+		) );
+
+		wfGetDB( DB_MASTER )->begin( __METHOD__ );
+
+		$edit = array( 'wpTextbox1' => $editText );
+		if ( $ignoreBlank ) {
+			$edit['wpIgnoreBlankArticle'] = 1;
+		}
+
+		$page = $this->assertEdit(
+			$pageTitle, null, $user, $edit, $expectedCode, $expectedText, $desc );
+
+		$pageTitle2 = (string)$pageTitle . '/x';
+		$page2 = $this->assertEdit(
+			$pageTitle2, null, $user, $edit, $expectedCode, $expectedText, $desc );
+
+		wfGetDB( DB_MASTER )->commit( __METHOD__ );
+
+		if ( $expectedCode != EditPage::AS_BLANK_ARTICLE ) {
+			$latest = $page->getLatest();
+			$page->doDeleteArticleReal( $pageTitle );
+
+			$this->assertGreaterThan( 0, $latest, "Page #1 revision ID updated in object" );
+			$this->assertEquals( $latest, $checkIds[0], "Revision #1 in Status for hook" );
+
+			$latest2 = $page2->getLatest();
+			$page2->doDeleteArticleReal( $pageTitle2 );
+
+			$this->assertGreaterThan( 0, $latest2, "Page #2 revision ID updated in object" );
+			$this->assertEquals( $latest2, $checkIds[1], "Revision #2 in Status for hook" );
 		}
 	}
 
