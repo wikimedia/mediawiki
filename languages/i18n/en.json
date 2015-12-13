@@ -3024,7 +3024,7 @@
 	"exif-photometricinterpretation-2": "RGB",
 	"exif-photometricinterpretation-3": "Palette",
 	"exif-photometricinterpretation-4": "Transparency mask",
-	"exif-photometricinterpretation-5": "Seperated (Probably CMYK)",
+	"exif-photometricinterpretation-5": "Separated (Probably CMYK)",
 	"exif-photometricinterpretation-6": "YCbCr",
 	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC encoding)",
