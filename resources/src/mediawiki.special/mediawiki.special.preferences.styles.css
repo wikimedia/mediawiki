@@ -1,9 +1,9 @@
-/* Reuses colors from mediawiki.special.changeemail.css */
+/* Reuses colors from mediawiki.legacy/shared.css */
 .mw-email-not-authenticated .mw-input,
 .mw-email-none .mw-input{
-	border: 1px solid #FF8080;
-	background-color: #FFC0C0;
-	color: black;
+	border: 1px solid #fde29b;
+	background-color: #fdf1d1;
+	color: #000000;
 }
 /* Authenticated email field has its own class too. Unstyled by default */
 /*

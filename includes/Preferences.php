@@ -496,6 +496,7 @@ class Preferences {
 					$disableEmailPrefs = true;
 					$emailauthenticated = $context->msg( 'noemailprefs' )->escaped();
 					$emailauthenticationclass = 'mw-email-none';
+					$defaultPreferences['emailaddress']['cssclass'] = $emailauthenticationclass;
 				}
 
 				if ( $canViewPrivateInfo ) {
@@ -508,7 +509,6 @@ class Preferences {
 						# Apply the same CSS class used on the input to the message:
 						'cssclass' => $emailauthenticationclass,
 					);
-					$defaultPreferences['emailaddress']['cssclass'] = $emailauthenticationclass;
 				}
 			}
 
