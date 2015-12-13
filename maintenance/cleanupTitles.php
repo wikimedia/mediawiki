@@ -2,10 +2,6 @@
 /**
  * Clean up broken, unparseable titles.
  *
- * Usage: php cleanupTitles.php [--fix]
- * Options:
- *   --fix  Actually clean up titles; otherwise just checks for them
- *
  * Copyright © 2005 Brion Vibber <brion@pobox.com>
  * https://www.mediawiki.org/
  *
