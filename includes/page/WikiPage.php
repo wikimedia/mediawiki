@@ -1808,6 +1808,8 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$changed = !$content->equals( $oldContent );
 
+		$dbw = wfGetDB( DB_MASTER );
+
 		if ( $changed ) {
 			$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
 			$status->merge( $prepStatus );
@@ -1815,14 +1817,13 @@ class WikiPage implements Page, IDBAccessObject {
 				return $status;
 			}
 
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin( __METHOD__ );
+			$dbw->startAtomic( __METHOD__ );
 			// Get the latest page_latest value while locking it.
 			// Do a CAS style check to see if it's the same as when this method
 			// started. If it changed then bail out before touching the DB.
 			$latestNow = $this->lockAndGetLatest();
 			if ( $latestNow != $oldid ) {
-				$dbw->commit( __METHOD__ );
+				$dbw->endAtomic( __METHOD__ );
 				// Page updated or deleted in the mean time
 				$status->fatal( 'edit-conflict' );
 
@@ -1870,7 +1871,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 			$user->incEditCount();
 
-			$dbw->commit( __METHOD__ );
+			$dbw->endAtomic( __METHOD__ );
 			$this->mTimestamp = $now;
 		} else {
 			// Bug 32948: revision ID must be set to page {{REVISIONID}} and
@@ -1878,15 +1879,23 @@ class WikiPage implements Page, IDBAccessObject {
 			$revision->setId( $this->getLatest() );
 		}
 
-		// Update links tables, site stats, etc.
-		$this->doEditUpdates(
-			$revision,
-			$user,
-			array(
-				'changed' => $changed,
-				'oldcountable' => $meta['oldCountable'],
-				'oldrevision' => $meta['oldRevision']
-			)
+		// Do secondary updates once the main changes have been committed...
+		$that = $this;
+		$dbw->onTransactionIdle(
+			function () use ( $dbw, $that, $revision, $user, $changed, $meta ) {
+				// Do per-page updates in a transaction
+				$dbw->setFlag( DBO_TRX );
+				// Update links tables, site stats, etc.
+				$that->doEditUpdates(
+					$revision,
+					$user,
+					array(
+						'changed' => $changed,
+						'oldcountable' => $meta['oldCountable'],
+						'oldrevision' => $meta['oldRevision']
+					)
+				);
+			}
 		);
 
 		if ( $changed ) {
