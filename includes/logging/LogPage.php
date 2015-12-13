@@ -208,7 +208,27 @@ class LogPage {
 	 * @return bool
 	 */
 	public static function isLogType( $type ) {
-		return in_array( $type, LogPage::validTypes() );
+		return in_array( $type, self::validTypes() );
+	}
+
+	/**
+	 * Get the list of valid groups of log types
+	 *
+	 * @return array Array of strings
+	 */
+	public static function validGroups() {
+		global $wgGroupLogTypes;
+		return array_unique( array_values( $wgGroupLogTypes ) );
+	}
+
+	/**
+	 * Is $group a valid group of log types
+	 *
+	 * @param string $group
+	 * @return bool
+	 */
+	public static function isValidGroup( $group ) {
+		return in_array( $group, self::validGroups() );
 	}
 
 	/**

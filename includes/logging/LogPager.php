@@ -113,7 +113,7 @@ class LogPager extends ReverseChronologicalPager {
 	 *   empty string means no restriction
 	 */
 	private function limitType( $types ) {
-		global $wgLogRestrictions;
+		global $wgLogRestrictions, $wgGroupLogTypes;
 
 		$user = $this->getUser();
 		// If $types is not an array, make it an array
@@ -142,7 +142,17 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds[] = $hideLogs;
 		}
 		if ( count( $types ) ) {
-			$this->mConds['log_type'] = $types;
+			$typeConds = array();
+			foreach( $types as $type ) {
+				// If $type is a group, filter for all log types in this group
+				if ( in_array( $type, $wgGroupLogTypes ) ) {
+					$typeConds = array_merge( $typeConds,
+						array_keys( $wgGroupLogTypes, $type ) );
+				} else {
+					$typeConds[] = $type;
+				}
+			}
+			$this->mConds['log_type'] = $typeConds;
 			// Set typeCGI; used in url param for paging
 			if ( count( $types ) == 1 ) {
 				$this->typeCGI = $types[0];
