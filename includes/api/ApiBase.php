@@ -2399,13 +2399,14 @@ abstract class ApiBase extends ContextSource {
 
 		// Build map of extension directories to extension info
 		if ( self::$extensionInfo === null ) {
+			$extDir = $this->getConfig()->get( 'ExtensionDirectory' );
 			self::$extensionInfo = array(
 				realpath( __DIR__ ) ?: __DIR__ => array(
 					'path' => $IP,
 					'name' => 'MediaWiki',
 					'license-name' => 'GPL-2.0+',
 				),
-				realpath( "$IP/extensions" ) ?: "$IP/extensions" => null,
+				realpath( $extDir ) ?: $extDir => null,
 			);
 			$keep = array(
 				'path' => null,
