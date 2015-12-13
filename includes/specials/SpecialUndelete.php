@@ -671,9 +671,10 @@ class SpecialUndelete extends SpecialPage {
 	private	$mTarget;
 	private	$mTimestamp;
 	private	$mRestore;
+	private	$mRevdel;
 	private	$mInvert;
 	private	$mFilename;
-	private $mTargetTimestamp;
+	private	$mTargetTimestamp;
 	private	$mAllowed;
 	private	$mCanView;
 	private	$mComment;
@@ -711,6 +712,7 @@ class SpecialUndelete extends SpecialPage {
 		$posted = $request->wasPosted() &&
 			$user->matchEditToken( $request->getVal( 'wpEditToken' ) );
 		$this->mRestore = $request->getCheck( 'restore' ) && $posted;
+		$this->mRevdel = $request->getCheck( 'revdel' ) && $posted;
 		$this->mInvert = $request->getCheck( 'invert' ) && $posted;
 		$this->mPreview = $request->getCheck( 'preview' ) && $posted;
 		$this->mDiff = $request->getCheck( 'diff' );
@@ -823,11 +825,40 @@ class SpecialUndelete extends SpecialPage {
 			} else {
 				$this->showFile( $this->mFilename );
 			}
-		} elseif ( $this->mRestore && $this->mAction == 'submit' ) {
-			$this->undelete();
+		} elseif ( $this->mAction === "submit" ) {
+			if ( $this->mRestore ) {
+				$this->undelete();
+			} elseif ( $this->mRevdel ) {
+				$this->redirectToRevDel();
+			}
+
 		} else {
 			$this->showHistory();
 		}
+	}
+
+	/**
+	 * Convert submitted form data to format expected by RevisionDelete and
+	 * redirect the request
+	 */
+	private function redirectToRevDel() {
+		$archive = new PageArchive( $this->mTargetObj );
+
+		$revisions = array();
+
+		foreach ( $this->getRequest()->getValues() as $key => $val ) {
+			$matches = array();
+			if ( preg_match( "/^ts(\d{14})$/", $key, $matches ) ) {
+				$revisions[ $archive->getRevision( $matches[1] )->getId() ] = 1;
+			}
+		}
+		$query = array(
+			"type" => "revision",
+			"ids" => $revisions,
+			"target" => wfUrlencode( $this->mTargetObj )
+		);
+		$url = SpecialPage::getTitleFor( "RevisionDelete" )->getFullURL( $query );
+		$this->getOutput()->redirect( $url );
 	}
 
 	function showSearchForm() {
@@ -1348,7 +1379,20 @@ class SpecialUndelete extends SpecialPage {
 		$out->addHTML( Xml::element( 'h2', null, $this->msg( 'history' )->text() ) . "\n" );
 
 		if ( $haveRevisions ) {
-			# The page's stored (deleted) history:
+			# Show the page's stored (deleted) history
+
+			if ( $this->getUser()->isAllowed( 'deleterevision' ) ) {
+				$out->addHTML( Html::element(
+					'button',
+					array(
+						'name' => 'revdel',
+						'type' => 'submit',
+						'class' => 'deleterevision-log-submit mw-log-deleterevision-button'
+					),
+					$this->msg( 'showhideselectedversions' )->text()
+				) . "\n" );
+			}
+
 			$out->addHTML( '<ul>' );
 			$remaining = $revisions->numRows();
 			$earliestLiveTime = $this->mTargetObj->getEarliestRevTime();
@@ -1458,13 +1502,9 @@ class SpecialUndelete extends SpecialPage {
 			$attribs['class'] = implode( ' ', $classes );
 		}
 
-		// Revision delete links
-		$revdlink = Linker::getRevDeleteLink( $user, $rev, $this->mTargetObj );
-
 		$revisionRow = $this->msg( 'undelete-revision-row' )
 			->rawParams(
 				$checkBox,
-				$revdlink,
 				$last,
 				$pageLink,
 				$userLink,

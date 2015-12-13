@@ -2114,7 +2114,7 @@
 	"undelete-error-long": "Errors were encountered while undeleting the file:\n\n$1",
 	"undelete-show-file-confirm": "Are you sure you want to view the deleted revision of the file \"<nowiki>$1</nowiki>\" from $2 at $3?",
 	"undelete-show-file-submit": "Yes",
-	"undelete-revision-row": "$1 $2 ($3) $4 . . $5 $6 $7 $8 $9",
+	"undelete-revision-row": "$1 ($2) $3 . . $4 $5 $6 $7 $8",
 	"namespace": "Namespace:",
 	"invert": "Invert selection",
 	"tooltip-invert": "Check this box to hide changes to pages within the selected namespace (and the associated namespace if checked)",
