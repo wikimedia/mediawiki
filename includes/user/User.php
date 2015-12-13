@@ -5322,6 +5322,28 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Get a new instance of this user that was loaded from the master via a locking read
+	 *
+	 * Use this instead of the main context User when updating that user. This avoids races
+	 * where that user was loaded from a slave or even the master but without proper locks.
+	 *
+	 * @return User|null Returns null if the user was not found in the DB
+	 * @since 1.27
+	 */
+	public function getInstanceForUpdate() {
+		if ( !$this->getId() ) {
+			return null; // anon
+		}
+
+		$user = self::newFromId( $this->getId() );
+		if ( !$user->loadFromId( self::READ_EXCLUSIVE ) ) {
+			return null;
+		}
+
+		return $user;
+	}
+
+	/**
 	 * Checks if two user objects point to the same user.
 	 *
 	 * @since 1.25
