@@ -938,14 +938,15 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * @return string
 	 */
 	function getStartBody() {
-		return "<ul class=\"mw-contributions-list\">\n";
+		return "<table class=\"mw-contributions-list wikitable\">\n".
+				"<tr><td>Timestamp</td><td>Author</td><td></td><td>Diff</td><td>Flags</td><td>Current</td><td>Comment</td></tr>";
 	}
 
 	/**
 	 * @return string
 	 */
 	function getEndBody() {
-		return "</ul>\n";
+		return "</table>\n";
 	}
 
 	/**
@@ -1004,6 +1005,7 @@ class ContribsPager extends ReverseChronologicalPager {
 					$topmarktext .= ' ' . Linker::generateRollback( $rev, $this->getContext() );
 				}
 			}
+
 			# Is there a visible previous revision?
 			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) && $rev->getParentId() !== 0 ) {
 				$difftext = Linker::linkKnown(
@@ -1029,22 +1031,18 @@ class ContribsPager extends ReverseChronologicalPager {
 				// For some reason rev_parent_id isn't populated for this row.
 				// Its rumoured this is true on wikipedia for some revisions (bug 34922).
 				// Next best thing is to have the total number of bytes.
-				$chardiff = ' <span class="mw-changeslist-separator">. .</span> ';
-				$chardiff .= Linker::formatRevisionSize( $row->rev_len );
-				$chardiff .= ' <span class="mw-changeslist-separator">. .</span> ';
+				$chardiff = Linker::formatRevisionSize( $row->rev_len );
 			} else {
 				$parentLen = 0;
 				if ( isset( $this->mParentLens[$row->rev_parent_id] ) ) {
 					$parentLen = $this->mParentLens[$row->rev_parent_id];
 				}
 
-				$chardiff = ' <span class="mw-changeslist-separator">. .</span> ';
-				$chardiff .= ChangesList::showCharacterDifference(
+				$chardiff = ChangesList::showCharacterDifference(
 					$parentLen,
 					$row->rev_len,
 					$this->getContext()
 				);
-				$chardiff .= ' <span class="mw-changeslist-separator">. .</span> ';
 			}
 
 			$lang = $this->getLanguage();
@@ -1062,7 +1060,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			}
 			if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$d = '<span class="history-deleted">' . $d . '</span>';
+				$d = '<span class="history-deleted">' . $d . '</span>';
 			}
+
 
 			# Show user names for /newbies as there may be different users.
 			# Note that we already excluded rows with hidden user names.
@@ -1092,11 +1092,18 @@ class ContribsPager extends ReverseChronologicalPager {
 				$del .= ' ';
 			}
 
-			$diffHistLinks = $this->msg( 'parentheses' )
-				->rawParams( $difftext . $this->messages['pipe-separator'] . $histlink )
-				->escaped();
-			$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$nflag}{$mflag} ";
-			$ret .= "{$link}{$userlink} {$comment} {$topmarktext}";
+			$diffHistLinks = $difftext . $this->messages['pipe-separator'] . $histlink;
+
+			$d = Html::rawElement( 'td', array(), $d );
+			$diffHistLinks = Html::rawElement( 'td',  array( 'style' => 'white-space: nowrap;' ), $diffHistLinks );
+			$chardiff = Html::rawElement( 'td', array(), $chardiff );
+			$flags = Html::rawElement( 'td', array(), $nflag.$mflag );
+			$links = Html::rawElement( 'td', array( 'style' => 'white-space: nowrap;' ), $link.$userlink );
+			$topmarktext = Html::rawElement( 'td', array(), $topmarktext );
+			$comment = Html::rawElement( 'td', array(), $comment );
+
+			$ret = "{$del} {$d} {$links} {$diffHistLinks}{$chardiff}{$flags} ";
+			$ret .= "{$topmarktext} {$comment}";
 
 			# Denote if username is redacted for this edit
 			if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
@@ -1121,7 +1128,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			wfDebug( "Dropping Special:Contribution row that could not be formatted\n" );
 			$ret = "<!-- Could not format Special:Contribution row. -->\n";
 		} else {
-			$ret = Html::rawElement( 'li', array( 'class' => $classes ), $ret ) . "\n";
+			$ret = Html::rawElement( 'tr', array( 'class' => $classes, 'background: red; color: white' ), $ret ) . "\n";
 		}
 
 		return $ret;
