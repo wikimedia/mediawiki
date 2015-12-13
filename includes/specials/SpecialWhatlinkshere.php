@@ -548,7 +548,9 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		if ( $search === '' ) {
+		$title = Title::newFromText( $search );
+		if ( !$title || !$title->canExist() ) {
+			// No prefix suggestion in special and media namespace
 			return array();
 		}
 		// Autocomplete subpage the same as a normal search
