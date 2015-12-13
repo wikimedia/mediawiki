@@ -346,7 +346,10 @@ class Linker {
 		} elseif ( in_array( 'known', $options ) ) {
 			$defaults['title'] = $target->getPrefixedText();
 		} else {
-			$defaults['title'] = wfMessage( 'red-link-title', $target->getPrefixedText() )->text();
+			// This ends up in parser cache!
+			$defaults['title'] = wfMessage( 'red-link-title', $target->getPrefixedText() )
+				->inContentLanguage()
+				->text();
 		}
 
 		# Finally, merge the custom attribs with the default ones, and iterate
