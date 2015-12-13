@@ -40,6 +40,7 @@
 	"tog-watchlisthidebots": "په کتنلړ کې د روباټ سمونې پټول",
 	"tog-watchlisthideminor": "په کتنلړ کې وړې سمونې پټول",
 	"tog-watchlisthideliu": "په کتنلړ کې د ثبت شويو کارنانو سمونې پټول",
+	"tog-watchlistreloadautomatically": "هرکله چې يو چاڼگر بدلېږي، کتنلړ دې هم په خپلکاره توگه بيابرسېره شي. (د جاواسکرېپټ اړتيا)",
 	"tog-watchlisthideanons": "په کتنلړ کې د ورکنومو کارنانو سمونې پټول",
 	"tog-watchlisthidepatrolled": "په کتنلړ کې څارل شوې سمونې پټول",
 	"tog-watchlisthidecategorization": "په وېشنيزو کې د مخونو وېشنه پټول",
