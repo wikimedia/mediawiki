@@ -272,6 +272,25 @@ class EditPageTest extends MediaWikiLangTestCase {
 	public function testCreatePage(
 		$desc, $pageTitle, $user, $editText, $expectedCode, $expectedText, $ignoreBlank = false
 	) {
+		$checkId = null;
+
+		$this->setMwGlobals( 'wgHooks', array(
+			'PageContentInsertComplete' => array( function (
+				WikiPage &$page, User &$user, Content $content,
+				$summary, $minor, $u1, $u2, &$flags, Revision $revision
+			) {
+				// types/refs checked
+			} ),
+			'PageContentSaveComplete' => array( function (
+				WikiPage &$page, User &$user, Content $content,
+				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
+				Status &$status, $baseRevId
+			) use ( &$checkId ) {
+				$checkId = $status->value['revision']->getId();
+				// types/refs checked
+			} ),
+		) );
+
 		$edit = array( 'wpTextbox1' => $editText );
 		if ( $ignoreBlank ) {
 			$edit['wpIgnoreBlankArticle'] = 1;
@@ -280,7 +299,11 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$page = $this->assertEdit( $pageTitle, null, $user, $edit, $expectedCode, $expectedText, $desc );
 
 		if ( $expectedCode != EditPage::AS_BLANK_ARTICLE ) {
+			$latest = $page->getLatest();
 			$page->doDeleteArticleReal( $pageTitle );
+
+			$this->assertGreaterThan( 0, $latest, "Page revision ID updated in object" );
+			$this->assertEquals( $latest, $checkId, "Revision in Status for hook" );
 		}
 	}
 
