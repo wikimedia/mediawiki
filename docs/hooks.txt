@@ -1686,9 +1686,9 @@ $rc: RecentChange object that triggered url generation
 'IsFileCacheable': Override the result of Article::isFileCacheable() (if true)
 &$article: article (object) being checked
 
-'IsTrustedProxy': Override the result of wfIsTrustedProxy()
+'IsTrustedProxy': Override the result of IP::isTrustedProxy()
 &$ip: IP being check
-&$result: Change this value to override the result of wfIsTrustedProxy()
+&$result: Change this value to override the result of IP::isTrustedProxy()
 
 'IsUploadAllowedFromUrl': Override the result of UploadFromUrl::isAllowedUrl()
 $url: URL used to upload from
