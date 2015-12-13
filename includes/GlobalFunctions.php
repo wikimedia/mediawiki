@@ -4074,19 +4074,6 @@ function wfIsInfinity( $str ) {
 }
 
 /**
- * Checks if an IP matches a proxy we've configured.
- * @deprecated Since 1.24, use IP::isConfiguredProxy()
- *
- * @param string $ip
- * @return bool
- * @since 1.23 Supports CIDR ranges in $wgSquidServersNoPurge
- */
-function wfIsConfiguredProxy( $ip ) {
-	wfDeprecated( __METHOD__, '1.24' );
-	return IP::isConfiguredProxy( $ip );
-}
-
-/**
  * Returns true if these thumbnail parameters match one that MediaWiki
  * requests from file description pages and/or parser output.
  *
