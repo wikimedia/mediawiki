@@ -671,6 +671,7 @@ class SpecialUndelete extends SpecialPage {
 	private	$mTarget;
 	private	$mTimestamp;
 	private	$mRestore;
+	private $mRevdel;
 	private	$mInvert;
 	private	$mFilename;
 	private $mTargetTimestamp;
@@ -711,6 +712,7 @@ class SpecialUndelete extends SpecialPage {
 		$posted = $request->wasPosted() &&
 			$user->matchEditToken( $request->getVal( 'wpEditToken' ) );
 		$this->mRestore = $request->getCheck( 'restore' ) && $posted;
+		$this->mRevdel = $request->getCheck( 'revdel' ) && $posted;
 		$this->mInvert = $request->getCheck( 'invert' ) && $posted;
 		$this->mPreview = $request->getCheck( 'preview' ) && $posted;
 		$this->mDiff = $request->getCheck( 'diff' );
@@ -823,12 +825,37 @@ class SpecialUndelete extends SpecialPage {
 			} else {
 				$this->showFile( $this->mFilename );
 			}
-		} elseif ( $this->mRestore && $this->mAction == 'submit' ) {
-			$this->undelete();
+		} elseif ( $this->mAction == 'submit' ) {
+			if ( $this->mRestore ) {
+				$this->undelete();
+			}
+			elseif ( $this->mRevdel ) {
+				$this->redirectToRevDel();
+			}
+
 		} else {
 			$this->showHistory();
 		}
 	}
+
+	function redirectToRevDel() {
+		$request = $this->getRequest();
+		$archive = new PageArchive( $this->mTargetObj );
+
+		$query = 'action=revisiondelete';
+		foreach ( $request->getValues() as $key => $val ) {
+			$matches = array();
+			if ( preg_match( '/^ts(\d{14})$/', $key, $matches ) ) {	
+					$rev = $archive->getRevision( $matches[1] );
+					$query .= '&ids[' . $rev->getId() . ']=1';
+				}
+			}
+			
+		$url =  $rev->getTitle()->getFullURL($query);
+		$this->getOutput()->redirect( $url );
+	}
+
+
 
 	function showSearchForm() {
 		$out = $this->getOutput();
@@ -1281,12 +1308,14 @@ class SpecialUndelete extends SpecialPage {
 		# Show relevant lines from the deletion log:
 		$deleteLogPage = new LogPage( 'delete' );
 		$out->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName()->text() ) . "\n" );
-		LogEventsList::showLogExtract( $out, 'delete', $this->mTargetObj );
+		LogEventsList::showLogExtract( $out, 'delete', $this->mTargetObj, '',
+			array( 'flags' => LogEventsList::USE_REVDEL_CHECKBOXES ) );
 		# Show relevant lines from the suppression log:
 		$suppressLogPage = new LogPage( 'suppress' );
 		if ( $this->getUser()->isAllowed( 'suppressionlog' ) ) {
 			$out->addHTML( Xml::element( 'h2', null, $suppressLogPage->getName()->text() ) . "\n" );
-			LogEventsList::showLogExtract( $out, 'suppress', $this->mTargetObj );
+			LogEventsList::showLogExtract( $out, 'suppress', '',
+			array( 'flags' => LogEventsList::USE_REVDEL_CHECKBOXES ) );
 		}
 
 		if ( $this->mAllowed && ( $haveRevisions || $haveFiles ) ) {
@@ -1362,6 +1391,7 @@ class SpecialUndelete extends SpecialPage {
 		} else {
 			$out->addWikiMsg( 'nohistory' );
 		}
+		$out->addHTML( $this->getRevisionButton( $output ) );
 
 		if ( $haveFiles ) {
 			$out->addHTML( Xml::element( 'h2', null, $this->msg( 'filehist' )->text() ) . "\n" );
@@ -1384,7 +1414,26 @@ class SpecialUndelete extends SpecialPage {
 		return true;
 	}
 
-	protected function formatRevisionRow( $row, $earliestLiveTime, $remaining ) {
+	private function getRevisionButton( $formcontents ) {
+
+		if ( !$this->getUser()->isAllowedAll( 'deletedhistory', 'deletelogentry' ) ) {
+			return $formcontents;
+		}
+
+		$button = Html::element(
+			'button',
+			array(
+				'name' => 'revdel',
+				'type' => 'submit',
+				'class' => 'deleterevision-log-submit mw-log-deleterevision-button
+							mw-ui-button mw-ui-progressive'
+			),
+			$this->msg( 'showhideselectedversions' )->text()
+		) . "\n";
+		return $button . '<br><br>' . $formcontents . '<br>' . $button;
+	}
+
+	private function formatRevisionRow( $row, $earliestLiveTime, $remaining ) {
 		$rev = Revision::newFromArchiveRow( $row,
 			array(
 				'title' => $this->mTargetObj
