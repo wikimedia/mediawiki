@@ -181,7 +181,7 @@ class LogEventsList extends ContextSource {
 	 */
 	private function getTypeMenu( $queryTypes ) {
 		$queryType = count( $queryTypes ) == 1 ? $queryTypes[0] : '';
-		$selector = $this->getTypeSelector();
+		$selector = $this->getTypeSelector( $queryType );
 		$selector->setDefault( $queryType );
 
 		return $selector->getHtml();
@@ -189,13 +189,37 @@ class LogEventsList extends ContextSource {
 
 	/**
 	 * Returns log page selector.
+	 * @param string $queryType
 	 * @return XmlSelect
 	 * @since 1.19
 	 */
-	public function getTypeSelector() {
+	public function getTypeSelector( $queryType = '' ) {
+		global $wgGroupLogTypes;
+		// If a group of log types or a log type in a group is selected,
+		// show all log types in this group, otherwhise show all groups
+		// and all log types not in any group
+		if ( $queryType !== '' && isset( $wgGroupLogTypes[$queryType] ) ) {
+			$group = $wgGroupLogTypes[$queryType];
+			$types = array_keys( $wgGroupLogTypes, $group );
+			$types[] = $group;
+			$types[] = '';
+		} elseif ( $queryType !== '' && in_array( $queryType, $wgGroupLogTypes ) ) {
+			$group = $queryType;
+			$types = array_keys( $wgGroupLogTypes, $group );
+			$types[] = $group;
+			$types[] = '';
+		} else {
+			$group = null;
+			$types = array_unique( array_keys( $wgGroupLogTypes ) );
+			foreach ( LogPage::validTypes() as $type ) {
+				if ( !isset( $wgGroupLogTypes[$type] ) ) {
+					$types[] = $type;
+				}
+			}
+		}
 		$typesByName = array(); // Temporary array
 		// First pass to load the log names
-		foreach ( LogPage::validTypes() as $type ) {
+		foreach ( $types as $type ) {
 			$page = new LogPage( $type );
 			$restriction = $page->getRestriction();
 			if ( $this->getUser()->isAllowed( $restriction ) ) {
@@ -205,6 +229,13 @@ class LogEventsList extends ContextSource {
 
 		// Second pass to sort by name
 		asort( $typesByName );
+
+		if ( $group !== null ) {
+			// Put "All $group logs" second (gets overriden by public)
+			$groupVal = $typesByName[$group];
+			unset( $typesByName[$group] );
+			$typesByName = array( $group => $groupVal ) + $typesByName;
+		}
 
 		// Always put "All public logs" on top
 		$public = $typesByName[''];

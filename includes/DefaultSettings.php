@@ -6911,6 +6911,19 @@ $wgFilterLogTypes = array(
 );
 
 /**
+ * Allows to regroup log types at Special:Log
+ * For example, if you want to regroup all non-deletion 'sysop'
+ * logs in a single 'sysop' group, add :
+ * @code
+ *   $wgGroupLogTypes['protect'] = 'sysop';
+ *   $wgGroupLogTypes['rights'] = 'sysop';
+ *   $wgGroupLogTypes['block'] = 'sysop';
+ * @endcode
+ * Then, Special:Log/sysop will show all protections, blocks and rights changes.
+ */
+$wgGroupLogTypes = array();
+
+/**
  * Lists the message key string for each log type. The localized messages
  * will be listed in the user interface.
  *

@@ -67,7 +67,7 @@ class SpecialLog extends SpecialPage {
 		// If the log type is invalid, just show all public logs
 		$logRestrictions = $this->getConfig()->get( 'LogRestrictions' );
 		$type = $opts->getValue( 'type' );
-		if ( !LogPage::isLogType( $type ) ) {
+		if ( !LogPage::isLogType( $type ) && !LogPage::isValidGroup( $type ) ) {
 			$opts->setValue( 'type', '' );
 		} elseif ( isset( $logRestrictions[$type] )
 			&& !$this->getUser()->isAllowed( $logRestrictions[$type] )
@@ -139,6 +139,8 @@ class SpecialLog extends SpecialPage {
 	 */
 	public function getSubpagesForPrefixSearch() {
 		$subpages = $this->getConfig()->get( 'LogTypes' );
+		$subpages = array_merge( $subpages,
+			array_unique( array_values( $this->getConfig()->get( 'GroupLogTypes' ) ) ) );
 		$subpages[] = 'all';
 		sort( $subpages );
 		return $subpages;
@@ -149,7 +151,8 @@ class SpecialLog extends SpecialPage {
 		$parms = explode( '/', ( $par = ( $par !== null ) ? $par : '' ) );
 		$symsForAll = array( '*', 'all' );
 		if ( $parms[0] != '' &&
-			( in_array( $par, $this->getConfig()->get( 'LogTypes' ) ) || in_array( $par, $symsForAll ) )
+			( in_array( $par, $this->getConfig()->get( 'LogTypes' ) ) || in_array( $par, $symsForAll ) 
+			|| in_array( $par, $this->getConfig()->get( 'GroupLogTypes' ) ) )
 		) {
 			$opts->setValue( 'type', $par );
 		} elseif ( count( $parms ) == 2 ) {
