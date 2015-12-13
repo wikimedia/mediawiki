@@ -1095,26 +1095,6 @@ function wfIsDebugRawPage() {
 }
 
 /**
- * Get microsecond timestamps for debug logs
- *
- * @deprecated since 1.25
- * @return string
- */
-function wfDebugTimer() {
-	global $wgDebugTimestamps, $wgRequestTime;
-
-	wfDeprecated( __METHOD__, '1.25' );
-
-	if ( !$wgDebugTimestamps ) {
-		return '';
-	}
-
-	$prefix = sprintf( "%6.4f", microtime( true ) - $wgRequestTime );
-	$mem = sprintf( "%5.1fM", ( memory_get_usage( true ) / ( 1024 * 1024 ) ) );
-	return "$prefix $mem  ";
-}
-
-/**
  * Send a line giving PHP memory usage.
  *
  * @param bool $exact Print exact byte values instead of kibibytes (default: false)
