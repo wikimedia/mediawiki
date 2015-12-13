@@ -508,7 +508,6 @@ class Preferences {
 						# Apply the same CSS class used on the input to the message:
 						'cssclass' => $emailauthenticationclass,
 					);
-					$defaultPreferences['emailaddress']['cssclass'] = $emailauthenticationclass;
 				}
 			}
 
