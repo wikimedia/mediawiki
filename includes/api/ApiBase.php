@@ -2447,6 +2447,7 @@ abstract class ApiBase extends ContextSource {
 
 		// Build map of extension directories to extension info
 		if ( self::$extensionInfo === null ) {
+			$extDir = $this->getConfig()->get( 'ExtensionDirectory' );
 			self::$extensionInfo = [
 				realpath( __DIR__ ) ?: __DIR__ => [
 					'path' => $IP,
@@ -2454,6 +2455,7 @@ abstract class ApiBase extends ContextSource {
 					'license-name' => 'GPL-2.0+',
 				],
 				realpath( "$IP/extensions" ) ?: "$IP/extensions" => null,
+				realpath( $extDir ) ?: $extDir => null,
 			];
 			$keep = [
 				'path' => null,
