@@ -9,6 +9,7 @@ THIS IS NOT YET A RELEASE!
 * Fixed ConfigException in ExpandTemplates due to AlwaysUseTidy.
 * Fixed stray literal \n in Special:Search.
 * Fix issue that breaks HHVM Repo Authorative mode.
+* (T120267) Work around APCu memory corruption bug
 
 == MediaWiki 1.26 ==
 
