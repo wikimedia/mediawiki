@@ -2,10 +2,6 @@
 /**
  * Clean up broken, unparseable upload filenames.
  *
- * Usage: php cleanupImages.php [--fix]
- * Options:
- *   --fix  Actually clean up titles; otherwise just checks for them
- *
  * Copyright © 2005-2006 Brion Vibber <brion@pobox.com>
  * https://www.mediawiki.org/
  *
