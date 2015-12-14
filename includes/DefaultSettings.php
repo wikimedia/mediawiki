@@ -5046,27 +5046,48 @@ $wgAutoConfirmAge = 0;
 $wgAutoConfirmCount = 0;
 
 /**
- * Automatically add a usergroup to any user who matches certain conditions.
+ * Array containing conditions of automatic promotion of user to specific groups.
  *
- * @todo Redocument $wgAutopromote
+ * The basic syntax for `$wgAutopromote` is:
  *
- * The format is
- *   array( '&' or '|' or '^' or '!', cond1, cond2, ... )
- * where cond1, cond2, ... are themselves conditions; *OR*
- *   APCOND_EMAILCONFIRMED, *OR*
- *   array( APCOND_EMAILCONFIRMED ), *OR*
- *   array( APCOND_EDITCOUNT, number of edits ), *OR*
- *   array( APCOND_AGE, seconds since registration ), *OR*
- *   array( APCOND_INGROUPS, group1, group2, ... ), *OR*
- *   array( APCOND_ISIP, ip ), *OR*
- *   array( APCOND_IPINRANGE, range ), *OR*
- *   array( APCOND_AGE_FROM_EDIT, seconds since first edit ), *OR*
- *   array( APCOND_BLOCKED ), *OR*
- *   array( APCOND_ISBOT ), *OR*
- *   similar constructs defined by extensions.
+ *     $wgAutopromote = array(
+ *         'groupname' => cond,
+ *         'group2' => cond,
+ *     );
  *
- * If $wgEmailAuthentication is off, APCOND_EMAILCONFIRMED will be true for any
- * user who has provided an e-mail address.
+ * `cond` may be:
+ *  - a single condition: e.g. `APCOND_EMAILCONFIRMED` (condition without arguments), or
+ *                             `array( APCOND_EDITCOUNT, 100 )` (condition wih arguments);
+ *  - a set of conditions: syntax: `array( "operand", cond1, cond2, ... )`
+ *
+ * When it comes to using sets of conditions, there are 4 operands available:
+ *  - `&` (**AND**): promote if user matches **all** conditions,
+ *  - `|` (**OR**): promote if user matches **any** condition,
+ *  - `^` (**XOR**): promote if user matches **only one of two conditions**, and
+ *  - `!` (**NOT**): promote if user matces **no** condition.
+ *
+ * The sets of conditions are evaluated recursively, so you can use nested sets of conditions
+ * linked by operands.
+ *
+ * Example:
+ *
+ * If you wanted to autopromote each user to captain upon his having both confirmed his
+ * email address and either made at least 100 edits or registered his account at least 60
+ * seconds ago, you would use:
+ *
+ *     $wgAutopromote = array(
+ *         'captain' => array(
+ *             '&',
+ *             APCOND_EMAILCONFIRMED,
+ *             '|',
+ *             array( APCOND_EDITCOUNT, 100 ),
+ *             array( APCOND_AGE, 60 ),
+ *         ),
+ *     );
+ *
+ * Note that this would get rid of all other autopromote groups; to instead add the
+ * captain autopromote group while keeping those autopromote groups that already exist,
+ * one would use `wgAutopromote['captain'] = array( ... )` instead.
  */
 $wgAutopromote = array(
 	'autoconfirmed' => array( '&',
