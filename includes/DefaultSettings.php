@@ -776,9 +776,9 @@ $wgSharedThumbnailScriptPath = false;
  * longer recommended, use maintenance/importImages.php instead.
  *
  * @note That this variable may be ignored if $wgLocalFileRepo is set.
- * @todo Deprecate the setting and ultimately remove it from Core.
+ * 
  */
-$wgHashedUploadDirectory = true;
+
 
 /**
  * Set the following to false especially if you have a set of files that need to
@@ -5046,9 +5046,9 @@ $wgAutoConfirmAge = 0;
 $wgAutoConfirmCount = 0;
 
 /**
- * Automatically add a usergroup to any user who matches certain conditions.
- *
- * @todo Redocument $wgAutopromote
+ * Automatically add any user who matches certain conditions to a usergroup.
+ * 
+ * 
  *
  * The format is
  *   array( '&' or '|' or '^' or '!', cond1, cond2, ... )
