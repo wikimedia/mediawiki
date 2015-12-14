@@ -690,14 +690,6 @@ CREATE UNIQUE INDEX iwl_from ON iwlinks (iwl_from, iwl_prefix, iwl_title);
 CREATE UNIQUE INDEX iwl_prefix_title_from ON iwlinks (iwl_prefix, iwl_title, iwl_from);
 CREATE UNIQUE INDEX iwl_prefix_from_title ON iwlinks (iwl_prefix, iwl_from, iwl_title);
 
-CREATE TABLE msg_resource (
-  mr_resource   TEXT         NOT NULL,
-  mr_lang       TEXT         NOT NULL,
-  mr_blob       TEXT         NOT NULL,
-  mr_timestamp  TIMESTAMPTZ  NOT NULL
-);
-CREATE UNIQUE INDEX mr_resource_lang ON msg_resource (mr_resource, mr_lang);
-
 CREATE TABLE module_deps (
   md_module  TEXT  NOT NULL,
   md_skin    TEXT  NOT NULL,

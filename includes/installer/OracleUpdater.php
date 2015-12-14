@@ -110,6 +110,7 @@ class OracleUpdater extends DatabaseUpdater {
 
 			// 1.27
 			array( 'dropTable', 'msg_resource_links' ),
+			array( 'dropTable', 'msg_resource' ),
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),
