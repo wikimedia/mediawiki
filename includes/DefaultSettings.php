@@ -1493,7 +1493,7 @@ $wgPasswordSenderName = 'MediaWiki Mail';
  * It might be necessary to adapt the address or to set it equal
  * to the $wgEmergencyContact address.
  */
-$wgNoReplyAddress = 'reply@not.possible';
+$wgNoReplyAddress = 'reply@not.possible.invalid';
 
 /**
  * Set to true to enable the e-mail basic features:
