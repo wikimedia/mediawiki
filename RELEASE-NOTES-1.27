@@ -176,6 +176,12 @@ changes to languages because of Phabricator reports.
   were removed. The underlying data is sent to StatsD (see $wgStatsdServer).
 * Removed msg_resource_links database table and associated code.
 * Removed msg_resource database table and associated code.
+* Skin::getNamespaceNotice() was removed.
+* wfIsConfiguredProxy() was removed (deprecated since 1.24).
+* wfDebugTimer() was removed (deprecated since 1.25).
+* wfIsTrustedProxy() was removed (deprecated since 1.24).
+* wfGetIP() was removed (deprecated since 1.19).
+* MWHookException was removed.
 
 == Compatibility ==
 
