@@ -5325,26 +5325,40 @@ $wgAutoConfirmAge = 0;
 $wgAutoConfirmCount = 0;
 
 /**
- * Automatically add a usergroup to any user who matches certain conditions.
+ * Array containing the conditions of automatic promotion of a user to specific groups.
  *
- * @todo Redocument $wgAutopromote
+ * The basic syntax for `$wgAutopromote` is:
  *
- * The format is
- *   [ '&' or '|' or '^' or '!', cond1, cond2, ... ]
- * where cond1, cond2, ... are themselves conditions; *OR*
- *   APCOND_EMAILCONFIRMED, *OR*
- *   [ APCOND_EMAILCONFIRMED ], *OR*
- *   [ APCOND_EDITCOUNT, number of edits ], *OR*
- *   [ APCOND_AGE, seconds since registration ], *OR*
- *   [ APCOND_INGROUPS, group1, group2, ... ], *OR*
- *   [ APCOND_ISIP, ip ], *OR*
- *   [ APCOND_IPINRANGE, range ], *OR*
- *   [ APCOND_AGE_FROM_EDIT, seconds since first edit ], *OR*
- *   [ APCOND_BLOCKED ], *OR*
- *   [ APCOND_ISBOT ], *OR*
- *   similar constructs defined by extensions.
+ *     $wgAutopromote = array(
+ *         'groupname' => cond,
+ *         'group2' => cond2,
+ *     );
  *
- * If $wgEmailAuthentication is off, APCOND_EMAILCONFIRMED will be true for any
+ * A `cond` may be:
+ *  - a single condition without arguments: e.g. `APCOND_EMAILCONFIRMED` OR
+ *                             array( `APCOND_EMAILCONFIRMED` ) (Autopromote wraps a single non-array value into an array)
+ *  - a single condition with arguments: e.g. `array( APCOND_EDITCOUNT, 100 )` (condition wih arguments);
+ *  - a set of conditions: e.g. `array( 'operand', cond1, cond2, ... )`
+ *
+ * When it comes to using a set of conditions, there are 13 operands available:
+ *  - `&` (**AND**): promote if user matches **all** conditions
+ *  - `|` (**OR**): promote if user matches **any** condition
+ *  - `^` (**XOR**): promote if user matches **only one of two conditions**
+ *  - `!` (**NOT**): promote if user matces **no** condition
+ *  - array( APCOND_EMAILCONFIRMED ): promote if user has a confirmed e-mail
+ *  - array( APCOND_EDITCOUNT, number of edits ): promote if user has the same number of edits as the passed parameter
+ *  - array( APCOND_AGE, seconds since registration ): promote if the length of time since the user created his/her account matches the passed parameter
+ *  - array( APCOND_AGE_FROM_EDIT, seconds since first edit ): promote if the length of time since the user made his/her first edit matches the passed parameter
+ *  - array( APCOND_INGROUPS, group1, group2, ... ): promote if the user is a member of each of the passed groups
+ *  - array( APCOND_ISIP, ip ): promote if the user has the passed IP address
+ *  - array( APCOND_IPINRANGE, range ): promote if the user has an IP address in the range of the passed parameter
+ *  - array( APCOND_BLOCKED ): promote if the user is blocked
+ *  - array( APCOND_ISBOT ): promote if the user is a bot
+ *
+ * The sets of conditions are evaluated recursively, so you can use nested sets of conditions
+ * linked by operands.
+ *
+ * Note that if $wgEmailAuthentication is disabled, APCOND_EMAILCONFIRMED will be true for any
  * user who has provided an e-mail address.
  */
 $wgAutopromote = [
