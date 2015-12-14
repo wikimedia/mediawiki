@@ -1246,6 +1246,48 @@
 				number = nodes[ 0 ];
 
 			return this.language.convertNumber( number, isInteger );
+		},
+
+		/**
+		 * Lowercase text
+		 *
+		 * @param {Array} nodes List of nodes
+		 * @return {string} The given text, all in lowercase
+		 */
+		lc: function ( nodes ) {
+			return textify( nodes[ 0 ] ).toLowerCase();
+		},
+
+		/**
+		 * Uppercase text
+		 *
+		 * @param {Array} nodes List of nodes
+		 * @return {string} The given text, all in uppercase
+		 */
+		uc: function ( nodes ) {
+			return textify( nodes[ 0 ] ).toUpperCase();
+		},
+
+		/**
+		 * Lowercase first letter of input, leaving the rest unchanged
+		 *
+		 * @param {Array} nodes List of nodes
+		 * @return {string} The given text, with the first character in lowercase
+		 */
+		lcfirst: function ( nodes ) {
+			var text = textify( nodes[ 0 ] );
+			return text.charAt( 0 ).toLowerCase() + text.slice( 1 );
+		},
+
+		/**
+		 * Uppercase first letter of input, leaving the rest unchanged
+		 *
+		 * @param {Array} nodes List of nodes
+		 * @return {string} The given text, with the first character in uppercase
+		 */
+		ucfirst: function ( nodes ) {
+			var text = textify( nodes[ 0 ] );
+			return text.charAt( 0 ).toUpperCase() + text.slice( 1 );
 		}
 	};
 
