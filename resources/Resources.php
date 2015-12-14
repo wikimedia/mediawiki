@@ -1662,15 +1662,6 @@ return array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.block.css',
 		'dependencies' => 'mediawiki.util',
 	),
-	'mediawiki.special.changeemail' => array(
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.changeemail.js',
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeemail.css',
-		'dependencies' => 'mediawiki.util',
-		'messages' => array(
-			'email-address-validity-valid',
-			'email-address-validity-invalid',
-		),
-	),
 	'mediawiki.special.changeslist' => array(
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.css',

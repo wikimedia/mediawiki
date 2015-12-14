@@ -1063,8 +1063,6 @@
 	"prefs-help-prefershttps": "This preference will take effect on your next login.",
 	"prefswarning-warning": "You've made changes to your preferences that have not been saved yet.\nIf you leave this page without clicking \"$1\" your preferences will not be updated.",
 	"prefs-tabs-navigation-hint": "Tip: You can use the left and right arrow keys to navigate between the tabs in the tabs list.",
-	"email-address-validity-valid": "Email address appears valid",
-	"email-address-validity-invalid": "Enter a valid email address",
 	"userrights": "User rights management",
 	"userrights-summary": "",
 	"userrights-lookup-user": "Manage user groups",

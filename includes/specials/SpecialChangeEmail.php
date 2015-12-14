@@ -52,7 +52,6 @@ class SpecialChangeEmail extends FormSpecialPage {
 	function execute( $par ) {
 		$out = $this->getOutput();
 		$out->disallowUserJs();
-		$out->addModules( 'mediawiki.special.changeemail' );
 
 		parent::execute( $par );
 	}

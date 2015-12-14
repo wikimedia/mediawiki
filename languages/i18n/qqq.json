@@ -1239,8 +1239,6 @@
 	"prefs-help-prefershttps": "Used as help text for the checkbox in [[Special:Preferences]].\n\nThe checkbox has the label {{msg-mw|Tog-prefershttps}}.\n\nSee example: [[mw:Special:Preferences]].",
 	"prefswarning-warning": "Warning shown (except in Firefox) when attempting to leave [[Special:Preferences]] with unsaved changes.\n\nParameters:\n* $1 - Text of {{msg-mw|saveprefs}}, as <nowiki>{{int:saveprefs}}</nowiki> cannot be used directly.",
 	"prefs-tabs-navigation-hint": "Hint message that explains the arrow key navigation for the tabs on [[Special:Preferences]] to screenreader users.",
-	"email-address-validity-valid": "Used as hint for {{msg-mw|changeemail-newemail}} field in [[Special:ChangeEmail]], when the provided E-mail address is valid.",
-	"email-address-validity-invalid": "Used as warning for {{msg-mw|changeemail-newemail}} field in [[Special:ChangeEmail]], when the provided E-mail address is invalid.",
 	"userrights": "Page title of [[Special:UserRights]].",
 	"userrights-summary": "{{doc-specialpagesummary|userrights}}",
 	"userrights-lookup-user": "Label text when managing user rights ([[Special:UserRights]])",
