@@ -333,6 +333,29 @@
 		mw.user.options.set( 'gender', originalGender );
 	} );
 
+	QUnit.test( 'Case changing', 8, function ( assert ) {
+		mw.messages.set( 'to-lowercase', '{{lc:thIS hAS MEsSed uP CapItaliZatiON}}' );
+		assert.equal( formatParse( 'to-lowercase' ), 'this has messed up capitalization', 'To lowercase' );
+
+		mw.messages.set( 'to-caps', '{{uc:thIS hAS MEsSed uP CapItaliZatiON}}' );
+		assert.equal( formatParse( 'to-caps' ), 'THIS HAS MESSED UP CAPITALIZATION', 'To caps' );
+
+		mw.messages.set( 'uc-to-lcfirst', '{{lcfirst:THis hAS MEsSed uP CapItaliZatiON}}' );
+		mw.messages.set( 'lc-to-lcfirst', '{{lcfirst:thIS hAS MEsSed uP CapItaliZatiON}}' );
+		assert.equal( formatParse( 'uc-to-lcfirst' ), 'tHis hAS MEsSed uP CapItaliZatiON', 'Lcfirst caps' );
+		assert.equal( formatParse( 'lc-to-lcfirst' ), 'thIS hAS MEsSed uP CapItaliZatiON', 'Lcfirst lowercase' );
+
+		mw.messages.set( 'uc-to-ucfirst', '{{ucfirst:THis hAS MEsSed uP CapItaliZatiON}}' );
+		mw.messages.set( 'lc-to-ucfirst', '{{ucfirst:thIS hAS MEsSed uP CapItaliZatiON}}' );
+		assert.equal( formatParse( 'uc-to-ucfirst' ), 'THis hAS MEsSed uP CapItaliZatiON', 'Ucfirst caps' );
+		assert.equal( formatParse( 'lc-to-ucfirst' ), 'ThIS hAS MEsSed uP CapItaliZatiON', 'Ucfirst lowercase' );
+
+		mw.messages.set( 'mixed-to-sentence', '{{ucfirst:{{lc:thIS hAS MEsSed uP CapItaliZatiON}}}}' );
+		assert.equal( formatParse( 'mixed-to-sentence' ), 'This has messed up capitalization', 'To sentence case' );
+		mw.messages.set( 'all-caps-except-first', '{{lcfirst:{{uc:thIS hAS MEsSed uP CapItaliZatiON}}}}' );
+		assert.equal( formatParse( 'all-caps-except-first' ), 'tHIS HAS MESSED UP CAPITALIZATION', 'To opposite sentence case' );
+	} );
+
 	QUnit.test( 'Grammar', 2, function ( assert ) {
 		assert.equal( formatParse( 'grammar-msg' ), 'Przeszukaj Wiki', 'Grammar Test with sitename' );
 
