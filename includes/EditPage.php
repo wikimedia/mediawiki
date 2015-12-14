@@ -3835,7 +3835,7 @@ HTML
 			],
 			$showSignature ? [
 				'id'     => 'mw-editbutton-signature',
-				'open'   => '--~~~~',
+				'open'   => wfMessage( 'sig-text', '~~~~' )->text(),
 				'close'  => '',
 				'sample' => '',
 				'tip'    => wfMessage( 'sig_tip' )->text(),
