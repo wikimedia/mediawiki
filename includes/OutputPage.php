@@ -2500,16 +2500,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Produce the stock "please login to use the wiki" page
-	 *
-	 * @deprecated since 1.19; throw the exception directly
-	 */
-	public function loginToUse() {
-		wfDeprecated( __METHOD__, '1.19' );
-		throw new PermissionsError( 'read' );
-	}
-
-	/**
 	 * Format a list of error messages
 	 *
 	 * @param array $errors Array of arrays returned by Title::getUserPermissionsErrors
