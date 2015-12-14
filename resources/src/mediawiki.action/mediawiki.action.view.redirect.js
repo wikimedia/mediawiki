@@ -27,12 +27,12 @@
 			canonical += location.hash;
 		}
 
-		// This will also cause the browser to scroll to given fragment
+		// Note that this will update the hash in a modern browser, retaining back behaviour
 		history.replaceState( /*data=*/ history.state, /*title=*/ document.title, /*url=*/ canonical );
-
-		// …except for IE 10 and 11. Prod it with a location.hash change.
-		if ( shouldChangeFragment && profile.name === 'msie' && profile.versionNumber >= 10 ) {
-			location.hash = fragment;
+		if ( shouldChangeFragment ) {
+			// but spec doesn't state whether fragment should be scrolled to by above so scroll to be sure…
+			// e.g. IE9,10 (see also T110501)
+			document.getElementById( fragment.substr( 1 ) ).scrollIntoView();
 		}
 
 	} else if ( shouldChangeFragment ) {
