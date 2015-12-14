@@ -34,12 +34,12 @@ abstract class CodeContentHandler extends TextContentHandler {
 	 * @param Title $title
 	 * @param Content $content
 	 *
-	 * @return Language Return of wfGetLangObj( 'en' )
+	 * @return Language Return of Language::factory( 'en' )
 	 *
 	 * @see ContentHandler::getPageLanguage()
 	 */
 	public function getPageLanguage( Title $title, Content $content = null ) {
-		return wfGetLangObj( 'en' );
+		return Language::factory( 'en' );
 	}
 
 	/**
@@ -48,12 +48,12 @@ abstract class CodeContentHandler extends TextContentHandler {
 	 * @param Title $title
 	 * @param Content $content
 	 *
-	 * @return Language Return of wfGetLangObj( 'en' )
+	 * @return Language Return of Language::factory( 'en' )
 	 *
 	 * @see ContentHandler::getPageViewLanguage()
 	 */
 	public function getPageViewLanguage( Title $title, Content $content = null ) {
-		return wfGetLangObj( 'en' );
+		return Language::factory( 'en' );
 	}
 
 	/**
