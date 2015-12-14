@@ -372,6 +372,8 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		return array(
 			"background-image: url($fallback);",
 			"background-image: linear-gradient(transparent, transparent), url($primary);",
+			// Do not serve SVG to Opera 12, bad rendering with border-radius or background-size (T87504)
+			"background-image: -o-linear-gradient(transparent, transparent), url($fallback);",
 		);
 	}
 
