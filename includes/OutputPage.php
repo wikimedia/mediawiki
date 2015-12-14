@@ -1035,17 +1035,6 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add $str to the subtitle
 	 *
-	 * @deprecated since 1.19; use addSubtitle() instead
-	 * @param string|Message $str String or Message to add to the subtitle
-	 */
-	public function appendSubtitle( $str ) {
-		wfDeprecated( __METHOD__, '1.19' );
-		$this->addSubtitle( $str );
-	}
-
-	/**
-	 * Add $str to the subtitle
-	 *
 	 * @param string|Message $str String or Message to add to the subtitle. String should be safe HTML.
 	 */
 	public function addSubtitle( $str ) {
