@@ -1012,8 +1012,6 @@
 	"prefs-help-prefershttps": "Iste preferentia habera effecto a partir de tu proxime session.",
 	"prefswarning-warning": "To ha facite modificationes in tu preferentias que non ha ancora essite confirmate. Si tu quita iste pagina sin cliccar sur \"$1\", tu preferentias non essera cambiate.",
 	"prefs-tabs-navigation-hint": "Consilio: Tu pote usar le claves de sagitta sinistre e dextre pro navigar inter le schedas in le lista.",
-	"email-address-validity-valid": "Sembla valide",
-	"email-address-validity-invalid": "Un adresse valide es obligatori!",
 	"userrights": "Gestion de derectos de usator",
 	"userrights-lookup-user": "Gerer gruppos de usatores",
 	"userrights-user-editname": "Entra un nomine de usator:",

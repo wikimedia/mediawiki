@@ -1019,8 +1019,6 @@
 	"prefs-help-prefershttps": "Esta preferencia ha aplicarse no seu vindeiro acceso ao sistema.",
 	"prefswarning-warning": "Fixo cambios nas súas preferencias que aínda non se gardaron.\nSe deixa esta páxina sen premer en \"$1\", non se actualizarán as súas preferencias.",
 	"prefs-tabs-navigation-hint": "Consello: Pode empregar as frechas esquerda e dereita para navegar polas lapelas da lista.",
-	"email-address-validity-valid": "O enderezo de correo electrónico semella válido",
-	"email-address-validity-invalid": "Escriba un enderezo de correo electrónico válido",
 	"userrights": "Xestión dos dereitos de usuario",
 	"userrights-lookup-user": "Administrar os grupos do usuario",
 	"userrights-user-editname": "Escriba un nome de usuario:",

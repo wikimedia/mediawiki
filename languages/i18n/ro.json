@@ -1023,8 +1023,6 @@
 	"prefs-help-prefershttps": "Această preferință va avea efect la următoarea autentificare.",
 	"prefswarning-warning": "Ați efectuat modificări asupra preferințelor dumneavoastră, care nu au fost încă salvate.\nDacă părăsiți această pagină fără a apăsa butonul „$1”, preferințele dumnevoastră nu se vor actualiza.",
 	"prefs-tabs-navigation-hint": "Sfat: Puteți folosi tastele săgeată stânga și dreapta pentru a naviga între filele din cadrul listei de file.",
-	"email-address-validity-valid": "Adresa de e-mail pare validă",
-	"email-address-validity-invalid": "Introduceți o adresă de e-mail validă",
 	"userrights": "Administrare permisiuni de utilizator",
 	"userrights-lookup-user": "Administrare grupuri de utilizatori",
 	"userrights-user-editname": "Introduceți un nume de utilizator:",

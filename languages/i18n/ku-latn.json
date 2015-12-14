@@ -15,7 +15,8 @@
 			"Welathêja",
 			"아라",
 			"Bikarhêner",
-			"Uygar"
+			"Uygar",
+			"MikaelF"
 		]
 	},
 	"tog-underline": "Xetekê di bin girêdanê de çêke:",
@@ -219,7 +220,7 @@
 	"jumptosearch": "lêgerîn",
 	"view-pool-error": "Bibore, server niha zêde barkirî ne. Gelek bikarhêner niha hewl didin ku vê rûpelê bibînin. Ji kerema xwe kêlîkekê bisekine, berî ku tu dîsa hewl bidî rûpelê bibînî.\n\n$1",
 	"pool-errorunknown": "Çewtiyeke nenas",
-	"poolcounter-usage-error": "Çewtîyê bikaranînê: $1",
+	"poolcounter-usage-error": "Çewtiya bikaranînê: $1",
 	"aboutsite": "Der barê {{SITENAME}} de",
 	"aboutpage": "Project:Der barê",
 	"copyright": "Naverok di $1 de derbasdar e.",
@@ -364,7 +365,7 @@
 	"userloginnocreate": "Têkeve",
 	"logout": "Derkeve",
 	"userlogout": "Derkeve",
-	"notloggedin": "Te xwe tomar nekir",
+	"notloggedin": "Tu ne têketî yî",
 	"userlogin-noaccount": "Hesabekî te nîne?",
 	"userlogin-joinproject": "Tevlî {{SITENAME}} bibe",
 	"nologin": "Hesabê te nîne? $1.",
@@ -768,8 +769,6 @@
 	"prefs-displayrc": "Vebijarkan nîşan bide",
 	"prefs-displaywatchlist": "Vebijarkan nîşan bide",
 	"prefs-diffs": "Cudahî",
-	"email-address-validity-valid": "E-name derbasdar e",
-	"email-address-validity-invalid": "E-nameyeke derbasdar binivîse",
 	"userrights": "Îdarekirina mafên bikarhêneran",
 	"userrights-lookup-user": "Birêvebirina koman",
 	"userrights-user-editname": "Navekî bikarhêneriyê binivîse:",

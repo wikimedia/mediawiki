@@ -8,7 +8,8 @@
 			"Triple-ADHD-AS",
 			"Игорь Бродский",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Sebranik"
 		]
 	},
 	"tog-underline": "Jonoštada kosketused:",
@@ -796,8 +797,6 @@
 	"prefs-displaywatchlist": "Nägun opcijad",
 	"prefs-tokenwatchlist": "Token",
 	"prefs-diffs": "Erod",
-	"email-address-validity-valid": "Verkpočtan adres nägub korrektižeks.",
-	"email-address-validity-invalid": "Antkat verkpočtan korrektine adres",
 	"userrights": "Kävutajiden oiktusiden ohjandamine",
 	"userrights-lookup-user": "Kävutajiden gruppiden ohjendamine",
 	"userrights-user-editname": "Kävutajan nimi:",
@@ -936,6 +935,7 @@
 	"recentchanges-label-minor": "Nece redakcii om penikaine",
 	"recentchanges-label-bot": "Necen redakcijan tegi bot",
 	"recentchanges-label-unpatrolled": "Necidä redakcijad ei völ patruliruinugoi",
+	"recentchanges-label-plusminus": "Suruden toižetamine baitoiš",
 	"recentchanges-legend-newpage": "$1 - uz' lehtpol'",
 	"rcnotefrom": "Alemba oma anttud toižetused '''$2'''-späi ( '''$1'''-hesai).",
 	"rclistfrom": "Ozutada uded toižetused dataspäi $3 $2 augotaden",

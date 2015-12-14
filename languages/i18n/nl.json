@@ -1066,8 +1066,6 @@
 	"prefs-help-prefershttps": "Deze voorkeur wordt toegepast bij de volgende keer aanmelden.",
 	"prefswarning-warning": "U heeft deze wijzigingen gemaakt in uw voorkeuren die nog niet opgeslagen zijn. Wanneer u de pagina verlaat zonder op \"$1\" te klikken worden uw voorkeuren niet bijgewerkt.",
 	"prefs-tabs-navigation-hint": "Tip: u kunt de pijltjestoetsen naar links en naar rechts gebruiken om te navigeren tussen de tabbladen in de lijst.",
-	"email-address-validity-valid": "Het e-mailadres lijkt geldig",
-	"email-address-validity-invalid": "Geef een geldig e-mailadres op",
 	"userrights": "Gebruikersrechtenbeheer",
 	"userrights-lookup-user": "Gebruikersgroepen beheren",
 	"userrights-user-editname": "Voer een gebruikersnaam in:",

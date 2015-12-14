@@ -985,8 +985,6 @@
 	"prefs-tokenwatchlist": "Маркер",
 	"prefs-diffs": "Разлики",
 	"prefs-help-prefershttps": "Това предпочитание ще бъде активирано при следващото влизане.",
-	"email-address-validity-valid": "Адресът за е-поща изглежда валиден",
-	"email-address-validity-invalid": "Въведете валиден адрес за е-поща",
 	"userrights": "Управление на потребителските права",
 	"userrights-lookup-user": "Управляване на потребителските групи",
 	"userrights-user-editname": "Потребителско име:",

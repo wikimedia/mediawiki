@@ -1025,8 +1025,6 @@
 	"prefs-help-prefershttps": "See eelistus jõustub pärast järgmist sisselogimist.",
 	"prefswarning-warning": "Oled teinud eelistustes muudatusi, mida pole veel salvestatud.\nKui lahkud sellelt leheküljelt ilma nupul \"$1\" klõpsamata, jäävad kehtima senised eelistused.",
 	"prefs-tabs-navigation-hint": "Spikker: Kaardiloendis toodud kaartide vahel liikumiseks saad kasutada vasakut ja paremat nooleklahvi.",
-	"email-address-validity-valid": "Sobiv e-posti aadress",
-	"email-address-validity-invalid": "Sisesta sobiv e-posti aadress.",
 	"userrights": "Kasutajaõiguste haldus",
 	"userrights-lookup-user": "Kasutajarühma muutmine",
 	"userrights-user-editname": "Sisesta kasutajanimi:",

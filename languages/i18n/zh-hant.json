@@ -1061,8 +1061,6 @@
 	"prefs-help-prefershttps": "此偏好設定將於您下次登入時生效。",
 	"prefswarning-warning": "您對您的偏好設定所做的變更尚未儲存。\n若您未點選 \"$1\" 離開此頁面，將不會更新您的偏好設定。",
 	"prefs-tabs-navigation-hint": "提示：您可使用左、右方向鍵切換頁籤。",
-	"email-address-validity-valid": "電子郵件地址有效",
-	"email-address-validity-invalid": "請輸入一個有效的電子郵件地址",
 	"userrights": "使用者權限管理",
 	"userrights-lookup-user": "管理使用者群組",
 	"userrights-user-editname": "請輸入使用者名稱：",

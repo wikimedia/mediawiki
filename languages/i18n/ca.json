@@ -1061,8 +1061,6 @@
 	"prefs-help-prefershttps": "Aquesta preferència tindrà efecte quan inicieu una nova sessió.",
 	"prefswarning-warning": "Heu fet canvis a les preferències que encara no s'han desat.\nSi abandoneu la pàgina sense fer clic a «$1», les preferències no s'actualitzaran.",
 	"prefs-tabs-navigation-hint": "Consell: Podeu utilitzar les tecles de cursor de dreta i esquerra per a navegar entre les pestanyes.",
-	"email-address-validity-valid": "L'adreça de correu electrònic sembla vàlida",
-	"email-address-validity-invalid": "Escriviu una adreça vàlida de correu electrònic",
 	"userrights": "Gestió dels permisos d’usuari",
 	"userrights-lookup-user": "Gestiona els grups d'usuari",
 	"userrights-user-editname": "Introduïu un nom d'usuari:",

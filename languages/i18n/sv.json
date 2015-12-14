@@ -1067,8 +1067,6 @@
 	"prefs-help-prefershttps": "Ändringar av denna inställning börjar gälla nästa gång du loggar in",
 	"prefswarning-warning": "Du har gjort ändringar i dina inställningarna som inte har sparats ännu.\nOm du lämnar denna sida utan att klicka på \"$1\" kommer dina inställningar inte att uppdateras.",
 	"prefs-tabs-navigation-hint": "Tips: Du kan använda vänster och höger piltangenterna för att navigera mellan flikarna i listan flikar.",
-	"email-address-validity-valid": "E-postadress ser giltig ut",
-	"email-address-validity-invalid": "Ange en giltig e-postadress",
 	"userrights": "Hantering av användarrättigheter",
 	"userrights-lookup-user": "Hantera användargrupper",
 	"userrights-user-editname": "Skriv in ett användarnamn:",

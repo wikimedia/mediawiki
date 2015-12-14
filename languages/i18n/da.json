@@ -1037,8 +1037,6 @@
 	"prefs-help-prefershttps": "Denne indstilling træder i kraft næste gang du logger på.",
 	"prefswarning-warning": "Du har foretaget ændringer af dine indstillinger, som ikke er gemt endnu.\nHvis du forlader denne side uden at klikke \"$1\", vil dine indstillinger ikke blive opdateret.",
 	"prefs-tabs-navigation-hint": "Tip: Du kan bruge venstre og højre piletasterne til at navigere mellem fanerne i fanelisten.",
-	"email-address-validity-valid": "E-mailadressen ser ud til at være gyldig",
-	"email-address-validity-invalid": "Indtast en gyldig e-mailadresse",
 	"userrights": "Håndtering af brugerrettigheder",
 	"userrights-lookup-user": "Administrér brugergrupper",
 	"userrights-user-editname": "Skriv et brugernavn:",

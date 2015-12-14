@@ -1045,8 +1045,6 @@
 	"prefs-help-prefershttps": "Tämä asetus tulee voimaan seuraavan sisäänkirjautumisesi yhteydessä.",
 	"prefswarning-warning": "Olet tehnyt asetuksiisi muutoksia, joita ei ole vielä tallennettu.\nJos poistut sivulta klikkaamatta \"$1\", asetuksiasi ei päivitetä.",
 	"prefs-tabs-navigation-hint": "Vihje: Voit käyttää vasenta ja oikeata nuolinäppäintä liikkumiseen välilehtien välillä.",
-	"email-address-validity-valid": "Sähköpostiosoite vaikuttaa kelvolliselta",
-	"email-address-validity-invalid": "Virheellinen sähköpostiosoite",
 	"userrights": "Käyttöoikeuksien hallinta",
 	"userrights-lookup-user": "Hallinnoi käyttäjän ryhmiä",
 	"userrights-user-editname": "Käyttäjätunnus",

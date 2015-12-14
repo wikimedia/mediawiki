@@ -1120,8 +1120,6 @@
 	"prefs-help-prefershttps": "Los cambios surtirán efecto en tu próximo inicio de sesión.",
 	"prefswarning-warning": "Has hecho cambios en tus preferencias que todavía no se han guardado. Si sales de esta página sin pulsar en «$1» no se actualizarán las preferencias.",
 	"prefs-tabs-navigation-hint": "Sugerencia: Puede utilizar las teclas de flecha izquierda y derecha para navegar entre las pestañas de la lista de pestañas.",
-	"email-address-validity-valid": "La dirección de correo electrónico parece ser válida",
-	"email-address-validity-invalid": "Escribe una dirección de correo electrónico válida",
 	"userrights": "Gestión de permisos de usuario",
 	"userrights-lookup-user": "Configurar grupos de usuarios",
 	"userrights-user-editname": "Escribe un nombre de usuario:",

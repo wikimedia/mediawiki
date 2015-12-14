@@ -1017,8 +1017,6 @@
 	"prefs-help-prefershttps": "Ova podešavanja će stupiti na snagu pri sljedećoj prijavi.",
 	"prefswarning-warning": "Napravili ste promjene u vašim postavkama koje još uvijek nisu sačuvane. Ako napustite ovu stranicu bez da pritisnete na \"$1\", postavke neće biti ažurirane.",
 	"prefs-tabs-navigation-hint": "Savjet: Možete koristiti tipke sa lijevom i desnom strelicom za kretanje kroz kartice.",
-	"email-address-validity-valid": "Izgleda valjano",
-	"email-address-validity-invalid": "Neophodna valjana adresa!",
 	"userrights": "Postavke korisničkih prava",
 	"userrights-lookup-user": "Menadžment korisničkih grupa",
 	"userrights-user-editname": "Upišite korisničko ime:",

@@ -978,8 +978,6 @@
 	"prefs-help-prefershttps": "Ova mogućnost će stupiti na snagu kod sljedeće prijave.",
 	"prefswarning-warning": "Napravili ste promjene u Vašim postavkama koje još nisu snimljene.\nAko napustite ovu stranicu bez pritiska na \"$1\", postavke neće biti ažurirane.",
 	"prefs-tabs-navigation-hint": "Savjet: možete rabiti tipke sa strjelicama lijevo i desno za prebacivanje između kartica na popisu kartica.",
-	"email-address-validity-valid": "Adresa e-pošte pokazuje se ispravnom",
-	"email-address-validity-invalid": "Unesite valjanu adresu e-pošte",
 	"userrights": "Upravljanje suradničkim pravima",
 	"userrights-lookup-user": "Upravljaj suradničkim skupinama",
 	"userrights-user-editname": "Unesite suradničko ime:",

@@ -1029,8 +1029,6 @@
 	"prefs-help-prefershttps": "A beállítás a legközelebbi belépés után lép érvénybe.",
 	"prefswarning-warning": "A beállításaidban tett módosítások nincsenek elmentve. Ha a $1 megnyomása nélkül hagyod el az oldalt, a beállításaid nem módosulnak.",
 	"prefs-tabs-navigation-hint": "Tipp: a jobbra-balra nyilakkal navigálhatsz a fülek között.",
-	"email-address-validity-valid": "Az e-mail cím érvényesnek tűnik",
-	"email-address-validity-invalid": "Írj be egy érvényes e-mail címet",
 	"userrights": "Szerkesztői jogok beállítása",
 	"userrights-lookup-user": "Szerkesztőcsoportok beállítása",
 	"userrights-user-editname": "Add meg a szerkesztő nevét:",

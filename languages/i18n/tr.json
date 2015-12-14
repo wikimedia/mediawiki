@@ -1081,8 +1081,6 @@
 	"prefs-help-prefershttps": "Bu tercih bir sonraki girişinizde etkili olacaktır.",
 	"prefswarning-warning": "Henüz kaydedilmemiş değişiklikler yaptınız. \"$\"'e basmadığınız takdirde tercihleriniz güncellenmeyecektir.",
 	"prefs-tabs-navigation-hint": "İpucu: Sekmeler listesindeki sekmeler arasında gezinmek için sağ ve sol ok tuşlarını kullanabilirsiniz.",
-	"email-address-validity-valid": "E-posta adresi geçerli görünüyor",
-	"email-address-validity-invalid": "Geçerli bir e-posta adresi girin",
 	"userrights": "Kullanıcı hakları yönetimi",
 	"userrights-lookup-user": "Kullanıcı gruplarını düzenle",
 	"userrights-user-editname": "Kullanıcı adı giriniz:",

@@ -1029,8 +1029,6 @@
 	"prefs-help-prefershttps": "Šis nustatymas suveiks kitą kartą prisijungiant.",
 	"prefswarning-warning": "Jūs atlikote savo nustatymų pakeitimus, kurie dar nebuvo išsaugoti.\nJei paliksite puslapį nepaspaudę \"$1\", jūsų nustatymai nebus atnaujinti.",
 	"prefs-tabs-navigation-hint": "Patarimas: galite naudoti kairės ir dešinės rodyklių ženkliukus, kad skirtukų sąraše judėtumėte tarp skirtukų.",
-	"email-address-validity-valid": "Panašu, kad E-pašto adresas yra teisingas",
-	"email-address-validity-invalid": "Įveskite korektišką e-pašto adresą",
 	"userrights": "Naudotojų teisių valdymas",
 	"userrights-lookup-user": "Tvarkyti naudotojo grupes",
 	"userrights-user-editname": "Įveskite naudotojo vardą:",

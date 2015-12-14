@@ -832,8 +832,6 @@
 	"prefs-displayrc": "Ցուցադրման ընտրանքներ",
 	"prefs-displaywatchlist": "Ցուցադրման ընտրանքներ",
 	"prefs-diffs": "Տարբերություններ",
-	"email-address-validity-valid": "Էլ. հասցեն վավերական է",
-	"email-address-validity-invalid": "Մուտքագրեք վավերական էլ. հասցե",
 	"userrights": "Մասնակիցների իրավունքների կառավարում",
 	"userrights-lookup-user": "Մասնակիցների խմբերի կառավարում",
 	"userrights-user-editname": "Մուտքագրեք մասնակցի անուն.",

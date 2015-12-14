@@ -937,8 +937,6 @@
 	"prefs-displaywatchlist": "Val for vising",
 	"prefs-diffs": "Skilnader",
 	"prefs-help-prefershttps": "Denne innstillinga vil verta verksam neste gongen du loggar inn.",
-	"email-address-validity-valid": "E-postadressa ser ut til å vera gyldig",
-	"email-address-validity-invalid": "Skriv inn ei gyldig e-postaddresse.",
 	"userrights": "Administrering av brukartilgang",
 	"userrights-lookup-user": "Administrer brukargrupper",
 	"userrights-user-editname": "Skriv inn brukarnamn:",
