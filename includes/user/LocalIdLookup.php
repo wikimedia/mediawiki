@@ -40,7 +40,7 @@ class LocalIdLookup extends CentralIdLookup {
 		}
 
 		// Easy case, we're checking locally
-		if ( $wikiId === null || $wikiId === wfWikiId() ) {
+		if ( $wikiId === null || $wikiId === wfWikiID() ) {
 			return true;
 		}
 

@@ -1294,7 +1294,7 @@ class ApiMain extends ApiBase {
 			'dt' => date( 'c' ),
 			'client_ip' => $request->getIP(),
 			'user_agent' => $this->getUserAgent(),
-			'wiki' => wfWikiId(),
+			'wiki' => wfWikiID(),
 			'time_backend_ms' => round( $time * 1000 ),
 			'params' => array(),
 		);
