@@ -128,7 +128,7 @@
 	 * @inheritdoc
 	 */
 	mw.Upload.Dialog.prototype.getBodyHeight = function () {
-		return 300;
+		return 600;
 	};
 
 	/**
