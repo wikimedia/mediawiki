@@ -87,7 +87,7 @@ CREATE INDEX &mw_prefix.page_i03 ON &mw_prefix.page (page_is_redirect, page_name
 
 -- Create a dummy page to satisfy fk contraints especially with revisions
 INSERT INTO &mw_prefix.page
-  VALUES (0, 0, ' ', NULL, 0, 0, 0, 0, current_timestamp, NULL, 0, 0, NULL, NULL);
+  VALUES (0, 0, ' ', NULL, 0, 0, 0, current_timestamp, NULL, 0, 0, NULL, NULL);
 
 /*$mw$*/
 CREATE TRIGGER &mw_prefix.page_set_random BEFORE INSERT ON &mw_prefix.page
