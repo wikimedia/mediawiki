@@ -520,8 +520,15 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @since 1.21
 	 */
 	public static function teardownTestDB() {
+		global $wgJobClasses;
+
 		if ( !self::$dbSetup ) {
 			return;
+		}
+
+		foreach ( $wgJobClasses as $type => $class ) {
+			// Delete any jobs under the clone DB (or old prefix in other stores)
+			JobQueueGroup::singleton()->get( $type )->delete();
 		}
 
 		CloneDatabase::changePrefix( self::$oldTablePrefix );
