@@ -45,36 +45,36 @@ class PreferencesTest extends MediaWikiTestCase {
 	 * Placeholder to verify bug 34302
 	 * @covers Preferences::profilePreferences
 	 */
-	public function testEmailFieldsWhenUserHasNoEmail() {
+	public function testEmailAuthenticationFieldWhenUserHasNoEmail() {
 		$prefs = $this->prefsFor( 'noemail' );
 		$this->assertArrayHasKey( 'cssclass',
-			$prefs['emailaddress']
+			$prefs['emailauthentication']
 		);
-		$this->assertEquals( 'mw-email-none', $prefs['emailaddress']['cssclass'] );
+		$this->assertEquals( 'mw-email-none', $prefs['emailauthentication']['cssclass'] );
 	}
 
 	/**
 	 * Placeholder to verify bug 34302
 	 * @covers Preferences::profilePreferences
 	 */
-	public function testEmailFieldsWhenUserEmailNotAuthenticated() {
+	public function testEmailAuthenticationFieldWhenUserEmailNotAuthenticated() {
 		$prefs = $this->prefsFor( 'notauth' );
 		$this->assertArrayHasKey( 'cssclass',
-			$prefs['emailaddress']
+			$prefs['emailauthentication']
 		);
-		$this->assertEquals( 'mw-email-not-authenticated', $prefs['emailaddress']['cssclass'] );
+		$this->assertEquals( 'mw-email-not-authenticated', $prefs['emailauthentication']['cssclass'] );
 	}
 
 	/**
 	 * Placeholder to verify bug 34302
 	 * @covers Preferences::profilePreferences
 	 */
-	public function testEmailFieldsWhenUserEmailIsAuthenticated() {
+	public function testEmailAuthenticationFieldWhenUserEmailIsAuthenticated() {
 		$prefs = $this->prefsFor( 'auth' );
 		$this->assertArrayHasKey( 'cssclass',
-			$prefs['emailaddress']
+			$prefs['emailauthentication']
 		);
-		$this->assertEquals( 'mw-email-authenticated', $prefs['emailaddress']['cssclass'] );
+		$this->assertEquals( 'mw-email-authenticated', $prefs['emailauthentication']['cssclass'] );
 	}
 
 	/** Helper */
