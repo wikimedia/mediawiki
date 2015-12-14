@@ -1519,24 +1519,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Get a notice based on page's namespace
-	 *
-	 * @return string HTML fragment
-	 */
-	function getNamespaceNotice() {
-
-		$key = 'namespacenotice-' . $this->getTitle()->getNsText();
-		$namespaceNotice = $this->getCachedNotice( $key );
-		if ( $namespaceNotice && substr( $namespaceNotice, 0, 7 ) != '<p>&lt;' ) {
-			$namespaceNotice = '<div id="namespacebanner">' . $namespaceNotice . '</div>';
-		} else {
-			$namespaceNotice = '';
-		}
-
-		return $namespaceNotice;
-	}
-
-	/**
 	 * Get the site notice
 	 *
 	 * @return string HTML fragment
