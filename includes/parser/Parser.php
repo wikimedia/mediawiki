@@ -3233,6 +3233,8 @@ class Parser {
 			case 'contentlanguage':
 				global $wgLanguageCode;
 				return $wgLanguageCode;
+			case 'pagecontentlanguage':
+				return $pageLang->getHtmlCode();
 			case 'cascadingsources':
 				$value = CoreParserFunctions::cascadingsources( $this );
 				break;
