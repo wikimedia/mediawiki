@@ -5,10 +5,24 @@
  * click handling code in JavaScript. Use a HTMLSubmitField if you merely
  * wish to add a submit button to a form.
  *
+ * Additional recognized configuration parameters include:
+ * - flags: OOUI flags for the button, see OOUI\\FlaggedElement
+ * - buttonlabel-message: Message to use for the button display text, instead
+ *   of the value from 'default'. Overrides 'buttonlabel' and 'buttonlabel-raw'.
+ * - buttonlabel: Text to display for the button display text, instead
+ *   of the value from 'default'. Overrides 'buttonlabel-raw'.
+ * - buttonlabel-raw: HTMLto display for the button display text, instead
+ *   of the value from 'default'.
+ *
+ * Note that the buttonlabel parameters are not supported on IE6 and IE7 due to
+ * bugs in those browsers. If detected, they will be served buttons using the
+ * value of 'default' as the button label.
+ *
  * @since 1.22
  */
 class HTMLButtonField extends HTMLFormField {
 	protected $buttonType = 'button';
+	protected $buttonLabel = null;
 
 	/** @var array $mFlags Flags to add to OOUI Button widget */
 	protected $mFlags = array();
@@ -18,6 +32,30 @@ class HTMLButtonField extends HTMLFormField {
 		if ( isset( $info['flags'] ) ) {
 			$this->mFlags = $info['flags'];
 		}
+
+		# Generate the label from a message, if possible
+		if ( isset( $info['buttonlabel-message'] ) ) {
+			$msgInfo = $info['buttonlabel-message'];
+
+			if ( is_array( $msgInfo ) ) {
+				$msg = array_shift( $msgInfo );
+			} else {
+				$msg = $msgInfo;
+				$msgInfo = array();
+			}
+
+			$this->buttonLabel = $this->msg( $msg, $msgInfo )->parse();
+		} elseif ( isset( $info['buttonlabel'] ) ) {
+			if ( $info['buttonlabel'] === '&#160;' ) {
+				// Apparently some things set &nbsp directly and in an odd format
+				$this->buttonLabel = '&#160;';
+			} else {
+				$this->buttonLabel = htmlspecialchars( $info['buttonlabel'] );
+			}
+		} elseif ( isset( $info['buttonlabel-raw'] ) ) {
+			$this->buttonLabel = $info['buttonlabel-raw'];
+		}
+
 		parent::__construct( $info );
 	}
 
@@ -37,9 +75,16 @@ class HTMLButtonField extends HTMLFormField {
 		$attr = array(
 			'class' => 'mw-htmlform-submit ' . $this->mClass . $flags,
 			'id' => $this->mID,
+			'type' => $this->buttonType,
+			'name' => $this->mName,
+			'value' => $value,
 		) + $this->getAttributes( array( 'disabled', 'tabindex' ) );
 
-		return Html::input( $this->mName, $value, $this->buttonType, $attr );
+		if ( $this->isBadIE() ) {
+			return Html::element( 'input', $attr );
+		} else {
+			return Html::rawElement( 'button', $attr, $this->buttonLabel ?: htmlspecialchars( $value ) );
+		}
 	}
 
 	/**
@@ -51,11 +96,14 @@ class HTMLButtonField extends HTMLFormField {
 		return new OOUI\ButtonInputWidget( array(
 			'name' => $this->mName,
 			'value' => $value,
-			'label' => $value,
+			'label' => !$this->isBadIE() && $this->buttonLabel
+				? new OOUI\HtmlSnippet( $this->buttonLabel )
+				: $value,
 			'type' => $this->buttonType,
 			'classes' => array( 'mw-htmlform-submit', $this->mClass ),
 			'id' => $this->mID,
 			'flags' => $this->mFlags,
+			'useInputTag' => $this->isBadIE(),
 		) + $this->getAttributes( array( 'disabled', 'tabindex' ), array( 'tabindex' => 'tabIndex' ) ) );
 	}
 
@@ -73,5 +121,16 @@ class HTMLButtonField extends HTMLFormField {
 	 */
 	public function validate( $value, $alldata ) {
 		return true;
+	}
+
+	/**
+	 * IE<8 has bugs with <button>, so we'll need to avoid them.
+	 * @return bool Whether the request is from is a bad version of IE
+	 */
+	private function isBadIE() {
+		$request = $this->mParent
+			? $this->mParent->getRequest()
+			: RequestContext::getMain()->getRequest();
+		return preg_match( '/MSIE [1-7]\./i', $request->getHeader( 'User-Agent' ) );
 	}
 }
