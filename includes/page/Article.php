@@ -191,7 +191,7 @@ class Article implements Page {
 	}
 
 	/**
-	 * Note that getContent/loadContent do not follow redirects anymore.
+	 * Note that getContent does not follow redirects anymore.
 	 * If you need to fetch redirectable content easily, try
 	 * the shortcut in WikiPage::getRedirectTarget()
 	 *
@@ -212,7 +212,7 @@ class Article implements Page {
 	 * Returns a Content object representing the pages effective display content,
 	 * not necessarily the revision's content!
 	 *
-	 * Note that getContent/loadContent do not follow redirects anymore.
+	 * Note that getContent does not follow redirects anymore.
 	 * If you need to fetch redirectable content easily, try
 	 * the shortcut in WikiPage::getRedirectTarget()
 	 *
@@ -307,16 +307,6 @@ class Article implements Page {
 		}
 
 		return $oldid;
-	}
-
-	/**
-	 * Load the revision (including text) into this object
-	 *
-	 * @deprecated since 1.19; use fetchContent()
-	 */
-	function loadContent() {
-		wfDeprecated( __METHOD__, '1.19' );
-		$this->fetchContent();
 	}
 
 	/**

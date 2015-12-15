@@ -187,6 +187,7 @@ changes to languages because of Phabricator reports.
 * MWHookException was removed.
 * OutputPage::appendSubtitle() was removed (deprecated since 1.19).
 * OutputPage::loginToUse() was removed (deprecated since 1.19).
+* Article::loadContent() was removed (deprecated since 1.19).
 
 == Compatibility ==
 
