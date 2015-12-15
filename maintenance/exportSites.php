@@ -17,6 +17,7 @@ class ExportSites extends Maintenance {
 	public function __construct() {
 		$this->mDescription = 'Exports site definitions the sites table to XML file';
 
+		$this->addOption( 'site', 'Site to export', false, true );
 		$this->addArg( 'file', 'A file to write the XML to (see docs/sitelist.txt). ' .
 			'Use "php://stdout" to write to stdout.', true
 		);
@@ -43,6 +44,16 @@ class ExportSites extends Maintenance {
 		$exporter = new SiteExporter( $handle );
 
 		$sites = SiteSQLStore::newInstance()->getSites( 'recache' );
+		$site = $this->getOption( 'site', null );
+
+		if ( is_string( $site ) ) {
+			$site = $sites->getSite( $site );
+
+			if ( $site ) {
+				$sites = new SiteList( array( $site ) );
+			}
+		}
+
 		$exporter->exportSites( $sites );
 
 		fclose( $handle );
