@@ -314,6 +314,7 @@
 	"nstab-template": "Predložak",
 	"nstab-help": "Pomoć",
 	"nstab-category": "Kategorija",
+	"mainpage-nstab": "Glavna stranica",
 	"nosuchaction": "Nema takve naredbe",
 	"nosuchactiontext": "Navedeni URL označava nepostojeću naredbu.\nMožda se pogrešno upisali URL ili slijedili pogrešnu poveznicu.\nOvo također može ukazivati na grešku u softveru kojeg koristi {{SITENAME}}.",
 	"nosuchspecialpage": "Posebna stranica ne postoji",

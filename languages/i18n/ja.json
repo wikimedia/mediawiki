@@ -113,7 +113,7 @@
 	"tog-showhiddencats": "隠しカテゴリを表示",
 	"tog-norollbackdiff": "巻き戻し後の差分を表示しない",
 	"tog-useeditwarning": "変更を保存せずに編集画面から離れようとしたら警告",
-	"tog-prefershttps": "ログインする際、常に SSL (https) 接続を使用する",
+	"tog-prefershttps": "ログインする際、常に安全な接続を使用する",
 	"underline-always": "常に付ける",
 	"underline-never": "常に付けない",
 	"underline-default": "外装またはブラウザーの既定値を使用",

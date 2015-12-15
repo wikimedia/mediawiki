@@ -9,7 +9,8 @@
 			"Reza1615",
 			"Alirezaaa",
 			"Danialbehzadi",
-			"Leyth"
+			"Leyth",
+			"Huji"
 		]
 	},
 	"config-desc": "نصب کنندهٔ ویکی‌مدیا",
@@ -107,8 +108,6 @@
 	"config-db-install-account": "حساب کاربری برای نصب",
 	"config-db-username": "نام کاربری پایگاه اطلاعات:",
 	"config-db-password": "گذرواژه پایگاه داده‌ها:",
-	"config-db-password-empty": "لطفاً یک رمز عبور برای کاربر تازه پایگاه اطلا‌عاتی وارد کنید: $1\nدر صورتی که ممکن است کاربران بدون رمز عبور به وجود آیند،امن نیست.",
-	"config-db-username-empty": "شما باید یک مقدار برای \"نام کاربری {{int:config-db-username}}\" وارد کنید",
 	"config-db-install-username": "نام کاربری را وارد کنید که برای اتصال به پایگاه اطلاعاتی در طول روند نصب استفاده خواهد‌شد.\nاین نام کاربری حساب مدیاویکی نیست; نام کاربری برای پایگاه اطلاعاتی شما است.",
 	"config-db-install-password": "رمز عبوری را وارد کنید که برای اتصال به پایگاه اطلاعاتی در طول روند نصب استفاده خواهد‌شد.\nاین رمز عبور برای حساب مدیاویکی نیست;رمز عبور برای پایگاه اطلاعاتی شما است.",
 	"config-db-install-help": "نام کاربری و رمز عبوری را وارد کنید که برای اتصال به پایگاه اطلاعاتی در طول روند نصب استفاده خواهد‌ٰشد.",
@@ -328,5 +327,5 @@
 	"config-nofile": "پروندهٔ «$1» یافت نشد. آیا حذف شده‌است؟",
 	"config-extension-link": "آیا می‌دانستید که ویکی شما [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensions] را پشتیبانی می‌کند؟\nشما می‌توانید [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions by category]",
 	"mainpagetext": "'''نرم‌افزار ویکی با موفقیت نصب شد.'''",
-	"mainpagedocfooter": "از [//meta.wikimedia.org/wiki/Help:Contents راهنمای کاربران]\nبرای استفاده از نرم‌افزار ویکی کمک بگیرید.\n\n== آغاز به کار ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings تنظیم پیکربندی]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki پرسش‌های متداول]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce فهرست ارسال نسخه‌های مدیاویکی]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise مدیاویکی برای زبان شما]"
+	"mainpagedocfooter": "از [//meta.wikimedia.org/wiki/Help:Contents راهنمای کاربران]\nبرای استفاده از نرم‌افزار ویکی کمک بگیرید.\n\n== آغاز به کار ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings تنظیم پیکربندی]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki پرسش‌های متداول]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce فهرست ارسال نسخه‌های مدیاویکی]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise مدیاویکی برای زبان شما]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam آموزش مقابله به هرزنگاری در ویکی شما]"
 }

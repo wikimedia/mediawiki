@@ -693,6 +693,7 @@
 	"searchrelated": "sidotud",
 	"searchall": "kaik",
 	"showingresults": "Alemba ozutadas {{PLURAL:$1|'''1''' rezul'tat|'''$1''' rezul'tatad}} nomeraspäi #'''$2''' augotaden.",
+	"search-showingresults": "Rezul'tatad $1–$2 $3-späi",
 	"search-nonefound": "Ecmižhe ei löudnus rezul'tatoid.",
 	"powersearch-legend": "Levitoittud ecind",
 	"powersearch-ns": "Ecind nimiavaruziš:",

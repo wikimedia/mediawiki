@@ -1729,6 +1729,7 @@
 	"wlnote": "Ispod {{PLURAL:$1|je poslednja izmena|su poslednje <strong>$1</strong> izmene|je poslednjih <strong>$1</strong> izmena}} u {{PLURAL:$2|prethodnom satu|prethodna <strong>$2</strong> sata|prethodnih <strong>$2</strong> sati}}, zaključno sa $3, $4.",
 	"wlshowlast": "Prikaži poslednjih $1 sati, $2 dana",
 	"watchlistall2": "sve",
+	"wlshowtime": "Period za prikaz:",
 	"watchlist-options": "Postavke spiska nadgledanja",
 	"watching": "Nadgledanje…",
 	"unwatching": "Prekidanje nadgledanja…",
