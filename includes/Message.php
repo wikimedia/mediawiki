@@ -726,6 +726,8 @@ class Message implements MessageSpecifier, Serializable {
 	 * @throws MWException
 	 */
 	public function inLanguage( $lang ) {
+		$previousLanguage = $this->language;
+
 		if ( $lang instanceof Language ) {
 			$this->language = $lang;
 		} elseif ( is_string( $lang ) ) {
@@ -740,7 +742,11 @@ class Message implements MessageSpecifier, Serializable {
 				. "passed a String or Language object; $type given"
 			);
 		}
-		$this->message = null;
+
+		if ( $this->language !== $previousLanguage ) {
+			// The language has changed. Clear the message cache.
+			$this->message = null;
+		}
 		$this->interface = false;
 		return $this;
 	}
