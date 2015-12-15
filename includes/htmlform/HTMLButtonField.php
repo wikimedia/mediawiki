@@ -9,6 +9,7 @@
  */
 class HTMLButtonField extends HTMLFormField {
 	protected $buttonType = 'button';
+	protected $buttonLabel = null;
 
 	/** @var array $mFlags Flags to add to OOUI Button widget */
 	protected $mFlags = array();
@@ -18,6 +19,30 @@ class HTMLButtonField extends HTMLFormField {
 		if ( isset( $info['flags'] ) ) {
 			$this->mFlags = $info['flags'];
 		}
+
+		# Generate the label from a message, if possible
+		if ( isset( $info['buttonlabel-message'] ) ) {
+			$msgInfo = $info['buttonlabel-message'];
+
+			if ( is_array( $msgInfo ) ) {
+				$msg = array_shift( $msgInfo );
+			} else {
+				$msg = $msgInfo;
+				$msgInfo = array();
+			}
+
+			$this->buttonLabel = $this->msg( $msg, $msgInfo )->parse();
+		} elseif ( isset( $info['buttonlabel'] ) ) {
+			if ( $info['buttonlabel'] === '&#160;' ) {
+				// Apparently some things set &nbsp directly and in an odd format
+				$this->buttonLabel = '&#160;';
+			} else {
+				$this->buttonLabel = htmlspecialchars( $info['buttonlabel'] );
+			}
+		} elseif ( isset( $info['buttonlabel-raw'] ) ) {
+			$this->buttonLabel = $info['buttonlabel-raw'];
+		}
+
 		parent::__construct( $info );
 	}
 
@@ -37,9 +62,12 @@ class HTMLButtonField extends HTMLFormField {
 		$attr = array(
 			'class' => 'mw-htmlform-submit ' . $this->mClass . $flags,
 			'id' => $this->mID,
+			'type' => $this->buttonType,
+			'name' => $this->mName,
+			'value' => $value,
 		) + $this->getAttributes( array( 'disabled', 'tabindex' ) );
 
-		return Html::input( $this->mName, $value, $this->buttonType, $attr );
+		return Html::rawElement( 'button', $attr, $this->buttonLabel ?: htmlspecialchars( $value ) );
 	}
 
 	/**
@@ -51,7 +79,7 @@ class HTMLButtonField extends HTMLFormField {
 		return new OOUI\ButtonInputWidget( array(
 			'name' => $this->mName,
 			'value' => $value,
-			'label' => $value,
+			'label' => $this->buttonLabel ? new OOUI\HtmlSnippet( $this->buttonLabel ) : $value,
 			'type' => $this->buttonType,
 			'classes' => array( 'mw-htmlform-submit', $this->mClass ),
 			'id' => $this->mID,

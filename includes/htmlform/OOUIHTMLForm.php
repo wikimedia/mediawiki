@@ -92,13 +92,24 @@ class OOUIHTMLForm extends HTMLForm {
 				$attrs['id'] = $button['id'];
 			}
 
+			if ( isset( $button['label-message'] ) ) {
+				$label = new OOUI\HtmlSnippet( $this->msg( $button['label-message'] )->parse() );
+			} elseif ( isset( $button['label'] ) ) {
+				$label = $button['label'];
+			} elseif ( isset( $button['label-raw'] ) ) {
+				$label = new OOUI\HtmlSnippet( $button['label-raw'] );
+			} else {
+				$label = $button['value'];
+			}
+
 			$attrs['classes'] = isset( $attrs['class'] ) ? (array)$attrs['class'] : array();
 
 			$buttons .= new OOUI\ButtonInputWidget( array(
 				'type' => 'submit',
 				'name' => $button['name'],
 				'value' => $button['value'],
-				'label' => $button['value'],
+				'label' => $label,
+				'flags' => $button['flags'],
 			) + $attrs );
 		}
 

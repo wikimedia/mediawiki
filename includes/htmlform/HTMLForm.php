@@ -855,15 +855,47 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Add a button to the form
 	 *
-	 * @param string $name Field name.
-	 * @param string $value Field value
-	 * @param string $id DOM id for the button (default: null)
-	 * @param array $attribs
-	 *
+	 * @since 1.27 takes an array as shown. Earlier versions accepted
+	 *  'name', 'value', 'id', and 'attribs' as separate parameters in that
+	 *  order.
+	 * @param array $data Data to define the button:
+	 *  - name: (string) Button name.
+	 *  - value: (string) Button value.
+	 *  - label: (string, optional) Button label text.
+	 *  - label-raw: (string, optional) Button label HTML.
+	 *  - label-message: (string, optional) Button label message key.
+	 *  - id: (string, optional) DOM id for the button.
+	 *  - attribs: (array) Additional HTML attributes.
+	 *  - flags: (string|string[]) OOUI flags.
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	public function addButton( $name, $value, $id = null, $attribs = null ) {
-		$this->mButtons[] = compact( 'name', 'value', 'id', 'attribs' );
+	public function addButton( $data ) {
+		if ( !is_array( $data ) ) {
+			$args = func_get_args();
+			if ( count( $args ) < 2 || count( $args ) > 4 ) {
+				throw new InvalidArgumentException(
+					'Incorrect number of arguments for deprecated calling style'
+				);
+			}
+			$data = array(
+				'name' => $args[0],
+				'value' => $args[1],
+				'id' => isset( $args[2] ) ? $args[2] : null,
+				'attribs' => isset( $args[3] ) ? $args[3] : null,
+			);
+		} else {
+			if ( !isset( $data['name'] ) ) {
+				throw new InvalidArgumentException( 'A name is required' );
+			}
+			if ( !isset( $data['value'] ) ) {
+				throw new InvalidArgumentException( 'A value is required' );
+			}
+		}
+		$this->mButtons[] = $data + array(
+			'id' => null,
+			'attribs' => null,
+			'flags' => null,
+		);
 
 		return $this;
 	}
@@ -1048,6 +1080,16 @@ class HTMLForm extends ContextSource {
 				'value' => $button['value']
 			);
 
+			if ( isset( $button['label-message'] ) ) {
+				$label = $this->msg( $button['label-message'] )->parse();
+			} elseif ( isset( $button['label'] ) ) {
+				$label = htmlspecialchars( $button['label'] );
+			} elseif ( isset( $button['label-raw'] ) ) {
+				$label = $button['label-raw'];
+			} else {
+				$label = htmlspecialchars( $button['value'] );
+			}
+
 			if ( $button['attribs'] ) {
 				$attrs += $button['attribs'];
 			}
@@ -1061,7 +1103,7 @@ class HTMLForm extends ContextSource {
 				$attrs['class'][] = 'mw-ui-button';
 			}
 
-			$buttons .= Html::element( 'input', $attrs ) . "\n";
+			$buttons .= Html::rawElement( 'button', $attrs, $label ) . "\n";
 		}
 
 		$html = Html::rawElement( 'span',
