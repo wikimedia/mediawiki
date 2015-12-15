@@ -321,6 +321,7 @@
 			upload.setState( Upload.State.UPLOADING );
 
 			return finishStash( {
+				bucket: upload.bucket, // Automatically ignored if undefined
 				watchlist: ( upload.getWatchlist() ) ? 1 : undefined,
 				comment: upload.getComment(),
 				filename: upload.getFilename(),

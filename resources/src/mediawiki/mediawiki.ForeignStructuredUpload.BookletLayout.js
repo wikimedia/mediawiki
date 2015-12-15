@@ -72,11 +72,44 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm = function () {
+		var
+			query = /[?&]uploadbucket=(\d)/.exec( location.search ),
+			isTestEnabled = !!mw.config.get( 'wgForeignUploadTestEnabled' ),
+			defaultBucket = mw.config.get( 'wgForeignUploadTestDefault' ) || 1,
+			userId = mw.config.get( 'wgUserId' );
+
+		if ( query && query[ 1 ] ) {
+			// Testing and debugging
+			this.shouldRecordBucket = false;
+			this.bucket = Number( query[ 1 ] );
+		} else if ( !userId || !isTestEnabled ) {
+			// a) Anonymous user. This can actually happen, because our software sucks.
+			// b) Test is not enabled on this wiki.
+			// In either case, display the old interface and don't record bucket on uploads.
+			this.shouldRecordBucket = false;
+			this.bucket = defaultBucket;
+		} else {
+			// Regular logged in user on a wiki where the test is running
+			this.shouldRecordBucket = true;
+			this.bucket = ( userId % 4 ) + 1; // 1, 2, 3, 4
+		}
+
+		return this[ 'renderUploadForm' + this.bucket ]();
+	};
+
+	/**
+	 * Test option 1, the original one. See T120867.
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm1 = function () {
 		var fieldset, $ownWorkMessage, $notOwnWorkMessage,
+			onUploadFormChange,
 			ownWorkMessage, notOwnWorkMessage, notOwnWorkLocal,
 			validTargets = mw.config.get( 'wgForeignUploadTargets' ),
 			target = this.target || validTargets[ 0 ] || 'local',
 			layout = this;
+
+		// Temporary override to make my life easier during A/B test
+		target = 'shared';
 
 		// foreign-structured-upload-form-label-own-work-message-local
 		// foreign-structured-upload-form-label-own-work-message-shared
@@ -104,7 +137,13 @@
 			$( '<p>' ).html( notOwnWorkMessage.parse() ),
 			$( '<p>' ).html( notOwnWorkLocal.parse() )
 		);
-		$ownWorkMessage.add( $notOwnWorkMessage ).find( 'a' ).attr( 'target', '_blank' );
+		$ownWorkMessage.add( $notOwnWorkMessage ).find( 'a' )
+			.attr( 'target', '_blank' )
+			.on( 'click', function ( e ) {
+				// Some stupid code is trying to prevent default on all clicks, which causes the links to
+				// not be openable, don't let it
+				e.stopPropagation();
+			} );
 
 		this.selectFileWidget = new OO.ui.SelectFileWidget();
 		this.messageLabel = new OO.ui.LabelWidget( {
@@ -133,9 +172,276 @@
 		] );
 		this.uploadForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
 
+		onUploadFormChange = function () {
+			var file = this.selectFileWidget.getValue(),
+				ownWork = this.ownWorkCheckbox.isSelected(),
+				valid = !!file && ownWork;
+			this.emit( 'uploadValid', valid );
+		};
+
 		// Validation
-		this.selectFileWidget.on( 'change', this.onUploadFormChange.bind( this ) );
-		this.ownWorkCheckbox.on( 'change', this.onUploadFormChange.bind( this ) );
+		this.selectFileWidget.on( 'change', onUploadFormChange.bind( this ) );
+		this.ownWorkCheckbox.on( 'change', onUploadFormChange.bind( this ) );
+
+		return this.uploadForm;
+	};
+
+	/**
+	 * Test option 2, idea A from T121021. See T120867.
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm2 = function () {
+		var fieldset, checkboxes, fields, onUploadFormChange;
+
+		this.selectFileWidget = new OO.ui.SelectFileWidget();
+		this.licenseCheckboxes = checkboxes = [
+			new OO.ui.CheckboxInputWidget(),
+			new OO.ui.CheckboxInputWidget(),
+			new OO.ui.CheckboxInputWidget(),
+			new OO.ui.CheckboxInputWidget()
+		];
+
+		fields = [
+			new OO.ui.FieldLayout( this.selectFileWidget, {
+				align: 'top',
+				label: mw.msg( 'upload-form-label-select-file' )
+			} ),
+			new OO.ui.FieldLayout( new OO.ui.LabelWidget( {
+				label: mw.message( 'foreign-structured-upload-form-2-label-intro' ).parseDom()
+			} ), {
+				align: 'top'
+			} ),
+			new OO.ui.FieldLayout( checkboxes[ 0 ], {
+				align: 'inline',
+				classes: [
+					'mw-foreignStructuredUpload-bookletLayout-withicon',
+					'mw-foreignStructuredUpload-bookletLayout-ownwork'
+				],
+				label: mw.message( 'foreign-structured-upload-form-2-label-ownwork' ).parseDom()
+			} ),
+			new OO.ui.FieldLayout( checkboxes[ 1 ], {
+				align: 'inline',
+				classes: [
+					'mw-foreignStructuredUpload-bookletLayout-withicon',
+					'mw-foreignStructuredUpload-bookletLayout-noderiv'
+				],
+				label: mw.message( 'foreign-structured-upload-form-2-label-noderiv' ).parseDom()
+			} ),
+			new OO.ui.FieldLayout( checkboxes[ 2 ], {
+				align: 'inline',
+				classes: [
+					'mw-foreignStructuredUpload-bookletLayout-withicon',
+					'mw-foreignStructuredUpload-bookletLayout-useful'
+				],
+				label: mw.message( 'foreign-structured-upload-form-2-label-useful' ).parseDom()
+			} ),
+			new OO.ui.FieldLayout( checkboxes[ 3 ], {
+				align: 'inline',
+				classes: [
+					'mw-foreignStructuredUpload-bookletLayout-withicon',
+					'mw-foreignStructuredUpload-bookletLayout-ccbysa'
+				],
+				label: mw.message( 'foreign-structured-upload-form-2-label-ccbysa' ).parseDom()
+			} ),
+			new OO.ui.FieldLayout( new OO.ui.LabelWidget( {
+				label: $()
+					.add( $( '<p>' ).msg( 'foreign-structured-upload-form-2-label-alternative' ) )
+					.add( $( '<p>' ).msg( 'foreign-structured-upload-form-2-label-termsofuse' )
+						.addClass( 'mw-foreignStructuredUpload-bookletLayout-license' ) )
+			} ), {
+				align: 'top'
+			} )
+		];
+
+		fieldset = new OO.ui.FieldsetLayout( { items: fields } );
+		this.uploadForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
+
+		this.uploadForm.$element.find( 'a' )
+			.attr( 'target', '_blank' )
+			.on( 'click', function ( e ) {
+				// Some stupid code is trying to prevent default on all clicks, which causes the links to
+				// not be openable, don't let it
+				e.stopPropagation();
+			} );
+
+		onUploadFormChange = function () {
+			var file = this.selectFileWidget.getValue(),
+				checks = checkboxes.every( function ( checkbox ) {
+					return checkbox.isSelected();
+				} ),
+				valid = !!file && checks;
+			this.emit( 'uploadValid', valid );
+		};
+
+		// Validation
+		this.selectFileWidget.on( 'change', onUploadFormChange.bind( this ) );
+		checkboxes[ 0 ].on( 'change', onUploadFormChange.bind( this ) );
+		checkboxes[ 1 ].on( 'change', onUploadFormChange.bind( this ) );
+		checkboxes[ 2 ].on( 'change', onUploadFormChange.bind( this ) );
+		checkboxes[ 3 ].on( 'change', onUploadFormChange.bind( this ) );
+
+		return this.uploadForm;
+	};
+
+	/**
+	 * Test option 3, idea D from T121021. See T120867.
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm3 = function () {
+		var ownWorkCheckbox, fieldset, yesMsg, noMsg, selects, selectFields,
+			alternativeField, fields, onUploadFormChange;
+
+		this.selectFileWidget = new OO.ui.SelectFileWidget();
+		this.ownWorkCheckbox = ownWorkCheckbox = new OO.ui.CheckboxInputWidget();
+
+		yesMsg = mw.message( 'foreign-structured-upload-form-3-label-yes' ).text();
+		noMsg = mw.message( 'foreign-structured-upload-form-3-label-no' ).text();
+		selects = [
+			new OO.ui.RadioSelectWidget( {
+				items: [
+					new OO.ui.RadioOptionWidget( { data: false, label: yesMsg } ),
+					new OO.ui.RadioOptionWidget( { data: true, label: noMsg } )
+				]
+			} ),
+			new OO.ui.RadioSelectWidget( {
+				items: [
+					new OO.ui.RadioOptionWidget( { data: true, label: yesMsg } ),
+					new OO.ui.RadioOptionWidget( { data: false, label: noMsg } )
+				]
+			} ),
+			new OO.ui.RadioSelectWidget( {
+				items: [
+					new OO.ui.RadioOptionWidget( { data: false, label: yesMsg } ),
+					new OO.ui.RadioOptionWidget( { data: true, label: noMsg } )
+				]
+			} )
+		];
+
+		this.licenseSelectFields = selectFields = [
+			new OO.ui.FieldLayout( selects[ 0 ], {
+				align: 'top',
+				classes: [ 'mw-foreignStructuredUpload-bookletLayout-question' ],
+				label: mw.message( 'foreign-structured-upload-form-3-label-question-website' ).parseDom()
+			} ),
+			new OO.ui.FieldLayout( selects[ 1 ], {
+				align: 'top',
+				classes: [ 'mw-foreignStructuredUpload-bookletLayout-question' ],
+				label: mw.message( 'foreign-structured-upload-form-3-label-question-ownwork' ).parseDom()
+			} ).toggle( false ),
+			new OO.ui.FieldLayout( selects[ 2 ], {
+				align: 'top',
+				classes: [ 'mw-foreignStructuredUpload-bookletLayout-question' ],
+				label: mw.message( 'foreign-structured-upload-form-3-label-question-noderiv' ).parseDom()
+			} ).toggle( false )
+		];
+
+		alternativeField = new OO.ui.FieldLayout( new OO.ui.LabelWidget( {
+			label: mw.message( 'foreign-structured-upload-form-3-label-alternative' ).parseDom()
+		} ), {
+			align: 'top'
+		} ).toggle( false );
+
+		// Choosing the right answer to each question shows the next question.
+		// Switching to wrong answer hides all subsequent questions.
+		selects.forEach( function ( select, i ) {
+			select.on( 'choose', function ( selectedOption ) {
+				var isRightAnswer = !!selectedOption.getData();
+				alternativeField.toggle( !isRightAnswer );
+				if ( i + 1 === selectFields.length ) {
+					// Last question
+					return;
+				}
+				if ( isRightAnswer ) {
+					selectFields[ i + 1 ].toggle( true );
+				} else {
+					selectFields.slice( i + 1 ).forEach( function ( field ) {
+						field.fieldWidget.selectItem( null );
+						field.toggle( false );
+					} );
+				}
+			} );
+		} );
+
+		fields = [
+			new OO.ui.FieldLayout( this.selectFileWidget, {
+				align: 'top',
+				label: mw.msg( 'upload-form-label-select-file' )
+			} ),
+			selectFields[ 0 ],
+			selectFields[ 1 ],
+			selectFields[ 2 ],
+			alternativeField,
+			new OO.ui.FieldLayout( ownWorkCheckbox, {
+				classes: [ 'mw-foreignStructuredUpload-bookletLayout-checkbox' ],
+				align: 'inline',
+				label: mw.message( 'foreign-structured-upload-form-label-own-work-message-shared' ).parseDom()
+			} )
+		];
+
+		// Must be done late, after it's been associated with the FieldLayout
+		ownWorkCheckbox.setDisabled( true );
+
+		fieldset = new OO.ui.FieldsetLayout( { items: fields } );
+		this.uploadForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
+
+		this.uploadForm.$element.find( 'a' )
+			.attr( 'target', '_blank' )
+			.on( 'click', function ( e ) {
+				// Some stupid code is trying to prevent default on all clicks, which causes the links to
+				// not be openable, don't let it
+				e.stopPropagation();
+			} );
+
+		onUploadFormChange = function () {
+			var file = this.selectFileWidget.getValue(),
+				checkbox = ownWorkCheckbox.isSelected(),
+				rightAnswers = selects.every( function ( select ) {
+					return select.getSelectedItem() && !!select.getSelectedItem().getData();
+				} ),
+				valid = !!file && checkbox && rightAnswers;
+			ownWorkCheckbox.setDisabled( !rightAnswers );
+			if ( !rightAnswers ) {
+				ownWorkCheckbox.setSelected( false );
+			}
+			this.emit( 'uploadValid', valid );
+		};
+
+		// Validation
+		this.selectFileWidget.on( 'change', onUploadFormChange.bind( this ) );
+		this.ownWorkCheckbox.on( 'change', onUploadFormChange.bind( this ) );
+		selects[ 0 ].on( 'choose', onUploadFormChange.bind( this ) );
+		selects[ 1 ].on( 'choose', onUploadFormChange.bind( this ) );
+		selects[ 2 ].on( 'choose', onUploadFormChange.bind( this ) );
+
+		return this.uploadForm;
+	};
+
+	/**
+	 * Test option 4, idea E from T121021. See T120867.
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm4 = function () {
+		var fieldset, $guide;
+		this.renderUploadForm1();
+		fieldset = this.uploadForm.getItems()[ 0 ];
+
+		$guide = mw.template.get( 'mediawiki.ForeignStructuredUpload.BookletLayout', 'guide.html' ).render();
+		$guide.find( '.mw-foreignStructuredUpload-bookletLayout-guide-text-wrapper-good span' )
+			.msg( 'foreign-structured-upload-form-4-label-good' );
+		$guide.find( '.mw-foreignStructuredUpload-bookletLayout-guide-text-wrapper-bad span' )
+			.msg( 'foreign-structured-upload-form-4-label-bad' );
+
+		// Note the index, we insert after the SelectFileWidget field
+		fieldset.addItems( [
+			new OO.ui.FieldLayout( new OO.ui.Widget( {
+				$content: $guide
+			} ), {
+				align: 'top'
+			} )
+		], 1 );
+
+		// Hook for custom styles
+		fieldset.getItems()[ 2 ].$element.addClass( 'mw-foreignStructuredUpload-bookletLayout-guide-checkbox' );
+
+		// Streamline: remove mention of local Special:Upload
+		fieldset.getItems()[ 3 ].$element.find( 'p' ).last().remove();
 
 		return this.uploadForm;
 	};
@@ -143,12 +449,7 @@
 	/**
 	 * @inheritdoc
 	 */
-	mw.ForeignStructuredUpload.BookletLayout.prototype.onUploadFormChange = function () {
-		var file = this.selectFileWidget.getValue(),
-			ownWork = this.ownWorkCheckbox.isSelected(),
-			valid = !!file && ownWork;
-		this.emit( 'uploadValid', valid );
-	};
+	mw.ForeignStructuredUpload.BookletLayout.prototype.onUploadFormChange = function () {};
 
 	/**
 	 * @inheritdoc
@@ -247,7 +548,23 @@
 	mw.ForeignStructuredUpload.BookletLayout.prototype.clear = function () {
 		mw.ForeignStructuredUpload.BookletLayout.parent.prototype.clear.call( this );
 
-		this.ownWorkCheckbox.setSelected( false );
+		if ( this.ownWorkCheckbox ) {
+			this.ownWorkCheckbox.setSelected( false );
+		}
+		if ( this.licenseCheckboxes ) {
+			this.licenseCheckboxes.forEach( function ( checkbox ) {
+				checkbox.setSelected( false );
+			} );
+		}
+		if ( this.licenseSelectFields ) {
+			this.licenseSelectFields.forEach( function ( field, i ) {
+				field.fieldWidget.selectItem( null );
+				if ( i !== 0 ) {
+					field.toggle( false );
+				}
+			} );
+		}
+
 		this.categoriesWidget.setItemsFromData( [] );
 		this.dateWidget.setValue( '' ).setValidityFlag( true );
 	};

@@ -536,6 +536,12 @@ $wgUseInstantCommons = false;
 $wgForeignUploadTargets = array();
 
 /**
+ * Cross-wiki upload A/B test configuration.
+ */
+$wgForeignUploadTestEnabled = false;
+$wgForeignUploadTestDefault = 1;
+
+/**
  * File backend structure configuration.
  *
  * This is an array of file backend configuration arrays.
