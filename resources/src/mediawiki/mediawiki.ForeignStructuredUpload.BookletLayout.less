@@ -1,3 +1,5 @@
+@import "mediawiki.mixins";
+
 /* All */
 
 .mw-foreignStructuredUpload-bookletLayout-license {
@@ -102,35 +104,36 @@
 	position: absolute;
 	width: 200px;
 	height: 122px;
+	background-color: #fff;
 	background-size: 200px;
 	background-repeat: no-repeat;
-	border: 1px solid #ccc;
+	border: 1px solid #e5e5e5;
 }
 
 .mw-foreignStructuredUpload-bookletLayout-guide-image-camera {
 	/* @embed */
-	background-image: url(bookletlayout/option4/camera.png);
+	.background-image-svg('bookletlayout/option4/camera.svg','bookletlayout/option4/camera.png');
 	top: 0;
 	right: 80px;
 }
 
 .mw-foreignStructuredUpload-bookletLayout-guide-image-graphics {
 	/* @embed */
-	background-image: url(bookletlayout/option4/graphics.png);
+	.background-image-svg('bookletlayout/option4/graphics.svg','bookletlayout/option4/graphics.png');
 	top: 50px;
 	right: 0;
 }
 
 .mw-foreignStructuredUpload-bookletLayout-guide-image-website {
 	/* @embed */
-	background-image: url(bookletlayout/option4/website.png);
+	.background-image-svg('bookletlayout/option4/website.svg','bookletlayout/option4/website.png');
 	left: 0;
 	bottom: 50px;
 }
 
 .mw-foreignStructuredUpload-bookletLayout-guide-image-search {
 	/* @embed */
-	background-image: url(bookletlayout/option4/search.png);
+	.background-image-svg('bookletlayout/option4/search.svg','bookletlayout/option4/search.png');
 	left: 80px;
 	bottom: 0;
 }
