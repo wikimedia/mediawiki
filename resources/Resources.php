@@ -906,6 +906,13 @@ return array(
 			'json',
 		),
 	),
+	'mediawiki.api.user' => array(
+		'scripts' => 'resources/src/mediawiki/api/user.js',
+		'dependencies' => array(
+			'mediawiki.api',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.api.watch' => array(
 		'scripts' => 'resources/src/mediawiki/api/watch.js',
 		'dependencies' => array(
@@ -1313,6 +1320,7 @@ return array(
 		'dependencies' => array(
 			'mediawiki.cookie',
 			'mediawiki.api',
+			'mediawiki.api.user',
 			'user.options',
 			'user.tokens',
 		),
