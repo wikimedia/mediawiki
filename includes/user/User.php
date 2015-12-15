@@ -4116,19 +4116,6 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Alias for getEditToken.
-	 * @deprecated since 1.19, use getEditToken instead.
-	 *
-	 * @param string|array $salt Array of Strings Optional function-specific data for hashing
-	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
-	 * @return string The new edit token
-	 */
-	public function editToken( $salt = '', $request = null ) {
-		wfDeprecated( __METHOD__, '1.19' );
-		return $this->getEditToken( $salt, $request );
-	}
-
-	/**
 	 * Internal implementation for self::getEditToken() and
 	 * self::matchEditToken().
 	 *

@@ -186,6 +186,7 @@ changes to languages because of Phabricator reports.
 * wfGetIP() was removed (deprecated since 1.19).
 * MWHookException was removed.
 * Article::loadContent() was removed (deprecated since 1.19).
+* User::editToken() was removed (deprecated since 1.19).
 
 == Compatibility ==
 
