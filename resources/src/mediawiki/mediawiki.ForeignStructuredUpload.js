@@ -156,6 +156,10 @@
 	ForeignStructuredUpload.prototype.getCategories = function () {
 		var i, cat, categoryLinks = [];
 
+		if ( this.categories.length === 0 ) {
+			return '{{subst:unc}}';
+		}
+
 		for ( i = 0; i < this.categories.length; i++ ) {
 			cat = this.categories[ i ];
 			categoryLinks.push( '[[Category:' + cat + ']]' );
