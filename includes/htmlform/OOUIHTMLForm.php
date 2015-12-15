@@ -50,6 +50,9 @@ class OOUIHTMLForm extends HTMLForm {
 	function getButtons() {
 		$buttons = '';
 
+		// IE<8 has bugs with <button>, so we'll need to avoid them.
+		$isBadIE = preg_match( '/MSIE [1-7]\./i', $this->getRequest()->getHeader( 'User-Agent' ) );
+
 		if ( $this->mShowSubmit ) {
 			$attribs = array( 'infusable' => true );
 
@@ -70,6 +73,7 @@ class OOUIHTMLForm extends HTMLForm {
 			$attribs['label'] = $this->getSubmitText();
 			$attribs['value'] = $this->getSubmitText();
 			$attribs['flags'] = $this->mSubmitFlags;
+			$attribs['useInputTag'] = $isBadIE;
 
 			$buttons .= new OOUI\ButtonInputWidget( $attribs );
 		}
@@ -78,6 +82,7 @@ class OOUIHTMLForm extends HTMLForm {
 			$buttons .= new OOUI\ButtonInputWidget( array(
 				'type' => 'reset',
 				'label' => $this->msg( 'htmlform-reset' )->text(),
+				'useInputTag' => $isBadIE,
 			) );
 		}
 
@@ -92,13 +97,27 @@ class OOUIHTMLForm extends HTMLForm {
 				$attrs['id'] = $button['id'];
 			}
 
+			if ( $isBadIE ) {
+				$label = $button['value'];
+			} elseif ( isset( $button['label-message'] ) ) {
+				$label = new OOUI\HtmlSnippet( $this->msg( $button['label-message'] )->parse() );
+			} elseif ( isset( $button['label'] ) ) {
+				$label = $button['label'];
+			} elseif ( isset( $button['label-raw'] ) ) {
+				$label = new OOUI\HtmlSnippet( $button['label-raw'] );
+			} else {
+				$label = $button['value'];
+			}
+
 			$attrs['classes'] = isset( $attrs['class'] ) ? (array)$attrs['class'] : array();
 
 			$buttons .= new OOUI\ButtonInputWidget( array(
 				'type' => 'submit',
 				'name' => $button['name'],
 				'value' => $button['value'],
-				'label' => $button['value'],
+				'label' => $label,
+				'flags' => $button['flags'],
+				'useInputTag' => $isBadIE,
 			) + $attrs );
 		}
 

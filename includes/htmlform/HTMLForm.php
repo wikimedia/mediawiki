@@ -855,15 +855,53 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Add a button to the form
 	 *
-	 * @param string $name Field name.
-	 * @param string $value Field value
-	 * @param string $id DOM id for the button (default: null)
-	 * @param array $attribs
-	 *
+	 * @since 1.27 takes an array as shown. Earlier versions accepted
+	 *  'name', 'value', 'id', and 'attribs' as separate parameters in that
+	 *  order.
+	 * @note Custom labels ('label', 'label-message', 'label-raw') are not
+	 *  supported for IE6 and IE7 due to bugs in those browsers. If detected,
+	 *  they will be served buttons using 'value' as the button label.
+	 * @param array $data Data to define the button:
+	 *  - name: (string) Button name.
+	 *  - value: (string) Button value.
+	 *  - label-message: (string, optional) Button label message key to use
+	 *    instead of 'value'. Overrides 'label' and 'label-raw'.
+	 *  - label: (string, optional) Button label text to use instead of
+	 *    'value'. Overrides 'label-raw'.
+	 *  - label-raw: (string, optional) Button label HTML to use instead of
+	 *    'value'.
+	 *  - id: (string, optional) DOM id for the button.
+	 *  - attribs: (array, optional) Additional HTML attributes.
+	 *  - flags: (string|string[], optional) OOUI flags.
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
-	public function addButton( $name, $value, $id = null, $attribs = null ) {
-		$this->mButtons[] = compact( 'name', 'value', 'id', 'attribs' );
+	public function addButton( $data ) {
+		if ( !is_array( $data ) ) {
+			$args = func_get_args();
+			if ( count( $args ) < 2 || count( $args ) > 4 ) {
+				throw new InvalidArgumentException(
+					'Incorrect number of arguments for deprecated calling style'
+				);
+			}
+			$data = array(
+				'name' => $args[0],
+				'value' => $args[1],
+				'id' => isset( $args[2] ) ? $args[2] : null,
+				'attribs' => isset( $args[3] ) ? $args[3] : null,
+			);
+		} else {
+			if ( !isset( $data['name'] ) ) {
+				throw new InvalidArgumentException( 'A name is required' );
+			}
+			if ( !isset( $data['value'] ) ) {
+				throw new InvalidArgumentException( 'A value is required' );
+			}
+		}
+		$this->mButtons[] = $data + array(
+			'id' => null,
+			'attribs' => null,
+			'flags' => null,
+		);
 
 		return $this;
 	}
@@ -1041,12 +1079,25 @@ class HTMLForm extends ContextSource {
 			) . "\n";
 		}
 
+		// IE<8 has bugs with <button>, so we'll need to avoid them.
+		$isBadIE = preg_match( '/MSIE [1-7]\./i', $this->getRequest()->getHeader( 'User-Agent' ) );
+
 		foreach ( $this->mButtons as $button ) {
 			$attrs = array(
 				'type' => 'submit',
 				'name' => $button['name'],
 				'value' => $button['value']
 			);
+
+			if ( isset( $button['label-message'] ) ) {
+				$label = $this->msg( $button['label-message'] )->parse();
+			} elseif ( isset( $button['label'] ) ) {
+				$label = htmlspecialchars( $button['label'] );
+			} elseif ( isset( $button['label-raw'] ) ) {
+				$label = $button['label-raw'];
+			} else {
+				$label = htmlspecialchars( $button['value'] );
+			}
 
 			if ( $button['attribs'] ) {
 				$attrs += $button['attribs'];
@@ -1061,7 +1112,11 @@ class HTMLForm extends ContextSource {
 				$attrs['class'][] = 'mw-ui-button';
 			}
 
-			$buttons .= Html::element( 'input', $attrs ) . "\n";
+			if ( $isBadIE ) {
+				$buttons .= Html::element( 'input', $attrs ) . "\n";
+			} else {
+				$buttons .= Html::rawElement( 'button', $attrs, $label ) . "\n";
+			}
 		}
 
 		$html = Html::rawElement( 'span',
