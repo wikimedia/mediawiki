@@ -59,20 +59,36 @@ class RevDelRevisionList extends RevDelList {
 	 */
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
-		$live = $db->select(
-			array( 'revision', 'page', 'user' ),
-			array_merge( Revision::selectFields(), Revision::selectUserFields() ),
-			array(
+		$queryInfo = array(
+			'tables' => array( 'revision', 'user' ),
+			'fields' => array_merge( Revision::selectFields(), Revision::selectUserFields() ),
+			'conds' => array(
 				'rev_page' => $this->title->getArticleID(),
 				'rev_id' => $ids,
 			),
-			__METHOD__,
-			array( 'ORDER BY' => 'rev_id DESC' ),
-			array(
+			'options' => array( 'ORDER BY' => 'rev_id DESC' ),
+			'join_conds' => array(
 				'page' => Revision::pageJoinCond(),
-				'user' => Revision::userJoinCond() )
+				'user' => Revision::userJoinCond(),
+			),
+		);
+		ChangeTags::modifyDisplayQuery(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
+			$queryInfo['conds'],
+			$queryInfo['join_conds'],
+			$queryInfo['options'],
+			''
 		);
 
+		$live = $db->select(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
+			$queryInfo['conds'],
+			__METHOD__,
+			$queryInfo['options'],
+			$queryInfo['join_conds']
+		);
 		if ( $live->numRows() >= count( $ids ) ) {
 			// All requested revisions are live, keeps things simple!
 			return $live;

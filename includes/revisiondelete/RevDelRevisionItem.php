@@ -147,6 +147,10 @@ class RevDelRevisionItem extends RevDelItem {
 		}
 	}
 
+	/**
+	 * @return string A HTML <li> element representing this revision, showing
+	 * change tags and everything
+	 */
 	public function getHTML() {
 		$difflink = $this->list->msg( 'parentheses' )
 			->rawParams( $this->getDiffLink() )->escaped();
@@ -156,8 +160,22 @@ class RevDelRevisionItem extends RevDelItem {
 		if ( $this->isDeleted() ) {
 			$revlink = "<span class=\"history-deleted\">$revlink</span>";
 		}
+		$content = "$difflink $revlink $userlink $comment";
+		$attribs = array();
+		$tags = $this->getTags();
+		if ( $tags ) {
+			list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow( $tags, 'edittags' );
+			$content .= " $tagSummary";
+			$attribs['class'] = implode( ' ', $classes );
+		}
+		return Xml::tags( 'li', $attribs, $content );
+	}
 
-		return "<li>$difflink $revlink $userlink $comment</li>";
+	/**
+	 * @return string Comma-separated list of tags
+	 */
+	public function getTags() {
+		return $this->row->ts_tags;
 	}
 
 	public function getApiData( ApiResult $result ) {
