@@ -1273,7 +1273,7 @@ class Preferences {
 	 * @param IContextSource $context
 	 * @param string $formClass
 	 * @param array $remove Array of items to remove
-	 * @return HtmlForm
+	 * @return PreferencesForm|HtmlForm
 	 */
 	static function getFormObject(
 		$user,

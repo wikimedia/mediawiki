@@ -36,6 +36,10 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mUserMock->expects( $this->any() )
 			->method( 'getOptionKinds' )->will( $this->returnCallback( array( $this, 'getOptionKinds' ) ) );
 
+		// No actual DB data
+		$this->mUserMock->expects( $this->any() )
+			->method( 'getInstanceForUpdate' )->will( $this->returnValue( $this->mUserMock ) );
+
 		// Create a new context
 		$this->mContext = new DerivativeContext( new RequestContext() );
 		$this->mContext->getContext()->setTitle( Title::newFromText( 'Test' ) );
@@ -283,21 +287,21 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mUserMock->expects( $this->at( 2 ) )
 			->method( 'getOptions' );
 
-		$this->mUserMock->expects( $this->at( 4 ) )
+		$this->mUserMock->expects( $this->at( 5 ) )
 			->method( 'setOption' )
 			->with( $this->equalTo( 'willBeNull' ), $this->identicalTo( null ) );
 
-		$this->mUserMock->expects( $this->at( 5 ) )
+		$this->mUserMock->expects( $this->at( 6 ) )
 			->method( 'getOptions' );
 
-		$this->mUserMock->expects( $this->at( 6 ) )
+		$this->mUserMock->expects( $this->at( 7 ) )
 			->method( 'setOption' )
 			->with( $this->equalTo( 'willBeEmpty' ), $this->equalTo( '' ) );
 
-		$this->mUserMock->expects( $this->at( 7 ) )
+		$this->mUserMock->expects( $this->at( 8 ) )
 			->method( 'getOptions' );
 
-		$this->mUserMock->expects( $this->at( 8 ) )
+		$this->mUserMock->expects( $this->at( 9 ) )
 			->method( 'setOption' )
 			->with( $this->equalTo( 'willBeHappy' ), $this->equalTo( 'Happy' ) );
 
@@ -317,17 +321,17 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mUserMock->expects( $this->once() )
 			->method( 'resetOptions' );
 
-		$this->mUserMock->expects( $this->at( 4 ) )
+		$this->mUserMock->expects( $this->at( 5 ) )
 			->method( 'getOptions' );
 
-		$this->mUserMock->expects( $this->at( 5 ) )
+		$this->mUserMock->expects( $this->at( 6 ) )
 			->method( 'setOption' )
 			->with( $this->equalTo( 'willBeHappy' ), $this->equalTo( 'Happy' ) );
 
-		$this->mUserMock->expects( $this->at( 6 ) )
+		$this->mUserMock->expects( $this->at( 7 ) )
 			->method( 'getOptions' );
 
-		$this->mUserMock->expects( $this->at( 7 ) )
+		$this->mUserMock->expects( $this->at( 8 ) )
 			->method( 'setOption' )
 			->with( $this->equalTo( 'name' ), $this->equalTo( 'value' ) );
 
@@ -350,19 +354,19 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mUserMock->expects( $this->never() )
 			->method( 'resetOptions' );
 
-		$this->mUserMock->expects( $this->at( 3 ) )
+		$this->mUserMock->expects( $this->at( 4 ) )
 			->method( 'setOption' )
 			->with( $this->equalTo( 'testmultiselect-opt1' ), $this->identicalTo( true ) );
 
-		$this->mUserMock->expects( $this->at( 4 ) )
+		$this->mUserMock->expects( $this->at( 5 ) )
 			->method( 'setOption' )
 			->with( $this->equalTo( 'testmultiselect-opt2' ), $this->identicalTo( null ) );
 
-		$this->mUserMock->expects( $this->at( 5 ) )
+		$this->mUserMock->expects( $this->at( 6 ) )
 			->method( 'setOption' )
 			->with( $this->equalTo( 'testmultiselect-opt3' ), $this->identicalTo( false ) );
 
-		$this->mUserMock->expects( $this->at( 6 ) )
+		$this->mUserMock->expects( $this->at( 7 ) )
 			->method( 'setOption' )
 			->with( $this->equalTo( 'testmultiselect-opt4' ), $this->identicalTo( false ) );
 
@@ -429,7 +433,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mUserMock->expects( $this->never() )
 			->method( 'resetOptions' );
 
-		$this->mUserMock->expects( $this->at( 3 ) )
+		$this->mUserMock->expects( $this->once() )
 			->method( 'setOption' )
 			->with( $this->equalTo( 'userjs-option' ), $this->equalTo( '1' ) );
 
