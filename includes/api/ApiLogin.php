@@ -99,6 +99,12 @@ class ApiLogin extends ApiBase {
 				$result['result'] = 'Success';
 				$result['lguserid'] = intval( $user->getId() );
 				$result['lgusername'] = $user->getName();
+
+				// @todo: These are deprecated, and should be removed at some
+				// point (1.28 at the earliest, and see T121527). They were ok
+				// when the core cookie-based login was the only thing, but
+				// CentralAuth broke that a while back and
+				// SessionManager/AuthManager are *really* going to break it.
 				$result['lgtoken'] = $user->getToken();
 				$result['cookieprefix'] = $this->getConfig()->get( 'CookiePrefix' );
 				$result['sessionid'] = session_id();
@@ -107,6 +113,8 @@ class ApiLogin extends ApiBase {
 			case LoginForm::NEED_TOKEN:
 				$result['result'] = 'NeedToken';
 				$result['token'] = $loginForm->getLoginToken();
+
+				// @todo: See above about deprecation
 				$result['cookieprefix'] = $this->getConfig()->get( 'CookiePrefix' );
 				$result['sessionid'] = session_id();
 				break;
