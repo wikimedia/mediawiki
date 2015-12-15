@@ -310,16 +310,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * Load the revision (including text) into this object
-	 *
-	 * @deprecated since 1.19; use fetchContent()
-	 */
-	function loadContent() {
-		wfDeprecated( __METHOD__, '1.19' );
-		$this->fetchContent();
-	}
-
-	/**
 	 * Get text of an article from database
 	 * Does *NOT* follow redirects.
 	 *
