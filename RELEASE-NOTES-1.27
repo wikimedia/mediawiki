@@ -188,6 +188,7 @@ changes to languages because of Phabricator reports.
 * OutputPage::appendSubtitle() was removed (deprecated since 1.19).
 * OutputPage::loginToUse() was removed (deprecated since 1.19).
 * Article::loadContent() was removed (deprecated since 1.19).
+* User::editToken() was removed (deprecated since 1.19).
 
 == Compatibility ==
 
