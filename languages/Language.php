@@ -4451,12 +4451,11 @@ class Language {
 	 * @return bool|string
 	 */
 	public static function getFallbackFor( $code ) {
-		if ( $code === 'en' || !Language::isValidBuiltInCode( $code ) ) {
-			return false;
-		} else {
-			$fallbacks = self::getFallbacksFor( $code );
+		$fallbacks = self::getFallbacksFor( $code );
+		if ( $fallbacks ) {
 			return $fallbacks[0];
 		}
+		return false;
 	}
 
 	/**
