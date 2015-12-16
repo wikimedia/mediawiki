@@ -38,6 +38,24 @@ class ApiTag extends ApiBase {
 				'permissiondenied' );
 		}
 
+		if ( $this->getUser()->isBlocked() ) {
+			if ( $this->getUser()->getBlock()->getType() == TYPE_AUTO ) {
+				$this->dieUsage(
+					'Your IP address has been blocked automatically, because it was used by a blocked user',
+					'autoblocked',
+					0,
+					array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $this->getUser()->getBlock() ) )
+				);
+			} else {
+				$this->dieUsage(
+					'You have been blocked from editing',
+					'blocked',
+					0,
+					array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $this->getUser()->getBlock() ) )
+				);
+			}
+		}
+
 		// validate and process each revid, rcid and logid
 		$this->requireAtLeastOneParameter( $params, 'revid', 'rcid', 'logid' );
 		$ret = array();
