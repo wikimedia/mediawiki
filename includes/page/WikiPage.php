@@ -1737,13 +1737,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$status = $this->doCreate( $pstContent, $flags, $user, $summary, $meta );
 		}
 
-		// Trigger post-save hook
-		$revision = $status->value['revision']; // new revision
-		$hook_args = array( &$this, &$user, $pstContent, $summary,
-			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId );
-		ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $hook_args );
-		Hooks::run( 'PageContentSaveComplete', $hook_args );
-
 		// Promote user to any groups they meet the criteria for
 		DeferredUpdates::addCallableUpdate( function () use ( $user ) {
 			$user->addAutopromoteOnceGroups( 'onEdit' );
@@ -1899,6 +1892,12 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->mTitle->invalidateCache( $now );
 		}
 
+		// Trigger post-save hook
+		$hook_args = array( &$this, &$user, $content, $summary,
+			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $meta['baseRevId'] );
+		ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $hook_args );
+		Hooks::run( 'PageContentSaveComplete', $hook_args );
+
 		return $status;
 	}
 
@@ -2006,6 +2005,12 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Return the new revision to the caller
 		$status->value['revision'] = $revision;
+
+		// Trigger post-save hook
+		$hook_args = array( &$this, &$user, $content, $summary,
+			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $meta['baseRevId'] );
+		ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $hook_args );
+		Hooks::run( 'PageContentSaveComplete', $hook_args );
 
 		return $status;
 	}
