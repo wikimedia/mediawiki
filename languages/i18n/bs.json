@@ -1678,7 +1678,7 @@
 	"speciallogtitlelabel": "Cilj (naslov ili {{ns:user}}:korisničko ime):",
 	"log": "Zapisnici",
 	"all-logs-page": "Svi javni zapisnici",
-	"alllogstext": "Zajednički prikaz svih dostupnih zapisnika sa {{SITENAME}}.\nMožete specificirati prikaz izabiranjem specifičnog spiska, korisničkog imena ili promjenjenog članka (razlikovati velika slova).",
+	"alllogstext": "Skupni prikaz svih dostupnih zapisnika sa {{GRAMMAR:genitiv|{{SITENAME}}}}.\nMožete suziti prikaz izabiranjem specifičnog zapisnika, korisničkog imena (razlikovati velika i mala slova) ili izmijenjenog članka (također treba razlikovati velika i mala slova).",
 	"logempty": "Nema zatraženih stavki u zapisniku.",
 	"log-title-wildcard": "Traži naslove koji počinju ovim tekstom",
 	"showhideselectedlogentries": "Pokaži/sakrij izabrane zapise u evidenciji",

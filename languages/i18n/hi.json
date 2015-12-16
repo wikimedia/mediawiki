@@ -67,7 +67,8 @@
 			"ShrUtiable",
 			"Matma Rex",
 			"Angpradesh",
-			"Sfic"
+			"Sfic",
+			"Niharika29"
 		]
 	},
 	"tog-underline": "कड़ियाँ अधोरेखन:",
@@ -1241,6 +1242,7 @@
 	"recentchanges-label-plusminus": "पृष्ठ आकार इस बाइट संख्या से बदला",
 	"recentchanges-legend-heading": "'''कुंजी:'''",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|नए पन्नों की सूची]] को भी देखें)",
+	"recentchanges-submit": "दिखाएँ",
 	"rcnotefrom": "नीचे <strong>$2</strong> के बाद से (<strong>$1</strong> तक) {{PLURAL:$5|हुआ बदलाव दर्शाया गया है|हुए बदलाव दर्शाए गये हैं}}।",
 	"rclistfrom": "$3 $2 से नये बदलाव दिखाएँ",
 	"rcshowhideminor": "छोटे बदलाव $1",
@@ -1426,6 +1428,8 @@
 	"foreign-structured-upload-form-label-own-work-message-shared": "कम से कम इस फ़ाइल का प्रतिकृति अधिकार मेरे पास है और यह [https://creativecommons.org/licenses/by-sa/4.0/ Creative Commons Attribution-ShareAlike 4.0] के अंतर्गत है, व [https://wikimediafoundation.org/wiki/Terms_of_Use विकि उपयोग की शर्तों] का भी पालन करता है।",
 	"foreign-structured-upload-form-label-not-own-work-message-shared": "यदि आपके पास इस फ़ाइल का प्रतिकृति अधिकार नहीं है और आप इसे किसी और अधिकार के तहत प्रदर्शित करना चाहते हैं तो आप [https://commons.wikimedia.org/wiki/Special:UploadWizard Commons Upload Wizard] का उपयोग करें।",
 	"foreign-structured-upload-form-label-not-own-work-local-shared": "यदि आप चाहें तो आप [[Special:Upload|{{SITENAME}} के पृष्ठ]] पर फ़ाइल डाल सकते हैं, यदि यह फ़ाइल वहाँ के नियम के अंतर्गत हो तो।",
+	"foreign-structured-upload-form-3-label-yes": "हाँ",
+	"foreign-structured-upload-form-3-label-no": "नहीं",
 	"backend-fail-stream": "फ़ाइल $1 स्ट्रीम नहीं हो पाई।",
 	"backend-fail-backup": "फ़ाइल $1 बैकअप नहीं हो पाई।",
 	"backend-fail-notexists": "फ़ाइल $1 मौजूद नहीं है।",
@@ -1671,6 +1675,7 @@
 	"mostrevisions": "सर्वाधिक अवतरणित पृष्ठ",
 	"prefixindex": "उपसर्ग अनुसार पृष्ठ",
 	"prefixindex-namespace": "उपसर्ग वाले सभी पृष्ठ ($1 नामस्थान)",
+	"prefixindex-submit": "दिखाएँ",
 	"prefixindex-strip": "सूची में उपसर्ग छुपाएँ",
 	"shortpages": "छोटे पृष्ठ",
 	"longpages": "लम्बे पृष्ठ",
