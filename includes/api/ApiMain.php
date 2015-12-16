@@ -1253,6 +1253,8 @@ class ApiMain extends ApiBase {
 		$module = $this->setupModule();
 		$this->mModule = $module;
 
+		$this->setRequestExpectations( $module );
+
 		$this->checkExecutePermissions( $module );
 
 		if ( !$this->checkMaxLag( $module, $params ) ) {
@@ -1281,6 +1283,24 @@ class ApiMain extends ApiBase {
 
 			// Print result data
 			$this->printResult( false );
+		}
+	}
+
+	/**
+	 * Set database connection, query, and write expectations given this module request
+	 * @param ApiBase $module
+	 */
+	protected function setRequestExpectations( ApiBase $module ) {
+		$limits = $this->getConfig()->get( 'TrxProfilerLimits' );
+		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		if ( $this->getRequest()->wasPosted() ) {
+			if ( $module->isWriteMode() ) {
+				$trxProfiler->setExpectations( $limits['POST'], __METHOD__ );
+			} else {
+				$trxProfiler->setExpectations( $limits['POST-nonwrite'], __METHOD__ );
+			}
+		} else {
+			$trxProfiler->setExpectations( $limits['GET'], __METHOD__ );
 		}
 	}
 
