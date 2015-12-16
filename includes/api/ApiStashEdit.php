@@ -274,13 +274,13 @@ class ApiStashEdit extends ApiBase {
 		}
 
 		if ( !is_object( $editInfo ) || !$editInfo->output ) {
-			$logger->debug( "No cache value for key '$key'." );
+			$logger->info( "No cache value for key '$key'." );
 			return false;
 		}
 
 		$time = wfTimestamp( TS_UNIX, $editInfo->output->getTimestamp() );
 		if ( ( time() - $time ) <= 3 ) {
-			$logger->debug( "Timestamp-based cache hit for key '$key'." );
+			$logger->info( "Timestamp-based cache hit for key '$key'." );
 			return $editInfo; // assume nothing changed
 		}
 
@@ -336,7 +336,7 @@ class ApiStashEdit extends ApiBase {
 			}
 		}
 
-		$logger->debug( "Cache hit for key '$key'." );
+		$logger->info( "Cache hit for key '$key'." );
 
 		return $editInfo;
 	}
