@@ -281,15 +281,15 @@ abstract class Installer {
 	 */
 	public $licenses = array(
 		'cc-by' => array(
-			'url' => 'https://creativecommons.org/licenses/by/3.0/',
+			'url' => 'https://creativecommons.org/licenses/by/4.0/',
 			'icon' => '$wgResourceBasePath/resources/assets/licenses/cc-by.png',
 		),
 		'cc-by-sa' => array(
-			'url' => 'https://creativecommons.org/licenses/by-sa/3.0/',
+			'url' => 'https://creativecommons.org/licenses/by-sa/4.0/',
 			'icon' => '$wgResourceBasePath/resources/assets/licenses/cc-by-sa.png',
 		),
 		'cc-by-nc-sa' => array(
-			'url' => 'https://creativecommons.org/licenses/by-nc-sa/3.0/',
+			'url' => 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
 			'icon' => '$wgResourceBasePath/resources/assets/licenses/cc-by-nc-sa.png',
 		),
 		'cc-0' => array(
