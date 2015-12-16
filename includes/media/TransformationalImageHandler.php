@@ -326,14 +326,14 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @param array $scalerParams Array with scaler params
 	 * @return ThumbnailImage
 	 *
-	 * @todo FIXME: No rotation support
+	 * 
 	 */
 	protected function getClientScalingThumbnailImage( $image, $scalerParams ) {
 		$params = array(
 			'width' => $scalerParams['clientWidth'],
 			'height' => $scalerParams['clientHeight']
 		);
-
+		getRotation($image);
 		return new ThumbnailImage( $image, $image->getURL(), null, $params );
 	}
 
