@@ -322,12 +322,13 @@ class LogPage {
 	}
 
 	/**
-	 * @todo Document
-	 * @param string $type
-	 * @param Language|null $lang
-	 * @param Title $title
-	 * @param array $params
-	 * @return string
+	 * Generates a link to be used in the title of a log entry
+	 *
+	 * @param string $type Log type
+	 * @param Language|null $lang Current language
+	 * @param Title $title The name of the target wiki page
+	 * @param array $params Parameters
+	 * @return string HTML Link
 	 */
 	protected static function getTitleLink( $type, $lang, $title, &$params ) {
 		if ( !$lang ) {
