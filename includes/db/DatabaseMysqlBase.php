@@ -845,7 +845,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @since 1.20
 	 */
 	public function lockIsFree( $lockName, $method ) {
-		$lockName = $this->addQuotes( $lockName );
+		$lockName = $this->addQuotes( $this->makeLockName( $lockName ) );
 		$result = $this->query( "SELECT IS_FREE_LOCK($lockName) AS lockstatus", $method );
 		$row = $this->fetchObject( $result );
 
@@ -859,7 +859,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return bool
 	 */
 	public function lock( $lockName, $method, $timeout = 5 ) {
-		$lockName = $this->addQuotes( $lockName );
+		$lockName = $this->addQuotes( $this->makeLockName( $lockName ) );
 		$result = $this->query( "SELECT GET_LOCK($lockName, $timeout) AS lockstatus", $method );
 		$row = $this->fetchObject( $result );
 
@@ -880,11 +880,17 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return bool
 	 */
 	public function unlock( $lockName, $method ) {
-		$lockName = $this->addQuotes( $lockName );
+		$lockName = $this->addQuotes( $this->makeLockName( $lockName ) );
 		$result = $this->query( "SELECT RELEASE_LOCK($lockName) as lockstatus", $method );
 		$row = $this->fetchObject( $result );
 
 		return ( $row->lockstatus == 1 );
+	}
+
+	private function makeLockName( $lockName ) {
+		// http://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_get-lock
+		// Newer version enforce a 64 char length limit.
+		return ( strlen( $lockName ) > 64 ) ? sha1( $lockName ) : $lockName;
 	}
 
 	public function namedLocksEnqueue() {
