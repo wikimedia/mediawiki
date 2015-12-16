@@ -252,6 +252,7 @@ class ApiStashEdit extends ApiBase {
 	public static function checkCache( Title $title, Content $content, User $user ) {
 		$cache = ObjectCache::getLocalClusterInstance();
 		$logger = LoggerFactory::getInstance( 'StashEdit' );
+		$stats = RequestContext::getMain()->getStats();
 
 		$key = self::getStashKey( $title, $content, $user );
 		$editInfo = $cache->get( $key );
@@ -267,20 +268,23 @@ class ApiStashEdit extends ApiBase {
 				$editInfo = $cache->get( $key );
 				$dbw->unlock( $key, __METHOD__ );
 			}
-			$sec = microtime( true ) - $start;
-			if ( $sec > .01 ) {
-				$logger->warning( "Waited $sec seconds on '$key'." );
-			}
+
+			$timeMs = 1000 * max( 0, microtime( true ) - $start );
+			$stats->timing( "editstash.lock-wait-time", $timeMs );
 		}
 
 		if ( !is_object( $editInfo ) || !$editInfo->output ) {
+			$stats->increment( "editstash.cache-misses" );
 			$logger->debug( "No cache value for key '$key'." );
+
 			return false;
 		}
 
 		$time = wfTimestamp( TS_UNIX, $editInfo->output->getTimestamp() );
 		if ( ( time() - $time ) <= 3 ) {
+			$stats->increment( "editstash.cache-hits" );
 			$logger->debug( "Timestamp-based cache hit for key '$key'." );
+
 			return $editInfo; // assume nothing changed
 		}
 
@@ -308,6 +312,7 @@ class ApiStashEdit extends ApiBase {
 			}
 
 			if ( $changed || $res->numRows() != $templateUses ) {
+				$stats->increment( "editstash.cache-misses" );
 				$logger->info( "Stale cache for key '$key'; template changed." );
 				return false;
 			}
@@ -331,11 +336,13 @@ class ApiStashEdit extends ApiBase {
 			}
 
 			if ( $changed || $res->numRows() != count( $files ) ) {
+				$stats->increment( "editstash.cache-misses" );
 				$logger->info( "Stale cache for key '$key'; file changed." );
 				return false;
 			}
 		}
 
+		$stats->increment( "editstash.cache-hits" );
 		$logger->debug( "Cache hit for key '$key'." );
 
 		return $editInfo;
