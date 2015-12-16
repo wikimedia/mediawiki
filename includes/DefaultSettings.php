@@ -5538,6 +5538,11 @@ $wgTrxProfilerLimits = array(
 		'writeQueryTime' => 1,
 		'maxAffected' => 500
 	),
+	'POST-nonwrite' => array(
+		'masterConns' => 0,
+		'writes' => 0,
+		'readQueryTime' => 5
+	),
 	// Background job runner
 	'JobRunner' => array(
 		'readQueryTime' => 30,
