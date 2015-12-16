@@ -618,14 +618,10 @@ class MediaWiki {
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
 
-		// Aside from rollback, master queries should not happen on GET requests.
-		// Periodic or "in passing" updates on GET should use the job queue.
-		if ( !$request->wasPosted()
-			&& in_array( $action, array( 'view', 'edit', 'history' ) )
-		) {
-			$trxProfiler->setExpectations( $wgTrxProfilerLimits['GET'], __METHOD__ );
-		} else {
+		if ( $request->wasPosted() ) {
 			$trxProfiler->setExpectations( $wgTrxProfilerLimits['POST'], __METHOD__ );
+		} else {
+			$trxProfiler->setExpectations( $wgTrxProfilerLimits['GET'], __METHOD__ );
 		}
 
 		// If the user has forceHTTPS set to true, or if the user
