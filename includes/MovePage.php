@@ -252,7 +252,7 @@ class MovePage {
 		$protected = $this->oldTitle->isProtected();
 
 		// Do the actual move
-		$this->moveToInternal( $user, $this->newTitle, $reason, $createRedirect );
+		$nullRevision = $this->moveToInternal( $user, $this->newTitle, $reason, $createRedirect );
 
 		// Refresh the sortkey for this row.  Be careful to avoid resetting
 		// cl_timestamp, which may disturb time-based lists on some sites.
@@ -376,7 +376,7 @@ class MovePage {
 
 		$dbw->endAtomic( __METHOD__ );
 
-		$params = array( &$this->oldTitle, &$this->newTitle, &$user, $pageid, $redirid, $reason );
+		$params = array( &$this->oldTitle, &$this->newTitle, &$user, $pageid, $redirid, $reason, $nullRevision );
 		$dbw->onTransactionIdle( function () use ( $params, $dbw ) {
 			// Keep each single hook handler atomic
 			$dbw->setFlag( DBO_TRX ); // flag is automatically reset by DB layer
@@ -396,6 +396,7 @@ class MovePage {
 	 * @param string $reason The reason for the move
 	 * @param bool $createRedirect Whether to leave a redirect at the old title. Does not check
 	 *   if the user has the suppressredirect right
+	 * @return Revision the revision created by the move
 	 * @throws MWException
 	 */
 	private function moveToInternal( User $user, &$nt, $reason = '', $createRedirect = true ) {
@@ -552,5 +553,7 @@ class MovePage {
 		# Log the move
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
+
+		return $nullRevision;
 	}
 }
