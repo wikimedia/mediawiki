@@ -469,6 +469,18 @@ class LocalisationCache {
 
 			return;
 		}
+	}
+
+	public function preload( $code ) {
+		$this->initLanguage( $code );
+
+		// If we have empty caches, recache() will have done this for us.
+		// Without this check the $this->data[$code] = $preload assignment
+		// would incorrectly override other loaded items, which they would
+		// still say loaded $this->loadedItems.
+		if ( isset( $this->getItem( $code, 'preload' ) ) ) {
+			return;
+		}
 
 		# Preload some stuff
 		$preload = $this->getItem( $code, 'preload' );

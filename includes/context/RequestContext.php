@@ -370,6 +370,7 @@ class RequestContext implements IContextSource, MutableContext {
 					$this->lang = $wgContLang;
 				} else {
 					$obj = Language::factory( $code );
+					$obj->getLocalisationCache()->preload( $code );
 					$this->lang = $obj;
 				}
 
