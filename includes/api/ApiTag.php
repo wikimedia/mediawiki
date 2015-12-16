@@ -31,11 +31,33 @@ class ApiTag extends ApiBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
+		$user = $this->getUser();
 
 		// make sure the user is allowed
-		if ( !$this->getUser()->isAllowed( 'changetags' ) ) {
+		if ( !$user->isAllowed( 'changetags' ) ) {
 			$this->dieUsage( "You don't have permission to add or remove change tags from individual edits",
 				'permissiondenied' );
+		}
+
+		if ( $user->isBlocked() ) {
+			$block = $user->getBlock();
+
+			// Die using the appropriate messege depending on block type
+			if ( $block->getType() == TYPE_AUTO ) {
+				$this->dieUsage(
+					'Your IP address has been blocked automatically, because it was used by a blocked user',
+					'autoblocked',
+					0,
+					array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) )
+				);
+			} else {
+				$this->dieUsage(
+					'You have been blocked from editing',
+					'blocked',
+					0,
+					array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) )
+				);
+			}
 		}
 
 		// validate and process each revid, rcid and logid
