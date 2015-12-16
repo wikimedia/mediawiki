@@ -59,6 +59,11 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$this->checkPermissions();
 		$this->checkReadOnly();
 
+		// Check blocks
+		if ( $this->getUser()->isBlocked() ) {
+			throw new UserBlockedError( $this->getUser()->getBlock() );
+		}
+
 		$output = $this->getOutput();
 		$user = $this->getUser();
 		$request = $this->getRequest();

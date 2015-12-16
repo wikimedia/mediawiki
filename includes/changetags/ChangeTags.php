@@ -358,8 +358,12 @@ class ChangeTags {
 	public static function canAddTagsAccompanyingChange( array $tags,
 		User $user = null ) {
 
-		if ( !is_null( $user ) && !$user->isAllowed( 'applychangetags' ) ) {
-			return Status::newFatal( 'tags-apply-no-permission' );
+		if ( !is_null( $user ) ) {
+			if ( !$user->isAllowed( 'applychangetags' ) ) {
+				return Status::newFatal( 'tags-apply-no-permission' );
+			} else if ( $user->isBlocked() ) {
+				return Status::newFatal( 'tags-apply-blocked' );
+			}
 		}
 
 		// to be applied, a tag has to be explicitly defined
@@ -425,8 +429,12 @@ class ChangeTags {
 	public static function canUpdateTags( array $tagsToAdd, array $tagsToRemove,
 		User $user = null ) {
 
-		if ( !is_null( $user ) && !$user->isAllowed( 'changetags' ) ) {
-			return Status::newFatal( 'tags-update-no-permission' );
+		if ( !is_null( $user ) ) {
+			if ( !$user->isAllowed( 'changetags' ) ) {
+				return Status::newFatal( 'tags-update-no-permission' );
+			} else if ( $user->isBlocked() ) {
+				return Status::newFatal( 'tags-update-blocked' );
+			}
 		}
 
 		if ( $tagsToAdd ) {
@@ -766,8 +774,12 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function canActivateTag( $tag, User $user = null ) {
-		if ( !is_null( $user ) && !$user->isAllowed( 'managechangetags' ) ) {
-			return Status::newFatal( 'tags-manage-no-permission' );
+		if ( !is_null( $user ) ) {
+			if ( !$user->isAllowed( 'managechangetags' ) ) {
+				return Status::newFatal( 'tags-manage-no-permission' );
+			} else if ( $user->isBlocked() ) {
+				return Status::newFatal( 'tags-manage-blocked' );
+			}
 		}
 
 		// defined tags cannot be activated (a defined tag is either extension-
@@ -830,8 +842,12 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function canDeactivateTag( $tag, User $user = null ) {
-		if ( !is_null( $user ) && !$user->isAllowed( 'managechangetags' ) ) {
-			return Status::newFatal( 'tags-manage-no-permission' );
+		if ( !is_null( $user ) ) {
+			if ( !$user->isAllowed( 'managechangetags' ) ) {
+				return Status::newFatal( 'tags-manage-no-permission' );
+			} else if ( $user->isBlocked() ) {
+				return Status::newFatal( 'tags-manage-blocked' );
+			}
 		}
 
 		// only explicitly-defined tags can be deactivated
@@ -885,8 +901,12 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function canCreateTag( $tag, User $user = null ) {
-		if ( !is_null( $user ) && !$user->isAllowed( 'managechangetags' ) ) {
-			return Status::newFatal( 'tags-manage-no-permission' );
+		if ( !is_null( $user ) ) {
+			if ( !$user->isAllowed( 'managechangetags' ) ) {
+				return Status::newFatal( 'tags-manage-no-permission' );
+			} else if ( $user->isBlocked() ) {
+				return Status::newFatal( 'tags-manage-blocked' );
+			}
 		}
 
 		// no empty tags
@@ -1014,8 +1034,12 @@ class ChangeTags {
 	public static function canDeleteTag( $tag, User $user = null ) {
 		$tagUsage = self::tagUsageStatistics();
 
-		if ( !is_null( $user ) && !$user->isAllowed( 'managechangetags' ) ) {
-			return Status::newFatal( 'tags-manage-no-permission' );
+		if ( !is_null( $user ) ) {
+			if ( !$user->isAllowed( 'managechangetags' ) ) {
+				return Status::newFatal( 'tags-manage-no-permission' );
+			} else if ( $user->isBlocked() ) {
+				return Status::newFatal( 'tags-manage-blocked' );
+			}
 		}
 
 		if ( !isset( $tagUsage[$tag] ) && !in_array( $tag, self::listDefinedTags() ) ) {
