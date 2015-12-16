@@ -105,11 +105,8 @@
 	};
 
 	$( function () {
-		var $links = $( '.mw-watchlink a, a.mw-watchlink, ' +
-			'#ca-watch a, #ca-unwatch a, #mw-unwatch-link1, ' +
-			'#mw-unwatch-link2, #mw-watch-link2, #mw-watch-link1' );
-
-		// Allowing people to add inline animated links is a little scary
+		var $links = $( '.mw-watchlink a, a.mw-watchlink' );
+		// Restrict to core interfaces, ignore user-generated content
 		$links = $links.filter( ':not( #bodyContent *, #content * )' );
 
 		$links.click( function ( e ) {
