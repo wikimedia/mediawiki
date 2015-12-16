@@ -358,7 +358,7 @@ class ChangeTags {
 	public static function canAddTagsAccompanyingChange( array $tags,
 		User $user = null ) {
 
-		if ( !is_null( $user ) && !$user->isAllowed( 'applychangetags' ) ) {
+		if ( !is_null( $user ) && ( !$user->isAllowed( 'applychangetags' ) || $user->isBlocked() ) ) {
 			return Status::newFatal( 'tags-apply-no-permission' );
 		}
 
@@ -425,8 +425,13 @@ class ChangeTags {
 	public static function canUpdateTags( array $tagsToAdd, array $tagsToRemove,
 		User $user = null ) {
 
-		if ( !is_null( $user ) && !$user->isAllowed( 'changetags' ) ) {
-			return Status::newFatal( 'tags-update-no-permission' );
+		if ( !is_null( $user ) ) {
+			if ( !$user->isAllowed( 'changetags' ) ) {
+				return Status::newFatal( 'tags-update-no-permission' );
+			} else if ( $user->isBlocked() ) {
+				$err = $user->getBlock()->getPermissionsError( RequestContext::getMain() );
+				return call_user_func_array( "Status::newFatal", $err );
+			}
 		}
 
 		if ( $tagsToAdd ) {
@@ -766,7 +771,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function canActivateTag( $tag, User $user = null ) {
-		if ( !is_null( $user ) && !$user->isAllowed( 'managechangetags' ) ) {
+		if ( !is_null( $user ) && ( !$user->isAllowed( 'managechangetags' ) || $user->isBlocked() ) ) {
 			return Status::newFatal( 'tags-manage-no-permission' );
 		}
 
@@ -830,7 +835,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function canDeactivateTag( $tag, User $user = null ) {
-		if ( !is_null( $user ) && !$user->isAllowed( 'managechangetags' ) ) {
+		if ( !is_null( $user ) && ( !$user->isAllowed( 'managechangetags' ) || $user->isBlocked() ) ) {
 			return Status::newFatal( 'tags-manage-no-permission' );
 		}
 
@@ -885,7 +890,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function canCreateTag( $tag, User $user = null ) {
-		if ( !is_null( $user ) && !$user->isAllowed( 'managechangetags' ) ) {
+		if ( !is_null( $user ) && ( !$user->isAllowed( 'managechangetags' ) || $user->isBlocked() ) ) {
 			return Status::newFatal( 'tags-manage-no-permission' );
 		}
 
@@ -1014,7 +1019,7 @@ class ChangeTags {
 	public static function canDeleteTag( $tag, User $user = null ) {
 		$tagUsage = self::tagUsageStatistics();
 
-		if ( !is_null( $user ) && !$user->isAllowed( 'managechangetags' ) ) {
+		if ( !is_null( $user ) && ( !$user->isAllowed( 'managechangetags' ) || $user->isBlocked() ) ) {
 			return Status::newFatal( 'tags-manage-no-permission' );
 		}
 
