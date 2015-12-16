@@ -201,14 +201,14 @@ class JobRunner implements LoggerAwareInterface {
 				// Record how long jobs wait before getting popped
 				$readyTs = $job->getReadyTimestamp();
 				if ( $readyTs ) {
-					$pickupDelay = $popTime - $readyTs;
+					$pickupDelay = max( 0, $popTime - $readyTs );
 					$stats->timing( 'jobqueue.pickup_delay.all', 1000 * $pickupDelay );
 					$stats->timing( "jobqueue.pickup_delay.$jType", 1000 * $pickupDelay );
 				}
 				// Record root job age for jobs being run
 				$root = $job->getRootJobParams();
 				if ( $root['rootJobTimestamp'] ) {
-					$age = $popTime - wfTimestamp( TS_UNIX, $root['rootJobTimestamp'] );
+					$age = max( 0, $popTime - wfTimestamp( TS_UNIX, $root['rootJobTimestamp'] ) );
 					$stats->timing( "jobqueue.pickup_root_age.$jType", 1000 * $age );
 				}
 				// Track the execution time for jobs
