@@ -667,6 +667,7 @@ $ps_globals = Profiler::instance()->scopedProfileIn( $fname . '-globals' );
  * @var Language $wgContLang
  */
 $wgContLang = Language::factory( $wgLanguageCode );
+$wgContLang->getLocalisationCache()->preload( $wgLanguageCode );
 $wgContLang->initEncoding();
 $wgContLang->initContLang();
 
