@@ -1027,7 +1027,9 @@ class SkinTemplate extends Skin {
 					 */
 					$mode = $user->isWatched( $title ) ? 'unwatch' : 'watch';
 					$content_navigation['actions'][$mode] = array(
-						'class' => $onPage && ( $action == 'watch' || $action == 'unwatch' ) ? 'selected' : false,
+						'class' => 'mw-watchlink ' . (
+							$onPage && ( $action == 'watch' || $action == 'unwatch' ) ? 'selected' : ''
+						),
 						// uses 'watch' or 'unwatch' message
 						'text' => $this->msg( $mode )->text(),
 						'href' => $title->getLocalURL( array( 'action' => $mode ) )
