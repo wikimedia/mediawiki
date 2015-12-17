@@ -1597,7 +1597,6 @@ class ApiResultTest extends MediaWikiTestCase {
 		$result->setMainForContinuation( $main );
 		$result->beginContinuation( '||mock2', array_slice( $allModules, 0, 2 ),
 			array( 'mock1', 'mock2' ) );
-
 		try {
 			$result->setContinueParam( $allModules[1], 'm2continue', 1 );
 			$this->fail( 'Expected exception not thrown' );
