@@ -5527,12 +5527,15 @@ $wgDebugDumpSql = false;
  * @since 1.26
  */
 $wgTrxProfilerLimits = array(
-	// Basic GET and POST requests
+	// HTTP GET/HEAD requests.
+	// Master queries should not happen on GET requests
 	'GET' => array(
 		'masterConns' => 0,
 		'writes' => 0,
 		'readQueryTime' => 5
 	),
+	// HTTP POST requests.
+	// Master reads and writes will happen for a subset of these.
 	'POST' => array(
 		'readQueryTime' => 5,
 		'writeQueryTime' => 1,
