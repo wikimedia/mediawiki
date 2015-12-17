@@ -1264,6 +1264,7 @@
 	"apihelp-rollback-description": "Undo the last edit to the page.\n\nIf the last user who edited the page made multiple edits in a row, they will all be rolled back.",
 	"apihelp-rollback-param-title": "Title of the page to roll back. Cannot be used together with <var>$1pageid</var>.",
 	"apihelp-rollback-param-pageid": "Page ID of the page to roll back. Cannot be used together with <var>$1title</var>.",
+	"apihelp-rollback-param-tags": "Tags to apply to the roll back.",
 	"apihelp-rollback-param-user": "Name of the user whose edits are to be rolled back.",
 	"apihelp-rollback-param-summary": "Custom edit summary. If empty, default summary will be used.",
 	"apihelp-rollback-param-markbot": "Mark the reverted edits and the revert as bot edits.",

@@ -1180,6 +1180,7 @@
 	"apihelp-rollback-description": "{{doc-apihelp-description|rollback}}",
 	"apihelp-rollback-param-title": "{{doc-apihelp-param|rollback|title}}",
 	"apihelp-rollback-param-pageid": "{{doc-apihelp-param|rollback|pageid}}",
+	"apihelp-rollback-param-tags": "{{doc-apihelp-param|rollback|tags}",
 	"apihelp-rollback-param-user": "{{doc-apihelp-param|rollback|user}}",
 	"apihelp-rollback-param-summary": "{{doc-apihelp-param|rollback|summary}}",
 	"apihelp-rollback-param-markbot": "{{doc-apihelp-param|rollback|markbot}}",
