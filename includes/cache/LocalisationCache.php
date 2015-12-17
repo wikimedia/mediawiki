@@ -38,7 +38,7 @@ use CLDRPluralRuleParser\Evaluator;
  * as grammatical transformation, is done by the caller.
  */
 class LocalisationCache {
-	const VERSION = 3;
+	const VERSION = 4;
 
 	/** Configuration associative array */
 	private $conf;
@@ -123,7 +123,7 @@ class LocalisationCache {
 	 * by a fallback sequence.
 	 */
 	static public $mergeableMapKeys = array( 'messages', 'namespaceNames',
-		'dateFormats', 'imageFiles', 'preloadedMessages'
+		'namespaceAliases', 'dateFormats', 'imageFiles', 'preloadedMessages'
 	);
 
 	/**
