@@ -1610,7 +1610,7 @@ class WikiRevision {
 		$prevId = $dbw->selectField( 'revision', 'rev_id',
 			array(
 				'rev_page' => $pageId,
-				'rev_timestamp <= ' . $dbw->timestamp( $this->timestamp ),
+				'rev_timestamp <= ' . $dbw->addQuotes( $dbw->timestamp( $this->timestamp ) ),
 			),
 			__METHOD__,
 			array( 'ORDER BY' => array(
