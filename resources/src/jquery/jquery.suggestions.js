@@ -674,7 +674,7 @@
 								if ( $result.get( 0 ) !== $other.get( 0 ) ) {
 									return;
 								}
-								// Do not interfere with non-left clicks or if modifier keys are pressed (e.g. ctrl-click).
+								// Don't interfere with special clicks (e.g. to open in new tab)
 								if ( !( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) ) {
 									$.suggestions.highlight( context, $result, true );
 									if ( typeof context.config.result.select === 'function' ) {
