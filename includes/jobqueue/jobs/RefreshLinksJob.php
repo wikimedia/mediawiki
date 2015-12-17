@@ -222,6 +222,24 @@ class RefreshLinksJob extends Job {
 			$parserOutput
 		);
 
+		foreach ( $updates as $key => $update ) {
+			// FIXME: This code probably shouldn't be here?
+			// Needed by things like Echo notifications which need
+			// to know which user caused the links update
+			if ( $update instanceof LinksUpdate ) {
+				if ( !empty( $this->params['triggeringUser'] ) ) {
+					$userInfo = $this->params['triggeringUser'];
+					if ( $userInfo['userId'] ) {
+						$user = User::newFromId( $userInfo['userId'] );
+					} else {
+						// Anonymous, use the username
+						$user = User::newFromName( $userInfo['userName'], false );
+					}
+					$update->setTriggeringUser( $user );
+				}
+			}
+		}
+
 		$latestNow = $page->lockAndGetLatest();
 		if ( !$latestNow || $revision->getId() != $latestNow ) {
 			// Do not clobber over newer updates with older ones. If all jobs where FIFO and
