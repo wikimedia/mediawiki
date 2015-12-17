@@ -387,7 +387,7 @@
 	"withoutinterwiki-submit": "ⵥⵕ",
 	"nbytes": "$1 {{PLURAL:$1|byte|bytes}}",
 	"ncategories": "$1 {{PLURAL:$1|ⵜⴰⴳⴳⴰⵢⵜ|ⵜⴰⴳⴳⴰⵢⵉⵏ}}",
-
+	"nviews": "$1 {{PLURAL:$1|ⵥⵕ|ⵥⵕ ⴰⴽⴽ}}",
 	"longpages": "ⵜⴰⵙⵏⵉⵡⵉⵏ ⵎⵇⵇⴰⵔⵏⵜ",
 	"newpages": "ⵜⵉⵙⵏⵉⵡⵉⵏ ⵜⵉⵎⴰⵢⵏⵓⵜⵉⵏ",
 	"newpages-username": "ⴰⵙⵙⴰⵖ ⵓⵎⴷⴰⵏ:",

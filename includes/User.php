@@ -2237,8 +2237,6 @@ class User implements IDBAccessObject {
 	 *   page. Ignored if null or !$val.
 	 */
 	public function setNewtalk( $val, $curRev = null ) {
-		global $wgMemc;
-
 		if ( wfReadOnly() ) {
 			return;
 		}

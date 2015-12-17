@@ -515,8 +515,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 						$arr[$type] = $groups;
 						ApiResult::setArrayType( $arr[$type], 'BCarray' );
 						ApiResult::setIndexedTagName( $arr[$type], 'group' );
-
-						ApiResult::setIndexedTagName( $arr[$type], 'group' );
 					}
 				}
 			}

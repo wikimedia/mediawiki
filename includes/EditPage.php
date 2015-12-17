@@ -1704,15 +1704,6 @@ class EditPage {
 			}
 		}
 
-		if ( $this->changeTags ) {
-			$changeTagsStatus = ChangeTags::canAddTagsAccompanyingChange(
-				$this->changeTags, $wgUser );
-			if ( !$changeTagsStatus->isOK() ) {
-				$changeTagsStatus->value = self::AS_CHANGE_TAG_ERROR;
-				return $changeTagsStatus;
-			}
-		}
-
 		if ( wfReadOnly() ) {
 			$status->fatal( 'readonlytext' );
 			$status->value = self::AS_READ_ONLY_PAGE;

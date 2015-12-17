@@ -1,6 +1,16 @@
 Security reminder: If you have PHP's register_globals option set, you must
 turn it off. MediaWiki will not work with it enabled.
 
+== MediaWiki 1.26.1 ==
+
+THIS IS NOT YET A RELEASE!
+
+=== Changes since 1.26 ===
+* Fixed ConfigException in ExpandTemplates due to AlwaysUseTidy.
+* Fixed stray literal \n in Special:Search.
+* Fix issue that breaks HHVM Repo Authorative mode.
+* (T120267) Work around APCu memory corruption bug
+
 == MediaWiki 1.26 ==
 
 === Configuration changes in 1.26 ===

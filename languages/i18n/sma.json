@@ -374,7 +374,7 @@
 	"nlinks": "$1 {{PLURAL:$1|lïenghke|lïenghkeh}}",
 	"nmembers": "$1 {{PLURAL:$1|lihtsege|lihtsegh}}",
 	"nrevisions": "$1 {{PLURAL:$1|gïehtjedamme|gïehtjedammeh}}",
-
+	"nviews": "$1 {{PLURAL:$1|vuesehte|vuesehteh}}",
 	"lonelypages": "Eejhtegapth bielieh",
 	"uncategorizedpages": "Ov-kategorije bielieh",
 	"uncategorizedcategories": "Ov-kategorije kategorijeh",

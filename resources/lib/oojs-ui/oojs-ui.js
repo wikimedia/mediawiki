@@ -11219,9 +11219,6 @@ OO.ui.HorizontalLayout = function OoUiHorizontalLayout( config ) {
 	// Mixin constructors
 	OO.ui.mixin.GroupElement.call( this, $.extend( {}, config, { $group: this.$element } ) );
 
-	// Events
-	this.innerToolGroup.connect( this, { disable: 'onToolGroupDisable' } );
-
 	// Initialization
 	this.$element.addClass( 'oo-ui-horizontalLayout' );
 	if ( Array.isArray( config.items ) ) {
@@ -11640,7 +11637,6 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
  * For more information about toolbars in general, please see the [OOjs UI documentation on MediaWiki][1].
  *
  * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Toolbars
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
  *
  * @class
  * @extends OO.ui.PopupToolGroup
@@ -12022,7 +12018,6 @@ OO.ui.PopupTool.prototype.onUpdateState = function () {
  * inside a {@link OO.ui.BarToolGroup bar} toolgroup to provide access to additional tools from
  * the bar item. Included tools will be displayed in a dropdown {@link OO.ui.ListToolGroup list}
  * when the ToolGroupTool is selected.
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
  *
  *     // Example: ToolGroupTool with two nested tools, 'setting1' and 'setting2', defined elsewhere.
  *
@@ -12118,7 +12113,6 @@ OO.ui.ToolGroupTool.prototype.onToolGroupDisable = function ( disabled ) {
 
 /**
  * Handle the toolbar state being updated.
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
  *
  * @inheritdoc
  */
@@ -12521,7 +12515,6 @@ OO.mixinClass( OO.ui.ButtonGroupWidget, OO.ui.mixin.GroupElement );
  * and examples.
  *
  * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Buttons_and_Switches
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
  *
  *     @example
  *     // A button widget
@@ -13687,7 +13680,6 @@ OO.ui.CapsuleMultiSelectWidget.prototype.focus = function () {
 /**
  * CapsuleItemWidgets are used within a {@link OO.ui.CapsuleMultiSelectWidget
  * CapsuleMultiSelectWidget} to display the selected items.
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
  *
  * @class
  * @extends OO.ui.Widget
@@ -13776,8 +13768,6 @@ OO.ui.CapsuleItemWidget.prototype.onCloseKeyDown = function ( e ) {
  *
  * If you want to use this within a HTML form, such as a OO.ui.FormLayout, use
  * OO.ui.DropdownInputWidget instead.
- *
- * This widget can be used inside a HTML form, such as a OO.ui.FormLayout.
  *
  *     @example
  *     // Example: A DropdownWidget with a menu that contains three options
@@ -13944,8 +13934,6 @@ OO.ui.DropdownWidget.prototype.onKeyPress = function ( e ) {
  * widgets can be configured with {@link OO.ui.mixin.IconElement icons} and {@link
  * OO.ui.mixin.IndicatorElement indicators}.
  * Please see the [OOjs UI documentation on MediaWiki] [1] for more information and examples.
- *
- * This widget can be used inside a HTML form, such as a OO.ui.FormLayout.
  *
  *     @example
  *     // Example of a file select widget
@@ -14239,7 +14227,6 @@ OO.ui.SelectFileWidget.prototype.onFileSelected = function ( e ) {
 
 	this.setValue( file );
 	this.addInput();
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 };
 
 /**
@@ -14592,7 +14579,6 @@ OO.ui.InputWidget.prototype.onEdit = function () {
 		setTimeout( function () {
 			widget.setValue( widget.$input.val() );
 		} );
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 	}
 };
 
@@ -18687,7 +18673,6 @@ OO.mixinClass( OO.ui.ButtonSelectWidget, OO.ui.mixin.TabIndexedElement );
  * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
 
  *
- * @abstract
  * @class
  * @extends OO.ui.SelectWidget
  * @mixins OO.ui.mixin.TabIndexedElement
@@ -19533,40 +19518,6 @@ OO.ui.NumberInputWidget.prototype.setDisabled = function ( disabled ) {
 
 	return this;
 };
-
-/**
- * TabSelectWidget is a list that contains {@link OO.ui.TabOptionWidget tab options}
- *
- * ####Currently, this class is only used by {@link OO.ui.IndexLayout index layouts}.####
- *
- * @class
- * @extends OO.ui.SelectWidget
- * @mixins OO.ui.TabIndexedElement
- *
- * @constructor
- * @param {Object} [config] Configuration options
- */
-OO.ui.TabSelectWidget = function OoUiTabSelectWidget( config ) {
-	// Parent constructor
-	OO.ui.TabSelectWidget.super.call( this, config );
-
-	// Mixin constructors
-	OO.ui.TabIndexedElement.call( this, config );
-
-	// Events
-	this.$element.on( {
-		focus: this.bindKeyDownListener.bind( this ),
-		blur: this.unbindKeyDownListener.bind( this )
-	} );
-
-	// Initialization
-	this.$element.addClass( 'oo-ui-tabSelectWidget' );
-};
-
-/* Setup */
-
-OO.inheritClass( OO.ui.TabSelectWidget, OO.ui.SelectWidget );
-OO.mixinClass( OO.ui.TabSelectWidget, OO.ui.TabIndexedElement );
 
 /**
  * ToggleSwitches are switches that slide on and off. Their state is represented by a Boolean
