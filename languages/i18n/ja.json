@@ -1439,6 +1439,8 @@
 	"foreign-structured-upload-form-label-own-work-message-shared": "私は、このファイルの著作権を所有していることを宣誓し、取消し不能な形で  [https://creativecommons.org/licenses/by-sa/4.0/ Creative Commons Attribution-ShareAlike 4.0] ライセンスのもとでウィキメディア・コモンズに、このファイルを解放することに同意します。そして私は、  [https://wikimediafoundation.org/wiki/Terms_of_Use Terms of Use] に同意します。",
 	"foreign-structured-upload-form-label-not-own-work-message-shared": "このファイルの著作権を所有していない場合、または別のライセンスの下でそれをリリースしたい場合には、 [https://commons.wikimedia.org/wiki/Special:UploadWizard Commons Upload Wizard] を使用することを検討してください。",
 	"foreign-structured-upload-form-label-not-own-work-local-shared": "もしサイトが、それらの方針の下で、このファイルのアップロードを許可する場合は、You may also want to try using [[Special:Upload|{{SITENAME}}上でのアップロードページ]]を使用することも試してください。",
+	"foreign-structured-upload-form-3-label-yes": "はい",
+	"foreign-structured-upload-form-3-label-no": "いいえ",
 	"backend-fail-stream": "ファイル $1 をストリームできませんでした。",
 	"backend-fail-backup": "ファイル $1 をバックアップできませんでした。",
 	"backend-fail-notexists": "ファイル $1 は存在しません。",

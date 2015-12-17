@@ -16,7 +16,8 @@
 			"Serwan",
 			"Ebraminio",
 			"Macofe",
-			"Pirehelokan"
+			"Pirehelokan",
+			"Diyariq"
 		]
 	},
 	"tog-underline": "ھێڵ ھێنان بەژێر بەستەرەکان:",
@@ -2030,7 +2031,7 @@
 	"spamprotectionmatch": "ئەم دەقە ئەوەیە کە پاڵێوی سپامەکە دەبزوێنێ: $1",
 	"spambot_username": "خاوێنکردنەوەی سپامی میدیاویکی",
 	"spam_reverting": "گەڕانەوە بۆ دوایین پێداچوونەوە کە بەستەری لەخۆگرتووە بۆ $1",
-	"simpleantispam-label": "پشکنینی دژەھەرزە.\nئەمە پڕ <strong>مەکەرەوە</strong>!",
+	"simpleantispam-label": "پشکنینی دژەھەرزە.\nئەمە پڕ <strong>مەکەرەوە</strong>پڕکردنەوە ئەوا لە!",
 	"pageinfo-title": "زانیاری بۆ «$1»",
 	"pageinfo-header-basic": "زانیاریی سەرەتایی",
 	"pageinfo-header-edits": "مێژووی دەستکاری",

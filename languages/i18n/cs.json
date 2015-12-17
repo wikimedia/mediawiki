@@ -678,7 +678,7 @@
 	"permissionserrors": "Chyba povolení",
 	"permissionserrorstext": "Nemáte povoleno toto provést z {{PLURAL:$1|následujícího důvodu|následujících důvodů|následujících důvodů}}:",
 	"permissionserrorstext-withaction": "Z {{PLURAL:$1|následujícího důvodu|následujících důvodů}} nemáte oprávnění $2:",
-	"contentmodelediterror": "Tuto revizi nemůžete editovat, protože model jejího obsahu je <code>$1</code>, zatímco aktuální model obsahu této stránky je <code>$2</code>.",
+	"contentmodelediterror": "Tuto revizi nemůžete editovat, protože model jejího obsahu je <code>$1</code>, což se liší od aktuálního modelu obsahu této stránky, kterým je <code>$2</code>.",
 	"recreate-moveddeleted-warn": "'''Upozornění: Pokoušíte se znovuzaložit stránku, která byla v minulosti smazána.'''\n\nZvažte, zda je vhodné v editaci této stránky pokračovat.\nNíže vidíte soupis přesunů a smazání této stránky:",
 	"moveddeleted-notice": "Tato stránka byla smazána.\nPodrobnosti si můžete prohlédnout v níže zobrazeném seznamu provedených přesunů a smazání této stránky.",
 	"moveddeleted-notice-recent": "Omlouváme se, ale tato stránka byla nedávno (v posledních 24 hodinách) smazána. Pro úplnost je níže zobrazen soupis přesunů a smazání této stránky.",
