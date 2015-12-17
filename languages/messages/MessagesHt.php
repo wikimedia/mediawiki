@@ -30,8 +30,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Imaj'           => NS_USER,
-	'Diskisyon_Imaj' => NS_USER_TALK,
+	'Imaj'           => NS_FILE,
+	'Diskisyon_Imaj' => NS_FILE_TALK,
 );
 
 // Remove French aliases
