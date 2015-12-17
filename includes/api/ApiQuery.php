@@ -293,7 +293,6 @@ class ApiQuery extends ApiBase {
 		// Write the continuation data into the result
 		$this->setContinuationManager( null );
 		if ( $this->mParams['rawcontinue'] ) {
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 			$data = $continuationManager->getRawContinuation();
 			if ( $data ) {
 				$this->getResult()->addValue( null, 'query-continue', $data,

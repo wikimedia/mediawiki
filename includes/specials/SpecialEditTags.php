@@ -123,11 +123,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 
 		// Either submit or create our form
 		if ( $this->isAllowed && $this->submitClicked ) {
-<<<<<<< HEAD
-			$this->submit( $request );
-=======
 			$this->submit();
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 		} else {
 			$this->showForm();
 		}
@@ -353,22 +349,6 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	protected function getTagSelect( $selectedTags, $label ) {
 		$result = array();
 		$result[0] = Xml::label( $label, 'mw-edittags-tag-list' );
-<<<<<<< HEAD
-		$result[1] = Xml::openElement( 'select', array(
-			'name' => 'wpTagList[]',
-			'id' => 'mw-edittags-tag-list',
-			'multiple' => 'multiple',
-			'size' => '8',
-		) );
-
-		$tags = ChangeTags::listExplicitlyDefinedTags();
-		$tags = array_unique( array_merge( $tags, $selectedTags ) );
-		foreach ( $tags as $tag ) {
-			$result[1] .= Xml::option( $tag, $tag, in_array( $tag, $selectedTags ) );
-		}
-
-		$result[1] .= Xml::closeElement( 'select' );
-=======
 
 		$select = new XmlSelect( 'wpTagList[]', 'mw-edittags-tag-list', $selectedTags );
 		$select->setAttribute( 'multiple', 'multiple' );
@@ -381,7 +361,6 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$select->addOptions( array_combine( $tags, $tags ) );
 
 		$result[1] = $select->getHTML();
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 		return $result;
 	}
 

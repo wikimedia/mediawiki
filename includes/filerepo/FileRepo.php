@@ -447,7 +447,6 @@ class FileRepo {
 						return $img;
 					}
 				}
-				}
 			}
 		}
 

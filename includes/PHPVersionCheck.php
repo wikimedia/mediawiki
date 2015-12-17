@@ -25,12 +25,17 @@
 /**
  * Check php version and that external dependencies are installed, and
  * display an informative error if either condition is not satisfied.
-<<<<<<< HEAD
+ *
+ * @note Since we can't rely on anything, the minimum PHP versions and MW current
+ * version are hardcoded here
  */
 function wfEntryPointCheck( $entryPoint ) {
+	$mwVersion = '1.26';
+	$minimumVersionPHP = '5.3.3';
+	$phpVersion = PHP_VERSION;
+
 	if ( !function_exists( 'version_compare' )
-		|| version_compare( PHP_VERSION, '5.3.3' ) < 0
-		|| !file_exists( dirname( __FILE__ ) . '/../vendor/autoload.php' )
+		|| version_compare( $phpVersion, $minimumVersionPHP ) < 0
 	) {
 		wfPHPVersionError( $entryPoint, $mwVersion, $minimumVersionPHP, $phpVersion );
 	}
@@ -54,44 +59,6 @@ function wfEntryPointCheck( $entryPoint ) {
  *   - api.php
  *   - mw-config/index.php
  *   - cli
-<<<<<<< HEAD
- *
- * @note Since we can't rely on anything, the minimum PHP versions and MW current
- * version are hardcoded here
- */
-function wfPHPVersionError( $type ) {
-	$mwVersion = '1.25';
-	$minimumVersionPHP = '5.3.3';
-
-	$phpVersion = PHP_VERSION;
-	$protocol = isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
-	$message = "MediaWiki $mwVersion requires at least "
-		. "PHP version $minimumVersionPHP, you are using PHP $phpVersion. Installing some "
-		. " external dependencies (e.g. via composer) is also required.";
-
-	if ( $type == 'cli' ) {
-		$finalOutput = "Error: You are missing some external dependencies or are using on older PHP version. \n"
-			. "MediaWiki $mwVersion needs PHP $minimumVersionPHP or higher.\n\n"
-			. "Check if you have a newer php executable with a different name, such as php5.\n\n"
-			. "MediaWiki now also has some external dependencies that need to be installed\n"
-			. "via composer or from a separate git repo. Please see\n"
-			. "https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries\n"
-			. "for help on installing the required components.";
-	} elseif ( $type == 'index.php' || $type == 'mw-config/index.php' ) {
-		$pathinfo = pathinfo( $_SERVER['SCRIPT_NAME'] );
-		if ( $type == 'mw-config/index.php' ) {
-			$dirname = dirname( $pathinfo['dirname'] );
-		} else {
-			$dirname = $pathinfo['dirname'];
-		}
-		$encLogo = htmlspecialchars(
-			str_replace( '//', '/', $dirname . '/' ) .
-			'resources/assets/mediawiki.png'
-		);
-
-		header( "$protocol 500 MediaWiki configuration Error" );
-		header( 'Content-type: text/html; charset=UTF-8' );
-=======
  * @param string $mwVersion The number of the MediaWiki version used
  * @param string $title HTML code to be put within an <h2> tag
  * @param string $shortText
@@ -105,14 +72,10 @@ function wfGenericError( $type, $mwVersion, $title, $shortText, $longText, $long
 		$finalOutput = $longText;
 	} else {
 		header( "$protocol 500 MediaWiki configuration Error" );
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 		// Don't cache error pages!  They cause no end of trouble...
 		header( 'Cache-control: none' );
 		header( 'Pragma: no-cache' );
 
-<<<<<<< HEAD
-		$finalOutput = <<<HTML
-=======
 		if ( $type == 'index.php' || $type == 'mw-config/index.php' ) {
 			$pathinfo = pathinfo( $_SERVER['SCRIPT_NAME'] );
 			if ( $type == 'mw-config/index.php' ) {
@@ -129,7 +92,6 @@ function wfGenericError( $type, $mwVersion, $title, $shortText, $longText, $long
 			header( 'Content-type: text/html; charset=UTF-8' );
 
 			$finalOutput = <<<HTML
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<head>
@@ -160,12 +122,6 @@ function wfGenericError( $type, $mwVersion, $title, $shortText, $longText, $long
 		<h1>MediaWiki {$mwVersion} internal error</h1>
 		<div class='error'>
 		<p>
-<<<<<<< HEAD
-			{$message}
-		</p>
-		<h2>Supported PHP versions</h2>
-		<p>
-=======
 			{$shortHtml}
 		</p>
 		<h2>{$title}</h2>
@@ -203,7 +159,6 @@ function wfPHPVersionError( $type, $mwVersion, $minimumVersionPHP, $phpVersion )
 		. "Check if you have a newer php executable with a different name, such as php5.\n\n";
 
 	$longHtml = <<<HTML
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 			Please consider <a href="http://www.php.net/downloads.php">upgrading your copy of PHP</a>.
 			PHP versions less than 5.3.0 are no longer supported by the PHP Group and will not receive
 			security or bugfix updates.
@@ -214,11 +169,6 @@ function wfPHPVersionError( $type, $mwVersion, $minimumVersionPHP, $phpVersion )
 			of MediaWiki from our website.  See our
 			<a href="https://www.mediawiki.org/wiki/Compatibility#PHP">compatibility page</a>
 			for details of which versions are compatible with prior versions of PHP.
-<<<<<<< HEAD
-		</p>
-		<h2>External dependencies</h2>
-		<p>
-=======
 HTML;
 	wfGenericError( $type, $mwVersion, 'Supported PHP versions', $shortText, $longText, $longHtml );
 }
@@ -239,28 +189,11 @@ function wfMissingVendorError( $type, $mwVersion ) {
 		. "for help on installing the required components.";
 
 	$longHtml = <<<HTML
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 			MediaWiki now also has some external dependencies that need to be installed via
 			composer or from a separate git repo. Please see
 			<a href="https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries">mediawiki.org</a>
 			for help on installing the required components.
-<<<<<<< HEAD
-		</p>
-		</div>
-	</body>
-</html>
-HTML;
-	// Handle everything that's not index.php
-	} else {
-		// So nothing thinks this is JS or CSS
-		$finalOutput = ( $type == 'load.php' ) ? "/* $message */" : $message;
-		header( "$protocol 500 MediaWiki configuration Error" );
-	}
-	echo "$finalOutput\n";
-	die( 1 );
-=======
 HTML;
 
 	wfGenericError( $type, $mwVersion, 'External dependencies', $shortText, $longText, $longHtml );
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 }

@@ -557,8 +557,6 @@ if ( $wgTmpDirectory === false ) {
 if ( !isset( $wgDisableCounters ) ) {
 	$wgDisableCounters = true;
 }
-<<<<<<< HEAD
-=======
 
 if ( $wgMainWANCache === false ) {
 	// Setup a WAN cache from $wgMainCacheType with no relayer.
@@ -571,7 +569,6 @@ if ( $wgMainWANCache === false ) {
 		'relayerConfig' => array( 'class' => 'EventRelayerNull' )
 	);
 }
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 
 Profiler::instance()->scopedProfileOut( $ps_default2 );
 

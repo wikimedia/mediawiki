@@ -25,23 +25,11 @@
  * Compact stacked vertical format for forms, implemented using OOUI widgets.
  */
 class OOUIHTMLForm extends HTMLForm {
-<<<<<<< HEAD
-	/**
-	 * Wrapper and its legend are never generated in OOUI mode.
-	 * @var boolean
-	 */
-	protected $mWrapperLegend = false;
-=======
 	private $oouiErrors;
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 
 	public function __construct( $descriptor, $context = null, $messagePrefix = '' ) {
 		parent::__construct( $descriptor, $context, $messagePrefix );
 		$this->getOutput()->enableOOUI();
-<<<<<<< HEAD
-		$this->getOutput()->addModules( 'mediawiki.htmlform.ooui' );
-=======
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 		$this->getOutput()->addModuleStyles( 'mediawiki.htmlform.ooui.styles' );
 	}
 
@@ -61,11 +49,7 @@ class OOUIHTMLForm extends HTMLForm {
 		$buttons = '';
 
 		if ( $this->mShowSubmit ) {
-<<<<<<< HEAD
-			$attribs = array();
-=======
 			$attribs = array( 'infusable' => true );
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 
 			if ( isset( $this->mSubmitID ) ) {
 				$attribs['id'] = $this->mSubmitID;
@@ -79,23 +63,11 @@ class OOUIHTMLForm extends HTMLForm {
 				$attribs += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
 			}
 
-<<<<<<< HEAD
-			$attribs['classes'] = array(
-				'mw-htmlform-submit',
-				$this->mSubmitModifierClass,
-			);
-
-			$attribs['type'] = 'submit';
-			$attribs['label'] = $this->getSubmitText();
-			$attribs['value'] = $this->getSubmitText();
-			$attribs['flags'] = array( 'primary', 'constructive' );
-=======
 			$attribs['classes'] = array( 'mw-htmlform-submit' );
 			$attribs['type'] = 'submit';
 			$attribs['label'] = $this->getSubmitText();
 			$attribs['value'] = $this->getSubmitText();
 			$attribs['flags'] = $this->mSubmitFlags;
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 
 			$buttons .= new OOUI\ButtonInputWidget( $attribs );
 		}
@@ -134,26 +106,6 @@ class OOUIHTMLForm extends HTMLForm {
 		return $html;
 	}
 
-<<<<<<< HEAD
-	function getFormAttributes() {
-		$attribs = parent::getFormAttributes();
-		if ( !isset( $attribs['class'] ) ) {
-			$attribs['class'] = '';
-		}
-
-		if ( is_string( $attribs['class'] ) ) {
-			$attribs['class'] = trim( $attribs['class'] . ' mw-htmlform-ooui' );
-		} else {
-			$attribs['class'][] = 'mw-htmlform-ooui';
-		}
-
-		return $attribs;
-	}
-
-	function wrapForm( $html ) {
-		// Always discard $this->mWrapperLegend
-		return Html::rawElement( 'form', $this->getFormAttributes(), $html );
-=======
 	/**
 	 * Put a form section together from the individual fields' HTML, merging it and wrapping.
 	 * @param OOUI\\FieldLayout[] $fieldsHtml
@@ -265,6 +217,5 @@ class OOUIHTMLForm extends HTMLForm {
 		) );
 
 		return $form;
->>>>>>> 365e22ee61035f953b47387af92ef832f09d5982
 	}
 }
