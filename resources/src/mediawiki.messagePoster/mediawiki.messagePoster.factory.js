@@ -64,7 +64,7 @@
 		if ( apiUrl ) {
 			api = new mw.ForeignApi( apiUrl );
 		} else {
-			api = mw.Api();
+			api = new mw.Api();
 		}
 
 		return api.get( {
