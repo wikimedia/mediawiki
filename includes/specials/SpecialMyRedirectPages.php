@@ -45,6 +45,16 @@ class SpecialMypage extends RedirectSpecialArticle {
 
 		return Title::makeTitle( NS_USER, $this->getUser()->getName() . '/' . $subpage );
 	}
+
+	/**
+	 * Target identifies a specific User. See T109724.
+	 *
+	 * @since 1.27
+	 * @return bool
+	 */
+	public function personallyIdentifiableTarget() {
+		return true;
+	}
 }
 
 /**
@@ -68,6 +78,16 @@ class SpecialMytalk extends RedirectSpecialArticle {
 
 		return Title::makeTitle( NS_USER_TALK, $this->getUser()->getName() . '/' . $subpage );
 	}
+
+	/**
+	 * Target identifies a specific User. See T109724.
+	 *
+	 * @since 1.27
+	 * @return bool
+	 */
+	public function personallyIdentifiableTarget() {
+		return true;
+	}
 }
 
 /**
@@ -90,6 +110,16 @@ class SpecialMycontributions extends RedirectSpecialPage {
 	public function getRedirect( $subpage ) {
 		return SpecialPage::getTitleFor( 'Contributions', $this->getUser()->getName() );
 	}
+
+	/**
+	 * Target identifies a specific User. See T109724.
+	 *
+	 * @since 1.27
+	 * @return bool
+	 */
+	public function personallyIdentifiableTarget() {
+		return true;
+	}
 }
 
 /**
@@ -109,6 +139,16 @@ class SpecialMyuploads extends RedirectSpecialPage {
 	 */
 	public function getRedirect( $subpage ) {
 		return SpecialPage::getTitleFor( 'Listfiles', $this->getUser()->getName() );
+	}
+
+	/**
+	 * Target identifies a specific User. See T109724.
+	 *
+	 * @since 1.27
+	 * @return bool
+	 */
+	public function personallyIdentifiableTarget() {
+		return true;
 	}
 }
 
@@ -131,5 +171,15 @@ class SpecialAllMyUploads extends RedirectSpecialPage {
 		$this->mAddedRedirectParams['ilshowall'] = 1;
 
 		return SpecialPage::getTitleFor( 'Listfiles', $this->getUser()->getName() );
+	}
+
+	/**
+	 * Target identifies a specific User. See T109724.
+	 *
+	 * @since 1.27
+	 * @return bool
+	 */
+	public function personallyIdentifiableTarget() {
+		return true;
 	}
 }
