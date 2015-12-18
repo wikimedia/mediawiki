@@ -9,7 +9,7 @@
 	var profile = $.client.profile(),
 		canonical = mw.config.get( 'wgInternalRedirectTargetUrl' ),
 		fragment = null,
-		shouldChangeFragment, index;
+		node, shouldChangeFragment, index;
 
 	index = canonical.indexOf( '#' );
 	if ( index !== -1 ) {
@@ -27,12 +27,15 @@
 			canonical += location.hash;
 		}
 
-		// This will also cause the browser to scroll to given fragment
+		// Note that this will update the hash in a modern browser, retaining back behaviour
 		history.replaceState( /*data=*/ history.state, /*title=*/ document.title, /*url=*/ canonical );
-
-		// …except for IE 10 and 11. Prod it with a location.hash change.
-		if ( shouldChangeFragment && profile.name === 'msie' && profile.versionNumber >= 10 ) {
-			location.hash = fragment;
+		if ( shouldChangeFragment ) {
+			// Specification for history.replaceState() doesn't require browser to scroll,
+			// so scroll to be sure (see also T110501). Support for IE9 and IE10.
+			node = document.getElementById( fragment.slice( 1 ) );
+			if ( node ) {
+				node.scrollIntoView();
+			}
 		}
 
 	} else if ( shouldChangeFragment ) {
