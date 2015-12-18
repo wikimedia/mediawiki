@@ -662,12 +662,23 @@ class WikiImporter {
 	private function processLogItem( $logInfo ) {
 		$revision = new WikiRevision( $this->config );
 
-		$revision->setID( $logInfo['id'] );
+		if ( isset( $logInfo['id'] ) ) {
+			$revision->setID( $logInfo['id'] );
+		}
 		$revision->setType( $logInfo['type'] );
 		$revision->setAction( $logInfo['action'] );
-		$revision->setTimestamp( $logInfo['timestamp'] );
-		$revision->setParams( $logInfo['params'] );
-		$revision->setTitle( Title::newFromText( $logInfo['logtitle'] ) );
+		if ( isset( $logInfo['timestamp'] ) ) {
+			$revision->setTimestamp( $logInfo['timestamp'] );
+		}
+		if ( isset( $logInfo['params'] ) ) {
+			$revision->setParams( $logInfo['params'] );
+		}
+		if ( isset( $logInfo['logtitle'] ) ) {
+			// @todo Using Title for non-local titles is a recipe for disaster.
+			// We should use ForeignTitle here instead.
+			$revision->setTitle( Title::newFromText( $logInfo['logtitle'] ) );
+		}
+
 		$revision->setNoUpdates( $this->mNoUpdates );
 
 		if ( isset( $logInfo['comment'] ) ) {
@@ -677,7 +688,10 @@ class WikiImporter {
 		if ( isset( $logInfo['contributor']['ip'] ) ) {
 			$revision->setUserIP( $logInfo['contributor']['ip'] );
 		}
-		if ( isset( $logInfo['contributor']['username'] ) ) {
+
+		if ( !isset( $logInfo['contributor']['username'] ) ) {
+			$revision->setUsername( 'Unknown user' );
+		} else {
 			$revision->setUserName( $logInfo['contributor']['username'] );
 		}
 
@@ -1687,8 +1701,8 @@ class WikiRevision {
 			'log_type' => $this->type,
 			'log_action' => $this->action,
 			'log_timestamp' => $dbw->timestamp( $this->timestamp ),
-			'log_user' => User::idFromName( $this->user_text ),
-			# 'log_user_text' => $this->user_text,
+			'log_user' =>  $this->id,
+			'log_user_text' => $this->user_text,
 			'log_namespace' => $this->getTitle()->getNamespace(),
 			'log_title' => $this->getTitle()->getDBkey(),
 			'log_comment' => $this->getComment(),
