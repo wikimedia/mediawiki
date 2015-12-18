@@ -1179,6 +1179,7 @@
 	"apihelp-rollback-description": "ביטול העריכה האחרונה לדף.\n\nאם המשמש האחרון שערך את הדף עשה מספר עריכות זו אחר זו, הן תשוחזרנה.",
 	"apihelp-rollback-param-title": "שם הדף לשחזור. לא יכול לשמש יחד עם <var>$1pageid</var>.",
 	"apihelp-rollback-param-pageid": "מזהה הדף לשחזור. לא יכול לשמש יחד עם <var>$1title</var>.",
+	"apihelp-rollback-param-tags": "אילו תגים להחיל על השחזור.",
 	"apihelp-rollback-param-user": "שם המשתמשים שהעריכות שלו תשוחזרנה.",
 	"apihelp-rollback-param-summary": "תקציר עריכה מותאם. אם ריק, ישמש תקציר לפי בררת מחדל.",
 	"apihelp-rollback-param-markbot": "לסמן את העריכות ששוחזרו ואת השחזור בתור עריכות בוט.",

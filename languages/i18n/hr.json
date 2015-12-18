@@ -1144,6 +1144,7 @@
 	"recentchanges-label-plusminus": "Promjena veličine stranice (u bajtovima)",
 	"recentchanges-legend-heading": "'''Legenda:'''",
 	"recentchanges-legend-newpage": "Nova stranica",
+	"recentchanges-submit": "Prikaži",
 	"rcnotefrom": "Slijede promjene od <b>$2</b> (prikazano ih je do <b>$1</b>).",
 	"rclistfrom": "Prikaži nove promjene počevši od $3 $2",
 	"rcshowhideminor": "$1 manje promjene",

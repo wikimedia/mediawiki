@@ -1332,6 +1332,8 @@
 	"foreign-structured-upload-form-label-own-work": "Dëst ass mäin eegent Wierk",
 	"foreign-structured-upload-form-label-infoform-categories": "Kategorien",
 	"foreign-structured-upload-form-label-infoform-date": "Datum",
+	"foreign-structured-upload-form-3-label-yes": "Jo",
+	"foreign-structured-upload-form-3-label-no": "Neen",
 	"backend-fail-stream": "De Fichier $1 konnt net iwwerdroe ginn.",
 	"backend-fail-backup": "De Fichier $1 konnt net geséchert ginn.",
 	"backend-fail-notexists": "De Fichier $1 gëtt et net.",
