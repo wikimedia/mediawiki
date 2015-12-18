@@ -740,6 +740,7 @@ $wgAutoloadLocalClasses = array(
 	'MailAddress' => __DIR__ . '/includes/mail/MailAddress.php',
 	'Maintenance' => __DIR__ . '/maintenance/Maintenance.php',
 	'MaintenanceFormatInstallDoc' => __DIR__ . '/maintenance/formatInstallDoc.php',
+	'MakeTestEdits' => __DIR__ . '/maintenance/makeTestEdits.php',
 	'MalformedTitleException' => __DIR__ . '/includes/title/MalformedTitleException.php',
 	'ManualLogEntry' => __DIR__ . '/includes/logging/LogEntry.php',
 	'MapCacheLRU' => __DIR__ . '/includes/libs/MapCacheLRU.php',
