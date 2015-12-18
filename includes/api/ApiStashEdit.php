@@ -41,8 +41,6 @@ class ApiStashEdit extends ApiBase {
 	const ERROR_UNCACHEABLE = 'uncacheable';
 
 	public function execute() {
-		$cache = ObjectCache::getLocalClusterInstance();
-
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
