@@ -26,7 +26,11 @@
  */
 
 /**
- * @todo document
+ * The base class for all other DiffOp classes.
+ *
+ * The classes that extend DiffOp are: DiffOpCopy, DiffOpDelete, DiffOpAdd and
+ * DiffOpChange. FakeDiffOp also extends DiffOp, but it is not located in this file.
+ *
  * @private
  * @ingroup DifferenceEngine
  */
@@ -93,7 +97,9 @@ abstract class DiffOp {
 }
 
 /**
- * @todo document
+ * Extends DiffOp. Used to mark strings that have been
+ * copied from one string array to the other.
+ *
  * @private
  * @ingroup DifferenceEngine
  */
@@ -117,7 +123,9 @@ class DiffOpCopy extends DiffOp {
 }
 
 /**
- * @todo document
+ * Extends DiffOp. Used to mark strings that have been
+ * deleted from the first string array.
+ *
  * @private
  * @ingroup DifferenceEngine
  */
@@ -138,7 +146,9 @@ class DiffOpDelete extends DiffOp {
 }
 
 /**
- * @todo document
+ * Extends DiffOp. Used to mark strings that have been
+ * added from the first string array.
+ *
  * @private
  * @ingroup DifferenceEngine
  */
@@ -159,7 +169,9 @@ class DiffOpAdd extends DiffOp {
 }
 
 /**
- * @todo document
+ * Extends DiffOp. Used to mark strings that have been
+ * changed from the first string array (both added and subtracted).
+ *
  * @private
  * @ingroup DifferenceEngine
  */
