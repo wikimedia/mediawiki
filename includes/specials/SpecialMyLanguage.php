@@ -91,7 +91,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 
 		$uiCode = $this->getLanguage()->getCode();
 		$proposed = $base->getSubpage( $uiCode );
-		if ( $uiCode !== $this->getConfig()->get( 'LanguageCode' ) && $proposed && $proposed->exists() ) {
+		if ( $proposed && $proposed->exists() && $uiCode !== $base->getPageLanguage()->getCode() ) {
 			return $proposed;
 		} elseif ( $provided && $provided->exists() ) {
 			return $provided;
