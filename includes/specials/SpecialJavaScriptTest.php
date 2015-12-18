@@ -106,8 +106,6 @@ class SpecialJavaScriptTest extends SpecialPage {
 			return;
 		}
 
-		$out->addModules( 'mediawiki.special.javaScriptTest' );
-
 		$method = 'view' . ucfirst( $framework );
 		$this->$method();
 		$out->setPageTitle( $this->msg(
