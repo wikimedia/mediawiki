@@ -650,6 +650,7 @@ class WikiImporter {
 			} elseif ( $tag != '#text' ) {
 				$this->warn( "Unhandled log-item XML tag $tag" );
 			}
+
 		}
 
 		$this->processLogItem( $logInfo );
@@ -662,12 +663,29 @@ class WikiImporter {
 	private function processLogItem( $logInfo ) {
 		$revision = new WikiRevision( $this->config );
 
+		if ( !isset( $logInfo['contributor']['username'] ) ){
+			$revision->setUsername( "Unknown user" );
+		} else {
+			$revision->setUserName( $logInfo['contributor']['username'] );
+		}
+
 		$revision->setID( $logInfo['id'] );
 		$revision->setType( $logInfo['type'] );
 		$revision->setAction( $logInfo['action'] );
 		$revision->setTimestamp( $logInfo['timestamp'] );
-		$revision->setParams( $logInfo['params'] );
-		$revision->setTitle( Title::newFromText( $logInfo['logtitle'] ) );
+
+		if ( isset($logInfo['params']) ) {
+			$revision->setParams( $logInfo['params'] );
+		} else {
+			//Dont know what should I add there
+		}
+
+		if ( isset( $logInfo['logtitle'] ) ){
+			$revision->setTitle( Title::newFromText( $logInfo['logtitle'] ) );
+		} else {
+			$revision->setTitle( Title::newFromText( "Unknown Title" ) );
+		}
+
 		$revision->setNoUpdates( $this->mNoUpdates );
 
 		if ( isset( $logInfo['comment'] ) ) {
@@ -676,9 +694,6 @@ class WikiImporter {
 
 		if ( isset( $logInfo['contributor']['ip'] ) ) {
 			$revision->setUserIP( $logInfo['contributor']['ip'] );
-		}
-		if ( isset( $logInfo['contributor']['username'] ) ) {
-			$revision->setUserName( $logInfo['contributor']['username'] );
 		}
 
 		return $this->logItemCallback( $revision );
@@ -1687,7 +1702,7 @@ class WikiRevision {
 			'log_type' => $this->type,
 			'log_action' => $this->action,
 			'log_timestamp' => $dbw->timestamp( $this->timestamp ),
-			'log_user' => User::idFromName( $this->user_text ),
+			'log_user' => /*User::idFromName(*/ $this->user_text /*)*/,
 			# 'log_user_text' => $this->user_text,
 			'log_namespace' => $this->getTitle()->getNamespace(),
 			'log_title' => $this->getTitle()->getDBkey(),
