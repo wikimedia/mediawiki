@@ -3,6 +3,7 @@
  */
 ( function ( mw, $ ) {
 	mw.searchSuggest = {
+		// queries the wiki and calls response with the result
 		request: function ( api, query, response, maxRows ) {
 			return api.get( {
 				action: 'opensearch',
@@ -13,7 +14,9 @@
 			} ).done( function ( data ) {
 				response( data[ 1 ] );
 			} );
-		}
+		},
+		// The name of the request api for event logging purposes
+		type: 'prefix'
 	};
 
 	$( function () {
@@ -98,9 +101,7 @@
 			mw.track( 'mediawiki.searchSuggest', {
 				action: 'impression-results',
 				numberOfResults: context.config.suggestions.length,
-				// FIXME: when other types of search become available change this value accordingly
-				// See the API call below (opensearch = prefix)
-				resultSetType: 'prefix'
+				resultSetType: mw.searchSuggest.type
 			} );
 		}
 
