@@ -1068,8 +1068,10 @@ class DifferenceEngine extends ContextSource {
 	public function addHeader( $diff, $otitle, $ntitle, $multi = '', $notice = '' ) {
 		// shared.css sets diff in interface language/dir, but the actual content
 		// is often in a different language, mostly the page content language/dir
-		$tableClass = 'diff diff-contentalign-' . htmlspecialchars( $this->getDiffLang()->alignStart() );
-		$header = "<table class='$tableClass'>";
+		$header = Html::openElement( 'table', array(
+			'class' => array( 'diff', 'diff-contentalign-' . $this->getDiffLang()->alignStart() ),
+			'data-mw' => 'interface',
+		) );
 		$userLang = htmlspecialchars( $this->getLanguage()->getHtmlCode() );
 
 		if ( !$diff && !$otitle ) {
