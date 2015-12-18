@@ -1029,11 +1029,10 @@ class User implements IDBAccessObject {
 		// stopping at a minimum of 10 chars.
 		$length = max( 10, $wgMinimalPasswordLength );
 		// Multiply by 1.25 to get the number of hex characters we need
-		$length = $length * 1.25;
 		// Generate random hex chars
-		$hex = MWCryptRand::generateHex( $length );
+		$hex = MWCryptRand::generateHex( ceil( $length * 1.25 ) );
 		// Convert from base 16 to base 32 to get a proper password like string
-		return wfBaseConvert( $hex, 16, 32 );
+		return substr( wfBaseConvert( $hex, 16, 32, $length ), -$length );
 	}
 
 	/**
@@ -4177,7 +4176,7 @@ class User implements IDBAccessObject {
 			$salt, $request ?: $this->getRequest(), $timestamp
 		);
 
-		if ( $val != $sessionToken ) {
+		if ( !hash_equals( $sessionToken, $val ) ) {
 			wfDebug( "User::matchEditToken: broken session data\n" );
 		}
 
