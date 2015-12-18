@@ -1866,16 +1866,6 @@ return array(
 	'mediawiki.special.watchlist' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.js',
 	),
-	'mediawiki.special.javaScriptTest' => array(
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.javaScriptTest.js',
-		'messages' => array_merge( Skin::getSkinNameMessages(), array(
-			'colon-separator',
-			'javascripttest-pagetext-skins',
-		) ),
-		'dependencies' => 'mediawiki.Uri',
-		'position' => 'top',
-		'targets' => array( 'desktop', 'mobile' ),
-	),
 	'mediawiki.special.version' => array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.version.css',
 	),
