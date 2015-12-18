@@ -26,7 +26,8 @@
  */
 
 /**
- * @todo document
+ * The base class for all other DiffOp classes.
+ *
  * @private
  * @ingroup DifferenceEngine
  */
@@ -93,7 +94,9 @@ abstract class DiffOp {
 }
 
 /**
- * @todo document
+ * Extends DiffOp. Used to mark strings that have been
+ * copied from one string string array to the other.
+ *
  * @private
  * @ingroup DifferenceEngine
  */
@@ -117,7 +120,9 @@ class DiffOpCopy extends DiffOp {
 }
 
 /**
- * @todo document
+ * Extends DiffOp. Used to mark strings that have been
+ * deleted from the first string array.
+ *
  * @private
  * @ingroup DifferenceEngine
  */
@@ -138,7 +143,9 @@ class DiffOpDelete extends DiffOp {
 }
 
 /**
- * @todo document
+ * Extends DiffOp. Used to mark strings that have been
+ * added from the first string array.
+ *
  * @private
  * @ingroup DifferenceEngine
  */
@@ -159,7 +166,9 @@ class DiffOpAdd extends DiffOp {
 }
 
 /**
- * @todo document
+ * Extends DiffOp. Used to mark strings that have been
+ * changed from the first string array. (both added and subtracted)
+ *
  * @private
  * @ingroup DifferenceEngine
  */
