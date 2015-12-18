@@ -2125,6 +2125,18 @@ return array(
 		),
 	),
 
+	'test1' => array(
+		'targets' => array( 'desktop', 'mobile' ),
+		'dependencies' => array(
+			'test2',
+		),
+		'scripts' => 'resources/test1.js',
+	),
+	'test2' => array(
+		'targets' => array( 'desktop', 'mobile' ),
+		'scripts' => 'resources/test2.js',
+	),
+
 	/* OOjs UI */
 	// WARNING: OOjs-UI is NOT TESTED with older browsers and is likely to break
 	// if loaded in browsers that don't support ES5
