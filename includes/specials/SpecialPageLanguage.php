@@ -48,9 +48,11 @@ class SpecialPageLanguage extends FormSpecialPage {
 
 		$page = array();
 		$page['pagename'] = array(
-			'type' => 'text',
+			'type' => 'title',
 			'label-message' => 'pagelang-name',
 			'default' => $defaultName,
+			'autofocus' => $defaultName === null,
+			'exists' => true,
 		);
 
 		// Options for whether to use the default language or select language
