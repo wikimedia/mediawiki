@@ -4,7 +4,7 @@
 ( function ( mw, $ ) {
 	$( function () {
 		var $preftoc, $preferences, $fieldsets,
-			hash, labelFunc,
+			labelFunc,
 			$tzSelect, $tzTextbox, $localtimeHolder, servertime,
 			allowCloseWindow, notif;
 
@@ -120,17 +120,28 @@
 			}
 		} );
 
-		// If we've reloaded the page or followed an open-in-new-window,
-		// make the selected tab visible.
-		hash = location.hash;
-		if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
-			switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
+		// Jump to correct section as indicated by the hash.
+		// This function is called onload and onhashchange.
+		function detectHash() {
+			var hash = location.hash,
+				matchedElement, parentSection;
+			if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
+				switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
+			} else if ( hash.match( /^#mw-[\w\-]+/ ) ) {
+				matchedElement = document.getElementById( hash.slice( 1 ) );
+				parentSection = $( matchedElement ).closest( '.prefsection' );
+				if ( parentSection.length ) {
+					// Switch to proper tab and scroll to selected item.
+					switchPrefTab( parentSection.attr( 'id' ).replace( 'mw-prefsection-', '' ), 'noHash' );
+					matchedElement.scrollIntoView();
+				}
+			}
 		}
 
 		// In browsers that support the onhashchange event we will not bind click
 		// handlers and instead let the browser do the default behavior (clicking the
 		// <a href="#.."> will naturally set the hash, handled by onhashchange.
-		// But other things that change the hash will also be catched (e.g. using
+		// But other things that change the hash will also be caught (e.g. using
 		// the Back and Forward browser navigation).
 		// Note the special check for IE "compatibility" mode.
 		if ( 'onhashchange' in window &&
@@ -138,21 +149,26 @@
 		) {
 			$( window ).on( 'hashchange', function () {
 				var hash = location.hash;
-				if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
-					switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
+				if ( hash.match( /^#mw-[\w\-]+/ ) ) {
+					detectHash();
 				} else if ( hash === '' ) {
 					switchPrefTab( 'personal', 'noHash' );
 				}
-			} );
+			} )
+			// Run the function immediately to select the proper tab on startup.
+			.trigger( 'hashchange' );
 		// In older browsers we'll bind a click handler as fallback.
-		// We must not have onhashchange *and* the click handlers, other wise
+		// We must not have onhashchange *and* the click handlers, otherwise
 		// the click handler calls switchPrefTab() which sets the hash value,
-		// which triggers onhashcange and calls switchPrefTab() again.
+		// which triggers onhashchange and calls switchPrefTab() again.
 		} else {
 			$preftoc.on( 'click', 'li a', function ( e ) {
 				switchPrefTab( $( this ).attr( 'href' ).replace( '#mw-prefsection-', '' ) );
 				e.preventDefault();
 			} );
+			// If we've reloaded the page or followed an open-in-new-window,
+			// make the selected tab visible.
+			detectHash();
 		}
 
 		// Timezone functions.
