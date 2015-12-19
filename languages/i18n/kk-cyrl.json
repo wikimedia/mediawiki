@@ -878,6 +878,7 @@
 	"showingresultsinrange": "Төменде {{PLURAL:$1|<strong>1</strong> нәтижеден|<strong>$1</strong> нәтижеден}} #<strong>$2</strong> орнынан #<strong>$3</strong> орынына дейінгі ауқымы көрсетіледі.",
 	"search-showingresults": "{{PLURAL:$4|Табылған <strong>$3</strong> нәтиженің <strong>$1</strong> нәтижесі көрсетілген|Табылған <strong>$3</strong> нәтиженің <strong>$1 - $2</strong> аралығы көрсетілген}}",
 	"search-nonefound": "Сұрауға сәйкес нәтижелер табылмады.",
+	"search-nonefound-thiswiki": "Бұл сайтта сұранысқа сәйкес нәтиже жоқ.",
 	"powersearch-legend": "Кеңейтілген іздеу",
 	"powersearch-ns": "Атау кеңістіктері бойынша іздеу:",
 	"powersearch-togglelabel": "Белгілеу:",

@@ -131,7 +131,8 @@
 			"TomT0m",
 			"L",
 			"SRXcraft",
-			"StevenJ81"
+			"StevenJ81",
+			"The RedBurn"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -2145,7 +2146,7 @@
 	"contribsub2": "Pour {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Le compte utilisateur « $1 » n’est pas enregistré.",
 	"nocontribs": "Aucune modification correspondant à ces critères n'a été trouvée.",
-	"uctop": "(actuel)",
+	"uctop": "(actuelle)",
 	"month": "À partir du mois (et précédents) :",
 	"year": "À partir de l'année (et précédentes) :",
 	"sp-contributions-newbies": "Ne montrer que les contributions des nouveaux utilisateurs",

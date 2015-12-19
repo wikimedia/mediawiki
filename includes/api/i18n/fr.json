@@ -1190,6 +1190,7 @@
 	"apihelp-rollback-description": "Annuler la dernière modification de la page.\n\nSi le dernier utilisateur à avoir modifié la page a fait plusieurs modifications sur une ligne, elles seront toutes annulées.",
 	"apihelp-rollback-param-title": "Titre de la page à restaurer. Impossible à utiliser avec <var>$1pageid</var>.",
 	"apihelp-rollback-param-pageid": "ID de la page à restaurer. Impossible à utiliser avec <var>$1title</var>.",
+	"apihelp-rollback-param-tags": "Balises à appliquer à la révocation.",
 	"apihelp-rollback-param-user": "Nom de l’utilisateur dont les modifications doivent être annulées.",
 	"apihelp-rollback-param-summary": "Personnaliser le résumé de la modification. S’il est vide, le résumé par défaut sera utilisé.",
 	"apihelp-rollback-param-markbot": "Marquer les modifications annulées et les modifications annulées comme robot.",

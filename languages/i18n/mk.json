@@ -1196,7 +1196,7 @@
 	"recentchanges-label-minor": "Ова е ситна промена",
 	"recentchanges-label-bot": "Ова уредување е направено од бот",
 	"recentchanges-label-unpatrolled": "Ова уредување сè уште не е испатролирано",
-	"recentchanges-label-plusminus": "Промена на големината на страницата во бајти",
+	"recentchanges-label-plusminus": "Големинска промена на страницата во бајти",
 	"recentchanges-legend-heading": "'''Легенда:'''",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (погл. и [[Special:NewPages|списокот на нови страници]])",
 	"recentchanges-legend-plusminus": "(''±123'')",

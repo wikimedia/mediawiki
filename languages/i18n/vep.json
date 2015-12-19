@@ -364,6 +364,7 @@
 	"gotaccount": "Ku teil om jo registracii, '''$1'''.",
 	"gotaccountlink": "Kirjutagatoiš sistemha",
 	"userlogin-resetlink": "Unohtid-ik andmused tulendan täht?",
+	"userlogin-helplink2": "Abu tulendanke sistemha",
 	"createacct-emailrequired": "E-počtal adres",
 	"createacct-email-ph": "Kirjutagat teiden e-počtan adres",
 	"createacct-another-email-ph": "Kirjutagat e-počtan adres",
