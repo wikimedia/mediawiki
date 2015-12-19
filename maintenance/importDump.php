@@ -135,15 +135,23 @@ TEXT;
 	 * @return bool
 	 */
 	private function skippedNamespace( $obj ) {
+		$title = null;
 		if ( $obj instanceof Title ) {
-			$ns = $obj->getNamespace();
+			$title = $obj;
 		} elseif ( $obj instanceof Revision ) {
-			$ns = $obj->getTitle()->getNamespace();
+			$title = $obj->getTitle();
 		} elseif ( $obj instanceof WikiRevision ) {
-			$ns = $obj->title->getNamespace();
+			$title = $obj->title;
 		} else {
 			throw new MWException( "Cannot get namespace of object in " . __METHOD__ );
 		}
+
+		if ( is_null( $title ) ) {
+			// Probably a log entry
+			return false;
+		}
+
+		$ns = $title->getNamespace();
 
 		return is_array( $this->nsFilter ) && !in_array( $ns, $this->nsFilter );
 	}
