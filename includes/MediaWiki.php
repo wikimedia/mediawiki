@@ -548,7 +548,7 @@ class MediaWiki {
 				if ( $limit > 0 && $time > $limit ) {
 					throw new DBTransactionError(
 						$db,
-						wfMessage( 'transaction-duration-limit-exceeded', $time, $limit )->plain()
+						wfMessage( 'transaction-duration-limit-exceeded', $time, $limit )->text()
 					);
 				}
 			} );
