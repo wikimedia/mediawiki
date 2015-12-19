@@ -111,7 +111,7 @@
 		} );
 	} );
 
-	QUnit.test( 'getUrl', 5, function ( assert ) {
+	QUnit.test( 'getUrl', 6, function ( assert ) {
 		// Not part of startUp module
 		mw.config.set( 'wgArticlePath', '/wiki/$1' );
 		mw.config.set( 'wgPageName', 'Foobar' );
@@ -130,6 +130,10 @@
 
 		href = mw.util.getUrl( 'Sandbox', { action: 'edit' } );
 		assert.equal( href, '/wiki/Sandbox?action=edit', 'simple title with query string' );
+
+		// Test fragments
+		href = mw.util.getUrl( 'Foo:Sandbox#Fragment', { action: 'edit' } );
+		assert.equal( href, '/wiki/Foo:Sandbox?action=edit#Fragment', 'advanced title with query string and fragment' );
 	} );
 
 	QUnit.test( 'wikiScript', 4, function ( assert ) {
