@@ -53,7 +53,7 @@
 
 		// Allow opening the link in new tab, but not regular navigation.
 		this.$label.on( 'click', function ( e ) {
-			// Do not interfere with non-left clicks or if modifier keys are pressed (e.g. ctrl-click).
+			// Don't interfere with special clicks (e.g. to open in new tab)
 			if ( !( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) ) {
 				e.preventDefault();
 			}
