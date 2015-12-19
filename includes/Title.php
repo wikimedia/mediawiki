@@ -152,7 +152,7 @@ class Title {
 	private $mPageLanguage = false;
 
 	/** @var string The page language code from the database */
-	private $mDbPageLanguage = null;
+	private $mDbPageLanguage;
 
 	/** @var TitleValue A corresponding TitleValue object */
 	private $mTitleValue = null;
@@ -379,7 +379,7 @@ class Title {
 	 * @return array
 	 */
 	protected static function getSelectFields() {
-		global $wgContentHandlerUseDB;
+		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
 
 		$fields = array(
 			'page_namespace', 'page_title', 'page_id',
@@ -388,6 +388,10 @@ class Title {
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'page_content_model';
+		}
+
+		if ( $wgPageLanguageUseDB ) {
+			$fields[] = 'page_lang';
 		}
 
 		return $fields;
@@ -4635,10 +4639,23 @@ class Title {
 	 * @return Language
 	 */
 	public function getPageLanguage() {
-		global $wgLang, $wgLanguageCode;
+		global $wgLang, $wgLanguageCode, $wgPageLanguageUseDB;
 		if ( $this->isSpecialPage() ) {
 			// special pages are in the user language
 			return $wgLang;
+		}
+
+		// check, if the page language could be saved in the database, and if so and
+		// the value is not requested already, lookup the page language using LinkCache
+		if ( $wgPageLanguageUseDB && !$this->mDbPageLanguage ) {
+			$linkCache = LinkCache::singleton();
+			$linkCache->addLinkObj( $this );
+			$page_lang = $linkCache->getGoodLinkFieldObj( $this, 'lang' );
+
+			// use truthy values only
+			if ( $page_lang ) {
+				$this->mDbPageLanguage = $page_lang;
+			}
 		}
 
 		// Checking if DB language is set
