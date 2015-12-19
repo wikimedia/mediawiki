@@ -95,13 +95,30 @@
 		 * @return {string} Url of the page with name of `str`
 		 */
 		getUrl: function ( str, params ) {
-			var url = mw.config.get( 'wgArticlePath' ).replace(
-				'$1',
-				util.wikiUrlencode( typeof str === 'string' ? str : mw.config.get( 'wgPageName' ) )
-			);
+			var fragmentStart,
+				fragment = '',
+				url = mw.config.get( 'wgArticlePath' ).replace(
+					'$1',
+					util.wikiUrlencode( typeof str === 'string' ? str : mw.config.get( 'wgPageName' ) )
+				);
 
+			// Find any fragment should one exist
+			if ( typeof str === 'string' ) {
+				fragmentStart = url.indexOf( '%23' );
+				if ( fragmentStart !== -1 ) {
+					fragment = url.slice( fragmentStart + 3 );
+					url = url.slice( 0, fragmentStart );
+				}
+			}
+
+			// Add query string if necessary
 			if ( params && !$.isEmptyObject( params ) ) {
 				url += ( url.indexOf( '?' ) !== -1 ? '&' : '?' ) + $.param( params );
+			}
+
+			// Insert the already URL-encoded fragment should it exist
+			if ( fragment.length > 0 ) {
+				url += '#' + fragment;
 			}
 
 			return url;
