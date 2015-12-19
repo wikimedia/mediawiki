@@ -48,9 +48,11 @@ class SpecialPageLanguage extends FormSpecialPage {
 
 		$page = array();
 		$page['pagename'] = array(
-			'type' => 'text',
+			'type' => 'title',
 			'label-message' => 'pagelang-name',
 			'default' => $defaultName,
+			'autofocus' => $defaultName === null,
+			'exists' => true,
 		);
 
 		// Options for whether to use the default language or select language
@@ -107,6 +109,8 @@ class SpecialPageLanguage extends FormSpecialPage {
 	 * @return bool
 	 */
 	public function onSubmit( array $data ) {
+		global $wgContLang;
+
 		$title = Title::newFromText( $data['pagename'] );
 
 		// Check if title is valid
@@ -115,8 +119,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		}
 
 		// Get the default language for the wiki
-		// Returns the default since the page is not loaded from DB
-		$defLang = $title->getPageLanguage()->getCode();
+		$defLang = $wgContLang;
 
 		$pageId = $title->getArticleID();
 
