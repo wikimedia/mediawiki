@@ -52,7 +52,7 @@
 	 * {@link #createUpload createUpload} method to
 	 * return the new model. The {@link #saveFile saveFile}, and
 	 * the {@link #uploadFile uploadFile} methods need to be
-	 * overriden to use the new model and data returned from the forms.
+	 * overridden to use the new model and data returned from the forms.
 	 *
 	 * @class
 	 * @extends OO.ui.BookletLayout

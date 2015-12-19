@@ -14,7 +14,7 @@
 		 * Fired when wiki content is being added to the DOM
 		 *
 		 * It is encouraged to fire it before the main DOM is changed (when $content
-		 * is still detatched).  However, this order is not defined either way, so you
+		 * is still detached).  However, this order is not defined either way, so you
 		 * should only rely on $content itself.
 		 *
 		 * This includes the ready event on a page load (including post-edit loads)
