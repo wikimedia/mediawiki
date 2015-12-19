@@ -1312,6 +1312,9 @@ class OutputPage extends ContextSource {
 		if ( $this->getConfig()->get( 'ContentHandlerUseDB' ) ) {
 			$fields[] = 'page_content_model';
 		}
+		if ( $this->getConfig()->get( 'PageLanguageUseDB' ) ) {
+			$fields[] = 'page_lang';
+		}
 
 		$res = $dbr->select( array( 'page', 'page_props' ),
 			$fields,
