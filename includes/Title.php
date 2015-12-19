@@ -379,7 +379,7 @@ class Title {
 	 * @return array
 	 */
 	protected static function getSelectFields() {
-		global $wgContentHandlerUseDB;
+		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
 
 		$fields = array(
 			'page_namespace', 'page_title', 'page_id',
@@ -388,6 +388,10 @@ class Title {
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'page_content_model';
+		}
+
+		if ( $wgPageLanguageUseDB ) {
+			$fields[] = 'page_lang';
 		}
 
 		return $fields;
@@ -4635,10 +4639,36 @@ class Title {
 	 * @return Language
 	 */
 	public function getPageLanguage() {
-		global $wgLang, $wgLanguageCode;
+		global $wgLang, $wgLanguageCode, $wgPageLanguageUseDB;
 		if ( $this->isSpecialPage() ) {
 			// special pages are in the user language
 			return $wgLang;
+		}
+
+		// check, if the page language could be saved in the database, and if so and
+		// the value is not requested already, lookup the page language in the db before
+		// using the default content language.
+		if ( $wgPageLanguageUseDB && $this->mDbPageLanguage === null ) {
+			// DB_SLAVE should be enough here
+			$dbr = wfGetDB( DB_SLAVE );
+			$res = $dbr->selectField(
+				array( 'page' ),
+				array( 'page_lang', 'page_title' ),
+				array( 'page_id' => $this->getArticleID() ),
+				__METHOD__
+			);
+
+			// use truthy values only
+			if ( $res ) {
+				$this->mDbPageLanguage = $res;
+			} else {
+				// this prevents a second lookup, if getPageLanguage is called again
+				$this->mDbPageLanguage = false;
+			}
+
+			// update the result in titlecache
+			$titleCache = self::getTitleCache();
+			$titleCache->set( $this->getText(), $this );
 		}
 
 		// Checking if DB language is set
