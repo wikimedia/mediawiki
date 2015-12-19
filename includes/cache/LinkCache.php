@@ -179,6 +179,7 @@ class LinkCache {
 			'redirect' => intval( $row->page_is_redirect ),
 			'revision' => intval( $row->page_latest ),
 			'model' => !empty( $row->page_content_model ) ? strval( $row->page_content_model ) : null,
+			'lang' => !empty( $row->page_lang ) ? strval( $row->page_lang ) : null,
 		) );
 	}
 
@@ -226,7 +227,7 @@ class LinkCache {
 	 * @return int Page ID or zero
 	 */
 	public function addLinkObj( Title $nt ) {
-		global $wgContentHandlerUseDB;
+		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
 
 		$key = $nt->getPrefixedDBkey();
 		if ( $this->isBadLink( $key ) || $nt->isExternal() ) {
@@ -247,6 +248,9 @@ class LinkCache {
 		$fields = array( 'page_id', 'page_len', 'page_is_redirect', 'page_latest' );
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'page_content_model';
+		}
+		if ( $wgPageLanguageUseDB ) {
+			$fields[] = 'page_lang';
 		}
 
 		$row = $db->selectRow( 'page', $fields,
