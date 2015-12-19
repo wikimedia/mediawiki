@@ -282,7 +282,7 @@ class LinkHolderArray {
 			return;
 		}
 
-		global $wgContLang, $wgContentHandlerUseDB;
+		global $wgContLang, $wgContentHandlerUseDB, $wgPageLanguageUseDB;
 
 		$colours = array();
 		$linkCache = LinkCache::singleton();
@@ -347,6 +347,9 @@ class LinkHolderArray {
 
 			if ( $wgContentHandlerUseDB ) {
 				$fields[] = 'page_content_model';
+			}
+			if ( $wgPageLanguageUseDB ) {
+				$fields[] = 'page_lang';
 			}
 
 			$res = $dbr->select(
@@ -457,7 +460,7 @@ class LinkHolderArray {
 	 * @param array $colours
 	 */
 	protected function doVariants( &$colours ) {
-		global $wgContLang, $wgContentHandlerUseDB;
+		global $wgContLang, $wgContentHandlerUseDB, $wgPageLanguageUseDB;
 		$linkBatch = new LinkBatch();
 		$variantMap = array(); // maps $pdbkey_Variant => $keys (of link holders)
 		$output = $this->parent->getOutput();
@@ -551,6 +554,9 @@ class LinkHolderArray {
 
 			if ( $wgContentHandlerUseDB ) {
 				$fields[] = 'page_content_model';
+			}
+			if ( $wgPageLanguageUseDB ) {
+				$fields[] = 'page_lang';
 			}
 
 			$varRes = $dbr->select( 'page',
