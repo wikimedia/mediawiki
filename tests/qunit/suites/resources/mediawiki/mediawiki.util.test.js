@@ -111,7 +111,7 @@
 		} );
 	} );
 
-	QUnit.test( 'getUrl', 5, function ( assert ) {
+	QUnit.test( 'getUrl', 8, function ( assert ) {
 		// Not part of startUp module
 		mw.config.set( 'wgArticlePath', '/wiki/$1' );
 		mw.config.set( 'wgPageName', 'Foobar' );
@@ -130,6 +130,16 @@
 
 		href = mw.util.getUrl( 'Sandbox', { action: 'edit' } );
 		assert.equal( href, '/wiki/Sandbox?action=edit', 'simple title with query string' );
+
+		// Test fragments
+		href = mw.util.getUrl( 'Foo:Sandbox#Fragment', { action: 'edit' } );
+		assert.equal( href, '/wiki/Foo:Sandbox?action=edit#Fragment', 'advanced title with query string and fragment' );
+
+		href = mw.util.getUrl( 'Foo:Sandbox \xC4#Fragment \xC4', { action: 'edit' } );
+		assert.equal( href, '/wiki/Foo:Sandbox_%C3%84?action=edit#Fragment_.C3.84', 'title with query string, fragment, and special characters' );
+
+		href = mw.util.getUrl( 'Foo:%23#Fragment', { action: 'edit' } );
+		assert.equal( href, '/wiki/Foo:%2523?action=edit#Fragment', 'title containing %23 (#), fragment, and a query string' );
 	} );
 
 	QUnit.test( 'wikiScript', 4, function ( assert ) {
