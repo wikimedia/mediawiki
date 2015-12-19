@@ -178,7 +178,7 @@ class LinkBatch {
 	 * @return bool|ResultWrapper
 	 */
 	public function doQuery() {
-		global $wgContentHandlerUseDB;
+		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
 
 		if ( $this->isEmpty() ) {
 			return false;
@@ -192,6 +192,9 @@ class LinkBatch {
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'page_content_model';
+		}
+		if ( $wgPageLanguageUseDB ) {
+			$fields[] = 'page_lang';
 		}
 
 		$conds = $this->constructSet( 'page', $dbr );
