@@ -110,6 +110,8 @@ class SpecialPageLanguage extends FormSpecialPage {
 	 * @return bool
 	 */
 	public function onSubmit( array $data ) {
+		global $wgContLang;
+
 		$title = Title::newFromText( $data['pagename'] );
 
 		// Check if title is valid
@@ -118,8 +120,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		}
 
 		// Get the default language for the wiki
-		// Returns the default since the page is not loaded from DB
-		$defLang = $title->getPageLanguage()->getCode();
+		$defLang = $wgContLang->getCode();
 
 		$pageId = $title->getArticleID();
 
