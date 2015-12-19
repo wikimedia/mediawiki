@@ -43,7 +43,7 @@
 		"mediawiki/mediawiki-codesniffer": "0.4.0",
 		"monolog/monolog": "~1.17.2",
 		"nikic/php-parser": "1.4.1",
-		"nmred/kafka-php": "0.1.4",
+		"nmred/kafka-php": "0.1.5",
 		"phpunit/phpunit": "3.7.37",
 		"wikimedia/avro": "1.7.7"
 	},
