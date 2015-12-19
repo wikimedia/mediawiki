@@ -1214,7 +1214,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function updateRevisionOn( $dbw, $revision, $lastRevision = null,
 		$lastRevIsRedirect = null
 	) {
-		global $wgContentHandlerUseDB;
+		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
 
 		// Assertion to try to catch T92046
 		if ( (int)$revision->getId() === 0 ) {
@@ -1244,6 +1244,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( $wgContentHandlerUseDB ) {
 			$row['page_content_model'] = $revision->getContentModel();
+		}
+		if ( $wgPageLanguageUseDB ) {
+			$row['page_lang'] = $revision->getTitle()->getPageLanguage()->getCode();
 		}
 
 		$dbw->update( 'page',
