@@ -122,8 +122,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		}
 
 		// Get the default language for the wiki
-		// Returns the default since the page is not loaded from DB
-		$defLang = $title->getPageLanguage()->getCode();
+		$defLang = $this->getConfig()->get( 'LanguageCode' );
 
 		$pageId = $title->getArticleID();
 
