@@ -35,7 +35,7 @@
 		"wikimedia/running-stat": "1.1.0",
 		"wikimedia/utfnormal": "1.0.3",
 		"wikimedia/wrappedstring": "2.0.0",
-		"zordius/lightncandy": "0.21"
+		"zordius/lightncandy": "0.23"
 	},
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "0.9",
