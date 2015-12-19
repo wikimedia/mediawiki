@@ -150,9 +150,10 @@ class LinkCache {
 	 * @param int $redir Whether the page is a redirect
 	 * @param int $revision Latest revision's ID
 	 * @param string|null $model Latest revision's content model ID
+	 * @param string|null $lang Language code of the page, if not the content language
 	 */
 	public function addGoodLinkObj( $id, Title $title, $len = -1, $redir = null,
-		$revision = 0, $model = null
+		$revision = 0, $model = null, $lang = null
 	) {
 		$dbkey = $title->getPrefixedDBkey();
 		$this->mGoodLinks->set( $dbkey, array(
@@ -161,6 +162,7 @@ class LinkCache {
 			'redirect' => (int)$redir,
 			'revision' => (int)$revision,
 			'model' => $model ? (string)$model : null,
+			'lang' => $lang ? (string)$lang : null,
 		) );
 	}
 
@@ -179,6 +181,7 @@ class LinkCache {
 			'redirect' => intval( $row->page_is_redirect ),
 			'revision' => intval( $row->page_latest ),
 			'model' => !empty( $row->page_content_model ) ? strval( $row->page_content_model ) : null,
+			'lang' => !empty( $row->page_lang ) ? strval( $row->page_lang ) : null,
 		) );
 	}
 
@@ -226,7 +229,7 @@ class LinkCache {
 	 * @return int Page ID or zero
 	 */
 	public function addLinkObj( Title $nt ) {
-		global $wgContentHandlerUseDB;
+		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
 
 		$key = $nt->getPrefixedDBkey();
 		if ( $this->isBadLink( $key ) || $nt->isExternal() ) {
@@ -247,6 +250,9 @@ class LinkCache {
 		$fields = array( 'page_id', 'page_len', 'page_is_redirect', 'page_latest' );
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'page_content_model';
+		}
+		if ( $wgPageLanguageUseDB ) {
+			$fields[] = 'page_lang';
 		}
 
 		$row = $db->selectRow( 'page', $fields,
