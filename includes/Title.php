@@ -145,8 +145,9 @@ class Title implements LinkTarget {
 	/** @var bool The (string) language code of the page's language and content code. */
 	private $mPageLanguage = false;
 
-	/** @var string The page language code from the database */
-	private $mDbPageLanguage = null;
+	/** @var string|boolean|null The page language code from the database, null if not saved in
+	 * the database or false if not loaded, yet. */
+	private $mDbPageLanguage = false;
 
 	/** @var TitleValue A corresponding TitleValue object */
 	private $mTitleValue = null;
@@ -385,7 +386,7 @@ class Title implements LinkTarget {
 	 * @return array
 	 */
 	protected static function getSelectFields() {
-		global $wgContentHandlerUseDB;
+		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
 
 		$fields = array(
 			'page_namespace', 'page_title', 'page_id',
@@ -394,6 +395,10 @@ class Title implements LinkTarget {
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'page_content_model';
+		}
+
+		if ( $wgPageLanguageUseDB ) {
+			$fields[] = 'page_lang';
 		}
 
 		return $fields;
@@ -3303,7 +3308,7 @@ class Title implements LinkTarget {
 		$this->mContentModel = false;
 		$this->mEstimateRevisions = null;
 		$this->mPageLanguage = false;
-		$this->mDbPageLanguage = null;
+		$this->mDbPageLanguage = false;
 		$this->mIsBigDeletion = null;
 	}
 
@@ -4618,6 +4623,27 @@ class Title implements LinkTarget {
 	}
 
 	/**
+	 * Returns the page language code saved in the database, if $wgPageLanguageUseDB is set
+	 * to true in LocalSettings.php, otherwise returns false. If there is no language saved in
+	 * the db, it will return NULL.
+	 *
+	 * @return string|null|boolean
+	 */
+	private function getDbPageLanguageCode() {
+		global $wgPageLanguageUseDB;
+
+		// check, if the page language could be saved in the database, and if so and
+		// the value is not requested already, lookup the page language using LinkCache
+		if ( $wgPageLanguageUseDB && $this->mDbPageLanguage === false ) {
+			$linkCache = LinkCache::singleton();
+			$linkCache->addLinkObj( $this );
+			$this->mDbPageLanguage = $linkCache->getGoodLinkFieldObj( $this, 'lang' );
+		}
+
+		return $this->mDbPageLanguage;
+	}
+
+	/**
 	 * Get the language in which the content of this page is written in
 	 * wikitext. Defaults to $wgContLang, but in certain cases it can be
 	 * e.g. $wgLang (such as special pages, which are in the user language).
@@ -4633,8 +4659,9 @@ class Title implements LinkTarget {
 		}
 
 		// Checking if DB language is set
-		if ( $this->mDbPageLanguage ) {
-			return wfGetLangObj( $this->mDbPageLanguage );
+		$dbPageLanguage = $this->getDbPageLanguageCode();
+		if ( $dbPageLanguage ) {
+			return wfGetLangObj( $dbPageLanguage );
 		}
 
 		if ( !$this->mPageLanguage || $this->mPageLanguage[1] !== $wgLanguageCode ) {
