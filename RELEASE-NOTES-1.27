@@ -189,6 +189,8 @@ changes to languages because of Phabricator reports.
 * OutputPage::loginToUse() was removed (deprecated since 1.19).
 * Article::loadContent() was removed (deprecated since 1.19).
 * User::editToken() was removed (deprecated since 1.19).
+* ApiQueryBase::titleToKey(), ApiQueryBase::keyToTitle() and
+  ApiQueryBase::keyPartToTitle() all removed (deprecated since 1.24).
 
 == Compatibility ==
 
