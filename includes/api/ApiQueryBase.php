@@ -612,59 +612,6 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Convert a title to a DB key
-	 * @deprecated since 1.24, past uses of this were always incorrect and should
-	 *   have used self::titlePartToKey() instead
-	 * @param string $title Page title with spaces
-	 * @return string Page title with underscores
-	 */
-	public function titleToKey( $title ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		// Don't throw an error if we got an empty string
-		if ( trim( $title ) == '' ) {
-			return '';
-		}
-		$t = Title::newFromText( $title );
-		if ( !$t ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $title ) );
-		}
-
-		return $t->getPrefixedDBkey();
-	}
-
-	/**
-	 * The inverse of titleToKey()
-	 * @deprecated since 1.24, unused and probably never needed
-	 * @param string $key Page title with underscores
-	 * @return string Page title with spaces
-	 */
-	public function keyToTitle( $key ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		// Don't throw an error if we got an empty string
-		if ( trim( $key ) == '' ) {
-			return '';
-		}
-		$t = Title::newFromDBkey( $key );
-		// This really shouldn't happen but we gotta check anyway
-		if ( !$t ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $key ) );
-		}
-
-		return $t->getPrefixedText();
-	}
-
-	/**
-	 * Inverse of titlePartToKey()
-	 * @deprecated since 1.24, unused and probably never needed
-	 * @param string $keyPart DBkey, with prefix
-	 * @return string Key part with underscores
-	 */
-	public function keyPartToTitle( $keyPart ) {
-		wfDeprecated( __METHOD__, '1.24' );
-		return substr( $this->keyToTitle( $keyPart . 'x' ), 0, -1 );
-	}
-
-	/**
 	 * Gets the personalised direction parameter description
 	 *
 	 * @deprecated since 1.25 along with ApiBase::getParamDescription
