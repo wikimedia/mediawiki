@@ -581,27 +581,4 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**@}*/
-
-	/************************************************************************//**
-	 * @name   Deprecated
-	 * @{
-	 */
-
-	/**
-	 * Gets the personalised direction parameter description
-	 *
-	 * @deprecated since 1.25 along with ApiBase::getParamDescription
-	 * @param string $p ModulePrefix
-	 * @param string $extraDirText Any extra text to be appended on the description
-	 * @return array
-	 */
-	public function getDirectionDescription( $p = '', $extraDirText = '' ) {
-		return array(
-			"In which direction to enumerate{$extraDirText}",
-			" newer          - List oldest first. Note: {$p}start has to be before {$p}end.",
-			" older          - List newest first (default). Note: {$p}start has to be later than {$p}end.",
-		);
-	}
-
-	/**@}*/
 }

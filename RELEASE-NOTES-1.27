@@ -140,9 +140,10 @@ production.
 ** ApiFormatDbg
 ** ApiFormatTxt
 ** ApiFormatYaml
-* ApiQueryBase::getDirectionDescription is now marked as deprecated. It should
-  have been so marked since 1.25 when ApiBase::getParamDescription was
-  deprecated, but was overlooked at the time.
+* ApiQueryBase::titleToKey(), ApiQueryBase::keyToTitle() and
+  ApiQueryBase::keyPartToTitle() all removed (deprecated since 1.24).
+* ApiQueryBase::checkRowCount() was removed (deprecated since 1.24).
+* ApiQueryBase::getDirectionDescription() was removed (deprecated since 1.25).
 
 === Languages updated in 1.27 ===
 
@@ -189,9 +190,6 @@ changes to languages because of Phabricator reports.
 * OutputPage::loginToUse() was removed (deprecated since 1.19).
 * Article::loadContent() was removed (deprecated since 1.19).
 * User::editToken() was removed (deprecated since 1.19).
-* ApiQueryBase::titleToKey(), ApiQueryBase::keyToTitle() and
-  ApiQueryBase::keyPartToTitle() all removed (deprecated since 1.24).
-* ApiQueryBase::checkRowCount() was removed (deprecated since 1.24).
 
 == Compatibility ==
 
