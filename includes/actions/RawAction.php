@@ -33,14 +33,6 @@
  * @ingroup Actions
  */
 class RawAction extends FormlessAction {
-	/**
-	 * Whether the request includes a 'gen' parameter
-	 * @var bool
-	 * @deprecated since 1.17 This used to be a string for "css" or "javascript" but
-	 * it is no longer used. Setting this parameter results in an empty response.
-	 */
-	private $gen = false;
-
 	public function getName() {
 		return 'raw';
 	}
@@ -77,9 +69,7 @@ class RawAction extends FormlessAction {
 		$maxage = $request->getInt( 'maxage', $config->get( 'SquidMaxage' ) );
 		$smaxage = $request->getIntOrNull( 'smaxage' );
 		if ( $smaxage === null ) {
-			if ( $this->gen ) {
-				$smaxage = $config->get( 'SquidMaxage' );
-			} elseif ( $contentType == 'text/css' || $contentType == 'text/javascript' ) {
+			if ( $contentType == 'text/css' || $contentType == 'text/javascript' ) {
 				// CSS/JS raw content has its own CDN max age configuration.
 				// Note: Title::getCdnUrls() includes action=raw for css/js pages,
 				// so if using the canonical url, this will get HTCP purges.
@@ -126,11 +116,6 @@ class RawAction extends FormlessAction {
 	 */
 	public function getRawText() {
 		global $wgParser;
-
-		# No longer used
-		if ( $this->gen ) {
-			return '';
-		}
 
 		$text = false;
 		$title = $this->getTitle();
