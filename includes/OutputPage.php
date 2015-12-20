@@ -239,6 +239,8 @@ class OutputPage extends ContextSource {
 
 	/** @var int Cache stuff. Looks like mEnableClientCache */
 	protected $mSquidMaxage = 0;
+	/** @var int Upper limit on mCdnMaxage */
+	protected $mCdnMaxageLimit = INF;
 
 	/**
 	 * @var bool Controls if anti-clickjacking / frame-breaking headers will
@@ -1914,7 +1916,17 @@ class OutputPage extends ContextSource {
 	 * @param int $maxage Maximum cache time on the Squid, in seconds.
 	 */
 	public function setSquidMaxage( $maxage ) {
-		$this->mSquidMaxage = $maxage;
+		$this->mSquidMaxage = min( $maxage, $this->mCdnMaxageLimit );
+	}
+
+	/**
+	 * Lower the value of the "s-maxage" part of the "Cache-control" HTTP header
+	 *
+	 * @param int $maxage Maximum cache time on the CDN, in seconds
+	 */
+	public function lowerCdnMaxage( $maxage ) {
+		$this->mCdnMaxageLimit = min( $maxage, $this->mCdnMaxageLimit );
+		$this->setSquidMaxage( $this->mSquidMaxage );
 	}
 
 	/**
