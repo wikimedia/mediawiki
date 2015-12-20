@@ -327,7 +327,7 @@
 	"databaseerror-query": "Dotaz: $1",
 	"databaseerror-function": "Funkce: $1",
 	"databaseerror-error": "Chyba: $1",
-	"transaction-duration-limit-exceeded": "Aby nevznikalo velké replikační zpoždění, byla transakce přerušena, protože trvání zápisu ($1) překročilo $2sekundový limit.\nPokud měníte mnoho položek najednou, zkuste místo toho provést několik menších operací.",
+	"transaction-duration-limit-exceeded": "Aby nevznikalo velké replikační zpoždění, byla transakce přerušena, protože trvání zápisu ($1) překročilo {{PLURAL:$2|$2sekundový}} limit.\nPokud měníte mnoho položek najednou, zkuste místo toho provést několik menších operací.",
 	"laggedslavemode": "<strong>Upozornění:</strong> Stránka nemusí být aktuální.",
 	"readonly": "Databáze je uzamčena",
 	"enterlockreason": "Udejte důvod zamčení, včetně odhadu, za jak dlouho dojde k odemčení",

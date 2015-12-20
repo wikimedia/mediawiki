@@ -382,7 +382,7 @@
 	"databaseerror-query": "Zapytanie: $1",
 	"databaseerror-function": "Funkcja: $1",
 	"databaseerror-error": "Błąd: $1",
-	"transaction-duration-limit-exceeded": "Aby zapobiec wysokim opóźnieniom replikacji danych, ta transakcja została przerwana. Czas zapisywania ($1) przekroczył limit $2 sekund.\nJeśli modyfikujesz wiele elementów jednocześnie, spróbuj zamiast tego wykonać kilka mniejszych operacji.",
+	"transaction-duration-limit-exceeded": "Aby zapobiec wysokim opóźnieniom replikacji danych, ta transakcja została przerwana. Czas zapisywania ($1) przekroczył limit $2 {{PLURAL:$2|sekund}}.\nJeśli modyfikujesz wiele elementów jednocześnie, spróbuj zamiast tego wykonać kilka mniejszych operacji.",
 	"laggedslavemode": "Uwaga! Ta strona może nie zawierać najnowszych aktualizacji.",
 	"readonly": "Baza danych jest zablokowana",
 	"enterlockreason": "Podaj powód zablokowania bazy oraz szacunkowy termin jej odblokowania",
