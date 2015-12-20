@@ -1,9 +1,16 @@
 Security reminder: If you have PHP's register_globals option set, you must
 turn it off. MediaWiki will no longer work with it enabled.
 
+== MediaWiki 1.24.6 ==
+
+THIS IS NOT A RELEASE YET!
+
+== Changes since 1.24.5 ==
+* (T121892) Fix fatal error on some Special pages, introduced in 1.24.5.
+
 == MediaWiki 1.24.5 ==
 
-This is a security and maintenance release of the MediaWiki 1.23 branch.
+This is a security and maintenance release of the MediaWiki 1.24 branch.
 
 == Changes since 1.24.4 ==
 * (T117899) SECURITY: $wgArticlePath can no longer be set to relative paths
