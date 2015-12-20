@@ -1297,10 +1297,17 @@ class FauxRequest extends WebRequest {
 		return false;
 	}
 
+	/**
+	 * @since 1.25
+	 */
 	public function setRequestURL( $url ) {
 		$this->requestUrl = $url;
 	}
 
+	/**
+	 * @since 1.25 MWException( "getRequestURL not implemented" )
+	 * no longer thrown.
+	 */
 	public function getRequestURL() {
 		if ( $this->requestUrl === null ) {
 			throw new MWException( 'Request URL not set' );
