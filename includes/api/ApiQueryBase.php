@@ -588,30 +588,6 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 
 	/**
-	 * Estimate the row count for the SELECT query that would be run if we
-	 * called select() right now, and check if it's acceptable.
-	 * @deprecated since 1.24
-	 * @return bool True if acceptable, false otherwise
-	 */
-	protected function checkRowCount() {
-		wfDeprecated( __METHOD__, '1.24' );
-		$db = $this->getDB();
-		$rowcount = $db->estimateRowCount(
-			$this->tables,
-			$this->fields,
-			$this->where,
-			__METHOD__,
-			$this->options
-		);
-
-		if ( $rowcount > $this->getConfig()->get( 'APIMaxDBRows' ) ) {
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
 	 * Convert a title to a DB key
 	 * @deprecated since 1.24, past uses of this were always incorrect and should
 	 *   have used self::titlePartToKey() instead
