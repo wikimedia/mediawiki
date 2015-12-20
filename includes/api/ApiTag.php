@@ -42,7 +42,7 @@ class ApiTag extends ApiBase {
 		if ( $user->isBlocked() ) {
 			$block = $user->getBlock();
 
-			// Die using the appropriate messege depending on block type
+			// Die using the appropriate message depending on block type
 			if ( $block->getType() == TYPE_AUTO ) {
 				$this->dieUsage(
 					'Your IP address has been blocked automatically, because it was used by a blocked user',
