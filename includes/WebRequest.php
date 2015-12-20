@@ -1255,6 +1255,7 @@ class WebRequestUpload {
 class FauxRequest extends WebRequest {
 	private $wasPosted = false;
 	private $session = array();
+	private $requestUrl;
 
 	/**
 	 * @param array $data Array of *non*-urlencoded key => value pairs, the
@@ -1334,8 +1335,15 @@ class FauxRequest extends WebRequest {
 		return false;
 	}
 
+	public function setRequestURL( $url ) {
+		$this->requestUrl = $url;
+	}
+
 	public function getRequestURL() {
-		$this->notImplemented( __METHOD__ );
+		if ( $this->requestUrl === null ) {
+			throw new MWException( 'Request URL not set' );
+		}
+		return $this->requestUrl;
 	}
 
 	public function getProtocol() {

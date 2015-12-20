@@ -158,7 +158,7 @@ class MediaWiki {
 	 * @return void
 	 */
 	private function performRequest() {
-		global $wgTitle;
+		global $wgTitle, $wgHideIdentifiableRedirects;
 
 		wfProfileIn( __METHOD__ );
 
@@ -237,7 +237,7 @@ class MediaWiki {
 			if ( $title->isSpecialPage() ) {
 				$specialPage = SpecialPageFactory::getPage( $title->getDBKey() );
 				if ( $specialPage instanceof RedirectSpecialPage
-					&& $this->config->get( 'HideIdentifiableRedirects' )
+					&& $wgHideIdentifiableRedirects
 					&& $specialPage->personallyIdentifiableTarget()
 				) {
 					list( , $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBKey() );
