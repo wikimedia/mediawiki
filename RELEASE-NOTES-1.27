@@ -192,6 +192,7 @@ changes to languages because of Phabricator reports.
 * ApiQueryBase::titleToKey(), ApiQueryBase::keyToTitle() and
   ApiQueryBase::keyPartToTitle() all removed (deprecated since 1.24).
 * ApiQueryBase::checkRowCount() was removed (deprecated since 1.24).
+* ApiQueryBase::getDirectionDescription() was removed (deprecated since 1.25).
 
 == Compatibility ==
 
