@@ -1521,4 +1521,15 @@ class DerivativeRequest extends FauxRequest {
 	public function getProtocol() {
 		return $this->base->getProtocol();
 	}
+
+	public function setRequestURL( $url ) {
+		$this->requestUrl = $url;
+	}
+
+	public function getRequestURL() {
+		if ( $this->requestUrl === null ) {
+			throw new MWException( 'Request URL not set' );
+		}
+		return $this->requestUrl;
+	}
 }
