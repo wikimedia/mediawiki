@@ -191,6 +191,7 @@ changes to languages because of Phabricator reports.
 * User::editToken() was removed (deprecated since 1.19).
 * ApiQueryBase::titleToKey(), ApiQueryBase::keyToTitle() and
   ApiQueryBase::keyPartToTitle() all removed (deprecated since 1.24).
+* ApiQueryBase::checkRowCount() was removed (deprecated since 1.24).
 
 == Compatibility ==
 
