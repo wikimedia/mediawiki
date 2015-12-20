@@ -3,7 +3,7 @@ turn it off. MediaWiki will not work with it enabled.
 
 == MediaWiki 1.25.5 ==
 
-THIS IS NOT A RELEASE YET!
+This is a maintenance release of the MediaWiki 1.25 branch.
 
 == Changes since 1.25.4 ==
 * (T121892) Fix fatal error on some Special pages, introduced in 1.25.4.
