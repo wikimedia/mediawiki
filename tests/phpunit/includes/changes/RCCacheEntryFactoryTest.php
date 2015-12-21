@@ -212,7 +212,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 				),
 				'child' => array(
 					'tag' => 'a',
-					'content' => 'Talk',
+					'content' => 'talk',
 				)
 			),
 			$cacheEntry->usertalklink,
