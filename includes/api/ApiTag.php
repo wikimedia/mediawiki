@@ -40,24 +40,7 @@ class ApiTag extends ApiBase {
 		}
 
 		if ( $user->isBlocked() ) {
-			$block = $user->getBlock();
-
-			// Die using the appropriate message depending on block type
-			if ( $block->getType() == TYPE_AUTO ) {
-				$this->dieUsage(
-					'Your IP address has been blocked automatically, because it was used by a blocked user',
-					'autoblocked',
-					0,
-					array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) )
-				);
-			} else {
-				$this->dieUsage(
-					'You have been blocked from editing',
-					'blocked',
-					0,
-					array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) )
-				);
-			}
+			$this->dieBlocked( $user->getBlock() );
 		}
 
 		// validate and process each revid, rcid and logid
