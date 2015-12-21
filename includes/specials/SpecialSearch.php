@@ -1218,7 +1218,7 @@ class SpecialSearch extends SpecialPage {
 		// Term box
 		$out .= Html::input( 'search', $term, 'search', array(
 			'id' => $this->isPowerSearch() ? 'powerSearchText' : 'searchText',
-			'size' => '50',
+			'size' => '15',
 			'autofocus' => trim( $term ) === '',
 			'class' => 'mw-ui-input mw-ui-input-inline',
 		) ) . "\n";
