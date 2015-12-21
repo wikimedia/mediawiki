@@ -373,12 +373,9 @@ class UIDGenerator {
 			$cache = ObjectCache::getLocalServerInstance();
 		}
 		if ( $cache ) {
-			$counter = $cache->incr( $bucket, $count );
+			$counter = $cache->incrWithInit( $bucket, $cache::TTL_INDEFINITE, $count, $count );
 			if ( $counter === false ) {
-				if ( !$cache->add( $bucket, (int)$count ) ) {
-					throw new RuntimeException( 'Unable to set value to ' . get_class( $cache ) );
-				}
-				$counter = $count;
+				throw new RuntimeException( 'Unable to set value to ' . get_class( $cache ) );
 			}
 		}
 

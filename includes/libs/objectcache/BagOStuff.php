@@ -507,18 +507,27 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/**
 	 * Increase stored value of $key by $value while preserving its TTL
 	 *
-	 * This will create the key with value $init and TTL $ttl if not present
+	 * This will create the key with value $init and TTL $ttl instead if not present
 	 *
 	 * @param string $key
 	 * @param int $ttl
 	 * @param int $value
 	 * @param int $init
-	 * @return bool
+	 * @return int|bool New value or false on failure
 	 * @since 1.24
 	 */
 	public function incrWithInit( $key, $ttl, $value = 1, $init = 1 ) {
-		return $this->incr( $key, $value ) ||
-			$this->add( $key, (int)$init, $ttl ) || $this->incr( $key, $value );
+		$newValue = $this->incr( $key, $value );
+		if ( $newValue === false ) {
+			// No key set; initialize
+			$newValue = $this->add( $key, (int)$init, $ttl ) ? $init : false;
+		}
+		if ( $newValue === false ) {
+			// Raced out initializing; increment
+			$newValue = $this->incr( $key, $value );
+		}
+
+		return $newValue;
 	}
 
 	/**
