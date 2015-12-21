@@ -3502,13 +3502,15 @@ class OutputPage extends ContextSource {
 
 		# Feeds
 		if ( $config->get( 'Feed' ) ) {
+			$feedLinks = array();
+
 			foreach ( $this->getSyndicationLinks() as $format => $link ) {
 				# Use the page name for the title.  In principle, this could
 				# lead to issues with having the same name for different feeds
 				# corresponding to the same page, but we can't avoid that at
 				# this low a level.
 
-				$tags[] = $this->feedLink(
+				$feedLinks[] = $this->feedLink(
 					$format,
 					$link,
 					# Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
@@ -3529,7 +3531,7 @@ class OutputPage extends ContextSource {
 			if ( $config->get( 'OverrideSiteFeed' ) ) {
 				foreach ( $config->get( 'OverrideSiteFeed' ) as $type => $feedUrl ) {
 					// Note, this->feedLink escapes the url.
-					$tags[] = $this->feedLink(
+					$feedLinks[] = $this->feedLink(
 						$type,
 						$feedUrl,
 						$this->msg( "site-{$type}-feed", $sitename )->text()
@@ -3538,7 +3540,7 @@ class OutputPage extends ContextSource {
 			} elseif ( !$this->getTitle()->isSpecial( 'Recentchanges' ) ) {
 				$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
 				foreach ( $config->get( 'AdvertisedFeedTypes' ) as $format ) {
-					$tags[] = $this->feedLink(
+					$feedLinks[] = $this->feedLink(
 						$format,
 						$rctitle->getLocalURL( array( 'feed' => $format ) ),
 						# For grep: 'site-rss-feed', 'site-atom-feed'
@@ -3546,6 +3548,13 @@ class OutputPage extends ContextSource {
 					);
 				}
 			}
+
+			# Allow extensions to change the list pf feeds. This hook is primarily for changing,
+			# manipulating or removing existing feed tags. If you want to add new feeds, you should
+			# use OutputPage::addFeedLink() instead.
+			Hooks::run( 'AfterBuildFeedLinks', array( &$feedLinks ) );
+
+			$tags += $feedLinks;
 		}
 
 		# Canonical URL
