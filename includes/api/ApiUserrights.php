@@ -49,6 +49,13 @@ class ApiUserrights extends ApiBase {
 	}
 
 	public function execute() {
+		$pUser = $this->getUser(); // Get the user trying to perform the action (for permission checks)
+
+		// Check blocks (Same behavior as Special:UserRights)
+		if ( $pUser->isBlocked() && !$pUser->isAllowed( 'userrights' ) ) {
+			$this->dieBlocked( $pUser->getBlock() );
+		}
+
 		$params = $this->extractRequestParams();
 
 		$user = $this->getUrUser( $params );
