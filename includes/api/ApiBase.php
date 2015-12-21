@@ -1462,6 +1462,32 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Throw a UsageException, which will (if uncaught) call the main module's
+	 * error handler and die with an error message including block info.
+	 *
+	 * @param Block $block The block used to generate the UsageException
+	 * @throws UsageException always
+	 */
+	public function dieBlocked( $block ) {
+		// Die using the appropriate message depending on block type
+		if ( $block->getType() == TYPE_AUTO ) {
+			$this->dieUsage(
+				'Your IP address has been blocked automatically, because it was used by a blocked user',
+				'autoblocked',
+				0,
+				array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) )
+			);
+		} else {
+			$this->dieUsage(
+				'You have been blocked from editing',
+				'blocked',
+				0,
+				array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) )
+			);
+		}
+	}
+
+	/**
 	 * Get error (as code, string) from a Status object.
 	 *
 	 * @since 1.23
