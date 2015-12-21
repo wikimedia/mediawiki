@@ -864,6 +864,8 @@ class WikiImporter {
 		}
 		if ( isset( $revisionInfo['contributor']['username'] ) ) {
 			$revision->setUserName( $revisionInfo['contributor']['username'] );
+		} else {
+			$revision->setUserName( 'Unknown User' );
 		}
 		$revision->setNoUpdates( $this->mNoUpdates );
 
@@ -981,6 +983,9 @@ class WikiImporter {
 		$fields = array( 'id', 'ip', 'username' );
 		$info = array();
 
+		if( $this->reader->isEmptyElement ){
+			return $info;
+		}
 		while ( $this->reader->read() ) {
 			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
 					$this->reader->localName == 'contributor' ) {
