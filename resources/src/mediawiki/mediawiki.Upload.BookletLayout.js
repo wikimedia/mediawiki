@@ -160,7 +160,7 @@
 		this.upload = this.createUpload();
 		this.setPage( 'upload' );
 
-		apiPromise = this.upload.apiPromise || $.Deferred.resolve( this.upload.api );
+		apiPromise = this.upload.apiPromise || $.Deferred().resolve( this.upload.api );
 		apiPromise.done( function ( api ) {
 			// If the user can't upload anything, don't give them the option to.
 			api.getUserInfo().done( function ( userInfo ) {
