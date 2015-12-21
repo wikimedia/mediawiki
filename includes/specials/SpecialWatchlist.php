@@ -444,7 +444,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		);
 
 		if ( $this->getConfig()->get( 'RCWatchCategoryMembership' ) ) {
-			$filters['hidecategorization'] = 'rcshowhidecategorization';
+			$filters['hidecategorization'] = 'wlshowhidecategorization';
 		}
 
 		foreach ( $this->getCustomFilters() as $key => $params ) {
