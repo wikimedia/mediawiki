@@ -806,7 +806,7 @@
 	"diff-empty": "(Ez dago alderik)",
 	"diff-multi-sameuser": "(Erabiltzaile berdinaren {{PLURAL:$1|erdiko ekarpen bat ez da|$1 erdiko ekarpen ez dira}} erakusten)",
 	"searchresults": "Bilaketaren emaitzak",
-	"searchresults-title": "\"$1(e)rako\" emaitzak bilatu",
+	"searchresults-title": "«$1» bilaketaren  emaitzak",
 	"titlematches": "Emaitzak artikuluen izenburuetan",
 	"textmatches": "Emaitza orrialde testuetan",
 	"notextmatches": "Ez dago bat datorren orrialde testurik",

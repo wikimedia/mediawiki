@@ -1606,7 +1606,6 @@
 	"undelete-search-prefix": "هغه مخونه چې پيلېږي په:",
 	"undelete-search-submit": "پلټل",
 	"undelete-show-file-submit": "هو",
-	"undelete-revision-row": "$1 $2 ($3) $4 . . $5 $6 $7 $8 $9",
 	"namespace": "نوم-تشيال:",
 	"invert": "ټاکنې سرچپه کول",
 	"tooltip-invert": "په ټاکلو نومتشيالونو کې (او اړونده نومتشيال کې که په نښه شوی وي) د مخونو بدلونونو د پټولو لپاره دا بکس په نښه کړئ",

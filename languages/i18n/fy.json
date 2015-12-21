@@ -14,7 +14,8 @@
 			"아라",
 			"Robin0van0der0vliet",
 			"Macofe",
-			"Xð"
+			"Xð",
+			"Robin van der Vliet"
 		]
 	},
 	"tog-underline": "Keppelings ûnderstreekje:",
@@ -1422,7 +1423,6 @@
 	"undelete-search-submit": "Sykje",
 	"undelete-no-results": "Gjin oerienkommende siden fûn yn it wisk argyf.",
 	"undelete-show-file-submit": "Ja",
-	"undelete-revision-row": "$1 $2 ($3) $4 . . $5 $6 $7 $8 $9",
 	"namespace": "Nammeromte:",
 	"invert": "Seleksje útsein",
 	"blanknamespace": "(Haadnammerûmte)",

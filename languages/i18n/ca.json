@@ -2028,7 +2028,6 @@
 	"undelete-error-long": "S'han produït errors en revertir la supressió del fitxer:\n\n$1",
 	"undelete-show-file-confirm": "Segur que voleu veure la revisió esborrada del fitxer «<nowiki>$1</nowiki>» corresponent a les $3 del $2?",
 	"undelete-show-file-submit": "Sí",
-	"undelete-revision-row": "$1 $2 ($3) $4 . . $5 $6 $7 $8 $9",
 	"namespace": "Espai de noms:",
 	"invert": "Inverteix la selecció",
 	"tooltip-invert": "Marqueu aquesta casella per ocultar els canvis a les pàgines de l'espai de noms seleccionat (i l'espai de noms associat si està activat)",
