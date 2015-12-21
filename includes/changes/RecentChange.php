@@ -90,17 +90,6 @@ class RecentChange {
 	 */
 	public $counter = -1;
 
-	/**
-	 * @var array Array of change types
-	 */
-	private static $changeTypes = array(
-		'edit' => RC_EDIT,
-		'new' => RC_NEW,
-		'log' => RC_LOG,
-		'external' => RC_EXTERNAL,
-		'categorize' => RC_CATEGORIZE,
-	);
-
 	# Factory methods
 
 	/**
@@ -117,45 +106,36 @@ class RecentChange {
 	/**
 	 * Parsing text to RC_* constants
 	 * @since 1.24
+	 * @deprecated since 1.27 Use RecentChangeTypes::parseToRCType
 	 * @param string|array $type
 	 * @throws MWException
 	 * @return int|array RC_TYPE
 	 */
 	public static function parseToRCType( $type ) {
-		if ( is_array( $type ) ) {
-			$retval = array();
-			foreach ( $type as $t ) {
-				$retval[] = RecentChange::parseToRCType( $t );
-			}
-
-			return $retval;
-		}
-
-		if ( !array_key_exists( $type, self::$changeTypes ) ) {
-			throw new MWException( "Unknown type '$type'" );
-		}
-		return self::$changeTypes[$type];
+		return RecentChangeTypes::parseToRCType( $type );
 	}
 
 	/**
 	 * Parsing RC_* constants to human-readable test
 	 * @since 1.24
+	 * @deprecated since 1.27 Use RecentChangeTypes::parseFromRCType
 	 * @param int $rcType
 	 * @return string $type
 	 */
 	public static function parseFromRCType( $rcType ) {
-		return array_search( $rcType, self::$changeTypes, true ) ?: "$rcType";
+		return RecentChangeTypes::parseFromRCType( $rcType );
 	}
 
 	/**
 	 * Get an array of all change types
 	 *
 	 * @since 1.26
+	 * @deprecated since 1.27 Use RecentChangeTypes::getChangeTypes
 	 *
 	 * @return array
 	 */
 	public static function getChangeTypes() {
-		return array_keys( self::$changeTypes );
+		return RecentChangeTypes::getChangeTypes();
 	}
 
 	/**
