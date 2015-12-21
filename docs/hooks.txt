@@ -3040,7 +3040,7 @@ $user: user who does the move
 $pageid: database ID of the page that's been moved
 $redirid: database ID of the created redirect
 $reason: reason for the move
-$revision: the revision created by the move
+$revision: the Revision created by the move
 
 'TitleMoveCompleting': After moving an article (title), pre-commit.
 $old: old title
@@ -3049,6 +3049,7 @@ $user: user who did the move
 $pageid: database ID of the page that's been moved
 $redirid: database ID of the created redirect
 $reason: reason for the move
+$revision: the Revision created by the move
 
 'TitleQuickPermissions': Called from Title::checkQuickPermissions to add to
 or override the quick permissions check.
