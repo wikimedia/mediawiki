@@ -49,6 +49,30 @@ class ApiUserrights extends ApiBase {
 	}
 
 	public function execute() {
+		$pUser = $this->getUser(); // Get the user trying to perform the action (for permission checks)
+		
+		// Check blocks (Same behavior as Special:UserRights)
+		if ( $pUser->isBlocked() && !$pUser->isAllowed( 'userrights' ) ) {
+			$block = $pUser->getBlock();
+
+			// Die using the appropriate message depending on block type
+			if ( $block->getType() == TYPE_AUTO ) {
+				$this->dieUsage(
+					'Your IP address has been blocked automatically, because it was used by a blocked user',
+					'autoblocked',
+					0,
+					array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) )
+				);
+			} else {
+				$this->dieUsage(
+					'You have been blocked from editing',
+					'blocked',
+					0,
+					array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) )
+				);
+			}
+		}
+
 		$params = $this->extractRequestParams();
 
 		$user = $this->getUrUser( $params );
