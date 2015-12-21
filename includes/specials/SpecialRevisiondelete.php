@@ -118,6 +118,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$output = $this->getOutput();
 		$user = $this->getUser();
 
+		// Check blocks
+		if ( $user->isBlocked() ) {
+			throw new UserBlockedError( $user->getBlock() );
+		}
+
 		$this->setHeaders();
 		$this->outputHeader();
 		$request = $this->getRequest();

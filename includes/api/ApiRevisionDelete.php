@@ -41,6 +41,27 @@ class ApiRevisionDelete extends ApiBase {
 			$this->dieUsageMsg( 'badaccess-group0' );
 		}
 
+		if ( $user->isBlocked() ) {
+			$block = $user->getBlock();
+
+			// Die using the appropriate message depending on block type
+			if ( $block->getType() == TYPE_AUTO ) {
+				$this->dieUsage(
+					'Your IP address has been blocked automatically, because it was used by a blocked user',
+					'autoblocked',
+					0,
+					array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) )
+				);
+			} else {
+				$this->dieUsage(
+					'You have been blocked from editing',
+					'blocked',
+					0,
+					array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $block ) )
+				);
+			}
+		}
+
 		if ( !$params['ids'] ) {
 			$this->dieUsage( "At least one value is required for 'ids'", 'badparams' );
 		}
