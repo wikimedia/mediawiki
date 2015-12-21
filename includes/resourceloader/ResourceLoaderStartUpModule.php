@@ -58,12 +58,16 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		}
 
 		$conf = $this->getConfig();
+		$lessVars = $conf->get( 'ResourceLoaderLESSVars' );
+		$tabletSize = isset( $lessVars['deviceWidthTablet'] ) ? $lessVars['deviceWidthTablet'] : '720px';
+
 		// Build list of variables
 		$vars = array(
 			'wgLoadScript' => wfScript( 'load' ),
 			'debug' => $context->getDebug(),
 			'skin' => $context->getSkin(),
 			'stylepath' => $conf->get( 'StylePath' ),
+			'deviceWidthTablet' => $tabletSize,
 			'wgUrlProtocols' => wfUrlProtocols(),
 			'wgArticlePath' => $conf->get( 'ArticlePath' ),
 			'wgScriptPath' => $conf->get( 'ScriptPath' ),
