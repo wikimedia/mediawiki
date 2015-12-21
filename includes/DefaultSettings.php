@@ -3701,7 +3701,13 @@ $wgResourceLoaderValidateStaticJS = false;
  * @endcode
  * @since 1.22
  */
-$wgResourceLoaderLESSVars = array();
+$wgResourceLoaderLESSVars = array(
+	/**
+	 * Minimum available screen width at which a device can be considered a tablet/desktop
+	 * The number is currently based on the device width of a Samsung Galaxy S5 mini.
+	 */
+	'DeviceWidthTablet' => '720px',
+);
 
 /**
  * Default import paths for LESS modules. LESS files referenced in @import

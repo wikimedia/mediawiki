@@ -57,6 +57,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			}
 		}
 
+		$lessVars = $conf->get( 'ResourceLoaderLESSVars' );
+		$tabletSize = isset( $lessVars['DeviceWidthTablet'] ) ? $lessVars['DeviceWidthTablet'] : 720;
+
 		$conf = $this->getConfig();
 		// Build list of variables
 		$vars = array(
@@ -64,6 +67,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'debug' => $context->getDebug(),
 			'skin' => $context->getSkin(),
 			'stylepath' => $conf->get( 'StylePath' ),
+			'DeviceWidthTablet' => $tabletSize,
 			'wgUrlProtocols' => wfUrlProtocols(),
 			'wgArticlePath' => $conf->get( 'ArticlePath' ),
 			'wgScriptPath' => $conf->get( 'ScriptPath' ),
