@@ -861,9 +861,10 @@ class WikiImporter {
 		}
 		if ( isset( $revisionInfo['contributor']['ip'] ) ) {
 			$revision->setUserIP( $revisionInfo['contributor']['ip'] );
-		}
-		if ( isset( $revisionInfo['contributor']['username'] ) ) {
+		} elseif ( isset( $revisionInfo['contributor']['username'] ) ) {
 			$revision->setUserName( $revisionInfo['contributor']['username'] );
+		} else {
+			$revision->setUserName( 'Unknown user' );
 		}
 		$revision->setNoUpdates( $this->mNoUpdates );
 
@@ -981,6 +982,9 @@ class WikiImporter {
 		$fields = array( 'id', 'ip', 'username' );
 		$info = array();
 
+		if ( $this->reader->isEmptyElement ) {
+			return $info;
+		}
 		while ( $this->reader->read() ) {
 			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
 					$this->reader->localName == 'contributor' ) {
