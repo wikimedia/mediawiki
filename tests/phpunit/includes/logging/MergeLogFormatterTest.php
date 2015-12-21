@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Database
+ */
 class MergeLogFormatterTest extends LogFormatterTestCase {
 
 	/**

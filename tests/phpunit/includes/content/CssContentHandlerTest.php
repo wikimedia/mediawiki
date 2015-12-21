@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Database
+ */
 class CssContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**

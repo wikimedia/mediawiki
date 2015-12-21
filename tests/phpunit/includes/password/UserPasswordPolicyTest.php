@@ -18,6 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @group Database
  */
 
 class UserPasswordPolicyTest extends MediaWikiTestCase {

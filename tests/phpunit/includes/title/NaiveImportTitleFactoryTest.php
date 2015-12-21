@@ -23,6 +23,7 @@
  * @covers NaiveImportTitleFactory
  *
  * @group Title
+ * @group Database
  */
 class NaiveImportTitleFactoryTest extends MediaWikiTestCase {
 

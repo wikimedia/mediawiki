@@ -7,6 +7,7 @@
  * configuration, but it should catch many cases for forgotten i18n.
  *
  * @group API
+ * @group Database
  */
 class ApiDocumentationTest extends MediaWikiTestCase {
 

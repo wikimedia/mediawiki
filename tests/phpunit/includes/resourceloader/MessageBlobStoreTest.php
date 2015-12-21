@@ -2,6 +2,7 @@
 
 /**
  * @group Cache
+ * @group Database
  * @covers MessageBlobStore
  */
 class MessageBlobStoreTest extends PHPUnit_Framework_TestCase {

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Database
+ */
 class ProtectLogFormatterTest extends LogFormatterTestCase {
 
 	/**
