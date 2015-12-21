@@ -916,7 +916,7 @@
 	"apihelp-query+pageswithprop-example-simple": "List the first 10 pages using <code>&#123;&#123;DISPLAYTITLE:&#125;&#125;</code>.",
 	"apihelp-query+pageswithprop-example-generator": "Get additional information about the first 10 pages using <code>_&#95;NOTOC_&#95;</code>.",
 
-	"apihelp-query+prefixsearch-description": "Perform a prefix search for page titles.",
+	"apihelp-query+prefixsearch-description": "Perform a prefix search for page titles.\n\nDespite the similarity in names, this module is not intended to be equivalent to [[Special:PrefixIndex]]; for that, see <kbd>[[Special:ApiHelp/query+allpages|action=query&list=allpages]]</kbd> with the <kbd>apprefix</kbd> parameter. The purpose of this module is similar to <kbd>[[Special:ApiHelp/opensearch|action=opensearch]]</kbd>: to take user input and provide the best-matching titles. Depending on the search engine backend, this might include typo correction, redirect avoidance, or other heuristics.",
 	"apihelp-query+prefixsearch-param-search": "Search string.",
 	"apihelp-query+prefixsearch-param-namespace": "Namespaces to search.",
 	"apihelp-query+prefixsearch-param-limit": "Maximum number of results to return.",
