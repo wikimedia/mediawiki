@@ -184,6 +184,18 @@ class BagOStuffTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers BagOStuff::incrWithInit
+	 */
+	public function testIncrWithInit() {
+		$key = wfMemcKey( 'test' );
+		$val = $this->cache->incrWithInit( $key, 0, 1, 3 );
+		$this->assertEquals( 3, $val, "Correct init value" );
+
+		$val = $this->cache->incrWithInit( $key, 0, 1, 3 );
+		$this->assertEquals( 4, $val, "Correct init value" );
+	}
+
+	/**
 	 * @covers BagOStuff::getMulti
 	 */
 	public function testGetMulti() {
