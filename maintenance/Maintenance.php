@@ -1013,6 +1013,9 @@ abstract class Maintenance {
 				"must exist and be readable in the source directory.\n" .
 				"Use --conf to specify it.", true );
 		}
+		if ( isset( $this->mOptions['server'] ) ) {
+			$_SERVER['SERVER_NAME'] = $this->mOptions['server'];
+		}
 		$wgCommandLineMode = true;
 
 		return $settingsFile;
