@@ -53,7 +53,7 @@ class LanguageLa extends Language {
 				'/u[ms]$/',                	# 2nd declension singular
 				'/ommunia$/',              	# 3rd declension neuter plural (partly)
 				'/a$/',                    	# 1st declension singular
-				'/libri$/', '/nuntii$/',   	# 2nd declension plural (partly)
+				'/libri$/', '/nuntii$/', '/datae$/', # 2nd declension plural (partly)
 				'/tio$/', '/ns$/', '/as$/',	# 3rd declension singular (partly)
 				'/es$/'                    	# 5th declension singular
 			);
@@ -61,7 +61,7 @@ class LanguageLa extends Language {
 				'i',
 				'ommunium',
 				'ae',
-				'librorum', 'nuntiorum',
+				'librorum', 'nuntiorum', 'datorum',
 				'tionis', 'ntis', 'atis',
 				'ei'
 			);
@@ -72,7 +72,7 @@ class LanguageLa extends Language {
 				'/u[ms]$/',                	# 2nd declension singular
 				'/a$/',                    	# 1st declension singular
 				'/ommuniam$/',              # 3rd declension neuter plural (partly)
-				'/libri$/', '/nuntii$/',   	# 2nd declension plural (partly)
+				'/libri$/', '/nuntii$/', '/datam$/', # 2nd declension plural (partly)
 				'/tio$/', '/ns$/', '/as$/',	# 3rd declension singular (partly)
 				'/es$/'                    	# 5th declension singular
 			);
@@ -80,7 +80,7 @@ class LanguageLa extends Language {
 				'um',
 				'am',
 				'ommunia',
-				'libros', 'nuntios',
+				'libros', 'nuntios', 'data',
 				'tionem', 'ntem', 'atem',
 				'em'
 			);
@@ -91,7 +91,7 @@ class LanguageLa extends Language {
 				'/u[ms]$/',                	# 2nd declension singular
 				'/ommunia$/',              	# 3rd declension neuter plural (partly)
 				'/a$/',                    	# 1st declension singular
-				'/libri$/', '/nuntii$/',   	# 2nd declension plural (partly)
+				'/libri$/', '/nuntii$/', '/data$/', # 2nd declension plural (partly)
 				'/tio$/', '/ns$/', '/as$/',	# 3rd declension singular (partly)
 				'/es$/'                    	# 5th declension singular
 			);
@@ -99,7 +99,7 @@ class LanguageLa extends Language {
 				'o',
 				'ommunibus',
 				'a',
-				'libris', 'nuntiis',
+				'libris', 'nuntiis', 'datis',
 				'tione', 'nte', 'ate',
 				'e'
 			);
