@@ -59,6 +59,18 @@
 		},
 
 		/**
+		 * Encode the string like Sanitizer::escapeId in PHP
+		 *
+		 * @param {string} str String to be encoded.
+		 */
+		escapeId: function ( str ) {
+			str = String( str );
+			return util.rawurlencode( str.replace( / /g, '_' ) )
+				.replace( /%3A/g, ':' )
+				.replace( /%/g, '.' );
+		},
+
+		/**
 		 * Encode page titles for use in a URL
 		 *
 		 * We want / and : to be included as literal characters in our title URLs
@@ -98,28 +110,28 @@
 			var titleFragmentStart,
 				url,
 				fragment = '',
-				pageName = util.wikiUrlencode( typeof str === 'string' ? str : mw.config.get( 'wgPageName' ) );
+				pageName = typeof str === 'string' ? str : mw.config.get( 'wgPageName' );
 
 			// Find any fragment should one exist
 			if ( typeof str === 'string' ) {
-				titleFragmentStart = pageName.indexOf( '%23' );
+				titleFragmentStart = pageName.indexOf( '#' );
 				if ( titleFragmentStart !== -1 ) {
-					fragment = pageName.slice( titleFragmentStart + 3 );
+					fragment = pageName.slice( titleFragmentStart + 1 );
 					// Exclude the fragment from the page name
 					pageName = pageName.slice( 0, titleFragmentStart );
 				}
 			}
 
-			url = mw.config.get( 'wgArticlePath' ).replace( '$1', pageName );
+			url = mw.config.get( 'wgArticlePath' ).replace( '$1', util.wikiUrlencode( pageName ) );
 
 			// Add query string if necessary
 			if ( params && !$.isEmptyObject( params ) ) {
 				url += ( url.indexOf( '?' ) !== -1 ? '&' : '?' ) + $.param( params );
 			}
 
-			// Insert the already URL-encoded fragment should it exist, replacing % with .
+			// Append the encoded fragment
 			if ( fragment.length > 0 ) {
-				url += '#' + fragment.replace( /%/g, '.' );
+				url += '#' + util.escapeId( fragment );
 			}
 
 			return url;

@@ -92,6 +92,31 @@
 		assert.equal( mw.util.rawurlencode( 'Test:A & B/Here' ), 'Test%3AA%20%26%20B%2FHere' );
 	} );
 
+	QUnit.test( 'escapeId', 17, function ( assert ) {
+		mw.config.set( 'wgExperimentalHtmlIds', false );
+		$.each( {
+			'+': '.2B',
+			'&': '.26',
+			'=': '.3D',
+			':': ':',
+			';': '.3B',
+			'@': '.40',
+			'$': '.24',
+			'-_.': '-_.',
+			'!': '.21',
+			'*': '.2A',
+			'/': '.2F',
+			'[]': '.5B.5D',
+			'<>': '.3C.3E',
+			'\'': '.27',
+			'§': '.C2.A7',
+			'Test:A & B/Here': 'Test:A_.26_B.2FHere',
+			'A&B&amp;C&amp;amp;D&amp;amp;amp;E': 'A.26B.26amp.3BC.26amp.3Bamp.3BD.26amp.3Bamp.3Bamp.3BE'
+		}, function ( input, output ) {
+			assert.equal( mw.util.escapeId( input ), output );
+		} );
+	} );
+
 	QUnit.test( 'wikiUrlencode', 11, function ( assert ) {
 		assert.equal( mw.util.wikiUrlencode( 'Test:A & B/Here' ), 'Test:A_%26_B/Here' );
 		// See also wfUrlencodeTest.php#provideURLS
@@ -111,7 +136,7 @@
 		} );
 	} );
 
-	QUnit.test( 'getUrl', 8, function ( assert ) {
+	QUnit.test( 'getUrl', 12, function ( assert ) {
 		// Not part of startUp module
 		mw.config.set( 'wgArticlePath', '/wiki/$1' );
 		mw.config.set( 'wgPageName', 'Foobar' );
@@ -135,11 +160,23 @@
 		href = mw.util.getUrl( 'Foo:Sandbox#Fragment', { action: 'edit' } );
 		assert.equal( href, '/wiki/Foo:Sandbox?action=edit#Fragment', 'advanced title with query string and fragment' );
 
+		href = mw.util.getUrl( 'Foo:Sandbox#', { action: 'edit' } );
+		assert.equal( href, '/wiki/Foo:Sandbox?action=edit', 'title with query string and empty fragment' );
+
+		href = mw.util.getUrl( '#Fragment' );
+		assert.equal( href, '/wiki/#Fragment', 'epmty title with fragment' );
+
+		href = mw.util.getUrl( '#Fragment', { action: 'edit' } );
+		assert.equal( href, '/wiki/?action=edit#Fragment', 'epmty title with query string and fragment' );
+
 		href = mw.util.getUrl( 'Foo:Sandbox \xC4#Fragment \xC4', { action: 'edit' } );
 		assert.equal( href, '/wiki/Foo:Sandbox_%C3%84?action=edit#Fragment_.C3.84', 'title with query string, fragment, and special characters' );
 
 		href = mw.util.getUrl( 'Foo:%23#Fragment', { action: 'edit' } );
 		assert.equal( href, '/wiki/Foo:%2523?action=edit#Fragment', 'title containing %23 (#), fragment, and a query string' );
+
+		href = mw.util.getUrl( '#+&=:;@$-_.!*/[]<>\'§', { action: 'edit' } );
+		assert.equal( href, '/wiki/?action=edit#.2B.26.3D:.3B.40.24-_..21.2A.2F.5B.5D.3C.3E.27.C2.A7', 'fragment with various characters' );
 	} );
 
 	QUnit.test( 'wikiScript', 4, function ( assert ) {
