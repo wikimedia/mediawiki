@@ -56,8 +56,12 @@ module.exports = function ( grunt ) {
 					included: true,
 					served: false
 				} ],
+				client: {
+					captureConsole: true
+				},
+				logLevel: 'DEBUG',
 				frameworks: [ 'qunit' ],
-				reporters: [ 'dots' ],
+				reporters: [ 'progress' ],
 				singleRun: true,
 				autoWatch: false,
 				// Some tests in extensions don't yield for more than the default 10s (T89075)
