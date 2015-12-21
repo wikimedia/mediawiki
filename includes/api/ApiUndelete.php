@@ -33,18 +33,13 @@ class ApiUndelete extends ApiBase {
 		$this->useTransactionalTimeLimit();
 
 		$params = $this->extractRequestParams();
-
-		if ( !$this->getUser()->isAllowed( 'undelete' ) ) {
+		$user = $this->getUser();
+		if ( !$user->isAllowed( 'undelete' ) ) {
 			$this->dieUsageMsg( 'permdenied-undelete' );
 		}
 
-		if ( $this->getUser()->isBlocked() ) {
-			$this->dieUsage(
-				'You have been blocked from editing',
-				'blocked',
-				0,
-				array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $this->getUser()->getBlock() ) )
-			);
+		if ( $user->isBlocked() ) {
+			$this->dieBlocked( $user->getBlock() );
 		}
 
 		$titleObj = Title::newFromText( $params['title'] );
