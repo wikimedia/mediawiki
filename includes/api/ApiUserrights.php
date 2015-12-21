@@ -49,6 +49,14 @@ class ApiUserrights extends ApiBase {
 	}
 
 	public function execute() {
+		$pUser = $this->getUser();
+
+		// Deny if the user is blocked and doesn't have the full 'userrights' permission.
+		// This matches what Special:UserRights does for the web UI.
+		if ( $pUser->isBlocked() && !$pUser->isAllowed( 'userrights' ) ) {
+			$this->dieBlocked( $pUser->getBlock() );
+		}
+
 		$params = $this->extractRequestParams();
 
 		$user = $this->getUrUser( $params );
