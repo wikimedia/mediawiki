@@ -106,7 +106,9 @@
 		this.uploadBooklet.connect( this, {
 			set: 'onUploadBookletSet',
 			uploadValid: 'onUploadValid',
-			infoValid: 'onInfoValid'
+			infoValid: 'onInfoValid',
+			fileUploadProgress: 'onFileUploadProgress',
+			fileUploaded: 'onFileUploaded'
 		} );
 
 		this.$body.append( this.uploadBooklet.$element );
@@ -166,6 +168,35 @@
 	 */
 	mw.Upload.Dialog.prototype.onInfoValid = function ( isValid ) {
 		this.actions.setAbilities( { save: isValid } );
+	};
+
+	/**
+	 * Handle fileUploadProgress events
+	 *
+	 * Updates the dialog title according to upload progress.
+	 *
+	 * @protected
+	 * @param {number} progress In percentage
+	 * @param {Object} estimatedTimeRemaining Duration object from `moment.duration()`
+	 */
+	mw.Upload.Dialog.prototype.onFileUploadProgress = function ( progress, estimatedTimeRemaining ) {
+		this.title.setLabel( new OO.ui.HtmlSnippet(
+			mw.msg( 'upload-dialog-title' ) +
+			'<small> (' + estimatedTimeRemaining.humanize() + ')</small>'
+		) );
+	};
+
+	/**
+	 * Handle fileUploaded event
+	 *
+	 * Updates the dialog title.
+	 *
+	 * @protected
+	 * @param {number} progress In percentage
+	 * @param {Object} estimatedTimeRemaining Duration object from `moment.duration()`
+	 */
+	mw.Upload.Dialog.prototype.onFileUploaded = function () {
+		this.title.setLabel( mw.msg( 'upload-dialog-title' ) );
 	};
 
 	/**

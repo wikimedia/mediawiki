@@ -1184,8 +1184,12 @@ return array(
 		'scripts' => array(
 			'resources/src/mediawiki/mediawiki.Upload.BookletLayout.js',
 		),
+		'styles' => array(
+			'resources/src/mediawiki/mediawiki.Upload.BookletLayout.css',
+		),
 		'dependencies' => array(
 			'oojs-ui',
+			'moment',
 			'mediawiki.user',
 			'mediawiki.Upload',
 			'mediawiki.jqueryMsg',
