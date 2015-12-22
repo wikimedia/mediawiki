@@ -72,7 +72,7 @@ class WrapOldPasswords extends Maintenance {
 
 		$minUserId = 0;
 		do {
-			$dbw->begin();
+			$this->beginTransaction( $dbw, __METHOD__ );
 
 			$res = $dbw->select( 'user',
 				array( 'user_id', 'user_name', 'user_password' ),
@@ -112,7 +112,7 @@ class WrapOldPasswords extends Maintenance {
 				$minUserId = $row->user_id;
 			}
 
-			$dbw->commit();
+			$this->commitTransaction( $dbw, __METHOD__ );
 
 			// Clear memcached so old passwords are wiped out
 			foreach ( $updateUsers as $user ) {

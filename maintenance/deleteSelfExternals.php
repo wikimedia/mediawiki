@@ -42,7 +42,7 @@ class DeleteSelfExternals extends Maintenance {
 		$db = wfGetDB( DB_MASTER );
 		while ( 1 ) {
 			wfWaitForSlaves();
-			$db->commit( __METHOD__ );
+			$this->commitTransaction( $db, __METHOD__ );
 			$q = $db->limitResult( "DELETE /* deleteSelfExternals */ FROM externallinks WHERE el_to"
 				. $db->buildLike( $wgServer . '/', $db->anyString() ), $this->mBatchSize );
 			$this->output( "Deleting a batch\n" );

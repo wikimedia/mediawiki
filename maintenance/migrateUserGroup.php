@@ -58,7 +58,7 @@ class MigrateUserGroup extends Maintenance {
 			$affected = 0;
 			$this->output( "Doing users $blockStart to $blockEnd\n" );
 
-			$dbw->begin( __METHOD__ );
+			$this->beginTransaction( $dbw, __METHOD__ );
 			$dbw->update( 'user_groups',
 				array( 'ug_group' => $newGroup ),
 				array( 'ug_group' => $oldGroup,
@@ -77,7 +77,7 @@ class MigrateUserGroup extends Maintenance {
 				__METHOD__
 			);
 			$affected += $dbw->affectedRows();
-			$dbw->commit( __METHOD__ );
+			$this->commitTransaction( $dbw, __METHOD__ );
 
 			// Clear cache for the affected users (bug 40340)
 			if ( $affected > 0 ) {

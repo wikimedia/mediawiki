@@ -100,14 +100,14 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 				__METHOD__
 			);
 
-			$db->begin( __METHOD__ );
+			$this->beginTransaction( $db, __METHOD__ );
 			# Go through and update rev_len from these rows.
 			foreach ( $res as $row ) {
 				if ( $this->upgradeRow( $row, $table, $idCol, $prefix ) ) {
 					$count++;
 				}
 			}
-			$db->commit( __METHOD__ );
+			$this->commitTransaction( $db, __METHOD__ );
 
 			$blockStart += $this->mBatchSize;
 			$blockEnd += $this->mBatchSize;
