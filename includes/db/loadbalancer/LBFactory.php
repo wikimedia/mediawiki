@@ -190,36 +190,47 @@ abstract class LBFactory {
 	 * @param array $args
 	 */
 	private function forEachLBCallMethod( $methodName, array $args = array() ) {
-		$this->forEachLB( function ( LoadBalancer $loadBalancer, $methodName, array $args ) {
-			call_user_func_array( array( $loadBalancer, $methodName ), $args );
-		}, array( $methodName, $args ) );
+		$this->forEachLB(
+			function ( LoadBalancer $loadBalancer, $methodName, array $args ) {
+				call_user_func_array( array( $loadBalancer, $methodName ), $args );
+			},
+			array( $methodName, $args )
+		);
 	}
 
 	/**
 	 * Commit on all connections. Done for two reasons:
 	 * 1. To commit changes to the masters.
 	 * 2. To release the snapshot on all connections, master and slave.
+	 * @param string $fname Caller name
 	 */
-	public function commitAll() {
-		$this->forEachLBCallMethod( 'commitAll' );
+	public function commitAll( $fname = __METHOD__ ) {
+		$start = microtime( true );
+		$this->forEachLBCallMethod( 'commitAll', array( $fname ) );
+		$timeMs = 1000 * ( microtime( true ) - $start );
+
+		RequestContext::getMain()->getStats()->timing( "db.commit-all", $timeMs );
 	}
 
 	/**
 	 * Commit changes on all master connections
+	 * @param string $fname Caller name
 	 */
-	public function commitMasterChanges() {
+	public function commitMasterChanges( $fname = __METHOD__ ) {
 		$start = microtime( true );
-		$this->forEachLBCallMethod( 'commitMasterChanges' );
+		$this->forEachLBCallMethod( 'commitMasterChanges', array( $fname ) );
 		$timeMs = 1000 * ( microtime( true ) - $start );
+
 		RequestContext::getMain()->getStats()->timing( "db.commit-masters", $timeMs );
 	}
 
 	/**
 	 * Rollback changes on all master connections
+	 * @param string $fname Caller name
 	 * @since 1.23
 	 */
-	public function rollbackMasterChanges() {
-		$this->forEachLBCallMethod( 'rollbackMasterChanges' );
+	public function rollbackMasterChanges( $fname = __METHOD__ ) {
+		$this->forEachLBCallMethod( 'rollbackMasterChanges', array( $fname ) );
 	}
 
 	/**
