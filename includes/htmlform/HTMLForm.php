@@ -307,6 +307,11 @@ class HTMLForm extends ContextSource {
 		$loadedDescriptor = array();
 		$this->mFlatFields = array();
 
+		if ( ( ! is_array( $descriptor ) ) ) {
+			wfDebugLog( __METHOD__,
+				'$descriptor is not an array of fields.' );
+			$descriptor = array();
+		}
 		foreach ( $descriptor as $fieldname => $info ) {
 			$section = isset( $info['section'] )
 				? $info['section']
@@ -411,18 +416,21 @@ class HTMLForm extends ContextSource {
 	 * @return string Name of a HTMLFormField subclass
 	 */
 	public static function getClassFromDescriptor( $fieldname, &$descriptor ) {
+		$err = "a 'class' or 'type' given.";
+		$class = null;
 		if ( isset( $descriptor['class'] ) ) {
 			$class = $descriptor['class'];
+			$err = "a valid class (class: '$class').  Maybe use 'cssclass'?";
 		} elseif ( isset( $descriptor['type'] ) ) {
-			$class = static::$typeMappings[$descriptor['type']];
+			$class = isset( static::$typeMappings[$descriptor['type']] )
+				? static::$typeMappings[$descriptor['type']] : null;
 			$descriptor['class'] = $class;
-		} else {
-			$class = null;
+			$err = "a mapping for type '{$descriptor['type']}'";
 		}
 
-		if ( !$class ) {
-			throw new MWException( "Descriptor with no class for $fieldname: "
-				. print_r( $descriptor, true ) );
+		if ( !class_exists( $class ) ) {
+			throw new MWException( "Tried to create an input form field" .
+				" for '$fieldname' without $err" );
 		}
 
 		return $class;
@@ -448,9 +456,6 @@ class HTMLForm extends ContextSource {
 			$descriptor['parent'] = $parent;
 		}
 
-		# @todo This will throw a fatal error whenever someone try to use
-		# 'class' to feed a CSS class instead of 'cssclass'. Would be
-		# great to avoid the fatal error and show a nice error.
 		$obj = new $class( $descriptor );
 
 		return $obj;
