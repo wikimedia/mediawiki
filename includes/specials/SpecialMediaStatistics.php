@@ -27,6 +27,14 @@
  */
 class MediaStatisticsPage extends QueryPage {
 	protected $totalCount = 0, $totalBytes = 0;
+	/**
+	* @var integer $totalPerType Combined file size of all files in a section
+	*/
+	protected $totalPerType = 0;
+	/**
+	* @var integer $totalSize Combined file size of all files
+	*/
+	protected $totalSize = 0;
 
 	function __construct( $name = 'MediaStatistics' ) {
 		parent::__construct( $name );
@@ -123,6 +131,7 @@ class MediaStatisticsPage extends QueryPage {
 					$this->outputTableEnd();
 				}
 				$this->outputMediaType( $mediaType );
+				$this->totalPerType = 0;
 				$this->outputTableStart( $mediaType );
 				$prevMediaType = $mediaType;
 			}
@@ -130,6 +139,11 @@ class MediaStatisticsPage extends QueryPage {
 		}
 		if ( $prevMediaType !== null ) {
 			$this->outputTableEnd();
+			$this->getOutput()->addWikiText(
+				$this->msg( 'mediastatistics-allbytes' )
+					->numParams( $this->totalSize )
+					->text()
+			);
 		}
 	}
 
@@ -138,6 +152,12 @@ class MediaStatisticsPage extends QueryPage {
 	 */
 	protected function outputTableEnd() {
 		$this->getOutput()->addHtml( Html::closeElement( 'table' ) );
+		$this->getOutput()->addWikiText(
+				$this->msg( 'mediastatistics-bytespertype' )
+					->numParams( $this->totalPerType )
+					->text()
+		);
+		$this->totalSize += $this->totalPerType;
 	}
 
 	/**
@@ -180,7 +200,7 @@ class MediaStatisticsPage extends QueryPage {
 				->numParams( $this->makePercentPretty( $bytes / $this->totalBytes ) )
 				->parse()
 		);
-
+		$this->totalPerType += $bytes;
 		$this->getOutput()->addHTML( Html::rawElement( 'tr', array(), $row ) );
 	}
 
