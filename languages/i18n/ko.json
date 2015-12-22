@@ -2199,7 +2199,7 @@
 	"movepage-page-moved": "\"$1\" 문서를 \"$2\" 문서로 이동했습니다.",
 	"movepage-page-unmoved": "$1 문서를 $2 문서로 옮길 수 없습니다.",
 	"movepage-max-pages": "{{PLURAL:$1|문서}}를 최대 $1개 이동했으며 나머지 문서는 자동으로 이동하지 않습니다.",
-	"movelogpage": "옮기기 기록",
+	"movelogpage": "이동 기록",
 	"movelogpagetext": "아래는 옮겨진 모든 문서의 목록입니다.",
 	"movesubpage": "{{PLURAL:$1|하위 문서}}",
 	"movesubpagetext": "이 문서에는 다음 {{PLURAL:$1|하위 문서}} $1개가 있습니다.",

@@ -1377,6 +1377,8 @@
 	"foreign-structured-upload-form-label-not-own-work-local-shared": "Вы таксама можаце скарыстацца [[Special:Upload|старонкай загрузкі {{GRAMMAR:родны|{{SITENAME}}}}]], калі правілы сайту дазваляюць загрузку такога файлу.",
 	"foreign-structured-upload-form-2-label-intro": "Дзякуем за ахвяраваньне выявы, якая будзе выкарыстаная ў {{GRAMMAR:месны|{{SITENAME}}}}. Вам варта працягваць, калі яна адпавядае наступным умовам:",
 	"foreign-structured-upload-form-2-label-ownwork": "Гэта мусіць быць цалкам <strong>вашая ўласная праца</strong>, а ня проста выява з Інтэрнэту",
+	"foreign-structured-upload-form-2-label-noderiv": "Яна <strong>не павінна ўтрымліваць чужой працы</strong> або быць натхнёнай ёю",
+	"foreign-structured-upload-form-2-label-useful": "Яна павінна быць <strong>адукацыйнай і карыснай</strong> для навучаньня іншых",
 	"backend-fail-stream": "Немагчыма накіраваць файл $1.",
 	"backend-fail-backup": "Немагчыма зрабіць рэзэрвовую копію файла $1.",
 	"backend-fail-notexists": "Файл $1 не існуе.",

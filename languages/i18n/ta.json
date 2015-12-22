@@ -43,7 +43,8 @@
 			"Shrikarsan",
 			"Matma Rex",
 			"Anj.balaji",
-			"Dineshkumar Ponnusamy"
+			"Dineshkumar Ponnusamy",
+			"Sharanrajindia"
 		]
 	},
 	"tog-underline": "இணைப்புகளுக்கு அடிக்கோடிடு",
@@ -3172,6 +3173,8 @@
 	"log-name-pagelang": "மொழி பதிவை மாற்றுக",
 	"log-description-pagelang": "இது பக்க மொழி மாற்றச் செயல்பாட்டின் பதிவு.",
 	"logentry-pagelang-pagelang": "$3 க்கான பக்க மொழியை $4 இலிருந்து $5 க்கு $1 {{GENDER:$2|மாற்றினார்}}.",
+	"mediastatistics-bytespertype": "இந்த பிரிவக்கான மொத்த கோப்பளவு: $1 எண்ணுண்மி",
+	"mediastatistics-allbytes": "அனைத்து கோப்புகளின் மொத்த கோப்பளவு: $1 எண்ணுண்மி",
 	"mediastatistics-table-count": "கோப்புகளின் எண்ணிக்கை",
 	"mediastatistics-table-totalbytes": "மொத்த அளவு",
 	"mediastatistics-header-unknown": "அறியப்படாதது",

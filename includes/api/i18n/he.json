@@ -852,7 +852,7 @@
 	"apihelp-query+pageswithprop-param-dir": "באיזה כיוון לסדר.",
 	"apihelp-query+pageswithprop-example-simple": "הצגת עשרת הדפים הראשונים שעושים שימוש ב־<code>&#123;&#123;DISPLAYTITLE:&#125;&#125;</code>.",
 	"apihelp-query+pageswithprop-example-generator": "קבלת מידע נוסף על עשרת הדפים הראשונים המשתמשים ב־<code>_&#95;NOTOC_&#95;</code>.",
-	"apihelp-query+prefixsearch-description": "ביצוע חיפוש תחילית של כותרות דפים.",
+	"apihelp-query+prefixsearch-description": "ביצוע חיפוש תחילית של כותרות דפים.\n\nלמרות הדמיון בשם, המודול הזה אינו אמור להיות שווה ל־[[Special:PrefixIndex]] (\"מיוחד:דפים המתחילים ב\"); לדבר כזה, ר' <kbd>[[Special:ApiHelp/query+allpages|action=query&list=allpages]]</kbd> עם הפרמטר <kbd>apprefix</kbd>. מטרת המודול הזה דומה ל־<kbd>[[Special:ApiHelp/opensearch|action=opensearch]]</kbd>: לקבל קלט ממשתמש ולספק את הכותרות המתאימות ביותר. בהתאם לשרת מנוע החיפוש, זה יכול לכלול תיקון שגיאות כתיב, הימנעות מדפי הפניה והירסטיקות אחרות.",
 	"apihelp-query+prefixsearch-param-search": "מחרוזת לחיפוש.",
 	"apihelp-query+prefixsearch-param-namespace": "שמות מתחם לחיפוש.",
 	"apihelp-query+prefixsearch-param-limit": "מספר התוצאות המרבי להחזרה.",

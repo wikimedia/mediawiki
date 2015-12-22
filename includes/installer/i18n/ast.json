@@ -77,6 +77,7 @@
 	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
 	"config-type-mysql": "MySQL (o compatible)",
 	"config-type-mssql": "Microsoft SQL Server",
+	"config-invalid-db-type": "Triba non válida de base de datos.",
 	"config-missing-db-name": "Tienes d'introducir un valor pa «{{int:config-db-name}}».",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",

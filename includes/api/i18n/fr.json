@@ -863,7 +863,7 @@
 	"apihelp-query+pageswithprop-param-dir": "Dans quelle direction trier.",
 	"apihelp-query+pageswithprop-example-simple": "Lister les 10 premières pages en utilisant <code>&#123;&#123;DISPLAYTITLE:&#125;&#125;</code>.",
 	"apihelp-query+pageswithprop-example-generator": "Obtenir des informations supplémentaires sur les 10 premières pages utilisant <code>_&#95;NOTOC_&#95;</code>.",
-	"apihelp-query+prefixsearch-description": "Effectuer une recherche de préfixe sur les titres de page.",
+	"apihelp-query+prefixsearch-description": "Effectuer une recherche de préfixe sur les titres de page.\n\nMalgré les similarités dans le nom, ce module n’est pas destiné à être l’équivalent de [[Special:PrefixIndex]] ; pour cela, voyez <kbd>[[Special:ApiHelp/query+allpages|action=query&list=allpages]]</kbd> avec le paramètre <kbd>apprefix</kbd>. Le but de ce module est similaire à <kbd>[[Special:ApiHelp/opensearch|action=opensearch]]</kbd> : prendre l’entrée utilisateur et fournir les meilleurs titres s’en approchant. Selon le serveur du moteur de recherche, cela peut inclure corriger des fautes de frappe, éviter des redirections, ou d’autres heuristiques.",
 	"apihelp-query+prefixsearch-param-search": "Chaîne de recherche.",
 	"apihelp-query+prefixsearch-param-namespace": "Espaces de nom à rechercher.",
 	"apihelp-query+prefixsearch-param-limit": "Nombre maximal de résultats à renvoyer.",
