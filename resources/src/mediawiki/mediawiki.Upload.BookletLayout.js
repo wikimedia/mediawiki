@@ -1,4 +1,5 @@
-( function ( $, mw ) {
+/*global moment */
+( function ( $, mw, moment ) {
 
 	/**
 	 * mw.Upload.BookletLayout encapsulates the process of uploading a file
@@ -95,6 +96,14 @@
 	OO.inheritClass( mw.Upload.BookletLayout, OO.ui.BookletLayout );
 
 	/* Events */
+
+	/**
+	 * Progress events for the uploaded file
+	 *
+	 * @event fileUploadProgress
+	 * @param {number} progress In percentage
+	 * @param {Object} duration Duration object from `moment.duration()`
+	 */
 
 	/**
 	 * The file has finished uploading
@@ -194,11 +203,13 @@
 	 * file object.
 	 *
 	 * @protected
+	 * @fires fileUploadProgress
 	 * @fires fileUploaded
 	 * @return {jQuery.Promise}
 	 */
 	mw.Upload.BookletLayout.prototype.uploadFile = function () {
 		var deferred = $.Deferred(),
+			startTime = new Date(),
 			layout = this,
 			file = this.getFile();
 
@@ -223,7 +234,12 @@
 			// really be an error...
 			var errorMessage = layout.getErrorMessageForStateDetails();
 			deferred.reject( errorMessage );
-		} );
+		}, function ( progress ) {
+			var elapsedTime = new Date() - startTime,
+				estimatedTotalTime = ( 1 / progress ) * elapsedTime,
+				estimatedRemainingTime = moment.duration( estimatedTotalTime - elapsedTime );
+			layout.emit( 'fileUploadProgress', progress, estimatedRemainingTime );
+		}.bind( this ) );
 
 		// If there is an error in uploading, come back to the upload page
 		deferred.fail( function () {
@@ -414,6 +430,11 @@
 	mw.Upload.BookletLayout.prototype.renderInfoForm = function () {
 		var fieldset;
 
+		this.progressBarWidget = new OO.ui.ProgressBarWidget( {
+			progress: 0,
+			classes: [ 'mw-upload-bookletLayout-progressBar' ]
+		} );
+
 		this.filenameWidget = new OO.ui.TextInputWidget( {
 			indicator: 'required',
 			required: true,
@@ -440,8 +461,11 @@
 				align: 'top'
 			} )
 		] );
-		this.infoForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
+		this.infoForm = new OO.ui.FormLayout( { items: [ this.progressBarWidget, fieldset ] } );
 
+		this.on( 'fileUploadProgress', function ( progress ) {
+			this.progressBarWidget.setProgress( progress * 100 );
+		}.bind( this ) );
 		this.filenameWidget.on( 'change', this.onInfoFormChange.bind( this ) );
 		this.descriptionWidget.on( 'change', this.onInfoFormChange.bind( this ) );
 
@@ -545,9 +569,10 @@
 	 */
 	mw.Upload.BookletLayout.prototype.clear = function () {
 		this.selectFileWidget.setValue( null );
+		this.progressBarWidget.setProgress( 0 );
 		this.filenameWidget.setValue( null ).setValidityFlag( true );
 		this.descriptionWidget.setValue( null ).setValidityFlag( true );
 		this.filenameUsageWidget.setValue( null );
 	};
 
-}( jQuery, mediaWiki ) );
+}( jQuery, mediaWiki, moment ) );
