@@ -131,11 +131,11 @@
 			notOwnWorkLocal = mw.message( 'foreign-structured-upload-form-label-not-own-work-local-default' );
 		}
 
-		$ownWorkMessage = $( '<p>' ).html( ownWorkMessage.parse() )
+		$ownWorkMessage = $( '<p>' ).append( ownWorkMessage.parseDom() )
 			.addClass( 'mw-foreignStructuredUpload-bookletLayout-license' );
 		$notOwnWorkMessage = $( '<div>' ).append(
-			$( '<p>' ).html( notOwnWorkMessage.parse() ),
-			$( '<p>' ).html( notOwnWorkLocal.parse() )
+			$( '<p>' ).append( notOwnWorkMessage.parseDom() ),
+			$( '<p>' ).append( notOwnWorkLocal.parseDom() )
 		);
 		$ownWorkMessage.add( $notOwnWorkMessage ).find( 'a' )
 			.attr( 'target', '_blank' )

@@ -290,10 +290,8 @@
 			if ( error.info === 'TitleBlacklist prevents this title from being created' ) {
 				// HACK Apparently the only reliable way to determine whether TitleBlacklist was involved
 				return new OO.ui.Error(
-					$( '<p>' ).html(
-						// HACK TitleBlacklist doesn't have a sensible message, this one is from UploadWizard
-						mw.message( 'api-error-blacklisted' ).parse()
-					),
+					// HACK TitleBlacklist doesn't have a sensible message, this one is from UploadWizard
+					$( '<p>' ).msg( 'api-error-blacklisted' ),
 					{ recoverable: false }
 				);
 			}
@@ -303,9 +301,7 @@
 				message = mw.message( 'api-error-unknownerror', JSON.stringify( stateDetails ) );
 			}
 			return new OO.ui.Error(
-				$( '<p>' ).html(
-					message.parse()
-				),
+				$( '<p>' ).append( message.parseDom() ),
 				{ recoverable: false }
 			);
 		}
@@ -358,10 +354,8 @@
 				);
 			} else {
 				return new OO.ui.Error(
-					$( '<p>' ).html(
-						// Let's get all the help we can if we can't pin point the error
-						mw.message( 'api-error-unknown-warning', JSON.stringify( stateDetails ) ).parse()
-					),
+					// Let's get all the help we can if we can't pin point the error
+					$( '<p>' ).msg( 'api-error-unknown-warning', JSON.stringify( stateDetails ) ),
 					{ recoverable: false }
 				);
 			}
