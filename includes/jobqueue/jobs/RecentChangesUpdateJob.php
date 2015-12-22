@@ -94,7 +94,7 @@ class RecentChangesUpdateJob extends Job {
 				$dbw->delete( 'recentchanges', array( 'rc_id' => $rcIds ), __METHOD__ );
 			}
 			// Commit in chunks to avoid slave lag
-			$dbw->commit( __METHOD__, 'flush' );
+			$this->flushTransactions( __METHOD__ );
 
 			if ( count( $rcIds ) === $batchSize ) {
 				// There might be more, so try waiting for slaves

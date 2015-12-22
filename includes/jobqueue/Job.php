@@ -290,6 +290,16 @@ abstract class Job implements IJobSpecification {
 	}
 
 	/**
+	 * Flush all active DB transactions
+	 *
+	 * @param string $method Caller name
+	 * @since 1.27
+	 */
+	protected function flushTransactions( $method ) {
+		wfGetLBFactory()->commitMasterChanges( $method );
+	}
+
+	/**
 	 * @return string
 	 */
 	public function toString() {

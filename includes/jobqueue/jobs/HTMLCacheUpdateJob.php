@@ -119,7 +119,7 @@ class HTMLCacheUpdateJob extends Job {
 		// Update page_touched (skipping pages already touched since the root job).
 		// Check $wgUpdateRowsPerQuery for sanity; batch jobs are sized by that already.
 		foreach ( array_chunk( $pageIds, $wgUpdateRowsPerQuery ) as $batch ) {
-			$dbw->commit( __METHOD__, 'flush' );
+			$this->flushTransactions( __METHOD__ );
 			wfWaitForSlaves();
 
 			$dbw->update( 'page',

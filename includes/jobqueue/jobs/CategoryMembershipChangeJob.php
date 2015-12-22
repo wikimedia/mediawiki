@@ -63,7 +63,7 @@ class CategoryMembershipChangeJob extends Job {
 		} );
 
 		// Sanity: clear any DB transaction snapshot
-		$dbw->commit( __METHOD__, 'flush' );
+		$this->flushTransactions( __METHOD__ );
 
 		$cutoffUnix = wfTimestamp( TS_UNIX, $this->params['revTimestamp'] );
 		// Using ENQUEUE_FUDGE_SEC handles jobs inserted out of revision order due to the delay
@@ -168,7 +168,7 @@ class CategoryMembershipChangeJob extends Job {
 			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
 			$catMembChange->triggerCategoryAddedNotification( $categoryTitle );
 			if ( $insertCount++ && ( $insertCount % $batchSize ) == 0 ) {
-				$dbw->commit( __METHOD__, 'flush' );
+				$this->flushTransactions( __METHOD__ );
 				wfWaitForSlaves();
 			}
 		}
@@ -177,7 +177,7 @@ class CategoryMembershipChangeJob extends Job {
 			$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryName );
 			$catMembChange->triggerCategoryRemovedNotification( $categoryTitle );
 			if ( $insertCount++ && ( $insertCount++ % $batchSize ) == 0 ) {
-				$dbw->commit( __METHOD__, 'flush' );
+				$this->flushTransactions( __METHOD__ );
 				wfWaitForSlaves();
 			}
 		}
