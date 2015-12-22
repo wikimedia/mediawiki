@@ -264,6 +264,90 @@ abstract class LBFactory {
 	}
 
 	/**
+	 * Waits for the slave DBs to catch up to the current master position
+	 *
+	 * Use this when updating very large numbers of rows, as in maintenance scripts,
+	 * to avoid causing too much lag. Of course, this is a no-op if there are no slaves.
+	 *
+	 * By default this waits on all DB clusters actually used in this request.
+	 * This makes sense when lag being waiting on is caused by the code that does this check.
+	 * In that case, setting "ifWritesSince" can avoid the overhead of waiting for clusters
+	 * that were not changed since the last wait check. To forcefully wait on a specific cluster
+	 * for a given wiki, use the 'wiki' parameter. To forcefully wait on an "external" cluster,
+	 * use the "cluster" parameter.
+	 *
+	 * Never call this function after a large DB write that is *still* in a transaction.
+	 * It only makes sense to call this after the possible lag inducing changes were committed.
+	 *
+	 * @param array $opts Optional fields that include:
+	 *   - wiki : wait on the load balancer DBs that handles the given wiki
+	 *   - cluster : wait on the given external load balancer DBs
+	 *   - timeout : Max wait time. Default: ~60 seconds
+	 *   - ifWritesSince: Only wait if writes were done since this UNIX timestamp
+	 * @throws DBReplicationWaitError If a timeout or error occured waiting on a DB cluster
+	 * @since 1.27
+	 */
+	public function waitForReplication( array $opts = array() ) {
+		$opts += array(
+			'wiki' => false,
+			'cluster' => false,
+			'timeout' => 60,
+			'ifWritesSince' => null
+		);
+
+		// Figure out which clusters need to be checked
+		/** @var LoadBalancer[] $lbs */
+		$lbs = array();
+		if ( $opts['cluster'] !== false ) {
+			$lbs[] = $this->getExternalLB( $opts['cluster'] );
+		} elseif ( $opts['wiki'] !== false ) {
+			$lbs[] = $this->getMainLB( $opts['wiki'] );
+		} else {
+			$this->forEachLB( function ( LoadBalancer $lb ) use ( &$lbs ) {
+				$lbs[] = $lb;
+			} );
+			if ( !$lbs ) {
+				return; // nothing actually used
+			}
+		}
+
+		// Get all the master positions of applicable DBs right now.
+		// This can be faster since waiting on one cluster reduces the
+		// time needed to wait on the next clusters.
+		$masterPositions = array_fill( 0, count( $lbs ), false );
+		foreach ( $lbs as $i => $lb ) {
+			if ( $lb->getServerCount() <= 1 ) {
+				// Bug 27975 - Don't try to wait for slaves if there are none
+				// Prevents permission error when getting master position
+				continue;
+			} elseif ( $opts['ifWritesSince']
+				&& $lb->lastMasterChangeTimestamp() < $opts['ifWritesSince']
+			) {
+				continue; // no writes since the last wait
+			}
+			$masterPositions[$i] = $lb->getMasterPos();
+		}
+
+		$failed = array();
+		foreach ( $lbs as $i => $lb ) {
+			if ( $masterPositions[$i] ) {
+				// The DBMS may not support getMasterPos() or the whole
+				// load balancer might be fake (e.g. $wgAllDBsAreLocalhost).
+				if ( !$lb->waitForAll( $masterPositions[$i], $opts['timeout'] ) ) {
+					$failed[] = $lb->getServerName( $lb->getWriterIndex() );
+				}
+			}
+		}
+
+		if ( $failed ) {
+			throw new DBReplicationWaitError(
+				"Could not wait for slaves to catch up to " .
+				implode( ', ', $failed )
+			);
+		}
+	}
+
+	/**
 	 * Disable the ChronologyProtector for all load balancers
 	 *
 	 * This can be called at the start of special API entry points
@@ -329,3 +413,8 @@ class DBAccessError extends MWException {
 			"This is not allowed." );
 	}
 }
+
+/**
+ * Exception class for replica DB wait timeouts
+ */
+class DBReplicationWaitError extends Exception {}
