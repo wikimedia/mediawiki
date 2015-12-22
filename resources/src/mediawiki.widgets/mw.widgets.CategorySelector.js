@@ -134,7 +134,7 @@
 	CSP.getNewMenuItems = function ( input ) {
 		var i,
 			promises = [],
-			deferred = new $.Deferred();
+			deferred = $.Deferred();
 
 		if ( $.trim( input ) === '' ) {
 			deferred.resolve( [] );
@@ -242,7 +242,7 @@
 	 * @return {jQuery.Promise} Resolves with an array of categories
 	 */
 	CSP.searchCategories = function ( input, searchType ) {
-		var deferred = new $.Deferred();
+		var deferred = $.Deferred();
 
 		switch ( searchType ) {
 			case CategorySelector.SearchType.OpenSearch:
