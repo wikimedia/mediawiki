@@ -137,9 +137,10 @@
 	} );
 
 	QUnit.test( 'getUrl', 12, function ( assert ) {
-		// Not part of startUp module
-		mw.config.set( 'wgArticlePath', '/wiki/$1' );
-		mw.config.set( 'wgPageName', 'Foobar' );
+		mw.config.set( {
+			wgArticlePath: '/wiki/$1',
+			wgPageName: 'Foobar'
+		} );
 
 		var href = mw.util.getUrl( 'Sandbox' );
 		assert.equal( href, '/wiki/Sandbox', 'simple title' );
@@ -181,8 +182,10 @@
 
 	QUnit.test( 'wikiScript', 4, function ( assert ) {
 		mw.config.set( {
-			wgScript: '/w/i.php', // customized wgScript for bug 39103
-			wgLoadScript: '/w/l.php', // customized wgLoadScript for bug 39103
+			// customized wgScript for T41103
+			wgScript: '/w/i.php',
+			// customized wgLoadScript for T41103
+			wgLoadScript: '/w/l.php',
 			wgScriptPath: '/w'
 		} );
 
