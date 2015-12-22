@@ -197,9 +197,18 @@
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getUser = function () {
-		var username = mw.config.get( 'wgUserName' );
-		// Do not localise 'User:', we don't know the language of target wiki
-		return '[[User:' + username + '|' + username + ']]';
+		var username, namespace;
+		// Do not localise, we don't know the language of target wiki
+		namespace = 'User';
+		username = mw.config.get( 'wgUserName' );
+		if ( !username ) {
+			// The user is not logged in locally. However, they might be logged in on the foreign wiki.
+			// We should record their username there. (If they're not logged in there either, this will
+			// record the IP address.) It's also possible that the user opened this dialog, got an error
+			// about not being logged in, logged in in another browser tab, then continued uploading.
+			username = '{{subst:REVISIONUSER}}';
+		}
+		return '[[' + namespace + ':' + username + '|' + username + ']]';
 	};
 
 	mw.ForeignStructuredUpload = ForeignStructuredUpload;
