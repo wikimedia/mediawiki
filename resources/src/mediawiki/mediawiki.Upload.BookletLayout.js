@@ -422,7 +422,7 @@
 		this.descriptionWidget = new OO.ui.TextInputWidget( {
 			indicator: 'required',
 			required: true,
-			validate: /.+/,
+			validate: /\S+/,
 			multiline: true,
 			autosize: true
 		} );
