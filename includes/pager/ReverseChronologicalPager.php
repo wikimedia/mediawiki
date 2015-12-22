@@ -29,6 +29,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
 	public $mYear;
 	public $mMonth;
+	public $mDay;
 
 	function getNavigationBar() {
 		if ( !$this->isNavigationBarShown() ) {
@@ -60,23 +61,29 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		return $this->mNavigationBar;
 	}
 
-	function getDateCond( $year, $month ) {
+	/**
+	 * Set and return the mOffset timestamp such that we can get all revisions with
+	 * a timestamp up to the specified parameters.
+	 * @param int $year Year up to which we want revisions. Default is current year.
+	 * @param int $month Month up to which we want revisions. Default is end of year.
+	 * @param int $day Day up to which we want revisions. Default is end of month.
+	 * @return string Timestamp
+	 */
+	function getDateCond( $year = -1, $month = -1, $day = -1 ) {
 		$year = intval( $year );
 		$month = intval( $month );
+		$day = intval( $day );
 
-		// Basic validity checks
+		// Basic validity checks for year and month
 		$this->mYear = $year > 0 ? $year : false;
 		$this->mMonth = ( $month > 0 && $month < 13 ) ? $month : false;
 
-		// Given an optional year and month, we need to generate a timestamp
+		// Given an optional year, month, and day, we need to generate a timestamp
 		// to use as "WHERE rev_timestamp <= result"
-		// Examples: year = 2006 equals < 20070101 (+000000)
-		// year=2005, month=1    equals < 20050201
-		// year=2005, month=12   equals < 20060101
-		if ( !$this->mYear && !$this->mMonth ) {
-			return;
-		}
-
+		// Examples: year = 2006      equals < 20070101 (+000000)
+		// year=2005, month=1         equals < 20050201
+		// year=2005, month=12        equals < 20060101
+		// year=2005, month=12, day=5 equals < 20051206
 		if ( $this->mYear ) {
 			$year = $this->mYear;
 		} else {
@@ -90,15 +97,36 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		}
 
 		if ( $this->mMonth ) {
-			$month = $this->mMonth + 1;
-			// For December, we want January 1 of the next year
+			$month = $this->mMonth;
+
+			// Day validity check after we have month and year checked
+			$this->mDay = checkdate( $month, $day, $year ) ? $day : false;
+
+			if ( $this->mDay ) {
+				// If we have a day we want the day immediately afterward
+				$day = $this->mDay + 1;
+
+				// Did we overflow the current month?
+				if ( !checkdate( $month, $day, $year ) ) {
+					$day = 1;
+					$month++;
+				}
+			} else {
+				// If no day, assume beginning of next month
+				$day = 1;
+				$month++;
+			}
+
+			// For December, we want January of the next year
 			if ( $month > 12 ) {
 				$month = 1;
 				$year++;
 			}
+
 		} else {
 			// No month implies we want up to the end of the year in question
 			$month = 1;
+			$day = 1;
 			$year++;
 		}
 
@@ -107,7 +135,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			$year = 2032;
 		}
 
-		$ymd = (int)sprintf( "%04d%02d01", $year, $month );
+		$ymd = (int)sprintf( "%04d%02d%02d", $year, $month, $day );
 
 		if ( $ymd > 20320101 ) {
 			$ymd = 20320101;
@@ -118,5 +146,6 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		$timestamp->setTimezone( $this->getConfig()->get( 'Localtimezone' ) );
 
 		$this->mOffset = $this->mDb->timestamp( $timestamp->getTimestamp() );
+		return $this->mOffset;
 	}
 }
