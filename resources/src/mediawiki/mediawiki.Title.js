@@ -12,6 +12,26 @@
 	 * Parse titles into an object structure. Note that when using the constructor
 	 * directly, passing invalid titles will result in an exception. Use #newFromText to use the
 	 * logic directly and get null for invalid titles which is easier to work with.
+	 */
+
+	/**
+	 * Constructor for Title objects.
+	 *
+	 * Note that in the constructor amd #newFromText method, `namespace` is the **default** namespace
+	 * only, and can be overridden by a namespace prefix in `title`. If you do not want this behavior,
+	 * use #makeTitle. Compare:
+	 *
+	 *     new mw.Title( 'Foo', NS_TEMPLATE ).getPrefixedText();                  // => 'Template:Foo'
+	 *     mw.Title.newFromText( 'Foo', NS_TEMPLATE ).getPrefixedText();          // => 'Template:Foo'
+	 *     mw.Title.makeTitle( NS_TEMPLATE, 'Foo' ).getPrefixedText();            // => 'Template:Foo'
+	 *
+	 *     new mw.Title( 'Category:Foo', NS_TEMPLATE ).getPrefixedText();         // => 'Category:Foo'
+	 *     mw.Title.newFromText( 'Category:Foo', NS_TEMPLATE ).getPrefixedText(); // => 'Category:Foo'
+	 *     mw.Title.makeTitle( NS_TEMPLATE, 'Category:Foo' ).getPrefixedText();   // => 'Template:Category:Foo'
+	 *
+	 *     new mw.Title( 'Template:Foo', NS_TEMPLATE ).getPrefixedText();         // => 'Template:Foo'
+	 *     mw.Title.newFromText( 'Template:Foo', NS_TEMPLATE ).getPrefixedText(); // => 'Template:Foo'
+	 *     mw.Title.makeTitle( NS_TEMPLATE, 'Template:Foo' ).getPrefixedText();   // => 'Template:Template:Foo'
 	 *
 	 * @constructor
 	 * @param {string} title Title of the page. If no second argument given,
@@ -116,6 +136,18 @@
 		return id;
 	},
 
+	/**
+	 * @private
+	 * @method getNamespacePrefix_
+	 * @param {number} namespace
+	 * @return {string}
+	 */
+	getNamespacePrefix = function ( namespace ) {
+		return namespace === NS_MAIN ?
+			'' :
+			( mw.config.get( 'wgFormattedNamespaces' )[ namespace ].replace( / /g, '_' ) + ':' );
+	},
+
 	rUnderscoreTrim = /^_+|_+$/g,
 
 	rSplit = /^(.+?)_*:_*(.*)$/,
@@ -212,7 +244,7 @@
 	],
 
 	/**
-	 * Internal helper for #constructor and #newFromtext.
+	 * Internal helper for #constructor and #newFromText.
 	 *
 	 * Based on Title.php#secureAndSplit
 	 *
@@ -452,6 +484,10 @@
 	/**
 	 * Constructor for Title objects with a null return instead of an exception for invalid titles.
 	 *
+	 * Note that `namespace` is the **default** namespace only, and can be overridden by a namespace
+	 * prefix in `title`. If you do not want this behavior, use #makeTitle. See #constructor for
+	 * details.
+	 *
 	 * @static
 	 * @param {string} title
 	 * @param {number} [namespace=NS_MAIN] Default namespace
@@ -470,6 +506,24 @@
 		t.fragment = parsed.fragment;
 
 		return t;
+	};
+
+	/**
+	 * Constructor for Title objects with predefined namespace.
+	 *
+	 * Unlike #newFromText or #constructor, this function doesn't allow the given `namespace` to be
+	 * overridden by a namespace prefix in `title`. See #constructor for details about this behavior.
+	 *
+	 * The single exception to this is when `namespace` is 0, indicating the main namespace. The
+	 * function behaves like #newFromText in that case.
+	 *
+	 * @static
+	 * @param {number} namespace Namespace to use for the title
+	 * @param {string} title
+	 * @return {mw.Title|null} A valid Title object or null if the title is invalid
+	 */
+	Title.makeTitle = function ( namespace, title ) {
+		return mw.Title.newFromText( getNamespacePrefix( namespace ) + title );
 	};
 
 	/**
@@ -761,9 +815,7 @@
 		 * @return {string}
 		 */
 		getNamespacePrefix: function () {
-			return this.namespace === NS_MAIN ?
-				'' :
-				( mw.config.get( 'wgFormattedNamespaces' )[ this.namespace ].replace( / /g, '_' ) + ':' );
+			return getNamespacePrefix( this.namespace );
 		},
 
 		/**
