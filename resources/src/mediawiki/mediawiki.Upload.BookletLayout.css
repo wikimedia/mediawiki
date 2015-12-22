@@ -1,0 +1,10 @@
+.upload-booklet-progressbar {
+	margin: -1.5em;
+	margin-bottom: 1em;
+	border: none;
+	height: 0.3em;
+}
+
+.upload-booklet-progressbar .oo-ui-progressBarWidget-bar {
+	background: #347bff;
+}
