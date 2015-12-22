@@ -128,7 +128,7 @@ class SpecialPreferences extends SpecialPage {
 			throw new PermissionsError( 'editmyoptions' );
 		}
 
-		$user = $this->getUser();
+		$user = $this->getUser()->getInstanceForUpdate();
 		$user->resetOptions( 'all', $this->getContext() );
 		$user->saveSettings();
 
