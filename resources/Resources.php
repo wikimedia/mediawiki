@@ -1632,7 +1632,7 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.page.patrol.ajax' => array(
-		'scripts' => 'resources/src/mediawiki/page/patrol.js',
+		'scripts' => 'resources/src/mediawiki/page/patrol.ajax.js',
 		'dependencies' => array(
 			'mediawiki.page.startup',
 			'mediawiki.api',
