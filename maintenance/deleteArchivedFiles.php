@@ -47,7 +47,7 @@ class DeleteArchivedFiles extends Maintenance {
 
 		# Data should come off the master, wrapped in a transaction
 		$dbw = $this->getDB( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$this->beginTransaction( $dbw, __METHOD__ );
 		$repo = RepoGroup::singleton()->getLocalRepo();
 
 		# Get "active" revisions from the filearchive table
@@ -113,7 +113,7 @@ class DeleteArchivedFiles extends Maintenance {
 			$dbw->delete( 'filearchive', array( 'fa_id' => $id ), __METHOD__ );
 		}
 
-		$dbw->commit( __METHOD__ );
+		$this->commitTransaction( $dbw, __METHOD__ );
 		$this->output( "Done! [$count file(s)]\n" );
 	}
 }

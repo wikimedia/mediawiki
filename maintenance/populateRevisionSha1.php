@@ -95,13 +95,13 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 				AND $idCol IS NOT NULL AND {$prefix}_sha1 = ''";
 			$res = $db->select( $table, '*', $cond, __METHOD__ );
 
-			$db->begin( __METHOD__ );
+			$this->beginTransaction( $db, __METHOD__ );
 			foreach ( $res as $row ) {
 				if ( $this->upgradeRow( $row, $table, $idCol, $prefix ) ) {
 					$count++;
 				}
 			}
-			$db->commit( __METHOD__ );
+			$this->commitTransaction( $db, __METHOD__ );
 
 			$blockStart += $this->mBatchSize;
 			$blockEnd += $this->mBatchSize;
@@ -121,20 +121,20 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			array( 'ar_rev_id IS NULL', 'ar_sha1' => '' ), __METHOD__ );
 
 		$updateSize = 0;
-		$db->begin( __METHOD__ );
+		$this->beginTransaction( $db, __METHOD__ );
 		foreach ( $res as $row ) {
 			if ( $this->upgradeLegacyArchiveRow( $row ) ) {
 				++$count;
 			}
 			if ( ++$updateSize >= 100 ) {
 				$updateSize = 0;
-				$db->commit( __METHOD__ );
+				$this->commitTransaction( $db, __METHOD__ );
 				$this->output( "Commited row with ar_timestamp={$row->ar_timestamp}\n" );
 				wfWaitForSlaves();
-				$db->begin( __METHOD__ );
+				$this->beginTransaction( $db, __METHOD__ );
 			}
 		}
-		$db->commit( __METHOD__ );
+		$this->commitTransaction( $db, __METHOD__ );
 
 		return $count;
 	}

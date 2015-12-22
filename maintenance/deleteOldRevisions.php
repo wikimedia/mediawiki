@@ -46,7 +46,7 @@ class DeleteOldRevisions extends Maintenance {
 
 		# Data should come off the master, wrapped in a transaction
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$this->beginTransaction( $dbw, __METHOD__ );
 
 		$pageConds = array();
 		$revConds = array();
@@ -92,7 +92,7 @@ class DeleteOldRevisions extends Maintenance {
 
 		# This bit's done
 		# Purge redundant text records
-		$dbw->commit( __METHOD__ );
+		$this->commitTransaction( $dbw, __METHOD__ );
 		if ( $delete ) {
 			$this->purgeRedundantText( true );
 		}

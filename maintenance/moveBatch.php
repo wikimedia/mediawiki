@@ -106,13 +106,13 @@ class MoveBatch extends Maintenance {
 			}
 
 			$this->output( $source->getPrefixedText() . ' --> ' . $dest->getPrefixedText() );
-			$dbw->begin( __METHOD__ );
+			$this->beginTransaction( $dbw, __METHOD__ );
 			$mp = new MovePage( $source, $dest );
 			$status = $mp->move( $wgUser, $reason, !$noredirects );
 			if ( !$status->isOK() ) {
 				$this->output( "\nFAILED: " . $status->getWikiText() );
 			}
-			$dbw->commit( __METHOD__ );
+			$this->commitTransaction( $dbw, __METHOD__ );
 			$this->output( "\n" );
 
 			if ( $interval ) {

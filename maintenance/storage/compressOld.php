@@ -359,7 +359,7 @@ class CompressOld extends Maintenance {
 
 				$chunk = new ConcatenatedGzipHistoryBlob();
 				$stubs = array();
-				$dbw->begin( __METHOD__ );
+				$this->beginTransaction( $dbw, __METHOD__ );
 				$usedChunk = false;
 				$primaryOldid = $revs[$i]->rev_text_id;
 
@@ -463,7 +463,7 @@ class CompressOld extends Maintenance {
 				}
 				# Done, next
 				$this->output( "/" );
-				$dbw->commit( __METHOD__ );
+				$this->commitTransaction( $dbw, __METHOD__ );
 				$i += $thisChunkSize;
 				wfWaitForSlaves();
 			}
