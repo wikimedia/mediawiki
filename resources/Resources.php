@@ -1632,7 +1632,7 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.page.patrol.ajax' => array(
-		'scripts' => 'resources/src/mediawiki/page/patrol.ajax.js',
+		'scripts' => 'resources/src/mediawiki/page/patrol.js',
 		'dependencies' => array(
 			'mediawiki.page.startup',
 			'mediawiki.api',
@@ -1711,6 +1711,14 @@ return array(
 	'mediawiki.special.changeslist.visitedstatus' => array(
 		'position' => 'top',
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.visitedstatus.js',
+	),
+	'mediawiki.special.contributions' => array(
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.contributions.js',
+		'position' => 'top',
+		'dependencies' => array(
+			'oojs-ui',
+			'mediawiki.widgets.DateInputWidget',
+		),
 	),
 	'mediawiki.special.edittags' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.edittags.js',

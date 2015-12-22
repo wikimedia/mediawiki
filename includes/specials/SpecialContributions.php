@@ -38,6 +38,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->outputHeader();
 		$out = $this->getOutput();
 		$out->addModuleStyles( 'mediawiki.special' );
+		$out->addModules( 'mediawiki.special.contributions' );
 		$this->addHelpLink( 'Help:User contributions' );
 
 		$this->opts = array();
@@ -125,13 +126,15 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 
 		$skip = $request->getText( 'offset' ) || $request->getText( 'dir' ) == 'prev';
-		# Offset overrides year/month selection
+		# Offset overrides year/month/day selection
 		if ( $skip ) {
 			$this->opts['year'] = '';
 			$this->opts['month'] = '';
+			$this->opts['day'] = '';
 		} else {
 			$this->opts['year'] = $request->getIntOrNull( 'year' );
 			$this->opts['month'] = $request->getIntOrNull( 'month' );
+			$this->opts['day'] = $request->getIntOrNull( 'day' );
 		}
 
 		$feedType = $request->getVal( 'feed' );
@@ -155,13 +158,16 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $this->opts['namespace'] !== '' ) {
 			$feedParams['namespace'] = $this->opts['namespace'];
 		}
-		// Don't use year and month for the feed URL, but pass them on if
+		// Don't use year, month, and day for the feed URL, but pass them on if
 		// we redirect to API (if $feedType is specified)
 		if ( $feedType && $this->opts['year'] !== null ) {
 			$feedParams['year'] = $this->opts['year'];
 		}
 		if ( $feedType && $this->opts['month'] !== null ) {
 			$feedParams['month'] = $this->opts['month'];
+		}
+		if ( $feedType && $this->opts['day'] !== null ) {
+			$feedParams['day'] = $this->opts['day'];
 		}
 
 		if ( $feedType ) {
@@ -189,6 +195,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				'tagfilter' => $this->opts['tagfilter'],
 				'year' => $this->opts['year'],
 				'month' => $this->opts['month'],
+				'day' => $this->opts['day'],
 				'deletedOnly' => $this->opts['deletedOnly'],
 				'topOnly' => $this->opts['topOnly'],
 				'newOnly' => $this->opts['newOnly'],
@@ -429,6 +436,10 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['month'] = '';
 		}
 
+		if ( !isset( $this->opts['day'] ) ) {
+			$this->opts['day'] = '';
+		}
+
 		if ( $this->opts['contribs'] == 'newbie' ) {
 			$this->opts['target'] = '';
 		}
@@ -463,6 +474,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			'contribs',
 			'year',
 			'month',
+			'day',
 			'topOnly',
 			'newOnly',
 			'associated',
@@ -622,7 +634,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		$dateSelectionAndSubmit = Xml::tags( 'td', array( 'colspan' => 2 ),
 			Xml::dateMenu(
 				$this->opts['year'] === '' ? MWTimestamp::getInstance()->format( 'Y' ) : $this->opts['year'],
-				$this->opts['month']
+				$this->opts['month'],
+				$this->opts['day']
 			) . ' ' .
 				Html::submitButton(
 					$this->msg( 'sp-contributions-submit' )->text(),
@@ -701,7 +714,8 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		$year = isset( $options['year'] ) ? $options['year'] : false;
 		$month = isset( $options['month'] ) ? $options['month'] : false;
-		$this->getDateCond( $year, $month );
+		$day = isset( $options['day'] ) ? $options['day'] : false;
+		$this->getDateCond( $year, $month, $day );
 
 		// Most of this code will use the 'contributions' group DB, which can map to slaves
 		// with extra user based indexes or partioning by user. The additional metadata

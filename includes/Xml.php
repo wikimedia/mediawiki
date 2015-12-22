@@ -162,9 +162,10 @@ class Xml {
 	/**
 	 * @param int $year
 	 * @param int $month
+	 * @param int $day
 	 * @return string Formatted HTML
 	 */
-	public static function dateMenu( $year, $month ) {
+	public static function dateMenu( $year, $month, $day = 1 ) {
 		# Offset overrides year/month selection
 		if ( $month && $month !== -1 ) {
 			$encMonth = intval( $month );
@@ -188,7 +189,9 @@ class Xml {
 		return self::label( wfMessage( 'year' )->text(), 'year' ) . ' ' .
 			Html::input( 'year', $encYear, 'number', $inputAttribs ) . ' ' .
 			self::label( wfMessage( 'month' )->text(), 'month' ) . ' ' .
-			self::monthSelector( $encMonth, -1 );
+			self::monthSelector( $encMonth, -1 ) . ' ' .
+			self::label( wfMessage( 'month' ), 'day' ) . ' ' .
+			Html::input( 'day', $day, 'number', array( 'id' => 'day' ) );
 	}
 
 	/**
