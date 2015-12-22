@@ -768,16 +768,16 @@ class Title {
 	 * @param string $title The DB key form the title
 	 * @param string $fragment The link fragment (after the "#")
 	 * @param string $interwiki The interwiki prefix
-	 * @param bool $canoncialNamespace If true, use the canonical name for
+	 * @param bool $canonicalNamespace If true, use the canonical name for
 	 *   $ns instead of the localized version.
 	 * @return string The prefixed form of the title
 	 */
 	public static function makeName( $ns, $title, $fragment = '', $interwiki = '',
-		$canoncialNamespace = false
+		$canonicalNamespace = false
 	) {
 		global $wgContLang;
 
-		if ( $canoncialNamespace ) {
+		if ( $canonicalNamespace ) {
 			$namespace = MWNamespace::getCanonicalName( $ns );
 		} else {
 			$namespace = $wgContLang->getNsText( $ns );
