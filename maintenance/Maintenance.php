@@ -105,7 +105,7 @@ abstract class Maintenance {
 
 	/**
 	 * Used by getDB() / setDB()
-	 * @var DatabaseBase
+	 * @var IDatabase
 	 */
 	private $mDb = null;
 
@@ -1071,7 +1071,7 @@ abstract class Maintenance {
 	public function purgeRedundantText( $delete = true ) {
 		# Data should come off the master, wrapped in a transaction
 		$dbw = $this->getDB( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$this->beginTransaction( $dbw, __METHOD__ );
 
 		# Get "active" text records from the revisions table
 		$this->output( 'Searching for active text records in revisions table...' );
@@ -1114,7 +1114,7 @@ abstract class Maintenance {
 		}
 
 		# Done
-		$dbw->commit( __METHOD__ );
+		$this->commitTransaction( $dbw, __METHOD__ );
 	}
 
 	/**
@@ -1130,7 +1130,10 @@ abstract class Maintenance {
 	 * If not set, wfGetDB() will be used.
 	 * This function has the same parameters as wfGetDB()
 	 *
-	 * @return DatabaseBase
+	 * @param integer $db DB index (DB_SLAVE/DB_MASTER)
+	 * @param array $groups; default: empty array
+	 * @param string|bool $wiki; default: current wiki
+	 * @return IDatabase
 	 */
 	protected function getDB( $db, $groups = array(), $wiki = false ) {
 		if ( is_null( $this->mDb ) ) {
@@ -1143,10 +1146,52 @@ abstract class Maintenance {
 	/**
 	 * Sets database object to be returned by getDB().
 	 *
-	 * @param DatabaseBase $db Database object to be used
+	 * @param IDatabase $db Database object to be used
 	 */
-	public function setDB( $db ) {
+	public function setDB( IDatabase $db ) {
 		$this->mDb = $db;
+	}
+
+	/**
+	 * Begin a transcation on a DB
+	 *
+	 * This method makes it clear that begin() is called from a maintenance script,
+	 * which has outermost scope. This is safe, unlike $dbw->begin() called in other places.
+	 *
+	 * @param IDatabase $dbw
+	 * @param string $fname Caller name
+	 * @since 1.27
+	 */
+	protected function beginTransaction( IDatabase $dbw, $fname ) {
+		$dbw->begin( $fname );
+	}
+
+	/**
+	 * Commit a transcation on a DB
+	 *
+	 * This method makes it clear that commit() is called from a maintenance script,
+	 * which has outermost scope. This is safe, unlike $dbw->commit() called in other places.
+	 *
+	 * @param IDatabase $dbw
+	 * @param string $fname Caller name
+	 * @since 1.27
+	 */
+	protected function commitTransaction( IDatabase $dbw, $fname ) {
+		$dbw->commit( $fname );
+	}
+
+	/**
+	 * Rollback a transcation on a DB
+	 *
+	 * This method makes it clear that rollback() is called from a maintenance script,
+	 * which has outermost scope. This is safe, unlike $dbw->rollback() called in other places.
+	 *
+	 * @param IDatabase $dbw
+	 * @param string $fname Caller name
+	 * @since 1.27
+	 */
+	protected function rollbackTransaction( IDatabase $dbw, $fname ) {
+		$dbw->rollback( $fname );
 	}
 
 	/**

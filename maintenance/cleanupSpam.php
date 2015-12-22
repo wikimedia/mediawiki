@@ -121,7 +121,7 @@ class CleanupSpam extends Maintenance {
 			$this->output( "False match\n" );
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin( __METHOD__ );
+			$this->beginTransaction( $dbw, __METHOD__ );
 			$page = WikiPage::factory( $title );
 			if ( $rev ) {
 				// Revert to this revision
@@ -151,7 +151,7 @@ class CleanupSpam extends Maintenance {
 					wfMessage( 'spam_blanking', $domain )->inContentLanguage()->text()
 				);
 			}
-			$dbw->commit( __METHOD__ );
+			$this->commitTransaction( $dbw, __METHOD__ );
 		}
 	}
 }

@@ -141,7 +141,7 @@ TEXT;
 			$this->output( " processing..." );
 
 			if ( !$dryRun ) {
-				$dbw->begin( __METHOD__ );
+				$this->beginTransaction( $dbw, __METHOD__ );
 			}
 			foreach ( $res as $row ) {
 				$title = Title::newFromRow( $row );
@@ -193,7 +193,7 @@ TEXT;
 				}
 			}
 			if ( !$dryRun ) {
-				$dbw->commit( __METHOD__ );
+				$this->commitTransaction( $dbw, __METHOD__ );
 			}
 
 			$count += $res->numRows();

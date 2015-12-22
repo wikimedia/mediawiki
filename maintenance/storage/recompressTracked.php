@@ -559,7 +559,7 @@ class RecompressTracked {
 			exit( 1 );
 		}
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$this->beginTransaction( $dbw, __METHOD__ );
 		$dbw->update( 'text',
 			array( // set
 				'old_text' => $url,
@@ -575,7 +575,7 @@ class RecompressTracked {
 			array( 'bt_text_id' => $textId ),
 			__METHOD__
 		);
-		$dbw->commit( __METHOD__ );
+		$this->commitTransaction( $dbw, __METHOD__ );
 	}
 
 	/**
@@ -766,7 +766,7 @@ class CgzCopyTransaction {
 		 * We do a locking read to prevent closer-run race conditions.
 		 */
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$this->beginTransaction( $dbw, __METHOD__ );
 		$res = $dbw->select( 'blob_tracking',
 			array( 'bt_text_id', 'bt_moved' ),
 			array( 'bt_text_id' => array_keys( $this->referrers ) ),
@@ -820,7 +820,7 @@ class CgzCopyTransaction {
 		$targetDB->commit( __METHOD__ );
 		// Critical section here: interruption at this point causes blob duplication
 		// Reversing the order of the commits would cause data loss instead
-		$dbw->commit( __METHOD__ );
+		$this->commitTransaction( $dbw, __METHOD__ );
 
 		// Write the new URLs to the text table and set the moved flag
 		if ( !$this->parent->copyOnly ) {

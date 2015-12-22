@@ -167,7 +167,7 @@ class ImageCleanup extends TableCleanup {
 		} else {
 			$this->output( "renaming $path to $finalPath\n" );
 			// @todo FIXME: Should this use File::move()?
-			$db->begin( __METHOD__ );
+			$this->beginTransaction( $db, __METHOD__ );
 			$db->update( 'image',
 				array( 'img_name' => $final ),
 				array( 'img_name' => $orig ),
@@ -184,16 +184,16 @@ class ImageCleanup extends TableCleanup {
 			if ( !file_exists( $dir ) ) {
 				if ( !wfMkdirParents( $dir, null, __METHOD__ ) ) {
 					$this->output( "RENAME FAILED, COULD NOT CREATE $dir" );
-					$db->rollback( __METHOD__ );
+					$this->rollbackTransaction( $db, __METHOD__ );
 
 					return;
 				}
 			}
 			if ( rename( $path, $finalPath ) ) {
-				$db->commit( __METHOD__ );
+				$this->commitTransaction( $db, __METHOD__ );
 			} else {
 				$this->error( "RENAME FAILED" );
-				$db->rollback( __METHOD__ );
+				$this->rollbackTransaction( $db, __METHOD__ );
 			}
 		}
 	}

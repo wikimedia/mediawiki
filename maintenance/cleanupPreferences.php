@@ -34,8 +34,8 @@ class CleanupPreferences extends Maintenance {
 	public function execute() {
 		global $wgHiddenPrefs;
 
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$dbw = $this->getDB( DB_MASTER );
+		$this->beginTransaction( $dbw, __METHOD__ );
 		foreach ( $wgHiddenPrefs as $item ) {
 			$dbw->delete(
 				'user_properties',
@@ -43,7 +43,7 @@ class CleanupPreferences extends Maintenance {
 				__METHOD__
 			);
 		};
-		$dbw->commit( __METHOD__ );
+		$this->commitTransaction( $dbw, __METHOD__ );
 		$this->output( "Finished!\n" );
 	}
 }
