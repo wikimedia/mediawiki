@@ -1021,14 +1021,15 @@ class LoadBalancer {
 
 	/**
 	 * Commit transactions on all open connections
+	 * @param string $fname Caller name
 	 */
-	public function commitAll() {
+	public function commitAll( $fname = __METHOD__ ) {
 		foreach ( $this->mConns as $conns2 ) {
 			foreach ( $conns2 as $conns3 ) {
 				/** @var DatabaseBase[] $conns3 */
 				foreach ( $conns3 as $conn ) {
 					if ( $conn->trxLevel() ) {
-						$conn->commit( __METHOD__, 'flush' );
+						$conn->commit( $fname, 'flush' );
 					}
 				}
 			}
@@ -1036,9 +1037,10 @@ class LoadBalancer {
 	}
 
 	/**
-	 *  Issue COMMIT only on master, only if queries were done on connection
+	 * Issue COMMIT only on master, only if queries were done on connection
+	 * @param string $fname Caller name
 	 */
-	public function commitMasterChanges() {
+	public function commitMasterChanges( $fname = __METHOD__ ) {
 		$masterIndex = $this->getWriterIndex();
 		foreach ( $this->mConns as $conns2 ) {
 			if ( empty( $conns2[$masterIndex] ) ) {
@@ -1047,7 +1049,7 @@ class LoadBalancer {
 			/** @var DatabaseBase $conn */
 			foreach ( $conns2[$masterIndex] as $conn ) {
 				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
-					$conn->commit( __METHOD__, 'flush' );
+					$conn->commit( $fname, 'flush' );
 				}
 			}
 		}
@@ -1055,9 +1057,11 @@ class LoadBalancer {
 
 	/**
 	 * Issue ROLLBACK only on master, only if queries were done on connection
+	 * @param string $fname Caller name
+	 * @throws DBExpectedError
 	 * @since 1.23
 	 */
-	public function rollbackMasterChanges() {
+	public function rollbackMasterChanges( $fname = __METHOD__ ) {
 		$failedServers = array();
 
 		$masterIndex = $this->getWriterIndex();
@@ -1069,7 +1073,7 @@ class LoadBalancer {
 			foreach ( $conns2[$masterIndex] as $conn ) {
 				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
 					try {
-						$conn->rollback( __METHOD__, 'flush' );
+						$conn->rollback( $fname, 'flush' );
 					} catch ( DBError $e ) {
 						MWExceptionHandler::logException( $e );
 						$failedServers[] = $conn->getServer();
