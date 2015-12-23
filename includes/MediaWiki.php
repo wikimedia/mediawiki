@@ -554,7 +554,7 @@ class MediaWiki {
 			} );
 		} );
 		// Commit all changes
-		$factory->commitMasterChanges();
+		$factory->commitMasterChanges( __METHOD__ );
 		// Record ChronologyProtector positions
 		$factory->shutdown();
 		wfDebug( __METHOD__ . ': all transactions committed' );
@@ -741,7 +741,7 @@ class MediaWiki {
 	 */
 	public function restInPeace( $mode = 'fast' ) {
 		// Assure deferred updates are not in the main transaction
-		wfGetLBFactory()->commitMasterChanges();
+		wfGetLBFactory()->commitMasterChanges( __METHOD__ );
 
 		// Ignore things like master queries/connections on GET requests
 		// as long as they are in deferred updates (which catch errors).
@@ -764,7 +764,7 @@ class MediaWiki {
 
 		// Commit and close up!
 		$factory = wfGetLBFactory();
-		$factory->commitMasterChanges();
+		$factory->commitMasterChanges( __METHOD__ );
 		$factory->shutdown( LBFactory::SHUTDOWN_NO_CHRONPROT );
 
 		wfDebug( "Request ended normally\n" );
