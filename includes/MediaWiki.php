@@ -379,22 +379,25 @@ class MediaWiki {
 	 * Initialize the main Article object for "standard" actions (view, etc)
 	 * Create an Article object for the page, following redirects if needed.
 	 *
-	 * @return mixed An Article, or a string to redirect to another URL
+	 * @return Article|string An Article, or a string to redirect to another URL
 	 */
 	private function initializeArticle() {
-
 		$title = $this->context->getTitle();
 		if ( $this->context->canUseWikiPage() ) {
 			// Try to use request context wiki page, as there
 			// is already data from db saved in per process
 			// cache there from this->getAction() call.
 			$page = $this->context->getWikiPage();
-			$article = Article::newFromWikiPage( $page, $this->context );
 		} else {
 			// This case should not happen, but just in case.
-			$article = Article::newFromTitle( $title, $this->context );
-			$this->context->setWikiPage( $article->getPage() );
+			// @TODO: remove this or use an exception
+			$page = WikiPage::factory( $title );
+			$this->context->setWikiPage( $page );
+			wfWarn( "RequestContext::canUseWikiPage() returned false" );
 		}
+
+		// Make GUI wrapper for the WikiPage
+		$article = Article::newFromWikiPage( $page, $this->context );
 
 		// Skip some unnecessary code if the content model doesn't support redirects
 		if ( !ContentHandler::getForTitle( $title )->supportsRedirects() ) {
@@ -406,7 +409,7 @@ class MediaWiki {
 		// Namespace might change when using redirects
 		// Check for redirects ...
 		$action = $request->getVal( 'action', 'view' );
-		$file = ( $title->getNamespace() == NS_FILE ) ? $article->getFile() : null;
+		$file = ( $page instanceof WikiFilePage ) ? $page->getFile() : null;
 		if ( ( $action == 'view' || $action == 'render' ) // ... for actions that show content
 			&& !$request->getVal( 'oldid' ) // ... and are not old revisions
 			&& !$request->getVal( 'diff' ) // ... and not when showing diff
@@ -422,9 +425,9 @@ class MediaWiki {
 
 			// Follow redirects only for... redirects.
 			// If $target is set, then a hook wanted to redirect.
-			if ( !$ignoreRedirect && ( $target || $article->isRedirect() ) ) {
+			if ( !$ignoreRedirect && ( $target || $page->isRedirect() ) ) {
 				// Is the target already set by an extension?
-				$target = $target ? $target : $article->followRedirect();
+				$target = $target ? $target : $page->followRedirect();
 				if ( is_string( $target ) ) {
 					if ( !$this->config->get( 'DisableHardRedirects' ) ) {
 						// we'll need to redirect
@@ -433,16 +436,19 @@ class MediaWiki {
 				}
 				if ( is_object( $target ) ) {
 					// Rewrite environment to redirected article
-					$rarticle = Article::newFromTitle( $target, $this->context );
-					$rarticle->loadPageData();
-					if ( $rarticle->exists() || ( is_object( $file ) && !$file->isLocal() ) ) {
+					$rpage = WikiPage::factory( $target );
+					$rpage->loadPageData();
+					if ( $rpage->exists() || ( is_object( $file ) && !$file->isLocal() ) ) {
+						$rarticle = Article::newFromWikiPage( $rpage, $this->context );
 						$rarticle->setRedirectedFrom( $title );
+
 						$article = $rarticle;
 						$this->context->setTitle( $target );
 						$this->context->setWikiPage( $article->getPage() );
 					}
 				}
 			} else {
+				// Article may have been changed by hook
 				$this->context->setTitle( $article->getTitle() );
 				$this->context->setWikiPage( $article->getPage() );
 			}
