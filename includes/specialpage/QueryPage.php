@@ -325,25 +325,39 @@ abstract class QueryPage extends SpecialPage {
 						$value = 0;
 					}
 
-					$vals[] = array( 'qc_type' => $this->getName(),
-							'qc_namespace' => $row->namespace,
-							'qc_title' => $row->title,
-							'qc_value' => $value );
+					$vals[] = array(
+						'qc_type' => $this->getName(),
+						'qc_namespace' => $row->namespace,
+						'qc_title' => $row->title,
+						'qc_value' => $value
+					);
 				}
 
-				$dbw->startAtomic( __METHOD__ );
-				# Clear out any old cached data
-				$dbw->delete( 'querycache', array( 'qc_type' => $this->getName() ), $fname );
-				# Save results into the querycache table on the master
-				if ( count( $vals ) ) {
-					$dbw->insert( 'querycache', $vals, __METHOD__ );
-				}
-				# Update the querycache_info record for the page
-				$dbw->delete( 'querycache_info', array( 'qci_type' => $this->getName() ), $fname );
-				$dbw->insert( 'querycache_info',
-					array( 'qci_type' => $this->getName(), 'qci_timestamp' => $dbw->timestamp() ),
-					$fname );
-				$dbw->endAtomic( __METHOD__ );
+				$that = $this;
+				$dbw->doAtomicSection(
+					__METHOD__,
+					function ( IDatabase $dbw, $fname ) use ( $that, $vals ) {
+						# Clear out any old cached data
+						$dbw->delete( 'querycache',
+							array( 'qc_type' => $that->getName() ),
+							$fname
+						);
+						# Save results into the querycache table on the master
+						if ( count( $vals ) ) {
+							$dbw->insert( 'querycache', $vals, $fname );
+						}
+						# Update the querycache_info record for the page
+						$dbw->delete( 'querycache_info',
+							array( 'qci_type' => $that->getName() ),
+							$fname
+						);
+						$dbw->insert( 'querycache_info',
+							array( 'qci_type' => $that->getName(),
+								'qci_timestamp' => $dbw->timestamp() ),
+							$fname
+						);
+					}
+				);
 			}
 		} catch ( DBError $e ) {
 			if ( !$ignoreErrors ) {
