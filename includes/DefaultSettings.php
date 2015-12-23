@@ -2609,7 +2609,14 @@ $wgCdnMaxageLagged = 30;
 /**
  * If set, any SquidPurge call on a URL or URLs will send a second purge no less than
  * this many seconds later via the job queue. This requires delayed job support.
- * This should be safely higher than the 'max lag' value in $wgLBFactoryConf.
+ * This should be safely higher than the 'max lag' value in $wgLBFactoryConf, so that
+ * slave lag does not cause page to be stuck in stales states in CDN.
+ *
+ * This also fixes race conditions in two-tiered CDN setups (e.g. cdn2 => cdn1 => MediaWiki).
+ * If a purge for a URL reaches cdn2 before cdn1 and a request reaches cdn2 for that URL,
+ * it will populate the response from the stale cdn1 value. When cdn1 gets the purge, cdn2
+ * will still be stale. If the rebound purge delay is safely higher than the time to relay
+ * a purge to all nodes, then the rebound puge will clear cdn2 after cdn1 was cleared.
  *
  * @since 1.27
  */
