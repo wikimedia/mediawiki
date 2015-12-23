@@ -139,6 +139,8 @@ class MediaStatisticsPage extends QueryPage {
 		}
 		if ( $prevMediaType !== null ) {
 			$this->outputTableEnd();
+			// add total size of all files
+			$this->outputMediaType( 'total' );
 			$this->getOutput()->addWikiText(
 				$this->msg( 'mediastatistics-allbytes' )
 					->numParams( $this->totalSize )
