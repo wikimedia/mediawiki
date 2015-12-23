@@ -402,6 +402,6 @@ class LBFactoryMulti extends LBFactory {
 		if ( !( $flags & self::SHUTDOWN_NO_CHRONPROT ) ) {
 			$this->shutdownChronologyProtector( $this->chronProt );
 		}
-		$this->commitMasterChanges(); // sanity
+		$this->commitMasterChanges( __METHOD__ ); // sanity
 	}
 }

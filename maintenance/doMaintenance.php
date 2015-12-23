@@ -113,5 +113,5 @@ wfLogProfilingData();
 
 // Commit and close up!
 $factory = wfGetLBFactory();
-$factory->commitMasterChanges();
+$factory->commitMasterChanges( 'doMaintenance' );
 $factory->shutdown();

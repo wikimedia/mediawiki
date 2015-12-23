@@ -126,7 +126,7 @@ class JobRunner implements LoggerAwareInterface {
 		$group = JobQueueGroup::singleton();
 
 		// Flush any pending DB writes for sanity
-		wfGetLBFactory()->commitAll();
+		wfGetLBFactory()->commitAll( __METHOD__ );
 
 		// Some jobs types should not run until a certain timestamp
 		$backoffs = array(); // map of (type => UNIX expiry)
@@ -192,7 +192,7 @@ class JobRunner implements LoggerAwareInterface {
 				// Commit all outstanding connections that are in a transaction
 				// to get a fresh repeatable read snapshot on every connection.
 				// Note that jobs are still responsible for handling slave lag.
-				wfGetLBFactory()->commitAll();
+				wfGetLBFactory()->commitAll( __METHOD__ );
 				// Clear out title cache data from prior snapshots
 				LinkCache::singleton()->clear();
 				$timeMs = intval( ( microtime( true ) - $jobStartTime ) * 1000 );
@@ -464,7 +464,7 @@ class JobRunner implements LoggerAwareInterface {
 		) {
 			// Writes are all to foreign DBs, named locks don't form queues,
 			// or $wgJobSerialCommitThreshold is not reached; commit changes now
-			wfGetLBFactory()->commitMasterChanges();
+			wfGetLBFactory()->commitMasterChanges( __METHOD__ );
 			return;
 		}
 
@@ -496,7 +496,7 @@ class JobRunner implements LoggerAwareInterface {
 		} );
 
 		// Actually commit the DB master changes
-		wfGetLBFactory()->commitMasterChanges();
+		wfGetLBFactory()->commitMasterChanges( __METHOD__ );
 
 		// Release the lock
 		$dbwSerial->unlock( 'jobrunner-serial-commit', __METHOD__ );

@@ -149,7 +149,7 @@ class DeferredUpdates {
 			foreach ( $otherUpdates as $update ) {
 				try {
 					$update->doUpdate();
-					wfGetLBFactory()->commitMasterChanges();
+					wfGetLBFactory()->commitMasterChanges( __METHOD__ );
 				} catch ( Exception $e ) {
 					// We don't want exceptions thrown during deferred updates to
 					// be reported to the user since the output is already sent
@@ -158,7 +158,7 @@ class DeferredUpdates {
 					}
 					// Make sure incomplete transactions are not committed and end any
 					// open atomic sections so that other DB updates have a chance to run
-					wfGetLBFactory()->rollbackMasterChanges();
+					wfGetLBFactory()->rollbackMasterChanges( __METHOD__ );
 				}
 			}
 

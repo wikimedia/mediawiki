@@ -143,7 +143,7 @@ class MWExceptionHandler {
 				self::getLogMessage( $e ),
 				self::getLogContext( $e )
 			);
-			$factory->rollbackMasterChanges();
+			$factory->rollbackMasterChanges( __METHOD__ );
 		}
 	}
 
