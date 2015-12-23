@@ -185,6 +185,16 @@
 	};
 
 	/**
+	 * @inheritdoc
+	 */
+	CSP.getItemFromData = function ( data ) {
+		// This is a bit of a hack... We have to canonicalize the data in the same way that
+		// #createItemWidget and CategoryCapsuleItemWidget will do, otherwise we won't find duplicates.
+		data = mw.Title.newFromText( data, NS_CATEGORY ).getMainText();
+		return OO.ui.mixin.GroupElement.prototype.getItemFromData.call( this, data );
+	};
+
+	/**
 	 * Validates the values in `this.searchType`.
 	 *
 	 * @private
