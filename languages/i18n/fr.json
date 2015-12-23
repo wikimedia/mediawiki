@@ -3626,6 +3626,8 @@
 	"mediastatistics": "Statistiques sur les médias",
 	"mediastatistics-summary": "Statistiques sur les types de fichier téléchargés. Elles ne prennent en compte que la version la plus récente d’un fichier. Les versions anciennes ou supprimées des fichiers sont exclues.",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 octet|$1 octets}} ($2 ; $3%)",
+	"mediastatistics-bytespertype": "Taille totale de fichiers pour cette section : $1 octets.",
+	"mediastatistics-allbytes": "Taille totale pour tous les fichiers : $1 octets.",
 	"mediastatistics-table-mimetype": "Type MIME",
 	"mediastatistics-table-extensions": "Extensions possibles",
 	"mediastatistics-table-count": "Nombre de fichiers",

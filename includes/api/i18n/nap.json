@@ -7,6 +7,7 @@
 	},
 	"apihelp-main-param-action": "Quale aziona d'avess'a fà.",
 	"apihelp-main-param-format": "Qualu furmato avess'ascì d'output.",
+	"apihelp-main-param-maxlag": "'O massimo lag ca se putess'ausà quanno MediaWiki s'installasse ncopp'a nu cluster replicato 'e database. Pe' puté sarvà aziune ca causassero cchiù lag 'e replicato, stu parammetro putesse fà 'o cliente aspettà nfin'a quanno 'o tiempo 'e replicaziona fosse meno ca nu valore specificato. Si nce stesse cchiù assaje tiempo 'e lag, nu codece 'errore <samp>maxlag</samp> se turnasse comm'a na mmasciata tipo <samp>Aspettanno 'o $host: nu $lag secunde 'e lag</samp>.<br />Vedite [[mw:Manual:Maxlag_parameter|Manuale: Parammetro Maxlag]] pe' n'avé cchiù nfurmaziune.",
 	"apihelp-main-param-servedby": "Include 'o risultato 'e nomme d' 'o host ca servette 'a richiesta.",
 	"apihelp-main-param-curtimestamp": "Include dint' 'o risultato 'o timestamp 'e mò.",
 	"apihelp-block-description": "Blocca n'utente.",

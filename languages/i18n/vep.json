@@ -9,7 +9,8 @@
 			"Игорь Бродский",
 			"아라",
 			"Macofe",
-			"Sebranik"
+			"Sebranik",
+			"Ghiutun"
 		]
 	},
 	"tog-underline": "Jonoštada kosketused:",
@@ -675,7 +676,7 @@
 	"shown-title": "Ozutada $1 {{PLURAL:$1|rezul'tat|rezul'tatad}} lehtpoleks",
 	"viewprevnext": "Kacta ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "'''Neciš Wikiš om jo lehtpol' ningoižen nimenke: \"[[:$1]]\"'''",
-	"searchmenu-new": "<strong>Säta lehtpol' \"[[:$1]]\" neciš Wikiš!<strong> {{PLURAL:$2|0=|Kackat mugažo löutud lehtpol'he.|Kackat mugažo ecindan rezul'tatoihe.}}",
+	"searchmenu-new": "<strong>Säta lehtpol' \"[[:$1]]\" neciš Wikiš!</strong> {{PLURAL:$2|0=|Kackat mugažo löutud lehtpol'he.|Kackat mugažo ecindan rezul'tatoihe.}}",
 	"searchprofile-articles": "Südäimištlehtpoled",
 	"searchprofile-images": "Mul'timedii",
 	"searchprofile-everything": "Kaikjal",

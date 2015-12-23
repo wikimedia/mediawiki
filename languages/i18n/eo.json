@@ -44,7 +44,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Xð",
-			"Robin van der Vliet"
+			"Robin van der Vliet",
+			"Zciric"
 		]
 	},
 	"tog-underline": "Substreki ligilojn",
@@ -1003,7 +1004,7 @@
 	"badsig": "Via kaŝnomo (por subskriboj) malvalidas. Bv. kontroli la HTML-etikedojn!",
 	"badsiglength": "La subskribo estas tro longa.\nĜi devas esti sub $1 {{PLURAL:$1|signo|signoj}}.",
 	"yourgender": "Sekso:",
-	"gender-unknown": "En mencii vin, la programaro uzos vortojn de neŭtra genro, ĉiam ol estu ebla",
+	"gender-unknown": "Menciate vin, la programaro uzos vortojn de neŭtra genro, ĉiam kiam estos ebla",
 	"gender-male": "Vira",
 	"gender-female": "Ina",
 	"prefs-help-gender": "Nedeviga: uzita por sekseca salutado de la programaro. Ĉi tiu informo montriĝos publike.",

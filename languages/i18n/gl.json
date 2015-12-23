@@ -3417,6 +3417,8 @@
 	"mediastatistics": "Estatísticas do contido multimedia",
 	"mediastatistics-summary": "Estatísticas sobre os tipos de ficheiros enviados. Isto inclúe unicamente a última versión de cada ficheiro. As versións vellas ou borradas dos ficheiros quedan excluídas.",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 byte|$1 bytes}} ($2; $3%)",
+	"mediastatistics-bytespertype": "Tamaño total de ficheiro para esta sección: $1 bytes.",
+	"mediastatistics-allbytes": "Tamaño total de ficheiro para todos os ficheiros: $1 bytes.",
 	"mediastatistics-table-mimetype": "Tipo MIME",
 	"mediastatistics-table-extensions": "Extensións posibles",
 	"mediastatistics-table-count": "Número de ficheiros",
