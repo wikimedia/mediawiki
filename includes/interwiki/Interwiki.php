@@ -137,7 +137,7 @@ class Interwiki {
 		$value = self::getInterwikiCacheEntry( $prefix );
 
 		$s = new Interwiki( $prefix );
-		if ( $value != '' ) {
+		if ( $value ) {
 			// Split values
 			list( $local, $url ) = explode( ' ', $value, 2 );
 			$s->mURL = $url;
@@ -155,34 +155,31 @@ class Interwiki {
 	 * @note More logic is explained in DefaultSettings.
 	 *
 	 * @param string $prefix Database key
-	 * @return string The interwiki entry
+	 * @return bool|string The interwiki entry or false if not found
 	 */
 	protected static function getInterwikiCacheEntry( $prefix ) {
-		global $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
-		static $db, $site;
+		global $wgInterwikiScopes, $wgInterwikiFallbackSite;
+		static $site;
 
 		wfDebug( __METHOD__ . "( $prefix )\n" );
 		$value = false;
 		try {
-			if ( !$db ) {
-				$db = CdbReader::open( $wgInterwikiCache );
-			}
-			/* Resolve site name */
+			// Resolve site name
 			if ( $wgInterwikiScopes >= 3 && !$site ) {
-				$site = $db->get( '__sites:' . wfWikiID() );
+				$site = self::getCacheValue( '__sites:' . wfWikiID() );
 				if ( $site == '' ) {
 					$site = $wgInterwikiFallbackSite;
 				}
 			}
 
-			$value = $db->get( wfMemcKey( $prefix ) );
+			$value = self::getCacheValue( wfMemcKey( $prefix ) );
 			// Site level
 			if ( $value == '' && $wgInterwikiScopes >= 3 ) {
-				$value = $db->get( "_{$site}:{$prefix}" );
+				$value = self::getCacheValue( "_{$site}:{$prefix}" );
 			}
 			// Global Level
 			if ( $value == '' && $wgInterwikiScopes >= 2 ) {
-				$value = $db->get( "__global:{$prefix}" );
+				$value = self::getCacheValue( "__global:{$prefix}" );
 			}
 			if ( $value == 'undef' ) {
 				$value = '';
@@ -193,6 +190,19 @@ class Interwiki {
 		}
 
 		return $value;
+	}
+
+	private static function getCacheValue( $key ) {
+		global $wgInterwikiCache;
+		static $reader;
+		if ( $reader === null ) {
+			$reader = is_array( $wgInterwikiCache ) ? false : CdbReader::open( $wgInterwikiCache );
+		}
+		if ( $reader ) {
+			return $reader->get( $key );
+		} else {
+			return isset( $wgInterwikiCache[$key] ) ? $wgInterwikiCache[$key] : false;
+		}
 	}
 
 	/**
