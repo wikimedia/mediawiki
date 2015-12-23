@@ -321,6 +321,7 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function importRevision( $revision ) {
+
 		if ( !$revision->getContentHandler()->canBeUsedOn( $revision->getTitle() ) ) {
 			$this->notice( 'import-error-bad-location',
 				$revision->getTitle()->getPrefixedText(),
@@ -825,6 +826,14 @@ class WikiImporter {
 	 * @return bool|mixed
 	 */
 	private function processRevision( $pageInfo, $revisionInfo ) {
+		global $wgMaxArticleSize;
+
+		if ( ( !isset( $revisionInfo['model'] ) ||
+			  in_array( $revisionInfo['model'], array( 'wikitext', 'css', 'json', 'javasript', 'text' ) ) )
+			&& (int)( strlen( $revisionInfo['text'] ) / 1024 ) > $wgMaxArticleSize ) {
+			return false;// is it false or maybe something else? Maybe some messages?
+		}
+
 		$revision = new WikiRevision( $this->config );
 
 		if ( isset( $revisionInfo['id'] ) ) {
