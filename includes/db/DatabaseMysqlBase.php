@@ -621,11 +621,18 @@ abstract class DatabaseMysqlBase extends Database {
 	abstract protected function mysqlPing();
 
 	function getLag() {
-		if ( $this->lagDetectionMethod === 'pt-heartbeat' ) {
+		if ( $this->getLagDetectionMethod() === 'pt-heartbeat' ) {
 			return $this->getLagFromPtHeartbeat();
 		} else {
 			return $this->getLagFromSlaveStatus();
 		}
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getLagDetectionMethod() {
+		return $this->lagDetectionMethod;
 	}
 
 	/**
@@ -645,35 +652,82 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return bool|float
 	 */
 	protected function getLagFromPtHeartbeat() {
-		$key = wfMemcKey( 'mysql', 'master-server-id', $this->getServer() );
-		$masterId = intval( $this->srvCache->get( $key ) );
-		if ( !$masterId ) {
-			$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__ );
-			$row = $res ? $res->fetchObject() : false;
-			if ( $row && strval( $row->Master_Server_Id ) !== '' ) {
-				$masterId = intval( $row->Master_Server_Id );
-				$this->srvCache->set( $key, $masterId, 30 );
-			}
+		$masterInfo = $this->getMasterServerInfo();
+		if ( !$masterInfo ) {
+			return false; // could not get master server ID
 		}
 
-		if ( !$masterId ) {
-			return false;
-		}
+		list( $time, $nowUnix ) = $this->getHeartbeatData( $masterInfo['serverId'] );
+		if ( $time !== null ) {
+			// @time is in ISO format like "2015-09-25T16:48:10.000510"
+			$dateTime = new DateTime( $time, new DateTimeZone( 'UTC' ) );
+			$timeUnix = (int)$dateTime->format( 'U' ) + $dateTime->format( 'u' ) / 1e6;
 
-		$res = $this->query(
-			"SELECT TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6)) AS Lag " .
-			"FROM heartbeat.heartbeat WHERE server_id = $masterId"
-		);
-		$row = $res ? $res->fetchObject() : false;
-		if ( $row ) {
-			return max( floatval( $row->Lag ) / 1e6, 0.0 );
+			return max( $nowUnix - $timeUnix, 0.0 );
 		}
 
 		return false;
 	}
 
+	protected function getMasterServerInfo() {
+		$cache = $this->srvCache;
+		$key = $cache->makeGlobalKey(
+			'mysql',
+			'master-info',
+			// Using one key for all cluster slaves is preferable
+			$this->getLBInfo( 'clusterMasterHost' ) ?: $this->getServer()
+		);
+
+		$that = $this;
+		return $cache->getWithSetCallback(
+			$key,
+			$cache::TTL_INDEFINITE,
+			function () use ( $that, $cache, $key ) {
+				// Get and leave a lock key in place for a short period
+				if ( !$cache->lock( $key, 0, 10 ) ) {
+					return false; // avoid master connection spike slams
+				}
+
+				$conn = $that->getLazyMasterHandle();
+				if ( !$conn ) {
+					return false; // something is misconfigured
+				}
+
+				// Connect to and query the master; catch errors to avoid outages
+				try {
+					$res = $conn->query( 'SELECT @@server_id AS id', __METHOD__ );
+					$row = $res ? $res->fetchObject() : false;
+					$id = $row ? (int)$row->id : 0;
+				} catch ( DBError $e ) {
+					$id = 0;
+				}
+
+				// Cache the ID if it was retrieved
+				return $id ? array( 'serverId' => $id, 'asOf' => time() ) : false;
+			}
+		);
+	}
+
+	/**
+	 * @param string $masterId Server ID
+	 * @return array (heartbeat `ts` column value or null, UNIX timestamp)
+	 * @see https://www.percona.com/doc/percona-toolkit/2.1/pt-heartbeat.html
+	 */
+	protected function getHeartbeatData( $masterId ) {
+		// Get the status row for this master; use the oldest for sanity in case the master
+		// has entries listed under different server IDs (which should really not happen).
+		// Note: this would use "MAX(TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6)))" but the
+		// percision field is not supported in MySQL <= 5.5.
+		$res = $this->query(
+			"SELECT ts FROM heartbeat.heartbeat WHERE server_id=" . intval( $masterId )
+		);
+		$row = $res ? $res->fetchObject() : false;
+
+		return array( $row ? $row->ts : null, microtime( true ) );
+	}
+
 	public function getApproximateLagStatus() {
-		if ( $this->lagDetectionMethod === 'pt-heartbeat' ) {
+		if ( $this->getLagDetectionMethod() === 'pt-heartbeat' ) {
 			// Disable caching since this is fast enough and we don't wan't
 			// to be *too* pessimistic by having both the cache TTL and the
 			// pt-heartbeat interval count as lag in getSessionLagStatus()

@@ -148,6 +148,9 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	private $mTrxWriteDuration = 0.0;
 
+	/** @var IDatabase|null Lazy handle to the master DB this server replicates from */
+	private $lazyMasterHandle;
+
 	/**
 	 * @since 1.21
 	 * @var resource File handle for upgrade
@@ -326,6 +329,25 @@ abstract class DatabaseBase implements IDatabase {
 		} else {
 			$this->mLBInfo[$name] = $value;
 		}
+	}
+
+	/**
+	 * Set a lazy-connecting DB handle to the master DB (for replication status purposes)
+	 *
+	 * @param IDatabase $conn
+	 * @since 1.27
+	 */
+	public function setLazyMasterHandle( IDatabase $conn ) {
+		$this->lazyMasterHandle = $conn;
+	}
+
+	/**
+	 * @return IDatabase|null
+	 * @see setLazyMasterHandle()
+	 * @since 1.27
+	 */
+	public function getLazyMasterHandle() {
+		return $this->lazyMasterHandle;
 	}
 
 	/**
