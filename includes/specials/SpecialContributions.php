@@ -49,11 +49,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			$target = $request->getVal( 'target' );
 		}
 
-		// check for radiobox
-		if ( $request->getVal( 'contribs' ) == 'newbie' ) {
-			$target = 'newbies';
-			$this->opts['contribs'] = 'newbie';
-		} elseif ( $par === 'newbies' ) { // b/c for WMF
+		if ( $request->getVal( 'contribs' ) == 'newbie' || $par === 'newbies' ) {
 			$target = 'newbies';
 			$this->opts['contribs'] = 'newbie';
 		} else {
