@@ -825,6 +825,30 @@ class WikiImporter {
 	 * @return bool|mixed
 	 */
 	private function processRevision( $pageInfo, $revisionInfo ) {
+		global $wgMaxArticleSize;
+
+		// Make sure revisions won't violate $wgMaxArticleSize, which could lead to
+		// database errors and instability. Testing for revisions with only listed
+		// content models, as other content models might use serialization formats
+		// which aren't checked against $wgMaxArticleSize.
+		if ( ( !isset( $revisionInfo['model'] ) ||
+			in_array( $revisionInfo['model'], array(
+				'wikitext',
+				'css',
+				'json',
+				'javascript',
+				'text',
+				''
+			) ) ) &&
+			(int)( strlen( $revisionInfo['text'] ) / 1024 ) > $wgMaxArticleSize
+		) {
+			throw new MWException( 'The text of ' .
+				( isset( $revisionInfo['id'] ) ?
+					"the revision with ID $revisionInfo[id]" :
+					'a revision'
+				) . " exceeds the maximum allowable size ($wgMaxArticleSize KB)" );
+		}
+
 		$revision = new WikiRevision( $this->config );
 
 		if ( isset( $revisionInfo['id'] ) ) {
