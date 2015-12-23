@@ -3846,6 +3846,7 @@
 	"pagelang-language": "Language",
 	"pagelang-use-default": "Use default language",
 	"pagelang-select-lang": "Select language",
+	"pagelang-submit": "Submit",
 	"right-pagelang": "Change page language",
 	"action-pagelang": "change the page language",
 	"log-name-pagelang": "Change language log",
