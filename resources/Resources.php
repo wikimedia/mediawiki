@@ -1894,11 +1894,11 @@ return array(
 	'mediawiki.legacy.commonPrint' => array(
 		'position' => 'top',
 		'styles' => array(
-			'resources/src/mediawiki.legacy/commonPrint.css' => array( 'media' => 'print' )
+			'resources/src/mediawiki/legacy/commonPrint.css' => array( 'media' => 'print' )
 		),
 	),
 	'mediawiki.legacy.protect' => array(
-		'scripts' => 'resources/src/mediawiki.legacy/protect.js',
+		'scripts' => 'resources/src/mediawiki/legacy/protect.js',
 		'dependencies' => 'jquery.byteLimit',
 		'messages' => array( 'protect-unchain-permissions' )
 	),
@@ -1906,17 +1906,17 @@ return array(
 	'mediawiki.legacy.shared' => array(
 		'position' => 'top',
 		'styles' => array(
-			'resources/src/mediawiki.legacy/shared.css' => array( 'media' => 'screen' )
+			'resources/src/mediawiki/legacy/shared.css' => array( 'media' => 'screen' )
 		),
 	),
 	'mediawiki.legacy.oldshared' => array(
 		'position' => 'top',
 		'styles' => array(
-			'resources/src/mediawiki.legacy/oldshared.css' => array( 'media' => 'screen' )
+			'resources/src/mediawiki/legacy/oldshared.css' => array( 'media' => 'screen' )
 		),
 	),
 	'mediawiki.legacy.wikibits' => array(
-		'scripts' => 'resources/src/mediawiki.legacy/wikibits.js',
+		'scripts' => 'resources/src/mediawiki/legacy/wikibits.js',
 		'dependencies' => 'mediawiki.util',
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
