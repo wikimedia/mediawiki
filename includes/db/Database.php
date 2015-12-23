@@ -3424,6 +3424,21 @@ abstract class DatabaseBase implements IDatabase {
 		}
 	}
 
+	final public function doAtomicSection( $fname, $callback ) {
+		if ( !is_callable( $callback ) ) {
+			throw new UnexpectedValueException( "Invalid callback." );
+		};
+
+		$this->startAtomic( $fname );
+		try {
+			call_user_func_array( $callback, array( $this, $fname ) );
+		} catch ( Exception $e ) {
+			$this->rollback( $fname );
+			throw $e;
+		}
+		$this->endAtomic( $fname );
+	}
+
 	/**
 	 * Begin a transaction. If a transaction is already in progress,
 	 * that transaction will be committed before the new transaction is started.

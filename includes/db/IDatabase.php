@@ -1269,6 +1269,35 @@ interface IDatabase {
 	public function endAtomic( $fname = __METHOD__ );
 
 	/**
+	 * Run a callback to do an atomic set of updates for this database
+	 *
+	 * The $callback takes the following arguments:
+	 *   - This database object
+	 *   - The value of $fname
+	 *
+	 * If any exception occurs in the callback, then rollback() will be called and the error will
+	 * be re-thrown. It may also be that the rollback itself fails with an exception before then.
+	 * In any case, such errors are expected to terminate the request, without any outside caller
+	 * attempting to catch errors and commit anyway. Note that any rollback undoes all prior
+	 * atomic section and uncommitted updates, which trashes the current request, requiring an
+	 * error to be displayed.
+	 *
+	 * This can be an alternative to explicit startAtomic()/endAtomic() calls.
+	 *
+	 * @see DatabaseBase::startAtomic
+	 * @see DatabaseBase::endAtomic
+	 *
+	 * @param string $fname Caller name (usually __METHOD__)
+	 * @param callable $callback Callback that issues DB updates
+	 * @throws DBError
+	 * @throws RuntimeException
+	 * @throws UnexpectedValueException
+	 * @throws null
+	 * @since 1.27
+	 */
+	public function doAtomicSection( $fname, $callback );
+
+	/**
 	 * Begin a transaction. If a transaction is already in progress,
 	 * that transaction will be committed before the new transaction is started.
 	 *
