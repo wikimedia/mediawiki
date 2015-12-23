@@ -20544,7 +20544,7 @@ HTML5 data attributes
 !! test
 Strip reserved data attributes
 !! wikitext
-<div data-mw="foo" data-parsoid="bar" data-mw-someext="baz" data-ok="fred" data-ooui="xyzzy">d</div>
+<div data-mw="foo" data-parsoid="bar" data-mw-someext="baz" data-ok="fred" data-ooui="xyzzy" data-bad:ns="ns">d</div>
 !! html
 <div data-ok="fred">d</div>
 

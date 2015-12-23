@@ -756,7 +756,9 @@ class Sanitizer {
 			# * data-mw-<name here> is reserved for extensions (or core) if
 			#   they need to communicate some data to the client and want to be
 			#   sure that it isn't coming from an untrusted user.
-			if ( !preg_match( '/^data-(?!ooui|mw|parsoid)/i', $attribute )
+			# * Ensure that the attribute is not namespaced by banning
+			#   colons.
+			if ( !preg_match( '/^data-(?!ooui|mw|parsoid)[^:]*$/i', $attribute )
 				&& !isset( $whitelist[$attribute] )
 			) {
 				continue;
