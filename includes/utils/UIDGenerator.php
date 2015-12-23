@@ -334,7 +334,7 @@ class UIDGenerator {
 	 * @see UIDGenerator::newSequentialPerNodeID()
 	 * @param string $bucket Arbitrary bucket name (should be ASCII)
 	 * @param int $bits Bit size (16 to 48) of resulting numbers before wrap-around
-	 * @param int $count Number of IDs to return (1 to 10000)
+	 * @param int $count Number of IDs to return
 	 * @param int $flags (supports UIDGenerator::QUICK_VOLATILE)
 	 * @return array Ordered list of float integer values
 	 * @since 1.23
@@ -350,7 +350,7 @@ class UIDGenerator {
 	 * @see UIDGenerator::newSequentialPerNodeID()
 	 * @param string $bucket Arbitrary bucket name (should be ASCII)
 	 * @param int $bits Bit size (16 to 48) of resulting numbers before wrap-around
-	 * @param int $count Number of IDs to return (1 to 10000)
+	 * @param int $count Number of IDs to return
 	 * @param int $flags (supports UIDGenerator::QUICK_VOLATILE)
 	 * @return array Ordered list of float integer values
 	 * @throws RuntimeException
@@ -358,8 +358,6 @@ class UIDGenerator {
 	protected function getSequentialPerNodeIDs( $bucket, $bits, $count, $flags ) {
 		if ( $count <= 0 ) {
 			return array(); // nothing to do
-		} elseif ( $count > 10000 ) {
-			throw new RuntimeException( "Number of requested IDs ($count) is too high." );
 		} elseif ( $bits < 16 || $bits > 48 ) {
 			throw new RuntimeException( "Requested bit size ($bits) is out of range." );
 		}
