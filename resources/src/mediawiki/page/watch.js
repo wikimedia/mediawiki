@@ -173,6 +173,9 @@
 					} );
 				} );
 		} );
+
+		// Reactivate while loading disabled buttons
+		$links.css( 'pointer-events', 'auto' );
 	} );
 
 }( mediaWiki, jQuery ) );
