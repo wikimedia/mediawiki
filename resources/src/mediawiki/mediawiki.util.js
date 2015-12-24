@@ -168,7 +168,7 @@
 		 * This function returns the styleSheet object for convience (due to cross-browsers
 		 * difference as to where it is located).
 		 *
-		 *     var sheet = mw.util.addCSS( '.foobar { display: none; }' );
+		 *     var sheet = util.addCSS( '.foobar { display: none; }' );
 		 *     $( foo ).click( function () {
 		 *         // Toggle the sheet on and off
 		 *         sheet.disabled = !sheet.disabled;
@@ -238,12 +238,12 @@
 		 * (e.g. `document.getElementById( 'foobar' )`) or a jQuery-selector
 		 * (e.g. `'#foobar'`) for that item.
 		 *
-		 *     mw.util.addPortletLink(
+		 *     util.addPortletLink(
 		 *         'p-tb', 'https://www.mediawiki.org/',
 		 *         'mediawiki.org', 't-mworg', 'Go to mediawiki.org', 'm', '#t-print'
 		 *     );
 		 *
-		 *     var node = mw.util.addPortletLink(
+		 *     var node = util.addPortletLink(
 		 *         'p-tb',
 		 *         new mw.Title( 'Special:Example' ).getUrl(),
 		 *         'Example'
@@ -554,5 +554,6 @@
 	}, 'Use mw.notify instead.' );
 
 	mw.util = util;
+	module.exports = util;
 
 }( mediaWiki, jQuery ) );
