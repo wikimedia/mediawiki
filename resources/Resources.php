@@ -2119,6 +2119,25 @@ return array(
 		),
 	),
 
+	'mediawiki.router' => array(
+		'scripts' => array(
+			'resources/src/mediawiki.router/index.js',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+		'dependencies' => array(
+			'oojs-router',
+		),
+	),
+
+	'oojs-router' => array(
+		'scripts' => array(
+			'resources/src/oojs-router/index.js',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+		'dependencies' => array(
+			'oojs',
+		),
+	),
 	/* OOjs UI */
 	// WARNING: OOjs-UI is NOT TESTED with older browsers and is likely to break
 	// if loaded in browsers that don't support ES5
