@@ -9,7 +9,8 @@
 	 */
 	function doLivePreview( e ) {
 		var isDiff, api, parseRequest, diffRequest, postData, copySelectors, section,
-			$wikiPreview, $wikiDiff, $editform, $textbox, $summary, $copyElements, $spinner, $errorBox;
+			$wikiPreview, $wikiDiff, $editform, $textbox, $summary, $copyElements, $spinner, $errorBox,
+			util = require( 'mediawiki.util' );
 
 		isDiff = ( e.target.name === 'wpDiff' );
 		$wikiPreview = $( '#wikiPreview' );
@@ -149,7 +150,7 @@
 					newList.push(
 						$( '<div>' )
 							.addClass( 'mw-indicator' )
-							.attr( 'id', mw.util.escapeId( 'mw-indicator-' + name ) )
+							.attr( 'id', util.escapeId( 'mw-indicator-' + name ) )
 							.html( indicator )
 							.get( 0 ),
 						// Add a whitespace between the <div>s because
@@ -184,7 +185,7 @@
 						li = $( '<li>' )
 							.append( $( '<a>' )
 								.attr( {
-									href: mw.util.getUrl( template.title ),
+									href: util.getUrl( template.title ),
 									'class': ( template.exists ? '' : 'new' )
 								} )
 								.text( template.title )

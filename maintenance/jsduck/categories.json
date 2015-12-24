@@ -29,7 +29,7 @@
 					"mw.Notification_",
 					"mw.storage",
 					"mw.user",
-					"mw.util",
+					"mediawikiUtils",
 					"mw.plugin.*",
 					"mw.cookie",
 					"mw.experiments",

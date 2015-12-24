@@ -2,6 +2,7 @@
 ( function ( $, mw, OO ) {
 	'use strict';
 	var ApiSandbox, Util, WidgetMethods, Validators,
+		util = require( 'mediawiki.util' ),
 		$content, panel, booklet, oldhash, windowManager, fullscreenButton,
 		api = new mw.Api(),
 		bookletPages = [],
@@ -693,7 +694,7 @@
 				return false;
 			}
 
-			// I'm surprised this doesn't seem to exist in jQuery or mw.util.
+			// I'm surprised this doesn't seem to exist in jQuery or util.
 			params = {};
 			hash = hash.replace( /\+/g, '%20' );
 			re = /([^&=#]+)=?([^&#]*)/g;
@@ -866,7 +867,7 @@
 						new OO.ui.FieldLayout(
 							new OO.ui.TextInputWidget( {
 								readOnly: true,
-								value: mw.util.wikiScript( 'api' ) + '?' + query
+								value: util.wikiScript( 'api' ) + '?' + query
 							} ), {
 								label: mw.message( 'apisandbox-request-url-label' ).parse()
 							}
