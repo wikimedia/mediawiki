@@ -4,9 +4,10 @@
 ( function ( mw, $ ) {
 	$( function () {
 		var $preftoc, $preferences, $fieldsets,
-			hash, labelFunc,
+			labelFunc,
 			$tzSelect, $tzTextbox, $localtimeHolder, servertime,
-			allowCloseWindow, notif;
+			allowCloseWindow, notif,
+			router = require( 'mediawiki.router' );
 
 		labelFunc = function () {
 			return this.id.replace( /^mw-prefsection/g, 'preftab' );
@@ -58,7 +59,7 @@
 			// therefore save and restore scrollTop to prevent jumping.
 			scrollTop = $( window ).scrollTop();
 			if ( mode !== 'noHash' ) {
-				location.hash = '#mw-prefsection-' + name;
+				router.navigate( '#mw-prefsection-' + name );
 			}
 			$( window ).scrollTop( scrollTop );
 
@@ -67,7 +68,6 @@
 					tabIndex: -1,
 					'aria-selected': 'false'
 				} );
-
 			$tab = $( document.getElementById( 'preftab-' + name ) );
 			if ( $tab.length ) {
 				$tab.attr( {
@@ -116,16 +116,9 @@
 				return;
 			}
 			if ( $el.length > 0 ) {
-				switchPrefTab( $el.attr( 'href' ).replace( '#mw-prefsection-', '' ) );
+				router.navigate( $el.attr( 'href' ).substr( 1 ) );
 			}
 		} );
-
-		// If we've reloaded the page or followed an open-in-new-window,
-		// make the selected tab visible.
-		hash = location.hash;
-		if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
-			switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
-		}
 
 		// In browsers that support the onhashchange event we will not bind click
 		// handlers and instead let the browser do the default behavior (clicking the
@@ -133,16 +126,12 @@
 		// But other things that change the hash will also be catched (e.g. using
 		// the Back and Forward browser navigation).
 		// Note the special check for IE "compatibility" mode.
-		if ( 'onhashchange' in window &&
-			( document.documentMode === undefined || document.documentMode >= 8 )
-		) {
-			$( window ).on( 'hashchange', function () {
-				var hash = location.hash;
-				if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
-					switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
-				} else if ( hash === '' ) {
-					switchPrefTab( 'personal', 'noHash' );
-				}
+		if ( router.isSupported() ) {
+			router.route( /^mw-prefsection-([\w\-]+)/, function ( section ) {
+				switchPrefTab( section, 'noHash' );
+			} );
+			router.route( '', function () {
+				switchPrefTab( 'personal', 'noHash' );
 			} );
 		// In older browsers we'll bind a click handler as fallback.
 		// We must not have onhashchange *and* the click handlers, other wise
