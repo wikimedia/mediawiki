@@ -12,11 +12,12 @@
 	 */
 
 	var oldParser,
+		util = require( 'mediawiki.util' ),
 		slice = Array.prototype.slice,
 		parserDefaults = {
 			magic: {
 				PAGENAME: mw.config.get( 'wgPageName' ),
-				PAGENAMEE: mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) ),
+				PAGENAMEE: util.wikiUrlencode( mw.config.get( 'wgPageName' ) ),
 				SITENAME: mw.config.get( 'wgSiteName' )
 			},
 			// Whitelist for allowed HTML elements in wikitext.
@@ -1056,7 +1057,7 @@
 			if ( page.charAt( 0 ) === ':' ) {
 				page = page.slice( 1 );
 			}
-			url = mw.util.getUrl( page );
+			url = util.getUrl( page );
 
 			if ( nodes.length === 1 ) {
 				// [[Some Page]] or [[Namespace:Some Page]]

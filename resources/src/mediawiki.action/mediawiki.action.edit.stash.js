@@ -10,6 +10,7 @@
 		var idleTimeout = 3000,
 			api = new mw.Api(),
 			pending = null,
+			util = require( 'mediawiki.util' ),
 			$form = $( '#editform' ),
 			$text = $form.find( '#wpTextbox1' ),
 			$summary = $form.find( '#wpSummary' ),
@@ -80,7 +81,7 @@
 			if (
 				// Reverts may involve use (undo) links; stash as they review the diff.
 				// Since the form has a pre-filled summary, stash the edit immediately.
-				mw.util.getParamValue( 'undo' ) !== null
+				util.getParamValue( 'undo' ) !== null
 				// Pressing "show changes" and "preview" also signify that the user will
 				// probably save the page soon
 				|| $.inArray( $form.find( '#mw-edit-mode' ).val(), [ 'preview', 'diff' ] ) > -1

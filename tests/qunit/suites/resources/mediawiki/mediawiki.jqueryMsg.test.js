@@ -2,6 +2,7 @@
 	var formatText, formatParse, formatnumTests, specialCharactersPageName, expectedListUsers,
 		expectedListUsersSitename, expectedLinkPagenamee, expectedEntrypoints,
 		mwLanguageCache = {},
+		util = require( 'mediawiki.util' ),
 		hasOwn = Object.hasOwnProperty;
 
 	// When the expected result is the same in both modes
@@ -101,7 +102,7 @@
 	function getMwLanguage( langCode ) {
 		if ( !hasOwn.call( mwLanguageCache, langCode ) ) {
 			mwLanguageCache[ langCode ] = $.ajax( {
-				url: mw.util.wikiScript( 'load' ),
+				url: util.wikiScript( 'load' ),
 				data: {
 					skin: mw.config.get( 'skin' ),
 					lang: langCode,
@@ -936,7 +937,7 @@
 
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-italics-with-link' ),
-			'An <i>italicized <a title="link" href="' + mw.html.escape( mw.util.getUrl( 'link' ) ) + '">wiki-link</i>',
+			'An <i>italicized <a title="link" href="' + mw.html.escape( util.getUrl( 'link' ) ) + '">wiki-link</i>',
 			'Italics with link inside in parse mode'
 		);
 
@@ -976,7 +977,7 @@
 		mw.messages.set( 'jquerymsg-script-link-msg', '<script>[[Foo|bar]]</script>' );
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-script-link-msg' ),
-			'&lt;script&gt;<a title="Foo" href="' + mw.html.escape( mw.util.getUrl( 'Foo' ) ) + '">bar</a>&lt;/script&gt;',
+			'&lt;script&gt;<a title="Foo" href="' + mw.html.escape( util.getUrl( 'Foo' ) ) + '">bar</a>&lt;/script&gt;',
 			'Script tag text is escaped because that element is not allowed, but link inside is still HTML'
 		);
 

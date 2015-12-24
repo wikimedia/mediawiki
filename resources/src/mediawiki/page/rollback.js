@@ -6,14 +6,15 @@
  * @author Timo Tijhof
  */
 ( function ( mw, $ ) {
+	var util = require( 'mediawiki.util' );
 
 	$( function () {
 		$( '.mw-rollback-link' ).on( 'click', 'a[data-mw="interface"]', function ( e ) {
 			var api, $spinner,
 				$link = $( this ),
 				url = this.href,
-				page = mw.util.getParamValue( 'title', url ),
-				user = mw.util.getParamValue( 'from', url );
+				page = util.getParamValue( 'title', url ),
+				user = util.getParamValue( 'from', url );
 
 			if ( !page || !user ) {
 				// Let native browsing handle the link
