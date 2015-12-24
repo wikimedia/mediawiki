@@ -1,4 +1,5 @@
 ( function ( mw, $ ) {
+	var util = require( 'mediawiki.util' );
 
 	// Support: MediaWiki < 1.26
 	// Cached HTML will not yet have this from OutputPage::getHeadScripts.
@@ -8,7 +9,7 @@
 	mw.page = {};
 
 	$( function () {
-		mw.util.init();
+		util.init();
 
 		/**
 		 * Fired when wiki content is being added to the DOM

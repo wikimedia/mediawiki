@@ -1,6 +1,7 @@
 /*jshint -W024 */
 ( function ( mw, $ ) {
 	var specialCharactersPageName,
+		util = require( 'mediawiki.util' ),
 		// Can't mock SITENAME since jqueryMsg caches it at load
 		siteName = mw.config.get( 'wgSiteName' );
 
@@ -307,7 +308,7 @@
 		);
 		assert.htmlEqual(
 			mw.message( 'mediawiki-italics-with-link' ).parse(),
-			'An <i>italicized <a title="link" href="' + mw.util.getUrl( 'link' ) + '">wiki-link</i>',
+			'An <i>italicized <a title="link" href="' + util.getUrl( 'link' ) + '">wiki-link</i>',
 			'Italics with link inside in parse mode'
 		);
 

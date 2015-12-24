@@ -339,7 +339,7 @@
 		mw.config.set( 'wgArticlePath', '/wiki/$1' );
 
 		title = new mw.Title( 'Foobar' );
-		assert.equal( title.getUrl(), '/wiki/Foobar', 'Basic functionality, getUrl uses mw.util.getUrl' );
+		assert.equal( title.getUrl(), '/wiki/Foobar', 'Basic functionality, getUrl uses util.getUrl' );
 		assert.equal( title.getUrl( { action: 'edit' } ), '/wiki/Foobar?action=edit', 'Basic functionality, \'params\' parameter' );
 
 		title = new mw.Title( 'John Doe', 3 );
