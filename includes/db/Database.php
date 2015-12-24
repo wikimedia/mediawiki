@@ -2654,7 +2654,10 @@ abstract class DatabaseBase implements IDatabase {
 			if ( !$this->mTrxLevel ) {
 				return; // nothing to do
 			} elseif ( !$this->mTrxAutomatic ) {
-				wfWarn( "$fname: Flushing an explicit transaction, getting out of sync!" );
+				throw new DBUnexpectedError(
+					$this,
+					"$fname: Flushing an explicit transaction, getting out of sync!"
+				);
 			}
 		} else {
 			if ( !$this->mTrxLevel ) {
