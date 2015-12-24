@@ -39,21 +39,28 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.initialize = function () {
-		var deferred = $.Deferred();
-		mw.ForeignStructuredUpload.BookletLayout.parent.prototype.initialize.call( this )
-			.done( function () {
+		var booklet = this;
+		return mw.ForeignStructuredUpload.BookletLayout.parent.prototype.initialize.call( this ).then(
+			function () {
 				// Point the CategorySelector to the right wiki
-				this.upload.getApi().done( function ( api ) {
-					// If this is a ForeignApi, it will have a apiUrl, otherwise we don't need to do anything
-					if ( api.apiUrl ) {
-						// Can't reuse the same object, CategorySelector calls #abort on its mw.Api instance
-						this.categoriesWidget.api = new mw.ForeignApi( api.apiUrl );
+				return booklet.upload.getApi().then(
+					function ( api ) {
+						// If this is a ForeignApi, it will have a apiUrl, otherwise we don't need to do anything
+						if ( api.apiUrl ) {
+							// Can't reuse the same object, CategorySelector calls #abort on its mw.Api instance
+							booklet.categoriesWidget.api = new mw.ForeignApi( api.apiUrl );
+						}
+						return $.Deferred().resolve();
+					},
+					function () {
+						return $.Deferred().resolve();
 					}
-				}.bind( this ) ).always( function () {
-					deferred.resolve();
-				} );
-			}.bind( this ) );
-		return deferred.promise();
+				);
+			},
+			function () {
+				return $.Deferred().resolve();
+			}
+		);
 	};
 
 	/**
