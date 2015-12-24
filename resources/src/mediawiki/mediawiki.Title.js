@@ -54,6 +54,7 @@
 
 	var
 
+	util = require( 'mediawiki.util' ),
 	namespaceIds = mw.config.get( 'wgNamespaceIds' ),
 
 	/**
@@ -681,7 +682,7 @@
 		matches = src.match( thumbPhpRegex );
 
 		if ( matches ) {
-			return mw.Title.newFromText( 'File:' + mw.util.getParamValue( 'f', src ) );
+			return mw.Title.newFromText( 'File:' + util.getParamValue( 'f', src ) );
 		}
 
 		decodedSrc = decodeURIComponent( src );
@@ -952,7 +953,7 @@
 		/**
 		 * Get the URL to this title
 		 *
-		 * @see mw.util#getUrl
+		 * @see mediawikiUtils#getUrl
 		 * @param {Object} [params] A mapping of query parameter names to values,
 		 *     e.g. `{ action: 'edit' }`.
 		 * @return {string}
@@ -960,9 +961,9 @@
 		getUrl: function ( params ) {
 			var fragment = this.getFragment();
 			if ( fragment ) {
-				return mw.util.getUrl( this.toString() + '#' + fragment, params );
+				return util.getUrl( this.toString() + '#' + fragment, params );
 			} else {
-				return mw.util.getUrl( this.toString(), params );
+				return util.getUrl( this.toString(), params );
 			}
 		},
 
