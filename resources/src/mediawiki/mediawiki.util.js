@@ -548,5 +548,6 @@
 	}, 'Use mw.notify instead.' );
 
 	mw.util = util;
-
+	module.exports = util;
+	mw.log.deprecate( mw, 'util', util, 'Use `require("mediawiki.util")` instead.')
 }( mediaWiki, jQuery ) );
