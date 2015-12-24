@@ -162,7 +162,7 @@
 		 * This function returns the styleSheet object for convience (due to cross-browsers
 		 * difference as to where it is located).
 		 *
-		 *     var sheet = mw.util.addCSS( '.foobar { display: none; }' );
+		 *     var sheet = util.addCSS( '.foobar { display: none; }' );
 		 *     $( foo ).click( function () {
 		 *         // Toggle the sheet on and off
 		 *         sheet.disabled = !sheet.disabled;
@@ -234,7 +234,7 @@
 		 * (e.g. `document.getElementById( 'foobar' )`) or a jQuery-selector
 		 * (e.g. `'#foobar'`) for that item.
 		 *
-		 *     mw.util.addPortletLink(
+		 *     util.addPortletLink(
 		 *         'p-tb', 'http://mediawiki.org/',
 		 *         'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', '#t-print'
 		 *     );
@@ -494,7 +494,7 @@
 	 * @inheritdoc #getUrl
 	 * @deprecated since 1.23 Use #getUrl instead.
 	 */
-	mw.log.deprecate( util, 'wikiGetlink', util.getUrl, 'Use mw.util.getUrl instead.' );
+	mw.log.deprecate( util, 'wikiGetlink', util.getUrl, 'Use require( "mediawiki.util" ).getUrl instead.' );
 
 	/**
 	 * Access key prefix. Might be wrong for browsers implementing the accessKeyLabel property.
@@ -578,5 +578,6 @@
 	}, 'Use mw.notify instead.' );
 
 	mw.util = util;
-
+	module.exports = util;
+	mw.log.deprecate( mw, 'util', util, 'Use `require("mediawiki.util")` instead.' );
 }( mediaWiki, jQuery ) );

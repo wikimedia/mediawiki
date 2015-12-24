@@ -11,13 +11,14 @@
 	 * @property {Object} defaultOptions.ajax Default options for jQuery#ajax.
 	 * @private
 	 */
-	var defaultOptions = {
+	var util = require( 'mediawiki.util' ),
+		defaultOptions = {
 			parameters: {
 				action: 'query',
 				format: 'json'
 			},
 			ajax: {
-				url: mw.util.wikiScript( 'api' ),
+				url: util.wikiScript( 'api' ),
 				timeout: 30 * 1000, // 30 seconds
 				dataType: 'json'
 			}
