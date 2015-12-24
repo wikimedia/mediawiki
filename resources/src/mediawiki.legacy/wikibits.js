@@ -4,6 +4,7 @@
 ( function ( mw, $ ) {
 	var msg,
 		win = window,
+		util = require( 'mediawiki.util' ),
 		ua = navigator.userAgent.toLowerCase(),
 		onloadFuncts = [],
 		loadedScripts = {};
@@ -148,14 +149,14 @@
 	 * @deprecated since 1.17 Use mediawiki.util or jquery.accessKeyLabel instead
 	 */
 	msg = 'Use mediawiki.util instead.';
-	mw.log.deprecate( win, 'addPortletLink', mw.util.addPortletLink, msg );
-	mw.log.deprecate( win, 'appendCSS', mw.util.addCSS, msg );
+	mw.log.deprecate( win, 'addPortletLink', util.addPortletLink, msg );
+	mw.log.deprecate( win, 'appendCSS', util.addCSS, msg );
 	msg = 'Use jquery.accessKeyLabel instead.';
 	mw.log.deprecate( win, 'tooltipAccessKeyPrefix', 'alt-', msg );
 	mw.log.deprecate( win, 'tooltipAccessKeyRegexp', /\[(alt-)?(.)\]$/, msg );
 	// mw.util.updateTooltipAccessKeys already generates a deprecation message.
 	win.updateTooltipAccessKeys = function () {
-		return mw.util.updateTooltipAccessKeys.apply( null, arguments );
+		return util.updateTooltipAccessKeys.apply( null, arguments );
 	};
 
 	/**
@@ -180,7 +181,7 @@
 
 	function importScript( page ) {
 		var uri = mw.config.get( 'wgScript' ) + '?title=' +
-			mw.util.wikiUrlencode( page ) +
+			util.wikiUrlencode( page ) +
 			'&action=raw&ctype=text/javascript';
 		return importScriptURI( uri );
 	}
@@ -201,7 +202,7 @@
 
 	function importStylesheet( page ) {
 		var uri = mw.config.get( 'wgScript' ) + '?title=' +
-			mw.util.wikiUrlencode( page ) +
+			util.wikiUrlencode( page ) +
 			'&action=raw&ctype=text/css';
 		return importStylesheetURI( uri );
 	}

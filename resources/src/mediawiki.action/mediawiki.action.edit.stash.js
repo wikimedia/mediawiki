@@ -6,6 +6,7 @@
 		var idleTimeout = 3000,
 			api = new mw.Api(),
 			pending = null,
+			util = require( 'mediawiki.util' ),
 			$form = $( '#editform' ),
 			$text = $form.find( '#wpTextbox1' ),
 			$summary = $form.find( '#wpSummary' ),
@@ -73,7 +74,7 @@
 		function onFormLoaded() {
 			// Reverts may involve use (undo) links; stash as they review the diff.
 			// Since the form has a pre-filled summary, stash the edit immediately.
-			if ( mw.util.getParamValue( 'undo' ) !== null ) {
+			if ( util.getParamValue( 'undo' ) !== null ) {
 				stashEdit();
 			}
 		}

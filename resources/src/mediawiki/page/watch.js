@@ -6,7 +6,8 @@
  */
 ( function ( mw, $ ) {
 	// The name of the page to watch or unwatch
-	var title = mw.config.get( 'wgRelevantPageName' );
+	var title = mw.config.get( 'wgRelevantPageName' ),
+		util = require( 'mediawiki.util' );
 
 	/**
 	 * Update the link text, link href attribute and (if applicable)
@@ -46,7 +47,7 @@
 			.text( mw.msg( msgKey ) )
 			.attr( 'title', mw.msg( 'tooltip-ca-' + action ) )
 			.updateTooltipAccessKeys()
-			.attr( 'href', mw.util.getUrl( title, { action: action } ) );
+			.attr( 'href', util.getUrl( title, { action: action } ) );
 
 		// Most common ID style
 		if ( $li.prop( 'id' ) === 'ca-' + otherAction ) {
@@ -72,7 +73,7 @@
 
 		// TODO: Does MediaWiki give action path or query param
 		// precedence? If the former, move this to the bottom
-		action = mw.util.getParamValue( 'action', url );
+		action = util.getParamValue( 'action', url );
 		if ( action !== null ) {
 			return action;
 		}
@@ -155,7 +156,7 @@
 					cleanTitle = title.replace( /_/g, ' ' );
 					link = mw.html.element(
 						'a', {
-							href: mw.util.getUrl( title ),
+							href: util.getUrl( title ),
 							title: cleanTitle
 						}, cleanTitle
 					);
