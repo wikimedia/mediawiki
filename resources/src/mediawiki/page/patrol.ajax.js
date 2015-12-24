@@ -6,6 +6,8 @@
  * @author Marius Hoch <hoo@online.de>
  */
 ( function ( mw, $ ) {
+	var util = require( 'mediawiki.util' );
+
 	if ( !mw.user.tokens.exists( 'patrolToken' ) ) {
 		// Current user has no patrol right, or an old cached version of user.tokens
 		// that didn't have patrolToken yet.
@@ -26,7 +28,7 @@
 			} );
 			$( this ).hide().after( $spinner );
 
-			rcid = mw.util.getParamValue( 'rcid', this.href );
+			rcid = util.getParamValue( 'rcid', this.href );
 			apiRequest = new mw.Api();
 
 			apiRequest.postWithToken( 'patrol', {

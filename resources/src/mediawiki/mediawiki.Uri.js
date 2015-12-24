@@ -51,6 +51,7 @@
  */
 
 ( function ( mw, $ ) {
+
 	/**
 	 * Function that's useful when constructing the URI string -- we frequently encounter the pattern
 	 * of having to add something to the URI as we go, but only if it's present, and to include a
@@ -87,6 +88,7 @@
 		strict: mw.template.get( 'mediawiki.Uri', 'strict.regexp' ).render(),
 		loose: mw.template.get( 'mediawiki.Uri', 'loose.regexp' ).render()
 	},
+	util = require( 'mediawiki.util' ),
 
 	/**
 	 * The order here matches the order of captured matches in the `parser` property regexes.
@@ -235,7 +237,7 @@
 		 *
 		 * Standard encodeURIComponent, with extra stuff to make all browsers work similarly and more
 		 * compliant with RFC 3986. Similar to rawurlencode from PHP and our JS library
-		 * mw.util.rawurlencode, except this also replaces spaces with `+`.
+		 * util.rawurlencode, except this also replaces spaces with `+`.
 		 *
 		 * @static
 		 * @param {string} s String to encode
@@ -361,7 +363,7 @@
 						if ( v === null ) {
 							args.push( k );
 						} else if ( k === 'title' ) {
-							args.push( k + '=' + mw.util.wikiUrlencode( v ) );
+							args.push( k + '=' + util.wikiUrlencode( v ) );
 						} else {
 							args.push( k + '=' + Uri.encode( v ) );
 						}
