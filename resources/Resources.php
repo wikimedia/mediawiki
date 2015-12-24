@@ -2288,6 +2288,25 @@ return [
 		],
 	],
 
+	'mediawiki.router' => [
+		'scripts' => [
+			'resources/src/mediawiki.router/index.js',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+		'dependencies' => [
+			'oojs-router',
+		],
+	],
+
+	'oojs-router' => [
+		'scripts' => [
+			'resources/src/oojs-router/index.js',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+		'dependencies' => [
+			'oojs',
+		],
+	],
 	/* OOjs UI */
 	// WARNING: OOjs-UI is NOT TESTED with older browsers and is likely to break
 	// if loaded in browsers that don't support ES5
