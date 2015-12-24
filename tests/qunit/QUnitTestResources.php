@@ -94,8 +94,10 @@ return array(
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cldr.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cookie.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.experiments.test.js',
+			'tests/qunit/suites/resources/oojs-router/index.js',
 		),
 		'dependencies' => array(
+			'oojs-router',
 			'jquery.accessKeyLabel',
 			'jquery.autoEllipsis',
 			'jquery.byteLength',
