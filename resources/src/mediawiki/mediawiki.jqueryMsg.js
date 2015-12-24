@@ -12,6 +12,7 @@
 	 */
 
 	var oldParser,
+		util = require( 'mediawiki.util' ),
 		slice = Array.prototype.slice,
 		parserDefaults = {
 			magic: {
@@ -1056,7 +1057,7 @@
 			if ( page.charAt( 0 ) === ':' ) {
 				page = page.slice( 1 );
 			}
-			url = mw.util.getUrl( page );
+			url = util.getUrl( page );
 
 			if ( nodes.length === 1 ) {
 				// [[Some Page]] or [[Namespace:Some Page]]

@@ -11,8 +11,9 @@
 
 		function updateBlockOptions( instant ) {
 			var blocktarget = $.trim( $blockTarget.val() ),
+				util = require( 'mediawiki.util' ),
 				isEmpty = blocktarget === '',
-				isIp = mw.util.isIPAddress( blocktarget, true ),
+				isIp = util.isIPAddress( blocktarget, true ),
 				isIpRange = isIp && blocktarget.match( /\/\d+$/ );
 
 			if ( isIp && !isEmpty ) {

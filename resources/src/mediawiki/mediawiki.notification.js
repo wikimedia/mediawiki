@@ -2,6 +2,7 @@
 	'use strict';
 
 	var notification,
+		util = require( 'mediawiki.util' ),
 		// The #mw-notification-area div that all notifications are contained inside.
 		$area,
 		// Number of open notification boxes at any time
@@ -282,7 +283,7 @@
 			} );
 
 		// Prepend the notification area to the content area and save it's object.
-		mw.util.$content.prepend( $area );
+		util.$content.prepend( $area );
 		offset = $area.offset();
 		$area.hide();
 
