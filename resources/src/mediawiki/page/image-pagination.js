@@ -5,6 +5,7 @@
 	/*jshint latedef:false */
 	var jqXhr, $multipageimage, $spinner,
 		cache = {},
+		util = require( 'mediawiki.util' ),
 		cacheOrder = [];
 
 	/* Fetch the next page, caching up to 10 last-loaded pages.
@@ -103,8 +104,8 @@
 
 			// Generate the same URL on client side as the one generated in ImagePage::openShowImage.
 			// We avoid using the URL in the link directly since it could have been manipulated (bug 66608)
-			page = Number( mw.util.getParamValue( 'page', this.href ) );
-			url = mw.util.getUrl( mw.config.get( 'wgPageName' ), { page: page } );
+			page = Number( util.getParamValue( 'page', this.href ) );
+			url = util.getUrl( mw.config.get( 'wgPageName' ), { page: page } );
 
 			switchPage( url );
 			e.preventDefault();

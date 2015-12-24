@@ -2,13 +2,15 @@
  * JavaScript for Special:UnwatchedPages
  */
 ( function ( mw, $ ) {
+	var util = require( 'mediawiki.util' );
+
 	$( function () {
 		$( 'a.mw-watch-link' ).click( function ( e ) {
 			var promise,
 				api = new mw.Api(),
 				$link = $( this ),
 				$subjectLink = $link.closest( 'li' ).children( 'a' ).eq( 0 ),
-				title = mw.util.getParamValue( 'title', $link.attr( 'href' ) );
+				title = util.getParamValue( 'title', $link.attr( 'href' ) );
 			// nice format
 			title = mw.Title.newFromText( title ).toText();
 			// Disable link whilst we're busy to avoid double handling
