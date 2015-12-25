@@ -1381,6 +1381,8 @@
 	"foreign-structured-upload-form-2-label-useful": "Яна павінна быць <strong>адукацыйнай і карыснай</strong> для навучаньня іншых",
 	"foreign-structured-upload-form-2-label-ccbysa": "Вы мусіце быць <strong>згодныя апублікаваць яе ў Інтэрнэце назаўсёды</strong> паводле ліцэнзіі [https://creativecommons.org/licenses/by-sa/4.0/ Creative Commons Attribution-ShareAlike 4.0]",
 	"foreign-structured-upload-form-2-label-alternative": "Калі ня ўсё з вышэйпералічанага праўда, вы ўсё яшчэ можаце загрузіць гэты файл з дапамогай [https://commons.wikimedia.org/wiki/Special:UploadWizard майстару загрузкі Вікісховішча], калі файл даступны паводле свабоднай ліцэнзіі.",
+	"foreign-structured-upload-form-3-label-question-website": "Вы спампавалі гэтую выяву зь нейкага сайту або знайшлі яе праз пошук выяваў?",
+	"foreign-structured-upload-form-3-label-question-ownwork": "Вы стварылі гэтую выяву (зрабілі фота, накід малюнку і г. д.) самі?",
 	"backend-fail-stream": "Немагчыма накіраваць файл $1.",
 	"backend-fail-backup": "Немагчыма зрабіць рэзэрвовую копію файла $1.",
 	"backend-fail-notexists": "Файл $1 не існуе.",

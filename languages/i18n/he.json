@@ -3522,6 +3522,7 @@
 	"mediastatistics-header-text": "טקסט",
 	"mediastatistics-header-executable": "בני־הרצה",
 	"mediastatistics-header-archive": "מכווצים",
+	"mediastatistics-header-total": "כל הקבצים",
 	"json-warn-trailing-comma": "{{PLURAL:$1|פסיק מסיים אחד הוסר|$1 פסיקים מסיימים הוסרו}} מטקסט ה־JSON",
 	"json-error-unknown": "הייתה בעיה עם טקסט ה־JSON. שגיאה: $1",
 	"json-error-depth": "הייתה חריגה מהעומק המקסימלי של המחסנית",

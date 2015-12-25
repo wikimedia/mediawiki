@@ -1903,6 +1903,7 @@
 	"delete-confirm": "刪除 \"$1\"",
 	"delete-legend": "刪除",
 	"historywarning": "<strong>警告：</strong>您正要刪除的頁面內含 $1 次{{PLURAL:$1|的修訂}}歷史：",
+	"historyaction-submit": "顯示",
 	"confirmdeletetext": "您正要刪除一個頁面或圖片以及其所有歷史。\n請確定您了解要進行此項操作所造成的後果，同時確認您的行為符合[[{{MediaWiki:Policy-url}}]] 規範。",
 	"actioncomplete": "操作完成",
 	"actionfailed": "操作失敗",

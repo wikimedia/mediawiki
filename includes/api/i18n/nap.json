@@ -18,6 +18,7 @@
 	"apihelp-block-param-autoblock": "Automaticamende blocca l'urdeme indirizze IP ausate, e tuttuquante ll'indirizze IP addò tentasse 'e trasì.",
 	"apihelp-block-param-noemail": "Scanza st'utente 'e mannà mmasciate pe' bbìa d' 'o wiki. (Servisse 'o <code>blockemail</code> buono).",
 	"apihelp-block-param-hidename": "Annascunne 'o nomme utente d' 'o riggistro 'e blocche (Addimanna 'e premmesse 'e <code>hideuser</code>).",
+	"apihelp-block-param-reblock": "Si l'utente è già bluccato, sovrascrive 'o blocco esistente.",
 	"apihelp-checktoken-param-type": "Tipo 'e token ncurzo 'e test.",
 	"apihelp-checktoken-param-token": "Token 'a testà.",
 	"apihelp-checktoken-param-maxtokenage": "Massima ammaturità cunzentuta p' 'o token, 'n secunde.",

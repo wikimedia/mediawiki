@@ -3456,6 +3456,7 @@
 	"mediastatistics-header-text": "Täx",
 	"mediastatistics-header-executable": "Projramme",
 	"mediastatistics-header-archive": "Kumpremeerte Dahtefommahte",
+	"mediastatistics-header-total": "Alle Datteije",
 	"json-warn-trailing-comma": "{{PLURAL:$1|0=Kei Komma wood|1=Ei Komma woodt|$1 Kommas woodte}} aam Ängk vum <i lang=\"en\" xml:lang=\"en\">JSON</i> fott jenumme.",
 	"json-error-unknown": "Mem <i lang=\"en\" xml:lang=\"en\">JSON</i> es jät scheif jeloufe: $1",
 	"json-error-depth": "Der ẞtägg eß övverjeloufe",

@@ -3642,6 +3642,7 @@
 	"mediastatistics-header-text": "Textuel",
 	"mediastatistics-header-executable": "Exécutables",
 	"mediastatistics-header-archive": "Formats compressés",
+	"mediastatistics-header-total": "Tous les fichiers",
 	"json-warn-trailing-comma": "$1 {{PLURAL:$1|virgule finale a été supprimée|virgules finales ont été supprimées}} du JSON",
 	"json-error-unknown": "Il y a eu un problème avec le JSON. Erreur : $1",
 	"json-error-depth": "La taille maximale de la pile a été dépassée",

@@ -1550,6 +1550,7 @@
 	"usereditcount": "$1 {{PLURAL:$1|uređivanje|uređivanja|uređivanja}}",
 	"usercreated": "{{GENDER:$3|Otvorio|Otvorila}} račun $1 u $2",
 	"newpages": "Nove stranice",
+	"newpages-submit": "Prikaži",
 	"newpages-username": "Suradničko ime:",
 	"ancientpages": "Najstarije stranice",
 	"move": "Premjesti",

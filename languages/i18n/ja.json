@@ -3580,6 +3580,7 @@
 	"mediastatistics-header-text": "テキスト",
 	"mediastatistics-header-executable": "実行ファイル",
 	"mediastatistics-header-archive": "圧縮フォーマット",
+	"mediastatistics-header-total": "すべてのファイル",
 	"json-warn-trailing-comma": "JSON の末尾の{{PLURAL:$1|カンマ $1 個}}を除去しました",
 	"json-error-unknown": "JSON に問題点がありました。エラー: $1",
 	"json-error-depth": "スタックの深さが上限を超えました",

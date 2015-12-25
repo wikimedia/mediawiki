@@ -972,7 +972,7 @@
 	"recentchangesdays-max": "최대 $1{{PLURAL:$1|일}}",
 	"recentchangescount": "기본으로 보여줄 편집 수:",
 	"prefs-help-recentchangescount": "이 설정은 최근 바뀜, 문서 역사와 기록에 적용됩니다.",
-	"prefs-help-watchlist-token2": "내 주시문서 목록의 웹 피드의 비밀 키입니다.\n비밀 키를 알고 있는 사람은 내 주시문서 목록을 읽읅 수 있으니 비밀 키를 알리지 마세요.\n[[Special:ResetTokens|비밀 키를 재설정해야 한다면 여기를 클릭하세요]].",
+	"prefs-help-watchlist-token2": "내 주시문서 목록의 웹 피드의 비밀 키입니다.\n비밀 키를 알고 있는 사람은 내 주시문서 목록을 읽을 수 있으니 비밀 키를 알리지 마세요.\n필요하다면 [[Special:ResetTokens|비밀 키를 재설정할 수 있습니다]].",
 	"savedprefs": "설정을 저장했습니다.",
 	"savedrights": "$1의 사용자 권한이 저장되었습니다.",
 	"timezonelegend": "시간대:",
