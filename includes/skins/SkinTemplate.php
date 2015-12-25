@@ -1072,10 +1072,19 @@ class SkinTemplate extends Skin {
 			}
 		} else {
 			// If it's not content, it's got to be a special page
+			$hrefURL = $request->getRequestURL(); // @see: bug 2457, bug 2510
+
+			// If this is Special:Preferences, remove 'success=1' from the href to avoid repeat
+			// success notifications
+			// @see: T26700
+			if ( $title->isSpecial( 'Preferences' ) ) {
+				$hrefURL = preg_replace( '/&?success=1/', '', $hrefURL );
+			}
+
 			$content_navigation['namespaces']['special'] = array(
 				'class' => 'selected',
 				'text' => $this->msg( 'nstab-special' )->text(),
-				'href' => $request->getRequestURL(), // @see: bug 2457, bug 2510
+				'href' => $hrefURL,
 				'context' => 'subject'
 			);
 
