@@ -261,14 +261,44 @@
 			} );
 		}
 
+		// Check if all of the form values are unchanged
+		function isPrefsChanged() {
+			var inputs = $( '#mw-prefs-form :input' ),
+				input, $input, inputType,
+				index, optIndex,
+				opt;
+
+			for ( index = 0; index < inputs.length; index++ ) {
+				input = inputs[ index ];
+				$input = $( input );
+
+				// Different types of inputs have different methods for accessing defaults
+				if ( $input.is( 'select' ) ) { // <select> has the property defaultSelected for each option
+					for ( optIndex = 0; optIndex < input.options.length; optIndex++ ) {
+						opt = input.options[ optIndex ];
+						if ( opt.selected !== opt.defaultSelected ) {
+							return true;
+						}
+					}
+				} else if ( $input.is( 'input' ) ) { // <input> has defaultValue or defaultChecked
+					inputType = input.type;
+					if ( inputType === 'radio' || inputType === 'checkbox' ) {
+						if ( input.checked !== input.defaultChecked ) {
+							return true;
+						}
+					} else if ( input.value !== input.defaultValue ) {
+						return true;
+					}
+				}
+			}
+
+			return false;
+		}
+
 		// Set up a message to notify users if they try to leave the page without
 		// saving.
-		$( '#mw-prefs-form' ).data( 'origdata', $( '#mw-prefs-form' ).serialize() );
 		allowCloseWindow = mw.confirmCloseWindow( {
-			test: function () {
-				return $( '#mw-prefs-form' ).serialize() !== $( '#mw-prefs-form' ).data( 'origdata' );
-			},
-
+			test: isPrefsChanged,
 			message: mw.msg( 'prefswarning-warning', mw.msg( 'saveprefs' ) ),
 			namespace: 'prefswarning'
 		} );
