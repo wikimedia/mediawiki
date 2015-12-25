@@ -6,7 +6,7 @@
 		var $preftoc, $preferences, $fieldsets,
 			labelFunc,
 			$tzSelect, $tzTextbox, $localtimeHolder, servertime,
-			allowCloseWindow, notif;
+			allowCloseWindow, notif, specialTabLink;
 
 		labelFunc = function () {
 			return this.id.replace( /^mw-prefsection/g, 'preftab' );
@@ -96,9 +96,12 @@
 				} );
 
 				// Remove now-unnecessary success=1 querystring to prevent reappearance of notification on reload
+				// from the current URL and from the "Special Page" tab
 				if ( history.replaceState ) {
 					history.replaceState( {}, document.title, location.href.replace( /&?success=1/, '' ) );
 				}
+				specialTabLink = $( '#ca-nstab-special' ).find( 'a' );
+				specialTabLink.attr( 'href', specialTabLink.attr( 'href' ).replace( /&?success=1/, '' ) );
 			}
 		}
 
