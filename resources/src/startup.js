@@ -4,15 +4,15 @@
  * even the most ancient of browsers, so be very careful when editing.
  */
 /*jshint unused: false, evil: true */
-/*globals mw, RLQ: true, $VARS, $CODE, performance */
+/*globals mw, RLQ: true, $VARS, $CODE */
 
 var mediaWikiLoadStart = ( new Date() ).getTime(),
 
-	mwPerformance = ( window.performance && performance.mark ) ? performance : {
+	mwPerformance = ( window.mwPerformance && mwPerformance.mark ) ? mwPerformance : {
 		mark: function () {}
 	};
 
-mwPerformance.mark( 'mwLoadStart' );
+mwPerformance.mark( 'mediaWikiLoadStart' );
 
 /**
  * Returns false for Grade C supported browsers.
