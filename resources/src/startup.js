@@ -4,11 +4,11 @@
  * even the most ancient of browsers, so be very careful when editing.
  */
 /*jshint unused: false, evil: true */
-/*globals mw, RLQ: true, $VARS, $CODE, performance */
+/*globals RLQ: true, $VARS, $CODE */
 
 var mediaWikiLoadStart = ( new Date() ).getTime(),
 
-	mwPerformance = ( window.performance && performance.mark ) ? performance : {
+	mwPerformance = ( window.mwPerformance && mwPerformance.mark ) ? mwPerformance : {
 		mark: function () {}
 	};
 
@@ -66,7 +66,7 @@ function isCompatible( ua ) {
 }
 
 // Conditional script injection
-( function () {
+( function ( mw ) {
 	if ( !isCompatible() ) {
 		// Undo class swapping in case of an unsupported browser.
 		// See OutputPage::getHeadScripts().
@@ -110,4 +110,4 @@ function isCompatible( ua ) {
 		}
 	};
 	document.getElementsByTagName( 'head' )[ 0 ].appendChild( script );
-}() );
+}( mediaWiki ) );
