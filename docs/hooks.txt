@@ -754,6 +754,7 @@ Gives a chance for an extension to set it programmatically to a variable class.
 &$auth: the $wgAuth object, probably a stub
 
 'AutopromoteCondition': Check autopromote condition for user.
+New way is over $wgAutopromoteConditionHandlers
 $type: condition type
 $args: arguments
 $user: user

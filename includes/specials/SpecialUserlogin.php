@@ -84,6 +84,7 @@ class LoginForm extends SpecialPage {
 		'resetpass-no-info',
 		'confirmemail_needlogin',
 		'prefsnologintext2',
+		'autopromote-needlogin',
 	];
 
 	public $mAbortLoginErrorMsg = null;

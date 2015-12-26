@@ -5136,6 +5136,26 @@ $wgAutopromoteOnce = [
 $wgAutopromoteOnceLogInRC = true;
 
 /**
+ * Handlers for autopromote conditions
+ * @since 1.28
+ */
+$wgAutopromoteConditionHandlers = [
+	'&' => 'AutopromoteAndCondition',
+	'!' => 'AutopromoteNotCondition',
+	'|' => 'AutopromoteOrCondition',
+	'^' => 'AutopromoteXOrCondition',
+	APCOND_AGE => 'AutopromoteUserAgeCondition',
+	APCOND_AGE_FROM_EDIT => 'AutopromoteUserAgeFromEditCondition',
+	APCOND_BLOCKED => 'AutopromoteUserBlockedCondition',
+	APCOND_EDITCOUNT => 'AutopromoteUserEditCountCondition',
+	APCOND_EMAILCONFIRMED => 'AutopromoteUserEmailconfirmedCondition',
+	APCOND_INGROUPS => 'AutopromoteUserInGroupsCondition',
+	APCOND_IPINRANGE => 'AutopromoteUserIpInRangeCondition',
+	APCOND_ISIP => 'AutopromoteUserIsIpCondition',
+	APCOND_ISBOT => 'AutopromoteUserIsBotCondition',
+];
+
+/**
  * $wgAddGroups and $wgRemoveGroups can be used to give finer control over who
  * can assign which groups at Special:Userrights.
  *
