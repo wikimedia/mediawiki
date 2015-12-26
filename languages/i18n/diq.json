@@ -667,6 +667,8 @@
 	"content-model-text": "metno pan",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"content-json-empty-object": "Çiyo veng",
+	"content-json-empty-array": "Rêza venge",
 	"expensive-parserfunction-warning": "Hişyari: No pel de fonksiyoni zaf esti.\n\nNo $2 daweti ra gani tay bıbo, na hel {{PLURAL:$1|1 dawet esto|$1 dawet esto}}.",
 	"expensive-parserfunction-category": "Pelê ke tede zaf fonksiyoni esti",
 	"post-expand-template-inclusion-warning": "Tembe: zerreyê şabloni zaf gırdo.\nTaye şabloni zerre pel de nêmociyayeni.",
