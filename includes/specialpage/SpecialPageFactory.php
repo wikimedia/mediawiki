@@ -86,6 +86,7 @@ class SpecialPageFactory {
 		'CreateAccount' => 'SpecialCreateAccount',
 
 		// Users and rights
+		'Autopromote' => 'SpecialAutopromote',
 		'Block' => 'SpecialBlock',
 		'Unblock' => 'SpecialUnblock',
 		'BlockList' => 'SpecialBlockList',
