@@ -391,6 +391,7 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'AllPages' ),
 	'ApiHelp'                   => array( 'ApiHelp' ),
 	'Ancientpages'              => array( 'AncientPages' ),
+	'Autopromote'               => array( 'Autopromote' ),
 	'Badtitle'                  => array( 'Badtitle' ),
 	'Blankpage'                 => array( 'BlankPage' ),
 	'Block'                     => array( 'Block', 'BlockIP', 'BlockUser' ),
