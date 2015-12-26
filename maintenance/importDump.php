@@ -68,6 +68,8 @@ TEXT;
 		$this->addOption( 'namespaces',
 			'Import only the pages from namespaces belonging to the list of ' .
 			'pipe-separated namespace names or namespace indexes', false, true );
+		$this->addOption( 'rootpage', 'Pages will be imported as subpages of the specified page',
+			false, true );
 		$this->addOption( 'dry-run', 'Parse dump without actually importing pages' );
 		$this->addOption( 'debug', 'Output extra verbose debug information' );
 		$this->addOption( 'uploads', 'Process file upload data if included (experimental)' );
@@ -284,6 +286,13 @@ TEXT;
 		}
 		if ( $this->hasOption( 'no-updates' ) ) {
 			$importer->setNoUpdates( true );
+		}
+		if ( $this->hasOption( 'rootpage' ) ) {
+			$statusRootPage = $importer->setTargetRootPage( $this->getOption( 'rootpage' ) );
+			if ( !$statusRootPage->isGood() ) {
+				$this->error( 'Invalid rootpage parameter', 420 ); // die here so that it doesn't print "Done!"
+				return;
+			}
 		}
 		$importer->setPageCallback( array( &$this, 'reportPage' ) );
 		$this->importCallback = $importer->setRevisionCallback(
