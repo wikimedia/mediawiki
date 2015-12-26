@@ -93,6 +93,7 @@ class SpecialPageFactory {
 
 		// Users and rights
 		'Activeusers' => 'SpecialActiveUsers',
+		'Autopromote' => 'SpecialAutopromote',
 		'Block' => 'SpecialBlock',
 		'Unblock' => 'SpecialUnblock',
 		'BlockList' => 'SpecialBlockList',
