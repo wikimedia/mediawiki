@@ -643,6 +643,10 @@
 			"type": "object",
 			"description": "Available feeds objects"
 		},
+		"AutopromoteConditionHandlers": {
+			"type": "object",
+			"description": "Handlers for autopromote conditions"
+		},
 		"SkinOOUIThemes": {
 			"type": "object"
 		},
