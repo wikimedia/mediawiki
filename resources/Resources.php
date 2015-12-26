@@ -1478,6 +1478,7 @@ return array(
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.redirect.js',
 		'dependencies' => 'jquery.client',
 		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.action.view.redirectPage' => array(
 		'position' => 'top',
