@@ -49,7 +49,11 @@ class SpecialPreferences extends SpecialPage {
 		$out->addModules( 'mediawiki.special.preferences' );
 		$out->addModuleStyles( 'mediawiki.special.preferences.styles' );
 
-		if ( $this->getRequest()->getCheck( 'success' ) ) {
+		$request = $this->getRequest();
+		if ( $request->getCookie( 'Success' ) ) {
+			// Remove cookie for the success message
+			$request->response()->setCookie( 'Success' );
+
 			$out->wrapWikiMsg(
 				Html::rawElement(
 					'div',
