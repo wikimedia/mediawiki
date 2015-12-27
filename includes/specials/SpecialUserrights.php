@@ -76,6 +76,7 @@ class UserrightsPage extends SpecialPage {
 	public function execute( $par ) {
 		$user = $this->getUser();
 		$request = $this->getRequest();
+		$session = $request->getSession();
 		$out = $this->getOutput();
 
 		if ( $par !== null ) {
@@ -99,7 +100,13 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		// show a successbox, if the user rights was saved successfully
-		if ( $request->getCheck( 'success' ) && $this->mFetchedUser !== null ) {
+		if (
+			$session->get( 'specialUserrightsSaveSuccess' ) &&
+			$this->mFetchedUser !== null
+		) {
+			// Remove session data for the success message
+			$session->remove( 'specialUserrightsSaveSuccess' );
+
 			$out->addModules( [ 'mediawiki.special.userrights' ] );
 			$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
 			$out->addHTML(
@@ -167,6 +174,9 @@ class UserrightsPage extends SpecialPage {
 					$targetUser
 				);
 
+				// Set session data for the success message
+				$session->set( 'specialUserrightsSaveSuccess', 1 );
+
 				$out->redirect( $this->getSuccessURL() );
 
 				return;
@@ -180,7 +190,7 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	function getSuccessURL() {
-		return $this->getPageTitle( $this->mTarget )->getFullURL( [ 'success' => 1 ] );
+		return $this->getPageTitle( $this->mTarget )->getFullURL();
 	}
 
 	/**
