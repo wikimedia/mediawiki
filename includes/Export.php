@@ -620,6 +620,9 @@ class XmlDumpWriter {
 				strval( $row->page_restrictions ) ) . "\n";
 		}
 
+		$out .= '    ' . Xml::element( 'lang', array(),
+			$title->getPageLanguage()->getHtmlCode() ) . "\n";
+
 		Hooks::run( 'XmlDumpWriterOpenPage', array( $this, &$out, $row, $title ) );
 
 		return $out;
