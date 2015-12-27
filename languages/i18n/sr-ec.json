@@ -3436,6 +3436,7 @@
 	"pagelang-name": "Страница",
 	"pagelang-language": "Језик",
 	"pagelang-select-lang": "Изабери језик",
+	"pagelang-submit": "Пошаљи",
 	"right-pagelang": "мењање језика странице",
 	"action-pagelang": "промену језика странице",
 	"logentry-pagelang-pagelang": "$1 је {{GENDER:$2|променио|променила}} језик странице $3 из $4 у $5.",

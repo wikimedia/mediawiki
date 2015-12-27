@@ -10,7 +10,8 @@
 			"Ата",
 			"Тест",
 			"아라",
-			"Amire80"
+			"Amire80",
+			"Piramidion"
 		]
 	},
 	"config-desc": "Інсталятор MediaWiki",
@@ -144,9 +145,9 @@
 	"config-header-oracle": "Налаштування Oracle",
 	"config-header-mssql": "Параметри Microsoft SQL Server",
 	"config-invalid-db-type": "Невірний тип бази даних",
-	"config-missing-db-name": "Ви повинні ввести значення параметру  \"{{int:config-db-name}}\".",
-	"config-missing-db-host": "Ви повинні ввести значення параметру \"{{int:config-db-host}}\".",
-	"config-missing-db-server-oracle": "Ви повинні ввести значення параметру  \"{{int:config-db-host-oracle}}\".",
+	"config-missing-db-name": "Ви повинні ввести значення параметра «{{int:config-db-name}}».",
+	"config-missing-db-host": "Ви повинні ввести значення параметра «{{int:config-db-host}}».",
+	"config-missing-db-server-oracle": "Ви повинні ввести значення параметра «{{int:config-db-host-oracle}}».",
 	"config-invalid-db-server-oracle": "Неприпустиме TNS бази даних \"$1\".\nВикористовуйте \"TNS Name\" або рядок \"Easy Connect\"  ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Методи найменування Oracle])",
 	"config-invalid-db-name": "Неприпустима назва бази даних \"$1\".\nВикористовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9), знаки підкреслення (_) і дефіси (-).",
 	"config-invalid-db-prefix": "Неприпустимий префікс бази даних \"$1\".\nВикористовуйте тільки ASCII букви (a-z, A-Z), цифри (0-9), знаки підкреслення (_) і дефіси (-).",

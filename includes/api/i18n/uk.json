@@ -8,7 +8,8 @@
 			"Dars",
 			"Umherirrender",
 			"Macofe",
-			"Mix Gerder"
+			"Mix Gerder",
+			"Piramidion"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документація]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Список розсилки]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Оголошення API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Баґи і запити]\n</div>\n<strong>Статус:</strong> Усі функції, вказані на цій сторінці, мають працювати, але API далі перебуває в активній розробці і може змінитися у будь-який момент. Підпишіться на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ список розсилки mediawiki-api-announce], щоб помічати оновлення.\n\n<strong>Хибні запити:</strong> Коли до API надсилаються хибні запити, буде відіслано HTTP-шапку з ключем «MediaWiki-API-Error», а тоді і значення шапки, і код помилки, надіслані назад, будуть встановлені з тим же значенням. Більше інформації див. на [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -1276,7 +1277,7 @@
 	"apihelp-xml-param-includexmlnamespace": "Якщо вказано, додає простір назв XML.",
 	"apihelp-xmlfm-description": "Вивести дані у форматі XML (вивід відформатованого коду за допомогою HTML).",
 	"api-format-title": "Результат запиту до API MediaWiki",
-	"api-format-prettyprint-header": "Це HTML-представлення формату $1. HTML є гарним для налагодження, однак не придатний для прикладного використання.\n\nУкажіть значення для параметру <var>format</var>, для того щоб змінити формат. Для перегляду не-HTML-представлення формату, $1, вкажіть <kbd>format=$2</kbd>.\n\nДив. [[mw:API|повну документацію]], або [[Special:ApiHelp/main|довідку з API]] для детальнішої інформації.",
+	"api-format-prettyprint-header": "Це HTML-представлення формату $1. HTML є гарним для налагодження, однак не придатний для прикладного використання.\n\nУкажіть значення для параметра <var>format</var>, для того щоб змінити формат. Для перегляду не-HTML-представлення формату, $1, вкажіть <kbd>format=$2</kbd>.\n\nДив. [[mw:API|повну документацію]], або [[Special:ApiHelp/main|довідку з API]] для детальнішої інформації.",
 	"api-format-prettyprint-header-only-html": "Це HTML-представлення призначене для налагодження, однак не придатне для прикладного використання.\n\nДив. [[mw:API|повну документацію]], або [[Special:ApiHelp/main|довідку з API]] для детальнішої інформації.",
 	"api-pageset-param-titles": "Список назв над якими працювати.",
 	"api-pageset-param-pageids": "Список ідентифікаторів сторінок над якими працювати.",
