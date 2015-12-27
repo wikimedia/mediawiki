@@ -261,7 +261,9 @@ if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
 		}
 
 		// @codingStandardsIgnoreStart
-		@include_once $includePath;
+		\MediaWiki\suppressWarnings();
+		include_once $includePath;
+		\MediaWiki\restoreWarnings();
 		// @codingStandardsIgnoreEnd
 		if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
 			$ok = true;
