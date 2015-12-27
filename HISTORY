@@ -1,6 +1,14 @@
 Change notes from older releases. For current info see RELEASE-NOTES-1.27.
 
-== MediaWiki 1.26 ==
+= MediaWiki 1.26 =
+
+== MediaWiki 1.26.2 ==
+
+This is a maintenance release of the MediaWiki 1.26 branch.
+
+=== Changes since 1.26.1 ===
+* (T121892) Fix fatal error on some Special pages, introduced in 1.26.1.
+
 == MediaWiki 1.26.1 ==
 
 This is a maintenance release of the MediaWiki 1.26 branch.
@@ -25,6 +33,8 @@ This is a maintenance release of the MediaWiki 1.26 branch.
 * Fixed stray literal \n in Special:Search.
 * Fix issue that breaks HHVM Repo Authorative mode.
 * (T120267) Work around APCu memory corruption bug
+
+== MediaWiki 1.26.0 ==
 
 === Configuration changes in 1.26 ===
 * $wgPasswordResetRoutes['email'] = true by default.
@@ -115,7 +125,7 @@ This is a maintenance release of the MediaWiki 1.26 branch.
   documentation for mw.Upload.Dialog, mw.Upload.BookletLayout and its
   subclasses for more information.
 
-== extension.json changes in 1.26 ==
+=== extension.json changes in 1.26 ===
 * (T99344) The extension.json schema is now versioned. All extensions
   and skins should set a "manifest_version" property corresponding to
   the schema version they were written for. The only supported version
@@ -268,7 +278,14 @@ changes to languages because of Phabricator reports.
 * $wgDeferredUpdateList was removed.
 * DeferredUpdates::addHTMLCacheUpdate() was removed.
 
-== MediaWiki 1.25 ==
+= MediaWiki 1.25 =
+
+== MediaWiki 1.25.5 ==
+
+This is a maintenance release of the MediaWiki 1.25 branch.
+
+=== Changes since 1.25.4 ===
+* (T121892) Fix fatal error on some Special pages, introduced in 1.25.4.
 
 == MediaWiki 1.25.4 ==
 
@@ -347,6 +364,8 @@ This is a bug fix release of the MediaWiki 1.25 branch.
 
 === Changes since 1.25 ===
 * (T100351) Fix syntax errors in extension.json of ConfirmEdit extension
+
+== MediaWiki 1.25.0 ==
 
 === Configuration changes in 1.25 ===
 * $wgPageShowWatchingUsers was removed.
@@ -850,55 +869,20 @@ changes to languages because of Bugzilla reports.
   loadedScripts object, from wikibits.js (deprecated since 1.17) now emit
   warnings through mw.log.warn when accessed.
 
+= MediaWiki 1.24 =
 
-== Compatibility ==
+== MediaWiki 1.24.6 ==
 
-MediaWiki 1.25 requires PHP 5.3.3 or later. There is experimental support for
-HHVM 3.3.0.
+This is a maintenance release of the MediaWiki 1.24 branch.
 
-MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but
-support for them is somewhat less mature. There is experimental support for
-Oracle and Microsoft SQL Server.
-
-The supported versions are:
-
-* MySQL 5.0.3 or later
-* PostgreSQL 8.3 or later
-* SQLite 3.3.7 or later
-* Oracle 9.0.1 or later
-* Microsoft SQL Server 2005 (9.00.1399)
-
-== Upgrading ==
-
-1.25 has several database changes since 1.24, and will not work without schema
-updates. Note that due to changes to some very large tables like the revision
-table, the schema update may take quite long (minutes on a medium sized site,
-many hours on a large site).
-
-If upgrading from before 1.11, and you are using a wiki as a commons
-repository, make sure that it is updated as well. Otherwise, errors may arise
-due to database schema changes.
-
-If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
-new database fields are filled with data.
-
-If you are upgrading from MediaWiki 1.4.x or earlier, you should upgrade to
-1.5 first. The upgrade script maintenance/upgrade1_5.php has been removed
-with MediaWiki 1.21.
-
-Don't forget to always back up your database before upgrading!
-
-See the file UPGRADE for more detailed upgrade instructions.
-
-For notes on 1.24.x and older releases, see HISTORY.
-
-== MediaWiki 1.24 ==
+=== Changes since 1.24.5 ===
+* (T121892) Fix fatal error on some Special pages, introduced in 1.24.5.
 
 == MediaWiki 1.24.5 ==
 
 This is a security and maintenance release of the MediaWiki 1.23 branch.
 
-== Changes since 1.24.4 ==
+=== Changes since 1.24.4 ===
 * (T117899) SECURITY: $wgArticlePath can no longer be set to relative paths
   that do not begin with a slash. This enabled trivial XSS attacks.
   Configuration values such as "http://my.wiki.com/wiki/$1" are fine, as are
@@ -920,7 +904,7 @@ This is a security and maintenance release of the MediaWiki 1.23 branch.
 
 This is a security and maintenance release of the MediaWiki 1.24 branch.
 
-== Changes since 1.24.3 ==
+=== Changes since 1.24.3 ===
 
 * (T91653) Minimal PSR-3 debug logger to support backports from 1.25+.
 * (T68650) Fix indexing of moved pages with PostgreSQL. Requires running
@@ -935,7 +919,7 @@ This is a security and maintenance release of the MediaWiki 1.24 branch.
 
 This is a security and maintenance release of the MediaWiki 1.24 branch.
 
-== Changes since 1.24.2 ==
+=== Changes since 1.24.2 ===
 
 * (T94116) SECURITY: Compare API watchlist token in constant time
 * (T97391) SECURITY: Escape error message strings in thumb.php
@@ -949,7 +933,7 @@ This is a security and maintenance release of the MediaWiki 1.24 branch.
 
 This is a security and maintenance release of the MediaWiki 1.24 branch.
 
-== Changes since 1.24.1 ==
+=== Changes since 1.24.1 ===
 
 * (T85848, T71210) SECURITY: Don't parse XMP blocks that contain XML entities,
   to prevent various DoS attacks.
@@ -973,7 +957,7 @@ This is a security and maintenance release of the MediaWiki 1.24 branch.
 
 This is a security and maintenance release of the MediaWiki 1.24 branch.
 
-== Changes since 1.24.0 ==
+=== Changes since 1.24.0 ===
 
 * (bug T76686) [SECURITY] thumb.php outputs wikitext message as raw HTML, which
   could lead to xss. Permission to edit MediaWiki namespace is required to
@@ -985,6 +969,8 @@ This is a security and maintenance release of the MediaWiki 1.24 branch.
 * Fixed a couple of entries in RELEASE-NOTES-1.24.
 * (bug T76168) OutputPage: Add accessors for some protected properties.
 * (bug T74834) Make 1.24 branch directly installable under PostgreSQL.
+
+== MediaWiki 1.24.0 ==
 
 === Configuration changes in 1.24 ===
 * MediaWiki will no longer run if register_globals is enabled. It has been
@@ -1678,14 +1664,20 @@ of files that are no longer available follows.
 * skins/common/images/icons/fileicon.png
 * skins/common/images/ksh/button_S_italic.png
 
+= MediaWiki 1.23 =
 
-== MediaWiki 1.23 ==
+== MediaWiki 1.23.13 ==
+
+This is a maintenance release of the MediaWiki 1.23 branch.
+
+=== Changes since 1.23.12 ===
+* (T121892) Fix fatal errors on some Special pages, introduced in 1.23.12.
 
 == MediaWiki 1.23.12 ==
 
 This is a security and maintenance release of the MediaWiki 1.23 branch.
 
-== Changes since 1.23.11 ==
+=== Changes since 1.23.11 ===
 * (T117899) SECURITY: $wgArticlePath can no longer be set to relative paths
   that do not begin with a slash. This enabled trivial XSS attacks.
   Configuration values such as "http://my.wiki.com/wiki/$1" are fine, as are
@@ -1706,7 +1698,7 @@ This is a security and maintenance release of the MediaWiki 1.23 branch.
 
 This is a security and maintenance release of the MediaWiki 1.23 branch.
 
-== Changes since 1.23.10 ==
+=== Changes since 1.23.10 ===
 
 * (T91850) SECURITY: Add throttle check in ApiUpload and SpecialUpload
 * (T91203, T91205) SECURITY: API: Improve validation in chunked uploading
@@ -1716,7 +1708,7 @@ This is a security and maintenance release of the MediaWiki 1.23 branch.
 
 This is a security and maintenance release of the MediaWiki 1.23 branch.
 
-== Changes since 1.23.9 ==
+=== Changes since 1.23.9 ===
 
 * (T94116) SECURITY: Compare API watchlist token in constant time
 * (T97391) SECURITY: Escape error message strings in thumb.php
@@ -1731,7 +1723,7 @@ This is a security and maintenance release of the MediaWiki 1.23 branch.
 
 This is a security and maintenance release of the MediaWiki 1.23 branch.
 
-== Changes since 1.23.8 ==
+=== Changes since 1.23.8 ===
 
 * (T85848, T71210) SECURITY: Don't parse XMP blocks that contain XML entities,
   to prevent various DoS attacks.
@@ -1744,14 +1736,14 @@ This is a security and maintenance release of the MediaWiki 1.23 branch.
   prevent XSS and protect viewer's privacy.
 * (bug T68650) Fix indexing of moved pages with PostgreSQL. Requires running
   update.php to fix.
-* (bug T70087) Fix Special:ActiveUsers page for installations using 
+* (bug T70087) Fix Special:ActiveUsers page for installations using
   PostgreSQL.
 
 == MediaWiki 1.23.8 ==
 
 This is a security and maintenance release of the MediaWiki 1.23 branch.
 
-== Changes since 1.23.7 ==
+=== Changes since 1.23.7 ===
 
 * (bug T76686) [SECURITY] thumb.php outputs wikitext message as raw HTML, which
   could lead to xss. Permission to edit MediaWiki namespace is required to
@@ -1765,7 +1757,7 @@ This is a security and maintenance release of the MediaWiki 1.23 branch.
 
 This is a security and maintenance release of the MediaWiki 1.23 branch.
 
-== Changes since 1.23.6 ==
+=== Changes since 1.23.6 ===
 
 * (bugs 66776, 71478) SECURITY:  User PleaseStand reported a way to inject code
   into API clients that used format=php to process pages that underwent flash
@@ -1869,6 +1861,7 @@ This is a security and maintenance release of the MediaWiki 1.23 branch.
   like only extracting the tail of the file partially or not at all.
 * (bug 66182) Removed -x flag on some php files.
 
+== MediaWiki 1.23.0 ==
 
 === Configuration changes in 1.23 ===
 * (bug 13250) Restored method for clearing a watchlist in web UI
@@ -2337,7 +2330,7 @@ changes to languages because of Bugzilla reports.
 ==== Removed globals ====
 * $wgBetterDirectionality (deprecated in 1.18)
 
-== MediaWiki 1.22 ==
+= MediaWiki 1.22 =
 
 == MediaWiki 1.22.15 ==
 
@@ -2492,6 +2485,8 @@ This is a security and maintenance release of the MediaWiki 1.22 branch.
 * (bug 58640) Fixed a compatibility issue with PCRE 8.34 that caused pages to appear blank or with missing text.
 * (bug 47055) Changed FOR UPDATE handling in Postgresql
 * (bug 57026) Avoid extra parsing in prepareContentForEdit()
+
+== MediaWiki 1.22.0 ==
 
 === Configuration changes in 1.22 ===
 * $wgRedirectScript was removed. It was unused.
@@ -2902,7 +2897,7 @@ This is a security and maintenance release of the MediaWiki 1.22 branch.
   file repositories, and related ForeignAPIRepo methods getInfo and getApiUrl.
 * The new query module list=allfileusages to enumerate file usages was added.
 
-=== Languages updated in 1.22===
+=== Languages updated in 1.22 ===
 
 MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
@@ -3020,7 +3015,7 @@ changes to languages because of Bugzilla reports.
 * mediawiki.util: mw.util.wikiGetlink has been renamed to getUrl. (The old name
   still works, but is deprecated.)
 
-== MediaWiki 1.21 ==
+= MediaWiki 1.21 =
 
 == MediaWiki 1.21.11 ==
 This is a security and maintenance release of the MediaWiki 1.21 branch.
@@ -3107,6 +3102,8 @@ This is a maintenance release of the MediaWiki 1.21 branch.
 * An incorrect version number was used for 1.21.0. 1.21.1 has the correct number.
 * A problem with the Oracle SQL table creation was fixed.
 * (PdfHandler extension) Fix warning if pdfinfo fails but pdftext succeeds.
+
+== MediaWiki 1.21.0 ==
 
 === Configuration changes in 1.21 ===
 * (bug 29374) $wgVectorUseSimpleSearch is now enabled by default.
@@ -3436,7 +3433,7 @@ changes to languages because of Bugzilla reports.
 * BREAKING CHANGE: (bug 38244) Removed the mediawiki.api.titleblacklist module
   and moved it to the TitleBlacklist extension.
 
-== MediaWiki 1.20 ==
+= MediaWiki 1.20 =
 
 == MediaWiki 1.20.8 ==
 This is a security release of the MediaWiki 1.20 branch.
@@ -3489,7 +3486,7 @@ This is a security release of the MediaWiki 1.20 branch.
 == MediaWiki 1.20.3 ==
 This is a security and maintenance release of the MediaWiki 1.20 branch.
 
-== MediaWiki 1.20.2 ==
+=== Changes since MediaWiki 1.20.2 ===
 * New preference type - 'api'. Preferences of this type are not shown on Special:Preferences, but are still available via the action=options API. (Unbreaks MLEB.)
 * (bug 44010) Context is passed to UserGetLanguageObject.
 * The recursion guard on RequestContext::getLanguage() was weakened.
@@ -3503,14 +3500,14 @@ This is a security and maintenance release of the MediaWiki 1.20 branch.
 == MediaWiki 1.20.2 ==
 This is a maintenance release of the MediaWiki 1.20 branch
 
-== MediaWiki 1.20.1 ==
+=== Changes since MediaWiki 1.20.1 ===
 * (bug 42638) Fix API action=options&reset=1 & unit tests.
 * (bug 42370) Fixed backport of 60cc060 to use mDoneWrites — caused * (bug 42592) User rights, preferences and other things are not saving in 1.20.1.
 
 == MediaWiki 1.20.1 ==
 This is a security release of the MediaWiki 1.20 branch
 
-Changes since 1.20
+=== Changes since 1.20.0 ===
 * (bug 42202) Validate options to prevent html injection
 * (bug 40995) Prevent session fixation in Special:UserLogin (CVE-2012-5391)
 * (bug 41400) Prevent linker regex from exceeding PCRE backtrack limit
@@ -3518,9 +3515,7 @@ Changes since 1.20
 * (bug 40632) Remove CleanupPresentationalAttributes feature
 * [Database] Fixed case where trx idle callbacks might be lost.
 
-
-
-== MediaWiki 1.20 ==
+== MediaWiki 1.20.0 ==
 
 === PHP 5.3 now required ===
 Since 1.20, the lowest supported version of PHP is now 5.3.2. Please
@@ -3887,7 +3882,7 @@ changes to languages because of Bugzilla reports.
 == MediaWiki 1.19.21 ==
 This is a maintenance release of the MediaWiki 1.19 branch.
 
-=== Changes since 1.19.20===
+=== Changes since 1.19.20 ===
 * (bug 67440) Allow classes to be registered properly from installer.
 * (bug 47281) Fixed a dumpBackup.php error with --uploads --include-filesoptions: Unable to find the wrapper "mwstore". * System administrators are encouraged to upgrade to this release or 1.22+ and produce a full data dump. https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Backing_up_a_wiki
 * (bug 63049) Removed anonymous functions from ApiFormatBase, added in1.19.13 as part of the fix for bug 61362, for PHP 5.2 compatibility.
@@ -3895,73 +3890,73 @@ This is a maintenance release of the MediaWiki 1.19 branch.
 == MediaWiki 1.19.20 ==
 This is a security release of the MediaWiki 1.19 branch.
 
-=== Changes since 1.19.19===
+=== Changes since 1.19.19 ===
 * (bug 70672) SECURITY: OutputPage: Remove separation of css and js module allowance.
 
 == MediaWiki 1.19.19 ==
 This is a security release of the MediaWiki 1.19 branch.
 
-=== Changes since 1.19.18===
+=== Changes since 1.19.18 ===
 * (bug 69008) SECURITY: Enhance CSS filtering in SVG files. Filter <style> elements; normalize style elements and attributes before filtering; add checks for attributes that contain css; add unit tests for html5sec and reported bugs.
 
 == MediaWiki 1.19.18 ==
 This is a security release of the MediaWiki 1.19 branch.
 
-=== Changes since 1.19.17===
+=== Changes since 1.19.17 ===
 * (bug 68187) SECURITY: Prepend jsonp callback with comment.
 * (bug 65778) SECURITY: Copy prevent-clickjacking between OutputPage and ParserOutput.
 
 == MediaWiki 1.19.17 ==
 This is a security and maintenance release of the MediaWiki 1.19 branch.
 
-=== Changes since 1.19.16===
+=== Changes since 1.19.16 ===
 * (bug 65839) SECURITY: Prevent external resources in SVG files.
 * (bug 66428) MimeMagic: Don't seek before BOF. This has weird side effects like only extracting the tail of the file partially or not at all.
 
 == MediaWiki 1.19.16 ==
 This is a security release of the MediaWiki 1.19 branch.
 
-=== Changes since 1.19.15===
+=== Changes since 1.19.15 ===
 * (bug 65501) SECURITY: Don't parse usernames as wikitext on Special:PasswordReset.
 
 == MediaWiki 1.19.15 ==
 This is a security and maintenance release of the MediaWiki 1.19 branch.
 
-=== Changes since 1.19.14===
+=== Changes since 1.19.14 ===
 Fixed resetting passwords.
 * (bug 58640) Fixed a compatibility issue with PCRE 8.34 that caused pages to appear blank or with missing text.
 
 == MediaWiki 1.19.14 ==
 This is a security and maintenance release of the MediaWiki 1.19 branch.
 
-=== Changes since 1.19.13===
+=== Changes since 1.19.13 ===
 * (bug 62497) SECURITY: Add CSRF token on Special:ChangePassword.
 * (bug 62467) Set a title for the context during import on the cli.
 
 == MediaWiki 1.19.13 ==
 This is a security and maintenance release of the MediaWiki 1.19 branch.
 
-=== Changes since 1.19.12===
+=== Changes since 1.19.12 ===
 * (bug 61362) SECURITY: API: Don't find links in the middle of api.php links.
 * Use the correct branch of the extensions' git repositories.
 
 == MediaWiki 1.19.12 ==
 This is a security release of the MediaWiki 1.19 branch.
 
-=== Changes since 1.19.11===
+=== Changes since 1.19.11 ===
 * (bug 60771) SECURITY: Disallow uploading SVG files using non-whitelisted namespaces. Also disallow iframe elements. * User will get an error including the namespace name if they use a non- whitelisted namespace.
 * (bug 61346) SECURITY: Make token comparison use constant time. It seems like our token comparison would be vulnerable to timing attacks. This will take constant time.
 
 == MediaWiki 1.19.11 ==
 This is a security release of the MediaWiki 1.19 branch.
 
-=== Changes since 1.19.10===
+=== Changes since 1.19.10 ===
 * (bug 60339) SECURITY: Sanitize shell arguments to DjVu files, and other media formats
 
 == MediaWiki 1.19.10 ==
 This is a security release of the MediaWiki 1.19 branch.
 
-=== Changes since 1.19.9===
+=== Changes since 1.19.9 ===
 * (bug 57550) SECURITY: Disallow stylesheets in SVG Uploads
 * (bug 58088) SECURITY: Don't normalize U+FF3C to \ in CSS Checks
 * (bug 58472) SECURITY: Disallow -o-link in styles
@@ -3971,7 +3966,7 @@ This is a security release of the MediaWiki 1.19 branch.
 == MediaWiki 1.19.9 ==
 This is a security and maintenance release of the MediaWiki 1.19 branch.
 
-=== Changes since 1.19.8===
+=== Changes since 1.19.8 ===
 * (bug 53032) SECURITY: Don't cache when a call could autocreate
 * (bug 55332) SECURITY: Improve css javascript detection
 * (bug 49717) Fix behaviour $wgVerifyMimeType = false; in Upload
@@ -3982,7 +3977,7 @@ This is a security and maintenance release of the MediaWiki 1.19 branch.
 
 This is a security and maintenance release of the MediaWiki 1.19 branch.
 
-=== Changes since 1.19.7===
+=== Changes since 1.19.7 ===
 * SECURITY: Sanitize ResourceLoader exception messages
 * SECURITY: Token-getting functions will fail when using jsonp callbacks.
 * SECURITY: Fix extension detection with 2 .'s
@@ -3995,7 +3990,7 @@ This is a security and maintenance release of the MediaWiki 1.19 branch.
 
 This is a security release of the MediaWiki 1.19 branch
 
-=== Changes since 1.19.6===
+=== Changes since 1.19.6 ===
 * (bug 48306) SECURITY: Run file validation checks on chunked uploads, and chunks of upload, during the upload process.
 
 == MediaWiki 1.19.6 ==
@@ -4003,7 +3998,7 @@ This is a security release of the MediaWiki 1.19 branch
 
 This is a security and maintenance release of the MediaWiki 1.19 branch
 
-=== Changes since 1.19.5===
+=== Changes since 1.19.5 ===
 * (bug 47304) SECURITY: Check SVG xml encoding against whitelist
 * (bug 46590) Added AbortChangePassword hook to allow extensions to abort password changes from Special:ChangePassword
 * Localisation updates from http://translatewiki.net.
@@ -4016,7 +4011,7 @@ This is a security and maintenance release of the MediaWiki 1.19 branch
 
 This is a security and maintenance release of the MediaWiki 1.19 branch
 
-=== Changes since 1.19.4===
+=== Changes since 1.19.4 ===
 * (bug 47251) SECURITY: Disable external entities in Import
 * (bug 46859) SECURITY: Disable external entities in XMLReader
 * (bug 46084) SECURITY: Sanitize $limitReport before outputting
@@ -4028,7 +4023,7 @@ This is a security and maintenance release of the MediaWiki 1.19 branch
 
 This is a security release of the MediaWiki 1.19 branch
 
-=== Changes since 1.19.3===
+=== Changes since 1.19.3 ===
 * New preference type - 'api'. Preferences of this type are not shown on Special:Preferences, but are still available via the action=options API.
 * (bug 44010) Context is passed to UserGetLanguageObject.
 * The recursion guard on RequestContext::getLanguage() was weakened.
@@ -4040,7 +4035,7 @@ This is a security release of the MediaWiki 1.19 branch
 
 This is a security release of the MediaWiki 1.19 branch
 
-=== Changes since 1.19.2===
+=== Changes since 1.19.2 ===
 * (bug 40995) Prevent session fixation in Special:UserLogin (CVE-2012-5391)
 * (bug 41400) Prevent linker regex from exceeding PCRE backtrack limit
 * Increase permitted runtime for testParserTest (only used for continuous integration).
