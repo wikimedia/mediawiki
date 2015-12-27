@@ -29,7 +29,7 @@ class ExtensionRegistry {
 	/**
 	 * Bump whenever the registration cache needs resetting
 	 */
-	const CACHE_VERSION = 1;
+	const CACHE_VERSION = 2;
 
 	/**
 	 * Special key that defines the merge strategy
@@ -173,6 +173,7 @@ class ExtensionRegistry {
 	public function readFromQueue( array $queue ) {
 		global $wgVersion;
 		$autoloadClasses = array();
+		$autoloaderPaths = array();
 		$processor = new ExtensionProcessor();
 		$incompatible = array();
 		$coreVersionParser = new CoreVersionChecker( $wgVersion );
@@ -208,6 +209,9 @@ class ExtensionRegistry {
 					. '.';
 				continue;
 			}
+			// Get extra paths for later inclusion
+			$autoloaderPaths = array_merge( $autoloaderPaths,
+				$processor->getExtraAutoloaderPaths( dirname( $path ), $info ) );
 			// Compatible, read and extract info
 			$processor->extractInfo( $path, $info, $version );
 		}
@@ -226,6 +230,7 @@ class ExtensionRegistry {
 		}
 		$data['globals']['wgExtensionCredits'][self::MERGE_STRATEGY] = 'array_merge_recursive';
 		$data['autoload'] = $autoloadClasses;
+		$data['autoloaderPaths'] = $autoloaderPaths;
 		return $data;
 	}
 
@@ -279,8 +284,11 @@ class ExtensionRegistry {
 			call_user_func( $cb );
 		}
 
-		$this->loaded += $info['credits'];
+		foreach ( $info['autoloaderPaths'] as $path ) {
+			require_once $path;
+		}
 
+		$this->loaded += $info['credits'];
 		if ( $info['attributes'] ) {
 			if ( !$this->attributes ) {
 				$this->attributes = $info['attributes'];
