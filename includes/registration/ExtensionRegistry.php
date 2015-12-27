@@ -208,6 +208,11 @@ class ExtensionRegistry {
 					. '.';
 				continue;
 			}
+			// Dynamically require autoloader files, if present
+			$extraPaths = $processor->getExtraAutoloaderPaths( dirname( $path ), $info );
+			foreach ( $extraPaths as $autoloaderPath ) {
+				require_once $autoloaderPath;
+			}
 			// Compatible, read and extract info
 			$processor->extractInfo( $path, $info, $version );
 		}
