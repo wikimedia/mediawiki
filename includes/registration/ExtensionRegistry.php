@@ -118,7 +118,6 @@ class ExtensionRegistry {
 		if ( !$this->queued ) {
 			return;
 		}
-
 		// A few more things to vary the cache on
 		$versions = array(
 			'registration' => self::CACHE_VERSION,
@@ -208,6 +207,11 @@ class ExtensionRegistry {
 					. '.';
 				continue;
 			}
+			// Dynamically require autoloader files, if present
+			$extraPaths = $processor->getExtraAutoloaderPaths( dirname( $path ), $info );
+			foreach ( $extraPaths as $autoloaderPath ) {
+				require_once $autoloaderPath;
+			}
 			// Compatible, read and extract info
 			$processor->extractInfo( $path, $info, $version );
 		}
@@ -226,6 +230,7 @@ class ExtensionRegistry {
 		}
 		$data['globals']['wgExtensionCredits'][self::MERGE_STRATEGY] = 'array_merge_recursive';
 		$data['autoload'] = $autoloadClasses;
+
 		return $data;
 	}
 
