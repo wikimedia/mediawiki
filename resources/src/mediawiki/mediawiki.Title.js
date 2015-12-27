@@ -906,7 +906,12 @@
 		 * @return {string}
 		 */
 		getUrl: function ( params ) {
-			return mw.util.getUrl( this.toString(), params );
+			var fragment = this.getFragment();
+			if ( fragment ) {
+				return mw.util.getUrl( this.toString() + '#' + this.getFragment(), params );
+			} else {
+				return mw.util.getUrl( this.toString(), params );
+			}
 		},
 
 		/**
