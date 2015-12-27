@@ -166,6 +166,9 @@
 			<!-- comma-separated list of string tokens, if present -->
 			<element name="restrictions" type="string" minOccurs="0" />
 
+			<!-- optional page language -->
+			<element name="lang" type="string" />
+
 			<!-- Zero or more sets of revision or upload data -->
 			<choice minOccurs="0" maxOccurs="unbounded">
 				<element name="revision" type="mw:RevisionType" />
