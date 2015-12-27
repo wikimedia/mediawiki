@@ -729,6 +729,10 @@
 		"ParserTestFiles": {
 			"type": "array",
 			"description": "Parser test suite files to be run by parserTests.php when no specific filename is passed to it"
+		},
+		"LoadComposerAutoloader": {
+			"type": "boolean",
+			"description": "If set to true, extension registration will try to load composer's autoloader of this extension, if present."
 		}
 	}
 }
