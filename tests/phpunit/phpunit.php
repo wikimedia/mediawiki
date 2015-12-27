@@ -250,9 +250,16 @@ if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
 } else {
 	foreach ( array(
 				stream_resolve_include_path( 'phpunit.phar' ),
+				stream_resolve_include_path( 'phpunit-old.phar' ),
 				'PHPUnit/Runner/Version.php',
 				'PHPUnit/Autoload.php'
 			) as $includePath ) {
+
+		if ( $includePath === false ) {
+			// stream_resolve_include_path can return false
+			continue;
+		}
+
 		// @codingStandardsIgnoreStart
 		@include_once $includePath;
 		// @codingStandardsIgnoreEnd
