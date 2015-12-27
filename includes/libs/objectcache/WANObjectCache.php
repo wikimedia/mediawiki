@@ -450,7 +450,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * Example usage:
 	 * @code
-	 *     $dbw->begin(); // start of request
+	 *     $dbw->begin( __METHOD__ ); // start of request
 	 *     ... <execute some stuff> ...
 	 *     // Update the row in the DB
 	 *     $dbw->update( ... );
@@ -460,7 +460,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *         $cache->delete( $key );
 	 *     } );
 	 *     ... <execute some stuff> ...
-	 *     $dbw->commit(); // end of request
+	 *     $dbw->commit( __METHOD__ ); // end of request
 	 * @endcode
 	 *
 	 * The $ttl parameter can be used when purging values that have not actually changed
