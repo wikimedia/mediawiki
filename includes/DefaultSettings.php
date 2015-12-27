@@ -1003,7 +1003,6 @@ $wgJpegTran = '/usr/bin/jpegtran';
  */
 $wgExiv2Command = '/usr/bin/exiv2';
 
-
 /**
  * Path to exiftool binary. Used for lossless ICC profile swapping.
  *
@@ -1469,7 +1468,6 @@ $wgDjvuOutputExtension = 'jpg';
  * @name   Email settings
  * @{
  */
-
 
 /**
  * Site admin email address.
@@ -4433,7 +4431,6 @@ $wgPasswordPolicy = array(
 		'PasswordCannotBePopular' => 'PasswordPolicyChecks::checkPopularPasswordBlacklist'
 	),
 );
-
 
 /**
  * For compatibility with old installations set to false

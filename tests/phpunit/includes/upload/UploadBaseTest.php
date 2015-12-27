@@ -125,7 +125,6 @@ class UploadBaseTest extends MediaWikiTestCase {
 		);
 	}
 
-
 	/**
 	 * @dataProvider provideCheckSvgScriptCallback
 	 */

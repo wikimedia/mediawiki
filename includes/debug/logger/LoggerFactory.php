@@ -51,7 +51,6 @@ class LoggerFactory {
 	 */
 	private static $spi;
 
-
 	/**
 	 * Register a service provider to create new \Psr\Log\LoggerInterface
 	 * instances.
@@ -61,7 +60,6 @@ class LoggerFactory {
 	public static function registerProvider( Spi $provider ) {
 		self::$spi = $provider;
 	}
-
 
 	/**
 	 * Get the registered service provider.
@@ -86,7 +84,6 @@ class LoggerFactory {
 		return self::$spi;
 	}
 
-
 	/**
 	 * Get a named logger instance from the currently configured logger factory.
 	 *
@@ -96,7 +93,6 @@ class LoggerFactory {
 	public static function getInstance( $channel ) {
 		return self::getProvider()->getLogger( $channel );
 	}
-
 
 	/**
 	 * Construction of utility class is not allowed.

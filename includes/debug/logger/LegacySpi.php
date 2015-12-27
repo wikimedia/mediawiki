@@ -42,7 +42,6 @@ class LegacySpi implements Spi {
 	 */
 	protected $singletons = array();
 
-
 	/**
 	 * Get a logger instance.
 	 *

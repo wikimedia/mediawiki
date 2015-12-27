@@ -117,7 +117,6 @@ class DeprecatedInterfaceFinder extends FileAwareNodeVisitor {
 	}
 }
 
-
 /**
  * Maintenance task that recursively scans MediaWiki PHP files for deprecated
  * functions and interfaces and produces a report.

@@ -3752,7 +3752,6 @@ class Parser {
 	public function callParserFunction( $frame, $function, array $args = array() ) {
 		global $wgContLang;
 
-
 		# Case sensitive functions
 		if ( isset( $this->mFunctionSynonyms[1][$function] ) ) {
 			$function = $this->mFunctionSynonyms[1][$function];

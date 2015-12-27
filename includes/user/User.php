@@ -895,7 +895,6 @@ class User implements IDBAccessObject {
 		return $this->getPasswordValidity( $password ) === true;
 	}
 
-
 	/**
 	 * Given unvalidated password input, return error message on failure.
 	 *

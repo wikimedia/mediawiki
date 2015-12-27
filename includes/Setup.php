@@ -509,7 +509,6 @@ MWExceptionHandler::installHandler();
 
 require_once "$IP/includes/compat/normal/UtfNormalUtil.php";
 
-
 $ps_validation = Profiler::instance()->scopedProfileIn( $fname . '-validation' );
 
 // T48998: Bail out early if $wgArticlePath is non-absolute
@@ -734,4 +733,3 @@ $wgFullyInitialised = true;
 
 Profiler::instance()->scopedProfileOut( $ps_extensions );
 Profiler::instance()->scopedProfileOut( $ps_setup );
-

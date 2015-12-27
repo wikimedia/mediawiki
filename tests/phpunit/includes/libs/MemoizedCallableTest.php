@@ -20,7 +20,6 @@ class ArrayBackedMemoizedCallable extends MemoizedCallable {
 	}
 }
 
-
 /**
  * PHP Unit tests for MemoizedCallable class.
  * @covers MemoizedCallable

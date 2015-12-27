@@ -88,7 +88,6 @@ class Preprocessor_Hash extends Preprocessor {
 		return $node;
 	}
 
-
 	/**
 	 * Preprocess some wikitext and return the document tree.
 	 * This is the ghost of Parser::replace_variables().

@@ -167,7 +167,6 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 		}
 	}
 
-
 	public function testBatchHandlesNullFormatterResult() {
 		$produce = $this->getMockBuilder( 'Kafka\Produce' )
 			->disableOriginalConstructor()

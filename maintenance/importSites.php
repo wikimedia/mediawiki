@@ -24,7 +24,6 @@ class ImportSites extends Maintenance {
 		parent::__construct();
 	}
 
-
 	/**
 	 * Do the import.
 	 */

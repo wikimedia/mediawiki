@@ -171,7 +171,6 @@ class AvroFormatter implements FormatterInterface {
 		return null;
 	}
 
-
 	/**
 	 * convert an integer to a 64bits big endian long (Java compatible)
 	 * NOTE: certainly only compatible with PHP 64bits

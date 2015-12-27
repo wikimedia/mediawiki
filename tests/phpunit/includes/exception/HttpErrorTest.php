@@ -60,6 +60,4 @@ class HttpErrorTest extends MediaWikiTestCase {
 			)
 		);
 	}
-
-
 }

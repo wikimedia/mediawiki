@@ -25,7 +25,6 @@
  * @ingroup UtfNormal
  */
 
-
 use UtfNormal\Utils;
 
 /**

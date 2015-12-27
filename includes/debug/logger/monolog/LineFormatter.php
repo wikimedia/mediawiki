@@ -60,7 +60,6 @@ class LineFormatter extends MonologLineFormatter {
 		$this->includeStacktraces( $includeStacktraces );
 	}
 
-
 	/**
 	 * {@inheritdoc}
 	 */
@@ -94,7 +93,6 @@ class LineFormatter extends MonologLineFormatter {
 		return $output;
 	}
 
-
 	/**
 	 * Convert an Exception to a string.
 	 *
@@ -104,7 +102,6 @@ class LineFormatter extends MonologLineFormatter {
 	protected function normalizeException( Exception $e ) {
 		return $this->normalizeExceptionArray( $this->exceptionAsArray( $e ) );
 	}
-
 
 	/**
 	 * Convert an exception to an array of structured data.
@@ -129,7 +126,6 @@ class LineFormatter extends MonologLineFormatter {
 
 		return $out;
 	}
-
 
 	/**
 	 * Convert an array of Exception data to a string.

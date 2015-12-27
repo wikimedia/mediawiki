@@ -567,7 +567,6 @@ function wfExtractThumbParams( $file, $params ) {
 	return null;
 }
 
-
 /**
  * Output a thumbnail generation error message
  *

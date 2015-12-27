@@ -950,7 +950,6 @@ class Sanitizer {
 		return $value;
 	}
 
-
 	/**
 	 * Pick apart some CSS and check it for forbidden or unsafe structures.
 	 * Returns a sanitized string. This sanitized string will have

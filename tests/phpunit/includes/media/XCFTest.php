@@ -13,7 +13,6 @@ class XCFHandlerTest extends MediaWikiMediaTestCase {
 		$this->handler = new XCFHandler();
 	}
 
-
 	/**
 	 * @param string $filename
 	 * @param int $expectedWidth Width

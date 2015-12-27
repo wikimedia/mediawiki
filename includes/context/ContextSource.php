@@ -172,7 +172,6 @@ abstract class ContextSource implements IContextSource {
 		return $this->getContext()->getStats();
 	}
 
-
 	/**
 	 * Get a Message object with context set
 	 * Parameters are the same as wfMessage()

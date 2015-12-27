@@ -178,7 +178,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		}
 	}
 
-
 	/**
 	 * Get registration code for all modules.
 	 *

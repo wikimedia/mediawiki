@@ -51,4 +51,3 @@ class PageExists extends Maintenance {
 
 $maintClass = "PageExists";
 require_once RUN_MAINTENANCE_IF_MAIN;
-

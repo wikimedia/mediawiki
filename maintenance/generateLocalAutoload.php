@@ -22,4 +22,3 @@ $generator->forceClassPath( 'MyLocalSettingsGenerator', "$base/mw-config/overrid
 
 // Write out the autoload
 $generator->generateAutoload( 'maintenance/generateLocalAutoload.php' );
-

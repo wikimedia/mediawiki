@@ -33,7 +33,6 @@ class ApiFormatRaw extends ApiFormatBase {
 	private $errorFallback;
 	private $mFailWithHTTPError = false;
 
-
 	/**
 	 * @param ApiMain $main
 	 * @param ApiFormatBase|null $errorFallback Object to fall back on for errors
