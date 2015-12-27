@@ -540,21 +540,12 @@ class MediaWiki {
 		$config = $context->getConfig();
 
 		$factory = wfGetLBFactory();
-		// Check if any transaction was too big
-		$limit = $config->get( 'MaxUserDBWriteDuration' );
-		$factory->forEachLB( function ( LoadBalancer $lb ) use ( $limit ) {
-			$lb->forEachOpenConnection( function ( IDatabase $db ) use ( $limit ) {
-				$time = $db->pendingWriteQueryDuration();
-				if ( $limit > 0 && $time > $limit ) {
-					throw new DBTransactionError(
-						$db,
-						wfMessage( 'transaction-duration-limit-exceeded', $time, $limit )->text()
-					);
-				}
-			} );
-		} );
 		// Commit all changes
-		$factory->commitMasterChanges( __METHOD__ );
+		$factory->commitMasterChanges(
+			__METHOD__,
+			// Abort if any transaction was too big
+			array( 'maxWriteDuration' => $config->get( 'MaxUserDBWriteDuration' ) )
+		);
 		// Record ChronologyProtector positions
 		$factory->shutdown();
 		wfDebug( __METHOD__ . ': all transactions committed' );

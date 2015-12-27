@@ -215,8 +215,24 @@ abstract class LBFactory {
 	/**
 	 * Commit changes on all master connections
 	 * @param string $fname Caller name
+	 * @param array $options Options map:
+	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
 	 */
-	public function commitMasterChanges( $fname = __METHOD__ ) {
+	public function commitMasterChanges( $fname = __METHOD__, array $options = array() ) {
+		$limit = isset( $options['maxWriteDuration'] ) ? $options['maxWriteDuration'] : 0;
+
+		$this->forEachLB( function ( LoadBalancer $lb ) use ( $limit ) {
+			$lb->forEachOpenConnection( function ( IDatabase $db ) use ( $limit ) {
+				$time = $db->pendingWriteQueryDuration();
+				if ( $limit > 0 && $time > $limit ) {
+					throw new DBTransactionError(
+						$db,
+						wfMessage( 'transaction-duration-limit-exceeded', $time, $limit )->text()
+					);
+				}
+			} );
+		} );
+
 		$start = microtime( true );
 		$this->forEachLBCallMethod( 'commitMasterChanges', array( $fname ) );
 		$timeMs = 1000 * ( microtime( true ) - $start );
