@@ -673,6 +673,10 @@
 		"ParserTestFiles": {
 			"type": "array",
 			"description": "Parser test suite files to be run by parserTests.php when no specific filename is passed to it"
+		},
+		"load_composer_autoloader": {
+			"type": "boolean",
+			"description": "Load the composer autoloader for this extension, if one is present"
 		}
 	}
 }
