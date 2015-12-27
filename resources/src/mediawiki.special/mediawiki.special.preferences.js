@@ -94,11 +94,6 @@
 						notif = null;
 					}
 				} );
-
-				// Remove now-unnecessary success=1 querystring to prevent reappearance of notification on reload
-				if ( history.replaceState ) {
-					history.replaceState( {}, document.title, location.href.replace( /&?success=1/, '' ) );
-				}
 			}
 		}
 
