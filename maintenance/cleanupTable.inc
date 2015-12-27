@@ -172,4 +172,3 @@ class TableCleanup extends Maintenance {
 		return sprintf( "\\x%02x", ord( $matches[1] ) );
 	}
 }
-

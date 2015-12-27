@@ -26,7 +26,6 @@ use MediaWiki\Logger\LoggerFactory;
 
 require __DIR__ . '/includes/WebStart.php';
 
-
 // URL safety checks
 if ( !$wgRequest->checkUrlExtension() ) {
 	return;

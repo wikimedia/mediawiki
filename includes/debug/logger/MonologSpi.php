@@ -126,7 +126,6 @@ class MonologSpi implements Spi {
 	 */
 	protected $config;
 
-
 	/**
 	 * @param array $config Configuration data.
 	 */
@@ -134,7 +133,6 @@ class MonologSpi implements Spi {
 		$this->config = array();
 		$this->mergeConfig( $config );
 	}
-
 
 	/**
 	 * Merge additional configuration data into the configuration.
@@ -153,7 +151,6 @@ class MonologSpi implements Spi {
 		$this->reset();
 	}
 
-
 	/**
 	 * Reset internal caches.
 	 *
@@ -168,7 +165,6 @@ class MonologSpi implements Spi {
 			'processors' => array(),
 		);
 	}
-
 
 	/**
 	 * Get a logger instance.
@@ -194,7 +190,6 @@ class MonologSpi implements Spi {
 
 		return $this->singletons['loggers'][$channel];
 	}
-
 
 	/**
 	 * Create a logger.
@@ -225,7 +220,6 @@ class MonologSpi implements Spi {
 		return $obj;
 	}
 
-
 	/**
 	 * Create or return cached processor.
 	 * @param string $name Processor name
@@ -239,7 +233,6 @@ class MonologSpi implements Spi {
 		}
 		return $this->singletons['processors'][$name];
 	}
-
 
 	/**
 	 * Create or return cached handler.
@@ -262,7 +255,6 @@ class MonologSpi implements Spi {
 		}
 		return $this->singletons['handlers'][$name];
 	}
-
 
 	/**
 	 * Create or return cached formatter.

@@ -164,7 +164,6 @@ class BrokenRedirectsPage extends QueryPage {
 		return $out;
 	}
 
-
 	/**
 	 * Cache page content model for performance
 	 *

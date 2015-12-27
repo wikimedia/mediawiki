@@ -214,7 +214,6 @@ abstract class ApiBase extends ContextSource {
 		}
 	}
 
-
 	/************************************************************************//**
 	 * @name   Methods to implement
 	 * @{

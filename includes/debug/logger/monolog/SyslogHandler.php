@@ -58,7 +58,6 @@ class SyslogHandler extends SyslogUdpHandler {
 	 */
 	private $hostname;
 
-
 	/**
 	 * @param string $appname Application name to report to syslog
 	 * @param string $host Syslog host

@@ -87,7 +87,6 @@ class ListDuplicatedFilesPage extends QueryPage {
 		}
 	}
 
-
 	/**
 	 * @param Skin $skin
 	 * @param object $result Result row

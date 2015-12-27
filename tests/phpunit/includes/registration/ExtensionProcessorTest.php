@@ -166,7 +166,6 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		}
 	}
 
-
 	public static function provideExtractMessagesDirs() {
 		$dir = __DIR__ . '/FooBar/';
 		return array(
@@ -399,7 +398,6 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		);
 	}
 }
-
 
 /**
  * Allow overriding the default value of $this->globals

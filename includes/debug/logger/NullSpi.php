@@ -44,11 +44,9 @@ class NullSpi implements Spi {
 	 */
 	protected $singleton;
 
-
 	public function __construct() {
 		$this->singleton = new NullLogger();
 	}
-
 
 	/**
 	 * Get a logger instance.

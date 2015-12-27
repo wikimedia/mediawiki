@@ -242,7 +242,6 @@ if ( version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
 	} );
 }
 
-
 $ok = false;
 
 if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {

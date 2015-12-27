@@ -135,4 +135,3 @@ function getFileUserFromSourceWiki( $wiki_host, $file ) {
 
 	return html_entity_decode( $matches[1] );
 }
-

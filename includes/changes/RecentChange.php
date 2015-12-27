@@ -960,4 +960,3 @@ class RecentChange {
 		return $unserializedParams;
 	}
 }
-

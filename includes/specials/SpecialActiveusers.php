@@ -318,5 +318,3 @@ class SpecialActiveUsers extends SpecialPage {
 		return 'users';
 	}
 }
-
-

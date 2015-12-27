@@ -221,7 +221,6 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 		return call_user_func_array( array( $this, 'onConsecutiveCalls' ), $retvals );
 	}
 
-
 	protected function genSelectResult( $batchSize, $numRows, $rowGenerator ) {
 		$res = array();
 		for ( $i = 0; $i < $numRows; $i += $batchSize ) {

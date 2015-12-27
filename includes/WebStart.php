@@ -40,7 +40,6 @@ if ( function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
 		. 'for help on how to disable magic quotes.' );
 }
 
-
 # bug 15461: Make IE8 turn off content sniffing. Everybody else should ignore this
 # We're adding it here so that it's *always* set, even for alternate entry
 # points and when $wgOut gets disabled or overridden.
@@ -91,7 +90,6 @@ if ( file_exists( "$IP/StartProfiler.php" ) ) {
 	require "$IP/StartProfiler.php";
 }
 
-
 # Load default settings
 require_once "$IP/includes/DefaultSettings.php";
 
@@ -140,7 +138,6 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Include site settings. $IP may be changed (hopefully before the AutoLoader is invoked)
 	require_once MW_CONFIG_FILE;
 }
-
 
 # Initialise output buffering
 # Check that there is no previous output or previously set up buffers, because

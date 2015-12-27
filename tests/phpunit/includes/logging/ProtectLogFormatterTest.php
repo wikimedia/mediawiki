@@ -160,7 +160,6 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 		);
 	}
 
-
 	/**
 	 * @dataProvider provideProtectLogDatabaseRows
 	 */
@@ -329,7 +328,6 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 		);
 	}
 
-
 	/**
 	 * @dataProvider provideModifyLogDatabaseRows
 	 */
@@ -361,7 +359,6 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 			),
 		);
 	}
-
 
 	/**
 	 * @dataProvider provideUnprotectLogDatabaseRows

@@ -246,7 +246,6 @@ class MWExceptionHandler {
 		return false;
 	}
 
-
 	/**
 	 * Dual purpose callback used as both a set_error_handler() callback and
 	 * a registered shutdown function. Receive a callback from the interpreter

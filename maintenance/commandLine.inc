@@ -63,4 +63,3 @@ class CommandLineInc extends Maintenance {
 
 $maintClass = 'CommandLineInc';
 require RUN_MAINTENANCE_IF_MAIN;
-

@@ -70,7 +70,6 @@ class LegacyLogger extends AbstractLogger {
 		LogLevel::EMERGENCY => 600,
 	);
 
-
 	/**
 	 * @param string $channel
 	 */
@@ -94,7 +93,6 @@ class LegacyLogger extends AbstractLogger {
 		// Add to debug toolbar
 		MWDebug::debugMsg( $message, array( 'channel' => $this->channel ) + $context );
 	}
-
 
 	/**
 	 * Determine if the given message should be emitted or not.
@@ -153,7 +151,6 @@ class LegacyLogger extends AbstractLogger {
 
 		return $shouldEmit;
 	}
-
 
 	/**
 	 * Format a message.
@@ -239,7 +236,6 @@ class LegacyLogger extends AbstractLogger {
 		return self::interpolate( $text, $context );
 	}
 
-
 	/**
 	 * Format a message as `wfDebug()` would have formatted it.
 	 *
@@ -260,7 +256,6 @@ class LegacyLogger extends AbstractLogger {
 		}
 		return "{$text}\n";
 	}
-
 
 	/**
 	 * Format a message as `wfLogDBError()` would have formatted it.
@@ -294,7 +289,6 @@ class LegacyLogger extends AbstractLogger {
 		return $text;
 	}
 
-
 	/**
 	 * Format a message as `wfDebugLog() would have formatted it.
 	 *
@@ -309,7 +303,6 @@ class LegacyLogger extends AbstractLogger {
 		$text = "{$time} {$host} {$wiki}: {$message}\n";
 		return $text;
 	}
-
 
 	/**
 	 * Interpolate placeholders in logging message.
@@ -328,7 +321,6 @@ class LegacyLogger extends AbstractLogger {
 		}
 		return $message;
 	}
-
 
 	/**
 	 * Convert a logging context element to a string suitable for
@@ -389,7 +381,6 @@ class LegacyLogger extends AbstractLogger {
 		return '[Unknown ' . gettype( $item ) . ']';
 	}
 
-
 	/**
 	 * Select the appropriate log output destination for the given log event.
 	 *
@@ -429,7 +420,6 @@ class LegacyLogger extends AbstractLogger {
 
 		return $destination;
 	}
-
 
 	/**
 	* Log to a file without getting "file size exceeded" signals.

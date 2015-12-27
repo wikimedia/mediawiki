@@ -91,6 +91,4 @@ class MWCryptHKDFTest extends MediaWikiTestCase {
 		);
 		// @codingStandardsIgnoreEnd
 	}
-
-
 }

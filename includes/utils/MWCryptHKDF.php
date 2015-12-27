@@ -97,7 +97,6 @@ class MWCryptHKDF {
 		'whirlpool' => 64,
 	);
 
-
 	/**
 	 * @param string $secretKeyMaterial
 	 * @param string $algorithm Name of hashing algorithm
@@ -213,7 +212,6 @@ class MWCryptHKDF {
 			$this->lastK
 		);
 	}
-
 
 	/**
 	 * RFC5869 defines HKDF in 2 steps, extraction and expansion.

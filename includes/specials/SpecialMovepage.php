@@ -33,7 +33,6 @@ class MovePageForm extends UnlistedSpecialPage {
 	/** @var Title */
 	protected $newTitle;
 
-
 	/** @var string Text input */
 	protected $reason;
 
