@@ -260,9 +260,9 @@ if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
 			continue;
 		}
 
-		// @codingStandardsIgnoreStart
-		@include_once $includePath;
-		// @codingStandardsIgnoreEnd
+		\MediaWiki\suppressWarnings();
+		include_once $includePath;
+		\MediaWiki\restoreWarnings();
 		if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
 			$ok = true;
 			echo "Using PHPUnit from $includePath\n";
