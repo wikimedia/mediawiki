@@ -1186,6 +1186,7 @@ return array(
 		),
 		'dependencies' => array(
 			'oojs-ui',
+			'mediawiki.Title',
 			'mediawiki.user',
 			'mediawiki.Upload',
 			'mediawiki.jqueryMsg',
