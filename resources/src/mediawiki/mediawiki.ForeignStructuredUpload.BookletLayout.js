@@ -183,6 +183,20 @@
 		this.selectFileWidget.on( 'change', onUploadFormChange.bind( this ) );
 		this.ownWorkCheckbox.on( 'change', onUploadFormChange.bind( this ) );
 
+		this.selectFileWidget.on( 'change', function () {
+			var file = layout.getFile();
+
+			// Set the date to lastModified once we have the file
+			if ( layout.getDateFromLastModified( file ) !== undefined ) {
+				layout.dateWidget.setValue( layout.getDateFromLastModified( file ) );
+			}
+
+			// Check if we have EXIF data and set to that where available
+			layout.getDateFromExif( file ).done( function ( date ) {
+				layout.dateWidget.setValue( date );
+			} );
+		} );
+
 		return this.uploadForm;
 	};
 
@@ -467,15 +481,15 @@
 			multiline: true,
 			autosize: true
 		} );
-		this.dateWidget = new mw.widgets.DateInputWidget( {
-			$overlay: this.$overlay,
-			required: true,
-			mustBeBefore: moment().add( 1, 'day' ).locale( 'en' ).format( 'YYYY-MM-DD' ) // Tomorrow
-		} );
 		this.categoriesWidget = new mw.widgets.CategorySelector( {
 			// Can't be done here because we don't know the target wiki yet... done in #initialize.
 			// api: new mw.ForeignApi( ... ),
 			$overlay: this.$overlay
+		} );
+		this.dateWidget = new mw.widgets.DateInputWidget( {
+			$overlay: this.$overlay,
+			required: true,
+			mustBeBefore: moment().add( 1, 'day' ).locale( 'en' ).format( 'YYYY-MM-DD' ) // Tomorrow
 		} );
 
 		fieldset = new OO.ui.FieldsetLayout( {
@@ -538,6 +552,71 @@
 		this.upload.clearCategories();
 		this.upload.addCategories( this.categoriesWidget.getItemsData() );
 		return this.upload.getText();
+	};
+
+	/**
+	 * Get original date from EXIF data
+	 *
+	 * @param {Object} file
+	 * @return {jQuery.Promise} Promise resolved with the EXIF date
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.getDateFromExif = function ( file ) {
+		var fileReader,
+			deferred = $.Deferred();
+
+		if ( file && file.type === 'image/jpeg' ) {
+			fileReader = new FileReader();
+			fileReader.onload = function () {
+				var fileStr, arr, i, metadata;
+
+				if ( typeof fileReader.result === 'string' ) {
+					fileStr = fileReader.result;
+				} else {
+					// Array buffer; convert to binary string for the library.
+					arr = new Uint8Array( fileReader.result );
+					fileStr = '';
+					for ( i = 0; i < arr.byteLength; i++ ) {
+						fileStr += String.fromCharCode( arr[ i ] );
+					}
+				}
+
+				try {
+					metadata = mw.libs.jpegmeta( this.result, file.name );
+				} catch ( e ) {
+					metadata = null;
+				}
+
+				if ( metadata !== null && metadata.exif !== undefined && metadata.exif.DateTimeOriginal ) {
+					deferred.resolve( moment( metadata.exif.DateTimeOriginal, 'YYYY:MM:DD' ).format( 'YYYY-MM-DD' ) );
+				} else {
+					deferred.reject();
+				}
+			};
+
+			if ( 'readAsBinaryString' in fileReader ) {
+				fileReader.readAsBinaryString( file );
+			} else if ( 'readAsArrayBuffer' in fileReader ) {
+				fileReader.readAsArrayBuffer( file );
+			} else {
+				// We should never get here
+				deferred.reject();
+				throw new Error( 'Cannot read thumbnail as binary string or array buffer.' );
+			}
+		}
+
+		return deferred.promise();
+	};
+
+	/**
+	 * Get last modified date from file
+	 *
+	 * @param {Object} file
+	 * @return {Object} Last modified date from file
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.getDateFromLastModified = function ( file ) {
+		if ( file && file.lastModified ) {
+			return moment( file.lastModified ).format( 'YYYY-MM-DD' );
+		}
 	};
 
 	/* Setters */
