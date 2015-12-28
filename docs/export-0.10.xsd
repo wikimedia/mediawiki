@@ -88,6 +88,7 @@
 			<element name="generator" type="string" minOccurs="0" />
 			<element name="case" type="mw:CaseType" minOccurs="0" />
 			<element name="namespaces" type="mw:NamespacesType" minOccurs="0" />
+			<element name="namespacealiases" type="mw:NamespaceType">
 		</sequence>
 	</complexType>
 
