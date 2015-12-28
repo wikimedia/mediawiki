@@ -69,7 +69,7 @@ class WikiExporter {
 	 * @return string
 	 */
 	public static function schemaVersion() {
-		return "0.10";
+		return "0.11";
 	}
 
 	/**
@@ -517,7 +517,8 @@ class XmlDumpWriter {
 			$this->homelink(),
 			$this->generator(),
 			$this->caseSetting(),
-			$this->namespaces() );
+			$this->namespaces(),
+			$this->namespacealiases() );
 		return "  <siteinfo>\n    " .
 			implode( "\n    ", $info ) .
 			"\n  </siteinfo>\n";
@@ -580,6 +581,25 @@ class XmlDumpWriter {
 		}
 		$spaces .= "    </namespaces>";
 		return $spaces;
+	}
+
+	/**
+	 * @return string
+	 * @since 1.27
+	 */
+	function namespacealiases() {
+		global $wgContLang;
+		$nsaliases = "<namespacealiases>\n";
+		foreach ( $wgContLang->getNamespaceAliases() as $ns => $title ) {
+			$nsaliases .= '      ' .
+				Xml::element( 'namespace',
+					array(
+						'key' => $ns,
+						'case' => MWNamespace::isCapitalized( $ns ) ? 'first-letter' : 'case-sensitive',
+					), $title ) . "\n";
+		}
+		$nsaliases .= "    </namespacealiases>";
+		return $nsaliases;
 	}
 
 	/**
