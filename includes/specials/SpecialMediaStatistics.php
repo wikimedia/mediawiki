@@ -144,6 +144,7 @@ class MediaStatisticsPage extends QueryPage {
 			$this->getOutput()->addWikiText(
 				$this->msg( 'mediastatistics-allbytes' )
 					->numParams( $this->totalSize )
+					->sizeParams( $this->totalSize )
 					->text()
 			);
 		}
@@ -157,6 +158,8 @@ class MediaStatisticsPage extends QueryPage {
 		$this->getOutput()->addWikiText(
 				$this->msg( 'mediastatistics-bytespertype' )
 					->numParams( $this->totalPerType )
+					->sizeParams( $this->totalPerType )
+					->numParams( $this->makePercentPretty( $this->totalPerType / $this->totalBytes ) )
 					->text()
 		);
 		$this->totalSize += $this->totalPerType;
