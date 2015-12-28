@@ -912,7 +912,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * Check whether a message does not exist, or is an empty string
 	 *
 	 * @since 1.18
-	 * @todo FIXME: Merge with isDisabled()?
+	 * @deprecated Use isDisabled() instead
 	 *
 	 * @return bool
 	 */
@@ -925,6 +925,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * Check whether a message does not exist, is an empty string, or is "-".
 	 *
 	 * @since 1.18
+	 * @todo Name can lead to confusion, rename to isBlank or similar?
 	 *
 	 * @return bool
 	 */
