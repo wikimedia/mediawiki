@@ -6,7 +6,8 @@
 		var $preftoc, $preferences, $fieldsets,
 			labelFunc,
 			$tzSelect, $tzTextbox, $localtimeHolder, servertime,
-			allowCloseWindow, notif;
+			allowCloseWindow, notif,
+			router = require( 'mediawiki.router' );
 
 		labelFunc = function () {
 			return this.id.replace( /^mw-prefsection/g, 'preftab' );
@@ -49,16 +50,19 @@
 		 *
 		 * @ignore
 		 * @param {string} name the name of a tab without the prefix ("mw-prefsection-")
+		 * @param {string} subsection name
 		 * @param {string} [mode] A hash will be set according to the current
 		 *  open section. Set mode 'noHash' to surpress this.
 		 */
-		function switchPrefTab( name, mode ) {
-			var $tab, scrollTop;
+		function switchPrefTab( name, subsection, mode ) {
+			var $tab, scrollTop, matchedElement,
+				prefix = 'mw-prefsection-';
+
 			// Handle hash manually to prevent jumping,
 			// therefore save and restore scrollTop to prevent jumping.
 			scrollTop = $( window ).scrollTop();
 			if ( mode !== 'noHash' ) {
-				location.hash = '#mw-prefsection-' + name;
+				router.navigate( '#' + prefix + name );
 			}
 			$( window ).scrollTop( scrollTop );
 
@@ -67,7 +71,6 @@
 					tabIndex: -1,
 					'aria-selected': 'false'
 				} );
-
 			$tab = $( document.getElementById( 'preftab-' + name ) );
 			if ( $tab.length ) {
 				$tab.attr( {
@@ -78,7 +81,15 @@
 					.parent().addClass( 'selected' );
 
 				$preferences.children( 'fieldset' ).hide().attr( 'aria-hidden', 'true' );
-				$( document.getElementById( 'mw-prefsection-' + name ) ).show().attr( 'aria-hidden', 'false' );
+				$( document.getElementById( prefix + name ) ).show().attr( 'aria-hidden', 'false' );
+
+				// Scroll to subsection if applicable
+				if ( subsection ) {
+					matchedElement = document.getElementById( prefix + name + '-' + subsection );
+					if ( matchedElement ) {
+						matchedElement.scrollIntoView();
+					}
+				}
 			}
 		}
 
@@ -111,27 +122,9 @@
 				return;
 			}
 			if ( $el.length > 0 ) {
-				switchPrefTab( $el.attr( 'href' ).replace( '#mw-prefsection-', '' ) );
+				router.navigate( $el.attr( 'href' ).substr( 1 ) );
 			}
 		} );
-
-		// Jump to correct section as indicated by the hash.
-		// This function is called onload and onhashchange.
-		function detectHash() {
-			var hash = location.hash,
-				matchedElement, parentSection;
-			if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
-				switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
-			} else if ( hash.match( /^#mw-[\w\-]+/ ) ) {
-				matchedElement = document.getElementById( hash.slice( 1 ) );
-				parentSection = $( matchedElement ).closest( '.prefsection' );
-				if ( parentSection.length ) {
-					// Switch to proper tab and scroll to selected item.
-					switchPrefTab( parentSection.attr( 'id' ).replace( 'mw-prefsection-', '' ), 'noHash' );
-					matchedElement.scrollIntoView();
-				}
-			}
-		}
 
 		// In browsers that support the onhashchange event we will not bind click
 		// handlers and instead let the browser do the default behavior (clicking the
@@ -139,31 +132,25 @@
 		// But other things that change the hash will also be caught (e.g. using
 		// the Back and Forward browser navigation).
 		// Note the special check for IE "compatibility" mode.
-		if ( 'onhashchange' in window &&
-			( document.documentMode === undefined || document.documentMode >= 8 )
-		) {
-			$( window ).on( 'hashchange', function () {
-				var hash = location.hash;
-				if ( hash.match( /^#mw-[\w\-]+/ ) ) {
-					detectHash();
-				} else if ( hash === '' ) {
-					switchPrefTab( 'personal', 'noHash' );
-				}
-			} )
-			// Run the function immediately to select the proper tab on startup.
-			.trigger( 'hashchange' );
+		if ( router.isSupported() ) {
+			router.route( /^mw-prefsection-([^-]+)-([\w]+)$/, function ( section, subsection ) {
+				switchPrefTab( section, subsection, 'noHash' );
+			} );
+			router.route( /^mw-prefsection-([^-]+)$/, function ( section ) {
+				switchPrefTab( section, '', 'noHash' );
+			} );
+			router.route( '', function () {
+				switchPrefTab( 'personal', '', 'noHash' );
+			} );
 		// In older browsers we'll bind a click handler as fallback.
 		// We must not have onhashchange *and* the click handlers, otherwise
 		// the click handler calls switchPrefTab() which sets the hash value,
 		// which triggers onhashchange and calls switchPrefTab() again.
 		} else {
 			$preftoc.on( 'click', 'li a', function ( e ) {
-				switchPrefTab( $( this ).attr( 'href' ).replace( '#mw-prefsection-', '' ) );
+				switchPrefTab( $( this ).attr( 'href' ).replace( '#mw-prefsection-', '', '' ) );
 				e.preventDefault();
 			} );
-			// If we've reloaded the page or followed an open-in-new-window,
-			// make the selected tab visible.
-			detectHash();
 		}
 
 		// Timezone functions.
@@ -253,7 +240,7 @@
 		// Not using jStorage due to its enormous size (for this feature)
 		if ( window.sessionStorage ) {
 			if ( sessionStorage.getItem( 'mediawikiPreferencesTab' ) !== null ) {
-				switchPrefTab( sessionStorage.getItem( 'mediawikiPreferencesTab' ), 'noHash' );
+				switchPrefTab( sessionStorage.getItem( 'mediawikiPreferencesTab' ), '', 'noHash' );
 			}
 			// Deleting the key, the tab states should be reset until we press Save
 			sessionStorage.removeItem( 'mediawikiPreferencesTab' );
