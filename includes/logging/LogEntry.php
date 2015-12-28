@@ -30,59 +30,70 @@
 
 /**
  * Interface for log entries. Every log entry has these methods.
+ *
  * @since 1.19
  */
 interface LogEntry {
+
 	/**
 	 * The main log type.
+	 *
 	 * @return string
 	 */
 	public function getType();
 
 	/**
 	 * The log subtype.
+	 *
 	 * @return string
 	 */
 	public function getSubtype();
 
 	/**
 	 * The full logtype in format maintype/subtype.
+	 *
 	 * @return string
 	 */
 	public function getFullType();
 
 	/**
 	 * Get the extra parameters stored for this message.
+	 *
 	 * @return array
 	 */
 	public function getParameters();
 
 	/**
 	 * Get the user for performed this action.
+	 *
 	 * @return User
 	 */
 	public function getPerformer();
 
 	/**
 	 * Get the target page of this action.
+	 *
 	 * @return Title
 	 */
 	public function getTarget();
 
 	/**
 	 * Get the timestamp when the action was executed.
+	 *
 	 * @return string
 	 */
 	public function getTimestamp();
 
 	/**
 	 * Get the user provided comment.
+	 *
 	 * @return string
 	 */
 	public function getComment();
 
 	/**
 	 * Get the access restriction.
+	 *
 	 * @return string
 	 */
 	public function getDeleted();
@@ -96,9 +107,11 @@ interface LogEntry {
 
 /**
  * Extends the LogEntryInterface with some basic functionality
+ *
  * @since 1.19
  */
 abstract class LogEntryBase implements LogEntry {
+
 	public function getFullType() {
 		return $this->getType() . '/' . $this->getSubtype();
 	}
@@ -110,6 +123,7 @@ abstract class LogEntryBase implements LogEntry {
 	/**
 	 * Whether the parameters for this log are stored in new or
 	 * old format.
+	 *
 	 * @return bool
 	 */
 	public function isLegacy() {
@@ -119,9 +133,9 @@ abstract class LogEntryBase implements LogEntry {
 	/**
 	 * Create a blob from a parameter array
 	 *
+	 * @since 1.26
 	 * @param array $params
 	 * @return string
-	 * @since 1.26
 	 */
 	public static function makeParamBlob( $params ) {
 		return serialize( (array)$params );
@@ -130,9 +144,9 @@ abstract class LogEntryBase implements LogEntry {
 	/**
 	 * Extract a parameter array from a blob
 	 *
+	 * @since 1.26
 	 * @param string $blob
 	 * @return array
-	 * @since 1.26
 	 */
 	public static function extractParams( $blob ) {
 		return unserialize( $blob );
@@ -141,15 +155,16 @@ abstract class LogEntryBase implements LogEntry {
 
 /**
  * This class wraps around database result row.
+ *
  * @since 1.19
  */
 class DatabaseLogEntry extends LogEntryBase {
-	// Static->
 
 	/**
 	 * Returns array of information that is needed for querying
 	 * log entries. Array contains the following keys:
 	 * tables, fields, conds, options and join_conds
+	 *
 	 * @return array
 	 */
 	public static function getSelectQueryData() {
@@ -163,7 +178,7 @@ class DatabaseLogEntry extends LogEntryBase {
 		);
 
 		$joins = array(
-			// IP's don't have an entry in user table
+			// IPs don't have an entry in user table
 			'user' => array( 'LEFT JOIN', 'log_user=user_id' ),
 		);
 
@@ -179,6 +194,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	/**
 	 * Constructs new LogEntry from database result row.
 	 * Supports rows from both logging and recentchanges table.
+	 *
 	 * @param stdClass|array $row
 	 * @return DatabaseLogEntry
 	 */
@@ -191,17 +207,13 @@ class DatabaseLogEntry extends LogEntryBase {
 		}
 	}
 
-	// Non-static->
-
 	/** @var stdClass Database result row. */
 	protected $row;
 
 	/** @var User */
 	protected $performer;
 
-	/** @var bool Whether the parameters for this log entry are stored in new
-	 *    or old format.
-	 */
+	/** @var bool Whether the parameters for this log entry are stored in new or old format. */
 	protected $legacy;
 
 	protected function __construct( $row ) {
@@ -210,6 +222,7 @@ class DatabaseLogEntry extends LogEntryBase {
 
 	/**
 	 * Returns the unique database id.
+	 *
 	 * @return int
 	 */
 	public function getId() {
@@ -218,22 +231,18 @@ class DatabaseLogEntry extends LogEntryBase {
 
 	/**
 	 * Returns whatever is stored in the database field.
+	 *
 	 * @return string
 	 */
 	protected function getRawParameters() {
 		return $this->row->log_params;
 	}
 
-	// LogEntryBase->
-
 	public function isLegacy() {
 		// This does the check
 		$this->getParameters();
-
 		return $this->legacy;
 	}
-
-	// LogEntry->
 
 	public function getType() {
 		return $this->row->log_type;
@@ -264,13 +273,15 @@ class DatabaseLogEntry extends LogEntryBase {
 	public function getPerformer() {
 		if ( !$this->performer ) {
 			$userId = (int)$this->row->log_user;
-			if ( $userId !== 0 ) { // logged-in users
+			if ( $userId !== 0 ) {
+				// logged-in users
 				if ( isset( $this->row->user_name ) ) {
 					$this->performer = User::newFromRow( $this->row );
 				} else {
 					$this->performer = User::newFromId( $userId );
 				}
-			} else { // IP users
+			} else {
+				// IP users
 				$userText = $this->row->log_user_text;
 				$this->performer = User::newFromName( $userText, false );
 			}
@@ -309,8 +320,6 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 	protected function getRawParameters() {
 		return $this->row->rc_params;
 	}
-
-	// LogEntry->
 
 	public function getType() {
 		return $this->row->rc_log_type;
@@ -357,8 +366,8 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 }
 
 /**
- * Class for creating log entries manually, for
- * example to inject them into the database.
+ * Class for creating log entries manually, to inject them into the database.
+ *
  * @since 1.19
  */
 class ManualLogEntry extends LogEntryBase {
@@ -402,7 +411,6 @@ class ManualLogEntry extends LogEntryBase {
 	 * Constructor.
 	 *
 	 * @since 1.19
-	 *
 	 * @param string $type
 	 * @param string $subtype
 	 */
@@ -417,15 +425,19 @@ class ManualLogEntry extends LogEntryBase {
 	 * You can pass params to the log action message by prefixing the keys with
 	 * a number and optional type, using colons to separate the fields. The
 	 * numbering should start with number 4, the first three parameters are
-	 * hardcoded for every message. Example:
-	 * $entry->setParameters(
-	 *   '4::color' => 'blue',
-	 *   '5:number:count' => 3000,
-	 *   'animal' => 'dog'
-	 * );
+	 * hardcoded for every message.
+	 *
+	 * If you want to store stuff that should not be available in messages, don't
+	 * prefix the array key with a number and don't use the colons.
+	 *
+	 * Example:
+	 *   $entry->setParameters(
+	 *     '4::color' => 'blue',
+	 *     '5:number:count' => 3000,
+	 *     'animal' => 'dog'
+	 *   );
 	 *
 	 * @since 1.19
-	 *
 	 * @param array $parameters Associative array
 	 */
 	public function setParameters( $parameters ) {
@@ -447,7 +459,6 @@ class ManualLogEntry extends LogEntryBase {
 	 * Set the user that performed the action being logged.
 	 *
 	 * @since 1.19
-	 *
 	 * @param User $performer
 	 */
 	public function setPerformer( User $performer ) {
@@ -458,7 +469,6 @@ class ManualLogEntry extends LogEntryBase {
 	 * Set the title of the object changed.
 	 *
 	 * @since 1.19
-	 *
 	 * @param Title $target
 	 */
 	public function setTarget( Title $target ) {
@@ -469,7 +479,6 @@ class ManualLogEntry extends LogEntryBase {
 	 * Set the timestamp of when the logged action took place.
 	 *
 	 * @since 1.19
-	 *
 	 * @param string $timestamp
 	 */
 	public function setTimestamp( $timestamp ) {
@@ -480,7 +489,6 @@ class ManualLogEntry extends LogEntryBase {
 	 * Set a comment associated with the action being logged.
 	 *
 	 * @since 1.19
-	 *
 	 * @param string $comment
 	 */
 	public function setComment( $comment ) {
@@ -490,8 +498,10 @@ class ManualLogEntry extends LogEntryBase {
 	/**
 	 * Set an associated revision id.
 	 *
-	 * @since 1.27
+	 * For example, the ID of the revision that was inserted to mark a page move
+	 * or protection, file upload, etc.
 	 *
+	 * @since 1.27
 	 * @param int $revId
 	 */
 	public function setAssociatedRevId( $revId ) {
@@ -509,18 +519,18 @@ class ManualLogEntry extends LogEntryBase {
 	}
 
 	/**
-	 * TODO: document
+	 * Set the 'deleted' flag.
 	 *
 	 * @since 1.19
-	 *
-	 * @param int $deleted
+	 * @param int $deleted One of LogPage::DELETED_* bitfield constants
 	 */
 	public function setDeleted( $deleted ) {
 		$this->deleted = $deleted;
 	}
 
 	/**
-	 * Inserts the entry into the logging table.
+	 * Insert the entry into the `logging` table.
+	 *
 	 * @param IDatabase $dbw
 	 * @return int ID of the log entry
 	 * @throws MWException
@@ -535,10 +545,10 @@ class ManualLogEntry extends LogEntryBase {
 			$this->timestamp = wfTimestampNow();
 		}
 
-		# Trim spaces on user supplied text
+		// Trim spaces on user supplied text
 		$comment = trim( $this->getComment() );
 
-		# Truncate for whole multibyte characters.
+		// Truncate for whole multibyte characters.
 		$comment = $wgContLang->truncate( $comment, 255 );
 
 		$data = array(
@@ -588,6 +598,7 @@ class ManualLogEntry extends LogEntryBase {
 
 	/**
 	 * Get a RecentChanges object for the log entry
+	 *
 	 * @param int $newId
 	 * @return RecentChange
 	 * @since 1.23
@@ -601,10 +612,8 @@ class ManualLogEntry extends LogEntryBase {
 		$user = $this->getPerformer();
 		$ip = "";
 		if ( $user->isAnon() ) {
-			/*
-			 * "MediaWiki default" and friends may have
-			 * no IP address in their name
-			 */
+			// "MediaWiki default" and friends may have
+			// no IP address in their name
 			if ( IP::isIPAddress( $user->getName() ) ) {
 				$ip = $user->getName();
 			}
@@ -628,7 +637,8 @@ class ManualLogEntry extends LogEntryBase {
 	}
 
 	/**
-	 * Publishes the log entry.
+	 * Publish the log entry.
+	 *
 	 * @param int $newId Id of the log entry.
 	 * @param string $to One of: rcandudp (default), rc, udp
 	 */
@@ -654,8 +664,6 @@ class ManualLogEntry extends LogEntryBase {
 			PatrolLog::record( $rc, true, $this->getPerformer() );
 		}
 	}
-
-	// LogEntry->
 
 	public function getType() {
 		return $this->type;
