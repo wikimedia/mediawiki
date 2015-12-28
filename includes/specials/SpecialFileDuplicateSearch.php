@@ -241,7 +241,7 @@ class FileDuplicateSearchPage extends QueryPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		$title = Title::newFromText( $search );
+		$title = Title::newFromText( $search, NS_FILE );
 		if ( !$title || $title->getNamespace() !== NS_FILE ) {
 			// No prefix suggestion outside of file namespace
 			return array();
