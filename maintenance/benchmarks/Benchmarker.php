@@ -22,7 +22,6 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @todo Report PHP version, OS ..
  * @file
  * @ingroup Benchmark
  */
@@ -39,7 +38,7 @@ abstract class Benchmarker extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->addOption( 'count', "How many time to run a benchmark", false, true );
+		$this->addOption( 'count', "How many times to run a benchmark", false, true );
 	}
 
 	public function bench( array $benchs ) {
@@ -76,7 +75,13 @@ abstract class Benchmarker extends Maintenance {
 	}
 
 	public function getFormattedResults() {
-		$ret = '';
+		$ret = sprintf( "Running PHP version %s (%s) on %s %s %s\n\n",
+			phpversion(),
+			php_uname('m'),
+			php_uname('s'),
+			php_uname('r'),
+			php_uname('v')
+		);
 		foreach ( $this->results as $res ) {
 			// show function with args
 			$ret .= sprintf( "%s times: function %s(%s) :\n",
