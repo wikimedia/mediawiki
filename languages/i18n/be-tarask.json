@@ -1385,6 +1385,8 @@
 	"foreign-structured-upload-form-3-label-question-website": "Вы спампавалі гэтую выяву зь нейкага сайту або знайшлі яе праз пошук выяваў?",
 	"foreign-structured-upload-form-3-label-question-ownwork": "Вы стварылі гэтую выяву (зрабілі фота, накід малюнку і г. д.) самі?",
 	"foreign-structured-upload-form-3-label-question-noderiv": "Ці ўтрымлівае яна або яна натхнёная працай, якой валодае нехта іншы, як прыклад, лягатып?",
+	"foreign-structured-upload-form-3-label-yes": "Так",
+	"foreign-structured-upload-form-3-label-no": "Не",
 	"backend-fail-stream": "Немагчыма накіраваць файл $1.",
 	"backend-fail-backup": "Немагчыма зрабіць рэзэрвовую копію файла $1.",
 	"backend-fail-notexists": "Файл $1 не існуе.",
