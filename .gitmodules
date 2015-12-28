@@ -320,3 +320,7 @@
 	path = extensions/SubPageList3
 	url = https://github.com/wikimedia/mediawiki-extensions-SubPageList3
 	branch = REL1_26
+[submodule "extensions/FeaturedFeeds"]
+	path = extensions/FeaturedFeeds
+	url = https://github.com/wikimedia/mediawiki-extensions-FeaturedFeeds
+	branch = REL1_26
