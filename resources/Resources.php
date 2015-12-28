@@ -1760,6 +1760,7 @@ return array(
 			'savedprefs',
 		),
 		'dependencies' => array(
+			'mediawiki.router',
 			'mediawiki.language',
 			'mediawiki.confirmCloseWindow',
 			'mediawiki.notification',
