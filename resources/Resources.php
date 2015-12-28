@@ -1865,6 +1865,7 @@ return [
 			'savedprefs',
 		],
 		'dependencies' => [
+			'mediawiki.router',
 			'mediawiki.language',
 			'mediawiki.confirmCloseWindow',
 			'mediawiki.notification',
