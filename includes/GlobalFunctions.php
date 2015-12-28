@@ -1983,11 +1983,13 @@ function wfShowingResults( $offset, $limit ) {
 }
 
 /**
- * @todo document
+ * Uses the Accept-Encoding header to check if the client accepts gzip compression or not.
+ * Should be used before asking the client's browser to do anything that requires gzip.
+ *
  * @todo FIXME: We may want to blacklist some broken browsers
  *
- * @param bool $force
- * @return bool Whereas client accept gzip compression
+ * @param bool $force Forces another check even if we already have a result
+ * @return bool If client accept gzip compression
  */
 function wfClientAcceptsGzip( $force = false ) {
 	static $result = null;
