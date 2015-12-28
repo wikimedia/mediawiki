@@ -55,13 +55,19 @@ class AvroFormatterTest extends MediaWikiTestCase {
 	}
 
 	public function testDoesSomethingWhenSchemaAvailable() {
-		$formatter = new AvroFormatter( array( 'string' => array( 'type' => 'string' ) ) );
+		$formatter = new AvroFormatter( array(
+			'string' => array( 
+				'schema' => array( 'type' => 'string' ),
+				'revision' => 1010101,
+			)
+		) );
 		$res = $formatter->format( array(
 			'channel' => 'string',
 			'context' => 'better to be',
 		) );
 		$this->assertNotNull( $res );
-		// basically just tell us if avro changes its string encoding
+		// basically just tell us if avro changes its string encoding, or if
+		// we completely fail to generate a log message.
 		$this->assertEquals( base64_decode( 'GGJldHRlciB0byBiZQ==' ), $res );
 	}
 }
