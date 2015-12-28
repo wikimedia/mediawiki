@@ -332,7 +332,7 @@
 
 	} );
 
-	QUnit.test( 'getUrl', 3, function ( assert ) {
+	QUnit.test( 'getUrl', 4, function ( assert ) {
 		var title;
 
 		// Config
@@ -344,6 +344,9 @@
 
 		title = new mw.Title( 'John Doe', 3 );
 		assert.equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
+
+		title = new mw.Title( 'John Cena#And_His_Name_Is', 3 );
+		assert.equal( title.getUrl( { meme: true } ), '/wiki/User_talk:John_Cena?meme=true#And_His_Name_Is', 'title with fragment and query parameter' );
 	} );
 
 	QUnit.test( 'newFromImg', 44, function ( assert ) {
