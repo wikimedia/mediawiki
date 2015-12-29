@@ -41,6 +41,7 @@ class RebuildRecentchanges extends Maintenance {
 		$this->rebuildRecentChangesTablePass2();
 		$this->rebuildRecentChangesTablePass3();
 		$this->rebuildRecentChangesTablePass4();
+		$this->rebuildRecentChangesTablePass5();
 		$this->purgeFeeds();
 		$this->output( "Done.\n" );
 	}
@@ -278,6 +279,48 @@ class RebuildRecentchanges extends Maintenance {
 					"WHERE rc_user_text IN($patrolwhere)";
 				$dbw->query( $sql2 );
 			}
+		}
+	}
+
+	/**
+	 * Rebuild pass 5: Delete duplicate entries where we generate both a page revision and a log entry
+	 * for a single action (upload, move, protect).
+	 */
+	private function rebuildRecentChangesTablePass5() {
+		$dbw = wfGetDB( DB_MASTER );
+
+		$this->output( "Removing duplicate revision and logging entries...\n" );
+
+		$res = $dbw->select(
+			array( 'logging', 'log_search' ),
+			array( 'ls_value', 'ls_log_id' ),
+			array(
+				'ls_log_id = log_id',
+				'ls_field' => 'associated_rev_id',
+				'log_type' => array( 'upload', 'move', 'protect' ),
+			),
+			__METHOD__
+		);
+		foreach ( $res as $obj ) {
+			var_dump($obj);
+			
+			$rev_id = $obj->ls_value;
+			$log_id = $obj->ls_log_id;
+
+			// Mark the logging row as having an associated rev id
+			$dbw->update(
+				'recentchanges',
+				/*SET*/ array( 'rc_this_oldid' => $rev_id ),
+				/*WHERE*/ array( 'rc_logid' => $log_id ),
+				__METHOD__
+			);
+
+			// Delete the revision row
+			$dbw->delete(
+				'recentchanges',
+				/*WHERE*/ array( 'rc_this_oldid' => $rev_id, 'rc_logid' => 0 ),
+				__METHOD__
+			);
 		}
 	}
 
