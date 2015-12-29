@@ -55,6 +55,31 @@ class ApiPageSetTest extends ApiTestCase {
 		);
 	}
 
+	public function testGetPageTableFields() {
+		$pageSet = $this->getApiPageSet();
+
+		$fields = $pageSet->getPageTableFields();
+		$firstThree = array_slice( $fields, 0, 3 );
+		$this->assertEquals(
+			array(
+				0 => 'page_namespace',
+				1 => 'page_title',
+				2 => 'page_id',
+			),
+			$firstThree
+		);
+	}
+
+	protected function getApiPageSet() {
+		$request = new FauxRequest( [ 'redirects' => 1 ] );
+		$context = new RequestContext();
+		$context->setRequest( $request );
+		$main = new ApiMain( $context );
+		$pageSet = new ApiPageSet( $main );
+
+		return $pageSet;
+	}
+
 	protected function createPageSetWithRedirect() {
 		$target = Title::makeTitle( NS_MAIN, 'UTRedirectTarget' );
 		$sourceA = Title::makeTitle( NS_MAIN, 'UTRedirectSourceA' );
@@ -63,11 +88,7 @@ class ApiPageSetTest extends ApiTestCase {
 		self::editPage( 'UTRedirectSourceA', '#REDIRECT [[UTRedirectTarget]]' );
 		self::editPage( 'UTRedirectSourceB', '#REDIRECT [[UTRedirectTarget]]' );
 
-		$request = new FauxRequest( [ 'redirects' => 1 ] );
-		$context = new RequestContext();
-		$context->setRequest( $request );
-		$main = new ApiMain( $context );
-		$pageSet = new ApiPageSet( $main );
+		$pageSet = $this->getApiPageSet();
 
 		$pageSet->setGeneratorData( $sourceA, [ 'index' => 1 ] );
 		$pageSet->setGeneratorData( $sourceB, [ 'index' => 3 ] );
