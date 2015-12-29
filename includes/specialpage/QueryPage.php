@@ -488,22 +488,38 @@ abstract class QueryPage extends SpecialPage {
 	 * Subclasses may override this to further restrict or modify limit and offset.
 	 *
 	 * @note Restricts the offset parameter, as most query pages have inefficient paging
-	 * @since 1.26
 	 *
+	 * Its generally expected that the returned limit will not be 0, and the returned
+	 * offset will be less than the max results.
+	 *
+	 * @since 1.26
 	 * @return int[] list( $limit, $offset )
 	 */
 	protected function getLimitOffset() {
 		list( $limit, $offset ) = $this->getRequest()->getLimitOffset();
-		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( 'MiserMode' ) ) {
 			$maxResults = $this->getMaxResults();
 			// Can't display more than max results on a page
 			$limit = min( $limit, $maxResults );
-			// Can't skip over more than $maxResults
-			$offset = min( $offset, $maxResults );
-			// Can't let $offset + $limit > $maxResults
-			$limit = min( $limit, $maxResults - $offset );
+			// Can't skip over more than the end of $maxResults
+			$offset = min( $offset, $maxResults + 1 );
 		}
 		return array( $limit, $offset );
+	}
+
+	/**
+	 * What is limit to fetch from DB
+	 *
+	 * Used to make it appear the DB stores less results then it actually does
+	 * @param $uiLimit int Limit from UI
+	 * @param $uiOffset int Offset from UI
+	 * @return int Limit to use for DB (not including extra row to see if at end)
+	 */
+	protected function getDBLimit( $uiLimit, $uiOffset ) {
+		$maxResults = $this->getMaxResults();
+		$limit = min( $uiLimit, $maxResults - $uiOffset );
+		// Always return 1 more than limit to determine if at end of paging
+		return $limit + 1;
 	}
 
 	/**
@@ -516,7 +532,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return int
 	 */
 	protected function getMaxResults() {
-		// Max of 10000, unless we store more than 5000 in query cache.
+		// Max of 10000, unless we store more than 10000 in query cache.
 		return max( $this->getConfig()->get( 'QueryCacheLimit' ), 10000 );
 	}
 
@@ -547,14 +563,14 @@ abstract class QueryPage extends SpecialPage {
 		if ( $this->limit == 0 && $this->offset == 0 ) {
 			list( $this->limit, $this->offset ) = $this->getLimitOffset();
 		}
-
+		$dbLimit = $this->getDBLimit( $this->limit, $this->offset );
 		// @todo Use doQuery()
 		if ( !$this->isCached() ) {
 			# select one extra row for navigation
-			$res = $this->reallyDoQuery( $this->limit + 1, $this->offset );
+			$res = $this->reallyDoQuery( $dbLimit, $this->offset );
 		} else {
 			# Get the cached result, select one extra row for navigation
-			$res = $this->fetchFromCache( $this->limit + 1, $this->offset );
+			$res = $this->fetchFromCache( $dbLimit, $this->offset );
 			if ( !$this->listoutput ) {
 
 				# Fetch the timestamp of this update
@@ -601,8 +617,9 @@ abstract class QueryPage extends SpecialPage {
 					min( $this->numRows, $this->limit ), # do not show the one extra row, if exist
 					$this->offset + 1, ( min( $this->numRows, $this->limit ) + $this->offset ) )->parseAsBlock() );
 				# Disable the "next" link when we reach the end
-				$atEnd = ( $this->numRows <= $this->limit )
-					|| ( $this->offset + $this-> limit  >= $this->getMaxResults() );
+				$miserMaxResults = $this->getConfig()->get( 'MiserMode' )
+					&& ( $this->offset + $this->limit >= $this->getMaxResults() );
+				$atEnd = ( $this->numRows <= $this->limit ) || $miserMaxResults;
 				$paging = $this->getLanguage()->viewPrevNext( $this->getPageTitle( $par ), $this->offset,
 					$this->limit, $this->linkParameters(), $atEnd );
 				$out->addHTML( '<p>' . $paging . '</p>' );
