@@ -761,18 +761,19 @@ abstract class Maintenance {
 	 */
 	private function setParam( &$options, $option, $value ) {
 		$this->orderedOptions[] = array( $option, $value );
-
-		$multi = $this->mParams[$option]['multiOccurance'];
-		$exists = array_key_exists( $option, $options );
-		if ( $multi && $exists ) {
-			$options[$option][] = $value;
-		} else if ( $multi ) {
-			$options[$option] = array( $value );
-		} else if ( !$exists ) {
-			$options[$option] = $value;
-		} else {
-			$this->error( "\nERROR: $option parameter given twice\n" );
-			$this->maybeHelp( true );
+		if ( isset( $this->mParams[$option] ) ) {
+			$multi = $this->mParams[$option]['multiOccurance'];
+			$exists = array_key_exists( $option, $options );
+			if ( $multi && $exists ) {
+				$options[$option][] = $value;
+			} else if ( $multi ) {
+				$options[$option] = array( $value );
+			} else if ( !$exists ) {
+				$options[$option] = $value;
+			} else {
+				$this->error( "\nERROR: $option parameter given twice\n" );
+				$this->maybeHelp( true );
+			}
 		}
 	}
 
@@ -1131,7 +1132,7 @@ abstract class Maintenance {
 	 *
 	 * @param DatabaseBase $db Database object to be used
 	 */
-	public function setDB( $db ) {
+	public function setDB( DatabaseBase $db ) {
 		$this->mDb = $db;
 	}
 
