@@ -1085,4 +1085,46 @@
 		);
 	} );
 
+	QUnit.test( 'mw.loader.require', 6, function ( assert ) {
+		var module1, module2, module3, module4;
+
+		mw.loader.register( [
+			[ 'test.module.require1', '0' ],
+			[ 'test.module.require2', '0' ],
+			[ 'test.module.require3', '0' ],
+			[ 'test.module.require4', '0', [ 'test.module.require3' ] ]
+		] );
+		mw.loader.implement( 'test.module.require1', function () {} );
+		mw.loader.implement( 'test.module.require2', function ( $, jQuery, require, module ) {
+			module.exports = 1;
+		} );
+		mw.loader.implement( 'test.module.require3', function ( $, jQuery, require, module ) {
+			module.exports = function () {
+				return 'hello world';
+			};
+		} );
+		mw.loader.implement( 'test.module.require4', function ( $, jQuery, require, module ) {
+			var other = require( 'test.module.require3' );
+			module.exports = {
+				pizza: function () {
+					return other();
+				}
+			};
+		} );
+		module1 = mw.loader.require( 'test.module.require1' );
+		module2 = mw.loader.require( 'test.module.require2' );
+		module3 = mw.loader.require( 'test.module.require3' );
+		module4 = mw.loader.require( 'test.module.require4' );
+
+		assert.strictEqual( typeof module1, 'object', 'export of module with no export' );
+		assert.strictEqual( module2, 1, 'export a number' );
+		assert.strictEqual( module3(), 'hello world', 'export a function' );
+		assert.strictEqual( typeof module4.pizza, 'function', 'export an object' );
+		assert.strictEqual( module4.pizza(), 'hello world', 'module can require other modules' );
+
+		assert.throws( function () {
+			mw.loader.require( '_badmodule' );
+		}, /is not loaded/, 'Requesting non-existent modules throws error.' );
+	} );
+
 }( mediaWiki, jQuery ) );
