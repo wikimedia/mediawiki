@@ -213,6 +213,12 @@ class DatabaseLogEntry extends LogEntryBase {
 	/** @var User */
 	protected $performer;
 
+	/** @var array Parameters for log entry */
+	protected $params;
+
+	/** @var int A rev id associated to the log entry */
+	protected $revId = null;
+
 	/** @var bool Whether the parameters for this log entry are stored in new or old format. */
 	protected $legacy;
 
@@ -239,7 +245,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	}
 
 	public function isLegacy() {
-		// This does the check
+		// This extracts the property
 		$this->getParameters();
 		return $this->legacy;
 	}
@@ -265,9 +271,20 @@ class DatabaseLogEntry extends LogEntryBase {
 				$this->params = LogPage::extractParams( $blob );
 				$this->legacy = true;
 			}
+
+			if ( isset( $this->params['associated_rev_id'] ) ) {
+				$this->revId = $this->params['associated_rev_id'];
+				unset( $this->params['associated_rev_id'] );
+			}
 		}
 
 		return $this->params;
+	}
+
+	public function getAssociatedRevId() {
+		// This extracts the property
+		$this->getParameters();
+		return $this->revId;
 	}
 
 	public function getPerformer() {
@@ -319,6 +336,10 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 
 	protected function getRawParameters() {
 		return $this->row->rc_params;
+	}
+
+	public function getAssociatedRevId() {
+		return $this->row->rc_this_oldid;
 	}
 
 	public function getType() {
@@ -551,6 +572,13 @@ class ManualLogEntry extends LogEntryBase {
 		// Truncate for whole multibyte characters.
 		$comment = $wgContLang->truncate( $comment, 255 );
 
+		$params = $this->getParameters();
+		$relations = $this->relations;
+
+		// Additional fields for which there's no space in the database table schema
+		$params['associated_rev_id'] = $this->getAssociatedRevId();
+		$relations['associated_rev_id'] = $this->getAssociatedRevId();
+
 		$data = array(
 			'log_id' => $id,
 			'log_type' => $this->getType(),
@@ -562,7 +590,7 @@ class ManualLogEntry extends LogEntryBase {
 			'log_title' => $this->getTarget()->getDBkey(),
 			'log_page' => $this->getTarget()->getArticleID(),
 			'log_comment' => $comment,
-			'log_params' => LogEntryBase::makeParamBlob( $this->getParameters() ),
+			'log_params' => LogEntryBase::makeParamBlob( $params ),
 		);
 		if ( isset( $this->deleted ) ) {
 			$data['log_deleted'] = $this->deleted;
@@ -572,7 +600,7 @@ class ManualLogEntry extends LogEntryBase {
 		$this->id = !is_null( $id ) ? $id : $dbw->insertId();
 
 		$rows = array();
-		foreach ( $this->relations as $tag => $values ) {
+		foreach ( $relations as $tag => $values ) {
 			if ( !strlen( $tag ) ) {
 				throw new MWException( "Got empty log search tag." );
 			}

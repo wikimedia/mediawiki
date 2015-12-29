@@ -1399,6 +1399,7 @@ class LocalFile extends File {
 			# Update memcache after the commit
 			$that->invalidateCache();
 
+			$updateLogPage = false;
 			if ( $newPageContent ) {
 				# New file page; create the description page.
 				# There's already a log entry, so don't make a second RC entry
@@ -1420,12 +1421,7 @@ class LocalFile extends File {
 				if ( isset( $status->value['revision'] ) ) {
 					/** @var $rev Revision */
 					$rev = $status->value['revision'];
-					$that->getRepo()->getMasterDB()->update(
-						'logging',
-						array( 'log_page' => $rev->getPage() ),
-						array( 'log_id' => $logId ),
-						__METHOD__
-					);
+					$updateLogPage = $rev->getPage();
 				}
 			} else {
 				# Existing file page: invalidate description page cache
@@ -1435,7 +1431,32 @@ class LocalFile extends File {
 				Article::purgePatrolFooterCache( $descId );
 			}
 
-			# Now that the page exists, make an RC entry.
+			# Update associated rev id. This should be done by $logEntry->insert() earlier,
+			# but setAssociatedRevId() wasn't called at that point yet...
+			$logParams = $logEntry->getParameters();
+			$logParams['associated_rev_id'] = $logEntry->getAssociatedRevId();
+			$update = array( 'log_params' => LogEntryBase::makeParamBlob( $logParams ) );
+			if ( $updateLogPage ) {
+				# Also log page, in case where we just created it above
+				$update['log_page'] = $updateLogPage;
+			}
+			$that->getRepo()->getMasterDB()->update(
+				'logging',
+				$update,
+				array( 'log_id' => $logId ),
+				__METHOD__
+			);
+			$that->getRepo()->getMasterDB()->insert(
+				'log_search',
+				array(
+					'ls_field' => 'associated_rev_id',
+					'ls_value' => $logEntry->getAssociatedRevId(),
+					'ls_log_id' => $logId,
+				),
+				__METHOD__
+			);
+
+			# Now that the log entry is up-to-date, make an RC entry.
 			$logEntry->publish( $logId );
 			# Run hook for other updates (typically more cache purging)
 			Hooks::run( 'FileUpload', array( $that, $reupload, !$newPageContent ) );
