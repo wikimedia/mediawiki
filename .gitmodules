@@ -328,3 +328,7 @@
 	path = extensions/WikiForum
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiForum
 	branch = REL1_26
+[submodule "extensions/VectorBeta"]
+	path = extensions/VectorBeta
+	url = https://github.com/wikimedia/mediawiki-extensions-VectorBeta
+	branch = REL1_26
