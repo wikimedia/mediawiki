@@ -297,6 +297,12 @@ class ApiPageSet extends ApiBase {
 			'page_id' => null,
 		);
 
+		// get default fields for page table from LinkCache
+		$pageFlds = array_merge(
+			$pageFlds,
+			array_flip( LinkCache::getFields() )
+		);
+
 		if ( $this->mResolveRedirects ) {
 			$pageFlds['page_is_redirect'] = null;
 		}
