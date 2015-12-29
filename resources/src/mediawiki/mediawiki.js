@@ -773,6 +773,10 @@
 				// List of modules which will be loaded as when ready
 				batch = [],
 
+				// pending ajax requests
+				handlingPendingRequests = false,
+				pendingRequests = [],
+
 				// List of modules to be loaded
 				queue = [],
 
@@ -1183,6 +1187,43 @@
 			}
 
 			/**
+			 * Queue the loading and execution of a script for a particular module.
+			 *
+			 * @private
+			 * @param {string} src URL to script, will be used as the src attribute in the script tag
+			 * @param {string} moduleName that the script is running in if applicable.
+			 * @return {jQuery.Promise}
+			 */
+			function queueModuleScript( src, moduleName ) {
+				var r = $.Deferred();
+
+				pendingRequests.push( function () {
+					if ( moduleName && registry[ moduleName ] ) {
+						window.require = mw.loader.require;
+						window.module = registry[ moduleName ].module;
+					}
+					addScript( src ).always( function () {
+						// clear environment
+						delete window.require;
+						delete window.module;
+						r.resolve();
+
+						// execute the next one immediately if it exists
+						if ( pendingRequests[ 0 ] ) {
+							pendingRequests.shift()();
+						} else {
+							handlingPendingRequests = false;
+						}
+					} );
+				} );
+				if ( pendingRequests[ 0 ] && !handlingPendingRequests ) {
+					handlingPendingRequests = true;
+					pendingRequests.shift()();
+				}
+				return r.promise();
+			}
+
+			/**
 			 * Utility function for execute()
 			 *
 			 * @ignore
@@ -1240,7 +1281,7 @@
 								return;
 							}
 
-							addScript( arr[ i ] ).always( function () {
+							queueModuleScript( arr[ i ], module ).always( function () {
 								nestedAddScript( arr, callback, i + 1 );
 							} );
 						};
@@ -1255,8 +1296,9 @@
 							} else if ( $.isFunction( script ) ) {
 								// Pass jQuery twice so that the signature of the closure which wraps
 								// the script can bind both '$' and 'jQuery'.
-								script( $, $ );
+								script( $, $, mw.loader.require, registry[ module ].module );
 								markModuleReady();
+
 							} else if ( typeof script === 'string' ) {
 								// Site and user modules are a legacy scripts that run in the global scope.
 								// This is transported as a string instead of a function to avoid needing
@@ -1748,6 +1790,9 @@
 					}
 					// List the module as registered
 					registry[ module ] = {
+						module: {
+							exports: {}
+						},
 						version: version !== undefined ? String( version ) : '',
 						dependencies: [],
 						group: typeof group === 'string' ? group : null,
@@ -2015,6 +2060,27 @@
 					return $.map( registry, function ( i, key ) {
 						return key;
 					} );
+				},
+
+				/**
+				 * Obtains exported values of a given ResourceLoader module
+				 * Where that module contains `module.exports`
+				 *
+				 * @return {Array}
+				 */
+				require: function ( moduleName ) {
+					var state,
+						registeredModule = registry[ moduleName ];
+
+					state = registeredModule && registeredModule.state ? registeredModule.state : null;
+
+					// Only ready or executing states can be required
+					// (An executing module may require modules in itself)
+					if ( registeredModule && state === 'ready' || state === 'executing' ) {
+						return registeredModule.module.exports;
+					} else {
+						throw 'Module `' + moduleName + '` is not registered or is not available.';
+					}
 				},
 
 				/**
