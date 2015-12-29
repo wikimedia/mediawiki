@@ -1101,7 +1101,7 @@ MESSAGE;
 					$scripts = self::filter( 'minify-js', $scripts );
 				}
 			} else {
-				$scripts = new XmlJsCode( "function ( $, jQuery ) {\n{$scripts}\n}" );
+				$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts}\n}" );
 			}
 		} elseif ( !is_array( $scripts ) ) {
 			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
