@@ -1243,4 +1243,34 @@ more stuff
 		$page = WikiPage::factory( $title );
 		$this->assertEquals( 'WikiPage', get_class( $page ) );
 	}
+
+	/**
+	 * This tests only, that the fields are extended by additional fields, the basic
+	 * functioning of page_lang and page_content_model e.g. is tested in LinkCache (getFields)
+	 * directly.
+	 */
+	public function testSelectFields() {
+		$this->setMwGlobals( [
+			'wgContentHandlerUseDB' => true,
+			'wgPageLanguageUseDB' => true,
+		] );
+		$fields = [
+			'page_namespace',
+			'page_title',
+			'page_id',
+			'page_len',
+			'page_is_redirect',
+			'page_latest',
+			'page_content_model',
+			'page_lang',
+			'page_restrictions',
+			'page_is_new',
+			'page_random',
+			'page_touched',
+			'page_links_updated',
+			'page_latest',
+		];
+
+		$this->assertEquals( $fields, WikiPage::selectFields() );
+	}
 }

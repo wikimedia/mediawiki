@@ -190,10 +190,7 @@ class LinkBatch {
 		// This is similar to LinkHolderArray::replaceInternal
 		$dbr = wfGetDB( DB_SLAVE );
 		$table = 'page';
-		$fields = array_merge(
-			LinkCache::getSelectFields(),
-			[ 'page_namespace', 'page_title' ]
-		);
+		$fields = LinkCache::getSelectFields();
 
 		$conds = $this->constructSet( 'page', $dbr );
 
