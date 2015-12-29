@@ -1085,4 +1085,43 @@
 		);
 	} );
 
+	QUnit.test( 'mw.loader.require', 5, function ( assert ) {
+		var module, module2, module3;
+
+		mw.loader.register( [
+			[ 'test.module.require1', '0' ],
+			[ 'test.module.require2', '0' ],
+			[ 'test.module.require3', '0' ]
+		] );
+		mw.loader.implement( 'test.module.require1', function () {} );
+		mw.loader.implement( 'test.module.require2', function ( $, jQuery, require, module ) {
+			module.exports = {
+				foo: 1,
+				bar: function () {
+					return 'hello world';
+				}
+			};
+		} );
+		mw.loader.implement( 'test.module.require3', function ( $, jQuery, require, module ) {
+			var testModule = require( 'test.module.require2' );
+
+			module.exports = {
+				pizza: function () {
+					return testModule.bar();
+				}
+			};
+		} );
+		module = mw.loader.require( 'test.module.require1' );
+		module2 = mw.loader.require( 'test.module.require2' );
+		module3 = mw.loader.require( 'test.module.require3' );
+
+		assert.ok( typeof module === 'object', 'Check exports works for a module with no exports.' );
+		assert.strictEqual( module2.foo, 1, 'Check exported number.' );
+		assert.strictEqual( module2.bar(), 'hello world', 'Check exported function.' );
+		assert.strictEqual( module3.pizza(), 'hello world', 'Check exported function can require other modules.' );
+		assert.throws( function () {
+			mw.loader.require( '_badmodule' );
+		}, /is not loaded/, 'Requesting non-existent modules throws error.' );
+	} );
+
 }( mediaWiki, jQuery ) );
