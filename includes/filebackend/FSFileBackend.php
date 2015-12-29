@@ -64,6 +64,7 @@ class FSFileBackend extends FileBackendStore {
 	 *   - containerPaths : Map of container names to custom file system directories.
 	 *                      This should only be used for backwards-compatibility.
 	 *   - fileMode       : Octal UNIX file permissions to use on files stored.
+	 * @param array $config
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -561,9 +562,6 @@ class FSFileBackend extends FileBackendStore {
 		}
 	}
 
-	/**
-	 * @see FileBackendStore::doClearCache()
-	 */
 	protected function doClearCache( array $paths = null ) {
 		clearstatcache(); // clear the PHP file stat cache
 	}
@@ -682,7 +680,7 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @param FileBackendStoreOpHandle[] $fileOpHandles
+	 * @param FSFileOpHandle[] $fileOpHandles
 	 *
 	 * @return Status[]
 	 */
