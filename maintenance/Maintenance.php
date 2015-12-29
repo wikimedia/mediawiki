@@ -1145,7 +1145,7 @@ abstract class Maintenance {
 	 *
 	 * @param DatabaseBase $db Database object to be used
 	 */
-	public function setDB( $db ) {
+	public function setDB( DatabaseBase $db ) {
 		$this->mDb = $db;
 	}
 
