@@ -6,58 +6,81 @@
  */
 class MediaWikiTestCaseTest extends MediaWikiTestCase {
 
-	const GLOBAL_KEY_EXISTING = 'MediaWikiTestCaseTestGLOBAL-Existing';
 	const GLOBAL_KEY_NONEXISTING = 'MediaWikiTestCaseTestGLOBAL-NONExisting';
+
+	private static $startGlobals = array(
+		'MediaWikiTestCaseTestGLOBAL-ExistingString' => 'foo',
+		'MediaWikiTestCaseTestGLOBAL-ExistingStringEmpty' => '',
+		'MediaWikiTestCaseTestGLOBAL-ExistingArray' => array( 1, 'foo' => 'bar' ),
+		'MediaWikiTestCaseTestGLOBAL-ExistingArrayEmpty' => array(),
+	);
 
 	public static function setUpBeforeClass() {
 		parent::setUpBeforeClass();
-		$GLOBALS[self::GLOBAL_KEY_EXISTING] = 'foo';
+		foreach ( self::$startGlobals as $key => $value ) {
+			$GLOBALS[$key] = $value;
+		}
 	}
 
 	public static function tearDownAfterClass() {
 		parent::tearDownAfterClass();
-		unset( $GLOBALS[self::GLOBAL_KEY_EXISTING] );
+		foreach ( self::$startGlobals as $key => $value ) {
+			unset( $GLOBALS[$key] );
+		}
+	}
+
+	public function provideExistingKeysAndNewValues() {
+		$providedArray = array();
+		foreach ( array_keys( self::$startGlobals ) as $key ) {
+			$providedArray[] = array( $key, 'newValue' );
+			$providedArray[] = array( $key, array( 'newValue' ) );
+		}
+		return $providedArray;
 	}
 
 	/**
+	 * @dataProvider provideExistingKeysAndNewValues
+	 *
 	 * @covers MediaWikiTestCase::setMwGlobals
 	 * @covers MediaWikiTestCase::tearDown
 	 */
-	public function testSetGlobalsAreRestoredOnTearDown() {
-		$this->setMwGlobals( self::GLOBAL_KEY_EXISTING, 'bar' );
+	public function testSetGlobalsAreRestoredOnTearDown( $globalKey, $newValue ) {
+		$this->setMwGlobals( $globalKey, $newValue );
 		$this->assertEquals(
-			'bar',
-			$GLOBALS[self::GLOBAL_KEY_EXISTING],
+			$newValue,
+			$GLOBALS[$globalKey],
 			'Global failed to correctly set'
 		);
 
 		$this->tearDown();
 
 		$this->assertEquals(
-			'foo',
-			$GLOBALS[self::GLOBAL_KEY_EXISTING],
+			self::$startGlobals[$globalKey],
+			$GLOBALS[$globalKey],
 			'Global failed to be restored on tearDown'
 		);
 	}
 
 	/**
+	 * @dataProvider provideExistingKeysAndNewValues
+	 *
 	 * @covers MediaWikiTestCase::stashMwGlobals
 	 * @covers MediaWikiTestCase::tearDown
 	 */
-	public function testStashedGlobalsAreRestoredOnTearDown() {
-		$this->stashMwGlobals( self::GLOBAL_KEY_EXISTING );
-		$GLOBALS[self::GLOBAL_KEY_EXISTING] = 'bar';
+	public function testStashedGlobalsAreRestoredOnTearDown( $globalKey, $newValue ) {
+		$this->stashMwGlobals( $globalKey );
+		$GLOBALS[$globalKey] = $newValue;
 		$this->assertEquals(
-			'bar',
-			$GLOBALS[self::GLOBAL_KEY_EXISTING],
+			$newValue,
+			$GLOBALS[$globalKey],
 			'Global failed to correctly set'
 		);
 
 		$this->tearDown();
 
 		$this->assertEquals(
-			'foo',
-			$GLOBALS[self::GLOBAL_KEY_EXISTING],
+			self::$startGlobals[$globalKey],
+			$GLOBALS[$globalKey],
 			'Global failed to be restored on tearDown'
 		);
 	}
