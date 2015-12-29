@@ -372,25 +372,12 @@ class Title {
 	 * objects or LinkCache entries. Uses $wgContentHandlerUseDB to determine
 	 * whether to include page_content_model.
 	 *
+	 * @deprecated 1.27 Use LinkCache::getFields() instead
+	 *
 	 * @return array
 	 */
 	protected static function getSelectFields() {
-		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
-
-		$fields = array(
-			'page_namespace', 'page_title', 'page_id',
-			'page_len', 'page_is_redirect', 'page_latest',
-		);
-
-		if ( $wgContentHandlerUseDB ) {
-			$fields[] = 'page_content_model';
-		}
-
-		if ( $wgPageLanguageUseDB ) {
-			$fields[] = 'page_lang';
-		}
-
-		return $fields;
+		return LinkCache::getFields();
 	}
 
 	/**
@@ -404,7 +391,7 @@ class Title {
 		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		$row = $db->selectRow(
 			'page',
-			self::getSelectFields(),
+			LinkCache::getFields(),
 			array( 'page_id' => $id ),
 			__METHOD__
 		);
@@ -430,7 +417,7 @@ class Title {
 
 		$res = $dbr->select(
 			'page',
-			self::getSelectFields(),
+			LinkCache::getFields(),
 			array( 'page_id' => $ids ),
 			__METHOD__
 		);
@@ -3391,7 +3378,7 @@ class Title {
 
 		$res = $db->select(
 			array( 'page', $table ),
-			self::getSelectFields(),
+			LinkCache::getFields(),
 			array(
 				"{$prefix}_from=page_id",
 				"{$prefix}_namespace" => $this->getNamespace(),
@@ -3771,6 +3758,7 @@ class Title {
 		$dbw = wfGetDB( DB_MASTER );
 
 		# Is it a redirect?
+		# FIXME: Could this use LinkCache::getFields(), too?
 		$fields = array( 'page_is_redirect', 'page_latest', 'page_id' );
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'page_content_model';
