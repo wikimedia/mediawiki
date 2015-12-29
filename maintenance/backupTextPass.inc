@@ -29,7 +29,7 @@ require_once __DIR__ . '/backup.inc';
 /**
  * @ingroup Maintenance
  */
-class TextPassDumper extends BackupDumper {
+class TextPassDumper extends BackupMaintenance {
 	public $prefetch = null;
 
 	// when we spend more than maxTimeAllowed seconds on this run, we continue
