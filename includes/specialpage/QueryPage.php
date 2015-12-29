@@ -494,14 +494,20 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	protected function getLimitOffset() {
 		list( $limit, $offset ) = $this->getRequest()->getLimitOffset();
-		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( 'MiserMode' ) ) {
 			$maxResults = $this->getMaxResults();
 			// Can't display more than max results on a page
-			$limit = min( $limit, $maxResults );
+			$maxPageLimit = min( $limit, $maxResults );
 			// Can't skip over more than $maxResults
 			$offset = min( $offset, $maxResults );
 			// Can't let $offset + $limit > $maxResults
-			$limit = min( $limit, $maxResults - $offset );
+			$limit = min( $maxPageLimit, $maxResults - $offset );
+			if ( $limit === 0 ) {
+				// Giving a page with 0 results is ugly
+				// Instead show the last page
+				$limit = $maxPageLimit;
+				$offset = $offset - $maxPageLimit;
+			}
 		}
 		return array( $limit, $offset );
 	}
@@ -516,7 +522,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return int
 	 */
 	protected function getMaxResults() {
-		// Max of 10000, unless we store more than 5000 in query cache.
+		// Max of 10000, unless we store more than 10000 in query cache.
 		return max( $this->getConfig()->get( 'QueryCacheLimit' ), 10000 );
 	}
 
@@ -601,8 +607,9 @@ abstract class QueryPage extends SpecialPage {
 					min( $this->numRows, $this->limit ), # do not show the one extra row, if exist
 					$this->offset + 1, ( min( $this->numRows, $this->limit ) + $this->offset ) )->parseAsBlock() );
 				# Disable the "next" link when we reach the end
-				$atEnd = ( $this->numRows <= $this->limit )
-					|| ( $this->offset + $this-> limit  >= $this->getMaxResults() );
+				$miserMaxResults = $this->getConfig()->get( 'MiserMode' )
+					&& ( $this->offset + $this-> limit  >= $this->getMaxResults() );
+				$atEnd = ( $this->numRows <= $this->limit ) || $miserMaxResults;
 				$paging = $this->getLanguage()->viewPrevNext( $this->getPageTitle( $par ), $this->offset,
 					$this->limit, $this->linkParameters(), $atEnd );
 				$out->addHTML( '<p>' . $paging . '</p>' );
