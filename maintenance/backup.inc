@@ -27,6 +27,10 @@
 /**
  * @ingroup Dump Maintenance
  */
+require_once __DIR__ . '/Maintenance.php';
+require_once __DIR__ . '/../includes/AutoLoader.php';
+AutoLoader::autoload( 'DumpPipeOutput' );
+
 class DumpDBZip2Output extends DumpPipeOutput {
 	function __construct( $file ) {
 		parent::__construct( "dbzip2", $file );
@@ -36,7 +40,7 @@ class DumpDBZip2Output extends DumpPipeOutput {
 /**
  * @ingroup Dump Maintenance
  */
-class BackupDumper {
+abstract class BackupMaintenance extends Maintenance {
 	public $reporting = true;
 	public $pages = null; // all pages
 	public $skipHeader = false; // don't output <mediawiki> and <siteinfo>
@@ -67,7 +71,7 @@ class BackupDumper {
 	 *
 	 * @var DatabaseBase|null
 	 *
-	 * @see self::setDb
+	 * @see self::setDB
 	 */
 	protected $forcedDb = null;
 
@@ -77,7 +81,8 @@ class BackupDumper {
 	// @todo Unused?
 	private $stubText = false; // include rev_text_id instead of text; for 2-pass dump
 
-	function __construct( $args ) {
+	function __construct() {
+		parent::__construct();
 		$this->stderr = fopen( "php://stderr", "wt" );
 
 		// Built-in output and filter plugins
@@ -91,7 +96,14 @@ class BackupDumper {
 		$this->registerFilter( 'notalk', 'DumpNotalkFilter' );
 		$this->registerFilter( 'namespace', 'DumpNamespaceFilter' );
 
-		$this->sink = $this->processArgs( $args );
+		// These three can be specified multiple times
+		$this->addOption( 'plugin', 'Load a dump plugin class. Specify as <class>[:<file>].', false, true, false, true );
+		$this->addOption( 'output', 'Begin a filtered output stream; Specify as <type>:<file>. <type>s: file, gzip, bzip2, 7zip, dbzip2', false, true, false, true);
+		$this->addOption( 'filter', 'Add a filter on an output branch. Specify as <type>[:<options>]. <types>s: latest, notalk, namespace', false, true, false, true );
+
+		$this->addOption( 'report', 'Report position and speed after every n pages processed. ' .
+			'Default: 100.', false, true );
+		$this->addOption( 'server', 'Force reading from MySQL server', false, true );
 	}
 
 	/**
@@ -125,64 +137,96 @@ class BackupDumper {
 		call_user_func_array( $register, array( &$this ) );
 	}
 
+	function execute() {
+		$this->sink = $this->processArgs();
+	}
+
 	/**
 	 * @param array $args
 	 * @return array
 	 */
-	function processArgs( $args ) {
+	function processArgs() {
 		$sink = null;
 		$sinks = array();
-		foreach ( $args as $arg ) {
-			$matches = array();
-			if ( preg_match( '/^--(.+?)(?:=(.+?)(?::(.+?))?)?$/', $arg, $matches ) ) {
-				MediaWiki\suppressWarnings();
-				list( /* $full */, $opt, $val, $param ) = $matches;
-				MediaWiki\restoreWarnings();
 
-				switch ( $opt ) {
-					case "plugin":
-						$this->loadPlugin( $val, $param );
-						break;
-					case "output":
-						if ( !is_null( $sink ) ) {
-							$sinks[] = $sink;
-						}
-						if ( !isset( $this->outputTypes[$val] ) ) {
-							$this->fatalError( "Unrecognized output sink type '$val'" );
-						}
-						$type = $this->outputTypes[$val];
-						$sink = new $type( $param );
-						break;
-					case "filter":
-						if ( is_null( $sink ) ) {
-							$sink = new DumpOutput();
-						}
-						if ( !isset( $this->filterTypes[$val] ) ) {
-							$this->fatalError( "Unrecognized filter type '$val'" );
-						}
-						$type = $this->filterTypes[$val];
-						$filter = new $type( $sink, $param );
+		$options = $this->orderedOptions;
+		foreach( $options as $arg ) {
+			$opt = $arg[0];
+			$param = $arg[1];
 
-						// references are lame in php...
-						unset( $sink );
-						$sink = $filter;
+			switch ( $opt ) {
+				case 'plugin':
+					$val = explode( ':', $param );
 
-						break;
-					case "report":
-						$this->reportingInterval = intval( $val );
-						break;
-					case "server":
-						$this->server = $val;
-						break;
-					case "force-normal":
-						if ( !function_exists( 'utf8_normalize' ) ) {
-							$this->fatalError( "UTF-8 normalization extension not loaded. " .
-								"Install or remove --force-normal parameter to use slower code." );
-						}
-						break;
-					default:
-						$this->processOption( $opt, $val, $param );
-				}
+					if ( count( $val ) === 1 ) {
+						$this->loadPlugin( $val[0] );
+					} elseif ( count( $val ) === 2 ) {
+						$this->loadPlugin( $val[0], $val[1] );
+					} else {
+						$this->fatalError( 'Invalid plugin parameter' );
+						return;
+					}
+
+					break;
+				case 'output':
+					$split = explode( ':', $param );
+					if ( count( $split ) !== 2 ) {
+						$this->fatalError( 'Invalid output parameter' );
+					}
+					list( $type, $file ) = $split;
+					if ( !is_null( $sink ) ) {
+						$sinks[] = $sink;
+					}
+					if ( !isset( $this->outputTypes[$type] ) ) {
+						$this->fatalError( "Unrecognized output sink type '$type'" );
+					}
+					$type = $this->outputTypes[$type];
+					$sink = new $type( $file );
+
+					break;
+				case 'filter':
+					if ( is_null( $sink ) ) {
+						$sink = new DumpOutput();
+					}
+
+					$split = explode( ':', $param );
+					$key = $split[0];
+
+					if ( !isset( $this->filterTypes[$key] ) ) {
+						$this->fatalError( "Unrecognized filter type '$key'" );
+					}
+
+					$type = $this->filterTypes[$key];
+
+					if ( count( $split ) === 1 ) {
+						$filter = new $type( $sink );
+					} elseif ( count( $split ) === 2 ) {
+						$filter = new $type( $sink, $split[1] );
+					} else {
+						$this->fatalError( 'Invalid filter parameter' );
+					}
+
+					// references are lame in php...
+					unset( $sink );
+					$sink = $filter;
+
+					break;
+			}
+		}
+
+		if ( $this->hasOption( 'report' ) ) {
+			$this->reportingInterval = intval( $this->getOption( 'report' ) );
+		}
+
+		if ( $this->hasOption( 'server' ) ) {
+			$this->server = $this->getOption( 'server' );
+		}
+
+		// @todo Does this option work?
+		if ( $this->hasOption( 'force-normal' ) ) {
+			if ( !function_exists( 'utf8_normalize' ) ) {
+				$this->fatalError( "UTF-8 normalization extension not loaded. " .
+					"Install or remove --force-normal parameter to use slower code." );
 			}
 		}
 
@@ -298,7 +342,8 @@ class BackupDumper {
 	 * @param DatabaseBase|null $db (Optional) the database connection to use. If null, resort to
 	 *   use the globally provided ways to get database connections.
 	 */
-	function setDb( DatabaseBase $db = null ) {
+	function setDB( DatabaseBase $db = null ) {
+		parent::setDB( $db );
 		$this->forcedDb = $db;
 	}
 
