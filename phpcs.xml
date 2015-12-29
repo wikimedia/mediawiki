@@ -24,4 +24,5 @@
 	<exclude-pattern>vendor</exclude-pattern>
 	<exclude-pattern>extensions</exclude-pattern>
 	<exclude-pattern>skins</exclude-pattern>
+	<exclude-pattern>.git</exclude-pattern>
 </ruleset>
