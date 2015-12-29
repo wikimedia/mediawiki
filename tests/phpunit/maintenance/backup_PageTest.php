@@ -6,6 +6,7 @@
  * @group Dump
  * @covers BackupDumper
  */
+
 class BackupDumperPageTest extends DumpTestCase {
 
 	// We'll add several pages, revision and texts. The following variables hold the
@@ -98,14 +99,16 @@ class BackupDumperPageTest extends DumpTestCase {
 	function testFullTextPlain() {
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
-		$dumper = new BackupDumper( array( "--output=file:" . $fname ) );
+
+		$dumper = new DumpBackup();
+		$dumper->loadWithArgv( array( '--full', '--output', 'file:' . $fname ) );
 		$dumper->startId = $this->pageId1;
 		$dumper->endId = $this->pageId4 + 1;
 		$dumper->reporting = false;
 		$dumper->setDb( $this->db );
 
 		// Performing the dump
-		$dumper->dump( WikiExporter::FULL, WikiExporter::TEXT );
+		$dumper->execute();
 
 		// Checking the dumped data
 		$this->assertDumpStart( $fname );
@@ -153,14 +156,16 @@ class BackupDumperPageTest extends DumpTestCase {
 	function testFullStubPlain() {
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
-		$dumper = new BackupDumper( array( "--output=file:" . $fname ) );
+
+		$dumper = new DumpBackup();
+		$dumper->loadWithArgv( array( '--full', '--output', 'file:' . $fname, '--stub' ) );
 		$dumper->startId = $this->pageId1;
 		$dumper->endId = $this->pageId4 + 1;
 		$dumper->reporting = false;
 		$dumper->setDb( $this->db );
 
 		// Performing the dump
-		$dumper->dump( WikiExporter::FULL, WikiExporter::STUB );
+		$dumper->execute();
 
 		// Checking the dumped data
 		$this->assertDumpStart( $fname );
@@ -202,7 +207,8 @@ class BackupDumperPageTest extends DumpTestCase {
 	function testCurrentStubPlain() {
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
-		$dumper = new BackupDumper( array( "--output=file:" . $fname ) );
+
+		$dumper = new DumpBackup( array( '--output', 'file:' . $fname ) );
 		$dumper->startId = $this->pageId1;
 		$dumper->endId = $this->pageId4 + 1;
 		$dumper->reporting = false;
@@ -247,7 +253,8 @@ class BackupDumperPageTest extends DumpTestCase {
 
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
-		$dumper = new BackupDumper( array( "--output=gzip:" . $fname ) );
+
+		$dumper = new DumpBackup( array( '--output', 'gzip:' . $fname ) );
 		$dumper->startId = $this->pageId1;
 		$dumper->endId = $this->pageId4 + 1;
 		$dumper->reporting = false;
@@ -306,7 +313,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		$fnameMetaCurrent = $this->getNewTempFile();
 		$fnameArticles = $this->getNewTempFile();
 
-		$dumper = new BackupDumper( array( "--output=gzip:" . $fnameMetaHistory,
+		$dumper = new DumpBackup( array( "--full", "--stub", "--output=gzip:" . $fnameMetaHistory,
 			"--output=gzip:" . $fnameMetaCurrent, "--filter=latest",
 			"--output=gzip:" . $fnameArticles, "--filter=latest",
 			"--filter=notalk", "--filter=namespace:!NS_USER",

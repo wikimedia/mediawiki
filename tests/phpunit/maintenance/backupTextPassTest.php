@@ -1,9 +1,14 @@
 <?php
 
-require_once __DIR__ . "/../../../maintenance/backupTextPass.inc";
+require_once __DIR__ . "/../../../maintenance/dumpTextPass.php";
 
 /**
  * Tests for TextPassDumper that rely on the database
+ *
+ * Some of these tests use the old constuctor for TextPassDumper
+ * and the dump() function, while others use the new loadWithArgv( $args )
+ * function and execute(). This is to ensure both the old and new methods
+ * work properly.
  *
  * @group Database
  * @group Dump
@@ -172,8 +177,10 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		// Setting up of the dump
 		$nameStub = $this->setUpStub();
 		$nameFull = $this->getNewTempFile();
-		$dumper = new TextPassDumper( array( "--stub=file:"
-			. $nameStub, "--output=file:" . $nameFull ) );
+
+		$dumper = new TextPassDumper( array( "--stub=file:" . $nameStub,
+			"--output=file:" . $nameFull ) );
+
 		$dumper->prefetch = $prefetchMock;
 		$dumper->reporting = false;
 		$dumper->setDb( $this->db );
@@ -261,7 +268,8 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 			$this->assertTrue( wfMkdirParents( $nameOutputDir ),
 				"Creating temporary output directory " );
 			$this->setUpStub( $nameStub, $iterations );
-			$dumper = new TextPassDumper( array( "--stub=file:" . $nameStub,
+			$dumper = new TextPassDumper();
+			$dumper->loadWithArgv( array( "--stub=file:" . $nameStub,
 				"--output=" . $checkpointFormat . ":" . $nameOutputDir . "/full",
 				"--maxtime=1" /*This is in minutes. Fixup is below*/,
 				"--buffersize=32768", // The default of 32 iterations fill up 32KB about twice
@@ -272,7 +280,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 
 			// The actual dump and taking time
 			$ts_before = microtime( true );
-			$dumper->dump( WikiExporter::FULL, WikiExporter::TEXT );
+			$dumper->execute();
 			$ts_after = microtime( true );
 			$lastDuration = $ts_after - $ts_before;
 
@@ -634,7 +642,9 @@ class TextPassDumperDatabaselessTest extends MediaWikiLangTestCase {
 	 * @dataProvider bufferSizeProvider
 	 */
 	function testBufferSizeSetting( $expected, $size, $msg ) {
-		$dumper = new TextPassDumperAccessor( array( "--buffersize=" . $size ) );
+		$dumper = new TextPassDumperAccessor();
+		$dumper->loadWithArgv( array( "--buffersize=" . $size ) );
+		$dumper->execute();
 		$this->assertEquals( $expected, $dumper->getBufferSize(), $msg );
 	}
 
@@ -673,5 +683,9 @@ class TextPassDumperAccessor extends TextPassDumper {
 	 */
 	public function getBufferSize() {
 		return $this->bufferSize;
+	}
+
+	function dump( $history, $text = null ) {
+		return true;
 	}
 }
