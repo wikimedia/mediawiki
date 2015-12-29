@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../../../maintenance/backupTextPass.inc";
+require_once __DIR__ . "/../../../maintenance/dumpTextPass.php";
 
 /**
  * Tests for TextPassDumper that rely on the database
@@ -103,16 +103,19 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	}
 
 	function testPlain() {
+		global $argv;
+		$oldArgv = $argv;
 		// Setting up the dump
 		$nameStub = $this->setUpStub();
 		$nameFull = $this->getNewTempFile();
-		$dumper = new TextPassDumper( array( "--stub=file:" . $nameStub,
-			"--output=file:" . $nameFull ) );
+		$dumper = new TextPassDumper();
+		$argv = array( "", "--stub=file:" . $nameStub, "--output=file:" . $nameFull );
+		$dumper->loadParamsAndArgs();
 		$dumper->reporting = false;
 		$dumper->setDb( $this->db );
 
 		// Performing the dump
-		$dumper->dump( WikiExporter::FULL, WikiExporter::TEXT );
+		$dumper->execute();
 
 		// Checking for correctness of the dumped data
 		$this->assertDumpStart( $nameFull );
@@ -154,9 +157,13 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		$this->assertPageEnd();
 
 		$this->assertDumpEnd();
+
+		$argv = $oldArgv;
 	}
 
 	function testPrefetchPlain() {
+		global $argv;
+		$oldArgv = $argv;
 		// The mapping between ids and text, for the hits of the prefetch mock
 		$prefetchMap = array(
 			array( $this->pageId1, $this->revId1_1, "Prefetch_________1Text1" ),
@@ -172,14 +179,16 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		// Setting up of the dump
 		$nameStub = $this->setUpStub();
 		$nameFull = $this->getNewTempFile();
-		$dumper = new TextPassDumper( array( "--stub=file:"
-			. $nameStub, "--output=file:" . $nameFull ) );
+		$argv = array( "", "--stub=file:" . $nameStub, "--output=file:" . $nameFull );
+		$dumper = new TextPassDumper();
+		$dumper->loadParamsAndArgs();
+
 		$dumper->prefetch = $prefetchMock;
 		$dumper->reporting = false;
 		$dumper->setDb( $this->db );
 
 		// Performing the dump
-		$dumper->dump( WikiExporter::FULL, WikiExporter::TEXT );
+		$dumper->execute();
 
 		// Checking for correctness of the dumped data
 		$this->assertDumpStart( $nameFull );
@@ -225,6 +234,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		$this->assertPageEnd();
 
 		$this->assertDumpEnd();
+		$argv = $oldArgv;
 	}
 
 	/**
@@ -235,6 +245,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	 *   checkpoint files.
 	 */
 	private function checkpointHelper( $checkpointFormat = "file" ) {
+		$this->asserts( false, true );
 		// Getting temporary names
 		$nameStub = $this->getNewTempFile();
 		$nameOutputDir = $this->getNewTempDirectory();
@@ -261,18 +272,19 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 			$this->assertTrue( wfMkdirParents( $nameOutputDir ),
 				"Creating temporary output directory " );
 			$this->setUpStub( $nameStub, $iterations );
-			$dumper = new TextPassDumper( array( "--stub=file:" . $nameStub,
+			$argv = array( "--stub=file:" . $nameStub,
 				"--output=" . $checkpointFormat . ":" . $nameOutputDir . "/full",
 				"--maxtime=1" /*This is in minutes. Fixup is below*/,
 				"--buffersize=32768", // The default of 32 iterations fill up 32KB about twice
-				"--checkpointfile=checkpoint-%s-%s.xml.gz" ) );
+				"--checkpointfile=checkpoint-%s-%s.xml.gz" );
+			$dumper = new TextPassDumper();
 			$dumper->setDb( $this->db );
 			$dumper->maxTimeAllowed = $checkpointAfter; // Patching maxTime from 1 minute
 			$dumper->stderr = $stderr;
 
 			// The actual dump and taking time
 			$ts_before = microtime( true );
-			$dumper->dump( WikiExporter::FULL, WikiExporter::TEXT );
+			$dumper->execute();
 			$ts_after = microtime( true );
 			$lastDuration = $ts_after - $ts_before;
 
@@ -634,8 +646,15 @@ class TextPassDumperDatabaselessTest extends MediaWikiLangTestCase {
 	 * @dataProvider bufferSizeProvider
 	 */
 	function testBufferSizeSetting( $expected, $size, $msg ) {
-		$dumper = new TextPassDumperAccessor( array( "--buffersize=" . $size ) );
+		global $argv;
+		$oldArgv = $argv;
+		$argv = array( "", "--buffersize=" . $size );
+		$dumper = new TextPassDumperAccessor();
+		$dumper->loadParamsAndArgs();
+		$dumper->execute();
 		$this->assertEquals( $expected, $dumper->getBufferSize(), $msg );
+
+		$argv = $oldArgv;
 	}
 
 	/**
@@ -673,5 +692,9 @@ class TextPassDumperAccessor extends TextPassDumper {
 	 */
 	public function getBufferSize() {
 		return $this->bufferSize;
+	}
+
+	function dump( $history, $text = null ) {
+		return true;
 	}
 }
