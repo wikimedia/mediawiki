@@ -123,6 +123,18 @@ abstract class Maintenance {
 	private $config;
 
 	/**
+	 * Used to read the options in the order
+	 * they were passed. Useful for option
+	 * chaining. (Ex. dumpBackup.php)
+	 *
+	 * This is an array of arrays where
+	 * 0 => the option and 1 => parameter value
+	 *
+	 * @var array
+	 */
+	public $orderedOptions = array();
+
+	/**
 	 * Default constructor. Children should call this *first* if implementing
 	 * their own constructors
 	 */
@@ -184,15 +196,17 @@ abstract class Maintenance {
 	 * @param bool $required Is the param required?
 	 * @param bool $withArg Is an argument required with this option?
 	 * @param string $shortName Character to use as short name
+	 * @param bool $multiOccurence Can this option be passed multiple times?
 	 */
 	protected function addOption( $name, $description, $required = false,
-		$withArg = false, $shortName = false
+		$withArg = false, $shortName = false, $multiOccurence = false
 	) {
 		$this->mParams[$name] = array(
 			'desc' => $description,
 			'require' => $required,
 			'withArg' => $withArg,
-			'shortName' => $shortName
+			'shortName' => $shortName,
+			'multiOccurence' => $multiOccurence
 		);
 
 		if ( $shortName !== false ) {
@@ -210,7 +224,11 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Get an option, or return the default
+	 * Get an option, or return the default.
+	 *
+	 * If the option was added to support multiple occurences,
+	 * this will return an array.
+	 *
 	 * @param string $name The name of the param
 	 * @param mixed $default Anything you want, default null
 	 * @return mixed
@@ -673,6 +691,7 @@ abstract class Maintenance {
 
 		$options = array();
 		$args = array();
+		$this->orderedOptions = array();
 
 		# Parse arguments
 		for ( $arg = reset( $argv ); $arg !== false; $arg = next( $argv ) ) {
@@ -687,17 +706,14 @@ abstract class Maintenance {
 			} elseif ( substr( $arg, 0, 2 ) == '--' ) {
 				# Long options
 				$option = substr( $arg, 2 );
-				if ( array_key_exists( $option, $options ) ) {
-					$this->error( "\nERROR: $option parameter given twice\n" );
-					$this->maybeHelp( true );
-				}
 				if ( isset( $this->mParams[$option] ) && $this->mParams[$option]['withArg'] ) {
 					$param = next( $argv );
 					if ( $param === false ) {
 						$this->error( "\nERROR: $option parameter needs a value after it\n" );
 						$this->maybeHelp( true );
 					}
-					$options[$option] = $param;
+
+					$this->setParam( $options, $option, $param );
 				} else {
 					$bits = explode( '=', $option, 2 );
 					if ( count( $bits ) > 1 ) {
@@ -706,7 +722,8 @@ abstract class Maintenance {
 					} else {
 						$param = 1;
 					}
-					$options[$option] = $param;
+
+					$this->setParam( $options, $option, $param );
 				}
 			} elseif ( $arg == '-' ) {
 				# Lonely "-", often used to indicate stdin or stdout.
@@ -719,19 +736,16 @@ abstract class Maintenance {
 					if ( !isset( $this->mParams[$option] ) && isset( $this->mShortParamsMap[$option] ) ) {
 						$option = $this->mShortParamsMap[$option];
 					}
-					if ( array_key_exists( $option, $options ) ) {
-						$this->error( "\nERROR: $option parameter given twice\n" );
-						$this->maybeHelp( true );
-					}
+
 					if ( isset( $this->mParams[$option]['withArg'] ) && $this->mParams[$option]['withArg'] ) {
 						$param = next( $argv );
 						if ( $param === false ) {
 							$this->error( "\nERROR: $option parameter needs a value after it\n" );
 							$this->maybeHelp( true );
 						}
-						$options[$option] = $param;
+						$this->setParam( $options, $option, $param );
 					} else {
-						$options[$option] = 1;
+						$this->setParam( $options, $option, 1 );
 					}
 				}
 			} else {
@@ -743,6 +757,37 @@ abstract class Maintenance {
 		$this->mArgs = $args;
 		$this->loadSpecialVars();
 		$this->mInputLoaded = true;
+	}
+
+	/**
+	 * Helper function used solely by loadParamsAndArgs
+	 * to prevent code duplication
+	 *
+	 * This sets the param in the options array based on
+	 * whether or not it can be specified multiple times.
+	 *
+	 * @since 1.27
+	 * @param array $options
+	 * @param string $option
+	 * @param mixed $value
+	 */
+	private function setParam( &$options, $option, $value ) {
+		$this->orderedOptions[] = array( $option, $value );
+
+		if ( isset( $this->mParams[$option] ) ) {
+			$multi = $this->mParams[$option]['multiOccurence'];
+			$exists = array_key_exists( $option, $options );
+			if ( $multi && $exists ) {
+				$options[$option][] = $value;
+			} elseif ( $multi ) {
+				$options[$option] = array( $value );
+			} elseif ( !$exists ) {
+				$options[$option] = $value;
+			} else {
+				$this->error( "\nERROR: $option parameter given twice\n" );
+				$this->maybeHelp( true );
+			}
+		}
 	}
 
 	/**
