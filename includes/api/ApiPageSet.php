@@ -297,21 +297,11 @@ class ApiPageSet extends ApiBase {
 			'page_id' => null,
 		];
 
-		if ( $this->mResolveRedirects ) {
-			$pageFlds['page_is_redirect'] = null;
-		}
-
-		if ( $this->getConfig()->get( 'ContentHandlerUseDB' ) ) {
-			$pageFlds['page_content_model'] = null;
-		}
-
-		if ( $this->getConfig()->get( 'PageLanguageUseDB' ) ) {
-			$pageFlds['page_lang'] = null;
-		}
-
-		foreach ( LinkCache::getSelectFields() as $field ) {
-			$pageFlds[$field] = null;
-		}
+		// get default fields for page table from LinkCache
+		$pageFlds = array_merge(
+			$pageFlds,
+			array_flip( LinkCache::getSelectFields() )
+		);
 
 		$pageFlds = array_merge( $pageFlds, $this->mRequestedPageFields );
 

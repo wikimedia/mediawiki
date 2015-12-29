@@ -194,10 +194,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 			}
 
 			$res = $dbr->select( 'page',
-				array_merge(
-					[ 'page_namespace', 'page_title' ],
-					LinkCache::getSelectFields()
-				),
+				LinkCache::getSelectFields(),
 				$conds,
 				__METHOD__,
 				[

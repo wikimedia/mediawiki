@@ -332,11 +332,9 @@ class LinkHolderArray {
 				}
 			}
 		}
+
 		if ( !$lb->isEmpty() ) {
-			$fields = array_merge(
-				LinkCache::getSelectFields(),
-				[ 'page_namespace', 'page_title' ]
-			);
+			$fields = LinkCache::getSelectFields();
 
 			$res = $dbr->select(
 				'page',
@@ -535,10 +533,8 @@ class LinkHolderArray {
 		if ( !$linkBatch->isEmpty() ) {
 			// construct query
 			$dbr = wfGetDB( DB_REPLICA );
-			$fields = array_merge(
-				LinkCache::getSelectFields(),
-				[ 'page_namespace', 'page_title' ]
-			);
+
+			$fields = LinkCache::getSelectFields();
 
 			$varRes = $dbr->select( 'page',
 				$fields,
