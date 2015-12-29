@@ -187,15 +187,7 @@ class LinkBatch {
 		// This is similar to LinkHolderArray::replaceInternal
 		$dbr = wfGetDB( DB_SLAVE );
 		$table = 'page';
-		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_len',
-			'page_is_redirect', 'page_latest' );
-
-		if ( $wgContentHandlerUseDB ) {
-			$fields[] = 'page_content_model';
-		}
-		if ( $wgPageLanguageUseDB ) {
-			$fields[] = 'page_lang';
-		}
+		$fields = LinkCache::getFields();
 
 		$conds = $this->constructSet( 'page', $dbr );
 

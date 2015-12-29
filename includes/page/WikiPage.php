@@ -267,6 +267,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Return the list of revision fields that should be selected to create
 	 * a new page.
 	 *
+	 * FIXME: Can this be merged with LinkCache::getFields()?
+	 *
 	 * @return array
 	 */
 	public static function selectFields() {

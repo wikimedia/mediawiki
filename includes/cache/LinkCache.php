@@ -91,6 +91,31 @@ class LinkCache {
 	}
 
 	/**
+	 * Returns a list of fields that are to be selected for initializing Title
+	 * objects or LinkCache entries. Uses $wgContentHandlerUseDB to determine
+	 * whether to include page_content_model.
+	 *
+	 * @return array
+	 */
+	public static function getFields() {
+		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
+
+		$fields = array(
+			'page_namespace', 'page_title', 'page_id',
+			'page_len', 'page_is_redirect', 'page_latest',
+		);
+
+		if ( $wgContentHandlerUseDB ) {
+			$fields[] = 'page_content_model';
+		}
+
+		if ( $wgPageLanguageUseDB ) {
+			$fields[] = 'page_lang';
+		}
+
+		return $fields;
+	}
+	/**
 	 * General accessor to get/set whether the master DB should be used
 	 *
 	 * This used to also set the FOR UPDATE option (locking the rows read

@@ -342,15 +342,7 @@ class LinkHolderArray {
 				);
 			}
 
-			$fields = array( 'page_id', 'page_namespace', 'page_title',
-				'page_is_redirect', 'page_len', 'page_latest' );
-
-			if ( $wgContentHandlerUseDB ) {
-				$fields[] = 'page_content_model';
-			}
-			if ( $wgPageLanguageUseDB ) {
-				$fields[] = 'page_lang';
-			}
+			$fields = LinkCache::getFields();
 
 			$res = $dbr->select(
 				'page',
@@ -549,15 +541,7 @@ class LinkHolderArray {
 		if ( !$linkBatch->isEmpty() ) {
 			// construct query
 			$dbr = wfGetDB( DB_SLAVE );
-			$fields = array( 'page_id', 'page_namespace', 'page_title',
-				'page_is_redirect', 'page_len', 'page_latest' );
-
-			if ( $wgContentHandlerUseDB ) {
-				$fields[] = 'page_content_model';
-			}
-			if ( $wgPageLanguageUseDB ) {
-				$fields[] = 'page_lang';
-			}
+			$fields = LinkCache::getFields();
 
 			$varRes = $dbr->select( 'page',
 				$fields,
