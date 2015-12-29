@@ -7966,6 +7966,25 @@ $wgPopularPasswordFile = __DIR__ . '/../serialized/commonpasswords.cdb';
 $wgMaxUserDBWriteDuration = false;
 
 /**
+ * Mapping of event channels to EventRelayer configuration.
+ *
+ * By setting up a PubSub system (like Kafka) and enabling a corresponding EventRelayer class
+ * that uses it, MediaWiki can broadcast events to all subscribers. Certain features like WAN
+ * cache purging and CDN cache purging will emit events to this system. Appropriate listers can
+ * subscribe to the channel and take actions based on the events. For example, a local daemon
+ * can run on each CDN cache node and perfom local purges based on the URL purge channel events.
+ *
+ * The 'default' channel is for all channels without an explicit entry here.
+ *
+ * @since 1.27
+ */
+$wgEventRelayerConfig = array(
+	'default' => array(
+		'class' => 'EventRelayerNull',
+	)
+);
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

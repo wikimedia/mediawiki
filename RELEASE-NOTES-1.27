@@ -163,6 +163,8 @@ production.
 * Added $wgAuthenticationTokenVersion, which if non-null prevents the
   user_token database field from being exposed in cookies. Setting this would
   be a good idea, but will log out all current sessions.
+* $wgEventRelayerConfig was added, for managing PubSub event relay configuration,
+  specifically for reliable CDN url purges.
 
 === External library changes in 1.27 ===
 
