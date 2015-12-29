@@ -108,10 +108,22 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 
 		wfDebugLog( 'squid', __METHOD__ . ': ' . implode( ' ', $urlArr ) );
 
+		// Reliably broadcast the purge to all edge nodes
+		$relayer = EventRelayerGroup::singleton()->getRelayer( 'cdn-url-purges' );
+		$relayer->notify(
+			'cdn-url-purges',
+			array(
+				'urls' => array_values( $urlArr ), // JSON array
+				'timestamp' => microtime( true )
+			)
+		);
+
+		// Send lossy UDP broadcasting if enabled
 		if ( $wgHTCPRouting ) {
 			self::HTCPPurge( $urlArr );
 		}
 
+		// Do direct server purges if enabled (this does not scale very well)
 		if ( $wgSquidServers ) {
 			// Maximum number of parallel connections per squid
 			$maxSocketsPerSquid = 8;
