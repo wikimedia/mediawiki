@@ -133,17 +133,19 @@ class BackupDumperLoggerTest extends DumpTestCase {
 
 	function testPlain() {
 		global $wgContLang;
-
+		
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
-		$dumper = new BackupDumper( array( "--output=file:" . $fname ) );
+
+		$dumper = new DumpBackup();
+		$dumper->loadWithArgv( array( '--logs', '--output=file:' . $fname ) );
 		$dumper->startId = $this->logId1;
 		$dumper->endId = $this->logId3 + 1;
 		$dumper->reporting = false;
 		$dumper->setDb( $this->db );
 
 		// Performing the dump
-		$dumper->dump( WikiExporter::LOGS, WikiExporter::TEXT );
+		$dumper->execute();
 
 		// Analyzing the dumped data
 		$this->assertDumpStart( $fname );
@@ -173,8 +175,10 @@ class BackupDumperLoggerTest extends DumpTestCase {
 
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
-		$dumper = new BackupDumper( array( "--output=gzip:" . $fname,
-			"--reporting=2" ) );
+
+		$dumper = new DumpBackup();
+		$dumper->loadWithArgv( array( '--logs', '--output=gzip:' . $fname,
+			'--reporting=2' ) );
 		$dumper->startId = $this->logId1;
 		$dumper->endId = $this->logId3 + 1;
 		$dumper->setDb( $this->db );
@@ -190,7 +194,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		}
 
 		// Performing the dump
-		$dumper->dump( WikiExporter::LOGS, WikiExporter::TEXT );
+		$dumper->execute();
 
 		$this->assertTrue( fclose( $dumper->stderr ), "Closing stderr handle" );
 
