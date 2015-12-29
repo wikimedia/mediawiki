@@ -590,6 +590,8 @@ function pluralRuleParser(rule, number) {
 }
 
 /* pluralRuleParser ends here */
-mw.libs.pluralRuleParser = pluralRuleParser;
+mw.log.deprecate( mw.libs, 'pluralRuleParser', pluralRuleParser,
+	'Use require("mediawiki.libs.pluralruleparser") instead.' );
+module.exports = pluralRuleParser;
 
 } )( mediaWiki );
