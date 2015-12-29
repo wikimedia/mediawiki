@@ -106,6 +106,8 @@ production.
 * It is now possible to patrol file uploads (both for new files and new versions
   of existing files). Special:NewFiles has gained an option to filter by patrol
   status. This functionality can be disabled using $wgUseFilePatrol.
+* $wgEventRelayerConfig was added, for managing PubSub event relay configuration,
+  specifically for reliable CDN url purges.
 
 === External library changes in 1.27 ===
 

@@ -389,6 +389,7 @@ $wgAutoloadLocalClasses = array(
 	'EraseArchivedFile' => __DIR__ . '/maintenance/eraseArchivedFile.php',
 	'ErrorPageError' => __DIR__ . '/includes/exception/ErrorPageError.php',
 	'EventRelayer' => __DIR__ . '/includes/libs/eventrelayer/EventRelayer.php',
+	'EventRelayerGroup' => __DIR__ . '/includes/EventRelayerGroup.php',
 	'EventRelayerMCRD' => __DIR__ . '/includes/libs/eventrelayer/EventRelayerMCRD.php',
 	'EventRelayerNull' => __DIR__ . '/includes/libs/eventrelayer/EventRelayer.php',
 	'Exif' => __DIR__ . '/includes/media/Exif.php',
