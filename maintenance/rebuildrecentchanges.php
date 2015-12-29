@@ -46,8 +46,7 @@ class RebuildRecentchanges extends Maintenance {
 	}
 
 	/**
-	 * Rebuild pass 1
-	 * DOCUMENT ME!
+	 * Rebuild pass 1: Insert `recentchanges` entries for page revisions.
 	 */
 	private function rebuildRecentChangesTablePass1() {
 		$dbw = wfGetDB( DB_MASTER );
@@ -100,8 +99,8 @@ class RebuildRecentchanges extends Maintenance {
 	}
 
 	/**
-	 * Rebuild pass 2
-	 * DOCUMENT ME!
+	 * Rebuild pass 2: Enhance entries for page revisions with references to the previous revision
+	 * (rc_last_oldid, rc_new etc.) and size differences (rc_old_len, rc_new_len).
 	 */
 	private function rebuildRecentChangesTablePass2() {
 		$dbw = wfGetDB( DB_MASTER );
@@ -167,8 +166,7 @@ class RebuildRecentchanges extends Maintenance {
 	}
 
 	/**
-	 * Rebuild pass 3
-	 * DOCUMENT ME!
+	 * Rebuild pass 3: Insert `recentchanges` entries for action logs.
 	 */
 	private function rebuildRecentChangesTablePass3() {
 		$dbw = wfGetDB( DB_MASTER );
@@ -221,8 +219,7 @@ class RebuildRecentchanges extends Maintenance {
 	}
 
 	/**
-	 * Rebuild pass 4
-	 * DOCUMENT ME!
+	 * Rebuild pass 4: Mark bot and autopatrolled entries.
 	 */
 	private function rebuildRecentChangesTablePass4() {
 		global $wgUseRCPatrol;
