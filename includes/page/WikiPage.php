@@ -270,29 +270,16 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return array
 	 */
 	public static function selectFields() {
-		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
+		$fields = LinkCache::getFields();
 
-		$fields = array(
-			'page_id',
-			'page_namespace',
-			'page_title',
-			'page_restrictions',
-			'page_is_redirect',
-			'page_is_new',
-			'page_random',
-			'page_touched',
-			'page_links_updated',
-			'page_latest',
-			'page_len',
+		$fields = array_merge( $fields, array(
+				'page_restrictions',
+				'page_is_new',
+				'page_random',
+				'page_touched',
+				'page_links_updated',
+			)
 		);
-
-		if ( $wgContentHandlerUseDB ) {
-			$fields[] = 'page_content_model';
-		}
-
-		if ( $wgPageLanguageUseDB ) {
-			$fields[] = 'page_lang';
-		}
 
 		return $fields;
 	}
