@@ -767,6 +767,10 @@
 				// List of modules which will be loaded as when ready
 				batch = [],
 
+				// Pending queueModuleScript() requests
+				handlingPendingRequests = false,
+				pendingRequests = [],
+
 				// List of modules to be loaded
 				queue = [],
 
@@ -1177,6 +1181,43 @@
 			}
 
 			/**
+			 * Queue the loading and execution of a script for a particular module.
+			 *
+			 * @private
+			 * @param {string} src URL of the script
+			 * @param {string} [moduleName] Name of currently executing module
+			 * @return {jQuery.Promise}
+			 */
+			function queueModuleScript( src, moduleName ) {
+				var r = $.Deferred();
+
+				pendingRequests.push( function () {
+					if ( moduleName && !hasOwn.call( registry, moduleName ) ) {
+						window.require = mw.loader.require;
+						window.module = registry[ moduleName ].module;
+					}
+					addScript( src ).always( function () {
+						// Clear environment
+						delete window.require;
+						delete window.module;
+						r.resolve();
+
+						// Start the next one (if any)
+						if ( pendingRequests[ 0 ] ) {
+							pendingRequests.shift()();
+						} else {
+							handlingPendingRequests = false;
+						}
+					} );
+				} );
+				if ( !handlingPendingRequests && pendingRequests[ 0 ] ) {
+					handlingPendingRequests = true;
+					pendingRequests.shift()();
+				}
+				return r.promise();
+			}
+
+			/**
 			 * Utility function for execute()
 			 *
 			 * @ignore
@@ -1226,7 +1267,7 @@
 							handlePending( module );
 						};
 						nestedAddScript = function ( arr, callback, i ) {
-							// Recursively call addScript() in its own callback
+							// Recursively call queueModuleScript() in its own callback
 							// for each element of arr.
 							if ( i >= arr.length ) {
 								// We're at the end of the array
@@ -1234,7 +1275,7 @@
 								return;
 							}
 
-							addScript( arr[ i ] ).always( function () {
+							queueModuleScript( arr[ i ], module ).always( function () {
 								nestedAddScript( arr, callback, i + 1 );
 							} );
 						};
@@ -1249,8 +1290,9 @@
 							} else if ( $.isFunction( script ) ) {
 								// Pass jQuery twice so that the signature of the closure which wraps
 								// the script can bind both '$' and 'jQuery'.
-								script( $, $ );
+								script( $, $, mw.loader.require, registry[ module ].module );
 								markModuleReady();
+
 							} else if ( typeof script === 'string' ) {
 								// Site and user modules are legacy scripts that run in the global scope.
 								// This is transported as a string instead of a function to avoid needing
@@ -1742,6 +1784,9 @@
 					}
 					// List the module as registered
 					registry[ module ] = {
+						module: {
+							exports: {}
+						},
 						version: version !== undefined ? String( version ) : '',
 						dependencies: [],
 						group: typeof group === 'string' ? group : null,
@@ -2007,6 +2052,31 @@
 					return $.map( registry, function ( i, key ) {
 						return key;
 					} );
+				},
+
+				/**
+				 * Obtain the exported value of a module
+				 *
+				 * Provided by the module via `module.exports`.
+				 *
+				 * @since 1.27
+				 * @return {Array}
+				 */
+				require: function ( moduleName ) {
+					var state,
+						registeredModule = hasOwn.call( registry, moduleName ) ? registry[ moduleName ] : false;
+
+					// Purposely not using getState( moduleName ) as this
+					// leads to issues in debug mode where module is not defined
+					state = registeredModule && registeredModule.state ? registeredModule.state : null;
+
+					// Only ready or executing states can be required
+					// (An executing module in debug mode may require modules in itself)
+					if ( ( registeredModule && state === 'ready' ) || state === 'executing' ) {
+						return registeredModule.module.exports;
+					} else {
+						throw new Error( 'Module "' + moduleName + '" is not loaded.' );
+					}
 				},
 
 				/**
