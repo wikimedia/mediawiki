@@ -132,18 +132,20 @@ class BackupDumperLoggerTest extends DumpTestCase {
 	}
 
 	function testPlain() {
-		global $wgContLang;
-
+		global $wgContLang, $argv;
+		$oldArgv = $argv;
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
-		$dumper = new BackupDumper( array( "--output=file:" . $fname ) );
+		$argv = array( '', '--logs', '--output=file:' . $fname );
+		$dumper = new DumpBackup();
+		$dumper->loadParamsAndArgs();
 		$dumper->startId = $this->logId1;
 		$dumper->endId = $this->logId3 + 1;
 		$dumper->reporting = false;
 		$dumper->setDb( $this->db );
 
 		// Performing the dump
-		$dumper->dump( WikiExporter::LOGS, WikiExporter::TEXT );
+		$dumper->execute();
 
 		// Analyzing the dumped data
 		$this->assertDumpStart( $fname );
@@ -164,17 +166,22 @@ class BackupDumperLoggerTest extends DumpTestCase {
 			"PageA", array( 'key1' => 1, 3 => 'value3' ) );
 
 		$this->assertDumpEnd();
+
+		$argv = $oldArgv;
 	}
 
 	function testXmlDumpsBackupUseCaseLogging() {
-		global $wgContLang;
+		global $wgContLang, $argv;
+		$oldArgv = $argv;
 
 		$this->checkHasGzip();
 
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
-		$dumper = new BackupDumper( array( "--output=gzip:" . $fname,
-			"--reporting=2" ) );
+		$argv = array( '', '--logs', '--output=gzip:' . $fname,
+			'--reporting=2' );
+		$dumper = new DumpBackup();
+		$dumper->loadParamsAndArgs();
 		$dumper->startId = $this->logId1;
 		$dumper->endId = $this->logId3 + 1;
 		$dumper->setDb( $this->db );
@@ -190,7 +197,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		}
 
 		// Performing the dump
-		$dumper->dump( WikiExporter::LOGS, WikiExporter::TEXT );
+		$dumper->execute();
 
 		$this->assertTrue( fclose( $dumper->stderr ), "Closing stderr handle" );
 
@@ -221,5 +228,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		// If reporting for log dumps has been implemented, please update
 		// the following statement to catch good output
 		$this->expectOutputString( '' );
+
+		$argv = $oldArgv;
 	}
 }
