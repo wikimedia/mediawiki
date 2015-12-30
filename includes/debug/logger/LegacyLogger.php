@@ -90,8 +90,10 @@ class LegacyLogger extends AbstractLogger {
 			$destination = self::destination( $this->channel, $message, $context );
 			self::emit( $text, $destination );
 		}
-		// Add to debug toolbar
-		MWDebug::debugMsg( $message, array( 'channel' => $this->channel ) + $context );
+		if ( !isset( $context['private'] ) || !$context['private'] ) {
+			// Add to debug toolbar if not marked as "private"
+			MWDebug::debugMsg( $message, array( 'channel' => $this->channel ) + $context );
+		}
 	}
 
 	/**
@@ -115,6 +117,13 @@ class LegacyLogger extends AbstractLogger {
 		} elseif ( $channel === 'wfErrorLog' ) {
 			// All messages on the wfErrorLog channel should be emitted.
 			$shouldEmit = true;
+
+		} elseif ( $channel === 'wfDebug' ) {
+			// wfDebug messages are emitted if a catch all logging file has
+			// been specified. Checked explicitly so that 'private' flagged
+			// messages are not discarded by unset $wgDebugLogGroups channel
+			// handling below.
+			$shouldEmit = $wgDebugLogFile != '';
 
 		} elseif ( isset( $wgDebugLogGroups[$channel] ) ) {
 			$logConfig = $wgDebugLogGroups[$channel];

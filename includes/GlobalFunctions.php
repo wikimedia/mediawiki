@@ -1038,7 +1038,12 @@ function wfMatchesDomainList( $url, $domains ) {
  * @since 1.25 support for additional context data
  *
  * @param string $text
- * @param string|bool $dest Unused
+ * @param string|bool $dest Destination of the message:
+ *     - 'all': both to the log and HTML (debug toolbar or HTML comments)
+ *     - 'private': excluded from HTML output
+ *   For backward compatibility, it can also take a boolean:
+ *     - true: same as 'all'
+ *     - false: same as 'private'
  * @param array $context Additional logging context data
  */
 function wfDebug( $text, $dest = 'all', array $context = array() ) {
@@ -1065,6 +1070,7 @@ function wfDebug( $text, $dest = 'all', array $context = array() ) {
 	if ( $wgDebugLogPrefix !== '' ) {
 		$context['prefix'] = $wgDebugLogPrefix;
 	}
+	$context['private'] = ( $dest === false || $dest === 'private' );
 
 	$logger = LoggerFactory::getInstance( 'wfDebug' );
 	$logger->debug( $text, $context );
@@ -1126,7 +1132,6 @@ function wfDebugMem( $exact = false ) {
  * @param string $text
  * @param string|bool $dest Destination of the message:
  *     - 'all': both to the log and HTML (debug toolbar or HTML comments)
- *     - 'log': only to the log and not in HTML
  *     - 'private': only to the specific log if set in $wgDebugLogGroups and
  *       discarded otherwise
  *   For backward compatibility, it can also take a boolean:
@@ -1137,17 +1142,10 @@ function wfDebugMem( $exact = false ) {
 function wfDebugLog(
 	$logGroup, $text, $dest = 'all', array $context = array()
 ) {
-	// Turn $dest into a string if it's a boolean (for b/c)
-	if ( $dest === true ) {
-		$dest = 'all';
-	} elseif ( $dest === false ) {
-		$dest = 'private';
-	}
-
 	$text = trim( $text );
 
 	$logger = LoggerFactory::getInstance( $logGroup );
-	$context['private'] = ( $dest === 'private' );
+	$context['private'] = ( $dest === false || $dest === 'private' );
 	$logger->info( $text, $context );
 }
 
