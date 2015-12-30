@@ -14,6 +14,7 @@
 # Plus any combination of these:
 #
 # cat           add category links
+#               (ignored by Parsoid, since it emits <link>s)
 # ill           add inter-language links
 #               (ignored by Parsoid, since it emits <link>s)
 # subpage       enable subpages (disabled by default)
@@ -1335,6 +1336,8 @@ array (
 )
 </pre>
 
+!! html/parsoid
+<pre typeof="mw:Extension/tåg" data-mw='{"name":"tåg","attrs":{},"body":{"extsrc":"tåg"}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
 
 !! test
@@ -3329,14 +3332,18 @@ parsoid=wt2html,wt2wt
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":" [[Category:foo]]"}},"i":0}}]}'> </span><link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1"> <!-- No pre&#x2D;wrapping -->
 !! end
 
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
 !! test
 7b. Indent-pre and category links
 !! options
-parsoid=wt2html,wt2wt
+parsoid=wt2html
 !! wikitext
  [[Category:foo]] a
  [[Category:foo]] {{echo|b}}
-!! html
+!! html/parsoid
 <pre><link rel="mw:PageProp/Category" href="./Category:Foo"> a
  <link rel="mw:PageProp/Category" href="./Category:Foo"> <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"b"}},"i":0}}]}'>b</span></pre>
 !! end
@@ -7120,6 +7127,17 @@ Piped link with multiple pipe characters in link text
 !! end
 
 !! test
+Piped link with no link text
+!! wikitext
+[[Thomas Bek (bishop of St David's)|]]
+!! html/php
+<p>[[Thomas Bek (bishop of St David's)|]]
+</p>
+!! html/parsoid
+<p>[[Thomas Bek (bishop of St David's)|]]</p>
+!! end
+
+!! test
 Broken link
 !! wikitext
 [[Zigzagzogzagzig]]
@@ -10860,8 +10878,14 @@ Un-closed <includeonly>
 !! html
 !! end
 
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize the include directives to serialize on their own line.
+## Selser will take care of preserving formatting in scenarios where they
+## intermingled with other wikitext.
 !! test
 Includes and comments at SOL
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 <!-- comment --><noinclude><!-- comment --></noinclude><!-- comment -->== hu ==
 
@@ -11042,10 +11066,14 @@ parsoid=wt2html,wt2wt
 </tbody></table>
 !!end
 
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize the include directives to serialize on their own line.
+## Selser will take care of preserving formatting in scenarios where they
+## intermingled with other wikitext.
 !!test
 2. Table tag in SOL posn. should get reparsed correctly with valid TSR
 !!options
-parsoid=wt2html,wt2wt
+parsoid=wt2html
 !!wikitext
 <includeonly>a</includeonly>{| {{{b}}}
 |c
@@ -14245,7 +14273,7 @@ cat
 pst
 !! wikitext
 [[Category:MediaWiki User's Guide|]]
-!! html
+!! html/php
 [[Category:MediaWiki User's Guide|MediaWiki User's Guide]]
 !! end
 
@@ -14256,19 +14284,26 @@ cat
 pst
 !! wikitext
 [[Category:Foo (bar)|]]
-!! html
+!! html/php
 [[Category:Foo (bar)|Foo]]
 !! end
 
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
 !! test
 Category with link tail
 !! options
 cat
 pst
+parsoid=wt2html
 !! wikitext
 123[[Category:Foo]]456
-!! html
+!! html/php
 123[[Category:Foo]]456
+!! html/parsoid
+<p>123<link rel="mw:PageProp/Category" href="Category:Foo"/>456</p>
 !! end
 
 !! test
@@ -14278,7 +14313,7 @@ cat
 pst
 !! wikitext
 [[Category:{{echo|Foo}}]]
-!! html
+!! html/php
 [[Category:{{echo|Foo}}]]
 !! end
 
@@ -14289,7 +14324,7 @@ cat
 pst
 !! wikitext
 [[Category:Foo|{{echo|Bar}}]]
-!! html
+!! html/php
 [[Category:Foo|{{echo|Bar}}]]
 !! end
 
@@ -14300,12 +14335,18 @@ cat
 pst
 !! wikitext
 [[Category:{{echo|Foo}}|{{echo|Bar}}]]
-!! html
+!! html/php
 [[Category:{{echo|Foo}}|{{echo|Bar}}]]
 !! end
 
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
 !! test
 Category / paragraph interactions
+!! options
+parsoid=wt2html
 !! wikitext
 Foo [[Category:Baz]] Bar
 
@@ -14332,7 +14373,7 @@ Bar
 [[Category:Baz]]
  {{echo|[[Category:Baz]]}}
 [[Category:Baz]]
-!! html
+!! html/php
 <p>Foo Bar
 </p><p>Foo
 Bar
@@ -14342,20 +14383,32 @@ Bar
 </p><p>Foo
 Bar
 </p>
+!! html/parsoid
+<p>Foo <link rel="mw:PageProp/Category" href="Category:Baz"/> Bar</p>
+<p>Foo <link rel="mw:PageProp/Category" href="Category:Baz"/> Bar</p>
+<p>Foo <link rel="mw:PageProp/Category" href="Category:Baz"/> Bar</p>
+<p>Foo <link rel="mw:PageProp/Category" href="Category:Baz"/> Bar</p>
+<p>Foo <link rel="mw:PageProp/Category" href="Category:Baz"/> <link rel="mw:PageProp/Category" href="Category:Baz"/> <link rel="mw:PageProp/Category" href="Category:Baz"/> Bar <link rel="mw:PageProp/Category" href="Category:Baz"/> <link rel="mw:PageProp/Category" href="Category:Baz"/> <link rel="mw:PageProp/Category" href="Category:Baz"/> <link rel="mw:PageProp/Category" href="Category:Baz"/> <link rel="mw:PageProp/Category" href="Category:Baz" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[[Category:Baz]]"}},"i":0}}]}'/></p>
+<link rel="mw:PageProp/Category" href="Category:Baz"/>
 !! end
 
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
+##
 ## The whitespace on the empty line is part of the test. Please do not delete
 !! test
 1. Categories and newlines: All preceding newlines should be suppressed (courtesy bug 87)
 !! options
-parsoid=wt2html,wt2wt
+parsoid=wt2html
 !! wikitext
 This
    
 [[Category:Foo]] and this should be part of same paragraph (not an indent-pre)
    
 {{echo|[[Category:Foo]] and so should this!}}
-!! html
+!! html/php
 <p>This and this should be part of same paragraph (not an indent-pre) and so should this!
 </p>
 !! html/parsoid
@@ -14453,8 +14506,14 @@ parsoid=wt2html
 <link rel="mw:PageProp/Category" href="./Category:Foo" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo"},"sa":{"href":"Category:Foo"}}'/>
 !! end
 
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
 !! test
 6. Categories and newlines: migrateTrailingCategories dom pass should not migrate categories not preceded by newlines
+!! options
+parsoid=wt2html
 !! wikitext
 * a [[Category:Foo]]
 !! html/parsoid
@@ -14505,13 +14564,20 @@ parsoid
 </p>
 !! end
 
-# html2wt localizes the "Category" namespace.
-# XXX the <link> element needs an empty data-parsoid attribute, or
-# else the html2html test fails because spaces are inserted.
+# We used to, but no longer wt2wt this test since the default serializer
+# will normalize all categories to serialize on their own line.
+# This wikitext usage is going to be fairly uncommon in production and
+# selser will take care of preventing whitespace insertion if this
+# occurs in an article.
+#
+# html2html disabled for the same reason (whitespace insertion between
+# x and y).
+#
+# html2wt disabled because it localizes the "Category" namespace.
 !! test
 Link prefix/suffixes aren't applied to category links
 !! options
-parsoid=wt2html,wt2wt,html2html
+parsoid=wt2html
 language=is
 !! wikitext
 x[[Category:Foo]]y
@@ -16152,10 +16218,15 @@ array (
 )
 </pre>
 
+!! html/parsoid
+<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":""}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
 
+## Don't expect parsoid to rt this form.
 !! test
 Parser hook: empty input using terminated empty elements
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 <tag/>
 !! html/php
@@ -16165,6 +16236,8 @@ array (
 )
 </pre>
 
+!! html/parsoid
+<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":null}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
 
 !! test
@@ -16178,6 +16251,8 @@ array (
 )
 </pre>
 
+!! html/parsoid
+<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":null}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
 
 !! test
@@ -16191,11 +16266,15 @@ array (
 )
 </pre>
 
+!! html/parsoid
+<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"input"}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
 
-
+## Don't expect parsoid to rt this form.
 !! test
 Parser hook: case insensitive
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 <TAG>input</TAG>
 !! html/php
@@ -16205,11 +16284,15 @@ array (
 )
 </pre>
 
+!! html/parsoid
+<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"input"}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
 
-
+## Don't expect parsoid to rt this form.
 !! test
 Parser hook: case insensitive, redux
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 <TaG>input</TAg>
 !! html/php
@@ -16219,6 +16302,8 @@ array (
 )
 </pre>
 
+!! html/parsoid
+<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"input"}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
 
 !! test
@@ -16234,10 +16319,34 @@ array (
 )
 </pre>&lt;/tag&gt;
 
+!! html/parsoid
+<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"&lt;tag>"}}' data-parsoid='{}' about="#mwt2"></pre>&lt;/tag>
 !! end
 
 !! test
 Parser hook: basic arguments
+!! wikitext
+<tag width="200" height="100" depth="50" square=""></tag>
+!! html/php
+<pre>
+''
+array (
+  'width' => '200',
+  'height' => '100',
+  'depth' => '50',
+  'square' => '',
+)
+</pre>
+
+!! html/parsoid
+<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{"width":"200","height":"100","depth":"50","square":""},"body":{"extsrc":""}}' data-parsoid='{}' about="#mwt2"></pre>
+!! end
+
+## Don't expect parsoid to rt this form.
+!! test
+Parser hook: basic arguments, variations
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 <tag width=200 height = "100" depth = '50' square></tag>
 !! html/php
@@ -16251,12 +16360,14 @@ array (
 )
 </pre>
 
+!! html/parsoid
+<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{"width":"200","height":"100","depth":"50","square":""},"body":{"extsrc":""}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
 
 !! test
 Parser hook: argument containing a forward slash (bug 5344)
 !! wikitext
-<tag filename='/tmp/bla'></tag>
+<tag filename="/tmp/bla"></tag>
 !! html/php
 <pre>
 ''
@@ -16265,10 +16376,15 @@ array (
 )
 </pre>
 
+!! html/parsoid
+<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{"filename":"/tmp/bla"},"body":{"extsrc":""}}' data-parsoid='{}' about="#mwt2"></pre>
 !! end
 
+## Don't expect parsoid to rt this form.
 !! test
 Parser hook: empty input using terminated empty elements (bug 2374)
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 <tag foo=bar/>text
 !! html/php
@@ -16279,6 +16395,8 @@ array (
 )
 </pre>text
 
+!! html/parsoid
+<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{"foo":"bar"},"body":null}' data-parsoid='{}' about="#mwt2"></pre>text
 !! end
 
 # </tag> should be output literally since there is no matching tag that begins it
@@ -16311,21 +16429,28 @@ array (
 Parser hook: static parser hook not inside a comment
 !! wikitext
 <statictag>hello, world</statictag>
-<statictag action=flush/>
-!! html/php
-<p>hello, world
-</p>
-!! end
 
+<statictag action="flush" />
+!! html/php
+<p><br />
+hello, world
+</p>
+!! html/parsoid
+<p><span typeof="mw:Extension/statictag" data-mw='{"name":"statictag","attrs":{},"body":{"extsrc":"hello, world"}}' data-parsoid='{}' about="#mwt2"></span></p>
+<p typeof="mw:Extension/statictag" data-mw='{"name":"statictag","attrs":{"action":"flush"},"body":null}' data-parsoid='{}' about="#mwt4">hello, world</p>
+!! end
 
 !! test
 Parser hook: static parser hook inside a comment
 !! wikitext
 <!-- <statictag>hello, world</statictag> -->
-<statictag action=flush/>
+<statictag action="flush" />
 !! html/php
 <p><br />
 </p>
+!! html/parsoid
+<!-- <statictag&#x3E;hello, world</statictag&#x3E; -->
+<p typeof="mw:Extension/statictag" data-mw='{"name":"statictag","attrs":{"action":"flush"},"body":null}' data-parsoid='{}' about="#mwt2"></p>
 !! end
 
 # Nested template calls; this case was broken by Parser.php rev 1.506,
@@ -19211,16 +19336,24 @@ Category:分類
 blah
 !! endarticle
 
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
 !! test
 Don't convert blue categorylinks to another variant (bug 33210)
 !! options
-language=zh cat
+cat
+language=zh
+parsoid=wt2html
 !! wikitext
 [[A]][[Category:分类]]
-!! html
+!! html/php
 <a href="/wiki/Category:%E5%88%86%E7%B1%BB" title="Category:分类">分类</a>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="A" title="A">A</a></p>
+<link rel="mw:PageProp/Category" href="Category:分类"/>
 !! end
-
 
 !! test
 Stripping -{}- tags (language variants)
@@ -19756,7 +19889,7 @@ Tildes in comments
 pst
 !! wikitext
 <!-- ~~~~ -->
-!! html
+!! html/php
 <!-- ~~~~ -->
 !! end
 
@@ -20078,7 +20211,7 @@ Edit comment with link
 comment
 !! wikitext
 I like the [[Main Page]] a lot
-!! html
+!! html/php
 I like the <a href="/wiki/Main_Page" title="Main Page">Main Page</a> a lot
 !!end
 
@@ -20088,7 +20221,7 @@ Edit comment with link and link text
 comment
 !! wikitext
 I like the [[Main Page|best pages]] a lot
-!! html
+!! html/php
 I like the <a href="/wiki/Main_Page" title="Main Page">best pages</a> a lot
 !!end
 
@@ -20098,7 +20231,7 @@ Edit comment with link and link text with suffix
 comment
 !! wikitext
 I like the [[Main Page|best page]]s a lot
-!! html
+!! html/php
 I like the <a href="/wiki/Main_Page" title="Main Page">best pages</a> a lot
 !!end
 
@@ -20108,7 +20241,7 @@ Edit comment with section link (non-local, eg in history list)
 comment title=[[Main Page]]
 !! wikitext
 /* External links */ removed bogus entries
-!! html
+!! html/php
 <a href="/wiki/Main_Page#External_links" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
 !!end
 
@@ -20118,7 +20251,7 @@ Edit comment with section link and text before it (non-local, eg in history list
 comment title=[[Main Page]]
 !! wikitext
 pre-comment text /* External links */ removed bogus entries
-!! html
+!! html/php
 pre-comment text <a href="/wiki/Main_Page#External_links" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
 !!end
 
@@ -20128,7 +20261,7 @@ Edit comment with section link (local, eg in diff view)
 comment local title=[[Main Page]]
 !! wikitext
 /* External links */ removed bogus entries
-!! html
+!! html/php
 <a href="#External_links">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
 !!end
 
@@ -20140,7 +20273,7 @@ subpage
 title=[[Subpage test]]
 !! wikitext
 Poked at a [[/subpage]] here...
-!! html
+!! html/php
 Poked at a <a href="/wiki/Subpage_test/subpage" title="Subpage test/subpage">/subpage</a> here...
 !!end
 
@@ -20152,7 +20285,7 @@ subpage
 title=[[Subpage test]]
 !! wikitext
 Poked at a [[/subpage|neat little page]] here...
-!! html
+!! html/php
 Poked at a <a href="/wiki/Subpage_test/subpage" title="Subpage test/subpage">neat little page</a> here...
 !!end
 
@@ -20163,7 +20296,7 @@ comment
 title=[[Subpage test]]
 !! wikitext
 Poked at a [[/subpage]] here...
-!! html
+!! html/php
 Poked at a <a href="/index.php?title=/subpage&amp;action=edit&amp;redlink=1" class="new" title="/subpage (page does not exist)">/subpage</a> here...
 !!end
 
@@ -20175,7 +20308,7 @@ local
 title=[[Main Page]]
 !! wikitext
 [[#section]]
-!! html
+!! html/php
 <a href="#section">#section</a>
 !! end
 
@@ -20186,24 +20319,28 @@ comment
 title=[[Main Page]]
 !! wikitext
 [[#section]]
-!! html
+!! html/php
 <a href="/wiki/Main_Page#section" title="Main Page">#section</a>
 !! end
 
 !! test
 Anchor starting with underscore
+!! options
+title=[[Foo]]
 !! wikitext
 [[#_ref|One]]
-!! html
+!! html/php
 <p><a href="#_ref">One</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Foo#_ref" data-parsoid='{"stx":"piped","a":{"href":"./Foo#_ref"},"sa":{"href":"#_ref"}}'>One</a></p>
 !! end
 
 !! test
 Id starting with underscore
 !! wikitext
 <div id="_ref"></div>
-!! html
+!! html/*
 <div id="_ref"></div>
 
 !! end
@@ -20215,7 +20352,7 @@ comment
 title=[[Main Page]]
 !! wikitext
 /* __hello__world__ */
-!! html
+!! html/php
 <a href="/wiki/Main_Page#hello_world" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">__hello__world__</span></span>
 !! end
 
@@ -20534,11 +20671,14 @@ HTML5 data attributes
 !! wikitext
 <span data-foo="bar">Baz</span>
 <p data-abc-def_hij="">Quuz</p>
-!! html
+!! html/php
 <p><span data-foo="bar">Baz</span>
 </p>
 <p data-abc-def_hij="">Quuz</p>
 
+!! html/parsoid
+<p><span data-foo="bar" data-parsoid='{"stx":"html"}'>Baz</span></p>
+<p data-abc-def_hij="" data-parsoid='{"stx":"html"}'>Quuz</p>
 !! end
 
 !! test
@@ -21386,14 +21526,12 @@ parsoid=wt2html,wt2wt
 
 !!test
 Ref: 1. ref-location should be replaced with an index span
-!!options
-parsoid
 !! wikitext
 A <ref>foo</ref>
 B <ref name="x">foo</ref>
 C <ref name="y" />
 <references />
-!! html
+!! html/parsoid
 <p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span>
 B <span about="#mwt4" class="mw-ref" id="cite_ref-x_2-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-x-2"},"attrs":{"name":"x"}}'><a href="#cite_note-x-2"><span class="mw-reflink-text">[2]</span></a></span>
 C <span about="#mwt6" class="mw-ref" id="cite_ref-y_3-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"y"}}'><a href="#cite_note-y-3"><span class="mw-reflink-text">[3]</span></a></span></p>
@@ -21406,13 +21544,11 @@ C <span about="#mwt6" class="mw-ref" id="cite_ref-y_3-0" rel="dc:references" typ
 
 !!test
 Ref: 2. ref-tags with identical names should all get the same index
-!!options
-parsoid
 !! wikitext
 A <ref name="x">foo</ref>
 B <ref name="x" />
 <references />
-!! html
+!! html/parsoid
 <p>A <span about="#mwt2" class="mw-ref" id="cite_ref-x_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-x-1"},"attrs":{"name":"x"}}'><a href="#cite_note-x-1"><span class="mw-reflink-text">[1]</span></a></span>
 B <span about="#mwt4" class="mw-ref" id="cite_ref-x_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"x"}}'><a href="#cite_note-x-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'>
@@ -21422,14 +21558,12 @@ B <span about="#mwt4" class="mw-ref" id="cite_ref-x_1-1" rel="dc:references" typ
 
 !!test
 Ref: 3. spaces in ref-names should be ignored
-!!options
-parsoid
 !! wikitext
 A <ref name="x">foo</ref>
 B <ref name=" x " />
 C <ref name= x  />
 <references />
-!! html
+!! html/parsoid
 <p>A <span about="#mwt2" class="mw-ref" id="cite_ref-x_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-x-1"},"attrs":{"name":"x"}}'><a href="#cite_note-x-1"><span class="mw-reflink-text">[1]</span></a></span>
 B <span about="#mwt4" class="mw-ref" id="cite_ref-x_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"x"}}'><a href="#cite_note-x-1"><span class="mw-reflink-text">[1]</span></a></span>
 C <span about="#mwt6" class="mw-ref" id="cite_ref-x_1-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"x"}}'><a href="#cite_note-x-1"><span class="mw-reflink-text">[1]</span></a></span></p>
@@ -21441,12 +21575,10 @@ C <span about="#mwt6" class="mw-ref" id="cite_ref-x_1-2" rel="dc:references" typ
 # NOTE: constructor is a predefined property in JS and constructor as a ref-name can clash with it if not handled properly)
 !!test
 Ref: 4. 'constructor' should be accepted as a valid ref-name
-!!options
-parsoid
 !! wikitext
 A <ref name="constructor">foo</ref>
 <references />
-!! html
+!! html/parsoid
 <p>A <span about="#mwt2" class="mw-ref" id="cite_ref-constructor_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-constructor-1"},"attrs":{"name":"constructor"}}'><a href="#cite_note-constructor-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
 <li about="#cite_note-constructor-1" id="cite_note-constructor-1"><a href="#cite_ref-constructor_1-0" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-constructor-1" class="mw-reference-text">foo</span></li>
@@ -21455,15 +21587,13 @@ A <ref name="constructor">foo</ref>
 
 !!test
 Ref: 5. body should accept generic wikitext
-!!options
-parsoid
 !! wikitext
 A <ref>
  This is a '''[[bolded link]]''' and this is a {{echo|transclusion}}
 </ref>
 
 <references />
-!! html
+!! html/parsoid
 <p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'>
@@ -21474,8 +21604,6 @@ A <ref>
 
 !!test
 Ref: 6. indent-pres should not be output in ref-body
-!!options
-parsoid
 !! wikitext
 A <ref>
  foo
@@ -21484,7 +21612,7 @@ A <ref>
 </ref>
 
 <references />
-!! html
+!! html/parsoid
 <p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
@@ -21497,8 +21625,6 @@ A <ref>
 
 !!test
 Ref: 7. No p-wrapping in ref-body
-!!options
-parsoid
 !! wikitext
 A <ref>
 foo
@@ -21514,7 +21640,7 @@ booz
 </ref>
 
 <references />
-!! html
+!! html/parsoid
 <p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
@@ -21534,27 +21660,23 @@ booz
 
 !!test
 Ref: 8. transclusion wikitext has lower precedence
-!!options
-parsoid
 !! wikitext
 A <ref> foo {{echo|</ref> B C}}
 
 <references />
-!! html
+!! html/parsoid
 <p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> B C<span typeof="mw:Nowiki">}}</span></p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
-<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo <span typeof="mw:Nowiki" data-parsoid='{"src":"{{","dsr":[12,14,0,0]}'>{{</span>echo|</span></li>
+<li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo {{echo|</span></li>
 </ol>
 !!end
 
 !!test
 Ref: 9. unclosed comments should not leak out of ref-body
-!!options
-parsoid
 !! wikitext
 A <ref> foo <!--</ref> B C
 <references />
-!! html
+!! html/parsoid
 <p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> B C</p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
 <li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo <!----></span></li>
@@ -21563,13 +21685,11 @@ A <ref> foo <!--</ref> B C
 
 !!test
 Ref: 10. Unclosed HTML tags should not leak out of ref-body
-!!options
-parsoid
 !! wikitext
 A <ref> <b> foo </ref> B C
 
 <references />
-!! html
+!! html/parsoid
 <p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> B C</p>
 
 
@@ -21580,13 +21700,11 @@ A <ref> <b> foo </ref> B C
 
 !!test
 Ref: 11. ref-tags acts like an inline element wrt P-wrapping
-!!options
-parsoid
 !! wikitext
 A <ref>foo</ref> B
 C <ref>bar</ref> D
 <references />
-!! html
+!! html/parsoid
 <p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> B
 C <span about="#mwt4" class="mw-ref" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-2"},"attrs":{}}'><a href="#cite_note-2"><span class="mw-reflink-text">[2]</span></a></span> D</p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'>
@@ -21620,14 +21738,12 @@ c
 
 !!test
 Ref: 13. ref-tags are not SOL-transparent and block indent-pres
-!!options
-parsoid
 !! wikitext
 <ref>foo</ref> A
 <ref>bar
 </ref> B
 <references />
-!! html
+!! html/parsoid
 <p><span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span> A
 <span about="#mwt4" class="mw-ref" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-2"},"attrs":{}}'><a href="#cite_note-2"><span class="mw-reflink-text">[2]</span></a></span> B</p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'>
@@ -21639,13 +21755,11 @@ parsoid
 
 !!test
 Ref: 14. A nested ref-tag should be emitted as plain text
-!!options
-parsoid
 !! wikitext
 <ref>foo <ref>bar</ref> baz</ref>
 
 <references />
-!! html
+!! html/parsoid
 <p><span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span>
 </p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'>
@@ -21655,14 +21769,12 @@ parsoid
 
 !!test
 Ref: 15. ref-tags with identical names should get identical indexes
-!!options
-parsoid
 !! wikitext
 A1 <ref name="a">foo</ref> A2 <ref name="a" />
 B1 <ref name="b" /> B2 <ref name="b">bar</ref>
 
 <references />
-!! html
+!! html/parsoid
 <p>A1 <span about="#mwt3" class="mw-ref" id="cite_ref-a_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-a-1"},"attrs":{"name":"a"}}'><a href="#cite_note-a-1"><span class="mw-reflink-text">[1]</span></a></span> A2 <span about="#mwt4" class="mw-ref" id="cite_ref-a_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"a"}}'><a href="#cite_note-a-1"><span class="mw-reflink-text">[1]</span></a></span>
 B1 <span about="#mwt7" class="mw-ref" id="cite_ref-b_2-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"b"}}'><a href="#cite_note-b-2"><span class="mw-reflink-text">[2]</span></a></span> B2 <span about="#mwt8" class="mw-ref" id="cite_ref-b_2-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-b-2"},"attrs":{"name":"b"}}'><a href="#cite_note-b-2"><span class="mw-reflink-text">[2]</span></a></span></p>
 
@@ -21679,7 +21791,7 @@ parsoid=wt2html
 A <ref >foo</ref >
 
 <references />
-!! html
+!! html/parsoid
 <p>A <span about="#mwt2" class="mw-ref" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'>
 <li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li></ol>
@@ -21687,13 +21799,11 @@ A <ref >foo</ref >
 
 !!test
 Ref: 17. Generate valid HTML5 id/about attributes
-!!options
-parsoid
 !!wikitext
 <ref name="a b">foo</ref>
 
 <references />
-!!html
+!!html/parsoid
 <p><span class="mw-ref" id="cite_ref-a_b_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-a_b-1"},"attrs":{"name":"a b"}}'><a href="#cite_note-a_b-1"><span class="mw-reflink-text">[1]</span></a></span>
 </p>
 
@@ -21704,13 +21814,11 @@ parsoid
 
 !!test
 Ref: 18. T58916: Extension attributes should be parsed as plain text
-!!options
-parsoid
 !!wikitext
 <ref name="{{echo|a}}">foo</ref>
 
 <references />
-!!html
+!!html/parsoid
 <p><span class="mw-ref" id="cite_ref-.7B.7Becho.7Ca.7D.7D_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-.7B.7Becho.7Ca.7D.7D-1"},"attrs":{"name":"{{echo|a}}"}}'><a href="#cite_note-.7B.7Becho.7Ca.7D.7D-1"><span class="mw-reflink-text">[1]</span></a></span>
 </p>
 
@@ -21721,13 +21829,11 @@ parsoid
 
 !!test
 Ref: 19. ref-tags with identical name encodings should get identical indexes
-!!options
-parsoid
 !! wikitext
 1 <ref name="a & b">foo</ref> 2 <ref name="a &amp; b" />
 
 <references />
-!! html
+!! html/parsoid
 <p>1 <span about="#mwt3" class="mw-ref" id="cite_ref-a_.26_b_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-a_.26_b-1"},"attrs":{"name":"a &amp; b"}}'><a href="#cite_note-a_.26_b-1"><span class="mw-reflink-text">[1]</span></a></span> 2 <span about="#mwt4" class="mw-ref" id="cite_ref-a_.26_b_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"a &amp;amp; b"}}'><a href="#cite_note-a_.26_b-1"><span class="mw-reflink-text">[1]</span></a></span>
 </p>
 <ol class="mw-references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'>
@@ -21737,15 +21843,13 @@ parsoid
 
 !!test
 Ref: 20. ref-tags with identical names but different content should keep it
-!!options
-parsoid
 !! wikitext
 A <ref name="foo">Foo one</ref>
 B <ref name="foo">Foo two</ref>
 C <ref name="foo" />
 
 <references />
-!! html
+!! html/parsoid
 <p>A <span about="#mwt2" class="mw-ref" id="cite_ref-foo_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-foo-1"},"attrs":{"name":"foo"}}'><a href="#cite_note-foo-1"><span class="mw-reflink-text">[1]</span></a></span>
 B <span about="#mwt4" class="mw-ref" id="cite_ref-foo_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"Foo two"},"attrs":{"name":"foo"}}'><a href="#cite_note-foo-1"><span class="mw-reflink-text">[1]</span></a></span>
 C <span about="#mwt6" class="mw-ref" id="cite_ref-foo_1-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"foo"}}'><a href="#cite_note-foo-1"><span class="mw-reflink-text">[1]</span></a></span></p>
@@ -21979,8 +22083,10 @@ foo<ol class="mw-references" typeof="mw:Extension/references" about="#mwt2" data
 #### https://www.mediawiki.org/wiki/Parsoid/HTML_based_LST
 #### ----------------------------------------------------------------
 
-!!test
+!! test
 LST Sections: 1. Simple section start and end
+!! options
+parsoid={ "suppressErrors": true }
 !! wikitext
 <section begin="2011-05-16" />
 <section end="2014-04-10 (MW 1.23wmf22)" />
@@ -23574,7 +23680,8 @@ parsoid=html2wt
 
  __TOC__ foo
 
-__TOC__ bar
+__TOC__
+ bar
 !! end
 
 #### --------------- HTML tags ---------------
@@ -23721,6 +23828,19 @@ HTML tag with broken attribute value quoting
 !! html/parsoid
 <p><span title="Hello world">Foo</span>
 </p>
+!! end
+
+!! test
+Self-closed tag with broken attribute value quoting
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+<div title="Hello world />Foo
+!! html/php+tidy
+<div title="Hello world"></div>
+<p>Foo</p>
+!! html/parsoid
+<div title="Hello world " data-parsoid='{"stx":"html","selfClose":true}'></div><p>Foo</p>
 !! end
 
 !! test
@@ -24351,6 +24471,19 @@ Properly encapsulate empty-content transclusions in fosterable positions
 </table>
 !! end
 
+!! test
+Always encapsulate foster box when template range is expanded to table
+!! options
+parsoid=wt2wt
+!! wikitext
+{|
+hello
+{{OpenTable}}
+|}
+!! html/parsoid
+
+!! end
+
 !!test
 Support <object> element with .data attribute
 !!options
@@ -24785,7 +24918,8 @@ parsoid=html2wt
 </div>
 !! wikitext
 foo
-<nowiki> </nowiki><span>bar</span>
+ 
+<span>bar</span>
 
 <span>foo2
 <nowiki> </nowiki></span>bar2
@@ -24827,15 +24961,15 @@ parsoid={
 
 <h2><meta property="mw:PageProp/toc" /> ok</h2>
 !! wikitext
-== hello there [[Category:A1]]  ==
+== hello there [[Category:A1]] ==
 
-==  [[Category:A2]] hi pal ==
+== [[Category:A2]] hi pal ==
 
-==  <!--foo-->  [[Category:A3]]    how goes it ==
+== <!--foo-->  [[Category:A3]]    how goes it ==
 
-== it goes well    [[Category:A4]]  <!--bar-->  ==
+== it goes well    [[Category:A4]]  <!--bar--> ==
 
-==howdy [[Category:A5]] ==
+==howdy [[Category:A5]]==
 
 ==  __TOC__  ok ==
 !! end
@@ -25620,7 +25754,7 @@ parsoid={ "modes": ["html2wt"], "suppressErrors": true }
 # shown to sneak through on occasion. See T101768.
 # The original wikitext here is: [http://test.com [[one]] two three]
 !! test
-Strip span tags added to mark as misnested
+Strip span tags added to mark misnested links
 !! options
 parsoid=html2wt
 !! html/parsoid
@@ -25629,9 +25763,111 @@ parsoid=html2wt
 [http://test.com][[one]] two three
 !! end
 
+!! test
+Use data-parsoid.firstWikitextNode to compute newline constraints for template content
+!! options
+parsoid=html2wt
+!! html/parsoid
+<span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1","spc":["","","",""]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"a"}},"i":0}}]}'>a</span><table about="#mwt2" typeof="mw:Transclusion mw:ExpandedAttrs" data-parsoid='{"a":{"{{echo|c\n{{!}}d\n}}":null},"sa":{"{{echo|c\n{{!}}d\n}}":""},"firstWikitextNode":"table","pi":[[{"k":"1","spc":["","","",""]}]]}' data-mw='{"parts":["{|",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"c\n{{!}}d\n"}},"i":0}},"\n|}"]}'>
+<tbody><tr><td>d
+</td></tr>
+</tbody></table>
+!! wikitext
+{{echo|a}}
+{|{{echo|c
+{{!}}d
+}}
+|}
+!! end
+
+## This test verifies the presence and computation of this attribute indirectly
+## by making an edit and ensuring that the serialization is correct (which it would be
+## only if firstWikitextNode is properly set).
+!! test
+data-parsoid.firstWikitextNode should be computed properly in the presence of fostered content
+!! options
+parsoid= {
+  "modes": ["wt2wt"],
+  "changes": [
+    [ "div#x", "remove" ],
+    [ "div", "before", "<div>new</div>" ]
+  ]
+}
+!! wikitext
+<div id="x">foo</div>
+{|
+{{echo|<div>boo</div>
+{{!}}b}}
+|c
+|}
+!! wikitext/edited
+
+<div>new</div>
+{|
+{{echo|<div>boo</div>
+{{!}}b}}
+|c
+|}
+!! end
+
 # --------------------------------------------
 # Tests spec'ing wikitext serialization norms |
 # --------------------------------------------
+
+!! test
+1. Categories should always be serialized on their own line
+!! options
+parsoid=html2wt
+!! html/parsoid
+foo<link rel="mw:PageProp/Category" href="./Category:Foo">bar
+!! wikitext
+foo
+[[Category:Foo]]
+bar
+!! end
+
+!! test
+2. Categories that are part of templates should not introduce a line break
+!! wikitext
+foo {{echo|<span>bar</span> [[Category:baz]]}} bar
+!! html/parsoid
+<p>foo <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;span>bar&lt;/span> [[Category:baz]]"}},"i":0}}]}'>bar</span><span about="#mwt1"> </span><link rel="mw:PageProp/Category" href="./Category:Baz" about="#mwt1" data-parsoid='{"stx":"simple","a":{"href":"./Category:Baz"},"sa":{"href":"Category:baz"}}'/> bar</p>
+!! end
+
+# Careful while editing these next 2 tests. There are \u200f characters
+# before and after the <link> tags in the HTML and following some
+# of the categories in wikitext
+# Do not remove these characters in edits.
+#
+# As part of the serialization, these bidi characters will get stripped.
+!! test
+RTL (\u200f) and LTR (\u200e) markers around category tags should be stripped
+!! options
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": true
+}
+!! html/parsoid
+<p>‏<link rel="mw:PageProp/Category" href="./קטגוריה:טקסים" />‏
+‏<link rel="mw:PageProp/Category" href="./קטגוריה:_שיטות_משפט" />‏</p>
+!! wikitext
+[[קטגוריה:טקסים]]
+[[קטגוריה: שיטות משפט]]
+!! end
+
+!! test
+RTL (\u200f) and LTR (\u200e) markers should not be stripped if followed by a text node
+!! options
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": true
+}
+!! html/parsoid
+<p>‏<link rel="mw:PageProp/Category" href="./קטגוריה:טקסים" />‏y</p>
+!! wikitext
+[[קטגוריה:טקסים]]
+‏y
+!! end
 
 !! test
 Lists: Add space after bullets
@@ -25718,6 +25954,35 @@ parsoid={
 !! wikitext
 ==<span id="x">foo</span>==
 !! wikitext/edited
+!! end
+
+!! test
+Headings: Replace <br/> with a single whitespace char (when scrubWikitext = true)
+!! options
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": true
+}
+!! html/parsoid
+<h2>foo<br/>bar</h2>
+<h2>foo <span><br/>bar</span> baz</h2>
+!! wikitext
+== foo bar ==
+
+== foo <span> bar</span> baz ==
+!! end
+
+!! test
+Headings: Replace <br/> with a single whitespace char (when scrubWikitext = false)
+!! options
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": false
+}
+!! html/parsoid
+<h2>foo<br/>bar</h2>
+!! wikitext
+== foo<br> bar ==
 !! end
 
 !! test
@@ -26225,9 +26490,60 @@ parsoid=html2wt
 &lt;nowiki&gt;''foo''&lt;/nowiki&gt;
 !! end
 
+# This is meant to be an interim fix while we go about figuring out
+# how to not introduce these trailing <nowiki/>s in the first place.
+!! test
+T115717: Strip trailing <nowiki/>s (without affecting valid uses)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>x<meta typeof="mw:Placeholder" data-parsoid='{"src":"&lt;nowiki/>"}'/><meta typeof="mw:Placeholder" data-parsoid='{"src":"&lt;nowiki/>"}'/>
+y</p>
+<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"dsr":[0,23,null,null],"pi":[[{"k":"1","named":true,"spc":["\n"," "," ",""]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;nowiki/>"}},"i":0}}]}'></span></p>
+<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"dsr":[0,24,null,null],"pi":[[{"k":"1","named":true,"spc":["\n"," "," ","\n"]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;nowiki/>"}},"i":0}}]}'></span></p>
+!! wikitext
+x
+y
+
+{{echo|
+1 = <nowiki/>}}
+
+{{echo|
+1 = <nowiki/>
+}}
+!! end
+
 # ---------------------------------------------------
 # End of tests spec'ing wikitext serialization norms |
 # ---------------------------------------------------
+
+# T104032
+!! test
+Bare inline nodes not wrapped inside p-tags should be treated as p-wrapped
+!! options
+parsoid=html2wt
+!! html/parsoid
+a<p>b</p>
+<b>c</b><p>d</p>
+<table><tr>
+<td>a<p>b</p></td>
+<td><b>c</b><p>d</p></td>
+</tr></table>
+!! wikitext
+a
+
+b
+
+'''c'''
+
+d
+{|
+|a
+b
+|'''c'''
+d
+|}
+!! end
 
 # -----------------------------------------------------------------
 # End of section for Parsoid-only html2wt tests for serialization
