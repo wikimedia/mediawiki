@@ -75,8 +75,7 @@
 			background-position: center center;
 			background-origin: border-box;
 			background-repeat: no-repeat;
-			.background-size( @checkboxSize - 0.2em, @checkboxSize - 0.2em );
-			background-size: 0 0;
+			.background-size( 0, 0 );
 			.box-sizing( border-box );
 			position: absolute;
 			// align the checkbox to middle of the text
@@ -93,7 +92,7 @@
 
 		// when the input is checked, style the label pseudo before element that followed as a checked checkbox
 		&:checked + label::before {
-			background-size: 100% 100%;
+			.background-size( 100%, 100% );
 		}
 
 		&:active + label::before {
