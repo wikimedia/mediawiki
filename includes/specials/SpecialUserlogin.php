@@ -1435,7 +1435,8 @@ class LoginForm extends SpecialPage {
 		if ( $wgSecureLogin && !$this->mStickHTTPS ) {
 			$wgCookieSecure = false;
 		}
-
+		// Always make sure edit token is regenerated. (T114419)
+		$this->getRequest()->setSessionData( 'wsEditToken', null );
 		wfResetSessionID();
 	}
 
