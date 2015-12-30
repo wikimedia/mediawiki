@@ -1137,17 +1137,10 @@ function wfDebugMem( $exact = false ) {
 function wfDebugLog(
 	$logGroup, $text, $dest = 'all', array $context = array()
 ) {
-	// Turn $dest into a string if it's a boolean (for b/c)
-	if ( $dest === true ) {
-		$dest = 'all';
-	} elseif ( $dest === false ) {
-		$dest = 'private';
-	}
-
 	$text = trim( $text );
 
 	$logger = LoggerFactory::getInstance( $logGroup );
-	$context['private'] = ( $dest === 'private' );
+	$context['private'] = ( $dest === false || $dest === 'private' );
 	$logger->info( $text, $context );
 }
 

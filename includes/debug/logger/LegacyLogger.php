@@ -90,8 +90,10 @@ class LegacyLogger extends AbstractLogger {
 			$destination = self::destination( $this->channel, $message, $context );
 			self::emit( $text, $destination );
 		}
-		// Add to debug toolbar
-		MWDebug::debugMsg( $message, array( 'channel' => $this->channel ) + $context );
+		if ( !isset( $context['private'] ) || !$context['private'] ) {
+			// Add to debug toolbar if not marked as "private"
+			MWDebug::debugMsg( $message, array( 'channel' => $this->channel ) + $context );
+		}
 	}
 
 	/**
