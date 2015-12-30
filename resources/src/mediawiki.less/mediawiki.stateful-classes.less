@@ -1,0 +1,35 @@
+// Common Less stateful helper classes library for MediaWiki
+//
+// By default the folder containing this file is included in $wgResourceLoaderLESSImportPaths,
+// which makes this file importable by all Less files via '@import "mediawiki.stateful-classes";'.
+// The best way is to import the file and extend (Less v1.4.0+) the necessary selector by
+//    .selector {
+//        @extend( .stateful-class );
+//    }
+//
+// The stateful classes included below are considered a public interface for MediaWiki skins & extensions.
+//
+// See <http://lesscss.org/features/#extend-feature> for more information about all possibilities to extend.
+
+// Screen Reader & Keyboard User Helper Class
+.is-aural {
+	display: block;
+	position: absolute !important;
+	clip: rect( 1px, 1px, 1px, 1px );
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	overflow: hidden;
+
+	&[tabindex="0"]:active,
+	&[tabindex="0"]:focus {
+		position: static !important;
+		clip: auto;
+		width: auto;
+		height: auto;
+		margin: 0;
+		overflow: visible;
+	}
+}
