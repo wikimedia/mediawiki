@@ -296,7 +296,7 @@ class Block {
 			$block = self::newFromRow( $row );
 
 			# Don't use expired blocks
-			if ( $block->deleteIfExpired() ) {
+			if ( $block->isExpired() ) {
 				continue;
 			}
 
@@ -1140,7 +1140,7 @@ class Block {
 		$blocks = array();
 		foreach ( $rows as $row ) {
 			$block = self::newFromRow( $row );
-			if ( !$block->deleteIfExpired() ) {
+			if ( !$block->isExpired() ) {
 				$blocks[] = $block;
 			}
 		}
