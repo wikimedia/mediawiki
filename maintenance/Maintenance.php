@@ -654,41 +654,13 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Process command line arguments
-	 * $mOptions becomes an array with keys set to the option names
-	 * $mArgs becomes a zero-based array containing the non-option arguments
+	 * Load params and arguments from a given array
+	 * of command-line arguments
 	 *
-	 * @param string $self The name of the script, if any
-	 * @param array $opts An array of options, in form of key=>value
-	 * @param array $args An array of command line arguments
+	 * @since 1.27
+	 * @param array $argv
 	 */
-	public function loadParamsAndArgs( $self = null, $opts = null, $args = null ) {
-		# If we were given opts or args, set those and return early
-		if ( $self ) {
-			$this->mSelf = $self;
-			$this->mInputLoaded = true;
-		}
-		if ( $opts ) {
-			$this->mOptions = $opts;
-			$this->mInputLoaded = true;
-		}
-		if ( $args ) {
-			$this->mArgs = $args;
-			$this->mInputLoaded = true;
-		}
-
-		# If we've already loaded input (either by user values or from $argv)
-		# skip on loading it again. The array_shift() will corrupt values if
-		# it's run again and again
-		if ( $this->mInputLoaded ) {
-			$this->loadSpecialVars();
-
-			return;
-		}
-
-		global $argv;
-		$this->mSelf = array_shift( $argv );
-
+	public function loadWithArgv( $argv ) {
 		$options = array();
 		$args = array();
 		$this->orderedOptions = array();
@@ -788,6 +760,44 @@ abstract class Maintenance {
 				$this->maybeHelp( true );
 			}
 		}
+	}
+
+	/**
+	 * Process command line arguments
+	 * $mOptions becomes an array with keys set to the option names
+	 * $mArgs becomes a zero-based array containing the non-option arguments
+	 *
+	 * @param string $self The name of the script, if any
+	 * @param array $opts An array of options, in form of key=>value
+	 * @param array $args An array of command line arguments
+	 */
+	public function loadParamsAndArgs( $self = null, $opts = null, $args = null ) {
+		# If we were given opts or args, set those and return early
+		if ( $self ) {
+			$this->mSelf = $self;
+			$this->mInputLoaded = true;
+		}
+		if ( $opts ) {
+			$this->mOptions = $opts;
+			$this->mInputLoaded = true;
+		}
+		if ( $args ) {
+			$this->mArgs = $args;
+			$this->mInputLoaded = true;
+		}
+
+		# If we've already loaded input (either by user values or from $argv)
+		# skip on loading it again. The array_shift() will corrupt values if
+		# it's run again and again
+		if ( $this->mInputLoaded ) {
+			$this->loadSpecialVars();
+
+			return;
+		}
+
+		global $argv;
+		$this->mSelf = $argv[0];
+		$this->loadWithArgv( array_slice( $argv, 1 ) );
 	}
 
 	/**
