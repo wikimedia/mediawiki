@@ -90,6 +90,7 @@ class ApiMain extends ApiBase {
 		'revisiondelete' => 'ApiRevisionDelete',
 		'managetags' => 'ApiManageTags',
 		'tag' => 'ApiTag',
+		'mergehistory' => 'ApiMergeHistory',
 	);
 
 	/**

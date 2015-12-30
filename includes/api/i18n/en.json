@@ -235,6 +235,15 @@
 	"apihelp-managetags-example-activate": "Activate a tag named <kbd>spam</kbd> with the reason <kbd>For use in edit patrolling</kbd>",
 	"apihelp-managetags-example-deactivate": "Deactivate a tag named <kbd>spam</kbd> with the reason <kbd>No longer required</kbd>",
 
+	"apihelp-mergehistory-description": "Merge page histories.",
+	"apihelp-mergehistory-param-from": "Title of the page from which history will be merged. Cannot be used together with <var>$1fromid</var>.",
+	"apihelp-mergehistory-param-fromid": "Page ID of the page from which history will be merged. Cannot be used together with <var>$1from</var>.",
+	"apihelp-mergehistory-param-to": "Title of the page to which history will be merged. Cannot be used together with <var>$1toid</var>.",
+	"apihelp-mergehistory-param-toid": "Page ID of the page to which history will be merged. Cannot be used together with <var>$1to</var>.",
+	"apihelp-mergehistory-param-timestamp": "Timestamp up to which history of one page will be merged into the history of the other page. If omitted, the entire page history of the target page will be merged into the destination page.",
+	"apihelp-mergehistory-param-reason": "Reason for the history merge.",
+	"apihelp-mergehistory-example-merge": "Merge the entire history of <kbd>Oldpage</kbd> into <kbd>Newpage</kbd>.",
+
 	"apihelp-move-description": "Move a page.",
 	"apihelp-move-param-from": "Title of the page to rename. Cannot be used together with <var>$1fromid</var>.",
 	"apihelp-move-param-fromid": "Page ID of the page to rename. Cannot be used together with <var>$1from</var>.",

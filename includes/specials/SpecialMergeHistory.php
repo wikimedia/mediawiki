@@ -343,138 +343,33 @@ class SpecialMergeHistory extends SpecialPage {
 		if ( $targetTitle->getArticleID() == $destTitle->getArticleID() ) {
 			return false;
 		}
-		# Verify that this timestamp is valid
-		# Must be older than the destination page
-		$dbw = wfGetDB( DB_MASTER );
-		# Get timestamp into DB format
-		$this->mTimestamp = $this->mTimestamp ? $dbw->timestamp( $this->mTimestamp ) : '';
-		# Max timestamp should be min of destination page
-		$maxtimestamp = $dbw->selectField(
-			'revision',
-			'MIN(rev_timestamp)',
-			array( 'rev_page' => $this->mDestID ),
-			__METHOD__
-		);
-		# Destination page must exist with revisions
-		if ( !$maxtimestamp ) {
-			$this->getOutput()->addWikiMsg( 'mergehistory-fail' );
 
+		// MergeHistory object
+		$mh = new MergeHistory($targetTitle, $destTitle, $this->mTimestamp);
+
+		// Check to see if the merge will work
+		$validStatus = $mh->isValidMerge();
+		if ( !$validStatus->isOK() ) {
+			// Invalid merge
+			$this->getOutput()->addWikiMsg( $validStatus->getMessage() );
 			return false;
 		}
-		# Get the latest timestamp of the source
-		$lasttimestamp = $dbw->selectField(
-			array( 'page', 'revision' ),
-			'rev_timestamp',
-			array( 'page_id' => $this->mTargetID, 'page_latest = rev_id' ),
-			__METHOD__
-		);
-		# $this->mTimestamp must be older than $maxtimestamp
-		if ( $this->mTimestamp >= $maxtimestamp ) {
-			$this->getOutput()->addWikiMsg( 'mergehistory-fail' );
 
+		$permissionStatus = $mh->checkPermissions( $this->getUser(), $this->mComment );
+		if ( !$permissionStatus->isOK() ) {
+			// Bad permissions
+			$this->getOutput()->addWikiMsg( $permissionStatus->getMessage() );
 			return false;
 		}
-		# Get the timestamp pivot condition
-		if ( $this->mTimestamp ) {
-			$timewhere = "rev_timestamp <= {$this->mTimestamp}";
-			$timestampLimit = wfTimestamp( TS_MW, $this->mTimestamp );
-		} else {
-			$timewhere = "rev_timestamp <= {$maxtimestamp}";
-			$timestampLimit = wfTimestamp( TS_MW, $lasttimestamp );
-		}
-		# Check that there are not too many revisions to move
-		$limit = 5000; // avoid too much slave lag
-		$count = $dbw->selectRowCount( 'revision', '1',
-			array( 'rev_page' => $this->mTargetID, $timewhere ),
-			__METHOD__,
-			array( 'LIMIT' => $limit + 1 )
-		);
-		if ( $count > $limit ) {
-			$this->getOutput()->addWikiMsg( 'mergehistory-fail-toobig' );
 
+		// Merge!
+		$mergeStatus = $mh->merge( $this->getUser(), $this->mComment );
+		if ( !$mergeStatus->isOK() ) {
+			// Failed merge
+			$this->getOutput()->addWikiMsg( $mergeStatus->getMessage() );
+			$this->getOutput()->addHTML($mh->timewhere);
 			return false;
 		}
-		# Do the moving...
-		$dbw->update(
-			'revision',
-			array( 'rev_page' => $this->mDestID ),
-			array( 'rev_page' => $this->mTargetID, $timewhere ),
-			__METHOD__
-		);
-
-		$count = $dbw->affectedRows();
-		# Make the source page a redirect if no revisions are left
-		$haveRevisions = $dbw->selectField(
-			'revision',
-			'rev_timestamp',
-			array( 'rev_page' => $this->mTargetID ),
-			__METHOD__,
-			array( 'FOR UPDATE' )
-		);
-		if ( !$haveRevisions ) {
-			if ( $this->mComment ) {
-				$comment = $this->msg(
-					'mergehistory-comment',
-					$targetTitle->getPrefixedText(),
-					$destTitle->getPrefixedText(),
-					$this->mComment
-				)->inContentLanguage()->text();
-			} else {
-				$comment = $this->msg(
-					'mergehistory-autocomment',
-					$targetTitle->getPrefixedText(),
-					$destTitle->getPrefixedText()
-				)->inContentLanguage()->text();
-			}
-
-			$contentHandler = ContentHandler::getForTitle( $targetTitle );
-			$redirectContent = $contentHandler->makeRedirectContent( $destTitle );
-
-			if ( $redirectContent ) {
-				$redirectPage = WikiPage::factory( $targetTitle );
-				$redirectRevision = new Revision( array(
-					'title' => $targetTitle,
-					'page' => $this->mTargetID,
-					'comment' => $comment,
-					'content' => $redirectContent ) );
-				$redirectRevision->insertOn( $dbw );
-				$redirectPage->updateRevisionOn( $dbw, $redirectRevision );
-
-				# Now, we record the link from the redirect to the new title.
-				# It should have no other outgoing links...
-				$dbw->delete( 'pagelinks', array( 'pl_from' => $this->mDestID ), __METHOD__ );
-				$dbw->insert( 'pagelinks',
-					array(
-						'pl_from' => $this->mDestID,
-						'pl_from_namespace' => $destTitle->getNamespace(),
-						'pl_namespace' => $destTitle->getNamespace(),
-						'pl_title' => $destTitle->getDBkey() ),
-					__METHOD__
-				);
-			} else {
-				// would be nice to show a warning if we couldn't create a redirect
-			}
-		} else {
-			$targetTitle->invalidateCache(); // update histories
-		}
-		$destTitle->invalidateCache(); // update histories
-		# Check if this did anything
-		if ( !$count ) {
-			$this->getOutput()->addWikiMsg( 'mergehistory-fail' );
-
-			return false;
-		}
-		# Update our logs
-		$logEntry = new ManualLogEntry( 'merge', 'merge' );
-		$logEntry->setPerformer( $this->getUser() );
-		$logEntry->setComment( $this->mComment );
-		$logEntry->setTarget( $targetTitle );
-		$logEntry->setParameters( array(
-			'4::dest' => $destTitle->getPrefixedText(),
-			'5::mergepoint' => $timestampLimit
-		) );
-		$logId = $logEntry->insert();
-		$logEntry->publish( $logId );
 
 		$targetLink = Linker::link(
 			$targetTitle,
@@ -486,10 +381,8 @@ class SpecialMergeHistory extends SpecialPage {
 		$this->getOutput()->addWikiMsg( $this->msg( 'mergehistory-done' )
 			->rawParams( $targetLink )
 			->params( $destTitle->getPrefixedText() )
-			->numParams( $count )
+			->numParams( $mh->getMergedRevisionCount() )
 		);
-
-		Hooks::run( 'ArticleMergeComplete', array( $targetTitle, $destTitle ) );
 
 		return true;
 	}
