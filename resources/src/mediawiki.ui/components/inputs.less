@@ -29,16 +29,16 @@
 .mw-ui-input {
 	// turn off default input styling for input[type="search"] fields
 	-webkit-appearance: none;
-	border: 1px solid @colorFieldBorder;
-	.box-sizing(border-box);
-	width: 100%;
-	padding: .3em .3em .3em .6em;
+	.box-sizing( border-box );
 	display: block;
-	vertical-align: middle;
+	width: 100%;
+	border: 1px solid @colorFieldBorder;
 	border-radius: @borderRadius;
+	padding: 0.3em 0.3em 0.3em 0.6em;
 	font-family: inherit;
 	font-size: inherit;
 	line-height: inherit;
+	vertical-align: middle;
 
 	// Placeholder text styling must be set individually for each browser @winter
 	&::-webkit-input-placeholder { // webkit
