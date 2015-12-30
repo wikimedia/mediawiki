@@ -74,16 +74,15 @@
 			background-color: #fff;
 			border: 1px solid @colorGray7;
 			.background-image-svg('images/radio_checked.svg', 'images/radio_checked.png');
-			.background-size( @radioSize, @radioSize );
+			.background-size( 0, 0 );
 			background-repeat: no-repeat;
 			background-position: center center;
 			background-origin: border-box;
-			background-size: 0 0;
 		}
 
 		// when the input is checked, style the label pseudo before element that followed as a checked radio
 		&:checked + label::before {
-			background-size: 100% 100%;
+			.background-size( 100%, 100% );
 		}
 
 		&:active + label::before {

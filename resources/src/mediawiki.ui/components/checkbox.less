@@ -87,16 +87,15 @@
 			top: 50%;
 			margin-top: -1em;
 			.background-image-svg('images/checked.svg', 'images/checked.png');
-			.background-size( @checkboxSize - 0.2em, @checkboxSize - 0.2em );
+			.background-size( 0, 0 );
 			background-repeat: no-repeat;
 			background-position: center center;
 			background-origin: border-box;
-			background-size: 0 0;
 		}
 
 		// when the input is checked, style the label pseudo before element that followed as a checked checkbox
 		&:checked + label::before {
-			background-size: 100% 100%;
+			.background-size( 100%, 100% );
 		}
 
 		&:active + label::before {
