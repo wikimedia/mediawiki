@@ -178,7 +178,7 @@ class HTMLFileCache extends FileCacheBase {
 			return $text;
 		}
 
-		wfDebug( __METHOD__ . "()\n", 'log' );
+		wfDebug( __METHOD__ . "()\n", 'private' );
 
 		$now = wfTimestampNow();
 		if ( $this->useGzip() ) {

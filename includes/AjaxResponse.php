@@ -223,12 +223,12 @@ class AjaxResponse {
 		$fname = 'AjaxResponse::checkLastModified';
 
 		if ( !$timestamp || $timestamp == '19700101000000' ) {
-			wfDebug( "$fname: CACHE DISABLED, NO TIMESTAMP\n", 'log' );
+			wfDebug( "$fname: CACHE DISABLED, NO TIMESTAMP", 'private' );
 			return false;
 		}
 
 		if ( !$wgCachePages ) {
-			wfDebug( "$fname: CACHE DISABLED\n", 'log' );
+			wfDebug( "$fname: CACHE DISABLED", 'private' );
 			return false;
 		}
 
@@ -242,8 +242,8 @@ class AjaxResponse {
 			$modsince = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
 			$modsinceTime = strtotime( $modsince );
 			$ismodsince = wfTimestamp( TS_MW, $modsinceTime ? $modsinceTime : 1 );
-			wfDebug( "$fname: -- client send If-Modified-Since: " . $modsince . "\n", 'log' );
-			wfDebug( "$fname: --  we might send Last-Modified : $lastmod\n", 'log' );
+			wfDebug( "$fname: -- client send If-Modified-Since: $modsince", 'private' );
+			wfDebug( "$fname: --  we might send Last-Modified : $lastmod", 'private' );
 
 			if ( ( $ismodsince >= $timestamp )
 				&& $wgUser->validateCache( $ismodsince ) &&
@@ -255,16 +255,16 @@ class AjaxResponse {
 				$this->mLastModified = $lastmod;
 
 				wfDebug( "$fname: CACHED client: $ismodsince ; user: {$wgUser->getTouched()} ; " .
-					"page: $timestamp ; site $wgCacheEpoch\n", 'log' );
+					"page: $timestamp ; site $wgCacheEpoch", 'private' );
 
 				return true;
 			} else {
 				wfDebug( "$fname: READY  client: $ismodsince ; user: {$wgUser->getTouched()} ; " .
-					"page: $timestamp ; site $wgCacheEpoch\n", 'log' );
+					"page: $timestamp ; site $wgCacheEpoch", 'private' );
 				$this->mLastModified = $lastmod;
 			}
 		} else {
-			wfDebug( "$fname: client did not send If-Modified-Since header\n", 'log' );
+			wfDebug( "$fname: client did not send If-Modified-Since header", 'private' );
 			$this->mLastModified = $lastmod;
 		}
 		return false;
@@ -284,12 +284,12 @@ class AjaxResponse {
 		if ( $mcvalue ) {
 			# Check to see if the value has been invalidated
 			if ( $touched <= $mcvalue['timestamp'] ) {
-				wfDebug( "Got $mckey from cache\n" );
+				wfDebug( "Got $mckey from cache" );
 				$this->mText = $mcvalue['value'];
 
 				return true;
 			} else {
-				wfDebug( "$mckey has expired\n" );
+				wfDebug( "$mckey has expired" );
 			}
 		}
 
