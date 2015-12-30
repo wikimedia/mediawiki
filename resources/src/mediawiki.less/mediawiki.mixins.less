@@ -115,3 +115,18 @@
 	-ms-flex-order: @order; // IE10
 	order: @order;
 }
+
+
+// Stateful Mixins
+// Screen Reader Helper Mixin
+.mixin-is-aural() {
+	display: block;
+	position: absolute !important;
+	clip: rect( 1px, 1px, 1px, 1px );
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	overflow: hidden;
+}
