@@ -841,14 +841,10 @@ class MaintenanceTest extends MediaWikiTestCase {
 	}
 
 	function testParseArgs() {
-		global $argv;
-		$oldArgv = $argv;
-
-		$argv = array( '', '--multi', 'this1', '--multi', 'this2' );
 		$m2 = new MaintenanceFixup( $this );
 		// Create an option with an argument allowed to be specified multiple times
 		$m2->addOption( 'multi', 'This option does stuff', false, true, false, true );
-		$m2->loadParamsAndArgs();
+		$m2->loadWithArgv( array( '', '--multi', 'this1', '--multi', 'this2' ) );
 
 		$this->assertEquals( array( 'this1', 'this2' ), $m2->getOption( 'multi' ) );
 		$this->assertEquals( array( array( 'multi', 'this1' ), array( 'multi', 'this2' ) ),
@@ -856,28 +852,24 @@ class MaintenanceTest extends MediaWikiTestCase {
 
 		$m2->simulateShutdown();
 
-		$argv = array( '', '--multi', '--multi' );
 		$m2 = new MaintenanceFixup( $this );
 
 		$m2->addOption( 'multi', 'This option does stuff', false, false, false, true );
-		$m2->loadParamsAndArgs();
+		$m2->loadWithArgv( array( '', '--multi', '--multi' ) );
 
 		$this->assertEquals( array( 1, 1 ), $m2->getOption( 'multi' ) );
 		$this->assertEquals( array( array( 'multi', 1 ), array( 'multi', 1 ) ), $m2->orderedOptions );
 
 		$m2->simulateShutdown();
 
-		$argv = array( '', '--multi=yo' );
 		$m2 = new MaintenanceFixup( $this );
 		// Create an option with an argument allowed to be specified multiple times
 		$m2->addOption( 'multi', 'This option doesn\'t actually support multiple occurrences' );
-		$m2->loadParamsAndArgs();
+		$m2->loadWithArgv( array( '', '--multi=yo' ) );
 
 		$this->assertEquals( 'yo', $m2->getOption( 'multi' ) );
 		$this->assertEquals( array( array( 'multi', 'yo' ) ), $m2->orderedOptions );
 
 		$m2->simulateShutdown();
-
-		$argv = $oldArgv;
 	}
 }
