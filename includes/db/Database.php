@@ -1286,13 +1286,14 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param string|array $cond The condition array. See DatabaseBase::select() for details.
 	 * @param string $fname The function name of the caller.
 	 * @param string|array $options The query options. See DatabaseBase::select() for details.
+	 * @param string|array $join_conds The join conditions. See DatabaseBase::select() for details.
 	 *
 	 * @return bool|array The values from the field, or false on failure
 	 * @throws DBUnexpectedError
 	 * @since 1.25
 	 */
 	public function selectFieldValues(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = array()
+		$table, $var, $cond = '', $fname = __METHOD__, $options = array(), $join_conds = array()
 	) {
 		if ( $var === '*' ) { // sanity
 			throw new DBUnexpectedError( $this, "Cannot use a * field: got '$var'" );
@@ -1302,7 +1303,7 @@ abstract class DatabaseBase implements IDatabase {
 			$options = array( $options );
 		}
 
-		$res = $this->select( $table, $var, $cond, $fname, $options );
+		$res = $this->select( $table, $var, $cond, $fname, $options, $join_conds );
 		if ( $res === false ) {
 			return false;
 		}
