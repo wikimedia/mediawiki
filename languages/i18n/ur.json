@@ -1189,7 +1189,7 @@
 	"protect-othertime": "دیگر وقت:",
 	"protect-othertime-op": "دیگر وقت",
 	"protect-otherreason-op": "دیگر وجہ",
-	"protect-expiry-options": "1 گھنٹہ:1 گھنٹہ،1 دن:1 دن،1 ہفتہ:1 ہفتہ،2 ہفتے:2 ہفتے،1 مہینا:1 مہینا،3 مہینے:3 مہینے،6 مہینے:6 مہینے،1 سال:1 سال،لامحدود:لامحدود",
+	"protect-expiry-options": "1 hour:1 hour,1 day:1 day,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite",
 	"restriction-type": "اجازت:",
 	"pagesize": "(بائیٹ)",
 	"restriction-edit": "تحریر و ترمیم",

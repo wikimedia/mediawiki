@@ -128,7 +128,8 @@
 			"Nelson6e65",
 			"Matiia",
 			"SinNovedades",
-			"Rodm23"
+			"Rodm23",
+			"Yllelder"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -643,7 +644,7 @@
 	"passwordreset-emailtext-user": "El usuario $1 de {{SITENAME}} solicitó el restablecimiento de tu contraseña en {{SITENAME}}\n($4). {{PLURAL:$3|La siguiente cuenta está asociada|Las siguientes cuentas están asociadas}} a esta dirección de correo electrónico:\n\n$2\n\n{{PLURAL:$3|Esta contraseña temporal|Estas contraseñas temporales}} caducarán en {{PLURAL:$5|un día|$5 días}}.\nAhora puedes iniciar sesión y establecer una nueva contraseña. Si fue otra persona la que realizó esta solicitud, o si ya recuerdas tu contraseña original y, por tanto, no deseas cambiarla, puedes ignorar este mensaje y continuar usando tu contraseña anterior.",
 	"passwordreset-emailelement": "Nombre de {{GENDER:$1|usuario|usuaria}}: \n$1\n\nContraseña temporal: \n$2",
 	"passwordreset-emailsentemail": "Si esta es una dirección de correo electrónico registrada para tu cuenta, entonces se enviará un correo electrónico para el restablecimiento de tu contraseña.",
-	"passwordreset-emailsentusername": "Si hay una dirección de correo electrónico conectada a esta cuenta, entonces se enviará un correo electrónico para el restablecimiento de tu contraseña.",
+	"passwordreset-emailsentusername": "Si existe una dirección de correo electrónico asociada a este nombre de usuario, entonces el correo para restablecer la contraseña será enviado.",
 	"passwordreset-emailsent-capture": "Se ha enviado un correo para el restablecimiento de la contraseña, el cual se muestra a continuación.",
 	"passwordreset-emailerror-capture": "Se ha generado un correo electrónico de restablecimiento de contraseña, que se muestra a continuación, pero ha fallado el envío {{GENDER:$2|al usuario|a la usuaria}}: $1",
 	"changeemail": "Cambiar o eliminar la dirección de correo electrónico",
@@ -3506,6 +3507,7 @@
 	"pagelang-language": "Idioma",
 	"pagelang-use-default": "Utilizar el idioma predeterminado",
 	"pagelang-select-lang": "Seleccionar idioma",
+	"pagelang-submit": "Enviar",
 	"right-pagelang": "Cambiar el idioma de la página",
 	"action-pagelang": "cambiar el idioma de la página",
 	"log-name-pagelang": "Registro de cambios en idiomas",
@@ -3533,6 +3535,7 @@
 	"mediastatistics-header-text": "Textual",
 	"mediastatistics-header-executable": "Ejecutables",
 	"mediastatistics-header-archive": "Formatos comprimidos",
+	"mediastatistics-header-total": "Todos los archivos",
 	"json-warn-trailing-comma": "Se {{PLURAL:$1|eliminó una coma|eliminaron $1 comas}} al final en el archivo JSON",
 	"json-error-unknown": "Ocurrió un problema con el código JSON. Error: $1",
 	"json-error-depth": "Se ha superado la profundidad máxima de la pila",

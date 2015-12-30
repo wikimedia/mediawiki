@@ -3496,6 +3496,8 @@
 	"mediastatistics": "Statystyki mediów",
 	"mediastatistics-summary": "Statystyki dotyczące przesłanych typów plików. Dotyczą one tylko najnowszej wersji pliku. Starsze lub usunięte wersje plików nie są uwzględniane.",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 bajt|$1 bajty|$1 bajtów}} ($2; $3%)",
+	"mediastatistics-bytespertype": "Całkowity rozmiar pliku dla tej sekcji: {{PLURAL:$1|$1 bajt|$1 bajty|$1 bajtów}} ($2; $3%).",
+	"mediastatistics-allbytes": "Całkowity rozmiar pliku dla wszystkich plików: {{PLURAL:$1|$1 bajt|$1 bajty|$1 bajtów}} ($2).",
 	"mediastatistics-table-mimetype": "Typ MIME",
 	"mediastatistics-table-extensions": "Możliwe rozszerzenia",
 	"mediastatistics-table-count": "Liczba plików",
