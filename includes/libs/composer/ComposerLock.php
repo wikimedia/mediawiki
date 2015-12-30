@@ -12,6 +12,9 @@ class ComposerLock {
 	 * @param string $location
 	 */
 	public function __construct( $location ) {
+		if ( !file_exists( $location ) ) {
+			return false;
+		}
 		$this->contents = json_decode( file_get_contents( $location ), true );
 	}
 
