@@ -294,6 +294,11 @@ class ExtensionProcessor implements Processor {
 		}
 	}
 
+	/**
+	 * @param string $path
+	 * @param array $info
+	 * @throws Exception
+	 */
 	protected function extractCredits( $path, array $info ) {
 		$credits = array(
 			'path' => $path,
@@ -305,7 +310,17 @@ class ExtensionProcessor implements Processor {
 			}
 		}
 
-		$this->credits[$credits['name']] = $credits;
+		$name = $credits['name'];
+
+		// If someone is loading the same thing twice, throw
+		// a nice error (T121493)
+		if ( isset( $this->credits[$name] ) ) {
+			$firstPath = $this->credits[$name]['path'];
+			$secondPath = $credits['path'];
+			throw new Exception( "It was attempted to load $name twice, from $firstPath and $secondPath." );
+		}
+
+		$this->credits[$name] = $credits;
 	}
 
 	/**
