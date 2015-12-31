@@ -319,9 +319,11 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return string
 	 */
 	protected function preText() {
+		global $wgBlockCIDRLimit;
+
 		$this->getOutput()->addModules( array( 'mediawiki.special.block', 'mediawiki.userSuggest' ) );
 
-		$text = $this->msg( 'blockiptext' )->parse();
+		$text = $this->msg( 'blockiptext', $wgBlockCIDRLimit['IPv4'], $wgBlockCIDRLimit['IPv6'] )->parse();
 
 		$otherBlockMessages = array();
 		if ( $this->target !== null ) {
