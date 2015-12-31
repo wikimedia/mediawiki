@@ -109,6 +109,9 @@ abstract class Maintenance {
 	 */
 	private $mDb = null;
 
+	/** @var float UNIX timestamp */
+	private $lastSlaveWait = 0.0;
+
 	/**
 	 * Used when creating separate schema files.
 	 * @var resource
@@ -1178,21 +1181,27 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Commit a transcation on a DB
+	 * Commit the transcation on a DB handle and wait for slaves to catch up
 	 *
 	 * This method makes it clear that commit() is called from a maintenance script,
 	 * which has outermost scope. This is safe, unlike $dbw->commit() called in other places.
 	 *
 	 * @param IDatabase $dbw
 	 * @param string $fname Caller name
+	 * @return bool Whether the slave wait succeeded
 	 * @since 1.27
 	 */
 	protected function commitTransaction( IDatabase $dbw, $fname ) {
 		$dbw->commit( $fname );
+
+		$ok = wfWaitForSlaves( $this->lastSlaveWait, false, '*', 30 );
+		$this->lastSlaveWait = microtime( true );
+
+		return $ok;
 	}
 
 	/**
-	 * Rollback a transcation on a DB
+	 * Rollback the transcation on a DB handle
 	 *
 	 * This method makes it clear that rollback() is called from a maintenance script,
 	 * which has outermost scope. This is safe, unlike $dbw->rollback() called in other places.
