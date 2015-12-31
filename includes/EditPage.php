@@ -2967,6 +2967,9 @@ class EditPage {
 		}
 
 		$input = Html::input( 'wpSummary', $summary, 'text', $inputAttrs );
+		$input = Html::rawElement( 'div', array( 'class' => 'mw-summary-wrap' ) ) .
+			Html::rawElement( 'div', array( 'class' => 'mw-summary-div' ), $input ) .
+			Html::rawElement( 'div', array( 'class' => 'mw-summary-clear' ) );
 
 		return array( $label, $input );
 	}
