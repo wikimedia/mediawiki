@@ -298,7 +298,7 @@
 		}
 
 		if ( !$( '.mw-summary-preview' ).length ) {
-			$( '#wpSummary' ).after(
+			$( '#wpSummaryClear' ).after(
 				$( '<div>' ).addClass( 'mw-summary-preview' )
 			);
 		}
