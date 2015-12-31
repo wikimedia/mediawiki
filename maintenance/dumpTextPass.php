@@ -25,7 +25,7 @@
  */
 
 require_once __DIR__ . '/backup.inc';
-
+require_once __DIR__ . '/../includes/export/WikiExporter.php';
 /**
  * @ingroup Maintenance
  */

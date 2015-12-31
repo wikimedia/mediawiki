@@ -27,6 +27,10 @@
 /**
  * @ingroup Dump Maintenance
  */
+
+require_once __DIR__ . '/Maintenance.php';
+require_once __DIR__ . '/../includes/export/DumpFilter.php';
+
 class BackupDumper extends Maintenance {
 	public $reporting = true;
 	public $pages = null; // all pages
@@ -93,6 +97,8 @@ class BackupDumper extends Maintenance {
 		$this->addOption( 'report', 'Report position and speed after every n pages processed. ' .
 			'Default: 100.', false, true );
 		$this->addOption( 'server', 'Force reading from MySQL server', false, true );
+		$this->addOption( '7ziplevel', '7zip compression level for all 7zip outputs. Used for' .
+			'-mx option to 7za command.', false, true );
 	}
 
 	/**
@@ -169,7 +175,11 @@ class BackupDumper extends Maintenance {
 						$this->fatalError( "Unrecognized output sink type '$type'" );
 					}
 					$type = $this->outputTypes[$type];
-					$sink = new $type( $file );
+					if ( $type === "7zip" ) {
+						$sink = new $type( $file, $this->getOption( '7ziplevel' ) );
+					} else {
+						$sink = new $type( $file );
+					}
 
 					break;
 				case 'filter':
