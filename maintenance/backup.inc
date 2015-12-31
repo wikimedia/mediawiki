@@ -99,6 +99,8 @@ class BackupDumper extends Maintenance {
 		$this->addOption( 'report', 'Report position and speed after every n pages processed. ' .
 			'Default: 100.', false, true );
 		$this->addOption( 'server', 'Force reading from MySQL server', false, true );
+		$this->addOption( '7ziplevel', '7zip compression level for all 7zip outputs. Used for ' .
+			'-mx option to 7za command.', false, true );
 
 		if ( $args ) {
 			// Args should be loaded and processed so that dump() can be called directly
@@ -182,7 +184,11 @@ class BackupDumper extends Maintenance {
 						$this->fatalError( "Unrecognized output sink type '$type'" );
 					}
 					$class = $this->outputTypes[$type];
-					$sink = new $class( $file );
+					if ( $type === "7zip" ) {
+						$sink = new $class( $file, intval( $this->getOption( '7ziplevel' ) ) );
+					} else {
+						$sink = new $class( $file );
+					}
 
 					break;
 				case 'filter':
