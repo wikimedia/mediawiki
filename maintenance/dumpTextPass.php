@@ -25,7 +25,6 @@
  */
 
 require_once __DIR__ . '/backup.inc';
-
 /**
  * @ingroup Maintenance
  */
