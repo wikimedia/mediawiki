@@ -2,7 +2,7 @@
 /**
  * Base class for output stream; prints to stdout or buffer or wherever.
  *
- * Copyright © 2003, 2005, 2006 Brion Vibber <brion@pobox.com>
+ * Copyright Â© 2003, 2005, 2006 Brion Vibber <brion@pobox.com>
  * https://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
