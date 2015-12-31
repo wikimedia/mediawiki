@@ -118,7 +118,8 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				'_prefix' => 'eg',
 				'Bar' => 'somevalue'
 			),
-		) + self::$default;
+			'name' => 'FooBar2',
+		);
 		$processor->extractInfo( $this->dir, $info, 1 );
 		$processor->extractInfo( $this->dir, $info2, 1 );
 		$extracted = $processor->getExtractedInfo();
@@ -191,6 +192,16 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		foreach ( $expected as $key => $value ) {
 			$this->assertEquals( $value, $out['globals'][$key] );
 		}
+	}
+
+	/**
+	 * @covers ExtensionProcessor::extractCredits
+	 */
+	public function testExtractCredits() {
+		$processor = new ExtensionProcessor();
+		$processor->extractInfo( $this->dir, self::$default, 1 );
+		$this->setExpectedException( 'Exception' );
+		$processor->extractInfo( $this->dir, self::$default, 1 );
 	}
 
 	/**
