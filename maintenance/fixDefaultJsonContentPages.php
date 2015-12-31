@@ -47,7 +47,7 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 			return true;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 		$namespaces = array(
 			NS_MEDIAWIKI => $dbr->buildLike( $dbr->anyString(), '.json' ),
 			NS_USER => $dbr->buildLike( $dbr->anyString(), '/', $dbr->anyString(), '.json' ),
@@ -80,7 +80,7 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 		$this->output( "Processing {$title} ({$row->page_id})...\n" );
 		$rev = Revision::newFromTitle( $title );
 		$content = $rev->getContent( Revision::RAW );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		if ( $content instanceof JsonContent ) {
 			if ( $content->isValid() ) {
 				// Yay, actually JSON. We need to just change the

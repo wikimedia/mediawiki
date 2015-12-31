@@ -35,7 +35,7 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 	}
 
 	public function execute() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 
 		$test = $dbw->tableName( 'test' );
 		$dbw->query( "CREATE TABLE IF NOT EXISTS /*_*/$test (

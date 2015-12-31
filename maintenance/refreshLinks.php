@@ -76,7 +76,7 @@ class RefreshLinks extends Maintenance {
 		global $wgParser;
 
 		$reportingInterval = 100;
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 
 		if ( $start === null ) {
 			$start = 1;
@@ -192,7 +192,7 @@ class RefreshLinks extends Maintenance {
 	 */
 	private function fixRedirect( $id ) {
 		$page = WikiPage::newFromID( $id );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 
 		if ( $page === null ) {
 			// This page doesn't exist (any more)
@@ -262,7 +262,7 @@ class RefreshLinks extends Maintenance {
 	) {
 		wfWaitForSlaves();
 		$this->output( "Deleting illegal entries from the links tables...\n" );
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 		do {
 			// Find the start of the next chunk. This is based only
 			// on existent page_ids.
@@ -302,8 +302,8 @@ class RefreshLinks extends Maintenance {
 	 * @param int $batchSize The size of deletion batches
 	 */
 	private function dfnCheckInterval( $start = null, $end = null, $batchSize = 100 ) {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbw = $this->getDB( DB_MASTER );
+		$dbr = $this->getDB( DB_SLAVE );
 
 		$linksTables = array( // table name => page_id field
 			'pagelinks' => 'pl_from',

@@ -39,7 +39,7 @@ in the load balancer, usually indicating a replication environment.' );
 	}
 
 	public function execute() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$user = $dbw->tableName( 'user' );
 		$revision = $dbw->tableName( 'revision' );
 
@@ -58,7 +58,7 @@ in the load balancer, usually indicating a replication environment.' );
 		if ( $backgroundMode ) {
 			$this->output( "Using replication-friendly background mode...\n" );
 
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = $this->getDB( DB_SLAVE );
 			$chunkSize = 100;
 			$lastUser = $dbr->selectField( 'user', 'MAX(user_id)', '', __METHOD__ );
 

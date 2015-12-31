@@ -77,7 +77,7 @@ class WatchlistCleanup extends TableCleanup {
 
 	private function removeWatch( $row ) {
 		if ( !$this->dryrun && $this->hasOption( 'fix' ) ) {
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = $this->getDB( DB_MASTER );
 			$dbw->delete(
 				'watchlist', array(
 				'wl_user' => $row->wl_user,

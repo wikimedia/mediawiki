@@ -80,7 +80,7 @@ class DeleteBatch extends Maintenance {
 			$this->error( "Unable to read file, exiting", true );
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 
 		# Handle each entry
 		// @codingStandardsIgnoreStart Ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed

@@ -41,7 +41,7 @@ class DeleteDefaultMessages extends Maintenance {
 		global $wgUser;
 
 		$this->output( "Checking existence of old default messages..." );
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 		$res = $dbr->select( array( 'page', 'revision' ),
 			array( 'page_namespace', 'page_title' ),
 			array(
@@ -69,7 +69,7 @@ class DeleteDefaultMessages extends Maintenance {
 
 		# Handle deletion
 		$this->output( "\n...deleting old default messages (this may take a long time!)...", 'msg' );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 
 		foreach ( $res as $row ) {
 			wfWaitForSlaves();

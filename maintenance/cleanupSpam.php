@@ -64,7 +64,7 @@ class CleanupSpam extends Maintenance {
 			$this->output( "Finding spam on " . count( $wgLocalDatabases ) . " wikis\n" );
 			$found = false;
 			foreach ( $wgLocalDatabases as $wikiID ) {
-				$dbr = wfGetDB( DB_SLAVE, array(), $wikiID );
+				$dbr = $this->getDB( DB_SLAVE, array(), $wikiID );
 
 				$count = $dbr->selectField( 'externallinks', 'COUNT(*)',
 					array( 'el_index' . $dbr->buildLike( $like ) ), __METHOD__ );
@@ -83,7 +83,7 @@ class CleanupSpam extends Maintenance {
 		} else {
 			// Clean up spam on this wiki
 
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = $this->getDB( DB_SLAVE );
 			$res = $dbr->select( 'externallinks', array( 'DISTINCT el_from' ),
 				array( 'el_index' . $dbr->buildLike( $like ) ), __METHOD__ );
 			$count = $dbr->numRows( $res );
@@ -120,7 +120,7 @@ class CleanupSpam extends Maintenance {
 			// This happens e.g. when a link comes from a template rather than the page itself
 			$this->output( "False match\n" );
 		} else {
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = $this->getDB( DB_MASTER );
 			$this->beginTransaction( $dbw, __METHOD__ );
 			$page = WikiPage::factory( $title );
 			if ( $rev ) {

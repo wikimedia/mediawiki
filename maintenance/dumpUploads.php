@@ -76,7 +76,7 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 	 * @param bool $shared True to pass shared-dir settings to hash func
 	 */
 	function fetchUsed( $shared ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 		$image = $dbr->tableName( 'image' );
 		$imagelinks = $dbr->tableName( 'imagelinks' );
 
@@ -97,7 +97,7 @@ By default, outputs relative paths against the parent directory of \$wgUploadDir
 	 * @param bool $shared True to pass shared-dir settings to hash func
 	 */
 	function fetchLocal( $shared ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 		$result = $dbr->select( 'image',
 			array( 'img_name' ),
 			'',

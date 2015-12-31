@@ -37,7 +37,7 @@ class CheckImages extends Maintenance {
 
 	public function execute() {
 		$start = '';
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 
 		$numImages = 0;
 		$numGood = 0;

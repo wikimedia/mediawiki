@@ -43,7 +43,7 @@ class DeleteRevision extends Maintenance {
 
 		$this->output( "Deleting revision(s) " . implode( ',', $this->mArgs ) .
 			" from " . wfWikiID() . "...\n" );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 
 		$affected = 0;
 		foreach ( $this->mArgs as $revID ) {

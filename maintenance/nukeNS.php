@@ -54,7 +54,7 @@ class NukeNS extends Maintenance {
 		$ns = $this->getOption( 'ns', NS_MEDIAWIKI );
 		$delete = $this->getOption( 'delete', false );
 		$all = $this->getOption( 'all', false );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$this->beginTransaction( $dbw, __METHOD__ );
 
 		$tbl_pag = $dbw->tableName( 'page' );

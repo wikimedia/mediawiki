@@ -39,7 +39,7 @@ class DeleteSelfExternals extends Maintenance {
 	public function execute() {
 		global $wgServer;
 		$this->output( "Deleting self externals from $wgServer\n" );
-		$db = wfGetDB( DB_MASTER );
+		$db = $this->getDB( DB_MASTER );
 		while ( 1 ) {
 			wfWaitForSlaves();
 			$this->commitTransaction( $db, __METHOD__ );

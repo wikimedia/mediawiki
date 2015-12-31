@@ -45,7 +45,7 @@ class DeleteOldRevisions extends Maintenance {
 	function doDelete( $delete = false, $args = array() ) {
 
 		# Data should come off the master, wrapped in a transaction
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$this->beginTransaction( $dbw, __METHOD__ );
 
 		$pageConds = array();

@@ -201,7 +201,7 @@ TEXT;
 			if ( !$this->dryRun ) {
 				// bluuuh hack
 				// call_user_func( $this->uploadCallback, $revision );
-				$dbw = wfGetDB( DB_MASTER );
+				$dbw = $this->getDB( DB_MASTER );
 
 				return $dbw->deadlockLoop( array( $revision, 'importUpload' ) );
 			}

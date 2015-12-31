@@ -71,7 +71,7 @@ class RenameDbPrefix extends Maintenance {
 		$this->output( "Renaming DB prefix for tables of $wgDBname from '$old' to '$new'\n" );
 		$count = 0;
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$res = $dbw->query( "SHOW TABLES " . $dbw->buildLike( $old, $dbw->anyString() ) );
 		foreach ( $res as $row ) {
 			// XXX: odd syntax. MySQL outputs an oddly cased "Tables of X"

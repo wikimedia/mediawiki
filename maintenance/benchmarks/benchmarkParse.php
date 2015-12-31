@@ -118,7 +118,7 @@ class BenchmarkParse extends Maintenance {
 	 * @return bool|string Revision ID, or false if not found or error
 	 */
 	function getRevIdForTime( Title $title, $timestamp ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 
 		$id = $dbr->selectField(
 			array( 'revision', 'page' ),

@@ -39,7 +39,7 @@ class UpdateLogging {
 	public $minTs = false;
 
 	function execute() {
-		$this->dbw = wfGetDB( DB_MASTER );
+		$this->dbw = $this->getDB( DB_MASTER );
 		$logging = $this->dbw->tableName( 'logging' );
 		$logging_1_10 = $this->dbw->tableName( 'logging_1_10' );
 		$logging_pre_1_10 = $this->dbw->tableName( 'logging_pre_1_10' );

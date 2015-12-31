@@ -65,7 +65,7 @@ class ResetUserTokens extends Maintenance {
 		}
 
 		// We list user by user_id from one of the slave database
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 
 		$where = array();
 		if ( $this->nullsOnly ) {

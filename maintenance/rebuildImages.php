@@ -58,7 +58,7 @@ class ImageBuilder extends Maintenance {
 	}
 
 	public function execute() {
-		$this->dbw = wfGetDB( DB_MASTER );
+		$this->dbw = $this->getDB( DB_MASTER );
 		$this->dryrun = $this->hasOption( 'dry-run' );
 		if ( $this->dryrun ) {
 			$GLOBALS['wgReadOnly'] = 'Dry run mode, image upgrades are suppressed';
@@ -127,7 +127,7 @@ class ImageBuilder extends Maintenance {
 		$this->init( $count, $table );
 		$this->output( "Processing $table...\n" );
 
-		$result = wfGetDB( DB_SLAVE )->select( $table, '*', array(), __METHOD__ );
+		$result = $this->getDB( DB_SLAVE )->select( $table, '*', array(), __METHOD__ );
 
 		foreach ( $result as $row ) {
 			$update = call_user_func( $callback, $row, null );

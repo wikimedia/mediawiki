@@ -51,7 +51,7 @@ class UpdateDoubleWidthSearch extends Maintenance {
 	public function execute() {
 		$maxLockTime = $this->getOption( 'l', 20 );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		if ( $dbw->getType() !== 'mysql' ) {
 			$this->error( "This change is only needed on MySQL, quitting.\n", true );
 		}
