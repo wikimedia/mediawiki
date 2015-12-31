@@ -570,6 +570,7 @@ class NamespaceConflictChecker extends Maintenance {
 	 *
 	 * @param integer $id The page_id
 	 * @param Title $newTitle The new title
+	 * @return bool
 	 */
 	private function mergePage( $row, Title $newTitle ) {
 		$id = $row->page_id;
@@ -583,7 +584,7 @@ class NamespaceConflictChecker extends Maintenance {
 		$wikiPage->loadPageData( 'fromdbmaster' );
 
 		$destId = $newTitle->getArticleId();
-		$this->db->begin( __METHOD__ );
+		$this->beginTransaction( $this->db, __METHOD__ );
 		$this->db->update( 'revision',
 			// SET
 			array( 'rev_page' => $destId ),
@@ -604,7 +605,7 @@ class NamespaceConflictChecker extends Maintenance {
 		 */
 		$update = new LinksDeletionUpdate( $wikiPage );
 		$update->doUpdate();
-		$this->db->commit( __METHOD__ );
+		$this->commitTransaction( $this->db, __METHOD__ );
 
 		return true;
 	}
