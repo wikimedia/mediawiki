@@ -37,7 +37,7 @@ class PopulateContentModel extends Maintenance {
 	}
 
 	public function execute() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$ns = $this->getOption( 'ns' );
 		if ( !ctype_digit( $ns ) && $ns !== 'all' ) {
 			$this->error( 'Invalid namespace', 1 );

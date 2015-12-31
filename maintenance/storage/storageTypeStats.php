@@ -23,7 +23,7 @@ require_once __DIR__ . '/../Maintenance.php';
 
 class StorageTypeStats extends Maintenance {
 	function execute() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 
 		$endId = $dbr->selectField( 'text', 'MAX(old_id)', false, __METHOD__ );
 		if ( !$endId ) {

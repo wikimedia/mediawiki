@@ -46,7 +46,7 @@ class CleanupAncientTables extends Maintenance {
 			);
 		}
 
-		$db = wfGetDB( DB_MASTER );
+		$db = $this->getDB( DB_MASTER );
 		$ancientTables = array(
 			'blobs', // 1.4
 			'brokenlinks', // 1.4

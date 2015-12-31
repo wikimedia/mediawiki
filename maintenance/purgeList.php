@@ -86,7 +86,7 @@ class PurgeList extends Maintenance {
 	 * @param int|bool $namespace
 	 */
 	private function purgeNamespace( $namespace = false ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 		$startId = 0;
 		if ( $namespace === false ) {
 			$conds = array();

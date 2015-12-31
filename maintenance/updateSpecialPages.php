@@ -42,7 +42,7 @@ class UpdateSpecialPages extends Maintenance {
 	public function execute() {
 		global $wgQueryCacheLimit, $wgDisableQueryPageUpdate;
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 
 		$this->doSpecialPageCacheUpdates( $dbw );
 

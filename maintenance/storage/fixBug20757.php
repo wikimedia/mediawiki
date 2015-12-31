@@ -42,8 +42,8 @@ class FixBug20757 extends Maintenance {
 	}
 
 	function execute() {
-		$dbr = wfGetDB( DB_SLAVE );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbr = $this->getDB( DB_SLAVE );
+		$dbw = $this->getDB( DB_MASTER );
 
 		$dryRun = $this->getOption( 'dry-run' );
 		if ( $dryRun ) {
@@ -283,7 +283,7 @@ class FixBug20757 extends Maintenance {
 				unset( $this->mapCache[$key] );
 			}
 
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = $this->getDB( DB_SLAVE );
 			$map = array();
 			$res = $dbr->select( 'revision',
 				array( 'rev_id', 'rev_text_id' ),

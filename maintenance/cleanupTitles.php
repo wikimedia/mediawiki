@@ -78,7 +78,7 @@ class TitleCleanup extends TableCleanup {
 	protected function fileExists( $name ) {
 		// XXX: Doesn't actually check for file existence, just presence of image record.
 		// This is reasonable, since cleanupImages.php only iterates over the image table.
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'image', array( 'img_name' ), array( 'img_name' => $name ), __METHOD__ );
 
 		return $row !== false;
@@ -118,7 +118,7 @@ class TitleCleanup extends TableCleanup {
 		} else {
 			$this->output( "renaming $row->page_id ($row->page_namespace," .
 				"'$row->page_title') to ($row->page_namespace,'$dest')\n" );
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = $this->getDB( DB_MASTER );
 			$dbw->update( 'page',
 				array( 'page_title' => $dest ),
 				array( 'page_id' => $row->page_id ),
@@ -171,7 +171,7 @@ class TitleCleanup extends TableCleanup {
 		} else {
 			$this->output( "renaming $row->page_id ($row->page_namespace," .
 				"'$row->page_title') to ($ns,'$dest')\n" );
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = $this->getDB( DB_MASTER );
 			$dbw->update( 'page',
 				array(
 					'page_namespace' => $ns,

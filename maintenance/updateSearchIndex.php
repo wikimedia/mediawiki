@@ -96,7 +96,7 @@ class UpdateSearchIndex extends Maintenance {
 
 		$wgDisableSearchUpdate = false;
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$recentchanges = $dbw->tableName( 'recentchanges' );
 
 		$this->output( "Updating searchindex between $start and $end\n" );

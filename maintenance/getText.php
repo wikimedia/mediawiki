@@ -39,8 +39,6 @@ class GetTextMaint extends Maintenance {
 	}
 
 	public function execute() {
-		$this->db = wfGetDB( DB_SLAVE );
-
 		$titleText = $this->getArg( 0 );
 		$title = Title::newFromText( $titleText );
 		if ( !$title ) {

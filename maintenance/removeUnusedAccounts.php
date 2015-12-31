@@ -45,7 +45,7 @@ class RemoveUnusedAccounts extends Maintenance {
 		# Do an initial scan for inactive accounts and report the result
 		$this->output( "Checking for unused user accounts...\n" );
 		$del = array();
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 		$res = $dbr->select( 'user', array( 'user_id', 'user_name', 'user_touched' ), '', __METHOD__ );
 		if ( $this->hasOption( 'ignore-groups' ) ) {
 			$excludedGroups = explode( ',', $this->getOption( 'ignore-groups' ) );
@@ -76,7 +76,7 @@ class RemoveUnusedAccounts extends Maintenance {
 		# If required, go back and delete each marked account
 		if ( $count > 0 && $this->hasOption( 'delete' ) ) {
 			$this->output( "\nDeleting unused accounts..." );
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = $this->getDB( DB_MASTER );
 			$dbw->delete( 'user', array( 'user_id' => $del ), __METHOD__ );
 			$dbw->delete( 'user_groups', array( 'ug_user' => $del ), __METHOD__ );
 			$dbw->delete( 'user_former_groups', array( 'ufg_user' => $del ), __METHOD__ );
@@ -107,7 +107,7 @@ class RemoveUnusedAccounts extends Maintenance {
 	 * @return bool
 	 */
 	private function isInactiveAccount( $id, $master = false ) {
-		$dbo = wfGetDB( $master ? DB_MASTER : DB_SLAVE );
+		$dbo = $this->getDB( $master ? DB_MASTER : DB_SLAVE );
 		$checks = array(
 			'revision' => 'rev',
 			'archive' => 'ar',

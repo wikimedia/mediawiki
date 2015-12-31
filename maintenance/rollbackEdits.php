@@ -95,7 +95,7 @@ class RollbackEdits extends Maintenance {
 	 * @return array
 	 */
 	private function getRollbackTitles( $user ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 		$titles = array();
 		$results = $dbr->select(
 			array( 'page', 'revision' ),

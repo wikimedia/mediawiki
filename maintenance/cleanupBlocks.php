@@ -38,7 +38,7 @@ class CleanupBlocks extends Maintenance {
 	}
 
 	public function execute() {
-		$db = wfGetDB( DB_MASTER );
+		$db = $this->getDB( DB_MASTER );
 
 		$max = $db->selectField( 'ipblocks', 'MAX(ipb_user)' );
 

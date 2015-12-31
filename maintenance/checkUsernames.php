@@ -40,7 +40,7 @@ class CheckUsernames extends Maintenance {
 	}
 
 	function execute() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 
 		$maxUserId = 0;
 		do {

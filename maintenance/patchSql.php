@@ -44,7 +44,7 @@ class PatchSql extends Maintenance {
 	}
 
 	public function execute() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		foreach ( $this->mArgs as $arg ) {
 			$files = array(
 				$arg,
