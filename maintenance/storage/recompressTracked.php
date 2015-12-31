@@ -58,6 +58,7 @@ class RecompressTracked {
 	public $orphanBatchSize = 1000;
 	public $reportingInterval = 10;
 	public $numProcs = 1;
+	public $numBatches = 0;
 	public $useDiff, $pageBlobClass, $orphanBlobClass;
 	public $slavePipes, $slaveProcs, $prevSlaveId;
 	public $copyOnly = false;
@@ -195,7 +196,7 @@ class RecompressTracked {
 
 			return false;
 		}
-		$row = $dbr->selectRow( 'blob_tracking', '*', false, __METHOD__ );
+		$row = $dbr->selectRow( 'blob_tracking', '*', '', __METHOD__ );
 		if ( !$row ) {
 			$this->info( "Warning: blob_tracking table contains no rows, skipping this wiki." );
 
@@ -228,7 +229,7 @@ class RecompressTracked {
 
 		$this->slavePipes = $this->slaveProcs = array();
 		for ( $i = 0; $i < $this->numProcs; $i++ ) {
-			$pipes = false;
+			$pipes = array();
 			$spec = array(
 				array( 'pipe', 'r' ),
 				array( 'file', 'php://stdout', 'w' ),
@@ -340,10 +341,10 @@ class RecompressTracked {
 				break;
 			}
 			foreach ( $res as $row ) {
+				$startId = $row->bt_page;
 				$this->dispatch( 'doPage', $row->bt_page );
 				$i++;
 			}
-			$startId = $row->bt_page;
 			$this->report( 'pages', $i, $numPages );
 		}
 		$this->report( 'pages', $i, $numPages );
@@ -413,6 +414,7 @@ class RecompressTracked {
 			}
 			$ids = array();
 			foreach ( $res as $row ) {
+				$startId = $row->bt_text_id;
 				$ids[] = $row->bt_text_id;
 				$i++;
 			}
@@ -431,7 +433,6 @@ class RecompressTracked {
 				call_user_func_array( array( $this, 'dispatch' ), $args );
 			}
 
-			$startId = $row->bt_text_id;
 			$this->report( 'orphans', $i, $numOrphans );
 		}
 		$this->report( 'orphans', $i, $numOrphans );
@@ -513,6 +514,7 @@ class RecompressTracked {
 
 			$lastTextId = 0;
 			foreach ( $res as $row ) {
+				$startId = $row->bt_text_id;
 				if ( $lastTextId == $row->bt_text_id ) {
 					// Duplicate (null edit)
 					continue;
@@ -533,7 +535,6 @@ class RecompressTracked {
 					wfWaitForSlaves();
 				}
 			}
-			$startId = $row->bt_text_id;
 		}
 
 		$this->debug( "$titleText: committing blob with " . $trx->getSize() . " items" );
@@ -559,7 +560,7 @@ class RecompressTracked {
 			exit( 1 );
 		}
 		$dbw = wfGetDB( DB_MASTER );
-		$this->beginTransaction( $dbw, __METHOD__ );
+		$dbw->begin( __METHOD__ );
 		$dbw->update( 'text',
 			array( // set
 				'old_text' => $url,
@@ -575,7 +576,7 @@ class RecompressTracked {
 			array( 'bt_text_id' => $textId ),
 			__METHOD__
 		);
-		$this->commitTransaction( $dbw, __METHOD__ );
+		$dbw->commit( __METHOD__ );
 	}
 
 	/**
@@ -611,12 +612,12 @@ class RecompressTracked {
 			}
 			$this->debug( 'Incomplete: ' . $res->numRows() . ' rows' );
 			foreach ( $res as $row ) {
+				$startId = $row->bt_text_id;
 				$this->moveTextRow( $row->bt_text_id, $row->bt_new_url );
 				if ( $row->bt_text_id % 10 == 0 ) {
 					wfWaitForSlaves();
 				}
 			}
-			$startId = $row->bt_text_id;
 		}
 	}
 
@@ -693,8 +694,10 @@ class RecompressTracked {
  * Class to represent a recompression operation for a single CGZ blob
  */
 class CgzCopyTransaction {
+	/** @var RecompressTracked */
 	public $parent;
 	public $blobClass;
+	/** @var ConcatenatedGzipHistoryBlob */
 	public $cgz;
 	public $referrers;
 
@@ -766,7 +769,7 @@ class CgzCopyTransaction {
 		 * We do a locking read to prevent closer-run race conditions.
 		 */
 		$dbw = wfGetDB( DB_MASTER );
-		$this->beginTransaction( $dbw, __METHOD__ );
+		$dbw->begin( __METHOD__ );
 		$res = $dbw->select( 'blob_tracking',
 			array( 'bt_text_id', 'bt_moved' ),
 			array( 'bt_text_id' => array_keys( $this->referrers ) ),
@@ -787,7 +790,8 @@ class CgzCopyTransaction {
 				// All have been moved already
 				if ( $originalCount > 1 ) {
 					// This is suspcious, make noise
-					$this->critical( "Warning: concurrent operation detected, are there two conflicting " .
+					$this->parent->critical(
+						"Warning: concurrent operation detected, are there two conflicting " .
 						"processes running, doing the same job?" );
 				}
 
@@ -820,7 +824,7 @@ class CgzCopyTransaction {
 		$targetDB->commit( __METHOD__ );
 		// Critical section here: interruption at this point causes blob duplication
 		// Reversing the order of the commits would cause data loss instead
-		$this->commitTransaction( $dbw, __METHOD__ );
+		$dbw->commit( __METHOD__ );
 
 		// Write the new URLs to the text table and set the moved flag
 		if ( !$this->parent->copyOnly ) {
