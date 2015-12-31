@@ -151,9 +151,11 @@
 							.addClass( 'mw-indicator' )
 							.attr( 'id', mw.util.escapeId( 'mw-indicator-' + indicator.name ) )
 							.html( indicator[ '*' ] )
-							.get( 0 )
+							.get( 0 ),
+						// Add a whitespace between the <div>s because
+						// they get displayed with display: inline-block
+						document.createTextNode( '\n' )
 					);
-					newList.push( document.createTextNode( '\n' ) );
 				} );
 				$( '.mw-indicators' ).empty().append( newList );
 
