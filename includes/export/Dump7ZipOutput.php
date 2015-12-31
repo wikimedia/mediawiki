@@ -28,9 +28,16 @@
  */
 class Dump7ZipOutput extends DumpPipeOutput {
 	/**
-	 * @param string $file
+	 * @var int
 	 */
-	function __construct( $file ) {
+	public $compressionLevel;
+
+	/**
+	 * @param string $file
+	 * @param int $cmpLevel Compression level passed to 7za command's -mx
+	 */
+	function __construct( $file, $cmpLevel = 4 ) {
+		$compressionLevel = $cmpLevel;
 		$command = $this->setup7zCommand( $file );
 		parent::__construct( $command );
 		$this->filename = $file;
@@ -41,7 +48,10 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	 * @return string
 	 */
 	function setup7zCommand( $file ) {
-		$command = "7za a -bd -si -mx=4 " . wfEscapeShellArg( $file );
+		$command = "7za a -bd -si -mx= ";
+		$command .= wfEscapeShellArg( $this->compressionLevel ) . ' ';
+		$command .= wfEscapeShellArg( $file );
+		echo( $command );
 		// Suppress annoying useless crap from p7zip
 		// Unfortunately this could suppress real error messages too
 		$command .= ' >' . wfGetNull() . ' 2>&1';
