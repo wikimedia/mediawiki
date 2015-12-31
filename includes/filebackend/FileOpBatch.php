@@ -49,7 +49,7 @@ class FileOpBatch {
 	 *   - a) unexpected operation errors occurred (network partitions, disk full...)
 	 *   - b) significant operation errors occurred and 'force' was not set
 	 *
-	 * @param array $performOps List of FileOp operations
+	 * @param FileOp[] $performOps List of FileOp operations
 	 * @param array $opts Batch operation options
 	 * @param FileJournal $journal Journal to log operations to
 	 * @return Status
@@ -147,6 +147,7 @@ class FileOpBatch {
 	protected static function runParallelBatches( array $pPerformOps, Status $status ) {
 		$aborted = false; // set to true on unexpected errors
 		foreach ( $pPerformOps as $performOpsBatch ) {
+			/** @var FileOp[] $performOpsBatch */
 			if ( $aborted ) { // check batch op abort flag...
 				// We can't continue (even with $ignoreErrors) as $predicates is wrong.
 				// Log the remaining ops as failed for recovery...
@@ -157,6 +158,7 @@ class FileOpBatch {
 				}
 				continue;
 			}
+			/** @var Status[] $statuses */
 			$statuses = array();
 			$opHandles = array();
 			// Get the backend; all sub-batch ops belong to a single backend
