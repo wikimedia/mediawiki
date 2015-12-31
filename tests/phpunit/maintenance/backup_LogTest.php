@@ -2,6 +2,11 @@
 /**
  * Tests for log dumps of BackupDumper
  *
+ * Some of these tests use the old constuctor for TextPassDumper
+ * and the dump() function, while others use the new loadWithArgv( $args )
+ * function and execute(). This is to ensure both the old and new methods
+ * work properly.
+ *
  * @group Database
  * @group Dump
  * @covers BackupDumper
@@ -136,7 +141,8 @@ class BackupDumperLoggerTest extends DumpTestCase {
 
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
-		$dumper = new BackupDumper( array( "--output=file:" . $fname ) );
+
+		$dumper = new DumpBackup( array( '--output=file:' . $fname ) );
 		$dumper->startId = $this->logId1;
 		$dumper->endId = $this->logId3 + 1;
 		$dumper->reporting = false;
@@ -173,8 +179,10 @@ class BackupDumperLoggerTest extends DumpTestCase {
 
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
-		$dumper = new BackupDumper( array( "--output=gzip:" . $fname,
-			"--reporting=2" ) );
+
+		$dumper = new DumpBackup();
+		$dumper->loadWithArgv( array( '--logs', '--output=gzip:' . $fname,
+			'--reporting=2' ) );
 		$dumper->startId = $this->logId1;
 		$dumper->endId = $this->logId3 + 1;
 		$dumper->setDb( $this->db );
@@ -190,7 +198,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		}
 
 		// Performing the dump
-		$dumper->dump( WikiExporter::LOGS, WikiExporter::TEXT );
+		$dumper->execute();
 
 		$this->assertTrue( fclose( $dumper->stderr ), "Closing stderr handle" );
 
