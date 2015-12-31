@@ -43,7 +43,7 @@ class AttachLatest extends Maintenance {
 
 	public function execute() {
 		$this->output( "Looking for pages with page_latest set to 0...\n" );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$conds = array( 'page_latest' => 0 );
 		if ( $this->hasOption( 'regenerate-all' ) ) {
 			$conds = '';

@@ -67,7 +67,7 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 		$isRegen = ( $force || $file != '' ); // forced recalculation?
 
 		$t = -microtime( true );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		if ( $file != '' ) {
 			$res = $dbw->select(
 				'image',

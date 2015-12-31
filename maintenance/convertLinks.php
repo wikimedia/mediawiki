@@ -66,7 +66,7 @@ class ConvertLinks extends Maintenance {
 	}
 
 	public function execute() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 
 		$type = $dbw->getType();
 		if ( $type != 'mysql' ) {
@@ -267,7 +267,7 @@ class ConvertLinks extends Maintenance {
 	}
 
 	private function createTempTable() {
-		$dbConn = wfGetDB( DB_MASTER );
+		$dbConn = $this->getDB( DB_MASTER );
 
 		if ( !( $dbConn->isOpen() ) ) {
 			$this->output( "Opening connection to database failed.\n" );

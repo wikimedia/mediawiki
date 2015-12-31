@@ -37,7 +37,7 @@ class FixUserRegistration extends Maintenance {
 	}
 
 	public function execute() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 
 		$lastId = 0;
 		do {

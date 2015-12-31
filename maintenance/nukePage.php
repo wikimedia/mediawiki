@@ -43,7 +43,7 @@ class NukePage extends Maintenance {
 		$name = $this->getArg();
 		$delete = $this->getOption( 'delete', false );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$this->beginTransaction( $dbw, __METHOD__ );
 
 		$tbl_pag = $dbw->tableName( 'page' );
@@ -104,7 +104,7 @@ class NukePage extends Maintenance {
 	}
 
 	public function deleteRevisions( $ids ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$this->beginTransaction( $dbw, __METHOD__ );
 
 		$tbl_rev = $dbw->tableName( 'revision' );

@@ -174,7 +174,7 @@ class DeleteEqualMessages extends Maintenance {
 
 		// Handle deletion
 		$this->output( "\n...deleting equal messages (this may take a long time!)..." );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		foreach ( $messageInfo['results'] as $result ) {
 			wfWaitForSlaves();
 			$dbw->ping();

@@ -48,7 +48,7 @@ class AlterSharedConstraints extends Maintenance {
 			return;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		foreach ( $wgSharedTables as $table ) {
 			$stable = $dbw->tableNameInternal( $table );
 			if ( $wgSharedPrefix != null ) {

@@ -51,12 +51,11 @@ class RebuildTextIndex extends Maintenance {
 
 	public function execute() {
 		// Shouldn't be needed for Postgres
-		$this->db = wfGetDB( DB_MASTER );
+		$this->db = $this->getDB( DB_MASTER );
 		if ( $this->db->getType() == 'postgres' ) {
 			$this->error( "This script is not needed when using Postgres.\n", true );
 		}
 
-		$this->db = wfGetDB( DB_MASTER );
 		if ( $this->db->getType() == 'sqlite' ) {
 			if ( !DatabaseSqlite::getFulltextSearchModule() ) {
 				$this->error( "Your version of SQLite module for PHP doesn't "

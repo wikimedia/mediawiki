@@ -67,7 +67,7 @@ class NamespaceConflictChecker extends Maintenance {
 	}
 
 	public function execute() {
-		$this->db = wfGetDB( DB_MASTER );
+		$this->db = $this->getDB( DB_MASTER );
 
 		$options = array(
 			'fix' => $this->hasOption( 'fix' ),

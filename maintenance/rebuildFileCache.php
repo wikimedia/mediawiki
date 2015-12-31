@@ -70,7 +70,7 @@ class RebuildFileCache extends Maintenance {
 
 		$this->output( "Building content page file cache from page {$start}!\n" );
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 		$overwrite = $this->getOption( 'overwrite', false );
 		$start = ( $start > 0 )
 			? $start
@@ -89,7 +89,7 @@ class RebuildFileCache extends Maintenance {
 		$blockStart = $start;
 		$blockEnd = $start + $this->mBatchSize - 1;
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		// Go through each page and save the output
 		while ( $blockEnd <= $end ) {
 			// Get the pages

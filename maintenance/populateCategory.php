@@ -71,7 +71,7 @@ TEXT;
 		$throttle = $this->getOption( 'throttle', 0 );
 		$force = $this->getOption( 'force', false );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 
 		if ( !$force ) {
 			$row = $dbw->selectRow(

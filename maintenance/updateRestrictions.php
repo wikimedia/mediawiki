@@ -40,7 +40,7 @@ class UpdateRestrictions extends Maintenance {
 	}
 
 	public function execute() {
-		$db = wfGetDB( DB_MASTER );
+		$db = $this->getDB( DB_MASTER );
 		if ( !$db->tableExists( 'page_restrictions' ) ) {
 			$this->error( "page_restrictions table does not exist", true );
 		}

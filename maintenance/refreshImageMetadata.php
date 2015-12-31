@@ -95,7 +95,7 @@ class RefreshImageMetadata extends Maintenance {
 		$leftAlone = 0;
 		$error = 0;
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		if ( $this->mBatchSize <= 0 ) {
 			$this->error( "Batch size is too low...", 12 );
 		}

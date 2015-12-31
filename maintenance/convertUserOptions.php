@@ -41,7 +41,7 @@ class ConvertUserOptions extends Maintenance {
 	public function execute() {
 		$this->output( "...batch conversion of user_options: " );
 		$id = 0;
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 
 		if ( !$dbw->fieldExists( 'user', 'user_options', __METHOD__ ) ) {
 			$this->output( "nothing to migrate. " );

@@ -47,7 +47,7 @@ class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$db = wfGetDB( DB_MASTER );
+		$db = $this->getDB( DB_MASTER );
 		if ( !$db->tableExists( 'externallinks' ) ) {
 			$this->error( "externallinks table does not exist" );
 

@@ -85,7 +85,7 @@ class MoveBatch extends Maintenance {
 		}
 
 		# Setup complete, now start
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		// @codingStandardsIgnoreStart Ignore avoid function calls in a FOR loop test part warning
 		for ( $linenum = 1; !feof( $file ); $linenum++ ) {
 			// @codingStandardsIgnoreEnd

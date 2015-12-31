@@ -151,7 +151,7 @@ class CompressOld extends Maintenance {
 	private function compressOldPages( $start = 0, $extdb = '' ) {
 		$chunksize = 50;
 		$this->output( "Starting from old_id $start...\n" );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		do {
 			$res = $dbw->select(
 				'text',
@@ -192,7 +192,7 @@ class CompressOld extends Maintenance {
 			# print "Already compressed row {$row->old_id}\n";
 			return false;
 		}
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$flags = $row->old_flags ? "{$row->old_flags},gzip" : "gzip";
 		$compress = gzdeflate( $row->old_text );
 
@@ -237,8 +237,8 @@ class CompressOld extends Maintenance {
 	) {
 		$loadStyle = self::LS_CHUNKED;
 
-		$dbr = wfGetDB( DB_SLAVE );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbr = $this->getDB( DB_SLAVE );
+		$dbw = $this->getDB( DB_MASTER );
 
 		# Set up external storage
 		if ( $extdb != '' ) {

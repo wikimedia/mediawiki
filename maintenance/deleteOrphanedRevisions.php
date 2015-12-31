@@ -43,7 +43,7 @@ class DeleteOrphanedRevisions extends Maintenance {
 
 		$report = $this->hasOption( 'report' );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$this->beginTransaction( $dbw, __METHOD__ );
 		list( $page, $revision ) = $dbw->tableNamesN( 'page', 'revision' );
 

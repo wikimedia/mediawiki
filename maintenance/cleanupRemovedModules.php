@@ -39,7 +39,7 @@ class CleanupRemovedModules extends Maintenance {
 	}
 
 	public function execute() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$rl = new ResourceLoader( ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
 		$moduleNames = $rl->getModuleNames();
 		$moduleList = implode( ', ', array_map( array( $dbw, 'addQuotes' ), $moduleNames ) );

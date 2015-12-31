@@ -71,7 +71,7 @@ class Orphans extends Maintenance {
 	 * @param bool $fix Whether to fix broken revisions when found
 	 */
 	private function checkOrphans( $fix ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$page = $dbw->tableName( 'page' );
 		$revision = $dbw->tableName( 'revision' );
 
@@ -129,7 +129,7 @@ class Orphans extends Maintenance {
 	 *       but valid revisions do exist)
 	 */
 	private function checkWidows( $fix ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$page = $dbw->tableName( 'page' );
 		$revision = $dbw->tableName( 'revision' );
 
@@ -175,7 +175,7 @@ class Orphans extends Maintenance {
 	 * @param bool $fix Whether to fix broken entries
 	 */
 	private function checkSeparation( $fix ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$page = $dbw->tableName( 'page' );
 		$revision = $dbw->tableName( 'revision' );
 

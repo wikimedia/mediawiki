@@ -44,9 +44,9 @@ class UpdateArticleCount extends Maintenance {
 		$this->output( "Counting articles..." );
 
 		if ( $this->hasOption( 'use-master' ) ) {
-			$dbr = wfGetDB( DB_MASTER );
+			$dbr = $this->getDB( DB_MASTER );
 		} else {
-			$dbr = wfGetDB( DB_SLAVE, 'vslow' );
+			$dbr = $this->getDB( DB_SLAVE, 'vslow' );
 		}
 		$counter = new SiteStatsInit( $dbr );
 		$result = $counter->articles();
@@ -54,7 +54,7 @@ class UpdateArticleCount extends Maintenance {
 		$this->output( "found {$result}.\n" );
 		if ( $this->hasOption( 'update' ) ) {
 			$this->output( "Updating site statistics table... " );
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = $this->getDB( DB_MASTER );
 			$dbw->update(
 				'site_stats',
 				array( 'ss_good_articles' => $result ),

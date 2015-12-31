@@ -102,7 +102,7 @@ class ImageCleanup extends TableCleanup {
 			$this->output( "DRY RUN: would delete bogus row '$name'\n" );
 		} else {
 			$this->output( "deleting bogus row '$name'\n" );
-			$db = wfGetDB( DB_MASTER );
+			$db = $this->getDB( DB_MASTER );
 			$db->delete( 'image',
 				array( 'img_name' => $name ),
 				__METHOD__ );
@@ -139,7 +139,7 @@ class ImageCleanup extends TableCleanup {
 			return;
 		}
 
-		$db = wfGetDB( DB_MASTER );
+		$db = $this->getDB( DB_MASTER );
 
 		/*
 		 * To prevent key collisions in the update() statements below,

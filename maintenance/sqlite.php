@@ -59,7 +59,7 @@ class SqliteMaintenance extends Maintenance {
 			return;
 		}
 
-		$this->db = wfGetDB( DB_MASTER );
+		$this->db = $this->getDB( DB_MASTER );
 
 		if ( $this->db->getType() != 'sqlite' ) {
 			$this->error( "This maintenance script requires a SQLite database.\n" );

@@ -106,7 +106,7 @@ class TableCleanup extends Maintenance {
 	 * @throws MWException
 	 */
 	public function runTable( $params ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getDB( DB_SLAVE );
 
 		if ( array_diff( array_keys( $params ),
 			array( 'table', 'conds', 'index', 'callback' ) )

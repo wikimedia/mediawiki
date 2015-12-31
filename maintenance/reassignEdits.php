@@ -74,7 +74,7 @@ class ReassignEdits extends Maintenance {
 	 * @return int Number of entries changed, or that would be changed
 	 */
 	private function doReassignEdits( &$from, &$to, $rc = false, $report = false ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getDB( DB_MASTER );
 		$this->beginTransaction( $dbw, __METHOD__ );
 
 		# Count things
