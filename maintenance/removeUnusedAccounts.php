@@ -117,7 +117,7 @@ class RemoveUnusedAccounts extends Maintenance {
 		);
 		$count = 0;
 
-		$dbo->begin( __METHOD__ );
+		$this->beginTransaction( $dbo, __METHOD__ );
 		foreach ( $checks as $table => $fprefix ) {
 			$conds = array( $fprefix . '_user' => $id );
 			$count += (int)$dbo->selectField( $table, 'COUNT(*)', $conds, __METHOD__ );
@@ -126,7 +126,7 @@ class RemoveUnusedAccounts extends Maintenance {
 		$conds = array( 'log_user' => $id, 'log_type != ' . $dbo->addQuotes( 'newusers' ) );
 		$count += (int)$dbo->selectField( 'logging', 'COUNT(*)', $conds, __METHOD__ );
 
-		$dbo->commit( __METHOD__ );
+		$this->commitTransaction( $dbo, __METHOD__ );
 
 		return $count == 0;
 	}
