@@ -69,7 +69,7 @@ class WikiExporter {
 	 * @return string
 	 */
 	public static function schemaVersion() {
-		return "0.10";
+		return "0.11";
 	}
 
 	/**
