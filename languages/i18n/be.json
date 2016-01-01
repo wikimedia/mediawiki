@@ -1800,7 +1800,7 @@
 	"protect-level-sysop": "Толькі для адміністратараў",
 	"protect-summary-cascade": "каскад",
 	"protect-expiring": "скончыцца $1 (UTC)",
-	"protect-expiring-local": "канчацца $1",
+	"protect-expiring-local": "канчаецца $1",
 	"protect-expiry-indefinite": "бясконца",
 	"protect-cascade": "Каскад - ахоўваць таксама і ўсе тыя старонкі, які ўлучаюцца ў гэтую.",
 	"protect-cantedit": "Вы не можаце змяніць узровень аховы гэтай старонкі, таму што не маеце дазволу правіць яе.",

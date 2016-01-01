@@ -1176,7 +1176,7 @@
 	"badfilename": "Skáarnafninu hefur verið breytt í „$1“.",
 	"filetype-mime-mismatch": "Skráarendingin \".$1\" samræmist ekki MIME-gerð skrárinnar ($2).",
 	"filetype-badmime": "Skrárir af MIME-gerðinni „$1“ er ekki leyfilegt að hlaða inn.",
-	"filetype-bad-ie-mime": "Mistókst að hlaða inn skrá því Internet Explorer myndi uppgvötva hana sem \"$1\" sem er óheimil og mögulega hættulegt skráarsnið.",
+	"filetype-bad-ie-mime": "Mistókst að hlaða inn skrá því Internet Explorer myndi uppgötva hana sem \"$1\" sem er óheimil og mögulega hættulegt skráarsnið.",
 	"filetype-unwanted-type": "'''„.$1“''' er óæskileg skráargerð.\n{{PLURAL:$3|Ákjósanleg skráargerð er|Ákjósanlegar skráargerðir eru}} $2.",
 	"filetype-banned-type": "'''„.$1“''' {{PLURAL:$4|er ekki leifileg skráargerð|eru ekki leifilegar skráargerðir}}.\n{{PLURAL:$3|Leyfileg skráargerð er|Leyfilegar skráargerðir eru}} $2.",
 	"filetype-missing": "Skráin hefur engan viðauka (dæmi \".jpg\").",

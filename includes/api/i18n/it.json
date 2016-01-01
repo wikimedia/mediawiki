@@ -275,5 +275,6 @@
 	"api-help-param-continue": "Quando più risultati sono disponibili, usa questo per continuare.",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(nessuna descrizione)</span>",
 	"api-help-examples": "{{PLURAL:$1|Esempio|Esempi}}:",
+	"api-help-permissions": "{{PLURAL:$1|Permesso|Permessi}}:",
 	"api-credits-header": "Crediti"
 }

@@ -163,7 +163,7 @@
 	"category-file-count-limited": "V tejto kategórii sa {{PLURAL:$1|nachádza jeden súbor|nachádzajú $1 súbory|nachádza $1 súborov}}",
 	"listingcontinuesabbrev": "pokrač.",
 	"index-category": "Indexované stránky",
-	"noindex-category": "neindexované stránky",
+	"noindex-category": "Neindexované stránky",
 	"broken-file-category": "Stránky s odkazom na neexistujúci súbor",
 	"about": "Projekt",
 	"article": "Stránka s obsahom",
