@@ -72,7 +72,8 @@ class XmlDumpWriter {
 			$this->homelink(),
 			$this->generator(),
 			$this->caseSetting(),
-			$this->namespaces() );
+			$this->namespaces(),
+			$this->namespacealiases() );
 		return "  <siteinfo>\n    " .
 			implode( "\n    ", $info ) .
 			"\n  </siteinfo>\n";
@@ -135,6 +136,33 @@ class XmlDumpWriter {
 		}
 		$spaces .= "    </namespaces>";
 		return $spaces;
+	}
+
+	/*
+	 * @return string
+	 * @since 1.27
+	 */
+	function namespacealiases() {
+		global $wgContLang, $wgNamespaceAliases;
+		$aliases = array_merge( $wgNamespaceAliases,
+			$wgContLang->getNamespaceAliases(),
+			array_flip( MWNamespace::getCanonicalNamespaces() ) );
+		asort( $aliases );
+		$namespaces = $wgContLang->getNamespaces();
+		$namespacealiases = "<namespacealiases>\n";
+		foreach ( $aliases as $alias => $ns ) {
+			if ( isset( $namespaces[$ns] ) && $namespaces[$ns] == $alias ) {
+				// Don't list duplicates
+				continue;
+			}
+			$namespacealiases .= '      ' .
+				Xml::element( 'alias',
+					array(
+						'id' => $ns
+					), strtr( $alias, "_" , " " ) ) . "\n";
+		}
+		$namespacealiases .= "    </namespacealiases>";
+		return $namespacealiases;
 	}
 
 	/**

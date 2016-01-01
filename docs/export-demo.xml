@@ -1,4 +1,4 @@
-<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.11/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.11/ http://www.mediawiki.org/xml/export-0.11.xsd" version="0.11" xml:lang="en">
   
   <!-- Optional global configuration info -->
   <siteinfo>
@@ -12,7 +12,7 @@
     <base>http://example.com/wiki/Main_Page</base>
     
     <!-- Source software version -->
-    <generator>MediaWiki 1.24</generator>
+    <generator>MediaWiki 1.27</generator>
     
     <!-- Title case sensitivity options of the wiki this data came from -->
     <!-- May be 'first-letter', 'case-sensitive', or 'case-insensitive' -->
@@ -39,6 +39,14 @@
       <namespace key="14" case="first-letter">Category</namespace>
       <namespace key="15" case="first-letter">Category talk</namespace>
     </namespaces>
+
+    <!-- Defined namespace alias keys on the source wiki. -->
+    <namespacealiases>
+      <alias id="4">Project</alias>
+      <alias id="5">Project talk</alias>
+      <alias id="6">Image</alias>
+      <alias id="7">Image talk</alias>
+    </namespacealiases>
   </siteinfo>
   
   <!-- The rest of the data will be a series of page records -->
