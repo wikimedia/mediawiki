@@ -1396,6 +1396,7 @@ class HTMLForm extends ContextSource {
 		$hasLabel = false;
 
 		// Conveniently, PHP method names are case-insensitive.
+		// For grep: this can call getDiv, getRaw, getInline, getVForm, getOOUI
 		$getFieldHtmlMethod = $displayFormat == 'table' ? 'getTableRow' : ( 'get' . $displayFormat );
 
 		foreach ( $fields as $key => $value ) {
