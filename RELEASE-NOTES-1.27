@@ -206,6 +206,8 @@ changes to languages because of Phabricator reports.
 * WikiPage::testPreSaveTransform() was removed (deprecated since 1.19).
 * LogPage::logName() was removed (deprecated since 1.19).
 * LogPage::logHeader() was removed (deprecated since 1.19).
+* ApiQuery::getModules() was removed (deprecated since 1.21).
+* ApiMain::getModules() was removed (deprecated since 1.21).
 
 == Compatibility ==
 
