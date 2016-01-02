@@ -198,6 +198,7 @@ changes to languages because of Phabricator reports.
   maintenance/dumpTextPass.php instead.
 * WikiPage::getUsedTemplates() was removed (deprecated since 1.19).
 * wfEmptyMsg() was removed (deprecated since 1.18).
+* OutputPage::permissionRequired() was removed (deprecated since 1.18).
 
 == Compatibility ==
 
