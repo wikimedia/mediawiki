@@ -504,6 +504,10 @@
 			"type": "object",
 			"description": "Registry of factory functions to create Config objects"
 		},
+		"CentralIdLookupProviders": {
+			"type": "object",
+			"description": "Central ID lookup providers"
+		},
 		"namespaces": {
 			"type": "array",
 			"description": "Method to add extra namespaces",
