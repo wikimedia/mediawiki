@@ -206,6 +206,9 @@ changes to languages because of Phabricator reports.
 * WikiPage::testPreSaveTransform() was removed (deprecated since 1.19).
 * LogPage::logName() was removed (deprecated since 1.19).
 * LogPage::logHeader() was removed (deprecated since 1.19).
+* Language::armourMath() was removed (deprecated since 1.22).
+* LanguageConverter::armourMath() was removed (deprecated since 1.22).
+* FakeConverter::armourMath() was removed (deprecated since 1.22).
 
 == Compatibility ==
 

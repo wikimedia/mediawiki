@@ -107,11 +107,6 @@ class FakeConverter {
 		return $key;
 	}
 
-	/** @deprecated since 1.22 is no longer used */
-	function armourMath( $text ) {
-		return $text;
-	}
-
 	function validateVariant( $variant = null ) {
 		return $variant === $this->mLang->getCode() ? $variant : null;
 	}

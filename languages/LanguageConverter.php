@@ -1085,22 +1085,6 @@ class LanguageConverter {
 	}
 
 	/**
-	 * Armour rendered math against conversion.
-	 * Escape special chars in parsed math text. (in most cases are img elements)
-	 *
-	 * @param string $text Text to armour against conversion
-	 * @return string Armoured text where { and } have been converted to
-	 *   &#123; and &#125;
-	 * @deprecated since 1.22 is no longer used
-	 */
-	public function armourMath( $text ) {
-		// convert '-{' and '}-' to '-&#123;' and '&#125;-' to prevent
-		// any unwanted markup appearing in the math image tag.
-		$text = strtr( $text, array( '-{' => '-&#123;', '}-' => '&#125;-' ) );
-		return $text;
-	}
-
-	/**
 	 * Get the cached separator pattern for ConverterRule::parseRules()
 	 * @return string
 	 */
