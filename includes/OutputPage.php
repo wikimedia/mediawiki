@@ -2339,15 +2339,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Produce a "user is blocked" page.
-	 * @deprecated since 1.18
-	 */
-	function blockedPage() {
-		wfDeprecated( __METHOD__, '1.18' );
-		throw new UserBlockedError( $this->getUser()->mBlock );
-	}
-
-	/**
 	 * Prepare this object to display an error page; disable caching and
 	 * indexing, clear the current text and redirect, set the page's title
 	 * and optionally an custom HTML title (content of the "<title>" tag).
