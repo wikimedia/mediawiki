@@ -799,12 +799,12 @@ abstract class Skin extends ContextSource {
 	 * @return null|string
 	 */
 	function getCopyrightIcon() {
-		global $wgRightsUrl, $wgRightsText, $wgRightsIcon, $wgCopyrightIcon;
+		global $wgRightsUrl, $wgRightsText, $wgRightsIcon, $wgFooterIcons;
 
 		$out = '';
 
-		if ( $wgCopyrightIcon ) {
-			$out = $wgCopyrightIcon;
+		if ( $wgFooterIcons['copyright']['copyright' ) {
+			$out = $wgFooterIcons['copyright']['copyright'];
 		} elseif ( $wgRightsIcon ) {
 			$icon = htmlspecialchars( $wgRightsIcon );
 
