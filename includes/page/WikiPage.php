@@ -3586,27 +3586,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Update the article's restriction field, and leave a log entry.
-	 *
-	 * @deprecated since 1.19
-	 * @param array $limit Set of restriction keys
-	 * @param string $reason
-	 * @param int &$cascade Set to false if cascading protection isn't allowed.
-	 * @param array $expiry Per restriction type expiration
-	 * @param User $user The user updating the restrictions
-	 * @return bool True on success
-	 */
-	public function updateRestrictions(
-		$limit = array(), $reason = '', &$cascade = 0, $expiry = array(), User $user = null
-	) {
-		global $wgUser;
-
-		$user = is_null( $user ) ? $wgUser : $user;
-
-		return $this->doUpdateRestrictions( $limit, $expiry, $cascade, $reason, $user )->isOK();
-	}
-
-	/**
 	 * Returns a list of updates to be performed when this page is deleted. The
 	 * updates should remove any information about this page from secondary data
 	 * stores such as links tables.
