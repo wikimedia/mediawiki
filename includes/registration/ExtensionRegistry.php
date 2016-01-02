@@ -29,7 +29,7 @@ class ExtensionRegistry {
 	/**
 	 * Bump whenever the registration cache needs resetting
 	 */
-	const CACHE_VERSION = 2;
+	const CACHE_VERSION = 3;
 
 	/**
 	 * Special key that defines the merge strategy
@@ -225,10 +225,6 @@ class ExtensionRegistry {
 		$data = $processor->getExtractedInfo();
 		// Need to set this so we can += to it later
 		$data['globals']['wgAutoloadClasses'] = array();
-		foreach ( $data['credits'] as $credit ) {
-			$data['globals']['wgExtensionCredits'][$credit['type']][] = $credit;
-		}
-		$data['globals']['wgExtensionCredits'][self::MERGE_STRATEGY] = 'array_merge_recursive';
 		$data['autoload'] = $autoloadClasses;
 		$data['autoloaderPaths'] = $autoloaderPaths;
 		return $data;
