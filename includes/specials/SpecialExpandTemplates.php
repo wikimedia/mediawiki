@@ -95,8 +95,8 @@ class SpecialExpandTemplates extends SpecialPage {
 		}
 
 		$out = $this->getOutput();
-		$out->addWikiMsg( 'expand_templates_intro' );
-		$out->addHTML( $this->makeForm( $titleStr, $input ) );
+
+		$this->makeForm( $titleStr, $input );
 
 		if ( $output !== false ) {
 			if ( $this->generateXML && strlen( $output ) > 0 ) {
@@ -131,6 +131,22 @@ class SpecialExpandTemplates extends SpecialPage {
 	}
 
 	/**
+	 * Callback for the HTMLForm used in self::makeForm.
+	 * Checks, if the input was given, and if not, returns a fatal Status
+	 * object with an error message.
+	 *
+	 * @param array $values The values submitted to the HTMLForm
+	 * @return Status
+	 */
+	public function onSubmitInput( array $values ) {
+		$status = Status::newGood();
+		if ( !strlen( $values['input'] ) ) {
+			$status = Status::newFatal( 'expand_templates_input_missing' );
+		}
+		return $status;
+	}
+
+	/**
 	 * Generate a form allowing users to enter information
 	 *
 	 * @param string $title Value for context title field
@@ -138,69 +154,62 @@ class SpecialExpandTemplates extends SpecialPage {
 	 * @return string
 	 */
 	private function makeForm( $title, $input ) {
-		$self = $this->getPageTitle();
-		$request = $this->getRequest();
-		$user = $this->getUser();
-
-		$form = Xml::openElement(
-			'form',
-			array( 'method' => 'post', 'action' => $self->getLocalUrl() )
+		$fields = array(
+			'contexttitle' => array(
+				'type' => 'text',
+				'label' => $this->msg( 'expand_templates_title' )->plain(),
+				'name' => 'wpContextTitle',
+				'id' => 'contexttitle',
+				'size' => 60,
+				'default' => $title,
+				'autofocus' => true,
+				'cssclass' => 'mw-ui-input-inline',
+			),
+			'input' => array(
+				'type' => 'textarea',
+				'name' => 'wpInput',
+				'label-message' => 'expand_templates_input',
+				'rows' => 10,
+				'default' => $input,
+				'id' => 'input',
+			),
+			'removecomments' => array(
+				'type' => 'check',
+				'label-message' => 'expand_templates_remove_comments',
+				'name' => 'wpRemoveComments',
+				'id' => 'removecomments',
+				'default' => $this->removeComments,
+			),
+			'removenowiki' => array(
+				'type' => 'check',
+				'label-message' => 'expand_templates_remove_nowiki',
+				'name' => 'wpRemoveNowiki',
+				'id' => 'removenowiki',
+				'default' => $this->removeNowiki,
+			),
+			'generate_xml' => array(
+				'type' => 'check',
+				'label-message' => 'expand_templates_generate_xml',
+				'name' => 'wpGenerateXml',
+				'id' => 'generate_xml',
+				'default' => $this->generateXML,
+			),
+			'generate_rawhtml' => array(
+				'type' => 'check',
+				'label-message' => 'expand_templates_generate_rawhtml',
+				'name' => 'wpGenerateRawHtml',
+				'id' => 'generate_rawhtml',
+				'default' => $this->generateRawHtml,
+			),
 		);
-		$form .= "<fieldset><legend>" . $this->msg( 'expandtemplates' )->escaped() . "</legend>\n";
 
-		$form .= '<p>' . Xml::inputLabel(
-			$this->msg( 'expand_templates_title' )->plain(),
-			'wpContextTitle',
-			'contexttitle',
-			60,
-			$title,
-			array( 'autofocus' => '', 'class' => 'mw-ui-input-inline' )
-		) . '</p>';
-		$form .= '<p>' . Xml::label(
-			$this->msg( 'expand_templates_input' )->text(),
-			'input'
-		) . '</p>';
-		$form .= Xml::textarea(
-			'wpInput',
-			$input,
-			10,
-			10,
-			array( 'id' => 'input' )
-		);
-
-		$form .= '<p>' . Xml::checkLabel(
-			$this->msg( 'expand_templates_remove_comments' )->text(),
-			'wpRemoveComments',
-			'removecomments',
-			$this->removeComments
-		) . '</p>';
-		$form .= '<p>' . Xml::checkLabel(
-			$this->msg( 'expand_templates_remove_nowiki' )->text(),
-			'wpRemoveNowiki',
-			'removenowiki',
-			$this->removeNowiki
-		) . '</p>';
-		$form .= '<p>' . Xml::checkLabel(
-			$this->msg( 'expand_templates_generate_xml' )->text(),
-			'wpGenerateXml',
-			'generate_xml',
-			$this->generateXML
-		) . '</p>';
-		$form .= '<p>' . Xml::checkLabel(
-			$this->msg( 'expand_templates_generate_rawhtml' )->text(),
-			'wpGenerateRawHtml',
-			'generate_rawhtml',
-			$this->generateRawHtml
-		) . '</p>';
-		$form .= '<p>' . Xml::submitButton(
-			$this->msg( 'expand_templates_ok' )->text(),
-			array( 'accesskey' => 's' )
-		) . '</p>';
-		$form .= "</fieldset>\n";
-		$form .= Html::hidden( 'wpEditToken', $user->getEditToken( '', $request ) );
-		$form .= Xml::closeElement( 'form' );
-
-		return $form;
+		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
+		$form
+			->setSubmitTextMsg( 'expand_templates_ok' )
+			->setWrapperLegendMsg( 'expandtemplates' )
+			->setHeaderText( $this->msg( 'expand_templates_intro' )->text() )
+			->setSubmitCallback( array( $this, 'onSubmitInput' ) )
+			->showAlways();
 	}
 
 	/**
