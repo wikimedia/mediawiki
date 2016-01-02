@@ -1997,21 +1997,6 @@ function wfClientAcceptsGzip( $force = false ) {
 }
 
 /**
- * Obtain the offset and limit values from the request string;
- * used in special pages
- *
- * @param int $deflimit Default limit if none supplied
- * @param string $optionname Name of a user preference to check against
- * @return array
- * @deprecated since 1.24, just call WebRequest::getLimitOffset() directly
- */
-function wfCheckLimits( $deflimit = 50, $optionname = 'rclimit' ) {
-	global $wgRequest;
-	wfDeprecated( __METHOD__, '1.24' );
-	return $wgRequest->getLimitOffset( $deflimit, $optionname );
-}
-
-/**
  * Escapes the given text so that it may be output using addWikiText()
  * without any linking, formatting, etc. making its way through. This
  * is achieved by substituting certain characters with HTML entities.
