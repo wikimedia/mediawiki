@@ -200,6 +200,7 @@ changes to languages because of Phabricator reports.
 * wfEmptyMsg() was removed (deprecated since 1.18).
 * OutputPage::permissionRequired() was removed (deprecated since 1.18).
 * OutputPage::blockedPage() was removed (deprecated since 1.18).
+* User::getSkin() was removed (deprecated since 1.18).
 
 == Compatibility ==
 
