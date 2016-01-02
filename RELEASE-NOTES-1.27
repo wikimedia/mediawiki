@@ -201,6 +201,7 @@ changes to languages because of Phabricator reports.
 * OutputPage::permissionRequired() was removed (deprecated since 1.18).
 * OutputPage::blockedPage() was removed (deprecated since 1.18).
 * User::getSkin() was removed (deprecated since 1.18).
+* OutputPage::includeJQuery() was removed (deprecated since 1.17).
 
 == Compatibility ==
 
