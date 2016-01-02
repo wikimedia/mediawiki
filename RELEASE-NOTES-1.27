@@ -61,6 +61,8 @@ production.
   $wgSharedDB and $wgSharedTables are properly set even on the "central" wiki
   that all others are sharing from and that $wgLocalDatabases is set to the
   full list of sharing wikis on all those wikis.
+* Removed configuration option $wgCopyrightIcon (deprecated since 1.18). Use
+  $wgFooterIcons['copyright']['copyright'] instead.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
