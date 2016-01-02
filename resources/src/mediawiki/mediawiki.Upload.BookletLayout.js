@@ -202,7 +202,8 @@
 			layout = this,
 			file = this.getFile();
 
-		this.filenameWidget.setValue( file.name );
+		this.setFilename( file.name );
+
 		this.setPage( 'info' );
 
 		if ( this.shouldRecordBucket ) {
@@ -210,8 +211,8 @@
 		}
 
 		this.upload.setFile( file );
-		// Explicitly set the filename so that the old filename isn't used in case of retry
-		this.upload.setFilenameFromFile();
+		// The original file name might contain invalid characters, so use our sanitized one
+		this.upload.setFilename( this.getFilename() );
 
 		this.uploadPromise = this.upload.uploadToStash();
 		this.uploadPromise.then( function () {
@@ -353,7 +354,7 @@
 			} else if ( warnings.badfilename !== undefined ) {
 				// Change the name if the current name isn't acceptable
 				// TODO This might not really be the best place to do this
-				this.filenameWidget.setValue( warnings.badfilename );
+				this.setFilename( warnings.badfilename );
 				return new OO.ui.Error(
 					$( '<p>' ).msg( 'badfilename', warnings.badfilename )
 				);
@@ -512,7 +513,30 @@
 	 * @return {string}
 	 */
 	mw.Upload.BookletLayout.prototype.getFilename = function () {
-		return this.filenameWidget.getValue();
+		var filename = this.filenameWidget.getValue();
+		if ( this.filenameExtension ) {
+			filename += '.' + this.filenameExtension;
+		}
+		return filename;
+	};
+
+	/**
+	 * Prefills the {@link #infoForm information form} with the given filename.
+	 *
+	 * @protected
+	 * @param {string} filename
+	 */
+	mw.Upload.BookletLayout.prototype.setFilename = function ( filename ) {
+		var title = mw.Title.newFromFileName( filename );
+
+		if ( title ) {
+			this.filenameWidget.setValue( title.getNameText() );
+			this.filenameExtension = mw.Title.normalizeExtension( title.getExtension() );
+		} else {
+			// Seems to happen for files with no extension, which should fail some checks anyway...
+			this.filenameWidget.setValue( filename );
+			this.filenameExtension = null;
+		}
 	};
 
 	/**
