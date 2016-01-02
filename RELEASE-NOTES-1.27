@@ -107,6 +107,8 @@ HHVM 3.1.
 * $wgIncludeLegacyJavaScript, deprecated in MediaWiki 1.26, now defaults false.
   Extensions, skins, gadgets and scripts that need the mediawiki.legacy.wikibits
   module should express a dependency on it.
+* Removed configuration option $wgCopyrightIcon (deprecated since 1.18). Use
+  $wgFooterIcons['copyright']['copyright'] instead.
 
 === New features in 1.27 ===
 * $wgDataCenterUpdateStickTTL was also added. This decides how long a user
