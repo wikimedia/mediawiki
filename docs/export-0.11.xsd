@@ -33,6 +33,7 @@
 	Version 0.10 moved the <model> and <format> tags before the <text> tag.
 
 	Version 0.11 Added namespace aliases to SiteInfo
+	Added check for subpages to SiteInfo
 
 	The canonical URL to the schema document is:
 	http://www.mediawiki.org/xml/export-0.11.xsd
@@ -128,6 +129,7 @@
 			<extension base="string">
 				<attribute name="key" type="integer" />
 				<attribute name="case" type="mw:CaseType" />
+				<attribute name="subpages" type="boolean" />
 			</extension>
 		</simpleContent>
 	</complexType>

@@ -132,6 +132,7 @@ class XmlDumpWriter {
 					array(
 						'key' => $ns,
 						'case' => MWNamespace::isCapitalized( $ns ) ? 'first-letter' : 'case-sensitive',
+						'subpages' => MWNamespace::hasSubpages( $ns ) ? 'true' : 'false',
 					), $title ) . "\n";
 		}
 		$spaces .= "    </namespaces>";
