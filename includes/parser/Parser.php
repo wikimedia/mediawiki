@@ -5276,9 +5276,8 @@ class Parser {
 	}
 
 	/**
-	 * @todo FIXME: Update documentation. makeLinkObj() is deprecated.
 	 * Replace "<!--LINK-->" link placeholders with actual links, in the buffer
-	 * Placeholders created in Skin::makeLinkObj()
+	 * Placeholders created in Linker::link()
 	 *
 	 * @param string $text
 	 * @param int $options
