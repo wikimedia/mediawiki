@@ -212,26 +212,6 @@ class LogPage {
 	}
 
 	/**
-	 * Get the name for the given log type
-	 *
-	 * @param string $type Log type
-	 * @return string Log name
-	 * @deprecated since 1.19, warnings in 1.21. Use getName()
-	 */
-	public static function logName( $type ) {
-		global $wgLogNames;
-
-		wfDeprecated( __METHOD__, '1.21' );
-
-		if ( isset( $wgLogNames[$type] ) ) {
-			return str_replace( '_', ' ', wfMessage( $wgLogNames[$type] )->text() );
-		} else {
-			// Bogus log types? Perhaps an extension was removed.
-			return $type;
-		}
-	}
-
-	/**
 	 * Get the log header for the given log type
 	 *
 	 * @todo handle missing log types
