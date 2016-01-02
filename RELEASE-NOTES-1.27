@@ -103,6 +103,7 @@ production.
   if it is available.
 
 === External library changes in 1.27 ===
+
 ==== Upgraded external libraries ====
 * Updated oojs/oojs-ui from v0.12.12 to v0.13.3.
 * Updated composer/semver from v1.0.0 to v1.2.0.
@@ -227,6 +228,9 @@ changes to languages because of Phabricator reports.
 * wfMsgHtml() was removed (deprecated since 1.18).
 * wfMsgWikiHtml() was removed (deprecated since 1.18).
 * wfMsgExt() was removed (deprecated since 1.18).
+* Language::armourMath() was removed (deprecated since 1.22).
+* LanguageConverter::armourMath() was removed (deprecated since 1.22).
+* FakeConverter::armourMath() was removed (deprecated since 1.22).
 
 == Compatibility ==
 

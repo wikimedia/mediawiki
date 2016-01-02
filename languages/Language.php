@@ -4158,17 +4158,6 @@ class Language {
 	}
 
 	/**
-	 * Put custom tags (e.g. -{ }-) around math to prevent conversion
-	 *
-	 * @param string $text
-	 * @return string
-	 * @deprecated since 1.22 is no longer used
-	 */
-	public function armourMath( $text ) {
-		return $this->mConverter->armourMath( $text );
-	}
-
-	/**
 	 * Perform output conversion on a string, and encode for safe HTML output.
 	 * @param string $text Text to be converted
 	 * @param bool $isTitle Whether this conversion is for the article title
