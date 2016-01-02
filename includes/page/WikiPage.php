@@ -3560,32 +3560,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * This function is called right before saving the wikitext,
-	 * so we can do things like signatures and links-in-context.
-	 *
-	 * @deprecated since 1.19; use Parser::preSaveTransform() instead
-	 * @param string $text Article contents
-	 * @param User $user User doing the edit
-	 * @param ParserOptions $popts Parser options, default options for
-	 *   the user loaded if null given
-	 * @return string Article contents with altered wikitext markup (signatures
-	 * 	converted, {{subst:}}, templates, etc.)
-	 */
-	public function preSaveTransform( $text, User $user = null, ParserOptions $popts = null ) {
-		global $wgParser, $wgUser;
-
-		wfDeprecated( __METHOD__, '1.19' );
-
-		$user = is_null( $user ) ? $wgUser : $user;
-
-		if ( $popts === null ) {
-			$popts = ParserOptions::newFromUser( $user );
-		}
-
-		return $wgParser->preSaveTransform( $text, $this->mTitle, $user, $popts );
-	}
-
-	/**
 	 * Returns a list of updates to be performed when this page is deleted. The
 	 * updates should remove any information about this page from secondary data
 	 * stores such as links tables.

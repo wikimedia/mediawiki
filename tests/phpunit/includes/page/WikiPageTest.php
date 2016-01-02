@@ -1262,22 +1262,6 @@ more stuff
 	}
 
 	/**
-	 * @dataProvider providePreSaveTransform
-	 * @covers WikiPage::preSaveTransform
-	 */
-	public function testPreSaveTransform( $text, $expected ) {
-		$this->hideDeprecated( 'WikiPage::preSaveTransform' );
-		$user = new User();
-		$user->setName( "127.0.0.1" );
-
-		// NOTE: assume Help namespace to contain wikitext
-		$page = $this->newPage( "Help:WikiPageTest_testPreloadTransform" );
-		$text = $page->preSaveTransform( $text, $user );
-
-		$this->assertEquals( $expected, $text );
-	}
-
-	/**
 	 * @covers WikiPage::factory
 	 */
 	public function testWikiPageFactory() {
