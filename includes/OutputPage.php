@@ -3934,20 +3934,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Include jQuery core. Use this to avoid loading it multiple times
-	 * before we get a usable script loader.
-	 *
-	 * @param array $modules List of jQuery modules which should be loaded
-	 * @return array The list of modules which were not loaded.
-	 * @since 1.16
-	 * @deprecated since 1.17
-	 */
-	public function includeJQuery( array $modules = array() ) {
-		wfDeprecated( __METHOD__, '1.17' );
-		return array();
-	}
-
-	/**
 	 * Enables/disables TOC, doesn't override __NOTOC__
 	 * @param bool $flag
 	 * @since 1.22
