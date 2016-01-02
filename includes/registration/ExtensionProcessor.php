@@ -89,6 +89,7 @@ class ExtensionProcessor implements Processor {
 	 * @var array
 	 */
 	protected static $notAttributes = array(
+		'load_composer_autoloader',
 		'callback',
 		'Hooks',
 		'namespaces',
@@ -102,7 +103,6 @@ class ExtensionProcessor implements Processor {
 		'ParserTestFiles',
 		'AutoloadClasses',
 		'manifest_version',
-		'load_composer_autoloader',
 	);
 
 	/**
@@ -373,10 +373,10 @@ class ExtensionProcessor implements Processor {
 
 	public function getExtraAutoloaderPaths( $dir, array $info ) {
 		$paths = array();
-		if ( isset( $info['load_composer_autoloader'] ) && $info['load_composer_autoloader'] === true ) {
-			$path = "$dir/vendor/autoload.php";
+		if ( isset( $info['load_composer_autoloader'] ) ) {
+			$path = "$info['load_composer_autoloader']";
 			if ( file_exists( $path ) ) {
-				$paths[] = $path;
+				$paths[] = "$dir/$path/autoload.php";
 			}
 		}
 		return $paths;
