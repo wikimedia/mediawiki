@@ -207,6 +207,7 @@ changes to languages because of Phabricator reports.
 * LogPage::logName() was removed (deprecated since 1.19).
 * LogPage::logHeader() was removed (deprecated since 1.19).
 * Linker::makeKnownLinkObj() was removed (deprecated since 1.16).
+* Linker::makeLinkObj() was removed (deprecated since 1.16).
 
 == Compatibility ==
 
