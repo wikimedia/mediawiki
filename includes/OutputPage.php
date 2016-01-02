@@ -2489,17 +2489,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Display an error page noting that a given permission bit is required.
-	 * @deprecated since 1.18, just throw the exception directly
-	 * @param string $permission Key required
-	 * @throws PermissionsError
-	 */
-	public function permissionRequired( $permission ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		throw new PermissionsError( $permission );
-	}
-
-	/**
 	 * Format a list of error messages
 	 *
 	 * @param array $errors Array of arrays returned by Title::getUserPermissionsErrors

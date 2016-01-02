@@ -197,6 +197,7 @@ changes to languages because of Phabricator reports.
 * The maintenance/backupTextPass.inc file was deleted. You should include
   maintenance/dumpTextPass.php instead.
 * WikiPage::getUsedTemplates() was removed (deprecated since 1.19).
+* OutputPage::permissionRequired() was removed (deprecated since 1.18).
 
 == Compatibility ==
 
