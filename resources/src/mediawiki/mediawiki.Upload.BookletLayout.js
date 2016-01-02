@@ -434,11 +434,13 @@
 		fieldset.addItems( [
 			new OO.ui.FieldLayout( this.filenameWidget, {
 				label: mw.msg( 'upload-form-label-infoform-name' ),
-				align: 'top'
+				align: 'top',
+				help: mw.msg( 'upload-form-label-infoform-name-tooltip' )
 			} ),
 			new OO.ui.FieldLayout( this.descriptionWidget, {
 				label: mw.msg( 'upload-form-label-infoform-description' ),
-				align: 'top'
+				align: 'top',
+				help: mw.msg( 'upload-form-label-infoform-description-tooltip' )
 			} )
 		] );
 		this.infoForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
