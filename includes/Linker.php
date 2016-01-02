@@ -2316,36 +2316,6 @@ class Linker {
 	/* Deprecated methods */
 
 	/**
-	 * @deprecated since 1.16 Use link(); warnings since 1.21
-	 *
-	 * Make a link for a title which may or may not be in the database. If you need to
-	 * call this lots of times, pre-fill the link cache with a LinkBatch, otherwise each
-	 * call to this will result in a DB query.
-	 *
-	 * @param Title $nt The title object to make the link from, e.g. from Title::newFromText.
-	 * @param string $text Link text
-	 * @param string $query Optional query part
-	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
-	 *   be included in the link text. Other characters will be appended after
-	 *   the end of the link.
-	 * @param string $prefix Optional prefix. As trail, only before instead of after.
-	 * @return string
-	 */
-	static function makeLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		$query = wfCgiToArray( $query );
-		list( $inside, $trail ) = self::splitTrail( $trail );
-		if ( $text === '' ) {
-			$text = self::linkText( $nt );
-		}
-
-		$ret = self::link( $nt, "$prefix$text$inside", array(), $query ) . $trail;
-
-		return $ret;
-	}
-
-	/**
 	 * Returns the attributes for the tooltip and access key.
 	 * @param string $name
 	 * @return array
