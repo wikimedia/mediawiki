@@ -204,6 +204,8 @@ changes to languages because of Phabricator reports.
 * OutputPage::includeJQuery() was removed (deprecated since 1.17).
 * WikiPage::updateRestrictions() was removed (deprecated since 1.19).
 * WikiPage::testPreSaveTransform() was removed (deprecated since 1.19).
+* LogPage::logName() was removed (deprecated since 1.19).
+* LogPage::logHeader() was removed (deprecated since 1.19).
 
 == Compatibility ==
 
