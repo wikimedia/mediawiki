@@ -57,8 +57,7 @@ class ExtensionProcessor implements Processor {
 		'wgGroupPermissions' => 'array_plus_2d',
 		'wgRevokePermissions' => 'array_plus_2d',
 		'wgHooks' => 'array_merge_recursive',
-		// credits are handled in the ExtensionRegistry
-		// 'wgExtensionCredits' => 'array_merge_recursive',
+		'wgExtensionCredits' => 'array_merge_recursive',
 		'wgExtraGenderNamespaces' => 'array_plus',
 		'wgNamespacesWithSubpages' => 'array_plus',
 		'wgNamespaceContentModels' => 'array_plus',
@@ -321,6 +320,7 @@ class ExtensionProcessor implements Processor {
 		}
 
 		$this->credits[$name] = $credits;
+		$this->globals['wgExtensionCredits'][$credits['type']][] = $credits;
 	}
 
 	/**
