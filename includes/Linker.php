@@ -2346,43 +2346,6 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated since 1.16 Use link(); warnings since 1.21
-	 *
-	 * Make a link for a title which definitely exists. This is faster than makeLinkObj because
-	 * it doesn't have to do a database query. It's also valid for interwiki titles and special
-	 * pages.
-	 *
-	 * @param Title $title Title object of target page
-	 * @param string $text Text to replace the title
-	 * @param string $query Link target
-	 * @param string $trail Text after link
-	 * @param string $prefix Text before link text
-	 * @param string $aprops Extra attributes to the a-element
-	 * @param string $style Style to apply - if empty, use getInternalLinkAttributesObj instead
-	 * @return string The a-element
-	 */
-	static function makeKnownLinkObj(
-		$title, $text = '', $query = '', $trail = '', $prefix = '', $aprops = '', $style = ''
-	) {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		if ( $text == '' ) {
-			$text = self::linkText( $title );
-		}
-		$attribs = Sanitizer::mergeAttributes(
-			Sanitizer::decodeTagAttributes( $aprops ),
-			Sanitizer::decodeTagAttributes( $style )
-		);
-		$query = wfCgiToArray( $query );
-		list( $inside, $trail ) = self::splitTrail( $trail );
-
-		$ret = self::link( $title, "$prefix$text$inside", $attribs, $query,
-			array( 'known', 'noclasses' ) ) . $trail;
-
-		return $ret;
-	}
-
-	/**
 	 * Returns the attributes for the tooltip and access key.
 	 * @param string $name
 	 * @return array
