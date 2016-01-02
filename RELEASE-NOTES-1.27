@@ -204,6 +204,9 @@ changes to languages because of Phabricator reports.
 * OutputPage::includeJQuery() was removed (deprecated since 1.17).
 * WikiPage::updateRestrictions() was removed (deprecated since 1.19).
 * WikiPage::testPreSaveTransform() was removed (deprecated since 1.19).
+* Language::armourMath() was removed (deprecated since 1.22).
+* LanguageConverter::armourMath() was removed (deprecated since 1.22).
+* FakeConverter::armourMath() was removed (deprecated since 1.22).
 
 == Compatibility ==
 
