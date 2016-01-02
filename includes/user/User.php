@@ -3324,17 +3324,6 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get the current skin, loading it if required
-	 * @return Skin The current skin
-	 * @todo FIXME: Need to check the old failback system [AV]
-	 * @deprecated since 1.18 Use ->getSkin() in the most relevant outputting context you have
-	 */
-	public function getSkin() {
-		wfDeprecated( __METHOD__, '1.18' );
-		return RequestContext::getMain()->getSkin();
-	}
-
-	/**
 	 * Get a WatchedItem for this user and $title.
 	 *
 	 * @since 1.22 $checkRights parameter added

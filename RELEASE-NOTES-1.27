@@ -196,6 +196,7 @@ changes to languages because of Phabricator reports.
   TextPassDumper classes have been removed.
 * The maintenance/backupTextPass.inc file was deleted. You should include
   maintenance/dumpTextPass.php instead.
+* User::getSkin() was removed (deprecated since 1.18).
 
 == Compatibility ==
 
