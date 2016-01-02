@@ -1789,15 +1789,6 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Get the array mapping module names to class names
-	 * @deprecated since 1.21, Use getModuleManager()'s methods instead.
-	 * @return array
-	 */
-	function getModules() {
-		return $this->getModuleManager()->getNamesWithClasses( 'action' );
-	}
-
-	/**
 	 * Returns the list of supported formats in form ( 'format' => 'ClassName' )
 	 *
 	 * @since 1.18

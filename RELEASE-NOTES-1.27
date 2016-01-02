@@ -144,6 +144,8 @@ production.
   ApiQueryBase::keyPartToTitle() all removed (deprecated since 1.24).
 * ApiQueryBase::checkRowCount() was removed (deprecated since 1.24).
 * ApiQueryBase::getDirectionDescription() was removed (deprecated since 1.25).
+* ApiQuery::getModules() was removed (deprecated since 1.21).
+* ApiMain::getModules() was removed (deprecated since 1.21).
 
 === Languages updated in 1.27 ===
 
