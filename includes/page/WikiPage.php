@@ -3560,17 +3560,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Return a list of templates used by this article.
-	 * Uses the templatelinks table
-	 *
-	 * @deprecated since 1.19; use Title::getTemplateLinksFrom()
-	 * @return array Array of Title objects
-	 */
-	public function getUsedTemplates() {
-		return $this->mTitle->getTemplateLinksFrom();
-	}
-
-	/**
 	 * This function is called right before saving the wikitext,
 	 * so we can do things like signatures and links-in-context.
 	 *
