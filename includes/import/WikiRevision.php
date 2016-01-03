@@ -490,7 +490,7 @@ class WikiRevision {
 		$prevId = $dbw->selectField( 'revision', 'rev_id',
 			array(
 				'rev_page' => $pageId,
-				'rev_timestamp <= ' . $dbw->timestamp( $this->timestamp ),
+				'rev_timestamp <= ' . $dbw->addQuotes( $dbw->timestamp( $this->timestamp ) ),
 			),
 			__METHOD__,
 			array( 'ORDER BY' => array(
@@ -534,6 +534,16 @@ class WikiRevision {
 
 	function importLogItem() {
 		$dbw = wfGetDB( DB_MASTER );
+
+		$user = User::newFromName( $this->getUser() );
+		if ( $user ) {
+			$userId = intval( $user->getId() );
+			$userText = $user->getName();
+		} else {
+			$userId = 0;
+			$userText = $this->getUser();
+		}
+
 		# @todo FIXME: This will not record autoblocks
 		if ( !$this->getTitle() ) {
 			wfDebug( __METHOD__ . ": skipping invalid {$this->type}/{$this->action} log time, timestamp " .
@@ -566,8 +576,8 @@ class WikiRevision {
 			'log_type' => $this->type,
 			'log_action' => $this->action,
 			'log_timestamp' => $dbw->timestamp( $this->timestamp ),
-			'log_user' => User::idFromName( $this->user_text ),
-			# 'log_user_text' => $this->user_text,
+			'log_user' => $userId,
+			'log_user_text' => $userText,
 			'log_namespace' => $this->getTitle()->getNamespace(),
 			'log_title' => $this->getTitle()->getDBkey(),
 			'log_comment' => $this->getComment(),
