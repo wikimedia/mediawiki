@@ -275,14 +275,19 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * Some special pages (for example SpecialListusers) might not return the
+	 * Some special pages (for example SpecialListusers used to) might not return the
 	 * current object formatted, but return the previous one instead.
 	 * Setting this to return true will ensure formatResult() is called
 	 * one more time to make sure that the very last result is formatted
 	 * as well.
+	 *
+	 * @deprecated since 1.27
+	 *
 	 * @return bool
 	 */
 	function tryLastResult() {
+		wfDeprecated( __METHOD__, '1.27' );
+
 		return false;
 	}
 
@@ -660,12 +665,9 @@ abstract class QueryPage extends SpecialPage {
 				// @codingStandardsIgnoreEnd
 				$line = $this->formatResult( $skin, $row );
 				if ( $line ) {
-					$attr = ( isset( $row->usepatrol ) && $row->usepatrol && $row->patrolled == 0 )
-						? ' class="not-patrolled"'
-						: '';
 					$html[] = $this->listoutput
 						? $line
-						: "<li{$attr}>{$line}</li>\n";
+						: "<li>{$line}</li>\n";
 				}
 			}
 
@@ -674,12 +676,9 @@ abstract class QueryPage extends SpecialPage {
 				$row = null;
 				$line = $this->formatResult( $skin, $row );
 				if ( $line ) {
-					$attr = ( isset( $row->usepatrol ) && $row->usepatrol && $row->patrolled == 0 )
-						? ' class="not-patrolled"'
-						: '';
 					$html[] = $this->listoutput
 						? $line
-						: "<li{$attr}>{$line}</li>\n";
+						: "<li>{$line}</li>\n";
 				}
 			}
 
