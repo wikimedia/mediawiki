@@ -35,6 +35,8 @@ class BackupReader extends Maintenance {
 	public $reportingInterval = 100;
 	public $pageCount = 0;
 	public $revCount = 0;
+	public $logCount = 0;
+	public $uploadCount = 0;
 	public $dryRun = false;
 	public $uploads = false;
 	public $imageBasePath = false;
@@ -108,6 +110,7 @@ TEXT
 			$this->importFromStdin();
 		}
 
+		$this->report( true );
 		$this->output( "Done!\n" );
 		$this->output( "You might want to run rebuildrecentchanges.php to regenerate RecentChanges,\n" );
 		$this->output( "and initSiteStats.php to update page and revision counts\n" );
@@ -197,9 +200,10 @@ TEXT
 			if ( $this->skippedNamespace( $revision ) ) {
 				return false;
 			}
-			$this->uploadCount++;
-			// $this->report();
+
 			$this->progress( "upload: " . $revision->getFilename() );
+			$this->uploadCount++;
+			$this->report();
 
 			if ( !$this->dryRun ) {
 				// bluuuh hack
@@ -217,7 +221,7 @@ TEXT
 		if ( $this->skippedNamespace( $rev ) ) {
 			return;
 		}
-		$this->revCount++;
+		$this->logCount++;
 		$this->report();
 
 		if ( !$this->dryRun ) {
@@ -226,7 +230,8 @@ TEXT
 	}
 
 	function report( $final = false ) {
-		if ( $final xor ( $this->pageCount % $this->reportingInterval == 0 ) ) {
+		$reportCount = $this->pageCount + $this->logCount;
+		if ( $final xor ( $reportCount % $this->reportingInterval == 0 ) ) {
 			$this->showReport();
 		}
 	}
@@ -236,17 +241,41 @@ TEXT
 			$delta = microtime( true ) - $this->startTime;
 			if ( $delta ) {
 				$rate = sprintf( "%.2f", $this->pageCount / $delta );
-				$revrate = sprintf( "%.2f", $this->revCount / $delta );
+				// Consider log items as revisions for the rate stats (the user will
+				// figure it out fairly quickly)
+				$revrate = sprintf( "%.2f", ( $this->revCount + $this->logCount ) / $delta );
 			} else {
 				$rate = '-';
 				$revrate = '-';
 			}
+
+			$thingsToReport = [];
+			if ( $this->pageCount ) {
+				$thingsToReport[] = "$this->pageCount pages";
+			}
+			if ( $this->revCount ) {
+				$thingsToReport[] = "$this->revCount revs";
+			}
+			if ( $this->uploadCount ) {
+				$thingsToReport[] = "$this->uploadCount uploads";
+			}
+			if ( $this->logCount ) {
+				$thingsToReport[] = "$this->logCount logs";
+			}
+
+			if ( !$thingsToReport ) {
+				$output = 'Nothing imported';
+			} else {
+				$output = implode( ', ', $thingsToReport );
+			}
+
 			# Logs dumps don't have page tallies
 			if ( $this->pageCount ) {
-				$this->progress( "$this->pageCount ($rate pages/sec $revrate revs/sec)" );
+				$output .= " ($rate pages/sec $revrate revs/sec)";
 			} else {
-				$this->progress( "$this->revCount ($revrate revs/sec)" );
+				$output .= " ($revrate revs/sec)";
 			}
+			$this->progress( $output );
 		}
 		wfWaitForSlaves();
 	}
