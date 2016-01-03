@@ -689,6 +689,10 @@
 		"ValidSkinNames": {
 			"type": "object"
 		},
+		"FeedClasses": {
+			"type": "object",
+			"description": "Available feeds objects"
+		},
 		"SkinOOUIThemes": {
 			"type": "object"
 		},
