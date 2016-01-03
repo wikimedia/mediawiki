@@ -1488,22 +1488,6 @@ function wfMsg( $key ) {
 }
 
 /**
- * Same as above except doesn't transform the message
- *
- * @deprecated since 1.18
- *
- * @param string $key
- * @return string
- */
-function wfMsgNoTrans( $key ) {
-	wfDeprecated( __METHOD__, '1.21' );
-
-	$args = func_get_args();
-	array_shift( $args );
-	return wfMsgReal( $key, $args, true, false, false );
-}
-
-/**
  * Get a message from anywhere, for the current global language
  * set with $wgLanguageCode.
  *
