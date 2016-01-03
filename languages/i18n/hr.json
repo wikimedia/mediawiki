@@ -1403,7 +1403,7 @@
 	"filehist-filesize": "Veličina datoteke",
 	"filehist-comment": "Komentar",
 	"imagelinks": "Upotreba datoteke",
-	"linkstoimage": "{{PLURAL:$1|Sljedeća stranica povezuje|$1 sljedećih stranice povezuju}} na ovu datoteku:",
+	"linkstoimage": "{{PLURAL:$1|Sljedeća stranica povezuje|$1 sljedeće stranice povezuju|$1 sljedećih stranica povezuje}} na ovu datoteku:",
 	"linkstoimage-more": "Više od $1 {{PLURAL:$1|stranice povezuje|stranica povezuje}} na ovu datoteku.\nSljedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vode na ovu datoteku.\n[[Special:WhatLinksHere/$2|Ovdje se nalazi]] potpuni popis.",
 	"nolinkstoimage": "Nijedna stranica ne povezuje na ovu sliku.",
 	"morelinkstoimage": "Pogledaj [[Special:WhatLinksHere/$1|više poveznica]] za ovu datoteku.",
