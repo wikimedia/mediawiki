@@ -482,20 +482,6 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * Check whether to enable recent changes patrol features
-	 *
-	 * @deprecated since 1.22
-	 * @return bool
-	 */
-	public static function usePatrol() {
-		global $wgUser;
-
-		wfDeprecated( __METHOD__, '1.22' );
-
-		return $wgUser->useRCPatrol();
-	}
-
-	/**
 	 * Returns the string which indicates the number of watching users
 	 * @param int $count Number of user watching a page
 	 * @return string
