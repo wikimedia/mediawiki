@@ -463,13 +463,21 @@ class WikiRevision {
 		$page = WikiPage::factory( $this->title );
 		$page->loadPageData( 'fromdbmaster' );
 		if ( !$page->exists() ) {
-			# must create the page...
+			// must create the page...
 			$pageId = $page->insertOn( $dbw );
 			$created = true;
 			$oldcountable = null;
 		} else {
 			$pageId = $page->getId();
 			$created = false;
+
+			if ( !$pageId ){
+				// This seems to happen if two clients simultaneously try to import the
+				// same page
+				wfDebug( __METHOD__ . ': got invalid $pageId when importing revision of [[' .
+					$this->title->getPrefixedText() . ']], timestamp ' . $this->timestamp . "\n" );
+				return false;
+			}
 
 			$prior = $dbw->selectField( 'revision', '1',
 				array( 'rev_page' => $pageId,
@@ -487,6 +495,8 @@ class WikiRevision {
 		}
 
 		// Select previous version to make size diffs correct
+		// @todo This assumes that multiple revisions of the same page are imported
+		// in order from oldest to newest.
 		$prevId = $dbw->selectField( 'revision', 'rev_id',
 			array(
 				'rev_page' => $pageId,
