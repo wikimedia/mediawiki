@@ -671,17 +671,6 @@ class Linker {
 	}
 
 	/**
-	 * See makeImageLink()
-	 * When this function is removed, remove if( $parser instanceof Parser ) check there too
-	 * @deprecated since 1.20
-	 */
-	public static function makeImageLink2( Title $title, $file, $frameParams = array(),
-		$handlerParams = array(), $time = false, $query = "", $widthOption = null ) {
-		return self::makeImageLink( null, $title, $file, $frameParams,
-			$handlerParams, $time, $query, $widthOption );
-	}
-
-	/**
 	 * Get the link parameters for MediaTransformOutput::toHtml() from given
 	 * frame parameters supplied by the Parser.
 	 * @param array $frameParams The frame parameters
