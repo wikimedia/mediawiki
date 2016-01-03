@@ -45,6 +45,7 @@ class ExtensionProcessor implements Processor {
 		'APIPropModules',
 		'APIListModules',
 		'ValidSkinNames',
+		'FeedClasses'
 	);
 
 	/**

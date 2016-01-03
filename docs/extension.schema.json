@@ -693,6 +693,10 @@
 		"ValidSkinNames": {
 			"type": "object"
 		},
+		"FeedClasses": {
+			"type": "object",
+			"description": "Feed classes this extension uses"
+		},
 		"SkinOOUIThemes": {
 			"type": "object"
 		},
