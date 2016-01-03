@@ -199,6 +199,7 @@ changes to languages because of Phabricator reports.
 * WikiPage::getUsedTemplates() was removed (deprecated since 1.19).
 * wfEmptyMsg() was removed (deprecated since 1.18).
 * OutputPage::permissionRequired() was removed (deprecated since 1.18).
+* ChangesList::usePatrol was removed (deprecated since 1.22).
 
 == Compatibility ==
 
