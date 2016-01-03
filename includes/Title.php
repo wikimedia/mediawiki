@@ -130,12 +130,6 @@ class Title {
 	 */
 	public $mDefaultNamespace = NS_MAIN;
 
-	/**
-	 * @var bool Is $wgUser watching this page? null if unfilled, accessed
-	 * through userIsWatching()
-	 */
-	protected $mWatched = null;
-
 	/** @var int The page length, 0 for special pages */
 	protected $mLength = -1;
 
@@ -1873,25 +1867,6 @@ class Title {
 		$s = $this->getLocalURL( 'action=edit' );
 
 		return $s;
-	}
-
-	/**
-	 * Is $wgUser watching this page?
-	 *
-	 * @deprecated since 1.20; use User::isWatched() instead.
-	 * @return bool
-	 */
-	public function userIsWatching() {
-		global $wgUser;
-
-		if ( is_null( $this->mWatched ) ) {
-			if ( NS_SPECIAL == $this->mNamespace || !$wgUser->isLoggedIn() ) {
-				$this->mWatched = false;
-			} else {
-				$this->mWatched = $wgUser->isWatched( $this );
-			}
-		}
-		return $this->mWatched;
 	}
 
 	/**
