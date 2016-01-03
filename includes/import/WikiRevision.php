@@ -613,8 +613,9 @@ class WikiRevision {
 			wfDebug( __METHOD__ . ": Could not fetch remote file.\n" );
 			return false;
 		}
+		$sha1File = ltrim( sha1_file( $source ), '0' );
 		$sha1 = $this->getSha1();
-		if ( $sha1 && ( $sha1 !== sha1_file( $source ) ) ) {
+		if ( $sha1 && ( $sha1 !== $sha1File ) ) {
 			if ( $flags & File::DELETE_SOURCE ) {
 				# Broken file; delete it if it is a temporary file
 				unlink( $source );
