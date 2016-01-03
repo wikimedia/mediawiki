@@ -1544,29 +1544,6 @@ function wfMsgForContent( $key ) {
 }
 
 /**
- * Same as above except doesn't transform the message
- *
- * @deprecated since 1.18
- *
- * @param string $key
- * @return string
- */
-function wfMsgForContentNoTrans( $key ) {
-	wfDeprecated( __METHOD__, '1.21' );
-
-	global $wgForceUIMsgAsContentMsg;
-	$args = func_get_args();
-	array_shift( $args );
-	$forcontent = true;
-	if ( is_array( $wgForceUIMsgAsContentMsg )
-		&& in_array( $key, $wgForceUIMsgAsContentMsg )
-	) {
-		$forcontent = false;
-	}
-	return wfMsgReal( $key, $args, true, $forcontent, false );
-}
-
-/**
  * Really get a message
  *
  * @deprecated since 1.18

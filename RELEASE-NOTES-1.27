@@ -211,6 +211,7 @@ changes to languages because of Phabricator reports.
 * wfCheckLimits() was removed (deprecated since 1.24).
 * Linker::makeKnownLinkObj() was removed (deprecated since 1.16).
 * Linker::makeLinkObj() was removed (deprecated since 1.16).
+* wfMsgForContentNoTrans() was removed (deprecated since 1.18).
 
 == Compatibility ==
 
