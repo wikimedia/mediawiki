@@ -229,9 +229,6 @@ class OutputPage extends ContextSource {
 	/** @var string */
 	private $mPageTitleActionText = '';
 
-	/** @var array */
-	private $mParseWarnings = array();
-
 	/** @var int Cache stuff. Looks like mEnableClientCache */
 	protected $mCdnMaxage = 0;
 	/** @var int Upper limit on mCdnMaxage */
@@ -1773,7 +1770,6 @@ class OutputPage extends ContextSource {
 		$this->mNewSectionLink = $parserOutput->getNewSection();
 		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
 
-		$this->mParseWarnings = $parserOutput->getWarnings();
 		if ( !$parserOutput->isCacheable() ) {
 			$this->enableClientCache( false );
 		}
