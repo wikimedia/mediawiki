@@ -28,46 +28,46 @@
 	height: 6px;
 }
 /* @noflip */ .tipsy-n .tipsy-arrow {
-	top: 0px;
+	top: 0;
 	left: 50%;
 	margin-left: -5px;
 }
 /* @noflip */ .tipsy-nw .tipsy-arrow {
-	top: 1px;
+	top: 0;
 	left: 10px;
 }
 /* @noflip */ .tipsy-ne .tipsy-arrow {
-	top: 1px;
+	top: 0;
 	right: 10px;
 }
 /* @noflip */ .tipsy-s .tipsy-arrow {
-	bottom: 0px;
+	bottom: 0;
 	left: 50%;
 	margin-left: -5px;
 	background-position: bottom left;
 }
 /* @noflip */ .tipsy-sw .tipsy-arrow {
-	bottom: 0px;
+	bottom: 0;
 	left: 10px;
 	background-position: bottom left;
 }
 /* @noflip */ .tipsy-se .tipsy-arrow {
-	bottom: 0px;
+	bottom: 0;
 	right: 10px;
 	background-position: bottom left;
 }
 /* @noflip */ .tipsy-e .tipsy-arrow {
 	top: 50%;
 	margin-top: -5px;
-	right: 1px;
-	width: 5px;
+	right: 0;
+	width: 6px;
 	height: 11px;
 	background-position: top right;
 }
 /* @noflip */ .tipsy-w .tipsy-arrow {
 	top: 50%;
 	margin-top: -5px;
-	left: 0px;
+	left: 0;
 	width: 6px;
 	height: 11px;
 }
