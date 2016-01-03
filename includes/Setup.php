@@ -520,13 +520,15 @@ require_once "$IP/includes/compat/normal/UtfNormalUtil.php";
 $ps_validation = Profiler::instance()->scopedProfileIn( $fname . '-validation' );
 
 // T48998: Bail out early if $wgArticlePath is non-absolute
-if ( !preg_match( '/^(https?:\/\/|\/)/', $wgArticlePath ) ) {
-	throw new FatalError(
-		'If you use a relative URL for $wgArticlePath, it must start ' .
-		'with a slash (<code>/</code>).<br><br>See ' .
-		'<a href="https://www.mediawiki.org/wiki/Manual:$wgArticlePath">' .
-		'https://www.mediawiki.org/wiki/Manual:$wgArticlePath</a>.'
-	);
+foreach ( array( 'wgArticlePath', 'wgVariantArticlePath' ) as $varName ) {
+	if ( !preg_match( '/^(https?:\/\/|\/)/', $$varName ) ) {
+		throw new FatalError(
+			"If you use a relative URL for \$$varName, it must start " .
+			'with a slash (<code>/</code>).<br><br>See ' .
+			"<a href=\"https://www.mediawiki.org/wiki/Manual:\$$varName\">" .
+			"https://www.mediawiki.org/wiki/Manual:\$$varName</a>."
+		);
+	}
 }
 
 Profiler::instance()->scopedProfileOut( $ps_validation );
