@@ -215,6 +215,13 @@ changes to languages because of Phabricator reports.
 * ChangesList::usePatrol was removed (deprecated since 1.22).
 * wfMsgNoTrans() was removed (deprecated since 1.18).
 * Linker::makeImageLink2 was removed (deprecated since 1.20).
+* wfMsg was removed (deprecated since 1.18).
+* wfMsgForContent was removed (deprecated since 1.18).
+* wfMsgReal was removed (deprecated since 1.18).
+* wfMsgGetKey was removed (deprecated since 1.18).
+* wfMsgHtml was removed (deprecated since 1.18).
+* wfMsgWikiHtml was removed (deprecated since 1.18).
+* wfMsgExt was removed (deprecated since 1.18).
 
 == Compatibility ==
 
