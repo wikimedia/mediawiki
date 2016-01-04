@@ -1,6 +1,6 @@
 <?php
 /**
- * Implements Special:Confirmemail and Special:Invalidateemail
+ * Implements Special:Confirmemail
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -159,52 +159,6 @@ class EmailConfirmation extends UnlistedSpecialPage {
 		if ( !$this->getUser()->isLoggedIn() ) {
 			$title = SpecialPage::getTitleFor( 'Userlogin' );
 			$this->getOutput()->returnToMain( true, $title );
-		}
-	}
-}
-
-/**
- * Special page allows users to cancel an email confirmation using the e-mail
- * confirmation code
- *
- * @ingroup SpecialPage
- */
-class EmailInvalidation extends UnlistedSpecialPage {
-	public function __construct() {
-		parent::__construct( 'Invalidateemail', 'editmyprivateinfo' );
-	}
-
-	function execute( $code ) {
-		// Ignore things like master queries/connections on GET requests.
-		// It's very convenient to just allow formless link usage.
-		Profiler::instance()->getTransactionProfiler()->resetExpectations();
-
-		$this->setHeaders();
-		$this->checkReadOnly();
-		$this->checkPermissions();
-		$this->attemptInvalidate( $code );
-	}
-
-	/**
-	 * Attempt to invalidate the user's email address and show success or failure
-	 * as needed; if successful, link to main page
-	 *
-	 * @param string $code Confirmation code
-	 */
-	function attemptInvalidate( $code ) {
-		$user = User::newFromConfirmationCode( $code, User::READ_LATEST );
-		if ( !is_object( $user ) ) {
-			$this->getOutput()->addWikiMsg( 'confirmemail_invalid' );
-
-			return;
-		}
-
-		$user->invalidateEmail();
-		$user->saveSettings();
-		$this->getOutput()->addWikiMsg( 'confirmemail_invalidated' );
-
-		if ( !$this->getUser()->isLoggedIn() ) {
-			$this->getOutput()->returnToMain();
 		}
 	}
 }
