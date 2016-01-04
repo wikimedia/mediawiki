@@ -515,6 +515,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 			$vals['url'] = wfExpandUrl( $file->getFullUrl(), PROTO_CURRENT );
 			$vals['descriptionurl'] = wfExpandUrl( $file->getDescriptionUrl(), PROTO_CURRENT );
+
+			$shortDescriptionUrl = $file->getDescriptionShortUrl();
+			if ( $shortDescriptionUrl !== null ) {
+				$vals['descriptionshorturl'] = wfExpandUrl( $shortDescriptionUrl, PROTO_CURRENT );
+			}
 		}
 
 		if ( $sha1 ) {
