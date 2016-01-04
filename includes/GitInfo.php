@@ -96,13 +96,14 @@ class GitInfo {
 	 *
 	 * @param string $repoDir The root directory of the repo where .git can be found
 	 * @return string Path to GitInfo cache file in $wgGitInfoCacheDirectory or
-	 * null if $wgGitInfoCacheDirectory is false (cache disabled).
+	 * fallback in the extension directory itself
 	 * @since 1.24
 	 */
 	protected static function getCacheFilePath( $repoDir ) {
 		global $IP, $wgGitInfoCacheDirectory;
 
-		if ( $wgGitInfoCacheDirectory ) {
+		$path = null;
+		if ( $wgGitInfoCacheDirectory && false ) {
 			// Convert both $IP and $repoDir to canonical paths to protect against
 			// $IP having changed between the settings files and runtime.
 			$realIP = realpath( $IP );
@@ -119,9 +120,17 @@ class GitInfo {
 			// a filename
 			$repoName = strtr( $repoName, DIRECTORY_SEPARATOR, '-' );
 			$fileName = 'info' . $repoName . '.json';
-			return "{$wgGitInfoCacheDirectory}/{$fileName}";
+			$cachePath = "{$wgGitInfoCacheDirectory}/{$fileName}";
+			if ( is_readable( $cachePath ) ) {
+				$path = $cachePath;
+			}
 		}
-		return null;
+
+		if ( $path === null ) {
+			$path = "$repoDir/gitinfo.json";
+		}
+
+		return $path;
 	}
 
 	/**
