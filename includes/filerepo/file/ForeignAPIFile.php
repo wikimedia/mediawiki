@@ -219,6 +219,22 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
+	 * Get short description URL for a file based on the page ID.
+	 *
+	 * @return null|string
+	 * @since 1.27
+	 */
+	public function getDescriptionShortUrl() {
+		if ( isset( $this->mInfo['descriptionshorturl'] ) ) {
+			return $this->mInfo['descriptionshorturl'];
+		} elseif ( isset( $this->mInfo['pageid'] ) ) {
+			return $this->repo->makeUrl( array( 'curid' => $this->mInfo['pageid'] ) );
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * @param string $type
 	 * @return int|null|string
 	 */
