@@ -126,7 +126,7 @@ class ApiRollback extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'user' => array(
-				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_TYPE => 'user',
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'summary' => '',
