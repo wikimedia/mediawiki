@@ -775,6 +775,16 @@ class FileRepo {
 	}
 
 	/**
+	 * Get the URL of the MediaWiki installation
+	 *
+	 * @return string
+	 * @since 1.27
+	 */
+	public function getScriptDirUrl() {
+		return $this->scriptDirUrl;
+	}
+
+	/**
 	 * Get the URL of the content-only fragment of the description page. For
 	 * MediaWiki this means action=render. This should only be called by the
 	 * repository's file class, since it may return invalid results. User code
