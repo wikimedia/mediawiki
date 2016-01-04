@@ -152,7 +152,10 @@ class SpecialChangePassword extends FormSpecialPage {
 				? 'resetpass-submit-loggedin'
 				: 'resetpass_submit'
 		);
-		$form->addButton( 'wpCancel', $this->msg( 'resetpass-submit-cancel' )->text() );
+		$form->addButton( array(
+			'name' => 'wpCancel',
+			'value' => $this->msg( 'resetpass-submit-cancel' )->text()
+		) );
 		$form->setHeaderText( $this->msg( 'resetpass_text' )->parseAsBlock() );
 		if ( $this->mPreTextMessage instanceof Message ) {
 			$form->addPreText( $this->mPreTextMessage->parseAsBlock() );

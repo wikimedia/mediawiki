@@ -405,8 +405,14 @@ class SpecialUpload extends SpecialPage {
 
 		$form = $this->getUploadForm( $warningHtml, $sessionKey, /* $hideIgnoreWarning */ true );
 		$form->setSubmitText( $this->msg( 'upload-tryagain' )->text() );
-		$form->addButton( 'wpUploadIgnoreWarning', $this->msg( 'ignorewarning' )->text() );
-		$form->addButton( 'wpCancelUpload', $this->msg( 'reuploaddesc' )->text() );
+		$form->addButton( array(
+			'name' => 'wpUploadIgnoreWarning',
+			'value' => $this->msg( 'ignorewarning' )->text()
+		) );
+		$form->addButton( array(
+			'name' => 'wpCancelUpload',
+			'value' => $this->msg( 'reuploaddesc' )->text()
+		) );
 
 		$this->showUploadForm( $form );
 
