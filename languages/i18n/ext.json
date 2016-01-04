@@ -10,7 +10,8 @@
 			"Babanwalia",
 			"Henares",
 			"MarcoAurelio",
-			"Macofe"
+			"Macofe",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Surrayal atihus:",
@@ -1024,6 +1025,7 @@
 	"wlheader-showupdated": "Las páhinas que s'án emburacau dendi la úrtima vezi que las visoreasti son muestrás en '''negrina'''",
 	"wlnote": "Embahu {{PLURAL:$1|es el úrtimu chambu|son los úrtimus '''$1''' chambus}} enas úrtimas {{PLURAL:$2|oras|'''$2''' oras}}.",
 	"wlshowlast": "Muestral úrtimus $1 oras $2 dias",
+	"watchlistall2": "tó",
 	"watchlist-options": "Ocionis de la mi lista e seguimientu",
 	"watching": "Vehilandu...",
 	"unwatching": "Abaldonandu la vehiláncia en...",
@@ -1071,7 +1073,7 @@
 	"modifiedarticleprotection": "chambau el nivel de proteción a \"[[$1]]\"",
 	"unprotectedarticle": "\"[[$1]]\" esprotehiu",
 	"protect-title": "Estableciendu nivel de proteción pa \"$1\"",
-	"prot_1movedto2": "[[$1]] s´á moviu a [[$2]]",
+	"prot_1movedto2": "[[$1]] s’á moviu a [[$2]]",
 	"protect-legend": "Confirmal proteción",
 	"protectcomment": "Razón:",
 	"protectexpiry": "Acabiha:",
@@ -1259,7 +1261,7 @@
 	"newtitle": "Nuevu entítulu:",
 	"move-watch": "Vehilal esta páhina",
 	"movepagebtn": "Movel páhina",
-	"pagemovedsub": "S´á moviu la páhina",
+	"pagemovedsub": "S’á moviu la páhina",
 	"movepage-moved": "S'á muau '''\"$1\" a \"$2\"'''",
 	"movepage-moved-redirect": "Á siu criá una redireción.",
 	"articleexists": "Ya desisti una páhina con esi nombri u nu se premiti el nombri qu´as lihiu.\nPol favol, escrebi otru entítulu.",
@@ -1269,7 +1271,6 @@
 	"movelogpagetext": "Embahu ai una lista colas páhinas movias.",
 	"movereason": "Razón:",
 	"revertmove": "revertil",
-	"delete_and_move": "Esborral i movel",
 	"delete_and_move_text": "==Es mestel esborral==\n\nYa desisti la páhina \"[[:$1]]\". Te petaria esborrala pa premitil el treslau?",
 	"delete_and_move_confirm": "Sí, esborral la páhina",
 	"delete_and_move_reason": "Esborrá pa premitil el treslau",

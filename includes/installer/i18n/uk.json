@@ -133,7 +133,7 @@
 	"config-oracle-temp-ts": "Тимчасовий простір таблиць:",
 	"config-type-mysql": "MySQL (або сумісний)",
 	"config-type-mssql": "Microsoft SQL Server",
-	"config-support-info": "MediaWiki підтримує таки системи баз даних:\n\n$1\n\nЯкщо Ви не бачите серед перерахованих систему баз даних, яку використовуєте, виконайте вказівки, вказані вище, щоб увімкнути підтримку.",
+	"config-support-info": "MediaWiki підтримує такі системи баз даних:\n\n$1\n\nЯкщо Ви не бачите серед перерахованих систему баз даних, яку використовуєте, виконайте вказівки, вказані вище, щоб увімкнути підтримку.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] є основною для MediaWiki і найкраще підтримується.  MediaWiki також працює із [{{int:version-db-mariadb-url}} MariaDB] та [{{int:version-db-percona-url}} Percona Server], які сумісні з MySQL.  ([http://www.php.net/manual/en/mysqli.installation.php як зібрати PHP з допомогою MySQL])",
 	"config-dbsupport-postgres": "*  [{{int:version-db-postgres-url}} PostgreSQL] — популярна відкрита СУБД, альтернатива MySQL. Можуть зустрічатись деякі невеликі невиправлені помилки, не рекомендується використовувати у робочій системі.([http://www.php.net/manual/en/pgsql.installation.php як зібрати PHP з допомогою PostgreSQL]).",
 	"config-dbsupport-sqlite": "*  [{{int:version-db-sqlite-url}} SQLite] — легка система баз даних, яка дуже добре підтримується. ([http://www.php.net/manual/en/pdo.installation.php Як зібрати PHP з допомогою SQLite], що використовує PDO)",

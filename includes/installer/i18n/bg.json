@@ -62,7 +62,7 @@
 	"config-magic-quotes-sybase": "'''Фатално: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] е активирана!'''\nТова може да повреди непредвидимо въвеждането на данните.\nИнсталацията на МедияУики е невъзможна докато тази настройка не бъде изключена.",
 	"config-mbstring": "'''Фатално: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] е активирана!'''\nТова може да повреди непредвидимо въвеждането на данните.\nИнсталацията на МедияУики е невъзможна докато тази настройка не бъде изключена.",
 	"config-safe-mode": "'''Предупреждение:''' PHP работи в [http://www.php.net/features.safe-mode безопасен режим].\nТова може да създаде проблеми, особено ако качването на файлове е разрешено, както и при поддръжката на <code>math</code>.",
-	"config-xml-bad": "Липсва XML модулът на PHP.\nМедияУики се нуждае от някои функции от този модул и няма да работи при наличната конфигурация.\nПри Mandrake, необходимо е да се инсталира пакетът php-xml.",
+	"config-xml-bad": "За PHP липсва XML модул.\nМедияуики няма да работи в тази конфигурация, тъй като се изисква функционалност на този модул.\nМоже би ще трябва да инсталирате RPM-пакет php-xml.",
 	"config-pcre-old": "<strong>Фатална грешка:</strong> Изисква се PCRE версия $1 или по-нова.\nИзпълнимият файл на PHP е свързан с PCRE версия $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/Повече информация за PCRE].",
 	"config-pcre-no-utf8": "'''Фатално''': Модулът PCRE на PHP изглежда е компилиран без поддръжка на PCRE_UTF8.\nЗа да функционира правилно, МедияУики изисква поддръжка на UTF-8.",
 	"config-memory-raised": "<code>memory_limit</code> на PHP е $1, увеличаване до $2.",
@@ -100,8 +100,6 @@
 	"config-db-install-account": "Потребителска сметка за инсталацията",
 	"config-db-username": "Потребителско име за базата от данни:",
 	"config-db-password": "Парола за базата от данни:",
-	"config-db-password-empty": "Въведете парола за новия потребител на базата от данни: $1.\nВъпреки че е допустимо да се създават потребители без пароли, това е незащитено действие.",
-	"config-db-username-empty": "Необходимо е да се въведе стойност за „{{int:config-db-username}}“.",
 	"config-db-install-username": "Въвежда се потребителско име, което ще се използва за свързване с базата от данни по време на процеса по инсталация.\nТова не е потребителско име за сметка в МедияУики; това е потребителско име за базата от данни.",
 	"config-db-install-password": "Въвежда се парола, която ще бъде използвана за свързване с базата от данни по време на инсталационния процес.\nТова не е парола за сметка в МедияУики; това е парола за базата от данни.",
 	"config-db-install-help": "Въвеждат се потребителско име и парола, които ще бъдат използвани за свързване с базата от данни по време на инсталационния процес.",
@@ -315,5 +313,5 @@
 	"config-nofile": "Файлът „$1“ не може да бъде открит. Да не е бил изтрит?",
 	"config-extension-link": "Знаете ли, че това уики поддържа [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions разширения]?\n\nМожете да разгледате [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category разширенията по категория] или [//www.mediawiki.org/wiki/Extension_Matrix Матрицата на разширенията] за пълен списък на разширенията.",
 	"mainpagetext": "'''Уикито беше успешно инсталирано.'''",
-	"mainpagedocfooter": "Разгледайте [//meta.wikimedia.org/wiki/Help:Contents ръководството] за подробна информация относно използването на уики софтуера.\n\n== Първи стъпки ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Настройки за конфигуриране]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ЧЗВ за МедияУики]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Пощенски списък относно нови версии на МедияУики]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Локализиране на МедияУики]"
+	"mainpagedocfooter": "Разгледайте [//meta.wikimedia.org/wiki/Help:Contents ръководството] за подробна информация относно използването на уики софтуера.\n\n== Първи стъпки ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Настройки за конфигуриране]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ЧЗВ за МедияУики]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Пощенски списък относно нови версии на МедияУики]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Локализиране на МедияУики]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Научете как да се справяте със спама във вашето уики]"
 }
