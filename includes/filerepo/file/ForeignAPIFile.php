@@ -65,6 +65,9 @@ class ForeignAPIFile extends File {
 
 		$info = $repo->getImageInfo( $data );
 
+		// TODO remove this
+		print "<pre>{$info['curid']}</pre>";
+
 		if ( $info ) {
 			$lastRedirect = isset( $data['query']['redirects'] )
 				? count( $data['query']['redirects'] ) - 1
@@ -90,7 +93,7 @@ class ForeignAPIFile extends File {
 	 * @return string
 	 */
 	static function getProps() {
-		return 'timestamp|user|comment|url|size|sha1|metadata|mime|mediatype|extmetadata';
+		return 'timestamp|user|comment|url|size|sha1|metadata|mime|mediatype|extmetadata|curid';
 	}
 
 	// Dummy functions...
@@ -216,6 +219,13 @@ class ForeignAPIFile extends File {
 	 */
 	public function getUrl() {
 		return isset( $this->mInfo['url'] ) ? strval( $this->mInfo['url'] ) : null;
+	}
+
+	/**
+	 * @return int|null
+	 */
+	public function getPageId() {
+		return isset( $this->mInfo['curid'] ) ? intval( $this->mInfo['curid'] ) : null;
 	}
 
 	/**

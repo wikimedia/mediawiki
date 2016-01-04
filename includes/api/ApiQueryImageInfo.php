@@ -414,6 +414,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 		}
 
+		$vals['pageid'] = $file->getPageId();
+
 		// This is shown even if the file is revdelete'd in interface
 		// so do same here.
 		if ( isset( $prop['size'] ) || isset( $prop['dimensions'] ) ) {

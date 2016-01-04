@@ -758,6 +758,16 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * @return int
+	 * @throws MWException
+	 */
+	function getPageId() {
+		$page = WikiPage::factory( $this->title );
+
+		return $page->getId();
+	}
+
+	/**
 	 * Get handler-specific metadata
 	 * @return string
 	 */

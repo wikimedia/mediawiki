@@ -354,6 +354,13 @@ abstract class File implements IDBAccessObject {
 		return $this->url;
 	}
 
+	/*
+	 * Get the page id for a file
+	 */
+	public function getPageId() {
+
+	}
+
 	/**
 	 * Return a fully-qualified URL to the file.
 	 * Upload URL paths _may or may not_ be fully qualified, so
