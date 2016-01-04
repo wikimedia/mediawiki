@@ -215,6 +215,7 @@ changes to languages because of Phabricator reports.
 * ChangesList::usePatrol was removed (deprecated since 1.22).
 * wfMsgNoTrans() was removed (deprecated since 1.18).
 * Linker::makeImageLink2 was removed (deprecated since 1.20).
+* Title::userIsWatching() was removed (deprecated since 1.20).
 
 == Compatibility ==
 
