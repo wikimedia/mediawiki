@@ -1,0 +1,228 @@
+<?php
+/**
+ * WebRequest clone which takes values from a provided array.
+ *
+ * @ingroup HTTP
+ */
+class FauxRequest extends WebRequest {
+	private $wasPosted = false;
+	private $session = array();
+	private $requestUrl;
+	protected $cookies = array();
+
+	/**
+	 * @param array $data Array of *non*-urlencoded key => value pairs, the
+	 *   fake GET/POST values
+	 * @param bool $wasPosted Whether to treat the data as POST
+	 * @param array|null $session Session array or null
+	 * @param string $protocol 'http' or 'https'
+	 * @throws MWException
+	 */
+	public function __construct( $data = array(), $wasPosted = false,
+		$session = null, $protocol = 'http'
+	) {
+		$this->requestTime = microtime( true );
+
+		if ( is_array( $data ) ) {
+			$this->data = $data;
+		} else {
+			throw new MWException( "FauxRequest() got bogus data" );
+		}
+		$this->wasPosted = $wasPosted;
+		if ( $session ) {
+			$this->session = $session;
+		}
+		$this->protocol = $protocol;
+	}
+
+	/**
+	 * Initialise the header list
+	 */
+	protected function initHeaders() {
+		// Nothing to init
+	}
+
+	/**
+	 * @param string $name
+	 * @param string $default
+	 * @return string
+	 */
+	public function getText( $name, $default = '' ) {
+		# Override; don't recode since we're using internal data
+		return (string)$this->getVal( $name, $default );
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getValues() {
+		return $this->data;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getQueryValues() {
+		if ( $this->wasPosted ) {
+			return array();
+		} else {
+			return $this->data;
+		}
+	}
+
+	public function getMethod() {
+		return $this->wasPosted ? 'POST' : 'GET';
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function wasPosted() {
+		return $this->wasPosted;
+	}
+
+	public function getCookie( $key, $prefix = null, $default = null ) {
+		if ( $prefix === null ) {
+			global $wgCookiePrefix;
+			$prefix = $wgCookiePrefix;
+		}
+		$name = $prefix . $key;
+		return isset( $this->cookies[$name] ) ? $this->cookies[$name] : $default;
+	}
+
+	/**
+	 * @since 1.26
+	 * @param string $name Unprefixed name of the cookie to set
+	 * @param string|null $value Value of the cookie to set
+	 * @param string|null $prefix Cookie prefix. Defaults to $wgCookiePrefix
+	 */
+	public function setCookie( $key, $value, $prefix = null ) {
+		$this->setCookies( array( $key => $value ), $prefix );
+	}
+
+	/**
+	 * @since 1.26
+	 * @param array $cookies
+	 * @param string|null $prefix Cookie prefix. Defaults to $wgCookiePrefix
+	 */
+	public function setCookies( $cookies, $prefix = null ) {
+		if ( $prefix === null ) {
+			global $wgCookiePrefix;
+			$prefix = $wgCookiePrefix;
+		}
+		foreach ( $cookies as $key => $value ) {
+			$name = $prefix . $key;
+			$this->cookies[$name] = $value;
+		}
+	}
+
+	public function checkSessionCookie() {
+		return false;
+	}
+
+	/**
+	 * @since 1.25
+	 */
+	public function setRequestURL( $url ) {
+		$this->requestUrl = $url;
+	}
+
+	/**
+	 * @since 1.25 MWException( "getRequestURL not implemented" )
+	 * no longer thrown.
+	 */
+	public function getRequestURL() {
+		if ( $this->requestUrl === null ) {
+			throw new MWException( 'Request URL not set' );
+		}
+		return $this->requestUrl;
+	}
+
+	public function getProtocol() {
+		return $this->protocol;
+	}
+
+	/**
+	 * @param string $name
+	 * @param string $val
+	 */
+	public function setHeader( $name, $val ) {
+		$this->setHeaders( array( $name => $val ) );
+	}
+
+	/**
+	 * @since 1.26
+	 * @param array $headers
+	 */
+	public function setHeaders( $headers ) {
+		foreach ( $headers as $name => $val ) {
+			$name = strtoupper( $name );
+			$this->headers[$name] = $val;
+		}
+	}
+
+	/**
+	 * @param string $key
+	 * @return array|null
+	 */
+	public function getSessionData( $key ) {
+		if ( isset( $this->session[$key] ) ) {
+			return $this->session[$key];
+		}
+		return null;
+	}
+
+	/**
+	 * @param string $key
+	 * @param array $data
+	 */
+	public function setSessionData( $key, $data ) {
+		$this->session[$key] = $data;
+	}
+
+	/**
+	 * @return array|mixed|null
+	 */
+	public function getSessionArray() {
+		return $this->session;
+	}
+
+	/**
+	 * FauxRequests shouldn't depend on raw request data (but that could be implemented here)
+	 * @return string
+	 */
+	public function getRawQueryString() {
+		return '';
+	}
+
+	/**
+	 * FauxRequests shouldn't depend on raw request data (but that could be implemented here)
+	 * @return string
+	 */
+	public function getRawPostString() {
+		return '';
+	}
+
+	/**
+	 * FauxRequests shouldn't depend on raw request data (but that could be implemented here)
+	 * @return string
+	 */
+	public function getRawInput() {
+		return '';
+	}
+
+	/**
+	 * @param array $extWhitelist
+	 * @return bool
+	 */
+	public function checkUrlExtension( $extWhitelist = array() ) {
+		return true;
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getRawIP() {
+		return '127.0.0.1';
+	}
+}
