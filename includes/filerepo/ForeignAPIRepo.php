@@ -218,7 +218,11 @@ class ForeignAPIRepo extends FileRepo {
 		if ( $data && isset( $data['query']['pages'] ) ) {
 			foreach ( $data['query']['pages'] as $info ) {
 				if ( isset( $info['imageinfo'][0] ) ) {
-					return $info['imageinfo'][0];
+					$return = $info['imageinfo'][0];
+					if ( isset( $info['pageid'] ) ) {
+						$return['pageid'] = $info['pageid'];
+					}
+					return $return;
 				}
 			}
 		}
