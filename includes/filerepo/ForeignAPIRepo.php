@@ -499,7 +499,7 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * Like a Http:get request, but with custom User-Agent.
-	 * @see Http:get
+	 * @see Http::get
 	 * @param string $url
 	 * @param string $timeout
 	 * @param array $options

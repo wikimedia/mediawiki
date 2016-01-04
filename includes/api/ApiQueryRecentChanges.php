@@ -224,7 +224,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addWhereIf( 'page_is_redirect = 1', isset( $show['redirect'] ) );
 
 			if ( isset( $show['unpatrolled'] ) ) {
-				// See ChangesList:isUnpatrolled
+				// See ChangesList::isUnpatrolled
 				if ( $user->useRCPatrol() ) {
 					$this->addWhere( 'rc_patrolled = 0' );
 				} elseif ( $user->useNPPatrol() ) {
