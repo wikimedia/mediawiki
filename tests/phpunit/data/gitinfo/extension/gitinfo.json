@@ -1,0 +1,7 @@
+{
+    "head": "refs/heads/master",
+    "headSHA1": "0123456789abcdef0123456789abcdef01234567",
+    "headCommitDate": "1070884800",
+    "branch": "master",
+    "remoteURL": "https://gerrit.wikimedia.org/r/mediawiki/core"
+}
