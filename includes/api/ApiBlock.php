@@ -141,7 +141,7 @@ class ApiBlock extends ApiBase {
 	public function getAllowedParams() {
 		return array(
 			'user' => array(
-				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_TYPE => 'user',
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'expiry' => 'never',

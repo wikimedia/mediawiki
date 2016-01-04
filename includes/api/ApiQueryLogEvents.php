@@ -165,7 +165,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			if ( $userid ) {
 				$this->addWhereFld( 'log_user', $userid );
 			} else {
-				$this->addWhereFld( 'log_user_text', IP::sanitizeIP( $user ) );
+				$this->addWhereFld( 'log_user_text', $user );
 			}
 		}
 
@@ -430,7 +430,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				),
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
 			),
-			'user' => null,
+			'user' => array(
+				ApiBase::PARAM_TYPE => 'user',
+			),
 			'title' => null,
 			'namespace' => array(
 				ApiBase::PARAM_TYPE => 'namespace'

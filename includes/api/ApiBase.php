@@ -79,7 +79,7 @@ abstract class ApiBase extends ContextSource {
 	 * - timestamp: A timestamp in any format recognized by MWTimestamp, or the
 	 *   string 'now' representing the current timestamp. Will be returned in
 	 *   TS_MW format.
-	 * - user: A MediaWiki username. Will be returned normalized but not canonicalized.
+	 * - user: A MediaWiki username or IP. Will be returned normalized but not canonicalized.
 	 * - upload: An uploaded file. Will be returned as a WebRequestUpload object.
 	 *   Cannot be used with PARAM_ISMULTI.
 	 */

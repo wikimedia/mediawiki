@@ -273,6 +273,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				ApiBase::PARAM_ISMULTI => true
 			),
 			'users' => array(
+				ApiBase::PARAM_TYPE => 'user',
 				ApiBase::PARAM_ISMULTI => true
 			),
 			'ip' => array(

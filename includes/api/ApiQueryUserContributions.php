@@ -461,6 +461,7 @@ class ApiQueryContributions extends ApiQueryBase {
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			),
 			'user' => array(
+				ApiBase::PARAM_TYPE => 'user',
 				ApiBase::PARAM_ISMULTI => true
 			),
 			'userprefix' => null,
