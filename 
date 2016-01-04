@@ -1,0 +1,53 @@
+[1mdiff --git a/includes/filerepo/ForeignAPIRepo.php b/includes/filerepo/ForeignAPIRepo.php[m
+[1mindex ba83e8b..a8d37a1 100644[m
+[1m--- a/includes/filerepo/ForeignAPIRepo.php[m
+[1m+++ b/includes/filerepo/ForeignAPIRepo.php[m
+[36m@@ -219,9 +219,8 @@[m [mclass ForeignAPIRepo extends FileRepo {[m
+ 			foreach ( $data['query']['pages'] as $info ) {[m
+ 				if ( isset( $info['imageinfo'][0] ) ) {[m
+ 					$return = $info['imageinfo'][0];[m
+[31m-					if ( isset( $info['descriptionshorturl'] ) ) {[m
+[31m-						$return['descriptionshorturl'] =[m
+[31m-							$this->makeUrl( array( 'curid' => $info['pageid'] ) );[m
+[32m+[m					[32mif ( isset( $info['pageid'] ) ) {[m
+[32m+[m						[32m$return['pageid'] = $info['pageid'];[m
+ 					}[m
+ 					return $return;[m
+ 				}[m
+[1mdiff --git a/includes/filerepo/file/ForeignAPIFile.php b/includes/filerepo/file/ForeignAPIFile.php[m
+[1mindex 6fd2d58..ed8e50e 100644[m
+[1m--- a/includes/filerepo/file/ForeignAPIFile.php[m
+[1m+++ b/includes/filerepo/file/ForeignAPIFile.php[m
+[36m@@ -225,9 +225,13 @@[m [mclass ForeignAPIFile extends File {[m
+ 	 * @since 1.27[m
+ 	 */[m
+ 	public function getDescriptionShortUrl() {[m
+[31m-		return isset( $this->mInfo['descriptionshorturl'] )[m
+[31m-			? $this->mInfo['descriptionshorturl'][m
+[31m-			: null;[m
+[32m+[m		[32mif ( isset( $this->mInfo['descriptionshorturl'] ) ) {[m
+[32m+[m			[32mreturn $this->mInfo['descriptionshorturl'];[m
+[32m+[m		[32m} elseif ( isset( $this->mInfo['pageid'] ) ) {[m
+[32m+[m			[32mreturn $this->repo->makeUrl( array( 'curid' => $this->mInfo['pageid'] ) );[m
+[32m+[m		[32m} else {[m
+[32m+[m			[32mreturn null;[m
+[32m+[m		[32m}[m
+ 	}[m
+ [m
+ 	/**[m
+[1mdiff --git a/includes/filerepo/file/LocalFile.php b/includes/filerepo/file/LocalFile.php[m
+[1mindex 750c98c..7c11caa 100644[m
+[1m--- a/includes/filerepo/file/LocalFile.php[m
+[1m+++ b/includes/filerepo/file/LocalFile.php[m
+[36m@@ -768,7 +768,10 @@[m [mclass LocalFile extends File {[m
+ 		$pageId = $this->title->getArticleID();[m
+ [m
+ 		if ( $pageId !== null ) {[m
+[31m-			return $this->repo->makeUrl( array( 'curid' => $pageId ) );[m
+[32m+[m			[32m$url = $this->repo->makeUrl( array( 'curid' => $pageId ) );[m
+[32m+[m			[32mif ( $url !== false ) {[m
+[32m+[m				[32mreturn $url;[m
+[32m+[m			[32m}[m
+ 		}[m
+ 		return null;[m
+ 	}[m
