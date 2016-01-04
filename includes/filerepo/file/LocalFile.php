@@ -758,6 +758,22 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * Get short description URL for a file based on the page ID.
+	 *
+	 * @return string|null
+	 * @throws MWException
+	 * @since 1.27
+	 */
+	public function getDescriptionShortUrl() {
+		$pageId = $this->title->getArticleID();
+
+		if ( $pageId !== null ) {
+			return $this->repo->makeUrl( array( 'curid' => $pageId ) );
+		}
+		return null;
+	}
+
+	/**
 	 * Get handler-specific metadata
 	 * @return string
 	 */
