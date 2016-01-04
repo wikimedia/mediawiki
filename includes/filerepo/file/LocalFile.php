@@ -758,6 +758,18 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * Get short description URL for a files based on the page ID
+	 *
+	 * @return string
+	 * @throws MWException
+	 */
+	function getDescriptionShortUrl() {
+		$page = WikiPage::factory( $this->title );
+
+		return $this->repo->getScriptDirUrl() . '/?curid=' . $page->getId();
+	}
+
+	/**
 	 * Get handler-specific metadata
 	 * @return string
 	 */

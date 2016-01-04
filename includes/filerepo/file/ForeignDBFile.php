@@ -127,4 +127,21 @@ class ForeignDBFile extends LocalFile {
 		// Restore remote behavior
 		return File::getDescriptionText( $lang );
 	}
+
+	/**
+	 * Get short description URL for a files based on the page ID
+	 *
+	 * @return string
+	 * @throws DBUnexpectedError
+	 */
+	function getDescriptionShortUrl() {
+		$db = $this->repo->getSlaveDB();
+		$pageId = $db->selectField( 'page', 'page_id', array(
+			'page_namespace' => NS_FILE,
+			'page_title' => $this->title->getDBkey()
+		) );
+
+		return $this->repo->getScriptDirUrl() . '/?curid=' . $pageId;
+	}
+
 }

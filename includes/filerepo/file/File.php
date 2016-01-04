@@ -354,6 +354,11 @@ abstract class File implements IDBAccessObject {
 		return $this->url;
 	}
 
+	/*
+	 * Get short description URL for a files based on the page ID
+	 */
+	abstract public function getDescriptionShortUrl();
+
 	/**
 	 * Return a fully-qualified URL to the file.
 	 * Upload URL paths _may or may not_ be fully qualified, so
