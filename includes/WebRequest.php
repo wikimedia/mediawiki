@@ -28,11 +28,6 @@
  * URL or via a POSTed form stripping illegal input characters and
  * normalizing Unicode sequences.
  *
- * Usually this is used via a global singleton, $wgRequest. You should
- * not create a second WebRequest object; make a FauxRequest object if
- * you want to pass arbitrary data to some function in place of the web
- * input.
- *
  * @ingroup HTTP
  */
 class WebRequest {
