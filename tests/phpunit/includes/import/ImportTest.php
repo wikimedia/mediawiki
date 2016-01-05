@@ -14,6 +14,60 @@ class ImportTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @dataProvider getUnknownTagsXML
+	 * @param $xml
+	 */
+	public function testUnknownXMLTags( $xml ) {
+		$source = $this->getDataSource( $xml );
+
+		$importer = new WikiImporter(
+			$source,
+			ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+		);
+
+		$importer->doImport();
+		$title = Title::newFromText( "File:Me.txt" );
+		$this->assertTrue( $title->exists() );
+	}
+
+	public function getUnknownTagsXML() {
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		return array(
+			array(
+				<<< EOF
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
+  <page unknown="123" dontknow="533" >
+    <title>File:Me.txt</title>
+    <unknowntag>Should be ignored</unknowntag>
+    <ns>6</ns>
+    <id unknown="123" dontknow="533" >14</id>
+    <revision>
+      <id unknown="123" dontknow="533" >15</id>
+      <unknowntag>Should be ignored</unknowntag>
+      <timestamp>2016-01-03T11:18:43Z</timestamp>
+      <contributor>
+        <unknowntag>Should be ignored</unknowntag>
+        <username unknown="123" dontknow="533" >Admin</username>
+        <id>1</id>
+      </contributor>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve" bytes="0" />
+      <sha1>phoiac9h4m842xq45sp7s6u21eteeq1</sha1>
+      <unknowntag>Should be ignored</unknowntag>
+    </revision>
+  </page>
+  <unknowntag>Should be ignored</unknowntag>
+</mediawiki>
+EOF
+			,
+				null
+			),
+		);
+		// @codingStandardsIgnoreEnd
+	}
+
+	/**
 	 * @covers WikiImporter::handlePage
 	 * @dataProvider getRedirectXML
 	 * @param string $xml
