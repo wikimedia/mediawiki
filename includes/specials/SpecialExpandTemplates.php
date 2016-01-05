@@ -207,7 +207,7 @@ class SpecialExpandTemplates extends SpecialPage {
 		$form
 			->setSubmitTextMsg( 'expand_templates_ok' )
 			->setWrapperLegendMsg( 'expandtemplates' )
-			->setHeaderText( $this->msg( 'expand_templates_intro' )->text() )
+			->setHeaderText( $this->msg( 'expand_templates_intro' )->parse() )
 			->setSubmitCallback( array( $this, 'onSubmitInput' ) )
 			->showAlways();
 	}
