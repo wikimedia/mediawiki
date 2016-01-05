@@ -216,6 +216,8 @@ changes to languages because of Phabricator reports.
 * wfMsgNoTrans() was removed (deprecated since 1.18).
 * Linker::makeImageLink2 was removed (deprecated since 1.20).
 * Title::userIsWatching() was removed (deprecated since 1.20).
+* Removed WaitForSlave maintenance script; use SELECT MASTER_POS_WAIT()
+  database function directly instead.
 
 == Compatibility ==
 

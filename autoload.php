@@ -1355,7 +1355,6 @@ $wgAutoloadLocalClasses = array(
 	'VirtualRESTService' => __DIR__ . '/includes/libs/virtualrest/VirtualRESTService.php',
 	'VirtualRESTServiceClient' => __DIR__ . '/includes/libs/virtualrest/VirtualRESTServiceClient.php',
 	'WANObjectCache' => __DIR__ . '/includes/libs/objectcache/WANObjectCache.php',
-	'WaitForSlave' => __DIR__ . '/maintenance/waitForSlave.php',
 	'WantedCategoriesPage' => __DIR__ . '/includes/specials/SpecialWantedcategories.php',
 	'WantedFilesPage' => __DIR__ . '/includes/specials/SpecialWantedfiles.php',
 	'WantedPagesPage' => __DIR__ . '/includes/specials/SpecialWantedpages.php',
