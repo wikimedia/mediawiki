@@ -102,7 +102,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$out->addModuleStyles( 'mediawiki.special' );
 
 		$this->mTarget = is_null( $par )
-			? $request->getVal( 'wpTarget', '' )
+			? $request->getVal( 'wpTarget', $request->getVal( 'target', '' ) )
 			: $par;
 
 		// make sure, that HTMLForm uses the correct target
@@ -116,7 +116,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		// error out if sending user cannot do this
 		$error = self::getPermissionsError(
 			$this->getUser(),
-			$this->getRequest()->getVal( 'wpEditToken' ),
+			$request->getVal( 'wpEditToken' ),
 			$this->getConfig()
 		);
 
@@ -138,6 +138,12 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				list( $title, $msg, $params ) = $error;
 				throw new ErrorPageError( $title, $msg, $params );
 		}
+
+		// make sure, that a submitted form isn't submitted to a subpage (which could be
+		// a non-existing username)
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getPageTitle() ); // Remove subpage
+		$this->setContext( $context );
 
 		// a little hack: HTMLForm will check $this->mTarget only, if the form was posted, not
 		// if the user opens Special:EmailUser/Florian (e.g.). So check, if the user did that,
@@ -249,12 +255,11 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			),
 		), $this->getContext() );
 
-		$form
+		$value = $form
 			->setMethod( 'post' )
 			->setSubmitCallback( array( $this, 'sendEmailForm' ) )
 			->setSubmitProgressive()
 			->setId( 'askusername' )
-			->addHiddenField( 'title', $this->getPageTitle()->getPrefixedText() )
 			->setWrapperLegendMsg( 'emailtarget' )
 			->setSubmitTextMsg( 'emailusernamesubmit' )
 			->show();
@@ -273,15 +278,13 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return false;
 		}
 
-		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$form = HTMLForm::factory( 'ooui', $this->getFormFields(), $context );
+		$form = HTMLForm::factory( 'ooui', $this->getFormFields(), $this->getContext() );
 		// By now we are supposed to be sure that $this->mTarget is a user name
-		$form->addPreText( $this->msg( 'emailpagetext', $this->mTarget )->parse() );
-		$form->setSubmitTextMsg( 'emailsend' );
-		$form->setSubmitCallback( array( __CLASS__, 'uiSubmit' ) );
-		$form->setWrapperLegendMsg( 'email-legend' );
-		$form->loadData();
+		$form->addPreText( $this->msg( 'emailpagetext', $this->mTarget )->parse() )
+			->setSubmitTextMsg( 'emailsend' )
+			->setSubmitCallback( array( $this, 'submit' ) )
+			->setWrapperLegendMsg( 'email-legend' )
+			->loadData();
 
 		if ( !Hooks::run( 'EmailUserForm', array( &$form ) ) ) {
 			return false;
@@ -298,44 +301,42 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * Submit callback for an HTMLForm object, will simply call submit().
-	 *
-	 * @since 1.20
-	 * @param array $data
-	 * @param HTMLForm $form
-	 * @return Status|string|bool
-	 */
-	public static function uiSubmit( array $data, HTMLForm $form ) {
-		return self::submit( $data, $form->getContext() );
-	}
-
-	/**
 	 * Really send a mail. Permissions should have been checked using
 	 * getPermissionsError(). It is probably also a good
 	 * idea to check the edit token and ping limiter in advance.
 	 *
 	 * @param array $data
-	 * @param IContextSource $context
+	 * @param HTMLForm $form
 	 * @return Status|string|bool Status object, or potentially a String on error
 	 * or maybe even true on success if anything uses the EmailUser hook.
 	 */
-	public static function submit( array $data, IContextSource $context ) {
-		$config = $context->getConfig();
+	public function submit( array $data, HTMLForm $form ) {
+		$config = $this->getConfig();
+		$request = $this->getRequest();
 
 		$target = self::getTarget( $data['Target'] );
 		if ( !$target instanceof User ) {
 			// Messages used here: notargettext, noemailtext, nowikiemailtext
-			return $context->msg( $target . 'text' )->parseAsBlock();
+			return $this->msg( $target . 'text' )->parseAsBlock();
 		}
 
 		$to = MailAddress::newFromUser( $target );
-		$from = MailAddress::newFromUser( $context->getUser() );
+		$from = MailAddress::newFromUser( $this->getUser() );
 		$subject = $data['Subject'];
 		$text = $data['Text'];
 
+		// e-mail content and subject are required fields, and the user shouldn't be
+		// able to sent the form without it (in most modern browsers, except =< IE9). Don't
+		// add an error message, the fields are already marked as required and the browser should
+		// reject to submit the form without it. This also makes sure, that the form doesn't try
+		// to send an e-mail, when the user submits the user selection form.
+		if ( !$text || !$subject ) {
+			return;
+		}
+
 		// Add a standard footer and trim up trailing newlines
 		$text = rtrim( $text ) . "\n\n-- \n";
-		$text .= $context->msg( 'emailuserfooter',
+		$text .= $this->msg( 'emailuserfooter',
 			$from->name, $to->name )->inContentLanguage()->text();
 
 		$error = '';
@@ -386,7 +387,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			// unless they are emailing themselves, in which case one
 			// copy of the message is sufficient.
 			if ( $data['CCMe'] && $to != $from ) {
-				$cc_subject = $context->msg( 'emailccsubject' )->rawParams(
+				$cc_subject = $this->msg( 'emailccsubject' )->rawParams(
 					$target->getName(), $subject )->text();
 
 				// target and sender are equal, because this is the CC for the sender
