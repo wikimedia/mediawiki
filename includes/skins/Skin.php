@@ -560,7 +560,7 @@ abstract class Skin extends ContextSource {
 			$classes .= ' catlinks-allhidden';
 		}
 
-		return "<div id='catlinks' class='$classes'>{$catlinks}</div>";
+		return "<div id='catlinks' class='$classes' data-mw='interface'>{$catlinks}</div>";
 	}
 
 	/**

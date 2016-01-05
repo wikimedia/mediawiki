@@ -174,7 +174,9 @@
 					);
 				}
 				if ( response.parse.categorieshtml ) {
-					$( '#catlinks' ).replaceWith( response.parse.categorieshtml[ '*' ] );
+					$content = $( $.parseHTML( response.parse.categorieshtml[ '*' ] ) );
+					mw.hook( 'wikipage.categories' ).fire( $content );
+					$( '.catlinks[data-mw="interface"]' ).replaceWith( $content );
 				}
 				if ( response.parse.templates ) {
 					newList = [];
