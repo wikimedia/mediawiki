@@ -7347,6 +7347,7 @@ $wgUseAjax = true;
 /**
  * List of Ajax-callable functions.
  * Extensions acting as Ajax callbacks must register here
+ * @deprecated (officially) since 1.27; use the API instead
  */
 $wgAjaxExportList = array();
 
