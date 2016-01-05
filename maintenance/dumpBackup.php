@@ -95,12 +95,10 @@ TEXT;
 		$this->reporting = !$this->hasOption( 'quiet' );
 
 		if ( $this->hasOption( 'pagelist' ) ) {
-			$olddir = getcwd();
-			chdir( $originalDir );
-			$pages = file( $this->getOption( 'quiet' ) );
-			chdir( $olddir );
+			$filename = $this->getOption( 'pagelist' );
+			$pages = file( $filename );
 			if ( $pages === false ) {
-				echo "Unable to open file {$options['pagelist']}\n";
+				$this->fatalError( "Unable to open file {$filename}\n" );
 				die( 1 );
 			}
 			$pages = array_map( 'trim', $pages );
