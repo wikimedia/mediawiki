@@ -91,6 +91,7 @@ class ExtensionProcessor implements Processor {
 	 * @var array
 	 */
 	protected static $notAttributes = array(
+		'define',
 		'callback',
 		'Hooks',
 		'namespaces',
@@ -153,6 +154,13 @@ class ExtensionProcessor implements Processor {
 	 * @return array
 	 */
 	public function extractInfo( $path, array $info, $version ) {
+		if ( isset( $info['define'] ) ) {
+			foreach ( $info['define'] as $name => $val ) {
+				foreach ( (array)$val as $value ) {
+					define( $name, $value );
+				}
+			}
+		}
 		$this->extractConfig( $info );
 		$this->extractHooks( $info );
 		$dir = dirname( $path );
