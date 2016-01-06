@@ -727,17 +727,6 @@ class WebRequest {
 	}
 
 	/**
-	 * Take an arbitrary query and rewrite the present URL to include it
-	 * @deprecated Use appendQueryValue/appendQueryArray instead
-	 * @param string $query Query string fragment; do not include initial '?'
-	 * @return string
-	 */
-	public function appendQuery( $query ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		return $this->appendQueryArray( wfCgiToArray( $query ) );
-	}
-
-	/**
 	 * @param string $key
 	 * @param string $value
 	 * @param bool $onlyquery [deprecated]
