@@ -38,18 +38,27 @@ class ShortPagesPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
+		$tables = array( 'page' );
+		$conds = array(
+			'page_namespace' => MWNamespace::getContentNamespaces(),
+			'page_is_redirect' => 0
+		);
+		$joinConds = array();
+		$options = array( 'USE INDEX' => array( 'page' => 'page_redirect_namespace_len' ) );
+
+		// Allow extensions to modify the query
+		Hooks::run( 'ShortPagesQuery', array( &$tables, &$conds, &$joinConds, &$options ) );
+
 		return array(
-			'tables' => array( 'page' ),
+			'tables' => $tables,
 			'fields' => array(
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'page_len'
 			),
-			'conds' => array(
-				'page_namespace' => MWNamespace::getContentNamespaces(),
-				'page_is_redirect' => 0
-			),
-			'options' => array( 'USE INDEX' => 'page_redirect_namespace_len' )
+			'conds' => $conds,
+			'join_conds' => $joinConds,
+			'options' => $options
 		);
 	}
 
