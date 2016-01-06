@@ -15,7 +15,7 @@
     "grunt-jscs": "2.5.0",
     "grunt-jsonlint": "1.0.7",
     "grunt-karma": "0.12.1",
-    "karma": "0.13.10",
+    "karma": "0.13.19",
     "karma-chrome-launcher": "0.2.0",
     "karma-firefox-launcher": "0.1.6",
     "karma-qunit": "0.1.5",
