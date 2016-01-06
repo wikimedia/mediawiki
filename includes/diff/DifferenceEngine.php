@@ -433,7 +433,7 @@ class DifferenceEngine extends ContextSource {
 					array( $msg ) );
 			} else {
 				# Give explanation and add a link to view the diff...
-				$query = $this->getRequest()->appendQueryValue( 'unhide', '1', true );
+				$query = $this->getRequest()->appendQueryValue( 'unhide', '1' );
 				$link = $this->getTitle()->getFullURL( $query );
 				$msg = $suppressed ? 'rev-suppressed-unhide-diff' : 'rev-deleted-unhide-diff';
 				$out->wrapWikiMsg(
