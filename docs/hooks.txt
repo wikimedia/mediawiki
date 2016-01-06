@@ -2568,6 +2568,12 @@ $enotif: EmailNotification object
 
 'SetupAfterCache': Called in Setup.php, after cache objects are set
 
+'ShortPagesQuery': Allow extensions to modify the query used by
+Special:ShortPages.
+&$tables: tables to join in the query
+&$conds: conditions for the query
+&$joinConds: join conditions for the query
+
 'ShowMissingArticle': Called when generating the output for a non-existent page.
 $article: The article object corresponding to the page
 
