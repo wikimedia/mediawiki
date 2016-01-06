@@ -28,6 +28,8 @@
 abstract class LBFactory {
 	/** @var ChronologyProtector */
 	protected $chronProt;
+	/** @var TransactionProfiler */
+	protected $trxProfiler;
 
 	/** @var LBFactory */
 	private static $instance;
@@ -47,6 +49,7 @@ abstract class LBFactory {
 		}
 
 		$this->chronProt = $this->newChronologyProtector();
+		$this->trxProfiler = Profiler::instance()->getTransactionProfiler();
 	}
 
 	/**
