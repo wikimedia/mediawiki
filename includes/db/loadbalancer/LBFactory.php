@@ -21,6 +21,9 @@
  * @ingroup Database
  */
 
+use Psr\Log\LoggerInterface;
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * An interface for generating database load balancers
  * @ingroup Database
@@ -28,8 +31,12 @@
 abstract class LBFactory {
 	/** @var ChronologyProtector */
 	protected $chronProt;
+
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
+
+	/** @var LoggerInterface */
+	protected $logger;
 
 	/** @var LBFactory */
 	private static $instance;
@@ -50,6 +57,7 @@ abstract class LBFactory {
 
 		$this->chronProt = $this->newChronologyProtector();
 		$this->trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$this->logger = LoggerFactory::getInstance( 'DBTransaction' );
 	}
 
 	/**
@@ -208,6 +216,8 @@ abstract class LBFactory {
 	 * @param string $fname Caller name
 	 */
 	public function commitAll( $fname = __METHOD__ ) {
+		$this->logMultiDbTransaction();
+
 		$start = microtime( true );
 		$this->forEachLBCallMethod( 'commitAll', array( $fname ) );
 		$timeMs = 1000 * ( microtime( true ) - $start );
@@ -220,6 +230,8 @@ abstract class LBFactory {
 	 * @param string $fname Caller name
 	 */
 	public function commitMasterChanges( $fname = __METHOD__ ) {
+		$this->logMultiDbTransaction();
+
 		$start = microtime( true );
 		$this->forEachLBCallMethod( 'commitMasterChanges', array( $fname ) );
 		$timeMs = 1000 * ( microtime( true ) - $start );
@@ -234,6 +246,29 @@ abstract class LBFactory {
 	 */
 	public function rollbackMasterChanges( $fname = __METHOD__ ) {
 		$this->forEachLBCallMethod( 'rollbackMasterChanges', array( $fname ) );
+	}
+
+	/**
+	 * Log query info if multi DB transactions are going to be committed now
+	 */
+	private function logMultiDbTransaction() {
+		$callersByDB = array();
+		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$callersByDB ) {
+			$masterName = $lb->getServerName( $lb->getWriterIndex() );
+			$callers = $lb->pendingMasterChangeCallers();
+			if ( $callers ) {
+				$callersByDB[$masterName] = $callers;
+			}
+		} );
+
+		if ( count( $callersByDB ) >= 2 ) {
+			$dbs = implode( ', ', array_keys( $callersByDB ) );
+			$msg = "Multi-DB transaction [{$dbs}]:\n";
+			foreach ( $callersByDB as $db => $callers ) {
+				$msg .= "$db: " . implode( '; ', $callers ) . "\n";
+			}
+			$this->logger->info( $msg );
+		}
 	}
 
 	/**
