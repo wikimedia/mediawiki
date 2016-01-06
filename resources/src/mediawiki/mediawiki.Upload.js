@@ -63,6 +63,17 @@
 	UP = Upload.prototype;
 
 	/**
+	 * Get the mw.Api instance used by this Upload object.
+	 *
+	 * @return {jQuery.Promise}
+	 * @return {Function} return.done
+	 * @return {mw.Api} return.done.api
+	 */
+	UP.getApi = function () {
+		return $.Deferred().resolve( this.api ).promise();
+	};
+
+	/**
 	 * Set the text of the file page, to be created on file upload.
 	 *
 	 * @param {string} text
