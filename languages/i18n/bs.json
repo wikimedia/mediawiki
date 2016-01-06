@@ -727,7 +727,7 @@
 	"viewpagelogs": "Pogledaj zapisnike ove stranice",
 	"nohistory": "Ne postoji historija izmjena za ovu stranicu.",
 	"currentrev": "Trenutna verzija",
-	"currentrev-asof": "Trenutna verzija na dan $1",
+	"currentrev-asof": "Trenutna verzija na dan $2 u $3",
 	"revisionasof": "Verzija od $1",
 	"revision-info": "Izmjena od $1 od {{GENDER:$6|$2}}$7",
 	"previousrevision": "← Starija izmjena",

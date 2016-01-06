@@ -170,7 +170,7 @@
 	"config-db-web-account": "Dä Zohjang zor Daatebangk för et Wiki",
 	"config-db-web-help": "Donn ene Name un e Paßwoot för der Zohjang zor Daatebangk för et Wiki em nomaale Bedrief aanjävve.",
 	"config-db-web-account-same": "Donn dersällve Zohjang nämme, wi heh beim Opsäze.",
-	"config-db-web-create": "Donn dä Zohjang aanlääje, wann dä noch nit doh es.",
+	"config-db-web-create": "Donn dä Zohjang aanlähje, wann dä noch nit doh es.",
 	"config-db-web-no-create-privs": "Dä Zohjang för et Opsäze es nit berääschtesch, ene ander Zohjan enzereeschte.\nDä aanjejovve Zohjang för der Nomaalbedrief moß dröm schunn enjersht sen!",
 	"config-mysql-engine": "De Zoot udder et Fommaat vun de Tabälle:",
 	"config-mysql-innodb": "InnoDB",
