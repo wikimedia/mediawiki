@@ -300,7 +300,8 @@ class LBFactoryMulti extends LBFactory {
 		return new LoadBalancer( array(
 			'servers' => $this->makeServerArray( $template, $loads, $groupLoads ),
 			'loadMonitor' => $this->loadMonitorClass,
-			'readOnlyReason' => $readOnlyReason
+			'readOnlyReason' => $readOnlyReason,
+			'trxProfiler' => $this->trxProfiler
 		) );
 	}
 

@@ -40,9 +40,9 @@ class LoadBalancer {
 	private $mAllowLagged;
 	/** @var integer Seconds to spend waiting on slave lag to resolve */
 	private $mWaitTimeout;
-
 	/** @var array LBFactory information */
 	private $mParentInfo;
+
 	/** @var string The LoadMonitor subclass name */
 	private $mLoadMonitorClass;
 	/** @var LoadMonitor */
@@ -66,6 +66,9 @@ class LoadBalancer {
 	private $readOnlyReason = false;
 	/** @var integer Total connections opened */
 	private $connsOpened = 0;
+
+	/** @var TransactionProfiler */
+	protected $trxProfiler;
 
 	/** @var integer Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
@@ -127,6 +130,12 @@ class LoadBalancer {
 		}
 
 		$this->srvCache = ObjectCache::getLocalServerInstance();
+
+		if ( isset( $params['trxProfiler'] ) ) {
+			$this->trxProfiler = $params['trxProfiler'];
+		} else {
+			$this->trxProfiler = new TransactionProfiler();
+		}
 	}
 
 	/**
@@ -840,6 +849,7 @@ class LoadBalancer {
 		$db->setLazyMasterHandle(
 			$this->getLazyConnectionRef( DB_MASTER, array(), $db->getWikiID() )
 		);
+		$db->setTransactionProfiler( $this->trxProfiler );
 
 		return $db;
 	}
