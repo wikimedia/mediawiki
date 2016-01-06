@@ -1204,7 +1204,7 @@ class SkinTemplate extends Skin {
 			$nav_urls['print'] = array(
 				'text' => $this->msg( 'printableversion' )->text(),
 				'href' => $this->getTitle()->getLocalURL(
-					$request->appendQueryValue( 'printable', 'yes', true ) )
+					$request->appendQueryValue( 'printable', 'yes' ) )
 			);
 		}
 

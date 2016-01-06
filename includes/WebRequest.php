@@ -729,33 +729,24 @@ class WebRequest {
 	/**
 	 * @param string $key
 	 * @param string $value
-	 * @param bool $onlyquery [deprecated]
 	 * @return string
 	 */
-	public function appendQueryValue( $key, $value, $onlyquery = true ) {
-		return $this->appendQueryArray( array( $key => $value ), $onlyquery );
+	public function appendQueryValue( $key, $value ) {
+		return $this->appendQueryArray( array( $key => $value ) );
 	}
 
 	/**
 	 * Appends or replaces value of query variables.
 	 *
 	 * @param array $array Array of values to replace/add to query
-	 * @param bool $onlyquery Whether to only return the query string
-	 *  and not the complete URL [deprecated]
 	 * @return string
 	 */
-	public function appendQueryArray( $array, $onlyquery = true ) {
-		global $wgTitle;
+	public function appendQueryArray( $array ) {
 		$newquery = $this->getQueryValues();
 		unset( $newquery['title'] );
 		$newquery = array_merge( $newquery, $array );
-		$query = wfArrayToCgi( $newquery );
-		if ( !$onlyquery ) {
-			wfDeprecated( __METHOD__, '1.25' );
-			return $wgTitle->getLocalURL( $query );
-		}
 
-		return $query;
+		return wfArrayToCgi( $newquery );
 	}
 
 	/**
