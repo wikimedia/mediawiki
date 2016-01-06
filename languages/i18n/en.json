@@ -1423,7 +1423,7 @@
 	"upload-dialog-title": "Upload file",
 	"upload-dialog-button-cancel": "Cancel",
 	"upload-dialog-button-done": "Done",
-	"upload-dialog-button-save": "Save",
+	"upload-dialog-button-save": "Finalize",
 	"upload-dialog-button-upload": "Upload",
 	"upload-form-label-select-file": "Select file",
 	"upload-form-label-infoform-title": "Details",
