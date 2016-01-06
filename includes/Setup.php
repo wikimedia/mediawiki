@@ -264,6 +264,7 @@ foreach ( $wgForeignFileRepos as &$repo ) {
 }
 unset( $repo ); // no global pollution; destroy reference
 
+$rcMaxAgeDays = $wgRCMaxAge / ( 3600 * 24 );
 if ( $wgRCFilterByAge ) {
 	// Trim down $wgRCLinkDays so that it only lists links which are valid
 	// as determined by $wgRCMaxAge.
@@ -273,12 +274,22 @@ if ( $wgRCFilterByAge ) {
 	// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
 	for ( $i = 0; $i < count( $wgRCLinkDays ); $i++ ) {
 		// @codingStandardsIgnoreEnd
-		if ( $wgRCLinkDays[$i] >= $wgRCMaxAge / ( 3600 * 24 ) ) {
+		if ( $wgRCLinkDays[$i] >= $rcMaxAgeDays ) {
 			$wgRCLinkDays = array_slice( $wgRCLinkDays, 0, $i + 1, false );
 			break;
 		}
 	}
 }
+// Ensure that default user options are not invalid, since that breaks Special:Preferences
+$wgDefaultUserOptions['rcdays'] = min(
+	$wgDefaultUserOptions['rcdays'],
+	ceil( $rcMaxAgeDays )
+);
+$wgDefaultUserOptions['watchlistdays'] = min(
+	$wgDefaultUserOptions['watchlistdays'],
+	ceil( $rcMaxAgeDays )
+);
+unset( $rcMaxAgeDays );
 
 if ( $wgSkipSkin ) {
 	$wgSkipSkins[] = $wgSkipSkin;
