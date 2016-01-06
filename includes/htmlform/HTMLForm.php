@@ -671,10 +671,10 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Set the introductory message, overwriting any existing message.
+	 * Set the introductory message HTML, overwriting any existing message.
 	 * @since 1.19
 	 *
-	 * @param string $msg Complete text of message to display
+	 * @param string $msg Complete HTML of message to display
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -685,9 +685,9 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Add introductory text.
+	 * Add HTML to introductory message.
 	 *
-	 * @param string $msg Complete text of message to display
+	 * @param string $msg Complete HTML of message to display
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -698,9 +698,9 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Add header text, inside the form.
+	 * Add HTML to the header, inside the form.
 	 *
-	 * @param string $msg Complete text of message to display
+	 * @param string $msg Additional HTML to display in header
 	 * @param string|null $section The section to add the header to
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
@@ -722,7 +722,7 @@ class HTMLForm extends ContextSource {
 	 * Set header text, inside the form.
 	 * @since 1.19
 	 *
-	 * @param string $msg Complete text of message to display
+	 * @param string $msg Complete HTML of header to display
 	 * @param string|null $section The section to add the header to
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
@@ -742,7 +742,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @param string|null $section The section to get the header text for
 	 * @since 1.26
-	 * @return string
+	 * @return string HTML
 	 */
 	function getHeaderText( $section = null ) {
 		if ( is_null( $section ) ) {
@@ -957,7 +957,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @param bool|string|array|Status $submitResult Output from HTMLForm::trySubmit()
 	 *
-	 * @return string
+	 * @return string HTML
 	 */
 	function getHTML( $submitResult ) {
 		# For good measure (it is the default)
