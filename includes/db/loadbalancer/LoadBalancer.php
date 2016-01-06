@@ -1159,6 +1159,29 @@ class LoadBalancer {
 	}
 
 	/**
+	 * Get the list of callers that have pending master changes
+	 *
+	 * @return array
+	 * @since 1.27
+	 */
+	public function pendingMasterChangeCallers() {
+		$fnames = array();
+
+		$masterIndex = $this->getWriterIndex();
+		foreach ( $this->mConns as $conns2 ) {
+			if ( empty( $conns2[$masterIndex] ) ) {
+				continue;
+			}
+			/** @var DatabaseBase $conn */
+			foreach ( $conns2[$masterIndex] as $conn ) {
+				$fnames = array_merge( $fnames, $conn->pendingWriteCallers() );
+			}
+		}
+
+		return $fnames;
+	}
+
+	/**
 	 * @param mixed $value
 	 * @return mixed
 	 */

@@ -142,6 +142,13 @@ abstract class DatabaseBase implements IDatabase {
 	private $mTrxAutomaticAtomic = false;
 
 	/**
+	 * Track the write query callers of the current transaction
+	 *
+	 * @var string[]
+	 */
+	private $mTrxWriteCallers = array();
+
+	/**
 	 * Track the seconds spent in write queries for the current transaction
 	 *
 	 * @var float
@@ -375,6 +382,10 @@ abstract class DatabaseBase implements IDatabase {
 
 	public function pendingWriteQueryDuration() {
 		return $this->mTrxLevel ? $this->mTrxWriteDuration : false;
+	}
+
+	public function pendingWriteCallers() {
+		return $this->mTrxLevel ? $this->mTrxWriteCallers : array();
 	}
 
 	public function isOpen() {
@@ -881,6 +892,7 @@ abstract class DatabaseBase implements IDatabase {
 
 		if ( $isWriteQuery && $this->mTrxLevel ) {
 			$this->mTrxWriteDuration += $queryRuntime;
+			$this->mTrxWriteCallers[] = $fname;
 		}
 
 		return $res;
@@ -2600,6 +2612,7 @@ abstract class DatabaseBase implements IDatabase {
 		$this->mTrxPreCommitCallbacks = array();
 		$this->mTrxShortId = wfRandomString( 12 );
 		$this->mTrxWriteDuration = 0.0;
+		$this->mTrxWriteCallers = array();
 		// First SELECT after BEGIN will establish the snapshot in REPEATABLE-READ.
 		// Get an estimate of the slave lag before then, treating estimate staleness
 		// as lag itself just to be safe

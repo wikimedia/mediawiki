@@ -174,7 +174,7 @@ interface IDatabase {
 	public function writesOrCallbacksPending();
 
 	/**
-	 * Get the time spend running write queries for this
+	 * Get the time spend running write queries for this transaction
 	 *
 	 * High times could be due to scanning, updates, locking, and such
 	 *
@@ -182,6 +182,14 @@ interface IDatabase {
 	 * @since 1.26
 	 */
 	public function pendingWriteQueryDuration();
+
+	/**
+	 * Get the list of method names that did write queries for this transaction
+	 *
+	 * @return array
+	 * @since 1.27
+	 */
+	public function pendingWriteCallers();
 
 	/**
 	 * Is a connection to the database open?
