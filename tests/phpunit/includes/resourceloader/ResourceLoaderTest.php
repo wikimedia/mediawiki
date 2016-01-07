@@ -5,6 +5,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		ResourceLoader::resetLessVars();
 		$this->setMwGlobals( array(
 			'wgResourceLoaderLESSImportPaths' => array(
 				dirname( dirname( __DIR__ ) ) . '/data/less/common',

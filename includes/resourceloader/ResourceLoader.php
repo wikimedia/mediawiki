@@ -1615,6 +1615,14 @@ MESSAGE;
 	}
 
 	/**
+	 * Resets any cached LESS variables
+	 *
+	 */
+	public static function resetLessVars() {
+		self::$lessVars = null;
+	}
+
+	/**
 	 * Get global LESS variables.
 	 *
 	 * @param Config $config
