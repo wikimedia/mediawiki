@@ -103,6 +103,9 @@ production.
   from CDN to mitigate DB replication lag and WAN cache purge lag.
 * (T49162) Installer will default to setting CACHE_ACCEL as the main cache type
   if it is available.
+* It is now possible to patrol file uploads (both for new files and new versions
+  of existing files). Special:NewFiles has gained an option to filter by patrol
+  status. This functionality can be disabled using $wgUseFilePatrol.
 
 === External library changes in 1.27 ===
 
