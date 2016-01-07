@@ -51,6 +51,9 @@ class WikiRevision {
 	/** @var string */
 	public $user_text = "";
 
+	/** @var User */
+	public $userObj = null;
+
 	/** @var string */
 	public $model = null;
 
@@ -152,6 +155,13 @@ class WikiRevision {
 	 */
 	function setUsername( $user ) {
 		$this->user_text = $user;
+	}
+
+	/**
+	 *
+	 */
+	function setUserObj( $user ) {
+		$this->userObj = $user;
 	}
 
 	/**
@@ -294,6 +304,13 @@ class WikiRevision {
 	 */
 	function getUser() {
 		return $this->user_text;
+	}
+
+	/**
+	 * @return User
+	 */
+	function getUserObj() {
+		return $this->userObj;
 	}
 
 	/**
@@ -446,15 +463,14 @@ class WikiRevision {
 		$dbw = wfGetDB( DB_MASTER );
 
 		# Sneak a single revision into place
-		$user = User::newFromName( $this->getUser() );
+		$user = $this->getUserObj() ?: User::newFromName( $this->getUser() );
 		if ( $user ) {
 			$userId = intval( $user->getId() );
 			$userText = $user->getName();
-			$userObj = $user;
 		} else {
 			$userId = 0;
 			$userText = $this->getUser();
-			$userObj = new User;
+			$user = new User;
 		}
 
 		// avoid memory leak...?
@@ -534,7 +550,7 @@ class WikiRevision {
 			// countable/oldcountable stuff is handled in WikiImporter::finishImportPage
 			$page->doEditUpdates(
 				$revision,
-				$userObj,
+				$user,
 				array( 'created' => $created, 'oldcountable' => 'no-change' )
 			);
 		}
@@ -545,7 +561,7 @@ class WikiRevision {
 	function importLogItem() {
 		$dbw = wfGetDB( DB_MASTER );
 
-		$user = User::newFromName( $this->getUser() );
+		$user = $this->getUserObj ?: User::newFromName( $this->getUser() );
 		if ( $user ) {
 			$userId = intval( $user->getId() );
 			$userText = $user->getName();
@@ -644,7 +660,7 @@ class WikiRevision {
 			return false;
 		}
 
-		$user = User::newFromName( $this->user_text );
+		$user = $this->getUserObj ?: User::newFromName( $this->getUser() );
 
 		# Do the actual upload
 		if ( $archiveName ) {
