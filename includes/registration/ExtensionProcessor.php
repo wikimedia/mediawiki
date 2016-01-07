@@ -65,6 +65,7 @@ class ExtensionProcessor implements Processor {
 		'wgNamespaceContentModels' => 'array_plus',
 		'wgNamespaceProtection' => 'array_plus',
 		'wgCapitalLinkOverrides' => 'array_plus',
+		'wgRateLimits' => 'array_plus_2d',
 	);
 
 	/**
