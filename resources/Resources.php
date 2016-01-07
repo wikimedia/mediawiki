@@ -355,9 +355,6 @@ return array(
 		'scripts' => 'resources/lib/jquery/jquery.ba-throttle-debounce.js',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
-	'jquery.validate' => array(
-		'scripts' => 'resources/lib/jquery/jquery.validate.js',
-	),
 	'jquery.xmldom' => array(
 		'scripts' => 'resources/lib/jquery/jquery.xmldom.js',
 	),
