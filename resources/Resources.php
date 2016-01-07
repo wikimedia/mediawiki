@@ -1342,6 +1342,14 @@ return array(
 		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.checkboxtoggle' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.checkboxtoggle.js',
+		'position' => 'top',
+	),
+	'mediawiki.checkboxtoggle.styles' => array(
+		'styles' => 'resources/src/mediawiki/mediawiki.checkboxtoggle.css',
+		'position' => 'top',
+	),
 	'mediawiki.cookie' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.cookie.js',
 		'dependencies' => 'jquery.cookie',
