@@ -212,6 +212,22 @@ class ChangeTags {
 			);
 		}
 
+		if ( $log_id && !$rev_id ) {
+			$rev_id = $dbw->selectField(
+				'log_search',
+				'ls_value',
+				array( 'ls_field' => 'associated_rev_id', 'ls_log_id' => $log_id ),
+				__METHOD__
+			);
+		} elseif ( !$log_id && $rev_id ) {
+			$log_id = $dbw->selectField(
+				'log_search',
+				'ls_log_id',
+				array( 'ls_field' => 'associated_rev_id', 'ls_value' => $rev_id ),
+				__METHOD__
+			);
+		}
+
 		// update the tag_summary row
 		$prevTags = array();
 		if ( !self::updateTagSummaryRow( $tagsToAdd, $tagsToRemove, $rc_id, $rev_id,
