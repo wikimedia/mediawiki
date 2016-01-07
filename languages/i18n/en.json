@@ -2282,6 +2282,7 @@
 	"block-log-flags-hiddenname": "username hidden",
 	"range_block_disabled": "The administrator ability to create range blocks is disabled.",
 	"ipb_expiry_invalid": "Expiry time invalid.",
+	"ipb_expiry_old": "Expiry time is in the past.",
 	"ipb_expiry_temp": "Hidden username blocks must be permanent.",
 	"ipb_hide_invalid": "Unable to suppress this account; it has more than {{PLURAL:$1|one edit|$1 edits}}.",
 	"ipb_already_blocked": "\"$1\" is already blocked.",

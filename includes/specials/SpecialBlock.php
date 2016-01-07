@@ -646,10 +646,23 @@ class SpecialBlock extends FormSpecialPage {
 			return array( 'badipaddress' );
 		}
 
-		if ( ( strlen( $data['Expiry'] ) == 0 ) || ( strlen( $data['Expiry'] ) > 50 )
-			|| !self::parseExpiryInput( $data['Expiry'] )
+		$expiryTime = self::parseExpiryInput( $data['Expiry'] );
+
+		if (
+			// an expiry time is needed
+			( strlen( $data['Expiry'] ) == 0 ) ||
+			// can't be a larger string as 50 (it should be a time format in any way)
+			( strlen( $data['Expiry'] ) > 50 ) ||
+			// check, if the time could be parsed
+			!$expiryTime
 		) {
 			return array( 'ipb_expiry_invalid' );
+		}
+
+		// an expiry time should be in the future, not in the
+		// past (wouldn't make any sense) - bug T123069
+		if ( $expiryTime < wfTimestampNow()	) {
+			return array( 'ipb_expiry_old' );
 		}
 
 		if ( !isset( $data['DisableEmail'] ) ) {
@@ -695,7 +708,7 @@ class SpecialBlock extends FormSpecialPage {
 		$block->setBlocker( $performer );
 		# Truncate reason for whole multibyte characters
 		$block->mReason = $wgContLang->truncate( $data['Reason'][0], 255 );
-		$block->mExpiry = self::parseExpiryInput( $data['Expiry'] );
+		$block->mExpiry = $expiryTime;
 		$block->prevents( 'createaccount', $data['CreateAccount'] );
 		$block->prevents( 'editownusertalk', ( !$wgBlockAllowsUTEdit || $data['DisableUTEdit'] ) );
 		$block->prevents( 'sendemail', $data['DisableEmail'] );
