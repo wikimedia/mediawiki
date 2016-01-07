@@ -6,6 +6,9 @@
 			"Ильнар"
 		]
 	},
+	"config-desc": "MediaWiki йөкләүче",
+	"config-title": "MediaWiki $1 куелышы",
+	"config-information": "Мәгълүмат",
 	"config-back": "← Артка",
 	"config-continue": "Киләсе →",
 	"config-page-language": "Тел",

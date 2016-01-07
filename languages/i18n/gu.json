@@ -1746,7 +1746,7 @@
 	"restriction-level-sysop": "સંપૂર્ણ સંરક્ષિત",
 	"restriction-level-autoconfirmed": "અર્ધ સંરક્ષિત",
 	"restriction-level-all": "કોઈ પણ સ્તર",
-	"undelete": "ભૂંસાડેલા પાના બતાવો",
+	"undelete": "ભૂંસેલા પાના બતાવો",
 	"undeletepage": "હટાવેલ પાના જુઓ અને પુનર્જીવિત કરો",
 	"undeletepagetitle": "'''નીચે [[:$1|$1]] ના ભૂંસાડેલ સંપાદનો છે.'''.",
 	"viewdeletedpage": "ભૂંસેલા પાના બતાવો",

@@ -695,7 +695,7 @@
 	"email": "Litterae electronicae",
 	"prefs-help-realname": "Nomen verum non necesse est.\nSi vis id dare, opera tua tibi ascribentur.",
 	"prefs-help-email": "Non necesse est inscriptionem electronicam dare. Qua tamen data tessera tibi tribui poterit nova, si prioris oblitus eris.",
-	"prefs-help-email-others": "Praeterea, si libeat, aliis concedas tibi nuntia per nexum in pagina vel disputatione tua positum mittere electronicas.\nInscriptio tua electronica usoribus tibi scribentis non erit visibilis.",
+	"prefs-help-email-others": "Praeterea, si libeat, aliis concedas tibi nuntia per nexum in pagina vel disputatione tua positum mittere electronicas.\nInscriptio tua electronica usoribus, qui tibi scribeant, non erit visibilis.",
 	"prefs-help-email-required": "Inscriptio electronica necesse est.",
 	"prefs-info": "Generalia",
 	"prefs-i18n": "Sermonis delectus",
