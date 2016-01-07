@@ -1621,7 +1621,7 @@ MESSAGE;
 	 * @since 1.22
 	 * @return array Map of variable names to string CSS values.
 	 */
-	public static function getLessVars( Config $config ) {
+	protected function getLessVars( Config $config ) {
 		if ( !self::$lessVars ) {
 			$lessVars = $config->get( 'ResourceLoaderLESSVars' );
 			Hooks::run( 'ResourceLoaderGetLessVars', array( &$lessVars ) );
