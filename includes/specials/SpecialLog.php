@@ -258,6 +258,27 @@ class SpecialLog extends SpecialPage {
 				$this->msg( 'log-edit-tags' )->text()
 			) . "\n";
 		}
+
+		// Select: All, None, Invert
+		$links = array();
+		$links[] = '<a href="#" id="checkbox-all">' .
+			$this->msg( 'checkbox-all' )->escaped() . '</a>';
+		$links[] = '<a href="#" id="checkbox-none">' .
+			$this->msg( 'checkbox-none' )->escaped() . '</a>';
+		$links[] = '<a href="#" id="checkbox-invert">' .
+			$this->msg( 'checkbox-invert' )->escaped() . '</a>';
+		$buttons .= Xml::tags( 'p',
+			array(
+				'class' => "mw-checkbox-toggle-controls"
+			),
+			$this->msg( 'checkbox-select' )
+				->rawParams( $this->getLanguage()->commaList( $links ) )->escaped()
+		);
+
+
+		$this->getOutput()->addModules( 'mediawiki.checkboxtoggle' );
+		$this->getOutput()->addModuleStyles( 'mediawiki.checkboxtoggle.styles' );
+
 		$s .= $buttons . $formcontents . $buttons;
 		$s .= Html::closeElement( 'form' );
 
