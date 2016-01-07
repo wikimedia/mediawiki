@@ -49,7 +49,11 @@ class SpecialPreferences extends SpecialPage {
 		$out->addModules( 'mediawiki.special.preferences' );
 		$out->addModuleStyles( 'mediawiki.special.preferences.styles' );
 
-		if ( $this->getRequest()->getCheck( 'success' ) ) {
+		$request = $this->getRequest();
+		if ( $request->getSessionData( 'Success' ) ) {
+			// Remove session data for the success message
+			$request->setSessionData( 'Success', null );
+
 			$out->wrapWikiMsg(
 				Html::rawElement(
 					'div',
@@ -132,8 +136,10 @@ class SpecialPreferences extends SpecialPage {
 		$user->resetOptions( 'all', $this->getContext() );
 		$user->saveSettings();
 
-		$url = $this->getPageTitle()->getFullURL( 'success' );
+		// Set session data for the success message
+		$this->getRequest()->setSessionData( 'Success', 1 );
 
+		$url = $this->getPageTitle()->getFullURL();
 		$this->getOutput()->redirect( $url );
 
 		return true;

@@ -1470,7 +1470,7 @@ class Preferences {
 		$res = self::tryFormSubmit( $formData, $form );
 
 		if ( $res ) {
-			$urlOptions = array( 'success' => 1 );
+			$urlOptions = array();
 
 			if ( $res === 'eauth' ) {
 				$urlOptions['eauth'] = 1;
@@ -1480,7 +1480,11 @@ class Preferences {
 
 			$url = $form->getTitle()->getFullURL( $urlOptions );
 
-			$form->getContext()->getOutput()->redirect( $url );
+			$context = $form->getContext();
+			// Set session data for the success message
+			$context->getRequest()->setSessionData( 'Success', 1 );
+
+			$context->getOutput()->redirect( $url );
 		}
 
 		return Status::newGood();
