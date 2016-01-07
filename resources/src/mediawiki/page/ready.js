@@ -36,7 +36,7 @@
 
 	// Things outside the wikipage content
 	$( function () {
-		var $nodes;
+		var $nodes, $oouiNodes;
 
 		if ( !supportsPlaceholder ) {
 			// Exclude content to avoid hitting it twice for the (first) wikipage content
@@ -60,11 +60,11 @@
 		$nodes.updateTooltipAccessKeys();
 
 		// Infuse OOUI widgets, if any are present
-		$nodes = $( '[data-ooui]' );
-		if ( $nodes.length ) {
+		$oouiNodes = $( '[data-ooui]' );
+		if ( $oouiNodes.length ) {
 			// FIXME: We should only load the widgets that are being infused
 			mw.loader.using( [ 'mediawiki.widgets', 'mediawiki.widgets.UserInputWidget' ] ).done( function () {
-				$nodes.each( function () {
+				$oouiNodes.each( function () {
 					OO.ui.infuse( this );
 				} );
 			} );
