@@ -1099,6 +1099,19 @@ class ParserTest {
 			'fileExists' => true
 		), $this->db->timestamp( '20010115123500' ), $user );
 
+		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Video.ogv' ) );
+		$image->recordUpload2( '', 'A pretty movie', 'Will it play', array(
+			'size' => 12345,
+			'width' => 320,
+			'height' => 240,
+			'bits' => 0,
+			'media_type' => MEDIATYPE_VIDEO,
+			'mime' => 'application/ogg',
+			'metadata' => serialize( array() ),
+			'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
+			'fileExists' => true
+		), $this->db->timestamp( '20010115123500' ), $user );
+
 		# A DjVu file
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'LoremIpsum.djvu' ) );
 		$image->recordUpload2( '', 'Upload a DjVu', 'A DjVu', array(
@@ -1212,6 +1225,8 @@ class ParserTest {
 			' version="1.1" width="240" height="180"/>' );
 		wfMkdirParents( $dir . '/5/5f', null, __METHOD__ );
 		copy( "$IP/tests/phpunit/data/parser/LoremIpsum.djvu", "$dir/5/5f/LoremIpsum.djvu" );
+		wfMkdirParents( $dir . '/0/00', null, __METHOD__ );
+		copy( "$IP/tests/phpunit/data/parser/320x240.ogv", "$dir/0/00/Video.ogv" );
 
 		return;
 	}
@@ -1253,6 +1268,10 @@ class ParserTest {
 				"$dir/f/ff/Foobar.svg",
 				"$dir/thumb/f/ff/Foobar.svg/*-Foobar.svg.png",
 				"$dir/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
+				"$dir/0/00/Video.ogv",
+				"$dir/thumb/0/00/Video.ogv/320px--Video.ogv.jpg",
+				"$dir/thumb/0/00/Video.ogv/270px--Video.ogv.jpg",
+				"$dir/thumb/0/00/Video.ogv/320px-seek=2-Video.ogv.jpg",
 			)
 		);
 
@@ -1270,10 +1289,14 @@ class ParserTest {
 				"$dir/thumb/f/ff/Foobar.svg",
 				"$dir/thumb/f/ff/",
 				"$dir/thumb/f/",
+				"$dir/0/00/",
 				"$dir/0/09/",
 				"$dir/0/",
 				"$dir/5/5f",
 				"$dir/5",
+				"$dir/thumb/0/00/Video.ogv",
+				"$dir/thumb/0/00",
+				"$dir/thumb/0",
 				"$dir/thumb/5/5f/LoremIpsum.djvu",
 				"$dir/thumb/5/5f",
 				"$dir/thumb/5",
