@@ -512,6 +512,7 @@ class ParserTest {
 			$ok = true;
 
 			foreach ( $filenames as $filename ) {
+				echo "Running parser tests from: $filename\n";
 				$tests = new TestFileIterator( $filename, $this );
 				$ok = $this->runTests( $tests ) && $ok;
 			}
