@@ -45,3 +45,8 @@ li .mw-collapsible-toggle,
 .mw-collapsible-toggle-li {
 	list-style: none;
 }
+
+/* collapsible button(text link) inherits color from the parent class */
+.mw-collapsible-toggle a {
+  color: inherit;
+}
