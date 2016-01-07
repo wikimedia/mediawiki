@@ -374,7 +374,12 @@ class UploadBaseTest extends MediaWikiTestCase {
 				false,
 				'SVG with external entity'
 			],
-
+			[
+				"<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"> <g> <a xlink:href=\"javascript:alert('1&#10;https://google.com')\"> <rect width=\"300\" height=\"100\" style=\"fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,2)\" /> </a> </g> </svg>",
+				true,
+				true,
+				'SVG with javascript <a> link with newline (T122653)'
+			],
 			// Test good, but strange files that we want to allow
 			[
 				'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g> <a xlink:href="http://en.wikipedia.org/wiki/Main_Page"> <path transform="translate(0,496)" id="path6706" d="m 112.09375,107.6875 -5.0625,3.625 -4.3125,5.03125 -0.46875,0.5 -4.09375,3.34375 -9.125,5.28125 -8.625,-3.375 z" style="fill:#cccccc;fill-opacity:1;stroke:#6e6e6e;stroke-width:0.69999999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;display:inline" /> </a> </g> </svg>',
