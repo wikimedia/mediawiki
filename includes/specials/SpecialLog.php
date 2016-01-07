@@ -258,6 +258,16 @@ class SpecialLog extends SpecialPage {
 				$this->msg( 'log-edit-tags' )->text()
 			) . "\n";
 		}
+
+		$buttons .= Html::element(
+			'div',
+			array(
+				'class' => "toggle-option-placeholder"
+			),
+			''
+		) . "\n";
+		$this->getOutput()->addModules( 'mediawiki.checkboxtoggle' );
+
 		$s .= $buttons . $formcontents . $buttons;
 		$s .= Html::closeElement( 'form' );
 
