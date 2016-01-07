@@ -25,7 +25,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					),
 				),
 				array(
-					'text' => 'Sysop blocked Logtestuser with an expiry time of indefinite (anonymous users only)',
+					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite (anonymous users only)',
 					'api' => array(
 						'duration' => 'infinite',
 						'flags' => array( 'anononly' ),
@@ -50,7 +50,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 				),
 				array(
 					'legacy' => true,
-					'text' => 'Sysop blocked Logtestuser with an expiry time of indefinite (anonymous users only)',
+					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite (anonymous users only)',
 					'api' => array(
 						'duration' => 'infinite',
 						'flags' => array( 'anononly' ),
@@ -74,7 +74,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 				),
 				array(
 					'legacy' => true,
-					'text' => 'Sysop blocked Logtestuser with an expiry time of indefinite',
+					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite',
 					'api' => array(
 						'duration' => 'infinite',
 						'flags' => array(),
@@ -96,7 +96,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 				),
 				array(
 					'legacy' => true,
-					'text' => 'Sysop blocked Logtestuser with an expiry time of indefinite',
+					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite',
 					'api' => array(
 						'duration' => 'infinite',
 						'flags' => array(),
@@ -136,7 +136,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					),
 				),
 				array(
-					'text' => 'Sysop changed block settings for Logtestuser with an expiry time of'
+					'text' => 'Sysop changed block settings for Logtestuser with an expiration time of'
 						. ' indefinite (anonymous users only)',
 					'api' => array(
 						'duration' => 'infinite',
@@ -162,7 +162,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 				),
 				array(
 					'legacy' => true,
-					'text' => 'Sysop changed block settings for Logtestuser with an expiry time of'
+					'text' => 'Sysop changed block settings for Logtestuser with an expiration time of'
 						. ' indefinite (anonymous users only)',
 					'api' => array(
 						'duration' => 'infinite',
@@ -187,7 +187,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 				),
 				array(
 					'legacy' => true,
-					'text' => 'Sysop changed block settings for Logtestuser with an expiry time of indefinite',
+					'text' => 'Sysop changed block settings for Logtestuser with an expiration time of indefinite',
 					'api' => array(
 						'duration' => 'infinite',
 						'flags' => array(),
@@ -261,7 +261,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					),
 				),
 				array(
-					'text' => 'Sysop blocked Logtestuser with an expiry time of indefinite (anonymous users only)',
+					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite (anonymous users only)',
 					'api' => array(
 						'duration' => 'infinite',
 						'flags' => array( 'anononly' ),
@@ -286,7 +286,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 				),
 				array(
 					'legacy' => true,
-					'text' => 'Sysop blocked Logtestuser with an expiry time of indefinite (anonymous users only)',
+					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite (anonymous users only)',
 					'api' => array(
 						'duration' => 'infinite',
 						'flags' => array( 'anononly' ),
@@ -326,7 +326,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					),
 				),
 				array(
-					'text' => 'Sysop changed block settings for Logtestuser with an expiry time of'
+					'text' => 'Sysop changed block settings for Logtestuser with an expiration time of'
 						. ' indefinite (anonymous users only)',
 					'api' => array(
 						'duration' => 'infinite',
@@ -352,7 +352,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 				),
 				array(
 					'legacy' => true,
-					'text' => 'Sysop changed block settings for Logtestuser with an expiry time of'
+					'text' => 'Sysop changed block settings for Logtestuser with an expiration time of'
 						. ' indefinite (anonymous users only)',
 					'api' => array(
 						'duration' => 'infinite',
