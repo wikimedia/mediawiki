@@ -53,10 +53,11 @@ production.
 * (T48998) $wgArticlePath must now be either a full url, or start with a "/".
 * $wgRateLimitLog was removed; use $wgDebugLogGroups['ratelimit'] instead.
 * Deprecated API formats dbg, txt, and yaml have been removed.
-* CLDRPluralRule* classes have been replaced with wikimedia/cldr-plural-rule-parser.
+* CLDRPluralRule* classes have been replaced with
+  wikimedia/cldr-plural-rule-parser.
 * Removed $wgProfilePerHost, $wgUDPProfilerHost, $wgUDPProfilerPort,
-  $wgUDPProfilerFormatString, $wgStatsMethod, $wgAggregateStatsID, $wgStatsFormatString,
-  and $wgProfileCallTree (deprecated since 1.20).
+  $wgUDPProfilerFormatString, $wgStatsMethod, $wgAggregateStatsID,
+  $wgStatsFormatString, and $wgProfileCallTree (deprecated since 1.20).
 * For proper operation of LocalIdLookup with shared user tables, ensure that
   $wgSharedDB and $wgSharedTables are properly set even on the "central" wiki
   that all others are sharing from and that $wgLocalDatabases is set to the
@@ -96,7 +97,8 @@ production.
   authentication extensions.
 * $wgMaxUserDBWriteDuration added to limit huge user-generated transactions.
   Regular web request transactions that takes longer than this are aborted.
-* Added a new hook, 'TitleMoveCompleting', which runs before a page move is committed.
+* Added a new hook, 'TitleMoveCompleting', which runs before a page move is
+  committed.
 * $wgCdnReboundPurgeDelay was added to provide secondary delayed purges of URLs
   from CDN to mitigate DB replication lag and WAN cache purge lag.
 * (T49162) Installer will default to setting CACHE_ACCEL as the main cache type
@@ -164,14 +166,15 @@ changes to languages because of Phabricator reports.
   ignore the 2nd and 3rd arguments (formerly $id and $commit).
 * Removed "loaderScripts" option from ResourceLoaderFileModule class.
 * Removed ORM-like wrapper added in 1.20.
-* LinkCache::getGoodLinks and LinkCache::getBadLinks were removed (deprecated in 1.26).
+* LinkCache::getGoodLinks and LinkCache::getBadLinks were removed
+  (deprecated in 1.26).
 * WikiPage::doQuickEdit() was removed (deprecated since 1.21).
 * Removed SiteObject and SiteArray classes (deprecated in 1.21).
 * MessageBlobStore::getInstance() was removed (deprecated since 1.25).
 * (T84937) Free external links ("autolinked" urls) will now be terminated
   by &nbsp; and HTML entity encodings of &nbsp, <, and >.
-* (T36948) The default file revert message's timestamp is now in $wgLocaltimezone,
-  instead of UTC.
+* (T36948) The default file revert message's timestamp is now in
+  $wgLocaltimezone, instead of UTC.
 * The default name of the 'suppress' group page has been changed from
   'Project:Oversight' to 'Project:Suppress'.
 * DatabaseBase::resultObject() is now protected (use outside Database classes
@@ -180,7 +183,8 @@ changes to languages because of Phabricator reports.
   ResourceLoaderContext instance is deprecated.
 * ResourceLoader::getLessCompiler() now takes an optional parameter of
   additional LESS variables to set for the compiler.
-* wfBaseConvert() marked as deprecated, use Wikimedia\base_convert() directly instead.
+* wfBaseConvert() marked as deprecated, use Wikimedia\base_convert() directly
+  instead.
 * Obsolete maintenance scripts clearCacheStats.php and showCacheStats.php
   were removed. The underlying data is sent to StatsD (see $wgStatsdServer).
 * Removed msg_resource_links database table and associated code.
