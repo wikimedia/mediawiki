@@ -116,6 +116,13 @@ class ConvertExtensionToRegistration extends Maintenance {
 			}
 		}
 
+		// check, if the extension requires composer libraries
+		if ( $this->needsComposerAutoloader( dirname( $this->getArg( 0 ) ) ) ) {
+			// set the load composer autoloader automatically property
+			$this->output( "Detected composer dependencies, setting 'load_composer_autoloader' to true.\n" );
+			$this->json['load_composer_autoloader'] = true;
+		}
+
 		// Move some keys to the top
 		$out = array();
 		foreach ( $this->promote as $key ) {
@@ -245,6 +252,19 @@ class ConvertExtensionToRegistration extends Maintenance {
 		if ( $defaults ) {
 			$this->json['ResourceFileModulePaths'] = $defaults;
 		}
+	}
+
+	protected function needsComposerAutoloader( $path ) {
+		$path .= '/composer.json';
+		if ( file_exists( $path ) ) {
+			// assume, that the composer.json file is in the root of the extension path
+			$composerJson = new ComposerJson( $path );
+			// check, if there are some dependencies in the require section
+			if ( $composerJson->getRequiredDependencies() ) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
 
