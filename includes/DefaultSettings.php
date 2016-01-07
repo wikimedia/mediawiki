@@ -6178,7 +6178,8 @@ $wgRCEngines = array(
 $wgRCWatchCategoryMembership = false;
 
 /**
- * Use RC Patrolling to check for vandalism
+ * Use RC Patrolling to check for vandalism (from recent changes and watchlists)
+ * New pages and new files are included.
  */
 $wgUseRCPatrol = true;
 
@@ -6186,6 +6187,13 @@ $wgUseRCPatrol = true;
  * Use new page patrolling to check new pages on Special:Newpages
  */
 $wgUseNPPatrol = true;
+
+/**
+ * Use file patrolling to check new files on Special:Newfiles
+ *
+ * @since 1.27
+ */
+$wgUseFilePatrol = true;
 
 /**
  * Log autopatrol actions to the log table
