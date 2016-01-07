@@ -69,6 +69,7 @@
 	"config-apc": "[http://www.php.net/apc APC] is installed",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] is installed",
 	"config-no-cache": "<strong>Warning:</strong> Could not find [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] or [http://www.iis.net/download/WinCacheForPhp WinCache].\nObject caching is not enabled.",
+	"config-no-cache-apcu": "<strong>Warning:</strong> Could not find [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] or [http://www.iis.net/download/WinCacheForPhp WinCache].\nObject caching is not enabled.",
 	"config-mod-security": "<strong>Warning:</strong> Your web server has [http://modsecurity.org/ mod_security]/mod_security2 enabled. Many common configurations of this will cause problems for MediaWiki and other software that allows users to post arbitrary content.\nIf possible, this should be disabled. Otherwise, refer to [http://modsecurity.org/documentation/ mod_security documentation] or contact your host's support if you encounter random errors.",
 	"config-diff3-bad": "GNU diff3 not found.",
 	"config-git": "Found the Git version control software: <code>$1</code>.",

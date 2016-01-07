@@ -882,8 +882,14 @@ abstract class Installer {
 			}
 		}
 
+
 		if ( !$caches ) {
-			$this->showMessage( 'config-no-cache' );
+			$key = 'config-no-cache';
+			// PHP >=5.5 is called APCu, earlier versions use APC (T61998).
+			if ( !wfIsHHVM() && version_compare( PHP_VERSION, '5.5', '>=' ) ) {
+				$key .= '-apcu';
+			}
+			$this->showMessage( $key );
 		}
 
 		$this->setVar( '_Caches', $caches );
