@@ -567,9 +567,14 @@ class PageArchive {
 			if ( !$unsuppress && ( $row->ar_deleted & Revision::DELETED_TEXT ) ) {
 				return Status::newFatal( "undeleterevdel" );
 			}
-			// Safe to insert now...
-			$newid = $article->insertOn( $dbw );
-			$pageId = $newid;
+			// Safe to insert now
+			if ( $row->ar_page_id ) {
+				$newid = $row->ar_page_id->insertOn( $dbw );
+				$pageId = $newid;
+			} else {
+				$newid = $article->insertOn( $dbw );
+				$pageId = $newid;
+			}
 		} else {
 			// Check if a deleted revision will become the current revision...
 			if ( $row->ar_timestamp > $previousTimestamp ) {
