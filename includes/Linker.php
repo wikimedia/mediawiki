@@ -1038,13 +1038,14 @@ class Linker {
 	 * @param bool $escape Do we escape the link text?
 	 * @param string $linktype Type of external link. Gets added to the classes
 	 * @param array $attribs Array of extra attributes to <a>
-	 * @param Title|null $title Title object used for title specific link attributes
+	 * @param Title|null $title Title object used for title specific link
+	 * attributes. This parameter is only relevant when the external link is
+	 * in page content, and should be left null for links in the UI
 	 * @return string
 	 */
 	public static function makeExternalLink( $url, $text, $escape = true,
 		$linktype = '', $attribs = array(), $title = null
 	) {
-		global $wgTitle;
 		$class = "external";
 		if ( $linktype ) {
 			$class .= " $linktype";
@@ -1058,9 +1059,6 @@ class Linker {
 			$text = htmlspecialchars( $text );
 		}
 
-		if ( !$title ) {
-			$title = $wgTitle;
-		}
 		$attribs['rel'] = Parser::getExternalLinkRel( $url, $title );
 		$link = '';
 		$success = Hooks::run( 'LinkerMakeExternalLink',
@@ -1509,7 +1507,10 @@ class Linker {
 					$title->getFragment()
 				),
 				$text,
-				/* escape = */ false // Already escaped
+				/* escape = */ false, // Already escaped
+				/* linktype = */ '',
+				/* attribs = */ array(),
+				$title
 			);
 		} else {
 			$link = Linker::link( $title, $text, array(), array(), $options );

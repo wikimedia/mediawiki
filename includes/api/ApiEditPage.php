@@ -378,7 +378,7 @@ class ApiEditPage extends ApiBase {
 
 		$req = new DerivativeRequest( $this->getRequest(), $requestArray, true );
 
-		// Some functions depend on $wgTitle == $ep->mTitle
+		// Some hooks might possibly depend on $wgTitle == $ep->mTitle
 		// TODO: Make them not or check if they still do
 		$wgTitle = $titleObj;
 

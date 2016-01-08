@@ -436,15 +436,12 @@ class EditPage {
 
 	/**
 	 * Get the context title object.
-	 * If not set, $wgTitle will be returned. This behavior might change in
-	 * the future to return $this->mTitle instead.
 	 *
 	 * @return Title
 	 */
 	public function getContextTitle() {
 		if ( is_null( $this->mContextTitle ) ) {
-			global $wgTitle;
-			return $wgTitle;
+			return $this->mTitle;
 		} else {
 			return $this->mContextTitle;
 		}

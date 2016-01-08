@@ -1444,7 +1444,14 @@ class Parser {
 					substr( $m[0], 0, 20 ) . '"' );
 			}
 			$url = wfMessage( $urlmsg, $id )->inContentLanguage()->text();
-			return Linker::makeExternalLink( $url, "{$keyword} {$id}", true, $cssClass );
+			return Linker::makeExternalLink(
+				$url,
+				"{$keyword} {$id}",
+				true,
+				$cssClass,
+				array(),
+				$this->getTitle()
+			);
 		} elseif ( isset( $m[6] ) && $m[6] !== '' ) {
 			# ISBN
 			$isbn = $m[6];
@@ -1529,10 +1536,14 @@ class Parser {
 		$text = $this->maybeMakeExternalImage( $url );
 		if ( $text === false ) {
 			# Not an image, make a link
-			$text = Linker::makeExternalLink( $url,
+			$text = Linker::makeExternalLink(
+				$url,
 				$this->getConverterLanguage()->markNoConversion( $url, true ),
-				true, 'free',
-				$this->getExternalLinkAttribs( $url ) );
+				true,
+				'free',
+				$this->getExternalLinkAttribs( $url ),
+				$this->getTitle()
+			);
 			# Register it in the output object...
 			# Replace unnecessary URL escape codes with their equivalent characters
 			$pasteurized = self::normalizeLinkUrl( $url );
@@ -1828,8 +1839,14 @@ class Parser {
 			# This means that users can paste URLs directly into the text
 			# Funny characters like ö aren't valid in URLs anyway
 			# This was changed in August 2004
-			$s .= Linker::makeExternalLink( $url, $text, false, $linktype,
-				$this->getExternalLinkAttribs( $url ) ) . $dtrail . $trail;
+			$s .= Linker::makeExternalLink(
+				$url,
+				$text,
+				false,
+				$linktype,
+				$this->getExternalLinkAttribs( $url ),
+				$this->getTitle()
+			) . $dtrail . $trail;
 
 			# Register link in the output object.
 			# Replace unnecessary URL escape codes with the referenced character
@@ -5066,7 +5083,7 @@ class Parser {
 	 *
 	 * @param string $text The text to preprocess
 	 * @param ParserOptions $options Options
-	 * @param Title|null $title Title object or null to use $wgTitle
+	 * @param Title|null $title Title object
 	 * @return string
 	 */
 	public function transformMsg( $text, $options, $title = null ) {
@@ -5079,8 +5096,7 @@ class Parser {
 		$executing = true;
 
 		if ( !$title ) {
-			global $wgTitle;
-			$title = $wgTitle;
+			$title = $this->getTitle();
 		}
 
 		$text = $this->preprocess( $text, $title, $options );

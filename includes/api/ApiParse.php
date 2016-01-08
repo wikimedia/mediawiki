@@ -79,7 +79,7 @@ class ApiParse extends ApiBase {
 			$this->section = false;
 		}
 
-		// The parser needs $wgTitle to be set, apparently the
+		// Some parser hooks may still require $wgTitle to be set, apparently the
 		// $title parameter in Parser::parse isn't enough *sigh*
 		// TODO: Does this still need $wgTitle?
 		global $wgParser, $wgTitle;
