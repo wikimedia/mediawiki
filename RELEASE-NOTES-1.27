@@ -238,6 +238,7 @@ changes to languages because of Phabricator reports.
 * Language::armourMath() was removed (deprecated since 1.22).
 * LanguageConverter::armourMath() was removed (deprecated since 1.22).
 * FakeConverter::armourMath() was removed (deprecated since 1.22).
+* The unused jquery.validate ResourceLoader module was removed.
 
 == Compatibility ==
 
