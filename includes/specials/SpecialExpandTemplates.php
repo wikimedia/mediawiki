@@ -182,7 +182,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			),
 			'removenowiki' => array(
 				'type' => 'check',
-				'label-message' => 'expand_templates_remove_nowiki',
+				'label' => $this->msg( 'expand_templates_remove_nowiki' )->text(),
 				'name' => 'wpRemoveNowiki',
 				'id' => 'removenowiki',
 				'default' => $this->removeNowiki,
