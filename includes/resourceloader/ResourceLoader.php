@@ -41,7 +41,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	protected static $debugMode = null;
 
 	/** @var array */
-	private static $lessVars = null;
+	private $lessVars = null;
 
 	/**
 	 * Module name/ResourceLoaderModule object pairs
@@ -1589,15 +1589,13 @@ MESSAGE;
 	/**
 	 * Returns LESS compiler set up for use with MediaWiki
 	 *
-	 * @since 1.22
-	 * @since 1.27 added $extraVars parameter
-	 * @param Config $config
+	 * @since 1.27
 	 * @param array $extraVars Associative array of extra (i.e., other than the
 	 *   globally-configured ones) that should be used for compilation.
 	 * @throws MWException
 	 * @return Less_Parser
 	 */
-	public static function getLessCompiler( Config $config, $extraVars = array() ) {
+	public function getLessCompiler( $extraVars = array() ) {
 		// When called from the installer, it is possible that a required PHP extension
 		// is missing (at least for now; see bug 47564). If this is the case, throw an
 		// exception (caught by the installer) to prevent a fatal error later on.
@@ -1606,10 +1604,12 @@ MESSAGE;
 		}
 
 		$parser = new Less_Parser;
-		$parser->ModifyVars( array_merge( self::getLessVars( $config ), $extraVars ) );
-		$parser->SetImportDirs( array_fill_keys( $config->get( 'ResourceLoaderLESSImportPaths' ), '' ) );
+		$parser->ModifyVars( array_merge( $this->getLessVars(), $extraVars ) );
+		$parser->SetImportDirs(
+			array_fill_keys( $this->config->get( 'ResourceLoaderLESSImportPaths' ), '' )
+		);
 		$parser->SetOption( 'relativeUrls', false );
-		$parser->SetCacheDir( $config->get( 'CacheDirectory' ) ?: wfTempDir() );
+		$parser->SetCacheDir( $this->config->get( 'CacheDirectory' ) ?: wfTempDir() );
 
 		return $parser;
 	}
@@ -1617,16 +1617,15 @@ MESSAGE;
 	/**
 	 * Get global LESS variables.
 	 *
-	 * @param Config $config
-	 * @since 1.22
+	 * @since 1.27
 	 * @return array Map of variable names to string CSS values.
 	 */
-	public static function getLessVars( Config $config ) {
-		if ( !self::$lessVars ) {
-			$lessVars = $config->get( 'ResourceLoaderLESSVars' );
+	public function getLessVars() {
+		if ( !$this->lessVars ) {
+			$lessVars = $this->config->get( 'ResourceLoaderLESSVars' );
 			Hooks::run( 'ResourceLoaderGetLessVars', array( &$lessVars ) );
-			self::$lessVars = $lessVars;
+			$this->lessVars = $lessVars;
 		}
-		return self::$lessVars;
+		return $lessVars;
 	}
 }
