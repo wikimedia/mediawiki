@@ -77,6 +77,7 @@
 	"config-apc": "Je nainstalováno [http://www.php.net/apc APC]",
 	"config-wincache": "Je nainstalována [http://www.iis.net/download/WinCacheForPhp WinCache]",
 	"config-no-cache": "'''Upozornění:''' Nebylo nalezeno [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache], ani [http://www.iis.net/download/WinCacheForPhp WinCache].\nKešování objektů bude vypnuto.",
+	"config-no-cache-apcu": "<strong>Upozornění:</strong> Nebylo nalezeno [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache], ani [http://www.iis.net/download/WinCacheForPhp WinCache].\nKešování objektů bude vypnuto.",
 	"config-mod-security": "'''Upozornění''': váš webový server má zapnuto [http://modsecurity.org/ mod_security]. Při chybné konfiguraci může způsobovat potíže MediaWiki či dalším programům, které umožňují ukládat libovolný obsah.\nPokud narazíte na náhodné chyby, podívejte se do [http://modsecurity.org/documentation/ dokumentace mod_security] nebo kontaktujte technickou podporu vašeho poskytovatele.",
 	"config-diff3-bad": "Nebyl nalezen GNU diff3.",
 	"config-git": "Nalezen software pro správu verzí Git: <code>$1</code>.",

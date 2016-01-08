@@ -18,7 +18,8 @@
 			"Meshkov.a",
 			"Eroha",
 			"Seb35",
-			"Striking Blue"
+			"Striking Blue",
+			"Ильнар"
 		]
 	},
 	"config-desc": "Инсталлятор MediaWiki",
@@ -41,7 +42,7 @@
 	"config-back": "← Назад",
 	"config-continue": "Далее →",
 	"config-page-language": "Язык",
-	"config-page-welcome": "Добро пожаловать в MediaWiki!",
+	"config-page-welcome": "MediaWiki проектына рәхим итегез!",
 	"config-page-dbconnect": "Подключение к базе данных",
 	"config-page-upgrade": "Обновление существующей установки",
 	"config-page-dbsettings": "Настройки базы данных",

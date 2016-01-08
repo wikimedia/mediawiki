@@ -92,6 +92,7 @@
 	"config-apc": "[http://www.php.net/apc APC]已安装",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache]已安装",
 	"config-no-cache": "'''警告：'''找不到[http://www.php.net/apc APC]、[http://xcache.lighttpd.net/ XCache]或[http://www.iis.net/download/WinCacheForPhp WinCache]，无法启用对象缓存。\nObject caching is not enabled.",
+	"config-no-cache-apcu": "<strong>警告：</strong>找不到[http://www.php.net/apcu APCu]、[http://xcache.lighttpd.net/ XCache]或[http://www.iis.net/download/WinCacheForPhp WinCache]。\n对象缓存未启用。",
 	"config-mod-security": "'''警告'''：您的服务器已启动[http://modsecurity.org/ mod_security]。若其配置错误, 会导致MediaWiki和其他软件的错误并允许用户任意发布内容。如果您遇到任何错误，请查阅[http://modsecurity.org/documentation/ mod_security文档]或联系您的客服。",
 	"config-diff3-bad": "找不到GNU diff3。",
 	"config-git": "发现Git版本控制软件：<code>$1</code>",

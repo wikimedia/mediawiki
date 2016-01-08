@@ -129,7 +129,8 @@
 			"Matiia",
 			"SinNovedades",
 			"Rodm23",
-			"Yllelder"
+			"Yllelder",
+			"Syum90"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -2361,6 +2362,7 @@
 	"export-download": "Guardar como archivo",
 	"export-templates": "Incluir plantillas",
 	"export-pagelinks": "Incluir páginas enlazadas a una profundidad de:",
+	"export-manual": "Añadir páginas manualmente:",
 	"allmessages": "Todos los mensajes de MediaWiki",
 	"allmessagesname": "Nombre",
 	"allmessagesdefault": "Texto predeterminado",
@@ -3113,6 +3115,7 @@
 	"watchlisttools-edit": "Ver y editar tu lista de seguimiento",
 	"watchlisttools-raw": "Editar lista de seguimiento en crudo",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discusión]])",
+	"timezone-local": "Local",
 	"duplicate-defaultsort": "<strong>Advertencia:</strong> la clave de ordenamiento predeterminada «$2» anula la clave de ordenamiento anterior «$1».",
 	"duplicate-displaytitle": "<strong>Advertencia:</strong> El título visualizado \"$2\" sobreescribe al anterior \"$1\".",
 	"invalid-indicator-name": "<strong>Error:</strong> el atributo <code>name</code> de los indicadores de estado de página no debe estar vacío.",
@@ -3353,7 +3356,9 @@
 	"logentry-suppress-block": "$1 {{GENDER:$2|bloqueó}} {{GENDER:$4|$3}} durante un plazo de $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|cambió}} la configuración del bloqueo de {{GENDER:$4|$3}} durante un plazo de $5 $6",
 	"logentry-import-upload": "$1 {{GENDER:$2|importó}} $3 subiendo un archivo",
+	"logentry-import-upload-details": "$1 {{GENDER:$2|importó}} $3 subiendo un archivo ($4 {{PLURAL:$4|revisión|revisiones}})",
 	"logentry-import-interwiki": "$1 {{GENDER:$2|importó}} $3 desde otro wiki",
+	"logentry-import-interwiki-details": "$1 {{GENDER:$2|importó}} $3 desde $5 ($4 {{PLURAL:$4|revisión|revisiones}})",
 	"logentry-merge-merge": "$1 {{GENDER:$2|combinó}} $3 en $4 (revisiones hasta el $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|trasladó}} la página $3 a $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|trasladó}} la página $3 a $4 sin dejar una redirección",
