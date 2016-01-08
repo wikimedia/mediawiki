@@ -1,0 +1,13 @@
+Create a composer.local.json and add the JSON Code. A sample of the same has been shown below:
+
+    {
+        "extra": {
+            "merge-plugin": {
+                "include": [
+                    "extensions/SyntaxHighlight_GeSHi/composer.json"
+                ]
+            }
+        }
+    }
+
+Then run `composer update`.
