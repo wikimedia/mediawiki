@@ -136,7 +136,7 @@ $count = count( $files );
 if ( $count > 0 ) {
 
 	foreach ( $files as $file ) {
-		$base = wfBaseName( $file );
+		$base = UtfNormal\Validator::cleanUp( wfBaseName( $file ) );
 
 		# Validate a title
 		$title = Title::makeTitleSafe( NS_FILE, $base );
