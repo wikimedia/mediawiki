@@ -957,7 +957,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			}
 		}
 
-		$compiler = ResourceLoader::getLessCompiler( $this->getConfig(), $vars );
+		$compiler = $context->getResourceLoader()->getLessCompiler( $vars );
 		$css = $compiler->parseFile( $fileName )->getCss();
 		$files = $compiler->AllParsedFiles();
 		$this->localFileRefs = array_merge( $this->localFileRefs, $files );
