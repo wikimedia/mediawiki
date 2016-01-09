@@ -7,10 +7,10 @@ class WfArrayPlus2dTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideArrays
 	 */
-	public function testWfArrayPlus2d( $baseArray, $newValues, $expected, $testName ) {
+	public function testWfArrayPlus2d( $newValues, $baseArray, $expected, $testName ) {
 		$this->assertEquals(
 			$expected,
-			wfArrayPlus2d( $baseArray, $newValues ),
+			wfArrayPlus2d( $newValues, $baseArray ),
 			$testName
 		);
 	}
