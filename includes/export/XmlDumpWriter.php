@@ -252,6 +252,18 @@ class XmlDumpWriter {
 			$out .= "      " . Xml::elementClean( 'comment', array(), strval( $row->rev_comment ) ) . "\n";
 		}
 
+		if ( isset( $row->ts_tags ) && !is_null( $row->ts_tags ) ) {
+			$indent = "      ";
+			$out .= $indent . "<tags>\n";
+			$tags = explode( ',', $row->ts_tags );
+			foreach ( $tags as $tag ) {
+				$out .= $indent . "  " . Xml::element( 'tag', null, $tag ) . "\n";
+			}
+			$out .= $indent . "</tags>\n";
+		} elseif ( isset( $row->ts_tags ) && is_null( $row->ts_tags ) ) {
+			$out .= "      " . "<tags></tags>\n";
+		}
+
 		if ( isset( $row->rev_content_model ) && !is_null( $row->rev_content_model ) ) {
 			$content_model = strval( $row->rev_content_model );
 		} else {
