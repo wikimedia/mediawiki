@@ -33,7 +33,8 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	private $fld_protection = false, $fld_talkid = false,
 		$fld_subjectid = false, $fld_url = false,
-		$fld_readable = false, $fld_watched = false, $fld_watchers = false,
+		$fld_readable = false, $fld_watched = false,
+		$fld_watchers = false, $fld_visitingwatchers = false,
 		$fld_notificationtimestamp = false,
 		$fld_preload = false, $fld_displaytitle = false;
 
@@ -42,8 +43,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $pageRestrictions, $pageIsRedir, $pageIsNew, $pageTouched,
 		$pageLatest, $pageLength;
 
-	private $protections, $restrictionTypes, $watched, $watchers, $notificationtimestamps,
-		$talkids, $subjectids, $displaytitles;
+	private $protections, $restrictionTypes, $watched, $watchers, $visitingwatchers,
+		$notificationtimestamps, $talkids, $subjectids, $displaytitles;
 	private $showZeroWatchers = false;
 
 	private $tokenFunctions;
@@ -292,6 +293,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->fld_protection = isset( $prop['protection'] );
 			$this->fld_watched = isset( $prop['watched'] );
 			$this->fld_watchers = isset( $prop['watchers'] );
+			$this->fld_visitingwatchers = isset( $prop['visitingwatchers'] );
 			$this->fld_notificationtimestamp = isset( $prop['notificationtimestamp'] );
 			$this->fld_talkid = isset( $prop['talkid'] );
 			$this->fld_subjectid = isset( $prop['subjectid'] );
@@ -346,6 +348,10 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( $this->fld_watchers ) {
 			$this->getWatcherInfo();
+		}
+
+		if ( $this->fld_visitingwatchers ) {
+			$this->getVisitingWatcherInfo();
 		}
 
 		// Run the talkid/subjectid query if requested
@@ -444,6 +450,14 @@ class ApiQueryInfo extends ApiQueryBase {
 				$pageInfo['watchers'] = $this->watchers[$ns][$dbkey];
 			} elseif ( $this->showZeroWatchers ) {
 				$pageInfo['watchers'] = 0;
+			}
+		}
+
+		if ( $this->fld_visitingwatchers ) {
+			if ( isset( $this->visitingwatchers[$ns][$dbkey] ) ) {
+				$pageInfo['visitingwatchers'] = $this->visitingwatchers[$ns][$dbkey];
+			} elseif ( $this->showZeroWatchers ) {
+				$pageInfo['visitingwatchers'] = 0;
 			}
 		}
 
@@ -802,6 +816,61 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 	}
 
+	/**
+	 * Get the count of watchers who have visited recent edits and put it in
+	 * $this->visitingwatchers
+	 *
+	 * Based on InfoAction::pageCounts
+	 */
+	private function getVisitingWatcherInfo() {
+		$visitingWatchers = array();
+		$config = $this->getConfig();
+		$user = $this->getUser();
+
+		$canUnwatchedpages = $user->isAllowed( 'unwatchedpages' );
+		$unwatchedPageThreshold = $this->getConfig()->get( 'UnwatchedPageThreshold' );
+		if ( !$canUnwatchedpages && !is_int( $unwatchedPageThreshold ) ) {
+			return;
+		}
+
+		$this->showZeroWatchers = $canUnwatchedpages;
+
+		foreach ( $this->everything as $pageid => $title ) {
+			$page = new WikiPage( $title );
+			$db = $this->getDB();
+
+			$namespace = $title->getNamespace();
+			$dbKey = $title->getDBkey();
+
+			// Threshold: last visited about 26 weeks before latest edit
+			$updated = wfTimestamp( TS_UNIX, $page->getTimestamp() );
+			$age = $config->get( 'WatchersMaxAge' );
+			$threshold = $db->timestamp( $updated - $age );
+
+			// Number of page watchers who also visited a "recent" edit
+			$this->resetQueryParams();
+			$this->addTables( array( 'watchlist' ) );
+			$this->addFields( array( 'COUNT(*)' ) );
+			$this->addWhere( array(
+				'wl_namespace' => $namespace,
+				'wl_title' => $dbKey,
+				'wl_notificationtimestamp >= ' .
+					$db->addQuotes( $threshold ) .
+					' OR wl_notificationtimestamp IS NULL'
+			) );
+			if ( !$canUnwatchedpages ) {
+				$this->addOption( 'HAVING', "COUNT(*) >= $unwatchedPageThreshold" );
+			}
+
+			$res = $this->select( __METHOD__ );
+			$row = $res->fetchRow();
+
+			$visitingWatchers[$namespace][$dbKey] = (int)$row['COUNT(*)'];
+		}
+
+		$this->visitingwatchers = $visitingWatchers;
+	}
+
 	public function getCacheMode( $params ) {
 		// Other props depend on something about the current user
 		$publicProps = array(
@@ -837,6 +906,7 @@ class ApiQueryInfo extends ApiQueryBase {
 					'talkid',
 					'watched', # private
 					'watchers', # private
+					'visitingwatchers', # private
 					'notificationtimestamp', # private
 					'subjectid',
 					'url',
