@@ -24,8 +24,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 			'callbacks' => array(),
 			'defines' => array(),
 			'credits' => array(),
-			'attributes' => array(),
-			'autoloaderPaths' => array()
+			'attributes' => array()
 		);
 		$registry = new ExtensionRegistry();
 		$class = new ReflectionClass( 'ExtensionRegistry' );

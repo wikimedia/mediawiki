@@ -119,6 +119,8 @@ class ExtensionProcessor implements Processor {
 		'wgMessagesDirs' => array(),
 	);
 
+	protected $autoloaderPaths = array();
+
 	/**
 	 * Things that should be define()'d
 	 *
@@ -153,9 +155,15 @@ class ExtensionProcessor implements Processor {
 	 * @return array
 	 */
 	public function extractInfo( $path, array $info, $version ) {
+		$dir = dirname( $path );
+		if ( isset( $info['load_composer_autoloader'] ) && $info['load_composer_autoloader'] === true ) {
+			$path = dirname( $path ) . "/vendor/autoload.php";
+			if ( file_exists( $path ) ) {
+				$this->autoloaderPaths[] = $path;
+			}
+		}
 		$this->extractConfig( $info );
 		$this->extractHooks( $info );
-		$dir = dirname( $path );
 		$this->extractExtensionMessagesFiles( $dir, $info );
 		$this->extractMessagesDirs( $dir, $info );
 		$this->extractNamespaces( $info );
@@ -371,16 +379,5 @@ class ExtensionProcessor implements Processor {
 		} else {
 			$array[$name] = $value;
 		}
-	}
-
-	public function getExtraAutoloaderPaths( $dir, array $info ) {
-		$paths = array();
-		if ( isset( $info['load_composer_autoloader'] ) && $info['load_composer_autoloader'] === true ) {
-			$path = "$dir/vendor/autoload.php";
-			if ( file_exists( $path ) ) {
-				$paths[] = $path;
-			}
-		}
-		return $paths;
 	}
 }
