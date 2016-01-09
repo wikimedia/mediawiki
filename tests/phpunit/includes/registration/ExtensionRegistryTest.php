@@ -21,6 +21,8 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 
 		$info = array(
 			'globals' => $globals,
+			'require_onces' => array(),
+			'requires' => array(),
 			'callbacks' => array(),
 			'defines' => array(),
 			'credits' => array(),
