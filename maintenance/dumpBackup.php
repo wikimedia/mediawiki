@@ -61,6 +61,7 @@ TEXT;
 		$this->addOption( 'stub', 'Don\'t perform old_text lookups; for 2-pass dump' );
 		$this->addOption( 'uploads', 'Include upload records without files' );
 		$this->addOption( 'include-files', 'Include files within the XML stream' );
+		$this->addOption( 'change-tags', 'Include change tags for each revision' );
 
 		if ( $args ) {
 			$this->loadWithArgv( $args );
@@ -120,6 +121,7 @@ TEXT;
 			$this->revEndId = intval( $this->getOption( 'revend' ) );
 		}
 
+		$this->changetags = $this->hasOption( 'change-tags' );
 		$this->skipHeader = $this->hasOption( 'skip-header' );
 		$this->skipFooter = $this->hasOption( 'skip-footer' );
 		$this->dumpUploads = $this->hasOption( 'uploads' );
