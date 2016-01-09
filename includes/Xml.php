@@ -91,7 +91,7 @@ class Xml {
 	public static function elementClean( $element, $attribs = array(), $contents = '' ) {
 		global $wgContLang;
 		if ( $attribs ) {
-			$attribs = array_map( array( 'UtfNormal', 'cleanUp' ), $attribs );
+			$attribs = array_map( array( 'UtfNormal\Validator', 'cleanUp' ), $attribs );
 		}
 		if ( $contents ) {
 			$contents = $wgContLang->normalize( $contents );
