@@ -119,4 +119,3 @@ class WebInstallerLanguage extends WebInstallerPage {
 	}
 
 }
-

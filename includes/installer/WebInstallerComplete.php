@@ -55,5 +55,3 @@ class WebInstallerComplete extends WebInstallerPage {
 	}
 
 }
-
-

@@ -108,4 +108,3 @@ class WebInstallerUpgrade extends WebInstallerPage {
 	}
 
 }
-

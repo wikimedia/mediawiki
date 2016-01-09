@@ -44,4 +44,3 @@ class WebInstallerRestart extends WebInstallerPage {
 	}
 
 }
-

@@ -52,5 +52,3 @@ class WebInstallerDBSettings extends WebInstallerPage {
 	}
 
 }
-
-

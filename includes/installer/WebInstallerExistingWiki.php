@@ -182,5 +182,3 @@ class WebInstallerExistingWiki extends WebInstallerPage {
 	}
 
 }
-
-

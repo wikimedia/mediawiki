@@ -29,4 +29,3 @@ class WebInstallerUpgradeDoc extends WebInstallerDocument {
 	}
 
 }
-

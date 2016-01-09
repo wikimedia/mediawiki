@@ -119,5 +119,3 @@ class WebInstallerDBConnect extends WebInstallerPage {
 	}
 
 }
-
-
