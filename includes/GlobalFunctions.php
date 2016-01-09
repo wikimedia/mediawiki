@@ -3844,12 +3844,12 @@ function wfThumbIsStandard( File $file, array $params ) {
  * of $newValues will be added to the values of the array of $baseArray, while values,
  * that exists in both, the value of $baseArray will be used).
  *
- * @param array $baseArray The array where you want to add the values of $newValues to
  * @param array $newValues An array with new values
+ * @param array $baseArray The array where you want to add the values of $newValues to
  * @return array The combined array
  * @since 1.26
  */
-function wfArrayPlus2d( array $baseArray, array $newValues ) {
+function wfArrayPlus2d( array $newValues, array $baseArray ) {
 	// First merge items that are in both arrays
 	foreach ( $baseArray as $name => &$groupVal ) {
 		if ( isset( $newValues[$name] ) ) {
