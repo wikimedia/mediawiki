@@ -270,6 +270,7 @@ class ExtensionRegistry {
 					break;
 				default:
 					throw new UnexpectedValueException( "Unknown merge strategy '$mergeStrategy'" );
+					break;
 			}
 		}
 
