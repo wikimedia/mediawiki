@@ -153,9 +153,10 @@ class ExtensionProcessor implements Processor {
 	 * @return array
 	 */
 	public function extractInfo( $path, array $info, $version ) {
+		$dir = dirname( $path );
+		$this->getExtraAutoloaderPaths( $dir, $info );
 		$this->extractConfig( $info );
 		$this->extractHooks( $info );
-		$dir = dirname( $path );
 		$this->extractExtensionMessagesFiles( $dir, $info );
 		$this->extractMessagesDirs( $dir, $info );
 		$this->extractNamespaces( $info );
