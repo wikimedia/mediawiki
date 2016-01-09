@@ -3849,7 +3849,7 @@ function wfThumbIsStandard( File $file, array $params ) {
  * @return array The combined array
  * @since 1.26
  */
-function wfArrayPlus2d( array $baseArray, array $newValues ) {
+function wfArrayPlus2d( array $newValues, array $baseArray ) {
 	// First merge items that are in both arrays
 	foreach ( $baseArray as $name => &$groupVal ) {
 		if ( isset( $newValues[$name] ) ) {
