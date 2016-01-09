@@ -34,6 +34,7 @@
 
 	Version 0.11 Added namespace aliases to SiteInfo
 	Added check for subpages to SiteInfo
+	Added option for custom tags
 
 	The canonical URL to the schema document is:
 	http://www.mediawiki.org/xml/export-0.11.xsd
@@ -205,6 +206,7 @@
 			<element name="contributor" type="mw:ContributorType" />
 			<element name="minor" minOccurs="0" maxOccurs="1" />
 			<element name="comment" type="mw:CommentType" minOccurs="0" maxOccurs="1" />
+			<element name="tags" type="mw:TagsType" minOccurs="0" maxOccurs="1" />
 			<element name="model" type="mw:ContentModelType" />
 			<element name="format" type="mw:ContentFormatType" />
 			<element name="text" type="mw:TextType" />
@@ -233,6 +235,12 @@
 				<attribute name="deleted" use="optional" type="mw:DeletedFlagType" />
 			</extension>
 		</simpleContent>
+	</complexType>
+
+	<complexType name="TagsType">
+		<sequence>
+			<element name="tag" type="string" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
 	</complexType>
 
 	<complexType name="TextType">
