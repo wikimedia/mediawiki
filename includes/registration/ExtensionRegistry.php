@@ -173,7 +173,6 @@ class ExtensionRegistry {
 	public function readFromQueue( array $queue ) {
 		global $wgVersion;
 		$autoloadClasses = array();
-		$autoloaderPaths = array();
 		$processor = new ExtensionProcessor();
 		$incompatible = array();
 		$coreVersionParser = new CoreVersionChecker( $wgVersion );
@@ -209,9 +208,6 @@ class ExtensionRegistry {
 					. '.';
 				continue;
 			}
-			// Get extra paths for later inclusion
-			$autoloaderPaths = array_merge( $autoloaderPaths,
-				$processor->getExtraAutoloaderPaths( dirname( $path ), $info ) );
 			// Compatible, read and extract info
 			$processor->extractInfo( $path, $info, $version );
 		}
@@ -226,7 +222,6 @@ class ExtensionRegistry {
 		// Need to set this so we can += to it later
 		$data['globals']['wgAutoloadClasses'] = array();
 		$data['autoload'] = $autoloadClasses;
-		$data['autoloaderPaths'] = $autoloaderPaths;
 		return $data;
 	}
 
@@ -273,15 +268,15 @@ class ExtensionRegistry {
 			}
 		}
 
+		foreach ( $info['autoloaderPaths'] as $path ) {
+			require_once $path;
+		}
+
 		foreach ( $info['defines'] as $name => $val ) {
 			define( $name, $val );
 		}
 		foreach ( $info['callbacks'] as $cb ) {
 			call_user_func( $cb );
-		}
-
-		foreach ( $info['autoloaderPaths'] as $path ) {
-			require_once $path;
 		}
 
 		$this->loaded += $info['credits'];
