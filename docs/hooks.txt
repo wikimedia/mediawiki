@@ -308,6 +308,11 @@ $apiModule: the ApiCreateAccount module calling
 $loginForm: the LoginForm used
 &$result: associative array for API result data
 
+'AfterBuildFeedLinks': Executed in OutputPage.php after all feed links (atom, rss,...)
+are created. Can be used to omit specific feeds from being outputted. You must not use
+this hook to add feeds, use OutputPage::addFeedLink() instead.
+&$feedLinks: Array of created feed links
+
 'AfterFinalPageOutput': Nearly at the end of OutputPage::output() but
 before OutputPage::sendCacheControl() and final ob_end_flush() which
 will send the buffered output to the client. This allows for last-minute
