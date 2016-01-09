@@ -90,6 +90,10 @@
       </contributor>
       <minor />
       <comment>I have just one thing to say!</comment>
+      <tags>
+        <tag>Tag number one</tag>
+        <tag>Tag number two</tag>
+      </tags>
       <model>wikitext</model>
       <format>text/x-wiki</format>
       <text xml:space="preserve" bytes="25">A bunch of [[text]] here.</text>
@@ -103,6 +107,10 @@
         <ip>10.0.0.2</ip>
       </contributor>
       <comment>new!</comment>
+      <tags>
+        <tag>Tag number one</tag>
+        <tag>Tag number two</tag>
+      </tags>
       <model>wikitext</model>
       <format>text/x-wiki</format>
       <text xml:space="preserve" bytes="24">An earlier [[revision]].</text>
@@ -119,6 +127,10 @@
       <timestamp>2001-01-15T14:03:00Z</timestamp>
       <contributor><ip>10.0.0.2</ip></contributor>
       <comment>hey</comment>
+      <tags>
+        <tag>Tag number one</tag>
+        <tag>Tag number two</tag>
+      </tags>
       <model>wikitext</model>
       <format>text/x-wiki</format>
       <text xml:space="preserve" bytes="47">WHYD YOU LOCK PAGE??!!! i was editing that jerk</text>
@@ -135,6 +147,10 @@
       <timestamp>2001-01-15T20:34:12Z</timestamp>
       <contributor><username>Foobar</username><id>42</id></contributor>
       <comment>My awesomeest image!</comment>
+      <tags>
+        <tag>Tag number one</tag>
+        <tag>Tag number two</tag>
+      </tags>
       <model>wikitext</model>
       <format>text/x-wiki</format>
       <text xml:space="preserve" bytes="52">This is an awesome little imgae. I lurves it. {{PD}}</text>
