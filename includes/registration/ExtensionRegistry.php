@@ -265,6 +265,9 @@ class ExtensionRegistry {
 				case 'array_plus':
 					$GLOBALS[$key] += $val;
 					break;
+				case 'array':
+					$GLOBALS[$key] = $val;
+					break;
 				case 'array_merge':
 					$GLOBALS[$key] = array_merge( $val, $GLOBALS[$key] );
 					break;
