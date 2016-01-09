@@ -41,6 +41,7 @@ class BackupDumper extends Maintenance {
 	public $revEndId = 0;
 	public $dumpUploads = false;
 	public $dumpUploadFileContents = false;
+	public $changetags = false;
 
 	protected $reportingInterval = 100;
 	protected $pageCount = 0;
@@ -254,6 +255,7 @@ class BackupDumper extends Maintenance {
 		$exporter = new WikiExporter( $db, $history, WikiExporter::STREAM, $text );
 		$exporter->dumpUploads = $this->dumpUploads;
 		$exporter->dumpUploadFileContents = $this->dumpUploadFileContents;
+		$exporter->changetags = $this->changetags;
 
 		$wrapper = new ExportProgressFilter( $this->sink, $this );
 		$exporter->setOutputSink( $wrapper );
