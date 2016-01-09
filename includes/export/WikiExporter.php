@@ -40,6 +40,9 @@ class WikiExporter {
 	/** @var bool */
 	public $dumpUploadFileContents = false;
 
+	/** @var bool */
+	public $changetags = false;
+
 	/** @var string */
 	public $author_list = "";
 
@@ -366,6 +369,11 @@ class WikiExporter {
 				$join['text'] = array( 'INNER JOIN', 'rev_text_id=old_id' );
 			}
 
+			$fields = array( '*' );
+			if ( $this->changetags ) {
+				ChangeTags::modifyDisplayQuery( $tables, $fields, $cond, $join, $opts );
+			}
+
 			if ( $this->buffer == WikiExporter::STREAM ) {
 				$prev = $this->db->bufferResults( false );
 			}
@@ -376,7 +384,7 @@ class WikiExporter {
 						array( $this->db, &$tables, &$cond, &$opts, &$join ) );
 
 				# Do the query!
-				$result = $this->db->select( $tables, '*', $cond, __METHOD__, $opts, $join );
+				$result = $this->db->select( $tables, $fields, $cond, __METHOD__, $opts, $join );
 				# Output dump results
 				$this->outputPageStream( $result );
 
