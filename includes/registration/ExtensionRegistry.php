@@ -273,6 +273,14 @@ class ExtensionRegistry {
 			}
 		}
 
+		foreach ( $info['requires'] as $path ) {
+			require $path;
+		}
+
+		foreach ( $info['require_onces'] as $path ) {
+			require_once $path;
+		}
+
 		foreach ( $info['defines'] as $name => $val ) {
 			define( $name, $val );
 		}
