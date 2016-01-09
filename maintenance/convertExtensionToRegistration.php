@@ -151,6 +151,12 @@ class ConvertExtensionToRegistration extends Maintenance {
 					"Please move your extension function somewhere else.", 1
 				);
 			}
+			// check if $func exists in the global scope
+			if ( function_exists( $func ) ) {
+				$this->error( "Error: Global functions cannot be converted to JSON. " .
+					"Please move your extension function ($func) into a class.", 1
+				);
+			}
 		}
 
 		$this->json[$realName] = $value;
@@ -215,6 +221,12 @@ class ConvertExtensionToRegistration extends Maintenance {
 				if ( $func instanceof Closure ) {
 					$this->error( "Error: Closures cannot be converted to JSON. " .
 						"Please move the handler for $hookName somewhere else.", 1
+					);
+				}
+				// Check if $func exists in the global scope
+				if ( function_exists( $func ) ) {
+					$this->error( "Error: Global functions cannot be converted to JSON. " .
+						"Please move the handler for $hookName inside a class.", 1
 					);
 				}
 			}
