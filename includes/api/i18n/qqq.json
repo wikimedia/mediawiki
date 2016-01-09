@@ -752,6 +752,7 @@
 	"apihelp-query+info-paramvalue-prop-talkid": "{{doc-apihelp-paramvalue|query+info|prop|talkid}}",
 	"apihelp-query+info-paramvalue-prop-watched": "{{doc-apihelp-paramvalue|query+info|prop|watched}}",
 	"apihelp-query+info-paramvalue-prop-watchers": "{{doc-apihelp-paramvalue|query+info|prop|watchers}}",
+	"apihelp-query+info-paramvalue-prop-visitingwatchers": "{{doc-apihelp-paramvalue|query+info|prop|visitingwatchers}}",
 	"apihelp-query+info-paramvalue-prop-notificationtimestamp": "{{doc-apihelp-paramvalue|query+info|prop|notificationtimestamp}}",
 	"apihelp-query+info-paramvalue-prop-subjectid": "{{doc-apihelp-paramvalue|query+info|prop|subjectid}}",
 	"apihelp-query+info-paramvalue-prop-url": "{{doc-apihelp-paramvalue|query+info|prop|url}}",
