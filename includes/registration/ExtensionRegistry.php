@@ -260,7 +260,7 @@ class ExtensionRegistry {
 					$GLOBALS[$key] = array_merge_recursive( $GLOBALS[$key], $val );
 					break;
 				case 'array_plus_2d':
-					$GLOBALS[$key] = wfArrayPlus2d( $GLOBALS[$key], $val );
+					$GLOBALS[$key] = wfArrayPlus2d( $val, $GLOBALS[$key] );
 					break;
 				case 'array_plus':
 					$GLOBALS[$key] += $val;
