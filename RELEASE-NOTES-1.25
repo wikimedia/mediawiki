@@ -1,6 +1,14 @@
 Security reminder: If you have PHP's register_globals option set, you must
 turn it off. MediaWiki will not work with it enabled.
 
+== MediaWiki 1.25.6 ==
+
+This is a maintenance release of the MediaWiki 1.25 branch.
+
+== Changes since 1.25.5 ==
+* (T123166) Fix fatal error when importing pages to titles which cannot be
+  created, such as invalid titles or titles the user is not allowed to edit.
+
 == MediaWiki 1.25.5 ==
 
 This is a maintenance release of the MediaWiki 1.25 branch.
