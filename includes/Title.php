@@ -4629,7 +4629,7 @@ class Title {
 			// Checking $wgLanguageCode hasn't changed for the benefit of unit
 			// tests.
 			$contentHandler = ContentHandler::getForTitle( $this );
-			$langObj = wfGetLangObj( $contentHandler->getPageLanguage( $this ) );
+			$langObj = $contentHandler->getPageLanguage( $this );
 			$this->mPageLanguage = array( $langObj->getCode(), $wgLanguageCode );
 		} else {
 			$langObj = wfGetLangObj( $this->mPageLanguage[0] );
