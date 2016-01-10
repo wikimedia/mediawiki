@@ -121,13 +121,8 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function getRequest() {
 		if ( $this->request === null ) {
-			global $wgCommandLineMode;
-			// create the WebRequest object on the fly
-			if ( $wgCommandLineMode ) {
-				$this->request = new FauxRequest( array() );
-			} else {
-				$this->request = new WebRequest();
-			}
+			global $wgRequest; # fallback to $wg till we can improve this
+			$this->request = $wgRequest;
 		}
 
 		return $this->request;
