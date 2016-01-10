@@ -38,13 +38,22 @@ class ImportTextFiles extends Maintenance {
 		$this->addOption( 'summary', 'Specify edit summary for the edits', false, true, 's' );
 		$this->addOption( 'use-timestamp', 'Use the modification date of the text file ' .
 			'as the timestamp for the edit' );
-		$this->addArg( 'titles', 'Titles of article to edit' );
+		$this->addOption( 'overwrite', 'Overwrite existing pages. If --use-timestamp is passed, this ' .
+			'will only overwrite pages if the file has been modified since the page was last modified.' );
+		$this->addOption( 'prefix', 'A string to place in front of the file name', false, true, 'p' );
+		$this->addOption( 'bot', 'Mark edits as bot edits in the recent changes list.' );
+		$this->addOption( 'rc', 'Place revisions in RecentChanges.' );
+		$this->addArg( 'files', 'Files to import' );
 	}
 
 	public function execute() {
 		$userName = $this->getOption( 'user', false );
 		$summary = $this->getOption( 'summary', 'Imported from text file' );
 		$useTimestamp = $this->hasOption( 'use-timestamp' );
+		$rc = $this->hasOption( 'rc' );
+		$bot = $this->hasOption( 'bot' );
+		$overwrite = $this->hasOption( 'overwrite' );
+		$prefix = $this->getOption( 'prefix', '' );
 
 		// Get all the arguments. A loop is required since Maintenance doesn't
 		// suppport an arbitrary number of arguments.
@@ -59,7 +68,7 @@ class ImportTextFiles extends Maintenance {
 		};
 
 		$count = count( $files );
-		$this->output( "Creating $count pages...\n" );
+		$this->output( "Importing $count pages...\n" );
 
 		if ( $userName === false ) {
 			$user = User::newSystemUser( 'Maintenance script', array( 'steal' => true ) );
@@ -81,46 +90,103 @@ class ImportTextFiles extends Maintenance {
 		$skipCount = 0;
 
 		foreach ( $files as $file => $text ) {
-			$pageName = pathinfo( $file, PATHINFO_FILENAME );
+			$pageName = $prefix . pathinfo( $file, PATHINFO_FILENAME );
+			$timestamp = $useTimestamp ? wfTimestamp( TS_UNIX, filemtime( $file ) ) : wfTimestampNow();
+
 			$title = Title::newFromText( $pageName );
+			$exists = $title->exists();
+			$oldRevID = $title->getLatestRevID();
+			$oldRev = $oldRevID ? Revision::newFromId( $oldRevID ) : null;
+
 			if ( !$title ) {
 				$this->error( "Invalid title $pageName. Skipping.\n" );
 				$skipCount++;
 				continue;
 			}
 
-			if ( $title->exists() ) {
-				$actualTitle = $title->getPrefixedText();
-				$this->output( "Title $pageName already exists. Skipping.\n" );
+			$actualTitle = $title->getPrefixedText();
+
+			if ( $exists ) {
+				$touched = wfTimestamp( TS_UNIX, $title->getTouched() );
+				if ( !$overwrite ) {
+					$this->output( "Title $actualTitle already exists. Skipping.\n" );
+					$skipCount++;
+					continue;
+				} elseif ( $useTimestamp && intval( $touched ) >= intval( $timestamp ) ) {
+					$this->output( "File for title $actualTitle has not been modified since the " .
+						"destination page was touched. Skipping.\n" );
+					$skipCount++;
+					continue;
+				}
+			}
+
+			$rev = new WikiRevision( ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
+			$rev->setText( rtrim( $text ) );
+			$rev->setTitle( $title );
+			$rev->setUserObj( $user );
+			$rev->setComment( $summary );
+			$rev->setTimestamp( $timestamp );
+
+			if ( $exists && $overwrite && $rev->getContent()->equals( $oldRev->getContent() ) ) {
+				$this->output( "File for title $actualTitle contains no changes from the current " .
+					"revision. Skipping.\n" );
 				$skipCount++;
 				continue;
 			}
 
-			$actualTitle = $title->getPrefixedText();
-
-			$rev = new WikiRevision( ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
-			$rev->setText( $text );
-			$rev->setTitle( $title );
-			$rev->setUserObj( $user );
-			$rev->setComment( $summary );
-			if ( $useTimestamp ) {
-				$rev->setTimestamp( wfTimestamp( TS_UNIX, filemtime( $file ) ) );
-			} else {
-				$rev->setTimestamp( wfTimestampNow() );
-			}
-
 			$status = $rev->importOldRevision();
+			$newId = $title->getLatestRevID();
+
 			if ( $status ) {
-				$this->output( "Successfully created $actualTitle\n" );
+				$action = $exists ? 'updated' : 'created';
+				$this->output( "Successfully $action $actualTitle\n" );
 				$successCount++;
 			} else {
-				$actualTitle = $title->getPrefixedText();
-				$this->output( "Failed to create $actualTitle\n" );
+				$action = $exists ? 'update' : 'create';
+				$this->output( "Failed to $action $actualTitle\n" );
 				$failCount++;
 				$exit = 1;
 			}
+
+			// Create the RecentChanges entry if necessary
+			if ( $rc && $status ) {
+				if ( $exists ) {
+					if ( is_object( $oldRev ) ) {
+						$oldContent = $oldRev->getContent();
+						RecentChange::notifyEdit(
+							$timestamp,
+							$title,
+							$rev->getMinor(),
+							$user,
+							$summary,
+							$oldRevID,
+							$oldRev->getTimestamp(),
+							$bot,
+							'',
+							$oldContent ? $oldContent->getSize() : 0,
+							$rev->getContent()->getSize(),
+							$newId,
+							1 /* the pages don't need to be patrolled */
+						);
+					}
+				} else {
+					RecentChange::notifyNew(
+						$timestamp,
+						$title,
+						$rev->getMinor(),
+						$user,
+						$summary,
+						$bot,
+						'',
+						$rev->getContent()->getSize(),
+						$newId,
+						1
+					);
+				}
+			}
 		}
-		$this->output( "Done! $successCount successfully created, $skipCount skipped.\n" );
+
+		$this->output( "Done! $successCount succeeded, $skipCount skipped.\n" );
 		if ( $exit ) {
 			$this->error( "Import failed with $failCount failed pages.\n", $exit );
 		}
