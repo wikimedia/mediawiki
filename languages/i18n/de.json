@@ -84,7 +84,8 @@
 			"J. 'mach' wust",
 			"R4c0r",
 			"MGChecker",
-			"FriedhelmW"
+			"FriedhelmW",
+			"Schniggendiller"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -2037,7 +2038,7 @@
 	"protect-otherreason-op": "Anderer Grund",
 	"protect-dropdown": "* Allgemeine Schutzgründe\n** Edit-War\n** Wiederkehrender Vandalismus\n** Wiederholtes Einstellen von Werbung\n** Häufig eingebundene Vorlage\n** Seite mit hoher Besucherzahl",
 	"protect-edit-reasonlist": "Schutzgründe bearbeiten",
-	"protect-expiry-options": "1 Stunde:1 hour,1 Tag:1 day,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monaten:3 months,6 Monaten:6 months,1 Jahr:1 year,unbeschränkt:infinite",
+	"protect-expiry-options": "1 Stunde:1 hour,1 Tag:1 day,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Jahr:1 year,unbeschränkt:infinite",
 	"restriction-type": "Schutzstatus:",
 	"restriction-level": "Schutzhöhe:",
 	"minimum-size": "Mindestgröße",

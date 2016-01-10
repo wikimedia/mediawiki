@@ -15,7 +15,8 @@
 			"✓",
 			"아라",
 			"Matthias Klostermayr",
-			"Macofe"
+			"Macofe",
+			"George Animal"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -834,6 +835,7 @@
 	"wlheader-showupdated": "Seiten mid noh néd gseengne Änderrungen wern '''fett''' dorgstöd.",
 	"wlnote": "Es {{PLURAL:$1|fóigt d' létzde Änderrung|fóing d' létzden '''$1''' Änderrungen}} voh da/dé {{PLURAL:$2|Stund| '''$2''' Stunden}}. Staund: $3, $4 Uar.",
 	"wlshowlast": "Zoag dé Änderrungen voh dé létzden $1 Stunden, $2 Dog óder  (in dé létzden 30 Dog).",
+	"watchlistall2": "olle",
 	"watchlist-options": "Mei Beobochta: Optiona",
 	"watching": "Beówochten ...",
 	"unwatching": "Néd Beówochten",
@@ -1024,7 +1026,6 @@
 	"movelogpage": "Vaschiabungs-Logbuach",
 	"movereason": "Grund:",
 	"revertmove": "zruck vaschiabm",
-	"delete_and_move": "Löschn und vaschiam",
 	"delete_and_move_reason": "glöscht, um Plåtz fia Vaschiam zum macha",
 	"selfmove": "Ursprungs- und Zielname sand gleich; a Seitn kann net auf sich selber verschom wern.",
 	"export": "Seitn exportian",
@@ -1038,7 +1039,7 @@
 	"importlogpage": "Import-Logbuach",
 	"tooltip-pt-userpage": "Dei Nutzaseitn",
 	"tooltip-pt-mytalk": "Dei Dischkriaseitn",
-	"tooltip-pt-preferences": "Deine Preferenzn",
+	"tooltip-pt-preferences": "Deine Preferenzen",
 	"tooltip-pt-watchlist": "A Listn vo Seitn, wos du beobochtest",
 	"tooltip-pt-mycontris": "A Listn vo de oagna Beidreg",
 	"tooltip-pt-login": "Warad schee, wensd di omejdn dadast, es is oba ned zwingend nedig.",

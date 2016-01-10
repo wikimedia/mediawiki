@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"9.sinistra",
+			"Ninjastrikers"
+		]
+	},
+	"apihelp-feedrecentchanges-param-hideanons": "အမည်မသိ အသုံးပြုသူများ ပြုလုပ်သည့် ပြောင်းလဲချက်များကို ဝှက်ရန်",
+	"apihelp-feedrecentchanges-param-hideliu": "မှတ်ပုံတင်ထားသော အသုံးပြုသူများ ပြုလုပ်ထားခဲ့သည့် ပြောင်းလဲမှုများကို ဝှက်ရန်"
+}

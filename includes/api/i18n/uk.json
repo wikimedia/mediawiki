@@ -9,7 +9,8 @@
 			"Umherirrender",
 			"Macofe",
 			"Mix Gerder",
-			"Piramidion"
+			"Piramidion",
+			"Andriykopanytsia"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документація]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Список розсилки]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Оголошення API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Баґи і запити]\n</div>\n<strong>Статус:</strong> Усі функції, вказані на цій сторінці, мають працювати, але API далі перебуває в активній розробці і може змінитися у будь-який момент. Підпишіться на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ список розсилки mediawiki-api-announce], щоб помічати оновлення.\n\n<strong>Хибні запити:</strong> Коли до API надсилаються хибні запити, буде відіслано HTTP-шапку з ключем «MediaWiki-API-Error», а тоді і значення шапки, і код помилки, надіслані назад, будуть встановлені з тим же значенням. Більше інформації див. на [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -511,6 +512,7 @@
 	"apihelp-query+allusers-paramvalue-prop-rights": "Перераховує права, які користувач має.",
 	"apihelp-query+allusers-paramvalue-prop-editcount": "Додає кількість редагувань користувача.",
 	"apihelp-query+allusers-paramvalue-prop-registration": "Додає часову мітку, коли користувач зареєструвався, якщо доступно (може бути пустою).",
+	"apihelp-query+allusers-paramvalue-prop-centralids": "Додає центральні ідентифікатори і стан вкладення для користувача.",
 	"apihelp-query+allusers-param-limit": "Скільки всього виводити імен користувачів.",
 	"apihelp-query+allusers-param-witheditsonly": "Перерахувати лише користувачів, що зробили редагування.",
 	"apihelp-query+allusers-param-activeusers": "Перерахувати лише користувачів, що були активні $1 {{PLURAL:$1|останній день|останні дні|останніх днів}}.",
@@ -1096,6 +1098,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "Дублює шапку <code>Accept-Language</code>, надіслану клієнтом у структурованому форматі.",
 	"apihelp-query+userinfo-paramvalue-prop-registrationdate": "ДОдає дату реєстрації користувача.",
 	"apihelp-query+userinfo-paramvalue-prop-unreadcount": "Додає кількість непрочитаних сторінок у списку спостереження користувача (максимально $1; видає «<samp>$2</samp>», якщо більше).",
+	"apihelp-query+userinfo-paramvalue-prop-centralids": "Додає центральні ідентифікатори і стан вкладення для користувача.",
 	"apihelp-query+userinfo-example-simple": "Отримати інформацію про поточного користувача.",
 	"apihelp-query+userinfo-example-data": "Отримати додаткову інформацію про поточного користувача.",
 	"apihelp-query+users-description": "Отримати інформацію про список користувачів.",
@@ -1108,6 +1111,7 @@
 	"apihelp-query+users-paramvalue-prop-registration": "Додає часову мітку реєстрації користувача.",
 	"apihelp-query+users-paramvalue-prop-emailable": "Помічає чи хоче користувач отримувати електронну пошту через [[Special:Emailuser]].",
 	"apihelp-query+users-paramvalue-prop-gender": "Помічає стать користувача. Повертає \"male\", \"female\", або \"unknown\".",
+	"apihelp-query+users-paramvalue-prop-centralids": "Додає центральні ідентифікатори і стан вкладення для користувача.",
 	"apihelp-query+users-param-users": "Список користувачів, для яких отримати інформацію.",
 	"apihelp-query+users-param-token": "Використати натомість <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>.",
 	"apihelp-query+users-example-simple": "Вивести інформацію для користувача <kbd>Example</kbd>.",

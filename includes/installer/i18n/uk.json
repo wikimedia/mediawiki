@@ -81,6 +81,7 @@
 	"config-apc": "[http://www.php.net/apc APC] встановлено",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] встановлено",
 	"config-no-cache": "'''Увага:''' Не вдалося знайти [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] чи [http://www.iis.net/download/WinCacheForPhp WinCache].\nКешування об'єктів не ввімкнено.",
+	"config-no-cache-apcu": "<strong>Увага:</strong> Не вдалося знайти [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] чи [http://www.iis.net/download/WinCacheForPhp WinCache].\nКешування об'єктів не ввімкнено.",
 	"config-mod-security": "'''Увага''': на Вашому веб-сервері увімкнено [http://modsecurity.org/ mod_security]. У разі неправильних налаштувать, він може викликати проблеми MediaWiki або іншого ПЗ, яке дозволяє користувачам надсилати довільний вміст.\nЗверніться до [http://modsecurity.org/documentation/ документації mod_security] або підтримки Вашого хостера, якщо під час роботи виникають незрозумілі помилки.",
 	"config-diff3-bad": "GNU diff3 не знайдено.",
 	"config-git": "Знайшов програму управління версіями Git: <code>$1</code>.",

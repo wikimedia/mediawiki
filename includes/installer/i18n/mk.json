@@ -72,6 +72,7 @@
 	"config-apc": "[http://www.php.net/apc APC] е воспоставен",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] е воспоставен",
 	"config-no-cache": "<strong>Предупредување:</strong> Не можев да го најдам [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] или [http://www.iis.net/download/WinCacheForPhp WinCache].\nМеѓускладирањето на објекти не е овозможено.",
+	"config-no-cache-apcu": "<strong>Предупредување:</strong> Не можев да го најдам [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] или [http://www.iis.net/download/WinCacheForPhp WinCache].\nМеѓускладирањето на објекти не е овозможено",
 	"config-mod-security": "'''Предупредување''': на вашиот опслужувач има овозможено [http://modsecurity.org/ mod_security]. Ако не е поставено како што треба, ова може да предизвика проблеми кај МедијаВики и други програми што им овозможуваат на корисниците да објавуваат произволни содржини.\nПогледнете ја [http://modsecurity.org/documentation/ mod_security документацијата] или обратете се кај домаќинот ако наидете на случајни грешки.",
 	"config-diff3-bad": "GNU diff3 не е пронајден.",
 	"config-git": "Го пронајдов Git програмот за контрола на верзии: <code>$1</code>.",

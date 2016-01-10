@@ -1103,6 +1103,7 @@
 	"recentchanges-label-plusminus": "Stærð síðunnar breyttist um svona mörg bæti",
 	"recentchanges-legend-heading": "'''Fyrirsögn:'''",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (sjá einng [[Special:NewPages|lista yfir nýjar síður]])",
+	"recentchanges-submit": "Sýna",
 	"rcnotefrom": "Að neðan {{PLURAL:$5|er breyting síðan|eru breytingar síðan}} <strong>$3, $4</strong> (allt að <strong>$1</strong> sýndar).",
 	"rclistfrom": "Sýna breytingar frá og með $3 $2",
 	"rcshowhideminor": "$1 minniháttar breytingar",

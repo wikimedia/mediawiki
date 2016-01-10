@@ -76,6 +76,7 @@
 	"config-apc": "[http://www.php.net/apc APC] усталяваны",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] усталяваны",
 	"config-no-cache": "'''Папярэджаньне:''' немагчыма знайсьці [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] ці [http://www.iis.net/download/WinCacheForPhp WinCache].\nАб’ектнае кэшаваньне ня ўключанае.",
+	"config-no-cache-apcu": "<strong>Папярэджаньне:</strong> ня знойдзеныя [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] ці [http://www.iis.net/download/WinCacheForPhp WinCache]. Кэшаваньне аб’ектаў адключанае.",
 	"config-mod-security": "'''Папярэджаньне''': на Вашым ўэб-сэрверы ўключаны [http://modsecurity.org/ mod_security]. У выпадку няслушнай наладцы, ён можа стаць прычынай праблемаў для MediaWiki ці іншага праграмнага забесьпячэньня, якое дазваляе ўдзельнікам дасылаць на сэрвэр любы зьмест.\nГлядзіце [http://modsecurity.org/documentation/ дакумэнтацыю mod_security] ці зьвярніцеся ў падтрымку Вашага хосту, калі ў Вас узьнікаюць выпадковыя праблемы.",
 	"config-diff3-bad": "GNU diff3 ня знойдзены.",
 	"config-git": "Знойдзеная сыстэма канстролю вэрсіяў Git: <code>$1</code>",
