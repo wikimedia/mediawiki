@@ -361,11 +361,7 @@ class MovePage {
 		}
 
 		# Update watchlists
-		$oldtitle = $this->oldTitle->getDBkey();
-		$newtitle = $this->newTitle->getDBkey();
-		$oldsnamespace = MWNamespace::getSubject( $this->oldTitle->getNamespace() );
-		$newsnamespace = MWNamespace::getSubject( $this->newTitle->getNamespace() );
-		if ( $oldsnamespace != $newsnamespace || $oldtitle != $newtitle ) {
+		if ( !$this->oldTitle->equals( $this->newTitle ) ) {
 			WatchedItem::duplicateEntries( $this->oldTitle, $this->newTitle );
 		}
 
