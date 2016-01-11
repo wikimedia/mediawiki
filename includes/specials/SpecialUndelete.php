@@ -568,7 +568,7 @@ class PageArchive {
 				return Status::newFatal( "undeleterevdel" );
 			}
 			// Safe to insert now...
-			$newid = $article->insertOn( $dbw );
+			$newid = $article->insertOn( $dbw, $row->ar_page_id );
 			$pageId = $newid;
 		} else {
 			// Check if a deleted revision will become the current revision...
