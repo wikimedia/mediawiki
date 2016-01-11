@@ -1919,6 +1919,19 @@ final class AuthManager implements LoggerAwareInterface {
 		\Hooks::run( 'UserLoggedIn', array( $user ) );
 	}
 
+	/**
+	 * Reset the internal caching for unit testing
+	 */
+	public static function resetCache() {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			// @codeCoverageIgnoreStart
+			throw new MWException( __METHOD__ . ' may only be called from unit tests!' );
+			// @codeCoverageIgnoreEnd
+		}
+
+		self::$instance = null;
+	}
+
 	/**@}*/
 
 }
