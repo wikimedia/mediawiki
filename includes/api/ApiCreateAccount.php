@@ -27,6 +27,7 @@ use MediaWiki\Logger\LoggerFactory;
  * Unit to authenticate account registration attempts to the current wiki.
  *
  * @ingroup API
+ * @deprecated since 1.27, only used when $wgDisableAuthManager is true
  */
 class ApiCreateAccount extends ApiBase {
 	public function execute() {
