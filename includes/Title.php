@@ -3547,7 +3547,7 @@ class Title {
 		if ( $pageLang->hasVariants() ) {
 			$variants = $pageLang->getVariants();
 			foreach ( $variants as $vCode ) {
-				$urls[] = $this->getInternalURL( '', $vCode );
+				$urls[] = $this->getInternalURL( $vCode );
 			}
 		}
 
