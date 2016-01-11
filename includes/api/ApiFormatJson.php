@@ -42,7 +42,7 @@ class ApiFormatJson extends ApiFormatBase {
 			# outside the control of the end user.
 			# (and do it here because ApiMain::reportUnusedParams() gets called
 			# before our ::execute())
-			$this->getMain()->getCheck( '_' );
+			$this->getMain()->markParamsUsed( '_' );
 		}
 	}
 
