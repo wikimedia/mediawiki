@@ -100,6 +100,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$wgRequest = new FauxRequest( $params, true, $session );
 		RequestContext::getMain()->setRequest( $wgRequest );
 		RequestContext::getMain()->setUser( $wgUser );
+		MediaWiki\Auth\AuthManager::resetCache();
 
 		// set up local environment
 		$context = $this->apiContext->newTestContext( $wgRequest, $wgUser );

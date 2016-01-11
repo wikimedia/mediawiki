@@ -26,14 +26,14 @@ use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Logger\LoggerFactory;
 
 /**
- * Create an account with AuthManager
+ * Log in to the wiki with AuthManager
  *
  * @ingroup API
  */
-class ApiCreateAccount extends ApiBase {
+class ApiClientLogin extends ApiBase {
 
 	public function __construct( ApiMain $main, $action ) {
-		parent::__construct( $main, $action, 'create' );
+		parent::__construct( $main, $action, 'login' );
 	}
 
 	public function getFinalDescription() {
@@ -43,7 +43,7 @@ class ApiCreateAccount extends ApiBase {
 			$this->getModulePrefix(),
 			$this->getModuleName(),
 			$this->getModulePath(),
-			AuthManager::ACTION_CREATE,
+			AuthManager::ACTION_LOGIN,
 			self::needsToken(),
 		) );
 		return $msgs;
@@ -69,17 +69,15 @@ class ApiCreateAccount extends ApiBase {
 		$manager = AuthManager::singleton();
 
 		// Make sure it's possible to log in
-		if ( !$manager->canCreateAccounts() ) {
-			$this->getResult()->addValue( null, 'createaccount', $helper->formatAuthenticationResponse(
-				AuthenticationResponse::newFail(
-					$this->msg( 'userlogin-cannot-' . AuthManager::ACTION_CREATE )
-				)
+		if ( !$manager->canAuthenticateNow() ) {
+			$this->getResult()->addValue( null, 'clientlogin', $helper->formatAuthenticationResponse(
+				AuthenticationResponse::newFail( $this->msg( 'userlogin-cannot-' . AuthManager::ACTION_LOGIN ) )
 			) );
 			return;
 		}
 
-		// Perform the create step
-		$reqs = $helper->loadAuthenticationRequests( AuthManager::ACTION_CREATE );
+		// Perform the login step
+		$reqs = $helper->loadAuthenticationRequests( AuthManager::ACTION_LOGIN );
 		if ( $params['preservestate'] ) {
 			$req = $helper->getPreservedRequest();
 			if ( $req ) {
@@ -88,12 +86,12 @@ class ApiCreateAccount extends ApiBase {
 		}
 
 		if ( $params['continue'] ) {
-			$res = $manager->continueAccountCreation( $reqs );
+			$res = $manager->continueAuthentication( $reqs );
 		} else {
-			$res = $manager->beginAccountCreation( $this->getUser(), $reqs, $params['returnurl'] );
+			$res = $manager->beginAuthentication( $reqs, $params['returnurl'] );
 		}
 
-		$this->getResult()->addValue( null, 'createaccount',
+		$this->getResult()->addValue( null, 'clientlogin',
 			$helper->formatAuthenticationResponse( $res ) );
 	}
 
@@ -101,12 +99,8 @@ class ApiCreateAccount extends ApiBase {
 		return false;
 	}
 
-	public function isWriteMode() {
-		return true;
-	}
-
 	public function needsToken() {
-		return 'createaccount';
+		return 'login';
 	}
 
 	public function getAllowedParams() {
@@ -121,13 +115,15 @@ class ApiCreateAccount extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return array(
-			'action=createaccount&username=Example&password=ExamplePassword&'
-				. 'createreturnurl=http://example.org/&createtoken=123ABC'
-				=> 'apihelp-createaccount-example-create',
+			'action=clientlogin&username=Example&password=ExamplePassword&'
+				. 'loginreturnurl=http://example.org/&logintoken=123ABC'
+				=> 'apihelp-clientlogin-example-login',
+			'action=clientlogin&logincontinue=1&OATHToken=987654&logintoken=123ABC'
+				=> 'apihelp-clientlogin-example-login2',
 		);
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Account_creation';
+		return 'https://www.mediawiki.org/wiki/API:Login';
 	}
 }
