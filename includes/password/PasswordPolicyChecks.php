@@ -105,11 +105,15 @@ class PasswordPolicyChecks {
 
 		$status = Status::newGood();
 		$username = $user->getName();
-		if ( $policyVal
-			&& isset( $blockedLogins[$username] )
-			&& $password == $blockedLogins[$username]
-		) {
-			$status->error( 'password-login-forbidden' );
+		if ( $policyVal ) {
+			if ( isset( $blockedLogins[$username] ) && $password == $blockedLogins[$username] ) {
+				$status->error( 'password-login-forbidden' );
+			}
+
+			// Example from ApiChangeAuthenticationRequest
+			if ( $password === 'ExamplePassword' ) {
+				$status->error( 'password-login-forbidden' );
+			}
 		}
 		return $status;
 	}
