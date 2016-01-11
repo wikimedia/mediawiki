@@ -134,16 +134,50 @@ class SpecialPasswordReset extends FormSpecialPage {
 	 * @param array $data
 	 * @throws MWException
 	 * @throws ThrottledError|PermissionsError
-	 * @return bool|array
+	 * @return Status|boolean
 	 */
 	public function onSubmit( array $data ) {
-		$authManager = AuthManager::singleton();
-
 		if ( isset( $data['Capture'] ) && !$this->getUser()->isAllowed( 'passwordreset' ) ) {
 			// The user knows they don't have the passwordreset permission,
 			// but they tried to spoof the form. That's naughty
 			throw new PermissionsError( 'passwordreset' );
 		}
+
+		$ret = self::resetPassword( $data, $this->getUser() );
+		if ( $ret instanceof Status ) {
+			if ( $ret->hasMessage( 'actionthrottledtext' ) ) {
+				throw new ThrottledError;
+			}
+			if ( isset( $ret->value['method'] ) ) {
+				$this->method = $ret->value['method'];
+			}
+			if ( isset( $ret->value['result'] ) ) {
+				$this->result = $ret->value['result'];
+			}
+			if ( isset( $ret->value['passwords'] ) ) {
+				$this->passwords = $ret->value['passwords'];
+			}
+		}
+		return $ret;
+	}
+
+	/**
+	 * Reset the password.
+	 * @param array $data Keys are:
+	 *  - Username: Username to reset. Overrides 'Email'.
+	 *  - Email: Email address of users to reset.
+	 *  - Capture: Whether to capture passwords. The caller is responsible for
+	 *    permissions checking.
+	 * @param User $caller User peforming the reset
+	 * @return Status|bool False if neither Username nor Email is provided, a
+	 *  Status otherwise. The Status's value is an array with the following
+	 *  possible keys:
+	 *  - method: Method used to determine the users to reset, 'username' or 'email'
+	 *  - result: Result of the password reset itself
+	 *  - passwords: Captured passwords
+	 */
+	public static function resetPassword( array $data, User $caller ) {
+		$status = Status::newGood( [] );
 
 		/**
 		 * @var $firstUser User
@@ -183,17 +217,19 @@ class SpecialPasswordReset extends FormSpecialPage {
 		// Check for hooks (captcha etc), and allow them to modify the users list
 		$error = [];
 		if ( !Hooks::run( 'SpecialPasswordResetOnSubmit', [ &$users, $data, &$error ] ) ) {
-			return [ $error ];
+			call_user_func_array( [ $status, 'fatal' ], (array)$error );
+			return $status;
 		}
 
-		$this->method = $method;
+		$status->value['method'] = $method;
 
 		if ( count( $users ) == 0 ) {
 			if ( $method == 'email' ) {
 				// Don't reveal whether or not an email address is in use
-				return true;
+				return $status;
 			} else {
-				return [ 'noname' ];
+				$status->fatal( 'noname' );
+				return $status;
 			}
 		}
 
@@ -201,60 +237,63 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		if ( !$firstUser instanceof User || !$firstUser->getId() ) {
 			// Don't parse username as wikitext (bug 65501)
-			return [ [ 'nosuchuser', wfEscapeWikiText( $data['Username'] ) ] ];
+			$status->fatal( 'nosuchuser', wfEscapeWikiText( $data['Username'] ) );
+			return $status;
 		}
 
 		// Check against the rate limiter
-		if ( $this->getUser()->pingLimiter( 'mailpassword' ) ) {
-			throw new ThrottledError;
+		if ( $caller->pingLimiter( 'mailpassword' ) ) {
+			$status->fatal( 'actionthrottledtext' );
+			return $status;
 		}
 
 		// All the users will have the same email address
 		if ( $firstUser->getEmail() == '' ) {
 			// This won't be reachable from the email route, so safe to expose the username
-			return [ [ 'noemail', wfEscapeWikiText( $firstUser->getName() ) ] ];
+			$status->fatal( 'noemail', wfEscapeWikiText( $firstUser->getName() ) );
+			return $status;
 		}
 
 		// We need to have a valid IP address for the hook, but per bug 18347, we should
 		// send the user's name if they're logged in.
-		$ip = $this->getRequest()->getIP();
+		$ip = $caller->getRequest()->getIP();
 		if ( !$ip ) {
-			return [ 'badipaddress' ];
+			$status->fatal( 'badipaddress' );
+			return $status;
 		}
 
-		$caller = $this->getUser();
 		Hooks::run( 'User::mailPasswordInternal', [ &$caller, &$ip, &$firstUser ] );
 
-		$this->result = Status::newGood();
+		$authManager = AuthManager::singleton();
+		$result = Status::newGood();
+		$status->value['result'] = $result;
+		$reqs = array();
 		foreach ( $users as $user ) {
 			$req = TemporaryPasswordAuthenticationRequest::newRandom();
 			$req->username = $user->getName();
 			$req->mailpassword = true;
 			$req->hasBackchannel = !empty( $data['Capture'] );
-			$req->caller = $this->getUser()->getName();
-			$status = $authManager->allowsAuthenticationDataChange( $req, true );
-			$this->result->merge( $status );
-			if ( $status->isGood() ) {
-				$authManager->changeAuthenticationData( $req );
-
-				// TODO record mail sending errors
-				if ( !empty( $data['Capture'] ) ) {
-					$this->passwords[$req->username] = $req->password;
-				}
+			$req->caller = $caller->getName();
+			$ret = $authManager->allowsAuthenticationDataChange( $req, true );
+			if ( $ret->isGood() ) {
+				$reqs[] = $req;
+			} elseif ( $result->isGood() ) {
+				$result->merge( $ret );
 			}
 		}
 
-		if ( $this->result->isGood() ) {
-			return true;
-		} elseif ( isset( $data['Capture'] ) && $data['Capture'] ) {
-			// The email didn't send, but maybe they knew that and that's why they captured it
-			return true;
-		} else {
-			// @todo FIXME: The email wasn't sent, but we have already set
-			// the password throttle timestamp, so they won't be able to try
-			// again until it expires...  :(
-			return [ [ 'mailerror', $this->result->getMessage() ] ];
+		if ( !$result->isGood() && empty( $data['Capture'] ) ) {
+			$status->fatal( 'mailerror', $result->getMessage() );
+			return $status;
 		}
+
+		foreach ( $reqs as $req ) {
+			$authManager->changeAuthenticationData( $req );
+			if ( !empty( $data['Capture'] ) ) {
+				$status->value['passwords'][$req->username] = $req->password;
+			}
+		}
+		return $status;
 	}
 
 	public function onSuccess() {
