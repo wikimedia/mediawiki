@@ -50,7 +50,6 @@ class SpecialComparePages extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		# Form (.mw-searchInput enables suggestions)
 		$form = HTMLForm::factory( 'ooui', array(
 			'Page1' => array(
 				'type' => 'title',
