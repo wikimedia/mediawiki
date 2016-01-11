@@ -184,6 +184,13 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			$data[2]
 		);
 
+		if ( $data[0]['login']['result'] === 'Success' ) {
+			// DWIM
+			global $wgUser;
+			$wgUser = self::$users[$user]->getUser();
+			RequestContext::getMain()->setUser( $wgUser );
+		}
+
 		return $data;
 	}
 
