@@ -112,6 +112,7 @@ class ApiQuery extends ApiBase {
 	 */
 	private static $QueryMetaModules = [
 		'allmessages' => 'ApiQueryAllMessages',
+		'authmanagerinfo' => 'ApiQueryAuthManagerInfo',
 		'siteinfo' => 'ApiQuerySiteinfo',
 		'userinfo' => 'ApiQueryUserInfo',
 		'filerepoinfo' => 'ApiQueryFileRepoInfo',
