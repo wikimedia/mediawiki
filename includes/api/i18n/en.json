@@ -34,6 +34,9 @@
 	"apihelp-block-example-ip-simple": "Block IP address <kbd>192.0.2.5</kbd> for three days with reason <kbd>First strike</kbd>.",
 	"apihelp-block-example-user-complex": "Block user <kbd>Vandal</kbd> indefinitely with reason <kbd>Vandalism</kbd>, and prevent new account creation and email sending.",
 
+	"apihelp-changeauthenticationdata-description": "Change authentication data for the current user.",
+	"apihelp-changeauthenticationdata-example-password": "Attempt to change the current user's password to <kbd>ExamplePassword</kbd>.",
+
 	"apihelp-checktoken-description": "Check the validity of a token from <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>.",
 	"apihelp-checktoken-param-type": "Type of token being tested.",
 	"apihelp-checktoken-param-token": "Token to test.",
@@ -42,6 +45,10 @@
 
 	"apihelp-clearhasmsg-description": "Clears the <code>hasmsg</code> flag for the current user.",
 	"apihelp-clearhasmsg-example-1": "Clear the <code>hasmsg</code> flag for the current user.",
+
+	"apihelp-clientlogin-description": "Log in to the wiki using the interactive flow.",
+	"apihelp-clientlogin-example-login": "Start the process of logging in to the wiki as user <kbd>Example</kbd> with password <kbd>ExamplePassword</kbd>.",
+	"apihelp-clientlogin-example-login2": "Continue logging in after a UI response for two-factor auth, supplying an <var>OATHToken</var> of <kbd>987654</kbd>.",
 
 	"apihelp-compare-description": "Get the difference between 2 pages.\n\nA revision number, a page title, or a page ID for both \"from\" and \"to\" must be passed.",
 	"apihelp-compare-param-fromtitle": "First title to compare.",
@@ -53,6 +60,7 @@
 	"apihelp-compare-example-1": "Create a diff between revision 1 and 2.",
 
 	"apihelp-createaccount-description": "Create a new user account.",
+	"apihelp-createaccount-example-create": "Start the process of creating user <kbd>Example</kbd> with password <kbd>ExamplePassword</kbd>.",
 	"apihelp-createaccount-param-name": "Username.",
 	"apihelp-createaccount-param-password": "Password (ignored if <var>$1mailpassword</var> is set).",
 	"apihelp-createaccount-param-domain": "Domain for external authentication (optional).",
@@ -214,7 +222,12 @@
 	"apihelp-import-param-rootpage": "Import as subpage of this page. Cannot be used together with <var>$1namespace</var>.",
 	"apihelp-import-example-import": "Import [[meta:Help:ParserFunctions]] to namespace 100 with full history.",
 
-	"apihelp-login-description": "Log in and get authentication cookies.\n\nIn the event of a successful log-in, the needed cookies will be included in the HTTP response headers. In the event of a failed log-in, further attempts may be throttled to limit automated password guessing attacks.",
+	"apihelp-linkaccount-description": "Link an account from a third-party provider to the current user.",
+	"apihelp-linkaccount-example-link": "Start the process of linking to an account from <kbd>Example</kbd>.",
+
+	"apihelp-login-description": "Log in and get authentication cookies.\n\nThis action should only be used in combination with [[Special:BotPasswords]]; use for main-account login is deprecated and may fail without warning. To safely log in to the main account, use <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
+	"apihelp-login-description-nobotpasswords": "Log in and get authentication cookies.\n\nThis action is deprecated and may fail without warning. To safely log in, use <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
+	"apihelp-login-description-nonauthmanager": "Log in and get authentication cookies.\n\nIn the event of a successful log-in, the needed cookies will be included in the HTTP response headers. In the event of a failed log-in, further attempts may be throttled to limit automated password guessing attacks.",
 	"apihelp-login-param-name": "User name.",
 	"apihelp-login-param-password": "Password.",
 	"apihelp-login-param-domain": "Domain (optional).",
@@ -570,6 +583,13 @@
 	"apihelp-query+allusers-param-activeusers": "Only list users active in the last $1 {{PLURAL:$1|day|days}}.",
 	"apihelp-query+allusers-param-attachedwiki": "With <kbd>$1prop=centralids</kbd>, also indicate whether the user is attached with the wiki identified by this ID.",
 	"apihelp-query+allusers-example-Y": "List users starting at <kbd>Y</kbd>.",
+
+	"apihelp-query+authmanagerinfo-description": "Retrieve information about the current authentication status.",
+	"apihelp-query+authmanagerinfo-param-securitysensitiveoperation": "Test whether the user's current authentication status is sufficient for the specified security-sensitive operation.",
+	"apihelp-query+authmanagerinfo-param-requestsfor": "Fetch information about the authentication requests needed for the specified authentication action.",
+	"apihelp-query+filerepoinfo-example-login": "Fetch the requests that may be used when beginning a login.",
+	"apihelp-query+filerepoinfo-example-login-merged": "Fetch the requests that may be used when beginning a login, with form fields merged.",
+	"apihelp-query+filerepoinfo-example-securitysensitiveoperation": "Test whether authentication is sufficient for action <kbd>foo</kbd>.",
 
 	"apihelp-query+backlinks-description": "Find all pages that link to the given page.",
 	"apihelp-query+backlinks-param-title": "Title to search. Cannot be used together with <var>$1pageid</var>.",
@@ -1215,6 +1235,7 @@
 	"apihelp-query+users-paramvalue-prop-emailable": "Tags if the user can and wants to receive email through [[Special:Emailuser]].",
 	"apihelp-query+users-paramvalue-prop-gender": "Tags the gender of the user. Returns \"male\", \"female\", or \"unknown\".",
 	"apihelp-query+users-paramvalue-prop-centralids": "Adds the central IDs and attachment status for the user.",
+	"apihelp-query+users-paramvalue-prop-cancreate": "Indicates whether an account for valid but unregistered usernames can be created.",
 	"apihelp-query+users-param-attachedwiki": "With <kbd>$1prop=centralids</kbd>, indicate whether the user is attached with the wiki identified by this ID.",
 	"apihelp-query+users-param-users": "A list of users to obtain information for.",
 	"apihelp-query+users-param-token": "Use <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd> instead.",
@@ -1269,6 +1290,17 @@
 	"apihelp-query+watchlistraw-param-totitle": "Title (with namespace prefix) to stop enumerating at.",
 	"apihelp-query+watchlistraw-example-simple": "List pages on the current user's watchlist.",
 	"apihelp-query+watchlistraw-example-generator": "Fetch page info for pages on the current user's watchlist.",
+
+	"apihelp-removeauthenticationdata-description": "Remove authentication data for the current user.",
+	"apihelp-removeauthenticationdata-example-simple": "Attempt to remove the current user's data for <kbd>FooAuthenticationRequest</kbd>.",
+
+	"apihelp-resetpassword-description": "Send a password reset email to a user.",
+	"apihelp-resetpassword-description-noroutes": "No password reset routes are available.\n\nEnable routes in <var>[[mw:Manual:$wgPasswordResetRoutes|$wgPasswordResetRoutes]]</var> to use this module.",
+	"apihelp-resetpassword-param-user": "User being reset.",
+	"apihelp-resetpassword-param-email": "Email address of the user being reset.",
+	"apihelp-resetpassword-param-capture": "Return the temporary passwords that were sent. Requires the <code>passwordreset</code> user right.",
+	"apihelp-resetpassword-example-user": "Send a password reset email to user <kbd>Example</kbd>.",
+	"apihelp-resetpassword-example-email": "Send a password reset email for all users with email address <kbd>user@example.com</kbd>.",
 
 	"apihelp-revisiondelete-description": "Delete and undelete revisions.",
 	"apihelp-revisiondelete-param-type": "Type of revision deletion being performed.",
@@ -1346,6 +1378,9 @@
 	"apihelp-undelete-param-watchlist": "Unconditionally add or remove the page from the current user's watchlist, use preferences or do not change watch.",
 	"apihelp-undelete-example-page": "Undelete page <kbd>Main Page</kbd>.",
 	"apihelp-undelete-example-revisions": "Undelete two revisions of page <kbd>Main Page</kbd>.",
+
+	"apihelp-unlinkaccount-description": "Remove a linked third-party account from the current user.",
+	"apihelp-unlinkaccount-example-simple": "Attempt to remove the current user's link for the provider associated with <kbd>FooAuthenticationRequest</kbd>.",
 
 	"apihelp-upload-description": "Upload a file, or get the status of pending uploads.\n\nSeveral methods are available:\n* Upload file contents directly, using the <var>$1file</var> parameter.\n* Upload the file in pieces, using the <var>$1filesize</var>, <var>$1chunk</var>, and <var>$1offset</var> parameters.\n* Have the MediaWiki server fetch a file from a URL, using the <var>$1url</var> parameter.\n* Complete an earlier upload that failed due to warnings, using the <var>$1filekey</var> parameter.\nNote that the HTTP POST must be done as a file upload (i.e. using <code>multipart/form-data</code>) when sending the <var>$1file</var>.",
 	"apihelp-upload-param-filename": "Target filename.",
@@ -1468,6 +1503,16 @@
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Granted to}}: $2",
 	"api-help-right-apihighlimits": "Use higher limits in API queries (slow queries: $1; fast queries: $2). The limits for slow queries also apply to multivalue parameters.",
 	"api-help-open-in-apisandbox": "<small>[open in sandbox]</small>",
+
+	"api-help-authmanager-general-usage": "The general procedure to use this module is:\n# Fetch the fields available from <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> with <kbd>amirequestsfor=$4</kbd>, and a <kbd>$5</kbd> token from <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]].\n# Present the fields to the user, and obtain their submission.\n# Post to this module, supplying <var>$1returnurl</var> and any relevant fields.\n# Check the <samp>status</samp> in the response.\n#* If you received <samp>PASS</samp> or <samp>FAIL</samp>, you're done. The operation either succeeded or it didn't.\n#* If you received <samp>UI</samp>, present the new fields to the user and obtain their submission. Then post to this module with <var>$1continue</var> and the relevant fields set, and repeat step 4.\n#* If you received <samp>REDIRECT</samp>, direct the user to the <samp>redirecttarget</samp> and wait for the return to <var>$1returnurl</var>. Then post to this module with <var>$1continue</var> and any fields passed to the return URL, and repeat step 4.\n#* If you received <samp>RESTART</samp>, that means the authentication worked but we don't have an linked user account. You might treat this as UI or as FAIL.",
+	"api-help-authmanagerhelper-requests": "Only use these authentication requests, by the <samp>id</samp> returned from <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> with <kbd>amirequestsfor=$1</kbd> or from a previous response from this module.",
+	"api-help-authmanagerhelper-request": "Use this authentication request, by the <samp>id</samp> returned from <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> with <kbd>amirequestsfor=$1</kbd>.",
+	"api-help-authmanagerhelper-messageformat": "Format to use for returning messages.",
+	"api-help-authmanagerhelper-mergerequestfields": "Merge field information for all authentication requests into one array.",
+	"api-help-authmanagerhelper-preservestate": "Preserve state from a previous failed login attempt, if possible.",
+	"api-help-authmanagerhelper-returnurl": "Return URL for third-party authentication flows, must be absolute. Either this or <var>$1continue</var> is required.\n\nUpon receiving a <samp>REDIRECT</samp> response, you will typically open a browser or web view to the specified <samp>redirecttarget</samp> URL for a third-party authentication flow. When that completes, the third party will send the browser or web view to this URL. You should extract any query or POST parameters from the URL and pass them as a <var>$1continue</var> request to this API module.",
+	"api-help-authmanagerhelper-continue": "This request is a continuation after an earlier <samp>UI</samp> or <samp>REDIRECT</samp> response. Either this or <var>$1returnurl</var> is required.",
+	"api-help-authmanagerhelper-additional-params": "This module accepts additional parameters depending on the available authentication requests. Use <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> with <kbd>amirequestsfor=$1</kbd> (or a previous response from this module, if applicable) to determine the requests available and the fields that they use.",
 
 	"api-credits-header": "Credits",
 	"api-credits": "API developers:\n* Yuri Astrakhan (creator, lead developer Sep 2006–Sep 2007)\n* Roan Kattouw (lead developer Sep 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (lead developer 2013–present)\n\nPlease send your comments, suggestions and questions to mediawiki-api@lists.wikimedia.org\nor file a bug report at https://phabricator.wikimedia.org/."
