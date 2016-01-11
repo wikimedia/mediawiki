@@ -360,14 +360,12 @@ class MovePage {
 			);
 		}
 
-		# Update watchlists
-		$oldtitle = $this->oldTitle->getDBkey();
-		$newtitle = $this->newTitle->getDBkey();
-		$oldsnamespace = MWNamespace::getSubject( $this->oldTitle->getNamespace() );
-		$newsnamespace = MWNamespace::getSubject( $this->newTitle->getNamespace() );
-		if ( $oldsnamespace != $newsnamespace || $oldtitle != $newtitle ) {
-			WatchedItem::duplicateEntries( $this->oldTitle, $this->newTitle );
-		}
+		// Update watchlists
+		//
+		// WatchedItem uses Database::replace, so in cases where one moves a
+		// page to to the corresponding talk namespace without otherwise
+		// changing the table, duplicate watchlist entries are still avoided.
+		WatchedItem::duplicateEntries( $this->oldTitle, $this->newTitle );
 
 		Hooks::run(
 			'TitleMoveCompleting',
