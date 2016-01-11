@@ -632,27 +632,21 @@
 				obj[ key ] = val;
 			} : function ( obj, key, val, msg ) {
 				msg = 'Use of "' + key + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' );
-				// Support: IE8
-				// Can throw on Object.defineProperty.
-				try {
-					Object.defineProperty( obj, key, {
-						configurable: true,
-						enumerable: true,
-						get: function () {
-							mw.track( 'mw.deprecate', key );
-							mw.log.warn( msg );
-							return val;
-						},
-						set: function ( newVal ) {
-							mw.track( 'mw.deprecate', key );
-							mw.log.warn( msg );
-							val = newVal;
-						}
-					} );
-				} catch ( err ) {
-					// Fallback to creating a copy of the value to the object.
-					obj[ key ] = val;
-				}
+				Object.defineProperty( obj, key, {
+					configurable: true,
+					enumerable: true,
+					get: function () {
+						mw.track( 'mw.deprecate', key );
+						mw.log.warn( msg );
+						return val;
+					},
+					set: function ( newVal ) {
+						mw.track( 'mw.deprecate', key );
+						mw.log.warn( msg );
+						val = newVal;
+					}
+				} );
+
 			};
 
 			return log;
