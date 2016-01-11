@@ -1026,8 +1026,6 @@ return array(
 	),
 	'mediawiki.hlist' => array(
 		'styles' => 'resources/src/mediawiki/mediawiki.hlist.css',
-		'scripts' => 'resources/src/mediawiki/mediawiki.hlist.js',
-		'dependencies' => 'jquery.client',
 	),
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.htmlform.js',
