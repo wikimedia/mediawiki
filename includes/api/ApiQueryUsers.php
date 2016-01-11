@@ -260,6 +260,10 @@ class ApiQueryUsers extends ApiQueryBase {
 					}
 				} else {
 					$data[$u]['missing'] = true;
+					if ( !$this->getConfig()->get( 'DisableAuthManager' ) ) {
+						$data[$u]['cancreate'] = MediaWiki\Auth\AuthManager::singleton()->canCreateAccount( $u )
+							->isGood();
+					}
 				}
 			} else {
 				if ( isset( $this->prop['groups'] ) && isset( $data[$u]['groups'] ) ) {
