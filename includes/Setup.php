@@ -487,6 +487,22 @@ if ( $wgProfileOnly ) {
 	$wgDebugLogFile = '';
 }
 
+// Disable AuthManager API modules if $wgDisableAuthManager
+if ( $wgDisableAuthManager ) {
+	$wgAPIModules += array(
+		'clientlogin' => 'ApiDisabled',
+		'createaccount' => 'ApiCreateAccount', // Use the non-AuthManager version
+		'linkaccount' => 'ApiDisabled',
+		'unlinkaccount' => 'ApiDisabled',
+		'changeauthenticationdata' => 'ApiDisabled',
+		'removeauthenticationdata' => 'ApiDisabled',
+		'resetpassword' => 'ApiDisabled',
+	);
+	$wgAPIMetaModules += array(
+		'authmanagerinfo' => 'ApiQueryDisabled',
+	);
+}
+
 // Backwards compatibility with old password limits
 if ( $wgMinimalPasswordLength !== false ) {
 	$wgPasswordPolicy['policies']['default']['MinimalPasswordLength'] = $wgMinimalPasswordLength;
