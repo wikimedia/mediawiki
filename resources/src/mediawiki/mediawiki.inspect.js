@@ -107,15 +107,11 @@
 		 */
 		auditSelectors: function ( css ) {
 			var selectors = { total: 0, matched: 0 },
-				style = document.createElement( 'style' ),
-				sheet, rules;
+				style = document.createElement( 'style' );
 
 			style.textContent = css;
 			document.body.appendChild( style );
-			// Standards-compliant browsers use .sheet.cssRules, IE8 uses .styleSheet.rules…
-			sheet = style.sheet || style.styleSheet;
-			rules = sheet.cssRules || sheet.rules;
-			$.each( rules, function ( index, rule ) {
+			$.each( style.sheet.cssRules, function ( index, rule ) {
 				selectors.total++;
 				// document.querySelector() on prefixed pseudo-elements can throw exceptions
 				// in Firefox and Safari. Ignore these exceptions.
