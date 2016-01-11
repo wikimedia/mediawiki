@@ -52,6 +52,10 @@ class MovePageTest extends MediaWikiTestCase {
 			WikiPage::factory( $newTitle )->getRevision()
 		);
 
+		$user = User::newFromName( 'UTSysop' );
+		$watchedItem = WatchedItem::fromUserTitle( $user, $oldTitle );
+		$watchedItem->addWatch();
+
 		$this->assertTrue( $oldTitle->moveTo( $newTitle, false, 'test1', true ) );
 		$this->assertNotNull(
 			WikiPage::factory( $oldTitle )->getRevision()
@@ -59,5 +63,8 @@ class MovePageTest extends MediaWikiTestCase {
 		$this->assertNotNull(
 			WikiPage::factory( $newTitle )->getRevision()
 		);
+
+		$newWatchedItem = WatchedItem::fromUserTitle( $user, $newTitle );
+		$this->assertTrue( $newWatchedItem->isWatched(), 'Moved page is being watched' );
 	}
 }
