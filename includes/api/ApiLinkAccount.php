@@ -25,14 +25,14 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 
 /**
- * Create an account with AuthManager
+ * Link an account with AuthManager
  *
  * @ingroup API
  */
-class ApiCreateAccount extends ApiBase {
+class ApiLinkAccount extends ApiBase {
 
 	public function __construct( ApiMain $main, $action ) {
-		parent::__construct( $main, $action, 'create' );
+		parent::__construct( $main, $action, 'link' );
 	}
 
 	public function getFinalDescription() {
@@ -42,13 +42,17 @@ class ApiCreateAccount extends ApiBase {
 			$this->getModulePrefix(),
 			$this->getModuleName(),
 			$this->getModulePath(),
-			AuthManager::ACTION_CREATE,
+			AuthManager::ACTION_LINK,
 			self::needsToken(),
 		] );
 		return $msgs;
 	}
 
 	public function execute() {
+		if ( !$this->getUser()->isLoggedIn() ) {
+			$this->dieUsage( 'Must be logged in to link accounts', 'notloggedin' );
+		}
+
 		$params = $this->extractRequestParams();
 
 		$this->requireAtLeastOneParameter( $params, 'continue', 'returnurl' );
@@ -68,31 +72,22 @@ class ApiCreateAccount extends ApiBase {
 		$manager = AuthManager::singleton();
 
 		// Make sure it's possible to log in
-		if ( !$manager->canCreateAccounts() ) {
-			$this->getResult()->addValue( null, 'createaccount', $helper->formatAuthenticationResponse(
-				AuthenticationResponse::newFail(
-					$this->msg( 'userlogin-cannot-' . AuthManager::ACTION_CREATE )
-				)
+		if ( !$manager->canLinkAccounts() ) {
+			$this->getResult()->addValue( null, 'linkaccount', $helper->formatAuthenticationResponse(
+				AuthenticationResponse::newFail( $this->msg( 'userlogin-cannot-' . AuthManager::ACTION_LINK ) )
 			) );
 			return;
 		}
 
-		// Perform the create step
-		$reqs = $helper->loadAuthenticationRequests( AuthManager::ACTION_CREATE );
-		if ( $params['preservestate'] ) {
-			$req = $helper->getPreservedRequest();
-			if ( $req ) {
-				$reqs[] = $req;
-			}
-		}
-
+		// Perform the link step
+		$reqs = $helper->loadAuthenticationRequests( AuthManager::ACTION_LINK );
 		if ( $params['continue'] ) {
-			$res = $manager->continueAccountCreation( $reqs );
+			$res = $manager->continueAccountLink( $reqs );
 		} else {
-			$res = $manager->beginAccountCreation( $this->getUser(), $reqs, $params['returnurl'] );
+			$res = $manager->beginAccountLink( $this->getUser(), $reqs, $params['returnurl'] );
 		}
 
-		$this->getResult()->addValue( null, 'createaccount',
+		$this->getResult()->addValue( null, 'linkaccount',
 			$helper->formatAuthenticationResponse( $res ) );
 	}
 
@@ -105,28 +100,27 @@ class ApiCreateAccount extends ApiBase {
 	}
 
 	public function needsToken() {
-		return 'createaccount';
+		return 'csrf';
 	}
 
 	public function getAllowedParams() {
-		return ApiAuthManagerHelper::getStandardParams( AuthManager::ACTION_CREATE,
-			'requests', 'messageformat', 'mergerequestfields', 'preservestate', 'returnurl', 'continue'
+		return ApiAuthManagerHelper::getStandardParams( AuthManager::ACTION_LINK,
+			'requests', 'messageformat', 'mergerequestfields', 'returnurl', 'continue'
 		);
 	}
 
 	public function dynamicParameterDocumentation() {
-		return [ 'api-help-authmanagerhelper-additional-params', AuthManager::ACTION_CREATE ];
+		return [ 'api-help-authmanagerhelper-additional-params', AuthManager::ACTION_LINK ];
 	}
 
 	protected function getExamplesMessages() {
 		return [
-			'action=createaccount&username=Example&password=ExamplePassword&retype=ExamplePassword'
-				. '&createreturnurl=http://example.org/&createtoken=123ABC'
-				=> 'apihelp-createaccount-example-create',
+			'action=linkaccount&provider=Example&linkreturnurl=http://example.org/&linktoken=123ABC'
+				=> 'apihelp-linkaccount-example-link',
 		];
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Account_creation';
+		return 'https://www.mediawiki.org/wiki/API:Linkaccount';
 	}
 }

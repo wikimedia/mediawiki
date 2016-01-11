@@ -20,7 +20,7 @@ class ApiLoginTest extends ApiTestCase {
 			'lgname' => '', 'lgpassword' => self::$users['sysop']->password,
 			'lgtoken' => (string)( new MediaWiki\Session\Token( 'foobar', '' ) )
 		], $session );
-		$this->assertEquals( 'NoName', $data[0]['login']['result'] );
+		$this->assertEquals( 'Failed', $data[0]['login']['result'] );
 	}
 
 	public function testApiLoginBadPass() {
@@ -61,7 +61,7 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertNotInternalType( "bool", $result );
 		$a = $result["login"]["result"];
 
-		$this->assertEquals( "WrongPass", $a );
+		$this->assertEquals( "Failed", $a );
 	}
 
 	public function testApiLoginGoodPass() {
