@@ -16,6 +16,7 @@
 	"apihelp-emailuser-description": "Слање имејла кориснику.",
 	"apihelp-emailuser-param-target": "Корисник је послао имејл.",
 	"apihelp-feedcontributions-param-year": "Од године (и раније).",
+	"apihelp-feedrecentchanges-param-hidepatrolled": "Сакриј патролиране измене.",
 	"apihelp-filerevert-description": "Вратити датотеку у ранију верзију.",
 	"apihelp-help-example-recursive": "Сва помоћ у једној страници.",
 	"apihelp-login-param-name": "Корисничко име.",

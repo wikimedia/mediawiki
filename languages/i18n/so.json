@@ -781,6 +781,7 @@
 	"nolinkstoimage": "Ma'ay jiraan beyjaj ku xiran faylkaan.",
 	"sharedupload-desc-here": "Faylkaan wuxuu ka socdaa  $1 waxaana laga yaabaa in lagu isticmaalay mashruucyada kale.\nTafaasiishiisa waxee ku qorantahay [$2 bogga tafaasiisha faylka] oo ka arki kartid hoostaan.",
 	"filerevert-comment": "Sababta:",
+	"filerevert-success": "<strong>[[Media:$1|$1]]</strong> waxaa dib loogu celiyay [$4 nuqulkii taariikhdiisu ahayd $3, $2].",
 	"filedelete": "Tirtir $1",
 	"filedelete-legend": "Tirtir fayl",
 	"filedelete-intro": "Waxaad tirtiri rabtaa faylka '''[[Media:$1|$1]]''' iyo dhamaan taariikhdiisa.",

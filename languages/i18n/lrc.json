@@ -6,7 +6,8 @@
 			"아라",
 			"Macofe",
 			"Mjbmr",
-			"Matma Rex"
+			"Matma Rex",
+			"Lakzon"
 		]
 	},
 	"tog-underline": "هوم پئیڤأند زیرخأط دار:",
@@ -3401,5 +3402,6 @@
 	"special-characters-group-khmer": "خمر",
 	"special-characters-title-endash": "خط فاصله",
 	"special-characters-title-emdash": "خط فاصله",
-	"special-characters-title-minus": "نشون کم کردن"
+	"special-characters-title-minus": "نشون کم کردن",
+	"mw-widgets-titleinput-description-new-page": "بلگه نیئش"
 }
