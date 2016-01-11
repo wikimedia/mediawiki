@@ -1158,6 +1158,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		return true;
 	}
+
 	/**
 	 * Insert a new empty page record for this article.
 	 * This *must* be followed up by creating a revision
@@ -1166,13 +1167,16 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Best if all done inside a transaction.
 	 *
 	 * @param IDatabase $dbw
-	 * @return int|bool The newly created page_id key; false if the title already existed
+	 * @param int|null $customID Custom Page ID that will be used for the insert statement
+	 *
+	 * @return bool|int The newly created page_id key; false if the title already existed
 	 */
-	public function insertOn( $dbw ) {
+	public function insertOn( $dbw, $customID = null ) {
+		$pageID = $customID ?: $dbw->nextSequenceValue( 'page_page_id_seq' );
 		$dbw->insert(
 			'page',
 			array(
-				'page_id'           => $dbw->nextSequenceValue( 'page_page_id_seq' ),
+				'page_id'           => $pageID,
 				'page_namespace'    => $this->mTitle->getNamespace(),
 				'page_title'        => $this->mTitle->getDBkey(),
 				'page_restrictions' => '',
@@ -1188,7 +1192,7 @@ class WikiPage implements Page, IDBAccessObject {
 		);
 
 		if ( $dbw->affectedRows() > 0 ) {
-			$newid = $dbw->insertId();
+			$newid = $customID ?: $dbw->insertId();
 			$this->mId = $newid;
 			$this->mTitle->resetArticleID( $newid );
 
