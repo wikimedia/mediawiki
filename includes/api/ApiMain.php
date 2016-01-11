@@ -49,8 +49,14 @@ class ApiMain extends ApiBase {
 	 */
 	private static $Modules = [
 		'login' => 'ApiLogin',
+		'clientlogin' => 'ApiClientLogin',
 		'logout' => 'ApiLogout',
 		'createaccount' => 'ApiCreateAccount',
+		'linkaccount' => 'ApiLinkAccount',
+		'unlinkaccount' => 'ApiRemoveAuthenticationData',
+		'changeauthenticationdata' => 'ApiChangeAuthenticationData',
+		'removeauthenticationdata' => 'ApiRemoveAuthenticationData',
+		'resetpassword' => 'ApiResetPassword',
 		'query' => 'ApiQuery',
 		'expandtemplates' => 'ApiExpandTemplates',
 		'parse' => 'ApiParse',
@@ -1401,6 +1407,14 @@ class ApiMain extends ApiBase {
 	 */
 	protected function getParamsUsed() {
 		return array_keys( $this->mParamsUsed );
+	}
+
+	/**
+	 * Mark parameters as used
+	 * @param string|string[] $params
+	 */
+	public function markParamsUsed( $params ) {
+		$this->mParamsUsed += array_fill_keys( (array)$params, true );
 	}
 
 	/**

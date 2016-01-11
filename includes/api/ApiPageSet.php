@@ -178,7 +178,7 @@ class ApiPageSet extends ApiBase {
 				// Prevent warnings from being reported on these parameters
 				$main = $this->getMain();
 				foreach ( $generator->extractRequestParams() as $paramName => $param ) {
-					$main->getVal( $generator->encodeParamName( $paramName ) );
+					$main->markParamsUsed( $generator->encodeParamName( $paramName ) );
 				}
 			}
 
