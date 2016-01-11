@@ -99,7 +99,7 @@ class PageArchive {
 	 * @return bool|ResultWrapper
 	 */
 	protected static function listPages( $dbr, $condition ) {
-		return $dbr->select(
+		$res = $dbr->select(
 			array( 'archive' ),
 			array(
 				'ar_namespace',
@@ -114,6 +114,7 @@ class PageArchive {
 				'LIMIT' => 100,
 			)
 		);
+		die( "<pre>" . print_r( $res, true ) . "</pre>" );
 	}
 
 	/**
@@ -568,8 +569,28 @@ class PageArchive {
 				return Status::newFatal( "undeleterevdel" );
 			}
 			// Safe to insert now...
-			$newid = $article->insertOn( $dbw );
+			// die( "<pre>" . print_r( $row, true ) . "</pre>" );
+			$newid = $row->ar_page_id;
 			$pageId = $newid;
+
+			// We have to reimplement WikiPage::insertOn so it can take our "custom" page ID
+			$dbw->insert(
+				'page',
+				array(
+					'page_id' => $pageId,
+					'page_namespace' => $article->getTitle()->getNamespace(),
+					'page_title' => $article->getTitle()->getDBkey(),
+					'page_restrictions' => '',
+					'page_is_redirect'  => 0, // Will set this shortly...
+					'page_is_new'       => 1,
+					'page_random'       => wfRandom(),
+					'page_touched'      => $dbw->timestamp(),
+					'page_latest'       => 0, // Fill this in shortly...
+					'page_len'          => 0, // Fill this in shortly...
+				),
+				__METHOD__,
+				'IGNORE'
+			);
 		} else {
 			// Check if a deleted revision will become the current revision...
 			if ( $row->ar_timestamp > $previousTimestamp ) {
