@@ -251,6 +251,7 @@ class JobRunner implements LoggerAwareInterface {
 		$this->debugCallback( $msg );
 
 		// Run the job...
+		$rssStart = $this->getMaxRssKb();
 		$jobStartTime = microtime( true );
 		try {
 			$status = $job->run();
@@ -272,6 +273,7 @@ class JobRunner implements LoggerAwareInterface {
 		// Clear out title cache data from prior snapshots
 		LinkCache::singleton()->clear();
 		$timeMs = intval( ( microtime( true ) - $jobStartTime ) * 1000 );
+		$rssDelta = $this->getMaxRssKb() - $rssStart;
 
 		// Record how long jobs wait before getting popped
 		$readyTs = $job->getReadyTimestamp();
@@ -288,6 +290,8 @@ class JobRunner implements LoggerAwareInterface {
 		}
 		// Track the execution time for jobs
 		$stats->timing( "jobqueue.run.$jType", $timeMs );
+		// Track RSS increases for jobs (in case of memory leaks)
+		$stats->increment( "jobqueue.rss_delta.$jType", $rssDelta );
 
 		if ( $status === false ) {
 			$msg = $job->toString() . " t=$timeMs error={$error}";
@@ -300,6 +304,15 @@ class JobRunner implements LoggerAwareInterface {
 		}
 
 		return array( 'status' => $status, 'error' => $error, 'timeMs' => $timeMs );
+	}
+
+	/**
+	 * @return int Max memory RSS in kilobytes
+	 */
+	private function getMaxRssKb() {
+		$info = wfGetRusage() ?: array();
+		// see http://linux.die.net/man/2/getrusage
+		return isset( $info['ru_maxrss'] ) ? (int)$info['ru_maxrss'] : 0;
 	}
 
 	/**
