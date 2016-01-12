@@ -23,6 +23,7 @@
 	"ooui-dialog-process-dismiss": "დამალვა",
 	"ooui-dialog-process-retry": "კიდევ სცადეთ",
 	"ooui-dialog-process-continue": "გაგრძელება",
+	"ooui-selectfile-button-select": "აირჩიეთ ფაილი",
 	"ooui-selectfile-not-supported": "ფაილის არჩევა არ არის მხარდაჭერილი",
 	"ooui-selectfile-placeholder": "ფაილი არ არის არჩეული"
 }

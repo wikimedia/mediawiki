@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.14.1
+ * OOjs UI v0.15.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2015 OOjs UI Team and other contributors.
+ * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-12-08T21:43:53Z
+ * Date: 2016-01-12T23:06:40Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -173,7 +173,7 @@
 	   -moz-transition: border-color 100ms ease;
 	        transition: border-color 100ms ease;
 	background: #eeeeee;
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#ffffff', endColorstr='#dddddd');
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#fff', endColorstr='#ddd');
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
 	background-image: -webkit-linear-gradient(top, #ffffff 0%, #dddddd 100%);
 	background-image:    -moz-linear-gradient(top, #ffffff 0%, #dddddd 100%);
@@ -196,7 +196,7 @@
 	color: black;
 	border-color: #c9c9c9;
 	background: #eeeeee;
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#dddddd', endColorstr='#ffffff');
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#ddd', endColorstr='#fff');
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #dddddd), color-stop(100%, #ffffff));
 	background-image: -webkit-linear-gradient(top, #dddddd 0%, #ffffff 100%);
 	background-image:    -moz-linear-gradient(top, #dddddd 0%, #ffffff 100%);
@@ -794,7 +794,7 @@
 	border-color: rgba(0, 0, 0, 0.2);
 	box-shadow: inset 0 0.0875em 0.0875em 0 rgba(0, 0, 0, 0.07);
 	background: #f8fbfd;
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#f1f7fb', endColorstr='#ffffff');
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#F1F7FB', endColorstr='#fff');
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #f1f7fb), color-stop(100%, #ffffff));
 	background-image: -webkit-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
 	background-image:    -moz-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
@@ -941,7 +941,7 @@
 	border-bottom-right-radius: 0;
 	box-shadow: inset 0 0.0875em 0.0875em 0 rgba(0, 0, 0, 0.07);
 	background: #f8fbfd;
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#f1f7fb', endColorstr='#ffffff');
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#F1F7FB', endColorstr='#fff');
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #f1f7fb), color-stop(100%, #ffffff));
 	background-image: -webkit-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
 	background-image:    -moz-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
@@ -1000,7 +1000,7 @@
 	border-color: rgba(0, 0, 0, 0.1);
 	box-shadow: inset 0 0.0875em 0.0875em 0 rgba(0, 0, 0, 0.07);
 	background: #f8fbfd;
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#f1f7fb', endColorstr='#ffffff');
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#F1F7FB', endColorstr='#fff');
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #f1f7fb), color-stop(100%, #ffffff));
 	background-image: -webkit-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
 	background-image:    -moz-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
@@ -1143,7 +1143,7 @@
 .oo-ui-toolbar-bar {
 	border-bottom: 1px solid #cccccc;
 	background: #f8fbfd;
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#ffffff', endColorstr='#f1f7fb');
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#fff', endColorstr='#F1F7FB');
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #f1f7fb));
 	background-image: -webkit-linear-gradient(top, #ffffff 0%, #f1f7fb 100%);
 	background-image:    -moz-linear-gradient(top, #ffffff 0%, #f1f7fb 100%);
@@ -1400,7 +1400,7 @@
 	border: 1px solid #cccccc;
 	margin-right: 0.5em;
 	background: #eeeeee;
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#dddddd', endColorstr='#ffffff');
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#ddd', endColorstr='#fff');
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #dddddd), color-stop(100%, #ffffff));
 	background-image: -webkit-linear-gradient(top, #dddddd 0%, #ffffff 100%);
 	background-image:    -moz-linear-gradient(top, #dddddd 0%, #ffffff 100%);
@@ -1451,7 +1451,7 @@
 	   -moz-transition: left 250ms ease, margin-left 250ms ease;
 	        transition: left 250ms ease, margin-left 250ms ease;
 	background: #eeeeee;
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#ffffff', endColorstr='#dddddd');
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#fff', endColorstr='#ddd');
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
 	background-image: -webkit-linear-gradient(top, #ffffff 0%, #dddddd 100%);
 	background-image:    -moz-linear-gradient(top, #ffffff 0%, #dddddd 100%);
@@ -2385,7 +2385,7 @@
 	height: 1.7em;
 	line-height: 1.7em;
 	background: #eeeeee;
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#ffffff', endColorstr='#dddddd');
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#fff', endColorstr='#ddd');
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
 	background-image: -webkit-linear-gradient(top, #ffffff 0%, #dddddd 100%);
 	background-image:    -moz-linear-gradient(top, #ffffff 0%, #dddddd 100%);

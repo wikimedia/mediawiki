@@ -51,10 +51,6 @@
 			"rtl": "images/icons/move-rtl.svg"
 		} },
 		"notice": { "file": "images/icons/notice.svg" },
-		"picture": { "file": {
-			"ltr": "images/icons/image-rtl.svg",
-			"rtl": "images/icons/image-ltr.svg"
-		} },
 		"previous": { "file": {
 			"ltr": "images/icons/move-rtl.svg",
 			"rtl": "images/icons/move-ltr.svg"

@@ -20,6 +20,10 @@
 			"ltr": "images/icons/articleSearch-ltr.svg",
 			"rtl": "images/icons/articleSearch-rtl.svg"
 		} },
+		"articleRedirect": { "file": {
+			"ltr": "images/icons/articleRedirect-ltr.svg",
+			"rtl": "images/icons/articleRedirect-rtl.svg"
+		} },
 		"book": { "file": {
 			"ltr": "images/icons/book-ltr.svg",
 			"rtl": "images/icons/book-rtl.svg"

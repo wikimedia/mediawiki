@@ -64,7 +64,10 @@
 				"en": "images/icons/underline-u.svg"
 			}
 		} },
-		"textLanguage": { "file": "images/icons/language.svg" },
+		"textLanguage": { "file": {
+			"ltr": "images/icons/language-ltr.svg",
+			"rtl": "images/icons/language-rtl.svg"
+		} },
 		"textDirLTR": { "file": "images/icons/text-dir-lefttoright.svg" },
 		"textDirRTL": { "file": "images/icons/text-dir-righttoleft.svg" },
 		"textStyle": { "file": "images/icons/text-style.svg" }
