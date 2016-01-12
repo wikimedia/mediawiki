@@ -1172,11 +1172,11 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return bool|int The newly created page_id key; false if the title already existed
 	 */
 	public function insertOn( $dbw, $pageId = null ) {
-		$pageId = $pageId ?: $dbw->nextSequenceValue( 'page_page_id_seq' );
+		$pageIdForInsert = $pageId ?: $dbw->nextSequenceValue( 'page_page_id_seq' );
 		$dbw->insert(
 			'page',
 			array(
-				'page_id'           => $pageId,
+				'page_id'           => $pageIdForInsert,
 				'page_namespace'    => $this->mTitle->getNamespace(),
 				'page_title'        => $this->mTitle->getDBkey(),
 				'page_restrictions' => '',
@@ -1192,7 +1192,7 @@ class WikiPage implements Page, IDBAccessObject {
 		);
 
 		if ( $dbw->affectedRows() > 0 ) {
-			$newid = $dbw->insertId();
+			$newid = $pageId ?: $dbw->insertId();
 			$this->mId = $newid;
 			$this->mTitle->resetArticleID( $newid );
 
