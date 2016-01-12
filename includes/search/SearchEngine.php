@@ -164,10 +164,10 @@ class SearchEngine {
 		$allSearchTerms = array( $searchterm );
 
 		if ( $wgContLang->hasVariants() ) {
-			$allSearchTerms = array_merge(
+			$allSearchTerms = array_unique( array_merge(
 				$allSearchTerms,
 				$wgContLang->autoConvertToAllVariants( $searchterm )
-			);
+			) );
 		}
 
 		$titleResult = null;
