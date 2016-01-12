@@ -290,7 +290,7 @@
 	"confirmable-no": "Xeyr",
 	"thisisdeleted": "$1 bax və ya bərpa et?",
 	"viewdeleted": "$1 göstərilsin?",
-	"restorelink": "{{PLURAL:$1|bir silinmiş redaktəyə|$1 silinmiş redaktəyə}}",
+	"restorelink": "$1 silinmiş redaktəyə",
 	"feedlinks": "Kanal növü:",
 	"feed-invalid": "Yanlış qeydiyyat kanalı növü.",
 	"feed-unavailable": "Sindikasiya xətləri etibarsızdır",

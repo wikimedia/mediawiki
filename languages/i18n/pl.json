@@ -2440,7 +2440,7 @@
 	"tooltip-feed-rss": "Kanał RSS dla tej strony",
 	"tooltip-feed-atom": "Kanał Atom dla tej strony",
 	"tooltip-t-contributions": "Pokaż listę edycji tego użytkownika",
-	"tooltip-t-emailuser": "Wyślij e‐mail do tego użytkownika",
+	"tooltip-t-emailuser": "Wyślij e‐mail do {{GENDER:$1|tego użytkownika|tej użytkowniczki}}",
 	"tooltip-t-info": "Więcej informacji na temat tej strony",
 	"tooltip-t-upload": "Prześlij pliki",
 	"tooltip-t-specialpages": "Lista wszystkich specjalnych stron",

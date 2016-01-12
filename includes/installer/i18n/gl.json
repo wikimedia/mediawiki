@@ -74,6 +74,7 @@
 	"config-apc": "[http://www.php.net/apc APC] está instalado",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] está instalado",
 	"config-no-cache": "<strong>Atención:</strong> Non se puido atopar [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] ou [http://www.iis.net/download/WinCacheForPhp WinCache].\nA caché de obxectos está desactivada.",
+	"config-no-cache-apcu": "<strong>Advertencia:</strong> Non se puido atopar [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] ou [http://www.iis.net/download/WinCacheForPhp WinCache].\nA caché de obxectos non está activada.",
 	"config-mod-security": "<strong>Atención:</strong> O seu servidor web ten o [http://modsecurity.org/ mod_security] activado. Se estivese mal configurado, pode causar problemas a MediaWiki ou calquera outro software que permita aos usuarios publicar contidos arbitrarios.\nOlle a [http://modsecurity.org/documentation/ documentación do mod_security] ou póñase en contacto co soporte do seu servidor se atopa erros aleatorios.",
 	"config-diff3-bad": "GNU diff3 non se atopou.",
 	"config-git": "Atopouse o software de control da versión de Git: <code>$1</code>.",

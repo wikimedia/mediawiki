@@ -68,7 +68,8 @@
 			"Matma Rex",
 			"Angpradesh",
 			"Sfic",
-			"Niharika29"
+			"Niharika29",
+			"जनक राज भट्ट"
 		]
 	},
 	"tog-underline": "कड़ियाँ अधोरेखन:",
@@ -3054,6 +3055,7 @@
 	"hebrew-calendar-m11-gen": "एवी (Av)",
 	"hebrew-calendar-m12-gen": "एलुल (Elul)",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|वार्ता]])",
+	"timezone-local": "स्थानीय",
 	"duplicate-defaultsort": "'''Warning:''' पुरानी मूल क्रमांकन कुंजी \"$1\" के बजाय अब मूल क्रमांकन कुंजी \"$2\" होगी।",
 	"duplicate-displaytitle": "<strong>चेतावनी:</strong> शीर्षक दिखाएँ \"$2\" पूर्व दिखाए गए शीर्षक \"$1\" पर छा रहा है।",
 	"invalid-indicator-name": "<strong>त्रुटि:</strong> पृष्ठ स्थिति सांकेतक <code>नाम</code> गुण खाली नहीं रहना चाहिए।",
