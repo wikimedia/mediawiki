@@ -282,9 +282,19 @@ abstract class DatabaseBase implements IDatabase {
 	 * @return TransactionProfiler
 	 */
 	protected function getTransactionProfiler() {
-		return $this->trxProfiler
-			? $this->trxProfiler
-			: Profiler::instance()->getTransactionProfiler();
+		if ( !$this->trxProfiler ) {
+			$this->trxProfiler = new TransactionProfiler();
+		}
+
+		return $this->trxProfiler;
+	}
+
+	/**
+	 * @param TransactionProfiler $profiler
+	 * @since 1.27
+	 */
+	public function setTransactionProfiler( TransactionProfiler $profiler ) {
+		$this->trxProfiler = $profiler;
 	}
 
 	/**

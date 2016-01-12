@@ -35,8 +35,10 @@ class LBFactorySingle extends LBFactory {
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
 
-		$conf['readOnlyReason'] = $this->readOnlyReason;
-		$this->lb = new LoadBalancerSingle( $conf );
+		$this->lb = new LoadBalancerSingle( array(
+			'readOnlyReason' => $this->readOnlyReason,
+			'trxProfiler' => $this->trxProfiler
+		) + $conf );
 	}
 
 	/**
@@ -103,7 +105,8 @@ class LoadBalancerSingle extends LoadBalancer {
 					'dbname' => $this->db->getDBname(),
 					'load' => 1,
 				)
-			)
+			),
+			'trxProfiler' => $this->trxProfiler
 		) );
 
 		if ( isset( $params['readOnlyReason'] ) ) {
