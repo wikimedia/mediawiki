@@ -569,6 +569,10 @@ class PageArchive {
 			}
 			// Safe to insert now...
 			$newid = $article->insertOn( $dbw, $row->ar_page_id );
+			if ( $newid === false ) {
+				// The old ID is reserved; let's pick another
+				$newid = $article->insertOn( $dbw );
+			}
 			$pageId = $newid;
 		} else {
 			// Check if a deleted revision will become the current revision...
