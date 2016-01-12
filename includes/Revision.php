@@ -1366,6 +1366,11 @@ class Revision implements IDBAccessObject {
 	public function insertOn( $dbw ) {
 		global $wgDefaultExternalStore, $wgContentHandlerUseDB;
 
+		// Not allowed to have rev_page equal to 0, false, etc.
+		if ( !$this->mPage ) {
+			throw new MWException( "Cannot insert revision: page ID must be nonzero" );
+		}
+
 		$this->checkContentModel();
 
 		$data = $this->mText;
