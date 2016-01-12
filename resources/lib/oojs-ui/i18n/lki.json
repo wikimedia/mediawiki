@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hosseinblue"
+			"Hosseinblue",
+			"Arash71"
 		]
 	},
 	"ooui-outline-control-move-down": "جاوواز کردن ئإ هووار",
@@ -11,7 +12,7 @@
 	"ooui-toolgroup-expand": "ویشتر/فرۀتر",
 	"ooui-toolgroup-collapse": "کۀمتر",
 	"ooui-dialog-message-accept": "خوو/ باشد",
-	"ooui-dialog-message-reject": "ئآهووسانن-لغو",
+	"ooui-dialog-message-reject": "ئآهووسانن/لغو",
 	"ooui-dialog-process-error": "مشکلی هۀس",
 	"ooui-dialog-process-dismiss": "رد کردن",
 	"ooui-dialog-process-retry": "دووآرۀ تلاش کۀ",
