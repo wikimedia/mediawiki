@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.14.1
+ * OOjs UI v0.15.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2015 OOjs UI Team and other contributors.
+ * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-12-08T21:43:47Z
+ * Date: 2016-01-12T23:06:31Z
  */
 ( function ( OO ) {
 
@@ -42,6 +42,17 @@ OO.ui.Keys = {
 	ESCAPE: 27,
 	SHIFT: 16,
 	SPACE: 32
+};
+
+/**
+ * Constants for MouseEvent.which
+ *
+ * @property {Object}
+ */
+OO.ui.MouseButtons = {
+	LEFT: 1,
+	MIDDLE: 2,
+	RIGHT: 3
 };
 
 /**
@@ -248,35 +259,27 @@ OO.ui.debounce = function ( func, wait, immediate ) {
 };
 
 /**
- * Proxy for `node.addEventListener( eventName, handler, true )`, if the browser supports it.
- * Otherwise falls back to non-capturing event listeners.
+ * Proxy for `node.addEventListener( eventName, handler, true )`.
  *
  * @param {HTMLElement} node
  * @param {string} eventName
  * @param {Function} handler
+ * @deprecated
  */
 OO.ui.addCaptureEventListener = function ( node, eventName, handler ) {
-	if ( node.addEventListener ) {
-		node.addEventListener( eventName, handler, true );
-	} else {
-		node.attachEvent( 'on' + eventName, handler );
-	}
+	node.addEventListener( eventName, handler, true );
 };
 
 /**
- * Proxy for `node.removeEventListener( eventName, handler, true )`, if the browser supports it.
- * Otherwise falls back to non-capturing event listeners.
+ * Proxy for `node.removeEventListener( eventName, handler, true )`.
  *
  * @param {HTMLElement} node
  * @param {string} eventName
  * @param {Function} handler
+ * @deprecated
  */
 OO.ui.removeCaptureEventListener = function ( node, eventName, handler ) {
-	if ( node.addEventListener ) {
-		node.removeEventListener( eventName, handler, true );
-	} else {
-		node.detachEvent( 'on' + eventName, handler );
-	}
+	node.removeEventListener( eventName, handler, true );
 };
 
 /**
@@ -1487,9 +1490,7 @@ OO.ui.Element.static.getDocument = function ( obj ) {
  */
 OO.ui.Element.static.getWindow = function ( obj ) {
 	var doc = this.getDocument( obj );
-	// Support: IE 8
-	// Standard Document.defaultView is IE9+
-	return doc.parentWindow || doc.defaultView;
+	return doc.defaultView;
 };
 
 /**
@@ -1604,14 +1605,8 @@ OO.ui.Element.static.getRelativePosition = function ( $element, $anchor ) {
  */
 OO.ui.Element.static.getBorders = function ( el ) {
 	var doc = el.ownerDocument,
-		// Support: IE 8
-		// Standard Document.defaultView is IE9+
-		win = doc.parentWindow || doc.defaultView,
-		style = win && win.getComputedStyle ?
-			win.getComputedStyle( el, null ) :
-			// Support: IE 8
-			// Standard getComputedStyle() is IE9+
-			el.currentStyle,
+		win = doc.defaultView,
+		style = win.getComputedStyle( el, null ),
 		$el = $( el ),
 		top = parseFloat( style ? style.borderTopWidth : $el.css( 'borderTopWidth' ) ) || 0,
 		left = parseFloat( style ? style.borderLeftWidth : $el.css( 'borderLeftWidth' ) ) || 0,
@@ -1636,9 +1631,7 @@ OO.ui.Element.static.getBorders = function ( el ) {
 OO.ui.Element.static.getDimensions = function ( el ) {
 	var $el, $win,
 		doc = el.ownerDocument || el.document,
-		// Support: IE 8
-		// Standard Document.defaultView is IE9+
-		win = doc.parentWindow || doc.defaultView;
+		win = doc.defaultView;
 
 	if ( win === el || el === doc.documentElement ) {
 		$win = $( win );
@@ -2924,7 +2917,7 @@ OO.ui.Dialog.static.name = '';
  *
  * The title can be specified as a plaintext string, a {@link OO.ui.mixin.LabelElement Label} node, or a function
  * that will produce a Label node or string. The title can also be specified with data passed to the
- * constructor (see #getSetupProcess). In this case, the static value will be overriden.
+ * constructor (see #getSetupProcess). In this case, the static value will be overridden.
  *
  * @abstract
  * @static
@@ -2937,7 +2930,7 @@ OO.ui.Dialog.static.title = '';
  * An array of configured {@link OO.ui.ActionWidget action widgets}.
  *
  * Actions can also be specified with data passed to the constructor (see #getSetupProcess). In this case, the static
- * value will be overriden.
+ * value will be overridden.
  *
  * [2]: https://www.mediawiki.org/wiki/OOjs_UI/Windows/Process_Dialogs#Action_sets
  *
@@ -2967,7 +2960,7 @@ OO.ui.Dialog.static.escapable = true;
  */
 OO.ui.Dialog.prototype.onDialogKeyDown = function ( e ) {
 	if ( e.which === OO.ui.Keys.ESCAPE ) {
-		this.close();
+		this.executeAction( '' );
 		e.preventDefault();
 		e.stopPropagation();
 	}
@@ -4740,13 +4733,13 @@ OO.ui.mixin.ButtonElement.prototype.setButtonElement = function ( $button ) {
  * @param {jQuery.Event} e Mouse down event
  */
 OO.ui.mixin.ButtonElement.prototype.onMouseDown = function ( e ) {
-	if ( this.isDisabled() || e.which !== 1 ) {
+	if ( this.isDisabled() || e.which !== OO.ui.MouseButtons.LEFT ) {
 		return;
 	}
 	this.$element.addClass( 'oo-ui-buttonElement-pressed' );
 	// Run the mouseup handler no matter where the mouse is when the button is let go, so we can
 	// reliably remove the pressed class
-	OO.ui.addCaptureEventListener( this.getElementDocument(), 'mouseup', this.onMouseUpHandler );
+	this.getElementDocument().addEventListener( 'mouseup', this.onMouseUpHandler, true );
 	// Prevent change of focus unless specifically configured otherwise
 	if ( this.constructor.static.cancelButtonMouseDownEvents ) {
 		return false;
@@ -4760,12 +4753,12 @@ OO.ui.mixin.ButtonElement.prototype.onMouseDown = function ( e ) {
  * @param {jQuery.Event} e Mouse up event
  */
 OO.ui.mixin.ButtonElement.prototype.onMouseUp = function ( e ) {
-	if ( this.isDisabled() || e.which !== 1 ) {
+	if ( this.isDisabled() || e.which !== OO.ui.MouseButtons.LEFT ) {
 		return;
 	}
 	this.$element.removeClass( 'oo-ui-buttonElement-pressed' );
 	// Stop listening for mouseup, since we only needed this once
-	OO.ui.removeCaptureEventListener( this.getElementDocument(), 'mouseup', this.onMouseUpHandler );
+	this.getElementDocument().removeEventListener( 'mouseup', this.onMouseUpHandler, true );
 };
 
 /**
@@ -4776,7 +4769,7 @@ OO.ui.mixin.ButtonElement.prototype.onMouseUp = function ( e ) {
  * @fires click
  */
 OO.ui.mixin.ButtonElement.prototype.onClick = function ( e ) {
-	if ( !this.isDisabled() && e.which === 1 ) {
+	if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT ) {
 		if ( this.emit( 'click' ) ) {
 			return false;
 		}
@@ -4796,7 +4789,7 @@ OO.ui.mixin.ButtonElement.prototype.onKeyDown = function ( e ) {
 	this.$element.addClass( 'oo-ui-buttonElement-pressed' );
 	// Run the keyup handler no matter where the key is when the button is let go, so we can
 	// reliably remove the pressed class
-	OO.ui.addCaptureEventListener( this.getElementDocument(), 'keyup', this.onKeyUpHandler );
+	this.getElementDocument().addEventListener( 'keyup', this.onKeyUpHandler, true );
 };
 
 /**
@@ -4811,7 +4804,7 @@ OO.ui.mixin.ButtonElement.prototype.onKeyUp = function ( e ) {
 	}
 	this.$element.removeClass( 'oo-ui-buttonElement-pressed' );
 	// Stop listening for keyup, since we only needed this once
-	OO.ui.removeCaptureEventListener( this.getElementDocument(), 'keyup', this.onKeyUpHandler );
+	this.getElementDocument().removeEventListener( 'keyup', this.onKeyUpHandler, true );
 };
 
 /**
@@ -7491,7 +7484,7 @@ OO.ui.Tool.static.autoAddToGroup = true;
 /**
  * Check if this tool is compatible with given data.
  *
- * This is a stub that can be overriden to provide support for filtering tools based on an
+ * This is a stub that can be overridden to provide support for filtering tools based on an
  * arbitrary piece of information  (e.g., where the cursor is in a document). The implementation
  * must also call this method so that the compatibility check can be performed.
  *
@@ -8310,13 +8303,13 @@ OO.ui.ToolGroup.prototype.updateDisabled = function () {
 OO.ui.ToolGroup.prototype.onMouseKeyDown = function ( e ) {
 	if (
 		!this.isDisabled() &&
-		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+		( e.which === OO.ui.MouseButtons.LEFT || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
 	) {
 		this.pressed = this.getTargetTool( e );
 		if ( this.pressed ) {
 			this.pressed.setActive( true );
-			OO.ui.addCaptureEventListener( this.getElementDocument(), 'mouseup', this.onCapturedMouseKeyUpHandler );
-			OO.ui.addCaptureEventListener( this.getElementDocument(), 'keyup', this.onCapturedMouseKeyUpHandler );
+			this.getElementDocument().addEventListener( 'mouseup', this.onCapturedMouseKeyUpHandler, true );
+			this.getElementDocument().addEventListener( 'keyup', this.onCapturedMouseKeyUpHandler, true );
 		}
 		return false;
 	}
@@ -8329,8 +8322,8 @@ OO.ui.ToolGroup.prototype.onMouseKeyDown = function ( e ) {
  * @param {Event} e Mouse up or key up event
  */
 OO.ui.ToolGroup.prototype.onCapturedMouseKeyUp = function ( e ) {
-	OO.ui.removeCaptureEventListener( this.getElementDocument(), 'mouseup', this.onCapturedMouseKeyUpHandler );
-	OO.ui.removeCaptureEventListener( this.getElementDocument(), 'keyup', this.onCapturedMouseKeyUpHandler );
+	this.getElementDocument().removeEventListener( 'mouseup', this.onCapturedMouseKeyUpHandler, true );
+	this.getElementDocument().removeEventListener( 'keyup', this.onCapturedMouseKeyUpHandler, true );
 	// onMouseKeyUp may be called a second time, depending on where the mouse is when the button is
 	// released, but since `this.pressed` will no longer be true, the second call will be ignored.
 	this.onMouseKeyUp( e );
@@ -8347,7 +8340,7 @@ OO.ui.ToolGroup.prototype.onMouseKeyUp = function ( e ) {
 
 	if (
 		!this.isDisabled() && this.pressed && this.pressed === tool &&
-		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+		( e.which === OO.ui.MouseButtons.LEFT || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
 	) {
 		this.pressed.onSelect();
 		this.pressed = null;
@@ -11815,7 +11808,7 @@ OO.ui.PopupToolGroup.prototype.onMouseKeyUp = function ( e ) {
 	// Only close toolgroup when a tool was actually selected
 	if (
 		!this.isDisabled() && this.pressed && this.pressed === this.getTargetTool( e ) &&
-		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+		( e.which === OO.ui.MouseButtons.LEFT || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
 	) {
 		this.setActive( false );
 	}
@@ -11831,7 +11824,7 @@ OO.ui.PopupToolGroup.prototype.onMouseKeyUp = function ( e ) {
 OO.ui.PopupToolGroup.prototype.onHandleMouseKeyUp = function ( e ) {
 	if (
 		!this.isDisabled() &&
-		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+		( e.which === OO.ui.MouseButtons.LEFT || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
 	) {
 		return false;
 	}
@@ -11846,7 +11839,7 @@ OO.ui.PopupToolGroup.prototype.onHandleMouseKeyUp = function ( e ) {
 OO.ui.PopupToolGroup.prototype.onHandleMouseKeyDown = function ( e ) {
 	if (
 		!this.isDisabled() &&
-		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+		( e.which === OO.ui.MouseButtons.LEFT || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
 	) {
 		this.setActive( !this.active );
 		return false;
@@ -11865,8 +11858,8 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 	if ( this.active !== value ) {
 		this.active = value;
 		if ( value ) {
-			OO.ui.addCaptureEventListener( this.getElementDocument(), 'mouseup', this.onBlurHandler );
-			OO.ui.addCaptureEventListener( this.getElementDocument(), 'keyup', this.onBlurHandler );
+			this.getElementDocument().addEventListener( 'mouseup', this.onBlurHandler, true );
+			this.getElementDocument().addEventListener( 'keyup', this.onBlurHandler, true );
 
 			this.$clippable.css( 'left', '' );
 			// Try anchoring the popup to the left first
@@ -11894,8 +11887,8 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 				} );
 			}
 		} else {
-			OO.ui.removeCaptureEventListener( this.getElementDocument(), 'mouseup', this.onBlurHandler );
-			OO.ui.removeCaptureEventListener( this.getElementDocument(), 'keyup', this.onBlurHandler );
+			this.getElementDocument().removeEventListener( 'mouseup', this.onBlurHandler, true );
+			this.getElementDocument().removeEventListener( 'keyup', this.onBlurHandler, true );
 			this.$element.removeClass(
 				'oo-ui-popupToolGroup-active oo-ui-popupToolGroup-left  oo-ui-popupToolGroup-right'
 			);
@@ -12092,7 +12085,7 @@ OO.ui.ListToolGroup.prototype.onMouseKeyUp = function ( e ) {
 	// Do not close the popup when the user wants to show more/fewer tools
 	if (
 		$( e.target ).closest( '.oo-ui-tool-name-more-fewer' ).length &&
-		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+		( e.which === OO.ui.MouseButtons.LEFT || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
 	) {
 		// HACK: Prevent the popup list from being hidden. Skip the PopupToolGroup implementation (which
 		// hides the popup list when a tool is selected) and call ToolGroup's implementation directly.
@@ -13863,7 +13856,7 @@ OO.ui.CapsuleMultiSelectWidget.prototype.onPopupFocusOut = function () {
  * @param {jQuery.Event} e Mouse down event
  */
 OO.ui.CapsuleMultiSelectWidget.prototype.onMouseDown = function ( e ) {
-	if ( e.which === 1 ) {
+	if ( e.which === OO.ui.MouseButtons.LEFT ) {
 		this.focus();
 		return false;
 	} else {
@@ -14286,7 +14279,7 @@ OO.ui.DropdownWidget.prototype.onMenuSelect = function ( item ) {
  * @param {jQuery.Event} e Mouse click event
  */
 OO.ui.DropdownWidget.prototype.onClick = function ( e ) {
-	if ( !this.isDisabled() && e.which === 1 ) {
+	if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT ) {
 		this.menu.toggle();
 	}
 	return false;
@@ -16051,7 +16044,7 @@ OO.ui.TextInputWidget.static.gatherPreInfuseState = function ( node, config ) {
  * @fires icon
  */
 OO.ui.TextInputWidget.prototype.onIconMouseDown = function ( e ) {
-	if ( e.which === 1 ) {
+	if ( e.which === OO.ui.MouseButtons.LEFT ) {
 		this.$input[ 0 ].focus();
 		return false;
 	}
@@ -16065,7 +16058,7 @@ OO.ui.TextInputWidget.prototype.onIconMouseDown = function ( e ) {
  * @fires indicator
  */
 OO.ui.TextInputWidget.prototype.onIndicatorMouseDown = function ( e ) {
-	if ( e.which === 1 ) {
+	if ( e.which === OO.ui.MouseButtons.LEFT ) {
 		if ( this.type === 'search' ) {
 			// Clear the text field
 			this.setValue( '' );
@@ -16349,7 +16342,7 @@ OO.ui.TextInputWidget.prototype.isAutosizing = function () {
  * @chainable
  */
 OO.ui.TextInputWidget.prototype.selectRange = function ( from, to ) {
-	var textRange, isBackwards, start, end,
+	var isBackwards, start, end,
 		input = this.$input[ 0 ];
 
 	to = to || from;
@@ -16360,16 +16353,7 @@ OO.ui.TextInputWidget.prototype.selectRange = function ( from, to ) {
 
 	this.focus();
 
-	if ( input.setSelectionRange ) {
-		input.setSelectionRange( start, end, isBackwards ? 'backward' : 'forward' );
-	} else if ( input.createTextRange ) {
-		// IE 8 and below
-		textRange = input.createTextRange();
-		textRange.collapse( true );
-		textRange.moveStart( 'character', start );
-		textRange.moveEnd( 'character', end - start );
-		textRange.select();
-	}
+	input.setSelectionRange( start, end, isBackwards ? 'backward' : 'forward' );
 	return this;
 };
 
@@ -16836,7 +16820,7 @@ OO.ui.ComboBoxInputWidget.prototype.onInputChange = function ( value ) {
  * @param {jQuery.Event} e Mouse click event
  */
 OO.ui.ComboBoxInputWidget.prototype.onIndicatorClick = function ( e ) {
-	if ( !this.isDisabled() && e.which === 1 ) {
+	if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT ) {
 		this.menu.toggle();
 		this.$input[ 0 ].focus();
 	}
@@ -17591,7 +17575,7 @@ OO.ui.OutlineOptionWidget.prototype.setMovable = function ( movable ) {
  *
  * Removability is used by {@link OO.ui.OutlineControlsWidget outline controls}.
  *
- * @param {boolean} movable Item is removable
+ * @param {boolean} removable Item is removable
  * @chainable
  */
 OO.ui.OutlineOptionWidget.prototype.setRemovable = function ( removable ) {
@@ -17815,7 +17799,7 @@ OO.ui.PopupWidget.prototype.onMouseDown = function ( e ) {
  */
 OO.ui.PopupWidget.prototype.bindMouseDownListener = function () {
 	// Capture clicks outside popup
-	OO.ui.addCaptureEventListener( this.getElementWindow(), 'mousedown', this.onMouseDownHandler );
+	this.getElementWindow().addEventListener( 'mousedown', this.onMouseDownHandler, true );
 };
 
 /**
@@ -17835,7 +17819,7 @@ OO.ui.PopupWidget.prototype.onCloseButtonClick = function () {
  * @private
  */
 OO.ui.PopupWidget.prototype.unbindMouseDownListener = function () {
-	OO.ui.removeCaptureEventListener( this.getElementWindow(), 'mousedown', this.onMouseDownHandler );
+	this.getElementWindow().removeEventListener( 'mousedown', this.onMouseDownHandler, true );
 };
 
 /**
@@ -17861,7 +17845,7 @@ OO.ui.PopupWidget.prototype.onDocumentKeyDown = function ( e ) {
  * @private
  */
 OO.ui.PopupWidget.prototype.bindKeyDownListener = function () {
-	OO.ui.addCaptureEventListener( this.getElementWindow(), 'keydown', this.onDocumentKeyDownHandler );
+	this.getElementWindow().addEventListener( 'keydown', this.onDocumentKeyDownHandler, true );
 };
 
 /**
@@ -17870,7 +17854,7 @@ OO.ui.PopupWidget.prototype.bindKeyDownListener = function () {
  * @private
  */
 OO.ui.PopupWidget.prototype.unbindKeyDownListener = function () {
-	OO.ui.removeCaptureEventListener( this.getElementWindow(), 'keydown', this.onDocumentKeyDownHandler );
+	this.getElementWindow().removeEventListener( 'keydown', this.onDocumentKeyDownHandler, true );
 };
 
 /**
@@ -18449,22 +18433,14 @@ OO.ui.SelectWidget.static.passAllFilter = function () {
 OO.ui.SelectWidget.prototype.onMouseDown = function ( e ) {
 	var item;
 
-	if ( !this.isDisabled() && e.which === 1 ) {
+	if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT ) {
 		this.togglePressed( true );
 		item = this.getTargetItem( e );
 		if ( item && item.isSelectable() ) {
 			this.pressItem( item );
 			this.selecting = item;
-			OO.ui.addCaptureEventListener(
-				this.getElementDocument(),
-				'mouseup',
-				this.onMouseUpHandler
-			);
-			OO.ui.addCaptureEventListener(
-				this.getElementDocument(),
-				'mousemove',
-				this.onMouseMoveHandler
-			);
+			this.getElementDocument().addEventListener( 'mouseup', this.onMouseUpHandler, true );
+			this.getElementDocument().addEventListener( 'mousemove', this.onMouseMoveHandler, true );
 		}
 	}
 	return false;
@@ -18486,16 +18462,14 @@ OO.ui.SelectWidget.prototype.onMouseUp = function ( e ) {
 			this.selecting = item;
 		}
 	}
-	if ( !this.isDisabled() && e.which === 1 && this.selecting ) {
+	if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT && this.selecting ) {
 		this.pressItem( null );
 		this.chooseItem( this.selecting );
 		this.selecting = null;
 	}
 
-	OO.ui.removeCaptureEventListener( this.getElementDocument(), 'mouseup',
-		this.onMouseUpHandler );
-	OO.ui.removeCaptureEventListener( this.getElementDocument(), 'mousemove',
-		this.onMouseMoveHandler );
+	this.getElementDocument().removeEventListener( 'mouseup', this.onMouseUpHandler, true );
+	this.getElementDocument().removeEventListener( 'mousemove', this.onMouseMoveHandler, true );
 
 	return false;
 };
@@ -18615,7 +18589,7 @@ OO.ui.SelectWidget.prototype.onKeyDown = function ( e ) {
  * @protected
  */
 OO.ui.SelectWidget.prototype.bindKeyDownListener = function () {
-	OO.ui.addCaptureEventListener( this.getElementWindow(), 'keydown', this.onKeyDownHandler );
+	this.getElementWindow().addEventListener( 'keydown', this.onKeyDownHandler, true );
 };
 
 /**
@@ -18624,7 +18598,7 @@ OO.ui.SelectWidget.prototype.bindKeyDownListener = function () {
  * @protected
  */
 OO.ui.SelectWidget.prototype.unbindKeyDownListener = function () {
-	OO.ui.removeCaptureEventListener( this.getElementWindow(), 'keydown', this.onKeyDownHandler );
+	this.getElementWindow().removeEventListener( 'keydown', this.onKeyDownHandler, true );
 };
 
 /**
@@ -18733,7 +18707,7 @@ OO.ui.SelectWidget.prototype.getItemMatcher = function ( s, exact ) {
  * @protected
  */
 OO.ui.SelectWidget.prototype.bindKeyPressListener = function () {
-	OO.ui.addCaptureEventListener( this.getElementWindow(), 'keypress', this.onKeyPressHandler );
+	this.getElementWindow().addEventListener( 'keypress', this.onKeyPressHandler, true );
 };
 
 /**
@@ -18745,7 +18719,7 @@ OO.ui.SelectWidget.prototype.bindKeyPressListener = function () {
  * @protected
  */
 OO.ui.SelectWidget.prototype.unbindKeyPressListener = function () {
-	OO.ui.removeCaptureEventListener( this.getElementWindow(), 'keypress', this.onKeyPressHandler );
+	this.getElementWindow().removeEventListener( 'keypress', this.onKeyPressHandler, true );
 	this.clearKeyPressBuffer();
 };
 
@@ -19551,12 +19525,12 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 
 			// Auto-hide
 			if ( this.autoHide ) {
-				OO.ui.addCaptureEventListener( this.getElementDocument(), 'mousedown', this.onDocumentMouseDownHandler );
+				this.getElementDocument().addEventListener( 'mousedown', this.onDocumentMouseDownHandler, true );
 			}
 		} else {
 			this.unbindKeyDownListener();
 			this.unbindKeyPressListener();
-			OO.ui.removeCaptureEventListener( this.getElementDocument(), 'mousedown', this.onDocumentMouseDownHandler );
+			this.getElementDocument().removeEventListener( 'mousedown', this.onDocumentMouseDownHandler, true );
 			this.toggleClipping( false );
 		}
 	}
@@ -20145,7 +20119,7 @@ OO.mixinClass( OO.ui.ToggleSwitchWidget, OO.ui.mixin.TabIndexedElement );
  * @param {jQuery.Event} e Mouse click event
  */
 OO.ui.ToggleSwitchWidget.prototype.onClick = function ( e ) {
-	if ( !this.isDisabled() && e.which === 1 ) {
+	if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT ) {
 		this.setValue( !this.value );
 	}
 	return false;

@@ -1,0 +1,10 @@
+{
+	"prefix": "oo-ui-icon",
+	"intro": "@import '../../../../src/styles/common';",
+	"images": {
+		"articleRedirect": { "file": {
+			"ltr": "images/icons/articleRedirect-ltr.svg",
+			"rtl": "images/icons/articleRedirect-rtl.svg"
+		} }
+	}
+}
