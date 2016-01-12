@@ -162,7 +162,7 @@ function wfPHPVersionError( $type, $mwVersion, $minimumVersionPHP, $phpVersion )
 
 	$longHtml = <<<HTML
 			Please consider <a href="http://www.php.net/downloads.php">upgrading your copy of PHP</a>.
-			PHP versions less than 5.3.0 are no longer supported by the PHP Group and will not receive
+			PHP versions less than 5.5.0 are no longer supported by the PHP Group and will not receive
 			security or bugfix updates.
 		</p>
 		<p>
