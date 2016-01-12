@@ -2150,12 +2150,13 @@ class Linker {
 	 * @param string $name Id of the element, minus prefixes.
 	 * @param string|null $options Null or the string 'withaccess' to add an access-
 	 *   key hint
+	 * @param array $msgParams Parameters to pass to the message
+	 *
 	 * @return string Contents of the title attribute (which you must HTML-
 	 *   escape), or false for no title attribute
 	 */
-	public static function titleAttrib( $name, $options = null ) {
-
-		$message = wfMessage( "tooltip-$name" );
+	public static function titleAttrib( $name, $options = null, $msgParams = array() ) {
+		$message = new Message( "tooltip-$name", $msgParams );
 
 		if ( !$message->exists() ) {
 			$tooltip = false;
