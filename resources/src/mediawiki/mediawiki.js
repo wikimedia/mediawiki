@@ -2042,9 +2042,10 @@
 					// Whether the store is in use on this page.
 					enabled: null,
 
-					// Modules whose string representation exceeds 100 kB are ineligible
-					// for storage due to bug T66721.
-					MODULE_SIZE_MAX: 100000,
+					// Modules whose string representation exceeds 100 kB (30 kB on FF) are
+					// ineligible for storage due to bug T66721. The quota is stricter on
+					// Firefox due to <https://bugzilla.mozilla.org/show_bug.cgi?id=1064466>.
+					MODULE_SIZE_MAX: ( /Firefox/.test( navigator.userAgent ) ? 30 : 100 ) * 1000,
 
 					// The contents of the store, mapping '[module name]@[version]' keys
 					// to module implementations.
