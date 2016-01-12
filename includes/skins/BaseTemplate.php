@@ -358,21 +358,28 @@ abstract class BaseTemplate extends QuickTemplate {
 
 		if ( isset( $item['href'] ) || isset( $options['link-fallback'] ) ) {
 			$attrs = $item;
-			foreach ( array( 'single-id', 'text', 'msg', 'tooltiponly', 'context', 'primary' ) as $k ) {
+			foreach ( array( 'single-id', 'text', 'msg', 'tooltiponly', 'context', 'primary',
+				'tooltip-params' ) as $k ) {
 				unset( $attrs[$k] );
 			}
 
 			if ( isset( $item['id'] ) && !isset( $item['single-id'] ) ) {
 				$item['single-id'] = $item['id'];
 			}
+
+			$tooltipParams = array();
+			if ( isset( $item['tooltip-params'] ) ) {
+				$tooltipParams = $item['tooltip-params'];
+			}
+
 			if ( isset( $item['single-id'] ) ) {
 				if ( isset( $item['tooltiponly'] ) && $item['tooltiponly'] ) {
-					$title = Linker::titleAttrib( $item['single-id'] );
+					$title = Linker::titleAttrib( $item['single-id'], null, $tooltipParams );
 					if ( $title !== false ) {
 						$attrs['title'] = $title;
 					}
 				} else {
-					$tip = Linker::tooltipAndAccesskeyAttribs( $item['single-id'] );
+					$tip = Linker::tooltipAndAccesskeyAttribs( $item['single-id'], $tooltipParams );
 					if ( isset( $tip['title'] ) && $tip['title'] !== false ) {
 						$attrs['title'] = $tip['title'];
 					}
