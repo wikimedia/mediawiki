@@ -1246,7 +1246,8 @@ class SkinTemplate extends Skin {
 
 			$nav_urls['contributions'] = array(
 				'text' => $this->msg( 'contributions', $rootUser )->text(),
-				'href' => self::makeSpecialUrlSubpage( 'Contributions', $rootUser )
+				'href' => self::makeSpecialUrlSubpage( 'Contributions', $rootUser ),
+				'tooltip-params' => array( $rootUser ),
 			);
 
 			$nav_urls['log'] = array(
@@ -1262,7 +1263,8 @@ class SkinTemplate extends Skin {
 
 			if ( $this->showEmailUser( $user ) ) {
 				$nav_urls['emailuser'] = array(
-					'href' => self::makeSpecialUrlSubpage( 'Emailuser', $rootUser )
+					'href' => self::makeSpecialUrlSubpage( 'Emailuser', $rootUser ),
+					'tooltip-params' => array( $rootUser ),
 				);
 			}
 

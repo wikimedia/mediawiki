@@ -2150,13 +2150,13 @@ class Linker {
 	 * @param string $name Id of the element, minus prefixes.
 	 * @param string|null $options Null or the string 'withaccess' to add an access-
 	 *   key hint
+	 * @param array $msgParams Parameters to pass to the message
+	 *
 	 * @return string Contents of the title attribute (which you must HTML-
 	 *   escape), or false for no title attribute
 	 */
-	public static function titleAttrib( $name, $options = null ) {
-
-		$message = wfMessage( "tooltip-$name" );
-
+	public static function titleAttrib( $name, $options = null, array $msgParams = array() ) {
+		$message = wfMessage( "tooltip-$name", $msgParams );
 		if ( !$message->exists() ) {
 			$tooltip = false;
 		} else {
@@ -2306,15 +2306,18 @@ class Linker {
 
 	/**
 	 * Returns the attributes for the tooltip and access key.
+	 *
 	 * @param string $name
+	 * @param array $msgParams Params for constructing the message
+	 *
 	 * @return array
 	 */
-	public static function tooltipAndAccesskeyAttribs( $name ) {
+	public static function tooltipAndAccesskeyAttribs( $name, array $msgParams = array() ) {
 		# @todo FIXME: If Sanitizer::expandAttributes() treated "false" as "output
 		# no attribute" instead of "output '' as value for attribute", this
 		# would be three lines.
 		$attribs = array(
-			'title' => self::titleAttrib( $name, 'withaccess' ),
+			'title' => self::titleAttrib( $name, 'withaccess', $msgParams ),
 			'accesskey' => self::accesskey( $name )
 		);
 		if ( $attribs['title'] === false ) {
