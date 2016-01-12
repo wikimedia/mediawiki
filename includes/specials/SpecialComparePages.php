@@ -49,6 +49,7 @@ class SpecialComparePages extends SpecialPage {
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->getOutput()->addModuleStyles( 'mediawiki.special.comparepages.styles' );
 
 		$form = HTMLForm::factory( 'ooui', array(
 			'Page1' => array(

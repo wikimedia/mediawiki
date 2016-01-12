@@ -1715,6 +1715,10 @@ return array(
 		'position' => 'top',
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.visitedstatus.js',
 	),
+	'mediawiki.special.comparepages.styles' => array(
+		'position' => 'top',
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.comparepages.styles.less',
+	),
 	'mediawiki.special.edittags' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.edittags.js',
 		'dependencies' => array(
