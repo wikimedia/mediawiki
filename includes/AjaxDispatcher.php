@@ -135,6 +135,9 @@ class AjaxDispatcher {
 						$result = new AjaxResponse( $result );
 					}
 
+					// Make sure DB commit succeeds before sending a response
+					wfGetLBFactory()->commitMasterChanges( __METHOD__ );
+
 					$result->sendHeaders();
 					$result->printText();
 
