@@ -1229,7 +1229,7 @@ class Article implements Page {
 	 */
 	public static function purgePatrolFooterCache( $articleID ) {
 		$cache = ObjectCache::getMainWANInstance();
-		$cache->touchCheckKey( wfMemcKey( 'unpatrollable-page', $articleID ) );
+		$cache->delete( wfMemcKey( 'unpatrollable-page', $articleID ) );
 	}
 
 	/**
