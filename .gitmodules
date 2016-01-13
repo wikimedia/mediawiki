@@ -332,3 +332,7 @@
 	path = extensions/VectorBeta
 	url = https://github.com/wikimedia/mediawiki-extensions-VectorBeta
 	branch = REL1_26
+[submodule "skins/foreground"]
+	path = skins/foreground
+	url = https://github.com/thingles/foreground
+	branch = master
