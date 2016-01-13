@@ -567,7 +567,9 @@ class MediaWiki {
 		$request = $context->getRequest();
 		if ( $request->wasPosted() && $factory->hasOrMadeRecentMasterChanges() ) {
 			$expires = time() + $config->get( 'DataCenterUpdateStickTTL' );
-			$request->response()->setCookie( 'UseDC', 'master', $expires, array( 'prefix' => '' ) );
+			$options = array( 'prefix' => '' );
+			$request->response()->setCookie( 'UseDC', 'master', $expires, $options );
+			$request->response()->setCookie( 'UseCDNCache', 'false', $expires, $options );
 		}
 
 		// Avoid letting a few seconds of slave lag cause a month of stale data
