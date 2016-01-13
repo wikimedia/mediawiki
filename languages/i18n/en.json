@@ -3445,6 +3445,7 @@
 	"redirect-page": "Page ID",
 	"redirect-revision": "Page revision",
 	"redirect-file": "Filename",
+	"redirect-logid": "Log ID",
 	"redirect-not-exists": "Value not found",
 	"fileduplicatesearch": "Search for duplicate files",
 	"fileduplicatesearch-summary": "Search for duplicate files based on hash values.",
