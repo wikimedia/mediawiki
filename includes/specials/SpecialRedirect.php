@@ -158,6 +158,65 @@ class SpecialRedirect extends FormSpecialPage {
 		) );
 	}
 
+	function dispatchLog() {
+		$logid = $this->mValue;
+		if ( !ctype_digit( $logid ) ) {
+			return null;
+		}
+		$logid = (int)$logid;
+		if ( $logid === 0 ) {
+			return null;
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
+
+		// To get the SQL statement for the timestamp of the log
+		$inner = $dbr->selectSQLText(
+			'logging',
+			array( 'log_timestamp' ),
+			array( 'log_id = $logid' )
+		);
+
+		$res = $dbr->select(
+			'logging',
+			$logparams,
+			array( 'log_timestamp => $inner' )
+		);
+		if ( empty( $res ) ) {
+			return null;
+		}
+		$rowMain = array();
+		foreach ( $res as $row ) {
+			if ( $row->log_id == $logid ) {
+				$rowMain = $row;
+			}
+		}
+		$matchedRows = array();
+		$count = count( $logparams );
+		for ( $i = 0; $i < $count; $i++) {
+			$cond = $logparams[$i];
+			foreach ( $res as $row ) {
+				if ( $row->$cond === $rowMain->$cond ) {
+					$matchedRows[] = $row;
+				}
+			}
+			if ( count( $matchedRows ) == 1 ) {
+				break;
+			}
+			$res = $matchedRows
+			$matchedRows = array();
+		}
+		$url = array( 'title' => 'Special:Log', 'limit' => 1 );
+		$keys = array( 'offset', 'type', 'action', 'user', 'namespace', 'title' );
+		$j = 0;
+		while ( $j < $i ) {
+			$temp = $logparams[$j];
+			$url[$keys[$j]] = $matchedRows->$temp;
+		}
+
+		return wfAppendQuery( wfScript( 'index' ), $url );
+	}
+
 	/**
 	 * Use appropriate dispatch* method to obtain a redirection URL,
 	 * and either: redirect, set a 404 error code and error message,
@@ -180,6 +239,9 @@ class SpecialRedirect extends FormSpecialPage {
 				break;
 			case 'page':
 				$url = $this->dispatchPage();
+				break;
+			case 'logid':
+				$url = $this->dispatchLog();
 				break;
 			default:
 				$this->getOutput()->setStatusCode( 404 );
@@ -207,11 +269,12 @@ class SpecialRedirect extends FormSpecialPage {
 		$ns = array(
 			// subpage => message
 			// Messages: redirect-user, redirect-page, redirect-revision,
-			// redirect-file
+			// redirect-file, redirect-logid
 			'user' => $mp . '-user',
 			'page' => $mp . '-page',
 			'revision' => $mp . '-revision',
 			'file' => $mp . '-file',
+			'logid' => $mp . '-logid',
 		);
 		$a = array();
 		$a['type'] = array(
@@ -273,6 +336,7 @@ class SpecialRedirect extends FormSpecialPage {
 			'page',
 			'revision',
 			'user',
+			'logid'
 		);
 	}
 
