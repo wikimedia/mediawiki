@@ -3256,7 +3256,7 @@
 	"logentry-delete-event-legacy": "{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät de Seeschbakeit vun Enndrääje en de Logbööscher vun dä Sigg „$3“ verändert.",
 	"logentry-delete-revision-legacy": "{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät de Seeschbakeit vun älldere Väsjohne vun dä Sigg „$3“ verändert.",
 	"logentry-suppress-delete": "{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät di Sigg „$3“ ongerdröck.",
-	"logentry-suppress-event": "{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät heimlesh för {{PLURAL:$5|eine Logboochendraach|$5 Logboochendrääsh|keine Logboochendraach}} en dä Sigg „$3“ $4.",
+	"logentry-suppress-event": "{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät heimlesh för {{PLURAL:$5|eine Logboochendraach|$5 Logboochendrääsh|keine Logboochendraach}} en dä Sigg $3 $4.",
 	"logentry-suppress-revision": "{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät heimlesch för {{PLURAL:$5|ein Version|$5 Versione|kein Version}} vun dä Sigg „$3“ $4.",
 	"logentry-suppress-event-legacy": "{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät de Seeschbakeit vun Enndrääje en dä Logbööscher op dä Sigg „$3“ heimlesch verändert.",
 	"logentry-suppress-revision-legacy": "{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät de Seeschbakeit vun älldere Väsjohne vun dä Sigg „$3“ heimlesch verändert.",
