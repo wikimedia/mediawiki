@@ -654,6 +654,13 @@ abstract class DatabaseMysqlBase extends Database {
 	protected function getLagFromPtHeartbeat() {
 		$masterInfo = $this->getMasterServerInfo();
 		if ( !$masterInfo ) {
+			wfLogDBError(
+				"Unable to query master of {db_server} for server ID",
+				$this->getLogContext( array(
+					'method' => __METHOD__
+				) )
+			);
+
 			return false; // could not get master server ID
 		}
 
@@ -665,6 +672,13 @@ abstract class DatabaseMysqlBase extends Database {
 
 			return max( $nowUnix - $timeUnix, 0.0 );
 		}
+
+		wfLogDBError(
+			"Unable to find pt-heartbeat row for {db_server}",
+			$this->getLogContext( array(
+				'method' => __METHOD__
+			) )
+		);
 
 		return false;
 	}
