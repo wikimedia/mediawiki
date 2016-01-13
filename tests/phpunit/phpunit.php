@@ -74,6 +74,7 @@ class PHPUnitMaintClass extends Maintenance {
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
 		global $wgLocaltimezone, $wgLocalisationCacheConf;
 		global $wgDevelopmentWarnings;
+		global $wgJobTypeConf;
 
 		// Inject test autoloader
 		require_once __DIR__ . '/../TestsAutoLoader.php';
@@ -96,6 +97,10 @@ class PHPUnitMaintClass extends Maintenance {
 		$wgLanguageConverterCacheType = 'hash';
 		// Uses db-replicated in DefaultSettings
 		$wgMainStash = 'hash';
+		// Use memory job queue
+		$wgJobTypeConf = array(
+			'default' => array( 'class' => 'JobQueueMemory', 'order' => 'fifo' ),
+		);
 
 		$wgUseDatabaseMessages = false; # Set for future resets
 
