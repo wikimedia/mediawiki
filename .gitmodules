@@ -641,3 +641,6 @@
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git
 	branch = wmf/1.27.0-wmf.9
+[submodule "extensions/EventBus"]
+	path = extensions/EventBus
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/EventBus
