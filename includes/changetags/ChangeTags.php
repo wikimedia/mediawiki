@@ -979,10 +979,11 @@ class ChangeTags {
 	 * safely be exposed to users.
 	 *
 	 * @param string $tag Tag to remove
+	 * @param int $limit
 	 * @return Status The returned status will be good unless a hook changed it
 	 * @since 1.25
 	 */
-	public static function deleteTagEverywhere( $tag ) {
+	public static function deleteTagEverywhere( $tag, $limit = 0 ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
 
@@ -993,7 +994,8 @@ class ChangeTags {
 		$result = $dbw->select( 'change_tag',
 			array( 'ct_rc_id', 'ct_log_id', 'ct_rev_id', 'ct_tag' ),
 			array( 'ct_tag' => $tag ),
-			__METHOD__ );
+			__METHOD__,
+			array( 'LIMIT', $limit ) );
 		foreach ( $result as $row ) {
 			// remove the tag from the relevant row of tag_summary
 			$tagsToAdd = array();
