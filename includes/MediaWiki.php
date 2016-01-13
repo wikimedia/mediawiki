@@ -562,8 +562,9 @@ class MediaWiki {
 		DeferredUpdates::doUpdates( 'enqueue', DeferredUpdates::PRESEND );
 		wfDebug( __METHOD__ . ': pre-send deferred updates completed' );
 
-		// Set a cookie to tell all CDN edge nodes to "stick" the user to the
-		// DC that handles this POST request (e.g. the "master" data center)
+		// Set a cookie to tell all CDN edge nodes to "stick" the user to the DC that handles this
+		// POST request (e.g. the "master" data center). Also have the user briefly bypass CDN so
+		// ChronologyProtector works for cacheable URLs.
 		$request = $context->getRequest();
 		if ( $request->wasPosted() && $factory->hasOrMadeRecentMasterChanges() ) {
 			$expires = time() + $config->get( 'DataCenterUpdateStickTTL' );
@@ -572,7 +573,8 @@ class MediaWiki {
 			$request->response()->setCookie( 'UseCDNCache', 'false', $expires, $options );
 		}
 
-		// Avoid letting a few seconds of slave lag cause a month of stale data
+		// Avoid letting a few seconds of slave lag cause a month of stale data. This logic is
+		// also intimately related to the value of $wgCdnReboundPurgeDelay.
 		if ( $factory->laggedSlaveUsed() ) {
 			$maxAge = $config->get( 'CdnMaxageLagged' );
 			$context->getOutput()->lowerCdnMaxage( $maxAge );
