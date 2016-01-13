@@ -371,24 +371,6 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers WikiPage::getRawText
-	 */
-	public function testGetRawText() {
-		$this->hideDeprecated( "WikiPage::getRawText" );
-
-		$page = $this->newPage( "WikiPageTest_testGetRawText" );
-
-		$text = $page->getRawText();
-		$this->assertFalse( $text );
-
-		# -----------------
-		$this->createPage( $page, "some text", CONTENT_MODEL_WIKITEXT );
-
-		$text = $page->getRawText();
-		$this->assertEquals( "some text", $text );
-	}
-
-	/**
 	 * @covers WikiPage::getContentModel
 	 */
 	public function testGetContentModel() {

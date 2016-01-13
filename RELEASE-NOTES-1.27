@@ -283,6 +283,7 @@ changes to languages because of Phabricator reports.
 * The unused jquery.validate ResourceLoader module was removed.
 * FileRepo::getRootUrl() was removed (deprecated since 1.20).
 * User::generateToken() was removed (deprecated since 1.20).
+* WikiPage::getRawText() was removed (deprecated since 1.21).
 
 == Compatibility ==
 
