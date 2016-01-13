@@ -159,6 +159,93 @@ class SpecialRedirect extends FormSpecialPage {
 	}
 
 	/**
+	 * Handle Special:Redirect/logid/xxx
+	 * (by redirecting to index.php?title=Special:Log)
+	 *
+	 * @since 1.27
+	 * @return string|null Url to redirect to, or null if $mValue is invalid.
+	 */
+	function dispatchLog() {
+		$logid = $this->mValue;
+		if ( !ctype_digit( $logid ) ) {
+			return null;
+		}
+		$logid = (int)$logid;
+		if ( $logid === 0 ) {
+			return null;
+		}
+
+		$logparams = array(
+			'log_id',
+			'log_timestamp',
+			'log_type',
+			'log_user_text',
+		);
+
+		$dbr = wfGetDB( DB_SLAVE );
+
+		// Gets the nested SQL statement which
+		// returns timestamp of the log with the given log ID
+		$inner = $dbr->selectSQLText(
+			'logging',
+			array( 'log_timestamp' ),
+			array( 'log_id' => $logid )
+		);
+
+		// Returns all fields mentioned in $logparams of the logs
+		// with the same timestamp as the one returned by the statement above
+		$logsSameTimstamps = $dbr->select(
+			'logging',
+			$logparams,
+			array( "log_timestamp = ($inner)" )
+		);
+		if ( $logsSameTimestamps->numRows() === 0 ) {
+			return null;
+		}
+
+		// Stores the row with the same log ID as the one given
+		$rowMain = array();
+		foreach ( $logsSameTimestamps as $row ) {
+			if ( (int)$row->log_id === $logid ) {
+				$rowMain = $row;
+			}
+		}
+
+		array_shift( $logparams );
+
+		// Stores all the rows with the same values in each column
+		// as $rowMain
+		foreach ( $logparams as $cond ) {
+			$matchedRows = array();
+			foreach ( $logsSameTimestamps as $row ) {
+				if ( $row->$cond === $rowMain->$cond ) {
+					$matchedRows[] = $row;
+				}
+			}
+			if ( count( $matchedRows ) === 1 ) {
+				break;
+			}
+			$logsSameTimestamps = $matchedRows;
+		}
+		$query = array( 'title' => 'Special:Log', 'limit' => count( $matchedRows ) );
+
+		// A map of database field names from table 'logging' to the values of $logparams
+		$keys = array(
+			'log_timestamp' => 'offset',
+			'log_type' => 'type',
+			'log_user_text' => 'user'
+		);
+
+		foreach ( $logparams as $logKey ) {
+			$query[$keys[$logKey]] = $matchedRows[0]->$logKey;
+		}
+		$query['offset'] = $query['offset'] + 1;
+		$url = $query;
+
+		return wfAppendQuery( wfScript( 'index' ), $url );
+	}
+
+	/**
 	 * Use appropriate dispatch* method to obtain a redirection URL,
 	 * and either: redirect, set a 404 error code and error message,
 	 * or do nothing (if $mValue wasn't set) allowing the form to be
@@ -180,6 +267,9 @@ class SpecialRedirect extends FormSpecialPage {
 				break;
 			case 'page':
 				$url = $this->dispatchPage();
+				break;
+			case 'logid':
+				$url = $this->dispatchLog();
 				break;
 			default:
 				$this->getOutput()->setStatusCode( 404 );
@@ -207,11 +297,12 @@ class SpecialRedirect extends FormSpecialPage {
 		$ns = array(
 			// subpage => message
 			// Messages: redirect-user, redirect-page, redirect-revision,
-			// redirect-file
+			// redirect-file, redirect-logid
 			'user' => $mp . '-user',
 			'page' => $mp . '-page',
 			'revision' => $mp . '-revision',
 			'file' => $mp . '-file',
+			'logid' => $mp . '-logid',
 		);
 		$a = array();
 		$a['type'] = array(
@@ -273,6 +364,7 @@ class SpecialRedirect extends FormSpecialPage {
 			'page',
 			'revision',
 			'user',
+			'logid',
 		);
 	}
 
