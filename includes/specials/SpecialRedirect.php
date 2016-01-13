@@ -158,6 +158,37 @@ class SpecialRedirect extends FormSpecialPage {
 		) );
 	}
 
+	function dispatchLog() {
+		$logid = $this->mValue;
+		if ( !ctype_digit( $logid ) ) {
+			return null;
+		}
+		$logid = (int)$logid;
+
+		$logparams = array( 'log_type', 'log_action', 'log_user', 'log_namespace', 'log_title' );
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select(
+			'logging',
+			array( 'log_timestamp' ),
+			'log_id = $logid'
+		);
+		$i = 0;
+		while ( count( $res ) > 1 && $i < 5 ) {
+			$res = $dbr->select(
+				'logging',
+				array( $logparams[$i] ),
+				'log_id = $logid'
+			);
+			$i = $i + 1;
+		}
+
+		return wfAppendQuery( wfScript( 'index' ), array(
+			'title' => 'Special:Log',
+			'offset' => $res[0]
+		) );
+	}
+
 	/**
 	 * Use appropriate dispatch* method to obtain a redirection URL,
 	 * and either: redirect, set a 404 error code and error message,
@@ -180,6 +211,9 @@ class SpecialRedirect extends FormSpecialPage {
 				break;
 			case 'page':
 				$url = $this->dispatchPage();
+				break;
+			case 'logid':
+				$url = $this->dispatchLog();
 				break;
 			default:
 				$this->getOutput()->setStatusCode( 404 );
@@ -212,6 +246,7 @@ class SpecialRedirect extends FormSpecialPage {
 			'page' => $mp . '-page',
 			'revision' => $mp . '-revision',
 			'file' => $mp . '-file',
+			'logid' => $mp . '-logid',
 		);
 		$a = array();
 		$a['type'] = array(
@@ -273,6 +308,7 @@ class SpecialRedirect extends FormSpecialPage {
 			'page',
 			'revision',
 			'user',
+			'logid'
 		);
 	}
 
