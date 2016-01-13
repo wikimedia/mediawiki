@@ -1475,7 +1475,7 @@ function wfMsgReplaceArgs( $message, $args ) {
 	$message = str_replace( "\r", '', $message );
 
 	// Replace arguments
-	if ( count( $args ) ) {
+	if ( is_array( $args ) && $args ) {
 		if ( is_array( $args[0] ) ) {
 			$args = array_values( $args[0] );
 		}
