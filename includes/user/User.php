@@ -4161,17 +4161,6 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Generate a looking random token for various uses.
-	 *
-	 * @return string The new random token
-	 * @deprecated since 1.20: Use MWCryptRand for secure purposes or
-	 *   wfRandomString for pseudo-randomness.
-	 */
-	public static function generateToken() {
-		return MWCryptRand::generateHex( 32 );
-	}
-
-	/**
 	 * Get the embedded timestamp from a token.
 	 * @param string $val Input token
 	 * @return int|null
