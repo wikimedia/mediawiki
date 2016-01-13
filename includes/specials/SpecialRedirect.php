@@ -158,6 +158,75 @@ class SpecialRedirect extends FormSpecialPage {
 		) );
 	}
 
+	function dispatchLog() {
+		$logid = $this->mValue;
+		if ( !ctype_digit( $logid ) ) {
+			return null;
+		}
+		$logid = (int)$logid;
+		if ( $logid === 0 ) {
+			return null;
+		}
+
+		$logparams = array( 'log_id', 'log_timestamp', 'log_type',
+'log_action', 'log_user', 'log_namespace', 'log_title' );
+
+		$dbr = wfGetDB( DB_SLAVE );
+
+		// To get the SQL statement for the timestamp of the log
+		$inner = $dbr->selectSQLText(
+			'logging',
+			array( 'log_timestamp' ),
+			array( 'log_id' => $logid )
+		);
+
+		$res = $dbr->select(
+			'logging',
+			$logparams,
+			array( "log_timestamp = ($inner)" )
+		);
+		if ( $res->numRows() === 0 ) {
+			return null;
+		}
+		$res1 = $res;
+		$rowMain = array();
+		foreach ( $res as $row ) {
+			if ( $row->log_id == $logid ) {
+				$rowMain = $row;
+			}
+		}
+		unset($row);
+
+		$count = count( $logparams );
+		for ( $i = 0; $i < $count; $i++ ) {
+			$cond = $logparams[$i];
+			foreach ( $res1 as $row ) {
+				if ( $row->$cond === $rowMain->$cond ) {
+					$matchedRows[] = $row;
+				}
+			}
+			unset($row);
+			if ( count( $matchedRows ) === 1 ) {
+				break;
+			}
+			$res1 = $matchedRows;
+		}
+
+		$url = array( 'title' => 'Special:Log', 'limit' => 1 );
+		$keys = array( 'offset', 'type', 'action', 'user', 'namespace', 'page' );
+		$j = 0;
+		array_shift( $logparams );
+		while ( $j <= $i + 1 ) {
+			$temp = $logparams[$j];
+			$url[$keys[$j]] = $matchedRows[0]->$temp;
+			$j = $j + 1;
+		}
+
+		$url['offset'] = $url['offset'] + 1;
+
+		return wfAppendQuery( wfScript( 'index' ), $url );
+	}
+
 	/**
 	 * Use appropriate dispatch* method to obtain a redirection URL,
 	 * and either: redirect, set a 404 error code and error message,
@@ -180,6 +249,9 @@ class SpecialRedirect extends FormSpecialPage {
 				break;
 			case 'page':
 				$url = $this->dispatchPage();
+				break;
+			case 'logid':
+				$url = $this->dispatchLog();
 				break;
 			default:
 				$this->getOutput()->setStatusCode( 404 );
@@ -207,11 +279,12 @@ class SpecialRedirect extends FormSpecialPage {
 		$ns = array(
 			// subpage => message
 			// Messages: redirect-user, redirect-page, redirect-revision,
-			// redirect-file
+			// redirect-file, redirect-logid
 			'user' => $mp . '-user',
 			'page' => $mp . '-page',
 			'revision' => $mp . '-revision',
 			'file' => $mp . '-file',
+			'logid' => $mp . '-logid',
 		);
 		$a = array();
 		$a['type'] = array(
@@ -273,6 +346,7 @@ class SpecialRedirect extends FormSpecialPage {
 			'page',
 			'revision',
 			'user',
+			'logid'
 		);
 	}
 

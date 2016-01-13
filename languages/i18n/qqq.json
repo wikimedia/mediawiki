@@ -3620,6 +3620,7 @@
 	"redirect-page": "Description of lookup type for [[Special:Redirect]].\n{{Identical|Page ID}}",
 	"redirect-revision": "Description of lookup type for [[Special:Redirect]].\n\nThis means \"Page revision '''ID'''\".",
 	"redirect-file": "Description of lookup type for [[Special:Redirect]].\n{{Identical|Filename}}",
+	"redirect-logid": "Description of lookup type for [[Special:Redirect]].\n{{Identical|Log ID}}",
 	"redirect-not-exists": "Used as error message in [[Special:Redirect]]",
 	"fileduplicatesearch": "Name of special page [[Special:FileDuplicateSearch]].",
 	"fileduplicatesearch-summary": "Summary of [[Special:FileDuplicateSearch]]",
