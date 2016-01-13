@@ -333,19 +333,6 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedText, $rev->getText( $audience ) );
 	}
 
-	/**
-	 * @group Database
-	 * @dataProvider dataGetText
-	 * @covers Revision::getRawText
-	 */
-	public function testGetRawText( $text, $title, $model, $format, $audience, $expectedText ) {
-		$this->hideDeprecated( 'Revision::getRawText' );
-
-		$rev = $this->newTestRevision( $text, $title, $model, $format );
-
-		$this->assertEquals( $expectedText, $rev->getRawText( $audience ) );
-	}
-
 	public function dataGetSize() {
 		return array(
 			array( "hello world.", CONTENT_MODEL_WIKITEXT, 12 ),
