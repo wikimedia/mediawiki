@@ -1074,12 +1074,6 @@ class Article implements Page {
 			return false;
 		}
 
-		// New page patrol: Get the timestamp of the oldest revison which
-		// the revision table holds for the given page. Then we look
-		// whether it's within the RC lifespan and if it is, we try
-		// to get the recentchanges row belonging to that entry
-		// (with rc_new = 1).
-
 		if ( $this->mRevision
 			&& !RecentChange::isInRCLifespan( $this->mRevision->getTimestamp(), 21600 )
 		) {
@@ -1103,13 +1097,17 @@ class Article implements Page {
 			__METHOD__
 		);
 
-		$cantPatrolNewPage = false;
-		$cantPatrolFile = false;
-
+		// New page patrol: Get the timestamp of the oldest revison which
+		// the revision table holds for the given page. Then we look
+		// whether it's within the RC lifespan and if it is, we try
+		// to get the recentchanges row belonging to that entry
+		// (with rc_new = 1).
+		$recentPageCreation = false;
 		if ( $oldestRevisionTimestamp
 			&& RecentChange::isInRCLifespan( $oldestRevisionTimestamp, 21600 )
 		) {
 			// 6h tolerance because the RC might not be cleaned out regularly
+			$recentPageCreation = true;
 			$rc = RecentChange::newFromConds(
 				array(
 					'rc_new' => 1,
@@ -1123,12 +1121,15 @@ class Article implements Page {
 				// Use generic patrol message for new pages
 				$markPatrolledMsg = wfMessage( 'markaspatrolledtext' );
 			}
-		} else {
-			$cantPatrolNewPage = true;
 		}
 
-		// Allow patrolling of latest file upload
-		if ( !$rc && $wgUseFilePatrol && $this->getTitle()->getNamespace() === NS_FILE ) {
+		// File patrol: Get the timestamp of the latest upload for this page,
+		// check whether it is within the RC lifespan and if it is, we try
+		// to get the recentchanges row belonging to that entry
+		// (with rc_type = RC_LOG, rc_log_type = upload).
+		$recentFileUpload = false;
+		if ( ( !$rc || $rc->getAttribute( 'rc_patrolled' ) ) && $wgUseFilePatrol
+			&& $this->getTitle()->getNamespace() === NS_FILE ) {
 			// Retrieve timestamp of most recent upload
 			$newestUploadTimestamp = $dbr->selectField(
 				'image',
@@ -1140,14 +1141,14 @@ class Article implements Page {
 				&& RecentChange::isInRCLifespan( $newestUploadTimestamp, 21600 )
 			) {
 				// 6h tolerance because the RC might not be cleaned out regularly
+				$recentFileUpload = true;
 				$rc = RecentChange::newFromConds(
 					array(
 						'rc_type' => RC_LOG,
 						'rc_log_type' => 'upload',
 						'rc_timestamp' => $newestUploadTimestamp,
 						'rc_namespace' => NS_FILE,
-						'rc_cur_id' => $this->getTitle()->getArticleID(),
-						'rc_patrolled' => 0
+						'rc_cur_id' => $this->getTitle()->getArticleID()
 					),
 					__METHOD__,
 					array( 'USE INDEX' => 'rc_timestamp' )
@@ -1156,23 +1157,23 @@ class Article implements Page {
 					// Use patrol message specific to files
 					$markPatrolledMsg = wfMessage( 'markaspatrolledtext-file' );
 				}
-			} else {
-				$cantPatrolFile = true;
 			}
-		} else {
-			$cantPatrolFile = true;
 		}
 
-		if ( $cantPatrolFile && $cantPatrolNewPage ) {
-			// Cache the information we gathered above in case we can't patrol
-			// Don't cache in case we can patrol as this could change
+		if ( !$recentPageCreation && !$recentFileUpload ) {
+			// Page creation and latest upload (for files) is too old to be in RC
+
+			// We definitely can't patrol so cache the information
+			// When a new file version is uploaded, the cache is cleared
 			$cache->set( $key, '1' );
+
+			return false;
 		}
 
 		if ( !$rc ) {
 			// Don't cache: This can be hit if the page gets accessed very fast after
-			// its creation or in case we have high slave lag. In case the revision is
-			// too old, we will already return above.
+			// its creation / latest upload or in case we have high slave lag. In case
+			// the revision is too old, we will already return above.
 			return false;
 		}
 
@@ -1187,7 +1188,7 @@ class Article implements Page {
 		}
 
 		if ( $rc->getPerformer()->equals( $user ) ) {
-			// Don't show a patrol link for own creations. If the user could
+			// Don't show a patrol link for own creations/uploads. If the user could
 			// patrol them, they already would be patrolled
 			return false;
 		}
