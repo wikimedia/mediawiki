@@ -2685,8 +2685,6 @@ abstract class DatabaseBase implements IDatabase {
 			if ( !$this->mTrxLevel ) {
 				wfWarn( "$fname: No transaction to rollback, something got out of sync!" );
 				return; // nothing to do
-			} elseif ( $this->mTrxAutomatic ) {
-				wfWarn( "$fname: Explicit rollback of implicit transaction. Something may be out of sync!" );
 			}
 		} else {
 			if ( !$this->mTrxLevel ) {
