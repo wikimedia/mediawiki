@@ -1021,12 +1021,17 @@ class Block {
 			return;
 		}
 
-		$method = __METHOD__;
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->onTransactionIdle( function () use ( $dbw, $method ) {
-			$dbw->delete( 'ipblocks',
-				array( 'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ), $method );
-		} );
+		DeferredUpdates::addUpdate( new AtomicSectionUpdate(
+			wfGetDB( DB_MASTER ),
+			__METHOD__,
+			function ( IDatabase $dbw, $fname ) {
+				$dbw->delete(
+					'ipblocks',
+					array( 'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ),
+					$fname
+				);
+			}
+		) );
 	}
 
 	/**
