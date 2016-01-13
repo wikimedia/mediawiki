@@ -688,18 +688,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Get the text of the current revision. No side-effects...
-	 *
-	 * @return string|bool The text of the current revision. False on failure
-	 * @deprecated since 1.21, getContent() should be used instead.
-	 */
-	public function getRawText() {
-		ContentHandler::deprecated( __METHOD__, '1.21' );
-
-		return $this->getText( Revision::RAW );
-	}
-
-	/**
 	 * @return string MW timestamp of last article revision
 	 */
 	public function getTimestamp() {
