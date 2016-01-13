@@ -282,6 +282,7 @@ changes to languages because of Phabricator reports.
 * FakeConverter::armourMath() was removed (deprecated since 1.22).
 * The unused jquery.validate ResourceLoader module was removed.
 * FileRepo::getRootUrl() was removed (deprecated since 1.20).
+* User::generateToken() was removed (deprecated since 1.20).
 
 == Compatibility ==
 
