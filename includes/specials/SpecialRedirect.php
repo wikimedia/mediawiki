@@ -158,6 +158,56 @@ class SpecialRedirect extends FormSpecialPage {
 		) );
 	}
 
+	function dispatchLog() {
+		$logid = $this->mValue;
+		if ( !ctype_digit( $logid ) ) {
+			return null;
+		}
+		$logid = (int)$logid;
+		if ( $logid === 0 ) {
+			return null;
+		}
+
+		$logparams = array( 'log_type', 'log_action', 'log_user', 'log_namespace', 'log_title' );
+
+		$dbr = wfGetDB( DB_SLAVE );
+
+		// To get the SQL statement for the timestamp of the log
+		$inner = $dbr->selectSQLText(
+			'logging',
+			array( 'log_timestamp' ),
+			array( 'log_id = $logid' )
+		);
+
+		$res = $dbr->select(
+			'logging',
+			$logparams,
+			array( 'log_timestamp = $inner' )
+		);
+		if ( $res[0] === '' ) {
+			return null;
+		}
+
+		/* To be implemented later:
+		$params = array();
+		$i = 0;
+		if ( count( $res ) > 1 ) {
+			while ( count( $res ) > 1 && $i < 6 ) {
+				$params = array_push( $params, $res[$i] );
+				$res = $dbr->select(
+					'logging',
+					$logparams[$i],
+					'log_timestamp = $params[0]'
+				);
+				$i = $i + 1;
+			}
+		}*/
+		return wfAppendQuery( wfScript( 'index' ), array(
+				'title' => 'Special:Log',
+				'offset' => $res[0]
+			) );
+	}
+
 	/**
 	 * Use appropriate dispatch* method to obtain a redirection URL,
 	 * and either: redirect, set a 404 error code and error message,
@@ -180,6 +230,9 @@ class SpecialRedirect extends FormSpecialPage {
 				break;
 			case 'page':
 				$url = $this->dispatchPage();
+				break;
+			case 'logid':
+				$url = $this->dispatchLog();
 				break;
 			default:
 				$this->getOutput()->setStatusCode( 404 );
@@ -207,11 +260,12 @@ class SpecialRedirect extends FormSpecialPage {
 		$ns = array(
 			// subpage => message
 			// Messages: redirect-user, redirect-page, redirect-revision,
-			// redirect-file
+			// redirect-file, redirect-logid
 			'user' => $mp . '-user',
 			'page' => $mp . '-page',
 			'revision' => $mp . '-revision',
 			'file' => $mp . '-file',
+			'logid' => $mp . '-logid',
 		);
 		$a = array();
 		$a['type'] = array(
@@ -273,6 +327,7 @@ class SpecialRedirect extends FormSpecialPage {
 			'page',
 			'revision',
 			'user',
+			'logid'
 		);
 	}
 
