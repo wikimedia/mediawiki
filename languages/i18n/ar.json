@@ -1159,6 +1159,7 @@
 	"right-passwordreset": "عرض رسائل إعادة ضبط كلمات السر",
 	"right-managechangetags": "إنشاء وحذف [[Special:Tags|الوسوم]] من قاعدة البيانات",
 	"right-applychangetags": "تطبيق [[Special:Tags|الوسوم]]  مع التغييرات التي أجريتها.",
+	"grant-generic": "\"$1\" حزمة الصلاحيات",
 	"newuserlogpage": "سجل إنشاء المستخدمين",
 	"newuserlogpagetext": "هذا سجل بعمليات إنشاء المستخدمين.",
 	"rightslog": "سجل صلاحيات المستخدمين",

@@ -19,12 +19,12 @@
 		]
 	},
 	"config-desc": "Het installatieprogramma voor MediaWiki",
-	"config-title": "Installatie MediaWiki $1",
+	"config-title": "Installatie van MediaWiki $1",
 	"config-information": "Gegevens",
 	"config-localsettings-upgrade": "Er is een bestaand instellingenbestand <code>LocalSettings.php</code> gevonden.\nVoer de waarde van <code>$wgUpgradeKey</code> in in onderstaande invoerveld om deze installatie bij te werken.\nDe instelling is terug te vinden in <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Het bestand <code>LocalSettings.php</code> is al aanwezig.\nVoer <code>update.php</code> uit om deze installatie bij te werken.",
 	"config-localsettings-key": "Upgradesleutel:",
-	"config-localsettings-badkey": "De sleutel die u hebt opgegeven is onjuist",
+	"config-localsettings-badkey": "De sleutel die u hebt opgegeven is onjuist.",
 	"config-upgrade-key-missing": "Er is een bestaande installatie van MediaWiki aangetroffen.\nPlaats de volgende regel onderaan uw <code>LocalSettings.php</code> om deze installatie bij te werken:\n\n$1",
 	"config-localsettings-incomplete": "De bestaande inhoud van <code>LocalSettings.php</code> lijkt incompleet.\nDe variabele $1 is niet ingesteld.\nWijzig <code>LocalSettings.php</code> zodat deze variabele is ingesteld en klik op \"{{int:Config-continue}}\".",
 	"config-localsettings-connection-error": "Er is een fout opgetreden tijdens het verbinden met de database met de instellingen uit <code>LocalSettings.php</code>. Los het probleem met de instellingen op en probeer het daarna opnieuw.\n\n$1",
@@ -335,5 +335,5 @@
 	"config-nofile": "Het bestand \"$1\" is niet gevonden. Is het verwijderd?",
 	"config-extension-link": "Weet u dat u [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions uitbreidingen] kunt gebruiken voor uw wiki?\nU kunt [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category uitbreidingen op categorie] bekijken of ga naar de [//www.mediawiki.org/wiki/Extension_Matrix uitbreidingenmatrix] om de volledige lijst met uitbreidingen te bekijken.",
 	"mainpagetext": "'''De installatie van MediaWiki is geslaagd.'''",
-	"mainpagedocfooter": "Raadpleeg de [//meta.wikimedia.org/wiki/Special:MyLanguage/Help:Contents handleiding] voor informatie over het gebruik van de wikisoftware.\n\n== Meer hulp over MediaWiki ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lijst met instellingen]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Veelgestelde vragen (FAQ)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Maak MediaWiki beschikbaar in uw taal]"
+	"mainpagedocfooter": "Raadpleeg de [//meta.wikimedia.org/wiki/Special:MyLanguage/Help:Contents handleiding] voor informatie over het gebruik van de wikisoftware.\n\n== Meer hulp over MediaWiki ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lijst met instellingen]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Veelgestelde vragen (FAQ)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglijst voor aankondigingen van nieuwe versies]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Maak MediaWiki beschikbaar in uw taal]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Leer hoe u spam kunt voorkomen op uw wiki]"
 }

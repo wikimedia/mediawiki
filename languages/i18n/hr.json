@@ -1086,6 +1086,7 @@
 	"right-override-export-depth": "Izvezi stranice uključujući i povezane stranice do dubine od 5",
 	"right-sendemail": "Slanje e-pošte drugim suradnicima",
 	"right-passwordreset": "Vidi poruku e-pošte o ponovnom postavljanju lozinke",
+	"grant-highvolume": "Uređivanja velikog opsega",
 	"newuserlogpage": "Evidencija novih suradnika",
 	"newuserlogpagetext": "Ispod je popis nedavno otvorenih suradničkih imena.",
 	"rightslog": "Evidencija suradničkih prava",
