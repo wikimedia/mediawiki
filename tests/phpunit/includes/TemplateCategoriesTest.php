@@ -40,11 +40,7 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 			$user
 		);
 
-		// Run the job queue
-		JobQueueGroup::destroySingletons();
-		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, array( 'quiet' => true ), null );
-		$jobs->execute();
+		$this->runAllJobs();
 
 		// Make sure page is in the category
 		$this->assertEquals(
@@ -62,11 +58,7 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 			$user
 		);
 
-		// Run the job queue
-		JobQueueGroup::destroySingletons();
-		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, array( 'quiet' => true ), null );
-		$jobs->execute();
+		$this->runAllJobs();
 
 		// Make sure page is in the right category
 		$this->assertEquals(
@@ -79,11 +71,7 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 		$error = '';
 		$template->doDeleteArticleReal( 'Delete the template', false, 0, true, $error, $user );
 
-		// Run the job queue
-		JobQueueGroup::destroySingletons();
-		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, array( 'quiet' => true ), null );
-		$jobs->execute();
+		$this->runAllJobs();
 
 		// Make sure the page is no longer in the category
 		$this->assertEquals(
@@ -91,6 +79,17 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 			$title->getParentCategories(),
 			'Verify that the page is no longer in the category after template deletion'
 		);
+	}
 
+	/**
+	 * Run the job queue
+	 */
+	private function runAllJobs() {
+		$group = JobQueueGroup::singleton();
+		while ( $job = $group->pop() ) {
+			$job->run();
+			$group->ack( $job );
+		}
+		JobQueueGroup::destroySingletons();
 	}
 }
