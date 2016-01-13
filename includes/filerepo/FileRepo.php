@@ -604,16 +604,6 @@ class FileRepo {
 	}
 
 	/**
-	 * Get the public root URL of the repository
-	 *
-	 * @deprecated since 1.20
-	 * @return string
-	 */
-	public function getRootUrl() {
-		return $this->getZoneUrl( 'public' );
-	}
-
-	/**
 	 * Get the URL of thumb.php
 	 *
 	 * @return string
