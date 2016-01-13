@@ -76,8 +76,12 @@ class MergeLogFormatter extends LogFormatter {
 		static $map = array(
 			'4:title:dest',
 			'5:timestamp:mergepoint',
+			'6:timestamp:date',
+			'7:timestamp:time',
 			'4::dest' => '4:title:dest',
 			'5::mergepoint' => '5:timestamp:mergepoint',
+			'6::date' => '6:timestamp:date',
+			'7::time' => '7:timestamp:time',
 		);
 		foreach ( $map as $index => $key ) {
 			if ( isset( $params[$index] ) ) {
