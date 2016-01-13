@@ -140,6 +140,7 @@ $wgAutoloadLocalClasses = array(
 	'Article' => __DIR__ . '/includes/page/Article.php',
 	'AssembleUploadChunksJob' => __DIR__ . '/includes/jobqueue/jobs/AssembleUploadChunksJob.php',
 	'AtomFeed' => __DIR__ . '/includes/Feed.php',
+	'AtomicSectionUpdate' => __DIR__ . '/includes/deferred/AtomicSectionUpdate.php',
 	'AttachLatest' => __DIR__ . '/maintenance/attachLatest.php',
 	'AuthPlugin' => __DIR__ . '/includes/AuthPlugin.php',
 	'AuthPluginUser' => __DIR__ . '/includes/AuthPlugin.php',

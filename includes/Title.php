@@ -3020,20 +3020,22 @@ class Title {
 			return;
 		}
 
-		$method = __METHOD__;
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->onTransactionIdle( function () use ( $dbw, $method ) {
-			$dbw->delete(
-				'page_restrictions',
-				array( 'pr_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ),
-				$method
-			);
-			$dbw->delete(
-				'protected_titles',
-				array( 'pt_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ),
-				$method
-			);
-		} );
+		DeferredUpdates::addUpdate( new AtomicSectionUpdate(
+			wfGetDB( DB_MASTER ),
+			__METHOD__,
+			function ( IDatabase $dbw, $fname ) {
+				$dbw->delete(
+					'page_restrictions',
+					array( 'pr_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ),
+					$fname
+				);
+				$dbw->delete(
+					'protected_titles',
+					array( 'pt_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ),
+					$fname
+				);
+			}
+		) );
 	}
 
 	/**
