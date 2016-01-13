@@ -1036,19 +1036,6 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Fetch revision text without regard for view restrictions
-	 *
-	 * @return string
-	 *
-	 * @deprecated since 1.21. Instead, use Revision::getContent( Revision::RAW )
-	 *                         or Revision::getSerializedData() as appropriate.
-	 */
-	public function getRawText() {
-		ContentHandler::deprecated( __METHOD__, "1.21" );
-		return $this->getText( self::RAW );
-	}
-
-	/**
 	 * Fetch original serialized data without regard for view restrictions
 	 *
 	 * @since 1.21

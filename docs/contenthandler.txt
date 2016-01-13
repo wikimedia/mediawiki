@@ -96,7 +96,7 @@ used.
 
 Most importantly, the following functions have been deprecated:
 
-* Revisions::getText() and Revisions::getRawText() is deprecated in favor Revisions::getContent()
+* Revisions::getText() is deprecated in favor Revisions::getContent()
 * WikiPage::getText() is deprecated in favor WikiPage::getContent()
 
 Also, the old Article::getContent() (which returns text) is superceded by Article::getContentObject(). However, both
