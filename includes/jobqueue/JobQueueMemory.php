@@ -160,7 +160,8 @@ class JobQueueMemory extends JobQueue {
 			if ( $init !== null ) {
 				self::$data[$this->type][$this->wiki][$field] = $init;
 			} else {
-				return null;
+				// You can not return a reference to a null literal.
+				return $init;
 			}
 		}
 
