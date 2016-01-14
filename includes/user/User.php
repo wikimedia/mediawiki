@@ -3880,6 +3880,8 @@ class User implements IDBAccessObject {
 	 * @return bool True if the given password is correct, otherwise False
 	 */
 	public function checkPassword( $password ) {
+		wfDeprecated( __METHOD__, '1.27' );
+
 		$req = new PasswordAuthenticationRequest();
 		$req->username = $this->getName();
 		$req->password = $password;
@@ -3909,6 +3911,7 @@ class User implements IDBAccessObject {
 	 * @return bool True if matches, false otherwise
 	 */
 	public function checkTemporaryPassword( $plaintext ) {
+		wfDeprecated( __METHOD__, '1.27' );
 		// Can't check the temporary password individually.
 		return $this->checkPassword( $plaintext );
 	}
