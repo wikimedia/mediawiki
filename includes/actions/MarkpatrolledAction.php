@@ -64,11 +64,11 @@ class MarkpatrolledAction extends FormlessAction {
 
 		# It would be nice to see where the user had actually come from, but for now just guess
 		if ( $rc->getAttribute( 'rc_type' ) == RC_NEW ) {
-			$returnTo =  'Newpages';
+			$returnTo = 'Newpages';
 		} elseif ( $rc->getAttribute( 'rc_log_type' ) == 'upload' ) {
 			$returnTo = 'Newfiles';
 		} else {
-			$returnTo =  'Recentchanges';
+			$returnTo = 'Recentchanges';
 		}
 		$return = SpecialPage::getTitleFor( $returnTo );
 
