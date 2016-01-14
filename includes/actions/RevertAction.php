@@ -151,4 +151,8 @@ class RevertAction extends FormAction {
 	protected function getDescription() {
 		return OutputPage::buildBacklinkSubtitle( $this->getTitle() );
 	}
+
+	public function doesWrites() {
+		return true;
+	}
 }

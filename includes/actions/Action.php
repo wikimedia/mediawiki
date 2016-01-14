@@ -417,4 +417,13 @@ abstract class Action {
 			wfTransactionalTimeLimit();
 		}
 	}
+
+	/**
+	 * Indicates whether this action may perform database writes
+	 * @return bool
+	 * @since 1.27
+	 */
+	public function doesWrites() {
+		return false;
+	}
 }

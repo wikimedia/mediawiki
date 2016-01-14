@@ -89,4 +89,8 @@ class MarkpatrolledAction extends FormlessAction {
 		$this->getOutput()->addWikiMsg( 'markedaspatrolledtext', $rc->getTitle()->getPrefixedText() );
 		$this->getOutput()->returnToMain( null, $return );
 	}
+
+	public function doesWrites() {
+		return true;
+	}
 }
