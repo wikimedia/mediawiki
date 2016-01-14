@@ -81,6 +81,9 @@ class BitmapHandler extends TransformationalImageHandler {
 		if ( $params['mimeType'] == 'image/jpeg' ) {
 			$qualityVal = isset( $params['quality'] ) ? (string)$params['quality'] : null;
 			$quality = array( '-quality', $qualityVal ?: '80' ); // 80%
+			if ( isset( $params['interlace'] ) && $params['interlace'] ) {
+				$animation_post = array( '-interlace', 'JPEG' );
+			}
 			# Sharpening, see bug 6193
 			if ( ( $params['physicalWidth'] + $params['physicalHeight'] )
 				/ ( $params['srcWidth'] + $params['srcHeight'] )
@@ -92,7 +95,12 @@ class BitmapHandler extends TransformationalImageHandler {
 				// JPEG decoder hint to reduce memory, available since IM 6.5.6-2
 				$decoderHint = array( '-define', "jpeg:size={$params['physicalDimensions']}" );
 			}
-		} elseif ( $params['mimeType'] == 'image/png' || $params['mimeType'] == 'image/webp' ) {
+		} elseif ( $params['mimeType'] == 'image/png' ) {
+			$quality = array( '-quality', '95' ); // zlib 9, adaptive filtering
+			if ( isset( $params['interlace'] ) && $params['interlace'] ) {
+				$animation_post = array( '-interlace', 'PNG' );
+			}
+		} elseif ( $params['mimeType'] == 'image/webp' ) {
 			$quality = array( '-quality', '95' ); // zlib 9, adaptive filtering
 		} elseif ( $params['mimeType'] == 'image/gif' ) {
 			if ( $this->getImageArea( $image ) > $wgMaxAnimatedGifArea ) {
@@ -107,6 +115,12 @@ class BitmapHandler extends TransformationalImageHandler {
 				if ( version_compare( $this->getMagickVersion(), "6.3.5" ) >= 0 ) {
 					$animation_post = array( '-fuzz', '5%', '-layers', 'optimizeTransparency' );
 				}
+			}
+			if ( isset( $params['interlace'] ) && $params['interlace']
+				&& version_compare( $this->getMagickVersion(), "6.3.4" ) >= 0
+				&& !$this->isAnimatedImage( $image ) ) { // interlacing animated GIFs is a bad idea
+				$animation_post[] = '-interlace';
+				$animation_post[] = 'GIF';
 			}
 		} elseif ( $params['mimeType'] == 'image/x-xcf' ) {
 			// Before merging layers, we need to set the background
@@ -143,7 +157,6 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		$rotation = isset( $params['disableRotation'] ) ? 0 : $this->getRotation( $image );
 		list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
-
 		$cmd = call_user_func_array( 'wfEscapeShellArg', array_merge(
 			array( $wgImageMagickConvertCommand ),
 			$quality,
@@ -196,7 +209,6 @@ class BitmapHandler extends TransformationalImageHandler {
 		try {
 			$im = new Imagick();
 			$im->readImage( $params['srcPath'] );
-
 			if ( $params['mimeType'] == 'image/jpeg' ) {
 				// Sharpening, see bug 6193
 				if ( ( $params['physicalWidth'] + $params['physicalHeight'] )
@@ -209,8 +221,14 @@ class BitmapHandler extends TransformationalImageHandler {
 				}
 				$qualityVal = isset( $params['quality'] ) ? (string)$params['quality'] : null;
 				$im->setCompressionQuality( $qualityVal ?: 80 );
+				if ( isset( $params['interlace'] ) && $params['interlace'] ) {
+					$im->setInterlaceScheme( Imagick::INTERLACE_JPEG );
+				}
 			} elseif ( $params['mimeType'] == 'image/png' ) {
 				$im->setCompressionQuality( 95 );
+				if ( isset( $params['interlace'] ) && $params['interlace'] ) {
+					$im->setInterlaceScheme( Imagick::INTERLACE_PNG );
+				}
 			} elseif ( $params['mimeType'] == 'image/gif' ) {
 				if ( $this->getImageArea( $image ) > $wgMaxAnimatedGifArea ) {
 					// Extract initial frame only; we're so big it'll
@@ -219,6 +237,14 @@ class BitmapHandler extends TransformationalImageHandler {
 				} elseif ( $this->isAnimatedImage( $image ) ) {
 					// Coalesce is needed to scale animated GIFs properly (bug 1017).
 					$im = $im->coalesceImages();
+				}
+				// GIF interlacing is only available since 6.3.4
+				$v = Imagick::getVersion();
+				preg_match( '/ImageMagick ([0-9]+\.[0-9]+\.[0-9]+)/', $v['versionString'], $v );
+
+				if ( isset( $params['interlace'] ) && $params['interlace']
+					&& version_compare( $v[1], '6.3.4' ) >= 0 ) {
+					$im->setInterlaceScheme( Imagick::INTERLACE_GIF );
 				}
 			}
 
