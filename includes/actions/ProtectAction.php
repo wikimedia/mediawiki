@@ -51,4 +51,8 @@ class ProtectAction extends FormlessAction {
 
 		$this->page->protect();
 	}
+
+	public function doesWrites() {
+		return true;
+	}
 }

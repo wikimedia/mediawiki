@@ -97,4 +97,8 @@ class PurgeAction extends FormAction {
 	public function onSuccess() {
 		$this->getOutput()->redirect( $this->getTitle()->getFullURL( $this->redirectParams ) );
 	}
+
+	public function doesWrites() {
+		return true;
+	}
 }

@@ -52,4 +52,8 @@ class UnwatchAction extends WatchAction {
 	public function onSuccess() {
 		$this->getOutput()->addWikiMsg( 'removedwatchtext', $this->getTitle()->getPrefixedText() );
 	}
+
+	public function doesWrites() {
+		return true;
+	}
 }
