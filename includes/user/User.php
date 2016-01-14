@@ -2876,6 +2876,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool
 	 */
 	public function setPassword( $str ) {
+		wfDeprecated( __METHOD__, '1.27' );
 		return $this->setPasswordInternal( $str );
 	}
 
@@ -2888,6 +2889,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *  through the web interface.
 	 */
 	public function setInternalPassword( $str ) {
+		wfDeprecated( __METHOD__, '1.27' );
 		$this->setPasswordInternal( $str );
 	}
 
@@ -4546,6 +4548,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool True if the given password is correct, otherwise False
 	 */
 	public function checkPassword( $password ) {
+		wfDeprecated( __METHOD__, '1.27' );
+
 		$manager = AuthManager::singleton();
 		$reqs = AuthenticationRequest::loadRequestsFromSubmission(
 			$manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN ),
@@ -4579,6 +4583,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool True if matches, false otherwise
 	 */
 	public function checkTemporaryPassword( $plaintext ) {
+		wfDeprecated( __METHOD__, '1.27' );
 		// Can't check the temporary password individually.
 		return $this->checkPassword( $plaintext );
 	}
