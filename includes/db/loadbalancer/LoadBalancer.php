@@ -190,11 +190,13 @@ class LoadBalancer {
 				if ( isset( $this->mServers[$i]['max lag'] ) ) {
 					$maxServerLag = min( $maxServerLag, $this->mServers[$i]['max lag'] );
 				}
+
+				$host = $this->getServerName( $i );
 				if ( $lag === false ) {
-					wfDebugLog( 'replication', "Server #$i is not replicating" );
+					wfDebugLog( 'replication', "Server $host (#$i) is not replicating?" );
 					unset( $loads[$i] );
 				} elseif ( $lag > $maxServerLag ) {
-					wfDebugLog( 'replication', "Server #$i is excessively lagged ($lag seconds)" );
+					wfDebugLog( 'replication', "Server $host (#$i) has >= $lag seconds of lag" );
 					unset( $loads[$i] );
 				}
 			}
@@ -679,9 +681,7 @@ class LoadBalancer {
 	 *
 	 * @param int $i Server index
 	 * @param string|bool $wiki Wiki ID, or false for the current wiki
-	 * @return DatabaseBase
-	 *
-	 * @access private
+	 * @return DatabaseBase|bool Returns false on errors
 	 */
 	public function openConnection( $i, $wiki = false ) {
 		if ( $wiki !== false ) {

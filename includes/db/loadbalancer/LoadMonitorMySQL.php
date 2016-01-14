@@ -88,18 +88,33 @@ class LoadMonitorMySQL implements LoadMonitor {
 
 		$lagTimes = array();
 		foreach ( $serverIndexes as $i ) {
-			if ( $i == 0 ) { # Master
-				$lagTimes[$i] = 0;
+			if ( $i == $this->parent->getWriterIndex() ) {
+				$lagTimes[$i] = 0; // master always has no lag
 				continue;
 			}
+
 			$conn = $this->parent->getAnyOpenConnection( $i );
-			if ( $conn !== false ) {
-				$lagTimes[$i] = $conn->getLag();
+			if ( $conn ) {
+				$close = false; // already open
+			} else {
+				$conn = $this->parent->openConnection( $i, $wiki );
+				$close = true; // new connection
+			}
+
+			if ( !$conn ) {
+				$lagTimes[$i] = false;
+				$host = $this->parent->getServerName( $i );
+				wfDebugLog( 'replication', __METHOD__ . ": host $host (#$i) is unreachable" );
 				continue;
 			}
-			$conn = $this->parent->openConnection( $i, $wiki );
-			if ( $conn !== false ) {
-				$lagTimes[$i] = $conn->getLag();
+
+			$lagTimes[$i] = $conn->getLag();
+			if ( $lagTimes[$i] === false ) {
+				$host = $this->parent->getServerName( $i );
+				wfDebugLog( 'replication', __METHOD__ . ": host $host (#$i) is not replicating?" );
+			}
+
+			if ( $close ) {
 				# Close the connection to avoid sleeper connections piling up.
 				# Note that the caller will pick one of these DBs and reconnect,
 				# which is slightly inefficient, but this only matters for the lag
@@ -124,7 +139,10 @@ class LoadMonitorMySQL implements LoadMonitor {
 	}
 
 	private function getLagTimeCacheKey() {
+		$writerIndex = $this->parent->getWriterIndex();
 		// Lag is per-server, not per-DB, so key on the master DB name
-		return $this->srvCache->makeGlobalKey( 'lag-times', $this->parent->getServerName( 0 ) );
+		return $this->srvCache->makeGlobalKey(
+			'lag-times', $this->parent->getServerName( $writerIndex )
+		);
 	}
 }
