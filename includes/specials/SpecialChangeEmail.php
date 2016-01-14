@@ -36,6 +36,10 @@ class SpecialChangeEmail extends FormSpecialPage {
 		parent::__construct( 'ChangeEmail', 'editmyprivateinfo' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * @return bool
 	 */

@@ -36,6 +36,10 @@ class SpecialUnblock extends SpecialPage {
 		parent::__construct( 'Unblock', 'block' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	public function execute( $par ) {
 		$this->checkPermissions();
 		$this->checkReadOnly();

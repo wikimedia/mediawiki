@@ -51,6 +51,10 @@ class SpecialPasswordReset extends FormSpecialPage {
 		parent::__construct( 'PasswordReset', 'editmyprivateinfo' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	public function userCanExecute( User $user ) {
 		return $this->canChangePassword( $user ) === true && parent::userCanExecute( $user );
 	}

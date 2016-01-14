@@ -38,6 +38,10 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		parent::__construct( 'Emailuser' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	public function getDescription() {
 		$target = self::getTarget( $this->mTarget );
 		if ( !$target instanceof User ) {

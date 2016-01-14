@@ -6,6 +6,10 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		parent::__construct( 'ChangeContentModel', 'editcontentmodel' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * @var Title|null
 	 */

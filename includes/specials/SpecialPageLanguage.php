@@ -38,6 +38,10 @@ class SpecialPageLanguage extends FormSpecialPage {
 		parent::__construct( 'PageLanguage', 'pagelang' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	protected function preText() {
 		$this->getOutput()->addModules( 'mediawiki.special.pageLanguage' );
 	}

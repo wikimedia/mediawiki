@@ -31,6 +31,10 @@ class SpecialUserlogout extends UnlistedSpecialPage {
 		parent::__construct( 'Userlogout' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	function execute( $par ) {
 		/**
 		 * Some satellite ISPs use broken precaching schemes that log people out straight after

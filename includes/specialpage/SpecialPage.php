@@ -676,6 +676,16 @@ class SpecialPage {
 	}
 
 	/**
+	 * Indicates whether this special page may perform database writes
+	 *
+	 * @return bool
+	 * @since 1.27
+	 */
+	public function doesWrites() {
+		return false;
+	}
+
+	/**
 	 * Under which header this special page is listed in Special:SpecialPages
 	 * See messages 'specialpages-group-*' for valid names
 	 * This method defaults to group 'other'

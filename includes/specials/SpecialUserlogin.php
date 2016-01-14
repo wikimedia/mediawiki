@@ -132,6 +132,10 @@ class LoginForm extends SpecialPage {
 		$wgUseMediaWikiUIEverywhere = true;
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * Returns an array of all valid error messages.
 	 *

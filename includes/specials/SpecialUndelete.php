@@ -51,6 +51,10 @@ class PageArchive {
 		$this->config = $config;
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * List all deleted pages recorded in the archive table. Returns result
 	 * wrapper with (ar_namespace, ar_title, count) fields, ordered by page

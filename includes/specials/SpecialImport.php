@@ -51,6 +51,10 @@ class SpecialImport extends SpecialPage {
 		parent::__construct( 'Import', 'import' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * Execute
 	 * @param string|null $par

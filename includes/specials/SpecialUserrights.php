@@ -41,6 +41,10 @@ class UserrightsPage extends SpecialPage {
 		parent::__construct( 'Userrights' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	public function isRestricted() {
 		return true;
 	}

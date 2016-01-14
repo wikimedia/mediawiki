@@ -32,6 +32,10 @@ class EmailInvalidation extends UnlistedSpecialPage {
 		parent::__construct( 'Invalidateemail', 'editmyprivateinfo' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	function execute( $code ) {
 		// Ignore things like master queries/connections on GET requests.
 		// It's very convenient to just allow formless link usage.

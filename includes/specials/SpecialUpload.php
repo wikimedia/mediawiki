@@ -38,6 +38,10 @@ class SpecialUpload extends SpecialPage {
 		parent::__construct( 'Upload', 'upload' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/** Misc variables **/
 
 	/** @var WebRequest|FauxRequest The request this form is supposed to handle */

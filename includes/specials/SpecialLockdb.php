@@ -33,6 +33,10 @@ class SpecialLockdb extends FormSpecialPage {
 		parent::__construct( 'Lockdb', 'siteadmin' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	public function requiresWrite() {
 		return false;
 	}
