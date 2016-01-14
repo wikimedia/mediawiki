@@ -961,6 +961,12 @@ $wgUseImageMagick = false;
 $wgImageMagickConvertCommand = '/usr/bin/convert';
 
 /**
+ * Array of max pixel areas for interlacing per MIME type
+ * @since 1.27
+ */
+$wgMaxInterlacingAreas = array();
+
+/**
  * Sharpening parameter to ImageMagick
  */
 $wgSharpenParameter = '0x0.4';
