@@ -34,7 +34,7 @@ class BitmapScalingTest extends MediaWikiTestCase {
 				array(
 					'width' => 512, 'height' => 384,
 					'physicalWidth' => 512, 'physicalHeight' => 384,
-					'page' => 1,
+					'page' => 1, 'interlace' => false,
 				),
 				array( 'width' => 512 ),
 				'Resizing with width set',
@@ -44,7 +44,7 @@ class BitmapScalingTest extends MediaWikiTestCase {
 				array(
 					'width' => 512, 'height' => 384,
 					'physicalWidth' => 512, 'physicalHeight' => 384,
-					'page' => 1,
+					'page' => 1, 'interlace' => false,
 				),
 				array( 'width' => 512, 'height' => 768 ),
 				'Resizing with height set too high',
@@ -54,7 +54,7 @@ class BitmapScalingTest extends MediaWikiTestCase {
 				array(
 					'width' => 512, 'height' => 384,
 					'physicalWidth' => 512, 'physicalHeight' => 384,
-					'page' => 1,
+					'page' => 1, 'interlace' => false,
 				),
 				array( 'width' => 1024, 'height' => 384 ),
 				'Resizing with height set',
@@ -66,7 +66,7 @@ class BitmapScalingTest extends MediaWikiTestCase {
 				array(
 					'width' => 5, 'height' => 1,
 					'physicalWidth' => 5, 'physicalHeight' => 1,
-					'page' => 1,
+					'page' => 1, 'interlace' => false,
 				),
 				array( 'width' => 5 ),
 				'Very wide image',
@@ -77,7 +77,7 @@ class BitmapScalingTest extends MediaWikiTestCase {
 				array(
 					'width' => 1, 'height' => 10,
 					'physicalWidth' => 1, 'physicalHeight' => 10,
-					'page' => 1,
+					'page' => 1, 'interlace' => false,
 				),
 				array( 'width' => 1 ),
 				'Very high image',
@@ -87,7 +87,7 @@ class BitmapScalingTest extends MediaWikiTestCase {
 				array(
 					'width' => 1, 'height' => 5,
 					'physicalWidth' => 1, 'physicalHeight' => 10,
-					'page' => 1,
+					'page' => 1, 'interlace' => false,
 				),
 				array( 'width' => 10, 'height' => 5 ),
 				'Very high image with height set',
@@ -98,10 +98,21 @@ class BitmapScalingTest extends MediaWikiTestCase {
 				array(
 					'width' => 5000, 'height' => 5000,
 					'physicalWidth' => 4000, 'physicalHeight' => 4000,
-					'page' => 1,
+					'page' => 1, 'interlace' => false,
 				),
 				array( 'width' => 5000 ),
 				'Bigger than max image size but doesn\'t need scaling',
+			),
+			/* Max interlace image area */
+			array(
+				array( 4000, 4000 ),
+				array(
+					'width' => 5000, 'height' => 5000,
+					'physicalWidth' => 4000, 'physicalHeight' => 4000,
+					'page' => 1, 'interlace' => false,
+				),
+				array( 'width' => 5000, 'interlace' => true ),
+				'Interlace bigger than max interlace area',
 			),
 		);
 	}
