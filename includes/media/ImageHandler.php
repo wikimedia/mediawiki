@@ -59,16 +59,19 @@ abstract class ImageHandler extends MediaHandler {
 		} else {
 			throw new MediaTransformInvalidParametersException( 'No width specified to ' . __METHOD__ );
 		}
+		$interlaced = isset( $params['interlace'] ) && $params['interlace'];
 
 		# Removed for ProofreadPage
 		# $width = intval( $width );
-		return "{$width}px";
+		$suffix = ( $interlaced ? '-interlaced' : '' );
+		return "{$width}px{$suffix}";
 	}
 
 	function parseParamString( $str ) {
 		$m = false;
-		if ( preg_match( '/^(\d+)px$/', $str, $m ) ) {
-			return array( 'width' => $m[1] );
+		if ( preg_match( '/^(\d+)px(.+)?$/', $str, $m ) ) {
+			$interlaced = isset( $m[2] ) && $m[2] === '-interlaced';
+			return array( 'width' => $m[1], 'interlace' => $interlaced );
 		} else {
 			return false;
 		}
