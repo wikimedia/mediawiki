@@ -102,7 +102,7 @@
 	"apihelp-edit-param-appendtext": "Engadir este texto no final da páxina. Ignorar $1text.\n\nUse $1section=new para engadir unha nova sección, máis que este parámetro.",
 	"apihelp-edit-param-undo": "Desfacer esta revisión. Ignorar $1text, $1prependtext e $1appendtext.",
 	"apihelp-edit-param-undoafter": "Desfacer tódalas revisións dende $1undo ata esta. Se non está definido, só desfacer unha revisión.",
-	"apihelp-edit-param-redirect": "Resolver redireccións automáticamente",
+	"apihelp-edit-param-redirect": "Resolver redireccións automaticamente",
 	"apihelp-edit-param-contentformat": "Formato de serialización de contido utilizado para o texto de entrada.",
 	"apihelp-edit-param-contentmodel": "Modelo de contido para o novo contido.",
 	"apihelp-edit-param-token": "O identificador debería enviarse empre como o último parámetro, ou polo menos despois do parámetro $1text.",

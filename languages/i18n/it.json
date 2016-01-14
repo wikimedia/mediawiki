@@ -3564,7 +3564,7 @@
 	"expand_templates_generate_xml": "Mostra albero sintattico XML",
 	"expand_templates_generate_rawhtml": "Mostra HTML",
 	"expand_templates_preview": "Anteprima",
-	"expand_templates_preview_fail_html": "<em>Dato che {{SITENAME}} ha dell'HTML grezzo attivato e c'è stata una perdita dei dati della sessione, l'anteprima è nascosta per precauzione contro gli attacchi a JavaScript.</em>\n\n<strong>Se si tratta di un normale tentativo d'anteprima, riprova.</strong> \nSe comunque non dovesse funzionare, prova ad [[Special:UserLogout|uscire]] ed a rientrare.",
+	"expand_templates_preview_fail_html": "<em>Poiché {{SITENAME}} ha dell'HTML grezzo attivato e c'è stata una perdita dei dati della sessione, l'anteprima è nascosta come precauzione contro gli attacchi JavaScript.</em>\n\n<strong>Se si tratta di un normale tentativo d'anteprima, riprova.</strong> \nSe comunque non dovesse funzionare, prova ad [[Special:UserLogout|uscire]] ed a rientrare.",
 	"expand_templates_preview_fail_html_anon": "<em>Poiché {{SITENAME}} ha dell'HTML grezzo attivato e non hai effettuato l'accesso, l'anteprima è nascosta come precauzione contro gli attacchi JavaScript.</em>\n\n<strong>Se si tratta di un normale tentativo d'anteprima, [[Special:UserLogin|entra]] e riprova.</strong>",
 	"expand_templates_input_missing": "Devi inserire del testo come input.",
 	"pagelanguage": "Seleziona lingua della pagina",
