@@ -57,7 +57,7 @@ class JobQueueMemory extends JobQueue {
 	}
 
 	protected function optimalOrder() {
-		return array( 'fifo' );
+		return 'fifo';
 	}
 
 	protected function doIsEmpty() {
@@ -160,7 +160,7 @@ class JobQueueMemory extends JobQueue {
 			if ( $init !== null ) {
 				self::$data[$this->type][$this->wiki][$field] = $init;
 			} else {
-				return null;
+				return $init;
 			}
 		}
 
