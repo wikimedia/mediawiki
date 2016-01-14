@@ -34,6 +34,10 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		parent::__construct( 'RunJobs' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	public function execute( $par = '' ) {
 		$this->getOutput()->disable();
 

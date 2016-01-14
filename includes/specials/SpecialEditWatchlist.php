@@ -53,6 +53,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		parent::__construct( 'EditWatchlist', 'editmywatchlist' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * Main execution point
 	 *

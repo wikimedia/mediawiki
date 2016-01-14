@@ -37,6 +37,10 @@ class SpecialCreateAccount extends SpecialRedirectToSpecial {
 		);
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	// No reason to hide this link on Special:Specialpages
 	public function isListed() {
 		return true;

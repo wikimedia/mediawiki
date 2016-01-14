@@ -52,6 +52,10 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		parent::__construct( 'UploadStash', 'upload' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * Execute page -- can output a file directly or show a listing of them.
 	 *

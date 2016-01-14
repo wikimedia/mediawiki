@@ -34,6 +34,10 @@ class SpecialResetTokens extends FormSpecialPage {
 		parent::__construct( 'ResetTokens' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * Returns the token information list for this page after running
 	 * the hook and filtering out disabled preferences.

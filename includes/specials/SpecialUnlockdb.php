@@ -32,6 +32,10 @@ class SpecialUnlockdb extends FormSpecialPage {
 		parent::__construct( 'Unlockdb', 'siteadmin' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	public function requiresWrite() {
 		return false;
 	}

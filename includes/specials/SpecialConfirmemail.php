@@ -34,6 +34,10 @@ class EmailConfirmation extends UnlistedSpecialPage {
 		parent::__construct( 'Confirmemail', 'editmyprivateinfo' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * Main execution point
 	 *

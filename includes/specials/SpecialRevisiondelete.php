@@ -109,6 +109,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		parent::__construct( 'Revisiondelete', 'deletedhistory' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	public function execute( $par ) {
 		$this->useTransactionalTimeLimit();
 

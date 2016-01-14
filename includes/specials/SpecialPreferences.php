@@ -31,6 +31,10 @@ class SpecialPreferences extends SpecialPage {
 		parent::__construct( 'Preferences' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();

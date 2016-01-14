@@ -500,7 +500,6 @@ class SpecialPageFactory {
 	 * @return bool
 	 */
 	public static function executePath( Title &$title, IContextSource &$context, $including = false ) {
-
 		// @todo FIXME: Redirects broken due to this call
 		$bits = explode( '/', $title->getDBkey(), 2 );
 		$name = $bits[0];
@@ -509,8 +508,8 @@ class SpecialPageFactory {
 		} else {
 			$par = $bits[1];
 		}
+
 		$page = self::getPage( $name );
-		// Nonexistent?
 		if ( !$page ) {
 			$context->getOutput()->setArticleRelated( false );
 			$context->getOutput()->setRobotPolicy( 'noindex,nofollow' );
@@ -523,6 +522,15 @@ class SpecialPageFactory {
 			$context->getOutput()->showErrorPage( 'nosuchspecialpage', 'nospecialpagetext' );
 
 			return false;
+		}
+
+		if ( !$including ) {
+			// Narrow DB query expectations for this HTTP request
+			$trxLimits = $context->getConfig()->get( 'TrxProfilerLimits' );
+			$trxProfiler = Profiler::instance()->getTransactionProfiler();
+			if ( $context->getRequest()->wasPosted() && !$page->doesWrites() ) {
+				$trxProfiler->setExpectations( $trxLimits['POST-nonwrite'], __METHOD__ );
+			}
 		}
 
 		// Page exists, set the context

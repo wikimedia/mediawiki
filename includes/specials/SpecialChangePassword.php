@@ -41,6 +41,10 @@ class SpecialChangePassword extends FormSpecialPage {
 		$this->listed( false );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * Main execution point
 	 * @param string|null $par

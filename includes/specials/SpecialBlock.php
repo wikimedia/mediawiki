@@ -51,6 +51,10 @@ class SpecialBlock extends FormSpecialPage {
 		parent::__construct( 'Block', 'block' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * Checks that the user can unblock themselves if they are trying to do so
 	 *

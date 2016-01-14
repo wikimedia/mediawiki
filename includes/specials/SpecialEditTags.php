@@ -55,6 +55,10 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		parent::__construct( 'EditTags', 'changetags' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	public function execute( $par ) {
 		$this->checkPermissions();
 		$this->checkReadOnly();

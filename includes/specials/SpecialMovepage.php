@@ -62,6 +62,10 @@ class MovePageForm extends UnlistedSpecialPage {
 		parent::__construct( 'Movepage' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	public function execute( $par ) {
 		$this->useTransactionalTimeLimit();
 

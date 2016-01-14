@@ -68,6 +68,10 @@ class SpecialMergeHistory extends SpecialPage {
 		parent::__construct( 'MergeHistory', 'mergehistory' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * @return void
 	 */
