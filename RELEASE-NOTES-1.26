@@ -9,6 +9,7 @@ THIS IS NOT A RELEASE YET!
 * (T116266) Fixed undefined property notices in DairikiDiff under HHVM.
 * (T123166) Fix fatal error when importing pages to titles which cannot be
   created, such as invalid titles or titles the user is not allowed to edit.
+* (T123569) External library liuggio/statsd-php-client updated to 1.0.18.
 
 == MediaWiki 1.26.2 ==
 
