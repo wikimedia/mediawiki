@@ -540,7 +540,7 @@
 	"botpasswords-no-central-id": "To use bot passwords, you must be logged in to a centralized account.",
 	"botpasswords-existing": "Existing bot passwords",
 	"botpasswords-createnew": "Create a new bot password",
-	"botpasswords-editexisting": "Edit and existing bot password",
+	"botpasswords-editexisting": "Edit an existing bot password",
 	"botpasswords-label-appid": "Bot name:",
 	"botpasswords-label-create": "Create",
 	"botpasswords-label-update": "Update",
