@@ -178,4 +178,8 @@ class WatchAction extends FormAction {
 	public static function getUnwatchToken( Title $title, User $user, $action = 'unwatch' ) {
 		return self::getWatchToken( $title, $user, $action );
 	}
+
+	public function doesWrites() {
+		return true;
+	}
 }

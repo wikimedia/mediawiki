@@ -58,4 +58,8 @@ class EditAction extends FormlessAction {
 			$editor->edit();
 		}
 	}
+
+	public function doesWrites() {
+		return true;
+	}
 }
