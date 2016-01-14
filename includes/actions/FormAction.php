@@ -127,4 +127,8 @@ abstract class FormAction extends Action {
 			$this->onSuccess();
 		}
 	}
+
+	public function isWriteMode() {
+		return true;
+	}
 }

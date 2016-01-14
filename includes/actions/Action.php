@@ -417,4 +417,13 @@ abstract class Action {
 			wfTransactionalTimeLimit();
 		}
 	}
+
+	/**
+	 * Indicates whether this module requires write mode
+	 * @return bool
+	 * @since 1.27
+	 */
+	public function isWriteMode() {
+		return false;
+	}
 }

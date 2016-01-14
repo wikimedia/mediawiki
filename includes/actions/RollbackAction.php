@@ -126,4 +126,8 @@ class RollbackAction extends FormlessAction {
 	protected function getDescription() {
 		return '';
 	}
+
+	public function isWriteMode() {
+		return true;
+	}
 }

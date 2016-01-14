@@ -53,4 +53,8 @@ class DeleteAction extends FormlessAction {
 		$this->addHelpLink( 'Help:Sysop deleting and undeleting' );
 		$this->page->delete();
 	}
+
+	public function isWriteMode() {
+		return true;
+	}
 }

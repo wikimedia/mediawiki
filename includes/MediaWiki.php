@@ -458,7 +458,6 @@ class MediaWiki {
 	 * @param Title $requestTitle The original title, before any redirects were applied
 	 */
 	private function performAction( Page $page, Title $requestTitle ) {
-
 		$request = $this->context->getRequest();
 		$output = $this->context->getOutput();
 		$title = $this->context->getTitle();
@@ -471,10 +470,16 @@ class MediaWiki {
 		}
 
 		$act = $this->getAction();
-
 		$action = Action::factory( $act, $page, $this->context );
 
 		if ( $action instanceof Action ) {
+			// Narrow DB query expectations for this HTTP request
+			$trxLimits = $this->config->get( 'TrxProfilerLimits' );
+			$trxProfiler = Profiler::instance()->getTransactionProfiler();
+			if ( $request->wasPosted() && !$action->isWriteMode() ) {
+				$trxProfiler->setExpectations( $trxLimits['POST-nonwrite'], __METHOD__ );
+			}
+
 			# Let CDN cache things if we can purge them.
 			if ( $this->config->get( 'UseSquid' ) &&
 				in_array(
@@ -494,7 +499,6 @@ class MediaWiki {
 			$output->setStatusCode( 404 );
 			$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 		}
-
 	}
 
 	/**
@@ -625,7 +629,7 @@ class MediaWiki {
 	}
 
 	private function main() {
-		global $wgTitle, $wgTrxProfilerLimits;
+		global $wgTitle;
 
 		$request = $this->context->getRequest();
 
@@ -649,13 +653,14 @@ class MediaWiki {
 		$action = $this->getAction();
 		$wgTitle = $title;
 
+		// Set DB query expectations for this HTTP request
+		$trxLimits = $this->config->get( 'TrxProfilerLimits' );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
-
 		if ( $request->wasPosted() ) {
-			$trxProfiler->setExpectations( $wgTrxProfilerLimits['POST'], __METHOD__ );
+			$trxProfiler->setExpectations( $trxLimits['POST'], __METHOD__ );
 		} else {
-			$trxProfiler->setExpectations( $wgTrxProfilerLimits['GET'], __METHOD__ );
+			$trxProfiler->setExpectations( $trxLimits['GET'], __METHOD__ );
 		}
 
 		// If the user has forceHTTPS set to true, or if the user
