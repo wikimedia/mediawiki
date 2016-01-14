@@ -218,6 +218,17 @@ class ApiResultTest extends MediaWikiTestCase {
 			0 => "foo\xef\xbf\xbdbar",
 			1 => "\xc3\xa1",
 		), $arr );
+
+		$obj = new stdClass;
+		$obj->{'1'} = 'one';
+		$arr = array();
+		ApiResult::setValue( $arr, 'foo', $obj );
+		$this->assertSame( array(
+			'foo' => array(
+				1 => 'one',
+				ApiResult::META_TYPE => 'assoc',
+			)
+		), $arr );
 	}
 
 	/**
@@ -507,6 +518,19 @@ class ApiResultTest extends MediaWikiTestCase {
 			'baz' => 74,
 			0 => "foo\xef\xbf\xbdbar",
 			1 => "\xc3\xa1",
+			ApiResult::META_TYPE => 'assoc',
+		), $result->getResultData() );
+
+		$result = new ApiResult( 8388608 );
+		$obj = new stdClass;
+		$obj->{'1'} = 'one';
+		$arr = array();
+		$result->addValue( $arr, 'foo', $obj );
+		$this->assertSame( array(
+			'foo' => array(
+				1 => 'one',
+				ApiResult::META_TYPE => 'assoc',
+			),
 			ApiResult::META_TYPE => 'assoc',
 		), $result->getResultData() );
 	}
