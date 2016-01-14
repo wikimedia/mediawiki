@@ -126,6 +126,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			'mimeType' => $image->getMimeType(),
 			'dstPath' => $dstPath,
 			'dstUrl' => $dstUrl,
+			'interlace' => isset( $params['interlace'] ) ? $params['interlace'] : false,
 		);
 
 		if ( isset( $params['quality'] ) && $params['quality'] === 'low' ) {

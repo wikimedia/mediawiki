@@ -67,7 +67,7 @@ abstract class ImageHandler extends MediaHandler {
 
 	function parseParamString( $str ) {
 		$m = false;
-		if ( preg_match( '/^(\d+)px$/', $str, $m ) ) {
+		if ( preg_match( '/^(\d+)px(.+)?$/', $str, $m ) ) {
 			return array( 'width' => $m[1] );
 		} else {
 			return false;
