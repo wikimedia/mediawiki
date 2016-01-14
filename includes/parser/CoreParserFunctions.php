@@ -813,7 +813,7 @@ class CoreParserFunctions {
 			$titleObject = $parser->mTitle;
 		}
 		if ( $titleObject->areRestrictionsLoaded() || $parser->incrementExpensiveFunctionCount() ) {
-			$expiry = $parser->mTitle->getRestrictionExpiry( strtolower( $type ) );
+			$expiry = $titleObject->getRestrictionExpiry( strtolower( $type ) );
 			// getRestrictionExpiry() returns false on invalid type; trying to
 			// match protectionlevel() function that returns empty string instead
 			if ( $expiry === false ) {
