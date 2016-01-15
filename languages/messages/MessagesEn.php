@@ -463,6 +463,7 @@ $specialPageAliases = array(
 	'Randompage'                => array( 'Random', 'RandomPage' ),
 	'RandomInCategory'          => array( 'RandomInCategory' ),
 	'Randomredirect'            => array( 'RandomRedirect' ),
+	'Randomrootpage'            => array( 'RandomRootpage' ),
 	'Recentchanges'             => array( 'RecentChanges' ),
 	'Recentchangeslinked'       => array( 'RecentChangesLinked', 'RelatedChanges' ),
 	'Redirect'                  => array( 'Redirect' ),

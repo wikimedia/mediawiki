@@ -206,6 +206,7 @@ $specialPageAliases = array(
 	'Randompage'                => array( '随机', '随机页面' ),
 	'RandomInCategory'          => array( '分类内随机' ),
 	'Randomredirect'            => array( '随机重定向', '随机重定向页' ),
+	'Randomrootpage'            => array( '随机根页面' ),
 	'Recentchanges'             => array( '最近更改' ),
 	'Recentchangeslinked'       => array( '最近链出更改', '相关更改' ),
 	'Redirect'                  => array( '重定向' ),

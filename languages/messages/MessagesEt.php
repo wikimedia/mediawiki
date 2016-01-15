@@ -101,6 +101,7 @@ $specialPageAliases = array(
 	'Randompage'                => array( 'Juhuslik_artikkel' ),
 	'RandomInCategory'          => array( 'Juhuslik_kategoorias' ),
 	'Randomredirect'            => array( 'Juhuslik_ümbersuunamine' ),
+	'Randomrootpage'            => array( 'Juhuslik_juurlehekülg' ),
 	'Recentchanges'             => array( 'Viimased_muudatused' ),
 	'Recentchangeslinked'       => array( 'Seotud_muudatused' ),
 	'Redirect'                  => array( 'Ümbersuunamine' ),
