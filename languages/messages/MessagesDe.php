@@ -112,6 +112,7 @@ $specialPageAliases = array(
 	'Randompage'                => array( 'Zufällige_Seite' ),
 	'RandomInCategory'          => array( 'Zufällig_in_Kategorie' ),
 	'Randomredirect'            => array( 'Zufällige_Weiterleitung' ),
+	'Randomrootpage'            => array( 'Zufällige_Stammseite' ),
 	'Recentchanges'             => array( 'Letzte_Änderungen' ),
 	'Recentchangeslinked'       => array( 'Änderungen_an_verlinkten_Seiten' ),
 	'Redirect'                  => array( 'Weiterleitung' ),

@@ -135,6 +135,7 @@ class SpecialPageFactory {
 		'Randompage' => 'RandomPage',
 		'RandomInCategory' => 'SpecialRandomInCategory',
 		'Randomredirect' => 'SpecialRandomredirect',
+		'Randomrootpage' => 'SpecialRandomrootpage',
 
 		// High use pages
 		'Mostlinkedcategories' => 'MostlinkedCategoriesPage',
