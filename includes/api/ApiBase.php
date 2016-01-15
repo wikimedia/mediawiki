@@ -638,6 +638,16 @@ abstract class ApiBase extends ContextSource {
 	 */
 
 	/**
+	 * Indicate if the module supports additional undocumented parameters.
+	 * @return string|array|Message|null Return null if the module does not
+	 *  support additional undocumented parameters, otherwise return a message
+	 *  describing them.
+	 */
+	public function undocumentedParameterDocumentation() {
+		return null;
+	}
+
+	/**
 	 * This method mangles parameter name based on the prefix supplied to the constructor.
 	 * Override this method to change parameter name during runtime
 	 * @param string $paramName Parameter name

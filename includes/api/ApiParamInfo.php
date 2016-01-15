@@ -387,6 +387,20 @@ class ApiParamInfo extends ApiBase {
 		}
 		ApiResult::setIndexedTagName( $ret['parameters'], 'param' );
 
+		$undocumentedParams = $module->undocumentedParameterDocumentation();
+		if ( $undocumentedParams !== null ) {
+			if ( $this->helpFormat === 'none' ) {
+				$ret['undocumentedparameters'] = true;
+			} else {
+				$undocumentedParams = ApiBase::makeMessage( $undocumentedParams, $this->context, array(
+					$module->getModulePrefix(),
+					$module->getModuleName(),
+					$module->getModulePath()
+				) );
+				$this->formatHelpMessages( $ret, 'undocumentedparameters', array( $undocumentedParams ) );
+			}
+		}
+
 		return $ret;
 	}
 
