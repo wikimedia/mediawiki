@@ -58,7 +58,7 @@ $namespaceAliases = array(
 	'Lietotāja_diskusija' => NS_USER_TALK,
 );
 
-$wgExtraGenderNamespaces = array(
+$namespaceGenderAliases = array(
 	NS_USER => array( 'male' => 'Dalībnieks', 'female' => 'Dalībniece' ),
 	NS_USER_TALK => array( 'male' => 'Dalībnieka_diskusija', 'female' => 'Dalībnieces_diskusija' )
 );
