@@ -72,7 +72,9 @@
 	 *     while the widget is inactive. Should be as unambiguous as possible (for example, prefer to
 	 *     spell out the month, rather than rely on the order), even if that makes it longer. When not
 	 *     given, the default is language-specific.
-	 * @cfg {string} [placeholder] User-visible date format string displayed in the textual input
+	 * @cfg {string} [placeholderLabel=No date selected] Placeholder text shown when the widget is not
+	 *     selected. Default text taken from message `mw-widgets-dateinput-no-date`.
+	 * @cfg {string} [placeholderDateFormat] User-visible date format string displayed in the textual input
 	 *     field when it's empty. Should be the same as `inputFormat`, but translated to the user's
 	 *     language. When not given, defaults to a translated version of 'YYYY-MM-DD' or 'YYYY-MM',
 	 *     depending on `precision`.
@@ -86,22 +88,26 @@
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {
 		// Config initialization
-		config = $.extend( { precision: 'day', required: false }, config );
+		config = $.extend( {
+			precision: 'day',
+			required: false,
+			placeholderLabel: mw.msg( 'mw-widgets-dateinput-no-date' )
+		}, config );
 		if ( config.required ) {
 			if ( config.indicator === undefined ) {
 				config.indicator = 'required';
 			}
 		}
 
-		var placeholder, mustBeAfter, mustBeBefore;
-		if ( config.placeholder ) {
-			placeholder = config.placeholder;
+		var placeholderDateFormat, mustBeAfter, mustBeBefore;
+		if ( config.placeholderDateFormat ) {
+			placeholderDateFormat = config.placeholderDateFormat;
 		} else if ( config.inputFormat ) {
 			// We have no way to display a translated placeholder for custom formats
-			placeholder = '';
+			placeholderDateFormat = '';
 		} else {
 			// Messages: mw-widgets-dateinput-placeholder-day, mw-widgets-dateinput-placeholder-month
-			placeholder = mw.msg( 'mw-widgets-dateinput-placeholder-' + config.precision );
+			placeholderDateFormat = mw.msg( 'mw-widgets-dateinput-placeholder-' + config.precision );
 		}
 
 		// Properties (must be set before parent constructor, which calls #setValue)
@@ -109,7 +115,7 @@
 		this.label = new OO.ui.LabelWidget();
 		this.textInput = new OO.ui.TextInputWidget( {
 			required: config.required,
-			placeholder: placeholder,
+			placeholder: placeholderDateFormat,
 			validate: this.validateDate.bind( this )
 		} );
 		this.calendar = new mw.widgets.CalendarWidget( {
@@ -122,6 +128,7 @@
 		this.inputFormat = config.inputFormat;
 		this.displayFormat = config.displayFormat;
 		this.required = config.required;
+		this.placeholderLabel = config.placeholderLabel;
 
 		// Validate and set min and max dates as properties
 		mustBeAfter = moment( config.mustBeAfter, 'YYYY-MM-DD' );
@@ -345,7 +352,7 @@
 		if ( this.getValue() === '' ) {
 			this.textInput.setValue( '' );
 			this.calendar.setDate( null );
-			this.label.setLabel( mw.msg( 'mw-widgets-dateinput-no-date' ) );
+			this.label.setLabel( this.placeholderLabel );
 			this.$element.addClass( 'mw-widget-dateInputWidget-empty' );
 		} else {
 			if ( !this.inTextInput ) {
