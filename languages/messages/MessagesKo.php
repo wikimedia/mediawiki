@@ -146,6 +146,7 @@ $specialPageAliases = array(
 	'Randompage'                => array( '임의문서' ),
 	'RandomInCategory'          => array( '분류안의임의문서' ),
 	'Randomredirect'            => array( '임의넘겨주기' ),
+	'Randomrootpage'            => array( '임의최상위문서', '임의루트문서' ),
 	'Recentchanges'             => array( '최근바뀜' ),
 	'Recentchangeslinked'       => array( '링크최근바뀜' ),
 	'Redirect'                  => array( '넘겨주기' ),

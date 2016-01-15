@@ -166,6 +166,7 @@ $specialPageAliases = array(
 	'Randompage'                => array( 'Случајна', 'СлучајнаСтраница' ),
 	'RandomInCategory'          => array( 'СлучајнаВоКатегорија' ),
 	'Randomredirect'            => array( 'СлучајноПренасочување' ),
+	'Randomrootpage'            => array( 'СлучајнаОсновнаСтраница' ),
 	'Recentchanges'             => array( 'СкорешниПромени' ),
 	'Recentchangeslinked'       => array( 'ПоврзаниПромени' ),
 	'Redirect'                  => array( 'Пренасочување' ),

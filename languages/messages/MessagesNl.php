@@ -342,6 +342,7 @@ $specialPageAliases = array(
 	'Randompage'                => array( 'Willekeurig', 'WillekeurigePagina' ),
 	'RandomInCategory'          => array( 'WillekeurigeUitCategorie' ),
 	'Randomredirect'            => array( 'WillekeurigeDoorverwijzing' ),
+	'Randomrootpage'            => array( 'WillekeurigeHoofdpagina' ),
 	'Recentchanges'             => array( 'RecenteWijzigingen' ),
 	'Recentchangeslinked'       => array( 'RecenteWijzigingenGelinkt', 'VerwanteWijzigingen' ),
 	'Redirect'                  => array( 'Doorverwijzen' ),
