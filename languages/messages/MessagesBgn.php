@@ -113,6 +113,7 @@ $specialPageAliases = array(
 	'Randompage'                => array( 'تسادوپین_وّرق' ),
 	'RandomInCategory'          => array( 'تسادوپی_بئ_تهری_تا' ),
 	'Randomredirect'            => array( 'تسادوپین_تغیرمیسر' ),
+	'Randomrootpage'            => array( 'تسادوپین_پایگ_ئی_وّرق' ),
 	'Recentchanges'             => array( 'آخیرئین_تغیران' ),
 	'Recentchangeslinked'       => array( 'مربوتین_تغیران' ),
 	'Redirect'                  => array( 'تغیرمسیر' ),

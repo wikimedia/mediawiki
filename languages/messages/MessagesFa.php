@@ -112,6 +112,7 @@ $specialPageAliases = array(
 	'Randompage'                => array( 'صفحهٔ_تصادفی' ),
 	'RandomInCategory'          => array( 'تصادفی_در_رده' ),
 	'Randomredirect'            => array( 'تغییرمسیر_تصادفی' ),
+	'Randomrootpage'            => array( 'صفحهٔ_پایهٔ_تصادفی' ),
 	'Recentchanges'             => array( 'تغییرات_اخیر' ),
 	'Recentchangeslinked'       => array( 'تغییرات_مرتبط' ),
 	'Redirect'                  => array( 'تغییرمسیر' ),
