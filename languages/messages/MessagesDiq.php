@@ -125,6 +125,7 @@ $specialPageAliases = array(
 	'Randompage'                => array( 'Raştameye', 'PelaRaştameyiye' ),
 	'RandomInCategory'          => array( 'KategoriyaRaştameyiye' ),
 	'Randomredirect'            => array( 'SerberdışoRaştameye' ),
+	'Randomrootpage'            => array( 'RaştamayePerraréçi' ),
 	'Recentchanges'             => array( 'VurnayışêPeyêni' ),
 	'Recentchangeslinked'       => array( 'GıreyêVurnayışêPeyênan' ),
 	'Redirect'                  => array( 'Serberdış' ),

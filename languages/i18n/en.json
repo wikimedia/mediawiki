@@ -3999,5 +3999,6 @@
 	"sessionmanager-tie": "Cannot combine multiple request authentication types: $1.",
 	"sessionprovider-generic": "$1 sessions",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "cookie-based sessions",
-	"sessionprovider-nocookies": "Cookies may be disabled. Ensure you have cookies enabled and start again."
+	"sessionprovider-nocookies": "Cookies may be disabled. Ensure you have cookies enabled and start again.",
+	"randomrootpage": "Random root page"
 }

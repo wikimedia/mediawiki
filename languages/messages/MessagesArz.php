@@ -109,6 +109,7 @@ $specialPageAliases = array(
 	'Randompage'                => array( 'عشوائى', 'صفحه_عشوائيه' ),
 	'RandomInCategory'          => array( 'عشوائى_جوه_تصنيف' ),
 	'Randomredirect'            => array( 'تحويله_عشوائيه' ),
+	'Randomrootpage'            => array( 'صفحه_جدر_عشوائيه' ),
 	'Recentchanges'             => array( 'اخر_تعديلات' ),
 	'Recentchangeslinked'       => array( 'اجدد_التغييرات_اللى_معمول_ليها_لينك', 'تغييرات_مرتبطه' ),
 	'Redirect'                  => array( 'تحويل' ),

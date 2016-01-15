@@ -132,6 +132,7 @@ $specialPageAliases = array(
 	'Randompage'                => array( 'Ngẫu_nhiên' ),
 	'RandomInCategory'          => array( 'Ngẫu_nhiên_trong_thể_loại' ),
 	'Randomredirect'            => array( 'Đổi_hướng_ngẫu_nhiên' ),
+	'Randomrootpage'            => array( 'Trang_gốc_ngẫu_nhiên' ),
 	'Recentchanges'             => array( 'Thay_đổi_gần_đây' ),
 	'Recentchangeslinked'       => array( 'Thay_đổi_liên_quan' ),
 	'Redirect'                  => array( 'Đổi_hướng' ),
