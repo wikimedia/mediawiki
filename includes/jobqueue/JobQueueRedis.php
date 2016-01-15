@@ -186,7 +186,7 @@ class JobQueueRedis extends JobQueue {
 
 	/**
 	 * @see JobQueue::doBatchPush()
-	 * @param array $jobs
+	 * @param IJobSpecification[] $jobs
 	 * @param int $flags
 	 * @return void
 	 * @throws JobQueueError
