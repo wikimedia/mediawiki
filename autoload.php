@@ -1195,6 +1195,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialProtectedtitles' => __DIR__ . '/includes/specials/SpecialProtectedtitles.php',
 	'SpecialRandomInCategory' => __DIR__ . '/includes/specials/SpecialRandomInCategory.php',
 	'SpecialRandomredirect' => __DIR__ . '/includes/specials/SpecialRandomredirect.php',
+	'SpecialRandomrootpage' => __DIR__ . '/includes/specials/SpecialRandomrootpage.php',
 	'SpecialRecentChanges' => __DIR__ . '/includes/specials/SpecialRecentchanges.php',
 	'SpecialRecentChangesLinked' => __DIR__ . '/includes/specials/SpecialRecentchangeslinked.php',
 	'SpecialRedirect' => __DIR__ . '/includes/specials/SpecialRedirect.php',
