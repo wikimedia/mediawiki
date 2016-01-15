@@ -638,6 +638,17 @@ abstract class ApiBase extends ContextSource {
 	 */
 
 	/**
+	 * Indicate if the module supports dynamically-determined parameters that
+	 * cannot be included in self::getAllowedParams().
+	 * @return string|array|Message|null Return null if the module does not
+	 *  support additional dynamic parameters, otherwise return a message
+	 *  describing them.
+	 */
+	public function dynamicParameterDocumentation() {
+		return null;
+	}
+
+	/**
 	 * This method mangles parameter name based on the prefix supplied to the constructor.
 	 * Override this method to change parameter name during runtime
 	 * @param string $paramName Parameter name
