@@ -23,7 +23,7 @@
 		height: auto;
 		margin: 0 0.1em 0 0;
 		padding: 0;
-		border: 1px solid @colorFieldBorder;
+		border: 1px solid @colorGray7;
 		cursor: pointer;
 	}
 }
@@ -61,7 +61,7 @@
 
 .button-colors( @bgColor, @highlightColor, @activeColor ) when ( lightness( @bgColor ) >= 70% ) {
 	color: @colorButtonText;
-	border: 1px solid @colorGray12;
+	border: 1px solid @colorFieldBorder;
 
 	&:hover,
 	&:active,
@@ -109,17 +109,21 @@
 .button-colors-quiet( @textColor, @highlightColor, @activeColor ) {
 	// Quiet buttons all start gray, and reveal
 	// constructive/progressive/destructive color on hover and active.
-	color: @colorButtonText;
+	color: @textColor;
 
-	&:hover,
-	&:focus {
+	&:hover {
 		background-color: transparent;
-		color: @textColor;
+		color: @highlightColor;
 	}
 
 	&:active,
 	&.mw-ui-checked {
 		color: @activeColor;
+	}
+
+	&:focus {
+		background-color: transparent;
+		color: @textColor;
 	}
 
 	&:disabled {
