@@ -380,6 +380,7 @@ $specialPageAliases = array(
 	'Randompage'                => array( 'عشوائي', 'صفحة_عشوائية' ),
 	'RandomInCategory'          => array( 'عشوائي_في_تصنيف' ),
 	'Randomredirect'            => array( 'تحويلة_عشوائية' ),
+	'Randomrootpage'            => array( 'صفحة_جذر_عشوائية' ),
 	'Recentchanges'             => array( 'أحدث_التغييرات' ),
 	'Recentchangeslinked'       => array( 'أحدث_التغييرات_الموصولة', 'تغييرات_مرتبطة' ),
 	'Redirect'                  => array( 'تحويل' ),

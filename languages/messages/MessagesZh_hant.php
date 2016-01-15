@@ -190,6 +190,7 @@ $specialPageAliases = array(
 	'Randompage'                => array( '隨機頁面' ),
 	'RandomInCategory'          => array( '隨機分類頁面', '於分類中隨機' ),
 	'Randomredirect'            => array( '隨機重新導向', '隨機重定向頁面' ),
+	'Randomrootpage'            => array( '隨機根頁面' ),
 	'Recentchanges'             => array( '最近變更', '最近更改' ),
 	'Recentchangeslinked'       => array( '已連結的最近變更', '相關變更', '連出更改' ),
 	'Redirect'                  => array( '重新導向', '重定向' ),
