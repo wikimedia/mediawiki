@@ -10,21 +10,52 @@
  */
 class JobQueueMemoryTest extends PHPUnit_Framework_TestCase {
 
-	public function testGetAllQueuedJobs() {
-		$instance = JobQueueMemoryDouble::newInstance( array(
-			'wiki' => null,
-			'type' => null,
+	/**
+	 * @return JobQueueMemory
+	 */
+	private function newJobQueue() {
+		return JobQueue::factory( array(
+			'class' => 'JobQueueMemory',
+			'wiki' => wfWikiID(),
+			'type' => 'null',
 		) );
-		$actual = $instance->getAllQueuedJobs();
-		$this->assertEquals( new ArrayIterator(), $actual );
 	}
 
-}
+	private function newJobSpecification() {
+		return new JobSpecification(
+			'null',
+			array( 'customParameter' => null ),
+			array(),
+			Title::newFromText( 'Custom title' )
+		);
+	}
 
-class JobQueueMemoryDouble extends JobQueueMemory {
+	public function testGetAllQueuedJobs() {
+		$queue = $this->newJobQueue();
+		$this->assertCount( 0, $queue->getAllQueuedJobs() );
 
-	public static function newInstance( array $params ) {
-		return new self( $params );
+		$queue->push( $this->newJobSpecification() );
+		$this->assertCount( 1, $queue->getAllQueuedJobs() );
+	}
+
+	public function testGetAllAcquiredJobs() {
+		$queue = $this->newJobQueue();
+		$this->assertCount( 0, $queue->getAllAcquiredJobs() );
+
+		$queue->push( $this->newJobSpecification() );
+		$this->assertCount( 0, $queue->getAllAcquiredJobs() );
+
+		$queue->pop();
+		$this->assertCount( 1, $queue->getAllAcquiredJobs() );
+	}
+
+	public function testJobFromSpecInternal() {
+		$queue = $this->newJobQueue();
+		$job = $queue->jobFromSpecInternal( $this->newJobSpecification() );
+		$this->assertInstanceOf( 'Job', $job );
+		$this->assertSame( 'null', $job->getType() );
+		$this->assertArrayHasKey( 'customParameter', $job->getParams() );
+		$this->assertSame( 'Custom title', $job->getTitle()->getText() );
 	}
 
 }
