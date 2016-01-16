@@ -286,7 +286,7 @@ abstract class JobQueue {
 	 * This does not require $wgJobClasses to be set for the given job type.
 	 * Outside callers should use JobQueueGroup::push() instead of this function.
 	 *
-	 * @param JobSpecification|JobSpecification[] $jobs
+	 * @param IJobSpecification|IJobSpecification[] $jobs
 	 * @param int $flags Bitfield (supports JobQueue::QOS_ATOMIC)
 	 * @return void
 	 * @throws JobQueueError
@@ -301,7 +301,7 @@ abstract class JobQueue {
 	 * This does not require $wgJobClasses to be set for the given job type.
 	 * Outside callers should use JobQueueGroup::push() instead of this function.
 	 *
-	 * @param JobSpecification[] $jobs
+	 * @param IJobSpecification[] $jobs
 	 * @param int $flags Bitfield (supports JobQueue::QOS_ATOMIC)
 	 * @return void
 	 * @throws MWException
@@ -333,7 +333,7 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::batchPush()
-	 * @param JobSpecification[] $jobs
+	 * @param IJobSpecification[] $jobs
 	 * @param int $flags
 	 */
 	abstract protected function doBatchPush( array $jobs, $flags );
@@ -377,7 +377,7 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::pop()
-	 * @return Job
+	 * @return Job|bool
 	 */
 	abstract protected function doPop();
 
