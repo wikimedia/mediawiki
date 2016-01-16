@@ -1646,6 +1646,11 @@ Return false to stop further processing of the tag
 $reader: XMLReader object
 $revisionInfo: Array of information
 
+'ImportLogInterwikiLink': Hook to change the interwiki link used in log entries
+and edit summaries for transwiki imports.
+&$fullInterwikiPrefix: Interwiki prefix, may contain colons.
+&$pageTitle: String that contains page title.
+
 'ImportSources': Called when reading from the $wgImportSources configuration
 variable. Can be used to lazy-load the import sources list.
 &$importSources: The value of $wgImportSources. Modify as necessary. See the
