@@ -69,7 +69,8 @@
 			"Angpradesh",
 			"Sfic",
 			"Niharika29",
-			"जनक राज भट्ट"
+			"जनक राज भट्ट",
+			"YmKavishwar"
 		]
 	},
 	"tog-underline": "कड़ियाँ अधोरेखन:",
@@ -458,7 +459,7 @@
 	"yourdomainname": "आपका डोमेन:",
 	"password-change-forbidden": "आप इस विकि पर कूटशब्द नहीं बदल सकते हैं।",
 	"externaldberror": "या तो प्रमाणिकरण डाटाबेस में त्रुटि हुई है या फिर आपको अपना बाह्य खाता अपडेट करने की अनुमति नहीं है।",
-	"login": "लॉग इन",
+	"login": "प्रवेश",
 	"nav-login-createaccount": "सत्रारंभ / खाता खोलें",
 	"userlogin": "सत्रारंभ / खाता खोलें",
 	"userloginnocreate": "लॉग इन",

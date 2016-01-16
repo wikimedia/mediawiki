@@ -7,7 +7,8 @@
 			"Priviet",
 			"Namoroka",
 			"Revi",
-			"Alex00728"
+			"Alex00728",
+			"Hwangjy9"
 		]
 	},
 	"config-desc": "미디어위키를 위한 설치 관리자",
@@ -77,6 +78,7 @@
 	"config-apc": "[http://www.php.net/apc APC]가 설치되었습니다",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache]가 설치되었습니다",
 	"config-no-cache": "<strong>경고:</strong> [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] 또는 [http://www.iis.net/download/WinCacheForPhp WinCache]를 찾을 수 없습니다.\n개체 캐싱을 활성화하지 않습니다.",
+	"config-no-cache-apcu": "<strong>경고:</strong> [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] 또는 [http://www.iis.net/download/WinCacheForPhp WinCache]를 찾을 수 없습니다.\n개체 캐싱을 활성화할 수 없습니다.",
 	"config-mod-security": "<strong>경고:</strong> 웹 서버에 [http://modsecurity.org/ mod_security]가 허용되었습니다. 잘못 설정된 경우 미디어위키나 사용자가 임의의 내용을 게시할 수 있는 다른 소프트웨어에 대한 문제를 일으킬 수 있습니다.\n[http://modsecurity.org/documentation/ mod_security] 문서를 참고하거나 임의의 오류가 발생할 경우 호스트의 지원 요청에 문의하십시오.",
 	"config-diff3-bad": "GNU diff3를 찾을 수 없습니다.",
 	"config-git": "Git 버전 관리 소프트웨어를 찾았습니다: <code>$1</code>.",
@@ -325,5 +327,5 @@
 	"config-nofile": "\"$1\" 파일을 찾을 수 없습니다. 이미 삭제되었나요?",
 	"config-extension-link": "당신의 위키가 [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions 확장 기능]을 지원한다는 것을 알고 계십니까?\n\n[//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category 분류별 확장 기능]을 찾아보실 수 있습니다.",
 	"mainpagetext": "<strong>미디어위키가 성공적으로 설치되었습니다.</strong>",
-	"mainpagedocfooter": "[//meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 소프트웨어에 대한 정보를 얻을 수 있습니다.\n\n== 시작하기 ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings 설정하기 목록]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ 미디어위키 FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 미디어위키 릴리스 메일링 리스트]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources 내 언어로 미디어위키 지역화]"
+	"mainpagedocfooter": "[//meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 소프트웨어에 대한 정보를 얻을 수 있습니다.\n\n== 시작하기 ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings 설정하기 목록]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ 미디어위키 FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 미디어위키 릴리스 메일링 리스트]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources 내 언어로 미디어위키 지역화]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 당신의 위키에서 스팸에 대처하는 법을 배우세요]"
 }

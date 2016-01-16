@@ -489,6 +489,7 @@
 	"apihelp-query+allrevisions-param-generatetitles": "当作为生成器使用时，生成标题而不是修订ID。",
 	"apihelp-query+allrevisions-example-user": "列出由用户<kbd>Example</kbd>作出的最近50次贡献。",
 	"apihelp-query+allrevisions-example-ns-main": "列举主名字空间中的前50次修订。",
+	"apihelp-query+mystashedfiles-param-prop": "要检索文件的属性。",
 	"apihelp-query+alltransclusions-description": "列出所有嵌入页面（使用&#123;&#123;x&#125;&#125;嵌入的页面），包括不存在的。",
 	"apihelp-query+alltransclusions-param-from": "要列举的起始嵌入标题。",
 	"apihelp-query+alltransclusions-param-to": "要列举的最终嵌入标题。",

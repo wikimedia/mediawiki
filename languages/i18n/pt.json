@@ -1715,7 +1715,7 @@
 	"listusers-creationsort": "Ordenar por data de criação",
 	"listusers-desc": "Ordenar de forma decrescente",
 	"usereditcount": "$1 {{PLURAL:$1|edição|edições}}",
-	"usercreated": "{{GENDER:$3|criado|criada|criado(a)}} em $1 às $2",
+	"usercreated": "{{GENDER:$3|criado|criada|criado(a)}} a $1 às $2",
 	"newpages": "Páginas recentes",
 	"newpages-submit": "Mostrar",
 	"newpages-username": "Nome de utilizador(a):",

@@ -2130,7 +2130,7 @@
 	"tooltip-t-recentchangeslinked": "આ પાના પરની કડીઓ વાળા લેખોમાં તાજેતરમાં થયેલા ફેરફારો",
 	"tooltip-feed-rss": "આ પાના માટે આર.એસ.એસ. ફીડ",
 	"tooltip-feed-atom": "આ પાના માટે એટમ ફીડ",
-	"tooltip-t-contributions": "{{GENDER:$1|આ સભ્ય}} વડે કરાયલ યોગદાનોની યાદી",
+	"tooltip-t-contributions": "{{GENDER:$1|આ સભ્ય}} વડે કરાયેલા યોગદાનોની યાદી",
 	"tooltip-t-emailuser": "આ સભ્યને ઇ-મેલ મોકલો",
 	"tooltip-t-info": "આ પાનાં વિષે વધુ માહિતી",
 	"tooltip-t-upload": "ફાઇલ ચડાવો",

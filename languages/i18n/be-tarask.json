@@ -512,6 +512,7 @@
 	"resetpass_submit": "Захаваць пароль і ўвайсьці",
 	"changepassword-success": "Ваш пароль быў пасьпяхова зьменены!",
 	"changepassword-throttled": "Вы зрабілі зашмат спробаў увайсьці ў сыстэму.\nКалі ласка, пачакайце $1 перад наступнай спробай.",
+	"botpasswords": "Паролі робатаў",
 	"botpasswords-label-create": "Стварыць",
 	"botpasswords-label-update": "Абнавіць",
 	"botpasswords-label-cancel": "Скасаваць",
