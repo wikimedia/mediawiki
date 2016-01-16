@@ -23,9 +23,6 @@
 	<rule ref="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures">
 		<severity>0</severity>
 	</rule>
-	<rule ref="Generic.ControlStructures.InlineControlStructure.NotAllowed">
-		<severity>0</severity>
-	</rule>
 	<exclude-pattern>node_modules</exclude-pattern>
 	<exclude-pattern>vendor</exclude-pattern>
 	<exclude-pattern>extensions</exclude-pattern>
