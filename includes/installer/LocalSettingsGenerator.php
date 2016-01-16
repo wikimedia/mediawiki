@@ -380,12 +380,6 @@ ${serverSetting}
 ## available UTF-8 locale
 {$locale}\$wgShellLocale = \"{$this->values['wgShellLocale']}\";
 
-## If you want to use image uploads under safe mode,
-## create the directories images/archive, images/thumb and
-## images/temp, and make them all writable. Then uncomment
-## this, if it's not already uncommented:
-{$hashedUploads}\$wgHashedUploadDirectory = false;
-
 ## Set \$wgCacheDirectory to a writable directory on the web server
 ## to make your wiki go slightly faster. The directory should not
 ## be publically accessible from the web.
