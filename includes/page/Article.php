@@ -2084,22 +2084,574 @@ class Article implements Page {
 	}
 
 	/**
-	 * Use PHP's magic __call handler to transform instance calls to
-	 * WikiPage functions for backwards compatibility.
-	 *
-	 * @param string $fname Name of called method
-	 * @param array $args Arguments to the method
-	 * @return mixed
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::checkFlags
 	 */
-	public function __call( $fname, $args ) {
-		if ( is_callable( array( $this->mPage, $fname ) ) ) {
-			# wfWarn( "Call to " . __CLASS__ . "::$fname; please use WikiPage instead" );
-			return call_user_func_array( array( $this->mPage, $fname ), $args );
-		}
-		trigger_error( 'Inaccessible function via __call(): ' . $fname, E_USER_ERROR );
+	public function checkFlags( $flags ) {
+		return $this->mPage->checkFlags( $flags );
 	}
 
-	// ****** B/C functions to work-around PHP silliness with __call and references ****** //
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::checkTouched
+	 */
+	public function checkTouched() {
+		return $this->mPage->checkTouched();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::clearPreparedEdit
+	 */
+	public function clearPreparedEdit() {
+		return $this->mPage->clearPreparedEdit();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::doDeleteArticleReal
+	 */
+	public function doDeleteArticleReal(
+		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null
+	) {
+		return $this->mPage->doDeleteArticleReal(
+			$reason, $suppress, $u1, $u2, $error, $user
+		);
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::doDeleteUpdates
+	 */
+	public function doDeleteUpdates( $id, Content $content = null ) {
+		return $this->mPage->doDeleteUpdates( $id, $content );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::doEdit
+	 */
+	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
+		ContentHandler::deprecated( __METHOD__, '1.21' );
+		return $this->mPage->doEdit( $text, $summary, $flags, $baseRevId, $user );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::doEditContent
+	 */
+	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
+		User $user = null, $serialFormat = null
+	) {
+		return $this->mPage->doEditContent( $content, $summary, $flags, $baseRevId,
+			$user, $serialFormat
+		);
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::doEditUpdates
+	 */
+	public function doEditUpdates( Revision $revision, User $user, array $options = array() ) {
+		return $this->mPage->doEditUpdates( $revision, $user, $options );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::doPurge
+	 */
+	public function doPurge() {
+		return $this->mPage->doPurge();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::doQuickEditContent
+	 */
+	public function doQuickEditContent(
+		Content $content, User $user, $comment = '', $minor = false, $serialFormat = null
+	) {
+		return $this->mPage->doQuickEditContent(
+			$content, $user, $comment, $minor, $serialFormat
+		);
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::doViewUpdates
+	 */
+	public function doViewUpdates( User $user, $oldid = 0 ) {
+		return $this->mPage->doViewUpdates( $user, $oldid );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::exists
+	 */
+	public function exists() {
+		return $this->mPage->exists();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::followRedirect
+	 */
+	public function followRedirect() {
+		return $this->mPage->followRedirect();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getActionOverrides
+	 */
+	public function getActionOverrides() {
+		return $this->mPage->getActionOverrides();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getAutoDeleteReason
+	 */
+	public function getAutoDeleteReason( &$hasHistory ) {
+		return $this->mPage->getAutoDeleteReason( $hasHistory );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getCategories
+	 */
+	public function getCategories() {
+		return $this->mPage->getCategories();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getComment
+	 */
+	public function getComment( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+		return $this->mPage->getComment( $audience, $user );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getContentHandler
+	 */
+	public function getContentHandler() {
+		return $this->mPage->getContentHandler();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getContentModel
+	 */
+	public function getContentModel() {
+		return $this->mPage->getContentModel();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getContributors
+	 */
+	public function getContributors() {
+		return $this->mPage->getContributors();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getCreator
+	 */
+	public function getCreator( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+		return $this->mPage->getCreator( $audience, $user );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getDeletionUpdates
+	 */
+	public function getDeletionUpdates( Content $content = null ) {
+		return $this->mPage->getDeletionUpdates( $content );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getHiddenCategories
+	 */
+	public function getHiddenCategories() {
+		return $this->mPage->getHiddenCategories();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getId
+	 */
+	public function getId() {
+		return $this->mPage->getId();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getLatest
+	 */
+	public function getLatest() {
+		return $this->mPage->getLatest();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getLinksTimestamp
+	 */
+	public function getLinksTimestamp() {
+		return $this->mPage->getLinksTimestamp();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getMinorEdit
+	 */
+	public function getMinorEdit() {
+		return $this->mPage->getMinorEdit();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getOldestRevision
+	 */
+	public function getOldestRevision() {
+		return $this->mPage->getOldestRevision();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getRedirectTarget
+	 */
+	public function getRedirectTarget() {
+		return $this->mPage->getRedirectTarget();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getRedirectURL
+	 */
+	public function getRedirectURL( $rt ) {
+		return $this->mPage->getRedirectURL( $rt );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getRevision
+	 */
+	public function getRevision() {
+		return $this->mPage->getRevision();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getText
+	 */
+	public function getText( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+		ContentHandler::deprecated( __METHOD__, '1.21' );
+		return $this->mPage->getText( $audience, $user );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getTimestamp
+	 */
+	public function getTimestamp() {
+		return $this->mPage->getTimestamp();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getTouched
+	 */
+	public function getTouched() {
+		return $this->mPage->getTouched();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getUndoContent
+	 */
+	public function getUndoContent( Revision $undo, Revision $undoafter = null ) {
+		return $this->mPage->getUndoContent( $undo, $undoafter );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getUndoText
+	 */
+	public function getUndoText( Revision $undo, Revision $undoafter = null ) {
+		ContentHandler::deprecated( __METHOD__, '1.21' );
+		return $this->mPage->getUndoText( $undo, $undoafter );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getUser
+	 */
+	public function getUser( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+		return $this->mPage->getUser( $audience, $user );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::getUserText
+	 */
+	public function getUserText( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+		return $this->mPage->getUserText( $audience, $user );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::hasViewableContent
+	 */
+	public function hasViewableContent() {
+		return $this->mPage->hasViewableContent();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::insertOn
+	 */
+	public function insertOn( $dbw, $pageId = null ) {
+		return $this->mPage->insertOn( $dbw, $pageId );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::insertProtectNullRevision
+	 */
+	public function insertProtectNullRevision( $revCommentMsg, array $limit,
+		array $expiry, $cascade, $reason, $user = null
+	) {
+		return $this->mPage->insertProtectNullRevision( $revCommentMsg, $limit,
+			$expiry, $cascade, $reason, $user
+		);
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::insertRedirect
+	 */
+	public function insertRedirect() {
+		return $this->mPage->insertRedirect();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::insertRedirectEntry
+	 */
+	public function insertRedirectEntry( Title $rt, $oldLatest = null ) {
+		return $this->mPage->insertRedirectEntry( $rt, $oldLatest );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::isCountable
+	 */
+	public function isCountable( $editInfo = false ) {
+		return $this->mPage->isCountable( $editInfo );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::isRedirect
+	 */
+	public function isRedirect() {
+		return $this->mPage->isRedirect();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::loadFromRow
+	 */
+	public function loadFromRow( $data, $from ) {
+		return $this->mPage->loadFromRow( $data, $from );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::loadPageData
+	 */
+	public function loadPageData( $from = 'fromdb' ) {
+		return $this->mPage->loadPageData( $from );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::lockAndGetLatest
+	 */
+	public function lockAndGetLatest() {
+		return $this->mPage->lockAndGetLatest();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::makeParserOptions
+	 */
+	public function makeParserOptions( $context ) {
+		return $this->mPage->makeParserOptions( $context );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::pageDataFromId
+	 */
+	public function pageDataFromId( $dbr, $id, $options = array() ) {
+		return $this->mPage->pageDataFromId( $dbr, $id, $options );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::pageDataFromTitle
+	 */
+	public function pageDataFromTitle( $dbr, $title, $options = array() ) {
+		return $this->mPage->pageDataFromTitle( $dbr, $title, $options );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::prepareContentForEdit
+	 */
+	public function prepareContentForEdit(
+		Content $content, $revision = null, User $user = null,
+		$serialFormat = null, $useCache = true
+	) {
+		return $this->mPage->prepareContentForEdit(
+			$content, $revision, $user,
+			$serialFormat, $useCache
+		);
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::prepareTextForEdit
+	 */
+	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
+		return $this->mPage->prepareTextForEdit( $text, $revid, $user );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::protectDescription
+	 */
+	public function protectDescription( array $limit, array $expiry ) {
+		return $this->mPage->protectDescription( $limit, $expiry );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::protectDescriptionLog
+	 */
+	public function protectDescriptionLog( array $limit, array $expiry ) {
+		return $this->mPage->protectDescriptionLog( $limit, $expiry );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::replaceSection
+	 */
+	public function replaceSection( $sectionId, $text, $sectionTitle = '',
+		$edittime = null
+	) {
+		ContentHandler::deprecated( __METHOD__, '1.21' );
+		return $this->mPage->replaceSection( $sectionId, $text, $sectionTitle,
+			$edittime
+		);
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::replaceSectionAtRev
+	 */
+	public function replaceSectionAtRev( $sectionId, Content $sectionContent,
+		$sectionTitle = '', $baseRevId = null
+	) {
+		return $this->mPage->replaceSectionAtRev( $sectionId, $sectionContent,
+			$sectionTitle, $baseRevId
+		);
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::replaceSectionContent
+	 */
+	public function replaceSectionContent(
+		$sectionId, Content $sectionContent, $sectionTitle = '', $edittime = null
+	) {
+		return $this->mPage->replaceSectionContent(
+			$sectionId, $sectionContent, $sectionTitle, $edittime
+		);
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::setTimestamp
+	 */
+	public function setTimestamp( $ts ) {
+		return $this->mPage->setTimestamp( $ts );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::shouldCheckParserCache
+	 */
+	public function shouldCheckParserCache( ParserOptions $parserOptions, $oldId ) {
+		return $this->mPage->shouldCheckParserCache( $parserOptions, $oldId );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::supportsSections
+	 */
+	public function supportsSections() {
+		return $this->mPage->supportsSections();
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::triggerOpportunisticLinksUpdate
+	 */
+	public function triggerOpportunisticLinksUpdate( ParserOutput $parserOutput ) {
+		return $this->mPage->triggerOpportunisticLinksUpdate( $parserOutput );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::updateCategoryCounts
+	 */
+	public function updateCategoryCounts( array $added, array $deleted ) {
+		return $this->mPage->updateCategoryCounts( $added, $deleted );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::updateIfNewerOn
+	 */
+	public function updateIfNewerOn( $dbw, $revision ) {
+		return $this->mPage->updateIfNewerOn( $dbw, $revision );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::updateRedirectOn
+	 */
+	public function updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect = null ) {
+		return $this->mPage->updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect = null );
+	}
+
+	/**
+	 * Call to WikiPage function for backwards compatibility.
+	 * @see WikiPage::updateRevisionOn
+	 */
+	public function updateRevisionOn( $dbw, $revision, $lastRevision = null,
+		$lastRevIsRedirect = null
+	) {
+		return $this->mPage->updateRevisionOn( $dbw, $revision, $lastRevision,
+			$lastRevIsRedirect
+		);
+	}
 
 	/**
 	 * @param array $limit
@@ -2184,8 +2736,6 @@ class Article implements Page {
 		$handler = ContentHandler::getForTitle( $title );
 		return $handler->getAutoDeleteReason( $title, $hasHistory );
 	}
-
-	// ****** B/C functions for static methods ( __callStatic is PHP>=5.3 ) ****** //
 
 	/**
 	 * @return array
