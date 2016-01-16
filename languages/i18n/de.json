@@ -1203,7 +1203,6 @@
 	"right-blockemail": "Benutzer am Versenden von E-Mails hindern",
 	"right-hideuser": "Benutzernamen sperren und verbergen",
 	"right-ipblock-exempt": "Ausnahme von IP-Sperren, automatischen Sperren und Rangesperren",
-	"right-proxyunbannable": "Ausnahme von automatischen Proxysperren",
 	"right-unblockself": "Sich entsperren",
 	"right-protect": "Seitenschutzstatus ändern und kaskadengeschützte Seiten bearbeiten",
 	"right-editprotected": "Seiten bearbeiten, die als „{{int:protect-level-sysop}}“ geschützt sind",

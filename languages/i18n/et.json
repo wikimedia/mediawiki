@@ -1103,7 +1103,6 @@
 	"right-blockemail": "Keelata kasutajal e-kirjade saatmine",
 	"right-hideuser": "Blokeerida kasutajanimi, peites selle avalikkuse eest",
 	"right-ipblock-exempt": "Mööduda automaatsetest blokeeringutest ning aadressivahemiku- ja IP-blokeeringutest",
-	"right-proxyunbannable": "Mööduda automaatsetest puhverserveri blokeeringutest",
 	"right-unblockself": "Eemaldada enda blokeeringut",
 	"right-protect": "Muuta kaitsetasemeid ja redigeerida kaskaadkaitsega lehekülgi",
 	"right-editprotected": "Muuta lehekülgi kaitsetasemega \"{{int:protect-level-sysop}}\"",

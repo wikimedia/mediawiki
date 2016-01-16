@@ -1126,7 +1126,6 @@
 	"right-blockemail": "Blokkere brukere fra å sende e-post",
 	"right-hideuser": "Blokkere et brukernavn og skjule det fra det offentlige",
 	"right-ipblock-exempt": "Kan redigere fra blokkerte IP-adresser",
-	"right-proxyunbannable": "Kan redigere fra blokkerte proxyer",
 	"right-unblockself": "Fjerne blokkering av seg selv",
 	"right-protect": "Endre beskyttelsesnivåer og redigere beskyttete sider",
 	"right-editprotected": "Redigere beskyttede sider som «{{int:protect-level-sysop}}»",

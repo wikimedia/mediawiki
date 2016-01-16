@@ -961,7 +961,6 @@
 	"right-blockemail": "Bloķēt citus dalībniekus (iespēja sūtīt e-pastu)",
 	"right-hideuser": "Bloķēt lietotājvārdu, slēpjot to no citiem dalībniekiem",
 	"right-ipblock-exempt": "Apiet IP bloķēšanu, automātisku bloķēšanu un IP apgabalu bloķēšanu",
-	"right-proxyunbannable": "Apiet ''proxy'' automātiskos blokus",
 	"right-unblockself": "Atbloķēt sevi",
 	"right-protect": "Izmainīt aizsargātās lapas un to aizsardzības līmeni",
 	"right-editprotected": "Labot aizsargātās lapas (bez kaskādes aizsardzības)",

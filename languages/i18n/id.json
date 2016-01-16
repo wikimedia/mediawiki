@@ -1108,7 +1108,6 @@
 	"right-blockemail": "Memblokir pengiriman surel oleh pengguna",
 	"right-hideuser": "Memblokir nama pengguna dan menyembunyikannya dari publik",
 	"right-ipblock-exempt": "Mengabaikan pemblokiran IP, pemblokiran otomatis, dan rentang pemblokiran",
-	"right-proxyunbannable": "Mengabaikan pemblokiran otomatis atas proksi",
 	"right-unblockself": "Lepaskan blokir sendiri",
 	"right-protect": "Ubah tingkat pelindungan dan sunting halaman yang dilindungi beruntun",
 	"right-editprotected": "Sunting halaman yang dilindungi sebagai \"{{int:protect-level-sysop}}\"",

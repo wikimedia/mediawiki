@@ -1034,7 +1034,6 @@
 	"right-blockemail": "Mirout ouzh un implijer a gas posteloù",
 	"right-hideuser": "Stankañ un implijer, en ur guzhat anezhañ diouzh ar re all",
 	"right-ipblock-exempt": "Tremen dreist an IPoù stanket, ar stankadennoù emgefre hag ar bloc'hadennoù IP stanket",
-	"right-proxyunbannable": "Tremen dreist stankadennoù emgefre ar proksioù",
 	"right-unblockself": "En em zistankañ",
 	"right-protect": "Kemmañ live gwareziñ ar pajennoù ha kemmañ ar pajennoù gwarezet",
 	"right-editprotected": "Aozañ ar pajennoù gwarezet evel \"{{int:protect-level-sysop}}\"",

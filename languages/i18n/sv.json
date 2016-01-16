@@ -1144,7 +1144,6 @@
 	"right-blockemail": "Blockera användare från att skicka e-post",
 	"right-hideuser": "Blockera ett användarnamn och dölj det från allmänheten",
 	"right-ipblock-exempt": "Kan redigera från blockerade IP-adresser",
-	"right-proxyunbannable": "Kan redigera från blockerade proxyer",
 	"right-unblockself": "Avblockera sig själv",
 	"right-protect": "Ändra skyddsnivåer och redigera kaskadskyddade sidor",
 	"right-editprotected": "Redigera skyddade sidor som \"{{int:protect-level-sysop}}\"",

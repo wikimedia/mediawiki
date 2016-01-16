@@ -1167,7 +1167,6 @@
 	"right-blockemail": "Blokowanie użytkownikom możliwości wysyłania wiadomości",
 	"right-hideuser": "Blokowanie użytkownika, niewidoczne publicznie",
 	"right-ipblock-exempt": "Obejście blokad, automatycznych blokad i blokad zakresów adresów IP",
-	"right-proxyunbannable": "Obejście automatycznych blokad proxy",
 	"right-unblockself": "Odblokowanie samego siebie",
 	"right-protect": "Zmiana poziomu zabezpieczenia i edycja stron zabezpieczonych kaskadowo",
 	"right-editprotected": "Edycja stron zabezpieczonych na poziomie „{{int:protect-level-sysop}}”",

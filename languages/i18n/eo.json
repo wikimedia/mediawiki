@@ -1113,7 +1113,6 @@
 	"right-blockemail": "Forbari uzanton de retpoŝta sendado",
 	"right-hideuser": "Forbari salutnomon, kaŝante ĝin de la publiko",
 	"right-ipblock-exempt": "Preterpasi IP-forbarojn, aŭtomatajn forbarojn, kaj ĝeneralajn forbarojn",
-	"right-proxyunbannable": "Preterpasi aŭtomatajn forbarojn de prokuriloj",
 	"right-unblockself": "Malforbari oni mem",
 	"right-protect": "Ŝanĝi protektniveloj kaj redakti protektitajn paĝojn",
 	"right-editprotected": "Redakti protektitajn paĝojn (sen kaskada protektado)",

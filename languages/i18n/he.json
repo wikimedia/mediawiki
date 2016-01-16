@@ -1146,7 +1146,6 @@
 	"right-blockemail": "חסימת משתמש משליחת דואר אלקטרוני",
 	"right-hideuser": "חסימת שם משתמש תוך הסתרתו מהציבור",
 	"right-ipblock-exempt": "עקיפת חסימות של כתובת IP, חסימות אוטומטיות וחסימות טווח",
-	"right-proxyunbannable": "עקיפת חסימות אוטומטיות של שרתי פרוקסי",
 	"right-unblockself": "שחרור חסימה של המשתמש עצמו",
 	"right-protect": "שינוי רמות הגנה ועריכת דפים המוגנים בהגנה מדורגת",
 	"right-editprotected": "עריכת דפים המוגנים ברמת \"{{int:protect-level-sysop}}\"",

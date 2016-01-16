@@ -1068,7 +1068,6 @@
 	"right-blockemail": "onemogućavanje korisnicima da šalju e-poruke",
 	"right-hideuser": "blokiranje korisničkog imena i njegovo sakrivanje od javnosti",
 	"right-ipblock-exempt": "zaobilaženje blokiranja IP adrese, automatska blokiranja i blokiranja opsega",
-	"right-proxyunbannable": "zaobilaženje automatskih blokiranja posrednika",
 	"right-unblockself": "deblokiranje samog sebe",
 	"right-protect": "menjanje stepena zaštite i uređivanje stranica pod prenosivom zaštitom",
 	"right-editprotected": "uređivanje stranice pod zaštitom „{{int:protect-level-sysop}}“",

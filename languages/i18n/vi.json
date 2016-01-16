@@ -1110,7 +1110,6 @@
 	"right-blockemail": "Cấm người dùng gửi thư điện tử",
 	"right-hideuser": "Cấm thành viên, rồi ẩn nó đi",
 	"right-ipblock-exempt": "Bỏ qua cấm IP, tự động cấm và cấm dải IP",
-	"right-proxyunbannable": "Bỏ qua cấm proxy tự động",
 	"right-unblockself": "Tự bỏ cấm",
 	"right-protect": "Thay đổi mức khóa và sửa trang khóa theo tầng",
 	"right-editprotected": "Sửa trang khóa ở mức “{{int:protect-level-sysop}}”",

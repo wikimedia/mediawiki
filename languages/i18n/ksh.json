@@ -1091,7 +1091,6 @@
 	"right-blockemail": "Metmaacher för et E-Mail Verschecke sperre",
 	"right-hideuser": "Ene Metmaacher sperre un em singe Name versteiche",
 	"right-ipblock-exempt": "Es ußjenomme vun automatesche Sperre, vun Sperre fun IP-Adresse, un vun Sperre vun Bereiche vun IP-Adresse",
-	"right-proxyunbannable": "Es ußjenomme fun automatische Sperre fun Proxy-Servere",
 	"right-unblockself": "Retuhr nämme, wam_mer sellver jesperrt woode es",
 	"right-protect": "Sigge schöze, jeschözde Sigge änndere, un der iere Schoz widder ophevve",
 	"right-editprotected": "Sigge ändere, di met „{{int:protect-level-sysop}}“ jezöz sin",

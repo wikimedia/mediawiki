@@ -1110,7 +1110,6 @@
 	"right-blockemail": "Blokování možnosti poslat e-mail",
 	"right-hideuser": "Blokování uživatelského jména a jeho skrytí",
 	"right-ipblock-exempt": "Obcházení blokování IP adres, jejich rozsahů a autobloků",
-	"right-proxyunbannable": "Obcházení automatického blokování proxy serverů",
 	"right-unblockself": "Odblokování sebe sama",
 	"right-protect": "Měnění úrovně zámku a editace kaskádově zamčených stránek",
 	"right-editprotected": "Editace stránek zamčených na „{{int:protect-level-sysop}}“",

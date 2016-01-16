@@ -1828,6 +1828,7 @@
 	"logentry-newusers-create": "Usori $1 nomen impositum est",
 	"logentry-newusers-create2": "Usori $3 nomen ab usore $1 impositum est",
 	"logentry-newusers-autocreate": "Usori $1 nomen automatice impositum est",
+	"logentry-protect-protect": "$1 {{GENDER:$2|protegit}} $3 $4",
 	"rightsnone": "(nullus)",
 	"revdelete-summary": "summarium recensionis",
 	"feedback-cancel": "Dimittere",

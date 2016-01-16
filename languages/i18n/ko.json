@@ -1120,7 +1120,6 @@
 	"right-blockemail": "다른 사용자가 이메일을 보내지 못하도록 차단",
 	"right-hideuser": "사용자 이름을 차단하고 숨김",
 	"right-ipblock-exempt": "IP 차단, 자동 차단, 광역 차단을 무시",
-	"right-proxyunbannable": "프록시 자동 차단을 적용하지 않음",
 	"right-unblockself": "자신을 차단 해제하기",
 	"right-protect": "보호 수준 바꾸기 및 연쇄 보호된 문서 편집",
 	"right-editprotected": "\"{{int:protect-level-sysop}}\"로 보호된 문서 편집",

@@ -1124,7 +1124,6 @@
 	"right-blockemail": "منع مستخدم من إرسال بريد إلكتروني",
 	"right-hideuser": "منع اسم مستخدم، مخفيا إياه عن العامة",
 	"right-ipblock-exempt": "تفادي عمليات منع الأيبي، المنع التلقائي ومنع النطاق",
-	"right-proxyunbannable": "تفادي عمليات المنع الأوتوماتيكية للبروكسيهات",
 	"right-unblockself": "رفع المنع عن أنفسهم",
 	"right-protect": "تغيير مستويات الحماية وتعديل الصفحات المحمية",
 	"right-editprotected": "تعديل الصفحات التي حمايتها \"{{int:protect-level-sysop}}\"",

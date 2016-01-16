@@ -1011,7 +1011,6 @@
 	"right-blockemail": "Banna notanda að senda tölvupóst",
 	"right-hideuser": "Banna notandanafn, og þannig fela það frá almenningi",
 	"right-ipblock-exempt": "Hunsa bönn vistfanga, sjálfvirk bönn og fjöldabönn",
-	"right-proxyunbannable": "Sneiða hjá sjálfvirkum proxy-bönnum",
 	"right-unblockself": "Afbanna sjálfan sig",
 	"right-protect": "Breyta verndunarstigi og breyta keðjuvernduðum síðum",
 	"right-editprotected": "Breyta síðum vernduðum sem „{{int:protect-level-sysop}}“",

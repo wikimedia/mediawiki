@@ -1110,7 +1110,6 @@
 	"right-blockemail": "szerkesztő e-mail küldési lehetőségének blokkolása",
 	"right-hideuser": "felhasználói név blokkolása és elrejtése a külvilág elől",
 	"right-ipblock-exempt": "IP-, auto- és tartományblokkok megkerülése",
-	"right-proxyunbannable": "proxyk automatikus blokkjainak megkerülése",
 	"right-unblockself": "saját felhasználói fiók blokkjának feloldása",
 	"right-protect": "védelmi szintek megváltoztatása és kaszkádolt védelemmel rendelkező lapok szerkesztése",
 	"right-editprotected": "„{{int:protect-level-sysop}}” védelmi szintű lapok szerkesztése",

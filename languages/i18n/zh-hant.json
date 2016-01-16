@@ -1178,7 +1178,6 @@
 	"right-blockemail": "封鎖使用者傳送電子郵件",
 	"right-hideuser": "封鎖使用者名稱，避免公開顯示",
 	"right-ipblock-exempt": "略過 IP 封鎖、自動封鎖及範圍封鎖檢查",
-	"right-proxyunbannable": "略過 Proxy 自動封鎖檢查",
 	"right-unblockself": "解除封鎖自己",
 	"right-protect": "更改保護層級及編輯被連鎖保護的頁面",
 	"right-editprotected": "編輯保護層級為 \"{{int:protect-level-sysop}}\" 的頁面",

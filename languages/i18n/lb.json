@@ -1077,7 +1077,6 @@
 	"right-blockemail": "E Benotzer späre sou datt hie keng Maile verschécke kann",
 	"right-hideuser": "E Benotzernumm spären, an deem e virun der Ëffentlechkeet verstoppt gëtt",
 	"right-ipblock-exempt": "Ausname vun IP-Spären, automatesche Spären a vu Späre vu Plage vun IPen",
-	"right-proxyunbannable": "Automatesche Proxyspären ëmgoen",
 	"right-unblockself": "Seng eege Spär ophiewen",
 	"right-protect": "Protektiounsniveauen änneren a kaskadegespaart Säiten änneren",
 	"right-editprotected": "Protegéiert Säiten als \"{{int:protect-level-sysop}}\" änneren",

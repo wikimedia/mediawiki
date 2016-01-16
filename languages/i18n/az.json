@@ -943,7 +943,6 @@
 	"right-blockemail": "İstifadəçinin e-poçt göndərməsinə qadağa qoy",
 	"right-hideuser": "İstifadəçi adına qadağa qoy və adın görünməsinin qarşısını al",
 	"right-ipblock-exempt": "IP bloklanmalarını, avtobloklanmalarını və diapazon bloklanmalarını keç",
-	"right-proxyunbannable": "Proksilərin avtomatik bloklanmalarını keç",
 	"right-unblockself": "Öz blokunuzun açılması",
 	"right-protect": "Mühafizə səviyyəsinin dəyişilməsi və kaskad mühafizə olunan səhifələrin redaktə edilməsi",
 	"right-editprotected": "\"{{int:protect-level-sysop}}\" mühafizə səviyyəsinə malik səhifələrin redaktə edilməsi",
