@@ -599,7 +599,7 @@ class MimeMagic {
 				"Use improveTypeFromExtension(\$mime, \$ext) instead.\n" );
 		}
 
-		$mime = $this->doGuessMimeType( $file, $ext );
+		$mime = $this->doGuessMimeType( $file );
 
 		if ( !$mime ) {
 			wfDebug( __METHOD__ . ": internal type detection failed for $file (.$ext)...\n" );
@@ -617,14 +617,12 @@ class MimeMagic {
 	/**
 	 * Guess the MIME type from the file contents.
 	 *
-	 * @todo Remove $ext param
-	 *
 	 * @param string $file
 	 * @param mixed $ext
 	 * @return bool|string
 	 * @throws MWException
 	 */
-	private function doGuessMimeType( $file, $ext ) {
+	private function doGuessMimeType( $file ) {
 		// Read a chunk of the file
 		MediaWiki\suppressWarnings();
 		$f = fopen( $file, 'rb' );
@@ -779,7 +777,7 @@ class MimeMagic {
 		// Check for ZIP variants (before getimagesize)
 		if ( strpos( $tail, "PK\x05\x06" ) !== false ) {
 			wfDebug( __METHOD__ . ": ZIP header present in $file\n" );
-			return $this->detectZipType( $head, $tail, $ext );
+			return $this->detectZipType( $head, $tail );
 		}
 
 		MediaWiki\suppressWarnings();
