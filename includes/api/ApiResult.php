@@ -364,9 +364,13 @@ class ApiResult implements ApiSerializable {
 			}
 		}
 		if ( is_array( $value ) ) {
+			// Work around PHP bug 45959 by copying to a temporary
+			// (in this case, foreach gets $k === "1" but $tmp[$k] assigns as if $k === 1)
+			$tmp = array();
 			foreach ( $value as $k => $v ) {
-				$value[$k] = self::validateValue( $v );
+				$tmp[$k] = self::validateValue( $v );
 			}
+			$value = $tmp;
 		} elseif ( is_float( $value ) && !is_finite( $value ) ) {
 			throw new InvalidArgumentException( "Cannot add non-finite floats to ApiResult" );
 		} elseif ( is_string( $value ) ) {
