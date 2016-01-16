@@ -606,7 +606,11 @@ class ImportReporter extends ContextSource {
 					$successCount )->inContentLanguage()->text();
 				$action = 'upload';
 			} else {
-				$interwikiTitleStr = $this->mInterwiki . ':' . $foreignTitle->getFullText();
+				$pageTitle = $foreignTitle->getFullText();
+				$fullInterwikiPrefix = $this->mInterwiki;
+				Hooks::run( 'ImportLogInterwikiLink', array( &$fullInterwikiPrefix, &$pageTitle ) );
+
+				$interwikiTitleStr = $fullInterwikiPrefix . ':' . $foreignTitle->getFullText();
 				$interwiki = '[[:' . $interwikiTitleStr . ']]';
 				$detail = $this->msg( 'import-logentry-interwiki-detail' )->numParams(
 					$successCount )->params( $interwiki )->inContentLanguage()->text();
