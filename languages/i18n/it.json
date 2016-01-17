@@ -93,7 +93,8 @@
 			"Bultro",
 			"Oggioniale",
 			"Wim b",
-			"V6rg"
+			"V6rg",
+			"JackLantern"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -1132,10 +1133,10 @@
 	"userrights": "Gestione dei permessi degli utenti",
 	"userrights-lookup-user": "Gestione dei gruppi utente",
 	"userrights-user-editname": "Inserire il nome utente:",
-	"editusergroup": "Modifica gruppi utente",
+	"editusergroup": "Modifica gruppi {{GENDER:$1|utente}}",
 	"editinguser": "Modifica in corso dei diritti dell'{{GENDER:$1|utente}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Modifica gruppi utente",
-	"saveusergroups": "Salva gruppi utente",
+	"saveusergroups": "Salva gruppi {{GENDER:$1|utente}}",
 	"userrights-groupsmember": "Appartiene {{PLURAL:$1|al gruppo|ai gruppi}}:",
 	"userrights-groupsmember-auto": "Membro implicito di:",
 	"userrights-groups-help": "È possibile modificare i gruppi cui è assegnato l'utente.\n* Una casella di spunta selezionata indica l'appartenenza dell'utente al gruppo\n* Una casella di spunta deselezionata indica la sua mancata appartenenza al gruppo.\n* Il simbolo * indica che non è possibile eliminare l'appartenenza al gruppo dopo averla aggiunta (o viceversa).",
@@ -3106,7 +3107,7 @@
 	"scarytranscludetoolong": "[Errore: URL troppo lunga]",
 	"deletedwhileediting": "'''Attenzione''': questa pagina è stata cancellata dopo che hai cominciato a modificarla!",
 	"confirmrecreate": "L'utente [[User:$1|$1]] ([[User talk:$1|discussioni]]) ha cancellato questa pagina dopo che hai iniziato a modificarla, per il seguente motivo: ''$2''\nPer favore, conferma che vuoi veramente ricreare questa pagina.",
-	"confirmrecreate-noreason": "L'utente [[User:$1|$1]] ([[User talk:$1|discussioni]]) ha cancellato questa pagina dopo che hai iniziato a modificarla.\nPer favore, conferma che vuoi veramente ricreare questa pagina.",
+	"confirmrecreate-noreason": "L'utente [[Utente:$1|$1]] ([[Discussioni utente:$1|discussioni]]) {{GENDER:$1|ha cancellato}} questa pagina dopo che hai iniziato a modificarla. Per favore, conferma che vuoi veramente ricreare questa pagina.",
 	"recreate": "Ricrea",
 	"confirm_purge_button": "Conferma",
 	"confirm-purge-top": "Vuoi pulire la cache di questa pagina?",
