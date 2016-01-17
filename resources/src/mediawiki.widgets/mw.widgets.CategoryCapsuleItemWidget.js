@@ -20,6 +20,18 @@
 	}
 
 	/**
+	 * @class mw.widgets.ForeignTitle
+	 * @private
+	 * @extends mw.Title
+	 *
+	 * @constructor
+	 * @inheritdoc
+	 */
+	function ForeignTitle() {
+		ForeignTitle.parent.apply( this, arguments );
+	}
+
+	/**
 	 * Check for existence of pages in the queue.
 	 *
 	 * @private
@@ -76,17 +88,6 @@
 		return this.existenceCheckQueue[ key ].promise();
 	};
 
-	/**
-	 * @class mw.widgets.ForeignTitle
-	 * @private
-	 * @extends mw.Title
-	 *
-	 * @constructor
-	 * @inheritdoc
-	 */
-	function ForeignTitle() {
-		ForeignTitle.parent.apply( this, arguments );
-	}
 	OO.inheritClass( ForeignTitle, mw.Title );
 	ForeignTitle.prototype.getNamespacePrefix = function () {
 		// We only need to handle categories here...
