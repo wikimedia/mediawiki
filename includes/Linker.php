@@ -722,7 +722,7 @@ class Linker {
 			$href = self::getUploadUrl( $title, $query );
 
 			return '<a href="' . htmlspecialchars( $href ) . '" class="new" title="' .
-				htmlspecialchars( $title->getPrefixedText(), ENT_QUOTES ) . '">' .
+				htmlspecialchars( $title->getPrefixedText() ) . '">' .
 				$encLabel . '</a>';
 		}
 
