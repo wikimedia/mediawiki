@@ -7,6 +7,7 @@
  * @since 1.19
  */
 /*jshint es3:false */
+/*jshint -W024 */
 /*global OO*/
 ( function ( mw, $ ) {
 	/**
