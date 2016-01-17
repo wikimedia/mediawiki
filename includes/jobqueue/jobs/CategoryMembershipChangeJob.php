@@ -51,19 +51,12 @@ class CategoryMembershipChangeJob extends Job {
 		$dbw = wfGetDB( DB_MASTER );
 
 		// Use a named lock so that jobs for this page see each others' changes
-		$fname = __METHOD__;
 		$lockKey = "CategoryMembershipUpdates:{$page->getId()}";
-		if ( !$dbw->lock( $lockKey, $fname, 10 ) ) {
+		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 10 );
+		if ( !$scopedLock ) {
 			$this->setLastError( "Could not acquire lock '$lockKey'" );
 			return false;
 		}
-
-		$unlocker = new ScopedCallback( function () use ( $dbw, $lockKey, $fname ) {
-			$dbw->unlock( $lockKey, $fname );
-		} );
-
-		// Sanity: clear any DB transaction snapshot
-		$dbw->commit( __METHOD__, 'flush' );
 
 		$cutoffUnix = wfTimestamp( TS_UNIX, $this->params['revTimestamp'] );
 		// Using ENQUEUE_FUDGE_SEC handles jobs inserted out of revision order due to the delay
@@ -120,8 +113,6 @@ class CategoryMembershipChangeJob extends Job {
 		foreach ( $res as $row ) {
 			$this->notifyUpdatesForRevision( $page, Revision::newFromRow( $row ) );
 		}
-
-		ScopedCallback::consume( $unlocker );
 
 		return true;
 	}

@@ -505,6 +505,10 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function namedLocksEnqueue() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
