@@ -210,27 +210,19 @@
 			var minuteDiff, localTime,
 				type = $tzSelect.val();
 
-			if ( type === 'other' ) {
-				// User specified time zone manually in <input>
+			if ( type === 'guess' ) {
+				// Get browser timezone & fill it in
+				minuteDiff = -( new Date().getTimezoneOffset() );
+				$tzTextbox.val( minutesToHours( minuteDiff ) );
+				$tzSelect.val( 'other' );
+				$tzTextbox.prop( 'disabled', false );
+			} else if ( type === 'other' ) {
 				// Grab data from the textbox, parse it.
 				minuteDiff = hoursToMinutes( $tzTextbox.val() );
 			} else {
-				// Time zone not manually specified by user
-				if ( type === 'guess' ) {
-					// Get browser timezone & fill it in
-					minuteDiff = -( new Date().getTimezoneOffset() );
-					$tzTextbox.val( minutesToHours( minuteDiff ) );
-					$tzSelect.val( 'other' );
-					$tzTextbox.prop( 'disabled', false );
-				} else {
-					// Grab data from the $tzSelect value
-					minuteDiff = parseInt( type.split( '|' )[ 1 ], 10 ) || 0;
-					$tzTextbox.val( minutesToHours( minuteDiff ) );
-				}
-
-				// Set defaultValue prop on the generated box so we don't trigger the
-				// unsaved preferences check
-				$tzTextbox.prop( 'defaultValue', $tzTextbox.val() );
+				// Grab data from the $tzSelect value
+				minuteDiff = parseInt( type.split( '|' )[ 1 ], 10 ) || 0;
+				$tzTextbox.val( minutesToHours( minuteDiff ) );
 			}
 
 			// Determine local time from server time and minutes difference, for display.
