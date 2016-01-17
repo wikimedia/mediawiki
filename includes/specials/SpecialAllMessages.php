@@ -399,7 +399,7 @@ class AllMessagesTablePager extends TablePager {
 
 			case 'am_default' :
 			case 'am_actual' :
-				return Sanitizer::escapeHtmlAllowEntities( $value, ENT_QUOTES );
+				return Sanitizer::escapeHtmlAllowEntities( $value );
 		}
 
 		return '';
