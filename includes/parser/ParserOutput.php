@@ -865,44 +865,6 @@ class ParserOutput extends CacheTime {
 	 *
 	 * @todo remove in 1.26
 	 *
-	 * @param DataUpdate $update
-	 *
-	 * @throws MWException
-	 */
-	public function addSecondaryDataUpdate( DataUpdate $update ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		throw new MWException(
-			'ParserOutput::addSecondaryDataUpdate() is no longer supported. ' .
-				'Override Content::getSecondaryDataUpdates() ' .
-				'or use the SecondaryDataUpdates hook instead.'
-		);
-	}
-
-	/**
-	 * @deprecated since 1.25.
-	 *
-	 * @note Hard deprecation and removal without long deprecation period, since there are no
-	 *       known users, but known conceptual issues.
-	 *
-	 * @todo remove in 1.26
-	 *
-	 * @return bool false (since 1.25)
-	 */
-	public function hasCustomDataUpdates() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return false;
-	}
-
-	/**
-	 * @deprecated since 1.25. Instead, store any relevant data using setExtensionData,
-	 *    and implement Content::getSecondaryDataUpdates() if possible, or use the
-	 *    'SecondaryDataUpdates' hook to construct the necessary update objects.
-	 *
-	 * @note Hard deprecation and removal without long deprecation period, since there are no
-	 *       known users, but known conceptual issues.
-	 *
-	 * @todo remove in 1.26
-	 *
 	 * @param Title $title
 	 * @param bool $recursive
 	 *
