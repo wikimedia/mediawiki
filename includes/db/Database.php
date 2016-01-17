@@ -3167,6 +3167,21 @@ abstract class DatabaseBase implements IDatabase {
 		return true;
 	}
 
+	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ) {
+		if ( !$this->lock( $lockKey, $fname, $timeout ) ) {
+			return null;
+		}
+
+		$that = $this;
+		$unlocker = new ScopedCallback( function () use ( $that, $lockKey, $fname ) {
+			$that->unlock( $lockKey, $fname );
+		} );
+
+		$this->commit( __METHOD__, 'flush' );
+
+		return $unlocker;
+	}
+
 	public function namedLocksEnqueue() {
 		return false;
 	}
