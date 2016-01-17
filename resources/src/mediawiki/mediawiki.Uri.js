@@ -228,7 +228,7 @@
 			if ( !( this.protocol && this.host && this.path ) ) {
 				throw new Error( 'Bad constructor arguments' );
 			}
-		}
+		};
 
 		/**
 		 * Encode a value for inclusion in a url.
