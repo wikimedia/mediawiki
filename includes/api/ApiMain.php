@@ -1183,14 +1183,23 @@ class ApiMain extends ApiBase {
 			// Figure out how many servers have passed the lag threshold
 			$numLagged = 0;
 			$lagLimit = $this->getConfig()->get( 'APIMaxLagThreshold' );
-			foreach ( wfGetLB()->getLagTimes() as $lag ) {
+			$laggedServers = array();
+			foreach ( wfGetLB()->getLagTimes() as $serverIndex => $lag ) {
 				if ( $lag > $lagLimit ) {
 					++$numLagged;
+					$laggedServers[] = wfGetLB()->getServerName( $serverIndex );
 				}
 			}
+
 			// If a majority of slaves are too lagged then disallow writes
 			$slaveCount = wfGetLB()->getServerCount() - 1;
 			if ( $numLagged >= ceil( $slaveCount / 2 ) ) {
+				$laggedServers = join( ', ', $laggedServers );
+				wfDebugLog(
+					'api-readonly',
+					'The wiki went read only because the following DBs are lagged: ' . $laggedServers
+				);
+
 				$parsed = $this->parseMsg( array( 'readonlytext' ) );
 				$this->dieUsage(
 					$parsed['info'],
