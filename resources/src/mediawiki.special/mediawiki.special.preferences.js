@@ -273,7 +273,8 @@
 				$input = $( input );
 
 				// Different types of inputs have different methods for accessing defaults
-				if ( $input.is( 'select' ) ) { // <select> has the property defaultSelected for each option
+				if ( $input.is( 'select' ) && $input.find( '[selected]' ).length > 0 ) { // ignore lists without a default
+					// <select> has the property defaultSelected for each option
 					for ( optIndex = 0; optIndex < input.options.length; optIndex++ ) {
 						opt = input.options[ optIndex ];
 						if ( opt.selected !== opt.defaultSelected ) {
@@ -286,7 +287,7 @@
 						if ( input.checked !== input.defaultChecked ) {
 							return true;
 						}
-					} else if ( input.value !== input.defaultValue ) {
+					} else if ( input.hasAttribute( 'value' ) && input.value !== input.defaultValue ) {
 						return true;
 					}
 				}
