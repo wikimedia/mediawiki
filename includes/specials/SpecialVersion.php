@@ -840,7 +840,7 @@ class SpecialVersion extends SpecialPage {
 			if ( isset( $extension['license-name'] ) ) {
 				$licenseName = $out->parseInline( $extension['license-name'] );
 			} elseif ( $this->getExtLicenseFileName( $extensionPath ) ) {
-				$licenseName = $this->msg( 'version-ext-license' );
+				$licenseName = $this->msg( 'version-ext-license' )->escaped();
 			}
 			if ( $licenseName !== null ) {
 				$licenseLink = Linker::link(
