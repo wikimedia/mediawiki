@@ -1180,26 +1180,43 @@ class ApiMain extends ApiBase {
 			&& in_array( 'bot', $this->getUser()->getGroups() )
 			&& wfGetLB()->getServerCount() > 1
 		) {
-			// Figure out how many servers have passed the lag threshold
-			$numLagged = 0;
-			$lagLimit = $this->getConfig()->get( 'APIMaxLagThreshold' );
-			foreach ( wfGetLB()->getLagTimes() as $lag ) {
-				if ( $lag > $lagLimit ) {
-					++$numLagged;
-				}
+			$this->checkBotReadOnly();
+		}
+	}
+
+	/**
+	 * Check whether we are readonly for bots
+	 */
+	private function checkBotReadOnly() {
+		// Figure out how many servers have passed the lag threshold
+		$numLagged = 0;
+		$lagLimit = $this->getConfig()->get( 'APIMaxLagThreshold' );
+		$laggedServers = array();
+		$loadBalancer = wfGetLB();
+		foreach ( $loadBalancer->getLagTimes() as $serverIndex => $lag ) {
+			if ( $lag > $lagLimit ) {
+				++$numLagged;
+				$laggedServers[] = $loadBalancer->getServerName( $serverIndex ) . " ({$lag}s)";
 			}
-			// If a majority of slaves are too lagged then disallow writes
-			$slaveCount = wfGetLB()->getServerCount() - 1;
-			if ( $numLagged >= ceil( $slaveCount / 2 ) ) {
-				$parsed = $this->parseMsg( array( 'readonlytext' ) );
-				$this->dieUsage(
-					$parsed['info'],
-					$parsed['code'],
-					/* http error */
-					0,
-					array( 'readonlyreason' => "Waiting for $numLagged lagged database(s)" )
-				);
-			}
+		}
+
+		// If a majority of slaves are too lagged then disallow writes
+		$slaveCount = wfGetLB()->getServerCount() - 1;
+		if ( $numLagged >= ceil( $slaveCount / 2 ) ) {
+			$laggedServers = join( ', ', $laggedServers );
+			wfDebugLog(
+				'api-readonly',
+				"Api request failed as read only because the following DBs are lagged: $laggedServers"
+			);
+
+			$parsed = $this->parseMsg( array( 'readonlytext' ) );
+			$this->dieUsage(
+				$parsed['info'],
+				$parsed['code'],
+				/* http error */
+				0,
+				array( 'readonlyreason' => "Waiting for $numLagged lagged database(s)" )
+			);
 		}
 	}
 
