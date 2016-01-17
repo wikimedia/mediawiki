@@ -482,7 +482,7 @@ class SpecialMergeHistory extends SpecialPage {
 
 		$targetLink = Linker::link(
 			$targetTitle,
-			$targetTitle->getPrefixedText(),
+			null,
 			array(),
 			array( 'redirect' => 'no' )
 		);
