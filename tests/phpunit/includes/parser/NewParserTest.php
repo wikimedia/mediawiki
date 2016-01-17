@@ -530,6 +530,11 @@ class NewParserTest extends MediaWikiTestCase {
 			'src' => "$IP/tests/phpunit/data/parser/LoremIpsum.djvu",
 			'dst' => "$base/local-public/5/5f/LoremIpsum.djvu"
 		) );
+		$backend->prepare( array( 'dir' => "$base/local-public/0/00" ) );
+		$backend->store( array(
+			'src' => "$IP/tests/phpunit/data/parser/Video.ogv",
+			'dst' => "$base/local-public/0/00/Video.ogv"
+		) );
 
 		// No helpful SVG file to copy, so make one ourselves
 		$data = '<?xml version="1.0" encoding="utf-8"?>' .
