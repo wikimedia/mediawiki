@@ -141,6 +141,7 @@
 	 * @member mw
 	 */
 	mw.UriRelative = function ( documentLocation ) {
+
 		var getDefaultUri = ( function () {
 			// Cache
 			var href, uri;
@@ -155,7 +156,7 @@
 				return uri;
 			};
 		}() );
-
+		
 		/**
 		 * Construct a new URI object. Throws error if arguments are illegal/impossible, or
 		 * otherwise don't parse.
