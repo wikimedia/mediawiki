@@ -141,21 +141,7 @@
 	 * @member mw
 	 */
 	mw.UriRelative = function ( documentLocation ) {
-		var getDefaultUri = ( function () {
-			// Cache
-			var href, uri;
-
-			return function () {
-				var hrefCur = typeof documentLocation === 'string' ? documentLocation : documentLocation();
-				if ( href === hrefCur ) {
-					return uri;
-				}
-				href = hrefCur;
-				uri = new Uri( href );
-				return uri;
-			};
-		}() );
-
+		
 		/**
 		 * Construct a new URI object. Throws error if arguments are illegal/impossible, or
 		 * otherwise don't parse.
@@ -229,6 +215,21 @@
 				throw new Error( 'Bad constructor arguments' );
 			}
 		}
+
+		var getDefaultUri = ( function () {
+			// Cache
+			var href, uri;
+
+			return function () {
+				var hrefCur = typeof documentLocation === 'string' ? documentLocation : documentLocation();
+				if ( href === hrefCur ) {
+					return uri;
+				}
+				href = hrefCur;
+				uri = new Uri( href );
+				return uri;
+			};
+		}() );
 
 		/**
 		 * Encode a value for inclusion in a url.
