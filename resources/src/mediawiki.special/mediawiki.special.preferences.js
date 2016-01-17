@@ -225,6 +225,10 @@
 				$tzTextbox.val( minutesToHours( minuteDiff ) );
 			}
 
+			// Set defaultValue prop on the generated box so we don't trip trigger the
+			// unsaved preferences check
+			$tzTextbox.prop( 'defaultValue', $tzTextbox.val() );
+
 			// Determine local time from server time and minutes difference, for display.
 			localTime = servertime + minuteDiff;
 
