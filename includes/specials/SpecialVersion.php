@@ -707,7 +707,7 @@ class SpecialVersion extends SpecialPage {
 	 *  - The name of (name), and URL link to (url), the extension
 	 *  - Official version number (version) and if available version control system
 	 *    revision (path), link, and date
-	 *  - If available the short name of the license (license-name) and a linke
+	 *  - If available the short name of the license (license-name) and a link
 	 *    to ((LICENSE)|(COPYING))(\.txt)? if it exists.
 	 *  - Description of extension (descriptionmsg or description)
 	 *  - List of authors (author) and link to a ((AUTHORS)|(CREDITS))(\.txt)? file if it exists
