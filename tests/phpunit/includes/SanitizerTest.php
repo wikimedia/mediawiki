@@ -318,33 +318,6 @@ class SanitizerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Test for support or lack of support for specific attributes in the attribute whitelist.
-	 */
-	public static function provideAttributeSupport() {
-		/** array( <attributes>, <expected>, <message> ) */
-		return array(
-			array(
-				'div',
-				' role="presentation"',
-				' role="presentation"',
-				'Support for WAI-ARIA\'s role="presentation".'
-			),
-			array( 'div', ' role="main"', '', "Other WAI-ARIA roles are currently not supported." ),
-		);
-	}
-
-	/**
-	 * @dataProvider provideAttributeSupport
-	 * @covers Sanitizer::fixTagAttributes
-	 */
-	public function testAttributeSupport( $tag, $attributes, $expected, $message ) {
-		$this->assertEquals( $expected,
-			Sanitizer::fixTagAttributes( $attributes, $tag ),
-			$message
-		);
-	}
-
-	/**
 	 * @dataProvider provideEscapeHtmlAllowEntities
 	 * @covers Sanitizer::escapeHtmlAllowEntities
 	 */
@@ -361,6 +334,30 @@ class SanitizerTest extends MediaWikiTestCase {
 			array( 'a¡b', 'a&#161;b' ),
 			array( 'foo&#039;bar', "foo'bar" ),
 			array( '&lt;script&gt;foo&lt;/script&gt;', '<script>foo</script>' ),
+		);
+	}
+
+	/**
+	 * Test escapeIdReferenceList for consistency with escapeId
+	 *
+	 * @dataProvider provideEscapeIdReferenceList
+	 * @covers Sanitizer::escapeIdReferenceList
+	 */
+	public function testEscapeIdReferenceList( $referenceList, $id1, $id2 ) {
+		$this->assertEquals(
+			Sanitizer::escapeIdReferenceList( $referenceList, 'noninitial' ),
+			Sanitizer::escapeId( $id1, 'noninitial' )
+				. ' '
+				. Sanitizer::escapeId( $id2, 'noninitial' )
+		);
+	}
+
+	public static function provideEscapeIdReferenceList() {
+		/** array( <reference list>, <individual id 1>, <individual id 2> ) */
+		return array(
+			array( 'foo bar', 'foo', 'bar' ),
+			array( '#1 #2', '#1', '#2' ),
+			array( '+1 +2', '+1', '+2' ),
 		);
 	}
 }
