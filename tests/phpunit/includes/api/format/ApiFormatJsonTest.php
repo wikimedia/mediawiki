@@ -61,7 +61,7 @@ class ApiFormatJsonTest extends ApiFormatTestBase {
 				array( array( 1 ), '/**/myCallback([1])', array( 'callback' => 'myCallback' ) ),
 
 				// Cross-domain mangling
-				array( array( '< Cross-Domain-Policy >' ), '["\u003C Cross-Domain-Policy \u003E"]' ),
+				array( array( '< Cross-Domain-Policy >' ), '["\u003C Cross-Domain-Policy >"]' ),
 			) ),
 			self::addFormatVersion( 2, array(
 				// Basic types
@@ -102,7 +102,7 @@ class ApiFormatJsonTest extends ApiFormatTestBase {
 				array( array( 1 ), '/**/myCallback([1])', array( 'callback' => 'myCallback' ) ),
 
 				// Cross-domain mangling
-				array( array( '< Cross-Domain-Policy >' ), '["\u003C Cross-Domain-Policy \u003E"]' ),
+				array( array( '< Cross-Domain-Policy >' ), '["\u003C Cross-Domain-Policy >"]' ),
 			) )
 		);
 	}
