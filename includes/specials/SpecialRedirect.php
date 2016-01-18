@@ -39,6 +39,15 @@ class SpecialRedirect extends FormSpecialPage {
 	protected $mType;
 
 	/**
+	 * A custom error message key, which can be set in one of the
+	 * dispatch* functions to allow them to set a more detailed/better
+	 * error message in case of a failure.
+	 *
+	 * @var string $mErrorMsgKey
+	 */
+	protected $mErrorMsgKey;
+
+	/**
 	 * The identifier/value for the redirect (which id, which file)
 	 *
 	 * @var string $mValue
@@ -177,6 +186,7 @@ class SpecialRedirect extends FormSpecialPage {
 
 		$logparams = array(
 			'log_id',
+			'log_deleted',
 			'log_timestamp',
 			'log_type',
 			'log_user_text',
@@ -211,7 +221,13 @@ class SpecialRedirect extends FormSpecialPage {
 			}
 		}
 
-		array_shift( $logparams );
+		// database fields, which aren't needed for further processing of the results
+		// (e.g. not appended to the url or used to compare two log entries)
+		$unnededParams = array(
+			'log_id',
+			'log_deleted',
+		);
+		$logparams = array_diff( $logparams, $unnededParams );
 
 		// Stores all the rows with the same values in each column
 		// as $rowMain
@@ -227,6 +243,21 @@ class SpecialRedirect extends FormSpecialPage {
 			}
 			$logsSameTimestamps = $matchedRows;
 		}
+
+		// check, if the user is allowed to see any information of this log entry
+		if (
+			!LogEventsList::userCanBitfield(
+				$matchedRows[0]->log_deleted,
+				LogPage::DELETED_ACTION,
+				$this->getUser()
+			)
+		) {
+			// if not, show an error message, that the user doesn't have the permission
+			// to view this log entry.
+			$this->mErrorMsgKey = 'logentry-suppressed';
+			return null;
+		}
+
 		$query = array( 'title' => 'Special:Log', 'limit' => count( $matchedRows ) );
 
 		// A map of database field names from table 'logging' to the values of $logparams
@@ -283,8 +314,13 @@ class SpecialRedirect extends FormSpecialPage {
 		}
 		if ( !is_null( $this->mValue ) ) {
 			$this->getOutput()->setStatusCode( 404 );
-			// Message: redirect-not-exists
-			$msg = $this->getMessagePrefix() . '-not-exists';
+			// if $mErrorMsgKey was set, use this message instead of the default one
+			if ( isset( $this->mErrorMsgKey ) ) {
+				$msg = $this->mErrorMsgKey;
+			} else {
+				// Message: redirect-not-exists
+				$msg = $this->getMessagePrefix() . '-not-exists';
+			}
 
 			return Status::newFatal( $msg );
 		}
