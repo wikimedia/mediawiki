@@ -185,7 +185,7 @@ class SpecialListGroupRights extends SpecialPage {
 					array(),
 					Linker::link(
 						SpecialPage::getTitleFor( 'Allpages' ),
-						$namespaceText,
+						htmlspecialchars( $namespaceText ),
 						array(),
 						array( 'namespace' => $namespace )
 					)
