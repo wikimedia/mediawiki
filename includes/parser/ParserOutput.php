@@ -856,49 +856,6 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * @deprecated since 1.25. Instead, store any relevant data using setExtensionData,
-	 *    and implement Content::getSecondaryDataUpdates() if possible, or use the
-	 *    'SecondaryDataUpdates' hook to construct the necessary update objects.
-	 *
-	 * @note Hard deprecation and removal without long deprecation period, since there are no
-	 *       known users, but known conceptual issues.
-	 *
-	 * @todo remove in 1.26
-	 *
-	 * @param DataUpdate $update
-	 *
-	 * @throws MWException
-	 */
-	public function addSecondaryDataUpdate( DataUpdate $update ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		throw new MWException(
-			'ParserOutput::addSecondaryDataUpdate() is no longer supported. ' .
-				'Override Content::getSecondaryDataUpdates() ' .
-				'or use the SecondaryDataUpdates hook instead.'
-		);
-	}
-
-	/**
-	 * @deprecated since 1.25. Instead, store any relevant data using setExtensionData,
-	 *    and implement Content::getSecondaryDataUpdates() if possible, or use the
-	 *    'SecondaryDataUpdates' hook to construct the necessary update objects.
-	 *
-	 * @note Hard deprecation and removal without long deprecation period, since there are no
-	 *       known users, but known conceptual issues.
-	 *
-	 * @todo remove in 1.26
-	 *
-	 * @param Title $title
-	 * @param bool $recursive
-	 *
-	 * @return array An array of instances of DataUpdate
-	 */
-	public function getSecondaryDataUpdates( Title $title = null, $recursive = true ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		return array();
-	}
-
-	/**
 	 * Attaches arbitrary data to this ParserObject. This can be used to store some information in
 	 * the ParserOutput object for later use during page output. The data will be cached along with
 	 * the ParserOutput object, but unlike data set using setProperty(), it is not recorded in the
