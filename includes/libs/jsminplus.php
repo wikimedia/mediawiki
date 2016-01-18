@@ -724,6 +724,16 @@ class JSParser
 		TOKEN_CONDCOMMENT_START => 1, TOKEN_CONDCOMMENT_END => 1
 	);
 
+	private $identifierNames = array(
+		KEYWORD_BREAK, KEYWORD_CASE, KEYWORD_CATCH, KEYWORD_CONST, KEYWORD_CONTINUE,
+		KEYWORD_DEBUGGER, KEYWORD_DEFAULT, KEYWORD_DELETE, KEYWORD_DO, KEYWORD_ELSE,
+		KEYWORD_ENUM, KEYWORD_FALSE, KEYWORD_FINALLY, KEYWORD_FOR, KEYWORD_FUNCTION,
+		KEYWORD_IF, KEYWORD_IN, KEYWORD_INSTANCEOF, KEYWORD_NEW, KEYWORD_NULL,
+		KEYWORD_RETURN, KEYWORD_SWITCH, KEYWORD_THIS, KEYWORD_THROW, KEYWORD_TRUE,
+		KEYWORD_TRY, KEYWORD_TYPEOF, KEYWORD_VAR, KEYWORD_VOID, KEYWORD_WHILE,
+		KEYWORD_WITH, TOKEN_IDENTIFIER
+	);
+
 	public function __construct($minifier=null)
 	{
 		$this->minifier = $minifier;
@@ -1294,7 +1304,7 @@ class JSParser
 
 					if ($tt == OP_DOT)
 					{
-						$this->t->mustMatch(TOKEN_IDENTIFIER);
+						$this->t->mustMatchArray($this->identifierNames);
 						array_push($operands, new JSNode($this->t, OP_DOT, array_pop($operands), new JSNode($this->t)));
 					}
 					else
@@ -1443,7 +1453,10 @@ class JSParser
 									break 3;
 
 									default:
-										throw $this->t->newSyntaxError('Invalid property name');
+										if (in_array($tt, $this->identifierNames))
+											$id = new JSNode($this->t);
+										else
+											throw $this->t->newSyntaxError('Invalid property name');
 								}
 
 								$this->t->mustMatch(OP_COLON);
@@ -1787,6 +1800,19 @@ class JSTokenizer
 	{
 	        if (!$this->match($tt))
 			throw $this->newSyntaxError('Unexpected token; token ' . $tt . ' expected');
+
+		return $this->currentToken();
+	}
+
+	public function matchArray(array $tts)
+	{
+		return in_array($this->get(), $tts) || $this->unget();
+	}
+
+	public function mustMatchArray(array $tts)
+	{
+	        if (!$this->matchArray($tts))
+			throw $this->newSyntaxError('Unexpected token; one of tokens ' . implode(', ', $tts) . ' expected');
 
 		return $this->currentToken();
 	}
