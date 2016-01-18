@@ -243,6 +243,8 @@ changes to languages because of Phabricator reports.
 * User::generateToken() was removed (deprecated since 1.20).
 * WikiPage::getRawText() was removed (deprecated since 1.21).
 * ParserOutput::hasCustomDataUpdates() was removed (deprecated since 1.25).
+* ParserOutput::addSecondaryDataUpdate() was removed (deprecated since 1.25).
+* ParserOutput::getSecondaryDataUpdates() was removed (deprecated since 1.25).
 
 == Compatibility ==
 
