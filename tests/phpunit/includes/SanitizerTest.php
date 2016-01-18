@@ -318,33 +318,6 @@ class SanitizerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Test for support or lack of support for specific attributes in the attribute whitelist.
-	 */
-	public static function provideAttributeSupport() {
-		/** array( <attributes>, <expected>, <message> ) */
-		return array(
-			array(
-				'div',
-				' role="presentation"',
-				' role="presentation"',
-				'Support for WAI-ARIA\'s role="presentation".'
-			),
-			array( 'div', ' role="main"', '', "Other WAI-ARIA roles are currently not supported." ),
-		);
-	}
-
-	/**
-	 * @dataProvider provideAttributeSupport
-	 * @covers Sanitizer::fixTagAttributes
-	 */
-	public function testAttributeSupport( $tag, $attributes, $expected, $message ) {
-		$this->assertEquals( $expected,
-			Sanitizer::fixTagAttributes( $attributes, $tag ),
-			$message
-		);
-	}
-
-	/**
 	 * @dataProvider provideEscapeHtmlAllowEntities
 	 * @covers Sanitizer::escapeHtmlAllowEntities
 	 */

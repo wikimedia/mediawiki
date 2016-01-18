@@ -721,7 +721,7 @@ class Sanitizer {
 	 * Take an array of attribute names and values and normalize or discard
 	 * illegal values for the given whitelist.
 	 *
-	 * - Discards attributes not the given whitelist
+	 * - Discards attributes not on the given whitelist
 	 * - Unsafe style attributes are discarded
 	 * - Invalid id attributes are re-encoded
 	 *
@@ -770,18 +770,18 @@ class Sanitizer {
 				$value = Sanitizer::checkCss( $value );
 			}
 
+			# Escape HTML id attributes
 			if ( $attribute === 'id' ) {
 				$value = Sanitizer::escapeId( $value, 'noninitial' );
 			}
 
-			# WAI-ARIA
-			# http://www.w3.org/TR/wai-aria/
-			# http://www.whatwg.org/html/elements.html#wai-aria
-			# For now we only support role="presentation" until we work out what roles should be
-			# usable by content and we ensure that our code explicitly rejects patterns that
-			# violate HTML5's ARIA restrictions.
-			if ( $attribute === 'role' && $value !== 'presentation' ) {
-				continue;
+			# Escape HTML id reference lists
+			if ( $attribute === 'aria-describedby'
+				|| $attribute === 'aria-flowto'
+				|| $attribute === 'aria-labelledby'
+				|| $attribute === 'aria-owns'
+			) {
+				$value = Sanitizer::escapeIdReferenceList( $value, 'noninitial' );
 			}
 
 			// RDFa and microdata properties allow URLs, URIs and/or CURIs.
@@ -1161,6 +1161,39 @@ class Sanitizer {
 			$id = "x$id";
 		}
 		return $id;
+	}
+
+	/**
+	 * Given a string containing a space delimited list of ids, escape each id
+	 * to match ids escaped by the escapeId() function.
+	 *
+	 * @since 1.27
+	 *
+	 * @param string $referenceString Space delimited list of ids
+	 * @param string|array $options String or array of strings (default is array()):
+	 *   'noninitial': This is a non-initial fragment of an id, not a full id,
+	 *       so don't pay attention if the first character isn't valid at the
+	 *       beginning of an id.  Only matters if $wgExperimentalHtmlIds is
+	 *       false.
+	 *   'legacy': Behave the way the old HTML 4-based ID escaping worked even
+	 *       if $wgExperimentalHtmlIds is used, so we can generate extra
+	 *       anchors and links won't break.
+	 * @return string
+	 */
+	static function escapeIdReferenceList( $referenceString, $options = array() ) {
+		# Explode the space delimited list string into an array of tokens
+		$references = preg_split( '/\s+/', "{$referenceString}", -1, PREG_SPLIT_NO_EMPTY );
+
+		# Escape each token as an id
+		foreach ( $references as &$ref ) {
+			$ref = Sanitizer::escapeId( $ref, $options );
+		}
+
+		# Merge the array back to a space delimited list string
+		# If the array is empty, the result will be an empty string ('')
+		$referenceString = implode( ' ', $references );
+
+		return $referenceString;
 	}
 
 	/**
@@ -1546,6 +1579,11 @@ class Sanitizer {
 			'title',
 
 			# WAI-ARIA
+			'aria-describedby',
+			'aria-flowto',
+			'aria-label',
+			'aria-labelledby',
+			'aria-owns',
 			'role',
 		);
 
