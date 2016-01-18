@@ -587,7 +587,7 @@ abstract class HTMLFormField {
 			// It might look weird, but it'll work OK.
 			return $this->getFieldLayoutOOUI(
 				new OOUI\Widget( array( 'content' => new OOUI\HtmlSnippet( $this->getDiv( $value ) ) ) ),
-				array( 'infusable' => false )
+				array( 'infusable' => false, 'align' => 'top' )
 			);
 		}
 
