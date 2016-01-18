@@ -254,6 +254,7 @@
 			classes: [ 'mw-feedbackDialog-welcome-message' ]
 		} );
 		this.feedbackSubjectInput = new OO.ui.TextInputWidget( {
+			indicator: 'required',
 			multiline: false
 		} );
 		this.feedbackMessageInput = new OO.ui.TextInputWidget( {
@@ -308,10 +309,7 @@
 					!this.useragentMandatory ||
 					this.useragentCheckbox.isSelected()
 				) &&
-				(
-					!!this.feedbackMessageInput.getValue() ||
-					!!this.feedbackSubjectInput.getValue()
-				)
+				this.feedbackSubjectInput.getValue()
 			);
 
 		this.actions.setAbilities( { submit:  isValid } );
