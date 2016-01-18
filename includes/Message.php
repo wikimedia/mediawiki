@@ -271,7 +271,7 @@ class Message implements MessageSpecifier, Serializable {
 	public function serialize() {
 		return serialize( array(
 			'interface' => $this->interface,
-			'language' => $this->language->getCode(),
+			'language' => $this->language instanceof StubUserLang ? false : $this->language->getCode(),
 			'key' => $this->key,
 			'keysToTry' => $this->keysToTry,
 			'parameters' => $this->parameters,
@@ -287,6 +287,8 @@ class Message implements MessageSpecifier, Serializable {
 	 * @param string $serialized
 	 */
 	public function unserialize( $serialized ) {
+		global $wgLang;
+
 		$data = unserialize( $serialized );
 		$this->interface = $data['interface'];
 		$this->key = $data['key'];
@@ -294,7 +296,7 @@ class Message implements MessageSpecifier, Serializable {
 		$this->parameters = $data['parameters'];
 		$this->format = $data['format'];
 		$this->useDatabase = $data['useDatabase'];
-		$this->language = Language::factory( $data['language'] );
+		$this->language = $data['language'] ? Language::factory( $data['language'] ) : $wgLang;
 		$this->title = $data['title'];
 	}
 
