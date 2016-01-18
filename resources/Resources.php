@@ -326,7 +326,6 @@ return array(
 	),
 	'jquery.jStorage' => array(
 		'scripts' => 'resources/lib/jquery/jquery.jStorage.js',
-		'dependencies' => 'json',
 	),
 	'jquery.suggestions' => array(
 		'scripts' => 'resources/src/jquery/jquery.suggestions.js',
@@ -719,14 +718,6 @@ return array(
 		'group' => 'jquery.ui',
 	),
 
-	/* json2 */
-
-	'json' => array(
-		'scripts' => 'resources/lib/json2/json2.js',
-		'targets' => array( 'desktop', 'mobile' ),
-		'skipFunction' => 'resources/src/json-skip.js',
-	),
-
 	/* Moment.js */
 
 	'moment' => array(
@@ -899,7 +890,6 @@ return array(
 			'dom-level2-shim',
 			'mediawiki.api',
 			'mediawiki.api.edit',
-			'json',
 		),
 	),
 	'mediawiki.api.user' => array(
@@ -1054,7 +1044,6 @@ return array(
 		'dependencies' => array(
 			'jquery.byteLength',
 			'mediawiki.RegExp',
-			'json',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
@@ -2188,7 +2177,6 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 		'dependencies' => array(
 			'es5-shim',
-			'json',
 		),
 	),
 
