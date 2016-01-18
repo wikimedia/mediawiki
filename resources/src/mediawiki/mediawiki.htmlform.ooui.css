@@ -28,3 +28,7 @@
 	margin-right: 5%;
 	width: 39%;
 }
+
+.oo-ui-fieldLayout .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline {
+  margin-bottom: 0;
+}
