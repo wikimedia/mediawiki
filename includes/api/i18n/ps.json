@@ -9,8 +9,10 @@
 	"apihelp-block-description": "په يو کارن بنديز لگول.",
 	"apihelp-block-param-user": "کارن-نوم، IP پته، يا IP سيمې باندې بنديز لگول.",
 	"apihelp-block-param-reason": "د بنديز سبب.",
+	"apihelp-block-param-nocreate": "د گڼون جوړولو مخ نيول.",
 	"apihelp-createaccount-param-name": "کارن-نوم.",
 	"apihelp-delete-description": "يو مخ ړنگول.",
+	"apihelp-delete-example-simple": "<kbd>Main Page</kbd> ړنگول.",
 	"apihelp-edit-description": "مخونه جوړول او سمول.",
 	"apihelp-edit-param-sectiontitle": "د يوې نوې برخې سرليک.",
 	"apihelp-edit-param-text": "مخ مېنځپانگه.",
@@ -30,6 +32,7 @@
 	"apihelp-feedrecentchanges-param-hidepatrolled": "څارل شوي بدلونونه پټول.",
 	"apihelp-feedrecentchanges-param-hidemyself": "د اوسني کارن لخوا ترسره شوي بدلونونه پټول.",
 	"apihelp-feedrecentchanges-param-tagfilter": "د نښلن له مخې چاڼول.",
+	"apihelp-feedrecentchanges-example-simple": "وروستي بدلونونه ښکاره کول.",
 	"apihelp-login-param-name": "کارن نوم.",
 	"apihelp-login-param-password": "پټنوم.",
 	"apihelp-login-param-domain": "شپول (اختياري).",
@@ -50,6 +53,7 @@
 	"apihelp-userrights-param-user": "کارن نوم.",
 	"apihelp-userrights-param-userid": "کارن پېژند.",
 	"apihelp-userrights-param-reason": "د بدلون سبب.",
+	"api-format-title": "د مېډياويکي API پايله",
 	"api-help-title": "د مېډياويکي API لارښود",
 	"api-help-main-header": "آر ماډيول",
 	"api-help-source": "سرچينه: $1",
@@ -63,5 +67,6 @@
 	"api-help-param-default": "تلواليز: $1",
 	"api-help-param-default-empty": "تلواليز: <span class=\"apihelp-empty\">(تش)</span>",
 	"api-help-examples": "{{PLURAL:$1|بېلگه|بېلگې}}:",
-	"api-help-permissions": "{{PLURAL:$1|پرېښه|پرېښې}}:"
+	"api-help-permissions": "{{PLURAL:$1|پرېښه|پرېښې}}:",
+	"api-credits-header": "کرېډټونه"
 }

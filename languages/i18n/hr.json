@@ -1732,6 +1732,7 @@
 	"delete-confirm": "Obriši \"$1\"",
 	"delete-legend": "Izbriši",
 	"historywarning": "<strong>Upozorenje:</strong> stranica koju želite izbrisati ima starije izmjene s $1 {{PLURAL:$1|inačicom|inačice|inačica}}:",
+	"historyaction-submit": "Prikaži",
 	"confirmdeletetext": "Zauvijek ćete izbrisati stranicu ili sliku zajedno s prijašnjim inačicama.\nMolim potvrdite svoju namjeru, da razumijete posljedice i da ovo radite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].",
 	"actioncomplete": "Zahvat završen",
 	"actionfailed": "Radnja nije uspjela",

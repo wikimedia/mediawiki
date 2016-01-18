@@ -1813,6 +1813,7 @@
 	"log-title-wildcard": "搜尋以此欄位文字為字首的標題",
 	"showhideselectedlogentries": "顯示/隱藏已選擇的日誌項目",
 	"log-edit-tags": "編輯已選擇日誌項目的標籤",
+	"checkbox-all": "全部",
 	"allpages": "所有頁面",
 	"nextpage": "下一頁 ($1)",
 	"prevpage": "上一頁 ($1)",
