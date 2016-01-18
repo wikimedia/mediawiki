@@ -512,11 +512,11 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Generate an HTML table for external libraries that are installed
+	 * Get a list of installed libraries.
 	 *
-	 * @return string
+	 * @return array
 	 */
-	protected function getExternalLibraries() {
+	public function getInstalledDependencies() {
 		global $IP;
 		$path = "$IP/vendor/composer/installed.json";
 		if ( !file_exists( $path ) ) {
@@ -524,6 +524,22 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		$installed = new ComposerInstalled( $path );
+		$libraries = $installed->getInstalledDependencies();
+
+		Hooks::run( 'SpecialVersionExternalLibraries', array( &$libraries ) );
+		ksort( $libraries );
+
+		return $libraries;
+	}
+
+	/**
+	 * Generate an HTML table for external libraries that are installed
+	 *
+	 * @return string
+	 */
+	protected function getExternalLibraries() {
+		$libraries = $this->getInstalledDependencies();
+
 		$out = Html::element(
 			'h2',
 			array( 'id' => 'mw-version-libraries' ),
@@ -541,7 +557,7 @@ class SpecialVersion extends SpecialPage {
 			. Html::element( 'th', array(), $this->msg( 'version-libraries-authors' )->text() )
 			. Html::closeElement( 'tr' );
 
-		foreach ( $installed->getInstalledDependencies() as $name => $info ) {
+		foreach ( $libraries as $name => $info ) {
 			if ( strpos( $info['type'], 'mediawiki-' ) === 0 ) {
 				// Skip any extensions or skins since they'll be listed
 				// in their proper section
