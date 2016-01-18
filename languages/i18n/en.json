@@ -3726,6 +3726,7 @@
 	"logentry-suppress-revision": "$1 secretly {{GENDER:$2|changed}} visibility of {{PLURAL:$5|a revision|$5 revisions}} on page $3: $4",
 	"logentry-suppress-event-legacy": "$1 secretly {{GENDER:$2|changed}} visibility of log events on $3",
 	"logentry-suppress-revision-legacy": "$1 secretly {{GENDER:$2|changed}} visibility of revisions on page $3",
+	"logentry-suppressed": "The logentry with this ID was suppressed and you don't have the permission to view any information of it.",
 	"revdelete-content-hid": "content hidden",
 	"revdelete-summary-hid": "edit summary hidden",
 	"revdelete-uname-hid": "username hidden",
