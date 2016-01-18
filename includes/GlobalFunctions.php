@@ -235,6 +235,29 @@ function wfLoadSkins( array $skins ) {
 }
 
 /**
+ * Register php library for Special:Version that has a composer.json file.
+ *
+ * @param string $composerJsonFile
+ * @since 1.27
+ */
+function wfRegisterLibraryCredits( $composerJsonFile ) {
+	global $wgHooks;
+
+	if ( is_readable( $composerJsonFile ) ) {
+		$wgHooks['SpecialVersionExternalLibraries'][] = function( &$libs ) use ( $composerJsonFile ) {
+			$composerJson = new ComposerJson( $composerJsonFile );
+
+			$name = $composerJson->getName();
+			$libs[$name] = $composerJson->getVersionCredits();
+
+			return true;
+		};
+	} else {
+		wfLogWarning( '$composerJson ' . $composerJson . ' is not readable' );
+	}
+}
+
+/**
  * Like array_diff( $a, $b ) except that it works with two-dimensional arrays.
  * @param array $a
  * @param array $b

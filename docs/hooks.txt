@@ -2971,6 +2971,13 @@ $context: IContextSource object
 Special:Upload.
 &$form: The SpecialUpload object
 
+'SpecialVersionExternalLibraries': Called when outputting the list of
+installed libraries on Special:Version.  By default, libraries installed
+in MediaWiki's vendor directory are already included, but the hook
+can be used to register additional libraries or alter the credits.
+&$libraries: Array of installed libraries in key (library name) => array
+format. The array contains license, authors, description and version.
+
 'SpecialVersionVersionUrl': Called when building the URL for Special:Version.
 $wgVersion: Current $wgVersion for you to use
 &$versionUrl: Raw url to link to (eg: release notes)

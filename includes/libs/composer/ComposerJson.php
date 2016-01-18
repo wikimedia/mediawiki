@@ -53,4 +53,34 @@ class ComposerJson {
 		return $version;
 	}
 
+	/**
+	 * @return string
+	 */
+	public function getName() {
+		return $this->getField( 'name', '' );
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getVersionCredits() {
+		return array(
+			'version' => self::normalizeVersion( $this->getField( 'version', '' ) ),
+			'type' => $this->getField( 'type', '' ),
+			'licenses' => array( $this->getField( 'license', '' ) ),
+			'authors' => $this->getField( 'authors', array() ),
+			'description' => $this->getField( 'description', '' )
+		);
+	}
+
+	/**
+	 * @param string $fieldName
+	 * @param mixed $default
+	 *
+	 * @return mixed
+	 */
+	private function getField( $fieldName, $default ) {
+		return isset( $this->contents[$fieldName] ) ? $this->contents[$fieldName] : $default;
+	}
+
 }
