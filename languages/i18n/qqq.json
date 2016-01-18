@@ -3904,6 +3904,7 @@
 	"logentry-suppress-revision": "{{Logentry}}\n{{Logentryparam}}\n* $5 - the number of affected revisions of the page $3.",
 	"logentry-suppress-event-legacy": "{{Logentry}}\n$3 is the name of the log page inside parenthesis",
 	"logentry-suppress-revision-legacy": "{{Logentry}}",
+	"logentry-suppressed": "Used on [[Special:Redirect]] as an error message, if an user wants to get redirected to a suppressed revision, without the permission to view any information of the log entry.",
 	"revdelete-content-hid": "Used on\n* {{msg-mw|logentry-delete-event}}\n* {{msg-mw|logentry-delete-revision}}\n* {{msg-mw|logentry-suppress-event}}\n* {{msg-mw|logentry-suppress-event}}",
 	"revdelete-summary-hid": "Used on\n* {{msg-mw|logentry-delete-event}}\n* {{msg-mw|logentry-delete-revision}}\n* {{msg-mw|logentry-suppress-event}}\n* {{msg-mw|logentry-suppress-event}}",
 	"revdelete-uname-hid": "Used on\n* {{msg-mw|logentry-delete-event}}\n* {{msg-mw|logentry-delete-revision}}\n* {{msg-mw|logentry-suppress-event}}\n* {{msg-mw|logentry-suppress-event}}",
