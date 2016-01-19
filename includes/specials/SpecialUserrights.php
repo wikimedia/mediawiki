@@ -473,7 +473,11 @@ class UserrightsPage extends SpecialPage {
 					$this->mFetchedUser === null ? array( 'autofocus' => '' ) : array()
 				)
 			) . ' ' .
-			Xml::submitButton( $this->msg( 'editusergroup', $user->getName() )->text() ) .
+			Xml::submitButton(
+				$this->msg(
+					'editusergroup', $this->mFetchedUser === null ? '[]' : $this->mFetchedUser->getName()
+				)->text()
+			) .
 			Html::closeElement( 'fieldset' ) .
 			Html::closeElement( 'form' ) . "\n"
 		);
