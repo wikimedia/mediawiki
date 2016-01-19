@@ -396,7 +396,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$nondefaults = $opts->getChangedValues();
 
 		$panel = array();
-		$panel[] = self::makeLegend( $this->getContext() );
+		$panel[] = $this->makeLegend();
 		$panel[] = $this->optionsPanel( $defaults, $nondefaults, $numRows );
 		$panel[] = '<hr />';
 

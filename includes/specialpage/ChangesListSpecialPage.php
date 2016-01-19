@@ -421,13 +421,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 	/**
 	 * Return the legend displayed within the fieldset
-	 * @todo This should not be static, then we can drop the parameter
-	 * @todo Not called by anything, should be called by doHeader()
 	 *
-	 * @param IContextSource $context The object available as $this in non-static functions
 	 * @return string
 	 */
-	public static function makeLegend( IContextSource $context ) {
+	public function makeLegend() {
+		$context = $this->getContext();
 		$user = $context->getUser();
 		# The legend showing what the letters and stuff mean
 		$legend = Html::openElement( 'dl' ) . "\n";
