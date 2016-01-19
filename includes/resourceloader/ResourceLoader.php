@@ -1609,7 +1609,6 @@ MESSAGE;
 		$parser->ModifyVars( array_merge( self::getLessVars( $config ), $extraVars ) );
 		$parser->SetImportDirs( array_fill_keys( $config->get( 'ResourceLoaderLESSImportPaths' ), '' ) );
 		$parser->SetOption( 'relativeUrls', false );
-		$parser->SetCacheDir( $config->get( 'CacheDirectory' ) ?: wfTempDir() );
 
 		return $parser;
 	}
