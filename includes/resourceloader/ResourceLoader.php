@@ -1609,8 +1609,12 @@ MESSAGE;
 		$parser->ModifyVars( array_merge( self::getLessVars( $config ), $extraVars ) );
 		$parser->SetImportDirs( array_fill_keys( $config->get( 'ResourceLoaderLESSImportPaths' ), '' ) );
 		$parser->SetOption( 'relativeUrls', false );
-		$parser->SetCacheDir( $config->get( 'CacheDirectory' ) ?: wfTempDir() );
-
+		// Checks if the caching directory exists, and is writable. 
+        // If these confitions aren't met, No Caching directory is used.
+		$path_for_cache_directory = $config->get( 'CacheDirectory' ) ?: wfTempDir();
+		if( is_dir( $path_for_cache_directory ) && is_writable( $path_for_cache_directory ) ){
+			$parser->SetCacheDir( $path_for_cache_directory );
+		}
 		return $parser;
 	}
 
