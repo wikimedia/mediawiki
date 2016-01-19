@@ -517,6 +517,11 @@ class HistoryPager extends ReverseChronologicalPager {
 			$this->buttons .= Xml::tags( 'div', array( 'class' =>
 				'mw-history-revisionactions' ), $actionButtons );
 		}
+
+		if ( $user->isAllowed( 'deleterevision' || $this->showTagEditUI ) ) {
+			$this->buttons .= ( new ListToggle( $this->getOutput() ) )->getHTML();
+		}
+
 		$this->buttons .= '</div>';
 
 		$s .= $this->buttons;
