@@ -641,7 +641,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 
 		$form .= Xml::closeElement( 'fieldset' ) . Xml::closeElement( 'form' );
-
+		$form .= SpecialRecentChanges::makeLegend( $this->getContext() );
 		return $form;
 	}
 
