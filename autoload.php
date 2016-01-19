@@ -703,6 +703,7 @@ $wgAutoloadLocalClasses = array(
 	'LinksDeletionUpdate' => __DIR__ . '/includes/deferred/LinksDeletionUpdate.php',
 	'LinksUpdate' => __DIR__ . '/includes/deferred/LinksUpdate.php',
 	'ListDuplicatedFilesPage' => __DIR__ . '/includes/specials/SpecialListDuplicatedFiles.php',
+	'ListToggle' => __DIR__ . '/includes/ListToggle.php',
 	'ListVariants' => __DIR__ . '/maintenance/language/listVariants.php',
 	'ListredirectsPage' => __DIR__ . '/includes/specials/SpecialListredirects.php',
 	'LoadBalancer' => __DIR__ . '/includes/db/loadbalancer/LoadBalancer.php',
