@@ -2178,13 +2178,16 @@ function wfTempDir() {
 	}
 
 	$tmpDir = array_map( "getenv", array( 'TMPDIR', 'TMP', 'TEMP' ) );
+	$tmpDir[] = sys_get_temp_dir();
+	$tmpDir[] = ini_get( 'upload_tmp_dir' );
 
 	foreach ( $tmpDir as $tmp ) {
 		if ( $tmp && file_exists( $tmp ) && is_dir( $tmp ) && is_writable( $tmp ) ) {
 			return $tmp;
 		}
 	}
-	return sys_get_temp_dir();
+	throw new MWException( 'No writable temporary directory could be found. ' .
+		'Please set $wgTmpDirectory to a writable directory.' );
 }
 
 /**
