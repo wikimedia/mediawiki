@@ -27,61 +27,18 @@
  * @since 1.19
  */
 class DerivativeContext extends ContextSource implements MutableContext {
-	/**
-	 * @var WebRequest
-	 */
-	private $request;
-
-	/**
-	 * @var Title
-	 */
-	private $title;
-
-	/**
-	 * @var WikiPage
-	 */
-	private $wikipage;
-
-	/**
-	 * @var OutputPage
-	 */
-	private $output;
-
-	/**
-	 * @var User
-	 */
-	private $user;
-
-	/**
-	 * @var Language
-	 */
-	private $lang;
-
-	/**
-	 * @var Skin
-	 */
-	private $skin;
-
-	/**
-	 * @var Config
-	 */
-	private $config;
-
-	/**
-	 * @var Stats
-	 */
-	private $stats;
-
-	/**
-	 * @var Timing
-	 */
-	private $timing;
 
 	/**
 	 * Constructor
-	 * @param IContextSource $context Context to inherit from
+	 * @param MutableContext $context MutableContext to inherit from
 	 */
-	public function __construct( IContextSource $context ) {
+	public function __construct( MutableContext $context ) {
+		// Clone the original context object so we can change it without changing the
+		// source context one.
+		$context = clone $context;
+
+		// set this cloned context object as the context of this DerivativeContext instance,
+		// so any set*-call will be done on this one, like any get*-call
 		$this->setContext( $context );
 	}
 
@@ -91,46 +48,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @param Config $s
 	 */
 	public function setConfig( Config $s ) {
-		$this->config = $s;
-	}
-
-	/**
-	 * Get the Config object
-	 *
-	 * @return Config
-	 */
-	public function getConfig() {
-		if ( !is_null( $this->config ) ) {
-			return $this->config;
-		} else {
-			return $this->getContext()->getConfig();
-		}
-	}
-
-	/**
-	 * Get the stats object
-	 *
-	 * @return BufferingStatsdDataFactory
-	 */
-	public function getStats() {
-		if ( !is_null( $this->stats ) ) {
-			return $this->stats;
-		} else {
-			return $this->getContext()->getStats();
-		}
-	}
-
-	/**
-	 * Get the timing object
-	 *
-	 * @return Timing
-	 */
-	public function getTiming() {
-		if ( !is_null( $this->timing ) ) {
-			return $this->timing;
-		} else {
-			return $this->getContext()->getTiming();
-		}
+		$this->getContext()->setConfig( $s );
 	}
 
 	/**
@@ -139,20 +57,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @param WebRequest $r
 	 */
 	public function setRequest( WebRequest $r ) {
-		$this->request = $r;
-	}
-
-	/**
-	 * Get the WebRequest object
-	 *
-	 * @return WebRequest
-	 */
-	public function getRequest() {
-		if ( !is_null( $this->request ) ) {
-			return $this->request;
-		} else {
-			return $this->getContext()->getRequest();
-		}
+		$this->getContext()->setRequest( $r );
 	}
 
 	/**
@@ -161,38 +66,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @param Title $t
 	 */
 	public function setTitle( Title $t ) {
-		$this->title = $t;
-	}
-
-	/**
-	 * Get the Title object
-	 *
-	 * @return Title|null
-	 */
-	public function getTitle() {
-		if ( !is_null( $this->title ) ) {
-			return $this->title;
-		} else {
-			return $this->getContext()->getTitle();
-		}
-	}
-
-	/**
-	 * Check whether a WikiPage object can be get with getWikiPage().
-	 * Callers should expect that an exception is thrown from getWikiPage()
-	 * if this method returns false.
-	 *
-	 * @since 1.19
-	 * @return bool
-	 */
-	public function canUseWikiPage() {
-		if ( $this->wikipage !== null ) {
-			return true;
-		} elseif ( $this->title !== null ) {
-			return $this->title->canExist();
-		} else {
-			return $this->getContext()->canUseWikiPage();
-		}
+		$this->getContext()->setTitle( $t );
 	}
 
 	/**
@@ -202,24 +76,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @param WikiPage $p
 	 */
 	public function setWikiPage( WikiPage $p ) {
-		$this->wikipage = $p;
-	}
-
-	/**
-	 * Get the WikiPage object.
-	 * May throw an exception if there's no Title object set or the Title object
-	 * belongs to a special namespace that doesn't have WikiPage, so use first
-	 * canUseWikiPage() to check whether this method can be called safely.
-	 *
-	 * @since 1.19
-	 * @return WikiPage
-	 */
-	public function getWikiPage() {
-		if ( !is_null( $this->wikipage ) ) {
-			return $this->wikipage;
-		} else {
-			return $this->getContext()->getWikiPage();
-		}
+		$this->getContext()->setWikiPage( $p );
 	}
 
 	/**
@@ -228,20 +85,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @param OutputPage $o
 	 */
 	public function setOutput( OutputPage $o ) {
-		$this->output = $o;
-	}
-
-	/**
-	 * Get the OutputPage object
-	 *
-	 * @return OutputPage
-	 */
-	public function getOutput() {
-		if ( !is_null( $this->output ) ) {
-			return $this->output;
-		} else {
-			return $this->getContext()->getOutput();
-		}
+		$this->getContext()->setOutput( $o );
 	}
 
 	/**
@@ -250,20 +94,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @param User $u
 	 */
 	public function setUser( User $u ) {
-		$this->user = $u;
-	}
-
-	/**
-	 * Get the User object
-	 *
-	 * @return User
-	 */
-	public function getUser() {
-		if ( !is_null( $this->user ) ) {
-			return $this->user;
-		} else {
-			return $this->getContext()->getUser();
-		}
+		$this->getContext()->setUser( $u );
 	}
 
 	/**
@@ -274,29 +105,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @since 1.19
 	 */
 	public function setLanguage( $l ) {
-		if ( $l instanceof Language ) {
-			$this->lang = $l;
-		} elseif ( is_string( $l ) ) {
-			$l = RequestContext::sanitizeLangCode( $l );
-			$obj = Language::factory( $l );
-			$this->lang = $obj;
-		} else {
-			throw new MWException( __METHOD__ . " was passed an invalid type of data." );
-		}
-	}
-
-	/**
-	 * Get the Language object
-	 *
-	 * @return Language
-	 * @since 1.19
-	 */
-	public function getLanguage() {
-		if ( !is_null( $this->lang ) ) {
-			return $this->lang;
-		} else {
-			return $this->getContext()->getLanguage();
-		}
+		$this->getContext()->setLanguage( $l );
 	}
 
 	/**
@@ -305,36 +114,8 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @param Skin $s
 	 */
 	public function setSkin( Skin $s ) {
-		$this->skin = clone $s;
-		$this->skin->setContext( $this );
-	}
-
-	/**
-	 * Get the Skin object
-	 *
-	 * @return Skin
-	 */
-	public function getSkin() {
-		if ( !is_null( $this->skin ) ) {
-			return $this->skin;
-		} else {
-			return $this->getContext()->getSkin();
-		}
-	}
-
-	/**
-	 * Get a message using the current context.
-	 *
-	 * This can't just inherit from ContextSource, since then
-	 * it would set only the original context, and not take
-	 * into account any changes.
-	 *
-	 * @param mixed $args,... Arguments to wfMessage
-	 * @return Message
-	 */
-	public function msg() {
-		$args = func_get_args();
-
-		return call_user_func_array( 'wfMessage', $args )->setContext( $this );
+		$skin = clone $s;
+		$skin->setContext( $this );
+		$this->getContext()->setSkin( $skin );
 	}
 }
