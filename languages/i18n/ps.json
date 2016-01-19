@@ -1346,6 +1346,7 @@
 	"protectedpages-unknown-performer": "ناڅرگنده کارن",
 	"protectedtitles": "ژغورلي سرليکونه",
 	"protectedtitles-summary": "په دې مخ کې هغه سرليکونه د لړليک په توگه راغلي چې دم مهال د جوړېدلو څخه ژغورل شوي. د ژغورلو مخونو د يو لړليک لپاره [[{{#special:ProtectedPages}}|{{int:protectedpages}}]] وگورئ.",
+	"protectedtitlesempty": "دم مهال د همدغو پاراميټرونو له مخې هېڅ کومه ليکنه نه ده ژغورل شوې.",
 	"protectedtitles-submit": "ښکارېدونکي سرليکونه",
 	"listusers": "کارن لړليک",
 	"listusers-editsonly": "يوازې هغه کارنان چې سمونونه يې کړي ښکاره کول",
@@ -1446,6 +1447,7 @@
 	"listgrouprights-namespaceprotection-restrictedto": "د کارن سمون ترسره کولو رښته(رښتې)",
 	"listgrants-rights": "رښتې",
 	"trackingcategories": "موندونکې وېشنيزې",
+	"trackingcategories-summary": "په دې مخ کې هغه موندونکې وېشنيزې چې په اتوماتيک ډول د مېډياويکي ساوترې لخوا ډکېږي، د لړليک په توگه راغلي. د وېشنيزو نومونه د اړونده غونډال پيغامونو په بدلون سره چې د {{ns:8}} په نومتشيال کې دي، د بدلېدلو وړتيا لري.",
 	"trackingcategories-msg": "وېشنيزه موندنه",
 	"trackingcategories-name": "پيغام نوم",
 	"trackingcategories-desc": "د وېشنيزې ورگډونې معيارونه",
@@ -2588,5 +2590,6 @@
 	"mw-widgets-dateinput-placeholder-day": "کککک-م م-و و",
 	"mw-widgets-dateinput-placeholder-month": "کککک-م م",
 	"mw-widgets-titleinput-description-new-page": "تر اوسه پورې دا مخ نشته",
-	"mw-widgets-titleinput-description-redirect": "$1 ته ورگرځېدنه"
+	"mw-widgets-titleinput-description-redirect": "$1 ته ورگرځېدنه",
+	"randomrootpage": "د ناټاکلې ريښې مخ"
 }

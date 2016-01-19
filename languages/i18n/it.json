@@ -3650,5 +3650,6 @@
 	"sessionmanager-tie": "Non è possibile combinare più tipi di richieste di autenticazione: $1.",
 	"sessionprovider-generic": "sessioni $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sessioni basate su cookie",
-	"sessionprovider-nocookies": "I cookie possono essere disattivati. Assicurati di avere i cookie abilitati e ha inizia nuovamente."
+	"sessionprovider-nocookies": "I cookie possono essere disattivati. Assicurati di avere i cookie abilitati e ha inizia nuovamente.",
+	"randomrootpage": "Pagina radice casuale"
 }

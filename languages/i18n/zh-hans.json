@@ -2652,7 +2652,7 @@
 	"markaspatrolledtext-file": "将此文件版本标记为已巡查",
 	"markedaspatrolled": "标记为已检查",
 	"markedaspatrolledtext": "[[:$1]]的已选中版本已被标识为已巡查。",
-	"rcpatroldisabled": "最新更改检查被关闭",
+	"rcpatroldisabled": "最近更改巡查已禁用",
 	"rcpatroldisabledtext": "最近更改巡查功能目前已关闭。",
 	"markedaspatrollederror": "不能标志为已检查",
 	"markedaspatrollederrortext": "你需要指定一个版本以标记为已巡查。",
@@ -3654,5 +3654,6 @@
 	"sessionmanager-tie": "不能结合多个请求的身份验证类型：$1。",
 	"sessionprovider-generic": "$1会话",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "基于cookie的会话",
-	"sessionprovider-nocookies": "Cookie可能已被禁用。确保您已启用cookie，并重试。"
+	"sessionprovider-nocookies": "Cookie可能已被禁用。确保您已启用cookie，并重试。",
+	"randomrootpage": "随机根页面"
 }

@@ -3601,5 +3601,6 @@
 	"sessionmanager-tie": "Nelze kombinovat několik typů autentizace požadavků: $1.",
 	"sessionprovider-generic": "relace pomocí $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "relace pomocí cookies",
-	"sessionprovider-nocookies": "Možná jsou zakázány cookies. Ujistěte se, že máte cookies povoleny a zkuste to znovu."
+	"sessionprovider-nocookies": "Možná jsou zakázány cookies. Ujistěte se, že máte cookies povoleny a zkuste to znovu.",
+	"randomrootpage": "Náhodná kořenová stránka"
 }

@@ -3649,5 +3649,6 @@
 	"sessionmanager-tie": "לא ניתן לצרף מספר סוגי אימות זהות: $1.",
 	"sessionprovider-generic": "התחברויות של $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "התחברויות מבוססות־עוגיות",
-	"sessionprovider-nocookies": "אפשר לכבות עוגיות. יש לוודא שהעוגיות מופעלות ולהתחיל מחדש."
+	"sessionprovider-nocookies": "אפשר לכבות עוגיות. יש לוודא שהעוגיות מופעלות ולהתחיל מחדש.",
+	"randomrootpage": "דף שורש אקראי"
 }

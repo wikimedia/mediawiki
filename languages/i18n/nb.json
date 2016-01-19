@@ -3531,5 +3531,6 @@
 	"mw-widgets-dateinput-placeholder-month": "ÅÅÅÅ-MM",
 	"mw-widgets-titleinput-description-new-page": "siden eksisterer ikke ennå",
 	"mw-widgets-titleinput-description-redirect": "omdiriger til $1",
-	"api-error-blacklisted": "Vennligst velg en annen beskrivende tittel."
+	"api-error-blacklisted": "Vennligst velg en annen beskrivende tittel.",
+	"randomrootpage": "Tilfeldig rotside"
 }

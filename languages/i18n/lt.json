@@ -3552,5 +3552,6 @@
 	"sessionmanager-tie": "Negalima kombinuoti kelių užklausų autentikacijos tipų: $1.",
 	"sessionprovider-generic": "$1 sesijos",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sesijos su slapukais",
-	"sessionprovider-nocookies": "Slapukai gali būti neaktyvuoti. Įsitikinkite, kad slapukai yra aktyvuoti ir pradėkite vėl."
+	"sessionprovider-nocookies": "Slapukai gali būti neaktyvuoti. Įsitikinkite, kad slapukai yra aktyvuoti ir pradėkite vėl.",
+	"randomrootpage": "Atsitiktinis šakninis puslapis"
 }

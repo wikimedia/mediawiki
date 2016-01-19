@@ -3547,5 +3547,6 @@
 	"api-error-blacklisted": "Valitse toinen, kuvaava nimi.",
 	"sessionprovider-generic": "$1 istuntoa",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "istuntoja, joissa on evästeet käytössä",
-	"sessionprovider-nocookies": "Evästeet on voitu poistaa käytöstä. Varmista, että sinulla on evästeet käytössä ja yritä sitten uudelleen."
+	"sessionprovider-nocookies": "Evästeet on voitu poistaa käytöstä. Varmista, että sinulla on evästeet käytössä ja yritä sitten uudelleen.",
+	"randomrootpage": "Satunnainen juurisivu"
 }

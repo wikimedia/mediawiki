@@ -3107,5 +3107,6 @@
 	"mw-widgets-dateinput-placeholder-month": "ГГГГ-ММ",
 	"mw-widgets-titleinput-description-new-page": "страницата все още не съществува",
 	"mw-widgets-titleinput-description-redirect": "пренасочване към $1",
-	"api-error-blacklisted": "Моля, изберете различно, описателно заглавие."
+	"api-error-blacklisted": "Моля, изберете различно, описателно заглавие.",
+	"randomrootpage": "Случайна начална страница"
 }

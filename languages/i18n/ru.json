@@ -3703,5 +3703,6 @@
 	"sessionmanager-tie": "Невозможно использовать одновременно несколько типов проверки подлинности запроса: $1.",
 	"sessionprovider-generic": "$1 сессий",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "сессий на основе куки",
-	"sessionprovider-nocookies": "Могут быть отключены куки. Убедитесь, что у вас включены куки и начните заново."
+	"sessionprovider-nocookies": "Могут быть отключены куки. Убедитесь, что у вас включены куки и начните заново.",
+	"randomrootpage": "Случайная корневая страница"
 }

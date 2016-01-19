@@ -1769,6 +1769,10 @@
 	"log-title-wildcard": "Buscar títulos qu'emprimen con esti testu",
 	"showhideselectedlogentries": "Amosar/anubrir les entraes del rexistru seleicionaes",
 	"log-edit-tags": "Editar les etiquetes de les entraes del rexistru seleicionaes",
+	"checkbox-select": "Seleicionar: $1",
+	"checkbox-all": "Too",
+	"checkbox-none": "Nengunu",
+	"checkbox-invert": "Invertir",
 	"allpages": "Toles páxines",
 	"nextpage": "Páxina siguiente ($1)",
 	"prevpage": "Páxina anterior ($1)",
@@ -3546,5 +3550,6 @@
 	"sessionmanager-tie": "Nun puen combinase dellos tipos de solicitú d'identificación: $1.",
 	"sessionprovider-generic": "sesiones $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sesiones basaes en cookies",
-	"sessionprovider-nocookies": "Les cookies puen tar desactivaes. Asegúrate de tener activaes les cookies y vuelve a principiar."
+	"sessionprovider-nocookies": "Les cookies puen tar desactivaes. Asegúrate de tener activaes les cookies y vuelve a principiar.",
+	"randomrootpage": "Páxina raíz al debalu"
 }

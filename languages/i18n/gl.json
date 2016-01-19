@@ -826,7 +826,7 @@
 	"revdelete-legend": "Aplicar restricións de visibilidade",
 	"revdelete-hide-text": "Texto da revisión",
 	"revdelete-hide-image": "Agochar o contido do ficheiro",
-	"revdelete-hide-name": "Agochar o destino e os parámetros",
+	"revdelete-hide-name": "Agochar o contido da edición",
 	"revdelete-hide-comment": "Resumo de edición",
 	"revdelete-hide-user": "Nome de usuario ou enderezo IP do editor",
 	"revdelete-hide-restricted": "Eliminar os datos da vista dos administradores así coma da doutros",
@@ -3562,5 +3562,6 @@
 	"sessionmanager-tie": "Non pode combinar peticións múltiples de tipos de autenticación: $1.",
 	"sessionprovider-generic": "sesións $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sesións baseadas nas cookies",
-	"sessionprovider-nocookies": "As cookies poden estar desactivadas. Asegúrese de que ten activas as cookies e comece de novo."
+	"sessionprovider-nocookies": "As cookies poden estar desactivadas. Asegúrese de que ten activas as cookies e comece de novo.",
+	"randomrootpage": "Páxina raíz ao chou"
 }

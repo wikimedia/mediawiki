@@ -1158,7 +1158,7 @@
 	"grant-createaccount": "Mở tài khoản",
 	"grant-createeditmovepage": "Tạo, sửa đổi, và di chuyển trang",
 	"grant-delete": "Xóa trang, phiên bản, và mục nhật trình",
-	"grant-editinterface": "Sửa không gian tên MediaWiki và CSS/JS cá nhân",
+	"grant-editinterface": "Sửa không gian tên MediaWiki và CSS/JavaScript cá nhân",
 	"grant-editmycssjs": "Sửa đổi CSS/JavaScript cá nhân của bạn",
 	"grant-editmyoptions": "Sửa đổi tùy chọn cá nhân của bạn",
 	"grant-editmywatchlist": "Sửa danh sách theo dõi của bạn",
@@ -1811,7 +1811,8 @@
 	"listgrouprights-namespaceprotection-header": "Hạn chế không gian tên",
 	"listgrouprights-namespaceprotection-namespace": "Không gian tên",
 	"listgrouprights-namespaceprotection-restrictedto": "Quyền cho phép người dùng sửa đổi",
-	"listgrants-rights": "Cấp phép",
+	"listgrants-grant": "Cấp phép",
+	"listgrants-rights": "Quyền lợi",
 	"trackingcategories": "Thể loại phần mềm",
 	"trackingcategories-summary": "Đây là danh sách các thể loại được phần mềm MediaWiki tự động xếp trang vào. Các tên thể loại được định rõ trong các thông điệp thuộc không gian tên {{ns:8}}.",
 	"trackingcategories-msg": "Thể loại phần mềm",
@@ -3600,5 +3601,6 @@
 	"mw-widgets-dateinput-placeholder-month": "YYYY-MM (năm-tháng)",
 	"mw-widgets-titleinput-description-new-page": "trang này chưa tồn tại",
 	"mw-widgets-titleinput-description-redirect": "đổi hướng đến $1",
-	"api-error-blacklisted": "Xin vui lòng chọn một tên khác miêu tả đầy đủ."
+	"api-error-blacklisted": "Xin vui lòng chọn một tên khác miêu tả đầy đủ.",
+	"randomrootpage": "Trang gốc ngẫu nhiên"
 }

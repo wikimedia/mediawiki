@@ -130,7 +130,8 @@
 			"SinNovedades",
 			"Rodm23",
 			"Yllelder",
-			"Syum90"
+			"Syum90",
+			"Cindie.Capel"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -1865,6 +1866,10 @@
 	"log-title-wildcard": "Buscar títulos que empiecen con este texto",
 	"showhideselectedlogentries": "Cambiar la visibilidad de las entradas del registro seleccionadas",
 	"log-edit-tags": "Editar las etiquetas de las entradas del registro seleccionadas",
+	"checkbox-select": "Seleccione:$1",
+	"checkbox-all": "Todos",
+	"checkbox-none": "Ninguno",
+	"checkbox-invert": "invertir",
 	"allpages": "Todas las páginas",
 	"nextpage": "Siguiente página ($1)",
 	"prevpage": "Página anterior ($1)",
@@ -3646,5 +3651,6 @@
 	"api-error-blacklisted": "Elige un título diferente, más descriptivo.",
 	"sessionprovider-generic": "sesiones $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sesiones basadas en cookies",
-	"sessionprovider-nocookies": "Puede que las cookies estén desactivadas. Actívalas y comienza de nuevo."
+	"sessionprovider-nocookies": "Puede que las cookies estén desactivadas. Actívalas y comienza de nuevo.",
+	"randomrootpage": "Página raíz aleatoria"
 }

@@ -3591,5 +3591,6 @@
 	"mw-widgets-titleinput-description-redirect": "omdirigerar till $1",
 	"api-error-blacklisted": "Välj en annan beskrivande titel.",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "cookiebaserade sessioner",
-	"sessionprovider-nocookies": "Cookies kan vara inaktiverade. Se till att du har cookies aktiverat och försök igen."
+	"sessionprovider-nocookies": "Cookies kan vara inaktiverade. Se till att du har cookies aktiverat och försök igen.",
+	"randomrootpage": "Slumprotsida"
 }

@@ -3661,5 +3661,6 @@
 	"sessionmanager-tie": "Mehrere Anfrageauthentifikationstypen konnten nicht kombiniert werden: $1.",
 	"sessionprovider-generic": "$1-Sitzungen",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "cookiebasierten Sitzungen",
-	"sessionprovider-nocookies": "Cookies sind eventuell deaktiviert. Stelle sicher, dass Cookies aktiviert sind und versuche es erneut."
+	"sessionprovider-nocookies": "Cookies sind eventuell deaktiviert. Stelle sicher, dass Cookies aktiviert sind und versuche es erneut.",
+	"randomrootpage": "Zufällige Stammseite"
 }

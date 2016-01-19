@@ -3511,5 +3511,6 @@
 	"mw-widgets-dateinput-no-date": "कुछ चयनित नहीं",
 	"mw-widgets-titleinput-description-new-page": "पृष्ठ अभी मौजूद नहीं है",
 	"mw-widgets-titleinput-description-redirect": "$1 को अनुप्रेषित",
-	"api-error-blacklisted": "कृपया कोई दूसरा विवरणात्मक शीर्षक चुनें।"
+	"api-error-blacklisted": "कृपया कोई दूसरा विवरणात्मक शीर्षक चुनें।",
+	"randomrootpage": "अविशिष्ट मूल पृष्ठ"
 }

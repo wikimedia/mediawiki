@@ -3505,5 +3505,6 @@
 	"mw-widgets-dateinput-placeholder-month": "AAAA-KK",
 	"mw-widgets-titleinput-description-new-page": "lehekülge pole veel",
 	"mw-widgets-titleinput-description-redirect": "ümbersuunamine leheküljele \"$1\"",
-	"api-error-blacklisted": "Palun vali muu pealkiri, mis on kirjeldav."
+	"api-error-blacklisted": "Palun vali muu pealkiri, mis on kirjeldav.",
+	"randomrootpage": "Juhuslik juurlehekülg"
 }

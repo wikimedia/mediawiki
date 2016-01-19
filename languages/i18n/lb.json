@@ -1691,6 +1691,10 @@
 	"logempty": "Näischt fonnt.",
 	"log-title-wildcard": "Titel fänkt mat dësem Text un",
 	"showhideselectedlogentries": "Déi erausgesichte Entréeën am Logbuch weisen/verstoppen",
+	"checkbox-select": "Eraussichen:$1",
+	"checkbox-all": "All",
+	"checkbox-none": "Keen",
+	"checkbox-invert": "Ëmdréinen",
 	"allpages": "All Säiten",
 	"nextpage": "Nächst Säit ($1)",
 	"prevpage": "Säit viru(n) ($1)",
@@ -3339,5 +3343,6 @@
 	"mw-widgets-titleinput-description-new-page": "Säit gëtt et nach net",
 	"mw-widgets-titleinput-description-redirect": "viruleeden op $1",
 	"api-error-blacklisted": "Sicht w.e.g. en aneren Titel, dee méi iwwer de Sujet ausseet.",
-	"sessionprovider-generic": "$1-Sessiounen"
+	"sessionprovider-generic": "$1-Sessiounen",
+	"randomrootpage": "Zoufalls-Stammsäit"
 }

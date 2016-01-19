@@ -3772,5 +3772,6 @@
 	"sessionmanager-tie": "Impossible de combiner les demandes multiples de types d’authentification : $1.",
 	"sessionprovider-generic": "sessions $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sessions basées sur les cookies",
-	"sessionprovider-nocookies": "Les cookies peuvent être désactivés. Assurez-vous que vous avez activé les cookies et recommencez."
+	"sessionprovider-nocookies": "Les cookies peuvent être désactivés. Assurez-vous que vous avez activé les cookies et recommencez.",
+	"randomrootpage": "Page racine aléatoire"
 }

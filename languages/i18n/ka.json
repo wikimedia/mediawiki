@@ -3469,5 +3469,6 @@
 	"mw-widgets-dateinput-placeholder-month": "წწწწ-თთ",
 	"mw-widgets-titleinput-description-new-page": "გვერდი ჯერ არ არსებობს",
 	"mw-widgets-titleinput-description-redirect": "გადამისამართება $1-ზე",
-	"api-error-blacklisted": "გთხოვთ, აირჩიეთ სხვა, აღწერილობითი სათაური."
+	"api-error-blacklisted": "გთხოვთ, აირჩიეთ სხვა, აღწერილობითი სათაური.",
+	"randomrootpage": "შემთხვევითი ძირეული გვერდი"
 }

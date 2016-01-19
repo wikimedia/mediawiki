@@ -807,7 +807,7 @@
 	"undo-summary-username-hidden": "Versie $1 door een verborgen gebruiker ongedaan gemaakt",
 	"cantcreateaccounttitle": "Registreren is mislukt.",
 	"cantcreateaccount-text": "Registreren vanaf dit IP-adres ('''$1''') is geblokkeerd door [[User:$3|$3]].\n\nDe door $3 opgegeven reden is ''$2''",
-	"cantcreateaccount-range-text": "Het aanmaken van gebruikers vanaf IP-adressen in de reeks <strong>$1</strong> is niet mogelijk doordat dit is ingesteld door [[User:$3|$3]]. Uw IP-adres $4 bevindt zich in deze reeks.\n\nDe reden voor de blokkade is <em>$2</em>",
+	"cantcreateaccount-range-text": "Het aanmaken van gebruikers vanaf IP-adressen in de range <strong>$1</strong> is niet mogelijk doordat dit is ingesteld door [[User:$3|$3]]. Uw IP-adres $4 bevindt zich in deze range.\n\nDe reden voor de blokkade is <em>$2</em>",
 	"viewpagelogs": "Logboek voor deze pagina bekijken",
 	"nohistory": "Deze pagina is niet bewerkt.",
 	"currentrev": "Huidige versie",
@@ -2284,8 +2284,8 @@
 	"ipb-otherblocks-header": "Andere {{PLURAL:$1|blokkade|blokkades}}",
 	"unblock-hideuser": "U kunt deze gebruiker niet deblokkeren, omdat de gebruikersnaam is verborgen.",
 	"ipb_cant_unblock": "Fout: blokkadenummer $1 is niet gevonden.\nMisschien is de blokkade al opgeheven.",
-	"ipb_blocked_as_range": "Fout: het IP-adres $1 is niet direct geblokkeerd en de blokkade kan niet opgeheven worden.\nDe blokkade is onderdeel van de reeks $2, waarvan de blokkade wel opgeheven kan worden.",
-	"ip_range_invalid": "Ongeldige IP-reeks.",
+	"ipb_blocked_as_range": "Fout: het IP-adres $1 is niet direct geblokkeerd en de blokkade kan niet opgeheven worden.\nDe blokkade is onderdeel van de range $2, waarvan de blokkade wel opgeheven kan worden.",
+	"ip_range_invalid": "Ongeldige IP-range.",
 	"ip_range_toolarge": "Reeksblokkades groter dan /$1 zijn niet toegestaan.",
 	"proxyblocker": "Proxyblocker",
 	"proxyblockreason": "Uw IP-adres is geblokkeerd, omdat u gebruik maakt van een open proxyserver.\nNeem contact op met uw internetprovider of uw helpdesk en stel die op de hoogte van dit ernstige beveiligingsprobleem.",
@@ -3614,5 +3614,6 @@
 	"api-error-blacklisted": "Kies een andere, beschrijvende naam.",
 	"sessionprovider-generic": "$1 sessies",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sessies gebaseerd op cookies",
-	"sessionprovider-nocookies": "Cookies kunnen uitgeschakeld zijn. Zorg ervoor dat u cookies hebt ingeschakeld en probeer het opnieuw."
+	"sessionprovider-nocookies": "Cookies kunnen uitgeschakeld zijn. Zorg ervoor dat u cookies hebt ingeschakeld en probeer het opnieuw.",
+	"randomrootpage": "Willekeurige hoofdpagina"
 }

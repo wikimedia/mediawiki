@@ -3379,5 +3379,6 @@
 	"sessionmanager-tie": "हे एकत्रित करु शकत नाही,बहुविध विनंती अधिप्रमाणन प्रकार:$1",
 	"sessionprovider-generic": "$1 सत्रे",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "कुकी-आधारीत सत्रे",
-	"sessionprovider-nocookies": "कुकिज अक्षम असू शकतात. याची खात्री करा कि कुकिज सक्षम केल्या आहेत व पुन्हा सुरुवात करा."
+	"sessionprovider-nocookies": "कुकिज अक्षम असू शकतात. याची खात्री करा कि कुकिज सक्षम केल्या आहेत व पुन्हा सुरुवात करा.",
+	"randomrootpage": "अविशिष्ट मूळ पान"
 }

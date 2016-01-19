@@ -3522,5 +3522,6 @@
 	"api-error-blacklisted": "ദയവായി മറ്റൊരു വിവരണാത്മകമായ തലക്കെട്ട് തിരഞ്ഞെടുക്കുക.",
 	"sessionprovider-generic": "$1 സെഷനുകൾ",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "കൂക്കി-അധിഷ്ഠിത സെഷനുകൾ",
-	"sessionprovider-nocookies": "കൂക്കികൾ സജ്ജമല്ലായിരിക്കാം. കൂക്കികൾ സജ്ജമാണോയെന്ന് ഉറപ്പാക്കിയ ശേഷം വീണ്ടും തുടങ്ങുക."
+	"sessionprovider-nocookies": "കൂക്കികൾ സജ്ജമല്ലായിരിക്കാം. കൂക്കികൾ സജ്ജമാണോയെന്ന് ഉറപ്പാക്കിയ ശേഷം വീണ്ടും തുടങ്ങുക.",
+	"randomrootpage": "മൂലതാൾ ക്രമരഹിതമായി നൽകുക"
 }

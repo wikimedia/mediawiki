@@ -3420,5 +3420,6 @@
 	"special-characters-title-minus": "tanda kurang",
 	"mw-widgets-dateinput-placeholder-day": "TTTT-BB-HH",
 	"mw-widgets-dateinput-placeholder-month": "TTTT-BB",
-	"api-error-blacklisted": "Pilih judul lain yang deskriptif"
+	"api-error-blacklisted": "Pilih judul lain yang deskriptif",
+	"randomrootpage": "Halaman dasar sembarang"
 }

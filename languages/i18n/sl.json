@@ -3547,5 +3547,6 @@
 	"sessionmanager-tie": "Ne morem združiti več vrst overitvenih zahtev: $1.",
 	"sessionprovider-generic": "sej $1",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sej, ki temeljijo na piškotkih",
-	"sessionprovider-nocookies": "Piškotki so morda onemogočeni. Prepričaje se, da imate piškotke omogočene, in začnite znova."
+	"sessionprovider-nocookies": "Piškotki so morda onemogočeni. Prepričaje se, da imate piškotke omogočene, in začnite znova.",
+	"randomrootpage": "Naključna korenska stran"
 }
