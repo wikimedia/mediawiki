@@ -2184,7 +2184,7 @@ function wfTempDir() {
 			return $tmp;
 		}
 	}
-	return sys_get_temp_dir();
+	return ini_get('upload_tmp_dir');
 }
 
 /**
