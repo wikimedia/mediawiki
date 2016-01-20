@@ -25,10 +25,6 @@
  */
 class ApiTag extends ApiBase {
 
-	protected function getAvailableTags() {
-		return ChangeTags::listExplicitlyDefinedTags();
-	}
-
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$user = $this->getUser();
@@ -150,7 +146,7 @@ class ApiTag extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'add' => array(
-				ApiBase::PARAM_TYPE => $this->getAvailableTags(),
+				ApiBase::PARAM_TYPE => 'tags',
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'remove' => array(

@@ -363,7 +363,7 @@ class ApiEditPage extends ApiBase {
 
 		// Apply change tags
 		if ( count( $params['tags'] ) ) {
-			if ( $user->isAllowed( 'applychangetags' ) ) {
+			if ( ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user ) ) {
 				$requestArray['wpChangeTags'] = implode( ',', $params['tags'] );
 			} else {
 				$this->dieUsage( 'You don\'t have permission to set change tags.', 'taggingnotallowed' );
@@ -579,7 +579,7 @@ class ApiEditPage extends ApiBase {
 			),
 			'summary' => null,
 			'tags' => array(
-				ApiBase::PARAM_TYPE => ChangeTags::listExplicitlyDefinedTags(),
+				ApiBase::PARAM_TYPE => 'tags',
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'minor' => false,
