@@ -66,6 +66,6 @@ class BatchRowWriter {
 		}
 
 		$this->db->commit();
-		wfWaitForSlaves( false, false, $this->clusterName );
+		wfGetLBFactory()->waitForReplication();
 	}
 }

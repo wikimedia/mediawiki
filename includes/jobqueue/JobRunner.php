@@ -208,7 +208,12 @@ class JobRunner implements LoggerAwareInterface {
 				// other wikis in the farm (on different masters) get a chance.
 				$timePassed = microtime( true ) - $lastCheckTime;
 				if ( $timePassed >= self::LAG_CHECK_PERIOD || $timePassed < 0 ) {
-					if ( !wfWaitForSlaves( $lastCheckTime, false, '*', self::MAX_ALLOWED_LAG ) ) {
+					try {
+						wfGetLBFactory()->waitForReplication( array(
+							'ifWritesSince' => $lastCheckTime,
+							'timeout' => self::MAX_ALLOWED_LAG
+						) );
+					} catch ( DBReplicationWaitError $e ) {
 						$response['reached'] = 'slave-lag-limit';
 						break;
 					}

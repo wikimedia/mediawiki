@@ -735,7 +735,12 @@ class SqlBagOStuff extends BagOStuff {
 	protected function waitForSlaves() {
 		if ( !$this->serverInfos ) {
 			// Main LB is used; wait for any slaves to catch up
-			return wfWaitForSlaves( null, false, false, $this->syncTimeout );
+			try {
+				wfGetLBFactory()->waitForReplication( array( 'wiki' => wfWikiID() ) );
+				return true;
+			} catch ( DBReplicationWaitError $e ) {
+				return false;
+			}
 		} else {
 			// Custom DB server list; probably doesn't use replication
 			return true;

@@ -456,7 +456,7 @@ abstract class DatabaseUpdater {
 			flush();
 			if ( $ret !== false ) {
 				$updatesDone[] = $origParams;
-				wfWaitForSlaves();
+				wfGetLBFactory()->waitForReplication();
 			} else {
 				$updatesSkipped[] = array( $func, $params, $origParams );
 			}
