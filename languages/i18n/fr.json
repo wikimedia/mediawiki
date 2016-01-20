@@ -3348,7 +3348,7 @@
 	"version-libraries-license": "Licence",
 	"version-libraries-description": "Description",
 	"version-libraries-authors": "Auteurs",
-	"redirect": "Redirigé par ID de fichier, utilisateur, page, révision ou journal",
+	"redirect": "Rediriger par ID de fichier, utilisateur, page, révision ou journal",
 	"redirect-legend": "Rediriger vers une page ou un fichier",
 	"redirect-summary": "Cette page spéciale redirige vers un fichier (nom de fichier fourni), une page (ID de révision ou de page fourni), une page d’utilisateur (identifiant numérique de l’utilisateur fourni), ou une entrée de journal (ID du journal fourni). Utilisation : [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]], ou [[{{#Special:Redirect}}/logid/186]].",
 	"redirect-submit": "Valider",

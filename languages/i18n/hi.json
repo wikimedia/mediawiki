@@ -1737,6 +1737,8 @@
 	"log-title-wildcard": "इस पाठ से शुरू होने वाले शीर्षक खोजें",
 	"showhideselectedlogentries": "चयनित लॉग प्रविष्टियाँ दिखाएँ/छुपाएँ",
 	"log-edit-tags": "चुने गए लॉग प्रविक्तियों एक सम्पादन टैग",
+	"checkbox-select": "चुनें: $1",
+	"checkbox-all": "सभी",
 	"allpages": "सभी पृष्ठ",
 	"nextpage": "अगला पृष्ठ ($1)",
 	"prevpage": "पिछला पृष्ठ ($1)",

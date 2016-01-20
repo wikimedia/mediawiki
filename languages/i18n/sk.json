@@ -718,7 +718,7 @@
 	"undo-success": "Úpravu je možné vrátiť. Prosím skontrolujte tento rozdiel, čím overíte, že táto úprava je tá, ktorú chcete, a následne uložte zmeny, čím ukončíte vrátenie.",
 	"undo-failure": "Úpravu nie je možné vrátiť kvôli konfliktným medziľahlým úpravám.",
 	"undo-norev": "Túto úpravu nie je možné vrátiť, pretože neexistuje alebo bola zmazaná.",
-	"undo-nochange": "Zdá se, že úprava už bola zrušená.",
+	"undo-nochange": "Zdá sa, že úprava už bola zrušená.",
 	"undo-summary": "Revízia $1 používateľa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusia]]) bola vrátená",
 	"undo-summary-username-hidden": "Vrátiť revíziu $1, ktorú vykonal skrytý používateľ",
 	"cantcreateaccounttitle": "Nie je možné vytvoriť účet",
