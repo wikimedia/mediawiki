@@ -150,22 +150,30 @@
 		this.pushPending();
 
 		$.when.apply( $, promises ).done( function () {
-			var categories, categoryNames,
+			var categoryNames,
 				allData = [],
 				dataSets = Array.prototype.slice.apply( arguments );
 
 			// Collect values from all results
 			allData = allData.concat.apply( allData, dataSets );
 
-			// Remove duplicates
-			categories = allData.filter( function ( value, index, self ) {
-				return self.indexOf( value ) === index;
-			} );
-
-			// Get titles
-			categoryNames = categories.map( function ( name ) {
-				return mw.Title.newFromText( name, NS_CATEGORY ).getMainText();
-			} );
+			categoryNames = allData
+				// Remove duplicates
+				.filter( function ( value, index, self ) {
+					return self.indexOf( value ) === index;
+				} )
+				// Get Title objects
+				.map( function ( name ) {
+					return mw.Title.newFromText( name );
+				} )
+				// Keep only titles from 'Category' namespace
+				.filter( function ( title ) {
+					return title && title.getNamespaceId() === NS_CATEGORY;
+				} )
+				// Convert back to strings, strip 'Category:' prefix
+				.map( function ( title ) {
+					return title.getMainText();
+				} );
 
 			deferred.resolve( categoryNames );
 
@@ -180,7 +188,7 @@
 	CSP.createItemWidget = function ( data ) {
 		return new mw.widgets.CategoryCapsuleItemWidget( {
 			apiUrl: this.api.apiUrl || undefined,
-			title: mw.Title.newFromText( data, NS_CATEGORY )
+			title: mw.Title.makeTitle( NS_CATEGORY, data )
 		} );
 	};
 
@@ -190,7 +198,7 @@
 	CSP.getItemFromData = function ( data ) {
 		// This is a bit of a hack... We have to canonicalize the data in the same way that
 		// #createItemWidget and CategoryCapsuleItemWidget will do, otherwise we won't find duplicates.
-		data = mw.Title.newFromText( data, NS_CATEGORY ).getMainText();
+		data = mw.Title.makeTitle( NS_CATEGORY, data ).getMainText();
 		return OO.ui.mixin.GroupElement.prototype.getItemFromData.call( this, data );
 	};
 
