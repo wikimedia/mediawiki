@@ -1085,8 +1085,7 @@ class User implements IDBAccessObject {
 		$this->mOptionOverrides = null;
 		$this->mOptionsLoaded = false;
 
-		$request = $this->getRequest();
-		$loggedOut = $request ? $request->getSession()->getLoggedOutTimestamp() : 0;
+		$loggedOut = $this->mRequest ? $this->mRequest->getSession()->getLoggedOutTimestamp() : 0;
 		if ( $loggedOut !== 0 ) {
 			$this->mTouched = wfTimestamp( TS_MW, $loggedOut );
 		} else {
