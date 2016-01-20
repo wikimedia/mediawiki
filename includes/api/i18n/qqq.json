@@ -18,7 +18,7 @@
 	"apihelp-main-description": "{{doc-apihelp-description|main}}",
 	"apihelp-main-param-action": "{{doc-apihelp-param|main|action}}",
 	"apihelp-main-param-format": "{{doc-apihelp-param|main|format}}",
-	"apihelp-main-param-maxlag": "{{doc-apihelp-param|main|maxlag}}\n\n\"$host\" and \"$lag\" are not variables and appear as is.",
+	"apihelp-main-param-maxlag": "{{doc-apihelp-param|main|maxlag}}\n\nDatabase replication is the copying of data from a database in one computer to a database in another so that all users share the same level of information and a cluster is a set of replicated servers, so replicated cluster should be translated as the distribution of the latest version of data to all the users connected to the server. Lag is a delay in communication between the server and the client, so it should be translated as a delay (maxlag means the maximum lag).",
 	"apihelp-main-param-smaxage": "{{doc-apihelp-param|main|smaxage}}",
 	"apihelp-main-param-maxage": "{{doc-apihelp-param|main|maxage}}",
 	"apihelp-main-param-assert": "{{doc-apihelp-param|main|assert}}",

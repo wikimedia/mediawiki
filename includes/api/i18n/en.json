@@ -204,7 +204,7 @@
 	"apihelp-imagerotate-example-generator": "Rotate all images in <kbd>Category:Flip</kbd> by <kbd>180</kbd> degrees.",
 
 	"apihelp-import-description": "Import a page from another wiki, or from an XML file.\n\nNote that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when sending a file for the <var>xml</var> parameter.",
-	"apihelp-import-param-summary": "Import summary.",
+	"apihelp-import-param-summary": "Import the summary.",
 	"apihelp-import-param-xml": "Uploaded XML file.",
 	"apihelp-import-param-interwikisource": "For interwiki imports: wiki to import from.",
 	"apihelp-import-param-interwikipage": "For interwiki imports: page to import.",
@@ -1349,7 +1349,7 @@
 	"apihelp-upload-param-chunk": "Chunk contents.",
 	"apihelp-upload-param-async": "Make potentially large file operations asynchronous when possible.",
 	"apihelp-upload-param-asyncdownload": "Make fetching a URL asynchronous.",
-	"apihelp-upload-param-leavemessage": "If asyncdownload is used, leave a message on the user talk page if finished.",
+	"apihelp-upload-param-leavemessage": "If <var>$1asyncdownload</var> is used, leave a message on the user talk page when finished.",
 	"apihelp-upload-param-statuskey": "Fetch the upload status for this file key (upload by URL).",
 	"apihelp-upload-param-checkstatus": "Only fetch the upload status for the given file key.",
 	"apihelp-upload-example-url": "Upload from a URL.",
