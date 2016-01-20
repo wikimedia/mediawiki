@@ -155,18 +155,22 @@ class UploadFromUrlJob extends Job {
 	 * Store a result in the session data. Note that the caller is responsible
 	 * for appropriate session_start and session_write_close calls.
 	 *
-	 * @param MediaWiki\\Session\\Session $session Session to store result into
+	 * @param MediaWiki\\Session\\Session|null $session Session to store result into
 	 * @param string $result The result (Success|Warning|Failure)
 	 * @param string $dataKey The key of the extra data
 	 * @param mixed $dataValue The extra data itself
 	 */
 	protected function storeResultInSession(
-		MediaWiki\Session\Session $session, $result, $dataKey, $dataValue
+		MediaWiki\Session\Session $session = null, $result, $dataKey, $dataValue
 	) {
-		$data = self::getSessionData( $session, $this->params['sessionKey'] );
-		$data['result'] = $result;
-		$data[$dataKey] = $dataValue;
-		self::setSessionData( $session, $this->params['sessionKey'], $data );
+		if ( $session ) {
+			$data = self::getSessionData( $session, $this->params['sessionKey'] );
+			$data['result'] = $result;
+			$data[$dataKey] = $dataValue;
+			self::setSessionData( $session, $this->params['sessionKey'], $data );
+		} else {
+			wfDebug( __METHOD__ . ': Cannot store result in session, session does not exist' );
+		}
 	}
 
 	/**
