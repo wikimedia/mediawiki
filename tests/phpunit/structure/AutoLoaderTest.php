@@ -143,4 +143,14 @@ class AutoLoaderTest extends MediaWikiTestCase {
 		$this->assertFalse( $uncerealized instanceof __PHP_Incomplete_Class,
 			"unserialize() can load classes case-insensitively." );
 	}
+
+	function testAutoloadOrder() {
+		$path = realpath( __DIR__ . '/../../..' );
+		$oldAutoload = file_get_contents( $path . '/autoload.php' );
+		$maintenance = new GenerateLocalAutoload( new AutoloadGenerator( $path, 'local' ) );
+		$newAutoload = $maintenance->getAutoloaderContent( $path );
+
+		$this->assertEquals( $oldAutoload, $newAutoload, 'Autoloader was generated with the ' .
+			'maintenance script.' );
+	}
 }

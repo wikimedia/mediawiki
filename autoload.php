@@ -483,6 +483,7 @@ $wgAutoloadLocalClasses = array(
 	'GenerateCollationData' => __DIR__ . '/maintenance/language/generateCollationData.php',
 	'GenerateCommonPassword' => __DIR__ . '/maintenance/createCommonPasswordCdb.php',
 	'GenerateJsonI18n' => __DIR__ . '/maintenance/generateJsonI18n.php',
+	'GenerateLocalAutoload' => __DIR__ . '/maintenance/generateLocalAutoload.php',
 	'GenerateNormalizerDataAr' => __DIR__ . '/maintenance/language/generateNormalizerDataAr.php',
 	'GenerateNormalizerDataMl' => __DIR__ . '/maintenance/language/generateNormalizerDataMl.php',
 	'GenerateSitemap' => __DIR__ . '/maintenance/generateSitemap.php',
