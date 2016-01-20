@@ -165,6 +165,32 @@
 		}
 	} );
 
+	QUnit.test( 'makeTitle', 6, function ( assert ) {
+		var cases, i, title, expected,
+			NS_MAIN = 0,
+			NS_TALK = 1,
+			NS_TEMPLATE = 10;
+
+		cases = [
+			[ NS_TEMPLATE, 'Foo', 'Template:Foo' ],
+			[ NS_TEMPLATE, 'Category:Foo', 'Template:Category:Foo' ],
+			[ NS_TEMPLATE, 'Template:Foo', 'Template:Template:Foo' ],
+			[ NS_TALK, 'Help:Foo', null ],
+			[ NS_TEMPLATE, '<', null ],
+			[ NS_MAIN, 'Help:Foo', 'Help:Foo' ]
+		];
+
+		for ( i = 0; i < cases.length; i++ ) {
+			title = mw.Title.makeTitle( cases[ i ][ 0 ], cases[ i ][ 1 ] );
+			expected = cases[ i ][ 2 ];
+			if ( expected === null ) {
+				assert.strictEqual( title, expected );
+			} else {
+				assert.strictEqual( title.getPrefixedText(), expected );
+			}
+		}
+	} );
+
 	QUnit.test( 'Basic parsing', 21, function ( assert ) {
 		var title;
 		title = new mw.Title( 'File:Foo_bar.JPG' );
