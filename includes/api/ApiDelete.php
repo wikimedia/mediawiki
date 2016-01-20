@@ -188,7 +188,7 @@ class ApiDelete extends ApiBase {
 			),
 			'reason' => null,
 			'tags' => array(
-				ApiBase::PARAM_TYPE => ChangeTags::listExplicitlyDefinedTags(),
+				ApiBase::PARAM_TYPE => 'tags',
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'watch' => array(
