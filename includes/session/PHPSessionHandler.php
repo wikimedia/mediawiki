@@ -208,7 +208,7 @@ class PHPSessionHandler {
 			throw new \BadMethodCallException( 'Attempt to use PHP session management' );
 		}
 
-		$session = $this->manager->getSessionById( $id, true );
+		$session = $this->manager->getSessionById( $id, false );
 		if ( !$session ) {
 			return '';
 		}
@@ -236,7 +236,13 @@ class PHPSessionHandler {
 			throw new \BadMethodCallException( 'Attempt to use PHP session management' );
 		}
 
-		$session = $this->manager->getSessionById( $id );
+		$session = $this->manager->getSessionById( $id, true );
+		if ( !$session ) {
+			$this->logger->warning(
+				__METHOD__ . ": Session \"$id\" cannot be loaded, skipping write."
+			);
+			return false;
+		}
 
 		// First, decode the string PHP handed us
 		$data = \Wikimedia\PhpSessionSerializer::decode( $dataStr );
@@ -331,7 +337,7 @@ class PHPSessionHandler {
 		if ( !$this->enable ) {
 			throw new \BadMethodCallException( 'Attempt to use PHP session management' );
 		}
-		$session = $this->manager->getSessionById( $id, true );
+		$session = $this->manager->getSessionById( $id, false );
 		if ( $session ) {
 			$session->clear();
 		}

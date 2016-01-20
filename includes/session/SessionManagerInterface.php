@@ -67,12 +67,13 @@ interface SessionManagerInterface extends LoggerAwareInterface {
 	/**
 	 * Fetch a session by ID
 	 * @param string $id
-	 * @param bool $noEmpty Don't return an empty session
+	 * @param bool $create If no session exists for $id, try to create a new one.
+	 *  May still return null if a session for $id exists but cannot be loaded.
 	 * @param WebRequest|null $request Corresponding request. Any existing
 	 *  session associated with this WebRequest object will be overwritten.
 	 * @return Session|null
 	 */
-	public function getSessionById( $id, $noEmpty = false, WebRequest $request = null );
+	public function getSessionById( $id, $create = false, WebRequest $request = null );
 
 	/**
 	 * Fetch a new, empty session

@@ -576,8 +576,9 @@ class RequestContext implements IContextSource, MutableContext {
 			// Get new session, if applicable
 			$session = null;
 			if ( strlen( $params['sessionId'] ) ) { // don't make a new random ID
-				$session = MediaWiki\Session\SessionManager::singleton()
-					->getSessionById( $params['sessionId'] );
+				$manager = MediaWiki\Session\SessionManager::singleton();
+				$session = $manager->getSessionById( $params['sessionId'], true )
+					?: $manager->getEmptySession();
 			}
 
 			// Remove any user IP or agent information, and attach the request
