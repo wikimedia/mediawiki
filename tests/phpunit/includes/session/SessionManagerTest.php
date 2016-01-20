@@ -336,39 +336,28 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 		// Unknown session ID
 		$id = $manager->generateSessionId();
-		$session = $manager->getSessionById( $id );
+		$session = $manager->getSessionById( $id, true );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( $id, $session->getId() );
 
 		$id = $manager->generateSessionId();
-		$this->assertNull( $manager->getSessionById( $id, true ) );
+		$this->assertNull( $manager->getSessionById( $id, false ) );
 
 		// Known but unloadable session ID
 		$this->logger->setCollect( true );
 		$id = $manager->generateSessionId();
-		$this->store->setRawSession( $id, array( 'metadata' => array(
-			'provider' => 'DummySessionProvider',
-			'userId' => 0,
-			'userName' => null,
-			'userToken' => null,
+		$this->store->setSession( $id, array( 'metadata' => array(
+			'userId' => User::idFromName( 'UTSysop' ),
+			'userToken' => 'bad',
 		) ) );
 
-		try {
-			$manager->getSessionById( $id );
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( \UnexpectedValueException $ex ) {
-			$this->assertSame(
-				'Can neither load the session nor create an empty session',
-				$ex->getMessage()
-			);
-		}
-
 		$this->assertNull( $manager->getSessionById( $id, true ) );
+		$this->assertNull( $manager->getSessionById( $id, false ) );
 		$this->logger->setCollect( false );
 
 		// Known session ID
 		$this->store->setSession( $id, array() );
-		$session = $manager->getSessionById( $id );
+		$session = $manager->getSessionById( $id, false );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( $id, $session->getId() );
 	}
@@ -754,14 +743,14 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$sessionId = $session->getSessionId();
 		$id = (string)$sessionId;
 
-		$this->assertSame( $sessionId, $manager->getSessionById( $id )->getSessionId() );
+		$this->assertSame( $sessionId, $manager->getSessionById( $id, true )->getSessionId() );
 
 		$manager->changeBackendId( $backend );
 		$this->assertSame( $sessionId, $session->getSessionId() );
 		$this->assertNotEquals( $id, (string)$sessionId );
 		$id = (string)$sessionId;
 
-		$this->assertSame( $sessionId, $manager->getSessionById( $id )->getSessionId() );
+		$this->assertSame( $sessionId, $manager->getSessionById( $id, true )->getSessionId() );
 
 		// Destruction of the session here causes the backend to be deregistered
 		$session = null;
@@ -784,7 +773,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			);
 		}
 
-		$session = $manager->getSessionById( $id );
+		$session = $manager->getSessionById( $id, true );
 		$this->assertSame( $sessionId, $session->getSessionId() );
 	}
 

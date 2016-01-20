@@ -123,7 +123,8 @@ final class SessionManager implements SessionManagerInterface {
 				// Someone used session_id(), so we need to follow suit.
 				// Note this overwrites whatever session might already be
 				// associated with $request with the one for $id.
-				self::$globalSession = self::singleton()->getSessionById( $id, false, $request );
+				self::$globalSession = self::singleton()->getSessionById( $id, true, $request )
+					?: $request->getSession();
 			}
 		}
 		return self::$globalSession;
@@ -197,7 +198,7 @@ final class SessionManager implements SessionManagerInterface {
 		return $session;
 	}
 
-	public function getSessionById( $id, $noEmpty = false, WebRequest $request = null ) {
+	public function getSessionById( $id, $create = false, WebRequest $request = null ) {
 		if ( !self::validateSessionId( $id ) ) {
 			throw new \InvalidArgumentException( 'Invalid session ID' );
 		}
@@ -217,7 +218,7 @@ final class SessionManager implements SessionManagerInterface {
 			}
 		}
 
-		if ( !$noEmpty && $session === null ) {
+		if ( $create && $session === null ) {
 			$ex = null;
 			try {
 				$session = $this->getEmptySessionInternal( $request, $id );
@@ -225,11 +226,6 @@ final class SessionManager implements SessionManagerInterface {
 				$this->logger->error( __METHOD__ . ': failed to create empty session: ' .
 					$ex->getMessage() );
 				$session = null;
-			}
-			if ( $session === null ) {
-				throw new \UnexpectedValueException(
-					'Can neither load the session nor create an empty session', 0, $ex
-				);
 			}
 		}
 
@@ -662,7 +658,8 @@ final class SessionManager implements SessionManagerInterface {
 	 * @return bool Whether the session info matches the stored data (if any)
 	 */
 	private function loadSessionInfoFromStore( SessionInfo &$info, WebRequest $request ) {
-		$blob = $this->store->get( wfMemcKey( 'MWSession', $info->getId() ) );
+		$key = wfMemcKey( 'MWSession', $info->getId() );
+		$blob = $this->store->get( $key );
 
 		$newParams = array();
 
@@ -670,6 +667,7 @@ final class SessionManager implements SessionManagerInterface {
 			// Sanity check: blob must be an array, if it's saved at all
 			if ( !is_array( $blob ) ) {
 				$this->logger->warning( "Session $info: Bad data" );
+				$this->store->delete( $key );
 				return false;
 			}
 
@@ -678,6 +676,7 @@ final class SessionManager implements SessionManagerInterface {
 				!isset( $blob['metadata'] ) || !is_array( $blob['metadata'] )
 			) {
 				$this->logger->warning( "Session $info: Bad data structure" );
+				$this->store->delete( $key );
 				return false;
 			}
 
@@ -692,6 +691,7 @@ final class SessionManager implements SessionManagerInterface {
 				!array_key_exists( 'provider', $metadata )
 			) {
 				$this->logger->warning( "Session $info: Bad metadata" );
+				$this->store->delete( $key );
 				return false;
 			}
 
@@ -701,6 +701,7 @@ final class SessionManager implements SessionManagerInterface {
 				$newParams['provider'] = $provider = $this->getProvider( $metadata['provider'] );
 				if ( !$provider ) {
 					$this->logger->warning( "Session $info: Unknown provider, " . $metadata['provider'] );
+					$this->store->delete( $key );
 					return false;
 				}
 			} elseif ( $metadata['provider'] !== (string)$provider ) {
