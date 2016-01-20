@@ -39,6 +39,7 @@ class RefreshLinks extends Maintenance {
 		$this->addOption( 'e', 'Last page id to refresh', false, true );
 		$this->addOption( 'dfn-chunk-size', 'Maximum number of existent IDs to check per ' .
 			'query, default 100000', false, true );
+		$this->addOption( 'taghooks', 'Leave tag hooks of the parser enabled', false, false );
 		$this->addArg( 'start', 'Page_id to start from, default 1', false );
 		$this->setBatchSize( 100 );
 	}
@@ -85,8 +86,10 @@ class RefreshLinks extends Maintenance {
 		// Give extensions a chance to optimize settings
 		Hooks::run( 'MaintenanceRefreshLinksInit', array( $this ) );
 
-		# Don't generate extension images (e.g. Timeline)
-		$wgParser->clearTagHooks();
+		if ( !$this->getOption( 'taghooks', false ) ) {
+			# Don't generate extension images (e.g. Timeline)
+			$wgParser->clearTagHooks();
+		}
 
 		$what = $redirectsOnly ? "redirects" : "links";
 
