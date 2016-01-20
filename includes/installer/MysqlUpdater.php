@@ -836,7 +836,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			foreach ( $res as $row ) {
 				$count = ( $count + 1 ) % 100;
 				if ( $count == 0 ) {
-					wfWaitForSlaves();
+					wfGetLBFactory()->waitForReplication( array( 'wiki' => wfWikiID() ) );
 				}
 				$this->db->insert( 'templatelinks',
 					array(

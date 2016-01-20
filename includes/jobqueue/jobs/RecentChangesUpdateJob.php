@@ -98,7 +98,9 @@ class RecentChangesUpdateJob extends Job {
 
 			if ( count( $rcIds ) === $batchSize ) {
 				// There might be more, so try waiting for slaves
-				if ( !wfWaitForSlaves( null, false, false, /* $timeout = */ 3 ) ) {
+				try {
+					wfGetLBFactory()->waitForReplication( array( 'timeout' => 3 ) );
+				} catch ( DBReplicationWaitError $e ) {
 					// Another job will continue anyway
 					break;
 				}
@@ -125,7 +127,7 @@ class RecentChangesUpdateJob extends Job {
 
 			$lockKey = wfWikiID() . '-activeusers';
 			if ( !$dbw->lock( $lockKey, __METHOD__, 1 ) ) {
-				return false; // exclusive update (avoids duplicate entries)
+				return; // exclusive update (avoids duplicate entries)
 			}
 
 			$nowUnix = time();
@@ -203,7 +205,7 @@ class RecentChangesUpdateJob extends Job {
 				}
 				foreach ( array_chunk( $newRows, 500 ) as $rowBatch ) {
 					$dbw->insert( 'querycachetwo', $rowBatch, __METHOD__ );
-					wfWaitForSlaves();
+					wfGetLBFactory()->waitForReplication();
 				}
 			}
 
