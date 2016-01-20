@@ -1052,6 +1052,15 @@ abstract class ApiBase extends ContextSource {
 						break;
 					case 'upload': // nothing to do
 						break;
+					case 'tag':
+						if ( is_array( $value ) && count( $value ) ) {
+							$user = $this->getUser();
+							$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $value, $user );
+							if ( !$tagStatus->isOK() ) {
+								$this->dieStatus( $tagStatus );
+							}
+						}
+						break;
 					default:
 						ApiBase::dieDebug( __METHOD__, "Param $encParamName's type is unknown - $type" );
 				}
