@@ -18,7 +18,7 @@
 	"apihelp-main-description": "{{doc-apihelp-description|main}}",
 	"apihelp-main-param-action": "{{doc-apihelp-param|main|action}}",
 	"apihelp-main-param-format": "{{doc-apihelp-param|main|format}}",
-	"apihelp-main-param-maxlag": "{{doc-apihelp-param|main|maxlag}}\n\n\"$host\" and \"$lag\" are not variables and appear as is.",
+	"apihelp-main-param-maxlag": "{{doc-apihelp-param|main|maxlag}}",
 	"apihelp-main-param-smaxage": "{{doc-apihelp-param|main|smaxage}}",
 	"apihelp-main-param-maxage": "{{doc-apihelp-param|main|maxage}}",
 	"apihelp-main-param-assert": "{{doc-apihelp-param|main|assert}}",
