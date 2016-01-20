@@ -532,6 +532,17 @@ class ApiHelp extends ApiBase {
 									$type = null;
 									break;
 
+								case 'tags':
+									$tags = ChangeTags::listExplicitlyDefinedTags();
+									$count = count( $tags );
+									$info[] = $context->msg( 'api-help-param-list' )
+										->params( $multi ? 2 : 1 )
+										->params( $context->getLanguage()->commaList( $tags ) )
+										->parse();
+									$hintPipeSeparated = false;
+									$type = null;
+									break;
+
 								case 'limit':
 									if ( isset( $settings[ApiBase::PARAM_MAX2] ) ) {
 										$info[] = $context->msg( 'api-help-param-limit2' )
