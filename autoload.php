@@ -292,6 +292,7 @@ $wgAutoloadLocalClasses = array(
 	'DBMasterPos' => __DIR__ . '/includes/db/DatabaseUtility.php',
 	'DBQueryError' => __DIR__ . '/includes/db/DatabaseError.php',
 	'DBReadOnlyError' => __DIR__ . '/includes/db/DatabaseError.php',
+	'DBReplicationWaitError' => __DIR__ . '/includes/db/loadbalancer/LBFactory.php',
 	'DBSiteStore' => __DIR__ . '/includes/site/DBSiteStore.php',
 	'DBTransactionError' => __DIR__ . '/includes/db/DatabaseError.php',
 	'DBUnexpectedError' => __DIR__ . '/includes/db/DatabaseError.php',

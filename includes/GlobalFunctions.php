@@ -3346,55 +3346,35 @@ function wfGetNull() {
  * @param string|bool $cluster Cluster name accepted by LBFactory. Default: false.
  * @param int|null $timeout Max wait time. Default: 1 day (cli), ~10 seconds (web)
  * @return bool Success (able to connect and no timeouts reached)
+ * @deprecated since 1.27 Use LBFactory::waitForReplication
  */
 function wfWaitForSlaves(
 	$ifWritesSince = null, $wiki = false, $cluster = false, $timeout = null
 ) {
-	// B/C: first argument used to be "max seconds of lag"; ignore such values
-	$ifWritesSince = ( $ifWritesSince > 1e9 ) ? $ifWritesSince : null;
-
 	if ( $timeout === null ) {
 		$timeout = ( PHP_SAPI === 'cli' ) ? 86400 : 10;
 	}
 
-	// Figure out which clusters need to be checked
-	/** @var LoadBalancer[] $lbs */
-	$lbs = array();
 	if ( $cluster === '*' ) {
-		wfGetLBFactory()->forEachLB( function ( LoadBalancer $lb ) use ( &$lbs ) {
-			$lbs[] = $lb;
-		} );
-	} elseif ( $cluster !== false ) {
-		$lbs[] = wfGetLBFactory()->getExternalLB( $cluster );
-	} else {
-		$lbs[] = wfGetLB( $wiki );
+		$cluster = false;
+		$wiki = false;
+	} elseif ( $wiki === false ) {
+		$wiki = wfWikiID();
 	}
 
-	// Get all the master positions of applicable DBs right now.
-	// This can be faster since waiting on one cluster reduces the
-	// time needed to wait on the next clusters.
-	$masterPositions = array_fill( 0, count( $lbs ), false );
-	foreach ( $lbs as $i => $lb ) {
-		if ( $lb->getServerCount() <= 1 ) {
-			// Bug 27975 - Don't try to wait for slaves if there are none
-			// Prevents permission error when getting master position
-			continue;
-		} elseif ( $ifWritesSince && $lb->lastMasterChangeTimestamp() < $ifWritesSince ) {
-			continue; // no writes since the last wait
-		}
-		$masterPositions[$i] = $lb->getMasterPos();
+	try {
+		wfGetLBFactory()->waitForReplication( array(
+			'wiki' => $wiki,
+			'cluster' => $cluster,
+			'timeout' => $timeout,
+			// B/C: first argument used to be "max seconds of lag"; ignore such values
+			'ifWritesSince' => ( $ifWritesSince > 1e9 ) ? $ifWritesSince : null
+		) );
+	} catch ( DBReplicationWaitError $e ) {
+		return false;
 	}
 
-	$ok = true;
-	foreach ( $lbs as $i => $lb ) {
-		if ( $masterPositions[$i] ) {
-			// The DBMS may not support getMasterPos() or the whole
-			// load balancer might be fake (e.g. $wgAllDBsAreLocalhost).
-			$ok = $lb->waitForAll( $masterPositions[$i], $timeout ) && $ok;
-		}
-	}
-
-	return $ok;
+	return true;
 }
 
 /**
