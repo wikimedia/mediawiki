@@ -1826,6 +1826,7 @@
 	"checkbox-select": "Selecteer: $1",
 	"checkbox-all": "Alle",
 	"checkbox-none": "Geen",
+	"checkbox-invert": "Omkeren",
 	"allpages": "Alle pagina's",
 	"nextpage": "Volgende pagina ($1)",
 	"prevpage": "Vorige pagina ($1)",
