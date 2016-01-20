@@ -352,7 +352,10 @@ final class AuthManager implements LoggerAwareInterface {
 	 *   AuthManager::continueAuthentication() should be called.
 	 * - status RESTART: The user logged in successfully with a third-party
 	 *   service, but the third-party credentials aren't attached to any local
-	 *   account. This could be treated as a UI or a FAIL.
+	 *   account. This could be treated as a UI or a FAIL. In the second case,
+	 *   if it is followed up by an account creation process, the $createRequest
+	 *   in the response should be passed to AuthManager::beginAccountCreation()
+	 *   after adding a local username.
 	 * - status PASS: Authentication was successful.
 	 *
 	 * @param AuthenticationRequest[] $reqs
@@ -511,20 +514,24 @@ final class AuthManager implements LoggerAwareInterface {
 				$this->logger->info(
 					"Primary login with {$provider->getUniqueId()} succeeded, but returned no user"
 				);
+				$ret = AuthenticationResponse::newRestart( wfMessage( $msg ) );
+				$restartRequests = $this->getAuthenticationRequestsInternal( self::ACTION_LOGIN,
+					array(), $this->getPrimaryAuthenticationProviders() +
+							 $this->getSecondaryAuthenticationProviders() );
+				if ( $res->createRequest || $state['maybeLink'] ) {
+					$createRequest = new CreateFromLoginAuthenticationRequest( $res->createRequest,
+						$state['maybeLink'] );
+					$restartRequests[] = $createRequest;
+					$ret->createRequest = $createRequest;
+				}
+				$ret->neededRequests = $restartRequests;
 				$session->set( 'AuthManager::authnState', array(
 					'reqs' => array(), // Will be filled in later
 					'primary' => null,
 					'primaryResponse' => null,
 					'secondary' => array(),
-					'continueRequests' => array(),
+					'continueRequests' => $restartRequests,
 				) + $state );
-				$ret = AuthenticationResponse::newRestart( wfMessage( $msg ) );
-				$ret->neededRequests = $this->getAuthenticationRequests( self::ACTION_LOGIN_CONTINUE );
-				if ( $res->createRequest || $state['maybeLink'] ) {
-					$ret->createRequest = new CreateFromLoginAuthenticationRequest(
-						$res->createRequest, $state['maybeLink']
-					);
-				}
 				return $ret;
 			}
 

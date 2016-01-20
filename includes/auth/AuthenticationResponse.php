@@ -88,7 +88,7 @@ class AuthenticationResponse {
 	 *
 	 * Returned with an AuthManager login FAIL or RESTART, this holds a request
 	 * that may be passed to AuthManager::beginCreateAccount() after setting
-	 * its ->returnToUrl property. On a FAIL, it may also be passed to
+	 * its ->returnToUrl property. It may also be passed to
 	 * AuthManager::beginAuthentication() to preserve state.
 	 */
 	public $createRequest = null;
