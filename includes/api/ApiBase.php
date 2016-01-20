@@ -74,6 +74,7 @@ abstract class ApiBase extends ContextSource {
 	 * - string: Any non-empty string, not expected to be very long or contain newlines.
 	 *   <input type="text"> would be an appropriate HTML form field.
 	 * - submodule: The name of a submodule of this module, see PARAM_SUBMODULE_MAP.
+	 * - tags: Array of existing, explicitly defined tags.
 	 * - text: Any non-empty string, expected to be very long or contain newlines.
 	 *   <textarea> would be an appropriate HTML form field.
 	 * - timestamp: A timestamp in any format recognized by MWTimestamp, or the
@@ -1051,6 +1052,16 @@ abstract class ApiBase extends ContextSource {
 						}
 						break;
 					case 'upload': // nothing to do
+						break;
+					case 'tags':
+						// If change tagging was requested, check that the user is allowed to tag,
+						// and the tags are valid
+						if ( is_array( $value ) && count( $value ) ) {
+							$tagsStatus = ChangeTags::canAddTagsAccompanyingChange( $value );
+							if ( !$tagsStatus->isGood() ) {
+								$this->dieStatus( $tagsStatus );
+							}
+						}
 						break;
 					default:
 						ApiBase::dieDebug( __METHOD__, "Param $encParamName's type is unknown - $type" );
