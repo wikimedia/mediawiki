@@ -397,6 +397,11 @@ class EditPage {
 	private $enableApiEditOverride = false;
 
 	/**
+	 * @var bool Whether an old revision is edited
+	 */
+	private $isOldRev = false;
+
+	/**
 	 * @param Article $article
 	 */
 	public function __construct( Article $article ) {
@@ -2801,6 +2806,7 @@ class EditPage {
 					if ( !$revision->isCurrent() ) {
 						$this->mArticle->setOldSubtitle( $revision->getId() );
 						$wgOut->addWikiMsg( 'editingold' );
+						$this->isOldRev = true;
 					}
 				} elseif ( $this->mTitle->exists() ) {
 					// Something went wrong
@@ -3101,6 +3107,10 @@ HTML
 				if ( $this->mTitle->isCascadeProtected() ) {
 					$classes[] = 'mw-textarea-cprotected';
 				}
+			}
+			# Is an old revision being edited?
+			if ( $this->isOldRev ) {
+				$classes[] = 'mw-textarea-oldrev';
 			}
 
 			$attribs = array( 'tabindex' => 1 );
