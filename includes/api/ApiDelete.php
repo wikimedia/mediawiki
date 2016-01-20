@@ -58,15 +58,6 @@ class ApiDelete extends ApiBase {
 			$this->dieUsageMsg( $errors[0] );
 		}
 
-		// If change tagging was requested, check that the user is allowed to tag,
-		// and the tags are valid
-		if ( count( $params['tags'] ) ) {
-			$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
-			if ( !$tagStatus->isOK() ) {
-				$this->dieStatus( $tagStatus );
-			}
-		}
-
 		if ( $titleObj->getNamespace() == NS_FILE ) {
 			$status = self::deleteFile(
 				$pageObj,

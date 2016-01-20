@@ -949,6 +949,10 @@ abstract class ApiBase extends ContextSource {
 					$type = $this->getModuleManager()->getNames( $paramName );
 				}
 			}
+			if ( isset( $value ) && $type == 'tags' ) {
+				// anything needed here?
+				// error reporting is done directly via ChangeTags::canAddTagsAccompanyingChange
+			}
 		}
 
 		if ( isset( $value ) && ( $multi || is_array( $type ) ) ) {
@@ -975,8 +979,10 @@ abstract class ApiBase extends ContextSource {
 						}
 						break;
 					case 'integer': // Force everything using intval() and optionally validate limits
-						$min = isset( $paramSettings[self::PARAM_MIN] ) ? $paramSettings[self::PARAM_MIN] : null;
-						$max = isset( $paramSettings[self::PARAM_MAX] ) ? $paramSettings[self::PARAM_MAX] : null;
+						$min = isset( $paramSettings[self::PARAM_MIN] ) ?
+							$paramSettings[self::PARAM_MIN] : null;
+						$max = isset( $paramSettings[self::PARAM_MAX] ) ?
+							$paramSettings[self::PARAM_MAX] : null;
 						$enforceLimits = isset( $paramSettings[self::PARAM_RANGE_ENFORCE] )
 							? $paramSettings[self::PARAM_RANGE_ENFORCE] : false;
 
@@ -984,13 +990,15 @@ abstract class ApiBase extends ContextSource {
 							$value = array_map( 'intval', $value );
 							if ( !is_null( $min ) || !is_null( $max ) ) {
 								foreach ( $value as &$v ) {
-									$this->validateLimit( $paramName, $v, $min, $max, null, $enforceLimits );
+									$this->validateLimit( $paramName, $v, $min, $max, null,
+										$enforceLimits );
 								}
 							}
 						} else {
 							$value = intval( $value );
 							if ( !is_null( $min ) || !is_null( $max ) ) {
-								$this->validateLimit( $paramName, $value, $min, $max, null, $enforceLimits );
+								$this->validateLimit( $paramName, $value, $min, $max, null,
+									$enforceLimits );
 							}
 						}
 						break;
@@ -1008,9 +1016,11 @@ abstract class ApiBase extends ContextSource {
 							);
 						}
 						if ( $multi ) {
-							ApiBase::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
+							ApiBase::dieDebug( __METHOD__,
+								"Multi-values not supported for $encParamName" );
 						}
-						$min = isset( $paramSettings[self::PARAM_MIN] ) ? $paramSettings[self::PARAM_MIN] : 0;
+						$min = isset( $paramSettings[self::PARAM_MIN] ) ?
+							$paramSettings[self::PARAM_MIN] : 0;
 						if ( $value == 'max' ) {
 							$value = $this->getMain()->canApiHighLimits()
 								? $paramSettings[self::PARAM_MAX2]
@@ -1029,7 +1039,8 @@ abstract class ApiBase extends ContextSource {
 						break;
 					case 'boolean':
 						if ( $multi ) {
-							ApiBase::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
+							ApiBase::dieDebug( __METHOD__,
+								"Multi-values not supported for $encParamName" );
 						}
 						break;
 					case 'timestamp':
@@ -1051,6 +1062,17 @@ abstract class ApiBase extends ContextSource {
 						}
 						break;
 					case 'upload': // nothing to do
+						break;
+					case 'tags':
+						// If change tagging was requested, check that the user is allowed to tag,
+						// and the tags are valid
+						if ( is_array( $value ) && count( $value ) ) {
+							$user = $this->getUser();
+							$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $value, $user );
+							if ( !$tagStatus->isOK() ) {
+								$this->dieStatus( $tagStatus );
+							}
+						}
 						break;
 					default:
 						ApiBase::dieDebug( __METHOD__, "Param $encParamName's type is unknown - $type" );
