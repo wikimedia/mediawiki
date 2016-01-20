@@ -159,7 +159,7 @@ abstract class AuthenticationRequest {
 	 * and ACTION_REMOVE and for requests returned in
 	 * AuthenticationResponse::$linkRequest to create useful user interfaces.
 	 *
-	 * @return array with the following keys:
+	 * @return \Message[] with the following keys:
 	 *  - provider: A Message identifying the service that provides
 	 *    the credentials, e.g. the name of the third party authentication
 	 *    service.
