@@ -362,6 +362,28 @@ class ChangeTags {
 	}
 
 	/**
+	 * Helper function to generate a status whether given tags exist or not.
+	 *
+	 * @param $tags array Tags to check
+	 *
+	 * @see ChangeTags::restrictedTagError
+	 * @return Status Good if the tags exist, fatal if not
+	 */
+	public static function validateTags( $tags ) {
+		$allowedTags = ChangeTags::listExplicitlyDefinedTags();
+		$disallowedTags = array_diff( $tags, $allowedTags );
+		$status = Status::newGood();
+		if ( $disallowedTags ) {
+			$status = ChangeTags::restrictedTagError(
+				'tags-apply-not-allowed-one',
+				'tags-apply-not-allowed-multi', $disallowedTags
+			);
+		}
+
+		return $status;
+	}
+
+	/**
 	 * Is it OK to allow the user to apply all the specified tags at the same time
 	 * as they edit/make the change?
 	 *
