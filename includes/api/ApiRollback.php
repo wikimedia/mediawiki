@@ -60,15 +60,6 @@ class ApiRollback extends ApiBase {
 		$summary = $params['summary'];
 		$details = array();
 
-		// If change tagging was requested, check that the user is allowed to tag,
-		// and the tags are valid
-		if ( count( $params['tags'] ) ) {
-			$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
-			if ( !$tagStatus->isOK() ) {
-				$this->dieStatus( $tagStatus );
-			}
-		}
-
 		$retval = $pageObj->doRollback(
 			$this->getRbUser( $params ),
 			$summary,
@@ -122,7 +113,7 @@ class ApiRollback extends ApiBase {
 				ApiBase::PARAM_TYPE => 'integer'
 			),
 			'tags' => array(
-				ApiBase::PARAM_TYPE => ChangeTags::listExplicitlyDefinedTags(),
+				ApiBase::PARAM_TYPE => 'tags',
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'user' => array(
