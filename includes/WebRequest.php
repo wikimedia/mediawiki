@@ -655,7 +655,10 @@ class WebRequest {
 	 */
 	public function getSession() {
 		if ( $this->sessionId !== null ) {
-			return SessionManager::singleton()->getSessionById( (string)$this->sessionId, false, $this );
+			$session = SessionManager::singleton()->getSessionById( (string)$this->sessionId, true, $this );
+			if ( $session ) {
+				return $session;
+			}
 		}
 
 		$session = SessionManager::singleton()->getSessionForRequest( $this );
