@@ -18,7 +18,7 @@
 	"apihelp-main-description": "{{doc-apihelp-description|main}}",
 	"apihelp-main-param-action": "{{doc-apihelp-param|main|action}}",
 	"apihelp-main-param-format": "{{doc-apihelp-param|main|format}}",
-	"apihelp-main-param-maxlag": "{{doc-apihelp-param|main|maxlag}}\n\n\"$host\" and \"$lag\" are not variables and appear as is.\n----\n\"Database replication\" is a configuration where you have multiple databases that communicate with each other so they all contain the same data. A \"database replicated cluster\" is a cluster (meaning \"a group of computers that work together\") of databases configured in this manner.\n\n\"Lag\" refers to the situation where one or more of the databases in the cluster are not completely up to date. For example, if the \"master\" database has data up to 2016-01-21T01:23:45Z while one of the \"slave\" is only up to 2016-01-21T01:23:30Z, that's a lag of 15 seconds.\n\nIn this case, \"$lag\" and \"$host\" are syntactic variables rather than computer code variables, so <var> would not be appropriate. They are there to represent that the actual output text will be something like \"Waiting for db1045: 53 seconds lagged.\"",
+	"apihelp-main-param-maxlag": "{{doc-apihelp-param|main|maxlag}}",
 	"apihelp-main-param-smaxage": "{{doc-apihelp-param|main|smaxage}}",
 	"apihelp-main-param-maxage": "{{doc-apihelp-param|main|maxage}}",
 	"apihelp-main-param-assert": "{{doc-apihelp-param|main|assert}}",
