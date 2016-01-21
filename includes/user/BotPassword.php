@@ -102,6 +102,12 @@ class BotPassword implements IDBAccessObject {
 	 * @return BotPassword|null
 	 */
 	public static function newFromCentralId( $centralId, $appId, $flags = self::READ_NORMAL ) {
+		global $wgEnableBotPasswords;
+
+		if ( !$wgEnableBotPasswords ) {
+			return null;
+		}
+
 		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = self::getDB( $index );
 		$row = $db->selectRow(
@@ -334,6 +340,12 @@ class BotPassword implements IDBAccessObject {
 	 * @return bool Whether any passwords were invalidated
 	 */
 	public static function invalidateAllPasswordsForCentralId( $centralId ) {
+		global $wgEnableBotPasswords;
+
+		if ( !$wgEnableBotPasswords ) {
+			return false;
+		}
+
 		$dbw = self::getDB( DB_MASTER );
 		$dbw->update(
 			'bot_passwords',
@@ -362,6 +374,12 @@ class BotPassword implements IDBAccessObject {
 	 * @return bool Whether any passwords were removed
 	 */
 	public static function removeAllPasswordsForCentralId( $centralId ) {
+		global $wgEnableBotPasswords;
+
+		if ( !$wgEnableBotPasswords ) {
+			return false;
+		}
+
 		$dbw = self::getDB( DB_MASTER );
 		$dbw->delete(
 			'bot_passwords',
