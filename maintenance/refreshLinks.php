@@ -73,8 +73,6 @@ class RefreshLinks extends Maintenance {
 	private function doRefreshLinks( $start, $newOnly = false,
 		$end = null, $redirectsOnly = false, $oldRedirectsOnly = false
 	) {
-		global $wgParser;
-
 		$reportingInterval = 100;
 		$dbr = $this->getDB( DB_SLAVE );
 
@@ -84,9 +82,6 @@ class RefreshLinks extends Maintenance {
 
 		// Give extensions a chance to optimize settings
 		Hooks::run( 'MaintenanceRefreshLinksInit', array( $this ) );
-
-		# Don't generate extension images (e.g. Timeline)
-		$wgParser->clearTagHooks();
 
 		$what = $redirectsOnly ? "redirects" : "links";
 
