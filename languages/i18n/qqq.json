@@ -3830,7 +3830,7 @@
 	"tags-update-remove-not-allowed-multi": "Error message seen via the API when a user tries to remove more than one tag that is not properly defined.\n\nParameters:\n* $1 - comma-separated list of tag names\n* $2 - number of tags",
 	"tags-edit-title": "The title of a page where tags can be added or removed from selected revisions or log entries.\nFor more information on tags see [[mw:Manual:Tags]].",
 	"tags-edit-manage-link": "Text of a link to [[Special:Tags]], in imperative mood. Refers to the same thing as {{msg-mw|log-name-managetags}}.",
-	"tags-edit-revision-selected": "{{Identical|revdelete-selected-text}}\n\nSee also:\n* {{msg-mw|tags-edit-logentry-selected}}",
+	"tags-edit-revision-selected": "{{Identical|revdelete-selected-text}}\n\nParameters:\n* $1 - Number of ids of selected revisions\n* $2 - Title of the page that user has selected revisions of\nSee also:\n* {{msg-mw|tags-edit-logentry-selected}}",
 	"tags-edit-logentry-selected": "{{Identical|logdelete-selected}}\n\nSee also:\n* {{msg-mw|tags-edit-revision-selected}}",
 	"tags-edit-revision-explanation": "Leave blank.\n\nSee also:\n* {{msg-mw|tags-edit-logentry-explanation}}",
 	"tags-edit-logentry-explanation": "Leave blank.\n\nSee also:\n* {{msg-mw|tags-edit-revision-explanation}}",
