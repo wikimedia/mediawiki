@@ -116,7 +116,7 @@ class UserMailer {
 	 */
 	public static function send( $to, $from, $subject, $body, $options = array() ) {
 		global $wgAllowHTMLEmail;
-		$contentType = 'text/plain; charset=UTF-8';
+
 		if ( !is_array( $options ) ) {
 			// Old calling style
 			wfDeprecated( __METHOD__ . ' with $replyto as 5th parameter', '1.26' );
@@ -124,6 +124,9 @@ class UserMailer {
 			if ( func_num_args() === 6 ) {
 				$options['contentType'] = func_get_arg( 5 );
 			}
+		}
+		if ( !isset( $options['contentType'] ) ) {
+			$options['contentType'] = 'text/plain; charset=UTF-8';
 		}
 
 		if ( !is_array( $to ) ) {
@@ -327,8 +330,7 @@ class UserMailer {
 				$body = str_replace( "\n", "\r\n", $body );
 			}
 			$headers['MIME-Version'] = '1.0';
-			$headers['Content-type'] = ( is_null( $contentType ) ?
-				'text/plain; charset=UTF-8' : $contentType );
+			$headers['Content-type'] = $contentType;
 			$headers['Content-transfer-encoding'] = '8bit';
 		}
 
