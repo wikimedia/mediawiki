@@ -29,8 +29,7 @@
  * @author Michael Dale
  */
 class UploadFromUrl extends UploadBase {
-	protected $mAsync, $mUrl;
-	protected $mIgnoreWarnings = true;
+	protected $mUrl;
 
 	protected $mTempPath, $mTmpHandle;
 
@@ -130,21 +129,12 @@ class UploadFromUrl extends UploadBase {
 	 *
 	 * @param string $name
 	 * @param string $url
-	 * @param bool|string $async Whether the download should be performed
-	 * asynchronous. False for synchronous, async or async-leavemessage for
-	 * asynchronous download.
 	 * @throws MWException
 	 */
-	public function initialize( $name, $url, $async = false ) {
-		global $wgAllowAsyncCopyUploads;
-
+	public function initialize( $name, $url ) {
 		$this->mUrl = $url;
-		$this->mAsync = $wgAllowAsyncCopyUploads ? $async : false;
-		if ( $async ) {
-			throw new MWException( 'Asynchronous copy uploads are no longer possible as of r81612.' );
-		}
 
-		$tempPath = $this->mAsync ? null : $this->makeTemporaryFile();
+		$tempPath = $this->makeTemporaryFile();
 		# File size and removeTempFile will be filled in later
 		$this->initializePathInfo( $name, $tempPath, 0, false );
 	}
@@ -186,9 +176,9 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/**
-	 * Download the file (if not async)
+	 * Download the file
 	 *
-	 * @param array $httpOptions Array of options for MWHttpRequest. Ignored if async.
+	 * @param array $httpOptions Array of options for MWHttpRequest.
 	 *   This could be used to override the timeout on the http request.
 	 * @return Status
 	 */
@@ -203,11 +193,7 @@ class UploadFromUrl extends UploadBase {
 		if ( !self::isAllowedUrl( $this->mUrl ) ) {
 			return Status::newFatal( 'upload-copy-upload-invalid-url' );
 		}
-		if ( !$this->mAsync ) {
-			return $this->reallyFetchFile( $httpOptions );
-		}
-
-		return Status::newGood();
+		return $this->reallyFetchFile( $httpOptions );
 	}
 
 	/**
@@ -310,92 +296,5 @@ class UploadFromUrl extends UploadBase {
 		}
 
 		return $status;
-	}
-
-	/**
-	 * Wrapper around the parent function in order to defer verifying the
-	 * upload until the file really has been fetched.
-	 * @return array|mixed
-	 */
-	public function verifyUpload() {
-		if ( $this->mAsync ) {
-			return array( 'status' => UploadBase::OK );
-		}
-
-		return parent::verifyUpload();
-	}
-
-	/**
-	 * Wrapper around the parent function in order to defer checking warnings
-	 * until the file really has been fetched.
-	 * @return array
-	 */
-	public function checkWarnings() {
-		if ( $this->mAsync ) {
-			$this->mIgnoreWarnings = false;
-
-			return array();
-		}
-
-		return parent::checkWarnings();
-	}
-
-	/**
-	 * Wrapper around the parent function in order to defer checking protection
-	 * until we are sure that the file can actually be uploaded
-	 * @param User $user
-	 * @return bool|mixed
-	 */
-	public function verifyTitlePermissions( $user ) {
-		if ( $this->mAsync ) {
-			return true;
-		}
-
-		return parent::verifyTitlePermissions( $user );
-	}
-
-	/**
-	 * Wrapper around the parent function in order to defer uploading to the
-	 * job queue for asynchronous uploads
-	 * @param string $comment
-	 * @param string $pageText
-	 * @param bool $watch
-	 * @param User $user
-	 * @return Status
-	 */
-	public function performUpload( $comment, $pageText, $watch, $user ) {
-		if ( $this->mAsync ) {
-			$sessionKey = $this->insertJob( $comment, $pageText, $watch, $user );
-
-			return Status::newFatal( 'async', $sessionKey );
-		}
-
-		return parent::performUpload( $comment, $pageText, $watch, $user );
-	}
-
-	/**
-	 * @param string $comment
-	 * @param string $pageText
-	 * @param bool $watch
-	 * @param User $user
-	 * @return string
-	 */
-	protected function insertJob( $comment, $pageText, $watch, $user ) {
-		$sessionKey = $this->stashSession();
-		$job = new UploadFromUrlJob( $this->getTitle(), array(
-			'url' => $this->mUrl,
-			'comment' => $comment,
-			'pageText' => $pageText,
-			'watch' => $watch,
-			'userName' => $user->getName(),
-			'leaveMessage' => $this->mAsync == 'async-leavemessage',
-			'ignoreWarnings' => $this->mIgnoreWarnings,
-			'sessionId' => MediaWiki\Session\SessionManager::getGlobalSession()->getId(),
-			'sessionKey' => $sessionKey,
-		) );
-		$job->initializeSessionData();
-		JobQueueGroup::singleton()->push( $job );
-
-		return $sessionKey;
 	}
 }

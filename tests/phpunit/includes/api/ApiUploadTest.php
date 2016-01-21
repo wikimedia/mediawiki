@@ -83,7 +83,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 			), $session, self::$users['uploader']->getUser() );
 		} catch ( UsageException $e ) {
 			$exception = true;
-			$this->assertEquals( "One of the parameters filekey, file, url, statuskey is required",
+			$this->assertEquals( "One of the parameters filekey, file, url is required",
 				$e->getMessage() );
 		}
 		$this->assertTrue( $exception, "Got exception" );
