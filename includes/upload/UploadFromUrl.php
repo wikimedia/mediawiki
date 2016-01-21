@@ -361,16 +361,17 @@ class UploadFromUrl extends UploadBase {
 	 * @param string $pageText
 	 * @param bool $watch
 	 * @param User $user
+	 * @param string[] $tags
 	 * @return Status
 	 */
-	public function performUpload( $comment, $pageText, $watch, $user ) {
+	public function performUpload( $comment, $pageText, $watch, $user, $tags = array() ) {
 		if ( $this->mAsync ) {
 			$sessionKey = $this->insertJob( $comment, $pageText, $watch, $user );
 
 			return Status::newFatal( 'async', $sessionKey );
 		}
 
-		return parent::performUpload( $comment, $pageText, $watch, $user );
+		return parent::performUpload( $comment, $pageText, $watch, $user, $tags );
 	}
 
 	/**
