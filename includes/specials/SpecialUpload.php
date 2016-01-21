@@ -501,11 +501,29 @@ class SpecialUpload extends SpecialPage {
 			$pageText = false;
 		}
 
+		$changeTags = $this->getRequest()->getVal( 'wpChangeTags' );
+		if ( is_null( $changeTags ) || $changeTags === '' ) {
+			$changeTags = array();
+		} else {
+			$changeTags = array_filter( array_map( 'trim', explode( ',', $changeTags ) ) );
+		}
+
+		if ( $changeTags ) {
+			$changeTagsStatus = ChangeTags::canAddTagsAccompanyingChange(
+				$changeTags, $this->getUser() );
+			if ( !$changeTagsStatus->isOK() ) {
+				$this->showUploadError( $this->getOutput()->parse( $changeTagsStatus->getWikiText() ) );
+
+				return;
+			}
+		}
+
 		$status = $this->mUpload->performUpload(
 			$this->mComment,
 			$pageText,
 			$this->mWatchthis,
-			$this->getUser()
+			$this->getUser(),
+			$changeTags
 		);
 
 		if ( !$status->isGood() ) {
