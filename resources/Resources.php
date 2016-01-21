@@ -2160,6 +2160,7 @@ return array(
 		'dependencies' => array(
 			'oojs-ui',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	/* es5-shim */
