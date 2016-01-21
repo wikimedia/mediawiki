@@ -123,10 +123,10 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 	 * @return string
 	 */
 	public static function cleanupForIRC( $text ) {
-		return Sanitizer::decodeCharReferences( str_replace(
+		return str_replace(
 			array( "\n", "\r" ),
 			array( " ", "" ),
-			$text
-		) );
+			Sanitizer::decodeCharReferences( $text )
+		);
 	}
 }
