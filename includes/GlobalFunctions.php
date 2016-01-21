@@ -2162,8 +2162,8 @@ function wfIsHHVM() {
 /**
  * Tries to get the system directory for temporary files. First
  * $wgTmpDirectory is checked, and then the TMPDIR, TMP, and TEMP
- * environment variables are then checked in sequence, and if none are
- * set try sys_get_temp_dir().
+ * environment variables are then checked in sequence, then
+ * sys_get_temp_dir(), then upload_tmp_dir from php.ini.
  *
  * NOTE: When possible, use instead the tmpfile() function to create
  * temporary files to avoid race conditions on file creation, etc.
@@ -2178,13 +2178,16 @@ function wfTempDir() {
 	}
 
 	$tmpDir = array_map( "getenv", array( 'TMPDIR', 'TMP', 'TEMP' ) );
+	$tmpDir[] = sys_get_temp_dir();
+	$tmpDir[] = ini_get( 'upload_tmp_dir' );
 
 	foreach ( $tmpDir as $tmp ) {
 		if ( $tmp && file_exists( $tmp ) && is_dir( $tmp ) && is_writable( $tmp ) ) {
 			return $tmp;
 		}
 	}
-	return sys_get_temp_dir();
+	throw new MWException( 'No writable temporary directory could be found. ' .
+		'Please set $wgTmpDirectory to a writable directory.' );
 }
 
 /**
