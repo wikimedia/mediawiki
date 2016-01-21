@@ -284,7 +284,7 @@
 	"confirmable-no": "Nei",
 	"thisisdeleted": "Sjå eller attopprett $1?",
 	"viewdeleted": "Sjå historikk for $1?",
-	"restorelink": "{{PLURAL:$1|Éin sletta versjon|$1 sletta versjonar}}",
+	"restorelink": "{{PLURAL:$1|éin sletta versjon|$1 sletta versjonar}}",
 	"feedlinks": "Abonnementskjelde:",
 	"feed-invalid": "Ugyldig abonnementstype.",
 	"feed-unavailable": "Det er ingen kjelder til abonnement",
@@ -1011,7 +1011,6 @@
 	"right-blockemail": "Blokkere brukarar frå å sende e-post",
 	"right-hideuser": "Blokkere eit brukarnamn og skjule det frå ålmenta.",
 	"right-ipblock-exempt": "Kan gjere endringar frå blokkerte IP-adresser",
-	"right-proxyunbannable": "Kan gjere endringar frå blokkerte proxyar",
 	"right-unblockself": "Avblokkera seg sjølve",
 	"right-protect": "Endra vernenivå og verna sider",
 	"right-editprotected": "Endre verna sider",
@@ -3057,5 +3056,6 @@
 	"special-characters-group-gujarati": "Gujarati",
 	"mw-widgets-dateinput-placeholder-day": "ÅÅÅÅ-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "ÅÅÅÅ-MM",
-	"api-error-blacklisted": "Vel eit anna namn som er meir skildrande."
+	"api-error-blacklisted": "Vel eit anna namn som er meir skildrande.",
+	"randomrootpage": "Tilfeldig rotsida"
 }

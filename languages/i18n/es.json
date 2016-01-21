@@ -2408,7 +2408,7 @@
 	"movenosubpage": "Esta página no tiene subpáginas.",
 	"movereason": "Motivo:",
 	"revertmove": "revertir",
-	"delete_and_move_text": "==Se necesita borrado==\n\nLa página de destino (\"[[:$1]]\") ya existe. ¿Quiere borrarla para permitir al traslado?",
+	"delete_and_move_text": "La página de destino «[[:$1]]» ya existe.\n¿Quieres borrarla para permitir el traslado?",
 	"delete_and_move_confirm": "Sí, borrar la página",
 	"delete_and_move_reason": "Borrada para permitir el traslado de \"[[$1]]\"",
 	"selfmove": "Los títulos de origen y destino son los mismos;\nno se puede trasladar una página sobre sí misma.",
