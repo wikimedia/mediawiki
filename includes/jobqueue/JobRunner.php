@@ -43,6 +43,7 @@ class JobRunner implements LoggerAwareInterface {
 	const MAX_ALLOWED_LAG = 3; // abort if more than this much DB lag is present
 	const LAG_CHECK_PERIOD = 1.0; // check slave lag this many seconds
 	const ERROR_BACKOFF_TTL = 1; // seconds to back off a queue due to errors
+	const BACKOFF_THRESHOLD = 10; // apply backoffs in this thread when they reach this point
 
 	/**
 	 * @param callable $debug Optional debug output handler
@@ -142,7 +143,7 @@ class JobRunner implements LoggerAwareInterface {
 		do {
 			// Sync the persistent backoffs with concurrent runners
 			$backoffs = $this->syncBackoffDeltas( $backoffs, $backoffDeltas, $wait );
-			$blacklist = $noThrottle ? array() : array_keys( $backoffs );
+			$blacklist = $noThrottle ? array() : $this->getBackoffBlacklist( $backoffs );
 			$wait = 'nowait'; // less important now
 
 			if ( $type === false ) {
@@ -346,6 +347,23 @@ class JobRunner implements LoggerAwareInterface {
 		}
 
 		return (int)$seconds;
+	}
+
+	/**
+	 * @param array $backoffs Map of (job type => UNIX timestamp)
+	 * @return array List of job types to avoid
+	 */
+	private function getBackoffBlacklist( array $backoffs ) {
+		$now = time();
+
+		$blacklist = array();
+		foreach ( $backoffs as $type => $timestamp ) {
+			if ( ( $timestamp - $now ) > self::BACKOFF_THRESHOLD ) {
+				$blacklist[] = $type;
+			}
+		}
+
+		return $blacklist;
 	}
 
 	/**
