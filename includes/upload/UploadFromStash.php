@@ -183,10 +183,11 @@ class UploadFromStash extends UploadBase {
 	 * @param string $pageText
 	 * @param bool $watch
 	 * @param User $user
+	 * @param string[] $tags
 	 * @return Status
 	 */
-	public function performUpload( $comment, $pageText, $watch, $user ) {
-		$rv = parent::performUpload( $comment, $pageText, $watch, $user );
+	public function performUpload( $comment, $pageText, $watch, $user, $tags = array() ) {
+		$rv = parent::performUpload( $comment, $pageText, $watch, $user, $tags );
 		$this->unsaveUploadedFile();
 
 		return $rv;
