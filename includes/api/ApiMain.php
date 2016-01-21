@@ -1311,19 +1311,19 @@ class ApiMain extends ApiBase {
 	protected function logRequest( $time ) {
 		$request = $this->getRequest();
 		$logCtx = array(
-			'dt' => date( 'c' ),
-			'client_ip' => $request->getIP(),
-			'user_agent' => $this->getUserAgent(),
+			'ts' => time(),
+			'ip' => $request->getIP(),
+			'userAgent' => $this->getUserAgent(),
 			'wiki' => wfWikiID(),
-			'time_backend_ms' => round( $time * 1000 ),
+			'timeSpentBackend' => round( $time * 1000 ),
 			'params' => array(),
 		);
 
 		// Construct space separated message for 'api' log channel
 		$msg = "API {$request->getMethod()} " .
 			wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) .
-			" {$logCtx['client_ip']} " .
-			"T={$logCtx['time_backend_ms']}ms";
+			" {$logCtx['ip']} " .
+			"T={$logCtx['timeSpentBackend']}ms";
 
 		foreach ( $this->getParamsUsed() as $name ) {
 			$value = $request->getVal( $name );
