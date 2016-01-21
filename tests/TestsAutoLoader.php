@@ -48,6 +48,7 @@ $wgAutoloadClasses += array(
 	'LessFileCompilationTest' => "$testDir/phpunit/LessFileCompilationTest.php",
 
 	# tests/phpunit/includes
+	'RevisionStorageTest' => "$testDir/phpunit/includes/RevisionStorageTest.php",
 	'TestingAccessWrapper' => "$testDir/phpunit/includes/TestingAccessWrapper.php",
 	'TestLogger' => "$testDir/phpunit/includes/TestLogger.php",
 
@@ -85,6 +86,9 @@ $wgAutoloadClasses += array(
 
 	# tests/phpunit/includes/logging
 	'LogFormatterTestCase' => "$testDir/phpunit/includes/logging/LogFormatterTestCase.php",
+
+	# tests/phpunit/includes/page
+	'WikiPageTest' => "$testDir/phpunit/includes/page/WikiPageTest.php",
 
 	# tests/phpunit/includes/password
 	'PasswordTestCase' => "$testDir/phpunit/includes/password/PasswordTestCase.php",
