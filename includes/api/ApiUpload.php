@@ -382,7 +382,7 @@ class ApiUpload extends ApiBase {
 		// chunk or one and only one of the following parameters is needed
 		if ( !$this->mParams['chunk'] ) {
 			$this->requireOnlyOneParameter( $this->mParams,
-				'filekey', 'file', 'url', 'statuskey' );
+				'filekey', 'file', 'url' );
 		}
 
 		// Status report for "upload to stash"/"upload from stash"
@@ -398,23 +398,6 @@ class ApiUpload extends ApiBase {
 			}
 			unset( $progress['status'] ); // remove Status object
 			$this->getResult()->addValue( null, $this->getModuleName(), $progress );
-
-			return false;
-		}
-
-		if ( $this->mParams['statuskey'] ) {
-			$this->checkAsyncDownloadEnabled();
-
-			// Status request for an async upload
-			$sessionData = UploadFromUrlJob::getSessionData( $this->mParams['statuskey'] );
-			if ( !isset( $sessionData['result'] ) ) {
-				$this->dieUsage( 'No result in session data', 'missingresult' );
-			}
-			if ( $sessionData['result'] == 'Warning' ) {
-				$sessionData['warnings'] = $this->transformWarnings( $sessionData['warnings'] );
-				$sessionData['sessionkey'] = $this->mParams['statuskey'];
-			}
-			$this->getResult()->addValue( null, $this->getModuleName(), $sessionData );
 
 			return false;
 		}
@@ -481,24 +464,9 @@ class ApiUpload extends ApiBase {
 				$this->dieUsageMsg( 'copyuploadbadurl' );
 			}
 
-			$async = false;
-			if ( $this->mParams['asyncdownload'] ) {
-				$this->checkAsyncDownloadEnabled();
-
-				if ( $this->mParams['leavemessage'] && !$this->mParams['ignorewarnings'] ) {
-					$this->dieUsage( 'Using leavemessage without ignorewarnings is not supported',
-						'missing-ignorewarnings' );
-				}
-
-				if ( $this->mParams['leavemessage'] ) {
-					$async = 'async-leavemessage';
-				} else {
-					$async = 'async';
-				}
-			}
 			$this->mUpload = new UploadFromUrl;
 			$this->mUpload->initialize( $this->mParams['filename'],
-				$this->mParams['url'], $async );
+				$this->mParams['url'] );
 		}
 
 		return true;
@@ -766,16 +734,6 @@ class ApiUpload extends ApiBase {
 
 			if ( !$status->isGood() ) {
 				$error = $status->getErrorsArray();
-
-				if ( count( $error ) == 1 && $error[0][0] == 'async' ) {
-					// The upload can not be performed right now, because the user
-					// requested so
-					return array(
-						'result' => 'Queued',
-						'statuskey' => $error[0][1],
-					);
-				}
-
 				ApiResult::setIndexedTagName( $error, 'error' );
 				$this->dieUsage( 'An internal error occurred', 'internal-error', 0, $error );
 			}
@@ -788,15 +746,6 @@ class ApiUpload extends ApiBase {
 		}
 
 		return $result;
-	}
-
-	/**
-	 * Checks if asynchronous copy uploads are enabled and throws an error if they are not.
-	 */
-	protected function checkAsyncDownloadEnabled() {
-		if ( !$this->getConfig()->get( 'AllowAsyncCopyUploads' ) ) {
-			$this->dieUsage( 'Asynchronous copy uploads disabled', 'asynccopyuploaddisabled' );
-		}
 	}
 
 	public function mustBePosted() {
@@ -855,9 +804,6 @@ class ApiUpload extends ApiBase {
 			),
 
 			'async' => false,
-			'asyncdownload' => false,
-			'leavemessage' => false,
-			'statuskey' => null,
 			'checkstatus' => false,
 		);
 
