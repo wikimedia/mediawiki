@@ -1336,6 +1336,7 @@
 	"apihelp-upload-description": "Upload a file, or get the status of pending uploads.\n\nSeveral methods are available:\n* Upload file contents directly, using the <var>$1file</var> parameter.\n* Upload the file in pieces, using the <var>$1filesize</var>, <var>$1chunk</var>, and <var>$1offset</var> parameters.\n* Have the MediaWiki server fetch a file from a URL, using the <var>$1url</var> parameter.\n* Complete an earlier upload that failed due to warnings, using the <var>$1filekey</var> parameter.\nNote that the HTTP POST must be done as a file upload (i.e. using <code>multipart/form-data</code>) when sending the <var>$1file</var>.",
 	"apihelp-upload-param-filename": "Target filename.",
 	"apihelp-upload-param-comment": "Upload comment. Also used as the initial page text for new files if <var>$1text</var> is not specified.",
+	"apihelp-upload-param-tags": "Change tags to apply to the upload log entry and file page revision.",
 	"apihelp-upload-param-text": "Initial page text for new files.",
 	"apihelp-upload-param-watch": "Watch the page.",
 	"apihelp-upload-param-watchlist": "Unconditionally add or remove the page from the current user's watchlist, use preferences or do not change watch.",
