@@ -87,7 +87,7 @@ function isCompatible( ua ) {
 
 		// Must be after mw.config.set because these callbacks may use mw.loader which
 		// needs to have values 'skin', 'debug' etc. from mw.config.
-		window.RLQ = window.RLQ || [];
+		var RLQ = window.RLQ || [];
 		while ( RLQ.length ) {
 			RLQ.shift()();
 		}
