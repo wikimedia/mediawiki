@@ -662,12 +662,6 @@ $wgCacheSharedUploads = true;
 $wgAllowCopyUploads = false;
 
 /**
- * Allow asynchronous copy uploads.
- * This feature is experimental and broken as of r81612.
- */
-$wgAllowAsyncCopyUploads = false;
-
-/**
  * A list of domains copy uploads can come from
  *
  * @since 1.20
@@ -696,17 +690,6 @@ $wgCopyUploadProxy = false;
  * @since 1.22
  */
 $wgCopyUploadTimeout = false;
-
-/**
- * Different timeout for upload by url when run as a background job
- * This could be useful since when fetching large files via job queue,
- * you may want a different timeout, especially because there is no
- * http request being kept alive.
- *
- * false means fallback to $wgCopyUploadTimeout.
- * @since 1.22
- */
-$wgCopyUploadAsyncTimeout = false;
 
 /**
  * Max size for uploads, in bytes. If not set to an array, applies to all
@@ -6908,7 +6891,6 @@ $wgJobClasses = array(
 	'sendMail' => 'EmaillingJob',
 	'enotifNotify' => 'EnotifNotifyJob',
 	'fixDoubleRedirect' => 'DoubleRedirectJob',
-	'uploadFromUrl' => 'UploadFromUrlJob',
 	'AssembleUploadChunks' => 'AssembleUploadChunksJob',
 	'PublishStashedFile' => 'PublishStashedFileJob',
 	'ThumbnailRender' => 'ThumbnailRenderJob',
