@@ -1365,7 +1365,7 @@ MESSAGE;
 	 * @return string
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
-		return "window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n" .
+		return "(window.RLQ = window.RLQ || []).push(function () {\n" .
 			trim( $script ) . "\n} );";
 	}
 
@@ -1382,7 +1382,7 @@ MESSAGE;
 		$js = self::makeLoaderConditionalScript( $script );
 		return new WrappedString(
 			Html::inlineScript( $js ),
-			"<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n",
+			"<script>(window.RLQ = window.RLQ || []).push(function () {\n",
 			"\n} );</script>"
 		);
 	}
