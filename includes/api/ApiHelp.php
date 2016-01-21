@@ -392,8 +392,9 @@ class ApiHelp extends ApiBase {
 			}
 
 			$params = $module->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
+			$dynamicParams = $module->dynamicParameterDocumentation();
 			$groups = array();
-			if ( $params ) {
+			if ( $params || $dynamicParams !== null ) {
 				$help['parameters'] .= Html::openElement( 'div',
 					array( 'class' => 'apihelp-block apihelp-parameters' )
 				);
@@ -652,6 +653,17 @@ class ApiHelp extends ApiBase {
 					foreach ( $info as $i ) {
 						$help['parameters'] .= Html::rawElement( 'dd', array( 'class' => 'info' ), $i );
 					}
+				}
+
+				if ( $dynamicParams !== null ) {
+					$dynamicParams = ApiBase::makeMessage( $dynamicParams, $context, array(
+						$module->getModulePrefix(),
+						$module->getModuleName(),
+						$module->getModulePath()
+					) );
+					$help['parameters'] .= Html::element( 'dt', null, '*' );
+					$help['parameters'] .= Html::rawElement( 'dd',
+						array( 'class' => 'description' ), $dynamicParams->parse() );
 				}
 
 				$help['parameters'] .= Html::closeElement( 'dl' );

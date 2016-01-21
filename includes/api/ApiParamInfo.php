@@ -387,6 +387,20 @@ class ApiParamInfo extends ApiBase {
 		}
 		ApiResult::setIndexedTagName( $ret['parameters'], 'param' );
 
+		$dynamicParams = $module->dynamicParameterDocumentation();
+		if ( $dynamicParams !== null ) {
+			if ( $this->helpFormat === 'none' ) {
+				$ret['dynamicparameters'] = true;
+			} else {
+				$dynamicParams = ApiBase::makeMessage( $dynamicParams, $this->context, array(
+					$module->getModulePrefix(),
+					$module->getModuleName(),
+					$module->getModulePath()
+				) );
+				$this->formatHelpMessages( $ret, 'dynamicparameters', array( $dynamicParams ) );
+			}
+		}
+
 		return $ret;
 	}
 
