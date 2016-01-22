@@ -58,12 +58,15 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		}
 
 		$conf = $this->getConfig();
+		$lessVars = $conf->get( 'ResourceLoaderLESSVars' );
+
 		// Build list of variables
 		$vars = array(
 			'wgLoadScript' => wfScript( 'load' ),
 			'debug' => $context->getDebug(),
 			'skin' => $context->getSkin(),
 			'stylepath' => $conf->get( 'StylePath' ),
+			'deviceWidthTablet' => $lessVars['deviceWidthTablet'],
 			'wgUrlProtocols' => wfUrlProtocols(),
 			'wgArticlePath' => $conf->get( 'ArticlePath' ),
 			'wgScriptPath' => $conf->get( 'ScriptPath' ),
