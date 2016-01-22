@@ -188,7 +188,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 				'messages' => array( 'example' => '' ),
 				'templates' => array(),
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery ) {
+				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
 mw.example();
 }, {
     "css": [
@@ -207,7 +207,7 @@ mw.example();
 				'messages' => new XmlJsCode( '{}' ),
 				'templates' => array(),
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery ) {
+				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
 mw.example();
 } );',
 			) ),
@@ -235,7 +235,7 @@ mw.example();
 				'messages' => array( 'example' => '' ),
 				'templates' => array(),
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery ) {
+				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
 mw.example();
 }, {}, {
     "example": ""
@@ -250,7 +250,7 @@ mw.example();
 				'messages' => new XmlJsCode( '{}' ),
 				'templates' => array( 'example.html' => '' ),
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery ) {
+				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
 mw.example();
 }, {}, {}, {
     "example.html": ""
