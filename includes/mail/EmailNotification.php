@@ -138,7 +138,7 @@ class EmailNotification {
 	public function notifyOnPageChange( $editor, $title, $timestamp, $summary,
 		$minorEdit, $oldid = false, $pageStatus = 'changed'
 	) {
-		global $wgEnotifUseJobQ, $wgEnotifMinorEdits, $wgUsersNotifiedOnAllChanges, $wgEnotifUserTalk;
+		global $wgEnotifMinorEdits, $wgUsersNotifiedOnAllChanges, $wgEnotifUserTalk;
 
 		if ( $title->getNamespace() < 0 ) {
 			return;
@@ -170,31 +170,18 @@ class EmailNotification {
 			return;
 		}
 
-		if ( $wgEnotifUseJobQ ) {
-			$params = array(
-				'editor' => $editor->getName(),
-				'editorID' => $editor->getID(),
-				'timestamp' => $timestamp,
-				'summary' => $summary,
-				'minorEdit' => $minorEdit,
-				'oldid' => $oldid,
-				'watchers' => $watchers,
-				'pageStatus' => $pageStatus
-			);
-			$job = new EnotifNotifyJob( $title, $params );
-			JobQueueGroup::singleton()->lazyPush( $job );
-		} else {
-			$this->actuallyNotifyOnPageChange(
-				$editor,
-				$title,
-				$timestamp,
-				$summary,
-				$minorEdit,
-				$oldid,
-				$watchers,
-				$pageStatus
-			);
-		}
+		$params = array(
+			'editor' => $editor->getName(),
+			'editorID' => $editor->getID(),
+			'timestamp' => $timestamp,
+			'summary' => $summary,
+			'minorEdit' => $minorEdit,
+			'oldid' => $oldid,
+			'watchers' => $watchers,
+			'pageStatus' => $pageStatus
+		);
+		$job = new EnotifNotifyJob( $title, $params );
+		JobQueueGroup::singleton()->lazyPush( $job );
 	}
 
 	/**
