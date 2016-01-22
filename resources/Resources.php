@@ -732,6 +732,7 @@ return [
 	'moment' => [
 		'scripts' => [
 			'resources/lib/moment/moment.js',
+			'resources/src/moment-global.js',
 			'resources/src/moment-local-dmy.js',
 		],
 		'languageScripts' => [
@@ -2233,8 +2234,9 @@ return [
 	'oojs' => [
 		'scripts' => [
 			'resources/lib/oojs/oojs.jquery.js',
-		],
-		'targets' => [ 'desktop', 'mobile' ],
+			'resources/src/oojs-global.js',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
 		'dependencies' => [
 			'es5-shim',
 			'json',
