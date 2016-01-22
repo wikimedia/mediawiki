@@ -235,9 +235,19 @@
 		 * (e.g. `'#foobar'`) for that item.
 		 *
 		 *     mw.util.addPortletLink(
-		 *         'p-tb', 'http://mediawiki.org/',
-		 *         'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', '#t-print'
+		 *         'p-tb', 'https://www.mediawiki.org/',
+		 *         'mediawiki.org', 't-mworg', 'Go to mediawiki.org', 'm', '#t-print'
 		 *     );
+		 *
+		 *     var node = mw.util.addPortletLink(
+		 *         'p-tb',
+		 *         new mw.Title( 'Special:ExamplePanel' ).getUrl(),
+		 *         'Panel'
+		 *     );
+		 *     $( node ).on( 'click', function ( e ) {
+		 *         mw.example.Panel.create().show();
+		 *         e.preventDefault();
+		 *     } );
 		 *
 		 * @param {string} portlet ID of the target portlet ( 'p-cactions' or 'p-personal' etc.)
 		 * @param {string} href Link URL
