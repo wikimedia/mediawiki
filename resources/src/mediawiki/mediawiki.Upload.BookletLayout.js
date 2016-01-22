@@ -288,6 +288,14 @@
 			warnings = stateDetails.upload && stateDetails.upload.warnings;
 
 		if ( state === mw.Upload.State.ERROR ) {
+			if ( !error ) {
+				// If there's an 'exception' key, this might be a timeout, or other connection problem
+				return new OO.ui.Error(
+					$( '<p>' ).msg( 'api-error-unknownerror', JSON.stringify( stateDetails ) ),
+					{ recoverable: false }
+				);
+			}
+
 			// HACK We should either have a hook here to allow TitleBlacklist to handle this, or just have
 			// TitleBlacklist produce sane error messages that can be displayed without arcane knowledge
 			if ( error.info === 'TitleBlacklist prevents this title from being created' ) {
