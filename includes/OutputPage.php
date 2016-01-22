@@ -3816,6 +3816,58 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Transform path to web-accessible static resource.
+	 *
+	 * This is used to add a validation hash as query string.
+	 * This aids various behaviors:
+	 *
+	 * - Put long Cache-Control max-age headers on responses for improved
+	 *   cache performance.
+	 * - Get the correct version of a file as expected by the current page.
+	 * - Instantly get the updated version of a file after deployment.
+	 *
+	 * Avoid using this for urls included in HTML as otherwise clients may get different
+	 * versions of a resource when navigating the site depending on when the page was cached.
+	 * If changes to the url propagate, this is not a problem (e.g. if the url is in
+	 * an external stylesheet).
+	 *
+	 * @since 1.27
+	 * @param Config $config
+	 * @param string $path Path-absolute URL to file (from document root, must start with "/")
+	 * @return string URL
+	 */
+	public static function transformResourcePath( Config $config, $path ) {
+		global $IP;
+		$remotePath = $config->get( 'ResourceBasePath' );
+		if ( strpos( $path, $remotePath ) !== 0 ) {
+			// Path is outside wgResourceBasePath, ignore.
+			return $path;
+		}
+		$path = RelPath\getRelativePath( $path, $remotePath );
+		return self::transformFilePath( $remotePath, $IP, $path );
+	}
+
+	/**
+	 * Utility method for transformResourceFilePath().
+	 *
+	 * Caller is responsible for ensuring the file exists. Emits a PHP warning otherwise.
+	 *
+	 * @since 1.27
+	 * @param string $remotePath URL path that points to $localPath
+	 * @param string $localPath File directory exposed at $remotePath
+	 * @param string $file Path to target file relative to $localPath
+	 * @return string URL
+	 */
+	public static function transformFilePath( $remotePath, $localPath, $file ) {
+		$hash = md5_file( "$localPath/$file" );
+		if ( $hash === false ) {
+			wfLogWarning( __METHOD__ . ": Failed to hash $localPath/$file" );
+			$hash = '';
+		}
+		return "$remotePath/$file?" . substr( $hash, 0, 5 );
+	}
+
+	/**
 	 * Transform "media" attribute based on request parameters
 	 *
 	 * @param string $media Current value of the "media" attribute
