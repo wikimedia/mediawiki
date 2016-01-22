@@ -169,7 +169,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_COMBINED ),
 				"<script>(window.RLQ = window.RLQ || []).push(function () {\n"
-					. "mw.loader.implement(\"test.quux\",function($,jQuery){"
+					. "mw.loader.implement(\"test.quux\",function($,jQuery,require,module){"
 					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}"
 					. "\"]});\n} );</script>"
 			),
