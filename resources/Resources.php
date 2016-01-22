@@ -732,6 +732,7 @@ return array(
 	'moment' => array(
 		'scripts' => array(
 			'resources/lib/moment/moment.js',
+			'resources/src/moment-global.js',
 			'resources/src/moment-local-dmy.js',
 		),
 		'languageScripts' => array(
@@ -2227,6 +2228,7 @@ return array(
 	'oojs' => array(
 		'scripts' => array(
 			'resources/lib/oojs/oojs.jquery.js',
+			'resources/src/oojs-global.js',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 		'dependencies' => array(
