@@ -104,7 +104,7 @@ class CookieSessionProvider extends SessionProvider {
 
 	public function provideSessionInfo( WebRequest $request ) {
 		$info = array(
-			'id' => $request->getCookie( $this->params['sessionName'], '' )
+			'id' => $this->getCookie( $request, $this->params['sessionName'], '' )
 		);
 		if ( !SessionManager::validateSessionId( $info['id'] ) ) {
 			unset( $info['id'] );
@@ -140,7 +140,7 @@ class CookieSessionProvider extends SessionProvider {
 		$info += array(
 			'provider' => $this,
 			'persisted' => isset( $info['id'] ),
-			'forceHTTPS' => $request->getCookie( 'forceHTTPS', '', false )
+			'forceHTTPS' => $this->getCookie( $request, 'forceHTTPS', '', false )
 		);
 
 		return new SessionInfo( $this->priority, $info );
@@ -238,7 +238,7 @@ class CookieSessionProvider extends SessionProvider {
 	 */
 	protected function setLoggedOutCookie( $loggedOut, WebRequest $request ) {
 		if ( $loggedOut + 86400 > time() &&
-			$loggedOut !== (int)$request->getCookie( 'LoggedOut', $this->cookieOptions['prefix'] )
+			$loggedOut !== (int)$this->getCookie( $request, 'LoggedOut', $this->cookieOptions['prefix'] )
 		) {
 			$request->response()->setCookie( 'LoggedOut', $loggedOut, $loggedOut + 86400,
 				$this->cookieOptions );
@@ -257,7 +257,7 @@ class CookieSessionProvider extends SessionProvider {
 	}
 
 	public function suggestLoginUsername( WebRequest $request ) {
-		 $name = $request->getCookie( 'UserName', $this->cookieOptions['prefix'] );
+		 $name = $this->getCookie( $request, 'UserName', $this->cookieOptions['prefix'] );
 		 if ( $name !== null ) {
 			 $name = User::getCanonicalName( $name, 'usable' );
 		 }
@@ -266,15 +266,34 @@ class CookieSessionProvider extends SessionProvider {
 
 	/**
 	 * Fetch the user identity from cookies
-	 * @return array (int|null $id, string|null $token)
+	 * @param \WebRequest $request
+	 * @return array (string|null $id, string|null $username, string|null $token)
 	 */
 	protected function getUserInfoFromCookies( $request ) {
 		$prefix = $this->cookieOptions['prefix'];
 		return array(
-			$request->getCookie( 'UserID', $prefix ),
-			$request->getCookie( 'UserName', $prefix ),
-			$request->getCookie( 'Token', $prefix ),
+			$this->getCookie( $request, 'UserID', $prefix ),
+			$this->getCookie( $request, 'UserName', $prefix ),
+			$this->getCookie( $request, 'Token', $prefix ),
 		);
+	}
+
+	/**
+	 * Fetch the user identity from cookies
+	 * @param \WebRequest $request
+	 * @return string|null
+	 */
+	protected function getCookie( $request, $key, $prefix, $default = null ) {
+		$value = $request->getCookie( $key, $prefix, $default );
+		if ( $value === 'deleted' ) {
+			// PHP uses this value when deleting cookies. A legitimate cookie will never have
+			// this value (usernames start with uppercase, token is longer, other auth cookies
+			// are booleans or integers). Seeing this means that in a previous request we told the
+			// client to delete the cookie, but it has poor cookie handling. Pretend the cookie is
+			// not there to avoid invalidating the session.
+			return null;
+		}
+		return $value;
 	}
 
 	/**
