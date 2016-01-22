@@ -337,9 +337,7 @@ class Preferences {
 			'type' => 'radio',
 			'section' => 'personal/i18n',
 			'options' => array(
-				$context->msg( 'parentheses' )
-					->params( $context->msg( 'gender-unknown' )->plain() )
-					->escaped() => 'unknown',
+				$context->msg( 'gender-unknown' )->plain() => 'unknown',
 				$context->msg( 'gender-female' )->escaped() => 'female',
 				$context->msg( 'gender-male' )->escaped() => 'male',
 			),
