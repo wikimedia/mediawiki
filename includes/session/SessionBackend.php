@@ -408,10 +408,29 @@ final class SessionBackend {
 	/**
 	 * Fetch provider metadata
 	 * @protected For use by SessionProvider subclasses only
-	 * @return mixed
+	 * @return array|null
 	 */
 	public function getProviderMetadata() {
 		return $this->providerMetadata;
+	}
+
+	/**
+	 * Set provider metadata
+	 * @protected For use by SessionProvider subclasses only
+	 * @param array|null $metadata
+	 */
+	public function setProviderMetadata( $metadata ) {
+		if ( $metadata !== null && !is_array( $metadata ) ) {
+			throw new \InvalidArgumentException( '$metadata must be an array or null' );
+		}
+		if ( $this->providerMetadata !== $metadata ) {
+			$this->providerMetadata = $metadata;
+			$this->metaDirty = true;
+			$this->logger->debug(
+				"SessionBackend $this->id metadata dirty due to provider metadata change"
+			);
+			$this->autosave();
+		}
 	}
 
 	/**
