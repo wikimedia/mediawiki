@@ -1286,9 +1286,14 @@ class User implements IDBAccessObject {
 			$all = false;
 		}
 
+		if ( isset( $row->user_touched ) ) {
+			$this->mTouched = wfTimestamp( TS_MW, $row->user_touched );
+		} else {
+			$all = false;
+		}
+
 		if ( isset( $row->user_email ) ) {
 			$this->mEmail = $row->user_email;
-			$this->mTouched = wfTimestamp( TS_MW, $row->user_touched );
 			$this->mToken = $row->user_token;
 			if ( $this->mToken == '' ) {
 				$this->mToken = null;
