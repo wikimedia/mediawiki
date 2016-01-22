@@ -691,6 +691,11 @@ if ( !is_object( $wgAuth ) ) {
 
 // Set up the session
 $ps_session = Profiler::instance()->scopedProfileIn( $fname . '-session' );
+/**
+ * @var MediaWiki\\Session\\SessionId|null $wgInitialSessionId The persistent
+ * session ID (if any) loaded at startup
+ */
+$wgInitialSessionId = null;
 if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	// If session.auto_start is there, we can't touch session name
 	if ( $wgPHPSessionHandling !== 'disable' && !wfIniGetBool( 'session.auto_start' ) ) {
@@ -721,6 +726,10 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 
 		// Not the one we want, rethrow
 		throw $ex;
+	}
+
+	if ( $session->isPersistent() ) {
+		$wgInitialSessionId = $session->getSessionId();
 	}
 
 	$session->renew();
