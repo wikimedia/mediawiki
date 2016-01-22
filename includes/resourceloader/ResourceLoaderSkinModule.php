@@ -32,10 +32,13 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	public function getStyles( ResourceLoaderContext $context ) {
 		$logo = $this->getConfig()->get( 'Logo' );
 		$logoHD = $this->getConfig()->get( 'LogoHD' );
+
+		$url1 = CSSMin::buildUrlValue( OutputPage::transformResourcePath( $logo ) );
+		$url15 = CSSMin::buildUrlValue( OutputPage::transformResourcePath( $logoHD['1.5x'] ) );
+		$url2 = CSSMin::buildUrlValue( OutputPage::transformResourcePath( $logoHD['2x'] ) );
+
 		$styles = parent::getStyles( $context );
-		$styles['all'][] = '.mw-wiki-logo { background-image: ' .
-			CSSMin::buildUrlValue( $logo ) .
-			'; }';
+		$styles['all'][] = '.mw-wiki-logo { background-image: ' . $url1 . '; }';
 		if ( $logoHD ) {
 			if ( isset( $logoHD['1.5x'] ) ) {
 				$styles[
@@ -43,8 +46,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 					'(min--moz-device-pixel-ratio: 1.5), ' .
 					'(min-resolution: 1.5dppx), ' .
 					'(min-resolution: 144dpi)'
-				][] = '.mw-wiki-logo { background-image: ' .
-				CSSMin::buildUrlValue( $logoHD['1.5x'] ) . ';' .
+				][] = '.mw-wiki-logo { background-image: ' . $url115 . ';' .
 				'background-size: 135px auto; }';
 			}
 			if ( isset( $logoHD['2x'] ) ) {
@@ -53,8 +55,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 					'(min--moz-device-pixel-ratio: 2),' .
 					'(min-resolution: 2dppx), ' .
 					'(min-resolution: 192dpi)'
-				][] = '.mw-wiki-logo { background-image: ' .
-				CSSMin::buildUrlValue( $logoHD['2x'] ) . ';' .
+				][] = '.mw-wiki-logo { background-image: ' . $url2 . ';' .
 				'background-size: 135px auto; }';
 			}
 		}

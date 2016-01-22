@@ -3816,6 +3816,52 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Transform path to web-accessible static resource.
+	 *
+	 * This is used to add a validation hash as query string.
+	 * This aids various behaviors:
+	 *
+	 * - Put long Cache-Control max-age headers on responses for improved
+	 *   cache performance.
+	 * - Get the correct version of a file as expected by the current page.
+	 * - Instantly get the updated version of a file after deployment.
+	 *
+	 * Avoid using this for urls included in HTML as otherwise clients may get different
+	 * versions of a resource when navigating the site depending on when the page was cached.
+	 * If changes to the url propagate, this is not a problem (e.g. if the url is in
+	 * an external stylesheet).
+	 *
+	 * @since 1.27
+	 * @see ResourceLoader::getRelativePaths
+	 * @param string $path Path to target file relative to $IP
+	 * @return string Stable URL
+	 */
+	public static function transformResourcePath( $path ) {
+		global $IP, $wgResourceBasePath;
+		if ( strpos( $path, $wgResourceBasePath ) !== 0 ) {
+			// Path is outside $wgResourceBasePath, ignore.
+			return $path;
+		}
+		$path = RelPath\getRelativePath( $path, $wgResourceBasePath );
+		return self::transformFilePath( $wgResourceBasePath, $IP, $path );
+	}
+
+	/**
+	 * Utility method for transformResourceFilePath().
+	 *
+	 * Caller is responsible for ensuring the file exists. Emits a PHP warning otherwise.
+	 *
+	 * @since 1.27
+	 * @param string $remotePath URL path that points to $localPath
+	 * @param string $localPath File directory exposed at $remotePath
+	 * @param string $file Path to target file relative to $localPath
+	 * @return string Stable URL
+	 */
+	public static function transformFilePath( $remotePath, $localPath, $file ) {
+		return "$remotePath/$file?" . substr( md5_file( "$localPath/$file" ), 0, 5 );
+	}
+
+	/**
 	 * Transform "media" attribute based on request parameters
 	 *
 	 * @param string $media Current value of the "media" attribute
