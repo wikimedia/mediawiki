@@ -287,6 +287,8 @@ changes to languages because of Phabricator reports.
 * ParserOutput::hasCustomDataUpdates() was removed (deprecated since 1.25).
 * ParserOutput::addSecondaryDataUpdate() was removed (deprecated since 1.25).
 * ParserOutput::getSecondaryDataUpdates() was removed (deprecated since 1.25).
+* Gallery images with multiple caption pipes no longer concatenate them all
+  together but instead pick the final one, similar to image syntax.
 
 == Compatibility ==
 
