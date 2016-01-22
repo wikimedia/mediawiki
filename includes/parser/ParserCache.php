@@ -258,6 +258,10 @@ class ParserCache {
 	public function save( $parserOutput, $page, $popts, $cacheTime = null, $revId = null ) {
 		$expire = $parserOutput->getCacheExpiry();
 		if ( $expire > 0 ) {
+			if ( isset( $parserOutput->_output_done ) ) {
+				wfDebugLog( 'temp-debug', 'Output before cache save: ' . wfGetAllCallers( false ) );
+			}
+
 			$cacheTime = $cacheTime ?: wfTimestampNow();
 			if ( !$revId ) {
 				$revision = $page->getRevision();

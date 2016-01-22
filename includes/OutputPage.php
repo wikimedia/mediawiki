@@ -1764,6 +1764,8 @@ class OutputPage extends ContextSource {
 	 * @param ParserOutput $parserOutput
 	 */
 	public function addParserOutputMetadata( $parserOutput ) {
+		$parserOutput->_output_done = true;
+
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->setIndicators( $parserOutput->getIndicators() );
