@@ -686,8 +686,10 @@ class WebRequest {
 	 * @return bool
 	 */
 	public function checkSessionCookie() {
+		global $wgInitialSessionId;
 		wfDeprecated( __METHOD__, '1.27' );
-		return SessionManager::singleton()->getPersistedSessionId( $this ) !== null;
+		return $wgInitialSessionId !== null &&
+			$this->getSession()->getId() === (string)$wgInitialSessionId;
 	}
 
 	/**

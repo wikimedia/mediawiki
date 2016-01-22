@@ -178,15 +178,6 @@ final class SessionManager implements SessionManagerInterface {
 		$this->logger = $logger;
 	}
 
-	public function getPersistedSessionId( WebRequest $request ) {
-		$info = $this->getSessionInfoForRequest( $request );
-		if ( $info && $info->wasPersisted() ) {
-			return $info->getId();
-		} else {
-			return null;
-		}
-	}
-
 	public function getSessionForRequest( WebRequest $request ) {
 		$info = $this->getSessionInfoForRequest( $request );
 

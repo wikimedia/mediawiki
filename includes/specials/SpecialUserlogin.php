@@ -1566,10 +1566,12 @@ class LoginForm extends SpecialPage {
 	 * @return bool
 	 */
 	function hasSessionCookie() {
-		global $wgDisableCookieCheck;
+		global $wgDisableCookieCheck, $wgInitialSessionId;
 
-		return $wgDisableCookieCheck ||
-			SessionManager::singleton()->getPersistedSessionId( $this->getRequest() ) !== null;
+		return $wgDisableCookieCheck || (
+			$wgInitialSessionId &&
+			$this->getRequest()->getSession()->getId() === (string)$wgInitialSessionId
+		);
 	}
 
 	/**
