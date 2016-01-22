@@ -634,6 +634,7 @@ class User implements IDBAccessObject {
 			// No user. Create it?
 			return $options['create'] ? self::createNew( $name ) : null;
 		}
+
 		$user = self::newFromRow( $row );
 
 		// A user is considered to exist as a non-system user if it has a
