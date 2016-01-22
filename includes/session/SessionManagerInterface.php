@@ -35,21 +35,6 @@ use WebRequest;
  */
 interface SessionManagerInterface extends LoggerAwareInterface {
 	/**
-	 * Fetch the persisted session ID in a request.
-	 *
-	 * Note this is not the same thing as whether the session associated with
-	 * the request is currently persistent, as the session might have been
-	 * first made persistent during this request.
-	 *
-	 * @param WebRequest $request
-	 * @return string|null
-	 * @throws \\OverflowException if there are multiple sessions tied for top
-	 *  priority in the request. Exception has a property "sessionInfos"
-	 *  holding the SessionInfo objects for the sessions involved.
-	 */
-	public function getPersistedSessionId( WebRequest $request );
-
-	/**
 	 * Fetch the session for a request
 	 *
 	 * @note You probably want to use $request->getSession() instead. It's more

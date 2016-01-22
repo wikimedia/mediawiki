@@ -182,7 +182,6 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$session = $manager->getSessionForRequest( $request );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( $idEmpty, $session->getId() );
-		$this->assertNull( $manager->getPersistedSessionId( $request ) );
 
 		// Both providers return info, picks best one
 		$request->info1 = new SessionInfo( SessionInfo::MIN_PRIORITY + 1, array(
@@ -200,7 +199,6 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$session = $manager->getSessionForRequest( $request );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( $id2, $session->getId() );
-		$this->assertSame( $id2, $manager->getPersistedSessionId( $request ) );
 
 		$request->info1 = new SessionInfo( SessionInfo::MIN_PRIORITY + 2, array(
 			'provider' => $provider1,
@@ -217,7 +215,6 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$session = $manager->getSessionForRequest( $request );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( $id1, $session->getId() );
-		$this->assertSame( $id1, $manager->getPersistedSessionId( $request ) );
 
 		// Tied priorities
 		$request->info1 = new SessionInfo( SessionInfo::MAX_PRIORITY, array(
@@ -246,18 +243,6 @@ class SessionManagerTest extends MediaWikiTestCase {
 			$this->assertContains( $request->info1, $ex->sessionInfos );
 			$this->assertContains( $request->info2, $ex->sessionInfos );
 		}
-		try {
-			$manager->getPersistedSessionId( $request );
-			$this->fail( 'Expcected exception not thrown' );
-		} catch ( \OverFlowException $ex ) {
-			$this->assertStringStartsWith(
-				'Multiple sessions for this request tied for top priority: ',
-				$ex->getMessage()
-			);
-			$this->assertCount( 2, $ex->sessionInfos );
-			$this->assertContains( $request->info1, $ex->sessionInfos );
-			$this->assertContains( $request->info2, $ex->sessionInfos );
-		}
 
 		// Bad provider
 		$request->info1 = new SessionInfo( SessionInfo::MAX_PRIORITY, array(
@@ -269,15 +254,6 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$request->info2 = null;
 		try {
 			$manager->getSessionForRequest( $request );
-			$this->fail( 'Expcected exception not thrown' );
-		} catch ( \UnexpectedValueException $ex ) {
-			$this->assertSame(
-				'Provider1 returned session info for a different provider: ' . $request->info1,
-				$ex->getMessage()
-			);
-		}
-		try {
-			$manager->getPersistedSessionId( $request );
 			$this->fail( 'Expcected exception not thrown' );
 		} catch ( \UnexpectedValueException $ex ) {
 			$this->assertSame(
@@ -304,7 +280,6 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$session = $manager->getSessionForRequest( $request );
 		$this->assertInstanceOf( 'MediaWiki\\Session\\Session', $session );
 		$this->assertSame( $id2, $session->getId() );
-		$this->assertSame( $id2, $manager->getPersistedSessionId( $request ) );
 		$this->logger->setCollect( false );
 
 		// Unpersisted session ID
@@ -321,7 +296,6 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertSame( $id1, $session->getId() );
 		$session->persist();
 		$this->assertTrue( $session->isPersistent(), 'sanity check' );
-		$this->assertNull( $manager->getPersistedSessionId( $request ) );
 	}
 
 	public function testGetSessionById() {
