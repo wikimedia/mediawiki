@@ -28,6 +28,7 @@
  *  $wgSharedDB and $wgSharedTables set, and that all wikis involved in the
  *  sharing are listed in $wgLocalDatabases, and that no wikis not involved in
  *  the sharing are listed in $wgLocalDatabases.
+ * @since 1.27
  */
 class LocalIdLookup extends CentralIdLookup {
 

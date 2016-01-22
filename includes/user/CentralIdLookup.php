@@ -23,6 +23,8 @@
 /**
  * The CentralIdLookup service allows for connecting local users with
  * cluster-wide IDs.
+ *
+ * @since 1.27
  */
 abstract class CentralIdLookup implements IDBAccessObject {
 	// Audience options for accessors
