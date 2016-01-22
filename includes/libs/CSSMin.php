@@ -451,14 +451,18 @@ class CSSMin {
 			// Path to the actual file on the filesystem
 			$localFile = "{$local}/{$file}";
 			if ( file_exists( $localFile ) ) {
-				// Add version parameter as the first five hex digits
-				// of the MD5 hash of the file's contents.
-				$url .= '?' . substr( md5_file( $localFile ), 0, 5 );
 				if ( $embed ) {
 					$data = self::encodeImageAsDataURI( $localFile );
 					if ( $data !== false ) {
 						return $data;
 					}
+				}
+				if ( method_exists( 'OutputPage', 'transformFilePath' ) ) {
+					$url = OutputPage::transformFilePath( $remote, $local, $file );
+				} else {
+					// Add version parameter as the first five hex digits
+					// of the MD5 hash of the file's contents.
+					$url .= '?' . substr( md5_file( $localFile ), 0, 5 );
 				}
 			}
 			// If any of these conditions failed (file missing, we don't want to embed it
