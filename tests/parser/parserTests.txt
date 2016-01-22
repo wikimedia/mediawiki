@@ -18300,8 +18300,6 @@ image4    |300px| centre
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
 			<div class="thumb" style="height: 150px;">Image2.gif</div>
 			<div class="gallerytext">
-<p>||||
-</p>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
@@ -18312,8 +18310,8 @@ image4    |300px| centre
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
 			<div class="thumb" style="height: 150px;">Image4</div>
 			<div class="gallerytext">
-<p>300px| centre
-</p>
+<pre>centre
+</pre>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
@@ -18372,7 +18370,7 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 		<li class="gallerybox" style="width: 105px"><div style="width: 105px">
 			<div class="thumb" style="width: 100px;"><div style="margin:31px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="This is a foo-bar." src="http://example.com/images/thumb/3/3a/Foobar.jpg/70px-Foobar.jpg" width="70" height="8" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/105px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/140px-Foobar.jpg 2x" /></a></div></div>
 			<div class="gallerytext">
-<p>Blabla|blabla.
+<p>blabla.
 </p>
 			</div>
 		</div></li>

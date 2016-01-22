@@ -5442,18 +5442,18 @@ class Parser {
 							if ( $handler->validateParam( $paramName, $match ) ) {
 								$handlerOptions[$paramName] = $match;
 							} else {
-								// Guess not. Append it to the caption.
+								// Guess not, consider it as caption.
 								wfDebug( "$parameterMatch failed parameter validation\n" );
-								$label .= '|' . $parameterMatch;
+								$label = '|' . $parameterMatch;
 							}
 						}
 
 					} else {
-						// concatenate all other pipes
-						$label .= '|' . $parameterMatch;
+						// Last pipe wins.
+						$label = '|' . $parameterMatch;
 					}
 				}
-				// remove the first pipe
+				// Remove the pipe.
 				$label = substr( $label, 1 );
 			}
 
