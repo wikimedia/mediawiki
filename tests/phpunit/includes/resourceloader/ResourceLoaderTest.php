@@ -188,7 +188,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 				'messages' => [ 'example' => '' ],
 				'templates' => [],
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery ) {
+				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
 mw.example();
 }, {
     "css": [
@@ -207,7 +207,7 @@ mw.example();
 				'messages' => new XmlJsCode( '{}' ),
 				'templates' => [],
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery ) {
+				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
 mw.example();
 } );',
 			] ],
@@ -235,7 +235,7 @@ mw.example();
 				'messages' => [ 'example' => '' ],
 				'templates' => [],
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery ) {
+				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
 mw.example();
 }, {}, {
     "example": ""
@@ -250,7 +250,7 @@ mw.example();
 				'messages' => new XmlJsCode( '{}' ),
 				'templates' => [ 'example.html' => '' ],
 
-				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery ) {
+				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery, require, module ) {
 mw.example();
 }, {}, {}, {
     "example.html": ""
