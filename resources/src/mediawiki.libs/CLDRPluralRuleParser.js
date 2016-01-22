@@ -591,5 +591,6 @@ function pluralRuleParser(rule, number) {
 
 /* pluralRuleParser ends here */
 mw.libs.pluralRuleParser = pluralRuleParser;
+module.exports = pluralRuleParser;
 
 } )( mediaWiki );
