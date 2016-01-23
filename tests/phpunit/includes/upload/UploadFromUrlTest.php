@@ -1,7 +1,6 @@
 <?php
 
 /**
- * @group Broken
  * @group Upload
  * @group Database
  *
