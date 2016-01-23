@@ -4,7 +4,7 @@
  * even the most ancient of browsers, so be very careful when editing.
  */
 /*jshint unused: false, evil: true */
-/*globals mw, RLQ: true, $VARS, $CODE, performance */
+/*globals mw, RLQ: true, NORLQ: true, $VARS, $CODE, performance */
 
 var mediaWikiLoadStart = ( new Date() ).getTime(),
 
@@ -67,11 +67,29 @@ function isCompatible( ua ) {
 
 // Conditional script injection
 ( function () {
+	var NORLQ, script;
 	if ( !isCompatible() ) {
 		// Undo class swapping in case of an unsupported browser.
 		// See OutputPage::getHeadScripts().
 		document.documentElement.className = document.documentElement.className
 			.replace( /(^|\s)client-js(\s|$)/, '$1client-nojs$2' );
+
+		NORLQ = window.NORLQ || [];
+		while ( NORLQ.length ) {
+			NORLQ.shift()();
+		}
+		window.NORLQ = {
+			push: function ( fn ) {
+				fn();
+			}
+		};
+
+		// Clear and disable the other queue
+		window.RLQ = {
+			// No-op
+			push: function () {}
+		};
+
 		return;
 	}
 
@@ -96,9 +114,15 @@ function isCompatible( ua ) {
 				fn();
 			}
 		};
+
+		// Clear and disable the other queue
+		window.NORLQ = {
+			// No-op
+			push: function () {}
+		};
 	}
 
-	var script = document.createElement( 'script' );
+	script = document.createElement( 'script' );
 	script.src = $VARS.baseModulesUri;
 	script.onload = script.onreadystatechange = function () {
 		if ( !script.readyState || /loaded|complete/.test( script.readyState ) ) {
