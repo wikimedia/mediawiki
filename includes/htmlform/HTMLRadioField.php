@@ -49,6 +49,7 @@ class HTMLRadioField extends HTMLFormField {
 
 		return new OOUI\RadioSelectInputWidget( array(
 			'name' => $this->mName,
+			'id' => $this->mID,
 			'value' => $value,
 			'options' => $options,
 			'classes' => 'mw-htmlform-flatlist-item',

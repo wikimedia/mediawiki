@@ -1,9 +1,11 @@
-( function ( $ ) {
-	$( document ).ready( function () {
-
+/*!
+ * JavaScript module used on Special:PageLanguage
+ */
+( function ( $, OO ) {
+	$( function () {
 		// Select the 'Language select' option if user is trying to select language
-		$( '#mw-pl-languageselector' ).on( 'click', function () {
-			$( '#mw-pl-options-2' ).prop( 'checked', true );
+		OO.ui.infuse( 'mw-pl-languageselector' ).on( 'change', function () {
+			OO.ui.infuse( 'mw-pl-options' ).setValue( '2' );
 		} );
 	} );
-}( jQuery ) );
+}( jQuery, OO ) );
