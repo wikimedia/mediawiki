@@ -188,7 +188,7 @@ class CookieSessionProvider extends SessionProvider {
 
 		foreach ( $cookies as $key => $value ) {
 			if ( $value === false ) {
-				$this->clearCookie( $request, $response, $key, $options );
+				$response->clearCookie( $key, $options );
 			} else {
 				if ( $extendedExpiry !== null && in_array( $key, $extendedCookies ) ) {
 					$expiry = time() + (int)$extendedExpiry;
@@ -219,14 +219,15 @@ class CookieSessionProvider extends SessionProvider {
 			'Token' => false,
 		);
 
-		$this->clearCookie( $request, $response,  $this->params['sessionName'],
-			array( 'prefix' => '' ) + $this->cookieOptions );
+		$response->clearCookie(
+			$this->params['sessionName'], array( 'prefix' => '' ) + $this->cookieOptions
+		);
 
 		foreach ( $cookies as $key => $value ) {
-			$this->clearCookie( $request, $response, $key, $this->cookieOptions );
+			$response->clearCookie( $key, $this->cookieOptions );
 		}
 
-		$this->clearCookie( $request, $response, 'forceHTTPS',
+		$response->clearCookie( 'forceHTTPS',
 			array( 'prefix' => '', 'secure' => false ) + $this->cookieOptions );
 	}
 
@@ -296,23 +297,6 @@ class CookieSessionProvider extends SessionProvider {
 			return null;
 		}
 		return $value;
-	}
-
-	/**
-	 * Delete a cookie. Contains an auth-specific hack.
-	 * @param \WebRequest $request
-	 * @param \WebResponse $response
-	 * @param string $key
-	 * @param array $options
-	 */
-	protected function clearCookie( $request, $response, $key, $options = array() ) {
-		global $wgCookiePrefix;
-
-		$prefix = isset( $options['prefix'] ) ? $options['prefix'] : $wgCookiePrefix;
-
-		if ( $request->getCookie( $key, $prefix ) ) {
-			$response->clearCookie( $key, $options );
-		}
 	}
 
 	/**
