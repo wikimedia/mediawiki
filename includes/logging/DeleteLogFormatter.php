@@ -32,6 +32,8 @@ class DeleteLogFormatter extends LogFormatter {
 	protected function getMessageKey() {
 		$key = parent::getMessageKey();
 		if ( in_array( $this->entry->getSubtype(), array( 'event', 'revision' ) ) ) {
+			// messages used: logentry-delete-event-legacy, logentry-delete-revision-legacy,
+			// logentry-suppress-event-legacy, logentry-suppress-revision-legacy
 			if ( count( $this->getMessageParameters() ) < 5 ) {
 				return "$key-legacy";
 			}
@@ -116,6 +118,7 @@ class DeleteLogFormatter extends LogFormatter {
 		}
 
 		switch ( $this->entry->getSubtype() ) {
+			// messages used: logentry-delete-delete, logentry-suppress-delete
 			case 'delete': // Show undelete link
 				if ( $user->isAllowed( 'undelete' ) ) {
 					$message = 'undeletelink';
@@ -131,6 +134,7 @@ class DeleteLogFormatter extends LogFormatter {
 
 				return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 
+			// messages used: logentry-delete-revision, logentry-suppress-revision
 			case 'revision': // If an edit was hidden from a page give a review link to the history
 				$params = $this->extractParameters();
 				if ( !isset( $params[3] ) || !isset( $params[4] ) ) {
@@ -189,6 +193,7 @@ class DeleteLogFormatter extends LogFormatter {
 				return $this->msg( 'parentheses' )->rawParams(
 					$this->context->getLanguage()->pipeList( $links ) )->escaped();
 
+			// messages used: logentry-delete-event, logentry-suppress-event
 			case 'event': // Hidden log items, give review link
 				$params = $this->extractParameters();
 				if ( !isset( $params[3] ) ) {

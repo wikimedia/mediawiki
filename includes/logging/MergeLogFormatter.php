@@ -40,8 +40,13 @@ class MergeLogFormatter extends LogFormatter {
 		$newname = $this->makePageLink( Title::newFromText( $params[3] ) );
 		$params[2] = Message::rawParam( $oldname );
 		$params[3] = Message::rawParam( $newname );
+		$timeAndDate = $params[4];
 		$params[4] = $this->context->getLanguage()
-			->userTimeAndDate( $params[4], $this->context->getUser() );
+			->userTimeAndDate( $timeAndDate, $this->context->getUser() );
+		$params[5] = $this->context->getLanguage()
+			->userTime( $timeAndDate, $this->context->getUser() );
+		$params[6] = $this->context->getLanguage()
+			->userDate( $timeAndDate, $this->context->getUser() );
 		return $params;
 	}
 
@@ -76,8 +81,12 @@ class MergeLogFormatter extends LogFormatter {
 		static $map = array(
 			'4:title:dest',
 			'5:timestamp:mergepoint',
+			'6:timestamp:mergetime',
+			'7:timestamp:mergedate',
 			'4::dest' => '4:title:dest',
 			'5::mergepoint' => '5:timestamp:mergepoint',
+			'6::mergetime' => '6:timestamp:mergetime',
+			'7::mergedate' => '7:timestamp:mergedate',
 		);
 		foreach ( $map as $index => $key ) {
 			if ( isset( $params[$index] ) ) {
