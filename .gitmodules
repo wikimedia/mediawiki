@@ -336,3 +336,7 @@
 	path = skins/foreground
 	url = https://github.com/thingles/foreground
 	branch = master
+[submodule "skins/Monaco"]
+	path = skins/Monaco
+	url = https://github.com/Arcane21/monaco-port
+	branch = master
