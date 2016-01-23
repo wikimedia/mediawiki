@@ -905,8 +905,6 @@
 	"upload-description": "Abruozdielė aprašīms",
 	"upload-options": "Nostatīmā īkelėmō",
 	"watchthisupload": "Keravuotė ton abruozdieli",
-	"upload-success-subj": "Ožkruovėms pavīka gerā",
-	"upload-failure-subj": "Ožkruovėma bieda",
 	"upload-proto-error": "Nateisėngs protuokols",
 	"upload-proto-error-text": "Nutuolinē ikielims raikalaun, kū URL prasėdietu <code>http://</code> o <code>ftp://</code>.",
 	"upload-file-error": "Vėduojė bieda",
