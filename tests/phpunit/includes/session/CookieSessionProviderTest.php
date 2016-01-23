@@ -382,7 +382,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$this->assertSame( '', $request->response()->getCookie( 'xUserID' ) );
 		$this->assertSame( null, $request->response()->getCookie( 'xUserName' ) );
 		$this->assertSame( '', $request->response()->getCookie( 'xToken' ) );
-		$this->assertSame( null, $request->response()->getCookie( 'forceHTTPS' ) );
+		$this->assertSame( '', $request->response()->getCookie( 'forceHTTPS' ) );
 		$this->assertSame( array(), $backend->getData() );
 
 		// Logged-in user, no remember
@@ -395,7 +395,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$this->assertSame( (string)$user->getId(), $request->response()->getCookie( 'xUserID' ) );
 		$this->assertSame( $user->getName(), $request->response()->getCookie( 'xUserName' ) );
 		$this->assertSame( '', $request->response()->getCookie( 'xToken' ) );
-		$this->assertSame( null, $request->response()->getCookie( 'forceHTTPS' ) );
+		$this->assertSame( '', $request->response()->getCookie( 'forceHTTPS' ) );
 		$this->assertSame( array(), $backend->getData() );
 
 		// Logged-in user, remember
@@ -488,10 +488,10 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 				'value' => $remember ? $user->getToken() : '',
 				'expire' => $remember ? $extendedExpiry : -31536000,
 			) + $defaults,
-			'forceHTTPS' => !$secure ? null : array(
-				'value' => 'true',
+			'forceHTTPS' => array(
+				'value' => $secure ? 'true' : '',
 				'secure' => false,
-				'expire' => $remember ? $defaults['expire'] : null,
+				'expire' => $secure ? $remember ? $defaults['expire'] : 0 : -31536000,
 			) + $defaults,
 		);
 		foreach ( $expect as $key => $value ) {
@@ -571,7 +571,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$this->assertSame( '', $request->response()->getCookie( 'xUserID' ) );
 		$this->assertSame( null, $request->response()->getCookie( 'xUserName' ) );
 		$this->assertSame( '', $request->response()->getCookie( 'xToken' ) );
-		$this->assertSame( null, $request->response()->getCookie( 'forceHTTPS' ) );
+		$this->assertSame( '', $request->response()->getCookie( 'forceHTTPS' ) );
 		$this->assertSame( array(), $backend->getData() );
 
 		$provider->persistSession( $backend, $this->getSentRequest() );
@@ -607,7 +607,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$this->assertSame( (string)$user->getId(), $request->response()->getCookie( 'xUserID' ) );
 		$this->assertSame( $user->getName(), $request->response()->getCookie( 'xUserName' ) );
 		$this->assertSame( '', $request->response()->getCookie( 'xToken' ) );
-		$this->assertSame( null, $request->response()->getCookie( 'forceHTTPS' ) );
+		$this->assertSame( '', $request->response()->getCookie( 'forceHTTPS' ) );
 		$this->assertSame( 'bar!', $request->response()->getCookie( 'xbar' ) );
 		$this->assertSame( (string)$loggedOut, $request->response()->getCookie( 'xLoggedOut' ) );
 		$this->assertEquals( array(
