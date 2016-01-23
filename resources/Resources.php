@@ -1761,6 +1761,9 @@ return array(
 	),
 	'mediawiki.special.pageLanguage' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.pageLanguage.js',
+		'dependencies' => array(
+			'oojs-ui',
+		),
 	),
 	'mediawiki.special.pagesWithProp' => array(
 		'position' => 'top',
