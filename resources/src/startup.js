@@ -4,7 +4,7 @@
  * even the most ancient of browsers, so be very careful when editing.
  */
 /*jshint unused: false, evil: true */
-/*globals mw, RLQ: true, $VARS, $CODE, performance */
+/*globals mw, RLQ: true, NORLQ: true, $VARS, $CODE, performance */
 
 var mediaWikiLoadStart = ( new Date() ).getTime(),
 
@@ -72,6 +72,15 @@ function isCompatible( ua ) {
 		// See OutputPage::getHeadScripts().
 		document.documentElement.className = document.documentElement.className
 			.replace( /(^|\s)client-js(\s|$)/, '$1client-nojs$2' );
+		window.NORLQ = window.NORLQ || [];
+		while ( NORLQ.length ) {
+			NORLQ.shift()();
+		}
+		window.NORLQ = {
+			push: function ( fn ) {
+				fn();
+			}
+		};
 		return;
 	}
 
