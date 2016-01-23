@@ -1674,7 +1674,7 @@
 	"foreign-structured-upload-form-label-own-work": "[[File:Cross-wiki media upload dialog, December 2015 AB test option 1.png|thumb]] Label for own work confirmation checkbox",
 	"foreign-structured-upload-form-label-infoform-categories": "Label for category selector input\n{{Identical|Category}}",
 	"foreign-structured-upload-form-label-infoform-date": "Label for date input\n{{Identical|Date}}",
-	"foreign-structured-upload-form-label-own-work-message-local": "Message shown by local when a user affirms that they are allowed to upload a file to the local wiki.",
+	"foreign-structured-upload-form-label-own-work-message-local": "Message shown by local when a user affirms that their file upload to the local wiki follows the terms of service and licensing policies of the local wiki.",
 	"foreign-structured-upload-form-label-not-own-work-message-local": "Message shown by local when a user cannot upload a file to the local wiki.",
 	"foreign-structured-upload-form-label-not-own-work-local-local": "Suggests uploading a file via Special:Upload instead of using whatever method they're currently using.",
 	"foreign-structured-upload-form-label-own-work-message-default": "Message shown by default when a user affirms that they are allowed to upload a file to a remote wiki.",
