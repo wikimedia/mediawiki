@@ -72,6 +72,15 @@ function isCompatible( ua ) {
 		// See OutputPage::getHeadScripts().
 		document.documentElement.className = document.documentElement.className
 			.replace( /(^|\s)client-js(\s|$)/, '$1client-nojs$2' );
+		window.NORLQ = window.NORLQ || [];
+		while ( NORLQ.length ) {
+			NORLQ.shift()();
+		}
+		window.NORLQ = {
+			push: function ( fn ) {
+				fn();
+			}
+		};
 		return;
 	}
 
