@@ -295,7 +295,7 @@ class IPTC {
 					// in iim 4.1, but not in the XMP
 					// stuff. We're going to just
 					// extract the first value.
-					$con = self::ConvIPTC( $val, $c );
+					$con = self::convIPTC( $val, $c );
 					if ( strlen( $con[0] ) < 5 ) {
 						wfDebugLog( 'iptc', 'IPTC: '
 							. '2:04 too short. '
