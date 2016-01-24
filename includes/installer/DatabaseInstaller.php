@@ -287,8 +287,10 @@ abstract class DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			throw new MWException( __METHOD__ . ': unexpected DB connection error' );
 		}
-		LBFactory::setInstance( new LBFactorySingle( array(
-			'connection' => $status->value ) ) );
+		LBFactory::setInstance( new LBFactorySingle(
+			$status->value,
+			//FIXME: inject al lthe services? Do we need an LBFactoryFactory? Oh no!
+		) );
 	}
 
 	/**

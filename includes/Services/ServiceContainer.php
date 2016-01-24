@@ -192,8 +192,8 @@ class ServiceContainer {
 			throw new RuntimeException( 'Service not defined: ' . $name );
 		}
 
-		$this->serviceConstructors[$name] = $constructor;
 		$this->resetService( $name, $cleanup );
+		$this->serviceConstructors[$name] = $constructor;
 	}
 
 	/**

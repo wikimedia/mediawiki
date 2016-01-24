@@ -20,6 +20,9 @@
  * @file
  * @ingroup Database
  */
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use Psr\Log\LoggerInterface;
+use Wikimedia\Assert\Assert;
 
 /**
  * A simple single-master LBFactory that gets its configuration from the b/c globals
@@ -30,15 +33,86 @@ class LBFactorySimple extends LBFactory {
 	/** @var LoadBalancer[] */
 	private $extLBs = array();
 
-	/** @var string */
-	private $loadMonitorClass;
+	/** @var array[] */
+	private $servers;
 
-	public function __construct( array $conf ) {
-		parent::__construct( $conf );
+	/** @var array[] */
+	private $externalServers;
 
-		$this->loadMonitorClass = isset( $conf['loadMonitorClass'] )
-			? $conf['loadMonitorClass']
-			: null;
+	/**
+	 * LBFactorySimple constructor.
+	 *
+	 * @param array $servers
+	 * @param array $externalServers
+	 * @param BagOStuff $srvCache
+	 * @param ChronologyProtector $chronProtect
+	 * @param TransactionProfiler $trxProfiler
+	 * @param LoggerInterface $transactionLogger
+	 * @param StatsdDataFactoryInterface $stats
+	 */
+	public function __construct( //FIXME: fix all useages, including subclasses
+		array $servers,
+		array $externalServers,
+		BagOStuff $srvCache,
+		ChronologyProtector $chronProtect,
+		TransactionProfiler $trxProfiler,
+		LoggerInterface $transactionLogger,
+		StatsdDataFactoryInterface $stats
+	) {
+		parent::__construct( $srvCache, $chronProtect, $trxProfiler, $transactionLogger, $stats );
+
+		Assert::parameterElementType( 'array', $servers, '$servers' );
+		Assert::parameterElementType( 'array', $externalServers, '$externalServers' );
+
+		$this->servers = $servers;
+		$this->externalServers = $externalServers;
+
+		foreach ( $this->servers as $i => &$server ) {
+			if ( $i == 0 ) {
+				$server['master'] = true;
+			} else {
+				$server['slave'] = true;
+			}
+		}
+	}
+
+	/**
+	 * @param Config $config
+	 *
+	 * @return array[]
+	 */
+	public static function buildServerSpecsFromConfig( Config $config ) {
+		if ( $config->has( 'DBServers' ) ) {
+			$servers = $config->get( 'DBServers' );
+
+			if ( is_array( $servers ) ) {
+				return $servers;
+			}
+		}
+
+		$flags = DBO_DEFAULT;
+		if ( $config->get( 'DebugDumpSql' ) ) {
+			$flags |= DBO_DEBUG;
+		}
+		if ( $config->get( 'DBssl' ) ) {
+			$flags |= DBO_SSL;
+		}
+		if ( $config->get( 'DBcompress' ) ) {
+			$flags |= DBO_COMPRESS;
+		}
+
+		$servers = array( array(
+			'host' => $config->get( 'DBserver' ),
+			'user' => $config->get( 'DBuser' ),
+			'password' => $config->get( 'DBpassword' ),
+			'dbname' => $config->get( 'DBname' ),
+			'type' => $config->get( 'DBtype' ),
+			'load' => 1,
+			'flags' => $flags,
+			'master' => true
+		) );
+
+		return $servers;
 	}
 
 	/**
@@ -46,50 +120,14 @@ class LBFactorySimple extends LBFactory {
 	 * @return LoadBalancer
 	 */
 	public function newMainLB( $wiki = false ) {
-		global $wgDBservers;
+		$loadBalancer = new LoadBalancer(
+			$this->servers,
+			$this->srvCache,
+			$this->trxProfiler
+		);
 
-		if ( is_array( $wgDBservers ) ) {
-			$servers = $wgDBservers;
-			foreach ( $servers as $i => &$server ) {
-				if ( $i == 0 ) {
-					$server['master'] = true;
-				} else {
-					$server['slave'] = true;
-				}
-			}
-		} else {
-			global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgDebugDumpSql;
-			global $wgDBssl, $wgDBcompress;
-
-			$flags = DBO_DEFAULT;
-			if ( $wgDebugDumpSql ) {
-				$flags |= DBO_DEBUG;
-			}
-			if ( $wgDBssl ) {
-				$flags |= DBO_SSL;
-			}
-			if ( $wgDBcompress ) {
-				$flags |= DBO_COMPRESS;
-			}
-
-			$servers = array( array(
-				'host' => $wgDBserver,
-				'user' => $wgDBuser,
-				'password' => $wgDBpassword,
-				'dbname' => $wgDBname,
-				'type' => $wgDBtype,
-				'load' => 1,
-				'flags' => $flags,
-				'master' => true
-			) );
-		}
-
-		return new LoadBalancer( array(
-			'servers' => $servers,
-			'loadMonitor' => $this->loadMonitorClass,
-			'readOnlyReason' => $this->readOnlyReason,
-			'trxProfiler' => $this->trxProfiler
-		) );
+		$loadBalancer->setReadOnlyReason( $this->readOnlyReason );
+		return $loadBalancer;
 	}
 
 	/**
@@ -113,17 +151,18 @@ class LBFactorySimple extends LBFactory {
 	 * @return LoadBalancer
 	 */
 	protected function newExternalLB( $cluster, $wiki = false ) {
-		global $wgExternalServers;
-		if ( !isset( $wgExternalServers[$cluster] ) ) {
+		if ( !isset( $this->externalServers[$cluster] ) ) {
 			throw new MWException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
 
-		return new LoadBalancer( array(
-			'servers' => $wgExternalServers[$cluster],
-			'loadMonitor' => $this->loadMonitorClass,
-			'readOnlyReason' => $this->readOnlyReason,
-			'trxProfiler' => $this->trxProfiler
-		) );
+		$loadBalancer = new LoadBalancer(
+			$this->externalServers[$cluster],
+			$this->srvCache,
+			$this->trxProfiler
+		);
+
+		$loadBalancer->setReadOnlyReason( $this->readOnlyReason );
+		return $loadBalancer;
 	}
 
 	/**

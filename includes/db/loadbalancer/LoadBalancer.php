@@ -20,6 +20,7 @@
  * @file
  * @ingroup Database
  */
+use Wikimedia\Assert\Assert;
 
 /**
  * Database load balancing object
@@ -45,8 +46,8 @@ class LoadBalancer {
 
 	/** @var string The LoadMonitor subclass name */
 	private $mLoadMonitorClass;
-	/** @var LoadMonitor */
-	private $mLoadMonitor;
+	/** @var LoadMonitor|null */
+	private $mLoadMonitor = null;
 	/** @var BagOStuff */
 	private $srvCache;
 
@@ -78,19 +79,20 @@ class LoadBalancer {
 	const POS_WAIT_TIMEOUT = 10;
 
 	/**
-	 * @param array $params Array with keys:
-	 *  - servers : Required. Array of server info structures.
-	 *  - loadMonitor : Name of a class used to fetch server lag and load.
-	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
-	 * @throws MWException
+	 * @param array[] $servers
+	 * @param BagOStuff $srvCache
+	 * @param TransactionProfiler $trxProfiler
 	 */
-	public function __construct( array $params ) {
-		if ( !isset( $params['servers'] ) ) {
-			throw new MWException( __CLASS__ . ': missing servers parameter' );
-		}
-		$this->mServers = $params['servers'];
-		$this->mWaitTimeout = self::POS_WAIT_TIMEOUT;
+	public function __construct(
+		$servers,
+		BagOStuff $srvCache,
+		TransactionProfiler $trxProfiler
+	) {
+		Assert::parameterElementType( 'array', $servers, '$servers' );
+		Assert::parameter( !empty( $servers ), '$servers', 'must not be empty' );
+		$this->mServers = $servers;
 
+		$this->mWaitTimeout = self::POS_WAIT_TIMEOUT;
 		$this->mReadIndex = -1;
 		$this->mWriteIndex = -1;
 		$this->mConns = array(
@@ -102,22 +104,7 @@ class LoadBalancer {
 		$this->mErrorConnection = false;
 		$this->mAllowLagged = false;
 
-		if ( isset( $params['readOnlyReason'] ) && is_string( $params['readOnlyReason'] ) ) {
-			$this->readOnlyReason = $params['readOnlyReason'];
-		}
-
-		if ( isset( $params['loadMonitor'] ) ) {
-			$this->mLoadMonitorClass = $params['loadMonitor'];
-		} else {
-			$master = reset( $params['servers'] );
-			if ( isset( $master['type'] ) && $master['type'] === 'mysql' ) {
-				$this->mLoadMonitorClass = 'LoadMonitorMySQL';
-			} else {
-				$this->mLoadMonitorClass = 'LoadMonitorNull';
-			}
-		}
-
-		foreach ( $params['servers'] as $i => $server ) {
+		foreach ( $this->mServers as $i => $server ) {
 			$this->mLoads[$i] = $server['load'];
 			if ( isset( $server['groupLoads'] ) ) {
 				foreach ( $server['groupLoads'] as $group => $ratio ) {
@@ -129,13 +116,45 @@ class LoadBalancer {
 			}
 		}
 
-		$this->srvCache = ObjectCache::getLocalServerInstance();
+		$this->srvCache = $srvCache;
 
-		if ( isset( $params['trxProfiler'] ) ) {
-			$this->trxProfiler = $params['trxProfiler'];
-		} else {
-			$this->trxProfiler = new TransactionProfiler();
+		$this->trxProfiler = $trxProfiler;
+	}
+
+	/**
+	 * Sets the database to be read only, and provides a reasons.
+	 * If the reason is set to false, read-only mode is disabled.
+	 *
+	 * @param string|false $reason
+	 */
+	public function setReadOnlyReason( $reason ) {
+		Assert::parameterType( 'string|boolean', $reason, '$reason' );
+		$this->readOnlyReason = $reason;
+	}
+
+	/**
+	 * @param string|null
+	 */
+	public function setLoadMonitorClass( $loadMonitorClass ) {
+		Assert::parameterType( 'string|null', $loadMonitorClass, '$loadMonitorClass' );
+		$this->mLoadMonitorClass = $loadMonitorClass;
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getLoadMonitorClass() {
+		if ( $this->mLoadMonitorClass === null ) {
+			$dbType = $this->getDBType();
+
+			if ( $dbType === 'mysql' ) {
+				$this->mLoadMonitorClass = 'LoadMonitorMySQL';
+			} else {
+				$this->mLoadMonitorClass = 'LoadMonitorNull';
+			}
 		}
+
+		return $this->mLoadMonitorClass;
 	}
 
 	/**
@@ -145,7 +164,7 @@ class LoadBalancer {
 	 */
 	private function getLoadMonitor() {
 		if ( !isset( $this->mLoadMonitor ) ) {
-			$class = $this->mLoadMonitorClass;
+			$class = $this->getLoadMonitorClass();
 			$this->mLoadMonitor = new $class( $this );
 		}
 
@@ -224,6 +243,15 @@ class LoadBalancer {
 	}
 
 	/**
+	 * @return string the DB type as used by Databasebase::factory
+	 */
+	public function getDBType() {
+		$idx = $this->getWriterIndex();
+		$server = $this->mServers[$idx];
+		return $server['type'];
+	}
+
+	/**
 	 * Get the index of the reader connection, which may be a slave
 	 * This takes into account load ratios and lag times. It should
 	 * always return a consistent index during a given invocation
@@ -235,10 +263,8 @@ class LoadBalancer {
 	 * @return bool|int|string
 	 */
 	public function getReaderIndex( $group = false, $wiki = false ) {
-		global $wgDBtype;
-
 		# @todo FIXME: For now, only go through all this for mysql databases
-		if ( $wgDBtype != 'mysql' ) {
+		if ( $this->getDBType() != 'mysql' ) {
 			return $this->getWriterIndex();
 		}
 
@@ -580,8 +606,7 @@ class LoadBalancer {
 		if ( $this->connsOpened > $oldConnsOpened ) {
 			$host = $conn->getServer();
 			$dbname = $conn->getDBname();
-			$trxProf = Profiler::instance()->getTransactionProfiler();
-			$trxProf->recordConnection( $host, $dbname, $masterOnly );
+			$this->trxProfiler->recordConnection( $host, $dbname, $masterOnly );
 		}
 
 		if ( $masterOnly ) {
@@ -838,6 +863,7 @@ class LoadBalancer {
 
 		# Create object
 		try {
+			//TODO: Make an injectable DatabaseFactory
 			$db = DatabaseBase::factory( $server['type'], $server );
 		} catch ( DBConnectionError $e ) {
 			// FIXME: This is probably the ugliest thing I have ever done to

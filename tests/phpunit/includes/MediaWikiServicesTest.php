@@ -8,10 +8,6 @@ use MediaWiki\MediaWikiServices;
  */
 class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 
-	private function newMediaWikiServices() {
-		return new MediaWikiServices( new HashConfig() );
-	}
-
 	public function testGetInstance() {
 		$services = MediaWikiServices::getInstance();
 		$this->assertInstanceOf( 'MediaWiki\\MediaWikiServices', $services );
@@ -29,6 +25,13 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SiteLookup' => array( 'getSiteLookup', 'SiteLookup' ),
 			'DBLoadBalancerFactory' => array( 'getDBLoadBalancerFactory', 'LBFactory' ),
 			'DBLoadBalancer' => array( 'getDBLoadBalancer', 'LoadBalancer' ),
+			'DBLoadBalancerFactoryContainer' => array( 'getDBLoadBalancerFactoryContainer', 'MediaWiki\Services\ServiceContainer' ),
+			'RequestContext' => array( 'getRequestContext', 'RequestContext' ),
+			'ObjectCacheManager' => array( 'getObjectCacheManager', 'ObjectCacheManager' ),
+			'ChronologyProtector' => array( 'getChronologyProtector', 'ChronologyProtector' ),
+			'Profiler' => array( 'getProfiler', 'Profiler' ),
+			'LoggerFactory' => array( 'getLoggerFactory', 'MediaWiki\Logger\Spi' ),
+			'StatsdDataFactory' => array( 'getStatsdDataFactory', 'Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface' ),
 		);
 	}
 
@@ -54,6 +57,13 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SiteLookup' => array( 'SiteLookup', 'SiteLookup' ),
 			'DBLoadBalancerFactory' => array( 'DBLoadBalancerFactory', 'LBFactory' ),
 			'DBLoadBalancer' => array( 'DBLoadBalancer', 'LoadBalancer' ),
+			'DBLoadBalancerFactoryContainer' => array( 'DBLoadBalancerFactoryContainer', 'MediaWiki\Services\ServiceContainer' ),
+			'RequestContext' => array( 'RequestContext', 'RequestContext' ),
+			'ObjectCacheManager' => array( 'ObjectCacheManager', 'ObjectCacheManager' ),
+			'ChronologyProtector' => array( 'ChronologyProtector', 'ChronologyProtector' ),
+			'Profiler' => array( 'Profiler', 'Profiler' ),
+			'LoggerFactory' => array( 'LoggerFactory', 'MediaWiki\Logger\Spi' ),
+			'StatsdDataFactory' => array( 'StatsdDataFactory', 'Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface' ),
 		);
 	}
 

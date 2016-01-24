@@ -38,22 +38,30 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Services\ServiceContainer;
 
 return array(
+	'DBLoadBalancerFactoryContainer' => function( MediaWikiServices $services ) {
+		// Note: we define $services as an extra instantiation parameter,
+		// so it will get passed as the second parameter to any callback
+		// defined in the wiring file.
+		$container = new ServiceContainer( array( $services ) );
+
+		// TODO: get LB wiring files from $services->getMainConfig.
+		$wiringFiles = array( __DIR__ . '/includes/db/loadbalancer/LBWiring.php' );
+		$container->loadWiringFiles( $wiringFiles );
+
+		return $container;
+	},
+
 	'DBLoadBalancerFactory' => function( MediaWikiServices $services ) {
-		// NOTE: Defining the LBFactory class via LBFactoryConf is supported for
-		// backwards compatibility. The preferred way would be to register a
-		// callback for DBLoadBalancerFactory that constructs the desired LBFactory
-		// directly.
-		$config = $services->getMainConfig()->get( 'LBFactoryConf' );
+		$container = $services->getDBLoadBalancerFactoryContainer();
 
-		$class = LBFactory::getLBFactoryClass( $config );
-		if ( !isset( $config['readOnlyReason'] ) ) {
-			// TODO: replace the global wfConfiguredReadOnlyReason() with a service.
-			$config['readOnlyReason'] = wfConfiguredReadOnlyReason();
-		}
+		$config = $services->getMainConfig();
+		$lbConf = $config->get( 'LBFactoryConf' );
+		$class = $lbConf['class'];
 
-		return new $class( $config );
+		return $container->getService( $class );
 	},
 
 	'DBLoadBalancer' => function( MediaWikiServices $services ) {
@@ -90,6 +98,106 @@ return array(
 	'MainConfig' => function( MediaWikiServices $services ) {
 		// Use the 'main' config from the ConfigFactory service.
 		return $services->getConfigFactory()->makeConfig( 'main' );
+	},
+
+	'RequestContext' => function( MediaWikiServices $services ) {
+		// Note: As of MW 1.27, RequestContext relies on global state for lazy initialization!
+		return new RequestContext();
+	},
+
+	'ObjectCacheManager' => function( MediaWikiServices $services ) {
+		$config = $services->getMainConfig();
+		$keyPrefix = $config->get( 'CachePrefix' );
+		$objectCacheSpecs = $config->get( 'ObjectCaches' );
+		$wanObjectCacheSpecs = $config->get( 'WANObjectCaches' );
+
+		if ( !is_string( $keyPrefix ) || $keyPrefix === '' ) {
+			$keyPrefix = wfWikiID(); // TODO: use a service!
+		}
+
+		$manager = new ObjectCacheManager(
+			$keyPrefix,
+			$objectCacheSpecs,
+			$wanObjectCacheSpecs,
+			$services->getLoggerFactory()
+		);
+
+		$manager->setMainStash( $config->get( 'MainStash' ) );
+		$manager->setMainWANCache( $config->get( 'MainWANCache' ) );
+		$manager->setLocalClusterCache( $config->get( 'MainCacheType' ) );
+
+		$manager->setAnythingCandidates( array(
+			$config->get( 'MainCacheType' ),
+			$config->get( 'MessageCacheType' ),
+			$config->get( 'ParserCacheType' ),
+		) );
+
+		return $manager;
+	},
+
+	'ChronologyProtector' =>  function( MediaWikiServices $services ) {
+		$request = $services->getRequestContext()->getRequest();
+
+		$chronProt = new ChronologyProtector(
+			$services->getInstance()->getObjectCacheManager()->getMainStashInstance(),
+			array(
+				'ip' => $request->getIP(),
+				'agent' => $request->getHeader( 'User-Agent' )
+			)
+		);
+		if ( PHP_SAPI === 'cli' ) {
+			$chronProt->setEnabled( false );
+		} elseif ( $request->getHeader( 'ChronologyProtection' ) === 'false' ) {
+			// Request opted out of using position wait logic. This is useful for requests
+			// done by the job queue or background ETL that do not have a meaningful session.
+			$chronProt->setWaitEnabled( false );
+		}
+
+		return $chronProt;
+	},
+
+	'Profiler' =>  function( MediaWikiServices $services ) {
+		$config = $services->getMainConfig();
+		$limit = $config->has( 'ProfilerLimit' ) ? $config->get( 'ProfilerLimit' ) : null;
+
+		$params = array(
+			'class'     => 'ProfilerStub',
+			'sampling'  => 1,
+			'threshold' => $limit,
+			'output'    => array(),
+		);
+
+		if ( $config->has( 'Profiler' ) ) {
+			$spec = $config->get( 'Profiler' );
+
+			if ( is_array( $spec ) ) {
+				$params = array_merge( $params, $spec );
+			}
+		}
+
+		$inSample = mt_rand( 0, $params['sampling'] - 1 ) === 0;
+		if ( PHP_SAPI === 'cli' || !$inSample ) {
+			$params['class'] = 'ProfilerStub';
+		}
+
+		if ( !is_array( $params['output'] ) ) {
+			$params['output'] = array( $params['output'] );
+		}
+
+		// TODO: use a ServiceContainer for managing profiler implementations!
+		return new $params['class']( $params );
+	},
+
+	'LoggerFactory' =>  function( MediaWikiServices $services ) {
+		$spiSpec = $services->getInstance()->getMainConfig()->get( 'MWLoggerDefaultSpi' );
+
+		$provider = ObjectFactory::getObjectFromSpec( $spiSpec );
+		return $provider;
+	},
+
+	'StatsdDataFactory' =>  function( MediaWikiServices $services ) {
+		$prefix = rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' );
+		return new BufferingStatsdDataFactory( $prefix );
 	},
 
 	///////////////////////////////////////////////////////////////////////////

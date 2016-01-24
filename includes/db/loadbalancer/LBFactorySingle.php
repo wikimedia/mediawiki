@@ -20,6 +20,8 @@
  * @file
  * @ingroup Database
  */
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * An LBFactory class that always returns a single database object.
@@ -29,16 +31,38 @@ class LBFactorySingle extends LBFactory {
 	private $lb;
 
 	/**
-	 * @param array $conf An associative array with one member:
-	 *  - connection: The DatabaseBase connection object
+	 * @param DatabaseBase $connection
+	 * @param BagOStuff $srvCache
+	 * @param ChronologyProtector $chronProtect
+	 * @param TransactionProfiler $trxProfiler
+	 * @param LoggerInterface $transactionLogger
+	 * @param StatsdDataFactoryInterface $stats
 	 */
-	public function __construct( array $conf ) {
-		parent::__construct( $conf );
+	public function __construct( //FIXME: update usages (subclasses too!)
+		DatabaseBase $connection,
+		BagOStuff $srvCache,
+		ChronologyProtector $chronProtect,
+		TransactionProfiler $trxProfiler,
+		LoggerInterface $transactionLogger,
+		StatsdDataFactoryInterface $stats
+	) {
+		parent::__construct( $srvCache, $chronProtect, $trxProfiler, $transactionLogger, $stats );
 
-		$this->lb = new LoadBalancerSingle( array(
-			'readOnlyReason' => $this->readOnlyReason,
-			'trxProfiler' => $this->trxProfiler
-		) + $conf );
+		$this->lb = new LoadBalancerSingle(
+			$connection,
+			$srvCache,
+			$trxProfiler
+		);
+	}
+
+	/**
+	 * @see LBFactory::setReadOnlyReason
+	 * @param false|string $reason
+	 */
+	public function setReadOnlyReason( $reason ) {
+		parent::setReadOnlyReason( $reason );
+
+		$this->lb->setReadOnlyReason( $reason );
 	}
 
 	/**
@@ -92,13 +116,19 @@ class LoadBalancerSingle extends LoadBalancer {
 	private $db;
 
 	/**
-	 * @param array $params
+	 * @param DatabaseBase $connection
+	 * @param BagOStuff $srvCache
+	 * @param TransactionProfiler $trxProfiler
 	 */
-	public function __construct( array $params ) {
-		$this->db = $params['connection'];
+	public function __construct(
+		DatabaseBase $connection,
+		BagOStuff $srvCache,
+		TransactionProfiler $trxProfiler
+	) {
+		$this->db = $connection;
 
-		parent::__construct( array(
-			'servers' => array(
+		parent::__construct(
+			array(
 				array(
 					'type' => $this->db->getType(),
 					'host' => $this->db->getServer(),
@@ -106,12 +136,18 @@ class LoadBalancerSingle extends LoadBalancer {
 					'load' => 1,
 				)
 			),
-			'trxProfiler' => $this->trxProfiler
-		) );
+			$srvCache,
+			$trxProfiler
+		);
+	}
 
-		if ( isset( $params['readOnlyReason'] ) ) {
-			$this->db->setLBInfo( 'readOnlyReason', $params['readOnlyReason'] );
-		}
+	/**
+	 * @see LBFactory::setReadOnlyReason()
+	 * @param false|string $reason
+	 */
+	public function setReadOnlyReason( $reason ) {
+		parent::setReadOnlyReason( $reason );
+		$this->db->setLBInfo( 'readOnlyReason', $reason );
 	}
 
 	/**
