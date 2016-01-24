@@ -46,7 +46,11 @@ class IPTCTest extends MediaWikiTestCase {
 	public function testIPTCParseForcedUTFButInvalid() {
 		$iptcData = "Photoshop 3.0\08BIM\4\4\0\0\0\0\0\x11\x1c\x02\x19\x00\x04\xC3\xC3\xC3\xB8"
 			. "\x1c\x01\x5A\x00\x03\x1B\x25\x47";
-		$res = IPTC::Parse( $iptcData );
+		$res = iptcparse( $iptcData );
+		$keywords = $res['2#025'];
+		foreach ( $keywords as $val ) {
+			var_dump( iconv( "UTF-8", "UTF-8//IGNORE", $val ) );
+		}
 		$this->assertEquals( array( 'ø' ), $res['Keywords'] );
 	}
 
