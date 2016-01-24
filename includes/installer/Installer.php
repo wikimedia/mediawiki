@@ -297,10 +297,6 @@ abstract class Installer {
 			'url' => 'https://creativecommons.org/publicdomain/zero/1.0/',
 			'icon' => '$wgResourceBasePath/resources/assets/licenses/cc-0.png',
 		),
-		'pd' => array(
-			'url' => '',
-			'icon' => '$wgResourceBasePath/resources/assets/licenses/public-domain.png',
-		),
 		'gfdl' => array(
 			'url' => 'https://www.gnu.org/copyleft/fdl.html',
 			'icon' => '$wgResourceBasePath/resources/assets/licenses/gnu-fdl.png',
