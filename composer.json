@@ -45,7 +45,7 @@
 		"monolog/monolog": "~1.17.2",
 		"nikic/php-parser": "1.4.1",
 		"nmred/kafka-php": "0.1.5",
-		"phpunit/phpunit": "3.7.37",
+		"phpunit/phpunit": "4.8.21",
 		"wikimedia/avro": "1.7.7"
 	},
 	"suggest": {
