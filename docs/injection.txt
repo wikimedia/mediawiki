@@ -51,6 +51,23 @@ to define their own service. Extensions may also use the 'MediaWikiServices'
 hook to define or replace services by calling methods on the default
 MediaWikiServices instance.
 
+Besides the top level service locator, other service containers that load
+their wiring from other wiring files may be defined. Such secondary service
+containers may act as factories for services for which different
+implementations or configurations can be addressed by a symbolic name.
+Secondary service containers are themselves considered services that should
+be obtained from the top level service locator, MediaWikiServices.
+For instance, MediaWikiServices::getDBLoadBalancerFactoryContainer()
+returns a ServiceContainer that loads its wiring from LBWiring.php.
+This 'DBLoadBalancerFactoryContainer' service can be used to instantiate
+different implementations of LBFactory according to the bootstrap
+configuration. It is then used by the wiring for the 'DBLoadBalancerFactory'
+in ServiceWiring.php to create the LBFactory specified by $wgLBFactoryConf,
+by calling getService( $wgLBFactoryConf['class'] ) on the ServiceContainer
+returned by getDBLoadBalancerFactoryContainer().
+Note that $wgLBFactoryConf['class'] is used as a symbolic name, not a class
+name. The key 'class' is used for historical reasons.
+
 
 It should be noted that the term "service locator" is often used to refer to a
 top level factory that is accessed directly, throughout the code, to avoid

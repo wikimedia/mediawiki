@@ -1,13 +1,19 @@
 <?php
 namespace MediaWiki;
 
+use ChronologyProtector;
+use Config;
 use ConfigFactory;
 use GlobalVarConfig;
-use Config;
 use Hooks;
 use LBFactory;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LoadBalancer;
+use LoadMonitor;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Services\ServiceContainer;
+use Profiler;
+use RequestContext;
 use SiteLookup;
 use SiteStore;
 
@@ -156,6 +162,58 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDBLoadBalancer() {
 		return $this->getService( 'DBLoadBalancer' );
+	}
+
+	/**
+	 * @return ServiceContainer A container for LBFactory instances of different kinds.
+	 */
+	public function getDBLoadBalancerFactoryContainer() {
+		return $this->getService( 'DBLoadBalancerFactoryContainer' );
+	}
+
+	/**
+	 * @note Since RequestContext suffers from the "kitchen sink syndrome", application logic
+	 * should avoid using RequestContext and rely on more specific services instead.
+	 *
+	 * @return RequestContext
+	 */
+	public function getRequestContext() {
+		return $this->getService( 'RequestContext' );
+	}
+
+	/**
+	 * @return ObjectCacheManager
+	 */
+	public function getObjectCacheManager() {
+		return $this->getService( 'ObjectCacheManager' );
+	}
+
+	/**
+	 * @return ChronologyProtector
+	 */
+	public function getChronologyProtector() {
+		return $this->getService( 'ChronologyProtector' );
+	}
+
+	/**
+	 * @return Profiler
+	 */
+	public function getProfiler() {
+		return $this->getService( 'Profiler' );
+	}
+
+	/**
+	 * @return \MediaWiki\Logger\Spi
+	 */
+	public function getLoggerFactory() {
+		return $this->getService( 'LoggerFactory' );
+	}
+
+	/**
+	 * @return StatsdDataFactoryInterface
+	 */
+	public function getStatsdDataFactory() {
+		return $this->getService( 'StatsDataFactory' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
