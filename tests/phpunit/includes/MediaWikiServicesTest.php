@@ -29,6 +29,9 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SiteLookup' => array( 'getSiteLookup', 'SiteLookup' ),
 			'DBLoadBalancerFactory' => array( 'getDBLoadBalancerFactory', 'LBFactory' ),
 			'DBLoadBalancer' => array( 'getDBLoadBalancer', 'LoadBalancer' ),
+			'DBLoadBalancerFactoryContainer' => array( 'getDBLoadBalancerFactoryContainer', 'ServiceContainer' ),
+			'DatabaseFactory' => array( 'getDatabaseFactory', 'ServiceFactory' ),
+			'RequestContext' => array( 'getRequestContext', 'RequestContext' ),
 		);
 	}
 
@@ -54,6 +57,9 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'SiteLookup' => array( 'SiteLookup', 'SiteLookup' ),
 			'DBLoadBalancerFactory' => array( 'DBLoadBalancerFactory', 'LBFactory' ),
 			'DBLoadBalancer' => array( 'DBLoadBalancer', 'LoadBalancer' ),
+			'DBLoadBalancerFactoryContainer' => array( 'DBLoadBalancerFactoryContainer', 'ServiceContainer' ),
+			'DatabaseFactory' => array( 'DatabaseFactory', 'ServiceFactory' ),
+			'RequestContext' => array( 'RequestContext', 'RequestContext' ),
 		);
 	}
 

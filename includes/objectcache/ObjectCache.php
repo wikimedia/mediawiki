@@ -76,7 +76,7 @@ use MediaWiki\Logger\LoggerFactory;
  *
  * @ingroup Cache
  */
-class ObjectCache {
+class ObjectCache { //FIXME: Extract ObjectCacheManager
 	/** @var BagOStuff[] Map of (id => BagOStuff) */
 	public static $instances = array();
 	/** @var WANObjectCache[] Map of (id => WANObjectCache) */
