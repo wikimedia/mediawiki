@@ -91,8 +91,8 @@ abstract class ImageGalleryBase extends ContextSource {
 			$context = RequestContext::getMainAndWarn( __METHOD__ );
 		}
 		if ( !$mode ) {
-			$galleryOpions = $context->getConfig()->get( 'GalleryOptions' );
-			$mode = $galleryOpions['mode'];
+			$galleryOptions = $context->getConfig()->get( 'GalleryOptions' );
+			$mode = $galleryOptions['mode'];
 		}
 
 		$mode = $wgContLang->lc( $mode );
