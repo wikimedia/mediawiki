@@ -134,13 +134,23 @@ return array(
 
 	/* jQuery */
 
-	'jquery' => array(
-		'scripts' => array(
-			'resources/lib/jquery/jquery.js',
+	if ( $GLOBALS['wgjQuery3'] ) {
+		'jquery' => array(
+			'scripts' => array(
+				'resources/lib/jquery/jquery3.js',
+			),
+			'raw' => true,
+			'targets' => array( 'desktop', 'mobile' ),
 		),
-		'raw' => true,
-		'targets' => array( 'desktop', 'mobile' ),
-	),
+	} else {
+		'jquery' => array(
+			'scripts' => array(
+				'resources/lib/jquery/jquery.js',
+			),
+			'raw' => true,
+			'targets' => array( 'desktop', 'mobile' ),
+		),
+	},
 
 	/* jQuery Plugins */
 
