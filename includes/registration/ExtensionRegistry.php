@@ -209,9 +209,14 @@ class ExtensionRegistry {
 					. '.';
 				continue;
 			}
+			if ( isset( $GLOBALS['wgWikimediaJenkinsCI'] ) && $GLOBALS['wgWikimediaJenkinsCI'] ) {
+				$composer = __DIR__ . '/../../$path';
+			} else {
+				$composer = dirname( $path );
+			}
 			// Get extra paths for later inclusion
 			$autoloaderPaths = array_merge( $autoloaderPaths,
-				$processor->getExtraAutoloaderPaths( dirname( $path ), $info ) );
+				$processor->getExtraAutoloaderPaths( $composer, $info ) );
 			// Compatible, read and extract info
 			$processor->extractInfo( $path, $info, $version );
 		}
