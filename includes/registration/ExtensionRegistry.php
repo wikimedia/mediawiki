@@ -209,9 +209,14 @@ class ExtensionRegistry {
 					. '.';
 				continue;
 			}
+			if ( isset( $GLOBALS['wgWikimediaJenkinsCI'] ) && $GLOBALS['wgWikimediaJenkinsCI'] == true ) {
+				$composer = __DIR__ . '/../../$path';
+			} else {
+				$composer = dirname( $path );
+			}
 			// Get extra paths for later inclusion
 			$autoloaderPaths = array_merge( $autoloaderPaths,
-				$processor->getExtraAutoloaderPaths( dirname( $path ), $info ) );
+				$processor->getExtraAutoloaderPaths( $composer, $info ) );
 			// Compatible, read and extract info
 			$processor->extractInfo( $path, $info, $version );
 		}
@@ -273,15 +278,16 @@ class ExtensionRegistry {
 			}
 		}
 
+		foreach ( $info['autoloaderPaths'] as $path ) {
+			require_once $path;
+		}
+
 		foreach ( $info['defines'] as $name => $val ) {
 			define( $name, $val );
 		}
+
 		foreach ( $info['callbacks'] as $cb ) {
 			call_user_func( $cb );
-		}
-
-		foreach ( $info['autoloaderPaths'] as $path ) {
-			require_once $path;
 		}
 
 		$this->loaded += $info['credits'];
