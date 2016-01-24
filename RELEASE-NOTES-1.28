@@ -106,6 +106,8 @@ changes to languages because of Phabricator reports.
 * DifferenceEngine::generateDiffBody() was removed (deprecated since 1.21).
 * UploadBase::stashFileGetKey() and UploadBase::stashSession() were deprecated.
   Use ...->stashFile()->getFileKey() instead.
+* "Public domain" was removed as a wiki license option from the installer, in
+  favour of CC-0.
 
 == Compatibility ==
 
