@@ -22,8 +22,8 @@
  */
 
 use MediaWiki\Services\DestructibleService;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use Psr\Log\LoggerInterface;
-use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -39,25 +39,44 @@ abstract class LBFactory implements DestructibleService {
 	protected $trxProfiler;
 
 	/** @var LoggerInterface */
-	protected $logger;
+	protected $transactionLogger;
 
 	/** @var string|bool Reason all LBs are read-only or false if not */
 	protected $readOnlyReason = false;
 
-	const SHUTDOWN_NO_CHRONPROT = 1; // don't save ChronologyProtector positions (for async code)
+	/**
+	 * @var StatsdDataFactoryInterface
+	 */
+	protected $stats; // don't save ChronologyProtector positions (for async code)
+
+	/**
+	 * @var BagOStuff
+	 */
+	protected $srvCache;
+
+	const SHUTDOWN_NO_CHRONPROT = 1;
 
 	/**
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
-	 * @param array $conf
+	 *
+	 * @param BagOStuff $srvCache
+	 * @param ChronologyProtector $chronProtect
+	 * @param TransactionProfiler $trxProfiler
+	 * @param LoggerInterface $transactionLogger
+	 * @param StatsdDataFactoryInterface $stats
 	 */
-	public function __construct( array $conf ) {
-		if ( isset( $conf['readOnlyReason'] ) && is_string( $conf['readOnlyReason'] ) ) {
-			$this->readOnlyReason = $conf['readOnlyReason'];
-		}
-
-		$this->chronProt = $this->newChronologyProtector();
-		$this->trxProfiler = Profiler::instance()->getTransactionProfiler();
-		$this->logger = LoggerFactory::getInstance( 'DBTransaction' );
+	public function __construct( //FIXME: update usages (subclasses too!)
+		BagOStuff $srvCache,
+		ChronologyProtector $chronProtect,
+		TransactionProfiler $trxProfiler,
+		LoggerInterface $transactionLogger,
+		StatsdDataFactoryInterface $stats
+	) {
+		$this->srvCache = $srvCache; //FIXME define service
+		$this->chronProt = $chronProtect; // $this->newChronologyProtector(); //FIXME define service
+		$this->trxProfiler = $trxProfiler; // Profiler::instance()->getTransactionProfiler(); //FIXME define service
+		$this->transactionLogger = $transactionLogger; //LoggerFactory::getInstance( 'DBTransaction' ); //FIXME define service
+		$this->stats = $stats; //FIXME define service
 	}
 
 	/**
@@ -216,7 +235,7 @@ abstract class LBFactory implements DestructibleService {
 		$this->forEachLBCallMethod( 'commitAll', [ $fname ] );
 		$timeMs = 1000 * ( microtime( true ) - $start );
 
-		RequestContext::getMain()->getStats()->timing( "db.commit-all", $timeMs );
+		$this->stats->timing( "db.commit-all", $timeMs );
 	}
 
 	/**
@@ -245,7 +264,7 @@ abstract class LBFactory implements DestructibleService {
 		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
 		$timeMs = 1000 * ( microtime( true ) - $start );
 
-		RequestContext::getMain()->getStats()->timing( "db.commit-masters", $timeMs );
+		$this->stats->timing( "db.commit-masters", $timeMs );
 	}
 
 	/**
@@ -276,7 +295,7 @@ abstract class LBFactory implements DestructibleService {
 			foreach ( $callersByDB as $db => $callers ) {
 				$msg .= "$db: " . implode( '; ', $callers ) . "\n";
 			}
-			$this->logger->info( $msg );
+			$this->transactionLogger->info( $msg );
 		}
 	}
 
@@ -414,29 +433,6 @@ abstract class LBFactory implements DestructibleService {
 	 */
 	public function disableChronologyProtection() {
 		$this->chronProt->setEnabled( false );
-	}
-
-	/**
-	 * @return ChronologyProtector
-	 */
-	protected function newChronologyProtector() {
-		$request = RequestContext::getMain()->getRequest();
-		$chronProt = new ChronologyProtector(
-			ObjectCache::getMainStashInstance(),
-			[
-				'ip' => $request->getIP(),
-				'agent' => $request->getHeader( 'User-Agent' )
-			]
-		);
-		if ( PHP_SAPI === 'cli' ) {
-			$chronProt->setEnabled( false );
-		} elseif ( $request->getHeader( 'ChronologyProtection' ) === 'false' ) {
-			// Request opted out of using position wait logic. This is useful for requests
-			// done by the job queue or background ETL that do not have a meaningful session.
-			$chronProt->setWaitEnabled( false );
-		}
-
-		return $chronProt;
 	}
 
 	/**

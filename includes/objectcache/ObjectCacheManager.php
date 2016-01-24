@@ -21,6 +21,7 @@
  * @ingroup Cache
  */
 
+use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Assert\Assert;
 
 /**

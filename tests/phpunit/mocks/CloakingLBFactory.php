@@ -1,4 +1,6 @@
 <?php
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * A cloaking LBFactory.
@@ -18,12 +20,35 @@ class CloakingLBFactory extends LBFactorySimple { // FIXME TESTME
 	 */
 	private $cloakParams = null;
 
-	public function __construct( array $conf ) {
-		if ( $conf['class'] !== 'LBFactorySimple' ) {
-			throw new MWException( 'CloakingLBFactory is not compatible with ' . $conf['class'] );
-		}
-
-		parent::__construct( $conf );
+	/**
+	 * LBFactorySimple constructor.
+	 *
+	 * @param array $servers
+	 * @param array $externalServers
+	 * @param BagOStuff $srvCache
+	 * @param ChronologyProtector $chronProtect
+	 * @param TransactionProfiler $trxProfiler
+	 * @param LoggerInterface $transactionLogger
+	 * @param StatsdDataFactoryInterface $stats
+	 */
+	public function __construct( //FIXME: fix all useages, including subclasses
+		array $servers,
+		array $externalServers,
+		BagOStuff $srvCache,
+		ChronologyProtector $chronProtect,
+		TransactionProfiler $trxProfiler,
+		LoggerInterface $transactionLogger,
+		StatsdDataFactoryInterface $stats
+	) {
+		parent::__construct(
+			$servers,
+			$externalServers,
+			$srvCache,
+			$chronProtect,
+			$trxProfiler,
+			$transactionLogger,
+			$stats
+		);
 	}
 
 	/**

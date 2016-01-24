@@ -29,7 +29,6 @@
  * @ingroup Cache
  */
 class ObjectCache {
-	public static $instances;
 
 	/**
 	 * @return ObjectCacheManager

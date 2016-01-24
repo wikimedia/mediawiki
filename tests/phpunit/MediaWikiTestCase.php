@@ -239,8 +239,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			//      we should re-cloak and re-inject data.
 			//      Or at least we should warn.
 
-			$lbFactoryConf = $newServices->getMainConfig()->get( 'LBFactoryConf' );
-			$cloakingLBFactory = new CloakingLBFactory( $lbFactoryConf );
+			$lbFactoryContainer = $newServices->getDBLoadBalancerFactoryContainer();
+			$cloakingLBFactory = $lbFactoryContainer->getService( 'LBFactoryCloaking' );
 
 			$oldLBFactory->destroy();
 		}

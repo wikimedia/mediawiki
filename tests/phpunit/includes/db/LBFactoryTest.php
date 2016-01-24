@@ -61,7 +61,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 	public function testLBFactorySimpleServer() {
 		$this->setMwGlobals( 'wgDBservers', false );
 
-		$factory = new LBFactorySimple( [] );
+		$factory = new LBFactorySimple( [] ); // FIXME
 		$lb = $factory->getMainLB();
 
 		$dbw = $lb->getConnection( DB_MASTER );
@@ -98,7 +98,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			]
 		] );
 
-		$factory = new LBFactorySimple( [ 'loadMonitorClass' => 'LoadMonitorNull' ] );
+		$factory = new LBFactorySimple( [ 'loadMonitorClass' => 'LoadMonitorNull' ] ); // FIXME
 		$lb = $factory->getMainLB();
 
 		$dbw = $lb->getConnection( DB_MASTER );
@@ -118,7 +118,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 	public function testLBFactoryMulti() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
 
-		$factory = new LBFactoryMulti( [
+		$factory = new LBFactoryMulti( [ // FIXME
 			'sectionsByDB' => [],
 			'sectionLoads' => [
 				'DEFAULT' => [

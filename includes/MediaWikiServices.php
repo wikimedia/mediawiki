@@ -3,6 +3,7 @@ namespace MediaWiki;
 
 use ApiQueryInfo;
 use CentralIdLookup;
+use ChronologyProtector;
 use Config;
 use ConfigFactory;
 use DeferredUpdates;
@@ -14,6 +15,7 @@ use JobQueueAggregator;
 use Language;
 use LBFactory;
 use LinkCache;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LoadBalancer;
 use MagicWord;
 use MediaHandler;
@@ -442,6 +444,13 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @return ServiceContainer
+	 */
+	public function getDBLoadBalancerFactoryContainer() {
+		return $this->getService( 'DBLoadBalancerFactoryContainer' );
+	}
+
+	/**
 	 * @return LBFactory
 	 */
 	public function getDBLoadBalancerFactory() {
@@ -501,6 +510,30 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLockManagerGroupPool() {
 		return $this->getService( 'LockManagerGroupPool' );
+	}
+
+	/**
+	 * @note Since RequestContext suffers from the "kitchen sink syndrome", application logic
+	 * should avoid using RequestContext and rely on more specific services instead.
+	 *
+	 * @return RequestContext
+	 */
+	public function getRequestContext() {
+		return $this->getService( 'RequestContext' );
+	}
+
+	/**
+	 * @return StatsdDataFactoryInterface
+	 */
+	public function getStatsdDataFactory() {
+		return $this->getService( 'StatsdDataFactory' );
+	}
+
+	/**
+	 * @return ChronologyProtector
+	 */
+	public function getChronologyProtector() {
+		return $this->getService( 'ChronologyProtector' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

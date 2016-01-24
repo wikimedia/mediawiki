@@ -80,11 +80,6 @@ class RequestContext implements IContextSource, MutableContext {
 	private $config;
 
 	/**
-	 * @var RequestContext
-	 */
-	private static $instance = null;
-
-	/**
 	 * Set the Config object
 	 *
 	 * @param Config $c
@@ -144,8 +139,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function getStats() {
 		if ( $this->stats === null ) {
-			$prefix = rtrim( $this->getConfig()->get( 'StatsdMetricPrefix' ), '.' );
-			$this->stats = new BufferingStatsdDataFactory( $prefix );
+			$this->stats = \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory();
 		}
 		return $this->stats;
 	}
@@ -469,14 +463,14 @@ class RequestContext implements IContextSource, MutableContext {
 	/**
 	 * Get the RequestContext object associated with the main request
 	 *
+	 * @todo Replace usages of this method with direct injection of a RequestContent.
+	 *       Ideally, avoid the use of RequestContext by injecting more specific
+	 *       services.
+	 *
 	 * @return RequestContext
 	 */
 	public static function getMain() {
-		if ( self::$instance === null ) {
-			self::$instance = new self;
-		}
-
-		return self::$instance;
+		return \MediaWiki\MediaWikiServices::getInstance()->getRequestContext();
 	}
 
 	/**
@@ -500,7 +494,7 @@ class RequestContext implements IContextSource, MutableContext {
 	public static function resetMain() {
 		// TODO: manage service instances in MediaWikiServices
 		MediaWikiServices::failUnlessBootstrapping( __METHOD__ );
-		self::$instance = null;
+		\MediaWiki\MediaWikiServices::getInstance()->resetServiceForTesting( 'RequestContext' );
 	}
 
 	/**

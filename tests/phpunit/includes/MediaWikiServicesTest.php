@@ -237,6 +237,10 @@ class MediaWikiServicesTest extends PHPUnit_Framework_TestCase {
 			'RedisConnectionPoolPool' => [ 'RedisConnectionPoolPool', 'MediaWiki\Services\ServicePool' ],
 			'JobQueueGroupPool' => [ 'JobQueueGroupPool', 'MediaWiki\Services\ServicePool' ],
 			'LockManagerGroupPool' => [ 'LockManagerGroupPool', 'MediaWiki\Services\ServicePool' ],
+			'RequestContext' => [ 'RequestContext', 'RequestContext' ],
+			'ChronologyProtector' => [ 'ChronologyProtector', 'ChronologyProtector' ],
+			'StatsdDataFactory' => [ 'StatsdDataFactory', 'Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface' ],
+			'DBLoadBalancerFactoryContainer' => [ 'DBLoadBalancerFactoryContainer', 'MediaWiki\Services\ServiceContainer' ],
 		];
 	}
 

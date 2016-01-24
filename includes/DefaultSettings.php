@@ -2168,6 +2168,8 @@ $wgLanguageConverterCacheType = CACHE_ANYTHING;
  * the value is an associative array of parameters. The "class" parameter is the
  * class name which will be used. Alternatively, a "factory" parameter may be
  * given, giving a callable function which will generate a suitable cache object.
+ *
+ * @todo Convert this into a wiring file, and make ObjectCacheManager a ServiceContainer.
  */
 $wgObjectCaches = [
 	CACHE_NONE => [ 'class' => 'EmptyBagOStuff' ],
@@ -2230,6 +2232,8 @@ $wgMainWANCache = false;
  * array used to construct an EventRelayer object. The "pool" parameter is a
  * string that is used as a PubSub channel prefix. The "loggroup" parameter
  * controls where log events are sent.
+ *
+ * @todo Convert this into a wiring file, and make ObjectCacheManager a ServiceContainer.
  *
  * @since 1.26
  */
