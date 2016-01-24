@@ -202,7 +202,7 @@
 	'iu' => 'ᐃᓄᒃᑎᑐᑦ/inuktitut',	# Inuktitut (macro language, see ike/ikt, falls back to ike-cans)
 	'ja' => '日本語',	# Japanese
 	'jam' => 'Patois',	# Jamaican Creole English
-	'jbo' => 'Lojban',		# Lojban
+	'jbo' => 'la.lojban',		# Lojban
 	'jut' => 'jysk',	# Jutish / Jutlandic
 	'jv' => 'Basa Jawa',	# Javanese
 	'ka' => 'ქართული',	# Georgian
