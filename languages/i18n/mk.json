@@ -2661,7 +2661,7 @@
 	"exif-bitspersample": "Длабочина на бојата",
 	"exif-compression": "Вид на набивање",
 	"exif-photometricinterpretation": "Пикселски состав",
-	"exif-orientation": "Ориентација",
+	"exif-orientation": "Насоченост",
 	"exif-samplesperpixel": "Број на сост. делови",
 	"exif-planarconfiguration": "Распоред на податоците",
 	"exif-ycbcrsubsampling": "Однос на величината на Y спрема C",

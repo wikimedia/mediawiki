@@ -3585,7 +3585,7 @@
 	"expand_templates_ok": "Aceptar",
 	"expand_templates_remove_comments": "Eliminar comentarios (<!-- ... -->)",
 	"expand_templates_remove_nowiki": "Suprimir etiquetas <nowiki> en el resultado",
-	"expand_templates_generate_xml": "Mostrar el árbol XML.",
+	"expand_templates_generate_xml": "Mostrar el árbol XML",
 	"expand_templates_generate_rawhtml": "Mostrar HTML en crudo",
 	"expand_templates_preview": "Previsualización",
 	"expand_templates_preview_fail_html": "<em>Se ha ocultado la previsualización como precaución frente a ataques JavaScript. Esto se debe a que {{SITENAME}} tiene habilitada la característica de código HTML en bruto, y se perdieron los datos de la sesión.</em>\n\n<strong>Si se trata de un intento de previsualización legítimo, inténtalo de nuevo.</strong>\nSi aun así no funciona, intenta [[Special:UserLogout|cerrar sesión]] y volver a acceder.",

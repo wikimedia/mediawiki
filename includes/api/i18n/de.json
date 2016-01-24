@@ -551,7 +551,7 @@
 	"apihelp-query+categorymembers-paramvalue-prop-title": "Fügt die Titel- und Namensraum-ID der Seite hinzu.",
 	"apihelp-query+categorymembers-paramvalue-prop-sortkey": "Fügt den Sortierungsschlüssel (hexadezimale Zeichenkette) hinzu, der verwendet wird, um innerhalb dieser Kategorie zu sortieren.",
 	"apihelp-query+categorymembers-paramvalue-prop-sortkeyprefix": "Fügt das Sortierungsschlüssel-Präfix hinzu, das verwendet wird, um innerhalb dieser Kategorie zu sortieren (für Menschen lesbarer Teil des Sortierungsschlüssels).",
-	"apihelp-query+categorymembers-paramvalue-prop-type": "Fügt den Typ, als der diese Seite bestimmt wurde, hinzu (Seite, Unterkategorie oder Datei).",
+	"apihelp-query+categorymembers-paramvalue-prop-type": "Fügt den Typ, als der diese Seite bestimmt wurde, hinzu (<samp>page</samp>, <samp>subcat</samp> oder <samp>file</samp>).",
 	"apihelp-query+categorymembers-paramvalue-prop-timestamp": "Fügt den Zeitstempel wann die Seite eingebunden wurde hinzu.",
 	"apihelp-query+categorymembers-param-limit": "Die maximale Anzahl der zurückzugebenden Seiten.",
 	"apihelp-query+categorymembers-param-sort": "Eigenschaft, nach der sortiert werden soll.",

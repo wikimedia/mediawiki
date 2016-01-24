@@ -2169,7 +2169,7 @@
 	"unblock": "利用者のブロックを解除",
 	"blockip": "{{GENDER:$1|利用者}}をブロック",
 	"blockip-legend": "利用者をブロック",
-	"blockiptext": "以下のフォームを使用して、指定したIPアドレスまたは利用者からの書き込みアクセスをブロックできます。\nこのような措置は、荒らしからの防御の目的のみに行われるべきで、また[[{{MediaWiki:Policy-url}}|方針]]に沿ったものであるべきです。\n以下にブロックの理由を具体的に書いてください (例えば、荒らされたページへの言及など)。\nIP 範囲をブロックできます、[https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR] 構文を使用して; 許可された最大の範囲は /$1 for IPv4 and /$2 for IPv6.",
+	"blockiptext": "以下のフォームを使用して、指定したIPアドレスまたは利用者からの書き込みアクセスをブロックできます。\nこのような措置は、荒らしからの防御の目的のみに行われるべきで、また[[{{MediaWiki:Policy-url}}|方針]]に沿ったものであるべきです。\n以下にブロックの理由を具体的に書いてください (例えば、荒らされたページへの言及など)。\n[https://ja.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR] 構文を使用して、IP 範囲をブロックできます。許可された最大の範囲は、IPv4 の場合は /$1、IPv6 の場合は /$2 です。",
 	"ipaddressorusername": "IPアドレスまたは利用者名:",
 	"ipbexpiry": "有効期限:",
 	"ipbreason": "理由:",
