@@ -146,6 +146,7 @@ production.
 * Added MWRestrictions as a class to check restrictions on a WebRequest, e.g.
   to assert that the request comes from a particular IP range.
 * Added bot passwords, a rights-restricted login mechanism for API-using bots.
+* Updated jQuery to 1.12.0.
 
 === External library changes in 1.27 ===
 
