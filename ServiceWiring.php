@@ -38,22 +38,30 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Services\ServiceContainer;
 
 return array(
+	'DBLoadBalancerFactoryContainer' => function( MediaWikiServices $services ) {
+		// Note: we define $services as an extra instantiation parameter,
+		// so it will get passed as the second parameter to any callback
+		// defined in the wiring file.
+		$container = new ServiceContainer( array( $services ) );
+
+		// TODO: get LB wiring files from $services->getMainConfig.
+		$wiringFiles = array( __DIR__ . '/includes/db/loadbalancer/LBWiring.php' );
+		$container->loadWiringFiles( $wiringFiles );
+
+		return $container;
+	},
+
 	'DBLoadBalancerFactory' => function( MediaWikiServices $services ) {
-		// NOTE: Defining the LBFactory class via LBFactoryConf is supported for
-		// backwards compatibility. The preferred way would be to register a
-		// callback for DBLoadBalancerFactory that constructs the desired LBFactory
-		// directly.
-		$config = $services->getMainConfig()->get( 'LBFactoryConf' );
+		$container = $services->getDBLoadBalancerFactoryContainer();
 
-		$class = LBFactory::getLBFactoryClass( $config );
-		if ( !isset( $config['readOnlyReason'] ) ) {
-			// TODO: replace the global wfConfiguredReadOnlyReason() with a service.
-			$config['readOnlyReason'] = wfConfiguredReadOnlyReason();
-		}
+		$config = $services->getMainConfig();
+		$lbConf = $config->get( 'LBFactoryConf' );
+		$class = $lbConf['class'];
 
-		return new $class( $config );
+		return $container->getService( $class );
 	},
 
 	'DBLoadBalancer' => function( MediaWikiServices $services ) {
@@ -90,6 +98,11 @@ return array(
 	'MainConfig' => function( MediaWikiServices $services ) {
 		// Use the 'main' config from the ConfigFactory service.
 		return $services->getConfigFactory()->makeConfig( 'main' );
+	},
+
+	'RequestContext' => function( MediaWikiServices $services ) {
+		// Note: As of MW 1.27, RequestContext relies on global state for lazy initialization!
+		return new RequestContext();
 	},
 
 	///////////////////////////////////////////////////////////////////////////
