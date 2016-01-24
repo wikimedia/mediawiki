@@ -19,6 +19,8 @@
  * @ingroup Language
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Base class for language conversion.
  * @ingroup Language
@@ -357,21 +359,27 @@ class LanguageConverter {
 		   1. HTML markups (anything between < and >)
 		   2. HTML entities
 		   3. placeholders created by the parser
+		   IMPORTANT: Beware of failure from pcre.backtrack_limit (T124404).
+		   Minimize use of backtracking where possible.
 		*/
-		$marker = '|' . Parser::MARKER_PREFIX . '[\-a-zA-Z0-9]+';
+		$marker = '|' . Parser::MARKER_PREFIX . '[^\x7f]++\x7f';
 
 		// this one is needed when the text is inside an HTML markup
-		$htmlfix = '|<[^>]+$|^[^<>]*>';
+		$htmlfix = '|<[^>\004]++(?=\004$)|^[^<>]*+>';
+
+		// Optimize for the common case where these tags have
+		// few or no children. Thus try and possesively get as much as
+		// possible, and only engage in backtracking when we hit a '<'.
 
 		// disable convert to variants between <code> tags
-		$codefix = '<code>.+?<\/code>|';
+		$codefix = '<code>[^<]*+(?:(?:(?!<\/code>).)[^<]*+)*+<\/code>|';
 		// disable conversion of <script> tags
-		$scriptfix = '<script.*?>.*?<\/script>|';
+		$scriptfix = '<script[^>]*+>[^<]*+(?:(?:(?!<\/script>).)[^<]*+)*+<\/script>|';
 		// disable conversion of <pre> tags
-		$prefix = '<pre.*?>.*?<\/pre>|';
+		$prefix = '<pre[^>]*+>[^<]*+(?:(?:(?!<\/pre>).)[^<]*+)*+<\/pre>|';
 
 		$reg = '/' . $codefix . $scriptfix . $prefix .
-			'<[^>]+>|&[a-zA-Z#][a-z0-9]+;' . $marker . $htmlfix . '/s';
+			'<[^>]++>|&[a-zA-Z#][a-z0-9]++;' . $marker . $htmlfix . '|\004$/s';
 		$startPos = 0;
 		$sourceBlob = '';
 		$literalBlob = '';
@@ -381,15 +389,34 @@ class LanguageConverter {
 
 		$markupMatches = null;
 		$elementMatches = null;
+
+		// We add a marker (\004) at the end of text, to ensure we always match the
+		// entire text (Otherwise, pcre.backtrack_limit might cause silent failure)
 		while ( $startPos < strlen( $text ) ) {
-			if ( preg_match( $reg, $text, $markupMatches, PREG_OFFSET_CAPTURE, $startPos ) ) {
+			if ( preg_match( $reg, $text . "\004", $markupMatches, PREG_OFFSET_CAPTURE, $startPos ) ) {
 				$elementPos = $markupMatches[0][1];
 				$element = $markupMatches[0][0];
+				if ( $element === "\004" ) {
+					// We hit the end.
+					$elementPos = strlen( $text );
+					$element = '';
+				}
 			} else {
-				$elementPos = strlen( $text );
-				$element = '';
+				// If we hit here, then Language Converter could be tricked
+				// into doing an XSS, so we refuse to translate.
+				// If non-crazy input manages to reach this code path,
+				// we should consider it a bug.
+				$log = LoggerFactory::getInstance( 'languageconverter' );
+				$log->error( "Hit pcre.backtrack_limit in " . __METHOD__
+					. ". Disabling language conversion for this page.",
+					array(
+						"method" => __METHOD__,
+						"variant" => $toVariant,
+						"startOfText" => substr( $text, 0, 500 )
+					)
+				);
+				return $text;
 			}
-
 			// Queue the part before the markup for translation in a batch
 			$sourceBlob .= substr( $text, $startPos, $elementPos - $startPos ) . "\000";
 
@@ -398,7 +425,7 @@ class LanguageConverter {
 
 			// Translate any alt or title attributes inside the matched element
 			if ( $element !== ''
-				&& preg_match( '/^(<[^>\s]*)\s([^>]*)(.*)$/', $element, $elementMatches )
+				&& preg_match( '/^(<[^>\s]*+)\s([^>]*+)(.*+)$/', $element, $elementMatches )
 			) {
 				$attrs = Sanitizer::decodeTagAttributes( $elementMatches[2] );
 				$changed = false;
@@ -413,7 +440,7 @@ class LanguageConverter {
 					}
 
 					// Remove HTML tags to avoid disrupting the layout
-					$attr = preg_replace( '/<[^>]+>/', '', $attr );
+					$attr = preg_replace( '/<[^>]++>/', '', $attr );
 					if ( $attr !== $attrs[$attrName] ) {
 						$attrs[$attrName] = $attr;
 						$changed = true;
