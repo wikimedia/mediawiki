@@ -136,6 +136,9 @@ return array(
 
 	'jquery' => array(
 		'scripts' => array(
+			( isset(  $GLOBALS['wgjQuery3'] ) ) ?
+			'resources/lib/jquery/jquery3.js'
+			:
 			'resources/lib/jquery/jquery.js',
 		),
 		'raw' => true,
