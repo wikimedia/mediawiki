@@ -3401,6 +3401,8 @@ $wgMangleFlashPolicy = true;
  * @{
  */
 
+$wgjQuery3 = false;
+
 /**
  * Client-side resource modules.
  *
