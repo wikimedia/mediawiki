@@ -218,7 +218,7 @@
 				} );
 			} );
 
-			$iframe.error( function ( error ) {
+			$iframe.on( 'error', function ( error ) {
 				deferred.reject( 'http', error );
 			} );
 
