@@ -376,7 +376,11 @@ class ExtensionProcessor implements Processor {
 	public function getExtraAutoloaderPaths( $dir, array $info ) {
 		$paths = array();
 		if ( isset( $info['load_composer_autoloader'] ) && $info['load_composer_autoloader'] === true ) {
-			$path = "$dir/vendor/autoload.php";
+			if ( isset( $GLOBALS['wgWikimediaJenkinsCI'] ) && $GLOBALS['wgWikimediaJenkinsCI'] ) {
+				$path = "$dir/vendor/autoload.php";
+			} else {
+				$path = "$dir/vendor/autoload.php";
+			}
 			if ( file_exists( $path ) ) {
 				$paths[] = $path;
 			}
