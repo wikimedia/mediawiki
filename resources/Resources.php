@@ -135,12 +135,16 @@ return array(
 	/* jQuery */
 
 	'jquery' => array(
+		( isset(  $GLOBALS['wgjQuery3'] ) ) ?
+		'scripts' => array(
+			'resources/lib/jquery/jquery3.js',
+		), :
 		'scripts' => array(
 			'resources/lib/jquery/jquery.js',
 		),
 		'raw' => true,
 		'targets' => array( 'desktop', 'mobile' ),
-	),
+	);
 
 	/* jQuery Plugins */
 
