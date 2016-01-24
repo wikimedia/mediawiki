@@ -21,8 +21,9 @@
  * @ingroup Database
  */
 
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use Psr\Log\LoggerInterface;
-use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Assert\Assert;
 
 /**
  * An interface for generating database load balancers
@@ -41,20 +42,58 @@ abstract class LBFactory {
 	/** @var string|bool Reason all LBs are read-only or false if not */
 	protected $readOnlyReason = false;
 
-	const SHUTDOWN_NO_CHRONPROT = 1; // don't save ChronologyProtector positions (for async code)
+	/**
+	 * @var StatsdDataFactoryInterface
+	 */
+	protected $stats; // don't save ChronologyProtector positions (for async code)
+
+	/**
+	 * @var BagOStuff
+	 */
+	protected $srvCache;
+
+	/**
+	 * @var LoadMonitor
+	 */
+	protected $loadMonitor;
+
+	const SHUTDOWN_NO_CHRONPROT = 1;
 
 	/**
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
-	 * @param array $conf
+	 *
+	 * @param BagOStuff $srvCache
+	 * @param ChronologyProtector $chronProtect
+	 * @param TransactionProfiler $trxProfiler
+	 * @param LoadMonitor $loadMonitor
+	 * @param LoggerInterface $logger
+	 * @param StatsdDataFactoryInterface $stats
 	 */
-	public function __construct( array $conf ) {
-		if ( isset( $conf['readOnlyReason'] ) && is_string( $conf['readOnlyReason'] ) ) {
-			$this->readOnlyReason = $conf['readOnlyReason'];
-		}
+	public function __construct( //FIXME: update usages (subclasses too!)
+		BagOStuff $srvCache,
+		ChronologyProtector $chronProtect,
+		TransactionProfiler $trxProfiler,
+		LoadMonitor $loadMonitor,
+		LoggerInterface $logger,
+		StatsdDataFactoryInterface $stats
+	) {
+		$this->srvCache = $srvCache; //FIXME define service
+		$this->chronProt = $chronProtect; // $this->newChronologyProtector(); //FIXME define service
+		$this->trxProfiler = $trxProfiler; // Profiler::instance()->getTransactionProfiler(); //FIXME define service
+		$this->loadMonitor = $loadMonitor; //FIXME define service
+		$this->logger = $logger; //LoggerFactory::getInstance( 'DBTransaction' ); //FIXME define service
+		$this->stats = $stats; //FIXME define service
+	}
 
-		$this->chronProt = $this->newChronologyProtector();
-		$this->trxProfiler = Profiler::instance()->getTransactionProfiler();
-		$this->logger = LoggerFactory::getInstance( 'DBTransaction' );
+	/**
+	 * Sets the database to be read only, and provides a reasons.
+	 * If the reason is set to false, read-only mode is disabled.
+	 *
+	 * @param string|false $reason
+	 */
+	public function setReadOnlyReason( $reason ) { //FIXME: use!
+		Assert::parameterType( 'string|bool', $reason, '$reason' );
+		$this->readOnlyReason = $reason;
 	}
 
 	/**
@@ -62,9 +101,15 @@ abstract class LBFactory {
 	 * to throw a DBAccessError
 	 */
 	public static function disableBackend() {
-		$mainConfig = \MediaWiki\MediaWikiServices::getInstance()->getMainConfig();
-		$factoryConf = $mainConfig->get( 'LBFactoryConf' );
-		self::setInstance( new LBFactoryFake( $factoryConf ) );
+		$services = \MediaWiki\MediaWikiServices::getInstance();
+		self::setInstance( new LBFactoryFake(
+			$services->getObjectCacheManager()->getLocalServerInstance(),
+			$services->getChronologyProtector(),
+			$services->getTransactionProfiler(),
+			$services->getLoadMonitor(),
+			$services->getLoggerFactory()->getLogger( 'DBTransaction' ),
+			$services->getStatsDataFactory()
+		) );
 	}
 
 	/**
@@ -76,35 +121,6 @@ abstract class LBFactory {
 	 */
 	public static function singleton() {
 		return \MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-	}
-
-	/**
-	 * Returns the LBFactory class to use and the load balancer configuration.
-	 *wgDB
-	 * @param array $config (e.g. $wgLBFactoryConf)
-	 * @return string Class name
-	 */
-	public static function getLBFactoryClass( array $config ) {
-		// For configuration backward compatibility after removing
-		// underscores from class names in MediaWiki 1.23.
-		$bcClasses = array(
-			'LBFactory_Simple' => 'LBFactorySimple',
-			'LBFactory_Single' => 'LBFactorySingle',
-			'LBFactory_Multi' => 'LBFactoryMulti',
-			'LBFactory_Fake' => 'LBFactoryFake',
-		);
-
-		$class = $config['class'];
-
-		if ( isset( $bcClasses[$class] ) ) {
-			$class = $bcClasses[$class];
-			wfDeprecated(
-				'$wgLBFactoryConf must be updated. See RELEASE-NOTES for details',
-				'1.23'
-			);
-		}
-
-		return $class;
 	}
 
 	/**
@@ -220,7 +236,7 @@ abstract class LBFactory {
 		$this->forEachLBCallMethod( 'commitAll', array( $fname ) );
 		$timeMs = 1000 * ( microtime( true ) - $start );
 
-		RequestContext::getMain()->getStats()->timing( "db.commit-all", $timeMs );
+		$this->stats->timing( "db.commit-all", $timeMs );
 	}
 
 	/**
@@ -234,7 +250,7 @@ abstract class LBFactory {
 		$this->forEachLBCallMethod( 'commitMasterChanges', array( $fname ) );
 		$timeMs = 1000 * ( microtime( true ) - $start );
 
-		RequestContext::getMain()->getStats()->timing( "db.commit-masters", $timeMs );
+		$this->stats->timing( "db.commit-masters", $timeMs );
 	}
 
 	/**
@@ -403,29 +419,6 @@ abstract class LBFactory {
 	 */
 	public function disableChronologyProtection() {
 		$this->chronProt->setEnabled( false );
-	}
-
-	/**
-	 * @return ChronologyProtector
-	 */
-	protected function newChronologyProtector() {
-		$request = RequestContext::getMain()->getRequest();
-		$chronProt = new ChronologyProtector(
-			ObjectCache::getMainStashInstance(),
-			array(
-				'ip' => $request->getIP(),
-				'agent' => $request->getHeader( 'User-Agent' )
-			)
-		);
-		if ( PHP_SAPI === 'cli' ) {
-			$chronProt->setEnabled( false );
-		} elseif ( $request->getHeader( 'ChronologyProtection' ) === 'false' ) {
-			// Request opted out of using position wait logic. This is useful for requests
-			// done by the job queue or background ETL that do not have a meaningful session.
-			$chronProt->setWaitEnabled( false );
-		}
-
-		return $chronProt;
 	}
 
 	/**

@@ -20,6 +20,9 @@
  * @file
  * @ingroup Database
  */
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use Psr\Log\LoggerInterface;
+use Wikimedia\Assert\Assert;
 
 /**
  * A multi-wiki, multi-master factory for Wikimedia and similar installations.
@@ -133,17 +136,11 @@ class LBFactoryMulti extends LBFactory {
 
 	// Other stuff
 
-	/** @var array Load balancer factory configuration */
-	private $conf;
-
 	/** @var LoadBalancer[] */
 	private $mainLBs = array();
 
 	/** @var LoadBalancer[] */
 	private $extLBs = array();
-
-	/** @var string */
-	private $loadMonitorClass;
 
 	/** @var string */
 	private $lastWiki;
@@ -152,13 +149,39 @@ class LBFactoryMulti extends LBFactory {
 	private $lastSection;
 
 	/**
-	 * @param array $conf
-	 * @throws MWException
+	 * @var string
 	 */
-	public function __construct( array $conf ) {
-		parent::__construct( $conf );
+	private $wikiID;
 
-		$this->conf = $conf;
+	/**
+	 * LBFactorySimple constructor.
+	 *
+	 * @param string $wikiID (as understood by wfSplitWikiID)
+	 * @param array $conf
+	 * @param BagOStuff $srvCache
+	 * @param ChronologyProtector $chronProtect
+	 * @param TransactionProfiler $trxProfiler
+	 * @param LoadMonitor $loadMonitor
+	 * @param LoggerInterface $logger
+	 * @param StatsdDataFactoryInterface $stats
+	 */
+	public function __construct( //FIXME: fix all useages, including subclasses
+		$wikiID,
+		array $conf,
+		BagOStuff $srvCache,
+		ChronologyProtector $chronProtect,
+		TransactionProfiler $trxProfiler,
+		LoadMonitor $loadMonitor,
+		LoggerInterface $logger,
+		StatsdDataFactoryInterface $stats
+	) {
+		parent::__construct( $srvCache, $chronProtect, $trxProfiler, $loadMonitor, $logger, $stats );
+
+		Assert::parameterType( 'string', $wikiID, '$wikiID' );
+		$this->wikiID = $wikiID;
+
+		Assert::parameterElementType( 'array', $conf, '$conf' );
+
 		$required = array( 'sectionsByDB', 'sectionLoads', 'serverTemplate' );
 		$optional = array( 'groupLoadsBySection', 'groupLoadsByDB', 'hostsByName',
 			'externalLoads', 'externalTemplateOverrides', 'templateOverridesByServer',
@@ -167,7 +190,7 @@ class LBFactoryMulti extends LBFactory {
 
 		foreach ( $required as $key ) {
 			if ( !isset( $conf[$key] ) ) {
-				throw new MWException( __CLASS__ . ": $key is required in configuration" );
+				throw new InvalidArgumentException( __CLASS__ . ": $key is required in configuration" );
 			}
 			$this->$key = $conf[$key];
 		}
@@ -297,12 +320,15 @@ class LBFactoryMulti extends LBFactory {
 	 * @return LoadBalancer
 	 */
 	private function newLoadBalancer( $template, $loads, $groupLoads, $readOnlyReason ) {
-		return new LoadBalancer( array(
-			'servers' => $this->makeServerArray( $template, $loads, $groupLoads ),
-			'loadMonitor' => $this->loadMonitorClass,
-			'readOnlyReason' => $readOnlyReason,
-			'trxProfiler' => $this->trxProfiler
-		) );
+		$loadBalancer = new LoadBalancer(
+			$this->makeServerArray( $template, $loads, $groupLoads ),
+			$this->srvCache,
+			$this->trxProfiler,
+			$this->loadMonitor
+		);
+
+		$loadBalancer->setReadOnlyReason( $readOnlyReason );
+		return $loadBalancer;
 	}
 
 	/**
@@ -375,12 +401,10 @@ class LBFactoryMulti extends LBFactory {
 	 */
 	private function getDBNameAndPrefix( $wiki = false ) {
 		if ( $wiki === false ) {
-			global $wgDBname, $wgDBprefix;
-
-			return array( $wgDBname, $wgDBprefix );
-		} else {
-			return wfSplitWikiID( $wiki );
+			$wiki = $this->wikiID;
 		}
+
+		return wfSplitWikiID( $wiki );
 	}
 
 	/**

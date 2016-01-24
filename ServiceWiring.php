@@ -41,19 +41,46 @@ use MediaWiki\MediaWikiServices;
 
 return array(
 	'DBLoadBalancerFactory' => function( MediaWikiServices $services ) {
-		// NOTE: Defining the LBFactory class via LBFactoryConf is supported for
-		// backwards compatibility. The preferred way would be to register a
-		// callback for DBLoadBalancerFactory that constructs the desired LBFactory
-		// directly.
-		$config = $services->getMainConfig()->get( 'LBFactoryConf' );
+		$config = $services->getMainConfig();
+		$lbConf = $config->get( 'LBFactoryConf' );
+		$class = str_replace( '_', '', $lbConf['class'] );
 
-		$class = LBFactory::getLBFactoryClass( $config );
-		if ( !isset( $config['readOnlyReason'] ) ) {
-			// TODO: replace the global wfConfiguredReadOnlyReason() with a service.
-			$config['readOnlyReason'] = wfConfiguredReadOnlyReason();
+		switch ( $class ) {
+			case 'LBFactorySimple':
+				$args = array(
+					LBFactorySimple::buildServerSpecsFromConfig( $config ),
+					$config->get( 'ExternalServers' )
+				);
+				break;
+
+			case 'LBFactoryMulti':
+				$args = array( $lbConf );
+				break;
+
+			default:
+				throw new MWException( 'Unknown LBFactory class ' . $class );
 		}
 
-		return new $class( $config );
+		$args[] = $services->getObjectCacheManager()->getLocalServerInstance();
+		$args[] = $services->getChronologyProtector();
+		$args[] = $services->getTransactionProfiler();
+		$args[] = $services->getLoadMonitor();
+		$args[] = $services->getLoggerInterface();
+		$args[] = $services->getStatsdDataFactoryInterface();
+
+		$config = $services->getMainConfig()->get( 'LBFactoryConf' );
+
+		/** @var LBFactory $lbFactory */
+		$reflection = new ReflectionClass( $class );
+		$lbFactory = $reflection->newInstanceArgs( $args );
+
+		// TODO: replace the global wfConfiguredReadOnlyReason() with a service.
+		$readOnlyReason = isset( $config['readOnlyReason'] )
+			? $config['readOnlyReason']
+			: wfConfiguredReadOnlyReason();
+
+		$lbFactory->setReadOnlyReason( $readOnlyReason );
+		return $lbFactory;
 	},
 
 	'DBLoadBalancer' => function( MediaWikiServices $services ) {
@@ -90,6 +117,11 @@ return array(
 	'MainConfig' => function( MediaWikiServices $services ) {
 		// Use the 'main' config from the ConfigFactory service.
 		return $services->getConfigFactory()->makeConfig( 'main' );
+	},
+
+	'RequestContext' => function( MediaWikiServices $services ) {
+		// Note: As of MW 1.27, RequestContext relies on global state for lazy initialization!
+		return new RequestContext();
 	},
 
 	///////////////////////////////////////////////////////////////////////////

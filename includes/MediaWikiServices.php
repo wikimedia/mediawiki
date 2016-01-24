@@ -8,6 +8,7 @@ use Hooks;
 use InvalidArgumentException;
 use LBFactory;
 use LoadBalancer;
+use RequestContext;
 use RuntimeException;
 use SiteLookup;
 use SiteStore;
@@ -315,6 +316,16 @@ class MediaWikiServices {
 	 */
 	public function getDBLoadBalancer() {
 		return $this->getService( 'DBLoadBalancer' );
+	}
+
+	/**
+	 * @note Since RequestContext suffers from the "kitchen sink syndrome", application logic
+	 * should avoid using RequestContext and rely on more specific services instead.
+	 *
+	 * @return RequestContext
+	 */
+	public function getRequestContext() {
+		return $this->getService( 'RequestContext' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

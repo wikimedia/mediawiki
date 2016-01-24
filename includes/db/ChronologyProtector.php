@@ -46,6 +46,31 @@ class ChronologyProtector {
 	protected $shutdownPositions = array();
 
 	/**
+	 * Pseudo-constructor based on a WebRequest.
+	 *
+	 * @return ChronologyProtector
+	 */
+	public static function newFromRequest( BagOStuff $cache, WebRequest $request ) { //FIXME: test me!
+		$chronProt = new ChronologyProtector(
+			$cache,
+			array(
+				'ip' => $request->getIP(),
+				'agent' => $request->getHeader( 'User-Agent' )
+			)
+		);
+
+		if ( PHP_SAPI === 'cli' ) {
+			$chronProt->setEnabled( false );
+		} elseif ( $request->getHeader( 'ChronologyProtection' ) === 'false' ) {
+			// Request opted out of using position wait logic. This is useful for requests
+			// done by the job queue or background ETL that do not have a meaningful session.
+			$chronProt->setWaitEnabled( false );
+		}
+
+		return $chronProt;
+	}
+
+	/**
 	 * @param BagOStuff $store
 	 * @param array $client Map of (ip: <IP>, agent: <user-agent>)
 	 * @since 1.27
