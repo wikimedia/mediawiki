@@ -29,10 +29,10 @@ class WikiFilePage extends WikiPage {
 	/**
 	 * @var File
 	 */
-	protected $mFile = false; 				// !< File object
-	protected $mRepo = null;			    // !<
-	protected $mFileLoaded = false;		    // !<
-	protected $mDupes = null;				// !<
+	protected $mFile = false;
+	protected $mRepo = null;
+	protected $mFileLoaded = false;
+	protected $mDupes = null;
 
 	public function __construct( $title ) {
 		parent::__construct( $title );
