@@ -8,7 +8,7 @@
 	"config-localsettings-upgrade": "A <code>LocalSettings.php</code> file has been detected.\nTo upgrade this installation, please enter the value of <code>$wgUpgradeKey</code> in the box below.\nYou will find it in <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "A <code>LocalSettings.php</code> file has been detected.\nTo upgrade this installation, please run <code>update.php</code> instead",
 	"config-localsettings-key": "Upgrade key:",
-	"config-localsettings-badkey": "The key you provided is incorrect.",
+	"config-localsettings-badkey": "The upgrade key you provided is incorrect.",
 	"config-upgrade-key-missing": "An existing installation of MediaWiki has been detected.\nTo upgrade this installation, please put the following line at the bottom of your <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "The existing <code>LocalSettings.php</code> appears to be incomplete.\nThe $1 variable is not set.\nPlease change <code>LocalSettings.php</code> so that this variable is set, and click \"{{int:Config-continue}}\".",
 	"config-localsettings-connection-error": "An error was encountered when connecting to the database using the settings specified in <code>LocalSettings.php</code>. Please fix these settings and try again.\n\n$1",
