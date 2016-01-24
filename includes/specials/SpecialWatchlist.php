@@ -532,9 +532,19 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$days[] = $userWatchlistOption;
 		}
 
+		$maxDays = (string)( $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
+		// add the maximum possible value, if it isn't available already
+		if ( !in_array( $maxDays, $days ) ) {
+			$days[] = $maxDays;
+		}
+
 		$selected = (string)$options['days'];
+		if ( $selected <= 0 ) {
+			$selected = $maxDays;
+		}
+
 		// add the currently selected value, if it isn't available already
-		if ( !in_array( $selected, $days ) && $selected !== '0' ) {
+		if ( !in_array( $selected, $days ) ) {
 			$days[] = $selected;
 		}
 
@@ -549,11 +559,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			}
 			$select->addOption( $name, $value );
 		}
-
-		// 'all' option
-		$name = $this->msg( 'watchlistall2' )->text();
-		$value = '0';
-		$select->addOption( $name, $value );
 
 		return $select->getHTML() . "\n<br />\n";
 	}
