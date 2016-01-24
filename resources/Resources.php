@@ -24,6 +24,24 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
 
+if ( $GLOBALS['wgjQuery3'] ) {
+	$jquery = 'jquery' => array(
+		'scripts' => array(
+			'resources/lib/jquery/jquery3.js',
+		),
+		'raw' => true,
+		'targets' => array( 'desktop', 'mobile' ),
+	);
+} else {
+	$jquery = 'jquery' => array(
+		'scripts' => array(
+			'resources/lib/jquery/jquery.js',
+		),
+		'raw' => true,
+		'targets' => array( 'desktop', 'mobile' ),
+	);
+}
+
 return array(
 
 	/**
@@ -134,13 +152,7 @@ return array(
 
 	/* jQuery */
 
-	'jquery' => array(
-		'scripts' => array(
-			'resources/lib/jquery/jquery.js',
-		),
-		'raw' => true,
-		'targets' => array( 'desktop', 'mobile' ),
-	),
+	$jquery,
 
 	/* jQuery Plugins */
 
