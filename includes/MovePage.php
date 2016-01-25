@@ -233,9 +233,11 @@ class MovePage {
 	 * @param User $user
 	 * @param string $reason
 	 * @param bool $createRedirect
+	 * @param array $tags Change tags to apply to the entry in the move log. Caller should
+	 *  perform permission checks with ChangeTags::canAddTagsAccompanyingChange($changeTags, $user)
 	 * @return Status
 	 */
-	public function move( User $user, $reason, $createRedirect ) {
+	public function move( User $user, $reason, $createRedirect, $changeTags = [] ) {
 		global $wgCategoryCollation;
 
 		Hooks::run( 'TitleMove', [ $this->oldTitle, $this->newTitle, $user ] );
@@ -430,12 +432,13 @@ class MovePage {
 	 * @param string $reason The reason for the move
 	 * @param bool $createRedirect Whether to leave a redirect at the old title. Does not check
 	 *   if the user has the suppressredirect right
+	 * @param array $changeTags Change tags to apply to the entry in the move log
 	 * @return Revision the revision created by the move
 	 * @throws MWException
 	 */
-	private function moveToInternal( User $user, &$nt, $reason = '', $createRedirect = true ) {
+	private function moveToInternal( User $user, &$nt, $reason = '', $createRedirect = true,
+		$changeTags = [] ) {
 		global $wgContLang;
-
 		if ( $nt->exists() ) {
 			$moveOverRedirect = true;
 			$logType = 'move_redir';
@@ -529,7 +532,7 @@ class MovePage {
 			throw new MWException( 'No valid null revision produced in ' . __METHOD__ );
 		}
 
-		$nullRevision->insertOn( $dbw );
+		$nullRevId = $nullRevision->insertOn( $dbw );
 
 		# Change the name of the target page:
 		$dbw->update( 'page',
@@ -584,18 +587,26 @@ class MovePage {
 					'user' => $user->getId(),
 					'comment' => $comment,
 					'content' => $redirectContent ] );
-				$redirectRevision->insertOn( $dbw );
+				$redirectRevId = $redirectRevision->insertOn( $dbw );
 				$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 
 				Hooks::run( 'NewRevisionFromEditComplete',
 					[ $redirectArticle, $redirectRevision, false, $user ] );
 
 				$redirectArticle->doEditUpdates( $redirectRevision, $user, [ 'created' => true ] );
+
+				ChangeTags::addTags( $changeTags, null, $redirectRevId, null );
 			}
 		}
 
 		# Log the move
 		$logid = $logEntry->insert();
+
+		if ( count( $changeTags ) ) {
+			$logEntry->setTags( $changeTags );
+			$logEntry->setAssociatedRevId( $nullRevId ); // make sure the null revision is tagged
+		}
+
 		$logEntry->publish( $logid );
 
 		return $nullRevision;

@@ -828,9 +828,13 @@ class SpecialBlock extends FormSpecialPage {
 		$blockIds = array_merge( [ $status['id'] ], $status['autoIds'] );
 		$logEntry->setRelations( [ 'ipb_id' => $blockIds ] );
 		$logId = $logEntry->insert();
+
+		if ( isset( $data['Tags'] ) && count( $data['Tags'] ) ) {
+			$logEntry->setTags( $data['Tags'] );
+		}
+
 		$logEntry->publish( $logId );
 
-		# Report to the user
 		return true;
 	}
 
