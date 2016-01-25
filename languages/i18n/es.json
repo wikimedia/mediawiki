@@ -2015,7 +2015,6 @@
 	"wlheader-showupdated": "Las páginas modificadas desde tu última visita aparecen en <strong>negrita</strong>.",
 	"wlnote": "A continuación {{PLURAL:$1|se muestra el último cambio|se muestran los últimos <strong>$1</strong> cambios}} en {{PLURAL:$2|la última hora|las últimas <strong>$2</strong> horas}} a fecha de $4 $3.",
 	"wlshowlast": "Ver los cambios de las últimas $1 horas, $2 días",
-	"watchlistall2": "todos",
 	"watchlist-hide": "Ocultar",
 	"watchlist-submit": "Mostrar",
 	"wlshowtime": "Período de tiempo para mostrar:",

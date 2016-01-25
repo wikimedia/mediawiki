@@ -1719,7 +1719,6 @@
 	"wlheader-showupdated": "पन्ना सभ जे अहाँक एतए अन्तिम बेर अएलाक बाद बदलल अछि तकर सूची देल अछि '''गाढ़''' मे",
 	"wlnote": "नीचाँ {{PLURAL:$1|is the last change|are the last '''$1''' changes}} अन्तिम {{PLURAL:$2|hour|'''$2''' hours}} $3, $4 जेना।",
 	"wlshowlast": "देखाउ अन्तिम $1 घण्टा $2 दिन",
-	"watchlistall2": "सभ",
 	"watchlist-options": "साकांक्षसूचीक विकल्प सभ",
 	"watching": "ताकिमे...",
 	"unwatching": "छोड़ल ...",

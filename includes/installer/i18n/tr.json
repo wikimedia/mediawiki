@@ -15,7 +15,8 @@
 			"Stultiwikia",
 			"Meelo",
 			"HakanIST",
-			"McAang"
+			"McAang",
+			"Elftrkn"
 		]
 	},
 	"config-desc": "MediaWiki yükleyicisi",
@@ -24,7 +25,7 @@
 	"config-localsettings-upgrade": "Bir <code>LocalSettings.php</code> dosyası algılandı.\nBu kurulumu güncelleştirmek için, lütfen <code>$wgUpgradeKey</code> değerini aşağıdaki kutuya girin.\nBunu <code>LocalSettings.php</code> dosyasında bulabilirsiniz.",
 	"config-localsettings-cli-upgrade": "Bir <code>LocalSettings.php</code> dosyası algılandı.\nBu kurulumu güncelleştirmek için, lütfen <code>update.php</code> dosyasını çalıştırın.",
 	"config-localsettings-key": "Yükseltme anahtarı:",
-	"config-localsettings-badkey": "Sağladığınız anahtar doğru değil.",
+	"config-localsettings-badkey": "Girdiğiniz güncelleme anahtarı doğru değildir.",
 	"config-upgrade-key-missing": "Mevcut bir MediaWiki kurulumu algılandı.\nBu kurulumu güncelleştirmek için, lütfen aşağıdaki satırı <code>LocalSettings.php</code> dosyanızın en altına koyun:\n\n$1",
 	"config-localsettings-incomplete": "Mevcut <code>LocalSettings.php</code> eksik gibi görünüyor.\n $1  değişkeni ayarlanmamış.\nLütfen <code>LocalSettings.php</code> dosyasını değiştirin bu değişkenleri kuracak, ve tıklayın  \"{{int:Config-cuntinue}}\".",
 	"config-localsettings-connection-error": "<code>LocalSettings.php</code> içinde belirtilen ayarları kullanarak veritabanına bağlanırken bir hatayla karşılaşıldı. Lütfen bu ayarları düzeltin ve yeniden deneyin.\n\n$1",

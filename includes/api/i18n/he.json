@@ -576,7 +576,7 @@
 	"apihelp-query+categorymembers-paramvalue-prop-title": "הוספת השם ומזהה מרחב השם של הדף.",
 	"apihelp-query+categorymembers-paramvalue-prop-sortkey": "הוספת מפתח המיון שמשמש למיון בקטגוריה (מחרזות הקסדצימלית).",
 	"apihelp-query+categorymembers-paramvalue-prop-sortkeyprefix": "הוספת מפתח המיון שמשמש למיון בקטגוריה (מחרוזת הקסדצימלית).",
-	"apihelp-query+categorymembers-paramvalue-prop-type": "הוספת הסוג שהדף מוין אליו (דף, תת־קטגוריה, או קובץ).",
+	"apihelp-query+categorymembers-paramvalue-prop-type": "הוספת הסוג שהדף מוין אליו (<samp>page</samp>‏, <samp>subcat</samp> או <samp>file</samp>).",
 	"apihelp-query+categorymembers-paramvalue-prop-timestamp": "הוספת חותם־הזמן שבו הדף נכלל.",
 	"apihelp-query+categorymembers-param-namespace": "לכלול רק דפים במרחבי השם האלה. יש לשים לב לכך ש־<kbd>$1type=subcat</kbd> או <kbd>$1type=file</kbd> יכולים לשמש במקום <kbd>$1namespace=14</kbd> או <kbd>6</kbd>.",
 	"apihelp-query+categorymembers-param-type": "איזה סוג של חברי קטגוריה לכלול. לא תקף כאשר מוגדר <kbd>$1sort=timestamp</kbd>.",

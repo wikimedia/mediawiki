@@ -13,7 +13,7 @@
 	"config-localsettings-upgrade": "Беше открит файл <code>LocalSettings.php</code>.\nЗа надграждане на съществуващата инсталация, необходимо е в кутията по-долу да се въведе стойността на <code>$wgUpgradeKey</code>.\nТази информация е налична в <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Беше открит файл <code>LocalSettings.php</code>.\nЗа надграждане на наличната инсталация, необходимо е да се стартира <code>update.php</code>",
 	"config-localsettings-key": "Ключ за надграждане:",
-	"config-localsettings-badkey": "Предоставеният ключ е неправилен.",
+	"config-localsettings-badkey": "Предоставеният ключ за надграждане е неправилен.",
 	"config-upgrade-key-missing": "Беше открита съществуваща инсталация на МедияУики.\nЗа надграждане на съществуващата инсталация, необходимо е да се постави следният ред в края на файла <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "Съществуващият файл <code>LocalSettings.php</code> изглежда непълен.\nПроменливата $1 не е зададена.\nНеобходимо е да се редактира файлът <code>LocalSettings.php</code> и да се зададе променливата, след което да се натисне „{{int:Config-continue}}“.",
 	"config-localsettings-connection-error": "Възникна грешка при свързване с базата данни чрез посочените настройки в <code>LocalSettings.php</code>. Преди следващ опит за свързване, необходимо е настройките да бъдат коригирани.\n\n$1",

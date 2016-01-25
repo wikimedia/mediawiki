@@ -1757,7 +1757,6 @@
 	"wlheader-showupdated": "Stránky, ktoré boli zmenené od vašej poslednej návštevy sú zobrazené '''tučne'''.",
 	"wlnote": "Nižšie {{PLURAL:$1|je posledná úprava|sú posledné <strong>$1</strong> úpravy|je posledných <strong>$1</strong> úprav}} za {{PLURAL:$2|poslednú hodinu|posledné <strong>$2</strong> hodiny|posledných <strong>$2</strong> hodín}} do $4, $3.",
 	"wlshowlast": "Zobraziť posledných $1 hodín $2 dní",
-	"watchlistall2": "všetky",
 	"watchlist-hide": "Skryť",
 	"watchlist-submit": "Zobraziť",
 	"wlshowtime": "Zobraziť posl.:",

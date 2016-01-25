@@ -1914,7 +1914,6 @@
 	"wlheader-showupdated": "Sider som har blitt endret siden du besøkte dem sist vises med '''fet skrift'''.",
 	"wlnote": "Nedenfor er {{PLURAL:$1|den siste endringen|de siste <strong>$1</strong> endringene}} {{PLURAL:$2|den siste timen|de siste <strong>$2</strong> timene}}, per $3 kl. $4",
 	"wlshowlast": "Vis siste $1 timer $2 dager",
-	"watchlistall2": "alle",
 	"watchlist-hide": "Skjul",
 	"watchlist-submit": "Vis",
 	"wlshowtime": "Tidsperiode som skal vises:",

@@ -188,6 +188,7 @@
 	"apihelp-query+blocks-example-simple": "Elenca i blocchi.",
 	"apihelp-query+categories-param-dir": "La direzione in cui elencare.",
 	"apihelp-query+categorymembers-paramvalue-prop-title": "Aggiunge il titolo e l'ID namespace della pagina.",
+	"apihelp-query+categorymembers-paramvalue-prop-type": "Aggiunge il tipo di come la pagina è stata categorizzata (<samp>page</samp>, <samp>subcat</samp> o <samp>file</samp>).",
 	"apihelp-query+categorymembers-param-namespace": "Includi solo le pagine in questi namespace. Nota che può essere usato <kbd>$1type=subcat</kbd> o <kbd>$1type=file</kbd> anziché <kbd>$1namespace=14</kbd> o <kbd>6</kbd>.",
 	"apihelp-query+duplicatefiles-param-dir": "La direzione in cui elencare.",
 	"apihelp-query+embeddedin-description": "Trova tutte le pagine che incorporano (transclusione) il titolo specificato.",

@@ -31,7 +31,7 @@
 	"config-localsettings-upgrade": "Un fichier <code>LocalSettings.php</code> a été détecté.\nPour mettre à jour cette installation, veuillez saisir la valeur de <code>$wgUpgradeKey</code> dans le champ ci-dessous.\nVous la trouverez dans <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Un fichier <code>LocalSettings.php</code> a été détecté.\nPour mettre à niveau cette installation, veuillez exécuter <code>update.php</code> à la place",
 	"config-localsettings-key": "Clé de mise à jour :",
-	"config-localsettings-badkey": "La clé que vous avez fournie est incorrecte.",
+	"config-localsettings-badkey": "La clé de mise à jour que vous avez fournie n’est pas correcte.",
 	"config-upgrade-key-missing": "Une installation existante de MediaWiki a été détectée.\n\nPour mettre à jour cette installation, veuillez ajouter la ligne suivante à la fin de votre fichier <code>LocalSettings.php</code>\n\n$1",
 	"config-localsettings-incomplete": "Le fichier <code>LocalSettings.php</code> existant semble être incomplet.\nLa variable $1 n’est pas définie.\nVeuillez modifier <code>LocalSettings.php</code> de sorte que cette variable soit définie, puis cliquer sur « {{int:Config-continue}} ».",
 	"config-localsettings-connection-error": "Une erreur est survenue lors de la connexion à la base de données en utilisant la configuration spécifiée dans <code>LocalSettings.php</code>. Veuillez corriger cette configuration puis réessayer.\n\n$1",
