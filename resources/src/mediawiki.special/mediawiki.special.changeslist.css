@@ -15,3 +15,7 @@
 .mw-changeslist .mw-title {
 	unicode-bidi: embed;
 }
+
+.mw-current-tag {
+	font-weight: bold;
+}
