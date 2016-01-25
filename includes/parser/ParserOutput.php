@@ -208,6 +208,8 @@ class ParserOutput extends CacheTime {
 	 */
 	private $mFlags = array();
 
+	public $debug_gettext_trace = array();
+
 	const EDITSECTION_REGEX =
 		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
@@ -232,7 +234,7 @@ class ParserOutput extends CacheTime {
 	}
 
 	public function getText() {
-		$this->debug_gettext_trace = wfGetAllCallers( false );
+		$this->debug_gettext_trace[] = wfGetAllCallers( false );
 		$text = $this->mText;
 		if ( $this->mEditSectionTokens ) {
 			$text = preg_replace_callback(
