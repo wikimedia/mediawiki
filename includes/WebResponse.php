@@ -141,7 +141,7 @@ class WebResponse {
 			);
 
 			// Per RFC 6265, key is name + domain + path
-			$key = "{$data['name']}\n{$data['domain']}\n{$date['path']}";
+			$key = "{$data['name']}\n{$data['domain']}\n{$data['path']}";
 
 			// If this cookie name was in the request, fake an entry in
 			// self::$setCookies for it so the deleting check works right.
