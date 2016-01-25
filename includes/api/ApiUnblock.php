@@ -63,9 +63,18 @@ class ApiUnblock extends ApiBase {
 			}
 		}
 
+		// Check if user can add tags
+		if ( !is_null( $params['tags'] ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
+			}
+		}
+
 		$data = array(
 			'Target' => is_null( $params['id'] ) ? $params['user'] : "#{$params['id']}",
-			'Reason' => $params['reason']
+			'Reason' => $params['reason'],
+			'Tags' => $params['tags']
 		);
 		$block = Block::newFromTarget( $data['Target'] );
 		$retval = SpecialUnblock::processUnblock( $data, $this->getContext() );
@@ -96,6 +105,10 @@ class ApiUnblock extends ApiBase {
 			),
 			'user' => null,
 			'reason' => '',
+			'tags' => array(
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			),
 		);
 	}
 

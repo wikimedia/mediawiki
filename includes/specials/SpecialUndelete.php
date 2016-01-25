@@ -360,11 +360,13 @@ class PageArchive {
 	 * @param array $fileVersions
 	 * @param bool $unsuppress
 	 * @param User $user User performing the action, or null to use $wgUser
+	 * @param string|array $tags Change tags to add to log entry
+		($user should be able to add the specified tags before this is called)
 	 * @return array(number of file revisions restored, number of image revisions
 	 *   restored, log message) on success, false on failure.
 	 */
 	function undelete( $timestamps, $comment = '', $fileVersions = array(),
-		$unsuppress = false, User $user = null
+		$unsuppress = false, User $user = null, $tags = null
 	) {
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
@@ -431,6 +433,11 @@ class PageArchive {
 
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
+
+		// Change tags for log entry
+		if ( !is_null( $tags ) ) {
+			ChangeTags::addTags( $tags, null, null, $logId, null );
+		}
 
 		return array( $textRestored, $filesRestored, $reason );
 	}
