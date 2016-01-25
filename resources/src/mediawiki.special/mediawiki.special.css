@@ -28,6 +28,11 @@
 	font-style: italic;
 }
 
+/* Common for Special:RecentChanges and Special:Watchlist */
+.mw-current-tag {
+	font-weight: bold;
+}
+
 /* Special:Block */
 p.mw-ipb-conveniencelinks {
 	font-size: 90%;
