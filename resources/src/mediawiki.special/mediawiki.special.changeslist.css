@@ -39,3 +39,7 @@
 	unicode-bidi: -moz-isolate;
 	unicode-bidi: isolate;
 }
+
+.mw-current-tag {
+	font-weight: bold;
+}
