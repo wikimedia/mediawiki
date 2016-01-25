@@ -34,7 +34,7 @@ class PageLangLogFormatterTest extends LogFormatterTestCase {
 					),
 				),
 				array(
-					'text' => 'User changed page language for Page from English (en) to Deutsch (de) [default].',
+					'text' => 'User changed the language of Page from English (en) to Deutsch (de) [default]',
 					'api' => array(
 						'oldlanguage' => 'en',
 						'newlanguage' => 'de[def]'
