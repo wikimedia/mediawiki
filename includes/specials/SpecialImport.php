@@ -537,14 +537,16 @@ class ImportReporter extends ContextSource {
 	private $mOriginalLogCallback = null;
 	private $mOriginalPageOutCallback = null;
 	private $mLogItemCount = 0;
+	private $logTags = array();
 
 	/**
 	 * @param WikiImporter $importer
 	 * @param bool $upload
 	 * @param string $interwiki
 	 * @param string|bool $reason
+	 * @param array $tags Change tags to apply to the entry in the import log
 	 */
-	function __construct( $importer, $upload, $interwiki, $reason = false ) {
+	function __construct( $importer, $upload, $interwiki, $reason = false, $tags = array() ) {
 		$this->mOriginalPageOutCallback =
 			$importer->setPageOutCallback( array( $this, 'reportPage' ) );
 		$this->mOriginalLogCallback =
@@ -554,6 +556,7 @@ class ImportReporter extends ContextSource {
 		$this->mIsUpload = $upload;
 		$this->mInterwiki = $interwiki;
 		$this->reason = $reason;
+		$this->logTags = $tags;
 	}
 
 	function open() {
@@ -641,8 +644,9 @@ class ImportReporter extends ContextSource {
 				$this->getUser()
 			);
 
+			$nullRevId = null;
 			if ( !is_null( $nullRevision ) ) {
-				$nullRevision->insertOn( $dbw );
+				$nullRevId = $nullRevision->insertOn( $dbw );
 				$page = WikiPage::factory( $title );
 				# Update page record
 				$page->updateRevisionOn( $dbw, $nullRevision );
@@ -650,6 +654,11 @@ class ImportReporter extends ContextSource {
 					'NewRevisionFromEditComplete',
 					array( $page, $nullRevision, $latest, $this->getUser() )
 				);
+			}
+
+			// Add change tags if necessary
+			if ( count( $this->logTags ) ) {
+				ChangeTags::addTags( $this->logTags, null, $nullRevId, $logid );
 			}
 		} else {
 			$this->getOutput()->addHTML( "<li>" . Linker::linkKnown( $title ) . " " .
