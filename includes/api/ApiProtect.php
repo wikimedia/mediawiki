@@ -114,6 +114,12 @@ class ApiProtect extends ApiBase {
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
 		}
+
+		// Apply change tags to the log entry, if requested
+		if ( count( $params['tags'] ) && !is_null( $status->value ) ) {
+			ChangeTags::addTags( $params['tags'], null, null, $status->value, null );
+		}
+
 		$res = array(
 			'title' => $titleObj->getPrefixedText(),
 			'reason' => $params['reason']
@@ -153,6 +159,10 @@ class ApiProtect extends ApiBase {
 				ApiBase::PARAM_DFLT => 'infinite',
 			),
 			'reason' => '',
+			'tags' => array(
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			),
 			'cascade' => false,
 			'watch' => array(
 				ApiBase::PARAM_DFLT => false,
