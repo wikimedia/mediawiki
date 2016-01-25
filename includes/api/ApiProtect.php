@@ -55,6 +55,15 @@ class ApiProtect extends ApiBase {
 			}
 		}
 
+		// If change tagging was requested, check that the user is allowed to tag,
+		// and the tags are valid
+		if ( count( $params['tags'] ) ) {
+			$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			if ( !$tagStatus->isOK() ) {
+				$this->dieStatus( $tagStatus );
+			}
+		}
+
 		$restrictionTypes = $titleObj->getRestrictionTypes();
 
 		$protections = array();
@@ -114,6 +123,12 @@ class ApiProtect extends ApiBase {
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
 		}
+
+		// Apply change tags to the log entry, if requested
+		if ( count( $params['tags'] ) && !is_null( $status->value ) ) {
+			ChangeTags::addTags( $params['tags'], null, null, $status->value, null );
+		}
+
 		$res = array(
 			'title' => $titleObj->getPrefixedText(),
 			'reason' => $params['reason']
@@ -153,6 +168,10 @@ class ApiProtect extends ApiBase {
 				ApiBase::PARAM_DFLT => 'infinite',
 			),
 			'reason' => '',
+			'tags' => array(
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			),
 			'cascade' => false,
 			'watch' => array(
 				ApiBase::PARAM_DFLT => false,
