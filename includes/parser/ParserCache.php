@@ -259,7 +259,7 @@ class ParserCache {
 		$expire = $parserOutput->getCacheExpiry();
 		if ( $expire > 0 ) {
 			if ( strpos( $parserOutput->mText, 'href="#/editor/1"' ) !== false ) {
-				wfDebugLog( 'T124356', 'MF pollution: getText called from: ' . (
+				wfDebugLog( 'T124356', "MF pollution ({$page->getId()}): getText called from: " . (
 					$parserOutput->debug_gettext_trace ?
 					implode( ', ', $parserOutput->debug_gettext_trace ) : 'nowhere' ) );
 			}

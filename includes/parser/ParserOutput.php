@@ -234,6 +234,9 @@ class ParserOutput extends CacheTime {
 	}
 
 	public function getText() {
+		if ( !is_array( $this->debug_gettext_trace ) ) {
+			$this->debug_gettext_trace = (array)$this->debug_gettext_trace;
+		}
 		$this->debug_gettext_trace[] = wfGetAllCallers( false );
 		$text = $this->mText;
 		if ( $this->mEditSectionTokens ) {
