@@ -539,14 +539,17 @@ class ImportReporter extends ContextSource {
 	private $mOriginalLogCallback = null;
 	private $mOriginalPageOutCallback = null;
 	private $mLogItemCount = 0;
+	private $logTags = [];
 
 	/**
 	 * @param WikiImporter $importer
 	 * @param bool $upload
 	 * @param string $interwiki
 	 * @param string|bool $reason
+	 * @param array $tags Change tags to apply to the entry in the import log. Caller should
+	 *  perform permission checks with ChangeTags::canAddTagsAccompanyingChange($changeTags, $user)
 	 */
-	function __construct( $importer, $upload, $interwiki, $reason = false ) {
+	function __construct( $importer, $upload, $interwiki, $reason = false, $tags = [] ) {
 		$this->mOriginalPageOutCallback =
 			$importer->setPageOutCallback( [ $this, 'reportPage' ] );
 		$this->mOriginalLogCallback =
@@ -556,6 +559,7 @@ class ImportReporter extends ContextSource {
 		$this->mIsUpload = $upload;
 		$this->mInterwiki = $interwiki;
 		$this->reason = $reason;
+		$this->logTags = $tags;
 	}
 
 	function open() {
@@ -628,14 +632,6 @@ class ImportReporter extends ContextSource {
 					. $this->reason;
 			}
 
-			$logEntry = new ManualLogEntry( 'import', $action );
-			$logEntry->setTarget( $title );
-			$logEntry->setComment( $this->reason );
-			$logEntry->setPerformer( $this->getUser() );
-			$logEntry->setParameters( $logParams );
-			$logid = $logEntry->insert();
-			$logEntry->publish( $logid );
-
 			$comment = $detail; // quick
 			$dbw = wfGetDB( DB_MASTER );
 			$latest = $title->getLatestRevID();
@@ -647,8 +643,9 @@ class ImportReporter extends ContextSource {
 				$this->getUser()
 			);
 
+			$nullRevId = null;
 			if ( !is_null( $nullRevision ) ) {
-				$nullRevision->insertOn( $dbw );
+				$nullRevId = $nullRevision->insertOn( $dbw );
 				$page = WikiPage::factory( $title );
 				# Update page record
 				$page->updateRevisionOn( $dbw, $nullRevision );
@@ -657,6 +654,21 @@ class ImportReporter extends ContextSource {
 					[ $page, $nullRevision, $latest, $this->getUser() ]
 				);
 			}
+
+			// Add change tags to the null revision
+			$logEntry = new ManualLogEntry( 'import', $action );
+			$logEntry->setTarget( $title );
+			$logEntry->setComment( $this->reason );
+			$logEntry->setPerformer( $this->getUser() );
+			$logEntry->setParameters( $logParams );
+			$logid = $logEntry->insert();
+			if ( count( $this->logTags ) ) {
+				$logEntry->setTags( $this->logTags );
+			}
+			$logEntry->setAssociatedRevId( $nullRevId ); // make sure the null revision will be tagged
+
+			$logEntry->publish( $logid );
+
 		} else {
 			$this->getOutput()->addHTML( "<li>" . $linkRenderer->makeKnownLink( $title ) . " " .
 				$this->msg( 'import-nonewrevisions' )->escaped() . "</li>\n" );
