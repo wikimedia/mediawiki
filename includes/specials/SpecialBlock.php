@@ -706,6 +706,13 @@ class SpecialBlock extends FormSpecialPage {
 			}
 		}
 
+		if ( isset( $data['Tags'] ) && count( $data['Tags'] ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $data['Tags'], $performer );
+			if ( !$ableToTag->isOK() ) {
+				return array( 'cantapply-changetags' );
+			}
+		}
+
 		# Create block object.
 		$block = new Block();
 		$block->setTarget( $target );
@@ -820,7 +827,10 @@ class SpecialBlock extends FormSpecialPage {
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
-		# Report to the user
+		if ( isset( $data['Tags'] ) && count( $data['Tags'] ) ) {
+			ChangeTags::addTags( $data['Tags'], null, null, $logId );
+		}
+
 		return true;
 	}
 
