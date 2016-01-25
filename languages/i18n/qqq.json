@@ -4524,5 +4524,6 @@
 	"pagedata-title": "Title shown on the special page when a form or text is presented",
 	"pagedata-text": "Error shown when none of the formats acceptable to the client is supported (HTTP error 406). Parameters:\n* $1 - the list of supported MIME types",
 	"pagedata-not-acceptable": "No matching format found. Supported MIME types: $1",
-	"pagedata-bad-title": "Error shown when the requested title is invalid. Parameters:\n* $1: the malformed ID"
+	"pagedata-bad-title": "Error shown when the requested title is invalid. Parameters:\n* $1: the malformed ID",
+	"current-revision-tag": "This is a tag which aprehends to revision lines if they are current. For example on [[Special:RecentChanges]] or [[Special:RecentChangesLinked]]\n{{Identical|Current}}"
 }

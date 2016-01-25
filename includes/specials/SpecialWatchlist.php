@@ -314,14 +314,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$query_options['LIMIT'] = $limitWatchlist;
 		}
 
-		$rollbacker = $user->isAllowed( 'rollback' );
-		if ( $usePage || $rollbacker ) {
-			$tables[] = 'page';
-			$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
-			if ( $rollbacker ) {
-				$fields[] = 'page_latest';
-			}
-		}
+		$tables[] = 'page';
+		$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
+		$fields[] = 'page_latest';
 
 		// Log entries with DELETED_ACTION must not show up unless the user has
 		// the necessary rights.
