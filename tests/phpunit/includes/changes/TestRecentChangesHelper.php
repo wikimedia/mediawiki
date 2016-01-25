@@ -151,7 +151,8 @@ class TestRecentChangesHelper {
 			'rc_log_type' => null,
 			'rc_log_action' => '',
 			'rc_params' => '',
-			'rc_source' => 'mw.edit'
+			'rc_source' => 'mw.edit',
+			'page_latest' => 0
 		];
 	}
 

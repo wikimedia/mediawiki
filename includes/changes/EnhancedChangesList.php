@@ -436,6 +436,9 @@ class EnhancedChangesList extends ChangesList {
 			$data['comment'] = $this->insertComment( $rcObj );
 		}
 
+		# Is edit current
+		$data['current'] = $this->getCurrentTag( $rcObj );
+
 		# Rollback
 		$data['rollback'] = $this->getRollback( $rcObj );
 
@@ -657,6 +660,7 @@ class EnhancedChangesList extends ChangesList {
 			if ( $type == RC_CATEGORIZE ) {
 				$data['historyLink'] = $this->getDiffHistLinks( $rcObj, $query );
 			}
+			$data['current'] = $this->getCurrentTag( $rcObj );
 			$data['rollback'] = $this->getRollback( $rcObj );
 		}
 

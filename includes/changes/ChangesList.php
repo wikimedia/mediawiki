@@ -616,31 +616,35 @@ class ChangesList extends ContextSource {
 		}
 	}
 
-	/** Inserts a rollback link
-	 *
+	/**
+	 * Check whether the given RecentChange is the latest edit to the page
+	 * @param RecentChange $rc
+	 * @return bool
+	 */
+	protected function isCurrentEdit( $rc ) {
+		return $rc->mAttribs['rc_type'] == RC_EDIT
+			&& $rc->mAttribs['rc_this_oldid']
+			&& $rc->mAttribs['rc_cur_id']
+			&& $rc->mAttribs['page_latest'] == $rc->mAttribs['rc_this_oldid'];
+	}
+
+	/**
+	 * Inserts a rollback link
 	 * @param string $s
 	 * @param RecentChange $rc
 	 */
 	public function insertRollback( &$s, &$rc ) {
-		if ( $rc->mAttribs['rc_type'] == RC_EDIT
-			&& $rc->mAttribs['rc_this_oldid']
-			&& $rc->mAttribs['rc_cur_id']
-		) {
-			$page = $rc->getTitle();
-			/** Check for rollback and edit permissions, disallow special pages, and only
-			 * show a link on the top-most revision */
-			if ( $this->getUser()->isAllowed( 'rollback' )
-				&& $rc->mAttribs['page_latest'] == $rc->mAttribs['rc_this_oldid']
-			) {
-				$rev = new Revision( [
-					'title' => $page,
-					'id' => $rc->mAttribs['rc_this_oldid'],
-					'user' => $rc->mAttribs['rc_user'],
-					'user_text' => $rc->mAttribs['rc_user_text'],
-					'deleted' => $rc->mAttribs['rc_deleted']
-				] );
-				$s .= ' ' . Linker::generateRollback( $rev, $this->getContext() );
-			}
+		// Check for rollback and edit permissions, disallow special pages, and only
+		// show a link on the top-most revision
+		if ( $this->isCurrentEdit( $rc ) && $this->getUser()->isAllowed( 'rollback' ) ) {
+			$rev = new Revision( [
+				'title' => $rc->getTitle(),
+				'id' => $rc->mAttribs['rc_this_oldid'],
+				'user' => $rc->mAttribs['rc_user'],
+				'user_text' => $rc->mAttribs['rc_user_text'],
+				'deleted' => $rc->mAttribs['rc_deleted']
+			] );
+			$s .= ' ' . Linker::generateRollback( $rev, $this->getContext() );
 		}
 	}
 
@@ -652,6 +656,33 @@ class ChangesList extends ContextSource {
 	public function getRollback( RecentChange $rc ) {
 		$s = '';
 		$this->insertRollback( $s, $rc );
+		return $s;
+	}
+
+	/**
+	 * Inserts a current tag
+	 * @param string &$s
+	 * @param RecentChange &$rc
+	 */
+	public function insertCurrentTag( &$s, &$rc ) {
+		// Only add tag if the edit is current
+		// Also disregard if the user is visiting a watchlist with only current edits visible
+		if ( $this->isCurrentEdit( $rc )
+			&& ( !$this->watchlist || $this->getUser()->getBoolOption( 'extendwatchlist' ) )
+		) {
+			$s .= ' <span class="mw-current-tag">' .
+				$this->msg( 'current-revision-tag' )->escaped() . '</span>';
+		}
+	}
+
+	/**
+	 * @param RecentChange $rc
+	 * @return string
+	 * @since 1.27
+	 */
+	public function getCurrentTag( RecentChange $rc ) {
+		$s = '';
+		$this->insertCurrentTag( $s, $rc );
 		return $s;
 	}
 
