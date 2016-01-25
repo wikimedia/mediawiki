@@ -56,7 +56,18 @@ class ApiPatrol extends ApiBase {
 			}
 		}
 
-		$retval = $rc->doMarkPatrolled( $this->getUser() );
+		$user = $this->getUser();
+		$tags = $params['tags'];
+
+		// Check if user can add tags
+		if ( !is_null( $tags ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $tags, $user );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
+			}
+		}
+
+		$retval = $rc->doMarkPatrolled( $user, false, $tags );
 
 		if ( $retval ) {
 			$this->dieUsageMsg( reset( $retval ) );
@@ -82,6 +93,10 @@ class ApiPatrol extends ApiBase {
 			),
 			'revid' => array(
 				ApiBase::PARAM_TYPE => 'integer'
+			),
+			'tags' => array(
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
 			),
 		);
 	}
