@@ -68,7 +68,7 @@ class ApiUnblock extends ApiBase {
 			'Reason' => $params['reason']
 		);
 		$block = Block::newFromTarget( $data['Target'] );
-		$retval = SpecialUnblock::processUnblock( $data, $this->getContext() );
+		$retval = SpecialUnblock::processUnblock( $data, $this->getContext(), $params['tags'] );
 		if ( $retval !== true ) {
 			$this->dieUsageMsg( $retval[0] );
 		}
@@ -96,6 +96,10 @@ class ApiUnblock extends ApiBase {
 			),
 			'user' => null,
 			'reason' => '',
+			'tags' => array(
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			),
 		);
 	}
 

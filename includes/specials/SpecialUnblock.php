@@ -171,10 +171,11 @@ class SpecialUnblock extends SpecialPage {
 	 *
 	 * @param array $data
 	 * @param IContextSource $context
+	 * @param string|array $tags Change tags to add to log entry
 	 * @throws ErrorPageError
 	 * @return array|bool Array(message key, parameters) on failure, True on success
 	 */
-	public static function processUnblock( array $data, IContextSource $context ) {
+	public static function processUnblock( array $data, IContextSource $context, $tags = null ) {
 		$performer = $context->getUser();
 		$target = $data['Target'];
 		$block = Block::newFromTarget( $data['Target'] );
@@ -237,6 +238,11 @@ class SpecialUnblock extends SpecialPage {
 		$logEntry->setPerformer( $performer );
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
+
+		// Change tags for log entry
+		if ( !is_null( $tags ) ) {
+			ChangeTags::safeAddTags( $performer, $tags, null, null, $logId, null );
+		}
 
 		return true;
 	}
