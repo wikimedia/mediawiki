@@ -33,10 +33,12 @@ class PatrolLog {
 	 * @param int|RecentChange $rc Change identifier or RecentChange object
 	 * @param bool $auto Was this patrol event automatic?
 	 * @param User $user User performing the action or null to use $wgUser
+	 * @param string|string[] $tags Change tags to add to the patrol log entry
+	 *   ($user should be able to add the specified tags before this is called)
 	 *
 	 * @return bool
 	 */
-	public static function record( $rc, $auto = false, User $user = null ) {
+	public static function record( $rc, $auto = false, User $user = null, $tags = null ) {
 		global $wgLogAutopatrol;
 
 		// do not log autopatrolled edits if setting disables it
@@ -60,6 +62,7 @@ class PatrolLog {
 		$entry->setTarget( $rc->getTitle() );
 		$entry->setParameters( self::buildParams( $rc, $auto ) );
 		$entry->setPerformer( $user );
+		$entry->setTags( $tags );
 		$logid = $entry->insert();
 		if ( !$auto ) {
 			$entry->publish( $logid, 'udp' );
