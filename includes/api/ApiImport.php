@@ -77,7 +77,8 @@ class ApiImport extends ApiBase {
 			$importer,
 			$isUpload,
 			$params['interwikisource'],
-			$params['summary']
+			$params['summary'],
+			$params['tags']
 		);
 
 		try {
@@ -140,6 +141,10 @@ class ApiImport extends ApiBase {
 				ApiBase::PARAM_TYPE => 'namespace'
 			),
 			'rootpage' => null,
+			'tags' => array(
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			),
 		);
 	}
 
