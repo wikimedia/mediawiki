@@ -1639,8 +1639,10 @@ class Revision implements IDBAccessObject {
 			array(
 				'page_id' => $pageId,
 				'page_latest=rev_id',
-				),
-			__METHOD__ );
+			),
+			__METHOD__,
+			array( 'FOR UPDATE' ) // T51581
+		);
 
 		if ( $current ) {
 			if ( !$user ) {
