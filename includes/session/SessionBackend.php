@@ -643,6 +643,7 @@ final class SessionBackend {
 			) {
 				$this->logger->debug( "SessionBackend $this->id: Taking over PHP session" );
 				session_id( (string)$this->id );
+				\MediaWiki\quietCall( 'session_cache_limiter', 'private, must-revalidate' );
 				\MediaWiki\quietCall( 'session_start' );
 			}
 		}
