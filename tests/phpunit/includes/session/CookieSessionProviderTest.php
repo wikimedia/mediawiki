@@ -431,7 +431,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 			'cookieOptions' => array( 'prefix' => 'x' ),
 		) );
 		$config = $this->getConfig();
-		$config->set( 'CookieSecure', false );
+		$config->set( 'CookieSecure', $secure );
 		$provider->setLogger( new \TestLogger() );
 		$provider->setConfig( $config );
 		$provider->setManager( SessionManager::singleton() );
