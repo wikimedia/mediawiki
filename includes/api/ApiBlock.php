@@ -62,6 +62,13 @@ class ApiBlock extends ApiBase {
 			}
 		}
 
+		if ( isset( $params['tags'] ) && count( $params['tags'] ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $performer );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
+			}
+		}
+
 		$target = User::newFromName( $params['user'] );
 		// Bug 38633 - if the target is a user (not an IP address), but it
 		// doesn't exist or is unusable, error.
@@ -96,6 +103,7 @@ class ApiBlock extends ApiBase {
 			'Reblock' => $params['reblock'],
 			'Watch' => $params['watchuser'],
 			'Confirm' => true,
+			'Tags' => $params['tags'],
 		];
 
 		$retval = SpecialBlock::processForm( $data, $this->getContext() );
@@ -154,6 +162,10 @@ class ApiBlock extends ApiBase {
 			'allowusertalk' => false,
 			'reblock' => false,
 			'watchuser' => false,
+			'tags' => [
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			],
 		];
 	}
 
