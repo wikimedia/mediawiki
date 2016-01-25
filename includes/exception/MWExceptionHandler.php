@@ -434,6 +434,9 @@ TXT;
 					return is_object( $arg ) ? get_class( $arg ) : gettype( $arg );
 				}, $frame['args'] );
 			}
+			if ( isset( $frame['object'] ) ) {
+				$frame['object'] = get_class( $frame['object'] );
+			}
 			return $frame;
 		}, $trace );
 	}
