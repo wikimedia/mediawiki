@@ -169,6 +169,9 @@ class SpecialUnblock extends SpecialPage {
 	/**
 	 * Process the form
 	 *
+	 * Change tags can be provided via $data['Tags'], but the calling function
+	 * must check if the tags can be added by the user prior to this function.
+	 *
 	 * @param array $data
 	 * @param IContextSource $context
 	 * @throws ErrorPageError
@@ -237,6 +240,12 @@ class SpecialUnblock extends SpecialPage {
 		$logEntry->setPerformer( $performer );
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
+
+		// Change tags for log entry
+		$tags = $data['Tags'];
+		if ( !is_null( $tags ) ) {
+			ChangeTags::addTags( $tags, null, null, $logId, null );
+		}
 
 		return true;
 	}

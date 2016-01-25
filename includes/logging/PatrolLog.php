@@ -34,7 +34,7 @@ class PatrolLog {
 	 * @param bool $auto Was this patrol event automatic?
 	 * @param User $user User performing the action or null to use $wgUser
 	 *
-	 * @return bool
+	 * @return int|bool Integer log entry ID, or false if logging failed
 	 */
 	public static function record( $rc, $auto = false, User $user = null ) {
 		global $wgLogAutopatrol;
@@ -65,7 +65,7 @@ class PatrolLog {
 			$entry->publish( $logid, 'udp' );
 		}
 
-		return true;
+		return $logid;
 	}
 
 	/**
