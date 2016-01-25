@@ -4175,5 +4175,6 @@
 	"sessionprovider-generic": "Used to create a generic session type description when one isn't provided via the proper message. Should be phrased to make sense when added to a message such as {{msg-mw|cannotloginnow-text}}.\n\nParameters:\n* $1 - PHP classname.",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "Description of the sessions provided by the CookieSessionProvider class, which use HTTP cookies. Should be phrased to make sense when added to a message such as {{msg-mw|cannotloginnow-text}}.",
 	"sessionprovider-nocookies": "Used to inform the user that sessions may be missing due to lack of cookies.",
-	"randomrootpage": "{{doc-special|RandomRootPage}}"
+	"randomrootpage": "{{doc-special|RandomRootPage}}",
+	"current-revision": "This is a tag which aprehends to revision lines if they are current."
 }
