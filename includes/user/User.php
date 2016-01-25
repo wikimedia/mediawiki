@@ -1726,40 +1726,43 @@ class User implements IDBAccessObject {
 		$keys = array();
 		$id = $this->getId();
 		$userLimit = false;
+		$isNewbie = $this->isNewbie();
 
-		if ( isset( $limits['anon'] ) && $id == 0 ) {
-			$keys[wfMemcKey( 'limiter', $action, 'anon' )] = $limits['anon'];
-		}
-
-		if ( isset( $limits['user'] ) && $id != 0 ) {
-			$userLimit = $limits['user'];
-		}
-		if ( $this->isNewbie() ) {
-			if ( isset( $limits['newbie'] ) && $id != 0 ) {
+		if ( $id == 0 ) {
+			// limits for anons
+			if ( isset( $limits['anon'] ) ) {
+				$keys[wfMemcKey( 'limiter', $action, 'anon' )] = $limits['anon'];
+			}
+		} else {
+			// limits for logged-in users
+			if ( isset( $limits['user'] ) ) {
+				$userLimit = $limits['user'];
+			}
+			// limits for newbie logged-in users
+			if ( $isNewbie && isset( $limits['newbie'] ) ) {
 				$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $limits['newbie'];
 			}
+		}
+
+		// limits for anons and for newbie logged-in users
+		if ( $isNewbie ) {
+			// ip-based limits
 			if ( isset( $limits['ip'] ) ) {
 				$ip = $this->getRequest()->getIP();
 				$keys["mediawiki:limiter:$action:ip:$ip"] = $limits['ip'];
 			}
+			// subnet-based limits
 			if ( isset( $limits['subnet'] ) ) {
 				$ip = $this->getRequest()->getIP();
-				$matches = array();
-				$subnet = false;
-				if ( IP::isIPv6( $ip ) ) {
-					$parts = IP::parseRange( "$ip/64" );
-					$subnet = $parts[0];
-				} elseif ( preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $ip, $matches ) ) {
-					// IPv4
-					$subnet = $matches[1];
-				}
+				$subnet = IP::getSubnet( $ip );
 				if ( $subnet !== false ) {
 					$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet'];
 				}
 			}
 		}
+
 		// Check for group-specific permissions
-		// If more than one group applies, use the group with the highest limit
+		// If more than one group applies, use the group with the highest limit ratio (max/period)
 		foreach ( $this->getGroups() as $group ) {
 			if ( isset( $limits[$group] ) ) {
 				if ( $userLimit === false
@@ -1769,11 +1772,36 @@ class User implements IDBAccessObject {
 				}
 			}
 		}
+
 		// Set the user limit key
 		if ( $userLimit !== false ) {
 			list( $max, $period ) = $userLimit;
 			wfDebug( __METHOD__ . ": effective user limit: $max in {$period}s\n" );
 			$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $userLimit;
+		}
+
+		// ip-based limits for all ping-limitable users
+		if ( isset( $limits['ip-all'] ) ) {
+			$ip = $this->getRequest()->getIP();
+			// ignore if user limit is more permissive
+			if ( $isNewbie || $userLimit === false
+				|| $limits['ip-all'][0] / $limits['ip-all'][1] > $userLimit[0] / $userLimit[1] ) {
+				$keys["mediawiki:limiter:$action:ip-all:$ip"] = $limits['ip-all'];
+			}
+		}
+
+		// subnet-based limits for all ping-limitable users
+		if ( isset( $limits['subnet-all'] ) ) {
+			$ip = $this->getRequest()->getIP();
+			$subnet = IP::getSubnet( $ip );
+			if ( $subnet !== false ) {
+				// ignore if user limit is more permissive
+				if ( $isNewbie || $userLimit === false
+					|| $limits['ip-all'][0] / $limits['ip-all'][1]
+					> $userLimit[0] / $userLimit[1] ) {
+					$keys["mediawiki:limiter:$action:subnet-all:$subnet"] = $limits['subnet-all'];
+				}
+			}
 		}
 
 		$cache = ObjectCache::getLocalClusterInstance();

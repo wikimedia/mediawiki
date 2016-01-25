@@ -766,4 +766,23 @@ class IP {
 	public static function clearCaches() {
 		self::$proxyIpSet = null;
 	}
+
+	/**
+	 * Returns the subnet of a given IP
+	 *
+	 * @param string $ip
+	 * @return string|false
+	 */
+	public static function getSubnet( $ip ) {
+		$matches = array();
+		$subnet = false;
+		if ( IP::isIPv6( $ip ) ) {
+			$parts = IP::parseRange( "$ip/64" );
+			$subnet = $parts[0];
+		} elseif ( preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $ip, $matches ) ) {
+			// IPv4
+			$subnet = $matches[1];
+		}
+		return $subnet;
+	}
 }
