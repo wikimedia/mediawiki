@@ -74,7 +74,8 @@ class ApiMove extends ApiBase {
 
 		// Move the page
 		$toTitleExists = $toTitle->exists();
-		$status = $this->movePage( $fromTitle, $toTitle, $params['reason'], !$params['noredirect'] );
+		$status = $this->movePage( $fromTitle, $toTitle, $params['reason'], !$params['noredirect'],
+			$params['tags'] );
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
 		}
@@ -145,27 +146,37 @@ class ApiMove extends ApiBase {
 	 * @param Title $from
 	 * @param Title $to
 	 * @param string $reason
+	 * @param array $changeTags tags to apply to the entry in the move log
 	 * @param bool $createRedirect
 	 * @return Status
 	 */
-	protected function movePage( Title $from, Title $to, $reason, $createRedirect ) {
+	protected function movePage( Title $from, Title $to, $reason, $createRedirect, $changeTags ) {
 		$mp = new MovePage( $from, $to );
 		$valid = $mp->isValidMove();
 		if ( !$valid->isOK() ) {
 			return $valid;
 		}
 
-		$permStatus = $mp->checkPermissions( $this->getUser(), $reason );
+		$user = $this->getUser();
+		$permStatus = $mp->checkPermissions( $user, $reason );
 		if ( !$permStatus->isOK() ) {
 			return $permStatus;
 		}
 
 		// Check suppressredirect permission
-		if ( !$this->getUser()->isAllowed( 'suppressredirect' ) ) {
+		if ( !$user->isAllowed( 'suppressredirect' ) ) {
 			$createRedirect = true;
 		}
 
-		return $mp->move( $this->getUser(), $reason, $createRedirect );
+		// Check if the user is allowed to add the changetags which were specified
+		if ( count( $changeTags ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $changeTags, $user );
+			if ( !$ableToTag->isOK() ) {
+				return $ableToTag;
+			}
+		}
+
+		return $mp->move( $this->getUser(), $reason, $createRedirect, $changeTags );
 	}
 
 	/**
@@ -237,7 +248,11 @@ class ApiMove extends ApiBase {
 					'nochange'
 				),
 			),
-			'ignorewarnings' => false
+			'ignorewarnings' => false,
+			'tags' => array(
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			),
 		);
 	}
 
