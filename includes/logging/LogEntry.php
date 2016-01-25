@@ -419,6 +419,9 @@ class ManualLogEntry extends LogEntryBase {
 	/** @var int A rev id associated to the log entry */
 	protected $revId = 0;
 
+	/** @var array Change tags add to the log entry */
+	protected $tags = null;
+
 	/** @var int Deletion state of the log entry */
 	protected $deleted;
 
@@ -527,6 +530,19 @@ class ManualLogEntry extends LogEntryBase {
 	 */
 	public function setAssociatedRevId( $revId ) {
 		$this->revId = $revId;
+	}
+
+	/**
+	 * Set change tags for the log entry.
+	 *
+	 * @since 1.27
+	 * @param string|array $tags
+	 */
+	public function setTags( $tags ) {
+		if ( is_string( $tags ) ) {
+			$tags = [ $tags ];
+		}
+		$this->tags = $tags;
 	}
 
 	/**
@@ -696,6 +712,14 @@ class ManualLogEntry extends LogEntryBase {
 			PatrolLog::record( $rc, true, $this->getPerformer() );
 		}
 
+		// Add change tags to the log entry and (if applicable) the associated revision
+		$tags = $this->getTags();
+		if ( !is_null( $tags ) ) {
+			$rcId = $rc->getAttribute( 'rc_id' );
+			$revId = $this->getAssociatedRevId(); // Use null if $revId is 0
+			ChangeTags::addTags( $tags, $rcId, $revId > 0 ? $revId : null, $newId );
+		}
+
 		return $rc;
 	}
 
@@ -741,6 +765,14 @@ class ManualLogEntry extends LogEntryBase {
 	 */
 	public function getAssociatedRevId() {
 		return $this->revId;
+	}
+
+	/**
+	 * @since 1.27
+	 * @return array
+	 */
+	public function getTags() {
+		return $this->tags;
 	}
 
 	/**
