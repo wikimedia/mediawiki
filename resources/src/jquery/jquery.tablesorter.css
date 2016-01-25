@@ -1,5 +1,7 @@
 /* Table Sorting */
-table.jquery-tablesorter th.headerSort {
+
+table.jquery-tablesorter th.headerSort,
+table.ve-ce-tableNode.sortable th:not(.unsortable) {
 	/* @embed */
 	background-image: url(images/sort_both.gif);
 	cursor: pointer;
@@ -7,10 +9,16 @@ table.jquery-tablesorter th.headerSort {
 	background-position: center right;
 	padding-right: 21px;
 }
+
+table.ve-ce-tableNode.sortable th:not(.unsortable) {
+	cursor: default;
+}
+
 table.jquery-tablesorter th.headerSortUp {
 	/* @embed */
 	background-image: url(images/sort_up.gif);
 }
+
 table.jquery-tablesorter th.headerSortDown {
 	/* @embed */
 	background-image: url(images/sort_down.gif);
