@@ -84,10 +84,12 @@ class LBFactorySimple extends LBFactory {
 	 * @return array[]
 	 */
 	public static function buildServerSpecsFromConfig( Config $config ) {
-		$servers = $config->get( 'DBServers' );
+		if ( $config->has( 'DBServers' ) ) {
+			$servers = $config->get( 'DBServers' );
 
-		if ( is_array( $servers ) ) {
-			return $servers;
+			if ( is_array( $servers ) ) {
+				return $servers;
+			}
 		}
 
 		$flags = DBO_DEFAULT;

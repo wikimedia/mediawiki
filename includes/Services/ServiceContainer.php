@@ -51,9 +51,9 @@ class ServiceContainer {
 	private $services = array();
 
 	/**
-	 * @var callable[]
+	 * @var ServiceWiring
 	 */
-	private $serviceConstructors = array();
+	private $wiring;
 
 	/**
 	 * @var array
@@ -67,6 +67,9 @@ class ServiceContainer {
 	 */
 	public function __construct( array $extraInstantiationParams = array() ) {
 		$this->extraInstantiationParams = $extraInstantiationParams;
+
+		$instantiationParams = array_merge( array( $this ), $extraInstantiationParams );
+		$this->wiring = new ServiceWiring( $instantiationParams );
 	}
 
 	/**
@@ -75,17 +78,7 @@ class ServiceContainer {
 	 * return an associative array that maps service names to constructor callbacks.
 	 */
 	public function loadWiringFiles( array $wiringFiles ) {
-		foreach ( $wiringFiles as $file ) {
-			// the wiring file is required to return an array of callbacks.
-			$wiring = require $file;
-
-			Assert::postcondition(
-				is_array( $wiring ),
-				"Wiring file $file is expected to return an array!"
-			);
-
-			$this->applyWiring( $wiring );
-		}
+		$this->wiring->loadWiringFiles( $wiringFiles );
 	}
 
 	/**
@@ -95,11 +88,7 @@ class ServiceContainer {
 	 *        constructor callbacks.
 	 */
 	public function applyWiring( array $serviceConstructors ) {
-		Assert::parameterElementType( 'callable', $serviceConstructors, '$serviceConstructors' );
-
-		foreach ( $serviceConstructors as $name => $constructor ) {
-			$this->defineService( $name, $constructor );
-		}
+		$this->wiring->applyWiring( $serviceConstructors );
 	}
 
 	/**
@@ -125,14 +114,14 @@ class ServiceContainer {
 	 * @return bool
 	 */
 	public function hasService( $name ) {
-		return isset( $this->serviceConstructors[$name] );
+		return $this->wiring->hasService( $name );
 	}
 
 	/**
 	 * @return string[]
 	 */
 	public function getServiceNames() {
-		return array_keys( $this->serviceConstructors );
+		return $this->wiring->getServiceNames();
 	}
 
 	/**
@@ -151,14 +140,7 @@ class ServiceContainer {
 	 * @throws RuntimeException if there is already a service registered as $name.
 	 */
 	public function defineService( $name, $constructor ) {
-		Assert::parameterType( 'string', $name, '$name' );
-		Assert::parameterType( 'callable', $constructor, '$constructor' );
-
-		if ( $this->hasService( $name ) ) {
-			throw new RuntimeException( 'Service already defined: ' . $name );
-		}
-
-		$this->serviceConstructors[$name] = $constructor;
+		$this->wiring->defineService( $name, $constructor );
 	}
 
 	/**
@@ -184,16 +166,8 @@ class ServiceContainer {
 	 * @throws RuntimeException if $name is not a known service.
 	 */
 	public function replaceService( $name, $constructor, $cleanup = null ) {
-		Assert::parameterType( 'string', $name, '$name' );
-		Assert::parameterType( 'callable', $constructor, '$constructor' );
-		Assert::parameterType( 'callable|null', $cleanup, '$cleanup' );
-
-		if ( !$this->hasService( $name ) ) {
-			throw new RuntimeException( 'Service not defined: ' . $name );
-		}
-
-		$this->serviceConstructors[$name] = $constructor;
 		$this->resetService( $name, $cleanup );
+		$this->wiring->replaceService( $name, $constructor );
 	}
 
 	/**
@@ -256,29 +230,10 @@ class ServiceContainer {
 	 */
 	public function getService( $name ) {
 		if ( !isset( $this->services[$name] ) ) {
-			$this->services[$name] = $this->createService( $name );
+			$this->services[$name] = $this->wiring->createService( $name );
 		}
 
 		return $this->services[$name];
-	}
-
-	/**
-	 * @param string $name
-	 *
-	 * @throws InvalidArgumentException if $name is not a known service.
-	 * @return object
-	 */
-	private function createService( $name ) {
-		if ( isset( $this->serviceConstructors[$name] ) ) {
-			$service = call_user_func_array(
-				$this->serviceConstructors[$name],
-				$this->getCallbackArgs( $this )
-			);
-		} else {
-			throw new InvalidArgumentException( 'Unknown service: ' . $name );
-		}
-
-		return $service;
 	}
 
 }
