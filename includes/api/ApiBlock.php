@@ -96,6 +96,7 @@ class ApiBlock extends ApiBase {
 			'Reblock' => $params['reblock'],
 			'Watch' => $params['watchuser'],
 			'Confirm' => true,
+			'Tags' => $params['tags'],
 		);
 
 		$retval = SpecialBlock::processForm( $data, $this->getContext() );
@@ -154,6 +155,10 @@ class ApiBlock extends ApiBase {
 			'allowusertalk' => false,
 			'reblock' => false,
 			'watchuser' => false,
+			'tags' => array(
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			),
 		);
 	}
 
