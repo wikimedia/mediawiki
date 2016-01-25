@@ -1119,12 +1119,12 @@ class LocalFile extends File {
 	 * @param string|bool $timestamp Timestamp for img_timestamp, or false to use the
 	 *   current time
 	 * @param User|null $user User object or null to use $wgUser
-	 *
+	 * @param string[] $tags Change tags to add to the log entry and page revision.
 	 * @return FileRepoStatus On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
 	function upload( $srcPath, $comment, $pageText, $flags = 0, $props = false,
-		$timestamp = false, $user = null
+		$timestamp = false, $user = null, $tags = array()
 	) {
 		global $wgContLang;
 
@@ -1166,7 +1166,8 @@ class LocalFile extends File {
 			// It is only *preferable* to avoid leaving such files orphaned.
 			// Once the second operation goes through, then the current version was
 			// updated and we must therefore update the DB too.
-			if ( !$this->recordUpload2( $status->value, $comment, $pageText, $props, $timestamp, $user ) ) {
+			$oldver = $status->value;
+			if ( !$this->recordUpload2( $oldver, $comment, $pageText, $props, $timestamp, $user, $tags ) ) {
 				$status->fatal( 'filenotfound', $srcPath );
 			}
 		}
@@ -1216,10 +1217,11 @@ class LocalFile extends File {
 	 * @param bool|array $props
 	 * @param string|bool $timestamp
 	 * @param null|User $user
+	 * @param string[] $tags
 	 * @return bool
 	 */
 	function recordUpload2(
-		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null
+		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = array()
 	) {
 		if ( is_null( $user ) ) {
 			global $wgUser;
@@ -1414,7 +1416,7 @@ class LocalFile extends File {
 		# b) They won't cause rollback of the log publish/update above
 		$that = $this;
 		$dbw->onTransactionIdle( function () use (
-			$that, $reupload, $wikiPage, $newPageContent, $comment, $user, $logEntry, $logId, $descId
+			$that, $reupload, $wikiPage, $newPageContent, $comment, $user, $logEntry, $logId, $descId, $tags
 		) {
 			# Update memcache after the commit
 			$that->invalidateCache();
@@ -1477,7 +1479,17 @@ class LocalFile extends File {
 			);
 
 			# Now that the log entry is up-to-date, make an RC entry.
-			$logEntry->publish( $logId );
+			$recentChange = $logEntry->publish( $logId );
+
+			if ( $tags ) {
+				ChangeTags::addTags(
+					$tags,
+					$recentChange ? $recentChange->getAttribute( 'rc_id' ) : null,
+					$logEntry->getAssociatedRevId(),
+					$logId
+				);
+			}
+
 			# Run hook for other updates (typically more cache purging)
 			Hooks::run( 'FileUpload', array( $that, $reupload, !$newPageContent ) );
 

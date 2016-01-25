@@ -692,10 +692,10 @@ abstract class UploadBase {
 	 * @param string $pageText
 	 * @param bool $watch
 	 * @param User $user
-	 *
+	 * @param string[] $tags Change tags to add to the log entry and page revision.
 	 * @return Status Indicating the whether the upload succeeded.
 	 */
-	public function performUpload( $comment, $pageText, $watch, $user ) {
+	public function performUpload( $comment, $pageText, $watch, $user, $tags = array() ) {
 		$this->getLocalFile()->load( File::READ_LATEST );
 
 		$status = $this->getLocalFile()->upload(
@@ -705,7 +705,8 @@ abstract class UploadBase {
 			File::DELETE_SOURCE,
 			$this->mFileProps,
 			false,
-			$user
+			$user,
+			$tags
 		);
 
 		if ( $status->isGood() ) {
