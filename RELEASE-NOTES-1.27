@@ -292,6 +292,8 @@ changes to languages because of Phabricator reports.
 * ParserOutput::getSecondaryDataUpdates() was removed (deprecated since 1.25).
 * Gallery images with multiple caption pipes no longer concatenate them all
   together but instead pick the final one, similar to image syntax.
+* XML-like parser tags (such as <gallery>), when unclosed, will be left unparsed
+  rather than consume everything until the end of the page.
 
 == Compatibility ==
 
