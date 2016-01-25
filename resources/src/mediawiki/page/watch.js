@@ -133,7 +133,7 @@
 
 			updateWatchLink( $link, action, 'loading' );
 
-			api = new mw.Api();
+			api = new mw.Api( { parameters: { formatversion: 2 } } );
 
 			api[ action ]( title )
 				.done( function ( watchResponse ) {
@@ -148,7 +148,7 @@
 
 					// Update the "Watch this page" checkbox on action=edit when the
 					// page is watched or unwatched via the tab (bug 12395).
-					$( '#wpWatchthis' ).prop( 'checked', watchResponse.watched !== undefined );
+					$( '#wpWatchthis' ).prop( 'checked', watchResponse.watched === true );
 				} )
 				.fail( function () {
 					var cleanTitle, msg, link;

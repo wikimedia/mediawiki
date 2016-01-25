@@ -5,7 +5,7 @@
 	$( function () {
 		$( 'a.mw-watch-link' ).click( function ( e ) {
 			var promise,
-				api = new mw.Api(),
+				api = new mw.Api( { parameters: { formatversion: 2 } } ),
 				$link = $( this ),
 				$subjectLink = $link.closest( 'li' ).children( 'a' ).eq( 0 ),
 				title = mw.util.getParamValue( 'title', $link.attr( 'href' ) );
