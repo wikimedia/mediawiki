@@ -338,7 +338,7 @@ class WikitextContent extends TextContent {
 				$chain = $this->getRedirectChain();
 				$output->setText(
 					Article::getRedirectHeaderHtml( $title->getPageLanguage(), $chain, false ) .
-					$output->getText()
+					$output->getRawText()
 				);
 				$output->addModuleStyles( 'mediawiki.action.view.redirectPage' );
 			}

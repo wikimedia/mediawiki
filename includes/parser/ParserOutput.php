@@ -220,6 +220,17 @@ class ParserOutput extends CacheTime {
 		$this->mTitleText = $titletext;
 	}
 
+	/**
+	 * Get the cacheable text with <mw:editsection> markers still in it. The
+	 * return value is suitable for writing back via setText() but is not valid
+	 * for display to the user.
+	 *
+	 * @since 1.27
+	 */
+	public function getRawText() {
+		return $this->mText;
+	}
+
 	public function getText() {
 		$text = $this->mText;
 		if ( $this->mEditSectionTokens ) {
