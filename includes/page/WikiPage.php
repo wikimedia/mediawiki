@@ -2373,7 +2373,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param int &$cascade Set to false if cascading protection isn't allowed.
 	 * @param string $reason
 	 * @param User $user The user updating the restrictions
-	 * @return Status
+	 * @return Status Status object; if successful, $status->value is the log_id of the
+	 *   deletion log entry.
 	 */
 	public function doUpdateRestrictions( array $limit, array $expiry,
 		&$cascade, $reason, User $user
@@ -2607,7 +2608,9 @@ class WikiPage implements Page, IDBAccessObject {
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
-		return Status::newGood();
+		$status = Status::newGood();
+		$status->value = $logId;
+		return $status;
 	}
 
 	/**
