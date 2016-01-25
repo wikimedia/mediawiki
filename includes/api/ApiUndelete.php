@@ -47,6 +47,14 @@ class ApiUndelete extends ApiBase {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 
+		// Check if user can add tags
+		if ( !is_null( $params['tags'] ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
+			}
+		}
+
 		// Convert timestamps
 		if ( !isset( $params['timestamps'] ) ) {
 			$params['timestamps'] = array();
@@ -64,7 +72,8 @@ class ApiUndelete extends ApiBase {
 			$params['reason'],
 			$params['fileids'],
 			false,
-			$this->getUser()
+			$this->getUser(),
+			$params['tags']
 		);
 		if ( !is_array( $retval ) ) {
 			$this->dieUsageMsg( 'cannotundelete' );
@@ -99,6 +108,10 @@ class ApiUndelete extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'reason' => '',
+			'tags' => array(
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			),
 			'timestamps' => array(
 				ApiBase::PARAM_TYPE => 'timestamp',
 				ApiBase::PARAM_ISMULTI => true,
