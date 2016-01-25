@@ -1841,6 +1841,10 @@ abstract class ApiBase extends ContextSource {
 			'code' => 'cantblock-email',
 			'info' => "You don't have permission to block users from sending email through the wiki"
 		],
+		'cantapply-changetags' => [
+			'code' => 'cantapply-changetags',
+			'info' => "You don't have permission to apply the requested changetags"
+		],
 		'unblock-notarget' => [
 			'code' => 'notarget',
 			'info' => "Either the id or the user parameter must be set"
