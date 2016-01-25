@@ -56,7 +56,7 @@ class ApiPatrol extends ApiBase {
 			}
 		}
 
-		$retval = $rc->doMarkPatrolled( $this->getUser() );
+		$retval = $rc->doMarkPatrolled( $this->getUser(), false, $params['tags'] );
 
 		if ( $retval ) {
 			$this->dieUsageMsg( reset( $retval ) );
@@ -82,6 +82,10 @@ class ApiPatrol extends ApiBase {
 			),
 			'revid' => array(
 				ApiBase::PARAM_TYPE => 'integer'
+			),
+			'tags' => array(
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
 			),
 		);
 	}

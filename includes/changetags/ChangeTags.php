@@ -127,6 +127,31 @@ class ChangeTags {
 	}
 
 	/**
+	 * Add tags to a change given its id(s) with tag and user permission validity checks.
+	 * @param User $user User performing the task to be tagged
+	 * @param string|array $tags Tags to add to the change
+	 * @param int|null $rc_id The rc_id of the change to add the tags to
+	 * @param int|null $rev_id The rev_id of the change to add the tags to
+	 * @param int|null $log_id The log_id of the change to add the tags to
+	 * @param string $params Params to put in the ct_params field of table 'change_tag'
+	 *
+	 * @throws MWException
+	 * @return bool False if no changes are made or if tags cannot be added, otherwise true
+	 */
+	public static function safeAddTags( $user, $tags, $rc_id = null, $rev_id = null,
+		$log_id = null, $params = null
+	) {
+		// Check user permissions
+		$tagStatus = self::canAddTagsAccompanyingChange( $tags, $user );
+
+		if ( $tagStatus->isOK() ) {
+			return ChangeTags::addTags( $tags, $rc_id, $rev_id, $log_id, $params );
+		} else {
+			return false;
+		}
+	}
+
+	/**
 	 * Add and remove tags to/from a change given its rc_id, rev_id and/or log_id,
 	 * without verifying that the tags exist or are valid. If a tag is present in
 	 * both $tagsToAdd and $tagsToRemove, it will be removed.
