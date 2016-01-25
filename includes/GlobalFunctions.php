@@ -3082,7 +3082,7 @@ function wfSetupSession( $sessionId = false ) {
 	if ( session_id() !== $session->getId() ) {
 		session_id( $session->getId() );
 	}
-
+	MediaWiki\quietCall( 'session_cache_limiter', 'private, must-revalidate' );
 	MediaWiki\quietCall( 'session_start' );
 }
 
