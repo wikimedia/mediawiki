@@ -78,6 +78,12 @@ class ApiBlock extends ApiBase {
 			) {
 				$this->dieWithError( [ 'nosuchusershort', $params['user'] ], 'nosuchuser' );
 			}
+
+		if ( isset( $params['tags'] ) && count( $params['tags'] ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $performer );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
+			}
 		}
 
 		if ( $params['hidename'] && !$user->isAllowed( 'hideuser' ) ) {
@@ -105,6 +111,7 @@ class ApiBlock extends ApiBase {
 			'Reblock' => $params['reblock'],
 			'Watch' => $params['watchuser'],
 			'Confirm' => true,
+			'Tags' => $params['tags'],
 		];
 
 		$retval = SpecialBlock::processForm( $data, $this->getContext() );
@@ -164,6 +171,10 @@ class ApiBlock extends ApiBase {
 			'allowusertalk' => false,
 			'reblock' => false,
 			'watchuser' => false,
+			'tags' => [
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			],
 		];
 	}
 

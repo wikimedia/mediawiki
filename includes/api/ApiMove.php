@@ -79,7 +79,8 @@ class ApiMove extends ApiBase {
 
 		// Move the page
 		$toTitleExists = $toTitle->exists();
-		$status = $this->movePage( $fromTitle, $toTitle, $params['reason'], !$params['noredirect'] );
+		$status = $this->movePage( $fromTitle, $toTitle, $params['reason'], !$params['noredirect'],
+			$params['tags'] );
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
 		}
@@ -102,7 +103,8 @@ class ApiMove extends ApiBase {
 		// Move the talk page
 		if ( $params['movetalk'] && $toTalk && $fromTalk->exists() && !$fromTitle->isTalkPage() ) {
 			$toTalkExists = $toTalk->exists();
-			$status = $this->movePage( $fromTalk, $toTalk, $params['reason'], !$params['noredirect'] );
+			$status = $this->movePage( $fromTalk, $toTalk, $params['reason'], !$params['noredirect'],
+				$params['tags'] );
 			if ( $status->isOK() ) {
 				$r['talkfrom'] = $fromTalk->getPrefixedText();
 				$r['talkto'] = $toTalk->getPrefixedText();
@@ -118,12 +120,12 @@ class ApiMove extends ApiBase {
 		// Move subpages
 		if ( $params['movesubpages'] ) {
 			$r['subpages'] = $this->moveSubpages( $fromTitle, $toTitle,
-				$params['reason'], $params['noredirect'] );
+				$params['reason'], $params['noredirect'], $params['tags'] );
 			ApiResult::setIndexedTagName( $r['subpages'], 'subpage' );
 
 			if ( $params['movetalk'] ) {
 				$r['subpages-talk'] = $this->moveSubpages( $fromTalk, $toTalk,
-					$params['reason'], $params['noredirect'] );
+					$params['reason'], $params['noredirect'], $params['tags'] );
 				ApiResult::setIndexedTagName( $r['subpages-talk'], 'subpage' );
 			}
 		}
@@ -149,26 +151,36 @@ class ApiMove extends ApiBase {
 	 * @param Title $to
 	 * @param string $reason
 	 * @param bool $createRedirect
+	 * @param array $changeTags Applied to the entry in the move log and redirect page revision
 	 * @return Status
 	 */
-	protected function movePage( Title $from, Title $to, $reason, $createRedirect ) {
+	protected function movePage( Title $from, Title $to, $reason, $createRedirect, $changeTags ) {
 		$mp = new MovePage( $from, $to );
 		$valid = $mp->isValidMove();
 		if ( !$valid->isOK() ) {
 			return $valid;
 		}
 
-		$permStatus = $mp->checkPermissions( $this->getUser(), $reason );
+		$user = $this->getUser();
+		$permStatus = $mp->checkPermissions( $user, $reason );
 		if ( !$permStatus->isOK() ) {
 			return $permStatus;
 		}
 
 		// Check suppressredirect permission
-		if ( !$this->getUser()->isAllowed( 'suppressredirect' ) ) {
+		if ( !$user->isAllowed( 'suppressredirect' ) ) {
 			$createRedirect = true;
 		}
 
-		return $mp->move( $this->getUser(), $reason, $createRedirect );
+		// Check if the user is allowed to add the changetags which were specified
+		if ( count( $changeTags ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $changeTags, $user );
+			if ( !$ableToTag->isOK() ) {
+				return $ableToTag;
+			}
+		}
+
+		return $mp->move( $this->getUser(), $reason, $createRedirect, $changeTags );
 	}
 
 	/**
@@ -176,11 +188,21 @@ class ApiMove extends ApiBase {
 	 * @param Title $toTitle
 	 * @param string $reason
 	 * @param bool $noredirect
+	 * @param array $changeTags Applied to the entry in the move log and redirect page revisions
 	 * @return array
 	 */
-	public function moveSubpages( $fromTitle, $toTitle, $reason, $noredirect ) {
+	public function moveSubpages( $fromTitle, $toTitle, $reason, $noredirect, $changeTags = [] ) {
 		$retval = [];
-		$success = $fromTitle->moveSubpages( $toTitle, true, $reason, !$noredirect );
+
+		// Check if the user is allowed to add the changetags which were specified
+		if ( count( $changeTags ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $changeTags, $user );
+			if ( !$ableToTag->isOK() ) {
+				return [ 'error' => $this->parseMsg( $ableToTag->getMessage() ) ];
+			}
+		}
+
+		$success = $fromTitle->moveSubpages( $toTitle, true, $reason, !$noredirect, $changeTags );
 		if ( isset( $success[0] ) ) {
 			$status = $this->errorArrayToStatus( $success );
 			return [ 'errors' => $this->getErrorFormatter()->arrayFromStatus( $status ) ];
@@ -242,7 +264,11 @@ class ApiMove extends ApiBase {
 					'nochange'
 				],
 			],
-			'ignorewarnings' => false
+			'ignorewarnings' => false,
+			'tags' => [
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			],
 		];
 	}
 
