@@ -8788,6 +8788,40 @@ Mixed list
 !! end
 
 !! test
+1. Nested mixed wikitext and html list
+!! wikitext
+* hi
+* <ul><li>ho</li></ul>
+* hi
+** ho
+!! html/php
+<ul><li> hi</li>
+<li> <ul><li>ho</li></ul></li>
+<li> hi
+<ul><li> ho</li></ul></li></ul>
+
+!! html/parsoid
+<ul><li> hi</li>
+<li> <ul data-parsoid='{"stx":"html"}'><li data-parsoid='{"stx":"html"}'>ho</li></ul></li>
+<li> hi
+<ul><li> ho</li></ul></li></ul>
+!! end
+
+!! test
+2. Nested mixed wikitext and html list (incompatible)
+!! wikitext
+; hi
+: {{echo|<li>ho</li>}}
+!! html/php
+<dl><dt> hi</dt>
+<dd> <li>ho</li></dd></dl>
+
+!! html/parsoid
+<dl><dt> hi</dt>
+<dd> <li about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","pi":[[{"k":"1","spc":["","","",""]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;li>ho&lt;/li>"}},"i":0}}]}'>ho</li></dd></dl>
+!! end
+
+!! test
 Nested lists 1
 !! wikitext
 *foo
@@ -10655,6 +10689,43 @@ foo {{''}} baz
 !! html/parsoid
 <p>foo <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"&#39;&#39;"},"params":{},"i":0}}]}'>bar</span> baz
 </p>
+!! end
+
+## This test is about making sure Parsoid's data-mw is well formed in the
+## face of multiple templates with intersecting and overlapping ranges.  The
+## wikitext itself is wretched.
+!! test
+Templates with intersecting and overlapping ranges
+!! wikitext
+{|{{echo|
+<p>ha</p>}}
+{|{{echo|
+<p>ho</p>}}
+{{echo|{{!}}hi}}
+|}
+!! html/php+tidy
+<p>ha</p>
+<p>ho</p>
+<table>
+<tr>
+<td></td>
+</tr>
+<tr>
+<td>hi</td>
+</tr>
+</table>
+<table>
+<tr>
+<td></td>
+</tr>
+</table>
+!! html/parsoid
+<p about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","autoInsertedEnd":true,"pi":[[{"k":"1","spc":["","","",""]}],[{"k":"1","spc":["","","",""]}],[{"k":"1","spc":["","","",""]}]],"firstWikitextNode":"table"}' data-mw='{"parts":["{|",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"\n&lt;p>ha&lt;/p>"}},"i":0}},"\n","{|",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"\n&lt;p>ho&lt;/p>"}},"i":1}},"\n",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"{{!}}hi"}},"i":2}},"\n|}"]}'>ha</p><table about="#mwt1" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"","html":""},{"html":""}]]}'>
+
+</table><p about="#mwt1">ho</p><table about="#mwt1" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"","html":""},{"html":""}]]}'>
+
+<tbody><tr><td>hi</td></tr>
+</tbody></table>
 !! end
 
 !! article
@@ -20689,9 +20760,11 @@ HTML5 data attributes
 Strip reserved data attributes
 !! wikitext
 <div data-mw="foo" data-parsoid="bar" data-mw-someext="baz" data-ok="fred" data-ooui="xyzzy" data-bad:ns="ns">d</div>
-!! html
+!! html/php
 <div data-ok="fred">d</div>
 
+!! html/parsoid
+<div data-x-data-mw="foo" data-x-data-parsoid="bar" data-x-data-mw-someext="baz" data-ok="fred" data-parsoid='{"stx":"html","a":{"data-ooui":null,"data-bad:ns":null},"sa":{"data-ooui":"xyzzy","data-bad:ns":"ns"}}'>d</div>
 !! end
 
 !! test
