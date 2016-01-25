@@ -258,13 +258,6 @@ class ParserCache {
 	public function save( $parserOutput, $page, $popts, $cacheTime = null, $revId = null ) {
 		$expire = $parserOutput->getCacheExpiry();
 		if ( $expire > 0 ) {
-			if ( isset( $parserOutput->_output_done ) ) {
-				wfDebugLog( 'temp-debug', 'Output before cache save: ' . wfGetAllCallers( false ) );
-			}
-			if ( strpos( $parserOutput->mText, 'href="#/editor/1"' ) !== false ) {
-				wfDebugLog( 'temp-debug', 'MF pollution: ' . wfGetAllCallers( false ) );
-			}
-
 			$cacheTime = $cacheTime ?: wfTimestampNow();
 			if ( !$revId ) {
 				$revision = $page->getRevision();
