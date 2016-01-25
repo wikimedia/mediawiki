@@ -1355,6 +1355,7 @@ class LocalFile extends File {
 
 		// Add the log entry...
 		$logEntry = new ManualLogEntry( 'upload', $reupload ? 'overwrite' : 'upload' );
+		$logEntry->setTimestamp( $this->timestamp );
 		$logEntry->setPerformer( $user );
 		$logEntry->setComment( $comment );
 		$logEntry->setTarget( $descTitle );
