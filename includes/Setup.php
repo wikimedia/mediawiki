@@ -738,6 +738,7 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	) {
 		// Start the PHP-session for backwards compatibility
 		session_id( $session->getId() );
+		session_cache_limiter( 'private, must-revalidate' );
 		MediaWiki\quietCall( 'session_start' );
 	}
 }
