@@ -238,6 +238,17 @@ class SpecialUnblock extends SpecialPage {
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
+		// Change tags for log entry
+		if ( !is_null( $data['Tags'] ) ) {
+			$tags = $data['Tags'];
+
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $tags, $performer );
+
+			if ( $ableToTag->isOK() ) {
+				ChangeTags::addTags( $tags, null, null, $logId, null );
+			}
+		}
+
 		return true;
 	}
 
