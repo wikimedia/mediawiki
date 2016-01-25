@@ -1479,17 +1479,13 @@ class LocalFile extends File {
 				__METHOD__
 			);
 
-			# Now that the log entry is up-to-date, make an RC entry.
-			$recentChange = $logEntry->publish( $logId );
-
+			# Add change tags, if any
 			if ( $tags ) {
-				ChangeTags::addTags(
-					$tags,
-					$recentChange ? $recentChange->getAttribute( 'rc_id' ) : null,
-					$logEntry->getAssociatedRevId(),
-					$logId
-				);
+				$logEntry->setTags( $tags );
 			}
+
+			# Now that the log entry is up-to-date, make an RC entry.
+			$logEntry->publish( $logId );
 
 			# Run hook for other updates (typically more cache purging)
 			Hooks::run( 'FileUpload', [ $that, $reupload, !$newPageContent ] );
