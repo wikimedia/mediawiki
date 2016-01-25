@@ -6,6 +6,7 @@
 		// queries the wiki and calls response with the result
 		request: function ( api, query, response, maxRows ) {
 			return api.get( {
+				formatversion: 2,
 				action: 'opensearch',
 				search: query,
 				namespace: 0,
