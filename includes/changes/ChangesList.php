@@ -567,6 +567,24 @@ class ChangesList extends ContextSource {
 		}
 	}
 
+	/** Inserts a current tag
+	 *
+	 * @param string $s
+	 * @param RecentChange $rc
+	 */
+	public function insertCurrentTag( &$s, &$rc ) {
+		if ( $rc->mAttribs['rc_type'] == RC_EDIT
+			&& $rc->mAttribs['rc_this_oldid']
+			&& $rc->mAttribs['page_latest']
+		) {
+			if ( ( $rc->mAttribs['page_latest'] == $rc->mAttribs['rc_this_oldid'] )
+				&& ( !$this->watchlist || $this->getUser()->getBoolOption( 'extendwatchlist' ) )
+			) {
+				$s .= ' <span class="mw-current-tag">' . $this->msg( 'current-revision' )->text() . '</span>';
+			}
+		}
+	}
+
 	/**
 	 * @param RecentChange $rc
 	 * @return string
@@ -575,6 +593,17 @@ class ChangesList extends ContextSource {
 	public function getRollback( RecentChange $rc ) {
 		$s = '';
 		$this->insertRollback( $s, $rc );
+		return $s;
+	}
+
+	/**
+	 * @param RecentChange $rc
+	 * @return string
+	 * @since 1.26
+	 */
+	public function getCurrentTag( RecentChange $rc ) {
+		$s = '';
+		$this->insertCurrentTag( $s, $rc );
 		return $s;
 	}
 
