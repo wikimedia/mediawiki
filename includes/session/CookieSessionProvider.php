@@ -176,7 +176,10 @@ class CookieSessionProvider extends SessionProvider {
 
 		$forceHTTPS = $session->shouldForceHTTPS() || $user->requiresHTTPS();
 		if ( $forceHTTPS ) {
-			$options['secure'] = true;
+			// Don't set the secure flag if the request came in
+			// over "http", for backwards compat.
+			// @todo Break that backwards compat properly.
+			$options['secure'] = $this->config->get( 'CookieSecure' );
 		}
 
 		$response->setCookie( $this->params['sessionName'], $session->getId(), null,
