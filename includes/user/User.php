@@ -327,7 +327,11 @@ class User implements IDBAccessObject {
 		// If this is called too early, things are likely to break.
 		if ( $this->mFrom === 'session' && empty( $wgFullyInitialised ) ) {
 			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
-				->warning( 'User::loadFromSession called before the end of Setup.php' );
+				->warning( 'User::loadFromSession called before the end of Setup.php', array(
+					'trace' => MWExceptionHandler::prettyPrintTrace(
+						MWExceptionHandler::redactTrace( wfDebugBacktrace() )
+					),
+				) );
 			$this->loadDefaults();
 			$this->mLoadedItems = $oldLoadedItems;
 			return;
