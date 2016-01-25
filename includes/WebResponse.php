@@ -1,6 +1,6 @@
 <?php
 /**
- * Classes used to send headers and cookies back to the user
+ * Classes used to send headers and cookies back to the user.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -90,6 +90,8 @@ class WebResponse {
 	 *     secure: bool, secure attribute ($wgCookieSecure)
 	 *     httpOnly: bool, httpOnly attribute ($wgCookieHttpOnly)
 	 *     raw: bool, if true uses PHP's setrawcookie() instead of setcookie()
+	 *     function: callable, to use instead of PHP built-in setrawcookie() /
+	 *     setcookie(). When set, 'raw' is ignored. Used for testing. Since 1.27.
 	 *   For backwards compatibility, if $options is not an array then it and
 	 *   the following two parameters will be interpreted as values for
 	 *   'prefix', 'domain', and 'secure'
@@ -118,6 +120,7 @@ class WebResponse {
 			'secure' => $wgCookieSecure,
 			'httpOnly' => $wgCookieHttpOnly,
 			'raw' => false,
+			'function' => false,
 		);
 
 		if ( $expire === null ) {
@@ -126,7 +129,11 @@ class WebResponse {
 			$expire = time() + $wgCookieExpiration;
 		}
 
-		$func = $options['raw'] ? 'setrawcookie' : 'setcookie';
+		if ( $options['function'] ) {
+			$func = $options['function'];
+		} else {
+			$func = $options['raw'] ? 'setrawcookie' : 'setcookie';
+		}
 
 		if ( Hooks::run( 'WebResponseSetCookie', array( &$name, &$value, &$expire, $options ) ) ) {
 			$cookie = $options['prefix'] . $name;
