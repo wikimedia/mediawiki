@@ -422,13 +422,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->setTopText( $opts );
 
 		$lang = $this->getLanguage();
-		$wlInfo = '';
 		if ( $opts['days'] > 0 ) {
-			$timestamp = wfTimestampNow();
-			$wlInfo = $this->msg( 'wlnote' )->numParams( $numRows, round( $opts['days'] * 24 ) )->params(
-				$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user )
-			)->parse() . "<br />\n";
+			$days = $opts['days'];
+		} else {
+			$days = $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 );
 		}
+		$timestamp = wfTimestampNow();
+		$wlInfo = $this->msg( 'wlnote' )->numParams( $numRows, round( $days * 24 ) )->params(
+			$lang->userDate( $timestamp, $user ), $lang->userTime( $timestamp, $user )
+		)->parse() . "<br />\n";
 
 		$nondefaults = $opts->getChangedValues();
 		$cutofflinks = $this->msg( 'wlshowtime' ) . ' ' . $this->cutoffselector( $opts );
