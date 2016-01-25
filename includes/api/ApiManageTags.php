@@ -27,6 +27,7 @@ class ApiManageTags extends ApiBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
+		$user = $this->getUser();
 
 		// make sure the user is allowed
 		if ( $params['operation'] !== 'delete'
@@ -37,10 +38,18 @@ class ApiManageTags extends ApiBase {
 			$this->dieWithError( 'tags-delete-no-permission', 'permissiondenied' );
 		}
 
+		// Check if user can add the log entry tags which were requested
+		if ( count( $params['tags'] ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
+			}
+		}
+
 		$result = $this->getResult();
 		$funcName = "{$params['operation']}TagWithChecks";
 		$status = ChangeTags::$funcName( $params['tag'], $params['reason'],
-			$this->getUser(), $params['ignorewarnings'] );
+			$user, $params['ignorewarnings'] );
 
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
@@ -57,6 +66,12 @@ class ApiManageTags extends ApiBase {
 		if ( $ret['success'] ) {
 			$ret['logid'] = $status->value;
 		}
+
+		// Apply change tags to the log entry, if requested
+		if ( count( $params['tags'] ) && $status->value ) {
+			ChangeTags::addTags( $params['tags'], null, null, $status->value );
+		}
+
 		$result->addValue( null, $this->getModuleName(), $ret );
 	}
 
@@ -84,6 +99,10 @@ class ApiManageTags extends ApiBase {
 			'ignorewarnings' => [
 				ApiBase::PARAM_TYPE => 'boolean',
 				ApiBase::PARAM_DFLT => false,
+			],
+			'tags' => [
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
 			],
 		];
 	}
