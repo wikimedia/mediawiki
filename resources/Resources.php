@@ -338,7 +338,7 @@ return array(
 	),
 	'jquery.tablesorter' => array(
 		'scripts' => 'resources/src/jquery/jquery.tablesorter.js',
-		'styles' => 'resources/src/jquery/jquery.tablesorter.css',
+		'styles' => 'resources/src/jquery/jquery.tablesorter.less',
 		'messages' => array( 'sort-descending', 'sort-ascending' ),
 		'dependencies' => array(
 			'dom-level2-shim',
