@@ -550,6 +550,7 @@ class ChangesList extends ContextSource {
 			&& $rc->mAttribs['rc_cur_id']
 		) {
 			$page = $rc->getTitle();
+			$s .= ' <span class="mw-uctop">' . wfMessage( 'uctop' )->parse() . '</span>';
 			/** Check for rollback and edit permissions, disallow special pages, and only
 			 * show a link on the top-most revision */
 			if ( $this->getUser()->isAllowed( 'rollback' )
