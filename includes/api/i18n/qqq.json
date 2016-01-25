@@ -1290,7 +1290,7 @@
 	"apihelp-xml-param-includexmlnamespace": "{{doc-apihelp-param|xml|includexmlnamespace}}",
 	"apihelp-xmlfm-description": "{{doc-apihelp-description|xmlfm|seealso=* {{msg-mw|apihelp-xml-description}}}}",
 	"api-format-title": "{{technical}}\nPage title when API output is pretty-printed in HTML.",
-	"api-format-prettyprint-header": "{{technical}} Displayed as a header when API output is pretty-printed in HTML.\n\nParameters:\n* $1 - Format name\n* $2 - Non-pretty-printing module name",
+	"api-format-prettyprint-header": "{{technical}} Displayed as a header when API output is pretty-printed in HTML.\n\nParameters:\n* $1 - Format name\n* $2 - Non-pretty-printing module name\n* $3 - URL to Non-pretty-printing module",
 	"api-format-prettyprint-header-only-html": "{{technical}} Displayed as a header when API output is pretty-printed in HTML, but there is no non-html module.\n\nParameters:\n* $1 - Format name",
 	"api-pageset-param-titles": "{{doc-apihelp-param|pageset|titles|description=the \"titles\" parameter in pageset-using modules}}",
 	"api-pageset-param-pageids": "{{doc-apihelp-param|pageset|pageids|description=the \"pageids\" parameter in pageset-using modules}}",
