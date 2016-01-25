@@ -42,6 +42,14 @@ class ApiProtect extends ApiBase {
 			$this->dieUsageMsg( reset( $errors ) );
 		}
 
+		// Check if user can add tags
+		if ( !is_null( $params['tags'] ) ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			if ( !$ableToTag->isOK() ) {
+				$this->dieStatus( $ableToTag );
+			}
+		}
+
 		$expiry = (array)$params['expiry'];
 		if ( count( $expiry ) != count( $params['protections'] ) ) {
 			if ( count( $expiry ) == 1 ) {
@@ -108,7 +116,8 @@ class ApiProtect extends ApiBase {
 			$expiryarray,
 			$cascade,
 			$params['reason'],
-			$this->getUser()
+			$this->getUser(),
+			$params['tags']
 		);
 
 		if ( !$status->isOK() ) {
@@ -153,6 +162,10 @@ class ApiProtect extends ApiBase {
 				ApiBase::PARAM_DFLT => 'infinite',
 			),
 			'reason' => '',
+			'tags' => array(
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			),
 			'cascade' => false,
 			'watch' => array(
 				ApiBase::PARAM_DFLT => false,
