@@ -1894,7 +1894,6 @@
 	"wlheader-showupdated": "Stránky, které se změnily od vaší poslední návštěvy, jsou zobrazeny '''tučně'''.",
 	"wlnote": "Níže {{PLURAL:$1|je poslední změna|jsou poslední <strong>$1</strong> změny|je posledních <strong>$1</strong> změn}} za {{PLURAL:$2|poslední hodinu|poslední <strong>$2</strong> hodiny|posledních <strong>$2</strong> hodin}} do $4, $3.",
 	"wlshowlast": "Ukázat posledních $1 hodin $2 dnů",
-	"watchlistall2": "všechno",
 	"watchlist-hide": "Skrýt",
 	"watchlist-submit": "Zobrazit",
 	"wlshowtime": "Zobrazené období:",

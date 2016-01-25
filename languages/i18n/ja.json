@@ -1931,7 +1931,6 @@
 	"wlheader-showupdated": "最終訪問以降に変更されたページは、<strong>太字</strong>で表示されます。",
 	"wlnote": "$3 $4 までの{{PLURAL:$2|<strong>$2</strong>時間}}になされた{{PLURAL:$1|<strong>$1</strong>件の変更}}は以下の通りです。",
 	"wlshowlast": "表示する期間: $1時間、$2日間",
-	"watchlistall2": "すべて",
 	"watchlist-hide": "非表示",
 	"watchlist-submit": "表示",
 	"wlshowtime": "表示範囲:",

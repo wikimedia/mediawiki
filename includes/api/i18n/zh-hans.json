@@ -580,7 +580,7 @@
 	"apihelp-query+categorymembers-paramvalue-prop-title": "添加页面标题和名字空间ID。",
 	"apihelp-query+categorymembers-paramvalue-prop-sortkey": "添加用于分类中排序的关键字（十六进制字符串）。",
 	"apihelp-query+categorymembers-paramvalue-prop-sortkeyprefix": "添加用于分类中排序的关键字前缀（关键字的人类可读部分）。",
-	"apihelp-query+categorymembers-paramvalue-prop-type": "添加页面被分类的类型（page、subcat或file）。",
+	"apihelp-query+categorymembers-paramvalue-prop-type": "添加页面被分类的类型（<samp>page</samp>、<samp>subcat</samp>或<samp>file</samp>）。",
 	"apihelp-query+categorymembers-paramvalue-prop-timestamp": "添加页面被包括时的时间戳。",
 	"apihelp-query+categorymembers-param-namespace": "仅包含这些名字空间的页面。注意<kbd>$1type=subcat</kbd>或<kbd>$1type=file</kbd>可能被使用，而不是<kbd>$1namespace=14</kbd>或<kbd>6</kbd>。",
 	"apihelp-query+categorymembers-param-type": "包含的分类成员类型。当<kbd>$1sort=timestamp</kbd>被设置时会忽略。",

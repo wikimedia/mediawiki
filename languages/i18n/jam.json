@@ -6,7 +6,8 @@
 			"Yocahuna",
 			"គីមស៊្រុន",
 			"아라",
-			"Chabi1"
+			"Chabi1",
+			"Katxis"
 		]
 	},
 	"tog-underline": "Lingk andalainin",
@@ -642,7 +643,6 @@
 	"block-log-flags-nocreate": "akount krieshan disiebl",
 	"movepagetext": "Yuuz di faam biluo fi riniem a piej, ahn muuv aal a i'ischri tu di nyuu niem.\nDi uol taikl wi bikomz a riidirek piej tu di nyuu taikl.\nYu kiahn opdiet riidirek wa paint tu di orijinal taikl aatamatikali.\nEf yu no chuuz fi dwiit, bi shuor fi chek fi [[Special:DoubleRedirects|dobl]] ar [[Special:BrokenRedirects|brok riidirek]].\nYu rispans fi mek shuor se lingk kantiniu fi paint we dehn supuoz fi go.\n\nNuot se di piej '''naa''' go muuv ef piej de aredi a di nyuu taikl, anles iempti ar a riidirek ahn no ha no paas edit ischri.\nDis miin se yu kiahn riiniem a piej bak tu wa iriiniem fram ef yu mek mistiek, ahn yu kyaahn uovarait a egzistin piej.\n\n'''Waanin!'''\nDis kiahn bi a jrastik ahn anexpektid chienj fi a papiula piej;\nbegyu mek shuor yu andastan di kansikwens a dis bifuo yu prosiid.",
 	"movepagetalktext": "Di asuosietid taak piej wi aatamatikali muuv alangx widi '''anles:'''\n* A nan-emti taak piej egzis aredi anda di nyuu niem, ar\n*Yu anchel di bax biluo.\n\nIna demde kies, yu wi afi muuv ar moerj di piej manyuali ef yu dizaya.",
-	"movearticle": "Muuv piej",
 	"newtitle": "Tu nyuu taikl:",
 	"move-watch": "Wach suos piej ahn taagit piej",
 	"movepagebtn": "Muuv piej",
