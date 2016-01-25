@@ -1727,37 +1727,58 @@ class User implements IDBAccessObject {
 		$id = $this->getId();
 		$userLimit = false;
 
-		if ( isset( $limits['anon'] ) && $id == 0 ) {
+		$isNewbie = $this->isNewbie();
+		$isAnon = ( $id == 0 );
+
+		if ( isset( $limits['anon'] ) && $isAnon ) {
 			$keys[wfMemcKey( 'limiter', $action, 'anon' )] = $limits['anon'];
 		}
-
-		if ( isset( $limits['user'] ) && $id != 0 ) {
+		if ( isset( $limits['user'] ) && !$isAnon ) {
 			$userLimit = $limits['user'];
 		}
-		if ( $this->isNewbie() ) {
-			if ( isset( $limits['newbie'] ) && $id != 0 ) {
-				$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $limits['newbie'];
-			}
-			if ( isset( $limits['ip'] ) ) {
-				$ip = $this->getRequest()->getIP();
+		if ( $isNewbie && isset( $limits['newbie'] ) && $isAnon ) {
+			$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $limits['newbie'];
+		}
+
+		// ip-based limits
+		if ( $isNewbie && isset( $limits['ip'] ) ) {
+			// applied only to newbies
+			$ip = $this->getRequest()->getIP();
+			if ( isset( $limits['ip-all'] ) && $limits['ip-all'] < $limits['ip'] ) {
+				// if ip-all exists and is more restrictive, use it
+				$keys["mediawiki:limiter:$action:ip:$ip"] = $limits['ip-all'];
+			} else {
 				$keys["mediawiki:limiter:$action:ip:$ip"] = $limits['ip'];
 			}
-			if ( isset( $limits['subnet'] ) ) {
-				$ip = $this->getRequest()->getIP();
-				$matches = array();
-				$subnet = false;
-				if ( IP::isIPv6( $ip ) ) {
-					$parts = IP::parseRange( "$ip/64" );
-					$subnet = $parts[0];
-				} elseif ( preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $ip, $matches ) ) {
-					// IPv4
-					$subnet = $matches[1];
-				}
-				if ( $subnet !== false ) {
+		} elseif ( isset( $limits['ip-all'] ) ) {
+			// applied to all ping-limitable users
+			$ip = $this->getRequest()->getIP();
+			$keys["mediawiki:limiter:$action:ip:$ip"] = $limits['ip-all'];
+		}
+
+		// subnet-based limits
+		if ( $isNewbie && isset( $limits['subnet'] ) ) {
+			// applied only to newbies
+			$ip = $this->getRequest()->getIP();
+			$subnet = $this->getSubnet( $ip );
+			if ( $subnet !== false ) {
+				if ( isset( $limits['subnet-all'] )
+					&& $limits['subnet-all'] < $limits['subnet'] ) {
+					// if subnet-all exists and is more restrictive, use it
+					$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet-all'];
+				} else {
 					$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet'];
 				}
 			}
+		} elseif ( isset( $limits['subnet-all'] ) ) {
+			// applied to all ping-limitable users
+			$ip = $this->getRequest()->getIP();
+			$subnet = $this->getSubnet( $ip );
+			if ( $subnet !== false ) {
+				$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet-all'];
+			}
 		}
+
 		// Check for group-specific permissions
 		// If more than one group applies, use the group with the highest limit
 		foreach ( $this->getGroups() as $group ) {
@@ -1804,6 +1825,23 @@ class User implements IDBAccessObject {
 		}
 
 		return $triggered;
+	}
+
+	/**
+	 * @param $ip
+	 * @return string|false
+	 */
+	private function getSubnet( $ip ) {
+		$matches = array();
+		$subnet = false;
+		if ( IP::isIPv6( $ip ) ) {
+			$parts = IP::parseRange( "$ip/64" );
+			$subnet = $parts[0];
+		} elseif ( preg_match( '/^(\d+\.\d+\.\d+)\.\d+$/', $ip, $matches ) ) {
+			// IPv4
+			$subnet = $matches[1];
+		}
+		return $subnet;
 	}
 
 	/**
