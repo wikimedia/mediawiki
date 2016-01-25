@@ -1488,6 +1488,7 @@
 	"apihelp-xmlfm-description": "Output data in XML format (pretty-print in HTML).",
 
 	"api-format-title": "MediaWiki API result",
+	"api-format-prettyprint-header-hyperlinked": "This is the HTML representation of the $1 format. HTML is good for debugging, but is unsuitable for application use.\n\nSpecify the <var>format</var> parameter to change the output format. To see the non-HTML representation of the $1 format, set [$3 <kbd>format=$2</kbd>].\n\nSee the [[mw:API|complete documentation]], or the [[Special:ApiHelp/main|API help]] for more information.",
 	"api-format-prettyprint-header": "This is the HTML representation of the $1 format. HTML is good for debugging, but is unsuitable for application use.\n\nSpecify the <var>format</var> parameter to change the output format. To see the non-HTML representation of the $1 format, set <kbd>format=$2</kbd>.\n\nSee the [[mw:API|complete documentation]], or the [[Special:ApiHelp/main|API help]] for more information.",
 	"api-format-prettyprint-header-only-html": "This is an HTML representation intended for debugging, and is unsuitable for application use.\n\nSee the [[mw:API|complete documentation]], or the [[Special:ApiHelp/main|API help]] for more information.",
 	"api-format-prettyprint-status": "This response would be returned with HTTP status $1 $2.",

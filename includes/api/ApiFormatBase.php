@@ -205,6 +205,7 @@ abstract class ApiFormatBase extends ApiBase {
 		if ( $this->getIsHtml() && $mime !== null ) {
 			$format = $this->getFormat();
 			$lcformat = strtolower( $format );
+
 			$result = $this->getBuffer();
 
 			$context = new DerivativeContext( $this->getMain() );
@@ -217,9 +218,15 @@ abstract class ApiFormatBase extends ApiBase {
 			$out->setPageTitle( $context->msg( 'api-format-title' ) );
 
 			if ( !$this->getIsWrappedHtml() ) {
+
 				// When the format without suffix 'fm' is defined, there is a non-html version
 				if ( $this->getMain()->getModuleManager()->isDefined( $lcformat, 'format' ) ) {
-					$msg = $context->msg( 'api-format-prettyprint-header' )->params( $format, $lcformat );
+					if ( !$this->getRequest()->wasPosted() ) {
+						$nonHtmlUrl = strtok( $this->getRequest()->getFullRequestURL(), '?' ). '?' .$this->getRequest()->appendQueryValue('format', $lcformat );
+						$msg = $context->msg( 'api-format-prettyprint-header-hyperlinked' )->params( $format, $lcformat, $nonHtmlUrl );
+					} else {
+						$msg = $context->msg( 'api-format-prettyprint-header' )->params( $format, $lcformat );
+					}
 				} else {
 					$msg = $context->msg( 'api-format-prettyprint-header-only-html' )->params( $format );
 				}
