@@ -820,7 +820,10 @@ class SpecialBlock extends FormSpecialPage {
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
-		# Report to the user
+		if ( isset( $data['Tags'] ) && count( $data['Tags'] ) ) {
+			ChangeTags::addTags( $data['Tags'], null, null, $logId );
+		}
+
 		return true;
 	}
 

@@ -74,7 +74,8 @@ class ApiMove extends ApiBase {
 
 		// Move the page
 		$toTitleExists = $toTitle->exists();
-		$status = $this->movePage( $fromTitle, $toTitle, $params['reason'], !$params['noredirect'] );
+		$status = $this->movePage( $fromTitle, $toTitle, $params['reason'], !$params['noredirect'],
+			$params['tags'] );
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
 		}
@@ -145,10 +146,11 @@ class ApiMove extends ApiBase {
 	 * @param Title $from
 	 * @param Title $to
 	 * @param string $reason
+	 * @param array $changeTags tags to apply to the entry in the move log
 	 * @param bool $createRedirect
 	 * @return Status
 	 */
-	protected function movePage( Title $from, Title $to, $reason, $createRedirect ) {
+	protected function movePage( Title $from, Title $to, $reason, $createRedirect, $changeTags ) {
 		$mp = new MovePage( $from, $to );
 		$valid = $mp->isValidMove();
 		if ( !$valid->isOK() ) {
@@ -165,7 +167,7 @@ class ApiMove extends ApiBase {
 			$createRedirect = true;
 		}
 
-		return $mp->move( $this->getUser(), $reason, $createRedirect );
+		return $mp->move( $this->getUser(), $reason, $createRedirect, $changeTags );
 	}
 
 	/**
@@ -237,7 +239,11 @@ class ApiMove extends ApiBase {
 					'nochange'
 				),
 			),
-			'ignorewarnings' => false
+			'ignorewarnings' => false,
+			'tags' => array(
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			),
 		);
 	}
 
