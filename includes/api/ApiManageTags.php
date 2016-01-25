@@ -53,6 +53,12 @@ class ApiManageTags extends ApiBase {
 		if ( $ret['success'] ) {
 			$ret['logid'] = $status->value;
 		}
+
+		// Apply change tags to the log entry, if requested
+		if ( count( $params['tags'] ) && $status->value ) {
+			ChangeTags::addTags( $params['tags'], null, null, $status->value, null );
+		}
+
 		$result->addValue( null, $this->getModuleName(), $ret );
 	}
 
@@ -80,6 +86,10 @@ class ApiManageTags extends ApiBase {
 			'ignorewarnings' => array(
 				ApiBase::PARAM_TYPE => 'boolean',
 				ApiBase::PARAM_DFLT => false,
+			),
+			'tags' => array(
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
 			),
 		);
 	}
