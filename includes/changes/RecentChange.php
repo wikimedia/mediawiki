@@ -430,9 +430,10 @@ class RecentChange {
 	 *
 	 * @param RecentChange|int $change RecentChange or corresponding rc_id
 	 * @param bool $auto For automatic patrol
+	 * @param string|array $tags Change tags to add to the patrol log entry
 	 * @return array See doMarkPatrolled(), or null if $change is not an existing rc_id
 	 */
-	public static function markPatrolled( $change, $auto = false ) {
+	public static function markPatrolled( $change, $auto = false, $tags = null ) {
 		global $wgUser;
 
 		$change = $change instanceof RecentChange
@@ -443,7 +444,7 @@ class RecentChange {
 			return null;
 		}
 
-		return $change->doMarkPatrolled( $wgUser, $auto );
+		return $change->doMarkPatrolled( $wgUser, $auto, $tags );
 	}
 
 	/**
@@ -453,9 +454,11 @@ class RecentChange {
 	 * 'markedaspatrollederror-noautopatrol' as errors
 	 * @param User $user User object doing the action
 	 * @param bool $auto For automatic patrol
+	 * @param string|array $tags Change tags to add to the patrol log entry
+		($user should be able to add the specified tags before this is called)
 	 * @return array Array of permissions errors, see Title::getUserPermissionsErrors()
 	 */
-	public function doMarkPatrolled( User $user, $auto = false ) {
+	public function doMarkPatrolled( User $user, $auto = false, $tags = null ) {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseFilePatrol;
 		$errors = array();
 		// If recentchanges patrol is disabled, only new pages or new file versions
@@ -490,7 +493,13 @@ class RecentChange {
 		// Actually set the 'patrolled' flag in RC
 		$this->reallyMarkPatrolled();
 		// Log this patrol event
-		PatrolLog::record( $this, $auto, $user );
+		$logId = PatrolLog::record( $this, $auto, $user );
+
+		// Change tags for log entry
+		if ( !is_null( $tags ) ) {
+			ChangeTags::addTags( $tags, null, null, $logId, null );
+		}
+
 		Hooks::run(
 					'MarkPatrolledComplete',
 					array( $this->getAttribute( 'rc_id' ), &$user, false, $auto )

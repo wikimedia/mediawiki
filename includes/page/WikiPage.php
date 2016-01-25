@@ -2373,10 +2373,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param int &$cascade Set to false if cascading protection isn't allowed.
 	 * @param string $reason
 	 * @param User $user The user updating the restrictions
-	 * @return Status
+	 * @param string|array $tags Change tags to add to the pages and protection log entries
+		($user should be able to add the specified tags before this is called)
+	 * @return Status Status object; if action is taken, $status->value is the log_id of the
+	 *   protection log entry.
 	 */
 	public function doUpdateRestrictions( array $limit, array $expiry,
-		&$cascade, $reason, User $user
+		&$cascade, $reason, User $user, $tags = null
 	) {
 		global $wgCascadingRestrictionLevels, $wgContLang;
 
@@ -2457,6 +2460,9 @@ class WikiPage implements Page, IDBAccessObject {
 		$logRelationsValues = array();
 		$logRelationsField = null;
 		$logParamsDetails = array();
+
+		// Null revision (used for change tag insertion)
+		$nullRevision = null;
 
 		if ( $id ) { // Protection of existing page
 			if ( !Hooks::run( 'ArticleProtect', array( &$this, &$user, $limit, $reason ) ) ) {
@@ -2607,7 +2613,12 @@ class WikiPage implements Page, IDBAccessObject {
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
-		return Status::newGood();
+		// Change tags for log entry
+		if ( !is_null( $tags ) ) {
+			ChangeTags::addTags( $tags, null, $nullRevision->getId(), $logId, null );
+		}
+
+		return Status::newGood( $logId );
 	}
 
 	/**
