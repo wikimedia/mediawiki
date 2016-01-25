@@ -64,7 +64,8 @@ class ApiUndelete extends ApiBase {
 			$params['reason'],
 			$params['fileids'],
 			false,
-			$this->getUser()
+			$this->getUser(),
+			$params['tags']
 		);
 		if ( !is_array( $retval ) ) {
 			$this->dieUsageMsg( 'cannotundelete' );
@@ -99,6 +100,10 @@ class ApiUndelete extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'reason' => '',
+			'tags' => array(
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			),
 			'timestamps' => array(
 				ApiBase::PARAM_TYPE => 'timestamp',
 				ApiBase::PARAM_ISMULTI => true,

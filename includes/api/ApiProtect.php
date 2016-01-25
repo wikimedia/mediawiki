@@ -108,7 +108,8 @@ class ApiProtect extends ApiBase {
 			$expiryarray,
 			$cascade,
 			$params['reason'],
-			$this->getUser()
+			$this->getUser(),
+			$params['tags']
 		);
 
 		if ( !$status->isOK() ) {
@@ -153,6 +154,10 @@ class ApiProtect extends ApiBase {
 				ApiBase::PARAM_DFLT => 'infinite',
 			),
 			'reason' => '',
+			'tags' => array(
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
+			),
 			'cascade' => false,
 			'watch' => array(
 				ApiBase::PARAM_DFLT => false,
