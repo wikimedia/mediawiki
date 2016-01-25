@@ -2324,6 +2324,7 @@
 	"badipaddress": "Invalid IP address",
 	"blockipsuccesssub": "Block succeeded",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] has been blocked.<br />\nSee the [[Special:BlockList|block list]] to review blocks.",
+	"cantapply-changetags": "You don't have permission to apply the requested changetags.",
 	"ipb-blockingself": "You are about to block yourself! Are you sure you want to do that?",
 	"ipb-confirmhideuser": "You are about to block a user with \"hide user\" enabled. This will suppress the user's name in all lists and log entries. Are you sure you want to do that?",
 	"ipb-confirmaction": "If you are sure you really want to do it, please check the \"{{int:ipb-confirm}}\" field at the bottom.",
