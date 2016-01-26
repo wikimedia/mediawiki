@@ -27,13 +27,102 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 		return $mock;
 	}
 
-	private function getFakeRow( $userId, $timestamp ) {
+	/**
+	 * @return PHPUnit_Framework_MockObject_MockObject|Config
+	 */
+	private function getMockConfig() {
+		return $this->getMock( 'Config' );
+	}
+
+	private function getFakeRow( array $rowValues ) {
 		$fakeRow = new stdClass();
-		$fakeRow->wl_user = $userId;
-		$fakeRow->wl_notificationtimestamp = $timestamp;
+		foreach ( $rowValues as $valueName => $value ) {
+			$fakeRow->$valueName = $value;
+		}
 		return $fakeRow;
 	}
 
+	public function testCountWatchers() {
+		$titleValue = new TitleValue( 0, 'SomeDbKey' );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->exactly( 1 ) )
+			->method( 'selectField' )
+			->with(
+				'watchlist',
+				'COUNT(*)',
+				array(
+					'wl_namespace' => $titleValue->getNamespace(),
+					'wl_title' => $titleValue->getDBkey(),
+				),
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( 7 ) );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadbalancer( $mockDb ),
+			new ProcessCacheLRU( 100 ),
+			$this->getMockConfig()
+		);
+
+		$this->assertEquals( 7, $store->countWatchers( $titleValue ) );
+	}
+
+	public function testCountWatchersMultiple() {
+		$titleValues = array(
+			new TitleValue( 0, 'SomeDbKey' ),
+			new TitleValue( 0, 'OtherDbKey' ),
+			new TitleValue( 1, 'AnotherDbKey' ),
+		);
+
+		$mockDb = $this->getMockDb();
+		$mockConfig = $this->getMockConfig();
+
+		$dbResult = array(
+			$this->getFakeRow( array( 'wl_title' => 'SomeDbKey', 'wl_namespace' => 0, 'count' => 100 ) ),
+			$this->getFakeRow( array( 'wl_title' => 'OtherDbKey', 'wl_namespace' => 0, 'count' => 300 ) ),
+			$this->getFakeRow( array( 'wl_title' => 'AnotherDbKey', 'wl_namespace' => 1, 'count' => 500 ) ),
+		);
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->with(
+				array( array( 'SomeDbKey' => 1, 'OtherDbKey' => 1 ), array( 'AnotherDbKey' => 1 ) ),
+				$this->isType( 'string' ),
+				$this->isType( 'string' )
+				)
+			->will( $this->returnValue( 'makeWhereFrom2d return value' ) );
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				array( 'wl_title', 'wl_namespace', 'count' => 'COUNT(*)' ),
+				array( 'makeWhereFrom2d return value' ),
+				$this->isType( 'string' ),
+				array(
+					'GROUP BY' => array( 'wl_namespace', 'wl_title' ),
+					'HAVING' => 'COUNT(*) >= 60',
+				)
+			)
+			->will(
+				$this->returnValue( $dbResult )
+			);
+		$mockConfig->expects( $this->exactly( 1 ) )
+			->method( 'get' )
+			->with( 'UnwatchedPageThreshold' )
+			->will( $this->returnValue( 60 ) );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadbalancer( $mockDb ),
+			new ProcessCacheLRU( 100 ),
+			$mockConfig
+		);
+
+		$expected = array(
+			0 => array( 'SomeDbKey' => 100, 'OtherDbKey' => 300 ),
+			1 => array( 'AnotherDbKey' => 500 ),
+		);
+		$this->assertEquals( $expected, $store->countWatchersMultiple( $titleValues ) );
+	}
 	public function testDuplicateEntry_nothingToDuplicate() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->exactly( 1 ) )
@@ -42,7 +131,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadbalancer( $mockDb ),
-			new ProcessCacheLRU( 100 )
+			new ProcessCacheLRU( 100 ),
+			$this->getMockConfig()
 		);
 
 		$store->duplicateEntry(
@@ -53,8 +143,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 	public function testDuplicateEntry_somethingToDuplicate() {
 		$fakeRows = array(
-			$this->getFakeRow( 1, '20151212010101' ),
-			$this->getFakeRow( 2, null ),
+			$this->getFakeRow( array( 'wl_user' => 1, 'wl_notificationtimestamp' => '20151212010101' ) ),
+			$this->getFakeRow( array( 'wl_user' => 2, 'wl_notificationtimestamp' => null ) ),
 		);
 
 		$mockDb = $this->getMockDb();
@@ -85,7 +175,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadbalancer( $mockDb ),
-			new ProcessCacheLRU( 100 )
+			new ProcessCacheLRU( 100 ),
+			$this->getMockConfig()
 		);
 
 		$store->duplicateEntry(

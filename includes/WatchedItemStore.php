@@ -17,9 +17,19 @@ class WatchedItemStore {
 	 */
 	private $cache;
 
-	public function __construct( LoadBalancer $loadBalancer, ProcessCacheLRU $cache ) {
+	/**
+	 * @var Config
+	 */
+	private $config;
+
+	public function __construct(
+		LoadBalancer $loadBalancer,
+		ProcessCacheLRU $cache,
+		Config $config
+	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
+		$this->config = $config;
 	}
 
 	/**
@@ -30,7 +40,8 @@ class WatchedItemStore {
 		if ( !$instance ) {
 			$instance = new self(
 				wfGetLB(),
-				new ProcessCacheLRU( 100 )
+				new ProcessCacheLRU( 100 ),
+				RequestContext::getMain()->getConfig()
 			);
 		}
 		return $instance;
@@ -53,8 +64,64 @@ class WatchedItemStore {
 	}
 
 	/**
-	 * @param User $user
-	 * @param LinkTarget $target
+	 * @param TitleValue $titleValue
+	 *
+	 * @return int
+	 */
+	public function countWatchers( TitleValue $titleValue ) {
+		$dbr = $this->loadBalancer->getConnection( DB_SLAVE );
+		$return = (int)$dbr->selectField(
+			'watchlist',
+			'COUNT(*)',
+			array(
+				'wl_namespace' => $titleValue->getNamespace(),
+				'wl_title' => $titleValue->getDBkey(),
+			),
+			__METHOD__
+		);
+		$this->loadBalancer->reuseConnection( $dbr );
+
+		return $return;
+	}
+
+	/**
+	 * @param TitleValue[]|Title[] $titleValues
+	 * @param bool $unwatchedPages show unwatched pages obeying UnwatchedPageThreshold setting
+	 *
+	 * @return array multi dimensional like $return[$namespaceId][$titleString] = $watchers
+	 */
+	public function countWatchersMultiple( array $titleValues, $unwatchedPages = false ) {
+		$unwatchedPageThreshold = $this->config->get( 'UnwatchedPageThreshold' );
+
+		if ( !$unwatchedPages && !is_int( $unwatchedPageThreshold ) ) {
+			// TODO throw exception?
+			return array();
+		}
+
+		$options = array( 'GROUP BY' => array( 'wl_namespace', 'wl_title' ) );
+		if ( !$unwatchedPages ) {
+			$options['HAVING'] = "COUNT(*) >= $unwatchedPageThreshold";
+		}
+
+		$dbr = $this->loadBalancer->getConnection( DB_SLAVE );
+
+		$lb = new LinkBatch( $titleValues );
+		$res = $dbr->select(
+			'watchlist',
+			array( 'wl_title', 'wl_namespace', 'count' => 'COUNT(*)' ),
+			array( $lb->constructSet( 'wl', $dbr ) ),
+			__METHOD__,
+			$options
+		);
+
+		$watchCounts = array();
+		foreach ( $res as $row ) {
+			$watchCounts[$row->wl_namespace][$row->wl_title] = (int)$row->count;
+		}
+
+		return $watchCounts;
+	}
+	/**
 	 *
 	 * @return WatchedItem|null
 	 */
@@ -288,7 +355,7 @@ class WatchedItemStore {
 					if ( $force != 'force' ) {
 						return false;
 					} else {
-						// This is a little silly…
+						// This is a little silly�
 						$notificationTimestamp = $item->getNotificationTimestamp();
 					}
 				}
