@@ -173,9 +173,9 @@ class CookieSessionProvider extends SessionProvider {
 		}
 
 		$options = $this->cookieOptions;
-		if ( $session->shouldForceHTTPS() || $user->requiresHTTPS() ) {
-			$response->setCookie( 'forceHTTPS', 'true', $session->shouldRememberUser() ? 0 : null,
-				array( 'prefix' => '', 'secure' => false ) + $options );
+
+		$forceHTTPS = $session->shouldForceHTTPS() || $user->requiresHTTPS();
+		if ( $forceHTTPS ) {
 			$options['secure'] = true;
 		}
 
@@ -199,6 +199,7 @@ class CookieSessionProvider extends SessionProvider {
 			}
 		}
 
+		$this->setForceHTTPSCookie( $forceHTTPS, $session, $request );
 		$this->setLoggedOutCookie( $session->getLoggedOutTimestamp(), $request );
 
 		if ( $sessionData ) {
@@ -227,8 +228,26 @@ class CookieSessionProvider extends SessionProvider {
 			$response->clearCookie( $key, $this->cookieOptions );
 		}
 
-		$response->clearCookie( 'forceHTTPS',
-			array( 'prefix' => '', 'secure' => false ) + $this->cookieOptions );
+		$this->setForceHTTPSCookie( false, null, $request );
+	}
+
+	/**
+	 * Set the "forceHTTPS" cookie
+	 * @param bool $set Whether the cookie should be set or not
+	 * @param SessionBackend|null $backend
+	 * @param WebRequest $request
+	 */
+	protected function setForceHTTPSCookie(
+		$set, SessionBackend $backend = null, WebRequest $request
+	) {
+		$response = $request->response();
+		if ( $set ) {
+			$response->setCookie( 'forceHTTPS', 'true', $backend->shouldRememberUser() ? 0 : null,
+				array( 'prefix' => '', 'secure' => false ) + $this->cookieOptions );
+		} else {
+			$response->clearCookie( 'forceHTTPS',
+				array( 'prefix' => '', 'secure' => false ) + $this->cookieOptions );
+		}
 	}
 
 	/**
