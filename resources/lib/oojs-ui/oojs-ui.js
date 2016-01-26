@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.15.0
+ * OOjs UI v0.15.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-01-12T23:06:31Z
+ * Date: 2016-01-26T21:14:23Z
  */
 ( function ( OO ) {
 
@@ -410,27 +410,38 @@ OO.ui.resolveMsg = function ( msg ) {
  * @return {boolean}
  */
 OO.ui.isSafeUrl = function ( url ) {
-	var protocol,
-		// Keep in sync with php/Tag.php
-		whitelist = [
-			'bitcoin:', 'ftp:', 'ftps:', 'geo:', 'git:', 'gopher:', 'http:', 'https:', 'irc:', 'ircs:',
-			'magnet:', 'mailto:', 'mms:', 'news:', 'nntp:', 'redis:', 'sftp:', 'sip:', 'sips:', 'sms:', 'ssh:',
-			'svn:', 'tel:', 'telnet:', 'urn:', 'worldwind:', 'xmpp:'
-		];
+	// Keep this function in sync with php/Tag.php
+	var i, protocolWhitelist;
 
-	if ( url.indexOf( ':' ) === -1 ) {
-		// No protocol, safe
+	function stringStartsWith( haystack, needle ) {
+		return haystack.substr( 0, needle.length ) === needle;
+	}
+
+	protocolWhitelist = [
+		'bitcoin', 'ftp', 'ftps', 'geo', 'git', 'gopher', 'http', 'https', 'irc', 'ircs',
+		'magnet', 'mailto', 'mms', 'news', 'nntp', 'redis', 'sftp', 'sip', 'sips', 'sms', 'ssh',
+		'svn', 'tel', 'telnet', 'urn', 'worldwind', 'xmpp'
+	];
+
+	if ( url === '' ) {
 		return true;
 	}
 
-	protocol = url.split( ':', 1 )[ 0 ] + ':';
-	if ( !protocol.match( /^([A-za-z0-9\+\.\-])+:/ ) ) {
-		// Not a valid protocol, safe
+	for ( i = 0; i < protocolWhitelist.length; i++ ) {
+		if ( stringStartsWith( url, protocolWhitelist[ i ] + ':' ) ) {
+			return true;
+		}
+	}
+
+	// This matches '//' too
+	if ( stringStartsWith( url, '/' ) || stringStartsWith( url, './' ) ) {
+		return true;
+	}
+	if ( stringStartsWith( url, '?' ) || stringStartsWith( url, '#' ) ) {
 		return true;
 	}
 
-	// Safe if in the whitelist
-	return whitelist.indexOf( protocol ) !== -1;
+	return false;
 };
 
 /**
@@ -7008,8 +7019,8 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		ccWidth + ccOffset.left :
 		( scOffset.left + scrollLeft + scWidth ) - ccOffset.left;
 	desiredHeight = ( scOffset.top + scrollTop + scHeight ) - ccOffset.top;
-	allotedWidth = desiredWidth - extraWidth;
-	allotedHeight = desiredHeight - extraHeight;
+	allotedWidth = Math.ceil( desiredWidth - extraWidth );
+	allotedHeight = Math.ceil( desiredHeight - extraHeight );
 	naturalWidth = this.$clippable.prop( 'scrollWidth' );
 	naturalHeight = this.$clippable.prop( 'scrollHeight' );
 	clipWidth = allotedWidth < naturalWidth;
@@ -9682,6 +9693,8 @@ OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.mixin.GroupElement );
  * @cfg {OO.ui.FieldsetLayout[]} [items] Fieldset layouts to add to the form layout.
  */
 OO.ui.FormLayout = function OoUiFormLayout( config ) {
+	var action;
+
 	// Configuration initialization
 	config = config || {};
 
@@ -9695,8 +9708,9 @@ OO.ui.FormLayout = function OoUiFormLayout( config ) {
 	this.$element.on( 'submit', this.onFormSubmit.bind( this ) );
 
 	// Make sure the action is safe
-	if ( config.action !== undefined && !OO.ui.isSafeUrl( config.action ) ) {
-		throw new Error( 'Potentially unsafe action provided: ' + config.action );
+	action = config.action;
+	if ( action !== undefined && !OO.ui.isSafeUrl( action ) ) {
+		action = './' + action;
 	}
 
 	// Initialization
@@ -9704,7 +9718,7 @@ OO.ui.FormLayout = function OoUiFormLayout( config ) {
 		.addClass( 'oo-ui-formLayout' )
 		.attr( {
 			method: config.method,
-			action: config.action,
+			action: action,
 			enctype: config.enctype
 		} );
 	if ( Array.isArray( config.items ) ) {
@@ -12984,11 +12998,8 @@ OO.ui.ButtonWidget.prototype.getNoFollow = function () {
  */
 OO.ui.ButtonWidget.prototype.setHref = function ( href ) {
 	href = typeof href === 'string' ? href : null;
-	if ( href !== null ) {
-		if ( !OO.ui.isSafeUrl( href ) ) {
-			throw new Error( 'Potentially unsafe href provided: ' + href );
-		}
-
+	if ( href !== null && !OO.ui.isSafeUrl( href ) ) {
+		href = './' + href;
 	}
 
 	if ( href !== this.href ) {
@@ -14511,10 +14522,18 @@ OO.ui.SelectFileWidget.prototype.updateUI = function () {
 		if ( this.currentFile ) {
 			this.$element.removeClass( 'oo-ui-selectFileWidget-empty' );
 			$label = $( [] );
+			$label = $label.add(
+				$( '<span>' )
+					.addClass( 'oo-ui-selectFileWidget-fileName' )
+					.text( this.currentFile.name )
+			);
 			if ( this.currentFile.type !== '' ) {
-				$label = $label.add( $( '<span>' ).addClass( 'oo-ui-selectFileWidget-fileType' ).text( this.currentFile.type ) );
+				$label = $label.add(
+					$( '<span>' )
+						.addClass( 'oo-ui-selectFileWidget-fileType' )
+						.text( this.currentFile.type )
+				);
 			}
-			$label = $label.add( $( '<span>' ).text( this.currentFile.name ) );
 			this.setLabel( $label );
 		} else {
 			this.$element.addClass( 'oo-ui-selectFileWidget-empty' );
@@ -16513,7 +16532,7 @@ OO.ui.TextInputWidget.prototype.isValid = function () {
 
 	if ( this.validate instanceof Function ) {
 		result = this.validate( this.getValue() );
-		if ( $.isFunction( result.promise ) ) {
+		if ( result && $.isFunction( result.promise ) ) {
 			return result.promise();
 		} else {
 			return $.Deferred().resolve( !!result ).promise();
@@ -16532,7 +16551,7 @@ OO.ui.TextInputWidget.prototype.isValid = function () {
  * @return {jQuery.Promise} A promise that resolves if the value is valid, rejects if not.
  */
 OO.ui.TextInputWidget.prototype.getValidity = function () {
-	var result, promise;
+	var result;
 
 	function rejectOrResolve( valid ) {
 		if ( valid ) {
@@ -16544,21 +16563,10 @@ OO.ui.TextInputWidget.prototype.getValidity = function () {
 
 	if ( this.validate instanceof Function ) {
 		result = this.validate( this.getValue() );
-
-		if ( $.isFunction( result.promise ) ) {
-			promise = $.Deferred();
-
-			result.then( function ( valid ) {
-				if ( valid ) {
-					promise.resolve();
-				} else {
-					promise.reject();
-				}
-			}, function () {
-				promise.reject();
+		if ( result && $.isFunction( result.promise ) ) {
+			return result.promise().then( function ( valid ) {
+				return rejectOrResolve( valid );
 			} );
-
-			return promise.promise();
 		} else {
 			return rejectOrResolve( result );
 		}

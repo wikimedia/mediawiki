@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.15.0
+ * OOjs UI v0.15.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-01-12T23:06:40Z
+ * Date: 2016-01-26T21:14:25Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -17,14 +17,6 @@
 	}
 }
 @-moz-keyframes oo-ui-progressBarWidget-slide {
-	from {
-		margin-left: -40%;
-	}
-	to {
-		margin-left: 100%;
-	}
-}
-@-o-keyframes oo-ui-progressBarWidget-slide {
 	from {
 		margin-left: -40%;
 	}
@@ -236,7 +228,7 @@
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
 	color: #555555;
 	background-color: #ffffff;
-	border: 1px solid #cdcdcd;
+	border: 1px solid #cccccc;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover {
 	background-color: #ebebeb;
@@ -1219,12 +1211,11 @@
 .oo-ui-optionWidget {
 	position: relative;
 	display: block;
-	cursor: pointer;
 	padding: 0.25em 0.5em;
 	border: 0;
 }
-.oo-ui-optionWidget.oo-ui-widget-disabled {
-	cursor: default;
+.oo-ui-optionWidget.oo-ui-widget-enabled {
+	cursor: pointer;
 }
 .oo-ui-optionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
 	display: block;
@@ -1347,8 +1338,8 @@
 	display: inline-block;
 	vertical-align: middle;
 	line-height: 2.5em;
-	height: 1.875em;
 	width: 1.875em;
+	height: 1.875em;
 }
 .oo-ui-iconWidget.oo-ui-widget-disabled {
 	opacity: 0.2;
@@ -1357,8 +1348,8 @@
 	display: inline-block;
 	vertical-align: middle;
 	line-height: 2.5em;
-	height: 0.9375em;
 	width: 0.9375em;
+	height: 0.9375em;
 	margin: 0.46875em;
 }
 .oo-ui-indicatorWidget.oo-ui-widget-disabled {
@@ -1413,14 +1404,13 @@
 	display: inline-block;
 	vertical-align: middle;
 	overflow: hidden;
-	cursor: pointer;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
-	-webkit-transform: translateZ(0px);
-	   -moz-transform: translateZ(0px);
-	    -ms-transform: translateZ(0px);
-	        transform: translateZ(0px);
+	-webkit-transform: translateZ(0);
+	   -moz-transform: translateZ(0);
+	    -ms-transform: translateZ(0);
+	        transform: translateZ(0);
 	height: 2em;
 	width: 3.5em;
 	border: 1px solid #777777;
@@ -1431,8 +1421,8 @@
 	   -moz-transition: background-color 100ms ease, border-color 100ms ease;
 	        transition: background-color 100ms ease, border-color 100ms ease;
 }
-.oo-ui-toggleSwitchWidget.oo-ui-widget-disabled {
-	cursor: default;
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled {
+	cursor: pointer;
 }
 .oo-ui-toggleSwitchWidget-grip {
 	position: absolute;
@@ -1725,8 +1715,8 @@
 	background-size: 100% 100%;
 }
 .oo-ui-checkboxInputWidget input[type="checkbox"]:active + span {
-	background-color: #dddddd;
-	border-color: #dddddd;
+	background-color: #cccccc;
+	border-color: #cccccc;
 }
 .oo-ui-checkboxInputWidget input[type="checkbox"]:focus + span {
 	border-width: 2px;
@@ -1739,8 +1729,8 @@
 	cursor: default;
 }
 .oo-ui-checkboxInputWidget input[type="checkbox"]:disabled + span {
-	background-color: #eeeeee;
-	border-color: #eeeeee;
+	background-color: #dddddd;
+	border-color: #dddddd;
 }
 .oo-ui-checkboxInputWidget input[type="checkbox"]:disabled:checked + span {
 	background-image: url("themes/mediawiki/images/icons/check-invert.png");
@@ -1834,8 +1824,8 @@
 	background-size: 100% 100%;
 }
 .oo-ui-radioInputWidget input[type="radio"]:active + span {
-	background-color: #dddddd;
-	border-color: #dddddd;
+	background-color: #cccccc;
+	border-color: #cccccc;
 }
 .oo-ui-radioInputWidget input[type="radio"]:focus + span {
 	border-width: 2px;
@@ -1848,8 +1838,8 @@
 	cursor: default;
 }
 .oo-ui-radioInputWidget input[type="radio"]:disabled + span {
-	background-color: #eeeeee;
-	border-color: #eeeeee;
+	background-color: #dddddd;
+	border-color: #dddddd;
 }
 .oo-ui-radioInputWidget input[type="radio"]:disabled:checked + span {
 	background-image: url("themes/mediawiki/images/icons/circle-invert.png");
@@ -1947,13 +1937,9 @@
 	font-size: inherit;
 	font-family: inherit;
 	background-color: #ffffff;
-	color: black;
+	color: #000000;
 	border: 1px solid #cccccc;
-	box-shadow: inset 0 0 0 0 #347bff;
 	border-radius: 2px;
-	-webkit-transition: box-shadow 100ms ease;
-	   -moz-transition: box-shadow 100ms ease;
-	        transition: box-shadow 100ms ease;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -1964,6 +1950,7 @@
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled input,
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea {
+	box-shadow: inset 0 0 0 0.1em #ffffff;
 	-webkit-transition: border 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
 	   -moz-transition: border 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
 	        transition: border 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -1987,7 +1974,6 @@
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid input,
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid textarea {
 	border-color: #ff0000;
-	box-shadow: inset 0 0 0 0 #ff0000;
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid input:focus,
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid textarea:focus {
@@ -2079,7 +2065,7 @@
 }
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted {
 	background-color: #eeeeee;
-	color: black;
+	color: #000000;
 }
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-selected.oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted {
 	background-color: #d8e6fe;
@@ -2100,7 +2086,6 @@
 .oo-ui-dropdownWidget-handle {
 	width: 100%;
 	display: inline-block;
-	cursor: pointer;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	   -moz-user-select: none;
@@ -2118,8 +2103,8 @@
 	z-index: 1;
 	width: 100%;
 }
-.oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle {
-	cursor: default;
+.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
+	cursor: pointer;
 }
 .oo-ui-dropdownWidget:last-child {
 	margin-right: 0;
@@ -2226,6 +2211,9 @@
 	left: 0;
 	right: 0;
 	text-overflow: ellipsis;
+}
+.oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label > .oo-ui-selectFileWidget-fileName {
+	float: left;
 }
 .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label > .oo-ui-selectFileWidget-fileType {
 	float: right;
@@ -2538,7 +2526,7 @@
 	font-size: inherit;
 	font-family: inherit;
 	background-color: transparent;
-	color: black;
+	color: #000000;
 	vertical-align: middle;
 }
 .oo-ui-capsuleMultiSelectWidget-handle > .oo-ui-capsuleMultiSelectWidget-content > input:focus {
@@ -2720,7 +2708,9 @@
 	white-space: nowrap;
 }
 .oo-ui-numberInputWidget-field > .oo-ui-buttonWidget > .oo-ui-buttonElement-button {
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 .oo-ui-numberInputWidget-field > .oo-ui-buttonWidget {
 	width: 2.5em;
@@ -2774,21 +2764,23 @@
 	position: absolute;
 	left: 0;
 	right: 0;
-	overflow: hidden;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
 }
 .oo-ui-dialog-content > .oo-ui-window-head {
+	overflow: hidden;
 	z-index: 1;
 	top: 0;
 }
 .oo-ui-dialog-content > .oo-ui-window-body {
+	overflow: auto;
 	z-index: 2;
 	top: 0;
 	bottom: 0;
 }
 .oo-ui-dialog-content > .oo-ui-window-foot {
+	overflow: hidden;
 	z-index: 1;
 	bottom: 0;
 }
@@ -3083,8 +3075,6 @@
 	        transition: opacity 250ms ease;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog > .oo-ui-window-frame {
-	top: 1em;
-	bottom: 1em;
 	background-color: #ffffff;
 	opacity: 0;
 	-webkit-transform: scale(0.5);
@@ -3106,6 +3096,8 @@
 	        transform: scale(1);
 }
 .oo-ui-windowManager-modal.oo-ui-windowManager-floating > .oo-ui-dialog > .oo-ui-window-frame {
+	top: 1em;
+	bottom: 1em;
 	border: 1px solid #aaaaaa;
 	border-radius: 2px;
 	box-shadow: 0 0.15em 0 0 rgba(0, 0, 0, 0.15);

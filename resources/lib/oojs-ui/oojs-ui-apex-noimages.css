@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.15.0
+ * OOjs UI v0.15.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-01-12T23:06:40Z
+ * Date: 2016-01-26T21:14:25Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -444,11 +444,11 @@
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
 	width: 60%;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
-	padding: 0.5em;
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline {
+	margin-bottom: 1.25em;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
-	padding: 0.5em 0;
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
+	padding: 0.25em 0.25em 0.25em 0.5em;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
 	padding: 0.5em 0;
@@ -1186,12 +1186,11 @@
 .oo-ui-optionWidget {
 	position: relative;
 	display: block;
-	cursor: pointer;
 	padding: 0.25em 0.5em;
 	border: none;
 }
-.oo-ui-optionWidget.oo-ui-widget-disabled {
-	cursor: default;
+.oo-ui-optionWidget.oo-ui-widget-enabled {
+	cursor: pointer;
 }
 .oo-ui-optionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
 	display: block;
@@ -1385,14 +1384,13 @@
 	display: inline-block;
 	vertical-align: middle;
 	overflow: hidden;
-	cursor: pointer;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
-	-webkit-transform: translateZ(0px);
-	   -moz-transform: translateZ(0px);
-	    -ms-transform: translateZ(0px);
-	        transform: translateZ(0px);
+	-webkit-transform: translateZ(0);
+	   -moz-transform: translateZ(0);
+	    -ms-transform: translateZ(0);
+	        transform: translateZ(0);
 	height: 2em;
 	width: 4em;
 	border-radius: 1em;
@@ -1407,8 +1405,8 @@
 	background-image:      -o-linear-gradient(top, #dddddd 0%, #ffffff 100%);
 	background-image:         linear-gradient(to bottom, #dddddd 0%, #ffffff 100%);
 }
-.oo-ui-toggleSwitchWidget.oo-ui-widget-disabled {
-	cursor: default;
+.oo-ui-toggleSwitchWidget.oo-ui-widget-enabled {
+	cursor: pointer;
 }
 .oo-ui-toggleSwitchWidget-grip {
 	position: absolute;
@@ -1890,7 +1888,6 @@
 .oo-ui-dropdownWidget-handle {
 	width: 100%;
 	display: inline-block;
-	cursor: pointer;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	   -moz-user-select: none;
@@ -1908,8 +1905,8 @@
 	z-index: 1;
 	width: 100%;
 }
-.oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle {
-	cursor: default;
+.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
+	cursor: pointer;
 }
 .oo-ui-dropdownWidget:last-child {
 	margin-right: 0;
@@ -2011,6 +2008,9 @@
 	left: 0;
 	right: 0;
 	text-overflow: ellipsis;
+}
+.oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label > .oo-ui-selectFileWidget-fileName {
+	float: left;
 }
 .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label > .oo-ui-selectFileWidget-fileType {
 	float: right;
@@ -2520,10 +2520,12 @@
 	white-space: nowrap;
 }
 .oo-ui-numberInputWidget-field > .oo-ui-buttonWidget > .oo-ui-buttonElement-button {
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 .oo-ui-numberInputWidget-field > .oo-ui-buttonWidget {
-	width: 2.5em;
+	width: 2.25em;
 }
 .oo-ui-numberInputWidget-minusButton.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
 	border-top-right-radius: 0;
@@ -2575,21 +2577,23 @@
 	position: absolute;
 	left: 0;
 	right: 0;
-	overflow: hidden;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
 }
 .oo-ui-dialog-content > .oo-ui-window-head {
+	overflow: hidden;
 	z-index: 1;
 	top: 0;
 }
 .oo-ui-dialog-content > .oo-ui-window-body {
+	overflow: auto;
 	z-index: 2;
 	top: 0;
 	bottom: 0;
 }
 .oo-ui-dialog-content > .oo-ui-window-foot {
+	overflow: hidden;
 	z-index: 1;
 	bottom: 0;
 }
@@ -2905,8 +2909,6 @@
 	        transition: opacity 250ms ease;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog > .oo-ui-window-frame {
-	top: 1em;
-	bottom: 1em;
 	background-color: #ffffff;
 	opacity: 0;
 	-webkit-transform: scale(0.5);
@@ -2928,6 +2930,8 @@
 	        transform: scale(1);
 }
 .oo-ui-windowManager-modal.oo-ui-windowManager-floating > .oo-ui-dialog > .oo-ui-window-frame {
+	top: 1em;
+	bottom: 1em;
 	border: 1px solid #cccccc;
 	border-radius: 0.5em;
 	box-shadow: 0 0.2em 1em rgba(0, 0, 0, 0.3);
