@@ -44,6 +44,9 @@ class IPTCTest extends MediaWikiTestCase {
 	 * @covers IPTC::Parse
 	 */
 	public function testIPTCParseForcedUTFButInvalid() {
+		if ( version_compare( PHP_VERSION, '5.5.26', '<' ) ) {
+			$this->markTestSkipped( 'Test fails on pre-PHP 5.5.25. See T124574/T39665 for details.' );
+		}
 		$iptcData = "Photoshop 3.0\08BIM\4\4\0\0\0\0\0\x11\x1c\x02\x19\x00\x04\xC3\xC3\xC3\xB8"
 			. "\x1c\x01\x5A\x00\x03\x1B\x25\x47";
 		$res = IPTC::Parse( $iptcData );
