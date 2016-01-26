@@ -37,7 +37,14 @@ class WatchedItemStore {
 	 */
 	private static $instance;
 
-	public function __construct( LoadBalancer $loadBalancer, BagOStuff $cache ) {
+	/**
+	 * @param LoadBalancer $loadBalancer
+	 * @param BagOStuff $cache
+	 */
+	public function __construct(
+		LoadBalancer $loadBalancer,
+		BagOStuff $cache
+	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
 		$this->deferredUpdatesAddCallableUpdateCallback = [ 'DeferredUpdates', 'addCallableUpdate' ];
@@ -156,6 +163,68 @@ class WatchedItemStore {
 			'wl_namespace' => $target->getNamespace(),
 			'wl_title' => $target->getDBkey(),
 		];
+	}
+
+	/**
+	 * @param LinkTarget $target
+	 *
+	 * @return int
+	 */
+	public function countWatchers( LinkTarget $target ) {
+		$dbr = $this->loadBalancer->getConnection( DB_SLAVE, [ 'watchlist' ] );
+		$return = (int)$dbr->selectField(
+			'watchlist',
+			'COUNT(*)',
+			[
+				'wl_namespace' => $target->getNamespace(),
+				'wl_title' => $target->getDBkey(),
+			],
+			__METHOD__
+		);
+		$this->loadBalancer->reuseConnection( $dbr );
+
+		return $return;
+	}
+
+	/**
+	 * @param LinkTarget[] $targets
+	 * @param array $options Allowed keys:
+	 *        'minimumWatchers' => int
+	 *
+	 * @return array multi dimensional like $return[$namespaceId][$titleString] = int $watchers
+	 *         All targets will be present in the result. 0 either means no watchers or the number
+	 *         of watchers was below the minimumWatchers option if passed.
+	 */
+	public function countWatchersMultiple( array $targets, $options = [] ) {
+		$dbOptions = [ 'GROUP BY' => [ 'wl_namespace', 'wl_title' ] ];
+
+		$dbr = $this->loadBalancer->getConnection( DB_SLAVE, [ 'watchlist' ] );
+
+		if ( array_key_exists( 'minimumWatchers', $options ) ) {
+			$dbOptions['HAVING'] = 'COUNT(*) >= ' . (int)$options['minimumWatchers'];
+		}
+
+		$lb = new LinkBatch( $targets );
+		$res = $dbr->select(
+			'watchlist',
+			[ 'wl_title', 'wl_namespace', 'watchers' => 'COUNT(*)' ],
+			[ $lb->constructSet( 'wl', $dbr ) ],
+			__METHOD__,
+			$dbOptions
+		);
+
+		$this->loadBalancer->reuseConnection( $dbr );
+
+		$watchCounts = [];
+		foreach ( $targets as $linkTarget ) {
+			$watchCounts[$linkTarget->getNamespace()][$linkTarget->getDBkey()] = 0;
+		}
+
+		foreach ( $res as $row ) {
+			$watchCounts[$row->wl_namespace][$row->wl_title] = (int)$row->watchers;
+		}
+
+		return $watchCounts;
 	}
 
 	/**
