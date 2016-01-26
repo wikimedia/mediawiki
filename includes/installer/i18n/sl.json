@@ -12,7 +12,7 @@
 	"config-localsettings-upgrade": "Zaznana je bila datoteka <code>LocalSettings.php</code>.\nZa nadgradnjo te inštalacije prosim vnesite vrednost <code>$wgUpgradeKey</code> v polje za vnos spodaj.\nNašli jo boste v <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Zaznana je bila datoteka <code>LocalSettings.php</code>.\nZa nadgradnjo te namestitve zaženite <code>update.php</code>",
 	"config-localsettings-key": "Nadgraditveni ključ:",
-	"config-localsettings-badkey": "Naveden ključ je napačen.",
+	"config-localsettings-badkey": "Navedeni ključ za nadgradnjo je napačen.",
 	"config-upgrade-key-missing": "Zaznana je bila obstoječa namestitev MediaWiki.\nZa nadgradnjo te namestitve vstavite naslednjo vrstico na dno vaše <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "Kaže, da je obstoječa datoteka <code>LocalSettings.php</code> nepopolna. Vrednost $1 ni nastavljena. Prosimo, nastavite to vrednost v <code>LocalSettings.php</code> in kliknite \"{{int:Config-continue}}\".",
 	"config-localsettings-connection-error": "Prišlo je do napake pri povezovanju s podatkovno zbirko z nastavitvami, določenimi v <code>LocalSettings.php</code>. Prosimo popravite te nastavitve in poskusite znova.\n\n$1",

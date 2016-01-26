@@ -7,7 +7,8 @@
 			"Dj",
 			"Misibacsi",
 			"Tacsipacsi",
-			"Dorgan"
+			"Dorgan",
+			"Macofe"
 		]
 	},
 	"config-desc": "A MediaWiki telepítője",
@@ -99,8 +100,6 @@
 	"config-db-install-account": "A telepítéshez használt felhasználói fiók adatai",
 	"config-db-username": "Felhasználónév:",
 	"config-db-password": "Jelszó:",
-	"config-db-password-empty": "Írd be az új adatbázis-felhasználó jelszavát: $1\nVan lehetőség jelszó nélküli felhasználók létrehozására, azonban ez nem ajánlott.",
-	"config-db-username-empty": "A „{{int:config-db-username}}” mező kitöltése kötelező.",
 	"config-db-install-username": "Írd be az adatbázisrendszerhez való csatlakozáshoz használt felhasználónevet.\nEz nem a MediaWiki fiók felhasználóneve; ez az adatbázisrendszeren használt felhasználóneved.",
 	"config-db-install-password": "Írd be az adatbázisrendszerhez való csatlakozáshoz használt jelszót.\nEz nem a MediaWiki-fiók jelszava; ez az adatbázisrendszeren használt jelszavad.",
 	"config-db-install-help": "Add meg a felhasználónevet és jelszót, amivel a telepítő csatlakozhat az adatbázishoz.",
@@ -252,7 +251,7 @@
 	"config-instantcommons-help": "Az [//www.mediawiki.org/wiki/InstantCommons Instant Commons] lehetővé teszi, hogy a wikin használhassák a [//commons.wikimedia.org/ Wikimedia Commons] oldalon található képeket, hangokat és más médiafájlokat.\nA használatához a MediaWikinek internethozzáférésre van szüksége.\n\nA funkcióról és hogy hogyan állítható be más wikik esetén [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos a kézikönyvben] találhatsz további információkat.",
 	"config-cc-error": "A Creative Commons-licencválasztó nem tért vissza eredménnyel.\nAdd meg kézzel a licencet.",
 	"config-cc-again": "Válassz újra…",
-	"config-cc-not-chosen": "Válaszd ki a kívánt Creative Commons licencet, majd kattints a „Folytatás gombra”!",
+	"config-cc-not-chosen": "Válaszd ki a kívánt Creative Commons licencet, majd kattints a „proceed”!",
 	"config-advanced-settings": "Haladó beállítások",
 	"config-cache-options": "Objektum-gyorsítótárazás beállításai:",
 	"config-cache-help": "Az objektumgyorsítótárazás célja, hogy felgyorsítsa a MediaWiki működését a gyakran használt adatok gyorsítótárazásával.\nKözepes vagy nagyobb oldalak esetén erősen ajánlott a használata, de kisebb oldalak esetén is hasznos lehet.",

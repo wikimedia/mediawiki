@@ -4,7 +4,8 @@
 			"Elisardojm",
 			"Toliño",
 			"아라",
-			"Vivaelcelta"
+			"Vivaelcelta",
+			"Macofe"
 		]
 	},
 	"config-desc": "O programa de instalación de MediaWiki",
@@ -260,7 +261,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons InstantCommons] é unha característica que permite aos wikis usar imaxes, sons e outros ficheiros multimedia atopados no sitio da [//commons.wikimedia.org/wiki/Portada_galega Wikimedia Commons].\nPara facer isto, MediaWiki necesita acceso á internet.\n\nPara obter máis información sobre esta característica, incluíndo as instrucións sobre como configuralo para outros wikis que non sexan a Wikimedia Commons, consulte [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos o manual].",
 	"config-cc-error": "A escolla da licenza Creative Commons non deu resultados.\nEscriba o nome da licenza manualmente.",
 	"config-cc-again": "Escolla outra vez...",
-	"config-cc-not-chosen": "Escolla a licenza Creative Commons que desexe e prema en \"continuar\".",
+	"config-cc-not-chosen": "Escolla a licenza Creative Commons que desexe e prema en \"proceed\".",
 	"config-advanced-settings": "Configuración avanzada",
 	"config-cache-options": "Configuración da caché de obxectos:",
 	"config-cache-help": "A caché de obxectos emprégase para mellorar a velocidade de MediaWiki mediante a memorización de datos usados con frecuencia.\nÉ amplamente recomendable a súa activación nos sitios de tamaño medio e grande; os sitios pequenos obterán tamén beneficios.",

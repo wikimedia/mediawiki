@@ -1423,6 +1423,7 @@
 	"upload-too-many-redirects": "O enderezo URL contiña moitas redireccións",
 	"upload-http-error": "Produciuse un erro HTTP: $1",
 	"upload-copy-upload-invalid-domain": "A copia de cargas non está dispoñible neste dominio.",
+	"upload-foreign-cant-upload": "Esta wiki non está configurada para subir ficheiros ó repositorio de ficheiros externo solicitado.",
 	"upload-dialog-title": "Subir un ficheiro",
 	"upload-dialog-button-cancel": "Cancelar",
 	"upload-dialog-button-done": "Feito",

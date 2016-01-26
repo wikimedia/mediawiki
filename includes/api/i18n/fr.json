@@ -587,7 +587,7 @@
 	"apihelp-query+categorymembers-paramvalue-prop-title": "Ajoute le titre et l’ID de l’espace de noms de la page.",
 	"apihelp-query+categorymembers-paramvalue-prop-sortkey": "Ajoute la clé de tri utilisée pour trier dans la catégorie (chaîne hexadécimale).",
 	"apihelp-query+categorymembers-paramvalue-prop-sortkeyprefix": "Ajoute le préfixe de la clé de tri utilisé pour trier dans la catégorie (partie lisible de la clé de tri).",
-	"apihelp-query+categorymembers-paramvalue-prop-type": "Ajoute le type dans lequel a été catégorisée la page (<samp>page</samp>, <samp>sous-catégorie</samp> ou <samp>fichier</samp>).",
+	"apihelp-query+categorymembers-paramvalue-prop-type": "Ajoute le type dans lequel a été catégorisée la page (<samp>page</samp>, <samp>subcat</samp> ou <samp>file</samp>).",
 	"apihelp-query+categorymembers-paramvalue-prop-timestamp": "Ajoute l’horodatage de l’inclusion de la page.",
 	"apihelp-query+categorymembers-param-namespace": "Inclure uniquement les pages dans ces espaces de nom. Remarquez que <kbd>$1type=subcat</kbd> ou <kbd>$1type=file</kbd> peuvent  être utilisés à la place de <kbd>$1namespace=14</kbd> ou <kbd>6</kbd>.",
 	"apihelp-query+categorymembers-param-type": "Quel type de membres de la catégorie inclure. Ignoré quand <kbd>$1sort=timestamp</kbd> est positionné.",

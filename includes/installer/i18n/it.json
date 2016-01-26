@@ -15,7 +15,8 @@
 			"Fpugliajno",
 			"The Polish",
 			"Sannita",
-			"C.R."
+			"C.R.",
+			"Macofe"
 		]
 	},
 	"config-desc": "Programma di installazione per MediaWiki",
@@ -268,7 +269,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] è una funzionalità che consente ai wiki di usare immagini, suoni e altri file multimediali che trovate sul sito [//commons.wikimedia.org/ Wikimedia Commons].\nPer fare questo, MediaWiki richiede l'accesso a Internet.\n\nPer ulteriori informazioni su questa funzionalità, incluse le istruzioni su come configurarlo per wiki diversi da Wikimedia Commons, consultare [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos il manuale].",
 	"config-cc-error": "Il selettore di licenze Creative Commons non ha dato alcun risultato.\nInserisci manualmente il nome della licenza.",
 	"config-cc-again": "Seleziona di nuovo...",
-	"config-cc-not-chosen": "Scegliere quale licenza Creative Commons si desidera e cliccare su \"procedi\".",
+	"config-cc-not-chosen": "Scegliere quale licenza Creative Commons si desidera e cliccare su \"proceed\".",
 	"config-advanced-settings": "Configurazione avanzata",
 	"config-cache-options": "Impostazioni per la cache di oggetti:",
 	"config-cache-help": "La memorizzazione di oggetti nella cache è utilizzata per migliorare la velocità di MediaWiki attraverso l'allocazione nella cache dei dati utilizzati di frequente.\nPer siti di dimensioni medie e grandi, è caldamente consigliato attivare la cache, ma anche per piccoli siti se ne vedranno i benefici.",

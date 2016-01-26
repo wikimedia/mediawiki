@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Paul Beppler"
+			"Paul Beppler",
+			"Macofe"
 		]
 	},
 	"config-desc": "Das MediaWiki-Installationsprogramm",
@@ -46,15 +47,12 @@
 	"config-env-good": "Die Installationsumgebung woard geprüft.\nMediaWiki kann installiert sin.",
 	"config-env-bad": "Die Installationsumgebung woard geprüft.\nMediaWiki kann net installiert sin.",
 	"config-env-php": "Die Skriptsproch „PHP“ ($1) ist installiert.",
-	"config-env-php-toolow": "PHP $1 ist installiert.\nJedoch benöticht MediaWiki PHP $2 oder höcher.",
-	"config-unicode-using-utf8": "Zur Unicode-Normalisierung weard Brion Vibbers <code>utf8_normalize.so</code> ingesetzt.",
 	"config-unicode-using-intl": "Zur  Unicode-Normalisierung weard die [http://pecl.php.net/intl PECL-Erweiterung intl] ingesetzt.",
 	"config-unicode-pure-php-warning": "'''Warnung:''' Die [http://pecl.php.net/intl PECL-Erweiterung intl] ist für die Unicode-Normalisierung net verfüchbar, so dass stattdessen die langsame pure-PHP-Implementierung genutzt weard.\nSofern en Webseit mit grosser Benutzeranzoohl betrieb weard, sollte weitre Informatione uff der Webseite [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode-Normalisierung (en)] geles sin.",
 	"config-unicode-update-warning": "'''Warnung:''' Die installierte Version von der Unicode-Normalisierungswrappers nutzt en ältre Version von der [http://site.icu-project.org/ ICU-Projekts] sein Bibliothek.\nDie sollte [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations aktualisiert] sin, sofern uff die Verwennung von Unicode Wert geleht weard.",
 	"config-no-db": "Es konnt ken adäquater Datenbanktreiwer gefund sin. Es muss doher en Datenbanktreiwer für PHP installiert sin.\nDie folchende Datebanksysteme werre unnerstützt: $1\n\nWenn du PHP sellebst kompiliert host, konfigurier es erneit mit en aktiviert Datebankclient, zum Beispiel dorrich Verwennung von <code>./configure --with-mysqli</code>.\nWenn du PHP von en Debian- orrer Ubuntu-Paket installiert host, dann musst du ooch beispielsweis das <code>php5-mysql</code>-Paket installiere.",
 	"config-outdated-sqlite": "'''Warnung:''' SQLite $1 ist installiert. Allerdings benöticht MediaWiki SQLite $2 orrer höcher. SQLite weard doher net verfüchbar sin.",
 	"config-no-fts3": "'''Warnung:''' SQLite woard ohne das [//sqlite.org/fts3.html FTS3-Modul] kompiliert, so dass ken Suchfunktione für das Datenbanksystem zur Verfüchung stehn werre.",
-	"config-register-globals": "'''Warnung: Der Parameter <code>[http://php.net/register_globals register_globals]</code> von PHP ist aktiviert.'''\n'''Die sollt deaktiviert sin, sofern das möchlich ist.'''\nDie MediaWiki-Installation weard zwoor loofe, wobei awer der Server für potentielle Sicherheitsprobleme oonfällig ist.",
 	"config-magic-quotes-runtime": "'''Fataler Fehler: Der Parameter <code>[http://www.php.net/manual/de/function.set-magic-quotes-runtime.php set_magic_quotes_runtime]</code> von PHP ist aktiviert!'''\nDie Instellung führt zu unvoarhearsehbare Probleme bei der Dateningäb.\nMediaWiki kann net installiert werre, solang der Parameter net deaktiviert woard.",
 	"config-magic-quotes-sybase": "<strong>Fataler Fehler: Der Parameter <code>[http://www.php.net/manual/de/sybase.configuration.php#ini.magic-quotes-sybase magic_quotes_sybase]</code> von PHP ist aktiviert!</strong>\nDie Instellung führt zu unvoarhearsehbare Probleme bei der Dateningäb.\nMediaWiki kann net installiert sin, solang der Parameter nicht deaktiviert woard.",
 	"config-mbstring": "'''Fataler Fehler: Der Parameter <code>[http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload]</code> von PHP ist aktiviert!'''\nDie Instellung veruarsacht Fehler und führt zu unvoarhearsehbare Probleme bei der Dateingäb.\nMediaWiki kann net installiert sin, solang der Parameter net deaktiviert woard.",
@@ -98,8 +96,6 @@
 	"config-db-install-account": "Benutzerkonto für die Installation",
 	"config-db-username": "Der Datebankbenutzer sein Noome:",
 	"config-db-password": "Der Datebankbenutzer sei Passwort:",
-	"config-db-password-empty": "Bitte en Passwort für den neie Datebankbenutzer oongewe: $1\nObzwoor es möchlich ist Datebankbenutzer ohne Passwort oonzulenn, so ist das awer net sicher.",
-	"config-db-username-empty": "Du musst en Weart für den \"{{int:config-db-username}}\" ingewe",
 	"config-db-install-username": "Den Benutzernoome oongewe, der für die Verbinnung mit der Datebank (während des) wo im Moment von dem Installationsvoargang benutzt sin soll. Das handelt sich dobei net um den Benutzernoome für das MediaWiki-Konto, awer um den Benutzernoomen von der voargesiehne Datebank.",
 	"config-db-install-password": "Das Passwort oongewe, das für die Verbinnung mit der Datebank (während des) im Momento von der Installationsvoargang benutzt sin soll. Das handelt sich dobei net um das Passwort für das MediaWiki-Konto, awer um das Passwort von der voargesiehne Datebank.",
 	"config-db-install-help": "Benutzernoome und Passwort, die (während des) im Moment von der Installationsvoargang, für die Verbinnung mit der Datebank, benutzt werre solle, sind jetzt oonzugewe.",
@@ -254,7 +250,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons InstantCommons] ist en Funktion, wos Wikis ermöchlicht, Bild-, Klang- und annre Mediendateie zu nutze, wo uff der Website [//commons.wikimedia.org/ Wikimedia Commons] verfüchbar sind.\nUm die Funktion nutze zu könne, muss das Wiki üwer en Verbinnung zum Internet verfüche.\n\nWeitre Informatione zu der Funktion, inschliesslich von der Oonleitung, wie hierfür annre Wikis als Wikimedia Commons ingerichtet werre könne, gebts im [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos Handbuch].",
 	"config-cc-error": "Der Creativ-Commons-Lizenzassistent konnt ken Lizenz ermittle.\nDie Lizenz ist doher jetzt manuell inzugewe.",
 	"config-cc-again": "Erneit auswähle …",
-	"config-cc-not-chosen": "Die gewünschte Creative-Commons-Lizenz auswähle und dann uff \"weiter\" klicke.",
+	"config-cc-not-chosen": "Die gewünschte Creative-Commons-Lizenz auswähle und dann uff \"proceed\" klicke.",
 	"config-advanced-settings": "Erweiterte Konfiguratio",
 	"config-cache-options": "Instellunge für die Zwischichspeichrung von Objekte:",
 	"config-cache-help": "Das Objektcaching weard dozu benutzt die Geschwindigkeit von MediaWiki zu verbessre, indem häifich genutzte Date zwischichgespeichert werre.\nEs weard seahr emfohl (rekommendiert) das für mittelgrosse bis grosse Wikis zu nutze, awer ooch für klene Wikis ergewe sich erkennbare Geschwindichkeitsverbessrunge.",

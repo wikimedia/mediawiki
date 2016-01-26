@@ -14,7 +14,8 @@
 			"Giro720",
 			"Imperadeiro98",
 			"Cainamarques",
-			"Vitorvicentevalente"
+			"Vitorvicentevalente",
+			"Macofe"
 		]
 	},
 	"config-desc": "O instalador do MediaWiki",
@@ -23,7 +24,7 @@
 	"config-localsettings-upgrade": "Foi detectado um ficheiro <code>LocalSettings.php</code>.\nPara atualizar esta instalação, por favor introduza o valor de <code>$wgUpgradeKey</code> na caixa abaixo.\nEncontra este valor em <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Foi detectado um ficheiro <code>LocalSettings.php</code>.\nPara atualizar esta instalação, execute o <code>update.php</code>, por favor",
 	"config-localsettings-key": "Chave de atualização:",
-	"config-localsettings-badkey": "A chave que forneceu está incorreta.",
+	"config-localsettings-badkey": "A chave de atualização que forneceu está incorreta.",
 	"config-upgrade-key-missing": "Foi detectada uma instalação existente do MediaWiki.\nPara atualizar esta instalação, por favor coloque a seguinte linha no final do seu <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "O ficheiro <code>LocalSettings.php</code> existente parece estar incompleto.\nA variável $1 não está definida.\nPor favor, defina esta variável no <code>LocalSettings.php</code> e clique \"{{int:Config-continue}}\".",
 	"config-localsettings-connection-error": "Ocorreu um erro ao ligar à base de dados usando as configurações especificadas no <code>LocalSettings.php</code>. Por favor corrija essas configurações e tente novamente.\n\n$1",
@@ -267,7 +268,7 @@
 	"config-instantcommons-help": "O [//www.mediawiki.org/wiki/InstantCommons Instant Commons] é uma funcionalidade que permite que as wikis usem imagens, áudio e outros ficheiros multimédia disponíveis no site [//commons.wikimedia.org/ Wikimedia Commons].\nPara poder usá-los, o MediaWiki necessita de acesso à internet.\n\nPara mais informações sobre esta funcionalidade, incluindo instruções sobre como configurá-la para usar outras wikis em vez da Wikimedia Commons, consulte o [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos Manual Técnico].",
 	"config-cc-error": "O auxiliar de escolha de licenças da Creative Commons não produziu resultados.\nIntroduza o nome da licença manualmente.",
 	"config-cc-again": "Escolha outra vez...",
-	"config-cc-not-chosen": "Escolha a licença da Creative Commons que pretende e clique \"continuar\".",
+	"config-cc-not-chosen": "Escolha a licença da Creative Commons que pretende e clique \"proceed\".",
 	"config-advanced-settings": "Configuração avançada",
 	"config-cache-options": "Configuração da cache de objetos:",
 	"config-cache-help": "A cache de objetos é usada para melhorar o desempenho do MediaWiki. Armazena dados usados com frequência.\nSites de tamanho médio ou grande são altamente encorajados a ativar esta funcionalidade e os sites pequenos também terão alguns benefícios em fazê-lo.",

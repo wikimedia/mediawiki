@@ -6,7 +6,8 @@
 			"Wizardist",
 			"Zedlik",
 			"아라",
-			"Red Winged Duck"
+			"Red Winged Duck",
+			"Macofe"
 		]
 	},
 	"config-desc": "Праграма ўсталяваньня MediaWiki",
@@ -15,7 +16,7 @@
 	"config-localsettings-upgrade": "Выяўлены файл <code>LocalSettings.php</code>.\nКаб абнавіць гэтае ўсталяваньне, калі ласка, увядзіце значэньне <code>$wgUpgradeKey</code> у полі ніжэй.\nЯго можна знайсьці ў <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Быў знойдзены файл <code>LocalSettings.php</code>.\nКаб зьмяніць гэтае ўсталяваньне, калі ласка, запусьціце <code>update.php</code>",
 	"config-localsettings-key": "Ключ паляпшэньня:",
-	"config-localsettings-badkey": "Пададзены Вамі ключ зьяўляецца няслушным.",
+	"config-localsettings-badkey": "Пададзены Вамі ключ абнаўленьня зьяўляецца няслушным.",
 	"config-upgrade-key-missing": "Знойдзена ўсталяваная MediaWiki.\nКаб абнавіць гэтае ўсталяваньне, калі ласка, устаўце наступны радок у канец Вашага <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "Выглядае, што актуальны <code>LocalSettings.php</code> зьяўляецца няпоўным.\nНе зададзеная зьменная $1.\nКалі ласка, зьмяніце <code>LocalSettings.php</code> так, каб прысутнічала гэтая зьменная, і націсьніце «{{int:Config-continue}}».",
 	"config-localsettings-connection-error": "Адбылася памылка падчас злучэньня з базай зьвестак з выкарыстаньнем наладаў, пазначаных у <code>LocalSettings.php</code>. Калі ласка, выпраўце гэтыя налады і паспрабуйце яшчэ раз.\n\n$1",
@@ -262,7 +263,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] — магчымасьць, якая дазваляе вікі выкарыстоўваць выявы, гукі і іншыя мэдыя, якія знаходзяцца на сайце [//commons.wikimedia.org/ Wikimedia Commons].\nКаб гэта зрабіць, MediaWiki патрабуе доступу да Інтэрнэту.\n\nКаб даведацца болей пра гэтую магчымасьць, уключаючы інструкцыю пра тое, як яе ўстанавіць ў любой вікі, акрамя Wikimedia Commons, глядзіце [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos дакумэнтацыю].",
 	"config-cc-error": "Выбар ліцэнзіі Creative Commons ня даў вынікаў.\nУвядзіце назву ліцэнзіі ўручную.",
 	"config-cc-again": "Выберыце яшчэ раз…",
-	"config-cc-not-chosen": "Выберыце, якую ліцэнзію Creative Commons Вы жадаеце выкарыстоўваць і націсьніце «працягваць».",
+	"config-cc-not-chosen": "Выберыце, якую ліцэнзію Creative Commons Вы жадаеце выкарыстоўваць і націсьніце «proceed».",
 	"config-advanced-settings": "Дадатковыя налады",
 	"config-cache-options": "Налады кэшаваньня аб’ектаў:",
 	"config-cache-help": "Кэшаваньне аб’ектаў павялічвае хуткасьць працы MediaWiki праз кэшаваньне зьвестак, якія часта выкарыстоўваюцца.\nВельмі рэкамэндуем уключыць гэта для сярэдніх і буйных сайтаў, таксама будзе карысна для дробных сайтаў.",

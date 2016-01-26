@@ -8,7 +8,8 @@
 			"Namoroka",
 			"Revi",
 			"Alex00728",
-			"Hwangjy9"
+			"Hwangjy9",
+			"Macofe"
 		]
 	},
 	"config-desc": "미디어위키를 위한 설치 관리자",
@@ -262,7 +263,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons 인스턴트 공용]은 [//commons.wikimedia.org/ 위키미디어 공용] 사이트에서 찾을 수 있는 그림, 소리 및 다른 미디어를 위키에서 사용할 수 있도록 하는 기능입니다.\n이렇게 하려면 미디어위키가 인터넷에 접근해야합니다.\n\n위키미디어 공용 외에 기타 위키를 설정하는 방법에 대한 지침을 포함한, 기능에 대한 자세한 내용은 [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos 매뉴얼]을 참조하세요.",
 	"config-cc-error": "크리에이티브 커먼즈 라이선스 선택기에 결과가 없습니다.\n수동으로 라이선스 이름을 입력하세요.",
 	"config-cc-again": "다시 선택...",
-	"config-cc-not-chosen": "원하는 크리에이티브 커먼즈 라이선스를 선택하고 \"진행\"을 클릭하세요.",
+	"config-cc-not-chosen": "원하는 크리에이티브 커먼즈 라이선스를 선택하고 \"proceed\"을 클릭하세요.",
 	"config-advanced-settings": "고급 설정",
 	"config-cache-options": "개체 캐싱을 위한 설정:",
 	"config-cache-help": "개체 캐싱은 자주 사용하는 데이터를 캐싱하여 미디어위키의 속도를 개선하는 데 사용합니다.\n큰 규모의 사이트는 이를 많이 사용하도록 권장하고 있으며, 소규모 사이트들도 물론 혜택을 볼 수 있습니다.",

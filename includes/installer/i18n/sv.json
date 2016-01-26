@@ -8,7 +8,8 @@
 			"Lokal Profil",
 			"Tobulos1",
 			"Rotsee",
-			"Boom"
+			"Boom",
+			"Macofe"
 		]
 	},
 	"config-desc": "Installationsprogrammet för MediaWiki",
@@ -17,7 +18,7 @@
 	"config-localsettings-upgrade": "A <code>LocalSettings.php</code>-fil har upptäckts.\nFör att uppgradera den här installationen, vänligen ange värdet för <code>$wgUpgradeKey</code> i rutan nedan.\nDu hittar den i <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "En <code>LocalSettings.php</code>-fil har upptäckts.\nFör att uppgradera denna installation, kör <code>update.php</code> istället",
 	"config-localsettings-key": "Uppgraderingsnyckel:",
-	"config-localsettings-badkey": "Nyckeln du angav är inkorrekt.",
+	"config-localsettings-badkey": "Uppgraderingsnyckeln du angav är inkorrekt.",
 	"config-upgrade-key-missing": "En existerande installation av MediaWiki har upptäckts.\nFör att uppgradera installationen, lägg till följande rad i slutet av din <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "Den befintliga <code>LocalSettings.php</code> verkar vara ofullständig.\nVariabeln $1 är inte inställd.\nÄndra <code>LocalSettings.php</code> så att denna variabel är inställd och klicka på \"{{int:Config-continue}}\".",
 	"config-localsettings-connection-error": "Ett fel uppstod vid anslutning till databasen med inställningarna angivna i <code>LocalSettings.php</code>. Vänligen åtgärda dessa inställningar och försök igen.\n\n$1",
@@ -261,7 +262,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] är en funktion som gör det möjligt för wikis att använda bilder, ljud och andra media som finns på [//commons.wikimedia.org/ Wikimedia Commons]-webbplatsen.\nFör att göra detta, kräver MediaWiki tillgång till Internet.\n\nFör mer information om denna funktion, inklusive instruktioner om hur man ställer in den för andra wikis än Wikimedia Commons, se [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manualen].",
 	"config-cc-error": "Creative Commons-licens-väljaren gav inget resultat.\nAnge licensnamnet manuellt.",
 	"config-cc-again": "Välj igen...",
-	"config-cc-not-chosen": "Välj vilken Creative Commons-licens du vill ha och klicka på \"gå vidare\".",
+	"config-cc-not-chosen": "Välj vilken Creative Commons-licens du vill ha och klicka på \"proceed\".",
 	"config-advanced-settings": "Avancerad konfiguration",
 	"config-cache-options": "Inställningar för cachelagring av objekt:",
 	"config-cache-help": "Cachelagring av objekt används för att förbättra hastigheten på MediaWiki genom att cachelagra data som används ofta.\nMedelstora till stora webbplatser är starkt uppmuntrade att aktivera detta, och små webbplatser kommer även att se fördelar.",

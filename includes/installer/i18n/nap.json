@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"C.R.",
-			"Chelin"
+			"Chelin",
+			"Macofe"
 		]
 	},
 	"config-desc": "'O prugramma d'istallazione 'e MediaWiki",
@@ -254,7 +255,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] è na funziunalita ca premmettesse 'e wiki 'ausà immaggene, suone e ati file multimediale ca ve truvate ncopp' 'o sito 'e [//commons.wikimedia.org/ Wikimedia Commons].\nSi chesto vulite fà, MediaWiki vulesse accieso a Internet.\n\nPe n'avé cchiù nfurmaziune ncopp'a sta funziunalità, ncludenno 'e struziune ncopp' 'a configuraziona pe' wiki divierze 'e Wikimedia Commons, fermateve nu poco a stureà [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos 'o manuale].",
 	"config-cc-error": "'O selettore 'e licienze Creative Commons nun mmustaje nisciuno risultato.\nNzertate manualmente 'o nomme d' 'a licienza.",
 	"config-cc-again": "Selezziona n'ata vota...",
-	"config-cc-not-chosen": "Sciglite quale licienza Creative Commons desiderate e cliccate ncopp' 'a \"prucede\".",
+	"config-cc-not-chosen": "Sciglite quale licienza Creative Commons desiderate e cliccate ncopp' 'a \"proceed\".",
 	"config-advanced-settings": "Configurazione avanzata",
 	"config-cache-options": "Mpustaziune p' 'a cache d'oggette:",
 	"config-cache-help": "'O caching 'uggette s'ausa pe' puté migliurà 'a velocità 'e MediaWiki a fforza 'e ffà caching d' 'e date cchiù spisso ausàte.\nE Mezze a gruosse site se songo ncuraggiate a ll'appiccià chiste, e site piccerilli vedarranno migliuramente pure.",

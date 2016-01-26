@@ -8,7 +8,8 @@
 			"Geraki",
 			"Stam.nikos",
 			"Giorgos456",
-			"Badseed"
+			"Badseed",
+			"Macofe"
 		]
 	},
 	"config-desc": "Το πρόγραμμα εγκατάστασης για το MediaWiki",
@@ -184,7 +185,7 @@
 	"config-instantcommons": "Ενεργοποίηση Instant Commons",
 	"config-cc-error": "Ο επιλογέας αδειών  Creative Commons επιλογέα δεν έδωσε κανένα αποτέλεσμα.\nΕισάγετε το όνομα της άδειας χειροκίνητα.",
 	"config-cc-again": "Επιλέξτε ξανά...",
-	"config-cc-not-chosen": "Επιλέξτε την  άδεια Creative Commons που θέλετε και κάντε κλικ στο κουμπί \"συνέχεια\".",
+	"config-cc-not-chosen": "Επιλέξτε την  άδεια Creative Commons που θέλετε και κάντε κλικ στο κουμπί \"proceed\".",
 	"config-advanced-settings": "Προηγμένες ρυθμίσεις παραμέτρων",
 	"config-cache-options": "Ρυθμίσεις για την προσωρινή αποθήκευση αντικειμένου:",
 	"config-memcache-badip": "Έχετε εισάγει μια μη έγκυρη διεύθυνση IP για το Memcached: $1.",

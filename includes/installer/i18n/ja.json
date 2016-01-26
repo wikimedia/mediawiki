@@ -14,7 +14,8 @@
 			"아라",
 			"Shield-9",
 			"Takot",
-			"Sujiniku"
+			"Sujiniku",
+			"Macofe"
 		]
 	},
 	"config-desc": "MediaWiki のインストーラー",
@@ -23,7 +24,7 @@
 	"config-localsettings-upgrade": "ファイル <code>LocalSettings.php</code> を検出しました。\nインストールされているものをアップグレードするには、<code>$wgUpgradeKey</code> の値を以下の欄に入力してください。\nこの値は <code>LocalSettings.php</code> 内にあります。",
 	"config-localsettings-cli-upgrade": "ファイル <code>LocalSettings.php</code> を検出しました。\nインストールされているものをアップグレードするには、<code>update.php</code> を実行してください",
 	"config-localsettings-key": "アップグレード キー:",
-	"config-localsettings-badkey": "与えられたキーが間違っています",
+	"config-localsettings-badkey": "与えられたアップグレード・キーが間違っています",
 	"config-upgrade-key-missing": "MediaWiki が既にインストールされていることを検出しました。\nインストールされているものをアップグレードするために、以下の行を <code>LocalSettings.php</code> の末尾に挿入してください:\n\n$1",
 	"config-localsettings-incomplete": "既存の <code>LocalSettings.php</code> の内容は不完全のようです。\n変数 $1 が設定されていません。\n<code>LocalSettings.php</code> 内でこの変数を設定して、「{{int:Config-continue}}」をクリックしてください。",
 	"config-localsettings-connection-error": "<code>LocalSettings.php</code> で指定した設定を使用してデータベースに接続する際にエラーが発生しました。\n設定を修正してから再度試してください。\n\n$1",

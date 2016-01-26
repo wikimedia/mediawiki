@@ -14,7 +14,8 @@
 			"Se4598",
 			"Suriyaa Kudo",
 			"Das Schäfchen",
-			"Florian"
+			"Florian",
+			"Macofe"
 		]
 	},
 	"config-desc": "Das MediaWiki-Installationsprogramm",
@@ -270,7 +271,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons InstantCommons] ist eine Funktion, die es Wikis ermöglicht, Bild-, Klang- und andere Mediendateien zu nutzen, die auf der Website [//commons.wikimedia.org/ Wikimedia Commons] verfügbar sind.\nUm diese Funktion nutzen zu können, muss das Wiki über eine Verbindung zum Internet verfügen.\n\nWeitere Informationen zu dieser Funktion, einschließlich der Anleitung, wie hierfür andere Wikis als Wikimedia Commons eingerichtet werden können, gibt es im [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos Handbuch].",
 	"config-cc-error": "Der Creativ-Commons-Lizenzassistent konnte keine Lizenz ermitteln.\nDie Lizenz ist daher jetzt manuell einzugeben.",
 	"config-cc-again": "Erneut auswählen …",
-	"config-cc-not-chosen": "Die gewünschte Creative-Commons-Lizenz auswählen und dann auf „weiter“ klicken.",
+	"config-cc-not-chosen": "Die gewünschte Creative-Commons-Lizenz auswählen und dann auf „proceed“ klicken.",
 	"config-advanced-settings": "Erweiterte Konfiguration",
 	"config-cache-options": "Einstellungen für die Zwischenspeicherung von Objekten:",
 	"config-cache-help": "Das Objektcaching wird dazu genutzt, die Geschwindigkeit von MediaWiki zu verbessern, indem häufig genutzte Daten zwischengespeichert werden.\nEs wird sehr empfohlen, es für mittelgroße bis große Wikis zu nutzen, aber auch für kleine Wikis ergeben sich erkennbare Geschwindigkeitsverbesserungen.",

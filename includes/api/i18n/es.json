@@ -426,6 +426,7 @@
 	"apihelp-query+categorymembers-param-prop": "Qué piezas de información incluir:",
 	"apihelp-query+categorymembers-paramvalue-prop-ids": "Añade el identificador de página.",
 	"apihelp-query+categorymembers-paramvalue-prop-title": "Agrega el título y el identificador del espacio de nombres de la página.",
+	"apihelp-query+categorymembers-paramvalue-prop-type": "Añade el tipo en el que se categorizó la página (<samp>page</samp>, <samp>subcat</samp> or <samp>file</samp>).",
 	"apihelp-query+categorymembers-param-startsortkey": "Utilizar $1starthexsortkey en su lugar.",
 	"apihelp-query+categorymembers-param-endsortkey": "Utilizar $1endhexsortkey en su lugar.",
 	"apihelp-query+categorymembers-example-simple": "Obtener las primeras 10 páginas en <kbd>Category:Physics</kbd>.",

@@ -2590,6 +2590,7 @@
 	"newimages-legend": "ფილტრი",
 	"newimages-label": "ფაილის (ან მისი სახელის) ნაწილი",
 	"newimages-showbots": "ბოტის ატვირთვების ჩვენება",
+	"newimages-hidepatrolled": "დამალე შემოწმებული ატვირთვები",
 	"noimages": "გადასახედი არაფერია.",
 	"ilsubmit": "ძიება",
 	"bydate": "თარიღით",

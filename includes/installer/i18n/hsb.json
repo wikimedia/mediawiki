@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Michawiki",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"config-desc": "Instalaciski program za MediaWiki",
@@ -45,13 +46,10 @@
 	"config-env-good": "Wokolina je so skontrolowała.\nMóžeš MediaWiki instalować.",
 	"config-env-bad": "Wokolina je so skontrolowała.\nNjemóžeš MediaWiki instalować.",
 	"config-env-php": "PHP $1 je instalowany.",
-	"config-env-php-toolow": "PHP $1 je instalowany.\nAle MediaWiki wužaduje sej PHP $2 abo wyši.",
-	"config-unicode-using-utf8": "Za normalizaciju Unicode so utf8_normalize.so Briona Vibbera wužiwa.",
 	"config-unicode-using-intl": "Za normalizaciju Unicode so [http://pecl.php.net/intl PECL-rozšěrjenje intl] wužiwa.",
 	"config-no-db": "Njeda so přihódny ćěrjak datoweje banki namakać! Dyrbiš ćěrjak datoweje banki za PHP instalować.\nSlědowace typy datoweje banki so podpěruja: $1.\n\nJeli sy PHP sam kompilował, konfiguruj jón znowa z aktiwizowanym programom datoweje banki, na přikład z pomocu <code>./configure --with-mysqli</code>.\nJeli sy PHP z Debianoweho abo Ubuntuoweho paketa instalował, dyrbiš tež paket <code>php5-mysql</code> instalować.",
 	"config-outdated-sqlite": "'''Warnowanje''': maš SQLite $1, kotryž je starši hač minimalna trěbna wersija $2. SQLite njebudźe k dispoziciji stać.",
 	"config-no-fts3": "'''Warnowanje''': SQLite je so bjez [//sqlite.org/fts3.html FTS3-modula] kompilował, pytanske funkcije njebudu k dispoziciji stać.",
-	"config-register-globals": "'''Warnowanje: Funkcija <code>[http://php.net/register_globals register_globals]</code> PHP je zmóžnjena.'''\n'''Znjemóžń ju, jeli móžeš.'''\nMediaWiki budźe fungować, ale twój serwer je potencielnym wěstotnym njedostatkam wustajeny.",
 	"config-safe-mode": "'''Warnowanje:''' [http://www.php.net/features.safe-mode wěsty modus] PHP je aktiwny.\nTo móže problemy zawinować, předewšěm, jeli so datajowe nahraća a podpěra <code>math</code> wužiwaja.",
 	"config-xml-bad": "XML-modul za PHP faluje.\nMediaWiki trjeba funkcije w tutym modulu a njebudźe w tutej konfiguraciji fungować.\nJeli wužiwaš Mandrake, instaluj paket php-xml.",
 	"config-pcre-no-utf8": "'''Ćežki zmylk''': Zda so, zo PCRE-modul za PHP ma so bjez PCRE_UTF8-podpěry kompilować.\nMediaWiki trjeba UTF-8-podpěru, zo by korektnje fungował.",
@@ -75,7 +73,6 @@
 	"config-db-install-account": "Wužiwarske konto za instalaciju",
 	"config-db-username": "Wužiwarske mjeno datoweje banki:",
 	"config-db-password": "Hesło datoweje banki:",
-	"config-db-password-empty": "Prošu zapodaj hesło za noweho wužiwarja datoweje banki: $1.\nByrnjež było móžno wužiwarjow bjez hesłow wutworić, njeje to wěste.",
 	"config-db-install-username": "Zapodaj wužiwarske mjeno, kotrež budźe so za zwisk z datowej banku za instalaciski proces wužiwać.\nTo njeje wužiwarske mjeno konta MediaWiki; to je wužiwarske mjeno za twoju datowu banku.",
 	"config-db-install-password": "Zapodaj hesło, kotrež budźe so za zwisk z datowej banku za instalaciski proces wužiwać.\nTo njeje hesło konta MediaWiki; to je hesło za twoju datowu banku.",
 	"config-db-install-help": "Zapodaj wužiwarske mjeno a hesło, kotrejž měłoj so za zwisk z datowej banku za instalaciski proces wužiwać.",
@@ -201,7 +198,7 @@
 	"config-instantcommons": "Instant commons zmóžnić",
 	"config-cc-error": "Pytanje za licencu Creative Commons njeje žadyn wuslědk přinjesło.\nZapodaj licencne mjeno manuelnje.",
 	"config-cc-again": "Zaso wubrać...",
-	"config-cc-not-chosen": "Wubjer licencu Creative Commons a klikń na \"dale\".",
+	"config-cc-not-chosen": "Wubjer licencu Creative Commons a klikń na \"proceed\".",
 	"config-advanced-settings": "Rozšěrjena konfiguraćija",
 	"config-cache-options": "Nastajenja za objektowe pufrowanje:",
 	"config-cache-none": "Žane pufrowanje (žana funkcionalnosć so njewotstronja, ale spěšnosć móže so na wjetšich wikijowych sydłach wobwliwować)",

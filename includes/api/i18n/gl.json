@@ -574,7 +574,7 @@
 	"apihelp-query+categorymembers-paramvalue-prop-title": "Engade o título e o ID do espazo de nomes da páxina.",
 	"apihelp-query+categorymembers-paramvalue-prop-sortkey": "Engade a clave de ordenación usada para ordenala na categoría (cadea hexadecimal).",
 	"apihelp-query+categorymembers-paramvalue-prop-sortkeyprefix": "Engade o prefixo da clave de ordenación usado para ordenala na categoría (parte lexible da clave de ordenación).",
-	"apihelp-query+categorymembers-paramvalue-prop-type": "Engade o tipo no que foi categorizado a páxina (páxina, subcategoría ou ficheiro)",
+	"apihelp-query+categorymembers-paramvalue-prop-type": "Engade o tipo no que foi categorizado a páxina (<samp>page</samp>, <samp>subcat</samp> ou <samp>file</samp>).",
 	"apihelp-query+categorymembers-paramvalue-prop-timestamp": "Engade o selo de tempo no que foi incluída a páxina.",
 	"apihelp-query+categorymembers-param-namespace": "Só incluír páxinas nestes espazos de nomes. Decátese de que poden usarse  <kbd>$1type=subcat</kbd> ou <kbd>$1type=file</kbd> no canto de <kbd>$1namespace=14</kbd> ou <kbd>6</kbd>.",
 	"apihelp-query+categorymembers-param-type": "Que tipo de membros da categoría incluír. Ignorado cando está activo <kbd>$1sort=timestamp</kbd>.",

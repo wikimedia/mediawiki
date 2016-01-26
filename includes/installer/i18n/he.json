@@ -7,7 +7,8 @@
 			"아라",
 			"Inkbug",
 			"Yona b",
-			"Rotemliss"
+			"Rotemliss",
+			"Macofe"
 		]
 	},
 	"config-desc": "תכנית ההתקנה של מדיה־ויקי",
@@ -259,7 +260,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] היא תכונה שמאפשרת לאתרי ויקי להשתמש בתמונות, בצלילים ובמדיה אחרת שנמצאת באתר [//commons.wikimedia.org/ ויקישיתוף] (Wikimedia Commons).\nכדי לעשות את זה, מדיה־ויקי צריך לגשת לאינטרנט.\n\nלמידע נוסף על התכונה הזאת, כולל הוראות איך להפעיל את זה לאתרי ויקי שאינם ויקישיתוף, ר׳ [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos את ספר ההדרכה].",
 	"config-cc-error": "בורר רישיונות קריאייטיב קומונז לא החזיר שום תוצאה.\nהקלידו את שם הרישיון ידנית.",
 	"config-cc-again": "נא לבחור שוב...",
-	"config-cc-not-chosen": "בחרו באיזה רישיון קריאייטיב קומונז להשתמש ולחצו \"המשך\".",
+	"config-cc-not-chosen": "בחרו באיזה רישיון קריאייטיב קומונז להשתמש ולחצו \"proceed\".",
 	"config-advanced-settings": "הגדרות מתקדמות",
 	"config-cache-options": "הגדרות למטמון עצמים (object caching):",
 	"config-cache-help": "מטמון עצמים משמש לשיפור המהירות של מדיה־ויקי על־ידי שמירה של נתונים שהשימוש בהם נפוץ במטמון.\nלאתרים בינוניים וגדולים כדאי מאוד להפעיל את זה, וגם אתרים קטנים ייהנו מזה.",

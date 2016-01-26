@@ -278,7 +278,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons InstantCommons] est un service qui permet d'utiliser les images, les sons et les autres médias disponibles sur le site [//commons.wikimedia.org/ Wikimedia Commons].\nPour se faire, il faut que MediaWiki accède à Internet.\n\nPour plus d'informations sur ce service, y compris les instructions sur la façon de le configurer pour d'autres wikis que Wikimedia Commons, consultez le [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manuel] (en anglais).",
 	"config-cc-error": "Le sélection d'une licence ''Creative Commons'' n'a donné aucun résultat.\nEntrez le nom de la licence manuellement.",
 	"config-cc-again": "Choisissez à nouveau...",
-	"config-cc-not-chosen": "Choisissez une licence ''Creative Commons'' et cliquez sur « Continuer ».",
+	"config-cc-not-chosen": "Choisissez la licence ''Creative Commons'' que vous désirez et cliquez sur « proceed ».",
 	"config-advanced-settings": "Configuration avancée",
 	"config-cache-options": "Paramètres pour la mise en cache des objets:",
 	"config-cache-help": "La mise en cache des objets améliore la vitesse de MediaWiki en mettant en cache les données fréquemment utilisées.\nLes sites de taille moyenne à grande sont fortement encouragés à l'activer. Les petits sites y verront également des avantages.",

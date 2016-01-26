@@ -5,7 +5,8 @@
 			"Nghtwlkr",
 			"아라",
 			"Danmichaelo",
-			"Jeblad"
+			"Jeblad",
+			"Macofe"
 		]
 	},
 	"config-desc": "Installasjonsprogrammet for MediaWiki",
@@ -103,8 +104,6 @@
 	"config-db-install-account": "Brukerkonto for installasjon",
 	"config-db-username": "Databasebrukernavn:",
 	"config-db-password": "Databasepassord:",
-	"config-db-password-empty": "Skriv inn et passord for den nye databasebrukeren: $1.\nDet er mulig å opprette brukere uten passord, men dette er ikke sikkert.",
-	"config-db-username-empty": "Du må skrive inn en verdi for «{{int:config-db-username}}»",
 	"config-db-install-username": "Skriv inn brukernavnet som vil bli brukt til å koble til databasen under installasjonsprosessen.\nDette er ikke brukernavnet på MediaWiki-kontoen; dette er brukernavnet for databasen din.",
 	"config-db-install-password": "Skriv inn passordet som vil bli brukt til å koble til databasen under installasjonsprosessen.\nDette er ikke passordet på MediaWiki-kontoen; dette er passordet for databasen din.",
 	"config-db-install-help": "Skriv inn brukernavnet og passordet som vil bli brukt for å koble til databasen under installasjonsprosessen.",
@@ -262,7 +261,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] er en funksjon som gjør det mulig for wikier å bruke bilder, lyder og andre media funnet på nettstedet [//commons.wikimedia.org/ Wikimedia Commons].\nFor å gjøre dette krever MediaWiki tilgang til internett.\n\nFor mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man setter opp dette for andre wikier enn Wikimedia Commons, konsulter [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manualen].",
 	"config-cc-error": "Lisensvelgeren for Creative Commons ga ikke noe resultat.\nLegg inn lisensnavnet manuelt.",
 	"config-cc-again": "Velg igjen...",
-	"config-cc-not-chosen": "Velg hvilken Creative Commons-lisens du ønsker og klikk «fortsett».",
+	"config-cc-not-chosen": "Velg hvilken Creative Commons-lisens du ønsker og klikk «proceed».",
 	"config-advanced-settings": "Avansert konfigurasjon",
 	"config-cache-options": "Innstillinger for objekt-mellomlagring:",
 	"config-cache-help": "Objekt-mellomlagring brukes for å forbedre hastigheten for MediaWiki. Ofte forekommende data lagres for gjenbruk.\nMiddels til store nettsteder bør absolutt aktivisere mellomlagring, med også små nettsteder kan ha nytte av dette.",

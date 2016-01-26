@@ -5,7 +5,8 @@
 			"Minh Nguyen",
 			"Withoutaname",
 			"Dinhxuanduyet",
-			"Nguyên Lê"
+			"Nguyên Lê",
+			"Macofe"
 		]
 	},
 	"config-desc": "Trình cài đặt MediaWiki",
@@ -257,7 +258,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] là một tính năng cho phép wiki sử dụng hình ảnh, âm thanh và tập tin đa phương tiện khác được tìm thấy trong trang web [//commons.wikimedia.org/ Wikimedia Commons].\nĐể làm được điều này, MediaWiki yêu cầu phải truy cập vào Internet.\n\nĐể biết thêm thông tin về tính năng này, trong đó có hướng dẫn về cách thiết lập cho các wiki khác với Wikimedia Commons, tham khảo thêm tại [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos tài liệu hướng dẫn].",
 	"config-cc-error": "Người chọn giấy phép Creative Commons đã không đưa ra kết quả nào.\nNhập tên giấy phép bằng tay.",
 	"config-cc-again": "Chọn một lần nữa…",
-	"config-cc-not-chosen": "Chọn một giấy phép Creative Commons và bấm “Tiếp tục”.",
+	"config-cc-not-chosen": "Chọn một giấy phép Creative Commons và bấm “proceed”.",
 	"config-advanced-settings": "Thiết lập nâng cao",
 	"config-cache-options": "Thiết lập bộ nhớ đệm đối tượng:",
 	"config-cache-help": "Lưu vào bộ nhớ đệm đối tượng được sử dụng để cải thiện tốc độ của MediaWiki bằng cách lưu vào bộ nhớ đệm những dữ liệu thường xuyên sử dụng.\nCác trang web từ trung bình cho đến các trang web lớn rất được khuyến khích kích hoạt tính năng này, và các trang web nhỏ cũng sẽ nhìn thấy lợi ích tương tự.",

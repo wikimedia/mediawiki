@@ -11,7 +11,8 @@
 			"Arifin.wijaya",
 			"Ilham151096",
 			"Bennylin",
-			"WongKentir"
+			"WongKentir",
+			"Macofe"
 		]
 	},
 	"config-desc": "Penginstal untuk MediaWiki",
@@ -264,7 +265,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] adalah fitur yang memungkinkan wiki untuk menggunakan gambar, suara, dan media lain dari [//commons.wikimedia.org/ Wikimedia Commons].\nUntuk melakukannya, MediaWiki memerlukan akses ke Internet.\n\nUntuk informasi lebih lanjut tentang fitur ini, termasuk petunjuk tentang cara untuk mengatur untuk wiki selain Wikimedia Commons, baca [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manual].",
 	"config-cc-error": "Pemilih lisensi Creative Commons tidak memberikan hasil.\nMasukkan nama lisensi secara manual.",
 	"config-cc-again": "Pilih lagi...",
-	"config-cc-not-chosen": "Pilih lisensi Creative Commons yang Anda inginkan dan klik \"lanjutkan\".",
+	"config-cc-not-chosen": "Pilih lisensi Creative Commons yang Anda inginkan dan klik \"proceed\".",
 	"config-advanced-settings": "Konfigurasi lebih lanjut",
 	"config-cache-options": "Pengaturan untuk penyinggahan objek:",
 	"config-cache-help": "Penyinggahan objek digunakan untuk meningkatkan kecepatan MediaWiki dengan menyinggahkan data yang sering digunakan.\nSitus berukuran sedang hingga besar sangat dianjurkan untuk mengaktifkan fitur ini, dan situs kecil juga akan merasakan manfaatnya.",

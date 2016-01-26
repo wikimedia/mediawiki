@@ -10,7 +10,8 @@
 			"Alvaro Vidal-Abarca",
 			"ESM",
 			"Xavier Dengra",
-			"Jaumeortola"
+			"Jaumeortola",
+			"Macofe"
 		]
 	},
 	"config-desc": "L'instal·lador del MediaWiki",
@@ -199,7 +200,7 @@
 	"config-instantcommons": "Habilita Instant Commons",
 	"config-cc-error": "El selector de llicència Creative Commons no ha donat cap resultat.\nIntroduïu la llicència manualment.",
 	"config-cc-again": "Torneu-ho a triar...",
-	"config-cc-not-chosen": "Trieu quina llicència Creative Commons voleu i feu clic a «procedeix».",
+	"config-cc-not-chosen": "Trieu quina llicència Creative Commons voleu i feu clic a «proceed».",
 	"config-advanced-settings": "Configuració avançada",
 	"config-cache-options": "Configuració per a la memòria cau dels objectes:",
 	"config-cache-help": "L'encauament d'objectes s'utilitza per a millorar la rapidesa del MediaWiki afegint a la memòria cau les dades que s'utilitzen de forma freqüent. És recomanable que els llocs web mitjans o grans ho habilitin. També els llocs web petits en veuran els beneficis.",
