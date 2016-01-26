@@ -1,19 +1,20 @@
 @import "mediawiki.mixins";
 
-/* Table Sorting */
+// Table Sorting
 
-table.jquery-tablesorter th.headerSort {
+.client-js table.jquery-tablesorter th.headerSort {
 	.background-image-svg( 'images/sort_both.svg', 'images/sort_both.png' );
 	cursor: pointer;
+	// Keep synchronized with mediawiki.skinning.content styles
 	background-repeat: no-repeat;
 	background-position: center right;
 	padding-right: 21px;
 }
 
-table.jquery-tablesorter th.headerSortUp {
+.client-js table.jquery-tablesorter th.headerSortUp {
 	.background-image-svg( 'images/sort_up.svg', 'images/sort_up.png' );
 }
 
-table.jquery-tablesorter th.headerSortDown {
+.client-js table.jquery-tablesorter th.headerSortDown {
 	.background-image-svg( 'images/sort_down.svg', 'images/sort_down.png' );
 }
