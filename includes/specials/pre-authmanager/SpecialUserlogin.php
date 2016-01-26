@@ -508,7 +508,7 @@ class LoginFormPreAuthManager extends SpecialPage {
 	 * @return Status
 	 */
 	public function addNewAccountInternal() {
-		global $wgAuth, $wgAccountCreationThrottle, $wgEmailConfirmToEdit;
+		global $wgAuth, $wgEmailConfirmToEdit;
 
 		// If the user passes an invalid domain, something is fishy
 		if ( !$wgAuth->validDomain( $this->mDomain ) ) {
@@ -653,18 +653,8 @@ class LoginFormPreAuthManager extends SpecialPage {
 		if ( !Hooks::run( 'ExemptFromAccountCreationThrottle', [ $ip ] ) ) {
 			wfDebug( "LoginForm::exemptFromAccountCreationThrottle: a hook " .
 				"allowed account creation w/o throttle\n" );
-		} else {
-			if ( ( $wgAccountCreationThrottle && $currentUser->isPingLimitable() ) ) {
-				$key = wfGlobalCacheKey( 'acctcreate', 'ip', $ip );
-				$value = $cache->get( $key );
-				if ( !$value ) {
-					$cache->set( $key, 0, $cache::TTL_DAY );
-				}
-				if ( $value >= $wgAccountCreationThrottle ) {
-					return Status::newFatal( 'acct_creation_throttle_hit', $wgAccountCreationThrottle );
-				}
-				$cache->incr( $key );
-			}
+		} elseif ( $currentUser->pingLimiter( 'createaccount' ) ) {
+			return Status::newFatal( 'acct_creation_throttle_hit' );
 		}
 
 		if ( !$wgAuth->addUser( $u, $this->mPassword, $this->mEmail, $this->mRealName ) ) {

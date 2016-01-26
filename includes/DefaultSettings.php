@@ -5421,6 +5421,7 @@ $wgHideUserContribLimit = 1000;
  * Number of accounts each IP address may create, 0 to disable.
  *
  * @warning Requires $wgMainCacheType to be enabled
+ * @deprecated since 1.27 Use $wgRateLimits instead
  */
 $wgAccountCreationThrottle = 0;
 
@@ -5577,6 +5578,8 @@ $wgRateLimits = [
 		'ip' => [ 8, 60 ],
 		'newbie' => [ 8, 60 ],
 	],
+	// Creating accounts
+	'createaccount' => [],
 ];
 
 /**

@@ -1374,8 +1374,8 @@ $changesList: EnhancedChangesList object
 &$data: An array with all the components that will be joined in order to create the line
 $rc: The RecentChange object for this line
 
-'ExemptFromAccountCreationThrottle': Exemption from the account creation
-throttle.
+'ExemptFromAccountCreationThrottle': DEPRECATED! Use the PingLimiter hook instead
+with the createaccount action.
 $ip: The ip address of the user
 
 'ExtensionTypes': Called when generating the extensions credits, use this to

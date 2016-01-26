@@ -608,6 +608,12 @@ if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
 		. 'HTTP or HTTPS. Disabling secure login.' );
 }
 
+// If not overridden by $wgRateLimits, the $wgAccountCreationThrottle variable holds
+// the maximum number of accounts an IP can make in a day.
+if ( !isset( $wgRateLimits['createaccount']['ip-all'] ) && $wgAccountCreationThrottle > 0 ) {
+	$wgRateLimits['createaccount']['ip-all'] = [ $wgAccountCreationThrottle, 86400 ];
+}
+
 $wgVirtualRestConfig['global']['domain'] = $wgCanonicalServer;
 
 // Now that GlobalFunctions is loaded, set defaults that depend on it.
