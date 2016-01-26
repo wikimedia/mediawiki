@@ -670,6 +670,7 @@ class InfoAction extends FormlessAction {
 			86400 * 7,
 			function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname ) {
 				$title = $page->getTitle();
+				$titleValue = $title->getTitleValue();
 				$id = $title->getArticleID();
 
 				$dbr = wfGetDB( DB_SLAVE );
@@ -678,18 +679,7 @@ class InfoAction extends FormlessAction {
 				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
 
 				$result = array();
-
-				// Number of page watchers
-				$watchers = (int)$dbrWatchlist->selectField(
-					'watchlist',
-					'COUNT(*)',
-					array(
-						'wl_namespace' => $title->getNamespace(),
-						'wl_title' => $title->getDBkey(),
-					),
-					$fname
-				);
-				$result['watchers'] = $watchers;
+				$result['watchers'] = WatchedItemStore::getDefaultInstance()->countWatchers( $titleValue );
 
 				if ( $config->get( 'ShowUpdatedMarker' ) ) {
 					// Threshold: last visited about 26 weeks before latest edit
