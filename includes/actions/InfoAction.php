@@ -678,18 +678,7 @@ class InfoAction extends FormlessAction {
 				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
 
 				$result = [];
-
-				// Number of page watchers
-				$watchers = (int)$dbrWatchlist->selectField(
-					'watchlist',
-					'COUNT(*)',
-					[
-						'wl_namespace' => $title->getNamespace(),
-						'wl_title' => $title->getDBkey(),
-					],
-					$fname
-				);
-				$result['watchers'] = $watchers;
+				$result['watchers'] = WatchedItemStore::getDefaultInstance()->countWatchers( $title );
 
 				if ( $config->get( 'ShowUpdatedMarker' ) ) {
 					// Threshold: last visited about 26 weeks before latest edit
