@@ -3937,7 +3937,7 @@
 	"logentry-protect-protect-cascade": "{{Logentry|[[Special:Log/protect]]}}\n\n* $4 - protect expiry (formatted with {{msg-mw|protect-summary-desc}}, multiple possible)\nFor word \"cascading\" see {{msg-mw|protect-summary-cascade}}",
 	"logentry-protect-modify": "{{Logentry|[[Special:Log/protect]]}}\n\n* $4 - protect expiry (formatted with {{msg-mw|protect-summary-desc}}, multiple possible)",
 	"logentry-protect-modify-cascade": "{{Logentry|[[Special:Log/protect]]}}\n\n* $4 - protect expiry (formatted with {{msg-mw|protect-summary-desc}}, multiple possible)\nFor word \"cascading\" see {{msg-mw|protect-summary-cascade}}",
-	"logentry-rights-rights": "* $1 - username\n* $2 - (see below)\n* $3 - username\n* $4 - list of user groups or {{msg-mw|Rightsnone}}\n* $5 - list of user groups or {{msg-mw|Rightsnone}}\n----\n{{Logentry|[[Special:Log/rights]]}}",
+	"logentry-rights-rights": "* $1 - username\n* $2 - (see below)\n* $3 - username, also used for GENDER support\n* $4 - list of user groups or {{msg-mw|Rightsnone}}\n* $5 - list of user groups or {{msg-mw|Rightsnone}}\n----\n{{Logentry|[[Special:Log/rights]]}}",
 	"logentry-rights-rights-legacy": "* $1 - username\n* $2 - (see below)\n* $3 - username\n----\n{{Logentry|[[Special:Log/rights]]}}",
 	"logentry-rights-autopromote": "* $1 - username\n* $2 - (see below)\n* $3 - (see below)\n* $4 - comma separated list of old user groups or {{msg-mw|Rightsnone}}\n* $5 - comma separated list of new user groups\n----\n{{Logentry|[[Special:Log/rights]]}}",
 	"logentry-upload-upload": "{{Logentry|[[Special:Log/upload]]}}",
