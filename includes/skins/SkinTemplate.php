@@ -269,11 +269,15 @@ class SkinTemplate extends Skin {
 		# An ID that includes the actual body text; without categories, contentSub, ...
 		$realBodyAttribs = [ 'id' => 'mw-content-text' ];
 
-		# Add a mw-content-ltr/rtl class to be able to style based on text direction
-		# when the content is different from the UI language, i.e.:
-		# not for special pages or file pages AND only when viewing
-		if ( !in_array( $title->getNamespace(), [ NS_SPECIAL, NS_FILE ] ) &&
-			Action::getActionName( $this ) === 'view' ) {
+		# Add a mw-content-ltr/rtl class to be able to style based on text
+		# direction when the content is different from the UI language, i.e.:
+		# not for special pages AND only when viewing
+		# Most information on special pages & file pages is in user language,
+		# rather than content language, so those will not get this (unless when
+		# not just viewing)
+		if ( Action::getActionName( $this ) !== 'view' ||
+			$title->isRedirect() ||
+			!in_array( $title->getNamespace(), [ NS_SPECIAL, NS_FILE ] ) ) {
 			$pageLang = $title->getPageViewLanguage();
 			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
 			$realBodyAttribs['dir'] = $pageLang->getDir();
