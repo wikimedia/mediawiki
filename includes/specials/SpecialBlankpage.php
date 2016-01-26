@@ -33,7 +33,124 @@ class SpecialBlankpage extends UnlistedSpecialPage {
 	}
 
 	public function execute( $par ) {
+		global $wgConf;
+
+		// *********************************************************************
+		// THIS IS NOT FOR MERGING!!!!!
+		// *********************************************************************
+		// This script is strictly for a **one-time operation** to produce a list
+		// of i18n key:value pairs for the initial list of human-readable
+		// project names across the WMF production cluster.
+		// *********************************************************************
 		$this->setHeaders();
-		$this->getOutput()->addWikiMsg( 'intentionallyblankpage' );
+
+		$output = "";
+		$info = $this->getSitematrixFromAPI();
+		$languages = LanguageNames::getNames( 'en' );
+
+		// Wikis that have messages in WikimediaMessages
+		$messageMatrix = array(
+			// code => project name
+			"wiki" => wfMessage( "wikibase-otherprojects-wikipedia" ),
+			"wiktionary" => "Wiktionary", // No message for this!?
+			"wikibooks" => wfMessage( "wikibase-otherprojects-wikibooks" ),
+			"wikiquote" => wfMessage( "wikibase-otherprojects-wikiquote" ),
+			"wikinews" => wfMessage( "wikibase-otherprojects-wikinews" ),
+			"wikisource" => wfMessage( "wikibase-sitelinks-wikisource" ),
+			"wikiversity" => "Wikiversity", // No message for this, either!
+			"wikivoyage" => wfMessage( "wikibase-otherprojects-wikivoyage" ),
+		);
+
+		// SPECIAL WIKIS
+		$exceptions = array(
+			// code => full message
+			"commons" => wfMessage( "wikibase-otherprojects-commons" ),
+			"mediawiki" => wfMessage( "wikibase-otherprojects-mediawiki" ),
+			"meta" => wfMessage( "wikibase-otherprojects-meta" ),
+			"wikidata" => wfMessage( "wikibase-otherprojects-wikidata" ),
+			"sources" => wfMessage( "wikibase-otherprojects-wikisource" ),
+			"species" => wfMessage( "wikibase-sitelinks-sitename-species" ),
+			"strategy" => "Strategic Planning",
+			"ten" => "Wikipedia 10",
+			"test" => "Test Wikipedia",
+			"test2" => "Test2 Wikipedia",
+			"testwikidata" => wfMessage( "wikibase-otherprojects-testwikidata" ),
+			"wikimania2005" => "Wikimania 2005 Wiki",
+			"wikimania2006" => "Wikimania 2006 Wiki",
+			"wikimania2007" => "Wikimania 2007 Wiki",
+			"wikimania2008" => "Wikimania 2008 Wiki",
+			"wikimania2009" => "Wikimania 2009 Wiki",
+			"wikimania2010" => "Wikimania 2010 Wiki",
+			"wikimania2011" => "Wikimania 2011 Wiki",
+			"wikimania2012" => "Wikimania 2012 Wiki",
+			"wikimania2013" => "Wikimania 2013 Wiki",
+			"wikimania2014" => "Wikimania 2014 Wiki",
+			"wikimania2015" => "Wikimania 2015 Wiki",
+			"wikimania2016" => "Wikimania 2016 Wiki",
+		);
+
+		// Go over the wikis and fill in the information
+		for ( $i = 0; $i < count( $info ); $i++ ) {
+			$langCode = $info[ $i ]['code'];
+			// Go by each site
+			$sites = $info[ $i ]['site'];
+			for ( $j = 0; $j < count( $sites ); $j++ ) {
+				// Skip projects marked as "closed"
+				if ( !isset( $sites[ $j ]['closed'] ) ) {
+					// Wiki info
+					$dbname = $sites[ $j ]['dbname'];
+
+					$sitecode = $sites[ $j ]['wiki'];
+					$sitename = $messageMatrix[ $sitecode ] || $sites[ $j ]['sitename'];
+
+					// Language conversion
+					$lang = $languages[ $langCode ];
+
+					// Output the line
+					$output .= "\"project-humanreadable-name-" . $dbname . "\": \"" .
+						$lang . " " . $sitename . "\"\n";
+				}
+			}
+		}
+
+		// Go over the "special" wikis (exceptions)
+		$specials = $info[ "specials" ];
+		for ( $i = 0; $i < count( $specials ); $i++ ) ) {
+			// Skip projects marked as "closed"
+			if (
+				!isset( $specials[ $j ]['closed'] ) ||
+				!isset( $specials[ $j ]['private'] ) ||
+				!isset( $specials[ $j ]['fishbowl'] )
+			) {
+				$dbname = $specials[ $j ]['dbname'];
+				$sitecode = $sites[ $j ]['wiki'];
+				// Go over exceptions
+				if ( in_array( $sitecode, $exceptions ) ) {
+					$sitename = $exceptions[ $sitecode ];
+
+					// Output the line
+					$output .= "\"project-humanreadable-name-" . $dbname . "\": \"" .
+						$sitename . "\"\n";
+				}
+
+				// TODO: Deal with all the other 'specials' that are non private wikis
+			}
+		}
+
+		// Output
+		$this->getOutput()->addWikiText( $output );
+	}
+
+	private function getSitematrixFromAPI() {
+		$curl = curl_init();
+		$url = "https://en.wikipedia.org/w/api.php?action=sitematrix&format=json&formatversion=2";
+
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+		$response = json_decode( curl_exec($curl), true );
+		curl_close($curl);
+
+		return $response['sitematrix'];
 	}
 }
