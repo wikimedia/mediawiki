@@ -272,7 +272,8 @@ class SkinTemplate extends Skin {
 		# Add a mw-content-ltr/rtl class to be able to style based on text direction
 		# when the content is different from the UI language, i.e.:
 		# not for special pages or file pages AND only when viewing
-		if ( !in_array( $title->getNamespace(), [ NS_SPECIAL, NS_FILE ] ) &&
+		if ( !$title->isSpecialPage() &&
+			!( $this->getWikiPage() instanceof WikiFilePage ) && // File namespace can also show redirects
 			Action::getActionName( $this ) === 'view' ) {
 			$pageLang = $title->getPageViewLanguage();
 			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
