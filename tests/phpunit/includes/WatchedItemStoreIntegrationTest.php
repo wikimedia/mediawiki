@@ -25,20 +25,45 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		$store = WatchedItemStore::getDefaultInstance();
 		// Cleanup after previous tests
 		$store->removeWatch( $user, $title );
+		$initialWatchers = $store->countWatchers( $title );
 
 		$this->assertFalse(
 			$store->isWatched( $user, $title ),
 			'Page should not initially be watched'
 		);
+
 		$store->addWatch( $user, $title );
 		$this->assertTrue(
 			$store->isWatched( $user, $title ),
 			'Page should be watched'
 		);
+		$this->assertEquals( $initialWatchers + 1, $store->countWatchers( $title ) );
+		$this->assertEquals(
+			$initialWatchers + 1,
+			$store->countWatchersMultiple( [ $title ] )[$title->getNamespace()][$title->getDBkey()]
+		);
+		$this->assertEquals(
+			[ 0 => [ 'WatchedItemStoreIntegrationTestPage' => $initialWatchers + 1 ] ],
+			$store->countWatchersMultiple( [ $title ], [ 'minimumWatchers' => $initialWatchers + 1 ] )
+		);
+		$this->assertEquals(
+			[ 0 => [ 'WatchedItemStoreIntegrationTestPage' => 0 ] ],
+			$store->countWatchersMultiple( [ $title ], [ 'minimumWatchers' => $initialWatchers + 2 ] )
+		);
+		$this->assertEquals(
+			[ 0 => [ 'WatchedItemStoreIntegrationTestPage' => $initialWatchers + 1 ] ],
+			$store->countWatchersMultiple( [ $title ], [ 'minimumWatchers' => "0; DROP TABLE watchlist;\n--" ] )
+		);
+
 		$store->removeWatch( $user, $title );
 		$this->assertFalse(
 			$store->isWatched( $user, $title ),
 			'Page should be unwatched'
+		);
+		$this->assertEquals( $initialWatchers, $store->countWatchers( $title ) );
+		$this->assertEquals(
+			$initialWatchers,
+			$store->countWatchersMultiple( [ $title ] )[$title->getNamespace()][$title->getDBkey()]
 		);
 	}
 
