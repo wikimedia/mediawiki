@@ -241,3 +241,16 @@ div.tright {
 div.tleft {
 	margin: .5em 1.4em 1.3em 0;
 }
+
+/* Make space for the jquery.tablesorter icon and display a placeholder if JavaScript is loaded, while
+   tablesorter is still loading and setting up the tables for sorting. This avoids a flash of
+   unstyled content during page load (FOUC). The styles can also be used by WYSIWYG editors. */
+.client-js table.sortable th:not(.unsortable) {
+	background-image: url(images/sort_both_readonly.png);
+	/* @embed */
+	background-image: linear-gradient(transparent, transparent), url(images/sort_both_readonly.svg);
+	/* Keep synchronised with jquery.tablesorter styles */
+	background-repeat: no-repeat;
+	background-position: center right;
+	padding-right: 21px;
+}
