@@ -2019,7 +2019,7 @@ class Linker {
 	public static function formatTemplates( $templates, $preview = false,
 		$section = false, $more = null
 	) {
-		global $wgLang;
+		global $wgLang;t
 
 		$outText = '';
 		if ( count( $templates ) > 0 ) {
