@@ -123,9 +123,12 @@ class ApiOpenSearch extends ApiBase {
 	 * @param array &$results Put results here. Keys have to be integers.
 	 */
 	protected function search( $search, $limit, $namespaces, $resolveRedir, &$results ) {
-		// Find matching titles as Title objects
-		$searcher = new TitlePrefixSearch;
-		$titles = $searcher->searchWithVariants( $search, $limit, $namespaces );
+
+		$searchEngine = SearchEngine::create();
+		$searchEngine->setLimitOffset( $limit );
+		$searchEngine->setNamespaces( $namespaces );
+		$titles = $searchEngine->extractTitles( $searchEngine->completionSearchWithVariants( $search ) );
+
 		if ( !$titles ) {
 			return;
 		}
