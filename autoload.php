@@ -560,6 +560,7 @@ $wgAutoloadLocalClasses = array(
 	'IPSet' => __DIR__ . '/includes/compat/IPSetCompat.php',
 	'IPTC' => __DIR__ . '/includes/media/IPTC.php',
 	'IRCColourfulRCFeedFormatter' => __DIR__ . '/includes/rcfeed/IRCColourfulRCFeedFormatter.php',
+	'ITitle' => __DIR__ . '/includes/title/ITitle.php',
 	'IcuCollation' => __DIR__ . '/includes/Collation.php',
 	'IdentityCollation' => __DIR__ . '/includes/Collation.php',
 	'ImageBuilder' => __DIR__ . '/maintenance/rebuildImages.php',
