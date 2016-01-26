@@ -223,6 +223,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 
 		$session = $manager->getEmptySession();
 		$session->set( 'Unchanged', 'setup' );
+		$session->set( 'Unchanged, null', null );
 		$session->set( 'Changed in $_SESSION', 'setup' );
 		$session->set( 'Changed in Session', 'setup' );
 		$session->set( 'Changed in both', 'setup' );
@@ -260,6 +261,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 			'Added in $_SESSION' => '$_SESSION',
 			'Added in both' => 'Session',
 			'Unchanged' => 'setup',
+			'Unchanged, null' => null,
 			'Changed in Session' => 'Session',
 			'Changed in $_SESSION' => '$_SESSION',
 			'Changed in both' => 'Session',

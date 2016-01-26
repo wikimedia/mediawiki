@@ -258,7 +258,7 @@ class PHPSessionHandler {
 		$changed = false;
 		$cache = isset( $this->sessionFieldCache[$id] ) ? $this->sessionFieldCache[$id] : array();
 		foreach ( $data as $key => $value ) {
-			if ( !isset( $cache[$key] ) ) {
+			if ( !array_key_exists( $key, $cache ) ) {
 				if ( $session->exists( $key ) ) {
 					// New in both, so ignore and log
 					$this->logger->warning(
@@ -293,7 +293,7 @@ class PHPSessionHandler {
 		// (but not if $_SESSION can't represent it at all)
 		\Wikimedia\PhpSessionSerializer::setLogger( new \Psr\Log\NullLogger() );
 		foreach ( $cache as $key => $value ) {
-			if ( !isset( $data[$key] ) && $session->exists( $key ) &&
+			if ( !array_key_exists( $key, $data ) && $session->exists( $key ) &&
 				\Wikimedia\PhpSessionSerializer::encode( array( $key => true ) )
 			) {
 				if ( $cache[$key] === $session->get( $key ) ) {
