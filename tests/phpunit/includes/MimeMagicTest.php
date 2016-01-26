@@ -33,7 +33,8 @@ class MimeMagicTest extends PHPUnit_Framework_TestCase {
 			array( 'docx', 'application/x-opc+zip',
 				'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ),
 			array( 'djvu', 'image/x-djvu', 'image/vnd.djvu' ),
-			array( 'wav', 'audio/wav', 'audio/wav' ),
+			array( 'js', 'text/javascript', 'application/javascript' ),
+			array( 'js', 'application/x-javascript', 'application/javascript' ),
 		);
 	}
 
