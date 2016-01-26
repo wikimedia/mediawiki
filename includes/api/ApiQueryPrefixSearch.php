@@ -45,8 +45,11 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 		$namespaces = $params['namespace'];
 		$offset = $params['offset'];
 
-		$searcher = new TitlePrefixSearch;
-		$titles = $searcher->searchWithVariants( $search, $limit + 1, $namespaces, $offset );
+		$searchEngine = SearchEngine::create();
+		$searchEngine->setLimitOffset( $limit + 1, $offset );
+		$searchEngine->setNamespaces( $namespaces );
+		$titles = $searchEngine->extractTitles( $searchEngine->completionSearchWithVariants( $search ) );
+
 		if ( $resultPageSet ) {
 			$resultPageSet->setRedirectMergePolicy( function( array $current, array $new ) {
 				if ( !isset( $current['index'] ) || $new['index'] < $current['index'] ) {
