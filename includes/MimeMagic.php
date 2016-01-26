@@ -59,7 +59,7 @@ application/vnd.oasis.opendocument.text odt
 application/vnd.oasis.opendocument.text-master otm
 application/vnd.oasis.opendocument.text-template ott
 application/vnd.oasis.opendocument.text-web oth
-application/x-javascript js
+application/javascript js
 application/x-shockwave-flash swf
 audio/midi mid midi kar
 audio/mpeg mpga mpa mp2 mp3
@@ -110,7 +110,7 @@ application/vnd.oasis.opendocument.text [OFFICE]
 application/vnd.oasis.opendocument.text-template [OFFICE]
 application/vnd.oasis.opendocument.text-master [OFFICE]
 application/vnd.oasis.opendocument.text-web [OFFICE]
-text/javascript application/x-javascript [EXECUTABLE]
+application/javascript text/javascript application/x-javascript [EXECUTABLE]
 application/x-shockwave-flash [MULTIMEDIA]
 audio/midi [AUDIO]
 audio/x-aiff [AUDIO]
