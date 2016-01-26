@@ -329,6 +329,29 @@ class SpecialPage {
 	}
 
 	/**
+	 * Perform a regular substring search for prefixSearchSubpages
+	 * @param string $search Prefix to search for
+	 * @param int $limit Maximum number of results to return (usually 10)
+	 * @param int $offset Number of results to skip (usually 0)
+	 * @return string[] Matching subpages
+	 */
+	protected function prefixSearchString( $search, $limit, $offset ) {
+		$title = Title::newFromText( $search );
+		if ( !$title || !$title->canExist() ) {
+			// No prefix suggestion in special and media namespace
+			return array();
+		}
+
+		$search = SearchEngine::create();
+		$search->setLimitOffset( $limit, $offset );
+		$search->setNamespaces( array() );
+		$result = $search->defaultPrefixSearch( $search );
+		return array_map( function( Title $t ) {
+			return $t->getPrefixedText();
+		}, $result );
+	}
+
+	/**
 	 * Helper function for implementations of prefixSearchSubpages() that
 	 * filter the values in memory (as opposed to making a query).
 	 *
