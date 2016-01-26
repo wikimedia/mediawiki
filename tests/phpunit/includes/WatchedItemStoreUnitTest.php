@@ -75,10 +75,102 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		return $fakeRow;
 	}
 
+	/**
+	 * @param LoadBalancer $loadBalancer
+	 * @param BagOStuff $cache
+	 * @param int|bool $unwatchedPageThreshold
+	 *
+	 * @return WatchedItemStore
+	 */
+	private function newWatchedItemStore(
+		LoadBalancer $loadBalancer,
+		BagOStuff $cache,
+		$unwatchedPageThreshold = false
+	) {
+		return new WatchedItemStore( $loadBalancer, $cache, $unwatchedPageThreshold );
+	}
+
 	public function testGetDefaultInstance() {
 		$instanceOne = WatchedItemStore::getDefaultInstance();
 		$instanceTwo = WatchedItemStore::getDefaultInstance();
 		$this->assertSame( $instanceOne, $instanceTwo );
+	}
+
+	public function testCountWatchers() {
+		$titleValue = new TitleValue( 0, 'SomeDbKey' );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->exactly( 1 ) )
+			->method( 'selectField' )
+			->with(
+				'watchlist',
+				'COUNT(*)',
+				[
+					'wl_namespace' => $titleValue->getNamespace(),
+					'wl_title' => $titleValue->getDBkey(),
+				],
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( 7 ) );
+
+		$store = $this->newWatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			new HashBagOStuff( [ 'maxKeys' => 100 ] )
+		);
+
+		$this->assertEquals( 7, $store->countWatchers( $titleValue ) );
+	}
+
+	public function testCountWatchersMultiple() {
+		$titleValues = [
+			new TitleValue( 0, 'SomeDbKey' ),
+			new TitleValue( 0, 'OtherDbKey' ),
+			new TitleValue( 1, 'AnotherDbKey' ),
+		];
+
+		$mockDb = $this->getMockDb();
+
+		$dbResult = [
+			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => 0, 'count' => 100 ] ),
+			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => 0, 'count' => 300 ] ),
+			$this->getFakeRow( [ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => 1, 'count' => 500 ]
+			),
+		];
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->with(
+				[ [ 'SomeDbKey' => 1, 'OtherDbKey' => 1 ], [ 'AnotherDbKey' => 1 ] ],
+				$this->isType( 'string' ),
+				$this->isType( 'string' )
+				)
+			->will( $this->returnValue( 'makeWhereFrom2d return value' ) );
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_title', 'wl_namespace', 'count' => 'COUNT(*)' ],
+				[ 'makeWhereFrom2d return value' ],
+				$this->isType( 'string' ),
+				[
+					'GROUP BY' => [ 'wl_namespace', 'wl_title' ],
+					'HAVING' => 'COUNT(*) >= 60',
+				]
+			)
+			->will(
+				$this->returnValue( $dbResult )
+			);
+
+		$store = $this->newWatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
+			60
+		);
+
+		$expected = [
+			0 => [ 'SomeDbKey' => 100, 'OtherDbKey' => 300 ],
+			1 => [ 'AnotherDbKey' => 500 ],
+		];
+		$this->assertEquals( $expected, $store->countWatchersMultiple( $titleValues ) );
 	}
 
 	public function testDuplicateEntry_nothingToDuplicate() {
@@ -100,7 +192,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			)
 			->will( $this->returnValue( new FakeResultWrapper( [] ) ) );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			new HashBagOStuff( [ 'maxKeys' => 100 ] )
 		);
@@ -154,7 +246,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 				$this->isType( 'string' )
 			);
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			new HashBagOStuff( [ 'maxKeys' => 100 ] )
 		);
@@ -196,7 +288,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			)
 			->will( $this->returnValue( new FakeResultWrapper( [] ) ) );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			new HashBagOStuff( [ 'maxKeys' => 100 ] )
 		);
@@ -272,7 +364,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 				$this->isType( 'string' )
 			);
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			new HashBagOStuff( [ 'maxKeys' => 100 ] )
 		);
@@ -304,7 +396,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			->method( 'delete' )
 			->with( '0:Some_Page:1' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -324,7 +416,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockCache->expects( $this->never() )
 			->method( 'delete' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -367,7 +459,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			->method( 'delete' )
 			->with( '1:Some_Page:1' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -405,7 +497,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			->method( 'delete' )
 			->with( '0:Some_Page:1' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -429,7 +521,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockCache->expects( $this->never() )
 			->method( 'delete' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -454,7 +546,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockCache->expects( $this->never() )
 			->method( 'delete' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -488,7 +580,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 				'0:SomeDbKey:1'
 			);
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -522,7 +614,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockCache->expects( $this->never() )
 			->method( 'delete' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -544,7 +636,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockCache->expects( $this->never() )
 			->method( 'delete' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -578,7 +670,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			->method( 'delete' )
 			->with( '0:SomeDbKey:1' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -612,7 +704,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			->method( 'delete' )
 			->with( '0:SomeDbKey:1' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -634,7 +726,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockCache->expects( $this->never() )
 			->method( 'delete' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -677,7 +769,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 				'0:SomeDbKey:1'
 			);
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -711,7 +803,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockCache->expects( $this->never() )
 			->method( 'set' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -744,7 +836,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockCache->expects( $this->never() )
 			->method( 'set' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -766,7 +858,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockCache->expects( $this->never() )
 			->method( 'set' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -803,7 +895,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 				'0:SomeDbKey:1'
 			);
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -835,7 +927,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockCache->expects( $this->never() )
 			->method( 'set' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -857,7 +949,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockCache->expects( $this->never() )
 			->method( 'set' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -879,7 +971,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockCache->expects( $this->never() )
 			->method( 'set' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -911,7 +1003,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockCache->expects( $this->never() )
 			->method( 'set' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -955,7 +1047,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			->method( 'delete' )
 			->with( '0:SomeDbKey:1' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -991,7 +1083,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'delete' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -1053,7 +1145,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'delete' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -1109,7 +1201,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'delete' );
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			$mockCache
 		);
@@ -1166,7 +1258,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			);
 		// Not checking update calls due to it being passed as a callback to IDatabase::onTransactionIdle
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			new HashBagOStuff( [ 'maxKeys' => 100 ] )
 		);
@@ -1200,7 +1292,7 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 			);
 		// Not checking update calls due to it being passed as a callback to IDatabase::onTransactionIdle
 
-		$store = new WatchedItemStore(
+		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
 			new HashBagOStuff( [ 'maxKeys' => 100 ] )
 		);
