@@ -28,6 +28,13 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @return PHPUnit_Framework_MockObject_MockObject|Config
+	 */
+	private function getMockConfig() {
+		return $this->getMock( 'Config' );
+	}
+
+	/**
 	 * @return PHPUnit_Framework_MockObject_MockObject|HashBagOStuff
 	 */
 	private function getMockCache() {
@@ -66,6 +73,89 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 		return $fakeRow;
 	}
 
+	public function testCountWatchers() {
+		$titleValue = new TitleValue( 0, 'SomeDbKey' );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->exactly( 1 ) )
+			->method( 'selectField' )
+			->with(
+				'watchlist',
+				'COUNT(*)',
+				[
+					'wl_namespace' => $titleValue->getNamespace(),
+					'wl_title' => $titleValue->getDBkey(),
+				],
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( 7 ) );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
+			$this->getMockConfig()
+		);
+
+		$this->assertEquals( 7, $store->countWatchers( $titleValue ) );
+	}
+
+	public function testCountWatchersMultiple() {
+		$titleValues = [
+			new TitleValue( 0, 'SomeDbKey' ),
+			new TitleValue( 0, 'OtherDbKey' ),
+			new TitleValue( 1, 'AnotherDbKey' ),
+		];
+
+		$mockDb = $this->getMockDb();
+		$mockConfig = $this->getMockConfig();
+
+		$dbResult = [
+			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => 0, 'count' => 100 ] ),
+			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => 0, 'count' => 300 ] ),
+			$this->getFakeRow( [ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => 1, 'count' => 500 ]
+			),
+		];
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->with(
+				[ [ 'SomeDbKey' => 1, 'OtherDbKey' => 1 ], [ 'AnotherDbKey' => 1 ] ],
+				$this->isType( 'string' ),
+				$this->isType( 'string' )
+				)
+			->will( $this->returnValue( 'makeWhereFrom2d return value' ) );
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_title', 'wl_namespace', 'count' => 'COUNT(*)' ],
+				[ 'makeWhereFrom2d return value' ],
+				$this->isType( 'string' ),
+				[
+					'GROUP BY' => [ 'wl_namespace', 'wl_title' ],
+					'HAVING' => 'COUNT(*) >= 60',
+				]
+			)
+			->will(
+				$this->returnValue( $dbResult )
+			);
+		$mockConfig->expects( $this->exactly( 1 ) )
+			->method( 'get' )
+			->with( 'UnwatchedPageThreshold' )
+			->will( $this->returnValue( 60 ) );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
+			$mockConfig
+		);
+
+		$expected = [
+			0 => [ 'SomeDbKey' => 100, 'OtherDbKey' => 300 ],
+			1 => [ 'AnotherDbKey' => 500 ],
+		];
+		$this->assertEquals( $expected, $store->countWatchersMultiple( $titleValues ) );
+	}
+
 	public function testDuplicateEntry_nothingToDuplicate() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
@@ -74,7 +164,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			new HashBagOStuff( [ 'maxKeys' => 100 ] )
+			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
+			$this->getMockConfig()
 		);
 
 		$store->duplicateEntry(
@@ -117,7 +208,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			new HashBagOStuff( [ 'maxKeys' => 100 ] )
+			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
+			$this->getMockConfig()
 		);
 
 		$store->duplicateEntry(
@@ -220,7 +312,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$store->addWatch(
@@ -240,7 +333,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$store->addWatch(
@@ -283,7 +377,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$mockUser = $this->getMockNonAnonUserWithId( 1 );
@@ -321,7 +416,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$this->assertTrue(
@@ -345,7 +441,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$anonUser = $this->getAnonUser();
@@ -370,7 +467,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$this->assertFalse(
@@ -395,7 +493,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$watchedItem = $store->loadWatchedItem(
@@ -420,7 +519,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$this->assertFalse(
@@ -442,7 +542,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$this->assertFalse(
@@ -476,7 +577,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$this->assertTrue(
@@ -510,7 +612,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$this->assertFalse(
@@ -532,7 +635,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$this->assertFalse(
@@ -566,7 +670,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$watchedItem = $store->getWatchedItem(
@@ -600,7 +705,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$this->assertEquals(
@@ -624,7 +730,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$this->assertFalse(
@@ -646,7 +753,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$this->assertFalse(
@@ -674,7 +782,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$this->assertTrue(
@@ -697,7 +806,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$this->assertFalse(
@@ -719,7 +829,8 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 
 		$store = new WatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
-			$mockCache
+			$mockCache,
+			$this->getMockConfig()
 		);
 
 		$this->assertFalse(
