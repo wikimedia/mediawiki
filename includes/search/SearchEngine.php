@@ -296,6 +296,13 @@ class SearchEngine {
 	 * @param int[]|null $namespaces
 	 */
 	function setNamespaces( $namespaces ) {
+		if ( $namespaces ) {
+			// Filter namespaces to only keep valid ones
+			$validNs = $this->searchableNamespaces();
+			$namespaces = array_filter( $namespaces, function( $ns ) use( $validNs ) {
+				return $ns < 0 || isset( $validNs[$ns] );
+			} );
+		}
 		$this->namespaces = $namespaces;
 	}
 
@@ -570,6 +577,199 @@ class SearchEngine {
 	public function textAlreadyUpdatedForIndex() {
 		return false;
 	}
+
+	/**
+	 * Makes search simple string if it was namespaced.
+	 * Sets namespaces of the search to namespaces extracted from string.
+	 * @param string $search
+	 * @return $string Simplified search string
+	 */
+	public function normalizeNamespaces( $search ) {
+		// Find a Title which is not an interwiki and is in NS_MAIN
+		$title = Title::newFromText( $search );
+		if ( $title && !$title->isExternal() ) {
+			$ns = array( $title->getNamespace() );
+			$search = $title->getText();
+			if ( $ns[0] == NS_MAIN ) {
+				$ns = $this->namespaces; // no explicit prefix, use default namespaces
+			}
+		} else {
+			$title = Title::newFromText( $search . 'Dummy' );
+			if ( $title && $title->getText() == 'Dummy'
+					&& $title->getNamespace() != NS_MAIN
+					&& !$title->isExternal() )
+			{
+				$ns = array( $title->getNamespace() );
+				$search = '';
+			}
+		}
+
+		$ns = array_map( function( $ns ) {
+			return $ns == NS_MEDIA ? NS_FILE : $ns;
+		}, $ns );
+
+		// FIXME: deprecate the hook?
+		Hooks::run( 'PrefixSearchExtractNamespace', array( &$ns, &$search ) );
+		$this->setNamespaces( $ns );
+		return $search;
+	}
+
+	/**
+	 * Perform a completion search.
+	 * Does not resolve namespaces and does not check variants.
+	 * Search engine implementations may want to override this function.
+	 * @param string $search
+	 * @return SearchSuggestionSet
+	 */
+	protected function completionSearchBackend( $search ) {
+		$results = array();
+
+		$search = trim( $search );
+
+		if ( !in_array( NS_SPECIAL, $this->namespaces ) && // We do not run hook on Special: search
+			 !Hooks::run( 'PrefixSearchBackend',
+				array( $this->namespaces, $search, $this->limit, &$results, $this->offset )
+		) ) {
+			// False means hook worked.
+			// FIXME: Yes, the API is weird. That's why it is going to be deprecated.
+
+			return SearchSuggestionSet::fromStrings( $results );
+		} else {
+			// Hook did not do the job, use default simple search
+			$results = $this->simplePrefixSearch( $search );
+			return SearchSuggestionSet::fromTitles( $results );
+		}
+	}
+
+	/**
+	 * Perform a completion search.
+	 * @param string $search
+	 * @return SearchSuggestionSet
+	 */
+	public function completionSearch( $search ) {
+		if ( trim( $search ) == '' ) {
+			return SearchSuggestionSet::emptySuggestionSet(); // Return empty result
+		}
+		$search = $this->normalizeNamespaces( $search );
+		return $this->processCompletionResults( $search, $this->completionSearchBackend( $search ) );
+	}
+
+	/**
+	 * Perform a completion search with variants.
+	 * @param string $search
+	 * @return SearchSuggestionSet
+	 */
+	public function completionSearchWithVariants( $search ) {
+		if ( trim( $search ) == '' ) {
+			return SearchSuggestionSet::emptySuggestionSet(); // Return empty result
+		}
+		$search = $this->normalizeNamespaces( $search );
+
+		$results = $this->completionSearchBackend( $search );
+		$fallbackLimit = $this->limit - $results->getSize();
+		if ( $fallbackLimit > 0 ) {
+			global $wgContLang;
+
+			$fallbackSearches = $wgContLang->autoConvertToAllVariants( $search );
+			$fallbackSearches = array_diff( array_unique( $fallbackSearches ), array( $search ) );
+
+			foreach ( $fallbackSearches as $fbs ) {
+				$this->setLimitOffset( $fallbackLimit );
+				$fallbackSearchResult = $this->completionSearch( $fbs );
+				$results->appendAll( $fallbackSearchResult );
+				$fallbackLimit -= count( $fallbackSearchResult );
+				if ( $fallbackLimit <= 0 ) {
+					break;
+				}
+			}
+		}
+		return $this->processCompletionResults( $search, $results );
+	}
+
+	/**
+	 * Extract titles from completion results
+	 * @param SearchSuggestionSet $completionResults
+	 * @return Title[]
+	 */
+	public function extractTitles( SearchSuggestionSet $completionResults ) {
+		return $completionResults->map( function( SearchSuggestion $sugg ) {
+			return $sugg->getSuggestedTitle();
+		} );
+	}
+
+	/**
+	 * Process completion search results.
+	 * Resolves the titles and rescores.
+	 * @param SearchSuggestionSet $suggestions
+	 * @return SearchSuggestionSet
+	 */
+	protected function processCompletionResults( $search, SearchSuggestionSet $suggestions ) {
+		if ( $suggestions->getSize() == 0 ) {
+			// If we don't have anything, don't bother
+			return $suggestions;
+		}
+		$search = trim( $search );
+		// preload the titles with LinkBatch
+		$titles = $suggestions->map( function( SearchSuggestion $sugg ) {
+			return $sugg->getSuggestedTitle();
+		} );
+		$lb = new LinkBatch( $titles );
+		$lb->setCaller( __METHOD__ );
+		$lb->execute();
+
+		$results = $suggestions->map( function( SearchSuggestion $sugg ) {
+			return $sugg->getSuggestedTitle()->getPrefixedText();
+		} );
+
+		// Rescore results with an exact title match
+		$rescorer = new SearchExactMatchRescorer();
+		$rescoredResults = $rescorer->rescore( $search, $this->namespaces, $results, $this->limit );
+
+		if ( count( $rescoredResults ) > 0 ) {
+			$found = array_search( $rescoredResults[0], $results );
+			if ( $found === false ) {
+				// If the first result is not in the previous array it
+				// means that we found a new exact match
+				$exactMatch = SearchSuggestion::fromTitle( 0, Title::newFromText( $rescoredResults[0] ) );
+				$suggestions->prepend( $exactMatch );
+				$suggestions->shrink( $this->limit );
+			} else {
+				// if the first result is not the same we need to rescore
+				if ( $found > 0 ) {
+					$suggestions->rescore( $found );
+				}
+			}
+		}
+
+		return $suggestions;
+	}
+
+	/**
+	 * Simple prefix search for subpages.
+	 * @param string $search
+	 * @return Title[]
+	 */
+	public function defaultPrefixSearch( $search ) {
+		if ( trim( $search ) == '' ) {
+			return array();
+		}
+
+		$search = $this->normalizeNamespaces( $search );
+		return $this->simplePrefixSearch( $search );
+	}
+
+	/**
+	 * Call out to simple search backend.
+	 * Defaults to TitlePrefixSearch.
+ 	 * @param unknown $search
+	 * @return Title[]
+	 */
+	protected function simplePrefixSearch( $search ) {
+		// Use default database prefix search
+		$prefixSearcher = new TitlePrefixSearch;
+		return $prefixSearcher->defaultSearchBackend( $this->namespaces, $search, $this->limit, $this->offset);
+	}
+
 }
 
 /**
