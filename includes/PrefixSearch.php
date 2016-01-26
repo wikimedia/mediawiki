@@ -259,10 +259,18 @@ abstract class PrefixSearch {
 	 * @param int $offset Number of items to skip
 	 * @return array Array of Title objects
 	 */
-	protected function defaultSearchBackend( $namespaces, $search, $limit, $offset ) {
+	public function defaultSearchBackend( $namespaces, $search, $limit, $offset ) {
 		$ns = array_shift( $namespaces ); // support only one namespace
 		if ( in_array( NS_MAIN, $namespaces ) ) {
 			$ns = NS_MAIN; // if searching on many always default to main
+		}
+
+		if ( $ns == NS_SPECIAL ) {
+			return $this->specialSearch( $search, $limit, $offset );
+		}
+
+		if ( $ns == NS_MEDIA ) {
+			$ns = NS_FILE;
 		}
 
 		$t = Title::newFromText( $search, $ns );
