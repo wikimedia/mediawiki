@@ -131,23 +131,38 @@ class WebResponse {
 		if ( Hooks::run( 'WebResponseSetCookie', array( &$name, &$value, &$expire, $options ) ) ) {
 			$cookie = $options['prefix'] . $name;
 			$data = array(
-				(string)$cookie,
-				(string)$value,
-				(int)$expire,
-				(string)$options['path'],
-				(string)$options['domain'],
-				(bool)$options['secure'],
-				(bool)$options['httpOnly'],
+				'name' => (string)$cookie,
+				'value' => (string)$value,
+				'expire' => (int)$expire,
+				'path' => (string)$options['path'],
+				'domain' => (string)$options['domain'],
+				'secure' => (bool)$options['secure'],
+				'httpOnly' => (bool)$options['httpOnly'],
 			);
-			if ( !isset( self::$setCookies[$cookie] ) ||
-				self::$setCookies[$cookie] !== array( $func, $data )
+
+			// Per RFC 6265, key is name + domain + path
+			$key = "{$data['name']}\n{$data['domain']}\n{$date['path']}";
+
+			// If this cookie name was in the request, fake an entry in
+			// self::$setCookies for it so the deleting check works right.
+			if ( isset( $_COOKIE[$cookie] ) && !array_key_exists( $key, self::$setCookies ) ) {
+				self::$setCookies[$key] = array();
+			}
+
+			// PHP deletes if value is the empty string; also, a past expiry is deleting
+			$deleting = ( $data['value'] === '' || $data['expire'] > 0 && $data['expire'] <= time() );
+
+			if ( $deleting && !isset( self::$setCookies[$key] ) ) { // isset( null ) is false
+				wfDebugLog( 'cookie', 'already deleted ' . $func . ': "' . implode( '", "', $data ) . '"' );
+			} elseif ( !$deleting && isset( self::$setCookies[$key] ) &&
+				self::$setCookies[$key] === array( $func, $data )
 			) {
-				wfDebugLog( 'cookie', $func . ': "' . implode( '", "', $data ) . '"' );
-				if ( call_user_func_array( $func, $data ) ) {
-					self::$setCookies[$cookie] = array( $func, $data );
-				}
-			} else {
 				wfDebugLog( 'cookie', 'already set ' . $func . ': "' . implode( '", "', $data ) . '"' );
+			} else {
+				wfDebugLog( 'cookie', $func . ': "' . implode( '", "', $data ) . '"' );
+				if ( call_user_func_array( $func, array_values( $data ) ) ) {
+					self::$setCookies[$key] = $deleting ? null : array( $func, $data );
+				}
 			}
 		}
 	}
