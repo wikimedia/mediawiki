@@ -16,13 +16,14 @@
 	 *
 	 * @constructor
 	 * @cfg {boolean} [suggestions=true] Display search suggestions
+	 * @cfg {boolean} [validate=true] Perform title validation
 	 */
 	mw.widgets.TitleInputWidget = function MwWidgetsTitleInputWidget( config ) {
 		config = config || {};
 
 		// Parent constructor
 		mw.widgets.TitleInputWidget.parent.call( this, $.extend( {}, config, {
-			validate: this.isQueryValid.bind( this ),
+			validate: config.validate === false ? null : this.isQueryValid.bind( this ),
 			autocomplete: false
 		} ) );
 
