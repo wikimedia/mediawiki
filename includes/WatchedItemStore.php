@@ -33,13 +33,28 @@ class WatchedItemStore {
 	private $revisionGetTimestampFromIdCallback;
 
 	/**
+	 * @var int|bool
+	 */
+	private $unwatchedPageThreshold;
+
+	/**
 	 * @var self|null
 	 */
 	private static $instance;
 
-	public function __construct( LoadBalancer $loadBalancer, BagOStuff $cache ) {
+	/**
+	 * @param LoadBalancer $loadBalancer
+	 * @param BagOStuff $cache
+	 * @param int|bool $unwatchedPageThreshold
+	 */
+	public function __construct(
+		LoadBalancer $loadBalancer,
+		BagOStuff $cache,
+		$unwatchedPageThreshold
+	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
+		$this->unwatchedPageThreshold = $unwatchedPageThreshold;
 		$this->deferredUpdatesAddCallableUpdateCallback = [ 'DeferredUpdates', 'addCallableUpdate' ];
 		$this->revisionGetTimestampFromIdCallback = [ 'Revision', 'getTimestampFromId' ];
 	}
@@ -104,9 +119,11 @@ class WatchedItemStore {
 	 */
 	public static function getDefaultInstance() {
 		if ( !self::$instance ) {
+			$config = RequestContext::getMain()->getConfig();
 			self::$instance = new self(
 				wfGetLB(),
-				new HashBagOStuff( [ 'maxKeys' => 100 ] )
+				new HashBagOStuff( [ 'maxKeys' => 100 ] ),
+				$config->get( 'UnwatchedPageThreshold' )
 			);
 		}
 		return self::$instance;
@@ -156,6 +173,65 @@ class WatchedItemStore {
 			'wl_namespace' => $target->getNamespace(),
 			'wl_title' => $target->getDBkey(),
 		];
+	}
+
+	/**
+	 * @param LinkTarget $target
+	 *
+	 * @return int
+	 */
+	public function countWatchers( LinkTarget $target ) {
+		$dbr = $this->loadBalancer->getConnection( DB_SLAVE, [ 'watchlist' ] );
+		$return = (int)$dbr->selectField(
+			'watchlist',
+			'COUNT(*)',
+			[
+				'wl_namespace' => $target->getNamespace(),
+				'wl_title' => $target->getDBkey(),
+			],
+			__METHOD__
+		);
+		$this->loadBalancer->reuseConnection( $dbr );
+
+		return $return;
+	}
+
+	/**
+	 * @param LinkTarget[] $targets
+	 * @param bool $unwatchedPages show unwatched pages obeying UnwatchedPageThreshold setting
+	 *
+	 * @return array multi dimensional like $return[$namespaceId][$titleString] = $watchers
+	 */
+	public function countWatchersMultiple( array $targets, $unwatchedPages = false ) {
+		if ( !$unwatchedPages && !is_int( $this->unwatchedPageThreshold ) ) {
+			// TODO throw exception?
+			return [];
+		}
+
+		$options = [ 'GROUP BY' => [ 'wl_namespace', 'wl_title' ] ];
+		if ( !$unwatchedPages ) {
+			$options['HAVING'] = "COUNT(*) >= $this->unwatchedPageThreshold";
+		}
+
+		$dbr = $this->loadBalancer->getConnection( DB_SLAVE, [ 'watchlist' ] );
+
+		$lb = new LinkBatch( $targets );
+		$res = $dbr->select(
+			'watchlist',
+			[ 'wl_title', 'wl_namespace', 'count' => 'COUNT(*)' ],
+			[ $lb->constructSet( 'wl', $dbr ) ],
+			__METHOD__,
+			$options
+		);
+
+		$this->loadBalancer->reuseConnection( $dbr );
+
+		$watchCounts = [];
+		foreach ( $res as $row ) {
+			$watchCounts[$row->wl_namespace][$row->wl_title] = (int)$row->count;
+		}
+
+		return $watchCounts;
 	}
 
 	/**
