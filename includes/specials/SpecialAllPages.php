@@ -365,15 +365,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		$title = Title::newFromText( $search );
-		if ( !$title || !$title->canExist() ) {
-			// No prefix suggestion in special and media namespace
-			return array();
-		}
-		// Autocomplete subpage the same as a normal search
-		$prefixSearcher = new StringPrefixSearch;
-		$result = $prefixSearcher->search( $search, $limit, array(), $offset );
-		return $result;
+		return $this->prefixSearchString( $search, $limit, $offset );
 	}
 
 	protected function getGroupName() {

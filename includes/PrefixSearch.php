@@ -30,6 +30,7 @@ abstract class PrefixSearch {
 	/**
 	 * Do a prefix search of titles and return a list of matching page names.
 	 * @deprecated Since 1.23, use TitlePrefixSearch or StringPrefixSearch classes
+	 * @deprecated Since 1.27, Use SearchEngine::prefixSearchSubpages or SearchEngine::completionSearch
 	 *
 	 * @param string $search
 	 * @param int $limit
@@ -259,14 +260,17 @@ abstract class PrefixSearch {
 	 * @param int $offset Number of items to skip
 	 * @return array Array of Title objects
 	 */
-	protected function defaultSearchBackend( $namespaces, $search, $limit, $offset ) {
+	public function defaultSearchBackend( $namespaces, $search, $limit, $offset ) {
 		$ns = array_shift( $namespaces ); // support only one namespace
-		if ( in_array( NS_MAIN, $namespaces ) ) {
+		if ( is_null( $ns ) || in_array( NS_MAIN, $namespaces ) ) {
 			$ns = NS_MAIN; // if searching on many always default to main
 		}
 
-		$t = Title::newFromText( $search, $ns );
+		if ( $ns == NS_SPECIAL ) {
+			return $this->specialSearch( $search, $limit, $offset );
+		}
 
+		$t = Title::newFromText( $search, $ns );
 		$prefix = $t ? $t->getDBkey() : '';
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'page',
@@ -318,6 +322,7 @@ abstract class PrefixSearch {
 
 /**
  * Performs prefix search, returning Title objects
+ * @deprecated Since 1.27, Use SearchEngine::prefixSearchSubpages or SearchEngine::completionSearch
  * @ingroup Search
  */
 class TitlePrefixSearch extends PrefixSearch {
@@ -337,6 +342,7 @@ class TitlePrefixSearch extends PrefixSearch {
 
 /**
  * Performs prefix search, returning strings
+ * @deprecated Since 1.27, Use SearchEngine::prefixSearchSubpages or SearchEngine::completionSearch
  * @ingroup Search
  */
 class StringPrefixSearch extends PrefixSearch {
