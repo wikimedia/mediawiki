@@ -690,9 +690,11 @@ abstract class UploadBase {
 	 *
 	 * @param string $comment
 	 * @param string $pageText
-	 * @param bool $watch
+	 * @param bool $watch Whether the file page should be added to user's watchlist.
+	 *   (This doesn't check $user's permissions.)
 	 * @param User $user
 	 * @param string[] $tags Change tags to add to the log entry and page revision.
+	 *   (This doesn't check $user's permissions.)
 	 * @return Status Indicating the whether the upload succeeded.
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user, $tags = array() ) {

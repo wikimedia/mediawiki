@@ -1120,6 +1120,7 @@ class LocalFile extends File {
 	 *   current time
 	 * @param User|null $user User object or null to use $wgUser
 	 * @param string[] $tags Change tags to add to the log entry and page revision.
+	 *   (This doesn't check $user's permissions.)
 	 * @return FileRepoStatus On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
