@@ -11,7 +11,13 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 	 * @return PHPUnit_Framework_MockObject_MockObject|IDatabase
 	 */
 	private function getMockDb() {
-		return $this->getMock( IDatabase::class );
+		$mock = $this->getMock( IDatabase::class );
+		$mock->expects( $this->any() )
+			->method( 'addQuotes' )
+			->will( $this->returnCallback( function( $value ) {
+				return "'$value'";
+			} ) );
+		return $mock;
 	}
 
 	/**
@@ -79,6 +85,136 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$instanceOne = WatchedItemStore::getDefaultInstance();
 		$instanceTwo = WatchedItemStore::getDefaultInstance();
 		$this->assertSame( $instanceOne, $instanceTwo );
+	}
+
+	public function testCountWatchers() {
+		$titleValue = new TitleValue( 0, 'SomeDbKey' );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->exactly( 1 ) )
+			->method( 'selectField' )
+			->with(
+				'watchlist',
+				'COUNT(*)',
+				[
+					'wl_namespace' => $titleValue->getNamespace(),
+					'wl_title' => $titleValue->getDBkey(),
+				],
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( 7 ) );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			new HashBagOStuff( [ 'maxKeys' => 100 ] )
+		);
+
+		$this->assertEquals( 7, $store->countWatchers( $titleValue ) );
+	}
+
+	public function testCountWatchersMultiple() {
+		$titleValues = [
+			new TitleValue( 0, 'SomeDbKey' ),
+			new TitleValue( 0, 'OtherDbKey' ),
+			new TitleValue( 1, 'AnotherDbKey' ),
+		];
+
+		$mockDb = $this->getMockDb();
+
+		$dbResult = [
+			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => 0, 'watchers' => 100 ] ),
+			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => 0, 'watchers' => 300 ] ),
+			$this->getFakeRow( [ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => 1, 'watchers' => 500 ]
+			),
+		];
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->with(
+				[ [ 'SomeDbKey' => 1, 'OtherDbKey' => 1 ], [ 'AnotherDbKey' => 1 ] ],
+				$this->isType( 'string' ),
+				$this->isType( 'string' )
+				)
+			->will( $this->returnValue( 'makeWhereFrom2d return value' ) );
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_title', 'wl_namespace', 'watchers' => 'COUNT(*)' ],
+				[ 'makeWhereFrom2d return value' ],
+				$this->isType( 'string' ),
+				[
+					'GROUP BY' => [ 'wl_namespace', 'wl_title' ],
+				]
+			)
+			->will(
+				$this->returnValue( $dbResult )
+			);
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
+			60
+		);
+
+		$expected = [
+			0 => [ 'SomeDbKey' => 100, 'OtherDbKey' => 300 ],
+			1 => [ 'AnotherDbKey' => 500 ],
+		];
+		$this->assertEquals( $expected, $store->countWatchersMultiple( $titleValues ) );
+	}
+
+	public function testCountWatchersMultiple_withMinimumWatchers() {
+		$titleValues = [
+			new TitleValue( 0, 'SomeDbKey' ),
+			new TitleValue( 0, 'OtherDbKey' ),
+			new TitleValue( 1, 'AnotherDbKey' ),
+		];
+
+		$mockDb = $this->getMockDb();
+
+		$dbResult = [
+			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => 0, 'watchers' => 100 ] ),
+			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => 0, 'watchers' => 300 ] ),
+			$this->getFakeRow( [ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => 1, 'watchers' => 500 ]
+			),
+		];
+		$mockDb->expects( $this->once() )
+			->method( 'makeWhereFrom2d' )
+			->with(
+				[ [ 'SomeDbKey' => 1, 'OtherDbKey' => 1 ], [ 'AnotherDbKey' => 1 ] ],
+				$this->isType( 'string' ),
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( 'makeWhereFrom2d return value' ) );
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				'watchlist',
+				[ 'wl_title', 'wl_namespace', 'watchers' => 'COUNT(*)' ],
+				[ 'makeWhereFrom2d return value' ],
+				$this->isType( 'string' ),
+				[
+					'GROUP BY' => [ 'wl_namespace', 'wl_title' ],
+					'HAVING' => 'COUNT(*) >= \'50\'',
+				]
+			)
+			->will(
+				$this->returnValue( $dbResult )
+			);
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			new HashBagOStuff( [ 'maxKeys' => 100 ] )
+		);
+
+		$expected = [
+			0 => [ 'SomeDbKey' => 100, 'OtherDbKey' => 300 ],
+			1 => [ 'AnotherDbKey' => 500 ],
+		];
+		$this->assertEquals(
+			$expected,
+			$store->countWatchersMultiple( $titleValues, [ 'minimumWatchers' => 50 ] )
+		);
 	}
 
 	public function testDuplicateEntry_nothingToDuplicate() {
