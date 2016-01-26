@@ -12,8 +12,75 @@ class WatchedItemStore {
 	 */
 	private $loadBalancer;
 
-	public function __construct( LoadBalancer $loadBalancer ) {
+	public function __construct( LoadBalancer $loadBalancer, Config $config ) {
 		$this->loadBalancer = $loadBalancer;
+		$this->config = $config;
+	}
+
+	/**
+	 * @return self
+	 */
+	public static function getDefaultInstance() {
+		static $instance;
+		if ( !$instance ) {
+			$instance = new self( wfGetLB(), RequestContext::getMain()->getConfig() );
+		}
+		return $instance;
+	}
+
+	/**
+	 * @param TitleValue $titleValue
+	 *
+	 * @return int
+	 */
+	public function countWatchers( TitleValue $titleValue ) {
+		return (int)$this->loadBalancer->getConnection( DB_SLAVE )->selectField(
+			'watchlist',
+			'COUNT(*)',
+			array(
+				'wl_namespace' => $titleValue->getNamespace(),
+				'wl_title' => $titleValue->getDBkey(),
+			),
+			__METHOD__
+		);
+	}
+
+	/**
+	 * @param TitleValue[]|Title[] $titleValues
+	 * @param bool $unwatchedPages show unwatched pages obeying UnwatchedPageThreshold setting
+	 *
+	 * @return array multi dimensional like $return[$namespaceId][$titleString] = $watchers
+	 */
+	public function countWatchersMultiple( array $titleValues, $unwatchedPages = false ) {
+		$unwatchedPageThreshold = $this->config->get( 'UnwatchedPageThreshold' );
+
+		if ( !$unwatchedPages && !is_int( $unwatchedPageThreshold ) ) {
+			// TODO throw exception?
+			return array();
+		}
+
+		$options = array( 'GROUP BY' => array( 'wl_namespace', 'wl_title' ) );
+		if ( !$unwatchedPages ) {
+			$options['HAVING'] = "COUNT(*) >= $unwatchedPageThreshold";
+		}
+
+		$dbr = $this->loadBalancer->getConnection( DB_SLAVE );
+
+		$lb = new LinkBatch( $titleValues );
+		$res = $dbr->select(
+			'watchlist',
+			array( 'wl_title', 'wl_namespace', 'count' => 'COUNT(*)' ),
+			array( $lb->constructSet( 'wl', $dbr ) ),
+			__METHOD__,
+			$options
+		);
+
+		$watchCounts = array();
+		foreach ( $res as $row ) {
+			$watchCounts[$row->wl_namespace][$row->wl_title] = (int)$row->count;
+		}
+
+		return $watchCounts;
 	}
 
 	/**

@@ -778,28 +778,12 @@ class ApiQueryInfo extends ApiQueryBase {
 			return;
 		}
 
-		$this->watchers = array();
 		$this->showZeroWatchers = $canUnwatchedpages;
-		$db = $this->getDB();
 
-		$lb = new LinkBatch( $this->everything );
-
-		$this->resetQueryParams();
-		$this->addTables( array( 'watchlist' ) );
-		$this->addFields( array( 'wl_title', 'wl_namespace', 'count' => 'COUNT(*)' ) );
-		$this->addWhere( array(
-			$lb->constructSet( 'wl', $db )
-		) );
-		$this->addOption( 'GROUP BY', array( 'wl_namespace', 'wl_title' ) );
-		if ( !$canUnwatchedpages ) {
-			$this->addOption( 'HAVING', "COUNT(*) >= $unwatchedPageThreshold" );
-		}
-
-		$res = $this->select( __METHOD__ );
-
-		foreach ( $res as $row ) {
-			$this->watchers[$row->wl_namespace][$row->wl_title] = (int)$row->count;
-		}
+		$this->watchers = WatchedItemStore::getDefaultInstance()->countWatchersMultiple(
+			$this->everything,
+			$canUnwatchedpages
+		);
 	}
 
 	public function getCacheMode( $params ) {

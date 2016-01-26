@@ -409,10 +409,7 @@ class WatchedItem {
 	 * @deprecated since 1.27. Use WatchedItemStore::duplicateEntries
 	 */
 	public static function duplicateEntries( $oldTitle, $newTitle ) {
-		static $store;
-		if ( !$store ) {
-			$store = new WatchedItemStore( wfGetLB() );
-		}
+		$store = WatchedItemStore::getDefaultInstance();
 		$store->duplicateEntries( $oldTitle->getTitleValue(), $newTitle->getTitleValue() );
 	}
 
