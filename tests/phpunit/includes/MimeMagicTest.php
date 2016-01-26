@@ -28,6 +28,8 @@ class MimeMagicTest extends PHPUnit_Framework_TestCase {
 			array( 'txt', 'text/plain', 'text/plain' ),
 			array( 'csv', 'text/plain', 'text/csv' ),
 			array( 'tsv', 'text/plain', 'text/tab-separated-values' ),
+			array( 'js', 'text/javascript', 'application/javascript' ),
+			array( 'js', 'application/x-javascript', 'application/javascript' ),
 			array( 'json', 'text/plain', 'application/json' ),
 			array( 'foo', 'application/x-opc+zip', 'application/zip' ),
 			array( 'docx', 'application/x-opc+zip',
