@@ -32,8 +32,139 @@ class SpecialBlankpage extends UnlistedSpecialPage {
 		parent::__construct( 'Blankpage' );
 	}
 
+	private function createQQQ( $projName, $projURL ) {
+		return "{{ProjectNameDocumentation|url=$projURL|name=$projName}}";
+	}
+
 	public function execute( $par ) {
+		global $wgConf;
+
+		// *********************************************************************
+		// THIS IS NOT FOR MERGING!!!!!
+		// *********************************************************************
+		// This script is strictly for a **one-time operation** to produce a list
+		// of i18n key:value pairs for the initial list of human-readable
+		// project names across the WMF production cluster.
+		// *********************************************************************
 		$this->setHeaders();
-		$this->getOutput()->addWikiMsg( 'intentionallyblankpage' );
+
+		$outEn = array();
+		$outQqq = array();
+		$counter = 0;
+		$info = $this->getSitematrixFromAPI();
+		$languages = LanguageNames::getNames( 'en' );
+
+		// Wikis that have messages in WikimediaMessages
+		$messageMatrix = array(
+			// code => project name
+			"wiki" => wfMessage( "wikibase-otherprojects-wikipedia" )->text(),
+			"wiktionary" => "Wiktionary", // No message for this!?
+			"wikibooks" => wfMessage( "wikibase-otherprojects-wikibooks" )->text(),
+			"wikiquote" => wfMessage( "wikibase-otherprojects-wikiquote" )->text(),
+			"wikinews" => wfMessage( "wikibase-otherprojects-wikinews" )->text(),
+			"wikisource" => wfMessage( "wikibase-sitelinks-wikisource" )->text(),
+			"wikiversity" => "Wikiversity", // No message for this, either!
+			"wikivoyage" => wfMessage( "wikibase-otherprojects-wikivoyage" )->text(),
+		);
+
+		// SPECIAL WIKIS
+		$exceptions = array(
+			// code => full message
+			"commons" => wfMessage( "wikibase-otherprojects-commons" )->text(),
+			"mediawiki" => wfMessage( "wikibase-otherprojects-mediawiki" )->text(),
+			"meta" => wfMessage( "wikibase-otherprojects-meta" )->text(),
+			"wikidata" => wfMessage( "wikibase-otherprojects-wikidata" )->text(),
+			"sources" => wfMessage( "wikibase-otherprojects-wikisource" )->text(),
+			"species" => wfMessage( "wikibase-sitelinks-sitename-species" )->text(),
+			"strategy" => "Strategic Planning",
+			"ten" => "Wikipedia 10",
+			"test" => "Test Wikipedia",
+			"test2" => "Test2 Wikipedia",
+			"zero" => "Wikimedia Zero",
+			"testwikidata" => wfMessage( "wikibase-otherprojects-testwikidata" )->text(),
+			"wikimania2005" => "Wikimania 2005 Wiki",
+			"wikimania2006" => "Wikimania 2006 Wiki",
+			"wikimania2007" => "Wikimania 2007 Wiki",
+			"wikimania2008" => "Wikimania 2008 Wiki",
+			"wikimania2009" => "Wikimania 2009 Wiki",
+			"wikimania2010" => "Wikimania 2010 Wiki",
+			"wikimania2011" => "Wikimania 2011 Wiki",
+			"wikimania2012" => "Wikimania 2012 Wiki",
+			"wikimania2013" => "Wikimania 2013 Wiki",
+			"wikimania2014" => "Wikimania 2014 Wiki",
+			"wikimania2015" => "Wikimania 2015 Wiki",
+			"wikimania2016" => "Wikimania 2016 Wiki",
+			"wikimania2017" => "Wikimania 2017 Wiki",
+		);
+
+		// Go over the wikis and fill in the information
+		for ( $i = 0; $i < count( $info ); $i++ ) {
+			$langCode = $info[ $i ]['code'];
+			// Go by each site
+			$sites = $info[ $i ]['site'];
+			for ( $j = 0; $j < count( $sites ); $j++ ) {
+				// Skip projects marked as "closed"
+				// if ( !isset( $sites[ $j ]['closed'] ) ) {
+					// Wiki info
+					$dbname = $sites[ $j ]['dbname'];
+					$url = $sites[ $j ]['url'];
+
+					$sitecode = $sites[ $j ]['code'];
+					$sitename = !empty( $messageMatrix[ $sitecode ] ) ? $messageMatrix[ $sitecode ] : $sites[ $j ]['sitename'];
+
+					// Language conversion
+					$lang = $languages[ $langCode ];
+					// Output the line
+					$outEn[ "project-localized-name-" . $dbname ] =  $lang . " " . $sitename;
+					$outQqq[ "project-localized-name-" . $dbname ] =  $this->createQQQ( $lang . " " . $sitename, $url );
+
+					$counter++;
+				// }
+			}
+		}
+
+		// Go over the "special" wikis (exceptions)
+		$specials = $info[ "specials" ];
+		for ( $i = 0; $i < count( $specials ); $i++ ) {
+			// Skip projects marked as "closed"
+			// if ( !isset( $specials[ $j ]['closed'] ) ) {
+				$dbname = $specials[ $i ]['dbname'];
+				$url = $specials[ $i ]['url'];
+				$sitecode = $specials[ $i ]['code'];
+				// Go over exceptions
+				if ( array_key_exists( $sitecode, $exceptions ) ) {
+					$sitename = $exceptions[ $sitecode ];
+				} else {
+					// Output the line
+					$sitename = $specials[ $i ]['sitename'];
+				}
+
+				// Output the line
+				$outEn[ "project-localized-name-" . $dbname ] =  $sitename;
+				$outQqq[ "project-localized-name-" . $dbname ] =  $this->createQQQ( $sitename, $url );
+
+				$counter++;
+			// }
+		}
+
+		// Output
+		$this->getOutput()->addWikiText( $counter );
+		$this->getOutput()->addWikiText( '= en.json =' );
+		$this->getOutput()->addWikiText( json_encode( $outEn, JSON_PRETTY_PRINT ) );
+		$this->getOutput()->addWikiText( '= qqq.json =' );
+		$this->getOutput()->addHTML( '<pre>'.json_encode( $outQqq, JSON_PRETTY_PRINT ).'</pre>' );
+	}
+
+	private function getSitematrixFromAPI() {
+		$curl = curl_init();
+		$url = "https://en.wikipedia.org/w/api.php?action=sitematrix&format=json&formatversion=2";
+
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+		$response = json_decode( curl_exec($curl), true );
+		curl_close($curl);
+
+		return $response['sitematrix'];
 	}
 }
