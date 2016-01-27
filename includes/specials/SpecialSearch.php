@@ -568,6 +568,9 @@ class SpecialSearch extends SpecialPage {
 			wfEscapeWikiText( $title->getPrefixedText() ),
 			Message::numParam( $num )
 		);
+		if ( $messageName === 'searchmenu-new' ) {
+			$params[] = $this->getUser();
+		}
 		Hooks::run( 'SpecialSearchCreateLink', array( $title, &$params ) );
 
 		// Extensions using the hook might still return an empty $messageName
