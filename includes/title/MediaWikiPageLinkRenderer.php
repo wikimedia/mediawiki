@@ -62,12 +62,12 @@ class MediaWikiPageLinkRenderer implements PageLinkRenderer {
 	/**
 	 * Returns the (partial) URL for the given page (including any section identifier).
 	 *
-	 * @param TitleValue $page The link's target
+	 * @param ITitle $page The link's target
 	 * @param array $params Any additional URL parameters.
 	 *
 	 * @return string
 	 */
-	public function getPageUrl( TitleValue $page, $params = array() ) {
+	public function getPageUrl( ITitle $page, $params = array() ) {
 		// TODO: move the code from Linker::linkUrl here!
 		// The below is just a rough estimation!
 
@@ -93,20 +93,22 @@ class MediaWikiPageLinkRenderer implements PageLinkRenderer {
 	/**
 	 * Returns an HTML link to the given page, using the given surface text.
 	 *
-	 * @param TitleValue $page The link's target
+	 * @param ITitle $title The link's target
 	 * @param string $text The link's surface text (will be derived from $page if not given).
 	 *
 	 * @return string
 	 */
-	public function renderHtmlLink( TitleValue $page, $text = null ) {
+	public function renderHtmlLink( ITitle $title, $text = null ) {
 		if ( $text === null ) {
-			$text = $this->formatter->getFullText( $page );
+			$text = $this->formatter->getFullText( $title );
 		}
 
 		// TODO: move the logic implemented by Linker here,
 		// using $this->formatter and $this->baseUrl, and
 		// re-implement Linker to use a HtmlPageLinkRenderer.
-		$title = Title::newFromTitleValue( $page );
+		if ( !$title instanceof Title ) {
+			$title = Title::newFromITitle( $title );
+		}
 		$link = Linker::link( $title, htmlspecialchars( $text ) );
 
 		return $link;
@@ -115,12 +117,12 @@ class MediaWikiPageLinkRenderer implements PageLinkRenderer {
 	/**
 	 * Returns a wikitext link to the given page, using the given surface text.
 	 *
-	 * @param TitleValue $page The link's target
+	 * @param ITitle $page The link's target
 	 * @param string $text The link's surface text (will be derived from $page if not given).
 	 *
 	 * @return string
 	 */
-	public function renderWikitextLink( TitleValue $page, $text = null ) {
+	public function renderWikitextLink( ITitle $page, $text = null ) {
 		if ( $text === null ) {
 			$text = $this->formatter->getFullText( $page );
 		}

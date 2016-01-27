@@ -151,33 +151,33 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	/**
 	 * @see TitleFormatter::getText()
 	 *
-	 * @param TitleValue $title
+	 * @param ITitle $title
 	 *
 	 * @return string $title->getText()
 	 */
-	public function getText( TitleValue $title ) {
+	public function getText( ITitle $title ) {
 		return $this->formatTitle( false, $title->getText(), '' );
 	}
 
 	/**
 	 * @see TitleFormatter::getText()
 	 *
-	 * @param TitleValue $title
+	 * @param ITitle $title
 	 *
 	 * @return string
 	 */
-	public function getPrefixedText( TitleValue $title ) {
+	public function getPrefixedText( ITitle $title ) {
 		return $this->formatTitle( $title->getNamespace(), $title->getText(), '' );
 	}
 
 	/**
 	 * @see TitleFormatter::getText()
 	 *
-	 * @param TitleValue $title
+	 * @param ITitle $title
 	 *
 	 * @return string
 	 */
-	public function getFullText( TitleValue $title ) {
+	public function getFullText( ITitle $title ) {
 		return $this->formatTitle( $title->getNamespace(), $title->getText(), $title->getFragment() );
 	}
 

@@ -236,10 +236,21 @@ class Title implements ITitle {
 	 * @return Title
 	 */
 	public static function newFromTitleValue( TitleValue $titleValue ) {
+		return self::newFromITitle( $titleValue );
+	}
+
+	/**
+	 * Create a new Title from a ITitle interface
+	 *
+	 * @param ITitle $title Assumed to be safe.
+	 *
+	 * @return Title
+	 */
+	public static function newFromITitle( ITitle $title ) {
 		return self::makeTitle(
-			$titleValue->getNamespace(),
-			$titleValue->getText(),
-			$titleValue->getFragment() );
+			$title->getNamespace(),
+			$title->getText(),
+			$title->getFragment() );
 	}
 
 	/**
