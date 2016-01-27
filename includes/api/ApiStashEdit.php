@@ -141,6 +141,9 @@ class ApiStashEdit extends ApiBase {
 		if ( $editInfo && $editInfo->output ) {
 			$key = self::getStashKey( $page->getTitle(), $content, $user );
 
+			// Let extensions add ParserOutput metadata or warm other caches
+			Hooks::run( 'ParserOutputStashForEdit', array( $page, $content, $editInfo->output ) );
+
 			list( $stashInfo, $ttl ) = self::buildStashValue(
 				$editInfo->pstContent, $editInfo->output, $editInfo->timestamp
 			);
@@ -148,6 +151,7 @@ class ApiStashEdit extends ApiBase {
 			if ( $stashInfo ) {
 				$ok = $cache->set( $key, $stashInfo, $ttl );
 				if ( $ok ) {
+
 					$logger->debug( "Cached parser output for key '$key'." );
 					return self::ERROR_NONE;
 				} else {
