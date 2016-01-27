@@ -1748,7 +1748,7 @@
 	"deletepage": "صحیفه‌‌نی سیل",
 	"confirm": "تصدیق ائت",
 	"excontent": "کؤهنه مظمون: '$1'",
-	"excontentauthor": "ترکیب: '$1 (و'[[Special:Contributions/$2|$2]]' تاریخچه‌ده فالیتی قئید ائدیلن یئگانه ایستیفاده‌چی‌دیر)",
+	"excontentauthor": "صفحه ایچینده‌کیلر بۇ ایدی: «$1» و تکجه چالیشان «[[Special:Contributions/$2|$2]] ([[User talk:$2|دانیشیق]])» ایدی.",
 	"exbeforeblank": "سیلینمه‌دن اوولکی مزمون: '$1",
 	"delete-confirm": "سیل $1",
 	"delete-legend": "سیل",

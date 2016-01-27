@@ -18,7 +18,7 @@
 	"config-localsettings-upgrade": "Εντοπίστηκε αρχείο <code>LocalSettings.php</code>.\nΓια να αναβαθμίσετε αυτή την εγκατάσταση, παρακαλούμε να εισαγάγετε την τιμή του <code>$wgUpgradeKey</code> στο παρακάτω πλαίσιο.\nΘα το βρείτε στο <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Ένα αρχείο <code>LocalSettings.php</code> έχει εντοπιστεί.\nΓια να αναβαθμίσετε αυτή την εγκατάσταση, εκτελέστε το <code>update.php</code> αντ' αυτού.",
 	"config-localsettings-key": "Κλειδί αναβάθμισης:",
-	"config-localsettings-badkey": "Το κλειδί που δώσατε είναι εσφαλμένο.",
+	"config-localsettings-badkey": "Το κλειδί αναβάθμισης που δώσατε είναι εσφαλμένο.",
 	"config-upgrade-key-missing": "Έχει εντοπιστεί μια υπάρχουσα εγκατάσταση του MediaWiki.\nΓια να αναβαθμίσετε αυτήν την εγκατάσταση, παρακαλούμε να βάλετε την ακόλουθη γραμμή στο κάτω μέρος του <code>LocalSettings.php</code> σας:\n\n$1",
 	"config-localsettings-incomplete": "Το υπάρχον <code>LocalSettings.php</code> φαίνεται να είναι ελλιπές.\nΤο $1 μεταβλητή δεν έχει οριστεί.\nΠαρακαλούμε να αλλάξετε  το <code>LocalSettings.php</code> έτσι ώστε αυτή η μεταβλητή έχει οριστεί, και κάντε κλικ στο \"{{int:Config-continue}}\".",
 	"config-localsettings-connection-error": "Ένα σφάλμα παρουσιάστηκε κατά τη σύνδεση με τη βάση δεδομένων και με τη χρήση των ρυθμίσεων που ορίστηκαν στο <code>LocalSettings.php</code>. Παρακαλούμε διορθώστε αυτές τις ρυθμίσεις και δοκιμάστε ξανά.\n\n$1",

@@ -206,7 +206,7 @@
 	"disclaimers": "Diskliema",
 	"disclaimerpage": "Project: Jinaral diskliema",
 	"edithelp": "Editin elp",
-	"mainpage": "Mien piej",
+	"mainpage": "Mien Piej",
 	"mainpage-description": "Mien piej",
 	"policy-url": "Project:Palisi",
 	"portal": "Komiuniti puotal",
@@ -253,6 +253,7 @@
 	"nstab-template": "Templit",
 	"nstab-help": "Elp piej",
 	"nstab-category": "Kiatigari",
+	"mainpage-nstab": "Mien piej",
 	"nosuchaction": "No soch akshan",
 	"nosuchactiontext": "Di akshan spesifai bai di URL invalid.\nYu maita mistaip di URL, ar fala a inkarek lingk.\nDis maita indikiet alzwel wahn bog ina di saafwier yuuz bai {{SITENAME}}.",
 	"nosuchspecialpage": "No soch peshal piej",
@@ -359,6 +360,8 @@
 	"login-throttled": "Yu mek tomoch riisant lagiin atemp.\nBegyu wiet likl bifuo yu chrai agen.",
 	"loginlanguagelabel": "Langwij: $1",
 	"suspicious-userlogout": "Yu rikwes fi lag out dinai bikaa iluk laik se isen bai a brok brouza ar kiashin praxi.",
+	"pt-login": "Lagiin‎",
+	"pt-createaccount": "Kriet akount‎",
 	"resetpass_announce": "Yu lag iin wid a tempareri e-miel kuod.\nFi finish lag iin, yu mos set a nyuu paaswod yaso:",
 	"resetpass_header": "Chienj akount paaswod",
 	"oldpassword": "Uol paaswod:",
@@ -727,5 +730,6 @@
 	"watchlisttools-view": "Vyuu rilivant chienjdem",
 	"watchlisttools-edit": "Vyuu ahn edit wachlis",
 	"watchlisttools-raw": "Edit raa wachlis",
-	"specialpages": "Peshal piej"
+	"specialpages": "Peshal piej",
+	"searchsuggest-search": "Saach‎"
 }

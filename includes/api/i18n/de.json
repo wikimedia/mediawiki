@@ -716,6 +716,7 @@
 	"apihelp-query+links-param-dir": "Die Auflistungsrichtung.",
 	"apihelp-query+links-example-simple": "Links von der <kbd>Hauptseite</kbd> abrufen",
 	"apihelp-query+linkshere-description": "Alle Seiten finden, die auf die angegebenen Seiten verlinken.",
+	"apihelp-query+linkshere-paramvalue-prop-pageid": "Die Seitenkennung jeder Seite.",
 	"apihelp-query+logevents-description": "Ereignisse von den Logbüchern abrufen.",
 	"apihelp-query+logevents-example-simple": "Listet die letzten Logbuch-Ereignisse auf.",
 	"apihelp-query+pageswithprop-paramvalue-prop-ids": "Fügt die Seitenkennung hinzu.",
