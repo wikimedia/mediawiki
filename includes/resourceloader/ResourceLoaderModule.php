@@ -180,6 +180,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	/**
 	 * @since 1.27
 	 * @param LoggerInterface $logger
+	 * @return null
 	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
@@ -410,8 +411,8 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * This is used to retrieve data in batches. See ResourceLoader::preloadModuleInfo().
 	 * To save the data, use saveFileDependencies().
 	 *
-	 * @param string $skin Skin name
-	 * @param array $deps Array of file names
+	 * @param ResourceLoaderContext $context
+	 * @param string[] $files Array of file names
 	 */
 	public function setFileDependencies( ResourceLoaderContext $context, $files ) {
 		$vary = $context->getSkin() . '|' . $context->getLanguage();
