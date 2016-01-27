@@ -383,33 +383,49 @@ hello
 		$tests[] = array( # 0: plain conflict
 			"Elmo", # base edit user
 			"one\n\ntwo\n\nthree\n",
-			array( # adam's edit
-				'wpStarttime' => 1,
-				'wpTextbox1' => "ONE\n\ntwo\n\nthree\n",
+			array(
+				array(
+					'user' => 'Adam',
+					'edit' => array(
+						'wpStarttime' => 1,
+						'wpTextbox1' => "ONE\n\ntwo\n\nthree\n",
+					),
+				),
+				array(
+					'user' => 'Berta',
+					'edit' => array(
+						'wpStarttime' => 2,
+						'wpTextbox1' => "(one)\n\ntwo\n\nthree\n",
+					),
+					'code' => EditPage::AS_CONFLICT_DETECTED,
+					'text' => "ONE\n\ntwo\n\nthree\n",
+					'message' => 'expected edit conflict',
+				),
 			),
-			array( # berta's edit
-				'wpStarttime' => 2,
-				'wpTextbox1' => "(one)\n\ntwo\n\nthree\n",
-			),
-			EditPage::AS_CONFLICT_DETECTED, # expected code
-			"ONE\n\ntwo\n\nthree\n", # expected text
-			'expected edit conflict', # message
 		);
 
 		$tests[] = array( # 1: successful merge
 			"Elmo", # base edit user
 			"one\n\ntwo\n\nthree\n",
-			array( # adam's edit
-				'wpStarttime' => 1,
-				'wpTextbox1' => "ONE\n\ntwo\n\nthree\n",
+			array(
+				array(
+					'user' => 'Adam',
+					'edit' => array(
+						'wpStarttime' => 1,
+						'wpTextbox1' => "ONE\n\ntwo\n\nthree\n",
+					),
+				),
+				array(
+					'user' => 'Berta',
+					'edit' => array(
+						'wpStarttime' => 2,
+						'wpTextbox1' => "one\n\ntwo\n\nTHREE\n",
+					),
+					'code' => EditPage::AS_SUCCESS_UPDATE,
+					'text' => "ONE\n\ntwo\n\nTHREE\n",
+					'message' => 'expected automatic merge',
+				),
 			),
-			array( # berta's edit
-				'wpStarttime' => 2,
-				'wpTextbox1' => "one\n\ntwo\n\nTHREE\n",
-			),
-			EditPage::AS_SUCCESS_UPDATE, # expected code
-			"ONE\n\ntwo\n\nTHREE\n", # expected text
-			'expected automatic merge', # message
 		);
 
 		$text = "Intro\n\n";
@@ -427,19 +443,28 @@ hello
 		$tests[] = array( # 2: merge in section
 			"Elmo", # base edit user
 			$text,
-			array( # adam's edit
-				'wpStarttime' => 1,
-				'wpTextbox1' => str_replace( 'one', 'ONE', $section ),
-				'wpSection' => '1'
+			array(
+				array(
+					'user' => 'Adam',
+					'edit' => array(
+						'wpStarttime' => 1,
+						'wpTextbox1' => str_replace( 'one', 'ONE', $section ),
+						'wpSection' => '1'
+					),
+					'message' => "expected successfull update",
+				),
+				array(
+					'user' => 'Berta',
+					'edit' => array(
+						'wpStarttime' => 2,
+						'wpTextbox1' => str_replace( 'three', 'THREE', $section ),
+						'wpSection' => '1'
+					),
+					'code' => EditPage::AS_SUCCESS_UPDATE,
+					'text' => $expected,
+					'message' => 'expected automatic section merge',
+				),
 			),
-			array( # berta's edit
-				'wpStarttime' => 2,
-				'wpTextbox1' => str_replace( 'three', 'THREE', $section ),
-				'wpSection' => '1'
-			),
-			EditPage::AS_SUCCESS_UPDATE, # expected code
-			$expected, # expected text
-			'expected automatic section merge', # message
 		);
 
 		// see whether it makes a difference who did the base edit
@@ -460,9 +485,7 @@ hello
 	 * @dataProvider provideAutoMerge
 	 * @covers EditPage
 	 */
-	public function testAutoMerge( $baseUser, $text, $adamsEdit, $bertasEdit,
-		$expectedCode, $expectedText, $message = null
-	) {
+	public function testAutoMerge( $baseUser, $text, $edits ) {
 		$this->checkHasDiff3();
 
 		// create page
@@ -483,43 +506,40 @@ hello
 
 		$this->forceRevisionDate( $page, '20120101000000' );
 
-		$edittime = $page->getTimestamp();
+		$editTime = $page->getTimestamp();
+		$timeBase = wfTimestampNow();
 
-		// start timestamps for conflict detection
-		if ( !isset( $adamsEdit['wpStarttime'] ) ) {
-			$adamsEdit['wpStarttime'] = 1;
+		foreach ( $edits as $key => $editProvider ) {
+			$edit = $editProvider['edit'];
+
+			// start timestamps for conflict detection
+			if ( !isset( $edit['wpStarttime'] ) ) {
+				$edit['wpStarttime'] = 1;
+			}
+			$startTime = wfTimestamp(
+				TS_MW,
+				(int)wfTimestamp( TS_UNIX, $timeBase ) + (int)$edit['wpStarttime']
+			);
+			$edit['wpStarttime'] = $startTime;
+			$edit['wpSummary'] = $editProvider['user'] . '\'s edit';
+			$edit['wpEdittime'] = $editTime;
+
+			$expectedCode = EditPage::AS_SUCCESS_UPDATE;
+			if ( array_key_exists( 'code', $editProvider ) ) {
+				$expectedCode = $editProvider['code'];
+			}
+			$expectedText = null;
+			if ( array_key_exists( 'text', $editProvider ) ) {
+				$expectedText = $editProvider['text'];
+			}
+			$message = "expected successfull update";
+			if ( array_key_exists( 'message', $editProvider ) ) {
+				$message = $editProvider['message'];
+			}
+
+			$this->assertEdit( 'EditPageTest_testAutoMerge', null, $editProvider['user'], $edit,
+				$expectedCode, $expectedText, $message );
 		}
-
-		if ( !isset( $bertasEdit['wpStarttime'] ) ) {
-			$bertasEdit['wpStarttime'] = 2;
-		}
-
-		$starttime = wfTimestampNow();
-		$adamsTime = wfTimestamp(
-			TS_MW,
-			(int)wfTimestamp( TS_UNIX, $starttime ) + (int)$adamsEdit['wpStarttime']
-		);
-		$bertasTime = wfTimestamp(
-			TS_MW,
-			(int)wfTimestamp( TS_UNIX, $starttime ) + (int)$bertasEdit['wpStarttime']
-		);
-
-		$adamsEdit['wpStarttime'] = $adamsTime;
-		$bertasEdit['wpStarttime'] = $bertasTime;
-
-		$adamsEdit['wpSummary'] = 'Adam\'s edit';
-		$bertasEdit['wpSummary'] = 'Bertas\'s edit';
-
-		$adamsEdit['wpEdittime'] = $edittime;
-		$bertasEdit['wpEdittime'] = $edittime;
-
-		// first edit
-		$this->assertEdit( 'EditPageTest_testAutoMerge', null, 'Adam', $adamsEdit,
-			EditPage::AS_SUCCESS_UPDATE, null, "expected successfull update" );
-
-		// second edit
-		$this->assertEdit( 'EditPageTest_testAutoMerge', null, 'Berta', $bertasEdit,
-			$expectedCode, $expectedText, $message );
 	}
 
 	/**
