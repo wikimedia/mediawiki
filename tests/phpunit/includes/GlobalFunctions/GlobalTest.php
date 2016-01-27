@@ -469,7 +469,7 @@ class GlobalTest extends MediaWikiTestCase {
 	 * @covers ::wfMerge
 	 */
 	public function testMerge( $old, $mine, $yours, $expectedMergeResult, $expectedText ) {
-		$this->checkHasDiff3();
+		$this->markTestSkippedIfNoDiff3();
 
 		$mergedText = null;
 		$isMerged = wfMerge( $old, $mine, $yours, $mergedText );
