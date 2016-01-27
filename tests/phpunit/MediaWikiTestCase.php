@@ -1026,7 +1026,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @since 1.21
 	 */
-	protected function checkHasDiff3() {
+	protected function markTestSkippedIfNoDiff3() {
 		global $wgDiff3;
 
 		# This check may also protect against code injection in

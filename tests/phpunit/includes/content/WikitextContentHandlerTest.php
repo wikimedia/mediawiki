@@ -157,7 +157,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	 * @covers WikitextContentHandler::merge3
 	 */
 	public function testMerge3( $old, $mine, $yours, $expected ) {
-		$this->checkHasDiff3();
+		$this->markTestSkippedIfNoDiff3();
 
 		// test merge
 		$oldContent = new WikitextContent( $old );
