@@ -14,6 +14,7 @@
 		 */
 		parse: function ( wikitext ) {
 			var apiPromise = this.get( {
+				formatversion: 2,
 				action: 'parse',
 				contentmodel: 'wikitext',
 				text: wikitext
@@ -21,7 +22,7 @@
 
 			return apiPromise
 				.then( function ( data ) {
-					return data.parse.text[ '*' ];
+					return data.parse.text;
 				} )
 				.promise( { abort: apiPromise.abort } );
 		}
