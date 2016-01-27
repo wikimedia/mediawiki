@@ -435,7 +435,8 @@ hello
 		$text .= "four\n\nfive\n\nsix\n\n";
 
 		// extract the first section.
-		$section = preg_replace( '/.*(== first section ==.*)== second section ==.*/sm', '$1', $text );
+		$section1 = preg_replace( '/.*(== first section ==.*)== second section ==.*/sm', '$1', $text );
+		$section2 = preg_replace( '/.*== first section ==.*(== second section ==.*)/sm', '$1', $text );
 
 		// generate expected text after merge
 		$expected = str_replace( 'one', 'ONE', str_replace( 'three', 'THREE', $text ) );
@@ -448,7 +449,7 @@ hello
 					'user' => 'Adam',
 					'edit' => array(
 						'wpStarttime' => 1,
-						'wpTextbox1' => str_replace( 'one', 'ONE', $section ),
+						'wpTextbox1' => str_replace( 'one', 'ONE', $section1 ),
 						'wpSection' => '1'
 					),
 					'message' => "expected successfull update",
@@ -457,12 +458,77 @@ hello
 					'user' => 'Berta',
 					'edit' => array(
 						'wpStarttime' => 2,
-						'wpTextbox1' => str_replace( 'three', 'THREE', $section ),
+						'wpTextbox1' => str_replace( 'three', 'THREE', $section1 ),
 						'wpSection' => '1'
 					),
 					'code' => EditPage::AS_SUCCESS_UPDATE,
 					'text' => $expected,
 					'message' => 'expected automatic section merge',
+				),
+			),
+		);
+
+		$individualTests = array();
+		$individualTests[] = array( # 3 involved persons. The start of what is described in T100912
+			"Elmo", # base edit user
+			$text,
+			array(
+				array(
+					'user' => 'BotC',
+					'forceRevisionDate' => '201501005000000',
+					'edit' => array(
+						'wpStarttime' => 30,
+						'wpEdittime' => '20120101000000', # Time of the initial edit
+						'wpTextbox1' => str_replace( 'one', 'ONE', str_replace( 'six', 'SIX', $text ) ),
+					),
+				),
+				array(
+					'user' => 'UserA',
+					'edit' => array(
+						'wpStarttime' => 10,
+						'wpEdittime' => '20120101000000', # Time of the initial edit
+						'wpTextbox1' => str_replace( 'one', '1One1', $section1 ),
+						'wpSection' => '1'
+					),
+					'code' => EditPage::AS_CONFLICT_DETECTED,
+					'text' => str_replace( 'one', 'ONE', str_replace( 'six', 'SIX', $text ) ),
+					'message' => 'Expected edit conflict, UserA',
+				),
+				array(
+					'user' => 'UserB',
+					'edit' => array(
+						'wpStarttime' => 20,
+						'wpEdittime' => '20120101000000', # Time of the initial edit
+						'wpTextbox1' => str_replace( 'six', '6Six6', $section2 ),
+						'wpSection' => '2'
+					),
+					'code' => EditPage::AS_CONFLICT_DETECTED,
+					'text' => str_replace( 'one', 'ONE', str_replace( 'six', 'SIX', $text ) ),
+					'message' => 'Expected edit conflict, UserB',
+				),
+				array(
+					'user' => 'UserA',
+					'forceRevisionDate' => '201501006000000',
+					'edit' => array(
+						'wpStarttime' => 40,
+						'wpEdittime' => '201501005000000', # Time of edit by BotC
+						'wpTextbox1' => str_replace( 'one', '1One1', str_replace( 'six', 'SIX', $text ) ),
+					),
+					'code' => EditPage::AS_SUCCESS_UPDATE,
+					'text' => str_replace( 'one', '1One1', str_replace( 'six', 'SIX', $text ) ),
+					'message' => 'Expected no conflict, UserA',
+				),
+				array(
+					'user' => 'UserB',
+					'forceRevisionDate' => '201501007000000',
+					'edit' => array(
+						'wpStarttime' => 50,
+						'wpEdittime' => '201501005000000', # Time of edit by BotC
+						'wpTextbox1' => str_replace( 'one', '1One1', str_replace( 'six', '6Six6', $text ) ),
+					),
+					'code' => EditPage::AS_SUCCESS_UPDATE,
+					'text' => str_replace( 'one', '1One1', str_replace( 'six', '6Six6', $text ) ),
+					'message' => 'Expected no conflict, UserB',
 				),
 			),
 		);
@@ -478,7 +544,7 @@ hello
 			return $test;
 		}, $tests );
 
-		return array_merge( $tests, $testsWithAdam, $testsWithBerta );
+		return array_merge( $tests, $testsWithAdam, $testsWithBerta, $individualTests );
 	}
 
 	/**
@@ -522,7 +588,9 @@ hello
 			);
 			$edit['wpStarttime'] = $startTime;
 			$edit['wpSummary'] = $editProvider['user'] . '\'s edit';
-			$edit['wpEdittime'] = $editTime;
+			if ( !isset( $edit['wpEdittime'] ) ) {
+				$edit['wpEdittime'] = $editTime;
+			}
 
 			$expectedCode = EditPage::AS_SUCCESS_UPDATE;
 			if ( array_key_exists( 'code', $editProvider ) ) {
@@ -539,6 +607,10 @@ hello
 
 			$this->assertEdit( 'EditPageTest_testAutoMerge', null, $editProvider['user'], $edit,
 				$expectedCode, $expectedText, $message );
+
+			if ( array_key_exists( 'forceRevisionDate', $editProvider ) ) {
+				$this->forceRevisionDate( $page, $editProvider['forceRevisionDate'] );
+			}
 		}
 	}
 
