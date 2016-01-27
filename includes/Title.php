@@ -236,10 +236,21 @@ class Title implements LinkTarget {
 	 * @return Title
 	 */
 	public static function newFromTitleValue( TitleValue $titleValue ) {
+		return self::newFromLinkTarget( $titleValue );
+	}
+
+	/**
+	 * Create a new Title from a LinkTarget
+	 *
+	 * @param LinkTarget $linkTarget Assumed to be safe.
+	 *
+	 * @return Title
+	 */
+	public static function newFromLinkTarget( LinkTarget $linkTarget ) {
 		return self::makeTitle(
-			$titleValue->getNamespace(),
-			$titleValue->getText(),
-			$titleValue->getFragment() );
+			$linkTarget->getNamespace(),
+			$linkTarget->getText(),
+			$linkTarget->getFragment() );
 	}
 
 	/**
