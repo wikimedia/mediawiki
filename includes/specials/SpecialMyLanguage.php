@@ -89,11 +89,29 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 			$base = $page->getRedirectTarget();
 		}
 
-		$uiCode = $this->getLanguage()->getCode();
-		$proposed = $base->getSubpage( $uiCode );
-		if ( $uiCode !== $this->getConfig()->get( 'LanguageCode' ) && $proposed && $proposed->exists() ) {
-			return $proposed;
-		} elseif ( $provided && $provided->exists() ) {
+		$uiLang = $this->getLanguage();
+		$wikiLangCode = $this->getConfig()->get( 'LanguageCode' );
+		while ( $uiLang !== null && $uiLang->getCode() !== $wikiLangCode ) {
+			$proposed = $base->getSubpage( $uiLang->getCode() );
+			if ( $proposed && $proposed->exists() ) {
+				return $proposed;
+			}
+
+			// Recurse up the language inheritance chain
+			$uiLang = $uiLang->getParentLanguage();
+		}
+
+		$fallbacks = Language::getFallbacksIncludingSiteLanguage(
+			$this->getLanguage()->getCode() );
+		foreach ( $fallbacks as $fallback ) {
+			$proposed = $base->getSubpage( $fallback );
+			if ( $proposed && $proposed->exists() ) {
+				return $proposed;
+			}
+		}
+
+		if ( $provided && $provided->exists() ) {
+			// Explicit language code given and the page exists
 			return $provided;
 		} else {
 			return $base;
