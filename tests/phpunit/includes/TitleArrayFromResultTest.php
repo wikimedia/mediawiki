@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Adam Shorland
+ * @author Addshore
  * @covers TitleArrayFromResult
  */
 class TitleArrayFromResultTest extends PHPUnit_Framework_TestCase {

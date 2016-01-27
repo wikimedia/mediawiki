@@ -19,7 +19,7 @@
  *
  * @file
  * @author Kai Nissen
- * @author Adam Shorland
+ * @author Addshore
  * @since 1.27
  */
 

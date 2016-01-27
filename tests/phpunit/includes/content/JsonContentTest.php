@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Adam Shorland
+ * @author Addshore
  * @covers JsonContent
  */
 class JsonContentTest extends MediaWikiLangTestCase {

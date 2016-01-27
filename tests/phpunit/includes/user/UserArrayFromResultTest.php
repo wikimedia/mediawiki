@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Adam Shorland
+ * @author Addshore
  * @covers UserArrayFromResult
  */
 class UserArrayFromResultTest extends MediaWikiTestCase {

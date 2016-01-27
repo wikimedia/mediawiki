@@ -2,7 +2,7 @@
 
 /**
  * @covers ReadOnlyError
- * @author Adam Shorland
+ * @author Addshore
  */
 class ReadOnlyErrorTest extends MediaWikiTestCase {
 

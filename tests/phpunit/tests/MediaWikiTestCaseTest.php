@@ -2,7 +2,7 @@
 
 /**
  * @covers MediaWikiTestCase
- * @author Adam Shorland
+ * @author Addshore
  */
 class MediaWikiTestCaseTest extends MediaWikiTestCase {
 
