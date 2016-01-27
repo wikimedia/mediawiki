@@ -2013,7 +2013,7 @@ class Linker {
 	 * directly paste it in as the link (escaping needs to be done manually).
 	 * Finally, if $more is a Message, call toString().
 	 *
-	 * @param array $templates Array of templates from Article::getUsedTemplate or similar
+	 * @param Title[] $templates Array of templates
 	 * @param bool $preview Whether this is for a preview
 	 * @param bool $section Whether this is for a section edit
 	 * @param Title|Message|string|null $more An escaped link for "More..." of the templates
