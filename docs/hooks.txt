@@ -2345,6 +2345,11 @@ run. Use when page save hooks require the presence of custom tables to ensure
 that tests continue to run properly.
 &$tables: array of table names
 
+'ParserOutputStashForEdit': Called when an edit stash parse finishes, before the output is cached.
+$page: the WikiPage of the candidate edit
+$content: the Content object of the candidate edit
+$output: the ParserOutput result of the candidate edit
+
 'PasswordPoliciesForUser': Alter the effective password policy for a user.
 $user: User object whose policy you are modifying
 &$effectivePolicy: Array of policy statements that apply to this user
