@@ -86,7 +86,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * @param string $msg
 	 */
 	protected function assertEditedTextEquals( $expected, $actual, $msg = '' ) {
-		return $this->assertEquals( rtrim( $expected ), rtrim( $actual ), $msg );
+		$this->assertEquals( rtrim( $expected ), rtrim( $actual ), $msg );
 	}
 
 	/**
