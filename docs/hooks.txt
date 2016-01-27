@@ -2975,6 +2975,15 @@ Special:Upload.
 $wgVersion: Current $wgVersion for you to use
 &$versionUrl: Raw url to link to (eg: release notes)
 
+'SpecialVersion::getSvnUrlLinkMap': Called when Special:Version tries to get a View VC
+url for a svn repo-url the first time. Can be used to add a map of svn repo-urls to svn
+View VC urls (e.g.
+array(
+	'svn+ssh://svn.wikimedia.org/svnroot/mediawiki' =>
+		'http://svn.wikimedia.org/viewvc/mediawiki' )
+).
+&$urls array Already added URLs.
+
 'SpecialWatchlistFilters': DEPRECATED! Use ChangesListSpecialPageFilters
 instead.
 Called after building form options at Watchlist.

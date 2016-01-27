@@ -38,11 +38,11 @@ class SpecialVersion extends SpecialPage {
 
 	protected static $extensionTypes = false;
 
-	protected static $viewvcUrls = array(
-		'svn+ssh://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
-		'http://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
-		'https://svn.wikimedia.org/svnroot/mediawiki' => 'https://svn.wikimedia.org/viewvc/mediawiki',
-	);
+	/**
+	 * @var array|boolean Holds an array of SVN url to webviewer links mapping, or false
+	 *  if the hook SpecialVersion::getSvnUrlLinkMap wasn't called so far.
+	 */
+	protected $viewvcUrls = false;
 
 	public function __construct() {
 		parent::__construct( 'Version' );
@@ -1222,19 +1222,41 @@ class SpecialVersion extends SpecialPage {
 			'directory-rev' => intval( trim( $lines[10] ) )
 		);
 
-		if ( isset( self::$viewvcUrls[$info['repo-url']] ) ) {
+		// try to get a viewvc url
+		$this->transformLinkableSvnUrl( $info );
+
+		return $info;
+	}
+
+	/**
+	 * Tries to transform the svn url (given in the repo-url part of the given info array)
+	 * into an url, where Special:Version can link to, which will be put into the
+	 * viewvc-url part of the given info array. Otherwise this does nothing.
+	 *
+	 * @param array &$info The array that holds information about the svn repo
+	 * @return boolean True, if a viewvc-url was set, false otherwise
+	 */
+	protected function transformLinkableSvnUrl( &$info ) {
+		if ( $this->viewvcUrls === false ) {
+			$urls = array();
+			Hooks::run( 'SpecialVersion::getSvnUrlLinkMap', array( $urls ) );
+			$this->viewvcUrls = $urls;
+		}
+		if ( isset( $this->viewvcUrls[$info['repo-url']] ) ) {
 			$viewvc = str_replace(
 				$info['repo-url'],
-				self::$viewvcUrls[$info['repo-url']],
+				$this->$viewvcUrls[$info['repo-url']],
 				$info['url']
 			);
 
 			$viewvc .= '/?pathrev=';
 			$viewvc .= urlencode( $info['checkout-rev'] );
 			$info['viewvc-url'] = $viewvc;
+
+			return true;
 		}
 
-		return $info;
+		return false;
 	}
 
 	/**
