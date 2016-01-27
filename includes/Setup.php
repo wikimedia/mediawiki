@@ -36,6 +36,7 @@ $fname = 'Setup.php';
 $ps_setup = Profiler::instance()->scopedProfileIn( $fname );
 
 // If any extensions are still queued, force load them
+//phpinfo();
 ExtensionRegistry::getInstance()->loadFromQueue();
 
 // Check to see if we are at the file scope
@@ -505,6 +506,7 @@ if ( !$wgSessionsInObjectCache && !$wgSessionsInMemcached ) {
 	}
 	$cacheType = get_class( ObjectCache::getInstance( $wgSessionCacheType ) );
 	wfDebugLog(
+		'caches',
 		"Session data will be stored in \"$cacheType\" cache with " .
 			"expiry $wgObjectCacheSessionExpiry seconds"
 	);
