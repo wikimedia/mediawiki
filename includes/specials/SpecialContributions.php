@@ -1095,16 +1095,13 @@ class ContribsPager extends ReverseChronologicalPager {
 				$userlink = '';
 			}
 
+			$flags = array();
 			if ( $rev->getParentId() === 0 ) {
-				$nflag = ChangesList::flag( 'newpage' );
-			} else {
-				$nflag = '';
+				$flags[] = ChangesList::flag( 'newpage' );
 			}
 
 			if ( $rev->isMinor() ) {
-				$mflag = ChangesList::flag( 'minor' );
-			} else {
-				$mflag = '';
+				$flags[] = ChangesList::flag( 'minor' );
 			}
 
 			$del = Linker::getRevDeleteLink( $user, $rev, $page );
@@ -1115,15 +1112,6 @@ class ContribsPager extends ReverseChronologicalPager {
 			$diffHistLinks = $this->msg( 'parentheses' )
 				->rawParams( $difftext . $this->messages['pipe-separator'] . $histlink )
 				->escaped();
-			$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$nflag}{$mflag} ";
-			$ret .= "{$link}{$userlink} {$comment} {$topmarktext}";
-
-			# Denote if username is redacted for this edit
-			if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
-				$ret .= " <strong>" .
-					$this->msg( 'rev-deleted-user-contribs' )->escaped() .
-					"</strong>";
-			}
 
 			# Tags, if any.
 			list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow(
@@ -1131,7 +1119,27 @@ class ContribsPager extends ReverseChronologicalPager {
 				'contributions'
 			);
 			$classes = array_merge( $classes, $newClasses );
-			$ret .= " $tagSummary";
+
+			$templateParams = array(
+				'articleLink' => $link,
+				'charDifference' => $chardiff,
+				'classes' => $classes,
+				'diffHistLinks' => $diffHistLinks,
+				'flags' => implode( '', $flags ),
+				'logText' => $comment,
+				'revDeleteLink' => $del,
+				'rev-deleted-user-contribs' => $revDeletedMsg,
+				'tagSummary' => $tagSummary,
+				'timestamp' => $d,
+				'topmarktext' => $topmarktext,
+				'userlink' => $userlink,
+			);
+
+			# Denote if username is redacted for this edit
+			if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
+				$templateParams['rev-deleted-user-contribs'] =
+					$this->msg( 'rev-deleted-user-contribs' )->escaped();
+			}
 		}
 
 		// Let extensions add data
