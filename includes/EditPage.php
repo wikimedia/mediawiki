@@ -1405,7 +1405,7 @@ class EditPage {
 	 * @return bool False, if output is done, true if rest of the form should be displayed
 	 */
 	private function handleStatus( Status $status, $resultDetails ) {
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgRequest;
 
 		/**
 		 * @todo FIXME: once the interface for internalAttemptSave() is made
@@ -1419,6 +1419,8 @@ class EditPage {
 				$this->setPostEditCookie( $status->value );
 			}
 		}
+
+		$extraQueryRedirect = $wgRequest->getVal( 'extraQueryRedirect' );
 
 		switch ( $status->value ) {
 			case self::AS_HOOK_ERROR_EXPECTED:
@@ -1443,6 +1445,7 @@ class EditPage {
 
 			case self::AS_SUCCESS_NEW_ARTICLE:
 				$query = $resultDetails['redirect'] ? 'redirect=no' : '';
+				$query = ( $query == '' ? '' : $query . '&' ) . $extraQueryRedirect;
 				$anchor = isset( $resultDetails['sectionanchor'] ) ? $resultDetails['sectionanchor'] : '';
 				$wgOut->redirect( $this->mTitle->getFullURL( $query ) . $anchor );
 				return false;
@@ -1464,6 +1467,9 @@ class EditPage {
 						$extraQuery = 'redirect=no&' . $extraQuery;
 					}
 				}
+				$extraQuery = ( $extraQuery == '' ? '' : $extraQuery . '&' )
+					. $extraQueryRedirect;
+
 				$wgOut->redirect( $this->mTitle->getFullURL( $extraQuery ) . $sectionanchor );
 				return false;
 
