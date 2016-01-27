@@ -3457,6 +3457,9 @@ HTML
 		global $wgOut;
 
 		if ( Hooks::run( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
+			$stats = $wgOut->getContext()->getStats();
+			$stats->increment( 'edit.failures.conflict' );
+
 			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
 
 			$content1 = $this->toEditContent( $this->textbox1 );
