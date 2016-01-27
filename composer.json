@@ -23,7 +23,7 @@
 		"mediawiki/at-ease": "1.1.0",
 		"oojs/oojs-ui": "0.15.2",
 		"oyejorge/less.php": "1.7.0.9",
-		"php": ">=5.3.3",
+		"php": ">=5.5.9",
 		"psr/log": "1.0.0",
 		"wikimedia/assert": "0.2.2",
 		"wikimedia/base-convert": "1.0.1",
