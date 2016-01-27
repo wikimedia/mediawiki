@@ -6,6 +6,17 @@
  */
 ( function ( $, mw ) {
 
+	var interwikiPrefixes = [],
+		interwikiPrefixesPromise = new mw.Api().get( {
+			action: 'query',
+			meta: 'siteinfo',
+			siprop: 'interwikimap'
+		} ).done( function ( data ) {
+			$.each( data.query.interwikimap, function ( index, interwiki ) {
+				interwikiPrefixes.push( interwiki.prefix );
+			} );
+		} );
+
 	/**
 	 * Mixin for title widgets
 	 *
@@ -28,8 +39,6 @@
 	 * @cfg {Object} [cache] Result cache which implements a 'set' method, taking keyed values as an argument
 	 */
 	mw.widgets.TitleWidget = function MwWidgetsTitleWidget( config ) {
-		var widget = this;
-
 		// Config initialization
 		config = $.extend( {
 			maxLength: 255,
@@ -51,16 +60,6 @@
 
 		// Initialization
 		this.$element.addClass( 'mw-widget-titleWidget' );
-		this.interwikiPrefixes = [];
-		this.interwikiPrefixesPromise = new mw.Api().get( {
-			action: 'query',
-			meta: 'siteinfo',
-			siprop: 'interwikimap'
-		} ).done( function ( data ) {
-			$.each( data.query.interwikimap, function ( index, interwiki ) {
-				widget.interwikiPrefixes.push( interwiki.prefix );
-			} );
-		} );
 	};
 
 	/* Setup */
@@ -108,12 +107,12 @@
 			} };
 
 		if ( mw.Title.newFromText( query ) ) {
-			return this.interwikiPrefixesPromise.then( function () {
+			return interwikiPrefixesPromise.then( function () {
 				var params,
 					interwiki = query.substring( 0, query.indexOf( ':' ) );
 				if (
 					interwiki && interwiki !== '' &&
-					widget.interwikiPrefixes.indexOf( interwiki ) !== -1
+					interwikiPrefixes.indexOf( interwiki ) !== -1
 				) {
 					return $.Deferred().resolve( { query: {
 						pages: [ {
