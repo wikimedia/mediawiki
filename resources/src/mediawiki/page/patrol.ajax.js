@@ -31,6 +31,7 @@
 			apiRequest = new mw.Api();
 
 			apiRequest.postWithToken( 'patrol', {
+				formatversion: 2,
 				action: 'patrol',
 				rcid: rcid
 			} )
