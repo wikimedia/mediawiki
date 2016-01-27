@@ -504,7 +504,7 @@ if ( !$wgSessionsInObjectCache && !$wgSessionsInMemcached ) {
 		wfDeprecated( '$wgSessionsHandler', '1.27' );
 	}
 	$cacheType = get_class( ObjectCache::getInstance( $wgSessionCacheType ) );
-	wfDebugLog(
+	var_dump(
 		"Session data will be stored in \"$cacheType\" cache with " .
 			"expiry $wgObjectCacheSessionExpiry seconds"
 	);
