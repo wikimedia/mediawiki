@@ -9,6 +9,7 @@ class SpecialMyLanguageTest extends MediaWikiTestCase {
 		$titles = array(
 			'Page/Another',
 			'Page/Another/ru',
+			'Page/Another/zh-hans',
 		);
 		foreach ( $titles as $title ) {
 			$page = WikiPage::factory( Title::newFromText( $title ) );
@@ -60,6 +61,7 @@ class SpecialMyLanguageTest extends MediaWikiTestCase {
 			array( 'Page/Another', 'Page/Another', 'en', 'en' ),
 			array( 'Page/Another/ru', 'Page/Another', 'en', 'ru' ),
 			array( 'Page/Another', 'Page/Another', 'en', 'es' ),
+			array( 'Page/Another/zh-hans', 'Page/Another', 'en', 'zh-mo' ),
 		);
 	}
 }

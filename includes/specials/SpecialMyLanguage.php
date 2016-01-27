@@ -90,10 +90,27 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		}
 
 		$uiCode = $this->getLanguage()->getCode();
+		$wikiLangCode = $this->getConfig()->get( 'LanguageCode' );
+
+		// Check for subpage in current UI language
 		$proposed = $base->getSubpage( $uiCode );
-		if ( $uiCode !== $this->getConfig()->get( 'LanguageCode' ) && $proposed && $proposed->exists() ) {
+		if ( $uiCode !== $wikiLangCode && $proposed && $proposed->exists() ) {
 			return $proposed;
-		} elseif ( $provided && $provided->exists() ) {
+		}
+
+		// Check for fallback languages specified by the UI language
+		$possibilities = Language::getFallbacksFor( $uiCode );
+		foreach ( $possibilities as $lang ) {
+			if ( $lang !== $wikiLangCode ) {
+				$proposed = $base->getSubpage( $lang );
+				if ( $proposed && $proposed->exists() ) {
+					return $proposed;
+				}
+			}
+		}
+
+		if ( $provided && $provided->exists() ) {
+			// Explicit language code given and the page exists
 			return $provided;
 		} else {
 			return $base;
