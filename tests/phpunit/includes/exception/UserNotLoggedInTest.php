@@ -2,7 +2,7 @@
 
 /**
  * @covers UserNotLoggedIn
- * @author Adam Shorland
+ * @author Addshore
  */
 class UserNotLoggedInTest extends MediaWikiTestCase {
 

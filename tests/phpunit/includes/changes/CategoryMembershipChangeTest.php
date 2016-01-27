@@ -5,7 +5,7 @@
  *
  * @group Database
  *
- * @author Adam Shorland
+ * @author Addshore
  */
 class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 

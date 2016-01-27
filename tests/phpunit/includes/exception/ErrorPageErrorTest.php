@@ -2,7 +2,7 @@
 
 /**
  * @covers ErrorPageError
- * @author Adam Shorland
+ * @author Addshore
  */
 class ErrorPageErrorTest extends MediaWikiTestCase {
 

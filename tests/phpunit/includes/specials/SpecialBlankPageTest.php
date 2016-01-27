@@ -2,7 +2,7 @@
 
 /**
  * @licence GNU GPL v2+
- * @author Adam Shorland
+ * @author Addshore
  *
  * @covers SpecialBlankpage
  */

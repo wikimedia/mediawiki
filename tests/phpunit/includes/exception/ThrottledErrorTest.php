@@ -2,7 +2,7 @@
 
 /**
  * @covers ThrottledError
- * @author Adam Shorland
+ * @author Addshore
  */
 class ThrottledErrorTest extends MediaWikiTestCase {
 

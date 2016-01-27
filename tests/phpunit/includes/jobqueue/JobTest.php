@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Adam Shorland
+ * @author Addshore
  */
 class JobTest extends MediaWikiTestCase {
 
