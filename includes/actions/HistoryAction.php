@@ -132,6 +132,8 @@ class HistoryAction extends FormlessAction {
 			return;
 		}
 
+		$this->addHelpLink( '//meta.wikimedia.org/wiki/Special:MyLanguage/Help:Page_history', true );
+
 		// Fail nicely if article doesn't exist.
 		if ( !$this->page->exists() ) {
 			$out->addWikiMsg( 'nohistory' );
