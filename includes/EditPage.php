@@ -1420,6 +1420,11 @@ class EditPage {
 			}
 		}
 
+		// "wpExtraQueryRedirect" is a hidden input to modify
+		// after save URL and is not used by actual edit form
+		$request = RequestContext::getMain()->getRequest();
+		$extraQueryRedirect = $request->getVal( 'wpExtraQueryRedirect' );
+
 		switch ( $status->value ) {
 			case self::AS_HOOK_ERROR_EXPECTED:
 			case self::AS_CONTENT_TOO_BIG:
@@ -1443,6 +1448,7 @@ class EditPage {
 
 			case self::AS_SUCCESS_NEW_ARTICLE:
 				$query = $resultDetails['redirect'] ? 'redirect=no' : '';
+				$query = ( $query == '' ? '' : $query . '&' ) . $extraQueryRedirect;
 				$anchor = isset( $resultDetails['sectionanchor'] ) ? $resultDetails['sectionanchor'] : '';
 				$wgOut->redirect( $this->mTitle->getFullURL( $query ) . $anchor );
 				return false;
@@ -1464,6 +1470,9 @@ class EditPage {
 						$extraQuery = 'redirect=no&' . $extraQuery;
 					}
 				}
+				$extraQuery = ( $extraQuery == '' ? '' : $extraQuery . '&' )
+					. $extraQueryRedirect;
+
 				$wgOut->redirect( $this->mTitle->getFullURL( $extraQuery ) . $sectionanchor );
 				return false;
 
