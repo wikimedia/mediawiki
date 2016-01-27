@@ -1604,6 +1604,38 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertTrue( $info->forceHTTPS() );
 		$this->assertSame( array(), $logger->getBuffer() );
 
+		// "Persist" flag from session
+		$this->store->setSessionMeta( $id, $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+			'provider' => $provider,
+			'id' => $id,
+			'userInfo' => $userInfo
+		) );
+		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
+		$this->assertFalse( $info->wasPersisted() );
+		$this->assertSame( array(), $logger->getBuffer() );
+
+		$this->store->setSessionMeta( $id, array( 'persisted' => true ) + $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+			'provider' => $provider,
+			'id' => $id,
+			'userInfo' => $userInfo
+		) );
+		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
+		$this->assertTrue( $info->wasPersisted() );
+		$this->assertSame( array(), $logger->getBuffer() );
+
+		$this->store->setSessionMeta( $id, array( 'persisted' => false ) + $metadata );
+		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
+			'provider' => $provider,
+			'id' => $id,
+			'userInfo' => $userInfo,
+			'persisted' => true
+		) );
+		$this->assertTrue( $loadSessionInfoFromStore( $info ) );
+		$this->assertTrue( $info->wasPersisted() );
+		$this->assertSame( array(), $logger->getBuffer() );
+
 		// Provider refreshSessionInfo() returning false
 		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array(
 			'provider' => $provider3,

@@ -801,6 +801,9 @@ final class SessionManager implements SessionManagerInterface {
 			if ( !empty( $metadata['forceHTTPS'] ) && !$info->forceHTTPS() ) {
 				$newParams['forceHTTPS'] = true;
 			}
+			if ( !empty( $metadata['persisted'] ) && !$info->wasPersisted() ) {
+				$newParams['persisted'] = true;
+			}
 
 			if ( !$info->isIdSafe() ) {
 				$newParams['idIsSafe'] = true;
