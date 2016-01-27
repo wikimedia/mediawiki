@@ -1127,6 +1127,8 @@ class ContribsPager extends ReverseChronologicalPager {
 			);
 			$classes = array_merge( $classes, $newClasses );
 
+			Hooks::run( 'SpecialContributions::formatRow::flags', array( $this, $row, &$flags ) );
+
 			$templateParams = [
 				'articleLink' => $link,
 				'charDifference' => $chardiff,
