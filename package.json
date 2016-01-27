@@ -18,7 +18,7 @@
     "karma": "0.13.19",
     "karma-chrome-launcher": "0.2.2",
     "karma-firefox-launcher": "0.1.7",
-    "karma-qunit": "0.1.5",
+    "karma-qunit": "0.1.9",
     "qunitjs": "1.18.0"
   }
 }
