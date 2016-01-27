@@ -340,3 +340,7 @@
 	path = skins/Monaco
 	url = https://github.com/Arcane21/monaco-port
 	branch = master
+[submodule "extensions/NoTitle"]
+	path = extensions/NoTitle
+	url = https://github.com/wikimedia/mediawiki-extensions-NoTitle
+	branch = REL1_26
