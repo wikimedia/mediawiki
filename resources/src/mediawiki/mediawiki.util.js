@@ -497,6 +497,30 @@
 			return util.isIPv4Address( address, allowBlock ) ||
 				util.isIPv6Address( address, allowBlock );
 		}
+
+		/**
+		 * Check if at least half of the element's height and half of its width are in viewport
+		 *
+		 * @method
+		 * @param {jQuery.Object} $el - element that's being tested
+		 * @return {Boolean}
+		 */
+		isElementInViewport: function ( $el ) {
+			var $window = $( window ),
+				windowHeight = $window.height(),
+				windowWidth = $window.width(),
+				windowScrollLeft = $window.scrollLeft(),
+				windowScrollTop = $window.scrollTop(),
+				elHeight = $el.height(),
+				elWidth = $el.width(),
+				elOffset = $el.offset();
+
+			return (
+				( windowScrollTop + windowHeight >= elOffset.top + elHeight / 2 ) &&
+				( windowScrollLeft + windowWidth >= elOffset.left + elWidth / 2 ) &&
+				( windowScrollTop <= elOffset.top + elHeight / 2 )
+			);
+		}
 	};
 
 	/**
