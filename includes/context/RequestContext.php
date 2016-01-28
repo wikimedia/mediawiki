@@ -510,10 +510,11 @@ class RequestContext implements IContextSource, MutableContext {
 	 * @since 1.21
 	 */
 	public function exportSession() {
+		$session = MediaWiki\Session\SessionManager::getGlobalSession();
 		return array(
 			'ip' => $this->getRequest()->getIP(),
 			'headers' => $this->getRequest()->getAllHeaders(),
-			'sessionId' => MediaWiki\Session\SessionManager::getGlobalSession()->getId(),
+			'sessionId' => $session->isPersistent() ? $session->getId() : '',
 			'userId' => $this->getUser()->getId()
 		);
 	}
