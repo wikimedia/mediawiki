@@ -81,6 +81,8 @@ production.
    MediaWiki\Session\SessionProvider.
 ** The User cannot be loaded from session until after Setup.php completes.
    Attempts to do so will be ignored and the User will remain unloaded.
+** CSRF tokens may be fetched from the MediaWiki\Session\Session, which uses
+   the MediaWiki\Session\Token class.
 * MediaWiki will now auto-create users as necessary, removing the need for
   extensions to do so. An 'autocreateaccount' right is added to allow
   auto-creation when 'createaccount' is not granted to all users.
@@ -88,6 +90,10 @@ production.
 * Most cookie-handling methods in User are deprecated.
 * $wgAllowAsyncCopyUploads and $CopyUploadAsyncTimeout were removed. This was an
   experimental feature that has never worked.
+* Login and createaccount tokens now vary by timestamp.
+* LoginForm::getLoginToken() and LoginForm::getCreateaccountToken()
+  return a MediaWiki\Session\Token, and tokens must be checked using that
+  class's methods.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as

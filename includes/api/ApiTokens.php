@@ -81,7 +81,7 @@ class ApiTokens extends ApiBase {
 		foreach ( ApiQueryTokens::getTokenTypeSalts() as $name => $salt ) {
 			if ( !isset( $types[$name] ) ) {
 				$types[$name] = function () use ( $salt, $user, $request ) {
-					return $user->getEditToken( $salt, $request );
+					return ApiQueryTokens::getToken( $user, $request->getSession(), $salt )->toString();
 				};
 			}
 		}

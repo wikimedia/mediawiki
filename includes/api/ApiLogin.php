@@ -84,12 +84,9 @@ class ApiLogin extends ApiBase {
 
 		// Check login token
 		$token = LoginForm::getLoginToken();
-		if ( !$token ) {
-			LoginForm::setLoginToken();
+		if ( $token->wasNew() || !$params['token'] ) {
 			$authRes = LoginForm::NEED_TOKEN;
-		} elseif ( !$params['token'] ) {
-			$authRes = LoginForm::NEED_TOKEN;
-		} elseif ( $token !== $params['token'] ) {
+		} elseif ( !$token->match( $params['token'] ) ) {
 			$authRes = LoginForm::WRONG_TOKEN;
 		}
 
@@ -159,7 +156,10 @@ class ApiLogin extends ApiBase {
 
 			case LoginForm::NEED_TOKEN:
 				$result['result'] = 'NeedToken';
-				$result['token'] = LoginForm::getLoginToken();
+				$result['token'] = LoginForm::getLoginToken()->toString();
+				$this->setWarning( 'Fetching a token via action=login is deprecated. ' .
+				   'Use action=query&meta=tokens&type=login instead.' );
+				$this->logFeatureUsage( 'action=login&!lgtoken' );
 
 				// @todo: See above about deprecation
 				$result['cookieprefix'] = $this->getConfig()->get( 'CookiePrefix' );
@@ -254,7 +254,11 @@ class ApiLogin extends ApiBase {
 				ApiBase::PARAM_TYPE => 'password',
 			),
 			'domain' => null,
-			'token' => null,
+			'token' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => false, // for BC
+				ApiBase::PARAM_HELP_MSG => array( 'api-help-param-token', 'login' ),
+			),
 		);
 	}
 
