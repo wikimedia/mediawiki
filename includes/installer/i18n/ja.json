@@ -15,7 +15,8 @@
 			"Shield-9",
 			"Takot",
 			"Sujiniku",
-			"Macofe"
+			"Macofe",
+			"2nd-player"
 		]
 	},
 	"config-desc": "MediaWiki のインストーラー",
@@ -270,7 +271,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] は、[//commons.wikimedia.org/ ウィキメディア・コモンズ]のサイトにある画像、音声、その他のメディアをウィキ上で利用できるようにする機能です。\nこれを使用するには、MediaWiki がインターネットに接続できる必要があります。\n\nウィキメディア・コモンズ以外のウィキを同様に設定する手順など、この機能に関する詳細な情報は、[//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos マニュアル]をご覧ください。",
 	"config-cc-error": "クリエイティブ・コモンズ・ライセンスの選択器から結果が得られませんでした。\nライセンスの名前を手動で入力してください。",
 	"config-cc-again": "もう一度選択してください...",
-	"config-cc-not-chosen": "希望するクリエイティブ・コモンズのライセンスを選択して、「続行」をクリックしてください。",
+	"config-cc-not-chosen": "希望するクリエイティブ・コモンズのライセンスを選択して、「proceed」をクリックしてください。",
 	"config-advanced-settings": "高度な設定",
 	"config-cache-options": "オブジェクトのキャッシュの設定:",
 	"config-cache-help": "オブジェクトのキャッシュを使用すると、頻繁に使用するデータをキャッシュするため MediaWiki の動作速度を改善できます。\n中〜大規模サイトではこれを有効にすることを強くお勧めします。小規模サイトでも同様に効果があります。",

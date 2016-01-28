@@ -505,7 +505,7 @@
 	"throttled-mailpassword": "비밀번호 재설정 이메일을 이미 최근 {{PLURAL:$1|$1시간}} 안에 보냈습니다.\n악용을 방지하기 위해 비밀번호 재설정 메일은 {{PLURAL:$1|$1시간}}마다 오직 하나씩만 보낼 수 있습니다.",
 	"mailerror": "메일을 보내는 중 오류: $1",
 	"acct_creation_throttle_hit": "당신의 IP 주소를 이용한 방문자가 이전에 이미 {{PLURAL:$1|계정 $1개}}를 만들어, 계정 만들기 한도를 초과하였습니다.\n따라서 지금은 이 IP 주소로는 더 이상 계정을 만들 수 없습니다.",
-	"emailauthenticated": "이메일 주소는 $2 에 $3 에서 인증되었습니다.",
+	"emailauthenticated": "이메일 주소가 $2 $3에 인증되었습니다.",
 	"emailnotauthenticated": "이메일 주소를 인증하지 않았습니다.\n이메일 확인 절차를 거치지 않으면 다음 이메일 기능을 사용할 수 없습니다.",
 	"noemailprefs": "이 기능을 사용하기 위해서는 사용자 환경 설정에서 이메일 주소를 설정해야 합니다.",
 	"emailconfirmlink": "이메일 주소 확인",

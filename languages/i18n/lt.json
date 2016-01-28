@@ -1434,6 +1434,7 @@
 	"upload-too-many-redirects": "URL yra per daug kartų peradresuotas",
 	"upload-http-error": "Įvyko HTTP klaida: $1",
 	"upload-copy-upload-invalid-domain": "Pakrovimų kopijos yra neleidžiamos iš šio domeno.",
+	"upload-foreign-cant-upload": "Šis vikis nėra sukonfigūruotas failų įkėlimui į nurodytą išorinę failų talpyklą.",
 	"upload-dialog-title": "Įkelti failą",
 	"upload-dialog-button-cancel": "Atšaukti",
 	"upload-dialog-button-done": "Atlikta",

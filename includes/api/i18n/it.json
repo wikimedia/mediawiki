@@ -209,6 +209,7 @@
 	"apihelp-query+imageusage-description": "Trova tutte le pagine che utilizzano il titolo dell'immagine specificato.",
 	"apihelp-query+imageusage-param-dir": "La direzione in cui elencare.",
 	"apihelp-query+imageusage-param-redirect": "Se la pagina collegata è un redirect, trova tutte le pagine che puntano al redirect. Il limite massimo è dimezzato.",
+	"apihelp-query+info-paramvalue-prop-visitingwatchers": "Il numero di osservatori di ogni pagina che hanno visitato le ultime modifiche alla pagina, se consentito.",
 	"apihelp-query+iwbacklinks-param-prop": "Quali proprietà ottenere:",
 	"apihelp-query+iwbacklinks-paramvalue-prop-iwtitle": "Aggiunge il titolo dell'interwiki.",
 	"apihelp-query+iwbacklinks-param-dir": "La direzione in cui elencare.",

@@ -761,6 +761,7 @@
 	"apihelp-query+info-paramvalue-prop-talkid": "L’ID de la page de discussion de chaque page qui n’est pas de discussion.",
 	"apihelp-query+info-paramvalue-prop-watched": "Lister l’état de suivi de chaque page.",
 	"apihelp-query+info-paramvalue-prop-watchers": "Le nombre d’observateurs, si c’est autorisé.",
+	"apihelp-query+info-paramvalue-prop-visitingwatchers": "Le nombre de personnes suivant chaque page qui ont regardé les modifications récentes de cette page, si c’est autorisé.",
 	"apihelp-query+info-paramvalue-prop-notificationtimestamp": "L’horodatage de notification de la liste de suivi de chaque page.",
 	"apihelp-query+info-paramvalue-prop-subjectid": "L’ID de page de la page parent de chaque page de discussion.",
 	"apihelp-query+info-paramvalue-prop-url": "Fournit une URL complète, une URL de modification, et l’URL canonique de chaque page.",

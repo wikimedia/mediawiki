@@ -1192,6 +1192,7 @@
 	"rcshowhidemine": "$1 moje promjene",
 	"rcshowhidemine-show": "prikaži",
 	"rcshowhidemine-hide": "sakrij",
+	"rcshowhidecategorization": "$1 kategorizaciju stranica",
 	"rcshowhidecategorization-show": "Prikaži",
 	"rcshowhidecategorization-hide": "Sakrij",
 	"rclinks": "Prikaži posljednjih $1 promjena {{PLURAL:$2|prethodni dan|u posljednja $2 dana|u posljednjih $2 dana}}<br />$3",
