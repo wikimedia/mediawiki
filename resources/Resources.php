@@ -1332,12 +1332,17 @@ return [
 			'mediawiki.notify',
 		],
 		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
-		'targets' => [ 'desktop', 'mobile' ],
+		'targets' => array( 'desktop', 'mobile' ),
 	],
-	'mediawiki.checkboxtoggle' => [
+	'mediawiki.viewport' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.viewport.js',
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+	'mediawiki.checkboxtoggle' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.checkboxtoggle.js',
 		'position' => 'top',
-	],
+	),
 	'mediawiki.checkboxtoggle.styles' => [
 		'styles' => 'resources/src/mediawiki/mediawiki.checkboxtoggle.css',
 		'position' => 'top',
