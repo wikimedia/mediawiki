@@ -539,7 +539,7 @@ final class SessionManager implements SessionManagerInterface {
 		// Reset the user's token to kill existing sessions
 		$user = User::newFromName( $username );
 		if ( $user && $user->getToken( false ) ) {
-			$user->setToken( true );
+			$user->setToken();
 			$user->saveSettings();
 		}
 
