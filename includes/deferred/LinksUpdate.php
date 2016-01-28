@@ -75,6 +75,16 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	private $linkDeletions = null;
 
 	/**
+	 * @var null|array Added properties if calculated.
+	 */
+	private $propertyInsertions = null;
+
+	/**
+	 * @var null|array Deleted properties if calculated.
+	 */
+	private $propertyDeletions = null;
+
+	/**
 	 * @var User|null
 	 */
 	private $user;
@@ -204,13 +214,14 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		# Page properties
 		$existing = $this->getExistingProperties();
 
-		$propertiesDeletes = $this->getPropertyDeletions( $existing );
+		$this->propertyDeletions = $this->getPropertyDeletions( $existing );
 
-		$this->incrTableUpdate( 'page_props', 'pp', $propertiesDeletes,
+		$this->incrTableUpdate( 'page_props', 'pp', $this->propertyDeletions,
 			$this->getPropertyInsertions( $existing ) );
 
 		# Invalidate the necessary pages
-		$changed = $propertiesDeletes + array_diff_assoc( $this->mProperties, $existing );
+		$this->propertyInsertions = array_diff_assoc( $this->mProperties, $existing );
+		$changed = $this->propertyDeletions + $this->propertyInsertions;
 		$this->invalidateProperties( $changed );
 
 		# Update the links table freshness for this title
@@ -948,6 +959,26 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Fetch page properties added by this LinksUpdate.
+	 * Only available after the update is complete.
+	 * @since 1.28
+	 * @return null|array
+	 */
+	public function getAddedProperties() {
+		return $this->propertyInsertions;
+	}
+
+	/**
+	 * Fetch page properties removed by this LinksUpdate.
+	 * Only available after the update is complete.
+	 * @since 1.28
+	 * @return null|array
+	 */
+	public function getRemovedProperties() {
+		return $this->propertyDeletions;
 	}
 
 	/**
