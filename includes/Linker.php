@@ -1445,31 +1445,34 @@ class Linker {
 					}
 				} else {
 					# Other kind of link
-					if ( preg_match( $wgContLang->linkTrail(), $match[3], $submatch ) ) {
-						$trail = $submatch[1];
-					} else {
-						$trail = "";
-					}
-					$linkRegexp = '/\[\[(.*?)\]\]' . preg_quote( $trail, '/' ) . '/';
+					# Make sure its target is non-empty
 					if ( isset( $match[1][0] ) && $match[1][0] == ':' ) {
 						$match[1] = substr( $match[1], 1 );
 					}
-					list( $inside, $trail ) = Linker::splitTrail( $trail );
-
-					$linkText = $text;
-					$linkTarget = Linker::normalizeSubpageLink( $title, $match[1], $linkText );
-
-					$target = Title::newFromText( $linkTarget );
-					if ( $target ) {
-						if ( $target->getText() == '' && !$target->isExternal()
-							&& !$local && $title
-						) {
-							$newTarget = clone $title;
-							$newTarget->setFragment( '#' . $target->getFragment() );
-							$target = $newTarget;
+					if ( $match[1] !== false && $match[1] !== '' ) {
+						if ( preg_match( $wgContLang->linkTrail(), $match[3], $submatch ) ) {
+							$trail = $submatch[1];
+						} else {
+							$trail = "";
 						}
+						$linkRegexp = '/\[\[(.*?)\]\]' . preg_quote( $trail, '/' ) . '/';
+						list( $inside, $trail ) = Linker::splitTrail( $trail );
 
-						$thelink = Linker::makeCommentLink( $target, $linkText . $inside, $wikiId ) . $trail;
+						$linkText = $text;
+						$linkTarget = Linker::normalizeSubpageLink( $title, $match[1], $linkText );
+
+						$target = Title::newFromText( $linkTarget );
+						if ( $target ) {
+							if ( $target->getText() == '' && !$target->isExternal()
+								&& !$local && $title
+							) {
+								$newTarget = clone $title;
+								$newTarget->setFragment( '#' . $target->getFragment() );
+								$target = $newTarget;
+							}
+
+							$thelink = Linker::makeCommentLink( $target, $linkText . $inside, $wikiId ) . $trail;
+						}
 					}
 				}
 				if ( $thelink ) {
