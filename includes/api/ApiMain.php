@@ -1345,6 +1345,14 @@ class ApiMain extends ApiBase {
 		wfDebugLog( 'api', $msg, 'private' );
 		// ApiRequest channel is for structured data consumers
 		wfDebugLog( 'ApiRequest', '', 'private', $logCtx );
+
+		if ( $request->getProtocol() == 'http' && (
+			$request->getSession()->shouldForceHTTPS() ||
+			( $this->context->getUser()->isLoggedIn() &&
+				$this->context->getUser()->requiresHTTPS() )
+		) ) {
+			$this->logFeatureUsage( 'https-expected' );
+		}
 	}
 
 	/**
