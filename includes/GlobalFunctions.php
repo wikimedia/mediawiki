@@ -177,6 +177,7 @@ if ( !function_exists( 'hash_equals' ) ) {
 function wfLoadExtension( $ext, $path = null ) {
 	if ( !$path ) {
 		global $wgExtensionDirectory;
+		dirname( $ext );
 		$path = "$wgExtensionDirectory/$ext/extension.json";
 	}
 	ExtensionRegistry::getInstance()->queue( $path );
@@ -199,6 +200,7 @@ function wfLoadExtensions( array $exts ) {
 	global $wgExtensionDirectory;
 	$registry = ExtensionRegistry::getInstance();
 	foreach ( $exts as $ext ) {
+		dirname( $ext );
 		$registry->queue( "$wgExtensionDirectory/$ext/extension.json" );
 	}
 }
@@ -214,6 +216,7 @@ function wfLoadExtensions( array $exts ) {
 function wfLoadSkin( $skin, $path = null ) {
 	if ( !$path ) {
 		global $wgStyleDirectory;
+		dirname( $skin );
 		$path = "$wgStyleDirectory/$skin/skin.json";
 	}
 	ExtensionRegistry::getInstance()->queue( $path );
@@ -230,6 +233,7 @@ function wfLoadSkins( array $skins ) {
 	global $wgStyleDirectory;
 	$registry = ExtensionRegistry::getInstance();
 	foreach ( $skins as $skin ) {
+		dirname( $skin );
 		$registry->queue( "$wgStyleDirectory/$skin/skin.json" );
 	}
 }
