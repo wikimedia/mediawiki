@@ -21,8 +21,6 @@
  * @ingroup Language
  */
 
-require_once __DIR__ . '/../LanguageConverter.php';
-
 /**
  * @ingroup Language
  */
