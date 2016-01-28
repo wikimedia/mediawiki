@@ -192,8 +192,6 @@ class IuConverter extends LanguageConverter {
  */
 class LanguageIu extends Language {
 	function __construct() {
-		global $wgHooks;
-
 		parent::__construct();
 
 		$variants = array( 'iu', 'ike-cans', 'ike-latn' );
@@ -205,6 +203,5 @@ class LanguageIu extends Language {
 
 		$flags = array();
 		$this->mConverter = new IuConverter( $this, 'iu', $variants, $variantfallbacks, $flags );
-		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
 }

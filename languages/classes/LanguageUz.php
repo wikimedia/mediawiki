@@ -134,7 +134,6 @@ class UzConverter extends LanguageConverter {
  */
 class LanguageUz extends Language {
 	function __construct() {
-		global $wgHooks;
 		parent::__construct();
 
 		$variants = array( 'uz', 'uz-latn', 'uz-cyrl' );
@@ -145,6 +144,5 @@ class LanguageUz extends Language {
 		);
 
 		$this->mConverter = new UzConverter( $this, 'uz', $variants, $variantfallbacks );
-		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
 }

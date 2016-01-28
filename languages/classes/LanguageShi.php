@@ -168,8 +168,6 @@ class ShiConverter extends LanguageConverter {
  */
 class LanguageShi extends Language {
 	function __construct() {
-		global $wgHooks;
-
 		parent::__construct();
 
 		$variants = array( 'shi', 'shi-tfng', 'shi-latn' );
@@ -181,6 +179,5 @@ class LanguageShi extends Language {
 
 		$flags = array();
 		$this->mConverter = new ShiConverter( $this, 'shi', $variants, $variantfallbacks, $flags );
-		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
 }

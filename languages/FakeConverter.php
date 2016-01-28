@@ -114,4 +114,7 @@ class FakeConverter {
 	function translate( $text, $variant ) {
 		return $text;
 	}
+
+	public function updateConversionTable( Title $title ) {
+	}
 }
