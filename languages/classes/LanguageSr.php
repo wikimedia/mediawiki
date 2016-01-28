@@ -21,8 +21,6 @@
  * @ingroup Language
  */
 
-require_once __DIR__ . '/../LanguageConverter.php';
-
 /**
  * There are two levels of conversion for Serbian: the script level
  * (Cyrillics <-> Latin), and the variant level (ekavian

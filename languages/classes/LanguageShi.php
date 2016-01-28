@@ -21,8 +21,6 @@
  * @ingroup Language
  */
 
-require_once __DIR__ . '/../LanguageConverter.php';
-
 /**
  * Conversion script between Latin and Tifinagh for Tachelhit.
  * - Tifinagh -> lowercase Latin

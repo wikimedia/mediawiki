@@ -21,8 +21,6 @@
  * @ingroup Language
  */
 
-require_once __DIR__ . '/../LanguageConverter.php';
-
 /**
  * Conversion script between Latin and Syllabics for Inuktitut.
  * - Syllabics -> lowercase Latin
