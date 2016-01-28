@@ -267,9 +267,10 @@ class StringUtils {
 	 * Ignores any instances of the separator inside `<...>`
 	 * @param string $separator
 	 * @param string $text
+	 * @param int $limit
 	 * @return array
 	 */
-	static function explodeMarkup( $separator, $text ) {
+	static function explodeMarkup( $separator, $text, $limit = PHP_INT_MAX ) {
 		$placeholder = "\x00";
 
 		// Remove placeholder instances
@@ -280,7 +281,7 @@ class StringUtils {
 		$cleaned = StringUtils::delimiterReplaceCallback( '<', '>', $replacer->cb(), $text );
 
 		// Explode, then put the replaced separators back in
-		$items = explode( $separator, $cleaned );
+		$items = explode( $separator, $cleaned, $limit );
 		foreach ( $items as $i => $str ) {
 			$items[$i] = str_replace( $placeholder, $separator, $str );
 		}
