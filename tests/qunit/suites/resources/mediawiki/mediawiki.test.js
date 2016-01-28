@@ -760,6 +760,11 @@
 		} );
 	} );
 
+	QUnit.test( 'mw.loader.implement( empty )', 1, function ( assert ) {
+		mw.loader.implement( 'test.empty' );
+		assert.strictEqual( mw.loader.getState( 'test.empty' ), 'ready' );
+	} );
+
 	QUnit.test( 'mw.loader with broken indirect dependency', 4, function ( assert ) {
 		// don't emit an error event
 		this.sandbox.stub( mw, 'track' );

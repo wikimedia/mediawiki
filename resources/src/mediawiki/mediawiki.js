@@ -554,7 +554,7 @@
 		/**
 		 * Get a message object.
 		 *
-		 * Shorcut for `new mw.Message( mw.messages, key, parameters )`.
+		 * Shortcut for `new mw.Message( mw.messages, key, parameters )`.
 		 *
 		 * @see mw.Message
 		 * @param {string} key Key of message to get
@@ -597,7 +597,7 @@
 			 */
 
 			/**
-			 * Write a message the console's warning channel.
+			 * Write a message to the console's warning channel.
 			 * Actions not supported by the browser console are silently ignored.
 			 *
 			 * @param {...string} msg Messages to output to console
@@ -607,7 +607,7 @@
 				$.noop;
 
 			/**
-			 * Write a message the console's error channel.
+			 * Write a message to the console's error channel.
 			 *
 			 * Most browsers provide a stacktrace by default if the argument
 			 * is a caught Error object.
@@ -1004,7 +1004,7 @@
 			/**
 			 * A module has entered state 'ready', 'error', or 'missing'. Automatically update
 			 * pending jobs and modules that depend upon this module. If the given module failed,
-			 * propagate the 'error' state up the dependency tree. Otherwise, go ahead an execute
+			 * propagate the 'error' state up the dependency tree. Otherwise, go ahead and execute
 			 * all jobs/modules now having their dependencies satisfied.
 			 *
 			 * Jobs that depend on a failed module, will have their error callback ran (if any).
@@ -1252,7 +1252,7 @@
 								script( $, $ );
 								markModuleReady();
 							} else if ( typeof script === 'string' ) {
-								// Site and user modules are a legacy scripts that run in the global scope.
+								// Site and user modules are legacy scripts that run in the global scope.
 								// This is transported as a string instead of a function to avoid needing
 								// to use string manipulation to undo the function wrapper.
 								if ( module === 'user' ) {
@@ -1372,7 +1372,7 @@
 			}
 
 			/**
-			 * Adds a dependencies to the queue with optional callbacks to be run
+			 * Adds all dependencies to the queue with optional callbacks to be run
 			 * when the dependencies are ready or fail
 			 *
 			 * @private
@@ -1765,10 +1765,8 @@
 				 * When #load or #using requests one or more modules, the server
 				 * response contain calls to this function.
 				 *
-				 * All arguments are required.
-				 *
 				 * @param {string} module Name of module
-				 * @param {Function|Array} script Function with module code or Array of URLs to
+				 * @param {Function|Array} [script] Function with module code or Array of URLs to
 				 *  be used as the src attribute of a new `<script>` tag.
 				 * @param {Object} [style] Should follow one of the following patterns:
 				 *
@@ -2553,7 +2551,7 @@
 	/**
 	 * Log a message to window.console, if possible.
 	 *
-	 * Useful to force logging of some  errors that are otherwise hard to detect (i.e., this logs
+	 * Useful to force logging of some errors that are otherwise hard to detect (i.e., this logs
 	 * also in production mode). Gets console references in each invocation instead of caching the
 	 * reference, so that debugging tools loaded later are supported (e.g. Firebug Lite in IE).
 	 *
@@ -2580,9 +2578,9 @@
 			msg += ( e ? ':' : '.' );
 			console.log( msg );
 
-			// If we have an exception object, log it to the error channel to trigger a
-			// proper stacktraces in browsers that support it. No fallback as we have no browsers
-			// that don't support error(), but do support log().
+			// If we have an exception object, log it to the error channel to trigger
+			// proper stacktraces in browsers that support it. No fallback as we have
+			// no browsers that don't support error(), but do support log().
 			if ( e && console.error ) {
 				console.error( String( e ), e );
 			}
