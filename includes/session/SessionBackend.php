@@ -544,7 +544,7 @@ final class SessionBackend {
 		// Ensure the user has a token
 		// @codeCoverageIgnoreStart
 		$anon = $this->user->isAnon();
-		if ( !$anon && !$this->user->getToken() ) {
+		if ( !$anon && !$this->user->getToken( false ) ) {
 			$this->logger->debug(
 				"SessionBackend $this->id creating token for user {$this->user} on save"
 			);
