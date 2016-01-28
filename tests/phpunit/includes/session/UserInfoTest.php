@@ -19,7 +19,7 @@ class UserInfoTest extends MediaWikiTestCase {
 		$this->assertTrue( $userinfo->isVerified() );
 		$this->assertSame( 0, $userinfo->getId() );
 		$this->assertSame( null, $userinfo->getName() );
-		$this->assertSame( null, $userinfo->getToken() );
+		$this->assertSame( '', $userinfo->getToken() );
 		$this->assertNotNull( $userinfo->getUser() );
 		$this->assertSame( $userinfo, $userinfo->verified() );
 		$this->assertSame( '<anon>', (string)$userinfo );
@@ -102,7 +102,7 @@ class UserInfoTest extends MediaWikiTestCase {
 		$this->assertFalse( $userinfo->isVerified() );
 		$this->assertSame( $user->getId(), $userinfo->getId() );
 		$this->assertSame( $user->getName(), $userinfo->getName() );
-		$this->assertSame( null, $userinfo->getToken() );
+		$this->assertSame( '', $userinfo->getToken() );
 		$this->assertInstanceOf( 'User', $userinfo->getUser() );
 		$userinfo2 = $userinfo->verified();
 		$this->assertNotSame( $userinfo2, $userinfo );
@@ -112,7 +112,7 @@ class UserInfoTest extends MediaWikiTestCase {
 		$this->assertTrue( $userinfo2->isVerified() );
 		$this->assertSame( $user->getId(), $userinfo2->getId() );
 		$this->assertSame( $user->getName(), $userinfo2->getName() );
-		$this->assertSame( null, $userinfo2->getToken() );
+		$this->assertSame( '', $userinfo2->getToken() );
 		$this->assertInstanceOf( 'User', $userinfo2->getUser() );
 		$this->assertSame( $userinfo2, $userinfo2->verified() );
 		$this->assertSame( "<+:{$user->getId()}:{$user->getName()}>", (string)$userinfo2 );
@@ -157,7 +157,7 @@ class UserInfoTest extends MediaWikiTestCase {
 		$this->assertFalse( $userinfo->isVerified() );
 		$this->assertSame( $user->getId(), $userinfo->getId() );
 		$this->assertSame( $user->getName(), $userinfo->getName() );
-		$this->assertSame( null, $userinfo->getToken() );
+		$this->assertSame( '', $userinfo->getToken() );
 		$this->assertSame( $user, $userinfo->getUser() );
 		$userinfo2 = $userinfo->verified();
 		$this->assertNotSame( $userinfo2, $userinfo );
@@ -167,7 +167,7 @@ class UserInfoTest extends MediaWikiTestCase {
 		$this->assertTrue( $userinfo2->isVerified() );
 		$this->assertSame( $user->getId(), $userinfo2->getId() );
 		$this->assertSame( $user->getName(), $userinfo2->getName() );
-		$this->assertSame( null, $userinfo2->getToken() );
+		$this->assertSame( '', $userinfo2->getToken() );
 		$this->assertSame( $user, $userinfo2->getUser() );
 		$this->assertSame( $userinfo2, $userinfo2->verified() );
 		$this->assertSame( "<+:{$user->getId()}:{$user->getName()}>", (string)$userinfo2 );
