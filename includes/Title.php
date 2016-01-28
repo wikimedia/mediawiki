@@ -259,6 +259,10 @@ class Title {
 		if ( is_object( $text ) ) {
 			throw new InvalidArgumentException( '$text must be a string.' );
 		}
+		// DWIM: Integers can be passed in here when page titles are used as array keys.
+		if ( is_int( $text ) ) {
+			$text = "$text";
+		}
 		if ( $text !== null && !is_string( $text ) ) {
 			wfDebugLog( 'T76305', wfGetAllCallers( 5 ) );
 			return null;
