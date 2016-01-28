@@ -7969,6 +7969,14 @@ $wgPopularPasswordFile = __DIR__ . '/../serialized/commonpasswords.cdb';
  */
 $wgMaxUserDBWriteDuration = false;
 
+/*
+ * Maximum number of pages returned by the GetPagesFromCategory and
+ * GetPagesFromNamespace functions.
+ *
+ * @var int
+ */
+$wgExportPagelistLimits = 5000;
+
 /**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker

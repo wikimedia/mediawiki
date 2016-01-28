@@ -418,6 +418,8 @@ class SpecialExport extends SpecialPage {
 	private function getPagesFromCategory( $title ) {
 		global $wgContLang;
 
+        $maxPages = $this->getConfig()->get( 'ExportPagelistLimits' );
+
 		$name = $title->getDBkey();
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -426,7 +428,7 @@ class SpecialExport extends SpecialPage {
 			array( 'page_namespace', 'page_title' ),
 			array( 'cl_from=page_id', 'cl_to' => $name ),
 			__METHOD__,
-			array( 'LIMIT' => '5000' )
+			array( 'LIMIT' => $maxPages )
 		);
 
 		$pages = array();
@@ -451,13 +453,15 @@ class SpecialExport extends SpecialPage {
 	private function getPagesFromNamespace( $nsindex ) {
 		global $wgContLang;
 
+        $maxPages = $this->getConfig()->get( 'ExportPagelistLimits' );
+
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select(
 			'page',
 			array( 'page_namespace', 'page_title' ),
 			array( 'page_namespace' => $nsindex ),
 			__METHOD__,
-			array( 'LIMIT' => '5000' )
+			array( 'LIMIT' => $maxPages )
 		);
 
 		$pages = array();
