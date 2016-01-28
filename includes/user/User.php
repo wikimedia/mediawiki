@@ -1292,12 +1292,20 @@ class User implements IDBAccessObject {
 			$all = false;
 		}
 
-		if ( isset( $row->user_email ) ) {
-			$this->mEmail = $row->user_email;
-			$this->mToken = $row->user_token;
-			if ( $this->mToken == '' ) {
+		if ( isset( $row->user_token ) ) {
+			// The definition for the column is binary(32), so trim the NULs
+			// that appends. The previous definition was char(32), so trim
+			// spaces too.
+			$this->mToken = rtrim( $row->user_token, " \0" );
+			if ( $this->mToken === '' ) {
 				$this->mToken = null;
 			}
+		} else {
+			$all = false;
+		}
+
+		if ( isset( $row->user_email ) ) {
+			$this->mEmail = $row->user_email;
 			$this->mEmailAuthenticated = wfTimestampOrNull( TS_MW, $row->user_email_authenticated );
 			$this->mEmailToken = $row->user_email_token;
 			$this->mEmailTokenExpires = wfTimestampOrNull( TS_MW, $row->user_email_token_expires );
