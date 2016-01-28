@@ -1113,15 +1113,15 @@ class Parser {
 					$line = substr( $line, 1 );
 				}
 
+				// Implies both are valid for table headings.
 				if ( $first_character === '!' ) {
 					$line = str_replace( '!!', '||', $line );
 				}
 
 				# Split up multiple cells on the same line.
 				# FIXME : This can result in improper nesting of tags processed
-				# by earlier parser steps, but should avoid splitting up eg
-				# attribute values containing literal "||".
-				$cells = StringUtils::explodeMarkup( '||', $line );
+				# by earlier parser steps.
+				$cells = explode( '||', $line );
 
 				$outLine = '';
 
