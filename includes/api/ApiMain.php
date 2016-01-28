@@ -1231,7 +1231,8 @@ class ApiMain extends ApiBase {
 	 * @param array $params An array with the request parameters
 	 */
 	protected function setupExternalResponse( $module, $params ) {
-		if ( !$this->getRequest()->wasPosted() && $module->mustBePosted() ) {
+		$request = $this->getRequest();
+		if ( !$request->wasPosted() && $module->mustBePosted() ) {
 			// Module requires POST. GET request might still be allowed
 			// if $wgDebugApi is true, otherwise fail.
 			$this->dieUsageMsgOrDebug( array( 'mustbeposted', $this->mAction ) );
@@ -1242,6 +1243,15 @@ class ApiMain extends ApiBase {
 		if ( is_null( $this->mPrinter ) ) {
 			// Create an appropriate printer
 			$this->mPrinter = $this->createPrinterByName( $params['format'] );
+		}
+
+		if ( $request->getProtocol() === 'http' && (
+			$request->getSession()->shouldForceHTTPS() ||
+			( $this->getUser()->isLoggedIn() &&
+				$this->getUser()->requiresHTTPS() )
+		) ) {
+			$this->logFeatureUsage( 'https-expected' );
+			$this->setWarning( 'HTTP used when HTTPS was expected' );
 		}
 	}
 
