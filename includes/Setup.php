@@ -505,6 +505,7 @@ if ( !$wgSessionsInObjectCache && !$wgSessionsInMemcached ) {
 	}
 	$cacheType = get_class( ObjectCache::getInstance( $wgSessionCacheType ) );
 	wfDebugLog(
+		'caches',
 		"Session data will be stored in \"$cacheType\" cache with " .
 			"expiry $wgObjectCacheSessionExpiry seconds"
 	);
