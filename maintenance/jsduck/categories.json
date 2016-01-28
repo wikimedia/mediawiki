@@ -32,7 +32,8 @@
 					"mw.util",
 					"mw.plugin.*",
 					"mw.cookie",
-					"mw.experiments"
+					"mw.experiments",
+					"mw.viewport"
 				]
 			},
 			{
