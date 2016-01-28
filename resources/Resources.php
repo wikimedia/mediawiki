@@ -1346,6 +1346,11 @@ return array(
 		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.viewport' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.viewport.js',
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.checkboxtoggle' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.checkboxtoggle.js',
 		'position' => 'top',
