@@ -596,7 +596,7 @@ final class SessionBackend {
 			'provider' => (string)$this->provider,
 			'providerMetadata' => $this->providerMetadata,
 			'userId' => $anon ? 0 : $this->user->getId(),
-			'userName' => $anon ? null : $this->user->getName(),
+			'userName' => User::isValidUserName( $this->user->getName() ) ? $this->user->getName() : null,
 			'userToken' => $anon ? null : $this->user->getToken(),
 			'remember' => !$anon && $this->remember,
 			'forceHTTPS' => $this->forceHTTPS,
