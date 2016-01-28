@@ -233,7 +233,6 @@ class KuConverter extends LanguageConverter {
 class LanguageKu extends LanguageKu_ku {
 
 	function __construct() {
-		global $wgHooks;
 		parent::__construct();
 
 		$variants = array( 'ku', 'ku-arab', 'ku-latn' );
@@ -244,6 +243,5 @@ class LanguageKu extends LanguageKu_ku {
 		);
 
 		$this->mConverter = new KuConverter( $this, 'ku', $variants, $variantfallbacks );
-		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
 }

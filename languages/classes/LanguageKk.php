@@ -395,7 +395,6 @@ class KkConverter extends LanguageConverter {
  */
 class LanguageKk extends LanguageKk_cyrl {
 	function __construct() {
-		global $wgHooks;
 		parent::__construct();
 
 		$variants = array( 'kk', 'kk-cyrl', 'kk-latn', 'kk-arab', 'kk-kz', 'kk-tr', 'kk-cn' );
@@ -410,8 +409,6 @@ class LanguageKk extends LanguageKk_cyrl {
 		);
 
 		$this->mConverter = new KkConverter( $this, 'kk', $variants, $variantfallbacks );
-
-		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
 
 	/**

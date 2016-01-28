@@ -1053,24 +1053,12 @@ class LanguageConverter {
 	}
 
 	/**
-	 * Hook to refresh the cache of conversion tables when
+	 * Refresh the cache of conversion tables when
 	 * MediaWiki:Conversiontable* is updated.
-	 * @private
 	 *
-	 * @param WikiPage $page
-	 * @param User $user User object for the current user
-	 * @param Content $content New page content
-	 * @param string $summary Edit summary of the edit
-	 * @param bool $isMinor Was the edit marked as minor?
-	 * @param null $isWatch Unused.
-	 * @param null $section Unused.
-	 * @param int $flags Bitfield
-	 * @param Revision|null $revision New Revision object or null
-	 * @return bool True
+	 * @param Title $titleobj The Title of the page being updated
 	 */
-	function OnPageContentSaveComplete( $page, $user, $content, $summary, $isMinor,
-			$isWatch, $section, $flags, $revision ) {
-		$titleobj = $page->getTitle();
+	public function updateConversionTable( Title $titleobj ) {
 		if ( $titleobj->getNamespace() == NS_MEDIAWIKI ) {
 			$title = $titleobj->getDBkey();
 			$t = explode( '/', $title, 3 );
@@ -1081,7 +1069,6 @@ class LanguageConverter {
 				}
 			}
 		}
-		return true;
 	}
 
 	/**

@@ -2200,7 +2200,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   - 'no-change': don't update the article count, ever
 	 */
 	public function doEditUpdates( Revision $revision, User $user, array $options = array() ) {
-		global $wgRCWatchCategoryMembership;
+		global $wgRCWatchCategoryMembership, $wgContLang;
 
 		$options += array(
 			'changed' => true,
@@ -2329,6 +2329,10 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 
 			MessageCache::singleton()->replace( $shortTitle, $msgtext );
+
+			if ( $wgContLang->hasVariants() ) {
+				$wgContLang->updateConversionTable( $this->mTitle );
+			}
 		}
 
 		if ( $options['created'] ) {
@@ -3276,6 +3280,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param Title $title
 	 */
 	public static function onArticleDelete( Title $title ) {
+		global $wgContLang;
+
 		// Update existence markers on article/talk tabs...
 		$other = $title->getOtherPage();
 
@@ -3291,6 +3297,10 @@ class WikiPage implements Page, IDBAccessObject {
 		// Messages
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
 			MessageCache::singleton()->replace( $title->getDBkey(), false );
+
+			if ( $wgContLang->hasVariants() ) {
+				$wgContLang->updateConversionTable( $title );
+			}
 		}
 
 		// Images
