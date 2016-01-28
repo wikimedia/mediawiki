@@ -179,6 +179,15 @@ class ApiMain extends ApiBase {
 				$wgUser = new User();
 				$this->getContext()->setUser( $wgUser );
 			}
+
+			if ( $request->getProtocol() == 'http' && (
+				$request->getSession()->shouldForceHTTPS() ||
+				( $this->getUser()->isLoggedIn() &&
+					$this->getUser()->requiresHTTPS() )
+			) ) {
+				$this->logFeatureUsage( 'https-expected' );
+				$this->setWarning( 'HTTP used when HTTPS was expected' );
+			}
 		}
 
 		$uselang = $this->getParameter( 'uselang' );
