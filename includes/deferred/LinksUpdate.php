@@ -75,6 +75,11 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	private $linkDeletions = null;
 
 	/**
+	 * @var null|array Changed page properties
+	 */
+	private $changedProperties = null;
+
+	/**
 	 * @var User|null
 	 */
 	private $user;
@@ -212,6 +217,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		# Invalidate the necessary pages
 		$changed = $propertiesDeletes + array_diff_assoc( $this->mProperties, $existing );
 		$this->invalidateProperties( $changed );
+		$this->changedProperties = array_keys( $changed );
 
 		# Update the links table freshness for this title
 		$this->updateLinksTimestamp();
@@ -948,6 +954,15 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Lists which page properties have been changed in the update
+	 * @since 1.27
+	 * @return null|array Array of PageProps
+	 */
+	public function getChangedProperties() {
+		return $this->changedProperties;
 	}
 
 	/**
