@@ -262,6 +262,7 @@ final class SessionBackend {
 		if ( !$this->persist ) {
 			$this->persist = true;
 			$this->forcePersist = true;
+			$this->metaDirty = true;
 			$this->logger->debug( "SessionBackend $this->id force-persist due to persist()" );
 			$this->autosave();
 		} else {
@@ -601,6 +602,7 @@ final class SessionBackend {
 			'forceHTTPS' => $this->forceHTTPS,
 			'expires' => time() + $this->lifetime,
 			'loggedOut' => $this->loggedOut,
+			'persisted' => $this->persist,
 		);
 
 		\Hooks::run( 'SessionMetadata', array( $this, &$metadata, $this->requests ) );
