@@ -104,7 +104,7 @@ class JavaScriptContent extends TextContent {
 		$text = $this->getNativeData();
 		if ( strpos( $text, '/* #REDIRECT */' ) === 0 ) {
 			// Extract the title from the url
-			preg_match( '/title=(.*?)\\\\u0026action=raw/', $text, $matches );
+			preg_match( '/title=(.*?)\\\&action=raw/', $text, $matches );
 			if ( isset( $matches[1] ) ) {
 				$title = Title::newFromText( $matches[1] );
 				if ( $title ) {

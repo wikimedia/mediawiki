@@ -159,7 +159,7 @@ mw.loader.register( [
         [],
         null,
         null,
-        "return !!(    window.JSON \u0026\u0026    JSON.parse \u0026\u0026    JSON.stringify);"
+        "return !!(    window.JSON &&    JSON.parse &&    JSON.stringify);"
     ],
     [
         "test.z.foo",
@@ -363,7 +363,7 @@ mw.loader.register( [
 		. 'mw.loader.register(['
 		. '["test.blank","{blankVer}"],'
 		. '["test.min","{blankVer}",[0],null,null,'
-		. '"return!!(window.JSON\u0026\u0026JSON.parse\u0026\u0026JSON.stringify);"'
+		. '"return!!(window.JSON&&JSON.parse&&JSON.stringify);"'
 		. ']]);';
 
 		$this->assertEquals(
@@ -398,7 +398,7 @@ mw.loader.register( [
         ],
         null,
         null,
-        "return !!(    window.JSON \u0026\u0026    JSON.parse \u0026\u0026    JSON.stringify);"
+        "return !!(    window.JSON &&    JSON.parse &&    JSON.stringify);"
     ]
 ] );';
 

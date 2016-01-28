@@ -143,7 +143,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ),
 				"<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n"
-					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.foo\u0026only=scripts\u0026skin=fallback");'
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false&lang=en&modules=test.foo&only=scripts&skin=fallback");'
 					. "\n} );</script>"
 			),
 			array(
@@ -187,10 +187,10 @@ class OutputPageTest extends MediaWikiTestCase {
 			array(
 				array( array( 'test.group.foo', 'test.group.bar' ), ResourceLoaderModule::TYPE_COMBINED ),
 				"<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n"
-					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.group.bar\u0026skin=fallback");'
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false&lang=en&modules=test.group.bar&skin=fallback");'
 					. "\n} );</script>\n"
 					. "<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n"
-					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.group.foo\u0026skin=fallback");'
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false&lang=en&modules=test.group.foo&skin=fallback");'
 					. "\n} );</script>"
 			),
 		);
