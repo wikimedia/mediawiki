@@ -152,10 +152,10 @@ final class UserInfo {
 
 	/**
 	 * Return the user token
-	 * @return string|null
+	 * @return string
 	 */
 	public function getToken() {
-		return $this->user === null || $this->user->getId() === 0 ? null : $this->user->getToken( true );
+		return $this->user === null || $this->user->getId() === 0 ? '' : $this->user->getToken( false );
 	}
 
 	/**
