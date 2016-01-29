@@ -15,6 +15,21 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @param array $methodToReturnMap
+	 *
+	 * @return User|PHPUnit_Framework_MockObject_MockObject
+	 */
+	private function getMockUser( $methodToReturnMap ) {
+		$mock = $this->getMock( 'User' );
+		foreach ( $methodToReturnMap as $methodName => $returnValue ) {
+			$mock->expects( $this->any() )
+				->method( $methodName )
+				->will( $this->returnValue( $returnValue ) );
+		}
+		return $mock;
+	}
+
+	/**
 	 * @return PHPUnit_Framework_MockObject_MockObject|LoadBalancer
 	 */
 	private function getMockLoadbalancer( $mockDb ) {
@@ -40,6 +55,99 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 			$fakeRow->$valueName = $value;
 		}
 		return $fakeRow;
+	}
+
+	public function testGetWatchedItem_cachesOneItem() {
+		$lb = $this->getMockLoadbalancer( $this->getMockDb() );
+		$store = new WatchedItemStore( $lb, $this->getMockConfig() );
+
+		$itemOne = $store->getWatchedItem( User::newFromName( 'Foo' ), Title::newFromText( 'Bar' ) );
+		$itemTwo = $store->getWatchedItem( User::newFromName( 'Foo' ), Title::newFromText( 'Bar' ) );
+
+		$this->assertSame( $itemOne, $itemTwo );
+	}
+
+	public function testGetWatchedItem_cacheClearsAfterMaxItems() {
+		$lb = $this->getMockLoadbalancer( $this->getMockDb() );
+		$store = new WatchedItemStore( $lb, $this->getMockConfig() );
+
+		$title = Title::newFromDBkey( 'Foo' );
+
+		$itemOne = $store->getWatchedItem( User::newFromId( 9999 ), $title );
+		for ( $x = 1; $x <= WatchedItemStore::MAX_WATCHED_ITEMS_CACHE; $x++ ) {
+			$store->getWatchedItem( User::newFromId( $x ), $title );
+		}
+
+		$itemTwo = $store->getWatchedItem( User::newFromId( 9999 ), $title );
+
+		$this->assertNotSame( $itemOne, $itemTwo );
+	}
+
+	public function provideTestRemove() {
+		$testCases = array();
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->any() )
+			->method( 'affectedRows' )
+			->will( $this->returnValue( true ) );
+		$mockDb->expects( $this->any() )
+			->method( 'delete' )
+			->with( 'watchlist', $this->isType( 'array' ) );
+
+		$mockUser = $this->getMockUser( array( 'getId' => 1, 'isAnon' => true ) );
+
+		$testCases['anon user'] = array( false, $mockDb, $mockUser );
+
+		$mockUser = $this->getMockUser( array( 'getId' => 1, 'isAnon' => false, 'isAllowed' => false ) );
+
+		$testCases['disallowed user'] = array( false, $mockDb, $mockUser );
+
+		$mockUser = $this->getMockUser( array( 'getId' => 1, 'isAnon' => false, 'isAllowed' => true ) );
+
+		$testCases['perfect call'] = array( true, $mockDb, $mockUser );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->at( 1 ) )
+			->method( 'affectedRows' )
+			->will( $this->returnValue( true ) );
+		$mockDb->expects( $this->at( 3 ) )
+			->method( 'affectedRows' )
+			->will( $this->returnValue( true ) );
+		$mockDb->expects( $this->any() )
+			->method( 'delete' )
+			->with( 'watchlist', $this->isType( 'array' ) );
+
+		$testCases['removed 1 row'] = array( true, $mockDb, $mockUser );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->atLeastOnce() )
+			->method( 'affectedRows' )
+			->will( $this->returnValue( false ) );
+		$mockDb->expects( $this->any() )
+			->method( 'delete' )
+			->with( 'watchlist', $this->isType( 'array' ) );
+
+		$testCases['no rows removed'] = array( false, $mockDb, $mockUser );
+
+		return $testCases;
+	}
+
+	/**
+	 * @dataProvider provideTestRemove
+	 */
+	public function testRemove( $expected, $mockDb, $mockUser ) {
+		$store = new WatchedItemStore( $this->getMockLoadbalancer( $mockDb ), $this->getMockConfig() );
+
+		$watchedItem = $store->getWatchedItem( $mockUser, Title::newFromText( 'Foo' ) );
+
+		$this->assertEquals( $expected, $store->remove( $watchedItem ) );
+		// Asert the cached item has been removed
+		if ( $expected ) {
+			$this->assertNotSame(
+				$watchedItem,
+				$store->getWatchedItem( $mockUser, Title::newFromText( 'Foo' ) )
+			);
+		}
 	}
 
 	public function testCountWatchers() {
