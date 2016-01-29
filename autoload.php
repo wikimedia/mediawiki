@@ -419,7 +419,6 @@ $wgAutoloadLocalClasses = array(
 	'FakeConverter' => __DIR__ . '/languages/FakeConverter.php',
 	'FakeMaintenance' => __DIR__ . '/maintenance/Maintenance.php',
 	'FakeResultWrapper' => __DIR__ . '/includes/db/DatabaseUtility.php',
-	'Fallback' => __DIR__ . '/includes/Fallback.php',
 	'FatalError' => __DIR__ . '/includes/exception/FatalError.php',
 	'FauxRequest' => __DIR__ . '/includes/FauxRequest.php',
 	'FauxResponse' => __DIR__ . '/includes/WebResponse.php',
