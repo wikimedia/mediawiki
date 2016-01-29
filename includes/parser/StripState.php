@@ -50,7 +50,7 @@ class StripState {
 			'nowiki' => array(),
 			'general' => array()
 		);
-		$this->regex = '/' . Parser::MARKER_PREFIX . "([^\x7f]+)" . Parser::MARKER_SUFFIX . '/';
+		$this->regex = '/' . Parser::MARKER_PREFIX . "([^\x7f <>&'\"]+)" . Parser::MARKER_SUFFIX . '/';
 		$this->circularRefGuard = array();
 	}
 
