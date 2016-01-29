@@ -760,6 +760,12 @@ abstract class Installer {
 			return false;
 		}
 
+		if ( !function_exists( 'mb_substr' ) ) {
+			$this->showError( 'config-mbstring-absent' );
+
+			return false;
+		}
+
 		return true;
 	}
 
