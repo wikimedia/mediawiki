@@ -356,47 +356,12 @@ class WatchedItem {
 
 	/**
 	 * Same as addWatch, only the opposite.
+	 * @deprecated since 1.27. Use WatchedItemStore::remove
 	 * @return bool
 	 */
 	public function removeWatch() {
-
-		// Only loggedin user can have a watchlist
-		if ( wfReadOnly() || $this->mUser->isAnon() || !$this->isAllowed( 'editmywatchlist' ) ) {
-			return false;
-		}
-
-		$success = false;
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'watchlist',
-			array(
-				'wl_user' => $this->getUserId(),
-				'wl_namespace' => MWNamespace::getSubject( $this->getTitleNs() ),
-				'wl_title' => $this->getTitleDBkey(),
-			), __METHOD__
-		);
-		if ( $dbw->affectedRows() ) {
-			$success = true;
-		}
-
-		# the following code compensates the new behavior, introduced by the
-		# enotif patch, that every single watched page needs now to be listed
-		# in watchlist namespace:page and namespace_talk:page had separate
-		# entries: clear them
-		$dbw->delete( 'watchlist',
-			array(
-				'wl_user' => $this->getUserId(),
-				'wl_namespace' => MWNamespace::getTalk( $this->getTitleNs() ),
-				'wl_title' => $this->getTitleDBkey(),
-			), __METHOD__
-		);
-
-		if ( $dbw->affectedRows() ) {
-			$success = true;
-		}
-
-		$this->watched = false;
-
-		return $success;
+		$store = WatchedItemStore::getDefaultInstance();
+		$store->remove( $this );
 	}
 
 	/**

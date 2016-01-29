@@ -3355,7 +3355,7 @@ class User implements IDBAccessObject {
 	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
 	 */
 	public function removeWatch( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
-		$this->getWatchedItem( $title, $checkRights )->removeWatch();
+		WatchedItemStore::getDefaultInstance()->remove( $this->getWatchedItem( $title, $checkRights ) );
 		$this->invalidateCache();
 	}
 

@@ -29,6 +29,55 @@ class WatchedItemStore {
 	}
 
 	/**
+	 * @param WatchedItem $item
+	 *
+	 * @return bool success
+	 * @throws DBUnexpectedError
+	 * @throws MWException
+	 */
+	public function remove( WatchedItem $item ) {
+		$user = $item->mUser;
+		$title = $item->mTitle;
+
+		// Only loggedin user can have a watchlist
+		// TODO loudly fail when permission check fails
+		if ( wfReadOnly() || $user->isAnon() || !$user->isAllowed( 'editmywatchlist' ) ) {
+			return false;
+		}
+
+		$success = false;
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
+		$dbw->delete( 'watchlist',
+			array(
+				'wl_user' => $user->getId(),
+				'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
+				'wl_title' => $title->getDBkey(),
+			), __METHOD__
+		);
+		if ( $dbw->affectedRows() ) {
+			$success = true;
+		}
+
+		# the following code compensates the new behavior, introduced by the
+		# enotif patch, that every single watched page needs now to be listed
+		# in watchlist namespace:page and namespace_talk:page had separate
+		# entries: clear them
+		$dbw->delete( 'watchlist',
+			array(
+				'wl_user' => $user->getId(),
+				'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
+				'wl_title' => $title->getDBkey(),
+			), __METHOD__
+		);
+
+		if ( $dbw->affectedRows() ) {
+			$success = true;
+		}
+
+		return $success;
+	}
+
+	/**
 	 * @param TitleValue $titleValue
 	 *
 	 * @return int
