@@ -41,7 +41,8 @@ class ActivityUpdateJob extends Job {
 		if ( $this->params['type'] === 'updateWatchlistNotification' ) {
 			$this->updateWatchlistNotification();
 		} else {
-			throw new Exception( "Invalid 'type' parameter '{$this->params['type']}'." );
+			throw new InvalidArgumentException(
+				"Invalid 'type' parameter '{$this->params['type']}'." );
 		}
 
 		return true;
