@@ -8,9 +8,19 @@
 class WatchedItemStore {
 
 	/**
+	 * @var int Maximum items in $this->items
+	 */
+	const MAX_WATCHED_ITEMS_CACHE = 100;
+
+	/**
 	 * @var LoadBalancer
 	 */
 	private $loadBalancer;
+
+	/**
+	 * @var WatchedItem[]
+	 */
+	private $items = array();
 
 	public function __construct( LoadBalancer $loadBalancer, Config $config ) {
 		$this->loadBalancer = $loadBalancer;
@@ -26,6 +36,106 @@ class WatchedItemStore {
 			$instance = new self( wfGetLB(), RequestContext::getMain()->getConfig() );
 		}
 		return $instance;
+	}
+
+	/**
+	 * @param User $user
+	 * @param Title $title
+	 * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
+	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
+	 *
+	 * @return WatchedItem
+	 */
+	public function getWatchedItem( User $user, Title $title, $checkRights ) {
+		$key = $this->getCacheKey( $user, $title, $checkRights );
+
+		if ( isset( $this->items[$key] ) ) {
+			return $this->items[$key];
+		}
+
+		if ( count( $this->items ) >= self::MAX_WATCHED_ITEMS_CACHE ) {
+			$this->items = array();
+		}
+
+		$this->items[$key] = WatchedItem::fromUserTitle( $user, $title );
+		return $this->items[$key];
+	}
+
+	/**
+	 * @param User $user
+	 * @param Title $title
+	 * @param int $checkRights
+	 *
+	 * @return string
+	 */
+	private function getCacheKey( User $user, Title $title, $checkRights ) {
+		return $title->getNamespace() . ':' .
+			$title->getDBkey() . ':' .
+			$user->getId() . ':' .
+			$checkRights;
+	}
+
+	/**
+	 * @param WatchedItem $watchedItem
+	 */
+	private function uncacheItem( WatchedItem $watchedItem ) {
+		$keys = array(
+			$this->getCacheKey( $watchedItem->mUser, $watchedItem->mTitle, WatchedItem::IGNORE_USER_RIGHTS ),
+			$this->getCacheKey( $watchedItem->mUser, $watchedItem->mTitle, WatchedItem::CHECK_USER_RIGHTS )
+		);
+		foreach ( $keys as $key ) {
+			unset( $this->items[$key] );
+		}
+	}
+
+	/**
+	 * @param WatchedItem $item
+	 *
+	 * @return bool success
+	 * @throws DBUnexpectedError
+	 * @throws MWException
+	 */
+	public function remove( WatchedItem $item ) {
+		$user = $item->mUser;
+		$title = $item->mTitle;
+
+		// Only loggedin user can have a watchlist
+		// TODO loudly fail when permission check fails
+		if ( wfReadOnly() || $user->isAnon() || !$user->isAllowed( 'editmywatchlist' ) ) {
+			return false;
+		}
+
+		$success = false;
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
+		$dbw->delete( 'watchlist',
+			array(
+				'wl_user' => $user->getId(),
+				'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
+				'wl_title' => $title->getDBkey(),
+			), __METHOD__
+		);
+		if ( $dbw->affectedRows() ) {
+			$success = true;
+		}
+
+		# the following code compensates the new behavior, introduced by the
+		# enotif patch, that every single watched page needs now to be listed
+		# in watchlist namespace:page and namespace_talk:page had separate
+		# entries: clear them
+		$dbw->delete( 'watchlist',
+			array(
+				'wl_user' => $user->getId(),
+				'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
+				'wl_title' => $title->getDBkey(),
+			), __METHOD__
+		);
+
+		if ( $dbw->affectedRows() ) {
+			$success = true;
+		}
+
+		$this->uncacheItem( $item );
+		return $success;
 	}
 
 	/**
