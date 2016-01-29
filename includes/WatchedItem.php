@@ -60,17 +60,6 @@ class WatchedItem {
 	const CHECK_USER_RIGHTS = 1;
 
 	/**
-	 * Do DB master updates right now
-	 * @since 1.26
-	 */
-	const IMMEDIATE = 0;
-	/**
-	 * Do DB master updates via the job queue
-	 * @since 1.26
-	 */
-	const DEFERRED = 1;
-
-	/**
 	 * Create a WatchedItem object with the given user and title
 	 * @since 1.22 $checkRights parameter added
 	 * @param User $user The user to use for (un)watching
@@ -219,10 +208,9 @@ class WatchedItem {
 	 * @param bool $force Whether to force the write query to be executed even if the
 	 *    page is not watched or the notification timestamp is already NULL.
 	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
-	 * @mode int $mode WatchedItem::DEFERRED/IMMEDIATE
 	 */
 	public function resetNotificationTimestamp(
-		$force = '', $oldid = 0, $mode = self::IMMEDIATE
+		$force = '', $oldid = 0
 	) {
 		// Only loggedin user can have a watchlist
 		if ( wfReadOnly() || $this->mUser->isAnon() || !$this->isAllowed( 'editmywatchlist' ) ) {
@@ -273,28 +261,19 @@ class WatchedItem {
 		}
 
 		// If the page is watched by the user (or may be watched), update the timestamp
-		if ( $mode === self::DEFERRED ) {
-			$job = new ActivityUpdateJob(
-				$title,
-				array(
-					'type'      => 'updateWatchlistNotification',
-					'userid'    => $this->getUserId(),
-					'notifTime' => $notificationTimestamp,
-					'curTime'   => time()
-				)
-			);
-			// Try to run this post-send
-			DeferredUpdates::addCallableUpdate( function() use ( $job ) {
-				$job->run();
-			} );
-		} else {
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->update( 'watchlist',
-				array( 'wl_notificationtimestamp' => $dbw->timestampOrNull( $notificationTimestamp ) ),
-				$this->dbCond(),
-				__METHOD__
-			);
-		}
+		$job = new ActivityUpdateJob(
+			$title,
+			array(
+				'type'      => 'updateWatchlistNotification',
+				'userid'    => $this->getUserId(),
+				'notifTime' => $notificationTimestamp,
+				'curTime'   => time()
+			)
+		);
+		// Try to run this post-send
+		DeferredUpdates::addCallableUpdate( function() use ( $job ) {
+			$job->run();
+		} );
 
 		$this->timestamp = null;
 	}

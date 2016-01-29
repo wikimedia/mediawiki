@@ -3408,7 +3408,7 @@ class User implements IDBAccessObject {
 		}
 
 		$this->getWatchedItem( $title )->resetNotificationTimestamp(
-			$force, $oldid, WatchedItem::DEFERRED
+			$force, $oldid
 		);
 	}
 
