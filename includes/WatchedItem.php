@@ -28,13 +28,13 @@
  */
 class WatchedItem {
 	/** @var Title */
-	public $mTitle;
+	private $mTitle;
 
 	/** @var User */
-	public $mUser;
+	private $mUser;
 
 	/** @var int */
-	public $mCheckRights;
+	private $mCheckRights;
 
 	/** @var bool */
 	private $loaded = false;
