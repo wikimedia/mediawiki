@@ -590,7 +590,8 @@ class ChangesList extends ContextSource {
 
 		list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow(
 			$rc->mAttribs['ts_tags'],
-			'changeslist'
+			'changeslist',
+			$this->getContext()
 		);
 		$classes = array_merge( $classes, $newClasses );
 		$s .= ' ' . $tagSummary;

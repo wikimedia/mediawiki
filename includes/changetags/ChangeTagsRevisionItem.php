@@ -49,7 +49,11 @@ class ChangeTagsRevisionItem extends RevisionItem {
 		$attribs = array();
 		$tags = $this->getTags();
 		if ( $tags ) {
-			list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow( $tags, 'edittags' );
+			list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow(
+				$tags,
+				'edittags',
+				$this->list->getContext()
+			);
 			$content .= " $tagSummary";
 			$attribs['class'] = implode( ' ', $classes );
 		}
