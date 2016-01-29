@@ -383,20 +383,13 @@ class Language {
 	 * @return bool
 	 */
 	public static function isKnownLanguageTag( $tag ) {
-		static $coreLanguageNames;
-
 		// Quick escape for invalid input to avoid exceptions down the line
 		// when code tries to process tags which are not valid at all.
 		if ( !self::isValidBuiltInCode( $tag ) ) {
 			return false;
 		}
 
-		if ( $coreLanguageNames === null ) {
-			global $IP;
-			include "$IP/languages/Names.php";
-		}
-
-		if ( isset( $coreLanguageNames[$tag] )
+		if ( isset( MediaWiki\Languages\Data\Names::$names[$tag] )
 			|| self::fetchLanguageName( $tag, $tag ) !== ''
 		) {
 			return true;
@@ -874,12 +867,6 @@ class Language {
 	 */
 	private static function fetchLanguageNamesUncached( $inLanguage = null, $include = 'mw' ) {
 		global $wgExtraLanguageNames;
-		static $coreLanguageNames;
-
-		if ( $coreLanguageNames === null ) {
-			global $IP;
-			include "$IP/languages/Names.php";
-		}
 
 		// If passed an invalid language code to use, fallback to en
 		if ( $inLanguage !== null && !Language::isValidCode( $inLanguage ) ) {
@@ -893,7 +880,7 @@ class Language {
 			Hooks::run( 'LanguageGetTranslatedLanguageNames', array( &$names, $inLanguage ) );
 		}
 
-		$mwNames = $wgExtraLanguageNames + $coreLanguageNames;
+		$mwNames = $wgExtraLanguageNames + MediaWiki\Languages\Data\Names::$names;
 		foreach ( $mwNames as $mwCode => $mwName ) {
 			# - Prefer own MediaWiki native name when not using the hook
 			# - For other names just add if not added through the hook
