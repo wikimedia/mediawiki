@@ -2245,7 +2245,8 @@ class WikiPage implements Page, IDBAccessObject {
 					$this->getTitle(),
 					array(
 						'pageId' => $this->getId(),
-						'revTimestamp' => $revision->getTimestamp()
+						'revTimestamp' => $revision->getTimestamp(),
+						'session' => RequestContext::getMain()->exportSession(),
 					)
 				) );
 			}

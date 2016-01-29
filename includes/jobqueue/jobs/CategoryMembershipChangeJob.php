@@ -42,6 +42,11 @@ class CategoryMembershipChangeJob extends Job {
 	}
 
 	public function run() {
+		if ( isset( $this->params['session'] ) ) {
+			// restore request data for CheckUser
+			$scope = RequestContext::importScopedSession( $this->params['session'] );
+		}
+
 		$page = WikiPage::newFromID( $this->params['pageId'], WikiPage::READ_LATEST );
 		if ( !$page ) {
 			$this->setLastError( "Could not find page #{$this->params['pageId']}" );
