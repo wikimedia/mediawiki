@@ -118,10 +118,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$opts->add( 'hideliu', $user->getBoolOption( 'watchlisthideliu' ) );
 		$opts->add( 'hidepatrolled', $user->getBoolOption( 'watchlisthidepatrolled' ) );
 		$opts->add( 'hidemyself', $user->getBoolOption( 'watchlisthideown' ) );
-
-		if ( $this->getConfig()->get( 'RCWatchCategoryMembership' ) ) {
-			$opts->add( 'hidecategorization', $user->getBoolOption( 'watchlisthidecategorization' ) );
-		}
+		$opts->add( 'hidecategorization', $user->getBoolOption( 'watchlisthidecategorization' ) );
 
 		return $opts;
 	}

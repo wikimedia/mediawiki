@@ -84,10 +84,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$opts->add( 'hideliu', false );
 		$opts->add( 'hidepatrolled', $user->getBoolOption( 'hidepatrolled' ) );
 		$opts->add( 'hidemyself', false );
-
-		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
-			$opts->add( 'hidecategorization', $user->getBoolOption( 'hidecategorization' ) );
-		}
+		$opts->add( 'hidecategorization', $user->getBoolOption( 'hidecategorization' ) );
 
 		$opts->add( 'categories', '' );
 		$opts->add( 'categories_any', false );
