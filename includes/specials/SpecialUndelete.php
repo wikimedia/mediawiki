@@ -1142,7 +1142,7 @@ class SpecialUndelete extends SpecialPage {
 			array( 'ts_rev_id' => $rev->getId() ),
 			__METHOD__
 		);
-		$tagSummary = ChangeTags::formatSummaryRow( $tags, 'deleteddiff' );
+		$tagSummary = ChangeTags::formatSummaryRow( $tags, 'deleteddiff', $this->getContext() );
 
 		// FIXME This is reimplementing DifferenceEngine#getRevisionHeader
 		// and partially #showDiffPage, but worse
@@ -1461,7 +1461,11 @@ class SpecialUndelete extends SpecialPage {
 
 		// Tags
 		$attribs = array();
-		list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow( $row->ts_tags, 'deletedhistory' );
+		list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow(
+			$row->ts_tags,
+			'deletedhistory',
+			$this->getContext()
+		);
 		if ( $classes ) {
 			$attribs['class'] = implode( ' ', $classes );
 		}
