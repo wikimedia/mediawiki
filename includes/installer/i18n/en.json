@@ -60,6 +60,7 @@
 	"config-ctype": "<strong>Fatal:</strong> PHP must be compiled with support for the [http://www.php.net/manual/en/ctype.installation.php Ctype extension].",
 	"config-iconv": "<strong>Fatal:</strong> PHP must be compiled with support for the [http://www.php.net/manual/en/iconv.installation.php iconv extension].",
 	"config-json": "<strong>Fatal:</strong> PHP was compiled without JSON support.\nYou must install either the PHP JSON extension or the [http://pecl.php.net/package/jsonc PECL jsonc] extension before installing MediaWiki.\n* The PHP extension is included in Red Hat Enterprise Linux (CentOS) 5 and 6, though must be enabled in <code>/etc/php.ini</code> or <code>/etc/php.d/json.ini</code>.\n* Some Linux distributions released after May 2013 omit the PHP extension, instead packaging the PECL extension as <code>php5-json</code> or <code>php-pecl-jsonc</code>.",
+	"config-mbstring-absent": "<strong>Fatal:</strong> PHP must be compiled with support for the [http://www.php.net/manual/en/mbstring.setup.php mbstring extension].",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] is installed",
 	"config-apc": "[http://www.php.net/apc APC] is installed",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] is installed",
