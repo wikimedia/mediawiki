@@ -96,9 +96,8 @@ production.
   class's methods.
 
 === New features in 1.27 ===
-* $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
-  basic configuration settings needed for multi-datacenter setups.
-  $wgDataCenterUpdateStickTTL was also added.
+* $wgDataCenterUpdateStickTTL was also added. This decides how long a user
+  sticks to the primary DC (via cookies) after they make changes to the site.
 * Added a new hook, 'UserMailerTransformContent', to transform the contents
   of an email. This is similar to the EmailUser hook but applies to all mail
   sent via UserMailer.
