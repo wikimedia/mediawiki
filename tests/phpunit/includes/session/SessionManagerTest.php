@@ -103,7 +103,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$manager = \TestingAccessWrapper::newFromObject( $this->getManager() );
 		$this->assertSame( $this->config, $manager->config );
 		$this->assertSame( $this->logger, $manager->logger );
-		$this->assertSame( $this->store, $manager->store );
+		$this->assertSame( $this->store, $manager->permStore );
 
 		$manager = \TestingAccessWrapper::newFromObject( new SessionManager() );
 		$this->assertSame( \RequestContext::getMain()->getConfig(), $manager->config );
@@ -111,7 +111,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$manager = \TestingAccessWrapper::newFromObject( new SessionManager( array(
 			'config' => $this->config,
 		) ) );
-		$this->assertSame( \ObjectCache::$instances['testSessionStore'], $manager->store );
+		$this->assertSame( \ObjectCache::$instances['testSessionStore'], $manager->permStore );
 
 		foreach ( array(
 			'config' => '$options[\'config\'] must be an instance of Config',
@@ -300,6 +300,9 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 	public function testGetSessionById() {
 		$manager = $this->getManager();
+
+		// Disable the in-process cache so our $this->store->setSession() takes effect.
+		\TestingAccessWrapper::newFromObject( $manager )->tempStore = new \EmptyBagOStuff;
 
 		try {
 			$manager->getSessionById( 'bad' );
@@ -1082,6 +1085,9 @@ class SessionManagerTest extends MediaWikiTestCase {
 		} );
 		$manager->setLogger( $logger );
 		$request = new \FauxRequest();
+
+		// Disable the in-process cache so our $this->store->setSession() takes effect.
+		\TestingAccessWrapper::newFromObject( $manager )->tempStore = new \EmptyBagOStuff;
 
 		// TestingAccessWrapper can't handle methods with reference arguments, sigh.
 		$rClass = new \ReflectionClass( $manager );

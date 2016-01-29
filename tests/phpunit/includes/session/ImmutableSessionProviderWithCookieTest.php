@@ -205,6 +205,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 				'idIsSafe' => true,
 			) ),
 			new \EmptyBagOStuff(),
+			new \EmptyBagOStuff(),
 			new \Psr\Log\NullLogger(),
 			10
 		);
