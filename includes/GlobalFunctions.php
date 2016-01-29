@@ -34,63 +34,10 @@ use MediaWiki\Session\SessionManager;
 /**
  * Compatibility functions
  *
- * We support PHP 5.3.3 and up.
+ * We support PHP 5.5.9 and up.
  * Re-implementations of newer functions or functions in non-standard
  * PHP extensions may be included here.
  */
-
-if ( !function_exists( 'mb_substr' ) ) {
-	/**
-	 * @codeCoverageIgnore
-	 * @see Fallback::mb_substr
-	 * @return string
-	 */
-	function mb_substr( $str, $start, $count = 'end' ) {
-		return Fallback::mb_substr( $str, $start, $count );
-	}
-
-	/**
-	 * @codeCoverageIgnore
-	 * @see Fallback::mb_substr_split_unicode
-	 * @return int
-	 */
-	function mb_substr_split_unicode( $str, $splitPos ) {
-		return Fallback::mb_substr_split_unicode( $str, $splitPos );
-	}
-}
-
-if ( !function_exists( 'mb_strlen' ) ) {
-	/**
-	 * @codeCoverageIgnore
-	 * @see Fallback::mb_strlen
-	 * @return int
-	 */
-	function mb_strlen( $str, $enc = '' ) {
-		return Fallback::mb_strlen( $str, $enc );
-	}
-}
-
-if ( !function_exists( 'mb_strpos' ) ) {
-	/**
-	 * @codeCoverageIgnore
-	 * @see Fallback::mb_strpos
-	 * @return int
-	 */
-	function mb_strpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
-		return Fallback::mb_strpos( $haystack, $needle, $offset, $encoding );
-	}
-}
-
-if ( !function_exists( 'mb_strrpos' ) ) {
-	/**
-	 * @codeCoverageIgnore
-	 * @see Fallback::mb_strrpos
-	 * @return int
-	 */
-	function mb_strrpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
-		return Fallback::mb_strrpos( $haystack, $needle, $offset, $encoding );
-	}
-}
 
 // gzdecode function only exists in PHP >= 5.4.0
 // http://php.net/gzdecode
