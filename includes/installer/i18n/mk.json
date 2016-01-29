@@ -12,7 +12,7 @@
 	"config-localsettings-upgrade": "Востановена е податотека <code>LocalSettings.php</code>.\nЗа да ја надградите инсталцијава, внесете ја вредноста на <code>$wgUpgradeKey</code> во полето подолу.\nТоа е го најдете во <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Утврдено е присуството на податотеката „<code>LocalSettings.php</code>“.\nЗа да ја надградите воспоставката, пуштете ја „<code>update.php</code>“ наместо горенаведената.",
 	"config-localsettings-key": "Надградбен клуч:",
-	"config-localsettings-badkey": "Клучот што го наведовте е погрешен",
+	"config-localsettings-badkey": "Надградбениот клуч што го наведовте е погрешен.",
 	"config-upgrade-key-missing": "Востановена е постоечка воспоставка на МедијаВики.\nЗа да ја надградите, вметнете го следниов ред на дното од вашата страница <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "Постоечката страница <code>LocalSettings.php</code> е нецелосна.\nНе е поставена променливата $1.\nИзменете ја страницата <code>LocalSettings.php</code> така што ќе ѝ зададете вредност на променливата, па стиснете на „{{int:Config-continue}}“.",
 	"config-localsettings-connection-error": "Се појави грешка при поврзувањето со базата користејќи ги поставките назначени во <code>LocalSettings.php</code>. Исправете ги овие поставки и обидете се повторно.\n\n$1",

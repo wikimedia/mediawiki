@@ -1184,6 +1184,7 @@
 	"recentchangeslinked-page": "АгӀон цӀе:",
 	"recentchangeslinked-to": "Кхечу агӀор, гайта хийцамаш агӀонашца, хӀоттийначу агӀонтӀе хьажорг йолуш",
 	"recentchanges-page-added-to-category": "[[:$1]] категори чу тоьхна",
+	"recentchanges-page-removed-from-category": "[[:$1]] дӀаяьккхина категори чура",
 	"upload": "Файл чуяккхар",
 	"uploadbtn": "Файл чуяккхар",
 	"reuploaddesc": "Юху гӀо файл чуйоккху агӀоне",

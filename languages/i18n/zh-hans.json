@@ -2611,7 +2611,7 @@
 	"pageinfo-robot-index": "允许",
 	"pageinfo-robot-noindex": "不允许",
 	"pageinfo-watchers": "页面监视者数",
-	"pageinfo-visiting-watchers": "访问最近编辑的页面浏览者数量",
+	"pageinfo-visiting-watchers": "已访问最近编辑的页面监视者数",
 	"pageinfo-few-watchers": "少于$1个监视者",
 	"pageinfo-few-visiting-watchers": "这里可能有或可能没有观察用户正在访问最近编辑",
 	"pageinfo-redirects-name": "至该页面的重定向数",

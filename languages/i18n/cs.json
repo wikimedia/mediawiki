@@ -592,7 +592,7 @@
 	"changeemail-newemail": "Nová e-mailová adresa:",
 	"changeemail-newemail-help": "Toto pole by mělo zůstat prázdné, pokud chcete odstranit svou e-mailovou adresu. Pokud bude e-mailová adresa odstraněná, nebudete si moct obnovit zapomenuté heslo a přijímat e-maily z této wiki.",
 	"changeemail-none": "(žádná)",
-	"changeemail-password": "Vaše heslo do {{gender:2sg|{{SITENAME}}}}:",
+	"changeemail-password": "{{GENDER:|Vaše heslo}} do {{GRAMMAR:2sg|{{SITENAME}}}}:",
 	"changeemail-submit": "Změnit e-mail",
 	"changeemail-throttled": "Provedli jste příliš mnoho pokusů o přihlášení.\nČekejte prosím $1 a zkuste to znovu.",
 	"changeemail-nochange": "Zadejte prosím odlišnou e-mailovou adresu.",
