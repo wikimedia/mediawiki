@@ -63,15 +63,9 @@ class HtmlFormatter {
 	 */
 	public function getDoc() {
 		if ( !$this->doc ) {
-			// DOMDocument::loadHTML apparently isn't very good with encodings, so
+			// DOMDocument::loadHTML isn't very good with encodings, so
 			// convert input to ASCII by encoding everything above 128 as entities.
-			if ( function_exists( 'mb_convert_encoding' ) ) {
-				$html = mb_convert_encoding( $this->html, 'HTML-ENTITIES', 'UTF-8' );
-			} else {
-				$html = preg_replace_callback( '/[\x{80}-\x{10ffff}]/u', function ( $m ) {
-					return '&#' . UtfNormal\Utils::utf8ToCodepoint( $m[0] ) . ';';
-				}, $this->html );
-			}
+			$html = mb_convert_encoding( $this->html, 'HTML-ENTITIES', 'UTF-8' );
 
 			// Workaround for bug that caused spaces before references
 			// to disappear during processing: https://phabricator.wikimedia.org/T55086
@@ -251,13 +245,10 @@ class HtmlFormatter {
 		}
 		$html = $replacements->replace( $html );
 
-		if ( function_exists( 'mb_convert_encoding' ) ) {
-			// Just in case the conversion in getDoc() above used named
-			// entities that aren't known to html_entity_decode().
-			$html = mb_convert_encoding( $html, 'UTF-8', 'HTML-ENTITIES' );
-		} else {
-			$html = html_entity_decode( $html, ENT_COMPAT, 'utf-8' );
-		}
+		// Just in case the conversion in getDoc() above used named
+		// entities that aren't known to html_entity_decode().
+		$html = mb_convert_encoding( $html, 'UTF-8', 'HTML-ENTITIES' );
+
 		return $html;
 	}
 
