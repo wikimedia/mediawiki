@@ -99,9 +99,21 @@ class KafkaHandler extends AbstractProcessingHandler {
 	) {
 		$metadata = new MetaDataFromKafka( $kafkaServers );
 		$produce = new Produce( $metadata );
+
+		if ( isset( $options['sendTimeout'] ) ) {
+			$timeOut = $options['sendTimeout'];
+			$produce->getClient()->setStreamOption( 'SendTimeoutSec', intval( $timeOut ) );
+			$produce->getClient()->setStreamOption( 'SendTimeoutUSec', intval( $timeOut * 1000000 ) % 1000000 );
+		}
+		if ( isset( $options['recvTimeout'] ) ) {
+			$timeOut = $options['recvTimeout'];
+			$produce->getClient()->setStreamOption( 'RecvTimeoutSec', intval( $timeOut ) );
+			$produce->getClient()->setStreamOption( 'RecvTimeoutUSec', intval( $timeOut * 1000000 ) % 1000000 );
+		}
 		if ( isset( $options['logExceptions'] ) && is_string( $options['logExceptions'] ) ) {
 			$options['logExceptions'] = LoggerFactory::getInstance( $options['logExceptions'] );
 		}
+
 		return new self( $produce, $options, $level, $bubble );
 	}
 
