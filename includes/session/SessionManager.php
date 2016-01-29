@@ -55,7 +55,10 @@ final class SessionManager implements SessionManagerInterface {
 	private $config;
 
 	/** @var BagOStuff|null */
-	private $store;
+	private $tempStore;
+
+	/** @var BagOStuff|null */
+	private $permStore;
 
 	/** @var SessionProvider[] */
 	private $sessionProviders = null;
@@ -159,16 +162,17 @@ final class SessionManager implements SessionManagerInterface {
 			$this->setLogger( \MediaWiki\Logger\LoggerFactory::getInstance( 'session' ) );
 		}
 
+		$this->tempStore = new \HashBagOStuff;
 		if ( isset( $options['store'] ) ) {
 			if ( !$options['store'] instanceof BagOStuff ) {
 				throw new \InvalidArgumentException(
 					'$options[\'store\'] must be an instance of BagOStuff'
 				);
 			}
-			$this->store = $options['store'];
+			$this->permStore = $options['store'];
 		} else {
-			$this->store = \ObjectCache::getInstance( $this->config->get( 'SessionCacheType' ) );
-			$this->store->setLogger( $this->logger );
+			$this->permStore = \ObjectCache::getInstance( $this->config->get( 'SessionCacheType' ) );
+			$this->permStore->setLogger( $this->logger );
 		}
 
 		register_shutdown_function( array( $this, 'shutdown' ) );
@@ -202,7 +206,14 @@ final class SessionManager implements SessionManagerInterface {
 		// Test this here to provide a better log message for the common case
 		// of "no such ID"
 		$key = wfMemcKey( 'MWSession', $id );
-		if ( is_array( $this->store->get( $key ) ) ) {
+		$existing = $this->tempStore->get( $key );
+		if ( $existing === false ) {
+			$existing = $this->permStore->get( $key );
+			if ( $existing !== false ) {
+				$this->tempStore->set( $key, $existing );
+			}
+		}
+		if ( is_array( $existing ) ) {
 			$info = new SessionInfo( SessionInfo::MIN_PRIORITY, array( 'id' => $id, 'idIsSafe' => true ) );
 			if ( $this->loadSessionInfoFromStore( $info, $request ) ) {
 				$session = $this->getSessionFromInfo( $info, $request );
@@ -240,7 +251,14 @@ final class SessionManager implements SessionManagerInterface {
 			}
 
 			$key = wfMemcKey( 'MWSession', $id );
-			if ( is_array( $this->store->get( $key ) ) ) {
+			$existing = $this->tempStore->get( $key );
+			if ( $existing === false ) {
+				$existing = $this->permStore->get( $key );
+				if ( $existing !== false ) {
+					$this->tempStore->set( $key, $existing );
+				}
+			}
+			if ( is_array( $existing ) ) {
 				throw new \InvalidArgumentException( 'Session ID already exists' );
 			}
 		}
@@ -660,7 +678,13 @@ final class SessionManager implements SessionManagerInterface {
 	 */
 	private function loadSessionInfoFromStore( SessionInfo &$info, WebRequest $request ) {
 		$key = wfMemcKey( 'MWSession', $info->getId() );
-		$blob = $this->store->get( $key );
+		$blob = $this->tempStore->get( $key );
+		if ( $blob === false ) {
+			$blob = $this->permStore->get( $key );
+			if ( $blob !== false ) {
+				$this->tempStore->set( $key, $blob );
+			}
+		}
 
 		$newParams = array();
 
@@ -668,7 +692,8 @@ final class SessionManager implements SessionManagerInterface {
 			// Sanity check: blob must be an array, if it's saved at all
 			if ( !is_array( $blob ) ) {
 				$this->logger->warning( "Session $info: Bad data" );
-				$this->store->delete( $key );
+				$this->tempStore->delete( $key );
+				$this->permStore->delete( $key );
 				return false;
 			}
 
@@ -677,7 +702,8 @@ final class SessionManager implements SessionManagerInterface {
 				!isset( $blob['metadata'] ) || !is_array( $blob['metadata'] )
 			) {
 				$this->logger->warning( "Session $info: Bad data structure" );
-				$this->store->delete( $key );
+				$this->tempStore->delete( $key );
+				$this->permStore->delete( $key );
 				return false;
 			}
 
@@ -692,7 +718,8 @@ final class SessionManager implements SessionManagerInterface {
 				!array_key_exists( 'provider', $metadata )
 			) {
 				$this->logger->warning( "Session $info: Bad metadata" );
-				$this->store->delete( $key );
+				$this->tempStore->delete( $key );
+				$this->permStore->delete( $key );
 				return false;
 			}
 
@@ -702,7 +729,8 @@ final class SessionManager implements SessionManagerInterface {
 				$newParams['provider'] = $provider = $this->getProvider( $metadata['provider'] );
 				if ( !$provider ) {
 					$this->logger->warning( "Session $info: Unknown provider, " . $metadata['provider'] );
-					$this->store->delete( $key );
+					$this->tempStore->delete( $key );
+					$this->permStore->delete( $key );
 					return false;
 				}
 			} elseif ( $metadata['provider'] !== (string)$provider ) {
@@ -893,7 +921,8 @@ final class SessionManager implements SessionManagerInterface {
 			$backend = new SessionBackend(
 				$this->allSessionIds[$id],
 				$info,
-				$this->store,
+				$this->tempStore,
+				$this->permStore,
 				$this->logger,
 				$this->config->get( 'ObjectCacheSessionExpiry' )
 			);
@@ -970,7 +999,9 @@ final class SessionManager implements SessionManagerInterface {
 		do {
 			$id = wfBaseConvert( \MWCryptRand::generateHex( 40 ), 16, 32, 32 );
 			$key = wfMemcKey( 'MWSession', $id );
-		} while ( isset( $this->allSessionIds[$id] ) || is_array( $this->store->get( $key ) ) );
+		} while ( isset( $this->allSessionIds[$id] ) ||
+			is_array( $this->tempStore->get( $key ) ) || is_array( $this->permStore->get( $key ) )
+		);
 		return $id;
 	}
 
@@ -980,7 +1011,7 @@ final class SessionManager implements SessionManagerInterface {
 	 * @param PHPSessionHandler $handler
 	 */
 	public function setupPHPSessionHandler( PHPSessionHandler $handler ) {
-		$handler->setManager( $this, $this->store, $this->logger );
+		$handler->setManager( $this, $this->permStore, $this->logger );
 	}
 
 	/**

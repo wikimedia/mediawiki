@@ -65,7 +65,9 @@ final class SessionBackend {
 	private $dataHash = null;
 
 	/** @var BagOStuff */
-	private $store;
+	private $tempStore;
+	/** @var BagOStuff */
+	private $permStore;
 
 	/** @var LoggerInterface */
 	private $logger;
@@ -97,12 +99,14 @@ final class SessionBackend {
 	/**
 	 * @param SessionId $id Session ID object
 	 * @param SessionInfo $info Session info to populate from
-	 * @param BagOStuff $store Backend data store
+	 * @param BagOStuff $tempStore In-process data store
+	 * @param BagOStuff $permstore Backend data store for persisted sessions
 	 * @param LoggerInterface $logger
 	 * @param int $lifetime Session data lifetime in seconds
 	 */
 	public function __construct(
-		SessionId $id, SessionInfo $info, BagOStuff $store, LoggerInterface $logger, $lifetime
+		SessionId $id, SessionInfo $info, BagOStuff $tempStore, BagOStuff $permStore,
+		LoggerInterface $logger, $lifetime
 	) {
 		$phpSessionHandling = \RequestContext::getMain()->getConfig()->get( 'PHPSessionHandling' );
 		$this->usePhpSessionHandling = $phpSessionHandling !== 'disable';
@@ -121,7 +125,8 @@ final class SessionBackend {
 
 		$this->id = $id;
 		$this->user = $info->getUserInfo() ? $info->getUserInfo()->getUser() : new User;
-		$this->store = $store;
+		$this->tempStore = $tempStore;
+		$this->permStore = $permStore;
 		$this->logger = $logger;
 		$this->lifetime = $lifetime;
 		$this->provider = $info->getProvider();
@@ -130,7 +135,14 @@ final class SessionBackend {
 		$this->forceHTTPS = $info->forceHTTPS();
 		$this->providerMetadata = $info->getProviderMetadata();
 
-		$blob = $store->get( wfMemcKey( 'MWSession', (string)$this->id ) );
+		$key = wfMemcKey( 'MWSession', (string)$this->id );
+		$blob = $tempStore->get( $key );
+		if ( $blob === false ) {
+			$blob = $permStore->get( $key );
+			if ( $blob !== false ) {
+				$tempStore->set( $key, $blob );
+			}
+		}
 		if ( !is_array( $blob ) ||
 			!isset( $blob['metadata'] ) || !is_array( $blob['metadata'] ) ||
 			!isset( $blob['data'] ) || !is_array( $blob['data'] )
@@ -229,7 +241,8 @@ final class SessionBackend {
 			$this->autosave();
 
 			// Delete the data for the old session ID now
-			$this->store->delete( wfMemcKey( 'MWSession', $oldId ) );
+			$this->tempStore->delete( wfMemcKey( 'MWSession', $oldId ) );
+			$this->permStore->delete( wfMemcKey( 'MWSession', $oldId ) );
 		}
 	}
 
@@ -613,7 +626,7 @@ final class SessionBackend {
 			}
 		}
 
-		$this->store->set(
+		$this->tempStore->set(
 			wfMemcKey( 'MWSession', (string)$this->id ),
 			array(
 				'data' => $this->data,
@@ -621,6 +634,16 @@ final class SessionBackend {
 			),
 			$metadata['expires']
 		);
+		if ( $this->persist ) {
+			$this->permStore->set(
+				wfMemcKey( 'MWSession', (string)$this->id ),
+				array(
+					'data' => $this->data,
+					'metadata' => $metadata,
+				),
+				$metadata['expires']
+			);
+		}
 
 		$this->metaDirty = false;
 		$this->dataDirty = false;

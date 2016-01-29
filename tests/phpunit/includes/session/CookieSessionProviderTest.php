@@ -363,6 +363,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 				'idIsSafe' => true,
 			) ),
 			$store,
+			$store,
 			new \Psr\Log\NullLogger(),
 			10
 		);
@@ -448,6 +449,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 				'persisted' => true,
 				'idIsSafe' => true,
 			) ),
+			new \EmptyBagOStuff(),
 			new \EmptyBagOStuff(),
 			new \Psr\Log\NullLogger(),
 			10
@@ -552,6 +554,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 				'persisted' => true,
 				'idIsSafe' => true,
 			) ),
+			$store,
 			$store,
 			new \Psr\Log\NullLogger(),
 			10
