@@ -1391,6 +1391,9 @@ class LoadBalancer {
 		}
 
 		$pos = $pos ?: $this->getConnection( DB_MASTER )->getMasterPos();
+		if ( !$pos ) {
+			return false; // something is misconfigured
+		}
 
 		$result = $conn->masterPosWait( $pos, $timeout );
 		if ( $result == -1 || is_null( $result ) ) {
