@@ -533,6 +533,12 @@ final class SessionBackend {
 	 * @param bool $closing Whether the session is being closed
 	 */
 	public function save( $closing = false ) {
+		// There's no point in saving a session that isn't persisted.
+		if ( !$this->persist ) {
+			$this->logger->debug( "SessionBackend $this->id not saving, session isn't persisted" );
+			return;
+		}
+
 		if ( $this->provider->getManager()->isUserSessionPrevented( $this->user->getName() ) ) {
 			$this->logger->debug(
 				"SessionBackend $this->id not saving, " .
