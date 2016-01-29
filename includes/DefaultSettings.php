@@ -585,10 +585,9 @@ $wgLockManagers = [];
  * Requires PHP's Exif extension: http://www.php.net/manual/en/ref.exif.php
  *
  * @note FOR WINDOWS USERS:
- * To enable Exif functions, add the following lines to the "Windows
+ * To enable Exif functions, add the following line to the "Windows
  * extensions" section of php.ini:
  * @code{.ini}
- * extension=extensions/php_mbstring.dll
  * extension=extensions/php_exif.dll
  * @endcode
  */

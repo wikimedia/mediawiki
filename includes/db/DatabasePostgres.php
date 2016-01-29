@@ -392,9 +392,7 @@ class DatabasePostgres extends Database {
 	}
 
 	public function doQuery( $sql ) {
-		if ( function_exists( 'mb_convert_encoding' ) ) {
-			$sql = mb_convert_encoding( $sql, 'UTF-8' );
-		}
+		$sql = mb_convert_encoding( $sql, 'UTF-8' );
 		// Clear previously left over PQresult
 		while ( $res = pg_get_result( $this->mConn ) ) {
 			pg_free_result( $res );
