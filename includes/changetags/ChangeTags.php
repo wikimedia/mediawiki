@@ -35,13 +35,12 @@ class ChangeTags {
 	 * @param string $tags Comma-separated list of tags
 	 * @param string $page A label for the type of action which is being displayed,
 	 *   for example: 'history', 'contributions' or 'newpages'
+	 * @param IContextSource $context
 	 * @return array Array with two items: (html, classes)
 	 *   - html: String: HTML for displaying the tags (empty string when param $tags is empty)
 	 *   - classes: Array of strings: CSS classes used in the generated html, one class for each tag
 	 */
-	public static function formatSummaryRow( $tags, $page ) {
-		global $wgLang;
-
+	public static function formatSummaryRow( $tags, $page, IContextSource $context ) {
 		if ( !$tags ) {
 			return array( '', array() );
 		}
@@ -71,9 +70,9 @@ class ChangeTags {
 			return array( '', array() );
 		}
 
-		$markers = wfMessage( 'tag-list-wrapper' )
+		$markers = $context->msg( 'tag-list-wrapper' )
 			->numParams( count( $displayTags ) )
-			->rawParams( $wgLang->commaList( $displayTags ) )
+			->rawParams( $context->getLanguage()->commaList( $displayTags ) )
 			->parse();
 		$markers = Xml::tags( 'span', array( 'class' => 'mw-tag-markers' ), $markers );
 

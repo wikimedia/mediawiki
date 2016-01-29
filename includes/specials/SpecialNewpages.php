@@ -359,7 +359,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 		if ( isset( $result->ts_tags ) ) {
 			list( $tagDisplay, $newClasses ) = ChangeTags::formatSummaryRow(
 				$result->ts_tags,
-				'newpages'
+				'newpages',
+				$this->getContext()
 			);
 			$classes = array_merge( $classes, $newClasses );
 		} else {
