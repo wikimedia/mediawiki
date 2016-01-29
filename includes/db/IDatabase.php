@@ -1493,8 +1493,8 @@ interface IDatabase {
 	 * Named locks are not related to transactions
 	 *
 	 * @param string $lockName Name of lock to aquire
-	 * @param string $method Name of method calling us
-	 * @param int $timeout
+	 * @param string $method Name of the calling method
+	 * @param int $timeout Acquisition timeout in seconds
 	 * @return bool
 	 */
 	public function lock( $lockName, $method, $timeout = 5 );
@@ -1505,13 +1505,32 @@ interface IDatabase {
 	 * Named locks are not related to transactions
 	 *
 	 * @param string $lockName Name of lock to release
-	 * @param string $method Name of method calling us
+	 * @param string $method Name of the calling method
 	 *
 	 * @return int Returns 1 if the lock was released, 0 if the lock was not established
 	 * by this thread (in which case the lock is not released), and NULL if the named
 	 * lock did not exist
 	 */
 	public function unlock( $lockName, $method );
+
+	/**
+	 * Acquire a named lock, flush any transaction, and return an RAII style unlocker object
+	 *
+	 * This is suitiable for transactions that need to be serialized using cooperative locks,
+	 * where each transaction can see each others' changes. Any transaction is flushed to clear
+	 * out stale REPEATABLE-READ snapshot data. Once the returned object falls out of PHP scope,
+	 * the lock will be released.
+	 *
+	 * If the lock acquisition failed, then no transaction flush happens, and null is returned.
+	 *
+	 * @param string $lockKey Name of lock to release
+	 * @param string $fname Name of the calling method
+	 * @param int $timeout Acquisition timeout in seconds
+	 * @return ScopedCallback|null
+	 * @throws DBUnexpectedError
+	 * @since 1.27
+	 */
+	public function getScopedLockAndFlush( $lockKey, $fname, $timeout );
 
 	/**
 	 * Check to see if a named lock used by lock() use blocking queues
