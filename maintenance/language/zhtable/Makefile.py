@@ -414,22 +414,25 @@ def main():
  * @file
  */
 
-$zh2Hant = array(\n'''
+namespace MediaWiki\Languages\Data;
+
+class ZhConversion {
+public static $zh2Hant = array(\n'''
     php += PHPArray(toHant) \
-        + '\n);\n\n$zh2Hans = array(\n' \
+        + '\n);\n\npublic static $zh2Hans = array(\n' \
         + PHPArray(toHans) \
-        + '\n);\n\n$zh2TW = array(\n' \
+        + '\n);\n\npublic static $zh2TW = array(\n' \
         + PHPArray(toTW) \
-        + '\n);\n\n$zh2HK = array(\n' \
+        + '\n);\n\npublic static $zh2HK = array(\n' \
         + PHPArray(toHK) \
-        + '\n);\n\n$zh2CN = array(\n' \
+        + '\n);\n\npublic static $zh2CN = array(\n' \
         + PHPArray(toCN) \
-        + '\n);\n'
+        + '\n);\n}\n'
 
     if pyversion[:1] in ['2']:
-        f = open(os.path.join('..', '..', '..', 'includes', 'ZhConversion.php'), 'wb', encoding='utf8')
+        f = open(os.path.join('..', '..', '..', 'languages', 'data', 'ZhConversion.php'), 'wb', encoding='utf8')
     else:
-        f = open(os.path.join('..', '..', '..', 'includes', 'ZhConversion.php'), 'w', buffering=4096, encoding='utf8')
+        f = open(os.path.join('..', '..', '..', 'languages', 'data', 'ZhConversion.php'), 'w', buffering=4096, encoding='utf8')
     print ('Writing ZhConversion.php ... ')
     f.write(php)
     f.close()
