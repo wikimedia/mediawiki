@@ -1241,7 +1241,7 @@ class Sanitizer {
 
 	/**
 	 * Return an associative array of attribute names and values from
-	 * a partial tag string. Attribute names are forces to lowercase,
+	 * a partial tag string. Attribute names are forced to lowercase,
 	 * character references are decoded to UTF-8 text.
 	 *
 	 * @param string $text
