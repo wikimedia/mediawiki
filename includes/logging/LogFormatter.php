@@ -67,7 +67,7 @@ class LogFormatter {
 	/**
 	 * Handy shortcut for constructing a formatter directly from
 	 * database row.
-	 * @param object $row
+	 * @param stdClass|array $row
 	 * @see DatabaseLogEntry::getSelectQueryData
 	 * @return LogFormatter
 	 */
