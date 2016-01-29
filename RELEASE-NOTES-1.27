@@ -94,6 +94,7 @@ production.
 * LoginForm::getLoginToken() and LoginForm::getCreateaccountToken()
   return a MediaWiki\Session\Token, and tokens must be checked using that
   class's methods.
+* $wgEnotifUseJobQ was removed and the job queue is always used.
 
 === New features in 1.27 ===
 * $wgDataCenterUpdateStickTTL was also added. This decides how long a user

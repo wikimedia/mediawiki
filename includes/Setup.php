@@ -357,7 +357,6 @@ if ( $wgEnableEmail ) {
 	$wgEnotifMaxRecips = 0;
 	$wgEnotifMinorEdits = false;
 	$wgEnotifRevealEditorAddress = false;
-	$wgEnotifUseJobQ = false;
 	$wgEnotifUseRealName = false;
 	$wgEnotifUserTalk = false;
 	$wgEnotifWatchlist = false;
