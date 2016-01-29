@@ -42,6 +42,57 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 		return $fakeRow;
 	}
 
+	public function testGetWatchedItem_cachesOneItem() {
+		$lb = $this->getMockLoadbalancer( $this->getMockDb() );
+		$store = new WatchedItemStore( $lb, $this->getMockConfig() );
+
+		$itemOne = $store->getWatchedItem( User::newFromName( 'Foo' ), Title::newFromText( 'Bar' ) );
+		$itemTwo = $store->getWatchedItem( User::newFromName( 'Foo' ), Title::newFromText( 'Bar' ) );
+
+		$this->assertSame( $itemOne, $itemTwo );
+	}
+
+	public function testGetWatchedItem_cacheClearsAfterMaxItems() {
+		$lb = $this->getMockLoadbalancer( $this->getMockDb() );
+		$store = new WatchedItemStore( $lb, $this->getMockConfig() );
+
+		$title = Title::newFromDBkey( 'Foo' );
+
+		$itemOne = $store->getWatchedItem( User::newFromId( 9999 ), $title );
+		for ( $x = 1; $x <= WatchedItemStore::MAX_WATCHED_ITEMS_CACHE; $x++ ) {
+			$store->getWatchedItem( User::newFromId( $x ), $title );
+		}
+
+		$itemTwo = $store->getWatchedItem( User::newFromId( 9999 ), $title );
+
+		$this->assertNotSame( $itemOne, $itemTwo );
+	}
+
+	public function testRemove() {
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->any() )
+			->method( 'affectedRows' )
+			->will( $this->returnValue( true ) );
+		$mockDb->expects( $this->any() )
+			->method( 'delete' )
+			->with( 'watchlist', $this->isType( 'array' ) );
+
+		$store = new WatchedItemStore( $this->getMockLoadbalancer( $mockDb ), $this->getMockConfig() );
+
+		/** @var User|PHPUnit_Framework_MockObject_MockObject $mockUser */
+		$mockUser = $this->getMock( 'User' );
+		$mockUser->expects( $this->once() )
+			->method( 'isAnon' )
+			->will( $this->returnValue( false ) );
+		$mockUser->expects( $this->once() )
+			->method( 'isAllowed' )
+			->will( $this->returnValue( true ) );
+
+		$watchedItem = WatchedItem::fromUserTitle( $mockUser, Title::newFromText( 'Foo' ) );
+
+		$this->assertTrue( $store->remove( $watchedItem ) );
+	}
+
 	public function testCountWatchers() {
 		$titleValue = new TitleValue( 0, 'SomeDbKey' );
 

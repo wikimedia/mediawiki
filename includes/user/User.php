@@ -56,11 +56,6 @@ class User implements IDBAccessObject {
 	const VERSION = 10;
 
 	/**
-	 * Maximum items in $mWatchedItems
-	 */
-	const MAX_WATCHED_ITEMS_CACHE = 100;
-
-	/**
 	 * Exclude user options that are set to their default value.
 	 * @since 1.25
 	 */
@@ -277,9 +272,6 @@ class User implements IDBAccessObject {
 
 	/** @var Block */
 	private $mBlockedFromCreateAccount = false;
-
-	/** @var array */
-	private $mWatchedItems = array();
 
 	/** @var integer User::READ_* constant bitfield used to load data */
 	protected $queryFlagsUsed = self::READ_NORMAL;
@@ -3303,24 +3295,15 @@ class User implements IDBAccessObject {
 	 * Get a WatchedItem for this user and $title.
 	 *
 	 * @since 1.22 $checkRights parameter added
+	 * @deprecated since 1.27. Use WatchedItemStore::getWatchedItem
+	 *
 	 * @param Title $title
 	 * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
 	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
 	 * @return WatchedItem
 	 */
 	public function getWatchedItem( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
-		$key = $checkRights . ':' . $title->getNamespace() . ':' . $title->getDBkey();
-
-		if ( isset( $this->mWatchedItems[$key] ) ) {
-			return $this->mWatchedItems[$key];
-		}
-
-		if ( count( $this->mWatchedItems ) >= self::MAX_WATCHED_ITEMS_CACHE ) {
-			$this->mWatchedItems = array();
-		}
-
-		$this->mWatchedItems[$key] = WatchedItem::fromUserTitle( $this, $title, $checkRights );
-		return $this->mWatchedItems[$key];
+		return WatchedItemStore::getDefaultInstance()->getWatchedItem( $this, $title, $checkRights );
 	}
 
 	/**
@@ -3355,7 +3338,7 @@ class User implements IDBAccessObject {
 	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
 	 */
 	public function removeWatch( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
-		$this->getWatchedItem( $title, $checkRights )->removeWatch();
+		WatchedItemStore::getDefaultInstance()->remove( $this->getWatchedItem( $title, $checkRights ) );
 		$this->invalidateCache();
 	}
 
