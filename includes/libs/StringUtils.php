@@ -263,32 +263,6 @@ class StringUtils {
 	}
 
 	/**
-	 * More or less "markup-safe" explode()
-	 * Ignores any instances of the separator inside `<...>`
-	 * @param string $separator
-	 * @param string $text
-	 * @return array
-	 */
-	static function explodeMarkup( $separator, $text ) {
-		$placeholder = "\x00";
-
-		// Remove placeholder instances
-		$text = str_replace( $placeholder, '', $text );
-
-		// Replace instances of the separator inside HTML-like tags with the placeholder
-		$replacer = new DoubleReplacer( $separator, $placeholder );
-		$cleaned = StringUtils::delimiterReplaceCallback( '<', '>', $replacer->cb(), $text );
-
-		// Explode, then put the replaced separators back in
-		$items = explode( $separator, $cleaned );
-		foreach ( $items as $i => $str ) {
-			$items[$i] = str_replace( $placeholder, $separator, $str );
-		}
-
-		return $items;
-	}
-
-	/**
 	 * Escape a string to make it suitable for inclusion in a preg_replace()
 	 * replacement parameter.
 	 *
