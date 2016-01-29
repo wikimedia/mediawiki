@@ -331,7 +331,11 @@ class LogEventsList extends ContextSource {
 		$del = $this->getShowHideLinks( $row );
 
 		// Any tags...
-		list( $tagDisplay, $newClasses ) = ChangeTags::formatSummaryRow( $row->ts_tags, 'logevent' );
+		list( $tagDisplay, $newClasses ) = ChangeTags::formatSummaryRow(
+			$row->ts_tags,
+			'logevent',
+			$this->getContext()
+		);
 		$classes = array_merge(
 			array( 'mw-logline-' . $entry->getType() ),
 			$newClasses

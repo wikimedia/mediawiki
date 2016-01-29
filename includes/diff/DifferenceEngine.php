@@ -342,7 +342,7 @@ class DifferenceEngine extends ContextSource {
 
 			$ldel = $this->revisionDeleteLink( $this->mOldRev );
 			$oldRevisionHeader = $this->getRevisionHeader( $this->mOldRev, 'complete' );
-			$oldChangeTags = ChangeTags::formatSummaryRow( $this->mOldTags, 'diff' );
+			$oldChangeTags = ChangeTags::formatSummaryRow( $this->mOldTags, 'diff', $this->getContext() );
 
 			$oldHeader = '<div id="mw-diff-otitle1"><strong>' . $oldRevisionHeader . '</strong></div>' .
 				'<div id="mw-diff-otitle2">' .
@@ -403,7 +403,7 @@ class DifferenceEngine extends ContextSource {
 		}
 		$newRevisionHeader = $this->getRevisionHeader( $this->mNewRev, 'complete' ) .
 			' ' . implode( ' ', $formattedRevisionTools );
-		$newChangeTags = ChangeTags::formatSummaryRow( $this->mNewTags, 'diff' );
+		$newChangeTags = ChangeTags::formatSummaryRow( $this->mNewTags, 'diff', $this->getContext() );
 
 		$newHeader = '<div id="mw-diff-ntitle1"><strong>' . $newRevisionHeader . '</strong></div>' .
 			'<div id="mw-diff-ntitle2">' . Linker::revUserTools( $this->mNewRev, !$this->unhide ) .
