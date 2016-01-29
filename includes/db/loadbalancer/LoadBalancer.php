@@ -1363,15 +1363,47 @@ class LoadBalancer {
 	 * function instead of Database::getLag() avoids a fatal error in this
 	 * case on many installations.
 	 *
-	 * @param DatabaseBase $conn
+	 * @param IDatabase $conn
 	 * @return int
 	 */
-	public function safeGetLag( $conn ) {
+	public function safeGetLag( IDatabase $conn ) {
 		if ( $this->getServerCount() == 1 ) {
 			return 0;
 		} else {
 			return $conn->getLag();
 		}
+	}
+
+	/**
+	 * Wait for a slave DB to reach a specified master position
+	 *
+	 * This will connect to the master to get an accurate position if $pos is not given
+	 *
+	 * @param IDatabase $conn Slave DB
+	 * @param DBMasterPos|bool $pos Master position; default: current position
+	 * @param integer $timeout Timeout in seconds
+	 * @return bool Success
+	 * @since 1.27
+	 */
+	public function safeWaitForPos( IDatabase $conn, $pos = false, $timeout = 10 ) {
+		if ( $this->getServerCount() == 1 || !$conn->getLBInfo( 'slave' ) ) {
+			return true; // server is not a slave DB
+		}
+
+		$pos = $pos ?: $this->getConnection( DB_MASTER )->getMasterPos();
+
+		$result = $conn->masterPosWait( $pos, $timeout );
+		if ( $result == -1 || is_null( $result ) ) {
+			$msg = __METHOD__ . ": Timed out waiting on {$conn->getServer()} pos {$pos}";
+			wfDebugLog( 'replication', "$msg\n" );
+			wfDebugLog( 'DBPerformance', "$msg:\n" . wfBacktrace( true ) );
+			$ok = false;
+		} else {
+			wfDebugLog( 'replication', __METHOD__ . ": Done\n" );
+			$ok = true;
+		}
+
+		return $ok;
 	}
 
 	/**
