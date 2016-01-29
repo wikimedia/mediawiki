@@ -48,22 +48,20 @@ class CategoryMembershipChangeJob extends Job {
 			return false; // deleted?
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbr = wfGetDB( DB_SLAVE );
+		wfGetLBFactory()->waitForReplication();
 
 		// Use a named lock so that jobs for this page see each others' changes
 		$fname = __METHOD__;
 		$lockKey = "CategoryMembershipUpdates:{$page->getId()}";
-		if ( !$dbw->lock( $lockKey, $fname, 10 ) ) {
+		if ( !$dbr->lock( $lockKey, $fname, 10 ) ) {
 			$this->setLastError( "Could not acquire lock '$lockKey'" );
 			return false;
 		}
 
-		$unlocker = new ScopedCallback( function () use ( $dbw, $lockKey, $fname ) {
-			$dbw->unlock( $lockKey, $fname );
+		$unlocker = new ScopedCallback( function () use ( $dbr, $lockKey, $fname ) {
+			$dbr->unlock( $lockKey, $fname );
 		} );
-
-		// Sanity: clear any DB transaction snapshot
-		$dbw->commit( __METHOD__, 'flush' );
 
 		$cutoffUnix = wfTimestamp( TS_UNIX, $this->params['revTimestamp'] );
 		// Using ENQUEUE_FUDGE_SEC handles jobs inserted out of revision order due to the delay
@@ -71,12 +69,12 @@ class CategoryMembershipChangeJob extends Job {
 		$cutoffUnix -= self::ENQUEUE_FUDGE_SEC;
 
 		// Get the newest revision that has a SRC_CATEGORIZE row...
-		$row = $dbw->selectRow(
+		$row = $dbr->selectRow(
 			array( 'revision', 'recentchanges' ),
 			array( 'rev_timestamp', 'rev_id' ),
 			array(
 				'rev_page' => $page->getId(),
-				'rev_timestamp >= ' . $dbw->addQuotes( $dbw->timestamp( $cutoffUnix ) )
+				'rev_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( $cutoffUnix ) )
 			),
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_timestamp DESC, rev_id DESC' ),
@@ -103,8 +101,8 @@ class CategoryMembershipChangeJob extends Job {
 
 		// Find revisions to this page made around and after this revision which lack category
 		// notifications in recent changes. This lets jobs pick up were the last one left off.
-		$encCutoff = $dbw->addQuotes( $dbw->timestamp( $cutoffUnix ) );
-		$res = $dbw->select(
+		$encCutoff = $dbr->addQuotes( $dbr->timestamp( $cutoffUnix ) );
+		$res = $dbr->select(
 			'revision',
 			Revision::selectFields(),
 			array(
