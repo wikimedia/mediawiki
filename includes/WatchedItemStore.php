@@ -93,6 +93,63 @@ class WatchedItemStore {
 	}
 
 	/**
+	 * Given a title and user (assumes the object is setup), add the watch to the database.
+	 * @param WatchedItem $item
+	 * @return bool
+	 */
+	public function addWatch( WatchedItem $item ) {
+		return $this->batchAddWatch( array( $item ) );
+	}
+
+	/**
+	 * @param WatchedItem[] $items
+	 * @return bool
+	 */
+	public function batchAddWatch( array $items ) {
+		if ( wfReadOnly() ) {
+			return false;
+		}
+
+		$rows = array();
+		foreach ( $items as $item ) {
+			$user = $item->mUser;
+			$title = $item->mTitle;
+			// Only loggedin user can have a watchlist
+			if ( $user->isAnon() || !$user->isAllowed( 'editmywatchlist' ) ) {
+				continue;
+			}
+			$rows[] = array(
+				'wl_user' => $user->getId(),
+				'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
+				'wl_title' => $title->getDBkey(),
+				'wl_notificationtimestamp' => null,
+			);
+			// Every single watched page needs now to be listed in watchlist;
+			// namespace:page and namespace_talk:page need separate entries:
+			$rows[] = array(
+				'wl_user' => $user->getId(),
+				'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
+				'wl_title' => $title->getDBkey(),
+				'wl_notificationtimestamp' => null
+			);
+			$this->uncacheItem( $item );
+		}
+
+		if ( !$rows ) {
+			return false;
+		}
+
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
+		foreach ( array_chunk( $rows, 100 ) as $toInsert ) {
+			// Use INSERT IGNORE to avoid overwriting the notification timestamp
+			// if there's already an entry for this page
+			$dbw->insert( 'watchlist', $toInsert, __METHOD__, 'IGNORE' );
+		}
+
+		return true;
+	}
+
+	/**
 	 * @param WatchedItem $item
 	 *
 	 * @return bool success

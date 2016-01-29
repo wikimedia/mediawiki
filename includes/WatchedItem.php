@@ -280,57 +280,22 @@ class WatchedItem {
 
 	/**
 	 * @param WatchedItem[] $items
+	 * @deprecated since 1.27. Use WatchedItemStore::batchAddWatch
 	 * @return bool
 	 */
 	public static function batchAddWatch( array $items ) {
-
-		if ( wfReadOnly() ) {
-			return false;
-		}
-
-		$rows = array();
-		foreach ( $items as $item ) {
-			// Only loggedin user can have a watchlist
-			if ( $item->mUser->isAnon() || !$item->isAllowed( 'editmywatchlist' ) ) {
-				continue;
-			}
-			$rows[] = array(
-				'wl_user' => $item->getUserId(),
-				'wl_namespace' => MWNamespace::getSubject( $item->getTitleNs() ),
-				'wl_title' => $item->getTitleDBkey(),
-				'wl_notificationtimestamp' => null,
-			);
-			// Every single watched page needs now to be listed in watchlist;
-			// namespace:page and namespace_talk:page need separate entries:
-			$rows[] = array(
-				'wl_user' => $item->getUserId(),
-				'wl_namespace' => MWNamespace::getTalk( $item->getTitleNs() ),
-				'wl_title' => $item->getTitleDBkey(),
-				'wl_notificationtimestamp' => null
-			);
-			$item->watched = true;
-		}
-
-		if ( !$rows ) {
-			return false;
-		}
-
-		$dbw = wfGetDB( DB_MASTER );
-		foreach ( array_chunk( $rows, 100 ) as $toInsert ) {
-			// Use INSERT IGNORE to avoid overwriting the notification timestamp
-			// if there's already an entry for this page
-			$dbw->insert( 'watchlist', $toInsert, __METHOD__, 'IGNORE' );
-		}
-
-		return true;
+		$store = WatchedItemStore::getDefaultInstance();
+		return $store->batchAddWatch( $items );
 	}
 
 	/**
 	 * Given a title and user (assumes the object is setup), add the watch to the database.
+	 * @deprecated since 1.27. Use WatchedItemStore::addWatch
 	 * @return bool
 	 */
 	public function addWatch() {
-		return self::batchAddWatch( array( $this ) );
+		$store = WatchedItemStore::getDefaultInstance();
+		return $store->addWatch( $this );
 	}
 
 	/**
