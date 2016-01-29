@@ -60,16 +60,15 @@ class ZhConverter extends LanguageConverter {
 	}
 
 	function loadDefaultTables() {
-		require __DIR__ . "/../../includes/ZhConversion.php";
 		$this->mTables = array(
-			'zh-hans' => new ReplacementArray( $zh2Hans ),
-			'zh-hant' => new ReplacementArray( $zh2Hant ),
-			'zh-cn' => new ReplacementArray( $zh2CN ),
-			'zh-hk' => new ReplacementArray( $zh2HK ),
-			'zh-mo' => new ReplacementArray( $zh2HK ),
-			'zh-my' => new ReplacementArray( $zh2CN ),
-			'zh-sg' => new ReplacementArray( $zh2CN ),
-			'zh-tw' => new ReplacementArray( $zh2TW ),
+			'zh-hans' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hans ),
+			'zh-hant' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hant ),
+			'zh-cn' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2CN ),
+			'zh-hk' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2HK ),
+			'zh-mo' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2HK ),
+			'zh-my' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2CN ),
+			'zh-sg' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2CN ),
+			'zh-tw' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2TW ),
 			'zh' => new ReplacementArray
 		);
 	}

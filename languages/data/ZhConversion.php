@@ -8,7 +8,10 @@
  * @file
  */
 
-$zh2Hant = array(
+namespace MediaWiki\Languages\Data;
+
+class ZhConversion {
+public static $zh2Hant = array(
 '㐷' => '傌',
 '㐹' => '㑶',
 '㐽' => '偑',
@@ -9373,7 +9376,7 @@ $zh2Hant = array(
 '，个中' => '，箇中',
 );
 
-$zh2Hans = array(
+public static $zh2Hans = array(
 '㑯' => '㑔',
 '㑳' => '㑇',
 '㑶' => '㐹',
@@ -13813,7 +13816,7 @@ $zh2Hans = array(
 '，陞' => '，升',
 );
 
-$zh2TW = array(
+public static $zh2TW = array(
 '0字节' => '0位元組',
 '0杆' => '0桿',
 '1字节' => '1位元組',
@@ -14594,7 +14597,7 @@ $zh2TW = array(
 '霉素' => '黴素',
 );
 
-$zh2HK = array(
+public static $zh2HK = array(
 '0字节' => '0位元組',
 '1字节' => '1位元組',
 '2字节' => '2位元組',
@@ -17616,7 +17619,7 @@ $zh2HK = array(
 '鼓里' => '鼓裏',
 );
 
-$zh2CN = array(
+public static $zh2CN = array(
 '16進位制' => '16进位制',
 '16進位' => '16进制',
 'IP位址' => 'IP地址',
@@ -20275,3 +20278,4 @@ $zh2CN = array(
 '蒙特內哥羅' => '黑山',
 '滑鼠' => '鼠标',
 );
+}
