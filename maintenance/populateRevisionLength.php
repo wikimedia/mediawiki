@@ -33,7 +33,7 @@ require_once __DIR__ . '/Maintenance.php';
 class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Populates the rev_len and ar_len fields";
+		$this->addDescription( 'Populates the rev_len and ar_len fields' );
 		$this->setBatchSize( 200 );
 	}
 

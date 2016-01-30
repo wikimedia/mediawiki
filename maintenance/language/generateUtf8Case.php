@@ -37,8 +37,8 @@ class GenerateUtf8Case extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Generate Utf8Case.ser from the Unicode Character Database ' .
-			'and supplementary files';
+		$this->addDescription( 'Generate Utf8Case.ser from the Unicode Character Database ' .
+			'and supplementary files' );
 		$this->addOption( 'unicode-data-file', 'The local location of the data file ' .
 			'from http://unicode.org/Public/UNIDATA/UnicodeData.txt', false, true );
 	}

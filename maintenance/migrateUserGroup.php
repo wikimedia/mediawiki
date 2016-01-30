@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
 class MigrateUserGroup extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Re-assign users from an old group to a new one";
+		$this->addDescription( 'Re-assign users from an old group to a new one' );
 		$this->addArg( 'oldgroup', 'Old user group key', true );
 		$this->addArg( 'newgroup', 'New user group key', true );
 		$this->setBatchSize( 200 );

@@ -31,7 +31,7 @@ class CheckImages extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Check images to see if they exist, are readable, etc";
+		$this->addDescription( 'Check images to see if they exist, are readable, etc' );
 		$this->setBatchSize( 1000 );
 	}
 

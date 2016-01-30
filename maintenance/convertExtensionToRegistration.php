@@ -55,7 +55,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Converts extension entry points to the new JSON registration format';
+		$this->addDescription( 'Converts extension entry points to the new JSON registration format' );
 		$this->addArg( 'path', 'Location to the PHP entry point you wish to convert',
 			/* $required = */ true );
 		$this->addOption( 'skin', 'Whether to write to skin.json', false, false );

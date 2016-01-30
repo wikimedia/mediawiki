@@ -33,7 +33,7 @@ class CleanupAncientTables extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Cleanup ancient tables and indexes";
+		$this->addDescription( 'Cleanup ancient tables and indexes' );
 		$this->addOption( 'force', 'Actually run this script' );
 	}
 

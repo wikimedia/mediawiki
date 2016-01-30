@@ -42,7 +42,7 @@ class CapsCleanup extends TableCleanup {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Script to cleanup capitalization";
+		$this->addDescription( 'Script to cleanup capitalization' );
 		$this->addOption( 'namespace', 'Namespace number to run caps cleanup on', false, true );
 	}
 

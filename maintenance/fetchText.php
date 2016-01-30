@@ -32,9 +32,10 @@ require_once __DIR__ . '/Maintenance.php';
 class FetchText extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Fetch the raw revision blob from an old_id.\n" .
+		$this->addDescription( "Fetch the raw revision blob from an old_id.\n" .
 			"NOTE: Export transformations are NOT applied. " .
-			"This is left to backupTextPass.php";
+			"This is left to backupTextPass.php"
+		);
 	}
 
 	/**

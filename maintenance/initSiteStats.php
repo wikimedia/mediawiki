@@ -33,7 +33,7 @@ require_once __DIR__ . '/Maintenance.php';
 class InitSiteStats extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Re-initialise the site statistics tables";
+		$this->addDescription( 'Re-initialise the site statistics tables' );
 		$this->addOption( 'update', 'Update the existing statistics' );
 		$this->addOption( 'active', 'Also update active users count' );
 		$this->addOption( 'use-master', 'Count using the master database' );

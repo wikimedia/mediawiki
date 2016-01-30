@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
 class PopulateImageSha1 extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Populate the img_sha1 field";
+		$this->addDescription( 'Populate the img_sha1 field' );
 		$this->addOption( 'force', "Recalculate sha1 for rows that already have a value" );
 		$this->addOption( 'multiversiononly', "Calculate only for files with several versions" );
 		$this->addOption( 'method', "Use 'pipe' to pipe to mysql command line,\n" .

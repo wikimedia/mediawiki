@@ -35,7 +35,7 @@ require_once __DIR__ . '/Maintenance.php';
 class FixDoubleRedirects extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Script to fix double redirects";
+		$this->addDescription( 'Script to fix double redirects' );
 		$this->addOption( 'async', 'Don\'t fix anything directly, just queue the jobs' );
 		$this->addOption( 'title', 'Fix only redirects pointing to this page', false, true );
 		$this->addOption( 'dry-run', 'Perform a dry run, fix nothing' );

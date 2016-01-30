@@ -33,7 +33,7 @@ class CleanupBlocks extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Cleanup user blocks with user names not matching the 'user' table";
+		$this->addDescription( "Cleanup user blocks with user names not matching the 'user' table" );
 		$this->setBatchSize( 1000 );
 	}
 

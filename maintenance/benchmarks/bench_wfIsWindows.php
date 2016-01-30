@@ -34,7 +34,7 @@ require_once __DIR__ . '/Benchmarker.php';
 class BenchWfIsWindows extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Benchmark for wfIsWindows.";
+		$this->addDescription( 'Benchmark for wfIsWindows.' );
 	}
 
 	public function execute() {

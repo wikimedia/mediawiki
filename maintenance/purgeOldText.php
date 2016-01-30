@@ -32,7 +32,7 @@ require_once __DIR__ . '/Maintenance.php';
 class PurgeOldText extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Purge old text records from the database";
+		$this->addDescription( 'Purge old text records from the database' );
 		$this->addOption( 'purge', 'Performs the deletion' );
 	}
 

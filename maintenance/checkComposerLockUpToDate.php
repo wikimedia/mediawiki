@@ -12,8 +12,8 @@ require_once __DIR__ . '/Maintenance.php';
 class CheckComposerLockUpToDate extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription =
-			'Checks whether your composer.lock file is up to date with the current composer.json';
+		$this->addDescription(
+			'Checks whether your composer.lock file is up to date with the current composer.json' );
 	}
 
 	public function execute() {

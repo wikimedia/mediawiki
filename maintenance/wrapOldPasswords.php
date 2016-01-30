@@ -32,7 +32,7 @@ require_once __DIR__ . '/Maintenance.php';
 class WrapOldPasswords extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Wrap all passwords of a certain type in a new layered type";
+		$this->addDescription( 'Wrap all passwords of a certain type in a new layered type' );
 		$this->addOption( 'type',
 			'Password type to wrap passwords in (must inherit LayeredParameterizedPassword)', true, true );
 		$this->addOption( 'verbose', 'Enables verbose output', false, false, 'v' );

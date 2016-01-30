@@ -40,7 +40,7 @@ class CopyFileBackend extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Copy files in one backend to another.";
+		$this->addDescription( 'Copy files in one backend to another.' );
 		$this->addOption( 'src', 'Backend containing the source files', true, true );
 		$this->addOption( 'dst', 'Backend where files should be copied to', true, true );
 		$this->addOption( 'containers', 'Pipe separated list of containers', true, true );

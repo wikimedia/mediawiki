@@ -35,7 +35,7 @@ require_once __DIR__ . '/Maintenance.php';
 class PopulateLogUsertext extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Populates the log_user_text field";
+		$this->addDescription( 'Populates the log_user_text field' );
 		$this->setBatchSize( 100 );
 	}
 

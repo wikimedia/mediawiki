@@ -30,7 +30,7 @@ require_once __DIR__ . '/Maintenance.php';
 class MakeTestEdits extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Make test edits for a user";
+		$this->addDescription( 'Make test edits for a user' );
 		$this->addOption( 'user', 'User name', true, true );
 		$this->addOption( 'count', 'Number of edits', true, true );
 		$this->addOption( 'namespace', 'Namespace number', false, true );

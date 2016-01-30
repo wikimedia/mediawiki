@@ -51,8 +51,9 @@ class MergeMessageFileList extends Maintenance {
 		);
 		$this->addOption( 'extensions-dir', 'Path where extensions can be found.', false, true );
 		$this->addOption( 'output', 'Send output to this file (omit for stdout)', false, true );
-		$this->mDescription = 'Merge $wgExtensionMessagesFiles and $wgMessagesDirs from ' .
-			' various extensions to produce a single file listing all message files and dirs.';
+		$this->addDescription( 'Merge $wgExtensionMessagesFiles and $wgMessagesDirs from ' .
+			' various extensions to produce a single file listing all message files and dirs.'
+		);
 	}
 
 	public function execute() {

@@ -41,7 +41,7 @@ class Digit2Html extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Check digit transformation";
+		$this->addDescription( 'Check digit transformation' );
 	}
 
 	public function execute() {

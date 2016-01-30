@@ -32,7 +32,7 @@ require_once __DIR__ . '/Maintenance.php';
 class PatchSql extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Run an SQL file into the DB, replacing prefix and charset vars";
+		$this->addDescription( 'Run an SQL file into the DB, replacing prefix and charset vars' );
 		$this->addArg(
 			'patch-name',
 			'Name of the patch file, either full path or in maintenance/archives'

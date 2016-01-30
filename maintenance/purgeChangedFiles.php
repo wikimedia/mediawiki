@@ -61,7 +61,7 @@ class PurgeChangedFiles extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Scan the logging table and purge files and thumbnails.";
+		$this->addDescription( 'Scan the logging table and purge files and thumbnails.' );
 		$this->addOption( 'starttime', 'Starting timestamp', true, true );
 		$this->addOption( 'endtime', 'Ending timestamp', true, true );
 		$this->addOption( 'type', 'Comma-separated list of types of changes to send purges for (' .

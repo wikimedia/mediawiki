@@ -39,7 +39,7 @@ require_once __DIR__ . '/Maintenance.php';
 class RebuildLocalisationCache extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Rebuild the localisation cache";
+		$this->addDescription( 'Rebuild the localisation cache' );
 		$this->addOption( 'force', 'Rebuild all files, even ones not out of date' );
 		$this->addOption( 'threads', 'Fork more than one thread', false, true );
 		$this->addOption( 'outdir', 'Override the output directory (normally $wgCacheDirectory)',

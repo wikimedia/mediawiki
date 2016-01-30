@@ -42,7 +42,7 @@ class RebuildTextIndex extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Rebuild search index table from scratch";
+		$this->addDescription( 'Rebuild search index table from scratch' );
 	}
 
 	public function getDbType() {

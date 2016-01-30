@@ -33,7 +33,7 @@ require_once __DIR__ . '/../Maintenance.php';
 class GenerateNormalizerDataMl extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Generate the normalizer data file for Malayalam';
+		$this->addDescription( 'Generate the normalizer data file for Malayalam' );
 	}
 
 	public function getDbType() {

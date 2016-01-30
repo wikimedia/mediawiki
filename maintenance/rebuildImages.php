@@ -51,7 +51,7 @@ class ImageBuilder extends Maintenance {
 		// make sure to update old, but compatible img_metadata fields.
 		$wgUpdateCompatibleMetadata = true;
 
-		$this->mDescription = 'Script to update image metadata records';
+		$this->addDescription( 'Script to update image metadata records' );
 
 		$this->addOption( 'missing', 'Check for files without associated database record' );
 		$this->addOption( 'dry-run', 'Only report, don\'t update the database' );

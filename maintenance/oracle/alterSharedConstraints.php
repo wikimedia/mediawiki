@@ -32,7 +32,7 @@ require_once __DIR__ . '/../Maintenance.php';
 class AlterSharedConstraints extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Alter foreign key to reference master tables in shared database setup.";
+		$this->addDescription( 'Alter foreign key to reference master tables in shared database setup.' );
 	}
 
 	public function getDbType() {

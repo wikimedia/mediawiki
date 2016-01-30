@@ -32,7 +32,7 @@ require_once __DIR__ . '/Maintenance.php';
 class ImportTextFiles extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Reads in text files and imports their content to pages of the wiki";
+		$this->addDescription( 'Reads in text files and imports their content to pages of the wiki' );
 		$this->addOption( 'user', 'Username to which edits should be attributed. ' .
 			'Default: "Maintenance script"', false, true, 'u' );
 		$this->addOption( 'summary', 'Specify edit summary for the edits', false, true, 's' );

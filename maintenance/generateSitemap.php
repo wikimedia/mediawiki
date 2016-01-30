@@ -145,7 +145,7 @@ class GenerateSitemap extends Maintenance {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Creates a sitemap for the site";
+		$this->addDescription( 'Creates a sitemap for the site' );
 		$this->addOption(
 			'fspath',
 			'The file system path to save to, e.g. /tmp/sitemap; defaults to current directory',

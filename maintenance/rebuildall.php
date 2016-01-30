@@ -32,7 +32,7 @@ require_once __DIR__ . '/Maintenance.php';
 class RebuildAll extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Rebuild links, text index and recent changes";
+		$this->addDescription( 'Rebuild links, text index and recent changes' );
 	}
 
 	public function getDbType() {

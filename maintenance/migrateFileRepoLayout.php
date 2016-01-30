@@ -33,7 +33,7 @@ require_once __DIR__ . '/Maintenance.php';
 class MigrateFileRepoLayout extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Copy files in repo to a different layout.";
+		$this->addDescription( 'Copy files in repo to a different layout.' );
 		$this->addOption( 'oldlayout', "Old layout; one of 'name' or 'sha1'", true, true );
 		$this->addOption( 'newlayout', "New layout; one of 'name' or 'sha1'", true, true );
 		$this->addOption( 'since', "Copy only files from after this timestamp", false, true );

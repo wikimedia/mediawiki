@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
 class RefreshLinks extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Refresh link tables";
+		$this->addDescription( 'Refresh link tables' );
 		$this->addOption( 'dfn-only', 'Delete links from nonexistent articles only' );
 		$this->addOption( 'new-only', 'Only affect articles with just a single edit' );
 		$this->addOption( 'redirects-only', 'Only fix redirects, not all links' );

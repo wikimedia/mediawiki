@@ -34,7 +34,7 @@ require_once __DIR__ . '/Maintenance.php';
 class CopyJobQueue extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Copy jobs from one queue system to another.";
+		$this->addDescription( 'Copy jobs from one queue system to another.' );
 		$this->addOption( 'src', 'Key to $wgJobQueueMigrationConfig for source', true, true );
 		$this->addOption( 'dst', 'Key to $wgJobQueueMigrationConfig for destination', true, true );
 		$this->addOption( 'type', 'Types of jobs to copy (use "all" for all)', true, true );
