@@ -2524,8 +2524,8 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Formerly returned a string that identifies the version of the extending
-	 * class. Typically included the class name, the svn revision, timestamp,
-	 * and last author. Usually done with SVN's Id keyword
+	 * class. Typically included the class name, the Git revision, timestamp,
+	 * and last author.
 	 *
 	 * @deprecated since 1.21, version string is no longer supported
 	 * @return string
