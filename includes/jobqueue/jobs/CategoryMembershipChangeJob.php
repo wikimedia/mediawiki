@@ -49,7 +49,6 @@ class CategoryMembershipChangeJob extends Job {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-
 		// Use a named lock so that jobs for this page see each others' changes
 		$lockKey = "CategoryMembershipUpdates:{$page->getId()}";
 		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 10 );
@@ -58,18 +57,19 @@ class CategoryMembershipChangeJob extends Job {
 			return false;
 		}
 
+		$dbr = wfGetDB( DB_SLAVE, array( 'recentchanges' ) );
+		// Wait till the slave is caught up so that jobs for this page see each others' changes
+		if ( !wfGetLB()->safeWaitForMasterPos( $dbr ) ) {
+			$this->setLastError( "Timed out while waiting for slave to catch up" );
+			return false;
+		}
+		// Clear any stale REPEATABLE-READ snapshot
+		$dbr->commit( __METHOD__, 'flush' );
+
 		$cutoffUnix = wfTimestamp( TS_UNIX, $this->params['revTimestamp'] );
 		// Using ENQUEUE_FUDGE_SEC handles jobs inserted out of revision order due to the delay
 		// between COMMIT and actual enqueueing of the CategoryMembershipChangeJob job.
 		$cutoffUnix -= self::ENQUEUE_FUDGE_SEC;
-
-		$dbr = wfGetDB( DB_SLAVE, array( 'recentchanges' ) );
-		if ( !wfGetLB()->safeWaitForPos( $dbr ) ) {
-			$this->setLastError( "Timed out while waiting for slave to catch up" );
-			return false;
-		}
-
-		$dbr->commit( __METHOD__, 'flush' );
 
 		// Get the newest revision that has a SRC_CATEGORIZE row...
 		$row = $dbr->selectRow(

@@ -1385,7 +1385,7 @@ class LoadBalancer {
 	 * @return bool Success
 	 * @since 1.27
 	 */
-	public function safeWaitForPos( IDatabase $conn, $pos = false, $timeout = 10 ) {
+	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 ) {
 		if ( $this->getServerCount() == 1 || !$conn->getLBInfo( 'slave' ) ) {
 			return true; // server is not a slave DB
 		}
