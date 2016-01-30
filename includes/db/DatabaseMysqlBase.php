@@ -932,12 +932,13 @@ abstract class DatabaseMysqlBase extends Database {
 		$row = $this->fetchObject( $result );
 
 		if ( $row->lockstatus == 1 ) {
+			parent::lock( $lockName, $method, $timeout ); // record
 			return true;
-		} else {
-			wfDebug( __METHOD__ . " failed to acquire lock\n" );
-
-			return false;
 		}
+
+		wfDebug( __METHOD__ . " failed to acquire lock\n" );
+
+		return false;
 	}
 
 	/**
@@ -952,7 +953,14 @@ abstract class DatabaseMysqlBase extends Database {
 		$result = $this->query( "SELECT RELEASE_LOCK($lockName) as lockstatus", $method );
 		$row = $this->fetchObject( $result );
 
-		return ( $row->lockstatus == 1 );
+		if ( $row->lockstatus == 1 ) {
+			parent::unlock( $lockName, $method ); // record
+			return true;
+		}
+
+		wfDebug( __METHOD__ . " failed to release lock\n" );
+
+		return false;
 	}
 
 	private function makeLockName( $lockName ) {
