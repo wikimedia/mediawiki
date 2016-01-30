@@ -305,6 +305,39 @@ changes to languages because of Phabricator reports.
   together but instead pick the final one, similar to image syntax.
 * XML-like parser tags (such as <gallery>), when unclosed, will be left unparsed
   rather than consume everything until the end of the page.
+* Article::checkFlags was removed. Use Wikipage.
+* Article::clearPreparedEdit was removed. Use Wikipage.
+* Article::doDeleteArticleReal was removed. Use Wikipage.
+* Article::doDeleteUpdates was removed. Use Wikipage.
+* Article::doQuickEditContent was removed. Use Wikipage.
+* Article::doViewUpdates was removed. Use Wikipage.
+* Article::getActionOverrides was removed. Use Wikipage.
+* Article::getAutoDeleteReason was removed. Use Wikipage.
+* Article::getContributors was removed. Use Wikipage.
+* Article::getCreator was removed. Use Wikipage.
+* Article::getDeletionUpdates was removed. Use Wikipage.
+* Article::getHiddenCategories was removed. Use Wikipage.
+* Article::getLinksTimestamp was removed. Use Wikipage.
+* Article::getMinorEdit was removed. Use Wikipage.
+* Article::getRedirectURL was removed. Use Wikipage.
+* Article::getUndoContent was removed. Use Wikipage.
+* Article::getUndoText was removed. Use Wikipage.
+* Article::insertProtectNullRevision was removed. Use Wikipage.
+* Article::insertRedirect was removed. Use Wikipage.
+* Article::insertRedirectEntry was removed. Use Wikipage.
+* Article::loadPageData was removed. Use Wikipage.
+* Article::lockAndGetLatest was removed. Use Wikipage.
+* Article::pageDataFromId was removed. Use Wikipage.
+* Article::pageDataFromTitle was removed. Use Wikipage.
+* Article::protectDescription was removed. Use Wikipage.
+* Article::protectDescriptionLog was removed. Use Wikipage.
+* Article::replaceSectionAtRev was removed. Use Wikipage.
+* Article::shouldCheckParserCache was removed. Use Wikipage.
+* Article::supportsSections was removed. Use Wikipage.
+* Article::triggerOpportunisticLinksUpdate was removed. Use Wikipage.
+* Article::updateCategoryCounts was removed. Use Wikipage.
+* Article::updateIfNewerOn was removed. Use Wikipage.
+* Article::updateRedirectOn was removed. Use Wikipage.
 
 == Compatibility ==
 
