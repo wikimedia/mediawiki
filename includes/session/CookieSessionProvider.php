@@ -104,11 +104,14 @@ class CookieSessionProvider extends SessionProvider {
 
 	public function provideSessionInfo( WebRequest $request ) {
 		$info = array(
-			'id' => $this->getCookie( $request, $this->params['sessionName'], '' )
+			'id' => $this->getCookie( $request, $this->params['sessionName'], '' ),
+			'provider' => $this,
+			'forceHTTPS' => $this->getCookie( $request, 'forceHTTPS', '', false )
 		);
 		if ( !SessionManager::validateSessionId( $info['id'] ) ) {
 			unset( $info['id'] );
 		}
+		$info['persisted'] = isset( $info['id'] );
 
 		list( $userId, $userName, $token ) = $this->getUserInfoFromCookies( $request );
 		if ( $userId !== null ) {
@@ -128,20 +131,21 @@ class CookieSessionProvider extends SessionProvider {
 					return null;
 				}
 				$info['userInfo'] = $userInfo->verified();
-			} elseif ( isset( $info['id'] ) ) { // No point if no session ID
+			} elseif ( isset( $info['id'] ) ) {
 				$info['userInfo'] = $userInfo;
+			} else {
+				// No point in returning, loadSessionInfoFromStore() will
+				// reject it anyway.
+				return null;
 			}
-		}
-
-		if ( !$info ) {
+		} elseif ( isset( $info['id'] ) ) {
+			// No UserID cookie, so insist that the session is anonymous.
+			$info['userInfo'] = UserInfo::newAnonymous();
+		} else {
+			// No session ID and no user is the same as an empty session, so
+			// there's no point.
 			return null;
 		}
-
-		$info += array(
-			'provider' => $this,
-			'persisted' => isset( $info['id'] ),
-			'forceHTTPS' => $this->getCookie( $request, 'forceHTTPS', '', false )
-		);
 
 		return new SessionInfo( $this->priority, $info );
 	}
