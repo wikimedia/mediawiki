@@ -23,7 +23,7 @@
 
 namespace MediaWiki\Session;
 
-use BagOStuff;
+use CachedBagOStuff;
 use Psr\Log\LoggerInterface;
 use User;
 use WebRequest;
@@ -64,10 +64,8 @@ final class SessionBackend {
 	/** @var string Used to detect subarray modifications */
 	private $dataHash = null;
 
-	/** @var BagOStuff */
-	private $tempStore;
-	/** @var BagOStuff */
-	private $permStore;
+	/** @var CachedBagOStuff */
+	private $store;
 
 	/** @var LoggerInterface */
 	private $logger;
@@ -99,14 +97,12 @@ final class SessionBackend {
 	/**
 	 * @param SessionId $id Session ID object
 	 * @param SessionInfo $info Session info to populate from
-	 * @param BagOStuff $tempStore In-process data store
-	 * @param BagOStuff $permstore Backend data store for persisted sessions
+	 * @param CachedBagOStuff $store Backend data store
 	 * @param LoggerInterface $logger
 	 * @param int $lifetime Session data lifetime in seconds
 	 */
 	public function __construct(
-		SessionId $id, SessionInfo $info, BagOStuff $tempStore, BagOStuff $permStore,
-		LoggerInterface $logger, $lifetime
+		SessionId $id, SessionInfo $info, CachedBagOStuff $store, LoggerInterface $logger, $lifetime
 	) {
 		$phpSessionHandling = \RequestContext::getMain()->getConfig()->get( 'PHPSessionHandling' );
 		$this->usePhpSessionHandling = $phpSessionHandling !== 'disable';
@@ -125,8 +121,7 @@ final class SessionBackend {
 
 		$this->id = $id;
 		$this->user = $info->getUserInfo() ? $info->getUserInfo()->getUser() : new User;
-		$this->tempStore = $tempStore;
-		$this->permStore = $permStore;
+		$this->store = $store;
 		$this->logger = $logger;
 		$this->lifetime = $lifetime;
 		$this->provider = $info->getProvider();
@@ -135,14 +130,7 @@ final class SessionBackend {
 		$this->forceHTTPS = $info->forceHTTPS();
 		$this->providerMetadata = $info->getProviderMetadata();
 
-		$key = wfMemcKey( 'MWSession', (string)$this->id );
-		$blob = $tempStore->get( $key );
-		if ( $blob === false ) {
-			$blob = $permStore->get( $key );
-			if ( $blob !== false ) {
-				$tempStore->set( $key, $blob );
-			}
-		}
+		$blob = $store->get( wfMemcKey( 'MWSession', (string)$this->id ) );
 		if ( !is_array( $blob ) ||
 			!isset( $blob['metadata'] ) || !is_array( $blob['metadata'] ) ||
 			!isset( $blob['data'] ) || !is_array( $blob['data'] )
@@ -241,8 +229,7 @@ final class SessionBackend {
 			$this->autosave();
 
 			// Delete the data for the old session ID now
-			$this->tempStore->delete( wfMemcKey( 'MWSession', $oldId ) );
-			$this->permStore->delete( wfMemcKey( 'MWSession', $oldId ) );
+			$this->store->delete( wfMemcKey( 'MWSession', $oldId ) );
 		}
 	}
 
@@ -626,24 +613,15 @@ final class SessionBackend {
 			}
 		}
 
-		$this->tempStore->set(
+		$this->store->set(
 			wfMemcKey( 'MWSession', (string)$this->id ),
 			array(
 				'data' => $this->data,
 				'metadata' => $metadata,
 			),
-			$metadata['expires']
+			$metadata['expires'],
+			$this->persist ? 0 : CachedBagOStuff::WRITE_CACHE_ONLY
 		);
-		if ( $this->persist ) {
-			$this->permStore->set(
-				wfMemcKey( 'MWSession', (string)$this->id ),
-				array(
-					'data' => $this->data,
-					'metadata' => $metadata,
-				),
-				$metadata['expires']
-			);
-		}
 
 		$this->metaDirty = false;
 		$this->dataDirty = false;

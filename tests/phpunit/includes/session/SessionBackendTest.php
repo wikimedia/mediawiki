@@ -59,7 +59,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		) );
 		$id = new SessionId( $info->getId() );
 
-		$backend = new SessionBackend( $id, $info, $this->store, $this->store, $logger, 10 );
+		$backend = new SessionBackend( $id, $info, $this->store, $logger, 10 );
 		$priv = \TestingAccessWrapper::newFromObject( $backend );
 		$priv->persist = false;
 		$priv->requests = array( 100 => new \FauxRequest() );
@@ -87,7 +87,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$id = new SessionId( $info->getId() );
 		$logger = new \Psr\Log\NullLogger();
 		try {
-			new SessionBackend( $id, $info, $this->store, $this->store, $logger, 10 );
+			new SessionBackend( $id, $info, $this->store, $logger, 10 );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( \InvalidArgumentException $ex ) {
 			$this->assertSame(
@@ -103,7 +103,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		) );
 		$id = new SessionId( $info->getId() );
 		try {
-			new SessionBackend( $id, $info, $this->store, $this->store, $logger, 10 );
+			new SessionBackend( $id, $info, $this->store, $logger, 10 );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( \InvalidArgumentException $ex ) {
 			$this->assertSame( 'Cannot create session without a provider', $ex->getMessage() );
@@ -118,7 +118,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		) );
 		$id = new SessionId( '!' . $info->getId() );
 		try {
-			new SessionBackend( $id, $info, $this->store, $this->store, $logger, 10 );
+			new SessionBackend( $id, $info, $this->store, $logger, 10 );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( \InvalidArgumentException $ex ) {
 			$this->assertSame(
@@ -135,7 +135,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 			'idIsSafe' => true,
 		) );
 		$id = new SessionId( $info->getId() );
-		$backend = new SessionBackend( $id, $info, $this->store, $this->store, $logger, 10 );
+		$backend = new SessionBackend( $id, $info, $this->store, $logger, 10 );
 		$this->assertSame( self::SESSIONID, $backend->getId() );
 		$this->assertSame( $id, $backend->getSessionId() );
 		$this->assertSame( $this->provider, $backend->getProvider() );
@@ -157,7 +157,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 			'idIsSafe' => true,
 		) );
 		$id = new SessionId( $info->getId() );
-		$backend = new SessionBackend( $id, $info, $this->store, $this->store, $logger, 10 );
+		$backend = new SessionBackend( $id, $info, $this->store, $logger, 10 );
 		$this->assertSame( self::SESSIONID, $backend->getId() );
 		$this->assertSame( $id, $backend->getSessionId() );
 		$this->assertSame( $this->provider, $backend->getProvider() );
@@ -468,6 +468,8 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->assertInternalType( 'array', $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
+		$this->assertFalse( $this->store->getSessionFromBackend( self::SESSIONID ),
+			'making sure it didn\'t save to backend' );
 
 		// Persistent, not dirty
 		$this->provider = $neverProvider;
@@ -516,6 +518,8 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->assertInternalType( 'array', $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
+		$this->assertNotFalse( $this->store->getSessionFromBackend( self::SESSIONID ),
+			'making sure it did save to backend' );
 
 		$this->provider = $this->getMock( 'DummySessionProvider', array( 'persistSession' ) );
 		$this->provider->expects( $this->atLeastOnce() )->method( 'persistSession' );
@@ -538,6 +542,8 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->assertInternalType( 'array', $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
+		$this->assertNotFalse( $this->store->getSessionFromBackend( self::SESSIONID ),
+			'making sure it did save to backend' );
 
 		$this->provider = $this->getMock( 'DummySessionProvider', array( 'persistSession' ) );
 		$this->provider->expects( $this->atLeastOnce() )->method( 'persistSession' );
@@ -559,6 +565,8 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->assertInternalType( 'array', $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
+		$this->assertNotFalse( $this->store->getSessionFromBackend( self::SESSIONID ),
+			'making sure it did save to backend' );
 
 		// Not marked dirty, but dirty data
 		$this->provider = $neverProvider;
@@ -581,6 +589,8 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->assertInternalType( 'array', $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
+		$this->assertNotFalse( $this->store->getSessionFromBackend( self::SESSIONID ),
+			'making sure it did save to backend' );
 
 		// Bad hook
 		$this->provider = null;

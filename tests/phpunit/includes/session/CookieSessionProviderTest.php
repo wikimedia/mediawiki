@@ -350,7 +350,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$provider->setManager( SessionManager::singleton() );
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
-		$store = new \HashBagOStuff();
+		$store = new TestBagOStuff();
 		$user = User::newFromName( 'UTSysop' );
 		$anon = new User;
 
@@ -362,7 +362,6 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 				'persisted' => true,
 				'idIsSafe' => true,
 			) ),
-			$store,
 			$store,
 			new \Psr\Log\NullLogger(),
 			10
@@ -449,8 +448,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 				'persisted' => true,
 				'idIsSafe' => true,
 			) ),
-			new \EmptyBagOStuff(),
-			new \EmptyBagOStuff(),
+			new TestBagOStuff(),
 			new \Psr\Log\NullLogger(),
 			10
 		);
@@ -542,7 +540,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$provider->setManager( SessionManager::singleton() );
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
-		$store = new \HashBagOStuff();
+		$store = new TestBagOStuff();
 		$user = User::newFromName( 'UTSysop' );
 		$anon = new User;
 
@@ -554,7 +552,6 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 				'persisted' => true,
 				'idIsSafe' => true,
 			) ),
-			$store,
 			$store,
 			new \Psr\Log\NullLogger(),
 			10
