@@ -5,7 +5,11 @@ namespace MediaWiki\Session;
 /**
  * BagOStuff with utility functions for MediaWiki\\Session\\* testing
  */
-class TestBagOStuff extends \HashBagOStuff {
+class TestBagOStuff extends \CachedBagOStuff {
+
+	public function __construct() {
+		parent::__construct( new \HashBagOStuff );
+	}
 
 	/**
 	 * @param string $id Session ID
@@ -66,6 +70,14 @@ class TestBagOStuff extends \HashBagOStuff {
 	 */
 	public function getSession( $id ) {
 		return $this->get( wfMemcKey( 'MWSession', $id ) );
+	}
+
+	/**
+	 * @param string $id Session ID
+	 * @return mixed
+	 */
+	public function getSessionFromBackend( $id ) {
+		return $this->backend->get( wfMemcKey( 'MWSession', $id ) );
 	}
 
 	/**
