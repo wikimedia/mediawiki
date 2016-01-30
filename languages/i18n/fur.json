@@ -9,7 +9,8 @@
 			"Tocaibon",
 			"Urhixidur",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Marsitown"
 		]
 	},
 	"tog-underline": "Sotlinee leams",
@@ -358,6 +359,10 @@
 	"protectedpagetext": "Pagjine protete par evitâ modifichis o altris azions.",
 	"viewsourcetext": "Tu puedis viodi e copiâ la risultive di cheste pagjine:",
 	"viewyourtext": "Tu puedis viodi o copiâ il codiç des \"tôs modifichis\" in cheste pagjine.",
+	"mycustomcssprotected": "Non hai i permessi per modificare questa pagina CSS",
+	"mycustomjsprotected": "Non hai i permessi per modificare questa pagina JavaScript",
+	"myprivateinfoprotected": "Non si dispone dei permessi necessari per modificare i propri dati personali.",
+	"mypreferencesprotected": "Non si dispone dei permessi necessari per modificare le proprie preferenze.",
 	"ns-specialprotected": "Lis pagjinis specialis no si puedin modificâ",
 	"exception-nologin": "No tu sês jentrât",
 	"virus-unknownscanner": "antivirus no cognossût:",
@@ -402,7 +407,7 @@
 	"createacct-benefit-body2": "{{PLURAL:$1|pagjine|pagjinis}}",
 	"createacct-benefit-body3": "{{PLURAL:$1|ultin contributôr|ultins contributôrs}}",
 	"badretype": "Lis peraulis clâfs inseridis no son compagnis.",
-	"userexists": "Il non utent inserît al è za doprât. Sielç par plasê un non diferent.",
+	"userexists": "Il nome utente inserito è già utilizzato.\nScegli un nome utente diverso.",
 	"loginerror": "Erôr te jentrade",
 	"createaccounterror": "No si à podût creâ l'identitât: $1",
 	"nocookiesnew": "L'identitât utent e je stade creade, ma no tu sês jentrât. {{SITENAME}} al dopre i cookies par visâsi dai utents, e tu tu ju âs disabilitâts. Par plasê abilitiju, dopo jentre cul to gnûf non utent e password.",
@@ -410,7 +415,7 @@
 	"noname": "No tu âs inserît un non utent valit.",
 	"loginsuccesstitle": "Jentrât cun sucès",
 	"loginsuccess": "Cumò tu sês jentrât te {{SITENAME}} sicu \"$1\".",
-	"nosuchuser": "Nissun utent regjistrât cul non \"$1\". Controle il non inserît o [[Special:UserLogin/signup|cree tu une gnove identitât]].",
+	"nosuchuser": "Non è registrato alcun utente di nome \"$1\".\nI nomi utente sono sensibili alle maiuscole.\nVerificare il nome inserito o [[Special:UserLogin/signup|creare una nuova utenza]].",
 	"nosuchusershort": "Nol esist nissun utent cul non \"$1\". Controle di no vê sbaliât di scrivi.",
 	"nouserspecified": "Tu scugnis specificâ un non utent.",
 	"wrongpassword": "La peraule clâf zontade no je juste. Torne par plasê a provâ.",

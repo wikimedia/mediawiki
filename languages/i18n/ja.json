@@ -1232,6 +1232,7 @@
 	"grant-sendemail": "他の利用者へのメールの送信",
 	"grant-uploadeditmovefile": "ファイルをアップロード/置き換え/移動",
 	"grant-uploadfile": "新しいファイルをアップロード",
+	"grant-basic": "基礎的な権限",
 	"grant-viewdeleted": "削除されたファイルとページを閲覧",
 	"grant-viewmywatchlist": "自身のウォッチリストを閲覧",
 	"newuserlogpage": "アカウント作成記録",

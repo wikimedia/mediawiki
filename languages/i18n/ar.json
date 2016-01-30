@@ -3107,7 +3107,6 @@
 	"version-hook-subscribedby": "يستخدم بواسطة",
 	"version-version": "($1)",
 	"version-no-ext-name": "[لا اسم]",
-	"version-svn-revision": "ن$1",
 	"version-license": "ترخيص ميدياويكي",
 	"version-ext-license": "ترخيص",
 	"version-ext-colheader-name": "امتداد",

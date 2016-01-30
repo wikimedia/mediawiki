@@ -3227,7 +3227,7 @@
 	"version-libraries-license": "许可协议",
 	"version-libraries-description": "描述",
 	"version-libraries-authors": "作者",
-	"redirect": "重定向（按文件、用户、页面、修订版本ID或日志ID）",
+	"redirect": "重定向（按文件、用户、页面、修订版本或日志ID）",
 	"redirect-legend": "重定向至文件或页面",
 	"redirect-summary": "本特殊页面可以跳转至一个文件（提供文件名）、页面（提供修订版本ID或页面ID）、用户页（提供数字用户ID）或日志记录（提供日志ID）。用法：[[{{#Special:Redirect}}/file/Example.jpg]]、[[{{#Special:Redirect}}/page/64308]]、[[{{#Special:Redirect}}/revision/328429]]、[[{{#Special:Redirect}}/user/101]]或[[{{#Special:Redirect}}/logid/186]]。",
 	"redirect-submit": "提交",

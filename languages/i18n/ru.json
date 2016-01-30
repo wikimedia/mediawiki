@@ -87,7 +87,8 @@
 			"INS Pirat",
 			"Краснорядцева Елена",
 			"Frhdkazan",
-			"Ядерный Трамвай"
+			"Ядерный Трамвай",
+			"Исмаил Садуев"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -2844,10 +2845,10 @@
 	"exif-jpegfilecomment": "Примечание JPEG-файла",
 	"exif-keywords": "Ключевые слова",
 	"exif-worldregioncreated": "Регион мира, где была сделана фотография",
-	"exif-countrycreated": "Страна, где была сделана фотография",
+	"exif-countrycreated": "Мохк, сурт дин хилла болу",
 	"exif-countrycodecreated": "Код страны, где была сделана фотография",
 	"exif-provinceorstatecreated": "Область, провинция или штат, где была сделана фотография",
-	"exif-citycreated": "Город, где была сделана фотография",
+	"exif-citycreated": "ГӀала, сурт дина хинйолу",
 	"exif-sublocationcreated": "Район города, где была сделана фоторафия",
 	"exif-worldregiondest": "Изображённый регион мира",
 	"exif-countrydest": "Изображённая страна",

@@ -3143,7 +3143,6 @@
 	"version-hook-subscribedby": "Пријављено од",
 	"version-version": "($1)",
 	"version-no-ext-name": "[нема имена]",
-	"version-svn-revision": "(изм. $2)",
 	"version-license": "Медијавики лиценца",
 	"version-ext-license": "Лиценца",
 	"version-ext-colheader-name": "Екстензија",

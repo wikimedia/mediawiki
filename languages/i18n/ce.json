@@ -2247,7 +2247,7 @@
 	"years": "{{PLURAL:$1|$1 шо|$1 шо}}",
 	"ago": "$1 хьалха",
 	"just-now": "хӀинца",
-	"hours-ago": "$1 {{PLURAL:$1|сахьт}}",
+	"hours-ago": "$1 {{PLURAL:$1|сахьт}} хьалха",
 	"minutes-ago": "$1 {{PLURAL:$1|минот}} хьалха",
 	"seconds-ago": "$1 {{PLURAL:$1|секунд}} хьалха",
 	"monday-at": "оршотан дийнахь $1",

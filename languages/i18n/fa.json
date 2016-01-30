@@ -3183,7 +3183,6 @@
 	"version-hook-subscribedby": "وارد شده توسط",
 	"version-version": "($1)",
 	"version-no-ext-name": "[بدون نام]",
-	"version-svn-revision": "(&رلم;r$2)",
 	"version-license": "اجازه‌نامهٔ مدیاویکی",
 	"version-ext-license": "مجوزها",
 	"version-ext-colheader-name": "گستره‌ها",

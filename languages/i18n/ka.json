@@ -3142,7 +3142,6 @@
 	"version-hook-subscribedby": "ჩაწერილია",
 	"version-version": "($1)",
 	"version-no-ext-name": "[სახელის გარეშე]",
-	"version-svn-revision": "(r$2)",
 	"version-license": "მედიავიკის ლიცენზია",
 	"version-ext-license": "ლიცენზია",
 	"version-ext-colheader-name": "გაფართოებები",

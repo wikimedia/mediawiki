@@ -2968,7 +2968,6 @@
 	"version-hook-name": "Nameyê çengelî",
 	"version-hook-subscribedby": "Eza biyayoğ",
 	"version-version": "($1)",
-	"version-svn-revision": "(r$2)",
 	"version-license": "Lisansê MediaWiki",
 	"version-ext-license": "Lisans",
 	"version-ext-colheader-name": "Dergiye",

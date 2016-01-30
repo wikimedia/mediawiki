@@ -3020,7 +3020,6 @@
 	"version-hook-subscribedby": "Prijavljeno od",
 	"version-version": "($1)",
 	"version-no-ext-name": "[nema imena]",
-	"version-svn-revision": "(izm. $2)",
 	"version-license": "Medijaviki licenca",
 	"version-ext-license": "Licenca",
 	"version-ext-colheader-name": "Ekstenzija",

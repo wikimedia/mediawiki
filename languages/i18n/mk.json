@@ -3217,7 +3217,6 @@
 	"version-hook-subscribedby": "Претплатено од",
 	"version-version": "($1)",
 	"version-no-ext-name": "[нема име]",
-	"version-svn-revision": "прер. $1",
 	"version-license": "Лиценца на МедијаВики",
 	"version-ext-license": "Лиценца",
 	"version-ext-colheader-name": "Додаток",
