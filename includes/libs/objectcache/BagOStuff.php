@@ -69,6 +69,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	const READ_VERIFIED = 2; // promise that caller can tell when keys are stale
 	/** Bitfield constants for set()/merge() */
 	const WRITE_SYNC = 1; // synchronously write to all locations for replicated stores
+	const WRITE_CACHE_ONLY = 2; // Only change state of the in-memory cache
 
 	public function __construct( array $params = array() ) {
 		if ( isset( $params['logger'] ) ) {

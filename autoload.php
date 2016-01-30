@@ -190,6 +190,7 @@ $wgAutoloadLocalClasses = array(
 	'CacheHelper' => __DIR__ . '/includes/cache/CacheHelper.php',
 	'CacheTime' => __DIR__ . '/includes/parser/CacheTime.php',
 	'CachedAction' => __DIR__ . '/includes/actions/CachedAction.php',
+	'CachedBagOStuff' => __DIR__ . '/includes/libs/objectcache/CachedBagOStuff.php',
 	'CachingSiteStore' => __DIR__ . '/includes/site/CachingSiteStore.php',
 	'CapsCleanup' => __DIR__ . '/maintenance/cleanupCaps.php',
 	'Category' => __DIR__ . '/includes/Category.php',

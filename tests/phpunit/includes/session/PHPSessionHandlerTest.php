@@ -78,7 +78,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		ini_set( 'session.use_cookies', 1 );
 		ini_set( 'session.use_trans_sid', 1 );
 
-		$store = new \HashBagOStuff();
+		$store = new TestBagOStuff();
 		$logger = new \TestLogger();
 		$manager = new SessionManager( array(
 			'store' => $store,
@@ -112,7 +112,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 			'wgObjectCacheSessionExpiry' => 2,
 		) );
 
-		$store = new \HashBagOStuff();
+		$store = new TestBagOStuff();
 		$logger = new \TestLogger( true, function ( $m ) {
 			return preg_match( '/^SessionBackend a{32} /', $m ) ? null : $m;
 		} );
@@ -171,6 +171,14 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 			session_reset();
 			$this->assertSame( $expect, $_SESSION );
 		}
+
+		// Test expiry
+		session_write_close();
+		ini_set( 'session.gc_divisor', 1 );
+		ini_set( 'session.gc_probability', 1 );
+		sleep( 3 );
+		session_start();
+		$this->assertSame( array(), $_SESSION );
 
 		// Re-fill the session, then test that session_destroy() works.
 		$_SESSION['AuthenticationSessionTest'] = $rand;
