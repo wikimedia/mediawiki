@@ -237,7 +237,7 @@ class LogFormatter {
 					// @codingStandardsIgnoreStart Long line
 					//case 'revision': // Revision deletion
 					//case 'event': // Log deletion
-					// see https://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/LogPage.php?&pathrev=97044&r1=97043&r2=97044
+					// see https://github.com/wikimedia/mediawiki/commit/a9c243b7b5289dad204278dbe7ed571fd914e395
 					//default:
 					// @codingStandardsIgnoreEnd
 				}
@@ -245,7 +245,7 @@ class LogFormatter {
 
 			case 'patrol':
 				// @codingStandardsIgnoreStart Long line
-				// https://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/PatrolLog.php?&pathrev=97495&r1=97494&r2=97495
+				// https://github.com/wikimedia/mediawiki/commit/1a05f8faf78675dc85984f27f355b8825b43efff
 				// @codingStandardsIgnoreEnd
 				// Create a diff link to the patrolled revision
 				if ( $entry->getSubtype() === 'patrol' ) {
