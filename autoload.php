@@ -1050,6 +1050,7 @@ $wgAutoloadLocalClasses = array(
 	'ReplicatedBagOStuff' => __DIR__ . '/includes/libs/objectcache/ReplicatedBagOStuff.php',
 	'RepoGroup' => __DIR__ . '/includes/filerepo/RepoGroup.php',
 	'RequestContext' => __DIR__ . '/includes/context/RequestContext.php',
+	'ResetUserEmail' => __DIR__ . '/maintenance/resetUserEmail.php',
 	'ResetUserTokens' => __DIR__ . '/maintenance/resetUserTokens.php',
 	'ResourceFileCache' => __DIR__ . '/includes/cache/ResourceFileCache.php',
 	'ResourceLoader' => __DIR__ . '/includes/resourceloader/ResourceLoader.php',
