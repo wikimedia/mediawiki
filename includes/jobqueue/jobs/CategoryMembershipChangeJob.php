@@ -63,13 +63,21 @@ class CategoryMembershipChangeJob extends Job {
 		// between COMMIT and actual enqueueing of the CategoryMembershipChangeJob job.
 		$cutoffUnix -= self::ENQUEUE_FUDGE_SEC;
 
+		$dbr = wfGetDB( DB_SLAVE, array( 'recentchanges' ) );
+		if ( !wfGetLB()->safeWaitForPos( $dbr ) ) {
+			$this->setLastError( "Timed out while waiting for slave to catch up" );
+			return false;
+		}
+
+		$dbr->commit( __METHOD__, 'flush' );
+
 		// Get the newest revision that has a SRC_CATEGORIZE row...
-		$row = $dbw->selectRow(
+		$row = $dbr->selectRow(
 			array( 'revision', 'recentchanges' ),
 			array( 'rev_timestamp', 'rev_id' ),
 			array(
 				'rev_page' => $page->getId(),
-				'rev_timestamp >= ' . $dbw->addQuotes( $dbw->timestamp( $cutoffUnix ) )
+				'rev_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( $cutoffUnix ) )
 			),
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_timestamp DESC, rev_id DESC' ),
@@ -96,8 +104,8 @@ class CategoryMembershipChangeJob extends Job {
 
 		// Find revisions to this page made around and after this revision which lack category
 		// notifications in recent changes. This lets jobs pick up were the last one left off.
-		$encCutoff = $dbw->addQuotes( $dbw->timestamp( $cutoffUnix ) );
-		$res = $dbw->select(
+		$encCutoff = $dbr->addQuotes( $dbr->timestamp( $cutoffUnix ) );
+		$res = $dbr->select(
 			'revision',
 			Revision::selectFields(),
 			array(
