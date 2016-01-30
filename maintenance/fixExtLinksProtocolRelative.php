@@ -34,8 +34,8 @@ require_once __DIR__ . '/Maintenance.php';
 class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription =
-			"Fixes any entries in the externallinks table containing protocol-relative URLs";
+		$this->addDescription(
+			'Fixes any entries in the externallinks table containing protocol-relative URLs' );
 	}
 
 	protected function getUpdateKey() {

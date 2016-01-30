@@ -35,8 +35,8 @@ require_once __DIR__ . '/Maintenance.php';
 class DeleteArchivedRevisions extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription =
-			"Deletes all archived revisions\nThese revisions will no longer be restorable";
+		$this->addDescription(
+			"Deletes all archived revisions\nThese revisions will no longer be restorable" );
 		$this->addOption( 'delete', 'Performs the deletion' );
 	}
 

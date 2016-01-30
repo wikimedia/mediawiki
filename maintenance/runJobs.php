@@ -33,7 +33,7 @@ use MediaWiki\Logger\LoggerFactory;
 class RunJobs extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Run pending jobs";
+		$this->addDescription( 'Run pending jobs' );
 		$this->addOption( 'maxjobs', 'Maximum number of jobs to run', false, true );
 		$this->addOption( 'maxtime', 'Maximum amount of wall-clock time', false, true );
 		$this->addOption( 'type', 'Type of job to run', false, true );

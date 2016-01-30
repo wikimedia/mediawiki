@@ -46,7 +46,7 @@ class MWDocGen extends Maintenance {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Build doxygen documentation';
+		$this->addDescription( 'Build doxygen documentation' );
 
 		$this->addOption( 'doxygen',
 			'Path to doxygen',

@@ -36,7 +36,7 @@ class CheckSyntax extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Check syntax for all PHP files in MediaWiki";
+		$this->addDescription( 'Check syntax for all PHP files in MediaWiki' );
 		$this->addOption( 'with-extensions', 'Also recurse the extensions folder' );
 		$this->addOption(
 			'path',

@@ -32,7 +32,7 @@ require_once __DIR__ . '/Maintenance.php';
 class SyncFileBackend extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Sync one file backend with another using the journal";
+		$this->addDescription( 'Sync one file backend with another using the journal' );
 		$this->addOption( 'src', 'Name of backend to sync from', true, true );
 		$this->addOption( 'dst', 'Name of destination backend to sync', false, true );
 		$this->addOption( 'start', 'Starting journal ID', false, true );

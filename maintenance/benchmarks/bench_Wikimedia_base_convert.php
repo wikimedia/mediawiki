@@ -34,7 +34,7 @@ require_once __DIR__ . '/Benchmarker.php';
 class BenchWikimediaBaseConvert extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Benchmark for Wikimedia\\base_convert.";
+		$this->addDescription( 'Benchmark for Wikimedia\base_convert.' );
 		$this->addOption( "inbase", "Input base", false, true );
 		$this->addOption( "outbase", "Output base", false, true );
 		$this->addOption( "length", "Size in digits to generate for input", false, true );

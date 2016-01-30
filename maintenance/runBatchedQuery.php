@@ -33,9 +33,9 @@ require_once __DIR__ . '/Maintenance.php';
 class BatchedQueryRunner extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription =
+		$this->addDescription(
 			"Run a query repeatedly until it affects 0 rows, and wait for slaves in between.\n" .
-				"NOTE: You need to set a LIMIT clause yourself.";
+				"NOTE: You need to set a LIMIT clause yourself." );
 	}
 
 	public function execute() {

@@ -33,7 +33,7 @@ require_once __DIR__ . '/../Maintenance.php';
 class GenerateNormalizerDataAr extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Generate the normalizer data file for Arabic';
+		$this->addDescription( 'Generate the normalizer data file for Arabic' );
 		$this->addOption( 'unicode-data-file', 'The local location of the data file ' .
 			'from http://unicode.org/Public/UNIDATA/UnicodeData.txt', false, true );
 	}

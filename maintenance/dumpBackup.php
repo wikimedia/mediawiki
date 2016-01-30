@@ -31,7 +31,7 @@ class DumpBackup extends BackupDumper {
 	function __construct( $args = null ) {
 		parent::__construct();
 
-		$this->mDescription = <<<TEXT
+		$this->addDescription( <<<TEXT
 This script dumps the wiki page or logging database into an
 XML interchange wrapper format for export or backup.
 
@@ -40,7 +40,8 @@ XML output is sent to stdout; progress reports are sent to stderr.
 WARNING: this is not a full database dump! It is merely for public export
          of your wiki. For full backup, see our online help at:
          https://www.mediawiki.org/wiki/Backup
-TEXT;
+TEXT
+		);
 		$this->stderr = fopen( "php://stderr", "wt" );
 		// Actions
 		$this->addOption( 'full', 'Dump all revisions of every page' );

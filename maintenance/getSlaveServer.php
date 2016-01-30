@@ -32,7 +32,7 @@ class GetSlaveServer extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( "group", "Query group to check specifically" );
-		$this->mDescription = "Report the hostname of a slave server";
+		$this->addDescription( 'Report the hostname of a slave server' );
 	}
 
 	public function execute() {

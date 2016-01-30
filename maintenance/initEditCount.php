@@ -35,7 +35,7 @@ class InitEditCount extends Maintenance {
 Background mode will be automatically used if the server is MySQL 4.0
 (which does not support subqueries) or if multiple servers are listed
 in the load balancer, usually indicating a replication environment.' );
-		$this->mDescription = "Batch-recalculate user_editcount fields from the revision table";
+		$this->addDescription( 'Batch-recalculate user_editcount fields from the revision table' );
 	}
 
 	public function execute() {

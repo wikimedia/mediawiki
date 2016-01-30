@@ -32,8 +32,8 @@ require_once __DIR__ . '/Maintenance.php';
 class UploadDumper extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Generates list of uploaded files which can be fed to tar or similar.
-By default, outputs relative paths against the parent directory of \$wgUploadDirectory.";
+		$this->addDescription( 'Generates list of uploaded files which can be fed to tar or similar.
+By default, outputs relative paths against the parent directory of $wgUploadDirectory.' );
 		$this->addOption( 'base', 'Set base relative path instead of wiki include root', false, true );
 		$this->addOption( 'local', 'List all local files, used or not. No shared files included' );
 		$this->addOption( 'used', 'Skip local images that are not used' );

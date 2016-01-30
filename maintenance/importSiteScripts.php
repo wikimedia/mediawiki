@@ -32,7 +32,7 @@ require_once __DIR__ . '/Maintenance.php';
 class ImportSiteScripts extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Import site scripts from a site';
+		$this->addDescription( 'Import site scripts from a site' );
 		$this->addArg( 'api', 'API base url' );
 		$this->addArg( 'index', 'index.php base url' );
 		$this->addOption( 'username', 'User name of the script importer' );

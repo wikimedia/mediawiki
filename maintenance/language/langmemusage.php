@@ -34,8 +34,8 @@ class LangMemUsage extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Dumb program that tries to get the memory usage\n" .
-			"for each language file";
+		$this->addDescription( "Dumb program that tries to get the memory usage\n" .
+			"for each language file" );
 	}
 
 	public function execute() {

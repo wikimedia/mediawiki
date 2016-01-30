@@ -30,8 +30,8 @@ require_once __DIR__ . '/Maintenance.php';
 class DeleteEqualMessages extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Deletes all pages in the MediaWiki namespace that are equal to '
-			. 'the default message';
+		$this->addDescription( 'Deletes all pages in the MediaWiki namespace that are equal to '
+			. 'the default message' );
 		$this->addOption( 'delete', 'Actually delete the pages (default: dry run)' );
 		$this->addOption( 'delete-talk', 'Don\'t leave orphaned talk pages behind during deletion' );
 		$this->addOption( 'lang-code', 'Check for subpages of this language code (default: root '

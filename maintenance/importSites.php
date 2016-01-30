@@ -15,7 +15,7 @@ require_once $basePath . '/maintenance/Maintenance.php';
 class ImportSites extends Maintenance {
 
 	public function __construct() {
-		$this->mDescription = 'Imports site definitions from XML into the sites table.';
+		$this->addDescription( 'Imports site definitions from XML into the sites table.' );
 
 		$this->addArg( 'file', 'An XML file containing site definitions (see docs/sitelist.txt). ' .
 			'Use "php://stdin" to read from stdin.', true

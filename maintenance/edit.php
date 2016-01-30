@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
 class EditCLI extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Edit an article from the command line, text is from stdin";
+		$this->addDescription( 'Edit an article from the command line, text is from stdin' );
 		$this->addOption( 'user', 'Username', false, true, 'u' );
 		$this->addOption( 'summary', 'Edit summary', false, true, 's' );
 		$this->addOption( 'minor', 'Minor edit', false, false, 'm' );

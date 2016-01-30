@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
 class Protect extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Protect or unprotect a page from the command line.";
+		$this->addDescription( 'Protect or unprotect a page from the command line.' );
 		$this->addOption( 'unprotect', 'Removes protection' );
 		$this->addOption( 'semiprotect', 'Adds semi-protection' );
 		$this->addOption( 'cascade', 'Add cascading protection' );

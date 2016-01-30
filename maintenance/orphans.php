@@ -39,10 +39,11 @@ require_once __DIR__ . '/Maintenance.php';
 class Orphans extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Look for 'orphan' revisions hooked to pages which don't exist\n" .
+		$this->addDescription( "Look for 'orphan' revisions hooked to pages which don't exist\n" .
 			"and 'childless' pages with no revisions\n" .
 			"Then, kill the poor widows and orphans\n" .
-			"Man this is depressing";
+			"Man this is depressing"
+		);
 		$this->addOption( 'fix', 'Actually fix broken entries' );
 	}
 

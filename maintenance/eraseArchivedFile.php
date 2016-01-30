@@ -35,7 +35,7 @@ require_once __DIR__ . '/Maintenance.php';
 class EraseArchivedFile extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Erases traces of deleted files.";
+		$this->addDescription( 'Erases traces of deleted files.' );
 		$this->addOption( 'delete', 'Perform the deletion' );
 		$this->addOption( 'filename', 'File name', false, true );
 		$this->addOption( 'filekey', 'File storage key (with extension) or "*"', true, true );

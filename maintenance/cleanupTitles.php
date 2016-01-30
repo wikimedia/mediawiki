@@ -35,7 +35,7 @@ require_once __DIR__ . '/cleanupTable.inc';
 class TitleCleanup extends TableCleanup {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Script to clean up broken, unparseable titles";
+		$this->addDescription( 'Script to clean up broken, unparseable titles' );
 	}
 
 	/**

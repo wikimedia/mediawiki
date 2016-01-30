@@ -36,7 +36,7 @@ class PurgeChangedPages extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Send purge requests for edits in date range to squid/varnish';
+		$this->addDescription( 'Send purge requests for edits in date range to squid/varnish' );
 		$this->addOption( 'starttime', 'Starting timestamp', true, true );
 		$this->addOption( 'endtime', 'Ending timestamp', true, true );
 		$this->addOption( 'htcp-dest', 'HTCP announcement destination (IP:port)', false, true );

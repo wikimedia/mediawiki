@@ -33,7 +33,7 @@ require_once __DIR__ . '/Maintenance.php';
 class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Populates the rev_sha1 and ar_sha1 fields";
+		$this->addDescription( 'Populates the rev_sha1 and ar_sha1 fields' );
 		$this->setBatchSize( 200 );
 	}
 

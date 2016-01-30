@@ -34,8 +34,9 @@ require_once __DIR__ . '/Maintenance.php';
 class ResetUserTokens extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription =
-			"Reset the user_token of all users on the wiki. Note that this may log some of them out.";
+		$this->addDescription(
+			'Reset the user_token of all users on the wiki. Note that this may log some of them out.'
+		);
 		$this->addOption( 'nowarn', "Hides the 5 seconds warning", false, false );
 		$this->addOption(
 			'nulls',

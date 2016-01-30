@@ -41,7 +41,7 @@ function bfNormalizeTitleStrReplace( $str ) {
 class BenchStrtrStrReplace extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Benchmark for strtr() vs str_replace().";
+		$this->addDescription( 'Benchmark for strtr() vs str_replace().' );
 	}
 
 	public function execute() {

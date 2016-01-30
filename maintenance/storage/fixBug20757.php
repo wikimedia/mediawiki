@@ -36,7 +36,7 @@ class FixBug20757 extends Maintenance {
 
 	function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Script to fix bug 20757 assuming that blob_tracking is intact';
+		$this->addDescription( 'Script to fix bug 20757 assuming that blob_tracking is intact' );
 		$this->addOption( 'dry-run', 'Report only' );
 		$this->addOption( 'start', 'old_id to start at', false, true );
 	}

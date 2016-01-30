@@ -33,8 +33,8 @@ require_once __DIR__ . '/Maintenance.php';
 class DeleteDefaultMessages extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Deletes all pages in the MediaWiki namespace" .
-			" which were last edited by \"MediaWiki default\"";
+		$this->addDescription( 'Deletes all pages in the MediaWiki namespace' .
+			' which were last edited by "MediaWiki default"' );
 	}
 
 	public function execute() {

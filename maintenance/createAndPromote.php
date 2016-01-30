@@ -35,7 +35,7 @@ class CreateAndPromote extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Create a new user account and/or grant it additional rights";
+		$this->addDescription( 'Create a new user account and/or grant it additional rights' );
 		$this->addOption(
 			'force',
 			'If acccount exists already, just grant it rights or change password.'

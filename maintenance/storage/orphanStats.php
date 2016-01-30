@@ -32,8 +32,8 @@ require_once __DIR__ . '/../Maintenance.php';
 class OrphanStats extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription =
-			"Show some statistics on the blob_orphans table, created with trackBlobs.php";
+		$this->addDescription(
+			"Show some statistics on the blob_orphans table, created with trackBlobs.php" );
 	}
 
 	protected function &getDB( $cluster, $groups = array(), $wiki = false ) {

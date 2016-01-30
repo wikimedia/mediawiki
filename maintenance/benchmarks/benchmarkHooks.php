@@ -31,7 +31,7 @@ require_once __DIR__ . '/Benchmarker.php';
 class BenchmarkHooks extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Benchmark MediaWiki Hooks.';
+		$this->addDescription( 'Benchmark MediaWiki Hooks.' );
 	}
 
 	public function execute() {

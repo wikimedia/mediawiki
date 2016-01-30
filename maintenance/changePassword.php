@@ -37,7 +37,7 @@ class ChangePassword extends Maintenance {
 		$this->addOption( "user", "The username to operate on", false, true );
 		$this->addOption( "userid", "The user id to operate on", false, true );
 		$this->addOption( "password", "The password to use", true, true );
-		$this->mDescription = "Change a user's password";
+		$this->addDescription( "Change a user's password" );
 	}
 
 	public function execute() {

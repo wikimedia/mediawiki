@@ -30,7 +30,7 @@ require_once __DIR__ . '/Maintenance.php';
 class PopulateContentModel extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Populate the various content_* fields';
+		$this->addDescription( 'Populate the various content_* fields' );
 		$this->addOption( 'ns', 'Namespace to run in, or "all" for all namespaces', true, true );
 		$this->addOption( 'table', 'Table to run in', true, true );
 		$this->setBatchSize( 100 );

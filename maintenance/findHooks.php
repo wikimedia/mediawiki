@@ -49,7 +49,7 @@ class FindHooks extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Find hooks that are undocumented, missing, or just plain wrong';
+		$this->addDescription( 'Find hooks that are undocumented, missing, or just plain wrong' );
 		$this->addOption( 'online', 'Check against MediaWiki.org hook documentation' );
 	}
 

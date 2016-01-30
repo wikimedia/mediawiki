@@ -45,7 +45,7 @@ require_once __DIR__ . '/Maintenance.php';
 class MoveBatch extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Moves a batch of pages";
+		$this->addDescription( 'Moves a batch of pages' );
 		$this->addOption( 'u', "User to perform move", false, true );
 		$this->addOption( 'r', "Reason to move page", false, true );
 		$this->addOption( 'i', "Interval to sleep between moves" );

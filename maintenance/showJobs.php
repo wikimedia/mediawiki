@@ -43,7 +43,7 @@ class ShowJobs extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Show number of jobs waiting in master database";
+		$this->addDescription( 'Show number of jobs waiting in master database' );
 		$this->addOption( 'group', 'Show number of jobs per job type' );
 		$this->addOption( 'list', 'Show a list of all jobs instead of counts' );
 		$this->addOption( 'type', 'Only show/count jobs of a given type', false, true );

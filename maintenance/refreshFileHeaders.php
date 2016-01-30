@@ -34,7 +34,7 @@ require_once __DIR__ . '/Maintenance.php';
 class RefreshFileHeaders extends Maintenance {
 	function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Script to update file HTTP headers';
+		$this->addDescription( 'Script to update file HTTP headers' );
 		$this->addOption( 'verbose', 'Output information about each file.', false, false, 'v' );
 		$this->addOption( 'start', 'Name of file to start with', false, true );
 		$this->addOption( 'end', 'Name of file to end with', false, true );

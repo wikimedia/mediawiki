@@ -32,7 +32,7 @@ require_once __DIR__ . '/Maintenance.php';
 class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Populate the fa_sha1 field from fa_storage_key";
+		$this->addDescription( 'Populate the fa_sha1 field from fa_storage_key' );
 	}
 
 	protected function getUpdateKey() {

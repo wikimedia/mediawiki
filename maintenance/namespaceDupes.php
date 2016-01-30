@@ -47,7 +47,7 @@ class NamespaceConflictChecker extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "";
+		$this->addDescription( 'Find and fix pages affected by namespace addition/removal' );
 		$this->addOption( 'fix', 'Attempt to automatically fix errors' );
 		$this->addOption( 'merge', "Instead of renaming conflicts, do a history merge with " .
 			"the correct title" );

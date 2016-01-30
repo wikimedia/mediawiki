@@ -35,7 +35,8 @@ class PopulateCategory extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = <<<TEXT
+		$this->addDescription(
+			<<<TEXT
 This script will populate the category table, added in MediaWiki 1.13.  It will
 print out progress indicators every 1000 categories it adds to the table.  The
 script is perfectly safe to run on large, live wikis, and running it multiple
@@ -49,8 +50,9 @@ added after the software update and so will be populated anyway.
 
 When the script has finished, it will make a note of this in the database, and
 will not run again without the --force option.
-TEXT;
-# '
+TEXT
+		);
+
 		$this->addOption(
 			'begin',
 			'Only do categories whose names are alphabetically after the provided name',

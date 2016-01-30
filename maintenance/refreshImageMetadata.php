@@ -44,7 +44,7 @@ class RefreshImageMetadata extends Maintenance {
 	function __construct() {
 		parent::__construct();
 
-		$this->mDescription = 'Script to update image metadata records';
+		$this->addDescription( 'Script to update image metadata records' );
 		$this->setBatchSize( 200 );
 
 		$this->addOption(

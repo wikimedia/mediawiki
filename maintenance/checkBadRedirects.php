@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
 class CheckBadRedirects extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Check for bad redirects";
+		$this->addDescription( 'Check for bad redirects' );
 	}
 
 	public function execute() {

@@ -38,7 +38,7 @@ class AttachLatest extends Maintenance {
 		$this->addOption( "fix", "Actually fix the entries, will dry run otherwise" );
 		$this->addOption( "regenerate-all",
 			"Regenerate the page_latest field for all records in table page" );
-		$this->mDescription = "Fix page_latest entries in the page table";
+		$this->addDescription( 'Fix page_latest entries in the page table' );
 	}
 
 	public function execute() {

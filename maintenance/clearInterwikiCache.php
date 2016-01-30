@@ -32,7 +32,7 @@ class ClearInterwikiCache extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Clear all interwiki links for all languages from the cache";
+		$this->addDescription( 'Clear all interwiki links for all languages from the cache' );
 	}
 
 	public function execute() {
