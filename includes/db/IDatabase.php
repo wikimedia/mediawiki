@@ -1519,7 +1519,7 @@ interface IDatabase {
 	 * This is suitiable for transactions that need to be serialized using cooperative locks,
 	 * where each transaction can see each others' changes. Any transaction is flushed to clear
 	 * out stale REPEATABLE-READ snapshot data. Once the returned object falls out of PHP scope,
-	 * the lock will be released.
+	 * any transaction will be committed and the lock will be released.
 	 *
 	 * If the lock acquisition failed, then no transaction flush happens, and null is returned.
 	 *

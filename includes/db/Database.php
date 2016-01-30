@@ -3174,6 +3174,7 @@ abstract class DatabaseBase implements IDatabase {
 
 		$that = $this;
 		$unlocker = new ScopedCallback( function () use ( $that, $lockKey, $fname ) {
+			$that->commit( __METHOD__, 'flush' );
 			$that->unlock( $lockKey, $fname );
 		} );
 
