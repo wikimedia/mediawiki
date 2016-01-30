@@ -33,7 +33,7 @@ class DeleteRevision extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Delete one or more revisions by moving them to the archive table";
+		$this->addDescription( 'Delete one or more revisions by moving them to the archive table' );
 	}
 
 	public function execute() {

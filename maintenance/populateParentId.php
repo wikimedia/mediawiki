@@ -34,7 +34,7 @@ require_once __DIR__ . '/Maintenance.php';
 class PopulateParentId extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Populates rev_parent_id";
+		$this->addDescription( 'Populates rev_parent_id' );
 	}
 
 	protected function getUpdateKey() {

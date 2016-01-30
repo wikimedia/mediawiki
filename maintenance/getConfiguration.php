@@ -49,7 +49,7 @@ class GetConfiguration extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Get serialized MediaWiki site configuration";
+		$this->addDescription( 'Get serialized MediaWiki site configuration' );
 		$this->addOption( 'regex', 'regex to filter variables with', false, true );
 		$this->addOption( 'iregex', 'same as --regex but case insensitive', false, true );
 		$this->addOption( 'settings', 'Space-separated list of wg* variables', false, true );

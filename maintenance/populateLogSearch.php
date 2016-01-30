@@ -40,7 +40,7 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Migrate log params to new table and index for searching";
+		$this->addDescription( 'Migrate log params to new table and index for searching' );
 		$this->setBatchSize( 100 );
 	}
 

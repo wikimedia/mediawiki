@@ -25,7 +25,7 @@ class FindMissingFiles extends Maintenance {
 	function __construct() {
 		parent::__construct();
 
-		$this->mDescription = 'Find registered files with no corresponding file.';
+		$this->addDescription( 'Find registered files with no corresponding file.' );
 		$this->addOption( 'start', 'Start after this file name', false, true );
 		$this->addOption( 'mtimeafter', 'Only include files changed since this time', false, true );
 		$this->addOption( 'mtimebefore', 'Only includes files changed before this time', false, true );

@@ -39,7 +39,7 @@ require_once __DIR__ . '/Maintenance.php';
 class ShowSiteStats extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Show the cached statistics";
+		$this->addDescription( 'Show the cached statistics' );
 	}
 
 	public function execute() {

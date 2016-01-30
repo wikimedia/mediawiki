@@ -42,7 +42,7 @@ class ImageCleanup extends TableCleanup {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Script to clean up broken, unparseable upload filenames";
+		$this->addDescription( 'Script to clean up broken, unparseable upload filenames' );
 	}
 
 	protected function processRow( $row ) {

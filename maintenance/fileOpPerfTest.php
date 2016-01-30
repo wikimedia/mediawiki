@@ -32,7 +32,7 @@ require_once __DIR__ . '/Maintenance.php';
 class TestFileOpPerformance extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Test fileop performance";
+		$this->addDescription( 'Test fileop performance' );
 		$this->addOption( 'b1', 'Backend 1', true, true );
 		$this->addOption( 'b2', 'Backend 2', false, true );
 		$this->addOption( 'srcdir', 'File source directory', true, true );

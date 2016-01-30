@@ -36,7 +36,7 @@ require_once __DIR__ . '/Maintenance.php';
 class UpdateMediaWiki extends Maintenance {
 	function __construct() {
 		parent::__construct();
-		$this->mDescription = "MediaWiki database updater";
+		$this->addDescription( 'MediaWiki database updater' );
 		$this->addOption( 'skip-compat-checks', 'Skips compatibility checks, mostly for developers' );
 		$this->addOption( 'quick', 'Skip 5 second countdown before starting' );
 		$this->addOption( 'doshared', 'Also update shared tables' );

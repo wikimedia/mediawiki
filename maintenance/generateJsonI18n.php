@@ -35,7 +35,7 @@ require_once __DIR__ . '/Maintenance.php';
 class GenerateJsonI18n extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Build JSON messages files from a PHP messages file";
+		$this->addDescription( 'Build JSON messages files from a PHP messages file' );
 
 		$this->addArg( 'phpfile', 'PHP file defining a $messages array', false );
 		$this->addArg( 'jsondir', 'Directory to write JSON files to', false );

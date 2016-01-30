@@ -44,7 +44,7 @@ require_once __DIR__ . '/Maintenance.php';
 class NukeNS extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Remove pages with only 1 revision from any namespace";
+		$this->addDescription( 'Remove pages with only 1 revision from any namespace' );
 		$this->addOption( 'delete', "Actually delete the page" );
 		$this->addOption( 'ns', 'Namespace to delete from, default NS_MEDIAWIKI', false, true );
 		$this->addOption( 'all', 'Delete everything regardless of revision count' );

@@ -42,12 +42,13 @@ class UpdateCollation extends Maintenance {
 		parent::__construct();
 
 		global $wgCategoryCollation;
-		$this->mDescription = <<<TEXT
+		$this->addDescription( <<<TEXT
 This script will find all rows in the categorylinks table whose collation is
 out-of-date (cl_collation != '$wgCategoryCollation') and repopulate cl_sortkey
 using the page title and cl_sortkey_prefix.  If all collations are
 up-to-date, it will do nothing.
-TEXT;
+TEXT
+		);
 
 		$this->addOption( 'force', 'Run on all rows, even if the collation is ' .
 			'supposed to be up-to-date.' );

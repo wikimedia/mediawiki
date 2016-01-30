@@ -63,7 +63,7 @@ class CompressOld extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Compress the text of a wiki';
+		$this->addDescription( 'Compress the text of a wiki' );
 		$this->addOption( 'type', 'Set compression type to either: gzip|concat', false, true, 't' );
 		$this->addOption(
 			'chunksize',

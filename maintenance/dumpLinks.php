@@ -40,7 +40,7 @@ require_once __DIR__ . '/Maintenance.php';
 class DumpLinks extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Quick demo hack to generate a plaintext link dump";
+		$this->addDescription( 'Quick demo hack to generate a plaintext link dump' );
 	}
 
 	public function execute() {

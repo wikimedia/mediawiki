@@ -32,8 +32,8 @@ require_once __DIR__ . '/Maintenance.php';
 class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription =
-				'Fix instances of JSON pages prior to them being the ContentHandler default';
+		$this->addDescription(
+			'Fix instances of JSON pages prior to them being the ContentHandler default' );
 		$this->setBatchSize( 100 );
 	}
 

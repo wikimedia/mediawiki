@@ -49,7 +49,8 @@ class BackupReader extends Maintenance {
 			? 'ok'
 			: '(disabled; requires PHP bzip2 module)';
 
-		$this->mDescription = <<<TEXT
+		$this->addDescription(
+			<<<TEXT
 This script reads pages from an XML file as produced from Special:Export or
 dumpBackup.php, and saves them into the current wiki.
 
@@ -61,7 +62,8 @@ Compressed XML files may be read directly:
 Note that for very large data sets, importDump.php may be slow; there are
 alternate methods which can be much faster for full site restoration:
 <https://www.mediawiki.org/wiki/Manual:Importing_XML_dumps>
-TEXT;
+TEXT
+		);
 		$this->stderr = fopen( "php://stderr", "wt" );
 		$this->addOption( 'report',
 			'Report position and speed after every n pages processed', false, true );

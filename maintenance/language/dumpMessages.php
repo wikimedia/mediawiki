@@ -33,7 +33,7 @@ require_once __DIR__ . '/../Maintenance.php';
 class DumpMessages extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Dump an entire language, using the keys from English";
+		$this->addDescription( 'Dump an entire language, using the keys from English' );
 	}
 
 	public function execute() {

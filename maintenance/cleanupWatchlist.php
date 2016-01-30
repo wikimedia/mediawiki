@@ -46,7 +46,7 @@ class WatchlistCleanup extends TableCleanup {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Script to remove broken, unparseable titles in the Watchlist";
+		$this->addDescription( 'Script to remove broken, unparseable titles in the Watchlist' );
 		$this->addOption( 'fix', 'Actually remove entries; without will only report.' );
 	}
 

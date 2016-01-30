@@ -34,7 +34,8 @@ require_once __DIR__ . '/Maintenance.php';
 class DeleteOrphanedRevisions extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Maintenance script to delete revisions which refer to a nonexisting page";
+		$this->addDescription(
+			'Maintenance script to delete revisions which refer to a nonexisting page' );
 		$this->addOption( 'report', 'Prints out a count of affected revisions but doesn\'t delete them' );
 	}
 

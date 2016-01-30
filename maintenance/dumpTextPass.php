@@ -93,13 +93,14 @@ class TextPassDumper extends BackupDumper {
 	function __construct( $args = null ) {
 		parent::__construct();
 
-		$this->mDescription = <<<TEXT
+		$this->addDescription( <<<TEXT
 This script postprocesses XML dumps from dumpBackup.php to add
 page text which was stubbed out (using --stub).
 
 XML input is accepted on stdin.
 XML output is sent to stdout; progress reports are sent to stderr.
-TEXT;
+TEXT
+		);
 		$this->stderr = fopen( "php://stderr", "wt" );
 
 		$this->addOption( 'stub', 'To load a compressed stub dump instead of stdin. ' .

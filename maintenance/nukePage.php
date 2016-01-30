@@ -33,7 +33,7 @@ require_once __DIR__ . '/Maintenance.php';
 class NukePage extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Remove a page record from the database";
+		$this->addDescription( 'Remove a page record from the database' );
 		$this->addOption( 'delete', "Actually delete the page" );
 		$this->addArg( 'title', 'Title to delete' );
 	}

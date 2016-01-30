@@ -25,7 +25,7 @@ class FindOrphanedFiles extends Maintenance {
 	function __construct() {
 		parent::__construct();
 
-		$this->mDescription = "Find unregistered files in the 'public' repo zone.";
+		$this->addDescription( "Find unregistered files in the 'public' repo zone." );
 		$this->addOption( 'subdir',
 			'Only scan files in this subdirectory (e.g. "a/a0")', false, true );
 		$this->addOption( 'verbose', "Mention file paths checked" );

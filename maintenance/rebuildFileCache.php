@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
 class RebuildFileCache extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Build file cache for content pages";
+		$this->addDescription( 'Build file cache for content pages' );
 		$this->addOption( 'start', 'Page_id to start from', false, true );
 		$this->addOption( 'end', 'Page_id to end on', false, true );
 		$this->addOption( 'overwrite', 'Refresh page cache' );

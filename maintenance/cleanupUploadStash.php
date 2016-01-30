@@ -37,7 +37,7 @@ class UploadStashCleanup extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Clean up abandoned files in temporary uploaded file stash";
+		$this->addDescription( 'Clean up abandoned files in temporary uploaded file stash' );
 		$this->setBatchSize( 50 );
 	}
 

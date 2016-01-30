@@ -124,7 +124,7 @@ class DeprecatedInterfaceFinder extends FileAwareNodeVisitor {
 class FindDeprecated extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Find deprecated interfaces';
+		$this->addDescription( 'Find deprecated interfaces' );
 	}
 
 	public function getFiles() {

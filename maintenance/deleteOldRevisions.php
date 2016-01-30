@@ -32,7 +32,7 @@ require_once __DIR__ . '/Maintenance.php';
 class DeleteOldRevisions extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Delete old (non-current) revisions from the database";
+		$this->addDescription( 'Delete old (non-current) revisions from the database' );
 		$this->addOption( 'delete', 'Actually perform the deletion' );
 		$this->addOption( 'page_id', 'List of page ids to work on', false );
 	}

@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
 class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Populate the *_from_namespace fields";
+		$this->addDescription( 'Populate the *_from_namespace fields' );
 		$this->addOption( 'lastUpdatedId', "Highest page_id with updated links", false, true );
 	}
 

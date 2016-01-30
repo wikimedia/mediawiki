@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
 class SqliteMaintenance extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Performs some operations specific to SQLite database backend";
+		$this->addDescription( 'Performs some operations specific to SQLite database backend' );
 		$this->addOption(
 			'vacuum',
 			'Clean up database by removing deleted pages. Decreases database file size'

@@ -32,7 +32,7 @@ require_once __DIR__ . '/Maintenance.php';
 class DeleteSelfExternals extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Delete self-references to $wgServer from externallinks';
+		$this->addDescription( 'Delete self-references to $wgServer from externallinks' );
 		$this->mBatchSize = 1000;
 	}
 

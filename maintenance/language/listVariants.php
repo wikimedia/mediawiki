@@ -32,7 +32,7 @@ class ListVariants extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = 'Outputs a list of language variants';
+		$this->addDescription( 'Outputs a list of language variants' );
 		$this->addOption( 'flat', 'Output variants in a flat list' );
 		$this->addOption( 'json', 'Output variants as JSON' );
 	}

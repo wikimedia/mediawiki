@@ -34,7 +34,7 @@ class ConvertUserOptions extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Convert user options from old to new system";
+		$this->addDescription( 'Convert user options from old to new system' );
 		$this->setBatchSize( 50 );
 	}
 

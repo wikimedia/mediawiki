@@ -84,7 +84,7 @@ abstract class Maintenance {
 	protected $mQuiet = false;
 	protected $mDbUser, $mDbPass;
 
-	// A description of the script, children should change this
+	// A description of the script, children should change this via addDescription()
 	protected $mDescription = '';
 
 	// Have we already loaded our user input?

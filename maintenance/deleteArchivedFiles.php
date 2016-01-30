@@ -34,7 +34,7 @@ require_once __DIR__ . '/Maintenance.php';
 class DeleteArchivedFiles extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Deletes all archived images.";
+		$this->addDescription( 'Deletes all archived images.' );
 		$this->addOption( 'delete', 'Perform the deletion' );
 		$this->addOption( 'force', 'Force deletion of rows from filearchive' );
 	}

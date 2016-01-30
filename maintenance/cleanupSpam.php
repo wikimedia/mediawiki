@@ -32,7 +32,7 @@ class CleanupSpam extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Cleanup all spam from a given hostname";
+		$this->addDescription( 'Cleanup all spam from a given hostname' );
 		$this->addOption( 'all', 'Check all wikis in $wgLocalDatabases' );
 		$this->addOption( 'delete', 'Delete pages containing only spam instead of blanking them' );
 		$this->addArg(

@@ -37,7 +37,7 @@ class GenerateCommonPassword extends Maintenance {
 	public function __construct() {
 		global $IP;
 		parent::__construct();
-		$this->mDescription = "Generate CDB file of common passwords";
+		$this->addDescription( 'Generate CDB file of common passwords' );
 		$this->addOption( 'limit', "Max number of passwords to write", false, true, 'l' );
 		$this->addArg( 'inputfile', 'List of passwords (one per line) to use or - for stdin', true );
 		$this->addArg(

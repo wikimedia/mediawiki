@@ -64,11 +64,10 @@ class BenchUtf8TitleCheck extends Benchmarker {
 		$this->canRun = function_exists( 'mb_check_encoding' );
 
 		if ( $this->canRun ) {
-			$this->mDescription = "Benchmark for using a regexp vs. mb_check_encoding " .
-				"to check for UTF-8 encoding.";
-			mb_internal_encoding( 'UTF-8' );
+			$this->addDescription( "Benchmark for using a regexp vs. mb_check_encoding " .
+				"to check for UTF-8 encoding." );
 		} else {
-			$this->mDescription = "CANNOT RUN benchmark using mb_check_encoding: function not available.";
+			$this->addDescription( 'CANNOT RUN benchmark using mb_check_encoding: function not available.' );
 		}
 	}
 

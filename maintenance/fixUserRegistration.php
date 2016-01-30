@@ -32,7 +32,7 @@ require_once __DIR__ . '/Maintenance.php';
 class FixUserRegistration extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Fix the user_registration field";
+		$this->addDescription( 'Fix the user_registration field' );
 		$this->setBatchSize( 1000 );
 	}
 

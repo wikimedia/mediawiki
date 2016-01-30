@@ -35,7 +35,7 @@ class CheckUsernames extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Verify that database usernames are actually valid";
+		$this->addDescription( 'Verify that database usernames are actually valid' );
 		$this->setBatchSize( 1000 );
 	}
 
