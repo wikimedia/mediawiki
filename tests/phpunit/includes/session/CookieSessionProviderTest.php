@@ -184,7 +184,9 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$this->assertNotNull( $info );
 		$this->assertSame( $params['priority'], $info->getPriority() );
 		$this->assertSame( $sessionId, $info->getId() );
-		$this->assertNull( $info->getUserInfo() );
+		$this->assertNotNull( $info->getUserInfo() );
+		$this->assertSame( 0, $info->getUserInfo()->getId() );
+		$this->assertNull( $info->getUserInfo()->getName() );
 		$this->assertFalse( $info->forceHTTPS() );
 
 		// User, no session key
