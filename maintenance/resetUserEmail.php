@@ -31,7 +31,7 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class ResetUserEmail extends Maintenance {
 	public function __construct() {
-		$this->mDescription = "Resets a user's email";
+		$this->addDescription( "Resets a user's email" );
 		$this->addArg( 'user', 'Username or user ID, if starts with #', true );
 		$this->addArg( 'email', 'Email to assign' );
 		parent::__construct();
