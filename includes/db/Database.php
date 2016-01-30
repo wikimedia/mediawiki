@@ -155,6 +155,9 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	private $mTrxWriteDuration = 0.0;
 
+	/** @var array Map of (name => 1) for locks obtained via lock() */
+	private $mNamedLocksHeld = array();
+
 	/** @var IDatabase|null Lazy handle to the master DB this server replicates from */
 	private $lazyMasterHandle;
 
@@ -871,7 +874,7 @@ abstract class DatabaseBase implements IDatabase {
 				$msg = __METHOD__ . ": lost connection to $server; reconnected";
 				wfDebugLog( 'DBPerformance', "$msg:\n" . wfBacktrace( true ) );
 
-				if ( $hadTrx ) {
+				if ( $hadTrx || $this->mNamedLocksHeld ) {
 					# Leave $ret as false and let an error be reported.
 					# Callers may catch the exception and continue to use the DB.
 					$this->reportQueryError( $lastError, $lastErrno, $sql, $fname, $tempIgnore );
@@ -3160,10 +3163,14 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	public function lock( $lockName, $method, $timeout = 5 ) {
+		$this->mNamedLocksHeld[$lockName] = 1;
+
 		return true;
 	}
 
 	public function unlock( $lockName, $method ) {
+		unset( $this->mNamedLocksHeld[$lockName] );
+
 		return true;
 	}
 

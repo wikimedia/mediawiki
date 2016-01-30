@@ -1581,11 +1581,13 @@ SQL;
 				"SELECT pg_try_advisory_lock($key) AS lockstatus", $method );
 			$row = $this->fetchObject( $result );
 			if ( $row->lockstatus === 't' ) {
+				parent::lock( $lockName, $method, $timeout ); // record
 				return true;
 			} else {
 				sleep( 1 );
 			}
 		}
+
 		wfDebug( __METHOD__ . " failed to acquire lock\n" );
 
 		return false;
@@ -1603,7 +1605,14 @@ SQL;
 		$result = $this->query( "SELECT pg_advisory_unlock($key) as lockstatus", $method );
 		$row = $this->fetchObject( $result );
 
-		return ( $row->lockstatus === 't' );
+		if ( $row->lockstatus === 't' ) {
+			parent::unlock( $lockName, $method ); // record
+			return true;
+		}
+
+		wfDebug( __METHOD__ . " failed to release lock\n" );
+
+		return false;
 	}
 
 	/**
