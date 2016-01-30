@@ -2523,19 +2523,6 @@ abstract class ApiBase extends ContextSource {
 	const PROP_NULLABLE = 1;
 
 	/**
-	 * Formerly returned a string that identifies the version of the extending
-	 * class. Typically included the class name, the svn revision, timestamp,
-	 * and last author. Usually done with SVN's Id keyword
-	 *
-	 * @deprecated since 1.21, version string is no longer supported
-	 * @return string
-	 */
-	public function getVersion() {
-		wfDeprecated( __METHOD__, '1.21' );
-		return '';
-	}
-
-	/**
 	 * Formerly used to fetch a list of possible properites in the result,
 	 * somehow organized with respect to the prop parameter that causes them to
 	 * be returned. The specific semantics of the return value was never
