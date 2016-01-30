@@ -1364,7 +1364,7 @@ class LoadBalancer {
 	 * case on many installations.
 	 *
 	 * @param IDatabase $conn
-	 * @return int
+	 * @return int|bool Returns false on error
 	 */
 	public function safeGetLag( IDatabase $conn ) {
 		if ( $this->getServerCount() == 1 ) {
