@@ -184,11 +184,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data['git-hash'] = $git;
 			$data['git-branch'] =
 				SpecialVersion::getGitCurrentBranch( $GLOBALS['IP'] );
-		} else {
-			$svn = SpecialVersion::getSvnRevision( $IP );
-			if ( $svn ) {
-				$data['rev'] = $svn;
-			}
 		}
 
 		// 'case-insensitive' option is reserved for future
@@ -602,11 +597,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				}
 				if ( isset( $ext['version'] ) ) {
 					$ret['version'] = $ext['version'];
-				} elseif ( isset( $ext['svn-revision'] ) &&
-					preg_match( '/\$(?:Rev|LastChangedRevision|Revision): *(\d+)/',
-						$ext['svn-revision'], $m )
-				) {
-					$ret['version'] = 'r' . $m[1];
 				}
 				if ( isset( $ext['path'] ) ) {
 					$extensionPath = dirname( $ext['path'] );
@@ -619,13 +609,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 						$vcsDate = $gitInfo->getHeadCommitDate();
 						if ( $vcsDate !== false ) {
 							$ret['vcs-date'] = wfTimestamp( TS_ISO_8601, $vcsDate );
-						}
-					} else {
-						$svnInfo = SpecialVersion::getSvnInfo( $extensionPath );
-						if ( $svnInfo !== false ) {
-							$ret['vcs-system'] = 'svn';
-							$ret['vcs-version'] = $svnInfo['checkout-rev'];
-							$ret['vcs-url'] = isset( $svnInfo['viewvc-url'] ) ? $svnInfo['viewvc-url'] : '';
 						}
 					}
 

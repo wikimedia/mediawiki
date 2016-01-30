@@ -38,12 +38,6 @@ class SpecialVersion extends SpecialPage {
 
 	protected static $extensionTypes = false;
 
-	protected static $viewvcUrls = array(
-		'svn+ssh://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
-		'http://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
-		'https://svn.wikimedia.org/svnroot/mediawiki' => 'https://svn.wikimedia.org/viewvc/mediawiki',
-	);
-
 	public function __construct() {
 		parent::__construct( 'Version' );
 	}
@@ -258,7 +252,7 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Return a string of the MediaWiki version with SVN revision if available.
+	 * Return a string of the MediaWiki version with Git revision if available.
 	 *
 	 * @param string $flags
 	 * @return mixed
@@ -267,25 +261,15 @@ class SpecialVersion extends SpecialPage {
 		global $wgVersion, $IP;
 
 		$gitInfo = self::getGitHeadSha1( $IP );
-		$svnInfo = self::getSvnInfo( $IP );
-		if ( !$svnInfo && !$gitInfo ) {
+		if ( !$gitInfo ) {
 			$version = $wgVersion;
-		} elseif ( $gitInfo && $flags === 'nodb' ) {
+		} elseif ( $flags === 'nodb' ) {
 			$shortSha1 = substr( $gitInfo, 0, 7 );
 			$version = "$wgVersion ($shortSha1)";
-		} elseif ( $gitInfo ) {
+		} else {
 			$shortSha1 = substr( $gitInfo, 0, 7 );
 			$shortSha1 = wfMessage( 'parentheses' )->params( $shortSha1 )->escaped();
 			$version = "$wgVersion $shortSha1";
-		} elseif ( $flags === 'nodb' ) {
-			$version = "$wgVersion (r{$svnInfo['checkout-rev']})";
-		} else {
-			$version = $wgVersion . ' ' .
-				wfMessage(
-					'version-svn-revision',
-					isset( $svnInfo['directory-rev'] ) ? $svnInfo['directory-rev'] : '',
-					isset( $svnInfo['checkout-rev'] ) ? $svnInfo['checkout-rev'] : ''
-				)->text();
 		}
 
 		return $version;
@@ -293,8 +277,7 @@ class SpecialVersion extends SpecialPage {
 
 	/**
 	 * Return a wikitext-formatted string of the MediaWiki version with a link to
-	 * the SVN revision or the git SHA1 of head if available.
-	 * Git is prefered over Svn
+	 * the Git SHA1 of head if available.
 	 * The fallback is just $wgVersion
 	 *
 	 * @return mixed
@@ -306,41 +289,10 @@ class SpecialVersion extends SpecialPage {
 		if ( $gitVersion ) {
 			$v = $gitVersion;
 		} else {
-			$svnVersion = self::getVersionLinkedSvn();
-			if ( $svnVersion ) {
-				$v = $svnVersion;
-			} else {
-				$v = $wgVersion; // fallback
-			}
+			$v = $wgVersion; // fallback
 		}
 
 		return $v;
-	}
-
-	/**
-	 * @return string Global wgVersion + a link to subversion revision of svn BASE
-	 */
-	private static function getVersionLinkedSvn() {
-		global $IP;
-
-		$info = self::getSvnInfo( $IP );
-		if ( !isset( $info['checkout-rev'] ) ) {
-			return false;
-		}
-
-		$linkText = wfMessage(
-			'version-svn-revision',
-			isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
-			$info['checkout-rev']
-		)->text();
-
-		if ( isset( $info['viewvc-url'] ) ) {
-			$version = "[{$info['viewvc-url']} $linkText]";
-		} else {
-			$version = $linkText;
-		}
-
-		return self::getwgVersionLinked() . " $version";
 	}
 
 	/**
@@ -744,7 +696,7 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		// ... and the version information
-		// If the extension path is set we will check that directory for GIT and SVN
+		// If the extension path is set we will check that directory for GIT
 		// metadata in an attempt to extract date and vcs commit metadata.
 		$canonicalVersion = '&ndash;';
 		$extensionPath = null;
@@ -764,11 +716,6 @@ class SpecialVersion extends SpecialPage {
 				$coreHeadSHA1 = self::getGitHeadSha1( $IP );
 				if ( $coreHeadSHA1 ) {
 					$this->coreId = $coreHeadSHA1;
-				} else {
-					$svnInfo = self::getSvnInfo( $IP );
-					if ( $svnInfo !== false ) {
-						$this->coreId = $svnInfo['checkout-rev'];
-					}
 				}
 			}
 			$cache = wfGetCache( CACHE_ANYTHING );
@@ -783,12 +730,6 @@ class SpecialVersion extends SpecialPage {
 					$vcsVersion = substr( $vcsVersion, 0, 7 );
 					$vcsLink = $gitInfo->getHeadViewUrl();
 					$vcsDate = $gitInfo->getHeadCommitDate();
-				} else {
-					$svnInfo = self::getSvnInfo( $extensionPath );
-					if ( $svnInfo !== false ) {
-						$vcsVersion = $this->msg( 'version-svn-revision', $svnInfo['checkout-rev'] )->text();
-						$vcsLink = isset( $svnInfo['viewvc-url'] ) ? $svnInfo['viewvc-url'] : '';
-					}
 				}
 				$cache->set( $memcKey, array( $vcsVersion, $vcsLink, $vcsDate ), 60 * 60 * 24 );
 			} else {
@@ -1151,108 +1092,6 @@ class SpecialVersion extends SpecialPage {
 			}
 
 			return wfMessage( 'parentheses' )->params( "$class, {$list[1]}" )->escaped();
-		}
-	}
-
-	/**
-	 * Get an associative array of information about a given path, from its .svn
-	 * subdirectory. Returns false on error, such as if the directory was not
-	 * checked out with subversion.
-	 *
-	 * Returned keys are:
-	 *    Required:
-	 *        checkout-rev          The revision which was checked out
-	 *    Optional:
-	 *        directory-rev         The revision when the directory was last modified
-	 *        url                   The subversion URL of the directory
-	 *        repo-url              The base URL of the repository
-	 *        viewvc-url            A ViewVC URL pointing to the checked-out revision
-	 * @param string $dir
-	 * @return array|bool
-	 */
-	public static function getSvnInfo( $dir ) {
-		// http://svnbook.red-bean.com/nightly/en/svn.developer.insidewc.html
-		$entries = $dir . '/.svn/entries';
-
-		if ( !file_exists( $entries ) ) {
-			return false;
-		}
-
-		$lines = file( $entries );
-		if ( !count( $lines ) ) {
-			return false;
-		}
-
-		// check if file is xml (subversion release <= 1.3) or not (subversion release = 1.4)
-		if ( preg_match( '/^<\?xml/', $lines[0] ) ) {
-			// subversion is release <= 1.3
-			if ( !function_exists( 'simplexml_load_file' ) ) {
-				// We could fall back to expat... YUCK
-				return false;
-			}
-
-			// SimpleXml whines about the xmlns...
-			MediaWiki\suppressWarnings();
-			$xml = simplexml_load_file( $entries );
-			MediaWiki\restoreWarnings();
-
-			if ( $xml ) {
-				foreach ( $xml->entry as $entry ) {
-					if ( $xml->entry[0]['name'] == '' ) {
-						// The directory entry should always have a revision marker.
-						if ( $entry['revision'] ) {
-							return array( 'checkout-rev' => intval( $entry['revision'] ) );
-						}
-					}
-				}
-			}
-
-			return false;
-		}
-
-		// Subversion is release 1.4 or above.
-		if ( count( $lines ) < 11 ) {
-			return false;
-		}
-
-		$info = array(
-			'checkout-rev' => intval( trim( $lines[3] ) ),
-			'url' => trim( $lines[4] ),
-			'repo-url' => trim( $lines[5] ),
-			'directory-rev' => intval( trim( $lines[10] ) )
-		);
-
-		if ( isset( self::$viewvcUrls[$info['repo-url']] ) ) {
-			$viewvc = str_replace(
-				$info['repo-url'],
-				self::$viewvcUrls[$info['repo-url']],
-				$info['url']
-			);
-
-			$viewvc .= '/?pathrev=';
-			$viewvc .= urlencode( $info['checkout-rev'] );
-			$info['viewvc-url'] = $viewvc;
-		}
-
-		return $info;
-	}
-
-	/**
-	 * Retrieve the revision number of a Subversion working directory.
-	 *
-	 * @param string $dir Directory of the svn checkout
-	 *
-	 * @return int Revision number
-	 */
-	public static function getSvnRevision( $dir ) {
-		$info = self::getSvnInfo( $dir );
-
-		if ( $info === false ) {
-			return false;
-		} elseif ( isset( $info['checkout-rev'] ) ) {
-			return $info['checkout-rev'];
-		} else {
-			return false;
 		}
 	}
 
