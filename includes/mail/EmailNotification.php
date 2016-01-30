@@ -166,22 +166,21 @@ class EmailNotification {
 			}
 		}
 
-		if ( !$sendEmail ) {
-			return;
+		if ( $sendEmail ) {
+			JobQueueGroup::singleton()->lazyPush( new EnotifNotifyJob(
+				$title,
+				array(
+					'editor' => $editor->getName(),
+					'editorID' => $editor->getID(),
+					'timestamp' => $timestamp,
+					'summary' => $summary,
+					'minorEdit' => $minorEdit,
+					'oldid' => $oldid,
+					'watchers' => $watchers,
+					'pageStatus' => $pageStatus
+				)
+			) );
 		}
-
-		$params = array(
-			'editor' => $editor->getName(),
-			'editorID' => $editor->getID(),
-			'timestamp' => $timestamp,
-			'summary' => $summary,
-			'minorEdit' => $minorEdit,
-			'oldid' => $oldid,
-			'watchers' => $watchers,
-			'pageStatus' => $pageStatus
-		);
-		$job = new EnotifNotifyJob( $title, $params );
-		JobQueueGroup::singleton()->lazyPush( $job );
 	}
 
 	/**
