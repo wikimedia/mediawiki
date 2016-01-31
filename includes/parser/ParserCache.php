@@ -258,6 +258,15 @@ class ParserCache {
 	public function save( $parserOutput, $page, $popts, $cacheTime = null, $revId = null ) {
 		$expire = $parserOutput->getCacheExpiry();
 		if ( $expire > 0 ) {
+			if ( strpos( $parserOutput->mText,
+					'class="mw-ui-icon mw-ui-icon-element mw-ui-icon-edit-enabled edit-page' )
+				!== false ) {
+				wfDebugLog( 'T124356', "MF pollution ({$page->getId()}): getText called from: " . (
+					$parserOutput->debug_gettext_trace ?
+					implode( ', ', $parserOutput->debug_gettext_trace ) : 'nowhere' ) .
+					', save from ' . wfGetAllCallers( false )
+				);
+			}
 			$cacheTime = $cacheTime ?: wfTimestampNow();
 			if ( !$revId ) {
 				$revision = $page->getRevision();
