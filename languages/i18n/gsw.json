@@ -1312,7 +1312,6 @@
 	"uploaded-script-svg": "Ir ufegladnigen SVG-Datei het’s ds Skript-Elemänt «$1».",
 	"uploaded-hostile-svg": "Im Style-Elemänt vor ufegladnigen SVG-Datei het’s unsichers CSS.",
 	"uploaded-event-handler-on-svg": "I SVG-Dateien isch ds Event-Handler-Attribut <code>$1=\"$2\"</code> nid erloubt.",
-	"uploaded-href-attribute-svg": "I SVG-Dateien isch ds href-Attribut <code>&lt;$1 $2=\"$3\"&gt;</code> mit emne nid-lokale Zil (byspilswys http://, javascript: etc.) nid erloubt.",
 	"uploaded-href-unsafe-target-svg": "Ir ufegladnige SVG-Datei het’s es href uf ds unsichere Zil <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-animate-svg": "Ir ufegladnigen SVG-Datei het’s en «animate»-Tag, wo über ds «from»-Attribut <code>&lt;$1 $2=\"$3\"&gt;</code> chönnt href ändere.",
 	"uploaded-setting-event-handler-svg": "Ir ufegladnigen SVG-Datei het’s ds Event-Handler-Attribut <code>&lt;$1 $2=\"$3\"&gt;</code>. Event-Handler-Attribut sy nid erloubt.",

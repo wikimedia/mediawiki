@@ -1376,7 +1376,6 @@
 	"uploaded-script-svg": "Truvato n'elemento pe script \"$1\" int' 'o file SVG carrecato.",
 	"uploaded-hostile-svg": "Truvato nu CSS insecuro int'a l'elemente 'e stile d' 'o file SVG carrecate.",
 	"uploaded-event-handler-on-svg": "Mpustà 'e parametre 'e gistore-evente <code>$1=\"$2\"</code> nun è premmesso dint' 'e file SVG.",
-	"uploaded-href-attribute-svg": "Ll'attribbute href <code>&lt;$1 $2=\"$3\"&gt;</code> cu target non-local (e.g. http://, javascript:, ecc) nun so' premmesse int' 'e file SVG.",
 	"uploaded-href-unsafe-target-svg": "S'è truvato nu href a nu target ca nun era sicuro <code>&lt;$1 $2=\"$3\"&gt;</code> dint' 'o file SVG carrecato.",
 	"uploaded-animate-svg": "Truvato 'o tag \"animate\" ca putesse stà a cagnà href, ausanno l'attribbuto \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> int' 'o file carrecato SVG.",
 	"uploaded-setting-event-handler-svg": "Mpustà n'attributo event-handler è bluccato, truvato <code>&lt;$1 $2=\"$3\"&gt;</code> int' 'o fie carrecato SVG.",

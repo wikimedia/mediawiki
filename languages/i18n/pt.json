@@ -1425,7 +1425,6 @@
 	"uploaded-script-svg": "Encontrou um elemento scriptable no ficheiro \"$1\" SVG carregado.",
 	"uploaded-hostile-svg": "Encontrou-se um código CSS não seguro no elemento de estilo do arquivo SVG carregado.",
 	"uploaded-event-handler-on-svg": "Não está permitido configurar atributos controladores de eventos <code>$1=\"$2\"</code> nos arquivos SVG.",
-	"uploaded-href-attribute-svg": "Não se permite que os arquivos SVG contenham os atributos de <code>&lt;$1 $2=\"$3\"&gt;</code> apontando a recursos não locais (p.ex. http://, javascript:,etc)",
 	"uploadscriptednamespace": "Este ficheiro SVG contém um domínio que não é permitido \"$1\".",
 	"uploadinvalidxml": "Erro detectado na análise do XML do ficheiro carregado.",
 	"uploadvirus": "O ficheiro contém um vírus! \nDetalhes: $1",

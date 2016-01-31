@@ -1438,7 +1438,6 @@
 	"uploaded-script-svg": " \t\t\nЗнайдений небезпечний елемент з підтримкою сценаріїв «$1» в завантаженому файлі SVG.",
 	"uploaded-hostile-svg": " \t\nЗнайдений небезпечний CSS-код в елементі стилю завантаженого файлу SVG.",
 	"uploaded-event-handler-on-svg": " \t\nУстановка атрибутів обробника подій <code>$1=\"$2\"</code> не дозволено для SVG-файлів.",
-	"uploaded-href-attribute-svg": "У SVG-файлів не допускаються href-атрибути <code>&lt;$1 $2=\"$3\"&gt;</code> з не локальною ціллю (напр. http://, javascript:, тощо).",
 	"uploaded-href-unsafe-target-svg": "У завантаженому SVG-файлі знайдено href до цілі <code>&lt;$1 $2=\"$3\"&gt;</code>, що не є безпечною.",
 	"uploaded-animate-svg": "У завантаженому SVG-файлі знайдено теґ «animate», який може змінювати href, використовуючи атрибут «from» <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-setting-event-handler-svg": "Встановлення  атрибутів обробника подій заблоковане, у завантаженому файлі SVG знайдено <code>&lt;$1 $2=\"$3\"&gt;</code>.",

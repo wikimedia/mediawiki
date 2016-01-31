@@ -1407,7 +1407,6 @@
 	"uploaded-script-svg": "Yüklenen SVG dosyasında komutlanabilir (scriptable) öğe bulundu: \"$1\"",
 	"uploaded-hostile-svg": "Yüklenen SVG dosyasının \"style\" öğesinde güvensiz CSS bulundu.",
 	"uploaded-event-handler-on-svg": "SVG dosyalarında event-handler özniteliğini <code>$1=\"$2\"</code> şeklinde ayarlanmasına izin verilmiyor.",
-	"uploaded-href-attribute-svg": "SVG dosyalarında yerel olmayan (örn. http://, javascript:, vb.) hedefleri olan <code>&lt;$1 $2=\"$3\"&gt;</code> href özniteliklerine izin verilmez.",
 	"uploaded-href-unsafe-target-svg": "Yüklenen SVG dosyasında <code>&lt;$1 $2=\"$3\"&gt;</code> güvensiz hedefine href bulundu.",
 	"uploaded-animate-svg": "\"animate\" etiketi bulundu, href'i değiştiriyor olabilir. Yüklenen SVG dosyasındaki \"from\" özniteliği kullanılıyor  <code>&lt;$1 $2=\"$3\"&gt;</code>",
 	"uploadscriptednamespace": "Bu SVG dosyası geçersiz \"$1\" alan adını içermektedir.",

@@ -1300,7 +1300,6 @@
 	"uploaded-script-svg": "Element ëscrivìbil «$1» trovà ant l'archivi SVG carià.",
 	"uploaded-hostile-svg": "CSS nen sigur trovà ant l'element dë stil ëd n'archivi SVG carià.",
 	"uploaded-event-handler-on-svg": "Fissé dj'atribù ëd gestion d'eveniment <code>$1=\"$2\"</code> a l'é nen përmëttù ant j'archivi SVG.",
-	"uploaded-href-attribute-svg": "J'atribù <code>&lt;$1 $2=\"$3\"&gt;</code> con un bërsaj nen local (për esempi http://, javascript:, e via fòrt) a son nen përmëttù ant j'archivi SVG.",
 	"uploaded-href-unsafe-target-svg": "href ver un bërsaj nen sigur <code>&lt;$1 $2=\"$3\"&gt;</code> trovà ant l'archivi SVG carià.",
 	"uploaded-animate-svg": "Trovà na tichëtta «animate», ch'a podrìa modifiché ël href an dovrand l'atribù «from» <code>&lt;$1 $2=\"$3\"&gt;</code> ant l'archivi SVG carià.",
 	"uploaded-setting-event-handler-svg": "Ël posissionament dj'atribù ëd mansé a l'é blocà, <code>&lt;$1 $2=\"$3\"&gt;</code> trovà ant l'archivi SVG carià.",

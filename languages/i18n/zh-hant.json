@@ -1432,7 +1432,6 @@
 	"uploaded-script-svg": "於已上傳的 SVG 檔案中找到可程式的腳本標籤 \"$1\"。",
 	"uploaded-hostile-svg": "於已上傳的 SVG 檔案的樣式標籤中找到不安全的 CSS。",
 	"uploaded-event-handler-on-svg": "不允許在 SVG 檔案設定 event-handler 屬性 <code>$1=\"$2\"</code>。",
-	"uploaded-href-attribute-svg": "不允許在 SVG 檔案中的 href 屬性 <code>&lt;$1 $2=\"$3\"&gt;</code> 使用非本地的目標  (例如 http://, javascript:, 等)。",
 	"uploaded-href-unsafe-target-svg": "於已上傳的 SVG 檔案中找到 href 連結至不安全的目標 <code>&lt;$1 $2=\"$3\"&gt;</code>。",
 	"uploaded-animate-svg": "於已上傳的 SVG 檔案中找到 \"animate\" 標籤可能會使用 \"from\" 屬性 <code>&lt;$1 $2=\"$3\"&gt;</code> 更改 href。",
 	"uploaded-setting-event-handler-svg": "於已上傳的 SVG 檔案中找到 <code>&lt;$1 $2=\"$3\"&gt;</code>，已禁止設定 event-handler 屬性。",

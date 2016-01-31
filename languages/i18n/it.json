@@ -1462,7 +1462,6 @@
 	"uploaded-script-svg": "Trovato elemento di script \"$1\" nel file caricato in formato SVG.",
 	"uploaded-hostile-svg": "Trovato CSS non sicuro nell'elemento di stile del file in formato SVG caricato.",
 	"uploaded-event-handler-on-svg": "Impostazione gestione eventi ed attributi <code>$1=\"$2\"</code> non è consentito in file SGV",
-	"uploaded-href-attribute-svg": "Attributi href <code>&lt;$1 $2=\"$3\"&gt;</code> com un bersaglio non locale (e.g. http://, javascript:, etc) non sono permessi file SGV",
 	"uploaded-href-unsafe-target-svg": "Trovati href ad un bersaglio non sicuro <code>&lt;$1 $2=\"$3\"&gt;</code> caricato nel file SVG",
 	"uploaded-animate-svg": "Trovato il tag \"animate\" che potrebbe cambiare href, usando l'attributo \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> nel file SVG caricato.",
 	"uploaded-setting-event-handler-svg": "La configurazione di attributi per il gestore di eventi è bloccata, trovato <code>&lt;$1 $2=\"$3\"&gt;</code> nel file SVG caricato.",

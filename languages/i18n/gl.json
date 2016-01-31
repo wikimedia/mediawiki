@@ -1389,7 +1389,6 @@
 	"uploaded-script-svg": "Atopado elemento de comandos \"$1\" no ficheiro SVG subido.",
 	"uploaded-hostile-svg": "Atopado CSS non seguro no elemento de estilo do ficheiro SVG subido.",
 	"uploaded-event-handler-on-svg": "Fixar atributos de xestión de eventos <code>$1=\"$2\"</code> no está permitido en ficheiros SVG.",
-	"uploaded-href-attribute-svg": "Atributos href <code>&lt;$1 $2=\"$3\"&gt;</code> con obxectivos non locais (p. ex. http://, javascript:, etc) non están permitidos en ficheiros SVG.",
 	"uploaded-href-unsafe-target-svg": "Atopado href a obxectivo non seguro <code>&lt;$1 $2=\"$3\"&gt;</code> no ficheiro SVG subido.",
 	"uploaded-animate-svg": "Atopada etiqueta \"animate\" que podería estar cambiando a href, usando o atributo \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> no ficheiro SVG subido.",
 	"uploaded-setting-event-handler-svg": "Fichar os atributos de xestión de eventos non está permitido, atopado <code>&lt;$1 $2=\"$3\"&gt;</code> no ficheiro SVG subido.",

@@ -1324,7 +1324,6 @@
 	"uploaded-script-svg": "Pronađen skriptni element \"$1\" u postavljenoj SVG datoteci.",
 	"uploaded-hostile-svg": "Pronađen nesiguran CSS u stilskom elementu postavljene SVG datoteke.",
 	"uploaded-event-handler-on-svg": "Nije dozvoljeno postavljanje atributa koji kontroliraju događaje <code>$1=\"$2\"</code> u SVG datotekama.",
-	"uploaded-href-attribute-svg": "href atributi <code>&lt;$1 $2=\"$3\"&gt;</code> sa nelokalnom metom (npr. http://, javascript:, etc) nisu dozvoljeni u SVG datotekama.",
 	"uploaded-href-unsafe-target-svg": "Pronađen href sa nesigurnom metom <code>&lt;$1 $2=\"$3\"&gt;</code> u postavljenoj SVG datoteci.",
 	"uploaded-animate-svg": "Pronađena \"animate\" oznaka koja možda mijenja href koristeći se \"from\" atributom <code>&lt;$1 $2=\"$3\"&gt;</code> u postavljenoj SVG datoteci.",
 	"uploaded-setting-event-handler-svg": "Postavljanje kontrole događaja je blokirano, pronađeno <code>&lt;$1 $2=\"$3\"&gt;</code> u postavljenoj SVG datoteci.",

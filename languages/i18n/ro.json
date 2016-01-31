@@ -1341,7 +1341,6 @@
 	"uploaded-script-svg": "S-a găsit elementul „$1” scriptabil în fișierul SVG încărcat.",
 	"uploaded-hostile-svg": "S-a descoperit CSS vulnerabil în elementul de stil al fișierului SVG încărcat.",
 	"uploaded-event-handler-on-svg": "Setarea atributelor <code>$1=„$2”</code> de gestionare a evenimentului nu este permisă pentru fișierele SVG.",
-	"uploaded-href-attribute-svg": "Atributele href <code>&lt;$1 $2=„$3”&gt;</code> cu alte destinații decât cele locale (de ex. http://, javascript: etc.) nu sunt permise în fișierele SVG.",
 	"uploaded-href-unsafe-target-svg": "S-a găsit href către o destinație nesigură <code>&lt;$1 $2=„$3”&gt;</code> în fișierul SVG încărcat.",
 	"uploaded-animate-svg": "S-a găsit în fișierul SVG încărcat eticheta „animate” care ar putea modifica valoarea href folosind atributul „from” <code>&lt;$1 $2=„$3”&gt;</code>.",
 	"uploaded-setting-event-handler-svg": "Setarea atributelor de gestionare a evenimentului nu este permisă; s-a găsit <code>&lt;$1 $2=„$3”&gt;</code> în fișierul SVG încărcat.",

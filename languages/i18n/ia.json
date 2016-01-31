@@ -1314,7 +1314,6 @@
 	"uploaded-script-svg": "Un elemento de script \"$1\" se trova in le file SVG incargate.",
 	"uploaded-hostile-svg": "Certe codice CSS insecur se trova in le elemento de stilo del file SVG incargate.",
 	"uploaded-event-handler-on-svg": "Fixar attributos de gestion de eventos <code>$1=\"$2\"</code> non es permittite in files SVG.",
-	"uploaded-href-attribute-svg": "Attributos href <code>&lt;$1 $2=\"$3\"&gt;</code> con objectivos non local (p.ex. http://, javascript:, etc) non es permittite in files SVG.",
 	"uploaded-href-unsafe-target-svg": "Un href a un objectivo non secur <code>&lt;$1 $2=\"$3\"&gt;</code> se trova in le file SVG incargate.",
 	"uploaded-animate-svg": "Un etiqueta \"animate\" que poterea cambiar le href, usante le attributo \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code>, se trova in le file SVG incargate.",
 	"uploaded-setting-event-handler-svg": "Fixar le attributos de gestion de eventos non es permittite, ma le codice <code>&lt;$1 $2=\"$3\"&gt;</code> se trova in le file SVG incargate.",

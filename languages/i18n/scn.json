@@ -1293,7 +1293,6 @@
 	"uploaded-script-svg": "Fu attruvatu n'elimentu prugrammàbbili \"$1\" ntô file SVG carricatu.",
 	"uploaded-hostile-svg": "Fu attruvatu còdici CSS risicusu nta l'elimentu style dû file SVG carricatu.",
 	"uploaded-event-handler-on-svg": "Nun è cunzintutu di mpustari l'attribbuti gistura d'eventi <code>$1=\"$2\"</code> ntê file SVG.",
-	"uploaded-href-attribute-svg": "Nun sunnu cunzintuti l'attribbuti href <code>&lt;$1 $2=\"$3\"&gt;</code> cu na distinazzioni ca nun è lucali (p'esempiu http://, javascript:, etc) ntê file SVG.",
 	"uploaded-href-unsafe-target-svg": "Fu attruvatu n'href cu na distinazzioni risicusa <code>&lt;$1 $2=\"$3\"&gt;</code> ntô file SVG carricatu.",
 	"uploaded-animate-svg": "Fu attruvata n'etichetta \"animate\" ca purrìa canciari href, adupirannu l'attribbutu \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code>, ntô file SVG carricatu.",
 	"uploaded-setting-event-handler-svg": "Lu mpustari l'attribbuti dî gistura di l'eventi veni bluccatu; fu attruvatu <code>&lt;$1 $2=\"$3\"&gt;</code> ntô file SVG carricatu.",

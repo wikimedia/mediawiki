@@ -1358,7 +1358,6 @@
 	"uploaded-script-svg": "A feltöltött SVG fájlodban szkriptelemet találtunk: \"$1\".",
 	"uploaded-hostile-svg": "Nem biztonságos CSS kódot találtunk a feltöltött SVG fájlod stíluselemei között.",
 	"uploaded-event-handler-on-svg": "Az alábbi eseménykezelő-attribútum beállítása nem megengedett az SVG fájlokban: <code>$1=$2</code>.",
-	"uploaded-href-attribute-svg": "Az alábbi nem lokális célra (pl. http://, javascript, stb.) mutató href attribútum nem megengedett az SVG fájlokban: <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Nem biztonságos célra mutató href-et találtam a feltöltött SVG fájlban: <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-animate-svg": "A feltöltött SVG fájlban \"animate\" taget találtam, ami az alábbi \"from\" attribútumával megváltoztathat egy href-et: <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-setting-handler-svg": "Az SVG kódok, amelyek a \"handler\" attribútumot távolra/adatra/szkriptre állítják, le vannak tiltva. A feltöltött SVG fájlban a következőt találtam: <code>$1=\"$2\"</code>.",

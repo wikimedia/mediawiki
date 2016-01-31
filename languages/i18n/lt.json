@@ -1401,7 +1401,6 @@
 	"uploaded-script-svg": "Įkeltame SVG faile rastas programuojamas elementas \"$1\".",
 	"uploaded-hostile-svg": "Įkelto SVG failo stiliaus elemente rastas nesaugus CSS.",
 	"uploaded-event-handler-on-svg": "SVG failuose neleidžiamas event-handler atributų nustatymas <code>$1=\"$2\"</code>.",
-	"uploaded-href-attribute-svg": "SVG failuose neleidžiami nuorodos atributai <code>&lt;$1 $2=\"$3\"&gt;</code> su ne lokalia nukreiptimi (pvz. http://, javascript:, ir kt.).",
 	"uploaded-href-unsafe-target-svg": "Įkeltame SVG faile rasta nesaugi nukreiptis <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-animate-svg": "Įkeltame SVG faile rasta \"animate\" žymė, kuri gali keisti nuorodas, panaudodama \"from\" atributą <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-setting-event-handler-svg": "event-handler atributų nustatymas yra draudžiamas, įkeltame SVG faile rasta <code>&lt;$1 $2=\"$3\"&gt;</code>.",

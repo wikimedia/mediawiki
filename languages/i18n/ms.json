@@ -1328,7 +1328,6 @@
 	"uploaded-script-svg": "Terdapat elemen terskrip \"$1\" dalam fail SVG yang dimuat naik.",
 	"uploaded-hostile-svg": "Terdapat CSS yang tidak selamat dalam elemen stail fail SVG yang dimuat naik.",
 	"uploaded-event-handler-on-svg": "Penetapan atribut <i>event-handler</i> <code>$1=\"$2\"</code> tidak dibenarkan dalam fail SVG.",
-	"uploaded-href-attribute-svg": "Atribut href <code>&lt;$1 $2=\"$3\"&gt;</code> dengan sasaran bukan setempat (cth. http://, javascript:, dsb) tidak dibenarkan dalam fail SVG.",
 	"uploaded-href-unsafe-target-svg": "Terdapat href ke sasaran tak selamat <code>&lt;$1 $2=\"$3\"&gt;</code> dalam fail SVG yang dimuat naik.",
 	"uploaded-animate-svg": "Terdapat teg \"animate\" yang mungkin sedang mengubah href, menggunakan atribut \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> dalam fail SVG yang dimuat naik.",
 	"uploaded-setting-event-handler-svg": "Dilarang menetapkan atribut <i>event-handler</i>, terdapat <code>&lt;$1 $2=\"$3\"&gt;</code> dalam fail SVG yang dimuat naik.",
