@@ -67,8 +67,8 @@
 		}
 	},
 	"scripts": {
-		"lint": "parallel-lint --exclude vendor",
-		"phpcs": "phpcs -p $PHPCS_ARGS",
+		"lint": "parallel-lint . --exclude vendor",
+		"phpcs": "phpcs -p -s $PHPCS_ARGS",
 		"pre-install-cmd": "ComposerHookHandler::onPreInstall",
 		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
 		"test": [
