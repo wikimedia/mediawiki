@@ -3539,6 +3539,7 @@
 	"version-libraries-license": "License",
 	"version-libraries-description": "Description",
 	"version-libraries-authors": "Authors",
+	"version-mediawiki-widgets": "== MediaWiki Widgets ==",
 	"redirect": "Redirect by file, user, page, revision, or log ID",
 	"redirect-legend": "Redirect to a file or page",
 	"redirect-text": "",

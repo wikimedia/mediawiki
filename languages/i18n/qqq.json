@@ -3714,6 +3714,7 @@
 	"version-libraries-license": "Column header for the library's license\n{{Identical|License}}",
 	"version-libraries-description": "Column header for the library's description\n{{Identical|Description}}",
 	"version-libraries-authors": "Column header for the library's authors\n{{Identical|Author}}",
+	"version-mediawiki-widgets": "Section heading for MediaWiki Widgets credits on [[Special:Version/Credits]].",
 	"redirect": "{{doc-special|Redirect}}\nThis means \"Redirect by file '''name''', user '''ID''', page '''ID''', revision '''ID''', or log '''ID'''\".",
 	"redirect-legend": "Legend of fieldset around input box in [[Special:Redirect]]",
 	"redirect-text": "Inside fieldset for [[Special:Redirect]]",

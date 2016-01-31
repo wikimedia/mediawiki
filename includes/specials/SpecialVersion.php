@@ -80,7 +80,11 @@ class SpecialVersion extends SpecialPage {
 			case 'credits':
 				$wikiText = '{{int:version-credits-not-found}}';
 				if ( $extName === 'MediaWiki' ) {
+					// MediaWiki core developer credits
 					$wikiText = file_get_contents( $IP . '/CREDITS' );
+					// attribution for MediaWiki Widgets Team
+					$wikiText .= $this->msg( 'version-mediawiki-widgets' )->parse();
+					$wikiText .= file_get_contents( $IP . '/includes/widget/AUTHORS.txt' );
 				} elseif ( ( $extNode !== null ) && isset( $extNode['path'] ) ) {
 					$file = $this->getExtAuthorsFileName( dirname( $extNode['path'] ) );
 					if ( $file ) {
