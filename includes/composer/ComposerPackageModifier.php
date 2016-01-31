@@ -1,7 +1,7 @@
 <?php
 
 use Composer\Package\Link;
-use Composer\Package\LinkConstraint\VersionConstraint;
+use Composer\Semver\Constraint\Constraint;
 use Composer\Package\Package;
 
 /**
@@ -50,7 +50,7 @@ class ComposerPackageModifier {
 		$mvVersion = $this->versionFetcher->fetchVersion();
 		$mvVersion = $this->versionNormalizer->normalizeSuffix( $mvVersion );
 
-		$version = new VersionConstraint(
+		$version = new Constraint(
 			'==',
 			$this->versionNormalizer->normalizeLevelCount( $mvVersion )
 		);
