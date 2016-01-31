@@ -816,7 +816,7 @@ more stuff
 
 	/* @todo FIXME: fix this!
 	public function testGetUndoText() {
-	$this->checkHasDiff3();
+	$this->markTestSkippedIfNoDiff3();
 
 	$text = "one";
 	$page = $this->createPage( "WikiPageTest_testGetUndoText", $text );

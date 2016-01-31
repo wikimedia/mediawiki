@@ -542,7 +542,7 @@ hello
 	public function testAutoMerge( $baseUser, $text, $adamsEdit, $bertasEdit,
 		$expectedCode, $expectedText, $message = null
 	) {
-		$this->checkHasDiff3();
+		$this->markTestSkippedIfNoDiff3();
 
 		// create page
 		$ns = $this->getDefaultWikitextNS();
