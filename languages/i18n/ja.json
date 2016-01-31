@@ -1321,7 +1321,7 @@
 	"rcshowhidemine": "自分の編集を$1",
 	"rcshowhidemine-show": "表示",
 	"rcshowhidemine-hide": "非表示",
-	"rcshowhidecategorization": "$1 ページ カテゴリ化",
+	"rcshowhidecategorization": "ページ カテゴリ化を$1",
 	"rcshowhidecategorization-show": "表示",
 	"rcshowhidecategorization-hide": "非表示",
 	"rclinks": "最近 $2 日間の更新を最大 $1 件表示<br />$3",

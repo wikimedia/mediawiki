@@ -1104,7 +1104,6 @@
 	"right-blockemail": "Menyekat pengguna lain daripada mengirim e-mel",
 	"right-hideuser": "Menyekat sesebuah nama pengguna, menyembunyikannya daripada orang ramai",
 	"right-ipblock-exempt": "Melangkau sekatan IP, sekatan automatik dan sekatan julat",
-	"right-proxyunbannable": "Melangkau sekatan proksi automatik",
 	"right-unblockself": "Menyahsekat diri sendiri",
 	"right-protect": "Mengubah tahap perlindungan serta menyunting halaman yang dilindungi lata",
 	"right-editprotected": "Menyunting halaman-halaman yang dilindungi sebagai \"{{int:protect-level-sysop}}\"",
@@ -1352,12 +1351,6 @@
 	"filename-thumb-name": "Nampaknya macam tajuk gambar kenit (thumbnail). Tolong jangan muat naik gambar kenit balik ke dalam wiki yang sama. Selain itu, sila betulkan nama fail supaya ia nampak lebih bererti dan tiada awalan gambar kenit.",
 	"filename-bad-prefix": "Nama bagi fail yang dimuat naik bermula dengan '''\"$1\"''', yang mana merupakan nama yang tidak deskriptif yang biasanya ditetapkan oleh kamera digital secara automatik. Sila berikan nama yang lebih deskriptif bagi fail tersebut.",
 	"filename-prefix-blacklist": " #<!-- biarkan baris ini seperti sediakala --> <pre>\n# Sintaks adalah seperti berikut:\n#   * Segalanya mulai aksara \"#\" hingga akhir baris ialah komen\n#   * Setiap baris bukan kosong ialah awalan bagi nama-nama fail biasa yang ditetapkan secara automatik oleh kamera digital\nCIMG # Casio\nDSC_ # Nikon\nDSCF # Fuji\nDSCN # Nikon\nDUW # sesetengah telefon bimbit\nIMG # generik\nJD # Jenoptik\nMGP # Pentax\nPICT # dll.\n #</pre> <!-- biarkan baris ini seperti sediakala -->",
-	"upload-success-subj": "Muat naik berjaya",
-	"upload-success-msg": "Muat naik anda dari [$2] berjaya. Ia ada di sini: [[:{{ns:file}}:$1]]",
-	"upload-failure-subj": "Masalah muat naik",
-	"upload-failure-msg": "Terdapat masalah dengan muat naik anda daripada [$2]:\n\n$1",
-	"upload-warning-subj": "Amaran muat naik",
-	"upload-warning-msg": "Terdapat masalah dengan muat naik anda daripada [$2]. Anda boleh kembali ke [[Special:Upload/stash/$1|borang muat naik]] untuk mengatasi masalah ini.",
 	"upload-proto-error": "Protokol salah",
 	"upload-proto-error-text": "Muat naik jauh memerlukan URL yang dimulakan dengan <code>http://</code> atau <code>ftp://</code>.",
 	"upload-file-error": "Ralat dalaman",
@@ -1814,7 +1807,6 @@
 	"wlheader-showupdated": "Laman-laman yang telah diubah sejak kunjungan terakhir anda dipaparkan dalam '''teks tebal'''.",
 	"wlnote": "Yang berikut ialah <strong>$1</strong> perubahan terakhir sejak $2 jam yang lalu, sehingga $3, $4.",
 	"wlshowlast": "Tunjukkan $2 hari $1 jam yang lalu",
-	"watchlistall2": "semua",
 	"watchlist-hide": "Sorok",
 	"wlshowtime": "Tempoh masa untuk dipaparkan:",
 	"wlshowhideminor": "suntingan kecil",
@@ -3429,5 +3421,6 @@
 	"mw-widgets-dateinput-no-date": "Tarik belum dipilih",
 	"mw-widgets-titleinput-description-new-page": "laman belum wujud",
 	"mw-widgets-titleinput-description-redirect": "melencong ke $1",
-	"api-error-blacklisted": "Sila pilih tajuk yang berbeza dan deskriptif."
+	"api-error-blacklisted": "Sila pilih tajuk yang berbeza dan deskriptif.",
+	"randomrootpage": "Laman akar rawak"
 }

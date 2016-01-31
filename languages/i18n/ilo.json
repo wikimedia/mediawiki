@@ -1075,7 +1075,6 @@
 	"right-blockemail": "Agserra iti agar-aramat manipud iti panagipatulod ti esurat",
 	"right-hideuser": "Agserra iti nagan ti agar-aramat, ken agilemmeng manipud iti publiko",
 	"right-ipblock-exempt": "Labsanna dagiti serra ti IP, dagiti automatiko a serra ken dagiti sakop a serra.",
-	"right-proxyunbannable": "Labsanna dagiti automatiko a serra dagiti pannakbagi",
 	"right-unblockself": "Bukod nga agikkat it pannakaserra",
 	"right-protect": "Agsukat kadagiti agpang ti salaknib ken agurnos kadagiti nasalakniban ti sariap a panid",
 	"right-editprotected": "Agurnos kadagiti panid a nasalakniban a kas \"{{int:protect-level-sysop}}\"",
@@ -1316,12 +1315,6 @@
 	"watchthisupload": "Bantayan daytoy a papeles",
 	"filewasdeleted": "Ti papeles iti daytoy a nagan ket dati a naikarga ken kanungpalan a naikkat.\nNasken a kitaem ti $1 sakbay nga agtuloy a mangikarga manen.",
 	"filename-bad-prefix": "Ti nagan ti papeles nga ikarkargam ket mangrugi iti <strong>\"$1\"</strong>,  ken saan a deskriptibo a nagan a kadawyan nga automatiko nga ited babaen dagiti digital a kamera.\nPangngaasi nga agpili ti nasaysayaat a deskriptibo a nagan ti papelesmo.",
-	"upload-success-subj": "Balligi ti panagikarga",
-	"upload-success-msg": "Ti panagikargam manipud ti [$2] ket nagballigi. Daytoy ket magun-od ditoy [[:{{ns:file}}:$1]]",
-	"upload-failure-subj": "Parikut ti panagikarga",
-	"upload-failure-msg": "Adda parikut ti panagikargam manipud iti [$2]:\n\n$1",
-	"upload-warning-subj": "Ballaag ti panagikarga",
-	"upload-warning-msg": "Adda parikut iti panagikargam manipud iti [$2]. Mabalinmo ti agsubli iti [[Special:Upload/stash/$1|porma ti panagikarga]] tapno masimpa daytoy a parikut.",
 	"upload-proto-error": "Saan a husto a protokol",
 	"upload-proto-error-text": "Ti adayo a panagikarga ket makasapul kadagiti URL a mangrugi iti <code>http://</code> wenno <code>ftp://</code>.",
 	"upload-file-error": "Akin-uneg a biddut",
@@ -1783,7 +1776,6 @@
 	"wlheader-showupdated": "Dagiti panid a nasukatanen manipud ti kinaudi a panagsarungkarmo ket naipakita iti <strong>napuskol</strong>.",
 	"wlnote": "Dita baba ket {{PLURAL:$1|naudi a sinukatan|dagiti naudi a <strong>$1</strong> a sinukatan}} iti napalabas {{PLURAL:$2|nga oras|a <strong>$2</strong> nga or-oras}}, manipud idi $3, $4.",
 	"wlshowlast": "Ipakita dagiti naudi a $1 nga or-oras $2 nga al-aldaw",
-	"watchlistall2": "amin",
 	"watchlist-hide": "Ilemmeng",
 	"watchlist-submit": "Ipakita",
 	"wlshowtime": "Ipakita a paset ti panawen:",
@@ -3333,5 +3325,6 @@
 	"mw-widgets-dateinput-placeholder-month": "TTTT-BB",
 	"mw-widgets-titleinput-description-new-page": "awan pay ti panid",
 	"mw-widgets-titleinput-description-redirect": "ibaw-ing iti $1",
-	"api-error-blacklisted": "Pangngaasi nga agpili iti sabali, a mangipalpalawag a titulo."
+	"api-error-blacklisted": "Pangngaasi nga agpili iti sabali, a mangipalpalawag a titulo.",
+	"randomrootpage": "Pugto a ramut a panid"
 }

@@ -31,6 +31,8 @@
 	"apihelp-block-param-nocreate": "Voorkom registeren van accounts.",
 	"apihelp-block-param-autoblock": "Blokkeer automatisch het laatst gebruikte IP-adres en ieder volgend IP-adres van waaruit ze proberen aan te melden.",
 	"apihelp-block-param-reblock": "De huidige blokkade aanpassen als de gebruiker al geblokkeerd is.",
+	"apihelp-block-param-watchuser": "De gebruikerspagina en overlegpagina van de gebruiker of het IP-adres volgen.",
+	"apihelp-block-example-ip-simple": "Het IP-adres <kbd>192.0.2.5</kbd> voor drie dagen blokkeren met <kbd>First strike</kbd> als opgegeven reden.",
 	"apihelp-compare-param-fromtitle": "Eerste titel om te vergelijken.",
 	"apihelp-compare-param-fromid": "Eerste pagina-ID om te vergelijken.",
 	"apihelp-compare-param-fromrev": "Eerste versie om te vergelijken.",
