@@ -272,7 +272,7 @@ class ResourceLoaderImage {
 	 */
 	protected function variantize( $variantConf, ResourceLoaderContext $context ) {
 		$dom = new DomDocument;
-		$dom->load( $this->getPath( $context ) );
+		$dom->loadXml( file_get_contents( $this->getPath( $context ) ) );
 		$root = $dom->documentElement;
 		$wrapper = $dom->createElement( 'g' );
 		while ( $root->firstChild ) {
