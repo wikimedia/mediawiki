@@ -501,17 +501,17 @@ final class SessionManager implements SessionManagerInterface {
 			// @codeCoverageIgnoreEnd
 		}
 
-		# Notify hooks (e.g. Newuserlog)
-		\Hooks::run( 'AuthPluginAutoCreate', array( $user ) );
-		\Hooks::run( 'LocalUserCreated', array( $user, true ) );
-
-		# Notify AuthPlugin too
+		# Notify AuthPlugin
 		$tmpUser = $user;
 		$wgAuth->initUser( $tmpUser, true );
 		if ( $tmpUser !== $user ) {
 			$logger->warning( __METHOD__ . ': ' .
 				get_class( $wgAuth ) . '::initUser() replaced the user object' );
 		}
+
+		# Notify hooks (e.g. Newuserlog)
+		\Hooks::run( 'AuthPluginAutoCreate', array( $user ) );
+		\Hooks::run( 'LocalUserCreated', array( $user, true ) );
 
 		$user->saveSettings();
 
