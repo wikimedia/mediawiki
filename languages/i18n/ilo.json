@@ -1298,7 +1298,6 @@
 	"uploaded-script-svg": "Nakabiruk ti maieskritu nga elemento ti \"$1\" iti naikarga a papeles ti SVG.",
 	"uploaded-hostile-svg": "Nakabiruk ti saan a natalged a CSS iti elemento ti estilo ti naikarga a papeles ti SVG.",
 	"uploaded-event-handler-on-svg": "Ti panangisaad kadagiti gupit ti panagtengngel ti pasamak ti <code>$1=\"$2\"</code> ket saan a maipalubos kadagiti papeles ti SVG.$1",
-	"uploaded-href-attribute-svg": "Dagiti gupit ti href ti <code>&lt;$1 $2=\"$3\"&gt;</code> nga addaan iti saan a lokal a puntaan (kas ti http://, javascript:, kdpy) ket saan a maipalubos kadagiti papeles ti SVG.",
 	"uploaded-href-unsafe-target-svg": "Nakabiruk ti href iti saan a natalged a puntaan ti <code>&lt;$1 $2=\"$3\"&gt;</code> iti naikarga a papeles ti SVG.",
 	"uploaded-animate-svg": "Nakabiruk ti etiketa ti \"animado\" a mabalin a mangbalbaliw iti href, nga agus-usar iti gupit ti \"manipud\" ti <code>&lt;$1 $2=\"$3\"&gt;</code> iti naikarga a papeles ti SVG.",
 	"uploaded-setting-event-handler-svg": "Naserraan ti panangisaad ti kadagiti gupit ti panagtengngel ti pasamak, nakabiruk iti <code>&lt;$1 $2=\"$3\"&gt;</code> iti naikarga a papeles ti SVG.",

@@ -1362,7 +1362,6 @@
 	"uploaded-script-svg": "Tìm thấy phần tử “$1” có khả năng chạy kịch bản trong tập tin SVG được tải lên.",
 	"uploaded-hostile-svg": "Tìm thấy CSS nguy hiểm trong phần tử style của tập tin SVG được tải lên.",
 	"uploaded-event-handler-on-svg": "Không cho phép đặt thuộc tính xử lý sự kiện <code>$1=\"$2\"</code> trong tập tin SVG.",
-	"uploaded-href-attribute-svg": "Không cho phép thuộc tính href <code>&lt;$1 $2=\"$3\"&gt;</code> có đích ngoài máy (ví dụ http://, javascript:, v.v.) trong tập tin SVG.",
 	"uploaded-href-unsafe-target-svg": "Tìm thấy href đến đích nguy hiểm <code>&lt;$1 $2=\"$3\"&gt;</code> trong tập tin SVG được tải lên.",
 	"uploaded-animate-svg": "Tìm thấy thẻ “animate” có thể thay đổi href qua thuộc tính “from” <code>&lt;$1 $2=\"$3\"&gt;</code> trong tập tin SVG được tải lên.",
 	"uploaded-setting-event-handler-svg": "Đã ngăn cản việc đặt thuộc tính xử lý sự kiện khi tìm thấy <code>&lt;$1 $2=\"$3\"&gt;</code> trong tập tin SVG được tải lên.",

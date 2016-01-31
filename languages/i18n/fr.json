@@ -1504,7 +1504,6 @@
 	"uploaded-script-svg": "Élément scriptable « $1 » trouvé dans le fichier SVG téléchargé.",
 	"uploaded-hostile-svg": "CSS non sûr trouvé dans l’élément style d’un fichier SVG téléchargé.",
 	"uploaded-event-handler-on-svg": "Fixer des attributs de gestionnaire d’événement <code>$1=\"$2\"</code> n’est pas autorisé dans les fichiers SVG.",
-	"uploaded-href-attribute-svg": "Les attributs href <code>&lt;$1 $2=\"$3\"&gt;</code> avec une cible non locale (par ex. http://, javascript:, etc.) ne sont pas autorisés dans les fichiers SVG.",
 	"uploaded-href-unsafe-target-svg": "href vers une cible non sûre <code>&lt;$1 $2=\"$3\"&gt;</code> trouvé dans le fichier SVG téléchargé.",
 	"uploaded-animate-svg": "Balise « animate » trouvée, qui pourrait modifier le href en utilisant l’attribut « from » <code>&lt;$1 $2=\"$3\"&gt;</code> dans le fichier SVG téléchargé.",
 	"uploaded-setting-event-handler-svg": "Positionner des attributs de gestionnaire d’événement est bloqué, <code>&lt;$1 $2=\"$3\"&gt;</code> trouvé dans le fichier SVG téléchargé.",

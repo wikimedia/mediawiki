@@ -1302,7 +1302,6 @@
 	"uploaded-script-svg": "Acchiate elemende pe script \"$1\" jndr'à 'u file SVG carecate.",
 	"uploaded-hostile-svg": "Acchiate 'nu CSS insecure ndr'à l'elemende de stile d'u file SVG carecate.",
 	"uploaded-event-handler-on-svg": "'A 'mbostazione de le attribute de gestione de l'evende <code>$1=\"$2\"</code> non ge se pò ffà cu le file SVG.",
-	"uploaded-href-attribute-svg": "le attribbute href <code>&lt;$1 $2=\"$3\"&gt;</code> cu le destinaziune de fore (p.e. http://, javascript:, etc) non ge se ponne mettere jndr'à le file SVG.",
 	"uploaded-href-unsafe-target-svg": "Acchiate 'na destinazione href non secure <code>&lt;$1 $2=\"$3\"&gt;</code> jndr'à 'u file SVG carecate.",
 	"uploadscriptednamespace": "Stu file SVG tène 'nu namespace illegale '$1'",
 	"uploadinvalidxml": "L'XML jndr'à 'u file carecate non ge pò essere analizzate.",
