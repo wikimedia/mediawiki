@@ -2026,6 +2026,11 @@ class OutputPage extends ContextSource {
 	 * @return string
 	 */
 	public function getVaryHeader() {
+		// If we vary on cookies, let's make sure it's always included here too.
+		if ( $this->getCacheVaryCookies() ) {
+			$this->addVaryHeader( 'Cookie' );
+		}
+
 		foreach ( SessionManager::singleton()->getVaryHeaders() as $header => $options ) {
 			$this->addVaryHeader( $header, $options );
 		}
