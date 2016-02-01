@@ -1336,7 +1336,7 @@
 	"lockmanager-notlocked": "Ne mogu da otključam „$1“ jer nije zaključan.",
 	"lockmanager-fail-closelock": "Ne mogu da zatvorim katanac za „$1“.",
 	"lockmanager-fail-deletelock": "Ne mogu da obrišem katanac za „$1“.",
-	"lockmanager-fail-acquirelock": "Ne mogu da dobijem katanac za „$1“.",
+	"lockmanager-fail-acquirelock": "Ne mogu da se zaključam za „$1“.",
 	"lockmanager-fail-openlock": "Ne mogu da otvorim katanac za „$1“.",
 	"lockmanager-fail-releaselock": "Ne mogu da oslobodim katanac za „$1“.",
 	"lockmanager-fail-db-bucket": "Ne mogu da kontaktiram s dovoljno katanaca u kanti $1.",

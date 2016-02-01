@@ -884,6 +884,7 @@
 	"apihelp-query+protectedtitles-paramvalue-prop-level": "添加保护级别。",
 	"apihelp-query+protectedtitles-example-simple": "受保护标题列表。",
 	"apihelp-query+protectedtitles-example-generator": "找到主命名空间中已保护的标题的链接。",
+	"apihelp-query+querypage-param-page": "特殊页面的名称。注意其区分大小写。",
 	"apihelp-query+querypage-param-limit": "返回的结果数。",
 	"apihelp-query+querypage-example-ancientpages": "返回[[Special:Ancientpages]]的结果。",
 	"apihelp-query+random-description": "获取一组随机页面。\n\n页面列举在一个固定序列中，只有起始点是随机的。这意味着如果<samp>Main Page</samp>是列表中第一个随机页面的话，<samp>List of fictional monkeys</samp>将<em>总是</em>第二个，<samp>List of people on stamps of Vanuatu</samp>是第三个等。",

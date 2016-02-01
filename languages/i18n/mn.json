@@ -2698,5 +2698,6 @@
 	"expand_templates_input": "Оруулах бичиг:",
 	"expand_templates_output": "Үр дүн",
 	"expand_templates_remove_comments": "Товч агуулгыг авч хаях",
-	"pagelanguage": "Хуудасны хэлийг өөрчлөх"
+	"pagelanguage": "Хуудасны хэлийг өөрчлөх",
+	"log-name-pagelang": "Хэлний өөрчлөлтийн лог"
 }
