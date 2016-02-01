@@ -24,6 +24,7 @@
  *
  * @file
  */
+
 use MediaWiki\Logger\LoggerFactory;
 
 /**
@@ -62,26 +63,69 @@ class ApiLogin extends ApiBase {
 
 		$result = array();
 
-		// Init session if necessary
-		if ( session_id() == '' ) {
-			wfSetupSession();
+		// Make sure session is persisted
+		$session = MediaWiki\Session\SessionManager::getGlobalSession();
+		$session->persist();
+
+		// Make sure it's possible to log in
+		if ( !$session->canSetUser() ) {
+			$this->getResult()->addValue( null, 'login', array(
+				'result' => 'Aborted',
+				'reason' => 'Cannot log in when using ' .
+					$session->getProvider()->describe( Language::factory( 'en' ) ),
+			) );
+
+			return;
 		}
 
+		$authRes = false;
 		$context = new DerivativeContext( $this->getContext() );
-		$context->setRequest( new DerivativeRequest(
-			$this->getContext()->getRequest(),
-			array(
-				'wpName' => $params['name'],
-				'wpPassword' => $params['password'],
-				'wpDomain' => $params['domain'],
-				'wpLoginToken' => $params['token'],
-				'wpRemember' => ''
-			)
-		) );
-		$loginForm = new LoginForm();
-		$loginForm->setContext( $context );
+		$loginType = 'N/A';
 
-		$authRes = $loginForm->authenticateUserData();
+		// Check login token
+		$token = LoginForm::getLoginToken();
+		if ( $token->wasNew() || !$params['token'] ) {
+			$authRes = LoginForm::NEED_TOKEN;
+		} elseif ( !$token->match( $params['token'] ) ) {
+			$authRes = LoginForm::WRONG_TOKEN;
+		}
+
+		// Try bot passwords
+		if ( $authRes === false && $this->getConfig()->get( 'EnableBotPasswords' ) &&
+			strpos( $params['name'], BotPassword::getSeparator() ) !== false
+		) {
+			$status = BotPassword::login(
+				$params['name'], $params['password'], $this->getRequest()
+			);
+			if ( $status->isOk() ) {
+				$session = $status->getValue();
+				$authRes = LoginForm::SUCCESS;
+				$loginType = 'BotPassword';
+			} else {
+				LoggerFactory::getInstance( 'authmanager' )->info(
+					'BotPassword login failed: ' . $status->getWikiText()
+				);
+			}
+		}
+
+		// Normal login
+		if ( $authRes === false ) {
+			$context->setRequest( new DerivativeRequest(
+				$this->getContext()->getRequest(),
+				array(
+					'wpName' => $params['name'],
+					'wpPassword' => $params['password'],
+					'wpDomain' => $params['domain'],
+					'wpLoginToken' => $params['token'],
+					'wpRemember' => ''
+				)
+			) );
+			$loginForm = new LoginForm();
+			$loginForm->setContext( $context );
+			$authRes = $loginForm->authenticateUserData();
+			$loginType = 'LoginForm';
+		}
+
 		switch ( $authRes ) {
 			case LoginForm::SUCCESS:
 				$user = $context->getUser();
@@ -107,16 +151,19 @@ class ApiLogin extends ApiBase {
 				// SessionManager/AuthManager are *really* going to break it.
 				$result['lgtoken'] = $user->getToken();
 				$result['cookieprefix'] = $this->getConfig()->get( 'CookiePrefix' );
-				$result['sessionid'] = session_id();
+				$result['sessionid'] = $session->getId();
 				break;
 
 			case LoginForm::NEED_TOKEN:
 				$result['result'] = 'NeedToken';
-				$result['token'] = $loginForm->getLoginToken();
+				$result['token'] = LoginForm::getLoginToken()->toString();
+				$this->setWarning( 'Fetching a token via action=login is deprecated. ' .
+				   'Use action=query&meta=tokens&type=login instead.' );
+				$this->logFeatureUsage( 'action=login&!lgtoken' );
 
 				// @todo: See above about deprecation
 				$result['cookieprefix'] = $this->getConfig()->get( 'CookiePrefix' );
-				$result['sessionid'] = session_id();
+				$result['sessionid'] = $session->getId();
 				break;
 
 			case LoginForm::WRONG_TOKEN:
@@ -187,6 +234,7 @@ class ApiLogin extends ApiBase {
 		LoggerFactory::getInstance( 'authmanager' )->info( 'Login attempt', array(
 			'event' => 'login',
 			'successful' => $authRes === LoginForm::SUCCESS,
+			'loginType' => $loginType,
 			'status' => LoginForm::$statusCodes[$authRes],
 		) );
 	}
@@ -206,7 +254,11 @@ class ApiLogin extends ApiBase {
 				ApiBase::PARAM_TYPE => 'password',
 			),
 			'domain' => null,
-			'token' => null,
+			'token' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => false, // for BC
+				ApiBase::PARAM_HELP_MSG => array( 'api-help-param-token', 'login' ),
+			),
 		);
 	}
 

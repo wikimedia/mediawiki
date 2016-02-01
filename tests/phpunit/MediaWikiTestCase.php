@@ -221,6 +221,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	protected function tearDown() {
+		global $wgRequest;
+
 		$status = ob_get_status();
 		if ( isset( $status['name'] ) &&
 			$status['name'] === 'MediaWikiTestCase::wfResetOutputBuffersBarrier'
@@ -252,6 +254,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$this->mwGlobals = array();
 		RequestContext::resetMain();
 		MediaHandler::resetCache();
+		if ( session_id() !== '' ) {
+			session_write_close();
+			session_id( '' );
+		}
+		$wgRequest = new FauxRequest();
+		MediaWiki\Session\SessionManager::resetCache();
 
 		$phpErrorLevel = intval( ini_get( 'error_reporting' ) );
 
@@ -509,6 +517,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				false,
 				$user
 			);
+
+			// doEditContent() probably started the session via
+			// User::loadFromSession(). Close it now.
+			if ( session_id() !== '' ) {
+				session_write_close();
+				session_id( '' );
+			}
 		}
 	}
 

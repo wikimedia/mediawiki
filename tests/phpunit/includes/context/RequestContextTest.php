@@ -37,11 +37,21 @@ class RequestContextTest extends MediaWikiTestCase {
 	 * @covers RequestContext::importScopedSession
 	 */
 	public function testImportScopedSession() {
+		// Make sure session handling is started
+		if ( !MediaWiki\Session\PHPSessionHandler::isInstalled() ) {
+			MediaWiki\Session\PHPSessionHandler::install(
+				MediaWiki\Session\SessionManager::singleton()
+			);
+		}
+		$oldSessionId = session_id();
+
 		$context = RequestContext::getMain();
 
 		$oInfo = $context->exportSession();
 		$this->assertEquals( '127.0.0.1', $oInfo['ip'], "Correct initial IP address." );
 		$this->assertEquals( 0, $oInfo['userId'], "Correct initial user ID." );
+		$this->assertFalse( MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent(),
+			'Global session isn\'t persistent to start' );
 
 		$user = User::newFromName( 'UnitTestContextUser' );
 		$user->addToDatabase();
@@ -76,7 +86,16 @@ class RequestContextTest extends MediaWikiTestCase {
 			$context->getRequest()->getAllHeaders(),
 			"Correct context headers."
 		);
-		$this->assertEquals( $sinfo['sessionId'], session_id(), "Correct context session ID." );
+		$this->assertEquals(
+			$sinfo['sessionId'],
+			MediaWiki\Session\SessionManager::getGlobalSession()->getId(),
+			"Correct context session ID."
+		);
+		if ( \MediaWiki\Session\PhpSessionHandler::isEnabled() ) {
+			$this->assertEquals( $sinfo['sessionId'], session_id(), "Correct context session ID." );
+		} else {
+			$this->assertEquals( $oldSessionId, session_id(), "Unchanged PHP session ID." );
+		}
 		$this->assertEquals( true, $context->getUser()->isLoggedIn(), "Correct context user." );
 		$this->assertEquals( $sinfo['userId'], $context->getUser()->getId(), "Correct context user ID." );
 		$this->assertEquals(
@@ -92,5 +111,7 @@ class RequestContextTest extends MediaWikiTestCase {
 		$this->assertEquals( $oInfo['headers'], $info['headers'], "Correct restored headers." );
 		$this->assertEquals( $oInfo['sessionId'], $info['sessionId'], "Correct restored session ID." );
 		$this->assertEquals( $oInfo['userId'], $info['userId'], "Correct restored user ID." );
+		$this->assertFalse( MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent(),
+			'Global session isn\'t persistent after restoring the context' );
 	}
 }
