@@ -82,12 +82,12 @@ class WatchAction extends FormAction {
 	 */
 	public static function doWatchOrUnwatch( $watch, Title $title, User $user ) {
 		if ( $user->isLoggedIn() &&
-			$user->isWatched( $title, WatchedItem::IGNORE_USER_RIGHTS ) != $watch
+			$user->isWatched( $title, false ) != $watch
 		) {
 			// If the user doesn't have 'editmywatchlist', we still want to
 			// allow them to add but not remove items via edits and such.
 			if ( $watch ) {
-				return self::doWatch( $title, $user, WatchedItem::IGNORE_USER_RIGHTS );
+				return self::doWatch( $title, $user, false );
 			} else {
 				return self::doUnwatch( $title, $user );
 			}
@@ -101,13 +101,11 @@ class WatchAction extends FormAction {
 	 * @since 1.22 Returns Status, $checkRights parameter added
 	 * @param Title $title Page to watch/unwatch
 	 * @param User $user User who is watching/unwatching
-	 * @param int $checkRights Passed through to $user->addWatch()
+	 * @param bool $checkRights Passed through to $user->addWatch()
 	 * @return Status
 	 */
-	public static function doWatch( Title $title, User $user,
-		$checkRights = WatchedItem::CHECK_USER_RIGHTS
-	) {
-		if ( $checkRights !== WatchedItem::IGNORE_USER_RIGHTS &&
+	public static function doWatch( Title $title, User $user, $checkRights = true ) {
+		if ( $checkRights !== false &&
 			!$user->isAllowed( 'editmywatchlist' )
 		) {
 			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
