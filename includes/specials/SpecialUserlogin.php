@@ -708,7 +708,7 @@ class LoginForm extends SpecialPage {
 		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 0, 0, 0, 1 ) );
 
 		// Watch user's userpage and talk page
-		$u->addWatch( $u->getUserPage(), WatchedItem::IGNORE_USER_RIGHTS );
+		$u->addWatch( $u->getUserPage(), User::IGNORE_USER_RIGHTS );
 
 		return Status::newGood( $u );
 	}

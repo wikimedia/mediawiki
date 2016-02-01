@@ -515,7 +515,7 @@ final class SessionManager implements SessionManagerInterface {
 		\DeferredUpdates::addUpdate( new \SiteStatsUpdate( 0, 0, 0, 0, 1 ) );
 
 		# Watch user's userpage and talk page
-		$user->addWatch( $user->getUserPage(), \WatchedItem::IGNORE_USER_RIGHTS );
+		$user->addWatch( $user->getUserPage(), User::IGNORE_USER_RIGHTS );
 
 		return true;
 	}
