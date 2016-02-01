@@ -1184,7 +1184,7 @@ class User implements IDBAccessObject {
 
 		if ( ( $sName === $proposedUser->getName() ) && $passwordCorrect ) {
 			$this->loadFromUserObject( $proposedUser );
-			$request->setSessionData( 'wsToken', $this->mToken );
+			$request->setSessionData( 'wsToken', $this->getToken( false ) );
 			wfDebug( "User: logged in from $from\n" );
 			return true;
 		} else {
@@ -2457,14 +2457,33 @@ class User implements IDBAccessObject {
 	 * Get the user's current token.
 	 * @param bool $forceCreation Force the generation of a new token if the
 	 *   user doesn't have one (default=true for backwards compatibility).
-	 * @return string Token
+	 * @return string|null Token
 	 */
 	public function getToken( $forceCreation = true ) {
+		global $wgAuthenticationTokenVersion;
+
 		$this->load();
 		if ( !$this->mToken && $forceCreation ) {
 			$this->setToken();
 		}
-		return $this->mToken;
+
+		// If the user doesn't have a token, return null to indicate that.
+		// Otherwise, hmac the version with the secret if we have a version.
+		if ( !$this->mToken ) {
+			return null;
+		} elseif ( $wgAuthenticationTokenVersion === null ) {
+			return $this->mToken;
+		} else {
+			$ret = MWCryptHash::hmac( $wgAuthenticationTokenVersion, $this->mToken, false );
+
+			// The raw hash can be overly long. Shorten it up.
+			$len = max( 32, self::TOKEN_LENGTH );
+			if ( strlen( $ret ) < $len ) {
+				// Should never happen, even md5 is 128 bits
+				throw new \UnexpectedValueException( 'Hmac returned less than 128 bits' );
+			}
+			return substr( $ret, -$len );
+		}
 	}
 
 	/**
@@ -3595,7 +3614,7 @@ class User implements IDBAccessObject {
 		}
 		$session = array(
 			'wsUserID' => $this->mId,
-			'wsToken' => $this->mToken,
+			'wsToken' => $this->getToken( false ),
 			'wsUserName' => $this->getName()
 		);
 		$cookies = array(
@@ -3603,7 +3622,7 @@ class User implements IDBAccessObject {
 			'UserName' => $this->getName(),
 		);
 		if ( $rememberMe ) {
-			$cookies['Token'] = $this->mToken;
+			$cookies['Token'] = $this->getToken( false );
 		} else {
 			$cookies['Token'] = false;
 		}
