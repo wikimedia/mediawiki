@@ -6672,6 +6672,14 @@ $wgExportFromNamespaces = false;
  */
 $wgExportAllowAll = false;
 
+/**
+ * Maximum number of pages returned by the GetPagesFromCategory and
+ * GetPagesFromNamespace functions.
+ *
+ * @since 1.27
+ */
+$wgExportPagelistLimit = 5000;
+
 /** @} */ # end of import/export }
 
 /*************************************************************************//**
