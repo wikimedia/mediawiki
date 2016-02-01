@@ -32,19 +32,38 @@ return call_user_func( function () {
 	$themes = array_map( 'strtolower', $themes );
 	$themes['default'] = 'mediawiki';
 
+	// Helper function to generate paths to files used in 'skinStyles' and 'skinScripts'.
+	$getSkinSpecific = function ( $module, $ext = 'css' ) use ( $themes ) {
+		return array_combine(
+			array_keys( $themes ),
+			array_map( function ( $theme ) use ( $module, $ext ) {
+				$module = $module ? "$module-" : '';
+				// TODO Allow extensions to specify this path somehow
+				return "resources/lib/oojs-ui/oojs-ui-$module$theme.$ext";
+			}, array_values( $themes ) )
+		);
+	};
+
 	$modules = array();
+
+	// Omnibus module.
 	$modules['oojs-ui'] = array(
+		'dependencies' => array(
+			'oojs-ui-core',
+			'oojs-ui-widgets',
+			'oojs-ui-toolbars',
+			'oojs-ui-windows',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	);
+
+	// The core JavaScript library.
+	$modules['oojs-ui-core'] = array(
 		'scripts' => array(
-			'resources/lib/oojs-ui/oojs-ui.js',
+			'resources/lib/oojs-ui/oojs-ui-core.js',
 			'resources/src/oojs-ui-local.js',
 		),
-		'skinScripts' => array_combine(
-			array_keys( $themes ),
-			array_map( function ( $theme ) {
-				// TODO Allow extensions to specify this path somehow
-				return "resources/lib/oojs-ui/oojs-ui-$theme.js";
-			}, array_values( $themes ) )
-		),
+		'skinScripts' => $getSkinSpecific( null, 'js' ),
 		'dependencies' => array(
 			'es5-shim',
 			'oojs',
@@ -54,13 +73,25 @@ return call_user_func( function () {
 			'oojs-ui.styles.textures',
 			'mediawiki.language',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
+	);
+	// This contains only the styles required by core widgets.
+	$modules['oojs-ui-core.styles'] = array(
+		'position' => 'top',
+		'styles' => 'resources/src/oojs-ui-local.css', // HACK, see inside the file
+		'skinStyles' => $getSkinSpecific( 'core' ),
+		'targets' => array( 'desktop', 'mobile' ),
+	);
+
+	// Deprecated old name for the module 'oojs-ui-core.styles'.
+	$modules['oojs-ui.styles'] = $modules['oojs-ui-core.styles'];
+
+	// Additional widgets and layouts module.
+	$modules['oojs-ui-widgets'] = array(
+		'scripts' => 'resources/lib/oojs-ui/oojs-ui-widgets.js',
+		'skinStyles' => $getSkinSpecific( 'widgets' ),
+		'dependencies' => 'oojs-ui-core',
 		'messages' => array(
-			'ooui-dialog-message-accept',
-			'ooui-dialog-message-reject',
-			'ooui-dialog-process-continue',
-			'ooui-dialog-process-dismiss',
-			'ooui-dialog-process-error',
-			'ooui-dialog-process-retry',
 			'ooui-outline-control-move-down',
 			'ooui-outline-control-move-up',
 			'ooui-outline-control-remove',
@@ -68,21 +99,33 @@ return call_user_func( function () {
 			'ooui-selectfile-dragdrop-placeholder',
 			'ooui-selectfile-not-supported',
 			'ooui-selectfile-placeholder',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	);
+	// Toolbar and tools module.
+	$modules['oojs-ui-toolbars'] = array(
+		'scripts' => 'resources/lib/oojs-ui/oojs-ui-toolbars.js',
+		'skinStyles' => $getSkinSpecific( 'toolbars' ),
+		'dependencies' => 'oojs-ui-core',
+		'messages' => array(
 			'ooui-toolbar-more',
 			'ooui-toolgroup-collapse',
 			'ooui-toolgroup-expand',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	);
-	$modules['oojs-ui.styles'] = array(
-		'position' => 'top',
-		'styles' => 'resources/src/oojs-ui-local.css', // HACK, see inside the file
-		'skinStyles' => array_combine(
-			array_keys( $themes ),
-			array_map( function ( $theme ) {
-				// TODO Allow extensions to specify this path somehow
-				return "resources/lib/oojs-ui/oojs-ui-$theme-noimages.css";
-			}, array_values( $themes ) )
+	// Windows and dialogs module.
+	$modules['oojs-ui-windows'] = array(
+		'scripts' => 'resources/lib/oojs-ui/oojs-ui-windows.js',
+		'skinStyles' => $getSkinSpecific( 'windows' ),
+		'dependencies' => 'oojs-ui-core',
+		'messages' => array(
+			'ooui-dialog-message-accept',
+			'ooui-dialog-message-reject',
+			'ooui-dialog-process-continue',
+			'ooui-dialog-process-dismiss',
+			'ooui-dialog-process-error',
+			'ooui-dialog-process-retry',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	);
