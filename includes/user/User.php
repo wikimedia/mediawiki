@@ -20,11 +20,14 @@
  * @file
  */
 
+use MediaWiki\Session\SessionManager;
+
 /**
  * String Some punctuation to prevent editing from broken text-mangling proxies.
+ * @deprecated since 1.27, use \\MediaWiki\\Session\\Token::SUFFIX
  * @ingroup Constants
  */
-define( 'EDIT_TOKEN_SUFFIX', '+\\' );
+define( 'EDIT_TOKEN_SUFFIX', MediaWiki\Session\Token::SUFFIX );
 
 /**
  * The User object encapsulates all of the user-specific settings (user_id,
@@ -45,6 +48,7 @@ class User implements IDBAccessObject {
 	/**
 	 * Global constant made accessible as class constants so that autoloader
 	 * magic can be used.
+	 * @deprecated since 1.27, use \\MediaWiki\\Session\\Token::SUFFIX
 	 */
 	const EDIT_TOKEN_SUFFIX = EDIT_TOKEN_SUFFIX;
 
@@ -99,6 +103,7 @@ class User implements IDBAccessObject {
 		'apihighlimits',
 		'applychangetags',
 		'autoconfirmed',
+		'autocreateaccount',
 		'autopatrol',
 		'bigdelete',
 		'block',
@@ -226,7 +231,7 @@ class User implements IDBAccessObject {
 	 *  - 'defaults'   anonymous user initialised from class defaults
 	 *  - 'name'       initialise from mName
 	 *  - 'id'         initialise from mId
-	 *  - 'session'    log in from cookies or session if possible
+	 *  - 'session'    log in from session if possible
 	 *
 	 * Use the User::newFrom*() family of functions to set this.
 	 */
@@ -310,13 +315,27 @@ class User implements IDBAccessObject {
 	 * @param integer $flags User::READ_* constant bitfield
 	 */
 	public function load( $flags = self::READ_NORMAL ) {
+		global $wgFullyInitialised;
+
 		if ( $this->mLoadedItems === true ) {
 			return;
 		}
 
 		// Set it now to avoid infinite recursion in accessors
+		$oldLoadedItems = $this->mLoadedItems;
 		$this->mLoadedItems = true;
 		$this->queryFlagsUsed = $flags;
+
+		// If this is called too early, things are likely to break.
+		if ( $this->mFrom === 'session' && empty( $wgFullyInitialised ) ) {
+			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
+				->warning( 'User::loadFromSession called before the end of Setup.php', array(
+					'exception' => new Exception( 'User::loadFromSession called before the end of Setup.php' ),
+				) );
+			$this->loadDefaults();
+			$this->mLoadedItems = $oldLoadedItems;
+			return;
+		}
 
 		switch ( $this->mFrom ) {
 			case 'defaults':
@@ -540,8 +559,8 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Create a new user object using data from session or cookies. If the
-	 * login credentials are invalid, the result is an anonymous user.
+	 * Create a new user object using data from session. If the login
+	 * credentials are invalid, the result is an anonymous user.
 	 *
 	 * @param WebRequest|null $request Object to use; $wgRequest will be used if omitted.
 	 * @return User
@@ -660,6 +679,8 @@ class User implements IDBAccessObject {
 			$user->invalidateEmail();
 			$user->saveSettings();
 		}
+
+		SessionManager::singleton()->preventSessionsForUser( $user->getName() );
 
 		return $user;
 	}
@@ -1068,8 +1089,8 @@ class User implements IDBAccessObject {
 		$this->mOptionOverrides = null;
 		$this->mOptionsLoaded = false;
 
-		$loggedOut = $this->getRequest()->getCookie( 'LoggedOut' );
-		if ( $loggedOut !== null ) {
+		$loggedOut = $this->mRequest ? $this->mRequest->getSession()->getLoggedOutTimestamp() : 0;
+		if ( $loggedOut !== 0 ) {
 			$this->mTouched = wfTimestamp( TS_MW, $loggedOut );
 		} else {
 			$this->mTouched = '1'; # Allow any pages to be cached
@@ -1114,84 +1135,32 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Load user data from the session or login cookie.
+	 * Load user data from the session.
 	 *
 	 * @return bool True if the user is logged in, false otherwise.
 	 */
 	private function loadFromSession() {
+		// Deprecated hook
 		$result = null;
-		Hooks::run( 'UserLoadFromSession', array( $this, &$result ) );
+		Hooks::run( 'UserLoadFromSession', array( $this, &$result ), '1.27' );
 		if ( $result !== null ) {
 			return $result;
 		}
 
-		$request = $this->getRequest();
-
-		$cookieId = $request->getCookie( 'UserID' );
-		$sessId = $request->getSessionData( 'wsUserID' );
-
-		if ( $cookieId !== null ) {
-			$sId = intval( $cookieId );
-			if ( $sessId !== null && $cookieId != $sessId ) {
-				wfDebugLog( 'loginSessions', "Session user ID ($sessId) and
-					cookie user ID ($sId) don't match!" );
-				return false;
-			}
-			$request->setSessionData( 'wsUserID', $sId );
-		} elseif ( $sessId !== null && $sessId != 0 ) {
-			$sId = $sessId;
-		} else {
-			return false;
-		}
-
-		if ( $request->getSessionData( 'wsUserName' ) !== null ) {
-			$sName = $request->getSessionData( 'wsUserName' );
-		} elseif ( $request->getCookie( 'UserName' ) !== null ) {
-			$sName = $request->getCookie( 'UserName' );
-			$request->setSessionData( 'wsUserName', $sName );
-		} else {
-			return false;
-		}
-
-		$proposedUser = User::newFromId( $sId );
-		if ( !$proposedUser->isLoggedIn() ) {
-			// Not a valid ID
-			return false;
-		}
-
-		global $wgBlockDisablesLogin;
-		if ( $wgBlockDisablesLogin && $proposedUser->isBlocked() ) {
-			// User blocked and we've disabled blocked user logins
-			return false;
-		}
-
-		if ( $request->getSessionData( 'wsToken' ) ) {
-			$passwordCorrect =
-				( $proposedUser->getToken( false ) === $request->getSessionData( 'wsToken' ) );
-			$from = 'session';
-		} elseif ( $request->getCookie( 'Token' ) ) {
-			# Get the token from DB/cache and clean it up to remove garbage padding.
-			# This deals with historical problems with bugs and the default column value.
-			$token = rtrim( $proposedUser->getToken( false ) ); // correct token
-			// Make comparison in constant time (bug 61346)
-			$passwordCorrect = strlen( $token )
-				&& hash_equals( $token, $request->getCookie( 'Token' ) );
-			$from = 'cookie';
-		} else {
-			// No session or persistent login cookie
-			return false;
-		}
-
-		if ( ( $sName === $proposedUser->getName() ) && $passwordCorrect ) {
-			$this->loadFromUserObject( $proposedUser );
-			$request->setSessionData( 'wsToken', $this->getToken( false ) );
-			wfDebug( "User: logged in from $from\n" );
+		// MediaWiki\Session\Session already did the necessary authentication of the user
+		// returned here, so just use it if applicable.
+		$session = $this->getRequest()->getSession();
+		$user = $session->getUser();
+		if ( $user->isLoggedIn() ) {
+			$this->loadFromUserObject( $user );
+			// Other code expects these to be set in the session, so set them.
+			$session->set( 'wsUserID', $this->getId() );
+			$session->set( 'wsUserName', $this->getName() );
+			$session->set( 'wsToken', $this->getToken() );
 			return true;
-		} else {
-			// Invalid credentials
-			wfDebug( "User: can't log in from $from, invalid credentials\n" );
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
@@ -2451,6 +2420,9 @@ class User implements IDBAccessObject {
 			),
 			__METHOD__
 		);
+
+		// When the main password is changed, invalidate all bot passwords too
+		BotPassword::invalidateAllPasswordsForUser( $this->getName() );
 	}
 
 	/**
@@ -3043,6 +3015,12 @@ class User implements IDBAccessObject {
 	public function getRights() {
 		if ( is_null( $this->mRights ) ) {
 			$this->mRights = self::getGroupPermissions( $this->getEffectiveGroups() );
+
+			$allowedRights = $this->getRequest()->getSession()->getAllowedUserRights();
+			if ( $allowedRights !== null ) {
+				$this->mRights = array_intersect( $this->mRights, $allowedRights );
+			}
+
 			Hooks::run( 'UserGetRights', array( $this, &$this->mRights ) );
 			// Force reindexation of rights when a hook has unset one of them
 			$this->mRights = array_values( array_unique( $this->mRights ) );
@@ -3523,6 +3501,7 @@ class User implements IDBAccessObject {
 	/**
 	 * Set a cookie on the user's client. Wrapper for
 	 * WebResponse::setCookie
+	 * @deprecated since 1.27
 	 * @param string $name Name of the cookie to set
 	 * @param string $value Value to set
 	 * @param int $exp Expiration time, as a UNIX time value;
@@ -3538,6 +3517,7 @@ class User implements IDBAccessObject {
 	protected function setCookie(
 		$name, $value, $exp = 0, $secure = null, $params = array(), $request = null
 	) {
+		wfDeprecated( __METHOD__, '1.27' );
 		if ( $request === null ) {
 			$request = $this->getRequest();
 		}
@@ -3547,6 +3527,7 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Clear a cookie on the user's client
+	 * @deprecated since 1.27
 	 * @param string $name Name of the cookie to clear
 	 * @param bool $secure
 	 *  true: Force setting the secure attribute when setting the cookie
@@ -3555,6 +3536,7 @@ class User implements IDBAccessObject {
 	 * @param array $params Array of options sent passed to WebResponse::setcookie()
 	 */
 	protected function clearCookie( $name, $secure = null, $params = array() ) {
+		wfDeprecated( __METHOD__, '1.27' );
 		$this->setCookie( $name, '', time() - 86400, $secure, $params );
 	}
 
@@ -3565,6 +3547,7 @@ class User implements IDBAccessObject {
 	 *
 	 * @see User::setCookie
 	 *
+	 * @deprecated since 1.27
 	 * @param string $name Name of the cookie to set
 	 * @param string $value Value to set
 	 * @param bool $secure
@@ -3575,6 +3558,8 @@ class User implements IDBAccessObject {
 	protected function setExtendedLoginCookie( $name, $value, $secure ) {
 		global $wgExtendedLoginCookieExpiration, $wgCookieExpiration;
 
+		wfDeprecated( __METHOD__, '1.27' );
+
 		$exp = time();
 		$exp += $wgExtendedLoginCookieExpiration !== null
 			? $wgExtendedLoginCookieExpiration
@@ -3584,7 +3569,7 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Set the default cookies for this session on the user's client.
+	 * Persist this user's session (e.g. set cookies)
 	 *
 	 * @param WebRequest|null $request WebRequest object to use; $wgRequest will be used if null
 	 *        is passed.
@@ -3592,72 +3577,36 @@ class User implements IDBAccessObject {
 	 * @param bool $rememberMe Whether to add a Token cookie for elongated sessions
 	 */
 	public function setCookies( $request = null, $secure = null, $rememberMe = false ) {
-		global $wgExtendedLoginCookies;
-
-		if ( $request === null ) {
-			$request = $this->getRequest();
-		}
-
 		$this->load();
 		if ( 0 == $this->mId ) {
 			return;
 		}
-		if ( !$this->mToken ) {
-			// When token is empty or NULL generate a new one and then save it to the database
-			// This allows a wiki to re-secure itself after a leak of it's user table or $wgSecretKey
-			// Simply by setting every cell in the user_token column to NULL and letting them be
-			// regenerated as users log back into the wiki.
-			$this->setToken();
-			if ( !wfReadOnly() ) {
-				$this->saveSettings();
+
+		$session = $this->getRequest()->getSession();
+		if ( $request && $session->getRequest() !== $request ) {
+			$session = $session->sessionWithRequest( $request );
+		}
+		$delay = $session->delaySave();
+
+		if ( !$session->getUser()->equals( $this ) ) {
+			if ( !$session->canSetUser() ) {
+				\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
+					->warning( __METHOD__ .
+						": Cannot save user \"$this\" to a user \"{$session->getUser()}\"'s immutable session"
+					);
+				return;
 			}
-		}
-		$session = array(
-			'wsUserID' => $this->mId,
-			'wsToken' => $this->getToken( false ),
-			'wsUserName' => $this->getName()
-		);
-		$cookies = array(
-			'UserID' => $this->mId,
-			'UserName' => $this->getName(),
-		);
-		if ( $rememberMe ) {
-			$cookies['Token'] = $this->getToken( false );
-		} else {
-			$cookies['Token'] = false;
+			$session->setUser( $this );
 		}
 
-		Hooks::run( 'UserSetCookies', array( $this, &$session, &$cookies ) );
-
-		foreach ( $session as $name => $value ) {
-			$request->setSessionData( $name, $value );
-		}
-		foreach ( $cookies as $name => $value ) {
-			if ( $value === false ) {
-				$this->clearCookie( $name );
-			} elseif ( $rememberMe && in_array( $name, $wgExtendedLoginCookies ) ) {
-				$this->setExtendedLoginCookie( $name, $value, $secure );
-			} else {
-				$this->setCookie( $name, $value, 0, $secure, array(), $request );
-			}
+		$session->setRememberUser( $rememberMe );
+		if ( $secure !== null ) {
+			$session->setForceHTTPS( $secure );
 		}
 
-		/**
-		 * If wpStickHTTPS was selected, also set an insecure cookie that
-		 * will cause the site to redirect the user to HTTPS, if they access
-		 * it over HTTP. Bug 29898. Use an un-prefixed cookie, so it's the same
-		 * as the one set by centralauth (bug 53538). Also set it to session, or
-		 * standard time setting, based on if rememberme was set.
-		 */
-		if ( $request->getCheck( 'wpStickHTTPS' ) || $this->requiresHTTPS() ) {
-			$this->setCookie(
-				'forceHTTPS',
-				'true',
-				$rememberMe ? 0 : null,
-				false,
-				array( 'prefix' => '' ) // no prefix
-			);
-		}
+		$session->persist();
+
+		ScopedCallback::consume( $delay );
 	}
 
 	/**
@@ -3670,20 +3619,29 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Clear the user's cookies and session, and reset the instance cache.
+	 * Clear the user's session, and reset the instance cache.
 	 * @see logout()
 	 */
 	public function doLogout() {
-		$this->clearInstanceCache( 'defaults' );
-
-		$this->getRequest()->setSessionData( 'wsUserID', 0 );
-
-		$this->clearCookie( 'UserID' );
-		$this->clearCookie( 'Token' );
-		$this->clearCookie( 'forceHTTPS', false, array( 'prefix' => '' ) );
-
-		// Remember when user logged out, to prevent seeing cached pages
-		$this->setCookie( 'LoggedOut', time(), time() + 86400 );
+		$session = $this->getRequest()->getSession();
+		if ( !$session->canSetUser() ) {
+			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
+				->warning( __METHOD__ . ": Cannot log out of an immutable session" );
+		} elseif ( !$session->getUser()->equals( $this ) ) {
+			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
+				->warning( __METHOD__ .
+					": Cannot log user \"$this\" out of a user \"{$session->getUser()}\"'s session"
+				);
+			// But we still may as well make this user object anon
+			$this->clearInstanceCache( 'defaults' );
+		} else {
+			$this->clearInstanceCache( 'defaults' );
+			$delay = $session->delaySave();
+			$session->setLoggedOutTimestamp( time() );
+			$session->setUser( new User );
+			$session->set( 'wsUserID', 0 ); // Other code expects this
+			ScopedCallback::consume( $delay );
+		}
 	}
 
 	/**
@@ -4137,30 +4095,25 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Internal implementation for self::getEditToken() and
-	 * self::matchEditToken().
+	 * Initialize (if necessary) and return a session token value
+	 * which can be used in edit forms to show that the user's
+	 * login credentials aren't being hijacked with a foreign form
+	 * submission.
 	 *
-	 * @param string|array $salt
-	 * @param WebRequest $request
-	 * @param string|int $timestamp
-	 * @return string
+	 * @since 1.27
+	 * @param string|array $salt Array of Strings Optional function-specific data for hashing
+	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
+	 * @return MediaWiki\\Session\\Token The new edit token
 	 */
-	private function getEditTokenAtTimestamp( $salt, $request, $timestamp ) {
+	public function getEditTokenObject( $salt = '', $request = null ) {
 		if ( $this->isAnon() ) {
-			return self::EDIT_TOKEN_SUFFIX;
-		} else {
-			$token = $request->getSessionData( 'wsEditToken' );
-			if ( $token === null ) {
-				$token = MWCryptRand::generateHex( 32 );
-				$request->setSessionData( 'wsEditToken', $token );
-			}
-			if ( is_array( $salt ) ) {
-				$salt = implode( '|', $salt );
-			}
-			return hash_hmac( 'md5', $timestamp . $salt, $token, false ) .
-				dechex( $timestamp ) .
-				self::EDIT_TOKEN_SUFFIX;
+			return new LoggedOutEditToken();
 		}
+
+		if ( !$request ) {
+			$request = $this->getRequest();
+		}
+		return $request->getSession()->getToken( $salt );
 	}
 
 	/**
@@ -4170,29 +4123,23 @@ class User implements IDBAccessObject {
 	 * submission.
 	 *
 	 * @since 1.19
-	 *
 	 * @param string|array $salt Array of Strings Optional function-specific data for hashing
 	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
 	 * @return string The new edit token
 	 */
 	public function getEditToken( $salt = '', $request = null ) {
-		return $this->getEditTokenAtTimestamp(
-			$salt, $request ?: $this->getRequest(), wfTimestamp()
-		);
+		return $this->getEditTokenObject( $salt, $request )->toString();
 	}
 
 	/**
 	 * Get the embedded timestamp from a token.
+	 * @deprecated since 1.27, use \\MediaWiki\\Session\\Token::getTimestamp instead.
 	 * @param string $val Input token
 	 * @return int|null
 	 */
 	public static function getEditTokenTimestamp( $val ) {
-		$suffixLen = strlen( self::EDIT_TOKEN_SUFFIX );
-		if ( strlen( $val ) <= 32 + $suffixLen ) {
-			return null;
-		}
-
-		return hexdec( substr( $val, 32, -$suffixLen ) );
+		wfDeprecated( __METHOD__, '1.27' );
+		return MediaWiki\Session\Token::getTimestamp( $val );
 	}
 
 	/**
@@ -4208,28 +4155,7 @@ class User implements IDBAccessObject {
 	 * @return bool Whether the token matches
 	 */
 	public function matchEditToken( $val, $salt = '', $request = null, $maxage = null ) {
-		if ( $this->isAnon() ) {
-			return $val === self::EDIT_TOKEN_SUFFIX;
-		}
-
-		$timestamp = self::getEditTokenTimestamp( $val );
-		if ( $timestamp === null ) {
-			return false;
-		}
-		if ( $maxage !== null && $timestamp < wfTimestamp() - $maxage ) {
-			// Expired token
-			return false;
-		}
-
-		$sessionToken = $this->getEditTokenAtTimestamp(
-			$salt, $request ?: $this->getRequest(), $timestamp
-		);
-
-		if ( !hash_equals( $sessionToken, $val ) ) {
-			wfDebug( "User::matchEditToken: broken session data\n" );
-		}
-
-		return hash_equals( $sessionToken, $val );
+		return $this->getEditTokenObject( $salt, $request )->match( $val, $maxage );
 	}
 
 	/**
@@ -4614,6 +4540,13 @@ class User implements IDBAccessObject {
 				$cache[$right] = false;
 				return false;
 			}
+		}
+
+		// Remove any rights that aren't allowed to the global-session user
+		$allowedRights = SessionManager::getGlobalSession()->getAllowedUserRights();
+		if ( $allowedRights !== null && !in_array( $right, $allowedRights, true ) ) {
+			$cache[$right] = false;
+			return false;
 		}
 
 		// Allow extensions to say false

@@ -23,6 +23,8 @@
  * @file
  */
 
+use MediaWiki\Session\SessionManager;
+
 /**
  * The WebRequest class encapsulates getting at data passed in the
  * URL or via a POSTed form stripping illegal input characters and
@@ -62,6 +64,13 @@ class WebRequest {
 	 * @var string
 	 */
 	protected $protocol;
+
+	/**
+	 * @var \\MediaWiki\\Session\\SessionId|null Session ID to use for this
+	 *  request. We can't save the session directly due to reference cycles not
+	 *  working too well (slow GC in Zend and never collected in HHVM).
+	 */
+	protected $sessionId = null;
 
 	public function __construct() {
 		$this->requestTime = isset( $_SERVER['REQUEST_TIME_FLOAT'] )
@@ -638,18 +647,49 @@ class WebRequest {
 	}
 
 	/**
-	 * Returns true if there is a session cookie set.
+	 * Return the session for this request
+	 * @since 1.27
+	 * @note For performance, keep the session locally if you will be making
+	 *  much use of it instead of calling this method repeatedly.
+	 * @return MediaWiki\\Session\\Session
+	 */
+	public function getSession() {
+		if ( $this->sessionId !== null ) {
+			$session = SessionManager::singleton()->getSessionById( (string)$this->sessionId, true, $this );
+			if ( $session ) {
+				return $session;
+			}
+		}
+
+		$session = SessionManager::singleton()->getSessionForRequest( $this );
+		$this->sessionId = $session->getSessionId();
+		return $session;
+	}
+
+	/**
+	 * Set the session for this request
+	 * @since 1.27
+	 * @private For use by MediaWiki\\Session classes only
+	 * @param MediaWiki\\Session\\SessionId $sessionId
+	 */
+	public function setSessionId( MediaWiki\Session\SessionId $sessionId ) {
+		$this->sessionId = $sessionId;
+	}
+
+	/**
+	 * Returns true if the request has a persistent session.
 	 * This does not necessarily mean that the user is logged in!
 	 *
-	 * If you want to check for an open session, use session_id()
-	 * instead; that will also tell you if the session was opened
-	 * during the current request (in which case the cookie will
-	 * be sent back to the client at the end of the script run).
-	 *
+	 * @deprecated since 1.27, use
+	 *  \\MediaWiki\\Session\\SessionManager::singleton()->getPersistedSessionId()
+	 *  instead.
 	 * @return bool
 	 */
 	public function checkSessionCookie() {
-		return isset( $_COOKIE[session_name()] );
+		global $wgInitialSessionId;
+		wfDeprecated( __METHOD__, '1.27' );
+		return $wgInitialSessionId !== null &&
+			$this->getSession()->getId() === (string)$wgInitialSessionId;
 	}
 
 	/**
@@ -907,26 +947,25 @@ class WebRequest {
 	}
 
 	/**
-	 * Get data from $_SESSION
+	 * Get data from the session
 	 *
-	 * @param string $key Name of key in $_SESSION
+	 * @note Prefer $this->getSession() instead if making multiple calls.
+	 * @param string $key Name of key in the session
 	 * @return mixed
 	 */
 	public function getSessionData( $key ) {
-		if ( !isset( $_SESSION[$key] ) ) {
-			return null;
-		}
-		return $_SESSION[$key];
+		return $this->getSession()->get( $key );
 	}
 
 	/**
 	 * Set session data
 	 *
-	 * @param string $key Name of key in $_SESSION
+	 * @note Prefer $this->getSession() instead if making multiple calls.
+	 * @param string $key Name of key in the session
 	 * @param mixed $data
 	 */
 	public function setSessionData( $key, $data ) {
-		$_SESSION[$key] = $data;
+		return $this->getSession()->set( $key, $data );
 	}
 
 	/**
