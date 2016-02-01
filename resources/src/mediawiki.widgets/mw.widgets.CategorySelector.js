@@ -21,7 +21,7 @@
 	 *
 	 *     $( '#content' ).append( selector.$element );
 	 *
-	 *     selector.setSearchType( [ mw.widgets.CategorySelector.SearchType.SubCategories ] );
+	 *     selector.setSearchTypes( [ mw.widgets.CategorySelector.SearchType.SubCategories ] );
 	 *
 	 * @class mw.widgets.CategorySelector
 	 * @uses mw.Api
