@@ -691,6 +691,12 @@ if ( !is_object( $wgAuth ) ) {
 
 // Set up the session
 $ps_session = Profiler::instance()->scopedProfileIn( $fname . '-session' );
+
+// T124510: Disable automatic PHP session related cache headers. MediaWiki
+// adds it's own headers and the default PHP behavior may set headers such as
+// 'Pragma: no-cache' that cause problems with some user agents.
+session_cache_limiter( '' );
+
 /**
  * @var MediaWiki\\Session\\SessionId|null $wgInitialSessionId The persistent
  * session ID (if any) loaded at startup
@@ -738,7 +744,6 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	) {
 		// Start the PHP-session for backwards compatibility
 		session_id( $session->getId() );
-		MediaWiki\quietCall( 'session_cache_limiter', 'private, must-revalidate' );
 		MediaWiki\quietCall( 'session_start' );
 	}
 }
