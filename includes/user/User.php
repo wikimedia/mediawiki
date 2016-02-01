@@ -74,6 +74,16 @@ class User implements IDBAccessObject {
 	const GETOPTIONS_EXCLUDE_DEFAULTS = 1;
 
 	/**
+	 * @since 1.27
+	 */
+	const CHECK_USER_RIGHTS = true;
+
+	/**
+	 * @since 1.27
+	 */
+	const IGNORE_USER_RIGHTS = false;
+
+	/**
 	 * Array of Strings List of member variables which are saved to the
 	 * shared cache (memcached). Any operation which changes the
 	 * corresponding database fields must call a cache-clearing function.
@@ -3399,50 +3409,34 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Get a WatchedItem for this user and $title.
-	 *
-	 * @since 1.22 $checkRights parameter added
-	 * @param Title $title
-	 * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
-	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
-	 * @return WatchedItem
-	 */
-	public function getWatchedItem( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
-		$key = $checkRights . ':' . $title->getNamespace() . ':' . $title->getDBkey();
-
-		if ( isset( $this->mWatchedItems[$key] ) ) {
-			return $this->mWatchedItems[$key];
-		}
-
-		if ( count( $this->mWatchedItems ) >= self::MAX_WATCHED_ITEMS_CACHE ) {
-			$this->mWatchedItems = array();
-		}
-
-		$this->mWatchedItems[$key] = WatchedItem::fromUserTitle( $this, $title, $checkRights );
-		return $this->mWatchedItems[$key];
-	}
-
-	/**
 	 * Check the watched status of an article.
 	 * @since 1.22 $checkRights parameter added
 	 * @param Title $title Title of the article to look at
-	 * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
-	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
+	 * @param bool $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
+	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
 	 * @return bool
 	 */
-	public function isWatched( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
-		return $this->getWatchedItem( $title, $checkRights )->isWatched();
+	public function isWatched( $title, $checkRights = self::CHECK_USER_RIGHTS ) {
+		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
+			return WatchedItemStore::getDefaultInstance()->isWatched( $this, $title );
+		}
+		return false;
 	}
 
 	/**
 	 * Watch an article.
 	 * @since 1.22 $checkRights parameter added
 	 * @param Title $title Title of the article to look at
-	 * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
-	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
+	 * @param bool $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
+	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
 	 */
-	public function addWatch( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
-		$this->getWatchedItem( $title, $checkRights )->addWatch();
+	public function addWatch( $title, $checkRights = self::CHECK_USER_RIGHTS ) {
+		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
+			WatchedItemStore::getDefaultInstance()->addWatchBatch( array(
+				array( $this, $title->getSubjectPage() ),
+				array( $this, $title->getTalkPage() ),
+			) );
+		}
 		$this->invalidateCache();
 	}
 
@@ -3450,11 +3444,14 @@ class User implements IDBAccessObject {
 	 * Stop watching an article.
 	 * @since 1.22 $checkRights parameter added
 	 * @param Title $title Title of the article to look at
-	 * @param int $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
-	 *     Pass WatchedItem::CHECK_USER_RIGHTS or WatchedItem::IGNORE_USER_RIGHTS.
+	 * @param bool $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
+	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
 	 */
-	public function removeWatch( $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
-		$this->getWatchedItem( $title, $checkRights )->removeWatch();
+	public function removeWatch( $title, $checkRights = self::CHECK_USER_RIGHTS ) {
+		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
+			WatchedItemStore::getDefaultInstance()->removeWatch( $this, $title->getSubjectPage() );
+			WatchedItemStore::getDefaultInstance()->removeWatch( $this, $title->getTalkPage() );
+		}
 		$this->invalidateCache();
 	}
 
@@ -3523,9 +3520,8 @@ class User implements IDBAccessObject {
 			$force = 'force';
 		}
 
-		$this->getWatchedItem( $title )->resetNotificationTimestamp(
-			$force, $oldid
-		);
+		WatchedItemStore::getDefaultInstance()
+			->resetNotificationTimestamp( $this, $title, $force, $oldid );
 	}
 
 	/**
