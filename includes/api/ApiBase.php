@@ -1260,10 +1260,11 @@ abstract class ApiBase extends ContextSource {
 			);
 		}
 
-		$tokenObj = ApiQueryTokens::getToken(
-			$this->getUser(), $this->getRequest()->getSession(), $salts[$tokenType]
-		);
-		if ( $tokenObj->match( $token ) ) {
+		if ( $this->getUser()->matchEditToken(
+			$token,
+			$salts[$tokenType],
+			$this->getRequest()
+		) ) {
 			return true;
 		}
 

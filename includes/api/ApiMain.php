@@ -769,7 +769,7 @@ class ApiMain extends ApiBase {
 					return;
 				}
 				// Logged out, send normal public headers below
-			} elseif ( MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent() ) {
+			} elseif ( session_id() != '' ) {
 				// Logged in or otherwise has session (e.g. anonymous users who have edited)
 				// Mark request private
 				$response->header( "Cache-Control: $privateCache" );
@@ -1246,7 +1246,7 @@ class ApiMain extends ApiBase {
 		}
 
 		if ( $request->getProtocol() === 'http' && (
-			$request->getSession()->shouldForceHTTPS() ||
+			$request->getCookie( 'forceHTTPS', '' ) ||
 			( $this->getUser()->isLoggedIn() &&
 				$this->getUser()->requiresHTTPS() )
 		) ) {

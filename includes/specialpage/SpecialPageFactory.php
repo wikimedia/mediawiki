@@ -90,7 +90,6 @@ class SpecialPageFactory {
 		'Unblock' => 'SpecialUnblock',
 		'BlockList' => 'SpecialBlockList',
 		'ChangePassword' => 'SpecialChangePassword',
-		'BotPasswords' => 'SpecialBotPasswords',
 		'PasswordReset' => 'SpecialPasswordReset',
 		'DeletedContributions' => 'DeletedContributionsPage',
 		'Preferences' => 'SpecialPreferences',

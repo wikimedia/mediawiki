@@ -59,8 +59,10 @@ class ApiCreateAccount extends ApiBase {
 
 		$params = $this->extractRequestParams();
 
-		// Make sure session is persisted
-		MediaWiki\Session\SessionManager::getGlobalSession()->persist();
+		// Init session if necessary
+		if ( session_id() == '' ) {
+			wfSetupSession();
+		}
 
 		if ( $params['mailpassword'] && !$params['email'] ) {
 			$this->dieUsageMsg( 'noemail' );
@@ -149,11 +151,8 @@ class ApiCreateAccount extends ApiBase {
 			// Token was incorrect, so add it to result, but don't throw an exception
 			// since not having the correct token is part of the normal
 			// flow of events.
-			$result['token'] = LoginForm::getCreateaccountToken()->toString();
+			$result['token'] = LoginForm::getCreateaccountToken();
 			$result['result'] = 'NeedToken';
-			$this->setWarning( 'Fetching a token via action=createaccount is deprecated. ' .
-				'Use action=query&meta=tokens&type=createaccount instead.' );
-			$this->logFeatureUsage( 'action=createaccount&!token' );
 		} elseif ( !$status->isOK() ) {
 			// There was an error. Die now.
 			$this->dieStatus( $status );
@@ -203,11 +202,7 @@ class ApiCreateAccount extends ApiBase {
 				ApiBase::PARAM_TYPE => 'password',
 			),
 			'domain' => null,
-			'token' => array(
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => false, // for BC
-				ApiBase::PARAM_HELP_MSG => array( 'api-help-param-token', 'createaccount' ),
-			),
+			'token' => null,
 			'email' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => $this->getConfig()->get( 'EmailConfirmToEdit' ),

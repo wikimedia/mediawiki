@@ -168,18 +168,7 @@ class MessageCache {
 	 * @return ParserOptions
 	 */
 	function getParserOptions() {
-		global $wgFullyInitialised, $wgContLang;
-
 		if ( !$this->mParserOptions ) {
-			if ( !$wgFullyInitialised ) {
-				// $wgUser isn't unstubbable yet, so don't try to get a
-				// ParserOptions for it. And don't cache this ParserOptions
-				// either.
-				$po = new ParserOptions( new User, $wgContLang );
-				$po->setEditSection( false );
-				return $po;
-			}
-
 			$this->mParserOptions = new ParserOptions;
 			$this->mParserOptions->setEditSection( false );
 		}

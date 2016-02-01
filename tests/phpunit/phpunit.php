@@ -74,7 +74,6 @@ class PHPUnitMaintClass extends Maintenance {
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
 		global $wgLocaltimezone, $wgLocalisationCacheConf;
 		global $wgDevelopmentWarnings;
-		global $wgSessionProviders;
 		global $wgJobTypeConf;
 
 		// Inject test autoloader
@@ -109,19 +108,6 @@ class PHPUnitMaintClass extends Maintenance {
 		$wgLocaltimezone = 'UTC';
 
 		$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
-
-		// Generic MediaWiki\Session\SessionManager configuration for tests
-		// We use CookieSessionProvider because things might be expecting
-		// cookies to show up in a FauxRequest somewhere.
-		$wgSessionProviders = array(
-			array(
-				'class' => 'MediaWiki\\Session\\CookieSessionProvider',
-				'args' => array( array(
-					'priority' => 30,
-					'callUserSetCookiesHook' => true,
-				) ),
-			),
-		);
 
 		// Bug 44192 Do not attempt to send a real e-mail
 		Hooks::clear( 'AlternateUserMailer' );

@@ -47,7 +47,11 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 	protected function tearDown() {
 		// Avoid leaking session over tests
-		MediaWiki\Session\SessionManager::getGlobalSession()->clear();
+		if ( session_id() != '' ) {
+			global $wgUser;
+			$wgUser->logout();
+			session_destroy();
+		}
 
 		parent::tearDown();
 	}
@@ -148,12 +152,12 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		if ( isset( $session['wsToken'] ) && $session['wsToken'] ) {
 			// @todo Why does this directly mess with the session? Fix that.
 			// add edit token to fake session
-			$session['wsTokenSecrets']['default'] = $session['wsToken'];
+			$session['wsEditToken'] = $session['wsToken'];
 			// add token to request parameters
 			$timestamp = wfTimestamp();
 			$params['token'] = hash_hmac( 'md5', $timestamp, $session['wsToken'] ) .
 				dechex( $timestamp ) .
-				MediaWiki\Session\Token::SUFFIX;
+				User::EDIT_TOKEN_SUFFIX;
 
 			return $this->doApiRequest( $params, $session, false, $user );
 		} else {

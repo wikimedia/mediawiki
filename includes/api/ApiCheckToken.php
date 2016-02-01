@@ -32,22 +32,21 @@ class ApiCheckToken extends ApiBase {
 		$params = $this->extractRequestParams();
 		$token = $params['token'];
 		$maxage = $params['maxtokenage'];
+		$request = $this->getRequest();
 		$salts = ApiQueryTokens::getTokenTypeSalts();
+		$salt = $salts[$params['type']];
 
 		$res = array();
 
-		$tokenObj = ApiQueryTokens::getToken(
-			$this->getUser(), $this->getRequest()->getSession(), $salts[$params['type']]
-		);
-		if ( $tokenObj->match( $token, $maxage ) ) {
+		if ( $this->getUser()->matchEditToken( $token, $salt, $request, $maxage ) ) {
 			$res['result'] = 'valid';
-		} elseif ( $maxage !== null && $tokenObj->match( $token ) ) {
+		} elseif ( $maxage !== null && $this->getUser()->matchEditToken( $token, $salt, $request ) ) {
 			$res['result'] = 'expired';
 		} else {
 			$res['result'] = 'invalid';
 		}
 
-		$ts = MediaWiki\Session\Token::getTimestamp( $token );
+		$ts = User::getEditTokenTimestamp( $token );
 		if ( $ts !== null ) {
 			$mwts = new MWTimestamp();
 			$mwts->timestamp->setTimestamp( $ts );
