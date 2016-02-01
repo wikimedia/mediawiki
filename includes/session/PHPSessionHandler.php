@@ -123,6 +123,12 @@ class PHPSessionHandler {
 		ini_set( 'session.use_cookies', 0 );
 		ini_set( 'session.use_trans_sid', 0 );
 
+		// T124510: Disable automatic PHP session related cache headers.
+		// MediaWiki adds it's own headers and the default PHP behavior may
+		// set headers such as 'Pragma: no-cache' that cause problems with
+		// some user agents.
+		session_cache_limiter( '' );
+
 		// Also set a sane serialization handler
 		\Wikimedia\PhpSessionSerializer::setSerializeHandler();
 
