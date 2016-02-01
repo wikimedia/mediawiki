@@ -4452,8 +4452,12 @@ class Title {
 			$this->mNotificationTimestamp = array();
 		}
 
-		$watchedItem = WatchedItem::fromUserTitle( $user, $this );
-		$this->mNotificationTimestamp[$uid] = $watchedItem->getNotificationTimestamp();
+		$watchedItem = WatchedItemStore::getDefaultInstance()->getWatchedItem( $user, $this );
+		if ( $watchedItem ) {
+			$this->mNotificationTimestamp[$uid] = $watchedItem->getNotificationTimestamp();
+		} else {
+			$this->mNotificationTimestamp[$uid] = false;
+		}
 
 		return $this->mNotificationTimestamp[$uid];
 	}
