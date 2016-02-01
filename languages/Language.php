@@ -687,7 +687,7 @@ class Language {
 
 	/**
 	 * Get a namespace key by value, case insensitive.  Canonical namespace
-	 * names override custom ones defined for the current language.
+	 * names override custom ones defined for the	 current language.
 	 *
 	 * @param string $text
 	 * @return int|bool An integer if $text is a valid value otherwise false
