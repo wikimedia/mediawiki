@@ -568,6 +568,75 @@ class Message implements MessageSpecifier, Serializable {
 	}
 
 	/**
+	 * Add parameters that are times and will be passed through
+	 * Language::time before substitution
+	 *
+	 * @since 1.2X
+	 *
+	 * @param string|string[] $param,... timestamp parameters, or a single argument
+	 * that is an array of timestamp parameters.
+	 *
+	 * @return Message $this
+	 */
+	public function timeParams( /*...*/ ) {
+		$params = func_get_args();
+		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
+			$params = $params[0];
+		}
+		foreach ( $params as $param ) {
+			$this->parameters[] = self::timeParam( $param );
+		}
+		return $this;
+	}
+
+	/**
+	 * Add parameters that are dates and will be passed through
+	 * Language::date before substitution
+	 *
+	 * @since 1.2X
+	 *
+	 * @param string|string[] $param,... timestamp parameters, or a single argument
+	 * that is an array of timestamp parameters.
+	 *
+	 * @return Message $this
+	 */
+	public function dateParams( /*...*/ ) {
+		$params = func_get_args();
+		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
+			$params = $params[0];
+		}
+		foreach ( $params as $param ) {
+			$this->parameters[] = self::dateParam( $param );
+		}
+		return $this;
+	}
+
+	/**
+	 * Add groups of three message parameters per function parameter that are
+	 * timeAndDate, date, and time, repectively, and will be passed through
+	 * Language::timeAndDate, Language::date and Language::time before substitution
+	 *
+	 * @since 1.2X
+	 *
+	 * @param string|string[] $param,... timestamp parameters, or a single argument
+	 * that is an array of timestamp parameters.
+	 *
+	 * @return Message $this
+	 */
+	public function dateTimeParams( /*...*/ ) {
+		$params = func_get_args();
+		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
+			$params = $params[0];
+		}
+		foreach ( $params as $param ) {
+			$this->parameters[] = self::datetimeParam( $param );
+			$this->parameters[] = self::dateParam( $param );
+			$this->parameters[] = self::timeParam( $param );
+		}
+		return $this;
+	}
+
+	/**
 	 * Add parameters that are file sizes and will be passed through
 	 * Language::formatSize before substitution
 	 *
@@ -989,6 +1058,39 @@ class Message implements MessageSpecifier, Serializable {
 	}
 
 	/**
+	 * @since 1.2X
+	 *
+	 * @param string $datetime a timestamp
+	 *
+	 * @return number[] Array with a single "datetime" key.
+	 */
+	public static function dateTimeParam( $datetime ) {
+		return array( 'datetime' => $datetime );
+	}
+
+	/**
+	 * @since 1.2X
+	 *
+	 * @param string $datetime a timestamp
+	 *
+	 * @return number[] Array with a single "date" key.
+	 */
+	public static function dateParam( $datetime ) {
+		return array( 'date' => $datetime );
+	}
+
+	/**
+	 * @since 1.2X
+	 *
+	 * @param string $datetime a timestamp
+	 *
+	 * @return number[] Array with a single "time" key.
+	 */
+	public static function timeParam( $datetime ) {
+		return array( 'time' => $datetime );
+	}
+
+	/**
 	 * @since 1.22
 	 *
 	 * @param int $size
@@ -1066,6 +1168,12 @@ class Message implements MessageSpecifier, Serializable {
 				return array( 'before', $this->language->formatExpiry( $param['expiry'] ) );
 			} elseif ( isset( $param['period'] ) ) {
 				return array( 'before', $this->language->formatTimePeriod( $param['period'] ) );
+			} elseif ( isset( $param['datetime'] ) ) {
+				return array( 'before', $this->language->timeAndDate( $param['datetime'] ) );
+			} elseif ( isset( $param['date'] ) ) {
+				return array( 'before', $this->language->date( $param['date'] ) );
+			} elseif ( isset( $param['time'] ) ) {
+				return array( 'before', $this->language->time( $param['time'] ) );
 			} elseif ( isset( $param['size'] ) ) {
 				return array( 'before', $this->language->formatSize( $param['size'] ) );
 			} elseif ( isset( $param['bitrate'] ) ) {
