@@ -40,7 +40,10 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 			->method( 'select' )
 			->will( $this->returnValue( new FakeResultWrapper( array() ) ) );
 
-		$store = new WatchedItemStore( $this->getMockLoadbalancer( $mockDb ) );
+		$store = new WatchedItemStore(
+			$this->getMockLoadbalancer( $mockDb ),
+			new HashBagOStuff( array( 'maxKeys' => 100 ) )
+		);
 
 		$store->duplicateEntry(
 			Title::newFromText( 'Old_Title' ),
@@ -80,7 +83,10 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 				$this->isType( 'string' )
 			);
 
-		$store = new WatchedItemStore( $this->getMockLoadbalancer( $mockDb ) );
+		$store = new WatchedItemStore(
+			$this->getMockLoadbalancer( $mockDb ),
+			new HashBagOStuff( array( 'maxKeys' => 100 ) )
+		);
 
 		$store->duplicateEntry(
 			Title::newFromText( 'Old_Title' ),
