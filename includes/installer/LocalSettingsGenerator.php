@@ -391,7 +391,7 @@ ${serverSetting}
 ## be publically accessible from the web.
 #\$wgCacheDirectory = \"\$IP/cache\";
 
-# Site language code, should be one of the list in ./languages/Names.php
+# Site language code, should be one of the list in ./languages/data/Names.php
 \$wgLanguageCode = \"{$this->values['wgLanguageCode']}\";
 
 \$wgSecretKey = \"{$this->values['wgSecretKey']}\";

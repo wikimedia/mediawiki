@@ -54,10 +54,9 @@ class GanConverter extends LanguageConverter {
 	}
 
 	function loadDefaultTables() {
-		require __DIR__ . '/../../includes/ZhConversion.php';
 		$this->mTables = array(
-			'gan-hans' => new ReplacementArray( $zh2Hans ),
-			'gan-hant' => new ReplacementArray( $zh2Hant ),
+			'gan-hans' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hans ),
+			'gan-hant' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hant ),
 			'gan' => new ReplacementArray
 		);
 	}
