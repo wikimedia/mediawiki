@@ -68,9 +68,6 @@ return call_user_func( function () {
 			'es5-shim',
 			'oojs',
 			'oojs-ui.styles',
-			'oojs-ui.styles.icons',
-			'oojs-ui.styles.indicators',
-			'oojs-ui.styles.textures',
 			'mediawiki.language',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
@@ -127,6 +124,14 @@ return call_user_func( function () {
 			'ooui-dialog-process-error',
 			'ooui-dialog-process-retry',
 		),
+		// ResourceLoaderImageModule doesn't support 'skipFunction', so instead we set this up so that
+		// this module is skipped together with its dependencies. Nothing else depends on these modules.
+		'dependencies' => array(
+			'oojs-ui.styles.icons',
+			'oojs-ui.styles.indicators',
+			'oojs-ui.styles.textures',
+		),
+		'skipFunction' => 'resources/src/oojs-ui-styles-skip.js',
 		'targets' => array( 'desktop', 'mobile' ),
 	);
 
