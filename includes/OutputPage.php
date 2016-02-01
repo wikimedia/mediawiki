@@ -3993,7 +3993,7 @@ class OutputPage extends ContextSource {
 			$this->getLanguage()->getDir()
 		);
 		$this->addModuleStyles( array(
-			'oojs-ui.styles',
+			'oojs-ui-core.styles',
 			'oojs-ui.styles.icons',
 			'oojs-ui.styles.indicators',
 			'oojs-ui.styles.textures',
