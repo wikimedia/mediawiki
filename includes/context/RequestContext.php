@@ -595,7 +595,6 @@ class RequestContext implements IContextSource, MutableContext {
 			$wgUser = $context->getUser(); // b/c
 			if ( $session && MediaWiki\Session\PHPSessionHandler::isEnabled() ) {
 				session_id( $session->getId() );
-				MediaWiki\quietCall( 'session_cache_limiter', 'private, must-revalidate' );
 				MediaWiki\quietCall( 'session_start' );
 			}
 			$request = new FauxRequest( array(), false, $session );
