@@ -38,7 +38,14 @@ class ApiQueryInfo extends ApiQueryBase {
 		$fld_notificationtimestamp = false,
 		$fld_preload = false, $fld_displaytitle = false;
 
-	private $params, $titles, $missing, $everything;
+	private $params;
+
+	/** @var Title[] */
+	private $titles;
+	/** @var Title[] */
+	private $missing;
+	/** @var Title[] */
+	private $everything;
 
 	private $pageRestrictions, $pageIsRedir, $pageIsNew, $pageTouched,
 		$pageLatest, $pageLength;
