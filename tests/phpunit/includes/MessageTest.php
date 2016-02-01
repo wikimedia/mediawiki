@@ -419,6 +419,26 @@ class MessageTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * @covers Message::dateParam
+	 * @covers Message::dateParams
+	 * @covers Message::timeParam
+	 * @covers Message::timeParams
+	 * @covers Message::dateTimeParam
+	 * @covers Message::dateTimeParams
+	 */
+	public function testDateTimeParams() {
+		$lang = Language::factory( 'en' );
+		$msg = new RawMessage( '$1$2$3' );
+		$par = now();
+
+		$this->assertEquals(
+			$lang->formatDate( $par ) . $lang->formatTime( $par ) . $lang->formatDateTime( $par ),
+			$msg->inLanguage( $lang )->datTimeeParams( $par )->plain(),
+			'DateTimeParams is handled correctly'
+		);
+	}
+
 	public static function providePlaintextParams() {
 		return [
 			[
