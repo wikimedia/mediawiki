@@ -6,8 +6,12 @@
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-01-26T21:14:23Z
+ * Date: 2016-02-01T21:48:04Z
  */
+( function ( OO ) {
+
+'use strict';
+
 /**
  * @class
  * @extends OO.ui.Theme
@@ -26,3 +30,5 @@ OO.inheritClass( OO.ui.ApexTheme, OO.ui.Theme );
 /* Instantiation */
 
 OO.ui.theme = new OO.ui.ApexTheme();
+
+}( OO ) );
