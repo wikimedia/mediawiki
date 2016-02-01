@@ -319,6 +319,17 @@ changes to languages because of Phabricator reports.
   a user forgot password/account was stolen.
 * wfCheckEntropy() was removed (deprecated in 1.27).
 * Browser support for Internet Explorer 8 lowered from Grade A to Grade C.
+* Database logic was removed from WatchedItem and a WatchedItemStore was created:
+** WatchedItem::IGNORE_USER_RIGHTS and WatchedItem::CHECK_USER_RIGHTS were deprecated.
+   User::IGNORE_USER_RIGHTS and User::CHECK_USER_RIGHTS were introduced.
+** WatchedItem::fromUserTitle was deprecated in favour of the constructor.
+** WatchedItem::resetNotificationTimestamp was deprecated.
+** WatchedItem::batchAddWatch was deprecated.
+** WatchedItem::addWatch was deprecated.
+** WatchedItem::removeWatch was deprecated.
+** WatchedItem::isWatched was deprecated.
+** WatchedItem::duplicateEntries was deprecated.
+** User::getWatchedItem was removed.
 
 == Compatibility ==
 
