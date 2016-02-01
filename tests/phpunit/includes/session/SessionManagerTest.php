@@ -1067,12 +1067,8 @@ class SessionManagerTest extends MediaWikiTestCase {
 			$this->objectCacheDef( $provider1 ),
 		) );
 
-		$user = User::newFromName( 'UTSysop' );
-		$token = $user->getToken( true );
-
 		$this->assertFalse( $manager->isUserSessionPrevented( 'UTSysop' ) );
 		$manager->preventSessionsForUser( 'UTSysop' );
-		$this->assertNotEquals( $token, User::newFromName( 'UTSysop' )->getToken() );
 		$this->assertTrue( $manager->isUserSessionPrevented( 'UTSysop' ) );
 	}
 
