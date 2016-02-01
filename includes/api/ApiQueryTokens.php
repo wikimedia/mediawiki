@@ -44,16 +44,24 @@ class ApiQueryTokens extends ApiQueryBase {
 			return;
 		}
 
+		$user = $this->getUser();
+		$session = $this->getRequest()->getSession();
 		$salts = self::getTokenTypeSalts();
 		foreach ( $params['type'] as $type ) {
-			$salt = $salts[$type];
-			$val = $this->getUser()->getEditToken( $salt, $this->getRequest() );
-			$res[$type . 'token'] = $val;
+			$res[$type . 'token'] = self::getToken( $user, $session, $salts[$type] )->toString();
 		}
 
 		$this->getResult()->addValue( 'query', $this->getModuleName(), $res );
 	}
 
+	/**
+	 * Get the salts for known token types
+	 * @return (string|array)[] Returning a string will use that as the salt
+	 *  for User::getEditTokenObject() to fetch the token, which will give a
+	 *  LoggedOutEditToken (always "+\\") for anonymous users. Returning an
+	 *  array will use it as parameters to MediaWiki\\Session\\Session::getToken(),
+	 *  which will always return a full token even for anonymous users.
+	 */
 	public static function getTokenTypeSalts() {
 		static $salts = null;
 		if ( !$salts ) {
@@ -63,12 +71,35 @@ class ApiQueryTokens extends ApiQueryBase {
 				'patrol' => 'patrol',
 				'rollback' => 'rollback',
 				'userrights' => 'userrights',
+				'login' => array( '', 'login' ),
+				'createaccount' => array( '', 'createaccount' ),
 			);
 			Hooks::run( 'ApiQueryTokensRegisterTypes', array( &$salts ) );
 			ksort( $salts );
 		}
 
 		return $salts;
+	}
+
+	/**
+	 * Get a token from a salt
+	 * @param User $user
+	 * @param MediaWiki\\Session\\Session $session
+	 * @param string|array $salt A string will be used as the salt for
+	 *  User::getEditTokenObject() to fetch the token, which will give a
+	 *  LoggedOutEditToken (always "+\\") for anonymous users. An array will
+	 *  be used as parameters to MediaWiki\\Session\\Session::getToken(), which
+	 *  will always return a full token even for anonymous users. An array will
+	 *  also persist the session.
+	 * @return MediaWiki\\Session\\Token
+	 */
+	public static function getToken( User $user, MediaWiki\Session\Session $session, $salt ) {
+		if ( is_array( $salt ) ) {
+			$session->persist();
+			return call_user_func_array( array( $session, 'getToken' ), $salt );
+		} else {
+			return $user->getEditTokenObject( $salt, $session->getRequest() );
+		}
 	}
 
 	public function getAllowedParams() {
@@ -88,6 +119,11 @@ class ApiQueryTokens extends ApiQueryBase {
 			'action=query&meta=tokens&type=watch|patrol'
 				=> 'apihelp-query+tokens-example-types',
 		);
+	}
+
+	public function isReadMode() {
+		// So login tokens can be fetched on private wikis
+		return false;
 	}
 
 	public function getCacheMode( $params ) {
