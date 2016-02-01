@@ -366,7 +366,7 @@ class MovePage {
 		$oldsnamespace = MWNamespace::getSubject( $this->oldTitle->getNamespace() );
 		$newsnamespace = MWNamespace::getSubject( $this->newTitle->getNamespace() );
 		if ( $oldsnamespace != $newsnamespace || $oldtitle != $newtitle ) {
-			WatchedItem::duplicateEntries( $this->oldTitle, $this->newTitle );
+			WatchedItemStore::getDefaultInstance()->duplicateEntries( $this->oldTitle, $this->newTitle );
 		}
 
 		Hooks::run(
