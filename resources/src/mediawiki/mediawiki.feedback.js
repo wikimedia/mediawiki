@@ -59,6 +59,7 @@
 		this.feedbackPageTitle = config.title || new mw.Title( 'Feedback' );
 
 		this.messagePosterPromise = mw.messagePoster.factory.create( this.feedbackPageTitle, config.apiUrl );
+		this.foreignApi = config.apiUrl ? new mw.ForeignApi( config.apiUrl ) : null;
 
 		// Links
 		this.bugsTaskSubmissionLink = config.bugsLink || '//phabricator.wikimedia.org/maniphest/task/edit/form/1/';
@@ -94,9 +95,24 @@
 	 *  to the external task reporting site.
 	 */
 	mw.Feedback.prototype.onDialogSubmit = function ( status ) {
-		var dialogConfig = {};
+		var feedbackToolHref,
+			feedbackPageTitle = this.feedbackPageTitle,
+			dialogConfig = {};
+
 		switch ( status ) {
 			case 'submitted':
+				feedbackToolHref = this.foreignApi
+					?
+						this.foreignApi.get( {
+							action: 'query',
+							meta: 'siteinfo',
+							siprop: 'general'
+						} ).then( function ( data ) {
+							return data.server + data.script + '?title=' + feedbackPageTitle;
+						} )
+					:
+						this.feedbackPageTitle.getUrl();
+
 				dialogConfig = {
 					title: mw.msg( 'feedback-thanks-title' ),
 					message: $( '<span>' ).msg(
@@ -104,7 +120,7 @@
 						this.feedbackPageTitle.getNameText(),
 						$( '<a>' ).attr( {
 							target: '_blank',
-							href: this.feedbackPageTitle.getUrl()
+							href: feedbackToolHref
 						} )
 					),
 					actions: [
