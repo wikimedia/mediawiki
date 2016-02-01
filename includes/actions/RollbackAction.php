@@ -103,7 +103,7 @@ class RollbackAction extends FormlessAction {
 			->parseAsBlock() );
 
 		if ( $user->getBoolOption( 'watchrollback' ) ) {
-			$user->addWatch( $this->page->getTitle(), WatchedItem::IGNORE_USER_RIGHTS );
+			$user->addWatch( $this->page->getTitle(), false );
 		}
 
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
