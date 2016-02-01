@@ -571,8 +571,10 @@ class SpecialContributions extends IncludableSpecialPage {
 				)
 		);
 
+		$filters = array();
+
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
-			$deletedOnlyCheck = Html::rawElement(
+			$filters[] = Html::rawElement(
 				'span',
 				array( 'class' => 'mw-input-with-label' ),
 				Xml::checkLabel(
@@ -583,11 +585,9 @@ class SpecialContributions extends IncludableSpecialPage {
 					array( 'class' => 'mw-input' )
 				)
 			);
-		} else {
-			$deletedOnlyCheck = '';
 		}
 
-		$checkLabelTopOnly = Html::rawElement(
+		$filters[] = Html::rawElement(
 			'span',
 			array( 'class' => 'mw-input-with-label' ),
 			Xml::checkLabel(
@@ -598,7 +598,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				array( 'class' => 'mw-input' )
 			)
 		);
-		$checkLabelNewOnly = Html::rawElement(
+		$filters[] = Html::rawElement(
 			'span',
 			array( 'class' => 'mw-input-with-label' ),
 			Xml::checkLabel(
@@ -609,10 +609,16 @@ class SpecialContributions extends IncludableSpecialPage {
 				array( 'class' => 'mw-input' )
 			)
 		);
+
+		Hooks::run(
+			'SpecialContributions::getForm::filters',
+			array( $this, &$filters )
+		);
+
 		$extraOptions = Html::rawElement(
 			'td',
 			array( 'colspan' => 2 ),
-			$deletedOnlyCheck . $checkLabelTopOnly . $checkLabelNewOnly
+			implode( '', $filters )
 		);
 
 		$dateSelectionAndSubmit = Xml::tags( 'td', array( 'colspan' => 2 ),
