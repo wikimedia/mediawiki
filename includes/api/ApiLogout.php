@@ -33,16 +33,6 @@
 class ApiLogout extends ApiBase {
 
 	public function execute() {
-		// Make sure it's possible to log out
-		$session = MediaWiki\Session\SessionManager::getGlobalSession();
-		if ( !$session->canSetUser() ) {
-			$this->dieUsage(
-				'Cannot log out when using ' .
-					$session->getProvider()->describe( Language::factory( 'en' ) ),
-				'cannotlogout'
-			);
-		}
-
 		$user = $this->getUser();
 		$oldName = $user->getName();
 		$user->logout();

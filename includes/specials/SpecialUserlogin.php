@@ -21,7 +21,6 @@
  * @ingroup SpecialPage
  */
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\Session\SessionManager;
 
 /**
  * Implements Special:UserLogin
@@ -268,9 +267,9 @@ class LoginForm extends SpecialPage {
 	 * @param string|null $subPage
 	 */
 	public function execute( $subPage ) {
-		// Make sure session is persisted
-		$session = MediaWiki\Session\SessionManager::getGlobalSession();
-		$session->persist();
+		if ( session_id() == '' ) {
+			wfSetupSession();
+		}
 
 		$this->load();
 
@@ -280,17 +279,6 @@ class LoginForm extends SpecialPage {
 			$this->mType = 'signup';
 		}
 		$this->setHeaders();
-
-		// Make sure it's possible to log in
-		if ( $this->mType !== 'signup' && !$session->canSetUser() ) {
-			throw new ErrorPageError(
-				'cannotloginnow-title',
-				'cannotloginnow-text',
-				array(
-					$session->getProvider()->describe( RequestContext::getMain()->getLanguage() )
-				)
-			);
-		}
 
 		/**
 		 * In the case where the user is already logged in, and was redirected to
@@ -531,8 +519,9 @@ class LoginForm extends SpecialPage {
 		}
 
 		# Request forgery checks.
-		$token = self::getCreateaccountToken();
-		if ( $token->wasNew() ) {
+		if ( !self::getCreateaccountToken() ) {
+			self::setCreateaccountToken();
+
 			return Status::newFatal( 'nocookiesfornew' );
 		}
 
@@ -542,7 +531,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		# Validate the createaccount token
-		if ( !$token->match( $this->mToken ) ) {
+		if ( $this->mToken !== self::getCreateaccountToken() ) {
 			return Status::newFatal( 'sessionfailure' );
 		}
 
@@ -736,8 +725,9 @@ class LoginForm extends SpecialPage {
 		// but wrong-token attempts do.
 
 		// If the user doesn't have a login token yet, set one.
-		$token = self::getLoginToken();
-		if ( $token->wasNew() ) {
+		if ( !self::getLoginToken() ) {
+			self::setLoginToken();
+
 			return self::NEED_TOKEN;
 		}
 		// If the user didn't pass a login token, tell them we need one
@@ -751,7 +741,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		// Validate the login token
-		if ( !$token->match( $this->mToken ) ) {
+		if ( $this->mToken !== self::getLoginToken() ) {
 			return self::WRONG_TOKEN;
 		}
 
@@ -1390,7 +1380,7 @@ class LoginForm extends SpecialPage {
 			if ( $user->isLoggedIn() ) {
 				$this->mUsername = $user->getName();
 			} else {
-				$this->mUsername = $this->getRequest()->getSession()->suggestLoginUsername();
+				$this->mUsername = $this->getRequest()->getCookie( 'UserName' );
 			}
 		}
 
@@ -1490,9 +1480,15 @@ class LoginForm extends SpecialPage {
 		$template->set( 'loggedinuser', $user->getName() );
 
 		if ( $this->mType == 'signup' ) {
-			$template->set( 'token', self::getCreateaccountToken()->toString() );
+			if ( !self::getCreateaccountToken() ) {
+				self::setCreateaccountToken();
+			}
+			$template->set( 'token', self::getCreateaccountToken() );
 		} else {
-			$template->set( 'token', self::getLoginToken()->toString() );
+			if ( !self::getLoginToken() ) {
+				self::setLoginToken();
+			}
+			$template->set( 'token', self::getLoginToken() );
 		}
 
 		# Prepare language selection links as needed
@@ -1558,35 +1554,29 @@ class LoginForm extends SpecialPage {
 	 * @return bool
 	 */
 	function hasSessionCookie() {
-		global $wgDisableCookieCheck, $wgInitialSessionId;
+		global $wgDisableCookieCheck;
 
-		return $wgDisableCookieCheck || (
-			$wgInitialSessionId &&
-			$this->getRequest()->getSession()->getId() === (string)$wgInitialSessionId
-		);
+		return $wgDisableCookieCheck ? true : $this->getRequest()->checkSessionCookie();
 	}
 
 	/**
 	 * Get the login token from the current session
-	 * @since 1.27 returns a MediaWiki\\Session\\Token instead of a string
-	 * @return MediaWiki\\Session\\Token
+	 * @return mixed
 	 */
 	public static function getLoginToken() {
 		global $wgRequest;
-		return $wgRequest->getSession()->getToken( '', 'login' );
+
+		return $wgRequest->getSessionData( 'wsLoginToken' );
 	}
 
 	/**
-	 * Formerly randomly generated a login token that would be returned by
-	 * $this->getLoginToken().
-	 *
-	 * Since 1.27, this is a no-op. The token is generated as necessary by
-	 * $this->getLoginToken().
-	 *
-	 * @deprecated since 1.27
+	 * Randomly generate a new login token and attach it to the current session
 	 */
 	public static function setLoginToken() {
-		wfDeprecated( __METHOD__, '1.27' );
+		global $wgRequest;
+		// Generate a token directly instead of using $user->getEditToken()
+		// because the latter reuses $_SESSION['wsEditToken']
+		$wgRequest->setSessionData( 'wsLoginToken', MWCryptRand::generateHex( 32 ) );
 	}
 
 	/**
@@ -1594,30 +1584,24 @@ class LoginForm extends SpecialPage {
 	 */
 	public static function clearLoginToken() {
 		global $wgRequest;
-		$wgRequest->getSession()->resetToken( 'login' );
+		$wgRequest->setSessionData( 'wsLoginToken', null );
 	}
 
 	/**
 	 * Get the createaccount token from the current session
-	 * @since 1.27 returns a MediaWiki\\Session\\Token instead of a string
-	 * @return MediaWiki\\Session\\Token
+	 * @return mixed
 	 */
 	public static function getCreateaccountToken() {
 		global $wgRequest;
-		return $wgRequest->getSession()->getToken( '', 'createaccount' );
+		return $wgRequest->getSessionData( 'wsCreateaccountToken' );
 	}
 
 	/**
-	 * Formerly randomly generated a createaccount token that would be returned
-	 * by $this->getCreateaccountToken().
-	 *
-	 * Since 1.27, this is a no-op. The token is generated as necessary by
-	 * $this->getCreateaccountToken().
-	 *
-	 * @deprecated since 1.27
+	 * Randomly generate a new createaccount token and attach it to the current session
 	 */
 	public static function setCreateaccountToken() {
-		wfDeprecated( __METHOD__, '1.27' );
+		global $wgRequest;
+		$wgRequest->setSessionData( 'wsCreateaccountToken', MWCryptRand::generateHex( 32 ) );
 	}
 
 	/**
@@ -1625,7 +1609,7 @@ class LoginForm extends SpecialPage {
 	 */
 	public static function clearCreateaccountToken() {
 		global $wgRequest;
-		$wgRequest->getSession()->resetToken( 'createaccount' );
+		$wgRequest->setSessionData( 'wsCreateaccountToken', null );
 	}
 
 	/**
@@ -1637,7 +1621,7 @@ class LoginForm extends SpecialPage {
 			$wgCookieSecure = false;
 		}
 
-		MediaWiki\Session\SessionManager::getGlobalSession()->resetId();
+		wfResetSessionID();
 	}
 
 	/**
