@@ -322,6 +322,17 @@ changes to languages because of Phabricator reports.
 * ContentHandler::supportsCategories method added. Default is true.
   CategoryMembershipChangeJob updates are skipped for content that
   does not support categories.
+* Database logic was removed from WatchedItem and a WatchedItemStore was created:
+** WatchedItem::IGNORE_USER_RIGHTS and WatchedItem::CHECK_USER_RIGHTS were deprecated.
+   User::IGNORE_USER_RIGHTS and User::CHECK_USER_RIGHTS were introduced.
+** WatchedItem::fromUserTitle was deprecated in favour of the constructor.
+** WatchedItem::resetNotificationTimestamp was deprecated.
+** WatchedItem::batchAddWatch was deprecated.
+** WatchedItem::addWatch was deprecated.
+** WatchedItem::removeWatch was deprecated.
+** WatchedItem::isWatched was deprecated.
+** WatchedItem::duplicateEntries was deprecated.
+** User::getWatchedItem was removed.
 
 == Compatibility ==
 
