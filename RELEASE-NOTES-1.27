@@ -156,6 +156,8 @@ production.
   aria-describedby, aria-flowto, aria-label, aria-labelledby, aria-owns.
 * Removed "presentation" restriction on the HTML role attribute in wikitext.
   All values are now allowed for the role attribute.
+* (T120649) Message class methods dateParams(), timeParams(), and dateTimeParams()
+  were added.
 
 === External library changes in 1.27 ===
 
