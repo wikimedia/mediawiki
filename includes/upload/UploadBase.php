@@ -716,7 +716,7 @@ abstract class UploadBase {
 				WatchAction::doWatch(
 					$this->getLocalFile()->getTitle(),
 					$user,
-					WatchedItem::IGNORE_USER_RIGHTS
+					false
 				);
 			}
 			Hooks::run( 'UploadComplete', array( &$this ) );
