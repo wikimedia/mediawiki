@@ -6334,6 +6334,24 @@ parsoid=wt2html,html2html
 <td data-parsoid='{"startTagSrc":"| ","attrSepSrc":"|","autoInsertedEnd":true}'><a rel="mw:ExtLink" href="ftp://|x||"></a>" onmouseover="alert(document.cookie)">test</td></tr></tbody></table>
 !! end
 
+!! test
+! and || in element attributes should not be parsed as <th>/<td>
+!! wikitext
+{|
+| <div style="color: red !important;" data-contrived="put this here ||">hi</div>
+|}
+!! html/php
+<table>
+<tr>
+<td> <div style="color: red !important;" data-contrived="put this here &#124;&#124;">hi</div>
+</td></tr></table>
+
+!! html/parsoid
+<table>
+<tbody><tr><td> <div style="color: red !important;" data-contrived="put this here ||" data-parsoid='{"stx":"html"}'>hi</div></td></tr>
+</tbody></table>
+!! end
+
 # FIXME: The output seems broken. Filed as T110268.
 !! test
 ! and || in td attributes should not be parsed as <th>/<td>
