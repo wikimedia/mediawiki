@@ -2098,7 +2098,7 @@ class EditPage {
 		$watch = $this->watchthis;
 		// Do this in its own transaction to reduce contention...
 		DeferredUpdates::addCallableUpdate( function () use ( $user, $title, $watch ) {
-			if ( $watch == $user->isWatched( $title, WatchedItem::IGNORE_USER_RIGHTS ) ) {
+			if ( $watch == $user->isWatched( $title, false ) ) {
 				return; // nothing to change
 			}
 			WatchAction::doWatchOrUnwatch( $watch, $title, $user );
