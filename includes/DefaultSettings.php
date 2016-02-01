@@ -4633,6 +4633,18 @@ $wgUserrightsInterwikiDelimiter = '@';
  */
 $wgSecureLogin = false;
 
+/**
+ * Versioning for authentication tokens.
+ *
+ * If non-null, this is combined with the user's secret (the user_token field
+ * in the DB) to generate the token cookie. Changing this will invalidate all
+ * active sessions (i.e. it will log everyone out).
+ *
+ * @since 1.27
+ * @var string|null
+ */
+$wgAuthenticationTokenVersion = null;
+
 /** @} */ # end user accounts }
 
 /************************************************************************//**
