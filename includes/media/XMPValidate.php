@@ -70,7 +70,7 @@ class XMPValidate implements LoggerAwareInterface {
 			return;
 		}
 		if ( $val !== 'True' && $val !== 'False' ) {
-			$this->debug->info( __METHOD__ . " Expected True or False but got $val" );
+			$this->logger->info( __METHOD__ . " Expected True or False but got $val" );
 			$val = null;
 		}
 	}
