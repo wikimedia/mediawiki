@@ -1,9 +1,38 @@
 {
 	"@metadata": {
 		"authors": [
-			"Snævar"
+			"Snævar",
+			"Sveinn í Felli"
 		]
 	},
+	"config-information": "Upplýsingar",
+	"config-your-language": "Tungumálið þitt:",
+	"config-your-language-help": "Veldu tungumál að nota við uppsetninguna.",
+	"config-back": "← Til baka",
+	"config-continue": "Halda áfram →",
+	"config-page-language": "Tungumál",
+	"config-page-welcome": "Velkomin í MediaWiki!",
+	"config-page-dbconnect": "Tengjast gagnagrunni",
+	"config-page-name": "Heiti",
+	"config-page-options": "Valkostir",
+	"config-page-install": "Setja upp",
+	"config-page-complete": "Lokið!",
+	"config-page-restart": "Byrja uppsetningu aftur",
+	"config-page-readme": "Lesa meira",
+	"config-page-releasenotes": "Athugasemdir með útgáfu",
+	"config-page-copying": "Afritun",
+	"config-page-upgradedoc": "Uppfærsla",
+	"config-env-php": "PHP $1 er uppsett.",
+	"config-env-hhvm": "HHVM $1 er uppsett.",
+	"config-mysql-utf8": "UTF-8",
+	"config-ns-generic": "Verkefni",
+	"config-admin-name": "Notandanafnið þitt:",
+	"config-admin-password": "Lykilorð:",
+	"config-admin-password-confirm": "Lykilorðið aftur:",
+	"config-admin-email": "Tölvupóstfang:",
+	"config-license-pd": "Almenningseign",
+	"config-install-step-done": "lokið",
+	"config-install-step-failed": "mistókst",
 	"mainpagetext": "'''Uppsetning á MediaWiki heppnaðist.'''",
 	"mainpagedocfooter": "Ráðfærðu þig við [//meta.wikimedia.org/wiki/Help:Contents Notandahandbókina] fyrir frekari upplýsingar um notkun wiki-hugbúnaðarins.\n\n== Fyrir byrjendur ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Listi yfir uppsetningarstillingar]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki Algengar spurningar MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Póstlisti MediaWiki-útgáfa]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Læra hvernig á að berjast við amapóst á þínum wiki]"
 }

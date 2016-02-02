@@ -400,8 +400,6 @@
 	"virus-scanfailed": "scanare eșuată (cod $1)",
 	"virus-unknownscanner": "antivirus necunoscut:",
 	"logouttext": "'''Acum sunteți deconectat.'''\n\nȚineți minte că anumite pagini pot fi în continuare afișate ca și când ați fi autentificat până când curățați memoria cache a navigatorului.",
-	"cannotlogoutnow-title": "Nu se poate deconecta acum",
-	"cannotlogoutnow-text": "Deconectarea nu este posibilă când se utilizează $1.",
 	"welcomeuser": "Bun venit, $1!",
 	"welcomecreation-msg": "Contul dumneavoastră a fost creat.\nNu uitați să vă modificați [[Special:Preferences|preferințele]] pentru {{SITENAME}}.",
 	"yourname": "Nume de utilizator:",
@@ -418,8 +416,6 @@
 	"remembermypassword": "Autentificare automată de la acest calculator (expiră după {{PLURAL:$1|24 de ore|$1 zile|$1 de zile}})",
 	"userlogin-remembermypassword": "Păstrează-mă autentificat",
 	"userlogin-signwithsecure": "Utilizează conexiunea securizată",
-	"cannotloginnow-title": "Nu se poate conecta acum",
-	"cannotloginnow-text": "Conectarea nu este posibilă când se utilizează $1.",
 	"yourdomainname": "Domeniul dumneavoastră:",
 	"password-change-forbidden": "Nu puteți schimba parole pe acest wiki.",
 	"externaldberror": "A fost fie o eroare de bază de date pentru o autentificare extenă sau nu aveți permisiunea să actualizați contul extern.",
@@ -525,11 +521,6 @@
 	"resetpass_submit": "Setează parola și autentifică",
 	"changepassword-success": "Parola dumneavoastră a fost schimbată cu succes!",
 	"changepassword-throttled": "Ați avut prea multe încercări recente de a vă autentifica.\nVă rugăm să așteptați $1 până să reîncercați.",
-	"botpasswords": "Parole roboți",
-	"botpasswords-summary": "<em>Parolele de roboți</em> permit accesul la un cont de utilizator prin intermediul API-ului fără utilizarea identificatorilor de conectare principali ai contului. Este posibil ca drepturile de utilizator disponibile după conectarea cu parole de roboți să fie restricționate.\n\nDacă nu știți exact de ce ați recurge la această metodă, probabil ar trebui să nu o faceți. Nimeni nu ar trebui să vă ceară vreodată să generați acest tip de parolă și să le-o furnizați.",
-	"botpasswords-disabled": "Parolele de roboți sunt dezactivate.",
-	"botpasswords-existing": "Parole de robot existente",
-	"botpasswords-label-restrictions": "Restricții de utilizare:",
 	"resetpass_forbidden": "Parolele nu pot fi schimbate.",
 	"resetpass-no-info": "Trebuie să fiți autentificat pentru a accesa această pagină direct.",
 	"resetpass-submit-loggedin": "Modifică parola",
@@ -3493,7 +3484,5 @@
 	"mw-widgets-dateinput-placeholder-month": "AAAA-LL",
 	"mw-widgets-titleinput-description-new-page": "pagina nu există încă",
 	"mw-widgets-titleinput-description-redirect": "redirecționare către $1",
-	"api-error-blacklisted": "Vă rugăm să alegeți un alt titlu, mai descriptiv.",
-	"sessionprovider-generic": "sesiuni $1",
-	"sessionprovider-mediawiki-session-cookiesessionprovider": "sesiuni pe bază de module cookie."
+	"api-error-blacklisted": "Vă rugăm să alegeți un alt titlu, mai descriptiv."
 }

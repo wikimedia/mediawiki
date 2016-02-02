@@ -524,8 +524,6 @@
 	"resetpass_submit": "Постави лозинку и пријави ме",
 	"changepassword-success": "Ваша лозинка је успешно промењена!",
 	"changepassword-throttled": "Превише пута сте покушали да се пријавите.\nМолимо вас да сачекате $1 пре него што покушате поново.",
-	"botpasswords-label-cancel": "Откажи",
-	"botpasswords-label-delete": "Обриши",
 	"resetpass_forbidden": "Лозинка не може бити промењена",
 	"resetpass-no-info": "Морате бити пријављени да бисте приступили овој страници.",
 	"resetpass-submit-loggedin": "Промени лозинку",
