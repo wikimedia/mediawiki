@@ -279,11 +279,12 @@ class SpecialActiveUsers extends SpecialPage {
 
 		// Mention the level of cache staleness...
 		$dbr = wfGetDB( DB_SLAVE, 'recentchanges' );
-		$rcMax = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)' );
+		$rcMax = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', '', __METHOD__ );
 		if ( $rcMax ) {
 			$cTime = $dbr->selectField( 'querycache_info',
 				'qci_timestamp',
-				array( 'qci_type' => 'activeusers' )
+				array( 'qci_type' => 'activeusers' ),
+				__METHOD__
 			);
 			if ( $cTime ) {
 				$secondsOld = wfTimestamp( TS_UNIX, $rcMax ) - wfTimestamp( TS_UNIX, $cTime );
