@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"OC Ripper"
+			"OC Ripper",
+			"Sf"
 		]
 	},
 	"ooui-outline-control-move-down": "Pomakni stavku dolje",
@@ -16,6 +17,8 @@
 	"ooui-dialog-process-dismiss": "Odbaci",
 	"ooui-dialog-process-retry": "Pokušajte ponovo",
 	"ooui-dialog-process-continue": "Nastavi",
+	"ooui-selectfile-button-select": "Izaberi datoteku",
 	"ooui-selectfile-not-supported": "Izbor datoteke nije podržan",
-	"ooui-selectfile-placeholder": "Nijedna datoteka nije odabrana"
+	"ooui-selectfile-placeholder": "Nijedna datoteka nije odabrana",
+	"ooui-selectfile-dragdrop-placeholder": "Prevuci datoteku ovdje"
 }

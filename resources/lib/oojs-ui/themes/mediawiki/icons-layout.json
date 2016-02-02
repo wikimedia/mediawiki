@@ -4,20 +4,20 @@
 	"intro": "@import '../../../../src/styles/common';",
 	"variants": {
 		"invert": {
-			"color": "#FFFFFF",
+			"color": "#ffffff",
 			"global": true
 		},
 		"progressive": {
-			"color": "#347BFF"
+			"color": "#347bff"
 		},
 		"constructive": {
-			"color": "#00AF89"
+			"color": "#00af89"
 		},
 		"destructive": {
-			"color": "#D11D13"
+			"color": "#d11d13"
 		},
 		"warning": {
-			"color": "#FF5D00"
+			"color": "#ff5d00"
 		}
 	},
 	"images": {

@@ -17,7 +17,8 @@
 			"Zhangjintao",
 			"乌拉跨氪",
 			"Great Brightstar",
-			"Nbdd0121"
+			"Nbdd0121",
+			"Yejianfei"
 		]
 	},
 	"ooui-outline-control-move-down": "向下移动一项",
@@ -33,7 +34,7 @@
 	"ooui-dialog-process-retry": "重试",
 	"ooui-dialog-process-continue": "继续",
 	"ooui-selectfile-button-select": "选择一个文件",
-	"ooui-selectfile-not-supported": "文件选择不受支持",
+	"ooui-selectfile-not-supported": "不支持文件选择器",
 	"ooui-selectfile-placeholder": "没有选定文件",
 	"ooui-selectfile-dragdrop-placeholder": "将文件拖动至此"
 }
