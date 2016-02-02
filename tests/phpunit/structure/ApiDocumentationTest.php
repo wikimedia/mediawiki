@@ -33,6 +33,9 @@ class ApiDocumentationTest extends MediaWikiTestCase {
 		if ( !self::$main ) {
 			self::$main = new ApiMain( RequestContext::getMain() );
 			self::$main->getContext()->setLanguage( 'en' );
+			self::$main->getContext()->setTitle(
+				Title::makeTitle( NS_SPECIAL, 'Badtitle/dummy title for ApiDocumentationTest' )
+			);
 		}
 		return self::$main;
 	}
