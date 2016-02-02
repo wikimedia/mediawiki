@@ -114,7 +114,7 @@
 	/**
 	 * Set the file to be uploaded.
 	 *
-	 * @param {HTMLInputElement|File} file
+	 * @param {HTMLInputElement|File|Blob} file
 	 */
 	UP.setFile = function ( file ) {
 		this.file = file;
@@ -159,7 +159,7 @@
 	/**
 	 * Get the file being uploaded.
 	 *
-	 * @return {HTMLInputElement|File}
+	 * @return {HTMLInputElement|File|Blob}
 	 */
 	UP.getFile = function () {
 		return this.file;

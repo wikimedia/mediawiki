@@ -116,7 +116,7 @@
 		 * - It is incompatible with uploads to a foreign wiki using mw.ForeignApi
 		 * - You must pass a HTMLInputElement and not a File for it to be possible
 		 *
-		 * @param {HTMLInputElement|File} file HTML input type=file element with a file already inside
+		 * @param {HTMLInputElement|File|Blob} file HTML input type=file element with a file already inside
 		 *  of it, or a File object.
 		 * @param {Object} data Other upload options, see action=upload API docs for more
 		 * @return {jQuery.Promise}
@@ -134,7 +134,8 @@
 				throw new Error( 'No file' );
 			}
 
-			canUseFormData = formDataAvailable() && file instanceof window.File;
+			// Blobs are allowed in formdata uploads, it turns out
+			canUseFormData = formDataAvailable() && ( file instanceof window.File || file instanceof window.Blob );
 
 			if ( !isFileInput && !canUseFormData ) {
 				throw new Error( 'Unsupported argument type passed to mw.Api.upload' );
