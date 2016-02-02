@@ -241,8 +241,10 @@ class PHPSessionHandler {
 			// This can happen under normal circumstances, if the session exists but is
 			// invalid. Let's emit a log warning instead of a PHP warning.
 			$this->logger->warning(
-				__METHOD__ . ": Session \"$id\" cannot be loaded, skipping write."
-			);
+				__METHOD__ . ': Session "{session}" cannot be loaded, skipping write.',
+				array(
+					'session' => $id,
+			) );
 			return true;
 		}
 
