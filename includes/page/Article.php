@@ -35,7 +35,7 @@ class Article implements Page {
 	/** @var IContextSource The context this Article is executed in */
 	protected $mContext;
 
-	/** @var WikiPage The WikiPage object of this instance */
+	/** @var Page|WikiPage|Article The Page object of this instance */
 	protected $mPage;
 
 	/** @var ParserOptions ParserOptions object for $wgUser articles */
