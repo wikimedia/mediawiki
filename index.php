@@ -35,6 +35,8 @@
 require_once dirname( __FILE__ ) . '/includes/PHPVersionCheck.php';
 wfEntryPointCheck( 'index.php' );
 
+$abc = [];
+
 require __DIR__ . '/includes/WebStart.php';
 
 $mediaWiki = new MediaWiki();
