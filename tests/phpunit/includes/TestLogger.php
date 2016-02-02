@@ -23,6 +23,7 @@
  * @author Brad Jorsch <bjorsch@wikimedia.org>
  */
 
+use MediaWiki\Logger\LegacyLogger;
 use Psr\Log\LogLevel;
 
 /**
@@ -70,7 +71,8 @@ class TestLogger extends \Psr\Log\AbstractLogger {
 	}
 
 	public function log( $level, $message, array $context = array() ) {
-		$message = trim( $message );
+		// Expand PSR-3 placeholders
+		$message = LegacyLogger::interpolate( trim( $message ), $context );
 
 		if ( $this->filter ) {
 			$message = call_user_func( $this->filter, $message, $level );
