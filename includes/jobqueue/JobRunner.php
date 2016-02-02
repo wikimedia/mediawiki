@@ -444,7 +444,12 @@ class JobRunner implements LoggerAwareInterface {
 			$m = array();
 			if ( preg_match( '!^(\d+)(k|m|g|)$!i', ini_get( 'memory_limit' ), $m ) ) {
 				list( , $num, $unit ) = $m;
-				$conv = array( 'g' => 1073741824, 'm' => 1048576, 'k' => 1024, '' => 1 );
+				$conv = array(
+					'' => 1,
+					'k' => 1024,
+					'm' => 1024 ** 2,
+					'g' => 1024 ** 3,
+				);
 				$maxBytes = $num * $conv[strtolower( $unit )];
 			} else {
 				$maxBytes = 0;
