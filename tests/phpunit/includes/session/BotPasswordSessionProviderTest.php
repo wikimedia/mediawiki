@@ -207,11 +207,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 	}
 
 	public function testCheckSessionInfo() {
-		$logger = new \TestLogger( true, function ( $m ) {
-			return preg_replace(
-				'/^Session \[\d+\][a-zA-Z0-9_\\\\]+<(?:null|anon|[+-]:\d+:\w+)>\w+: /', 'Session X: ', $m
-			);
-		} );
+		$logger = new \TestLogger( true );
 		$provider = $this->getProvider();
 		$provider->setLogger( $logger );
 
@@ -242,7 +238,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 
 			$this->assertFalse( $provider->refreshSessionInfo( $info, $request, $metadata ) );
 			$this->assertSame( array(
-				array( LogLevel::INFO, "Session X: Missing metadata: $key" )
+				array( LogLevel::INFO, 'Session "{session}": Missing metadata: {missing}' )
 			), $logger->getBuffer() );
 			$logger->clearBuffer();
 		}
@@ -253,7 +249,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 		$metadata = $info->getProviderMetadata();
 		$this->assertFalse( $provider->refreshSessionInfo( $info, $request, $metadata ) );
 		$this->assertSame( array(
-			array( LogLevel::INFO, "Session X: No BotPassword for {$bp->getUserCentralId()} Foobar" ),
+			array( LogLevel::INFO, 'Session "{session}": No BotPassword for {centralId} {appId}' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -263,7 +259,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 		$metadata = $info->getProviderMetadata();
 		$this->assertFalse( $provider->refreshSessionInfo( $info, $request, $metadata ) );
 		$this->assertSame( array(
-			array( LogLevel::INFO, 'Session X: BotPassword token check failed' ),
+			array( LogLevel::INFO, 'Session "{session}": BotPassword token check failed' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -275,7 +271,7 @@ class BotPasswordSessionProviderTest extends MediaWikiTestCase {
 		$metadata = $info->getProviderMetadata();
 		$this->assertFalse( $provider->refreshSessionInfo( $info, $request2, $metadata ) );
 		$this->assertSame( array(
-			array( LogLevel::INFO, 'Session X: Restrictions check failed' ),
+			array( LogLevel::INFO, 'Session "{session}": Restrictions check failed' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
