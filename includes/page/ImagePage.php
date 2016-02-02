@@ -39,6 +39,11 @@ class ImagePage extends Article {
 	protected $mExtraDescription = false;
 
 	/**
+	 * @var WikiFilePage
+	 */
+	protected $mPage;
+
+	/**
 	 * @param Title $title
 	 * @return WikiFilePage
 	 */
@@ -1202,6 +1207,38 @@ EOT
 			}
 		}
 		return $thumbSizes;
+	}
+
+	/**
+	 * @see WikiFilePage::getFile
+	 * @return bool|File
+	 */
+	public function getFile() {
+		return $this->mPage->getFile();
+	}
+
+	/**
+	 * @see WikiFilePage::isLocal
+	 * @return bool
+	 */
+	public function isLocal() {
+		return $this->mPage->isLocal();
+	}
+
+	/**
+	 * @see WikiFilePage::getDuplicates
+	 * @return array|null
+	 */
+	public function getDuplicates() {
+		return $this->mPage->getDuplicates();
+	}
+
+	/**
+	 * @see WikiFilePage::getForeignCategories
+	 * @return TitleArray|Title[]
+	 */
+	public function getForeignCategories() {
+		$this->mPage->getForeignCategories();
 	}
 
 }

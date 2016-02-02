@@ -30,6 +30,11 @@ class CategoryPage extends Article {
 	protected $mCategoryViewerClass = 'CategoryViewer';
 
 	/**
+	 * @var WikiCategoryPage
+	 */
+	protected $mPage;
+
+	/**
 	 * @param Title $title
 	 * @return WikiCategoryPage
 	 */
