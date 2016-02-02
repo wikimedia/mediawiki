@@ -118,26 +118,40 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 			array_keys( $metadata )
 		);
 		if ( $missingKeys ) {
-			$this->logger->info( "Session $info: Missing metadata: " . join( ', ', $missingKeys ) );
+			$this->logger->info( 'Session "{session}": Missing metadata: {missing}', array(
+				'session' => $info,
+				'missing' => join( ', ', $missingKeys ),
+			) );
 			return false;
 		}
 
 		$bp = BotPassword::newFromCentralId( $metadata['centralId'], $metadata['appId'] );
 		if ( !$bp ) {
 			$this->logger->info(
-				"Session $info: No BotPassword for {$metadata['centralId']} {$metadata['appId']}"
-			);
+				'Session "{session}": No BotPassword for {centralId} {appId}',
+				array(
+					'session' => $info,
+					'centralId' => $metadata['centralId'],
+					'appId' => $metadata['appId'],
+			) );
 			return false;
 		}
 
 		if ( !hash_equals( $metadata['token'], $bp->getToken() ) ) {
-			$this->logger->info( "Session $info: BotPassword token check failed" );
+			$this->logger->info( 'Session "{session}": BotPassword token check failed', array(
+				'session' => $info,
+			) );
 			return false;
 		}
 
 		$status = $bp->getRestrictions()->check( $request );
 		if ( !$status->isOk() ) {
-			$this->logger->info( "Session $info: Restrictions check failed", $status->getValue() );
+			$this->logger->info(
+				'Session "{session}": Restrictions check failed',
+				array(
+					'session' => $info,
+					'restrictions' => $status->getValue(),
+			) );
 			return false;
 		}
 

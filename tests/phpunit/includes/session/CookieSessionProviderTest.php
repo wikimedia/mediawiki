@@ -4,6 +4,7 @@ namespace MediaWiki\Session;
 
 use MediaWikiTestCase;
 use User;
+use Psr\Log\LogLevel;
 
 /**
  * @group Session
@@ -159,7 +160,8 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 			'cookieOptions' => array( 'prefix' => 'x' ),
 		);
 		$provider = new CookieSessionProvider( $params );
-		$provider->setLogger( new \TestLogger() );
+		$logger = new \TestLogger( true );
+		$provider->setLogger( $logger );
 		$provider->setConfig( $this->getConfig() );
 		$provider->setManager( new SessionManager() );
 
@@ -174,6 +176,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$request = new \FauxRequest();
 		$info = $provider->provideSessionInfo( $request );
 		$this->assertNull( $info );
+		$logger->clearBuffer();
 
 		// Session key only
 		$request = new \FauxRequest();
@@ -188,6 +191,14 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$this->assertSame( 0, $info->getUserInfo()->getId() );
 		$this->assertNull( $info->getUserInfo()->getName() );
 		$this->assertFalse( $info->forceHTTPS() );
+		$this->assertSame( array(
+			array(
+				LogLevel::WARNING,
+				'Session "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" ' .
+				'requested without UserID cookie',
+			),
+		), $logger->getBuffer() );
+		$logger->clearBuffer();
 
 		// User, no session key
 		$request = new \FauxRequest();
