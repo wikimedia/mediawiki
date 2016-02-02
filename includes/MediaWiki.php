@@ -247,6 +247,7 @@ class MediaWiki {
 			// Prevent information leak via Special:MyPage et al (T109724)
 			if ( $title->isSpecialPage() ) {
 				$specialPage = SpecialPageFactory::getPage( $title->getDBKey() );
+				$specialPage->setContext( $this->context );
 				if ( $specialPage instanceof RedirectSpecialPage
 					&& $this->config->get( 'HideIdentifiableRedirects' )
 					&& $specialPage->personallyIdentifiableTarget()
