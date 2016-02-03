@@ -957,7 +957,8 @@ return [
 		'dependencies' => [
 			'mediawiki.messagePoster',
 			'mediawiki.Title',
-			'oojs-ui',
+			'oojs-ui-core',
+			'oojs-ui-windows',
 		],
 		'messages' => [
 			'feedback-adding',
@@ -993,7 +994,7 @@ return [
 		'scripts' => 'resources/src/mediawiki/mediawiki.filewarning.js',
 		'styles' => 'resources/src/mediawiki/mediawiki.filewarning.less',
 		'dependencies' => [
-			'oojs-ui',
+			'oojs-ui-core',
 		],
 	],
 	'mediawiki.ForeignApi' => [
@@ -1186,7 +1187,8 @@ return [
 			'resources/src/mediawiki/mediawiki.Upload.BookletLayout.css',
 		],
 		'dependencies' => [
-			'oojs-ui',
+			'oojs-ui-core',
+			'oojs-ui-windows',
 			'oojs-ui.styles.icons-content',
 			'oojs-ui.styles.icons-editing-advanced',
 			'mediawiki.Title',
@@ -1803,7 +1805,7 @@ return [
 	'mediawiki.special.pageLanguage' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.pageLanguage.js',
 		'dependencies' => [
-			'oojs-ui',
+			'oojs-ui-core',
 		],
 	],
 	'mediawiki.special.pagesWithProp' => [
@@ -2069,7 +2071,7 @@ return [
 			],
 		],
 		'dependencies' => [
-			'oojs-ui',
+			'oojs-ui-widgets',
 			'mediawiki.widgets.styles',
 			// TitleInputWidget
 			'mediawiki.Title',
@@ -2115,7 +2117,7 @@ return [
 			'mw-widgets-dateinput-placeholder-month',
 		],
 		'dependencies' => [
-			'oojs-ui',
+			'oojs-ui-widgets',
 			'moment',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -2179,7 +2181,7 @@ return [
 			'period-pm',
 		],
 		'dependencies' => [
-			'oojs-ui',
+			'oojs-ui-core',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -2189,7 +2191,7 @@ return [
 			'resources/src/mediawiki.widgets/mw.widgets.CategorySelector.js',
 		],
 		'dependencies' => [
-			'oojs-ui',
+			'oojs-ui-widgets',
 			'mediawiki.api',
 			'mediawiki.ForeignApi',
 			'mediawiki.Title',
@@ -2204,7 +2206,7 @@ return [
 			'resources/src/mediawiki.widgets/mw.widgets.UserInputWidget.js',
 		],
 		'dependencies' => [
-			'oojs-ui',
+			'oojs-ui-core',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
