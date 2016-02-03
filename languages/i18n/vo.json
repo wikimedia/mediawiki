@@ -1177,6 +1177,7 @@
 	"pager-newer-n": "{{PLURAL:$1|nulikum 1|nulikum $1}}",
 	"pager-older-n": "{{PLURAL:$1|büikum 1|büikum $1}}",
 	"suppress": "Lovelogam",
+	"apisandbox-examples": "Sam",
 	"booksources": "Bukafons",
 	"booksources-search-legend": "Sukön bukafonis:",
 	"booksources-search": "Sukön",

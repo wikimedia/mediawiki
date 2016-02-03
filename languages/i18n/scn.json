@@ -1623,6 +1623,8 @@
 	"querypage-disabled": "Sta pàggina spiciali fu disattivata pi mutivi di pristazzioni.",
 	"apihelp": "Guida a l'API",
 	"apihelp-no-such-module": "Mòdulu «$1» nun attruvatu.",
+	"apisandbox": "Pàggina di prova API",
+	"apisandbox-submit": "Addumanna",
 	"booksources": "Fonti libbrarî",
 	"booksources-search-legend": "Arricerca di fonti libbrarî",
 	"booksources-isbn": "Còdici ISBN:",

@@ -599,7 +599,7 @@
 	"shown-title": "Monstrare $1 {{PLURAL:$1|eventum|eventus}} per paginam",
 	"viewprevnext": "Videre ($1 {{int:pipe-separator}} $2) ($3).",
 	"searchmenu-exists": "'''Iam est pagina \"[[:$1]]\"'''",
-	"searchmenu-new": "<strong>Si vis, paginam \"[[:$1]]\" crea!<strong> {{PLURAL:$2|0=|Conferatur etiam pagina sequens, ubi quaesitum quodam modo continetur.|Conferantur etiam paginae $2 sequentes, in quibus quaesitum quodam modo continetur.}}",
+	"searchmenu-new": "<strong>Si vis, paginam \"[[:$1]]\" crea!</strong> {{PLURAL:$2|0=|Conferatur etiam pagina sequens, ubi quaesitum quodam modo continetur.|Conferantur etiam paginae $2 sequentes, in quibus quaesitum quodam modo continetur.}}",
 	"searchprofile-articles": "Paginae contentorum",
 	"searchprofile-images": "Multimedia",
 	"searchprofile-everything": "Omnia",
