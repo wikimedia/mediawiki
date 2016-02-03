@@ -484,19 +484,19 @@ class NamespaceConflictChecker extends Maintenance {
 	 * Get an alternative title to move a page to. This is used if the
 	 * preferred destination title already exists.
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $linkTarget
 	 * @param array $options Associative array of validated command-line options
 	 * @return Title|bool
 	 */
-	private function getAlternateTitle( $title, $options ) {
+	private function getAlternateTitle( LinkTarget $linkTarget, $options ) {
 		$prefix = $options['add-prefix'];
 		$suffix = $options['add-suffix'];
 		if ( $prefix == '' && $suffix == '' ) {
 			return false;
 		}
 		while ( true ) {
-			$dbk = $prefix . $title->getDBkey() . $suffix;
-			$title = Title::makeTitleSafe( $title->getNamespace(), $dbk );
+			$dbk = $prefix . $linkTarget->getDBkey() . $suffix;
+			$title = Title::makeTitleSafe( $linkTarget->getNamespace(), $dbk );
 			if ( !$title ) {
 				return false;
 			}
@@ -510,14 +510,14 @@ class NamespaceConflictChecker extends Maintenance {
 	 * Move a page
 	 *
 	 * @param integer $id The page_id
-	 * @param Title $newTitle The new title
+	 * @param LinkTarget $newLinkTarget The new title link target
 	 * @return bool
 	 */
-	private function movePage( $id, Title $newTitle ) {
+	private function movePage( $id, LinkTarget $newLinkTarget ) {
 		$this->db->update( 'page',
 			array(
-				"page_namespace" => $newTitle->getNamespace(),
-				"page_title" => $newTitle->getDBkey(),
+				"page_namespace" => $newLinkTarget->getNamespace(),
+				"page_title" => $newLinkTarget->getDBkey(),
 			),
 			array(
 				"page_id" => $id,
@@ -533,7 +533,7 @@ class NamespaceConflictChecker extends Maintenance {
 			list( $table, $fieldPrefix ) = $tableInfo;
 			$this->db->update( $table,
 				// SET
-				array( "{$fieldPrefix}_from_namespace" => $newTitle->getNamespace() ),
+				array( "{$fieldPrefix}_from_namespace" => $newLinkTarget->getNamespace() ),
 				// WHERE
 				array( "{$fieldPrefix}_from" => $id ),
 				__METHOD__ );
@@ -550,12 +550,12 @@ class NamespaceConflictChecker extends Maintenance {
 	 * recentchanges review, etc.
 	 *
 	 * @param integer $id The page_id
-	 * @param Title $newTitle The new title
+	 * @param LinkTarget $linkTarget The new link target
 	 * @param string $logStatus This is set to the log status message on failure
 	 * @return bool
 	 */
-	private function canMerge( $id, Title $newTitle, &$logStatus ) {
-		$latestDest = Revision::newFromTitle( $newTitle, 0, Revision::READ_LATEST );
+	private function canMerge( $id, LinkTarget $linkTarget, &$logStatus ) {
+		$latestDest = Revision::newFromTitle( $linkTarget, 0, Revision::READ_LATEST );
 		$latestSource = Revision::newFromPageId( $id, 0, Revision::READ_LATEST );
 		if ( $latestSource->getTimestamp() > $latestDest->getTimestamp() ) {
 			$logStatus = 'cannot merge since source is later';
