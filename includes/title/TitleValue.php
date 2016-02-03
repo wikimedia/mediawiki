@@ -35,7 +35,7 @@ use Wikimedia\Assert\Assert;
  * @see https://www.mediawiki.org/wiki/Requests_for_comment/TitleValue
  * @since 1.23
  */
-class TitleValue {
+class TitleValue implements LinkTarget {
 	/**
 	 * @var int
 	 */
