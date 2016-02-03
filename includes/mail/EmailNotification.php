@@ -74,11 +74,11 @@ class EmailNotification {
 	/**
 	 * @param User $editor The editor that triggered the update.  Their notification
 	 *  timestamp will not be updated(they have already seen it)
-	 * @param Title $title The title to update timestamps for
+	 * @param LinkTarget $linkTarget The link target of the title to update timestamps for
 	 * @param string $timestamp Set the update timestamp to this value
 	 * @return int[] Array of user IDs
 	 */
-	public static function updateWatchlistTimestamp( User $editor, Title $title, $timestamp ) {
+	public static function updateWatchlistTimestamp( User $editor, LinkTarget $linkTarget, $timestamp ) {
 		global $wgEnotifWatchlist, $wgShowUpdatedMarker;
 
 		if ( !$wgEnotifWatchlist && !$wgShowUpdatedMarker ) {
@@ -90,8 +90,8 @@ class EmailNotification {
 			array( 'wl_user' ),
 			array(
 				'wl_user != ' . intval( $editor->getID() ),
-				'wl_namespace' => $title->getNamespace(),
-				'wl_title' => $title->getDBkey(),
+				'wl_namespace' => $linkTarget->getNamespace(),
+				'wl_title' => $linkTarget->getDBkey(),
 				'wl_notificationtimestamp IS NULL',
 			), __METHOD__
 		);
@@ -105,14 +105,14 @@ class EmailNotification {
 			// Update wl_notificationtimestamp for all watching users except the editor
 			$fname = __METHOD__;
 			$dbw->onTransactionIdle(
-				function () use ( $dbw, $timestamp, $watchers, $title, $fname ) {
+				function () use ( $dbw, $timestamp, $watchers, $linkTarget, $fname ) {
 					$dbw->update( 'watchlist',
 						array( /* SET */
 							'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
 						), array( /* WHERE */
 							'wl_user' => $watchers,
-							'wl_namespace' => $title->getNamespace(),
-							'wl_title' => $title->getDBkey(),
+							'wl_namespace' => $linkTarget->getNamespace(),
+							'wl_title' => $linkTarget->getDBkey(),
 						), $fname
 					);
 				}
