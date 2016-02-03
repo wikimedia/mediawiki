@@ -188,6 +188,7 @@ class Linker {
 	 *       Has compatibility issues on some setups, so avoid wherever possible.
 	 *     'http': Force a full URL with http:// as the scheme.
 	 *     'https': Force a full URL with https:// as the scheme.
+	 *     'stubThreshold' => (int): Stub threshold to use when determining link classes.
 	 * @return string HTML <a> attribute
 	 */
 	public static function link(
@@ -218,7 +219,7 @@ class Linker {
 		$target = self::normaliseSpecialPage( $target );
 
 		# If we don't know whether the page exists, let's find out.
-		if ( !in_array( 'known', $options ) && !in_array( 'broken', $options ) ) {
+		if ( !in_array( 'known', $options, true ) && !in_array( 'broken', $options, true ) ) {
 			if ( $target->isKnown() ) {
 				$options[] = 'known';
 			} else {
@@ -227,14 +228,14 @@ class Linker {
 		}
 
 		$oldquery = array();
-		if ( in_array( "forcearticlepath", $options ) && $query ) {
+		if ( in_array( "forcearticlepath", $options, true ) && $query ) {
 			$oldquery = $query;
 			$query = array();
 		}
 
 		# Note: we want the href attribute first, for prettiness.
 		$attribs = array( 'href' => self::linkUrl( $target, $query, $options ) );
-		if ( in_array( 'forcearticlepath', $options ) && $oldquery ) {
+		if ( in_array( 'forcearticlepath', $options, true ) && $oldquery ) {
 			$attribs['href'] = wfAppendQuery( $attribs['href'], $oldquery );
 		}
 
@@ -277,7 +278,7 @@ class Linker {
 	private static function linkUrl( $target, $query, $options ) {
 		# We don't want to include fragments for broken links, because they
 		# generally make no sense.
-		if ( in_array( 'broken', $options ) && $target->hasFragment() ) {
+		if ( in_array( 'broken', $options, true ) && $target->hasFragment() ) {
 			$target = clone $target;
 			$target->setFragment( '' );
 		}
@@ -285,15 +286,15 @@ class Linker {
 		# If it's a broken link, add the appropriate query pieces, unless
 		# there's already an action specified, or unless 'edit' makes no sense
 		# (i.e., for a nonexistent special page).
-		if ( in_array( 'broken', $options ) && empty( $query['action'] )
+		if ( in_array( 'broken', $options, true ) && empty( $query['action'] )
 			&& !$target->isSpecialPage() ) {
 			$query['action'] = 'edit';
 			$query['redlink'] = '1';
 		}
 
-		if ( in_array( 'http', $options ) ) {
+		if ( in_array( 'http', $options, true ) ) {
 			$proto = PROTO_HTTP;
-		} elseif ( in_array( 'https', $options ) ) {
+		} elseif ( in_array( 'https', $options, true ) ) {
 			$proto = PROTO_HTTPS;
 		} else {
 			$proto = PROTO_RELATIVE;
@@ -316,11 +317,11 @@ class Linker {
 		global $wgUser;
 		$defaults = array();
 
-		if ( !in_array( 'noclasses', $options ) ) {
+		if ( !in_array( 'noclasses', $options, true ) ) {
 			# Now build the classes.
 			$classes = array();
 
-			if ( in_array( 'broken', $options ) ) {
+			if ( in_array( 'broken', $options, true ) ) {
 				$classes[] = 'new';
 			}
 
@@ -328,8 +329,11 @@ class Linker {
 				$classes[] = 'extiw';
 			}
 
-			if ( !in_array( 'broken', $options ) ) { # Avoid useless calls to LinkCache (see r50387)
-				$colour = self::getLinkColour( $target, $wgUser->getStubThreshold() );
+			if ( !in_array( 'broken', $options, true ) ) { # Avoid useless calls to LinkCache (see r50387)
+				$colour = self::getLinkColour(
+					$target,
+					isset( $options['stubThreshold'] ) ? $options['stubThreshold'] : $wgUser->getStubThreshold()
+				);
 				if ( $colour !== '' ) {
 					$classes[] = $colour; # mw-redirect or stub
 				}
@@ -343,7 +347,7 @@ class Linker {
 		if ( $target->getPrefixedText() == '' ) {
 			# A link like [[#Foo]].  This used to mean an empty title
 			# attribute, but that's silly.  Just don't output a title.
-		} elseif ( in_array( 'known', $options ) ) {
+		} elseif ( in_array( 'known', $options, true ) ) {
 			$defaults['title'] = $target->getPrefixedText();
 		} else {
 			// This ends up in parser cache!
@@ -1845,7 +1849,7 @@ class Linker {
 		}
 
 		$editCount = false;
-		if ( in_array( 'verify', $options ) ) {
+		if ( in_array( 'verify', $options, true ) ) {
 			$editCount = self::getRollbackEditCount( $rev, true );
 			if ( $editCount === false ) {
 				return '';
@@ -1854,7 +1858,7 @@ class Linker {
 
 		$inner = self::buildRollbackLink( $rev, $context, $editCount );
 
-		if ( !in_array( 'noBrackets', $options ) ) {
+		if ( !in_array( 'noBrackets', $options, true ) ) {
 			$inner = $context->msg( 'brackets' )->rawParams( $inner )->escaped();
 		}
 
