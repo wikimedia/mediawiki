@@ -600,6 +600,15 @@ class ParserOptions {
 	}
 
 	/**
+	 * Get a ParserOptions object for an anonymous user
+	 * @return ParserOptions
+	 */
+	public static function newFromAnon() {
+		global $wgContLang;
+		return new ParserOptions( new User, $wgContLang );
+	}
+
+	/**
 	 * Get a ParserOptions object from a given user.
 	 * Language will be taken from $wgLang.
 	 *
