@@ -1,18 +1,22 @@
 [submodule "extensions/CentralNotice"]
 	path = extensions/CentralNotice
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CentralNotice.git
+	branch = wmf_deploy
 [submodule "extensions/Wikidata"]
 	path = extensions/Wikidata
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Wikidata.git
 [submodule "extensions/SemanticMediaWiki"]
 	path = extensions/SemanticMediaWiki
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SemanticMediaWiki.git
+	branch = 1.8.x
 [submodule "extensions/SemanticResultFormats"]
 	path = extensions/SemanticResultFormats
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SemanticResultFormats.git
+	branch = 1.8.x
 [submodule "extensions/Validator"]
 	path = extensions/Validator
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Validator.git
+	branch = 0.5.x
 [submodule "extensions/AbuseFilter"]
 	path = extensions/AbuseFilter
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AbuseFilter.git
