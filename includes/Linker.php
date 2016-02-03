@@ -188,6 +188,7 @@ class Linker {
 	 *       Has compatibility issues on some setups, so avoid wherever possible.
 	 *     'http': Force a full URL with http:// as the scheme.
 	 *     'https': Force a full URL with https:// as the scheme.
+	 *     'stubThreshold': Stub threshold to use when determining link classes.
 	 * @return string HTML <a> attribute
 	 */
 	public static function link(
@@ -329,7 +330,10 @@ class Linker {
 			}
 
 			if ( !in_array( 'broken', $options ) ) { # Avoid useless calls to LinkCache (see r50387)
-				$colour = self::getLinkColour( $target, $wgUser->getStubThreshold() );
+				$colour = self::getLinkColour(
+					$target,
+					isset( $options['stubThreshold'] ) ? $options['stubThreshold'] : $wgUser->getStubThreshold()
+				);
 				if ( $colour !== '' ) {
 					$classes[] = $colour; # mw-redirect or stub
 				}
