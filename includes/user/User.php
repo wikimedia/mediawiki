@@ -1539,7 +1539,7 @@ class User implements IDBAccessObject {
 	 *   Check when actually saving should be done against master.
 	 */
 	private function getBlockedStatus( $bFromSlave = true ) {
-		global $wgProxyWhitelist, $wgUser, $wgApplyIpBlocksToXff;
+		global $wgProxyWhitelist, $wgUser, $wgApplyIpBlocksToXff, $wgFullyInitialised;
 
 		if ( -1 != $this->mBlockedby ) {
 			return;
@@ -1557,10 +1557,16 @@ class User implements IDBAccessObject {
 		# We only need to worry about passing the IP address to the Block generator if the
 		# user is not immune to autoblocks/hardblocks, and they are the current user so we
 		# know which IP address they're actually coming from
-		if ( !$this->isAllowed( 'ipblock-exempt' ) && $this->equals( $wgUser ) ) {
-			$ip = $this->getRequest()->getIP();
-		} else {
-			$ip = null;
+		$ip = null;
+		if ( !$this->isAllowed( 'ipblock-exempt' ) ) {
+			// $wgUser->getName() only works after the end of Setup.php. Until
+			// then, assume it's a logged-out user.
+			$globalUserName = $wgFullyInitialised
+				? $wgUser->getName()
+				: IP::sanitizeIP( $wgUser->getRequest()->getIP() );
+			if ( $this->getName() === $globalUserName ) {
+				$ip = $this->getRequest()->getIP();
+			}
 		}
 
 		// User/IP blocking
