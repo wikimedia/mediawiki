@@ -17,6 +17,8 @@
  * @author Xiaomingyan
  * @author Yanteng3
  */
+ 
+$fallback = 'zh-hant'; // T125373
 
 $specialPageAliases = array(
 	'Activeusers'               => array( '躍簿' ),
