@@ -957,7 +957,8 @@ return array(
 		'dependencies' => array(
 			'mediawiki.messagePoster',
 			'mediawiki.Title',
-			'oojs-ui',
+			'oojs-ui-windows',
+			'oojs-ui-widgets',
 		),
 		'messages' => array(
 			'feedback-adding',
@@ -993,7 +994,7 @@ return array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.filewarning.js',
 		'styles' => 'resources/src/mediawiki/mediawiki.filewarning.less',
 		'dependencies' => array(
-			'oojs-ui',
+			'oojs-ui-widgets',
 		),
 	),
 	'mediawiki.ForeignApi' => array(
@@ -1183,7 +1184,8 @@ return array(
 			'resources/src/mediawiki/mediawiki.Upload.BookletLayout.js',
 		),
 		'dependencies' => array(
-			'oojs-ui',
+			'oojs-ui-windows',
+			'oojs-ui-widgets',
 			'mediawiki.Title',
 			'mediawiki.user',
 			'mediawiki.Upload',
@@ -1762,7 +1764,7 @@ return array(
 	'mediawiki.special.pageLanguage' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.pageLanguage.js',
 		'dependencies' => array(
-			'oojs-ui',
+			'oojs-ui-core',
 		),
 	),
 	'mediawiki.special.pagesWithProp' => array(
@@ -2028,7 +2030,7 @@ return array(
 			),
 		),
 		'dependencies' => array(
-			'oojs-ui',
+			'oojs-ui-widgets',
 			'mediawiki.widgets.styles',
 			// TitleInputWidget
 			'mediawiki.Title',
@@ -2076,7 +2078,7 @@ return array(
 			'mw-widgets-dateinput-placeholder-month',
 		),
 		'dependencies' => array(
-			'oojs-ui',
+			'oojs-ui-widgets',
 			'moment',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
@@ -2140,7 +2142,7 @@ return array(
 			'period-pm',
 		),
 		'dependencies' => array(
-			'oojs-ui',
+			'oojs-ui-widgets',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
@@ -2150,7 +2152,7 @@ return array(
 			'resources/src/mediawiki.widgets/mw.widgets.CategorySelector.js',
 		),
 		'dependencies' => array(
-			'oojs-ui',
+			'oojs-ui-widgets',
 			'mediawiki.api',
 			'mediawiki.ForeignApi',
 			'mediawiki.Title',
@@ -2165,7 +2167,7 @@ return array(
 			'resources/src/mediawiki.widgets/mw.widgets.UserInputWidget.js',
 		),
 		'dependencies' => array(
-			'oojs-ui',
+			'oojs-ui-widgets',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
