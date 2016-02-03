@@ -521,7 +521,7 @@ class Article implements Page {
 		# Try client and file cache
 		if ( !$wgDebugToolbar && $oldid === 0 && $this->mPage->checkTouched() ) {
 			if ( $wgUseETag ) {
-				$outputPage->setETag( $parserCache->getETag( $this, $parserOptions ) );
+				$outputPage->setETag( $parserCache->getETag( $this->mPage, $parserOptions ) );
 			}
 
 			# Use the greatest of the page's timestamp or the timestamp of any
@@ -595,7 +595,7 @@ class Article implements Page {
 
 					# Try the parser cache
 					if ( $useParserCache ) {
-						$this->mParserOutput = $parserCache->get( $this, $parserOptions );
+						$this->mParserOutput = $parserCache->get( $this->mPage, $parserOptions );
 
 						if ( $this->mParserOutput !== false ) {
 							if ( $oldid ) {
