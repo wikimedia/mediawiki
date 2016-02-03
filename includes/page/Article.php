@@ -1214,7 +1214,7 @@ class Article implements Page {
 		);
 
 		$outputPage->addHTML(
-			"<div class='patrollink'>" .
+			"<div class='patrollink' data-mw='interface'>" .
 				wfMessage( 'markaspatrolledlink' )->rawParams( $link )->escaped() .
 			'</div>'
 		);

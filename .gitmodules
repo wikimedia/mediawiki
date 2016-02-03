@@ -641,3 +641,6 @@
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git
 	branch = wmf/1.27.0-wmf.12
+[submodule "extensions/RandomRootPage"]
+	path = extensions/RandomRootPage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/RandomRootPage
