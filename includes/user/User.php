@@ -310,6 +310,15 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Test if it's safe to load this User object
+	 * @return bool
+	 */
+	public function isSafeToLoad() {
+		global $wgFullyInitialised;
+		return $wgFullyInitialised || $this->mLoadedItems === true || $this->mFrom !== 'session';
+	}
+
+	/**
 	 * Load the user table data for this object from the source given by mFrom.
 	 *
 	 * @param integer $flags User::READ_* constant bitfield
@@ -327,7 +336,7 @@ class User implements IDBAccessObject {
 		$this->queryFlagsUsed = $flags;
 
 		// If this is called too early, things are likely to break.
-		if ( $this->mFrom === 'session' && empty( $wgFullyInitialised ) ) {
+		if ( !$wgFullyInitialised && $this->mFrom === 'session' ) {
 			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
 				->warning( 'User::loadFromSession called before the end of Setup.php', array(
 					'exception' => new Exception( 'User::loadFromSession called before the end of Setup.php' ),

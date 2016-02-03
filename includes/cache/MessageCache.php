@@ -168,14 +168,14 @@ class MessageCache {
 	 * @return ParserOptions
 	 */
 	function getParserOptions() {
-		global $wgFullyInitialised, $wgContLang;
+		global $wgUser;
 
 		if ( !$this->mParserOptions ) {
-			if ( !$wgFullyInitialised ) {
+			if ( !$wgUser->isSafeToLoad() ) {
 				// $wgUser isn't unstubbable yet, so don't try to get a
 				// ParserOptions for it. And don't cache this ParserOptions
 				// either.
-				$po = new ParserOptions( new User, $wgContLang );
+				$po = ParserOptions::newFromAnon();
 				$po->setEditSection( false );
 				return $po;
 			}
