@@ -2091,8 +2091,6 @@ return array(
 			'jquery.byteLimit',
 			// TitleOptionWidget
 			'jquery.autoEllipsis',
-			// FIXME: Kept for bc
-			'mediawiki.widgets.CategorySelector',
 		),
 		'messages' => array(
 			// NamespaceInputWidget
