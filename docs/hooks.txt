@@ -2602,6 +2602,9 @@ $requests: Array of WebRequests potentially being saved to. Generally 0-1 real
 
 'SetupAfterCache': Called in Setup.php, after cache objects are set
 
+'SetupComplete': Called in Setup.php, after setup is complete
+(i.e. after $wgFullyInitialised is set).
+
 'ShortPagesQuery': Allow extensions to modify the query used by
 Special:ShortPages.
 &$tables: tables to join in the query

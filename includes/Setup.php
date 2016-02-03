@@ -804,9 +804,11 @@ if ( $sessionUser->getId() === 0 && User::isValidUserName( $sessionUser->getName
 	Profiler::instance()->scopedProfileOut( $ps_autocreate );
 }
 unset( $sessionUser );
+Profiler::instance()->scopedProfileOut( $ps_extensions );
 
 wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
 
-Profiler::instance()->scopedProfileOut( $ps_extensions );
+Hooks::run( 'SetupComplete' );
+
 Profiler::instance()->scopedProfileOut( $ps_setup );
