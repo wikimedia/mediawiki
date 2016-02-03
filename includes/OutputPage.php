@@ -1573,7 +1573,28 @@ class OutputPage extends ContextSource {
 	 * @return ParserOptions
 	 */
 	public function parserOptions( $options = null ) {
+		global $wgContLang;
+
+		// They're trying to restore the bogus pre-$wgUser PO. Do the right
+		// thing.
+		if ( $options !== null && !empty( $options->isBogus ) ) {
+			return wfSetVar( $this->mParserOptions, null, true );
+		}
+
 		if ( !$this->mParserOptions ) {
+			if ( !$this->getContext()->getUser()->isSafeToLoad() ) {
+				// $wgUser isn't unstubbable yet, so don't try to get a
+				// ParserOptions for it. And don't cache this ParserOptions
+				// either.
+				$po = ParserOptions::newFromAnon();
+				$po->setEditSection( false );
+				$po->isBogus = true;
+				if ( $options !== null ) {
+					$this->mParserOptions = $options;
+				}
+				return $po;
+			}
+
 			$this->mParserOptions = ParserOptions::newFromContext( $this->getContext() );
 			$this->mParserOptions->setEditSection( false );
 		}
