@@ -48,7 +48,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 			array( "<noinclude> Foo bar </noinclude>", "<root><ignore>&lt;noinclude&gt;</ignore> Foo bar <ignore>&lt;/noinclude&gt;</ignore></root>" ),
 			array( "<noinclude>\n{{Foo}}\n</noinclude>", "<root><ignore>&lt;noinclude&gt;</ignore>\n<template lineStart=\"1\"><title>Foo</title></template>\n<ignore>&lt;/noinclude&gt;</ignore></root>" ),
 			array( "<noinclude>\n{{Foo}}\n</noinclude>\n", "<root><ignore>&lt;noinclude&gt;</ignore>\n<template lineStart=\"1\"><title>Foo</title></template>\n<ignore>&lt;/noinclude&gt;</ignore>\n</root>" ),
-			array( "<gallery>foo bar", "<root>&lt;gallery&gt;foo bar</root>" ),
+			array( "<gallery>foo bar", "<root><ext><name>gallery</name><attr></attr><inner>foo bar</inner></ext></root>" ),
 			array( "<{{foo}}>", "<root>&lt;<template><title>foo</title></template>&gt;</root>" ),
 			array( "<{{{foo}}}>", "<root>&lt;<tplarg><title>foo</title></tplarg>&gt;</root>" ),
 			array( "<gallery></gallery</gallery>", "<root><ext><name>gallery</name><attr></attr><inner>&lt;/gallery</inner><close>&lt;/gallery&gt;</close></ext></root>" ),
