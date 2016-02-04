@@ -78,6 +78,14 @@ class BitmapHandler extends TransformationalImageHandler {
 		return $params;
 	}
 
+	function validateParam( $name, $value ) {
+		if ( $name === 'interlace' ) {
+			return $value === false || $value === true;
+		} else {
+			return parent::validateParam( $name, $value );
+		}
+	}
+
 	/**
 	 * @param File $image
 	 * @param array $params
