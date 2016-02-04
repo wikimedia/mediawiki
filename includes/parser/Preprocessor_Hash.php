@@ -160,8 +160,6 @@ class Preprocessor_Hash extends Preprocessor {
 		$inHeading = false;
 		// True if there are no more greater-than (>) signs right of $i
 		$noMoreGT = false;
-		// Map of tag name => true if there are no more closing tags of given type right of $i
-		$noMoreClosingTag = array();
 		// True to ignore all input up to the next <onlyinclude>
 		$findOnlyinclude = $enableOnlyinclude;
 		// Do a line-start run without outputting an LF character
@@ -382,21 +380,17 @@ class Preprocessor_Hash extends Preprocessor {
 				} else {
 					$attrEnd = $tagEndPos;
 					// Find closing tag
-					if (
-						!isset( $noMoreClosingTag[$name] ) &&
-						preg_match( "/<\/" . preg_quote( $name, '/' ) . "\s*>/i",
+					if ( preg_match( "/<\/" . preg_quote( $name, '/' ) . "\s*>/i",
 							$text, $matches, PREG_OFFSET_CAPTURE, $tagEndPos + 1 )
 					) {
 						$inner = substr( $text, $tagEndPos + 1, $matches[0][1] - $tagEndPos - 1 );
 						$i = $matches[0][1] + strlen( $matches[0][0] );
 						$close = $matches[0][0];
 					} else {
-						// No end tag -- don't match the tag, treat opening tag as literal and resume parsing.
-						$i = $tagEndPos + 1;
-						$accum->addLiteral( substr( $text, $tagStartPos, $tagEndPos + 1 - $tagStartPos ) );
-						// Cache results, otherwise we have O(N^2) performance for input like <foo><foo><foo>...
-						$noMoreClosingTag[$name] = true;
-						continue;
+						// No end tag -- let it run out to the end of the text.
+						$inner = substr( $text, $tagEndPos + 1 );
+						$i = $lengthText;
+						$close = null;
 					}
 				}
 				// <includeonly> and <noinclude> just become <ignore> tags
