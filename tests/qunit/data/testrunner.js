@@ -22,10 +22,9 @@
 	 * Configuration
 	 */
 
-	// When a test() indicates asynchronicity with stop(),
-	// allow 30 seconds to pass before killing the test(),
-	// and assuming failure.
-	QUnit.config.testTimeout = 30 * 1000;
+	// For each test() that is asynchronous, allow this time to pass before
+	// killing the test and assuming timeout failure.
+	QUnit.config.testTimeout = 60 * 1000;
 
 	QUnit.config.requireExpects = true;
 
