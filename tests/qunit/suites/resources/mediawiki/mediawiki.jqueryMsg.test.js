@@ -119,9 +119,8 @@
 	/**
 	 * @param {Function[]} tasks List of functions that perform tasks
 	 *  that may be asynchronous. Invoke the callback parameter when done.
-	 * @param {Function} complete Called when all tasks are done, or when the sequence is aborted.
 	 */
-	function process( tasks, complete ) {
+	function process( tasks ) {
 		/*jshint latedef:false */
 		function abort() {
 			tasks.splice( 0, tasks.length );
@@ -140,7 +139,6 @@
 			} else {
 				// Remove tasks list to indicate the process is final.
 				tasks = null;
-				complete();
 			}
 		}
 		next();
@@ -367,8 +365,10 @@
 		mw.messages.set( mw.libs.phpParserData.messages );
 		var tasks = $.map( mw.libs.phpParserData.tests, function ( test ) {
 			return function ( next, abort ) {
+				QUnit.stop();
 				getMwLanguage( test.lang )
 					.then( function ( langClass ) {
+						QUnit.start();
 						mw.config.set( 'wgUserLanguage', test.lang );
 						var parser = new mw.jqueryMsg.parser( { language: langClass } );
 						assert.equal(
@@ -377,14 +377,14 @@
 							test.name
 						);
 					}, function () {
+						QUnit.start();
 						assert.ok( false, 'Language "' + test.lang + '" failed to load.' );
 					} )
 					.then( next, abort );
 			};
 		} );
 
-		QUnit.stop();
-		process( tasks, QUnit.start );
+		process( tasks );
 	} );
 
 	QUnit.test( 'Links', 14, function ( assert ) {
@@ -888,8 +888,10 @@
 		mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
 		var queue = $.map( formatnumTests, function ( test ) {
 			return function ( next, abort ) {
+				QUnit.stop();
 				getMwLanguage( test.lang )
 					.then( function ( langClass ) {
+						QUnit.start();
 						mw.config.set( 'wgUserLanguage', test.lang );
 						var parser = new mw.jqueryMsg.parser( { language: langClass } );
 						assert.equal(
@@ -899,13 +901,14 @@
 							test.description
 						);
 					}, function () {
+						QUnit.start();
 						assert.ok( false, 'Language "' + test.lang + '" failed to load' );
 					} )
 					.then( next, abort );
 			};
 		} );
-		QUnit.stop();
-		process( queue, QUnit.start );
+
+		process( queue );
 	} );
 
 	// HTML in wikitext
