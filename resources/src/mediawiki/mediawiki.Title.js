@@ -6,17 +6,15 @@
 ( function ( mw, $ ) {
 	/*jshint latedef:false */
 
-	// jscs:disable jsDoc
 	/**
-	 * @class mw.Title
-	 *
 	 * Parse titles into an object structure. Note that when using the constructor
 	 * directly, passing invalid titles will result in an exception. Use #newFromText to use the
 	 * logic directly and get null for invalid titles which is easier to work with.
 	 *
-	 * @constructor
-	 *
-	 * Note that in the constructor amd #newFromText method, `namespace` is the **default** namespace
+	 * @class mw.Title
+	 */
+	/**
+	 * Note that in the constructor and #newFromText method, `namespace` is the **default** namespace
 	 * only, and can be overridden by a namespace prefix in `title`. If you do not want this behavior,
 	 * use #makeTitle. Compare:
 	 *
@@ -32,6 +30,7 @@
 	 *     mw.Title.newFromText( 'Template:Foo', NS_TEMPLATE ).getPrefixedText(); // => 'Template:Foo'
 	 *     mw.Title.makeTitle( NS_TEMPLATE, 'Template:Foo' ).getPrefixedText();   // => 'Template:Template:Foo'
 	 *
+	 * @method constructor
 	 * @param {string} title Title of the page. If no second argument given,
 	 *  this will be searched for a namespace
 	 * @param {number} [namespace=NS_MAIN] If given, will used as default namespace for the given title
@@ -50,7 +49,6 @@
 
 		return this;
 	}
-	// jscs:enable jsDoc
 
 	/* Private members */
 
