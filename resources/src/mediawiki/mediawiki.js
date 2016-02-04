@@ -2251,7 +2251,11 @@
 					 */
 					clear: function () {
 						mw.loader.store.items = {};
-						localStorage.removeItem( mw.loader.store.getStoreKey() );
+						try {
+							localStorage.removeItem( mw.loader.store.getStoreKey() );
+						} catch ( e ) {
+							mw.track( 'resourceloader.exception', { exception: e, source: 'store-localstorage-clear' } );
+						}
 					},
 
 					/**
