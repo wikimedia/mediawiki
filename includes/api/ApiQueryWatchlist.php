@@ -192,8 +192,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addWhereIf( 'rc_user != 0', isset( $show['!anon'] ) );
 			$this->addWhereIf( 'rc_patrolled = 0', isset( $show['!patrolled'] ) );
 			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
-			$this->addWhereIf( 'wl_notificationtimestamp IS NOT NULL', isset( $show['unread'] ) );
-			$this->addWhereIf( 'wl_notificationtimestamp IS NULL', isset( $show['!unread'] ) );
+			$this->addWhereIf( 'rc_timestamp >= wl_notificationtimestamp', isset( $show['unread'] ) );
+			$this->addWhereIf(
+				'wl_notificationtimestamp IS NULL OR rc_timestamp < wl_notificationtimestamp',
+				isset( $show['!unread'] )
+			);
 		}
 
 		if ( !is_null( $params['type'] ) ) {
