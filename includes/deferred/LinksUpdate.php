@@ -87,7 +87,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 * @param bool $recursive Queue jobs for recursive updates?
 	 * @throws MWException
 	 */
-	function __construct( Title $title, ParserOutput $parserOutput, $recursive = true ) {
+	public function __construct( Title $title, ParserOutput $parserOutput, $recursive = true ) {
 		parent::__construct( false ); // no implicit transaction
 
 		$this->mTitle = $title;
@@ -275,7 +275,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	/**
 	 * @param array $cats
 	 */
-	function invalidateCategories( $cats ) {
+	private function invalidateCategories( $cats ) {
 		$this->invalidatePages( NS_CATEGORY, array_keys( $cats ) );
 	}
 
@@ -284,7 +284,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 * @param array $added Associative array of category name => sort key
 	 * @param array $deleted Associative array of category name => sort key
 	 */
-	function updateCategoryCounts( $added, $deleted ) {
+	private function updateCategoryCounts( $added, $deleted ) {
 		$a = WikiPage::factory( $this->mTitle );
 		$a->updateCategoryCounts(
 			array_keys( $added ), array_keys( $deleted )
@@ -294,7 +294,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	/**
 	 * @param array $images
 	 */
-	function invalidateImageDescriptions( $images ) {
+	private function invalidateImageDescriptions( $images ) {
 		$this->invalidatePages( NS_FILE, array_keys( $images ) );
 	}
 
@@ -305,7 +305,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 * @param array $deletions
 	 * @param array $insertions Rows to insert
 	 */
-	function incrTableUpdate( $table, $prefix, $deletions, $insertions ) {
+	private function incrTableUpdate( $table, $prefix, $deletions, $insertions ) {
 		if ( $table == 'page_props' ) {
 			$fromField = 'pp_page';
 		} else {
@@ -507,7 +507,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 * @param array $existing
 	 * @return array
 	 */
-	function getPropertyInsertions( $existing = array() ) {
+	private function getPropertyInsertions( $existing = array() ) {
 		$diffs = array_diff_assoc( $this->mProperties, $existing );
 
 		$arr = array();
@@ -680,7 +680,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 * @param array $existing
 	 * @return array
 	 */
-	function getPropertyDeletions( $existing ) {
+	private function getPropertyDeletions( $existing ) {
 		return array_diff_assoc( $existing, $this->mProperties );
 	}
 
