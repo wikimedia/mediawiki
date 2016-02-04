@@ -204,7 +204,17 @@ class SvgHandler extends ImageHandler {
 		// https://git.gnome.org/browse/librsvg/commit/?id=f01aded72c38f0e18bc7ff67dee800e380251c8e
 		$tmpDir = wfTempDir() . '/svg_' . wfRandomString( 24 );
 		$lnPath = "$tmpDir/" . basename( $srcPath );
-		$ok = mkdir( $tmpDir, 0771 ) && symlink( $srcPath, $lnPath );
+		$ok = mkdir( $tmpDir, 0771 );
+		if ( !$ok ) {
+			wfDebugLog( 'thumbnail',
+				sprintf( 'Thumbnail failed on %s: could not create temporary directory %s',
+					wfHostname(), $tmpDir ) );
+			return new MediaTransformError( 'thumbnail_error',
+				$params['width'], $params['height'],
+				wfMessage( 'thumbnail-temp-create' )->text()
+			);
+		}
+		$ok = symlink( $srcPath, $lnPath );
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$cleaner = new ScopedCallback( function () use ( $tmpDir, $lnPath ) {
 			MediaWiki\suppressWarnings();
