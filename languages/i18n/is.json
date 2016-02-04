@@ -2891,6 +2891,7 @@
 	"logentry-block-unblock": "$1 {{GENDER:$2|afbannaði}} {{GENDER:$4|$3}}",
 	"logentry-block-reblock": "$1 {{GENDER:$2|breytti}} bann stillingum fyrir {{GENDER:$4|$3}}, rennur út $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|bannaði}} {{GENDER:$4|$3}}, rennur út eftir $5 $6",
+	"logentry-merge-merge": "$1 {{GENDER:$2|sameinaði}} $3 inn í $4 (útgáfur til $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|færði}} $3 á $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|færði}} $3 á $4 án þess að skilja eftir tilvísun",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|færði}} $3 á $4 yfir tilvísun",

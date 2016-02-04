@@ -19,7 +19,7 @@
 			"Luke081515"
 		]
 	},
-	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page/de|Dokumentation]]\n* [[mw:API:FAQ/de|Häufig gestellte Fragen]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailingliste]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-Ankündigungen]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Fehlerberichte und Anfragen]\n</div>\n<strong>Status:</strong> Alle auf dieser Seite gezeigten Funktionen sollten funktionieren, allerdings ist die API in aktiver Entwicklung und kann sich zu jeder Zeit ändern. Abonniere die [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ MediaWiki-API-Ankündigungs-Mailingliste], um über Aktualisierungen informiert zu werden.\n\n<strong>Fehlerhafte Anfragen:</strong> Wenn fehlerhafte Anfragen an die API gesendet werden, wird ein HTTP-Header mit dem Schlüssel „MediaWiki-API-Error“ gesendet. Der Wert des Headers und der Fehlercode werden auf den gleichen Wert gesetzt. Für weitere Informationen siehe [[mw:API:Errors_and_warnings|API: Fehler und Warnungen]].",
+	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Dokumentation]]\n* [[mw:API:FAQ|Häufig gestellte Fragen]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailingliste]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-Ankündigungen]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Fehlerberichte und Anfragen]\n</div>\n<strong>Status:</strong> Alle auf dieser Seite gezeigten Funktionen sollten funktionieren, allerdings ist die API in aktiver Entwicklung und kann sich zu jeder Zeit ändern. Abonniere die [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ MediaWiki-API-Ankündigungs-Mailingliste], um über Aktualisierungen informiert zu werden.\n\n<strong>Fehlerhafte Anfragen:</strong> Wenn fehlerhafte Anfragen an die API gesendet werden, wird ein HTTP-Header mit dem Schlüssel „MediaWiki-API-Error“ gesendet. Der Wert des Headers und der Fehlercode werden auf den gleichen Wert gesetzt. Für weitere Informationen siehe [[mw:API:Errors_and_warnings|API: Fehler und Warnungen]].\n\n<strong>Testen:</strong> Zum einfachen Testen von API-Anfragen, siehe [[Special:ApiSandbox]].",
 	"apihelp-main-param-action": "Auszuführende Aktion.",
 	"apihelp-main-param-format": "Format der Ausgabe.",
 	"apihelp-main-param-maxlag": "maxlag kann verwendet werden, wenn MediaWiki auf einem datenbankreplizierten Cluster installiert ist. Um weitere Replikationsrückstände zu verhindern, lässt dieser Parameter den Client warten, bis der Replikationsrückstand kleiner als der angegebene Wert (in Sekunden) ist. Bei einem größerem Rückstand wird der Fehlercode <samp>maxlag</samp> zurückgegeben mit einer Nachricht wie <samp>Waiting for $host: $lag seconds lagged</samp>.<br />Siehe [[mw:Manual:Maxlag_parameter|Handbuch: Maxlag parameter]] für weitere Informationen.",
@@ -785,6 +785,7 @@
 	"apihelp-unblock-param-id": "ID der Sperre zum Entsperren (über <kbd>list=blocks</kbd> erhalten). Darf nicht zusammen mit <var>$1user</var> verwendet werden.",
 	"apihelp-unblock-param-reason": "Grund für die Freigabe.",
 	"apihelp-unblock-example-id": "Sperrkennung #<kbd>105</kbd> freigeben.",
+	"apihelp-undelete-param-title": "Titel der wiederherzustellenden Seite.",
 	"apihelp-undelete-param-reason": "Grund für die Wiederherstellung.",
 	"apihelp-upload-param-filename": "Ziel-Dateiname.",
 	"apihelp-upload-param-text": "Erster Seitentext für neue Dateien.",
@@ -866,6 +867,7 @@
 	"api-help-permissions": "{{PLURAL:$1|Berechtigung|Berechtigungen}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Gewährt an}}: $2",
 	"api-help-right-apihighlimits": "Höhere Beschränkungen in API-Anfragen verwenden (langsame Anfragen: $1; schnelle Anfragen: $2). Die Beschränkungen für langsame Anfragen werden auch auf Mehrwertparameter angewandt.",
+	"api-help-open-in-apisandbox": "<small>[in Spielwiese öffnen]</small>",
 	"api-credits-header": "Danksagungen",
 	"api-credits": "API-Entwickler:\n* Roan Kattouw (Hauptentwickler von September 2007 bis 2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (Autor, Hauptentwickler von September 2006 bis September 2007)\n* Brad Jorsch (Hauptentwickler seit 2013)\n\nBitte sende deine Kommentare, Vorschläge und Fragen an mediawiki-api@lists.wikimedia.org\noder reiche einen Fehlerbericht auf https://phabricator.wikimedia.org/ ein."
 }

@@ -14,7 +14,7 @@
 			"JackLantern"
 		]
 	},
-	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentazione (in inglese)]]\n* [[mw:API:FAQ|FAQ (in inglese)]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annunci sull'API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug & richieste]\n</div>\n<strong>Stato:</strong> Tutte le funzioni e caratteristiche mostrate su questa pagina dovrebbero funzionare, ma l'API è ancora in fase d'attivo sviluppo, e potrebbe cambiare in qualsiasi momenento. Iscriviti alla [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] per essere informato sugli aggiornamenti.\n\n<strong>Istruzioni sbagliate:</strong> quando vengono impartite all'API delle istruzioni sbagliate, un'intestazione HTTP verrà inviata col messaggio \"MediaWiki-API-Error\" e sia al valore dell'intestazione sia al codice d'errore verrà impostato lo stesso valore. Per maggiori informazioni leggi [[mw:API:Errors_and_warnings|API:Errori ed avvertimenti (in inglese)]].",
+	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentazione (in inglese)]]\n* [[mw:API:FAQ|FAQ (in inglese)]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annunci sull'API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug & richieste]\n</div>\n<strong>Stato:</strong> Tutte le funzioni e caratteristiche mostrate su questa pagina dovrebbero funzionare, ma l'API è ancora in fase d'attivo sviluppo, e potrebbe cambiare in qualsiasi momenento. Iscriviti alla [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] per essere informato sugli aggiornamenti.\n\n<strong>Istruzioni sbagliate:</strong> quando vengono impartite all'API delle istruzioni sbagliate, un'intestazione HTTP verrà inviata col messaggio \"MediaWiki-API-Error\" e sia al valore dell'intestazione sia al codice d'errore verrà impostato lo stesso valore. Per maggiori informazioni leggi [[mw:API:Errors_and_warnings|API:Errori ed avvertimenti (in inglese)]].\n\n<strong>Test:</strong> per testare facilmente le richieste API, vedi [[Special:ApiSandbox]].",
 	"apihelp-main-param-action": "Azione da compiere.",
 	"apihelp-main-param-format": "Formato dell'output.",
 	"apihelp-main-param-assert": "Verifica che l'utente sia loggato se si è impostato <kbd>utente</kbd>, o che abbia i permessi di bot se si è impostato <kbd>bot</kbd>.",
@@ -278,6 +278,7 @@
 	"apihelp-userrights-param-user": "Nome utente.",
 	"apihelp-userrights-param-userid": "ID utente.",
 	"apihelp-watch-description": "Aggiunge o rimuove pagine dagli osservati speciali dell'utente attuale.",
+	"apihelp-format-param-wrappedhtml": "Restituisce l'HTML ben formattato e i moduli ResourceLoader associati come un oggetto JSON.",
 	"api-pageset-param-titles": "Un elenco di titoli su cui lavorare.",
 	"api-pageset-param-pageids": "Un elenco di ID pagina su cui lavorare.",
 	"api-pageset-param-revids": "Un elenco di ID versioni su cui lavorare.",
@@ -299,5 +300,6 @@
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(nessuna descrizione)</span>",
 	"api-help-examples": "{{PLURAL:$1|Esempio|Esempi}}:",
 	"api-help-permissions": "{{PLURAL:$1|Permesso|Permessi}}:",
+	"api-help-open-in-apisandbox": "<small>[apri in una sandbox]</small>",
 	"api-credits-header": "Crediti"
 }

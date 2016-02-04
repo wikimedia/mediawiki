@@ -13,7 +13,7 @@
 			"Macofe"
 		]
 	},
-	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|תיעוד]]\n* [[mw:API:FAQ|שו\"ת]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api רשימת דיוור]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> כל האפשרויות שמוצגות בדף הזה אמורות לעבוד, אבל ה־API עדיין בפיתוח פעיל, ויכול להשתנות בכל זמן. עשו מינוי ל [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ רשימת הדיוור mediawiki-api-announce] להודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, תישלח כותרת HTTP עם המפתח \"MediaWiki-API-Error\" ואז גם הערך של הכותרת וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף ר' [[mw:API:Errors_and_warnings|API: שגיאות ואזהרות]].",
+	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|תיעוד]]\n* [[mw:API:FAQ|שו\"ת]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api רשימת דיוור]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> כל האפשרויות שמוצגות בדף הזה אמורות לעבוד, אבל ה־API עדיין בפיתוח פעיל, ויכול להשתנות בכל זמן. עשו מינוי ל [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ רשימת הדיוור mediawiki-api-announce] להודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, תישלח כותרת HTTP עם המפתח \"MediaWiki-API-Error\" ואז גם הערך של הכותרת וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף ר' [[mw:API:Errors_and_warnings|API: שגיאות ואזהרות]].\n\n<strong>בדיקה:</strong> לבדיקה קלה יותר של בקשות ר' [[Special:ApiSandbox]].",
 	"apihelp-main-param-action": "איזו פעולה לבצע.",
 	"apihelp-main-param-format": "תסדיר הפלט.",
 	"apihelp-main-param-maxlag": "שיהוי מרבי יכול לשמש כשמדיה־ויקי מותקנת בצביר עם מסד נתונים משוכפל. כדי לחסוך בפעולות שגורמות יותר שיהוי בשכפול אתר, הפרמטר הזה יכול לגרום ללקוח להמתין עד ששיהוי השכפול יורד מתחת לערך שצוין. במקרה של שיהוי מוגזם, קוד השגיאה <samp>maxlag</samp> מוחזר עם הודעה כמו <samp>Waiting for $host: $lag seconds lagged</samp>.<br />ר' [[mw:Manual:Maxlag_parameter|מדריך למשתמש: פרמטר maxlag]] למידע נוסף.",
@@ -1273,6 +1273,7 @@
 	"apihelp-watch-example-unwatch": "להפסיק את המעקב אחרי הדף <kbd>Main Page</kbd>.",
 	"apihelp-watch-example-generator": "לעקוב אחרי הדפים הראשונים במרחב הראשי.",
 	"apihelp-format-example-generic": "להחזיר את תוצאות השאילתה בתסדיר $1.",
+	"apihelp-format-param-wrappedhtml": "החזרת HTML מעוצב ומודולי ResourceLoader משויכים בתור עצם JSON.",
 	"apihelp-json-description": "לפלוט נתונים בתסדיר JSON.",
 	"apihelp-json-param-callback": "אם זה צוין, עוטף את הפלט לתוך קריאת פונקציה נתונה. למען הבטיחות, כל הנתונים הייחודיים למשתמש יוגבלו.",
 	"apihelp-json-param-utf8": "אם זה צוין, רוב התווים שאינם ASCII (אבל לא כולם) יקודדו בתור UTF-8 במקום להתחלף בסדרות חילוף הקסדצימליות. זאת בררת המחדל אם הערך של <var>formatversion</var> הוא לא <kbd>1</kbd>.",
@@ -1345,6 +1346,7 @@
 	"api-help-permissions": "{{PLURAL:$1|הרשאה|הרשאות}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|הוענק ל|הוענקו ל}}: $2",
 	"api-help-right-apihighlimits": "להשתמש במגבלות גבוהות יותר בשאילתות API (שאילתות אטיות: $1; שאילתות מהירות: $2). המגבלות לשאילתות אטיות חלות גם על פרמטרים מרובי־ערכים.",
+	"api-help-open-in-apisandbox": "<small>[פתיחה בארגז חול]</small>",
 	"api-credits-header": "קרדיטים",
 	"api-credits": "מפתחי ה־API:\n* רואן קטאו (מפתח מוביל 2007–2009)\n* ויקטור וסילייב\n* בריאן טונג מין\n* סאם ריד\n* יורי אסטרחן (יוצר, מפתח מוביל מספטמבר 2006 עד ספטמבר 2007)\n* בראד יורש (מפתח מוביל מאז 2013)\n\nאנא שלחו הערות, הצעות ושאלות לכתובת mediawiki-api@lists.wikimedia.org או כתבו דיווח באג באתר https://phabricator.wikimedia.org."
 }

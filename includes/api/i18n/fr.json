@@ -21,10 +21,11 @@
 			"Ash Crow",
 			"L",
 			"Umherirrender",
-			"Elfix"
+			"Elfix",
+			"Lbayle"
 		]
 	},
-	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un en-tête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet en-tête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
+	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un en-tête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet en-tête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:API:Errors_and_warnings|API: Errors and warnings]].\n\n<strong>Test :</strong> Pour faciliter le test des requêtes de l’API, voyez [[Special:ApiSandbox]].",
 	"apihelp-main-param-action": "Quelle action effectuer.",
 	"apihelp-main-param-format": "Le format de sortie.",
 	"apihelp-main-param-maxlag": "La latence maximale peut être utilisée quand MédiaWiki est installé sur un cluster de base de données répliqué. Pour éviter des actions provoquant un supplément de latence de réplication de site, ce paramètre peut faire attendre le client jusqu’à ce que la latence de réplication soit inférieure à une valeur spécifiée. En cas de latence excessive, le code d’erreur <samp>maxlag</samp> est renvoyé avec un message tel que <samp>Attente de $host : $lag secondes de délai</samp>.<br />Voyez [[mw:Manual:Maxlag_parameter|Manuel: Maxlag parameter]] pour plus d’information.",
@@ -1284,6 +1285,7 @@
 	"apihelp-watch-example-unwatch": "Ne plus suivre la page <kbd>Page principale</kbd>.",
 	"apihelp-watch-example-generator": "Suivre les quelques premières pages de l’espace de nom principal",
 	"apihelp-format-example-generic": "Renvoyer le résultat de la requête dans le format $1.",
+	"apihelp-format-param-wrappedhtml": "Renvoyer le HTML avec une jolie mise en forme et les modules ResourceLoader associés comme un objet JSON.",
 	"apihelp-json-description": "Extraire les données au format JSON.",
 	"apihelp-json-param-callback": "Si spécifié, inclut la sortie dans l’appel d’une fonction fournie. Pour plus de sûreté, toutes les données spécifiques à l’utilisateur seront restreintes.",
 	"apihelp-json-param-utf8": "Si spécifié, encode la plupart (mais pas tous) des caractères non ASCII en URF-8 au lieu de les remplacer par leur séquence d’échappement hexadécimale. Valeur par défaut quand <var>formatversion</var> ne vaut pas <kbd>1</kbd>.",
@@ -1356,6 +1358,7 @@
 	"api-help-permissions": "{{PLURAL:$1|Droit|Droits}} :",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Accordé à}} : $2",
 	"api-help-right-apihighlimits": "Utiliser des valeurs plus hautes dans les requêtes de l’API (requêtes lentes : $1 ; requêtes rapides : $2). Les limites pour les requêtes lentes s’appliquent aussi aux paramètres multivalués.",
+	"api-help-open-in-apisandbox": "<small>[ouvrir dans le bac à sable]</small>",
 	"api-credits-header": "Remerciements",
 	"api-credits": "Développeurs de l’API :\n* Roan Kattouw (développeur en chef Sept. 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (créateur, développeur en chef Sept. 2006–Sept. 2007)\n* Brad Jorsch (développeur en chef depuis 2013)\n\nVeuillez envoyer vos commentaires, suggestions et questions à mediawiki-api@lists.wikimedia.org\nou remplir un rapport de bogue sur https://phabricator.wikimedia.org/."
 }

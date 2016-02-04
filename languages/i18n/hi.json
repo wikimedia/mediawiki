@@ -70,7 +70,8 @@
 			"Sfic",
 			"Niharika29",
 			"जनक राज भट्ट",
-			"YmKavishwar"
+			"YmKavishwar",
+			"Upendradutt93"
 		]
 	},
 	"tog-underline": "कड़ियाँ अधोरेखन:",
@@ -1718,8 +1719,10 @@
 	"apisandbox": "ए॰पी॰आइ प्रयोगस्थल",
 	"apisandbox-api-disabled": "इस स्थल पर ए०पी०आई० सक्षम नहीं हैं।",
 	"apisandbox-intro": "याद रखिए कि, हालांकि यह प्रयोगपृष्ठ है, इस पृष्ठ पर किए गए आपके काम इस विकि में बदलाव ला सकते हैं।",
+	"apisandbox-unfullscreen": "पृष्ठ दिखाएँ",
 	"apisandbox-submit": "अनुरोध करें",
 	"apisandbox-reset": "स्पष्ट",
+	"apisandbox-retry": "दुबारा प्रयास करें",
 	"apisandbox-examples": "Example",
 	"apisandbox-results": "परिणाम",
 	"apisandbox-request-url-label": "अनुरोध URL:",
