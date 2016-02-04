@@ -21,6 +21,7 @@
  * @ingroup MaintenanceLanguage
  */
 
+$optionsWithoutArgs = [ 'lang', 'clang', 'mode' ];
 require_once __DIR__ . '/../commandLine.inc';
 $messagesDir = __DIR__ . '/../../languages/messages/';
 $runTest = false;

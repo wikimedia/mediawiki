@@ -22,10 +22,11 @@
  * @ingroup Maintenance
  */
 
-/** */
+$optionsWithArgs = [ 'cache' ];
+$optionsWithoutArgs = [
+	'debug', 'help'
+];
 require_once __DIR__ . '/commandLine.inc';
-
-$options = getopt( '', [ 'debug', 'help', 'cache:' ] );
 
 $debug = isset( $options['debug'] );
 $help = isset( $options['help'] );
