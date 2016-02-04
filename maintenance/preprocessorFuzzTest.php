@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+$optionsWithoutArgs = array( 'verbose' );
 require_once __DIR__ . '/commandLine.inc';
 
 $wgHooks['BeforeParserFetchTemplateAndtitle'][] = 'PPFuzzTester::templateHook';

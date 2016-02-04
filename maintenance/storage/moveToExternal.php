@@ -24,6 +24,7 @@
 define( 'REPORTING_INTERVAL', 1 );
 
 if ( !defined( 'MEDIAWIKI' ) ) {
+	$optionsWithoutArgs = array( 'e', 's' );
 	require_once __DIR__ . '/../commandLine.inc';
 	require_once 'resolveStubs.php';
 

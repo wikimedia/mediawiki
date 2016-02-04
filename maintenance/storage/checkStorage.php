@@ -22,6 +22,7 @@
  */
 
 if ( !defined( 'MEDIAWIKI' ) ) {
+	$optionsWithoutArgs = array( 'fix' );
 	require_once __DIR__ . '/../commandLine.inc';
 
 	$cs = new CheckStorage;

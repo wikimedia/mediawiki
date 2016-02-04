@@ -21,6 +21,10 @@
  * @ingroup MaintenanceLanguage
  */
 
+$optionsWithoutArgs = array(
+	'help', 'lang', 'level', 'links', 'noexif', 'blacklist', 'easy', 'whitelist',
+	'wikilang', 'output', 'duplicate', 'prefix', 'all'
+);
 require_once __DIR__ . '/../commandLine.inc';
 require_once 'checkLanguage.inc';
 require_once 'languages.inc';
