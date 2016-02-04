@@ -50,7 +50,6 @@ class ForeignAPIRepo extends FileRepo {
 	 */
 	protected static $imageInfoProps = array(
 		'url',
-		'thumbnail',
 		'timestamp',
 	);
 
