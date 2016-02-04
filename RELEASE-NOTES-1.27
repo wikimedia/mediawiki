@@ -154,6 +154,8 @@ production.
 * Added MWRestrictions as a class to check restrictions on a WebRequest, e.g.
   to assert that the request comes from a particular IP range.
 * Added bot passwords, a rights-restricted login mechanism for API-using bots.
+* The table of contents and category list of a page are now navigation landmarks
+  for users of assistive technologies.
 * Whitelisted the following HTML attributes for all elements in wikitext:
   aria-describedby, aria-flowto, aria-label, aria-labelledby, aria-owns.
 * Removed "presentation" restriction on the HTML role attribute in wikitext.
