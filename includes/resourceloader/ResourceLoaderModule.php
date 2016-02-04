@@ -180,7 +180,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	/**
 	 * @since 1.27
 	 * @param LoggerInterface $logger
-	 * @return null
 	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;

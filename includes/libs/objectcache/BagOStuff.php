@@ -85,7 +85,6 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 
 	/**
 	 * @param LoggerInterface $logger
-	 * @return null
 	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
