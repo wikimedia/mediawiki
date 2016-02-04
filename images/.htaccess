@@ -1,4 +1,4 @@
-# Protect against bug 28235
+# Protect against bug T30235
 <IfModule rewrite_module>
 	RewriteEngine On
 	RewriteOptions inherit
