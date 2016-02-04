@@ -661,17 +661,45 @@
 				obj[ key ] = val;
 			} : function ( obj, key, val, msg ) {
 				msg = 'Use of "' + key + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' );
+				var logged;
+				if ( window.Set ) {
+					logged = new Set();
+				} else {
+					logged = [];
+				}
+				var uniqueTrace = function () {
+					var trace = new Error().stack;
+					if ( window.Set ) {
+						if ( logged.has( trace ) ) {
+							return false;
+						} else {
+							logged.add( trace );
+							return true;
+						}
+					} else {
+						if ( logged.indexOf( trace ) !== -1 ) {
+							return false;
+						} else {
+							logged.push( trace );
+							return true;
+						}
+					}
+				};
 				Object.defineProperty( obj, key, {
 					configurable: true,
 					enumerable: true,
 					get: function () {
-						mw.track( 'mw.deprecate', key );
-						mw.log.warn( msg );
+						if ( uniqueTrace() ) {
+							mw.track( 'mw.deprecate', key );
+							mw.log.warn( msg );
+						}
 						return val;
 					},
 					set: function ( newVal ) {
-						mw.track( 'mw.deprecate', key );
-						mw.log.warn( msg );
+						if ( uniqueTrace() ) {
+							mw.track( 'mw.deprecate', key );
+							mw.log.warn( msg );
+						}
 						val = newVal;
 					}
 				} );
