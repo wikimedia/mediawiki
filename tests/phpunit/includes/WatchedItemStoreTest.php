@@ -156,6 +156,39 @@ class WatchedItemStoreTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( $expected, $store->countWatchersMultiple( $titleValues ) );
 	}
 
+	public function testCountVisitingWatchers() {
+		$titleValue = new TitleValue( 0, 'SomeDbKey' );
+
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->exactly( 1 ) )
+			->method( 'selectField' )
+			->with(
+				'watchlist',
+				'COUNT(*)',
+				[
+					'wl_namespace' => $titleValue->getNamespace(),
+					'wl_title' => $titleValue->getDBkey(),
+					'wl_notificationtimestamp >= \'111\' OR wl_notificationtimestamp IS NULL',
+				],
+				$this->isType( 'string' )
+			)
+			->will( $this->returnValue( 7 ) );
+		$mockDb->expects( $this->exactly( 1 ) )
+			->method( 'addQuotes' )
+			->will( $this->returnCallback( function( $value ) {
+				return "'$value'";
+			} ) );
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadbalancer( $mockDb ),
+			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
+			$this->getMockConfig()
+		);
+
+		$this->assertEquals( 7, $store->countVisitingWatchers( $titleValue, '111' ) );
+	}
+
+
 	public function testDuplicateEntry_nothingToDuplicate() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )

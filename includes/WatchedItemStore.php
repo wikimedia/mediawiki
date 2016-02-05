@@ -114,6 +114,35 @@ class WatchedItemStore {
 	}
 
 	/**
+	 * Number of page watchers who also visited a "recent" edit
+	 *
+	 * @param LinkTarget $target
+	 * @param string $threshold TS_MW timestamp
+	 *
+	 * @return int
+	 * @throws DBUnexpectedError
+	 * @throws MWException
+	 */
+	public function countVisitingWatchers( LinkTarget $target, $threshold ) {
+		$dbr = $this->loadBalancer->getConnection( DB_SLAVE, [ 'watchlist' ] );
+		$visitingWatchers = (int)$dbr->selectField(
+			'watchlist',
+			'COUNT(*)',
+			[
+				'wl_namespace' => $target->getNamespace(),
+				'wl_title' => $target->getDBkey(),
+				'wl_notificationtimestamp >= ' .
+				$dbr->addQuotes( $threshold ) .
+				' OR wl_notificationtimestamp IS NULL'
+			],
+			__METHOD__
+		);
+		$this->loadBalancer->reuseConnection( $dbr );
+
+		return $visitingWatchers;
+	}
+
+	/**
 	 * @param LinkTarget[] $targets
 	 * @param bool $unwatchedPages show unwatched pages obeying UnwatchedPageThreshold setting
 	 *
