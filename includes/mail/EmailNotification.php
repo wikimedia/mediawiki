@@ -72,10 +72,13 @@ class EmailNotification {
 	protected $editor;
 
 	/**
+	 * @deprecated since 1.27 use WatchedItemStore::updateNotificationTimestamp directly
+	 *
 	 * @param User $editor The editor that triggered the update.  Their notification
 	 *  timestamp will not be updated(they have already seen it)
 	 * @param LinkTarget $linkTarget The link target of the title to update timestamps for
 	 * @param string $timestamp Set the update timestamp to this value
+	 *
 	 * @return int[] Array of user IDs
 	 */
 	public static function updateWatchlistTimestamp(
@@ -83,47 +86,11 @@ class EmailNotification {
 		LinkTarget $linkTarget,
 		$timestamp
 	) {
-		global $wgEnotifWatchlist, $wgShowUpdatedMarker;
-
-		if ( !$wgEnotifWatchlist && !$wgShowUpdatedMarker ) {
-			return array();
-		}
-
-		$dbw = wfGetDB( DB_MASTER );
-		$res = $dbw->select( array( 'watchlist' ),
-			array( 'wl_user' ),
-			array(
-				'wl_user != ' . intval( $editor->getID() ),
-				'wl_namespace' => $linkTarget->getNamespace(),
-				'wl_title' => $linkTarget->getDBkey(),
-				'wl_notificationtimestamp IS NULL',
-			), __METHOD__
+		return WatchedItemStore::getDefaultInstance()->updateNotificationTimestamp(
+			$editor,
+			$title,
+			$timestamp
 		);
-
-		$watchers = array();
-		foreach ( $res as $row ) {
-			$watchers[] = intval( $row->wl_user );
-		}
-
-		if ( $watchers ) {
-			// Update wl_notificationtimestamp for all watching users except the editor
-			$fname = __METHOD__;
-			$dbw->onTransactionIdle(
-				function () use ( $dbw, $timestamp, $watchers, $linkTarget, $fname ) {
-					$dbw->update( 'watchlist',
-						array( /* SET */
-							'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
-						), array( /* WHERE */
-							'wl_user' => $watchers,
-							'wl_namespace' => $linkTarget->getNamespace(),
-							'wl_title' => $linkTarget->getDBkey(),
-						), $fname
-					);
-				}
-			);
-		}
-
-		return $watchers;
 	}
 
 	/**
@@ -149,7 +116,11 @@ class EmailNotification {
 		}
 
 		// update wl_notificationtimestamp for watchers
-		$watchers = self::updateWatchlistTimestamp( $editor, $title, $timestamp );
+		$watchers = WatchedItemStore::getDefaultInstance()->updateNotificationTimestamp(
+			$editor,
+			$title,
+			$timestamp
+		);
 
 		$sendEmail = true;
 		// $watchers deals with $wgEnotifWatchlist.
