@@ -289,6 +289,31 @@ class StringUtils {
 	}
 
 	/**
+	 * More or less "markup-safe" str_replace()
+	 * Ignores any instances of the separator inside `<...>`
+	 * @param string $search
+	 * @param string $replace
+	 * @param string $text
+	 * @return string
+	 */
+	static function replaceMarkup( $search, $replace, $text ) {
+		$placeholder = "\x00";
+
+		// Remove placeholder instances
+		$text = str_replace( $placeholder, '', $text );
+
+		// Replace instances of the separator inside HTML-like tags with the placeholder
+		$replacer = new DoubleReplacer( $search, $placeholder );
+		$cleaned = StringUtils::delimiterReplaceCallback( '<', '>', $replacer->cb(), $text );
+
+		// Explode, then put the replaced separators back in
+		$cleaned = str_replace( $search, $replace, $cleaned );
+		$text = str_replace( $placeholder, $search, $cleaned );
+
+		return $text;
+	}
+
+	/**
 	 * Escape a string to make it suitable for inclusion in a preg_replace()
 	 * replacement parameter.
 	 *

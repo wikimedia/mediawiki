@@ -6335,6 +6335,24 @@ parsoid=wt2html,html2html
 !! end
 
 !! test
+Element attributes with double ! should not be broken up by <th>
+!! wikitext
+{|
+! hi <div class="!!">ha</div> ho
+|}
+!! html/php
+<table>
+<tr>
+<th> hi <div class="!!">ha</div> ho
+</th></tr></table>
+
+!! html/parsoid
+<table>
+<tbody><tr><th> hi <div class="!!" data-parsoid='{"stx":"html"}'>ha</div> ho</th></tr>
+</tbody></table>
+!! end
+
+!! test
 ! and || in element attributes should not be parsed as <th>/<td>
 !! wikitext
 {|

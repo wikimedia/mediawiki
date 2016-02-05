@@ -1115,7 +1115,7 @@ class Parser {
 
 				// Implies both are valid for table headings.
 				if ( $first_character === '!' ) {
-					$line = str_replace( '!!', '||', $line );
+					$line = StringUtils::replaceMarkup( '!!', '||', $line );
 				}
 
 				# Split up multiple cells on the same line.
