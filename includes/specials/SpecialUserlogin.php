@@ -1758,4 +1758,7 @@ class LoginForm extends SpecialPage {
 		return $expired;
 	}
 
+	protected function getSubpagesForPrefixSearch() {
+		return array( 'signup' );
+	}
 }
