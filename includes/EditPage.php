@@ -2232,8 +2232,6 @@ class EditPage {
 			$wgOut->addModules( 'mediawiki.action.edit.stash' );
 		}
 
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-
 		# Enabled article-related sidebar, toplinks, etc.
 		$wgOut->setArticleRelated( true );
 
