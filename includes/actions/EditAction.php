@@ -43,8 +43,9 @@ class EditAction extends FormlessAction {
 	public function show() {
 		$this->useTransactionalTimeLimit();
 
+		$out = $this->getOutput();
+		$out->setRobotPolicy( 'noindex,nofollow' );
 		if ( $this->getContext()->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
-			$out = $this->getOutput();
 			$out->addModuleStyles( array(
 				'mediawiki.ui.input',
 				'mediawiki.ui.checkbox',
