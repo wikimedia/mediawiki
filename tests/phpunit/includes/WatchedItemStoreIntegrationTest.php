@@ -42,15 +42,20 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function testResetNotificationTimestamp() {
+	public function testUpdateAndResetNotificationTimestamp() {
 		$user = $this->getUser();
 		$otherUser = ( new TestUser( 'WatchedItemStoreIntegrationTestUser_otherUser' ) )->getUser();
 		$title = Title::newFromText( 'WatchedItemStoreIntegrationTestPage' );
 		$store = WatchedItemStore::getDefaultInstance();
 		$store->addWatch( $user, $title );
-		EmailNotification::updateWatchlistTimestamp( $otherUser, $title, '20150202010101' );
+		$this->assertNull( $store->loadWatchedItem( $user, $title )->getNotificationTimestamp() );
 
-		$this->assertNotNull( $store->loadWatchedItem( $user, $title )->getNotificationTimestamp() );
+		$store->updateNotificationTimestamp( $otherUser, $title, '20150202010101' );
+		$this->assertEquals(
+			'20150202010101',
+			$store->loadWatchedItem( $user, $title )->getNotificationTimestamp()
+		);
+
 		$this->assertTrue( $store->resetNotificationTimestamp( $user, $title ) );
 		$this->assertNull( $store->loadWatchedItem( $user, $title )->getNotificationTimestamp() );
 	}

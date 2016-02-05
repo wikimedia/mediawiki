@@ -1144,4 +1144,111 @@ class WatchedItemStoreUnitTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( 1, $getTimestampCallCounter );
 	}
 
+	public function testUpdateNotificationTimestamp_watchersExist() {
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				[ 'watchlist' ],
+				[ 'wl_user' ],
+				[
+					'wl_user != 1',
+					'wl_namespace' => 0,
+					'wl_title' => 'SomeDbKey',
+					'wl_notificationtimestamp IS NULL'
+				]
+			)
+			->will(
+				$this->returnValue( [
+					$this->getFakeRow( [ 'wl_user' => '2' ] ),
+					$this->getFakeRow( [ 'wl_user' => '3' ] )
+				] )
+			);
+		// Not checking update calls due to it being passed as a callback to IDatabase::onTransactionIdle
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			new HashBagOStuff( [ 'maxKeys' => 100 ] )
+		);
+
+		$this->assertEquals(
+			[ 2, 3 ],
+			$store->updateNotificationTimestamp(
+				$this->getMockNonAnonUserWithId( 1 ),
+				new TitleValue( 0, 'SomeDbKey' ),
+				'20151212010101'
+			)
+		);
+	}
+
+	public function testUpdateNotificationTimestamp_noWatchers() {
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				[ 'watchlist' ],
+				[ 'wl_user' ],
+				[
+					'wl_user != 1',
+					'wl_namespace' => 0,
+					'wl_title' => 'SomeDbKey',
+					'wl_notificationtimestamp IS NULL'
+				]
+			)
+			->will(
+				$this->returnValue( [] )
+			);
+		// Not checking update calls due to it being passed as a callback to IDatabase::onTransactionIdle
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			new HashBagOStuff( [ 'maxKeys' => 100 ] )
+		);
+
+		$watchers = $store->updateNotificationTimestamp(
+			$this->getMockNonAnonUserWithId( 1 ),
+			new TitleValue( 0, 'SomeDbKey' ),
+			'20151212010101'
+		);
+		$this->assertInternalType( 'array', $watchers );
+		$this->assertEmpty( $watchers );
+	}
+
+	public function testUpdateNotificationTimestamp_singleSettingIsFalse() {
+		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'select' )
+			->with(
+				[ 'watchlist' ],
+				[ 'wl_user' ],
+				[
+					'wl_user != 1',
+					'wl_namespace' => 0,
+					'wl_title' => 'SomeDbKey',
+					'wl_notificationtimestamp IS NULL'
+				]
+			)
+			->will(
+				$this->returnValue( [
+					$this->getFakeRow( [ 'wl_user' => '2' ] ),
+					$this->getFakeRow( [ 'wl_user' => '3' ] )
+				] )
+			);
+		// Not checking update calls due to it being passed as a callback to IDatabase::onTransactionIdle
+
+		$store = new WatchedItemStore(
+			$this->getMockLoadBalancer( $mockDb ),
+			new HashBagOStuff( [ 'maxKeys' => 100 ] )
+		);
+
+		$this->assertEquals(
+			[ 2, 3 ],
+			$store->updateNotificationTimestamp(
+				$this->getMockNonAnonUserWithId( 1 ),
+				new TitleValue( 0, 'SomeDbKey' ),
+				'20151212010101'
+			)
+		);
+	}
+
 }
