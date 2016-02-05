@@ -678,28 +678,17 @@ class InfoAction extends FormlessAction {
 
 				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
 
+				$watchedItemStore = WatchedItemStore::getDefaultInstance();
+
 				$result = array();
-				$result['watchers'] = WatchedItemStore::getDefaultInstance()->countWatchers( $titleValue );
+				$result['watchers'] = $watchedItemStore->countWatchers( $titleValue );
 
 				if ( $config->get( 'ShowUpdatedMarker' ) ) {
-					// Threshold: last visited about 26 weeks before latest edit
 					$updated = wfTimestamp( TS_UNIX, $page->getTimestamp() );
-					$age = $config->get( 'WatchersMaxAge' );
-					$threshold = $dbrWatchlist->timestamp( $updated - $age );
-					// Number of page watchers who also visited a "recent" edit
-					$visitingWatchers = (int)$dbrWatchlist->selectField(
-						'watchlist',
-						'COUNT(*)',
-						array(
-							'wl_namespace' => $title->getNamespace(),
-							'wl_title' => $title->getDBkey(),
-							'wl_notificationtimestamp >= ' .
-								$dbrWatchlist->addQuotes( $threshold ) .
-								' OR wl_notificationtimestamp IS NULL'
-						),
-						$fname
+					$result['visitingWatchers'] = $watchedItemStore->countVisitingWatchers(
+						$titleValue,
+						$dbrWatchlist->timestamp( $updated - $config->get( 'WatchersMaxAge' ) )
 					);
-					$result['visitingWatchers'] = $visitingWatchers;
 				}
 
 				// Total number of edits
