@@ -336,6 +336,56 @@ class WatchedItemStore {
 	}
 
 	/**
+	 * @param User $editor The editor that triggered the update. Their notification
+	 *  timestamp will not be updated(they have already seen it)
+	 * @param LinkTarget $target The target to update timestamps for
+	 * @param string $timestamp Set the update timestamp to this value
+	 *
+	 * @return int[] Array of user IDs the timestamp has been updated for
+	 */
+	public function updateNotificationTimestamp( User $editor, LinkTarget $target, $timestamp ) {
+		if ( !$this->config->get( 'EnotifWatchlist' ) && !$this->config->get( 'ShowUpdatedMarker' ) ) {
+			return [];
+		}
+
+		$dbw = $this->loadBalancer->getConnection( DB_MASTER, [ 'watchlist' ] );
+		$res = $dbw->select( [ 'watchlist' ],
+			[ 'wl_user' ],
+			[
+				'wl_user != ' . intval( $editor->getID() ),
+				'wl_namespace' => $target->getNamespace(),
+				'wl_title' => $target->getDBkey(),
+				'wl_notificationtimestamp IS NULL',
+			], __METHOD__
+		);
+
+		$watchers = [];
+		foreach ( $res as $row ) {
+			$watchers[] = intval( $row->wl_user );
+		}
+
+		if ( $watchers ) {
+			// Update wl_notificationtimestamp for all watching users except the editor
+			$fname = __METHOD__;
+			$dbw->onTransactionIdle(
+				function () use ( $dbw, $timestamp, $watchers, $target, $fname ) {
+					$dbw->update( 'watchlist',
+						[ /* SET */
+							'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
+						], [ /* WHERE */
+							'wl_user' => $watchers,
+							'wl_namespace' => $target->getNamespace(),
+							'wl_title' => $target->getDBkey(),
+						], $fname
+					);
+				}
+			);
+		}
+
+		return $watchers;
+	}
+
+	/**
 	 * Reset the notification timestamp of this entry
 	 *
 	 * @param User $user
