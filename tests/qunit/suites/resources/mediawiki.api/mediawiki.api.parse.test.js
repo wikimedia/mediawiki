@@ -16,7 +16,7 @@
 
 		this.server.respondWith( /action=parse.*&text='''Hello\+world'''/, function ( request ) {
 			request.respond( 200, { 'Content-Type': 'application/json' },
-				'{ "parse": { "text": { "*": "<p><b>Hello world</b></p>" } } }'
+				'{ "parse": { "text": "<p><b>Hello world</b></p>" } }'
 			);
 		} );
 
