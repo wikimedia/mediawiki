@@ -70,15 +70,24 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		$store = WatchedItemStore::getDefaultInstance();
 		$store->addWatch( $user, $title );
 		$this->assertNull( $store->loadWatchedItem( $user, $title )->getNotificationTimestamp() );
+		$initialVisitingWatchers = $store->countVisitingWatchers( $title, '20150202020202' );
 
 		$store->updateNotificationTimestamp( $otherUser, $title, '20150202010101' );
 		$this->assertEquals(
 			'20150202010101',
 			$store->loadWatchedItem( $user, $title )->getNotificationTimestamp()
 		);
+		$this->assertEquals(
+			$initialVisitingWatchers - 1,
+			$store->countVisitingWatchers( $title, '20150202020202' )
+		);
 
 		$this->assertTrue( $store->resetNotificationTimestamp( $user, $title ) );
 		$this->assertNull( $store->loadWatchedItem( $user, $title )->getNotificationTimestamp() );
+		$this->assertEquals(
+			$initialVisitingWatchers,
+			$store->countVisitingWatchers( $title, '20150202020202' )
+		);
 	}
 
 	public function testDuplicateAllAssociatedEntries() {
