@@ -178,6 +178,13 @@ class WebInstallerExistingWiki extends WebInstallerPage {
 		// All good
 		$this->setVar( '_ExistingDBSettings', true );
 
+		// Copy $wgAuthenticationTokenVersion too, if it exists
+		$this->setVar( 'wgAuthenticationTokenVersion',
+			isset( $vars['wgAuthenticationTokenVersion'] )
+				? $vars['wgAuthenticationTokenVersion']
+				: null
+		);
+
 		return $status;
 	}
 

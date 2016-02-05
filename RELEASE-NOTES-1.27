@@ -160,6 +160,9 @@ production.
   All values are now allowed for the role attribute.
 * $wgContentHandlers now also supports callbacks to create an instance of the
   appropriate ContentHandler subclass.
+* Added $wgAuthenticationTokenVersion, which if non-null prevents the
+  user_token database field from being exposed in cookies. Setting this would
+  be a good idea, but will log out all current sessions.
 
 === External library changes in 1.27 ===
 
