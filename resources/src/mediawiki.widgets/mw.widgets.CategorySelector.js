@@ -265,6 +265,7 @@
 		switch ( searchType ) {
 			case CategorySelector.SearchType.OpenSearch:
 				this.api.get( {
+					formatversion: 2,
 					action: 'opensearch',
 					namespace: NS_CATEGORY,
 					limit: this.limit,
@@ -277,6 +278,7 @@
 
 			case CategorySelector.SearchType.InternalSearch:
 				this.api.get( {
+					formatversion: 2,
 					action: 'query',
 					list: 'allpages',
 					apnamespace: NS_CATEGORY,
@@ -298,18 +300,18 @@
 				}
 
 				this.api.get( {
+					formatversion: 2,
 					action: 'query',
 					prop: 'info',
 					titles: 'Category:' + input
 				} ).done( function ( res ) {
-					var page,
-						categories = [];
+					var categories = [];
 
-					for ( page in res.query.pages ) {
-						if ( parseInt( page, 10 ) > -1 ) {
-							categories.push( res.query.pages[ page ].title );
+					$.each( res.query.pages, function ( index, page ) {
+						if ( !page.missing ) {
+							categories.push( page.title );
 						}
-					}
+					} );
 
 					deferred.resolve( categories );
 				} ).fail( deferred.reject.bind( deferred ) );
@@ -322,6 +324,7 @@
 				}
 
 				this.api.get( {
+					formatversion: 2,
 					action: 'query',
 					list: 'categorymembers',
 					cmtype: 'subcat',
@@ -342,23 +345,23 @@
 				}
 
 				this.api.get( {
+					formatversion: 2,
 					action: 'query',
 					prop: 'categories',
 					cllimit: this.limit,
 					titles: 'Category:' + input
 				} ).done( function ( res )  {
-					var page,
-						categories = [];
+					var categories = [];
 
-					for ( page in res.query.pages ) {
-						if ( parseInt( page, 10 ) > -1 ) {
-							if ( $.isArray( res.query.pages[ page ].categories ) ) {
-								categories.push.apply( categories, res.query.pages[ page ].categories.map( function ( category ) {
+					$.each( res.query.pages, function ( index, page ) {
+						if ( !page.missing ) {
+							if ( $.isArray( page.categories ) ) {
+								categories.push.apply( categories, page.categories.map( function ( category ) {
 									return category.title;
 								} ) );
 							}
 						}
-					}
+					} );
 
 					deferred.resolve( categories );
 				} ).fail( deferred.reject.bind( deferred ) );
