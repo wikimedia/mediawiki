@@ -12,7 +12,7 @@
 	"config-localsettings-upgrade": "'''Opgepasst''': E Fichier <code>LocalSettings.php</code> gouf fonnt.\nÄr Software kann aktualiséiert ginn, setzt w.e.g. de Wäert vum <code>$wgUpgradeKey</code> an d'Këscht.\nDir fannt en am <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "E Fichier <code>LocalSettings.php</code> gouf fonnt.\nFir dës Installatioun z'aktuaéliséieren start w.e.g. <code>update.php</code>",
 	"config-localsettings-key": "Aktualisatiounsschlëssel:",
-	"config-localsettings-badkey": "De Schlëssel deen Dir aginn hutt ass net korrekt",
+	"config-localsettings-badkey": "Den Aktualisatiouns-Schlëssel deen Dir aginn hutt ass net korrekt",
 	"config-localsettings-incomplete": "De Fichier <code>LocalSettings.php</code> schéngt net komplett ze sinn.\nD'Variabel $1 ass net definéiert.\nÄnnert w.e.g. de Fichier <code>LocalSettings.php</code> sou datt déi Variabel definéiert ass a klickt op \"{{int:Config-continue}}\".",
 	"config-session-error": "Feeler beim Starte vun der Sessioun: $1",
 	"config-no-session": "D'Donnéeë vun ärer Sessioun si verluergaangen!\nKuckt Är php.ini no a vergewëssert Iech datt <code>session.save_path</code>  op adequate REpertoire agestallt ass.",

@@ -20,7 +20,7 @@
 	"config-localsettings-upgrade": "یک پرونده <code>LocalSettings.php</code> شناسایی شده‌است.\nبرای ارتقاء این نصب لطفاً مقدار <code>$wgUpgradeKey</code> در جعبه زیر وارد کنید.\nشما می‌توانید آن را در <code>LocalSettings.php</code> پیدا کنید.",
 	"config-localsettings-cli-upgrade": "یک پرونده <code>LocalSettings.php</code> شناسایی شده است.\nبرای ارتقاء این نصب، لطفاً <code>update.php</code> را اجرا کنید.",
 	"config-localsettings-key": "کلید ارتقا:",
-	"config-localsettings-badkey": "کلیدی که شما ارائه کردید نادرست است.",
+	"config-localsettings-badkey": "کلید به‌روزرسانی‌ای که شما ارائه کردید نادرست است.",
 	"config-upgrade-key-missing": "نصب موجود مدیاویکی شناسایی شده‌است.\nبرای بروزرسانی این نصب، لطفاً خط زیر را در آخر کد \nقرار دادن به نصب ارتقاء داده شده، به خط زیر لطفاً در پایین خود را <code>LocalSettings.php</code> قرار دهید:\n\n$1",
 	"config-localsettings-incomplete": "وجود <code>LocalSettings.php</code> به نظر ناقص می‌رسد.\nمتغیر $1 تنظیم نشده‌است.\nبرای اینکه این متغیر تنظیم شود لطفاً <code>LocalSettings.php</code> را تغییر دهید، و \"{{int:Config-continue}}\" را کلیک کنید.",
 	"config-localsettings-connection-error": "هنگام اتصال به پایگاه اطلاعاتی که ازتنظیمات مشخص شده در<code>LocalSettings.php</code> استفاده می‌کند، خطایی رخ داد. لطفاً این تنظیمات را نصب کنید و دوباره تلاش کنید.\n$1",

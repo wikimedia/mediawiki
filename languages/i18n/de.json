@@ -1830,7 +1830,6 @@
 	"apihelp": "API-Hilfe",
 	"apihelp-no-such-module": "Modul „$1“ nicht gefunden.",
 	"apisandbox": "API-Spielwiese",
-	"apisandbox-summary": "",
 	"apisandbox-jsonly": "Zur Nutzung der API-Spielwiese ist JavaScript erforderlich.",
 	"apisandbox-api-disabled": "Die API wurde auf diesem Wiki deaktiviert.",
 	"apisandbox-intro": "Diese Seite kannst du für Versuche mit der <strong>MediaWiki-API</strong> verwenden.\nDie [[mw:API:Main page|Dokumentation zur API]] enthält weitere Hinweise zu ihrer Nutzung. Beispiel: [//www.mediawiki.org/wiki/API:Main_page/de#Ein_einfaches_Beispiel Den Inhalt der Hauptseite abrufen]. Für weitere Beispiele eine der verfügbaren Aktionen auswählen.\n\nObwohl dies eine Spielwiese ist, bedenke, dass Aktionen, die du auf dieser Seite durchführst, das Wiki verändern.",
