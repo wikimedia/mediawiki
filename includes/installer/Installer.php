@@ -223,6 +223,7 @@ abstract class Installer {
 		// $wgLogo is probably wrong (bug 48084); set something that will work.
 		// Single quotes work fine here, as LocalSettingsGenerator outputs this unescaped.
 		'wgLogo' => '$wgResourceBasePath/resources/assets/wiki.png',
+		'wgAuthenticationTokenVersion' => 1,
 	);
 
 	/**

@@ -65,7 +65,7 @@ class LocalSettingsGenerator {
 				'wgRightsText', '_MainCacheType', 'wgEnableUploads',
 				'_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
-				'wgMetaNamespace', 'wgLogo',
+				'wgMetaNamespace', 'wgLogo', 'wgAuthenticationTokenVersion',
 			),
 			$db->getGlobalNames()
 		);
@@ -395,6 +395,9 @@ ${serverSetting}
 \$wgLanguageCode = \"{$this->values['wgLanguageCode']}\";
 
 \$wgSecretKey = \"{$this->values['wgSecretKey']}\";
+
+# Changing this will log out all existing sessions.
+\$wgAuthenticationTokenVersion = \"{$this->values['wgAuthenticationTokenVersion']}\";
 
 # Site upgrade key. Must be set to a string (default provided) to turn on the
 # web installer while LocalSettings.php is in place
