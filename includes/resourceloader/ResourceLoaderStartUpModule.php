@@ -104,8 +104,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgResourceLoaderLegacyModules' => self::getLegacyModules(),
 			'wgForeignUploadTargets' => $conf->get( 'ForeignUploadTargets' ),
 			'wgEnableUploads' => $conf->get( 'EnableUploads' ),
-			'wgForeignUploadTestEnabled' => $conf->get( 'ForeignUploadTestEnabled' ),
-			'wgForeignUploadTestDefault' => $conf->get( 'ForeignUploadTestDefault' ),
 		);
 
 		Hooks::run( 'ResourceLoaderGetConfigVars', array( &$vars ) );
