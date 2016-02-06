@@ -3613,8 +3613,6 @@ class OutputPage extends ContextSource {
 	 */
 	public function addStyle( $style, $media = '', $condition = '', $dir = '' ) {
 		$options = array();
-		// Even though we expect the media type to be lowercase, but here we
-		// force it to lowercase to be safe.
 		if ( $media ) {
 			$options['media'] = $media;
 		}
