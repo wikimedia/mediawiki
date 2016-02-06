@@ -310,7 +310,13 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Test if it's safe to load this User object
+	 * Test if it's safe to load this User object. You should typically check this before using
+	 * $wgUser or RequestContext::getUser in a method that might be called before the system has
+	 * been fully initialized. If the object is unsafe, you should use an anonymous user:
+	 * \code
+	 * $user = $wgUser->isSafeToLoad() ? $wgUser : new User;
+	 * \endcode
+	 *
 	 * @return bool
 	 */
 	public function isSafeToLoad() {
