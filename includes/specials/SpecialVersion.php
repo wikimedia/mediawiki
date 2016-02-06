@@ -126,7 +126,7 @@ class SpecialVersion extends SpecialPage {
 				break;
 
 			default:
-				$out->addModules( 'mediawiki.special.version' );
+				$out->addModuleStyles( 'mediawiki.special.version' );
 				$out->addWikiText(
 					$this->getMediaWikiCredits() .
 					$this->softwareInformation() .
