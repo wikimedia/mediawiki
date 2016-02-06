@@ -636,7 +636,7 @@ class Article implements Page {
 					# the correct version information.
 					$outputPage->setRevisionId( $this->getRevIdFetched() );
 					# Preload timestamp to avoid a DB hit
-					$outputPage->setRevisionTimestamp( $this->getTimestamp() );
+					$outputPage->setRevisionTimestamp( $this->mPage->getTimestamp() );
 
 					# Pages containing custom CSS or JavaScript get special treatment
 					if ( $this->getTitle()->isCssOrJsPage() || $this->getTitle()->isCssJsSubpage() ) {
