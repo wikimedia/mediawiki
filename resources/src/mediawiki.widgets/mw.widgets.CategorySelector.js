@@ -36,6 +36,7 @@
 	 *   Default search API to use when searching.
 	 */
 	function CategorySelector( config ) {
+		CategorySelector.parent.call( this, config );
 		// Config initialization
 		config = $.extend( {
 			limit: 10,
