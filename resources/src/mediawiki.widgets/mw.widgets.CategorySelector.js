@@ -66,6 +66,8 @@
 	}
 
 	/* Setup */
+	
+	/* global OO.ui.mixin.PendingElement */
 
 	OO.inheritClass( CategorySelector, OO.ui.CapsuleMultiSelectWidget );
 	OO.mixinClass( CategorySelector, OO.ui.mixin.PendingElement );
