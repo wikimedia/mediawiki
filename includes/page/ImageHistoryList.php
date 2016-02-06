@@ -53,7 +53,7 @@ class ImageHistoryList extends ContextSource {
 	 */
 	public function __construct( $imagePage ) {
 		global $wgShowArchiveThumbnails;
-		$this->current = $imagePage->getFile();
+		$this->current = $imagePage->getPage()->getFile();
 		$this->img = $imagePage->getDisplayedFile();
 		$this->title = $imagePage->getTitle();
 		$this->imagePage = $imagePage;

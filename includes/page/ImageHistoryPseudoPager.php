@@ -111,7 +111,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		if ( $this->mQueryDone ) {
 			return;
 		}
-		$this->mImg = $this->mImagePage->getFile(); // ensure loading
+		$this->mImg = $this->mImagePage->getPage()->getFile(); // ensure loading
 		if ( !$this->mImg->exists() ) {
 			return;
 		}
