@@ -16,6 +16,8 @@ This is not a release yet!
 * (T156184) $wgRawHtml will no longer apply to internationalization messages.
 * (T160519) CACHE_ANYTHING will not be CACHE_ACCEL if no accelerator is installed.
 * (T154872) Fix incorrect ar_usertext_timestamp index names in new 1.28 installs.
+* (T109140) (T122209) SECURITY: Special:UserLogin and Special:Search allow redirect
+  to interwiki links.
 
 == MediaWiki 1.28 ==
 

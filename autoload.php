@@ -1320,6 +1320,7 @@ $wgAutoloadLocalClasses = [
 	'SpecialExpandTemplates' => __DIR__ . '/includes/specials/SpecialExpandTemplates.php',
 	'SpecialExport' => __DIR__ . '/includes/specials/SpecialExport.php',
 	'SpecialFilepath' => __DIR__ . '/includes/specials/SpecialFilepath.php',
+	'SpecialGoToInterwiki' => __DIR__ . '/includes/specials/SpecialGoToInterwiki.php',
 	'SpecialImport' => __DIR__ . '/includes/specials/SpecialImport.php',
 	'SpecialJavaScriptTest' => __DIR__ . '/includes/specials/SpecialJavaScriptTest.php',
 	'SpecialLinkAccounts' => __DIR__ . '/includes/specials/SpecialLinkAccounts.php',

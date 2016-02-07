@@ -4424,5 +4424,8 @@
 	"restrictionsfield-help": "Placeholder text displayed in restriction fields (e.g. on Special:BotPassword).",
 	"edit-error-short": "Error message. Parameters:\n* $1 - the error details\nSee also:\n* {{msg-mw|edit-error-long}}\n{{Identical|Error}}",
 	"edit-error-long": "Error message. Parameters:\n* $1 - the error details\nSee also:\n* {{msg-mw|edit-error-short}}\n{{Identical|Error}}",
-	"rawhtml-notallowed": "Error message given when $wgRawHtml = true; is set and a user uses an &lt;html&gt; tag in a system message or somewhere other than a normal page."
+	"rawhtml-notallowed": "Error message given when $wgRawHtml = true; is set and a user uses an &lt;html&gt; tag in a system message or somewhere other than a normal page.",
+	"gotointerwiki": "{{doc-special|GoToInterwiki}}\n\nSpecial:GoToInterwiki is a warning page displayed before redirecting users to external interwiki links. Its triggered by people going to something like [[Special:Search/google:foo]].",
+	"gotointerwiki-invalid": "Message shown on Special:GoToInterwiki if given an invalid title.",
+	"gotointerwiki-external": "Message shown on Special:GoToInterwiki if given a external interwiki link (e.g. [[Special:GoToInterwiki/Google:Foo]]). $1 is the full url the user is trying to get to. $2 is the text of the interwiki link (e.g. \"Google:foo\")."
 }

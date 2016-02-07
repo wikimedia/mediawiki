@@ -4240,5 +4240,8 @@
 	"restrictionsfield-help": "One IP address or CIDR range per line. To enable everything, use<br><code>0.0.0.0/0</code><br><code>::/0</code>",
 	"edit-error-short": "Error: $1",
 	"edit-error-long": "Errors:\n\n$1",
-	"rawhtml-notallowed": "&lt;html&gt; tags cannot be used outside of normal pages."
+	"rawhtml-notallowed": "&lt;html&gt; tags cannot be used outside of normal pages.",
+	"gotointerwiki": "Leaving {{SITENAME}}",
+	"gotointerwiki-invalid": "The specified title was invalid.",
+	"gotointerwiki-external": "You are about to leave {{SITENAME}} to visit [[$2]] which is a separate website.\n\n[$1 Click here to continue on to $1]."
 }
