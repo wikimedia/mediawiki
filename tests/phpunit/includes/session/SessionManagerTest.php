@@ -596,7 +596,6 @@ class SessionManagerTest extends MediaWikiTestCase {
 			'Bar' => array( 'X', 'Bar1', 3 => 'Bar2' ),
 			'Quux' => array( 'Quux' ),
 			'Baz' => array(),
-			'Quux' => array( 'Quux' ),
 		);
 
 		$this->assertEquals( $expect, $manager->getVaryHeaders() );

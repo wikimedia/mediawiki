@@ -206,7 +206,6 @@ mw.example();
 				'styles' => array(),
 				'messages' => new XmlJsCode( '{}' ),
 				'templates' => array(),
-				'title' => 'scripts, styles and messags',
 
 				'expected' => 'mw.loader.implement( "test.example", function ( $, jQuery ) {
 mw.example();
