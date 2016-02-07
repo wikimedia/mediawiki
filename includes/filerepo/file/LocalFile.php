@@ -1483,12 +1483,16 @@ class LocalFile extends File {
 			$recentChange = $logEntry->publish( $logId );
 
 			if ( $tags ) {
-				ChangeTags::addTags(
-					$tags,
-					$recentChange ? $recentChange->getAttribute( 'rc_id' ) : null,
-					$logEntry->getAssociatedRevId(),
-					$logId
-				);
+				DeferredUpdates::addCallableUpdate( function() use (
+					$tags, $recentChange, $logEntry, $logId
+				) {
+					ChangeTags::addTags(
+						$tags,
+						$recentChange ? $recentChange->getAttribute( 'rc_id' ) : null,
+						$logEntry->getAssociatedRevId(),
+						$logId
+					);
+				} );
 			}
 
 			# Run hook for other updates (typically more cache purging)
