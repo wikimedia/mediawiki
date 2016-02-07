@@ -26,4 +26,8 @@ class DummySessionBackend {
 
 	public function deregisterSession( $index ) {
 	}
+
+	public function isPersistent() {
+		return true;
+	}
 }

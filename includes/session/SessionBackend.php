@@ -87,6 +87,9 @@ final class SessionBackend {
 	/** @var array|null provider-specified metadata */
 	private $providerMetadata = null;
 
+	/** @var int Timestamp of when session created (UNIX format) */
+	private $createTimestamp = 0;
+
 	private $expires = 0;
 	private $loggedOut = 0;
 	private $delaySave = 0;
@@ -131,6 +134,7 @@ final class SessionBackend {
 		$this->remember = $info->wasRemembered();
 		$this->forceHTTPS = $info->forceHTTPS();
 		$this->providerMetadata = $info->getProviderMetadata();
+		$this->createTimestamp = (int)\wfTimestamp();
 
 		$blob = $store->get( wfMemcKey( 'MWSession', (string)$this->id ) );
 		if ( !is_array( $blob ) ||
@@ -149,6 +153,9 @@ final class SessionBackend {
 			$this->data = $blob['data'];
 			if ( isset( $blob['metadata']['loggedOut'] ) ) {
 				$this->loggedOut = (int)$blob['metadata']['loggedOut'];
+			}
+			if ( isset( $blob['metadata']['createTimestamp'] ) ) {
+				$this->createTimestamp = (int)$blob['metadata']['createTimestamp'];
 			}
 			if ( isset( $blob['metadata']['expires'] ) ) {
 				$this->expires = (int)$blob['metadata']['expires'];
@@ -230,7 +237,6 @@ final class SessionBackend {
 				// to close then reopen it.
 				session_write_close();
 			}
-
 			$this->provider->getManager()->changeBackendId( $this );
 			$this->provider->sessionIdWasReset( $this, $oldId );
 			$this->metaDirty = true;
@@ -453,6 +459,14 @@ final class SessionBackend {
 	 */
 	public function getLoggedOutTimestamp() {
 		return $this->loggedOut;
+	}
+
+	/**
+	 * Fetch time session was created.
+	 * @return string Timestamp in MW format.
+	 */
+	public function getCreateTimestamp() {
+		return \wfTimestamp( TS_MW, $this->createTimestamp );
 	}
 
 	/**
@@ -716,6 +730,7 @@ final class SessionBackend {
 			'expires' => time() + $this->lifetime,
 			'loggedOut' => $this->loggedOut,
 			'persisted' => $this->persist,
+			'createTimestamp' => $this->createTimestamp
 		];
 
 		\Hooks::run( 'SessionMetadata', [ $this, &$metadata, $this->requests ] );

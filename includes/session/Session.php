@@ -58,6 +58,9 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 	/** @var LoggerInterface */
 	private $logger;
 
+	/** @var array Whether a particular piece of session data is new */
+	private $newCache;
+
 	/**
 	 * @param SessionBackend $backend
 	 * @param int $index
@@ -343,10 +346,19 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 	 *
 	 * @param string|string[] $salt Token salt
 	 * @param string $key Token key
+	 * @param boolean $allowStateless Use an IP based token if no session available.
 	 * @return Token
 	 */
-	public function getToken( $salt = '', $key = 'default' ) {
-		$new = false;
+	public function getToken( $salt = '', $key = 'default', $allowStateless = false ) {
+		// Secret to use for stateless tokens
+		$nonUniqueSecret = \RequestContext::getMain()->getConfig()->get( 'SecretKey' )
+			. $key;
+		if ( $allowStateless && !$this->isPersistent() && $this->getUser()->isAnon() ) {
+			return new StatelessLoggedOutToken(
+				$this->getRequest()->getIP(), $nonUniqueSecret, (string)$salt
+			);
+		}
+
 		$secrets = $this->get( 'wsTokenSecrets' );
 		if ( !is_array( $secrets ) ) {
 			$secrets = [];
@@ -357,12 +369,29 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 			$secret = \MWCryptRand::generateHex( 32 );
 			$secrets[$key] = $secret;
 			$this->set( 'wsTokenSecrets', $secrets );
-			$new = true;
+			// If someone calls this function multiple times, we
+			// want to return same new everytime within a request,
+			// as new is used to determine if cookies are enabled.
+			$this->newCache[$key] = true;
 		}
 		if ( is_array( $salt ) ) {
 			$salt = implode( '|', $salt );
 		}
-		return new Token( $secret, (string)$salt, $new );
+		// StatefulLoggedOutToken also accepts stateless tokens for
+		// compatability, so we only use them if $allowStateless is true.
+		// if allowStateless is false, then we don't want the compatability,
+		// so we use normal Token's in that case.
+		if ( $allowStateless && $this->getUser()->isAnon() ) {
+			return new StatefulLoggedOutToken(
+				$this->getRequest()->getIP(),
+				$nonUniqueSecret,
+				$secret,
+				$this->backend->getCreateTimestamp(),
+				(string)$salt,
+				isset( $this->newCache[$key] )
+			);
+		} /* else */
+		return new Token( $secret, (string)$salt, isset( $this->newCache[$key] ) );
 	}
 
 	/**

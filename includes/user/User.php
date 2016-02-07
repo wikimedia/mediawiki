@@ -4227,14 +4227,11 @@ class User implements IDBAccessObject {
 	 * @return MediaWiki\Session\Token The new edit token
 	 */
 	public function getEditTokenObject( $salt = '', $request = null ) {
-		if ( $this->isAnon() ) {
-			return new LoggedOutEditToken();
-		}
-
 		if ( !$request ) {
 			$request = $this->getRequest();
 		}
-		return $request->getSession()->getToken( $salt );
+
+		return $request->getSession()->getToken( $salt, 'default', true );
 	}
 
 	/**
