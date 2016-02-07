@@ -21,7 +21,7 @@
 namespace MediaWiki\Logger\Monolog;
 
 /**
- * Injects `wfHostname()` and `wfWikiID()` in all records.
+ * Injects `wfHostname()`, `wfWikiID()` and `$wgVersion` in all records.
  *
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
@@ -34,11 +34,13 @@ class WikiProcessor {
 	 * @return array
 	 */
 	public function __invoke( array $record ) {
+		global $wgVersion;
 		$record['extra'] = array_merge(
 			$record['extra'],
 			array(
 				'host' => wfHostname(),
 				'wiki' => wfWikiID(),
+				'mwversion' => $wgVersion,
 			)
 		);
 		return $record;
