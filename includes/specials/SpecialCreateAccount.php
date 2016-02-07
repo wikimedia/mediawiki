@@ -148,7 +148,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 	}
 
 	protected function getToken() {
-		return $this->getRequest()->getSession()->getToken( '', 'createaccount' );
+		return $this->getRequest()->getSession()->getToken( '', 'createaccount', false );
 	}
 
 	protected function clearToken() {

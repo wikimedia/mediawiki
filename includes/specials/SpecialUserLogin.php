@@ -137,7 +137,7 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 	}
 
 	protected function getToken() {
-		return $this->getRequest()->getSession()->getToken( '', 'login' );
+		return $this->getRequest()->getSession()->getToken( '', 'login', false );
 	}
 
 	protected function clearToken() {

@@ -99,7 +99,10 @@ class SpecialJavaScriptTest extends SpecialPage {
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
 			'target' => 'test',
 		];
-		$embedContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
+		$embedContext = new ResourceLoaderContext( $rl, new FauxRequest() );
+		// Make it output the tokens.
+		$embedContext->getUserObj()->getRequest()->getSession()->persist();
+
 		$query['only'] = 'scripts';
 		$startupContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
 

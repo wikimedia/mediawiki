@@ -8462,6 +8462,17 @@ $wgCSPFalsePositiveUrls = [
 ];
 
 /**
+ * Whether to enforce that logged out users need valid tokens.
+ *
+ * It is expected this config variable will be removed shortly
+ * once we are finished testing the new logged out tokens.
+ *
+ * @since 1.29
+ */
+
+$wgLoggedOutTokenTestingMode = true;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
