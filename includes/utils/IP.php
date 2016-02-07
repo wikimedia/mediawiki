@@ -378,6 +378,7 @@ class IP {
 	public static function isPublic( $ip ) {
 		static $privateSet = null;
 		if ( !$privateSet ) {
+			ini_set( 'xdebug.collect_params', 2 );
 			$privateSet = new IPSet( array(
 				'10.0.0.0/8', # RFC 1918 (private)
 				'172.16.0.0/12', # RFC 1918 (private)
@@ -389,6 +390,7 @@ class IP {
 				'169.254.0.0/16', # link-local
 				'fe80::/10', # link-local
 			) );
+			ini_set( 'xdebug.collect_params', 0 );
 		}
 		return !$privateSet->match( $ip );
 	}
