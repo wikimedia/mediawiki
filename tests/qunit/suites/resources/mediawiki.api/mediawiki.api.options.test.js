@@ -21,16 +21,8 @@
 	QUnit.test( 'saveOptions without Unit Separator', function ( assert ) {
 		QUnit.expect( 13 );
 
-		var api = new mw.Api( { useUS: false } );
-
-		// We need to respond to the request for token first, otherwise the other requests won't be sent
-		// until after the server.respond call, which confuses sinon terribly. This sucks a lot.
-		api.getToken( 'options' );
-		this.server.respond(
-			/meta=tokens&type=csrf/,
-			[ 200, { 'Content-Type': 'application/json' },
-				'{ "query": { "tokens": { "csrftoken": "+\\\\" } } }' ]
-		);
+		var api = new mw.Api( { useUS: false } ),
+			token = mw.user.tokens.get( 'csrfToken' );
 
 		api.saveOptions( {} ).done( function () {
 			assert.ok( true, 'Request completed: empty case' );
@@ -55,17 +47,17 @@
 		this.server.respond( function ( request ) {
 			switch ( request.requestBody ) {
 				// simple
-				case 'action=options&format=json&formatversion=2&change=foo%3Dbar&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&change=foo%3Dbar&token=' + encodeURIComponent( token ):
 				// two options
-				case 'action=options&format=json&formatversion=2&change=foo%3Dbar%7Cbaz%3Dquux&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&change=foo%3Dbar%7Cbaz%3Dquux&token=' + encodeURIComponent( token ):
 				// not bundleable
-				case 'action=options&format=json&formatversion=2&optionname=foo&optionvalue=bar%7Cquux&token=%2B%5C':
-				case 'action=options&format=json&formatversion=2&optionname=bar&optionvalue=a%7Cb%7Cc&token=%2B%5C':
-				case 'action=options&format=json&formatversion=2&change=baz%3Dquux&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&optionname=foo&optionvalue=bar%7Cquux&token=' + encodeURIComponent( token ):
+				case 'action=options&format=json&formatversion=2&optionname=bar&optionvalue=a%7Cb%7Cc&token=' + encodeURIComponent( token ):
+				case 'action=options&format=json&formatversion=2&change=baz%3Dquux&token=' + encodeURIComponent( token ):
 				// reset an option
-				case 'action=options&format=json&formatversion=2&change=foo&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&change=foo&token=' + encodeURIComponent( token ):
 				// reset an option, not bundleable
-				case 'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=' + encodeURIComponent( token ):
 					assert.ok( true, 'Repond to ' + request.requestBody );
 					request.respond( 200, { 'Content-Type': 'application/json' },
 						'{ "options": "success" }' );
@@ -79,16 +71,8 @@
 	QUnit.test( 'saveOptions with Unit Separator', function ( assert ) {
 		QUnit.expect( 14 );
 
-		var api = new mw.Api( { useUS: true } );
-
-		// We need to respond to the request for token first, otherwise the other requests won't be sent
-		// until after the server.respond call, which confuses sinon terribly. This sucks a lot.
-		api.getToken( 'options' );
-		this.server.respond(
-			/meta=tokens&type=csrf/,
-			[ 200, { 'Content-Type': 'application/json' },
-				'{ "query": { "tokens": { "csrftoken": "+\\\\" } } }' ]
-		);
+		var api = new mw.Api( { useUS: true } ),
+			token = mw.user.tokens.get( 'csrfToken' );
 
 		api.saveOptions( {} ).done( function () {
 			assert.ok( true, 'Request completed: empty case' );
@@ -116,18 +100,18 @@
 		this.server.respond( function ( request ) {
 			switch ( request.requestBody ) {
 				// simple
-				case 'action=options&format=json&formatversion=2&change=foo%3Dbar&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&change=foo%3Dbar&token=' + encodeURIComponent( token ):
 				// two options
-				case 'action=options&format=json&formatversion=2&change=foo%3Dbar%7Cbaz%3Dquux&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&change=foo%3Dbar%7Cbaz%3Dquux&token=' + encodeURIComponent( token ):
 				// bundleable with unit separator
-				case 'action=options&format=json&formatversion=2&change=%1Ffoo%3Dbar%7Cquux%1Fbar%3Da%7Cb%7Cc%1Fbaz%3Dquux&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&change=%1Ffoo%3Dbar%7Cquux%1Fbar%3Da%7Cb%7Cc%1Fbaz%3Dquux&token=' + encodeURIComponent( token ):
 				// not bundleable with unit separator
-				case 'action=options&format=json&formatversion=2&optionname=baz%3Dbaz&optionvalue=quux&token=%2B%5C':
-				case 'action=options&format=json&formatversion=2&change=%1Ffoo%3Dbar%7Cquux%1Fbar%3Da%7Cb%7Cc&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&optionname=baz%3Dbaz&optionvalue=quux&token=' + encodeURIComponent( token ):
+				case 'action=options&format=json&formatversion=2&change=%1Ffoo%3Dbar%7Cquux%1Fbar%3Da%7Cb%7Cc&token=' + encodeURIComponent( token ):
 				// reset an option
-				case 'action=options&format=json&formatversion=2&change=foo&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&change=foo&token=' + encodeURIComponent( token ):
 				// reset an option, not bundleable
-				case 'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=' + encodeURIComponent( token ):
 					assert.ok( true, 'Repond to ' + request.requestBody );
 					request.respond( 200, { 'Content-Type': 'application/json' },
 						'{ "options": "success" }' );

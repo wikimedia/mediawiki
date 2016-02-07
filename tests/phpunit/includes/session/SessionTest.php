@@ -282,11 +282,16 @@ class SessionTest extends MediaWikiTestCase {
 		$token = \TestingAccessWrapper::newFromObject( $session->getToken( 'foo' ) );
 		$this->assertSame( $secret, $token->secret );
 		$this->assertSame( 'foo', $token->salt );
-		$this->assertFalse( $token->wasNew() );
+		// Should still be true since same request.
+		$this->assertTrue( $token->wasNew() );
 
-		$backend->data['wsTokenSecrets']['secret'] = 'sekret';
+		$session2 = TestUtils::getDummySession();
+		$priv2 = \TestingAccessWrapper::newFromObject( $session2 );
+		$backend2 = $priv2->backend;
+
+		$backend2->data['wsTokenSecrets']['secret'] = 'sekret';
 		$token = \TestingAccessWrapper::newFromObject(
-			$session->getToken( [ 'bar', 'baz' ], 'secret' )
+			$session2->getToken( [ 'bar', 'baz' ], 'secret' )
 		);
 		$this->assertSame( 'sekret', $token->secret );
 		$this->assertSame( 'bar|baz', $token->salt );

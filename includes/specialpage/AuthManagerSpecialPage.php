@@ -624,7 +624,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 */
 	protected function getToken() {
 		return $this->getRequest()->getSession()->getToken( 'AuthManagerSpecialPage:'
-			. $this->getName() );
+			. $this->getName(), 'default' );
 	}
 
 	/**
