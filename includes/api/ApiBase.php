@@ -1385,7 +1385,11 @@ abstract class ApiBase extends ContextSource {
 		) ) {
 			return true;
 		}
-
+		if ( $this->getUser()->isAnon() ) {
+			// Use a stateful token in future in case user
+			// has a rapidly changing IP address.
+			$this->getRequest()->getSession()->persist();
+		}
 		return false;
 	}
 

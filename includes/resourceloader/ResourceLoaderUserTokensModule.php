@@ -43,6 +43,12 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 	protected function contextUserTokens( ResourceLoaderContext $context ) {
 		$user = $context->getUserObj();
 
+		if ( $user->isAnon() && !$user->getRequest()->getSession()->isPersistent() ) {
+			// We cannot output anon tokens since they
+			// vary per IP but our output is not allowed to
+			// vary per IP.
+			return [];
+		}
 		return [
 			'editToken' => $user->getEditToken(),
 			'patrolToken' => $user->getEditToken( 'patrol' ),

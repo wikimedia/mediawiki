@@ -881,7 +881,7 @@ more stuff
 		# now, try the actual rollback
 		$admin->addGroup( "sysop" ); # XXX: make the test user a sysop...
 		$token = $admin->getEditToken(
-			[ $page->getTitle()->getPrefixedText(), $user2->getName() ],
+			'rollback',
 			null
 		);
 		$errors = $page->doRollback(
@@ -938,7 +938,7 @@ more stuff
 		# now, try the rollback
 		$admin->addGroup( "sysop" ); # XXX: make the test user a sysop...
 		$token = $admin->getEditToken(
-			[ $page->getTitle()->getPrefixedText(), $user1->getName() ],
+			'rollback',
 			null
 		);
 		$errors = $page->doRollback(
@@ -996,7 +996,7 @@ more stuff
 		# now, do a the rollback from the same user was doing the edit before
 		$resultDetails = [];
 		$token = $user1->getEditToken(
-			[ $page->getTitle()->getPrefixedText(), $user1->getName() ],
+			'rollback',
 			null
 		);
 		$errors = $page->doRollback(
@@ -1013,7 +1013,7 @@ more stuff
 		# now, try the rollback
 		$resultDetails = [];
 		$token = $admin->getEditToken(
-			[ $page->getTitle()->getPrefixedText(), $user1->getName() ],
+			'rollback',
 			null
 		);
 		$errors = $page->doRollback(
