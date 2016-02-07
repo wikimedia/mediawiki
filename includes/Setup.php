@@ -809,5 +809,10 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
 
+// T125455
+if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
+	MediaWiki\Session\SessionManager::singleton()->checkIpLimits();
+}
+
 Profiler::instance()->scopedProfileOut( $ps_extensions );
 Profiler::instance()->scopedProfileOut( $ps_setup );
