@@ -1,4 +1,8 @@
 <?php
+use MediaWiki\Logger\LegacySpi;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Logger\MonologSpi;
+use Psr\Log\LoggerInterface;
 
 /**
  * @since 1.18
@@ -63,6 +67,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @var array
 	 */
 	private $mwGlobals = array();
+
+	/**
+	 * Holds original loggers which have been replaced by setLogger()
+	 * @var LoggerInterface[]
+	 */
+	private $loggers = array();
 
 	/**
 	 * Table name prefixes. Oracle likes it shorter.
@@ -252,6 +262,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$GLOBALS[$key] = $value;
 		}
 		$this->mwGlobals = array();
+		$this->restoreLoggers();
 		RequestContext::resetMain();
 		MediaHandler::resetCache();
 		if ( session_id() !== '' ) {
@@ -402,6 +413,56 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 
 		$this->setMwGlobals( $name, $merged );
+	}
+
+	/**
+	 * Sets the logger for a specified channel, for the duration of the test.
+	 * @param string $channel
+	 * @param LoggerInterface $logger
+	 */
+	protected function setLogger( $channel, LoggerInterface $logger ) {
+		$provider = LoggerFactory::getProvider();
+		$wrappedProvider = TestingAccessWrapper::newFromObject( $provider );
+		$singletons = $wrappedProvider->singletons;
+		if ( $provider instanceof MonologSpi ) {
+			$this->loggers[$channel] = isset( $singletons['loggers'][$channel] )
+				? $singletons['loggers'][$channel] : null;
+			$singletons['loggers'][$channel] = $logger;
+		} elseif ( $provider instanceof LegacySpi ) {
+			$this->loggers[$channel] = isset( $singletons[$channel] )
+				? $singletons[$channel] : null;
+			$singletons[$channel] = $logger;
+		} else {
+			throw new LogicException( __METHOD__ . ': setting a logger for ' . get_class( $provider )
+				. ' is not implemented' );
+		}
+		$wrappedProvider->singletons = $singletons;
+	}
+
+	/**
+	 * Restores loggers replced by setLogger().
+	 */
+	protected function restoreLoggers() {
+		$provider = LoggerFactory::getProvider();
+		$wrappedProvider = TestingAccessWrapper::newFromObject( $provider );
+		$singletons = $wrappedProvider->singletons;
+		foreach ( $this->loggers as $channel => $logger ) {
+			if ( $provider instanceof MonologSpi ) {
+				if ( $logger === null ) {
+					unset( $singletons['loggers'][$channel] );
+				} else {
+					$singletons['loggers'][$channel] = $logger;
+				}
+			} elseif ( $provider instanceof LegacySpi ) {
+				if ( $logger === null ) {
+					unset( $singletons[$channel] );
+				} else {
+					$singletons[$channel] = $logger;
+				}
+			}
+		}
+		$wrappedProvider->singletons = $singletons;
+		$this->loggers = array();
 	}
 
 	/**
