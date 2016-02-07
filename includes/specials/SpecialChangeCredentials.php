@@ -243,7 +243,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 		}
 
 		$title = Title::newFromText( $returnTo );
-		return $title->getFullURL( $returnToQuery );
+		return $title->getFullUrlForRedirect( $returnToQuery );
 	}
 
 	protected function getRequestBlacklist() {

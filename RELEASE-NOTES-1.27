@@ -23,6 +23,8 @@ was released.
 * (T145635) Fix too long index error when installing with MSSQL.
 * (T156184) $wgRawHtml will no longer apply to internationalization messages.
 * (T160519) CACHE_ANYTHING will not be CACHE_ACCEL if no accelerator is installed.
+* (T109140) (T122209) SECURITY: Special:UserLogin and Special:Search allow redirect
+  to interwiki links.
 
 == MediaWiki 1.27.1 ==
 
