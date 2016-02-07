@@ -1058,6 +1058,10 @@
 	ApiSandbox.PageLayout.prototype.loadParamInfo = function () {
 		var dynamicFieldset, dynamicParamNameWidget,
 			that = this,
+			removeDynamicParamWidget = function ( name, layout ) {
+				dynamicFieldset.removeItems( [ layout ] );
+				delete that.widgets[ name ];
+			},
 			addDynamicParamWidget = function () {
 				var name, layout, widget, button;
 
@@ -1109,10 +1113,6 @@
 				widget.focus();
 
 				dynamicParamNameWidget.setValue( '' );
-			},
-			removeDynamicParamWidget = function ( name, layout ) {
-				dynamicFieldset.removeItems( [ layout ] );
-				delete that.widgets[ name ];
 			};
 
 		this.$element.empty()
