@@ -148,7 +148,7 @@ class SpecialPreferences extends SpecialPage {
 		// Set session data for the success message
 		$this->getRequest()->getSession()->set( 'specialPreferencesSaveSuccess', 1 );
 
-		$url = $this->getPageTitle()->getFullURL();
+		$url = $this->getPageTitle()->getFullUrlForRedirect();
 		$this->getOutput()->redirect( $url );
 
 		return true;

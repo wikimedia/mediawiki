@@ -136,7 +136,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		}
 
 		// Url to redirect to after the operation
-		$this->goToUrl = $title->getFullURL(
+		$this->goToUrl = $title->getFullUrlForRedirect(
 			$title->isRedirect() ? [ 'redirect' => 'no' ] : []
 		);
 
