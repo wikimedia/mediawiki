@@ -1275,6 +1275,7 @@
 	"rcshowhidemine": "내 편집을 $1",
 	"rcshowhidemine-show": "보이기",
 	"rcshowhidemine-hide": "숨기기",
+	"rcshowhidecategorization": "$1 문서 분류",
 	"rcshowhidecategorization-show": "보이기",
 	"rcshowhidecategorization-hide": "숨기기",
 	"rclinks": "최근 $2일간의 $1개 바뀐 문서 보기<br />$3",

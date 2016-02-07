@@ -6,11 +6,13 @@
 			"Uğurkent",
 			"Gorizon",
 			"HakanIST",
-			"Imabadplayer"
+			"Imabadplayer",
+			"İnternion"
 		]
 	},
 	"apihelp-block-description": "Bir kullanıcıyı engelle.",
 	"apihelp-block-param-reason": "Engelleme sebebi.",
+	"apihelp-createaccount-description": "Yeni bir kullanıcı hesabı oluşturun.",
 	"apihelp-createaccount-param-name": "Kullanıcı adı.",
 	"apihelp-createaccount-param-password": "Parola (ignored if <var>$1mailpassword</var> is set).",
 	"apihelp-createaccount-param-email": "Kullanıcının e-posta adresi (isteğe bağlı).",

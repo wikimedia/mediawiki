@@ -775,7 +775,7 @@
 	"sectioneditnotsupported-title": "段落编辑不支持",
 	"sectioneditnotsupported-text": "本页面不支持段落编辑。",
 	"permissionserrors": "权限错误",
-	"permissionserrorstext": "因为以下{{PLURAL:$1|原因}}，您没有权限进行该操作：",
+	"permissionserrorstext": "因为以下{{PLURAL:$1|原因}}，您没有权限这样做：",
 	"permissionserrorstext-withaction": "因为以下{{PLURAL:$1|原因}}，您没有权限$2：",
 	"contentmodelediterror": "您不能编辑此修订版本，因为它的内容模型是<code>$1</code>，这与当前页面<code>$2</code>的内容模型不同。",
 	"recreate-moveddeleted-warn": "<strong>警告：您正在重新创建曾经被删除的页面。</strong>\n\n您应该考虑继续编辑本页是否合适。这里提供本页的删除和移动日志以供参考：",

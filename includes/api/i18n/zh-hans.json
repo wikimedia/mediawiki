@@ -1038,6 +1038,7 @@
 	"apihelp-query+stashimageinfo-param-filekey": "用于识别一次临时藏匿的早前上传的关键字。",
 	"apihelp-query+stashimageinfo-param-sessionkey": "$1filekey的别名，用于向后兼容。",
 	"apihelp-query+stashimageinfo-example-simple": "返回藏匿文件的信息。",
+	"apihelp-query+stashimageinfo-example-params": "返回两个藏匿文件的缩略图。",
 	"apihelp-query+tags-description": "列出更改标签。",
 	"apihelp-query+tags-param-limit": "列出标签的最大数量。",
 	"apihelp-query+tags-param-prop": "要获取哪个属性：",
