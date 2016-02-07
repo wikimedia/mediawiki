@@ -117,10 +117,8 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 		$this->setLogger( 'bar', $this->getMock( '\Psr\Log\LoggerInterface' ) );
 		$logger1 = LoggerFactory::getInstance( 'bar' );
 		$this->tearDown();
-		$logger2 = LoggerFactory::getInstance( 'bar' );
 
-		$this->assertNotSame( $logger1, $logger2 );
-		$this->assertInstanceOf( '\Psr\Log\LoggerInterface', $logger2 );
+		$classReflection = new ReflectionClass( LoggerFactory::getProvider() );
 
 	}
 }
