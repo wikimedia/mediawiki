@@ -71,8 +71,8 @@ class ApiQueryTokens extends ApiQueryBase {
 				'patrol' => 'patrol',
 				'rollback' => 'rollback',
 				'userrights' => 'userrights',
-				'login' => [ '', 'login' ],
-				'createaccount' => [ '', 'createaccount' ],
+				'login' => [ '', 'login', false ],
+				'createaccount' => [ '', 'createaccount', false ],
 			];
 			Hooks::run( 'ApiQueryTokensRegisterTypes', [ &$salts ] );
 			ksort( $salts );
@@ -86,11 +86,9 @@ class ApiQueryTokens extends ApiQueryBase {
 	 * @param User $user
 	 * @param MediaWiki\Session\Session $session
 	 * @param string|array $salt A string will be used as the salt for
-	 *  User::getEditTokenObject() to fetch the token, which will give a
-	 *  LoggedOutEditToken (always "+\\") for anonymous users. An array will
-	 *  be used as parameters to MediaWiki\Session\Session::getToken(), which
-	 *  will always return a full token even for anonymous users. An array will
-	 *  also persist the session.
+	 *  User::getEditTokenObject() to fetch the token.
+	 *  An array will be used as parameters to MediaWiki\Session\Session::getToken(),
+	 *  and will also persist the session.
 	 * @return MediaWiki\Session\Token
 	 */
 	public static function getToken( User $user, MediaWiki\Session\Session $session, $salt ) {
