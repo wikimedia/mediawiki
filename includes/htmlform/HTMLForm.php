@@ -539,13 +539,17 @@ class HTMLForm extends ContextSource {
 			$tokenOkay = true; // no session check needed
 		} elseif ( $this->getRequest()->wasPosted() ) {
 			$editToken = $this->getRequest()->getVal( 'wpEditToken' );
-			if ( $this->getUser()->isLoggedIn() || $editToken !== null ) {
-				// Session tokens for logged-out users have no security value.
-				// However, if the user gave one, check it in order to give a nice
-				// "session expired" error instead of "permission denied" or such.
-				$tokenOkay = $this->getUser()->matchEditToken( $editToken, $this->mTokenSalt );
-			} else {
-				$tokenOkay = true;
+
+			$tokenOkay = $this->getUser()->matchEditToken(
+				$editToken,
+				$this->mTokenSalt
+			);
+			if ( $this->getUser()->isAnon() && !$tokenOkay ) {
+				// Anon token match failure could be caused by
+				// user's IP changing frequently without a
+				// session. Thus start session in case of token
+				// failure.
+				$this->getRequest()->getSession()->persist();
 			}
 		}
 

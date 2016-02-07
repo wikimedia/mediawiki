@@ -343,10 +343,23 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 	 *
 	 * @param string|string[] $salt Token salt
 	 * @param string $key Token key
+	 * @param boolean $allowStateless Allow stateless tokens for non-logged in users
 	 * @return Token
 	 */
-	public function getToken( $salt = '', $key = 'default' ) {
-		$new = false;
+	public function getToken( $salt = '', $key = 'default', $allowStateless = true ) {
+		// Secret to use for stateless tokens
+		$nonUniqueSecret = \RequestContext::getMain()->getConfig()->get( 'SecretKey' )
+			. $key;
+		if ( $allowStateless && !$this->isPersistent() && $this->getUser()->isAnon() ) {
+			return new StatelessLoggedOutToken(
+				$this->getRequest()->getIP(), $nonUniqueSecret, (string)$salt
+			);
+		}
+
+		// If someone calls this function multiple times, we
+		// want to return same new everytime within a request,
+		// as new is used to determine if cookies are enabled.
+		static $new = [];
 		$secrets = $this->get( 'wsTokenSecrets' );
 		if ( !is_array( $secrets ) ) {
 			$secrets = [];
@@ -357,12 +370,34 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 			$secret = \MWCryptRand::generateHex( 32 );
 			$secrets[$key] = $secret;
 			$this->set( 'wsTokenSecrets', $secrets );
-			$new = true;
+			$new[$key] = true;
 		}
 		if ( is_array( $salt ) ) {
 			$salt = implode( '|', $salt );
 		}
-		return new Token( $secret, (string)$salt, $new );
+		// StatefulLoggedOutToken also accepts stateless tokens for
+		// compatability, so we only use them if $allowStateless is true.
+		// if allowStateless is false, then we don't want the compatability,
+		// so we use normal Token's in that case.
+		if ( $allowStateless && $this->getUser()->isAnon() ) {
+			// Logged out persistent tokens need to know
+			// how long ago the session started to determine if
+			// stateless tokens should still be accepted.
+			$ts = $this->get( 'wsAnonTokenStartTS' );
+			if ( !$ts ) {
+				$ts = wfTimestampNow();
+				$this->set( 'wsAnonTokenStartTS', $ts );
+			}
+			return new StatefulLoggedOutToken(
+				$this->getRequest()->getIP(),
+				$nonUniqueSecret,
+				$secret,
+				$ts,
+				(string)$salt,
+				isset( $new[$key] )
+			);
+		} /* else */
+		return new Token( $secret, (string)$salt, isset( $new[$key] ) );
 	}
 
 	/**
