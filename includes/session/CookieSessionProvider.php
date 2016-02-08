@@ -123,11 +123,28 @@ class CookieSessionProvider extends SessionProvider {
 
 			// Sanity check
 			if ( $userName !== null && $userInfo->getName() !== $userName ) {
+				$this->logger->warning(
+					'Session "{session}" requested with mismatched UserID and UserName cookies.',
+					array(
+						'session' => $info['id'],
+						'mismatch' => array(
+							'userid' => $userId,
+							'cookie_username' => $userName,
+							'username' => $userInfo->getName(),
+						),
+				) );
 				return null;
 			}
 
 			if ( $token !== null ) {
 				if ( !hash_equals( $userInfo->getToken(), $token ) ) {
+					$this->logger->warning(
+						'Session "{session}" requested with invalid Token cookie.',
+						array(
+							'session' => $info['id'],
+							'userid' => $userId,
+							'username' => $userInfo->getName(),
+					 ) );
 					return null;
 				}
 				$info['userInfo'] = $userInfo->verified();
@@ -140,6 +157,15 @@ class CookieSessionProvider extends SessionProvider {
 			}
 		} elseif ( isset( $info['id'] ) ) {
 			// No UserID cookie, so insist that the session is anonymous.
+			// Note: this event occurs for several normal activities:
+			// * anon visits Special:UserLogin
+			// * anon browsing after seeing Special:UserLogin
+			// * anon browsing after edit or preview
+			$this->logger->debug(
+				'Session "{session}" requested without UserID cookie',
+				array(
+					'session' => $info['id'],
+			) );
 			$info['userInfo'] = UserInfo::newAnonymous();
 		} else {
 			// No session ID and no user is the same as an empty session, so

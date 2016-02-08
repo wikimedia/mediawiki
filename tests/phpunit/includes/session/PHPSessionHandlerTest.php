@@ -114,7 +114,8 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 
 		$store = new TestBagOStuff();
 		$logger = new \TestLogger( true, function ( $m ) {
-			return preg_match( '/^SessionBackend a{32} /', $m ) ? null : $m;
+			// Discard all log events starting with expected prefix
+			return preg_match( '/^SessionBackend "\{session\}" /', $m ) ? null : $m;
 		} );
 		$manager = new SessionManager( array(
 			'store' => $store,

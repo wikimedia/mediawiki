@@ -4,6 +4,7 @@ namespace MediaWiki\Session;
 
 use MediaWikiTestCase;
 use User;
+use Psr\Log\LogLevel;
 
 /**
  * @group Session
@@ -159,7 +160,8 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 			'cookieOptions' => array( 'prefix' => 'x' ),
 		);
 		$provider = new CookieSessionProvider( $params );
-		$provider->setLogger( new \TestLogger() );
+		$logger = new \TestLogger( true );
+		$provider->setLogger( $logger );
 		$provider->setConfig( $this->getConfig() );
 		$provider->setManager( new SessionManager() );
 
@@ -174,6 +176,8 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$request = new \FauxRequest();
 		$info = $provider->provideSessionInfo( $request );
 		$this->assertNull( $info );
+		$this->assertSame( array(), $logger->getBuffer() );
+		$logger->clearBuffer();
 
 		// Session key only
 		$request = new \FauxRequest();
@@ -188,6 +192,13 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$this->assertSame( 0, $info->getUserInfo()->getId() );
 		$this->assertNull( $info->getUserInfo()->getName() );
 		$this->assertFalse( $info->forceHTTPS() );
+		$this->assertSame( array(
+			array(
+				LogLevel::DEBUG,
+				'Session "{session}" requested without UserID cookie',
+			),
+		), $logger->getBuffer() );
+		$logger->clearBuffer();
 
 		// User, no session key
 		$request = new \FauxRequest();
@@ -203,6 +214,8 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$this->assertSame( $id, $info->getUserInfo()->getId() );
 		$this->assertSame( $name, $info->getUserInfo()->getName() );
 		$this->assertFalse( $info->forceHTTPS() );
+		$this->assertSame( array(), $logger->getBuffer() );
+		$logger->clearBuffer();
 
 		// User and session key
 		$request = new \FauxRequest();
@@ -219,6 +232,8 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$this->assertSame( $id, $info->getUserInfo()->getId() );
 		$this->assertSame( $name, $info->getUserInfo()->getName() );
 		$this->assertFalse( $info->forceHTTPS() );
+		$this->assertSame( array(), $logger->getBuffer() );
+		$logger->clearBuffer();
 
 		// User with bad token
 		$request = new \FauxRequest();
@@ -229,6 +244,13 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		), '' );
 		$info = $provider->provideSessionInfo( $request );
 		$this->assertNull( $info );
+		$this->assertSame( array(
+			array(
+				LogLevel::WARNING,
+				'Session "{session}" requested with invalid Token cookie.'
+			),
+		), $logger->getBuffer() );
+		$logger->clearBuffer();
 
 		// User id with no token
 		$request = new \FauxRequest();
@@ -245,6 +267,8 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$this->assertSame( $id, $info->getUserInfo()->getId() );
 		$this->assertSame( $name, $info->getUserInfo()->getName() );
 		$this->assertFalse( $info->forceHTTPS() );
+		$this->assertSame( array(), $logger->getBuffer() );
+		$logger->clearBuffer();
 
 		$request = new \FauxRequest();
 		$request->setCookies( array(
@@ -252,6 +276,8 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		), '' );
 		$info = $provider->provideSessionInfo( $request );
 		$this->assertNull( $info );
+		$this->assertSame( array(), $logger->getBuffer() );
+		$logger->clearBuffer();
 
 		// User and session key, with forceHTTPS flag
 		$request = new \FauxRequest();
@@ -269,6 +295,8 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$this->assertSame( $id, $info->getUserInfo()->getId() );
 		$this->assertSame( $name, $info->getUserInfo()->getName() );
 		$this->assertTrue( $info->forceHTTPS() );
+		$this->assertSame( array(), $logger->getBuffer() );
+		$logger->clearBuffer();
 
 		// Invalid user id
 		$request = new \FauxRequest();
@@ -278,6 +306,8 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		), '' );
 		$info = $provider->provideSessionInfo( $request );
 		$this->assertNull( $info );
+		$this->assertSame( array(), $logger->getBuffer() );
+		$logger->clearBuffer();
 
 		// User id with matching name
 		$request = new \FauxRequest();
@@ -295,6 +325,8 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$this->assertSame( $id, $info->getUserInfo()->getId() );
 		$this->assertSame( $name, $info->getUserInfo()->getName() );
 		$this->assertFalse( $info->forceHTTPS() );
+		$this->assertSame( array(), $logger->getBuffer() );
+		$logger->clearBuffer();
 
 		// User id with wrong name
 		$request = new \FauxRequest();
@@ -305,6 +337,13 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		), '' );
 		$info = $provider->provideSessionInfo( $request );
 		$this->assertNull( $info );
+		$this->assertSame( array(
+			array(
+				LogLevel::WARNING,
+				'Session "{session}" requested with mismatched UserID and UserName cookies.',
+			),
+		), $logger->getBuffer() );
+		$logger->clearBuffer();
 	}
 
 	public function testGetVaryCookies() {

@@ -2,8 +2,9 @@
 
 namespace MediaWiki\Session;
 
-use Psr\Log\LogLevel;
+use AuthPlugin;
 use MediaWikiTestCase;
+use Psr\Log\LogLevel;
 use User;
 
 /**
@@ -763,6 +764,9 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 		\ObjectCache::$instances[__METHOD__] = new TestBagOStuff();
 		$this->setMwGlobals( array( 'wgMainCacheType' => __METHOD__ ) );
+		$this->setMWGlobals( array(
+			'wgAuth' => new AuthPlugin,
+		) );
 
 		$this->stashMwGlobals( array( 'wgGroupPermissions' ) );
 		$wgGroupPermissions['*']['createaccount'] = true;
@@ -778,7 +782,6 @@ class SessionManagerTest extends MediaWikiTestCase {
 				return null;
 			}
 			$m = str_replace( 'MediaWiki\Session\SessionManager::autoCreateUser: ', '', $m );
-			$m = preg_replace( '/ - from: .*$/', ' - from: XXX', $m );
 			return $m;
 		} );
 		$manager->setLogger( $logger );
@@ -804,7 +807,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			$user->getId(), User::idFromName( 'UTSessionAutoCreate1', User::READ_LATEST )
 		);
 		$this->assertSame( array(
-			array( LogLevel::INFO, 'creating new user (UTSessionAutoCreate1) - from: XXX' ),
+			array( LogLevel::INFO, 'creating new user ({username}) - from: {url}' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -818,7 +821,10 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertEquals( 0, User::idFromName( 'UTDoesNotExist', User::READ_LATEST ) );
 		$session->clear();
 		$this->assertSame( array(
-			array( LogLevel::DEBUG, 'user is blocked from this wiki, blacklisting' ),
+			array(
+				LogLevel::DEBUG,
+				'user is blocked from this wiki, blacklisting',
+			),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -834,7 +840,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			$user->getId(), User::idFromName( 'UTSessionAutoCreate2', User::READ_LATEST )
 		);
 		$this->assertSame( array(
-			array( LogLevel::INFO, 'creating new user (UTSessionAutoCreate2) - from: XXX' ),
+			array( LogLevel::INFO, 'creating new user ({username}) - from: {url}' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -872,7 +878,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			$user->getId(), User::idFromName( 'UTSessionAutoCreate3', User::READ_LATEST )
 		);
 		$this->assertSame( array(
-			array( LogLevel::INFO, 'creating new user (UTSessionAutoCreate3) - from: XXX' ),
+			array( LogLevel::INFO, 'creating new user ({username}) - from: {url}' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1038,7 +1044,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			'LocalUserCreated' => array(),
 		) );
 		$this->assertSame( array(
-			array( LogLevel::INFO, 'creating new user (UTSessionAutoCreate4) - from: XXX' ),
+			array( LogLevel::INFO, 'creating new user ({username}) - from: {url}' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 	}
@@ -1069,11 +1075,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 
 	public function testLoadSessionInfoFromStore() {
 		$manager = $this->getManager();
-		$logger = new \TestLogger( true, function ( $m ) {
-			return preg_replace(
-				'/^Session \[\d+\]\w+<(?:null|anon|[+-]:\d+:\w+)>\w+: /', 'Session X: ', $m
-			);
-		} );
+		$logger = new \TestLogger( true );
 		$manager->setLogger( $logger );
 		$request = new \FauxRequest();
 
@@ -1187,7 +1189,10 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertSame( $unverifiedUserInfo, $info->getUserInfo() );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session X: Unverified user provided and no metadata to auth it' )
+			array(
+				LogLevel::WARNING,
+				'Session "{session}": Unverified user provided and no metadata to auth it',
+			)
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1198,7 +1203,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		) );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session X: Null provider and no metadata' ),
+			array( LogLevel::WARNING, 'Session "{session}": Null provider and no metadata' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1221,7 +1226,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertFalse( $info->isIdSafe(), 'sanity check' );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
-			array( LogLevel::INFO, 'Session X: No user provided and provider cannot set user' )
+			array( LogLevel::INFO, 'Session "{session}": No user provided and provider cannot set user' )
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1229,14 +1234,14 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->store->setRawSession( $id, true );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session X: Bad data' ),
+			array( LogLevel::WARNING, 'Session "{session}": Bad data' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		$this->store->setRawSession( $id, array( 'data' => array() ) );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session X: Bad data structure' ),
+			array( LogLevel::WARNING, 'Session "{session}": Bad data structure' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1244,21 +1249,21 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->store->setRawSession( $id, array( 'metadata' => $metadata ) );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session X: Bad data structure' ),
+			array( LogLevel::WARNING, 'Session "{session}": Bad data structure' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		$this->store->setRawSession( $id, array( 'metadata' => $metadata, 'data' => true ) );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session X: Bad data structure' ),
+			array( LogLevel::WARNING, 'Session "{session}": Bad data structure' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		$this->store->setRawSession( $id, array( 'metadata' => true, 'data' => array() ) );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session X: Bad data structure' ),
+			array( LogLevel::WARNING, 'Session "{session}": Bad data structure' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1268,7 +1273,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			$this->store->setRawSession( $id, array( 'metadata' => $tmp, 'data' => array() ) );
 			$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 			$this->assertSame( array(
-				array( LogLevel::WARNING, 'Session X: Bad metadata' ),
+				array( LogLevel::WARNING, 'Session "{session}": Bad metadata' ),
 			), $logger->getBuffer() );
 			$logger->clearBuffer();
 		}
@@ -1294,7 +1299,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		) );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session X: Wrong provider, Bad !== Mock' ),
+			array( LogLevel::WARNING, 'Session "{session}": Wrong provider Bad !== Mock' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1306,7 +1311,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		) );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session X: Unknown provider, Bad' ),
+			array( LogLevel::WARNING, 'Session "{session}": Unknown provider Bad' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1329,7 +1334,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		) );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
-			array( LogLevel::ERROR, 'Session X: Invalid ID' ),
+			array( LogLevel::ERROR, 'Session "{session}": {exception}' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1342,7 +1347,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		) );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
-			array( LogLevel::ERROR, 'Session X: Invalid user name' ),
+			array( LogLevel::ERROR, 'Session "{session}": {exception}', ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1357,7 +1362,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		) );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session X: User ID mismatch, 2 !== 1' ),
+			array( LogLevel::WARNING, 'Session "{session}": User ID mismatch, {uid_a} !== {uid_b}' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1372,7 +1377,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		) );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session X: User name mismatch, X !== UTSysop' ),
+			array( LogLevel::WARNING, 'Session "{session}": User name mismatch, {uname_a} !== {uname_b}' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1388,7 +1393,8 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
 			array(
-				LogLevel::WARNING, 'Session X: User ID matched but name didn\'t (rename?), X !== UTSysop'
+				LogLevel::WARNING,
+				'Session "{session}": User ID matched but name didn\'t (rename?), {uname_a} !== {uname_b}'
 			),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
@@ -1405,7 +1411,9 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
 			array(
-				LogLevel::WARNING, 'Session X: Metadata has an anonymous user, but a non-anon user was provided'
+				LogLevel::WARNING,
+				'Session "{session}": Metadata has an anonymous user, ' .
+				'but a non-anon user was provided',
 			),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
@@ -1489,7 +1497,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		) );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session X: User token mismatch' ),
+			array( LogLevel::WARNING, 'Session "{session}": User token mismatch' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1533,7 +1541,10 @@ class SessionManagerTest extends MediaWikiTestCase {
 		) );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session X: Metadata merge failed: no merge!' ),
+			array(
+				LogLevel::WARNING,
+				'Session "{session}": Metadata merge failed: {exception}',
+			),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1664,7 +1675,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $called );
 		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Session X: Hook aborted' ),
+			array( LogLevel::WARNING, 'Session "{session}": Hook aborted' ),
 		), $logger->getBuffer() );
 		$logger->clearBuffer();
 	}

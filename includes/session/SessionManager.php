@@ -216,8 +216,11 @@ final class SessionManager implements SessionManagerInterface {
 			try {
 				$session = $this->getEmptySessionInternal( $request, $id );
 			} catch ( \Exception $ex ) {
-				$this->logger->error( __METHOD__ . ': failed to create empty session: ' .
-					$ex->getMessage() );
+				$this->logger->error( 'Failed to create empty session: {exception}',
+					array(
+						'method' => __METHOD__,
+						'exception' => $ex,
+				) );
 				$session = null;
 			}
 		}
@@ -462,14 +465,21 @@ final class SessionManager implements SessionManagerInterface {
 
 		// Checks passed, create the user...
 		$from = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : 'CLI';
-		$logger->info( __METHOD__ . ": creating new user ($userName) - from: $from" );
+		$logger->info( __METHOD__ . ': creating new user ({username}) - from: {url}',
+			array(
+				'username' => $userName,
+				'url' => $from,
+		) );
 
 		try {
 			// Insert the user into the local DB master
 			$status = $user->addToDatabase();
 			if ( !$status->isOK() ) {
 				// @codeCoverageIgnoreStart
-				$logger->error( __METHOD__ . ': failed with message ' . $status->getWikiText() );
+				$logger->error( __METHOD__ . ': failed with message ' . $status->getWikiText(),
+					array(
+						'username' => $userName,
+				) );
 				$user->setId( 0 );
 				$user->loadFromId();
 				return false;
@@ -477,7 +487,10 @@ final class SessionManager implements SessionManagerInterface {
 			}
 		} catch ( \Exception $ex ) {
 			// @codeCoverageIgnoreStart
-			$logger->error( __METHOD__ . ': failed with exception ' . $ex->getMessage() );
+			$logger->error( __METHOD__ . ': failed with exception {exception}', array(
+				'exception' => $ex,
+				'username' => $userName,
+			) );
 			// Do not keep throwing errors for a while
 			$cache->set( $backoffKey, 1, 600 );
 			// Bubble up error; which should normally trigger DB rollbacks
@@ -662,7 +675,9 @@ final class SessionManager implements SessionManagerInterface {
 		if ( $blob !== false ) {
 			// Sanity check: blob must be an array, if it's saved at all
 			if ( !is_array( $blob ) ) {
-				$this->logger->warning( "Session $info: Bad data" );
+				$this->logger->warning( 'Session "{session}": Bad data', array(
+					'session' => $info,
+				) );
 				$this->store->delete( $key );
 				return false;
 			}
@@ -671,7 +686,9 @@ final class SessionManager implements SessionManagerInterface {
 			if ( !isset( $blob['data'] ) || !is_array( $blob['data'] ) ||
 				!isset( $blob['metadata'] ) || !is_array( $blob['metadata'] )
 			) {
-				$this->logger->warning( "Session $info: Bad data structure" );
+				$this->logger->warning( 'Session "{session}": Bad data structure', array(
+					'session' => $info,
+				) );
 				$this->store->delete( $key );
 				return false;
 			}
@@ -686,7 +703,9 @@ final class SessionManager implements SessionManagerInterface {
 				!array_key_exists( 'userToken', $metadata ) ||
 				!array_key_exists( 'provider', $metadata )
 			) {
-				$this->logger->warning( "Session $info: Bad metadata" );
+				$this->logger->warning( 'Session "{session}": Bad metadata', array(
+					'session' => $info,
+				) );
 				$this->store->delete( $key );
 				return false;
 			}
@@ -696,13 +715,21 @@ final class SessionManager implements SessionManagerInterface {
 			if ( $provider === null ) {
 				$newParams['provider'] = $provider = $this->getProvider( $metadata['provider'] );
 				if ( !$provider ) {
-					$this->logger->warning( "Session $info: Unknown provider, " . $metadata['provider'] );
+					$this->logger->warning(
+						'Session "{session}": Unknown provider ' . $metadata['provider'],
+						array(
+							'session' => $info,
+						)
+					);
 					$this->store->delete( $key );
 					return false;
 				}
 			} elseif ( $metadata['provider'] !== (string)$provider ) {
-				$this->logger->warning( "Session $info: Wrong provider, " .
-					$metadata['provider'] . ' !== ' . $provider );
+				$this->logger->warning( 'Session "{session}": Wrong provider ' .
+					$metadata['provider'] . ' !== ' . $provider,
+					array(
+						'session' => $info,
+				) );
 				return false;
 			}
 
@@ -720,7 +747,12 @@ final class SessionManager implements SessionManagerInterface {
 							$newParams['metadata'] = $newProviderMetadata;
 						}
 					} catch ( \UnexpectedValueException $ex ) {
-						$this->logger->warning( "Session $info: Metadata merge failed: " . $ex->getMessage() );
+						$this->logger->warning(
+							'Session "{session}": Metadata merge failed: {exception}',
+							array(
+								'session' => $info,
+								'exception' => $ex,
+						) );
 						return false;
 					}
 				}
@@ -739,7 +771,10 @@ final class SessionManager implements SessionManagerInterface {
 						$userInfo = UserInfo::newAnonymous();
 					}
 				} catch ( \InvalidArgumentException $ex ) {
-					$this->logger->error( "Session $info: " . $ex->getMessage() );
+					$this->logger->error( 'Session "{session}": {exception}', array(
+						'session' => $info,
+						'exception' => $ex,
+					) );
 					return false;
 				}
 				$newParams['userInfo'] = $userInfo;
@@ -748,8 +783,13 @@ final class SessionManager implements SessionManagerInterface {
 				// is no saved ID and the names match.
 				if ( $metadata['userId'] ) {
 					if ( $metadata['userId'] !== $userInfo->getId() ) {
-						$this->logger->warning( "Session $info: User ID mismatch, " .
-							$metadata['userId'] . ' !== ' . $userInfo->getId() );
+						$this->logger->warning(
+							'Session "{session}": User ID mismatch, {uid_a} !== {uid_b}',
+							array(
+								'session' => $info,
+								'uid_a' => $metadata['userId'],
+								'uid_b' => $userInfo->getId(),
+						) );
 						return false;
 					}
 
@@ -757,24 +797,35 @@ final class SessionManager implements SessionManagerInterface {
 					if ( $metadata['userName'] !== null &&
 						$userInfo->getName() !== $metadata['userName']
 					) {
-						$this->logger->warning( "Session $info: User ID matched but name didn't (rename?), " .
-							$metadata['userName'] . ' !== ' . $userInfo->getName() );
+						$this->logger->warning(
+							'Session "{session}": User ID matched but name didn\'t (rename?), {uname_a} !== {uname_b}',
+							array(
+								'session' => $info,
+								'uname_a' => $metadata['userName'],
+								'uname_b' => $userInfo->getName(),
+						) );
 						return false;
 					}
 
 				} elseif ( $metadata['userName'] !== null ) { // Shouldn't happen, but just in case
 					if ( $metadata['userName'] !== $userInfo->getName() ) {
-						$this->logger->warning( "Session $info: User name mismatch, " .
-							$metadata['userName'] . ' !== ' . $userInfo->getName() );
+						$this->logger->warning(
+							'Session "{session}": User name mismatch, {uname_a} !== {uname_b}',
+							array(
+								'session' => $info,
+								'uname_a' => $metadata['userName'],
+								'uname_b' => $userInfo->getName(),
+						) );
 						return false;
 					}
 				} elseif ( !$userInfo->isAnon() ) {
 					// Metadata specifies an anonymous user, but the passed-in
 					// user isn't anonymous.
 					$this->logger->warning(
-						"Session $info: Metadata has an anonymous user, " .
-							'but a non-anon user was provided'
-					);
+						'Session "{session}": Metadata has an anonymous user, but a non-anon user was provided',
+						array(
+							'session' => $info,
+					) );
 					return false;
 				}
 			}
@@ -783,7 +834,9 @@ final class SessionManager implements SessionManagerInterface {
 			if ( $metadata['userToken'] !== null &&
 				$userInfo->getToken() !== $metadata['userToken']
 			) {
-				$this->logger->warning( "Session $info: User token mismatch" );
+				$this->logger->warning( 'Session "{session}": User token mismatch', array(
+					'session' => $info,
+				) );
 				return false;
 			}
 			if ( !$userInfo->isVerified() ) {
@@ -806,7 +859,11 @@ final class SessionManager implements SessionManagerInterface {
 		} else {
 			// No metadata, so we can't load the provider if one wasn't given.
 			if ( $info->getProvider() === null ) {
-				$this->logger->warning( "Session $info: Null provider and no metadata" );
+				$this->logger->warning(
+					'Session "{session}": Null provider and no metadata',
+					array(
+						'session' => $info,
+				) );
 				return false;
 			}
 
@@ -816,14 +873,18 @@ final class SessionManager implements SessionManagerInterface {
 					$newParams['userInfo'] = UserInfo::newAnonymous();
 				} else {
 					$this->logger->info(
-						"Session $info: No user provided and provider cannot set user"
-					);
+						'Session "{session}": No user provided and provider cannot set user',
+						array(
+							'session' => $info,
+					) );
 					return false;
 				}
 			} elseif ( !$info->getUserInfo()->isVerified() ) {
 				$this->logger->warning(
-					"Session $info: Unverified user provided and no metadata to auth it"
-				);
+					'Session "{session}": Unverified user provided and no metadata to auth it',
+					array(
+						'session' => $info,
+				) );
 				return false;
 			}
 
@@ -863,7 +924,9 @@ final class SessionManager implements SessionManagerInterface {
 			'SessionCheckInfo',
 			array( &$reason, $info, $request, $metadata, $data )
 		) ) {
-			$this->logger->warning( "Session $info: $reason" );
+			$this->logger->warning( 'Session "{session}": ' . $reason, array(
+				'session' => $info,
+			) );
 			return false;
 		}
 
