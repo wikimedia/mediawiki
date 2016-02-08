@@ -288,11 +288,17 @@ class Interwiki {
 		$data = array();
 		try {
 			if ( !$db ) {
-				$db = CdbReader::open( $wgInterwikiCache );
+				$db = is_array( $wgInterwikiCache ) ? false : CdbReader::open( $wgInterwikiCache );
 			}
 			/* Resolve site name */
 			if ( $wgInterwikiScopes >= 3 && !$site ) {
-				$site = $db->get( '__sites:' . wfWikiID() );
+				$key = '__sites:' . wfWikiID();
+				if ( $db ) {
+					$site = $db->get( $key );
+				} else {
+					$site = isset( $wgInterwikiCache[ $key ] ) ? $wgInterwikiCache[$key] : false;
+				}
+
 				if ( $site == '' ) {
 					$site = $wgInterwikiFallbackSite;
 				}
@@ -311,9 +317,19 @@ class Interwiki {
 			$sources[] = wfWikiID();
 
 			foreach ( $sources as $source ) {
-				$list = $db->get( "__list:{$source}" );
+				$key = "__list:{$source}";
+				if ( $db ) {
+					$list = $db->get( $key );
+				} else {
+					$list = isset( $wgInterwikiCache[$key] ) ? $wgInterwikiCache[$key] : false;
+				}
 				foreach ( explode( ' ', $list ) as $iw_prefix ) {
-					$row = $db->get( "{$source}:{$iw_prefix}" );
+					$key = "{$source}:{$iw_prefix}";
+					if ( $db ) {
+						$row = $db->get( $key );
+					} else {
+						$row = isset( $wgInterwikiCache[$key] ) ? $wgInterwikiCache[$key] : false;
+					}
 					if ( !$row ) {
 						continue;
 					}
