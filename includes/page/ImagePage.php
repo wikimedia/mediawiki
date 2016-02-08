@@ -332,6 +332,7 @@ class ImagePage extends Article {
 			$renderLang = $request->getVal( 'lang' );
 			if ( !is_null( $renderLang ) ) {
 				$handler = $this->displayImg->getHandler();
+				$renderLang = strtolower( $renderLang );
 				if ( $handler && $handler->validateParam( 'lang', $renderLang ) ) {
 					$params['lang'] = $renderLang;
 				} else {
@@ -1088,7 +1089,7 @@ EOT
 			} else {
 				$display = $code;
 			}
-			$opts .= "\n" . Xml::option( $display, $code, $curLang === $code );
+			$opts .= "\n" . Xml::option( $display, strtolower( $code ), $curLang === $code );
 			if ( $curLang === $code ) {
 				$haveCurrentLang = true;
 			}
@@ -1101,7 +1102,7 @@ EOT
 			// if its just unmarked content that could be in any language.
 			$opts = Xml::option(
 					$this->getContext()->msg( 'img-lang-default' )->text(),
-				$defaultLang,
+				strtolower( $defaultLang ),
 				$defaultLang === $curLang
 			) . $opts;
 		}
@@ -1112,7 +1113,7 @@ EOT
 			} else {
 				$display = $curLang;
 			}
-			$opts = Xml::option( $display, $curLang, true ) . $opts;
+			$opts = Xml::option( $display, strtolower( $curLang ), true ) . $opts;
 		}
 
 		$select = Html::rawElement(
