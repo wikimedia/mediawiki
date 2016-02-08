@@ -1263,7 +1263,9 @@ class ApiMain extends ApiBase {
 		$module = $this->setupModule();
 		$this->mModule = $module;
 
-		$this->setRequestExpectations( $module );
+		if ( !$this->mInternalMode ) {
+			$this->setRequestExpectations( $module );
+		}
 
 		$this->checkExecutePermissions( $module );
 
