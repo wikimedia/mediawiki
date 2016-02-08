@@ -325,6 +325,7 @@
 	"apihelp-parse-param-disabletoc": "Omit table of contents in output.",
 	"apihelp-parse-param-contentformat": "Content serialization format used for the input text. Only valid when used with $1text.",
 	"apihelp-parse-param-contentmodel": "Content model of the input text. If omitted, $1title must be specified, and default will be the model of the specified title. Only valid when used with $1text.",
+	"apihelp-parse-param-variant": "Language variant to use for language conversion. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> with <kbd>siprop=general</kbd> returns an object contains a list of available variants of this wiki's content language.",
 	"apihelp-parse-example-page": "Parse a page.",
 	"apihelp-parse-example-text": "Parse wikitext.",
 	"apihelp-parse-example-texttitle": "Parse wikitext, specifying the page title.",

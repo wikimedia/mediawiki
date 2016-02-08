@@ -113,6 +113,7 @@
 	"apihelp-edit-param-redirect": "自动解决重定向。",
 	"apihelp-edit-param-contentformat": "用于输入文本的内容序列化格式。",
 	"apihelp-edit-param-contentmodel": "新内容的内容模型。",
+	"apihelp-parse-param-variant": "指定语言转换的语言变体。<kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd>与<kbd>siprop=general</kbd>可返回包含当前wiki内容语言下可用变体列表的对象。",
 	"apihelp-edit-param-token": "令牌应总是发送为最后参数，或至少在$1text参数之后。",
 	"apihelp-edit-example-edit": "编辑一个页面。",
 	"apihelp-edit-example-prepend": "页面中预置<kbd>_&#95;NOTOC_&#95;</kbd>。",
