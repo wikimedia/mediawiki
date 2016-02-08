@@ -33,6 +33,11 @@ class EnhancedChangesList extends ChangesList {
 	protected $rc_cache;
 
 	/**
+	 * @var bool
+	 */
+	private $rcShowChangedSize;
+
+	/**
 	 * @param IContextSource|Skin $obj
 	 * @throws MWException
 	 */
@@ -56,6 +61,8 @@ class EnhancedChangesList extends ChangesList {
 			$context,
 			$this->message
 		);
+
+		$this->rcShowChangedSize = $this->getConfig()->get( 'RCShowChangedSize' );
 	}
 
 	/**
@@ -185,7 +192,7 @@ class EnhancedChangesList extends ChangesList {
 		# Some catalyst variables...
 		$namehidden = true;
 		$allLogs = true;
-		$RCShowChangedSize = $this->getConfig()->get( 'RCShowChangedSize' );
+
 		$collectedRcFlags = array(
 			// All are by bots?
 			'bot' => true,
@@ -196,6 +203,7 @@ class EnhancedChangesList extends ChangesList {
 			// Contains an unpatrolled edit?
 			'unpatrolled' => false,
 		);
+
 		foreach ( $block as $rcObj ) {
 			if ( $rcObj->mAttribs['rc_type'] == RC_NEW ) {
 				$collectedRcFlags['newpage'] = true;
@@ -284,7 +292,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# Character difference (does not apply if only log items)
 		$charDifference = false;
-		if ( $RCShowChangedSize && !$allLogs ) {
+		if ( $this->rcShowChangedSize === true && !$allLogs ) {
 			$last = 0;
 			$first = count( $block ) - 1;
 			# Some events (like logs) have an "empty" size, so we need to skip those...
@@ -336,8 +344,6 @@ class EnhancedChangesList extends ChangesList {
 	 * @throws MWException
 	 */
 	protected function getLineData( array $block, RCCacheEntry $rcObj, array $queryParams = array() ) {
-		$RCShowChangedSize = $this->getConfig()->get( 'RCShowChangedSize' );
-
 		# Classes to apply -- TODO implement
 		$classes = array();
 		$type = $rcObj->mAttribs['rc_type'];
@@ -395,7 +401,7 @@ class EnhancedChangesList extends ChangesList {
 		$data['separatorAfterCurrentAndLastLinks'] = $separator;
 
 		# Character diff
-		if ( $RCShowChangedSize ) {
+		if ( $this->rcShowChangedSize === true ) {
 			$cd = $this->formatCharacterDifference( $rcObj );
 			if ( $cd !== '' ) {
 				$data['characterDiff'] = $cd;
@@ -610,7 +616,7 @@ class EnhancedChangesList extends ChangesList {
 		$data['separatorAfterLinks'] = ' <span class="mw-changeslist-separator">. .</span> ';
 
 		# Character diff
-		if ( $this->getConfig()->get( 'RCShowChangedSize' ) ) {
+		if ( $this->rcShowChangedSize === true ) {
 			$cd = $this->formatCharacterDifference( $rcObj );
 			if ( $cd !== '' ) {
 				$data['characterDiff'] = $cd;
