@@ -520,13 +520,6 @@ final class SessionManager implements SessionManagerInterface {
 	public function preventSessionsForUser( $username ) {
 		$this->preventUsers[$username] = true;
 
-		// Reset the user's token to kill existing sessions
-		$user = User::newFromName( $username );
-		if ( $user && $user->getToken( false ) ) {
-			$user->setToken();
-			$user->saveSettings();
-		}
-
 		// Instruct the session providers to kill any other sessions too.
 		foreach ( $this->getProviders() as $provider ) {
 			$provider->preventSessionsForUser( $username );

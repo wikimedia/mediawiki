@@ -46,6 +46,11 @@ class User implements IDBAccessObject {
 	const TOKEN_LENGTH = 32;
 
 	/**
+	 * @const string An invalid value for user_token
+	 */
+	const INVALID_TOKEN = '*** INVALID ***';
+
+	/**
 	 * Global constant made accessible as class constants so that autoloader
 	 * magic can be used.
 	 * @deprecated since 1.27, use \\MediaWiki\\Session\\Token::SUFFIX
@@ -657,7 +662,8 @@ class User implements IDBAccessObject {
 		$user = self::newFromRow( $row );
 
 		// A user is considered to exist as a non-system user if it has a
-		// password set, or a temporary password set, or an email set.
+		// password set, or a temporary password set, or an email set, or a
+		// non-invalid token.
 		$passwordFactory = new PasswordFactory();
 		$passwordFactory->init( RequestContext::getMain()->getConfig() );
 		try {
@@ -673,7 +679,7 @@ class User implements IDBAccessObject {
 			$newpassword = PasswordFactory::newInvalidPassword();
 		}
 		if ( !$password instanceof InvalidPassword || !$newpassword instanceof InvalidPassword
-			|| $user->mEmail
+			|| $user->mEmail || $user->mToken !== self::INVALID_TOKEN
 		) {
 			// User exists. Steal it?
 			if ( !$options['steal'] ) {
@@ -693,10 +699,10 @@ class User implements IDBAccessObject {
 				__METHOD__
 			);
 			$user->invalidateEmail();
+			$user->mToken = self::INVALID_TOKEN;
 			$user->saveSettings();
+			SessionManager::singleton()->preventSessionsForUser( $user->getName() );
 		}
-
-		SessionManager::singleton()->preventSessionsForUser( $user->getName() );
 
 		return $user;
 	}
@@ -2489,13 +2495,18 @@ class User implements IDBAccessObject {
 			$this->setToken();
 		}
 
-		// If the user doesn't have a token, return null to indicate that.
-		// Otherwise, hmac the version with the secret if we have a version.
 		if ( !$this->mToken ) {
+			// The user doesn't have a token, return null to indicate that.
 			return null;
+		} elseif ( $this->mToken === self::INVALID_TOKEN ) {
+			// We return a random value here so existing token checks are very
+			// likely to fail.
+			return MWCryptRand::generateHex( self::TOKEN_LENGTH );
 		} elseif ( $wgAuthenticationTokenVersion === null ) {
+			// $wgAuthenticationTokenVersion not in use, so return the raw secret
 			return $this->mToken;
 		} else {
+			// $wgAuthenticationTokenVersion in use, so hmac it.
 			$ret = MWCryptHash::hmac( $wgAuthenticationTokenVersion, $this->mToken, false );
 
 			// The raw hash can be overly long. Shorten it up.
@@ -2516,7 +2527,10 @@ class User implements IDBAccessObject {
 	 */
 	public function setToken( $token = false ) {
 		$this->load();
-		if ( !$token ) {
+		if ( $this->mToken === self::INVALID_TOKEN ) {
+			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
+				->debug( __METHOD__ . ": Ignoring attempt to set token for system user \"$this\"" );
+		} elseif ( !$token ) {
 			$this->mToken = MWCryptRand::generateHex( self::TOKEN_LENGTH );
 		} else {
 			$this->mToken = $token;
