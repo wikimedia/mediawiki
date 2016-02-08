@@ -904,7 +904,8 @@ $wgMediaHandlers = array(
 
 /**
  * Plugins for page content model handling.
- * Each entry in the array maps a model id to a class name.
+ * Each entry in the array maps a model id to a class name or callback
+ * that creates an instance of the appropriate ContentHandler subclass.
  *
  * @since 1.21
  */

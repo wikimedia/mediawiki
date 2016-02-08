@@ -26,6 +26,9 @@ class ContentHandlerTest extends MediaWikiTestCase {
 				CONTENT_MODEL_CSS => 'CssContentHandler',
 				CONTENT_MODEL_TEXT => 'TextContentHandler',
 				'testing' => 'DummyContentHandlerForTesting',
+				'testing-callbacks' => function( $modelId ) {
+					return new DummyContentHandlerForTesting( $modelId );
+				}
 			),
 		) );
 
@@ -378,4 +381,26 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 		return true;
 	}
+
+	public function provideGetModelForID() {
+		return array(
+			array( CONTENT_MODEL_WIKITEXT, 'WikitextContentHandler' ),
+			array( CONTENT_MODEL_JAVASCRIPT, 'JavaScriptContentHandler' ),
+			array( CONTENT_MODEL_JSON, 'JsonContentHandler' ),
+			array( CONTENT_MODEL_CSS, 'CssContentHandler' ),
+			array( CONTENT_MODEL_TEXT, 'TextContentHandler' ),
+			array( 'testing', 'DummyContentHandlerForTesting' ),
+			array( 'testing-callbacks', 'DummyContentHandlerForTesting' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideGetModelForID
+	 */
+	public function testGetModelForID( $modelId, $handlerClass ) {
+		$handler = ContentHandler::getForModelID( $modelId );
+
+		$this->assertInstanceOf( $handlerClass, $handler );
+	}
+
 }

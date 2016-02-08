@@ -357,11 +357,16 @@ abstract class ContentHandler {
 				throw new MWException( "ContentHandlerForModelID must supply a ContentHandler instance" );
 			}
 		} else {
-			$class = $wgContentHandlers[$modelId];
-			$handler = new $class( $modelId );
+			$classOrCallback = $wgContentHandlers[$modelId];
+
+			if ( is_callable( $classOrCallback ) ) {
+				$handler = call_user_func( $classOrCallback, $modelId );
+			} else {
+				$handler = new $classOrCallback( $modelId );
+			}
 
 			if ( !( $handler instanceof ContentHandler ) ) {
-				throw new MWException( "$class from \$wgContentHandlers is not " .
+				throw new MWException( "$classOrCallback from \$wgContentHandlers is not " .
 					"compatible with ContentHandler" );
 			}
 		}
