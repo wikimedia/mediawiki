@@ -332,6 +332,7 @@ class ImagePage extends Article {
 			$renderLang = $request->getVal( 'lang' );
 			if ( !is_null( $renderLang ) ) {
 				$handler = $this->displayImg->getHandler();
+        $renderLang = strtolower( $renderLang );
 				if ( $handler && $handler->validateParam( 'lang', $renderLang ) ) {
 					$params['lang'] = $renderLang;
 				} else {
