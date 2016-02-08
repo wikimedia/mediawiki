@@ -18,15 +18,15 @@
 		$checkboxes.prop( 'checked', check );
 	}
 
-	$( '#checkbox-all' ).click( function ( e ) {
+	$( '.mw-checkbox-all' ).click( function ( e ) {
 		selectAll( true );
 		e.preventDefault();
 	} );
-	$( '#checkbox-none' ).click( function ( e ) {
+	$( '.mw-checkbox-none' ).click( function ( e ) {
 		selectAll( false );
 		e.preventDefault();
 	} );
-	$( '#checkbox-invert' ).click( function ( e ) {
+	$( '.mw-checkbox-invert' ).click( function ( e ) {
 		$checkboxes.each( function () {
 			$( this ).prop( 'checked', !$( this ).is( ':checked' ) );
 		} );

@@ -262,15 +262,15 @@ class SpecialLog extends SpecialPage {
 		// Select: All, None, Invert
 		$links = array();
 		$links[] = Html::element(
-			'a', array( 'href' => '#', 'id' => 'checkbox-all' ),
+			'a', array( 'href' => '#', 'class' => 'mw-checkbox-all' ),
 			$this->msg( 'checkbox-all' )->text()
 		);
 		$links[] = Html::element(
-			'a', array( 'href' => '#', 'id' => 'checkbox-none' ),
+			'a', array( 'href' => '#', 'class' => 'mw-checkbox-none' ),
 			$this->msg( 'checkbox-none' )->text()
 		);
 		$links[] = Html::element(
-			'a', array( 'href' => '#', 'id' => 'checkbox-invert' ),
+			'a', array( 'href' => '#', 'class' => 'mw-checkbox-invert' ),
 			$this->msg( 'checkbox-invert' )->text()
 		);
 
