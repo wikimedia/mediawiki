@@ -21,8 +21,6 @@
  * @ingroup Session
  */
 
-use MediaWiki\Session\Token;
-
 /**
  * Value object representing a logged-out user's edit token
  *

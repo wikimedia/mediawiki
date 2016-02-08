@@ -18,9 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-use MediaWiki\Session\BotPasswordSessionProvider;
-use MediaWiki\Session\SessionInfo;
-
 /**
  * Utility class for bot passwords
  * @since 1.27

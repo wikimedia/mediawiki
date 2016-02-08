@@ -24,8 +24,6 @@
 namespace MediaWiki\Session;
 
 use Psr\Log\LoggerInterface;
-use BagOStuff;
-use WebRequest;
 
 /**
  * Value object returned by SessionProvider

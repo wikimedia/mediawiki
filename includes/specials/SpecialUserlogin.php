@@ -21,7 +21,6 @@
  * @ingroup SpecialPage
  */
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\Session\SessionManager;
 
 /**
  * Implements Special:UserLogin
