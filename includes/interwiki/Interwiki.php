@@ -282,17 +282,15 @@ class Interwiki {
 	 */
 	protected static function getAllPrefixesCached( $local ) {
 		global $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
-		static $db, $site;
+		static $site;
 
 		wfDebug( __METHOD__ . "()\n" );
 		$data = array();
 		try {
-			if ( !$db ) {
-				$db = CdbReader::open( $wgInterwikiCache );
-			}
 			/* Resolve site name */
 			if ( $wgInterwikiScopes >= 3 && !$site ) {
-				$site = $db->get( '__sites:' . wfWikiID() );
+				$site = self::getCacheValue( '__sites:' . wfWikiID() );
+
 				if ( $site == '' ) {
 					$site = $wgInterwikiFallbackSite;
 				}
@@ -311,9 +309,9 @@ class Interwiki {
 			$sources[] = wfWikiID();
 
 			foreach ( $sources as $source ) {
-				$list = $db->get( "__list:{$source}" );
+				$list = self::getCacheValue( '__list:' . $source );
 				foreach ( explode( ' ', $list ) as $iw_prefix ) {
-					$row = $db->get( "{$source}:{$iw_prefix}" );
+					$row = self::getCacheValue( "{$source}:{$iw_prefix}" );
 					if ( !$row ) {
 						continue;
 					}
