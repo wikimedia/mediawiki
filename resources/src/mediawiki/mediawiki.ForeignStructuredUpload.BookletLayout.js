@@ -507,12 +507,14 @@
 			new OO.ui.FieldLayout( this.filenameWidget, {
 				label: mw.msg( 'upload-form-label-infoform-name' ),
 				align: 'top',
-				help: mw.msg( 'upload-form-label-infoform-name-tooltip' )
+				classes: [ 'mw-foreignStructuredUploa-bookletLayout-small-notice' ],
+				notices: [ mw.msg( 'upload-form-label-infoform-name-tooltip' ) ]
 			} ),
 			new OO.ui.FieldLayout( this.descriptionWidget, {
 				label: mw.msg( 'upload-form-label-infoform-description' ),
 				align: 'top',
-				help: mw.msg( 'upload-form-label-infoform-description-tooltip' )
+				classes: [ 'mw-foreignStructuredUploa-bookletLayout-small-notice' ],
+				notices: [ mw.msg( 'upload-form-label-infoform-description-tooltip' ) ]
 			} ),
 			new OO.ui.FieldLayout( this.categoriesWidget, {
 				label: mw.msg( 'foreign-structured-upload-form-label-infoform-categories' ),
