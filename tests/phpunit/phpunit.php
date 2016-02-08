@@ -302,4 +302,8 @@ if ( $puVersion !== '@package_version@' && version_compare( $puVersion, '3.7.0',
 	exit( 1 );
 }
 
+echo defined( 'HHVM_VERSION' ) ?
+	'Using HHVM ' . HHVM_VERSION . ' (' . PHP_VERSION . ")\n" :
+	'Using PHP ' . PHP_VERSION . "\n";
+
 PHPUnit_TextUI_Command::main();
