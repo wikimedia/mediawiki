@@ -48,7 +48,8 @@
 			"Macofe",
 			"Danialbehzadi",
 			"MRG90",
-			"Mahdy Saffar"
+			"Mahdy Saffar",
+			"Arian Ar"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -73,7 +74,7 @@
 	"tog-enotifwatchlistpages": "اگر صفحه یا پرونده‌ای از فهرست پی‌گیری‌هایم ویرایش شد به من ایمیلی فرستاده شود",
 	"tog-enotifusertalkpages": "هنگامی که در صفحهٔ بحث کاربری‌ام تغییری صورت می‌گیرد به من ایمیلی فرستاده شود",
 	"tog-enotifminoredits": "برای تغییرات جزئی در صفحه‌ها و پرونده‌ها هم به من ایمیلی فرستاده شود",
-	"tog-enotifrevealaddr": "نشانی پست الکترونیکی من را در ایمیل‌های اطلاع‌رسانی هویدا گردد",
+	"tog-enotifrevealaddr": "نشانی پست الکترونیکی من در ایمیل‌های اطلاع‌رسانی هویدا گردد",
 	"tog-shownumberswatching": "شمار کاربران پی‌گیرندهٔ نمایش یابد",
 	"tog-oldsig": "امضای کنونی:",
 	"tog-fancysig": "امضا به صورت ویکی‌متن در نظر گرفته شود (بدون درج خودکار پیوند)",
@@ -228,7 +229,7 @@
 	"create-this-page": "ایجاد این صفحه",
 	"delete": "حذف",
 	"deletethispage": "حذف این صفحه",
-	"undeletethispage": "بازگردانی این صفحه",
+	"undeletethispage": "احیای این صفحه",
 	"undelete_short": "احیای {{PLURAL:$1|یک ویرایش|$1 ویرایش}}",
 	"viewdeleted_short": "نمایش {{PLURAL:$1|یک ویرایش حذف‌شده|$1 ویرایش حذف‌شده}}",
 	"protect": "محافظت",

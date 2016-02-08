@@ -220,7 +220,7 @@
 	"otherlanguages": "In aliis linguis",
 	"redirectedfrom": "(Redirectum de $1)",
 	"redirectpagesub": "Pagina redirectionis",
-	"lastmodifiedat": "Novissima mutatio die $2 hora $1 facta.",
+	"lastmodifiedat": "Novissima mutatio die $1 hora $2 facta.",
 	"viewcount": "Haec pagina iam vista est {{PLURAL:$1|semel|$1 vices}}.",
 	"protectedpage": "Pagina protecta",
 	"jumpto": "Salire ad:",
