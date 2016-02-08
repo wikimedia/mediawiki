@@ -3285,6 +3285,7 @@ $user: User whose groups changed
 $added: Groups added
 $removed: Groups removed
 $performer: User who performed the change, false if via autopromotion
+$reason: The reason, if any, given by the user performing the change
 
 'UserIsBlockedFrom': Check if a user is blocked from a specific page (for
 specific block exemptions).
