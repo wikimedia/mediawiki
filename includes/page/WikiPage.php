@@ -1636,6 +1636,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param User $user The user doing the edit
 	 * @param string $serialFormat Format for storing the content in the
 	 *   database.
+	 * @param array|null $tags Change tags to apply to this edit
 	 *
 	 * @throws MWException
 	 * @return Status Possible errors:
@@ -1657,7 +1658,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function doEditContent(
 		Content $content, $summary, $flags = 0, $baseRevId = false,
-		User $user = null, $serialFormat = null
+		User $user = null, $serialFormat = null, $tags = null
 	) {
 		global $wgUser, $wgUseAutomaticEditSummaries;
 
@@ -1719,7 +1720,8 @@ class WikiPage implements Page, IDBAccessObject {
 			'oldContent' => $old_content,
 			'oldId' => $this->getLatest(),
 			'oldIsRedirect' => $this->isRedirect(),
-			'oldCountable' => $this->isCountable()
+			'oldCountable' => $this->isCountable(),
+			'tags' => ( $tags !== null ) ? (array)$tags : array()
 		);
 
 		// Actually create the revision and create/update the page
@@ -1850,7 +1852,8 @@ class WikiPage implements Page, IDBAccessObject {
 					$oldContent ? $oldContent->getSize() : 0,
 					$newsize,
 					$revisionId,
-					$patrolled
+					$patrolled,
+					$meta['tags']
 				);
 			}
 
@@ -1989,7 +1992,8 @@ class WikiPage implements Page, IDBAccessObject {
 				'',
 				$newsize,
 				$revisionId,
-				$patrolled
+				$patrolled,
+				$meta['tags']
 			);
 		}
 
@@ -3053,6 +3057,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param string $summary Custom summary. Set to default summary if empty.
 	 * @param string $token Rollback token.
 	 * @param bool $bot If true, mark all reverted edits as bot.
+	 * @param array|null $tags Tags to apply to the rollback
 	 *
 	 * @param array $resultDetails Array contains result-specific array of additional values
 	 *    'alreadyrolled' : 'current' (rev)
@@ -3065,7 +3070,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * OutputPage::showPermissionsErrorPage().
 	 */
 	public function doRollback(
-		$fromP, $summary, $token, $bot, &$resultDetails, User $user
+		$fromP, $summary, $token, $bot, &$resultDetails, User $user, $tags = null
 	) {
 		$resultDetails = null;
 
@@ -3087,7 +3092,7 @@ class WikiPage implements Page, IDBAccessObject {
 			return $errors;
 		}
 
-		return $this->commitRollback( $fromP, $summary, $bot, $resultDetails, $user );
+		return $this->commitRollback( $fromP, $summary, $bot, $resultDetails, $user, $tags );
 	}
 
 	/**
@@ -3101,12 +3106,15 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param string $fromP Name of the user whose edits to rollback.
 	 * @param string $summary Custom summary. Set to default summary if empty.
 	 * @param bool $bot If true, mark all reverted edits as bot.
+	 * @param array|null $tags Tags to apply to the rollback
 	 *
 	 * @param array $resultDetails Contains result-specific array of additional values
 	 * @param User $guser The user performing the rollback
 	 * @return array
 	 */
-	public function commitRollback( $fromP, $summary, $bot, &$resultDetails, User $guser ) {
+	public function commitRollback( $fromP, $summary, $bot,
+		&$resultDetails, User $guser, $tags = null
+	) {
 		global $wgUseRCPatrol, $wgContLang;
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -3201,7 +3209,9 @@ class WikiPage implements Page, IDBAccessObject {
 			$summary,
 			$flags,
 			$target->getId(),
-			$guser
+			$guser,
+			null,
+			$tags
 		);
 
 		// Set patrolling and bot flag on the edits, which gets rollbacked.
