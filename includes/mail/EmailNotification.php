@@ -489,6 +489,8 @@ class EmailNotification {
 			$headers['List-Help'] = 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Watchlist';
 		}
 
+		Hooks::run( 'SendPersonalizedEmail', array( $this->title, $this->oldid, $watchingUser, &$body ) );
+
 		return UserMailer::send( $to, $this->from, $this->subject, $body, array(
 			'replyTo' => $this->replyto,
 			'headers' => $headers,

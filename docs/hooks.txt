@@ -2580,6 +2580,12 @@ $nt: the Title object
 &$prefix: optional text to display after $html
 &$ret: the value to return if your hook returns false
 
+'SendPersonalizedEmail: Allows modification of notification email to a user
+$title: title of the page just changed
+$oldId: the old Id of the page just changed
+$watchingUser: the user receiving the email
+&$body: the actual text of the email
+
 'SendWatchlistEmailNotification': Return true to send watchlist email
 notification
 $targetUser: the user whom to send watchlist email notification
