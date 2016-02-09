@@ -127,6 +127,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 			$conds['rc_type'] = RC_LOG;
 			$conds['rc_log_type'] = 'upload';
 			$conds['rc_patrolled'] = 0;
+			$conds['rc_namespace'] = NS_FILE;
 			$jconds['recentchanges'] = array(
 				'INNER JOIN',
 				array(
@@ -161,7 +162,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 	}
 
 	function getIndexField() {
-		return 'img_timestamp';
+		return $this->hidePatrolled ? 'rc_timestamp' : 'img_timestamp';
 	}
 
 	function getStartBody() {
