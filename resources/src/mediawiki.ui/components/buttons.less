@@ -137,7 +137,7 @@
 		}
 	}
 
-	// Constructive buttons
+	// Constructive buttons (deprecated, consolidated with `progressive` – see T110555)
 	//
 	// Use constructive buttons for actions which result in a final action in the process that results
 	// in a change of state.
@@ -153,10 +153,10 @@
 	//
 	// Styleguide 2.1.2.
 	&.mw-ui-constructive {
-		.button-colors( @colorConstructive, @colorConstructiveHighlight, @colorConstructiveActive );
+		.button-colors( @colorProgressive, @colorProgressiveHighlight, @colorProgressiveActive );
 
 		&.mw-ui-quiet {
-			.button-colors-quiet( @colorConstructive, @colorConstructiveHighlight, @colorConstructiveActive );
+			.button-colors-quiet( @colorProgressive, @colorProgressiveHighlight, @colorProgressiveActive );
 		}
 	}
 
