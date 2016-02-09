@@ -105,6 +105,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 	function getQueryInfo() {
 		$conds = $jconds = array();
 		$tables = array( 'image' );
+		$fields = array( 'img_name', 'img_user', 'img_timestamp' );
 		$options = array();
 
 		if ( !$this->showBots ) {
@@ -158,7 +159,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 
 		$query = array(
 			'tables' => $tables,
-			'fields' => '*',
+			'fields' => $fields,
 			'join_conds' => $jconds,
 			'conds' => $conds,
 			'options' => $options,
