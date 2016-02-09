@@ -434,16 +434,28 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		try {
 			// If the list has been modified since last time we cached it, update the cache
 			if ( $localFileRefs !== $this->getFileDependencies( $context ) ) {
+				$cache = ObjectCache::getLocalClusterInstance();
+				$key = $cache->makeKey( __METHOD__, $this->getName() );
+				$scopeLock = $cache->getScopedLock( $key, 0 );
+				if ( !$scopeLock ) {
+					return; // T124649; avoid write slams
+				}
+
 				$vary = $context->getSkin() . '|' . $context->getLanguage();
 				$dbw = wfGetDB( DB_MASTER );
 				$dbw->replace( 'module_deps',
-					array( array( 'md_module', 'md_skin' ) ), array(
+					array( array( 'md_module', 'md_skin' ) ),
+					array(
 						'md_module' => $this->getName(),
 						'md_skin' => $vary,
 						// Use relative paths to avoid ghost entries when $IP changes (T111481)
 						'md_deps' => FormatJson::encode( self::getRelativePaths( $localFileRefs ) ),
 					)
 				);
+
+				$dbw->onTransactionIdle( function () use ( &$scopeLock ) {
+					ScopedCallback::consume( $scopeLock ); // release after commit
+				} );
 			}
 		} catch ( Exception $e ) {
 			wfDebugLog( 'resourceloader', __METHOD__ . ": failed to update DB: $e" );
