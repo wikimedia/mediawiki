@@ -127,6 +127,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 			$conds['rc_type'] = RC_LOG;
 			$conds['rc_log_type'] = 'upload';
 			$conds['rc_patrolled'] = 0;
+			$conds['rc_namespace'] = NS_FILE;
 			$jconds['recentchanges'] = array(
 				'INNER JOIN',
 				array(
@@ -154,7 +155,8 @@ class NewFilesPager extends ReverseChronologicalPager {
 			'tables' => $tables,
 			'fields' => '*',
 			'join_conds' => $jconds,
-			'conds' => $conds
+			'conds' => $conds,
+			'options' => array( 'STRAIGHT_JOIN' ),
 		);
 
 		return $query;
