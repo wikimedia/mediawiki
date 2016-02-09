@@ -2903,6 +2903,7 @@
 	"logentry-newusers-create2": "$1 {{GENDER:$2|stofnaði}} notandaaðganginn $3",
 	"logentry-newusers-byemail": "Notandaaðgangurinn $3 var {{GENDER:$2|búinn til}} af $1 og lykilorðið var sent með tölvupósti",
 	"logentry-newusers-autocreate": "Aðgangurinn $1 var {{GENDER:$2|stofnaður}} sjálfvirkt",
+	"logentry-protect-protect": "$1 {{GENDER:$2|verndaði}} $3 $4",
 	"logentry-rights-rights": "$1 {{GENDER:$2|breytti}} réttindum $3 frá $4 í $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|breytti}} réttindum $3",
 	"logentry-rights-autopromote": "$1 fékk sjálfvirkt {{GENDER:$2|aukin}} réttindi frá $4 til $5",

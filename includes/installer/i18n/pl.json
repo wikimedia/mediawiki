@@ -272,7 +272,7 @@
 	"config-instantcommons-help": "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] jest funkcją, która pozwala wiki używać obrazów, dźwięków i innych mediów znalezionych na  witrynie [//commons.wikimedia.org/ Wikimedia Commons].\nAby to zrobić, MediaWiki wymaga dostępu do internetu.\n\nAby uzyskać więcej informacji na temat tej funkcji, w tym instrukcje dotyczące sposobu ustawiania go na wiki innych niż Wikimedia Commons, sprawdź w [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos podręczniku].",
 	"config-cc-error": "Wybieranie licencji Creative Commons nie dało wyniku.\nWpisz nazwę licencji ręcznie.",
 	"config-cc-again": "Wybierz jeszcze raz...",
-	"config-cc-not-chosen": "Wybierz którą chcesz licencję Creative Commons i kliknij „proceed”.",
+	"config-cc-not-chosen": "Wybierz, którą chcesz licencję Creative Commons i kliknij „proceed”.",
 	"config-advanced-settings": "Konfiguracja zaawansowana",
 	"config-cache-options": "Ustawienia buforowania obiektów:",
 	"config-cache-help": "Buforowanie obiekto jest używane aby przyspieszyć MediaWiki przez trzymanie w pamięci podręcznej często używanych danych.\nŚrednie oraz duże witryny są wysoce zachęcane by je włączyć, a małe witryny także dostrzegą korzyści.",
