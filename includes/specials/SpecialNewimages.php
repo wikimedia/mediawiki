@@ -105,6 +105,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 	function getQueryInfo() {
 		$conds = $jconds = [];
 		$tables = [ 'image' ];
+		$options = [];
 
 		if ( !$this->showBots ) {
 			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
@@ -127,6 +128,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 			$conds['rc_type'] = RC_LOG;
 			$conds['rc_log_type'] = 'upload';
 			$conds['rc_patrolled'] = 0;
+			$conds['rc_namespace'] = NS_FILE;
 			$jconds['recentchanges'] = [
 				'INNER JOIN',
 				[
@@ -135,6 +137,10 @@ class NewFilesPager extends ReverseChronologicalPager {
 					'rc_timestamp = img_timestamp'
 				]
 			];
+			// We're ordering by img_timestamp, so we have to make sure MariaDB queries `image` first.
+			// It sometimes decides to query `recentchanges` first and filesort the result set later
+			// to get the right ordering. T124205 / https://mariadb.atlassian.net/browse/MDEV-8880
+			$options[] = 'STRAIGHT_JOIN';
 		}
 
 		if ( !$this->getConfig()->get( 'MiserMode' ) && $this->like !== null ) {
@@ -154,7 +160,8 @@ class NewFilesPager extends ReverseChronologicalPager {
 			'tables' => $tables,
 			'fields' => '*',
 			'join_conds' => $jconds,
-			'conds' => $conds
+			'conds' => $conds,
+			'options' => $options,
 		];
 
 		return $query;
