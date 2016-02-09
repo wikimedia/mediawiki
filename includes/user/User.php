@@ -1789,14 +1789,14 @@ class User implements IDBAccessObject {
 			// ip-based limits
 			if ( isset( $limits['ip'] ) ) {
 				$ip = $this->getRequest()->getIP();
-				$keys[wfMemcKey( 'limiter', $action, 'ip', $ip )] = $limits['ip'];
+				$keys["mediawiki:limiter:$action:ip:$ip"] = $limits['ip'];
 			}
 			// subnet-based limits
 			if ( isset( $limits['subnet'] ) ) {
 				$ip = $this->getRequest()->getIP();
 				$subnet = IP::getSubnet( $ip );
 				if ( $subnet !== false ) {
-					$keys[wfMemcKey( 'limiter', $action, 'subnet', $subnet )] = $limits['subnet'];
+					$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet'];
 				}
 			}
 		}
