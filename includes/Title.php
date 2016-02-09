@@ -1261,6 +1261,7 @@ class Title implements LinkTarget {
 	 * show "inactive" CSS or JS.
 	 *
 	 * @return bool
+	 * @todo FIXME: Rename to isSiteCSSOrJsPage() and remove deprecated hook
 	 */
 	public function isCssOrJsPage() {
 		$isCssOrJsPage = NS_MEDIAWIKI == $this->mNamespace
@@ -1279,6 +1280,7 @@ class Title implements LinkTarget {
 	/**
 	 * Is this a .css or .js subpage of a user page?
 	 * @return bool
+	 * @todo FIXME: Rename to isUserCSSOrJsPage()
 	 */
 	public function isCssJsSubpage() {
 		return ( NS_USER == $this->mNamespace && $this->isSubpage()
