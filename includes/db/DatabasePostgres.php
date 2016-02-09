@@ -840,7 +840,7 @@ __INDEXATTR__;
 					$tempres = (bool)$this->query( $tempsql, $fname, $savepoint );
 
 					if ( $savepoint ) {
-						$bar = pg_last_error();
+						$bar = pg_result_error( $this->mLastResult );
 						if ( $bar != false ) {
 							$savepoint->rollback();
 						} else {
@@ -865,7 +865,7 @@ __INDEXATTR__;
 			$sql .= '(' . $this->makeList( $args ) . ')';
 			$res = (bool)$this->query( $sql, $fname, $savepoint );
 			if ( $savepoint ) {
-				$bar = pg_last_error();
+				$bar = pg_result_error( $this->mLastResult );
 				if ( $bar != false ) {
 					$savepoint->rollback();
 				} else {
@@ -948,7 +948,7 @@ __INDEXATTR__;
 
 		$res = (bool)$this->query( $sql, $fname, $savepoint );
 		if ( $savepoint ) {
-			$bar = pg_last_error();
+			$bar = pg_result_error( $this->mLastResult );
 			if ( $bar != false ) {
 				$savepoint->rollback();
 			} else {
