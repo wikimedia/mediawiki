@@ -366,7 +366,7 @@ class EditPage {
 	public $contentFormat = null;
 
 	/** @var null|array */
-	public $changeTags = null;
+	private $changeTags = null;
 
 	# Placeholders for text injection by hooks (must be HTML)
 	# extensions should take care to _append_ to the present value
@@ -2013,7 +2013,8 @@ class EditPage {
 			$flags,
 			false,
 			$wgUser,
-			$content->getDefaultFormat()
+			$content->getDefaultFormat(),
+			$this->changeTags
 		);
 
 		if ( !$doEditStatus->isOK() ) {
@@ -2039,17 +2040,6 @@ class EditPage {
 		$result['redirect'] = $content->isRedirect();
 
 		$this->updateWatchlist();
-
-		if ( $this->changeTags && isset( $doEditStatus->value['revision'] ) ) {
-			// If a revision was created, apply any change tags that were requested
-			$addTags = $this->changeTags;
-			$revId = $doEditStatus->value['revision']->getId();
-			// Defer this both for performance and so that addTags() sees the rc_id
-			// since the recentchange entry addition is deferred first (bug T100248)
-			DeferredUpdates::addCallableUpdate( function() use ( $addTags, $revId ) {
-				ChangeTags::addTags( $addTags, null, $revId );
-			} );
-		}
 
 		// If the content model changed, add a log entry
 		if ( $changingContentModel ) {
