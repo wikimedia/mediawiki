@@ -93,6 +93,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 
 	function __construct( IContextSource $context, $par = null ) {
 		$this->like = $context->getRequest()->getText( 'like' );
+		$this->tagfilter = $context->getRequest()->getText( 'tagfilter' );
 		$this->showBots = $context->getRequest()->getBool( 'showbots', 0 );
 		$this->hidePatrolled = $context->getRequest()->getBool( 'hidepatrolled', 0 );
 		if ( is_numeric( $par ) ) {
@@ -121,6 +122,43 @@ class NewFilesPager extends ReverseChronologicalPager {
 						'ug_user = img_user'
 					]
 				];
+			}
+		}
+
+		$tables[] = 'logging';
+		$jconds['logging'] = [
+			'INNER JOIN',
+			[
+				'log_title = img_name',
+				'log_user = img_user',
+				'log_timestamp = img_timestamp'
+			]
+		];
+		$conds['log_namespace'] = NS_FILE;
+		$conds['log_type'] = 'upload';
+		ChangeTags::modifyDisplayQuery( $tables, $fields, $conds, $jconds, $options, $this->tagfilter );
+
+		if ( $this->tagfilter ) {
+			// If the 'change_tag' table has few tags on log events, it's faster to take them all first,
+			// then filter the ones matching the rest of the query, then filesort. Otherwise, if it has
+			// many tags on log events, it is faster to run the whole query with the correct order, then
+			// filter by tags. Unfortunately, MariaDB's optimizer gets this wrong most of the time, and in
+			// both cases too. So find out what is faster ourselves and bypass it.
+			$options[] = 'STRAIGHT_JOIN';
+			$dbr = wfGetDB( DB_SLAVE );
+			$hasFewTaggedLogEvents = $dbr->estimateRowCount(
+				'change_tag',
+				'*',
+				[ 'ct_log_id IS NOT NULL', 'ct_tag' => $this->tagfilter ],
+				__METHOD__
+			) < 50000;
+			if ( $hasFewTaggedLogEvents ) {
+				// Move 'change_tag' table to the beginning to query it first
+				array_unshift( $tables, 'change_tag', 'logging' );
+				$tables = array_values( array_unique( $tables ) );
+				$jconds['image'] = $jconds['logging'];
+				$jconds['logging'] = $jconds['change_tag'];
+				unset( $jconds['change_tag'] );
 			}
 		}
 
@@ -198,12 +236,13 @@ class NewFilesPager extends ReverseChronologicalPager {
 		$title = Title::makeTitle( NS_FILE, $name );
 		$ul = Linker::link( $user->getUserpage(), $user->getName() );
 		$time = $this->getLanguage()->userTimeAndDate( $row->img_timestamp, $this->getUser() );
+		$tags = current( ChangeTags::formatSummaryRow( $row->ts_tags, 'newfiles' ) );
 
 		$this->gallery->add(
 			$title,
-			"$ul<br />\n<i>"
-				. htmlspecialchars( $time )
-				. "</i><br />\n"
+			"$ul<br />\n"
+				. "<i>" . htmlspecialchars( $time ) . "</i><br />\n"
+				. ( $tags ? $tags . "<br />\n" : '' )
 		);
 	}
 
@@ -223,6 +262,11 @@ class NewFilesPager extends ReverseChronologicalPager {
 				'type' => 'check',
 				'label-message' => 'newimages-hidepatrolled',
 				'name' => 'hidepatrolled',
+			),
+			'tagfilter' => [
+				'type' => 'tagfilter',
+				'name' => 'tagfilter',
+				'label-raw' => $this->msg( 'tag-filter' )->parse(),
 			],
 			'limit' => [
 				'type' => 'hidden',
@@ -257,3 +301,4 @@ class NewFilesPager extends ReverseChronologicalPager {
 		return $form;
 	}
 }
+]
