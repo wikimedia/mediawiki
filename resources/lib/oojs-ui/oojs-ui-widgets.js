@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.15.2
+ * OOjs UI v0.15.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-02-02T22:07:00Z
+ * Date: 2016-02-09T21:21:16Z
  */
 ( function ( OO ) {
 
@@ -3393,7 +3393,6 @@ OO.mixinClass( OO.ui.TabSelectWidget, OO.ui.mixin.TabIndexedElement );
  * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.mixin.ItemWidget
- * @mixins OO.ui.mixin.IndicatorElement
  * @mixins OO.ui.mixin.LabelElement
  * @mixins OO.ui.mixin.FlaggedElement
  * @mixins OO.ui.mixin.TabIndexedElement
@@ -3408,33 +3407,37 @@ OO.ui.CapsuleItemWidget = function OoUiCapsuleItemWidget( config ) {
 	// Parent constructor
 	OO.ui.CapsuleItemWidget.parent.call( this, config );
 
-	// Properties (must be set before mixin constructor calls)
-	this.$indicator = $( '<span>' );
-
 	// Mixin constructors
 	OO.ui.mixin.ItemWidget.call( this );
-	OO.ui.mixin.IndicatorElement.call( this, $.extend( {}, config, { $indicator: this.$indicator, indicator: 'clear' } ) );
 	OO.ui.mixin.LabelElement.call( this, config );
 	OO.ui.mixin.FlaggedElement.call( this, config );
-	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$indicator } ) );
+	OO.ui.mixin.TabIndexedElement.call( this, config );
 
 	// Events
-	this.$indicator.on( {
-		keydown: this.onCloseKeyDown.bind( this ),
-		click: this.onCloseClick.bind( this )
-	} );
+	this.closeButton = new OO.ui.ButtonWidget( {
+		framed: false,
+		indicator: 'clear',
+		tabIndex: -1
+	} ).on( 'click', this.onCloseClick.bind( this ) );
+
+	this.on( 'disable', function ( disabled ) {
+		this.closeButton.setDisabled( disabled );
+	}.bind( this ) );
 
 	// Initialization
 	this.$element
+		.on( {
+			click: this.onClick.bind( this ),
+			keydown: this.onKeyDown.bind( this )
+		} )
 		.addClass( 'oo-ui-capsuleItemWidget' )
-		.append( this.$indicator, this.$label );
+		.append( this.$label, this.closeButton.$element );
 };
 
 /* Setup */
 
 OO.inheritClass( OO.ui.CapsuleItemWidget, OO.ui.Widget );
 OO.mixinClass( OO.ui.CapsuleItemWidget, OO.ui.mixin.ItemWidget );
-OO.mixinClass( OO.ui.CapsuleItemWidget, OO.ui.mixin.IndicatorElement );
 OO.mixinClass( OO.ui.CapsuleItemWidget, OO.ui.mixin.LabelElement );
 OO.mixinClass( OO.ui.CapsuleItemWidget, OO.ui.mixin.FlaggedElement );
 OO.mixinClass( OO.ui.CapsuleItemWidget, OO.ui.mixin.TabIndexedElement );
@@ -3443,31 +3446,52 @@ OO.mixinClass( OO.ui.CapsuleItemWidget, OO.ui.mixin.TabIndexedElement );
 
 /**
  * Handle close icon clicks
- * @param {jQuery.Event} event
  */
 OO.ui.CapsuleItemWidget.prototype.onCloseClick = function () {
 	var element = this.getElementGroup();
 
-	if ( !this.isDisabled() && element && $.isFunction( element.removeItems ) ) {
+	if ( element && $.isFunction( element.removeItems ) ) {
 		element.removeItems( [ this ] );
 		element.focus();
 	}
 };
 
 /**
- * Handle close keyboard events
- * @param {jQuery.Event} event Key down event
+ * Handle click event for the entire capsule
  */
-OO.ui.CapsuleItemWidget.prototype.onCloseKeyDown = function ( e ) {
-	if ( !this.isDisabled() && $.isFunction( this.getElementGroup().removeItems ) ) {
-		switch ( e.which ) {
-			case OO.ui.Keys.ENTER:
-			case OO.ui.Keys.BACKSPACE:
-			case OO.ui.Keys.SPACE:
-				this.getElementGroup().removeItems( [ this ] );
-				return false;
-		}
+OO.ui.CapsuleItemWidget.prototype.onClick = function () {
+	var element = this.getElementGroup();
+
+	if ( !this.isDisabled() && element && $.isFunction( element.editItem ) ) {
+		element.editItem( this );
 	}
+};
+
+/**
+ * Handle keyDown event for the entire capsule
+ */
+OO.ui.CapsuleItemWidget.prototype.onKeyDown = function ( e ) {
+	var element = this.getElementGroup();
+
+	if ( e.keyCode === OO.ui.Keys.BACKSPACE || e.keyCode === OO.ui.Keys.DELETE ) {
+		element.removeItems( [ this ] );
+		element.focus();
+		return false;
+	} else if ( e.keyCode === OO.ui.Keys.ENTER ) {
+		element.editItem( this );
+		return false;
+	} else if ( e.keyCode === OO.ui.Keys.LEFT ) {
+		element.getPreviousItem( this ).focus();
+	} else if ( e.keyCode === OO.ui.Keys.RIGHT ) {
+		element.getNextItem( this ).focus();
+	}
+};
+
+/**
+ * Focuses the capsule
+ */
+OO.ui.CapsuleItemWidget.prototype.focus = function () {
+	this.$element.focus();
 };
 
 /**
@@ -3514,16 +3538,19 @@ OO.ui.CapsuleItemWidget.prototype.onCloseKeyDown = function ( e ) {
  * @extends OO.ui.Widget
  * @mixins OO.ui.mixin.TabIndexedElement
  * @mixins OO.ui.mixin.GroupElement
+ * @uses OO.ui.CapsuleItemWidget
+ * @uses OO.ui.FloatingMenuSelectWidget
  *
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [allowArbitrary=false] Allow data items to be added even if not present in the menu.
- * @cfg {Object} [menu] Configuration options to pass to the {@link OO.ui.MenuSelectWidget menu select widget}.
+ * @cfg {Object} [menu] (required) Configuration options to pass to the
+ *  {@link OO.ui.MenuSelectWidget menu select widget}.
  * @cfg {Object} [popup] Configuration options to pass to the {@link OO.ui.PopupWidget popup widget}.
  *  If specified, this popup will be shown instead of the menu (but the menu
  *  will still be used for item labels and allowArbitrary=false). The widgets
- *  in the popup should use this.addItemsFromData() or this.addItems() as necessary.
- * @cfg {jQuery} [$overlay] Render the menu or popup into a separate layer.
+ *  in the popup should use {@link #addItemsFromData} or {@link #addItems} as necessary.
+ * @cfg {jQuery} [$overlay=this.$element] Render the menu or popup into a separate layer.
  *  This configuration is useful in cases where the expanded menu is larger than
  *  its containing `<div>`. The specified overlay layer is usually on top of
  *  the containing `<div>` and has a larger area. By default, the menu uses
@@ -3532,11 +3559,14 @@ OO.ui.CapsuleItemWidget.prototype.onCloseKeyDown = function ( e ) {
 OO.ui.CapsuleMultiSelectWidget = function OoUiCapsuleMultiSelectWidget( config ) {
 	var $tabFocus;
 
-	// Configuration initialization
-	config = config || {};
-
 	// Parent constructor
 	OO.ui.CapsuleMultiSelectWidget.parent.call( this, config );
+
+	// Configuration initialization
+	config = $.extend( {
+		allowArbitrary: false,
+		$overlay: this.$element
+	}, config );
 
 	// Properties (must be set before mixin constructor calls)
 	this.$input = config.popup ? null : $( '<input>' );
@@ -3562,8 +3592,8 @@ OO.ui.CapsuleMultiSelectWidget = function OoUiCapsuleMultiSelectWidget( config )
 
 	// Properties
 	this.$content = $( '<div>' );
-	this.allowArbitrary = !!config.allowArbitrary;
-	this.$overlay = config.$overlay || this.$element;
+	this.allowArbitrary = config.allowArbitrary;
+	this.$overlay = config.$overlay;
 	this.menu = new OO.ui.FloatingMenuSelectWidget( $.extend(
 		{
 			widget: this,
@@ -3754,6 +3784,23 @@ OO.ui.CapsuleMultiSelectWidget.prototype.addItemsFromData = function ( datas ) {
 };
 
 /**
+ * Add items to the capsule by providing a label
+ * @param {string} label
+ * @return {boolean} Whether the item was added or not
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.addItemFromLabel = function ( label ) {
+	var item = this.menu.getItemFromLabel( label, true );
+	if ( item ) {
+		this.addItemsFromData( [ item.data ] );
+		return true;
+	} else if ( this.allowArbitrary && this.$input.val().trim() !== '' ) {
+		this.addItemsFromData( [ label ] );
+		return true;
+	}
+	return false;
+};
+
+/**
  * Remove items by data
  * @chainable
  * @param {Mixed[]} datas
@@ -3803,6 +3850,18 @@ OO.ui.CapsuleMultiSelectWidget.prototype.addItems = function ( items ) {
 };
 
 /**
+ * Removes the item from the list and copies its label to `this.$input`.
+ *
+ * @param {Object} item
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.editItem = function ( item ) {
+	this.$input.val( item.label );
+	this.updateInputSize();
+	this.focus();
+	this.removeItems( [ item ] );
+};
+
+/**
  * @inheritdoc
  */
 OO.ui.CapsuleMultiSelectWidget.prototype.removeItems = function ( items ) {
@@ -3840,6 +3899,56 @@ OO.ui.CapsuleMultiSelectWidget.prototype.clearItems = function () {
 };
 
 /**
+ * Given an item, returns the item after it. If its the last item,
+ * returns `this.$input`. If no item is passed, returns the very first
+ * item.
+ *
+ * @param {OO.ui.CapsuleItemWidget} [item]
+ * @return {OO.ui.CapsuleItemWidget|jQuery|boolean}
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.getNextItem = function ( item ) {
+	var itemIndex;
+
+	if ( item === undefined ) {
+		return this.items[ 0 ];
+	}
+
+	itemIndex = this.items.indexOf( item );
+	if ( itemIndex < 0 ) { // Item not in list
+		return false;
+	} else if ( itemIndex === this.items.length - 1 ) { // Last item
+		return this.$input;
+	} else {
+		return this.items[ itemIndex + 1 ];
+	}
+};
+
+/**
+ * Given an item, returns the item before it. If its the first item,
+ * returns `this.$input`. If no item is passed, returns the very last
+ * item.
+ *
+ * @param {OO.ui.CapsuleItemWidget} [item]
+ * @return {OO.ui.CapsuleItemWidget|jQuery|boolean}
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.getPreviousItem = function ( item ) {
+	var itemIndex;
+
+	if ( item === undefined ) {
+		return this.items[ this.items.length - 1 ];
+	}
+
+	itemIndex = this.items.indexOf( item );
+	if ( itemIndex < 0 ) { // Item not in list
+		return false;
+	} else if ( itemIndex === 0 ) { // First item
+		return this.$input;
+	} else {
+		return this.items[ itemIndex - 1 ];
+	}
+};
+
+/**
  * Get the capsule widget's menu.
  * @return {OO.ui.MenuSelectWidget} Menu widget
  */
@@ -3866,9 +3975,7 @@ OO.ui.CapsuleMultiSelectWidget.prototype.onInputFocus = function () {
  * @param {jQuery.Event} event
  */
 OO.ui.CapsuleMultiSelectWidget.prototype.onInputBlur = function () {
-	if ( this.allowArbitrary && this.$input.val().trim() !== '' ) {
-		this.addItemsFromData( [ this.$input.val() ] );
-	}
+	this.addItemFromLabel( this.$input.val() );
 	this.clearInput();
 };
 
@@ -3893,7 +4000,7 @@ OO.ui.CapsuleMultiSelectWidget.prototype.onFocusForPopup = function () {
  * Handles popup focus out events.
  *
  * @private
- * @param {Event} e Focus out event
+ * @param {jQuery.Event} e Focus out event
  */
 OO.ui.CapsuleMultiSelectWidget.prototype.onPopupFocusOut = function () {
 	var widget = this.popup;
@@ -3931,8 +4038,6 @@ OO.ui.CapsuleMultiSelectWidget.prototype.onMouseDown = function ( e ) {
  * @param {jQuery.Event} e Key press event
  */
 OO.ui.CapsuleMultiSelectWidget.prototype.onKeyPress = function ( e ) {
-	var item;
-
 	if ( !this.isDisabled() ) {
 		if ( e.which === OO.ui.Keys.ESCAPE ) {
 			this.clearInput();
@@ -3942,12 +4047,7 @@ OO.ui.CapsuleMultiSelectWidget.prototype.onKeyPress = function ( e ) {
 		if ( !this.popup ) {
 			this.menu.toggle( true );
 			if ( e.which === OO.ui.Keys.ENTER ) {
-				item = this.menu.getItemFromLabel( this.$input.val(), true );
-				if ( item ) {
-					this.addItemsFromData( [ item.data ] );
-					this.clearInput();
-				} else if ( this.allowArbitrary && this.$input.val().trim() !== '' ) {
-					this.addItemsFromData( [ this.$input.val() ] );
+				if ( this.addItemFromLabel( this.$input.val() ) ) {
 					this.clearInput();
 				}
 				return false;
@@ -3966,13 +4066,23 @@ OO.ui.CapsuleMultiSelectWidget.prototype.onKeyPress = function ( e ) {
  * @param {jQuery.Event} e Key down event
  */
 OO.ui.CapsuleMultiSelectWidget.prototype.onKeyDown = function ( e ) {
-	if ( !this.isDisabled() ) {
+	if (
+		!this.isDisabled() &&
+		this.$input.val() === '' &&
+		this.items.length
+	) {
 		// 'keypress' event is not triggered for Backspace
-		if ( e.keyCode === OO.ui.Keys.BACKSPACE && this.$input.val() === '' ) {
-			if ( this.items.length ) {
+		if ( e.keyCode === OO.ui.Keys.BACKSPACE ) {
+			if ( e.metaKey || e.ctrlKey ) {
 				this.removeItems( this.items.slice( -1 ) );
+			} else {
+				this.editItem( this.items[ this.items.length - 1 ] );
 			}
 			return false;
+		} else if ( e.keyCode === OO.ui.Keys.LEFT ) {
+			this.getPreviousItem().focus();
+		} else if ( e.keyCode === OO.ui.Keys.RIGHT ) {
+			this.getNextItem().focus();
 		}
 	}
 };
@@ -4136,6 +4246,8 @@ OO.ui.CapsuleMultiSelectWidget.prototype.focus = function () {
  * @cfg {boolean} [droppable=true] Whether to accept files by drag and drop.
  * @cfg {boolean} [showDropTarget=false] Whether to show a drop target. Requires droppable to be true.
  * @cfg {boolean} [dragDropUI=false] Deprecated alias for showDropTarget
+ * @cfg {Number} [thumbnailSizeLimit=20] File size limit in MiB above which to not try and show a
+ *  preview (for performance)
  */
 OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 	var dragHandler;
@@ -4151,7 +4263,8 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 		placeholder: OO.ui.msg( 'ooui-selectfile-placeholder' ),
 		notsupported: OO.ui.msg( 'ooui-selectfile-not-supported' ),
 		droppable: true,
-		showDropTarget: false
+		showDropTarget: false,
+		thumbnailSizeLimit: 20
 	}, config );
 
 	// Parent constructor
@@ -4165,9 +4278,8 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 
 	// Properties
 	this.$info = $( '<span>' );
-
-	// Properties
 	this.showDropTarget = config.showDropTarget;
+	this.thumbnailSizeLimit = config.thumbnailSizeLimit;
 	this.isSupported = this.constructor.static.isSupported();
 	this.currentFile = null;
 	if ( Array.isArray( config.accept ) ) {
@@ -4188,7 +4300,7 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 	this.clearButton = new OO.ui.ButtonWidget( {
 		classes: [ 'oo-ui-selectFileWidget-clearButton' ],
 		framed: false,
-		icon: 'remove',
+		icon: 'close',
 		disabled: this.disabled
 	} );
 
@@ -4211,23 +4323,35 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 
 	// Initialization
 	this.addInput();
-	this.updateUI();
 	this.$label.addClass( 'oo-ui-selectFileWidget-label' );
 	this.$info
 		.addClass( 'oo-ui-selectFileWidget-info' )
 		.append( this.$icon, this.$label, this.clearButton.$element, this.$indicator );
-	this.$element
-		.addClass( 'oo-ui-selectFileWidget' )
-		.append( this.$info, this.selectButton.$element );
+
 	if ( config.droppable && config.showDropTarget ) {
+		this.selectButton.setIcon( 'upload' );
+		this.$thumbnail = $( '<div>' ).addClass( 'oo-ui-selectFileWidget-thumbnail' );
+		this.setPendingElement( this.$thumbnail );
 		this.$dropTarget = $( '<div>' )
 			.addClass( 'oo-ui-selectFileWidget-dropTarget' )
-			.text( OO.ui.msg( 'ooui-selectfile-dragdrop-placeholder' ) )
 			.on( {
 				click: this.onDropTargetClick.bind( this )
-			} );
-		this.$element.prepend( this.$dropTarget );
+			} )
+			.append(
+				this.$thumbnail,
+				this.$info,
+				this.selectButton.$element,
+				$( '<span>' )
+					.addClass( 'oo-ui-selectFileWidget-dropLabel' )
+					.text( OO.ui.msg( 'ooui-selectfile-dragdrop-placeholder' ) )
+			);
+		this.$element.append( this.$dropTarget );
+	} else {
+		this.$element
+			.addClass( 'oo-ui-selectFileWidget' )
+			.append( this.$info, this.selectButton.$element );
 	}
+	this.updateUI();
 };
 
 /* Setup */
@@ -4332,11 +4456,75 @@ OO.ui.SelectFileWidget.prototype.updateUI = function () {
 				);
 			}
 			this.setLabel( $label );
+
+			if ( this.showDropTarget ) {
+				this.pushPending();
+				this.loadAndGetImageUrl().done( function ( url ) {
+					this.$thumbnail.css( 'background-image', 'url( ' + url + ' )' );
+				}.bind( this ) ).fail( function () {
+					this.$thumbnail.append(
+						new OO.ui.IconWidget( {
+							icon: 'attachment',
+							classes: [ 'oo-ui-selectFileWidget-noThumbnail-icon' ]
+						} ).$element
+					);
+				}.bind( this ) ).always( function () {
+					this.popPending();
+				}.bind( this ) );
+				this.$dropTarget.off( 'click' );
+			}
 		} else {
+			if ( this.showDropTarget ) {
+				this.$dropTarget.off( 'click' );
+				this.$dropTarget.on( {
+					click: this.onDropTargetClick.bind( this )
+				} );
+				this.$thumbnail
+					.empty()
+					.css( 'background-image', '' );
+			}
 			this.$element.addClass( 'oo-ui-selectFileWidget-empty' );
 			this.setLabel( this.placeholder );
 		}
 	}
+};
+
+/**
+ * If the selected file is an image, get its URL and load it.
+ *
+ * @return {jQuery.Promise} Promise resolves with the image URL after it has loaded
+ */
+OO.ui.SelectFileWidget.prototype.loadAndGetImageUrl = function () {
+	var deferred = $.Deferred(),
+		file = this.currentFile,
+		reader = new FileReader();
+
+	if (
+		file &&
+		( OO.getProp( file, 'type' ) || '' ).indexOf( 'image/' ) === 0 &&
+		file.size < this.thumbnailSizeLimit * 1024 * 1024
+	) {
+		reader.onload = function ( event ) {
+			var img = document.createElement( 'img' );
+			img.addEventListener( 'load', function () {
+				if (
+					img.naturalWidth === 0 ||
+					img.naturalHeight === 0 ||
+					img.complete === false
+				) {
+					deferred.reject();
+				} else {
+					deferred.resolve( event.target.result );
+				}
+			} );
+			img.src = event.target.result;
+		};
+		reader.readAsDataURL( file );
+	} else {
+		deferred.reject();
+	}
+
+	return deferred.promise();
 };
 
 /**
@@ -4356,6 +4544,11 @@ OO.ui.SelectFileWidget.prototype.addInput = function () {
 
 	this.$input = $( '<input type="file">' );
 	this.$input.on( 'change', this.onFileSelectedHandler );
+	this.$input.on( 'click', function ( e ) {
+		// Prevents dropTarget to get clicked which calls
+		// a click on this input
+		e.stopPropagation();
+	} );
 	this.$input.attr( {
 		tabindex: -1
 	} );

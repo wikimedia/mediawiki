@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.15.2
+ * OOjs UI v0.15.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-02-02T22:07:00Z
+ * Date: 2016-02-09T21:21:16Z
  */
 ( function ( OO ) {
 
@@ -1030,7 +1030,7 @@ OO.ui.ToolGroup.prototype.onMouseKeyDown = function ( e ) {
  * Handle captured mouse up and key up events.
  *
  * @protected
- * @param {Event} e Mouse up or key up event
+ * @param {MouseEvent|KeyboardEvent} e Mouse up or key up event
  */
 OO.ui.ToolGroup.prototype.onCapturedMouseKeyUp = function ( e ) {
 	this.getElementDocument().removeEventListener( 'mouseup', this.onCapturedMouseKeyUpHandler, true );
@@ -1044,7 +1044,7 @@ OO.ui.ToolGroup.prototype.onCapturedMouseKeyUp = function ( e ) {
  * Handle mouse up and key up events.
  *
  * @protected
- * @param {jQuery.Event} e Mouse up or key up event
+ * @param {MouseEvent|KeyboardEvent} e Mouse up or key up event
  */
 OO.ui.ToolGroup.prototype.onMouseKeyUp = function ( e ) {
 	var tool = this.getTargetTool( e );
@@ -1055,7 +1055,8 @@ OO.ui.ToolGroup.prototype.onMouseKeyUp = function ( e ) {
 	) {
 		this.pressed.onSelect();
 		this.pressed = null;
-		return false;
+		e.preventDefault();
+		e.stopPropagation();
 	}
 
 	this.pressed = null;
@@ -1831,7 +1832,7 @@ OO.ui.PopupToolGroup.prototype.setDisabled = function () {
  * The event is actually generated from a mouseup/keyup, so it is not a normal blur event object.
  *
  * @protected
- * @param {jQuery.Event} e Mouse up or key up event
+ * @param {MouseEvent|KeyboardEvent} e Mouse up or key up event
  */
 OO.ui.PopupToolGroup.prototype.onBlur = function ( e ) {
 	// Only deactivate when clicking outside the dropdown element

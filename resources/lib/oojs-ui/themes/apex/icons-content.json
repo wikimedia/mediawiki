@@ -5,6 +5,10 @@
 		"articleRedirect": { "file": {
 			"ltr": "images/icons/articleRedirect-ltr.svg",
 			"rtl": "images/icons/articleRedirect-rtl.svg"
+		} },
+		"upload": { "file": {
+			"ltr": "images/icons/upload-ltr.svg",
+			"rtl": "images/icons/upload-rtl.svg"
 		} }
 	}
 }
