@@ -364,6 +364,25 @@ class EditPageTest extends MediaWikiLangTestCase {
 	}
 
 	public function testUpdatePage() {
+		$checkIds = array();
+
+		$this->setMwGlobals( 'wgHooks', array(
+			'PageContentInsertComplete' => array( function (
+				WikiPage &$page, User &$user, Content $content,
+				$summary, $minor, $u1, $u2, &$flags, Revision $revision
+			) {
+				// types/refs checked
+			} ),
+			'PageContentSaveComplete' => array( function (
+				WikiPage &$page, User &$user, Content $content,
+				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
+				Status &$status, $baseRevId
+			) use ( &$checkIds ) {
+				$checkIds[] = $status->value['revision']->getId();
+				// types/refs checked
+			} ),
+		) );
+
 		$text = "one";
 		$edit = array(
 			'wpTextbox1' => $text,
@@ -373,6 +392,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$page = $this->assertEdit( 'EditPageTest_testUpdatePage', "zero", null, $edit,
 			EditPage::AS_SUCCESS_UPDATE, $text,
 			"expected successfull update with given text" );
+		$this->assertGreaterThan( 0, $checkIds[0], "First event rev ID set" );
 
 		$this->forceRevisionDate( $page, '20120101000000' );
 
@@ -385,6 +405,62 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$this->assertEdit( 'EditPageTest_testUpdatePage', null, null, $edit,
 			EditPage::AS_SUCCESS_UPDATE, $text,
 			"expected successfull update with given text" );
+		$this->assertGreaterThan( 0, $checkIds[1], "Second edit hook rev ID set" );
+		$this->assertGreaterThan( $checkIds[0], $checkIds[1], "Second event rev ID is higher" );
+	}
+
+	public function testUpdatePageTrx() {
+		$text = "one";
+		$edit = array(
+			'wpTextbox1' => $text,
+			'wpSummary' => 'first update',
+		);
+
+		$page = $this->assertEdit( 'EditPageTest_testTrxUpdatePage', "zero", null, $edit,
+			EditPage::AS_SUCCESS_UPDATE, $text,
+			"expected successfull update with given text" );
+
+		$this->forceRevisionDate( $page, '20120101000000' );
+
+		$checkIds = array();
+		$this->setMwGlobals( 'wgHooks', array(
+			'PageContentSaveComplete' => array( function (
+				WikiPage &$page, User &$user, Content $content,
+				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
+				Status &$status, $baseRevId
+			) use ( &$checkIds ) {
+				$checkIds[] = $status->value['revision']->getId();
+				// types/refs checked
+			} ),
+		) );
+
+		wfGetDB( DB_MASTER )->begin( __METHOD__ );
+
+		$text = "two";
+		$edit = array(
+			'wpTextbox1' => $text,
+			'wpSummary' => 'second update',
+		);
+
+		$this->assertEdit( 'EditPageTest_testTrxUpdatePage', null, null, $edit,
+			EditPage::AS_SUCCESS_UPDATE, $text,
+			"expected successfull update with given text" );
+
+		$text = "three";
+		$edit = array(
+			'wpTextbox1' => $text,
+			'wpSummary' => 'third update',
+		);
+
+		$this->assertEdit( 'EditPageTest_testTrxUpdatePage', null, null, $edit,
+			EditPage::AS_SUCCESS_UPDATE, $text,
+			"expected successfull update with given text" );
+
+		wfGetDB( DB_MASTER )->commit( __METHOD__ );
+
+		$this->assertGreaterThan( 0, $checkIds[0], "First event rev ID set" );
+		$this->assertGreaterThan( 0, $checkIds[1], "Second edit hook rev ID set" );
+		$this->assertGreaterThan( $checkIds[0], $checkIds[1], "Second event rev ID is higher" );
 	}
 
 	public static function provideSectionEdit() {
