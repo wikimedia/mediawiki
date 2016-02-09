@@ -99,7 +99,7 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers HTML::expandAttributes
+	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesSkipsNullAndFalse() {
 
@@ -120,7 +120,7 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers HTML::expandAttributes
+	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesForBooleans() {
 		$this->assertEquals(
@@ -155,7 +155,7 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers HTML::expandAttributes
+	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesForNumbers() {
 		$this->assertEquals(
@@ -171,7 +171,7 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers HTML::expandAttributes
+	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesForObjects() {
 		$this->assertEquals(
@@ -481,7 +481,7 @@ class HtmlTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			'<input type=' . $HTML5InputType . '>',
 			Html::element( 'input', array( 'type' => $HTML5InputType ) ),
-			'In HTML5, HTML::element() should accept type="' . $HTML5InputType . '"'
+			'In HTML5, Html::element() should accept type="' . $HTML5InputType . '"'
 		);
 	}
 
