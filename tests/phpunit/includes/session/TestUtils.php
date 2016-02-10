@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Session;
 
+use Psr\Log\LoggerInterface;
+
 /**
  * Utility functions for Session unit tests
  */
@@ -67,7 +69,9 @@ class TestUtils {
 			);
 		}
 
-		return $rc->newInstanceWithoutConstructor();
+		$ret = $rc->newInstanceWithoutConstructor();
+		\TestingAccessWrapper::newFromObject( $ret )->logger = new \TestLogger;
+		return $ret;
 	}
 
 	/**
@@ -75,9 +79,10 @@ class TestUtils {
 	 * construct one, use this.
 	 * @param object $backend Object to serve as the SessionBackend
 	 * @param int $index Index
+	 * @param LoggerInterface $logger
 	 * @return Session
 	 */
-	public static function getDummySession( $backend = null, $index = -1 ) {
+	public static function getDummySession( $backend = null, $index = -1, $logger = null ) {
 		$rc = new \ReflectionClass( 'MediaWiki\\Session\\Session' );
 		if ( !method_exists( $rc, 'newInstanceWithoutConstructor' ) ) {
 			\PHPUnit_Framework_Assert::markTestSkipped(
@@ -93,6 +98,7 @@ class TestUtils {
 		$priv = \TestingAccessWrapper::newFromObject( $session );
 		$priv->backend = $backend;
 		$priv->index = $index;
+		$priv->logger = $logger ?: new \TestLogger;
 		return $session;
 	}
 
