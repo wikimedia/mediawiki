@@ -593,6 +593,7 @@ $wgAutoloadLocalClasses = array(
 	'InstallDocFormatter' => __DIR__ . '/includes/installer/InstallDocFormatter.php',
 	'Installer' => __DIR__ . '/includes/installer/Installer.php',
 	'InstallerOverrides' => __DIR__ . '/mw-config/overrides.php',
+	'InstallerSessionProvider' => __DIR__ . '/includes/installer/InstallerSessionProvider.php',
 	'Interwiki' => __DIR__ . '/includes/interwiki/Interwiki.php',
 	'InvalidPassword' => __DIR__ . '/includes/password/InvalidPassword.php',
 	'IteratorDecorator' => __DIR__ . '/includes/utils/iterators/IteratorDecorator.php',
