@@ -569,6 +569,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 			'making sure it did save to backend' );
 
 		// Not marked dirty, but dirty data
+		// (e.g. indirect modification from ArrayAccess::offsetGet)
 		$this->provider = $neverProvider;
 		$this->onSessionMetadataCalled = false;
 		$this->mergeMwGlobalArrayValue( 'wgHooks', array( 'SessionMetadata' => array( $this ) ) );
