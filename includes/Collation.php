@@ -308,12 +308,14 @@ class IcuCollation extends Collation {
 		$this->digitTransformLanguage = Language::factory( $locale === 'root' ? 'en' : $localeParts[0] );
 
 		$this->mainCollator = Collator::create( $locale );
+		$this->mainCollator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON );
 		if ( !$this->mainCollator ) {
 			throw new MWException( "Invalid ICU locale specified for collation: $locale" );
 		}
 
 		$this->primaryCollator = Collator::create( $locale );
 		$this->primaryCollator->setStrength( Collator::PRIMARY );
+		$this->primaryCollator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON);
 	}
 
 	function getSortKey( $string ) {
