@@ -58,6 +58,13 @@
 	// Interaction styling
 	cursor: pointer;
 
+	.transition(
+		background-color @trs-base,
+		color @trs-base,
+		border-color @trs-base,
+		box-shadow @trs-base; // Take care, semi-colon is necessary
+	);
+
 	&:disabled {
 		text-shadow: none;
 		cursor: default;
