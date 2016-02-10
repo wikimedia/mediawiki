@@ -361,6 +361,10 @@ abstract class Installer {
 	public function __construct() {
 		global $wgMessagesDirs, $wgUser;
 
+		// Don't attempt to load user language options (T126177)
+		// This will be overridden in the web installer with the user-specified language
+		RequestContext::getMain()->setLanguage( 'en' );
+
 		// Disable the i18n cache
 		Language::getLocalisationCache()->disableBackend();
 		// Disable LoadBalancer and wfGetDB etc.
@@ -406,7 +410,7 @@ abstract class Installer {
 		}
 
 		$this->parserTitle = Title::newFromText( 'Installer' );
-		$this->parserOptions = new ParserOptions; // language will be wrong :(
+		$this->parserOptions = new ParserOptions( $wgUser ); // language will be wrong :(
 		$this->parserOptions->setEditSection( false );
 	}
 
