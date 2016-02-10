@@ -568,8 +568,6 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 	}
 
 	public function testPersistSessionWithHook() {
-		$that = $this;
-
 		$provider = new CookieSessionProvider( array(
 			'priority' => 1,
 			'sessionName' => 'MySessionName',
@@ -620,14 +618,14 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		// Logged-in user, no remember
 		$mock = $this->getMock( __CLASS__, array( 'onUserSetCookies' ) );
 		$mock->expects( $this->once() )->method( 'onUserSetCookies' )
-			->will( $this->returnCallback( function ( $u, &$sessionData, &$cookies ) use ( $that, $user ) {
-				$that->assertSame( $user, $u );
-				$that->assertEquals( array(
+			->will( $this->returnCallback( function ( $u, &$sessionData, &$cookies ) use ( $user ) {
+				$this->assertSame( $user, $u );
+				$this->assertEquals( array(
 					'wsUserID' => $user->getId(),
 					'wsUserName' => $user->getName(),
 					'wsToken' => $user->getToken(),
 				), $sessionData );
-				$that->assertEquals( array(
+				$this->assertEquals( array(
 					'UserID' => $user->getId(),
 					'UserName' => $user->getName(),
 					'Token' => false,
@@ -663,14 +661,14 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		// Logged-in user, remember
 		$mock = $this->getMock( __CLASS__, array( 'onUserSetCookies' ) );
 		$mock->expects( $this->once() )->method( 'onUserSetCookies' )
-			->will( $this->returnCallback( function ( $u, &$sessionData, &$cookies ) use ( $that, $user ) {
-				$that->assertSame( $user, $u );
-				$that->assertEquals( array(
+			->will( $this->returnCallback( function ( $u, &$sessionData, &$cookies ) use ( $user ) {
+				$this->assertSame( $user, $u );
+				$this->assertEquals( array(
 					'wsUserID' => $user->getId(),
 					'wsUserName' => $user->getName(),
 					'wsToken' => $user->getToken(),
 				), $sessionData );
-				$that->assertEquals( array(
+				$this->assertEquals( array(
 					'UserID' => $user->getId(),
 					'UserName' => $user->getName(),
 					'Token' => $user->getToken(),

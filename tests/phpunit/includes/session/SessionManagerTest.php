@@ -760,8 +760,6 @@ class SessionManagerTest extends MediaWikiTestCase {
 	public function testAutoCreateUser() {
 		global $wgGroupPermissions;
 
-		$that = $this;
-
 		\ObjectCache::$instances[__METHOD__] = new TestBagOStuff();
 		$this->setMwGlobals( array( 'wgMainCacheType' => __METHOD__ ) );
 		$this->setMWGlobals( array(
@@ -1012,10 +1010,10 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$logger->clearBuffer();
 
 		// Sanity check that creation still works, and test completion hook
-		$cb = $this->callback( function ( User $user ) use ( $that ) {
-			$that->assertNotEquals( 0, $user->getId() );
-			$that->assertSame( 'UTSessionAutoCreate4', $user->getName() );
-			$that->assertEquals(
+		$cb = $this->callback( function ( User $user ) {
+			$this->assertNotEquals( 0, $user->getId() );
+			$this->assertSame( 'UTSessionAutoCreate4', $user->getName() );
+			$this->assertEquals(
 				$user->getId(), User::idFromName( 'UTSessionAutoCreate4', User::READ_LATEST )
 			);
 			return true;
@@ -1649,7 +1647,6 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertSame( array(), $logger->getBuffer() );
 
 		// Hook
-		$that = $this;
 		$called = false;
 		$data = array( 'foo' => 1 );
 		$this->store->setSession( $id, array( 'metadata' => $metadata, 'data' => $data ) );
@@ -1660,14 +1657,14 @@ class SessionManagerTest extends MediaWikiTestCase {
 		) );
 		$this->mergeMwGlobalArrayValue( 'wgHooks', array(
 			'SessionCheckInfo' => array( function ( &$reason, $i, $r, $m, $d ) use (
-				$that, $info, $metadata, $data, $request, &$called
+				$info, $metadata, $data, $request, &$called
 			) {
-				$that->assertSame( $info->getId(), $i->getId() );
-				$that->assertSame( $info->getProvider(), $i->getProvider() );
-				$that->assertSame( $info->getUserInfo(), $i->getUserInfo() );
-				$that->assertSame( $request, $r );
-				$that->assertEquals( $metadata, $m );
-				$that->assertEquals( $data, $d );
+				$this->assertSame( $info->getId(), $i->getId() );
+				$this->assertSame( $info->getProvider(), $i->getProvider() );
+				$this->assertSame( $info->getUserInfo(), $i->getUserInfo() );
+				$this->assertSame( $request, $r );
+				$this->assertEquals( $metadata, $m );
+				$this->assertEquals( $data, $d );
 				$called = true;
 				return false;
 			} )
