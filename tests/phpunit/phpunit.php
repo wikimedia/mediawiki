@@ -254,14 +254,6 @@ class PHPUnitMaintClass extends Maintenance {
 $maintClass = 'PHPUnitMaintClass';
 require RUN_MAINTENANCE_IF_MAIN;
 
-// Prevent segfault when we have lots of unit tests (bug 62623)
-if ( version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
-	register_shutdown_function( function () {
-		gc_collect_cycles();
-		gc_disable();
-	} );
-}
-
 $ok = false;
 
 if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
