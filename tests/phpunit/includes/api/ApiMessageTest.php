@@ -25,6 +25,7 @@ class ApiMessageTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers ApiMessage
+	 * @covers ApiMessageTrait
 	 */
 	public function testApiMessage() {
 		$msg = new Message( array( 'foo', 'bar' ), array( 'baz' ) );
@@ -63,6 +64,7 @@ class ApiMessageTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers ApiRawMessage
+	 * @covers ApiMessageTrait
 	 */
 	public function testApiRawMessage() {
 		$msg = new RawMessage( 'foo', array( 'baz' ) );

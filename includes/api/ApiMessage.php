@@ -64,14 +64,56 @@ interface IApiMessage extends MessageSpecifier {
 }
 
 /**
+ * Trait to implement the IApiMessage interface for Message subclasses
+ * @since 1.27
+ * @ingroup API
+ */
+trait ApiMessageTrait {
+	protected $apiCode = null;
+	protected $apiData = array();
+
+	public function getApiCode() {
+		return $this->apiCode === null ? $this->getKey() : $this->apiCode;
+	}
+
+	public function setApiCode( $code, array $data = null ) {
+		$this->apiCode = $code;
+		if ( $data !== null ) {
+			$this->setApiData( $data );
+		}
+	}
+
+	public function getApiData() {
+		return $this->apiData;
+	}
+
+	public function setApiData( array $data ) {
+		$this->apiData = $data;
+	}
+
+	public function serialize() {
+		return serialize( array(
+			'parent' => parent::serialize(),
+			'apiCode' => $this->apiCode,
+			'apiData' => $this->apiData,
+		) );
+	}
+
+	public function unserialize( $serialized ) {
+		$data = unserialize( $serialized );
+		parent::unserialize( $data['parent'] );
+		$this->apiCode = $data['apiCode'];
+		$this->apiData = $data['apiData'];
+	}
+}
+
+/**
  * Extension of Message implementing IApiMessage
  * @since 1.25
  * @ingroup API
- * @todo: Would be nice to use a Trait here to avoid code duplication
  */
 class ApiMessage extends Message implements IApiMessage {
-	protected $apiCode = null;
-	protected $apiData = array();
+	use ApiMessageTrait;
 
 	/**
 	 * Create an IApiMessage for the message
@@ -119,51 +161,15 @@ class ApiMessage extends Message implements IApiMessage {
 		$this->apiCode = $code;
 		$this->apiData = (array)$data;
 	}
-
-	public function getApiCode() {
-		return $this->apiCode === null ? $this->getKey() : $this->apiCode;
-	}
-
-	public function setApiCode( $code, array $data = null ) {
-		$this->apiCode = $code;
-		if ( $data !== null ) {
-			$this->setApiData( $data );
-		}
-	}
-
-	public function getApiData() {
-		return $this->apiData;
-	}
-
-	public function setApiData( array $data ) {
-		$this->apiData = $data;
-	}
-
-	public function serialize() {
-		return serialize( array(
-			'parent' => parent::serialize(),
-			'apiCode' => $this->apiCode,
-			'apiData' => $this->apiData,
-		) );
-	}
-
-	public function unserialize( $serialized ) {
-		$data = unserialize( $serialized );
-		parent::unserialize( $data['parent'] );
-		$this->apiCode = $data['apiCode'];
-		$this->apiData = $data['apiData'];
-	}
 }
 
 /**
  * Extension of RawMessage implementing IApiMessage
  * @since 1.25
  * @ingroup API
- * @todo: Would be nice to use a Trait here to avoid code duplication
  */
 class ApiRawMessage extends RawMessage implements IApiMessage {
-	protected $apiCode = null;
-	protected $apiData = array();
+	use ApiMessageTrait;
 
 	/**
 	 * @param RawMessage|string|array $msg
@@ -188,39 +194,5 @@ class ApiRawMessage extends RawMessage implements IApiMessage {
 		}
 		$this->apiCode = $code;
 		$this->apiData = (array)$data;
-	}
-
-	public function getApiCode() {
-		return $this->apiCode === null ? $this->getKey() : $this->apiCode;
-	}
-
-	public function setApiCode( $code, array $data = null ) {
-		$this->apiCode = $code;
-		if ( $data !== null ) {
-			$this->setApiData( $data );
-		}
-	}
-
-	public function getApiData() {
-		return $this->apiData;
-	}
-
-	public function setApiData( array $data ) {
-		$this->apiData = $data;
-	}
-
-	public function serialize() {
-		return serialize( array(
-			'parent' => parent::serialize(),
-			'apiCode' => $this->apiCode,
-			'apiData' => $this->apiData,
-		) );
-	}
-
-	public function unserialize( $serialized ) {
-		$data = unserialize( $serialized );
-		parent::unserialize( $data['parent'] );
-		$this->apiCode = $data['apiCode'];
-		$this->apiData = $data['apiData'];
 	}
 }
