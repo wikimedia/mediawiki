@@ -161,9 +161,9 @@ class Title implements LinkTarget {
 	 * Avoid usage of this singleton by using TitleValue
 	 * and the associated services when possible.
 	 *
-	 * @return TitleParser
+	 * @return MediaWikiTitleCodec
 	 */
-	private static function getTitleParser() {
+	private static function getMediaWikiTitleCodec() {
 		global $wgContLang, $wgLocalInterwikis;
 
 		static $titleCodec = null;
@@ -200,9 +200,9 @@ class Title implements LinkTarget {
 	 * @return TitleFormatter
 	 */
 	private static function getTitleFormatter() {
-		// NOTE: we know that getTitleParser() returns a MediaWikiTitleCodec,
+		// NOTE: we know that getMediaWikiTitleCodec() returns a MediaWikiTitleCodec,
 		//      which implements TitleFormatter.
-		return self::getTitleParser();
+		return self::getMediaWikiTitleCodec();
 	}
 
 	function __construct() {
@@ -3353,7 +3353,7 @@ class Title implements LinkTarget {
 		// @note: splitTitleString() is a temporary hack to allow MediaWikiTitleCodec to share
 		//        the parsing code with Title, while avoiding massive refactoring.
 		// @todo: get rid of secureAndSplit, refactor parsing code.
-		$titleParser = self::getTitleParser();
+		$titleParser = self::getMediaWikiTitleCodec();
 		// MalformedTitleException can be thrown here
 		$parts = $titleParser->splitTitleString( $dbkey, $this->getDefaultNamespace() );
 
