@@ -101,22 +101,22 @@ class Revision implements IDBAccessObject {
 
 	/**
 	 * Load either the current, or a specified, revision
-	 * that's attached to a given title. If not attached
-	 * to that title, will return null.
+	 * that's attached to a given link target. If not attached
+	 * to that link target, will return null.
 	 *
 	 * $flags include:
 	 *      Revision::READ_LATEST  : Select the data from the master
 	 *      Revision::READ_LOCKING : Select & lock the data from the master
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $linkTarget
 	 * @param int $id (optional)
 	 * @param int $flags Bitfield (optional)
 	 * @return Revision|null
 	 */
-	public static function newFromTitle( $title, $id = 0, $flags = 0 ) {
+	public static function newFromTitle( LinkTarget $linkTarget, $id = 0, $flags = 0 ) {
 		$conds = array(
-			'page_namespace' => $title->getNamespace(),
-			'page_title' => $title->getDBkey()
+			'page_namespace' => $linkTarget->getNamespace(),
+			'page_title' => $linkTarget->getDBkey()
 		);
 		if ( $id ) {
 			// Use the specified ID
