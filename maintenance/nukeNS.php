@@ -70,7 +70,7 @@ class NukeNS extends Maintenance {
 
 			// Get corresponding revisions
 			$res2 = $dbw->query( "SELECT rev_id FROM $tbl_rev WHERE rev_page = $id" );
-			$revs = array();
+			$revs = [];
 
 			foreach ( $res2 as $row2 ) {
 				$revs[] = $row2->rev_id;
@@ -106,8 +106,8 @@ class NukeNS extends Maintenance {
 			$pages -= $n_deleted;
 			$dbw->update(
 				'site_stats',
-				array( 'ss_total_pages' => $pages ),
-				array( 'ss_row_id' => 1 ),
+				[ 'ss_total_pages' => $pages ],
+				[ 'ss_row_id' => 1 ],
 				__METHOD__
 			);
 		}

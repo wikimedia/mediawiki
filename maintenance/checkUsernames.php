@@ -45,13 +45,13 @@ class CheckUsernames extends Maintenance {
 		$maxUserId = 0;
 		do {
 			$res = $dbr->select( 'user',
-				array( 'user_id', 'user_name' ),
-				array( 'user_id > ' . $maxUserId ),
+				[ 'user_id', 'user_name' ],
+				[ 'user_id > ' . $maxUserId ],
 				__METHOD__,
-				array(
+				[
 					'ORDER BY' => 'user_id',
 					'LIMIT' => $this->mBatchSize,
-				)
+				]
 			);
 
 			foreach ( $res as $row ) {

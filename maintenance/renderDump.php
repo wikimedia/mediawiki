@@ -65,7 +65,7 @@ class DumpRenderer extends Maintenance {
 		$importer = new WikiImporter( $source, $this->getConfig() );
 
 		$importer->setRevisionCallback(
-			array( &$this, 'handleRevision' ) );
+			[ &$this, 'handleRevision' ] );
 
 		$importer->doImport();
 

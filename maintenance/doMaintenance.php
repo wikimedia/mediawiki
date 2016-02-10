@@ -60,7 +60,7 @@ require_once "$IP/includes/AutoLoader.php";
 require_once "$IP/includes/profiler/ProfilerFunctions.php";
 
 # Start the profiler
-$wgProfiler = array();
+$wgProfiler = [];
 if ( file_exists( "$IP/StartProfiler.php" ) ) {
 	require "$IP/StartProfiler.php";
 }

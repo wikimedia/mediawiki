@@ -54,10 +54,10 @@ class CheckLess extends Maintenance {
 		}
 
 		$textUICommand = new PHPUnit_TextUI_Command();
-		$argv = array(
+		$argv = [
 			"$IP/tests/phpunit/phpunit.php",
 			"$IP/tests/phpunit/suites/LessTestSuite.php"
-		);
+		];
 		$textUICommand->run( $argv );
 	}
 }

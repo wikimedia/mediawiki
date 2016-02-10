@@ -42,14 +42,14 @@ class DeleteOldRevisions extends Maintenance {
 		$this->doDelete( $this->hasOption( 'delete' ), $this->mArgs );
 	}
 
-	function doDelete( $delete = false, $args = array() ) {
+	function doDelete( $delete = false, $args = [] ) {
 
 		# Data should come off the master, wrapped in a transaction
 		$dbw = $this->getDB( DB_MASTER );
 		$this->beginTransaction( $dbw, __METHOD__ );
 
-		$pageConds = array();
-		$revConds = array();
+		$pageConds = [];
+		$revConds = [];
 
 		# If a list of page_ids was provided, limit results to that set of page_ids
 		if ( count( $args ) > 0 ) {
@@ -61,7 +61,7 @@ class DeleteOldRevisions extends Maintenance {
 		# Get "active" revisions from the page table
 		$this->output( "Searching for active revisions..." );
 		$res = $dbw->select( 'page', 'page_latest', $pageConds, __METHOD__ );
-		$latestRevs = array();
+		$latestRevs = [];
 		foreach ( $res as $row ) {
 			$latestRevs[] = $row->page_latest;
 		}
@@ -73,7 +73,7 @@ class DeleteOldRevisions extends Maintenance {
 			$revConds[] = 'rev_id NOT IN (' . $dbw->makeList( $latestRevs ) . ')';
 		}
 		$res = $dbw->select( 'revision', 'rev_id', $revConds, __METHOD__ );
-		$oldRevs = array();
+		$oldRevs = [];
 		foreach ( $res as $row ) {
 			$oldRevs[] = $row->rev_id;
 		}
@@ -86,7 +86,7 @@ class DeleteOldRevisions extends Maintenance {
 		# Delete as appropriate
 		if ( $delete && $count ) {
 			$this->output( "Deleting..." );
-			$dbw->delete( 'revision', array( 'rev_id' => $oldRevs ), __METHOD__ );
+			$dbw->delete( 'revision', [ 'rev_id' => $oldRevs ], __METHOD__ );
 			$this->output( "done.\n" );
 		}
 

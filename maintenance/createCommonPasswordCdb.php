@@ -69,7 +69,7 @@ class GenerateCommonPassword extends Maintenance {
 		try {
 			$db = \Cdb\Writer::open( $outfile );
 
-			$alreadyWritten = array();
+			$alreadyWritten = [];
 			$skipped = 0;
 			for ( $i = 0; ( $i - $skipped ) < $limit; $i++ ) {
 				if ( feof( $file ) ) {

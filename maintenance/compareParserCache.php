@@ -43,15 +43,15 @@ class CompareParserCache extends Maintenance {
 		$withdiff = 0;
 		while ( $pages-- > 0 ) {
 			$row = $dbr->selectRow( 'page', '*',
-				array(
+				[
 					'page_namespace' => $this->getOption( 'namespace' ),
 					'page_is_redirect' => 0,
 					'page_random >= ' . wfRandom()
-				),
+				],
 				__METHOD__,
-				array(
+				[
 					'ORDER BY' => 'page_random',
-				)
+				]
 			);
 
 			if ( !$row ) {

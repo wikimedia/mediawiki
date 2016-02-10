@@ -78,8 +78,8 @@ in the load balancer, usually indicating a replication environment.' );
 
 				foreach ( $result as $row ) {
 					$dbw->update( 'user',
-						array( 'user_editcount' => $row->user_editcount ),
-						array( 'user_id' => $row->user_id ),
+						[ 'user_editcount' => $row->user_editcount ],
+						[ 'user_id' => $row->user_id ],
 						__METHOD__ );
 					++$migrated;
 				}

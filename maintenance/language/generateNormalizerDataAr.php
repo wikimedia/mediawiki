@@ -65,7 +65,7 @@ class GenerateNormalizerDataAr extends Maintenance {
 		}
 
 		// For the file format, see http://www.unicode.org/reports/tr44/
-		$fieldNames = array(
+		$fieldNames = [
 			'Code',
 			'Name',
 			'General_Category',
@@ -81,9 +81,9 @@ class GenerateNormalizerDataAr extends Maintenance {
 			'Simple_Uppercase_Mapping',
 			'Simple_Lowercase_Mapping',
 			'Simple_Titlecase_Mapping'
-		);
+		];
 
-		$pairs = array();
+		$pairs = [];
 
 		$lineNum = 0;
 		while ( false !== ( $line = fgets( $file ) ) ) {
@@ -97,7 +97,7 @@ class GenerateNormalizerDataAr extends Maintenance {
 
 			# Split fields
 			$numberedData = explode( ';', $line );
-			$data = array();
+			$data = [];
 			foreach ( $fieldNames as $number => $name ) {
 				$data[$name] = $numberedData[$number];
 			}

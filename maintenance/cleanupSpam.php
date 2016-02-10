@@ -64,14 +64,14 @@ class CleanupSpam extends Maintenance {
 			$this->output( "Finding spam on " . count( $wgLocalDatabases ) . " wikis\n" );
 			$found = false;
 			foreach ( $wgLocalDatabases as $wikiID ) {
-				$dbr = $this->getDB( DB_SLAVE, array(), $wikiID );
+				$dbr = $this->getDB( DB_SLAVE, [], $wikiID );
 
 				$count = $dbr->selectField( 'externallinks', 'COUNT(*)',
-					array( 'el_index' . $dbr->buildLike( $like ) ), __METHOD__ );
+					[ 'el_index' . $dbr->buildLike( $like ) ], __METHOD__ );
 				if ( $count ) {
 					$found = true;
 					$cmd = wfShellWikiCmd( "$IP/maintenance/cleanupSpam.php",
-						array( '--wiki', $wikiID, $spec ) );
+						[ '--wiki', $wikiID, $spec ] );
 					passthru( "$cmd | sed 's/^/$wikiID:  /'" );
 				}
 			}
@@ -84,8 +84,8 @@ class CleanupSpam extends Maintenance {
 			// Clean up spam on this wiki
 
 			$dbr = $this->getDB( DB_SLAVE );
-			$res = $dbr->select( 'externallinks', array( 'DISTINCT el_from' ),
-				array( 'el_index' . $dbr->buildLike( $like ) ), __METHOD__ );
+			$res = $dbr->select( 'externallinks', [ 'DISTINCT el_from' ],
+				[ 'el_index' . $dbr->buildLike( $like ) ], __METHOD__ );
 			$count = $dbr->numRows( $res );
 			$this->output( "Found $count articles containing $spec\n" );
 			foreach ( $res as $row ) {

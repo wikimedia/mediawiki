@@ -104,7 +104,7 @@ class RebuildLocalisationCache extends Maintenance {
 		$numRebuilt = 0;
 		$total = count( $codes );
 		$chunks = array_chunk( $codes, ceil( count( $codes ) / $threads ) );
-		$pids = array();
+		$pids = [];
 		$parentStatus = 0;
 		foreach ( $chunks as $codes ) {
 			// Do not fork for only one thread
