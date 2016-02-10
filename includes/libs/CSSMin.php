@@ -349,7 +349,7 @@ class CSSMin {
 							$url = $match['file'] . $match['query'];
 							$file = $local . $match['file'];
 							if (
-								!CSSMin::isRemoteUrl( $url ) && !CSSMin::isLocalUrl( $url )
+								!self::isRemoteUrl( $url ) && !self::isLocalUrl( $url )
 								&& file_exists( $file )
 							) {
 								$mimeTypes[ CSSMin::getMimeType( $file ) ] = true;
@@ -391,11 +391,10 @@ class CSSMin {
 	/**
 	 * Is this CSS rule referencing a remote URL?
 	 *
-	 * @private Until we require PHP 5.5 and we can access self:: from closures.
 	 * @param string $maybeUrl
 	 * @return bool
 	 */
-	public static function isRemoteUrl( $maybeUrl ) {
+	protected static function isRemoteUrl( $maybeUrl ) {
 		if ( substr( $maybeUrl, 0, 2 ) === '//' || parse_url( $maybeUrl, PHP_URL_SCHEME ) ) {
 			return true;
 		}
@@ -405,11 +404,10 @@ class CSSMin {
 	/**
 	 * Is this CSS rule referencing a local URL?
 	 *
-	 * @private Until we require PHP 5.5 and we can access self:: from closures.
 	 * @param string $maybeUrl
 	 * @return bool
 	 */
-	public static function isLocalUrl( $maybeUrl ) {
+	protected static function isLocalUrl( $maybeUrl ) {
 		if ( $maybeUrl !== '' && $maybeUrl[0] === '/' && !self::isRemoteUrl( $maybeUrl ) ) {
 			return true;
 		}

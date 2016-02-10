@@ -155,7 +155,7 @@ class CSSMinTest extends MediaWikiTestCase {
 	 * @cover CSSMin::isRemoteUrl
 	 */
 	public function testIsRemoteUrl( $expect, $url ) {
-		$this->assertEquals( CSSMin::isRemoteUrl( $url ), $expect );
+		$this->assertEquals( CSSMinTestable::isRemoteUrl( $url ), $expect );
 	}
 
 	public static function provideIsLocalUrls() {
@@ -172,7 +172,7 @@ class CSSMinTest extends MediaWikiTestCase {
 	 * @cover CSSMin::isLocalUrl
 	 */
 	public function testIsLocalUrl( $expect, $url ) {
-		$this->assertEquals( CSSMin::isLocalUrl( $url ), $expect );
+		$this->assertEquals( CSSMinTestable::isLocalUrl( $url ), $expect );
 	}
 
 	public static function provideRemapRemappingCases() {
@@ -441,5 +441,15 @@ class CSSMinTest extends MediaWikiTestCase {
 				'foo::after{content:"{;}";position:absolute}'
 			],
 		];
+	}
+}
+
+class CSSMinTestable extends CSSMin {
+	// Make some protected methods public
+	public static function isRemoteUrl( $maybeUrl ) {
+		return parent::isRemoteUrl( $maybeUrl );
+	}
+	public static function isLocalUrl( $maybeUrl ) {
+		return parent::isLocalUrl( $maybeUrl );
 	}
 }
