@@ -103,15 +103,15 @@ class CookieSessionProvider extends SessionProvider {
 	}
 
 	public function provideSessionInfo( WebRequest $request ) {
+		$sessionId = $this->getCookie( $request, $this->params['sessionName'], '' );
 		$info = array(
-			'id' => $this->getCookie( $request, $this->params['sessionName'], '' ),
 			'provider' => $this,
 			'forceHTTPS' => $this->getCookie( $request, 'forceHTTPS', '', false )
 		);
-		if ( !SessionManager::validateSessionId( $info['id'] ) ) {
-			unset( $info['id'] );
+		if ( SessionManager::validateSessionId( $sessionId ) ) {
+			$info['id'] = $sessionId;
+			$info['persisted'] = true;
 		}
-		$info['persisted'] = isset( $info['id'] );
 
 		list( $userId, $userName, $token ) = $this->getUserInfoFromCookies( $request );
 		if ( $userId !== null ) {
@@ -126,7 +126,7 @@ class CookieSessionProvider extends SessionProvider {
 				$this->logger->warning(
 					'Session "{session}" requested with mismatched UserID and UserName cookies.',
 					array(
-						'session' => $info['id'],
+						'session' => $sessionId,
 						'mismatch' => array(
 							'userid' => $userId,
 							'cookie_username' => $userName,
@@ -141,7 +141,7 @@ class CookieSessionProvider extends SessionProvider {
 					$this->logger->warning(
 						'Session "{session}" requested with invalid Token cookie.',
 						array(
-							'session' => $info['id'],
+							'session' => $sessionId,
 							'userid' => $userId,
 							'username' => $userInfo->getName(),
 					 ) );
