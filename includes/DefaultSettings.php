@@ -75,7 +75,7 @@ $wgConfigRegistry = array(
  * MediaWiki version number
  * @since 1.2
  */
-$wgVersion = '1.27.0-alpha';
+$wgVersion = '1.27alpha';
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
@@ -536,12 +536,6 @@ $wgUseInstantCommons = false;
 $wgForeignUploadTargets = array();
 
 /**
- * Cross-wiki upload A/B test configuration.
- */
-$wgForeignUploadTestEnabled = false;
-$wgForeignUploadTestDefault = 1;
-
-/**
  * File backend structure configuration.
  *
  * This is an array of file backend configuration arrays.
@@ -662,6 +656,12 @@ $wgCacheSharedUploads = true;
 $wgAllowCopyUploads = false;
 
 /**
+ * Allow asynchronous copy uploads.
+ * This feature is experimental and broken as of r81612.
+ */
+$wgAllowAsyncCopyUploads = false;
+
+/**
  * A list of domains copy uploads can come from
  *
  * @since 1.20
@@ -690,6 +690,17 @@ $wgCopyUploadProxy = false;
  * @since 1.22
  */
 $wgCopyUploadTimeout = false;
+
+/**
+ * Different timeout for upload by url when run as a background job
+ * This could be useful since when fetching large files via job queue,
+ * you may want a different timeout, especially because there is no
+ * http request being kept alive.
+ *
+ * false means fallback to $wgCopyUploadTimeout.
+ * @since 1.22
+ */
+$wgCopyUploadAsyncTimeout = false;
 
 /**
  * Max size for uploads, in bytes. If not set to an array, applies to all
@@ -904,8 +915,7 @@ $wgMediaHandlers = array(
 
 /**
  * Plugins for page content model handling.
- * Each entry in the array maps a model id to a class name or callback
- * that creates an instance of the appropriate ContentHandler subclass.
+ * Each entry in the array maps a model id to a class name.
  *
  * @since 1.21
  */
@@ -943,12 +953,6 @@ $wgUseImageMagick = false;
  * The convert command shipped with ImageMagick
  */
 $wgImageMagickConvertCommand = '/usr/bin/convert';
-
-/**
- * Array of max pixel areas for interlacing per MIME type
- * @since 1.27
- */
-$wgMaxInterlacingAreas = array();
 
 /**
  * Sharpening parameter to ImageMagick
@@ -992,6 +996,7 @@ $wgJpegTran = '/usr/bin/jpegtran';
  * image formats.
  */
 $wgExiv2Command = '/usr/bin/exiv2';
+
 
 /**
  * Path to exiftool binary. Used for lossless ICC profile swapping.
@@ -1459,6 +1464,7 @@ $wgDjvuOutputExtension = 'jpg';
  * @{
  */
 
+
 /**
  * Site admin email address.
  *
@@ -1487,7 +1493,7 @@ $wgPasswordSenderName = 'MediaWiki Mail';
  * It might be necessary to adapt the address or to set it equal
  * to the $wgEmergencyContact address.
  */
-$wgNoReplyAddress = 'reply@not.possible.invalid';
+$wgNoReplyAddress = 'reply@not.possible';
 
 /**
  * Set to true to enable the e-mail basic features:
@@ -1628,6 +1634,12 @@ $wgEnotifImpersonal = false;
  * match the limit on your mail server.
  */
 $wgEnotifMaxRecips = 500;
+
+/**
+ * Send mails via the job queue. This can be useful to reduce the time it
+ * takes to save a page that a lot of people are watching.
+ */
+$wgEnotifUseJobQ = false;
 
 /**
  * Use real name instead of username in e-mail "from" field.
@@ -1865,6 +1877,24 @@ $wgDBservers = false;
  * includes/db/LBFactoryMulti.php for configuration information.
  */
 $wgLBFactoryConf = array( 'class' => 'LBFactorySimple' );
+
+/**
+ * The ID of the current data center
+ * @since 1.27
+ */
+$wgDataCenterId = 'default';
+
+/**
+ * Map of data center IDs to their role ("master" or "slave")
+ *
+ * Multiple data centers can be setup to handle MediaWiki, with HTTP
+ * POSTs routed to the master data center and GET/HEAD/OPTION routed to
+ * any data center (usually the closest to the end user). In such setups,
+ * this setting should be set to the appropriate value in the site
+ * config for each data center.
+ * @since 1.27
+ */
+$wgDataCenterRoles = array( 'default' => 'master' );
 
 /**
  * After a state-changing request is done by a client, this determines
@@ -2147,7 +2177,7 @@ $wgMessageCacheType = CACHE_ANYTHING;
 $wgParserCacheType = CACHE_ANYTHING;
 
 /**
- * The cache type for storing session data.
+ * The cache type for storing session data. Used if $wgSessionsInObjectCache is true.
  *
  * For available types see $wgMainCacheType.
  */
@@ -2282,28 +2312,29 @@ $wgParserCacheExpireTime = 86400;
  *
  * @deprecated since 1.20; Use $wgSessionsInObjectCache
  */
-$wgSessionsInMemcached = true;
+$wgSessionsInMemcached = false;
 
 /**
- * @deprecated since 1.27, session data is always stored in object cache.
+ * Store sessions in an object cache, configured by $wgSessionCacheType. This
+ * can be useful to improve performance, or to avoid the locking behavior of
+ * PHP's default session handler, which tends to prevent multiple requests for
+ * the same user from acting concurrently.
  */
-$wgSessionsInObjectCache = true;
+$wgSessionsInObjectCache = false;
 
 /**
- * The expiry time to use for session storage, in seconds.
+ * The expiry time to use for session storage when $wgSessionsInObjectCache is
+ * enabled, in seconds.
  */
 $wgObjectCacheSessionExpiry = 3600;
 
 /**
- * @deprecated since 1.27, MediaWiki\\Session\\SessionManager doesn't use PHP session storage.
+ * This is used for setting php's session.save_handler. In practice, you will
+ * almost never need to change this ever. Other options might be 'user' or
+ * 'session_mysql.' Setting to null skips setting this entirely (which might be
+ * useful if you're doing cross-application sessions, see bug 11381)
  */
 $wgSessionHandler = null;
-
-/**
- * Whether to use PHP session handling ($_SESSION and session_*() functions)
- * @var string 'enable', 'warn', or 'disable'
- */
-$wgPHPSessionHandling = 'enable';
 
 /**
  * If enabled, will send MemCached debugging information to $wgDebugLogFile
@@ -2503,7 +2534,7 @@ $wgExtensionInfoMTime = false;
 /** @} */ # end of cache settings
 
 /************************************************************************//**
- * @name   HTTP proxy (CDN) settings
+ * @name   HTTP proxy (Squid) settings
  *
  * Many of these settings apply to any HTTP proxy used in front of MediaWiki,
  * although they are referred to as Squid settings for historical reasons.
@@ -2516,7 +2547,7 @@ $wgExtensionInfoMTime = false;
  */
 
 /**
- * Enable/disable CDN.
+ * Enable/disable Squid.
  * See https://www.mediawiki.org/wiki/Manual:Squid_caching
  */
 $wgUseSquid = false;
@@ -2544,7 +2575,7 @@ $wgUseKeyHeader = false;
 $wgVaryOnXFP = false;
 
 /**
- * Internal server name as known to CDN, if different.
+ * Internal server name as known to Squid, if different.
  *
  * @par Example:
  * @code
@@ -2556,7 +2587,7 @@ $wgInternalServer = false;
 /**
  * Cache TTL for the CDN sent as s-maxage (without ESI) or
  * Surrogate-Control (with ESI). Without ESI, you should strip
- * out s-maxage in the CDN config.
+ * out s-maxage in the Squid config.
  *
  * 18000 seconds = 5 hours, more cache hits with 2678400 = 31 days.
  */
@@ -2568,22 +2599,6 @@ $wgSquidMaxage = 18000;
  * @since 1.27
  */
 $wgCdnMaxageLagged = 30;
-
-/**
- * If set, any SquidPurge call on a URL or URLs will send a second purge no less than
- * this many seconds later via the job queue. This requires delayed job support.
- * This should be safely higher than the 'max lag' value in $wgLBFactoryConf, so that
- * slave lag does not cause page to be stuck in stales states in CDN.
- *
- * This also fixes race conditions in two-tiered CDN setups (e.g. cdn2 => cdn1 => MediaWiki).
- * If a purge for a URL reaches cdn2 before cdn1 and a request reaches cdn2 for that URL,
- * it will populate the response from the stale cdn1 value. When cdn1 gets the purge, cdn2
- * will still be stale. If the rebound purge delay is safely higher than the time to relay
- * a purge to all nodes, then the rebound puge will clear cdn2 after cdn1 was cleared.
- *
- * @since 1.27
- */
-$wgCdnReboundPurgeDelay = 0;
 
 /**
  * Default maximum age for raw CSS/JS accesses
@@ -2703,7 +2718,7 @@ $wgUsePrivateIPs = false;
  */
 
 /**
- * Site language code. See languages/data/Names.php for languages supported by
+ * Site language code. See languages/Names.php for languages supported by
  * MediaWiki out of the box. Not all languages listed there have translations,
  * see languages/messages/ for the list of languages with some localisation.
  *
@@ -3671,15 +3686,7 @@ $wgResourceLoaderValidateStaticJS = false;
  * @endcode
  * @since 1.22
  */
-$wgResourceLoaderLESSVars = array(
-	/**
-	 * Minimum available screen width at which a device can be considered a tablet/desktop
-	 * The number is currently based on the device width of a Samsung Galaxy S5 mini and is low
-	 * enough to cover iPad (768px). Number is prone to change with new information.
-	 * @since 1.27
-	 */
-	'deviceWidthTablet' => '720px',
-);
+$wgResourceLoaderLESSVars = array();
 
 /**
  * Default import paths for LESS modules. LESS files referenced in @import
@@ -3862,13 +3869,10 @@ $wgInterwikiExpiry = 10800;
  */
 
 /**
- * Interwiki cache, either as an associative array or a path to a constant
- * database (.cdb) file.
+ *$wgInterwikiCache specifies path to constant database file.
  *
- * This data structure database is generated by the `dumpInterwiki` maintenance
- * script (which lives in the WikimediaMaintenance repository) and has key
- * formats such as the following:
- *
+ * This cdb database is generated by dumpInterwiki from maintenance and has
+ * such key formats:
  *  - dbname:key - a simple key (e.g. enwiki:meta)
  *  - _sitename:key - site-scope key (e.g. wiktionary:meta)
  *  - __global:key - global-scope key (e.g. __global:meta)
@@ -3876,8 +3880,6 @@ $wgInterwikiExpiry = 10800;
  *
  * Sites mapping just specifies site name, other keys provide "local url"
  * data layout.
- *
- * @var bool|array|string
  */
 $wgInterwikiCache = false;
 
@@ -4405,6 +4407,7 @@ $wgPasswordPolicy = array(
 	),
 );
 
+
 /**
  * For compatibility with old installations set to false
  * @deprecated since 1.24 will be removed in future
@@ -4633,42 +4636,6 @@ $wgUserrightsInterwikiDelimiter = '@';
  */
 $wgSecureLogin = false;
 
-/**
- * Versioning for authentication tokens.
- *
- * If non-null, this is combined with the user's secret (the user_token field
- * in the DB) to generate the token cookie. Changing this will invalidate all
- * active sessions (i.e. it will log everyone out).
- *
- * @since 1.27
- * @var string|null
- */
-$wgAuthenticationTokenVersion = null;
-
-/**
- * MediaWiki\Session\SessionProvider configuration.
- *
- * Value is an array of ObjectFactory specifications for the SessionProviders
- * to be used. Keys in the array are ignored. Order is not significant.
- *
- * @since 1.27
- */
-$wgSessionProviders = array(
-	'MediaWiki\\Session\\CookieSessionProvider' => array(
-		'class' => 'MediaWiki\\Session\\CookieSessionProvider',
-		'args' => array( array(
-			'priority' => 30,
-			'callUserSetCookiesHook' => true,
-		) ),
-	),
-	'MediaWiki\\Session\\BotPasswordSessionProvider' => array(
-		'class' => 'MediaWiki\\Session\\BotPasswordSessionProvider',
-		'args' => array( array(
-			'priority' => 40,
-		) ),
-	),
-);
-
 /** @} */ # end user accounts }
 
 /************************************************************************//**
@@ -4773,12 +4740,6 @@ $wgWhitelistReadRegexp = false;
 $wgEmailConfirmToEdit = false;
 
 /**
- * Should MediaWiki attempt to protect user's privacy when doing redirects?
- * Keep this true if access counts to articles are made public.
- */
-$wgHideIdentifiableRedirects = true;
-
-/**
  * Permission keys given to users in each group.
  *
  * This is an array where the keys are all groups and each value is an
@@ -4880,6 +4841,7 @@ $wgGroupPermissions['sysop']['patrol'] = true;
 $wgGroupPermissions['sysop']['autopatrol'] = true;
 $wgGroupPermissions['sysop']['protect'] = true;
 $wgGroupPermissions['sysop']['editprotected'] = true;
+$wgGroupPermissions['sysop']['proxyunbannable'] = true;
 $wgGroupPermissions['sysop']['rollback'] = true;
 $wgGroupPermissions['sysop']['upload'] = true;
 $wgGroupPermissions['sysop']['reupload'] = true;
@@ -5370,164 +5332,6 @@ $wgQueryPageDefaultLimit = 50;
  */
 $wgPasswordAttemptThrottle = array( 'count' => 5, 'seconds' => 300 );
 
-/**
- * @var Array Map of (grant => right => boolean)
- * Users authorize consumers (like Apps) to act on their behalf but only with
- * a subset of the user's normal account rights (signed off on by the user).
- * The possible rights to grant to a consumer are bundled into groups called
- * "grants". Each grant defines some rights it lets consumers inherit from the
- * account they may act on behalf of. Note that a user granting a right does
- * nothing if that user does not actually have that right to begin with.
- * @since 1.27
- */
-$wgGrantPermissions = array();
-
-// @TODO: clean up grants
-// @TODO: auto-include read/editsemiprotected rights?
-
-$wgGrantPermissions['basic']['autoconfirmed'] = true;
-$wgGrantPermissions['basic']['autopatrol'] = true;
-$wgGrantPermissions['basic']['autoreview'] = true;
-$wgGrantPermissions['basic']['editsemiprotected'] = true;
-$wgGrantPermissions['basic']['ipblock-exempt'] = true;
-$wgGrantPermissions['basic']['nominornewtalk'] = true;
-$wgGrantPermissions['basic']['patrolmarks'] = true;
-$wgGrantPermissions['basic']['purge'] = true;
-$wgGrantPermissions['basic']['read'] = true;
-$wgGrantPermissions['basic']['skipcaptcha'] = true;
-$wgGrantPermissions['basic']['torunblocked'] = true;
-$wgGrantPermissions['basic']['writeapi'] = true;
-
-$wgGrantPermissions['highvolume']['bot'] = true;
-$wgGrantPermissions['highvolume']['apihighlimits'] = true;
-$wgGrantPermissions['highvolume']['noratelimit'] = true;
-$wgGrantPermissions['highvolume']['markbotedits'] = true;
-
-$wgGrantPermissions['editpage']['edit'] = true;
-$wgGrantPermissions['editpage']['minoredit'] = true;
-$wgGrantPermissions['editpage']['applychangetags'] = true;
-$wgGrantPermissions['editpage']['changetags'] = true;
-
-$wgGrantPermissions['editprotected'] = $wgGrantPermissions['editpage'];
-$wgGrantPermissions['editprotected']['editprotected'] = true;
-
-$wgGrantPermissions['editmycssjs'] = $wgGrantPermissions['editpage'];
-$wgGrantPermissions['editmycssjs']['editmyusercss'] = true;
-$wgGrantPermissions['editmycssjs']['editmyuserjs'] = true;
-
-$wgGrantPermissions['editmyoptions']['editmyoptions'] = true;
-
-$wgGrantPermissions['editinterface'] = $wgGrantPermissions['editpage'];
-$wgGrantPermissions['editinterface']['editinterface'] = true;
-$wgGrantPermissions['editinterface']['editusercss'] = true;
-$wgGrantPermissions['editinterface']['edituserjs'] = true;
-
-$wgGrantPermissions['createeditmovepage'] = $wgGrantPermissions['editpage'];
-$wgGrantPermissions['createeditmovepage']['createpage'] = true;
-$wgGrantPermissions['createeditmovepage']['createtalk'] = true;
-$wgGrantPermissions['createeditmovepage']['move'] = true;
-$wgGrantPermissions['createeditmovepage']['move-rootuserpages'] = true;
-$wgGrantPermissions['createeditmovepage']['move-subpages'] = true;
-$wgGrantPermissions['createeditmovepage']['move-categorypages'] = true;
-
-$wgGrantPermissions['uploadfile']['upload'] = true;
-$wgGrantPermissions['uploadfile']['reupload-own'] = true;
-
-$wgGrantPermissions['uploadeditmovefile'] = $wgGrantPermissions['uploadfile'];
-$wgGrantPermissions['uploadeditmovefile']['reupload'] = true;
-$wgGrantPermissions['uploadeditmovefile']['reupload-shared'] = true;
-$wgGrantPermissions['uploadeditmovefile']['upload_by_url'] = true;
-$wgGrantPermissions['uploadeditmovefile']['movefile'] = true;
-$wgGrantPermissions['uploadeditmovefile']['suppressredirect'] = true;
-
-$wgGrantPermissions['patrol']['patrol'] = true;
-
-$wgGrantPermissions['rollback']['rollback'] = true;
-
-$wgGrantPermissions['blockusers']['block'] = true;
-$wgGrantPermissions['blockusers']['blockemail'] = true;
-
-$wgGrantPermissions['viewdeleted']['browsearchive'] = true;
-$wgGrantPermissions['viewdeleted']['deletedhistory'] = true;
-$wgGrantPermissions['viewdeleted']['deletedtext'] = true;
-
-$wgGrantPermissions['delete'] = $wgGrantPermissions['editpage'] +
-	$wgGrantPermissions['viewdeleted'];
-$wgGrantPermissions['delete']['delete'] = true;
-$wgGrantPermissions['delete']['bigdelete'] = true;
-$wgGrantPermissions['delete']['deletelogentry'] = true;
-$wgGrantPermissions['delete']['deleterevision'] = true;
-$wgGrantPermissions['delete']['undelete'] = true;
-
-$wgGrantPermissions['protect'] = $wgGrantPermissions['editprotected'];
-$wgGrantPermissions['protect']['protect'] = true;
-
-$wgGrantPermissions['viewmywatchlist']['viewmywatchlist'] = true;
-
-$wgGrantPermissions['editmywatchlist']['editmywatchlist'] = true;
-
-$wgGrantPermissions['sendemail']['sendemail'] = true;
-
-$wgGrantPermissions['createaccount']['createaccount'] = true;
-
-/**
- * @var Array Map of grants to their UI grouping
- * @since 1.27
- */
-$wgGrantPermissionGroups = array(
-	// Hidden grants are implicitly present
-	'basic'            => 'hidden',
-
-	'editpage'            => 'page-interaction',
-	'createeditmovepage'  => 'page-interaction',
-	'editprotected'       => 'page-interaction',
-	'patrol'              => 'page-interaction',
-
-	'uploadfile'          => 'file-interaction',
-	'uploadeditmovefile'  => 'file-interaction',
-
-	'sendemail'           => 'email',
-
-	'viewmywatchlist'     => 'watchlist-interaction',
-	'editviewmywatchlist' => 'watchlist-interaction',
-
-	'editmycssjs'         => 'customization',
-	'editmyoptions'       => 'customization',
-
-	'editinterface'       => 'administration',
-	'rollback'            => 'administration',
-	'blockusers'          => 'administration',
-	'delete'              => 'administration',
-	'viewdeleted'         => 'administration',
-	'protect'             => 'administration',
-	'createaccount'       => 'administration',
-
-	'highvolume'          => 'high-volume',
-);
-
-/**
- * @var bool Whether to enable bot passwords
- * @since 1.27
- */
-$wgEnableBotPasswords = true;
-
-/**
- * Cluster for the bot_passwords table
- * @var string|bool If false, the normal cluster will be used
- * @since 1.27
- */
-$wgBotPasswordsCluster = false;
-
-/**
- * Database name for the bot_passwords table
- *
- * To use a database with a table prefix, set this variable to
- * "{$database}-{$prefix}".
- * @var string|bool If false, the normal database will be used
- * @since 1.27
- */
-$wgBotPasswordsDatabase = false;
-
 /** @} */ # end of user rights settings
 
 /************************************************************************//**
@@ -5708,24 +5512,16 @@ $wgDebugDumpSql = false;
  * @since 1.26
  */
 $wgTrxProfilerLimits = array(
-	// HTTP GET/HEAD requests.
-	// Master queries should not happen on GET requests
+	// Basic GET and POST requests
 	'GET' => array(
 		'masterConns' => 0,
 		'writes' => 0,
 		'readQueryTime' => 5
 	),
-	// HTTP POST requests.
-	// Master reads and writes will happen for a subset of these.
 	'POST' => array(
 		'readQueryTime' => 5,
 		'writeQueryTime' => 1,
 		'maxAffected' => 500
-	),
-	'POST-nonwrite' => array(
-		'masterConns' => 0,
-		'writes' => 0,
-		'readQueryTime' => 5
 	),
 	// Background job runner
 	'JobRunner' => array(
@@ -5890,6 +5686,79 @@ $wgProfileLimit = 0.0;
 $wgProfileOnly = false;
 
 /**
+ * If true, print a raw call tree instead of per-function report
+ */
+$wgProfileCallTree = false;
+
+/**
+ * Should application server host be put into profiling table
+ *
+ * @deprecated set $wgProfiler['perhost'] = true instead
+ */
+$wgProfilePerHost = null;
+
+/**
+ * Host for UDP profiler.
+ *
+ * The host should be running a daemon which can be obtained from MediaWiki
+ * Git at:
+ * https://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile
+ *
+ * @deprecated set $wgProfiler['udphost'] instead
+ */
+$wgUDPProfilerHost = null;
+
+/**
+ * Port for UDP profiler.
+ * @see $wgUDPProfilerHost
+ *
+ * @deprecated set $wgProfiler['udpport'] instead
+ */
+$wgUDPProfilerPort = null;
+
+/**
+ * Format string for the UDP profiler. The UDP profiler invokes sprintf() with
+ * (profile id, count, cpu, cpu_sq, real, real_sq, entry name, memory) as
+ * arguments. You can use sprintf's argument numbering/swapping capability to
+ * repeat, re-order or omit fields.
+ *
+ * @see $wgStatsFormatString
+ * @since 1.22
+ *
+ * @deprecated set $wgProfiler['udpformat'] instead
+ */
+$wgUDPProfilerFormatString = null;
+
+/**
+ * Destination for wfIncrStats() data...
+ * 'cache' to go into the system cache, if enabled (memcached)
+ * 'udp' to be sent to the UDP profiler (see $wgUDPProfilerHost)
+ * false to disable
+ */
+$wgStatsMethod = 'cache';
+
+/**
+ * When $wgStatsMethod is 'udp', setting this to a string allows statistics to
+ * be aggregated over more than one wiki. The string will be used in place of
+ * the DB name in outgoing UDP packets. If this is set to false, the DB name
+ * will be used.
+ */
+$wgAggregateStatsID = false;
+
+/**
+ * When $wgStatsMethod is 'udp', this variable specifies how stats should be
+ * formatted. Its value should be a format string suitable for a sprintf()
+ * invocation with (id, count, key) arguments, where 'id' is either
+ * $wgAggregateStatsID or the DB name, 'count' is the value by which the metric
+ * is being incremented, and 'key' is the metric name.
+ *
+ * @see $wgUDPProfilerFormatString
+ * @see $wgAggregateStatsID
+ * @since 1.22
+ */
+$wgStatsFormatString = "stats/%s - %s 1 1 1 1 %s\n";
+
+/**
  * Destination of statsd metrics.
  *
  * A host or host:port of a statsd server. Port defaults to 8125.
@@ -5902,13 +5771,15 @@ $wgProfileOnly = false;
 $wgStatsdServer = false;
 
 /**
- * Prefix for metric names sent to $wgStatsdServer.
+ * Prefix for metric names sent to wgStatsdServer.
+ *
+ * Defaults to "MediaWiki".
  *
  * @see RequestContext::getStats
  * @see BufferingStatsdDataFactory
  * @since 1.25
  */
-$wgStatsdMetricPrefix = 'MediaWiki';
+$wgStatsdMetricPrefix = false;
 
 /**
  * InfoAction retrieves a list of transclusion links (both to and from).
@@ -6344,8 +6215,7 @@ $wgRCEngines = array(
 $wgRCWatchCategoryMembership = false;
 
 /**
- * Use RC Patrolling to check for vandalism (from recent changes and watchlists)
- * New pages and new files are included.
+ * Use RC Patrolling to check for vandalism
  */
 $wgUseRCPatrol = true;
 
@@ -6353,13 +6223,6 @@ $wgUseRCPatrol = true;
  * Use new page patrolling to check new pages on Special:Newpages
  */
 $wgUseNPPatrol = true;
-
-/**
- * Use file patrolling to check new files on Special:Newfiles
- *
- * @since 1.27
- */
-$wgUseFilePatrol = true;
 
 /**
  * Log autopatrol actions to the log table
@@ -6661,14 +6524,6 @@ $wgExportFromNamespaces = false;
  */
 $wgExportAllowAll = false;
 
-/**
- * Maximum number of pages returned by the GetPagesFromCategory and
- * GetPagesFromNamespace functions.
- *
- * @since 1.27
- */
-$wgExportPagelistLimit = 5000;
-
 /** @} */ # end of import/export }
 
 /*************************************************************************//**
@@ -6902,15 +6757,15 @@ $wgJobClasses = array(
 	'sendMail' => 'EmaillingJob',
 	'enotifNotify' => 'EnotifNotifyJob',
 	'fixDoubleRedirect' => 'DoubleRedirectJob',
+	'uploadFromUrl' => 'UploadFromUrlJob',
 	'AssembleUploadChunks' => 'AssembleUploadChunksJob',
 	'PublishStashedFile' => 'PublishStashedFileJob',
 	'ThumbnailRender' => 'ThumbnailRenderJob',
 	'recentChangesUpdate' => 'RecentChangesUpdateJob',
-	'refreshLinksPrioritized' => 'RefreshLinksJob',
-	'refreshLinksDynamic' => 'RefreshLinksJob',
+	'refreshLinksPrioritized' => 'RefreshLinksJob', // for cascading protection
+	'refreshLinksDynamic' => 'RefreshLinksJob', // for pages with dynamic content
 	'activityUpdateJob' => 'ActivityUpdateJob',
 	'categoryMembershipChange' => 'CategoryMembershipChangeJob',
-	'cdnPurge' => 'CdnPurgeJob',
 	'enqueue' => 'EnqueueJob', // local queue for multi-DC setups
 	'null' => 'NullJob'
 );
@@ -7048,7 +6903,7 @@ $wgCategoryPagingLimit = 200;
  * Extensions can define there own collations by subclassing Collation
  * and using the Collation::factory hook.
  */
-$wgCategoryCollation = 'uppercase';
+$wgCategoryCollation = 'uca-default';
 
 /** @} */ # End categories }
 
@@ -7528,7 +7383,6 @@ $wgUseAjax = true;
 /**
  * List of Ajax-callable functions.
  * Extensions acting as Ajax callbacks must register here
- * @deprecated (officially) since 1.27; use the API instead
  */
 $wgAjaxExportList = array();
 
@@ -7687,6 +7541,7 @@ $wgHTTPConnectTimeout = 5e0;
 
 /************************************************************************//**
  * @name   Job queue
+ * See also $wgEnotifUseJobQ.
  * @{
  */
 
@@ -7955,34 +7810,6 @@ $wgSearchRunSuggestedQuery = true;
  * @var string path to file
  */
 $wgPopularPasswordFile = __DIR__ . '/../serialized/commonpasswords.cdb';
-
-/*
- * Max time (in seconds) a user-generated transaction can spend in writes.
- * If exceeded, the transaction is rolled back with an error instead of being committed.
- *
- * @var int|bool Disabled if false
- * @since 1.27
- */
-$wgMaxUserDBWriteDuration = false;
-
-/**
- * Mapping of event channels to EventRelayer configuration.
- *
- * By setting up a PubSub system (like Kafka) and enabling a corresponding EventRelayer class
- * that uses it, MediaWiki can broadcast events to all subscribers. Certain features like WAN
- * cache purging and CDN cache purging will emit events to this system. Appropriate listers can
- * subscribe to the channel and take actions based on the events. For example, a local daemon
- * can run on each CDN cache node and perfom local purges based on the URL purge channel events.
- *
- * The 'default' channel is for all channels without an explicit entry here.
- *
- * @since 1.27
- */
-$wgEventRelayerConfig = array(
-	'default' => array(
-		'class' => 'EventRelayerNull',
-	)
-);
 
 /**
  * For really cool vim folding this needs to be at the end:
