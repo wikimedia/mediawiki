@@ -28,13 +28,10 @@ use BagOStuff;
 
 /**
  * Adapter for PHP's session handling
- * @todo Once we drop support for PHP < 5.4, use SessionHandlerInterface
- *  (should just be a matter of adding "implements SessionHandlerInterface" and
- *  changing the session_set_save_handler() call).
  * @ingroup Session
  * @since 1.27
  */
-class PHPSessionHandler {
+class PHPSessionHandler implements \SessionHandlerInterface {
 	/** @var PHPSessionHandler */
 	protected static $instance = null;
 
@@ -132,20 +129,9 @@ class PHPSessionHandler {
 		// Also set a sane serialization handler
 		\Wikimedia\PhpSessionSerializer::setSerializeHandler();
 
-		session_set_save_handler(
-			array( self::$instance, 'open' ),
-			array( self::$instance, 'close' ),
-			array( self::$instance, 'read' ),
-			array( self::$instance, 'write' ),
-			array( self::$instance, 'destroy' ),
-			array( self::$instance, 'gc' )
-		);
-
-		// It's necessary to register a shutdown function to call session_write_close(),
-		// because by the time the request shutdown function for the session module is
-		// called, other needed objects may have already been destroyed. Shutdown functions
-		// registered this way are called before object destruction.
-		register_shutdown_function( array( self::$instance, 'handleShutdown' ) );
+		// Register this as the save handler, and register an appropriate
+		// shutdown function.
+		session_set_save_handler( self::$instance, true );
 	}
 
 	/**
@@ -368,18 +354,4 @@ class PHPSessionHandler {
 		$this->store->deleteObjectsExpiringBefore( $before );
 		return true;
 	}
-
-	/**
-	 * Shutdown function.
-	 *
-	 * See the comment inside self::install for rationale.
-	 * @codeCoverageIgnore
-	 * @private For internal use only
-	 */
-	public function handleShutdown() {
-		if ( $this->enable ) {
-			session_write_close();
-		}
-	}
-
 }
