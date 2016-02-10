@@ -342,7 +342,8 @@ class WebInstaller extends Installer {
 		$this->phpErrors = array();
 		set_error_handler( array( $this, 'errorHandler' ) );
 		try {
-			session_name( 'mw_installer_session' );
+			// Don't use the same cookie name as SessionManager
+			session_name( 'mw_installer_privatesession' );
 			session_start();
 		} catch ( Exception $e ) {
 			restore_error_handler();
