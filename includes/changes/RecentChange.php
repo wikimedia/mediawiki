@@ -828,8 +828,8 @@ class RecentChange {
 			'rc_ip' => self::checkIPAddress( $ip ),
 			'rc_patrolled' => 1, // Always patrolled, just like log entries
 			'rc_new' => 0, # obsolete
-			'rc_old_len' => 0,
-			'rc_new_len' => 0,
+			'rc_old_len' => null,
+			'rc_new_len' => null,
 			'rc_deleted' => $deleted,
 			'rc_logid' => 0,
 			'rc_log_type' => null,
