@@ -185,7 +185,7 @@ class EnhancedChangesList extends ChangesList {
 		# Some catalyst variables...
 		$namehidden = true;
 		$allLogs = true;
-		$RCShowChangedSize = $this->getConfig()->get( 'RCShowChangedSize' );
+			$RCShowChangedSize = $this->getConfig()->get( 'RCShowChangedSize' );
 		$collectedRcFlags = array(
 			// All are by bots?
 			'bot' => true,
@@ -287,11 +287,17 @@ class EnhancedChangesList extends ChangesList {
 		if ( $RCShowChangedSize && !$allLogs ) {
 			$last = 0;
 			$first = count( $block ) - 1;
-			# Some events (like logs) have an "empty" size, so we need to skip those...
-			while ( $last < $first && $block[$last]->mAttribs['rc_new_len'] === null ) {
+			# Some events (like logs and category changes) have an "empty" size, so we need to skip those...
+			while ( $last < $first && (
+					$block[$last]->mAttribs['rc_new_len'] === null ||
+					$block[$last]->mAttribs['rc_type'] == RC_CATEGORIZE
+				) ) {
 				$last++;
 			}
-			while ( $first > $last && $block[$first]->mAttribs['rc_old_len'] === null ) {
+			while ( $last < $first && (
+					$block[$last]->mAttribs['rc_new_len'] === null ||
+					$block[$last]->mAttribs['rc_type'] == RC_CATEGORIZE
+				) ) {
 				$first--;
 			}
 			# Get net change
