@@ -320,6 +320,7 @@ changes to languages because of Phabricator reports.
   rather than consume everything until the end of the page.
 * New maintenance script resetUserEmail.php allows sysadmins to reset user emails in case
   a user forgot password/account was stolen.
+* wfCheckEntropy() was removed (deprecated in 1.27).
 
 == Compatibility ==
 
