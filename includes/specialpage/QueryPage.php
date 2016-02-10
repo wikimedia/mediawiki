@@ -336,13 +336,12 @@ abstract class QueryPage extends SpecialPage {
 					);
 				}
 
-				$that = $this;
 				$dbw->doAtomicSection(
 					__METHOD__,
-					function ( IDatabase $dbw, $fname ) use ( $that, $vals ) {
+					function ( IDatabase $dbw, $fname ) use ( $vals ) {
 						# Clear out any old cached data
 						$dbw->delete( 'querycache',
-							array( 'qc_type' => $that->getName() ),
+							array( 'qc_type' => $this->getName() ),
 							$fname
 						);
 						# Save results into the querycache table on the master
@@ -351,11 +350,11 @@ abstract class QueryPage extends SpecialPage {
 						}
 						# Update the querycache_info record for the page
 						$dbw->delete( 'querycache_info',
-							array( 'qci_type' => $that->getName() ),
+							array( 'qci_type' => $this->getName() ),
 							$fname
 						);
 						$dbw->insert( 'querycache_info',
-							array( 'qci_type' => $that->getName(),
+							array( 'qci_type' => $this->getName(),
 								'qci_timestamp' => $dbw->timestamp() ),
 							$fname
 						);
