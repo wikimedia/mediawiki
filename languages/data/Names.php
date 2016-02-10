@@ -260,6 +260,7 @@ class Names {
 		'li' => 'Limburgs',	# Limburgian
 		'lij' => 'Ligure',	# Ligurian
 		'liv' => 'Līvõ kēļ',	# Livonian
+		'lki' => 'لەکی‎',	# Laki
 		'lmo' => 'lumbaart',	# Lombard
 		'ln' => 'lingála',		# Lingala
 		'lo' => 'ລາວ',	# Laotian
