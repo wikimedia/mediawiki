@@ -429,7 +429,7 @@ class DatabaseSqlite extends Database {
 	 * @param string $index
 	 * @return string
 	 */
-	function indexName( $index ) {
+	protected function indexName( $index ) {
 		return $index;
 	}
 

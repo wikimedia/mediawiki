@@ -1925,7 +1925,6 @@ abstract class DatabaseBase implements IDatabase {
 	/**
 	 * Get the name of an index in a given table.
 	 *
-	 * @protected Don't use outside of DatabaseBase and childs
 	 * @param string $index
 	 * @return string
 	 */
