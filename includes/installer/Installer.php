@@ -385,6 +385,7 @@ abstract class Installer {
 
 		// Having a user with id = 0 safeguards us from DB access via User::loadOptions().
 		$wgUser = User::newFromId( 0 );
+		RequestContext::getMain()->setUser( $wgUser );
 
 		$this->settings = $this->internalDefaults;
 
