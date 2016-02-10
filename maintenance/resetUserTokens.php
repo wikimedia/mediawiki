@@ -68,25 +68,25 @@ class ResetUserTokens extends Maintenance {
 		// We list user by user_id from one of the slave database
 		$dbr = $this->getDB( DB_SLAVE );
 
-		$where = array();
+		$where = [];
 		if ( $this->nullsOnly ) {
 			// Have to build this by hand, because \ is escaped in helper functions
-			$where = array( 'user_token = \'' . str_repeat( '\0', 32 ) . '\'' );
+			$where = [ 'user_token = \'' . str_repeat( '\0', 32 ) . '\'' ];
 		}
 
-		$maxid = $dbr->selectField( 'user', 'MAX(user_id)', array(), __METHOD__ );
+		$maxid = $dbr->selectField( 'user', 'MAX(user_id)', [], __METHOD__ );
 
 		$min = 0;
 		$max = $this->mBatchSize;
 
 		do {
 			$result = $dbr->select( 'user',
-				array( 'user_id' ),
+				[ 'user_id' ],
 				array_merge(
 					$where,
-					array( 'user_id > ' . $dbr->addQuotes( $min ),
+					[ 'user_id > ' . $dbr->addQuotes( $min ),
 						'user_id <= ' . $dbr->addQuotes( $max )
-					)
+					]
 				),
 				__METHOD__
 			);

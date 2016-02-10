@@ -42,13 +42,13 @@ class DeleteDefaultMessages extends Maintenance {
 
 		$this->output( "Checking existence of old default messages..." );
 		$dbr = $this->getDB( DB_SLAVE );
-		$res = $dbr->select( array( 'page', 'revision' ),
-			array( 'page_namespace', 'page_title' ),
-			array(
+		$res = $dbr->select( [ 'page', 'revision' ],
+			[ 'page_namespace', 'page_title' ],
+			[
 				'page_namespace' => NS_MEDIAWIKI,
 				'page_latest=rev_id',
 				'rev_user_text' => 'MediaWiki default',
-			)
+			]
 		);
 
 		if ( $dbr->numRows( $res ) == 0 ) {

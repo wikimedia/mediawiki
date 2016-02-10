@@ -44,13 +44,13 @@ class RemoveUnusedAccounts extends Maintenance {
 
 		# Do an initial scan for inactive accounts and report the result
 		$this->output( "Checking for unused user accounts...\n" );
-		$del = array();
+		$del = [];
 		$dbr = $this->getDB( DB_SLAVE );
-		$res = $dbr->select( 'user', array( 'user_id', 'user_name', 'user_touched' ), '', __METHOD__ );
+		$res = $dbr->select( 'user', [ 'user_id', 'user_name', 'user_touched' ], '', __METHOD__ );
 		if ( $this->hasOption( 'ignore-groups' ) ) {
 			$excludedGroups = explode( ',', $this->getOption( 'ignore-groups' ) );
 		} else {
-			$excludedGroups = array();
+			$excludedGroups = [];
 		}
 		$touched = $this->getOption( 'ignore-touched', "1" );
 		if ( !ctype_digit( $touched ) ) {
@@ -77,19 +77,19 @@ class RemoveUnusedAccounts extends Maintenance {
 		if ( $count > 0 && $this->hasOption( 'delete' ) ) {
 			$this->output( "\nDeleting unused accounts..." );
 			$dbw = $this->getDB( DB_MASTER );
-			$dbw->delete( 'user', array( 'user_id' => $del ), __METHOD__ );
-			$dbw->delete( 'user_groups', array( 'ug_user' => $del ), __METHOD__ );
-			$dbw->delete( 'user_former_groups', array( 'ufg_user' => $del ), __METHOD__ );
-			$dbw->delete( 'user_properties', array( 'up_user' => $del ), __METHOD__ );
-			$dbw->delete( 'logging', array( 'log_user' => $del ), __METHOD__ );
-			$dbw->delete( 'recentchanges', array( 'rc_user' => $del ), __METHOD__ );
+			$dbw->delete( 'user', [ 'user_id' => $del ], __METHOD__ );
+			$dbw->delete( 'user_groups', [ 'ug_user' => $del ], __METHOD__ );
+			$dbw->delete( 'user_former_groups', [ 'ufg_user' => $del ], __METHOD__ );
+			$dbw->delete( 'user_properties', [ 'up_user' => $del ], __METHOD__ );
+			$dbw->delete( 'logging', [ 'log_user' => $del ], __METHOD__ );
+			$dbw->delete( 'recentchanges', [ 'rc_user' => $del ], __METHOD__ );
 			$this->output( "done.\n" );
 			# Update the site_stats.ss_users field
-			$users = $dbw->selectField( 'user', 'COUNT(*)', array(), __METHOD__ );
+			$users = $dbw->selectField( 'user', 'COUNT(*)', [], __METHOD__ );
 			$dbw->update(
 				'site_stats',
-				array( 'ss_users' => $users ),
-				array( 'ss_row_id' => 1 ),
+				[ 'ss_users' => $users ],
+				[ 'ss_row_id' => 1 ],
 				__METHOD__
 			);
 		} elseif ( $count > 0 ) {
@@ -108,22 +108,22 @@ class RemoveUnusedAccounts extends Maintenance {
 	 */
 	private function isInactiveAccount( $id, $master = false ) {
 		$dbo = $this->getDB( $master ? DB_MASTER : DB_SLAVE );
-		$checks = array(
+		$checks = [
 			'revision' => 'rev',
 			'archive' => 'ar',
 			'image' => 'img',
 			'oldimage' => 'oi',
 			'filearchive' => 'fa'
-		);
+		];
 		$count = 0;
 
 		$this->beginTransaction( $dbo, __METHOD__ );
 		foreach ( $checks as $table => $fprefix ) {
-			$conds = array( $fprefix . '_user' => $id );
+			$conds = [ $fprefix . '_user' => $id ];
 			$count += (int)$dbo->selectField( $table, 'COUNT(*)', $conds, __METHOD__ );
 		}
 
-		$conds = array( 'log_user' => $id, 'log_type != ' . $dbo->addQuotes( 'newusers' ) );
+		$conds = [ 'log_user' => $id, 'log_type != ' . $dbo->addQuotes( 'newusers' ) ];
 		$count += (int)$dbo->selectField( 'logging', 'COUNT(*)', $conds, __METHOD__ );
 
 		$this->commitTransaction( $dbo, __METHOD__ );

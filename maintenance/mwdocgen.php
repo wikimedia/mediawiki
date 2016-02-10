@@ -88,13 +88,13 @@ class MWDocGen extends Maintenance {
 
 		$this->inputFilter = wfShellWikiCmd( $IP . '/maintenance/mwdoc-filter.php' );
 		$this->template = $IP . '/maintenance/Doxyfile';
-		$this->excludes = array(
+		$this->excludes = [
 			'vendor',
 			'node_modules',
 			'images',
 			'static',
-		);
-		$this->excludePatterns = array();
+		];
+		$this->excludePatterns = [];
 		if ( $this->hasOption( 'no-extensions' ) ) {
 			$this->excludePatterns[] = 'extensions';
 		}
@@ -117,7 +117,7 @@ class MWDocGen extends Maintenance {
 		$excludePatterns = implode( ' ', $this->excludePatterns );
 
 		$conf = strtr( file_get_contents( $this->template ),
-			array(
+			[
 				'{{OUTPUT_DIRECTORY}}' => $this->output,
 				'{{STRIP_FROM_PATH}}' => $IP,
 				'{{CURRENT_VERSION}}' => $this->mwVersion,
@@ -127,7 +127,7 @@ class MWDocGen extends Maintenance {
 				'{{HAVE_DOT}}' => $this->doDot ? 'YES' : 'NO',
 				'{{GENERATE_MAN}}' => $this->doMan ? 'YES' : 'NO',
 				'{{INPUT_FILTER}}' => $this->inputFilter,
-			)
+			]
 		);
 
 		$tmpFile = tempnam( wfTempDir(), 'MWDocGen-' );

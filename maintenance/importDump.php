@@ -118,7 +118,7 @@ TEXT
 
 			return;
 		}
-		$this->nsFilter = array_unique( array_map( array( $this, 'getNsIndex' ), $namespaces ) );
+		$this->nsFilter = array_unique( array_map( [ $this, 'getNsIndex' ], $namespaces ) );
 	}
 
 	private function getNsIndex( $namespace ) {
@@ -205,7 +205,7 @@ TEXT
 				// call_user_func( $this->uploadCallback, $revision );
 				$dbw = $this->getDB( DB_MASTER );
 
-				return $dbw->deadlockLoop( array( $revision, 'importUpload' ) );
+				return $dbw->deadlockLoop( [ $revision, 'importUpload' ] );
 			}
 		}
 
@@ -297,13 +297,13 @@ TEXT
 				return false;
 			}
 		}
-		$importer->setPageCallback( array( &$this, 'reportPage' ) );
+		$importer->setPageCallback( [ $this, 'reportPage' ] );
 		$this->importCallback = $importer->setRevisionCallback(
-			array( &$this, 'handleRevision' ) );
+			[ $this, 'handleRevision' ] );
 		$this->uploadCallback = $importer->setUploadCallback(
-			array( &$this, 'handleUpload' ) );
+			[ $this, 'handleUpload' ] );
 		$this->logItemCallback = $importer->setLogItemCallback(
-			array( &$this, 'handleLogItem' ) );
+			[ $this, 'handleLogItem' ] );
 		if ( $this->uploads ) {
 			$importer->setImportUploads( true );
 		}

@@ -30,7 +30,7 @@ require_once __DIR__ . '/../Maintenance.php';
  */
 class FixBug20757 extends Maintenance {
 	public $batchSize = 10000;
-	public $mapCache = array();
+	public $mapCache = [];
 	public $mapCacheSize = 0;
 	public $maxMapCacheSize = 1000000;
 
@@ -67,25 +67,25 @@ class FixBug20757 extends Maintenance {
 
 			$res = $dbr->select(
 				'text',
-				array( 'old_id', 'old_flags', 'old_text' ),
-				array(
+				[ 'old_id', 'old_flags', 'old_text' ],
+				[
 					'old_id > ' . intval( $startId ),
 					'old_flags LIKE \'%object%\' AND old_flags NOT LIKE \'%external%\'',
 					"$lowerLeft = 'o:15:\"historyblobstub\"'",
-				),
+				],
 				__METHOD__,
-				array(
+				[
 					'ORDER BY' => 'old_id',
 					'LIMIT' => $this->batchSize,
-				)
+				]
 			);
 
 			if ( !$res->numRows() ) {
 				break;
 			}
 
-			$secondaryIds = array();
-			$stubs = array();
+			$secondaryIds = [];
+			$stubs = [];
 
 			foreach ( $res as $row ) {
 				$startId = $row->old_id;
@@ -123,11 +123,11 @@ class FixBug20757 extends Maintenance {
 				// Queue the stub for future batch processing
 				$id = intval( $obj->mOldId );
 				$secondaryIds[] = $id;
-				$stubs[$row->old_id] = array(
+				$stubs[$row->old_id] = [
 					'legacyEncoding' => $legacyEncoding,
 					'secondaryId' => $id,
 					'hash' => $obj->mHash,
-				);
+				];
 			}
 
 			$secondaryIds = array_unique( $secondaryIds );
@@ -140,12 +140,12 @@ class FixBug20757 extends Maintenance {
 			$res = $dbr->select(
 				'blob_tracking',
 				'*',
-				array(
+				[
 					'bt_text_id' => $secondaryIds,
-				),
+				],
 				__METHOD__
 			);
-			$trackedBlobs = array();
+			$trackedBlobs = [];
 			foreach ( $res as $row ) {
 				$trackedBlobs[$row->bt_text_id] = $row;
 			}
@@ -157,8 +157,8 @@ class FixBug20757 extends Maintenance {
 					// No tracked blob. Work out what went wrong
 					$secondaryRow = $dbr->selectRow(
 						'text',
-						array( 'old_flags', 'old_text' ),
-						array( 'old_id' => $secondaryId ),
+						[ 'old_flags', 'old_text' ],
+						[ 'old_id' => $secondaryId ],
 						__METHOD__
 					);
 					if ( !$secondaryRow ) {
@@ -217,19 +217,19 @@ class FixBug20757 extends Maintenance {
 					$dbw->update(
 						'text',
 						// SET
-						array(
+						[
 							'old_flags' => $newFlags,
 							'old_text' => $url
-						),
+						],
 						// WHERE
-						array( 'old_id' => $primaryId ),
+						[ 'old_id' => $primaryId ],
 						__METHOD__
 					);
 
 					// Add a blob_tracking row so that the new reference can be recompressed
 					// without needing to run trackBlobs.php again
 					$dbw->insert( 'blob_tracking',
-						array(
+						[
 							'bt_page' => $pageId,
 							'bt_rev_id' => $revId,
 							'bt_text_id' => $primaryId,
@@ -238,7 +238,7 @@ class FixBug20757 extends Maintenance {
 							'bt_cgz_hash' => $stub['hash'],
 							'bt_new_url' => null,
 							'bt_moved' => 0,
-						),
+						],
 						__METHOD__
 					);
 					$this->commitTransaction( $dbw, __METHOD__ );
@@ -284,10 +284,10 @@ class FixBug20757 extends Maintenance {
 			}
 
 			$dbr = $this->getDB( DB_SLAVE );
-			$map = array();
+			$map = [];
 			$res = $dbr->select( 'revision',
-				array( 'rev_id', 'rev_text_id' ),
-				array( 'rev_page' => $pageId ),
+				[ 'rev_id', 'rev_text_id' ],
+				[ 'rev_page' => $pageId ],
 				__METHOD__
 			);
 			foreach ( $res as $row ) {

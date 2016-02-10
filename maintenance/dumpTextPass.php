@@ -80,7 +80,7 @@ class TextPassDumper extends BackupDumper {
 	protected $firstPageWritten = false;
 	protected $lastPageWritten = false;
 	protected $checkpointJustWritten = false;
-	protected $checkpointFiles = array();
+	protected $checkpointFiles = [];
 
 	/**
 	 * @var DatabaseBase
@@ -426,10 +426,10 @@ TEXT
 
 		xml_set_element_handler(
 			$parser,
-			array( &$this, 'startElement' ),
-			array( &$this, 'endElement' )
+			[ $this, 'startElement' ],
+			[ $this, 'endElement' ]
 		);
-		xml_set_character_data_handler( $parser, array( &$this, 'characterData' ) );
+		xml_set_character_data_handler( $parser, [ $this, 'characterData' ] );
 
 		$offset = 0; // for context extraction on error reporting
 		do {
@@ -458,7 +458,7 @@ TEXT
 			$filenameList = (array)$this->egress->getFilenames();
 			// we wrote some stuff after last checkpoint that needs renamed
 			if ( file_exists( $filenameList[0] ) ) {
-				$newFilenames = array();
+				$newFilenames = [];
 				# we might have just written the header and footer and had no
 				# pages or revisions written... perhaps they were all deleted
 				# there's no pageID 0 so we use that. the caller is responsible
@@ -551,8 +551,8 @@ TEXT
 		if ( $model === null && $wgContentHandlerUseDB ) {
 			$row = $this->db->selectRow(
 				'revision',
-				array( 'rev_content_model', 'rev_content_format' ),
-				array( 'rev_id' => $this->thisRev ),
+				[ 'rev_content_model', 'rev_content_format' ],
+				[ 'rev_id' => $this->thisRev ],
 				__METHOD__
 			);
 
@@ -636,7 +636,7 @@ TEXT
 				if ( $model !== CONTENT_MODEL_WIKITEXT ) {
 					$revLength = strlen( $text );
 				} else {
-					$revLength = $this->db->selectField( 'revision', 'rev_len', array( 'rev_id' => $revID ) );
+					$revLength = $this->db->selectField( 'revision', 'rev_len', [ 'rev_id' => $revID ] );
 				}
 
 				if ( strlen( $text ) == $revLength ) {
@@ -704,8 +704,8 @@ TEXT
 			throw new MWException( __METHOD__ . "No database available" );
 		}
 		$row = $this->db->selectRow( 'text',
-			array( 'old_text', 'old_flags' ),
-			array( 'old_id' => $id ),
+			[ 'old_text', 'old_flags' ],
+			[ 'old_id' => $id ],
 			__METHOD__ );
 		$text = Revision::getRevisionText( $row );
 		if ( $text === false ) {
@@ -735,24 +735,24 @@ TEXT
 		if ( file_exists( "$IP/../multiversion/MWScript.php" ) ) {
 			$cmd = implode( " ",
 				array_map( 'wfEscapeShellArg',
-					array(
+					[
 						$this->php,
 						"$IP/../multiversion/MWScript.php",
 						"fetchText.php",
-						'--wiki', wfWikiID() ) ) );
+						'--wiki', wfWikiID() ] ) );
 		} else {
 			$cmd = implode( " ",
 				array_map( 'wfEscapeShellArg',
-					array(
+					[
 						$this->php,
 						"$IP/maintenance/fetchText.php",
-						'--wiki', wfWikiID() ) ) );
+						'--wiki', wfWikiID() ] ) );
 		}
-		$spec = array(
-			0 => array( "pipe", "r" ),
-			1 => array( "pipe", "w" ),
-			2 => array( "file", "/dev/null", "a" ) );
-		$pipes = array();
+		$spec = [
+			0 => [ "pipe", "r" ],
+			1 => [ "pipe", "w" ],
+			2 => [ "file", "/dev/null", "a" ] ];
+		$pipes = [];
 
 		$this->progress( "Spawning database subprocess: $cmd" );
 		$this->spawnProc = proc_open( $cmd, $spec, $pipes );
@@ -880,12 +880,12 @@ TEXT
 			$format = $format === '' ? null : $format;
 
 			$text = $this->getText( $id, $model, $format );
-			$this->openElement = array( $name, array( 'xml:space' => 'preserve' ) );
+			$this->openElement = [ $name, [ 'xml:space' => 'preserve' ] ];
 			if ( strlen( $text ) > 0 ) {
 				$this->characterData( $parser, $text );
 			}
 		} else {
-			$this->openElement = array( $name, $attribs );
+			$this->openElement = [ $name, $attribs ];
 		}
 	}
 
@@ -923,7 +923,7 @@ TEXT
 				// this could be more than one file if we had more than one output arg
 
 				$filenameList = (array)$this->egress->getFilenames();
-				$newFilenames = array();
+				$newFilenames = [];
 				$firstPageID = str_pad( $this->firstPageWritten, 9, "0", STR_PAD_LEFT );
 				$lastPageID = str_pad( $this->lastPageWritten, 9, "0", STR_PAD_LEFT );
 				$filenamesCount = count( $filenameList );

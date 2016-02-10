@@ -60,7 +60,7 @@ class DeleteBatch extends Maintenance {
 		$interval = $this->getOption( 'i', 0 );
 
 		if ( $username === false ) {
-			$user = User::newSystemUser( 'Delete page script', array( 'steal' => true ) );
+			$user = User::newSystemUser( 'Delete page script', [ 'steal' => true ] );
 		} else {
 			$user = User::newFromName( $username );
 		}
@@ -102,7 +102,7 @@ class DeleteBatch extends Maintenance {
 
 			$this->output( $title->getPrefixedText() );
 			if ( $title->getNamespace() == NS_FILE ) {
-				$img = wfFindFile( $title, array( 'ignoreRedirect' => true ) );
+				$img = wfFindFile( $title, [ 'ignoreRedirect' => true ] );
 				if ( $img && $img->isLocal() && !$img->delete( $reason ) ) {
 					$this->output( " FAILED to delete associated file... " );
 				}

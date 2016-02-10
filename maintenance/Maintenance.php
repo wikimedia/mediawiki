@@ -63,19 +63,19 @@ abstract class Maintenance {
 	const STDIN_ALL = 'all';
 
 	// This is the desired params
-	protected $mParams = array();
+	protected $mParams = [];
 
 	// Array of mapping short parameters to long ones
-	protected $mShortParamsMap = array();
+	protected $mShortParamsMap = [];
 
 	// Array of desired args
-	protected $mArgList = array();
+	protected $mArgList = [];
 
 	// This is the list of options that were actually passed
-	protected $mOptions = array();
+	protected $mOptions = [];
 
 	// This is the list of arguments that were actually passed
-	protected $mArgs = array();
+	protected $mArgs = [];
 
 	// Name of the script currently running
 	protected $mSelf;
@@ -99,9 +99,9 @@ abstract class Maintenance {
 	protected $mBatchSize = null;
 
 	// Generic options added by addDefaultParams()
-	private $mGenericParameters = array();
+	private $mGenericParameters = [];
 	// Generic options which might or not be supported by the script
-	private $mDependantParameters = array();
+	private $mDependantParameters = [];
 
 	/**
 	 * Used by getDB() / setDB()
@@ -136,7 +136,7 @@ abstract class Maintenance {
 	 *
 	 * @var array
 	 */
-	public $orderedOptions = array();
+	public $orderedOptions = [];
 
 	/**
 	 * Default constructor. Children should call this *first* if implementing
@@ -150,7 +150,7 @@ abstract class Maintenance {
 			: realpath( __DIR__ . '/..' );
 
 		$this->addDefaultParams();
-		register_shutdown_function( array( $this, 'outputChanneled' ), false );
+		register_shutdown_function( [ $this, 'outputChanneled' ], false );
 	}
 
 	/**
@@ -176,7 +176,7 @@ abstract class Maintenance {
 		if ( $bt[0]['class'] !== 'Maintenance' || $bt[0]['function'] !== 'shouldExecute' ) {
 			return false; // last call should be to this function
 		}
-		$includeFuncs = array( 'require_once', 'require', 'include', 'include_once' );
+		$includeFuncs = [ 'require_once', 'require', 'include', 'include_once' ];
 		for ( $i = 1; $i < $count; $i++ ) {
 			if ( !in_array( $bt[$i]['function'], $includeFuncs ) ) {
 				return false; // previous calls should all be "requires"
@@ -205,13 +205,13 @@ abstract class Maintenance {
 	protected function addOption( $name, $description, $required = false,
 		$withArg = false, $shortName = false, $multiOccurrence = false
 	) {
-		$this->mParams[$name] = array(
+		$this->mParams[$name] = [
 			'desc' => $description,
 			'require' => $required,
 			'withArg' => $withArg,
 			'shortName' => $shortName,
 			'multiOccurrence' => $multiOccurrence
-		);
+		];
 
 		if ( $shortName !== false ) {
 			$this->mShortParamsMap[$shortName] = $name;
@@ -255,11 +255,11 @@ abstract class Maintenance {
 	 * @param bool $required Is this required?
 	 */
 	protected function addArg( $arg, $description, $required = true ) {
-		$this->mArgList[] = array(
+		$this->mArgList[] = [
 			'name' => $arg,
 			'desc' => $description,
 			'require' => $required
-		);
+		];
 	}
 
 	/**
@@ -635,9 +635,9 @@ abstract class Maintenance {
 		if ( is_array( $wgProfiler ) && isset( $wgProfiler['class'] ) ) {
 			$class = $wgProfiler['class'];
 			$profiler = new $class(
-				array( 'sampling' => 1, 'output' => array( $output ) )
+				[ 'sampling' => 1, 'output' => [ $output ] ]
 					+ $wgProfiler
-					+ array( 'threshold' => $wgProfileLimit )
+					+ [ 'threshold' => $wgProfileLimit ]
 			);
 			$profiler->setTemplated( true );
 			Profiler::replaceStubInstance( $profiler );
@@ -652,8 +652,8 @@ abstract class Maintenance {
 	 * Clear all params and arguments.
 	 */
 	public function clearParamsAndArgs() {
-		$this->mOptions = array();
-		$this->mArgs = array();
+		$this->mOptions = [];
+		$this->mArgs = [];
 		$this->mInputLoaded = false;
 	}
 
@@ -665,9 +665,9 @@ abstract class Maintenance {
 	 * @param array $argv
 	 */
 	public function loadWithArgv( $argv ) {
-		$options = array();
-		$args = array();
-		$this->orderedOptions = array();
+		$options = [];
+		$args = [];
+		$this->orderedOptions = [];
 
 		# Parse arguments
 		for ( $arg = reset( $argv ); $arg !== false; $arg = next( $argv ) ) {
@@ -748,7 +748,7 @@ abstract class Maintenance {
 	 * @param mixed $value
 	 */
 	private function setParam( &$options, $option, $value ) {
-		$this->orderedOptions[] = array( $option, $value );
+		$this->orderedOptions[] = [ $option, $value ];
 
 		if ( isset( $this->mParams[$option] ) ) {
 			$multi = $this->mParams[$option]['multiOccurrence'];
@@ -756,7 +756,7 @@ abstract class Maintenance {
 			if ( $multi && $exists ) {
 				$options[$option][] = $value;
 			} elseif ( $multi ) {
-				$options[$option] = array( $value );
+				$options[$option] = [ $value ];
 			} elseif ( !$exists ) {
 				$options[$option] = $value;
 			} else {
@@ -1089,7 +1089,7 @@ abstract class Maintenance {
 
 		# Get "active" text records from the revisions table
 		$this->output( 'Searching for active text records in revisions table...' );
-		$res = $dbw->select( 'revision', 'rev_text_id', array(), __METHOD__, array( 'DISTINCT' ) );
+		$res = $dbw->select( 'revision', 'rev_text_id', [], __METHOD__, [ 'DISTINCT' ] );
 		foreach ( $res as $row ) {
 			$cur[] = $row->rev_text_id;
 		}
@@ -1097,7 +1097,7 @@ abstract class Maintenance {
 
 		# Get "active" text records from the archive table
 		$this->output( 'Searching for active text records in archive table...' );
-		$res = $dbw->select( 'archive', 'ar_text_id', array(), __METHOD__, array( 'DISTINCT' ) );
+		$res = $dbw->select( 'archive', 'ar_text_id', [], __METHOD__, [ 'DISTINCT' ] );
 		foreach ( $res as $row ) {
 			# old pre-MW 1.5 records can have null ar_text_id's.
 			if ( $row->ar_text_id !== null ) {
@@ -1109,8 +1109,8 @@ abstract class Maintenance {
 		# Get the IDs of all text records not in these sets
 		$this->output( 'Searching for inactive text records...' );
 		$cond = 'old_id NOT IN ( ' . $dbw->makeList( $cur ) . ' )';
-		$res = $dbw->select( 'text', 'old_id', array( $cond ), __METHOD__, array( 'DISTINCT' ) );
-		$old = array();
+		$res = $dbw->select( 'text', 'old_id', [ $cond ], __METHOD__, [ 'DISTINCT' ] );
+		$old = [];
 		foreach ( $res as $row ) {
 			$old[] = $row->old_id;
 		}
@@ -1123,7 +1123,7 @@ abstract class Maintenance {
 		# Delete as appropriate
 		if ( $delete && $count ) {
 			$this->output( 'Deleting...' );
-			$dbw->delete( 'text', array( 'old_id' => $old ), __METHOD__ );
+			$dbw->delete( 'text', [ 'old_id' => $old ], __METHOD__ );
 			$this->output( "done.\n" );
 		}
 
@@ -1149,7 +1149,7 @@ abstract class Maintenance {
 	 * @param string|bool $wiki; default: current wiki
 	 * @return IDatabase
 	 */
-	protected function getDB( $db, $groups = array(), $wiki = false ) {
+	protected function getDB( $db, $groups = [], $wiki = false ) {
 		if ( is_null( $this->mDb ) ) {
 			return wfGetDB( $db, $groups, $wiki );
 		} else {
@@ -1219,8 +1219,8 @@ abstract class Maintenance {
 	 * @param DatabaseBase &$db
 	 */
 	private function lockSearchindex( $db ) {
-		$write = array( 'searchindex' );
-		$read = array(
+		$write = [ 'searchindex' ];
+		$read = [
 			'page',
 			'revision',
 			'text',
@@ -1228,7 +1228,7 @@ abstract class Maintenance {
 			'l10n_cache',
 			'user',
 			'page_restrictions'
-		);
+		];
 		$db->lockTables( $read, $write, __CLASS__ . '::' . __METHOD__ );
 	}
 
@@ -1371,13 +1371,13 @@ abstract class Maintenance {
 	 * @return string
 	 */
 	private static function readlineEmulation( $prompt ) {
-		$bash = Installer::locateExecutableInDefaultPaths( array( 'bash' ) );
+		$bash = Installer::locateExecutableInDefaultPaths( [ 'bash' ] );
 		if ( !wfIsWindows() && $bash ) {
 			$retval = false;
 			$encPrompt = wfEscapeShellArg( $prompt );
 			$command = "read -er -p $encPrompt && echo \"\$REPLY\"";
 			$encCommand = wfEscapeShellArg( $command );
-			$line = wfShellExec( "$bash -c $encCommand", $retval, array(), array( 'walltime' => 0 ) );
+			$line = wfShellExec( "$bash -c $encCommand", $retval, [], [ 'walltime' => 0 ] );
 
 			if ( $retval == 0 ) {
 				return $line;
@@ -1428,7 +1428,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 		$key = $this->getUpdateKey();
 
 		if ( !$this->hasOption( 'force' )
-			&& $db->selectRow( 'updatelog', '1', array( 'ul_key' => $key ), __METHOD__ )
+			&& $db->selectRow( 'updatelog', '1', [ 'ul_key' => $key ], __METHOD__ )
 		) {
 			$this->output( "..." . $this->updateSkippedMessage() . "\n" );
 
@@ -1439,7 +1439,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 			return false;
 		}
 
-		if ( $db->insert( 'updatelog', array( 'ul_key' => $key ), __METHOD__, 'IGNORE' ) ) {
+		if ( $db->insert( 'updatelog', [ 'ul_key' => $key ], __METHOD__, 'IGNORE' ) ) {
 			return true;
 		} else {
 			$this->output( $this->updatelogFailedMessage() . "\n" );

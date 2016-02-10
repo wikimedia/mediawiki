@@ -50,12 +50,12 @@ class FindOrphanedFiles extends Maintenance {
 			$this->output( "Scanning files under $directory:\n" );
 		}
 
-		$list = $repo->getBackend()->getFileList( array( 'dir' => $directory ) );
+		$list = $repo->getBackend()->getFileList( [ 'dir' => $directory ] );
 		if ( $list === null ) {
 			$this->error( "Could not get file listing.", 1 );
 		}
 
-		$pathBatch = array();
+		$pathBatch = [];
 		foreach ( $list as $path ) {
 			if ( preg_match( '#^(thumb|deleted)/#', $path ) ) {
 				continue; // handle ugly nested containers on stock installs
@@ -64,7 +64,7 @@ class FindOrphanedFiles extends Maintenance {
 			$pathBatch[] = $path;
 			if ( count( $pathBatch ) >= $this->mBatchSize ) {
 				$this->checkFiles( $repo, $pathBatch, $verbose );
-				$pathBatch = array();
+				$pathBatch = [];
 			}
 		}
 		$this->checkFiles( $repo, $pathBatch, $verbose );
@@ -77,10 +77,10 @@ class FindOrphanedFiles extends Maintenance {
 
 		$dbr = $repo->getSlaveDB();
 
-		$curNames = array();
-		$oldNames = array();
-		$imgIN = array();
-		$oiWheres = array();
+		$curNames = [];
+		$oldNames = [];
+		$imgIN = [];
+		$oiWheres = [];
 		foreach ( $paths as $path ) {
 			$name = basename( $path );
 			if ( preg_match( '#^archive/#', $path ) ) {
@@ -91,7 +91,7 @@ class FindOrphanedFiles extends Maintenance {
 				$oldNames[] = $name;
 				list( , $base ) = explode( '!', $name, 2 ); // <TS_MW>!<img_name>
 				$oiWheres[] = $dbr->makeList(
-					array( 'oi_name' => $base, 'oi_archive_name' => $name ),
+					[ 'oi_name' => $base, 'oi_archive_name' => $name ],
 					LIST_AND
 				);
 			} else {
@@ -106,25 +106,25 @@ class FindOrphanedFiles extends Maintenance {
 
 		$res = $dbr->query(
 			$dbr->unionQueries(
-				array(
+				[
 					$dbr->selectSQLText(
 						'image',
-						array( 'name' => 'img_name', 'old' => 0 ),
-						$imgIN ? array( 'img_name' => $imgIN ) : '1=0'
+						[ 'name' => 'img_name', 'old' => 0 ],
+						$imgIN ? [ 'img_name' => $imgIN ] : '1=0'
 					),
 					$dbr->selectSQLText(
 						'oldimage',
-						array( 'name' => 'oi_archive_name', 'old' => 1 ),
+						[ 'name' => 'oi_archive_name', 'old' => 1 ],
 						$oiWheres ? $dbr->makeList( $oiWheres, LIST_OR ) : '1=0'
 					)
-				),
+				],
 				true // UNION ALL (performance)
 			),
 			__METHOD__
 		);
 
-		$curNamesFound = array();
-		$oldNamesFound = array();
+		$curNamesFound = [];
+		$oldNamesFound = [];
 		foreach ( $res as $row ) {
 			if ( $row->old ) {
 				$oldNamesFound[] = $row->name;

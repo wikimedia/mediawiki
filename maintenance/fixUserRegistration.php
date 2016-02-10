@@ -45,15 +45,15 @@ class FixUserRegistration extends Maintenance {
 			$res = $dbw->select(
 				'user',
 				'user_id',
-				array(
+				[
 					'user_id > ' . $dbw->addQuotes( $lastId ),
 					'user_registration IS NULL'
-				),
+				],
 				__METHOD__,
-				array(
+				[
 					'LIMIT' => $this->mBatchSize,
 					'ORDER BY' => 'user_id',
-				)
+				]
 			);
 			foreach ( $res as $row ) {
 				$id = $row->user_id;
@@ -62,15 +62,15 @@ class FixUserRegistration extends Maintenance {
 				$timestamp = $dbw->selectField(
 					'revision',
 					'MIN(rev_timestamp)',
-					array( 'rev_user' => $id ),
+					[ 'rev_user' => $id ],
 					__METHOD__
 				);
 				// Update
 				if ( $timestamp !== null ) {
 					$dbw->update(
 						'user',
-						array( 'user_registration' => $timestamp ),
-						array( 'user_id' => $id ),
+						[ 'user_registration' => $timestamp ],
+						[ 'user_id' => $id ],
 						__METHOD__
 					);
 					$user = User::newFromId( $id );

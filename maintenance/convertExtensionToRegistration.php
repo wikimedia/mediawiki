@@ -4,7 +4,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 class ConvertExtensionToRegistration extends Maintenance {
 
-	protected $custom = array(
+	protected $custom = [
 		'MessagesDirs' => 'handleMessagesDirs',
 		'ExtensionMessagesFiles' => 'handleExtensionMessagesFiles',
 		'AutoloadClasses' => 'removeAbsolutePath',
@@ -14,32 +14,32 @@ class ConvertExtensionToRegistration extends Maintenance {
 		'Hooks' => 'handleHooks',
 		'ExtensionFunctions' => 'handleExtensionFunctions',
 		'ParserTestFiles' => 'removeAbsolutePath',
-	);
+	];
 
 	/**
 	 * Things that were formerly globals and should still be converted
 	 *
 	 * @var array
 	 */
-	protected $formerGlobals = array(
+	protected $formerGlobals = [
 		'TrackingCategories',
-	);
+	];
 
 	/**
 	 * No longer supported globals (with reason) should not be converted and emit a warning
 	 *
 	 * @var array
 	 */
-	protected $noLongerSupportedGlobals = array(
+	protected $noLongerSupportedGlobals = [
 		'SpecialPageGroups' => 'deprecated', // Deprecated 1.21, removed in 1.26
-	);
+	];
 
 	/**
 	 * Keys that should be put at the top of the generated JSON file (T86608)
 	 *
 	 * @var array
 	 */
-	protected $promote = array(
+	protected $promote = [
 		'name',
 		'namemsg',
 		'version',
@@ -49,7 +49,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		'descriptionmsg',
 		'license-name',
 		'type',
-	);
+	];
 
 	private $json, $dir, $hasWarning = false;
 
@@ -76,7 +76,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		$__settings = array_merge( $this->getAllGlobals(), array_keys( $this->custom ) );
 		foreach ( $__settings as $var ) {
 			$var = 'wg' . $var;
-			$$var = array();
+			$$var = [];
 		}
 		unset( $var );
 		$arg = $this->getArg( 0 );
@@ -90,7 +90,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		unset( $vars['this'] );
 		unset( $vars['__settings'] );
 		$this->dir = dirname( realpath( $this->getArg( 0 ) ) );
-		$this->json = array();
+		$this->json = [];
 		$globalSettings = $this->getAllGlobals();
 		foreach ( $vars as $name => $value ) {
 			$realName = substr( $name, 2 ); // Strip 'wg'
@@ -101,8 +101,8 @@ class ConvertExtensionToRegistration extends Maintenance {
 			}
 
 			if ( isset( $this->custom[$realName] ) ) {
-				call_user_func_array( array( $this, $this->custom[$realName] ),
-					array( $realName, $value, $vars ) );
+				call_user_func_array( [ $this, $this->custom[$realName] ],
+					[ $realName, $value, $vars ] );
 			} elseif ( in_array( $realName, $globalSettings ) ) {
 				$this->json[$realName] = $value;
 			} elseif ( array_key_exists( $realName, $this->noLongerSupportedGlobals ) ) {
@@ -124,7 +124,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		}
 
 		// Move some keys to the top
-		$out = array();
+		$out = [];
 		foreach ( $this->promote as $key ) {
 			if ( isset( $this->json[$key] ) ) {
 				$out[$key] = $this->json[$key];
@@ -197,7 +197,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 	}
 
 	protected function removeAbsolutePath( $realName, $value ) {
-		$out = array();
+		$out = [];
 		foreach ( $value as $key => $val ) {
 			$out[$key] = $this->stripPath( $val, $this->dir );
 		}
@@ -235,7 +235,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 	}
 
 	protected function handleResourceModules( $realName, $value ) {
-		$defaults = array();
+		$defaults = [];
 		$remote = $this->hasOption( 'skin' ) ? 'remoteSkinPath' : 'remoteExtPath';
 		foreach ( $value as $name => $data ) {
 			if ( isset( $data['localBasePath'] ) ) {
