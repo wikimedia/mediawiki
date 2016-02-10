@@ -38,7 +38,7 @@ class BenchUtf8TitleCheck extends Benchmarker {
 		parent::__construct();
 
 		// @codingStandardsIgnoreStart Ignore long line warnings.
-		$this->data = array(
+		$this->data = [
 			"",
 			"United States of America", // 7bit ASCII
 			"S%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e",
@@ -58,7 +58,7 @@ class BenchUtf8TitleCheck extends Benchmarker {
 			. "Saison%207%20des%20Experts%7CSaison%208%20des%20Experts%7CSaison%209%20des%20Experts%7C"
 			. "Sara%20Sidle%7CSofia%20Curtis%7CS%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e%7CWallace%20Langham%7C"
 			. "Warrick%20Brown%7CWendy%20Simms%7C%C3%89tats-Unis"
-		);
+		];
 		// @codingStandardsIgnoreEnd
 
 		$this->canRun = function_exists( 'mb_check_encoding' );
@@ -75,24 +75,24 @@ class BenchUtf8TitleCheck extends Benchmarker {
 		if ( !$this->canRun ) {
 			return;
 		}
-		$benchmarks = array();
+		$benchmarks = [];
 		foreach ( $this->data as $val ) {
-			$benchmarks[] = array(
-				'function' => array( $this, 'use_regexp' ),
-				'args' => array( rawurldecode( $val ) )
-			);
-			$benchmarks[] = array(
-				'function' => array( $this, 'use_regexp_non_capturing' ),
-				'args' => array( rawurldecode( $val ) )
-			);
-			$benchmarks[] = array(
-				'function' => array( $this, 'use_regexp_once_only' ),
-				'args' => array( rawurldecode( $val ) )
-			);
-			$benchmarks[] = array(
-				'function' => array( $this, 'use_mb_check_encoding' ),
-				'args' => array( rawurldecode( $val ) )
-			);
+			$benchmarks[] = [
+				'function' => [ $this, 'use_regexp' ],
+				'args' => [ rawurldecode( $val ) ]
+			];
+			$benchmarks[] = [
+				'function' => [ $this, 'use_regexp_non_capturing' ],
+				'args' => [ rawurldecode( $val ) ]
+			];
+			$benchmarks[] = [
+				'function' => [ $this, 'use_regexp_once_only' ],
+				'args' => [ rawurldecode( $val ) ]
+			];
+			$benchmarks[] = [
+				'function' => [ $this, 'use_mb_check_encoding' ],
+				'args' => [ rawurldecode( $val ) ]
+			];
 		}
 		$this->bench( $benchmarks );
 		print $this->getFormattedResults();

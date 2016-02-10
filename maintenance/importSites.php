@@ -31,7 +31,7 @@ class ImportSites extends Maintenance {
 		$file = $this->getArg( 0 );
 
 		$importer = new SiteImporter( SiteSQLStore::newInstance() );
-		$importer->setExceptionCallback( array( $this, 'reportException' ) );
+		$importer->setExceptionCallback( [ $this, 'reportException' ] );
 
 		$importer->importFromFile( $file );
 

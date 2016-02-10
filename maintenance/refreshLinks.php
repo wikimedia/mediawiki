@@ -81,26 +81,26 @@ class RefreshLinks extends Maintenance {
 		}
 
 		// Give extensions a chance to optimize settings
-		Hooks::run( 'MaintenanceRefreshLinksInit', array( $this ) );
+		Hooks::run( 'MaintenanceRefreshLinksInit', [ $this ] );
 
 		$what = $redirectsOnly ? "redirects" : "links";
 
 		if ( $oldRedirectsOnly ) {
 			# This entire code path is cut-and-pasted from below.  Hurrah.
 
-			$conds = array(
+			$conds = [
 				"page_is_redirect=1",
 				"rd_from IS NULL",
 				self::intervalCond( $dbr, 'page_id', $start, $end ),
-			);
+			];
 
 			$res = $dbr->select(
-				array( 'page', 'redirect' ),
+				[ 'page', 'redirect' ],
 				'page_id',
 				$conds,
 				__METHOD__,
-				array(),
-				array( 'redirect' => array( "LEFT JOIN", "page_id=rd_from" ) )
+				[],
+				[ 'redirect' => [ "LEFT JOIN", "page_id=rd_from" ] ]
 			);
 			$num = $res->numRows();
 			$this->output( "Refreshing $num old redirects from $start...\n" );
@@ -117,11 +117,11 @@ class RefreshLinks extends Maintenance {
 		} elseif ( $newOnly ) {
 			$this->output( "Refreshing $what from " );
 			$res = $dbr->select( 'page',
-				array( 'page_id' ),
-				array(
+				[ 'page_id' ],
+				[
 					'page_is_new' => 1,
 					self::intervalCond( $dbr, 'page_id', $start, $end ),
-				),
+				],
 				__METHOD__
 			);
 			$num = $res->numRows();
@@ -192,7 +192,7 @@ class RefreshLinks extends Maintenance {
 		if ( $page === null ) {
 			// This page doesn't exist (any more)
 			// Delete any redirect table entry for it
-			$dbw->delete( 'redirect', array( 'rd_from' => $id ),
+			$dbw->delete( 'redirect', [ 'rd_from' => $id ],
 				__METHOD__ );
 
 			return;
@@ -207,7 +207,7 @@ class RefreshLinks extends Maintenance {
 		if ( $rt === null ) {
 			// The page is not a redirect
 			// Delete any redirect table entry for it
-			$dbw->delete( 'redirect', array( 'rd_from' => $id ), __METHOD__ );
+			$dbw->delete( 'redirect', [ 'rd_from' => $id ], __METHOD__ );
 			$fieldValue = 0;
 		} else {
 			$page->insertRedirectEntry( $rt );
@@ -215,8 +215,8 @@ class RefreshLinks extends Maintenance {
 		}
 
 		// Update the page table to be sure it is an a consistent state
-		$dbw->update( 'page', array( 'page_is_redirect' => $fieldValue ),
-			array( 'page_id' => $id ), __METHOD__ );
+		$dbw->update( 'page', [ 'page_is_redirect' => $fieldValue ],
+			[ 'page_id' => $id ], __METHOD__ );
 	}
 
 	/**
@@ -266,7 +266,7 @@ class RefreshLinks extends Maintenance {
 				'page_id',
 				self::intervalCond( $dbr, 'page_id', $start, $end ),
 				__METHOD__,
-				array( 'ORDER BY' => 'page_id', 'OFFSET' => $chunkSize )
+				[ 'ORDER BY' => 'page_id', 'OFFSET' => $chunkSize ]
 			);
 
 			if ( $nextStart !== false ) {
@@ -300,7 +300,7 @@ class RefreshLinks extends Maintenance {
 		$dbw = $this->getDB( DB_MASTER );
 		$dbr = $this->getDB( DB_SLAVE );
 
-		$linksTables = array( // table name => page_id field
+		$linksTables = [ // table name => page_id field
 			'pagelinks' => 'pl_from',
 			'imagelinks' => 'il_from',
 			'categorylinks' => 'cl_from',
@@ -310,7 +310,7 @@ class RefreshLinks extends Maintenance {
 			'langlinks' => 'll_from',
 			'redirect' => 'rd_from',
 			'page_props' => 'pp_page',
-		);
+		];
 
 		foreach ( $linksTables as $table => $field ) {
 			$this->output( "    $table: 0" );
@@ -320,18 +320,18 @@ class RefreshLinks extends Maintenance {
 				$ids = $dbr->selectFieldValues(
 					$table,
 					$field,
-					array(
+					[
 						self::intervalCond( $dbr, $field, $tableStart, $end ),
 						"$field NOT IN ({$dbr->selectSQLText( 'page', 'page_id' )})",
-					),
+					],
 					__METHOD__,
-					array( 'DISTINCT', 'ORDER BY' => $field, 'LIMIT' => $batchSize )
+					[ 'DISTINCT', 'ORDER BY' => $field, 'LIMIT' => $batchSize ]
 				);
 
 				$numIds = count( $ids );
 				if ( $numIds ) {
 					$counter += $numIds;
-					$dbw->delete( $table, array( $field => $ids ), __METHOD__ );
+					$dbw->delete( $table, [ $field => $ids ], __METHOD__ );
 					$this->output( ", $counter" );
 					$tableStart = $ids[$numIds - 1] + 1;
 					wfWaitForSlaves();

@@ -43,7 +43,7 @@ class ImportSiteScripts extends Maintenance {
 
 		$username = $this->getOption( 'username', false );
 		if ( $username === false ) {
-			$user = User::newSystemUser( 'ScriptImporter', array( 'steal' => true ) );
+			$user = User::newSystemUser( 'ScriptImporter', [ 'steal' => true ] );
 		} else {
 			$user = User::newFromName( $username );
 		}
@@ -61,10 +61,10 @@ class ImportSiteScripts extends Maintenance {
 			}
 
 			$this->output( "Importing $page\n" );
-			$url = wfAppendQuery( $baseUrl, array(
+			$url = wfAppendQuery( $baseUrl, [
 				'action' => 'raw',
-				'title' => "MediaWiki:{$page}" ) );
-			$text = Http::get( $url, array(), __METHOD__ );
+				'title' => "MediaWiki:{$page}" ] );
+			$text = Http::get( $url, [], __METHOD__ );
 
 			$wikiPage = WikiPage::factory( $title );
 			$content = ContentHandler::makeContent( $text, $wikiPage->getTitle() );
@@ -73,20 +73,20 @@ class ImportSiteScripts extends Maintenance {
 	}
 
 	protected function fetchScriptList() {
-		$data = array(
+		$data = [
 			'action' => 'query',
 			'format' => 'json',
 			'list' => 'allpages',
 			'apnamespace' => '8',
 			'aplimit' => '500',
 			'continue' => '',
-		);
+		];
 		$baseUrl = $this->getArg( 0 );
-		$pages = array();
+		$pages = [];
 
 		while ( true ) {
 			$url = wfAppendQuery( $baseUrl, $data );
-			$strResult = Http::get( $url, array(), __METHOD__ );
+			$strResult = Http::get( $url, [], __METHOD__ );
 			$result = FormatJson::decode( $strResult, true );
 
 			$page = null;

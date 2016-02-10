@@ -39,7 +39,7 @@ class RebuildMessages extends Maintenance {
 		if ( $wgLocalDatabases ) {
 			$databases = $wgLocalDatabases;
 		} else {
-			$databases = array( $wgDBname );
+			$databases = [ $wgDBname ];
 		}
 
 		foreach ( $databases as $db ) {

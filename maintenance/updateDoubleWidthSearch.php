@@ -57,7 +57,7 @@ class UpdateDoubleWidthSearch extends Maintenance {
 		}
 
 		$res = $this->findRows( $dbw );
-		$this->updateSearchIndex( $maxLockTime, array( $this, 'searchIndexUpdateCallback' ), $dbw, $res );
+		$this->updateSearchIndex( $maxLockTime, [ $this, 'searchIndexUpdateCallback' ], $dbw, $res );
 
 		$this->output( "Done\n" );
 	}

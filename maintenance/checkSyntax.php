@@ -31,8 +31,8 @@ require_once __DIR__ . '/Maintenance.php';
 class CheckSyntax extends Maintenance {
 
 	// List of files we're going to check
-	private $mFiles = array(), $mFailures = array(), $mWarnings = array();
-	private $mIgnorePaths = array(), $mNoStyleCheckPaths = array();
+	private $mFiles = [], $mFailures = [], $mWarnings = [];
+	private $mIgnorePaths = [], $mNoStyleCheckPaths = [];
 
 	public function __construct() {
 		parent::__construct();
@@ -93,12 +93,12 @@ class CheckSyntax extends Maintenance {
 	private function buildFileList() {
 		global $IP;
 
-		$this->mIgnorePaths = array(
+		$this->mIgnorePaths = [
 			// Compat stuff, explodes on PHP 5.3
 			"includes/NamespaceCompat.php$",
-		);
+		];
 
-		$this->mNoStyleCheckPaths = array(
+		$this->mNoStyleCheckPaths = [
 			// Third-party code we don't care about
 			"/activemq_stomp/",
 			"EmailPage/PHPMailer",
@@ -110,7 +110,7 @@ class CheckSyntax extends Maintenance {
 			"QPoll/Excel/",
 			"/geshi/",
 			"/smarty/",
-		);
+		];
 
 		if ( $this->hasOption( 'path' ) ) {
 			$path = $this->getOption( 'path' );
@@ -151,13 +151,13 @@ class CheckSyntax extends Maintenance {
 
 		// Only check files in these directories.
 		// Don't just put $IP, because the recursive dir thingie goes into all subdirs
-		$dirs = array(
+		$dirs = [
 			$IP . '/includes',
 			$IP . '/mw-config',
 			$IP . '/languages',
 			$IP . '/maintenance',
 			$IP . '/skins',
-		);
+		];
 		if ( $this->hasOption( 'with-extensions' ) ) {
 			$dirs[] = $IP . '/extensions';
 		}
@@ -215,7 +215,7 @@ class CheckSyntax extends Maintenance {
 
 		$wgMaxShellMemory = $oldMaxShellMemory;
 
-		$arr = array();
+		$arr = [];
 		$filename = strtok( $output, "\n" );
 		while ( $filename !== false ) {
 			if ( $filename !== '' ) {
@@ -239,7 +239,7 @@ class CheckSyntax extends Maintenance {
 			return false;
 		}
 		foreach ( $this->mIgnorePaths as $regex ) {
-			$m = array();
+			$m = [];
 			if ( preg_match( "~{$regex}~", $file, $m ) ) {
 				return false;
 			}
@@ -300,11 +300,11 @@ class CheckSyntax extends Maintenance {
 	 * @return bool
 	 */
 	private function checkFileWithParsekit( $file ) {
-		static $okErrors = array(
+		static $okErrors = [
 			'Redefining already defined constructor',
 			'Assigning the return value of new by reference is deprecated',
-		);
-		$errors = array();
+		];
+		$errors = [];
 		parsekit_compile_file( $file, $errors, PARSEKIT_SIMPLE );
 		$ret = true;
 		if ( $errors ) {
@@ -348,7 +348,7 @@ class CheckSyntax extends Maintenance {
 	 */
 	private function checkForMistakes( $file ) {
 		foreach ( $this->mNoStyleCheckPaths as $regex ) {
-			$m = array();
+			$m = [];
 			if ( preg_match( "~{$regex}~", $file, $m ) ) {
 				return;
 			}
@@ -369,7 +369,7 @@ class CheckSyntax extends Maintenance {
 		}
 
 		if ( !isset( $this->mWarnings[$file] ) ) {
-			$this->mWarnings[$file] = array();
+			$this->mWarnings[$file] = [];
 		}
 		$this->mWarnings[$file][] = $desc;
 		$this->output( "Warning in file $file: $desc found.\n" );
@@ -381,7 +381,7 @@ class CheckSyntax extends Maintenance {
 		}
 
 		if ( !isset( $this->mWarnings[$file] ) ) {
-			$this->mWarnings[$file] = array();
+			$this->mWarnings[$file] = [];
 		}
 		$this->mWarnings[$file][] = $desc;
 		$this->output( "Warning in file $file: $desc found.\n" );

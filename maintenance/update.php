@@ -157,7 +157,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		$shared = $this->hasOption( 'doshared' );
 
-		$updates = array( 'core', 'extensions' );
+		$updates = [ 'core', 'extensions' ];
 		if ( !$this->hasOption( 'schema' ) ) {
 			if ( $this->hasOption( 'noschema' ) ) {
 				$updates[] = 'noschema';
@@ -201,12 +201,12 @@ class UpdateMediaWiki extends Maintenance {
 		# Don't try to access the database
 		# This needs to be disabled early since extensions will try to use the l10n
 		# cache from $wgExtensionFunctions (bug 20471)
-		$wgLocalisationCacheConf = array(
+		$wgLocalisationCacheConf = [
 			'class' => 'LocalisationCache',
 			'storeClass' => 'LCStoreNull',
 			'storeDirectory' => false,
 			'manualRecache' => false,
-		);
+		];
 	}
 }
 

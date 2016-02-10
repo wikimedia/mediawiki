@@ -131,7 +131,7 @@ class GenerateJsonI18n extends Maintenance {
 			) );
 			// Make sure the @metadata key is the first key in the output
 			$langmsgs = array_merge(
-				array( '@metadata' => array( 'authors' => $authors ) ),
+				[ '@metadata' => [ 'authors' => $authors ] ],
 				$langmsgs
 			);
 
@@ -187,7 +187,7 @@ class GenerateJsonI18n extends Maintenance {
 		$matches = null;
 		preg_match_all( '/@author (.*?)$/m', $comment, $matches );
 
-		return $matches && $matches[1] ? $matches[1] : array();
+		return $matches && $matches[1] ? $matches[1] : [];
 	}
 }
 

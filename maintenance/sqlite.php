@@ -131,7 +131,7 @@ class SqliteMaintenance extends Maintenance {
 		if ( !Sqlite::IsPresent() ) {
 			$this->error( "Error: SQLite support not found\n" );
 		}
-		$files = array( $this->getOption( 'check-syntax' ) );
+		$files = [ $this->getOption( 'check-syntax' ) ];
 		$files += $this->mArgs;
 		$result = Sqlite::checkSqlSyntax( $files );
 		if ( $result === true ) {

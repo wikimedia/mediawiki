@@ -93,10 +93,10 @@ class RebuildFileCache extends Maintenance {
 		// Go through each page and save the output
 		while ( $blockEnd <= $end ) {
 			// Get the pages
-			$res = $dbr->select( 'page', array( 'page_namespace', 'page_title', 'page_id' ),
-				array( 'page_namespace' => $wgContentNamespaces,
-					"page_id BETWEEN $blockStart AND $blockEnd" ),
-				array( 'ORDER BY' => 'page_id ASC', 'USE INDEX' => 'PRIMARY' )
+			$res = $dbr->select( 'page', [ 'page_namespace', 'page_title', 'page_id' ],
+				[ 'page_namespace' => $wgContentNamespaces,
+					"page_id BETWEEN $blockStart AND $blockEnd" ],
+				[ 'ORDER BY' => 'page_id ASC', 'USE INDEX' => 'PRIMARY' ]
 			);
 
 			$this->beginTransaction( $dbw, __METHOD__ ); // for any changes
@@ -128,7 +128,7 @@ class RebuildFileCache extends Maintenance {
 							continue; // done already!
 						}
 					}
-					ob_start( array( &$cache, 'saveToFileCache' ) ); // save on ob_end_clean()
+					ob_start( [ $cache, 'saveToFileCache' ] ); // save on ob_end_clean()
 					$wgUseFileCache = false; // hack, we don't want $article fiddling with filecache
 					$article->view();
 					MediaWiki\suppressWarnings(); // header notices

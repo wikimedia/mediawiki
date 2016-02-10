@@ -33,12 +33,12 @@ require_once __DIR__ . '/cleanupTable.inc';
  * @ingroup Maintenance
  */
 class ImageCleanup extends TableCleanup {
-	protected $defaultParams = array(
+	protected $defaultParams = [
 		'table' => 'image',
-		'conds' => array(),
+		'conds' => [],
 		'index' => 'img_name',
 		'callback' => 'processRow',
-	);
+	];
 
 	public function __construct() {
 		parent::__construct();
@@ -104,7 +104,7 @@ class ImageCleanup extends TableCleanup {
 			$this->output( "deleting bogus row '$name'\n" );
 			$db = $this->getDB( DB_MASTER );
 			$db->delete( 'image',
-				array( 'img_name' => $name ),
+				[ 'img_name' => $name ],
 				__METHOD__ );
 		}
 	}
@@ -118,14 +118,14 @@ class ImageCleanup extends TableCleanup {
 	}
 
 	private function imageExists( $name, $db ) {
-		return $db->selectField( 'image', '1', array( 'img_name' => $name ), __METHOD__ );
+		return $db->selectField( 'image', '1', [ 'img_name' => $name ], __METHOD__ );
 	}
 
 	private function pageExists( $name, $db ) {
 		return $db->selectField(
 			'page',
 			'1',
-			array( 'page_namespace' => NS_FILE, 'page_title' => $name ),
+			[ 'page_namespace' => NS_FILE, 'page_title' => $name ],
 			__METHOD__
 		);
 	}
@@ -169,16 +169,16 @@ class ImageCleanup extends TableCleanup {
 			// @todo FIXME: Should this use File::move()?
 			$this->beginTransaction( $db, __METHOD__ );
 			$db->update( 'image',
-				array( 'img_name' => $final ),
-				array( 'img_name' => $orig ),
+				[ 'img_name' => $final ],
+				[ 'img_name' => $orig ],
 				__METHOD__ );
 			$db->update( 'oldimage',
-				array( 'oi_name' => $final ),
-				array( 'oi_name' => $orig ),
+				[ 'oi_name' => $final ],
+				[ 'oi_name' => $orig ],
 				__METHOD__ );
 			$db->update( 'page',
-				array( 'page_title' => $final ),
-				array( 'page_title' => $orig, 'page_namespace' => NS_FILE ),
+				[ 'page_title' => $final ],
+				[ 'page_title' => $orig, 'page_namespace' => NS_FILE ],
 				__METHOD__ );
 			$dir = dirname( $finalPath );
 			if ( !file_exists( $dir ) ) {
@@ -206,7 +206,7 @@ class ImageCleanup extends TableCleanup {
 	private function buildSafeTitle( $name ) {
 		$x = preg_replace_callback(
 			'/([^' . Title::legalChars() . ']|~)/',
-			array( $this, 'hexChar' ),
+			[ $this, 'hexChar' ],
 			$name );
 
 		$test = Title::makeTitleSafe( NS_FILE, $x );

@@ -54,7 +54,7 @@ class DeleteArchivedFiles extends Maintenance {
 		$this->output( "Searching for and deleting archived files...\n" );
 		$res = $dbw->select(
 			'filearchive',
-			array( 'fa_id', 'fa_storage_group', 'fa_storage_key', 'fa_sha1' ),
+			[ 'fa_id', 'fa_storage_group', 'fa_storage_key', 'fa_sha1' ],
 			'',
 			__METHOD__
 		);
@@ -81,12 +81,12 @@ class DeleteArchivedFiles extends Maintenance {
 			$inuse = $dbw->selectField(
 				'oldimage',
 				'1',
-				array(
+				[
 					'oi_sha1' => $sha1,
 					$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE
-				),
+				],
 				__METHOD__,
-				array( 'FOR UPDATE' )
+				[ 'FOR UPDATE' ]
 			);
 
 			$needForce = true;
@@ -110,7 +110,7 @@ class DeleteArchivedFiles extends Maintenance {
 			}
 
 			$count++;
-			$dbw->delete( 'filearchive', array( 'fa_id' => $id ), __METHOD__ );
+			$dbw->delete( 'filearchive', [ 'fa_id' => $id ], __METHOD__ );
 		}
 
 		$this->commitTransaction( $dbw, __METHOD__ );

@@ -75,7 +75,7 @@ class FixTimestamps extends Maintenance {
 		$res = $dbw->query( $sql, __METHOD__ );
 
 		$lastNormal = 0;
-		$badRevs = array();
+		$badRevs = [];
 		$numGoodRevs = 0;
 
 		foreach ( $res as $row ) {

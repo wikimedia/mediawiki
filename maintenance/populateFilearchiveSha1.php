@@ -47,7 +47,7 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 		$startTime = microtime( true );
 		$dbw = $this->getDB( DB_MASTER );
 		$table = 'filearchive';
-		$conds = array( 'fa_sha1' => '', 'fa_storage_key IS NOT NULL' );
+		$conds = [ 'fa_sha1' => '', 'fa_storage_key IS NOT NULL' ];
 
 		if ( !$dbw->fieldExists( $table, 'fa_sha1', __METHOD__ ) ) {
 			$this->output( "fa_sha1 column does not exist\n\n", true );
@@ -64,10 +64,10 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 		do {
 			$res = $dbw->select(
 				$table,
-				array( 'fa_id', 'fa_storage_key' ),
+				[ 'fa_id', 'fa_storage_key' ],
 				$conds,
 				__METHOD__,
-				array( 'LIMIT' => $batchSize )
+				[ 'LIMIT' => $batchSize ]
 			);
 
 			$i = 0;
@@ -78,8 +78,8 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 				}
 				$sha1 = LocalRepo::getHashFromKey( $row->fa_storage_key );
 				$dbw->update( $table,
-					array( 'fa_sha1' => $sha1 ),
-					array( 'fa_id' => $row->fa_id ),
+					[ 'fa_sha1' => $sha1 ],
+					[ 'fa_id' => $row->fa_id ],
 					__METHOD__
 				);
 				$lastId = $row->fa_id;

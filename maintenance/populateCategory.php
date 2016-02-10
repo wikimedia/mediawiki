@@ -79,7 +79,7 @@ TEXT
 			$row = $dbw->selectRow(
 				'updatelog',
 				'1',
-				array( 'ul_key' => 'populate category' ),
+				[ 'ul_key' => 'populate category' ],
 				__METHOD__
 			);
 			if ( $row ) {
@@ -106,9 +106,9 @@ TEXT
 				'cl_to',
 				$where,
 				__METHOD__,
-				array(
+				[
 					'ORDER BY' => 'cl_to'
-				)
+				]
 			);
 			if ( !$row ) {
 				# Done, hopefully.
@@ -135,7 +135,7 @@ TEXT
 
 		if ( $dbw->insert(
 			'updatelog',
-			array( 'ul_key' => 'populate category' ),
+			[ 'ul_key' => 'populate category' ],
 			__METHOD__,
 			'IGNORE'
 		) ) {

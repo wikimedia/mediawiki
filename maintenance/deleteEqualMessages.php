@@ -60,7 +60,7 @@ class DeleteEqualMessages extends Maintenance {
 		$l10nCache = Language::getLocalisationCache();
 		$messageNames = $l10nCache->getSubitemList( 'en', 'messages' );
 		// Normalise message names for NS_MEDIAWIKI page_title
-		$messageNames = array_map( array( $wgContLang, 'ucfirst' ), $messageNames );
+		$messageNames = array_map( [ $wgContLang, 'ucfirst' ], $messageNames );
 
 		$statuses = AllMessagesTablePager::getCustomisedStatuses(
 			$messageNames, $langCode, $nonContLang );
@@ -82,10 +82,10 @@ class DeleteEqualMessages extends Maintenance {
 						$actual === $default
 				) {
 					$hasTalk = isset( $statuses['talks'][$key] );
-					$messageInfo['results'][] = array(
+					$messageInfo['results'][] = [
 						'title' => $key . $titleSuffix,
 						'hasTalk' => $hasTalk,
-					);
+					];
 					$messageInfo['equalPages']++;
 					if ( $hasTalk ) {
 						$messageInfo['equalPagesTalks']++;
@@ -100,12 +100,12 @@ class DeleteEqualMessages extends Maintenance {
 		$doDeleteTalk = $this->hasOption( 'delete-talk' );
 		$langCode = $this->getOption( 'lang-code' );
 
-		$messageInfo = array(
+		$messageInfo = [
 			'relevantPages' => 0,
 			'equalPages' => 0,
 			'equalPagesTalks' => 0,
-			'results' => array(),
-		);
+			'results' => [],
+		];
 
 		$this->output( 'Checking for pages with default message...' );
 
@@ -162,7 +162,7 @@ class DeleteEqualMessages extends Maintenance {
 			return;
 		}
 
-		$user = User::newSystemUser( 'MediaWiki default', array( 'steal' => true ) );
+		$user = User::newSystemUser( 'MediaWiki default', [ 'steal' => true ] );
 		if ( !$user ) {
 			$this->error( "Invalid username", true );
 		}
