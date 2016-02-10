@@ -181,11 +181,10 @@ class JobQueueDB extends JobQueue {
 	protected function doBatchPush( array $jobs, $flags ) {
 		$dbw = $this->getMasterDB();
 
-		$that = $this;
 		$method = __METHOD__;
 		$dbw->onTransactionIdle(
-			function () use ( $dbw, $that, $jobs, $flags, $method ) {
-				$that->doBatchPushInternal( $dbw, $jobs, $flags, $method );
+			function () use ( $dbw, $jobs, $flags, $method ) {
+				$this->doBatchPushInternal( $dbw, $jobs, $flags, $method );
 			}
 		);
 	}
