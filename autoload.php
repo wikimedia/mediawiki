@@ -357,6 +357,7 @@ $wgAutoloadLocalClasses = array(
 	'DoubleRedirectsPage' => __DIR__ . '/includes/specials/SpecialDoubleRedirects.php',
 	'DoubleReplacer' => __DIR__ . '/includes/libs/replacers/DoubleReplacer.php',
 	'DummyLinker' => __DIR__ . '/includes/Linker.php',
+	'DummySessionProvider' => __DIR__ . '/includes/installer/DummySessionProvider.php',
 	'DummyTermColorer' => __DIR__ . '/maintenance/term/MWTerm.php',
 	'Dump7ZipOutput' => __DIR__ . '/includes/export/Dump7ZipOutput.php',
 	'DumpBZip2Output' => __DIR__ . '/includes/export/DumpBZip2Output.php',
