@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Session;
 
+use Psr\Log\LoggerInterface;
 use User;
 use WebRequest;
 
@@ -41,24 +42,28 @@ use WebRequest;
  * The Session object also serves as a replacement for PHP's $_SESSION,
  * managing access to per-session data.
  *
- * @todo Once we drop support for PHP 5.3.3, implementing ArrayAccess would be nice.
  * @ingroup Session
  * @since 1.27
  */
-final class Session implements \Countable, \Iterator {
+final class Session implements \Countable, \Iterator, \ArrayAccess {
 	/** @var SessionBackend Session backend */
 	private $backend;
 
 	/** @var int Session index */
 	private $index;
 
+	/** @var LoggerInterface */
+	private $logger;
+
 	/**
 	 * @param SessionBackend $backend
 	 * @param int $index
+	 * @param LoggerInterface $logger
 	 */
-	public function __construct( SessionBackend $backend, $index ) {
+	public function __construct( SessionBackend $backend, $index, LoggerInterface $logger ) {
 		$this->backend = $backend;
 		$this->index = $index;
+		$this->logger = $logger;
 	}
 
 	public function __destruct() {
@@ -271,7 +276,7 @@ final class Session implements \Countable, \Iterator {
 	/**
 	 * Fetch a value from the session
 	 * @param string|int $key
-	 * @param mixed $default
+	 * @param mixed $default Returned if $this->exists( $key ) would be false
 	 * @return mixed
 	 */
 	public function get( $key, $default = null ) {
@@ -281,6 +286,7 @@ final class Session implements \Countable, \Iterator {
 
 	/**
 	 * Test if a value exists in the session
+	 * @note Unlike isset(), null values are considered to exist.
 	 * @param string|int $key
 	 * @return bool
 	 */
@@ -417,6 +423,39 @@ final class Session implements \Countable, \Iterator {
 	public function valid() {
 		$data = &$this->backend->getData();
 		return key( $data ) !== null;
+	}
+
+	/**
+	 * @note Despite the name, this seems to be intended to implement isset()
+	 *  rather than array_key_exists(). So do that.
+	 */
+	public function offsetExists( $offset ) {
+		$data = &$this->backend->getData();
+		return isset( $data[$offset] );
+	}
+
+	/**
+	 * @note This supports indirect modifications but can't mark the session
+	 *  dirty when those happen. SessionBackend::save() checks the hash of the
+	 *  data to detect such changes.
+	 * @note Accessing a nonexistent key via this mechanism causes that key to
+	 *  be created with a null value, and does not raise a PHP warning.
+	 */
+	public function &offsetGet( $offset ) {
+		$data = &$this->backend->getData();
+		if ( !array_key_exists( $offset, $data ) ) {
+			$ex = new \Exception( "Undefined index (auto-adds to session with a null value): $offset" );
+			$this->logger->debug( $ex->getMessage(), array( 'exception' => $ex ) );
+		}
+		return $data[$offset];
+	}
+
+	public function offsetSet( $offset, $value ) {
+		$this->set( $offset, $value );
+	}
+
+	public function offsetUnset( $offset ) {
+		$this->remove( $offset );
 	}
 
 	/**@}*/

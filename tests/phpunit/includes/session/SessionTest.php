@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Session;
 
+use Psr\Log\LogLevel;
 use MediaWikiTestCase;
 use User;
 
@@ -16,7 +17,7 @@ class SessionTest extends MediaWikiTestCase {
 		\TestingAccessWrapper::newFromObject( $backend )->requests = array( -1 => 'dummy' );
 		\TestingAccessWrapper::newFromObject( $backend )->id = new SessionId( 'abc' );
 
-		$session = new Session( $backend, 42 );
+		$session = new Session( $backend, 42, new \TestLogger );
 		$priv = \TestingAccessWrapper::newFromObject( $session );
 		$this->assertSame( $backend, $priv->backend );
 		$this->assertSame( 42, $priv->index );
@@ -149,6 +150,71 @@ class SessionTest extends MediaWikiTestCase {
 		$this->assertFalse( $backend->dirty );
 
 		$this->assertEquals( $backend->data, iterator_to_array( $session ) );
+		$this->assertFalse( $backend->dirty );
+	}
+
+	public function testArrayAccess() {
+		$logger = new \TestLogger;
+		$session = TestUtils::getDummySession( null, -1, $logger );
+		$backend = \TestingAccessWrapper::newFromObject( $session )->backend;
+
+		$this->assertEquals( 1, $session['foo'] );
+		$this->assertEquals( 'zero', $session[0] );
+		$this->assertFalse( $backend->dirty );
+
+		$logger->setCollect( true );
+		$this->assertEquals( null, $session['null'] );
+		$logger->setCollect( false );
+		$this->assertFalse( $backend->dirty );
+		$this->assertSame( array(
+			array( LogLevel::DEBUG, 'Undefined index (auto-adds to session with a null value): null' )
+		), $logger->getBuffer() );
+		$logger->clearBuffer();
+
+		$session['foo'] = 55;
+		$this->assertEquals( 55, $backend->data['foo'] );
+		$this->assertTrue( $backend->dirty );
+		$backend->dirty = false;
+
+		$session[1] = 'one';
+		$this->assertEquals( 'one', $backend->data[1] );
+		$this->assertTrue( $backend->dirty );
+		$backend->dirty = false;
+
+		$session[1] = 'one';
+		$this->assertFalse( $backend->dirty );
+
+		$session['bar'] = array( 'baz' => 1 );
+		$session['bar']['baz'] = 2;
+		$this->assertEquals( array( 'baz' => 2 ), $backend->data['bar'] );
+
+		$logger->setCollect( true );
+		$session['baz']['baz'] = 3;
+		$logger->setCollect( false );
+		$this->assertEquals( array( 'baz' => 3 ), $backend->data['baz'] );
+		$this->assertSame( array(
+			array( LogLevel::DEBUG, 'Undefined index (auto-adds to session with a null value): baz' )
+		), $logger->getBuffer() );
+		$logger->clearBuffer();
+
+		$backend->dirty = false;
+		$this->assertTrue( isset( $session['foo'] ) );
+		$this->assertTrue( isset( $session[1] ) );
+		$this->assertFalse( isset( $session['null'] ) );
+		$this->assertFalse( isset( $session['missing'] ) );
+		$this->assertFalse( isset( $session[100] ) );
+		$this->assertFalse( $backend->dirty );
+
+		unset( $session['foo'] );
+		$this->assertArrayNotHasKey( 'foo', $backend->data );
+		$this->assertTrue( $backend->dirty );
+		$backend->dirty = false;
+		unset( $session[1] );
+		$this->assertArrayNotHasKey( 1, $backend->data );
+		$this->assertTrue( $backend->dirty );
+		$backend->dirty = false;
+
+		unset( $session[101] );
 		$this->assertFalse( $backend->dirty );
 	}
 
