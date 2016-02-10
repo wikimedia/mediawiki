@@ -692,17 +692,16 @@ abstract class DatabaseMysqlBase extends Database {
 			$this->getLBInfo( 'clusterMasterHost' ) ?: $this->getServer()
 		);
 
-		$that = $this;
 		return $cache->getWithSetCallback(
 			$key,
 			$cache::TTL_INDEFINITE,
-			function () use ( $that, $cache, $key ) {
+			function () use ( $cache, $key ) {
 				// Get and leave a lock key in place for a short period
 				if ( !$cache->lock( $key, 0, 10 ) ) {
 					return false; // avoid master connection spike slams
 				}
 
-				$conn = $that->getLazyMasterHandle();
+				$conn = $this->getLazyMasterHandle();
 				if ( !$conn ) {
 					return false; // something is misconfigured
 				}
