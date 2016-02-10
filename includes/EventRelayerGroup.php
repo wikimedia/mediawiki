@@ -18,7 +18,7 @@ class EventRelayerGroup {
 	/**
 	 * @param Config $config
 	 */
-	protected function __constuct( Config $config ) {
+	protected function __construct( Config $config ) {
 		$this->configByChannel = $config->get( 'EventRelayerConfig' );
 	}
 
