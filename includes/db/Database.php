@@ -1929,10 +1929,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param string $index
 	 * @return string
 	 */
-	public function indexName( $index ) {
-		// @FIXME: Make this protected once we move away from PHP 5.3
-		// Needs to be public because of usage in closure (in DatabaseBase::replaceVars)
-
+	protected function indexName( $index ) {
 		// Backwards-compatibility hack
 		$renamed = array(
 			'ar_usertext_timestamp' => 'usertext_timestamp',
@@ -3100,7 +3097,6 @@ abstract class DatabaseBase implements IDatabase {
 	 * @return string The new SQL statement with variables replaced
 	 */
 	protected function replaceVars( $ins ) {
-		$that = $this;
 		$vars = $this->getSchemaVars();
 		return preg_replace_callback(
 			'!
@@ -3109,19 +3105,19 @@ abstract class DatabaseBase implements IDatabase {
 				`\{\$ (\w+) }`                    | # 4. addIdentifierQuotes
 				/\*\$ (\w+) \*/                     # 5. leave unencoded
 			!x',
-			function ( $m ) use ( $that, $vars ) {
+			function ( $m ) use ( $vars ) {
 				// Note: Because of <https://bugs.php.net/bug.php?id=51881>,
 				// check for both nonexistent keys *and* the empty string.
 				if ( isset( $m[1] ) && $m[1] !== '' ) {
 					if ( $m[1] === 'i' ) {
-						return $that->indexName( $m[2] );
+						return $this->indexName( $m[2] );
 					} else {
-						return $that->tableName( $m[2] );
+						return $this->tableName( $m[2] );
 					}
 				} elseif ( isset( $m[3] ) && $m[3] !== '' && array_key_exists( $m[3], $vars ) ) {
-					return $that->addQuotes( $vars[$m[3]] );
+					return $this->addQuotes( $vars[$m[3]] );
 				} elseif ( isset( $m[4] ) && $m[4] !== '' && array_key_exists( $m[4], $vars ) ) {
-					return $that->addIdentifierQuotes( $vars[$m[4]] );
+					return $this->addIdentifierQuotes( $vars[$m[4]] );
 				} elseif ( isset( $m[5] ) && $m[5] !== '' && array_key_exists( $m[5], $vars ) ) {
 					return $vars[$m[5]];
 				} else {
@@ -3179,10 +3175,9 @@ abstract class DatabaseBase implements IDatabase {
 			return null;
 		}
 
-		$that = $this;
-		$unlocker = new ScopedCallback( function () use ( $that, $lockKey, $fname ) {
-			$that->commit( __METHOD__, 'flush' );
-			$that->unlock( $lockKey, $fname );
+		$unlocker = new ScopedCallback( function () use ( $lockKey, $fname ) {
+			$this->commit( __METHOD__, 'flush' );
+			$this->unlock( $lockKey, $fname );
 		} );
 
 		$this->commit( __METHOD__, 'flush' );
