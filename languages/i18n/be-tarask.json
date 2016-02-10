@@ -539,6 +539,7 @@
 	"botpasswords-deleted-title": "Пароль робата выдалены",
 	"botpasswords-deleted-body": "Пароль робата «$1» быў выдалены.",
 	"botpasswords-no-provider": "BotPasswordsSessionProvider недаступны.",
+	"botpasswords-invalid-name": "Пададзенае імя ўдзельніка ня ўтрымлівае падзяляльнік для паролю робата («$1»).",
 	"resetpass_forbidden": "Пароль ня можа быць зьменены",
 	"resetpass-no-info": "Для непасрэднага доступу да гэтай старонкі Вам неабходна ўвайсьці ў сыстэму.",
 	"resetpass-submit-loggedin": "Зьмяніць пароль",

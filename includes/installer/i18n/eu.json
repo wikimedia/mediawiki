@@ -43,6 +43,7 @@
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] instalatuta dago",
 	"config-diff3-bad": "GNU diff3 ez da aurkitu.",
 	"config-db-type": "Datu-base mota:",
+	"config-db-host": "Datu-basearen zerbitzaria:",
 	"config-db-host-oracle": "Datu-baseko TNS:",
 	"config-db-wiki-settings": "Wiki hau identifikatu",
 	"config-db-name": "Datu-base izena:",

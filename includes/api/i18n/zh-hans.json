@@ -948,7 +948,7 @@
 	"apihelp-query+redirects-param-show": "只显示符合这些标准的项目：\n;fragment:只显示带碎片的重定向。\n;!fragment:只显示不带碎片的重定向。",
 	"apihelp-query+redirects-example-simple": "获取至[[Main Page]]的重定向列表。",
 	"apihelp-query+redirects-example-generator": "获取所有重定向至[[Main Page]]的信息。",
-	"apihelp-query+revisions-description": "获取修订版本信息。\n\n可用于以下几个方面：\n# 通过设置title或pageid获取一批页面（最新修订）的数据。\n# 通过使用带start、end或limit的title或pageid获取给定页面的多个修订。\n# 通过revid设置一批修订的ID获取它们的数据。",
+	"apihelp-query+revisions-description": "获取修订版本信息。\n\n可用于以下几个方面：\n# 通过设置标题或页面ID获取一批页面（最新修订）的数据。\n# 通过使用带start、end或limit的标题或页面ID获取给定页面的多个修订。\n# 通过revid设置一批修订的ID获取它们的数据。",
 	"apihelp-query+revisions-paraminfo-singlepageonly": "可能只能与单一页面使用（模式#2）。",
 	"apihelp-query+revisions-param-startid": "从哪个修订版本ID开始列举。",
 	"apihelp-query+revisions-param-endid": "在此修订版本ID停止修订列举。",
