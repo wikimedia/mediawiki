@@ -426,10 +426,10 @@ TEXT
 
 		xml_set_element_handler(
 			$parser,
-			array( &$this, 'startElement' ),
-			array( &$this, 'endElement' )
+			array( $this, 'startElement' ),
+			array( $this, 'endElement' )
 		);
-		xml_set_character_data_handler( $parser, array( &$this, 'characterData' ) );
+		xml_set_character_data_handler( $parser, array( $this, 'characterData' ) );
 
 		$offset = 0; // for context extraction on error reporting
 		do {

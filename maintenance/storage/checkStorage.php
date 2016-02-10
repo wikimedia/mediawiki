@@ -471,7 +471,7 @@ class CheckStorage {
 			$source,
 			ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
 		);
-		$importer->setRevisionCallback( array( &$this, 'importRevision' ) );
+		$importer->setRevisionCallback( array( $this, 'importRevision' ) );
 		$importer->doImport();
 	}
 
