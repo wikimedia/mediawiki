@@ -601,6 +601,7 @@ class ParserOptions {
 
 	/**
 	 * Get a ParserOptions object for an anonymous user
+	 * @since 1.27
 	 * @return ParserOptions
 	 */
 	public static function newFromAnon() {
