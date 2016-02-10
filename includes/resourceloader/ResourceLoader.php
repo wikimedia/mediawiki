@@ -618,11 +618,8 @@ class ResourceLoader implements LoggerAwareInterface {
 		if ( !$modules ) {
 			return '';
 		}
-		// Support: PHP 5.3 ("$this" for anonymous functions was added in PHP 5.4.0)
-		// http://php.net/functions.anonymous
-		$rl = $this;
-		$hashes = array_map( function ( $module ) use ( $rl, $context ) {
-			return $rl->getModule( $module )->getVersionHash( $context );
+		$hashes = array_map( function ( $module ) use ( $context ) {
+			return $this->getModule( $module )->getVersionHash( $context );
 		}, $modules );
 		return self::makeHash( implode( $hashes ) );
 	}
