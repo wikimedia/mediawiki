@@ -28,8 +28,6 @@ use BagOStuff;
 use CachedBagOStuff;
 use Config;
 use FauxRequest;
-use Language;
-use Message;
 use User;
 use WebRequest;
 
