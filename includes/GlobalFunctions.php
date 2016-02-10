@@ -2989,22 +2989,6 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1,
 }
 
 /**
- * Check if there is sufficient entropy in php's built-in session generation
- *
- * @deprecated since 1.27, PHP's session generation isn't used with
- *  MediaWiki\\Session\\SessionManager
- * @return bool True = there is sufficient entropy
- */
-function wfCheckEntropy() {
-	wfDeprecated( __FUNCTION__, '1.27' );
-	return (
-			( wfIsWindows() && version_compare( PHP_VERSION, '5.3.3', '>=' ) )
-			|| ini_get( 'session.entropy_file' )
-		)
-		&& intval( ini_get( 'session.entropy_length' ) ) >= 32;
-}
-
-/**
  * @deprecated since 1.27, PHP's session generation isn't used with
  *  MediaWiki\\Session\\SessionManager
  */
