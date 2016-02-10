@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Session;
 
-use Psr\Log\LogLevel;
 use MediaWikiTestCase;
 
 /**
