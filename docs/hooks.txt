@@ -3483,7 +3483,7 @@ Return false to prevent setting of the cookie.
 &$name: Cookie name passed to WebResponse::setcookie()
 &$value: Cookie value passed to WebResponse::setcookie()
 &$expire: Cookie expiration, as for PHP's setcookie()
-$options: Options passed to WebResponse::setcookie()
+&$options: Options passed to WebResponse::setcookie()
 
 'wfShellWikiCmd': Called when generating a shell-escaped command line string to
 run a MediaWiki cli script.
