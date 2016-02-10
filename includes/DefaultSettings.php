@@ -2301,7 +2301,11 @@ $wgSessionHandler = null;
 
 /**
  * Whether to use PHP session handling ($_SESSION and session_*() functions)
- * @var string 'enable', 'warn', or 'disable'
+ * @since 1.27
+ * @var string
+ *  - 'enable': Integrate with PHP's session handling as much as possible.
+ *  - 'warn': Integrate but log warnings if anything changes $_SESSION.
+ *  - 'disable': Throw exceptions if PHP session handling is used.
  */
 $wgPHPSessionHandling = 'enable';
 
