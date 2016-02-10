@@ -573,12 +573,10 @@ LUA;
 	 * @return MappedIterator
 	 */
 	protected function getJobIterator( RedisConnRef $conn, array $uids ) {
-		$that = $this;
-
 		return new MappedIterator(
 			$uids,
-			function ( $uid ) use ( $that, $conn ) {
-				return $that->getJobFromUidInternal( $uid, $conn );
+			function ( $uid ) use ( $conn ) {
+				return $this->getJobFromUidInternal( $uid, $conn );
 			},
 			array( 'accept' => function ( $job ) {
 				return is_object( $job );
