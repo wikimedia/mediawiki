@@ -549,13 +549,11 @@ final class SessionBackend {
 	 * @return \ScopedCallback When this goes out of scope, a save will be triggered
 	 */
 	public function delaySave() {
-		$that = $this;
 		$this->delaySave++;
-		$ref = &$this->delaySave;
-		return new \ScopedCallback( function () use ( $that, &$ref ) {
-			if ( --$ref <= 0 ) {
-				$ref = 0;
-				$that->save();
+		return new \ScopedCallback( function () {
+			if ( --$this->delaySave <= 0 ) {
+				$this->delaySave = 0;
+				$this->save();
 			}
 		} );
 	}
@@ -692,9 +690,8 @@ final class SessionBackend {
 	private function checkPHPSession() {
 		if ( !$this->checkPHPSessionRecursionGuard ) {
 			$this->checkPHPSessionRecursionGuard = true;
-			$ref = &$this->checkPHPSessionRecursionGuard;
-			$reset = new \ScopedCallback( function () use ( &$ref ) {
-				$ref = false;
+			$reset = new \ScopedCallback( function () {
+				$this->checkPHPSessionRecursionGuard = false;
 			} );
 
 			if ( $this->usePhpSessionHandling && session_id() === '' && PHPSessionHandler::isEnabled() &&
