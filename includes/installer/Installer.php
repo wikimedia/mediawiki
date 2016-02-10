@@ -1784,6 +1784,15 @@ abstract class Installer {
 
 		// Some of the environment checks make shell requests, remove limits
 		$GLOBALS['wgMaxShellMemory'] = 0;
+
+		$GLOBALS['wgSessionProviders'] = array(
+			array(
+				'class' => 'InstallerSessionProvider',
+				'args' => array( array(
+					'priority' => 1,
+				) )
+			)
+		);
 	}
 
 	/**
