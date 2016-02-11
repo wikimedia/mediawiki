@@ -56,13 +56,13 @@ class LinkBatch {
 	}
 
 	/**
-	 * @param Title|TitleValue $title
+	 * @param LinkTarget $linkTarget
 	 */
-	public function addObj( $title ) {
-		if ( is_object( $title ) ) {
-			$this->add( $title->getNamespace(), $title->getDBkey() );
+	public function addObj( $linkTarget ) {
+		if ( is_object( $linkTarget ) ) {
+			$this->add( $linkTarget->getNamespace(), $linkTarget->getDBkey() );
 		} else {
-			wfDebug( "Warning: LinkBatch::addObj got invalid Title or TitleValue object\n" );
+			wfDebug( "Warning: LinkBatch::addObj got invalid LinkTarget object\n" );
 		}
 	}
 
