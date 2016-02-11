@@ -58,7 +58,7 @@ class LinkBatch {
 	/**
 	 * @param LinkTarget $linkTarget
 	 */
-	public function addObj( $linkTarget ) {
+	public function addObj( LinkTarget $linkTarget ) {
 		if ( is_object( $linkTarget ) ) {
 			$this->add( $linkTarget->getNamespace(), $linkTarget->getDBkey() );
 		} else {
