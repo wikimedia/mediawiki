@@ -491,10 +491,9 @@ class ChangesList extends ContextSource {
 			return '';
 		}
 		$cache = $this->watchMsgCache;
-		$that = $this;
 		return $cache->getWithSetCallback( $count, $cache::TTL_INDEFINITE,
-			function () use ( $that, $count ) {
-				return $that->msg( 'number_of_watching_users_RCview' )
+			function () use ( $count ) {
+				return $this->msg( 'number_of_watching_users_RCview' )
 					->numParams( $count )->escaped();
 			}
 		);
