@@ -383,7 +383,7 @@
 	 * @return {OO.ui.FormLayout}
 	 */
 	mw.Upload.BookletLayout.prototype.renderUploadForm = function () {
-		var fieldset;
+		var layout = this, fieldset;
 
 		this.selectFileWidget = new OO.ui.SelectFileWidget( {
 			showDropTarget: true
@@ -395,7 +395,33 @@
 		// Validation
 		this.selectFileWidget.on( 'change', this.onUploadFormChange.bind( this ) );
 
+		this.selectFileWidget.on( 'change', function () {
+			layout.updateFilePreview();
+		} );
+
 		return this.uploadForm;
+	};
+
+	/**
+	 * Updates the file preview on the info form when a file is added.
+	 *
+	 * @protected
+	 */
+	mw.Upload.BookletLayout.prototype.updateFilePreview = function () {
+		this.selectFileWidget.loadAndGetImageUrl().done( function ( url ) {
+			this.filePreview.$element.find( 'p' ).remove();
+			this.filePreview.$element.css( 'background-image', 'url(' + url + ')' );
+			this.infoForm.$element.addClass( 'mw-upload-bookletLayout-hasThumbnail' );
+		}.bind( this ) ).fail( function () {
+			this.filePreview.$element.find( 'p' ).remove();
+			if ( this.selectFileWidget.getValue() ) {
+				this.filePreview.$element.append(
+					$( '<p>' ).text( this.selectFileWidget.getValue().name )
+				);
+			}
+			this.filePreview.$element.css( 'background-image', '' );
+			this.infoForm.$element.removeClass( 'mw-upload-bookletLayout-hasThumbnail' );
+		}.bind( this ) );
 	};
 
 	/**
@@ -419,6 +445,9 @@
 	mw.Upload.BookletLayout.prototype.renderInfoForm = function () {
 		var fieldset;
 
+		this.filePreview = new OO.ui.Widget( {
+			classes: [ 'mw-upload-bookletLayout-filePreview' ]
+		} );
 		this.filenameWidget = new OO.ui.TextInputWidget( {
 			indicator: 'required',
 			required: true,
@@ -447,7 +476,10 @@
 				help: mw.msg( 'upload-form-label-infoform-description-tooltip' )
 			} )
 		] );
-		this.infoForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
+		this.infoForm = new OO.ui.FormLayout( {
+			classes: [ 'mw-upload-bookletLayout-infoForm' ],
+			items: [ this.filePreview, fieldset ]
+		} );
 
 		this.filenameWidget.on( 'change', this.onInfoFormChange.bind( this ) );
 		this.descriptionWidget.on( 'change', this.onInfoFormChange.bind( this ) );
