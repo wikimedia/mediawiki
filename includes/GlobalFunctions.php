@@ -92,19 +92,6 @@ if ( !function_exists( 'mb_strrpos' ) ) {
 	}
 }
 
-// gzdecode function only exists in PHP >= 5.4.0
-// http://php.net/gzdecode
-if ( !function_exists( 'gzdecode' ) ) {
-	/**
-	 * @codeCoverageIgnore
-	 * @param string $data
-	 * @return string
-	 */
-	function gzdecode( $data ) {
-		return gzinflate( substr( $data, 10, -8 ) );
-	}
-}
-
 // hash_equals function only exists in PHP >= 5.6.0
 // http://php.net/hash_equals
 if ( !function_exists( 'hash_equals' ) ) {
