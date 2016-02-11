@@ -3485,22 +3485,21 @@ class User implements IDBAccessObject {
 				return;
 			}
 
-			$that = $this;
 			// Try to update the DB post-send and only if needed...
-			DeferredUpdates::addCallableUpdate( function() use ( $that, $title, $oldid ) {
-				if ( !$that->getNewtalk() ) {
+			DeferredUpdates::addCallableUpdate( function() use ( $title, $oldid ) {
+				if ( !$this->getNewtalk() ) {
 					return; // no notifications to clear
 				}
 
 				// Delete the last notifications (they stack up)
-				$that->setNewtalk( false );
+				$this->setNewtalk( false );
 
 				// If there is a new, unseen, revision, use its timestamp
 				$nextid = $oldid
 					? $title->getNextRevisionID( $oldid, Title::GAID_FOR_UPDATE )
 					: null;
 				if ( $nextid ) {
-					$that->setNewtalk( true, Revision::newFromId( $nextid ) );
+					$this->setNewtalk( true, Revision::newFromId( $nextid ) );
 				}
 			} );
 		}
@@ -4871,9 +4870,8 @@ class User implements IDBAccessObject {
 	 * Deferred version of incEditCountImmediate()
 	 */
 	public function incEditCount() {
-		$that = $this;
-		wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle( function() use ( $that ) {
-			$that->incEditCountImmediate();
+		wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle( function() {
+			$this->incEditCountImmediate();
 		} );
 	}
 
