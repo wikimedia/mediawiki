@@ -27,6 +27,7 @@ This is not a release yet!
 * (T180237) SECURITY: Protect vendor folder with .htaccess.
 * (T180231) SECURITY: Remove PHPUnit file with known RCE if exists in update.php.
 * (T124404) SECURITY: XSS in langconverter when regex hits pcre.backtrack_limit.
+* (T119158) SECURITY: Handle -{}- syntax in attributes safely.
 
 == MediaWiki 1.28.1 ==
 
