@@ -55,17 +55,17 @@
 		this.server.respond( function ( request ) {
 			switch ( request.requestBody ) {
 				// simple
-				case 'action=options&format=json&change=foo%3Dbar&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&change=foo%3Dbar&token=%2B%5C':
 				// two options
-				case 'action=options&format=json&change=foo%3Dbar%7Cbaz%3Dquux&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&change=foo%3Dbar%7Cbaz%3Dquux&token=%2B%5C':
 				// not bundleable
-				case 'action=options&format=json&optionname=foo&optionvalue=bar%7Cquux&token=%2B%5C':
-				case 'action=options&format=json&optionname=bar&optionvalue=a%7Cb%7Cc&token=%2B%5C':
-				case 'action=options&format=json&change=baz%3Dquux&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&optionname=foo&optionvalue=bar%7Cquux&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&optionname=bar&optionvalue=a%7Cb%7Cc&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&change=baz%3Dquux&token=%2B%5C':
 				// reset an option
-				case 'action=options&format=json&change=foo&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&change=foo&token=%2B%5C':
 				// reset an option, not bundleable
-				case 'action=options&format=json&optionname=foo%7Cbar%3Dquux&token=%2B%5C':
+				case 'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=%2B%5C':
 					assert.ok( true, 'Repond to ' + request.requestBody );
 					request.respond( 200, { 'Content-Type': 'application/json' },
 						'{ "options": "success" }' );
