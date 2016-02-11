@@ -191,7 +191,12 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	public function mergeMetadata( array $savedMetadata, array $providedMetadata ) {
 		foreach ( $providedMetadata as $k => $v ) {
 			if ( array_key_exists( $k, $savedMetadata ) && $savedMetadata[$k] !== $v ) {
-				throw new \UnexpectedValueException( "Key \"$k\" changed" );
+				$e = new MetadataMergeException( "Key \"$k\" changed" );
+				$e->setContext( [
+					'old_value' => $savedMetadata[$k],
+					'new_value' => $v,
+				] );
+				throw $e;
 			}
 		}
 		return $providedMetadata;
