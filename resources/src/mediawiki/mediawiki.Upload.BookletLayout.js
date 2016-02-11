@@ -383,7 +383,7 @@
 	 * @return {OO.ui.FormLayout}
 	 */
 	mw.Upload.BookletLayout.prototype.renderUploadForm = function () {
-		var fieldset;
+		var layout = this, fieldset;
 
 		this.selectFileWidget = new OO.ui.SelectFileWidget( {
 			showDropTarget: true
@@ -395,7 +395,33 @@
 		// Validation
 		this.selectFileWidget.on( 'change', this.onUploadFormChange.bind( this ) );
 
+		this.selectFileWidget.on( 'change', function () {
+			layout.updateFilePreview();
+		} );
+
 		return this.uploadForm;
+	};
+
+	/**
+	 * Updates the file preview on the info form when a file is added.
+	 *
+	 * @protected
+	 */
+	mw.Upload.BookletLayout.prototype.updateFilePreview = function () {
+		this.selectFileWidget.loadAndGetImageUrl().done( function ( url ) {
+			this.filePreview.find( 'p' ).remove();
+			this.filePreview.css( 'background-image', 'url(' + url + ')' );
+			this.infoForm.$element.addClass( 'mw-upload-bookletLayout-hasThumbnail' );
+		}.bind( this ) ).fail( function () {
+			if ( this.selectFileWidget.getValue() ) {
+				this.filePreview.append(
+					$( '<p>' ).text( this.selectFileWidget.getValue().name )
+				);
+			}
+			this.filePreview.find( 'p' ).remove();
+			this.filePreview.css( 'background-image', '' );
+			this.infoForm.$element.removeClass( 'mw-upload-bookletLayout-hasThumbnail' );
+		}.bind( this ) );
 	};
 
 	/**
@@ -419,6 +445,7 @@
 	mw.Upload.BookletLayout.prototype.renderInfoForm = function () {
 		var fieldset;
 
+		this.filePreview = $( '<div>' ).addClass( 'mw-upload-bookletLayout-filePreview' );
 		this.filenameWidget = new OO.ui.TextInputWidget( {
 			indicator: 'required',
 			required: true,
@@ -436,6 +463,10 @@
 			label: mw.msg( 'upload-form-label-infoform-title' )
 		} );
 		fieldset.addItems( [
+			// HACK: Adding an empty element to add the filePreview div
+			new OO.ui.FieldLayout( new OO.ui.Widget(), {
+				$content: this.filePreview
+			} ),
 			new OO.ui.FieldLayout( this.filenameWidget, {
 				label: mw.msg( 'upload-form-label-infoform-name' ),
 				align: 'top',
@@ -447,7 +478,10 @@
 				help: mw.msg( 'upload-form-label-infoform-description-tooltip' )
 			} )
 		] );
-		this.infoForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
+		this.infoForm = new OO.ui.FormLayout( {
+			classes: [ 'mw-upload-bookletLayout-infoForm' ],
+			items: [ fieldset ]
+		} );
 
 		this.filenameWidget.on( 'change', this.onInfoFormChange.bind( this ) );
 		this.descriptionWidget.on( 'change', this.onInfoFormChange.bind( this ) );
