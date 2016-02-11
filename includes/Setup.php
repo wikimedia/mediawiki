@@ -821,8 +821,13 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	$sessionUser = MediaWiki\Session\SessionManager::getGlobalSession()->getUser();
 	if ( $sessionUser->getId() === 0 && User::isValidUserName( $sessionUser->getName() ) ) {
 		$ps_autocreate = Profiler::instance()->scopedProfileIn( $fname . '-autocreate' );
-		MediaWiki\Session\SessionManager::autoCreateUser( $sessionUser );
+		$res = MediaWiki\Session\SessionManager::autoCreateUser( $sessionUser );
 		Profiler::instance()->scopedProfileOut( $ps_autocreate );
+		\MediaWiki\Logger\LoggerFactory::getInstance( 'authmanager' )->info( 'Autocreation attempt', [
+			'event' => 'autocreate',
+			'successful' => $res,
+		] );
+		unset( $res );
 	}
 	unset( $sessionUser );
 }
