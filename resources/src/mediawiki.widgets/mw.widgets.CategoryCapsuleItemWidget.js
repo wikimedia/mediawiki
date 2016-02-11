@@ -46,17 +46,16 @@
 			return;
 		}
 		this.currentRequest = this.api.get( {
+			formatversion: 2,
 			action: 'query',
 			prop: [ 'info' ],
 			titles: titles
 		} ).done( function ( response ) {
-			var index, curr, title;
-			for ( index in response.query.pages ) {
-				curr = response.query.pages[ index ];
-				title = new ForeignTitle( curr.title ).getPrefixedText();
-				this.existenceCache[ title ] = curr.missing === undefined;
+			$.each( response.query.pages, function ( index, page ) {
+				var title = new ForeignTitle( page.title ).getPrefixedText();
+				this.existenceCache[ title ] = !page.missing;
 				queue[ title ].resolve( this.existenceCache[ title ] );
-			}
+			} );
 		}.bind( this ) );
 	};
 
