@@ -82,6 +82,14 @@ class BalanceSets {
 		]
 	];
 
+	// These elements are for internal use and will be removed from the
+	// output.
+	public static $mwBalanceSet = [
+		self::HTML_NAMESPACE => [
+			'mw:balance-block' => true
+		]
+	];
+
 	public static $emptyElementSet = [
 		self::HTML_NAMESPACE => [
 			'area' => true, 'base' => true, 'basefont' => true,
@@ -474,7 +482,16 @@ class BalanceElement {
 			$idx !== false, '$this', 'must be a child of its parent'
 		);
 		$tidyCompat = $opts->tidyCompat;
-		if ( $tidyCompat ) {
+		$mwBalance = $opts->mwBalance;
+		if ( $mwBalance && $this->isA( BalanceSets::$mwBalanceSet ) && false ) {
+			$flat = '';
+			foreach ( $this->children as $elt ) {
+				if ( !is_string( $elt ) ) {
+					$elt = $elt->flatten( $opts );
+				}
+				$flat .= $elt;
+			}
+		} elseif ( $tidyCompat ) {
 			$blank = true;
 			foreach ( $this->children as $elt ) {
 				if ( !is_string( $elt ) ) {
@@ -1793,6 +1810,7 @@ class Balancer {
 	private $strict;
 	private $allowComments;
 	public $tidyCompat;
+	public $mwBalance;
 
 	private $textIntegrationMode;
 	private $pendingTableText;
@@ -1852,6 +1870,9 @@ class Balancer {
 	 *         program: <p>-wrapping is done to the children of
 	 *         <body> and <blockquote> elements, and empty elements
 	 *         are removed.
+	 *     'mwBalance' : boolean, defaults to false.
+	 *         When true, supports {{#balance}} using synthetic
+	 *         <mw:balance-*> tags.
 	 *     'allowComments': boolean, defaults to true.
 	 *         When true, allows HTML comments in the input.
 	 *         The Sanitizer generally strips all comments, so if you
@@ -1864,10 +1885,12 @@ class Balancer {
 			'allowedHtmlElements' => null,
 			'tidyCompat' => false,
 			'allowComments' => true,
+			'mwBalance' => false,
 		];
 		$this->allowedHtmlElements = $config['allowedHtmlElements'];
 		$this->strict = $config['strict'];
 		$this->tidyCompat = $config['tidyCompat'];
+		$this->mwBalance = $config['mwBalance'];
 		$this->allowComments = $config['allowComments'];
 		if ( $this->allowedHtmlElements !== null ) {
 			// Sanity check!
@@ -2761,6 +2784,15 @@ class Balancer {
 			case 'tr':
 				// Ignore table tags if we're not inTableMode
 				return true;
+
+			# WMF ADDITION
+			case 'mw:balance-block':
+				if ( !$this->mwBalance ) break;
+				// Based on behavior of <template> tag:
+				$this->stack->generateImpliedEndTags( null, true /* thorough */ );
+				$this->stack->insertHTMLElement( $value, $attribs );
+				$this->afe->insertMarker();
+				return true;
 			}
 
 			// Handle any other start tag here
@@ -2905,6 +2937,18 @@ class Balancer {
 			case 'br':
 				// Turn </br> into <br>
 				return $this->inBodyMode( 'tag', $value, [] );
+
+			# WMF ADDITION
+			case 'mw:balance-block':
+				if ( !$this->mwBalance ) break;
+				// Based on behavior of <template> tag:
+				if ( $this->stack->indexOf( $value ) < 0 ) {
+					return true; // Ignore the token.
+				}
+				$this->stack->generateImpliedEndTags( null, true /* thorough */ );
+				$this->stack->popTag( $value );
+				$this->afe->clearToMarker();
+				return true;
 			}
 
 			// Any other end tag goes here

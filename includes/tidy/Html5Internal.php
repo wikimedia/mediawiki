@@ -8,8 +8,13 @@ class Html5Internal extends TidyDriverBase {
 		parent::__construct( $config + [
 			'strict' => true,
 			'tidyCompat' => true,
+			'mwBalance' => true,
 		] );
 		$this->balancer = new Balancer( $this->config );
+	}
+
+	public function supportsBalance() {
+		return true;
 	}
 
 	public function tidy( $text ) {
