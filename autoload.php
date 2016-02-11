@@ -794,6 +794,8 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Logger\\NullSpi' => __DIR__ . '/includes/debug/logger/NullSpi.php',
 	'MediaWiki\\Logger\\Spi' => __DIR__ . '/includes/debug/logger/Spi.php',
 	'MediaWiki\\MediaWikiServices' => __DIR__ . '/includes/MediaWikiServices.php',
+	'MediaWiki\\Parser\\Balancer' => __DIR__ . '/includes/parser/Balancer.php',
+
 	'MediaWiki\\Services\\ServiceContainer' => __DIR__ . '/includes/Services/ServiceContainer.php',
 	'MediaWiki\\Session\\BotPasswordSessionProvider' => __DIR__ . '/includes/session/BotPasswordSessionProvider.php',
 	'MediaWiki\\Session\\CookieSessionProvider' => __DIR__ . '/includes/session/CookieSessionProvider.php',

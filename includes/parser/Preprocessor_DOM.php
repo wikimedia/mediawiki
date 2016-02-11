@@ -972,6 +972,7 @@ class PPFrame_DOM implements PPFrame {
 
 	private $volatile = false;
 	private $ttl = null;
+	private $balanceType = "none";
 
 	/**
 	 * @var array
@@ -1529,6 +1530,24 @@ class PPFrame_DOM implements PPFrame {
 	 */
 	public function isVolatile() {
 		return $this->volatile;
+	}
+
+	/**
+	 * Set the balance type.
+	 *
+	 * @param string $type
+	 */
+	public function setBalanceType( $type ) {
+		$this->balanceType = $type;
+	}
+
+	/**
+	 * Get the balance type
+	 *
+	 * @return string
+	 */
+	public function getBalanceType() {
+		return $this->balanceType;
 	}
 
 	/**
