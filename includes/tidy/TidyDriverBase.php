@@ -13,6 +13,14 @@ abstract class TidyDriverBase {
 	}
 
 	/**
+	 * Return true if this tidy implementation supports the
+	 * &lt;mw:balance&gt; tag.
+	 */
+	public function supportsBalance() {
+		return false;
+	}
+
+	/**
 	 * Return true if validate() can be used
 	 */
 	public function supportsValidate() {

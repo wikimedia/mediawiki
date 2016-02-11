@@ -424,13 +424,18 @@ class BalanceElement {
 	 * @see https://html.spec.whatwg.org/multipage/syntax.html#serialising-html-fragments
 	 */
 	public function __toString() {
-		$out = "<{$this->localName}{$this->attribs}>";
+		$out = '';
+		if ( $this->localName !== 'mw:balance-block' ) { # WMF ADDITION
+			$out .= "<{$this->localName}{$this->attribs}>";
+		}
 		if ( !$this->isA( BalanceSets::$emptyElementSet ) ) {
 			// flatten children
 			foreach ( $this->children as $elt ) {
 				$out .= "{$elt}";
 			}
-			$out .= "</{$this->localName}>";
+			if ( $this->localName !== 'mw:balance-block' ) { # WMF ADDITION
+				$out .= "</{$this->localName}>";
+			}
 		} else {
 			Assert::invariant(
 				count( $this->children ) === 0,
@@ -2218,6 +2223,14 @@ class Balancer {
 			case 'tr':
 				// Ignore table tags if we're not inTableMode
 				return true;
+
+			# WMF ADDITION
+			case 'mw:balance-block':
+				// Based on behavior of <template> tag:
+				$this->stack->generateImpliedEndTags( null, true /* thorough */ );
+				$this->stack->insertHTMLElement( $value, $attribs );
+				$this->afe->insertMarker();
+				return true;
 			}
 
 			// Handle any other start tag here
@@ -2343,6 +2356,17 @@ class Balancer {
 			case 'br':
 				# Turn </br> into <br>
 				return $this->inBodyMode( 'tag', $value, '' );
+
+			# WMF ADDITION
+			case 'mw:balance-block':
+				// Based on behavior of <template> tag:
+				if ( $this->stack->indexOf( $value ) < 0 ) {
+					return true; // Ignore the token.
+				}
+				$this->stack->generateImpliedEndTags( null, true /* thorough */ );
+				$this->stack->popTag( $value );
+				$this->afe->clearToMarker();
+				return true;
 			}
 
 			// Any other end tag goes here

@@ -11,6 +11,10 @@ class Html5Internal extends TidyDriverBase {
 		$this->balancer = new Balancer( $this->config['strict'] );
 	}
 
+	public function supportsBalance() {
+		return true;
+	}
+
 	public function tidy( $text ) {
 		return $this->balancer->balance( $text );
 	}
