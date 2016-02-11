@@ -116,9 +116,7 @@ abstract class Installer {
 	 */
 	protected $envChecks = array(
 		'envCheckDB',
-		'envCheckRegisterGlobals',
 		'envCheckBrokenXML',
-		'envCheckMagicQuotes',
 		'envCheckMbstring',
 		'envCheckSafeMode',
 		'envCheckXML',
@@ -737,20 +735,6 @@ abstract class Installer {
 	}
 
 	/**
-	 * Environment check for register_globals.
-	 * Prevent installation if enabled
-	 * @return bool
-	 */
-	protected function envCheckRegisterGlobals() {
-		if ( wfIniGetBool( 'register_globals' ) ) {
-			$this->showMessage( 'config-register-globals-error' );
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
 	 * Some versions of libxml+PHP break < and > encoding horribly
 	 * @return bool
 	 */
@@ -763,22 +747,6 @@ abstract class Installer {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Environment check for magic_quotes_(gpc|runtime|sybase).
-	 * @return bool
-	 */
-	protected function envCheckMagicQuotes() {
-		$status = true;
-		foreach ( array( 'gpc', 'runtime', 'sybase' ) as $magicJunk ) {
-			if ( wfIniGetBool( "magic_quotes_$magicJunk" ) ) {
-				$this->showError( "config-magic-quotes-$magicJunk" );
-				$status = false;
-			}
-		}
-
-		return $status;
 	}
 
 	/**
