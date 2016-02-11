@@ -410,9 +410,9 @@ class InfoAction extends FormlessAction {
 		// Is this page affected by the cascading protection of something which includes it?
 		if ( $title->isCascadeProtected() ) {
 			$cascadingFrom = '';
-			$sources = $title->getCascadeProtectionSources(); // Array deferencing is in PHP 5.4 :(
+			$sources = $title->getCascadeProtectionSources()[0];
 
-			foreach ( $sources[0] as $sourceTitle ) {
+			foreach ( $sources as $sourceTitle ) {
 				$cascadingFrom .= Html::rawElement(
 					'li', array(), Linker::linkKnown( $sourceTitle ) );
 			}
