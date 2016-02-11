@@ -158,6 +158,8 @@
 			layout.getDateFromExif( file ).done( function ( date ) {
 				layout.dateWidget.setValue( date );
 			} );
+
+			layout.updateFilePreview();
 		} );
 
 		return this.uploadForm;
@@ -179,6 +181,9 @@
 	mw.ForeignStructuredUpload.BookletLayout.prototype.renderInfoForm = function () {
 		var fieldset;
 
+		this.filePreview = new OO.ui.Widget( {
+			classes: [ 'mw-upload-bookletLayout-filePreview' ]
+		} );
 		this.filenameWidget = new OO.ui.TextInputWidget( {
 			required: true,
 			validate: /.+/
@@ -223,7 +228,10 @@
 				align: 'top'
 			} )
 		] );
-		this.infoForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
+		this.infoForm = new OO.ui.FormLayout( {
+			classes: [ 'mw-upload-bookletLayout-infoForm' ],
+			items: [ this.filePreview, fieldset ]
+		} );
 
 		// Validation
 		this.filenameWidget.on( 'change', this.onInfoFormChange.bind( this ) );
