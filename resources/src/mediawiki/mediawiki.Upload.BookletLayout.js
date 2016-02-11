@@ -385,8 +385,10 @@
 	mw.Upload.BookletLayout.prototype.renderUploadForm = function () {
 		var fieldset;
 
-		this.selectFileWidget = new OO.ui.SelectFileWidget();
-		fieldset = new OO.ui.FieldsetLayout( { label: mw.msg( 'upload-form-label-select-file' ) } );
+		this.selectFileWidget = new OO.ui.SelectFileWidget( {
+			showDropTarget: true
+		} );
+		fieldset = new OO.ui.FieldsetLayout();
 		fieldset.addItems( [ this.selectFileWidget ] );
 		this.uploadForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
 
