@@ -149,6 +149,15 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			return null;
 		}
 
+		// If the page is a redirect, follow the redirect.
+		$page = WikiPage::factory( $title );
+		if ( $page->isRedirect() ) {
+			$target = $page->followRedirect();
+			if ( $target instanceof Title ) {
+				$title = $target;
+			}
+		}
+
 		$handler = ContentHandler::getForTitle( $title );
 		if ( $handler->isSupportedFormat( CONTENT_FORMAT_CSS ) ) {
 			$format = CONTENT_FORMAT_CSS;
