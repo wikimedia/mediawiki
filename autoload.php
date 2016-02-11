@@ -796,6 +796,7 @@ $wgAutoloadLocalClasses = array(
 	'MediaWiki\\Session\\BotPasswordSessionProvider' => __DIR__ . '/includes/session/BotPasswordSessionProvider.php',
 	'MediaWiki\\Session\\CookieSessionProvider' => __DIR__ . '/includes/session/CookieSessionProvider.php',
 	'MediaWiki\\Session\\ImmutableSessionProviderWithCookie' => __DIR__ . '/includes/session/ImmutableSessionProviderWithCookie.php',
+	'MediaWiki\\Session\\MetadataMergeException' => __DIR__ . '/includes/session/MetadataMergeException.php',
 	'MediaWiki\\Session\\PHPSessionHandler' => __DIR__ . '/includes/session/PHPSessionHandler.php',
 	'MediaWiki\\Session\\Session' => __DIR__ . '/includes/session/Session.php',
 	'MediaWiki\\Session\\SessionBackend' => __DIR__ . '/includes/session/SessionBackend.php',

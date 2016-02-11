@@ -89,8 +89,10 @@ class SessionProviderTest extends MediaWikiTestCase {
 				array( 'bar' => 2, 'baz' => '3' )
 			);
 			$this->fail( 'Expected exception not thrown' );
-		} catch ( \UnexpectedValueException $ex ) {
+		} catch ( MetadataMergeException $ex ) {
 			$this->assertSame( 'Key "baz" changed', $ex->getMessage() );
+			$this->assertSame(
+				[ 'old_value' => 3, 'new_value' => '3' ], $ex->getContext() );
 		}
 
 		$res = $provider->mergeMetadata(
