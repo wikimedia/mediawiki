@@ -198,8 +198,6 @@ class SrConverter extends LanguageConverter {
  */
 class LanguageSr extends Language {
 	function __construct() {
-		global $wgHooks;
-
 		parent::__construct();
 
 		$variants = array( 'sr', 'sr-ec', 'sr-el' );
@@ -214,6 +212,5 @@ class LanguageSr extends Language {
 			'W' => 'W', 'реч' => 'W', 'reč' => 'W', 'ријеч' => 'W', 'riječ' => 'W'
 		);
 		$this->mConverter = new SrConverter( $this, 'sr', $variants, $variantfallbacks, $flags );
-		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
 }

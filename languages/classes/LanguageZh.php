@@ -111,8 +111,6 @@ class ZhConverter extends LanguageConverter {
  */
 class LanguageZh extends LanguageZh_hans {
 	function __construct() {
-		global $wgHooks;
-
 		parent::__construct();
 
 		$variants = array(
@@ -148,8 +146,6 @@ class LanguageZh extends LanguageZh_hans {
 								$variants, $variantfallbacks,
 								array(),
 								$ml );
-
-		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
 
 	/**

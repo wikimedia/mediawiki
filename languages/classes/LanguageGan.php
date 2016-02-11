@@ -78,7 +78,6 @@ class GanConverter extends LanguageConverter {
  */
 class LanguageGan extends LanguageZh {
 	function __construct() {
-		global $wgHooks;
 		parent::__construct();
 
 		$variants = array( 'gan', 'gan-hans', 'gan-hant' );
@@ -95,8 +94,6 @@ class LanguageGan extends LanguageZh {
 			$variants, $variantfallbacks,
 			array(),
 			$ml );
-
-		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
 
 	/**

@@ -4232,6 +4232,16 @@ class Language {
 	}
 
 	/**
+	 * Refresh the cache of conversion tables when
+	 * MediaWiki:Conversiontable* is updated.
+	 *
+	 * @param Title $titleobj The Title of the page being updated
+	 */
+	public function updateConversionTable( Title $title ) {
+		$this->mConverter->updateConversionTable( $title );
+	}
+
+	/**
 	 * Prepare external link text for conversion. When the text is
 	 * a URL, it shouldn't be converted, and it'll be wrapped in
 	 * the "raw" tag (-{R| }-) to prevent conversion.
