@@ -75,6 +75,7 @@
 
 		api = new mw.Api();
 		postData = {
+			formatversion: 2,
 			action: 'parse',
 			title: mw.config.get( 'wgPageName' ),
 			summary: $summary.textSelection( 'getContents' ),
@@ -89,8 +90,8 @@
 			}
 
 			diffRequest = api.post( {
+				formatversion: 2,
 				action: 'query',
-				indexpageids: true,
 				prop: 'revisions',
 				titles: mw.config.get( 'wgPageName' ),
 				rvdifftotext: $textbox.textSelection( 'getContents' ),
@@ -101,11 +102,10 @@
 
 			// Wait for the summary before showing the diff so the page doesn't jump twice
 			$.when( diffRequest, parseRequest ).done( function ( response ) {
-				var diffHtml,
-					query = response[ 0 ].query;
+				var diffHtml;
 				try {
-					diffHtml = query.pages[ query.pageids[ 0 ] ]
-						.revisions[ 0 ].diff[ '*' ];
+					diffHtml = response[ 0 ].query.pages[ 0 ]
+						.revisions[ 0 ].diff.body;
 					$wikiDiff.find( 'table.diff tbody' ).html( diffHtml );
 					mw.hook( 'wikipage.diff' ).fire( $wikiDiff.find( 'table.diff' ) );
 				} catch ( e ) {
@@ -145,12 +145,12 @@
 				}
 
 				newList = [];
-				$.each( response.parse.indicators, function ( i, indicator ) {
+				$.each( response.parse.indicators, function ( name, indicator ) {
 					newList.push(
 						$( '<div>' )
 							.addClass( 'mw-indicator' )
-							.attr( 'id', mw.util.escapeId( 'mw-indicator-' + indicator.name ) )
-							.html( indicator[ '*' ] )
+							.attr( 'id', mw.util.escapeId( 'mw-indicator-' + name ) )
+							.html( indicator )
 							.get( 0 ),
 						// Add a whitespace between the <div>s because
 						// they get displayed with display: inline-block
@@ -174,7 +174,7 @@
 					);
 				}
 				if ( response.parse.categorieshtml ) {
-					$content = $( $.parseHTML( response.parse.categorieshtml[ '*' ] ) );
+					$content = $( $.parseHTML( response.parse.categorieshtml ) );
 					mw.hook( 'wikipage.categories' ).fire( $content );
 					$( '.catlinks[data-mw="interface"]' ).replaceWith( $content );
 				}
@@ -184,10 +184,10 @@
 						li = $( '<li>' )
 							.append( $( '<a>' )
 								.attr( {
-									href: mw.util.getUrl( template[ '*' ] ),
-									'class': ( template.exists !== undefined ? '' : 'new' )
+									href: mw.util.getUrl( template.title ),
+									'class': ( template.exists ? '' : 'new' )
 								} )
-								.text( template[ '*' ] )
+								.text( template.title )
 							);
 						newList.push( li );
 					} );
@@ -195,7 +195,7 @@
 					$editform.find( '.templatesUsed .mw-editfooter-list' ).detach().empty().append( newList ).appendTo( '.templatesUsed' );
 				}
 				if ( response.parse.limitreporthtml ) {
-					$( '.limitreport' ).html( response.parse.limitreporthtml[ '*' ] );
+					$( '.limitreport' ).html( response.parse.limitreporthtml );
 				}
 				if ( response.parse.langlinks && mw.config.get( 'skin' ) === 'vector' ) {
 					newList = [];
@@ -205,7 +205,7 @@
 							.append( $( '<a>' )
 								.attr( {
 									href: langlink.url,
-									title: langlink[ '*' ] + ' - ' + langlink.langname,
+									title: langlink.title + ' - ' + langlink.langname,
 									lang: langlink.lang,
 									hreflang: langlink.lang
 								} )
@@ -218,11 +218,11 @@
 					$list.detach().empty().append( newList ).prependTo( $parent );
 				}
 
-				if ( response.parse.text[ '*' ] ) {
+				if ( response.parse.text ) {
 					$content = $wikiPreview.children( '.mw-content-ltr,.mw-content-rtl' );
 					$content
 						.detach()
-						.html( response.parse.text[ '*' ] );
+						.html( response.parse.text );
 
 					mw.hook( 'wikipage.content' ).fire( $content );
 
@@ -238,14 +238,14 @@
 				isSubject = ( section === 'new' ),
 				summaryMsg = isSubject ? 'subject-preview' : 'summary-preview',
 				$summaryPreview = $editform.find( '.mw-summary-preview' ).empty();
-			if ( parse && parse.parsedsummary && parse.parsedsummary[ '*' ] !== '' ) {
+			if ( parse && parse.parsedsummary ) {
 				$summaryPreview.append(
 					mw.message( summaryMsg ).parse(),
 					' ',
 					$( '<span>' ).addClass( 'comment' ).html(
 						// There is no equivalent to rawParams
 						mw.message( 'parentheses' ).escaped()
-							.replace( '$1', parse.parsedsummary[ '*' ] )
+							.replace( '$1', parse.parsedsummary )
 					)
 				);
 			}
