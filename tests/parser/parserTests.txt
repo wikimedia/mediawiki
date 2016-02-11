@@ -16763,6 +16763,20 @@ all additional text is vanished
 !! end
 
 !! test
+Language converter glossary rules inside attributes (T119158)
+!! options
+language=sr variant=sr-el
+!! wikitext
+-{H|abc=>sr-el:" onload="alert(1)" data-foo="}-
+
+[[File:Foobar.jpg|alt=-{}-abc-{}-]]
+!! html
+<p>
+</p><p><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="image"><img alt="&quot; onload=&quot;alert(1)&quot; data-foo=&quot;" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220"></a>
+</p>
+!! end
+
+!! test
 Self closed html pairs (bug 5487)
 !! options
 !! wikitext
