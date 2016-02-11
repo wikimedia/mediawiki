@@ -1069,7 +1069,7 @@ final class SessionManager implements SessionManagerInterface {
 		} catch ( \MWException $e ) {
 			return;
 		}
-		if ( $ip === '127.0.0.1' || \IP::isConfiguredProxy( $ip ) ) {
+		if ( !\IP::isPublic( $ip ) || \IP::isConfiguredProxy( $ip ) ) {
 			return;
 		}
 		$now = time();
