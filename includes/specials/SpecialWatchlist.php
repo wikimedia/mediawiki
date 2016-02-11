@@ -32,6 +32,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		parent::__construct( $page, $restriction );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * Main execution point
 	 *
