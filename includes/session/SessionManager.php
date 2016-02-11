@@ -383,7 +383,7 @@ final class SessionManager implements SessionManagerInterface {
 			wfDeprecated( __METHOD__, '1.27' );
 			return \MediaWiki\Auth\AuthManager::singleton()->autoCreateUser(
 				$user,
-				\MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_SESSSION,
+				\MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_SESSION,
 				false
 			)->isGood();
 		}
