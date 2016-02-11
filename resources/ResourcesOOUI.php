@@ -88,9 +88,6 @@ return call_user_func( function () {
 		'skipFunction' => 'resources/src/oojs-ui-styles-skip.js',
 	];
 
-	// Deprecated old name for the module 'oojs-ui-core.styles'.
-	$modules['oojs-ui.styles'] = $modules['oojs-ui-core.styles'];
-
 	// Additional widgets and layouts module.
 	$modules['oojs-ui-widgets'] = [
 		'scripts' => 'resources/lib/oojs-ui/oojs-ui-widgets.js',
