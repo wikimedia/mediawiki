@@ -149,6 +149,15 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			return null;
 		}
 
+		// If the page is a redirect, follow the redirect.
+		if ( $title->isRedirect() ) {
+			$content = $this->getContentObj( $title );
+			$title = $content ? $content->getUltimateRedirectTarget() : null;
+			if ( !$title ) {
+				return null;
+			}
+		}
+
 		$handler = ContentHandler::getForTitle( $title );
 		if ( $handler->isSupportedFormat( CONTENT_FORMAT_CSS ) ) {
 			$format = CONTENT_FORMAT_CSS;
@@ -158,6 +167,19 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			return null;
 		}
 
+		$content = $this->getContentObj( $title );
+		if ( !$content ) {
+			return null;
+		}
+
+		return $content->serialize( $format );
+	}
+
+	/**
+	 * @param Title $title
+	 * @return Content|null
+	 */
+	protected function getContentObj( Title $title ) {
 		$revision = Revision::newKnownCurrent( wfGetDB( DB_REPLICA ), $title->getArticleID(),
 			$title->getLatestRevID() );
 		if ( !$revision ) {
@@ -165,13 +187,11 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		}
 		$revision->setTitle( $title );
 		$content = $revision->getContent( Revision::RAW );
-
 		if ( !$content ) {
 			wfDebugLog( 'resourceloader', __METHOD__ . ': failed to load content of JS/CSS page!' );
 			return null;
 		}
-
-		return $content->serialize( $format );
+		return $content;
 	}
 
 	/**
