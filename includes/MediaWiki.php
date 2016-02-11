@@ -247,29 +247,31 @@ class MediaWiki {
 			// Prevent information leak via Special:MyPage et al (T109724)
 			if ( $title->isSpecialPage() ) {
 				$specialPage = SpecialPageFactory::getPage( $title->getDBKey() );
-				if ( $specialPage instanceof RedirectSpecialPage
-					&& $this->config->get( 'HideIdentifiableRedirects' )
-					&& $specialPage->personallyIdentifiableTarget()
-				) {
-					list( , $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBKey() );
-					$target = $specialPage->getRedirect( $subpage );
-					// target can also be true. We let that case fall through to normal processing.
-					if ( $target instanceof Title ) {
-						$query = $specialPage->getRedirectQuery() ?: array();
-						$request = new DerivativeRequest( $this->context->getRequest(), $query );
-						$request->setRequestURL( $this->context->getRequest()->getRequestURL() );
-						$this->context->setRequest( $request );
-						// Do not varnish cache these. May vary even for anons
-						$this->context->getOutput()->lowerCdnMaxage( 0 );
-						$this->context->setTitle( $target );
-						$wgTitle = $target;
-						// Reset action type cache. (Special pages have only view)
-						$this->action = null;
-						$title = $target;
-						$output->addJsConfigVars( array(
-							'wgInternalRedirectTargetUrl' => $target->getFullURL( $query ),
-						) );
-						$output->addModules( 'mediawiki.action.view.redirect' );
+				if ( $specialPage instanceof RedirectSpecialPage ) {
+					$specialPage->setContext( $this->context );
+					if ( $this->config->get( 'HideIdentifiableRedirects' )
+						&& $specialPage->personallyIdentifiableTarget()
+					) {
+						list( , $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBKey() );
+						$target = $specialPage->getRedirect( $subpage );
+						// target can also be true. We let that case fall through to normal processing.
+						if ( $target instanceof Title ) {
+							$query = $specialPage->getRedirectQuery() ?: array();
+							$request = new DerivativeRequest( $this->context->getRequest(), $query );
+							$request->setRequestURL( $this->context->getRequest()->getRequestURL() );
+							$this->context->setRequest( $request );
+							// Do not varnish cache these. May vary even for anons
+							$this->context->getOutput()->lowerCdnMaxage( 0 );
+							$this->context->setTitle( $target );
+							$wgTitle = $target;
+							// Reset action type cache. (Special pages have only view)
+							$this->action = null;
+							$title = $target;
+							$output->addJsConfigVars( array(
+								'wgInternalRedirectTargetUrl' => $target->getFullURL( $query ),
+							) );
+							$output->addModules( 'mediawiki.action.view.redirect' );
+						}
 					}
 				}
 			}
