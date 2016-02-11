@@ -71,7 +71,7 @@ class AutoLoaderTest extends MediaWikiTestCase {
 			$matches = array();
 			preg_match_all( '/
 				^ [\t ]* (?:
-					(?:final\s+)? (?:abstract\s+)? (?:class|interface) \s+
+					(?:final\s+)? (?:abstract\s+)? (?:class|interface|trait) \s+
 					(?P<class> [a-zA-Z0-9_]+)
 				|
 					class_alias \s* \( \s*
