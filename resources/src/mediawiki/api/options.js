@@ -55,6 +55,7 @@
 				} else {
 					if ( value !== null ) {
 						deferreds.push( this.postWithToken( 'options', {
+							formatversion: 2,
 							action: 'options',
 							optionname: name,
 							optionvalue: value
@@ -62,6 +63,7 @@
 					} else {
 						// Omitting value resets the option
 						deferreds.push( this.postWithToken( 'options', {
+							formatversion: 2,
 							action: 'options',
 							optionname: name
 						} ) );
@@ -71,6 +73,7 @@
 
 			if ( grouped.length ) {
 				deferreds.push( this.postWithToken( 'options', {
+					formatversion: 2,
 					action: 'options',
 					change: grouped
 				} ) );
