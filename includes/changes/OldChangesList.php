@@ -92,7 +92,7 @@ class OldChangesList extends ChangesList {
 			}
 		// Regular entries
 		} else {
-			$this->insertDiffHist( $html, $rc, $unpatrolled );
+			$this->insertDiffHist( $html, $rc );
 			# M, N, b and ! (minor, new, bot and unpatrolled)
 			$html .= $this->recentChangesFlags(
 				array(

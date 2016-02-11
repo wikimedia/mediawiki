@@ -316,9 +316,9 @@ class ChangesList extends ContextSource {
 	/**
 	 * @param string $s HTML to update
 	 * @param RecentChange $rc
-	 * @param bool $unpatrolled
+	 * @param bool|null $unpatrolled Unused variable, since 1.27.
 	 */
-	public function insertDiffHist( &$s, &$rc, $unpatrolled ) {
+	public function insertDiffHist( &$s, &$rc, $unpatrolled = null ) {
 		# Diff link
 		if (
 			$rc->mAttribs['rc_type'] == RC_NEW ||
