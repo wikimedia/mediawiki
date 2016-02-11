@@ -34,7 +34,7 @@ use MediaWiki\Session\SessionManager;
 /**
  * Compatibility functions
  *
- * We support PHP 5.3.3 and up.
+ * We support PHP 5.5.9 and up.
  * Re-implementations of newer functions or functions in non-standard
  * PHP extensions may be included here.
  */
