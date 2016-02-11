@@ -838,12 +838,13 @@ class DjVuSupport {
  */
 class TidySupport {
 	private $enabled;
+	private $supportsBalance;
 	private $config;
 
 	/**
 	 * Determine if there is a usable tidy.
 	 */
-	public function __construct( $useConfiguration = false ) {
+	public function __construct( $useConfiguration = false, $supportBalance = false ) {
 		global $IP, $wgUseTidy, $wgTidyBin, $wgTidyInternal, $wgTidyConfig,
 			$wgTidyConf, $wgTidyOpts;
 
@@ -871,7 +872,9 @@ class TidySupport {
 				'tidyConfigFile' => "$IP/includes/tidy/tidy.conf",
 				'tidyCommandLine' => '',
 			];
-			if ( extension_loaded( 'tidy' ) && class_exists( 'tidy' ) ) {
+			if ( $supportBalance ) {
+				$this->config['driver'] = 'Html5Internal';
+			} elseif ( extension_loaded( 'tidy' ) && class_exists( 'tidy' ) ) {
 				$this->config['driver'] = wfIsHHVM() ? 'RaggettInternalHHVM' : 'RaggettInternalPHP';
 			} else {
 				if ( is_executable( $wgTidyBin ) ) {
@@ -888,7 +891,10 @@ class TidySupport {
 				}
 			}
 		}
-		if ( !$this->enabled ) {
+		if ( $this->enabled ) {
+			$this->supportsBalance =
+				MWTidy::factory( $this->config )->supportsBalance();
+		} else {
 			$this->config = [ 'driver' => 'disabled' ];
 		}
 	}
@@ -900,6 +906,10 @@ class TidySupport {
 	 */
 	public function isEnabled() {
 		return $this->enabled;
+	}
+
+	public function supportsBalance() {
+		return $this->enabled && $this->supportsBalance;
 	}
 
 	public function getConfig() {

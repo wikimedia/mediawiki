@@ -82,6 +82,14 @@ class BalanceSets {
 		]
 	];
 
+	// These elements are for internal use and will be removed from the
+	// output.
+	public static $mwBalanceSet = [
+		self::HTML_NAMESPACE => [
+			'mw:balance-block' => true
+		]
+	];
+
 	public static $emptyElementSet = [
 		self::HTML_NAMESPACE => [
 			'area' => true, 'base' => true, 'basefont' => true,
@@ -466,18 +474,28 @@ class BalanceElement {
 	 *
 	 * @see __toString()
 	 */
-	public function flatten( $tidyCompat = false ) {
+	public function flatten( $opts ) {
 		Assert::parameter( $this->parent !== null, '$this', 'must be a child' );
 		Assert::parameter( $this->parent !== 'flat', '$this', 'already flat' );
 		$idx = array_search( $this, $this->parent->children, true );
 		Assert::parameter(
 			$idx !== false, '$this', 'must be a child of its parent'
 		);
-		if ( $tidyCompat ) {
+		$tidyCompat = $opts->tidyCompat;
+		$mwBalance = $opts->mwBalance;
+		if ( $mwBalance && $this->isA( BalanceSets::$mwBalanceSet ) && false ) {
+			$flat = '';
+			foreach ( $this->children as $elt ) {
+				if ( !is_string( $elt ) ) {
+					$elt = $elt->flatten( $opts );
+				}
+				$flat .= $elt;
+			}
+		} elseif ( $tidyCompat ) {
 			$blank = true;
 			foreach ( $this->children as $elt ) {
 				if ( !is_string( $elt ) ) {
-					$elt = $elt->flatten( $tidyCompat );
+					$elt = $elt->flatten( $opts );
 				}
 				if ( $blank && preg_match( '/[^\t\n\f\r ]/', $elt ) ) {
 					$blank = false;
@@ -661,9 +679,9 @@ class BalanceStack implements IteratorAggregate {
 	 */
 	public $fosterParentMode = false;
 	/**
-	 * Tidy compatibility mode, determines behavior of body/blockquote
+	 * Configuration options governing flattening.
 	 */
-	public $tidyCompat = false;
+	public $opts;
 	/**
 	 * Reference to the current element
 	 */
@@ -673,13 +691,14 @@ class BalanceStack implements IteratorAggregate {
 	 * Create a new BalanceStack with a single BalanceElement on it,
 	 * representing the root &lt;html&gt; node.
 	 */
-	public function __construct() {
+	public function __construct( $opts ) {
 		# always a root <html> element on the stack
 		array_push(
 			$this->elements,
 			new BalanceElement( BalanceSets::HTML_NAMESPACE, 'html', [] )
 		);
 		$this->currentNode = $this->elements[0];
+		$this->opts = $opts;
 	}
 
 	/**
@@ -692,7 +711,7 @@ class BalanceStack implements IteratorAggregate {
 		$out = '';
 		foreach ( $this->elements[0]->children as $elt ) {
 			$out .= is_string( $elt ) ? $elt :
-				$elt->flatten( $this->tidyCompat );
+				$elt->flatten( $this->opts );
 		}
 		return $out;
 	}
@@ -719,7 +738,7 @@ class BalanceStack implements IteratorAggregate {
 		) {
 			$this->fosterParent( $value );
 		} elseif (
-			$this->tidyCompat && !$isComment &&
+			$this->opts->tidyCompat && !$isComment &&
 			$this->currentNode->isA( BalanceSets::$tidyPWrapSet )
 		) {
 			$this->insertHTMLELement( 'mw:p-wrap', [] );
@@ -970,7 +989,7 @@ class BalanceStack implements IteratorAggregate {
 			$this->currentNode = null;
 		}
 		if ( !$elt->isHtmlNamed( 'mw:p-wrap' ) ) {
-			$elt->flatten( $this->tidyCompat );
+			$elt->flatten( $this->opts );
 		}
 	}
 
@@ -1045,7 +1064,7 @@ class BalanceStack implements IteratorAggregate {
 			// otherwise, it will eventually serialize when the parent
 			// is serialized, we just hold onto the memory for its
 			// tree of objects a little longer.
-			$elt->flatten( $this->tidyCompat );
+			$elt->flatten( $this->opts );
 		}
 		Assert::postcondition(
 			array_search( $elt, $this->elements, true ) === false,
@@ -1095,7 +1114,7 @@ class BalanceStack implements IteratorAggregate {
 			$parent = $this->elements[0]; // the `html` element.
 		}
 
-		if ( $this->tidyCompat ) {
+		if ( $this->opts->tidyCompat ) {
 			if ( is_string( $elt ) ) {
 				// We're fostering text: do we need a p-wrapper?
 				if ( $parent->isA( BalanceSets::$tidyPWrapSet ) ) {
@@ -1789,8 +1808,9 @@ class Balancer {
 	private $afe;
 	private $stack;
 	private $strict;
-	private $tidyCompat;
 	private $allowComments;
+	public $tidyCompat;
+	public $mwBalance;
 
 	private $textIntegrationMode;
 	private $pendingTableText;
@@ -1850,6 +1870,9 @@ class Balancer {
 	 *         program: <p>-wrapping is done to the children of
 	 *         <body> and <blockquote> elements, and empty elements
 	 *         are removed.
+	 *     'mwBalance' : boolean, defaults to false.
+	 *         When true, supports {{#balance}} using synthetic
+	 *         <mw:balance-*> tags.
 	 *     'allowComments': boolean, defaults to true.
 	 *         When true, allows HTML comments in the input.
 	 *         The Sanitizer generally strips all comments, so if you
@@ -1862,10 +1885,12 @@ class Balancer {
 			'allowedHtmlElements' => null,
 			'tidyCompat' => false,
 			'allowComments' => true,
+			'mwBalance' => false,
 		];
 		$this->allowedHtmlElements = $config['allowedHtmlElements'];
 		$this->strict = $config['strict'];
 		$this->tidyCompat = $config['tidyCompat'];
+		$this->mwBalance = $config['mwBalance'];
 		$this->allowComments = $config['allowComments'];
 		if ( $this->allowedHtmlElements !== null ) {
 			# Sanity check!
@@ -1905,8 +1930,7 @@ class Balancer {
 		$this->parseMode = 'inBodyMode';
 		$this->bitsIterator = new ExplodeIterator( '<', $text );
 		$this->afe = new BalanceActiveFormattingElements();
-		$this->stack = new BalanceStack();
-		$this->stack->tidyCompat = $this->tidyCompat;
+		$this->stack = new BalanceStack( $this );
 		$this->processingCallback = $processingCallback;
 		$this->processingArgs = $processingArgs;
 
@@ -2760,6 +2784,15 @@ class Balancer {
 			case 'tr':
 				// Ignore table tags if we're not inTableMode
 				return true;
+
+			# WMF ADDITION
+			case 'mw:balance-block':
+				if ( !$this->mwBalance ) break;
+				// Based on behavior of <template> tag:
+				$this->stack->generateImpliedEndTags( null, true /* thorough */ );
+				$this->stack->insertHTMLElement( $value, $attribs );
+				$this->afe->insertMarker();
+				return true;
 			}
 
 			// Handle any other start tag here
@@ -2904,6 +2937,18 @@ class Balancer {
 			case 'br':
 				# Turn </br> into <br>
 				return $this->inBodyMode( 'tag', $value, [] );
+
+			# WMF ADDITION
+			case 'mw:balance-block':
+				if ( !$this->mwBalance ) break;
+				// Based on behavior of <template> tag:
+				if ( $this->stack->indexOf( $value ) < 0 ) {
+					return true; // Ignore the token.
+				}
+				$this->stack->generateImpliedEndTags( null, true /* thorough */ );
+				$this->stack->popTag( $value );
+				$this->afe->clearToMarker();
+				return true;
 			}
 
 			// Any other end tag goes here

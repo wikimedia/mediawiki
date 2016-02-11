@@ -80,6 +80,10 @@ class MWTidy {
 		return self::singleton() !== false;
 	}
 
+	public static function supportsBalance() {
+		return self::isEnabled() && self::singleton()->supportsBalance();
+	}
+
 	/**
 	 * @return bool|\MediaWiki\Tidy\TidyDriverBase
 	 */

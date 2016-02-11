@@ -3544,6 +3544,7 @@
 	"duplicate-defaultsort": "<strong>Warning:</strong> Default sort key \"$2\" overrides earlier default sort key \"$1\".",
 	"duplicate-displaytitle": "<strong>Warning:</strong> Display title \"$2\" overrides earlier display title \"$1\".",
 	"restricted-displaytitle": "<strong>Warning:</strong> Display title \"$1\" was ignored since it is not equivalent to the page's actual title.",
+	"bad-balance": "<strong>Warning:</strong> Bad balance type given: \"$1\".",
 	"invalid-indicator-name": "<strong>Error:</strong> Page status indicators' <code>name</code> attribute must not be empty.",
 	"version": "Version",
 	"version-summary": "",

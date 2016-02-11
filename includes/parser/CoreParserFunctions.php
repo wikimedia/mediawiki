@@ -70,6 +70,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'speciale', [ __CLASS__, 'speciale' ] );
 		$parser->setFunctionHook( 'tag', [ __CLASS__, 'tagObj' ], Parser::SFH_OBJECT_ARGS );
 		$parser->setFunctionHook( 'formatdate', [ __CLASS__, 'formatDate' ] );
+		$parser->setFunctionHook( 'balance', [ __CLASS__, 'balanceObj' ], Parser::SFH_OBJECT_ARGS );
 
 		if ( $wgAllowDisplayTitle ) {
 			$parser->setFunctionHook(
@@ -1057,6 +1058,30 @@ class CoreParserFunctions {
 			'close' => "</$tagName>",
 		];
 		return $parser->extensionSubstitution( $params, $frame );
+	}
+
+	/**
+	 * Parser function to mark the current template as balanced.
+	 * @param Parser $parser
+	 * @param PPFrame $frame
+	 * @param PPNode[] $args
+	 * @return string
+	 */
+	public static function balanceObj( $parser, $frame, $args ) {
+		if ( !count( $args ) ) {
+			return '';
+		}
+		$type = strtolower( trim( $frame->expand( array_shift( $args ) ) ) );
+		if ( $type === '' ) {
+			$type = "block"; # default {{#balance}} type is "block"
+		}
+		if ( $type === 'none' || $type === 'block' ) {
+			$frame->setBalanceType( $type );
+			return '';
+		}
+		return '<span class="error">' .
+			wfMessage( 'bad-balance', $type )->inContentLanguage()->text() .
+			'</span>';
 	}
 
 	/**
