@@ -304,6 +304,31 @@ interface PPFrame {
 	public function isVolatile();
 
 	/**
+	 * Get the balance type of the frame.
+	 *
+	 * This corresponds to "type" in any {{#balance:type}} invocations
+	 * found in the frame's content.  This is used to ensure the content
+	 * (and surrounding context) generates HTML without dangling or
+	 * orphaned tags.  Defaults to "none".
+	 *
+	 * @return string
+	 */
+	public function getBalanceType();
+
+	/**
+	 * Set the balance type of the frame.
+	 *
+	 * This corresponds to "type" in any {{#balance:type}} invocations
+	 * found in the frame's content.  This is used to ensure the content
+	 * (and surrounding context) generates HTML without dangling or
+	 * orphaned tags.  Defaults to "none" if not explicitly set.
+	 * Valid types are "none" or "block" (for now).
+	 *
+	 * @param string $type
+	 */
+	public function setBalanceType( $type );
+
+	/**
 	 * Get the TTL of the frame's output.
 	 *
 	 * This is the maximum amount of time, in seconds, that this frame's
