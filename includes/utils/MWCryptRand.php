@@ -250,14 +250,7 @@ class MWCryptRand {
 		}
 
 		if ( strlen( $buffer ) < $bytes ) {
-			// If available make use of openssl's random_pseudo_bytes method to
-			// attempt to generate randomness. However don't do this on Windows
-			// with PHP < 5.3.4 due to a bug:
-			// http://stackoverflow.com/questions/1940168/openssl-random-pseudo-bytes-is-slow-php
-			// http://git.php.net/?p=php-src.git;a=commitdiff;h=cd62a70863c261b07f6dadedad9464f7e213cad5
-			if ( function_exists( 'openssl_random_pseudo_bytes' )
-				&& ( !wfIsWindows() || version_compare( PHP_VERSION, '5.3.4', '>=' ) )
-			) {
+			if ( function_exists( 'openssl_random_pseudo_bytes' ) ) {
 				$rem = $bytes - strlen( $buffer );
 				$openssl_bytes = openssl_random_pseudo_bytes( $rem, $openssl_strong );
 				if ( $openssl_bytes === false ) {
