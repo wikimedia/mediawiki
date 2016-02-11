@@ -68,7 +68,6 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	}
 
 	protected function getFormFields() {
-		$that = $this;
 		$fields = [
 			'pagetitle' => [
 				'type' => 'title',
@@ -91,10 +90,10 @@ class SpecialChangeContentModel extends FormSpecialPage {
 				'reason' => [
 					'type' => 'text',
 					'name' => 'reason',
-					'validation-callback' => function( $reason ) use ( $that ) {
+					'validation-callback' => function( $reason ) {
 						$match = EditPage::matchSummarySpamRegex( $reason );
 						if ( $match ) {
-							return $that->msg( 'spamprotectionmatch', $match )->parse();
+							return $this->msg( 'spamprotectionmatch', $match )->parse();
 						}
 
 						return true;
