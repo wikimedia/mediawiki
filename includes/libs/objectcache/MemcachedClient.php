@@ -350,7 +350,7 @@ class MemcachedClient {
 		$res = $this->_fgets( $sock );
 
 		if ( $this->_debug ) {
-			$this->_debugprint( sprintf( "MemCache: delete %s (%s)\n", $key, $res ) );
+			$this->_debugprint( sprintf( "MemCache: delete %s (%s)", $key, $res ) );
 		}
 
 		if ( $res == "DELETED" || $res == "NOT_FOUND" ) {
@@ -429,7 +429,7 @@ class MemcachedClient {
 	public function get( $key, &$casToken = null ) {
 
 		if ( $this->_debug ) {
-			$this->_debugprint( "get($key)\n" );
+			$this->_debugprint( "get($key)" );
 		}
 
 		if ( !is_array( $key ) && strval( $key ) === '' ) {
@@ -464,7 +464,7 @@ class MemcachedClient {
 
 		if ( $this->_debug ) {
 			foreach ( $val as $k => $v ) {
-				$this->_debugprint( sprintf( "MemCache: sock %s got %s\n", serialize( $sock ), $k ) );
+				$this->_debugprint( sprintf( "MemCache: sock %s got %s", serialize( $sock ), $k ) );
 			}
 		}
 
@@ -532,7 +532,7 @@ class MemcachedClient {
 
 		if ( $this->_debug ) {
 			foreach ( $val as $k => $v ) {
-				$this->_debugprint( sprintf( "MemCache: got %s\n", $k ) );
+				$this->_debugprint( sprintf( "MemCache: got %s", $k ) );
 			}
 		}
 
@@ -756,7 +756,7 @@ class MemcachedClient {
 			MediaWiki\restoreWarnings();
 		}
 		if ( !$sock ) {
-			$this->_error_log( "Error connecting to $host: $errstr\n" );
+			$this->_error_log( "Error connecting to $host: $errstr" );
 			$this->_dead_host( $host );
 			return false;
 		}
@@ -1037,7 +1037,7 @@ class MemcachedClient {
 			$val = serialize( $val );
 			$flags |= self::SERIALIZED;
 			if ( $this->_debug ) {
-				$this->_debugprint( sprintf( "client: serializing data as it is not scalar\n" ) );
+				$this->_debugprint( sprintf( "client: serializing data as it is not scalar" ) );
 			}
 		}
 
@@ -1051,7 +1051,7 @@ class MemcachedClient {
 
 			if ( $c_len < $len * ( 1 - self::COMPRESSION_SAVINGS ) ) {
 				if ( $this->_debug ) {
-					$this->_debugprint( sprintf( "client: compressing data; was %d bytes is now %d bytes\n", $len, $c_len ) );
+					$this->_debugprint( sprintf( "client: compressing data; was %d bytes is now %d bytes", $len, $c_len ) );
 				}
 				$val = $c_val;
 				$len = $c_len;
@@ -1071,7 +1071,7 @@ class MemcachedClient {
 		$line = $this->_fgets( $sock );
 
 		if ( $this->_debug ) {
-			$this->_debugprint( sprintf( "%s %s (%s)\n", $cmd, $key, $line ) );
+			$this->_debugprint( sprintf( "%s %s (%s)", $cmd, $key, $line ) );
 		}
 		if ( $line == "STORED" ) {
 			return true;
@@ -1173,7 +1173,7 @@ class MemcachedClient {
 			}
 		}
 		$msg = str_replace( '$1', $peer, $msg );
-		$this->_error_log( "$msg\n" );
+		$this->_error_log( "$msg" );
 		$this->_dead_sock( $sock );
 	}
 
