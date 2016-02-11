@@ -282,13 +282,7 @@ class LegacyLogger extends AbstractLogger {
 			$cachedTimezone = new DateTimeZone( $wgDBerrorLogTZ );
 		}
 
-		// Workaround for https://bugs.php.net/bug.php?id=52063
-		// Can be removed when min PHP > 5.3.6
-		if ( $cachedTimezone === null ) {
-			$d = date_create( 'now' );
-		} else {
-			$d = date_create( 'now', $cachedTimezone );
-		}
+		$d = date_create( 'now', $cachedTimezone );
 		$date = $d->format( 'D M j G:i:s T Y' );
 
 		$host = wfHostname();
