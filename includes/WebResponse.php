@@ -128,7 +128,7 @@ class WebResponse {
 
 		$func = $options['raw'] ? 'setrawcookie' : 'setcookie';
 
-		if ( Hooks::run( 'WebResponseSetCookie', array( &$name, &$value, &$expire, $options ) ) ) {
+		if ( Hooks::run( 'WebResponseSetCookie', array( &$name, &$value, &$expire, &$options ) ) ) {
 			$cookie = $options['prefix'] . $name;
 			$data = array(
 				'name' => (string)$cookie,
