@@ -184,6 +184,11 @@
 		this.filePreview = new OO.ui.Widget( {
 			classes: [ 'mw-upload-bookletLayout-filePreview' ]
 		} );
+		this.progressBarWidget = new OO.ui.ProgressBarWidget( {
+			progress: 0
+		} );
+		this.filePreview.$element.append( this.progressBarWidget.$element );
+
 		this.filenameWidget = new OO.ui.TextInputWidget( {
 			required: true,
 			validate: /.+/
@@ -239,6 +244,10 @@
 		this.filenameWidget.on( 'change', this.onInfoFormChange.bind( this ) );
 		this.descriptionWidget.on( 'change', this.onInfoFormChange.bind( this ) );
 		this.dateWidget.on( 'change', this.onInfoFormChange.bind( this ) );
+
+		this.on( 'fileUploadProgress', function ( progress ) {
+			this.progressBarWidget.setProgress( progress * 100 );
+		}.bind( this ) );
 
 		return this.infoForm;
 	};
