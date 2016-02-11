@@ -1113,8 +1113,6 @@
 	"foreign-structured-upload-form-label-own-work": "Бу минем үз эшем",
 	"foreign-structured-upload-form-label-infoform-categories": "Төркемнәр",
 	"foreign-structured-upload-form-label-infoform-date": "Дата",
-	"foreign-structured-upload-form-3-label-yes": "Әйе",
-	"foreign-structured-upload-form-3-label-no": "Юк",
 	"uploadstash": "Яшерен йөкләү",
 	"uploadstash-summary": "Әлеге бит йөкләнгән (яисә йукләү барышында булган), әмма викида әлегә күрсәтелмәгән файлларны карау мөмкинлеген бирә. Бу файлларны йөкләгән кулланучыдан башка беркемдә күрә алмый.",
 	"uploadstash-clear": "Яшерен файлларны бетерү",

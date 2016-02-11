@@ -8,7 +8,8 @@
 			"Misibacsi",
 			"Tacsipacsi",
 			"Dorgan",
-			"Macofe"
+			"Macofe",
+			"Máté"
 		]
 	},
 	"config-desc": "A MediaWiki telepítője",
@@ -17,7 +18,7 @@
 	"config-localsettings-upgrade": "Már létezik a <code>LocalSettings.php</code> fájl.\nA telepített szoftver frissítéséhez írd be az alábbi mezőbe a <code>$wgUpgradeKey</code> beállítás értékét, melyet a <code>LocalSettings.php</code> nevű fájlban találhatsz meg.",
 	"config-localsettings-cli-upgrade": "A <code>LocalSettings.php</code> fájl megtalálható.\nA telepített rendszer frissítéséhez futtasd az <code>update.php</code>-t.",
 	"config-localsettings-key": "Frissítési kulcs:",
-	"config-localsettings-badkey": "A megadott kulcs érvénytelen.",
+	"config-localsettings-badkey": "A megadott frissítési kulcs érvénytelen.",
 	"config-upgrade-key-missing": "A telepítő a MediaWiki meglévő példányát észlelte.\nA telepített rendszer frissítéséhez helyezd el az alábbi sort a <code>LocalSettings.php</code> végére:\n\n$1",
 	"config-localsettings-incomplete": "A meglévő <code>LocalSettings.php</code> hiányosnak tűnik.\nA(z) $1 változó értéke nincs beállítva.\nMódosítsd a <code>LocalSettings.php</code> fájlt úgy, hogy ez a változó be legyen állítva, majd kattints a „{{int:Config-continue}}” gombra.",
 	"config-localsettings-connection-error": "Nem sikerült csatlakozni az adatbázishoz a <code>LocalSettings.php</code>-ben megadott adatokkal. Ellenőrizd a beállításokat, majd próbáld újra.\n\n$1",

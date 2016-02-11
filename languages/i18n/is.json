@@ -1270,8 +1270,6 @@
 	"foreign-structured-upload-form-label-own-work": "Það er mitt eigið verk",
 	"foreign-structured-upload-form-label-infoform-categories": "Flokkar",
 	"foreign-structured-upload-form-label-infoform-date": "Dagsetning",
-	"foreign-structured-upload-form-3-label-yes": "Já",
-	"foreign-structured-upload-form-3-label-no": "Nei",
 	"backend-fail-stream": "Gat ekki streymt skránni „$1“.",
 	"backend-fail-backup": "Öryggisafritun skrárinnar $1 mistókst.",
 	"backend-fail-notexists": "Skráin $1 er ekki til.",

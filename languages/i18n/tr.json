@@ -1456,8 +1456,6 @@
 	"foreign-structured-upload-form-label-own-work": "Bu benim kendi çalışmam",
 	"foreign-structured-upload-form-label-infoform-categories": "Kategoriler",
 	"foreign-structured-upload-form-label-infoform-date": "Tarih",
-	"foreign-structured-upload-form-3-label-yes": "Evet",
-	"foreign-structured-upload-form-3-label-no": "Hayır",
 	"backend-fail-stream": "$1 dosyası okunamadı.",
 	"backend-fail-backup": "\"$1\" dosyası yedeklenemedi.",
 	"backend-fail-notexists": "$1 dosyası mevcut değil.",

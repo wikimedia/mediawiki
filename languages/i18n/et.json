@@ -26,7 +26,8 @@
 			"Roland",
 			"Postituvi",
 			"Purodha",
-			"Macofe"
+			"Macofe",
+			"Adeliine"
 		]
 	},
 	"tog-underline": "Linkide allakriipsutus:",
@@ -1851,7 +1852,7 @@
 	"unwatchthispage": "Ära jälgi",
 	"notanarticle": "Pole sisulehekülg",
 	"notvisiblerev": "Viimane teise kasutaja redaktsioon on kustutatud",
-	"watchlist-details": "Jälgimisloendis on {{PLURAL:$1|üks lehekülg|$1 lehekülge}}. Arutelulehekülgi pole eraldi välja toodud.",
+	"watchlist-details": "Jälgimisloendis on {{PLURAL:$1|üks lehekülg|$1 lehekülge}} (lisaks vastavad arutelulehed).",
 	"wlheader-enotif": "E-posti teel teavitamine on lubatud.",
 	"wlheader-showupdated": "Leheküljed, mida on muudetud peale sinu viimast külastust, on '''rasvases kirjas'''.",
 	"wlnote": "Allpool on {{PLURAL:$1|viimane muudatus|viimased <strong>$1</strong> muudatust}} viimase {{PLURAL:$2|tunni|<strong>$2</strong> tunni}} jooksul seisuga $3, kell $4.",

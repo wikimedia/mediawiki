@@ -1386,8 +1386,6 @@
 	"foreign-structured-upload-form-label-own-work": "هذا عملي الخاص",
 	"foreign-structured-upload-form-label-infoform-categories": "تصنيفات",
 	"foreign-structured-upload-form-label-infoform-date": "التاريخ",
-	"foreign-structured-upload-form-3-label-yes": "نعم",
-	"foreign-structured-upload-form-3-label-no": "لا",
 	"backend-fail-stream": "لا يمكن عرض الملف $1.",
 	"backend-fail-backup": "لا يمكن صنع نسخة أحتياطية للملف $1.",
 	"backend-fail-notexists": "الملف $1 غير موجود.",

@@ -29,7 +29,7 @@
 	"config-localsettings-upgrade": "Plik <code>LocalSettings.php</code> istnieje.\nAby oprogramowanie zostało zaktualizowane musisz wstawić wartość <code>$wgUpgradeKey</code> w poniższe pole.\nOdnajdziesz ją w <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Wykryto obecność pliku <code>LocalSettings.php</code>.\nAktualizację należy wykonać poprzez uruchomienie <code>update.php</code>",
 	"config-localsettings-key": "Klucz aktualizacji:",
-	"config-localsettings-badkey": "Podany klucz jest nieprawidłowy",
+	"config-localsettings-badkey": "Podany klucz aktualizacji jest nieprawidłowy.",
 	"config-upgrade-key-missing": "Wykryto zainstalowane wcześniej MediaWiki.\nJeśli chcesz je zaktualizować dodaj na koniec pliku <code>LocalSettings.php</code> poniższą linię tekstu.\n\n$1",
 	"config-localsettings-incomplete": "Istniejący plik <code>LocalSettings.php</code> wygląda na niekompletny.\nBrak wartości zmiennej $1.\nZmień plik <code>LocalSettings.php</code>, tak by zawierał deklarację wartości tej zmiennej, a następnie kliknij „{{int:Config-continue}}”.",
 	"config-localsettings-connection-error": "Wystąpił błąd podczas łączenia z bazą danych używając ustawień podanych w <code>LocalSettings.php</code>\nNapraw te ustawienia i spróbuj ponownie.\n\n$1",

@@ -1329,8 +1329,6 @@
 	"foreign-structured-upload-form-label-infoform-date": "Дата",
 	"foreign-structured-upload-form-label-own-work-message-local": "Потвърждавам, че качвам този файл в съответствие с правилата и лицензионната политика на сайта {{SITENAME}}.",
 	"foreign-structured-upload-form-label-not-own-work-message-local": "Ако не можете да заредите този файл в съответствие с правилата на сайта {{SITENAME}}, моля, затворете този прозорец и опитайте друг метод.",
-	"foreign-structured-upload-form-3-label-yes": "Да",
-	"foreign-structured-upload-form-3-label-no": "Не",
 	"backend-fail-notexists": "Файлът $1 не съществува.",
 	"backend-fail-delete": "Файлът $1 не може да бъде изтрит.",
 	"backend-fail-alreadyexists": "Файлът $1 вече съществува.",

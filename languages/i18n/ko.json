@@ -1411,8 +1411,6 @@
 	"foreign-structured-upload-form-label-infoform-categories": "분류",
 	"foreign-structured-upload-form-label-infoform-date": "날짜",
 	"foreign-structured-upload-form-label-not-own-work-message-shared": "이 파일의 저작권을 소유하지 않거나 다른 라이선스로 배포하고 싶다면 [https://commons.wikimedia.org/wiki/Special:UploadWizard 공용 파일 올리기 마법사]를 이용해 보세요.",
-	"foreign-structured-upload-form-3-label-yes": "예",
-	"foreign-structured-upload-form-3-label-no": "아니오",
 	"backend-fail-stream": "\"$1\" 파일을 스트림할 수 없습니다.",
 	"backend-fail-backup": "\"$1\" 파일을 백업할 수 없습니다.",
 	"backend-fail-notexists": "$1 파일이 존재하지 않습니다.",
