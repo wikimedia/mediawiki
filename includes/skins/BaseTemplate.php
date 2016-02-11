@@ -574,7 +574,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * display the text from footericons instead of the images and don't want a
 	 * duplicate copyright statement because footerlinks already rendered one.
 	 * @param string $option
-	 * @return string
+	 * @return array
 	 */
 	function getFooterIcons( $option = null ) {
 		// Generate additional footer icons
