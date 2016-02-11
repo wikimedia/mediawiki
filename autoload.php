@@ -157,6 +157,7 @@ $wgAutoloadLocalClasses = [
 	'BackupReader' => __DIR__ . '/maintenance/importDump.php',
 	'BadTitleError' => __DIR__ . '/includes/exception/BadTitleError.php',
 	'BagOStuff' => __DIR__ . '/includes/libs/objectcache/BagOStuff.php',
+	'Balancer' => __DIR__ . '/includes/Balancer.php',
 	'BaseDump' => __DIR__ . '/maintenance/backupPrefetch.inc',
 	'BaseTemplate' => __DIR__ . '/includes/skins/BaseTemplate.php',
 	'BatchRowIterator' => __DIR__ . '/includes/utils/BatchRowIterator.php',

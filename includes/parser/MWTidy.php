@@ -93,6 +93,10 @@ class MWTidy {
 		return self::singleton() !== false;
 	}
 
+	public static function supportsBalance() {
+		return self::isEnabled() && self::singleton()->supportsBalance();
+	}
+
 	protected static function singleton() {
 		global $wgUseTidy, $wgTidyInternal, $wgTidyConf, $wgDebugTidy, $wgTidyConfig,
 			$wgTidyBin, $wgTidyOpts;
