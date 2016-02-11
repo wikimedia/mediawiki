@@ -1497,7 +1497,6 @@
 	"upload-dialog-button-done": "Done",
 	"upload-dialog-button-save": "Save",
 	"upload-dialog-button-upload": "Upload",
-	"upload-form-label-select-file": "Select file",
 	"upload-form-label-infoform-title": "Details",
 	"upload-form-label-infoform-name": "Name",
 	"upload-form-label-infoform-name-tooltip": "A unique descriptive title for the file, which will serve as a filename. You may use plain language with spaces. Do not include the file extension.",
