@@ -67,7 +67,7 @@ return call_user_func( function () {
 		'dependencies' => array(
 			'es5-shim',
 			'oojs',
-			'oojs-ui.styles',
+			'oojs-ui-core.styles',
 			'mediawiki.language',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
