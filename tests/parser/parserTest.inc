@@ -76,6 +76,11 @@ class ParserTest {
 	private $tidySupport;
 
 	/**
+	 * @var TidySupport
+	 */
+	private $tidyBalanceSupport;
+
+	/**
 	 * @var ITestRecorder
 	 */
 	private $recorder;
@@ -169,9 +174,15 @@ class ParserTest {
 		$this->runParsoid = isset( $options['run-parsoid'] );
 
 		$this->djVuSupport = new DjVuSupport();
-		$this->tidySupport = new TidySupport( isset( $options['use-tidy-config'] ) );
+		$this->tidySupport =
+			new TidySupport( isset( $options['use-tidy-config'] ), false );
+		$this->tidyBalanceSupport =
+			new TidySupport( isset( $options['use-tidy-config'] ), true );
+
 		if ( !$this->tidySupport->isEnabled() ) {
 			echo "Warning: tidy is not installed, skipping some tests\n";
+		} elseif ( !$this->tidyBalanceSupport->supportsBalance() ) {
+			echo "Warning: this tidy does not support {{#balance}}, skipping some tests\n";
 		}
 
 		if ( !extension_loaded( 'gd' ) ) {
@@ -652,6 +663,14 @@ class ParserTest {
 			}
 		}
 
+		if ( isset( $opts['balance'] ) ) {
+			if ( !$this->tidyBalanceSupport->supportsBalance() ) {
+				return $this->showSkipped();
+			} else {
+				$options->setTidy( true );
+			}
+		}
+
 		if ( isset( $opts['title'] ) ) {
 			$titleText = $opts['title'];
 		} else {
@@ -943,7 +962,11 @@ class ParserTest {
 			'wgDisableTitleConversion' => false,
 			// Tidy options.
 			'wgUseTidy' => false,
-			'wgTidyConfig' => isset( $opts['tidy'] ) ? $this->tidySupport->getConfig() : null
+			'wgTidyConfig' => isset( $opts['balance'] ) ?
+				$this->tidyBalanceSupport->getConfig() : (
+				isset( $opts['tidy'] ) ?
+				$this->tidySupport->getConfig() :
+				null )
 		];
 
 		if ( $config ) {

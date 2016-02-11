@@ -378,7 +378,9 @@ class Sanitizer {
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
 				'ruby', 'rb', 'rp', 'rt', 'rtc', 'p', 'span', 'abbr', 'dfn',
-				'kbd', 'samp', 'data', 'time', 'mark'
+				'kbd', 'samp', 'data', 'time', 'mark',
+				# used internally by {{#balance}}
+				'mw:balance-block'
 			];
 			$htmlsingle = [
 				'br', 'wbr', 'hr', 'li', 'dt', 'dd', 'meta', 'link'
@@ -710,6 +712,11 @@ class Sanitizer {
 	 * @return bool
 	 */
 	static function validateTag( $params, $element ) {
+		if ( substr( $element, 0, 11 ) === 'mw:balance-' && $params !== " \x7f" ) {
+			// Prevent forgery of <mw:balance-*> tags in wikitext.
+			return false;
+		}
+
 		$params = Sanitizer::decodeTagAttributes( $params );
 
 		if ( $element == 'meta' || $element == 'link' ) {

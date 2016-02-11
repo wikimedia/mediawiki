@@ -2980,6 +2980,8 @@ class Parser {
 		$isChildObj = false;
 		// $text is a DOM node needing expansion in the current frame
 		$isLocalObj = false;
+		// $text should be balanced before/after (unless is "none")
+		$balanceType = "none";
 
 		# Title object, where $text came from
 		$title = false;
@@ -3060,6 +3062,10 @@ class Parser {
 		# Parser functions
 		if ( !$found ) {
 			$colonPos = strpos( $part1, ':' );
+			if ( $part1 === '#balance' ) {
+				# Allow the #balance function to omit the trailing colon.
+				$colonPos = strlen( $part1 );
+			}
 			if ( $colonPos !== false ) {
 				$func = substr( $part1, 0, $colonPos );
 				$funcArgs = [ trim( substr( $part1, $colonPos + 1 ) ) ];
@@ -3220,6 +3226,8 @@ class Parser {
 				# Uncached expansion
 				$text = $newFrame->expand( $text );
 			}
+			# Does the child template need balancing?
+			$balanceType = $newFrame->getBalanceType();
 		}
 		if ( $isLocalObj && $nowiki ) {
 			$text = $frame->expand( $text, PPFrame::RECOVER_ORIG );
@@ -3262,6 +3270,12 @@ class Parser {
 			$this->limitationWarn( 'post-expand-template-inclusion' );
 		}
 
+		if ( is_string( $text ) && $balanceType !== "none" && MWTidy::supportsBalance() ) {
+			# Add \x7f to attribute to ensure this is unforgeable.
+			# (ie, because \x7f can't appear in the input wikitext
+			# the sanitizer will strip this tag unless the \x7f is present)
+			$text = "<mw:balance-$balanceType \x7f>$text</mw:balance-$balanceType \x7f>";
+		}
 		if ( $isLocalObj ) {
 			$ret = [ 'object' => $text ];
 		} else {
