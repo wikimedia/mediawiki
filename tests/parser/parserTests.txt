@@ -20610,6 +20610,38 @@ language=nl title=[[MediaWiki:Common.css]]
 !! end
 
 #
+# Templating balancing
+#
+
+!! article
+Template:EchoBalanceBlock
+!! text
+{{#balance:block}}{{{1}}}
+!! endarticle
+
+!! test
+{{#balance}} terminating <p> tags
+!! options
+balance
+!! wikitext
+Hello {{EchoBalanceBlock|world!}}
+!! html+tidy
+<p>Hello </p>
+<p>world!</p>
+!! end
+
+!! test
+{{#balance}} terminating <a> tags
+!! options
+balance
+!! wikitext
+[[Main Page|foo{{EchoBalanceBlock|bar}}bat]]
+!! html+tidy
+<p><a href="/wiki/Main_Page" title="Main Page">foo</a></p>
+<p>barbat</p>
+!! end
+
+#
 #
 #
 
