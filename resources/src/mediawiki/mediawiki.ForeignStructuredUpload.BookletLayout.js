@@ -158,6 +158,8 @@
 			layout.getDateFromExif( file ).done( function ( date ) {
 				layout.dateWidget.setValue( date );
 			} );
+
+			layout.updateFilePreview();
 		} );
 
 		return this.uploadForm;
@@ -179,6 +181,7 @@
 	mw.ForeignStructuredUpload.BookletLayout.prototype.renderInfoForm = function () {
 		var fieldset;
 
+		this.filePreview = $( '<div>' ).addClass( 'mw-upload-bookletLayout-filePreview' );
 		this.filenameWidget = new OO.ui.TextInputWidget( {
 			required: true,
 			validate: /.+/
@@ -204,6 +207,10 @@
 			label: mw.msg( 'upload-form-label-infoform-title' )
 		} );
 		fieldset.addItems( [
+			// HACK: Adding an empty element to add the filePreview div
+			new OO.ui.FieldLayout( new OO.ui.Widget(), {
+				$content: this.filePreview
+			} ),
 			new OO.ui.FieldLayout( this.filenameWidget, {
 				label: mw.msg( 'upload-form-label-infoform-name' ),
 				align: 'top',
@@ -223,7 +230,10 @@
 				align: 'top'
 			} )
 		] );
-		this.infoForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
+		this.infoForm = new OO.ui.FormLayout( {
+			classes: [ 'mw-upload-bookletLayout-infoForm' ],
+			items: [ fieldset ]
+		} );
 
 		// Validation
 		this.filenameWidget.on( 'change', this.onInfoFormChange.bind( this ) );

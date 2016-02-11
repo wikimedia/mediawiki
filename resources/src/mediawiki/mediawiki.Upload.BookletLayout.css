@@ -1,0 +1,26 @@
+.mw-upload-bookletLayout-filePreview {
+	width: 100%;
+	height: 3em;
+	background-color: #eee;
+	background-size: cover;
+	background-position: center center;
+	position: fixed;
+	top: 3.4em;
+	left: 0;
+}
+
+.mw-upload-bookletLayout-filePreview p {
+	margin: 1em 1.5em;
+}
+
+.mw-upload-bookletLayout-infoForm {
+	padding-top: 3.9em;
+}
+
+.mw-upload-bookletLayout-infoForm.mw-upload-bookletLayout-hasThumbnail {
+	padding-top: 10.5em;
+}
+
+.mw-upload-bookletLayout-infoForm.mw-upload-bookletLayout-hasThumbnail .mw-upload-bookletLayout-filePreview {
+	height: 10em;
+}
