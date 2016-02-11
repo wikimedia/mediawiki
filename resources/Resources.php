@@ -1187,6 +1187,7 @@ return array(
 		),
 		'dependencies' => array(
 			'oojs-ui',
+			'moment',
 			'mediawiki.Title',
 			'mediawiki.user',
 			'mediawiki.Upload',

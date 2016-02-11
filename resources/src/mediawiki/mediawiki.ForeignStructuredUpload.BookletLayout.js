@@ -181,7 +181,12 @@
 	mw.ForeignStructuredUpload.BookletLayout.prototype.renderInfoForm = function () {
 		var fieldset;
 
-		this.filePreview = $( '<div>' ).addClass( 'mw-upload-bookletLayout-filePreview' );
+		this.progressBarWidget = new OO.ui.ProgressBarWidget( {
+			progress: 0
+		} );
+		this.filePreview = $( '<div>' )
+			.append( this.progressBarWidget.$element )
+			.addClass( 'mw-upload-bookletLayout-filePreview' );
 		this.filenameWidget = new OO.ui.TextInputWidget( {
 			required: true,
 			validate: /.+/
@@ -239,6 +244,10 @@
 		this.filenameWidget.on( 'change', this.onInfoFormChange.bind( this ) );
 		this.descriptionWidget.on( 'change', this.onInfoFormChange.bind( this ) );
 		this.dateWidget.on( 'change', this.onInfoFormChange.bind( this ) );
+
+		this.on( 'fileUploadProgress', function ( progress ) {
+			this.progressBarWidget.setProgress( progress * 100 );
+		}.bind( this ) );
 
 		return this.infoForm;
 	};
