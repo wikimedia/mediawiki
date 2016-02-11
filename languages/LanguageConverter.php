@@ -382,9 +382,12 @@ class LanguageConverter {
 		$scriptfix = '<script[^>]*+>[^<]*+(?:(?:(?!<\/script>).)[^<]*+)*+<\/script>|';
 		// disable conversion of <pre> tags
 		$prefix = '<pre[^>]*+>[^<]*+(?:(?:(?!<\/pre>).)[^<]*+)*+<\/pre>|';
+		// The "|.*+)" at the end, is in case we missed some part of html syntax,
+		// we will fail securely (hopefully) by matching the rest of the string.
+		$htmlFullTag = '<(?:[^>=]*+(?>[^>=]*+=\s*+(?:"[^"]*"|\'[^\']*\'|[^\'">\s]*+))*+[^>=]*+>|.*+)|';
 
-		$reg = '/' . $codefix . $scriptfix . $prefix .
-			'<[^>]++>|&[a-zA-Z#][a-z0-9]++;' . $marker . $htmlfix . '|\004$/s';
+		$reg = '/' . $codefix . $scriptfix . $prefix . $htmlFullTag .
+			'&[a-zA-Z#][a-z0-9]++;' . $marker . $htmlfix . '|\004$/s';
 		$startPos = 0;
 		$sourceBlob = '';
 		$literalBlob = '';
@@ -664,29 +667,41 @@ class LanguageConverter {
 		$out = '';
 		$length = strlen( $text );
 		$shouldConvert = !$this->guessVariant( $text, $variant );
+		$continue = 1;
 
-		while ( $startPos < $length ) {
-			$pos = strpos( $text, '-{', $startPos );
+		$noScript = '<script.*?>.*?<\/script>(*SKIP)(*FAIL)';
+		$noStyle = '<style.*?>.*?<\/style>(*SKIP)(*FAIL)';
+		$noHtml = '<(?:[^>=]*+(?>[^>=]*+=\s*+(?:"[^"]*"|\'[^\']*\'|[^\'">\s]*+))*+[^>=]*+>|.*+)(*SKIP)(*FAIL)';
+		while ( $startPos < $length && $continue ) {
+			$continue = preg_match(
+				// Only match -{ outside of html.
+				"/$noScript|$noStyle|$noHtml|-\{/",
+				$text,
+				$m,
+				PREG_OFFSET_CAPTURE,
+				$startPos
+			);
 
-			if ( $pos === false ) {
+			if ( !$continue ) {
 				// No more markup, append final segment
 				$fragment = substr( $text, $startPos );
 				$out .= $shouldConvert ? $this->autoConvert( $fragment, $variant ) : $fragment;
 				return $out;
 			}
 
-			// Markup found
+			// Offset of the match of the regex pattern.
+			$pos = $m[0][1];
+
 			// Append initial segment
 			$fragment = substr( $text, $startPos, $pos - $startPos );
 			$out .= $shouldConvert ? $this->autoConvert( $fragment, $variant ) : $fragment;
-
-			// Advance position
+			// -{ marker found, not in attribute
+			// Advance position up to -{ marker.
 			$startPos = $pos;
-
 			// Do recursive conversion
+			// Note: This passes $startPos by reference, and advances it.
 			$out .= $this->recursiveConvertRule( $text, $variant, $startPos, $depth + 1 );
 		}
-
 		return $out;
 	}
 
