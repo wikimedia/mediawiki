@@ -341,10 +341,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$remoteBasePath = (string)$options['remoteBasePath'];
 		}
 
-		// Make sure the remote base path is a complete valid URL,
-		// but possibly protocol-relative to avoid cache pollution
-		$remoteBasePath = wfExpandUrl( $remoteBasePath, PROTO_RELATIVE );
-
 		return array( $localBasePath, $remoteBasePath );
 	}
 
@@ -366,7 +362,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	public function getScriptURLsForDebug( ResourceLoaderContext $context ) {
 		$urls = array();
 		foreach ( $this->getScriptFiles( $context ) as $file ) {
-			$urls[] = $this->getRemotePath( $file );
+			$urls[] = OutputPage::transformResourcePath(
+				$this->getConfig(),
+				$this->getRemotePath( $file )
+			);
 		}
 		return $urls;
 	}
@@ -412,7 +411,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		foreach ( $this->getStyleFiles( $context ) as $mediaType => $list ) {
 			$urls[$mediaType] = array();
 			foreach ( $list as $file ) {
-				$urls[$mediaType][] = $this->getRemotePath( $file );
+				$urls[$mediaType][] = OutputPage::transformResourcePath(
+					$this->getConfig(),
+					$this->getRemotePath( $file )
+				);
 			}
 		}
 		return $urls;
