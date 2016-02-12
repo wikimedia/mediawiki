@@ -604,10 +604,9 @@ class MediaWiki {
 		// Show visible profiling data if enabled (which cannot be post-send)
 		Profiler::instance()->logDataPageOutputOnly();
 
-		$that = $this;
-		$callback = function () use ( $that, $mode ) {
+		$callback = function () use ( $mode ) {
 			try {
-				$that->restInPeace( $mode );
+				$this->restInPeace( $mode );
 			} catch ( Exception $e ) {
 				MWExceptionHandler::handleException( $e );
 			}

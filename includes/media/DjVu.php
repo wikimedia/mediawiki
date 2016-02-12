@@ -393,13 +393,11 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	protected function getDimensionInfo( File $file ) {
-		$that = $this;
-
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'file-djvu', 'dimensions', $file->getSha1() ),
 			WANObjectCache::TTL_INDEFINITE,
-			function () use ( $that, $file ) {
-				$tree = $that->getMetaTree( $file );
+			function () use ( $file ) {
+				$tree = $this->getMetaTree( $file );
 				if ( !$tree ) {
 					return false;
 				}

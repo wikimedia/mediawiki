@@ -1225,11 +1225,10 @@ abstract class Skin extends ContextSource {
 	function buildSidebar() {
 		global $wgEnableSidebarCache, $wgSidebarCacheExpiry;
 
-		$that = $this;
-		$callback = function () use ( $that ) {
+		$callback = function () {
 			$bar = array();
-			$that->addToSidebar( $bar, 'sidebar' );
-			Hooks::run( 'SkinBuildSidebar', array( $that, &$bar ) );
+			$this->addToSidebar( $bar, 'sidebar' );
+			Hooks::run( 'SkinBuildSidebar', array( $this, &$bar ) );
 
 			return $bar;
 		};

@@ -895,10 +895,9 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Update the DB post-send if the page has not cached since now
-		$that = $this;
 		$latest = $this->getLatest();
-		DeferredUpdates::addCallableUpdate( function() use ( $that, $retval, $latest ) {
-			$that->insertRedirectEntry( $retval, $latest );
+		DeferredUpdates::addCallableUpdate( function() use ( $retval, $latest ) {
+			$this->insertRedirectEntry( $retval, $latest );
 		} );
 
 		return $retval;
@@ -1880,16 +1879,15 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Do secondary updates once the main changes have been committed...
-		$that = $this;
 		$dbw->onTransactionIdle(
 			function () use (
-				$dbw, &$that, $revision, &$user, $content, $summary, &$flags,
+				$dbw, $revision, &$user, $content, $summary, &$flags,
 				$changed, $meta, &$status
 			) {
 				// Do per-page updates in a transaction
 				$dbw->setFlag( DBO_TRX );
 				// Update links tables, site stats, etc.
-				$that->doEditUpdates(
+				$this->doEditUpdates(
 					$revision,
 					$user,
 					array(
@@ -1899,7 +1897,7 @@ class WikiPage implements Page, IDBAccessObject {
 					)
 				);
 				// Trigger post-save hook
-				$params = array( &$that, &$user, $content, $summary, $flags & EDIT_MINOR,
+				$params = array( $this, &$user, $content, $summary, $flags & EDIT_MINOR,
 					null, null, &$flags, $revision, &$status, $meta['baseRevId'] );
 				ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $params );
 				Hooks::run( 'PageContentSaveComplete', $params );
@@ -2008,17 +2006,16 @@ class WikiPage implements Page, IDBAccessObject {
 		$status->value['revision'] = $revision;
 
 		// Do secondary updates once the main changes have been committed...
-		$that = $this;
 		$dbw->onTransactionIdle(
 			function () use (
-				&$that, $dbw, $revision, &$user, $content, $summary, &$flags, $meta, &$status
+				&$this, $dbw, $revision, &$user, $content, $summary, &$flags, $meta, &$status
 			) {
 				// Do per-page updates in a transaction
 				$dbw->setFlag( DBO_TRX );
 				// Update links, etc.
-				$that->doEditUpdates( $revision, $user, array( 'created' => true ) );
+				$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
 				// Trigger post-create hook
-				$params = array( &$that, &$user, $content, $summary,
+				$params = array( &$this, &$user, $content, $summary,
 					$flags & EDIT_MINOR, null, null, &$flags, $revision );
 				ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $params );
 				Hooks::run( 'PageContentInsertComplete', $params );
@@ -3469,14 +3466,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param array $deleted The names of categories that were deleted
 	 */
 	public function updateCategoryCounts( array $added, array $deleted ) {
-		$that = $this;
 		$method = __METHOD__;
 		$dbw = wfGetDB( DB_MASTER );
 
 		// Do this at the end of the commit to reduce lock wait timeouts
 		$dbw->onTransactionPreCommitOrIdle(
-			function () use ( $dbw, $that, $method, $added, $deleted ) {
-				$ns = $that->getTitle()->getNamespace();
+			function () use ( $dbw, $method, $added, $deleted ) {
+				$ns = $this->getTitle()->getNamespace();
 
 				$addFields = array( 'cat_pages = cat_pages + 1' );
 				$removeFields = array( 'cat_pages = cat_pages - 1' );
@@ -3540,12 +3536,12 @@ class WikiPage implements Page, IDBAccessObject {
 
 				foreach ( $added as $catName ) {
 					$cat = Category::newFromName( $catName );
-					Hooks::run( 'CategoryAfterPageAdded', array( $cat, $that ) );
+					Hooks::run( 'CategoryAfterPageAdded', array( $cat, $this ) );
 				}
 
 				foreach ( $deleted as $catName ) {
 					$cat = Category::newFromName( $catName );
-					Hooks::run( 'CategoryAfterPageRemoved', array( $cat, $that ) );
+					Hooks::run( 'CategoryAfterPageRemoved', array( $cat, $this ) );
 				}
 			}
 		);
