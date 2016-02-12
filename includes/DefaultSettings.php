@@ -2304,6 +2304,28 @@ $wgSessionHandler = null;
 $wgPHPSessionHandling = 'enable';
 
 /**
+ * The number of different IPs in the same session within a period of $wgSuspiciousIpExpiry
+ * that should cause warnings to be logged. This is meant more for debugging errors in the
+ * authentication system than for detecting abuse.
+ * @since 1.27
+ */
+$wgSuspiciousIpPerSessionLimit = 2;
+
+/**
+ * Like $wgSuspiciousIpPerSessionLimit but over all requests from the same user within
+ * $wgSuspiciousIpExpiry, whether they are in the same session or not.
+ * @since 1.27
+ */
+$wgSuspiciousIpPerUserLimit = 5;
+
+/**
+ * Time in seconds to remember IPs for, for the purposes of $wgSuspiciousIpPerSessionLimit and
+ * $wgSuspiciousIpPerUserLimit.
+ * @since 1.27
+ */
+$wgSuspiciousIpExpiry = 600;
+
+/**
  * If enabled, will send MemCached debugging information to $wgDebugLogFile
  */
 $wgMemCachedDebug = false;

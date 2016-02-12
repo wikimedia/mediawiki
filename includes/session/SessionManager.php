@@ -24,6 +24,7 @@
 namespace MediaWiki\Session;
 
 use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 use BagOStuff;
 use CachedBagOStuff;
 use Config;
@@ -1052,6 +1053,96 @@ final class SessionManager implements SessionManagerInterface {
 
 		self::$globalSession = null;
 		self::$globalSessionRequest = null;
+	}
+
+	/**
+	 * Do a sanity check to make sure the session is not used from many different IP addresses
+	 * and store some data for later sanity checks.
+	 * FIXME remove this once SessionManager is considered stable
+	 * @private For use in Setup.php only
+	 * @param Session $session Defaults to the global session.
+	 */
+	public function checkIpLimits( Session $session = null ) {
+		$session = $session ?: self::getGlobalSession();
+
+		try {
+			$ip = $session->getRequest()->getIP();
+		} catch ( \MWException $e ) {
+			return;
+		}
+		if ( $ip === '127.0.0.1' || \IP::isConfiguredProxy( $ip ) ) {
+			return;
+		}
+		$now = time();
+
+		// Record (and possibly log) that the IP is using the current session.
+		// Don't touch the stored data unless we are adding a new IP or re-adding an expired one.
+		// This is slightly inaccurate (when an existing IP is seen again, the expiry is not
+		// extended) but that shouldn't make much difference and limits the session write frequency
+		// to # of IPs / $wgSuspiciousIpExpiry.
+		$data = $session->get( 'SessionManager-ip', array() );
+		if (
+			!isset( $data[$ip] )
+			|| $data[$ip] < $now
+		) {
+			$data[$ip] = time() + $this->config->get( 'SuspiciousIpExpiry' );
+			foreach ( $data as $key => $expires ) {
+				if ( $expires < $now ) {
+					unset( $data[$key] );
+				}
+			}
+			$session->set( 'SessionManager-ip', $data );
+
+			$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'session-ip' );
+			$logLevel = count( $data ) >= $this->config->get( 'SuspiciousIpPerSessionLimit' )
+				? LogLevel::WARNING : ( count( $data ) === 1 ? LogLevel::DEBUG : LogLevel::INFO );
+			$logger->log(
+				$logLevel,
+				'Same session used from {count} IPs',
+				array(
+					'count' => count( $data ),
+					'ips' => $data,
+					'session' => $session->getId(),
+					'user' => $session->getUser()->getName(),
+					'persistent' => $session->isPersistent(),
+				)
+			);
+		}
+
+		// Now do the same thing globally for the current user.
+		// We are using the object cache and assume it is shared between all wikis of a farm,
+		// and further assume that the same name belongs to the same user on all wikis. (It's either
+		// that or a central ID lookup which would mean an extra SQL query on every request.)
+		if ( $session->getUser()->isLoggedIn() ) {
+			$userKey = 'SessionManager-ip:' . md5( $session->getUser()->getName() );
+			$data = $this->store->get( $userKey ) ?: array();
+			if (
+				!isset( $data[$ip] )
+				|| $data[$ip] < $now
+			) {
+				$data[$ip] = time() + $this->config->get( 'SuspiciousIpExpiry' );
+				foreach ( $data as $key => $expires ) {
+					if ( $expires < $now ) {
+						unset( $data[$key] );
+					}
+				}
+				$this->store->set( $userKey, $data, $this->config->get( 'SuspiciousIpExpiry' ) );
+				$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'session-ip' );
+				$logLevel = count( $data ) >= $this->config->get( 'SuspiciousIpPerUserLimit' )
+					? LogLevel::WARNING : ( count( $data ) === 1 ? LogLevel::DEBUG : LogLevel::INFO );
+				$logger->log(
+					$logLevel,
+					'Same user had sessions from {count} IPs',
+					array(
+						'count' => count( $data ),
+						'ips' => $data,
+						'session' => $session->getId(),
+						'user' => $session->getUser()->getName(),
+						'persistent' => $session->isPersistent(),
+					)
+				);
+			}
+		}
 	}
 
 	/**@}*/
