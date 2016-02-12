@@ -550,6 +550,7 @@
 	"changepassword-throttled": "لديك محاولات تسجيل دخول كثيرة حديثة. من فضلك انتظر $1 قبل المحاولة ثانية.",
 	"botpasswords-label-appid": "اسم البوت:",
 	"botpasswords-label-create": "أنشأ",
+	"botpasswords-label-update": "حدث",
 	"botpasswords-label-cancel": "ألغ",
 	"botpasswords-label-delete": "احذف",
 	"botpasswords-label-resetpassword": "أعد ضبط كلمة السر",

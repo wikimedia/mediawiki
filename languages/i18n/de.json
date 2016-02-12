@@ -585,7 +585,7 @@
 	"changepassword-success": "Dein Passwort wurde erfolgreich geändert!",
 	"changepassword-throttled": "Du hast kürzlich zu viele Anmeldeversuche unternommen.\nBitte warte $1, bevor du es erneut versuchst.",
 	"botpasswords": "Botpasswörter",
-	"botpasswords-summary": "<em>Botpasswörter</em> erlauben Zugriff auf ein Benutzerkonto über die API, ohne die Hauptanmeldeinformationen des Benutzerkontos zu verwenden. Die verfügbaren Benutzerrechte bei der Anmeldung mit einem Botpasswort können beschränkt sein.\n\nWenn du nicht weist, warum du dies tun möchtest, solltest du dies wahrscheinlich nicht tun. Niemand soll dich jemals bitten, ein Passwort zu erzeugen und es an ihn zu übergeben.",
+	"botpasswords-summary": "<em>Botpasswörter</em> erlauben Zugriff auf ein Benutzerkonto über die API, ohne die Hauptanmeldeinformationen des Benutzerkontos zu verwenden. Die verfügbaren Benutzerrechte bei der Anmeldung mit einem Botpasswort können beschränkt sein.\n\nWenn du nicht weist, warum du ein Passwort erstellen sollst, tu es nicht. Du solltest ein Passwort nicht für einen anderen erzeugen und es an ihn übergeben.",
 	"botpasswords-disabled": "Botpasswörter sind deaktiviert.",
 	"botpasswords-no-central-id": "Um Botpasswörter zu verwenden, musst du bei einem zentralisierten Benutzerkonto angemeldet sein.",
 	"botpasswords-existing": "Vorhandene Botpasswörter",

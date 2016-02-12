@@ -1971,7 +1971,7 @@
 	"hidden-category-category-desc": "La categoría contiene <code><nowiki>__HIDDENCAT__</nowiki></code> en su página de contenido, lo que evita que aparezca en el cuadro de enlaces de categorías en las páginas, de forma predeterminada.",
 	"trackingcategories-nodesc": "No hay descripción disponible.",
 	"trackingcategories-disabled": "La categoría está desactivada",
-	"mailnologin": "Ninguna dirección de envio",
+	"mailnologin": "Ninguna dirección de envío",
 	"mailnologintext": "Debes [[Special:UserLogin|iniciar sesión]] y tener una dirección electrónica válida en tus [[Special:Preferences|preferencias]] para enviar un correo electrónico a otros usuarios.",
 	"emailuser": "Enviar un mensaje de correo a {{GENDER:{{BASEPAGENAME}}|este usuario|esta usuaria}}",
 	"emailuser-title-target": "Enviar un mensaje a {{GENDER:$1|este usuario|esta usuaria}}",

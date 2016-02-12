@@ -190,6 +190,7 @@
 	"apihelp-managetags-example-delete": "<kbd>vandlaism</kbd> タグを <kbd>Misspelt</kbd> という理由で削除する",
 	"apihelp-managetags-example-activate": "<kbd>spam</kbd> という名前のタグを <kbd>For use in edit patrolling</kbd> という理由で有効化する",
 	"apihelp-managetags-example-deactivate": "<kbd>No longer required</kbd> という理由でタグ <kbd>spam</kbd> を無効化する",
+	"apihelp-mergehistory-description": "ページの履歴を統合する。",
 	"apihelp-move-description": "ページを移動します。",
 	"apihelp-move-param-from": "移動するページのページ名です。<var>$1fromid</var> とは同時に使用できません。",
 	"apihelp-move-param-fromid": "移動するページのページIDです。<var>$1from</var> とは同時に使用できません。",
