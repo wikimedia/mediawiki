@@ -25,6 +25,19 @@
 		// Lazy load jquery.tablesorter
 		$sortableTables = $content.find( 'table.sortable' );
 		if ( $sortableTables.length ) {
+			// Load the modules 'jquery.tablesorter|mediawiki.language.months' in page content language.
+			mw.loader.moduleRegistry[ 'jquery.tablesorter' ].state = 'loading';
+			mw.loader.moduleRegistry[ 'mediawiki.language.months' ].state = 'loading';
+			$.ajax( {
+				url: mw.util.wikiScript( 'load' ) + '?' + $.param( {
+					lang: mw.config.get( 'wgPageContentLanguage' ),
+					modules: 'jquery.tablesorter|mediawiki.language.months'
+				} ),
+				dataType: 'script',
+				crossDomain: true,
+				cache: true
+			} );
+
 			mw.loader.using( 'jquery.tablesorter', function () {
 				$sortableTables.tablesorter();
 			} );
