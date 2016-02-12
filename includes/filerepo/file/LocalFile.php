@@ -1415,12 +1415,11 @@ class LocalFile extends File {
 		# Do some cache purges after final commit so that:
 		# a) Changes are more likely to be seen post-purge
 		# b) They won't cause rollback of the log publish/update above
-		$that = $this;
 		$dbw->onTransactionIdle( function () use (
-			$that, $reupload, $wikiPage, $newPageContent, $comment, $user, $logEntry, $logId, $descId, $tags
+			$reupload, $wikiPage, $newPageContent, $comment, $user, $logEntry, $logId, $descId, $tags
 		) {
 			# Update memcache after the commit
-			$that->invalidateCache();
+			$this->invalidateCache();
 
 			$updateLogPage = false;
 			if ( $newPageContent ) {
@@ -1463,13 +1462,13 @@ class LocalFile extends File {
 				# Also log page, in case where we just created it above
 				$update['log_page'] = $updateLogPage;
 			}
-			$that->getRepo()->getMasterDB()->update(
+			$this->getRepo()->getMasterDB()->update(
 				'logging',
 				$update,
 				[ 'log_id' => $logId ],
 				__METHOD__
 			);
-			$that->getRepo()->getMasterDB()->insert(
+			$this->getRepo()->getMasterDB()->insert(
 				'log_search',
 				[
 					'ls_field' => 'associated_rev_id',
@@ -1492,19 +1491,19 @@ class LocalFile extends File {
 			}
 
 			# Run hook for other updates (typically more cache purging)
-			Hooks::run( 'FileUpload', [ $that, $reupload, !$newPageContent ] );
+			Hooks::run( 'FileUpload', [ $this, $reupload, !$newPageContent ] );
 
 			if ( $reupload ) {
 				# Delete old thumbnails
-				$that->purgeThumbnails();
+				$this->purgeThumbnails();
 				# Remove the old file from the CDN cache
 				DeferredUpdates::addUpdate(
-					new CdnCacheUpdate( [ $that->getUrl() ] ),
+					new CdnCacheUpdate( [ $this->getUrl() ] ),
 					DeferredUpdates::PRESEND
 				);
 			} else {
 				# Update backlink pages pointing to this title if created
-				LinksUpdate::queueRecursiveJobsForTable( $that->getTitle(), 'imagelinks' );
+				LinksUpdate::queueRecursiveJobsForTable( $this->getTitle(), 'imagelinks' );
 			}
 		} );
 
@@ -1685,12 +1684,11 @@ class LocalFile extends File {
 
 		// Hack: the lock()/unlock() pair is nested in a transaction so the locking is not
 		// tied to BEGIN/COMMIT. To avoid slow purges in the transaction, move them outside.
-		$that = $this;
 		$this->getRepo()->getMasterDB()->onTransactionIdle(
-			function () use ( $that, $archiveNames ) {
-				$that->purgeEverything();
+			function () use ( $archiveNames ) {
+				$this->purgeEverything();
 				foreach ( $archiveNames as $archiveName ) {
-					$that->purgeOldThumbnails( $archiveName );
+					$this->purgeOldThumbnails( $archiveName );
 				}
 			}
 		);
