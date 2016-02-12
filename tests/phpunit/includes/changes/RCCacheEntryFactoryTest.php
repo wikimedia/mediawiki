@@ -8,6 +8,7 @@
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
 class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
+	use DOMTestTrait;
 
 	/**
 	 * @var TestRecentChangesHelper
@@ -192,7 +193,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	private function assertUserLinks( $user, $cacheEntry ) {
-		$this->assertTag(
+		$this->assertTagSimple(
 			array(
 				'tag' => 'a',
 				'attributes' => array(
@@ -236,7 +237,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	private function assertDeleteLogLink( $cacheEntry ) {
-		$this->assertTag(
+		$this->assertTagSimple(
 			array(
 				'tag' => 'a',
 				'attributes' => array(
@@ -251,7 +252,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	private function assertRevDel( $cacheEntry ) {
-		$this->assertTag(
+		$this->assertTagSimple(
 			array(
 				'tag' => 'span',
 				'attributes' => array(
@@ -265,7 +266,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	private function assertTitleLink( $title, $cacheEntry ) {
-		$this->assertTag(
+		$this->assertTagSimple(
 			array(
 				'tag' => 'a',
 				'attributes' => array(
@@ -280,7 +281,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	private function assertQueryLink( $content, $params, $link ) {
-		$this->assertTag(
+		$this->assertTagSimple(
 			array(
 				'tag' => 'a',
 				'content' => $content
