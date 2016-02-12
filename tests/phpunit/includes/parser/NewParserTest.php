@@ -142,6 +142,9 @@ class NewParserTest extends MediaWikiTestCase {
 		// DjVu images have to be handled slightly differently
 		$tmpGlobals['wgMediaHandlers']['image/vnd.djvu'] = 'MockDjVuHandler';
 
+		// Ogg video/audio increasingly more differently
+		$tmpGlobals['wgMediaHandlers']['application/ogg'] = 'MockOggHandler';
+
 		$tmpHooks = $wgHooks;
 		$tmpHooks['ParserTestParser'][] = 'ParserTestParserHook::setup';
 		$tmpHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
@@ -308,13 +311,13 @@ class NewParserTest extends MediaWikiTestCase {
 		if ( !$this->db->selectField( 'image', '1', [ 'img_name' => $image->getName() ] ) ) {
 			$image->recordUpload2( '', 'A pretty movie', 'Will it play', [
 					'size'        => 12345,
-					'width'       => 240,
-					'height'      => 180,
+					'width'       => 320,
+					'height'      => 240,
 					'bits'        => 0,
 					'media_type'  => MEDIATYPE_VIDEO,
 					'mime'        => 'application/ogg',
 					'metadata'    => serialize( [] ),
-					'sha1'        => Wikimedia\base_convert( '', 16, 36, 31 ),
+					'sha1'        => Wikimedia\base_convert( '', 16, 36, 32 ),
 					'fileExists'  => true
 			], $this->db->timestamp( '20010115123500' ), $user );
 		}
