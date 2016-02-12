@@ -75,7 +75,8 @@ class ApiRollback extends ApiBase {
 			$token,
 			$params['markbot'],
 			$details,
-			$user
+			$user,
+			$params['tags']
 		);
 
 		if ( $retval ) {
@@ -90,10 +91,6 @@ class ApiRollback extends ApiBase {
 
 		// Watch pages
 		$this->setWatch( $watch, $titleObj, 'watchrollback' );
-
-		if ( count( $params['tags'] ) ) {
-			ChangeTags::addTags( $params['tags'], null, intval( $details['newid'] ), null, null );
-		}
 
 		$info = array(
 			'title' => $titleObj->getPrefixedText(),

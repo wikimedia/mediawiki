@@ -538,11 +538,13 @@ class RecentChange {
 	 * @param int $newSize
 	 * @param int $newId
 	 * @param int $patrol
+	 * @param array $tags
 	 * @return RecentChange
 	 */
 	public static function notifyEdit(
 		$timestamp, &$title, $minor, &$user, $comment, $oldId, $lastTimestamp,
-		$bot, $ip = '', $oldSize = 0, $newSize = 0, $newId = 0, $patrol = 0
+		$bot, $ip = '', $oldSize = 0, $newSize = 0, $newId = 0, $patrol = 0,
+		$tags = array()
 	) {
 		$rc = new RecentChange;
 		$rc->mTitle = $title;
@@ -581,10 +583,14 @@ class RecentChange {
 			'pageStatus' => 'changed'
 		);
 
-		DeferredUpdates::addCallableUpdate( function() use ( $rc ) {
+		DeferredUpdates::addCallableUpdate( function() use ( $rc, $tags ) {
 			$rc->save();
 			if ( $rc->mAttribs['rc_patrolled'] ) {
 				PatrolLog::record( $rc, true, $rc->getPerformer() );
+			}
+			if ( count( $tags ) ) {
+				ChangeTags::addTags( $tags, $rc->mAttribs['rc_id'],
+					$rc->mAttribs['rc_this_oldid'], null, null );
 			}
 		} );
 
@@ -605,11 +611,12 @@ class RecentChange {
 	 * @param int $size
 	 * @param int $newId
 	 * @param int $patrol
+	 * @param array $tags
 	 * @return RecentChange
 	 */
 	public static function notifyNew(
 		$timestamp, &$title, $minor, &$user, $comment, $bot,
-		$ip = '', $size = 0, $newId = 0, $patrol = 0
+		$ip = '', $size = 0, $newId = 0, $patrol = 0, $tags = array()
 	) {
 		$rc = new RecentChange;
 		$rc->mTitle = $title;
@@ -648,10 +655,14 @@ class RecentChange {
 			'pageStatus' => 'created'
 		);
 
-		DeferredUpdates::addCallableUpdate( function() use ( $rc ) {
+		DeferredUpdates::addCallableUpdate( function() use ( $rc, $tags ) {
 			$rc->save();
 			if ( $rc->mAttribs['rc_patrolled'] ) {
 				PatrolLog::record( $rc, true, $rc->getPerformer() );
+			}
+			if ( count( $tags ) ) {
+				ChangeTags::addTags( $tags, $rc->mAttribs['rc_id'],
+					$rc->mAttribs['rc_this_oldid'], null, null );
 			}
 		} );
 
