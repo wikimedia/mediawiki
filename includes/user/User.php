@@ -3859,6 +3859,7 @@ class User implements IDBAccessObject {
 		if ( !$session->canSetUser() ) {
 			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
 				->warning( __METHOD__ . ": Cannot log out of an immutable session" );
+			$error = 'immutable';
 		} elseif ( !$session->getUser()->equals( $this ) ) {
 			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
 				->warning( __METHOD__ .
@@ -3866,6 +3867,7 @@ class User implements IDBAccessObject {
 				);
 			// But we still may as well make this user object anon
 			$this->clearInstanceCache( 'defaults' );
+			$error = 'wronguser';
 		} else {
 			$this->clearInstanceCache( 'defaults' );
 			$delay = $session->delaySave();
@@ -3874,7 +3876,13 @@ class User implements IDBAccessObject {
 			$session->setUser( new User );
 			$session->set( 'wsUserID', 0 ); // Other code expects this
 			ScopedCallback::consume( $delay );
+			$error = false;
 		}
+		\MediaWiki\Logger\LoggerFactory::getInstance( 'authmanager' )->info( 'Logout', [
+			'event' => 'logout',
+			'successful' => $error !== false,
+			'status' => $error,
+		] );
 	}
 
 	/**
