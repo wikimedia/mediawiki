@@ -3679,6 +3679,9 @@ class User implements IDBAccessObject {
 	public function logout() {
 		if ( Hooks::run( 'UserLogout', array( &$this ) ) ) {
 			$this->doLogout();
+			\MediaWiki\Logger\LoggerFactory::getInstance( 'authmanager' )->info( 'Logout', array(
+				'event' => 'logout',
+			) );
 		}
 	}
 
