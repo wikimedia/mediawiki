@@ -746,13 +746,14 @@ final class SessionManager implements SessionManagerInterface {
 						if ( $newProviderMetadata !== $providerMetadata ) {
 							$newParams['metadata'] = $newProviderMetadata;
 						}
-					} catch ( \UnexpectedValueException $ex ) {
+					} catch ( MetadataMergeException $ex ) {
 						$this->logger->warning(
 							'Session "{session}": Metadata merge failed: {exception}',
 							array(
 								'session' => $info,
 								'exception' => $ex,
-						) );
+							) + $ex->getContext()
+						);
 						return false;
 					}
 				}

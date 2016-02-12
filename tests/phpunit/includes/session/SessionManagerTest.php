@@ -1114,7 +1114,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$provider->expects( $this->any() )->method( 'mergeMetadata' )
 			->will( $this->returnCallback( function ( $a, $b ) {
 				if ( $b === array( 'Throw' ) ) {
-					throw new \UnexpectedValueException( 'no merge!' );
+					throw new MetadataMergeException( 'no merge!' );
 				}
 				return array( 'Merged' );
 			} ) );
