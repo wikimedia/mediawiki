@@ -1128,7 +1128,8 @@ class ContribsPager extends ReverseChronologicalPager {
 			# Tags, if any.
 			list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow(
 				$row->ts_tags,
-				'contributions'
+				'contributions',
+				$this->getContext()
 			);
 			$classes = array_merge( $classes, $newClasses );
 			$ret .= " $tagSummary";
