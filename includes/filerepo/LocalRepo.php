@@ -199,12 +199,11 @@ class LocalRepo extends FileRepo {
 			$expiry = 86400; // has invalidation, 1 day
 		}
 
-		$that = $this;
 		$redirDbKey = ObjectCache::getMainWANInstance()->getWithSetCallback(
 			$memcKey,
 			$expiry,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $that, $title ) {
-				$dbr = $that->getSlaveDB(); // possibly remote DB
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $title ) {
+				$dbr = $this->getSlaveDB(); // possibly remote DB
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
@@ -273,14 +272,13 @@ class LocalRepo extends FileRepo {
 			);
 		};
 
-		$that = $this;
 		$applyMatchingFiles = function ( ResultWrapper $res, &$searchSet, &$finalFiles )
-			use ( $that, $fileMatchesSearch, $flags )
+			use ( $fileMatchesSearch, $flags )
 		{
 			global $wgContLang;
-			$info = $that->getInfo();
+			$info = $this->getInfo();
 			foreach ( $res as $row ) {
-				$file = $that->newFileFromRow( $row );
+				$file = $this->newFileFromRow( $row );
 				// There must have been a search for this DB key, but this has to handle the
 				// cases were title capitalization is different on the client and repo wikis.
 				$dbKeysLook = array( strtr( $file->getName(), ' ', '_' ) );

@@ -233,9 +233,8 @@ abstract class RevDelList extends RevisionListBase {
 		) );
 
 		// Clear caches
-		$that = $this;
-		$dbw->onTransactionIdle( function() use ( $that ) {
-			$that->doPostCommitUpdates();
+		$dbw->onTransactionIdle( function() {
+			$this->doPostCommitUpdates();
 		} );
 
 		$dbw->endAtomic( __METHOD__ );
