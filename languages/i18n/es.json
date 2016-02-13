@@ -1867,7 +1867,7 @@
 	"apisandbox-dynamic-parameters": "Parámetros adicionales",
 	"apisandbox-dynamic-parameters-add-label": "Añadir parámetro:",
 	"apisandbox-dynamic-parameters-add-placeholder": "Nombre del parámetro",
-	"apisandbox-deprecated-parameters": "Parámetros obsoletos",
+	"apisandbox-deprecated-parameters": "Parámetros desaconsejados",
 	"apisandbox-submit-invalid-fields-title": "Algunos campos no son válidos",
 	"apisandbox-results": "Resultados",
 	"apisandbox-sending-request": "Enviando pedido API...",

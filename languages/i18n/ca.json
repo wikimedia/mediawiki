@@ -557,6 +557,8 @@
 	"changepassword-success": "S'ha canviat la vostra contrasenya amb èxit!",
 	"changepassword-throttled": "Heu realitzat massa intents d'inici de sessió.\nEspereu $1 abans de tornar-ho a provar.",
 	"botpasswords": "Contrasenyes de bot",
+	"botpasswords-disabled": "S'han inhabilitat les contrasenyes dels bots",
+	"botpasswords-no-central-id": "Per a utilitzar contrasenyes de bots heu d'haver iniciat una sessió en un compte centralitzat.",
 	"botpasswords-label-appid": "Nom del bot:",
 	"botpasswords-label-create": "Crea",
 	"botpasswords-label-update": "Actualitza",
@@ -3477,6 +3479,7 @@
 	"mediastatistics-header-text": "Textual",
 	"mediastatistics-header-executable": "Executables",
 	"mediastatistics-header-archive": "Formats comprimits",
+	"mediastatistics-header-total": "Tots els fitxers",
 	"json-warn-trailing-comma": "$1 al final {{PLURAL:$1|coma ha estat eliminada|comes han estat eliminades}} de JSON",
 	"json-error-unknown": "S'ha produït un error amb el JSON. Error: $1",
 	"json-error-depth": "S'ha superat la profunditat màxima de pila",
@@ -3515,5 +3518,8 @@
 	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
 	"mw-widgets-titleinput-description-new-page": "la pàgina no existeix encara",
 	"mw-widgets-titleinput-description-redirect": "redirigeix a $1",
-	"api-error-blacklisted": "Trieu un títol diferent, més descriptiu."
+	"api-error-blacklisted": "Trieu un títol diferent, més descriptiu.",
+	"sessionprovider-generic": "$1 sessions",
+	"sessionprovider-mediawiki-session-cookiesessionprovider": "sessions basades en galetes",
+	"sessionprovider-nocookies": "Pot ser que les galetes estiguin inhabilitades. Assegureu-vos que teniu les galetes habilitades i inicieu de nou."
 }

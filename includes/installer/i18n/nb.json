@@ -60,7 +60,6 @@
 	"config-outdated-sqlite": "'''Advarsel''': Du har SQLite $1, som er en eldre versjon enn minimumskravet SQLite $2. SQLite vil ikke være tilgjengelig.",
 	"config-no-fts3": "'''Advarsel''': SQLite er kompilert uten [//sqlite.org/fts3.html FTS3-modulen], søkefunksjoner vil ikke være tilgjengelig på dette bakstykket.",
 	"config-mbstring": "'''Kritisk: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] er aktiv!'''\nDette alternativet fører til feil og kan ødelegge data på en uforutsigbar måte.\nDu kan ikke installere eller bruke MediaWiki med mindre dette alternativet deaktiveres.",
-	"config-safe-mode": "'''Advarsel:''' PHPs [http://www.php.net/features.safe-mode safe mode] er aktiv.\nDet kan føre til problem, spesielt hvis du bruker støtte for filopplastinger og <code>math</code>.",
 	"config-xml-bad": "PHPs XML-modul mangler.\nMediaWiki krever funksjonene i denne modulen og vil ikke virke i denne konfigurasjonen.\nDu må kanskje laste ned php-xml RPM pakken.",
 	"config-pcre-old": "'''Alvorlig:''' PCRE $1 eller senere kreves.\nDin PHP-kode er lenket med PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Nærmere informasjon].",
 	"config-pcre-no-utf8": "'''Fatal''': PHPs PCRE modul ser ut til å være kompilert uten PCRE_UTF8-støtte.\nMediaWiki krever UTF-8-støtte for å fungere riktig.",

@@ -1762,6 +1762,7 @@
 	"apisandbox-dynamic-parameters-add-label": "პარამეტრის დამატება:",
 	"apisandbox-dynamic-parameters-add-placeholder": "პარამეტრის სახელი",
 	"apisandbox-dynamic-error-exists": "პარამეტრი \"$1\" სახელით უკვე არსებობს.",
+	"apisandbox-submit-invalid-fields-title": "ზოგიერთი ველი არ აკმაყოფილებს კრიტერიუმებს",
 	"apisandbox-submit-invalid-fields-message": "გთხოვთ, შეასწორეთ მონიშნული ველები და თავიდან სცადეთ.",
 	"apisandbox-results": "შედეგები",
 	"apisandbox-sending-request": "API მოთხოვნის გაგზავნა...",
