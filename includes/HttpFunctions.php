@@ -818,7 +818,7 @@ class CurlHttpRequest extends MWHttpRequest {
 			MediaWiki\suppressWarnings();
 			if ( !curl_setopt( $curlHandle, CURLOPT_FOLLOWLOCATION, true ) ) {
 				wfDebug( __METHOD__ . ": Couldn't set CURLOPT_FOLLOWLOCATION. " .
-					"Probably safe_mode or open_basedir is set.\n" );
+					"Probably open_basedir is set.\n" );
 				// Continue the processing. If it were in curl_setopt_array,
 				// processing would have halted on its entry
 			}
@@ -863,8 +863,8 @@ class CurlHttpRequest extends MWHttpRequest {
 		}
 
 		if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
-			if ( strval( ini_get( 'open_basedir' ) ) !== '' || wfIniGetBool( 'safe_mode' ) ) {
-				wfDebug( "Cannot follow redirects in safe mode\n" );
+			if ( strval( ini_get( 'open_basedir' ) ) !== '' ) {
+				wfDebug( "Cannot follow redirects when open_basedir is set\n" );
 				return false;
 			}
 		}
