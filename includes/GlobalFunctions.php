@@ -2517,14 +2517,6 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	$eintr = defined( 'SOCKET_EINTR' ) ? SOCKET_EINTR : 4;
 	$eintrMessage = "stream_select(): unable to select [$eintr]";
 
-	// Build a table mapping resource IDs to pipe FDs to work around a
-	// PHP 5.3 issue in which stream_select() does not preserve array keys
-	// <https://bugs.php.net/bug.php?id=53427>.
-	$fds = array();
-	foreach ( $pipes as $fd => $pipe ) {
-		$fds[(int)$pipe] = $fd;
-	}
-
 	$running = true;
 	$timeout = null;
 	$numReadyPipes = 0;
@@ -2557,9 +2549,8 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 				break;
 			}
 		}
-		foreach ( $readyPipes as $pipe ) {
+		foreach ( $readyPipes as $fd => $pipe ) {
 			$block = fread( $pipe, 65536 );
-			$fd = $fds[(int)$pipe];
 			if ( $block === '' ) {
 				// End of file
 				fclose( $pipes[$fd] );
