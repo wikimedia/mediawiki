@@ -222,10 +222,6 @@ class PHPUnitMaintClass extends Maintenance {
 				}
 			}
 		}
-
-		// !!!! TO NOT MERGE !!!!
-		// FIXME: forcing debug to see what fails on Jenkins.
-		$_SERVER['argv'][] = '--debug';
 	}
 
 	public function getDbType() {
