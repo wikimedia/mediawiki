@@ -96,11 +96,14 @@ table.toc td {
 }
 
 /* Space between the columns for tocnumber and toctext */
-/* Ignored by IE7 and lower */
-.tocnumber:after {
-	content: "";
-	display: inline-block;
-	width: 0.5em;
+/* @noflip */
+.mw-content-ltr .tocnumber {
+	padding-right: 0.5em;
+}
+
+/* @noflip */
+.mw-content-rtl .tocnumber {
+	padding-left: 0.5em;
 }
 
 /* Warning */
