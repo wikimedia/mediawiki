@@ -1,6 +1,3 @@
-Security reminder: If you have PHP's register_globals option set, you must
-turn it off. MediaWiki will not work with it enabled.
-
 == MediaWiki 1.27 ==
 
 THIS IS NOT A RELEASE YET
