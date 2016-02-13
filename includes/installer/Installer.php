@@ -118,7 +118,6 @@ abstract class Installer {
 		'envCheckDB',
 		'envCheckBrokenXML',
 		'envCheckMbstring',
-		'envCheckSafeMode',
 		'envCheckXML',
 		'envCheckPCRE',
 		'envCheckMemory',
@@ -194,7 +193,6 @@ abstract class Installer {
 	protected $internalDefaults = array(
 		'_UserLang' => 'en',
 		'_Environment' => false,
-		'_SafeMode' => false,
 		'_RaiseMemory' => false,
 		'_UpgradeDone' => false,
 		'_InstallDone' => false,
@@ -758,19 +756,6 @@ abstract class Installer {
 			$this->showError( 'config-mbstring' );
 
 			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Environment check for safe_mode.
-	 * @return bool
-	 */
-	protected function envCheckSafeMode() {
-		if ( wfIniGetBool( 'safe_mode' ) ) {
-			$this->setVar( '_SafeMode', true );
-			$this->showMessage( 'config-safe-mode' );
 		}
 
 		return true;

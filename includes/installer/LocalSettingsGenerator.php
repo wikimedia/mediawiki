@@ -33,7 +33,6 @@ class LocalSettingsGenerator {
 	protected $values = array();
 	protected $groupPermissions = array();
 	protected $dbSettings = '';
-	protected $safeMode = false;
 	protected $IP;
 
 	/**
@@ -91,7 +90,6 @@ class LocalSettingsGenerator {
 		}
 
 		$this->dbSettings = $db->getLocalSettings();
-		$this->safeMode = $installer->getVar( '_SafeMode' );
 		$this->values['wgEmergencyContact'] = $this->values['wgPasswordSender'];
 	}
 
@@ -248,7 +246,6 @@ class LocalSettingsGenerator {
 			$locale = '';
 		}
 
-		$hashedUploads = $this->safeMode ? '' : '#';
 		$metaNamespace = '';
 		if ( $this->values['wgMetaNamespace'] !== $this->values['wgSitename'] ) {
 			$metaNamespace = "\$wgMetaNamespace = \"{$this->values['wgMetaNamespace']}\";\n";
@@ -379,12 +376,6 @@ ${serverSetting}
 ## Linux server, this will need to be set to the name of an
 ## available UTF-8 locale
 {$locale}\$wgShellLocale = \"{$this->values['wgShellLocale']}\";
-
-## If you want to use image uploads under safe mode,
-## create the directories images/archive, images/thumb and
-## images/temp, and make them all writable. Then uncomment
-## this, if it's not already uncommented:
-{$hashedUploads}\$wgHashedUploadDirectory = false;
 
 ## Set \$wgCacheDirectory to a writable directory on the web server
 ## to make your wiki go slightly faster. The directory should not

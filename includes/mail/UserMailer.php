@@ -409,20 +409,14 @@ class UserMailer {
 			set_error_handler( 'UserMailer::errorHandler' );
 
 			try {
-				$safeMode = wfIniGetBool( 'safe_mode' );
-
 				foreach ( $to as $recip ) {
-					if ( $safeMode ) {
-						$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
-					} else {
-						$sent = mail(
-							$recip,
-							self::quotedPrintable( $subject ),
-							$body,
-							$headers,
-							$extraParams
-						);
-					}
+					$sent = mail(
+						$recip,
+						self::quotedPrintable( $subject ),
+						$body,
+						$headers,
+						$extraParams
+					);
 				}
 			} catch ( Exception $e ) {
 				restore_error_handler();

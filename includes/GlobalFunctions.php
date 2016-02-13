@@ -2366,16 +2366,13 @@ function wfEscapeShellArg( /*...*/ ) {
 /**
  * Check if wfShellExec() is effectively disabled via php.ini config
  *
- * @return bool|string False or one of (safemode,disabled)
+ * @return bool|string False or 'disabled'
  * @since 1.22
  */
 function wfShellExecDisabled() {
 	static $disabled = null;
 	if ( is_null( $disabled ) ) {
-		if ( wfIniGetBool( 'safe_mode' ) ) {
-			wfDebug( "wfShellExec can't run in safe_mode, PHP's exec functions are too broken.\n" );
-			$disabled = 'safemode';
-		} elseif ( !function_exists( 'proc_open' ) ) {
+		if ( !function_exists( 'proc_open' ) ) {
 			wfDebug( "proc_open() is disabled\n" );
 			$disabled = 'disabled';
 		} else {
@@ -2416,9 +2413,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	$disabled = wfShellExecDisabled();
 	if ( $disabled ) {
 		$retval = 1;
-		return $disabled == 'safemode' ?
-			'Unable to run external programs in safe mode.' :
-			'Unable to run external programs, proc_open() is disabled.';
+		return 'Unable to run external programs, proc_open() is disabled.';
 	}
 
 	$includeStderr = isset( $options['duplicateStderr'] ) && $options['duplicateStderr'];
@@ -2659,10 +2654,8 @@ function wfInitShellLocale() {
 	}
 	$done = true;
 	global $wgShellLocale;
-	if ( !wfIniGetBool( 'safe_mode' ) ) {
-		putenv( "LC_CTYPE=$wgShellLocale" );
-		setlocale( LC_CTYPE, $wgShellLocale );
-	}
+	putenv( "LC_CTYPE=$wgShellLocale" );
+	setlocale( LC_CTYPE, $wgShellLocale );
 }
 
 /**
