@@ -452,8 +452,8 @@ abstract class LBFactory implements DestructibleService {
  * Exception class for attempted DB access
  */
 class DBAccessError extends MWException {
-	public function __construct() {
-		parent::__construct( 'The storage backend is disabled!' );
+	public function __construct( $msg = 'The storage backend is disabled!' ) {
+		parent::__construct( $msg );
 	}
 }
 
