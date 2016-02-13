@@ -391,10 +391,21 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				$cc_subject = $context->msg( 'emailccsubject' )->rawParams(
 					$target->getName(), $subject )->text();
 
-				// target and sender are equal, because this is the CC for the sender
-				Hooks::run( 'EmailUserCC', [ &$from, &$from, &$cc_subject, &$text ] );
+				if ( $config->get( 'UserEmailUseReplyTo' ) ) {
+					$ccFrom = new MailAddress( $config->get( 'PasswordSender' ),
+						wfMessage( 'emailsender' )->inContentLanguage()->text() );
+					$replyTo = $from;
+				} else {
+					$ccFrom = $from;
+					$replyTo = null;
+				}
 
-				$ccStatus = UserMailer::send( $from, $from, $cc_subject, $text );
+				Hooks::run( 'EmailUserCC', [ &$from, &$ccFrom, &$cc_subject, &$text ] );
+
+				$ccStatus = UserMailer::send(
+					$from, $ccFrom, $cc_subject, $text, [
+						'replyTo' => $replyTo,
+				] );
 				$status->merge( $ccStatus );
 			}
 
