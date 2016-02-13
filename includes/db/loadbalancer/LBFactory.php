@@ -472,9 +472,8 @@ abstract class LBFactory {
  * Exception class for attempted DB access
  */
 class DBAccessError extends MWException {
-	public function __construct() {
-		parent::__construct( "Mediawiki tried to access the database via wfGetDB(). " .
-			"This is not allowed." );
+	public function __construct( $msg = 'The storage backend is disabled!' ) {
+		parent::__construct( $msg );
 	}
 }
 
