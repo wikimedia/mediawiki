@@ -176,19 +176,6 @@ class PHPUnitMaintClass extends Maintenance {
 			$_SERVER['argv'] = array_values( $_SERVER['argv'] );
 		}
 
-		if ( !wfIsWindows() ) {
-			# If we are not running on windows then we can enable phpunit colors
-			# Windows does not come anymore with ANSI.SYS loaded by default
-			# PHPUnit uses the suite.xml parameters to enable/disable colors
-			# which can be then forced to be enabled with --colors.
-			# The below code injects a parameter just like if the user called
-			# Probably fix bug 29226
-			$key = array_search( '--colors', $_SERVER['argv'] );
-			if ( $key === false ) {
-				array_splice( $_SERVER['argv'], 1, 0, '--colors' );
-			}
-		}
-
 		# Makes MediaWiki PHPUnit directory includable so the PHPUnit will
 		# be able to resolve relative files inclusion such as suites/*
 		# PHPUnit uses stream_resolve_include_path() internally
