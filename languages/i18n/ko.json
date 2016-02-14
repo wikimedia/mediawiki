@@ -619,7 +619,7 @@
 	"showpreview": "미리 보기",
 	"showdiff": "차이 보기",
 	"blankarticle": "<strong>경고:</strong> 만들려는 문서가 비어 있습니다.\n\"{{int:savearticle}}\"을 다시 클릭하면, 문서에 내용이 없이 만들어집니다.",
-	"anoneditwarning": "<strong>경고:</strong> 로그인하고 있지 않습니다. 편집하면 당신의 IP 주소가 공개적으로 보여집니다. <strong>[$1 로그인]</strong>하거나 <strong>[$2 계정을 만들면]</strong>, 당신의 편집에 다른 이익과 함께, 사용자 이름이 표시됩니다.",
+	"anoneditwarning": "<strong>경고:</strong> 로그인을 하고 있지 않습니다. 편집을 하게 되면 IP 주소가 공개적으로 보여집니다. <strong>[$1 로그인]</strong>하거나 <strong>[$2 계정을 생성하면]</strong>, 편집 시에 다른 이점과 함께 사용자 이름이 표시됩니다.",
 	"anonpreviewwarning": "<em>로그인하고 있지 않습니다. 문서를 저장하면 당신의 IP 주소가 문서의 편집 역사에 남게 됩니다.</em>",
 	"missingsummary": "'''알림:''' 편집 요약을 적지 않았습니다.\n이대로 \"{{int:savearticle}}\"을 클릭하면 편집 요약 없이 저장됩니다.",
 	"selfredirect": "<strong>경고:</strong> 자기 자신으로 문서를 넘겨주고 있습니다.\n넘겨줄 대상을 잘못 입력했거나, 잘못된 문서를 편집하고 있을 수 있습니다.\n\"{{int:savearticle}}\"을 입력하면, 넘겨주기 문서가 생성될 것입니다.",

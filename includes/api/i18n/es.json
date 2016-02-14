@@ -394,7 +394,7 @@
 	"apihelp-query+allrevisions-param-namespace": "Listar solo las páginas en este espacio de nombres.",
 	"apihelp-query+allrevisions-example-user": "Listar las últimas 50 contribuciones del usuario <kbd>Example</kbd>.",
 	"apihelp-query+allrevisions-example-ns-main": "Listar las primeras 50 revisiones en el espacio de nombres principal.",
-	"apihelp-query+mystashedfiles-param-limit": "Cuántos archivos a obtener.",
+	"apihelp-query+mystashedfiles-param-limit": "Cuántos archivos obtener.",
 	"apihelp-query+alltransclusions-param-prefix": "Buscar todos los títulos transcluidos que comiencen con este valor.",
 	"apihelp-query+alltransclusions-param-prop": "Qué piezas de información incluir:",
 	"apihelp-query+alltransclusions-example-unique": "Listar títulos transcluidos de forma única.",

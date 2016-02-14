@@ -377,7 +377,7 @@
 	"badaccess-group0": "Vous n’avez pas les droits suffisants pour réaliser l’action demandée.",
 	"badaccess-groups": "L’action que vous essayez de réaliser n’est permise qu’aux utilisateurs {{PLURAL:$2|du groupe|d'un des groupes}} : $1.",
 	"versionrequired": "Version $1 de MediaWiki nécessaire",
-	"versionrequiredtext": "La version $1 de MediaWiki est nécessaire pour utiliser cette page. Consultez [[Special:Version|la page des versions]].",
+	"versionrequiredtext": "La version $1 de MediaWiki est nécessaire pour utiliser cette page.\nConsultez [[Special:Version|la page des versions]].",
 	"ok": "Valider",
 	"pagetitle": "$1 — {{SITENAME}}",
 	"retrievedfrom": "Récupérée de « $1 »",
