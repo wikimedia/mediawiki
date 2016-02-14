@@ -1690,6 +1690,7 @@ return array(
 		'position' => 'top',
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.css',
+		'targets' => array( 'desktop', 'mobile' )
 	),
 	'mediawiki.special.block' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.block.js',
