@@ -95,7 +95,7 @@ class Http {
 	 * @param string $url
 	 * @param array $options
 	 * @param string $caller The method making this request, for profiling
-	 * @return string
+	 * @return string|bool false on error
 	 */
 	public static function get( $url, $options = array(), $caller = __METHOD__ ) {
 		$args = func_get_args();
@@ -118,7 +118,7 @@ class Http {
 	 * @param string $url
 	 * @param array $options
 	 * @param string $caller The method making this request, for profiling
-	 * @return string
+	 * @return string|bool false on error
 	 */
 	public static function post( $url, $options = array(), $caller = __METHOD__ ) {
 		return Http::request( 'POST', $url, $options, $caller );
