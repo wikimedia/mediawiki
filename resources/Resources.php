@@ -1683,6 +1683,7 @@ return [
 		'position' => 'top',
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.css',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.apisandbox.styles' => [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.apisandbox.top.css',
