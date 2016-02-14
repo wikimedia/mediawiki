@@ -92,7 +92,7 @@ class TestPageProps extends MediaWikiLangTestCase {
 	public function testGetSingleProperty() {
 		$pageProps = PageProps::getInstance();
 		$page1ID = $this->title1->getArticleID();
-		$result = $pageProps->getProperty( $this->title1, "property1" );
+		$result = $pageProps->getProperties( $this->title1, "property1" );
 		$this->assertArrayHasKey( $page1ID, $result, "Found property" );
 		$this->assertEquals( $result[$page1ID], "value1", "Get property" );
 	}
@@ -109,11 +109,40 @@ class TestPageProps extends MediaWikiLangTestCase {
 			$this->title1,
 			$this->title2
 		);
-		$result = $pageProps->getProperty( $titles, "property1" );
+		$result = $pageProps->getProperties( $titles, "property1" );
 		$this->assertArrayHasKey( $page1ID, $result, "Found page 1 property" );
 		$this->assertArrayHasKey( $page2ID, $result, "Found page 2 property" );
 		$this->assertEquals( $result[$page1ID], "value1", "Get property page 1" );
 		$this->assertEquals( $result[$page2ID], "value1", "Get property page 2" );
+	}
+
+	/**
+	 * Test getting multiple properties from multiple pages. The properties
+	 * were set in setUp().
+	 */
+	public function testGetMultiplePropertiesMultiplePages() {
+		$pageProps = PageProps::getInstance();
+		$page1ID = $this->title1->getArticleID();
+		$page2ID = $this->title2->getArticleID();
+		$titles = array(
+			$this->title1,
+			$this->title2
+		);
+		$properties = array(
+			"property1",
+			"property2"
+		);
+		$result = $pageProps->getProperties( $titles, $properties );
+		$this->assertArrayHasKey( $page1ID, $result, "Found page 1 property" );
+		$this->assertArrayHasKey( "property1", $result[$page1ID], "Found page 1 property 1" );
+		$this->assertArrayHasKey( "property2", $result[$page1ID], "Found page 1 property 2" );
+		$this->assertArrayHasKey( $page2ID, $result, "Found page 2 property" );
+		$this->assertArrayHasKey( "property1", $result[$page2ID], "Found page 2 property 1" );
+		$this->assertArrayHasKey( "property2", $result[$page2ID], "Found page 2 property 2" );
+		$this->assertEquals( $result[$page1ID]["property1"], "value1", "Get page 1 property 1" );
+		$this->assertEquals( $result[$page1ID]["property2"], "value2", "Get page 1 property 2" );
+		$this->assertEquals( $result[$page2ID]["property1"], "value1", "Get page 2 property 1" );
+		$this->assertEquals( $result[$page2ID]["property2"], "value2", "Get page 2 property 2" );
 	}
 
 	/**
@@ -130,7 +159,7 @@ class TestPageProps extends MediaWikiLangTestCase {
 	public function testGetAllProperties() {
 		$pageProps = PageProps::getInstance();
 		$page1ID = $this->title1->getArticleID();
-		$result = $pageProps->getProperties( $this->title1 );
+		$result = $pageProps->getAllProperties( $this->title1 );
 		$this->assertArrayHasKey( $page1ID, $result, "Found properties" );
 		$properties = $result[$page1ID];
 		$patched = array_replace_recursive( $properties, $this->the_properties );
@@ -149,7 +178,7 @@ class TestPageProps extends MediaWikiLangTestCase {
 			$this->title1,
 			$this->title2
 		);
-		$result = $pageProps->getProperties( $titles );
+		$result = $pageProps->getAllProperties( $titles );
 		$this->assertArrayHasKey( $page1ID, $result, "Found page 1 properties" );
 		$this->assertArrayHasKey( $page2ID, $result, "Found page 2 properties" );
 		$properties1 = $result[$page1ID];
@@ -169,9 +198,9 @@ class TestPageProps extends MediaWikiLangTestCase {
 	public function testSingleCache() {
 		$pageProps = PageProps::getInstance();
 		$page1ID = $this->title1->getArticleID();
-		$value1 = $pageProps->getProperty( $this->title1, "property1" );
+		$value1 = $pageProps->getProperties( $this->title1, "property1" );
 		$this->setProperty( $page1ID, "property1", "another value" );
-		$value2 = $pageProps->getProperty( $this->title1, "property1" );
+		$value2 = $pageProps->getProperties( $this->title1, "property1" );
 		$this->assertEquals( $value1, $value2, "Single cache" );
 	}
 
@@ -184,9 +213,9 @@ class TestPageProps extends MediaWikiLangTestCase {
 	public function testMultiCache() {
 		$pageProps = PageProps::getInstance();
 		$page1ID = $this->title1->getArticleID();
-		$properties1 = $pageProps->getProperties( $this->title1 );
+		$properties1 = $pageProps->getAllProperties( $this->title1 );
 		$this->setProperty( $page1ID, "property1", "another value" );
-		$properties2 = $pageProps->getProperties( $this->title1 );
+		$properties2 = $pageProps->getAllProperties( $this->title1 );
 		$this->assertEquals( $properties1, $properties2, "Multi Cache" );
 	}
 
@@ -201,11 +230,11 @@ class TestPageProps extends MediaWikiLangTestCase {
 	public function testClearCache() {
 		$pageProps = PageProps::getInstance();
 		$page1ID = $this->title1->getArticleID();
-		$pageProps->getProperty( $this->title1, "property1" );
+		$pageProps->getProperties( $this->title1, "property1" );
 		$new_value = "another value";
 		$this->setProperty( $page1ID, "property1", $new_value );
-		$pageProps->getProperties( $this->title1 );
-		$result = $pageProps->getProperty( $this->title1, "property1" );
+		$pageProps->getAllProperties( $this->title1 );
+		$result = $pageProps->getProperties( $this->title1, "property1" );
 		$this->assertArrayHasKey( $page1ID, $result, "Found property" );
 		$this->assertEquals( $result[$page1ID], "another value", "Clear cache" );
 	}

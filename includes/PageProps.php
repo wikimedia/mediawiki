@@ -58,30 +58,52 @@ class PageProps {
 	}
 
 	/**
-	 * Given one or more Titles and the name of a property, returns an
-	 * associative array mapping page ID to property value. Pages in the
-	 * provided set of Titles that do not have a value for the given
-	 * property will not appear in the returned array. If a single Title
-	 * is provided, it does not need to be passed in an array, but an array
-	 * will always be returned. An empty array will be returned if no
-	 * matching properties were found.
+	 * Given one or more Titles and one or more names of properties,
+	 * returns an associative array mapping page ID to property value.
+	 * Pages in the provided set of Titles that do not have a value for
+	 * the given properties will not appear in the returned array. If a
+	 * single Title is provided, it does not need to be passed in an array,
+	 * but an array will always be returned. If a single property name is
+	 * provided, it does not need to be passed in an array. In that case,
+	 * an associtive array mapping page ID to property value will be
+	 * returned; otherwise, an associative array mapping page ID to
+	 * an associative array mapping property name to property value will be
+	 * returned. An empty array will be returned if no matching properties
+	 * were found.
 	 *
 	 * @param array|Title $titles
-	 * @param string $propertyName
+	 * @param array|string $propertyNames
 	 *
 	 * @return array associative array mapping page ID to property value
 	 *
 	 */
-	public function getProperty( $titles, $propertyName ) {
+	public function getProperties( $titles, $propertyNames ) {
+		if ( is_array( $propertyNames ) ) {
+			$got_array = true;
+		} else {
+			$propertyNames = array( $propertyNames );
+			$got_array = false;
+		}
+
 		$values = array();
 		$goodIDs = $this->getGoodIDs( $titles );
 		$queryIDs = array();
 		foreach ( $goodIDs as $pageID ) {
-			$propertyValue = $this->getCachedProperty( $pageID, $propertyName );
-			if ( $propertyValue === false ) {
-				$queryIDs[] = $pageID;
-			} else {
-				$values[$pageID] = $propertyValue;
+			foreach ( $propertyNames as $propertyName ) {
+				$propertyValue = $this->getCachedProperty( $pageID, $propertyName );
+				if ( $propertyValue === false ) {
+					$queryIDs[] = $pageID;
+					break;
+				} else {
+					if ( $got_array ) {
+						if ( !array_key_exists( $pageID, $values ) ) {
+							$values[$pageID] = array();
+						}
+						$values[$pageID][$propertyName] = $propertyValue;
+					} else {
+						$values[$pageID] = $propertyValue;
+					}
+				}
 			}
 		}
 
@@ -91,20 +113,29 @@ class PageProps {
 				'page_props',
 				array(
 					'pp_page',
+					'pp_propname',
 					'pp_value'
 				),
 				array(
 					'pp_page' => $queryIDs,
-					'pp_propname' => $propertyName
+					'pp_propname' => $propertyNames
 				),
 				__METHOD__
 			);
 
 			foreach ( $result as $row ) {
 				$pageID = $row->pp_page;
+				$propertyName = $row->pp_propname;
 				$propertyValue = $row->pp_value;
 				$this->cacheProperty( $pageID, $propertyName, $propertyValue );
-				$values[$pageID] = $propertyValue;
+				if ( $got_array ) {
+					if ( !array_key_exists( $pageID, $values ) ) {
+						$values[$pageID] = array();
+					}
+					$values[$pageID][$propertyName] = $propertyValue;
+				} else {
+					$values[$pageID] = $propertyValue;
+				}
 			}
 		}
 
@@ -126,7 +157,7 @@ class PageProps {
 	 * @return array associative array mapping page ID to property value array
 	 *
 	 */
-	public function getProperties( $titles ) {
+	public function getAllProperties( $titles ) {
 		$values = array();
 		$goodIDs = $this->getGoodIDs( $titles );
 		$queryIDs = array();
