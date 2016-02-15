@@ -205,7 +205,13 @@ class SpecialSearch extends SpecialPage {
 		$title = SearchEngine::getNearMatch( $term );
 
 		if ( !is_null( $title ) ) {
-			$this->getOutput()->redirect( $title->getFullURL() );
+			$wprov = $this->getRequest()->getVal( 'wprov' );
+			if ( $wprov ) {
+				$query = array( 'wprov' => $wprov );
+			} else {
+				$query = array();
+			}
+			$this->getOutput()->redirect( $title->getFullURL( $query ) );
 
 			return;
 		}
@@ -1221,6 +1227,8 @@ class SpecialSearch extends SpecialPage {
 			'size' => '50',
 			'autofocus' => trim( $term ) === '',
 			'class' => 'mw-ui-input mw-ui-input-inline',
+			// identifies the location of the search bar for tracking purposes
+			'data-search-loc' => 'content',
 		) ) . "\n";
 		$out .= Html::hidden( 'fulltext', 'Search' ) . "\n";
 		$out .= Html::submitButton(

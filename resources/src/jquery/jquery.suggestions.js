@@ -181,7 +181,7 @@
 						if ( +new Date() - cache[ val ].timestamp < context.config.cacheMaxAge ) {
 							context.data.$textbox.suggestions( 'suggestions', cache[ val ].suggestions );
 							if ( typeof context.config.update.after === 'function' ) {
-								context.config.update.after.call( context.data.$textbox );
+								context.config.update.after.call( context.data.$textbox, cache[ val ].metadata );
 							}
 							cacheHit = true;
 						} else {
@@ -193,15 +193,16 @@
 						context.config.fetch.call(
 							context.data.$textbox,
 							val,
-							function ( suggestions ) {
+							function ( suggestions, metadata ) {
 								suggestions = suggestions.slice( 0, context.config.maxRows );
 								context.data.$textbox.suggestions( 'suggestions', suggestions );
 								if ( typeof context.config.update.after === 'function' ) {
-									context.config.update.after.call( context.data.$textbox );
+									context.config.update.after.call( context.data.$textbox, metadata );
 								}
 								if ( context.config.cache ) {
 									cache[ val ] = {
 										suggestions: suggestions,
+										metadata: metadata,
 										timestamp: +new Date()
 									};
 								}
