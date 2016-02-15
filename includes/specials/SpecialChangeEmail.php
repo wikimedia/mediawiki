@@ -173,13 +173,12 @@ class SpecialChangeEmail extends FormSpecialPage {
 			return Status::newFatal( 'changeemail-nochange' );
 		}
 
-		$throttleCount = LoginForm::incLoginThrottle( $user->getName() );
-		if ( $throttleCount === true ) {
+		$throttleInfo = LoginForm::incrementLoginThrottle( $user->getName() );
+		if ( $throttleInfo ) {
 			$lang = $this->getLanguage();
-			$throttleInfo = $this->getConfig()->get( 'PasswordAttemptThrottle' );
 			return Status::newFatal(
 				'changeemail-throttled',
-				$lang->formatDuration( $throttleInfo['seconds'] )
+				$lang->formatDuration( $throttleInfo['wait'] )
 			);
 		}
 
@@ -190,9 +189,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 			return Status::newFatal( 'wrongpassword' );
 		}
 
-		if ( $throttleCount ) {
-			LoginForm::clearLoginThrottle( $user->getName() );
-		}
+		LoginForm::clearLoginThrottle( $user->getName() );
 
 		$oldaddr = $user->getEmail();
 		$status = $user->setEmailWithConfirmation( $newaddr );
