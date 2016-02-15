@@ -2469,7 +2469,7 @@
 	"svg-long-error": "Neispravna SVG datoteka: $1",
 	"show-big-image": "Puna veličina",
 	"show-big-image-preview": "Veličina ovog prikaza: $1.",
-	"show-big-image-preview-differ": "Veličina ovog $3 pregleda za ovu $2 datoteku je $1.",
+	"show-big-image-preview-differ": "Veličina $3 pregleda za ovu $2 datoteku je $1.",
 	"show-big-image-other": "{{PLURAL:$2|Druga rezolucija|Druge rezolucije}}: $1.",
 	"show-big-image-size": "$1 × $2 piksela",
 	"file-info-gif-looped": "petlja",

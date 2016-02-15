@@ -2525,7 +2525,7 @@
 	"tooltip-minoredit": "Deze wijziging als een kleine wijziging markeren",
 	"tooltip-save": "Wijzigingen opslaan",
 	"tooltip-preview": "Een voorvertoning maken. Gebruik dit voordat u opslaat!",
-	"tooltip-diff": "Gemaakte wijzigingen bekijken (zoals het in de geschiedenis zal te zien zijn)",
+	"tooltip-diff": "Weergeven welke wijzigingen u aan de tekst hebt gemaakt",
 	"tooltip-compareselectedversions": "De verschillen tussen de geselecteerde versies van deze pagina bekijken.",
 	"tooltip-watch": "Deze pagina aan uw volglijst toevoegen",
 	"tooltip-watchlistedit-normal-submit": "Pagina's verwijderen",

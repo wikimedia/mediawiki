@@ -203,6 +203,8 @@
 	"apihelp-managetags-example-delete": "Eliminar la etiqueta <kbd>vandlaismo</kbd> con el motivo <kbd>mal deletreado</kbd>",
 	"apihelp-managetags-example-activate": "Activar una etiqueta llamada <kbd>spam</kbd> con el motivo <kbd>For use in edit patrolling</kbd>",
 	"apihelp-managetags-example-deactivate": "Desactivar una etiqueta llamada <kbd>spam</kbd> con el motivo <kbd>No longer required</kbd>",
+	"apihelp-mergehistory-description": "Fusionar historiales de páginas.",
+	"apihelp-mergehistory-param-reason": "Motivo para la fusión del historial.",
 	"apihelp-move-description": "Trasladar una página.",
 	"apihelp-move-param-from": "Título de la página a renombrar. No se puede utilizar con <var>$1fromid</var>.",
 	"apihelp-move-param-fromid": "ID de la página a renombrar. No se puede utilizar con <var>$1from</var>.",
