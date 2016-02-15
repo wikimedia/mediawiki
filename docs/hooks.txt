@@ -2914,6 +2914,14 @@ go to the existing page.
 $t: title object searched for
 &$params: an array of the default message name and page title (as parameter)
 
+'SpecialSearchGoResult': If a hook returns false the 'go' feature will be
+canceled and a normal search will be performed. Returning true without setting
+$url does a standard redirect to $title. Setting $url redirects to the
+specified URL.
+$term - The string the user searched for
+$title - The title the 'go' feature has decided to forward the user to
+&$url - Initially null, hook subscribers can set this to specify the final url to redirect to
+
 'SpecialSearchNogomatch': Called when user clicked the "Go" button but the
 target doesn't exist.
 &$title: title object generated from the text entered by the user
