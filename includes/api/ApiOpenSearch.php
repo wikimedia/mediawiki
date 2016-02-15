@@ -111,6 +111,8 @@ class ApiOpenSearch extends ApiBase {
 
 		// Populate result object
 		$this->populateResult( $search, $results );
+
+		Hooks::run( 'ApiOpenSearchAnalytics', array( $this->getContext() ) );
 	}
 
 	/**

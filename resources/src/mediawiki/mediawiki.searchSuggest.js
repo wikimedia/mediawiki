@@ -12,12 +12,13 @@
 				namespace: 0,
 				limit: maxRows,
 				suggest: true
-			} ).done( function ( data ) {
-				response( data[ 1 ] );
+			} ).done( function ( data, jqXHR ) {
+				response( data[ 1 ], {
+					type: jqXHR.getResponseHeader( 'X-OpenSearch-Type' ),
+					query: query
+				} );
 			} );
-		},
-		// The name of the request api for event logging purposes
-		type: 'prefix'
+		}
 	};
 
 	$( function () {
@@ -91,18 +92,36 @@
 		}
 
 		/**
+		 * defines the location of autocomplete. Typically either
+		 * header, which is in the top right of vector (for example)
+		 * and content which identifies the main search bar on
+		 * Special:Search.  Defaults to header for skins that don't set
+		 * explicitly.
+		 *
+		 * @ignore
+		 */
+		function getInputLocation( context ) {
+			return context.config.$region
+					.closest( 'form' )
+					.find( '[data-search-loc]' )
+					.data( 'search-loc' ) || 'header';
+		}
+
+		/**
 		 * Callback that's run when suggestions have been updated either from the cache or the API
 		 * 'this' is the search input box (jQuery object)
 		 *
 		 * @ignore
 		 */
-		function onAfterUpdate() {
+		function onAfterUpdate( metadata ) {
 			var context = this.data( 'suggestionsContext' );
 
 			mw.track( 'mediawiki.searchSuggest', {
 				action: 'impression-results',
 				numberOfResults: context.config.suggestions.length,
-				resultSetType: mw.searchSuggest.type
+				resultSetType: metadata.type || "unknown",
+				query: metadata.query,
+				inputLocation: getInputLocation( context )
 			} );
 		}
 
@@ -112,6 +131,14 @@
 
 			// linkParams object is modified and reused
 			formData.linkParams[ formData.textParam ] = text;
+
+			// Allow trackers to attach tracking information, such
+			// as wprov, to clicked links.
+			mw.track( 'mediawiki.searchSuggest', {
+				action: 'render-one',
+				formData: formData,
+				index: context.config.suggestions.indexOf( text ) + 1
+			} );
 
 			// this is the container <div>, jQueryfied
 			this.text( text )
@@ -208,6 +235,10 @@
 						return true;
 					}
 				},
+				update: {
+					before: onBeforeUpdate,
+					after: onAfterUpdate
+				},
 				cache: true,
 				highlightInput: true
 			} )
@@ -262,7 +293,9 @@
 				var context = $searchInput.data( 'suggestionsContext' );
 				mw.track( 'mediawiki.searchSuggest', {
 					action: 'submit-form',
-					numberOfResults: context.config.suggestions.length
+					numberOfResults: context.config.suggestions.length,
+					$form: context.config.$region.closest( 'form' ),
+					inputLocation: getInputLocation( context )
 				} );
 			} )
 			// If the form includes any fallback fulltext search buttons, remove them
