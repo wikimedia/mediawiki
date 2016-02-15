@@ -2261,6 +2261,7 @@ class WikiPage implements Page, IDBAccessObject {
 				DeferredUpdates::addUpdate( $update );
 			}
 			if ( $wgRCWatchCategoryMembership
+				&& $this->getContentHandler()->supportsCategories() === true
 				&& ( $options['changed'] || $options['created'] )
 				&& !$options['restored']
 			) {

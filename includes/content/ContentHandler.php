@@ -1083,6 +1083,16 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Returns true if this content model supports categories.
+	 * The default implementation returns true.
+	 *
+	 * @return bool Always true.
+	 */
+	public function supportsCategories() {
+		return true;
+	}
+
+	/**
 	 * Returns true if this content model supports redirects.
 	 * This default implementation returns false.
 	 *
