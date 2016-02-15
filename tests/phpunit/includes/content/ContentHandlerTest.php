@@ -350,6 +350,11 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	}
 	*/
 
+	public function testSupportsCategories() {
+		$handler = new DummyContentHandlerForTesting( CONTENT_MODEL_WIKITEXT );
+		$this->assertTrue( $handler->supportsCategories(), 'content model supports categories' );
+	}
+
 	public function testSupportsDirectEditing() {
 		$handler = new DummyContentHandlerForTesting( CONTENT_MODEL_JSON );
 		$this->assertFalse( $handler->supportsDirectEditing(), 'direct editing is not supported' );
