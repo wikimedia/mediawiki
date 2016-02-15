@@ -1326,6 +1326,7 @@
 								classes: [ 'mw-apisandbox-spacer' ]
 							} ), {
 								align: 'inline',
+								classes: [ 'mw-apisandbox-help-field' ],
 								label: dl
 							}
 						);
@@ -1335,6 +1336,7 @@
 							widget,
 							{
 								align: 'left',
+								classes: [ 'mw-apisandbox-widget-field' ],
 								label: prefix + pi.parameters[ i ].name,
 								$label: $widgetLabel
 							}

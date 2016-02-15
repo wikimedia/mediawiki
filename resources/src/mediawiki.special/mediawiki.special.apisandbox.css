@@ -33,6 +33,14 @@
 	width: 5em;
 }
 
+.mw-apisandbox-help-field {
+	border-bottom: 1px solid rgba( 0, 0, 0, 0.1 );
+}
+
+.mw-apisandbox-help-field:last-child {
+	border-bottom: none;
+}
+
 .mw-apisandbox-optionalWidget {
 	width: 100%;
 }
