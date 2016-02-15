@@ -257,12 +257,10 @@ class SpecialChangePassword extends FormSpecialPage {
 			return Status::newFatal( $this->msg( 'badretype' ) );
 		}
 
-		$throttleCount = LoginForm::incLoginThrottle( $this->mUserName );
-		if ( $throttleCount === true ) {
-			$lang = $this->getLanguage();
-			$throttleInfo = $this->getConfig()->get( 'PasswordAttemptThrottle' );
+		$throttleInfo = LoginForm::incrementLoginThrottle( $this->mUserName );
+		if ( $throttleInfo ) {
 			return Status::newFatal( $this->msg( 'changepassword-throttled' )
-				->params( $lang->formatDuration( $throttleInfo['seconds'] ) )
+				->durationParams( $throttleInfo['wait'] )
 			);
 		}
 
@@ -286,9 +284,7 @@ class SpecialChangePassword extends FormSpecialPage {
 		}
 
 		// Please reset throttle for successful logins, thanks!
-		if ( $throttleCount ) {
-			LoginForm::clearLoginThrottle( $this->mUserName );
-		}
+		LoginForm::clearLoginThrottle( $this->mUserName );
 
 		try {
 			$user->setPassword( $newpass );

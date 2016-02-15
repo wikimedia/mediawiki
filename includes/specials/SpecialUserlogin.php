@@ -86,6 +86,11 @@ class LoginForm extends SpecialPage {
 	);
 
 	public $mAbortLoginErrorMsg = null;
+	/**
+	 * @var int How many seconds user is throttled for
+	 * @since 1.27
+	 */
+	public $mThrottleWait = '?';
 
 	protected $mUsername;
 	protected $mPassword;
@@ -745,8 +750,9 @@ class LoginForm extends SpecialPage {
 			return self::NEED_TOKEN;
 		}
 
-		$throttleCount = self::incLoginThrottle( $this->mUsername );
-		if ( $throttleCount === true ) {
+		$throttleCount = self::incrementLoginThrottle( $this->mUsername );
+		if ( $throttleCount ) {
+			$this->mThrottleWait = $throttleCount['wait'];
 			return self::THROTTLED;
 		}
 
@@ -862,9 +868,7 @@ class LoginForm extends SpecialPage {
 			$this->getContext()->setUser( $u );
 
 			// Please reset throttle for successful logins, thanks!
-			if ( $throttleCount ) {
-				self::clearLoginThrottle( $this->mUsername );
-			}
+			self::clearLoginThrottle( $this->mUsername );
 
 			if ( $isAutoCreated ) {
 				// Must be run after $wgUser is set, for correct new user log
@@ -881,31 +885,65 @@ class LoginForm extends SpecialPage {
 	/**
 	 * Increment the login attempt throttle hit count for the (username,current IP)
 	 * tuple unless the throttle was already reached.
+	 *
+	 * @since 1.27 Return value changed.
 	 * @param string $username The user name
-	 * @return bool|int The integer hit count or True if it is already at the limit
+	 * @return bool|array false if below limit or an array if above limit
+	 *   Array contains keys wait, count, and throttleIndex
 	 */
-	public static function incLoginThrottle( $username ) {
+	public static function incrementLoginThrottle( $username ) {
 		global $wgPasswordAttemptThrottle, $wgRequest;
-		$username = trim( $username ); // sanity
+		$username = User::getCanonicalName( $username, 'usable' ) ?: $username;
 
 		$throttleCount = 0;
 		if ( is_array( $wgPasswordAttemptThrottle ) ) {
-			$throttleKey = wfGlobalCacheKey( 'password-throttle', $wgRequest->getIP(), md5( $username ) );
-			$count = $wgPasswordAttemptThrottle['count'];
-			$period = $wgPasswordAttemptThrottle['seconds'];
+			$throttleConfig = $wgPasswordAttemptThrottle;
+			if ( isset( $wgPasswordAttemptThrottle['count'] ) ) {
+				// old style. Convert for backwards compat.
+				$throttleConfig = array( $wgPasswordAttemptThrottle );
+			}
+			foreach( $throttleConfig as $index => $specificThrottle ) {
+				if ( isset( $specificThrottle['allIPs'] ) ) {
+					$ip = 'All';
+				} else {
+					$ip = $wgRequest->getIP();
+				}
+				$throttleKey = wfGlobalCacheKey( 'password-throttle',
+					$index, $ip, md5( $username )
+				);
+				$count = $specificThrottle['count'];
+				$period = $specificThrottle['seconds'];
 
-			$cache = ObjectCache::getLocalClusterInstance();
-			$throttleCount = $cache->get( $throttleKey );
-			if ( !$throttleCount ) {
-				$cache->add( $throttleKey, 1, $period ); // start counter
-			} elseif ( $throttleCount < $count ) {
-				$cache->incr( $throttleKey );
-			} elseif ( $throttleCount >= $count ) {
-				return true;
+				$cache = ObjectCache::getLocalClusterInstance();
+				$throttleCount = $cache->get( $throttleKey );
+				if ( !$throttleCount ) {
+					$cache->add( $throttleKey, 1, $period ); // start counter
+				} elseif ( $throttleCount < $count ) {
+					$cache->incr( $throttleKey );
+				} elseif ( $throttleCount >= $count ) {
+					return array(
+						'throttleIndex' => $index,
+						'wait' => $period,
+						'count' => $count
+					);
+				}
 			}
 		}
+		return false;
+	}
 
-		return $throttleCount;
+	/**
+	 * Increment the login attempt throttle hit count for the (username,current IP)
+	 * tuple unless the throttle was already reached.
+	 *
+	 * @deprecated Use LoginForm::incrementLoginThrottle instead
+	 * @param string $username The user name
+	 * @return bool|int true if above throttle, or 0 (prior to 1.27, returned current count)
+	 */
+	public static function incLoginThrottle( $username ) {
+		wfDeprecated( __METHOD__, "1.27" );
+		$res = self::incrementLoginThrottle( $username );
+		return is_array( $res ) ? true : 0;
 	}
 
 	/**
@@ -914,11 +952,27 @@ class LoginForm extends SpecialPage {
 	 * @return void
 	 */
 	public static function clearLoginThrottle( $username ) {
-		global $wgRequest;
-		$username = trim( $username ); // sanity
+		global $wgRequest, $wgPasswordAttemptThrottle;
+		$username = User::getCanonicalName( $username, 'usable' ) ?: $username;
 
-		$throttleKey = wfGlobalCacheKey( 'password-throttle', $wgRequest->getIP(), md5( $username ) );
-		ObjectCache::getLocalClusterInstance()->delete( $throttleKey );
+		if ( is_array( $wgPasswordAttemptThrottle ) ) {
+			$throttleConfig = $wgPasswordAttemptThrottle;
+			if ( isset( $wgPasswordAttemptThrottle['count'] ) ) {
+				// old style. Convert for backwards compat.
+				$throttleConfig = array( $wgPasswordAttemptThrottle );
+			}
+			foreach( $throttleConfig as $index => $specificThrottle ) {
+				if ( isset( $specificThrottle['allIPs'] ) ) {
+					$ip = 'All';
+				} else {
+					$ip = $wgRequest->getIP();
+				}
+				$throttleKey = wfGlobalCacheKey( 'password-throttle', $index,
+					$ip, md5( $username )
+				);
+				ObjectCache::getLocalClusterInstance()->delete( $throttleKey );
+			}
+		}
 	}
 
 	/**
@@ -977,7 +1031,7 @@ class LoginForm extends SpecialPage {
 	}
 
 	function processLogin() {
-		global $wgLang, $wgSecureLogin, $wgPasswordAttemptThrottle, $wgInvalidPasswordReset;
+		global $wgLang, $wgSecureLogin, $wgInvalidPasswordReset;
 
 		$cache = ObjectCache::getLocalClusterInstance();
 		$authRes = $this->authenticateUserData();
@@ -999,10 +1053,9 @@ class LoginForm extends SpecialPage {
 				self::clearLoginToken();
 
 				// Reset the throttle
-				$request = $this->getRequest();
-				$key = wfGlobalCacheKey( 'password-throttle', $request->getIP(), md5( $this->mUsername ) );
-				$cache->delete( $key );
+				self::clearLoginThrottle( $this->mUsername );
 
+				$request = $this->getRequest();
 				if ( $this->hasSessionCookie() || $this->mSkipCookieCheck ) {
 					/* Replace the language object to provide user interface in
 					 * correct language immediately on this first page load.
@@ -1079,8 +1132,7 @@ class LoginForm extends SpecialPage {
 			case self::THROTTLED:
 				$error = $this->mAbortLoginErrorMsg ?: 'login-throttled';
 				$this->mainLoginForm( $this->msg( $error )
-					->params( $this->getLanguage()->formatDuration( $wgPasswordAttemptThrottle['seconds'] ) )
-					->text()
+					->durationParams( $this->mThrottleWait )->text()
 				);
 				break;
 			case self::USER_BLOCKED:
