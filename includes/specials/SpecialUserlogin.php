@@ -649,7 +649,7 @@ class LoginForm extends SpecialPage {
 				"allowed account creation w/o throttle\n" );
 		} else {
 			if ( ( $wgAccountCreationThrottle && $currentUser->isPingLimitable() ) ) {
-				$key = wfMemcKey( 'acctcreate', 'ip', $ip );
+				$key = wfGlobalCacheKey( 'acctcreate', 'ip', $ip );
 				$value = $cache->get( $key );
 				if ( !$value ) {
 					$cache->set( $key, 0, $cache::TTL_DAY );
@@ -890,7 +890,7 @@ class LoginForm extends SpecialPage {
 
 		$throttleCount = 0;
 		if ( is_array( $wgPasswordAttemptThrottle ) ) {
-			$throttleKey = wfMemcKey( 'password-throttle', $wgRequest->getIP(), md5( $username ) );
+			$throttleKey = wfGlobalCacheKey( 'password-throttle', $wgRequest->getIP(), md5( $username ) );
 			$count = $wgPasswordAttemptThrottle['count'];
 			$period = $wgPasswordAttemptThrottle['seconds'];
 
@@ -917,7 +917,7 @@ class LoginForm extends SpecialPage {
 		global $wgRequest;
 		$username = trim( $username ); // sanity
 
-		$throttleKey = wfMemcKey( 'password-throttle', $wgRequest->getIP(), md5( $username ) );
+		$throttleKey = wfGlobalCacheKey( 'password-throttle', $wgRequest->getIP(), md5( $username ) );
 		ObjectCache::getLocalClusterInstance()->delete( $throttleKey );
 	}
 
@@ -1000,7 +1000,7 @@ class LoginForm extends SpecialPage {
 
 				// Reset the throttle
 				$request = $this->getRequest();
-				$key = wfMemcKey( 'password-throttle', $request->getIP(), md5( $this->mUsername ) );
+				$key = wfGlobalCacheKey( 'password-throttle', $request->getIP(), md5( $this->mUsername ) );
 				$cache->delete( $key );
 
 				if ( $this->hasSessionCookie() || $this->mSkipCookieCheck ) {
