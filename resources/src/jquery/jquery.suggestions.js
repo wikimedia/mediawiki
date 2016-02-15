@@ -197,7 +197,7 @@
 								suggestions = suggestions.slice( 0, context.config.maxRows );
 								context.data.$textbox.suggestions( 'suggestions', suggestions );
 								if ( typeof context.config.update.after === 'function' ) {
-									context.config.update.after.call( context.data.$textbox );
+									context.config.update.after.call( context.data.$textbox, val );
 								}
 								if ( context.config.cache ) {
 									cache[ val ] = {
