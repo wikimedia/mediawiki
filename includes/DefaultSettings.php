@@ -5204,7 +5204,7 @@ $wgHideUserContribLimit = 1000;
 /**
  * Number of accounts each IP address may create, 0 to disable.
  *
- * @warning Requires memcached
+ * @warning Requires $wgMainCacheType to be enabled
  */
 $wgAccountCreationThrottle = 0;
 
@@ -5385,9 +5385,25 @@ $wgQueryPageDefaultLimit = 50;
 /**
  * Limit password attempts to X attempts per Y seconds per IP per account.
  *
- * @warning Requires memcached.
+ * Value is an array of arrays. Each sub-array must have a key for count
+ * (ie count of how many attempts before throttle) and a key for seconds.
+ * If the key 'allIPs' (case sensitive) is present, then the limit is
+ * just per account instead of per IP per account.
+ *
+ * @since 1.27 allIps support and multiple limits added in 1.27. Prior
+ *   to 1.27 this only supported having a single throttle.
+ * @warning Requires $wgMainCacheType to be enabled
  */
-$wgPasswordAttemptThrottle = array( 'count' => 5, 'seconds' => 300 );
+$wgPasswordAttemptThrottle = array(
+	// Short term limit
+	array( 'count' => 5, 'seconds' => 300 ),
+	// Long term limit. We need to balance the risk
+	// of somebody using this as a DoS attack to lock someone
+	// out of their account, and someone doing a brute force attack.
+	array( 'count' => 150, 'seconds' => 60*60*48 ),
+	// Consider an attacker with a botnet.
+	array( 'count' => 75, 'seconds' => 60*20, 'allIPs' => true )
+);
 
 /**
  * @var Array Map of (grant => right => boolean)
