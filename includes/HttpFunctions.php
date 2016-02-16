@@ -131,7 +131,7 @@ class Http {
 	 * @return bool
 	 */
 	public static function isLocalURL( $url ) {
-		global $wgCommandLineMode, $wgLocalVirtualHosts, $wgConf;
+		global $wgCommandLineMode, $wgLocalVirtualHosts;
 
 		if ( $wgCommandLineMode ) {
 			return false;
@@ -156,9 +156,7 @@ class Http {
 					$domain = $domainPart . '.' . $domain;
 				}
 
-				if ( in_array( $domain, $wgLocalVirtualHosts )
-					|| $wgConf->isLocalVHost( $domain )
-				) {
+				if ( in_array( $domain, $wgLocalVirtualHosts ) ) {
 					return true;
 				}
 			}
