@@ -642,6 +642,9 @@
 	path = skins/Vector
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/skins/Vector.git
 	branch = wmf/1.27.0-wmf.13
+[submodule "extensions/Capiunto"]
+	path = extensions/Capiunto
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Capiunto.git
 [submodule "vendor"]
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git
