@@ -8,7 +8,8 @@
 			"Inkbug",
 			"Yona b",
 			"Rotemliss",
-			"Macofe"
+			"Macofe",
+			"OrBin"
 		]
 	},
 	"config-desc": "תכנית ההתקנה של מדיה־ויקי",
@@ -122,7 +123,7 @@
 	"config-pg-test-error": "ההתחברות למסד הנתונים '''$1''' לא מצליחה: $2",
 	"config-sqlite-dir": "תיקיית נתונים (data directory) של SQLite:",
 	"config-sqlite-dir-help": "SQLite שומר את כל הנתונים בקובץ אחד.\n\nלשרת הווב צריכה להיות הרשאה לכתוב לתיקייה שמוגדרת כאן.\n\nהיא לא צריכה נגישה לכולם דרך האינטרנט – בגלל זה איננו שמים אותה באותו מקום עם קובצי ה־PHP.\n\nתוכנת ההתקנה תכתוב קובץ <code dir=\"ltr\">.htaccess</code> יחד אִתו, אבל אם זה ייכשל, מישהו יוכל להשיג גישה למסד הנתונים שלכם.\nשם נמצא מידע מפורש של משתמשים (כתובות דוא״ל, ססמאות מגובבות) וגם גרסאות מחוקות של דפים ומידע מוגבל אחר.\n\nכדאי לשקול לשים את מסד הנתונים במקום אחר לגמרי, למשל ב־<code dir=\"ltr\">/var/lib/mediawiki/yourwik</code>.",
-	"config-oracle-def-ts": "מרחב טבלאות לפי בררת מחדל (default tablespace):",
+	"config-oracle-def-ts": "מרחב טבלאות לפי ברירת מחדל (default tablespace):",
 	"config-oracle-temp-ts": "מרחב טבלאות זמני (temporary tablespace):",
 	"config-type-mysql": "MySQL (או תואם)",
 	"config-type-mssql": "Microsoft SQL Server",
@@ -272,11 +273,11 @@
 	"config-extensions": "הרחבות",
 	"config-extensions-help": "ההרחבות ברשימה לעיל התגלו בתיקיית <span dir=\"ltr\"><code>./extensions</code></span> שלכם.\n\nייתכן שזה ידרוש הגדרות נוספות, אבל תוכלו להפעיל אותן עכשיו.",
 	"config-skins": "עיצובים",
-	"config-skins-help": "העיצובים לעיל נמצאו בתיקיית ה־<code dir=\"ltr\">./skins</code> שלך. חובה להפעיל לפחות אחת ולבחור בררת מחדל.",
-	"config-skins-use-as-default": "להשתמש בזה בתור בררת מחדל",
+	"config-skins-help": "העיצובים לעיל נמצאו בתיקיית ה־<code dir=\"ltr\">./skins</code> שלך. חובה להפעיל לפחות אחת ולבחור ברירת מחדל.",
+	"config-skins-use-as-default": "להשתמש בזה בתור ברירת מחדל",
 	"config-skins-missing": "לא נמצאו עיצובים; מדיה־ויקי תשתמש בעיצוב גיבוי עד התקנת משהו מתאים.",
 	"config-skins-must-enable-some": "חובה לבחור לפחות עיצוב אחד שיופעל.",
-	"config-skins-must-enable-default": "העיצוב שנבחר בתור בררת מחדל חייב להיות מופעל.",
+	"config-skins-must-enable-default": "העיצוב שנבחר בתור ברירת מחדל חייב להיות מופעל.",
 	"config-install-alreadydone": "'''אזהרה:''' נראה שכבר התקנתם את מדיה־ויקי ואתם מנסים להתקין אותה שוב.\nאנה התקדמו לדף הבא.",
 	"config-install-begin": "כשתלחצו על \"{{int:config-continue}}\", תתחילו את ההתקנה של מדיה־ויקי.\nאם אתם עדיין רוצים לשנות משהו, לחצו על \"{{int:config-back}}\".",
 	"config-install-step-done": "בוצע",

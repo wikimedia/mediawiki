@@ -10,7 +10,8 @@
 			"LaG roiL",
 			"Elyashiv",
 			"Umherirrender",
-			"Macofe"
+			"Macofe",
+			"OrBin"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|תיעוד]]\n* [[mw:API:FAQ|שו\"ת]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api רשימת דיוור]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> כל האפשרויות שמוצגות בדף הזה אמורות לעבוד, אבל ה־API עדיין בפיתוח פעיל, ויכול להשתנות בכל זמן. עשו מינוי ל [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ רשימת הדיוור mediawiki-api-announce] להודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, תישלח כותרת HTTP עם המפתח \"MediaWiki-API-Error\" ואז גם הערך של הכותרת וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף ר' [[mw:API:Errors_and_warnings|API: שגיאות ואזהרות]].\n\n<strong>בדיקה:</strong> לבדיקה קלה יותר של בקשות ר' [[Special:ApiSandbox]].",
@@ -432,7 +433,7 @@
 	"apihelp-query+alllinks-example-unique-generator": "קבלת כל הכותרות המקושרות, וסימון החסרות.",
 	"apihelp-query+alllinks-example-generator": "קבלת דפים שמכילים את הקישורים.",
 	"apihelp-query+allmessages-description": "החזרת הודעות מהאתר הזה.",
-	"apihelp-query+allmessages-param-messages": "אילו הודעות לפלוט. כתיבת <kbd>*</kbd> (בררת מחדל) תפלוט את כל ההודעות.",
+	"apihelp-query+allmessages-param-messages": "אילו הודעות לפלוט. כתיבת <kbd>*</kbd> (ברירת מחדל) תפלוט את כל ההודעות.",
 	"apihelp-query+allmessages-param-prop": "אלו מאפיינים לקבל.",
 	"apihelp-query+allmessages-param-enableparser": "יש להגדיר כדי להפעיל את המפענח, יעשה קדם־עיבוד לקוד ויקי של ההודעה (יחליף מילות קסם, יטפל בתבניות, וכו').",
 	"apihelp-query+allmessages-param-nocontent": "אם זה מוגדר, לא לכלול את תוכן ההודעות בפלט.",
@@ -1197,7 +1198,7 @@
 	"apihelp-rollback-param-pageid": "מזהה הדף לשחזור. לא יכול לשמש יחד עם <var>$1title</var>.",
 	"apihelp-rollback-param-tags": "אילו תגים להחיל על השחזור.",
 	"apihelp-rollback-param-user": "שם המשתמשים שהעריכות שלו תשוחזרנה.",
-	"apihelp-rollback-param-summary": "תקציר עריכה מותאם. אם ריק, ישמש תקציר לפי בררת מחדל.",
+	"apihelp-rollback-param-summary": "תקציר עריכה מותאם. אם ריק, ישמש תקציר לפי ברירת מחדל.",
 	"apihelp-rollback-param-markbot": "לסמן את העריכות ששוחזרו ואת השחזור בתור עריכות בוט.",
 	"apihelp-rollback-param-watchlist": "הוספה או הסרה של הדף ללא תנאי מרשימת המעקב של המשתמש הנוכחי, להשתמש בהעדפות או לא לשנות את המעקב.",
 	"apihelp-rollback-example-simple": "שחזור העריכות האחרונות לדף <kbd>Main Page</kbd> על־ידי המשתמש <kbd>Example</kbd>.",
@@ -1348,7 +1349,7 @@
 	"api-help-param-token-webui": "לשם תאימות, גם האסימון שמשמש בממשק דפדפן מתקבל.",
 	"api-help-param-disabled-in-miser-mode": "כבוי בשל [[mw:Manual:$wgMiserMode|מצב חיסכון]].",
 	"api-help-param-limited-in-miser-mode": "<strong>לתשומת לבך:</strong> בשל [[mw:Manual:$wgMiserMode|מצב חיסכון]], שימוש בזה יכול להוביל לפחות מ־<var>$1limit</var> תוצאות לפני המשך; במצבים קיצוניים ייתכן שיחזרו אפס תוצאות.",
-	"api-help-param-direction": "באיזה כיוון למנות:\n;newer:לרשום את הישנים ביותר בהתחלה. לתשומת לבך: $1start חייב להיות לפני $1end.\n;older:לרשום את החדשים ביותר בהתחלה (בררת מחדל). לתשומת לבך: $1start חייב להיות אחרי $1end.",
+	"api-help-param-direction": "באיזה כיוון למנות:\n;newer:לרשום את הישנים ביותר בהתחלה. לתשומת לבך: $1start חייב להיות לפני $1end.\n;older:לרשום את החדשים ביותר בהתחלה (ברירת מחדל). לתשומת לבך: $1start חייב להיות אחרי $1end.",
 	"api-help-param-continue": "כשיש עוד תוצאות, להשתמש בזה בשביל להמשיך.",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(ללא תיאור)</span>",
 	"api-help-examples": "{{PLURAL:$1|דוגמה|דוגמאות}}:",
