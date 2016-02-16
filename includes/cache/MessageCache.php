@@ -790,11 +790,13 @@ class MessageCache {
 					# Fix for NBSP, converted to space by firefox
 					'&nbsp;',
 					'&#160;',
+					'&shy;'
 				),
 				array(
 					' ',
 					"\xc2\xa0",
-					"\xc2\xa0"
+					"\xc2\xa0",
+					"\xc2\xad"
 				),
 				$message
 			);
