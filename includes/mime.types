@@ -123,6 +123,7 @@ text/tab-separated-values tsv
 text/vnd.wap.wml wml
 text/vnd.wap.wmlscript wmls
 text/xml xml xsl xslt rss rdf
+text/x-component htc
 text/x-setext etx
 text/x-sawfish jl
 video/mpeg mpeg mpg mpe
