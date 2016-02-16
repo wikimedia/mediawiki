@@ -5,7 +5,7 @@ Feature: Preferences
     Given I am logged in
     When I navigate to Preferences
       And I click Appearance
-    Then I can select skins
+    Then I can select skin Vector
       And I can select image size
       And I can select thumbnail size
       And I can select Threshold for stub link

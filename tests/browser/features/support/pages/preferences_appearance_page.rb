@@ -15,7 +15,6 @@ class PreferencesAppearancePage
   page_url 'Special:Preferences#mw-prefsection-rendering'
 
   checkbox(:auto_number_check, id: 'mw-input-wpnumberheadings')
-  radio_button(:cologne_blue, id: 'mw-input-wpskin-cologneblue')
   radio_button(:day_mo_year_radio, id: 'mw-input-wpdate-dmy')
   checkbox(:dont_show_aft_check, id: 'mw-input-wparticlefeedback-disable')
   checkbox(:exclude_from_experiments_check, id: 'mw-input-wpvector-noexperiments')
@@ -23,8 +22,6 @@ class PreferencesAppearancePage
   radio_button(:iso_8601_radio, id: 'mw-input-wpdate-ISO_8601')
   span(:local_time_span, id: 'wpLocalTime')
   radio_button(:mo_day_year_radio, id: 'mw-input-wpdate-mdy')
-  radio_button(:modern, id: 'mw-input-wpskin-modern')
-  radio_button(:monobook, id: 'mw-input-wpskin-monobook')
   radio_button(:no_preference_radio, id: 'mw-input-wpdate-default')
   text_field(:other_offset, id: 'mw-input-wptimecorrection-other')
   a(:restore_default_link, id: 'mw-prefs-restoreprefs')
