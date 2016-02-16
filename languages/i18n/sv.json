@@ -1484,7 +1484,6 @@
 	"upload-dialog-button-done": "Klar",
 	"upload-dialog-button-save": "Spara",
 	"upload-dialog-button-upload": "Ladda upp",
-	"upload-form-label-select-file": "Välj fil",
 	"upload-form-label-infoform-title": "Detaljer",
 	"upload-form-label-infoform-name": "Namn",
 	"upload-form-label-infoform-name-tooltip": "En unik beskrivande titel för filen, som kommer att fungera som ett filnamn. Du kan använda klarspråk med mellanslag. Ta inte med filändelsen.",

@@ -1543,7 +1543,6 @@
 	"upload-dialog-button-done": "Hecho",
 	"upload-dialog-button-save": "Guardar",
 	"upload-dialog-button-upload": "Subir",
-	"upload-form-label-select-file": "Seleccionar archivo",
 	"upload-form-label-infoform-title": "Detalles",
 	"upload-form-label-infoform-name": "Nombre",
 	"upload-form-label-infoform-name-tooltip": "Un título único descriptivo para el archivo, que servirá como un nombre de archivo. Puedes usar un lenguaje claro con espacios. No incluyas la extensión del archivo.",

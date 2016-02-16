@@ -1316,7 +1316,6 @@
 	"upload-dialog-button-done": "Готово",
 	"upload-dialog-button-save": "Съхраняване",
 	"upload-dialog-button-upload": "Качване",
-	"upload-form-label-select-file": "Избиране на файл",
 	"upload-form-label-infoform-title": "Подробности",
 	"upload-form-label-infoform-name": "Име",
 	"upload-form-label-infoform-name-tooltip": "Уникално описателно заглавие на файла, което ще бъде записано като име на файла. Можете да използвате обикновен текст с разстояние. Не включвайте файловото разширение.",

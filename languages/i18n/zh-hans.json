@@ -1505,7 +1505,6 @@
 	"upload-dialog-button-done": "完成",
 	"upload-dialog-button-save": "保存",
 	"upload-dialog-button-upload": "上传",
-	"upload-form-label-select-file": "选择文件",
 	"upload-form-label-infoform-title": "详情",
 	"upload-form-label-infoform-name": "名称",
 	"upload-form-label-infoform-name-tooltip": "用于文件的唯一描述性标题，它将用作文件名。您可以使用带空格的普通语言。不要包含文件扩展名。",

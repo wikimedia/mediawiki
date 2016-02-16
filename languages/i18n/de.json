@@ -1506,7 +1506,6 @@
 	"upload-dialog-button-done": "Schließen",
 	"upload-dialog-button-save": "Speichern",
 	"upload-dialog-button-upload": "Hochladen",
-	"upload-form-label-select-file": "Datei auswählen",
 	"upload-form-label-infoform-title": "Einzelheiten",
 	"upload-form-label-infoform-name": "Name",
 	"upload-form-label-infoform-name-tooltip": "Ein eindeutiger erklärender Titel für die Datei, die als Dateiname angeboten wird. Du musst reine Sprache mit Leerzeichen verwenden. Nicht die Dateierweiterung einschließen.",
