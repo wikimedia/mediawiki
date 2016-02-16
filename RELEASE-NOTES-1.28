@@ -226,6 +226,7 @@ changes to languages because of Phabricator reports.
 * The ArticleAfterFetchContent, ArticleInsertComplete, ArticleSave, ArticleSaveComplete,
   ArticleViewCustom, EditPageGetDiffText, EditPageGetPreviewText and ShowRawCssJs hooks
   will now emit deprecation warnings if used.
+* wiki.phtml entry point was removed.
 
 == Compatibility ==
 
