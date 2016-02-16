@@ -255,6 +255,18 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 		$this->assertTrue( $pos2->hasReached( $pos2 ) );
 		$this->assertTrue( $pos2->hasReached( $pos1 ) );
 		$this->assertFalse( $pos1->hasReached( $pos2 ) );
+
+		$pos1a = new MySQLMasterPos( 'db1034-bin.000976', '9999' );
+		$pos2a = new MySQLMasterPos( 'db1034-bin.000976', '10000' );
+
+		$this->assertTrue( $pos1->hasReached( $pos1a ) );
+		$this->assertTrue( $pos2->hasReached( $pos2a ) );
+		$this->assertTrue( $pos2->hasReached( $pos1a ) );
+		$this->assertFalse( $pos1->hasReached( $pos2a ) );
+		$this->assertTrue( $pos1a->hasReached( $pos1 ) );
+		$this->assertTrue( $pos2a->hasReached( $pos2 ) );
+		$this->assertTrue( $pos2a->hasReached( $pos1 ) );
+		$this->assertFalse( $pos1a->hasReached( $pos2 ) );
 	}
 
 	/**
