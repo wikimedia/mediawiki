@@ -13,6 +13,10 @@ Given(/^I am at Log in page$/) do
   visit LoginPage
 end
 
+When(/^I log in$/) do
+  on(LoginPage).login_with(user, password, false)
+end
+
 When(/^I log in with incorrect password$/) do
   on(LoginPage).login_with(user, 'incorrect password', false)
 end

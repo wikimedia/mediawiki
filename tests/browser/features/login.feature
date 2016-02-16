@@ -27,5 +27,5 @@ Feature: Log in
 
   @login
   Scenario: Log in with valid credentials
-    When I am logged in
+    When I log in
     Then error box should not be visible
