@@ -121,19 +121,19 @@ class JsonContent extends TextContent {
 	 */
 	protected function rootValueTable( $val ) {
 		if ( is_object( $val ) ) {
-			return self::objectTable( $val );
+			return $this->objectTable( $val );
 		}
 
 		if ( is_array( $val ) ) {
 			// Wrap arrays in another array so that they're visually boxed in a container.
 			// Otherwise they are visually indistinguishable from a single value.
-			return self::arrayTable( [ $val ] );
+			return $this->arrayTable( [ $val ] );
 		}
 
 		return Html::rawElement( 'table', [ 'class' => 'mw-json mw-json-single-value' ],
 			Html::rawElement( 'tbody', [],
 				Html::rawElement( 'tr', [],
-					Html::element( 'td', [], self::primitiveValue( $val ) )
+					Html::element( 'td', [], $this->primitiveValue( $val ) )
 				)
 			)
 		);
@@ -174,7 +174,7 @@ class JsonContent extends TextContent {
 	 */
 	protected function objectRow( $key, $val ) {
 		$th = Html::element( 'th', [], $key );
-		$td = self::valueCell( $val );
+		$td = $this->valueCell( $val );
 		return Html::rawElement( 'tr', [], $th . $td );
 	}
 
@@ -211,7 +211,7 @@ class JsonContent extends TextContent {
 	 * @return string HTML.
 	 */
 	protected function arrayRow( $val ) {
-		$td = self::valueCell( $val );
+		$td = $this->valueCell( $val );
 		return Html::rawElement( 'tr', [], $td );
 	}
 
@@ -223,14 +223,14 @@ class JsonContent extends TextContent {
 	 */
 	protected function valueCell( $val ) {
 		if ( is_object( $val ) ) {
-			return Html::rawElement( 'td', [], self::objectTable( $val ) );
+			return Html::rawElement( 'td', [], $this->objectTable( $val ) );
 		}
 
 		if ( is_array( $val ) ) {
-			return Html::rawElement( 'td', [], self::arrayTable( $val ) );
+			return Html::rawElement( 'td', [], $this->arrayTable( $val ) );
 		}
 
-		return Html::element( 'td', [ 'class' => 'value' ], self::primitiveValue( $val ) );
+		return Html::element( 'td', [ 'class' => 'value' ], $this->primitiveValue( $val ) );
 	}
 
 	/**
