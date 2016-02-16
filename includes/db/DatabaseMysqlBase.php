@@ -1440,6 +1440,14 @@ class MySQLMasterPos implements DBMasterPos {
 			throw new InvalidArgumentException( "Position not an instance of " . __CLASS__ );
 		}
 
+		// if the master has changed its binlog format, or we have performed a failover,
+		// assume the slave it is up to date: T126436
+		$thisBinlogName = $this->getBinLogCommonName();
+		$thatBinlogName = $pos->getBinLogCommonName();
+		if ($thisBinLogName && $thatBinLogName && !strcmp($thisBinLogName, $thatBinLogName)) {
+			return True;
+		}
+
 		$thisPos = $this->getCoordinates();
 		$thatPos = $pos->getCoordinates();
 
@@ -1458,6 +1466,19 @@ class MySQLMasterPos implements DBMasterPos {
 		$m = array();
 		if ( preg_match( '!\.(\d+)/(\d+)$!', (string)$this, $m ) ) {
 			return array( (int)$m[1], (int)$m[2] );
+		}
+
+		return false;
+	}
+
+	/**
+	 * @return string|bool
+	 */
+	protected function getBinLogCommonName() {
+                // TODO: implement better replication monitoring with
+		// heartbeat or GTIDs
+		if ( preg_match( '!^(\.+)\.(\d+)/(\d+)$!', (string)$this, $m ) ) {
+			return $m[1];
 		}
 
 		return false;
