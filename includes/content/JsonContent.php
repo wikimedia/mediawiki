@@ -121,19 +121,19 @@ class JsonContent extends TextContent {
 	 */
 	protected function rootValueTable( $val ) {
 		if ( is_object( $val ) ) {
-			return self::objectTable( $val );
+			return $this->objectTable( $val );
 		}
 
 		if ( is_array( $val ) ) {
 			// Wrap arrays in another array so that they're visually boxed in a container.
 			// Otherwise they are visually indistinguishable from a single value.
-			return self::arrayTable( array( $val ) );
+			return $this->arrayTable( array( $val ) );
 		}
 
 		return Html::rawElement( 'table', array( 'class' => 'mw-json mw-json-single-value' ),
 			Html::rawElement( 'tbody', array(),
 				Html::rawElement( 'tr', array(),
-					Html::element( 'td', array(), self::primitiveValue( $val ) )
+					Html::element( 'td', array(), $this->primitiveValue( $val ) )
 				)
 			)
 		);
@@ -174,7 +174,7 @@ class JsonContent extends TextContent {
 	 */
 	protected function objectRow( $key, $val ) {
 		$th = Html::element( 'th', array(), $key );
-		$td = self::valueCell( $val );
+		$td = $this->valueCell( $val );
 		return Html::rawElement( 'tr', array(), $th . $td );
 	}
 
@@ -211,7 +211,7 @@ class JsonContent extends TextContent {
 	 * @return string HTML.
 	 */
 	protected function arrayRow( $val ) {
-		$td = self::valueCell( $val );
+		$td = $this->valueCell( $val );
 		return Html::rawElement( 'tr', array(), $td );
 	}
 
@@ -223,14 +223,14 @@ class JsonContent extends TextContent {
 	 */
 	protected function valueCell( $val ) {
 		if ( is_object( $val ) ) {
-			return Html::rawElement( 'td', array(), self::objectTable( $val ) );
+			return Html::rawElement( 'td', array(), $this->objectTable( $val ) );
 		}
 
 		if ( is_array( $val ) ) {
-			return Html::rawElement( 'td', array(), self::arrayTable( $val ) );
+			return Html::rawElement( 'td', array(), $this->arrayTable( $val ) );
 		}
 
-		return Html::element( 'td', array( 'class' => 'value' ), self::primitiveValue( $val ) );
+		return Html::element( 'td', array( 'class' => 'value' ), $this->primitiveValue( $val ) );
 	}
 
 	/**
