@@ -427,6 +427,9 @@ class CoreParserFunctions {
 			$htmlTagsCallback = null;
 		}
 
+		// Convert entity &shy; to UTF-8 string
+		$text = str_replace( '&shy;', "\xc2\xad", $text );
+
 		// only requested titles that normalize to the actual title are allowed through
 		// if $wgRestrictDisplayTitle is true (it is by default)
 		// mimic the escaping process that occurs in OutputPage::setPageTitle
@@ -437,7 +440,11 @@ class CoreParserFunctions {
 			[],
 			$bad
 		) );
-		$title = Title::newFromText( Sanitizer::stripAllTags( $text ) );
+
+		// Strip soft hyphen from text to allow soft hyphens at any place
+		$stripText = str_replace( "\xc2\xad", '', $text );
+		$stripText = Sanitizer::stripAllTags( $stripText );
+		$title = Title::newFromText( $stripText );
 
 		if ( !$wgRestrictDisplayTitle ||
 			( $title instanceof Title

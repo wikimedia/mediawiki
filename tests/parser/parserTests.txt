@@ -30144,3 +30144,27 @@ foo
 
 </section><section data-mw-section-id="2"><h1 id="d"> d </h1></section>
 !! end
+
+!! test
+Check soft hyphens as entities (&shy;) in displaytitle (T66528)
+!! options
+showtitle
+title=[[Lopadotemachoselachogaleokranioleipsanodrimhypotrimmatosilphioparaomelitokatakechymenokichlepikossyphophattoperisteralektryonoptekephalliokigklopeleiolagoiosiraiobaphetraganopterygon]]
+!! wikitext
+{{DISPLAYTITLE:Lopado&shy;temacho&shy;selacho&shy;galeo&shy;kranio&shy;leipsano&shy;drim&shy;hypo&shy;trimmato&shy;silphio&shy;parao&shy;melito&shy;katakechy&shy;meno&shy;kichl&shy;epi&shy;kossypho&shy;phatto&shy;perister&shy;alektryon&shy;opte&shy;kephallio&shy;kigklo&shy;peleio&shy;lagoio&shy;siraio&shy;baphe&shy;tragano&shy;pterygon}}
+!! html/php
+Lopado­temacho­selacho­galeo­kranio­leipsano­drim­hypo­trimmato­silphio­parao­melito­katakechy­meno­kichl­epi­kossypho­phatto­perister­alektryon­opte­kephallio­kigklo­peleio­lagoio­siraio­baphe­tragano­pterygon
+
+!! end
+
+!! test
+Check soft hyphens as Unicode characters (U+00AD) in displaytitle (T66528)
+!! options
+showtitle
+title=[[Lopadotemachoselachogaleokranioleipsanodrimhypotrimmatosilphioparaomelitokatakechymenokichlepikossyphophattoperisteralektryonoptekephalliokigklopeleiolagoiosiraiobaphetraganopterygon]]
+!! wikitext
+{{DISPLAYTITLE:Lopado­temacho­selacho­galeo­kranio­leipsano­drim­hypo­trimmato­silphio­parao­melito­katakechy­meno­kichl­epi­kossypho­phatto­perister­alektryon­opte­kephallio­kigklo­peleio­lagoio­siraio­baphe­tragano­pterygon}}
+!! html/php
+Lopado­temacho­selacho­galeo­kranio­leipsano­drim­hypo­trimmato­silphio­parao­melito­katakechy­meno­kichl­epi­kossypho­phatto­perister­alektryon­opte­kephallio­kigklo­peleio­lagoio­siraio­baphe­tragano­pterygon
+
+!! end
