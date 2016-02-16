@@ -218,7 +218,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	}
 
 	public static function provideExtractResourceLoaderModules() {
-		$dir = __DIR__ . '/FooBar/';
+		$dir = __DIR__ . '/FooBar';
 		return array(
 			// Generic module with localBasePath/remoteExtPath specified
 			array(
@@ -285,7 +285,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 						),
 						'test.bar' => array(
 							'styles' => 'bar.js',
-							'localBasePath' => $dir . 'subdir',
+							'localBasePath' => "$dir/subdir",
 							'remoteExtPath' => 'FooBar/subdir',
 						),
 						'test.class' => array(
