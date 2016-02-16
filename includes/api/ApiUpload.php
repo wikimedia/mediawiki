@@ -703,6 +703,13 @@ class ApiUpload extends ApiBase {
 			$watch = true;
 		}
 
+		if ( $this->mParams['tags'] ) {
+			$status = ChangeTags::canAddTagsAccompanyingChange( $this->mParams['tags'], $this->getUser() );
+			if ( !$status->isOK() ) {
+				$this->dieStatus( $status );
+			}
+		}
+
 		// No errors, no warnings: do the upload
 		if ( $this->mParams['async'] ) {
 			$progress = UploadBase::getSessionStatus( $this->getUser(), $this->mParams['filekey'] );
@@ -720,6 +727,7 @@ class ApiUpload extends ApiBase {
 					'filename' => $this->mParams['filename'],
 					'filekey' => $this->mParams['filekey'],
 					'comment' => $this->mParams['comment'],
+					'tags' => $this->mParams['tags'],
 					'text' => $this->mParams['text'],
 					'watch' => $watch,
 					'session' => $this->getContext()->exportSession()
@@ -730,7 +738,7 @@ class ApiUpload extends ApiBase {
 		} else {
 			/** @var $status Status */
 			$status = $this->mUpload->performUpload( $this->mParams['comment'],
-				$this->mParams['text'], $watch, $this->getUser() );
+				$this->mParams['text'], $watch, $this->getUser(), $this->mParams['tags'] );
 
 			if ( !$status->isGood() ) {
 				$error = $status->getErrorsArray();
@@ -763,6 +771,10 @@ class ApiUpload extends ApiBase {
 			),
 			'comment' => array(
 				ApiBase::PARAM_DFLT => ''
+			),
+			'tags' => array(
+				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_ISMULTI => true,
 			),
 			'text' => array(
 				ApiBase::PARAM_TYPE => 'text',
