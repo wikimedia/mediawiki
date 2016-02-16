@@ -65,19 +65,9 @@ class CheckSyntax extends Maintenance {
 	public function execute() {
 		$this->buildFileList();
 
-		// ParseKit is broken on PHP 5.3+, disabled until this is fixed
-		$useParseKit = function_exists( 'parsekit_compile_file' )
-			&& version_compare( PHP_VERSION, '5.3', '<' );
-
-		$str = 'Checking syntax (using ' . ( $useParseKit ?
-			'parsekit' : ' php -l, this can take a long time' ) . ")\n";
-		$this->output( $str );
+		$this->output( "Checking syntax (using php -l, this can take a long time)\n" );
 		foreach ( $this->mFiles as $f ) {
-			if ( $useParseKit ) {
-				$this->checkFileWithParsekit( $f );
-			} else {
-				$this->checkFileWithCli( $f );
-			}
+			$this->checkFileWithCli( $f );
 			if ( !$this->hasOption( 'syntax-only' ) ) {
 				$this->checkForMistakes( $f );
 			}
@@ -291,36 +281,6 @@ class CheckSyntax extends Maintenance {
 				$this->mFiles[] = $file->getRealPath();
 			}
 		}
-	}
-
-	/**
-	 * Check a file for syntax errors using Parsekit. Shamelessly stolen
-	 * from tools/lint.php by TimStarling
-	 * @param string $file Path to a file to check for syntax errors
-	 * @return bool
-	 */
-	private function checkFileWithParsekit( $file ) {
-		static $okErrors = array(
-			'Redefining already defined constructor',
-			'Assigning the return value of new by reference is deprecated',
-		);
-		$errors = array();
-		parsekit_compile_file( $file, $errors, PARSEKIT_SIMPLE );
-		$ret = true;
-		if ( $errors ) {
-			foreach ( $errors as $error ) {
-				foreach ( $okErrors as $okError ) {
-					if ( substr( $error['errstr'], 0, strlen( $okError ) ) == $okError ) {
-						continue 2;
-					}
-				}
-				$ret = false;
-				$this->output( "Error in $file line {$error['lineno']}: {$error['errstr']}\n" );
-				$this->mFailures[$file] = $errors;
-			}
-		}
-
-		return $ret;
 	}
 
 	/**
