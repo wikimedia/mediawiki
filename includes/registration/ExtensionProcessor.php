@@ -253,14 +253,24 @@ class ExtensionProcessor implements Processor {
 			? $info['ResourceFileModulePaths']
 			: false;
 		if ( isset( $defaultPaths['localBasePath'] ) ) {
-			$defaultPaths['localBasePath'] = "$dir/{$defaultPaths['localBasePath']}";
+			if ( $defaultPaths['localBasePath'] === '' ) {
+				// Avoid double slashes (e.g. /extensions/Example//path)
+				$defaultPaths['localBasePath'] = $dir;
+			} else {
+				$defaultPaths['localBasePath'] = "$dir/{$defaultPaths['localBasePath']}";
+			}
 		}
 
 		foreach ( [ 'ResourceModules', 'ResourceModuleSkinStyles' ] as $setting ) {
 			if ( isset( $info[$setting] ) ) {
 				foreach ( $info[$setting] as $name => $data ) {
 					if ( isset( $data['localBasePath'] ) ) {
-						$data['localBasePath'] = "$dir/{$data['localBasePath']}";
+						if ( $data['localBasePath'] === '' ) {
+							// Avoid double slashes (e.g. /extensions/Example//path)
+							$data['localBasePath'] = $dir;
+						} else {
+							$data['localBasePath'] = "$dir/{$data['localBasePath']}";
+						}
 					}
 					if ( $defaultPaths ) {
 						$data += $defaultPaths;
