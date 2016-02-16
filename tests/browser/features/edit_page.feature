@@ -1,4 +1,4 @@
-@chrome @clean @firefox @login @phantomjs
+@clean @firefox
 Feature: Edit Page
 
   Scenario: Create and edit page

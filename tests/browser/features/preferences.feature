@@ -1,4 +1,5 @@
-@chrome @clean @firefox @internet_explorer_6 @internet_explorer_7 @internet_explorer_8 @internet_explorer_9 @internet_explorer_10 @login @phantomjs
+@clean @firefox
+
 Feature: Preferences
 
   Scenario: Preferences Appearance
@@ -18,7 +19,6 @@ Feature: Preferences
       And I can see local time
       And I can select my time zone
 
-
   Scenario: Preferences Editing
     Given I am logged in
     When I navigate to Preferences
@@ -33,7 +33,6 @@ Feature: Preferences
       And I can select show preview on first edit
       And I can select show preview before edit box
       And I can select live preview
-
 
   Scenario: Preferences User profile
     Given I am logged in

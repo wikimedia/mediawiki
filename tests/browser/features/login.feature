@@ -1,4 +1,4 @@
-@chrome @clean @firefox @internet_explorer_6 @internet_explorer_7 @internet_explorer_8 @internet_explorer_9 @internet_explorer_10 @phantomjs
+@clean @firefox
 Feature: Log in
 
   Background:
@@ -25,7 +25,6 @@ Feature: Log in
     When I log in with incorrect password
     Then error box should be visible
 
-  @login
   Scenario: Log in with valid credentials
     When I am logged in
     Then error box should not be visible
