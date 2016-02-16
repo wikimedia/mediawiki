@@ -56,9 +56,6 @@ end
 
 Then(/^I can select skins$/) do
   on(PreferencesAppearancePage) do |page|
-    expect(page.cologne_blue_element).to exist
-    expect(page.modern_element).to exist
-    expect(page.monobook_element).to exist
     expect(page.vector_element).to exist
   end
 end
