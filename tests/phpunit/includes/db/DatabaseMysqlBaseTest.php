@@ -249,12 +249,46 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 
 	function testMasterPos() {
 		$pos1 = new MySQLMasterPos( 'db1034-bin.000976', '843431247' );
-		$pos2 = new MySQLMasterPos( 'db1034-bin.000976', '843431248' );
+		$pos2 = new MySQLMasterPos( 'db1034-bin.000976', '843431249' );
+		$pos3 = new MySQLMasterPos( 'db1034-bin.000975', '843431248' );
+		$pos4 = new MySQLMasterPos( 'db1034-bin.000977', '843431248' );
+		$pos5 = new MySQLMasterPos( 'db1018-bin.000975', '843431247' );
+		$pos6 = new MySQLMasterPos( '3ustomlog3.000234', '843431247' );
 
+		// all formats are recognized when pointing to themselves
+		// same common name, same file, same pos
 		$this->assertTrue( $pos1->hasReached( $pos1 ) );
 		$this->assertTrue( $pos2->hasReached( $pos2 ) );
+		$this->assertTrue( $pos3->hasReached( $pos3 ) );
+		$this->assertTrue( $pos4->hasReached( $pos4 ) );
+		$this->assertTrue( $pos5->hasReached( $pos5 ) );
+		$this->assertTrue( $pos6->hasReached( $pos6 ) );
+
+		// same common name, same file, different pos
 		$this->assertTrue( $pos2->hasReached( $pos1 ) );
 		$this->assertFalse( $pos1->hasReached( $pos2 ) );
+
+		// same common name, different file, same pos
+		$this->assertTrue( $pos1->hasReached( $pos3 ) );
+		$this->assertFalse( $pos3->hasReached( $pos1 ) );
+		$this->assertTrue( $pos2->hasReached( $pos3 ) );
+		$this->assertFalse( $pos3->hasReached( $pos2 ) );
+
+		// same common name, different file, different pos
+		$this->assertFalse( $pos1->hasReached( $pos4 ) );
+		$this->assertTrue( $pos4->hasReached( $pos1 ) );
+		$this->assertFalse( $pos1->hasReached( $pos4 ) );
+		$this->assertTrue( $pos4->hasReached( $pos1 ) );
+
+		// different common name
+		$this->assertTrue( $pos1->hasReached( $pos5 ) );
+		$this->assertTrue( $pos5->hasReached( $pos1 ) );
+		$this->assertTrue( $pos2->hasReached( $pos5 ) );
+		$this->assertTrue( $pos5->hasReached( $pos2 ) );
+		$this->assertTrue( $pos1->hasReached( $pos6 ) );
+		$this->assertTrue( $pos6->hasReached( $pos1 ) );
+		$this->assertTrue( $pos2->hasReached( $pos6 ) );
+		$this->assertTrue( $pos6->hasReached( $pos2 ) );
 	}
 
 	/**
