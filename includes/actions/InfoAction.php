@@ -204,7 +204,7 @@ class InfoAction extends FormlessAction {
 		$pageCounts = $this->pageCounts( $this->page );
 
 		$pageProperties = array();
-		$props = PageProps::getInstance()->getProperties( $title );
+		$props = PageProps::getInstance()->getAllProperties( $title );
 		if ( isset( $props[$id] ) ) {
 			$pageProperties = $props[$id];
 		}
