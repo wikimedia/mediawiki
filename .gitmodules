@@ -347,4 +347,4 @@
 [submodule "extensions/AddHTMLMetaAndTitle"]
 	path = extensions/AddHTMLMetaAndTitle
 	url = https://github.com/wikimedia/mediawiki-extensions-AddHTMLMetaAndTitle
-	branch = REL1_26
+	branch = master
