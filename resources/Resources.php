@@ -1184,13 +1184,14 @@ return array(
 		),
 		'dependencies' => array(
 			'oojs-ui',
+			'oojs-ui.styles.icons-content',
+			'oojs-ui.styles.icons-editing-advanced',
 			'mediawiki.Title',
 			'mediawiki.user',
 			'mediawiki.Upload',
 			'mediawiki.jqueryMsg',
 		),
 		'messages' => array(
-			'upload-form-label-select-file',
 			'upload-form-label-infoform-title',
 			'upload-form-label-infoform-name',
 			'upload-form-label-infoform-name-tooltip',

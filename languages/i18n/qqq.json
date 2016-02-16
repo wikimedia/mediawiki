@@ -1673,7 +1673,6 @@
 	"upload-dialog-button-done": "Button to close the dialog once upload is complete\n{{Identical|Done}}",
 	"upload-dialog-button-save": "Button to save the file after upload finishes and metadata is filled out, part 2 of a multi-step upload form\n{{Identical|Save}}",
 	"upload-dialog-button-upload": "Button to initiate upload, part 1 of a multi-step upload form\n{{Identical|Upload}}",
-	"upload-form-label-select-file": "Label for the select file widget\n{{Identical|Select file}}",
 	"upload-form-label-infoform-title": "Title for the information form\n{{Identical|Detail}}",
 	"upload-form-label-infoform-name": "Label for the file name input\n{{Identical|Name}}",
 	"upload-form-label-infoform-name-tooltip": "The tooltip documenting the title field for the file - used as the filename on-wiki.\n\nIdentical to {{msg-mw|mwe-upwiz-tooltip-title}}.",

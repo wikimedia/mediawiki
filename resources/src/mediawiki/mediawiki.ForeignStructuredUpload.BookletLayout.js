@@ -114,7 +114,9 @@
 		);
 		$ownWorkMessage.add( $notOwnWorkMessage ).find( 'a' ).attr( 'target', '_blank' );
 
-		this.selectFileWidget = new OO.ui.SelectFileWidget();
+		this.selectFileWidget = new OO.ui.SelectFileWidget( {
+			showDropTarget: true
+		} );
 		this.messageLabel = new OO.ui.LabelWidget( {
 			label: $notOwnWorkMessage
 		} );
@@ -125,8 +127,7 @@
 		fieldset = new OO.ui.FieldsetLayout();
 		fieldset.addItems( [
 			new OO.ui.FieldLayout( this.selectFileWidget, {
-				align: 'top',
-				label: mw.msg( 'upload-form-label-select-file' )
+				align: 'top'
 			} ),
 			new OO.ui.FieldLayout( this.ownWorkCheckbox, {
 				align: 'inline',
