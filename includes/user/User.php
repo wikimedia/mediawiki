@@ -1387,7 +1387,7 @@ class User implements IDBAccessObject {
 			$this->addGroup( $group );
 		}
 		// update groups in external authentication database
-		Hooks::run( 'UserGroupsChanged', array( $this, $toPromote, array(), false ) );
+		Hooks::run( 'UserGroupsChanged', array( $this, $toPromote, array(), false, false ) );
 		$wgAuth->updateExternalDBGroups( $this, $toPromote );
 
 		$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
