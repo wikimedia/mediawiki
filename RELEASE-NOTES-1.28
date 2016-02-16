@@ -229,6 +229,13 @@ changes to languages because of Phabricator reports.
 * The ArticleAfterFetchContent, ArticleInsertComplete, ArticleSave, ArticleSaveComplete,
   ArticleViewCustom, EditFilterMerged, EditPageGetDiffText, EditPageGetPreviewText and
   ShowRawCssJs hooks will now emit deprecation warnings if used.
+* wiki.phtml entry point was removed.  Refer to index.php instead. If you want "wiki.phtml"
+  URLs to continue to work, set up redirects. In Apache, this can be done by enabling
+  mod_rewrite and adding the following rules to your configuration:
+
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^wiki\.phtml index.php [R=301,L]
 
 == Compatibility ==
 
