@@ -472,7 +472,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @param array $filePaths
 	 * @return array
 	 */
-	public static function getRelativePaths( Array $filePaths ) {
+	public static function getRelativePaths( array $filePaths ) {
 		global $IP;
 		return array_map( function ( $path ) use ( $IP ) {
 			return RelPath\getRelativePath( $path, $IP );
@@ -486,7 +486,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @param array $filePaths
 	 * @return array
 	 */
-	public static function expandRelativePaths( Array $filePaths ) {
+	public static function expandRelativePaths( array $filePaths ) {
 		global $IP;
 		return array_map( function ( $path ) use ( $IP ) {
 			return RelPath\joinPath( $IP, $path );

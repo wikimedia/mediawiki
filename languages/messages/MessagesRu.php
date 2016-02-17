@@ -388,7 +388,6 @@ $magicWords = [
 	'pagesincategory_files'     => [ '0', 'файлы', 'files' ],
 ];
 
-
 $dateFormats = [
 	'mdy time' => 'H:i',
 	'mdy date' => 'xg j, Y',

@@ -98,7 +98,6 @@ $namespaceAliases = [
 	'سانات_تالقىلاۋى'    => NS_CATEGORY_TALK,
 ];
 
-
 $datePreferences = [
 	'default',
 	'mdy',

@@ -203,7 +203,6 @@ class SearchSuggestionSet {
 		return new SearchSuggestionSet( $suggestions );
 	}
 
-
 	/**
 	 * @return SearchSuggestionSet an empty suggestion set
 	 */

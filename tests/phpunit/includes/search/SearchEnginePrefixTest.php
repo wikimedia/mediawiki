@@ -50,7 +50,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 		$this->search->setNamespaces( [] );
 	}
 
-	protected function searchProvision( Array $results = null ) {
+	protected function searchProvision( array $results = null ) {
 		if ( $results === null ) {
 			$this->setMwGlobals( 'wgHooks', [] );
 		} else {
@@ -155,7 +155,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideSearch
 	 * @covers SearchEngine::defaultPrefixSearch
 	 */
-	public function testSearch( Array $case ) {
+	public function testSearch( array $case ) {
 		$this->search->setLimitOffset( 3 );
 		$results = $this->search->defaultPrefixSearch( $case['query'] );
 		$results = array_map( function( Title $t ) {
@@ -172,7 +172,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideSearch
 	 * @covers SearchEngine::defaultPrefixSearch
 	 */
-	public function testSearchWithOffset( Array $case ) {
+	public function testSearchWithOffset( array $case ) {
 		$this->search->setLimitOffset( 3, 1 );
 		$results = $this->search->defaultPrefixSearch( $case['query'] );
 		$results = array_map( function( Title $t ) {
@@ -308,7 +308,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideSearchBackend
 	 * @covers PrefixSearch::searchBackend
 	 */
-	public function testSearchBackend( Array $case ) {
+	public function testSearchBackend( array $case ) {
 		$search = $stub = $this->getMockBuilder( 'SearchEngine' )
 			->setMethods( [ 'completionSearchBackend' ] )->getMock();
 

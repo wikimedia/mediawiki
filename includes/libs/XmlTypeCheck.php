@@ -132,7 +132,6 @@ class XmlTypeCheck {
 		return $this->rootElement;
 	}
 
-
 	/**
 	 * @param string $fname the filename
 	 */

@@ -85,7 +85,6 @@ $magicWords = [
 	'grammar'                   => [ '0', 'GRAMMATIK:', 'GRAMMAR:' ],
 ];
 
-
 $bookstoreList = [
 	'Verteken vun leverbore Böker'  => 'http://www.buchhandel.de/sixcms/list.php?page=buchhandel_profisuche_frameset&suchfeld=isbn&suchwert=$1=0&y=0',
 	'abebooks.de'                   => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
