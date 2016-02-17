@@ -124,15 +124,12 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			[ 'git://', '*.github.com/', 'git://a.b.c.d.e.f.github.com/prwef/abc-def.git' ],
 			[ '', 'gopher://*.test.com/', 'gopher://gopher.test.com/0/v2/vstat' ],
 			[ 'telnet://', '*.test.com', 'telnet://shell.test.com/~home/' ],
-
-			// The following only work in PHP >= 5.3.7, due to a bug in parse_url which eats
-			// the path from the url (https://bugs.php.net/bug.php?id=54180)
-			// array( '', 'http://test.com', 'http://test.com/index?arg=1' ),
-			// array( 'http://', '*.test.com', 'http://www.test.com/index?arg=1' ),
-			// array( '' ,
-			//    'http://xx23124:__ffdfdef__@www.test.com:12345/dir' ,
-			//    'http://name:pass@www.test.com:12345/dir/dir/file.xyz.php#__se__?arg1=_&arg2[]=4rtg'
-			// ),
+			[ '', 'http://test.com', 'http://test.com/index?arg=1' ],
+			[ 'http://', '*.test.com', 'http://www.test.com/index?arg=1' ],
+			[ '' ,
+				'http://xx23124:__ffdfdef__@www.test.com:12345/dir' ,
+				'http://name:pass@www.test.com:12345/dir/dir/file.xyz.php#__se__?arg1=_&arg2[]=4rtg'
+			],
 
 			// Tests for false positives
 			[ 'http://', 'test.com', 'http://www.test.com', false ],
@@ -163,9 +160,9 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 
 			// These are false positives too and ideally shouldn't match, but that
 			// would require using regexes and RLIKE instead of LIKE
-			// array( null, 'http://*.test.com', 'http://www.test.com:80', false ),
-			// array( '', 'https://*.wikimedia.org/r/#/q/status:open,n,z',
-			// 	'https://gerrit.wikimedia.org/XXX/r/#/q/status:open,n,z', false ),
+			// [ null, 'http://*.test.com', 'http://www.test.com:80', false ],
+			// [ '', 'https://*.wikimedia.org/r/#/q/status:open,n,z',
+			// 	'https://gerrit.wikimedia.org/XXX/r/#/q/status:open,n,z', false ],
 		];
 
 	}
