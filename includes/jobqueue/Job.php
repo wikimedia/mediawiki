@@ -47,6 +47,9 @@ abstract class Job implements IJobSpecification {
 	/** @var string Text for error that occurred last */
 	protected $error;
 
+	/** @var callable[] */
+	protected $teardownCallbacks = [];
+
 	/**
 	 * Run the job
 	 * @return bool Success
@@ -277,6 +280,25 @@ abstract class Job implements IJobSpecification {
 	 */
 	public function isRootJob() {
 		return $this->hasRootJobParams() && !empty( $this->params['rootJobIsSelf'] );
+	}
+
+	/**
+	 * @param callable $callback
+	 * @since 1.27
+	 */
+	protected function addTeardownCallback( $callback ) {
+		$this->teardownCallbacks[] = $callback;
+	}
+
+	/**
+	 * Do any final cleanup after run(), deferred updates, and all DB commits happen
+	 *
+	 * @since 1.27
+	 */
+	public function teardown() {
+		foreach ( $this->teardownCallbacks as $callback ) {
+			call_user_func( $callback );
+		}
 	}
 
 	/**
