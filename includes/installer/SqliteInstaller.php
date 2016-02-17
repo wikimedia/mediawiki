@@ -319,15 +319,15 @@ EOT;
 
 		return "# SQLite-specific settings
 \$wgSQLiteDataDir = \"{$dir}\";
-\$wgObjectCaches[CACHE_DB] = array(
+\$wgObjectCaches[CACHE_DB] = [
 	'class' => 'SqlBagOStuff',
 	'loggroup' => 'SQLBagOStuff',
-	'server' => array(
+	'server' => [
 		'type' => 'sqlite',
 		'dbname' => 'wikicache',
 		'tablePrefix' => '',
 		'flags' => 0
-	)
-);";
+	]
+];";
 	}
 }

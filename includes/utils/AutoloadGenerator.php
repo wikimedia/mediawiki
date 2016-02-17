@@ -206,9 +206,9 @@ class AutoloadGenerator {
 // @codingStandardsIgnoreFile
 global \${$this->variableName};
 
-\${$this->variableName} {$op} array(
+\${$this->variableName} {$op} [
 	{$output}
-);
+];
 
 EOD
 		);

@@ -3,7 +3,7 @@
 // @codingStandardsIgnoreFile
 global $wgAutoloadLocalClasses;
 
-$wgAutoloadLocalClasses = array(
+$wgAutoloadLocalClasses = [
 	'APCBagOStuff' => __DIR__ . '/includes/libs/objectcache/APCBagOStuff.php',
 	'AbstractContent' => __DIR__ . '/includes/content/AbstractContent.php',
 	'Action' => __DIR__ . '/includes/actions/Action.php',
@@ -1457,4 +1457,4 @@ $wgAutoloadLocalClasses = array(
 	'ZipDirectoryReader' => __DIR__ . '/includes/utils/ZipDirectoryReader.php',
 	'ZipDirectoryReaderError' => __DIR__ . '/includes/utils/ZipDirectoryReader.php',
 	'profile_point' => __DIR__ . '/profileinfo.php',
-);
+];

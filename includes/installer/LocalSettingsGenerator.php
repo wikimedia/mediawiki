@@ -214,9 +214,9 @@ class LocalSettingsGenerator {
 		$servers = $this->values['_MemCachedServers'];
 
 		if ( !$servers ) {
-			return 'array()';
+			return '[]';
 		} else {
-			$ret = 'array( ';
+			$ret = '[ ';
 			$servers = explode( ',', $servers );
 
 			foreach ( $servers as $srv ) {
@@ -224,7 +224,7 @@ class LocalSettingsGenerator {
 				$ret .= "'$srv', ";
 			}
 
-			return rtrim( $ret, ', ' ) . ' )';
+			return rtrim( $ret, ', ' ) . ' ]';
 		}
 	}
 
