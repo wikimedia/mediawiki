@@ -81,7 +81,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			if ( $params['diffto'] != 0 ) {
 				$difftoRev = Revision::newFromId( $params['diffto'] );
 				if ( !$difftoRev ) {
-					$this->dieUsageMsg( array( 'nosuchrevid', $params['diffto'] ) );
+					$this->dieUsageMsg( [ 'nosuchrevid', $params['diffto'] ] );
 				}
 				if ( !$difftoRev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
 					$this->setWarning( "Couldn't diff to r{$difftoRev->getId()}: content is hidden" );
@@ -160,7 +160,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	protected function extractRevisionInfo( Revision $revision, $row ) {
 		$title = $revision->getTitle();
 		$user = $this->getUser();
-		$vals = array();
+		$vals = [];
 		$anyHidden = false;
 
 		if ( $this->fld_ids ) {
@@ -248,7 +248,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				ApiResult::setIndexedTagName( $tags, 'tag' );
 				$vals['tags'] = $tags;
 			} else {
-				$vals['tags'] = array();
+				$vals['tags'] = [];
 			}
 		}
 
@@ -286,7 +286,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 						Parser::OT_PREPROCESS
 					);
 					$dom = $wgParser->preprocessToDom( $t );
-					if ( is_callable( array( $dom, 'saveXML' ) ) ) {
+					if ( is_callable( [ $dom, 'saveXML' ] ) ) {
 						$xml = $dom->saveXML();
 					} else {
 						$xml = $dom->__toString();
@@ -359,7 +359,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			static $n = 0; // Number of uncached diffs we've had
 
 			if ( $n < $this->getConfig()->get( 'APIMaxUncachedDiffs' ) ) {
-				$vals['diff'] = array();
+				$vals['diff'] = [];
 				$context = new DerivativeContext( $this->getContext() );
 				$context->setTitle( $title );
 				$handler = $revision->getContentHandler();
@@ -424,11 +424,11 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'prop' => array(
+		return [
+			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'ids|timestamp|flags|comment|user',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'ids',
 					'flags',
 					'timestamp',
@@ -442,9 +442,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					'content',
 					'tags',
 					'parsetree',
-				),
+				],
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-prop',
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
 					'ids' => 'apihelp-query+revisions+base-paramvalue-prop-ids',
 					'flags' => 'apihelp-query+revisions+base-paramvalue-prop-flags',
 					'timestamp' => 'apihelp-query+revisions+base-paramvalue-prop-timestamp',
@@ -457,48 +457,48 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					'parsedcomment' => 'apihelp-query+revisions+base-paramvalue-prop-parsedcomment',
 					'content' => 'apihelp-query+revisions+base-paramvalue-prop-content',
 					'tags' => 'apihelp-query+revisions+base-paramvalue-prop-tags',
-					'parsetree' => array( 'apihelp-query+revisions+base-paramvalue-prop-parsetree',
-						CONTENT_MODEL_WIKITEXT ),
-				),
-			),
-			'limit' => array(
+					'parsetree' => [ 'apihelp-query+revisions+base-paramvalue-prop-parsetree',
+						CONTENT_MODEL_WIKITEXT ],
+				],
+			],
+			'limit' => [
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-limit',
-			),
-			'expandtemplates' => array(
+			],
+			'expandtemplates' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-expandtemplates',
-			),
-			'generatexml' => array(
+			],
+			'generatexml' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-generatexml',
-			),
-			'parse' => array(
+			],
+			'parse' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-parse',
-			),
-			'section' => array(
+			],
+			'section' => [
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-section',
-			),
-			'diffto' => array(
+			],
+			'diffto' => [
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-diffto',
-			),
-			'difftotext' => array(
+			],
+			'difftotext' => [
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-difftotext',
-			),
-			'difftotextpst' => array(
+			],
+			'difftotextpst' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-difftotextpst',
-			),
-			'contentformat' => array(
+			],
+			'contentformat' => [
 				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-contentformat',
-			),
-		);
+			],
+		];
 	}
 
 }

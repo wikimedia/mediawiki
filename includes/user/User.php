@@ -79,7 +79,7 @@ class User implements IDBAccessObject {
 	 * corresponding database fields must call a cache-clearing function.
 	 * @showinitializer
 	 */
-	protected static $mCacheVars = array(
+	protected static $mCacheVars = [
 		// user table
 		'mId',
 		'mName',
@@ -96,7 +96,7 @@ class User implements IDBAccessObject {
 		'mGroups',
 		// user_properties table
 		'mOptionOverrides',
-	);
+	];
 
 	/**
 	 * Array of Strings Core rights.
@@ -104,7 +104,7 @@ class User implements IDBAccessObject {
 	 * "right-$right".
 	 * @showinitializer
 	 */
-	protected static $mCoreRights = array(
+	protected static $mCoreRights = [
 		'apihighlimits',
 		'applychangetags',
 		'autoconfirmed',
@@ -180,7 +180,7 @@ class User implements IDBAccessObject {
 		'viewmywatchlist',
 		'viewsuppressed',
 		'writeapi',
-	);
+	];
 
 	/**
 	 * String Cached results of getAllRights()
@@ -228,7 +228,7 @@ class User implements IDBAccessObject {
 	/**
 	 * Array with already loaded items or true if all items have been loaded.
 	 */
-	protected $mLoadedItems = array();
+	protected $mLoadedItems = [];
 	// @}
 
 	/**
@@ -286,12 +286,12 @@ class User implements IDBAccessObject {
 	private $mBlockedFromCreateAccount = false;
 
 	/** @var array */
-	private $mWatchedItems = array();
+	private $mWatchedItems = [];
 
 	/** @var integer User::READ_* constant bitfield used to load data */
 	protected $queryFlagsUsed = self::READ_NORMAL;
 
-	public static $idCacheByName = array();
+	public static $idCacheByName = [];
 
 	/**
 	 * Lightweight constructor for an anonymous user.
@@ -350,9 +350,9 @@ class User implements IDBAccessObject {
 		// If this is called too early, things are likely to break.
 		if ( !$wgFullyInitialised && $this->mFrom === 'session' ) {
 			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
-				->warning( 'User::loadFromSession called before the end of Setup.php', array(
+				->warning( 'User::loadFromSession called before the end of Setup.php', [
 					'exception' => new Exception( 'User::loadFromSession called before the end of Setup.php' ),
-				) );
+				] );
 			$this->loadDefaults();
 			$this->mLoadedItems = $oldLoadedItems;
 			return;
@@ -385,7 +385,7 @@ class User implements IDBAccessObject {
 					// Loading from session failed. Load defaults.
 					$this->loadDefaults();
 				}
-				Hooks::run( 'UserLoadAfterLoadFromSession', array( $this ) );
+				Hooks::run( 'UserLoadAfterLoadFromSession', [ $this ] );
 				break;
 			default:
 				throw new UnexpectedValueException(
@@ -489,7 +489,7 @@ class User implements IDBAccessObject {
 			return;
 		}
 
-		$data = array();
+		$data = [];
 		foreach ( self::$mCacheVars as $name ) {
 			$data[$name] = $this->$name;
 		}
@@ -570,10 +570,10 @@ class User implements IDBAccessObject {
 		$id = $db->selectField(
 			'user',
 			'user_id',
-			array(
+			[
 				'user_email_token' => md5( $code ),
 				'user_email_token_expires > ' . $db->addQuotes( $db->timestamp() ),
-			)
+			]
 		);
 
 		return $id ? User::newFromId( $id ) : null;
@@ -633,12 +633,12 @@ class User implements IDBAccessObject {
 	 *    already exists, default false
 	 * @return User|null
 	 */
-	public static function newSystemUser( $name, $options = array() ) {
-		$options += array(
+	public static function newSystemUser( $name, $options = [] ) {
+		$options += [
 			'validate' => 'valid',
 			'create' => true,
 			'steal' => false,
-		);
+		];
 
 		$name = self::getCanonicalName( $name, $options['validate'] );
 		if ( $name === false ) {
@@ -650,9 +650,9 @@ class User implements IDBAccessObject {
 			'user',
 			array_merge(
 				self::selectFields(),
-				array( 'user_password', 'user_newpassword' )
+				[ 'user_password', 'user_newpassword' ]
 			),
-			array( 'user_name' => $name ),
+			[ 'user_name' => $name ],
 			__METHOD__
 		);
 		if ( !$row ) {
@@ -690,12 +690,12 @@ class User implements IDBAccessObject {
 
 			$dbw->update(
 				'user',
-				array(
+				[
 					'user_password' => $nopass,
 					'user_newpassword' => $nopass,
 					'user_newpass_time' => null,
-				),
-				array( 'user_id' => $user->getId() ),
+				],
+				[ 'user_id' => $user->getId() ],
 				__METHOD__
 			);
 			$user->invalidateEmail();
@@ -751,8 +751,8 @@ class User implements IDBAccessObject {
 
 		$s = $db->selectRow(
 			'user',
-			array( 'user_id' ),
-			array( 'user_name' => $nt->getText() ),
+			[ 'user_id' ],
+			[ 'user_name' => $nt->getText() ],
 			__METHOD__
 		);
 
@@ -765,7 +765,7 @@ class User implements IDBAccessObject {
 		self::$idCacheByName[$name] = $result;
 
 		if ( count( self::$idCacheByName ) > 1000 ) {
-			self::$idCacheByName = array();
+			self::$idCacheByName = [];
 		}
 
 		return $result;
@@ -775,7 +775,7 @@ class User implements IDBAccessObject {
 	 * Reset the cache used in idFromName(). For use in tests.
 	 */
 	public static function resetIdByNameCache() {
-		self::$idCacheByName = array();
+		self::$idCacheByName = [];
 	}
 
 	/**
@@ -875,7 +875,7 @@ class User implements IDBAccessObject {
 		static $reservedUsernames = false;
 		if ( !$reservedUsernames ) {
 			$reservedUsernames = $wgReservedUsernames;
-			Hooks::run( 'UserGetReservedNames', array( &$reservedUsernames ) );
+			Hooks::run( 'UserGetReservedNames', [ &$reservedUsernames ] );
 		}
 
 		// Certain names may be reserved for batch processes.
@@ -948,7 +948,7 @@ class User implements IDBAccessObject {
 		if ( $result->isGood() ) {
 			return true;
 		} else {
-			$messages = array();
+			$messages = [];
 			foreach ( $result->getErrorsByType( 'error' ) as $error ) {
 				$messages[] = $error['message'];
 			}
@@ -991,7 +991,7 @@ class User implements IDBAccessObject {
 		$status = Status::newGood();
 		$result = false; // init $result to false for the internal checks
 
-		if ( !Hooks::run( 'isValidPassword', array( $password, &$result, $this ) ) ) {
+		if ( !Hooks::run( 'isValidPassword', [ $password, &$result, $this ] ) ) {
 			$status->error( $result );
 			return $status;
 		}
@@ -1123,9 +1123,9 @@ class User implements IDBAccessObject {
 		$this->mEmailToken = '';
 		$this->mEmailTokenExpires = null;
 		$this->mRegistration = wfTimestamp( TS_MW );
-		$this->mGroups = array();
+		$this->mGroups = [];
 
-		Hooks::run( 'UserLoadDefaults', array( $this, $name ) );
+		Hooks::run( 'UserLoadDefaults', [ $this, $name ] );
 	}
 
 	/**
@@ -1164,7 +1164,7 @@ class User implements IDBAccessObject {
 	private function loadFromSession() {
 		// Deprecated hook
 		$result = null;
-		Hooks::run( 'UserLoadFromSession', array( $this, &$result ), '1.27' );
+		Hooks::run( 'UserLoadFromSession', [ $this, &$result ], '1.27' );
 		if ( $result !== null ) {
 			return $result;
 		}
@@ -1208,13 +1208,13 @@ class User implements IDBAccessObject {
 		$s = $db->selectRow(
 			'user',
 			self::selectFields(),
-			array( 'user_id' => $this->mId ),
+			[ 'user_id' => $this->mId ],
 			__METHOD__,
 			$options
 		);
 
 		$this->queryFlagsUsed = $flags;
-		Hooks::run( 'UserLoadFromDatabase', array( $this, &$s ) );
+		Hooks::run( 'UserLoadFromDatabase', [ $this, &$s ] );
 
 		if ( $s !== false ) {
 			// Initialise user table data
@@ -1342,10 +1342,10 @@ class User implements IDBAccessObject {
 				? wfGetDB( DB_MASTER )
 				: wfGetDB( DB_SLAVE );
 			$res = $db->select( 'user_groups',
-				array( 'ug_group' ),
-				array( 'ug_user' => $this->mId ),
+				[ 'ug_group' ],
+				[ 'ug_user' => $this->mId ],
 				__METHOD__ );
-			$this->mGroups = array();
+			$this->mGroups = [];
 			foreach ( $res as $row ) {
 				$this->mGroups[] = $row->ug_group;
 			}
@@ -1370,16 +1370,16 @@ class User implements IDBAccessObject {
 		global $wgAutopromoteOnceLogInRC, $wgAuth;
 
 		if ( wfReadOnly() || !$this->getId() ) {
-			return array();
+			return [];
 		}
 
 		$toPromote = Autopromote::getAutopromoteOnceGroups( $this, $event );
 		if ( !count( $toPromote ) ) {
-			return array();
+			return [];
 		}
 
 		if ( !$this->checkAndSetTouched() ) {
-			return array(); // raced out (bug T48834)
+			return []; // raced out (bug T48834)
 		}
 
 		$oldGroups = $this->getGroups(); // previous groups
@@ -1387,7 +1387,7 @@ class User implements IDBAccessObject {
 			$this->addGroup( $group );
 		}
 		// update groups in external authentication database
-		Hooks::run( 'UserGroupsChanged', array( $this, $toPromote, array(), false, false ) );
+		Hooks::run( 'UserGroupsChanged', [ $this, $toPromote, [], false, false ] );
 		$wgAuth->updateExternalDBGroups( $this, $toPromote );
 
 		$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
@@ -1395,10 +1395,10 @@ class User implements IDBAccessObject {
 		$logEntry = new ManualLogEntry( 'rights', 'autopromote' );
 		$logEntry->setPerformer( $this );
 		$logEntry->setTarget( $this->getUserPage() );
-		$logEntry->setParameters( array(
+		$logEntry->setParameters( [
 			'4::oldgroups' => $oldGroups,
 			'5::newgroups' => $newGroups,
-		) );
+		] );
 		$logid = $logEntry->insert();
 		if ( $wgAutopromoteOnceLogInRC ) {
 			$logEntry->publish( $logid );
@@ -1429,11 +1429,11 @@ class User implements IDBAccessObject {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'user',
-			array( 'user_touched' => $dbw->timestamp( $newTouched ) ),
-			array(
+			[ 'user_touched' => $dbw->timestamp( $newTouched ) ],
+			[
 				'user_id' => $this->mId,
 				'user_touched' => $dbw->timestamp( $oldTouched ) // CAS check
-			),
+			],
 			__METHOD__
 		);
 		$success = ( $dbw->affectedRows() > 0 );
@@ -1470,7 +1470,7 @@ class User implements IDBAccessObject {
 		$this->mEditCount = null;
 
 		if ( $reloadFrom ) {
-			$this->mLoadedItems = array();
+			$this->mLoadedItems = [];
 			$this->mFrom = $reloadFrom;
 		}
 	}
@@ -1503,7 +1503,7 @@ class User implements IDBAccessObject {
 		}
 		$defOpt['skin'] = Skin::normalizeKey( $wgDefaultSkin );
 
-		Hooks::run( 'UserGetDefaultOptions', array( &$defOpt ) );
+		Hooks::run( 'UserGetDefaultOptions', [ &$defOpt ] );
 
 		return $defOpt;
 	}
@@ -1587,7 +1587,7 @@ class User implements IDBAccessObject {
 		) {
 			$xff = $this->getRequest()->getHeader( 'X-Forwarded-For' );
 			$xff = array_map( 'trim', explode( ',', $xff ) );
-			$xff = array_diff( $xff, array( $ip ) );
+			$xff = array_diff( $xff, [ $ip ] );
 			$xffblocks = Block::getBlocksForIPList( $xff, $this->isAnon(), !$bFromSlave );
 			$block = Block::chooseBlock( $xffblocks, $xff );
 			if ( $block instanceof Block ) {
@@ -1611,7 +1611,7 @@ class User implements IDBAccessObject {
 		}
 
 		// Extensions
-		Hooks::run( 'GetBlockedStatus', array( &$this ) );
+		Hooks::run( 'GetBlockedStatus', [ &$this ] );
 
 	}
 
@@ -1748,7 +1748,7 @@ class User implements IDBAccessObject {
 	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
 		// Call the 'PingLimiter' hook
 		$result = false;
-		if ( !Hooks::run( 'PingLimiter', array( &$this, $action, &$result, $incrBy ) ) ) {
+		if ( !Hooks::run( 'PingLimiter', [ &$this, $action, &$result, $incrBy ] ) ) {
 			return $result;
 		}
 
@@ -1763,7 +1763,7 @@ class User implements IDBAccessObject {
 		}
 
 		$limits = $wgRateLimits[$action];
-		$keys = array();
+		$keys = [];
 		$id = $this->getId();
 		$userLimit = false;
 		$isNewbie = $this->isNewbie();
@@ -1915,7 +1915,7 @@ class User implements IDBAccessObject {
 			wfDebug( __METHOD__ . ": self-talk page, ignoring any blocks\n" );
 		}
 
-		Hooks::run( 'UserIsBlockedFrom', array( $this, $title, &$blocked, &$allowUsertalk ) );
+		Hooks::run( 'UserIsBlockedFrom', [ $this, $title, &$blocked, &$allowUsertalk ] );
 
 		return $blocked;
 	}
@@ -1966,7 +1966,7 @@ class User implements IDBAccessObject {
 			$ip = $this->getRequest()->getIP();
 		}
 		$blocked = false;
-		Hooks::run( 'UserIsBlockedGlobally', array( &$this, $ip, &$blocked ) );
+		Hooks::run( 'UserIsBlockedGlobally', [ &$this, $ip, &$blocked ] );
 		$this->mBlockedGlobally = (bool)$blocked;
 		return $this->mBlockedGlobally;
 	}
@@ -1983,7 +1983,7 @@ class User implements IDBAccessObject {
 		global $wgAuth;
 		$authUser = $wgAuth->getUserInstance( $this );
 		$this->mLocked = (bool)$authUser->isLocked();
-		Hooks::run( 'UserIsLocked', array( $this, &$this->mLocked ) );
+		Hooks::run( 'UserIsLocked', [ $this, &$this->mLocked ] );
 		return $this->mLocked;
 	}
 
@@ -2001,7 +2001,7 @@ class User implements IDBAccessObject {
 			global $wgAuth;
 			$authUser = $wgAuth->getUserInstance( $this );
 			$this->mHideName = (bool)$authUser->isHidden();
-			Hooks::run( 'UserIsHidden', array( $this, &$this->mHideName ) );
+			Hooks::run( 'UserIsHidden', [ $this, &$this->mHideName ] );
 		}
 		return $this->mHideName;
 	}
@@ -2117,21 +2117,21 @@ class User implements IDBAccessObject {
 	 * @return array
 	 */
 	public function getNewMessageLinks() {
-		$talks = array();
-		if ( !Hooks::run( 'UserRetrieveNewTalks', array( &$this, &$talks ) ) ) {
+		$talks = [];
+		if ( !Hooks::run( 'UserRetrieveNewTalks', [ &$this, &$talks ] ) ) {
 			return $talks;
 		} elseif ( !$this->getNewtalk() ) {
-			return array();
+			return [];
 		}
 		$utp = $this->getTalkPage();
 		$dbr = wfGetDB( DB_SLAVE );
 		// Get the "last viewed rev" timestamp from the oldest message notification
 		$timestamp = $dbr->selectField( 'user_newtalk',
 			'MIN(user_last_timestamp)',
-			$this->isAnon() ? array( 'user_ip' => $this->getName() ) : array( 'user_id' => $this->getID() ),
+			$this->isAnon() ? [ 'user_ip' => $this->getName() ] : [ 'user_id' => $this->getID() ],
 			__METHOD__ );
 		$rev = $timestamp ? Revision::loadFromTimestamp( $dbr, $utp, $timestamp ) : null;
-		return array( array( 'wiki' => wfWikiID(), 'link' => $utp->getLocalURL(), 'rev' => $rev ) );
+		return [ [ 'wiki' => wfWikiID(), 'link' => $utp->getLocalURL(), 'rev' => $rev ] ];
 	}
 
 	/**
@@ -2169,7 +2169,7 @@ class User implements IDBAccessObject {
 	protected function checkNewtalk( $field, $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
-		$ok = $dbr->selectField( 'user_newtalk', $field, array( $field => $id ), __METHOD__ );
+		$ok = $dbr->selectField( 'user_newtalk', $field, [ $field => $id ], __METHOD__ );
 
 		return $ok !== false;
 	}
@@ -2188,7 +2188,7 @@ class User implements IDBAccessObject {
 		// Mark the user as having new messages since this revision
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert( 'user_newtalk',
-			array( $field => $id, 'user_last_timestamp' => $dbw->timestampOrNull( $ts ) ),
+			[ $field => $id, 'user_last_timestamp' => $dbw->timestampOrNull( $ts ) ],
 			__METHOD__,
 			'IGNORE' );
 		if ( $dbw->affectedRows() ) {
@@ -2209,7 +2209,7 @@ class User implements IDBAccessObject {
 	protected function deleteNewtalk( $field, $id ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'user_newtalk',
-			array( $field => $id ),
+			[ $field => $id ],
 			__METHOD__ );
 		if ( $dbw->affectedRows() ) {
 			wfDebug( __METHOD__ . ": killed on ($field, $id)\n" );
@@ -2466,14 +2466,14 @@ class User implements IDBAccessObject {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update(
 			'user',
-			array(
+			[
 				'user_password' => $passwordFactory->newFromPlaintext( $str )->toString(),
 				'user_newpassword' => PasswordFactory::newInvalidPassword()->toString(),
 				'user_newpass_time' => $dbw->timestampOrNull( null ),
-			),
-			array(
+			],
+			[
 				'user_id' => $id,
-			),
+			],
 			__METHOD__
 		);
 
@@ -2555,9 +2555,9 @@ class User implements IDBAccessObject {
 
 		$passwordFactory = new PasswordFactory();
 		$passwordFactory->init( RequestContext::getMain()->getConfig() );
-		$update = array(
+		$update = [
 			'user_newpassword' => $passwordFactory->newFromPlaintext( $str )->toString(),
-		);
+		];
 
 		if ( $str === null ) {
 			$update['user_newpass_time'] = null;
@@ -2565,7 +2565,7 @@ class User implements IDBAccessObject {
 			$update['user_newpass_time'] = $dbw->timestamp();
 		}
 
-		$dbw->update( 'user', $update, array( 'user_id' => $id ), __METHOD__ );
+		$dbw->update( 'user', $update, [ 'user_id' => $id ], __METHOD__ );
 	}
 
 	/**
@@ -2588,7 +2588,7 @@ class User implements IDBAccessObject {
 		$newpassTime = $db->selectField(
 			'user',
 			'user_newpass_time',
-			array( 'user_id' => $this->getId() ),
+			[ 'user_id' => $this->getId() ],
 			__METHOD__
 		);
 
@@ -2605,7 +2605,7 @@ class User implements IDBAccessObject {
 	 */
 	public function getEmail() {
 		$this->load();
-		Hooks::run( 'UserGetEmail', array( $this, &$this->mEmail ) );
+		Hooks::run( 'UserGetEmail', [ $this, &$this->mEmail ] );
 		return $this->mEmail;
 	}
 
@@ -2615,7 +2615,7 @@ class User implements IDBAccessObject {
 	 */
 	public function getEmailAuthenticationTimestamp() {
 		$this->load();
-		Hooks::run( 'UserGetEmailAuthenticationTimestamp', array( $this, &$this->mEmailAuthenticated ) );
+		Hooks::run( 'UserGetEmailAuthenticationTimestamp', [ $this, &$this->mEmailAuthenticated ] );
 		return $this->mEmailAuthenticated;
 	}
 
@@ -2630,7 +2630,7 @@ class User implements IDBAccessObject {
 		}
 		$this->invalidateEmail();
 		$this->mEmail = $str;
-		Hooks::run( 'UserSetEmail', array( $this, &$this->mEmail ) );
+		Hooks::run( 'UserSetEmail', [ $this, &$this->mEmail ] );
 	}
 
 	/**
@@ -2871,14 +2871,14 @@ class User implements IDBAccessObject {
 	 * @return array Option kinds
 	 */
 	public static function listOptionKinds() {
-		return array(
+		return [
 			'registered',
 			'registered-multiselect',
 			'registered-checkmatrix',
 			'userjs',
 			'special',
 			'unused'
-		);
+		];
 	}
 
 	/**
@@ -2900,7 +2900,7 @@ class User implements IDBAccessObject {
 		}
 
 		$prefs = Preferences::getPreferences( $this, $context );
-		$mapping = array();
+		$mapping = [];
 
 		// Pull out the "special" options, so they don't get converted as
 		// multiselect or checkmatrix.
@@ -2911,7 +2911,7 @@ class User implements IDBAccessObject {
 
 		// Multiselect and checkmatrix options are stored in the database with
 		// one key per option, each having a boolean value. Extract those keys.
-		$multiselectOptions = array();
+		$multiselectOptions = [];
 		foreach ( $prefs as $name => $info ) {
 			if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
 					( isset( $info['class'] ) && $info['class'] == 'HTMLMultiSelectField' ) ) {
@@ -2925,7 +2925,7 @@ class User implements IDBAccessObject {
 				unset( $prefs[$name] );
 			}
 		}
-		$checkmatrixOptions = array();
+		$checkmatrixOptions = [];
 		foreach ( $prefs as $name => $info ) {
 			if ( ( isset( $info['type'] ) && $info['type'] == 'checkmatrix' ) ||
 					( isset( $info['class'] ) && $info['class'] == 'HTMLCheckMatrix' ) ) {
@@ -2978,14 +2978,14 @@ class User implements IDBAccessObject {
 	 *  Defaults to RequestContext::getMain() when null.
 	 */
 	public function resetOptions(
-		$resetKinds = array( 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ),
+		$resetKinds = [ 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ],
 		IContextSource $context = null
 	) {
 		$this->load();
 		$defaultOptions = self::getDefaultOptions();
 
 		if ( !is_array( $resetKinds ) ) {
-			$resetKinds = array( $resetKinds );
+			$resetKinds = [ $resetKinds ];
 		}
 
 		if ( in_array( 'all', $resetKinds ) ) {
@@ -2997,7 +2997,7 @@ class User implements IDBAccessObject {
 
 			$optionKinds = $this->getOptionKinds( $context );
 			$resetKinds = array_intersect( $resetKinds, self::listOptionKinds() );
-			$newOptions = array();
+			$newOptions = [];
 
 			// Use default values for the options that should be deleted, and
 			// copy old values for the ones that shouldn't.
@@ -3012,7 +3012,7 @@ class User implements IDBAccessObject {
 			}
 		}
 
-		Hooks::run( 'UserResetAllOptions', array( $this, &$newOptions, $this->mOptions, $resetKinds ) );
+		Hooks::run( 'UserResetAllOptions', [ $this, &$newOptions, $this->mOptions, $resetKinds ] );
 
 		$this->mOptions = $newOptions;
 		$this->mOptionsLoaded = true;
@@ -3048,7 +3048,7 @@ class User implements IDBAccessObject {
 			return false;
 		} else {
 			$https = $this->getBoolOption( 'prefershttps' );
-			Hooks::run( 'UserRequiresHTTPS', array( $this, &$https ) );
+			Hooks::run( 'UserRequiresHTTPS', [ $this, &$https ] );
 			if ( $https ) {
 				$https = wfCanIPUseHTTPS( $this->getRequest()->getIP() );
 			}
@@ -3085,7 +3085,7 @@ class User implements IDBAccessObject {
 				$this->mRights = array_intersect( $this->mRights, $allowedRights );
 			}
 
-			Hooks::run( 'UserGetRights', array( $this, &$this->mRights ) );
+			Hooks::run( 'UserGetRights', [ $this, &$this->mRights ] );
 			// Force reindexation of rights when a hook has unset one of them
 			$this->mRights = array_values( array_unique( $this->mRights ) );
 		}
@@ -3117,7 +3117,7 @@ class User implements IDBAccessObject {
 				$this->getAutomaticGroups( $recache ) // implicit groups
 			) );
 			// Hook for additional groups
-			Hooks::run( 'UserEffectiveGroups', array( &$this, &$this->mEffectiveGroups ) );
+			Hooks::run( 'UserEffectiveGroups', [ &$this, &$this->mEffectiveGroups ] );
 			// Force reindexation of groups when a hook has unset one of them
 			$this->mEffectiveGroups = array_values( array_unique( $this->mEffectiveGroups ) );
 		}
@@ -3133,7 +3133,7 @@ class User implements IDBAccessObject {
 	 */
 	public function getAutomaticGroups( $recache = false ) {
 		if ( $recache || is_null( $this->mImplicitGroups ) ) {
-			$this->mImplicitGroups = array( '*' );
+			$this->mImplicitGroups = [ '*' ];
 			if ( $this->getId() ) {
 				$this->mImplicitGroups[] = 'user';
 
@@ -3168,10 +3168,10 @@ class User implements IDBAccessObject {
 				? wfGetDB( DB_MASTER )
 				: wfGetDB( DB_SLAVE );
 			$res = $db->select( 'user_former_groups',
-				array( 'ufg_group' ),
-				array( 'ufg_user' => $this->mId ),
+				[ 'ufg_group' ],
+				[ 'ufg_user' => $this->mId ],
 				__METHOD__ );
-			$this->mFormerGroups = array();
+			$this->mFormerGroups = [];
 			foreach ( $res as $row ) {
 				$this->mFormerGroups[] = $row->ufg_group;
 			}
@@ -3195,7 +3195,7 @@ class User implements IDBAccessObject {
 			// check if the user_editcount field has been initialized
 			$count = $dbr->selectField(
 				'user', 'user_editcount',
-				array( 'user_id' => $this->mId ),
+				[ 'user_id' => $this->mId ],
 				__METHOD__
 			);
 
@@ -3217,19 +3217,19 @@ class User implements IDBAccessObject {
 	public function addGroup( $group ) {
 		$this->load();
 
-		if ( !Hooks::run( 'UserAddGroup', array( $this, &$group ) ) ) {
+		if ( !Hooks::run( 'UserAddGroup', [ $this, &$group ] ) ) {
 			return false;
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
 		if ( $this->getId() ) {
 			$dbw->insert( 'user_groups',
-				array(
+				[
 					'ug_user' => $this->getID(),
 					'ug_group' => $group,
-				),
+				],
 				__METHOD__,
-				array( 'IGNORE' ) );
+				[ 'IGNORE' ] );
 		}
 
 		$this->loadGroups();
@@ -3256,29 +3256,29 @@ class User implements IDBAccessObject {
 	 */
 	public function removeGroup( $group ) {
 		$this->load();
-		if ( !Hooks::run( 'UserRemoveGroup', array( $this, &$group ) ) ) {
+		if ( !Hooks::run( 'UserRemoveGroup', [ $this, &$group ] ) ) {
 			return false;
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'user_groups',
-			array(
+			[
 				'ug_user' => $this->getID(),
 				'ug_group' => $group,
-			), __METHOD__
+			], __METHOD__
 		);
 		// Remember that the user was in this group
 		$dbw->insert( 'user_former_groups',
-			array(
+			[
 				'ufg_user' => $this->getID(),
 				'ufg_group' => $group,
-			),
+			],
 			__METHOD__,
-			array( 'IGNORE' )
+			[ 'IGNORE' ]
 		);
 
 		$this->loadGroups();
-		$this->mGroups = array_diff( $this->mGroups, array( $group ) );
+		$this->mGroups = array_diff( $this->mGroups, [ $group ] );
 
 		// Refresh the groups caches, and clear the rights cache so it will be
 		// refreshed on the next call to $this->getRights().
@@ -3415,7 +3415,7 @@ class User implements IDBAccessObject {
 		}
 
 		if ( count( $this->mWatchedItems ) >= self::MAX_WATCHED_ITEMS_CACHE ) {
-			$this->mWatchedItems = array();
+			$this->mWatchedItems = [];
 		}
 
 		$this->mWatchedItems[$key] = WatchedItem::fromUserTitle( $this, $title, $checkRights );
@@ -3481,7 +3481,7 @@ class User implements IDBAccessObject {
 
 		// If we're working on user's talk page, we should update the talk page message indicator
 		if ( $title->getNamespace() == NS_USER_TALK && $title->getText() == $this->getName() ) {
-			if ( !Hooks::run( 'UserClearNewTalkNotification', array( &$this, $oldid ) ) ) {
+			if ( !Hooks::run( 'UserClearNewTalkNotification', [ &$this, $oldid ] ) ) {
 				return;
 			}
 
@@ -3552,8 +3552,8 @@ class User implements IDBAccessObject {
 		if ( $id != 0 ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'watchlist',
-				array( /* SET */ 'wl_notificationtimestamp' => null ),
-				array( /* WHERE */ 'wl_user' => $id, 'wl_notificationtimestamp IS NOT NULL' ),
+				[ /* SET */ 'wl_notificationtimestamp' => null ],
+				[ /* WHERE */ 'wl_user' => $id, 'wl_notificationtimestamp IS NOT NULL' ],
 				__METHOD__
 			);
 			// We also need to clear here the "you have new message" notification for the own user_talk page;
@@ -3578,7 +3578,7 @@ class User implements IDBAccessObject {
 	 *        is passed.
 	 */
 	protected function setCookie(
-		$name, $value, $exp = 0, $secure = null, $params = array(), $request = null
+		$name, $value, $exp = 0, $secure = null, $params = [], $request = null
 	) {
 		wfDeprecated( __METHOD__, '1.27' );
 		if ( $request === null ) {
@@ -3598,7 +3598,7 @@ class User implements IDBAccessObject {
 	 *  null (default): Use the default ($wgCookieSecure) to set the secure attribute
 	 * @param array $params Array of options sent passed to WebResponse::setcookie()
 	 */
-	protected function clearCookie( $name, $secure = null, $params = array() ) {
+	protected function clearCookie( $name, $secure = null, $params = [] ) {
 		wfDeprecated( __METHOD__, '1.27' );
 		$this->setCookie( $name, '', time() - 86400, $secure, $params );
 	}
@@ -3676,7 +3676,7 @@ class User implements IDBAccessObject {
 	 * Log this user out.
 	 */
 	public function logout() {
-		if ( Hooks::run( 'UserLogout', array( &$this ) ) ) {
+		if ( Hooks::run( 'UserLogout', [ &$this ] ) ) {
 			$this->doLogout();
 		}
 	}
@@ -3735,7 +3735,7 @@ class User implements IDBAccessObject {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'user',
-			array( /* SET */
+			[ /* SET */
 				'user_name' => $this->mName,
 				'user_real_name' => $this->mRealName,
 				'user_email' => $this->mEmail,
@@ -3744,10 +3744,10 @@ class User implements IDBAccessObject {
 				'user_token' => strval( $this->mToken ),
 				'user_email_token' => $this->mEmailToken,
 				'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
-			), array( /* WHERE */
+			], [ /* WHERE */
 				'user_id' => $this->mId,
 				'user_touched' => $dbw->timestamp( $oldTouched ) // CAS check
-			), __METHOD__
+			], __METHOD__
 		);
 
 		if ( !$dbw->affectedRows() ) {
@@ -3764,7 +3764,7 @@ class User implements IDBAccessObject {
 		$this->mTouched = $newTouched;
 		$this->saveOptions();
 
-		Hooks::run( 'UserSaveSettings', array( $this ) );
+		Hooks::run( 'UserSaveSettings', [ $this ] );
 		$this->clearSharedCache();
 		$this->getUserPage()->invalidateCache();
 	}
@@ -3786,11 +3786,11 @@ class User implements IDBAccessObject {
 			: wfGetDB( DB_SLAVE );
 
 		$options = ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING )
-			? array( 'LOCK IN SHARE MODE' )
-			: array();
+			? [ 'LOCK IN SHARE MODE' ]
+			: [];
 
 		$id = $db->selectField( 'user',
-			'user_id', array( 'user_name' => $s ), __METHOD__, $options );
+			'user_id', [ 'user_name' => $s ], __METHOD__, $options );
 
 		return (int)$id;
 	}
@@ -3810,8 +3810,8 @@ class User implements IDBAccessObject {
 	 *
 	 * @return User|null User object, or null if the username already exists.
 	 */
-	public static function createNew( $name, $params = array() ) {
-		foreach ( array( 'password', 'newpassword', 'newpass_time', 'password_expires' ) as $field ) {
+	public static function createNew( $name, $params = [] ) {
+		foreach ( [ 'password', 'newpassword', 'newpass_time', 'password_expires' ] as $field ) {
 			if ( isset( $params[$field] ) ) {
 				wfDeprecated( __METHOD__ . " with param '$field'", '1.27' );
 				unset( $params[$field] );
@@ -3830,7 +3830,7 @@ class User implements IDBAccessObject {
 
 		$noPass = PasswordFactory::newInvalidPassword()->toString();
 
-		$fields = array(
+		$fields = [
 			'user_id' => $seqVal,
 			'user_name' => $name,
 			'user_password' => $noPass,
@@ -3842,11 +3842,11 @@ class User implements IDBAccessObject {
 			'user_registration' => $dbw->timestamp( $user->mRegistration ),
 			'user_editcount' => 0,
 			'user_touched' => $dbw->timestamp( $user->newTouchedTimestamp() ),
-		);
+		];
 		foreach ( $params as $name => $value ) {
 			$fields["user_$name"] = $value;
 		}
-		$dbw->insert( 'user', $fields, __METHOD__, array( 'IGNORE' ) );
+		$dbw->insert( 'user', $fields, __METHOD__, [ 'IGNORE' ] );
 		if ( $dbw->affectedRows() ) {
 			$newUser = User::newFromId( $dbw->insertId() );
 		} else {
@@ -3895,7 +3895,7 @@ class User implements IDBAccessObject {
 		$inWrite = $dbw->writesOrCallbacksPending();
 		$seqVal = $dbw->nextSequenceValue( 'user_user_id_seq' );
 		$dbw->insert( 'user',
-			array(
+			[
 				'user_id' => $seqVal,
 				'user_name' => $this->mName,
 				'user_password' => $noPass,
@@ -3907,8 +3907,8 @@ class User implements IDBAccessObject {
 				'user_registration' => $dbw->timestamp( $this->mRegistration ),
 				'user_editcount' => 0,
 				'user_touched' => $dbw->timestamp( $this->mTouched ),
-			), __METHOD__,
-			array( 'IGNORE' )
+			], __METHOD__,
+			[ 'IGNORE' ]
 		);
 		if ( !$dbw->affectedRows() ) {
 			// The queries below cannot happen in the same REPEATABLE-READ snapshot.
@@ -3916,17 +3916,17 @@ class User implements IDBAccessObject {
 			if ( $inWrite ) {
 				// Can't commit due to pending writes that may need atomicity.
 				// This may cause some lock contention unlike the case below.
-				$options = array( 'LOCK IN SHARE MODE' );
+				$options = [ 'LOCK IN SHARE MODE' ];
 				$flags = self::READ_LOCKING;
 			} else {
 				// Often, this case happens early in views before any writes when
 				// using CentralAuth. It's should be OK to commit and break the snapshot.
 				$dbw->commit( __METHOD__, 'flush' );
-				$options = array();
+				$options = [];
 				$flags = self::READ_LATEST;
 			}
 			$this->mId = $dbw->selectField( 'user', 'user_id',
-				array( 'user_name' => $this->mName ), __METHOD__, $options );
+				[ 'user_name' => $this->mName ], __METHOD__, $options );
 			$loaded = false;
 			if ( $this->mId ) {
 				if ( $this->loadFromDatabase( $flags ) ) {
@@ -4087,7 +4087,7 @@ class User implements IDBAccessObject {
 
 		try {
 			$mPassword = $passwordFactory->newFromCiphertext( $db->selectField(
-				'user', 'user_password', array( 'user_id' => $this->getId() ), __METHOD__
+				'user', 'user_password', [ 'user_id' => $this->getId() ], __METHOD__
 			) );
 		} catch ( PasswordError $e ) {
 			wfDebug( 'Invalid password hash found in database.' );
@@ -4135,8 +4135,8 @@ class User implements IDBAccessObject {
 
 		$row = $db->selectRow(
 			'user',
-			array( 'user_newpassword', 'user_newpass_time' ),
-			array( 'user_id' => $this->getId() ),
+			[ 'user_newpassword', 'user_newpass_time' ],
+			[ 'user_id' => $this->getId() ],
 			__METHOD__
 		);
 		try {
@@ -4293,9 +4293,9 @@ class User implements IDBAccessObject {
 		}
 		$to = MailAddress::newFromUser( $this );
 
-		return UserMailer::send( $to, $sender, $subject, $body, array(
+		return UserMailer::send( $to, $sender, $subject, $body, [
 			'replyTo' => $replyto,
-		) );
+		] );
 	}
 
 	/**
@@ -4371,7 +4371,7 @@ class User implements IDBAccessObject {
 		// and fire the ConfirmEmailComplete hook on redundant confirmations.
 		if ( !$this->isEmailConfirmed() ) {
 			$this->setEmailAuthenticationTimestamp( wfTimestampNow() );
-			Hooks::run( 'ConfirmEmailComplete', array( $this ) );
+			Hooks::run( 'ConfirmEmailComplete', [ $this ] );
 		}
 		return true;
 	}
@@ -4389,7 +4389,7 @@ class User implements IDBAccessObject {
 		$this->mEmailTokenExpires = null;
 		$this->setEmailAuthenticationTimestamp( null );
 		$this->mEmail = '';
-		Hooks::run( 'InvalidateEmailComplete', array( $this ) );
+		Hooks::run( 'InvalidateEmailComplete', [ $this ] );
 		return true;
 	}
 
@@ -4400,7 +4400,7 @@ class User implements IDBAccessObject {
 	public function setEmailAuthenticationTimestamp( $timestamp ) {
 		$this->load();
 		$this->mEmailAuthenticated = $timestamp;
-		Hooks::run( 'UserSetEmailAuthenticationTimestamp', array( $this, &$this->mEmailAuthenticated ) );
+		Hooks::run( 'UserSetEmailAuthenticationTimestamp', [ $this, &$this->mEmailAuthenticated ] );
 	}
 
 	/**
@@ -4414,7 +4414,7 @@ class User implements IDBAccessObject {
 			return false;
 		}
 		$canSend = $this->isEmailConfirmed();
-		Hooks::run( 'UserCanSendEmail', array( &$this, &$canSend ) );
+		Hooks::run( 'UserCanSendEmail', [ &$this, &$canSend ] );
 		return $canSend;
 	}
 
@@ -4441,7 +4441,7 @@ class User implements IDBAccessObject {
 		global $wgEmailAuthentication;
 		$this->load();
 		$confirmed = true;
-		if ( Hooks::run( 'EmailConfirmed', array( &$this, &$confirmed ) ) ) {
+		if ( Hooks::run( 'EmailConfirmed', [ &$this, &$confirmed ] ) ) {
 			if ( $this->isAnon() ) {
 				return false;
 			}
@@ -4496,9 +4496,9 @@ class User implements IDBAccessObject {
 		}
 		$dbr = wfGetDB( DB_SLAVE );
 		$time = $dbr->selectField( 'revision', 'rev_timestamp',
-			array( 'rev_user' => $this->getId() ),
+			[ 'rev_user' => $this->getId() ],
 			__METHOD__,
-			array( 'ORDER BY' => 'rev_timestamp ASC' )
+			[ 'ORDER BY' => 'rev_timestamp ASC' ]
 		);
 		if ( !$time ) {
 			return false; // no edits
@@ -4514,7 +4514,7 @@ class User implements IDBAccessObject {
 	 */
 	public static function getGroupPermissions( $groups ) {
 		global $wgGroupPermissions, $wgRevokePermissions;
-		$rights = array();
+		$rights = [];
 		// grant every granted permission first
 		foreach ( $groups as $group ) {
 			if ( isset( $wgGroupPermissions[$group] ) ) {
@@ -4541,7 +4541,7 @@ class User implements IDBAccessObject {
 	 */
 	public static function getGroupsWithPermission( $role ) {
 		global $wgGroupPermissions;
-		$allowedGroups = array();
+		$allowedGroups = [];
 		foreach ( array_keys( $wgGroupPermissions ) as $group ) {
 			if ( self::groupHasPermission( $group, $role ) ) {
 				$allowedGroups[] = $group;
@@ -4584,7 +4584,7 @@ class User implements IDBAccessObject {
 	 */
 	public static function isEveryoneAllowed( $right ) {
 		global $wgGroupPermissions, $wgRevokePermissions;
-		static $cache = array();
+		static $cache = [];
 
 		// Use the cached results, except in unit tests which rely on
 		// being able change the permission mid-request
@@ -4613,7 +4613,7 @@ class User implements IDBAccessObject {
 		}
 
 		// Allow extensions to say false
-		if ( !Hooks::run( 'UserIsEveryoneAllowed', array( $right ) ) ) {
+		if ( !Hooks::run( 'UserIsEveryoneAllowed', [ $right ] ) ) {
 			$cache[$right] = false;
 			return false;
 		}
@@ -4671,7 +4671,7 @@ class User implements IDBAccessObject {
 			} else {
 				self::$mAllRights = self::$mCoreRights;
 			}
-			Hooks::run( 'UserGetAllRights', array( &self::$mAllRights ) );
+			Hooks::run( 'UserGetAllRights', [ &self::$mAllRights ] );
 		}
 		return self::$mAllRights;
 	}
@@ -4685,7 +4685,7 @@ class User implements IDBAccessObject {
 
 		$groups = $wgImplicitGroups;
 		# Deprecated, use $wgImplicitGroups instead
-		Hooks::run( 'UserGetImplicitGroups', array( &$groups ), '1.25' );
+		Hooks::run( 'UserGetImplicitGroups', [ &$groups ], '1.25' );
 
 		return $groups;
 	}
@@ -4760,12 +4760,12 @@ class User implements IDBAccessObject {
 	public static function changeableByGroup( $group ) {
 		global $wgAddGroups, $wgRemoveGroups, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 
-		$groups = array(
-			'add' => array(),
-			'remove' => array(),
-			'add-self' => array(),
-			'remove-self' => array()
-		);
+		$groups = [
+			'add' => [],
+			'remove' => [],
+			'add-self' => [],
+			'remove-self' => []
+		];
 
 		if ( empty( $wgAddGroups[$group] ) ) {
 			// Don't add anything to $groups
@@ -4837,21 +4837,21 @@ class User implements IDBAccessObject {
 			// everything")
 			// Using array_merge to make the groups reindexed
 			$all = array_merge( User::getAllGroups() );
-			return array(
+			return [
 				'add' => $all,
 				'remove' => $all,
-				'add-self' => array(),
-				'remove-self' => array()
-			);
+				'add-self' => [],
+				'remove-self' => []
+			];
 		}
 
 		// Okay, it's not so simple, we will have to go through the arrays
-		$groups = array(
-			'add' => array(),
-			'remove' => array(),
-			'add-self' => array(),
-			'remove-self' => array()
-		);
+		$groups = [
+			'add' => [],
+			'remove' => [],
+			'add-self' => [],
+			'remove-self' => []
+		];
 		$addergroups = $this->getEffectiveGroups();
 
 		foreach ( $addergroups as $addergroup ) {
@@ -4889,8 +4889,8 @@ class User implements IDBAccessObject {
 		// No rows will be "affected" if user_editcount is NULL
 		$dbw->update(
 			'user',
-			array( 'user_editcount=user_editcount+1' ),
-			array( 'user_id' => $this->getId(), 'user_editcount IS NOT NULL' ),
+			[ 'user_editcount=user_editcount+1' ],
+			[ 'user_id' => $this->getId(), 'user_editcount IS NOT NULL' ],
 			__METHOD__
 		);
 		// Lazy initialization check...
@@ -4926,7 +4926,7 @@ class User implements IDBAccessObject {
 		$count = (int)$dbr->selectField(
 			'revision',
 			'COUNT(rev_user)',
-			array( 'rev_user' => $this->getId() ),
+			[ 'rev_user' => $this->getId() ],
 			__METHOD__
 		);
 		$count = $count + $add;
@@ -4934,8 +4934,8 @@ class User implements IDBAccessObject {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update(
 			'user',
-			array( 'user_editcount' => $count ),
-			array( 'user_id' => $this->getId() ),
+			[ 'user_editcount' => $count ],
+			[ 'user_id' => $this->getId() ],
 			__METHOD__
 		);
 
@@ -5049,9 +5049,9 @@ class User implements IDBAccessObject {
 		$logEntry->setPerformer( $performer );
 		$logEntry->setTarget( $this->getUserPage() );
 		$logEntry->setComment( $reason );
-		$logEntry->setParameters( array(
+		$logEntry->setParameters( [
 			'4::userid' => $this->getId(),
-		) );
+		] );
 		$logid = $logEntry->insert();
 
 		if ( $action !== 'autocreate' ) {
@@ -5118,13 +5118,13 @@ class User implements IDBAccessObject {
 
 				$res = $dbr->select(
 					'user_properties',
-					array( 'up_property', 'up_value' ),
-					array( 'up_user' => $this->getId() ),
+					[ 'up_property', 'up_value' ],
+					[ 'up_user' => $this->getId() ],
 					__METHOD__
 				);
 
-				$this->mOptionOverrides = array();
-				$data = array();
+				$this->mOptionOverrides = [];
+				$data = [];
 				foreach ( $res as $row ) {
 					$data[$row->up_property] = $row->up_value;
 				}
@@ -5137,7 +5137,7 @@ class User implements IDBAccessObject {
 
 		$this->mOptionsLoaded = true;
 
-		Hooks::run( 'UserLoadOptions', array( $this, &$this->mOptions ) );
+		Hooks::run( 'UserLoadOptions', [ $this, &$this->mOptions ] );
 	}
 
 	/**
@@ -5153,35 +5153,35 @@ class User implements IDBAccessObject {
 
 		// Allow hooks to abort, for instance to save to a global profile.
 		// Reset options to default state before saving.
-		if ( !Hooks::run( 'UserSaveOptions', array( $this, &$saveOptions ) ) ) {
+		if ( !Hooks::run( 'UserSaveOptions', [ $this, &$saveOptions ] ) ) {
 			return;
 		}
 
 		$userId = $this->getId();
 
-		$insert_rows = array(); // all the new preference rows
+		$insert_rows = []; // all the new preference rows
 		foreach ( $saveOptions as $key => $value ) {
 			// Don't bother storing default values
 			$defaultOption = self::getDefaultOption( $key );
 			if ( ( $defaultOption === null && $value !== false && $value !== null )
 				|| $value != $defaultOption
 			) {
-				$insert_rows[] = array(
+				$insert_rows[] = [
 					'up_user' => $userId,
 					'up_property' => $key,
 					'up_value' => $value,
-				);
+				];
 			}
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
 
 		$res = $dbw->select( 'user_properties',
-			array( 'up_property', 'up_value' ), array( 'up_user' => $userId ), __METHOD__ );
+			[ 'up_property', 'up_value' ], [ 'up_user' => $userId ], __METHOD__ );
 
 		// Find prior rows that need to be removed or updated. These rows will
 		// all be deleted (the later so that INSERT IGNORE applies the new values).
-		$keysDelete = array();
+		$keysDelete = [];
 		foreach ( $res as $row ) {
 			if ( !isset( $saveOptions[$row->up_property] )
 				|| strcmp( $saveOptions[$row->up_property], $row->up_value ) != 0
@@ -5199,10 +5199,10 @@ class User implements IDBAccessObject {
 			// updates would pile up on each other as they are for higher (newer) user IDs.
 			// It might not be necessary these days, but it shouldn't hurt either.
 			$dbw->delete( 'user_properties',
-				array( 'up_user' => $userId, 'up_property' => $keysDelete ), __METHOD__ );
+				[ 'up_user' => $userId, 'up_property' => $keysDelete ], __METHOD__ );
 		}
 		// Insert the new preference rows
-		$dbw->insert( 'user_properties', $insert_rows, __METHOD__, array( 'IGNORE' ) );
+		$dbw->insert( 'user_properties', $insert_rows, __METHOD__, [ 'IGNORE' ] );
 	}
 
 	/**
@@ -5246,7 +5246,7 @@ class User implements IDBAccessObject {
 		global $wgMinimalPasswordLength;
 
 		if ( $wgMinimalPasswordLength == 0 ) {
-			return array();
+			return [];
 		}
 
 		# Note that the pattern requirement will always be satisfied if the
@@ -5258,7 +5258,7 @@ class User implements IDBAccessObject {
 		# re-enabled, fix this code to not output required for e-mail
 		# registration.
 		# $ret = array( 'required' );
-		$ret = array();
+		$ret = [];
 
 		# We can't actually do this right now, because Opera 9.6 will print out
 		# the entered password visibly in its error message!  When other
@@ -5283,7 +5283,7 @@ class User implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function selectFields() {
-		return array(
+		return [
 			'user_id',
 			'user_name',
 			'user_real_name',
@@ -5295,7 +5295,7 @@ class User implements IDBAccessObject {
 			'user_email_token_expires',
 			'user_registration',
 			'user_editcount',
-		);
+		];
 	}
 
 	/**
@@ -5309,7 +5309,7 @@ class User implements IDBAccessObject {
 		global $wgLang;
 
 		$groups = array_map(
-			array( 'User', 'makeGroupLinkWiki' ),
+			[ 'User', 'makeGroupLinkWiki' ],
 			User::getGroupsWithPermission( $permission )
 		);
 

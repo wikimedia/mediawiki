@@ -29,7 +29,7 @@ use Wikimedia\Assert\Assert;
  */
 class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	/** @var string[] Collection of URLs to purge */
-	protected $urls = array();
+	protected $urls = [];
 
 	/**
 	 * @param string[] $urlArr Collection of URLs to purge
@@ -52,7 +52,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * @param string[] $urlArr
 	 * @return CdnCacheUpdate
 	 */
-	public static function newFromTitles( $titles, $urlArr = array() ) {
+	public static function newFromTitles( $titles, $urlArr = [] ) {
 		/** @var Title $title */
 		foreach ( $titles as $title ) {
 			$urlArr = array_merge( $urlArr, $title->getCdnUrls() );
@@ -81,10 +81,10 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		if ( $wgCdnReboundPurgeDelay > 0 ) {
 			JobQueueGroup::singleton()->lazyPush( new CdnPurgeJob(
 				Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __CLASS__ ),
-				array(
+				[
 					'urls' => $this->urls,
 					'jobReleaseTimestamp' => time() + $wgCdnReboundPurgeDelay
-				)
+				]
 			) );
 		}
 	}
@@ -112,10 +112,10 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		$relayer = EventRelayerGroup::singleton()->getRelayer( 'cdn-url-purges' );
 		$relayer->notify(
 			'cdn-url-purges',
-			array(
+			[
 				'urls' => array_values( $urlArr ), // JSON array
 				'timestamp' => microtime( true )
-			)
+			]
 		);
 
 		// Send lossy UDP broadcasting if enabled
@@ -207,7 +207,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 
 			if ( isset( $conf['host'] ) && isset( $conf['port'] ) ) {
 				// Normalize single entries
-				$conf = array( $conf );
+				$conf = [ $conf ];
 			}
 			foreach ( $conf as $subconf ) {
 				if ( !isset( $subconf['host'] ) || !isset( $subconf['port'] ) ) {

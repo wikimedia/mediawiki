@@ -27,7 +27,7 @@
  */
 class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 
-	protected $targets = array( 'desktop', 'mobile' );
+	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
 	 * Get all the dynamic data for the content language to an array.
@@ -37,14 +37,14 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	 */
 	protected function getData( ResourceLoaderContext $context ) {
 		$language = Language::factory( $context->getLanguage() );
-		return array(
+		return [
 			'digitTransformTable' => $language->digitTransformTable(),
 			'separatorTransformTable' => $language->separatorTransformTable(),
 			'grammarForms' => $language->getGrammarForms(),
 			'pluralRules' => $language->getPluralRules(),
 			'digitGroupingPattern' => $language->digitGroupingPattern(),
 			'fallbackLanguages' => $language->getFallbackLanguages(),
-		);
+		];
 	}
 
 	/**
@@ -54,10 +54,10 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	public function getScript( ResourceLoaderContext $context ) {
 		return Xml::encodeJsCall(
 			'mw.language.setData',
-			array(
+			[
 				$context->getLanguage(),
 				$this->getData( $context )
-			),
+			],
 			ResourceLoader::inDebugMode()
 		);
 	}
@@ -74,6 +74,6 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getDependencies( ResourceLoaderContext $context = null ) {
-		return array( 'mediawiki.language.init' );
+		return [ 'mediawiki.language.init' ];
 	}
 }

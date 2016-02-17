@@ -59,7 +59,7 @@ class IEUrlExtension {
 	 * @param array $extWhitelist Extensions which are allowed, assumed harmless.
 	 * @return bool
 	 */
-	public static function areServerVarsBad( $vars, $extWhitelist = array() ) {
+	public static function areServerVarsBad( $vars, $extWhitelist = [] ) {
 		// Check QUERY_STRING or REQUEST_URI
 		if ( isset( $vars['SERVER_SOFTWARE'] )
 			&& isset( $vars['REQUEST_URI'] )
@@ -97,7 +97,7 @@ class IEUrlExtension {
 	 *    URL, and which should be allowed.
 	 * @return bool
 	 */
-	public static function isUrlExtensionBad( $urlPart, $extWhitelist = array() ) {
+	public static function isUrlExtensionBad( $urlPart, $extWhitelist = [] ) {
 		if ( strval( $urlPart ) === '' ) {
 			return false;
 		}
@@ -108,7 +108,7 @@ class IEUrlExtension {
 			return false;
 		}
 
-		if ( in_array( $extension, array( 'php', 'php5' ) ) ) {
+		if ( in_array( $extension, [ 'php', 'php5' ] ) ) {
 			// Script extension, OK
 			return false;
 		}
@@ -137,7 +137,7 @@ class IEUrlExtension {
 	 * @param $extWhitelist array
 	 * @return bool|string
 	 */
-	public static function fixUrlForIE6( $url, $extWhitelist = array() ) {
+	public static function fixUrlForIE6( $url, $extWhitelist = [] ) {
 		$questionPos = strpos( $url, '?' );
 		if ( $questionPos === false ) {
 			$beforeQuery = $url . '?';
@@ -256,10 +256,10 @@ class IEUrlExtension {
 	 *
 	 */
 	public static function haveUndecodedRequestUri( $serverSoftware ) {
-		static $whitelist = array(
+		static $whitelist = [
 			'Apache',
 			'Zeus',
-			'LiteSpeed' );
+			'LiteSpeed' ];
 		if ( preg_match( '/^(.*?)($|\/| )/', $serverSoftware, $m ) ) {
 			return in_array( $m[1], $whitelist );
 		} else {

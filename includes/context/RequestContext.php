@@ -126,7 +126,7 @@ class RequestContext implements IContextSource, MutableContext {
 			global $wgCommandLineMode;
 			// create the WebRequest object on the fly
 			if ( $wgCommandLineMode ) {
-				$this->request = new FauxRequest( array() );
+				$this->request = new FauxRequest( [] );
 			} else {
 				$this->request = new WebRequest();
 			}
@@ -155,9 +155,9 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function getTiming() {
 		if ( $this->timing === null ) {
-			$this->timing = new Timing( array(
+			$this->timing = new Timing( [
 				'logger' => LoggerFactory::getInstance( 'Timing' )
-			) );
+			] );
 		}
 		return $this->timing;
 	}
@@ -369,7 +369,7 @@ class RequestContext implements IContextSource, MutableContext {
 				}
 				$code = self::sanitizeLangCode( $code );
 
-				Hooks::run( 'UserGetLanguageObject', array( $user, &$code, $this ) );
+				Hooks::run( 'UserGetLanguageObject', [ $user, &$code, $this ] );
 
 				if ( $code === $this->getConfig()->get( 'LanguageCode' ) ) {
 					$this->lang = $wgContLang;
@@ -407,7 +407,7 @@ class RequestContext implements IContextSource, MutableContext {
 	public function getSkin() {
 		if ( $this->skin === null ) {
 			$skin = null;
-			Hooks::run( 'RequestContextCreateSkin', array( $this, &$skin ) );
+			Hooks::run( 'RequestContextCreateSkin', [ $this, &$skin ] );
 			$factory = SkinFactory::getDefaultInstance();
 
 			// If the hook worked try to set a skin from it
@@ -511,12 +511,12 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function exportSession() {
 		$session = MediaWiki\Session\SessionManager::getGlobalSession();
-		return array(
+		return [
 			'ip' => $this->getRequest()->getIP(),
 			'headers' => $this->getRequest()->getAllHeaders(),
 			'sessionId' => $session->isPersistent() ? $session->getId() : '',
 			'userId' => $this->getUser()->getId()
-		);
+		];
 	}
 
 	/**
@@ -571,7 +571,7 @@ class RequestContext implements IContextSource, MutableContext {
 			if ( MediaWiki\Session\PHPSessionHandler::isEnabled() ) {
 				session_write_close(); // persist
 				session_id( '' ); // detach
-				$_SESSION = array(); // clear in-memory array
+				$_SESSION = []; // clear in-memory array
 			}
 
 			// Get new session, if applicable
@@ -584,7 +584,7 @@ class RequestContext implements IContextSource, MutableContext {
 
 			// Remove any user IP or agent information, and attach the request
 			// with the new session.
-			$context->setRequest( new FauxRequest( array(), false, $session ) );
+			$context->setRequest( new FauxRequest( [], false, $session ) );
 			$wgRequest = $context->getRequest(); // b/c
 
 			// Now that all private information is detached from the user, it should
@@ -597,7 +597,7 @@ class RequestContext implements IContextSource, MutableContext {
 				session_id( $session->getId() );
 				MediaWiki\quietCall( 'session_start' );
 			}
-			$request = new FauxRequest( array(), false, $session );
+			$request = new FauxRequest( [], false, $session );
 			$request->setIP( $params['ip'] );
 			foreach ( $params['headers'] as $name => $value ) {
 				$request->setHeader( $name, $value );
@@ -639,7 +639,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 * @param WebRequest|array $request A WebRequest or data to use for a FauxRequest
 	 * @return RequestContext
 	 */
-	public static function newExtraneousContext( Title $title, $request = array() ) {
+	public static function newExtraneousContext( Title $title, $request = [] ) {
 		$context = new self;
 		$context->setTitle( $title );
 		if ( $request instanceof WebRequest ) {

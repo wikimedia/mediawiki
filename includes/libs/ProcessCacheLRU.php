@@ -28,10 +28,10 @@ use Wikimedia\Assert\Assert;
  */
 class ProcessCacheLRU {
 	/** @var Array */
-	protected $cache = array(); // (key => prop => value)
+	protected $cache = []; // (key => prop => value)
 
 	/** @var Array */
-	protected $cacheTimes = array(); // (key => prop => UNIX timestamp)
+	protected $cacheTimes = []; // (key => prop => UNIX timestamp)
 
 	protected $maxCacheKeys; // integer; max entries
 
@@ -109,8 +109,8 @@ class ProcessCacheLRU {
 	 */
 	public function clear( $keys = null ) {
 		if ( $keys === null ) {
-			$this->cache = array();
-			$this->cacheTimes = array();
+			$this->cache = [];
+			$this->cacheTimes = [];
 		} else {
 			foreach ( (array)$keys as $key ) {
 				unset( $this->cache[$key] );

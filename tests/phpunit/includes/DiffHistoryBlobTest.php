@@ -31,15 +31,15 @@ class DiffHistoryBlobTest extends MediaWikiTestCase {
 		// Hack non-empty early return since PHPUnit expands this provider before running
 		// the setUp() which marks the test as skipped.
 		if ( !function_exists( 'xdiff_string_rabdiff' ) ) {
-			return array( array( '', 'Empty string' ) );
+			return [ [ '', 'Empty string' ] ];
 		}
 
-		return array(
-			array( '', 'Empty string' ),
-			array( "\0", 'Null' ),
-			array( "\0\0\0", "Several nulls" ),
-			array( "Hello", "An ASCII string" ),
-			array( str_repeat( "x", 6000 ), "A string larger than xdiff's NMAX (5552)" )
-		);
+		return [
+			[ '', 'Empty string' ],
+			[ "\0", 'Null' ],
+			[ "\0\0\0", "Several nulls" ],
+			[ "Hello", "An ASCII string" ],
+			[ str_repeat( "x", 6000 ), "A string larger than xdiff's NMAX (5552)" ]
+		];
 	}
 }

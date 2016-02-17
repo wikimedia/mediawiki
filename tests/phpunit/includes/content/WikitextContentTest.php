@@ -24,41 +24,41 @@ more stuff
 	}
 
 	public static function dataGetParserOutput() {
-		return array(
-			array(
+		return [
+			[
 				"WikitextContentTest_testGetParserOutput",
 				CONTENT_MODEL_WIKITEXT,
 				"hello ''world''\n",
 				"<p>hello <i>world</i>\n</p>"
-			),
+			],
 			// TODO: more...?
-		);
+		];
 	}
 
 	public static function dataGetSecondaryDataUpdates() {
-		return array(
-			array( "WikitextContentTest_testGetSecondaryDataUpdates_1",
+		return [
+			[ "WikitextContentTest_testGetSecondaryDataUpdates_1",
 				CONTENT_MODEL_WIKITEXT, "hello ''world''\n",
-				array(
-					'LinksUpdate' => array(
+				[
+					'LinksUpdate' => [
 						'mRecursive' => true,
-						'mLinks' => array()
-					)
-				)
-			),
-			array( "WikitextContentTest_testGetSecondaryDataUpdates_2",
+						'mLinks' => []
+					]
+				]
+			],
+			[ "WikitextContentTest_testGetSecondaryDataUpdates_2",
 				CONTENT_MODEL_WIKITEXT, "hello [[world test 21344]]\n",
-				array(
-					'LinksUpdate' => array(
+				[
+					'LinksUpdate' => [
 						'mRecursive' => true,
-						'mLinks' => array(
-							array( 'World_test_21344' => 0 )
-						)
-					)
-				)
-			),
+						'mLinks' => [
+							[ 'World_test_21344' => 0 ]
+						]
+					]
+				]
+			],
 			// TODO: more...?
-		);
+		];
 	}
 
 	/**
@@ -102,21 +102,21 @@ more stuff
 	}
 
 	public static function dataGetSection() {
-		return array(
-			array( WikitextContentTest::$sections,
+		return [
+			[ WikitextContentTest::$sections,
 				"0",
 				"Intro"
-			),
-			array( WikitextContentTest::$sections,
+			],
+			[ WikitextContentTest::$sections,
 				"2",
 				"== test ==
 just a test"
-			),
-			array( WikitextContentTest::$sections,
+			],
+			[ WikitextContentTest::$sections,
 				"8",
 				false
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -137,20 +137,20 @@ just a test"
 	}
 
 	public static function dataReplaceSection() {
-		return array(
-			array( WikitextContentTest::$sections,
+		return [
+			[ WikitextContentTest::$sections,
 				"0",
 				"No more",
 				null,
 				trim( preg_replace( '/^Intro/sm', 'No more', WikitextContentTest::$sections ) )
-			),
-			array( WikitextContentTest::$sections,
+			],
+			[ WikitextContentTest::$sections,
 				"",
 				"No more",
 				null,
 				"No more"
-			),
-			array( WikitextContentTest::$sections,
+			],
+			[ WikitextContentTest::$sections,
 				"2",
 				"== TEST ==\nmore fun",
 				null,
@@ -158,20 +158,20 @@ just a test"
 					'/^== test ==.*== foo ==/sm', "== TEST ==\nmore fun\n\n== foo ==",
 					WikitextContentTest::$sections
 				) )
-			),
-			array( WikitextContentTest::$sections,
+			],
+			[ WikitextContentTest::$sections,
 				"8",
 				"No more",
 				null,
 				WikitextContentTest::$sections
-			),
-			array( WikitextContentTest::$sections,
+			],
+			[ WikitextContentTest::$sections,
 				"new",
 				"No more",
 				"New",
 				trim( WikitextContentTest::$sections ) . "\n\n\n== New ==\n\nNo more"
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -196,122 +196,122 @@ just a test"
 	}
 
 	public static function dataPreSaveTransform() {
-		return array(
-			array( 'hello this is ~~~',
+		return [
+			[ 'hello this is ~~~',
 				"hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
-			),
-			array( 'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
+			],
+			[ 'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
 				'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
-			),
-			array( // rtrim
+			],
+			[ // rtrim
 				" Foo \n ",
 				" Foo",
-			),
-		);
+			],
+		];
 	}
 
 	public static function dataPreloadTransform() {
-		return array(
-			array(
+		return [
+			[
 				'hello this is ~~~',
 				"hello this is ~~~",
-			),
-			array(
+			],
+			[
 				'hello \'\'this\'\' is <noinclude>foo</noinclude><includeonly>bar</includeonly>',
 				'hello \'\'this\'\' is bar',
-			),
-		);
+			],
+		];
 	}
 
 	public static function dataGetRedirectTarget() {
-		return array(
-			array( '#REDIRECT [[Test]]',
+		return [
+			[ '#REDIRECT [[Test]]',
 				'Test',
-			),
-			array( '#REDIRECT Test',
+			],
+			[ '#REDIRECT Test',
 				null,
-			),
-			array( '* #REDIRECT [[Test]]',
+			],
+			[ '* #REDIRECT [[Test]]',
 				null,
-			),
-		);
+			],
+		];
 	}
 
 	public static function dataGetTextForSummary() {
-		return array(
-			array( "hello\nworld.",
+		return [
+			[ "hello\nworld.",
 				16,
 				'hello world.',
-			),
-			array( 'hello world.',
+			],
+			[ 'hello world.',
 				8,
 				'hello...',
-			),
-			array( '[[hello world]].',
+			],
+			[ '[[hello world]].',
 				8,
 				'hel...',
-			),
-		);
+			],
+		];
 	}
 
 	public static function dataIsCountable() {
-		return array(
-			array( '',
+		return [
+			[ '',
 				null,
 				'any',
 				true
-			),
-			array( 'Foo',
+			],
+			[ 'Foo',
 				null,
 				'any',
 				true
-			),
-			array( 'Foo',
+			],
+			[ 'Foo',
 				null,
 				'comma',
 				false
-			),
-			array( 'Foo, bar',
+			],
+			[ 'Foo, bar',
 				null,
 				'comma',
 				true
-			),
-			array( 'Foo',
+			],
+			[ 'Foo',
 				null,
 				'link',
 				false
-			),
-			array( 'Foo [[bar]]',
+			],
+			[ 'Foo [[bar]]',
 				null,
 				'link',
 				true
-			),
-			array( 'Foo',
+			],
+			[ 'Foo',
 				true,
 				'link',
 				true
-			),
-			array( 'Foo [[bar]]',
+			],
+			[ 'Foo [[bar]]',
 				false,
 				'link',
 				false
-			),
-			array( '#REDIRECT [[bar]]',
+			],
+			[ '#REDIRECT [[bar]]',
 				true,
 				'any',
 				false
-			),
-			array( '#REDIRECT [[bar]]',
+			],
+			[ '#REDIRECT [[bar]]',
 				true,
 				'comma',
 				false
-			),
-			array( '#REDIRECT [[bar]]',
+			],
+			[ '#REDIRECT [[bar]]',
 				true,
 				'link',
 				false
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -379,14 +379,14 @@ just a test"
 		// Set up hook and its reporting variables
 		$wikitext = null;
 		$redirectTarget = null;
-		$this->mergeMwGlobalArrayValue( 'wgHooks', array(
-			'InternalParseBeforeLinks' => array(
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'InternalParseBeforeLinks' => [
 				function ( &$parser, &$text, &$stripState ) use ( &$wikitext, &$redirectTarget ) {
 					$wikitext = $text;
 					$redirectTarget = $parser->getOptions()->getRedirectTarget();
 				}
-			)
-		) );
+			]
+		] );
 
 		// Test with non-redirect page
 		$wikitext = false;
@@ -433,26 +433,26 @@ just a test"
 	}
 
 	public static function dataEquals() {
-		return array(
-			array( new WikitextContent( "hallo" ), null, false ),
-			array( new WikitextContent( "hallo" ), new WikitextContent( "hallo" ), true ),
-			array( new WikitextContent( "hallo" ), new JavaScriptContent( "hallo" ), false ),
-			array( new WikitextContent( "hallo" ), new TextContent( "hallo" ), false ),
-			array( new WikitextContent( "hallo" ), new WikitextContent( "HALLO" ), false ),
-		);
+		return [
+			[ new WikitextContent( "hallo" ), null, false ],
+			[ new WikitextContent( "hallo" ), new WikitextContent( "hallo" ), true ],
+			[ new WikitextContent( "hallo" ), new JavaScriptContent( "hallo" ), false ],
+			[ new WikitextContent( "hallo" ), new TextContent( "hallo" ), false ],
+			[ new WikitextContent( "hallo" ), new WikitextContent( "HALLO" ), false ],
+		];
 	}
 
 	public static function dataGetDeletionUpdates() {
-		return array(
-			array( "WikitextContentTest_testGetSecondaryDataUpdates_1",
+		return [
+			[ "WikitextContentTest_testGetSecondaryDataUpdates_1",
 				CONTENT_MODEL_WIKITEXT, "hello ''world''\n",
-				array( 'LinksDeletionUpdate' => array() )
-			),
-			array( "WikitextContentTest_testGetSecondaryDataUpdates_2",
+				[ 'LinksDeletionUpdate' => [] ]
+			],
+			[ "WikitextContentTest_testGetSecondaryDataUpdates_2",
 				CONTENT_MODEL_WIKITEXT, "hello [[world test 21344]]\n",
-				array( 'LinksDeletionUpdate' => array() )
-			),
+				[ 'LinksDeletionUpdate' => [] ]
+			],
 			// @todo more...?
-		);
+		];
 	}
 }

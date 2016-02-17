@@ -39,7 +39,7 @@ class IPTC {
 	 */
 	static function parse( $rawData ) {
 		$parsed = iptcparse( $rawData );
-		$data = array();
+		$data = [];
 		if ( !is_array( $parsed ) ) {
 			return $data;
 		}
@@ -52,7 +52,7 @@ class IPTC {
 				// Unknown charset. refuse to parse.
 				// note: There is a different between
 				// unknown and no charset specified.
-				return array();
+				return [];
 			}
 			unset( $parsed['1#090'] );
 		}
@@ -81,7 +81,7 @@ class IPTC {
 					if ( isset( $parsed['2#085'] ) ) {
 						$titles = self::convIPTC( $parsed['2#085'], $c );
 					} else {
-						$titles = array();
+						$titles = [];
 					}
 
 					$titleCount = count( $titles );
@@ -176,7 +176,7 @@ class IPTC {
 						// if a version is set for the software.
 						$softwareVersion = self::convIPTC( $parsed['2#070'], $c );
 						unset( $parsed['2#070'] );
-						$data['Software'] = array( array( $software[0], $softwareVersion[0] ) );
+						$data['Software'] = [ [ $software[0], $softwareVersion[0] ] ];
 					} else {
 						$data['Software'] = $software;
 					}
@@ -225,7 +225,7 @@ class IPTC {
 					if ( isset( $parsed['2#060'] ) ) {
 						$time = $parsed['2#060'];
 					} else {
-						$time = array();
+						$time = [];
 					}
 					$timestamp = self::timeHelper( $val, $time, $c );
 					if ( $timestamp ) {
@@ -239,7 +239,7 @@ class IPTC {
 					if ( isset( $parsed['2#063'] ) ) {
 						$time = $parsed['2#063'];
 					} else {
-						$time = array();
+						$time = [];
 					}
 					$timestamp = self::timeHelper( $val, $time, $c );
 					if ( $timestamp ) {
@@ -252,7 +252,7 @@ class IPTC {
 					if ( isset( $parsed['2#035'] ) ) {
 						$time = $parsed['2#035'];
 					} else {
-						$time = array();
+						$time = [];
 					}
 					$timestamp = self::timeHelper( $val, $time, $c );
 					if ( $timestamp ) {
@@ -265,7 +265,7 @@ class IPTC {
 					if ( isset( $parsed['2#038'] ) ) {
 						$time = $parsed['2#038'];
 					} else {
-						$time = array();
+						$time = [];
 					}
 					$timestamp = self::timeHelper( $val, $time, $c );
 					if ( $timestamp ) {

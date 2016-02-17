@@ -49,7 +49,7 @@ class WithoutInterwikiPage extends PageQueryPage {
 		$prefix = $this->prefix;
 		$t = $this->getPageTitle();
 
-		return Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n" .
+		return Html::openElement( 'form', [ 'method' => 'get', 'action' => wfScript() ] ) . "\n" .
 			Html::openElement( 'fieldset' ) . "\n" .
 			Html::element( 'legend', null, $this->msg( 'withoutinterwiki-legend' )->text() ) . "\n" .
 			Html::hidden( 'title', $t->getPrefixedText() ) . "\n" .
@@ -70,7 +70,7 @@ class WithoutInterwikiPage extends PageQueryPage {
 	}
 
 	function getOrderFields() {
-		return array( 'page_namespace', 'page_title' );
+		return [ 'page_namespace', 'page_title' ];
 	}
 
 	function isExpensive() {
@@ -82,20 +82,20 @@ class WithoutInterwikiPage extends PageQueryPage {
 	}
 
 	function getQueryInfo() {
-		$query = array(
-			'tables' => array( 'page', 'langlinks' ),
-			'fields' => array(
+		$query = [
+			'tables' => [ 'page', 'langlinks' ],
+			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'page_title'
-			),
-			'conds' => array(
+			],
+			'conds' => [
 				'll_title IS NULL',
 				'page_namespace' => MWNamespace::getContentNamespaces(),
 				'page_is_redirect' => 0
-			),
-			'join_conds' => array( 'langlinks' => array( 'LEFT JOIN', 'll_from = page_id' ) )
-		);
+			],
+			'join_conds' => [ 'langlinks' => [ 'LEFT JOIN', 'll_from = page_id' ] ]
+		];
 		if ( $this->prefix ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$query['conds'][] = 'page_title ' . $dbr->buildLike( $this->prefix, $dbr->anyString() );

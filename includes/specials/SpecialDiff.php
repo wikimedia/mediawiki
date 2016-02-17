@@ -39,7 +39,7 @@
 class SpecialDiff extends RedirectSpecialPage {
 	public function __construct() {
 		parent::__construct( 'Diff' );
-		$this->mAllowedRedirectParams = array();
+		$this->mAllowedRedirectParams = [];
 	}
 
 	/**

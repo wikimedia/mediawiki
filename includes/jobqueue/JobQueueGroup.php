@@ -29,7 +29,7 @@
  */
 class JobQueueGroup {
 	/** @var JobQueueGroup[] */
-	protected static $instances = array();
+	protected static $instances = [];
 
 	/** @var ProcessCacheLRU */
 	protected $cache;
@@ -41,7 +41,7 @@ class JobQueueGroup {
 	protected $coalescedQueues;
 
 	/** @var Job[] */
-	protected $bufferedJobs = array();
+	protected $bufferedJobs = [];
 
 	const TYPE_DEFAULT = 1; // integer; jobs popped by default
 	const TYPE_ANY = 2; // integer; any job
@@ -79,7 +79,7 @@ class JobQueueGroup {
 	 * @return void
 	 */
 	public static function destroySingletons() {
-		self::$instances = array();
+		self::$instances = [];
 	}
 
 	/**
@@ -91,7 +91,7 @@ class JobQueueGroup {
 	public function get( $type ) {
 		global $wgJobTypeConf;
 
-		$conf = array( 'wiki' => $this->wiki, 'type' => $type );
+		$conf = [ 'wiki' => $this->wiki, 'type' => $type ];
 		if ( isset( $wgJobTypeConf[$type] ) ) {
 			$conf = $conf + $wgJobTypeConf[$type];
 		} else {
@@ -113,14 +113,14 @@ class JobQueueGroup {
 	 * @return void
 	 */
 	public function push( $jobs ) {
-		$jobs = is_array( $jobs ) ? $jobs : array( $jobs );
+		$jobs = is_array( $jobs ) ? $jobs : [ $jobs ];
 		if ( !count( $jobs ) ) {
 			return;
 		}
 
 		$this->assertValidJobs( $jobs );
 
-		$jobsByType = array(); // (job type => list of jobs)
+		$jobsByType = []; // (job type => list of jobs)
 		foreach ( $jobs as $job ) {
 			$jobsByType[$job->getType()][] = $job;
 		}
@@ -152,7 +152,7 @@ class JobQueueGroup {
 			return;
 		}
 
-		$jobs = is_array( $jobs ) ? $jobs : array( $jobs );
+		$jobs = is_array( $jobs ) ? $jobs : [ $jobs ];
 
 		// Throw errors now instead of on push(), when other jobs may be buffered
 		$this->assertValidJobs( $jobs );
@@ -169,7 +169,7 @@ class JobQueueGroup {
 	public static function pushLazyJobs() {
 		foreach ( self::$instances as $group ) {
 			$group->push( $group->bufferedJobs );
-			$group->bufferedJobs = array();
+			$group->bufferedJobs = [];
 		}
 	}
 
@@ -184,7 +184,7 @@ class JobQueueGroup {
 	 * @param array $blacklist List of job types to ignore
 	 * @return Job|bool Returns false on failure
 	 */
-	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0, array $blacklist = array() ) {
+	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0, array $blacklist = [] ) {
 		$job = false;
 
 		if ( is_string( $qtype ) ) { // specific job type
@@ -308,7 +308,7 @@ class JobQueueGroup {
 	 * @return array List of job types that have non-empty queues
 	 */
 	public function getQueuesWithJobs() {
-		$types = array();
+		$types = [];
 		foreach ( $this->getCoalescedQueues() as $info ) {
 			$nonEmpty = $info['queue']->getSiblingQueuesWithJobs( $this->getQueueTypes() );
 			if ( is_array( $nonEmpty ) ) { // batching features supported
@@ -331,7 +331,7 @@ class JobQueueGroup {
 	 * @return array Map of (job type => size)
 	 */
 	public function getQueueSizes() {
-		$sizeMap = array();
+		$sizeMap = [];
 		foreach ( $this->getCoalescedQueues() as $info ) {
 			$sizes = $info['queue']->getSiblingQueueSizes( $this->getQueueTypes() );
 			if ( is_array( $sizes ) ) { // batching features supported
@@ -353,14 +353,14 @@ class JobQueueGroup {
 		global $wgJobTypeConf;
 
 		if ( $this->coalescedQueues === null ) {
-			$this->coalescedQueues = array();
+			$this->coalescedQueues = [];
 			foreach ( $wgJobTypeConf as $type => $conf ) {
 				$queue = JobQueue::factory(
-					array( 'wiki' => $this->wiki, 'type' => 'null' ) + $conf );
+					[ 'wiki' => $this->wiki, 'type' => 'null' ] + $conf );
 				$loc = $queue->getCoalesceLocationInternal();
 				if ( !isset( $this->coalescedQueues[$loc] ) ) {
 					$this->coalescedQueues[$loc]['queue'] = $queue;
-					$this->coalescedQueues[$loc]['types'] = array();
+					$this->coalescedQueues[$loc]['types'] = [];
 				}
 				if ( $type === 'default' ) {
 					$this->coalescedQueues[$loc]['types'] = array_merge(
@@ -393,9 +393,9 @@ class JobQueueGroup {
 				function () use ( $wiki, $name ) {
 					global $wgConf;
 
-					return array( 'v' => $wgConf->getConfig( $wiki, $name ) );
+					return [ 'v' => $wgConf->getConfig( $wiki, $name ) ];
 				},
-				array( 'pcTTL' => 30 )
+				[ 'pcTTL' => 30 ]
 			);
 
 			return $value['v'];

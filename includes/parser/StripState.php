@@ -46,12 +46,12 @@ class StripState {
 			wfDeprecated( __METHOD__ . ' with called with $prefix argument' .
 				' (call with no arguments instead)', '1.26' );
 		}
-		$this->data = array(
-			'nowiki' => array(),
-			'general' => array()
-		);
+		$this->data = [
+			'nowiki' => [],
+			'general' => []
+		];
 		$this->regex = '/' . Parser::MARKER_PREFIX . "([^\x7f]+)" . Parser::MARKER_SUFFIX . '/';
-		$this->circularRefGuard = array();
+		$this->circularRefGuard = [];
 	}
 
 	/**
@@ -124,7 +124,7 @@ class StripState {
 
 		$oldType = $this->tempType;
 		$this->tempType = $type;
-		$text = preg_replace_callback( $this->regex, array( $this, 'unstripCallback' ), $text );
+		$text = preg_replace_callback( $this->regex, [ $this, 'unstripCallback' ], $text );
 		$this->tempType = $oldType;
 		return $text;
 	}
@@ -216,7 +216,7 @@ class StripState {
 		}
 
 		$this->tempMergePrefix = $mergePrefix;
-		$texts = preg_replace_callback( $otherState->regex, array( $this, 'mergeCallback' ), $texts );
+		$texts = preg_replace_callback( $otherState->regex, [ $this, 'mergeCallback' ], $texts );
 		$this->tempMergePrefix = null;
 		return $texts;
 	}

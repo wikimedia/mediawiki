@@ -60,7 +60,7 @@ class ForeignDBFile extends LocalFile {
 	 * @return FileRepoStatus
 	 * @throws MWException
 	 */
-	function publish( $srcPath, $flags = 0, array $options = array() ) {
+	function publish( $srcPath, $flags = 0, array $options = [] ) {
 		$this->readOnlyError();
 	}
 
@@ -87,7 +87,7 @@ class ForeignDBFile extends LocalFile {
 	 * @return FileRepoStatus
 	 * @throws MWException
 	 */
-	function restore( $versions = array(), $unsuppress = false ) {
+	function restore( $versions = [], $unsuppress = false ) {
 		$this->readOnlyError();
 	}
 
@@ -137,13 +137,13 @@ class ForeignDBFile extends LocalFile {
 	 */
 	public function getDescriptionShortUrl() {
 		$dbr = $this->repo->getSlaveDB();
-		$pageId = $dbr->selectField( 'page', 'page_id', array(
+		$pageId = $dbr->selectField( 'page', 'page_id', [
 			'page_namespace' => NS_FILE,
 			'page_title' => $this->title->getDBkey()
-		) );
+		] );
 
 		if ( $pageId !== false ) {
-			$url = $this->repo->makeUrl( array( 'curid' => $pageId ) );
+			$url = $this->repo->makeUrl( [ 'curid' => $pageId ] );
 			if ( $url !== false ) {
 				return $url;
 			}

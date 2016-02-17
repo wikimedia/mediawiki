@@ -28,35 +28,35 @@ class IEContentAnalyzer {
 	/**
 	 * Relevant data taken from the type table in IE 5
 	 */
-	protected $baseTypeTable = array(
-		'ambiguous' /*1*/ => array(
+	protected $baseTypeTable = [
+		'ambiguous' /*1*/ => [
 			'text/plain',
 			'application/octet-stream',
 			'application/x-netcdf', // [sic]
-		),
-		'text' /*3*/ => array(
+		],
+		'text' /*3*/ => [
 			'text/richtext', 'image/x-bitmap', 'application/postscript', 'application/base64',
 			'application/macbinhex40', 'application/x-cdf', 'text/scriptlet'
-		),
-		'binary' /*4*/ => array(
+		],
+		'binary' /*4*/ => [
 			'application/pdf', 'audio/x-aiff', 'audio/basic', 'audio/wav', 'image/gif',
 			'image/pjpeg', 'image/jpeg', 'image/tiff', 'image/x-png', 'image/png', 'image/bmp',
 			'image/x-jg', 'image/x-art', 'image/x-emf', 'image/x-wmf', 'video/avi',
 			'video/x-msvideo', 'video/mpeg', 'application/x-compressed',
 			'application/x-zip-compressed', 'application/x-gzip-compressed', 'application/java',
 			'application/x-msdownload'
-		),
-		'html' /*5*/ => array( 'text/html' ),
-	);
+		],
+		'html' /*5*/ => [ 'text/html' ],
+	];
 
 	/**
 	 * Changes to the type table in later versions of IE
 	 */
-	protected $addedTypes = array(
-		'ie07' => array(
-			'text' => array( 'text/xml', 'application/xml' )
-		),
-	);
+	protected $addedTypes = [
+		'ie07' => [
+			'text' => [ 'text/xml', 'application/xml' ]
+		],
+	];
 
 	/**
 	 * An approximation of the "Content Type" values in HKEY_CLASSES_ROOT in a
@@ -64,7 +64,7 @@ class IEContentAnalyzer {
 	 *
 	 * Used for extension to MIME type mapping if detection fails.
 	 */
-	protected $registry = array(
+	protected $registry = [
 		'.323' => 'text/h323',
 		'.3g2' => 'video/3gpp2',
 		'.3gp' => 'video/3gpp',
@@ -297,19 +297,19 @@ class IEContentAnalyzer {
 		'.xml' => 'text/xml',
 		'.xps' => 'application/vnd.ms-xpsdocument',
 		'.xsl' => 'text/xml',
-	);
+	];
 
 	/**
 	 * IE versions which have been analysed to bring you this class, and for
 	 * which some substantive difference exists. These will appear as keys
 	 * in the return value of getRealMimesFromData(). The names are chosen to sort correctly.
 	 */
-	protected $versions = array( 'ie05', 'ie06', 'ie07', 'ie07.strict', 'ie07.nohtml' );
+	protected $versions = [ 'ie05', 'ie06', 'ie07', 'ie07.strict', 'ie07.nohtml' ];
 
 	/**
 	 * Type table with versions expanded
 	 */
-	protected $typeTable = array();
+	protected $typeTable = [];
 
 	/** constructor */
 	function __construct() {
@@ -337,7 +337,7 @@ class IEContentAnalyzer {
 	 */
 	public function getRealMimesFromData( $fileName, $chunk, $proposed ) {
 		$types = $this->getMimesFromData( $fileName, $chunk, $proposed );
-		$types = array_map( array( $this, 'translateMimeType' ), $types );
+		$types = array_map( [ $this, 'translateMimeType' ], $types );
 		return $types;
 	}
 
@@ -348,7 +348,7 @@ class IEContentAnalyzer {
 	 * @return string
 	 */
 	public function translateMimeType( $type ) {
-		static $table = array(
+		static $table = [
 			'image/pjpeg' => 'image/jpeg',
 			'image/x-png' => 'image/png',
 			'image/x-wmf' => 'application/x-msmetafile',
@@ -357,7 +357,7 @@ class IEContentAnalyzer {
 			'application/x-compressed' => 'application/x-compress',
 			'application/x-gzip-compressed' => 'application/x-gzip',
 			'audio/mid' => 'audio/midi',
-		);
+		];
 		if ( isset( $table[$type] ) ) {
 			$type = $table[$type];
 		}
@@ -374,7 +374,7 @@ class IEContentAnalyzer {
 	 * @return Array: map of IE version to detected MIME type
 	 */
 	public function getMimesFromData( $fileName, $chunk, $proposed ) {
-		$types = array();
+		$types = [];
 		foreach ( $this->versions as $version ) {
 			$types[$version] = $this->getMimeTypeForVersion( $version, $fileName, $chunk, $proposed );
 		}
@@ -685,16 +685,16 @@ class IEContentAnalyzer {
 	 * @return array
 	 */
 	protected function sampleData( $version, $chunk ) {
-		$found = array();
-		$counters = array(
+		$found = [];
+		$counters = [
 			'ctrl' => 0,
 			'high' => 0,
 			'low' => 0,
 			'lf' => 0,
 			'cr' => 0,
 			'ff' => 0
-		);
-		$htmlTags = array(
+		];
+		$htmlTags = [
 			'html',
 			'head',
 			'title',
@@ -705,7 +705,7 @@ class IEContentAnalyzer {
 			'img',
 			'plaintext',
 			'table'
-		);
+		];
 		$rdfUrl = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
 		$rdfPurl = 'http://purl.org/rss/1.0/';
 		$xbmMagic1 = '#define';
@@ -828,7 +828,7 @@ class IEContentAnalyzer {
 				$found['binhex'] = true;
 			}
 		}
-		return array( 'found' => $found, 'counters' => $counters );
+		return [ 'found' => $found, 'counters' => $counters ];
 	}
 
 	/**

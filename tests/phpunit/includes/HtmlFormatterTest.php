@@ -27,7 +27,7 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 	 * @param callable|bool $callback
 	 */
 	public function testTransform( $input, $expectedText,
-		$expectedRemoved = array(), $callback = false
+		$expectedRemoved = [], $callback = false
 	) {
 		$input = self::normalize( $input );
 		$formatter = new HtmlFormatter( HtmlFormatter::wrapHTML( $input ) );
@@ -36,7 +36,7 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 		}
 		$removedElements = $formatter->filterContent();
 		$html = $formatter->getText();
-		$removed = array();
+		$removed = [];
 		foreach ( $removedElements as $removedElement ) {
 			$removed[] = self::normalize( $formatter->getText( $removedElement ) );
 		}
@@ -58,24 +58,24 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 			$f->setRemoveMedia();
 		};
 		$removeTags = function ( HtmlFormatter $f ) {
-			$f->remove( array( 'table', '.foo', '#bar', 'div.baz' ) );
+			$f->remove( [ 'table', '.foo', '#bar', 'div.baz' ] );
 		};
 		$flattenSomeStuff = function ( HtmlFormatter $f ) {
-			$f->flatten( array( 's', 'div' ) );
+			$f->flatten( [ 's', 'div' ] );
 		};
 		$flattenEverything = function ( HtmlFormatter $f ) {
 			$f->flattenAllTags();
 		};
-		return array(
+		return [
 			// remove images if asked
-			array(
+			[
 				'<img src="/foo/bar.jpg" alt="Blah"/>',
 				'',
-				array( '<img src="/foo/bar.jpg" alt="Blah">' ),
+				[ '<img src="/foo/bar.jpg" alt="Blah">' ],
 				$removeImages,
-			),
+			],
 			// basic tag removal
-			array(
+			[
 				// @codingStandardsIgnoreStart Ignore long line warnings.
 				'<table><tr><td>foo</td></tr></table><div class="foo">foo</div><div class="foo quux">foo</div><span id="bar">bar</span>
 <strong class="foo" id="bar">foobar</strong><div class="notfoo">test</div><div class="baz"/>
@@ -83,45 +83,45 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 				// @codingStandardsIgnoreEnd
 				'<div class="notfoo">test</div>
 <span class="baz">baz</span>',
-				array(
+				[
 					'<table><tr><td>foo</td></tr></table>',
 					'<div class="foo">foo</div>',
 					'<div class="foo quux">foo</div>',
 					'<span id="bar">bar</span>',
 					'<strong class="foo" id="bar">foobar</strong>',
 					'<div class="baz"/>',
-				),
+				],
 				$removeTags,
-			),
+			],
 			// don't flatten tags that start like chosen ones
-			array(
+			[
 				'<div><s>foo</s> <span>bar</span></div>',
 				'foo <span>bar</span>',
-				array(),
+				[],
 				$flattenSomeStuff,
-			),
+			],
 			// total flattening
-			array(
+			[
 				'<div style="foo">bar<sup>2</sup></div>',
 				'bar2',
-				array(),
+				[],
 				$flattenEverything,
-			),
+			],
 			// UTF-8 preservation and security
-			array(
+			[
 				'<span title="&quot; \' &amp;">&lt;Тест!&gt;</span> &amp;&lt;&#38;&#0038;&#x26;&#x026;',
 				'<span title="&quot; \' &amp;">&lt;Тест!&gt;</span> &amp;&lt;&amp;&amp;&amp;&amp;',
-				array(),
+				[],
 				$removeTags, // Have some rules to trigger a DOM parse
-			),
+			],
 			// https://phabricator.wikimedia.org/T55086
-			array(
+			[
 				'Foo<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">[1]</a></sup>'
 					. ' <a href="/wiki/Bar" title="Bar" class="mw-redirect">Bar</a>',
 				'Foo<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">[1]</a></sup>'
 					. ' <a href="/wiki/Bar" title="Bar" class="mw-redirect">Bar</a>',
-			),
-		);
+			],
+		];
 	}
 
 	public function testQuickProcessing() {

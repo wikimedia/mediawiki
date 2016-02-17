@@ -40,9 +40,9 @@ final class PasswordFactory {
 	 * @see PasswordFactory::register
 	 * @see Setup.php
 	 */
-	private $types = array(
-		'' => array( 'type' => '', 'class' => 'InvalidPassword' ),
-	);
+	private $types = [
+		'' => [ 'type' => '', 'class' => 'InvalidPassword' ],
+	];
 
 	/**
 	 * Register a new type of password hash
@@ -112,7 +112,7 @@ final class PasswordFactory {
 	 */
 	public function newFromCiphertext( $hash ) {
 		if ( $hash === null || $hash === false || $hash === '' ) {
-			return new InvalidPassword( $this, array( 'type' => '' ), null );
+			return new InvalidPassword( $this, [ 'type' => '' ], null );
 		} elseif ( $hash[0] !== ':' ) {
 			throw new PasswordError( 'Invalid hash given' );
 		}
@@ -156,7 +156,7 @@ final class PasswordFactory {
 	 */
 	public function newFromPlaintext( $password, Password $existing = null ) {
 		if ( $password === null ) {
-			return new InvalidPassword( $this, array( 'type' => '' ), null );
+			return new InvalidPassword( $this, [ 'type' => '' ], null );
 		}
 
 		if ( $existing === null ) {
@@ -216,7 +216,7 @@ final class PasswordFactory {
 
 		if ( $password === null ) {
 			$factory = new self();
-			$password = new InvalidPassword( $factory, array( 'type' => '' ), null );
+			$password = new InvalidPassword( $factory, [ 'type' => '' ], null );
 		}
 
 		return $password;

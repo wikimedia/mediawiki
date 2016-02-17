@@ -24,10 +24,10 @@
  * Class for generating HTML <select> or <datalist> elements.
  */
 class XmlSelect {
-	protected $options = array();
+	protected $options = [];
 	protected $default = false;
 	protected $tagName = 'select';
-	protected $attributes = array();
+	protected $attributes = [];
 
 	public function __construct( $name = false, $id = false, $default = false ) {
 		if ( $name ) {
@@ -83,7 +83,7 @@ class XmlSelect {
 	 */
 	public function addOption( $label, $value = false ) {
 		$value = $value !== false ? $value : $label;
-		$this->options[] = array( $label => $value );
+		$this->options[] = [ $label => $value ];
 	}
 
 	/**
@@ -112,7 +112,7 @@ class XmlSelect {
 		foreach ( $options as $label => $value ) {
 			if ( is_array( $value ) ) {
 				$contents = self::formatOptions( $value, $default );
-				$data .= Html::rawElement( 'optgroup', array( 'label' => $label ), $contents ) . "\n";
+				$data .= Html::rawElement( 'optgroup', [ 'label' => $label ], $contents ) . "\n";
 			} else {
 				// If $default is an array, then the <select> probably has the multiple attribute,
 				// so we should check if each $value is in $default, rather than checking if

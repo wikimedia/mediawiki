@@ -5,14 +5,14 @@
  * @group Database
  */
 class LocalIdLookupTest extends MediaWikiTestCase {
-	private $localUsers = array();
+	private $localUsers = [];
 
 	protected function setUp() {
 		global $wgGroupPermissions;
 
 		parent::setUp();
 
-		$this->stashMwGlobals( array( 'wgGroupPermissions' ) );
+		$this->stashMwGlobals( [ 'wgGroupPermissions' ] );
 		$wgGroupPermissions['local-id-lookup-test']['hideuser'] = true;
 	}
 
@@ -27,22 +27,22 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 
 		User::newFromName( 'UTLocalIdLookup1' )->addGroup( 'local-id-lookup-test' );
 
-		$block = new Block( array(
+		$block = new Block( [
 			'address' => 'UTLocalIdLookup3',
 			'by' => User::idFromName( 'UTSysop' ),
 			'reason' => __METHOD__,
 			'expiry' => '1 day',
 			'hideName' => false,
-		) );
+		] );
 		$block->insert();
 
-		$block = new Block( array(
+		$block = new Block( [
 			'address' => 'UTLocalIdLookup4',
 			'by' => User::idFromName( 'UTSysop' ),
 			'reason' => __METHOD__,
 			'expiry' => '1 day',
 			'hideName' => true,
-		) );
+		] );
 		$block->insert();
 	}
 
@@ -54,7 +54,7 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 		$this->assertTrue( $user1->isAllowed( 'hideuser' ), 'sanity check' );
 		$this->assertFalse( $user2->isAllowed( 'hideuser' ), 'sanity check' );
 
-		$this->assertSame( array(), $lookup->lookupCentralIds( array() ) );
+		$this->assertSame( [], $lookup->lookupCentralIds( [] ) );
 
 		$expect = array_flip( $this->localUsers );
 		$expect[123] = 'X';
@@ -79,7 +79,7 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 		$this->assertTrue( $user1->isAllowed( 'hideuser' ), 'sanity check' );
 		$this->assertFalse( $user2->isAllowed( 'hideuser' ), 'sanity check' );
 
-		$this->assertSame( array(), $lookup->lookupUserNames( array() ) );
+		$this->assertSame( [], $lookup->lookupUserNames( [] ) );
 
 		$expect = $this->localUsers;
 		$expect['UTDoesNotExist'] = 'X';
@@ -121,11 +121,11 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 	 */
 	public function testIsAttachedShared( $sharedDB, $sharedTable, $localDBSet ) {
 		global $wgDBName;
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgSharedDB' => $sharedDB ? $wgDBName : null,
-			'wgSharedTables' => $sharedTable ? array( 'user' ) : array(),
-			'wgLocalDatabases' => $localDBSet ? array( 'shared' ) : array(),
-		) );
+			'wgSharedTables' => $sharedTable ? [ 'user' ] : [],
+			'wgLocalDatabases' => $localDBSet ? [ 'shared' ] : [],
+		] );
 
 		$lookup = new LocalIdLookup();
 		$this->assertSame(
@@ -135,13 +135,13 @@ class LocalIdLookupTest extends MediaWikiTestCase {
 	}
 
 	public static function provideIsAttachedShared() {
-		$ret = array();
+		$ret = [];
 		for ( $i = 0; $i < 7; $i++ ) {
-			$ret[] = array(
+			$ret[] = [
 				(bool)( $i & 1 ),
 				(bool)( $i & 2 ),
 				(bool)( $i & 4 ),
-			);
+			];
 		}
 		return $ret;
 	}

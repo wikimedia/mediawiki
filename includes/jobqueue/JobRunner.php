@@ -95,7 +95,7 @@ class JobRunner implements LoggerAwareInterface {
 	public function run( array $options ) {
 		global $wgJobClasses, $wgTrxProfilerLimits;
 
-		$response = array( 'jobs' => array(), 'reached' => 'none-ready' );
+		$response = [ 'jobs' => [], 'reached' => 'none-ready' ];
 
 		$type = isset( $options['type'] ) ? $options['type'] : false;
 		$maxJobs = isset( $options['maxJobs'] ) ? $options['maxJobs'] : false;
@@ -129,8 +129,8 @@ class JobRunner implements LoggerAwareInterface {
 		$trxProfiler->setExpectations( $wgTrxProfilerLimits['JobRunner'], __METHOD__ );
 
 		// Some jobs types should not run until a certain timestamp
-		$backoffs = array(); // map of (type => UNIX expiry)
-		$backoffDeltas = array(); // map of (type => seconds)
+		$backoffs = []; // map of (type => UNIX expiry)
+		$backoffDeltas = []; // map of (type => seconds)
 		$wait = 'wait'; // block to read backoffs the first time
 
 		$group = JobQueueGroup::singleton();
@@ -142,7 +142,7 @@ class JobRunner implements LoggerAwareInterface {
 		do {
 			// Sync the persistent backoffs with concurrent runners
 			$backoffs = $this->syncBackoffDeltas( $backoffs, $backoffDeltas, $wait );
-			$blacklist = $noThrottle ? array() : array_keys( $backoffs );
+			$blacklist = $noThrottle ? [] : array_keys( $backoffs );
 			$wait = 'nowait'; // less important now
 
 			if ( $type === false ) {
@@ -186,12 +186,12 @@ class JobRunner implements LoggerAwareInterface {
 						: $ttw;
 				}
 
-				$response['jobs'][] = array(
+				$response['jobs'][] = [
 					'type'   => $jType,
 					'status' => ( $info['status'] === false ) ? 'failed' : 'ok',
 					'error'  => $info['error'],
 					'time'   => $info['timeMs']
-				);
+				];
 				$timeMsTotal += $info['timeMs'];
 
 				// Break out if we hit the job count or wall time limits...
@@ -209,10 +209,10 @@ class JobRunner implements LoggerAwareInterface {
 				$timePassed = microtime( true ) - $lastCheckTime;
 				if ( $timePassed >= self::LAG_CHECK_PERIOD || $timePassed < 0 ) {
 					try {
-						wfGetLBFactory()->waitForReplication( array(
+						wfGetLBFactory()->waitForReplication( [
 							'ifWritesSince' => $lastCheckTime,
 							'timeout' => self::MAX_ALLOWED_LAG
-						) );
+						] );
 					} catch ( DBReplicationWaitError $e ) {
 						$response['reached'] = 'slave-lag-limit';
 						break;
@@ -310,14 +310,14 @@ class JobRunner implements LoggerAwareInterface {
 			$this->debugCallback( $msg );
 		}
 
-		return array( 'status' => $status, 'error' => $error, 'timeMs' => $timeMs );
+		return [ 'status' => $status, 'error' => $error, 'timeMs' => $timeMs ];
 	}
 
 	/**
 	 * @return int|null Max memory RSS in kilobytes
 	 */
 	private function getMaxRssKb() {
-		$info = wfGetRusage() ?: array();
+		$info = wfGetRusage() ?: [];
 		// see http://linux.die.net/man/2/getrusage
 		return isset( $info['ru_maxrss'] ) ? (int)$info['ru_maxrss'] : null;
 	}
@@ -374,14 +374,14 @@ class JobRunner implements LoggerAwareInterface {
 			flock( $handle, LOCK_UN );
 			fclose( $handle );
 			$ctime = microtime( true );
-			$cBackoffs = json_decode( $content, true ) ?: array();
+			$cBackoffs = json_decode( $content, true ) ?: [];
 			foreach ( $cBackoffs as $type => $timestamp ) {
 				if ( $timestamp < $ctime ) {
 					unset( $cBackoffs[$type] );
 				}
 			}
 		} else {
-			$cBackoffs = array();
+			$cBackoffs = [];
 		}
 
 		return $cBackoffs;
@@ -412,7 +412,7 @@ class JobRunner implements LoggerAwareInterface {
 		}
 		$ctime = microtime( true );
 		$content = stream_get_contents( $handle );
-		$cBackoffs = json_decode( $content, true ) ?: array();
+		$cBackoffs = json_decode( $content, true ) ?: [];
 		foreach ( $deltas as $type => $seconds ) {
 			$cBackoffs[$type] = isset( $cBackoffs[$type] ) && $cBackoffs[$type] >= $ctime
 				? $cBackoffs[$type] + $seconds
@@ -428,7 +428,7 @@ class JobRunner implements LoggerAwareInterface {
 		flock( $handle, LOCK_UN );
 		fclose( $handle );
 
-		$deltas = array();
+		$deltas = [];
 
 		return $cBackoffs;
 	}
@@ -441,10 +441,10 @@ class JobRunner implements LoggerAwareInterface {
 	private function checkMemoryOK() {
 		static $maxBytes = null;
 		if ( $maxBytes === null ) {
-			$m = array();
+			$m = [];
 			if ( preg_match( '!^(\d+)(k|m|g|)$!i', ini_get( 'memory_limit' ), $m ) ) {
 				list( , $num, $unit ) = $m;
-				$conv = array( 'g' => 1073741824, 'm' => 1048576, 'k' => 1024, '' => 1 );
+				$conv = [ 'g' => 1073741824, 'm' => 1048576, 'k' => 1024, '' => 1 ];
 				$maxBytes = $num * $conv[strtolower( $unit )];
 			} else {
 				$maxBytes = 0;
@@ -468,7 +468,7 @@ class JobRunner implements LoggerAwareInterface {
 	 */
 	private function debugCallback( $msg ) {
 		if ( $this->debug ) {
-			call_user_func_array( $this->debug, array( wfTimestamp( TS_DB ) . " $msg\n" ) );
+			call_user_func_array( $this->debug, [ wfTimestamp( TS_DB ) . " $msg\n" ] );
 		}
 	}
 

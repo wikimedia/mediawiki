@@ -29,12 +29,12 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class TableCleanup extends Maintenance {
-	protected $defaultParams = array(
+	protected $defaultParams = [
 		'table' => 'page',
-		'conds' => array(),
+		'conds' => [],
 		'index' => 'page_id',
 		'callback' => 'processRow',
-	);
+	];
 
 	protected $dryrun = false;
 	public $batchSize = 100;
@@ -54,7 +54,7 @@ class TableCleanup extends Maintenance {
 			$wgUser = User::newFromName( 'Conversion script' );
 			$this->output( "Checking for bad titles...\n" );
 		} else {
-			$wgUser = User::newSystemUser( 'Conversion script', array( 'steal' => true ) );
+			$wgUser = User::newSystemUser( 'Conversion script', [ 'steal' => true ] );
 			$this->output( "Checking and fixing bad titles...\n" );
 		}
 		$this->runTable( $this->defaultParams );
@@ -109,7 +109,7 @@ class TableCleanup extends Maintenance {
 		$dbr = $this->getDB( DB_SLAVE );
 
 		if ( array_diff( array_keys( $params ),
-			array( 'table', 'conds', 'index', 'callback' ) )
+			[ 'table', 'conds', 'index', 'callback' ] )
 		) {
 			throw new MWException( __METHOD__ . ': Missing parameter ' . implode( ', ', $params ) );
 		}
@@ -121,12 +121,12 @@ class TableCleanup extends Maintenance {
 		$this->output( "Processing $table...\n" );
 
 		$index = (array)$params['index'];
-		$indexConds = array();
-		$options = array(
+		$indexConds = [];
+		$options = [
 			'ORDER BY' => implode( ',', $index ),
 			'LIMIT' => $this->batchSize
-		);
-		$callback = array( $this, $params['callback'] );
+		];
+		$callback = [ $this, $params['callback'] ];
 
 		while ( true ) {
 			$conds = array_merge( $params['conds'], $indexConds );
@@ -158,7 +158,7 @@ class TableCleanup extends Maintenance {
 					$nextCond = "$field > $encValue OR ($field = $encValue AND ($nextCond))";
 				}
 			}
-			$indexConds = array( $nextCond );
+			$indexConds = [ $nextCond ];
 		}
 
 		$this->output( "Finished $table... $this->updated of $this->processed rows updated\n" );

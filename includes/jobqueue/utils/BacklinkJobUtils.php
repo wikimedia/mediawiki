@@ -85,13 +85,13 @@ class BacklinkJobUtils {
 	 * @param array $opts Optional parameter map
 	 * @return Job[] List of Job objects
 	 */
-	public static function partitionBacklinkJob( Job $job, $bSize, $cSize, $opts = array() ) {
+	public static function partitionBacklinkJob( Job $job, $bSize, $cSize, $opts = [] ) {
 		$class = get_class( $job );
 		$title = $job->getTitle();
 		$params = $job->getParams();
 
 		if ( isset( $params['pages'] ) || empty( $params['recursive'] ) ) {
-			$ranges = array(); // sanity; this is a leaf node
+			$ranges = []; // sanity; this is a leaf node
 			$realBSize = 0;
 			wfWarn( __METHOD__ . " called on {$job->getType()} leaf job (explosive recursion)." );
 		} elseif ( isset( $params['range'] ) ) {
@@ -104,9 +104,9 @@ class BacklinkJobUtils {
 			$realBSize = $bSize;
 		}
 
-		$extraParams = isset( $opts['params'] ) ? $opts['params'] : array();
+		$extraParams = isset( $opts['params'] ) ? $opts['params'] : [];
 
-		$jobs = array();
+		$jobs = [];
 		// Combine the first range (of size $bSize) backlinks into leaf jobs
 		if ( isset( $ranges[0] ) ) {
 			list( $start, $end ) = $ranges[0];
@@ -114,13 +114,13 @@ class BacklinkJobUtils {
 			$titles = iterator_to_array( $iter );
 			/** @var Title[] $titleBatch */
 			foreach ( array_chunk( $titles, $cSize ) as $titleBatch ) {
-				$pages = array();
+				$pages = [];
 				foreach ( $titleBatch as $tl ) {
-					$pages[$tl->getArticleId()] = array( $tl->getNamespace(), $tl->getDBKey() );
+					$pages[$tl->getArticleId()] = [ $tl->getNamespace(), $tl->getDBKey() ];
 				}
 				$jobs[] = new $class(
 					$title, // maintain parent job title
-					array( 'pages' => $pages ) + $extraParams
+					[ 'pages' => $pages ] + $extraParams
 				);
 			}
 		}
@@ -128,16 +128,16 @@ class BacklinkJobUtils {
 		if ( isset( $ranges[1] ) ) {
 			$jobs[] = new $class(
 				$title, // maintain parent job title
-				array(
+				[
 					'recursive'     => true,
 					'table'         => $params['table'],
-					'range'         => array(
+					'range'         => [
 						'start'     => $ranges[1][0],
 						'end'	    => $ranges[count( $ranges ) - 1][1],
 						'batchSize' => $realBSize,
 						'subranges' => array_slice( $ranges, 1 )
-					),
-				) + $extraParams
+					],
+				] + $extraParams
 			);
 		}
 

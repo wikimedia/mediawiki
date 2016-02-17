@@ -25,8 +25,8 @@
 class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 	// Cache for getConfigSettings() as it's called by multiple methods
-	protected $configVars = array();
-	protected $targets = array( 'desktop', 'mobile' );
+	protected $configVars = [];
+	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
 	 * @param ResourceLoaderContext $context
@@ -49,7 +49,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		 * - wgCaseSensitiveNamespaces: Array of namespaces that are case-sensitive.
 		 */
 		$namespaceIds = $wgContLang->getNamespaceIds();
-		$caseSensitiveNamespaces = array();
+		$caseSensitiveNamespaces = [];
 		foreach ( MWNamespace::getCanonicalNamespaces() as $index => $name ) {
 			$namespaceIds[$wgContLang->lc( $name )] = $index;
 			if ( !MWNamespace::isCapitalized( $index ) ) {
@@ -59,7 +59,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		$conf = $this->getConfig();
 		// Build list of variables
-		$vars = array(
+		$vars = [
 			'wgLoadScript' => wfScript( 'load' ),
 			'debug' => $context->getDebug(),
 			'skin' => $context->getSkin(),
@@ -104,9 +104,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgResourceLoaderLegacyModules' => self::getLegacyModules(),
 			'wgForeignUploadTargets' => $conf->get( 'ForeignUploadTargets' ),
 			'wgEnableUploads' => $conf->get( 'EnableUploads' ),
-		);
+		];
 
-		Hooks::run( 'ResourceLoaderGetConfigVars', array( &$vars ) );
+		Hooks::run( 'ResourceLoaderGetConfigVars', [ &$vars ] );
 
 		$this->configVars[$hash] = $vars;
 		return $this->configVars[$hash];
@@ -120,7 +120,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	protected static function getImplicitDependencies( array $registryData, $moduleName ) {
-		static $dependencyCache = array();
+		static $dependencyCache = [];
 
 		// The list of implicit dependencies won't be altered, so we can
 		// cache them without having to worry.
@@ -128,7 +128,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 			if ( !isset( $registryData[$moduleName] ) ) {
 				// Dependencies may not exist
-				$dependencyCache[$moduleName] = array();
+				$dependencyCache[$moduleName] = [];
 			} else {
 				$data = $registryData[$moduleName];
 				$dependencyCache[$moduleName] = $data['dependencies'];
@@ -191,7 +191,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$byPassTargetFilter = $this->getConfig()->get( 'EnableJavaScriptTest' ) && $target === 'test';
 
 		$out = '';
-		$registryData = array();
+		$registryData = [];
 
 		// Get registry data
 		foreach ( $resourceLoader->getModuleNames() as $name ) {
@@ -212,10 +212,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			if ( strlen( $versionHash ) !== 8 ) {
 				$context->getLogger()->warning(
 					"Module '{module}' produced an invalid version hash: '{version}'.",
-					array(
+					[
 						'module' => $name,
 						'version' => $versionHash,
-					)
+					]
 				);
 				// Module implementation either broken or deviated from ResourceLoader::makeHash
 				// Asserted by tests/phpunit/structure/ResourcesTest.
@@ -227,13 +227,13 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				$skipFunction = ResourceLoader::filter( 'minify-js', $skipFunction );
 			}
 
-			$registryData[$name] = array(
+			$registryData[$name] = [
 				'version' => $versionHash,
 				'dependencies' => $module->getDependencies( $context ),
 				'group' => $module->getGroup(),
 				'source' => $module->getSource(),
 				'skip' => $skipFunction,
-			);
+			];
 		}
 
 		self::compileUnresolvedDependencies( $registryData );
@@ -242,10 +242,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$out .= ResourceLoader::makeLoaderSourcesScript( $resourceLoader->getSources() );
 
 		// Figure out the different call signatures for mw.loader.register
-		$registrations = array();
+		$registrations = [];
 		foreach ( $registryData as $name => $data ) {
 			// Call mw.loader.register(name, version, dependencies, group, source, skip)
-			$registrations[] = array(
+			$registrations[] = [
 				$name,
 				$data['version'],
 				$data['dependencies'],
@@ -253,7 +253,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				// Swap default (local) for null
 				$data['source'] === 'local' ? null : $data['source'],
 				$data['skip']
-			);
+			];
 		}
 
 		// Register modules
@@ -275,13 +275,13 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public static function getStartupModules() {
-		return array( 'jquery', 'mediawiki' );
+		return [ 'jquery', 'mediawiki' ];
 	}
 
 	public static function getLegacyModules() {
 		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil;
 
-		$legacyModules = array();
+		$legacyModules = [];
 		if ( $wgIncludeLegacyJavaScript ) {
 			$legacyModules[] = 'mediawiki.legacy.wikibits';
 		}
@@ -305,14 +305,14 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$rl = $context->getResourceLoader();
 		$moduleNames = self::getStartupModules();
 
-		$query = array(
+		$query = [
 			'modules' => ResourceLoader::makePackedModulesString( $moduleNames ),
 			'only' => 'scripts',
 			'lang' => $context->getLanguage(),
 			'skin' => $context->getSkin(),
 			'debug' => $context->getDebug() ? 'true' : 'false',
 			'version' => $rl->getCombinedVersion( $context, $moduleNames ),
-		);
+		];
 		// Ensure uniform query order
 		ksort( $query );
 		return wfAppendQuery( wfScript( 'load' ), $query );
@@ -335,11 +335,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// Fix indentation
 			$value = str_replace( "\n", "\n\t", $value );
 			return $value;
-		}, array(
+		}, [
 			'$VARS.wgLegacyJavaScriptGlobals' => $this->getConfig()->get( 'LegacyJavaScriptGlobals' ),
 			'$VARS.configuration' => $this->getConfigSettings( $context ),
 			'$VARS.baseModulesUri' => self::getStartupModulesUrl( $context ),
-		) );
+		] );
 		$pairs['$CODE.registrations()'] = str_replace(
 			"\n",
 			"\n\t",
@@ -365,7 +365,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
 		global $IP;
 		$summary = parent::getDefinitionSummary( $context );
-		$summary[] = array(
+		$summary[] = [
 			// Detect changes to variables exposed in mw.config (T30899).
 			'vars' => $this->getConfigSettings( $context ),
 			// Changes how getScript() creates mw.Map for mw.config
@@ -373,10 +373,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// Detect changes to the module registrations
 			'moduleHashes' => $this->getAllModuleHashes( $context ),
 
-			'fileMtimes' => array(
+			'fileMtimes' => [
 				filemtime( "$IP/resources/src/startup.js" ),
-			),
-		);
+			],
+		];
 		return $summary;
 	}
 

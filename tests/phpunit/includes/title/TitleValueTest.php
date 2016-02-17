@@ -35,23 +35,23 @@ class TitleValueTest extends MediaWikiTestCase {
 	}
 
 	public function badConstructorProvider() {
-		return array(
-			array( 'foo', 'title', 'fragment' ),
-			array( null, 'title', 'fragment' ),
-			array( 2.3, 'title', 'fragment' ),
+		return [
+			[ 'foo', 'title', 'fragment' ],
+			[ null, 'title', 'fragment' ],
+			[ 2.3, 'title', 'fragment' ],
 
-			array( NS_MAIN, 5, 'fragment' ),
-			array( NS_MAIN, null, 'fragment' ),
-			array( NS_MAIN, '', 'fragment' ),
-			array( NS_MAIN, 'foo bar', '' ),
-			array( NS_MAIN, 'bar_', '' ),
-			array( NS_MAIN, '_foo', '' ),
-			array( NS_MAIN, ' eek ', '' ),
+			[ NS_MAIN, 5, 'fragment' ],
+			[ NS_MAIN, null, 'fragment' ],
+			[ NS_MAIN, '', 'fragment' ],
+			[ NS_MAIN, 'foo bar', '' ],
+			[ NS_MAIN, 'bar_', '' ],
+			[ NS_MAIN, '_foo', '' ],
+			[ NS_MAIN, ' eek ', '' ],
 
-			array( NS_MAIN, 'title', 5 ),
-			array( NS_MAIN, 'title', null ),
-			array( NS_MAIN, 'title', array() ),
-		);
+			[ NS_MAIN, 'title', 5 ],
+			[ NS_MAIN, 'title', null ],
+			[ NS_MAIN, 'title', [] ],
+		];
 	}
 
 	/**
@@ -63,11 +63,11 @@ class TitleValueTest extends MediaWikiTestCase {
 	}
 
 	public function fragmentTitleProvider() {
-		return array(
-			array( new TitleValue( NS_MAIN, 'Test' ), 'foo' ),
-			array( new TitleValue( NS_TALK, 'Test', 'foo' ), '' ),
-			array( new TitleValue( NS_CATEGORY, 'Test', 'foo' ), 'bar' ),
-		);
+		return [
+			[ new TitleValue( NS_MAIN, 'Test' ), 'foo' ],
+			[ new TitleValue( NS_TALK, 'Test', 'foo' ), '' ],
+			[ new TitleValue( NS_CATEGORY, 'Test', 'foo' ), 'bar' ],
+		];
 	}
 
 	/**
@@ -82,10 +82,10 @@ class TitleValueTest extends MediaWikiTestCase {
 	}
 
 	public function getTextProvider() {
-		return array(
-			array( 'Foo', 'Foo' ),
-			array( 'Foo_Bar', 'Foo Bar' ),
-		);
+		return [
+			[ 'Foo', 'Foo' ],
+			[ 'Foo_Bar', 'Foo Bar' ],
+		];
 	}
 
 	/**

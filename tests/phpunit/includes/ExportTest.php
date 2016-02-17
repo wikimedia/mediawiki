@@ -11,11 +11,11 @@ class ExportTest extends MediaWikiLangTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgContLang' => Language::factory( 'en' ),
 			'wgLanguageCode' => 'en',
 			'wgCapitalLinks' => true,
-		) );
+		] );
 	}
 
 	/**

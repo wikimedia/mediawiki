@@ -104,7 +104,7 @@ class DumpMultiWriter {
 	 * @return array
 	 */
 	function getFilenames() {
-		$filenames = array();
+		$filenames = [];
 		for ( $i = 0; $i < $this->count; $i++ ) {
 			$filenames[] = $this->sinks[$i]->getFilenames();
 		}

@@ -98,9 +98,9 @@ class SpecialMytalk extends RedirectSpecialArticle {
 class SpecialMycontributions extends RedirectSpecialPage {
 	public function __construct() {
 		parent::__construct( 'Mycontributions' );
-		$this->mAllowedRedirectParams = array( 'limit', 'namespace', 'tagfilter',
+		$this->mAllowedRedirectParams = [ 'limit', 'namespace', 'tagfilter',
 			'offset', 'dir', 'year', 'month', 'feed', 'deletedOnly',
-			'nsInvert', 'associated', 'newOnly', 'topOnly' );
+			'nsInvert', 'associated', 'newOnly', 'topOnly' ];
 	}
 
 	/**
@@ -130,7 +130,7 @@ class SpecialMycontributions extends RedirectSpecialPage {
 class SpecialMyuploads extends RedirectSpecialPage {
 	public function __construct() {
 		parent::__construct( 'Myuploads' );
-		$this->mAllowedRedirectParams = array( 'limit', 'ilshowall', 'ilsearch' );
+		$this->mAllowedRedirectParams = [ 'limit', 'ilshowall', 'ilsearch' ];
 	}
 
 	/**
@@ -160,7 +160,7 @@ class SpecialMyuploads extends RedirectSpecialPage {
 class SpecialAllMyUploads extends RedirectSpecialPage {
 	public function __construct() {
 		parent::__construct( 'AllMyUploads' );
-		$this->mAllowedRedirectParams = array( 'limit', 'ilsearch' );
+		$this->mAllowedRedirectParams = [ 'limit', 'ilsearch' ];
 	}
 
 	/**

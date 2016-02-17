@@ -39,19 +39,19 @@ class ApiFormatPhp extends ApiFormatBase {
 
 		switch ( $params['formatversion'] ) {
 			case 1:
-				$transforms = array(
-					'BC' => array(),
-					'Types' => array(),
+				$transforms = [
+					'BC' => [],
+					'Types' => [],
 					'Strip' => 'all',
-				);
+				];
 				break;
 
 			case 2:
 			case 'latest':
-				$transforms = array(
-					'Types' => array(),
+				$transforms = [
+					'Types' => [],
 					'Strip' => 'all',
-				);
+				];
 				break;
 
 			default:
@@ -78,13 +78,13 @@ class ApiFormatPhp extends ApiFormatBase {
 	}
 
 	public function getAllowedParams() {
-		$ret = parent::getAllowedParams() + array(
-			'formatversion' => array(
-				ApiBase::PARAM_TYPE => array( 1, 2, 'latest' ),
+		$ret = parent::getAllowedParams() + [
+			'formatversion' => [
+				ApiBase::PARAM_TYPE => [ 1, 2, 'latest' ],
 				ApiBase::PARAM_DFLT => 1,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-php-param-formatversion',
-			),
-		);
+			],
+		];
 		return $ret;
 	}
 }

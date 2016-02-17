@@ -52,9 +52,9 @@ class Category {
 		if ( $this->mName === null && $this->mID === null ) {
 			throw new MWException( __METHOD__ . ' has both names and IDs null' );
 		} elseif ( $this->mID === null ) {
-			$where = array( 'cat_title' => $this->mName );
+			$where = [ 'cat_title' => $this->mName ];
 		} elseif ( $this->mName === null ) {
-			$where = array( 'cat_id' => $this->mID );
+			$where = [ 'cat_id' => $this->mID ];
 		} else {
 			# Already initialized
 			return true;
@@ -63,7 +63,7 @@ class Category {
 		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow(
 			'category',
-			array( 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ),
+			[ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ],
 			$where,
 			__METHOD__
 		);
@@ -257,8 +257,8 @@ class Category {
 
 		$dbr = wfGetDB( DB_SLAVE );
 
-		$conds = array( 'cl_to' => $this->getName(), 'cl_from = page_id' );
-		$options = array( 'ORDER BY' => 'cl_sortkey' );
+		$conds = [ 'cl_to' => $this->getName(), 'cl_from = page_id' ];
+		$options = [ 'ORDER BY' => 'cl_sortkey' ];
 
 		if ( $limit ) {
 			$options['LIMIT'] = $limit;
@@ -270,9 +270,9 @@ class Category {
 
 		$result = TitleArray::newFromResult(
 			$dbr->select(
-				array( 'page', 'categorylinks' ),
-				array( 'page_id', 'page_namespace', 'page_title', 'page_len',
-					'page_is_redirect', 'page_latest' ),
+				[ 'page', 'categorylinks' ],
+				[ 'page_id', 'page_namespace', 'page_title', 'page_len',
+					'page_is_redirect', 'page_latest' ],
 				$conds,
 				__METHOD__,
 				$options
@@ -314,17 +314,17 @@ class Category {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
 
-		$cond1 = $dbw->conditional( array( 'page_namespace' => NS_CATEGORY ), 1, 'NULL' );
-		$cond2 = $dbw->conditional( array( 'page_namespace' => NS_FILE ), 1, 'NULL' );
+		$cond1 = $dbw->conditional( [ 'page_namespace' => NS_CATEGORY ], 1, 'NULL' );
+		$cond2 = $dbw->conditional( [ 'page_namespace' => NS_FILE ], 1, 'NULL' );
 		$result = $dbw->selectRow(
-			array( 'categorylinks', 'page' ),
-			array( 'pages' => 'COUNT(*)',
+			[ 'categorylinks', 'page' ],
+			[ 'pages' => 'COUNT(*)',
 				'subcats' => "COUNT($cond1)",
 				'files' => "COUNT($cond2)"
-			),
-			array( 'cl_to' => $this->mName, 'page_id = cl_from' ),
+			],
+			[ 'cl_to' => $this->mName, 'page_id = cl_from' ],
 			__METHOD__,
-			array( 'LOCK IN SHARE MODE' )
+			[ 'LOCK IN SHARE MODE' ]
 		);
 
 		if ( $this->mID ) {
@@ -333,29 +333,29 @@ class Category {
 			# in the cat_id sequence. The row may or may not be "affected".
 			$dbw->update(
 				'category',
-				array(
+				[
 					'cat_pages' => $result->pages,
 					'cat_subcats' => $result->subcats,
 					'cat_files' => $result->files
-				),
-				array( 'cat_title' => $this->mName ),
+				],
+				[ 'cat_title' => $this->mName ],
 				__METHOD__
 			);
 		} else {
 			$dbw->upsert(
 				'category',
-				array(
+				[
 					'cat_title' => $this->mName,
 					'cat_pages' => $result->pages,
 					'cat_subcats' => $result->subcats,
 					'cat_files' => $result->files
-				),
-				array( 'cat_title' ),
-				array(
+				],
+				[ 'cat_title' ],
+				[
 					'cat_pages' => $result->pages,
 					'cat_subcats' => $result->subcats,
 					'cat_files' => $result->files
-				),
+				],
 				__METHOD__
 			);
 		}

@@ -31,12 +31,12 @@ class ResourceLoaderImage {
 	 * Map of allowed file extensions to their MIME types.
 	 * @var array
 	 */
-	protected static $fileTypes = array(
+	protected static $fileTypes = [
 		'svg' => 'image/svg+xml',
 		'png' => 'image/png',
 		'gif' => 'image/gif',
 		'jpg' => 'image/jpg',
-	);
+	];
 
 	/**
 	 * @param string $name Image name
@@ -69,7 +69,7 @@ class ResourceLoaderImage {
 		}
 
 		// Ensure that all files have common extension.
-		$extensions = array();
+		$extensions = [];
 		$descriptor = (array)$descriptor;
 		array_walk_recursive( $descriptor, function ( $path ) use ( &$extensions ) {
 			$extensions[] = pathinfo( $path, PATHINFO_EXTENSION );
@@ -170,14 +170,14 @@ class ResourceLoaderImage {
 	 * @return string
 	 */
 	public function getUrl( ResourceLoaderContext $context, $script, $variant, $format ) {
-		$query = array(
+		$query = [
 			'modules' => $this->getModule(),
 			'image' => $this->getName(),
 			'variant' => $variant,
 			'format' => $format,
 			'lang' => $context->getLanguage(),
 			'version' => $context->getVersion(),
-		);
+		];
 
 		return wfExpandUrl( wfAppendQuery( $script, $query ), PROTO_RELATIVE );
 	}
@@ -346,7 +346,7 @@ class ResourceLoaderImage {
 
 			$process = proc_open(
 				$command,
-				array( 0 => array( 'pipe', 'r' ), 1 => array( 'pipe', 'w' ) ),
+				[ 0 => [ 'pipe', 'r' ], 1 => [ 'pipe', 'w' ] ],
 				$pipes
 			);
 

@@ -268,19 +268,19 @@ class RevisionList extends RevisionListBase {
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {
-		$conds = array( 'rev_page' => $this->title->getArticleID() );
+		$conds = [ 'rev_page' => $this->title->getArticleID() ];
 		if ( $this->ids !== null ) {
 			$conds['rev_id'] = array_map( 'intval', $this->ids );
 		}
 		return $db->select(
-			array( 'revision', 'page', 'user' ),
+			[ 'revision', 'page', 'user' ],
 			array_merge( Revision::selectFields(), Revision::selectUserFields() ),
 			$conds,
 			__METHOD__,
-			array( 'ORDER BY' => 'rev_id DESC' ),
-			array(
+			[ 'ORDER BY' => 'rev_id DESC' ],
+			[
 				'page' => Revision::pageJoinCond(),
-				'user' => Revision::userJoinCond() )
+				'user' => Revision::userJoinCond() ]
 		);
 	}
 
@@ -350,11 +350,11 @@ class RevisionItem extends RevisionItemBase {
 		return Linker::linkKnown(
 			$this->list->title,
 			$date,
-			array(),
-			array(
+			[],
+			[
 				'oldid' => $this->revision->getId(),
 				'unhide' => 1
-			)
+			]
 		);
 	}
 
@@ -372,12 +372,12 @@ class RevisionItem extends RevisionItemBase {
 			return Linker::linkKnown(
 					$this->list->title,
 					$this->list->msg( 'diff' )->escaped(),
-					array(),
-					array(
+					[],
+					[
 						'diff' => $this->revision->getId(),
 						'oldid' => 'prev',
 						'unhide' => 1
-					)
+					]
 				);
 		}
 	}

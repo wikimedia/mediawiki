@@ -28,13 +28,13 @@ class SearchSuggestionSet {
 	/**
 	 * @var SearchSuggestion[]
 	 */
-	private $suggestions = array();
+	private $suggestions = [];
 
 	/**
 	 *
 	 * @var array
 	 */
-	private $pageMap = array();
+	private $pageMap = [];
 
 	/**
 	 * Builds a new set of suggestions.
@@ -208,6 +208,6 @@ class SearchSuggestionSet {
 	 * @return SearchSuggestionSet an empty suggestion set
 	 */
 	public static function emptySuggestionSet() {
-		return new SearchSuggestionSet( array() );
+		return new SearchSuggestionSet( [] );
 	}
 }

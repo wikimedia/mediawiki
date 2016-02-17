@@ -56,24 +56,24 @@ class LocalIdLookup extends CentralIdLookup {
 		array $idToName, $audience = self::AUDIENCE_PUBLIC, $flags = self::READ_NORMAL
 	) {
 		if ( !$idToName ) {
-			return array();
+			return [];
 		}
 
 		$audience = $this->checkAudience( $audience );
 		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
 		$options = ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING )
-			? array( 'LOCK IN SHARE MODE' )
-			: array();
+			? [ 'LOCK IN SHARE MODE' ]
+			: [];
 
-		$tables = array( 'user' );
-		$fields = array( 'user_id', 'user_name' );
-		$where = array(
+		$tables = [ 'user' ];
+		$fields = [ 'user_id', 'user_name' ];
+		$where = [
 			'user_id' => array_map( 'intval', array_keys( $idToName ) ),
-		);
-		$join = array();
+		];
+		$join = [];
 		if ( $audience && !$audience->isAllowed( 'hideuser' ) ) {
 			$tables[] = 'ipblocks';
-			$join['ipblocks'] = array( 'LEFT JOIN', 'ipb_user=user_id' );
+			$join['ipblocks'] = [ 'LEFT JOIN', 'ipb_user=user_id' ];
 			$fields[] = 'ipb_deleted';
 		}
 
@@ -89,24 +89,24 @@ class LocalIdLookup extends CentralIdLookup {
 		array $nameToId, $audience = self::AUDIENCE_PUBLIC, $flags = self::READ_NORMAL
 	) {
 		if ( !$nameToId ) {
-			return array();
+			return [];
 		}
 
 		$audience = $this->checkAudience( $audience );
 		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
 		$options = ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING )
-			? array( 'LOCK IN SHARE MODE' )
-			: array();
+			? [ 'LOCK IN SHARE MODE' ]
+			: [];
 
-		$tables = array( 'user' );
-		$fields = array( 'user_id', 'user_name' );
-		$where = array(
+		$tables = [ 'user' ];
+		$fields = [ 'user_id', 'user_name' ];
+		$where = [
 			'user_name' => array_map( 'strval', array_keys( $nameToId ) ),
-		);
-		$join = array();
+		];
+		$join = [];
 		if ( $audience && !$audience->isAllowed( 'hideuser' ) ) {
 			$tables[] = 'ipblocks';
-			$join['ipblocks'] = array( 'LEFT JOIN', 'ipb_user=user_id' );
+			$join['ipblocks'] = [ 'LEFT JOIN', 'ipb_user=user_id' ];
 			$where[] = 'ipb_deleted = 0 OR ipb_deleted IS NULL';
 		}
 

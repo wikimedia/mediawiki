@@ -59,12 +59,12 @@ class ApiFileRevert extends ApiBase {
 		);
 
 		if ( $status->isGood() ) {
-			$result = array( 'result' => 'Success' );
+			$result = [ 'result' => 'Success' ];
 		} else {
-			$result = array(
+			$result = [
 				'result' => 'Failure',
 				'errors' => $this->getErrorFormatter()->arrayFromStatus( $status ),
-			);
+			];
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
@@ -95,7 +95,7 @@ class ApiFileRevert extends ApiBase {
 		// Validate the input title
 		$title = Title::makeTitleSafe( NS_FILE, $this->params['filename'] );
 		if ( is_null( $title ) ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $this->params['filename'] ) );
+			$this->dieUsageMsg( [ 'invalidtitle', $this->params['filename'] ] );
 		}
 		$localRepo = RepoGroup::singleton()->getLocalRepo();
 
@@ -122,19 +122,19 @@ class ApiFileRevert extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'filename' => array(
+		return [
+			'filename' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true,
-			),
-			'comment' => array(
+			],
+			'comment' => [
 				ApiBase::PARAM_DFLT => '',
-			),
-			'archivename' => array(
+			],
+			'archivename' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true,
-			),
-		);
+			],
+		];
 	}
 
 	public function needsToken() {
@@ -142,10 +142,10 @@ class ApiFileRevert extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=filerevert&filename=Wiki.png&comment=Revert&' .
 				'archivename=20110305152740!Wiki.png&token=123ABC'
 				=> 'apihelp-filerevert-example-revert',
-		);
+		];
 	}
 }

@@ -142,7 +142,7 @@ class CachingSiteStore implements SiteStore {
 	 * @return bool Success indicator
 	 */
 	public function saveSite( Site $site ) {
-		return $this->saveSites( array( $site ) );
+		return $this->saveSites( [ $site ] );
 	}
 
 	/**

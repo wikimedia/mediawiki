@@ -57,7 +57,7 @@ class CategoryMembershipChangeJob extends Job {
 			return false;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE, array( 'recentchanges' ) );
+		$dbr = wfGetDB( DB_SLAVE, [ 'recentchanges' ] );
 		// Wait till the slave is caught up so that jobs for this page see each others' changes
 		if ( !wfGetLB()->safeWaitForMasterPos( $dbr ) ) {
 			$this->setLastError( "Timed out while waiting for slave to catch up" );
@@ -73,26 +73,26 @@ class CategoryMembershipChangeJob extends Job {
 
 		// Get the newest revision that has a SRC_CATEGORIZE row...
 		$row = $dbr->selectRow(
-			array( 'revision', 'recentchanges' ),
-			array( 'rev_timestamp', 'rev_id' ),
-			array(
+			[ 'revision', 'recentchanges' ],
+			[ 'rev_timestamp', 'rev_id' ],
+			[
 				'rev_page' => $page->getId(),
 				'rev_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( $cutoffUnix ) )
-			),
+			],
 			__METHOD__,
-			array( 'ORDER BY' => 'rev_timestamp DESC, rev_id DESC' ),
-			array(
-				'recentchanges' => array(
+			[ 'ORDER BY' => 'rev_timestamp DESC, rev_id DESC' ],
+			[
+				'recentchanges' => [
 					'INNER JOIN',
-					array(
+					[
 						'rc_this_oldid = rev_id',
 						'rc_source' => RecentChange::SRC_CATEGORIZE,
 						// Allow rc_cur_id or rc_timestamp index usage
 						'rc_cur_id = rev_page',
 						'rc_timestamp >= rev_timestamp'
-					)
-				)
-			)
+					]
+				]
+			]
 		);
 		// Only consider revisions newer than any such revision
 		if ( $row ) {
@@ -108,13 +108,13 @@ class CategoryMembershipChangeJob extends Job {
 		$res = $dbr->select(
 			'revision',
 			Revision::selectFields(),
-			array(
+			[
 				'rev_page' => $page->getId(),
 				"rev_timestamp > $encCutoff" .
 					" OR (rev_timestamp = $encCutoff AND rev_id > $lastRevId)"
-			),
+			],
 			__METHOD__,
-			array( 'ORDER BY' => 'rev_timestamp ASC, rev_id ASC' )
+			[ 'ORDER BY' => 'rev_timestamp ASC, rev_id ASC' ]
 		);
 
 		// Apply all category updates in revision timestamp order
@@ -194,14 +194,14 @@ class CategoryMembershipChangeJob extends Job {
 		// up to date, neither of which are true.
 		$oldCategories = $oldRev
 			? $this->getCategoriesAtRev( $title, $oldRev, $parseTimestamp )
-			: array();
+			: [];
 		// Parse the new revision and get the categories
 		$newCategories = $this->getCategoriesAtRev( $title, $newRev, $parseTimestamp );
 
 		$categoryInserts = array_values( array_diff( $newCategories, $oldCategories ) );
 		$categoryDeletes = array_values( array_diff( $oldCategories, $newCategories ) );
 
-		return array( $categoryInserts, $categoryDeletes );
+		return [ $categoryInserts, $categoryDeletes ];
 	}
 
 	/**

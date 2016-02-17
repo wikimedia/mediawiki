@@ -28,7 +28,7 @@ class LBFactorySimple extends LBFactory {
 	/** @var LoadBalancer */
 	private $mainLB;
 	/** @var LoadBalancer[] */
-	private $extLBs = array();
+	private $extLBs = [];
 
 	/** @var string */
 	private $loadMonitorClass;
@@ -72,7 +72,7 @@ class LBFactorySimple extends LBFactory {
 				$flags |= DBO_COMPRESS;
 			}
 
-			$servers = array( array(
+			$servers = [ [
 				'host' => $wgDBserver,
 				'user' => $wgDBuser,
 				'password' => $wgDBpassword,
@@ -81,15 +81,15 @@ class LBFactorySimple extends LBFactory {
 				'load' => 1,
 				'flags' => $flags,
 				'master' => true
-			) );
+			] ];
 		}
 
-		return new LoadBalancer( array(
+		return new LoadBalancer( [
 			'servers' => $servers,
 			'loadMonitor' => $this->loadMonitorClass,
 			'readOnlyReason' => $this->readOnlyReason,
 			'trxProfiler' => $this->trxProfiler
-		) );
+		] );
 	}
 
 	/**
@@ -99,7 +99,7 @@ class LBFactorySimple extends LBFactory {
 	public function getMainLB( $wiki = false ) {
 		if ( !isset( $this->mainLB ) ) {
 			$this->mainLB = $this->newMainLB( $wiki );
-			$this->mainLB->parentInfo( array( 'id' => 'main' ) );
+			$this->mainLB->parentInfo( [ 'id' => 'main' ] );
 			$this->chronProt->initLB( $this->mainLB );
 		}
 
@@ -118,12 +118,12 @@ class LBFactorySimple extends LBFactory {
 			throw new MWException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
 
-		return new LoadBalancer( array(
+		return new LoadBalancer( [
 			'servers' => $wgExternalServers[$cluster],
 			'loadMonitor' => $this->loadMonitorClass,
 			'readOnlyReason' => $this->readOnlyReason,
 			'trxProfiler' => $this->trxProfiler
-		) );
+		] );
 	}
 
 	/**
@@ -134,7 +134,7 @@ class LBFactorySimple extends LBFactory {
 	public function &getExternalLB( $cluster, $wiki = false ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $wiki );
-			$this->extLBs[$cluster]->parentInfo( array( 'id' => "ext-$cluster" ) );
+			$this->extLBs[$cluster]->parentInfo( [ 'id' => "ext-$cluster" ] );
 			$this->chronProt->initLB( $this->extLBs[$cluster] );
 		}
 
@@ -149,12 +149,12 @@ class LBFactorySimple extends LBFactory {
 	 * @param callable $callback
 	 * @param array $params
 	 */
-	public function forEachLB( $callback, array $params = array() ) {
+	public function forEachLB( $callback, array $params = [] ) {
 		if ( isset( $this->mainLB ) ) {
-			call_user_func_array( $callback, array_merge( array( $this->mainLB ), $params ) );
+			call_user_func_array( $callback, array_merge( [ $this->mainLB ], $params ) );
 		}
 		foreach ( $this->extLBs as $lb ) {
-			call_user_func_array( $callback, array_merge( array( $lb ), $params ) );
+			call_user_func_array( $callback, array_merge( [ $lb ], $params ) );
 		}
 	}
 

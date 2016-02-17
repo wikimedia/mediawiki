@@ -14,16 +14,16 @@ class ApiDocumentationTest extends MediaWikiTestCase {
 	private static $main;
 
 	/** @var array Sets of globals to test. Each array element is input to HashConfig */
-	private static $testGlobals = array(
-		array(
+	private static $testGlobals = [
+		[
 			'MiserMode' => false,
 			'AllowCategorizedRecentChanges' => false,
-		),
-		array(
+		],
+		[
 			'MiserMode' => true,
 			'AllowCategorizedRecentChanges' => true,
-		),
-	);
+		],
+	];
 
 	/**
 	 * Initialize/fetch the ApiMain instance for testing
@@ -60,10 +60,10 @@ class ApiDocumentationTest extends MediaWikiTestCase {
 		$main = self::getMain();
 
 		// Set configuration variables
-		$main->getContext()->setConfig( new MultiConfig( array(
+		$main->getContext()->setConfig( new MultiConfig( [
 			new HashConfig( $globals ),
 			RequestContext::getMain()->getConfig(),
-		) ) );
+		] ) );
 		foreach ( $globals as $k => $v ) {
 			$this->setMWGlobals( "wg$k", $v );
 		}
@@ -81,10 +81,10 @@ class ApiDocumentationTest extends MediaWikiTestCase {
 
 		// Parameters. Lots of messages in here.
 		$params = $module->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
-		$tags = array();
+		$tags = [];
 		foreach ( $params as $name => $settings ) {
 			if ( !is_array( $settings ) ) {
-				$settings = array();
+				$settings = [];
 			}
 
 			// Basic description message
@@ -146,15 +146,15 @@ class ApiDocumentationTest extends MediaWikiTestCase {
 		$paths = self::getSubModulePaths( $main->getModuleManager() );
 		array_unshift( $paths, $main->getModulePath() );
 
-		$ret = array();
+		$ret = [];
 		foreach ( $paths as $path ) {
 			foreach ( self::$testGlobals as $globals ) {
-				$g = array();
+				$g = [];
 				foreach ( $globals as $k => $v ) {
 					$g[] = "$k=" . var_export( $v, 1 );
 				}
 				$k = "Module $path with " . join( ', ', $g );
-				$ret[$k] = array( $path, $globals );
+				$ret[$k] = [ $path, $globals ];
 			}
 		}
 		return $ret;
@@ -166,7 +166,7 @@ class ApiDocumentationTest extends MediaWikiTestCase {
 	 * @return string[]
 	 */
 	protected static function getSubModulePaths( ApiModuleManager $manager ) {
-		$paths = array();
+		$paths = [];
 		foreach ( $manager->getNames() as $name ) {
 			$module = $manager->getModule( $name );
 			$paths[] = $module->getModulePath();

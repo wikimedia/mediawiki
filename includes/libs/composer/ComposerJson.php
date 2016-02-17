@@ -26,7 +26,7 @@ class ComposerJson {
 	 * @return array
 	 */
 	public function getRequiredDependencies() {
-		$deps = array();
+		$deps = [];
 		if ( isset( $this->contents['require'] ) ) {
 			foreach ( $this->contents['require'] as $package => $version ) {
 				if ( $package !== "php" && strpos( $package, 'ext-' ) !== 0 ) {

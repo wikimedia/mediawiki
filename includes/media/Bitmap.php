@@ -117,37 +117,37 @@ class BitmapHandler extends TransformationalImageHandler {
 		global $wgSharpenReductionThreshold, $wgSharpenParameter, $wgMaxAnimatedGifArea,
 			$wgImageMagickTempDir, $wgImageMagickConvertCommand, $wgMaxInterlacingAreas;
 
-		$quality = array();
-		$sharpen = array();
+		$quality = [];
+		$sharpen = [];
 		$scene = false;
-		$animation_pre = array();
-		$animation_post = array();
-		$decoderHint = array();
+		$animation_pre = [];
+		$animation_post = [];
+		$decoderHint = [];
 
 		if ( $params['mimeType'] == 'image/jpeg' ) {
 			$qualityVal = isset( $params['quality'] ) ? (string)$params['quality'] : null;
-			$quality = array( '-quality', $qualityVal ?: '80' ); // 80%
+			$quality = [ '-quality', $qualityVal ?: '80' ]; // 80%
 			if ( $params['interlace'] ) {
-				$animation_post = array( '-interlace', 'JPEG' );
+				$animation_post = [ '-interlace', 'JPEG' ];
 			}
 			# Sharpening, see bug 6193
 			if ( ( $params['physicalWidth'] + $params['physicalHeight'] )
 				/ ( $params['srcWidth'] + $params['srcHeight'] )
 				< $wgSharpenReductionThreshold
 			) {
-				$sharpen = array( '-sharpen', $wgSharpenParameter );
+				$sharpen = [ '-sharpen', $wgSharpenParameter ];
 			}
 			if ( version_compare( $this->getMagickVersion(), "6.5.6" ) >= 0 ) {
 				// JPEG decoder hint to reduce memory, available since IM 6.5.6-2
-				$decoderHint = array( '-define', "jpeg:size={$params['physicalDimensions']}" );
+				$decoderHint = [ '-define', "jpeg:size={$params['physicalDimensions']}" ];
 			}
 		} elseif ( $params['mimeType'] == 'image/png' ) {
-			$quality = array( '-quality', '95' ); // zlib 9, adaptive filtering
+			$quality = [ '-quality', '95' ]; // zlib 9, adaptive filtering
 			if ( $params['interlace'] ) {
-				$animation_post = array( '-interlace', 'PNG' );
+				$animation_post = [ '-interlace', 'PNG' ];
 			}
 		} elseif ( $params['mimeType'] == 'image/webp' ) {
-			$quality = array( '-quality', '95' ); // zlib 9, adaptive filtering
+			$quality = [ '-quality', '95' ]; // zlib 9, adaptive filtering
 		} elseif ( $params['mimeType'] == 'image/gif' ) {
 			if ( $this->getImageArea( $image ) > $wgMaxAnimatedGifArea ) {
 				// Extract initial frame only; we're so big it'll
@@ -155,11 +155,11 @@ class BitmapHandler extends TransformationalImageHandler {
 				$scene = 0;
 			} elseif ( $this->isAnimatedImage( $image ) ) {
 				// Coalesce is needed to scale animated GIFs properly (bug 1017).
-				$animation_pre = array( '-coalesce' );
+				$animation_pre = [ '-coalesce' ];
 				// We optimize the output, but -optimize is broken,
 				// use optimizeTransparency instead (bug 11822)
 				if ( version_compare( $this->getMagickVersion(), "6.3.5" ) >= 0 ) {
-					$animation_post = array( '-fuzz', '5%', '-layers', 'optimizeTransparency' );
+					$animation_post = [ '-fuzz', '5%', '-layers', 'optimizeTransparency' ];
 				}
 			}
 			if ( $params['interlace'] && version_compare( $this->getMagickVersion(), "6.3.4" ) >= 0
@@ -174,11 +174,11 @@ class BitmapHandler extends TransformationalImageHandler {
 			// background colour. After merging we reset the background
 			// to be white for the default background colour setting
 			// in the PNG image (which is used in old IE)
-			$animation_pre = array(
+			$animation_pre = [
 				'-background', 'transparent',
 				'-layers', 'merge',
 				'-background', 'white',
-			);
+			];
 			MediaWiki\suppressWarnings();
 			$xcfMeta = unserialize( $image->getMetadata() );
 			MediaWiki\restoreWarnings();
@@ -189,13 +189,13 @@ class BitmapHandler extends TransformationalImageHandler {
 			) {
 				// bug 66323 - Greyscale images not rendered properly.
 				// So only take the "red" channel.
-				$channelOnly = array( '-channel', 'R', '-separate' );
+				$channelOnly = [ '-channel', 'R', '-separate' ];
 				$animation_pre = array_merge( $animation_pre, $channelOnly );
 			}
 		}
 
 		// Use one thread only, to avoid deadlock bugs on OOM
-		$env = array( 'OMP_NUM_THREADS' => 1 );
+		$env = [ 'OMP_NUM_THREADS' => 1 ];
 		if ( strval( $wgImageMagickTempDir ) !== '' ) {
 			$env['MAGICK_TMPDIR'] = $wgImageMagickTempDir;
 		}
@@ -204,29 +204,29 @@ class BitmapHandler extends TransformationalImageHandler {
 		list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
 
 		$cmd = call_user_func_array( 'wfEscapeShellArg', array_merge(
-			array( $wgImageMagickConvertCommand ),
+			[ $wgImageMagickConvertCommand ],
 			$quality,
 			// Specify white background color, will be used for transparent images
 			// in Internet Explorer/Windows instead of default black.
-			array( '-background', 'white' ),
+			[ '-background', 'white' ],
 			$decoderHint,
-			array( $this->escapeMagickInput( $params['srcPath'], $scene ) ),
+			[ $this->escapeMagickInput( $params['srcPath'], $scene ) ],
 			$animation_pre,
 			// For the -thumbnail option a "!" is needed to force exact size,
 			// or ImageMagick may decide your ratio is wrong and slice off
 			// a pixel.
-			array( '-thumbnail', "{$width}x{$height}!" ),
+			[ '-thumbnail', "{$width}x{$height}!" ],
 			// Add the source url as a comment to the thumb, but don't add the flag if there's no comment
 			( $params['comment'] !== ''
-				? array( '-set', 'comment', $this->escapeMagickProperty( $params['comment'] ) )
-				: array() ),
+				? [ '-set', 'comment', $this->escapeMagickProperty( $params['comment'] ) ]
+				: [] ),
 			// T108616: Avoid exposure of local file path
-			array( '+set', 'Thumb::URI' ),
-			array( '-depth', 8 ),
+			[ '+set', 'Thumb::URI' ],
+			[ '-depth', 8 ],
 			$sharpen,
-			array( '-rotate', "-$rotation" ),
+			[ '-rotate', "-$rotation" ],
 			$animation_post,
-			array( $this->escapeMagickOutput( $params['dstPath'] ) ) ) );
+			[ $this->escapeMagickOutput( $params['dstPath'] ) ] ) );
 
 		wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
 		$retval = 0;
@@ -377,14 +377,14 @@ class BitmapHandler extends TransformationalImageHandler {
 		# First find out what kind of file this is, and select the correct
 		# input routine for this.
 
-		$typemap = array(
-			'image/gif' => array( 'imagecreatefromgif', 'palette', false, 'imagegif' ),
-			'image/jpeg' => array( 'imagecreatefromjpeg', 'truecolor', true,
-				array( __CLASS__, 'imageJpegWrapper' ) ),
-			'image/png' => array( 'imagecreatefrompng', 'bits', false, 'imagepng' ),
-			'image/vnd.wap.wbmp' => array( 'imagecreatefromwbmp', 'palette', false, 'imagewbmp' ),
-			'image/xbm' => array( 'imagecreatefromxbm', 'palette', false, 'imagexbm' ),
-		);
+		$typemap = [
+			'image/gif' => [ 'imagecreatefromgif', 'palette', false, 'imagegif' ],
+			'image/jpeg' => [ 'imagecreatefromjpeg', 'truecolor', true,
+				[ __CLASS__, 'imageJpegWrapper' ] ],
+			'image/png' => [ 'imagecreatefrompng', 'bits', false, 'imagepng' ],
+			'image/vnd.wap.wbmp' => [ 'imagecreatefromwbmp', 'palette', false, 'imagewbmp' ],
+			'image/xbm' => [ 'imagecreatefromxbm', 'palette', false, 'imagexbm' ],
+		];
 
 		if ( !isset( $typemap[$params['mimeType']] ) ) {
 			$err = 'Image type not supported';
@@ -447,7 +447,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		imagesavealpha( $dst_image, true );
 
-		$funcParams = array( $dst_image, $params['dstPath'] );
+		$funcParams = [ $dst_image, $params['dstPath'] ];
 		if ( $useQuality && isset( $params['quality'] ) ) {
 			$funcParams[] = $params['quality'];
 		}

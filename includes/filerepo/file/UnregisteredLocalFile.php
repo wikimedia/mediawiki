@@ -103,7 +103,7 @@ class UnregisteredLocalFile extends File {
 		if ( $mime ) {
 			$this->mime = $mime;
 		}
-		$this->dims = array();
+		$this->dims = [];
 	}
 
 	/**

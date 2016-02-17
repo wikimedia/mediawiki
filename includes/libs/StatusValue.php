@@ -43,12 +43,12 @@ class StatusValue {
 	/** @var bool */
 	protected $ok = true;
 	/** @var array */
-	protected $errors = array();
+	protected $errors = [];
 
 	/** @var mixed */
 	public $value;
 	/** @var array Map of (key => bool) to indicate success of each part of batch operations */
-	public $success = array();
+	public $success = [];
 	/** @var int Counter for batch operations */
 	public $successCount = 0;
 	/** @var int Counter for batch operations */
@@ -63,7 +63,7 @@ class StatusValue {
 	public static function newFatal( $message /*, parameters...*/ ) {
 		$params = func_get_args();
 		$result = new static();
-		call_user_func_array( array( &$result, 'fatal' ), $params );
+		call_user_func_array( [ &$result, 'fatal' ], $params );
 		return $result;
 	}
 
@@ -142,11 +142,11 @@ class StatusValue {
 	 * @param string|MessageSpecifier $message Message key or object
 	 */
 	public function warning( $message /*, parameters... */ ) {
-		$this->errors[] = array(
+		$this->errors[] = [
 			'type' => 'warning',
 			'message' => $message,
 			'params' => array_slice( func_get_args(), 1 )
-		);
+		];
 	}
 
 	/**
@@ -156,11 +156,11 @@ class StatusValue {
 	 * @param string|MessageSpecifier $message Message key or object
 	 */
 	public function error( $message /*, parameters... */ ) {
-		$this->errors[] = array(
+		$this->errors[] = [
 			'type' => 'error',
 			'message' => $message,
 			'params' => array_slice( func_get_args(), 1 )
-		);
+		];
 	}
 
 	/**
@@ -170,11 +170,11 @@ class StatusValue {
 	 * @param string|MessageSpecifier $message Message key or object
 	 */
 	public function fatal( $message /*, parameters... */ ) {
-		$this->errors[] = array(
+		$this->errors[] = [
 			'type' => 'error',
 			'message' => $message,
 			'params' => array_slice( func_get_args(), 1 )
-		);
+		];
 		$this->ok = false;
 	}
 
@@ -203,7 +203,7 @@ class StatusValue {
 	 * @return array
 	 */
 	public function getErrorsByType( $type ) {
-		$result = array();
+		$result = [];
 		foreach ( $this->errors as $error ) {
 			if ( $error['type'] === $type ) {
 				$result[] = $error;
@@ -298,7 +298,7 @@ class StatusValue {
 					$params = $error['params'];
 				} else {
 					$key = $error['message'];
-					$params = array();
+					$params = [];
 				}
 
 				$out .= sprintf( "| %4d | %-25.25s | %-40.40s |\n",

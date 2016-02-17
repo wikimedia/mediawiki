@@ -43,7 +43,7 @@ class CachedBagOStuff extends HashBagOStuff {
 	 * @param BagOStuff $backend Permanent backend to use
 	 * @param array $params Parameters for HashBagOStuff
 	 */
-	function __construct( BagOStuff $backend, $params = array() ) {
+	function __construct( BagOStuff $backend, $params = [] ) {
 		$this->backend = $backend;
 		parent::__construct( $params );
 	}

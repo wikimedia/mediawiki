@@ -74,7 +74,7 @@ class BotPassword implements IDBAccessObject {
 		$lb = $wgBotPasswordsCluster
 			? wfGetLBFactory()->getExternalLB( $wgBotPasswordsCluster )
 			: wfGetLB( $wgBotPasswordsDatabase );
-		return $lb->getConnectionRef( $db, array(), $wgBotPasswordsDatabase );
+		return $lb->getConnectionRef( $db, [], $wgBotPasswordsDatabase );
 	}
 
 	/**
@@ -109,8 +109,8 @@ class BotPassword implements IDBAccessObject {
 		$db = self::getDB( $index );
 		$row = $db->selectRow(
 			'bot_passwords',
-			array( 'bp_user', 'bp_app_id', 'bp_token', 'bp_restrictions', 'bp_grants' ),
-			array( 'bp_user' => $centralId, 'bp_app_id' => $appId ),
+			[ 'bp_user', 'bp_app_id', 'bp_token', 'bp_restrictions', 'bp_grants' ],
+			[ 'bp_user' => $centralId, 'bp_app_id' => $appId ],
 			__METHOD__,
 			$options
 		);
@@ -130,15 +130,15 @@ class BotPassword implements IDBAccessObject {
 	 * @return BotPassword|null
 	 */
 	public static function newUnsaved( array $data, $flags = self::READ_NORMAL ) {
-		$row = (object)array(
+		$row = (object)[
 			'bp_user' => 0,
 			'bp_app_id' => isset( $data['appId'] ) ? trim( $data['appId'] ) : '',
 			'bp_token' => '**unsaved**',
 			'bp_restrictions' => isset( $data['restrictions'] )
 				? $data['restrictions']
 				: MWRestrictions::newDefault(),
-			'bp_grants' => isset( $data['grants'] ) ? $data['grants'] : array(),
-		);
+			'bp_grants' => isset( $data['grants'] ) ? $data['grants'] : [],
+		];
 
 		if (
 			$row->bp_app_id === '' || strlen( $row->bp_app_id ) > self::APPID_MAXLENGTH ||
@@ -239,7 +239,7 @@ class BotPassword implements IDBAccessObject {
 		$password = $db->selectField(
 			'bot_passwords',
 			'bp_password',
-			array( 'bp_user' => $this->centralId, 'bp_app_id' => $this->appId ),
+			[ 'bp_user' => $this->centralId, 'bp_app_id' => $this->appId ],
 			__METHOD__,
 			$options
 		);
@@ -263,15 +263,15 @@ class BotPassword implements IDBAccessObject {
 	 * @return bool Success
 	 */
 	public function save( $operation, Password $password = null ) {
-		$conds = array(
+		$conds = [
 			'bp_user' => $this->centralId,
 			'bp_app_id' => $this->appId,
-		);
-		$fields = array(
+		];
+		$fields = [
 			'bp_token' => MWCryptRand::generateHex( User::TOKEN_LENGTH ),
 			'bp_restrictions' => $this->restrictions->toJson(),
 			'bp_grants' => FormatJson::encode( $this->grants ),
-		);
+		];
 
 		if ( $password !== null ) {
 			$fields['bp_password'] = $password->toString();
@@ -282,7 +282,7 @@ class BotPassword implements IDBAccessObject {
 		$dbw = self::getDB( DB_MASTER );
 		switch ( $operation ) {
 			case 'insert':
-				$dbw->insert( 'bot_passwords', $fields + $conds, __METHOD__, array( 'IGNORE' ) );
+				$dbw->insert( 'bot_passwords', $fields + $conds, __METHOD__, [ 'IGNORE' ] );
 				break;
 
 			case 'update':
@@ -305,10 +305,10 @@ class BotPassword implements IDBAccessObject {
 	 * @return bool Success
 	 */
 	public function delete() {
-		$conds = array(
+		$conds = [
 			'bp_user' => $this->centralId,
 			'bp_app_id' => $this->appId,
-		);
+		];
 		$dbw = self::getDB( DB_MASTER );
 		$dbw->delete( 'bot_passwords', $conds, __METHOD__ );
 		$ok = (bool)$dbw->affectedRows();
@@ -346,8 +346,8 @@ class BotPassword implements IDBAccessObject {
 		$dbw = self::getDB( DB_MASTER );
 		$dbw->update(
 			'bot_passwords',
-			array( 'bp_password' => PasswordFactory::newInvalidPassword()->toString() ),
-			array( 'bp_user' => $centralId ),
+			[ 'bp_password' => PasswordFactory::newInvalidPassword()->toString() ],
+			[ 'bp_user' => $centralId ],
 			__METHOD__
 		);
 		return (bool)$dbw->affectedRows();
@@ -380,7 +380,7 @@ class BotPassword implements IDBAccessObject {
 		$dbw = self::getDB( DB_MASTER );
 		$dbw->delete(
 			'bot_passwords',
-			array( 'bp_user' => $centralId ),
+			[ 'bp_user' => $centralId ],
 			__METHOD__
 		);
 		return (bool)$dbw->affectedRows();

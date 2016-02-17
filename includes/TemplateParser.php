@@ -170,13 +170,13 @@ class TemplateParser {
 		}
 		return LightnCandy::compile(
 			$code,
-			array(
+			[
 				// Do not add more flags here without discussion.
 				// If you do add more flags, be sure to update unit tests as well.
 				'flags' => LightnCandy::FLAG_ERROR_EXCEPTION,
 				'basedir' => $this->templateDir,
 				'fileext' => '.mustache',
-			)
+			]
 		);
 	}
 
@@ -197,7 +197,7 @@ class TemplateParser {
 	 * @param array $scopes
 	 * @return string
 	 */
-	public function processTemplate( $templateName, $args, array $scopes = array() ) {
+	public function processTemplate( $templateName, $args, array $scopes = [] ) {
 		$template = $this->getTemplate( $templateName );
 		return call_user_func( $template, $args, $scopes );
 	}

@@ -28,16 +28,16 @@ class MovePageTest extends MediaWikiTestCase {
 	 * This should be kept in sync with TitleTest::provideTestIsValidMoveOperation
 	 */
 	public static function provideIsValidMove() {
-		return array(
+		return [
 			// for MovePage::isValidMove
-			array( 'Test', 'Test', 'selfmove' ),
-			array( 'Special:FooBar', 'Test', 'immobile-source-namespace' ),
-			array( 'Test', 'Special:FooBar', 'immobile-target-namespace' ),
-			array( 'MediaWiki:Common.js', 'Help:Some wikitext page', 'bad-target-model' ),
-			array( 'Page', 'File:Test.jpg', 'nonfile-cannot-move-to-file' ),
+			[ 'Test', 'Test', 'selfmove' ],
+			[ 'Special:FooBar', 'Test', 'immobile-source-namespace' ],
+			[ 'Test', 'Special:FooBar', 'immobile-target-namespace' ],
+			[ 'MediaWiki:Common.js', 'Help:Some wikitext page', 'bad-target-model' ],
+			[ 'Page', 'File:Test.jpg', 'nonfile-cannot-move-to-file' ],
 			// for MovePage::isValidFileMove
-			array( 'File:Test.jpg', 'Page', 'imagenocrossnamespace' ),
-		);
+			[ 'File:Test.jpg', 'Page', 'imagenocrossnamespace' ],
+		];
 	}
 
 	/**

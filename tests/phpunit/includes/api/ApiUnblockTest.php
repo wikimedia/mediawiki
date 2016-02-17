@@ -18,11 +18,11 @@ class ApiUnblockTest extends ApiTestCase {
 	 */
 	public function testWithNoToken() {
 		$this->doApiRequest(
-			array(
+			[
 				'action' => 'unblock',
 				'user' => 'UTApiBlockee',
 				'reason' => 'Some reason',
-			),
+			],
 			null,
 			false,
 			self::$users['sysop']->getUser()

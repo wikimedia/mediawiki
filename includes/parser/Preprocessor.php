@@ -33,23 +33,23 @@ abstract class Preprocessor {
 	/**
 	 * @var array Brace matching rules.
 	 */
-	protected $rules = array(
-		'{' => array(
+	protected $rules = [
+		'{' => [
 			'end' => '}',
-			'names' => array(
+			'names' => [
 				2 => 'template',
 				3 => 'tplarg',
-			),
+			],
 			'min' => 2,
 			'max' => 3,
-		),
-		'[' => array(
+		],
+		'[' => [
 			'end' => ']',
-			'names' => array( 2 => null ),
+			'names' => [ 2 => null ],
 			'min' => 2,
 			'max' => 2,
-		)
-	);
+		]
+	];
 
 	/**
 	 * Store a document tree in the cache.

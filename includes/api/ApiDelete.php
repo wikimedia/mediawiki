@@ -101,11 +101,11 @@ class ApiDelete extends ApiBase {
 			ChangeTags::addTags( $params['tags'], null, null, $status->value, null );
 		}
 
-		$r = array(
+		$r = [
 			'title' => $titleObj->getPrefixedText(),
 			'reason' => $reason,
 			'logid' => $status->value
-		);
+		];
 		$this->getResult()->addValue( null, $this->getModuleName(), $r );
 	}
 
@@ -127,7 +127,7 @@ class ApiDelete extends ApiBase {
 			$hasHistory = false;
 			$reason = $page->getAutoDeleteReason( $hasHistory );
 			if ( $reason === false ) {
-				return array( array( 'cannotdelete', $title->getPrefixedText() ) );
+				return [ [ 'cannotdelete', $title->getPrefixedText() ] ];
 			}
 		}
 
@@ -157,11 +157,11 @@ class ApiDelete extends ApiBase {
 
 		if ( $oldimage ) {
 			if ( !FileDeleteForm::isValidOldSpec( $oldimage ) ) {
-				return array( array( 'invalidoldimage' ) );
+				return [ [ 'invalidoldimage' ] ];
 			}
 			$oldfile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $oldimage );
 			if ( !$oldfile->exists() || !$oldfile->isLocal() || $oldfile->getRedirected() ) {
-				return array( array( 'nodeleteablefile' ) );
+				return [ [ 'nodeleteablefile' ] ];
 			}
 		}
 
@@ -181,35 +181,35 @@ class ApiDelete extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
+		return [
 			'title' => null,
-			'pageid' => array(
+			'pageid' => [
 				ApiBase::PARAM_TYPE => 'integer'
-			),
+			],
 			'reason' => null,
-			'tags' => array(
+			'tags' => [
 				ApiBase::PARAM_TYPE => 'tags',
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'watch' => array(
+			],
+			'watch' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,
-			),
-			'watchlist' => array(
+			],
+			'watchlist' => [
 				ApiBase::PARAM_DFLT => 'preferences',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'watch',
 					'unwatch',
 					'preferences',
 					'nochange'
-				),
-			),
-			'unwatch' => array(
+				],
+			],
+			'unwatch' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,
-			),
+			],
 			'oldimage' => null,
-		);
+		];
 	}
 
 	public function needsToken() {
@@ -217,12 +217,12 @@ class ApiDelete extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=delete&title=Main%20Page&token=123ABC'
 				=> 'apihelp-delete-example-simple',
 			'action=delete&title=Main%20Page&token=123ABC&reason=Preparing%20for%20move'
 				=> 'apihelp-delete-example-reason',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

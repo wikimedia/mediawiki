@@ -76,7 +76,7 @@ class SearchPostgres extends SearchDatabase {
 		$term = preg_replace( '/:/', ' ', $term );
 
 		$searchstring = '';
-		$m = array();
+		$m = [];
 		if ( preg_match_all( '/([-!]?)(\S+)\s*/', $term, $m, PREG_SET_ORDER ) ) {
 			foreach ( $m as $terms ) {
 				if ( strlen( $terms[1] ) ) {
@@ -139,13 +139,13 @@ class SearchPostgres extends SearchDatabase {
 		$top = $res->fetchRow();
 		$top = $top[0];
 
-		$this->searchTerms = array();
+		$this->searchTerms = [];
 		if ( $top === "" ) { # # e.g. if only stopwords are used XXX return something better
 			$query = "SELECT page_id, page_namespace, page_title, 0 AS score " .
 				"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
 				"AND r.rev_text_id = c.old_id AND 1=0";
 		} else {
-			$m = array();
+			$m = [];
 			if ( preg_match_all( "/'([^']+)'/", $top, $m, PREG_SET_ORDER ) ) {
 				foreach ( $m as $terms ) {
 					$this->searchTerms[$terms[1]] = $terms[1];

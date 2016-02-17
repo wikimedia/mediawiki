@@ -107,7 +107,7 @@ class SpecialExpandTemplates extends SpecialPage {
 
 			if ( $this->removeNowiki ) {
 				$tmp = preg_replace(
-					array( '_&lt;nowiki&gt;_', '_&lt;/nowiki&gt;_', '_&lt;nowiki */&gt;_' ),
+					[ '_&lt;nowiki&gt;_', '_&lt;/nowiki&gt;_', '_&lt;nowiki */&gt;_' ],
 					'',
 					$tmp
 				);
@@ -154,8 +154,8 @@ class SpecialExpandTemplates extends SpecialPage {
 	 * @return string
 	 */
 	private function makeForm( $title, $input ) {
-		$fields = array(
-			'contexttitle' => array(
+		$fields = [
+			'contexttitle' => [
 				'type' => 'text',
 				'label' => $this->msg( 'expand_templates_title' )->plain(),
 				'name' => 'wpContextTitle',
@@ -164,51 +164,51 @@ class SpecialExpandTemplates extends SpecialPage {
 				'default' => $title,
 				'autofocus' => true,
 				'cssclass' => 'mw-ui-input-inline',
-			),
-			'input' => array(
+			],
+			'input' => [
 				'type' => 'textarea',
 				'name' => 'wpInput',
 				'label' => $this->msg( 'expand_templates_input' )->text(),
 				'rows' => 10,
 				'default' => $input,
 				'id' => 'input',
-			),
-			'removecomments' => array(
+			],
+			'removecomments' => [
 				'type' => 'check',
 				'label' => $this->msg( 'expand_templates_remove_comments' )->text(),
 				'name' => 'wpRemoveComments',
 				'id' => 'removecomments',
 				'default' => $this->removeComments,
-			),
-			'removenowiki' => array(
+			],
+			'removenowiki' => [
 				'type' => 'check',
 				'label' => $this->msg( 'expand_templates_remove_nowiki' )->text(),
 				'name' => 'wpRemoveNowiki',
 				'id' => 'removenowiki',
 				'default' => $this->removeNowiki,
-			),
-			'generate_xml' => array(
+			],
+			'generate_xml' => [
 				'type' => 'check',
 				'label' => $this->msg( 'expand_templates_generate_xml' )->text(),
 				'name' => 'wpGenerateXml',
 				'id' => 'generate_xml',
 				'default' => $this->generateXML,
-			),
-			'generate_rawhtml' => array(
+			],
+			'generate_rawhtml' => [
 				'type' => 'check',
 				'label' => $this->msg( 'expand_templates_generate_rawhtml' )->text(),
 				'name' => 'wpGenerateRawHtml',
 				'id' => 'generate_rawhtml',
 				'default' => $this->generateRawHtml,
-			),
-		);
+			],
+		];
 
 		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$form
 			->setSubmitTextMsg( 'expand_templates_ok' )
 			->setWrapperLegendMsg( 'expandtemplates' )
 			->setHeaderText( $this->msg( 'expand_templates_intro' )->parse() )
-			->setSubmitCallback( array( $this, 'onSubmitInput' ) )
+			->setSubmitCallback( [ $this, 'onSubmitInput' ] )
 			->showAlways();
 	}
 
@@ -226,7 +226,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			$output,
 			10,
 			10,
-			array( 'id' => 'output', 'readonly' => 'readonly' )
+			[ 'id' => 'output', 'readonly' => 'readonly' ]
 		);
 
 		return $out;
@@ -267,9 +267,9 @@ class SpecialExpandTemplates extends SpecialPage {
 			// does not currently provide logged-out users with CSRF protection; in that case,
 			// do not show the preview unless anonymous editing is allowed.
 			if ( $user->isAnon() && !$user->isAllowed( 'edit' ) ) {
-				$error = array( 'expand_templates_preview_fail_html_anon' );
+				$error = [ 'expand_templates_preview_fail_html_anon' ];
 			} elseif ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ), '', $request ) ) {
-				$error = array( 'expand_templates_preview_fail_html' );
+				$error = [ 'expand_templates_preview_fail_html' ];
 			} else {
 				$error = false;
 			}
@@ -280,11 +280,11 @@ class SpecialExpandTemplates extends SpecialPage {
 			}
 		}
 
-		$out->addHTML( Html::openElement( 'div', array(
+		$out->addHTML( Html::openElement( 'div', [
 			'class' => 'mw-content-' . $lang->getDir(),
 			'dir' => $lang->getDir(),
 			'lang' => $lang->getHtmlCode(),
-		) ) );
+		] ) );
 		$out->addParserOutputContent( $pout );
 		$out->addHTML( Html::closeElement( 'div' ) );
 		$out->setCategoryLinks( $pout->getCategories() );

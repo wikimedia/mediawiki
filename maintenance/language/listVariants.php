@@ -38,8 +38,8 @@ class ListVariants extends Maintenance {
 	}
 
 	public function execute() {
-		$variantLangs = array();
-		$variants = array();
+		$variantLangs = [];
+		$variants = [];
 		foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
 			$lang = Language::factory( $langCode );
 			if ( count( $lang->getVariants() ) > 1 ) {

@@ -11,12 +11,12 @@ class MessageBlobStoreTest extends PHPUnit_Framework_TestCase {
 		// MediaWiki tests defaults $wgMainWANCache to CACHE_NONE.
 		// Use hash instead so that caching is observed
 		$this->wanCache = $this->getMockBuilder( 'WANObjectCache' )
-			->setConstructorArgs( array( array(
+			->setConstructorArgs( [ [
 				'cache' => new HashBagOStuff(),
 				'pool' => 'test',
-				'relayer' => new EventRelayerNull( array() )
-			) ) )
-			->setMethods( array( 'makePurgeValue' ) )
+				'relayer' => new EventRelayerNull( [] )
+			] ] )
+			->setMethods( [ 'makePurgeValue' ] )
 			->getMock();
 
 		$this->wanCache->expects( $this->any() )
@@ -29,7 +29,7 @@ class MessageBlobStoreTest extends PHPUnit_Framework_TestCase {
 
 	protected function makeBlobStore( $methods = null, $rl = null ) {
 		$blobStore = $this->getMockBuilder( 'MessageBlobStore' )
-			->setConstructorArgs( array( $rl ) )
+			->setConstructorArgs( [ $rl ] )
 			->setMethods( $methods )
 			->getMock();
 
@@ -39,17 +39,17 @@ class MessageBlobStoreTest extends PHPUnit_Framework_TestCase {
 	}
 
 	protected function makeModule( array $messages ) {
-		$module = new ResourceLoaderTestModule( array( 'messages' => $messages ) );
+		$module = new ResourceLoaderTestModule( [ 'messages' => $messages ] );
 		$module->setName( 'test.blobstore' );
 		return $module;
 	}
 
 	public function testGetBlob() {
-		$module = $this->makeModule( array( 'foo' ) );
+		$module = $this->makeModule( [ 'foo' ] );
 		$rl = new ResourceLoader();
 		$rl->register( $module->getName(), $module );
 
-		$blobStore = $this->makeBlobStore( array( 'fetchMessage' ), $rl );
+		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		$blobStore->expects( $this->once() )
 			->method( 'fetchMessage' )
 			->will( $this->returnValue( 'Example' ) );
@@ -60,34 +60,34 @@ class MessageBlobStoreTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testGetBlobCached() {
-		$module = $this->makeModule( array( 'example' ) );
+		$module = $this->makeModule( [ 'example' ] );
 		$rl = new ResourceLoader();
 		$rl->register( $module->getName(), $module );
 
-		$blobStore = $this->makeBlobStore( array( 'fetchMessage' ), $rl );
+		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		$blobStore->expects( $this->once() )
 			->method( 'fetchMessage' )
 			->will( $this->returnValue( 'First' ) );
 
-		$module = $this->makeModule( array( 'example' ) );
+		$module = $this->makeModule( [ 'example' ] );
 		$blob = $blobStore->getBlob( $module, 'en' );
 		$this->assertEquals( '{"example":"First"}', $blob, 'Generated blob' );
 
-		$blobStore = $this->makeBlobStore( array( 'fetchMessage' ), $rl );
+		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		$blobStore->expects( $this->never() )
 			->method( 'fetchMessage' )
 			->will( $this->returnValue( 'Second' ) );
 
-		$module = $this->makeModule( array( 'example' ) );
+		$module = $this->makeModule( [ 'example' ] );
 		$blob = $blobStore->getBlob( $module, 'en' );
 		$this->assertEquals( '{"example":"First"}', $blob, 'Cache hit' );
 	}
 
 	public function testUpdateMessage() {
-		$module = $this->makeModule( array( 'example' ) );
+		$module = $this->makeModule( [ 'example' ] );
 		$rl = new ResourceLoader();
 		$rl->register( $module->getName(), $module );
-		$blobStore = $this->makeBlobStore( array( 'fetchMessage' ), $rl );
+		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		$blobStore->expects( $this->once() )
 			->method( 'fetchMessage' )
 			->will( $this->returnValue( 'First' ) );
@@ -97,10 +97,10 @@ class MessageBlobStoreTest extends PHPUnit_Framework_TestCase {
 
 		$blobStore->updateMessage( 'example' );
 
-		$module = $this->makeModule( array( 'example' ) );
+		$module = $this->makeModule( [ 'example' ] );
 		$rl = new ResourceLoader();
 		$rl->register( $module->getName(), $module );
-		$blobStore = $this->makeBlobStore( array( 'fetchMessage' ), $rl );
+		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		$blobStore->expects( $this->once() )
 			->method( 'fetchMessage' )
 			->will( $this->returnValue( 'Second' ) );
@@ -110,16 +110,16 @@ class MessageBlobStoreTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testValidation() {
-		$module = $this->makeModule( array( 'foo' ) );
+		$module = $this->makeModule( [ 'foo' ] );
 		$rl = new ResourceLoader();
 		$rl->register( $module->getName(), $module );
 
-		$blobStore = $this->makeBlobStore( array( 'fetchMessage' ), $rl );
+		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		$blobStore->expects( $this->once() )
 			->method( 'fetchMessage' )
-			->will( $this->returnValueMap( array(
-				array( 'foo', 'en', 'Hello' ),
-			) ) );
+			->will( $this->returnValueMap( [
+				[ 'foo', 'en', 'Hello' ],
+			] ) );
 
 		$blob = $blobStore->getBlob( $module, 'en' );
 		$this->assertEquals( '{"foo":"Hello"}', $blob, 'Generated blob' );
@@ -128,27 +128,27 @@ class MessageBlobStoreTest extends PHPUnit_Framework_TestCase {
 		// message 'foo' and 'bar'. While updateMessage() was not called (since no
 		// message values were changed) it should detect the change in list of
 		// message keys.
-		$module = $this->makeModule( array( 'foo', 'bar' ) );
+		$module = $this->makeModule( [ 'foo', 'bar' ] );
 		$rl = new ResourceLoader();
 		$rl->register( $module->getName(), $module );
 
-		$blobStore = $this->makeBlobStore( array( 'fetchMessage' ), $rl );
+		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		$blobStore->expects( $this->exactly( 2 ) )
 			->method( 'fetchMessage' )
-			->will( $this->returnValueMap( array(
-				array( 'foo', 'en', 'Hello' ),
-				array( 'bar', 'en', 'World' ),
-			) ) );
+			->will( $this->returnValueMap( [
+				[ 'foo', 'en', 'Hello' ],
+				[ 'bar', 'en', 'World' ],
+			] ) );
 
 		$blob = $blobStore->getBlob( $module, 'en' );
 		$this->assertEquals( '{"foo":"Hello","bar":"World"}', $blob, 'Updated blob' );
 	}
 
 	public function testClear() {
-		$module = $this->makeModule( array( 'example' ) );
+		$module = $this->makeModule( [ 'example' ] );
 		$rl = new ResourceLoader();
 		$rl->register( $module->getName(), $module );
-		$blobStore = $this->makeBlobStore( array( 'fetchMessage' ), $rl );
+		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		$blobStore->expects( $this->exactly( 2 ) )
 			->method( 'fetchMessage' )
 			->will( $this->onConsecutiveCalls( 'First', 'Second' ) );

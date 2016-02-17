@@ -75,8 +75,8 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$this->getOutput()->addModules( array( 'mediawiki.special.edittags',
-			'mediawiki.special.edittags.styles' ) );
+		$this->getOutput()->addModules( [ 'mediawiki.special.edittags',
+			'mediawiki.special.edittags.styles' ] );
 
 		$this->submitClicked = $request->wasPosted() && $request->getBool( 'wpSubmit' );
 
@@ -87,7 +87,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$this->ids = explode( ',', $ids );
 		} else {
 			// Array input
-			$this->ids = array_keys( $request->getArray( 'ids', array() ) );
+			$this->ids = array_keys( $request->getArray( 'ids', [] ) );
 		}
 		$this->ids = array_unique( array_filter( $this->ids ) );
 
@@ -145,7 +145,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			'tag',
 			$this->targetObj,
 			'', /* user */
-			array( 'lim' => 25, 'conds' => array(), 'useMaster' => $this->wasSaved )
+			[ 'lim' => 25, 'conds' => [], 'useMaster' => $this->wasSaved ]
 		);
 	}
 
@@ -158,23 +158,23 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			// Also set header tabs to be for the target.
 			$this->getSkin()->setRelevantTitle( $this->targetObj );
 
-			$links = array();
+			$links = [];
 			$links[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Log' ),
 				$this->msg( 'viewpagelogs' )->escaped(),
-				array(),
-				array(
+				[],
+				[
 					'page' => $this->targetObj->getPrefixedText(),
 					'hide_tag_log' => '0',
-				)
+				]
 			);
 			if ( !$this->targetObj->isSpecialPage() ) {
 				// Give a link to the page history
 				$links[] = Linker::linkKnown(
 					$this->targetObj,
 					$this->msg( 'pagehist' )->escaped(),
-					array(),
-					array( 'action' => 'history' )
+					[],
+					[ 'action' => 'history' ]
 				);
 			}
 			// Link to Special:Tags
@@ -209,11 +209,11 @@ class SpecialEditTags extends UnlistedSpecialPage {
 
 		$out = $this->getOutput();
 		// Messages: tags-edit-revision-selected, tags-edit-logentry-selected
-		$out->wrapWikiMsg( "<strong>$1</strong>", array(
+		$out->wrapWikiMsg( "<strong>$1</strong>", [
 			"tags-edit-{$this->typeName}-selected",
 			$this->getLanguage()->formatNum( count( $this->ids ) ),
 			$this->targetObj->getPrefixedText()
-		) );
+		] );
 
 		$this->addHelpLink( 'Help:Tags' );
 		$out->addHTML( "<ul>" );
@@ -239,9 +239,9 @@ class SpecialEditTags extends UnlistedSpecialPage {
 
 		// Show form if the user can submit
 		if ( $this->isAllowed ) {
-			$form = Xml::openElement( 'form', array( 'method' => 'post',
-					'action' => $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) ),
-					'id' => 'mw-revdel-form-revisions' ) ) .
+			$form = Xml::openElement( 'form', [ 'method' => 'post',
+					'action' => $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] ),
+					'id' => 'mw-revdel-form-revisions' ] ) .
 				Xml::fieldset( $this->msg( "tags-edit-{$this->typeName}-legend",
 					count( $this->ids ) )->text() ) .
 				$this->buildCheckBoxes() .
@@ -255,14 +255,14 @@ class SpecialEditTags extends UnlistedSpecialPage {
 							'wpReason',
 							60,
 							$this->reason,
-							array( 'id' => 'wpReason', 'maxlength' => 100 )
+							[ 'id' => 'wpReason', 'maxlength' => 100 ]
 						) .
 					'</td>' .
 				"</tr><tr>\n" .
 					'<td></td>' .
 					'<td class="mw-submit">' .
 						Xml::submitButton( $this->msg( "tags-edit-{$this->typeName}-submit",
-							$numRevisions )->text(), array( 'name' => 'wpSubmit' ) ) .
+							$numRevisions )->text(), [ 'name' => 'wpSubmit' ] ) .
 					'</td>' .
 				"</tr>\n" .
 				Xml::closeElement( 'table' ) .
@@ -284,14 +284,14 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	protected function buildCheckBoxes() {
 		// If there is just one item, provide the user with a multi-select field
 		$list = $this->getList();
-		$tags = array();
+		$tags = [];
 		if ( $list->length() == 1 ) {
 			$list->reset();
 			$tags = $list->current()->getTags();
 			if ( $tags ) {
 				$tags = explode( ',', $tags );
 			} else {
-				$tags = array();
+				$tags = [];
 			}
 
 			$html = '<table id="mw-edittags-tags-selector">';
@@ -320,7 +320,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$tags = array_unique( $tags );
 
 			$html = '<table id="mw-edittags-tags-selector-multi"><tr><td>';
-			$tagSelect = $this->getTagSelect( array(), $this->msg( 'tags-edit-add' )->plain() );
+			$tagSelect = $this->getTagSelect( [], $this->msg( 'tags-edit-add' )->plain() );
 			$html .= '<p>' . $tagSelect[0] . '</p>' . $tagSelect[1] . '</td><td>';
 			$html .= Xml::element( 'p', null, $this->msg( 'tags-edit-remove' )->plain() );
 			$html .= Xml::checkLabel( $this->msg( 'tags-edit-remove-all-tags' )->plain(),
@@ -328,10 +328,10 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$i = 0; // used for generating checkbox IDs only
 			foreach ( $tags as $tag ) {
 				$html .= Xml::element( 'br' ) . "\n" . Xml::checkLabel( $tag,
-					'wpTagsToRemove[]', 'mw-edittags-remove-' . $i++, false, array(
+					'wpTagsToRemove[]', 'mw-edittags-remove-' . $i++, false, [
 						'value' => $tag,
 						'class' => 'mw-edittags-remove-checkbox',
-					) );
+					] );
 			}
 		}
 
@@ -356,7 +356,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	 * index 1
 	 */
 	protected function getTagSelect( $selectedTags, $label ) {
-		$result = array();
+		$result = [];
 		$result[0] = Xml::label( $label, 'mw-edittags-tag-list' );
 
 		$select = new XmlSelect( 'wpTagList[]', 'mw-edittags-tag-list', $selectedTags );
@@ -390,11 +390,11 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		// Evaluate incoming request data
 		$tagList = $request->getArray( 'wpTagList' );
 		if ( is_null( $tagList ) ) {
-			$tagList = array();
+			$tagList = [];
 		}
 		$existingTags = $request->getVal( 'wpExistingTags' );
 		if ( is_null( $existingTags ) || $existingTags === '' ) {
-			$existingTags = array();
+			$existingTags = [];
 		} else {
 			$existingTags = explode( ',', $existingTags );
 		}

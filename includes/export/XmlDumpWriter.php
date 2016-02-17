@@ -40,7 +40,7 @@ class XmlDumpWriter {
 	function openStream() {
 		global $wgLanguageCode;
 		$ver = WikiExporter::schemaVersion();
-		return Xml::element( 'mediawiki', array(
+		return Xml::element( 'mediawiki', [
 			'xmlns'              => "http://www.mediawiki.org/xml/export-$ver/",
 			'xmlns:xsi'          => "http://www.w3.org/2001/XMLSchema-instance",
 			/*
@@ -56,7 +56,7 @@ class XmlDumpWriter {
 			'xsi:schemaLocation' => "http://www.mediawiki.org/xml/export-$ver/ " .
 				"http://www.mediawiki.org/xml/export-$ver.xsd",
 			'version'            => $ver,
-			'xml:lang'           => $wgLanguageCode ),
+			'xml:lang'           => $wgLanguageCode ],
 			null ) .
 			"\n" .
 			$this->siteInfo();
@@ -66,13 +66,13 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	function siteInfo() {
-		$info = array(
+		$info = [
 			$this->sitename(),
 			$this->dbname(),
 			$this->homelink(),
 			$this->generator(),
 			$this->caseSetting(),
-			$this->namespaces() );
+			$this->namespaces() ];
 		return "  <siteinfo>\n    " .
 			implode( "\n    ", $info ) .
 			"\n  </siteinfo>\n";
@@ -83,7 +83,7 @@ class XmlDumpWriter {
 	 */
 	function sitename() {
 		global $wgSitename;
-		return Xml::element( 'sitename', array(), $wgSitename );
+		return Xml::element( 'sitename', [], $wgSitename );
 	}
 
 	/**
@@ -91,7 +91,7 @@ class XmlDumpWriter {
 	 */
 	function dbname() {
 		global $wgDBname;
-		return Xml::element( 'dbname', array(), $wgDBname );
+		return Xml::element( 'dbname', [], $wgDBname );
 	}
 
 	/**
@@ -99,14 +99,14 @@ class XmlDumpWriter {
 	 */
 	function generator() {
 		global $wgVersion;
-		return Xml::element( 'generator', array(), "MediaWiki $wgVersion" );
+		return Xml::element( 'generator', [], "MediaWiki $wgVersion" );
 	}
 
 	/**
 	 * @return string
 	 */
 	function homelink() {
-		return Xml::element( 'base', array(), Title::newMainPage()->getCanonicalURL() );
+		return Xml::element( 'base', [], Title::newMainPage()->getCanonicalURL() );
 	}
 
 	/**
@@ -116,7 +116,7 @@ class XmlDumpWriter {
 		global $wgCapitalLinks;
 		// "case-insensitive" option is reserved for future
 		$sensitivity = $wgCapitalLinks ? 'first-letter' : 'case-sensitive';
-		return Xml::element( 'case', array(), $sensitivity );
+		return Xml::element( 'case', [], $sensitivity );
 	}
 
 	/**
@@ -128,10 +128,10 @@ class XmlDumpWriter {
 		foreach ( $wgContLang->getFormattedNamespaces() as $ns => $title ) {
 			$spaces .= '      ' .
 				Xml::element( 'namespace',
-					array(
+					[
 						'key' => $ns,
 						'case' => MWNamespace::isCapitalized( $ns ) ? 'first-letter' : 'case-sensitive',
-					), $title ) . "\n";
+					], $title ) . "\n";
 		}
 		$spaces .= "    </namespaces>";
 		return $spaces;
@@ -157,25 +157,25 @@ class XmlDumpWriter {
 	public function openPage( $row ) {
 		$out = "  <page>\n";
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-		$out .= '    ' . Xml::elementClean( 'title', array(), self::canonicalTitle( $title ) ) . "\n";
-		$out .= '    ' . Xml::element( 'ns', array(), strval( $row->page_namespace ) ) . "\n";
-		$out .= '    ' . Xml::element( 'id', array(), strval( $row->page_id ) ) . "\n";
+		$out .= '    ' . Xml::elementClean( 'title', [], self::canonicalTitle( $title ) ) . "\n";
+		$out .= '    ' . Xml::element( 'ns', [], strval( $row->page_namespace ) ) . "\n";
+		$out .= '    ' . Xml::element( 'id', [], strval( $row->page_id ) ) . "\n";
 		if ( $row->page_is_redirect ) {
 			$page = WikiPage::factory( $title );
 			$redirect = $page->getRedirectTarget();
 			if ( $redirect instanceof Title && $redirect->isValidRedirectTarget() ) {
 				$out .= '    ';
-				$out .= Xml::element( 'redirect', array( 'title' => self::canonicalTitle( $redirect ) ) );
+				$out .= Xml::element( 'redirect', [ 'title' => self::canonicalTitle( $redirect ) ] );
 				$out .= "\n";
 			}
 		}
 
 		if ( $row->page_restrictions != '' ) {
-			$out .= '    ' . Xml::element( 'restrictions', array(),
+			$out .= '    ' . Xml::element( 'restrictions', [],
 				strval( $row->page_restrictions ) ) . "\n";
 		}
 
-		Hooks::run( 'XmlDumpWriterOpenPage', array( $this, &$out, $row, $title ) );
+		Hooks::run( 'XmlDumpWriterOpenPage', [ $this, &$out, $row, $title ] );
 
 		return $out;
 	}
@@ -209,7 +209,7 @@ class XmlDumpWriter {
 		$out .= $this->writeTimestamp( $row->rev_timestamp );
 
 		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_USER ) ) {
-			$out .= "      " . Xml::element( 'contributor', array( 'deleted' => 'deleted' ) ) . "\n";
+			$out .= "      " . Xml::element( 'contributor', [ 'deleted' => 'deleted' ] ) . "\n";
 		} else {
 			$out .= $this->writeContributor( $row->rev_user, $row->rev_user_text );
 		}
@@ -218,9 +218,9 @@ class XmlDumpWriter {
 			$out .= "      <minor/>\n";
 		}
 		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_COMMENT ) ) {
-			$out .= "      " . Xml::element( 'comment', array( 'deleted' => 'deleted' ) ) . "\n";
+			$out .= "      " . Xml::element( 'comment', [ 'deleted' => 'deleted' ] ) . "\n";
 		} elseif ( $row->rev_comment != '' ) {
-			$out .= "      " . Xml::elementClean( 'comment', array(), strval( $row->rev_comment ) ) . "\n";
+			$out .= "      " . Xml::elementClean( 'comment', [], strval( $row->rev_comment ) ) . "\n";
 		}
 
 		if ( isset( $row->rev_content_model ) && !is_null( $row->rev_content_model ) ) {
@@ -245,18 +245,18 @@ class XmlDumpWriter {
 
 		$text = '';
 		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_TEXT ) ) {
-			$out .= "      " . Xml::element( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
+			$out .= "      " . Xml::element( 'text', [ 'deleted' => 'deleted' ] ) . "\n";
 		} elseif ( isset( $row->old_text ) ) {
 			// Raw text from the database may have invalid chars
 			$text = strval( Revision::getRevisionText( $row ) );
 			$text = $content_handler->exportTransform( $text, $content_format );
 			$out .= "      " . Xml::elementClean( 'text',
-				array( 'xml:space' => 'preserve', 'bytes' => intval( $row->rev_len ) ),
+				[ 'xml:space' => 'preserve', 'bytes' => intval( $row->rev_len ) ],
 				strval( $text ) ) . "\n";
 		} else {
 			// Stub output
 			$out .= "      " . Xml::element( 'text',
-				array( 'id' => $row->rev_text_id, 'bytes' => intval( $row->rev_len ) ),
+				[ 'id' => $row->rev_text_id, 'bytes' => intval( $row->rev_len ) ],
 				"" ) . "\n";
 		}
 
@@ -269,7 +269,7 @@ class XmlDumpWriter {
 			$out .= "      <sha1/>\n";
 		}
 
-		Hooks::run( 'XmlDumpWriterWriteRevision', array( &$this, &$out, $row, $text ) );
+		Hooks::run( 'XmlDumpWriterWriteRevision', [ &$this, &$out, $row, $text ] );
 
 		$out .= "    </revision>\n";
 
@@ -292,13 +292,13 @@ class XmlDumpWriter {
 		$out .= $this->writeTimestamp( $row->log_timestamp, "    " );
 
 		if ( $row->log_deleted & LogPage::DELETED_USER ) {
-			$out .= "    " . Xml::element( 'contributor', array( 'deleted' => 'deleted' ) ) . "\n";
+			$out .= "    " . Xml::element( 'contributor', [ 'deleted' => 'deleted' ] ) . "\n";
 		} else {
 			$out .= $this->writeContributor( $row->log_user, $row->user_name, "    " );
 		}
 
 		if ( $row->log_deleted & LogPage::DELETED_COMMENT ) {
-			$out .= "    " . Xml::element( 'comment', array( 'deleted' => 'deleted' ) ) . "\n";
+			$out .= "    " . Xml::element( 'comment', [ 'deleted' => 'deleted' ] ) . "\n";
 		} elseif ( $row->log_comment != '' ) {
 			$out .= "    " . Xml::elementClean( 'comment', null, strval( $row->log_comment ) ) . "\n";
 		}
@@ -307,12 +307,12 @@ class XmlDumpWriter {
 		$out .= "    " . Xml::element( 'action', null, strval( $row->log_action ) ) . "\n";
 
 		if ( $row->log_deleted & LogPage::DELETED_ACTION ) {
-			$out .= "    " . Xml::element( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
+			$out .= "    " . Xml::element( 'text', [ 'deleted' => 'deleted' ] ) . "\n";
 		} else {
 			$title = Title::makeTitle( $row->log_namespace, $row->log_title );
 			$out .= "    " . Xml::elementClean( 'logtitle', null, self::canonicalTitle( $title ) ) . "\n";
 			$out .= "    " . Xml::elementClean( 'params',
-				array( 'xml:space' => 'preserve' ),
+				[ 'xml:space' => 'preserve' ],
 				strval( $row->log_params ) ) . "\n";
 		}
 
@@ -389,13 +389,13 @@ class XmlDumpWriter {
 			# @todo Too bad this loads the contents into memory (script might swap)
 			$contents = '      <contents encoding="base64">' .
 				chunk_split( base64_encode(
-					$be->getFileContents( array( 'src' => $file->getPath() ) ) ) ) .
+					$be->getFileContents( [ 'src' => $file->getPath() ] ) ) ) .
 				"      </contents>\n";
 		} else {
 			$contents = '';
 		}
 		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
-			$comment = Xml::element( 'comment', array( 'deleted' => 'deleted' ) );
+			$comment = Xml::element( 'comment', [ 'deleted' => 'deleted' ] );
 		} else {
 			$comment = Xml::elementClean( 'comment', null, $file->getDescription() );
 		}

@@ -12,7 +12,7 @@ use MediaWikiTestCase;
 class PHPSessionHandlerTest extends MediaWikiTestCase {
 
 	private function getResetter( &$rProp = null ) {
-		$reset = array();
+		$reset = [];
 
 		// Ignore "headers already sent" warnings during this test
 		set_error_handler( function ( $errno, $errstr ) use ( &$warnings ) {
@@ -31,8 +31,8 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 			$oldStore = $old->store;
 			$oldLogger = $old->logger;
 			$reset[] = new \ScopedCallback(
-				array( 'MediaWiki\\Session\\PHPSessionHandler', 'install' ),
-				array( $oldManager, $oldStore, $oldLogger )
+				[ 'MediaWiki\\Session\\PHPSessionHandler', 'install' ],
+				[ $oldManager, $oldStore, $oldLogger ]
 			);
 		}
 
@@ -49,7 +49,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 
 		$rProp = new \ReflectionProperty( 'MediaWiki\\Session\\PHPSessionHandler', 'instance' );
 		$rProp->setAccessible( true );
-		$reset = new \ScopedCallback( array( $rProp, 'setValue' ), array( $rProp->getValue() ) );
+		$reset = new \ScopedCallback( [ $rProp, 'setValue' ], [ $rProp->getValue() ] );
 		$rProp->setValue( $handler );
 
 		$handler->setEnableFlags( 'enable' );
@@ -80,10 +80,10 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 
 		$store = new TestBagOStuff();
 		$logger = new \TestLogger();
-		$manager = new SessionManager( array(
+		$manager = new SessionManager( [
 			'store' => $store,
 			'logger' => $logger,
-		) );
+		] );
 
 		$this->assertFalse( PHPSessionHandler::isInstalled() );
 		PHPSessionHandler::install( $manager );
@@ -107,25 +107,25 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		$this->hideDeprecated( '$_SESSION' );
 		$reset[] = $this->getResetter( $rProp );
 
-		$this->setMwGlobals( array(
-			'wgSessionProviders' => array( array( 'class' => 'DummySessionProvider' ) ),
+		$this->setMwGlobals( [
+			'wgSessionProviders' => [ [ 'class' => 'DummySessionProvider' ] ],
 			'wgObjectCacheSessionExpiry' => 2,
-		) );
+		] );
 
 		$store = new TestBagOStuff();
 		$logger = new \TestLogger( true, function ( $m ) {
 			// Discard all log events starting with expected prefix
 			return preg_match( '/^SessionBackend "\{session\}" /', $m ) ? null : $m;
 		} );
-		$manager = new SessionManager( array(
+		$manager = new SessionManager( [
 			'store' => $store,
 			'logger' => $logger,
-		) );
+		] );
 		PHPSessionHandler::install( $manager );
 		$wrap = \TestingAccessWrapper::newFromObject( $rProp->getValue() );
 		$reset[] = new \ScopedCallback(
-			array( $wrap, 'setEnableFlags' ),
-			array( $wrap->enable ? $wrap->warn ? 'warn' : 'enable' : 'disable' )
+			[ $wrap, 'setEnableFlags' ],
+			[ $wrap->enable ? $wrap->warn ? 'warn' : 'enable' : 'disable' ]
 		);
 		$wrap->setEnableFlags( 'warn' );
 
@@ -146,17 +146,17 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 
 		session_id( $sessionA );
 		session_start();
-		$this->assertSame( array(), $_SESSION );
+		$this->assertSame( [], $_SESSION );
 		$this->assertSame( $sessionA, session_id() );
 
 		// Set some data in the session so we can see if it works.
 		$rand = mt_rand();
 		$_SESSION['AuthenticationSessionTest'] = $rand;
-		$expect = array( 'AuthenticationSessionTest' => $rand );
+		$expect = [ 'AuthenticationSessionTest' => $rand ];
 		session_write_close();
-		$this->assertSame( array(
-			array( LogLevel::WARNING, 'Something wrote to $_SESSION!' ),
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::WARNING, 'Something wrote to $_SESSION!' ],
+		], $logger->getBuffer() );
 
 		// Screw up $_SESSION so we can tell the difference between "this
 		// worked" and "this did nothing"
@@ -179,7 +179,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		ini_set( 'session.gc_probability', 1 );
 		sleep( 3 );
 		session_start();
-		$this->assertSame( array(), $_SESSION );
+		$this->assertSame( [], $_SESSION );
 
 		// Re-fill the session, then test that session_destroy() works.
 		$_SESSION['AuthenticationSessionTest'] = $rand;
@@ -189,7 +189,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		session_destroy();
 		session_id( $sessionA );
 		session_start();
-		$this->assertSame( array(), $_SESSION );
+		$this->assertSame( [], $_SESSION );
 		session_write_close();
 
 		// Test that our session handler won't clone someone else's session
@@ -201,23 +201,23 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 
 		session_id( $sessionC );
 		session_start();
-		$this->assertSame( array(), $_SESSION );
+		$this->assertSame( [], $_SESSION );
 		$_SESSION['id'] = 'C';
 		session_write_close();
 
 		session_id( $sessionB );
 		session_start();
-		$this->assertSame( array( 'id' => 'B' ), $_SESSION );
+		$this->assertSame( [ 'id' => 'B' ], $_SESSION );
 		session_write_close();
 
 		session_id( $sessionC );
 		session_start();
-		$this->assertSame( array( 'id' => 'C' ), $_SESSION );
+		$this->assertSame( [ 'id' => 'C' ], $_SESSION );
 		session_destroy();
 
 		session_id( $sessionB );
 		session_start();
-		$this->assertSame( array( 'id' => 'B' ), $_SESSION );
+		$this->assertSame( [ 'id' => 'B' ], $_SESSION );
 
 		// Test merging between Session and $_SESSION
 		session_write_close();
@@ -257,7 +257,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		unset( $_SESSION['Deleted in $_SESSION, changed in Session'] );
 		session_write_close();
 
-		$this->assertEquals( array(
+		$this->assertEquals( [
 			'Added in Session' => 'Session',
 			'Added in $_SESSION' => '$_SESSION',
 			'Added in both' => 'Session',
@@ -268,7 +268,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 			'Changed in both' => 'Session',
 			'Deleted in Session, changed in $_SESSION' => '$_SESSION',
 			'Deleted in $_SESSION, changed in Session' => 'Session',
-		), iterator_to_array( $session ) );
+		], iterator_to_array( $session ) );
 
 		$session->clear();
 		$session->set( 42, 'forty-two' );
@@ -284,36 +284,36 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		unset( $_SESSION['wrong'] );
 		session_write_close();
 
-		$this->assertEquals( array(
+		$this->assertEquals( [
 			42 => 'forty-two',
 			'forty-two' => 42,
-		), iterator_to_array( $session ) );
+		], iterator_to_array( $session ) );
 
 		// Test that write doesn't break if the session is invalid
 		$session = $manager->getEmptySession();
 		$session->persist();
 		session_id( $session->getId() );
 		session_start();
-		$this->mergeMwGlobalArrayValue( 'wgHooks', array(
-			'SessionCheckInfo' => array( function ( &$reason ) {
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'SessionCheckInfo' => [ function ( &$reason ) {
 				$reason = 'Testing';
 				return false;
-			} ),
-		) );
+			} ],
+		] );
 		$this->assertNull( $manager->getSessionById( $session->getId(), true ), 'sanity check' );
 		session_write_close();
-		$this->mergeMwGlobalArrayValue( 'wgHooks', array(
-			'SessionCheckInfo' => array(),
-		) );
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'SessionCheckInfo' => [],
+		] );
 		$this->assertNotNull( $manager->getSessionById( $session->getId(), true ), 'sanity check' );
 	}
 
 	public static function provideHandlers() {
-		return array(
-			array( 'php' ),
-			array( 'php_binary' ),
-			array( 'php_serialize' ),
-		);
+		return [
+			[ 'php' ],
+			[ 'php_binary' ],
+			[ 'php_serialize' ],
+		];
 	}
 
 	/**
@@ -331,18 +331,18 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		\TestingAccessWrapper::newFromObject( $handler )->setEnableFlags( 'disable' );
 		$oldValue = $rProp->getValue();
 		$rProp->setValue( $handler );
-		$reset = new \ScopedCallback( array( $rProp, 'setValue' ), array( $oldValue ) );
+		$reset = new \ScopedCallback( [ $rProp, 'setValue' ], [ $oldValue ] );
 
-		call_user_func_array( array( $handler, $method ), $args );
+		call_user_func_array( [ $handler, $method ], $args );
 	}
 
 	public static function provideDisabled() {
-		return array(
-			array( 'open', array( '', '' ) ),
-			array( 'read', array( '' ) ),
-			array( 'write', array( '', '' ) ),
-			array( 'destroy', array( '' ) ),
-		);
+		return [
+			[ 'open', [ '', '' ] ],
+			[ 'read', [ '' ] ],
+			[ 'write', [ '', '' ] ],
+			[ 'destroy', [ '' ] ],
+		];
 	}
 
 	/**
@@ -357,18 +357,18 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 			->getMock();
 		\TestingAccessWrapper::newFromObject( $handler )->setEnableFlags( 'enable' );
 
-		call_user_func_array( array( $handler, $method ), $args );
+		call_user_func_array( [ $handler, $method ], $args );
 	}
 
 	public static function provideWrongInstance() {
-		return array(
-			array( 'open', array( '', '' ) ),
-			array( 'close', array() ),
-			array( 'read', array( '' ) ),
-			array( 'write', array( '', '' ) ),
-			array( 'destroy', array( '' ) ),
-			array( 'gc', array( 0 ) ),
-		);
+		return [
+			[ 'open', [ '', '' ] ],
+			[ 'close', [] ],
+			[ 'read', [ '' ] ],
+			[ 'write', [ '', '' ] ],
+			[ 'destroy', [ '' ] ],
+			[ 'gc', [ 0 ] ],
+		];
 	}
 
 }

@@ -40,8 +40,8 @@ class WebInstallerInstall extends WebInstallerPage {
 			$this->startForm();
 			$this->addHTML( "<ul>" );
 			$results = $this->parent->performInstallation(
-				array( $this, 'startStage' ),
-				array( $this, 'endStage' )
+				[ $this, 'startStage' ],
+				[ $this, 'endStage' ]
 			);
 			$this->addHTML( "</ul>" );
 			// PerformInstallation bails on a fatal, so make sure the last item

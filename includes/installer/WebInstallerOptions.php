@@ -42,12 +42,12 @@ class WebInstallerOptions extends WebInstallerPage {
 			// getRadioSet() builds a set of labeled radio buttons.
 			// For grep: The following messages are used as the item labels:
 			// config-profile-wiki, config-profile-no-anon, config-profile-fishbowl, config-profile-private
-			$this->parent->getRadioSet( array(
+			$this->parent->getRadioSet( [
 				'var' => '_RightsProfile',
 				'label' => 'config-profile',
 				'itemLabelPrefix' => 'config-profile-',
 				'values' => array_keys( $this->parent->rightsProfiles ),
-			) ) .
+			] ) .
 			$this->parent->getInfoBox( wfMessage( 'config-profile-help' )->plain() ) .
 
 			# Licensing
@@ -56,49 +56,49 @@ class WebInstallerOptions extends WebInstallerPage {
 			// config-license-cc-by, config-license-cc-by-sa, config-license-cc-by-nc-sa,
 			// config-license-cc-0, config-license-pd, config-license-gfdl,
 			// config-license-none, config-license-cc-choose
-			$this->parent->getRadioSet( array(
+			$this->parent->getRadioSet( [
 				'var' => '_LicenseCode',
 				'label' => 'config-license',
 				'itemLabelPrefix' => 'config-license-',
 				'values' => array_keys( $this->parent->licenses ),
-				'commonAttribs' => array( 'class' => 'licenseRadio' ),
-			) ) .
+				'commonAttribs' => [ 'class' => 'licenseRadio' ],
+			] ) .
 			$this->getCCChooser() .
 			$this->parent->getHelpBox( 'config-license-help' ) .
 
 			# E-mail
 			$this->getFieldSetStart( 'config-email-settings' ) .
-			$this->parent->getCheckBox( array(
+			$this->parent->getCheckBox( [
 				'var' => 'wgEnableEmail',
 				'label' => 'config-enable-email',
-				'attribs' => array( 'class' => 'showHideRadio', 'rel' => 'emailwrapper' ),
-			) ) .
+				'attribs' => [ 'class' => 'showHideRadio', 'rel' => 'emailwrapper' ],
+			] ) .
 			$this->parent->getHelpBox( 'config-enable-email-help' ) .
 			"<div id=\"emailwrapper\" style=\"$emailwrapperStyle\">" .
-			$this->parent->getTextBox( array(
+			$this->parent->getTextBox( [
 				'var' => 'wgPasswordSender',
 				'label' => 'config-email-sender'
-			) ) .
+			] ) .
 			$this->parent->getHelpBox( 'config-email-sender-help' ) .
-			$this->parent->getCheckBox( array(
+			$this->parent->getCheckBox( [
 				'var' => 'wgEnableUserEmail',
 				'label' => 'config-email-user',
-			) ) .
+			] ) .
 			$this->parent->getHelpBox( 'config-email-user-help' ) .
-			$this->parent->getCheckBox( array(
+			$this->parent->getCheckBox( [
 				'var' => 'wgEnotifUserTalk',
 				'label' => 'config-email-usertalk',
-			) ) .
+			] ) .
 			$this->parent->getHelpBox( 'config-email-usertalk-help' ) .
-			$this->parent->getCheckBox( array(
+			$this->parent->getCheckBox( [
 				'var' => 'wgEnotifWatchlist',
 				'label' => 'config-email-watchlist',
-			) ) .
+			] ) .
 			$this->parent->getHelpBox( 'config-email-watchlist-help' ) .
-			$this->parent->getCheckBox( array(
+			$this->parent->getCheckBox( [
 				'var' => 'wgEmailAuthentication',
 				'label' => 'config-email-auth',
-			) ) .
+			] ) .
 			$this->parent->getHelpBox( 'config-email-auth-help' ) .
 			"</div>" .
 			$this->getFieldSetEnd()
@@ -111,21 +111,21 @@ class WebInstallerOptions extends WebInstallerPage {
 		$chosenSkinName = $this->getVar( 'wgDefaultSkin', $this->parent->getDefaultSkin( $skinNames ) );
 
 		if ( $skins ) {
-			$radioButtons = $this->parent->getRadioElements( array(
+			$radioButtons = $this->parent->getRadioElements( [
 				'var' => 'wgDefaultSkin',
 				'itemLabels' => array_fill_keys( $skinNames, 'config-skins-use-as-default' ),
 				'values' => $skinNames,
 				'value' => $chosenSkinName,
-			) );
+			] );
 
 			foreach ( $skins as $skin ) {
 				$skinHtml .=
 					'<div class="config-skins-item">' .
-					$this->parent->getCheckBox( array(
+					$this->parent->getCheckBox( [
 						'var' => "skin-$skin",
 						'rawtext' => $skin,
 						'value' => $this->getVar( "skin-$skin", true ), // all found skins enabled by default
-					) ) .
+					] ) .
 					'<div class="config-skins-use-as-default">' . $radioButtons[strtolower( $skin )] . '</div>' .
 					'</div>';
 			}
@@ -145,10 +145,10 @@ class WebInstallerOptions extends WebInstallerPage {
 			$extHtml = $this->getFieldSetStart( 'config-extensions' );
 
 			foreach ( $extensions as $ext ) {
-				$extHtml .= $this->parent->getCheckBox( array(
+				$extHtml .= $this->parent->getCheckBox( [
 					'var' => "ext-$ext",
 					'rawtext' => $ext,
-				) );
+				] );
 			}
 
 			$extHtml .= $this->parent->getHelpBox( 'config-extensions-help' ) .
@@ -168,37 +168,37 @@ class WebInstallerOptions extends WebInstallerPage {
 		$this->addHTML(
 			# Uploading
 			$this->getFieldSetStart( 'config-upload-settings' ) .
-			$this->parent->getCheckBox( array(
+			$this->parent->getCheckBox( [
 				'var' => 'wgEnableUploads',
 				'label' => 'config-upload-enable',
-				'attribs' => array( 'class' => 'showHideRadio', 'rel' => 'uploadwrapper' ),
+				'attribs' => [ 'class' => 'showHideRadio', 'rel' => 'uploadwrapper' ],
 				'help' => $this->parent->getHelpBox( 'config-upload-help' )
-			) ) .
+			] ) .
 			'<div id="uploadwrapper" style="' . $uploadwrapperStyle . '">' .
-			$this->parent->getTextBox( array(
+			$this->parent->getTextBox( [
 				'var' => 'wgDeletedDirectory',
 				'label' => 'config-upload-deleted',
-				'attribs' => array( 'dir' => 'ltr' ),
+				'attribs' => [ 'dir' => 'ltr' ],
 				'help' => $this->parent->getHelpBox( 'config-upload-deleted-help' )
-			) ) .
+			] ) .
 			'</div>' .
-			$this->parent->getTextBox( array(
+			$this->parent->getTextBox( [
 				'var' => 'wgLogo',
 				'label' => 'config-logo',
-				'attribs' => array( 'dir' => 'ltr' ),
+				'attribs' => [ 'dir' => 'ltr' ],
 				'help' => $this->parent->getHelpBox( 'config-logo-help' )
-			) )
+			] )
 		);
 		$this->addHTML(
-			$this->parent->getCheckBox( array(
+			$this->parent->getCheckBox( [
 				'var' => 'wgUseInstantCommons',
 				'label' => 'config-instantcommons',
 				'help' => $this->parent->getHelpBox( 'config-instantcommons-help' )
-			) ) .
+			] ) .
 			$this->getFieldSetEnd()
 		);
 
-		$caches = array( 'none' );
+		$caches = [ 'none' ];
 		$cachevalDefault = 'none';
 
 		if ( count( $this->getVar( '_Caches' ) ) ) {
@@ -224,20 +224,20 @@ class WebInstallerOptions extends WebInstallerPage {
 			// getRadioSet() builds a set of labeled radio buttons.
 			// For grep: The following messages are used as the item labels:
 			// config-cache-none, config-cache-accel, config-cache-memcached
-			$this->parent->getRadioSet( array(
+			$this->parent->getRadioSet( [
 				'var' => '_MainCacheType',
 				'label' => 'config-cache-options',
 				'itemLabelPrefix' => 'config-cache-',
 				'values' => $caches,
 				'value' => $cacheval,
-			) ) .
+			] ) .
 			$this->parent->getHelpBox( 'config-cache-help' ) .
 			"<div id=\"config-memcachewrapper\" style=\"$hidden\">" .
-			$this->parent->getTextArea( array(
+			$this->parent->getTextArea( [
 				'var' => '_MemCachedServers',
 				'label' => 'config-memcached-servers',
 				'help' => $this->parent->getHelpBox( 'config-memcached-help' )
-			) ) .
+			] ) .
 			'</div>' .
 			$this->getFieldSetEnd()
 		);
@@ -251,23 +251,23 @@ class WebInstallerOptions extends WebInstallerPage {
 	 */
 	public function getCCPartnerUrl() {
 		$server = $this->getVar( 'wgServer' );
-		$exitUrl = $server . $this->parent->getUrl( array(
+		$exitUrl = $server . $this->parent->getUrl( [
 			'page' => 'Options',
 			'SubmitCC' => 'indeed',
 			'config__LicenseCode' => 'cc',
 			'config_wgRightsUrl' => '[license_url]',
 			'config_wgRightsText' => '[license_name]',
 			'config_wgRightsIcon' => '[license_button]',
-		) );
+		] );
 		$styleUrl = $server . dirname( dirname( $this->parent->getUrl() ) ) .
 			'/mw-config/config-cc.css';
 		$iframeUrl = '//creativecommons.org/license/?' .
-			wfArrayToCgi( array(
+			wfArrayToCgi( [
 				'partner' => 'MediaWiki',
 				'exit_url' => $exitUrl,
 				'lang' => $this->getVar( '_UserLang' ),
 				'stylesheet' => $styleUrl,
-			) );
+			] );
 
 		return $iframeUrl;
 	}
@@ -276,16 +276,16 @@ class WebInstallerOptions extends WebInstallerPage {
 	 * @return string
 	 */
 	public function getCCChooser() {
-		$iframeAttribs = array(
+		$iframeAttribs = [
 			'class' => 'config-cc-iframe',
 			'name' => 'config-cc-iframe',
 			'id' => 'config-cc-iframe',
 			'frameborder' => 0,
 			'width' => '100%',
 			'height' => '100%',
-		);
+		];
 		if ( $this->getVar( '_CCDone' ) ) {
-			$iframeAttribs['src'] = $this->parent->getUrl( array( 'ShowCC' => 'yes' ) );
+			$iframeAttribs['src'] = $this->parent->getUrl( [ 'ShowCC' => 'yes' ] );
 		} else {
 			$iframeAttribs['src'] = $this->getCCPartnerUrl();
 		}
@@ -306,16 +306,16 @@ class WebInstallerOptions extends WebInstallerPage {
 		$reduceJs = str_replace( '$1', '70px', $js );
 
 		return '<p>' .
-			Html::element( 'img', array( 'src' => $this->getVar( 'wgRightsIcon' ) ) ) .
+			Html::element( 'img', [ 'src' => $this->getVar( 'wgRightsIcon' ) ] ) .
 			'&#160;&#160;' .
 			htmlspecialchars( $this->getVar( 'wgRightsText' ) ) .
 			"</p>\n" .
 			"<p style=\"text-align: center;\">" .
 			Html::element( 'a',
-				array(
+				[
 					'href' => $this->getCCPartnerUrl(),
 					'onclick' => $expandJs,
-				),
+				],
 				wfMessage( 'config-cc-again' )->text()
 			) .
 			"</p>\n" .
@@ -328,7 +328,7 @@ class WebInstallerOptions extends WebInstallerPage {
 
 	public function submitCC() {
 		$newValues = $this->parent->setVarsFromRequest(
-			array( 'wgRightsUrl', 'wgRightsText', 'wgRightsIcon' ) );
+			[ 'wgRightsUrl', 'wgRightsText', 'wgRightsIcon' ] );
 		if ( count( $newValues ) != 3 ) {
 			$this->parent->showError( 'config-cc-error' );
 
@@ -360,11 +360,11 @@ class WebInstallerOptions extends WebInstallerPage {
 	 * @return bool
 	 */
 	public function submit() {
-		$this->parent->setVarsFromRequest( array( '_RightsProfile', '_LicenseCode',
+		$this->parent->setVarsFromRequest( [ '_RightsProfile', '_LicenseCode',
 			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUploads', 'wgLogo',
 			'wgEnableUserEmail', 'wgEnotifUserTalk', 'wgEnotifWatchlist',
 			'wgEmailAuthentication', '_MainCacheType', '_MemCachedServers',
-			'wgUseInstantCommons', 'wgDefaultSkin' ) );
+			'wgUseInstantCommons', 'wgDefaultSkin' ] );
 
 		$retVal = true;
 
@@ -399,9 +399,9 @@ class WebInstallerOptions extends WebInstallerPage {
 		}
 
 		$skinsAvailable = $this->parent->findExtensions( 'skins' );
-		$skinsToInstall = array();
+		$skinsToInstall = [];
 		foreach ( $skinsAvailable as $skin ) {
-			$this->parent->setVarsFromRequest( array( "skin-$skin" ) );
+			$this->parent->setVarsFromRequest( [ "skin-$skin" ] );
 			if ( $this->getVar( "skin-$skin" ) ) {
 				$skinsToInstall[] = $skin;
 			}
@@ -420,9 +420,9 @@ class WebInstallerOptions extends WebInstallerPage {
 		}
 
 		$extsAvailable = $this->parent->findExtensions();
-		$extsToInstall = array();
+		$extsToInstall = [];
 		foreach ( $extsAvailable as $ext ) {
-			$this->parent->setVarsFromRequest( array( "ext-$ext" ) );
+			$this->parent->setVarsFromRequest( [ "ext-$ext" ] );
 			if ( $this->getVar( "ext-$ext" ) ) {
 				$extsToInstall[] = $ext;
 			}

@@ -54,7 +54,7 @@ class EditCLI extends Maintenance {
 		$noRC = $this->hasOption( 'no-rc' );
 
 		if ( $userName === false ) {
-			$wgUser = User::newSystemUser( 'Maintenance script', array( 'steal' => true ) );
+			$wgUser = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
 		} else {
 			$wgUser = User::newFromName( $userName );
 		}

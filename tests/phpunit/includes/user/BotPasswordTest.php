@@ -10,21 +10,21 @@ class BotPasswordTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgEnableBotPasswords' => true,
 			'wgBotPasswordsDatabase' => false,
 			'wgCentralIdLookupProvider' => 'BotPasswordTest OkMock',
-			'wgGrantPermissions' => array(
-				'test' => array( 'read' => true ),
-			),
+			'wgGrantPermissions' => [
+				'test' => [ 'read' => true ],
+			],
 			'wgUserrightsInterwikiDelimiter' => '@',
-		) );
+		] );
 
 		$mock1 = $this->getMockForAbstractClass( 'CentralIdLookup' );
 		$mock1->expects( $this->any() )->method( 'isAttached' )
 			->will( $this->returnValue( true ) );
 		$mock1->expects( $this->any() )->method( 'lookupUserNames' )
-			->will( $this->returnValue( array( 'UTSysop' => 42, 'UTDummy' => 43, 'UTInvalid' => 0 ) ) );
+			->will( $this->returnValue( [ 'UTSysop' => 42, 'UTDummy' => 43, 'UTInvalid' => 0 ] ) );
 		$mock1->expects( $this->never() )->method( 'lookupCentralIds' );
 
 		$mock2 = $this->getMockForAbstractClass( 'CentralIdLookup' );
@@ -34,14 +34,14 @@ class BotPasswordTest extends MediaWikiTestCase {
 			->will( $this->returnArgument( 0 ) );
 		$mock2->expects( $this->never() )->method( 'lookupCentralIds' );
 
-		$this->mergeMwGlobalArrayValue( 'wgCentralIdLookupProviders', array(
-			'BotPasswordTest OkMock' => array( 'factory' => function () use ( $mock1 ) {
+		$this->mergeMwGlobalArrayValue( 'wgCentralIdLookupProviders', [
+			'BotPasswordTest OkMock' => [ 'factory' => function () use ( $mock1 ) {
 				return $mock1;
-			} ),
-			'BotPasswordTest FailMock' => array( 'factory' => function () use ( $mock2 ) {
+			} ],
+			'BotPasswordTest FailMock' => [ 'factory' => function () use ( $mock2 ) {
 				return $mock2;
-			} ),
-		) );
+			} ],
+		] );
 
 		CentralIdLookup::resetCache();
 	}
@@ -56,29 +56,29 @@ class BotPasswordTest extends MediaWikiTestCase {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete(
 			'bot_passwords',
-			array( 'bp_user' => array( 42, 43 ), 'bp_app_id' => 'BotPassword' ),
+			[ 'bp_user' => [ 42, 43 ], 'bp_app_id' => 'BotPassword' ],
 			__METHOD__
 		);
 		$dbw->insert(
 			'bot_passwords',
-			array(
-				array(
+			[
+				[
 					'bp_user' => 42,
 					'bp_app_id' => 'BotPassword',
 					'bp_password' => $pwhash->toString(),
 					'bp_token' => 'token!',
 					'bp_restrictions' => '{"IPAddresses":["127.0.0.0/8"]}',
 					'bp_grants' => '["test"]',
-				),
-				array(
+				],
+				[
 					'bp_user' => 43,
 					'bp_app_id' => 'BotPassword',
 					'bp_password' => $pwhash->toString(),
 					'bp_token' => 'token!',
 					'bp_restrictions' => '{"IPAddresses":["127.0.0.0/8"]}',
 					'bp_grants' => '["test"]',
-				),
-			),
+				],
+			],
 			__METHOD__
 		);
 	}
@@ -92,85 +92,85 @@ class BotPasswordTest extends MediaWikiTestCase {
 		$this->assertSame( 'BotPassword', $bp->getAppId() );
 		$this->assertSame( 'token!', trim( $bp->getToken(), " \0" ) );
 		$this->assertEquals( '{"IPAddresses":["127.0.0.0/8"]}', $bp->getRestrictions()->toJson() );
-		$this->assertSame( array( 'test' ), $bp->getGrants() );
+		$this->assertSame( [ 'test' ], $bp->getGrants() );
 
 		$this->assertNull( BotPassword::newFromUser( $user, 'DoesNotExist' ) );
 
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgCentralIdLookupProvider' => 'BotPasswordTest FailMock'
-		) );
+		] );
 		$this->assertNull( BotPassword::newFromUser( $user, 'BotPassword' ) );
 
 		$this->assertSame( '@', BotPassword::getSeparator() );
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgUserrightsInterwikiDelimiter' => '#',
-		) );
+		] );
 		$this->assertSame( '#', BotPassword::getSeparator() );
 	}
 
 	public function testUnsaved() {
 		$user = User::newFromName( 'UTSysop' );
-		$bp = BotPassword::newUnsaved( array(
+		$bp = BotPassword::newUnsaved( [
 			'user' => $user,
 			'appId' => 'DoesNotExist'
-		) );
+		] );
 		$this->assertInstanceOf( 'BotPassword', $bp );
 		$this->assertFalse( $bp->isSaved() );
 		$this->assertSame( 42, $bp->getUserCentralId() );
 		$this->assertSame( 'DoesNotExist', $bp->getAppId() );
 		$this->assertEquals( MWRestrictions::newDefault(), $bp->getRestrictions() );
-		$this->assertSame( array(), $bp->getGrants() );
+		$this->assertSame( [], $bp->getGrants() );
 
-		$bp = BotPassword::newUnsaved( array(
+		$bp = BotPassword::newUnsaved( [
 			'username' => 'UTDummy',
 			'appId' => 'DoesNotExist2',
 			'restrictions' => MWRestrictions::newFromJson( '{"IPAddresses":["127.0.0.0/8"]}' ),
-			'grants' => array( 'test' ),
-		) );
+			'grants' => [ 'test' ],
+		] );
 		$this->assertInstanceOf( 'BotPassword', $bp );
 		$this->assertFalse( $bp->isSaved() );
 		$this->assertSame( 43, $bp->getUserCentralId() );
 		$this->assertSame( 'DoesNotExist2', $bp->getAppId() );
 		$this->assertEquals( '{"IPAddresses":["127.0.0.0/8"]}', $bp->getRestrictions()->toJson() );
-		$this->assertSame( array( 'test' ), $bp->getGrants() );
+		$this->assertSame( [ 'test' ], $bp->getGrants() );
 
 		$user = User::newFromName( 'UTSysop' );
-		$bp = BotPassword::newUnsaved( array(
+		$bp = BotPassword::newUnsaved( [
 			'centralId' => 45,
 			'appId' => 'DoesNotExist'
-		) );
+		] );
 		$this->assertInstanceOf( 'BotPassword', $bp );
 		$this->assertFalse( $bp->isSaved() );
 		$this->assertSame( 45, $bp->getUserCentralId() );
 		$this->assertSame( 'DoesNotExist', $bp->getAppId() );
 
 		$user = User::newFromName( 'UTSysop' );
-		$bp = BotPassword::newUnsaved( array(
+		$bp = BotPassword::newUnsaved( [
 			'user' => $user,
 			'appId' => 'BotPassword'
-		) );
+		] );
 		$this->assertInstanceOf( 'BotPassword', $bp );
 		$this->assertFalse( $bp->isSaved() );
 
-		$this->assertNull( BotPassword::newUnsaved( array(
+		$this->assertNull( BotPassword::newUnsaved( [
 			'user' => $user,
 			'appId' => '',
-		) ) );
-		$this->assertNull( BotPassword::newUnsaved( array(
+		] ) );
+		$this->assertNull( BotPassword::newUnsaved( [
 			'user' => $user,
 			'appId' => str_repeat( 'X', BotPassword::APPID_MAXLENGTH + 1 ),
-		) ) );
-		$this->assertNull( BotPassword::newUnsaved( array(
+		] ) );
+		$this->assertNull( BotPassword::newUnsaved( [
 			'user' => 'UTSysop',
 			'appId' => 'Ok',
-		) ) );
-		$this->assertNull( BotPassword::newUnsaved( array(
+		] ) );
+		$this->assertNull( BotPassword::newUnsaved( [
 			'username' => 'UTInvalid',
 			'appId' => 'Ok',
-		) ) );
-		$this->assertNull( BotPassword::newUnsaved( array(
+		] ) );
+		$this->assertNull( BotPassword::newUnsaved( [
 			'appId' => 'Ok',
-		) ) );
+		] ) );
 	}
 
 	public function testGetPassword() {
@@ -188,8 +188,8 @@ class BotPasswordTest extends MediaWikiTestCase {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update(
 			'bot_passwords',
-			array( 'bp_password' => 'garbage' ),
-			array( 'bp_user' => 42, 'bp_app_id' => 'BotPassword' ),
+			[ 'bp_password' => 'garbage' ],
+			[ 'bp_user' => 42, 'bp_app_id' => 'BotPassword' ],
 			__METHOD__
 		);
 		$password = $bp->getPassword();
@@ -228,10 +228,10 @@ class BotPasswordTest extends MediaWikiTestCase {
 		$this->setMwGlobals( 'wgEnableBotPasswords', true );
 
 		// Test failure when BotPasswordSessionProvider isn't configured
-		$manager = new SessionManager( array(
+		$manager = new SessionManager( [
 			'logger' => new Psr\Log\NullLogger,
 			'store' => new EmptyBagOStuff,
-		) );
+		] );
 		$reset = MediaWiki\Session\TestUtils::setSessionManagerSingleton( $manager );
 		$this->assertNull(
 			$manager->getProvider( 'MediaWiki\\Session\\BotPasswordSessionProvider' ),
@@ -243,19 +243,19 @@ class BotPasswordTest extends MediaWikiTestCase {
 
 		// Now configure BotPasswordSessionProvider for further tests...
 		$mainConfig = RequestContext::getMain()->getConfig();
-		$config = new HashConfig( array(
-			'SessionProviders' => $mainConfig->get( 'SessionProviders' ) + array(
-				'MediaWiki\\Session\\BotPasswordSessionProvider' => array(
+		$config = new HashConfig( [
+			'SessionProviders' => $mainConfig->get( 'SessionProviders' ) + [
+				'MediaWiki\\Session\\BotPasswordSessionProvider' => [
 					'class' => 'MediaWiki\\Session\\BotPasswordSessionProvider',
-					'args' => array( array( 'priority' => 40 ) ),
-				)
-			),
-		) );
-		$manager = new SessionManager( array(
-			'config' => new MultiConfig( array( $config, RequestContext::getMain()->getConfig() ) ),
+					'args' => [ [ 'priority' => 40 ] ],
+				]
+			],
+		] );
+		$manager = new SessionManager( [
+			'config' => new MultiConfig( [ $config, RequestContext::getMain()->getConfig() ] ),
 			'logger' => new Psr\Log\NullLogger,
 			'store' => new EmptyBagOStuff,
-		) );
+		] );
 		$reset = MediaWiki\Session\TestUtils::setSessionManagerSingleton( $manager );
 
 		// No "@"-thing in the username
@@ -274,7 +274,7 @@ class BotPasswordTest extends MediaWikiTestCase {
 		);
 
 		// Failed restriction
-		$request = $this->getMock( 'FauxRequest', array( 'getIP' ) );
+		$request = $this->getMock( 'FauxRequest', [ 'getIP' ] );
 		$request->expects( $this->any() )->method( 'getIP' )
 			->will( $this->returnValue( '10.0.0.1' ) );
 		$status = BotPassword::login( 'UTSysop@BotPassword', 'foobaz', $request );
@@ -314,12 +314,12 @@ class BotPasswordTest extends MediaWikiTestCase {
 		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
 		$passwordFactory->setDefaultType( 'A' );
 
-		$bp = BotPassword::newUnsaved( array(
+		$bp = BotPassword::newUnsaved( [
 			'centralId' => 42,
 			'appId' => 'TestSave',
 			'restrictions' => MWRestrictions::newFromJson( '{"IPAddresses":["127.0.0.0/8"]}' ),
-			'grants' => array( 'test' ),
-		) );
+			'grants' => [ 'test' ],
+		] );
 		$this->assertFalse( $bp->isSaved(), 'sanity check' );
 		$this->assertNull(
 			BotPassword::newFromCentralId( 42, 'TestSave', BotPassword::READ_LATEST ), 'sanity check'
@@ -371,9 +371,9 @@ class BotPasswordTest extends MediaWikiTestCase {
 	}
 
 	public static function provideSave() {
-		return array(
-			array( null ),
-			array( 'foobar' ),
-		);
+		return [
+			[ null ],
+			[ 'foobar' ],
+		];
 	}
 }

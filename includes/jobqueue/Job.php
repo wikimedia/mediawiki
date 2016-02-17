@@ -36,7 +36,7 @@ abstract class Job implements IJobSpecification {
 	public $params;
 
 	/** @var array Additional queue metadata */
-	public $metadata = array();
+	public $metadata = [];
 
 	/** @var Title */
 	protected $title;
@@ -62,7 +62,7 @@ abstract class Job implements IJobSpecification {
 	 * @throws MWException
 	 * @return Job
 	 */
-	public static function factory( $command, Title $title, $params = array() ) {
+	public static function factory( $command, Title $title, $params = [] ) {
 		global $wgJobClasses;
 
 		if ( isset( $wgJobClasses[$command] ) ) {
@@ -85,7 +85,7 @@ abstract class Job implements IJobSpecification {
 	public function __construct( $command, $title, $params = false ) {
 		$this->command = $command;
 		$this->title = $title;
-		$this->params = is_array( $params ) ? $params : array(); // sanity
+		$this->params = is_array( $params ) ? $params : []; // sanity
 
 		// expensive jobs may set this to true
 		$this->removeDuplicates = false;
@@ -199,12 +199,12 @@ abstract class Job implements IJobSpecification {
 	 * @since 1.21
 	 */
 	public function getDeduplicationInfo() {
-		$info = array(
+		$info = [
 			'type' => $this->getType(),
 			'namespace' => $this->getTitle()->getNamespace(),
 			'title' => $this->getTitle()->getDBkey(),
 			'params' => $this->getParams()
-		);
+		];
 		if ( is_array( $info['params'] ) ) {
 			// Identical jobs with different "root" jobs should count as duplicates
 			unset( $info['params']['rootJobSignature'] );
@@ -238,11 +238,11 @@ abstract class Job implements IJobSpecification {
 	 * @since 1.21
 	 */
 	public static function newRootJobParams( $key ) {
-		return array(
+		return [
 			'rootJobIsSelf'    => true,
 			'rootJobSignature' => sha1( $key ),
 			'rootJobTimestamp' => wfTimestampNow()
-		);
+		];
 	}
 
 	/**
@@ -251,14 +251,14 @@ abstract class Job implements IJobSpecification {
 	 * @since 1.21
 	 */
 	public function getRootJobParams() {
-		return array(
+		return [
 			'rootJobSignature' => isset( $this->params['rootJobSignature'] )
 				? $this->params['rootJobSignature']
 				: null,
 			'rootJobTimestamp' => isset( $this->params['rootJobTimestamp'] )
 				? $this->params['rootJobTimestamp']
 				: null
-		);
+		];
 	}
 
 	/**
@@ -308,7 +308,7 @@ abstract class Job implements IJobSpecification {
 					$paramString .= ' ';
 				}
 				if ( is_array( $value ) ) {
-					$filteredValue = array();
+					$filteredValue = [];
 					foreach ( $value as $k => $v ) {
 						if ( is_scalar( $v ) ) {
 							$filteredValue[$k] = $truncFunc( $v );

@@ -7,10 +7,10 @@ class CssContentHandlerTest extends MediaWikiLangTestCase {
 	 * @covers CssContentHandler::makeRedirectContent
 	 */
 	public function testMakeRedirectContent( $title, $expected ) {
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgServer' => '//example.org',
 			'wgScript' => '/w/index.php',
-		) );
+		] );
 		$ch = new CssContentHandler();
 		$content = $ch->makeRedirectContent( Title::newFromText( $title ) );
 		$this->assertInstanceOf( 'CssContent', $content );

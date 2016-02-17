@@ -118,11 +118,11 @@ class WatchedItem {
 	 * @return array
 	 */
 	private function dbCond() {
-		return array(
+		return [
 			'wl_user' => $this->getUserId(),
 			'wl_namespace' => $this->getTitleNs(),
 			'wl_title' => $this->getTitleDBkey(),
-		);
+		];
 	}
 
 	/**
@@ -263,12 +263,12 @@ class WatchedItem {
 		// If the page is watched by the user (or may be watched), update the timestamp
 		$job = new ActivityUpdateJob(
 			$title,
-			array(
+			[
 				'type'      => 'updateWatchlistNotification',
 				'userid'    => $this->getUserId(),
 				'notifTime' => $notificationTimestamp,
 				'curTime'   => time()
-			)
+			]
 		);
 		// Try to run this post-send
 		DeferredUpdates::addCallableUpdate( function() use ( $job ) {
@@ -288,26 +288,26 @@ class WatchedItem {
 			return false;
 		}
 
-		$rows = array();
+		$rows = [];
 		foreach ( $items as $item ) {
 			// Only loggedin user can have a watchlist
 			if ( $item->mUser->isAnon() || !$item->isAllowed( 'editmywatchlist' ) ) {
 				continue;
 			}
-			$rows[] = array(
+			$rows[] = [
 				'wl_user' => $item->getUserId(),
 				'wl_namespace' => MWNamespace::getSubject( $item->getTitleNs() ),
 				'wl_title' => $item->getTitleDBkey(),
 				'wl_notificationtimestamp' => null,
-			);
+			];
 			// Every single watched page needs now to be listed in watchlist;
 			// namespace:page and namespace_talk:page need separate entries:
-			$rows[] = array(
+			$rows[] = [
 				'wl_user' => $item->getUserId(),
 				'wl_namespace' => MWNamespace::getTalk( $item->getTitleNs() ),
 				'wl_title' => $item->getTitleDBkey(),
 				'wl_notificationtimestamp' => null
-			);
+			];
 			$item->watched = true;
 		}
 
@@ -330,7 +330,7 @@ class WatchedItem {
 	 * @return bool
 	 */
 	public function addWatch() {
-		return self::batchAddWatch( array( $this ) );
+		return self::batchAddWatch( [ $this ] );
 	}
 
 	/**
@@ -347,11 +347,11 @@ class WatchedItem {
 		$success = false;
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'watchlist',
-			array(
+			[
 				'wl_user' => $this->getUserId(),
 				'wl_namespace' => MWNamespace::getSubject( $this->getTitleNs() ),
 				'wl_title' => $this->getTitleDBkey(),
-			), __METHOD__
+			], __METHOD__
 		);
 		if ( $dbw->affectedRows() ) {
 			$success = true;
@@ -362,11 +362,11 @@ class WatchedItem {
 		# in watchlist namespace:page and namespace_talk:page had separate
 		# entries: clear them
 		$dbw->delete( 'watchlist',
-			array(
+			[
 				'wl_user' => $this->getUserId(),
 				'wl_namespace' => MWNamespace::getTalk( $this->getTitleNs() ),
 				'wl_title' => $this->getTitleDBkey(),
-			), __METHOD__
+			], __METHOD__
 		);
 
 		if ( $dbw->affectedRows() ) {
@@ -406,19 +406,19 @@ class WatchedItem {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$res = $dbw->select( 'watchlist',
-			array( 'wl_user', 'wl_notificationtimestamp' ),
-			array( 'wl_namespace' => $oldnamespace, 'wl_title' => $oldtitle ),
+			[ 'wl_user', 'wl_notificationtimestamp' ],
+			[ 'wl_namespace' => $oldnamespace, 'wl_title' => $oldtitle ],
 			__METHOD__, 'FOR UPDATE'
 		);
 		# Construct array to replace into the watchlist
-		$values = array();
+		$values = [];
 		foreach ( $res as $s ) {
-			$values[] = array(
+			$values[] = [
 				'wl_user' => $s->wl_user,
 				'wl_namespace' => $newnamespace,
 				'wl_title' => $newtitle,
 				'wl_notificationtimestamp' => $s->wl_notificationtimestamp,
-			);
+			];
 		}
 
 		if ( empty( $values ) ) {
@@ -431,7 +431,7 @@ class WatchedItem {
 		# some other DBMSes, mostly due to poor simulation by us
 		$dbw->replace(
 			'watchlist',
-			array( array( 'wl_user', 'wl_namespace', 'wl_title' ) ),
+			[ [ 'wl_user', 'wl_namespace', 'wl_title' ] ],
 			$values,
 			__METHOD__
 		);

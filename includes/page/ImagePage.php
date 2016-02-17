@@ -81,7 +81,7 @@ class ImagePage extends Article {
 		$this->fileLoaded = true;
 
 		$this->displayImg = $img = false;
-		Hooks::run( 'ImagePageFindFile', array( $this, &$img, &$this->displayImg ) );
+		Hooks::run( 'ImagePageFindFile', [ $this, &$img, &$this->displayImg ] );
 		if ( !$img ) { // not set by hook?
 			$img = wfFindFile( $this->getTitle() );
 			if ( !$img ) {
@@ -164,9 +164,9 @@ class ImagePage extends Article {
 			# NS_FILE is in the user language, but this section (the actual wikitext)
 			# should be in page content language
 			$pageLang = $this->getTitle()->getPageViewLanguage();
-			$out->addHTML( Xml::openElement( 'div', array( 'id' => 'mw-imagepage-content',
+			$out->addHTML( Xml::openElement( 'div', [ 'id' => 'mw-imagepage-content',
 				'lang' => $pageLang->getHtmlCode(), 'dir' => $pageLang->getDir(),
-				'class' => 'mw-content-' . $pageLang->getDir() ) ) );
+				'class' => 'mw-content-' . $pageLang->getDir() ] ) );
 
 			parent::view();
 
@@ -192,7 +192,7 @@ class ImagePage extends Article {
 		// TODO: Cleanup the following
 
 		$out->addHTML( Xml::element( 'h2',
-			array( 'id' => 'filelinks' ),
+			[ 'id' => 'filelinks' ],
 				$this->getContext()->msg( 'imagelinks' )->text() ) . "\n" );
 		$this->imageDupes();
 		# @todo FIXME: For some freaky reason, we can't redirect to foreign images.
@@ -201,7 +201,7 @@ class ImagePage extends Article {
 
 		# Allow extensions to add something after the image links
 		$html = '';
-		Hooks::run( 'ImagePageAfterImageLinks', array( $this, &$html ) );
+		Hooks::run( 'ImagePageAfterImageLinks', [ $this, &$html ] );
 		if ( $html ) {
 			$out->addHTML( $html );
 		}
@@ -209,10 +209,10 @@ class ImagePage extends Article {
 		if ( $showmeta ) {
 			$out->addHTML( Xml::element(
 				'h2',
-				array( 'id' => 'metadata' ),
+				[ 'id' => 'metadata' ],
 					$this->getContext()->msg( 'metadata' )->text() ) . "\n" );
 			$out->addWikiText( $this->makeMetadataTable( $formattedMetadata ) );
-			$out->addModules( array( 'mediawiki.action.view.metadata' ) );
+			$out->addModules( [ 'mediawiki.action.view.metadata' ] );
 		}
 
 		// Add remote Filepage.css
@@ -244,13 +244,13 @@ class ImagePage extends Article {
 	 * @return string
 	 */
 	protected function showTOC( $metadata ) {
-		$r = array(
+		$r = [
 			'<li><a href="#file">' . $this->getContext()->msg( 'file-anchor-link' )->escaped() . '</a></li>',
 			'<li><a href="#filehistory">' . $this->getContext()->msg( 'filehist' )->escaped() . '</a></li>',
 			'<li><a href="#filelinks">' . $this->getContext()->msg( 'imagelinks' )->escaped() . '</a></li>',
-		);
+		];
 
-		Hooks::run( 'ImagePageShowTOC', array( $this, &$r ) );
+		Hooks::run( 'ImagePageShowTOC', [ $this, &$r ] );
 
 		if ( $metadata ) {
 			$r[] = '<li><a href="#metadata">' .
@@ -323,10 +323,10 @@ class ImagePage extends Article {
 			# image
 			$page = $request->getIntOrNull( 'page' );
 			if ( is_null( $page ) ) {
-				$params = array();
+				$params = [];
 				$page = 1;
 			} else {
-				$params = array( 'page' => $page );
+				$params = [ 'page' => $page ];
 			}
 
 			$renderLang = $request->getVal( 'lang' );
@@ -347,7 +347,7 @@ class ImagePage extends Article {
 			$filename = wfEscapeWikiText( $this->displayImg->getName() );
 			$linktext = $filename;
 
-			Hooks::run( 'ImageOpenShowImageInlineBefore', array( &$this, &$out ) );
+			Hooks::run( 'ImageOpenShowImageInlineBefore', [ &$this, &$out ] );
 
 			if ( $this->displayImg->allowInlineDisplay() ) {
 				# image
@@ -363,7 +363,7 @@ class ImagePage extends Article {
 
 					$thumbSizes = $this->getThumbSizes( $width_orig, $height_orig );
 					# Generate thumbnails or thumbnail links as needed...
-					$otherSizes = array();
+					$otherSizes = [];
 					foreach ( $thumbSizes as $size ) {
 						// We include a thumbnail size in the list, if it is
 						// less than or equal to the original size of the image
@@ -393,7 +393,7 @@ class ImagePage extends Article {
 						$msgsmall .= ' ' .
 						Html::rawElement(
 							'span',
-							array( 'class' => 'mw-filepage-other-resolutions' ),
+							[ 'class' => 'mw-filepage-other-resolutions' ],
 							$this->getContext()->msg( 'show-big-image-other' )
 								->rawParams( $lang->pipeList( $otherSizes ) )
 								->params( count( $otherSizes ) )
@@ -416,7 +416,7 @@ class ImagePage extends Article {
 
 				$anchorclose = Html::rawElement(
 					'div',
-					array( 'class' => 'mw-filepage-resolutioninfo' ),
+					[ 'class' => 'mw-filepage-resolutioninfo' ],
 					$msgsmall
 				);
 
@@ -427,10 +427,10 @@ class ImagePage extends Article {
 				}
 
 				if ( $thumbnail ) {
-					$options = array(
+					$options = [
 						'alt' => $this->displayImg->getTitle()->getPrefixedText(),
 						'file-link' => true,
-					);
+					];
 					$out->addHTML( '<div class="fullImageLink" id="file">' .
 						$thumbnail->toHtml( $options ) .
 						$anchorclose . "</div>\n" );
@@ -446,8 +446,8 @@ class ImagePage extends Article {
 						$link = Linker::linkKnown(
 							$this->getTitle(),
 							$label,
-							array(),
-							array( 'page' => $page - 1 )
+							[],
+							[ 'page' => $page - 1 ]
 						);
 						$thumb1 = Linker::makeThumbLinkObj(
 							$this->getTitle(),
@@ -455,7 +455,7 @@ class ImagePage extends Article {
 							$link,
 							$label,
 							'none',
-							array( 'page' => $page - 1 )
+							[ 'page' => $page - 1 ]
 						);
 					} else {
 						$thumb1 = '';
@@ -466,8 +466,8 @@ class ImagePage extends Article {
 						$link = Linker::linkKnown(
 							$this->getTitle(),
 							$label,
-							array(),
-							array( 'page' => $page + 1 )
+							[],
+							[ 'page' => $page + 1 ]
 						);
 						$thumb2 = Linker::makeThumbLinkObj(
 							$this->getTitle(),
@@ -475,7 +475,7 @@ class ImagePage extends Article {
 							$link,
 							$label,
 							'none',
-							array( 'page' => $page + 1 )
+							[ 'page' => $page + 1 ]
 						);
 					} else {
 						$thumb2 = '';
@@ -483,16 +483,16 @@ class ImagePage extends Article {
 
 					global $wgScript;
 
-					$formParams = array(
+					$formParams = [
 						'name' => 'pageselector',
 						'action' => $wgScript,
-					);
-					$options = array();
+					];
+					$options = [];
 					for ( $i = 1; $i <= $count; $i++ ) {
 						$options[] = Xml::option( $lang->formatNum( $i ), $i, $i == $page );
 					}
 					$select = Xml::tags( 'select',
-						array( 'id' => 'pageselector', 'name' => 'page' ),
+						[ 'id' => 'pageselector', 'name' => 'page' ],
 						implode( "\n", $options ) );
 
 					$out->addHTML(
@@ -510,7 +510,7 @@ class ImagePage extends Article {
 				$icon = $this->displayImg->iconThumb();
 
 				$out->addHTML( '<div class="fullImageLink" id="file">' .
-					$icon->toHtml( array( 'file-link' => true ) ) .
+					$icon->toHtml( [ 'file-link' => true ] ) .
 					"</div>\n" );
 			}
 
@@ -597,24 +597,24 @@ EOT
 				# Show deletion log to be consistent with normal articles
 				LogEventsList::showLogExtract(
 					$out,
-					array( 'delete', 'move' ),
+					[ 'delete', 'move' ],
 					$this->getTitle()->getPrefixedText(),
 					'',
-					array( 'lim' => 10,
-						'conds' => array( "log_action != 'revision'" ),
+					[ 'lim' => 10,
+						'conds' => [ "log_action != 'revision'" ],
 						'showIfEmpty' => false,
-						'msgKey' => array( 'moveddeleted-notice' )
-					)
+						'msgKey' => [ 'moveddeleted-notice' ]
+					]
 				);
 			}
 
 			if ( $wgEnableUploads && $user->isAllowed( 'upload' ) ) {
 				// Only show an upload link if the user can upload
 				$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
-				$nofile = array(
+				$nofile = [
 					'filepage-nofile-link',
-					$uploadTitle->getFullURL( array( 'wpDestFile' => $this->mPage->getFile()->getName() ) )
-				);
+					$uploadTitle->getFullURL( [ 'wpDestFile' => $this->mPage->getFile()->getName() ] )
+				];
 			} else {
 				$nofile = 'filepage-nofile';
 			}
@@ -682,10 +682,10 @@ EOT
 		$params['height'] = $height;
 		$thumbnail = $this->displayImg->transform( $params );
 		if ( $thumbnail && !$thumbnail->isError() ) {
-			return Html::rawElement( 'a', array(
+			return Html::rawElement( 'a', [
 				'href' => $thumbnail->getUrl(),
 				'class' => 'mw-thumbnail-link'
-				), $this->getContext()->msg( 'show-big-image-size' )->numParams(
+				], $this->getContext()->msg( 'show-big-image-size' )->numParams(
 					$thumbnail->getWidth(), $thumbnail->getHeight()
 				)->parse() );
 		} else {
@@ -715,13 +715,13 @@ EOT
 			$descText &&
 			$this->getContext()->msg( 'sharedupload-desc-here' )->plain() !== '-'
 		) {
-			$out->wrapWikiMsg( $wrap, array( 'sharedupload-desc-here', $repo, $descUrl ) );
+			$out->wrapWikiMsg( $wrap, [ 'sharedupload-desc-here', $repo, $descUrl ] );
 		} elseif ( $descUrl &&
 			$this->getContext()->msg( 'sharedupload-desc-there' )->plain() !== '-'
 		) {
-			$out->wrapWikiMsg( $wrap, array( 'sharedupload-desc-there', $repo, $descUrl ) );
+			$out->wrapWikiMsg( $wrap, [ 'sharedupload-desc-there', $repo, $descUrl ] );
 		} else {
-			$out->wrapWikiMsg( $wrap, array( 'sharedupload', $repo ), ''/*BACKCOMPAT*/ );
+			$out->wrapWikiMsg( $wrap, [ 'sharedupload', $repo ], ''/*BACKCOMPAT*/ );
 		}
 
 		if ( $descText ) {
@@ -732,10 +732,10 @@ EOT
 	public function getUploadUrl() {
 		$this->loadFile();
 		$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
-		return $uploadTitle->getFullURL( array(
+		return $uploadTitle->getFullURL( [
 			'wpDestFile' => $this->mPage->getFile()->getName(),
 			'wpForReUpload' => 1
-		) );
+		] );
 	}
 
 	/**
@@ -812,11 +812,11 @@ EOT
 		$dbr = wfGetDB( DB_SLAVE );
 
 		return $dbr->select(
-			array( 'imagelinks', 'page' ),
-			array( 'page_namespace', 'page_title', 'il_to' ),
-			array( 'il_to' => $target, 'il_from = page_id' ),
+			[ 'imagelinks', 'page' ],
+			[ 'page_namespace', 'page_title', 'il_to' ],
+			[ 'il_to' => $target, 'il_from = page_id' ],
 			__METHOD__,
-			array( 'LIMIT' => $limit + 1, 'ORDER BY' => 'il_from', )
+			[ 'LIMIT' => $limit + 1, 'ORDER BY' => 'il_from', ]
 		);
 	}
 
@@ -825,14 +825,14 @@ EOT
 
 		$out = $this->getContext()->getOutput();
 
-		$rows = array();
-		$redirects = array();
+		$rows = [];
+		$redirects = [];
 		foreach ( $this->getTitle()->getRedirectsHere( NS_FILE ) as $redir ) {
-			$redirects[$redir->getDBkey()] = array();
-			$rows[] = (object)array(
+			$redirects[$redir->getDBkey()] = [];
+			$rows[] = (object)[
 				'page_namespace' => NS_FILE,
 				'page_title' => $redir->getDBkey(),
-			);
+			];
 		}
 
 		$res = $this->queryImageLinks( $this->getTitle()->getDBkey(), $limit + 1 );
@@ -855,7 +855,7 @@ EOT
 		if ( $count == 0 ) {
 			$out->wrapWikiMsg(
 				Html::rawElement( 'div',
-					array( 'id' => 'mw-imagepage-nolinkstoimage' ), "\n$1\n" ),
+					[ 'id' => 'mw-imagepage-nolinkstoimage' ], "\n$1\n" ),
 				'nolinkstoimage'
 			);
 			return;
@@ -874,12 +874,12 @@ EOT
 
 		$out->addHTML(
 			Html::openElement( 'ul',
-				array( 'class' => 'mw-imagepage-linkstoimage' ) ) . "\n"
+				[ 'class' => 'mw-imagepage-linkstoimage' ] ) . "\n"
 		);
 		$count = 0;
 
 		// Sort the list by namespace:title
-		usort( $rows, array( $this, 'compare' ) );
+		usort( $rows, [ $this, 'compare' ] );
 
 		// Create links for every element
 		$currentCount = 0;
@@ -889,14 +889,14 @@ EOT
 				break;
 			}
 
-			$query = array();
+			$query = [];
 			# Add a redirect=no to make redirect pages reachable
 			if ( isset( $redirects[$element->page_title] ) ) {
 				$query['redirect'] = 'no';
 			}
 			$link = Linker::linkKnown(
 				Title::makeTitle( $element->page_namespace, $element->page_title ),
-				null, array(), $query
+				null, [], $query
 			);
 			if ( !isset( $redirects[$element->page_title] ) ) {
 				# No redirects
@@ -918,14 +918,14 @@ EOT
 					$link2 = Linker::linkKnown( Title::makeTitle( $row->page_namespace, $row->page_title ) );
 					$li .= Html::rawElement(
 						'li',
-						array( 'class' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
+						[ 'class' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ],
 						$link2
 						) . "\n";
 				}
 
 				$ul = Html::rawElement(
 					'ul',
-					array( 'class' => 'mw-imagepage-redirectstofile' ),
+					[ 'class' => 'mw-imagepage-redirectstofile' ],
 					$li
 					) . "\n";
 				$liContents = $this->getContext()->msg( 'linkstoimage-redirect' )->rawParams(
@@ -933,7 +933,7 @@ EOT
 			}
 			$out->addHTML( Html::rawElement(
 					'li',
-					array( 'class' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
+					[ 'class' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ],
 					$liContents
 				) . "\n"
 			);
@@ -1054,7 +1054,7 @@ EOT
 
 		return isset( $wgImageLimits[$option] )
 			? $wgImageLimits[$option]
-			: array( 800, 600 ); // if nothing is set, fallback to a hardcoded default
+			: [ 800, 600 ]; // if nothing is set, fallback to a hardcoded default
 	}
 
 	/**
@@ -1117,7 +1117,7 @@ EOT
 
 		$select = Html::rawElement(
 			'select',
-			array( 'id' => 'mw-imglangselector', 'name' => 'lang' ),
+			[ 'id' => 'mw-imglangselector', 'name' => 'lang' ],
 			$opts
 		);
 		$submit = Xml::submitButton( $this->getContext()->msg( 'img-lang-go' )->text() );
@@ -1127,8 +1127,8 @@ EOT
 			->parse();
 		$formContents .= Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() );
 
-		$langSelectLine = Html::rawElement( 'div', array( 'id' => 'mw-imglangselector-line' ),
-			Html::rawElement( 'form', array( 'action' => $wgScript ), $formContents )
+		$langSelectLine = Html::rawElement( 'div', [ 'id' => 'mw-imglangselector-line' ],
+			Html::rawElement( 'form', [ 'action' => $wgScript ], $formContents )
 		);
 		return $langSelectLine;
 	}
@@ -1154,7 +1154,7 @@ EOT
 		}
 
 		if ( !$width || !$height ) {
-			return array( 0, 0 );
+			return [ 0, 0 ];
 		}
 
 		# Calculate the thumbnail size.
@@ -1172,7 +1172,7 @@ EOT
 			# Note that $height <= $maxHeight now, but might not be identical
 			# because of rounding.
 		}
-		return array( $width, $height );
+		return [ $width, $height ];
 	}
 
 	/**
@@ -1193,17 +1193,17 @@ EOT
 			// that we mustRender, some users have indicated that they would
 			// find it useful to have the full size image in the rendered
 			// image format.
-			$thumbSizes[] = array( $origWidth, $origHeight );
+			$thumbSizes[] = [ $origWidth, $origHeight ];
 		} else {
 			# Creating thumb links triggers thumbnail generation.
 			# Just generate the thumb for the current users prefs.
-			$thumbSizes = array(
+			$thumbSizes = [
 				$this->getImageLimitsFromOption( $this->getContext()->getUser(), 'thumbsize' )
-			);
+			];
 			if ( !$this->displayImg->mustRender() ) {
 				// We can safely include a link to the "full-size" preview,
 				// without actually rendering.
-				$thumbSizes[] = array( $origWidth, $origHeight );
+				$thumbSizes[] = [ $origWidth, $origHeight ];
 			}
 		}
 		return $thumbSizes;

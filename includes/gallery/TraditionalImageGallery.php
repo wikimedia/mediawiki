@@ -43,7 +43,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		}
 
 		$attribs = Sanitizer::mergeAttributes(
-			array( 'class' => 'gallery mw-gallery-' . $this->mMode ), $this->mAttribs );
+			[ 'class' => 'gallery mw-gallery-' . $this->mMode ], $this->mAttribs );
 
 		$modules = $this->getModules();
 
@@ -73,9 +73,9 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				# Get the file...
 				if ( $this->mParser instanceof Parser ) {
 					# Give extensions a chance to select the file revision for us
-					$options = array();
+					$options = [];
 					Hooks::run( 'BeforeParserFetchFileAndTitle',
-						array( $this->mParser, $nt, &$options, &$descQuery ) );
+						[ $this->mParser, $nt, &$options, &$descQuery ] );
 					# Fetch and register the file (file title may be different via hooks)
 					list( $img, $nt ) = $this->mParser->fetchFileAndTitle( $nt, $options );
 				} else {
@@ -122,12 +122,12 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					/** @var MediaTransformOutput $thumb */
 					$vpad = $this->getVPad( $this->mHeights, $thumb->getHeight() );
 
-					$imageParameters = array(
+					$imageParameters = [
 						'desc-link' => true,
 						'desc-query' => $descQuery,
 						'alt' => $alt,
 						'custom-url-link' => $link
-					);
+					];
 
 					// In the absence of both alt text and caption, fall back on
 					// providing screen readers with the filename as alt text
@@ -277,10 +277,10 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 * @return array
 	 */
 	protected function getThumbParams( $img ) {
-		return array(
+		return [
 			'width' => $this->mWidths,
 			'height' => $this->mHeights
-		);
+		];
 	}
 
 	/**
@@ -316,7 +316,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 * @return array Modules to include
 	 */
 	protected function getModules() {
-		return array();
+		return [];
 	}
 
 	/**

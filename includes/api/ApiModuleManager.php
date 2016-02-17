@@ -40,15 +40,15 @@ class ApiModuleManager extends ContextSource {
 	/**
 	 * @var ApiBase[]
 	 */
-	private $mInstances = array();
+	private $mInstances = [];
 	/**
 	 * @var null[]
 	 */
-	private $mGroups = array();
+	private $mGroups = [];
 	/**
 	 * @var array[]
 	 */
-	private $mModules = array();
+	private $mModules = [];
 
 	/**
 	 * Construct new module manager
@@ -141,7 +141,7 @@ class ApiModuleManager extends ContextSource {
 		}
 
 		$this->mGroups[$group] = null;
-		$this->mModules[$name] = array( $group, $class, $factory );
+		$this->mModules[$name] = [ $group, $class, $factory ];
 	}
 
 	/**
@@ -217,7 +217,7 @@ class ApiModuleManager extends ContextSource {
 		if ( $group === null ) {
 			return array_keys( $this->mModules );
 		}
-		$result = array();
+		$result = [];
 		foreach ( $this->mModules as $name => $grpCls ) {
 			if ( $grpCls[0] === $group ) {
 				$result[] = $name;
@@ -233,7 +233,7 @@ class ApiModuleManager extends ContextSource {
 	 * @return array Name=>class map
 	 */
 	public function getNamesWithClasses( $group = null ) {
-		$result = array();
+		$result = [];
 		foreach ( $this->mModules as $name => $grpCls ) {
 			if ( $group === null || $grpCls[0] === $group ) {
 				$result[$name] = $grpCls[1];

@@ -7,10 +7,10 @@ class JavaScriptContentHandlerTest extends MediaWikiLangTestCase {
 	 * @covers JavaScriptContentHandler::makeRedirectContent
 	 */
 	public function testMakeRedirectContent( $title, $expected ) {
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgServer' => '//example.org',
 			'wgScript' => '/w/index.php',
-		) );
+		] );
 		$ch = new JavaScriptContentHandler();
 		$content = $ch->makeRedirectContent( Title::newFromText( $title ) );
 		$this->assertInstanceOf( 'JavaScriptContent', $content );

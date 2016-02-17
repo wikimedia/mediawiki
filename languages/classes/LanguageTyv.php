@@ -44,16 +44,16 @@ class LanguageTyv extends Language {
 		}
 
 		// Set up some constants...
-		$allVowels = array( "е", "и", "э", "ө", "ү", "а", "ё", "о", "у", "ы", "ю", "я" );
-		$frontVowels = array( "е", "и", "э", "ө", "ү" );
-		$backVowels = array( "а", "ё", "о", "у", "ы", "ю", "я" );
-		$unroundFrontVowels = array( "е", "и", "э" );
-		$roundFrontVowels = array( "ө", "ү" );
-		$unroundBackVowels = array( "а", "ы", "я" );
-		$roundBackVowels = array( "ё", "о", "у", "ю" );
-		$unvoicedPhonemes = array( "т", "п", "с", "ш", "к", "ч", "х" );
-		$directiveUnvoicedStems = array( "т", "п", "с", "ш", "к", "ч", "х", "л", "м", "н", "ң" );
-		$directiveVoicedStems = array( "д", "б", "з", "ж", "г", "р", "й" );
+		$allVowels = [ "е", "и", "э", "ө", "ү", "а", "ё", "о", "у", "ы", "ю", "я" ];
+		$frontVowels = [ "е", "и", "э", "ө", "ү" ];
+		$backVowels = [ "а", "ё", "о", "у", "ы", "ю", "я" ];
+		$unroundFrontVowels = [ "е", "и", "э" ];
+		$roundFrontVowels = [ "ө", "ү" ];
+		$unroundBackVowels = [ "а", "ы", "я" ];
+		$roundBackVowels = [ "ё", "о", "у", "ю" ];
+		$unvoicedPhonemes = [ "т", "п", "с", "ш", "к", "ч", "х" ];
+		$directiveUnvoicedStems = [ "т", "п", "с", "ш", "к", "ч", "х", "л", "м", "н", "ң" ];
+		$directiveVoicedStems = [ "д", "б", "з", "ж", "г", "р", "й" ];
 
 		// Put the word in a form we can play with since we're using UTF-8
 		preg_match_all( '/./us', $word, $ar );

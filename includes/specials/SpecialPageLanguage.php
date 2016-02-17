@@ -50,44 +50,44 @@ class SpecialPageLanguage extends FormSpecialPage {
 		// Get default from the subpage of Special page
 		$defaultName = $this->par;
 
-		$page = array();
-		$page['pagename'] = array(
+		$page = [];
+		$page['pagename'] = [
 			'type' => 'title',
 			'label-message' => 'pagelang-name',
 			'default' => $defaultName,
 			'autofocus' => $defaultName === null,
 			'exists' => true,
-		);
+		];
 
 		// Options for whether to use the default language or select language
-		$selectoptions = array(
+		$selectoptions = [
 			(string)$this->msg( 'pagelang-use-default' )->escaped() => 1,
 			(string)$this->msg( 'pagelang-select-lang' )->escaped() => 2,
-		);
-		$page['selectoptions'] = array(
+		];
+		$page['selectoptions'] = [
 			'id' => 'mw-pl-options',
 			'type' => 'radio',
 			'options' => $selectoptions,
 			'default' => 1
-		);
+		];
 
 		// Building a language selector
 		$userLang = $this->getLanguage()->getCode();
 		$languages = Language::fetchLanguageNames( $userLang, 'mwfile' );
 		ksort( $languages );
-		$options = array();
+		$options = [];
 		foreach ( $languages as $code => $name ) {
 			$options["$code - $name"] = $code;
 		}
 
-		$page['language'] = array(
+		$page['language'] = [
 			'id' => 'mw-pl-languageselector',
 			'cssclass' => 'mw-languageselector',
 			'type' => 'select',
 			'options' => $options,
 			'label-message' => 'pagelang-language',
 			'default' => $this->getConfig()->get( 'LanguageCode' ),
-		);
+		];
 
 		return $page;
 	}
@@ -104,7 +104,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 	}
 
 	public function alterForm( HTMLForm $form ) {
-		Hooks::run( 'LanguageSelector', array( $this->getOutput(), 'mw-languageselector' ) );
+		Hooks::run( 'LanguageSelector', [ $this->getOutput(), 'mw-languageselector' ] );
 		$form->setSubmitTextMsg( 'pagelang-submit' );
 	}
 
@@ -136,7 +136,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		$langOld = $dbw->selectField(
 			'page',
 			'page_lang',
-			array( 'page_id' => $pageId ),
+			[ 'page_id' => $pageId ],
 			__METHOD__
 		);
 
@@ -163,11 +163,11 @@ class SpecialPageLanguage extends FormSpecialPage {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update(
 			'page',
-			array( 'page_lang' => $langNew ),
-			array(
+			[ 'page_lang' => $langNew ],
+			[
 				'page_id' => $pageId,
 				'page_lang' => $langOld
-			),
+			],
 			__METHOD__
 		);
 
@@ -176,10 +176,10 @@ class SpecialPageLanguage extends FormSpecialPage {
 		}
 
 		// Logging change of language
-		$logParams = array(
+		$logParams = [
 			'4::oldlanguage' => $logOld,
 			'5::newlanguage' => $logNew
-		);
+		];
 		$entry = new ManualLogEntry( 'pagelang', 'pagelang' );
 		$entry->setPerformer( $this->getUser() );
 		$entry->setTarget( $title );

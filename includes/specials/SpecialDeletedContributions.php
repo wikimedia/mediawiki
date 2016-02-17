@@ -39,7 +39,7 @@ class DeletedContribsPager extends IndexPager {
 
 	function __construct( IContextSource $context, $target, $namespace = false ) {
 		parent::__construct( $context );
-		$msgs = array( 'deletionlog', 'undeleteviewlink', 'diff' );
+		$msgs = [ 'deletionlog', 'undeleteviewlink', 'diff' ];
 		foreach ( $msgs as $msg ) {
 			$this->messages[$msg] = $this->msg( $msg )->escaped();
 		}
@@ -67,15 +67,15 @@ class DeletedContribsPager extends IndexPager {
 				' != ' . Revision::SUPPRESSED_USER;
 		}
 
-		return array(
-			'tables' => array( 'archive' ),
-			'fields' => array(
+		return [
+			'tables' => [ 'archive' ],
+			'fields' => [
 				'ar_rev_id', 'ar_namespace', 'ar_title', 'ar_timestamp', 'ar_comment',
 				'ar_minor_edit', 'ar_user', 'ar_user_text', 'ar_deleted'
-			),
+			],
 			'conds' => $conds,
-			'options' => array( 'USE INDEX' => $index )
-		);
+			'options' => [ 'USE INDEX' => $index ]
+		];
 	}
 
 	/**
@@ -88,16 +88,16 @@ class DeletedContribsPager extends IndexPager {
 	 * @return ResultWrapper
 	 */
 	function reallyDoQuery( $offset, $limit, $descending ) {
-		$data = array( parent::reallyDoQuery( $offset, $limit, $descending ) );
+		$data = [ parent::reallyDoQuery( $offset, $limit, $descending ) ];
 
 		// This hook will allow extensions to add in additional queries, nearly
 		// identical to ContribsPager::reallyDoQuery.
 		Hooks::run(
 			'DeletedContribsPager::reallyDoQuery',
-			array( &$data, $this, $offset, $limit, $descending )
+			[ &$data, $this, $offset, $limit, $descending ]
 		);
 
-		$result = array();
+		$result = [];
 
 		// loop all results and collect them in an array
 		foreach ( $data as $query ) {
@@ -124,12 +124,12 @@ class DeletedContribsPager extends IndexPager {
 	}
 
 	function getUserCond() {
-		$condition = array();
+		$condition = [];
 
 		$condition['ar_user_text'] = $this->target;
 		$index = 'usertext_timestamp';
 
-		return array( $index, $condition );
+		return [ $index, $condition ];
 	}
 
 	function getIndexField() {
@@ -149,19 +149,19 @@ class DeletedContribsPager extends IndexPager {
 			return $this->mNavigationBar;
 		}
 
-		$linkTexts = array(
+		$linkTexts = [
 			'prev' => $this->msg( 'pager-newer-n' )->numParams( $this->mLimit )->escaped(),
 			'next' => $this->msg( 'pager-older-n' )->numParams( $this->mLimit )->escaped(),
 			'first' => $this->msg( 'histlast' )->escaped(),
 			'last' => $this->msg( 'histfirst' )->escaped()
-		);
+		];
 
 		$pagingLinks = $this->getPagingLinks( $linkTexts );
 		$limitLinks = $this->getLimitLinks();
 		$lang = $this->getLanguage();
 		$limits = $lang->pipeList( $limitLinks );
 
-		$firstLast = $lang->pipeList( array( $pagingLinks['first'], $pagingLinks['last'] ) );
+		$firstLast = $lang->pipeList( [ $pagingLinks['first'], $pagingLinks['last'] ] );
 		$firstLast = $this->msg( 'parentheses' )->rawParams( $firstLast )->escaped();
 		$prevNext = $this->msg( 'viewprevnext' )
 			->rawParams(
@@ -177,9 +177,9 @@ class DeletedContribsPager extends IndexPager {
 
 	function getNamespaceCond() {
 		if ( $this->namespace !== '' ) {
-			return array( 'ar_namespace' => (int)$this->namespace );
+			return [ 'ar_namespace' => (int)$this->namespace ];
 		} else {
-			return array();
+			return [];
 		}
 	}
 
@@ -192,7 +192,7 @@ class DeletedContribsPager extends IndexPager {
 	 */
 	function formatRow( $row ) {
 		$ret = '';
-		$classes = array();
+		$classes = [];
 
 		/*
 		 * There may be more than just revision rows. To make sure that we'll only be processing
@@ -215,13 +215,13 @@ class DeletedContribsPager extends IndexPager {
 		}
 
 		// Let extensions add data
-		Hooks::run( 'DeletedContributionsLineEnding', array( $this, &$ret, $row, &$classes ) );
+		Hooks::run( 'DeletedContributionsLineEnding', [ $this, &$ret, $row, &$classes ] );
 
-		if ( $classes === array() && $ret === '' ) {
+		if ( $classes === [] && $ret === '' ) {
 			wfDebug( "Dropping Special:DeletedContribution row that could not be formatted\n" );
 			$ret = "<!-- Could not format Special:DeletedContribution row. -->\n";
 		} else {
-			$ret = Html::rawElement( 'li', array( 'class' => $classes ), $ret ) . "\n";
+			$ret = Html::rawElement( 'li', [ 'class' => $classes ], $ret ) . "\n";
 		}
 
 		return $ret;
@@ -242,7 +242,7 @@ class DeletedContribsPager extends IndexPager {
 	function formatRevisionRow( $row ) {
 		$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 
-		$rev = new Revision( array(
+		$rev = new Revision( [
 			'title' => $page,
 			'id' => $row->ar_rev_id,
 			'comment' => $row->ar_comment,
@@ -251,7 +251,7 @@ class DeletedContribsPager extends IndexPager {
 			'timestamp' => $row->ar_timestamp,
 			'minor_edit' => $row->ar_minor_edit,
 			'deleted' => $row->ar_deleted,
-		) );
+		] );
 
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
 
@@ -259,11 +259,11 @@ class DeletedContribsPager extends IndexPager {
 		$dellog = Linker::linkKnown(
 			$logs,
 			$this->messages['deletionlog'],
-			array(),
-			array(
+			[],
+			[
 				'type' => 'delete',
 				'page' => $page->getPrefixedText()
-			)
+			]
 		);
 
 		$reviewlink = Linker::linkKnown(
@@ -277,12 +277,12 @@ class DeletedContribsPager extends IndexPager {
 			$last = Linker::linkKnown(
 				$undelete,
 				$this->messages['diff'],
-				array(),
-				array(
+				[],
+				[
 					'target' => $page->getPrefixedText(),
 					'timestamp' => $rev->getTimestamp(),
 					'diff' => 'prev'
-				)
+				]
 			);
 		} else {
 			$last = $this->messages['diff'];
@@ -298,11 +298,11 @@ class DeletedContribsPager extends IndexPager {
 			$link = Linker::linkKnown(
 				$undelete,
 				$date,
-				array( 'class' => 'mw-changeslist-date' ),
-				array(
+				[ 'class' => 'mw-changeslist-date' ],
+				[
 					'target' => $page->getPrefixedText(),
 					'timestamp' => $rev->getTimestamp()
-				)
+				]
 			);
 		}
 		// Style deleted items
@@ -313,7 +313,7 @@ class DeletedContribsPager extends IndexPager {
 		$pagelink = Linker::link(
 			$page,
 			null,
-			array( 'class' => 'mw-changeslist-title' )
+			[ 'class' => 'mw-changeslist-title' ]
 		);
 
 		if ( $rev->isMinor() ) {
@@ -330,9 +330,9 @@ class DeletedContribsPager extends IndexPager {
 
 		$tools = Html::rawElement(
 			'span',
-			array( 'class' => 'mw-deletedcontribs-tools' ),
+			[ 'class' => 'mw-deletedcontribs-tools' ],
 			$this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList(
-				array( $last, $dellog, $reviewlink ) ) )->escaped()
+				[ $last, $dellog, $reviewlink ] ) )->escaped()
 		);
 
 		$separator = '<span class="mw-changeslist-separator">. .</span>';
@@ -384,7 +384,7 @@ class DeletedContributionsPage extends SpecialPage {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'deletedcontributions-title' ) );
 
-		$options = array();
+		$options = [];
 
 		if ( $par !== null ) {
 			$target = $par;
@@ -450,7 +450,7 @@ class DeletedContributionsPage extends SpecialPage {
 			if ( !$this->msg( $message )->isDisabled() ) {
 				$out->wrapWikiMsg(
 					"<div class='mw-contributions-footer'>\n$1\n</div>",
-					array( $message, $target )
+					[ $message, $target ]
 				);
 			}
 		}
@@ -486,11 +486,11 @@ class DeletedContributionsPage extends SpecialPage {
 						$tools[] = Linker::linkKnown( # Unblock link
 							SpecialPage::getTitleFor( 'BlockList' ),
 							$this->msg( 'unblocklink' )->escaped(),
-							array(),
-							array(
+							[],
+							[
 								'action' => 'unblock',
 								'ip' => $nt->getDBkey()
-							)
+							]
 						);
 					} else {
 						# User is not blocked
@@ -504,19 +504,19 @@ class DeletedContributionsPage extends SpecialPage {
 				$tools[] = Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Log' ),
 					$this->msg( 'sp-contributions-blocklog' )->escaped(),
-					array(),
-					array(
+					[],
+					[
 						'type' => 'block',
 						'page' => $nt->getPrefixedText()
-					)
+					]
 				);
 				# Suppression log link (bug 59120)
 				if ( $this->getUser()->isAllowed( 'suppressionlog' ) ) {
 					$tools[] = Linker::linkKnown(
 						SpecialPage::getTitleFor( 'Log', 'suppress' ),
 						$this->msg( 'sp-contributions-suppresslog' )->escaped(),
-						array(),
-						array( 'offender' => $userObj->getName() )
+						[],
+						[ 'offender' => $userObj->getName() ]
 					);
 				}
 			}
@@ -531,8 +531,8 @@ class DeletedContributionsPage extends SpecialPage {
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Log' ),
 				$this->msg( 'sp-contributions-logs' )->escaped(),
-				array(),
-				array( 'user' => $nt->getText() )
+				[],
+				[ 'user' => $nt->getText() ]
 			);
 			# Link to contributions
 			$tools[] = Linker::linkKnown(
@@ -550,7 +550,7 @@ class DeletedContributionsPage extends SpecialPage {
 				);
 			}
 
-			Hooks::run( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
+			Hooks::run( 'ContributionsToolLinks', [ $id, $nt, &$tools ] );
 
 			$links = $this->getLanguage()->pipeList( $tools );
 
@@ -568,15 +568,15 @@ class DeletedContributionsPage extends SpecialPage {
 					'block',
 					$nt,
 					'',
-					array(
+					[
 						'lim' => 1,
 						'showIfEmpty' => false,
-						'msgKey' => array(
+						'msgKey' => [
 							'sp-contributions-blocked-notice',
 							$userObj->getName() # Support GENDER in 'sp-contributions-blocked-notice'
-						),
+						],
 						'offset' => '' # don't use $this->getRequest() parameter offset
-					)
+					]
 				);
 			}
 		}
@@ -609,10 +609,10 @@ class DeletedContributionsPage extends SpecialPage {
 			$options['target'] = '';
 		}
 
-		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) );
+		$f = Xml::openElement( 'form', [ 'method' => 'get', 'action' => wfScript() ] );
 
 		foreach ( $options as $name => $value ) {
-			if ( in_array( $name, array( 'namespace', 'target', 'contribs' ) ) ) {
+			if ( in_array( $name, [ 'namespace', 'target', 'contribs' ] ) ) {
 				continue;
 			}
 			$f .= "\t" . Html::hidden( $name, $value ) . "\n";
@@ -621,35 +621,35 @@ class DeletedContributionsPage extends SpecialPage {
 		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
 
 		$f .= Xml::openElement( 'fieldset' );
-		$f .= Xml::element( 'legend', array(), $this->msg( 'sp-contributions-search' )->text() );
+		$f .= Xml::element( 'legend', [], $this->msg( 'sp-contributions-search' )->text() );
 		$f .= Xml::tags(
 			'label',
-			array( 'for' => 'target' ),
+			[ 'for' => 'target' ],
 			$this->msg( 'sp-contributions-username' )->parse()
 		) . ' ';
 		$f .= Html::input(
 			'target',
 			$options['target'],
 			'text',
-			array(
+			[
 				'size' => '20',
 				'required' => '',
-				'class' => array(
+				'class' => [
 					'mw-autocomplete-user', // used by mediawiki.userSuggest
-				),
-			) + ( $options['target'] ? array() : array( 'autofocus' ) )
+				],
+			] + ( $options['target'] ? [] : [ 'autofocus' ] )
 		) . ' ';
 		$f .= Html::namespaceSelector(
-			array(
+			[
 				'selected' => $options['namespace'],
 				'all' => '',
 				'label' => $this->msg( 'namespace' )->text()
-			),
-			array(
+			],
+			[
 				'name' => 'namespace',
 				'id' => 'namespace',
 				'class' => 'namespaceselector',
-			)
+			]
 		) . ' ';
 		$f .= Xml::submitButton( $this->msg( 'sp-contributions-submit' )->text() );
 		$f .= Xml::closeElement( 'fieldset' );
@@ -670,7 +670,7 @@ class DeletedContributionsPage extends SpecialPage {
 		$user = User::newFromName( $search );
 		if ( !$user ) {
 			// No prefix suggestion for invalid user
-			return array();
+			return [];
 		}
 		// Autocomplete subpage as user list - public to allow caching
 		return UserNamePrefixSearch::search( 'public', $search, $limit, $offset );

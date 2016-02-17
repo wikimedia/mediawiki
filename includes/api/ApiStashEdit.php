@@ -99,7 +99,7 @@ class ApiStashEdit extends ApiBase {
 
 		if ( !$content ) { // merge3() failed
 			$this->getResult()->addValue( null,
-				$this->getModuleName(), array( 'status' => 'editconflict' ) );
+				$this->getModuleName(), [ 'status' => 'editconflict' ] );
 			return;
 		}
 
@@ -121,7 +121,7 @@ class ApiStashEdit extends ApiBase {
 			$status = 'busy';
 		}
 
-		$this->getResult()->addValue( null, $this->getModuleName(), array( 'status' => $status ) );
+		$this->getResult()->addValue( null, $this->getModuleName(), [ 'status' => $status ] );
 	}
 
 	/**
@@ -142,7 +142,7 @@ class ApiStashEdit extends ApiBase {
 			$key = self::getStashKey( $page->getTitle(), $content, $user );
 
 			// Let extensions add ParserOutput metadata or warm other caches
-			Hooks::run( 'ParserOutputStashForEdit', array( $page, $content, $editInfo->output ) );
+			Hooks::run( 'ParserOutputStashForEdit', [ $page, $content, $editInfo->output ] );
 
 			list( $stashInfo, $ttl ) = self::buildStashValue(
 				$editInfo->pstContent, $editInfo->output, $editInfo->timestamp
@@ -290,7 +290,7 @@ class ApiStashEdit extends ApiBase {
 
 		$dbr = wfGetDB( DB_SLAVE );
 
-		$templates = array(); // conditions to find changes/creations
+		$templates = []; // conditions to find changes/creations
 		$templateUses = 0; // expected existing templates
 		foreach ( $editInfo->output->getTemplateIds() as $ns => $stuff ) {
 			foreach ( $stuff as $dbkey => $revId ) {
@@ -302,7 +302,7 @@ class ApiStashEdit extends ApiBase {
 		if ( count( $templates ) ) {
 			$res = $dbr->select(
 				'page',
-				array( 'ns' => 'page_namespace', 'dbk' => 'page_title', 'page_latest' ),
+				[ 'ns' => 'page_namespace', 'dbk' => 'page_title', 'page_latest' ],
 				$dbr->makeWhereFrom2d( $templates, 'page_namespace', 'page_title' ),
 				__METHOD__
 			);
@@ -318,7 +318,7 @@ class ApiStashEdit extends ApiBase {
 			}
 		}
 
-		$files = array(); // conditions to find changes/creations
+		$files = []; // conditions to find changes/creations
 		foreach ( $editInfo->output->getFileSearchOptions() as $name => $options ) {
 			$files[$name] = (string)$options['sha1'];
 		}
@@ -326,8 +326,8 @@ class ApiStashEdit extends ApiBase {
 		if ( count( $files ) ) {
 			$res = $dbr->select(
 				'image',
-				array( 'name' => 'img_name', 'img_sha1' ),
-				array( 'img_name' => array_keys( $files ) ),
+				[ 'name' => 'img_name', 'img_sha1' ],
+				[ 'img_name' => array_keys( $files ) ],
 				__METHOD__
 			);
 			$changed = false;
@@ -361,13 +361,13 @@ class ApiStashEdit extends ApiBase {
 	 * @return string
 	 */
 	protected static function getStashKey( Title $title, Content $content, User $user ) {
-		$hash = sha1( implode( ':', array(
+		$hash = sha1( implode( ':', [
 			$content->getModel(),
 			$content->getDefaultFormat(),
 			sha1( $content->serialize( $content->getDefaultFormat() ) ),
 			$user->getId() ?: md5( $user->getName() ), // account for user parser options
 			$user->getId() ? $user->getDBTouched() : '-' // handle preference change races
-		) ) );
+		] ) );
 
 		return wfMemcKey( 'prepared-edit', md5( $title->getPrefixedDBkey() ), $hash );
 	}
@@ -391,46 +391,46 @@ class ApiStashEdit extends ApiBase {
 
 		if ( $ttl > 0 && !$parserOutput->getFlag( 'vary-revision' ) ) {
 			// Only store what is actually needed
-			$stashInfo = (object)array(
+			$stashInfo = (object)[
 				'pstContent' => $pstContent,
 				'output'     => $parserOutput,
 				'timestamp'  => $timestamp
-			);
-			return array( $stashInfo, $ttl );
+			];
+			return [ $stashInfo, $ttl ];
 		}
 
-		return array( null, 0 );
+		return [ null, 0 ];
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'title' => array(
+		return [
+			'title' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
-			),
-			'section' => array(
+			],
+			'section' => [
 				ApiBase::PARAM_TYPE => 'string',
-			),
-			'sectiontitle' => array(
+			],
+			'sectiontitle' => [
 				ApiBase::PARAM_TYPE => 'string'
-			),
-			'text' => array(
+			],
+			'text' => [
 				ApiBase::PARAM_TYPE => 'text',
 				ApiBase::PARAM_REQUIRED => true
-			),
-			'contentmodel' => array(
+			],
+			'contentmodel' => [
 				ApiBase::PARAM_TYPE => ContentHandler::getContentModels(),
 				ApiBase::PARAM_REQUIRED => true
-			),
-			'contentformat' => array(
+			],
+			'contentformat' => [
 				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
 				ApiBase::PARAM_REQUIRED => true
-			),
-			'baserevid' => array(
+			],
+			'baserevid' => [
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_REQUIRED => true
-			)
-		);
+			]
+		];
 	}
 
 	function needsToken() {

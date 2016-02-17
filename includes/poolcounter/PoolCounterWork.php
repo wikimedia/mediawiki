@@ -146,9 +146,9 @@ abstract class PoolCounterWork {
 			/* These two cases should never be hit... */
 			case PoolCounter::ERROR:
 			default:
-				$errors = array(
+				$errors = [
 					PoolCounter::QUEUE_FULL => 'pool-queuefull',
-					PoolCounter::TIMEOUT => 'pool-timeout' );
+					PoolCounter::TIMEOUT => 'pool-timeout' ];
 
 				$status = Status::newFatal( isset( $errors[$status->value] )
 					? $errors[$status->value]

@@ -118,7 +118,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		$count = 0;
 		$db = $this->getDB( DB_MASTER );
 		$res = $db->select( 'archive', '*',
-			array( 'ar_rev_id IS NULL', 'ar_sha1' => '' ), __METHOD__ );
+			[ 'ar_rev_id IS NULL', 'ar_sha1' => '' ], __METHOD__ );
 
 		$updateSize = 0;
 		$this->beginTransaction( $db, __METHOD__ );
@@ -165,8 +165,8 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			return false;
 		} else {
 			$db->update( $table,
-				array( "{$prefix}_sha1" => Revision::base36Sha1( $text ) ),
-				array( $idCol => $row->$idCol ),
+				[ "{$prefix}_sha1" => Revision::base36Sha1( $text ) ],
+				[ $idCol => $row->$idCol ],
 				__METHOD__
 			);
 
@@ -197,13 +197,13 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			# Archive table as no PK, but (NS,title,time) should be near unique.
 			# Any duplicates on those should also have duplicated text anyway.
 			$db->update( 'archive',
-				array( 'ar_sha1' => Revision::base36Sha1( $text ) ),
-				array(
+				[ 'ar_sha1' => Revision::base36Sha1( $text ) ],
+				[
 					'ar_namespace' => $row->ar_namespace,
 					'ar_title' => $row->ar_title,
 					'ar_timestamp' => $row->ar_timestamp,
 					'ar_len' => $row->ar_len // extra sanity
-				),
+				],
 				__METHOD__
 			);
 

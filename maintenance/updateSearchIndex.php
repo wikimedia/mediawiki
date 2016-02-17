@@ -111,7 +111,7 @@ class UpdateSearchIndex extends Maintenance {
 			WHERE rc_type != " . RC_LOG . " AND rc_timestamp BETWEEN '$start' AND '$end'";
 		$res = $dbw->query( $sql, __METHOD__ );
 
-		$this->updateSearchIndex( $maxLockTime, array( $this, 'searchIndexUpdateCallback' ), $dbw, $res );
+		$this->updateSearchIndex( $maxLockTime, [ $this, 'searchIndexUpdateCallback' ], $dbw, $res );
 
 		$this->output( "Done\n" );
 	}

@@ -102,7 +102,7 @@ class MemoizedCallable {
 	 * @param array $args Parameters for memoized function or method.
 	 * @return mixed The memoized callable's return value.
 	 */
-	public function invokeArgs( Array $args = array() ) {
+	public function invokeArgs( Array $args = [] ) {
 		foreach ( $args as $arg ) {
 			if ( $arg !== null && !is_scalar( $arg ) ) {
 				throw new InvalidArgumentException(
@@ -144,7 +144,7 @@ class MemoizedCallable {
 	 * @param array $args
 	 * @param int $ttl
 	 */
-	public static function call( $callable, Array $args = array(), $ttl = 3600 ) {
+	public static function call( $callable, Array $args = [], $ttl = 3600 ) {
 		$instance = new self( $callable, $ttl );
 		return $instance->invokeArgs( $args );
 	}

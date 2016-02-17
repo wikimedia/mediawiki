@@ -15,14 +15,14 @@ class HTMLTextField extends HTMLFormField {
 	}
 
 	function getInputHTML( $value ) {
-		$attribs = array(
+		$attribs = [
 				'id' => $this->mID,
 				'name' => $this->mName,
 				'size' => $this->getSize(),
 				'value' => $value,
 				'dir' => $this->mDir,
 				'spellcheck' => $this->getSpellCheck(),
-			) + $this->getTooltipAndAccessKey();
+			] + $this->getTooltipAndAccessKey();
 
 		if ( $this->mClass !== '' ) {
 			$attribs['class'] = $this->mClass;
@@ -30,7 +30,7 @@ class HTMLTextField extends HTMLFormField {
 
 		# @todo Enforce pattern, step, required, readonly on the server side as
 		# well
-		$allowedParams = array(
+		$allowedParams = [
 			'type',
 			'min',
 			'max',
@@ -46,7 +46,7 @@ class HTMLTextField extends HTMLFormField {
 			'autofocus',
 			'multiple',
 			'readonly'
-		);
+		];
 
 		$attribs += $this->getAttributes( $allowedParams );
 
@@ -88,12 +88,12 @@ class HTMLTextField extends HTMLFormField {
 		$attribs = $this->getTooltipAndAccessKey();
 
 		if ( $this->mClass !== '' ) {
-			$attribs['classes'] = array( $this->mClass );
+			$attribs['classes'] = [ $this->mClass ];
 		}
 
 		# @todo Enforce pattern, step, required, readonly on the server side as
 		# well
-		$allowedParams = array(
+		$allowedParams = [
 			'autofocus',
 			'autosize',
 			'disabled',
@@ -105,22 +105,22 @@ class HTMLTextField extends HTMLFormField {
 			'required',
 			'tabindex',
 			'type',
-		);
+		];
 
-		$attribs += $this->getAttributes( $allowedParams, array(
+		$attribs += $this->getAttributes( $allowedParams, [
 			'maxlength' => 'maxLength',
 			'readonly' => 'readOnly',
 			'tabindex' => 'tabIndex',
-		) );
+		] );
 
 		$type = $this->getType( $attribs );
 
-		return $this->getInputWidget( array(
+		return $this->getInputWidget( [
 			'id' => $this->mID,
 			'name' => $this->mName,
 			'value' => $value,
 			'type' => $type,
-		) + $attribs );
+		] + $attribs );
 	}
 
 	protected function getInputWidget( $params ) {

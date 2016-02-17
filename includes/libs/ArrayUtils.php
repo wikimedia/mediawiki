@@ -47,7 +47,7 @@ class ArrayUtils {
 	 *     function was introduced.
 	 */
 	public static function consistentHashSort( &$array, $key, $separator = "\000" ) {
-		$hashes = array();
+		$hashes = [];
 		foreach ( $array as $elt ) {
 			$hashes[$elt] = md5( $elt . $separator . $key );
 		}
@@ -158,11 +158,11 @@ class ArrayUtils {
 	public static function arrayDiffAssocRecursive( $array1 ) {
 		$arrays = func_get_args();
 		array_shift( $arrays );
-		$ret = array();
+		$ret = [];
 
 		foreach ( $array1 as $key => $value ) {
 			if ( is_array( $value ) ) {
-				$args = array( $value );
+				$args = [ $value ];
 				foreach ( $arrays as $array ) {
 					if ( isset( $array[$key] ) ) {
 						$args[] = $array[$key];

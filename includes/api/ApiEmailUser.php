@@ -36,7 +36,7 @@ class ApiEmailUser extends ApiBase {
 		// Validate target
 		$targetUser = SpecialEmailUser::getTarget( $params['target'] );
 		if ( !( $targetUser instanceof User ) ) {
-			$this->dieUsageMsg( array( $targetUser ) );
+			$this->dieUsageMsg( [ $targetUser ] );
 		}
 
 		// Check permissions and errors
@@ -46,15 +46,15 @@ class ApiEmailUser extends ApiBase {
 			$this->getConfig()
 		);
 		if ( $error ) {
-			$this->dieUsageMsg( array( $error ) );
+			$this->dieUsageMsg( [ $error ] );
 		}
 
-		$data = array(
+		$data = [
 			'Target' => $targetUser->getName(),
 			'Text' => $params['text'],
 			'Subject' => $params['subject'],
 			'CCMe' => $params['ccme'],
-		);
+		];
 		$retval = SpecialEmailUser::submit( $data, $this->getContext() );
 
 		if ( $retval instanceof Status ) {
@@ -68,12 +68,12 @@ class ApiEmailUser extends ApiBase {
 		}
 
 		if ( $retval === true ) {
-			$result = array( 'result' => 'Success' );
+			$result = [ 'result' => 'Success' ];
 		} else {
-			$result = array(
+			$result = [
 				'result' => 'Failure',
 				'message' => $retval
-			);
+			];
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
@@ -88,18 +88,18 @@ class ApiEmailUser extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'target' => array(
+		return [
+			'target' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true
-			),
+			],
 			'subject' => null,
-			'text' => array(
+			'text' => [
 				ApiBase::PARAM_TYPE => 'text',
 				ApiBase::PARAM_REQUIRED => true
-			),
+			],
 			'ccme' => false,
-		);
+		];
 	}
 
 	public function needsToken() {
@@ -107,10 +107,10 @@ class ApiEmailUser extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=emailuser&target=WikiSysop&text=Content&token=123ABC'
 				=> 'apihelp-emailuser-example-email',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

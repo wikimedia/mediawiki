@@ -67,7 +67,7 @@ class MediaWikiPageLinkRenderer implements PageLinkRenderer {
 	 *
 	 * @return string
 	 */
-	public function getPageUrl( LinkTarget $page, $params = array() ) {
+	public function getPageUrl( LinkTarget $page, $params = [] ) {
 		// TODO: move the code from Linker::linkUrl here!
 		// The below is just a rough estimation!
 

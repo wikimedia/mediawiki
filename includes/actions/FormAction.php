@@ -33,7 +33,7 @@ abstract class FormAction extends Action {
 	 */
 	protected function getFormFields() {
 		// Default to an empty form with just a submit button
-		return array();
+		return [];
 	}
 
 	/**
@@ -66,17 +66,17 @@ abstract class FormAction extends Action {
 		$this->fields = $this->getFormFields();
 
 		// Give hooks a chance to alter the form, adding extra fields or text etc
-		Hooks::run( 'ActionModifyFormFields', array( $this->getName(), &$this->fields, $this->page ) );
+		Hooks::run( 'ActionModifyFormFields', [ $this->getName(), &$this->fields, $this->page ] );
 
 		$form = new HTMLForm( $this->fields, $this->getContext(), $this->getName() );
-		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
+		$form->setSubmitCallback( [ $this, 'onSubmit' ] );
 
 		$title = $this->getTitle();
-		$form->setAction( $title->getLocalURL( array( 'action' => $this->getName() ) ) );
+		$form->setAction( $title->getLocalURL( [ 'action' => $this->getName() ] ) );
 		// Retain query parameters (uselang etc)
 		$params = array_diff_key(
 			$this->getRequest()->getQueryValues(),
-			array( 'action' => null, 'title' => null )
+			[ 'action' => null, 'title' => null ]
 		);
 		if ( $params ) {
 			$form->addHiddenField( 'redirectparams', wfArrayToCgi( $params ) );
@@ -87,7 +87,7 @@ abstract class FormAction extends Action {
 		$this->alterForm( $form );
 
 		// Give hooks a chance to alter the form, adding extra fields or text etc
-		Hooks::run( 'ActionBeforeFormDisplay', array( $this->getName(), &$form, $this->page ) );
+		Hooks::run( 'ActionBeforeFormDisplay', [ $this->getName(), &$form, $this->page ] );
 
 		return $form;
 	}

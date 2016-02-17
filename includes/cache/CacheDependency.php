@@ -38,11 +38,11 @@ class DependencyWrapper {
 	 * @param CacheDependency|CacheDependency[] $deps A dependency or dependency
 	 *   array. All dependencies must be objects implementing CacheDependency.
 	 */
-	function __construct( $value = false, $deps = array() ) {
+	function __construct( $value = false, $deps = [] ) {
 		$this->value = $value;
 
 		if ( !is_array( $deps ) ) {
-			$deps = array( $deps );
+			$deps = [ $deps ];
 		}
 
 		$this->deps = $deps;
@@ -111,7 +111,7 @@ class DependencyWrapper {
 	 *    callback was defined.
 	 */
 	static function getValueFromCache( $cache, $key, $expiry = 0, $callback = false,
-		$callbackParams = array(), $deps = array()
+		$callbackParams = [], $deps = []
 	) {
 		$obj = $cache->get( $key );
 
@@ -176,7 +176,7 @@ class FileDependency extends CacheDependency {
 	function __sleep() {
 		$this->loadDependencyValues();
 
-		return array( 'filename', 'timestamp' );
+		return [ 'filename', 'timestamp' ];
 	}
 
 	function loadDependencyValues() {

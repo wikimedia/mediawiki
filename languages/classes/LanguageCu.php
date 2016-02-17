@@ -47,7 +47,7 @@ class LanguageCu extends Language {
 		# a special case for your site name if necessary.
 
 		# join and array_slice instead mb_substr
-		$ar = array();
+		$ar = [];
 		preg_match_all( '/./us', $word, $ar );
 		if ( !preg_match( "/[a-zA-Z_]/us", $word ) ) {
 			switch ( $case ) {

@@ -9,17 +9,17 @@ class CentralIdLookupTest extends MediaWikiTestCase {
 	public function testFactory() {
 		$mock = $this->getMockForAbstractClass( 'CentralIdLookup' );
 
-		$this->setMwGlobals( array(
-			'wgCentralIdLookupProviders' => array(
-				'local' => array( 'class' => 'LocalIdLookup' ),
-				'local2' => array( 'class' => 'LocalIdLookup' ),
-				'mock' => array( 'factory' => function () use ( $mock ) {
+		$this->setMwGlobals( [
+			'wgCentralIdLookupProviders' => [
+				'local' => [ 'class' => 'LocalIdLookup' ],
+				'local2' => [ 'class' => 'LocalIdLookup' ],
+				'mock' => [ 'factory' => function () use ( $mock ) {
 					return $mock;
-				} ),
-				'bad' => array( 'class' => 'stdClass' ),
-			),
+				} ],
+				'bad' => [ 'class' => 'stdClass' ],
+			],
 			'wgCentralIdLookupProvider' => 'mock',
-		) );
+		] );
 
 		$this->assertSame( $mock, CentralIdLookup::factory() );
 		$this->assertSame( $mock, CentralIdLookup::factory( 'mock' ) );
@@ -66,11 +66,11 @@ class CentralIdLookupTest extends MediaWikiTestCase {
 		$mock = $this->getMockForAbstractClass( 'CentralIdLookup' );
 		$mock->expects( $this->once() )->method( 'lookupCentralIds' )
 			->with(
-				$this->equalTo( array( 15 => null ) ),
+				$this->equalTo( [ 15 => null ] ),
 				$this->equalTo( CentralIdLookup::AUDIENCE_RAW ),
 				$this->equalTo( CentralIdLookup::READ_LATEST )
 			)
-			->will( $this->returnValue( array( 15 => 'FooBar' ) ) );
+			->will( $this->returnValue( [ 15 => 'FooBar' ] ) );
 
 		$this->assertSame(
 			'FooBar',
@@ -89,11 +89,11 @@ class CentralIdLookupTest extends MediaWikiTestCase {
 			->will( $this->returnValue( true ) );
 		$mock->expects( $this->once() )->method( 'lookupCentralIds' )
 			->with(
-				$this->equalTo( array( 42 => null ) ),
+				$this->equalTo( [ 42 => null ] ),
 				$this->equalTo( CentralIdLookup::AUDIENCE_RAW ),
 				$this->equalTo( CentralIdLookup::READ_LATEST )
 			)
-			->will( $this->returnValue( array( 42 => $name ) ) );
+			->will( $this->returnValue( [ 42 => $name ] ) );
 
 		$user = $mock->localUserFromCentralId(
 			42, CentralIdLookup::AUDIENCE_RAW, CentralIdLookup::READ_LATEST
@@ -110,35 +110,35 @@ class CentralIdLookupTest extends MediaWikiTestCase {
 			->will( $this->returnValue( false ) );
 		$mock->expects( $this->once() )->method( 'lookupCentralIds' )
 			->with(
-				$this->equalTo( array( 42 => null ) ),
+				$this->equalTo( [ 42 => null ] ),
 				$this->equalTo( CentralIdLookup::AUDIENCE_RAW ),
 				$this->equalTo( CentralIdLookup::READ_LATEST )
 			)
-			->will( $this->returnValue( array( 42 => $name ) ) );
+			->will( $this->returnValue( [ 42 => $name ] ) );
 		$this->assertNull(
 			$mock->localUserFromCentralId( 42, CentralIdLookup::AUDIENCE_RAW, CentralIdLookup::READ_LATEST )
 		);
 	}
 
 	public static function provideLocalUserFromCentralId() {
-		return array(
-			array( 'UTSysop', true ),
-			array( 'UTDoesNotExist', false ),
-			array( null, false ),
-			array( '', false ),
-			array( '<X>', false ),
-		);
+		return [
+			[ 'UTSysop', true ],
+			[ 'UTDoesNotExist', false ],
+			[ null, false ],
+			[ '', false ],
+			[ '<X>', false ],
+		];
 	}
 
 	public function testCentralIdFromName() {
 		$mock = $this->getMockForAbstractClass( 'CentralIdLookup' );
 		$mock->expects( $this->once() )->method( 'lookupUserNames' )
 			->with(
-				$this->equalTo( array( 'FooBar' => 0 ) ),
+				$this->equalTo( [ 'FooBar' => 0 ] ),
 				$this->equalTo( CentralIdLookup::AUDIENCE_RAW ),
 				$this->equalTo( CentralIdLookup::READ_LATEST )
 			)
-			->will( $this->returnValue( array( 'FooBar' => 23 ) ) );
+			->will( $this->returnValue( [ 'FooBar' => 23 ] ) );
 
 		$this->assertSame(
 			23,
@@ -152,11 +152,11 @@ class CentralIdLookupTest extends MediaWikiTestCase {
 			->will( $this->returnValue( true ) );
 		$mock->expects( $this->once() )->method( 'lookupUserNames' )
 			->with(
-				$this->equalTo( array( 'FooBar' => 0 ) ),
+				$this->equalTo( [ 'FooBar' => 0 ] ),
 				$this->equalTo( CentralIdLookup::AUDIENCE_RAW ),
 				$this->equalTo( CentralIdLookup::READ_LATEST )
 			)
-			->will( $this->returnValue( array( 'FooBar' => 23 ) ) );
+			->will( $this->returnValue( [ 'FooBar' => 23 ] ) );
 
 		$this->assertSame(
 			23,

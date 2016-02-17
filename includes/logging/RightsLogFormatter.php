@@ -29,7 +29,7 @@
  * @since 1.21
  */
 class RightsLogFormatter extends LogFormatter {
-	protected function makePageLink( Title $title = null, $parameters = array(), $html = null ) {
+	protected function makePageLink( Title $title = null, $parameters = [], $html = null ) {
 		global $wgContLang, $wgUserrightsInterwikiDelimiter;
 
 		if ( !$this->plaintext ) {
@@ -103,12 +103,12 @@ class RightsLogFormatter extends LogFormatter {
 		$entry = $this->entry;
 		$params = $entry->getParameters();
 
-		static $map = array(
+		static $map = [
 			'4:array:oldgroups',
 			'5:array:newgroups',
 			'4::oldgroups' => '4:array:oldgroups',
 			'5::newgroups' => '5:array:newgroups',
-		);
+		];
 		foreach ( $map as $index => $key ) {
 			if ( isset( $params[$index] ) ) {
 				$params[$key] = $params[$index];
@@ -141,7 +141,7 @@ class RightsLogFormatter extends LogFormatter {
 	private function makeGroupArray( $group ) {
 		// Migrate old group params from string to array
 		if ( $group === '' ) {
-			$group = array();
+			$group = [];
 		} elseif ( is_string( $group ) ) {
 			$group = array_map( 'trim', explode( ',', $group ) );
 		}

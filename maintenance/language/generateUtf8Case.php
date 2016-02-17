@@ -70,7 +70,7 @@ class GenerateUtf8Case extends Maintenance {
 		}
 
 		// For the file format, see http://www.unicode.org/reports/tr44/
-		$fieldNames = array(
+		$fieldNames = [
 			'Code',
 			'Name',
 			'General_Category',
@@ -86,10 +86,10 @@ class GenerateUtf8Case extends Maintenance {
 			'Simple_Uppercase_Mapping',
 			'Simple_Lowercase_Mapping',
 			'Simple_Titlecase_Mapping'
-		);
+		];
 
-		$upper = array();
-		$lower = array();
+		$upper = [];
+		$lower = [];
 
 		$lineNum = 0;
 		while ( false !== ( $line = fgets( $file ) ) ) {
@@ -103,7 +103,7 @@ class GenerateUtf8Case extends Maintenance {
 
 			# Split fields
 			$numberedData = explode( ';', $line );
-			$data = array();
+			$data = [];
 			foreach ( $fieldNames as $number => $name ) {
 				$data[$name] = $numberedData[$number];
 			}
@@ -118,10 +118,10 @@ class GenerateUtf8Case extends Maintenance {
 		}
 
 		global $IP;
-		file_put_contents( "$IP/serialized/Utf8Case.ser", serialize( array(
+		file_put_contents( "$IP/serialized/Utf8Case.ser", serialize( [
 			'wikiUpperChars' => $upper,
 			'wikiLowerChars' => $lower,
-		) ) );
+		] ) );
 	}
 }
 

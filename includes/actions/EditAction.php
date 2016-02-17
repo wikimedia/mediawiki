@@ -46,15 +46,15 @@ class EditAction extends FormlessAction {
 		$out = $this->getOutput();
 		$out->setRobotPolicy( 'noindex,nofollow' );
 		if ( $this->getContext()->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
-			$out->addModuleStyles( array(
+			$out->addModuleStyles( [
 				'mediawiki.ui.input',
 				'mediawiki.ui.checkbox',
-			) );
+			] );
 		}
 		$page = $this->page;
 		$user = $this->getUser();
 
-		if ( Hooks::run( 'CustomEditor', array( $page, $user ) ) ) {
+		if ( Hooks::run( 'CustomEditor', [ $page, $user ] ) ) {
 			$editor = new EditPage( $page );
 			$editor->edit();
 		}

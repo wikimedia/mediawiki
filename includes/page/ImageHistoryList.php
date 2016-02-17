@@ -80,12 +80,12 @@ class ImageHistoryList extends ContextSource {
 	 * @return string
 	 */
 	public function beginImageHistoryList( $navLinks = '' ) {
-		return Xml::element( 'h2', array( 'id' => 'filehistory' ), $this->msg( 'filehist' )->text() )
+		return Xml::element( 'h2', [ 'id' => 'filehistory' ], $this->msg( 'filehist' )->text() )
 		. "\n"
 		. "<div id=\"mw-imagepage-section-filehistory\">\n"
 		. $this->msg( 'filehist-help' )->parseAsBlock()
 		. $navLinks . "\n"
-		. Xml::openElement( 'table', array( 'class' => 'wikitable filehistory' ) ) . "\n"
+		. Xml::openElement( 'table', [ 'class' => 'wikitable filehistory' ] ) . "\n"
 		. '<tr><th></th>'
 		. ( $this->current->isLocal()
 		&& ( $this->getUser()->isAllowedAny( 'delete', 'deletedhistory' ) ) ? '<th></th>' : '' )
@@ -129,14 +129,14 @@ class ImageHistoryList extends ContextSource {
 			$row .= '<td>';
 			# Link to remove from history
 			if ( $user->isAllowed( 'delete' ) ) {
-				$q = array( 'action' => 'delete' );
+				$q = [ 'action' => 'delete' ];
 				if ( !$iscur ) {
 					$q['oldimage'] = $img;
 				}
 				$row .= Linker::linkKnown(
 					$this->title,
 					$this->msg( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' )->escaped(),
-					array(), $q
+					[], $q
 				);
 			}
 			# Link to hide content. Don't show useless link to people who cannot hide revisions.
@@ -150,11 +150,11 @@ class ImageHistoryList extends ContextSource {
 					$del = Linker::revDeleteLinkDisabled( $canHide );
 				} else {
 					list( $ts, ) = explode( '!', $img, 2 );
-					$query = array(
+					$query = [
 						'type' => 'oldimage',
 						'target' => $this->title->getPrefixedText(),
 						'ids' => $ts,
-					);
+					];
 					$del = Linker::revDeleteLink( $query,
 						$file->isDeleted( File::DELETED_RESTRICTED ), $canHide );
 				}
@@ -176,12 +176,12 @@ class ImageHistoryList extends ContextSource {
 				$row .= Linker::linkKnown(
 					$this->title,
 					$this->msg( 'filehist-revert' )->escaped(),
-					array(),
-					array(
+					[],
+					[
 						'action' => 'revert',
 						'oldimage' => $img,
 						'wpEditToken' => $user->getEditToken( $img )
-					)
+					]
 				);
 			}
 		}
@@ -204,12 +204,12 @@ class ImageHistoryList extends ContextSource {
 				$url = Linker::linkKnown(
 					$revdel,
 					$lang->userTimeAndDate( $timestamp, $user ),
-					array(),
-					array(
+					[],
+					[
 						'target' => $this->title->getPrefixedText(),
 						'file' => $img,
 						'token' => $user->getEditToken( $img )
-					)
+					]
 				);
 			} else {
 				$url = $lang->userTimeAndDate( $timestamp, $user );
@@ -222,7 +222,7 @@ class ImageHistoryList extends ContextSource {
 			$url = $iscur ? $this->current->getUrl() : $this->current->getArchiveUrl( $img );
 			$row .= Xml::element(
 				'a',
-				array( 'href' => $url ),
+				[ 'href' => $url ],
 				$lang->userTimeAndDate( $timestamp, $user )
 			);
 		}
@@ -270,7 +270,7 @@ class ImageHistoryList extends ContextSource {
 		}
 
 		$rowClass = null;
-		Hooks::run( 'ImagePageFileHistoryLine', array( $this, $file, &$row, &$rowClass ) );
+		Hooks::run( 'ImagePageFileHistoryLine', [ $this, $file, &$row, &$rowClass ] );
 		$classAttr = $rowClass ? " class='$rowClass'" : '';
 
 		return "<tr{$classAttr}>{$row}</tr>\n";
@@ -286,20 +286,20 @@ class ImageHistoryList extends ContextSource {
 		if ( $file->allowInlineDisplay() && $file->userCan( File::DELETED_FILE, $user )
 			&& !$file->isDeleted( File::DELETED_FILE )
 		) {
-			$params = array(
+			$params = [
 				'width' => '120',
 				'height' => '120',
-			);
+			];
 			$timestamp = wfTimestamp( TS_MW, $file->getTimestamp() );
 
 			$thumbnail = $file->transform( $params );
-			$options = array(
+			$options = [
 				'alt' => $this->msg( 'filehist-thumbtext',
 					$lang->userTimeAndDate( $timestamp, $user ),
 					$lang->userDate( $timestamp, $user ),
 					$lang->userTime( $timestamp, $user ) )->text(),
 				'file-link' => true,
-			);
+			];
 
 			if ( !$thumbnail ) {
 				return $this->msg( 'filehist-nothumb' )->escaped();

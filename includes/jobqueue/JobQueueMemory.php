@@ -31,7 +31,7 @@
  */
 class JobQueueMemory extends JobQueue {
 	/** @var array[] */
-	protected static $data = array();
+	protected static $data = [];
 
 	/**
 	 * @see JobQueue::doBatchPush
@@ -40,7 +40,7 @@ class JobQueueMemory extends JobQueue {
 	 * @param int $flags
 	 */
 	protected function doBatchPush( array $jobs, $flags ) {
-		$unclaimed =& $this->getQueueData( 'unclaimed', array() );
+		$unclaimed =& $this->getQueueData( 'unclaimed', [] );
 
 		foreach ( $jobs as $job ) {
 			if ( $job->ignoreDuplicates() ) {
@@ -63,7 +63,7 @@ class JobQueueMemory extends JobQueue {
 	 * @return string[]
 	 */
 	protected function supportedOrders() {
-		return array( 'random', 'timestamp', 'fifo' );
+		return [ 'random', 'timestamp', 'fifo' ];
 	}
 
 	/**
@@ -117,7 +117,7 @@ class JobQueueMemory extends JobQueue {
 		}
 
 		$unclaimed =& $this->getQueueData( 'unclaimed' );
-		$claimed =& $this->getQueueData( 'claimed', array() );
+		$claimed =& $this->getQueueData( 'claimed', [] );
 
 		if ( $this->order === 'random' ) {
 			$key = array_rand( $unclaimed );
@@ -172,7 +172,7 @@ class JobQueueMemory extends JobQueue {
 	public function getAllQueuedJobs() {
 		$unclaimed = $this->getQueueData( 'unclaimed' );
 		if ( !$unclaimed ) {
-			return new ArrayIterator( array() );
+			return new ArrayIterator( [] );
 		}
 
 		return new MappedIterator(
@@ -191,7 +191,7 @@ class JobQueueMemory extends JobQueue {
 	public function getAllAcquiredJobs() {
 		$claimed = $this->getQueueData( 'claimed' );
 		if ( !$claimed ) {
-			return new ArrayIterator( array() );
+			return new ArrayIterator( [] );
 		}
 
 		return new MappedIterator(

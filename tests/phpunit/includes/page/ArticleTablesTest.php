@@ -16,7 +16,7 @@ class ArticleTablesTest extends MediaWikiLangTestCase {
 		$title = Title::newFromText( 'Bug 14404' );
 		$page = WikiPage::factory( $title );
 		$user = new User();
-		$user->mRights = array( 'createpage', 'edit', 'purge' );
+		$user->mRights = [ 'createpage', 'edit', 'purge' ];
 		$this->setMwGlobals( 'wgLanguageCode', 'es' );
 		$this->setMwGlobals( 'wgContLang', Language::factory( 'es' ) );
 		$this->setMwGlobals( 'wgLang', Language::factory( 'fr' ) );

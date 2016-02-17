@@ -54,7 +54,7 @@ class Protect extends Maintenance {
 		}
 
 		if ( $userName === false ) {
-			$user = User::newSystemUser( 'Maintenance script', array( 'steal' => true ) );
+			$user = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
 		} else {
 			$user = User::newFromName( $userName );
 		}
@@ -63,14 +63,14 @@ class Protect extends Maintenance {
 		}
 
 		// @todo FIXME: This is reset 7 lines down.
-		$restrictions = array( 'edit' => $protection, 'move' => $protection );
+		$restrictions = [ 'edit' => $protection, 'move' => $protection ];
 
 		$t = Title::newFromText( $this->getArg() );
 		if ( !$t ) {
 			$this->error( "Invalid title", true );
 		}
 
-		$restrictions = array();
+		$restrictions = [];
 		foreach ( $t->getRestrictionTypes() as $type ) {
 			$restrictions[$type] = $protection;
 		}
@@ -79,7 +79,7 @@ class Protect extends Maintenance {
 		$this->output( "Updating protection status... " );
 
 		$page = WikiPage::factory( $t );
-		$status = $page->doUpdateRestrictions( $restrictions, array(), $cascade, $reason, $user );
+		$status = $page->doUpdateRestrictions( $restrictions, [], $cascade, $reason, $user );
 
 		if ( $status->isOK() ) {
 			$this->output( "done\n" );

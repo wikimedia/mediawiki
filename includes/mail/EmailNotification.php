@@ -59,7 +59,7 @@ class EmailNotification {
 
 	protected $subject, $body, $replyto, $from;
 	protected $timestamp, $summary, $minorEdit, $oldid, $composed_common, $pageStatus;
-	protected $mailTargets = array();
+	protected $mailTargets = [];
 
 	/**
 	 * @var Title
@@ -86,21 +86,21 @@ class EmailNotification {
 		global $wgEnotifWatchlist, $wgShowUpdatedMarker;
 
 		if ( !$wgEnotifWatchlist && !$wgShowUpdatedMarker ) {
-			return array();
+			return [];
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		$res = $dbw->select( array( 'watchlist' ),
-			array( 'wl_user' ),
-			array(
+		$res = $dbw->select( [ 'watchlist' ],
+			[ 'wl_user' ],
+			[
 				'wl_user != ' . intval( $editor->getID() ),
 				'wl_namespace' => $linkTarget->getNamespace(),
 				'wl_title' => $linkTarget->getDBkey(),
 				'wl_notificationtimestamp IS NULL',
-			), __METHOD__
+			], __METHOD__
 		);
 
-		$watchers = array();
+		$watchers = [];
 		foreach ( $res as $row ) {
 			$watchers[] = intval( $row->wl_user );
 		}
@@ -111,13 +111,13 @@ class EmailNotification {
 			$dbw->onTransactionIdle(
 				function () use ( $dbw, $timestamp, $watchers, $linkTarget, $fname ) {
 					$dbw->update( 'watchlist',
-						array( /* SET */
+						[ /* SET */
 							'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
-						), array( /* WHERE */
+						], [ /* WHERE */
 							'wl_user' => $watchers,
 							'wl_namespace' => $linkTarget->getNamespace(),
 							'wl_title' => $linkTarget->getDBkey(),
-						), $fname
+						], $fname
 					);
 				}
 			);
@@ -173,7 +173,7 @@ class EmailNotification {
 		if ( $sendEmail ) {
 			JobQueueGroup::singleton()->lazyPush( new EnotifNotifyJob(
 				$title,
-				array(
+				[
 					'editor' => $editor->getName(),
 					'editorID' => $editor->getID(),
 					'timestamp' => $timestamp,
@@ -182,7 +182,7 @@ class EmailNotification {
 					'oldid' => $oldid,
 					'watchers' => $watchers,
 					'pageStatus' => $pageStatus
-				)
+				]
 			) );
 		}
 	}
@@ -225,9 +225,9 @@ class EmailNotification {
 		$this->composed_common = false;
 		$this->pageStatus = $pageStatus;
 
-		$formattedPageStatus = array( 'deleted', 'created', 'moved', 'restored', 'changed' );
+		$formattedPageStatus = [ 'deleted', 'created', 'moved', 'restored', 'changed' ];
 
-		Hooks::run( 'UpdateUserMailerFormattedPageStatus', array( &$formattedPageStatus ) );
+		Hooks::run( 'UpdateUserMailerFormattedPageStatus', [ &$formattedPageStatus ] );
 		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
 			throw new MWException( 'Not a valid page status!' );
 		}
@@ -256,7 +256,7 @@ class EmailNotification {
 						&& !in_array( $watchingUser->getName(), $wgUsersNotifiedOnAllChanges )
 						&& !( $wgBlockDisablesLogin && $watchingUser->isBlocked() )
 					) {
-						if ( Hooks::run( 'SendWatchlistEmailNotification', array( $watchingUser, $title, $this ) ) ) {
+						if ( Hooks::run( 'SendWatchlistEmailNotification', [ $watchingUser, $title, $this ] ) ) {
 							$this->compose( $watchingUser, self::WATCHLIST );
 						}
 					}
@@ -300,7 +300,7 @@ class EmailNotification {
 			) {
 				if ( !$targetUser->isEmailConfirmed() ) {
 					wfDebug( __METHOD__ . ": talk page owner doesn't have validated email\n" );
-				} elseif ( !Hooks::run( 'AbortTalkPageEmailNotification', array( $targetUser, $title ) ) ) {
+				} elseif ( !Hooks::run( 'AbortTalkPageEmailNotification', [ $targetUser, $title ] ) ) {
 					wfDebug( __METHOD__ . ": talk page update notification is aborted for this user\n" );
 				} else {
 					wfDebug( __METHOD__ . ": sending talk page update notification\n" );
@@ -327,22 +327,22 @@ class EmailNotification {
 		# named variables when composing your notification emails while
 		# simply editing the Meta pages
 
-		$keys = array();
-		$postTransformKeys = array();
+		$keys = [];
+		$postTransformKeys = [];
 		$pageTitleUrl = $this->title->getCanonicalURL();
 		$pageTitle = $this->title->getPrefixedText();
 
 		if ( $this->oldid ) {
 			// Always show a link to the diff which triggered the mail. See bug 32210.
 			$keys['$NEWPAGE'] = "\n\n" . wfMessage( 'enotif_lastdiff',
-					$this->title->getCanonicalURL( array( 'diff' => 'next', 'oldid' => $this->oldid ) ) )
+					$this->title->getCanonicalURL( [ 'diff' => 'next', 'oldid' => $this->oldid ] ) )
 					->inContentLanguage()->text();
 
 			if ( !$wgEnotifImpersonal ) {
 				// For personal mail, also show a link to the diff of all changes
 				// since last visited.
 				$keys['$NEWPAGE'] .= "\n\n" . wfMessage( 'enotif_lastvisited',
-						$this->title->getCanonicalURL( array( 'diff' => '0', 'oldid' => $this->oldid ) ) )
+						$this->title->getCanonicalURL( [ 'diff' => '0', 'oldid' => $this->oldid ] ) )
 						->inContentLanguage()->text();
 			}
 			$keys['$OLDID'] = $this->oldid;
@@ -479,24 +479,24 @@ class EmailNotification {
 		# expressed in terms of individual local time of the notification
 		# recipient, i.e. watching user
 		$body = str_replace(
-			array( '$WATCHINGUSERNAME',
+			[ '$WATCHINGUSERNAME',
 				'$PAGEEDITDATE',
-				'$PAGEEDITTIME' ),
-			array( $wgEnotifUseRealName && $watchingUser->getRealName() !== ''
+				'$PAGEEDITTIME' ],
+			[ $wgEnotifUseRealName && $watchingUser->getRealName() !== ''
 				? $watchingUser->getRealName() : $watchingUser->getName(),
 				$wgContLang->userDate( $this->timestamp, $watchingUser ),
-				$wgContLang->userTime( $this->timestamp, $watchingUser ) ),
+				$wgContLang->userTime( $this->timestamp, $watchingUser ) ],
 			$this->body );
 
-		$headers = array();
+		$headers = [];
 		if ( $source === self::WATCHLIST ) {
 			$headers['List-Help'] = 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Watchlist';
 		}
 
-		return UserMailer::send( $to, $this->from, $this->subject, $body, array(
+		return UserMailer::send( $to, $this->from, $this->subject, $body, [
 			'replyTo' => $this->replyto,
 			'headers' => $headers,
-		) );
+		] );
 	}
 
 	/**
@@ -513,17 +513,17 @@ class EmailNotification {
 		}
 
 		$body = str_replace(
-			array( '$WATCHINGUSERNAME',
+			[ '$WATCHINGUSERNAME',
 				'$PAGEEDITDATE',
-				'$PAGEEDITTIME' ),
-			array( wfMessage( 'enotif_impersonal_salutation' )->inContentLanguage()->text(),
+				'$PAGEEDITTIME' ],
+			[ wfMessage( 'enotif_impersonal_salutation' )->inContentLanguage()->text(),
 				$wgContLang->date( $this->timestamp, false, false ),
-				$wgContLang->time( $this->timestamp, false, false ) ),
+				$wgContLang->time( $this->timestamp, false, false ) ],
 			$this->body );
 
-		return UserMailer::send( $addresses, $this->from, $this->subject, $body, array(
+		return UserMailer::send( $addresses, $this->from, $this->subject, $body, [
 			'replyTo' => $this->replyto,
-		) );
+		] );
 	}
 
 }

@@ -55,11 +55,11 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$query = $params['query'];
 		$protocol = self::getProtocolPrefix( $params['protocol'] );
 
-		$this->addTables( array( 'page', 'externallinks' ) ); // must be in this order for 'USE INDEX'
+		$this->addTables( [ 'page', 'externallinks' ] ); // must be in this order for 'USE INDEX'
 		$this->addOption( 'USE INDEX', 'el_index' );
 		$this->addWhere( 'page_id=el_from' );
 
-		$miser_ns = array();
+		$miser_ns = [];
 		if ( $this->getConfig()->get( 'MiserMode' ) ) {
 			$miser_ns = $params['namespace'];
 		} else {
@@ -78,11 +78,11 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$fld_url = isset( $prop['url'] );
 
 		if ( is_null( $resultPageSet ) ) {
-			$this->addFields( array(
+			$this->addFields( [
 				'page_id',
 				'page_namespace',
 				'page_title'
-			) );
+			] );
 			$this->addFieldsIf( 'el_to', $fld_url );
 		} else {
 			$this->addFields( $resultPageSet->getPageTableFields() );
@@ -112,9 +112,9 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			}
 
 			if ( is_null( $resultPageSet ) ) {
-				$vals = array(
+				$vals = [
 					ApiResult::META_TYPE => 'assoc',
-				);
+				];
 				if ( $fld_ids ) {
 					$vals['pageid'] = intval( $row->page_id );
 				}
@@ -130,7 +130,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 					}
 					$vals['url'] = $to;
 				}
-				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
+				$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'offset', $offset + $count - 1 );
 					break;
@@ -141,50 +141,50 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$result->addIndexedTagName( array( 'query', $this->getModuleName() ),
+			$result->addIndexedTagName( [ 'query', $this->getModuleName() ],
 				$this->getModulePrefix() );
 		}
 	}
 
 	public function getAllowedParams() {
-		$ret = array(
-			'prop' => array(
+		$ret = [
+			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'ids|title|url',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'ids',
 					'title',
 					'url'
-				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
-			'offset' => array(
+				],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
+			'offset' => [
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-			'protocol' => array(
+			],
+			'protocol' => [
 				ApiBase::PARAM_TYPE => self::prepareProtocols(),
 				ApiBase::PARAM_DFLT => '',
-			),
+			],
 			'query' => null,
-			'namespace' => array(
+			'namespace' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'namespace'
-			),
-			'limit' => array(
+			],
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
+			],
 			'expandurl' => false,
-		);
+		];
 
 		if ( $this->getConfig()->get( 'MiserMode' ) ) {
-			$ret['namespace'][ApiBase::PARAM_HELP_MSG_APPEND] = array(
+			$ret['namespace'][ApiBase::PARAM_HELP_MSG_APPEND] = [
 				'api-help-param-limited-in-miser-mode',
-			);
+			];
 		}
 
 		return $ret;
@@ -192,7 +192,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 	public static function prepareProtocols() {
 		global $wgUrlProtocols;
-		$protocols = array( '' );
+		$protocols = [ '' ];
 		foreach ( $wgUrlProtocols as $p ) {
 			if ( $p !== '//' ) {
 				$protocols[] = substr( $p, 0, strpos( $p, ':' ) );
@@ -220,10 +220,10 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=exturlusage&euquery=www.mediawiki.org'
 				=> 'apihelp-query+exturlusage-example-simple',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

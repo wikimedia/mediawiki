@@ -52,14 +52,14 @@ abstract class Collation {
 			case 'xx-uca-et':
 				return new CollationEt;
 			default:
-				$match = array();
+				$match = [];
 				if ( preg_match( '/^uca-([a-z@=-]+)$/', $collationName, $match ) ) {
 					return new IcuCollation( $match[1] );
 				}
 
 				# Provide a mechanism for extensions to hook in.
 				$collationObject = null;
-				Hooks::run( 'Collation::factory', array( $collationName, &$collationObject ) );
+				Hooks::run( 'Collation::factory', [ $collationName, &$collationObject ] );
 
 				if ( $collationObject instanceof Collation ) {
 					return $collationObject;
@@ -180,23 +180,23 @@ class IcuCollation extends Collation {
 	 * is pretty useless for sorting Chinese text anyway. Japanese and Korean
 	 * blocks are not included here, because they are smaller and more useful.
 	 */
-	private static $cjkBlocks = array(
-		array( 0x2E80, 0x2EFF ), // CJK Radicals Supplement
-		array( 0x2F00, 0x2FDF ), // Kangxi Radicals
-		array( 0x2FF0, 0x2FFF ), // Ideographic Description Characters
-		array( 0x3000, 0x303F ), // CJK Symbols and Punctuation
-		array( 0x31C0, 0x31EF ), // CJK Strokes
-		array( 0x3200, 0x32FF ), // Enclosed CJK Letters and Months
-		array( 0x3300, 0x33FF ), // CJK Compatibility
-		array( 0x3400, 0x4DBF ), // CJK Unified Ideographs Extension A
-		array( 0x4E00, 0x9FFF ), // CJK Unified Ideographs
-		array( 0xF900, 0xFAFF ), // CJK Compatibility Ideographs
-		array( 0xFE30, 0xFE4F ), // CJK Compatibility Forms
-		array( 0x20000, 0x2A6DF ), // CJK Unified Ideographs Extension B
-		array( 0x2A700, 0x2B73F ), // CJK Unified Ideographs Extension C
-		array( 0x2B740, 0x2B81F ), // CJK Unified Ideographs Extension D
-		array( 0x2F800, 0x2FA1F ), // CJK Compatibility Ideographs Supplement
-	);
+	private static $cjkBlocks = [
+		[ 0x2E80, 0x2EFF ], // CJK Radicals Supplement
+		[ 0x2F00, 0x2FDF ], // Kangxi Radicals
+		[ 0x2FF0, 0x2FFF ], // Ideographic Description Characters
+		[ 0x3000, 0x303F ], // CJK Symbols and Punctuation
+		[ 0x31C0, 0x31EF ], // CJK Strokes
+		[ 0x3200, 0x32FF ], // Enclosed CJK Letters and Months
+		[ 0x3300, 0x33FF ], // CJK Compatibility
+		[ 0x3400, 0x4DBF ], // CJK Unified Ideographs Extension A
+		[ 0x4E00, 0x9FFF ], // CJK Unified Ideographs
+		[ 0xF900, 0xFAFF ], // CJK Compatibility Ideographs
+		[ 0xFE30, 0xFE4F ], // CJK Compatibility Forms
+		[ 0x20000, 0x2A6DF ], // CJK Unified Ideographs Extension B
+		[ 0x2A700, 0x2B73F ], // CJK Unified Ideographs Extension C
+		[ 0x2B740, 0x2B81F ], // CJK Unified Ideographs Extension D
+		[ 0x2F800, 0x2FA1F ], // CJK Compatibility Ideographs Supplement
+	];
 
 	/**
 	 * Additional characters (or character groups) to be considered separate
@@ -219,80 +219,80 @@ class IcuCollation extends Collation {
 	 * Empty arrays are intended; this signifies that the data for the language is
 	 * available and that there are, in fact, no additional letters to consider.
 	 */
-	private static $tailoringFirstLetters = array(
+	private static $tailoringFirstLetters = [
 		// Verified by native speakers
-		'be' => array( "Ё" ),
-		'be-tarask' => array( "Ё" ),
-		'cy' => array( "Ch", "Dd", "Ff", "Ng", "Ll", "Ph", "Rh", "Th" ),
-		'en' => array(),
-		'fa' => array( "آ", "ء", "ه" ),
-		'fi' => array( "Å", "Ä", "Ö" ),
-		'fr' => array(),
-		'hu' => array( "Cs", "Dz", "Dzs", "Gy", "Ly", "Ny", "Ö", "Sz", "Ty", "Ü", "Zs" ),
-		'is' => array( "Á", "Ð", "É", "Í", "Ó", "Ú", "Ý", "Þ", "Æ", "Ö", "Å" ),
-		'it' => array(),
-		'lv' => array( "Č", "Ģ", "Ķ", "Ļ", "Ņ", "Š", "Ž" ),
-		'pl' => array( "Ą", "Ć", "Ę", "Ł", "Ń", "Ó", "Ś", "Ź", "Ż" ),
-		'pt' => array(),
-		'ru' => array(),
-		'sv' => array( "Å", "Ä", "Ö" ),
-		'sv@collation=standard' => array( "Å", "Ä", "Ö" ),
-		'uk' => array( "Ґ", "Ь" ),
-		'vi' => array( "Ă", "Â", "Đ", "Ê", "Ô", "Ơ", "Ư" ),
+		'be' => [ "Ё" ],
+		'be-tarask' => [ "Ё" ],
+		'cy' => [ "Ch", "Dd", "Ff", "Ng", "Ll", "Ph", "Rh", "Th" ],
+		'en' => [],
+		'fa' => [ "آ", "ء", "ه" ],
+		'fi' => [ "Å", "Ä", "Ö" ],
+		'fr' => [],
+		'hu' => [ "Cs", "Dz", "Dzs", "Gy", "Ly", "Ny", "Ö", "Sz", "Ty", "Ü", "Zs" ],
+		'is' => [ "Á", "Ð", "É", "Í", "Ó", "Ú", "Ý", "Þ", "Æ", "Ö", "Å" ],
+		'it' => [],
+		'lv' => [ "Č", "Ģ", "Ķ", "Ļ", "Ņ", "Š", "Ž" ],
+		'pl' => [ "Ą", "Ć", "Ę", "Ł", "Ń", "Ó", "Ś", "Ź", "Ż" ],
+		'pt' => [],
+		'ru' => [],
+		'sv' => [ "Å", "Ä", "Ö" ],
+		'sv@collation=standard' => [ "Å", "Ä", "Ö" ],
+		'uk' => [ "Ґ", "Ь" ],
+		'vi' => [ "Ă", "Â", "Đ", "Ê", "Ô", "Ơ", "Ư" ],
 		// Not verified, but likely correct
-		'af' => array(),
-		'ast' => array( "Ch", "Ll", "Ñ" ),
-		'az' => array( "Ç", "Ə", "Ğ", "İ", "Ö", "Ş", "Ü" ),
-		'bg' => array(),
-		'br' => array( "Ch", "C'h" ),
-		'bs' => array( "Č", "Ć", "Dž", "Đ", "Lj", "Nj", "Š", "Ž" ),
-		'ca' => array(),
-		'co' => array(),
-		'cs' => array( "Č", "Ch", "Ř", "Š", "Ž" ),
-		'da' => array( "Æ", "Ø", "Å" ),
-		'de' => array(),
-		'dsb' => array( "Č", "Ć", "Dź", "Ě", "Ch", "Ł", "Ń", "Ŕ", "Š", "Ś", "Ž", "Ź" ),
-		'el' => array(),
-		'eo' => array( "Ĉ", "Ĝ", "Ĥ", "Ĵ", "Ŝ", "Ŭ" ),
-		'es' => array( "Ñ" ),
-		'et' => array( "Š", "Ž", "Õ", "Ä", "Ö", "Ü", "W" ), // added W for CollationEt (xx-uca-et)
-		'eu' => array( "Ñ" ),
-		'fo' => array( "Á", "Ð", "Í", "Ó", "Ú", "Ý", "Æ", "Ø", "Å" ),
-		'fur' => array( "À", "Á", "Â", "È", "Ì", "Ò", "Ù" ),
-		'fy' => array(),
-		'ga' => array(),
-		'gd' => array(),
-		'gl' => array( "Ch", "Ll", "Ñ" ),
-		'hr' => array( "Č", "Ć", "Dž", "Đ", "Lj", "Nj", "Š", "Ž" ),
-		'hsb' => array( "Č", "Dź", "Ě", "Ch", "Ł", "Ń", "Ř", "Š", "Ć", "Ž" ),
-		'kk' => array( "Ү", "І" ),
-		'kl' => array( "Æ", "Ø", "Å" ),
-		'ku' => array( "Ç", "Ê", "Î", "Ş", "Û" ),
-		'ky' => array( "Ё" ),
-		'la' => array(),
-		'lb' => array(),
-		'lt' => array( "Č", "Š", "Ž" ),
-		'mk' => array(),
-		'mo' => array( "Ă", "Â", "Î", "Ş", "Ţ" ),
-		'mt' => array( "Ċ", "Ġ", "Għ", "Ħ", "Ż" ),
-		'nl' => array(),
-		'no' => array( "Æ", "Ø", "Å" ),
-		'oc' => array(),
-		'rm' => array(),
-		'ro' => array( "Ă", "Â", "Î", "Ş", "Ţ" ),
-		'rup' => array( "Ă", "Â", "Î", "Ľ", "Ń", "Ş", "Ţ" ),
-		'sco' => array(),
-		'sk' => array( "Ä", "Č", "Ch", "Ô", "Š", "Ž" ),
-		'sl' => array( "Č", "Š", "Ž" ),
-		'smn' => array( "Á", "Č", "Đ", "Ŋ", "Š", "Ŧ", "Ž", "Æ", "Ø", "Å", "Ä", "Ö" ),
-		'sq' => array( "Ç", "Dh", "Ë", "Gj", "Ll", "Nj", "Rr", "Sh", "Th", "Xh", "Zh" ),
-		'sr' => array(),
-		'tk' => array( "Ç", "Ä", "Ž", "Ň", "Ö", "Ş", "Ü", "Ý" ),
-		'tl' => array( "Ñ", "Ng" ),
-		'tr' => array( "Ç", "Ğ", "İ", "Ö", "Ş", "Ü" ),
-		'tt' => array( "Ә", "Ө", "Ү", "Җ", "Ң", "Һ" ),
-		'uz' => array( "Ch", "G'", "Ng", "O'", "Sh" ),
-	);
+		'af' => [],
+		'ast' => [ "Ch", "Ll", "Ñ" ],
+		'az' => [ "Ç", "Ə", "Ğ", "İ", "Ö", "Ş", "Ü" ],
+		'bg' => [],
+		'br' => [ "Ch", "C'h" ],
+		'bs' => [ "Č", "Ć", "Dž", "Đ", "Lj", "Nj", "Š", "Ž" ],
+		'ca' => [],
+		'co' => [],
+		'cs' => [ "Č", "Ch", "Ř", "Š", "Ž" ],
+		'da' => [ "Æ", "Ø", "Å" ],
+		'de' => [],
+		'dsb' => [ "Č", "Ć", "Dź", "Ě", "Ch", "Ł", "Ń", "Ŕ", "Š", "Ś", "Ž", "Ź" ],
+		'el' => [],
+		'eo' => [ "Ĉ", "Ĝ", "Ĥ", "Ĵ", "Ŝ", "Ŭ" ],
+		'es' => [ "Ñ" ],
+		'et' => [ "Š", "Ž", "Õ", "Ä", "Ö", "Ü", "W" ], // added W for CollationEt (xx-uca-et)
+		'eu' => [ "Ñ" ],
+		'fo' => [ "Á", "Ð", "Í", "Ó", "Ú", "Ý", "Æ", "Ø", "Å" ],
+		'fur' => [ "À", "Á", "Â", "È", "Ì", "Ò", "Ù" ],
+		'fy' => [],
+		'ga' => [],
+		'gd' => [],
+		'gl' => [ "Ch", "Ll", "Ñ" ],
+		'hr' => [ "Č", "Ć", "Dž", "Đ", "Lj", "Nj", "Š", "Ž" ],
+		'hsb' => [ "Č", "Dź", "Ě", "Ch", "Ł", "Ń", "Ř", "Š", "Ć", "Ž" ],
+		'kk' => [ "Ү", "І" ],
+		'kl' => [ "Æ", "Ø", "Å" ],
+		'ku' => [ "Ç", "Ê", "Î", "Ş", "Û" ],
+		'ky' => [ "Ё" ],
+		'la' => [],
+		'lb' => [],
+		'lt' => [ "Č", "Š", "Ž" ],
+		'mk' => [],
+		'mo' => [ "Ă", "Â", "Î", "Ş", "Ţ" ],
+		'mt' => [ "Ċ", "Ġ", "Għ", "Ħ", "Ż" ],
+		'nl' => [],
+		'no' => [ "Æ", "Ø", "Å" ],
+		'oc' => [],
+		'rm' => [],
+		'ro' => [ "Ă", "Â", "Î", "Ş", "Ţ" ],
+		'rup' => [ "Ă", "Â", "Î", "Ľ", "Ń", "Ş", "Ţ" ],
+		'sco' => [],
+		'sk' => [ "Ä", "Č", "Ch", "Ô", "Š", "Ž" ],
+		'sl' => [ "Č", "Š", "Ž" ],
+		'smn' => [ "Á", "Č", "Đ", "Ŋ", "Š", "Ŧ", "Ž", "Æ", "Ø", "Å", "Ä", "Ö" ],
+		'sq' => [ "Ç", "Dh", "Ë", "Gj", "Ll", "Nj", "Rr", "Sh", "Th", "Xh", "Zh" ],
+		'sr' => [],
+		'tk' => [ "Ç", "Ä", "Ž", "Ň", "Ö", "Ş", "Ü", "Ý" ],
+		'tl' => [ "Ñ", "Ng" ],
+		'tr' => [ "Ç", "Ğ", "İ", "Ö", "Ş", "Ü" ],
+		'tt' => [ "Ә", "Ө", "Ү", "Җ", "Ң", "Һ" ],
+		'uz' => [ "Ch", "G'", "Ng", "O'", "Sh" ],
+	];
 
 	const RECORD_LENGTH = 14;
 
@@ -349,7 +349,7 @@ class IcuCollation extends Collation {
 
 		// Do a binary search to find the correct letter to sort under
 		$min = ArrayUtils::findLowerBound(
-			array( $this, 'getSortKeyByLetterIndex' ),
+			[ $this, 'getSortKeyByLetterIndex' ],
 			$this->getFirstLetterCount(),
 			'strcmp',
 			$sortKey );
@@ -393,7 +393,7 @@ class IcuCollation extends Collation {
 				$letters = array_diff( $letters, self::$tailoringFirstLetters['-' . $this->locale] );
 			}
 			// Apply digit transforms
-			$digits = array( '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' );
+			$digits = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ];
 			$letters = array_diff( $letters, $digits );
 			foreach ( $digits as $digit ) {
 				$letters[] = $this->digitTransformLanguage->formatNum( $digit, true );
@@ -415,7 +415,7 @@ class IcuCollation extends Collation {
 		 *
 		 * We also take this opportunity to remove primary collisions.
 		 */
-		$letterMap = array();
+		$letterMap = [];
 		foreach ( $letters as $letter ) {
 			$key = $this->getPrimarySortKey( $letter );
 			if ( isset( $letterMap[$key] ) ) {
@@ -465,7 +465,7 @@ class IcuCollation extends Collation {
 		 */
 
 		$prev = false;
-		$duplicatePrefixes = array();
+		$duplicatePrefixes = [];
 		foreach ( $letterMap as $key => $value ) {
 			// Remove terminator byte. Otherwise the prefix
 			// comparison will get hung up on that.
@@ -497,11 +497,11 @@ class IcuCollation extends Collation {
 			unset( $letterMap[$badKey] );
 			// This code assumes that unsetting does not change sort order.
 		}
-		$data = array(
+		$data = [
 			'chars' => array_values( $letterMap ),
 			'keys' => array_keys( $letterMap ),
 			'version' => self::FIRST_LETTER_VERSION,
-		);
+		];
 
 		// Reduce memory usage before caching
 		unset( $letterMap );
@@ -573,7 +573,7 @@ class IcuCollation extends Collation {
 
 		$versionPrefix = substr( $icuVersion, 0, 3 );
 		// Source: http://site.icu-project.org/download
-		$map = array(
+		$map = [
 			'50.' => '6.2',
 			'49.' => '6.1',
 			'4.8' => '6.0',
@@ -584,7 +584,7 @@ class IcuCollation extends Collation {
 			'3.8' => '5.0',
 			'3.6' => '5.0',
 			'3.4' => '4.1',
-		);
+		];
 
 		if ( isset( $map[$versionPrefix] ) ) {
 			return $map[$versionPrefix];
@@ -623,7 +623,7 @@ class CollationEt extends IcuCollation {
 
 	private static function mangle( $string ) {
 		return str_replace(
-			array( 'w', 'W' ),
+			[ 'w', 'W' ],
 			'ᴡ', // U+1D21 'LATIN LETTER SMALL CAPITAL W'
 			$string
 		);

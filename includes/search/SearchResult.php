@@ -71,7 +71,7 @@ class SearchResult {
 		$this->mTitle = $title;
 		if ( !is_null( $this->mTitle ) ) {
 			$id = false;
-			Hooks::run( 'SearchResultInitFromTitle', array( $title, &$id ) );
+			Hooks::run( 'SearchResultInitFromTitle', [ $title, &$id ] );
 			$this->mRevision = Revision::newFromTitle(
 				$this->mTitle, $id, Revision::READ_NORMAL );
 			if ( $this->mTitle->getNamespace() === NS_FILE ) {

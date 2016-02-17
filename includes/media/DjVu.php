@@ -72,10 +72,10 @@ class DjVuHandler extends ImageHandler {
 	 * @return array
 	 */
 	function getParamMap() {
-		return array(
+		return [
 			'img_width' => 'width',
 			'img_page' => 'page',
-		);
+		];
 	}
 
 	/**
@@ -89,7 +89,7 @@ class DjVuHandler extends ImageHandler {
 			// e.g. [[File:Foo.djvu|thumb|Page 3 of the document shows foo]]
 			return false;
 		}
-		if ( in_array( $name, array( 'width', 'height', 'page' ) ) ) {
+		if ( in_array( $name, [ 'width', 'height', 'page' ] ) ) {
 			if ( $value <= 0 ) {
 				return false;
 			} else {
@@ -120,7 +120,7 @@ class DjVuHandler extends ImageHandler {
 	function parseParamString( $str ) {
 		$m = false;
 		if ( preg_match( '/^page(\d+)-(\d+)px$/', $str, $m ) ) {
-			return array( 'width' => $m[2], 'page' => $m[1] );
+			return [ 'width' => $m[2], 'page' => $m[1] ];
 		} else {
 			return false;
 		}
@@ -131,10 +131,10 @@ class DjVuHandler extends ImageHandler {
 	 * @return array
 	 */
 	function getScriptParams( $params ) {
-		return array(
+		return [
 			'width' => $params['width'],
 			'page' => $params['page'],
-		);
+		];
 	}
 
 	/**
@@ -156,11 +156,11 @@ class DjVuHandler extends ImageHandler {
 		$page = $params['page'];
 
 		if ( $flags & self::TRANSFORM_LATER ) {
-			$params = array(
+			$params = [
 				'width' => $width,
 				'height' => $height,
 				'page' => $page
-			);
+			];
 
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
@@ -179,11 +179,11 @@ class DjVuHandler extends ImageHandler {
 		// Provide a way to pool count limit the number of downloaders.
 		if ( $image->getSize() >= 1e7 ) { // 10MB
 			$work = new PoolCounterWorkViaCallback( 'GetLocalFileCopy', sha1( $image->getName() ),
-				array(
+				[
 					'doWork' => function () use ( $image ) {
 						return $image->getLocalRefPath();
 					}
-				)
+				]
 			);
 			$srcPath = $work->execute();
 		} else {
@@ -222,11 +222,11 @@ class DjVuHandler extends ImageHandler {
 			$this->logErrorForExternalProcess( $retval, $err, $cmd );
 			return new MediaTransformError( 'thumbnail_error', $width, $height, $err );
 		} else {
-			$params = array(
+			$params = [
 				'width' => $width,
 				'height' => $height,
 				'page' => $page
-			);
+			];
 
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
@@ -352,7 +352,7 @@ class DjVuHandler extends ImageHandler {
 			$mime = $magic->guessTypesForExtension( $wgDjvuOutputExtension );
 		}
 
-		return array( $wgDjvuOutputExtension, $mime );
+		return [ $wgDjvuOutputExtension, $mime ];
 	}
 
 	function getMetadata( $image, $path ) {
@@ -361,9 +361,9 @@ class DjVuHandler extends ImageHandler {
 		$xml = $this->getDjVuImage( $image, $path )->retrieveMetaData();
 		if ( $xml === false ) {
 			// Special value so that we don't repetitively try and decode a broken file.
-			return serialize( array( 'error' => 'Error extracting metadata' ) );
+			return serialize( [ 'error' => 'Error extracting metadata' ] );
 		} else {
-			return serialize( array( 'xml' => $xml ) );
+			return serialize( [ 'xml' => $xml ] );
 		}
 	}
 
@@ -372,7 +372,7 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	function isMetadataValid( $image, $metadata ) {
-		return !empty( $metadata ) && $metadata != serialize( array() );
+		return !empty( $metadata ) && $metadata != serialize( [] );
 	}
 
 	function pageCount( File $image ) {
@@ -404,21 +404,21 @@ class DjVuHandler extends ImageHandler {
 					return false;
 				}
 
-				$dimsByPage = array();
+				$dimsByPage = [];
 				$count = count( $tree->xpath( '//OBJECT' ) );
 				for ( $i = 0; $i < $count; ++$i ) {
 					$o = $tree->BODY[0]->OBJECT[$i];
 					if ( $o ) {
-						$dimsByPage[$i] = array(
+						$dimsByPage[$i] = [
 							'width' => (int)$o['width'],
 							'height' => (int)$o['height']
-						);
+						];
 					} else {
 						$dimsByPage[$i] = false;
 					}
 				}
 
-				return array( 'pageCount' => $count, 'dimensionsByPage' => $dimsByPage );
+				return [ 'pageCount' => $count, 'dimensionsByPage' => $dimsByPage ];
 			}
 		);
 	}

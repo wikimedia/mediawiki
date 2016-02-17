@@ -47,7 +47,7 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 	 */
 	public function __construct( array $params ) {
 		// set up defaults and merge them with the given params
-		$mparams = array_merge( array(
+		$mparams = array_merge( [
 			'name' => 'restbase',
 			'url' => 'http://localhost:7231/',
 			'domain' => 'localhost',
@@ -55,7 +55,7 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 			'forwardCookies' => false,
 			'HTTPProxy' => null,
 			'parsoidCompat' => false
-		), $params );
+		], $params );
 		// Ensure that the url parameter has a trailing slash.
 		$mparams['url'] = preg_replace(
 			'#/?$#',
@@ -79,7 +79,7 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 			return $this->onParsoidRequests( $reqs, $idGenFunc );
 		}
 
-		$result = array();
+		$result = [];
 		foreach ( $reqs as $key => $req ) {
 			// replace /local/ with the current domain
 			$req['url'] = preg_replace( '#^local/#', $this->params['domain'] . '/', $req['url'] );
@@ -107,7 +107,7 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 	 */
 	public function onParsoidRequests( array $reqs, Closure $idGeneratorFunc ) {
 
-		$result = array();
+		$result = [];
 		foreach ( $reqs as $key => $req ) {
 			$parts = explode( '/', $req['url'] );
 			if ( $parts[1] === 'v3' ) {

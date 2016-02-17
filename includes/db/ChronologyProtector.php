@@ -41,9 +41,9 @@ class ChronologyProtector {
 	/** @var bool Whether the client data was loaded */
 	protected $initialized = false;
 	/** @var DBMasterPos[] Map of (DB master name => position) */
-	protected $startupPositions = array();
+	protected $startupPositions = [];
 	/** @var DBMasterPos[] Map of (DB master name => position) */
-	protected $shutdownPositions = array();
+	protected $shutdownPositions = [];
 
 	/**
 	 * @param BagOStuff $store
@@ -166,7 +166,7 @@ class ChronologyProtector {
 					}
 				}
 
-				return array( 'positions' => $curPositions );
+				return [ 'positions' => $curPositions ];
 			},
 			BagOStuff::TTL_MINUTE,
 			10,
@@ -183,7 +183,7 @@ class ChronologyProtector {
 			return $this->shutdownPositions;
 		}
 
-		return array();
+		return [];
 	}
 
 	/**
@@ -197,11 +197,11 @@ class ChronologyProtector {
 		$this->initialized = true;
 		if ( $this->wait ) {
 			$data = $this->store->get( $this->key );
-			$this->startupPositions = $data ? $data['positions'] : array();
+			$this->startupPositions = $data ? $data['positions'] : [];
 
 			wfDebugLog( 'replication', __METHOD__ . ": key is {$this->key} (read)\n" );
 		} else {
-			$this->startupPositions = array();
+			$this->startupPositions = [];
 
 			wfDebugLog( 'replication', __METHOD__ . ": key is {$this->key} (unread)\n" );
 		}

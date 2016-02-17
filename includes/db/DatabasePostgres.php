@@ -301,11 +301,11 @@ class DatabasePostgres extends Database {
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
 
-		$connectVars = array(
+		$connectVars = [
 			'dbname' => $dbName,
 			'user' => $user,
 			'password' => $password
-		);
+		];
 		if ( $server != false && $server != '' ) {
 			$connectVars['host'] = $server;
 		}
@@ -412,7 +412,7 @@ class DatabasePostgres extends Database {
 	}
 
 	protected function dumpError() {
-		$diags = array(
+		$diags = [
 			PGSQL_DIAG_SEVERITY,
 			PGSQL_DIAG_SQLSTATE,
 			PGSQL_DIAG_MESSAGE_PRIMARY,
@@ -425,7 +425,7 @@ class DatabasePostgres extends Database {
 			PGSQL_DIAG_SOURCE_FILE,
 			PGSQL_DIAG_SOURCE_LINE,
 			PGSQL_DIAG_SOURCE_FUNCTION
-		);
+		];
 		foreach ( $diags as $d ) {
 			wfDebug( sprintf( "PgSQL ERROR(%d): %s\n",
 				$d, pg_result_error_field( $this->mLastResult, $d ) ) );
@@ -616,14 +616,14 @@ class DatabasePostgres extends Database {
 	 * @return int
 	 */
 	function estimateRowCount( $table, $vars = '*', $conds = '',
-		$fname = __METHOD__, $options = array()
+		$fname = __METHOD__, $options = []
 	) {
 		$options['EXPLAIN'] = true;
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
 		$rows = -1;
 		if ( $res ) {
 			$row = $this->fetchRow( $res );
-			$count = array();
+			$count = [];
 			if ( preg_match( '/rows=(\d+)/', $row[0], $count ) ) {
 				$rows = (int)$count[1];
 			}
@@ -705,14 +705,14 @@ class DatabasePostgres extends Database {
 					AND	pg_am.oid = opcls.opcmethod
 __INDEXATTR__;
 		$res = $this->query( $sql, __METHOD__ );
-		$a = array();
+		$a = [];
 		if ( $res ) {
 			foreach ( $res as $row ) {
-				$a[] = array(
+				$a[] = [
 					$row->attname,
 					$row->opcname,
 					$row->amname,
-					$row->option );
+					$row->option ];
 			}
 		} else {
 			return null;
@@ -746,7 +746,7 @@ __INDEXATTR__;
 	 * @see DatabaseBase::selectSQLText
 	 */
 	function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
-		$options = array(), $join_conds = array()
+		$options = [], $join_conds = []
 	) {
 		if ( is_array( $options ) ) {
 			$forUpdateKey = array_search( 'FOR UPDATE', $options, true );
@@ -780,7 +780,7 @@ __INDEXATTR__;
 	 * @param array|string $options String or array. Valid options: IGNORE
 	 * @return bool Success of insert operation. IGNORE always returns true.
 	 */
-	function insert( $table, $args, $fname = __METHOD__, $options = array() ) {
+	function insert( $table, $args, $fname = __METHOD__, $options = [] ) {
 		if ( !count( $args ) ) {
 			return true;
 		}
@@ -791,7 +791,7 @@ __INDEXATTR__;
 		}
 
 		if ( !is_array( $options ) ) {
-			$options = array( $options );
+			$options = [ $options ];
 		}
 
 		if ( isset( $args[0] ) && is_array( $args[0] ) ) {
@@ -907,11 +907,11 @@ __INDEXATTR__;
 	 * @return bool
 	 */
 	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
-		$insertOptions = array(), $selectOptions = array() ) {
+		$insertOptions = [], $selectOptions = [] ) {
 		$destTable = $this->tableName( $destTable );
 
 		if ( !is_array( $insertOptions ) ) {
-			$insertOptions = array( $insertOptions );
+			$insertOptions = [ $insertOptions ];
 		}
 
 		/*
@@ -927,11 +927,11 @@ __INDEXATTR__;
 		}
 
 		if ( !is_array( $selectOptions ) ) {
-			$selectOptions = array( $selectOptions );
+			$selectOptions = [ $selectOptions ];
 		}
 		list( $startOpts, $useIndex, $tailOpts ) = $this->makeSelectOptions( $selectOptions );
 		if ( is_array( $srcTable ) ) {
-			$srcTable = implode( ',', array_map( array( &$this, 'tableName' ), $srcTable ) );
+			$srcTable = implode( ',', array_map( [ &$this, 'tableName' ], $srcTable ) );
 		} else {
 			$srcTable = $this->tableName( $srcTable );
 		}
@@ -1052,7 +1052,7 @@ __INDEXATTR__;
 	function listTables( $prefix = null, $fname = __METHOD__ ) {
 		$eschema = $this->addQuotes( $this->getCoreSchema() );
 		$result = $this->query( "SELECT tablename FROM pg_tables WHERE schemaname = $eschema", $fname );
-		$endArray = array();
+		$endArray = [];
 
 		foreach ( $result as $table ) {
 			$vars = get_object_vars( $table );
@@ -1090,7 +1090,7 @@ __INDEXATTR__;
 	function pg_array_parse( $text, &$output, $limit = false, $offset = 1 ) {
 		if ( false === $limit ) {
 			$limit = strlen( $text ) - 1;
-			$output = array();
+			$output = [];
 		}
 		if ( '{}' == $text ) {
 			return $output;
@@ -1158,7 +1158,7 @@ __INDEXATTR__;
 	function getSchemas() {
 		$res = $this->query( "SELECT current_schemas(false)", __METHOD__ );
 		$row = $this->fetchRow( $res );
-		$schemas = array();
+		$schemas = [];
 
 		/* PHP pgsql support does not support array type, "{a,b}" string is returned */
 
@@ -1277,7 +1277,7 @@ __INDEXATTR__;
 	 */
 	function relationExists( $table, $types, $schema = false ) {
 		if ( !is_array( $types ) ) {
-			$types = array( $types );
+			$types = [ $types ];
 		}
 		if ( !$schema ) {
 			$schema = $this->getCoreSchema();
@@ -1303,7 +1303,7 @@ __INDEXATTR__;
 	 * @return bool
 	 */
 	function tableExists( $table, $fname = __METHOD__, $schema = false ) {
-		return $this->relationExists( $table, array( 'r', 'v' ), $schema );
+		return $this->relationExists( $table, [ 'r', 'v' ], $schema );
 	}
 
 	function sequenceExists( $sequence, $schema = false ) {
@@ -1335,11 +1335,11 @@ SQL;
 
 	function ruleExists( $table, $rule ) {
 		$exists = $this->selectField( 'pg_rules', 'rulename',
-			array(
+			[
 				'rulename' => $rule,
 				'tablename' => $table,
 				'schemaname' => $this->getCoreSchema()
-			)
+			]
 		);
 
 		return $exists === $rule;
@@ -1368,7 +1368,7 @@ SQL;
 	 */
 	function schemaExists( $schema ) {
 		$exists = $this->selectField( '"pg_catalog"."pg_namespace"', 1,
-			array( 'nspname' => $schema ), __METHOD__ );
+			[ 'nspname' => $schema ], __METHOD__ );
 
 		return (bool)$exists;
 	}
@@ -1380,7 +1380,7 @@ SQL;
 	 */
 	function roleExists( $roleName ) {
 		$exists = $this->selectField( '"pg_catalog"."pg_roles"', 1,
-			array( 'rolname' => $roleName ), __METHOD__ );
+			[ 'rolname' => $roleName ], __METHOD__ );
 
 		return (bool)$exists;
 	}
@@ -1481,7 +1481,7 @@ SQL;
 		$preLimitTail = $postLimitTail = '';
 		$startOpts = $useIndex = '';
 
-		$noKeyOptions = array();
+		$noKeyOptions = [];
 		foreach ( $options as $key => $option ) {
 			if ( is_numeric( $key ) ) {
 				$noKeyOptions[$option] = true;
@@ -1500,7 +1500,7 @@ SQL;
 
 		if ( isset( $options['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE OF ' .
-				implode( ', ', array_map( array( &$this, 'tableName' ), $options['FOR UPDATE'] ) );
+				implode( ', ', array_map( [ &$this, 'tableName' ], $options['FOR UPDATE'] ) );
 		} elseif ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE';
 		}
@@ -1509,7 +1509,7 @@ SQL;
 			$startOpts .= 'DISTINCT';
 		}
 
-		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
+		return [ $startOpts, $useIndex, $preLimitTail, $postLimitTail ];
 	}
 
 	function getDBname() {
@@ -1525,11 +1525,11 @@ SQL;
 	}
 
 	public function buildGroupConcatField(
-		$delimiter, $table, $field, $conds = '', $options = array(), $join_conds = array()
+		$delimiter, $table, $field, $conds = '', $options = [], $join_conds = []
 	) {
 		$fld = "array_to_string(array_agg($field)," . $this->addQuotes( $delimiter ) . ')';
 
-		return '(' . $this->selectSQLText( $table, $fld, $conds, null, array(), $join_conds ) . ')';
+		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
 	}
 
 	public function getSearchEngine() {

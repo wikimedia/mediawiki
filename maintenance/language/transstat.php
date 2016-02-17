@@ -26,7 +26,7 @@
  * Output is posted from time to time on:
  * https://www.mediawiki.org/wiki/Localisation_statistics
  */
-$optionsWithArgs = array( 'output' );
+$optionsWithArgs = [ 'output' ];
 
 require_once __DIR__ . '/../commandLine.inc';
 require_once 'languages.inc';

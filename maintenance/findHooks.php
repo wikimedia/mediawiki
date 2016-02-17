@@ -45,7 +45,7 @@ class FindHooks extends Maintenance {
 	/*
 	 * Hooks that are ignored
 	 */
-	protected static $ignore = array( 'testRunLegacyHooks' );
+	protected static $ignore = [ 'testRunLegacyHooks' ];
 
 	public function __construct() {
 		parent::__construct();
@@ -61,11 +61,11 @@ class FindHooks extends Maintenance {
 		global $IP;
 
 		$documentedHooks = $this->getHooksFromDoc( $IP . '/docs/hooks.txt' );
-		$potentialHooks = array();
-		$bad = array();
+		$potentialHooks = [];
+		$bad = [];
 
 		// TODO: Don't hardcode the list of directories
-		$pathinc = array(
+		$pathinc = [
 			$IP . '/',
 			$IP . '/includes/',
 			$IP . '/includes/actions/',
@@ -118,7 +118,7 @@ class FindHooks extends Maintenance {
 			$IP . '/tests/',
 			$IP . '/tests/parser/',
 			$IP . '/tests/phpunit/suites/',
-		);
+		];
 
 		foreach ( $pathinc as $dir ) {
 			$potentialHooks = array_merge( $potentialHooks, $this->getHooksFromPath( $dir ) );
@@ -133,7 +133,7 @@ class FindHooks extends Maintenance {
 		$deprecated = array_diff( $documented, $potential, self::$ignore );
 
 		// Check parameter count and references
-		$badParameterCount = $badParameterReference = array();
+		$badParameterCount = $badParameterReference = [];
 		foreach ( $potentialHooks as $hook => $args ) {
 			if ( !isset( $documentedHooks[$hook] ) ) {
 				// Not documented, but that will also be in $todo
@@ -193,7 +193,7 @@ class FindHooks extends Maintenance {
 	 * @return array Array: key => hook name; value => array of arguments or string 'unknown'
 	 */
 	private function getHooksFromLocalDoc( $doc ) {
-		$m = array();
+		$m = [];
 		$content = file_get_contents( $doc );
 		preg_match_all(
 			"/\n'(.*?)':.*((?:\n.+)*)/",
@@ -203,11 +203,11 @@ class FindHooks extends Maintenance {
 		);
 
 		// Extract the documented parameter
-		$hooks = array();
+		$hooks = [];
 		foreach ( $m as $match ) {
-			$args = array();
+			$args = [];
 			if ( isset( $match[2] ) ) {
-				$n = array();
+				$n = [];
 				if ( preg_match_all( "/\n(&?\\$\w+):.+/", $match[2], $n ) ) {
 					$args = $n[1];
 				}
@@ -232,20 +232,20 @@ class FindHooks extends Maintenance {
 	 * @return array
 	 */
 	private function getHooksFromOnlineDocCategory( $title ) {
-		$params = array(
+		$params = [
 			'action' => 'query',
 			'list' => 'categorymembers',
 			'cmtitle' => "Category:$title",
 			'cmlimit' => 500,
 			'format' => 'json',
 			'continue' => '',
-		);
+		];
 
-		$retval = array();
+		$retval = [];
 		while ( true ) {
 			$json = Http::get(
 				wfAppendQuery( 'http://www.mediawiki.org/w/api.php', $params ),
-				array(),
+				[],
 				__METHOD__
 			);
 			$data = FormatJson::decode( $json, true );
@@ -269,7 +269,7 @@ class FindHooks extends Maintenance {
 	 */
 	private function getHooksFromFile( $file ) {
 		$content = file_get_contents( $file );
-		$m = array();
+		$m = [];
 		preg_match_all(
 			// All functions which runs hooks
 			'/(?:wfRunHooks|Hooks\:\:run|ContentHandler\:\:runLegacyHooks)\s*\(\s*' .
@@ -289,11 +289,11 @@ class FindHooks extends Maintenance {
 		);
 
 		// Extract parameter
-		$hooks = array();
+		$hooks = [];
 		foreach ( $m as $match ) {
-			$args = array();
+			$args = [];
 			if ( isset( $match[4] ) ) {
-				$n = array();
+				$n = [];
 				if ( preg_match_all( '/((?:[^,\(\)]|\([^\(\)]*\))+)/', $match[4], $n ) ) {
 					$args = array_map( 'trim', $n[1] );
 				}
@@ -315,7 +315,7 @@ class FindHooks extends Maintenance {
 	 * @return array Array: key => hook name; value => array of arguments or string 'unknown'
 	 */
 	private function getHooksFromPath( $path ) {
-		$hooks = array();
+		$hooks = [];
 		$dh = opendir( $path );
 		if ( $dh ) {
 			while ( ( $file = readdir( $dh ) ) !== false ) {
@@ -336,10 +336,10 @@ class FindHooks extends Maintenance {
 	 */
 	private function getBadHooksFromFile( $file ) {
 		$content = file_get_contents( $file );
-		$m = array();
+		$m = [];
 		# We want to skip the "function wfRunHooks()" one.  :)
 		preg_match_all( '/(?<!function )wfRunHooks\(\s*[^\s\'"].*/', $content, $m );
-		$list = array();
+		$list = [];
 		foreach ( $m[0] as $match ) {
 			$list[] = $match . "(" . $file . ")";
 		}
@@ -353,7 +353,7 @@ class FindHooks extends Maintenance {
 	 * @return array Array of bad wfRunHooks() lines
 	 */
 	private function getBadHooksFromPath( $path ) {
-		$hooks = array();
+		$hooks = [];
 		$dh = opendir( $path );
 		if ( $dh ) {
 			while ( ( $file = readdir( $dh ) ) !== false ) {

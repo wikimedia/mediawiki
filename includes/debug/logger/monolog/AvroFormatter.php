@@ -108,7 +108,7 @@ class AvroFormatter implements FormatterInterface {
 	 * @return string[]
 	 */
 	public function formatBatch( array $records ) {
-		$result = array();
+		$result = [];
 		foreach ( $records as $record ) {
 			$message = $this->format( $record );
 			if ( $message !== null ) {

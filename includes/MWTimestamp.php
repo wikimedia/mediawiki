@@ -32,7 +32,7 @@ class MWTimestamp {
 	/**
 	 * Standard gmdate() formats for the different timestamp types.
 	 */
-	private static $formats = array(
+	private static $formats = [
 		TS_UNIX => 'U',
 		TS_MW => 'YmdHis',
 		TS_DB => 'Y-m-d H:i:s',
@@ -42,7 +42,7 @@ class MWTimestamp {
 		TS_RFC2822 => 'D, d M Y H:i:s',
 		TS_ORACLE => 'd-m-Y H:i:s.000000', // Was 'd-M-y h.i.s A' . ' +00:00' before r51500
 		TS_POSTGRES => 'Y-m-d H:i:s',
-	);
+	];
 
 	/**
 	 * The actual timestamp being wrapped (DateTime object).
@@ -74,8 +74,8 @@ class MWTimestamp {
 	 * @throws TimestampException
 	 */
 	public function setTimestamp( $ts = false ) {
-		$m = array();
-		$da = array();
+		$m = [];
+		$da = [];
 		$strtime = '';
 
 		// We want to catch 0, '', null... but not date strings starting with a letter.
@@ -299,7 +299,7 @@ class MWTimestamp {
 		MWTimestamp $relativeTo = null,
 		User $user = null,
 		Language $lang = null,
-		array $chosenIntervals = array()
+		array $chosenIntervals = []
 	) {
 		if ( $relativeTo === null ) {
 			$relativeTo = new self;
@@ -315,7 +315,7 @@ class MWTimestamp {
 		$diff = $this->diff( $relativeTo );
 		if ( Hooks::run(
 			'GetRelativeTimestamp',
-			array( &$ts, &$diff, $this, $relativeTo, $user, $lang )
+			[ &$ts, &$diff, $this, $relativeTo, $user, $lang ]
 		) ) {
 			$seconds = ( ( ( $diff->days * 24 + $diff->h ) * 60 + $diff->i ) * 60 + $diff->s );
 			$ts = wfMessage( 'ago', $lang->formatDuration( $seconds, $chosenIntervals ) )

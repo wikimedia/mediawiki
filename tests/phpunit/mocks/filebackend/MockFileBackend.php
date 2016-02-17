@@ -30,7 +30,7 @@
  */
 class MockFileBackend extends MemoryFileBackend {
 	protected function doGetLocalCopyMulti( array $params ) {
-		$tmpFiles = array(); // (path => MockFSFile)
+		$tmpFiles = []; // (path => MockFSFile)
 		foreach ( $params['srcs'] as $src ) {
 			$tmpFiles[$src] = new MockFSFile( wfTempDir() . '/' . wfRandomString( 32 ) );
 		}

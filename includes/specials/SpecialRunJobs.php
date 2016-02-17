@@ -53,8 +53,8 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 			return;
 		}
 
-		$optional = array( 'maxjobs' => 0, 'maxtime' => 30, 'type' => false, 'async' => true );
-		$required = array_flip( array( 'title', 'tasks', 'signature', 'sigexpiry' ) );
+		$optional = [ 'maxjobs' => 0, 'maxtime' => 30, 'type' => false, 'async' => true ];
+		$required = array_flip( [ 'title', 'tasks', 'signature', 'sigexpiry' ] );
 
 		$params = array_intersect_key( $this->getRequest()->getValues(), $required + $optional );
 		$missing = array_diff_key( $required, $params );
@@ -102,11 +102,11 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		// Do all of the specified tasks...
 		if ( in_array( 'jobs', explode( '|', $params['tasks'] ) ) ) {
 			$runner = new JobRunner( LoggerFactory::getInstance( 'runJobs' ) );
-			$response = $runner->run( array(
+			$response = $runner->run( [
 				'type'     => $params['type'],
 				'maxJobs'  => $params['maxjobs'] ? $params['maxjobs'] : 1,
 				'maxTime'  => $params['maxtime'] ? $params['maxjobs'] : 30
-			) );
+			] );
 			if ( !$params['async'] ) {
 				print FormatJson::encode( $response, true );
 			}

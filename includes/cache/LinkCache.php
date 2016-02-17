@@ -49,8 +49,8 @@ class LinkCache {
 	protected static $instance;
 
 	public function __construct() {
-		$this->mGoodLinks = new HashBagOStuff( array( 'maxKeys' => self::MAX_SIZE ) );
-		$this->mBadLinks = new HashBagOStuff( array( 'maxKeys' => self::MAX_SIZE ) );
+		$this->mGoodLinks = new HashBagOStuff( [ 'maxKeys' => self::MAX_SIZE ] );
+		$this->mBadLinks = new HashBagOStuff( [ 'maxKeys' => self::MAX_SIZE ] );
 	}
 
 	/**
@@ -156,14 +156,14 @@ class LinkCache {
 		$revision = 0, $model = null, $lang = null
 	) {
 		$dbkey = $title->getPrefixedDBkey();
-		$this->mGoodLinks->set( $dbkey, array(
+		$this->mGoodLinks->set( $dbkey, [
 			'id' => (int)$id,
 			'length' => (int)$len,
 			'redirect' => (int)$redir,
 			'revision' => (int)$revision,
 			'model' => $model ? (string)$model : null,
 			'lang' => $lang ? (string)$lang : null,
-		) );
+		] );
 	}
 
 	/**
@@ -175,14 +175,14 @@ class LinkCache {
 	 */
 	public function addGoodLinkObjFromRow( Title $title, $row ) {
 		$dbkey = $title->getPrefixedDBkey();
-		$this->mGoodLinks->set( $dbkey, array(
+		$this->mGoodLinks->set( $dbkey, [
 			'id' => intval( $row->page_id ),
 			'length' => intval( $row->page_len ),
 			'redirect' => intval( $row->page_is_redirect ),
 			'revision' => intval( $row->page_latest ),
 			'model' => !empty( $row->page_content_model ) ? strval( $row->page_content_model ) : null,
 			'lang' => !empty( $row->page_lang ) ? strval( $row->page_lang ) : null,
-		) );
+		] );
 	}
 
 	/**
@@ -196,7 +196,7 @@ class LinkCache {
 	}
 
 	public function clearBadLink( $title ) {
-		$this->mBadLinks->clear( array( $title ) );
+		$this->mBadLinks->clear( [ $title ] );
 	}
 
 	/**
@@ -247,7 +247,7 @@ class LinkCache {
 		// Some fields heavily used for linking...
 		$db = $this->mForUpdate ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 
-		$fields = array( 'page_id', 'page_len', 'page_is_redirect', 'page_latest' );
+		$fields = [ 'page_id', 'page_len', 'page_is_redirect', 'page_latest' ];
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'page_content_model';
 		}
@@ -256,7 +256,7 @@ class LinkCache {
 		}
 
 		$row = $db->selectRow( 'page', $fields,
-			array( 'page_namespace' => $nt->getNamespace(), 'page_title' => $nt->getDBkey() ),
+			[ 'page_namespace' => $nt->getNamespace(), 'page_title' => $nt->getDBkey() ],
 			__METHOD__
 		);
 

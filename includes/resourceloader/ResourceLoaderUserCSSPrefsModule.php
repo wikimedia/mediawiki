@@ -42,13 +42,13 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 		if ( !$this->getConfig()->get( 'AllowUserCssPrefs' ) ) {
-			return array();
+			return [];
 		}
 
 		$options = $context->getUserObj()->getOptions();
 
 		// Build CSS rules
-		$rules = array();
+		$rules = [];
 
 		// Underline: 2 = skin default, 1 = always, 0 = never
 		if ( $options['underline'] < 2 ) {
@@ -65,7 +65,7 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 		if ( $this->getFlip( $context ) ) {
 			$style = CSSJanus::transform( $style, true, false );
 		}
-		return array( 'all' => $style );
+		return [ 'all' => $style ];
 	}
 
 	/**

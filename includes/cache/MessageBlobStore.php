@@ -75,7 +75,7 @@ class MessageBlobStore implements LoggerAwareInterface {
 	 * @return string JSON
 	 */
 	public function getBlob( ResourceLoaderModule $module, $lang ) {
-		$blobs = $this->getBlobs( array( $module->getName() => $module ), $lang );
+		$blobs = $this->getBlobs( [ $module->getName() => $module ], $lang );
 		return $blobs[$module->getName()];
 	}
 
@@ -92,26 +92,26 @@ class MessageBlobStore implements LoggerAwareInterface {
 		// check key without language code. This is used to invalidate any and all language subkeys
 		// that exist for a module from the updateMessage() method.
 		$cache = $this->wanCache;
-		$checkKeys = array(
+		$checkKeys = [
 			// Global check key, see clear()
 			$cache->makeKey( __CLASS__ )
-		);
-		$cacheKeys = array();
+		];
+		$cacheKeys = [];
 		foreach ( $modules as $name => $module ) {
 			$cacheKey = $this->makeCacheKey( $module, $lang );
 			$cacheKeys[$name] = $cacheKey;
 			// Per-module check key, see updateMessage()
 			$checkKeys[$cacheKey][] = $cache->makeKey( __CLASS__, $name );
 		}
-		$curTTLs = array();
+		$curTTLs = [];
 		$result = $cache->getMulti( array_values( $cacheKeys ), $curTTLs, $checkKeys );
 
-		$blobs = array();
+		$blobs = [];
 		foreach ( $modules as $name => $module ) {
 			$key = $cacheKeys[$name];
 			if ( !isset( $result[$key] ) || $curTTLs[$key] === null || $curTTLs[$key] < 0 ) {
 				$this->logger->info( 'Message blob cache-miss for {module}',
-					array( 'module' => $name, 'cacheKey' => $key )
+					[ 'module' => $name, 'cacheKey' => $key ]
 				);
 				$blobs[$name] = $this->recacheMessageBlob( $key, $module, $lang );
 			} else {
@@ -219,10 +219,10 @@ class MessageBlobStore implements LoggerAwareInterface {
 		$message = wfMessage( $key )->inLanguage( $lang );
 		$value = $message->plain();
 		if ( !$message->exists() ) {
-			$this->logger->warning( 'Failed to find {messageKey} ({lang})', array(
+			$this->logger->warning( 'Failed to find {messageKey} ({lang})', [
 				'messageKey' => $key,
 				'lang' => $lang,
-			) );
+			] );
 		}
 		return $value;
 	}
@@ -235,17 +235,17 @@ class MessageBlobStore implements LoggerAwareInterface {
 	 * @return string JSON blob
 	 */
 	private function generateMessageBlob( ResourceLoaderModule $module, $lang ) {
-		$messages = array();
+		$messages = [];
 		foreach ( $module->getMessages() as $key ) {
 			$messages[$key] = $this->fetchMessage( $key, $lang );
 		}
 
 		$json = FormatJson::encode( (object)$messages );
 		if ( $json === false ) {
-			$this->logger->warning( 'Failed to encode message blob for {module} ({lang})', array(
+			$this->logger->warning( 'Failed to encode message blob for {module} ({lang})', [
 				'module' => $module->getName(),
 				'lang' => $lang,
-			) );
+			] );
 			$json = '{}';
 		}
 		return $json;

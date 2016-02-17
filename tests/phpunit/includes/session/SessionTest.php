@@ -14,7 +14,7 @@ class SessionTest extends MediaWikiTestCase {
 
 	public function testConstructor() {
 		$backend = TestUtils::getDummySessionBackend();
-		\TestingAccessWrapper::newFromObject( $backend )->requests = array( -1 => 'dummy' );
+		\TestingAccessWrapper::newFromObject( $backend )->requests = [ -1 => 'dummy' ];
 		\TestingAccessWrapper::newFromObject( $backend )->id = new SessionId( 'abc' );
 
 		$session = new Session( $backend, 42, new \TestLogger );
@@ -38,19 +38,19 @@ class SessionTest extends MediaWikiTestCase {
 	 */
 	public function testMethods( $m, $args, $index, $ret ) {
 		$mock = $this->getMock( 'MediaWiki\\Session\\DummySessionBackend',
-			array( $m, 'deregisterSession' ) );
+			[ $m, 'deregisterSession' ] );
 		$mock->expects( $this->once() )->method( 'deregisterSession' )
 			->with( $this->identicalTo( 42 ) );
 
 		$tmp = $mock->expects( $this->once() )->method( $m );
-		$expectArgs = array();
+		$expectArgs = [];
 		if ( $index ) {
 			$expectArgs[] = $this->identicalTo( 42 );
 		}
 		foreach ( $args as $arg ) {
 			$expectArgs[] = $this->identicalTo( $arg );
 		}
-		$tmp = call_user_func_array( array( $tmp, 'with' ), $expectArgs );
+		$tmp = call_user_func_array( [ $tmp, 'with' ], $expectArgs );
 
 		$retval = new \stdClass;
 		$tmp->will( $this->returnValue( $retval ) );
@@ -58,9 +58,9 @@ class SessionTest extends MediaWikiTestCase {
 		$session = TestUtils::getDummySession( $mock, 42 );
 
 		if ( $ret ) {
-			$this->assertSame( $retval, call_user_func_array( array( $session, $m ), $args ) );
+			$this->assertSame( $retval, call_user_func_array( [ $session, $m ], $args ) );
 		} else {
-			$this->assertNull( call_user_func_array( array( $session, $m ), $args ) );
+			$this->assertNull( call_user_func_array( [ $session, $m ], $args ) );
 		}
 
 		// Trigger Session destructor
@@ -68,30 +68,30 @@ class SessionTest extends MediaWikiTestCase {
 	}
 
 	public static function provideMethods() {
-		return array(
-			array( 'getId', array(), false, true ),
-			array( 'getSessionId', array(), false, true ),
-			array( 'resetId', array(), false, true ),
-			array( 'getProvider', array(), false, true ),
-			array( 'isPersistent', array(), false, true ),
-			array( 'persist', array(), false, false ),
-			array( 'shouldRememberUser', array(), false, true ),
-			array( 'setRememberUser', array( true ), false, false ),
-			array( 'getRequest', array(), true, true ),
-			array( 'getUser', array(), false, true ),
-			array( 'getAllowedUserRights', array(), false, true ),
-			array( 'canSetUser', array(), false, true ),
-			array( 'setUser', array( new \stdClass ), false, false ),
-			array( 'suggestLoginUsername', array(), true, true ),
-			array( 'shouldForceHTTPS', array(), false, true ),
-			array( 'setForceHTTPS', array( true ), false, false ),
-			array( 'getLoggedOutTimestamp', array(), false, true ),
-			array( 'setLoggedOutTimestamp', array( 123 ), false, false ),
-			array( 'getProviderMetadata', array(), false, true ),
-			array( 'save', array(), false, false ),
-			array( 'delaySave', array(), false, true ),
-			array( 'renew', array(), false, false ),
-		);
+		return [
+			[ 'getId', [], false, true ],
+			[ 'getSessionId', [], false, true ],
+			[ 'resetId', [], false, true ],
+			[ 'getProvider', [], false, true ],
+			[ 'isPersistent', [], false, true ],
+			[ 'persist', [], false, false ],
+			[ 'shouldRememberUser', [], false, true ],
+			[ 'setRememberUser', [ true ], false, false ],
+			[ 'getRequest', [], true, true ],
+			[ 'getUser', [], false, true ],
+			[ 'getAllowedUserRights', [], false, true ],
+			[ 'canSetUser', [], false, true ],
+			[ 'setUser', [ new \stdClass ], false, false ],
+			[ 'suggestLoginUsername', [], true, true ],
+			[ 'shouldForceHTTPS', [], false, true ],
+			[ 'setForceHTTPS', [ true ], false, false ],
+			[ 'getLoggedOutTimestamp', [], false, true ],
+			[ 'setLoggedOutTimestamp', [ 123 ], false, false ],
+			[ 'getProviderMetadata', [], false, true ],
+			[ 'save', [], false, false ],
+			[ 'delaySave', [], false, true ],
+			[ 'renew', [], false, false ],
+		];
 	}
 
 	public function testDataAccess() {
@@ -137,12 +137,12 @@ class SessionTest extends MediaWikiTestCase {
 		$session->remove( 101 );
 		$this->assertFalse( $backend->dirty );
 
-		$backend->data = array( 'a', 'b', '?' => 'c' );
+		$backend->data = [ 'a', 'b', '?' => 'c' ];
 		$this->assertSame( 3, $session->count() );
 		$this->assertSame( 3, count( $session ) );
 		$this->assertFalse( $backend->dirty );
 
-		$data = array();
+		$data = [];
 		foreach ( $session as $key => $value ) {
 			$data[$key] = $value;
 		}
@@ -166,9 +166,9 @@ class SessionTest extends MediaWikiTestCase {
 		$this->assertEquals( null, $session['null'] );
 		$logger->setCollect( false );
 		$this->assertFalse( $backend->dirty );
-		$this->assertSame( array(
-			array( LogLevel::DEBUG, 'Undefined index (auto-adds to session with a null value): null' )
-		), $logger->getBuffer() );
+		$this->assertSame( [
+			[ LogLevel::DEBUG, 'Undefined index (auto-adds to session with a null value): null' ]
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		$session['foo'] = 55;
@@ -184,17 +184,17 @@ class SessionTest extends MediaWikiTestCase {
 		$session[1] = 'one';
 		$this->assertFalse( $backend->dirty );
 
-		$session['bar'] = array( 'baz' => array() );
+		$session['bar'] = [ 'baz' => [] ];
 		$session['bar']['baz']['quux'] = 2;
-		$this->assertEquals( array( 'baz' => array( 'quux' => 2 ) ), $backend->data['bar'] );
+		$this->assertEquals( [ 'baz' => [ 'quux' => 2 ] ], $backend->data['bar'] );
 
 		$logger->setCollect( true );
 		$session['bar2']['baz']['quux'] = 3;
 		$logger->setCollect( false );
-		$this->assertEquals( array( 'baz' => array( 'quux' => 3 ) ), $backend->data['bar2'] );
-		$this->assertSame( array(
-			array( LogLevel::DEBUG, 'Undefined index (auto-adds to session with a null value): bar2' )
-		), $logger->getBuffer() );
+		$this->assertEquals( [ 'baz' => [ 'quux' => 3 ] ], $backend->data['bar2'] );
+		$this->assertSame( [
+			[ LogLevel::DEBUG, 'Undefined index (auto-adds to session with a null value): bar2' ]
+		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		$backend->dirty = false;
@@ -223,7 +223,7 @@ class SessionTest extends MediaWikiTestCase {
 		$priv = \TestingAccessWrapper::newFromObject( $session );
 
 		$backend = $this->getMock(
-			'MediaWiki\\Session\\DummySessionBackend', array( 'canSetUser', 'setUser', 'save' )
+			'MediaWiki\\Session\\DummySessionBackend', [ 'canSetUser', 'setUser', 'save' ]
 		);
 		$backend->expects( $this->once() )->method( 'canSetUser' )
 			->will( $this->returnValue( true ) );
@@ -234,13 +234,13 @@ class SessionTest extends MediaWikiTestCase {
 		$backend->expects( $this->once() )->method( 'save' );
 		$priv->backend = $backend;
 		$session->clear();
-		$this->assertSame( array(), $backend->data );
+		$this->assertSame( [], $backend->data );
 		$this->assertTrue( $backend->dirty );
 
 		$backend = $this->getMock(
-			'MediaWiki\\Session\\DummySessionBackend', array( 'canSetUser', 'setUser', 'save' )
+			'MediaWiki\\Session\\DummySessionBackend', [ 'canSetUser', 'setUser', 'save' ]
 		);
-		$backend->data = array();
+		$backend->data = [];
 		$backend->expects( $this->once() )->method( 'canSetUser' )
 			->will( $this->returnValue( true ) );
 		$backend->expects( $this->once() )->method( 'setUser' )
@@ -253,7 +253,7 @@ class SessionTest extends MediaWikiTestCase {
 		$this->assertFalse( $backend->dirty );
 
 		$backend = $this->getMock(
-			'MediaWiki\\Session\\DummySessionBackend', array( 'canSetUser', 'setUser', 'save' )
+			'MediaWiki\\Session\\DummySessionBackend', [ 'canSetUser', 'setUser', 'save' ]
 		);
 		$backend->expects( $this->once() )->method( 'canSetUser' )
 			->will( $this->returnValue( false ) );
@@ -261,7 +261,7 @@ class SessionTest extends MediaWikiTestCase {
 		$backend->expects( $this->once() )->method( 'save' );
 		$priv->backend = $backend;
 		$session->clear();
-		$this->assertSame( array(), $backend->data );
+		$this->assertSame( [], $backend->data );
 		$this->assertTrue( $backend->dirty );
 	}
 
@@ -297,7 +297,7 @@ class SessionTest extends MediaWikiTestCase {
 
 		$backend->data['wsTokenSecrets']['secret'] = 'sekret';
 		$token = \TestingAccessWrapper::newFromObject(
-			$session->getToken( array( 'bar', 'baz' ), 'secret' )
+			$session->getToken( [ 'bar', 'baz' ], 'secret' )
 		);
 		$this->assertSame( 'sekret', $token->secret );
 		$this->assertSame( 'bar|baz', $token->salt );

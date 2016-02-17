@@ -92,7 +92,7 @@ abstract class SpecialCachedPage extends SpecialPage implements ICacheHelper {
 			$this->cacheHelper = new CacheHelper();
 
 			$this->cacheHelper->setCacheEnabled( $this->cacheEnabled );
-			$this->cacheHelper->setOnInitializedHandler( array( $this, 'onCacheInitialized' ) );
+			$this->cacheHelper->setOnInitializedHandler( [ $this, 'onCacheInitialized' ] );
 
 			$keyArgs = $this->getCacheKey();
 
@@ -124,7 +124,7 @@ abstract class SpecialCachedPage extends SpecialPage implements ICacheHelper {
 	 *
 	 * @return mixed
 	 */
-	public function getCachedValue( $computeFunction, $args = array(), $key = null ) {
+	public function getCachedValue( $computeFunction, $args = [], $key = null ) {
 		return $this->cacheHelper->getCachedValue( $computeFunction, $args, $key );
 	}
 
@@ -140,7 +140,7 @@ abstract class SpecialCachedPage extends SpecialPage implements ICacheHelper {
 	 * @param array $args
 	 * @param string|null $key
 	 */
-	public function addCachedHTML( $computeFunction, $args = array(), $key = null ) {
+	public function addCachedHTML( $computeFunction, $args = [], $key = null ) {
 		$this->getOutput()->addHTML( $this->cacheHelper->getCachedValue(
 			$computeFunction,
 			$args,
@@ -180,10 +180,10 @@ abstract class SpecialCachedPage extends SpecialPage implements ICacheHelper {
 	 * @return array
 	 */
 	protected function getCacheKey() {
-		return array(
+		return [
 			$this->mName,
 			$this->getLanguage()->getCode()
-		);
+		];
 	}
 
 	/**

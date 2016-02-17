@@ -73,7 +73,7 @@ abstract class JobQueue {
 		$this->dupCache = wfGetCache( CACHE_ANYTHING );
 		$this->aggr = isset( $params['aggregator'] )
 			? $params['aggregator']
-			: new JobQueueAggregatorNull( array() );
+			: new JobQueueAggregatorNull( [] );
 	}
 
 	/**
@@ -292,7 +292,7 @@ abstract class JobQueue {
 	 * @throws JobQueueError
 	 */
 	final public function push( $jobs, $flags = 0 ) {
-		$jobs = is_array( $jobs ) ? $jobs : array( $jobs );
+		$jobs = is_array( $jobs ) ? $jobs : [ $jobs ];
 		$this->batchPush( $jobs, $flags );
 	}
 
@@ -589,7 +589,7 @@ abstract class JobQueue {
 	 * @since 1.22
 	 */
 	public function getAllDelayedJobs() {
-		return new ArrayIterator( array() ); // not implemented
+		return new ArrayIterator( [] ); // not implemented
 	}
 
 	/**
@@ -603,7 +603,7 @@ abstract class JobQueue {
 	 * @since 1.26
 	 */
 	public function getAllAcquiredJobs() {
-		return new ArrayIterator( array() ); // not implemented
+		return new ArrayIterator( [] ); // not implemented
 	}
 
 	/**
@@ -614,7 +614,7 @@ abstract class JobQueue {
 	 * @since 1.25
 	 */
 	public function getAllAbandonedJobs() {
-		return new ArrayIterator( array() ); // not implemented
+		return new ArrayIterator( [] ); // not implemented
 	}
 
 	/**

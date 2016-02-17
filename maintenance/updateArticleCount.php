@@ -57,8 +57,8 @@ class UpdateArticleCount extends Maintenance {
 			$dbw = $this->getDB( DB_MASTER );
 			$dbw->update(
 				'site_stats',
-				array( 'ss_good_articles' => $result ),
-				array( 'ss_row_id' => 1 ),
+				[ 'ss_good_articles' => $result ],
+				[ 'ss_row_id' => 1 ],
 				__METHOD__
 			);
 			$this->output( "done.\n" );

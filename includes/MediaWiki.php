@@ -178,7 +178,7 @@ class MediaWiki {
 		}
 
 		$unused = null; // To pass it by reference
-		Hooks::run( 'BeforeInitialize', array( &$title, &$unused, &$output, &$user, $request, $this ) );
+		Hooks::run( 'BeforeInitialize', [ &$title, &$unused, &$output, &$user, $request, $this ] );
 
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
 		if ( is_null( $title ) || ( $title->getDBkey() == '' && !$title->isExternal() )
@@ -197,7 +197,7 @@ class MediaWiki {
 		// We have to check here to catch special pages etc.
 		// We will check again in Article::view().
 		$permErrors = $title->isSpecial( 'RunJobs' )
-			? array() // relies on HMAC key signature alone
+			? [] // relies on HMAC key signature alone
 			: $title->getUserPermissionsErrors( 'read', $user );
 		if ( count( $permErrors ) ) {
 			// Bug 32276: allowing the skin to generate output with $wgTitle or
@@ -220,7 +220,7 @@ class MediaWiki {
 		if ( $title->isExternal() ) {
 			$rdfrom = $request->getVal( 'rdfrom' );
 			if ( $rdfrom ) {
-				$url = $title->getFullURL( array( 'rdfrom' => $rdfrom ) );
+				$url = $title->getFullURL( [ 'rdfrom' => $rdfrom ] );
 			} else {
 				$query = $request->getValues();
 				unset( $query['title'] );
@@ -256,7 +256,7 @@ class MediaWiki {
 						$target = $specialPage->getRedirect( $subpage );
 						// target can also be true. We let that case fall through to normal processing.
 						if ( $target instanceof Title ) {
-							$query = $specialPage->getRedirectQuery() ?: array();
+							$query = $specialPage->getRedirectQuery() ?: [];
 							$request = new DerivativeRequest( $this->context->getRequest(), $query );
 							$request->setRequestURL( $this->context->getRequest()->getRequestURL() );
 							$this->context->setRequest( $request );
@@ -267,9 +267,9 @@ class MediaWiki {
 							// Reset action type cache. (Special pages have only view)
 							$this->action = null;
 							$title = $target;
-							$output->addJsConfigVars( array(
+							$output->addJsConfigVars( [
 								'wgInternalRedirectTargetUrl' => $target->getFullURL( $query ),
-							) );
+							] );
 							$output->addModules( 'mediawiki.action.view.redirect' );
 						}
 					}
@@ -326,8 +326,8 @@ class MediaWiki {
 
 		if ( $request->getVal( 'action', 'view' ) != 'view'
 			|| $request->wasPosted()
-			|| count( $request->getValueNames( array( 'action', 'title' ) ) )
-			|| !Hooks::run( 'TestCanonicalRedirect', array( $request, $title, $output ) )
+			|| count( $request->getValueNames( [ 'action', 'title' ] ) )
+			|| !Hooks::run( 'TestCanonicalRedirect', [ $request, $title, $output ] )
 		) {
 			return false;
 		}
@@ -423,7 +423,7 @@ class MediaWiki {
 			$ignoreRedirect = $target = false;
 
 			Hooks::run( 'InitializeArticleMaybeRedirect',
-				array( &$title, &$request, &$ignoreRedirect, &$target, &$article ) );
+				[ &$title, &$request, &$ignoreRedirect, &$target, &$article ] );
 			$page = $article->getPage(); // reflect any hook changes
 
 			// Follow redirects only for... redirects.
@@ -473,7 +473,7 @@ class MediaWiki {
 		$user = $this->context->getUser();
 
 		if ( !Hooks::run( 'MediaWikiPerformAction',
-				array( $output, $page, $title, $user, $request, $this ) )
+				[ $output, $page, $title, $user, $request, $this ] )
 		) {
 			return;
 		}
@@ -504,7 +504,7 @@ class MediaWiki {
 			return;
 		}
 
-		if ( Hooks::run( 'UnknownAction', array( $request->getVal( 'action', 'view' ), $page ) ) ) {
+		if ( Hooks::run( 'UnknownAction', [ $request->getVal( 'action', 'view' ), $page ] ) ) {
 			$output->setStatusCode( 404 );
 			$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 		}
@@ -557,7 +557,7 @@ class MediaWiki {
 		$factory->commitMasterChanges(
 			__METHOD__,
 			// Abort if any transaction was too big
-			array( 'maxWriteDuration' => $config->get( 'MaxUserDBWriteDuration' ) )
+			[ 'maxWriteDuration' => $config->get( 'MaxUserDBWriteDuration' ) ]
 		);
 		// Record ChronologyProtector positions
 		$factory->shutdown();
@@ -572,7 +572,7 @@ class MediaWiki {
 		$request = $context->getRequest();
 		if ( $request->wasPosted() && $factory->hasOrMadeRecentMasterChanges() ) {
 			$expires = time() + $config->get( 'DataCenterUpdateStickTTL' );
-			$options = array( 'prefix' => '' );
+			$options = [ 'prefix' => '' ];
 			$request->response()->setCookie( 'UseDC', 'master', $expires, $options );
 			$request->response()->setCookie( 'UseCDNCache', 'false', $expires, $options );
 		}
@@ -689,7 +689,7 @@ class MediaWiki {
 			$redirUrl = preg_replace( '#^http://#', 'https://', $oldUrl );
 
 			// ATTENTION: This hook is likely to be removed soon due to overall design of the system.
-			if ( Hooks::run( 'BeforeHttpsRedirect', array( $this->context, &$redirUrl ) ) ) {
+			if ( Hooks::run( 'BeforeHttpsRedirect', [ $this->context, &$redirUrl ] ) ) {
 
 				if ( $request->wasPosted() ) {
 					// This is weird and we'd hope it almost never happens. This
@@ -809,7 +809,7 @@ class MediaWiki {
 		if ( !$this->config->get( 'RunJobsAsync' ) ) {
 			// Fall back to running the job here while the user waits
 			$runner = new JobRunner( $runJobsLogger );
-			$runner->run( array( 'maxJobs'  => $n ) );
+			$runner->run( [ 'maxJobs'  => $n ] );
 			return;
 		}
 
@@ -822,8 +822,8 @@ class MediaWiki {
 			return; // do not make the site unavailable
 		}
 
-		$query = array( 'title' => 'Special:RunJobs',
-			'tasks' => 'jobs', 'maxjobs' => $n, 'sigexpiry' => time() + 5 );
+		$query = [ 'title' => 'Special:RunJobs',
+			'tasks' => 'jobs', 'maxjobs' => $n, 'sigexpiry' => time() + 5 ];
 		$query['signature'] = SpecialRunJobs::getQuerySignature(
 			$query, $this->config->get( 'SecretKey' ) );
 
@@ -844,7 +844,7 @@ class MediaWiki {
 			$runJobsLogger->error( "Failed to start cron API (socket error $errno): $errstr" );
 			// Fall back to running the job here while the user waits
 			$runner = new JobRunner( $runJobsLogger );
-			$runner->run( array( 'maxJobs'  => $n ) );
+			$runner->run( [ 'maxJobs'  => $n ] );
 			return;
 		}
 

@@ -30,34 +30,34 @@ class HttpErrorTest extends MediaWikiTestCase {
 	}
 
 	public function getHtmlProvider() {
-		return array(
-			array(
-				array(
+		return [
+			[
+				[
 					'head html' => '<head><title>Server Error 123</title></head>',
 					'body html' => '<body><h1>Server Error 123</h1>'
 						. '<p>a server error!</p></body>'
-				),
+				],
 				'a server error!',
 				'Server Error 123'
-			),
-			array(
-				array(
+			],
+			[
+				[
 					'head html' => '<head><title>loginerror</title></head>',
 					'body html' => '<body><h1>loginerror</h1>'
 					. '<p>suspicious-userlogout</p></body>'
-				),
+				],
 				new RawMessage( 'suspicious-userlogout' ),
 				new RawMessage( 'loginerror' )
-			),
-			array(
-				array(
+			],
+			[
+				[
 					'head html' => '<html><head><title>Internal Server Error</title></head>',
 					'body html' => '<body><h1>Internal Server Error</h1>'
 						. '<p>a server error!</p></body></html>'
-				),
+				],
 				'a server error!',
 				null
-			)
-		);
+			]
+		];
 	}
 }

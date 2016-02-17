@@ -55,7 +55,7 @@ class XMPReader implements LoggerAwareInterface {
 	protected $items;
 
 	/** @var array Array to hold the current element (and previous element, and so on) */
-	private $curItem = array();
+	private $curItem = [];
 
 	/** @var bool|string The structure name when processing nested structures. */
 	private $ancestorStruct = false;
@@ -64,10 +64,10 @@ class XMPReader implements LoggerAwareInterface {
 	private $charContent = false;
 
 	/** @var array Stores the state the xmpreader is in (see MODE_FOO constants) */
-	private $mode = array();
+	private $mode = [];
 
 	/** @var array Array to hold results */
-	private $results = array();
+	private $results = [];
 
 	/** @var bool If we're doing a seq or bag. */
 	private $processingArray = false;
@@ -182,10 +182,10 @@ class XMPReader implements LoggerAwareInterface {
 		xml_parser_set_option( $this->xmlParser, XML_OPTION_SKIP_WHITE, 1 );
 
 		xml_set_element_handler( $this->xmlParser,
-			array( $this, 'startElement' ),
-			array( $this, 'endElement' ) );
+			[ $this, 'startElement' ],
+			[ $this, 'endElement' ] );
 
-		xml_set_character_data_handler( $this->xmlParser, array( $this, 'char' ) );
+		xml_set_character_data_handler( $this->xmlParser, [ $this, 'char' ] );
 
 		$this->parsable = self::PARSABLE_UNKNOWN;
 		$this->xmlParsableBuffer = '';
@@ -308,7 +308,7 @@ class XMPReader implements LoggerAwareInterface {
 			// detect encoding by looking for BOM which is supposed to be in processing instruction.
 			// see page 12 of http://www.adobe.com/devnet/xmp/pdfs/XMPSpecificationPart3.pdf
 			if ( !$this->charset ) {
-				$bom = array();
+				$bom = [];
 				if ( preg_match( '/\xEF\xBB\xBF|\xFE\xFF|\x00\x00\xFE\xFF|\xFF\xFE\x00\x00|\xFF\xFE/',
 					$content, $bom )
 				) {
@@ -376,7 +376,7 @@ class XMPReader implements LoggerAwareInterface {
 				$this->logger->warning(
 					'{method} : Error reading XMP content: {error} ' .
 					'(line: {line} column: {column} byte offset: {offset})',
-					array(
+					[
 						'method' => __METHOD__,
 						'error_code' => $code,
 						'error' => $error,
@@ -384,21 +384,21 @@ class XMPReader implements LoggerAwareInterface {
 						'column' => $col,
 						'offset' => $offset,
 						'content' => $content,
-				) );
-				$this->results = array(); // blank if error.
+				] );
+				$this->results = []; // blank if error.
 				$this->destroyXMLParser();
 				return false;
 			}
 		} catch ( Exception $e ) {
 			$this->logger->warning(
 				'{method} Exception caught while parsing: ' . $e->getMessage(),
-				array(
+				[
 					'method' => __METHOD__,
 					'exception' => $e,
 					'content' => $content,
-				)
+				]
 			);
-			$this->results = array();
+			$this->results = [];
 			return false;
 		}
 		if ( $allOfIt ) {
@@ -548,7 +548,7 @@ class XMPReader implements LoggerAwareInterface {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$reset = new ScopedCallback(
 			'libxml_disable_entity_loader',
-			array( $oldDisable )
+			[ $oldDisable ]
 		);
 		$reader->setParserProperty( XMLReader::SUBST_ENTITIES, false );
 
@@ -667,7 +667,7 @@ class XMPReader implements LoggerAwareInterface {
 				$validate = $info['validate'];
 			} else {
 				$validator = new XMPValidate( $this->logger );
-				$validate = array( $validator, $info['validate'] );
+				$validate = [ $validator, $info['validate'] ];
 			}
 
 			if ( !isset( $this->results['xmp-' . $info['map_group']][$finalName] ) ) {
@@ -675,7 +675,7 @@ class XMPReader implements LoggerAwareInterface {
 				$this->logger->debug( __METHOD__ . " <$ns:$tag> has no valid members." );
 			} elseif ( is_callable( $validate ) ) {
 				$val =& $this->results['xmp-' . $info['map_group']][$finalName];
-				call_user_func_array( $validate, array( $info, &$val, false ) );
+				call_user_func_array( $validate, [ $info, &$val, false ] );
 				if ( is_null( $val ) ) {
 					// the idea being the validation function will unset the variable if
 					// its invalid.
@@ -1345,11 +1345,11 @@ class XMPReader implements LoggerAwareInterface {
 				$validate = $info['validate'];
 			} else {
 				$validator = new XMPValidate( $this->logger );
-				$validate = array( $validator, $info['validate'] );
+				$validate = [ $validator, $info['validate'] ];
 			}
 
 			if ( is_callable( $validate ) ) {
-				call_user_func_array( $validate, array( $info, &$val, true ) );
+				call_user_func_array( $validate, [ $info, &$val, true ] );
 				// the reasoning behind using &$val instead of using the return value
 				// is to be consistent between here and validating structures.
 				if ( is_null( $val ) ) {

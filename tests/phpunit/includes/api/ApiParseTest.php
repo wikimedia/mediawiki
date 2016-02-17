@@ -18,9 +18,9 @@ class ApiParseTest extends ApiTestCase {
 		$somePage = mt_rand();
 
 		try {
-			$this->doApiRequest( array(
+			$this->doApiRequest( [
 				'action' => 'parse',
-				'page' => $somePage ) );
+				'page' => $somePage ] );
 
 			$this->fail( "API did not return an error when parsing a nonexistent page" );
 		} catch ( UsageException $ex ) {

@@ -38,9 +38,9 @@
  */
 class DeferredUpdates {
 	/** @var DeferrableUpdate[] Updates to be deferred until before request end */
-	private static $preSendUpdates = array();
+	private static $preSendUpdates = [];
 	/** @var DeferrableUpdate[] Updates to be deferred until after request end */
-	private static $postSendUpdates = array();
+	private static $postSendUpdates = [];
 
 	const ALL = 0; // all updates
 	const PRESEND = 1; // for updates that should run before flushing output buffer
@@ -130,11 +130,11 @@ class DeferredUpdates {
 
 		// Keep doing rounds of updates until none get enqueued
 		while ( count( $updates ) ) {
-			$queue = array(); // clear the queue
+			$queue = []; // clear the queue
 			/** @var DataUpdate[] $dataUpdates */
-			$dataUpdates = array();
+			$dataUpdates = [];
 			/** @var DeferrableUpdate[] $otherUpdates */
-			$otherUpdates = array();
+			$otherUpdates = [];
 			foreach ( $updates as $update ) {
 				if ( $update instanceof DataUpdate ) {
 					$dataUpdates[] = $update;
@@ -171,7 +171,7 @@ class DeferredUpdates {
 	 * want or need to call this. Unit tests need it though.
 	 */
 	public static function clearPendingUpdates() {
-		self::$preSendUpdates = array();
-		self::$postSendUpdates = array();
+		self::$preSendUpdates = [];
+		self::$postSendUpdates = [];
 	}
 }

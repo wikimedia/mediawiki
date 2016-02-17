@@ -38,7 +38,7 @@ class EventRelayerMCRD extends EventRelayer {
 
 		$this->baseUrl = $params['mcrdConfig']['url'];
 
-		$httpConfig = isset( $params['httpConfig'] ) ? $params['httpConfig'] : array();
+		$httpConfig = isset( $params['httpConfig'] ) ? $params['httpConfig'] : [];
 		if ( !isset( $httpConfig['connTimeout'] ) ) {
 			$httpConfig['connTimeout'] = 1;
 		}
@@ -54,12 +54,12 @@ class EventRelayerMCRD extends EventRelayer {
 			return true;
 		}
 
-		$response = $this->http->run( array(
+		$response = $this->http->run( [
 			'url'     => "{$this->baseUrl}/relayer/api/v1.0/" . rawurlencode( $channel ),
 			'method'  => 'POST',
-			'body'    => json_encode( array( 'events' => $events ) ),
-			'headers' => array( 'content-type' => 'application/json' )
-		) );
+			'body'    => json_encode( [ 'events' => $events ] ),
+			'headers' => [ 'content-type' => 'application/json' ]
+		] );
 
 		return $response['code'] == 201;
 	}

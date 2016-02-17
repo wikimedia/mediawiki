@@ -75,9 +75,9 @@ class MultiHttpClient {
 				throw new Exception( "Cannot find CA bundle: " . $this->caBundlePath );
 			}
 		}
-		static $opts = array(
+		static $opts = [
 			'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost', 'proxy', 'userAgent'
-		);
+		];
 		foreach ( $opts as $key ) {
 			if ( isset( $options[$key] ) ) {
 				$this->$key = $options[$key];
@@ -104,8 +104,8 @@ class MultiHttpClient {
 	 *   - reqTimeout     : post-connection timeout per request (seconds)
 	 * @return array Response array for request
 	 */
-	final public function run( array $req, array $opts = array() ) {
-		$req = $this->runMulti( array( $req ), $opts );
+	final public function run( array $req, array $opts = [] ) {
+		$req = $this->runMulti( [ $req ], $opts );
 		return $req[0]['response'];
 	}
 
@@ -135,19 +135,19 @@ class MultiHttpClient {
 	 * @return array $reqs With response array populated for each
 	 * @throws Exception
 	 */
-	public function runMulti( array $reqs, array $opts = array() ) {
+	public function runMulti( array $reqs, array $opts = [] ) {
 		$chm = $this->getCurlMulti();
 
 		// Normalize $reqs and add all of the required cURL handles...
-		$handles = array();
+		$handles = [];
 		foreach ( $reqs as $index => &$req ) {
-			$req['response'] = array(
+			$req['response'] = [
 				'code'     => 0,
 				'reason'   => '',
-				'headers'  => array(),
+				'headers'  => [],
 				'body'     => '',
 				'error'    => ''
-			);
+			];
 			if ( isset( $req[0] ) ) {
 				$req['method'] = $req[0]; // short-form
 				unset( $req[0] );
@@ -161,8 +161,8 @@ class MultiHttpClient {
 			} elseif ( !isset( $req['url'] ) ) {
 				throw new Exception( "Request has no 'url' field set." );
 			}
-			$req['query'] = isset( $req['query'] ) ? $req['query'] : array();
-			$headers = array(); // normalized headers
+			$req['query'] = isset( $req['query'] ) ? $req['query'] : [];
+			$headers = []; // normalized headers
 			if ( isset( $req['headers'] ) ) {
 				foreach ( $req['headers'] as $name => $value ) {
 					$headers[strtolower( $name )] = $value;
@@ -194,7 +194,7 @@ class MultiHttpClient {
 
 		// @TODO: use a per-host rolling handle window (e.g. CURLMOPT_MAX_HOST_CONNECTIONS)
 		$batches = array_chunk( $indexes, $this->maxConnsPerHost );
-		$infos = array();
+		$infos = [];
 
 		foreach ( $batches as $batch ) {
 			// Attach all cURL handles for this batch
@@ -272,7 +272,7 @@ class MultiHttpClient {
 	 * @return resource
 	 * @throws Exception
 	 */
-	protected function getCurlHandle( array &$req, array $opts = array() ) {
+	protected function getCurlHandle( array &$req, array $opts = [] ) {
 		$ch = curl_init();
 
 		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT,
@@ -292,8 +292,8 @@ class MultiHttpClient {
 		$url = $req['url'];
 		// PHP_QUERY_RFC3986 is PHP 5.4+ only
 		$query = str_replace(
-			array( '+', '%7E' ),
-			array( '%20', '~' ),
+			[ '+', '%7E' ],
+			[ '%20', '~' ],
 			http_build_query( $req['query'], '', '&' )
 		);
 		if ( $query != '' ) {
@@ -363,7 +363,7 @@ class MultiHttpClient {
 			$req['headers']['user-agent'] = $this->userAgent;
 		}
 
-		$headers = array();
+		$headers = [];
 		foreach ( $req['headers'] as $name => $value ) {
 			if ( strpos( $name, ': ' ) ) {
 				throw new Exception( "Headers cannot have ':' in the name." );
@@ -375,7 +375,7 @@ class MultiHttpClient {
 		curl_setopt( $ch, CURLOPT_HEADERFUNCTION,
 			function ( $ch, $header ) use ( &$req ) {
 				$length = strlen( $header );
-				$matches = array();
+				$matches = [];
 				if ( preg_match( "/^(HTTP\/1\.[01]) (\d{3}) (.*)/", $header, $matches ) ) {
 					$req['response']['code'] = (int)$matches[2];
 					$req['response']['reason'] = trim( $matches[3] );

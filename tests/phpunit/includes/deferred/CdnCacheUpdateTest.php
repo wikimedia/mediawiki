@@ -4,7 +4,7 @@ class CdnCacheUpdateTest extends MediaWikiTestCase {
 	public function testPurgeMergeWeb() {
 		$this->setMwGlobals( 'wgCommandLineMode', false );
 
-		$urls1 = array();
+		$urls1 = [];
 		$title = Title::newMainPage();
 		$urls1[] = $title->getCanonicalURL( '?x=1' );
 		$urls1[] = $title->getCanonicalURL( '?x=2' );
@@ -12,7 +12,7 @@ class CdnCacheUpdateTest extends MediaWikiTestCase {
 		$update1 = new CdnCacheUpdate( $urls1 );
 		DeferredUpdates::addUpdate( $update1 );
 
-		$urls2 = array();
+		$urls2 = [];
 		$urls2[] = $title->getCanonicalURL( '?x=2' );
 		$urls2[] = $title->getCanonicalURL( '?x=3' );
 		$urls2[] = $title->getCanonicalURL( '?x=4' );
