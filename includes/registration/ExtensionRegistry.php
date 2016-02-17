@@ -234,9 +234,7 @@ class ExtensionRegistry {
 		foreach ( $info['globals'] as $key => $val ) {
 			// If a merge strategy is set, read it and remove it from the value
 			// so it doesn't accidentally end up getting set.
-			// Need to check $val is an array for PHP 5.3 which will return
-			// true on isset( 'string'['foo'] ).
-			if ( isset( $val[self::MERGE_STRATEGY] ) && is_array( $val ) ) {
+			if ( is_array( $val ) && isset( $val[self::MERGE_STRATEGY] ) ) {
 				$mergeStrategy = $val[self::MERGE_STRATEGY];
 				unset( $val[self::MERGE_STRATEGY] );
 			} else {
