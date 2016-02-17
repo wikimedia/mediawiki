@@ -333,6 +333,13 @@ interface DBMasterPos {
 	public function hasReached( DBMasterPos $pos );
 
 	/**
+	 * @param DBMasterPos $pos
+	 * @return bool Whether this position appears to be for the same channel as another
+	 * @since 1.27
+	 */
+	public function channelsMatch( DBMasterPos $pos );
+
+	/**
 	 * @return string
 	 * @since 1.27
 	 */
