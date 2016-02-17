@@ -1866,7 +1866,7 @@
 	"listgrouprights-namespaceprotection-namespace": "Domínio",
 	"listgrouprights-namespaceprotection-restrictedto": "Direito(s) do utilizador para editar",
 	"listgrants": "Atribuições",
-	"listgrants-summary": "Esta é uma lista de atribuições os respectivos acessos às permissões de utilizador. Os utilizadores podem autorizar aplicações a utilizar suas contas, mas com permissões limitadas baseadas nas atribuições dadas pelos usuários a cada aplicação. No entanto, uma aplicação agindo em nome de um utilizador não tem como utilizar permissões que o utilizador não possui.\nPode haver [[{{MediaWiki:Listgrouprights-helppage}}|informação adicional]] sobre permissões individuais.",
+	"listgrants-summary": "Esta é uma lista de atribuições com os respetivos acessos às permissões de utilizador. Os utilizadores podem autorizar aplicações a utilizar suas contas, mas com permissões limitadas baseadas nas atribuições dadas pelos utilizadores a cada aplicação. No entanto, uma aplicação agindo em nome de um utilizador não pode utilizar permissões que o utilizador não possui.\nPode haver [[{{MediaWiki:Listgrouprights-helppage}}|informação adicional]] sobre permissões individuais.",
 	"listgrants-grant": "Atribuição",
 	"listgrants-rights": "Direitos",
 	"trackingcategories": "Categorias de monitorização",

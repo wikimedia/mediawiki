@@ -88,7 +88,8 @@
 			"凡人丶",
 			"Nbdd0121",
 			"Apflu",
-			"飞舞回堂前"
+			"飞舞回堂前",
+			"Cosine02"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -849,7 +850,7 @@
 	"page_last": "末页",
 	"histlegend": "差异选择：选中要对比的版本的单选按钮，按Enter键或下方的按钮。<br />\n说明：<strong>（{{int:cur}}）</strong>=与最后版本之间的差异，<strong>（{{int:last}}）</strong>=与上一版本之间的差异，<strong>{{int:minoreditletter}}</strong>=小编辑。",
 	"history-fieldset-title": "浏览历史",
-	"history-show-deleted": "仅已被删除",
+	"history-show-deleted": "仅显示已删除者",
 	"histfirst": "最旧",
 	"histlast": "最新",
 	"historysize": "（$1字节）",
@@ -2357,7 +2358,7 @@
 	"lockdbsuccesstext": "数据库已锁定。<br />请记住在维护工作完成后[[Special:UnlockDB|解锁数据库]]。",
 	"unlockdbsuccesstext": "数据库已解锁。",
 	"lockfilenotwritable": "数据库锁定文件不可写。要锁定和解锁数据库，该文件必须对网络服务器可写。",
-	"databasenotlocked": "数据库没有锁定。",
+	"databasenotlocked": "数据库未被锁定。",
 	"lockedbyandtime": "（由 {{GENDER:$1|$1}} 于$2 $3执行）",
 	"move-page": "移动$1",
 	"move-page-legend": "移动页面",
@@ -2750,7 +2751,7 @@
 	"saturday-at": "周六$1",
 	"sunday-at": "周日$1",
 	"yesterday-at": "昨天$1",
-	"bad_image_list": "格式如下：\n\n仅列表项目（以*开头的行）被考虑。每行的第一个链接必需为劣质文件的链接。同一行任何后续链接均被视为例外，即该文件可以内链的页面。",
+	"bad_image_list": "格式如下：\n\n仅列表项目（以*开头的行）有效。每行的第一个链接必须为劣质文件的链接。同一行任何后续链接均被视为例外，即嵌入该文件的页面。",
 	"variantname-zh-hans": "简体",
 	"variantname-zh-hant": "繁体",
 	"variantname-zh-cn": "大陆简体",
