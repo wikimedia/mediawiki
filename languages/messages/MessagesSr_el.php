@@ -157,7 +157,6 @@ $dateFormats = [
 	'h:mm d mon y both'         => 'G:i, j M Y',
 ];
 
-
 /* NOT USED IN STABLE VERSION */
 $magicWords = [
 	'redirect'                  => [ '0', '#Preusmeri', '#preusmeri', '#PREUSMERI', '#Preusmjeri', '#preusmjeri', '#PREUSMJERI', '#redirect', '#REDIRECT' ],

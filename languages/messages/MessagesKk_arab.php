@@ -112,7 +112,6 @@ $namespaceAliases = [
 	'ٴۇلگٴى_تالقىلاۋى'    => NS_TEMPLATE_TALK,
 ];
 
-
 $datePreferences = [
 	'default',
 	'mdy',

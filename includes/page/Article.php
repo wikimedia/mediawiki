@@ -2653,7 +2653,6 @@ class Article implements Page {
 		);
 	}
 
-
 	/**
 	 * @param array $limit
 	 * @param array $expiry

@@ -42,7 +42,6 @@
  * @see http://nn.wikipedia.org/w/index.php?title=Brukar:Dittaeva/LanguageNn.php&action=history
  */
 
-
 $datePreferences = [
 	'default',
 	'dmyt',

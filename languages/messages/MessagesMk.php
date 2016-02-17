@@ -47,7 +47,6 @@ $namespaceAliases = [
 	'Разговор_за_слика' => NS_FILE_TALK,
 ];
 
-
 $datePreferences = [
 	'default',
 	'dmy mk',
