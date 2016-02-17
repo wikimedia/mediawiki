@@ -3214,7 +3214,7 @@ class OutputPage extends ContextSource {
 			$articleId = $wikiPage->getId();
 		}
 
-		$lang = $title->getPageLanguage();
+		$lang = $title->getPageViewLanguage();
 
 		// Pre-process information
 		$separatorTransTable = $lang->separatorTransformTable();
