@@ -1065,10 +1065,12 @@ class Article implements Page {
 
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
+		$title = $this->getTitle();
 		$rc = false;
 
-		if ( !$this->getTitle()->quickUserCan( 'patrol', $user )
-			|| !( $wgUseRCPatrol || $wgUseNPPatrol || $wgUseFilePatrol )
+		if ( !$title->quickUserCan( 'patrol', $user )
+			|| !( $wgUseRCPatrol || $wgUseNPPatrol
+				|| ( $wgUseFilePatrol && $title->inNamespace( NS_FILE ) ) )
 		) {
 			// Patrolling is disabled or the user isn't allowed to
 			return false;
@@ -1083,7 +1085,7 @@ class Article implements Page {
 		}
 
 		// Check for cached results
-		$key = wfMemcKey( 'unpatrollable-page', $this->getTitle()->getArticleID() );
+		$key = wfMemcKey( 'unpatrollable-page', $title->getArticleID() );
 		$cache = ObjectCache::getMainWANInstance();
 		if ( $cache->get( $key ) ) {
 			return false;
@@ -1093,7 +1095,7 @@ class Article implements Page {
 		$oldestRevisionTimestamp = $dbr->selectField(
 			'revision',
 			'MIN( rev_timestamp )',
-			[ 'rev_page' => $this->getTitle()->getArticleID() ],
+			[ 'rev_page' => $title->getArticleID() ],
 			__METHOD__
 		);
 
@@ -1112,8 +1114,8 @@ class Article implements Page {
 				[
 					'rc_new' => 1,
 					'rc_timestamp' => $oldestRevisionTimestamp,
-					'rc_namespace' => $this->getTitle()->getNamespace(),
-					'rc_cur_id' => $this->getTitle()->getArticleID()
+					'rc_namespace' => $title->getNamespace(),
+					'rc_cur_id' => $title->getArticleID()
 				],
 				__METHOD__
 			);
@@ -1129,12 +1131,12 @@ class Article implements Page {
 		// (with rc_type = RC_LOG, rc_log_type = upload).
 		$recentFileUpload = false;
 		if ( ( !$rc || $rc->getAttribute( 'rc_patrolled' ) ) && $wgUseFilePatrol
-			&& $this->getTitle()->getNamespace() === NS_FILE ) {
+			&& $title->getNamespace() === NS_FILE ) {
 			// Retrieve timestamp of most recent upload
 			$newestUploadTimestamp = $dbr->selectField(
 				'image',
 				'MAX( img_timestamp )',
-				[ 'img_name' => $this->getTitle()->getDBkey() ],
+				[ 'img_name' => $title->getDBkey() ],
 				__METHOD__
 			);
 			if ( $newestUploadTimestamp
@@ -1148,7 +1150,7 @@ class Article implements Page {
 						'rc_log_type' => 'upload',
 						'rc_timestamp' => $newestUploadTimestamp,
 						'rc_namespace' => NS_FILE,
-						'rc_cur_id' => $this->getTitle()->getArticleID()
+						'rc_cur_id' => $title->getArticleID()
 					],
 					__METHOD__,
 					[ 'USE INDEX' => 'rc_timestamp' ]
@@ -1203,7 +1205,7 @@ class Article implements Page {
 		}
 
 		$link = Linker::linkKnown(
-			$this->getTitle(),
+			$title,
 			$markPatrolledMsg->escaped(),
 			[],
 			[
