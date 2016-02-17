@@ -29,6 +29,9 @@
  * @ingroup JobQueue
  */
 class PublishStashedFileJob extends Job {
+	/** @var ScopedCallback */
+	protected $cleanupCallback;
+
 	public function __construct( Title $title, array $params ) {
 		parent::__construct( 'PublishStashedFile', $title, $params );
 		$this->removeDuplicates = true;
@@ -36,7 +39,7 @@ class PublishStashedFileJob extends Job {
 
 	public function run() {
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$scope = RequestContext::importScopedSession( $this->params['session'] );
+		$this->cleanupCallback = RequestContext::importScopedSession( $this->params['session'] );
 		$context = RequestContext::getMain();
 		$user = $context->getUser();
 		try {
@@ -131,6 +134,10 @@ class PublishStashedFileJob extends Job {
 		}
 
 		return true;
+	}
+
+	public function cleanup() {
+		ScopedCallback::consume( $this->cleanupCallback ); // T126450
 	}
 
 	public function getDeduplicationInfo() {

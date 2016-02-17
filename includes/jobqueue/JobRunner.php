@@ -265,6 +265,7 @@ class JobRunner implements LoggerAwareInterface {
 
 			DeferredUpdates::doUpdates();
 			$this->commitMasterChanges( $job );
+			$job->cleanup();
 		} catch ( Exception $e ) {
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 			$status = false;

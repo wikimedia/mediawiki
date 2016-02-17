@@ -280,6 +280,15 @@ abstract class Job implements IJobSpecification {
 	}
 
 	/**
+	 * Do any final cleanup after run(), deferred updates, and all DB commits happen
+	 *
+	 * @since 1.27
+	 */
+	public function cleanup() {
+
+	}
+
+	/**
 	 * Insert a single job into the queue.
 	 * @return bool True on success
 	 * @deprecated since 1.21
