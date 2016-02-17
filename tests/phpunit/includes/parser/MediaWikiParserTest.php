@@ -64,7 +64,7 @@ class MediaWikiParserTest {
 		$wantsRest = ( $flags & self::NO_CORE );
 
 		# Will hold the .txt parser test files we will include
-		$filesToTest = array();
+		$filesToTest = [];
 
 		# Filter out .txt files
 		foreach ( $wgParserTestFiles as $parserTestFile ) {
@@ -84,7 +84,7 @@ class MediaWikiParserTest {
 			. implode( ' ', $filesToTest ) );
 
 		$suite = new PHPUnit_Framework_TestSuite;
-		$testList = array();
+		$testList = [];
 		$counter = 0;
 		foreach ( $filesToTest as $fileName ) {
 			// Call the highest level directory the extension name.
@@ -93,7 +93,7 @@ class MediaWikiParserTest {
 			// things, which is good enough for our purposes.
 			$extensionName = basename( dirname( $fileName ) );
 			$testsName = $extensionName . '__' . basename( $fileName, '.txt' );
-			$escapedFileName = strtr( $fileName, array( "'" => "\\'", '\\' => '\\\\' ) );
+			$escapedFileName = strtr( $fileName, [ "'" => "\\'", '\\' => '\\\\' ] );
 			$parserTestClassName = ucfirst( $testsName );
 
 			// Official spec for class names: http://php.net/manual/en/language.oop5.basic.php

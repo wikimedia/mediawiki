@@ -34,7 +34,7 @@ class ErrorPageError extends MWException {
 	 * @param string|Message $msg Message key (string) for error text, or a Message object
 	 * @param array $params Array with parameters to wfMessage()
 	 */
-	public function __construct( $title, $msg, $params = array() ) {
+	public function __construct( $title, $msg, $params = [] ) {
 		$this->title = $title;
 		$this->msg = $msg;
 		$this->params = $params;

@@ -4,13 +4,13 @@ class MWRestrictionsTest extends PHPUnit_Framework_TestCase {
 	protected static $restrictionsForChecks;
 
 	public static function setUpBeforeClass() {
-		self::$restrictionsForChecks = MWRestrictions::newFromArray( array(
-			'IPAddresses' => array(
+		self::$restrictionsForChecks = MWRestrictions::newFromArray( [
+			'IPAddresses' => [
 				'10.0.0.0/8',
 				'172.16.0.0/12',
 				'2001:db8::/33',
-			)
-		) );
+			]
+		] );
 	}
 
 	/**
@@ -52,26 +52,26 @@ class MWRestrictionsTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public static function provideArray() {
-		return array(
-			array( array( 'IPAddresses' => array() ), true ),
-			array( array( 'IPAddresses' => array( '127.0.0.1/32' ) ), true ),
-			array(
-				array( 'IPAddresses' => array( '256.0.0.1/32' ) ),
+		return [
+			[ [ 'IPAddresses' => [] ], true ],
+			[ [ 'IPAddresses' => [ '127.0.0.1/32' ] ], true ],
+			[
+				[ 'IPAddresses' => [ '256.0.0.1/32' ] ],
 				new InvalidArgumentException( 'Invalid IP address: 256.0.0.1/32' )
-			),
-			array(
-				array( 'IPAddresses' => '127.0.0.1/32' ),
+			],
+			[
+				[ 'IPAddresses' => '127.0.0.1/32' ],
 				new InvalidArgumentException( 'IPAddresses is not an array' )
-			),
-			array(
-				array(),
+			],
+			[
+				[],
 				new InvalidArgumentException( 'Array is missing required keys: IPAddresses' )
-			),
-			array(
-				array( 'foo' => 'bar', 'bar' => 42 ),
+			],
+			[
+				[ 'foo' => 'bar', 'bar' => 42 ],
 				new InvalidArgumentException( 'Array contains invalid keys: foo, bar' )
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -108,40 +108,40 @@ class MWRestrictionsTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public static function provideJson() {
-		return array(
-			array(
+		return [
+			[
 				'{"IPAddresses":[]}',
-				array( 'IPAddresses' => array() )
-			),
-			array(
+				[ 'IPAddresses' => [] ]
+			],
+			[
 				'{"IPAddresses":["127.0.0.1/32"]}',
-				array( 'IPAddresses' => array( '127.0.0.1/32' ) )
-			),
-			array(
+				[ 'IPAddresses' => [ '127.0.0.1/32' ] ]
+			],
+			[
 				'{"IPAddresses":["256.0.0.1/32"]}',
 				new InvalidArgumentException( 'Invalid IP address: 256.0.0.1/32' )
-			),
-			array(
+			],
+			[
 				'{"IPAddresses":"127.0.0.1/32"}',
 				new InvalidArgumentException( 'IPAddresses is not an array' )
-			),
-			array(
+			],
+			[
 				'{}',
 				new InvalidArgumentException( 'Array is missing required keys: IPAddresses' )
-			),
-			array(
+			],
+			[
 				'{"foo":"bar","bar":42}',
 				new InvalidArgumentException( 'Array contains invalid keys: foo, bar' )
-			),
-			array(
+			],
+			[
 				'{"IPAddresses":[]',
 				new InvalidArgumentException( 'Invalid restrictions JSON' )
-			),
-			array(
+			],
+			[
 				'"IPAddresses"',
 				new InvalidArgumentException( 'Invalid restrictions JSON' )
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -155,14 +155,14 @@ class MWRestrictionsTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public static function provideCheckIP() {
-		return array(
-			array( '10.0.0.1', true ),
-			array( '172.16.0.0', true ),
-			array( '192.0.2.1', false ),
-			array( '2001:db8:1::', true ),
-			array( '2001:0db8:0000:0000:0000:0000:0000:0000', true ),
-			array( '2001:0DB8:8000::', false ),
-		);
+		return [
+			[ '10.0.0.1', true ],
+			[ '172.16.0.0', true ],
+			[ '192.0.2.1', false ],
+			[ '2001:db8:1::', true ],
+			[ '2001:0db8:0000:0000:0000:0000:0000:0000', true ],
+			[ '2001:0DB8:8000::', false ],
+		];
 	}
 
 	/**
@@ -176,13 +176,13 @@ class MWRestrictionsTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function provideCheck() {
-		$ret = array();
+		$ret = [];
 
 		$mockBuilder = $this->getMockBuilder( 'FauxRequest' )
-			->setMethods( array( 'getIP' ) );
+			->setMethods( [ 'getIP' ] );
 
 		foreach ( self::provideCheckIP() as $checkIP ) {
-			$ok = array();
+			$ok = [];
 			$request = $mockBuilder->getMock();
 
 			$request->expects( $this->any() )->method( 'getIP' )
@@ -207,7 +207,7 @@ class MWRestrictionsTest extends PHPUnit_Framework_TestCase {
 
 			$status = Status::newGood();
 			$status->setResult( $ok === array_filter( $ok ), $ok );
-			$ret[] = array( $request, $status );
+			$ret[] = [ $request, $status ];
 		}
 
 		return $ret;

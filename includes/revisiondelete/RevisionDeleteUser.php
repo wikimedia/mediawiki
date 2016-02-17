@@ -66,60 +66,60 @@ class RevisionDeleteUser {
 		# Hide name from live edits
 		$dbw->update(
 			'revision',
-			array( self::buildSetBitDeletedField( 'rev_deleted', $op, $delUser, $dbw ) ),
-			array( 'rev_user' => $userId ),
+			[ self::buildSetBitDeletedField( 'rev_deleted', $op, $delUser, $dbw ) ],
+			[ 'rev_user' => $userId ],
 			__METHOD__ );
 
 		# Hide name from deleted edits
 		$dbw->update(
 			'archive',
-			array( self::buildSetBitDeletedField( 'ar_deleted', $op, $delUser, $dbw ) ),
-			array( 'ar_user_text' => $name ),
+			[ self::buildSetBitDeletedField( 'ar_deleted', $op, $delUser, $dbw ) ],
+			[ 'ar_user_text' => $name ],
 			__METHOD__
 		);
 
 		# Hide name from logs
 		$dbw->update(
 			'logging',
-			array( self::buildSetBitDeletedField( 'log_deleted', $op, $delUser, $dbw ) ),
-			array( 'log_user' => $userId, 'log_type != ' . $dbw->addQuotes( 'suppress' ) ),
+			[ self::buildSetBitDeletedField( 'log_deleted', $op, $delUser, $dbw ) ],
+			[ 'log_user' => $userId, 'log_type != ' . $dbw->addQuotes( 'suppress' ) ],
 			__METHOD__
 		);
 		$dbw->update(
 			'logging',
-			array( self::buildSetBitDeletedField( 'log_deleted', $op, $delAction, $dbw ) ),
-			array( 'log_namespace' => NS_USER, 'log_title' => $userDbKey,
-				'log_type != ' . $dbw->addQuotes( 'suppress' ) ),
+			[ self::buildSetBitDeletedField( 'log_deleted', $op, $delAction, $dbw ) ],
+			[ 'log_namespace' => NS_USER, 'log_title' => $userDbKey,
+				'log_type != ' . $dbw->addQuotes( 'suppress' ) ],
 			__METHOD__
 		);
 
 		# Hide name from RC
 		$dbw->update(
 			'recentchanges',
-			array( self::buildSetBitDeletedField( 'rc_deleted', $op, $delUser, $dbw ) ),
-			array( 'rc_user_text' => $name ),
+			[ self::buildSetBitDeletedField( 'rc_deleted', $op, $delUser, $dbw ) ],
+			[ 'rc_user_text' => $name ],
 			__METHOD__
 		);
 		$dbw->update(
 			'recentchanges',
-			array( self::buildSetBitDeletedField( 'rc_deleted', $op, $delAction, $dbw ) ),
-			array( 'rc_namespace' => NS_USER, 'rc_title' => $userDbKey, 'rc_logid > 0' ),
+			[ self::buildSetBitDeletedField( 'rc_deleted', $op, $delAction, $dbw ) ],
+			[ 'rc_namespace' => NS_USER, 'rc_title' => $userDbKey, 'rc_logid > 0' ],
 			__METHOD__
 		);
 
 		# Hide name from live images
 		$dbw->update(
 			'oldimage',
-			array( self::buildSetBitDeletedField( 'oi_deleted', $op, $delUser, $dbw ) ),
-			array( 'oi_user_text' => $name ),
+			[ self::buildSetBitDeletedField( 'oi_deleted', $op, $delUser, $dbw ) ],
+			[ 'oi_user_text' => $name ],
 			__METHOD__
 		);
 
 		# Hide name from deleted images
 		$dbw->update(
 			'filearchive',
-			array( self::buildSetBitDeletedField( 'fa_deleted', $op, $delUser, $dbw ) ),
-			array( 'fa_user_text' => $name ),
+			[ self::buildSetBitDeletedField( 'fa_deleted', $op, $delUser, $dbw ) ],
+			[ 'fa_user_text' => $name ],
 			__METHOD__
 		);
 		# Done!

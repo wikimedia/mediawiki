@@ -23,7 +23,7 @@ class IPTCTest extends MediaWikiTestCase {
 		// (which basically means utf-8 if valid, windows 1252 (iso 8859-1) if not)
 		$iptcData = "Photoshop 3.0\08BIM\4\4\0\0\0\0\0\x06\x1c\x02\x19\x00\x01\xBC";
 		$res = IPTC::Parse( $iptcData );
-		$this->assertEquals( array( '¼' ), $res['Keywords'] );
+		$this->assertEquals( [ '¼' ], $res['Keywords'] );
 	}
 
 	/**
@@ -34,7 +34,7 @@ class IPTCTest extends MediaWikiTestCase {
 		/* \xC3 = Ã, \xB8 = ¸  */
 		$iptcData = "Photoshop 3.0\08BIM\4\4\0\0\0\0\0\x09\x1c\x02\x19\x00\x04\xC3\xC3\xC3\xB8";
 		$res = IPTC::Parse( $iptcData );
-		$this->assertEquals( array( 'ÃÃÃ¸' ), $res['Keywords'] );
+		$this->assertEquals( [ 'ÃÃÃ¸' ], $res['Keywords'] );
 	}
 
 	/**
@@ -54,7 +54,7 @@ class IPTCTest extends MediaWikiTestCase {
 		$iptcData = "Photoshop 3.0\08BIM\4\4\0\0\0\0\0\x11\x1c\x02\x19\x00\x04\xC3\xC3\xC3\xB8"
 			. "\x1c\x01\x5A\x00\x03\x1B\x25\x47";
 		$res = IPTC::Parse( $iptcData );
-		$this->assertEquals( array( 'ø' ), $res['Keywords'] );
+		$this->assertEquals( [ 'ø' ], $res['Keywords'] );
 	}
 
 	/**
@@ -63,7 +63,7 @@ class IPTCTest extends MediaWikiTestCase {
 	public function testIPTCParseNoCharsetUTF8() {
 		$iptcData = "Photoshop 3.0\08BIM\4\4\0\0\0\0\0\x07\x1c\x02\x19\x00\x02¼";
 		$res = IPTC::Parse( $iptcData );
-		$this->assertEquals( array( '¼' ), $res['Keywords'] );
+		$this->assertEquals( [ '¼' ], $res['Keywords'] );
 	}
 
 	/**
@@ -76,7 +76,7 @@ class IPTCTest extends MediaWikiTestCase {
 			. "\x1c\x02\x19" . "\x00\x01" . "\xBC"
 			. "\x1c\x02\x19" . "\x00\x02" . "\xBC\xBD";
 		$res = IPTC::Parse( $iptcData );
-		$this->assertEquals( array( '¼', '¼½' ), $res['Keywords'] );
+		$this->assertEquals( [ '¼', '¼½' ], $res['Keywords'] );
 	}
 
 	/**
@@ -87,6 +87,6 @@ class IPTCTest extends MediaWikiTestCase {
 		$iptcData =
 			"Photoshop 3.0\08BIM\4\4\0\0\0\0\0\x0F\x1c\x02\x19\x00\x02¼\x1c\x01\x5A\x00\x03\x1B\x25\x47";
 		$res = IPTC::Parse( $iptcData );
-		$this->assertEquals( array( '¼' ), $res['Keywords'] );
+		$this->assertEquals( [ '¼' ], $res['Keywords'] );
 	}
 }

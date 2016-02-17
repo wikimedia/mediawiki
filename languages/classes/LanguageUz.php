@@ -25,7 +25,7 @@
  * @ingroup Language
  */
 class UzConverter extends LanguageConverter {
-	public $toLatin = array(
+	public $toLatin = [
 		'а' => 'a', 'А' => 'A',
 		'б' => 'b', 'Б' => 'B',
 		'д' => 'd', 'Д' => 'D',
@@ -62,9 +62,9 @@ class UzConverter extends LanguageConverter {
 		'й' => 'y', 'Й' => 'Y',
 		'я' => 'ya', 'Я' => 'Ya',
 		'ъ' => 'ʼ',
-	);
+	];
 
-	public $toCyrillic = array(
+	public $toCyrillic = [
 		'a' => 'а', 'A' => 'А',
 		'b' => 'б', 'B' => 'Б',
 		'd' => 'д', 'D' => 'Д',
@@ -101,14 +101,14 @@ class UzConverter extends LanguageConverter {
 		'y' => 'й', 'Y' => 'Й',
 		'ya' => 'я', 'Ya' => 'Я',
 		'ʼ' => 'ъ',
-	);
+	];
 
 	function loadDefaultTables() {
-		$this->mTables = array(
+		$this->mTables = [
 			'uz-cyrl' => new ReplacementArray( $this->toCyrillic ),
 			'uz-latn' => new ReplacementArray( $this->toLatin ),
 			'uz' => new ReplacementArray()
-		);
+		];
 	}
 
 	function translate( $text, $toVariant ) {
@@ -134,12 +134,12 @@ class LanguageUz extends Language {
 	function __construct() {
 		parent::__construct();
 
-		$variants = array( 'uz', 'uz-latn', 'uz-cyrl' );
-		$variantfallbacks = array(
+		$variants = [ 'uz', 'uz-latn', 'uz-cyrl' ];
+		$variantfallbacks = [
 			'uz' => 'uz-latn',
 			'uz-cyrl' => 'uz',
 			'uz-latn' => 'uz',
-		);
+		];
 
 		$this->mConverter = new UzConverter( $this, 'uz', $variants, $variantfallbacks );
 	}

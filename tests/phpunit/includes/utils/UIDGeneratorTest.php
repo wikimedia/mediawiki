@@ -14,16 +14,16 @@ class UIDGeneratorTest extends PHPUnit_Framework_TestCase {
 	 * @covers UIDGenerator::newTimestampedUID88
 	 */
 	public function testTimestampedUID( $method, $digitlen, $bits, $tbits, $hostbits ) {
-		$id = call_user_func( array( 'UIDGenerator', $method ) );
+		$id = call_user_func( [ 'UIDGenerator', $method ] );
 		$this->assertEquals( true, ctype_digit( $id ), "UID made of digit characters" );
 		$this->assertLessThanOrEqual( $digitlen, strlen( $id ),
 			"UID has the right number of digits" );
 		$this->assertLessThanOrEqual( $bits, strlen( Wikimedia\base_convert( $id, 10, 2 ) ),
 			"UID has the right number of bits" );
 
-		$ids = array();
+		$ids = [];
 		for ( $i = 0; $i < 300; $i++ ) {
-			$ids[] = call_user_func( array( 'UIDGenerator', $method ) );
+			$ids[] = call_user_func( [ 'UIDGenerator', $method ] );
 		}
 
 		$lastId = array_shift( $ids );
@@ -55,18 +55,18 @@ class UIDGeneratorTest extends PHPUnit_Framework_TestCase {
 	 * NOTE: When adding a new method name here please update the covers tags for the tests!
 	 */
 	public static function provider_testTimestampedUID() {
-		return array(
-			array( 'newTimestampedUID128', 39, 128, 46, 48 ),
-			array( 'newTimestampedUID128', 39, 128, 46, 48 ),
-			array( 'newTimestampedUID88', 27, 88, 46, 32 ),
-		);
+		return [
+			[ 'newTimestampedUID128', 39, 128, 46, 48 ],
+			[ 'newTimestampedUID128', 39, 128, 46, 48 ],
+			[ 'newTimestampedUID88', 27, 88, 46, 32 ],
+		];
 	}
 
 	/**
 	 * @covers UIDGenerator::newUUIDv1
 	 */
 	public function testUUIDv1() {
-		$ids = array();
+		$ids = [];
 		for ( $i = 0; $i < 100; $i++ ) {
 			$id = UIDGenerator::newUUIDv1();
 			$this->assertEquals( true,
@@ -92,7 +92,7 @@ class UIDGeneratorTest extends PHPUnit_Framework_TestCase {
 	 * @covers UIDGenerator::newUUIDv4
 	 */
 	public function testUUIDv4() {
-		$ids = array();
+		$ids = [];
 		for ( $i = 0; $i < 100; $i++ ) {
 			$id = UIDGenerator::newUUIDv4();
 			$ids[] = $id;

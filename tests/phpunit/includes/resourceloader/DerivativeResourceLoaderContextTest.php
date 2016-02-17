@@ -7,13 +7,13 @@ class DerivativeResourceLoaderContextTest extends PHPUnit_Framework_TestCase {
 
 	protected static function getResourceLoaderContext() {
 		$resourceLoader = new ResourceLoader();
-		$request = new FauxRequest( array(
+		$request = new FauxRequest( [
 				'lang' => 'zh',
 				'modules' => 'test.context',
 				'only' => 'scripts',
 				'skin' => 'fallback',
 				'target' => 'test',
-		) );
+		] );
 		return new ResourceLoaderContext( $resourceLoader, $request );
 	}
 
@@ -22,7 +22,7 @@ class DerivativeResourceLoaderContextTest extends PHPUnit_Framework_TestCase {
 		$derived = new DerivativeResourceLoaderContext( $context );
 
 		$this->assertEquals( $derived->getLanguage(), 'zh' );
-		$this->assertEquals( $derived->getModules(), array( 'test.context' ) );
+		$this->assertEquals( $derived->getModules(), [ 'test.context' ] );
 		$this->assertEquals( $derived->getOnly(), 'scripts' );
 		$this->assertEquals( $derived->getSkin(), 'fallback' );
 		$this->assertEquals( $derived->getHash(), 'zh|fallback|||scripts|||||' );
@@ -43,8 +43,8 @@ class DerivativeResourceLoaderContextTest extends PHPUnit_Framework_TestCase {
 		$context = self::getResourceLoaderContext();
 		$derived = new DerivativeResourceLoaderContext( $context );
 
-		$derived->setModules( array( 'test.override' ) );
-		$this->assertEquals( $derived->getModules(), array( 'test.override' ) );
+		$derived->setModules( [ 'test.override' ] );
+		$this->assertEquals( $derived->getModules(), [ 'test.override' ] );
 	}
 
 	public function testSetOnly() {

@@ -130,7 +130,7 @@ class MonologSpi implements Spi {
 	 * @param array $config Configuration data.
 	 */
 	public function __construct( array $config ) {
-		$this->config = array();
+		$this->config = [];
 		$this->mergeConfig( $config );
 	}
 
@@ -158,12 +158,12 @@ class MonologSpi implements Spi {
 	 * be no need to flush the caches.
 	 */
 	public function reset() {
-		$this->singletons = array(
-			'loggers'    => array(),
-			'handlers'   => array(),
-			'formatters' => array(),
-			'processors' => array(),
-		);
+		$this->singletons = [
+			'loggers'    => [],
+			'handlers'   => [],
+			'formatters' => [],
+			'processors' => [],
+		];
 	}
 
 	/**
@@ -202,7 +202,7 @@ class MonologSpi implements Spi {
 
 		if ( isset( $spec['calls'] ) ) {
 			foreach ( $spec['calls'] as $method => $margs ) {
-				call_user_func_array( array( $obj, $method ), $margs );
+				call_user_func_array( [ $obj, $method ], $margs );
 			}
 		}
 

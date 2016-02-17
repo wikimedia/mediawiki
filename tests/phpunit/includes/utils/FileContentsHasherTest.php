@@ -7,14 +7,14 @@ class FileContentsHasherTest extends MediaWikiTestCase {
 
 	public function provideSingleFile() {
 		return array_map( function ( $file ) {
-			return array( $file, file_get_contents( $file ) );
+			return [ $file, file_get_contents( $file ) ];
 		}, glob( __DIR__ . '/../../data/filecontentshasher/*.*' ) );
 	}
 
 	public function provideMultipleFiles() {
-		return array(
-			array( $this->provideSingleFile() )
-		);
+		return [
+			[ $this->provideSingleFile() ]
+		];
 	}
 
 	/**
@@ -23,7 +23,7 @@ class FileContentsHasherTest extends MediaWikiTestCase {
 	 * @dataProvider provideSingleFile
 	 */
 	public function testSingleFileHash( $fileName, $contents ) {
-		foreach ( array( 'md4', 'md5' ) as $algo ) {
+		foreach ( [ 'md4', 'md5' ] as $algo ) {
 			$expectedHash = hash( $algo, $contents );
 			$actualHash = FileContentsHasher::getFileContentsHash( $fileName, $algo );
 			$this->assertEquals( $expectedHash, $actualHash );
@@ -38,8 +38,8 @@ class FileContentsHasherTest extends MediaWikiTestCase {
 	 * @dataProvider provideMultipleFiles
 	 */
 	public function testMultipleFileHash( $files ) {
-		$fileNames = array();
-		$hashes = array();
+		$fileNames = [];
+		$hashes = [];
 		foreach ( $files as $fileInfo ) {
 			list( $fileName, $contents ) = $fileInfo;
 			$fileNames[] = $fileName;

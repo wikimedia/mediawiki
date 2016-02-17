@@ -93,11 +93,11 @@ class LoadBalancer {
 
 		$this->mReadIndex = -1;
 		$this->mWriteIndex = -1;
-		$this->mConns = array(
-			'local' => array(),
-			'foreignUsed' => array(),
-			'foreignFree' => array() );
-		$this->mLoads = array();
+		$this->mConns = [
+			'local' => [],
+			'foreignUsed' => [],
+			'foreignFree' => [] ];
+		$this->mLoads = [];
 		$this->mWaitForPos = false;
 		$this->mErrorConnection = false;
 		$this->mAllowLagged = false;
@@ -122,7 +122,7 @@ class LoadBalancer {
 			if ( isset( $server['groupLoads'] ) ) {
 				foreach ( $server['groupLoads'] as $group => $ratio ) {
 					if ( !isset( $this->mGroupLoads[$group] ) ) {
-						$this->mGroupLoads[$group] = array();
+						$this->mGroupLoads[$group] = [];
 					}
 					$this->mGroupLoads[$group][$i] = $ratio;
 				}
@@ -525,7 +525,7 @@ class LoadBalancer {
 	 * @throws MWException
 	 * @return DatabaseBase
 	 */
-	public function getConnection( $i, $groups = array(), $wiki = false ) {
+	public function getConnection( $i, $groups = [], $wiki = false ) {
 		if ( $i === null || $i === false ) {
 			throw new MWException( 'Attempt to call ' . __METHOD__ .
 				' with invalid server index' );
@@ -535,8 +535,8 @@ class LoadBalancer {
 			$wiki = false;
 		}
 
-		$groups = ( $groups === false || $groups === array() )
-			? array( false ) // check one "group": the generic pool
+		$groups = ( $groups === false || $groups === [] )
+			? [ false ] // check one "group": the generic pool
 			: (array)$groups;
 
 		$masterOnly = ( $i == DB_MASTER || $i == $this->getWriterIndex() );
@@ -651,7 +651,7 @@ class LoadBalancer {
 	 * @param string|bool $wiki Wiki ID, or false for the current wiki
 	 * @return DBConnRef
 	 */
-	public function getConnectionRef( $db, $groups = array(), $wiki = false ) {
+	public function getConnectionRef( $db, $groups = [], $wiki = false ) {
 		return new DBConnRef( $this, $this->getConnection( $db, $groups, $wiki ) );
 	}
 
@@ -667,8 +667,8 @@ class LoadBalancer {
 	 * @param string|bool $wiki Wiki ID, or false for the current wiki
 	 * @return DBConnRef
 	 */
-	public function getLazyConnectionRef( $db, $groups = array(), $wiki = false ) {
-		return new DBConnRef( $this, array( $db, $groups, $wiki ) );
+	public function getLazyConnectionRef( $db, $groups = [], $wiki = false ) {
+		return new DBConnRef( $this, [ $db, $groups, $wiki ] );
 	}
 
 	/**
@@ -847,7 +847,7 @@ class LoadBalancer {
 
 		$db->setLBInfo( $server );
 		$db->setLazyMasterHandle(
-			$this->getLazyConnectionRef( DB_MASTER, array(), $db->getWikiID() )
+			$this->getLazyConnectionRef( DB_MASTER, [], $db->getWikiID() )
 		);
 		$db->setTransactionProfiler( $this->trxProfiler );
 
@@ -860,10 +860,10 @@ class LoadBalancer {
 	 */
 	private function reportConnectionError() {
 		$conn = $this->mErrorConnection; // The connection which caused the error
-		$context = array(
+		$context = [
 			'method' => __METHOD__,
 			'last_error' => $this->mLastError,
-		);
+		];
 
 		if ( !is_object( $conn ) ) {
 			// No last connection, probably due to all servers being too busy
@@ -1001,11 +1001,11 @@ class LoadBalancer {
 				}
 			}
 		}
-		$this->mConns = array(
-			'local' => array(),
-			'foreignFree' => array(),
-			'foreignUsed' => array(),
-		);
+		$this->mConns = [
+			'local' => [],
+			'foreignFree' => [],
+			'foreignUsed' => [],
+		];
 		$this->connsOpened = 0;
 	}
 
@@ -1078,7 +1078,7 @@ class LoadBalancer {
 	 * @since 1.23
 	 */
 	public function rollbackMasterChanges( $fname = __METHOD__ ) {
-		$failedServers = array();
+		$failedServers = [];
 
 		$masterIndex = $this->getWriterIndex();
 		foreach ( $this->mConns as $conns2 ) {
@@ -1175,7 +1175,7 @@ class LoadBalancer {
 	 * @since 1.27
 	 */
 	public function pendingMasterChangeCallers() {
-		$fnames = array();
+		$fnames = [];
 
 		$masterIndex = $this->getWriterIndex();
 		foreach ( $this->mConns as $conns2 ) {
@@ -1291,11 +1291,11 @@ class LoadBalancer {
 	 * @param callable $callback
 	 * @param array $params
 	 */
-	public function forEachOpenConnection( $callback, array $params = array() ) {
+	public function forEachOpenConnection( $callback, array $params = [] ) {
 		foreach ( $this->mConns as $conns2 ) {
 			foreach ( $conns2 as $conns3 ) {
 				foreach ( $conns3 as $conn ) {
-					$mergedParams = array_merge( array( $conn ), $params );
+					$mergedParams = array_merge( [ $conn ], $params );
 					call_user_func_array( $callback, $mergedParams );
 				}
 			}
@@ -1318,7 +1318,7 @@ class LoadBalancer {
 		$maxIndex = 0;
 
 		if ( $this->getServerCount() <= 1 ) {
-			return array( $host, $maxLag, $maxIndex ); // no replication = no lag
+			return [ $host, $maxLag, $maxIndex ]; // no replication = no lag
 		}
 
 		$lagTimes = $this->getLagTimes( $wiki );
@@ -1330,7 +1330,7 @@ class LoadBalancer {
 			}
 		}
 
-		return array( $host, $maxLag, $maxIndex );
+		return [ $host, $maxLag, $maxIndex ];
 	}
 
 	/**
@@ -1345,7 +1345,7 @@ class LoadBalancer {
 	 */
 	public function getLagTimes( $wiki = false ) {
 		if ( $this->getServerCount() <= 1 ) {
-			return array( 0 => 0 ); // no replication = no lag
+			return [ 0 => 0 ]; // no replication = no lag
 		}
 
 		# Send the request to the load monitor

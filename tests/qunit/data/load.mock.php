@@ -27,7 +27,7 @@ header( 'Content-Type: text/javascript; charset=utf-8' );
 require_once __DIR__ . '/../../../includes/json/FormatJson.php';
 require_once __DIR__ . '/../../../includes/Xml.php';
 
-$moduleImplementations = array(
+$moduleImplementations = [
 	'testUsesMissing' => "
 mw.loader.implement( 'testUsesMissing', function () {
 	QUnit.ok( false, 'Module usesMissing script should not run.' );
@@ -55,7 +55,7 @@ mw.loader.implement( 'testNotSkipped', function () {}, {}, {});
 	'testUsesSkippable' =>"
 mw.loader.implement( 'testUsesSkippable', function () {}, {}, {});
 ",
-);
+];
 
 $response = '';
 
@@ -66,7 +66,7 @@ if ( isset( $_GET['modules'] ) ) {
 		if ( isset( $moduleImplementations[$module] ) ) {
 			$response .= $moduleImplementations[$module];
 		} else {
-			$response .= Xml::encodeJsCall( 'mw.loader.state', array( $module, 'missing' ), true );
+			$response .= Xml::encodeJsCall( 'mw.loader.state', [ $module, 'missing' ], true );
 		}
 	}
 }

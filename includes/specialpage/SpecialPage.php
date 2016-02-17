@@ -310,7 +310,7 @@ class SpecialPage {
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
 		$subpages = $this->getSubpagesForPrefixSearch();
 		if ( !$subpages ) {
-			return array();
+			return [];
 		}
 
 		return self::prefixSearchArray( $search, $limit, $subpages, $offset );
@@ -325,7 +325,7 @@ class SpecialPage {
 	 * @return string[] subpages to search from
 	 */
 	protected function getSubpagesForPrefixSearch() {
-		return array();
+		return [];
 	}
 
 	/**
@@ -339,12 +339,12 @@ class SpecialPage {
 		$title = Title::newFromText( $search );
 		if ( !$title || !$title->canExist() ) {
 			// No prefix suggestion in special and media namespace
-			return array();
+			return [];
 		}
 
 		$search = SearchEngine::create();
 		$search->setLimitOffset( $limit, $offset );
-		$search->setNamespaces( array() );
+		$search->setNamespaces( [] );
 		$result = $search->defaultPrefixSearch( $search );
 		return array_map( function( Title $t ) {
 			return $t->getPrefixedText();
@@ -377,11 +377,11 @@ class SpecialPage {
 		$out->setRobotPolicy( $this->getRobotPolicy() );
 		$out->setPageTitle( $this->getDescription() );
 		if ( $this->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
-			$out->addModuleStyles( array(
+			$out->addModuleStyles( [
 				'mediawiki.ui.input',
 				'mediawiki.ui.radio',
 				'mediawiki.ui.checkbox',
-			) );
+			] );
 		}
 	}
 
@@ -401,7 +401,7 @@ class SpecialPage {
 		 * @param SpecialPage $this
 		 * @param string|null $subPage
 		 */
-		Hooks::run( 'SpecialPageBeforeExecute', array( $this, $subPage ) );
+		Hooks::run( 'SpecialPageBeforeExecute', [ $this, $subPage ] );
 
 		$this->beforeExecute( $subPage );
 		$this->execute( $subPage );
@@ -415,7 +415,7 @@ class SpecialPage {
 		 * @param SpecialPage $this
 		 * @param string|null $subPage
 		 */
-		Hooks::run( 'SpecialPageAfterExecute', array( $this, $subPage ) );
+		Hooks::run( 'SpecialPageAfterExecute', [ $this, $subPage ] );
 	}
 
 	/**
@@ -626,7 +626,7 @@ class SpecialPage {
 	 */
 	public function msg( /* $args */ ) {
 		$message = call_user_func_array(
-			array( $this->getContext(), 'msg' ),
+			[ $this->getContext(), 'msg' ],
 			func_get_args()
 		);
 		// RequestContext passes context to wfMessage, and the language is set from
@@ -649,7 +649,7 @@ class SpecialPage {
 		$feedTemplate = wfScript( 'api' );
 
 		foreach ( $this->getConfig()->get( 'FeedClasses' ) as $format => $class ) {
-			$theseParams = $params + array( 'feedformat' => $format );
+			$theseParams = $params + [ 'feedformat' => $format ];
 			$url = wfAppendQuery( $feedTemplate, $theseParams );
 			$this->getOutput()->addFeedLink( $format, $url );
 		}

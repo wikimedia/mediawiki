@@ -80,7 +80,7 @@ abstract class SpecialPageTestBase extends MediaWikiTestCase {
 			}
 		}
 
-		return array( $html, $response );
+		return [ $html, $response ];
 	}
 
 	/**

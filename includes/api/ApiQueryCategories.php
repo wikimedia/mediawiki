@@ -59,18 +59,18 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		$prop = array_flip( (array)$params['prop'] );
 		$show = array_flip( (array)$params['show'] );
 
-		$this->addFields( array(
+		$this->addFields( [
 			'cl_from',
 			'cl_to'
-		) );
+		] );
 
-		$this->addFieldsIf( array( 'cl_sortkey', 'cl_sortkey_prefix' ), isset( $prop['sortkey'] ) );
+		$this->addFieldsIf( [ 'cl_sortkey', 'cl_sortkey_prefix' ], isset( $prop['sortkey'] ) );
 		$this->addFieldsIf( 'cl_timestamp', isset( $prop['timestamp'] ) );
 
 		$this->addTables( 'categorylinks' );
 		$this->addWhereFld( 'cl_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
 		if ( !is_null( $params['categories'] ) ) {
-			$cats = array();
+			$cats = [];
 			foreach ( $params['categories'] as $cat ) {
 				$title = Title::newFromText( $cat );
 				if ( !$title || $title->getNamespace() != NS_CATEGORY ) {
@@ -100,20 +100,20 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		}
 		if ( isset( $show['hidden'] ) || isset( $show['!hidden'] ) || isset( $prop['hidden'] ) ) {
 			$this->addOption( 'STRAIGHT_JOIN' );
-			$this->addTables( array( 'page', 'page_props' ) );
+			$this->addTables( [ 'page', 'page_props' ] );
 			$this->addFieldsIf( 'pp_propname', isset( $prop['hidden'] ) );
-			$this->addJoinConds( array(
-				'page' => array( 'LEFT JOIN', array(
+			$this->addJoinConds( [
+				'page' => [ 'LEFT JOIN', [
 					'page_namespace' => NS_CATEGORY,
-					'page_title = cl_to' ) ),
-				'page_props' => array( 'LEFT JOIN', array(
+					'page_title = cl_to' ] ],
+				'page_props' => [ 'LEFT JOIN', [
 					'pp_page=page_id',
-					'pp_propname' => 'hiddencat' ) )
-			) );
+					'pp_propname' => 'hiddencat' ] ]
+			] );
 			if ( isset( $show['hidden'] ) ) {
-				$this->addWhere( array( 'pp_propname IS NOT NULL' ) );
+				$this->addWhere( [ 'pp_propname IS NOT NULL' ] );
 			} elseif ( isset( $show['!hidden'] ) ) {
-				$this->addWhere( array( 'pp_propname IS NULL' ) );
+				$this->addWhere( [ 'pp_propname IS NULL' ] );
 			}
 		}
 
@@ -122,10 +122,10 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
 			$this->addOption( 'ORDER BY', 'cl_to' . $sort );
 		} else {
-			$this->addOption( 'ORDER BY', array(
+			$this->addOption( 'ORDER BY', [
 				'cl_from' . $sort,
 				'cl_to' . $sort
-			) );
+			] );
 		}
 
 		$res = $this->select( __METHOD__ );
@@ -141,7 +141,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				}
 
 				$title = Title::makeTitle( NS_CATEGORY, $row->cl_to );
-				$vals = array();
+				$vals = [];
 				ApiQueryBase::addTitleInfo( $vals, $title );
 				if ( isset( $prop['sortkey'] ) ) {
 					$vals['sortkey'] = bin2hex( $row->cl_sortkey );
@@ -161,7 +161,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				}
 			}
 		} else {
-			$titles = array();
+			$titles = [];
 			foreach ( $res as $row ) {
 				if ( ++$count > $params['limit'] ) {
 					// We've reached the one extra which shows that
@@ -177,53 +177,53 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'prop' => array(
+		return [
+			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'sortkey',
 					'timestamp',
 					'hidden',
-				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
-			'show' => array(
+				],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
+			'show' => [
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'hidden',
 					'!hidden',
-				)
-			),
-			'limit' => array(
+				]
+			],
+			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'continue' => array(
+			],
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-			'categories' => array(
+			],
+			'categories' => [
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'dir' => array(
+			],
+			'dir' => [
 				ApiBase::PARAM_DFLT => 'ascending',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'ascending',
 					'descending'
-				)
-			),
-		);
+				]
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&prop=categories&titles=Albert%20Einstein'
 				=> 'apihelp-query+categories-example-simple',
 			'action=query&generator=categories&titles=Albert%20Einstein&prop=info'
 				=> 'apihelp-query+categories-example-generator',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

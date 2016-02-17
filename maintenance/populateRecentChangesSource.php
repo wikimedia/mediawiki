@@ -61,11 +61,11 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 
 			$dbw->update(
 				'recentchanges',
-				array( $updatedValues ),
-				array(
+				[ $updatedValues ],
+				[
 					"rc_source = ''",
 					"rc_id BETWEEN $blockStart AND $blockEnd"
-				),
+				],
 				__METHOD__
 			);
 

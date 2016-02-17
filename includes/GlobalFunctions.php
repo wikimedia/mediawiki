@@ -293,13 +293,13 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
  */
 function wfMergeErrorArrays( /*...*/ ) {
 	$args = func_get_args();
-	$out = array();
+	$out = [];
 	foreach ( $args as $errors ) {
 		foreach ( $errors as $params ) {
 			$originalParams = $params;
 			if ( $params[0] instanceof MessageSpecifier ) {
 				$msg = $params[0];
-				$params = array_merge( array( $msg->getKey() ), $msg->getParams() );
+				$params = array_merge( [ $msg->getKey() ], $msg->getParams() );
 			}
 			# @todo FIXME: Sometimes get nested arrays for $params,
 			# which leads to E_NOTICEs
@@ -342,7 +342,7 @@ function wfArrayInsertAfter( array $array, array $insert, $after ) {
  * @return array
  */
 function wfObjectToArray( $objOrArray, $recursive = true ) {
-	$array = array();
+	$array = [];
 	if ( is_object( $objOrArray ) ) {
 		$objOrArray = get_object_vars( $objOrArray );
 	}
@@ -429,7 +429,7 @@ function wfUrlencode( $s ) {
 	}
 
 	if ( is_null( $needle ) ) {
-		$needle = array( '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F', '%7E' );
+		$needle = [ '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F', '%7E' ];
 		if ( !isset( $_SERVER['SERVER_SOFTWARE'] ) ||
 			( strpos( $_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS/7' ) === false )
 		) {
@@ -440,7 +440,7 @@ function wfUrlencode( $s ) {
 	$s = urlencode( $s );
 	$s = str_ireplace(
 		$needle,
-		array( ';', '@', '$', '!', '*', '(', ')', ',', '/', '~', ':' ),
+		[ ';', '@', '$', '!', '*', '(', ')', ',', '/', '~', ':' ],
 		$s
 	);
 
@@ -507,7 +507,7 @@ function wfCgiToArray( $query ) {
 		$query = substr( $query, 1 );
 	}
 	$bits = explode( '&', $query );
-	$ret = array();
+	$ret = [];
 	foreach ( $bits as $bit ) {
 		if ( $bit === '' ) {
 			continue;
@@ -527,7 +527,7 @@ function wfCgiToArray( $query ) {
 			$temp = $value;
 			foreach ( $keys as $k ) {
 				$k = substr( $k, 0, -1 );
-				$temp = array( $k => $temp );
+				$temp = [ $k => $temp ];
 			}
 			if ( isset( $ret[$key] ) ) {
 				$ret[$key] = array_merge( $ret[$key], $temp );
@@ -806,7 +806,7 @@ function wfUrlProtocols( $includeProtocolRelative = true ) {
 	// Support old-style $wgUrlProtocols strings, for backwards compatibility
 	// with LocalSettings files from 1.5
 	if ( is_array( $wgUrlProtocols ) ) {
-		$protocols = array();
+		$protocols = [];
 		foreach ( $wgUrlProtocols as $protocol ) {
 			// Filter out '//' if !$includeProtocolRelative
 			if ( $includeProtocolRelative || $protocol !== '//' ) {
@@ -988,9 +988,9 @@ function wfMakeUrlIndexes( $url ) {
 	}
 
 	if ( $prot == '' ) {
-		return array( "http:$index", "https:$index" );
+		return [ "http:$index", "https:$index" ];
 	} else {
-		return array( $index );
+		return [ $index ];
 	}
 }
 
@@ -1034,7 +1034,7 @@ function wfMatchesDomainList( $url, $domains ) {
  *     - false: same as 'private'
  * @param array $context Additional logging context data
  */
-function wfDebug( $text, $dest = 'all', array $context = array() ) {
+function wfDebug( $text, $dest = 'all', array $context = [] ) {
 	global $wgDebugRawPage, $wgDebugLogPrefix;
 	global $wgDebugTimestamps, $wgRequestTime;
 
@@ -1128,7 +1128,7 @@ function wfDebugMem( $exact = false ) {
  * @param array $context Additional logging context data
  */
 function wfDebugLog(
-	$logGroup, $text, $dest = 'all', array $context = array()
+	$logGroup, $text, $dest = 'all', array $context = []
 ) {
 	$text = trim( $text );
 
@@ -1145,7 +1145,7 @@ function wfDebugLog(
  * @param string $text Database error message.
  * @param array $context Additional logging context data
  */
-function wfLogDBError( $text, array $context = array() ) {
+function wfLogDBError( $text, array $context = [] ) {
 	$logger = LoggerFactory::getInstance( 'wfLogDBError' );
 	$logger->error( trim( $text ), $context );
 }
@@ -1207,7 +1207,7 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
  * @throws MWException
  * @deprecated since 1.25 Use \MediaWiki\Logger\LegacyLogger::emit or UDPTransport
  */
-function wfErrorLog( $text, $file, array $context = array() ) {
+function wfErrorLog( $text, $file, array $context = [] ) {
 	wfDeprecated( __METHOD__, '1.25' );
 	$logger = LoggerFactory::getInstance( 'wfErrorLog' );
 	$context['destination'] = $file;
@@ -1256,7 +1256,7 @@ function wfLogProfilingData() {
 		return;
 	}
 
-	$ctx = array( 'elapsed' => $request->getElapsedTime() );
+	$ctx = [ 'elapsed' => $request->getElapsedTime() ];
 	if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
 		$ctx['forwarded_for'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
 	}
@@ -1466,7 +1466,7 @@ function wfMsgReplaceArgs( $message, $args ) {
 		if ( is_array( $args[0] ) ) {
 			$args = array_values( $args[0] );
 		}
-		$replacementKeys = array();
+		$replacementKeys = [];
 		foreach ( $args as $n => $param ) {
 			$replacementKeys['$' . ( $n + 1 )] = $param;
 		}
@@ -1527,7 +1527,7 @@ function wfReportTime() {
 	global $wgRequestTime, $wgShowHostnames;
 
 	$responseTime = round( ( microtime( true ) - $wgRequestTime ) * 1000 );
-	$reportVars = array( 'wgBackendResponseTime' => $responseTime );
+	$reportVars = [ 'wgBackendResponseTime' => $responseTime ];
 	if ( $wgShowHostnames ) {
 		$reportVars['wgHostname'] = wfHostname();
 	}
@@ -1554,7 +1554,7 @@ function wfDebugBacktrace( $limit = 0 ) {
 		}
 	}
 	if ( $disabled ) {
-		return array();
+		return [];
 	}
 
 	if ( $limit && version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
@@ -1675,7 +1675,7 @@ function wfClientAcceptsGzip( $force = false ) {
 		$result = false;
 		if ( isset( $_SERVER['HTTP_ACCEPT_ENCODING'] ) ) {
 			# @todo FIXME: We may want to blacklist some broken browsers
-			$m = array();
+			$m = [];
 			if ( preg_match(
 					'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',
 					$_SERVER['HTTP_ACCEPT_ENCODING'],
@@ -1706,7 +1706,7 @@ function wfClientAcceptsGzip( $force = false ) {
 function wfEscapeWikiText( $text ) {
 	static $repl = null, $repl2 = null;
 	if ( $repl === null ) {
-		$repl = array(
+		$repl = [
 			'"' => '&#34;', '&' => '&#38;', "'" => '&#39;', '<' => '&#60;',
 			'=' => '&#61;', '>' => '&#62;', '[' => '&#91;', ']' => '&#93;',
 			'{' => '&#123;', '|' => '&#124;', '}' => '&#125;', ';' => '&#59;',
@@ -1719,10 +1719,10 @@ function wfEscapeWikiText( $text ) {
 			"\n\t" => "\n&#9;", "\r\t" => "\r&#9;", // "\n\t\n" is treated like "\n\n"
 			"\n----" => "\n&#45;---", "\r----" => "\r&#45;---",
 			'__' => '_&#95;', '://' => '&#58;//',
-		);
+		];
 
 		// We have to catch everything "\s" matches in PCRE
-		foreach ( array( 'ISBN', 'RFC', 'PMID' ) as $magic ) {
+		foreach ( [ 'ISBN', 'RFC', 'PMID' ] as $magic ) {
 			$repl["$magic "] = "$magic&#32;";
 			$repl["$magic\t"] = "$magic&#9;";
 			$repl["$magic\r"] = "$magic&#13;";
@@ -1732,7 +1732,7 @@ function wfEscapeWikiText( $text ) {
 
 		// And handle protocols that don't use "://"
 		global $wgUrlProtocols;
-		$repl2 = array();
+		$repl2 = [];
 		foreach ( $wgUrlProtocols as $prot ) {
 			if ( substr( $prot, -1 ) === ':' ) {
 				$repl2[] = preg_quote( substr( $prot, 0, -1 ), '/' );
@@ -1912,17 +1912,17 @@ function wfClearOutputBuffers() {
 function wfAcceptToPrefs( $accept, $def = '*/*' ) {
 	# No arg means accept anything (per HTTP spec)
 	if ( !$accept ) {
-		return array( $def => 1.0 );
+		return [ $def => 1.0 ];
 	}
 
-	$prefs = array();
+	$prefs = [];
 
 	$parts = explode( ',', $accept );
 
 	foreach ( $parts as $part ) {
 		# @todo FIXME: Doesn't deal with params like 'text/html; level=1'
 		$values = explode( ';', trim( $part ) );
-		$match = array();
+		$match = [];
 		if ( count( $values ) == 1 ) {
 			$prefs[$values[0]] = 1.0;
 		} elseif ( preg_match( '/q\s*=\s*(\d*\.\d+)/', $values[1], $match ) ) {
@@ -1974,7 +1974,7 @@ function mimeTypeMatch( $type, $avail ) {
  * XXX: generalize to negotiate other stuff
  */
 function wfNegotiateType( $cprefs, $sprefs ) {
-	$combine = array();
+	$combine = [];
 
 	foreach ( array_keys( $sprefs ) as $type ) {
 		$parts = explode( '/', $type );
@@ -2164,7 +2164,7 @@ function wfTempDir() {
 		return $wgTmpDirectory;
 	}
 
-	$tmpDir = array_map( "getenv", array( 'TMPDIR', 'TMP', 'TEMP' ) );
+	$tmpDir = array_map( "getenv", [ 'TMPDIR', 'TMP', 'TEMP' ] );
 	$tmpDir[] = sys_get_temp_dir();
 	$tmpDir[] = ini_get( 'upload_tmp_dir' );
 
@@ -2201,7 +2201,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 		return true;
 	}
 
-	$dir = str_replace( array( '\\', '/' ), DIRECTORY_SEPARATOR, $dir );
+	$dir = str_replace( [ '\\', '/' ], DIRECTORY_SEPARATOR, $dir );
 
 	if ( is_null( $mode ) ) {
 		$mode = $wgDirectoryMode;
@@ -2349,7 +2349,7 @@ function wfEscapeShellArg( /*...*/ ) {
 			}
 			// Double the backslashes before the end of the string, because
 			// we will soon add a quote
-			$m = array();
+			$m = [];
 			if ( preg_match( '/^(.*?)(\\\\+)$/', $arg, $m ) ) {
 				$arg = $m[1] . str_replace( '\\', '\\\\', $m[2] );
 			}
@@ -2404,8 +2404,8 @@ function wfShellExecDisabled() {
  *
  * @return string Collected stdout as a string
  */
-function wfShellExec( $cmd, &$retval = null, $environ = array(),
-	$limits = array(), $options = array()
+function wfShellExec( $cmd, &$retval = null, $environ = [],
+	$limits = [], $options = []
 ) {
 	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime,
 		$wgMaxShellWallClockTime, $wgShellCgroup;
@@ -2478,12 +2478,12 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	}
 	wfDebug( "wfShellExec: $cmd\n" );
 
-	$desc = array(
-		0 => array( 'file', 'php://stdin', 'r' ),
-		1 => array( 'pipe', 'w' ),
-		2 => array( 'file', 'php://stderr', 'w' ) );
+	$desc = [
+		0 => [ 'file', 'php://stdin', 'r' ],
+		1 => [ 'pipe', 'w' ],
+		2 => [ 'file', 'php://stderr', 'w' ] ];
 	if ( $useLogPipe ) {
-		$desc[3] = array( 'pipe', 'w' );
+		$desc[3] = [ 'pipe', 'w' ];
 	}
 	$pipes = null;
 	$scoped = Profiler::instance()->scopedProfileIn( __FUNCTION__ . '-' . $profileMethod );
@@ -2494,7 +2494,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 		return '';
 	}
 	$outBuffer = $logBuffer = '';
-	$emptyArray = array();
+	$emptyArray = [];
 	$status = false;
 	$logMsg = false;
 
@@ -2515,7 +2515,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	// Build a table mapping resource IDs to pipe FDs to work around a
 	// PHP 5.3 issue in which stream_select() does not preserve array keys
 	// <https://bugs.php.net/bug.php?id=53427>.
-	$fds = array();
+	$fds = [];
 	foreach ( $pipes as $fd => $pipe ) {
 		$fds[(int)$pipe] = $fd;
 	}
@@ -2638,9 +2638,9 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
  *   this overwrites the global wgMaxShell* limits.
  * @return string Collected stdout and stderr as a string
  */
-function wfShellExecWithStderr( $cmd, &$retval = null, $environ = array(), $limits = array() ) {
+function wfShellExecWithStderr( $cmd, &$retval = null, $environ = [], $limits = [] ) {
 	return wfShellExec( $cmd, $retval, $environ, $limits,
-		array( 'duplicateStderr' => true, 'profileMethod' => wfGetCaller() ) );
+		[ 'duplicateStderr' => true, 'profileMethod' => wfGetCaller() ] );
 }
 
 /**
@@ -2670,12 +2670,12 @@ function wfInitShellLocale() {
  * 		'wrapper': Path to a PHP wrapper to handle the maintenance script
  * @return string
  */
-function wfShellWikiCmd( $script, array $parameters = array(), array $options = array() ) {
+function wfShellWikiCmd( $script, array $parameters = [], array $options = [] ) {
 	global $wgPhpCli;
 	// Give site config file a chance to run the script in a wrapper.
 	// The caller may likely want to call wfBasename() on $script.
-	Hooks::run( 'wfShellWikiCmd', array( &$script, &$parameters, &$options ) );
-	$cmd = isset( $options['php'] ) ? array( $options['php'] ) : array( $wgPhpCli );
+	Hooks::run( 'wfShellWikiCmd', [ &$script, &$parameters, &$options ] );
+	$cmd = isset( $options['php'] ) ? [ $options['php'] ] : [ $wgPhpCli ];
 	if ( isset( $options['wrapper'] ) ) {
 		$cmd[] = $options['wrapper'];
 	}
@@ -2912,7 +2912,7 @@ function wfBaseName( $path, $suffix = '' ) {
 		$encSuffix = '(?:' . preg_quote( $suffix, '#' ) . ')?';
 	}
 
-	$matches = array();
+	$matches = [];
 	if ( preg_match( "#([^/\\\\]*?){$encSuffix}[/\\\\]*$#", $path, $matches ) ) {
 		return $matches[1];
 	} else {
@@ -3092,7 +3092,7 @@ function wfGetPrecompiledData( $name ) {
  */
 function wfMemcKey( /*...*/ ) {
 	return call_user_func_array(
-		array( ObjectCache::getLocalClusterInstance(), 'makeKey' ),
+		[ ObjectCache::getLocalClusterInstance(), 'makeKey' ],
 		func_get_args()
 	);
 }
@@ -3111,8 +3111,8 @@ function wfForeignMemcKey( $db, $prefix /*...*/ ) {
 	$args = array_slice( func_get_args(), 2 );
 	$keyspace = $prefix ? "$db-$prefix" : $db;
 	return call_user_func_array(
-		array( ObjectCache::getLocalClusterInstance(), 'makeKeyInternal' ),
-		array( $keyspace, $args )
+		[ ObjectCache::getLocalClusterInstance(), 'makeKeyInternal' ],
+		[ $keyspace, $args ]
 	);
 }
 
@@ -3129,7 +3129,7 @@ function wfForeignMemcKey( $db, $prefix /*...*/ ) {
  */
 function wfGlobalCacheKey( /*...*/ ) {
 	return call_user_func_array(
-		array( ObjectCache::getLocalClusterInstance(), 'makeGlobalKey' ),
+		[ ObjectCache::getLocalClusterInstance(), 'makeGlobalKey' ],
 		func_get_args()
 	);
 }
@@ -3186,7 +3186,7 @@ function wfSplitWikiID( $wiki ) {
  *
  * @return DatabaseBase
  */
-function wfGetDB( $db, $groups = array(), $wiki = false ) {
+function wfGetDB( $db, $groups = [], $wiki = false ) {
 	return wfGetLB( $wiki )->getConnection( $db, $groups, $wiki );
 }
 
@@ -3217,7 +3217,7 @@ function wfGetLBFactory() {
  * @param array $options Associative array of options (see RepoGroup::findFile)
  * @return File|bool File, or false if the file does not exist
  */
-function wfFindFile( $title, $options = array() ) {
+function wfFindFile( $title, $options = [] ) {
 	return RepoGroup::singleton()->findFile( $title, $options );
 }
 
@@ -3345,13 +3345,13 @@ function wfWaitForSlaves(
 	}
 
 	try {
-		wfGetLBFactory()->waitForReplication( array(
+		wfGetLBFactory()->waitForReplication( [
 			'wiki' => $wiki,
 			'cluster' => $cluster,
 			'timeout' => $timeout,
 			// B/C: first argument used to be "max seconds of lag"; ignore such values
 			'ifWritesSince' => ( $ifWritesSince > 1e9 ) ? $ifWritesSince : null
-		) );
+		] );
 	} catch ( DBReplicationWaitError $e ) {
 		return false;
 	}
@@ -3487,7 +3487,7 @@ function wfShorthandToInteger( $string = '', $default = -1 ) {
  */
 function wfBCP47( $code ) {
 	$codeSegment = explode( '-', $code );
-	$codeBCP = array();
+	$codeBCP = [];
 	foreach ( $codeSegment as $segNo => $seg ) {
 		// when previous segment is x, it is a private segment and should be lc
 		if ( $segNo > 0 && strtolower( $codeSegment[( $segNo - 1 )] ) == 'x' ) {
@@ -3557,7 +3557,7 @@ function wfGetParserCacheStorage() {
  * @return bool True if no handler aborted the hook
  * @deprecated 1.25 - use Hooks::run
  */
-function wfRunHooks( $event, array $args = array(), $deprecatedVersion = null ) {
+function wfRunHooks( $event, array $args = [], $deprecatedVersion = null ) {
 	return Hooks::run( $event, $args, $deprecatedVersion );
 }
 
@@ -3619,7 +3619,7 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 
 	# Run the extension hook
 	$bad = false;
-	if ( !Hooks::run( 'BadImage', array( $name, &$bad ) ) ) {
+	if ( !Hooks::run( 'BadImage', [ $name, &$bad ] ) ) {
 		return $bad;
 	}
 
@@ -3632,7 +3632,7 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 			$blacklist = wfMessage( 'bad_image_list' )->inContentLanguage()->plain(); // site list
 		}
 		# Build the list now
-		$badImages = array();
+		$badImages = [];
 		$lines = explode( "\n", $blacklist );
 		foreach ( $lines as $line ) {
 			# List items only
@@ -3641,12 +3641,12 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 			}
 
 			# Find all links
-			$m = array();
+			$m = [];
 			if ( !preg_match_all( '/\[\[:?(.*?)\]\]/', $line, $m ) ) {
 				continue;
 			}
 
-			$exceptions = array();
+			$exceptions = [];
 			$imageDBkey = false;
 			foreach ( $m[1] as $i => $titleText ) {
 				$title = Title::newFromText( $titleText );
@@ -3681,7 +3681,7 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
  */
 function wfCanIPUseHTTPS( $ip ) {
 	$canDo = true;
-	Hooks::run( 'CanIPUseHTTPS', array( $ip, &$canDo ) );
+	Hooks::run( 'CanIPUseHTTPS', [ $ip, &$canDo ] );
 	return !!$canDo;
 }
 
@@ -3693,7 +3693,7 @@ function wfCanIPUseHTTPS( $ip ) {
  * @since 1.25
  */
 function wfIsInfinity( $str ) {
-	$infinityValues = array( 'infinite', 'indefinite', 'infinity', 'never' );
+	$infinityValues = [ 'infinite', 'indefinite', 'infinity', 'never' ];
 	return in_array( $str, $infinityValues );
 }
 
@@ -3714,7 +3714,7 @@ function wfIsInfinity( $str ) {
 function wfThumbIsStandard( File $file, array $params ) {
 	global $wgThumbLimits, $wgImageLimits, $wgResponsiveImages;
 
-	$multipliers = array( 1 );
+	$multipliers = [ 1 ];
 	if ( $wgResponsiveImages ) {
 		// These available sizes are hardcoded currently elsewhere in MediaWiki.
 		// @see Linker::processResponsiveImages
@@ -3727,13 +3727,13 @@ function wfThumbIsStandard( File $file, array $params ) {
 		return false;
 	}
 
-	$basicParams = array();
+	$basicParams = [];
 	if ( isset( $params['page'] ) ) {
 		$basicParams['page'] = $params['page'];
 	}
 
-	$thumbLimits = array();
-	$imageLimits = array();
+	$thumbLimits = [];
+	$imageLimits = [];
 	// Expand limits to account for multipliers
 	foreach ( $multipliers as $multiplier ) {
 		$thumbLimits = array_merge( $thumbLimits, array_map(
@@ -3743,24 +3743,24 @@ function wfThumbIsStandard( File $file, array $params ) {
 		);
 		$imageLimits = array_merge( $imageLimits, array_map(
 			function ( $pair ) use ( $multiplier ) {
-				return array(
+				return [
 					round( $pair[0] * $multiplier ),
 					round( $pair[1] * $multiplier ),
-				);
+				];
 			}, $wgImageLimits )
 		);
 	}
 
 	// Check if the width matches one of $wgThumbLimits
 	if ( in_array( $params['width'], $thumbLimits ) ) {
-		$normalParams = $basicParams + array( 'width' => $params['width'] );
+		$normalParams = $basicParams + [ 'width' => $params['width'] ];
 		// Append any default values to the map (e.g. "lossy", "lossless", ...)
 		$handler->normaliseParams( $file, $normalParams );
 	} else {
 		// If not, then check if the width matchs one of $wgImageLimits
 		$match = false;
 		foreach ( $imageLimits as $pair ) {
-			$normalParams = $basicParams + array( 'width' => $pair[0], 'height' => $pair[1] );
+			$normalParams = $basicParams + [ 'width' => $pair[0], 'height' => $pair[1] ];
 			// Decide whether the thumbnail should be scaled on width or height.
 			// Also append any default values to the map (e.g. "lossy", "lossless", ...)
 			$handler->normaliseParams( $file, $normalParams );

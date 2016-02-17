@@ -30,22 +30,22 @@
  */
 class LocalRepo extends FileRepo {
 	/** @var array */
-	protected $fileFactory = array( 'LocalFile', 'newFromTitle' );
+	protected $fileFactory = [ 'LocalFile', 'newFromTitle' ];
 
 	/** @var array */
-	protected $fileFactoryKey = array( 'LocalFile', 'newFromKey' );
+	protected $fileFactoryKey = [ 'LocalFile', 'newFromKey' ];
 
 	/** @var array */
-	protected $fileFromRowFactory = array( 'LocalFile', 'newFromRow' );
+	protected $fileFromRowFactory = [ 'LocalFile', 'newFromRow' ];
 
 	/** @var array */
-	protected $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow' );
+	protected $oldFileFromRowFactory = [ 'OldLocalFile', 'newFromRow' ];
 
 	/** @var array */
-	protected $oldFileFactory = array( 'OldLocalFile', 'newFromTitle' );
+	protected $oldFileFactory = [ 'OldLocalFile', 'newFromTitle' ];
 
 	/** @var array */
-	protected $oldFileFactoryKey = array( 'OldLocalFile', 'newFromKey' );
+	protected $oldFileFactoryKey = [ 'OldLocalFile', 'newFromKey' ];
 
 	function __construct( array $info = null ) {
 		parent::__construct( $info );
@@ -53,11 +53,11 @@ class LocalRepo extends FileRepo {
 		$this->hasSha1Storage = isset( $info['storageLayout'] ) && $info['storageLayout'] === 'sha1';
 
 		if ( $this->hasSha1Storage() ) {
-			$this->backend = new FileBackendDBRepoWrapper( array(
+			$this->backend = new FileBackendDBRepoWrapper( [
 				'backend'         => $this->backend,
 				'repoName'        => $this->name,
 				'dbHandleFactory' => $this->getDBFactory()
-			) );
+			] );
 		}
 	}
 
@@ -116,7 +116,7 @@ class LocalRepo extends FileRepo {
 			$hidden = $this->hiddenFileHasKey( $key, 'lock' );
 			if ( !$deleted && !$hidden ) { // not in use now
 				wfDebug( __METHOD__ . ": deleting $key\n" );
-				$op = array( 'op' => 'delete', 'src' => $path );
+				$op = [ 'op' => 'delete', 'src' => $path ];
 				if ( !$backend->doOperation( $op )->isOK() ) {
 					$status->error( 'undelete-cleanup-error', $path );
 					$status->failCount++;
@@ -139,12 +139,12 @@ class LocalRepo extends FileRepo {
 	 * @return bool File with this key is in use
 	 */
 	protected function deletedFileHasKey( $key, $lock = null ) {
-		$options = ( $lock === 'lock' ) ? array( 'FOR UPDATE' ) : array();
+		$options = ( $lock === 'lock' ) ? [ 'FOR UPDATE' ] : [];
 
 		$dbw = $this->getMasterDB();
 
 		return (bool)$dbw->selectField( 'filearchive', '1',
-			array( 'fa_storage_group' => 'deleted', 'fa_storage_key' => $key ),
+			[ 'fa_storage_group' => 'deleted', 'fa_storage_key' => $key ],
 			__METHOD__, $options
 		);
 	}
@@ -157,7 +157,7 @@ class LocalRepo extends FileRepo {
 	 * @return bool File with this key is in use
 	 */
 	protected function hiddenFileHasKey( $key, $lock = null ) {
-		$options = ( $lock === 'lock' ) ? array( 'FOR UPDATE' ) : array();
+		$options = ( $lock === 'lock' ) ? [ 'FOR UPDATE' ] : [];
 
 		$sha1 = self::getHashFromKey( $key );
 		$ext = File::normalizeExtension( substr( $key, strcspn( $key, '.' ) + 1 ) );
@@ -165,9 +165,9 @@ class LocalRepo extends FileRepo {
 		$dbw = $this->getMasterDB();
 
 		return (bool)$dbw->selectField( 'oldimage', '1',
-			array( 'oi_sha1' => $sha1,
+			[ 'oi_sha1' => $sha1,
 				'oi_archive_name ' . $dbw->buildLike( $dbw->anyString(), ".$ext" ),
-				$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE ),
+				$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE ],
 			__METHOD__, $options
 		);
 	}
@@ -210,13 +210,13 @@ class LocalRepo extends FileRepo {
 
 				if ( $title instanceof Title ) {
 					$row = $dbr->selectRow(
-						array( 'page', 'redirect' ),
-						array( 'rd_namespace', 'rd_title' ),
-						array(
+						[ 'page', 'redirect' ],
+						[ 'rd_namespace', 'rd_title' ],
+						[
 							'page_namespace' => $title->getNamespace(),
 							'page_title' => $title->getDBkey(),
 							'rd_from = page_id'
-						),
+						],
 						__METHOD__
 					);
 				} else {
@@ -239,9 +239,9 @@ class LocalRepo extends FileRepo {
 	}
 
 	public function findFiles( array $items, $flags = 0 ) {
-		$finalFiles = array(); // map of (DB key => corresponding File) for matches
+		$finalFiles = []; // map of (DB key => corresponding File) for matches
 
-		$searchSet = array(); // map of (normalized DB key => search params)
+		$searchSet = []; // map of (normalized DB key => search params)
 		foreach ( $items as $item ) {
 			if ( is_array( $item ) ) {
 				$title = File::normalizeTitle( $item['title'] );
@@ -251,7 +251,7 @@ class LocalRepo extends FileRepo {
 			} else {
 				$title = File::normalizeTitle( $item );
 				if ( $title ) {
-					$searchSet[$title->getDBkey()] = array();
+					$searchSet[$title->getDBkey()] = [];
 				}
 			}
 		}
@@ -283,7 +283,7 @@ class LocalRepo extends FileRepo {
 				$file = $that->newFileFromRow( $row );
 				// There must have been a search for this DB key, but this has to handle the
 				// cases were title capitalization is different on the client and repo wikis.
-				$dbKeysLook = array( strtr( $file->getName(), ' ', '_' ) );
+				$dbKeysLook = [ strtr( $file->getName(), ' ', '_' ) ];
 				if ( !empty( $info['initialCapital'] ) ) {
 					// Search keys for "hi.png" and "Hi.png" should use the "Hi.png file"
 					$dbKeysLook[] = $wgContLang->lcfirst( $file->getName() );
@@ -293,7 +293,7 @@ class LocalRepo extends FileRepo {
 						&& $fileMatchesSearch( $file, $searchSet[$dbKey] )
 					) {
 						$finalFiles[$dbKey] = ( $flags & FileRepo::NAME_AND_TIME_ONLY )
-							? array( 'title' => $dbKey, 'timestamp' => $file->getTimestamp() )
+							? [ 'title' => $dbKey, 'timestamp' => $file->getTimestamp() ]
 							: $file;
 						unset( $searchSet[$dbKey] );
 					}
@@ -304,26 +304,26 @@ class LocalRepo extends FileRepo {
 		$dbr = $this->getSlaveDB();
 
 		// Query image table
-		$imgNames = array();
+		$imgNames = [];
 		foreach ( array_keys( $searchSet ) as $dbKey ) {
 			$imgNames[] = $this->getNameFromTitle( File::normalizeTitle( $dbKey ) );
 		}
 
 		if ( count( $imgNames ) ) {
 			$res = $dbr->select( 'image',
-				LocalFile::selectFields(), array( 'img_name' => $imgNames ), __METHOD__ );
+				LocalFile::selectFields(), [ 'img_name' => $imgNames ], __METHOD__ );
 			$applyMatchingFiles( $res, $searchSet, $finalFiles );
 		}
 
 		// Query old image table
-		$oiConds = array(); // WHERE clause array for each file
+		$oiConds = []; // WHERE clause array for each file
 		foreach ( $searchSet as $dbKey => $search ) {
 			if ( isset( $search['time'] ) ) {
 				$oiConds[] = $dbr->makeList(
-					array(
+					[
 						'oi_name' => $this->getNameFromTitle( File::normalizeTitle( $dbKey ) ),
 						'oi_timestamp' => $dbr->timestamp( $search['time'] )
-					),
+					],
 					LIST_AND
 				);
 			}
@@ -349,10 +349,10 @@ class LocalRepo extends FileRepo {
 				if ( $file && $fileMatchesSearch( $file, $search ) ) {
 					$file->redirectedFrom( $title->getDBkey() );
 					if ( $flags & FileRepo::NAME_AND_TIME_ONLY ) {
-						$finalFiles[$dbKey] = array(
+						$finalFiles[$dbKey] = [
 							'title' => $file->getTitle()->getDBkey(),
 							'timestamp' => $file->getTimestamp()
-						);
+						];
 					} else {
 						$finalFiles[$dbKey] = $file;
 					}
@@ -375,12 +375,12 @@ class LocalRepo extends FileRepo {
 		$res = $dbr->select(
 			'image',
 			LocalFile::selectFields(),
-			array( 'img_sha1' => $hash ),
+			[ 'img_sha1' => $hash ],
 			__METHOD__,
-			array( 'ORDER BY' => 'img_name' )
+			[ 'ORDER BY' => 'img_name' ]
 		);
 
-		$result = array();
+		$result = [];
 		foreach ( $res as $row ) {
 			$result[] = $this->newFileFromRow( $row );
 		}
@@ -400,19 +400,19 @@ class LocalRepo extends FileRepo {
 	 */
 	function findBySha1s( array $hashes ) {
 		if ( !count( $hashes ) ) {
-			return array(); // empty parameter
+			return []; // empty parameter
 		}
 
 		$dbr = $this->getSlaveDB();
 		$res = $dbr->select(
 			'image',
 			LocalFile::selectFields(),
-			array( 'img_sha1' => $hashes ),
+			[ 'img_sha1' => $hashes ],
 			__METHOD__,
-			array( 'ORDER BY' => 'img_name' )
+			[ 'ORDER BY' => 'img_name' ]
 		);
 
-		$result = array();
+		$result = [];
 		foreach ( $res as $row ) {
 			$file = $this->newFileFromRow( $row );
 			$result[$file->getSha1()][] = $file;
@@ -430,7 +430,7 @@ class LocalRepo extends FileRepo {
 	 * @return array
 	 */
 	public function findFilesByPrefix( $prefix, $limit ) {
-		$selectOptions = array( 'ORDER BY' => 'img_name', 'LIMIT' => intval( $limit ) );
+		$selectOptions = [ 'ORDER BY' => 'img_name', 'LIMIT' => intval( $limit ) ];
 
 		// Query database
 		$dbr = $this->getSlaveDB();
@@ -443,7 +443,7 @@ class LocalRepo extends FileRepo {
 		);
 
 		// Build file objects
-		$files = array();
+		$files = [];
 		foreach ( $res as $row ) {
 			$files[] = $this->newFileFromRow( $row );
 		}
@@ -514,9 +514,9 @@ class LocalRepo extends FileRepo {
 	function getInfo() {
 		global $wgFavicon;
 
-		return array_merge( parent::getInfo(), array(
+		return array_merge( parent::getInfo(), [
 			'favicon' => wfExpandUrl( $wgFavicon ),
-		) );
+		] );
 	}
 
 	public function store( $srcPath, $dstZone, $dstRel, $flags = 0 ) {
@@ -536,7 +536,7 @@ class LocalRepo extends FileRepo {
 		$dstRel,
 		$archiveRel,
 		$flags = 0,
-		array $options = array()
+		array $options = []
 	) {
 		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
 	}

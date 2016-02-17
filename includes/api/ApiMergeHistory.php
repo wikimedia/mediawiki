@@ -43,24 +43,24 @@ class ApiMergeHistory extends ApiBase {
 		if ( isset( $params['from'] ) ) {
 			$fromTitle = Title::newFromText( $params['from'] );
 			if ( !$fromTitle || $fromTitle->isExternal() ) {
-				$this->dieUsageMsg( array( 'invalidtitle', $params['from'] ) );
+				$this->dieUsageMsg( [ 'invalidtitle', $params['from'] ] );
 			}
 		} elseif ( isset( $params['fromid'] ) ) {
 			$fromTitle = Title::newFromID( $params['fromid'] );
 			if ( !$fromTitle ) {
-				$this->dieUsageMsg( array( 'nosuchpageid', $params['fromid'] ) );
+				$this->dieUsageMsg( [ 'nosuchpageid', $params['fromid'] ] );
 			}
 		}
 
 		if ( isset( $params['to'] ) ) {
 			$toTitle = Title::newFromText( $params['to'] );
 			if ( !$toTitle || $toTitle->isExternal() ) {
-				$this->dieUsageMsg( array( 'invalidtitle', $params['to'] ) );
+				$this->dieUsageMsg( [ 'invalidtitle', $params['to'] ] );
 			}
 		} elseif ( isset( $params['toid'] ) ) {
 			$toTitle = Title::newFromID( $params['toid'] );
 			if ( !$toTitle ) {
-				$this->dieUsageMsg( array( 'nosuchpageid', $params['toid'] ) );
+				$this->dieUsageMsg( [ 'nosuchpageid', $params['toid'] ] );
 			}
 		}
 
@@ -73,12 +73,12 @@ class ApiMergeHistory extends ApiBase {
 			$this->dieStatus( $status );
 		}
 
-		$r = array(
+		$r = [
 			'from' => $fromTitle->getPrefixedText(),
 			'to' => $toTitle->getPrefixedText(),
 			'timestamp' => wfTimestamp( TS_ISO_8601, $params['timestamp'] ),
 			'reason' => $params['reason']
-		);
+		];
 		$result = $this->getResult();
 
 		$result->addValue( null, $this->getModuleName(), $r );
@@ -106,20 +106,20 @@ class ApiMergeHistory extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
+		return [
 			'from' => null,
-			'fromid' => array(
+			'fromid' => [
 				ApiBase::PARAM_TYPE => 'integer'
-			),
+			],
 			'to' => null,
-			'toid' => array(
+			'toid' => [
 				ApiBase::PARAM_TYPE => 'integer'
-			),
-			'timestamp' => array(
+			],
+			'timestamp' => [
 				ApiBase::PARAM_TYPE => 'timestamp'
-			),
+			],
 			'reason' => '',
-		);
+		];
 	}
 
 	public function needsToken() {
@@ -127,14 +127,14 @@ class ApiMergeHistory extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=mergehistory&from=Oldpage&to=Newpage&token=123ABC&' .
 			'reason=Reason'
 			=> 'apihelp-mergehistory-example-merge',
 			'action=mergehistory&from=Oldpage&to=Newpage&token=123ABC&' .
 			'reason=Reason&timestamp=2015-12-31T04%3A37%3A41Z' // TODO
 			=> 'apihelp-mergehistory-example-merge-timestamp',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

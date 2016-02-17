@@ -59,7 +59,7 @@ class LegacyLogger extends AbstractLogger {
 	 *
 	 * @var array $levelMapping
 	 */
-	protected static $levelMapping = array(
+	protected static $levelMapping = [
 		LogLevel::DEBUG => 100,
 		LogLevel::INFO => 200,
 		LogLevel::NOTICE => 250,
@@ -68,7 +68,7 @@ class LegacyLogger extends AbstractLogger {
 		LogLevel::CRITICAL => 500,
 		LogLevel::ALERT => 550,
 		LogLevel::EMERGENCY => 600,
-	);
+	];
 
 	/**
 	 * @param string $channel
@@ -84,7 +84,7 @@ class LegacyLogger extends AbstractLogger {
 	 * @param string $message
 	 * @param array $context
 	 */
-	public function log( $level, $message, array $context = array() ) {
+	public function log( $level, $message, array $context = [] ) {
 		if ( self::shouldEmit( $this->channel, $message, $level, $context ) ) {
 			$text = self::format( $this->channel, $message, $context );
 			$destination = self::destination( $this->channel, $message, $context );
@@ -92,7 +92,7 @@ class LegacyLogger extends AbstractLogger {
 		}
 		if ( !isset( $context['private'] ) || !$context['private'] ) {
 			// Add to debug toolbar if not marked as "private"
-			MWDebug::debugMsg( $message, array( 'channel' => $this->channel ) + $context );
+			MWDebug::debugMsg( $message, [ 'channel' => $this->channel ] + $context );
 		}
 	}
 
@@ -316,7 +316,7 @@ class LegacyLogger extends AbstractLogger {
 	 */
 	public static function interpolate( $message, array $context ) {
 		if ( strpos( $message, '{' ) !== false ) {
-			$replace = array();
+			$replace = [];
 			foreach ( $context as $key => $val ) {
 				$replace['{' . $key . '}'] = self::flatten( $val );
 			}

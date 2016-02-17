@@ -80,7 +80,7 @@ class MaintenanceFixup extends Maintenance {
 			return;
 		}
 
-		call_user_func_array( array( "parent", __FUNCTION__ ), func_get_args() );
+		call_user_func_array( [ "parent", __FUNCTION__ ], func_get_args() );
 	}
 
 	/**
@@ -117,17 +117,17 @@ class MaintenanceFixup extends Maintenance {
 		// Maintenance::output signature. However, we do not use (or rely on)
 		// those variables. Instead we pass to Maintenance::output whatever we
 		// receive at runtime.
-		return call_user_func_array( array( "parent", __FUNCTION__ ), func_get_args() );
+		return call_user_func_array( [ "parent", __FUNCTION__ ], func_get_args() );
 	}
 
 	public function addOption( $name, $description, $required = false,
 		$withArg = false, $shortName = false, $multiOccurance = false
 	) {
-		return call_user_func_array( array( "parent", __FUNCTION__ ), func_get_args() );
+		return call_user_func_array( [ "parent", __FUNCTION__ ], func_get_args() );
 	}
 
 	public function getOption( $name, $default = null ) {
-		return call_user_func_array( array( "parent", __FUNCTION__ ), func_get_args() );
+		return call_user_func_array( [ "parent", __FUNCTION__ ], func_get_args() );
 	}
 
 	// --- Requirements for getting instance of abstract class
@@ -844,10 +844,10 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$m2 = new MaintenanceFixup( $this );
 		// Create an option with an argument allowed to be specified multiple times
 		$m2->addOption( 'multi', 'This option does stuff', false, true, false, true );
-		$m2->loadWithArgv( array( '--multi', 'this1', '--multi', 'this2' ) );
+		$m2->loadWithArgv( [ '--multi', 'this1', '--multi', 'this2' ] );
 
-		$this->assertEquals( array( 'this1', 'this2' ), $m2->getOption( 'multi' ) );
-		$this->assertEquals( array( array( 'multi', 'this1' ), array( 'multi', 'this2' ) ),
+		$this->assertEquals( [ 'this1', 'this2' ], $m2->getOption( 'multi' ) );
+		$this->assertEquals( [ [ 'multi', 'this1' ], [ 'multi', 'this2' ] ],
 			$m2->orderedOptions );
 
 		$m2->simulateShutdown();
@@ -855,20 +855,20 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$m2 = new MaintenanceFixup( $this );
 
 		$m2->addOption( 'multi', 'This option does stuff', false, false, false, true );
-		$m2->loadWithArgv( array( '--multi', '--multi' ) );
+		$m2->loadWithArgv( [ '--multi', '--multi' ] );
 
-		$this->assertEquals( array( 1, 1 ), $m2->getOption( 'multi' ) );
-		$this->assertEquals( array( array( 'multi', 1 ), array( 'multi', 1 ) ), $m2->orderedOptions );
+		$this->assertEquals( [ 1, 1 ], $m2->getOption( 'multi' ) );
+		$this->assertEquals( [ [ 'multi', 1 ], [ 'multi', 1 ] ], $m2->orderedOptions );
 
 		$m2->simulateShutdown();
 
 		$m2 = new MaintenanceFixup( $this );
 		// Create an option with an argument allowed to be specified multiple times
 		$m2->addOption( 'multi', 'This option doesn\'t actually support multiple occurrences' );
-		$m2->loadWithArgv( array( '--multi=yo' ) );
+		$m2->loadWithArgv( [ '--multi=yo' ] );
 
 		$this->assertEquals( 'yo', $m2->getOption( 'multi' ) );
-		$this->assertEquals( array( array( 'multi', 'yo' ) ), $m2->orderedOptions );
+		$this->assertEquals( [ [ 'multi', 'yo' ] ], $m2->orderedOptions );
 
 		$m2->simulateShutdown();
 	}

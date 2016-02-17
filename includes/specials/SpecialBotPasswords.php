@@ -64,7 +64,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 			$par = null;
 		} elseif ( strlen( $par ) > BotPassword::APPID_MAXLENGTH ) {
 			throw new ErrorPageError( 'botpasswords', 'botpasswords-bad-appid',
-				array( htmlspecialchars( $par ) ) );
+				[ htmlspecialchars( $par ) ] );
 		}
 
 		parent::execute( $par );
@@ -88,40 +88,40 @@ class SpecialBotPasswords extends FormSpecialPage {
 		$user = $this->getUser();
 		$request = $this->getRequest();
 
-		$fields = array();
+		$fields = [];
 
 		if ( $this->par !== null ) {
 			$this->botPassword = BotPassword::newFromCentralId( $this->userId, $this->par );
 			if ( !$this->botPassword ) {
-				$this->botPassword = BotPassword::newUnsaved( array(
+				$this->botPassword = BotPassword::newUnsaved( [
 					'centralId' => $this->userId,
 					'appId' => $this->par,
-				) );
+				] );
 			}
 
 			$sep = BotPassword::getSeparator();
-			$fields[] = array(
+			$fields[] = [
 				'type' => 'info',
 				'label-message' => 'username',
 				'default' => $this->getUser()->getName() . $sep . $this->par
-			);
+			];
 
 			if ( $this->botPassword->isSaved() ) {
-				$fields['resetPassword'] = array(
+				$fields['resetPassword'] = [
 					'type' => 'check',
 					'label-message' => 'botpasswords-label-resetpassword',
-				);
+				];
 			}
 
 			$lang = $this->getLanguage();
 			$showGrants = MWGrants::getValidGrants();
-			$fields['grants'] = array(
+			$fields['grants'] = [
 				'type' => 'checkmatrix',
 				'label-message' => 'botpasswords-label-grants',
 				'help-message' => 'botpasswords-help-grants',
-				'columns' => array(
+				'columns' => [
 					$this->msg( 'botpasswords-label-grants-column' )->escaped() => 'grant'
-				),
+				],
 				'rows' => array_combine(
 					array_map( 'MWGrants::getGrantsLink', $showGrants ),
 					$showGrants
@@ -147,9 +147,9 @@ class SpecialBotPasswords extends FormSpecialPage {
 					},
 					MWGrants::getHiddenGrants()
 				),
-			);
+			];
 
-			$fields['restrictions'] = array(
+			$fields['restrictions'] = [
 				'type' => 'textarea',
 				'label-message' => 'botpasswords-label-restrictions',
 				'required' => true,
@@ -163,32 +163,32 @@ class SpecialBotPasswords extends FormSpecialPage {
 						return $ex->getMessage();
 					}
 				},
-			);
+			];
 
 		} else {
 			$dbr = BotPassword::getDB( DB_SLAVE );
 			$res = $dbr->select(
 				'bot_passwords',
-				array( 'bp_app_id' ),
-				array( 'bp_user' => $this->userId ),
+				[ 'bp_app_id' ],
+				[ 'bp_user' => $this->userId ],
 				__METHOD__
 			);
 			foreach ( $res as $row ) {
-				$fields[] = array(
+				$fields[] = [
 					'section' => 'existing',
 					'type' => 'info',
 					'raw' => true,
 					'default' => Linker::link(
 						$this->getPageTitle( $row->bp_app_id ),
 						htmlspecialchars( $row->bp_app_id ),
-						array(),
-						array(),
-						array( 'known' )
+						[],
+						[],
+						[ 'known' ]
 					),
-				);
+				];
 			}
 
-			$fields['appId'] = array(
+			$fields['appId'] = [
 				'section' => 'createnew',
 				'type' => 'textwithbutton',
 				'label-message' => 'botpasswords-label-appid',
@@ -200,13 +200,13 @@ class SpecialBotPasswords extends FormSpecialPage {
 					$v = trim( $v );
 					return $v !== '' && strlen( $v ) <= BotPassword::APPID_MAXLENGTH;
 				},
-			);
+			];
 
-			$fields[] = array(
+			$fields[] = [
 				'type' => 'hidden',
 				'default' => 'new',
 				'name' => 'op',
-			);
+			];
 		}
 
 		return $fields;
@@ -221,33 +221,33 @@ class SpecialBotPasswords extends FormSpecialPage {
 		if ( $this->par !== null ) {
 			if ( $this->botPassword->isSaved() ) {
 				$form->setWrapperLegendMsg( 'botpasswords-editexisting' );
-				$form->addButton( array(
+				$form->addButton( [
 					'name' => 'op',
 					'value' => 'update',
 					'label-message' => 'botpasswords-label-update',
-					'flags' => array( 'primary', 'progressive' ),
-				) );
-				$form->addButton( array(
+					'flags' => [ 'primary', 'progressive' ],
+				] );
+				$form->addButton( [
 					'name' => 'op',
 					'value' => 'delete',
 					'label-message' => 'botpasswords-label-delete',
-					'flags' => array( 'destructive' ),
-				) );
+					'flags' => [ 'destructive' ],
+				] );
 			} else {
 				$form->setWrapperLegendMsg( 'botpasswords-createnew' );
-				$form->addButton( array(
+				$form->addButton( [
 					'name' => 'op',
 					'value' => 'create',
 					'label-message' => 'botpasswords-label-create',
-					'flags' => array( 'primary', 'constructive' ),
-				) );
+					'flags' => [ 'primary', 'constructive' ],
+				] );
 			}
 
-			$form->addButton( array(
+			$form->addButton( [
 				'name' => 'op',
 				'value' => 'cancel',
 				'label-message' => 'botpasswords-label-cancel'
-			) );
+			] );
 		}
 	}
 
@@ -284,7 +284,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 	}
 
 	private function save( array $data ) {
-		$bp = BotPassword::newUnsaved( array(
+		$bp = BotPassword::newUnsaved( [
 			'centralId' => $this->userId,
 			'appId' => $this->par,
 			'restrictions' => MWRestrictions::newFromJson( $data['restrictions'] ),
@@ -292,7 +292,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 				MWGrants::getHiddenGrants(),
 				preg_replace( '/^grant-/', '', $data['grants'] )
 			)
-		) );
+		] );
 
 		if ( $this->operation === 'insert' || !empty( $data['resetPassword'] ) ) {
 			$this->password = PasswordFactory::generateRandomPasswordString(

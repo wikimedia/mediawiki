@@ -61,7 +61,7 @@ class Sanitizer {
 	 * http://www.w3.org/TR/html4/sgml/entities.html
 	 * As well as &apos; which is only defined starting in XHTML1.
 	 */
-	private static $htmlEntities = array(
+	private static $htmlEntities = [
 		'Aacute'   => 193,
 		'aacute'   => 225,
 		'Acirc'    => 194,
@@ -315,15 +315,15 @@ class Sanitizer {
 		'zeta'     => 950,
 		'zwj'      => 8205,
 		'zwnj'     => 8204
-	);
+	];
 
 	/**
 	 * Character entity aliases accepted by MediaWiki
 	 */
-	private static $htmlEntityAliases = array(
+	private static $htmlEntityAliases = [
 		'רלמ' => 'rlm',
 		'رلم' => 'rlm',
-	);
+	];
 
 	/**
 	 * Lazy-initialised attributes regex, see getAttribsRegex()
@@ -361,7 +361,7 @@ class Sanitizer {
 	 * @param array $removetags For any tags (default or extra) to exclude
 	 * @return array
 	 */
-	public static function getRecognizedTagData( $extratags = array(), $removetags = array() ) {
+	public static function getRecognizedTagData( $extratags = [], $removetags = [] ) {
 		global $wgAllowMicrodataAttributes, $wgAllowImageTag;
 
 		static $htmlpairsStatic, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
@@ -371,38 +371,38 @@ class Sanitizer {
 		// are changed (like in the screwed up test system) we will re-initialise the settings.
 		$globalContext = implode( '-', compact( 'wgAllowMicrodataAttributes', 'wgAllowImageTag' ) );
 		if ( !$staticInitialised || $staticInitialised != $globalContext ) {
-			$htmlpairsStatic = array( # Tags that must be closed
+			$htmlpairsStatic = [ # Tags that must be closed
 				'b', 'bdi', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
 				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
 				'ruby', 'rb', 'rp', 'rt', 'rtc', 'p', 'span', 'abbr', 'dfn',
 				'kbd', 'samp', 'data', 'time', 'mark'
-			);
-			$htmlsingle = array(
+			];
+			$htmlsingle = [
 				'br', 'wbr', 'hr', 'li', 'dt', 'dd'
-			);
-			$htmlsingleonly = array( # Elements that cannot have close tags
+			];
+			$htmlsingleonly = [ # Elements that cannot have close tags
 				'br', 'wbr', 'hr'
-			);
+			];
 			if ( $wgAllowMicrodataAttributes ) {
 				$htmlsingle[] = $htmlsingleonly[] = 'meta';
 				$htmlsingle[] = $htmlsingleonly[] = 'link';
 			}
-			$htmlnest = array( # Tags that can be nested--??
+			$htmlnest = [ # Tags that can be nested--??
 				'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
 				'li', 'dl', 'dt', 'dd', 'font', 'big', 'small', 'sub', 'sup', 'span',
 				'var', 'kbd', 'samp', 'em', 'strong', 'q', 'ruby', 'bdo'
-			);
-			$tabletags = array( # Can only appear inside table, we will close them
+			];
+			$tabletags = [ # Can only appear inside table, we will close them
 				'td', 'th', 'tr',
-			);
-			$htmllist = array( # Tags used by list
+			];
+			$htmllist = [ # Tags used by list
 				'ul', 'ol',
-			);
-			$listtags = array( # Tags that can appear in a list
+			];
+			$listtags = [ # Tags that can appear in a list
 				'li',
-			);
+			];
 
 			if ( $wgAllowImageTag ) {
 				$htmlsingle[] = 'img';
@@ -413,8 +413,8 @@ class Sanitizer {
 			$htmlelementsStatic = array_unique( array_merge( $htmlsingle, $htmlpairsStatic, $htmlnest ) );
 
 			# Convert them all to hashtables for faster lookup
-			$vars = array( 'htmlpairsStatic', 'htmlsingle', 'htmlsingleonly', 'htmlnest', 'tabletags',
-				'htmllist', 'listtags', 'htmlsingleallowed', 'htmlelementsStatic' );
+			$vars = [ 'htmlpairsStatic', 'htmlsingle', 'htmlsingleonly', 'htmlnest', 'tabletags',
+				'htmllist', 'listtags', 'htmlsingleallowed', 'htmlelementsStatic' ];
 			foreach ( $vars as $var ) {
 				$$var = array_flip( $$var );
 			}
@@ -427,7 +427,7 @@ class Sanitizer {
 		$htmlpairs = array_merge( $extratags, $htmlpairsStatic );
 		$htmlelements = array_diff_key( array_merge( $extratags, $htmlelementsStatic ), $removetags );
 
-		return array(
+		return [
 			'htmlpairs' => $htmlpairs,
 			'htmlsingle' => $htmlsingle,
 			'htmlsingleonly' => $htmlsingleonly,
@@ -437,7 +437,7 @@ class Sanitizer {
 			'listtags' => $listtags,
 			'htmlsingleallowed' => $htmlsingleallowed,
 			'htmlelements' => $htmlelements,
-		);
+		];
 	}
 
 	/**
@@ -452,7 +452,7 @@ class Sanitizer {
 	 * @return string
 	 */
 	public static function removeHTMLtags( $text, $processCallback = null,
-		$args = array(), $extratags = array(), $removetags = array()
+		$args = [], $extratags = [], $removetags = []
 	) {
 		extract( self::getRecognizedTagData( $extratags, $removetags ) );
 
@@ -461,9 +461,9 @@ class Sanitizer {
 		$bits = explode( '<', $text );
 		$text = str_replace( '>', '&gt;', array_shift( $bits ) );
 		if ( !MWTidy::isEnabled() ) {
-			$tagstack = $tablestack = array();
+			$tagstack = $tablestack = [];
 			foreach ( $bits as $x ) {
-				$regs = array();
+				$regs = [];
 				# $slash: Does the current element start with a '/'?
 				# $t: Current element name
 				# $params: String between element name and >
@@ -491,7 +491,7 @@ class Sanitizer {
 							if ( isset( $htmlsingleallowed[$ot] ) ) {
 								# Pop all elements with an optional close tag
 								# and see if we find a match below them
-								$optstack = array();
+								$optstack = [];
 								array_push( $optstack, $ot );
 								MediaWiki\suppressWarnings();
 								$ot = array_pop( $tagstack );
@@ -556,7 +556,7 @@ class Sanitizer {
 						} else {
 							if ( $t == 'table' ) {
 								array_push( $tablestack, $tagstack );
-								$tagstack = array();
+								$tagstack = [];
 							}
 							array_push( $tagstack, $t );
 						}
@@ -564,7 +564,7 @@ class Sanitizer {
 						# Replace any variables or template parameters with
 						# plaintext results.
 						if ( is_callable( $processCallback ) ) {
-							call_user_func_array( $processCallback, array( &$params, $args ) );
+							call_user_func_array( $processCallback, [ &$params, $args ] );
 						}
 
 						if ( !Sanitizer::validateTag( $params, $t ) ) {
@@ -600,7 +600,7 @@ class Sanitizer {
 					$t = strtolower( $t );
 					if ( isset( $htmlelements[$t] ) ) {
 						if ( is_callable( $processCallback ) ) {
-							call_user_func_array( $processCallback, array( &$params, $args ) );
+							call_user_func_array( $processCallback, [ &$params, $args ] );
 						}
 
 						if ( !Sanitizer::validateTag( $params, $t ) ) {
@@ -738,7 +738,7 @@ class Sanitizer {
 		$whitelist = array_flip( $whitelist );
 		$hrefExp = '/^(' . wfUrlProtocols() . ')[^\s]+$/';
 
-		$out = array();
+		$out = [];
 		foreach ( $attribs as $attribute => $value ) {
 			# allow XML namespace declaration if RDFa is enabled
 			if ( $wgAllowRdfaAttributes && preg_match( self::XMLNS_ATTRIBUTE_PATTERN, $attribute ) ) {
@@ -888,7 +888,7 @@ class Sanitizer {
 				)/xu";
 		}
 		$value = preg_replace_callback( $decodeRegex,
-			array( __CLASS__, 'cssDecodeCallback' ), $value );
+			[ __CLASS__, 'cssDecodeCallback' ], $value );
 
 		// Normalize Halfwidth and Fullwidth Unicode block that IE6 might treat as ascii
 		$value = preg_replace_callback(
@@ -906,8 +906,8 @@ class Sanitizer {
 		// Convert more characters IE6 might treat as ascii
 		// U+0280, U+0274, U+207F, U+029F, U+026A, U+207D, U+208D
 		$value = str_replace(
-			array( 'ʀ', 'ɴ', 'ⁿ', 'ʟ', 'ɪ', '⁽', '₍' ),
-			array( 'r', 'n', 'n', 'l', 'i', '(', '(' ),
+			[ 'ʀ', 'ɴ', 'ⁿ', 'ʟ', 'ɪ', '⁽', '₍' ],
+			[ 'r', 'n', 'n', 'l', 'i', '(', '(' ],
 			$value
 		);
 
@@ -1057,11 +1057,11 @@ class Sanitizer {
 		// Whitespace is normalized during attribute decoding,
 		// so if we've been passed non-spaces we must encode them
 		// ahead of time or they won't be preserved.
-		$encValue = strtr( $encValue, array(
+		$encValue = strtr( $encValue, [
 			"\n" => '&#10;',
 			"\r" => '&#13;',
 			"\t" => '&#9;',
-		) );
+		] );
 
 		return $encValue;
 	}
@@ -1077,7 +1077,7 @@ class Sanitizer {
 
 		# Templates and links may be expanded in later parsing,
 		# creating invalid or dangerous output. Suppress this.
-		$encValue = strtr( $encValue, array(
+		$encValue = strtr( $encValue, [
 			'<'    => '&lt;',   // This should never happen,
 			'>'    => '&gt;',   // we've received invalid input
 			'"'    => '&quot;', // which should have been escaped.
@@ -1089,12 +1089,12 @@ class Sanitizer {
 			'PMID' => '&#80;MID',
 			'|'    => '&#124;',
 			'__'   => '&#95;_',
-		) );
+		] );
 
 		# Stupid hack
 		$encValue = preg_replace_callback(
 			'/((?i)' . wfUrlProtocols() . ')/',
-			array( 'Sanitizer', 'armorLinksCallback' ),
+			[ 'Sanitizer', 'armorLinksCallback' ],
 			$encValue );
 		return $encValue;
 	}
@@ -1130,7 +1130,7 @@ class Sanitizer {
 	 *       anchors and links won't break.
 	 * @return string
 	 */
-	static function escapeId( $id, $options = array() ) {
+	static function escapeId( $id, $options = [] ) {
 		global $wgExperimentalHtmlIds;
 		$options = (array)$options;
 
@@ -1148,10 +1148,10 @@ class Sanitizer {
 		}
 
 		// HTML4-style escaping
-		static $replace = array(
+		static $replace = [
 			'%3A' => ':',
 			'%' => '.'
-		);
+		];
 
 		$id = urlencode( strtr( $id, ' ', '_' ) );
 		$id = str_replace( array_keys( $replace ), array_values( $replace ), $id );
@@ -1180,7 +1180,7 @@ class Sanitizer {
 	 *       anchors and links won't break.
 	 * @return string
 	 */
-	static function escapeIdReferenceList( $referenceString, $options = array() ) {
+	static function escapeIdReferenceList( $referenceString, $options = [] ) {
 		# Explode the space delimited list string into an array of tokens
 		$references = preg_split( '/\s+/', "{$referenceString}", -1, PREG_SPLIT_NO_EMPTY );
 
@@ -1210,7 +1210,7 @@ class Sanitizer {
 	static function escapeClass( $class ) {
 		// Convert ugly stuff to underscores and kill underscores in ugly places
 		return rtrim( preg_replace(
-			array( '/(^[0-9\\-])|[\\x00-\\x20!"#$%&\'()*+,.\\/:;<=>?@[\\]^`{|}~]|\\xC2\\xA0/', '/_+/' ),
+			[ '/(^[0-9\\-])|[\\x00-\\x20!"#$%&\'()*+,.\\/:;<=>?@[\\]^`{|}~]|\\xC2\\xA0/', '/_+/' ],
 			'_',
 			$class ), '_' );
 	}
@@ -1249,11 +1249,11 @@ class Sanitizer {
 	 */
 	public static function decodeTagAttributes( $text ) {
 		if ( trim( $text ) == '' ) {
-			return array();
+			return [];
 		}
 
-		$attribs = array();
-		$pairs = array();
+		$attribs = [];
+		$pairs = [];
 		if ( !preg_match_all(
 			self::getAttribsRegex(),
 			$text,
@@ -1284,7 +1284,7 @@ class Sanitizer {
 	 * @return string
 	 */
 	public static function safeEncodeTagAttributes( $assoc_array ) {
-		$attribs = array();
+		$attribs = [];
 		foreach ( $assoc_array as $attribute => $value ) {
 			$encAttribute = htmlspecialchars( $attribute );
 			$encValue = Sanitizer::safeEncodeAttribute( $value );
@@ -1363,7 +1363,7 @@ class Sanitizer {
 	static function normalizeCharReferences( $text ) {
 		return preg_replace_callback(
 			self::CHAR_REFS_REGEX,
-			array( 'Sanitizer', 'normalizeCharReferencesCallback' ),
+			[ 'Sanitizer', 'normalizeCharReferencesCallback' ],
 			$text );
 	}
 
@@ -1400,7 +1400,7 @@ class Sanitizer {
 	static function normalizeEntity( $name ) {
 		if ( isset( self::$htmlEntityAliases[$name] ) ) {
 			return '&' . self::$htmlEntityAliases[$name] . ';';
-		} elseif ( in_array( $name, array( 'lt', 'gt', 'amp', 'quot' ) ) ) {
+		} elseif ( in_array( $name, [ 'lt', 'gt', 'amp', 'quot' ] ) ) {
 			return "&$name;";
 		} elseif ( isset( self::$htmlEntities[$name] ) ) {
 			return '&#' . self::$htmlEntities[$name] . ';';
@@ -1463,7 +1463,7 @@ class Sanitizer {
 	public static function decodeCharReferences( $text ) {
 		return preg_replace_callback(
 			self::CHAR_REFS_REGEX,
-			array( 'Sanitizer', 'decodeCharReferencesCallback' ),
+			[ 'Sanitizer', 'decodeCharReferencesCallback' ],
 			$text );
 	}
 
@@ -1481,7 +1481,7 @@ class Sanitizer {
 		global $wgContLang;
 		$text = preg_replace_callback(
 			self::CHAR_REFS_REGEX,
-			array( 'Sanitizer', 'decodeCharReferencesCallback' ),
+			[ 'Sanitizer', 'decodeCharReferencesCallback' ],
 			$text, /* limit */ -1, $count );
 
 		if ( $count ) {
@@ -1551,7 +1551,7 @@ class Sanitizer {
 		$list = Sanitizer::setupAttributeWhitelist();
 		return isset( $list[$element] )
 			? $list[$element]
-			: array();
+			: [];
 	}
 
 	/**
@@ -1569,7 +1569,7 @@ class Sanitizer {
 			return $whitelist;
 		}
 
-		$common = array(
+		$common = [
 			# HTML
 			'id',
 			'class',
@@ -1585,27 +1585,27 @@ class Sanitizer {
 			'aria-labelledby',
 			'aria-owns',
 			'role',
-		);
+		];
 
 		if ( $wgAllowRdfaAttributes ) {
 			# RDFa attributes as specified in section 9 of
 			# http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014
-			$common = array_merge( $common, array(
+			$common = array_merge( $common, [
 				'about', 'property', 'resource', 'datatype', 'typeof',
-			) );
+			] );
 		}
 
 		if ( $wgAllowMicrodataAttributes ) {
 			# add HTML5 microdata tags as specified by
 			# http://www.whatwg.org/html/microdata.html#the-microdata-model
-			$common = array_merge( $common, array(
+			$common = array_merge( $common, [
 				'itemid', 'itemprop', 'itemref', 'itemscope', 'itemtype'
-			) );
+			] );
 		}
 
-		$block = array_merge( $common, array( 'align' ) );
-		$tablealign = array( 'align', 'valign' );
-		$tablecell = array(
+		$block = array_merge( $common, [ 'align' ] );
+		$tablealign = [ 'align', 'valign' ];
+		$tablecell = [
 			'abbr',
 			'axis',
 			'headers',
@@ -1616,11 +1616,11 @@ class Sanitizer {
 			'width', # deprecated
 			'height', # deprecated
 			'bgcolor', # deprecated
-		);
+		];
 
 		# Numbers refer to sections in HTML 4.01 standard describing the element.
 		# See: http://www.w3.org/TR/html4/
-		$whitelist = array(
+		$whitelist = [
 			# 7.5.4
 			'div'        => $block,
 			'center'     => $common, # deprecated
@@ -1653,8 +1653,8 @@ class Sanitizer {
 			# acronym
 
 			# 9.2.2
-			'blockquote' => array_merge( $common, array( 'cite' ) ),
-			'q'          => array_merge( $common, array( 'cite' ) ),
+			'blockquote' => array_merge( $common, [ 'cite' ] ),
+			'q'          => array_merge( $common, [ 'cite' ] ),
 
 			# 9.2.3
 			'sub'        => $common,
@@ -1664,22 +1664,22 @@ class Sanitizer {
 			'p'          => $block,
 
 			# 9.3.2
-			'br'         => array_merge( $common, array( 'clear' ) ),
+			'br'         => array_merge( $common, [ 'clear' ] ),
 
 			# http://www.whatwg.org/html/text-level-semantics.html#the-wbr-element
 			'wbr'        => $common,
 
 			# 9.3.4
-			'pre'        => array_merge( $common, array( 'width' ) ),
+			'pre'        => array_merge( $common, [ 'width' ] ),
 
 			# 9.4
-			'ins'        => array_merge( $common, array( 'cite', 'datetime' ) ),
-			'del'        => array_merge( $common, array( 'cite', 'datetime' ) ),
+			'ins'        => array_merge( $common, [ 'cite', 'datetime' ] ),
+			'del'        => array_merge( $common, [ 'cite', 'datetime' ] ),
 
 			# 10.2
-			'ul'         => array_merge( $common, array( 'type' ) ),
-			'ol'         => array_merge( $common, array( 'type', 'start', 'reversed' ) ),
-			'li'         => array_merge( $common, array( 'type', 'value' ) ),
+			'ul'         => array_merge( $common, [ 'type' ] ),
+			'ol'         => array_merge( $common, [ 'type', 'start', 'reversed' ] ),
+			'li'         => array_merge( $common, [ 'type', 'value' ] ),
 
 			# 10.3
 			'dl'         => $common,
@@ -1688,10 +1688,10 @@ class Sanitizer {
 
 			# 11.2.1
 			'table'      => array_merge( $common,
-								array( 'summary', 'width', 'border', 'frame',
+								[ 'summary', 'width', 'border', 'frame',
 										'rules', 'cellspacing', 'cellpadding',
 										'align', 'bgcolor',
-								) ),
+								] ),
 
 			# 11.2.2
 			'caption'    => $block,
@@ -1702,11 +1702,11 @@ class Sanitizer {
 			'tbody'      => $common,
 
 			# 11.2.4
-			'colgroup'   => array_merge( $common, array( 'span' ) ),
-			'col'        => array_merge( $common, array( 'span' ) ),
+			'colgroup'   => array_merge( $common, [ 'span' ] ),
+			'col'        => array_merge( $common, [ 'span' ] ),
 
 			# 11.2.5
-			'tr'         => array_merge( $common, array( 'bgcolor' ), $tablealign ),
+			'tr'         => array_merge( $common, [ 'bgcolor' ], $tablealign ),
 
 			# 11.2.6
 			'td'         => array_merge( $common, $tablecell, $tablealign ),
@@ -1715,13 +1715,13 @@ class Sanitizer {
 			# 12.2
 			# NOTE: <a> is not allowed directly, but the attrib
 			# whitelist is used from the Parser object
-			'a'          => array_merge( $common, array( 'href', 'rel', 'rev' ) ), # rel/rev esp. for RDFa
+			'a'          => array_merge( $common, [ 'href', 'rel', 'rev' ] ), # rel/rev esp. for RDFa
 
 			# 13.2
 			# Not usually allowed, but may be used for extension-style hooks
 			# such as <math> when it is rasterized, or if $wgAllowImageTag is
 			# true
-			'img'        => array_merge( $common, array( 'alt', 'src', 'width', 'height' ) ),
+			'img'        => array_merge( $common, [ 'alt', 'src', 'width', 'height' ] ),
 
 			# 15.2.1
 			'tt'         => $common,
@@ -1734,11 +1734,11 @@ class Sanitizer {
 			'u'          => $common,
 
 			# 15.2.2
-			'font'       => array_merge( $common, array( 'size', 'color', 'face' ) ),
+			'font'       => array_merge( $common, [ 'size', 'color', 'face' ] ),
 			# basefont
 
 			# 15.3
-			'hr'         => array_merge( $common, array( 'width' ) ),
+			'hr'         => array_merge( $common, [ 'width' ] ),
 
 			# HTML Ruby annotation text module, simple ruby only.
 			# http://www.whatwg.org/html/text-level-semantics.html#the-ruby-element
@@ -1752,15 +1752,15 @@ class Sanitizer {
 			# MathML root element, where used for extensions
 			# 'title' may not be 100% valid here; it's XHTML
 			# http://www.w3.org/TR/REC-MathML/
-			'math'       => array( 'class', 'style', 'id', 'title' ),
+			'math'       => [ 'class', 'style', 'id', 'title' ],
 
 			# HTML 5 section 4.6
 			'bdi' => $common,
 
 			# HTML5 elements, defined by:
 			# http://www.whatwg.org/html/
-			'data' => array_merge( $common, array( 'value' ) ),
-			'time' => array_merge( $common, array( 'datetime' ) ),
+			'data' => array_merge( $common, [ 'value' ] ),
+			'time' => array_merge( $common, [ 'datetime' ] ),
 			'mark' => $common,
 
 			// meta and link are only permitted by removeHTMLtags when Microdata
@@ -1768,9 +1768,9 @@ class Sanitizer {
 			// Also meta and link are only valid in WikiText as Microdata elements
 			// (ie: validateTag rejects tags missing the attributes needed for Microdata)
 			// So we don't bother including $common attributes that have no purpose.
-			'meta' => array( 'itemprop', 'content' ),
-			'link' => array( 'itemprop', 'href' ),
-		);
+			'meta' => [ 'itemprop', 'content' ],
+			'link' => [ 'itemprop', 'href' ],
+		];
 
 		$staticInitialised = $globalContext;
 
@@ -1827,10 +1827,10 @@ class Sanitizer {
 
 		# Escape any control characters introduced by the above step
 		$url = preg_replace_callback( '/[\][<>"\\x00-\\x20\\x7F\|]/',
-			array( __CLASS__, 'cleanUrlCallback' ), $url );
+			[ __CLASS__, 'cleanUrlCallback' ], $url );
 
 		# Validate hostname portion
-		$matches = array();
+		$matches = [];
 		if ( preg_match( '!^([^:]+:)(//[^/]+)?(.*)$!iD', $url, $matches ) ) {
 			list( /* $whole */, $protocol, $host, $rest ) = $matches;
 
@@ -1908,7 +1908,7 @@ class Sanitizer {
 	 */
 	public static function validateEmail( $addr ) {
 		$result = null;
-		if ( !Hooks::run( 'isValidEmailAddr', array( $addr, &$result ) ) ) {
+		if ( !Hooks::run( 'isValidEmailAddr', [ $addr, &$result ] ) ) {
 			return $result;
 		}
 

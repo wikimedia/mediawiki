@@ -3,7 +3,7 @@
 class DummyNonTextContentHandler extends DummyContentHandlerForTesting {
 
 	public function __construct( $dataModel ) {
-		parent::__construct( $dataModel, array( "testing-nontext" ) );
+		parent::__construct( $dataModel, [ "testing-nontext" ] );
 	}
 
 	/**

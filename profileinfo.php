@@ -156,7 +156,7 @@ if ( !$dbr->tableExists( 'profiling' ) ) {
 	exit( 1 );
 }
 
-$expand = array();
+$expand = [];
 if ( isset( $_REQUEST['expand'] ) ) {
 	foreach ( explode( ',', $_REQUEST['expand'] ) as $f ) {
 		$expand[$f] = true;
@@ -179,7 +179,7 @@ class profile_point {
 		$this->count = $count;
 		$this->time = $time;
 		$this->memory = $memory;
-		$this->children = array();
+		$this->children = [];
 	}
 
 	public function add_child( $child ) {
@@ -195,16 +195,16 @@ class profile_point {
 
 		if ( !$ex ) {
 			if ( count( $this->children ) ) {
-				$url = getEscapedProfileUrl( false, false, $expand + array( $this->name() => true ) );
+				$url = getEscapedProfileUrl( false, false, $expand + [ $this->name() => true ] );
 				$extet = " <a id=\"{$anchor}\" href=\"{$url}#{$anchor}\">[+]</a>";
 			} else {
 				$extet = '';
 			}
 		} else {
-			$e = array();
+			$e = [];
 			foreach ( $expand as $name => $ep ) {
 				if ( $name != $this->name() ) {
-					$e += array( $name => $ep );
+					$e += [ $name => $ep ];
 				}
 			}
 			$url = getEscapedProfileUrl( false, false, $e );
@@ -313,8 +313,8 @@ function compare_point( profile_point $a, profile_point $b ) {
 	}
 }
 
-$sorts = array( 'time', 'memory', 'count', 'calls_per_req', 'name',
-	'time_per_call', 'memory_per_call', 'time_per_req', 'memory_per_req' );
+$sorts = [ 'time', 'memory', 'count', 'calls_per_req', 'name',
+	'time_per_call', 'memory_per_call', 'time_per_req', 'memory_per_req' ];
 $sort = 'time';
 if ( isset( $_REQUEST['sort'] ) && in_array( $_REQUEST['sort'], $sorts ) ) {
 	$sort = $_REQUEST['sort'];
@@ -323,9 +323,9 @@ if ( isset( $_REQUEST['sort'] ) && in_array( $_REQUEST['sort'], $sorts ) ) {
 $res = $dbr->select(
 	'profiling',
 	'*',
-	array(),
+	[],
 	'profileinfo.php',
-	array( 'ORDER BY' => 'pf_name ASC' )
+	[ 'ORDER BY' => 'pf_name ASC' ]
 );
 
 if ( isset( $_REQUEST['filter'] ) ) {
@@ -395,16 +395,16 @@ if ( isset( $_REQUEST['filter'] ) ) {
 
 		return htmlspecialchars(
 			'?' .
-				wfArrayToCgi( array(
+				wfArrayToCgi( [
 					'filter' => $_filter ? $_filter : $filter,
 					'sort' => $_sort ? $_sort : $sort,
 					'expand' => implode( ',', array_keys( $_expand ) )
-				) )
+				] )
 		);
 	}
 
-	$points = array();
-	$queries = array();
+	$points = [];
+	$queries = [];
 	$sqltotal = 0.0;
 
 	$last = false;

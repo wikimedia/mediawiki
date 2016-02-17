@@ -22,10 +22,10 @@ class BackupDumperPageTest extends DumpTestCase {
 
 	function addDBData() {
 		// be sure, titles created here using english namespace names
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgLanguageCode' => 'en',
 			'wgContLang' => Language::factory( 'en' ),
-		) );
+		] );
 
 		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'revision';
@@ -91,8 +91,8 @@ class BackupDumperPageTest extends DumpTestCase {
 		// class), we have to assert, that the page id are consecutively
 		// increasing
 		$this->assertEquals(
-			array( $this->pageId2, $this->pageId3, $this->pageId4 ),
-			array( $this->pageId1 + 1, $this->pageId2 + 1, $this->pageId3 + 1 ),
+			[ $this->pageId2, $this->pageId3, $this->pageId4 ],
+			[ $this->pageId1 + 1, $this->pageId2 + 1, $this->pageId3 + 1 ],
 			"Page ids increasing without holes" );
 	}
 
@@ -101,7 +101,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		$fname = $this->getNewTempFile();
 
 		$dumper = new DumpBackup();
-		$dumper->loadWithArgv( array( '--full', '--quiet', '--output', 'file:' . $fname ) );
+		$dumper->loadWithArgv( [ '--full', '--quiet', '--output', 'file:' . $fname ] );
 		$dumper->startId = $this->pageId1;
 		$dumper->endId = $this->pageId4 + 1;
 		$dumper->setDb( $this->db );
@@ -157,7 +157,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		$fname = $this->getNewTempFile();
 
 		$dumper = new DumpBackup();
-		$dumper->loadWithArgv( array( '--full', '--quiet', '--output', 'file:' . $fname, '--stub' ) );
+		$dumper->loadWithArgv( [ '--full', '--quiet', '--output', 'file:' . $fname, '--stub' ] );
 		$dumper->startId = $this->pageId1;
 		$dumper->endId = $this->pageId4 + 1;
 		$dumper->setDb( $this->db );
@@ -206,7 +206,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
 
-		$dumper = new DumpBackup( array( '--output', 'file:' . $fname ) );
+		$dumper = new DumpBackup( [ '--output', 'file:' . $fname ] );
 		$dumper->startId = $this->pageId1;
 		$dumper->endId = $this->pageId4 + 1;
 		$dumper->reporting = false;
@@ -252,7 +252,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// Preparing the dump
 		$fname = $this->getNewTempFile();
 
-		$dumper = new DumpBackup( array( '--output', 'gzip:' . $fname ) );
+		$dumper = new DumpBackup( [ '--output', 'gzip:' . $fname ] );
 		$dumper->startId = $this->pageId1;
 		$dumper->endId = $this->pageId4 + 1;
 		$dumper->reporting = false;
@@ -311,11 +311,11 @@ class BackupDumperPageTest extends DumpTestCase {
 		$fnameMetaCurrent = $this->getNewTempFile();
 		$fnameArticles = $this->getNewTempFile();
 
-		$dumper = new DumpBackup( array( "--full", "--stub", "--output=gzip:" . $fnameMetaHistory,
+		$dumper = new DumpBackup( [ "--full", "--stub", "--output=gzip:" . $fnameMetaHistory,
 			"--output=gzip:" . $fnameMetaCurrent, "--filter=latest",
 			"--output=gzip:" . $fnameArticles, "--filter=latest",
 			"--filter=notalk", "--filter=namespace:!NS_USER",
-			"--reporting=1000" ) );
+			"--reporting=1000" ] );
 		$dumper->startId = $this->pageId1;
 		$dumper->endId = $this->pageId4 + 1;
 		$dumper->setDb( $this->db );

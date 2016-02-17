@@ -90,55 +90,55 @@ class SpecialChangePassword extends FormSpecialPage {
 			$oldpassMsg = $user->isLoggedIn() ? 'oldpassword' : 'resetpass-temp-password';
 		}
 
-		$fields = array(
-			'Name' => array(
+		$fields = [
+			'Name' => [
 				'type' => 'info',
 				'label-message' => 'username',
 				'default' => $request->getVal( 'wpName', $user->getName() ),
-			),
-			'Password' => array(
+			],
+			'Password' => [
 				'type' => 'password',
 				'label-message' => $oldpassMsg,
-			),
-			'NewPassword' => array(
+			],
+			'NewPassword' => [
 				'type' => 'password',
 				'label-message' => 'newpassword',
-			),
-			'Retype' => array(
+			],
+			'Retype' => [
 				'type' => 'password',
 				'label-message' => 'retypenew',
-			),
-		);
+			],
+		];
 
 		if ( !$this->getUser()->isLoggedIn() ) {
-			$fields['LoginOnChangeToken'] = array(
+			$fields['LoginOnChangeToken'] = [
 				'type' => 'hidden',
 				'label' => 'Change Password Token',
 				'default' => LoginForm::getLoginToken()->toString(),
-			);
+			];
 		}
 
-		$extraFields = array();
-		Hooks::run( 'ChangePasswordForm', array( &$extraFields ) );
+		$extraFields = [];
+		Hooks::run( 'ChangePasswordForm', [ &$extraFields ] );
 		foreach ( $extraFields as $extra ) {
 			list( $name, $label, $type, $default ) = $extra;
-			$fields[$name] = array(
+			$fields[$name] = [
 				'type' => $type,
 				'name' => $name,
 				'label-message' => $label,
 				'default' => $default,
-			);
+			];
 		}
 
 		if ( !$user->isLoggedIn() ) {
-			$fields['Remember'] = array(
+			$fields['Remember'] = [
 				'type' => 'check',
 				'label' => $this->msg( 'remembermypassword' )
 						->numParams(
 							ceil( $this->getConfig()->get( 'CookieExpiration' ) / ( 3600 * 24 ) )
 						)->text(),
 				'default' => $request->getVal( 'wpRemember' ),
-			);
+			];
 		}
 
 		return $fields;
@@ -153,10 +153,10 @@ class SpecialChangePassword extends FormSpecialPage {
 				? 'resetpass-submit-loggedin'
 				: 'resetpass_submit'
 		);
-		$form->addButton( array(
+		$form->addButton( [
 			'name' => 'wpCancel',
 			'value' => $this->msg( 'resetpass-submit-cancel' )->text()
-		) );
+		] );
 		$form->setHeaderText( $this->msg( 'resetpass_text' )->parseAsBlock() );
 		if ( $this->mPreTextMessage instanceof Message ) {
 			$form->addPreText( $this->mPreTextMessage->parseAsBlock() );
@@ -217,13 +217,13 @@ class SpecialChangePassword extends FormSpecialPage {
 			$request = $this->getRequest();
 			LoginForm::clearLoginToken();
 			$token = LoginForm::getLoginToken()->toString();
-			$data = array(
+			$data = [
 				'action' => 'submitlogin',
 				'wpName' => $this->mUserName,
 				'wpDomain' => $this->mDomain,
 				'wpLoginToken' => $token,
 				'wpPassword' => $request->getVal( 'wpNewPassword' ),
-			) + $request->getValues( 'wpRemember', 'returnto', 'returntoquery' );
+			] + $request->getValues( 'wpRemember', 'returnto', 'returntoquery' );
 			$login = new LoginForm( new DerivativeRequest( $request, $data, true ) );
 			$login->setContext( $this->getContext() );
 			$login->execute( null );
@@ -253,7 +253,7 @@ class SpecialChangePassword extends FormSpecialPage {
 		}
 
 		if ( $newpass !== $retype ) {
-			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'badretype' ) );
+			Hooks::run( 'PrefsPasswordAudit', [ $user, $newpass, 'badretype' ] );
 			return Status::newFatal( $this->msg( 'badretype' ) );
 		}
 
@@ -268,7 +268,7 @@ class SpecialChangePassword extends FormSpecialPage {
 
 		// @todo Make these separate messages, since the message is written for both cases
 		if ( !$user->checkTemporaryPassword( $oldpass ) && !$user->checkPassword( $oldpass ) ) {
-			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
+			Hooks::run( 'PrefsPasswordAudit', [ $user, $newpass, 'wrongpassword' ] );
 			return Status::newFatal( $this->msg( 'resetpass-wrong-oldpass' ) );
 		}
 
@@ -280,8 +280,8 @@ class SpecialChangePassword extends FormSpecialPage {
 		// Do AbortChangePassword after checking mOldpass, so we don't leak information
 		// by possibly aborting a new password before verifying the old password.
 		$abortMsg = 'resetpass-abort-generic';
-		if ( !Hooks::run( 'AbortChangePassword', array( $user, $oldpass, $newpass, &$abortMsg ) ) ) {
-			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'abortreset' ) );
+		if ( !Hooks::run( 'AbortChangePassword', [ $user, $oldpass, $newpass, &$abortMsg ] ) ) {
+			Hooks::run( 'PrefsPasswordAudit', [ $user, $newpass, 'abortreset' ] );
 			return Status::newFatal( $this->msg( $abortMsg ) );
 		}
 
@@ -292,9 +292,9 @@ class SpecialChangePassword extends FormSpecialPage {
 
 		try {
 			$user->setPassword( $newpass );
-			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'success' ) );
+			Hooks::run( 'PrefsPasswordAudit', [ $user, $newpass, 'success' ] );
 		} catch ( PasswordError $e ) {
-			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'error' ) );
+			Hooks::run( 'PrefsPasswordAudit', [ $user, $newpass, 'error' ] );
 			return Status::newFatal( new RawMessage( $e->getMessage() ) );
 		}
 
@@ -331,12 +331,12 @@ class SpecialChangePassword extends FormSpecialPage {
 			);
 		}
 		// Give extensions a chance to force an expiration
-		Hooks::run( 'ResetPasswordExpiration', array( $this, &$newExpire ) );
+		Hooks::run( 'ResetPasswordExpiration', [ $this, &$newExpire ] );
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update(
 			'user',
-			array( 'user_password_expires' => $dbw->timestampOrNull( $newExpire ) ),
-			array( 'user_id' => $user->getID() ),
+			[ 'user_password_expires' => $dbw->timestampOrNull( $newExpire ) ],
+			[ 'user_id' => $user->getID() ],
 			__METHOD__
 		);
 	}

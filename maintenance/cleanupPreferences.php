@@ -39,7 +39,7 @@ class CleanupPreferences extends Maintenance {
 		foreach ( $wgHiddenPrefs as $item ) {
 			$dbw->delete(
 				'user_properties',
-				array( 'up_property' => $item ),
+				[ 'up_property' => $item ],
 				__METHOD__
 			);
 		};

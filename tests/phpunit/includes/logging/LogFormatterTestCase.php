@@ -29,7 +29,7 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 	}
 
 	protected function expandDatabaseRow( $data, $legacy ) {
-		return array(
+		return [
 			// no log_id because no insert in database
 			'log_type' => $data['type'],
 			'log_action' => $data['action'],
@@ -44,7 +44,7 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 				? LogPage::makeParamBlob( $data['params'] )
 				: LogEntryBase::makeParamBlob( $data['params'] ),
 			'log_deleted' => isset( $data['deleted'] ) ? $data['deleted'] : 0,
-		);
+		];
 	}
 
 	private static function removeSomeHtml( $html ) {

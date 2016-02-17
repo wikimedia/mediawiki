@@ -13,13 +13,13 @@ class UploadBaseTest extends MediaWikiTestCase {
 
 		$this->upload = new UploadTestHandler;
 
-		$this->setMwGlobals( 'wgHooks', array(
-			'InterwikiLoadPrefix' => array(
+		$this->setMwGlobals( 'wgHooks', [
+			'InterwikiLoadPrefix' => [
 				function ( $prefix, &$data ) {
 					return false;
 				}
-			),
-		) );
+			],
+		] );
 	}
 
 	/**
@@ -47,35 +47,35 @@ class UploadBaseTest extends MediaWikiTestCase {
 	 * Test various forms of valid and invalid titles that can be supplied.
 	 */
 	public static function provideTestTitleValidation() {
-		return array(
+		return [
 			/* Test a valid title */
-			array( 'ValidTitle.jpg', 'ValidTitle.jpg', UploadBase::OK,
-				'upload valid title' ),
+			[ 'ValidTitle.jpg', 'ValidTitle.jpg', UploadBase::OK,
+				'upload valid title' ],
 			/* A title with a slash */
-			array( 'A/B.jpg', 'B.jpg', UploadBase::OK,
-				'upload title with slash' ),
+			[ 'A/B.jpg', 'B.jpg', UploadBase::OK,
+				'upload title with slash' ],
 			/* A title with illegal char */
-			array( 'A:B.jpg', 'A-B.jpg', UploadBase::OK,
-				'upload title with colon' ),
+			[ 'A:B.jpg', 'A-B.jpg', UploadBase::OK,
+				'upload title with colon' ],
 			/* Stripping leading File: prefix */
-			array( 'File:C.jpg', 'C.jpg', UploadBase::OK,
-				'upload title with File prefix' ),
+			[ 'File:C.jpg', 'C.jpg', UploadBase::OK,
+				'upload title with File prefix' ],
 			/* Test illegal suggested title (r94601) */
-			array( '%281%29.JPG', null, UploadBase::ILLEGAL_FILENAME,
-				'illegal title for upload' ),
+			[ '%281%29.JPG', null, UploadBase::ILLEGAL_FILENAME,
+				'illegal title for upload' ],
 			/* A title without extension */
-			array( 'A', null, UploadBase::FILETYPE_MISSING,
-				'upload title without extension' ),
+			[ 'A', null, UploadBase::FILETYPE_MISSING,
+				'upload title without extension' ],
 			/* A title with no basename */
-			array( '.jpg', null, UploadBase::MIN_LENGTH_PARTNAME,
-				'upload title without basename' ),
+			[ '.jpg', null, UploadBase::MIN_LENGTH_PARTNAME,
+				'upload title without basename' ],
 			/* A title that is longer than 255 bytes */
-			array( str_repeat( 'a', 255 ) . '.jpg', null, UploadBase::FILENAME_TOO_LONG,
-				'upload title longer than 255 bytes' ),
+			[ str_repeat( 'a', 255 ) . '.jpg', null, UploadBase::FILENAME_TOO_LONG,
+				'upload title longer than 255 bytes' ],
 			/* A title that is longer than 240 bytes */
-			array( str_repeat( 'a', 240 ) . '.jpg', null, UploadBase::FILENAME_TOO_LONG,
-				'upload title longer than 240 bytes' ),
-		);
+			[ str_repeat( 'a', 240 ) . '.jpg', null, UploadBase::FILENAME_TOO_LONG,
+				'upload title longer than 240 bytes' ],
+		];
 	}
 
 	/**
@@ -108,19 +108,19 @@ class UploadBaseTest extends MediaWikiTestCase {
 	 * This method should be abstracted so we can test different settings.
 	 */
 	public function testMaxUploadSize() {
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgMaxUploadSize' => 100,
-			'wgFileExtensions' => array(
+			'wgFileExtensions' => [
 				'txt',
-			),
-		) );
+			],
+		] );
 
 		$filename = $this->createFileOfSize( 100 );
 		$this->upload->initializePathInfo( basename( $filename ) . '.txt', $filename, 100 );
 		$result = $this->upload->verifyUpload();
 
 		$this->assertEquals(
-			array( 'status' => UploadBase::OK ),
+			[ 'status' => UploadBase::OK ],
 			$result
 		);
 	}
@@ -414,10 +414,10 @@ class UploadTestHandler extends UploadBase {
 	public function checkSvgString( $svg ) {
 		$check = new XmlTypeCheck(
 			$svg,
-			array( $this, 'checkSvgScriptCallback' ),
+			[ $this, 'checkSvgScriptCallback' ],
 			false,
-			array( 'processing_instruction_handler' => 'UploadBase::checkSvgPICallback' )
+			[ 'processing_instruction_handler' => 'UploadBase::checkSvgPICallback' ]
 		);
-		return array( $check->wellFormed, $check->filterMatch );
+		return [ $check->wellFormed, $check->filterMatch ];
 	}
 }

@@ -110,29 +110,29 @@ class ApiUserrights extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'user' => array(
+		return [
+			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
-			),
-			'userid' => array(
+			],
+			'userid' => [
 				ApiBase::PARAM_TYPE => 'integer',
-			),
-			'add' => array(
+			],
+			'add' => [
 				ApiBase::PARAM_TYPE => $this->getAllGroups(),
 				ApiBase::PARAM_ISMULTI => true
-			),
-			'remove' => array(
+			],
+			'remove' => [
 				ApiBase::PARAM_TYPE => $this->getAllGroups(),
 				ApiBase::PARAM_ISMULTI => true
-			),
-			'reason' => array(
+			],
+			'reason' => [
 				ApiBase::PARAM_DFLT => ''
-			),
-			'token' => array(
+			],
+			'token' => [
 				// Standard definition automatically inserted
-				ApiBase::PARAM_HELP_MSG_APPEND => array( 'api-help-param-token-webui' ),
-			),
-		);
+				ApiBase::PARAM_HELP_MSG_APPEND => [ 'api-help-param-token-webui' ],
+			],
+		];
 	}
 
 	public function needsToken() {
@@ -144,12 +144,12 @@ class ApiUserrights extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=userrights&user=FooBot&add=bot&remove=sysop|bureaucrat&token=123ABC'
 				=> 'apihelp-userrights-example-user',
 			'action=userrights&userid=123&add=bot&remove=sysop|bureaucrat&token=123ABC'
 				=> 'apihelp-userrights-example-userid',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

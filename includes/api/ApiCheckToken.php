@@ -34,7 +34,7 @@ class ApiCheckToken extends ApiBase {
 		$maxage = $params['maxtokenage'];
 		$salts = ApiQueryTokens::getTokenTypeSalts();
 
-		$res = array();
+		$res = [];
 
 		$tokenObj = ApiQueryTokens::getToken(
 			$this->getUser(), $this->getRequest()->getSession(), $salts[$params['type']]
@@ -58,25 +58,25 @@ class ApiCheckToken extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'type' => array(
+		return [
+			'type' => [
 				ApiBase::PARAM_TYPE => array_keys( ApiQueryTokens::getTokenTypeSalts() ),
 				ApiBase::PARAM_REQUIRED => true,
-			),
-			'token' => array(
+			],
+			'token' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => true,
-			),
-			'maxtokenage' => array(
+			],
+			'maxtokenage' => [
 				ApiBase::PARAM_TYPE => 'integer',
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=checktoken&type=csrf&token=123ABC'
 				=> 'apihelp-checktoken-example-simple',
-		);
+		];
 	}
 }

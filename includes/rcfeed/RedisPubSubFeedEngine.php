@@ -44,7 +44,7 @@ class RedisPubSubFeedEngine implements RCFeedEngine {
 	public function send( array $feed, $line ) {
 		$parsed = wfParseUrl( $feed['uri'] );
 		$server = $parsed['host'];
-		$options = array( 'serializer' => 'none' );
+		$options = [ 'serializer' => 'none' ];
 		$channel = 'rc';
 
 		if ( isset( $parsed['port'] ) ) {

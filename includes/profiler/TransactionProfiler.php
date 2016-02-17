@@ -40,19 +40,19 @@ class TransactionProfiler implements LoggerAwareInterface {
 	protected $eventThreshold = .25;
 
 	/** @var array transaction ID => (write start time, list of DBs involved) */
-	protected $dbTrxHoldingLocks = array();
+	protected $dbTrxHoldingLocks = [];
 	/** @var array transaction ID => list of (query name, start time, end time) */
-	protected $dbTrxMethodTimes = array();
+	protected $dbTrxMethodTimes = [];
 
 	/** @var array */
-	protected $hits = array(
+	protected $hits = [
 		'writes'      => 0,
 		'queries'     => 0,
 		'conns'       => 0,
 		'masterConns' => 0
-	);
+	];
 	/** @var array */
-	protected $expect = array(
+	protected $expect = [
 		'writes'         => INF,
 		'queries'        => INF,
 		'conns'          => INF,
@@ -60,9 +60,9 @@ class TransactionProfiler implements LoggerAwareInterface {
 		'maxAffected'    => INF,
 		'readQueryTime'  => INF,
 		'writeQueryTime' => INF
-	);
+	];
 	/** @var array */
-	protected $expectBy = array();
+	protected $expectBy = [];
 
 	/**
 	 * @var LoggerInterface
@@ -125,7 +125,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 			$val = INF;
 		}
 		unset( $val );
-		$this->expectBy = array();
+		$this->expectBy = [];
 	}
 
 	/**
@@ -161,11 +161,11 @@ class TransactionProfiler implements LoggerAwareInterface {
 		if ( isset( $this->dbTrxHoldingLocks[$name] ) ) {
 			$this->logger->info( "Nested transaction for '$name' - out of sync." );
 		}
-		$this->dbTrxHoldingLocks[$name] = array(
+		$this->dbTrxHoldingLocks[$name] = [
 			'start' => microtime( true ),
-			'conns' => array(), // all connections involved
-		);
-		$this->dbTrxMethodTimes[$name] = array();
+			'conns' => [], // all connections involved
+		];
+		$this->dbTrxMethodTimes[$name] = [];
 
 		foreach ( $this->dbTrxHoldingLocks as $name => &$info ) {
 			// Track all DBs in transactions for this transaction
@@ -223,14 +223,14 @@ class TransactionProfiler implements LoggerAwareInterface {
 				if ( $sTime >= $lastEnd ) { // sanity check
 					if ( ( $sTime - $lastEnd ) > $this->eventThreshold ) {
 						// Add an entry representing the time spent doing non-queries
-						$this->dbTrxMethodTimes[$name][] = array( '...delay...', $lastEnd, $sTime );
+						$this->dbTrxMethodTimes[$name][] = [ '...delay...', $lastEnd, $sTime ];
 					}
-					$this->dbTrxMethodTimes[$name][] = array( $query, $sTime, $eTime );
+					$this->dbTrxMethodTimes[$name][] = [ $query, $sTime, $eTime ];
 				}
 			} else {
 				// First query in the trx...
 				if ( $sTime >= $info['start'] ) { // sanity check
-					$this->dbTrxMethodTimes[$name][] = array( $query, $sTime, $eTime );
+					$this->dbTrxMethodTimes[$name][] = [ $query, $sTime, $eTime ];
 				}
 			}
 		}
@@ -272,7 +272,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 			$now = microtime( true );
 			$lastEnd = $lastQuery[2];
 			if ( ( $now - $lastEnd ) > $this->eventThreshold ) {
-				$this->dbTrxMethodTimes[$name][] = array( '...delay...', $lastEnd, $now );
+				$this->dbTrxMethodTimes[$name][] = [ '...delay...', $lastEnd, $now ];
 			}
 		}
 		// Check for any slow queries or non-query periods...

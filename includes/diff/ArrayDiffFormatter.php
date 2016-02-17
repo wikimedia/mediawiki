@@ -38,36 +38,36 @@ class ArrayDiffFormatter extends DiffFormatter {
 	public function format( $diff ) {
 		$oldline = 1;
 		$newline = 1;
-		$retval = array();
+		$retval = [];
 		foreach ( $diff->getEdits() as $edit ) {
 			switch ( $edit->getType() ) {
 				case 'add':
 					foreach ( $edit->getClosing() as $line ) {
-						$retval[] = array(
+						$retval[] = [
 							'action' => 'add',
 							'new' => $line,
 							'newline' => $newline++
-						);
+						];
 					}
 					break;
 				case 'delete':
 					foreach ( $edit->getOrig() as $line ) {
-						$retval[] = array(
+						$retval[] = [
 							'action' => 'delete',
 							'old' => $line,
 							'oldline' => $oldline++,
-						);
+						];
 					}
 					break;
 				case 'change':
 					foreach ( $edit->getOrig() as $key => $line ) {
-						$retval[] = array(
+						$retval[] = [
 							'action' => 'change',
 							'old' => $line,
 							'new' => $edit->getClosing( $key ),
 							'oldline' => $oldline++,
 							'newline' => $newline++,
-						);
+						];
 					}
 					break;
 				case 'copy':

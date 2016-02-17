@@ -138,7 +138,7 @@ class Fallback {
 	public static function mb_strpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
 		$needle = preg_quote( $needle, '/' );
 
-		$ar = array();
+		$ar = [];
 		preg_match( '/' . $needle . '/u', $haystack, $ar, PREG_OFFSET_CAPTURE, $offset );
 
 		if ( isset( $ar[0][1] ) ) {
@@ -159,7 +159,7 @@ class Fallback {
 	public static function mb_strrpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
 		$needle = preg_quote( $needle, '/' );
 
-		$ar = array();
+		$ar = [];
 		preg_match_all( '/' . $needle . '/u', $haystack, $ar, PREG_OFFSET_CAPTURE, $offset );
 
 		if ( isset( $ar[0] ) && count( $ar[0] ) > 0 &&

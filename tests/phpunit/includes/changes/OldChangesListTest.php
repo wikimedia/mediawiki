@@ -18,7 +18,7 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 	 */
 	private $testRecentChangesHelper;
 
-	public function __construct( $name = null, array $data = array(), $dataName = '' ) {
+	public function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->testRecentChangesHelper = new TestRecentChangesHelper();
@@ -27,10 +27,10 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgArticlePath' => '/wiki/$1',
 			'wgLang' => Language::factory( 'qqx' )
-		) );
+		] );
 	}
 
 	/**
@@ -46,10 +46,10 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 	}
 
 	public function recentChangesLine_CssForLineNumberProvider() {
-		return array(
-			array( '/mw-line-odd/', 1, 'odd line number' ),
-			array( '/mw-line-even/', 2, 'even line number' )
-		);
+		return [
+			[ '/mw-line-odd/', 1, 'odd line number' ],
+			[ '/mw-line-even/', 2, 'even line number' ]
+		];
 	}
 
 	public function testRecentChangesLine_NotWatchedCssClass() {

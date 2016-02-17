@@ -58,7 +58,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 				if ( $this->getConfig()->get( 'MiserMode' ) ) {
 					$miser_ns = $params['namespace'];
 				} else {
-					$this->addWhere( array( 'page_namespace' => $params['namespace'] ) );
+					$this->addWhere( [ 'page_namespace' => $params['namespace'] ] );
 				}
 			}
 		}
@@ -68,7 +68,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			$this->parseParameters( $params );
 			$this->addTables( 'page' );
 			$this->addJoinConds(
-				array( 'page' => array( 'INNER JOIN', array( 'rev_page = page_id' ) ) )
+				[ 'page' => [ 'INNER JOIN', [ 'rev_page = page_id' ] ] ]
 			);
 			$this->addFields( Revision::selectFields() );
 			$this->addFields( Revision::selectPageFields() );
@@ -77,17 +77,17 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			$this->addOption( 'STRAIGHT_JOIN' );
 		} else {
 			$this->limit = $this->getParameter( 'limit' ) ?: 10;
-			$this->addFields( array( 'rev_timestamp', 'rev_id' ) );
+			$this->addFields( [ 'rev_timestamp', 'rev_id' ] );
 			if ( $params['generatetitles'] ) {
-				$this->addFields( array( 'rev_page' ) );
+				$this->addFields( [ 'rev_page' ] );
 			}
 
 			if ( $needPageTable ) {
 				$this->addTables( 'page' );
 				$this->addJoinConds(
-					array( 'page' => array( 'INNER JOIN', array( 'rev_page = page_id' ) ) )
+					[ 'page' => [ 'INNER JOIN', [ 'rev_page = page_id' ] ] ]
 				);
-				$this->addFieldsIf( array( 'page_namespace' ), (bool)$miser_ns );
+				$this->addFieldsIf( [ 'page_namespace' ], (bool)$miser_ns );
 
 				// Review this depeneding on the outcome of T113901
 				$this->addOption( 'STRAIGHT_JOIN' );
@@ -100,7 +100,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		if ( $this->fld_tags ) {
 			$this->addTables( 'tag_summary' );
 			$this->addJoinConds(
-				array( 'tag_summary' => array( 'LEFT JOIN', array( 'rev_id=ts_rev_id' ) ) )
+				[ 'tag_summary' => [ 'LEFT JOIN', [ 'rev_id=ts_rev_id' ] ] ]
 			);
 			$this->addFields( 'ts_tags' );
 		}
@@ -108,7 +108,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		if ( $this->fetchContent ) {
 			$this->addTables( 'text' );
 			$this->addJoinConds(
-				array( 'text' => array( 'INNER JOIN', array( 'rev_text_id=old_id' ) ) )
+				[ 'text' => [ 'INNER JOIN', [ 'rev_text_id=old_id' ] ] ]
 			);
 			$this->addFields( 'old_id' );
 			$this->addFields( Revision::selectTextFields() );
@@ -159,7 +159,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		$this->addOption( 'LIMIT', $this->limit + 1 );
 
 		$sort = ( $dir == 'newer' ? '' : ' DESC' );
-		$orderby = array();
+		$orderby = [];
 		// Targeting index rev_timestamp, user_timestamp, or usertext_timestamp
 		// But 'user' is always constant for the latter two, so it doesn't matter here.
 		$orderby[] = "rev_timestamp $sort";
@@ -167,10 +167,10 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		$this->addOption( 'ORDER BY', $orderby );
 
 		$res = $this->select( __METHOD__ );
-		$pageMap = array(); // Maps rev_page to array index
+		$pageMap = []; // Maps rev_page to array index
 		$count = 0;
 		$nextIndex = 0;
-		$generated = array();
+		$generated = [];
 		foreach ( $res as $row ) {
 			if ( ++$count > $this->limit ) {
 				// We've had enough
@@ -197,17 +197,17 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 					$index = $nextIndex++;
 					$pageMap[$row->rev_page] = $index;
 					$title = $revision->getTitle();
-					$a = array(
+					$a = [
 						'pageid' => $title->getArticleID(),
-						'revisions' => array( $rev ),
-					);
+						'revisions' => [ $rev ],
+					];
 					ApiResult::setIndexedTagName( $a['revisions'], 'rev' );
 					ApiQueryBase::addTitleInfo( $a, $title );
-					$fit = $result->addValue( array( 'query', $this->getModuleName() ), $index, $a );
+					$fit = $result->addValue( [ 'query', $this->getModuleName() ], $index, $a );
 				} else {
 					$index = $pageMap[$row->rev_page];
 					$fit = $result->addValue(
-						array( 'query', $this->getModuleName(), $index, 'revisions' ),
+						[ 'query', $this->getModuleName(), $index, 'revisions' ],
 						null, $rev );
 				}
 				if ( !$fit ) {
@@ -224,61 +224,61 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 				$resultPageSet->populateFromRevisionIDs( $generated );
 			}
 		} else {
-			$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'page' );
+			$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'page' );
 		}
 	}
 
 	public function getAllowedParams() {
-		$ret = parent::getAllowedParams() + array(
-			'user' => array(
+		$ret = parent::getAllowedParams() + [
+			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
-			),
-			'namespace' => array(
+			],
+			'namespace' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'namespace',
 				ApiBase::PARAM_DFLT => null,
-			),
-			'start' => array(
+			],
+			'start' => [
 				ApiBase::PARAM_TYPE => 'timestamp',
-			),
-			'end' => array(
+			],
+			'end' => [
 				ApiBase::PARAM_TYPE => 'timestamp',
-			),
-			'dir' => array(
-				ApiBase::PARAM_TYPE => array(
+			],
+			'dir' => [
+				ApiBase::PARAM_TYPE => [
 					'newer',
 					'older'
-				),
+				],
 				ApiBase::PARAM_DFLT => 'older',
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
-			),
-			'excludeuser' => array(
+			],
+			'excludeuser' => [
 				ApiBase::PARAM_TYPE => 'user',
-			),
-			'continue' => array(
+			],
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-			'generatetitles' => array(
+			],
+			'generatetitles' => [
 				ApiBase::PARAM_DFLT => false,
-			),
-		);
+			],
+		];
 
 		if ( $this->getConfig()->get( 'MiserMode' ) ) {
-			$ret['namespace'][ApiBase::PARAM_HELP_MSG_APPEND] = array(
+			$ret['namespace'][ApiBase::PARAM_HELP_MSG_APPEND] = [
 				'api-help-param-limited-in-miser-mode',
-			);
+			];
 		}
 
 		return $ret;
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=allrevisions&arvuser=Example&arvlimit=50'
 				=> 'apihelp-query+allrevisions-example-user',
 			'action=query&list=allrevisions&arvdir=newer&arvlimit=50'
 				=> 'apihelp-query+allrevisions-example-ns-main',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

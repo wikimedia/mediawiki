@@ -34,7 +34,7 @@ class SearchEngine {
 	public $prefix = '';
 
 	/** @var int[]|null */
-	public $namespaces = array( NS_MAIN );
+	public $namespaces = [ NS_MAIN ];
 
 	/** @var int */
 	protected $limit = 10;
@@ -43,14 +43,14 @@ class SearchEngine {
 	protected $offset = 0;
 
 	/** @var array|string */
-	protected $searchTerms = array();
+	protected $searchTerms = [];
 
 	/** @var bool */
 	protected $showSuggestion = true;
 	private $sort = 'relevance';
 
 	/** @var array Feature values */
-	protected $features = array();
+	protected $features = [];
 
 	/**
 	 * Perform a full text search query and return a result set.
@@ -138,7 +138,7 @@ class SearchEngine {
 	public static function getNearMatch( $searchterm ) {
 		$title = self::getNearMatchInternal( $searchterm );
 
-		Hooks::run( 'SearchGetNearMatchComplete', array( $searchterm, &$title ) );
+		Hooks::run( 'SearchGetNearMatchComplete', [ $searchterm, &$title ] );
 		return $title;
 	}
 
@@ -161,7 +161,7 @@ class SearchEngine {
 	private static function getNearMatchInternal( $searchterm ) {
 		global $wgContLang, $wgEnableSearchContributorsByIP;
 
-		$allSearchTerms = array( $searchterm );
+		$allSearchTerms = [ $searchterm ];
 
 		if ( $wgContLang->hasVariants() ) {
 			$allSearchTerms = array_unique( array_merge(
@@ -171,7 +171,7 @@ class SearchEngine {
 		}
 
 		$titleResult = null;
-		if ( !Hooks::run( 'SearchGetNearMatchBefore', array( $allSearchTerms, &$titleResult ) ) ) {
+		if ( !Hooks::run( 'SearchGetNearMatchBefore', [ $allSearchTerms, &$titleResult ] ) ) {
 			return $titleResult;
 		}
 
@@ -198,7 +198,7 @@ class SearchEngine {
 				return $title;
 			}
 
-			if ( !Hooks::run( 'SearchAfterNoDirectMatch', array( $term, &$title ) ) ) {
+			if ( !Hooks::run( 'SearchAfterNoDirectMatch', [ $term, &$title ] ) ) {
 				return $title;
 			}
 
@@ -228,7 +228,7 @@ class SearchEngine {
 
 			// Give hooks a chance at better match variants
 			$title = null;
-			if ( !Hooks::run( 'SearchGetNearMatch', array( $term, &$title ) ) ) {
+			if ( !Hooks::run( 'SearchGetNearMatch', [ $term, &$title ] ) ) {
 				return $title;
 			}
 		}
@@ -265,7 +265,7 @@ class SearchEngine {
 		}
 
 		# Quoted term? Try without the quotes...
-		$matches = array();
+		$matches = [];
 		if ( preg_match( '/^"([^"]+)"$/', $searchterm, $matches ) ) {
 			return SearchEngine::getNearMatch( $matches[1] );
 		}
@@ -303,7 +303,7 @@ class SearchEngine {
 				return $ns < 0 || isset( $validNs[$ns] );
 			} );
 		} else {
-			$namespaces = array();
+			$namespaces = [];
 		}
 		$this->namespaces = $namespaces;
 	}
@@ -327,7 +327,7 @@ class SearchEngine {
 	 * @return array(string) the valid sort directions for setSort
 	 */
 	public function getValidSorts() {
-		return array( 'relevance' );
+		return [ 'relevance' ];
 	}
 
 	/**
@@ -379,7 +379,7 @@ class SearchEngine {
 			$prefix = str_replace( ' ', '_', substr( $query, 0, strpos( $query, ':' ) ) );
 			$index = $wgContLang->getNsIndex( $prefix );
 			if ( $index !== false ) {
-				$this->namespaces = array( $index );
+				$this->namespaces = [ $index ];
 				$parsed = substr( $query, strlen( $prefix ) + 1 );
 			}
 		}
@@ -396,14 +396,14 @@ class SearchEngine {
 	 */
 	public static function searchableNamespaces() {
 		global $wgContLang;
-		$arr = array();
+		$arr = [];
 		foreach ( $wgContLang->getNamespaces() as $ns => $name ) {
 			if ( $ns >= NS_MAIN ) {
 				$arr[$ns] = $name;
 			}
 		}
 
-		Hooks::run( 'SearchableNamespaces', array( &$arr ) );
+		Hooks::run( 'SearchableNamespaces', [ &$arr ] );
 		return $arr;
 	}
 
@@ -415,7 +415,7 @@ class SearchEngine {
 	 * @return array
 	 */
 	public static function userNamespaces( $user ) {
-		$arr = array();
+		$arr = [];
 		foreach ( SearchEngine::searchableNamespaces() as $ns => $name ) {
 			if ( $user->getOption( 'searchNs' . $ns ) ) {
 				$arr[] = $ns;
@@ -433,7 +433,7 @@ class SearchEngine {
 	public static function userHighlightPrefs() {
 		$contextlines = 2; // Hardcode this. Old defaults sucked. :)
 		$contextchars = 75; // same as above.... :P
-		return array( $contextlines, $contextchars );
+		return [ $contextlines, $contextchars ];
 	}
 
 	/**
@@ -457,7 +457,7 @@ class SearchEngine {
 	public static function namespacesAsText( $namespaces ) {
 		global $wgContLang;
 
-		$formatted = array_map( array( $wgContLang, 'getFormattedNsText' ), $namespaces );
+		$formatted = array_map( [ $wgContLang, 'getFormattedNsText' ], $namespaces );
 		foreach ( $formatted as $key => $ns ) {
 			if ( empty( $ns ) ) {
 				$formatted[$key] = wfMessage( 'blanknamespace' )->text();
@@ -501,7 +501,7 @@ class SearchEngine {
 	public static function getSearchTypes() {
 		global $wgSearchType, $wgSearchTypeAlternatives;
 
-		$alternatives = $wgSearchTypeAlternatives ?: array();
+		$alternatives = $wgSearchTypeAlternatives ?: [];
 		array_unshift( $alternatives, $wgSearchType );
 
 		return $alternatives;
@@ -591,11 +591,11 @@ class SearchEngine {
 		$title = Title::newFromText( $search );
 		$ns = $this->namespaces;
 		if ( $title && !$title->isExternal() ) {
-			$ns = array( $title->getNamespace() );
+			$ns = [ $title->getNamespace() ];
 			$search = $title->getText();
 			if ( $ns[0] == NS_MAIN ) {
 				$ns = $this->namespaces; // no explicit prefix, use default namespaces
-				Hooks::run( 'PrefixSearchExtractNamespace', array( &$ns, &$search ) );
+				Hooks::run( 'PrefixSearchExtractNamespace', [ &$ns, &$search ] );
 			}
 		} else {
 			$title = Title::newFromText( $search . 'Dummy' );
@@ -603,10 +603,10 @@ class SearchEngine {
 					&& $title->getNamespace() != NS_MAIN
 					&& !$title->isExternal() )
 			{
-				$ns = array( $title->getNamespace() );
+				$ns = [ $title->getNamespace() ];
 				$search = '';
 			} else {
-				Hooks::run( 'PrefixSearchExtractNamespace', array( &$ns, &$search ) );
+				Hooks::run( 'PrefixSearchExtractNamespace', [ &$ns, &$search ] );
 			}
 		}
 
@@ -626,13 +626,13 @@ class SearchEngine {
 	 * @return SearchSuggestionSet
 	 */
 	protected function completionSearchBackend( $search ) {
-		$results = array();
+		$results = [];
 
 		$search = trim( $search );
 
 		if ( !in_array( NS_SPECIAL, $this->namespaces ) && // We do not run hook on Special: search
 			 !Hooks::run( 'PrefixSearchBackend',
-				array( $this->namespaces, $search, $this->limit, &$results, $this->offset )
+				[ $this->namespaces, $search, $this->limit, &$results, $this->offset ]
 		) ) {
 			// False means hook worked.
 			// FIXME: Yes, the API is weird. That's why it is going to be deprecated.
@@ -675,7 +675,7 @@ class SearchEngine {
 			global $wgContLang;
 
 			$fallbackSearches = $wgContLang->autoConvertToAllVariants( $search );
-			$fallbackSearches = array_diff( array_unique( $fallbackSearches ), array( $search ) );
+			$fallbackSearches = array_diff( array_unique( $fallbackSearches ), [ $search ] );
 
 			foreach ( $fallbackSearches as $fbs ) {
 				$this->setLimitOffset( $fallbackLimit );
@@ -755,7 +755,7 @@ class SearchEngine {
 	 */
 	public function defaultPrefixSearch( $search ) {
 		if ( trim( $search ) === '' ) {
-			return array();
+			return [];
 		}
 
 		$search = $this->normalizeNamespaces( $search );

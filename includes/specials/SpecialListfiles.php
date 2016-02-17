@@ -69,7 +69,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 		$user = User::newFromName( $search );
 		if ( !$user ) {
 			// No prefix suggestion for invalid user
-			return array();
+			return [];
 		}
 		// Autocomplete subpage as user list - public to allow caching
 		return UserNamePrefixSearch::search( 'public', $search, $limit, $offset );
@@ -87,7 +87,7 @@ class ImageListPager extends TablePager {
 	protected $mFieldNames = null;
 
 	// Subclasses should override buildQueryConds instead of using $mQueryConds variable.
-	protected $mQueryConds = array();
+	protected $mQueryConds = [];
 
 	protected $mUserName = null;
 
@@ -115,10 +115,10 @@ class ImageListPager extends TablePager {
 			if ( !$user || ( $user->isAnon() && !User::isIP( $user->getName() ) ) ) {
 				$this->getOutput()->wrapWikiMsg(
 					"<div class=\"mw-userpage-userdoesnotexist error\">\n$1\n</div>",
-					array(
+					[
 						'listfiles-userdoesnotexist',
 						wfEscapeWikiText( $userName ),
-					)
+					]
 				);
 			}
 
@@ -158,7 +158,7 @@ class ImageListPager extends TablePager {
 	 */
 	protected function buildQueryConds( $table ) {
 		$prefix = $table === 'image' ? 'img' : 'oi';
-		$conds = array();
+		$conds = [];
 
 		if ( !is_null( $this->mUserName ) ) {
 			$conds[$prefix . '_user_text'] = $this->mUserName;
@@ -190,12 +190,12 @@ class ImageListPager extends TablePager {
 	 */
 	function getFieldNames() {
 		if ( !$this->mFieldNames ) {
-			$this->mFieldNames = array(
+			$this->mFieldNames = [
 				'img_timestamp' => $this->msg( 'listfiles_date' )->text(),
 				'img_name' => $this->msg( 'listfiles_name' )->text(),
 				'thumb' => $this->msg( 'listfiles_thumb' )->text(),
 				'img_size' => $this->msg( 'listfiles_size' )->text(),
-			);
+			];
 			if ( is_null( $this->mUserName ) ) {
 				// Do not show username if filtering by username
 				$this->mFieldNames['img_user_text'] = $this->msg( 'listfiles_user' )->text();
@@ -218,7 +218,7 @@ class ImageListPager extends TablePager {
 		if ( $this->mIncluding ) {
 			return false;
 		}
-		$sortable = array( 'img_timestamp', 'img_name', 'img_size' );
+		$sortable = [ 'img_timestamp', 'img_name', 'img_size' ];
 		/* For reference, the indicies we can use for sorting are:
 		 * On the image table: img_usertext_timestamp, img_size, img_timestamp
 		 * On oldimage: oi_usertext_timestamp, oi_name_timestamp
@@ -269,7 +269,7 @@ class ImageListPager extends TablePager {
 	protected function getQueryInfoReal( $table ) {
 		$prefix = $table === 'oldimage' ? 'oi' : 'img';
 
-		$tables = array( $table );
+		$tables = [ $table ];
 		$fields = array_keys( $this->getFieldNames() );
 
 		if ( $table === 'oldimage' ) {
@@ -288,7 +288,7 @@ class ImageListPager extends TablePager {
 		$fields[] = $prefix . '_user AS img_user';
 		$fields[array_search( 'thumb', $fields )] = $prefix . '_name AS thumb';
 
-		$options = $join_conds = array();
+		$options = $join_conds = [];
 
 		# Depends on $wgMiserMode
 		# Will also not happen if mShowAll is true.
@@ -305,21 +305,21 @@ class ImageListPager extends TablePager {
 
 			$dbr = wfGetDB( DB_SLAVE );
 			if ( $dbr->implicitGroupby() ) {
-				$options = array( 'GROUP BY' => 'img_name' );
+				$options = [ 'GROUP BY' => 'img_name' ];
 			} else {
 				$columnlist = preg_grep( '/^img/', array_keys( $this->getFieldNames() ) );
-				$options = array( 'GROUP BY' => array_merge( array( 'img_user' ), $columnlist ) );
+				$options = [ 'GROUP BY' => array_merge( [ 'img_user' ], $columnlist ) ];
 			}
-			$join_conds = array( 'oldimage' => array( 'LEFT JOIN', 'oi_name = img_name' ) );
+			$join_conds = [ 'oldimage' => [ 'LEFT JOIN', 'oi_name = img_name' ] ];
 		}
 
-		return array(
+		return [
 			'tables' => $tables,
 			'fields' => $fields,
 			'conds' => $this->buildQueryConds( $table ),
 			'options' => $options,
 			'join_conds' => $join_conds
-		);
+		];
 	}
 
 	/**
@@ -381,7 +381,7 @@ class ImageListPager extends TablePager {
 		$res2->rewind();
 		$topRes1 = $res1->next();
 		$topRes2 = $res2->next();
-		$resultArray = array();
+		$resultArray = [];
 		for ( $i = 0; $i < $limit && $topRes1 && $topRes2; $i++ ) {
 			if ( strcmp( $topRes1->{$this->mIndexField}, $topRes2->{$this->mIndexField} ) > 0 ) {
 				if ( !$ascending ) {
@@ -429,13 +429,13 @@ class ImageListPager extends TablePager {
 	}
 
 	function doBatchLookups() {
-		$userIds = array();
+		$userIds = [];
 		$this->mResult->seek( 0 );
 		foreach ( $this->mResult as $row ) {
 			$userIds[] = $row->img_user;
 		}
 		# Do a link batch query for names and userpages
-		UserCache::singleton()->doQuery( $userIds, array( 'userpage' ), __METHOD__ );
+		UserCache::singleton()->doQuery( $userIds, [ 'userpage' ], __METHOD__ );
 	}
 
 	/**
@@ -455,13 +455,13 @@ class ImageListPager extends TablePager {
 	function formatValue( $field, $value ) {
 		switch ( $field ) {
 			case 'thumb':
-				$opt = array( 'time' => wfTimestamp( TS_MW, $this->mCurrentRow->img_timestamp ) );
+				$opt = [ 'time' => wfTimestamp( TS_MW, $this->mCurrentRow->img_timestamp ) ];
 				$file = RepoGroup::singleton()->getLocalRepo()->findFile( $value, $opt );
 				// If statement for paranoia
 				if ( $file ) {
-					$thumb = $file->transform( array( 'width' => 180, 'height' => 360 ) );
+					$thumb = $file->transform( [ 'width' => 180, 'height' => 360 ] );
 
-					return $thumb->toHtml( array( 'desc-link' => true ) );
+					return $thumb->toHtml( [ 'desc-link' => true ] );
 				} else {
 					return htmlspecialchars( $value );
 				}
@@ -482,7 +482,7 @@ class ImageListPager extends TablePager {
 						htmlspecialchars( $filePage->getText() )
 					);
 					$download = Xml::element( 'a',
-						array( 'href' => wfLocalFile( $filePage )->getURL() ),
+						[ 'href' => wfLocalFile( $filePage )->getURL() ],
 						$imgfile
 					);
 					$download = $this->msg( 'parentheses' )->rawParams( $download )->escaped();
@@ -493,7 +493,7 @@ class ImageListPager extends TablePager {
 						$deleteMsg = $this->msg( 'listfiles-delete' )->escaped();
 
 						$delete = Linker::linkKnown(
-							$filePage, $deleteMsg, array(), array( 'action' => 'delete' )
+							$filePage, $deleteMsg, [], [ 'action' => 'delete' ]
 						);
 						$delete = $this->msg( 'parentheses' )->rawParams( $delete )->escaped();
 
@@ -531,17 +531,17 @@ class ImageListPager extends TablePager {
 	}
 
 	function getForm() {
-		$fields = array();
-		$fields['limit'] = array(
+		$fields = [];
+		$fields['limit'] = [
 			'type' => 'select',
 			'name' => 'limit',
 			'label-message' => 'table_pager_limit_label',
 			'options' => $this->getLimitSelectList(),
 			'default' => $this->mLimit,
-		);
+		];
 
 		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
-			$fields['ilsearch'] = array(
+			$fields['ilsearch'] = [
 				'type' => 'text',
 				'name' => 'ilsearch',
 				'id' => 'mw-ilsearch',
@@ -549,11 +549,11 @@ class ImageListPager extends TablePager {
 				'default' => $this->mSearch,
 				'size' => '40',
 				'maxlength' => '255',
-			);
+			];
 		}
 
 		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
-		$fields['user'] = array(
+		$fields['user'] = [
 			'type' => 'text',
 			'name' => 'user',
 			'id' => 'mw-listfiles-user',
@@ -562,15 +562,15 @@ class ImageListPager extends TablePager {
 			'size' => '40',
 			'maxlength' => '255',
 			'cssclass' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
-		);
+		];
 
-		$fields['ilshowall'] = array(
+		$fields['ilshowall'] = [
 			'type' => 'check',
 			'name' => 'ilshowall',
 			'id' => 'mw-listfiles-show-all',
 			'label-message' => 'listfiles-show-all',
 			'default' => $this->mShowAll,
-		);
+		];
 
 		$query = $this->getRequest()->getQueryValues();
 		unset( $query['title'] );

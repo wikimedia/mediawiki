@@ -67,7 +67,7 @@ class MediaWikiPageNameNormalizer {
 		$pageName = Validator::cleanUp( $pageName );
 
 		// Build the args for the specific call
-		$args = array(
+		$args = [
 			'action' => 'query',
 			'prop' => 'info',
 			'redirects' => true,
@@ -79,13 +79,13 @@ class MediaWikiPageNameNormalizer {
 			// but that maxage can avoid the extreme delay. On the other hand
 			// maxage could be nice to use anyhow as it stops unnecessary requests.
 			// Also consider smaxage if maxage is used.
-		);
+		];
 
 		$url = wfAppendQuery( $apiUrl, $args );
 
 		// Go on call the external site
 		// @todo we need a good way to specify a timeout here.
-		$ret = Http::get( $url, array(), __METHOD__ );
+		$ret = Http::get( $url, [], __METHOD__ );
 
 		if ( $ret === false ) {
 			wfDebugLog( "MediaWikiSite", "call to external site failed: $url" );
@@ -146,12 +146,12 @@ class MediaWikiPageNameNormalizer {
 			return false;
 		}
 		// Loop over the tree different named structures, that otherwise are similar
-		$structs = array(
+		$structs = [
 			'normalized' => 'from',
 			'converted' => 'from',
 			'redirects' => 'from',
 			'pages' => 'title'
-		);
+		];
 		foreach ( $structs as $listId => $fieldId ) {
 			// Check if the substructure exist at all.
 			if ( !isset( $externalData['query'][$listId] ) ) {

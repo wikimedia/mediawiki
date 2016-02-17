@@ -180,16 +180,16 @@ class DifferenceEngine extends ContextSource {
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow( 'archive', '*',
-				array( 'ar_rev_id' => $id ),
+				[ 'ar_rev_id' => $id ],
 				__METHOD__ );
 			if ( $row ) {
 				$rev = Revision::newFromArchiveRow( $row );
 				$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
 
-				return SpecialPage::getTitleFor( 'Undelete' )->getFullURL( array(
+				return SpecialPage::getTitleFor( 'Undelete' )->getFullURL( [
 					'target' => $title->getPrefixedText(),
 					'timestamp' => $rev->getTimestamp()
-				) );
+				] );
 			}
 		}
 
@@ -215,7 +215,7 @@ class DifferenceEngine extends ContextSource {
 	private function showMissingRevision() {
 		$out = $this->getOutput();
 
-		$missing = array();
+		$missing = [];
 		if ( $this->mOldRev === null ||
 			( $this->mOldRev && $this->mOldContent === null )
 		) {
@@ -260,7 +260,7 @@ class DifferenceEngine extends ContextSource {
 
 		$rollback = '';
 
-		$query = array();
+		$query = [];
 		# Carry over 'diffonly' param via navigation links
 		if ( $diffOnly != $user->getBoolOption( 'diffonly' ) ) {
 			$query['diffonly'] = $diffOnly;
@@ -274,7 +274,7 @@ class DifferenceEngine extends ContextSource {
 		$deleted = $suppressed = false;
 		$allowed = $this->mNewRev->userCan( Revision::DELETED_TEXT, $user );
 
-		$revisionTools = array();
+		$revisionTools = [];
 
 		# mOldRev is false if the difference engine is called with a "vague" query for
 		# a diff between a version V and its previous version V' AND the version V
@@ -284,7 +284,7 @@ class DifferenceEngine extends ContextSource {
 			$samePage = true;
 			$oldHeader = '';
 		} else {
-			Hooks::run( 'DiffViewHeader', array( $this, $this->mOldRev, $this->mNewRev ) );
+			Hooks::run( 'DiffViewHeader', [ $this, $this->mOldRev, $this->mNewRev ] );
 
 			if ( $this->mNewPage->equals( $this->mOldPage ) ) {
 				$out->setPageTitle( $this->msg( 'difference-title', $this->mNewPage->getPrefixedText() ) );
@@ -308,14 +308,14 @@ class DifferenceEngine extends ContextSource {
 				if ( !$this->mOldRev->isDeleted( Revision::DELETED_TEXT ) &&
 					!$this->mNewRev->isDeleted( Revision::DELETED_TEXT )
 				) {
-					$undoLink = Html::element( 'a', array(
-							'href' => $this->mNewPage->getLocalURL( array(
+					$undoLink = Html::element( 'a', [
+							'href' => $this->mNewPage->getLocalURL( [
 								'action' => 'edit',
 								'undoafter' => $this->mOldid,
 								'undo' => $this->mNewid
-							) ),
+							] ),
 							'title' => Linker::titleAttrib( 'undo' ),
-						),
+						],
 						$this->msg( 'editundo' )->text()
 					);
 					$revisionTools['mw-diff-undo'] = $undoLink;
@@ -327,8 +327,8 @@ class DifferenceEngine extends ContextSource {
 				$prevlink = Linker::linkKnown(
 					$this->mOldPage,
 					$this->msg( 'previousdiff' )->escaped(),
-					array( 'id' => 'differences-prevlink' ),
-					array( 'diff' => 'prev', 'oldid' => $this->mOldid ) + $query
+					[ 'id' => 'differences-prevlink' ],
+					[ 'diff' => 'prev', 'oldid' => $this->mOldid ] + $query
 				);
 			} else {
 				$prevlink = '&#160;';
@@ -371,8 +371,8 @@ class DifferenceEngine extends ContextSource {
 			$nextlink = Linker::linkKnown(
 				$this->mNewPage,
 				$this->msg( 'nextdiff' )->escaped(),
-				array( 'id' => 'differences-nextlink' ),
-				array( 'diff' => 'next', 'oldid' => $this->mNewid ) + $query
+				[ 'id' => 'differences-nextlink' ],
+				[ 'diff' => 'next', 'oldid' => $this->mNewid ] + $query
 			);
 		} else {
 			$nextlink = '&#160;';
@@ -389,14 +389,14 @@ class DifferenceEngine extends ContextSource {
 
 		# Allow extensions to define their own revision tools
 		Hooks::run( 'DiffRevisionTools',
-			array( $this->mNewRev, &$revisionTools, $this->mOldRev, $user ) );
-		$formattedRevisionTools = array();
+			[ $this->mNewRev, &$revisionTools, $this->mOldRev, $user ] );
+		$formattedRevisionTools = [];
 		// Put each one in parentheses (poor man's button)
 		foreach ( $revisionTools as $key => $tool ) {
 			$toolClass = is_string( $key ) ? $key : 'mw-diff-tool';
 			$element = Html::rawElement(
 				'span',
-				array( 'class' => $toolClass ),
+				[ 'class' => $toolClass ],
 				$this->msg( 'parentheses' )->rawParams( $tool )->escaped()
 			);
 			$formattedRevisionTools[] = $element;
@@ -430,7 +430,7 @@ class DifferenceEngine extends ContextSource {
 				$msg = $suppressed ? 'rev-suppressed-no-diff' : 'rev-deleted-no-diff';
 				# Give explanation for why revision is not visible
 				$out->wrapWikiMsg( "<div id='mw-$msg' class='mw-warning plainlinks'>\n$1\n</div>\n",
-					array( $msg ) );
+					[ $msg ] );
 			} else {
 				# Give explanation and add a link to view the diff...
 				$query = $this->getRequest()->appendQueryValue( 'unhide', '1' );
@@ -438,7 +438,7 @@ class DifferenceEngine extends ContextSource {
 				$msg = $suppressed ? 'rev-suppressed-unhide-diff' : 'rev-deleted-unhide-diff';
 				$out->wrapWikiMsg(
 					"<div id='mw-$msg' class='mw-warning plainlinks'>\n$1\n</div>\n",
-					array( $msg, $link )
+					[ $msg, $link ]
 				);
 			}
 		# Otherwise, output a regular diff...
@@ -477,12 +477,12 @@ class DifferenceEngine extends ContextSource {
 				$this->mMarkPatrolledLink = ' <span class="patrollink">[' . Linker::linkKnown(
 					$this->mNewPage,
 					$this->msg( 'markaspatrolleddiff' )->escaped(),
-					array(),
-					array(
+					[],
+					[
 						'action' => 'markpatrolled',
 						'rcid' => $linkInfo['rcid'],
 						'token' => $linkInfo['token'],
-					)
+					]
 				) . ']</span>';
 			}
 		}
@@ -512,11 +512,11 @@ class DifferenceEngine extends ContextSource {
 			// Look for an unpatrolled change corresponding to this diff
 			$db = wfGetDB( DB_SLAVE );
 			$change = RecentChange::newFromConds(
-				array(
+				[
 					'rc_timestamp' => $db->timestamp( $this->mNewRev->getTimestamp() ),
 					'rc_this_oldid' => $this->mNewid,
 					'rc_patrolled' => 0
-				),
+				],
 				__METHOD__
 			);
 
@@ -537,10 +537,10 @@ class DifferenceEngine extends ContextSource {
 				}
 
 				$token = $user->getEditToken( $rcid );
-				return array(
+				return [
 					'rcid' => $rcid,
 					'token' => $token,
-				);
+				];
 			}
 		}
 
@@ -747,7 +747,7 @@ class DifferenceEngine extends ContextSource {
 		$difftext = $this->generateContentDiffBody( $this->mOldContent, $this->mNewContent );
 
 		// Save to cache for 7 days
-		if ( !Hooks::run( 'AbortDiffCache', array( &$this ) ) ) {
+		if ( !Hooks::run( 'AbortDiffCache', [ &$this ] ) ) {
 			wfIncrStats( 'diff_cache.uncacheable' );
 		} elseif ( $key !== false && $difftext !== false ) {
 			wfIncrStats( 'diff_cache.miss' );
@@ -915,7 +915,7 @@ class DifferenceEngine extends ContextSource {
 		if ( !$this->enableDebugComment ) {
 			return '';
 		}
-		$data = array( $generator );
+		$data = [ $generator ];
 		if ( $wgShowHostnames ) {
 			$data[] = wfHostname();
 		}
@@ -936,7 +936,7 @@ class DifferenceEngine extends ContextSource {
 	public function localiseLineNumbers( $text ) {
 		return preg_replace_callback(
 			'/<!--LINE (\d+)-->/',
-			array( &$this, 'localiseLineNumbersCb' ),
+			[ &$this, 'localiseLineNumbersCb' ],
 			$text
 		);
 	}
@@ -1040,11 +1040,11 @@ class DifferenceEngine extends ContextSource {
 
 		$title = $rev->getTitle();
 
-		$header = Linker::linkKnown( $title, $header, array(),
-			array( 'oldid' => $rev->getID() ) );
+		$header = Linker::linkKnown( $title, $header, [],
+			[ 'oldid' => $rev->getID() ] );
 
 		if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
-			$editQuery = array( 'action' => 'edit' );
+			$editQuery = [ 'action' => 'edit' ];
 			if ( !$rev->isCurrent() ) {
 				$editQuery['oldid'] = $rev->getID();
 			}
@@ -1052,21 +1052,21 @@ class DifferenceEngine extends ContextSource {
 			$key = $title->quickUserCan( 'edit', $user ) ? 'editold' : 'viewsourceold';
 			$msg = $this->msg( $key )->escaped();
 			$editLink = $this->msg( 'parentheses' )->rawParams(
-				Linker::linkKnown( $title, $msg, array(), $editQuery ) )->escaped();
+				Linker::linkKnown( $title, $msg, [], $editQuery ) )->escaped();
 			$header .= ' ' . Html::rawElement(
 				'span',
-				array( 'class' => 'mw-diff-edit' ),
+				[ 'class' => 'mw-diff-edit' ],
 				$editLink
 			);
 			if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$header = Html::rawElement(
 					'span',
-					array( 'class' => 'history-deleted' ),
+					[ 'class' => 'history-deleted' ],
 					$header
 				);
 			}
 		} else {
-			$header = Html::rawElement( 'span', array( 'class' => 'history-deleted' ), $header );
+			$header = Html::rawElement( 'span', [ 'class' => 'history-deleted' ], $header );
 		}
 
 		return $header;
@@ -1087,10 +1087,10 @@ class DifferenceEngine extends ContextSource {
 	public function addHeader( $diff, $otitle, $ntitle, $multi = '', $notice = '' ) {
 		// shared.css sets diff in interface language/dir, but the actual content
 		// is often in a different language, mostly the page content language/dir
-		$header = Html::openElement( 'table', array(
-			'class' => array( 'diff', 'diff-contentalign-' . $this->getDiffLang()->alignStart() ),
+		$header = Html::openElement( 'table', [
+			'class' => [ 'diff', 'diff-contentalign-' . $this->getDiffLang()->alignStart() ],
 			'data-mw' => 'interface',
-		) );
+		] );
 		$userLang = htmlspecialchars( $this->getLanguage()->getHtmlCode() );
 
 		if ( !$diff && !$otitle ) {
@@ -1195,7 +1195,7 @@ class DifferenceEngine extends ContextSource {
 			$newid = intval( $new );
 		}
 
-		return array( $oldid, $newid );
+		return [ $oldid, $newid ];
 	}
 
 	/**
@@ -1220,7 +1220,7 @@ class DifferenceEngine extends ContextSource {
 
 		Hooks::run(
 			'NewDifferenceEngine',
-			array( $this->getTitle(), &$this->mOldid, &$this->mNewid, $old, $new )
+			[ $this->getTitle(), &$this->mOldid, &$this->mNewid, $old, $new ]
 		);
 	}
 
@@ -1295,7 +1295,7 @@ class DifferenceEngine extends ContextSource {
 			$this->mOldTags = $dbr->selectField(
 				'tag_summary',
 				'ts_tags',
-				array( 'ts_rev_id' => $this->mOldid ),
+				[ 'ts_rev_id' => $this->mOldid ],
 				__METHOD__
 			);
 		} else {
@@ -1304,7 +1304,7 @@ class DifferenceEngine extends ContextSource {
 		$this->mNewTags = $dbr->selectField(
 			'tag_summary',
 			'ts_tags',
-			array( 'ts_rev_id' => $this->mNewid ),
+			[ 'ts_rev_id' => $this->mNewid ],
 			__METHOD__
 		);
 

@@ -101,7 +101,7 @@ class SearchExactMatchRescorer {
 	 *   that is a redirect to it.
 	 */
 	private function redirectTargetsToRedirect( $titles ) {
-		$result = array();
+		$result = [];
 		foreach ( $titles as $key => $titleText ) {
 			$title = Title::newFromText( $titleText );
 			if ( !$title || !$title->isRedirect() ) {

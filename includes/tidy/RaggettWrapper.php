@@ -40,13 +40,13 @@ class RaggettWrapper {
 
 		// Replace <mw:editsection> elements with placeholders
 		$wrappedtext = preg_replace_callback( ParserOutput::EDITSECTION_REGEX,
-			array( &$this, 'replaceCallback' ), $text );
+			[ &$this, 'replaceCallback' ], $text );
 		// ...and <mw:toc> markers
 		$wrappedtext = preg_replace_callback( '/\<\\/?mw:toc\>/',
-			array( &$this, 'replaceCallback' ), $wrappedtext );
+			[ &$this, 'replaceCallback' ], $wrappedtext );
 		// ... and <math> tags
 		$wrappedtext = preg_replace_callback( '/\<math(.*?)\<\\/math\>/s',
-			array( &$this, 'replaceCallback' ), $wrappedtext );
+			[ &$this, 'replaceCallback' ], $wrappedtext );
 		// Modify inline Microdata <link> and <meta> elements so they say <html-link> and <html-meta> so
 		// we can trick Tidy into not stripping them out by including them in tidy's new-empty-tags config
 		$wrappedtext = preg_replace( '!<(link|meta)([^>]*?)(/{0,1}>)!', '<html-$1$2$3', $wrappedtext );

@@ -46,9 +46,9 @@ class SearchSqlite extends SearchDatabase {
 		global $wgContLang;
 		$lc = $this->legalSearchChars(); // Minus format chars
 		$searchon = '';
-		$this->searchTerms = array();
+		$this->searchTerms = [];
 
-		$m = array();
+		$m = [];
 		if ( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 				$filteredText, $m, PREG_SET_ORDER ) ) {
 			foreach ( $m as $bits ) {
@@ -74,7 +74,7 @@ class SearchSqlite extends SearchDatabase {
 				if ( is_array( $convertedVariants ) ) {
 					$variants = array_unique( array_values( $convertedVariants ) );
 				} else {
-					$variants = array( $term );
+					$variants = [ $term ];
 				}
 
 				// The low-level search index does some processing on input to work
@@ -82,7 +82,7 @@ class SearchSqlite extends SearchDatabase {
 				// fulltext engine.
 				// For Chinese this also inserts spaces between adjacent Han characters.
 				$strippedVariants = array_map(
-					array( $wgContLang, 'normalizeForSearch' ),
+					[ $wgContLang, 'normalizeForSearch' ],
 					$variants );
 
 				// Some languages such as Chinese force all variants to a canonical
@@ -276,14 +276,14 @@ class SearchSqlite extends SearchDatabase {
 		// couldn't do it so far due to typelessness of FTS3 tables.
 		$dbw = wfGetDB( DB_MASTER );
 
-		$dbw->delete( 'searchindex', array( 'rowid' => $id ), __METHOD__ );
+		$dbw->delete( 'searchindex', [ 'rowid' => $id ], __METHOD__ );
 
 		$dbw->insert( 'searchindex',
-			array(
+			[
 				'rowid' => $id,
 				'si_title' => $title,
 				'si_text' => $text
-			), __METHOD__ );
+			], __METHOD__ );
 	}
 
 	/**
@@ -300,8 +300,8 @@ class SearchSqlite extends SearchDatabase {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->update( 'searchindex',
-			array( 'si_title' => $title ),
-			array( 'rowid' => $id ),
+			[ 'si_title' => $title ],
+			[ 'rowid' => $id ],
 			__METHOD__ );
 	}
 }

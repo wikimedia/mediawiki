@@ -52,7 +52,7 @@ class MockImageHandler {
 
 		$that->normaliseParams( $image, $params );
 
-		$scalerParams = array(
+		$scalerParams = [
 			# The size to which the image will be resized
 			'physicalWidth' => $params['physicalWidth'],
 			'physicalHeight' => $params['physicalHeight'],
@@ -69,7 +69,7 @@ class MockImageHandler {
 			'mimeType' => $image->getMimeType(),
 			'dstPath' => $dstPath,
 			'dstUrl' => $dstUrl,
-		);
+		];
 
 		# In some cases, we do not bother generating a thumbnail.
 		if ( !$image->mustRender() &&

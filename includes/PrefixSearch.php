@@ -38,7 +38,7 @@ abstract class PrefixSearch {
 	 * @param int $offset How many results to offset from the beginning
 	 * @return array Array of strings
 	 */
-	public static function titleSearch( $search, $limit, $namespaces = array(), $offset = 0 ) {
+	public static function titleSearch( $search, $limit, $namespaces = [], $offset = 0 ) {
 		$prefixSearch = new StringPrefixSearch;
 		return $prefixSearch->search( $search, $limit, $namespaces, $offset );
 	}
@@ -52,21 +52,21 @@ abstract class PrefixSearch {
 	 * @param int $offset How many results to offset from the beginning
 	 * @return array Array of strings or Title objects
 	 */
-	public function search( $search, $limit, $namespaces = array(), $offset = 0 ) {
+	public function search( $search, $limit, $namespaces = [], $offset = 0 ) {
 		$search = trim( $search );
 		if ( $search == '' ) {
-			return array(); // Return empty result
+			return []; // Return empty result
 		}
 		$namespaces = $this->validateNamespaces( $namespaces );
 
 		// Find a Title which is not an interwiki and is in NS_MAIN
 		$title = Title::newFromText( $search );
 		if ( $title && !$title->isExternal() ) {
-			$ns = array( $title->getNamespace() );
+			$ns = [ $title->getNamespace() ];
 			$search = $title->getText();
 			if ( $ns[0] == NS_MAIN ) {
 				$ns = $namespaces; // no explicit prefix, use default namespaces
-				Hooks::run( 'PrefixSearchExtractNamespace', array( &$ns, &$search ) );
+				Hooks::run( 'PrefixSearchExtractNamespace', [ &$ns, &$search ] );
 			}
 			return $this->searchBackend( $ns, $search, $limit, $offset );
 		}
@@ -77,10 +77,10 @@ abstract class PrefixSearch {
 			&& $title->getNamespace() != NS_MAIN
 			&& !$title->isExternal() )
 		{
-			$namespaces = array( $title->getNamespace() );
+			$namespaces = [ $title->getNamespace() ];
 			$search = '';
 		} else {
-			Hooks::run( 'PrefixSearchExtractNamespace', array( &$namespaces, &$search ) );
+			Hooks::run( 'PrefixSearchExtractNamespace', [ &$namespaces, &$search ] );
 		}
 
 		return $this->searchBackend( $namespaces, $search, $limit, $offset );
@@ -104,7 +104,7 @@ abstract class PrefixSearch {
 			global $wgContLang;
 
 			$fallbackSearches = $wgContLang->autoConvertToAllVariants( $search );
-			$fallbackSearches = array_diff( array_unique( $fallbackSearches ), array( $search ) );
+			$fallbackSearches = array_diff( array_unique( $fallbackSearches ), [ $search ] );
 
 			foreach ( $fallbackSearches as $fbs ) {
 				$fallbackSearchResult = $this->search( $fbs, $fallbackLimit, $namespaces );
@@ -150,15 +150,15 @@ abstract class PrefixSearch {
 		if ( count( $namespaces ) == 1 ) {
 			$ns = $namespaces[0];
 			if ( $ns == NS_MEDIA ) {
-				$namespaces = array( NS_FILE );
+				$namespaces = [ NS_FILE ];
 			} elseif ( $ns == NS_SPECIAL ) {
 				return $this->titles( $this->specialSearch( $search, $limit, $offset ) );
 			}
 		}
-		$srchres = array();
+		$srchres = [];
 		if ( Hooks::run(
 			'PrefixSearchBackend',
-			array( $namespaces, $search, $limit, &$srchres, $offset )
+			[ $namespaces, $search, $limit, &$srchres, $offset ]
 		) ) {
 			return $this->titles( $this->defaultSearchBackend( $namespaces, $search, $limit, $offset ) );
 		}
@@ -190,7 +190,7 @@ abstract class PrefixSearch {
 			// Try matching the full search string as a page name
 			$specialTitle = Title::makeTitleSafe( NS_SPECIAL, $searchKey );
 			if ( !$specialTitle ) {
-				return array();
+				return [];
 			}
 			$special = SpecialPageFactory::getPage( $specialTitle->getText() );
 			if ( $special ) {
@@ -199,7 +199,7 @@ abstract class PrefixSearch {
 					return $specialTitle->getSubpage( $sub );
 				}, $subpages );
 			} else {
-				return array();
+				return [];
 			}
 		}
 
@@ -209,7 +209,7 @@ abstract class PrefixSearch {
 
 		// Unlike SpecialPage itself, we want the canonical forms of both
 		// canonical and alias title forms...
-		$keys = array();
+		$keys = [];
 		foreach ( SpecialPageFactory::getNames() as $page ) {
 			$keys[$wgContLang->caseFold( $page )] = $page;
 		}
@@ -225,7 +225,7 @@ abstract class PrefixSearch {
 		}
 		ksort( $keys );
 
-		$srchres = array();
+		$srchres = [];
 		$skipped = 0;
 		foreach ( $keys as $pageKey => $page ) {
 			if ( $searchKey === '' || strpos( $pageKey, $searchKey ) === 0 ) {
@@ -274,19 +274,19 @@ abstract class PrefixSearch {
 		$prefix = $t ? $t->getDBkey() : '';
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'page',
-			array( 'page_id', 'page_namespace', 'page_title' ),
-			array(
+			[ 'page_id', 'page_namespace', 'page_title' ],
+			[
 				'page_namespace' => $ns,
 				'page_title ' . $dbr->buildLike( $prefix, $dbr->anyString() )
-			),
+			],
 			__METHOD__,
-			array(
+			[
 				'LIMIT' => $limit,
 				'ORDER BY' => 'page_title',
 				'OFFSET' => $offset
-			)
+			]
 		);
-		$srchres = array();
+		$srchres = [];
 		foreach ( $res as $row ) {
 			$srchres[] = Title::newFromRow( $row );
 		}
@@ -305,7 +305,7 @@ abstract class PrefixSearch {
 		// We will look at each given namespace against wgContLang namespaces
 		$validNamespaces = $wgContLang->getNamespaces();
 		if ( is_array( $namespaces ) && count( $namespaces ) > 0 ) {
-			$valid = array();
+			$valid = [];
 			foreach ( $namespaces as $ns ) {
 				if ( is_numeric( $ns ) && array_key_exists( $ns, $validNamespaces ) ) {
 					$valid[] = $ns;
@@ -316,7 +316,7 @@ abstract class PrefixSearch {
 			}
 		}
 
-		return array( NS_MAIN );
+		return [ NS_MAIN ];
 	}
 }
 

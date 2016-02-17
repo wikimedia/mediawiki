@@ -24,7 +24,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 	}
 
 	function getStripList() {
-		return array( 'gallery', 'display map' /* Used by Maps, see r80025 CR */, '/foo' );
+		return [ 'gallery', 'display map' /* Used by Maps, see r80025 CR */, '/foo' ];
 	}
 
 	public static function provideCases() {
@@ -132,7 +132,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 		}
 
 		$dom = $this->mPreprocessor->preprocessToObj( $wikiText );
-		if ( is_callable( array( $dom, 'saveXML' ) ) ) {
+		if ( is_callable( [ $dom, 'saveXML' ] ) ) {
 			return $dom->saveXML();
 		} else {
 			return $this->normalizeXml( $dom->__toString() );

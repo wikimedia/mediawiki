@@ -10,7 +10,7 @@
 class ApiCreateAccountTest extends ApiTestCase {
 	protected function setUp() {
 		parent::setUp();
-		$this->setMwGlobals( array( 'wgEnableEmail' => true ) );
+		$this->setMwGlobals( [ 'wgEnableEmail' => true ] );
 	}
 
 	/**
@@ -30,13 +30,13 @@ class ApiCreateAccountTest extends ApiTestCase {
 
 		$password = PasswordFactory::generateRandomPasswordString();
 
-		$ret = $this->doApiRequest( array(
+		$ret = $this->doApiRequest( [
 			'action' => 'createaccount',
 			'name' => 'Apitestnew',
 			'password' => $password,
 			'email' => 'test@domain.test',
 			'realname' => 'Test Name'
-		) );
+		] );
 
 		$result = $ret[0];
 		$this->assertNotInternalType( 'bool', $result );
@@ -49,14 +49,14 @@ class ApiCreateAccountTest extends ApiTestCase {
 
 		// Finally create the account
 		$ret = $this->doApiRequest(
-			array(
+			[
 				'action' => 'createaccount',
 				'name' => 'Apitestnew',
 				'password' => $password,
 				'token' => $token,
 				'email' => 'test@domain.test',
 				'realname' => 'Test Name'
-			),
+			],
 			$ret[2]
 		);
 
@@ -65,11 +65,11 @@ class ApiCreateAccountTest extends ApiTestCase {
 		$this->assertEquals( 'Success', $result['createaccount']['result'] );
 
 		// Try logging in with the new user.
-		$ret = $this->doApiRequest( array(
+		$ret = $this->doApiRequest( [
 			'action' => 'login',
 			'lgname' => 'Apitestnew',
 			'lgpassword' => $password,
-		) );
+		] );
 
 		$result = $ret[0];
 		$this->assertNotInternalType( 'bool', $result );
@@ -80,12 +80,12 @@ class ApiCreateAccountTest extends ApiTestCase {
 		$token = $result['login']['token'];
 
 		$ret = $this->doApiRequest(
-			array(
+			[
 				'action' => 'login',
 				'lgtoken' => $token,
 				'lgname' => 'Apitestnew',
 				'lgpassword' => $password,
-			),
+			],
 			$ret[2]
 		);
 
@@ -98,12 +98,12 @@ class ApiCreateAccountTest extends ApiTestCase {
 
 		// log out to destroy the session
 		$ret = $this->doApiRequest(
-			array(
+			[
 				'action' => 'logout',
-			),
+			],
 			$ret[2]
 		);
-		$this->assertEquals( array(), $ret[0] );
+		$this->assertEquals( [], $ret[0] );
 	}
 
 	/**
@@ -111,11 +111,11 @@ class ApiCreateAccountTest extends ApiTestCase {
 	 * @expectedException UsageException
 	 */
 	public function testNoName() {
-		$this->doApiRequest( array(
+		$this->doApiRequest( [
 			'action' => 'createaccount',
 			'token' => LoginForm::getCreateaccountToken()->toString(),
 			'password' => 'password',
-		) );
+		] );
 	}
 
 	/**
@@ -123,11 +123,11 @@ class ApiCreateAccountTest extends ApiTestCase {
 	 * @expectedException UsageException
 	 */
 	public function testNoPassword() {
-		$this->doApiRequest( array(
+		$this->doApiRequest( [
 			'action' => 'createaccount',
 			'name' => 'testName',
 			'token' => LoginForm::getCreateaccountToken()->toString(),
-		) );
+		] );
 	}
 
 	/**
@@ -135,13 +135,13 @@ class ApiCreateAccountTest extends ApiTestCase {
 	 * @expectedException UsageException
 	 */
 	public function testExistingUser() {
-		$this->doApiRequest( array(
+		$this->doApiRequest( [
 			'action' => 'createaccount',
 			'name' => 'Apitestsysop',
 			'token' => LoginForm::getCreateaccountToken()->toString(),
 			'password' => 'password',
 			'email' => 'test@domain.test',
-		) );
+		] );
 	}
 
 	/**
@@ -149,12 +149,12 @@ class ApiCreateAccountTest extends ApiTestCase {
 	 * @expectedException UsageException
 	 */
 	public function testInvalidEmail() {
-		$this->doApiRequest( array(
+		$this->doApiRequest( [
 			'action' => 'createaccount',
 			'name' => 'Test User',
 			'token' => LoginForm::getCreateaccountToken()->toString(),
 			'password' => 'password',
 			'email' => 'invalid',
-		) );
+		] );
 	}
 }

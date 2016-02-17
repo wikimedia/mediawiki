@@ -45,7 +45,7 @@ class ApiHelpParamValueMessage extends Message {
 	 * @param array $params Parameters for the message.
 	 * @throws InvalidArgumentException
 	 */
-	public function __construct( $paramValue, $text, $params = array() ) {
+	public function __construct( $paramValue, $text, $params = [] ) {
 		parent::__construct( $text, $params );
 		$this->paramValue = $paramValue;
 	}

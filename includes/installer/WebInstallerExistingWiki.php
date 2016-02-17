@@ -103,11 +103,11 @@ class WebInstallerExistingWiki extends WebInstallerPage {
 		$this->addHTML(
 			$this->parent->getInfoBox( wfMessage( 'config-localsettings-upgrade' )->plain() ) .
 			'<br />' .
-			$this->parent->getTextBox( array(
+			$this->parent->getTextBox( [
 				'var' => 'wgUpgradeKey',
 				'label' => 'config-localsettings-key',
-				'attribs' => array( 'autocomplete' => 'off' ),
-			) )
+				'attribs' => [ 'autocomplete' => 'off' ],
+			] )
 		);
 		$this->endForm( 'continue' );
 	}
@@ -146,7 +146,7 @@ class WebInstallerExistingWiki extends WebInstallerPage {
 		}
 
 		// Set the relevant variables from LocalSettings.php
-		$requiredVars = array( 'wgDBtype' );
+		$requiredVars = [ 'wgDBtype' ];
 		$status = $this->importVariables( $requiredVars, $vars );
 		$installer = $this->parent->getDBInstaller();
 		$status->merge( $this->importVariables( $installer->getGlobalNames(), $vars ) );

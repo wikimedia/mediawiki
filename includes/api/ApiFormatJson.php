@@ -71,25 +71,25 @@ class ApiFormatJson extends ApiFormatBase {
 		$opt = 0;
 		if ( $this->isRaw ) {
 			$opt |= FormatJson::ALL_OK;
-			$transform = array();
+			$transform = [];
 		} else {
 			switch ( $params['formatversion'] ) {
 				case 1:
 					$opt |= $params['utf8'] ? FormatJson::ALL_OK : FormatJson::XMLMETA_OK;
-					$transform = array(
-						'BC' => array(),
-						'Types' => array( 'AssocAsObject' => true ),
+					$transform = [
+						'BC' => [],
+						'Types' => [ 'AssocAsObject' => true ],
 						'Strip' => 'all',
-					);
+					];
 					break;
 
 				case 2:
 				case 'latest':
 					$opt |= $params['ascii'] ? FormatJson::XMLMETA_OK : FormatJson::ALL_OK;
-					$transform = array(
-						'Types' => array( 'AssocAsObject' => true ),
+					$transform = [
+						'Types' => [ 'AssocAsObject' => true ],
 						'Strip' => 'all',
-					);
+					];
 					break;
 
 				default:
@@ -124,24 +124,24 @@ class ApiFormatJson extends ApiFormatBase {
 			return parent::getAllowedParams();
 		}
 
-		$ret = parent::getAllowedParams() + array(
-			'callback' => array(
+		$ret = parent::getAllowedParams() + [
+			'callback' => [
 				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-callback',
-			),
-			'utf8' => array(
+			],
+			'utf8' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-utf8',
-			),
-			'ascii' => array(
+			],
+			'ascii' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-ascii',
-			),
-			'formatversion' => array(
-				ApiBase::PARAM_TYPE => array( 1, 2, 'latest' ),
+			],
+			'formatversion' => [
+				ApiBase::PARAM_TYPE => [ 1, 2, 'latest' ],
 				ApiBase::PARAM_DFLT => 1,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-formatversion',
-			),
-		);
+			],
+		];
 		return $ret;
 	}
 }

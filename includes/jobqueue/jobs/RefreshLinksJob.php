@@ -103,7 +103,7 @@ class RefreshLinksJob extends Job {
 				$this,
 				$wgUpdateRowsPerJob,
 				1, // job-per-title
-				array( 'params' => $extraParams )
+				[ 'params' => $extraParams ]
 			);
 			JobQueueGroup::singleton()->push( $jobs );
 		// Job to update link tables for a set of titles

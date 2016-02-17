@@ -110,14 +110,14 @@ class LineFormatter extends MonologLineFormatter {
 	 * @return array
 	 */
 	protected function exceptionAsArray( Exception $e ) {
-		$out = array(
+		$out = [
 			'class' => get_class( $e ),
 			'message' => $e->getMessage(),
 			'code' => $e->getCode(),
 			'file' => $e->getFile(),
 			'line' => $e->getLine(),
 			'trace' => MWExceptionHandler::redactTrace( $e->getTrace() ),
-		);
+		];
 
 		$prev = $e->getPrevious();
 		if ( $prev ) {
@@ -134,13 +134,13 @@ class LineFormatter extends MonologLineFormatter {
 	 * @return string
 	 */
 	protected function normalizeExceptionArray( array $e ) {
-		$defaults = array(
+		$defaults = [
 			'class' => 'Unknown',
 			'file' => 'unknown',
 			'line' => null,
 			'message' => 'unknown',
-			'trace' => array(),
-		);
+			'trace' => [],
+		];
 		$e = array_merge( $defaults, $e );
 
 		$str = "\n[Exception {$e['class']}] (" .

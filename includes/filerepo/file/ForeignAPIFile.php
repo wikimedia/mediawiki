@@ -53,7 +53,7 @@ class ForeignAPIFile extends File {
 	 * @return ForeignAPIFile|null
 	 */
 	static function newFromTitle( Title $title, $repo ) {
-		$data = $repo->fetchImageQuery( array(
+		$data = $repo->fetchImageQuery( [
 			'titles' => 'File:' . $title->getDBkey(),
 			'iiprop' => self::getProps(),
 			'prop' => 'imageinfo',
@@ -61,7 +61,7 @@ class ForeignAPIFile extends File {
 			// extmetadata is language-dependant, accessing the current language here
 			// would be problematic, so we just get them all
 			'iiextmetadatamultilang' => 1,
-		) );
+		] );
 
 		$info = $repo->getImageInfo( $data );
 
@@ -196,7 +196,7 @@ class ForeignAPIFile extends File {
 		if ( !is_array( $metadata ) ) {
 			return $metadata;
 		}
-		$ret = array();
+		$ret = [];
 		foreach ( $metadata as $meta ) {
 			$ret[$meta['name']] = self::parseMetadata( $meta['value'] );
 		}
@@ -229,7 +229,7 @@ class ForeignAPIFile extends File {
 		if ( isset( $this->mInfo['descriptionshorturl'] ) ) {
 			return $this->mInfo['descriptionshorturl'];
 		} elseif ( isset( $this->mInfo['pageid'] ) ) {
-			$url = $this->repo->makeUrl( array( 'curid' => $this->mInfo['pageid'] ) );
+			$url = $this->repo->makeUrl( [ 'curid' => $this->mInfo['pageid'] ] );
 			if ( $url !== false ) {
 				return $url;
 			}
@@ -334,9 +334,9 @@ class ForeignAPIFile extends File {
 	 */
 	function getThumbnails() {
 		$dir = $this->getThumbPath( $this->getName() );
-		$iter = $this->repo->getBackend()->getFileList( array( 'dir' => $dir ) );
+		$iter = $this->repo->getBackend()->getFileList( [ 'dir' => $dir ] );
 
-		$files = array();
+		$files = [];
 		foreach ( $iter as $file ) {
 			$files[] = $file;
 		}
@@ -347,7 +347,7 @@ class ForeignAPIFile extends File {
 	/**
 	 * @see File::purgeCache()
 	 */
-	function purgeCache( $options = array() ) {
+	function purgeCache( $options = [] ) {
 		$this->purgeThumbnails( $options );
 		$this->purgeDescriptionPage();
 	}
@@ -364,7 +364,7 @@ class ForeignAPIFile extends File {
 	/**
 	 * @param array $options
 	 */
-	function purgeThumbnails( $options = array() ) {
+	function purgeThumbnails( $options = [] ) {
 		$key = $this->repo->getLocalCacheKey( 'ForeignAPIRepo', 'ThumbUrl', $this->getName() );
 		ObjectCache::getMainWANInstance()->delete( $key );
 
@@ -376,7 +376,7 @@ class ForeignAPIFile extends File {
 		}
 
 		$dir = $this->getThumbPath( $this->getName() );
-		$purgeList = array();
+		$purgeList = [];
 		foreach ( $files as $file ) {
 			$purgeList[] = "{$dir}{$file}";
 		}

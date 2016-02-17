@@ -91,7 +91,7 @@ function wfThumbHandle404() {
 function wfStreamThumb( array $params ) {
 	global $wgVaryOnXFP;
 
-	$headers = array(); // HTTP headers to send
+	$headers = []; // HTTP headers to send
 
 	$fileName = isset( $params['f'] ) ? $params['f'] : '';
 
@@ -152,8 +152,8 @@ function wfStreamThumb( array $params ) {
 	}
 
 	// Check permissions if there are read restrictions
-	$varyHeader = array();
-	if ( !in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) ) {
+	$varyHeader = [];
+	if ( !in_array( 'read', User::getGroupPermissions( [ '*' ] ), true ) ) {
 		if ( !$img->getTitle() || !$img->getTitle()->userCan( 'read' ) ) {
 			wfThumbError( 403, 'Access denied. You do not have permission to access ' .
 				'the source file.' );
@@ -265,7 +265,7 @@ function wfStreamThumb( array $params ) {
 		return;
 	} catch ( MWException $e ) {
 		wfThumbError( 500, $e->getHTML(), 'Exception caught while extracting thumb name',
-			array( 'exception' => $e ) );
+			[ 'exception' => $e ] );
 		return;
 	}
 
@@ -319,8 +319,8 @@ function wfStreamThumb( array $params ) {
 		if ( $status->isOK() ) {
 			RequestContext::getMain()->getStats()->timing( 'media.thumbnail.stream', $streamtime );
 		} else {
-			wfThumbError( 500, 'Could not stream the file', null, array( 'file' => $thumbName,
-				'path' => $thumbPath, 'error' => $status->getWikiText() ) );
+			wfThumbError( 500, 'Could not stream the file', null, [ 'file' => $thumbName,
+				'path' => $thumbPath, 'error' => $status->getWikiText() ] );
 		}
 		return;
 	}
@@ -360,13 +360,13 @@ function wfStreamThumb( array $params ) {
 	}
 
 	if ( $errorMsg !== false ) {
-		wfThumbError( $errorCode, $errorMsg, null, array( 'file' => $thumbName, 'path' => $thumbPath ) );
+		wfThumbError( $errorCode, $errorMsg, null, [ 'file' => $thumbName, 'path' => $thumbPath ] );
 	} else {
 		// Stream the file if there were no errors
 		$status = $thumb->streamFileWithStatus( $headers );
 		if ( !$status->isOK() ) {
-			wfThumbError( 500, 'Could not stream the file', null, array(
-				'file' => $thumbName, 'path' => $thumbPath, 'error' => $status->getWikiText() ) );
+			wfThumbError( 500, 'Could not stream the file', null, [
+				'file' => $thumbName, 'path' => $thumbPath, 'error' => $status->getWikiText() ] );
 		}
 	}
 }
@@ -394,7 +394,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 
 	// Check if this file keeps failing to render
 	if ( $cache->get( $key ) >= 4 ) {
-		return array( false, wfMessage( 'thumbnail_image-failure-limit', 4 ) );
+		return [ false, wfMessage( 'thumbnail_image-failure-limit', 4 ) ];
 	}
 
 	$done = false;
@@ -421,7 +421,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 	// Thumbnail isn't already there, so create the new thumbnail...
 	try {
 		$work = new PoolCounterWorkViaCallback( $poolCounterType, sha1( $file->getName() ),
-			array(
+			[
 				'doWork' => function () use ( $file, $params ) {
 					return $file->transform( $params, File::RENDER_NOW );
 				},
@@ -435,7 +435,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 				'error' => function ( Status $status ) {
 					return wfMessage( 'generic-pool-error' )->parse() . '<hr>' . $status->getHTML();
 				}
-			)
+			]
 		);
 		$result = $work->execute();
 		if ( $result instanceof MediaTransformOutput ) {
@@ -455,7 +455,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 		$cache->incrWithInit( $key, $cache::TTL_HOUR + mt_rand( 0, 300 ) );
 	}
 
-	return array( $thumb, $errorHtml );
+	return [ $thumb, $errorHtml ];
 }
 
 /**
@@ -497,7 +497,7 @@ function wfExtractThumbRequestInfo( $thumbRel ) {
 		return null; // not a valid looking thumbnail request
 	}
 
-	$params = array( 'f' => $filename, 'rel404' => $rel );
+	$params = [ 'f' => $filename, 'rel404' => $rel ];
 	if ( $archOrTemp === 'archive/' ) {
 		$params['archived'] = 1;
 	} elseif ( $archOrTemp === 'temp/' ) {
@@ -525,7 +525,7 @@ function wfExtractThumbParams( $file, $params ) {
 	unset( $params['thumbName'] );
 
 	// Do the hook first for older extensions that rely on it.
-	if ( !Hooks::run( 'ExtractThumbParameters', array( $thumbname, &$params ) ) ) {
+	if ( !Hooks::run( 'ExtractThumbParameters', [ $thumbname, &$params ] ) ) {
 		// Check hooks if parameters can be extracted
 		// Hooks return false if they manage to *resolve* the parameters
 		// This hook should be considered deprecated
@@ -588,7 +588,7 @@ function wfThumbErrorText( $status, $msgText ) {
  * @param array $context Error context, for internal logging. Only used for HTTP 500 errors.
  * @return void
  */
-function wfThumbError( $status, $msgHtml, $msgText = null, $context = array() ) {
+function wfThumbError( $status, $msgHtml, $msgText = null, $context = [] ) {
 	global $wgShowHostnames;
 
 	header( 'Cache-Control: no-cache' );

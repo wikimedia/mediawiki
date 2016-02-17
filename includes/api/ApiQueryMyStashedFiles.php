@@ -47,9 +47,9 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 
 		$this->addTables( 'uploadstash' );
 
-		$this->addFields( array( 'us_id', 'us_key', 'us_status' ) );
+		$this->addFields( [ 'us_id', 'us_key', 'us_status' ] );
 
-		$this->addWhere( array( 'us_user' => $user->getId() ) );
+		$this->addWhere( [ 'us_user' => $user->getId() ] );
 
 		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
@@ -64,16 +64,16 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 
 		$prop = array_flip( $params['prop'] );
 		$this->addFieldsIf(
-			array(
+			[
 				'us_size',
 				'us_image_width',
 				'us_image_height',
 				'us_image_bits'
-			),
+			],
 
 			isset( $prop['size'] )
 		);
-		$this->addFieldsIf( array( 'us_mime', 'us_media_type' ), isset( $prop['type'] ) );
+		$this->addFieldsIf( [ 'us_mime', 'us_media_type' ], isset( $prop['type'] ) );
 
 		$res = $this->select( __METHOD__ );
 		$result = $this->getResult();
@@ -87,10 +87,10 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 				break;
 			}
 
-			$item = array(
+			$item = [
 				'filekey' => $row->us_key,
 				'status' => $row->us_status,
-			);
+			];
 
 			if ( isset( $prop['size'] ) ) {
 				$item['size'] = (int) $row->us_size;
@@ -104,7 +104,7 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 				$item['mediatype'] = $row->us_media_type;
 			}
 
-			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $item );
+			$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $item );
 
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', $row->us_id );
@@ -112,37 +112,37 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 			}
 		}
 
-		$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'file' );
+		$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'file' );
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'prop' => array(
+		return [
+			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => '',
-				ApiBase::PARAM_TYPE => array( 'size', 'type' ),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
-			),
+				ApiBase::PARAM_TYPE => [ 'size', 'type' ],
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			],
 
-			'limit' => array(
+			'limit' => [
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2,
-			),
+			],
 
-			'continue' => array(
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-		);
+			],
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=mystashedfiles&msfprop=size'
 				=> 'apihelp-query+mystashedfiles-example-simple',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

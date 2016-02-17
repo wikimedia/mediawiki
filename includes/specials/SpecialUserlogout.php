@@ -54,9 +54,9 @@ class SpecialUserlogout extends UnlistedSpecialPage {
 			throw new ErrorPageError(
 				'cannotlogoutnow-title',
 				'cannotlogoutnow-text',
-				array(
+				[
 					$session->getProvider()->describe( RequestContext::getMain()->getLanguage() )
-				)
+				]
 			);
 		}
 
@@ -72,7 +72,7 @@ class SpecialUserlogout extends UnlistedSpecialPage {
 
 		// Hook.
 		$injected_html = '';
-		Hooks::run( 'UserLogoutComplete', array( &$user, &$injected_html, $oldName ) );
+		Hooks::run( 'UserLogoutComplete', [ &$user, &$injected_html, $oldName ] );
 		$out->addHTML( $injected_html );
 
 		$out->returnToMain();

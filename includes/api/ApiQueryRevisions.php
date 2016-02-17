@@ -56,13 +56,13 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		// If we're in a mode that breaks the same-origin policy, no tokens can
 		// be obtained
 		if ( $this->lacksSameOriginSecurity() ) {
-			return array();
+			return [];
 		}
 
-		$this->tokenFunctions = array(
-			'rollback' => array( 'ApiQueryRevisions', 'getRollbackToken' )
-		);
-		Hooks::run( 'APIQueryRevisionsTokens', array( &$this->tokenFunctions ) );
+		$this->tokenFunctions = [
+			'rollback' => [ 'ApiQueryRevisions', 'getRollbackToken' ]
+		];
+		Hooks::run( 'APIQueryRevisionsTokens', [ &$this->tokenFunctions ] );
 
 		return $this->tokenFunctions;
 	}
@@ -81,7 +81,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		}
 
 		return $wgUser->getEditToken(
-			array( $title->getPrefixedText(), $rev->getUserText() ) );
+			[ $title->getPrefixedText(), $rev->getUserText() ] );
 	}
 
 	protected function run( ApiPageSet $resultPageSet = null ) {
@@ -135,9 +135,9 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		}
 
 		$db = $this->getDB();
-		$this->addTables( array( 'revision', 'page' ) );
+		$this->addTables( [ 'revision', 'page' ] );
 		$this->addJoinConds(
-			array( 'page' => array( 'INNER JOIN', array( 'page_id = rev_page' ) ) )
+			[ 'page' => [ 'INNER JOIN', [ 'page_id = rev_page' ] ] ]
 		);
 
 		if ( $resultPageSet === null ) {
@@ -149,13 +149,13 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			}
 		} else {
 			$this->limit = $this->getParameter( 'limit' ) ?: 10;
-			$this->addFields( array( 'rev_id', 'rev_timestamp', 'rev_page' ) );
+			$this->addFields( [ 'rev_id', 'rev_timestamp', 'rev_page' ] );
 		}
 
 		if ( $this->fld_tags ) {
 			$this->addTables( 'tag_summary' );
 			$this->addJoinConds(
-				array( 'tag_summary' => array( 'LEFT JOIN', array( 'rev_id=ts_rev_id' ) ) )
+				[ 'tag_summary' => [ 'LEFT JOIN', [ 'rev_id=ts_rev_id' ] ] ]
 			);
 			$this->addFields( 'ts_tags' );
 		}
@@ -163,7 +163,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		if ( $params['tag'] !== null ) {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds(
-				array( 'change_tag' => array( 'INNER JOIN', array( 'rev_id=ct_rev_id' ) ) )
+				[ 'change_tag' => [ 'INNER JOIN', [ 'rev_id=ct_rev_id' ] ] ]
 			);
 			$this->addWhereFld( 'ct_tag', $params['tag'] );
 		}
@@ -182,7 +182,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 			$this->addTables( 'text' );
 			$this->addJoinConds(
-				array( 'text' => array( 'INNER JOIN', array( 'rev_text_id=old_id' ) ) )
+				[ 'text' => [ 'INNER JOIN', [ 'rev_text_id=old_id' ] ] ]
 			);
 			$this->addFields( 'old_id' );
 			$this->addFields( Revision::selectTextFields() );
@@ -191,7 +191,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		// add user name, if needed
 		if ( $this->fld_user ) {
 			$this->addTables( 'user' );
-			$this->addJoinConds( array( 'user' => Revision::userJoinCond() ) );
+			$this->addJoinConds( [ 'user' => Revision::userJoinCond() ] );
 			$this->addFields( Revision::selectUserFields() );
 		}
 
@@ -302,10 +302,10 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 					"rev_id >= $revid)"
 				);
 			}
-			$this->addOption( 'ORDER BY', array(
+			$this->addOption( 'ORDER BY', [
 				'rev_page',
 				'rev_id'
-			) );
+			] );
 		} else {
 			ApiBase::dieDebug( __METHOD__, 'param validation?' );
 		}
@@ -313,7 +313,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		$this->addOption( 'LIMIT', $this->limit + 1 );
 
 		$count = 0;
-		$generated = array();
+		$generated = [];
 		$res = $this->select( __METHOD__ );
 
 		foreach ( $res as $row ) {
@@ -380,58 +380,58 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	}
 
 	public function getAllowedParams() {
-		$ret = parent::getAllowedParams() + array(
-			'startid' => array(
+		$ret = parent::getAllowedParams() + [
+			'startid' => [
 				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'singlepageonly' ) ),
-			),
-			'endid' => array(
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
+			],
+			'endid' => [
 				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'singlepageonly' ) ),
-			),
-			'start' => array(
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
+			],
+			'start' => [
 				ApiBase::PARAM_TYPE => 'timestamp',
-				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'singlepageonly' ) ),
-			),
-			'end' => array(
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
+			],
+			'end' => [
 				ApiBase::PARAM_TYPE => 'timestamp',
-				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'singlepageonly' ) ),
-			),
-			'dir' => array(
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
+			],
+			'dir' => [
 				ApiBase::PARAM_DFLT => 'older',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'newer',
 					'older'
-				),
+				],
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
-				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'singlepageonly' ) ),
-			),
-			'user' => array(
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
+			],
+			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
-				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'singlepageonly' ) ),
-			),
-			'excludeuser' => array(
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
+			],
+			'excludeuser' => [
 				ApiBase::PARAM_TYPE => 'user',
-				ApiBase::PARAM_HELP_MSG_INFO => array( array( 'singlepageonly' ) ),
-			),
+				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
+			],
 			'tag' => null,
-			'token' => array(
+			'token' => [
 				ApiBase::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() ),
 				ApiBase::PARAM_ISMULTI => true
-			),
-			'continue' => array(
+			],
+			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
-			),
-		);
+			],
+		];
 
-		$ret['limit'][ApiBase::PARAM_HELP_MSG_INFO] = array( array( 'singlepageonly' ) );
+		$ret['limit'][ApiBase::PARAM_HELP_MSG_INFO] = [ [ 'singlepageonly' ] ];
 
 		return $ret;
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&prop=revisions&titles=API|Main%20Page&' .
 				'rvprop=timestamp|user|comment|content'
 				=> 'apihelp-query+revisions-example-content',
@@ -450,7 +450,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
 				'rvprop=timestamp|user|comment&rvuser=MediaWiki%20default'
 				=> 'apihelp-query+revisions-example-first5-user',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

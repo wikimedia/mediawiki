@@ -41,7 +41,7 @@ class ApiTag extends ApiBase {
 
 		// validate and process each revid, rcid and logid
 		$this->requireAtLeastOneParameter( $params, 'revid', 'rcid', 'logid' );
-		$ret = array();
+		$ret = [];
 		if ( $params['revid'] ) {
 			foreach ( $params['revid'] as $id ) {
 				$ret[] = $this->processIndividual( 'revid', $params, $id );
@@ -64,13 +64,13 @@ class ApiTag extends ApiBase {
 
 	protected static function validateLogId( $logid ) {
 		$dbr = wfGetDB( DB_SLAVE );
-		$result = $dbr->selectField( 'logging', 'log_id', array( 'log_id' => $logid ),
+		$result = $dbr->selectField( 'logging', 'log_id', [ 'log_id' => $logid ],
 			__METHOD__ );
 		return (bool)$result;
 	}
 
 	protected function processIndividual( $type, $params, $id ) {
-		$idResult = array( $type => $id );
+		$idResult = [ $type => $id ];
 
 		// validate the ID
 		$valid = false;
@@ -88,7 +88,7 @@ class ApiTag extends ApiBase {
 
 		if ( !$valid ) {
 			$idResult['status'] = 'error';
-			$idResult += $this->parseMsg( array( "nosuch$type", $id ) );
+			$idResult += $this->parseMsg( [ "nosuch$type", $id ] );
 			return $idResult;
 		}
 
@@ -132,31 +132,31 @@ class ApiTag extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'rcid' => array(
+		return [
+			'rcid' => [
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'revid' => array(
+			],
+			'revid' => [
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'logid' => array(
+			],
+			'logid' => [
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'add' => array(
+			],
+			'add' => [
 				ApiBase::PARAM_TYPE => 'tags',
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'remove' => array(
+			],
+			'remove' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'reason' => array(
+			],
+			'reason' => [
 				ApiBase::PARAM_DFLT => '',
-			),
-		);
+			],
+		];
 	}
 
 	public function needsToken() {
@@ -164,12 +164,12 @@ class ApiTag extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=tag&revid=123&add=vandalism&token=123ABC'
 				=> 'apihelp-tag-example-rev',
 			'action=tag&logid=123&remove=spam&reason=Wrongly+applied&token=123ABC'
 				=> 'apihelp-tag-example-log',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

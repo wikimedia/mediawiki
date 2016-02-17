@@ -34,8 +34,8 @@ class InstallDocFormatter {
 	protected function execute() {
 		$text = $this->text;
 		// Use Unix line endings, escape some wikitext stuff
-		$text = str_replace( array( '<', '{{', '[[', '__', "\r" ),
-			array( '&lt;', '&#123;&#123;', '&#91;&#91;', '&#95;&#95;', '' ), $text );
+		$text = str_replace( [ '<', '{{', '[[', '__', "\r" ],
+			[ '&lt;', '&#123;&#123;', '&#91;&#91;', '&#95;&#95;', '' ], $text );
 		// join word-wrapped lines into one
 		do {
 			$prev = $text;

@@ -210,7 +210,7 @@ class ResultWrapper implements Iterator {
  */
 class FakeResultWrapper extends ResultWrapper {
 	/** @var array */
-	public $result = array();
+	public $result = [];
 
 	/** @var null And it's going to stay that way :D */
 	protected $db = null;

@@ -38,9 +38,9 @@ class CheckBadRedirects extends Maintenance {
 		$this->output( "Fetching redirects...\n" );
 		$dbr = $this->getDB( DB_SLAVE );
 		$result = $dbr->select(
-			array( 'page' ),
-			array( 'page_namespace', 'page_title', 'page_latest' ),
-			array( 'page_is_redirect' => 1 ) );
+			[ 'page' ],
+			[ 'page_namespace', 'page_title', 'page_latest' ],
+			[ 'page_is_redirect' => 1 ] );
 
 		$count = $result->numRows();
 		$this->output( "Found $count redirects.\n" .

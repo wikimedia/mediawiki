@@ -50,7 +50,7 @@ class XCFHandler extends BitmapHandler {
 	 * @return array
 	 */
 	function getThumbType( $ext, $mime, $params = null ) {
-		return array( 'png', 'image/png' );
+		return [ 'png', 'image/png' ];
 	}
 
 	/**
@@ -68,7 +68,7 @@ class XCFHandler extends BitmapHandler {
 
 		# Forge a return array containing metadata information just like getimagesize()
 		# See PHP documentation at: http://www.php.net/getimagesize
-		$metadata = array();
+		$metadata = [];
 		$metadata[0] = $header['width'];
 		$metadata[1] = $header['height'];
 		$metadata[2] = null; # IMAGETYPE constant, none exist for XCF.
@@ -162,7 +162,7 @@ class XCFHandler extends BitmapHandler {
 	 */
 	public function getMetadata( $file, $filename ) {
 		$header = self::getXCFMetadata( $filename );
-		$metadata = array();
+		$metadata = [];
 		if ( $header ) {
 			// Try to be consistent with the names used by PNG files.
 			// Unclear from base media type if it has an alpha layer,

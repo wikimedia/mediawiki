@@ -8,13 +8,13 @@ class HashRingTest extends PHPUnit_Framework_TestCase {
 	 * @covers HashRing
 	 */
 	public function testHashRing() {
-		$ring = new HashRing( array( 's1' => 1, 's2' => 1, 's3' => 2, 's4' => 2, 's5' => 2, 's6' => 3 ) );
+		$ring = new HashRing( [ 's1' => 1, 's2' => 1, 's3' => 2, 's4' => 2, 's5' => 2, 's6' => 3 ] );
 
-		$locations = array();
+		$locations = [];
 		for ( $i = 0; $i < 20; $i++ ) {
 			$locations[ "hello$i"] = $ring->getLocation( "hello$i" );
 		}
-		$expectedLocations = array(
+		$expectedLocations = [
 			"hello0" => "s5",
 			"hello1" => "s6",
 			"hello2" => "s2",
@@ -35,22 +35,22 @@ class HashRingTest extends PHPUnit_Framework_TestCase {
 			"hello17" => "s6",
 			"hello18" => "s6",
 			"hello19" => "s3"
-		);
+		];
 
 		$this->assertEquals( $expectedLocations, $locations, 'Items placed at proper locations' );
 
-		$locations = array();
+		$locations = [];
 		for ( $i = 0; $i < 5; $i++ ) {
 			$locations[ "hello$i"] = $ring->getLocations( "hello$i", 2 );
 		}
 
-		$expectedLocations = array(
-			"hello0" => array( "s5", "s6" ),
-			"hello1" => array( "s6", "s4" ),
-			"hello2" => array( "s2", "s1" ),
-			"hello3" => array( "s5", "s6" ),
-			"hello4" => array( "s6", "s4" ),
-		);
+		$expectedLocations = [
+			"hello0" => [ "s5", "s6" ],
+			"hello1" => [ "s6", "s4" ],
+			"hello2" => [ "s2", "s1" ],
+			"hello3" => [ "s5", "s6" ],
+			"hello4" => [ "s6", "s4" ],
+		];
 		$this->assertEquals( $expectedLocations, $locations, 'Items placed at proper locations' );
 	}
 }

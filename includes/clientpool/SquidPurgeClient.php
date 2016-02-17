@@ -44,7 +44,7 @@ class SquidPurgeClient {
 	protected $writeBuffer = '';
 
 	/** @var array */
-	protected $requests = array();
+	protected $requests = [];
 
 	/** @var mixed */
 	protected $currentRequestIndex;
@@ -70,7 +70,7 @@ class SquidPurgeClient {
 	 * @param string $server
 	 * @param array $options
 	 */
-	public function __construct( $server, $options = array() ) {
+	public function __construct( $server, $options = [] ) {
 		$parts = explode( ':', $server, 2 );
 		$this->host = $parts[0];
 		$this->port = isset( $parts[1] ) ? $parts[1] : 80;
@@ -116,13 +116,13 @@ class SquidPurgeClient {
 	 */
 	public function getReadSocketsForSelect() {
 		if ( $this->readState == 'idle' ) {
-			return array();
+			return [];
 		}
 		$socket = $this->getSocket();
 		if ( $socket === false ) {
-			return array();
+			return [];
 		}
-		return array( $socket );
+		return [ $socket ];
 	}
 
 	/**
@@ -131,13 +131,13 @@ class SquidPurgeClient {
 	 */
 	public function getWriteSocketsForSelect() {
 		if ( !strlen( $this->writeBuffer ) ) {
-			return array();
+			return [];
 		}
 		$socket = $this->getSocket();
 		if ( $socket === false ) {
-			return array();
+			return [];
 		}
-		return array( $socket );
+		return [ $socket ];
 	}
 
 	/**
@@ -197,7 +197,7 @@ class SquidPurgeClient {
 	public function queuePurge( $url ) {
 		global $wgSquidPurgeUseHostHeader;
 		$url = CdnCacheUpdate::expand( str_replace( "\n", '', $url ) );
-		$request = array();
+		$request = [];
 		if ( $wgSquidPurgeUseHostHeader ) {
 			$url = wfParseUrl( $url );
 			$host = $url['host'];

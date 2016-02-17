@@ -61,7 +61,7 @@ class LocalisationCache {
 	 * an item specific subkey index. Some items are not arrays and so for those
 	 * items, there are no subkeys.
 	 */
-	protected $data = array();
+	protected $data = [];
 
 	/**
 	 * The persistent store object. An instance of LCStore.
@@ -77,37 +77,37 @@ class LocalisationCache {
 	 * For split items, if set, this indicates that all of the subitems have been
 	 * loaded.
 	 */
-	private $loadedItems = array();
+	private $loadedItems = [];
 
 	/**
 	 * A 3-d associative array, code/key/subkey, where presence indicates that
 	 * the subitem is loaded. Only used for the split items, i.e. messages.
 	 */
-	private $loadedSubitems = array();
+	private $loadedSubitems = [];
 
 	/**
 	 * An array where presence of a key indicates that that language has been
 	 * initialised. Initialisation includes checking for cache expiry and doing
 	 * any necessary updates.
 	 */
-	private $initialisedLangs = array();
+	private $initialisedLangs = [];
 
 	/**
 	 * An array mapping non-existent pseudo-languages to fallback languages. This
 	 * is filled by initShallowFallback() when data is requested from a language
 	 * that lacks a Messages*.php file.
 	 */
-	private $shallowFallbacks = array();
+	private $shallowFallbacks = [];
 
 	/**
 	 * An array where the keys are codes that have been recached by this instance.
 	 */
-	private $recachedLangs = array();
+	private $recachedLangs = [];
 
 	/**
 	 * All item keys
 	 */
-	static public $allKeys = array(
+	static public $allKeys = [
 		'fallback', 'namespaceNames', 'bookstoreList',
 		'magicWords', 'messages', 'rtl', 'capitalizeAllNouns', 'digitTransformTable',
 		'separatorTransformTable', 'fallback8bitEncoding', 'linkPrefixExtension',
@@ -116,48 +116,48 @@ class LocalisationCache {
 		'defaultDateFormat', 'extraUserToggles', 'specialPageAliases',
 		'imageFiles', 'preloadedMessages', 'namespaceGenderAliases',
 		'digitGroupingPattern', 'pluralRules', 'pluralRuleTypes', 'compiledPluralRules',
-	);
+	];
 
 	/**
 	 * Keys for items which consist of associative arrays, which may be merged
 	 * by a fallback sequence.
 	 */
-	static public $mergeableMapKeys = array( 'messages', 'namespaceNames',
+	static public $mergeableMapKeys = [ 'messages', 'namespaceNames',
 		'namespaceAliases', 'dateFormats', 'imageFiles', 'preloadedMessages'
-	);
+	];
 
 	/**
 	 * Keys for items which are a numbered array.
 	 */
-	static public $mergeableListKeys = array( 'extraUserToggles' );
+	static public $mergeableListKeys = [ 'extraUserToggles' ];
 
 	/**
 	 * Keys for items which contain an array of arrays of equivalent aliases
 	 * for each subitem. The aliases may be merged by a fallback sequence.
 	 */
-	static public $mergeableAliasListKeys = array( 'specialPageAliases' );
+	static public $mergeableAliasListKeys = [ 'specialPageAliases' ];
 
 	/**
 	 * Keys for items which contain an associative array, and may be merged if
 	 * the primary value contains the special array key "inherit". That array
 	 * key is removed after the first merge.
 	 */
-	static public $optionalMergeKeys = array( 'bookstoreList' );
+	static public $optionalMergeKeys = [ 'bookstoreList' ];
 
 	/**
 	 * Keys for items that are formatted like $magicWords
 	 */
-	static public $magicWordKeys = array( 'magicWords' );
+	static public $magicWordKeys = [ 'magicWords' ];
 
 	/**
 	 * Keys for items where the subitems are stored in the backend separately.
 	 */
-	static public $splitKeys = array( 'messages' );
+	static public $splitKeys = [ 'messages' ];
 
 	/**
 	 * Keys which are loaded automatically by initLanguage()
 	 */
-	static public $preloadedKeys = array( 'dateFormats', 'namespaceNames' );
+	static public $preloadedKeys = [ 'dateFormats', 'namespaceNames' ];
 
 	/**
 	 * Associative array of cached plural rules. The key is the language code,
@@ -193,7 +193,7 @@ class LocalisationCache {
 		global $wgCacheDirectory;
 
 		$this->conf = $conf;
-		$storeConf = array();
+		$storeConf = [];
 		if ( !empty( $conf['storeClass'] ) ) {
 			$storeClass = $conf['storeClass'];
 		} else {
@@ -233,7 +233,7 @@ class LocalisationCache {
 		}
 
 		$this->store = new $storeClass( $storeConf );
-		foreach ( array( 'manualRecache', 'forceRecache' ) as $var ) {
+		foreach ( [ 'manualRecache', 'forceRecache' ] as $var ) {
 			if ( isset( $conf[$var] ) ) {
 				$this->$var = $conf[$var];
 			}
@@ -550,12 +550,12 @@ class LocalisationCache {
 	public function readJSONFile( $fileName ) {
 
 		if ( !is_readable( $fileName ) ) {
-			return array();
+			return [];
 		}
 
 		$json = file_get_contents( $fileName );
 		if ( $json === false ) {
-			return array();
+			return [];
 		}
 
 		$data = FormatJson::decode( $json, true );
@@ -572,7 +572,7 @@ class LocalisationCache {
 		}
 
 		// The JSON format only supports messages, none of the other variables, so wrap the data
-		return array( 'messages' => $data );
+		return [ 'messages' => $data ];
 	}
 
 	/**
@@ -591,7 +591,7 @@ class LocalisationCache {
 		} catch ( CLDRPluralRuleError $e ) {
 			wfDebugLog( 'l10n', $e->getMessage() );
 
-			return array();
+			return [];
 		}
 
 		return $compiledRules;
@@ -666,8 +666,8 @@ class LocalisationCache {
 		$rulesets = $doc->getElementsByTagName( "pluralRules" );
 		foreach ( $rulesets as $ruleset ) {
 			$codes = $ruleset->getAttribute( 'locales' );
-			$rules = array();
-			$ruleTypes = array();
+			$rules = [];
+			$ruleTypes = [];
 			$ruleElements = $ruleset->getElementsByTagName( "pluralRule" );
 			foreach ( $ruleElements as $elt ) {
 				$ruleType = $elt->getAttribute( 'count' );
@@ -700,7 +700,7 @@ class LocalisationCache {
 		// This reads in the PHP i18n file with non-messages l10n data
 		$fileName = Language::getMessagesFileName( $code );
 		if ( !file_exists( $fileName ) ) {
-			$data = array();
+			$data = [];
 		} else {
 			$deps[] = new FileDependency( $fileName );
 			$data = $this->readPHPFile( $fileName, 'core' );
@@ -765,7 +765,7 @@ class LocalisationCache {
 				$newSynonyms = array_slice( $value[$magicName], 1 );
 				$synonyms = array_values( array_unique( array_merge(
 					$newSynonyms, $oldSynonyms ) ) );
-				$value[$magicName] = array_merge( array( $fallbackInfo[0] ), $synonyms );
+				$value[$magicName] = array_merge( [ $fallbackInfo[0] ], $synonyms );
 			}
 		}
 	}
@@ -804,11 +804,11 @@ class LocalisationCache {
 	 */
 	public function getMessagesDirs() {
 		global $wgMessagesDirs, $IP;
-		return array(
+		return [
 			'core' => "$IP/languages/i18n",
 			'api' => "$IP/includes/api/i18n",
 			'oojs-ui' => "$IP/resources/lib/oojs-ui/i18n",
-		) + $wgMessagesDirs;
+		] + $wgMessagesDirs;
 	}
 
 	/**
@@ -828,7 +828,7 @@ class LocalisationCache {
 		# Initial values
 		$initialData = array_fill_keys( self::$allKeys, null );
 		$coreData = $initialData;
-		$deps = array();
+		$deps = [];
 
 		# Load the primary localisation from the source file
 		$data = $this->readSourceFilesAndRegisterDeps( $code, $deps );
@@ -849,7 +849,7 @@ class LocalisationCache {
 			$coreData['fallback'] = $code === 'en' ? false : 'en';
 		}
 		if ( $coreData['fallback'] === false ) {
-			$coreData['fallbackSequence'] = array();
+			$coreData['fallbackSequence'] = [];
 		} else {
 			$coreData['fallbackSequence'] = array_map( 'trim', explode( ',', $coreData['fallback'] ) );
 			$len = count( $coreData['fallbackSequence'] );
@@ -860,7 +860,7 @@ class LocalisationCache {
 			}
 		}
 
-		$codeSequence = array_merge( array( $code ), $coreData['fallbackSequence'] );
+		$codeSequence = array_merge( [ $code ], $coreData['fallbackSequence'] );
 		$messageDirs = $this->getMessagesDirs();
 
 		# Load non-JSON localisation data for extensions
@@ -939,7 +939,7 @@ class LocalisationCache {
 
 			# Allow extensions an opportunity to adjust the data for this
 			# fallback
-			Hooks::run( 'LocalisationCacheRecacheFallback', array( $this, $csCode, &$csData ) );
+			Hooks::run( 'LocalisationCacheRecacheFallback', [ $this, $csCode, &$csData ] );
 
 			# Merge the data for this fallback into the final array
 			if ( $csCode === $code ) {
@@ -978,24 +978,24 @@ class LocalisationCache {
 
 		# If there were no plural rules, return an empty array
 		if ( $allData['pluralRules'] === null ) {
-			$allData['pluralRules'] = array();
+			$allData['pluralRules'] = [];
 		}
 		if ( $allData['compiledPluralRules'] === null ) {
-			$allData['compiledPluralRules'] = array();
+			$allData['compiledPluralRules'] = [];
 		}
 		# If there were no plural rule types, return an empty array
 		if ( $allData['pluralRuleTypes'] === null ) {
-			$allData['pluralRuleTypes'] = array();
+			$allData['pluralRuleTypes'] = [];
 		}
 
 		# Set the list keys
-		$allData['list'] = array();
+		$allData['list'] = [];
 		foreach ( self::$splitKeys as $key ) {
 			$allData['list'][$key] = array_keys( $allData[$key] );
 		}
 		# Run hooks
 		$purgeBlobs = true;
-		Hooks::run( 'LocalisationCacheRecache', array( $this, $code, &$allData, &$purgeBlobs ) );
+		Hooks::run( 'LocalisationCacheRecache', [ $this, $code, &$allData, &$purgeBlobs ] );
 
 		if ( is_null( $allData['namespaceNames'] ) ) {
 			throw new MWException( __METHOD__ . ': Localisation data failed sanity check! ' .
@@ -1043,7 +1043,7 @@ class LocalisationCache {
 	 * @return array
 	 */
 	protected function buildPreload( $data ) {
-		$preload = array( 'messages' => array() );
+		$preload = [ 'messages' => [] ];
 		foreach ( self::$preloadedKeys as $key ) {
 			$preload[$key] = $data[$key];
 		}
@@ -1154,7 +1154,7 @@ class LCStoreDB implements LCStore {
 	/** @var IDatabase */
 	private $dbw;
 	/** @var array */
-	private $batch = array();
+	private $batch = [];
 	/** @var bool */
 	private $readOnly = false;
 
@@ -1168,7 +1168,7 @@ class LCStoreDB implements LCStore {
 		$value = $db->selectField(
 			'l10n_cache',
 			'lc_value',
-			array( 'lc_lang' => $code, 'lc_key' => $key ),
+			[ 'lc_lang' => $code, 'lc_key' => $key ],
 			__METHOD__
 		);
 
@@ -1186,7 +1186,7 @@ class LCStoreDB implements LCStore {
 		$this->readOnly = $this->dbw->isReadOnly();
 
 		$this->currentLang = $code;
-		$this->batch = array();
+		$this->batch = [];
 	}
 
 	public function finishWrite() {
@@ -1200,7 +1200,7 @@ class LCStoreDB implements LCStore {
 		try {
 			$this->dbw->delete(
 				'l10n_cache',
-				array( 'lc_lang' => $this->currentLang ),
+				[ 'lc_lang' => $this->currentLang ],
 				__METHOD__
 			);
 			foreach ( array_chunk( $this->batch, 500 ) as $rows ) {
@@ -1217,7 +1217,7 @@ class LCStoreDB implements LCStore {
 		$this->dbw->endAtomic( __METHOD__ );
 
 		$this->currentLang = null;
-		$this->batch = array();
+		$this->batch = [];
 	}
 
 	public function set( $key, $value ) {
@@ -1227,11 +1227,11 @@ class LCStoreDB implements LCStore {
 			throw new MWException( __CLASS__ . ': must call startWrite() before set()' );
 		}
 
-		$this->batch[] = array(
+		$this->batch[] = [
 			'lc_lang' => $this->currentLang,
 			'lc_key' => $key,
 			'lc_value' => $this->dbw->encodeBlob( serialize( $value ) )
-		);
+		];
 	}
 }
 
@@ -1260,7 +1260,7 @@ class LCStoreCDB implements LCStore {
 	/** @var bool|string Cache directory. False if not set */
 	private $directory;
 
-	function __construct( $conf = array() ) {
+	function __construct( $conf = [] ) {
 		global $wgCacheDirectory;
 
 		if ( isset( $conf['directory'] ) ) {
@@ -1382,14 +1382,14 @@ class LocalisationCacheBulkLoad extends LocalisationCache {
 	 * A cache of the contents of data files.
 	 * Core files are serialized to avoid using ~1GB of RAM during a recache.
 	 */
-	private $fileCache = array();
+	private $fileCache = [];
 
 	/**
 	 * Most recently used languages. Uses the linked-list aspect of PHP hashtables
 	 * to keep the most recently used language codes at the end of the array, and
 	 * the language codes that are ready to be deleted at the beginning.
 	 */
-	private $mruLangs = array();
+	private $mruLangs = [];
 
 	/**
 	 * Maximum number of languages that may be loaded into $this->data

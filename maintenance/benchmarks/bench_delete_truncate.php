@@ -74,9 +74,9 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 	 */
 	private function insertData( $dbw ) {
 		$range = range( 0, 1024 );
-		$data = array();
+		$data = [];
 		foreach ( $range as $r ) {
-			$data[] = array( 'text' => $r );
+			$data[] = [ 'text' => $r ];
 		}
 		$dbw->insert( 'test', $data, __METHOD__ );
 	}

@@ -36,7 +36,7 @@ class WfEscapeShellArgTest extends MediaWikiTestCase {
 			$expected = "'foo' 'bar' 'baz'";
 		}
 
-		$actual = wfEscapeShellArg( array( 'foo', 'bar', 'baz' ) );
+		$actual = wfEscapeShellArg( [ 'foo', 'bar', 'baz' ] );
 
 		$this->assertEquals( $expected, $actual );
 	}

@@ -13,10 +13,10 @@ class ReplicatedBagOStuffTest extends MediaWikiTestCase {
 
 		$this->writeCache = new HashBagOStuff();
 		$this->readCache = new HashBagOStuff();
-		$this->cache = new ReplicatedBagOStuff( array(
+		$this->cache = new ReplicatedBagOStuff( [
 			'writeFactory' => $this->writeCache,
 			'readFactory' => $this->readCache,
-		) );
+		] );
 	}
 
 	/**

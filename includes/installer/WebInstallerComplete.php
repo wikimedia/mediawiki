@@ -24,7 +24,7 @@ class WebInstallerComplete extends WebInstallerPage {
 	public function execute() {
 		// Pop up a dialog box, to make it difficult for the user to forget
 		// to download the file
-		$lsUrl = $this->getVar( 'wgServer' ) . $this->parent->getURL( array( 'localsettings' => 1 ) );
+		$lsUrl = $this->getVar( 'wgServer' ) . $this->parent->getURL( [ 'localsettings' => 1 ] );
 		if ( isset( $_SERVER['HTTP_USER_AGENT'] ) &&
 			strpos( $_SERVER['HTTP_USER_AGENT'], 'MSIE' ) !== false
 		) {

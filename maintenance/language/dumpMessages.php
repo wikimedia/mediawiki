@@ -39,7 +39,7 @@ class DumpMessages extends Maintenance {
 	public function execute() {
 		global $wgVersion;
 
-		$messages = array();
+		$messages = [];
 		foreach ( array_keys( Language::getMessagesFor( 'en' ) ) as $key ) {
 			$messages[$key] = wfMessage( $key )->text();
 		}

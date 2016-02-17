@@ -31,7 +31,7 @@ class ExternalStoreHttp extends ExternalStoreMedium {
 	 * @see ExternalStoreMedium::fetchFromURL()
 	 */
 	public function fetchFromURL( $url ) {
-		return Http::get( $url, array(), __METHOD__ );
+		return Http::get( $url, [], __METHOD__ );
 	}
 
 	/**

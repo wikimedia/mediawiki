@@ -11,7 +11,7 @@ class ApiFormatPhpTest extends ApiFormatTestBase {
 	private static function addFormatVersion( $format, $arr ) {
 		foreach ( $arr as &$p ) {
 			if ( !isset( $p[2] ) ) {
-				$p[2] = array( 'formatversion' => $format );
+				$p[2] = [ 'formatversion' => $format ];
 			} else {
 				$p[2]['formatversion'] = $format;
 			}
@@ -101,12 +101,12 @@ class ApiFormatPhpTest extends ApiFormatTestBase {
 	}
 
 	public function testCrossDomainMangling() {
-		$config = new HashConfig( array( 'MangleFlashPolicy' => false ) );
+		$config = new HashConfig( [ 'MangleFlashPolicy' => false ] );
 		$context = new RequestContext;
-		$context->setConfig( new MultiConfig( array(
+		$context->setConfig( new MultiConfig( [
 			$config,
 			$context->getConfig(),
-		) ) );
+		] ) );
 		$main = new ApiMain( $context );
 		$main->getResult()->addValue( null, null, '< Cross-Domain-Policy >' );
 

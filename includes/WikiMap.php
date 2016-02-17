@@ -55,16 +55,16 @@ class WikiMap {
 			return null;
 		}
 		$server = $wgConf->get( 'wgServer', $wikiID, $major,
-			array( 'lang' => $minor, 'site' => $major ) );
+			[ 'lang' => $minor, 'site' => $major ] );
 
 		$canonicalServer = $wgConf->get( 'wgCanonicalServer', $wikiID, $major,
-			array( 'lang' => $minor, 'site' => $major ) );
+			[ 'lang' => $minor, 'site' => $major ] );
 		if ( $canonicalServer === false || $canonicalServer === null ) {
 			$canonicalServer = $server;
 		}
 
 		$path = $wgConf->get( 'wgArticlePath', $wikiID, $major,
-			array( 'lang' => $minor, 'site' => $major ) );
+			[ 'lang' => $minor, 'site' => $major ] );
 		return new WikiReference( $canonicalServer, $path, $server );
 	}
 

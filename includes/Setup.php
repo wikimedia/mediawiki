@@ -121,16 +121,16 @@ if ( $wgRightsIcon ) {
 
 if ( isset( $wgFooterIcons['copyright'] )
 	&& isset( $wgFooterIcons['copyright']['copyright'] )
-	&& $wgFooterIcons['copyright']['copyright'] === array()
+	&& $wgFooterIcons['copyright']['copyright'] === []
 ) {
 	if ( $wgCopyrightIcon ) {
 		$wgFooterIcons['copyright']['copyright'] = $wgCopyrightIcon;
 	} elseif ( $wgRightsIcon || $wgRightsText ) {
-		$wgFooterIcons['copyright']['copyright'] = array(
+		$wgFooterIcons['copyright']['copyright'] = [
 			'url' => $wgRightsUrl,
 			'src' => $wgRightsIcon,
 			'alt' => $wgRightsText,
-		);
+		];
 	} else {
 		unset( $wgFooterIcons['copyright']['copyright'] );
 	}
@@ -167,21 +167,21 @@ $wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
 /**
  * Initialise $wgLockManagers to include basic FS version
  */
-$wgLockManagers[] = array(
+$wgLockManagers[] = [
 	'name' => 'fsLockManager',
 	'class' => 'FSLockManager',
 	'lockDirectory' => "{$wgUploadDirectory}/lockdir",
-);
-$wgLockManagers[] = array(
+];
+$wgLockManagers[] = [
 	'name' => 'nullLockManager',
 	'class' => 'NullLockManager',
-);
+];
 
 /**
  * Initialise $wgLocalFileRepo from backwards-compatible settings
  */
 if ( !$wgLocalFileRepo ) {
-	$wgLocalFileRepo = array(
+	$wgLocalFileRepo = [
 		'class' => 'LocalRepo',
 		'name' => 'local',
 		'directory' => $wgUploadDirectory,
@@ -193,14 +193,14 @@ if ( !$wgLocalFileRepo ) {
 		'transformVia404' => !$wgGenerateThumbnailOnParse,
 		'deletedDir' => $wgDeletedDirectory,
 		'deletedHashLevels' => $wgHashedUploadDirectory ? 3 : 0
-	);
+	];
 }
 /**
  * Initialise shared repo from backwards-compatible settings
  */
 if ( $wgUseSharedUploads ) {
 	if ( $wgSharedUploadDBname ) {
-		$wgForeignFileRepos[] = array(
+		$wgForeignFileRepos[] = [
 			'class' => 'ForeignDBRepo',
 			'name' => 'shared',
 			'directory' => $wgSharedUploadDirectory,
@@ -218,9 +218,9 @@ if ( $wgUseSharedUploads ) {
 			'hasSharedCache' => $wgCacheSharedUploads,
 			'descBaseUrl' => $wgRepositoryBaseUrl,
 			'fetchDescription' => $wgFetchCommonsDescriptions,
-		);
+		];
 	} else {
-		$wgForeignFileRepos[] = array(
+		$wgForeignFileRepos[] = [
 			'class' => 'FileRepo',
 			'name' => 'shared',
 			'directory' => $wgSharedUploadDirectory,
@@ -230,11 +230,11 @@ if ( $wgUseSharedUploads ) {
 			'transformVia404' => !$wgGenerateThumbnailOnParse,
 			'descBaseUrl' => $wgRepositoryBaseUrl,
 			'fetchDescription' => $wgFetchCommonsDescriptions,
-		);
+		];
 	}
 }
 if ( $wgUseInstantCommons ) {
-	$wgForeignFileRepos[] = array(
+	$wgForeignFileRepos[] = [
 		'class' => 'ForeignAPIRepo',
 		'name' => 'wikimediacommons',
 		'apibase' => 'https://commons.wikimedia.org/w/api.php',
@@ -245,7 +245,7 @@ if ( $wgUseInstantCommons ) {
 		'fetchDescription' => true,
 		'descriptionCacheExpiry' => 43200,
 		'apiThumbCacheExpiry' => 86400,
-	);
+	];
 }
 /*
  * Add on default file backend config for file repos.
@@ -363,7 +363,7 @@ if ( $wgEnableEmail ) {
 	unset( $wgGroupPermissions['user']['sendemail'] );
 	$wgUseEnotif = false;
 	$wgUserEmailUseReplyTo = false;
-	$wgUsersNotifiedOnAllChanges = array();
+	$wgUsersNotifiedOnAllChanges = [];
 }
 
 // Doesn't make sense to have if disabled.
@@ -402,7 +402,7 @@ $wgMinUploadChunkSize = min(
  * Definitions of the NS_ constants are in Defines.php
  * @private
  */
-$wgCanonicalNamespaceNames = array(
+$wgCanonicalNamespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',
 	NS_TALK             => 'Talk',
@@ -420,7 +420,7 @@ $wgCanonicalNamespaceNames = array(
 	NS_HELP_TALK        => 'Help_talk',
 	NS_CATEGORY         => 'Category',
 	NS_CATEGORY_TALK    => 'Category_talk',
-);
+];
 
 /// @todo UGLY UGLY
 if ( is_array( $wgExtraNamespaces ) ) {
@@ -538,7 +538,7 @@ require_once "$IP/includes/compat/normal/UtfNormalUtil.php";
 $ps_validation = Profiler::instance()->scopedProfileIn( $fname . '-validation' );
 
 // T48998: Bail out early if $wgArticlePath is non-absolute
-foreach ( array( 'wgArticlePath', 'wgVariantArticlePath' ) as $varName ) {
+foreach ( [ 'wgArticlePath', 'wgVariantArticlePath' ] as $varName ) {
 	if ( $$varName && !preg_match( '/^(https?:\/\/|\/)/', $$varName ) ) {
 		throw new FatalError(
 			"If you use a relative URL for \$$varName, it must start " .
@@ -599,12 +599,12 @@ if ( $wgMainWANCache === false ) {
 	// Setup a WAN cache from $wgMainCacheType with no relayer.
 	// Sites using multiple datacenters can configure a relayer.
 	$wgMainWANCache = 'mediawiki-main-default';
-	$wgWANObjectCaches[$wgMainWANCache] = array(
+	$wgWANObjectCaches[$wgMainWANCache] = [
 		'class'         => 'WANObjectCache',
 		'cacheId'       => $wgMainCacheType,
 		'pool'          => 'mediawiki-main-default',
-		'relayerConfig' => array( 'class' => 'EventRelayerNull' )
-	);
+		'relayerConfig' => [ 'class' => 'EventRelayerNull' ]
+	];
 }
 
 Profiler::instance()->scopedProfileOut( $ps_default2 );
@@ -686,7 +686,7 @@ $wgRequest->interpolateTitle();
 
 if ( !is_object( $wgAuth ) ) {
 	$wgAuth = new AuthPlugin;
-	Hooks::run( 'AuthPluginSetup', array( &$wgAuth ) );
+	Hooks::run( 'AuthPluginSetup', [ &$wgAuth ] );
 }
 
 // Set up the session
@@ -714,7 +714,7 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 		if ( isset( $ex->sessionInfos ) && count( $ex->sessionInfos ) >= 2 ) {
 			// The exception is because the request had multiple possible
 			// sessions tied for top priority. Report this to the user.
-			$list = array();
+			$list = [];
 			foreach ( $ex->sessionInfos as $info ) {
 				$list[] = $info->getProvider()->describe( $wgContLang );
 			}
@@ -761,7 +761,7 @@ $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
 /**
  * @var Parser $wgParser
  */
-$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
+$wgParser = new StubObject( 'wgParser', $wgParserConf['class'], [ $wgParserConf ] );
 
 /**
  * @var Title $wgTitle

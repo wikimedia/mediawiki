@@ -39,12 +39,12 @@ class ActiveUsersPager extends UsersPager {
 	/**
 	 * @var array
 	 */
-	protected $hideGroups = array();
+	protected $hideGroups = [];
 
 	/**
 	 * @var array
 	 */
-	protected $hideRights = array();
+	protected $hideRights = [];
 
 	/**
 	 * @var array
@@ -97,7 +97,7 @@ class ActiveUsersPager extends UsersPager {
 
 		$activeUserSeconds = $this->getConfig()->get( 'ActiveUserDays' ) * 86400;
 		$timestamp = $dbr->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
-		$conds = array(
+		$conds = [
 			'qcc_type' => 'activeusers',
 			'qcc_namespace' => NS_USER,
 			'user_name = qcc_title',
@@ -105,34 +105,34 @@ class ActiveUsersPager extends UsersPager {
 			'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ), // Don't count wikidata.
 			'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' ),
 			'rc_timestamp >= ' . $dbr->addQuotes( $timestamp ),
-		);
+		];
 		if ( $this->requestedUser != '' ) {
 			$conds[] = 'qcc_title >= ' . $dbr->addQuotes( $this->requestedUser );
 		}
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
 			$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
-				'ipblocks', '1', array( 'ipb_user=user_id', 'ipb_deleted' => 1 )
+				'ipblocks', '1', [ 'ipb_user=user_id', 'ipb_deleted' => 1 ]
 			) . ')';
 		}
 
 		if ( $dbr->implicitGroupby() ) {
-			$options = array( 'GROUP BY' => array( 'qcc_title' ) );
+			$options = [ 'GROUP BY' => [ 'qcc_title' ] ];
 		} else {
-			$options = array( 'GROUP BY' => array( 'user_name', 'user_id', 'qcc_title' ) );
+			$options = [ 'GROUP BY' => [ 'user_name', 'user_id', 'qcc_title' ] ];
 		}
 
-		return array(
-			'tables' => array( 'querycachetwo', 'user', 'recentchanges' ),
-			'fields' => array( 'user_name', 'user_id', 'recentedits' => 'COUNT(*)', 'qcc_title' ),
+		return [
+			'tables' => [ 'querycachetwo', 'user', 'recentchanges' ],
+			'fields' => [ 'user_name', 'user_id', 'recentedits' => 'COUNT(*)', 'qcc_title' ],
 			'options' => $options,
 			'conds' => $conds
-		);
+		];
 	}
 
 	function doBatchLookups() {
 		parent::doBatchLookups();
 
-		$uids = array();
+		$uids = [];
 		foreach ( $this->mResult as $row ) {
 			$uids[] = $row->user_id;
 		}
@@ -142,12 +142,12 @@ class ActiveUsersPager extends UsersPager {
 		// is done in two queries to avoid huge quicksorts and to make COUNT(*) correct.
 		$dbr = $this->getDatabase();
 		$res = $dbr->select( 'ipblocks',
-			array( 'ipb_user', 'MAX(ipb_deleted) AS block_status' ),
-			array( 'ipb_user' => $uids ),
+			[ 'ipb_user', 'MAX(ipb_deleted) AS block_status' ],
+			[ 'ipb_user' => $uids ],
 			__METHOD__,
-			array( 'GROUP BY' => array( 'ipb_user' ) )
+			[ 'GROUP BY' => [ 'ipb_user' ] ]
 		);
-		$this->blockStatusByUid = array();
+		$this->blockStatusByUid = [];
 		foreach ( $res as $row ) {
 			$this->blockStatusByUid[$row->ipb_user] = $row->block_status; // 0 or 1
 		}
@@ -162,7 +162,7 @@ class ActiveUsersPager extends UsersPager {
 
 		$lang = $this->getLanguage();
 
-		$list = array();
+		$list = [];
 		$user = User::newFromId( $row->user_id );
 
 		// User right filter
@@ -200,7 +200,7 @@ class ActiveUsersPager extends UsersPager {
 			->params( $userName )->numParams( $this->RCMaxAge )->escaped();
 		$blocked = $isBlocked ? ' ' . $this->msg( 'listusers-blocked', $userName )->escaped() : '';
 
-		return Html::rawElement( 'li', array(), "{$item} [{$count}]{$blocked}" );
+		return Html::rawElement( 'li', [], "{$item} [{$count}]{$blocked}" );
 	}
 
 	function getPageHeader() {
@@ -208,7 +208,7 @@ class ActiveUsersPager extends UsersPager {
 		$limit = $this->mLimit ? Html::hidden( 'limit', $this->mLimit ) : '';
 
 		# Form tag
-		$out = Xml::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) );
+		$out = Xml::openElement( 'form', [ 'method' => 'get', 'action' => wfScript() ] );
 		$out .= Xml::fieldset( $this->msg( 'activeusers' )->text() ) . "\n";
 		$out .= Html::hidden( 'title', $self->getPrefixedDBkey() ) . $limit . "\n";
 
@@ -220,28 +220,28 @@ class ActiveUsersPager extends UsersPager {
 			'offset',
 			20,
 			$this->requestedUser,
-			array(
+			[
 				'class' => 'mw-ui-input-inline mw-autocomplete-user',
 				'tabindex' => 1,
 				'autofocus' => $this->requestedUser === '',
-			)
+			]
 		) . '<br />';
 
 		$out .= Xml::checkLabel( $this->msg( 'activeusers-hidebots' )->text(),
-			'hidebots', 'hidebots', $this->opts->getValue( 'hidebots' ), array( 'tabindex' => 2 ) );
+			'hidebots', 'hidebots', $this->opts->getValue( 'hidebots' ), [ 'tabindex' => 2 ] );
 
 		$out .= Xml::checkLabel(
 			$this->msg( 'activeusers-hidesysops' )->text(),
 			'hidesysops',
 			'hidesysops',
 			$this->opts->getValue( 'hidesysops' ),
-			array( 'tabindex' => 3 )
+			[ 'tabindex' => 3 ]
 		) . '<br />';
 
 		# Submit button and form bottom
 		$out .= Xml::submitButton(
 			$this->msg( 'activeusers-submit' )->text(),
-			array( 'tabindex' => 4 )
+			[ 'tabindex' => 4 ]
 		) . "\n";
 		$out .= Xml::closeElement( 'fieldset' );
 		$out .= Xml::closeElement( 'form' );
@@ -275,7 +275,7 @@ class SpecialActiveUsers extends SpecialPage {
 
 		$out = $this->getOutput();
 		$out->wrapWikiMsg( "<div class='mw-activeusers-intro'>\n$1\n</div>",
-			array( 'activeusers-intro', $this->getLanguage()->formatNum( $days ) ) );
+			[ 'activeusers-intro', $this->getLanguage()->formatNum( $days ) ] );
 
 		// Mention the level of cache staleness...
 		$dbr = wfGetDB( DB_SLAVE, 'recentchanges' );
@@ -283,7 +283,7 @@ class SpecialActiveUsers extends SpecialPage {
 		if ( $rcMax ) {
 			$cTime = $dbr->selectField( 'querycache_info',
 				'qci_timestamp',
-				array( 'qci_type' => 'activeusers' ),
+				[ 'qci_type' => 'activeusers' ],
 				__METHOD__
 			);
 			if ( $cTime ) {
@@ -307,7 +307,7 @@ class SpecialActiveUsers extends SpecialPage {
 		if ( $usersbody ) {
 			$out->addHTML(
 				$up->getNavigationBar() .
-				Html::rawElement( 'ul', array(), $usersbody ) .
+				Html::rawElement( 'ul', [], $usersbody ) .
 				$up->getNavigationBar()
 			);
 		} else {

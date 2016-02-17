@@ -21,15 +21,15 @@ class ComposerInstalled {
 	 * @return array
 	 */
 	public function getInstalledDependencies() {
-		$deps = array();
+		$deps = [];
 		foreach ( $this->contents as $installed ) {
-			$deps[$installed['name']] = array(
+			$deps[$installed['name']] = [
 				'version' => ComposerJson::normalizeVersion( $installed['version'] ),
 				'type' => $installed['type'],
-				'licenses' => isset( $installed['license'] ) ? $installed['license'] : array(),
-				'authors' => isset( $installed['authors'] ) ? $installed['authors'] : array(),
+				'licenses' => isset( $installed['license'] ) ? $installed['license'] : [],
+				'authors' => isset( $installed['authors'] ) ? $installed['authors'] : [],
 				'description' => isset( $installed['description'] ) ? $installed['description']: '',
-			);
+			];
 		}
 
 		ksort( $deps );

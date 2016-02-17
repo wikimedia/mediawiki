@@ -76,10 +76,10 @@ class PatrolLog {
 	 * @return array
 	 */
 	private static function buildParams( $change, $auto ) {
-		return array(
+		return [
 			'4::curid' => $change->getAttribute( 'rc_this_oldid' ),
 			'5::previd' => $change->getAttribute( 'rc_last_oldid' ),
 			'6::auto' => (int)$auto
-		);
+		];
 	}
 }

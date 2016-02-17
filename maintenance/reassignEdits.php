@@ -155,8 +155,8 @@ class ReassignEdits extends Maintenance {
 	 */
 	private function userConditions( &$user, $idfield, $utfield ) {
 		return $user->getId()
-			? array( $idfield => $user->getId() )
-			: array( $utfield => $user->getName() );
+			? [ $idfield => $user->getId() ]
+			: [ $utfield => $user->getName() ];
 	}
 
 	/**
@@ -169,7 +169,7 @@ class ReassignEdits extends Maintenance {
 	 * @return array
 	 */
 	private function userSpecification( &$user, $idfield, $utfield ) {
-		return array( $idfield => $user->getId(), $utfield => $user->getName() );
+		return [ $idfield => $user->getId(), $utfield => $user->getName() ];
 	}
 
 	/**

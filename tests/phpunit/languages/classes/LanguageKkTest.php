@@ -10,9 +10,9 @@ class LanguageKkTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideAutoConvertToAllVariants() {
-		return array(
-			array(
-				array(
+		return [
+			[
+				[
 					'kk'      => 'Адамдарға ақыл-парасат, ар-ождан берілген',
 					'kk-cyrl' => 'Адамдарға ақыл-парасат, ар-ождан берілген',
 					'kk-latn' => 'Adamdarğa aqıl-parasat, ar-ojdan berilgen',
@@ -20,9 +20,9 @@ class LanguageKkTest extends LanguageClassesTestCase {
 					'kk-kz'   => 'Адамдарға ақыл-парасат, ар-ождан берілген',
 					'kk-tr'   => 'Adamdarğa aqıl-parasat, ar-ojdan berilgen',
 					'kk-cn'   => 'ادامدارعا اقىل-پاراسات، ار-وجدان بەرىلگەن'
-				),
+				],
 				'Адамдарға ақыл-парасат, ар-ождан берілген'
-			),
-		);
+			],
+		];
 	}
 }

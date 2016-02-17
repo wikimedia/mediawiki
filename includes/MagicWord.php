@@ -97,7 +97,7 @@ class MagicWord {
 	private $mFound = false;
 
 	static public $mVariableIDsInitialised = false;
-	static public $mVariableIDs = array(
+	static public $mVariableIDs = [
 		'!',
 		'currentmonth',
 		'currentmonth1',
@@ -175,10 +175,10 @@ class MagicWord {
 		'contentlanguage',
 		'numberofadmins',
 		'cascadingsources',
-	);
+	];
 
 	/* Array of caching hints for ParserCache */
-	static public $mCacheTTLs = array(
+	static public $mCacheTTLs = [
 		'currentmonth' => 86400,
 		'currentmonth1' => 86400,
 		'currentmonthname' => 86400,
@@ -217,9 +217,9 @@ class MagicWord {
 		'pagesinnamespace' => 3600,
 		'numberofadmins' => 3600,
 		'numberingroup' => 3600,
-	);
+	];
 
-	static public $mDoubleUnderscoreIDs = array(
+	static public $mDoubleUnderscoreIDs = [
 		'notoc',
 		'nogallery',
 		'forcetoc',
@@ -233,19 +233,19 @@ class MagicWord {
 		'staticredirect',
 		'notitleconvert',
 		'nocontentconvert',
-	);
+	];
 
-	static public $mSubstIDs = array(
+	static public $mSubstIDs = [
 		'subst',
 		'safesubst',
-	);
+	];
 
-	static public $mObjects = array();
+	static public $mObjects = [];
 	static public $mDoubleUnderscoreArray = null;
 
 	/**#@-*/
 
-	function __construct( $id = 0, $syn = array(), $cs = false ) {
+	function __construct( $id = 0, $syn = [], $cs = false ) {
 		$this->mId = $id;
 		$this->mSynonyms = (array)$syn;
 		$this->mCaseSensitive = $cs;
@@ -275,7 +275,7 @@ class MagicWord {
 	static function getVariableIDs() {
 		if ( !self::$mVariableIDsInitialised ) {
 			# Get variable IDs
-			Hooks::run( 'MagicWordwgVariableIDs', array( &self::$mVariableIDs ) );
+			Hooks::run( 'MagicWordwgVariableIDs', [ &self::$mVariableIDs ] );
 			self::$mVariableIDsInitialised = true;
 		}
 		return self::$mVariableIDs;
@@ -310,7 +310,7 @@ class MagicWord {
 	 */
 	static function getDoubleUnderscoreArray() {
 		if ( is_null( self::$mDoubleUnderscoreArray ) ) {
-			Hooks::run( 'GetDoubleUnderscoreIDs', array( &self::$mDoubleUnderscoreIDs ) );
+			Hooks::run( 'GetDoubleUnderscoreIDs', [ &self::$mDoubleUnderscoreIDs ] );
 			self::$mDoubleUnderscoreArray = new MagicWordArray( self::$mDoubleUnderscoreIDs );
 		}
 		return self::$mDoubleUnderscoreArray;
@@ -321,7 +321,7 @@ class MagicWord {
 	 * For use in parser tests
 	 */
 	public static function clearCache() {
-		self::$mObjects = array();
+		self::$mObjects = [];
 	}
 
 	/**
@@ -335,7 +335,7 @@ class MagicWord {
 		$this->mId = $id;
 		$wgContLang->getMagic( $this );
 		if ( !$this->mSynonyms ) {
-			$this->mSynonyms = array( 'brionmademeputthishere' );
+			$this->mSynonyms = [ 'brionmademeputthishere' ];
 			throw new MWException( "Error: invalid magic word '$id'" );
 		}
 	}
@@ -348,9 +348,9 @@ class MagicWord {
 		// Sort the synonyms by length, descending, so that the longest synonym
 		// matches in precedence to the shortest
 		$synonyms = $this->mSynonyms;
-		usort( $synonyms, array( $this, 'compareStringLength' ) );
+		usort( $synonyms, [ $this, 'compareStringLength' ] );
 
-		$escSyn = array();
+		$escSyn = [];
 		foreach ( $synonyms as $synonym ) {
 			// In case a magic word contains /, like that's going to happen;)
 			$escSyn[] = preg_quote( $synonym, '/' );
@@ -497,7 +497,7 @@ class MagicWord {
 	 * @return string
 	 */
 	function matchVariableStartToEnd( $text ) {
-		$matches = array();
+		$matches = [];
 		$matchcount = preg_match( $this->getVariableStartToEndRegex(), $text, $matches );
 		if ( $matchcount == 0 ) {
 			return null;
@@ -529,7 +529,7 @@ class MagicWord {
 		$this->mFound = false;
 		$text = preg_replace_callback(
 			$this->getRegex(),
-			array( &$this, 'pregRemoveAndRecord' ),
+			[ &$this, 'pregRemoveAndRecord' ],
 			$text
 		);
 
@@ -544,7 +544,7 @@ class MagicWord {
 		$this->mFound = false;
 		$text = preg_replace_callback(
 			$this->getRegexStart(),
-			array( &$this, 'pregRemoveAndRecord' ),
+			[ &$this, 'pregRemoveAndRecord' ],
 			$text
 		);
 
@@ -664,8 +664,8 @@ class MagicWord {
 	 */
 	function replaceMultiple( $magicarr, $subject, &$result ) {
 		wfDeprecated( __METHOD__, '1.25' );
-		$search = array();
-		$replace = array();
+		$search = [];
+		$replace = [];
 		foreach ( $magicarr as $id => $replacement ) {
 			$mw = MagicWord::get( $id );
 			$search[] = $mw->getRegex();
@@ -711,7 +711,7 @@ class MagicWord {
  */
 class MagicWordArray {
 	/** @var array */
-	public $names = array();
+	public $names = [];
 
 	/** @var array */
 	private $hash;
@@ -723,7 +723,7 @@ class MagicWordArray {
 	/**
 	 * @param array $names
 	 */
-	function __construct( $names = array() ) {
+	function __construct( $names = [] ) {
 		$this->names = $names;
 	}
 
@@ -754,7 +754,7 @@ class MagicWordArray {
 	function getHash() {
 		if ( is_null( $this->hash ) ) {
 			global $wgContLang;
-			$this->hash = array( 0 => array(), 1 => array() );
+			$this->hash = [ 0 => [], 1 => [] ];
 			foreach ( $this->names as $name ) {
 				$magic = MagicWord::get( $name );
 				$case = intval( $magic->isCaseSensitive() );
@@ -775,7 +775,7 @@ class MagicWordArray {
 	 */
 	function getBaseRegex() {
 		if ( is_null( $this->baseRegex ) ) {
-			$this->baseRegex = array( 0 => '', 1 => '' );
+			$this->baseRegex = [ 0 => '', 1 => '' ];
 			foreach ( $this->names as $name ) {
 				$magic = MagicWord::get( $name );
 				$case = intval( $magic->isCaseSensitive() );
@@ -801,7 +801,7 @@ class MagicWordArray {
 	function getRegex() {
 		if ( is_null( $this->regex ) ) {
 			$base = $this->getBaseRegex();
-			$this->regex = array( '', '' );
+			$this->regex = [ '', '' ];
 			if ( $this->baseRegex[0] !== '' ) {
 				$this->regex[0] = "/{$base[0]}/iuS";
 			}
@@ -828,7 +828,7 @@ class MagicWordArray {
 	 */
 	function getRegexStart() {
 		$base = $this->getBaseRegex();
-		$newRegex = array( '', '' );
+		$newRegex = [ '', '' ];
 		if ( $base[0] !== '' ) {
 			$newRegex[0] = "/^(?:{$base[0]})/iuS";
 		}
@@ -845,7 +845,7 @@ class MagicWordArray {
 	 */
 	function getVariableStartToEndRegex() {
 		$base = $this->getBaseRegex();
-		$newRegex = array( '', '' );
+		$newRegex = [ '', '' ];
 		if ( $base[0] !== '' ) {
 			$newRegex[0] = str_replace( "\\$1", "(.*?)", "/^(?:{$base[0]})$/iuS" );
 		}
@@ -887,7 +887,7 @@ class MagicWordArray {
 			}
 			list( /* $synIndex */, $magicName ) = $parts;
 			$paramValue = next( $m );
-			return array( $magicName, $paramValue );
+			return [ $magicName, $paramValue ];
 		}
 		// This shouldn't happen either
 		throw new MWException( __METHOD__ . ': parameter not found' );
@@ -907,13 +907,13 @@ class MagicWordArray {
 		$regexes = $this->getVariableStartToEndRegex();
 		foreach ( $regexes as $regex ) {
 			if ( $regex !== '' ) {
-				$m = array();
+				$m = [];
 				if ( preg_match( $regex, $text, $m ) ) {
 					return $this->parseMatch( $m );
 				}
 			}
 		}
-		return array( false, false );
+		return [ false, false ];
 	}
 
 	/**
@@ -946,20 +946,20 @@ class MagicWordArray {
 	 * @return array
 	 */
 	public function matchAndRemove( &$text ) {
-		$found = array();
+		$found = [];
 		$regexes = $this->getRegex();
 		foreach ( $regexes as $regex ) {
 			if ( $regex === '' ) {
 				continue;
 			}
-			$matches = array();
+			$matches = [];
 			$res = preg_match_all( $regex, $text, $matches, PREG_SET_ORDER );
 			if ( $res === false ) {
-				LoggerFactory::getInstance( 'parser' )->warning( 'preg_match_all returned false', array(
+				LoggerFactory::getInstance( 'parser' )->warning( 'preg_match_all returned false', [
 					'code' => preg_last_error(),
 					'regex' => $regex,
 					'text' => $text,
-				) );
+				] );
 			} elseif ( $res ) {
 				foreach ( $matches as $m ) {
 					list( $name, $param ) = $this->parseMatch( $m );
@@ -968,11 +968,11 @@ class MagicWordArray {
 			}
 			$res = preg_replace( $regex, '', $text );
 			if ( $res === null ) {
-				LoggerFactory::getInstance( 'parser' )->warning( 'preg_replace returned null', array(
+				LoggerFactory::getInstance( 'parser' )->warning( 'preg_replace returned null', [
 					'code' => preg_last_error(),
 					'regex' => $regex,
 					'text' => $text,
-				) );
+				] );
 			}
 			$text = $res;
 		}

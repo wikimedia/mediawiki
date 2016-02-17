@@ -29,13 +29,13 @@ class GlobalVarConfigTest extends MediaWikiTestCase {
 	}
 
 	public static function provideConstructor() {
-		return array(
-			array( 'wg' ),
-			array( 'ef' ),
-			array( 'smw' ),
-			array( 'blahblahblahblah' ),
-			array( '' ),
-		);
+		return [
+			[ 'wg' ],
+			[ 'ef' ],
+			[ 'smw' ],
+			[ 'blahblahblahblah' ],
+			[ '' ],
+		];
 	}
 
 	/**
@@ -51,24 +51,24 @@ class GlobalVarConfigTest extends MediaWikiTestCase {
 	}
 
 	public static function provideGet() {
-		$set = array(
+		$set = [
 			'wgSomething' => 'default1',
 			'wgFoo' => 'default2',
 			'efVariable' => 'default3',
 			'BAR' => 'default4',
-		);
+		];
 
 		foreach ( $set as $var => $value ) {
 			$GLOBALS[$var] = $value;
 		}
 
-		return array(
-			array( 'Something', 'wg', 'default1' ),
-			array( 'Foo', 'wg', 'default2' ),
-			array( 'Variable', 'ef', 'default3' ),
-			array( 'BAR', '', 'default4' ),
-			array( 'ThisGlobalWasNotSetAbove', 'wg', false )
-		);
+		return [
+			[ 'Something', 'wg', 'default1' ],
+			[ 'Foo', 'wg', 'default2' ],
+			[ 'Variable', 'ef', 'default3' ],
+			[ 'BAR', '', 'default4' ],
+			[ 'ThisGlobalWasNotSetAbove', 'wg', false ]
+		];
 	}
 
 	/**

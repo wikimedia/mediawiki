@@ -8,7 +8,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 
 	function addDBData() {
 		// ensure the correct default gender
-		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', array( 'gender' => 'unknown' ) );
+		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', [ 'gender' => 'unknown' ] );
 
 		$user = User::newFromName( 'UTMale' );
 		if ( $user->getID() == 0 ) {
@@ -64,15 +64,15 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideUserGenders() {
-		return array(
-			array( 'UTMale', 'male' ),
-			array( 'UTFemale', 'female' ),
-			array( 'UTDefaultGender', 'unknown' ),
-			array( 'UTNotExist', 'unknown' ),
+		return [
+			[ 'UTMale', 'male' ],
+			[ 'UTFemale', 'female' ],
+			[ 'UTDefaultGender', 'unknown' ],
+			[ 'UTNotExist', 'unknown' ],
 			// some not valid user
-			array( '127.0.0.1', 'unknown' ),
-			array( 'user@test', 'unknown' ),
-		);
+			[ '127.0.0.1', 'unknown' ],
+			[ 'user@test', 'unknown' ],
+		];
 	}
 
 	/**
@@ -89,12 +89,12 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideStripSubpages() {
-		return array(
-			array( 'UTMale/subpage', 'male' ),
-			array( 'UTFemale/subpage', 'female' ),
-			array( 'UTDefaultGender/subpage', 'unknown' ),
-			array( 'UTNotExist/subpage', 'unknown' ),
-			array( '127.0.0.1/subpage', 'unknown' ),
-		);
+		return [
+			[ 'UTMale/subpage', 'male' ],
+			[ 'UTFemale/subpage', 'female' ],
+			[ 'UTDefaultGender/subpage', 'unknown' ],
+			[ 'UTNotExist/subpage', 'unknown' ],
+			[ '127.0.0.1/subpage', 'unknown' ],
+		];
 	}
 }

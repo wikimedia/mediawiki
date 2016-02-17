@@ -51,29 +51,29 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 		$id = $this->pageId;
 
 		# Delete restrictions for it
-		$this->mDb->delete( 'page_restrictions', array( 'pr_page' => $id ), __METHOD__ );
+		$this->mDb->delete( 'page_restrictions', [ 'pr_page' => $id ], __METHOD__ );
 
 		# Fix category table counts
 		$cats = $this->mDb->selectFieldValues(
 			'categorylinks',
 			'cl_to',
-			array( 'cl_from' => $id ),
+			[ 'cl_from' => $id ],
 			__METHOD__
 		);
-		$this->page->updateCategoryCounts( array(), $cats );
+		$this->page->updateCategoryCounts( [], $cats );
 
 		# If using cascading deletes, we can skip some explicit deletes
 		if ( !$this->mDb->cascadingDeletes() ) {
 			# Delete outgoing links
-			$this->mDb->delete( 'pagelinks', array( 'pl_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'imagelinks', array( 'il_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'categorylinks', array( 'cl_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'templatelinks', array( 'tl_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'externallinks', array( 'el_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'langlinks', array( 'll_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'iwlinks', array( 'iwl_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'redirect', array( 'rd_from' => $id ), __METHOD__ );
-			$this->mDb->delete( 'page_props', array( 'pp_page' => $id ), __METHOD__ );
+			$this->mDb->delete( 'pagelinks', [ 'pl_from' => $id ], __METHOD__ );
+			$this->mDb->delete( 'imagelinks', [ 'il_from' => $id ], __METHOD__ );
+			$this->mDb->delete( 'categorylinks', [ 'cl_from' => $id ], __METHOD__ );
+			$this->mDb->delete( 'templatelinks', [ 'tl_from' => $id ], __METHOD__ );
+			$this->mDb->delete( 'externallinks', [ 'el_from' => $id ], __METHOD__ );
+			$this->mDb->delete( 'langlinks', [ 'll_from' => $id ], __METHOD__ );
+			$this->mDb->delete( 'iwlinks', [ 'iwl_from' => $id ], __METHOD__ );
+			$this->mDb->delete( 'redirect', [ 'rd_from' => $id ], __METHOD__ );
+			$this->mDb->delete( 'page_props', [ 'pp_page' => $id ], __METHOD__ );
 		}
 
 		# If using cleanup triggers, we can skip some manual deletes
@@ -82,36 +82,36 @@ class LinksDeletionUpdate extends SqlDataUpdate implements EnqueueableDataUpdate
 			# Find recentchanges entries to clean up...
 			$rcIdsForTitle = $this->mDb->selectFieldValues( 'recentchanges',
 				'rc_id',
-				array(
+				[
 					'rc_type != ' . RC_LOG,
 					'rc_namespace' => $title->getNamespace(),
 					'rc_title' => $title->getDBkey()
-				),
+				],
 				__METHOD__
 			);
 			$rcIdsForPage = $this->mDb->selectFieldValues( 'recentchanges',
 				'rc_id',
-				array( 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ),
+				[ 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ],
 				__METHOD__
 			);
 
 			# T98706: delete PK to avoid lock contention with RC delete log insertions
 			$rcIds = array_merge( $rcIdsForTitle, $rcIdsForPage );
 			if ( $rcIds ) {
-				$this->mDb->delete( 'recentchanges', array( 'rc_id' => $rcIds ), __METHOD__ );
+				$this->mDb->delete( 'recentchanges', [ 'rc_id' => $rcIds ], __METHOD__ );
 			}
 		}
 	}
 
 	public function getAsJobSpecification() {
-		return array(
+		return [
 			'wiki' => $this->mDb->getWikiID(),
 			'job'  => new JobSpecification(
 				'deleteLinks',
-				array( 'pageId' => $this->pageId ),
-				array( 'removeDuplicates' => true ),
+				[ 'pageId' => $this->pageId ],
+				[ 'removeDuplicates' => true ],
 				$this->page->getTitle()
 			)
-		);
+		];
 	}
 }

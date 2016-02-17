@@ -41,7 +41,7 @@ class UserRightsProxy {
 		$this->database = $database;
 		$this->name = $name;
 		$this->id = intval( $id );
-		$this->newOptions = array();
+		$this->newOptions = [];
 	}
 
 	/**
@@ -127,8 +127,8 @@ class UserRightsProxy {
 
 		if ( $db && $userdb ) {
 			$row = $userdb->selectRow( 'user',
-				array( 'user_id', 'user_name' ),
-				array( $field => $value ),
+				[ 'user_id', 'user_name' ],
+				[ $field => $value ],
 				__METHOD__ );
 
 			if ( $row !== false ) {
@@ -155,7 +155,7 @@ class UserRightsProxy {
 				// Hmm... this shouldn't happen though. :)
 				return wfGetDB( DB_MASTER );
 			} else {
-				return wfGetDB( DB_MASTER, array(), $database );
+				return wfGetDB( DB_MASTER, [], $database );
 			}
 		}
 		return null;
@@ -199,10 +199,10 @@ class UserRightsProxy {
 	 */
 	function getGroups() {
 		$res = $this->db->select( 'user_groups',
-			array( 'ug_group' ),
-			array( 'ug_user' => $this->id ),
+			[ 'ug_group' ],
+			[ 'ug_user' => $this->id ],
 			__METHOD__ );
-		$groups = array();
+		$groups = [];
 		foreach ( $res as $row ) {
 			$groups[] = $row->ug_group;
 		}
@@ -217,12 +217,12 @@ class UserRightsProxy {
 	 */
 	function addGroup( $group ) {
 		$this->db->insert( 'user_groups',
-			array(
+			[
 				'ug_user' => $this->id,
 				'ug_group' => $group,
-			),
+			],
 			__METHOD__,
-			array( 'IGNORE' ) );
+			[ 'IGNORE' ] );
 
 		return true;
 	}
@@ -235,10 +235,10 @@ class UserRightsProxy {
 	 */
 	function removeGroup( $group ) {
 		$this->db->delete( 'user_groups',
-			array(
+			[
 				'ug_user' => $this->id,
 				'ug_group' => $group,
-			),
+			],
 			__METHOD__ );
 
 		return true;
@@ -254,16 +254,16 @@ class UserRightsProxy {
 	}
 
 	public function saveSettings() {
-		$rows = array();
+		$rows = [];
 		foreach ( $this->newOptions as $option => $value ) {
-			$rows[] = array(
+			$rows[] = [
 				'up_user' => $this->id,
 				'up_property' => $option,
 				'up_value' => $value,
-			);
+			];
 		}
 		$this->db->replace( 'user_properties',
-			array( array( 'up_user', 'up_property' ) ),
+			[ [ 'up_user', 'up_property' ] ],
 			$rows, __METHOD__
 		);
 		$this->invalidateCache();
@@ -274,8 +274,8 @@ class UserRightsProxy {
 	 */
 	function invalidateCache() {
 		$this->db->update( 'user',
-			array( 'user_touched' => $this->db->timestamp() ),
-			array( 'user_id' => $this->id ),
+			[ 'user_touched' => $this->db->timestamp() ],
+			[ 'user_id' => $this->id ],
 			__METHOD__ );
 
 		$wikiId = $this->db->getWikiID();

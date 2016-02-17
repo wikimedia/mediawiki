@@ -168,27 +168,27 @@ class DatabaseLogEntry extends LogEntryBase {
 	 * @return array
 	 */
 	public static function getSelectQueryData() {
-		$tables = array( 'logging', 'user' );
-		$fields = array(
+		$tables = [ 'logging', 'user' ];
+		$fields = [
 			'log_id', 'log_type', 'log_action', 'log_timestamp',
 			'log_user', 'log_user_text',
 			'log_namespace', 'log_title', // unused log_page
 			'log_comment', 'log_params', 'log_deleted',
 			'user_id', 'user_name', 'user_editcount',
-		);
+		];
 
-		$joins = array(
+		$joins = [
 			// IPs don't have an entry in user table
-			'user' => array( 'LEFT JOIN', 'log_user=user_id' ),
-		);
+			'user' => [ 'LEFT JOIN', 'log_user=user_id' ],
+		];
 
-		return array(
+		return [
 			'tables' => $tables,
 			'fields' => $fields,
-			'conds' => array(),
-			'options' => array(),
+			'conds' => [],
+			'options' => [],
 			'join_conds' => $joins,
-		);
+		];
 	}
 
 	/**
@@ -399,10 +399,10 @@ class ManualLogEntry extends LogEntryBase {
 	protected $subtype;
 
 	/** @var array Parameters for log entry */
-	protected $parameters = array();
+	protected $parameters = [];
 
 	/** @var array */
-	protected $relations = array();
+	protected $relations = [];
 
 	/** @var User Performer of the action for the log entry */
 	protected $performer;
@@ -582,7 +582,7 @@ class ManualLogEntry extends LogEntryBase {
 			$relations['associated_rev_id'] = $revId;
 		}
 
-		$data = array(
+		$data = [
 			'log_id' => $id,
 			'log_type' => $this->getType(),
 			'log_action' => $this->getSubtype(),
@@ -594,7 +594,7 @@ class ManualLogEntry extends LogEntryBase {
 			'log_page' => $this->getTarget()->getArticleID(),
 			'log_comment' => $comment,
 			'log_params' => LogEntryBase::makeParamBlob( $params ),
-		);
+		];
 		if ( isset( $this->deleted ) ) {
 			$data['log_deleted'] = $this->deleted;
 		}
@@ -602,22 +602,22 @@ class ManualLogEntry extends LogEntryBase {
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$this->id = !is_null( $id ) ? $id : $dbw->insertId();
 
-		$rows = array();
+		$rows = [];
 		foreach ( $relations as $tag => $values ) {
 			if ( !strlen( $tag ) ) {
 				throw new MWException( "Got empty log search tag." );
 			}
 
 			if ( !is_array( $values ) ) {
-				$values = array( $values );
+				$values = [ $values ];
 			}
 
 			foreach ( $values as $value ) {
-				$rows[] = array(
+				$rows[] = [
 					'ls_field' => $tag,
 					'ls_value' => $value,
 					'ls_log_id' => $this->id
-				);
+				];
 			}
 		}
 		if ( count( $rows ) ) {

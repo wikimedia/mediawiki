@@ -75,14 +75,14 @@ class LanguageZh_hans extends Language {
 	 *
 	 * @return string
 	 */
-	public function formatDuration( $seconds, array $chosenIntervals = array() ) {
+	public function formatDuration( $seconds, array $chosenIntervals = [] ) {
 		if ( empty( $chosenIntervals ) ) {
-			$chosenIntervals = array( 'centuries', 'years', 'days', 'hours', 'minutes', 'seconds' );
+			$chosenIntervals = [ 'centuries', 'years', 'days', 'hours', 'minutes', 'seconds' ];
 		}
 
 		$intervals = $this->getDurationIntervals( $seconds, $chosenIntervals );
 
-		$segments = array();
+		$segments = [];
 
 		foreach ( $intervals as $intervalName => $intervalValue ) {
 			// Messages: duration-seconds, duration-minutes, duration-hours, duration-days, duration-weeks,

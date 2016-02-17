@@ -40,7 +40,7 @@ class UIDGenerator {
 	protected $lockFileUUID; // string; local file path
 
 	/** @var array */
-	protected $fileHandles = array(); // cache file handles
+	protected $fileHandles = []; // cache file handles
 
 	const QUICK_RAND = 1; // get randomness from fast and insecure sources
 	const QUICK_VOLATILE = 2; // use an APC like in-memory counter if available
@@ -62,7 +62,7 @@ class UIDGenerator {
 				$nodeId = isset( $info[0] ) ? str_replace( '-', '', $info[0] ) : '';
 			} elseif ( is_executable( '/sbin/ifconfig' ) ) { // Linux/BSD/Solaris/OS X
 				// See http://linux.die.net/man/8/ifconfig
-				$m = array();
+				$m = [];
 				preg_match( '/\s([0-9a-f]{2}(:[0-9a-f]{2}){5})\s/',
 					wfShellExec( '/sbin/ifconfig -a' ), $m );
 				$nodeId = isset( $m[1] ) ? str_replace( ':', '', $m[1] ) : '';
@@ -357,7 +357,7 @@ class UIDGenerator {
 	 */
 	protected function getSequentialPerNodeIDs( $bucket, $bits, $count, $flags ) {
 		if ( $count <= 0 ) {
-			return array(); // nothing to do
+			return []; // nothing to do
 		} elseif ( $bits < 16 || $bits > 48 ) {
 			throw new RuntimeException( "Requested bit size ($bits) is out of range." );
 		}
@@ -406,7 +406,7 @@ class UIDGenerator {
 			flock( $handle, LOCK_UN );
 		}
 
-		$ids = array();
+		$ids = [];
 		$divisor = pow( 2, $bits );
 		$currentId = floor( $counter - $count ); // pre-increment counter value
 		for ( $i = 0; $i < $count; ++$i ) {
@@ -449,7 +449,7 @@ class UIDGenerator {
 		$clockChanged = false; // clock set back significantly?
 		if ( count( $data ) == 5 ) { // last UID info already initialized
 			$clkSeq = (int)$data[0] % $clockSeqSize;
-			$prevTime = array( (int)$data[1], (int)$data[2] );
+			$prevTime = [ (int)$data[1], (int)$data[2] ];
 			$offset = (int)$data[4] % $counterSize; // random counter offset
 			$counter = 0; // counter for UIDs with the same timestamp
 			// Delay until the clock reaches the time of the last ID.
@@ -497,13 +497,13 @@ class UIDGenerator {
 		// Release the UID lock file
 		flock( $handle, LOCK_UN );
 
-		return array(
+		return [
 			'time'          => $time,
 			'counter'       => $counter,
 			'clkSeq'        => $clkSeq,
 			'offset'        => $offset,
 			'offsetCounter' => $counter + $offset
-		);
+		];
 	}
 
 	/**
@@ -576,7 +576,7 @@ class UIDGenerator {
 	protected static function millitime() {
 		list( $msec, $sec ) = explode( ' ', microtime() );
 
-		return array( (int)$sec, (int)( $msec * 1000 ) );
+		return [ (int)$sec, (int)( $msec * 1000 ) ];
 	}
 
 	/**

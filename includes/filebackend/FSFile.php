@@ -131,7 +131,7 @@ class FSFile {
 			# Height, width and metadata
 			$handler = MediaHandler::getHandler( $info['mime'] );
 			if ( $handler ) {
-				$tempImage = (object)array(); // XXX (hack for File object)
+				$tempImage = (object)[]; // XXX (hack for File object)
 				$info['metadata'] = $handler->getMetadata( $tempImage, $this->path );
 				$gis = $handler->getImageSize( $tempImage, $this->path, $info['metadata'] );
 				if ( is_array( $gis ) ) {
@@ -154,7 +154,7 @@ class FSFile {
 	 * @return array
 	 */
 	public static function placeholderProps() {
-		$info = array();
+		$info = [];
 		$info['fileExists'] = false;
 		$info['mime'] = null;
 		$info['media_type'] = MEDIATYPE_UNKNOWN;
@@ -174,7 +174,7 @@ class FSFile {
 	 * @return array
 	 */
 	protected function extractImageSizeInfo( array $gis ) {
-		$info = array();
+		$info = [];
 		# NOTE: $gis[2] contains a code for the image type. This is no longer used.
 		$info['width'] = $gis[0];
 		$info['height'] = $gis[1];

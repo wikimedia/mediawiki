@@ -46,11 +46,11 @@ class PatchSql extends Maintenance {
 	public function execute() {
 		$dbw = $this->getDB( DB_MASTER );
 		foreach ( $this->mArgs as $arg ) {
-			$files = array(
+			$files = [
 				$arg,
 				$dbw->patchPath( $arg ),
 				$dbw->patchPath( "patch-$arg.sql" ),
-			);
+			];
 			foreach ( $files as $file ) {
 				if ( file_exists( $file ) ) {
 					$this->output( "$file ...\n" );

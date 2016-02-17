@@ -38,9 +38,9 @@ class DumpRev extends Maintenance {
 	public function execute() {
 		$dbr = $this->getDB( DB_SLAVE );
 		$row = $dbr->selectRow(
-			array( 'text', 'revision' ),
-			array( 'old_flags', 'old_text' ),
-			array( 'old_id=rev_text_id', 'rev_id' => $this->getArg() )
+			[ 'text', 'revision' ],
+			[ 'old_flags', 'old_text' ],
+			[ 'old_id=rev_text_id', 'rev_id' => $this->getArg() ]
 		);
 		if ( !$row ) {
 			$this->error( "Row not found", true );

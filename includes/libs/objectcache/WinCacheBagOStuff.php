@@ -51,7 +51,7 @@ class WinCacheBagOStuff extends BagOStuff {
 
 		/* wincache_ucache_set returns an empty array on success if $value
 		   was an array, bool otherwise */
-		return ( is_array( $result ) && $result === array() ) || $result;
+		return ( is_array( $result ) && $result === [] ) || $result;
 	}
 
 	protected function cas( $casToken, $key, $value, $exptime = 0 ) {

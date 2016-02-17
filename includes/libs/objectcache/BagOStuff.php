@@ -44,7 +44,7 @@ use Psr\Log\NullLogger;
  */
 abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/** @var array[] Lock tracking */
-	protected $locks = array();
+	protected $locks = [];
 
 	/** @var integer */
 	protected $lastError = self::ERR_NONE;
@@ -71,7 +71,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	const WRITE_SYNC = 1; // synchronously write to all locations for replicated stores
 	const WRITE_CACHE_ONLY = 2; // Only change state of the in-memory cache
 
-	public function __construct( array $params = array() ) {
+	public function __construct( array $params = [] ) {
 		if ( isset( $params['logger'] ) ) {
 			$this->setLogger( $params['logger'] );
 		} else {
@@ -351,7 +351,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		if ( $locked ) {
-			$this->locks[$key] = array( 'class' => $rclass, 'depth' => 1 );
+			$this->locks[$key] = [ 'class' => $rclass, 'depth' => 1 ];
 		}
 
 		return $locked;
@@ -430,7 +430,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @return array
 	 */
 	public function getMulti( array $keys, $flags = 0 ) {
-		$res = array();
+		$res = [];
 		foreach ( $keys as $key ) {
 			$val = $this->get( $key );
 			if ( $val !== false ) {
@@ -577,9 +577,9 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 */
 	protected function debug( $text ) {
 		if ( $this->debugMode ) {
-			$this->logger->debug( "{class} debug: $text", array(
+			$this->logger->debug( "{class} debug: $text", [
 				'class' => get_class( $this ),
-			) );
+			] );
 		}
 	}
 

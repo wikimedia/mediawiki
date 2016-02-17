@@ -78,7 +78,7 @@ abstract class HTMLFormField {
 		$args = func_get_args();
 
 		if ( $this->mParent ) {
-			$callback = array( $this->mParent, 'msg' );
+			$callback = [ $this->mParent, 'msg' ];
 		} else {
 			$callback = 'wfMessage';
 		}
@@ -111,7 +111,7 @@ abstract class HTMLFormField {
 	 */
 	protected function getNearestFieldByName( $alldata, $name ) {
 		$tmp = $this->mName;
-		$thisKeys = array();
+		$thisKeys = [];
 		while ( preg_match( '/^(.+)\[([^\]]+)\]$/', $tmp, $m ) ) {
 			array_unshift( $thisKeys, $m[2] );
 			$tmp = $m[1];
@@ -126,7 +126,7 @@ abstract class HTMLFormField {
 		array_unshift( $thisKeys, $tmp );
 
 		$tmp = $name;
-		$nameKeys = array();
+		$nameKeys = [];
 		while ( preg_match( '/^(.+)\[([^\]]+)\]$/', $tmp, $m ) ) {
 			array_unshift( $nameKeys, $m[2] );
 			$tmp = $m[1];
@@ -387,7 +387,7 @@ abstract class HTMLFormField {
 				$msg = array_shift( $msgInfo );
 			} else {
 				$msg = $msgInfo;
-				$msgInfo = array();
+				$msgInfo = [];
 			}
 
 			$this->mLabel = $this->msg( $msg, $msgInfo )->parse();
@@ -412,7 +412,7 @@ abstract class HTMLFormField {
 		}
 
 		$validName = Sanitizer::escapeId( $this->mName );
-		$validName = str_replace( array( '.5B', '.5D' ), array( '[', ']' ), $validName );
+		$validName = str_replace( [ '.5B', '.5D' ], [ '[', ']' ], $validName );
 		if ( $this->mName != $validName && !isset( $params['nodata'] ) ) {
 			throw new MWException( "Invalid name '{$this->mName}' passed to " . __METHOD__ );
 		}
@@ -476,8 +476,8 @@ abstract class HTMLFormField {
 		$inputHtml = $this->getInputHTML( $value );
 		$fieldType = get_class( $this );
 		$helptext = $this->getHelpTextHtmlTable( $this->getHelpText() );
-		$cellAttributes = array();
-		$rowAttributes = array();
+		$cellAttributes = [];
+		$rowAttributes = [];
 		$rowClasses = '';
 
 		if ( !empty( $this->mParams['vertical-label'] ) ) {
@@ -491,7 +491,7 @@ abstract class HTMLFormField {
 
 		$field = Html::rawElement(
 			'td',
-			array( 'class' => 'mw-input' ) + $cellAttributes,
+			[ 'class' => 'mw-input' ] + $cellAttributes,
 			$inputHtml . "\n$errors"
 		);
 
@@ -502,18 +502,18 @@ abstract class HTMLFormField {
 
 		if ( $verticalLabel ) {
 			$html = Html::rawElement( 'tr',
-				$rowAttributes + array( 'class' => "mw-htmlform-vertical-label $rowClasses" ), $label );
+				$rowAttributes + [ 'class' => "mw-htmlform-vertical-label $rowClasses" ], $label );
 			$html .= Html::rawElement( 'tr',
-				$rowAttributes + array(
+				$rowAttributes + [
 					'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass $rowClasses"
-				),
+				],
 				$field );
 		} else {
 			$html =
 				Html::rawElement( 'tr',
-					$rowAttributes + array(
+					$rowAttributes + [
 						'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass $rowClasses"
-					),
+					],
 					$label . $field );
 		}
 
@@ -534,13 +534,13 @@ abstract class HTMLFormField {
 		$inputHtml = $this->getInputHTML( $value );
 		$fieldType = get_class( $this );
 		$helptext = $this->getHelpTextHtmlDiv( $this->getHelpText() );
-		$cellAttributes = array();
+		$cellAttributes = [];
 		$label = $this->getLabelHtml( $cellAttributes );
 
-		$outerDivClass = array(
+		$outerDivClass = [
 			'mw-input',
 			'mw-htmlform-nolabel' => ( $label === '' )
-		);
+		];
 
 		$horizontalLabel = isset( $this->mParams['horizontal-label'] )
 			? $this->mParams['horizontal-label'] : false;
@@ -550,16 +550,16 @@ abstract class HTMLFormField {
 		} else {
 			$field = Html::rawElement(
 				'div',
-				array( 'class' => $outerDivClass ) + $cellAttributes,
+				[ 'class' => $outerDivClass ] + $cellAttributes,
 				$inputHtml . "\n$errors"
 			);
 		}
-		$divCssClasses = array( "mw-htmlform-field-$fieldType",
-			$this->mClass, $this->mVFormClass, $errorClass );
+		$divCssClasses = [ "mw-htmlform-field-$fieldType",
+			$this->mClass, $this->mVFormClass, $errorClass ];
 
-		$wrapperAttributes = array(
+		$wrapperAttributes = [
 			'class' => $divCssClasses,
-		);
+		];
 		if ( $this->mHideIf ) {
 			$wrapperAttributes['data-hide-if'] = FormatJson::encode( $this->mHideIf );
 			$wrapperAttributes['class'][] = ' mw-htmlform-hide-if';
@@ -586,8 +586,8 @@ abstract class HTMLFormField {
 			// generate the whole field, label and errors and all, then wrap it in a Widget.
 			// It might look weird, but it'll work OK.
 			return $this->getFieldLayoutOOUI(
-				new OOUI\Widget( array( 'content' => new OOUI\HtmlSnippet( $this->getDiv( $value ) ) ) ),
-				array( 'infusable' => false, 'align' => 'top' )
+				new OOUI\Widget( [ 'content' => new OOUI\HtmlSnippet( $this->getDiv( $value ) ) ] ),
+				[ 'infusable' => false, 'align' => 'top' ]
 			);
 		}
 
@@ -596,7 +596,7 @@ abstract class HTMLFormField {
 			// We have an OOUI implementation, but it's not proper, and we got a load of HTML.
 			// Cheat a little and wrap it in a widget. It won't be infusable, though, since client-side
 			// JavaScript doesn't know how to rebuilt the contents.
-			$inputField = new OOUI\Widget( array( 'content' => new OOUI\HtmlSnippet( $inputField ) ) );
+			$inputField = new OOUI\Widget( [ 'content' => new OOUI\HtmlSnippet( $inputField ) ] );
 			$infusable = false;
 		}
 
@@ -607,14 +607,14 @@ abstract class HTMLFormField {
 			$error = new OOUI\HtmlSnippet( $error );
 		}
 
-		$config = array(
-			'classes' => array( "mw-htmlform-field-$fieldType", $this->mClass ),
+		$config = [
+			'classes' => [ "mw-htmlform-field-$fieldType", $this->mClass ],
 			'align' => $this->getLabelAlignOOUI(),
 			'label' => new OOUI\HtmlSnippet( $this->getLabel() ),
 			'help' => $helpText !== null ? new OOUI\HtmlSnippet( $helpText ) : null,
 			'errors' => $errors,
 			'infusable' => $infusable,
-		);
+		];
 
 		return $this->getFieldLayoutOOUI( $inputField, $config );
 	}
@@ -652,7 +652,7 @@ abstract class HTMLFormField {
 		list( $errors, ) = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
 		$helptext = $this->getHelpTextHtmlRaw( $this->getHelpText() );
-		$cellAttributes = array();
+		$cellAttributes = [];
 		$label = $this->getLabelHtml( $cellAttributes );
 
 		$html = "\n$errors";
@@ -687,7 +687,7 @@ abstract class HTMLFormField {
 		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
 		$helptext = $this->getHelpTextHtmlDiv( $this->getHelpText() );
-		$cellAttributes = array();
+		$cellAttributes = [];
 		$label = $this->getLabelHtml( $cellAttributes );
 
 		$html = "\n" . $errors .
@@ -710,17 +710,17 @@ abstract class HTMLFormField {
 			return '';
 		}
 
-		$rowAttributes = array();
+		$rowAttributes = [];
 		if ( $this->mHideIf ) {
 			$rowAttributes['data-hide-if'] = FormatJson::encode( $this->mHideIf );
 			$rowAttributes['class'] = 'mw-htmlform-hide-if';
 		}
 
-		$tdClasses = array( 'htmlform-tip' );
+		$tdClasses = [ 'htmlform-tip' ];
 		if ( $this->mHelpClass !== false ) {
 			$tdClasses[] = $this->mHelpClass;
 		}
-		$row = Html::rawElement( 'td', array( 'colspan' => 2, 'class' => $tdClasses ), $helptext );
+		$row = Html::rawElement( 'td', [ 'colspan' => 2, 'class' => $tdClasses ], $helptext );
 		$row = Html::rawElement( 'tr', $rowAttributes, $row );
 
 		return $row;
@@ -739,9 +739,9 @@ abstract class HTMLFormField {
 			return '';
 		}
 
-		$wrapperAttributes = array(
+		$wrapperAttributes = [
 			'class' => 'htmlform-tip',
-		);
+		];
 		if ( $this->mHelpClass !== false ) {
 			$wrapperAttributes['class'] .= " {$this->mHelpClass}";
 		}
@@ -774,7 +774,7 @@ abstract class HTMLFormField {
 		$helptext = null;
 
 		if ( isset( $this->mParams['help-message'] ) ) {
-			$this->mParams['help-messages'] = array( $this->mParams['help-message'] );
+			$this->mParams['help-messages'] = [ $this->mParams['help-message'] ];
 		}
 
 		if ( isset( $this->mParams['help-messages'] ) ) {
@@ -816,7 +816,7 @@ abstract class HTMLFormField {
 			$errorClass = 'mw-htmlform-invalid-input';
 		}
 
-		return array( $errors, $errorClass );
+		return [ $errors, $errorClass ];
 	}
 
 	/**
@@ -830,11 +830,11 @@ abstract class HTMLFormField {
 		$errors = $this->validate( $value, $this->mParent->mFieldData );
 
 		if ( is_bool( $errors ) || !$this->mParent->wasSubmitted() ) {
-			$errors = array();
+			$errors = [];
 		}
 
 		if ( !is_array( $errors ) ) {
-			$errors = array( $errors );
+			$errors = [ $errors ];
 		}
 		foreach ( $errors as &$error ) {
 			if ( $error instanceof Message ) {
@@ -852,10 +852,10 @@ abstract class HTMLFormField {
 		return is_null( $this->mLabel ) ? '' : $this->mLabel;
 	}
 
-	function getLabelHtml( $cellAttributes = array() ) {
+	function getLabelHtml( $cellAttributes = [] ) {
 		# Don't output a for= attribute for labels with no associated input.
 		# Kind of hacky here, possibly we don't want these to be <label>s at all.
-		$for = array();
+		$for = [];
 
 		if ( $this->needsLabel() ) {
 			$for['for'] = $this->mID;
@@ -875,13 +875,13 @@ abstract class HTMLFormField {
 		if ( $displayFormat === 'table' ) {
 			$html =
 				Html::rawElement( 'td',
-					array( 'class' => 'mw-label' ) + $cellAttributes,
+					[ 'class' => 'mw-label' ] + $cellAttributes,
 					Html::rawElement( 'label', $for, $labelValue ) );
 		} elseif ( $hasLabel || $this->mShowEmptyLabels ) {
 			if ( $displayFormat === 'div' && !$horizontalLabel ) {
 				$html =
 					Html::rawElement( 'div',
-						array( 'class' => 'mw-label' ) + $cellAttributes,
+						[ 'class' => 'mw-label' ] + $cellAttributes,
 						Html::rawElement( 'label', $for, $labelValue ) );
 			} else {
 				$html = Html::rawElement( 'label', $for, $labelValue );
@@ -906,7 +906,7 @@ abstract class HTMLFormField {
 	 */
 	public function getTooltipAndAccessKey() {
 		if ( empty( $this->mParams['tooltip'] ) ) {
-			return array();
+			return [];
 		}
 
 		return Linker::tooltipAndAccesskeyAttribs( $this->mParams['tooltip'] );
@@ -939,9 +939,9 @@ abstract class HTMLFormField {
 	 * @return array Attributes
 	 */
 	public function getAttributes( array $list, array $mappings = null ) {
-		static $boolAttribs = array( 'disabled', 'required', 'autofocus', 'multiple', 'readonly' );
+		static $boolAttribs = [ 'disabled', 'required', 'autofocus', 'multiple', 'readonly' ];
 
-		$ret = array();
+		$ret = [];
 		foreach ( $list as $key ) {
 			$mappedKey = $this->getMappedKey( $mappings, $key );
 
@@ -965,7 +965,7 @@ abstract class HTMLFormField {
 	 * @return array
 	 */
 	private function lookupOptionsKeys( $options ) {
-		$ret = array();
+		$ret = [];
 		foreach ( $options as $key => $value ) {
 			$key = $this->msg( $key )->plain();
 			$ret[$key] = is_array( $value )
@@ -984,7 +984,7 @@ abstract class HTMLFormField {
 	 */
 	static function forceToStringRecursive( $array ) {
 		if ( is_array( $array ) ) {
-			return array_map( array( __CLASS__, 'forceToStringRecursive' ), $array );
+			return array_map( [ __CLASS__, 'forceToStringRecursive' ], $array );
 		} else {
 			return strval( $array );
 		}
@@ -1008,7 +1008,7 @@ abstract class HTMLFormField {
 				$message = $this->msg( $this->mParams['options-message'] )->inContentLanguage()->plain();
 
 				$optgroup = false;
-				$this->mOptions = array();
+				$this->mOptions = [];
 				foreach ( explode( "\n", $message ) as $option ) {
 					$value = trim( $option );
 					if ( $value == '' ) {
@@ -1050,13 +1050,13 @@ abstract class HTMLFormField {
 			return null;
 		}
 
-		$options = array();
+		$options = [];
 
 		foreach ( $oldoptions as $text => $data ) {
-			$options[] = array(
+			$options[] = [
 				'data' => (string)$data,
 				'label' => (string)$text,
-			);
+			];
 		}
 
 		return $options;
@@ -1070,7 +1070,7 @@ abstract class HTMLFormField {
 	 * @return array Flattened input
 	 */
 	public static function flattenOptions( $options ) {
-		$flatOpts = array();
+		$flatOpts = [];
 
 		foreach ( $options as $value ) {
 			if ( is_array( $value ) ) {
@@ -1096,22 +1096,22 @@ abstract class HTMLFormField {
 		}
 
 		if ( is_array( $errors ) ) {
-			$lines = array();
+			$lines = [];
 			foreach ( $errors as $error ) {
 				if ( $error instanceof Message ) {
-					$lines[] = Html::rawElement( 'li', array(), $error->parse() );
+					$lines[] = Html::rawElement( 'li', [], $error->parse() );
 				} else {
-					$lines[] = Html::rawElement( 'li', array(), $error );
+					$lines[] = Html::rawElement( 'li', [], $error );
 				}
 			}
 
-			return Html::rawElement( 'ul', array( 'class' => 'error' ), implode( "\n", $lines ) );
+			return Html::rawElement( 'ul', [ 'class' => 'error' ], implode( "\n", $lines ) );
 		} else {
 			if ( $errors instanceof Message ) {
 				$errors = $errors->parse();
 			}
 
-			return Html::rawElement( 'span', array( 'class' => 'error' ), $errors );
+			return Html::rawElement( 'span', [ 'class' => 'error' ], $errors );
 		}
 	}
 }

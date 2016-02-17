@@ -12,81 +12,81 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	public static function dataGetParserOutput() {
-		return array(
-			array(
+		return [
+			[
 				'MediaWiki:Test.js',
 				null,
 				"hello <world>\n",
 				"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nhello &lt;world&gt;\n\n</pre>"
-			),
-			array(
+			],
+			[
 				'MediaWiki:Test.js',
 				null,
 				"hello(); // [[world]]\n",
 				"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nhello(); // [[world]]\n\n</pre>",
-				array(
-					'Links' => array(
-						array( 'World' => 0 )
-					)
-				)
-			),
+				[
+					'Links' => [
+						[ 'World' => 0 ]
+					]
+				]
+			],
 
 			// TODO: more...?
-		);
+		];
 	}
 
 	// XXX: Unused function
 	public static function dataGetSection() {
-		return array(
-			array( WikitextContentTest::$sections,
+		return [
+			[ WikitextContentTest::$sections,
 				'0',
 				null
-			),
-			array( WikitextContentTest::$sections,
+			],
+			[ WikitextContentTest::$sections,
 				'2',
 				null
-			),
-			array( WikitextContentTest::$sections,
+			],
+			[ WikitextContentTest::$sections,
 				'8',
 				null
-			),
-		);
+			],
+		];
 	}
 
 	// XXX: Unused function
 	public static function dataReplaceSection() {
-		return array(
-			array( WikitextContentTest::$sections,
+		return [
+			[ WikitextContentTest::$sections,
 				'0',
 				'No more',
 				null,
 				null
-			),
-			array( WikitextContentTest::$sections,
+			],
+			[ WikitextContentTest::$sections,
 				'',
 				'No more',
 				null,
 				null
-			),
-			array( WikitextContentTest::$sections,
+			],
+			[ WikitextContentTest::$sections,
 				'2',
 				"== TEST ==\nmore fun",
 				null,
 				null
-			),
-			array( WikitextContentTest::$sections,
+			],
+			[ WikitextContentTest::$sections,
 				'8',
 				'No more',
 				null,
 				null
-			),
-			array( WikitextContentTest::$sections,
+			],
+			[ WikitextContentTest::$sections,
 				'new',
 				'No more',
 				'New',
 				null
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -101,44 +101,44 @@ class JavaScriptContentTest extends TextContentTest {
 
 	// XXX: currently, preSaveTransform is applied to scripts. this may change or become optional.
 	public static function dataPreSaveTransform() {
-		return array(
-			array( 'hello this is ~~~',
+		return [
+			[ 'hello this is ~~~',
 				"hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
-			),
-			array( 'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
+			],
+			[ 'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
 				'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
-			),
-			array( " Foo \n ",
+			],
+			[ " Foo \n ",
 				" Foo",
-			),
-		);
+			],
+		];
 	}
 
 	public static function dataPreloadTransform() {
-		return array(
-			array(
+		return [
+			[
 				'hello this is ~~~',
 				'hello this is ~~~',
-			),
-			array(
+			],
+			[
 				'hello \'\'this\'\' is <noinclude>foo</noinclude><includeonly>bar</includeonly>',
 				'hello \'\'this\'\' is <noinclude>foo</noinclude><includeonly>bar</includeonly>',
-			),
-		);
+			],
+		];
 	}
 
 	public static function dataGetRedirectTarget() {
-		return array(
-			array( '#REDIRECT [[Test]]',
+		return [
+			[ '#REDIRECT [[Test]]',
 				null,
-			),
-			array( '#REDIRECT Test',
+			],
+			[ '#REDIRECT Test',
 				null,
-			),
-			array( '* #REDIRECT [[Test]]',
+			],
+			[ '* #REDIRECT [[Test]]',
 				null,
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -162,80 +162,80 @@ class JavaScriptContentTest extends TextContentTest {
 	*/
 
 	public static function dataIsCountable() {
-		return array(
-			array( '',
+		return [
+			[ '',
 				null,
 				'any',
 				true
-			),
-			array( 'Foo',
+			],
+			[ 'Foo',
 				null,
 				'any',
 				true
-			),
-			array( 'Foo',
+			],
+			[ 'Foo',
 				null,
 				'comma',
 				false
-			),
-			array( 'Foo, bar',
+			],
+			[ 'Foo, bar',
 				null,
 				'comma',
 				false
-			),
-			array( 'Foo',
+			],
+			[ 'Foo',
 				null,
 				'link',
 				false
-			),
-			array( 'Foo [[bar]]',
+			],
+			[ 'Foo [[bar]]',
 				null,
 				'link',
 				false
-			),
-			array( 'Foo',
+			],
+			[ 'Foo',
 				true,
 				'link',
 				false
-			),
-			array( 'Foo [[bar]]',
+			],
+			[ 'Foo [[bar]]',
 				false,
 				'link',
 				false
-			),
-			array( '#REDIRECT [[bar]]',
+			],
+			[ '#REDIRECT [[bar]]',
 				true,
 				'any',
 				true
-			),
-			array( '#REDIRECT [[bar]]',
+			],
+			[ '#REDIRECT [[bar]]',
 				true,
 				'comma',
 				false
-			),
-			array( '#REDIRECT [[bar]]',
+			],
+			[ '#REDIRECT [[bar]]',
 				true,
 				'link',
 				false
-			),
-		);
+			],
+		];
 	}
 
 	public static function dataGetTextForSummary() {
-		return array(
-			array( "hello\nworld.",
+		return [
+			[ "hello\nworld.",
 				16,
 				'hello world.',
-			),
-			array( 'hello world.',
+			],
+			[ 'hello world.',
 				8,
 				'hello...',
-			),
-			array( '[[hello world]].',
+			],
+			[ '[[hello world]].',
 				8,
 				'[[hel...',
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -256,12 +256,12 @@ class JavaScriptContentTest extends TextContentTest {
 	 * @dataProvider provideUpdateRedirect
 	 */
 	public function testUpdateRedirect( $oldText, $expectedText ) {
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgServer' => '//example.org',
 			'wgScriptPath' => '/w',
 			'wgScript' => '/w/index.php',
 			'wgResourceBasePath' => '/w',
-		) );
+		] );
 		$target = Title::newFromText( "testUpdateRedirect_target" );
 
 		$content = new JavaScriptContent( $oldText );
@@ -271,11 +271,11 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	public static function provideUpdateRedirect() {
-		return array(
-			array(
+		return [
+			[
 				'#REDIRECT [[Someplace]]',
 				'#REDIRECT [[Someplace]]',
-			),
+			],
 
 			// @codingStandardsIgnoreStart Generic.Files.LineLength
 			array(
@@ -283,7 +283,7 @@ class JavaScriptContentTest extends TextContentTest {
 				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=TestUpdateRedirect_target\u0026action=raw\u0026ctype=text/javascript");'
 			)
 			// @codingStandardsIgnoreEnd
-		);
+		];
 	}
 
 	/**
@@ -305,24 +305,24 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	public static function dataEquals() {
-		return array(
-			array( new JavaScriptContent( "hallo" ), null, false ),
-			array( new JavaScriptContent( "hallo" ), new JavaScriptContent( "hallo" ), true ),
-			array( new JavaScriptContent( "hallo" ), new CssContent( "hallo" ), false ),
-			array( new JavaScriptContent( "hallo" ), new JavaScriptContent( "HALLO" ), false ),
-		);
+		return [
+			[ new JavaScriptContent( "hallo" ), null, false ],
+			[ new JavaScriptContent( "hallo" ), new JavaScriptContent( "hallo" ), true ],
+			[ new JavaScriptContent( "hallo" ), new CssContent( "hallo" ), false ],
+			[ new JavaScriptContent( "hallo" ), new JavaScriptContent( "HALLO" ), false ],
+		];
 	}
 
 	/**
 	 * @dataProvider provideGetRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $text ) {
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgServer' => '//example.org',
 			'wgScriptPath' => '/w',
 			'wgScript' => '/w/index.php',
 			'wgResourceBasePath' => '/w',
-		) );
+		] );
 		$content = new JavaScriptContent( $text );
 		$target = $content->getRedirectTarget();
 		$this->assertEquals( $title, $target ? $target->getPrefixedText() : null );

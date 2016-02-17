@@ -15,10 +15,10 @@ use MediaWiki\Widget\UserInputWidget;
  */
 class HTMLUserTextField extends HTMLTextField {
 	public function __construct( $params ) {
-		$params += array(
+		$params += [
 			'exists' => false,
 			'ipallowed' => false,
-		);
+		];
 
 		parent::__construct( $params );
 	}

@@ -36,7 +36,7 @@ class UpdateCollation extends Maintenance {
 	const BATCH_SIZE = 10000; // Number of rows to process in one batch
 	const SYNC_INTERVAL = 20; // Wait for slaves after this many batches
 
-	public $sizeHistogram = array();
+	public $sizeHistogram = [];
 
 	public function __construct() {
 		parent::__construct();
@@ -85,21 +85,21 @@ TEXT
 		// but this will raise an exception, breaking all category pages
 		$collation->getFirstLetter( 'MediaWiki' );
 
-		$options = array(
+		$options = [
 			'LIMIT' => self::BATCH_SIZE,
 			'ORDER BY' => 'cl_from, cl_to',
 			'STRAIGHT_JOIN',
-		);
+		];
 
 		if ( $force || $dryRun ) {
-			$collationConds = array();
+			$collationConds = [];
 		} else {
 			if ( $this->hasOption( 'previous-collation' ) ) {
 				$collationConds['cl_collation'] = $this->getOption( 'previous-collation' );
 			} else {
-				$collationConds = array( 0 =>
+				$collationConds = [ 0 =>
 					'cl_collation != ' . $dbw->addQuotes( $collationName )
-				);
+				];
 			}
 
 			$count = $dbw->estimateRowCount(
@@ -127,15 +127,15 @@ TEXT
 
 		$count = 0;
 		$batchCount = 0;
-		$batchConds = array();
+		$batchConds = [];
 		do {
 			$this->output( "Selecting next " . self::BATCH_SIZE . " rows..." );
 			$res = $dbw->select(
-				array( 'categorylinks', 'page' ),
-				array( 'cl_from', 'cl_to', 'cl_sortkey_prefix', 'cl_collation',
+				[ 'categorylinks', 'page' ],
+				[ 'cl_from', 'cl_to', 'cl_sortkey_prefix', 'cl_collation',
 					'cl_sortkey', 'page_namespace', 'page_title'
-				),
-				array_merge( $collationConds, $batchConds, array( 'cl_from = page_id' ) ),
+				],
+				array_merge( $collationConds, $batchConds, [ 'cl_from = page_id' ] ),
 				__METHOD__,
 				$options
 			);
@@ -178,19 +178,19 @@ TEXT
 				if ( !$dryRun ) {
 					$dbw->update(
 						'categorylinks',
-						array(
+						[
 							'cl_sortkey' => $newSortKey,
 							'cl_sortkey_prefix' => $prefix,
 							'cl_collation' => $collationName,
 							'cl_type' => $type,
 							'cl_timestamp = cl_timestamp',
-						),
-						array( 'cl_from' => $row->cl_from, 'cl_to' => $row->cl_to ),
+						],
+						[ 'cl_from' => $row->cl_from, 'cl_to' => $row->cl_to ],
 						__METHOD__
 					);
 				}
 				if ( $row ) {
-					$batchConds = array( $this->getBatchCondition( $row, $dbw ) );
+					$batchConds = [ $this->getBatchCondition( $row, $dbw ) ];
 				}
 			}
 			if ( !$dryRun ) {
@@ -223,7 +223,7 @@ TEXT
 	 * @return string
 	 */
 	function getBatchCondition( $row, $dbw ) {
-		$fields = array( 'cl_from', 'cl_to' );
+		$fields = [ 'cl_from', 'cl_to' ];
 		$first = true;
 		$cond = false;
 		$prefix = false;
@@ -259,7 +259,7 @@ TEXT
 		}
 		$numBins = 20;
 		$coarseHistogram = array_fill( 0, $numBins, 0 );
-		$coarseBoundaries = array();
+		$coarseBoundaries = [];
 		$boundary = 0;
 		for ( $i = 0; $i < $numBins - 1; $i++ ) {
 			$boundary += $maxLength / $numBins;

@@ -24,7 +24,7 @@
 global $wgAutoloadClasses;
 $testDir = __DIR__;
 
-$wgAutoloadClasses += array(
+$wgAutoloadClasses += [
 
 	# tests
 	'DbTestPreviewer' => "$testDir/testHelpers.inc",
@@ -143,4 +143,4 @@ $wgAutoloadClasses += array(
 
 	# tests/phpunit/includes/specialpage
 	'SpecialPageTestHelper' => "$testDir/phpunit/includes/specialpage/SpecialPageTestHelper.php",
-);
+];

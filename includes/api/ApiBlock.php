@@ -57,7 +57,7 @@ class ApiBlock extends ApiBase {
 					$msg['info'],
 					$msg['code'],
 					0,
-					array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) )
+					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
 				);
 			}
 		}
@@ -68,7 +68,7 @@ class ApiBlock extends ApiBase {
 		if ( $target instanceof User &&
 			( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $target->getName() ) )
 		) {
-			$this->dieUsageMsg( array( 'nosuchuser', $params['user'] ) );
+			$this->dieUsageMsg( [ 'nosuchuser', $params['user'] ] );
 		}
 
 		if ( $params['hidename'] && !$user->isAllowed( 'hideuser' ) ) {
@@ -78,14 +78,14 @@ class ApiBlock extends ApiBase {
 			$this->dieUsageMsg( 'cantblock-email' );
 		}
 
-		$data = array(
+		$data = [
 			'PreviousTarget' => $params['user'],
 			'Target' => $params['user'],
-			'Reason' => array(
+			'Reason' => [
 				$params['reason'],
 				'other',
 				$params['reason']
-			),
+			],
 			'Expiry' => $params['expiry'],
 			'HardBlock' => !$params['anononly'],
 			'CreateAccount' => $params['nocreate'],
@@ -96,7 +96,7 @@ class ApiBlock extends ApiBase {
 			'Reblock' => $params['reblock'],
 			'Watch' => $params['watchuser'],
 			'Confirm' => true,
-		);
+		];
 
 		$retval = SpecialBlock::processForm( $data, $this->getContext() );
 		if ( $retval !== true ) {
@@ -139,11 +139,11 @@ class ApiBlock extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'user' => array(
+		return [
+			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
 				ApiBase::PARAM_REQUIRED => true
-			),
+			],
 			'expiry' => 'never',
 			'reason' => '',
 			'anononly' => false,
@@ -154,7 +154,7 @@ class ApiBlock extends ApiBase {
 			'allowusertalk' => false,
 			'reblock' => false,
 			'watchuser' => false,
-		);
+		];
 	}
 
 	public function needsToken() {

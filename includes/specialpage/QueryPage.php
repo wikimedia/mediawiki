@@ -64,43 +64,43 @@ abstract class QueryPage extends SpecialPage {
 
 		if ( $qp === null ) {
 			// QueryPage subclass, Special page name
-			$qp = array(
-				array( 'AncientPagesPage', 'Ancientpages' ),
-				array( 'BrokenRedirectsPage', 'BrokenRedirects' ),
-				array( 'DeadendPagesPage', 'Deadendpages' ),
-				array( 'DoubleRedirectsPage', 'DoubleRedirects' ),
-				array( 'FileDuplicateSearchPage', 'FileDuplicateSearch' ),
-				array( 'ListDuplicatedFilesPage', 'ListDuplicatedFiles' ),
-				array( 'LinkSearchPage', 'LinkSearch' ),
-				array( 'ListredirectsPage', 'Listredirects' ),
-				array( 'LonelyPagesPage', 'Lonelypages' ),
-				array( 'LongPagesPage', 'Longpages' ),
-				array( 'MediaStatisticsPage', 'MediaStatistics' ),
-				array( 'MIMEsearchPage', 'MIMEsearch' ),
-				array( 'MostcategoriesPage', 'Mostcategories' ),
-				array( 'MostimagesPage', 'Mostimages' ),
-				array( 'MostinterwikisPage', 'Mostinterwikis' ),
-				array( 'MostlinkedCategoriesPage', 'Mostlinkedcategories' ),
-				array( 'MostlinkedTemplatesPage', 'Mostlinkedtemplates' ),
-				array( 'MostlinkedPage', 'Mostlinked' ),
-				array( 'MostrevisionsPage', 'Mostrevisions' ),
-				array( 'FewestrevisionsPage', 'Fewestrevisions' ),
-				array( 'ShortPagesPage', 'Shortpages' ),
-				array( 'UncategorizedCategoriesPage', 'Uncategorizedcategories' ),
-				array( 'UncategorizedPagesPage', 'Uncategorizedpages' ),
-				array( 'UncategorizedImagesPage', 'Uncategorizedimages' ),
-				array( 'UncategorizedTemplatesPage', 'Uncategorizedtemplates' ),
-				array( 'UnusedCategoriesPage', 'Unusedcategories' ),
-				array( 'UnusedimagesPage', 'Unusedimages' ),
-				array( 'WantedCategoriesPage', 'Wantedcategories' ),
-				array( 'WantedFilesPage', 'Wantedfiles' ),
-				array( 'WantedPagesPage', 'Wantedpages' ),
-				array( 'WantedTemplatesPage', 'Wantedtemplates' ),
-				array( 'UnwatchedpagesPage', 'Unwatchedpages' ),
-				array( 'UnusedtemplatesPage', 'Unusedtemplates' ),
-				array( 'WithoutInterwikiPage', 'Withoutinterwiki' ),
-			);
-			Hooks::run( 'wgQueryPages', array( &$qp ) );
+			$qp = [
+				[ 'AncientPagesPage', 'Ancientpages' ],
+				[ 'BrokenRedirectsPage', 'BrokenRedirects' ],
+				[ 'DeadendPagesPage', 'Deadendpages' ],
+				[ 'DoubleRedirectsPage', 'DoubleRedirects' ],
+				[ 'FileDuplicateSearchPage', 'FileDuplicateSearch' ],
+				[ 'ListDuplicatedFilesPage', 'ListDuplicatedFiles' ],
+				[ 'LinkSearchPage', 'LinkSearch' ],
+				[ 'ListredirectsPage', 'Listredirects' ],
+				[ 'LonelyPagesPage', 'Lonelypages' ],
+				[ 'LongPagesPage', 'Longpages' ],
+				[ 'MediaStatisticsPage', 'MediaStatistics' ],
+				[ 'MIMEsearchPage', 'MIMEsearch' ],
+				[ 'MostcategoriesPage', 'Mostcategories' ],
+				[ 'MostimagesPage', 'Mostimages' ],
+				[ 'MostinterwikisPage', 'Mostinterwikis' ],
+				[ 'MostlinkedCategoriesPage', 'Mostlinkedcategories' ],
+				[ 'MostlinkedTemplatesPage', 'Mostlinkedtemplates' ],
+				[ 'MostlinkedPage', 'Mostlinked' ],
+				[ 'MostrevisionsPage', 'Mostrevisions' ],
+				[ 'FewestrevisionsPage', 'Fewestrevisions' ],
+				[ 'ShortPagesPage', 'Shortpages' ],
+				[ 'UncategorizedCategoriesPage', 'Uncategorizedcategories' ],
+				[ 'UncategorizedPagesPage', 'Uncategorizedpages' ],
+				[ 'UncategorizedImagesPage', 'Uncategorizedimages' ],
+				[ 'UncategorizedTemplatesPage', 'Uncategorizedtemplates' ],
+				[ 'UnusedCategoriesPage', 'Unusedcategories' ],
+				[ 'UnusedimagesPage', 'Unusedimages' ],
+				[ 'WantedCategoriesPage', 'Wantedcategories' ],
+				[ 'WantedFilesPage', 'Wantedfiles' ],
+				[ 'WantedPagesPage', 'Wantedpages' ],
+				[ 'WantedTemplatesPage', 'Wantedtemplates' ],
+				[ 'UnwatchedpagesPage', 'Unwatchedpages' ],
+				[ 'UnusedtemplatesPage', 'Unusedtemplates' ],
+				[ 'WithoutInterwikiPage', 'Withoutinterwiki' ],
+			];
+			Hooks::run( 'wgQueryPages', [ &$qp ] );
 		}
 
 		return $qp;
@@ -165,7 +165,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @since 1.18
 	 */
 	function getOrderFields() {
-		return array( 'value' );
+		return [ 'value' ];
 	}
 
 	/**
@@ -271,7 +271,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return array
 	 */
 	function linkParameters() {
-		return array();
+		return [];
 	}
 
 	/**
@@ -315,7 +315,7 @@ abstract class QueryPage extends SpecialPage {
 			if ( $res ) {
 				$num = $res->numRows();
 				# Fetch results
-				$vals = array();
+				$vals = [];
 				foreach ( $res as $row ) {
 					if ( isset( $row->value ) ) {
 						if ( $this->usesTimestamps() ) {
@@ -328,12 +328,12 @@ abstract class QueryPage extends SpecialPage {
 						$value = 0;
 					}
 
-					$vals[] = array(
+					$vals[] = [
 						'qc_type' => $this->getName(),
 						'qc_namespace' => $row->namespace,
 						'qc_title' => $row->title,
 						'qc_value' => $value
-					);
+					];
 				}
 
 				$dbw->doAtomicSection(
@@ -341,7 +341,7 @@ abstract class QueryPage extends SpecialPage {
 					function ( IDatabase $dbw, $fname ) use ( $vals ) {
 						# Clear out any old cached data
 						$dbw->delete( 'querycache',
-							array( 'qc_type' => $this->getName() ),
+							[ 'qc_type' => $this->getName() ],
 							$fname
 						);
 						# Save results into the querycache table on the master
@@ -350,12 +350,12 @@ abstract class QueryPage extends SpecialPage {
 						}
 						# Update the querycache_info record for the page
 						$dbw->delete( 'querycache_info',
-							array( 'qci_type' => $this->getName() ),
+							[ 'qci_type' => $this->getName() ],
 							$fname
 						);
 						$dbw->insert( 'querycache_info',
-							array( 'qci_type' => $this->getName(),
-								'qci_timestamp' => $dbw->timestamp() ),
+							[ 'qci_type' => $this->getName(),
+								'qci_timestamp' => $dbw->timestamp() ],
 							$fname
 						);
 					}
@@ -376,7 +376,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return IDatabase
 	 */
 	function getRecacheDB() {
-		return wfGetDB( DB_SLAVE, array( $this->getName(), 'QueryPage::recache', 'vslow' ) );
+		return wfGetDB( DB_SLAVE, [ $this->getName(), 'QueryPage::recache', 'vslow' ] );
 	}
 
 	/**
@@ -399,11 +399,11 @@ abstract class QueryPage extends SpecialPage {
 		}
 
 		if ( is_array( $query ) ) {
-			$tables = isset( $query['tables'] ) ? (array)$query['tables'] : array();
-			$fields = isset( $query['fields'] ) ? (array)$query['fields'] : array();
-			$conds = isset( $query['conds'] ) ? (array)$query['conds'] : array();
-			$options = isset( $query['options'] ) ? (array)$query['options'] : array();
-			$join_conds = isset( $query['join_conds'] ) ? (array)$query['join_conds'] : array();
+			$tables = isset( $query['tables'] ) ? (array)$query['tables'] : [];
+			$fields = isset( $query['fields'] ) ? (array)$query['fields'] : [];
+			$conds = isset( $query['conds'] ) ? (array)$query['conds'] : [];
+			$options = isset( $query['options'] ) ? (array)$query['options'] : [];
+			$join_conds = isset( $query['join_conds'] ) ? (array)$query['join_conds'] : [];
 
 			if ( count( $order ) ) {
 				$options['ORDER BY'] = $order;
@@ -454,7 +454,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	public function fetchFromCache( $limit, $offset = false ) {
 		$dbr = wfGetDB( DB_SLAVE );
-		$options = array();
+		$options = [];
 		if ( $limit !== false ) {
 			$options['LIMIT'] = intval( $limit );
 		}
@@ -466,11 +466,11 @@ abstract class QueryPage extends SpecialPage {
 		} else {
 			$options['ORDER BY'] = 'qc_value ASC';
 		}
-		return $dbr->select( 'querycache', array( 'qc_type',
+		return $dbr->select( 'querycache', [ 'qc_type',
 				'namespace' => 'qc_namespace',
 				'title' => 'qc_title',
-				'value' => 'qc_value' ),
-				array( 'qc_type' => $this->getName() ),
+				'value' => 'qc_value' ],
+				[ 'qc_type' => $this->getName() ],
 				__METHOD__, $options
 		);
 	}
@@ -480,7 +480,7 @@ abstract class QueryPage extends SpecialPage {
 			$dbr = wfGetDB( DB_SLAVE );
 			$fname = get_class( $this ) . '::getCachedTimestamp';
 			$this->cachedTimestamp = $dbr->selectField( 'querycache_info', 'qci_timestamp',
-				array( 'qci_type' => $this->getName() ), $fname );
+				[ 'qci_type' => $this->getName() ], $fname );
 		}
 		return $this->cachedTimestamp;
 	}
@@ -505,7 +505,7 @@ abstract class QueryPage extends SpecialPage {
 			// Can't let $offset + $limit > $maxResults
 			$limit = min( $limit, $maxResults - $offset );
 		}
-		return array( $limit, $offset );
+		return [ $limit, $offset ];
 	}
 
 	/**
@@ -593,7 +593,7 @@ abstract class QueryPage extends SpecialPage {
 		$dbr = $this->getRecacheDB();
 		$this->preprocessResults( $dbr, $res );
 
-		$out->addHTML( Xml::openElement( 'div', array( 'class' => 'mw-spcontent' ) ) );
+		$out->addHTML( Xml::openElement( 'div', [ 'class' => 'mw-spcontent' ] ) );
 
 		# Top header and navigation
 		if ( $this->shownavigation ) {
@@ -650,7 +650,7 @@ abstract class QueryPage extends SpecialPage {
 		global $wgContLang;
 
 		if ( $num > 0 ) {
-			$html = array();
+			$html = [];
 			if ( !$this->listoutput ) {
 				$html[] = $this->openList( $offset );
 			}

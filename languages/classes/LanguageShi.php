@@ -36,40 +36,40 @@
 class ShiConverter extends LanguageConverter {
 	protected $mDoContentConvert;
 
-	public $mToLatin = array(
+	public $mToLatin = [
 		'ⴰ' => 'a', 'ⴱ' => 'b', 'ⴳ' => 'g', 'ⴷ' => 'd', 'ⴹ' => 'ḍ', 'ⴻ' => 'e',
 		'ⴼ' => 'f', 'ⴽ' => 'k', 'ⵀ' => 'h', 'ⵃ' => 'ḥ', 'ⵄ' => 'ε', 'ⵅ' => 'x',
 		'ⵇ' => 'q', 'ⵉ' => 'i', 'ⵊ' => 'j', 'ⵍ' => 'l', 'ⵎ' => 'm', 'ⵏ' => 'n',
 		'ⵓ' => 'u', 'ⵔ' => 'r', 'ⵕ' => 'ṛ', 'ⵖ' => 'γ', 'ⵙ' => 's', 'ⵚ' => 'ṣ',
 		'ⵛ' => 'š', 'ⵜ' => 't', 'ⵟ' => 'ṭ', 'ⵡ' => 'w', 'ⵢ' => 'y', 'ⵣ' => 'z',
 		'ⵥ' => 'ẓ', 'ⵯ' => 'ʷ', 'ⵖ' => 'ɣ', 'ⵠ' => 'v', 'ⵒ' => 'p',
-	);
+	];
 
-	public $mUpperToLowerCaseLatin = array(
+	public $mUpperToLowerCaseLatin = [
 		'A' => 'a', 'B' => 'b', 'C' => 'c', 'D' => 'd', 'E' => 'e',
 		'F' => 'f', 'G' => 'g', 'H' => 'h', 'I' => 'i', 'J' => 'j',
 		'K' => 'k', 'L' => 'l', 'M' => 'm', 'N' => 'n', 'O' => 'o',
 		'P' => 'p', 'Q' => 'q', 'R' => 'r', 'S' => 's', 'T' => 't',
 		'U' => 'u', 'V' => 'v', 'W' => 'w', 'X' => 'x', 'Y' => 'y',
 		'Z' => 'z', 'Ɣ' => 'ɣ',
-	);
+	];
 
-	public $mToTifinagh = array(
+	public $mToTifinagh = [
 		'a' => 'ⴰ', 'b' => 'ⴱ', 'g' => 'ⴳ', 'd' => 'ⴷ', 'ḍ' => 'ⴹ', 'e' => 'ⴻ',
 		'f' => 'ⴼ', 'k' => 'ⴽ', 'h' => 'ⵀ', 'ḥ' => 'ⵃ', 'ε' => 'ⵄ', 'x' => 'ⵅ',
 		'q' => 'ⵇ', 'i' => 'ⵉ', 'j' => 'ⵊ', 'l' => 'ⵍ', 'm' => 'ⵎ', 'n' => 'ⵏ',
 		'u' => 'ⵓ', 'r' => 'ⵔ', 'ṛ' => 'ⵕ', 'γ' => 'ⵖ', 's' => 'ⵙ', 'ṣ' => 'ⵚ',
 		'š' => 'ⵛ', 't' => 'ⵜ', 'ṭ' => 'ⵟ', 'w' => 'ⵡ', 'y' => 'ⵢ', 'z' => 'ⵣ',
 		'ẓ' => 'ⵥ', 'ʷ' => 'ⵯ', 'ɣ' => 'ⵖ', 'v' => 'ⵠ', 'p' => 'ⵒ',
-	);
+	];
 
 	function loadDefaultTables() {
-		$this->mTables = array(
+		$this->mTables = [
 			'lowercase' => new ReplacementArray( $this->mUpperToLowerCaseLatin ),
 			'shi-tfng' => new ReplacementArray( $this->mToTifinagh ),
 			'shi-latn' => new ReplacementArray( $this->mToLatin ),
 			'shi' => new ReplacementArray()
-		);
+		];
 	}
 
 	/**
@@ -82,12 +82,12 @@ class ShiConverter extends LanguageConverter {
 	 * @param array $flags
 	 * @return array
 	 */
-	function parseManualRule( $rule, $flags = array() ) {
+	function parseManualRule( $rule, $flags = [] ) {
 		if ( in_array( 'T', $flags ) ) {
 			return parent::parseManualRule( $rule, $flags );
 		}
 
-		$carray = array();
+		$carray = [];
 		// otherwise ignore all formatting
 		foreach ( $this->mVariants as $v ) {
 			$carray[$v] = $rule;
@@ -168,14 +168,14 @@ class LanguageShi extends Language {
 	function __construct() {
 		parent::__construct();
 
-		$variants = array( 'shi', 'shi-tfng', 'shi-latn' );
-		$variantfallbacks = array(
+		$variants = [ 'shi', 'shi-tfng', 'shi-latn' ];
+		$variantfallbacks = [
 			'shi' => 'shi-tfng',
 			'shi-tfng' => 'shi',
 			'shi-latn' => 'shi',
-		);
+		];
 
-		$flags = array();
+		$flags = [];
 		$this->mConverter = new ShiConverter( $this, 'shi', $variants, $variantfallbacks, $flags );
 	}
 }

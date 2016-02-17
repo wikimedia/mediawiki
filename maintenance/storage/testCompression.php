@@ -21,7 +21,7 @@
  * @ingroup Maintenance ExternalStorage
  */
 
-$optionsWithArgs = array( 'start', 'limit', 'type' );
+$optionsWithArgs = [ 'start', 'limit', 'type' ];
 require __DIR__ . '/../commandLine.inc';
 
 if ( !isset( $args[0] ) ) {
@@ -48,20 +48,20 @@ $type = isset( $options['type'] ) ? $options['type'] : 'ConcatenatedGzipHistoryB
 
 $dbr = $this->getDB( DB_SLAVE );
 $res = $dbr->select(
-	array( 'page', 'revision', 'text' ),
+	[ 'page', 'revision', 'text' ],
 	'*',
-	array(
+	[
 		'page_namespace' => $title->getNamespace(),
 		'page_title' => $title->getDBkey(),
 		'page_id=rev_page',
 		'rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $start ) ),
 		'rev_text_id=old_id'
-	), __FILE__, array( 'LIMIT' => $limit )
+	], __FILE__, [ 'LIMIT' => $limit ]
 );
 
 $blob = new $type;
-$hashes = array();
-$keys = array();
+$hashes = [];
+$keys = [];
 $uncompressedSize = 0;
 $t = -microtime( true );
 foreach ( $res as $row ) {

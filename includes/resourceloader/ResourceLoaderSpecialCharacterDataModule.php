@@ -27,7 +27,7 @@
  */
 class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 	private $path = "resources/src/mediawiki.language/specialcharacters.json";
-	protected $targets = array( 'desktop', 'mobile' );
+	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
 	 * Get all the dynamic data.
@@ -46,9 +46,9 @@ class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 	public function getScript( ResourceLoaderContext $context ) {
 		return Xml::encodeJsCall(
 			'mw.language.setSpecialCharacters',
-			array(
+			[
 				$this->getData()
-			),
+			],
 			ResourceLoader::inDebugMode()
 		);
 	}
@@ -65,14 +65,14 @@ class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getDependencies( ResourceLoaderContext $context = null ) {
-		return array( 'mediawiki.language' );
+		return [ 'mediawiki.language' ];
 	}
 
 	/**
 	 * @return array
 	 */
 	public function getMessages() {
-		return array(
+		return [
 			'special-characters-group-latin',
 			'special-characters-group-latinextended',
 			'special-characters-group-ipa',
@@ -95,6 +95,6 @@ class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 			'special-characters-title-endash',
 			'special-characters-title-emdash',
 			'special-characters-title-minus'
-		);
+		];
 	}
 }

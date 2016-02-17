@@ -20,12 +20,12 @@ use MediaWiki\Widget\TitleInputWidget;
  */
 class HTMLTitleTextField extends HTMLTextField {
 	public function __construct( $params ) {
-		$params += array(
+		$params += [
 			'namespace' => false,
 			'relative' => false,
 			'creatable' => false,
 			'exists' => false,
-		);
+		];
 
 		parent::__construct( $params );
 	}

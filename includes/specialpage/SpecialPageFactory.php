@@ -47,7 +47,7 @@ class SpecialPageFactory {
 	/**
 	 * List of special page names to the subclass of SpecialPage which handles them.
 	 */
-	private static $coreList = array(
+	private static $coreList = [
 		// Maintenance Reports
 		'BrokenRedirects' => 'BrokenRedirectsPage',
 		'Deadendpages' => 'DeadendPagesPage',
@@ -178,7 +178,7 @@ class SpecialPageFactory {
 		'RunJobs' => 'SpecialRunJobs',
 		'Specialpages' => 'SpecialSpecialpages',
 		'Userlogout' => 'SpecialUserlogout',
-	);
+	];
 
 	private static $list;
 	private static $aliases;
@@ -259,7 +259,7 @@ class SpecialPageFactory {
 
 			// This hook can be used to disable unwanted core special pages
 			// or conditionally register special pages.
-			Hooks::run( 'SpecialPage_initList', array( &self::$list ) );
+			Hooks::run( 'SpecialPage_initList', [ &self::$list ] );
 
 		}
 
@@ -278,8 +278,8 @@ class SpecialPageFactory {
 			$aliases = $wgContLang->getSpecialPageAliases();
 			$pageList = self::getPageList();
 
-			self::$aliases = array();
-			$keepAlias = array();
+			self::$aliases = [];
+			$keepAlias = [];
 
 			// Force every canonical name to be an alias for itself.
 			foreach ( $pageList as $name => $stuff ) {
@@ -339,7 +339,7 @@ class SpecialPageFactory {
 		if ( isset( $aliases[$caseFoldedAlias] ) ) {
 			$name = $aliases[$caseFoldedAlias];
 		} else {
-			return array( null, null );
+			return [ null, null ];
 		}
 
 		if ( !isset( $bits[1] ) ) { // bug 2087
@@ -348,7 +348,7 @@ class SpecialPageFactory {
 			$par = $bits[1];
 		}
 
-		return array( $name, $par );
+		return [ $name, $par ];
 	}
 
 	/**
@@ -389,11 +389,11 @@ class SpecialPageFactory {
 				// @deprecated, officially since 1.18, unofficially since forever
 				wfDeprecated( "Array syntax for \$wgSpecialPages is deprecated ($className), " .
 					"define a subclass of SpecialPage instead.", '1.18' );
-				$page = ObjectFactory::getObjectFromSpec( array(
+				$page = ObjectFactory::getObjectFromSpec( [
 					'class' => $className,
 					'args' => $rec,
 					'closure_expansion' => false,
-				) );
+				] );
 			} elseif ( $rec instanceof SpecialPage ) {
 				$page = $rec; // XXX: we should deep clone here
 			} else {
@@ -423,7 +423,7 @@ class SpecialPageFactory {
 	 * @return array ( string => Specialpage )
 	 */
 	public static function getUsablePages( User $user = null ) {
-		$pages = array();
+		$pages = [];
 		if ( $user === null ) {
 			global $wgUser;
 			$user = $wgUser;
@@ -449,7 +449,7 @@ class SpecialPageFactory {
 	 * @return array ( string => Specialpage )
 	 */
 	public static function getRegularPages() {
-		$pages = array();
+		$pages = [];
 		foreach ( self::getPageList() as $name => $rec ) {
 			$page = self::getPage( $name );
 			if ( $page->isListed() && !$page->isRestricted() ) {
@@ -468,7 +468,7 @@ class SpecialPageFactory {
 	 * @return array ( string => Specialpage )
 	 */
 	public static function getRestrictedPages( User $user = null ) {
-		$pages = array();
+		$pages = [];
 		if ( $user === null ) {
 			global $wgUser;
 			$user = $wgUser;

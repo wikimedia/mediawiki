@@ -75,7 +75,7 @@ class StringUtils {
 		if ( $regexes === null ) {
 			$cont = "[\x80-\xbf]";
 			$after = "(?!$cont)"; // "(?:[^\x80-\xbf]|$)" would work here
-			$regexes = array(
+			$regexes = [
 				// Continuation byte at the start
 				"/^$cont/",
 
@@ -97,7 +97,7 @@ class StringUtils {
 				"/\xf0(?![\x90-\xbf]$cont{2}$after)/",
 				"/[\xf1-\xf3](?!$cont{3}$after)/S",
 				"/\xf4(?![\x80-\x8f]$cont{2}$after)/",
-			);
+			];
 		}
 
 		foreach ( $regexes as $regex ) {
@@ -176,7 +176,7 @@ class StringUtils {
 		$encEnd = preg_quote( $endDelim, '!' );
 		$strcmp = strpos( $flags, 'i' ) === false ? 'strcmp' : 'strcasecmp';
 		$endLength = strlen( $endDelim );
-		$m = array();
+		$m = [];
 
 		while ( $inputPos < strlen( $subject ) &&
 			preg_match( "!($encStart)|($encEnd)!S$flags", $subject, $m, PREG_OFFSET_CAPTURE, $inputPos )
@@ -219,10 +219,10 @@ class StringUtils {
 			} elseif ( $tokenType == 'end' ) {
 				if ( $foundStart ) {
 					# Found match
-					$output .= call_user_func( $callback, array(
+					$output .= call_user_func( $callback, [
 						substr( $subject, $outputPos, $tokenOffset + $tokenLength - $outputPos ),
 						substr( $subject, $contentPos, $tokenOffset - $contentPos )
-					) );
+					] );
 					$foundStart = false;
 				} else {
 					# Non-matching end, write it out

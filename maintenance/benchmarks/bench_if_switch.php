@@ -38,10 +38,10 @@ class BenchIfSwitch extends Benchmarker {
 	}
 
 	public function execute() {
-		$this->bench( array(
-			array( 'function' => array( $this, 'doElseIf' ) ),
-			array( 'function' => array( $this, 'doSwitch' ) ),
-		) );
+		$this->bench( [
+			[ 'function' => [ $this, 'doElseIf' ] ],
+			[ 'function' => [ $this, 'doSwitch' ] ],
+		] );
 		print $this->getFormattedResults();
 	}
 

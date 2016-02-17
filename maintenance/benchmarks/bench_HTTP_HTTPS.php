@@ -38,15 +38,15 @@ class BenchHttpHttps extends Benchmarker {
 	}
 
 	public function execute() {
-		$this->bench( array(
-			array( 'function' => array( $this, 'getHTTP' ) ),
-			array( 'function' => array( $this, 'getHTTPS' ) ),
-		) );
+		$this->bench( [
+			[ 'function' => [ $this, 'getHTTP' ] ],
+			[ 'function' => [ $this, 'getHTTPS' ] ],
+		] );
 		print $this->getFormattedResults();
 	}
 
 	static function doRequest( $proto ) {
-		Http::get( "$proto://localhost/", array(), __METHOD__ );
+		Http::get( "$proto://localhost/", [], __METHOD__ );
 	}
 
 	// bench function 1

@@ -11,10 +11,10 @@ class UploadFromUrlTest extends ApiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgEnableUploads' => true,
 			'wgAllowCopyUploads' => true,
-		) );
+		] );
 
 		if ( wfLocalFile( 'UploadFromUrlTest.png' )->exists() ) {
 			$this->deleteFile( 'UploadFromUrlTest.png' );
@@ -30,10 +30,10 @@ class UploadFromUrlTest extends ApiTestCase {
 		$module = new ApiMain( $req, true );
 		$module->execute();
 
-		return array(
-			$module->getResult()->getResultData( null, array( 'Strip' => 'all' ) ),
+		return [
+			$module->getResult()->getResultData( null, [ 'Strip' => 'all' ] ),
 			$req
-		);
+		];
 	}
 
 	/**
@@ -55,9 +55,9 @@ class UploadFromUrlTest extends ApiTestCase {
 		$exception = false;
 
 		try {
-			$this->doApiRequest( array(
+			$this->doApiRequest( [
 				'action' => 'upload',
-			) );
+			] );
 		} catch ( UsageException $e ) {
 			$exception = true;
 			$this->assertEquals( "The token parameter must be set", $e->getMessage() );
@@ -66,10 +66,10 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$exception = false;
 		try {
-			$this->doApiRequest( array(
+			$this->doApiRequest( [
 				'action' => 'upload',
 				'token' => $token,
-			), $data );
+			], $data );
 		} catch ( UsageException $e ) {
 			$exception = true;
 			$this->assertEquals( "One of the parameters sessionkey, file, url is required",
@@ -79,11 +79,11 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$exception = false;
 		try {
-			$this->doApiRequest( array(
+			$this->doApiRequest( [
 				'action' => 'upload',
 				'url' => 'http://www.example.com/test.png',
 				'token' => $token,
-			), $data );
+			], $data );
 		} catch ( UsageException $e ) {
 			$exception = true;
 			$this->assertEquals( "The filename parameter must be set", $e->getMessage() );
@@ -93,12 +93,12 @@ class UploadFromUrlTest extends ApiTestCase {
 		$this->user->removeGroup( 'sysop' );
 		$exception = false;
 		try {
-			$this->doApiRequest( array(
+			$this->doApiRequest( [
 				'action' => 'upload',
 				'url' => 'http://www.example.com/test.png',
 				'filename' => 'UploadFromUrlTest.png',
 				'token' => $token,
-			), $data );
+			], $data );
 		} catch ( UsageException $e ) {
 			$exception = true;
 			$this->assertEquals( "Permission denied", $e->getMessage() );
@@ -116,13 +116,13 @@ class UploadFromUrlTest extends ApiTestCase {
 		$this->assertFalse( $job, 'Starting with an empty jobqueue' );
 
 		$this->user->addGroup( 'users' );
-		$data = $this->doApiRequest( array(
+		$data = $this->doApiRequest( [
 			'action' => 'upload',
 			'filename' => 'UploadFromUrlTest.png',
 			'url' => 'http://upload.wikimedia.org/wikipedia/mediawiki/b/bc/Wiki.png',
 			'ignorewarnings' => true,
 			'token' => $token,
-		), $data );
+		], $data );
 
 		$job = JobQueueGroup::singleton()->pop();
 		$this->assertFalse( $job );
@@ -138,7 +138,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		$this->assertTrue( $t->exists(), "File '$name' exists" );
 
 		if ( $t->exists() ) {
-			$file = wfFindFile( $name, array( 'ignoreRedirect' => true ) );
+			$file = wfFindFile( $name, [ 'ignoreRedirect' => true ] );
 			$empty = "";
 			FileDeleteForm::doDelete( $t, $file, $empty, "none", true );
 			$page = WikiPage::factory( $t );

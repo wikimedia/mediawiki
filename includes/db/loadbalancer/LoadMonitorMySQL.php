@@ -46,7 +46,7 @@ class LoadMonitorMySQL implements LoadMonitor {
 	public function getLagTimes( $serverIndexes, $wiki ) {
 		if ( count( $serverIndexes ) == 1 && reset( $serverIndexes ) == 0 ) {
 			# Single server only, just return zero without caching
-			return array( 0 => 0 );
+			return [ 0 => 0 ];
 		}
 
 		$key = $this->getLagTimeCacheKey();
@@ -86,7 +86,7 @@ class LoadMonitorMySQL implements LoadMonitor {
 			return $staleValue['lagTimes'];
 		}
 
-		$lagTimes = array();
+		$lagTimes = [];
 		foreach ( $serverIndexes as $i ) {
 			if ( $i == $this->parent->getWriterIndex() ) {
 				$lagTimes[$i] = 0; // master always has no lag
@@ -124,7 +124,7 @@ class LoadMonitorMySQL implements LoadMonitor {
 		}
 
 		# Add a timestamp key so we know when it was cached
-		$value = array( 'lagTimes' => $lagTimes, 'timestamp' => microtime( true ) );
+		$value = [ 'lagTimes' => $lagTimes, 'timestamp' => microtime( true ) ];
 		$this->mainCache->set( $key, $value, $staleTTL );
 		$this->srvCache->set( $key, $value, $staleTTL );
 		wfDebugLog( 'replication', __METHOD__ . ": re-calculated lag times ($key)" );

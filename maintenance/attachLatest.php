@@ -44,12 +44,12 @@ class AttachLatest extends Maintenance {
 	public function execute() {
 		$this->output( "Looking for pages with page_latest set to 0...\n" );
 		$dbw = $this->getDB( DB_MASTER );
-		$conds = array( 'page_latest' => 0 );
+		$conds = [ 'page_latest' => 0 ];
 		if ( $this->hasOption( 'regenerate-all' ) ) {
 			$conds = '';
 		}
 		$result = $dbw->select( 'page',
-			array( 'page_id', 'page_namespace', 'page_title' ),
+			[ 'page_id', 'page_namespace', 'page_title' ],
 			$conds,
 			__METHOD__ );
 
@@ -60,7 +60,7 @@ class AttachLatest extends Maintenance {
 			$name = $title->getPrefixedText();
 			$latestTime = $dbw->selectField( 'revision',
 				'MAX(rev_timestamp)',
-				array( 'rev_page' => $pageId ),
+				[ 'rev_page' => $pageId ],
 				__METHOD__ );
 			if ( !$latestTime ) {
 				$this->output( wfWikiID() . " $pageId [[$name]] can't find latest rev time?!\n" );

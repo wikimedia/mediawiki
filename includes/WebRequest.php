@@ -33,7 +33,7 @@ use MediaWiki\Session\SessionManager;
  * @ingroup HTTP
  */
 class WebRequest {
-	protected $data, $headers = array();
+	protected $data, $headers = [];
 
 	/**
 	 * Flag to make WebRequest::getHeader return an array of values.
@@ -101,7 +101,7 @@ class WebRequest {
 		// PATH_INFO is mangled due to http://bugs.php.net/bug.php?id=31892
 		// And also by Apache 2.x, double slashes are converted to single slashes.
 		// So we will use REQUEST_URI if possible.
-		$matches = array();
+		$matches = [];
 		if ( !empty( $_SERVER['REQUEST_URI'] ) ) {
 			// Slurp out the path portion to examine...
 			$url = $_SERVER['REQUEST_URI'];
@@ -142,18 +142,18 @@ class WebRequest {
 
 				global $wgActionPaths;
 				if ( $wgActionPaths ) {
-					$router->add( $wgActionPaths, array( 'action' => '$key' ) );
+					$router->add( $wgActionPaths, [ 'action' => '$key' ] );
 				}
 
 				global $wgVariantArticlePath, $wgContLang;
 				if ( $wgVariantArticlePath ) {
 					$router->add( $wgVariantArticlePath,
-						array( 'variant' => '$2' ),
-						array( '$2' => $wgContLang->getVariants() )
+						[ 'variant' => '$2' ],
+						[ '$2' => $wgContLang->getVariants() ]
 					);
 				}
 
-				Hooks::run( 'WebRequestPathInfoRouter', array( $router ) );
+				Hooks::run( 'WebRequestPathInfoRouter', [ $router ] );
 
 				$matches = $router->parse( $path );
 			}
@@ -185,7 +185,7 @@ class WebRequest {
 		$proto = self::detectProtocol();
 		$stdPort = $proto === 'https' ? 443 : 80;
 
-		$varNames = array( 'HTTP_HOST', 'SERVER_NAME', 'HOSTNAME', 'SERVER_ADDR' );
+		$varNames = [ 'HTTP_HOST', 'SERVER_NAME', 'HOSTNAME', 'SERVER_ADDR' ];
 		$host = 'localhost';
 		$port = $stdPort;
 		foreach ( $varNames as $varName ) {
@@ -294,7 +294,7 @@ class WebRequest {
 			if ( substr( $path, 0, $baseLen ) == $base ) {
 				$raw = substr( $path, $baseLen );
 				if ( $raw !== '' ) {
-					$matches = array( 'title' => rawurldecode( $raw ) );
+					$matches = [ 'title' => rawurldecode( $raw ) ];
 					if ( $key ) {
 						$matches[$key] = $keyValue;
 					}
@@ -302,7 +302,7 @@ class WebRequest {
 				}
 			}
 		}
-		return array();
+		return [];
 	}
 
 	/**
@@ -556,7 +556,7 @@ class WebRequest {
 			$names = array_keys( $this->data );
 		}
 
-		$retVal = array();
+		$retVal = [];
 		foreach ( $names as $name ) {
 			$value = $this->getGPCVal( $this->data, $name, null );
 			if ( !is_null( $value ) ) {
@@ -572,7 +572,7 @@ class WebRequest {
 	 * @param array $exclude
 	 * @return array
 	 */
-	public function getValueNames( $exclude = array() ) {
+	public function getValueNames( $exclude = [] ) {
 		return array_diff( array_keys( $this->getValues() ), $exclude );
 	}
 
@@ -772,7 +772,7 @@ class WebRequest {
 	 * @return string
 	 */
 	public function appendQueryValue( $key, $value ) {
-		return $this->appendQueryArray( array( $key => $value ) );
+		return $this->appendQueryArray( [ $key => $value ] );
 	}
 
 	/**
@@ -820,7 +820,7 @@ class WebRequest {
 			$offset = 0;
 		}
 
-		return array( $limit, $offset );
+		return [ $limit, $offset ];
 	}
 
 	/**
@@ -978,7 +978,7 @@ class WebRequest {
 	 * @throws HttpError
 	 * @return bool
 	 */
-	public function checkUrlExtension( $extWhitelist = array() ) {
+	public function checkUrlExtension( $extWhitelist = [] ) {
 		$extWhitelist[] = 'php';
 		if ( IEUrlExtension::areServerVarsBad( $_SERVER, $extWhitelist ) ) {
 			if ( !$this->wasPosted() ) {
@@ -1042,7 +1042,7 @@ HTML;
 		// http://www.thefutureoftheweb.com/blog/use-accept-language-header
 		$acceptLang = $this->getHeader( 'Accept-Language' );
 		if ( !$acceptLang ) {
-			return array();
+			return [];
 		}
 
 		// Return the language codes in lower case
@@ -1057,7 +1057,7 @@ HTML;
 		);
 
 		if ( !count( $lang_parse[1] ) ) {
-			return array();
+			return [];
 		}
 
 		$langcodes = $lang_parse[1];
@@ -1169,7 +1169,7 @@ HTML;
 		}
 
 		# Allow extensions to improve our guess
-		Hooks::run( 'GetIP', array( &$ip ) );
+		Hooks::run( 'GetIP', [ &$ip ] );
 
 		if ( !$ip ) {
 			throw new MWException( "Unable to determine IP." );

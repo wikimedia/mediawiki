@@ -53,7 +53,7 @@ class ApiCreateAccount extends ApiBase {
 				'You cannot create a new account because you are blocked',
 				'blocked',
 				0,
-				array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $this->getUser()->getBlock() ) )
+				[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $this->getUser()->getBlock() ) ]
 			);
 		}
 
@@ -73,7 +73,7 @@ class ApiCreateAccount extends ApiBase {
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setRequest( new DerivativeRequest(
 			$this->getContext()->getRequest(),
-			array(
+			[
 				'type' => 'signup',
 				'uselang' => $params['language'],
 				'wpName' => $params['name'],
@@ -85,20 +85,20 @@ class ApiCreateAccount extends ApiBase {
 				'wpCreateaccountToken' => $params['token'],
 				'wpCreateaccount' => $params['mailpassword'] ? null : '1',
 				'wpCreateaccountMail' => $params['mailpassword'] ? '1' : null
-			)
+			]
 		) );
 
 		$loginForm = new LoginForm();
 		$loginForm->setContext( $context );
-		Hooks::run( 'AddNewAccountApiForm', array( $this, $loginForm ) );
+		Hooks::run( 'AddNewAccountApiForm', [ $this, $loginForm ] );
 		$loginForm->load();
 
 		$status = $loginForm->addNewAccountInternal();
-		LoggerFactory::getInstance( 'authmanager' )->info( 'Account creation attempt via API', array(
+		LoggerFactory::getInstance( 'authmanager' )->info( 'Account creation attempt via API', [
 			'event' => 'accountcreation',
 			'status' => $status,
-		) );
-		$result = array();
+		] );
+		$result = [];
 		if ( $status->isGood() ) {
 			// Success!
 			$user = $status->getValue();
@@ -126,7 +126,7 @@ class ApiCreateAccount extends ApiBase {
 			// Save settings (including confirmation token)
 			$user->saveSettings();
 
-			Hooks::run( 'AddNewAccount', array( $user, $params['mailpassword'] ) );
+			Hooks::run( 'AddNewAccount', [ $user, $params['mailpassword'] ] );
 
 			if ( $params['mailpassword'] ) {
 				$logAction = 'byemail';
@@ -176,7 +176,7 @@ class ApiCreateAccount extends ApiBase {
 		}
 
 		// Give extensions a chance to modify the API result data
-		Hooks::run( 'AddNewAccountApiResult', array( $this, $loginForm, &$result ) );
+		Hooks::run( 'AddNewAccountApiResult', [ $this, $loginForm, &$result ] );
 
 		$apiResult->addValue( null, 'createaccount', $result );
 	}
@@ -194,41 +194,41 @@ class ApiCreateAccount extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'name' => array(
+		return [
+			'name' => [
 				ApiBase::PARAM_TYPE => 'user',
 				ApiBase::PARAM_REQUIRED => true
-			),
-			'password' => array(
+			],
+			'password' => [
 				ApiBase::PARAM_TYPE => 'password',
-			),
+			],
 			'domain' => null,
-			'token' => array(
+			'token' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => false, // for BC
-				ApiBase::PARAM_HELP_MSG => array( 'api-help-param-token', 'createaccount' ),
-			),
-			'email' => array(
+				ApiBase::PARAM_HELP_MSG => [ 'api-help-param-token', 'createaccount' ],
+			],
+			'email' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => $this->getConfig()->get( 'EmailConfirmToEdit' ),
-			),
+			],
 			'realname' => null,
-			'mailpassword' => array(
+			'mailpassword' => [
 				ApiBase::PARAM_TYPE => 'boolean',
 				ApiBase::PARAM_DFLT => false
-			),
+			],
 			'reason' => null,
 			'language' => null
-		);
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=createaccount&name=testuser&password=test123'
 				=> 'apihelp-createaccount-example-pass',
 			'action=createaccount&name=testmailuser&mailpassword=true&reason=MyReason'
 				=> 'apihelp-createaccount-example-mail',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

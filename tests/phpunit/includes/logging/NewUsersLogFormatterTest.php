@@ -9,13 +9,13 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 		parent::setUp();
 
 		// Register LogHandler, see $wgNewUserLog in Setup.php
-		$this->mergeMwGlobalArrayValue( 'wgLogActionsHandlers', array(
+		$this->mergeMwGlobalArrayValue( 'wgLogActionsHandlers', [
 			'newusers/newusers' => 'NewUsersLogFormatter',
 			'newusers/create' => 'NewUsersLogFormatter',
 			'newusers/create2' => 'NewUsersLogFormatter',
 			'newusers/byemail' => 'NewUsersLogFormatter',
 			'newusers/autocreate' => 'NewUsersLogFormatter',
-		) );
+		] );
 	}
 
 	/**
@@ -24,10 +24,10 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 	 * Do not change the existing data, just add a new database row
 	 */
 	public static function provideNewUsersLogDatabaseRows() {
-		return array(
+		return [
 			// Only old logs
-			array(
-				array(
+			[
+				[
 					'type' => 'newusers',
 					'action' => 'newusers',
 					'comment' => 'newusers comment',
@@ -35,15 +35,15 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'New user',
 					'namespace' => NS_USER,
 					'title' => 'New user',
-					'params' => array(),
-				),
-				array(
+					'params' => [],
+				],
+				[
 					'legacy' => true,
 					'text' => 'User account New user was created',
-					'api' => array(),
-				),
-			),
-		);
+					'api' => [],
+				],
+			],
+		];
 	}
 
 	/**
@@ -59,10 +59,10 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 	 * Do not change the existing data, just add a new database row
 	 */
 	public static function provideCreateLogDatabaseRows() {
-		return array(
+		return [
 			// Current format
-			array(
-				array(
+			[
+				[
 					'type' => 'newusers',
 					'action' => 'create',
 					'comment' => 'newusers comment',
@@ -70,18 +70,18 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'New user',
 					'namespace' => NS_USER,
 					'title' => 'New user',
-					'params' => array(
+					'params' => [
 						'4::userid' => 1,
-					),
-				),
-				array(
+					],
+				],
+				[
 					'text' => 'User account New user was created',
-					'api' => array(
+					'api' => [
 						'userid' => 1,
-					),
-				),
-			),
-		);
+					],
+				],
+			],
+		];
 	}
 
 	/**
@@ -97,10 +97,10 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 	 * Do not change the existing data, just add a new database row
 	 */
 	public static function provideCreate2LogDatabaseRows() {
-		return array(
+		return [
 			// Current format
-			array(
-				array(
+			[
+				[
 					'type' => 'newusers',
 					'action' => 'create2',
 					'comment' => 'newusers comment',
@@ -108,18 +108,18 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'User',
 					'namespace' => NS_USER,
 					'title' => 'UTSysop',
-					'params' => array(
+					'params' => [
 						'4::userid' => 1,
-					),
-				),
-				array(
+					],
+				],
+				[
 					'text' => 'User account UTSysop was created by User',
-					'api' => array(
+					'api' => [
 						'userid' => 1,
-					),
-				),
-			),
-		);
+					],
+				],
+			],
+		];
 	}
 
 	/**
@@ -135,10 +135,10 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 	 * Do not change the existing data, just add a new database row
 	 */
 	public static function provideByemailLogDatabaseRows() {
-		return array(
+		return [
 			// Current format
-			array(
-				array(
+			[
+				[
 					'type' => 'newusers',
 					'action' => 'byemail',
 					'comment' => 'newusers comment',
@@ -146,18 +146,18 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'namespace' => NS_USER,
 					'title' => 'UTSysop',
-					'params' => array(
+					'params' => [
 						'4::userid' => 1,
-					),
-				),
-				array(
+					],
+				],
+				[
 					'text' => 'User account UTSysop was created by Sysop and password was sent by email',
-					'api' => array(
+					'api' => [
 						'userid' => 1,
-					),
-				),
-			),
-		);
+					],
+				],
+			],
+		];
 	}
 
 	/**
@@ -173,10 +173,10 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 	 * Do not change the existing data, just add a new database row
 	 */
 	public static function provideAutocreateLogDatabaseRows() {
-		return array(
+		return [
 			// Current format
-			array(
-				array(
+			[
+				[
 					'type' => 'newusers',
 					'action' => 'autocreate',
 					'comment' => 'newusers comment',
@@ -184,18 +184,18 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'New user',
 					'namespace' => NS_USER,
 					'title' => 'New user',
-					'params' => array(
+					'params' => [
 						'4::userid' => 1,
-					),
-				),
-				array(
+					],
+				],
+				[
 					'text' => 'User account New user was created automatically',
-					'api' => array(
+					'api' => [
 						'userid' => 1,
-					),
-				),
-			),
-		);
+					],
+				],
+			],
+		];
 	}
 
 	/**

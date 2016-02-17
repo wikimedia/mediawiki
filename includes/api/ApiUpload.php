@@ -155,7 +155,7 @@ class ApiUpload extends ApiBase {
 	 * @return array
 	 */
 	private function getStashResult( $warnings ) {
-		$result = array();
+		$result = [];
 		// Some uploads can request they be stashed, so as not to publish them immediately.
 		// In this case, a failure to stash ought to be fatal
 		try {
@@ -180,7 +180,7 @@ class ApiUpload extends ApiBase {
 	 * @return array
 	 */
 	private function getWarningsResult( $warnings ) {
-		$result = array();
+		$result = [];
 		$result['result'] = 'Warning';
 		$result['warnings'] = $warnings;
 		// in case the warnings can be fixed with some further user action, let's stash this upload
@@ -201,7 +201,7 @@ class ApiUpload extends ApiBase {
 	 * @return array
 	 */
 	private function getChunkResult( $warnings ) {
-		$result = array();
+		$result = [];
 
 		if ( $warnings && count( $warnings ) > 0 ) {
 			$result['warnings'] = $warnings;
@@ -253,9 +253,9 @@ class ApiUpload extends ApiBase {
 			$status = $this->mUpload->addChunk(
 				$chunkPath, $chunkSize, $this->mParams['offset'] );
 			if ( !$status->isGood() ) {
-				$extradata = array(
+				$extradata = [
 					'offset' => $this->mUpload->getOffset(),
-				);
+				];
 
 				$this->dieUsage( $status->getWikiText(), 'stashfailed', 0, $extradata );
 			}
@@ -267,16 +267,16 @@ class ApiUpload extends ApiBase {
 				UploadBase::setSessionStatus(
 					$this->getUser(),
 					$filekey,
-					array( 'result' => 'Poll',
-						'stage' => 'queued', 'status' => Status::newGood() )
+					[ 'result' => 'Poll',
+						'stage' => 'queued', 'status' => Status::newGood() ]
 				);
 				JobQueueGroup::singleton()->push( new AssembleUploadChunksJob(
 					Title::makeTitle( NS_FILE, $filekey ),
-					array(
+					[
 						'filename' => $this->mParams['filename'],
 						'filekey' => $filekey,
 						'session' => $this->getContext()->exportSession()
-					)
+					]
 				) );
 				$result['result'] = 'Poll';
 				$result['stage'] = 'queued';
@@ -286,7 +286,7 @@ class ApiUpload extends ApiBase {
 					UploadBase::setSessionStatus(
 						$this->getUser(),
 						$filekey,
-						array( 'result' => 'Failure', 'stage' => 'assembling', 'status' => $status )
+						[ 'result' => 'Failure', 'stage' => 'assembling', 'status' => $status ]
 					);
 					$this->dieUsage( $status->getWikiText(), 'stashfailed' );
 				}
@@ -303,12 +303,12 @@ class ApiUpload extends ApiBase {
 			UploadBase::setSessionStatus(
 				$this->getUser(),
 				$filekey,
-				array(
+				[
 					'result' => 'Continue',
 					'stage' => 'uploading',
 					'offset' => $totalSoFar,
 					'status' => Status::newGood(),
-				)
+				]
 			);
 			$result['result'] = 'Continue';
 			$result['offset'] = $totalSoFar;
@@ -352,7 +352,7 @@ class ApiUpload extends ApiBase {
 	 * @param array $data Optional extra data to pass to the user
 	 * @throws UsageException
 	 */
-	private function dieRecoverableError( $error, $parameter, $data = array() ) {
+	private function dieRecoverableError( $error, $parameter, $data = [] ) {
 		try {
 			$data['filekey'] = $this->performStash();
 			$data['sessionkey'] = $data['filekey'];
@@ -404,7 +404,7 @@ class ApiUpload extends ApiBase {
 
 		// The following modules all require the filename parameter to be set
 		if ( is_null( $this->mParams['filename'] ) ) {
-			$this->dieUsageMsg( array( 'missingparam', 'filename' ) );
+			$this->dieUsageMsg( [ 'missingparam', 'filename' ] );
 		}
 
 		if ( $this->mParams['chunk'] ) {
@@ -483,7 +483,7 @@ class ApiUpload extends ApiBase {
 
 		if ( $permission !== true ) {
 			if ( !$user->isLoggedIn() ) {
-				$this->dieUsageMsg( array( 'mustbeloggedin', 'upload' ) );
+				$this->dieUsageMsg( [ 'mustbeloggedin', 'upload' ] );
 			}
 
 			$this->dieUsageMsg( 'badaccess-groups' );
@@ -515,7 +515,7 @@ class ApiUpload extends ApiBase {
 				break;
 			case UploadBase::ILLEGAL_FILENAME:
 				$this->dieRecoverableError( 'illegal-filename', 'filename',
-					array( 'filename' => $verification['filtered'] ) );
+					[ 'filename' => $verification['filtered'] ] );
 				break;
 			case UploadBase::FILENAME_TOO_LONG:
 				$this->dieRecoverableError( 'filename-toolong', 'filename' );
@@ -536,10 +536,10 @@ class ApiUpload extends ApiBase {
 				break;
 
 			case UploadBase::FILETYPE_BADTYPE:
-				$extradata = array(
+				$extradata = [
 					'filetype' => $verification['finalExt'],
 					'allowed' => array_values( array_unique( $this->getConfig()->get( 'FileExtensions' ) ) )
-				);
+				];
 				ApiResult::setIndexedTagName( $extradata['allowed'], 'ext' );
 
 				$msg = "Filetype not permitted: ";
@@ -558,23 +558,23 @@ class ApiUpload extends ApiBase {
 				$msg = $this->msg( $key, $params )->inLanguage( 'en' )->useDatabase( false )->text();
 				ApiResult::setIndexedTagName( $verification['details'], 'detail' );
 				$this->dieUsage( "This file did not pass file verification: $msg", 'verification-error',
-					0, array( 'details' => $verification['details'] ) );
+					0, [ 'details' => $verification['details'] ] );
 				break;
 			case UploadBase::HOOK_ABORTED:
 				if ( is_array( $verification['error'] ) ) {
 					$params = $verification['error'];
 				} elseif ( $verification['error'] !== '' ) {
-					$params = array( $verification['error'] );
+					$params = [ $verification['error'] ];
 				} else {
-					$params = array( 'hookaborted' );
+					$params = [ 'hookaborted' ];
 				}
 				$key = array_shift( $params );
 				$msg = $this->msg( $key, $params )->inLanguage( 'en' )->useDatabase( false )->text();
-				$this->dieUsage( $msg, 'hookaborted', 0, array( 'details' => $verification['error'] ) );
+				$this->dieUsage( $msg, 'hookaborted', 0, [ 'details' => $verification['error'] ] );
 				break;
 			default:
 				$this->dieUsage( 'An unknown error occurred', 'unknown-error',
-					0, array( 'details' => array( 'code' => $verification['status'] ) ) );
+					0, [ 'details' => [ 'code' => $verification['status'] ] ] );
 				break;
 		}
 	}
@@ -598,7 +598,7 @@ class ApiUpload extends ApiBase {
 			ApiResult::setIndexedTagName( $warnings, 'warning' );
 
 			if ( isset( $warnings['duplicate'] ) ) {
-				$dupes = array();
+				$dupes = [];
 				/** @var File $dupe */
 				foreach ( $warnings['duplicate'] as $dupe ) {
 					$dupes[] = $dupe->getName();
@@ -719,11 +719,11 @@ class ApiUpload extends ApiBase {
 			UploadBase::setSessionStatus(
 				$this->getUser(),
 				$this->mParams['filekey'],
-				array( 'result' => 'Poll', 'stage' => 'queued', 'status' => Status::newGood() )
+				[ 'result' => 'Poll', 'stage' => 'queued', 'status' => Status::newGood() ]
 			);
 			JobQueueGroup::singleton()->push( new PublishStashedFileJob(
 				Title::makeTitle( NS_FILE, $this->mParams['filename'] ),
-				array(
+				[
 					'filename' => $this->mParams['filename'],
 					'filekey' => $this->mParams['filekey'],
 					'comment' => $this->mParams['comment'],
@@ -731,7 +731,7 @@ class ApiUpload extends ApiBase {
 					'text' => $this->mParams['text'],
 					'watch' => $watch,
 					'session' => $this->getContext()->exportSession()
-				)
+				]
 			) );
 			$result['result'] = 'Poll';
 			$result['stage'] = 'queued';
@@ -765,59 +765,59 @@ class ApiUpload extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		$params = array(
-			'filename' => array(
+		$params = [
+			'filename' => [
 				ApiBase::PARAM_TYPE => 'string',
-			),
-			'comment' => array(
+			],
+			'comment' => [
 				ApiBase::PARAM_DFLT => ''
-			),
-			'tags' => array(
+			],
+			'tags' => [
 				ApiBase::PARAM_TYPE => 'tags',
 				ApiBase::PARAM_ISMULTI => true,
-			),
-			'text' => array(
+			],
+			'text' => [
 				ApiBase::PARAM_TYPE => 'text',
-			),
-			'watch' => array(
+			],
+			'watch' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,
-			),
-			'watchlist' => array(
+			],
+			'watchlist' => [
 				ApiBase::PARAM_DFLT => 'preferences',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'watch',
 					'preferences',
 					'nochange'
-				),
-			),
+				],
+			],
 			'ignorewarnings' => false,
-			'file' => array(
+			'file' => [
 				ApiBase::PARAM_TYPE => 'upload',
-			),
+			],
 			'url' => null,
 			'filekey' => null,
-			'sessionkey' => array(
+			'sessionkey' => [
 				ApiBase::PARAM_DEPRECATED => true,
-			),
+			],
 			'stash' => false,
 
-			'filesize' => array(
+			'filesize' => [
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_MIN => 0,
 				ApiBase::PARAM_MAX => UploadBase::getMaxUploadSize(),
-			),
-			'offset' => array(
+			],
+			'offset' => [
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_MIN => 0,
-			),
-			'chunk' => array(
+			],
+			'chunk' => [
 				ApiBase::PARAM_TYPE => 'upload',
-			),
+			],
 
 			'async' => false,
 			'checkstatus' => false,
-		);
+		];
 
 		return $params;
 	}
@@ -827,13 +827,13 @@ class ApiUpload extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=upload&filename=Wiki.png' .
 				'&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png&token=123ABC'
 				=> 'apihelp-upload-example-url',
 			'action=upload&filename=Wiki.png&filekey=filekey&ignorewarnings=1&token=123ABC'
 				=> 'apihelp-upload-example-filekey',
-		);
+		];
 	}
 
 	public function getHelpUrls() {

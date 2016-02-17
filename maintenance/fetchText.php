@@ -78,8 +78,8 @@ class FetchText extends Maintenance {
 	private function doGetText( $db, $id ) {
 		$id = intval( $id );
 		$row = $db->selectRow( 'text',
-			array( 'old_text', 'old_flags' ),
-			array( 'old_id' => $id ),
+			[ 'old_text', 'old_flags' ],
+			[ 'old_id' => $id ],
 			__METHOD__ );
 		$text = Revision::getRevisionText( $row );
 		if ( $text === false ) {

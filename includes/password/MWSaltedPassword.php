@@ -29,7 +29,7 @@
  */
 class MWSaltedPassword extends ParameterizedPassword {
 	protected function getDefaultParams() {
-		return array();
+		return [];
 	}
 
 	protected function getDelimiter() {

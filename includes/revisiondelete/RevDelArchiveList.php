@@ -36,19 +36,19 @@ class RevDelArchiveList extends RevDelRevisionList {
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {
-		$timestamps = array();
+		$timestamps = [];
 		foreach ( $this->ids as $id ) {
 			$timestamps[] = $db->timestamp( $id );
 		}
 
 		return $db->select( 'archive', Revision::selectArchiveFields(),
-				array(
+				[
 					'ar_namespace' => $this->title->getNamespace(),
 					'ar_title' => $this->title->getDBkey(),
 					'ar_timestamp' => $timestamps
-				),
+				],
 				__METHOD__,
-				array( 'ORDER BY' => 'ar_timestamp DESC' )
+				[ 'ORDER BY' => 'ar_timestamp DESC' ]
 			);
 	}
 

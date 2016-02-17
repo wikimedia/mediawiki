@@ -49,11 +49,11 @@ class ApiBlockTest extends ApiTestCase {
 			$this->markTestIncomplete( "No block token found" );
 		}
 
-		$this->doApiRequest( array(
+		$this->doApiRequest( [
 			'action' => 'block',
 			'user' => 'UTApiBlockee',
 			'reason' => 'Some reason',
-			'token' => $tokens['blocktoken'] ), null, false, self::$users['sysop']->getUser() );
+			'token' => $tokens['blocktoken'] ], null, false, self::$users['sysop']->getUser() );
 
 		$block = Block::newFromTarget( 'UTApiBlockee' );
 
@@ -70,11 +70,11 @@ class ApiBlockTest extends ApiTestCase {
 	 */
 	public function testBlockingActionWithNoToken() {
 		$this->doApiRequest(
-			array(
+			[
 				'action' => 'block',
 				'user' => 'UTApiBlockee',
 				'reason' => 'Some reason',
-			),
+			],
 			null,
 			false,
 			self::$users['sysop']->getUser()

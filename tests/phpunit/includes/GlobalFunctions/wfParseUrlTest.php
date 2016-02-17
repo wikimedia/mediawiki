@@ -28,13 +28,13 @@ class WfParseUrlTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( 'wgUrlProtocols', array(
+		$this->setMwGlobals( 'wgUrlProtocols', [
 			'//',
 			'http://',
 			'https://',
 			'file://',
 			'mailto:',
-		) );
+		] );
 	}
 
 	/**
@@ -53,34 +53,34 @@ class WfParseUrlTest extends MediaWikiTestCase {
 	 * @return array
 	 */
 	public static function provideURLs() {
-		return array(
-			array(
+		return [
+			[
 				'//example.org',
-				array(
+				[
 					'scheme' => '',
 					'delimiter' => '//',
 					'host' => 'example.org',
-				)
-			),
-			array(
+				]
+			],
+			[
 				'http://example.org',
-				array(
+				[
 					'scheme' => 'http',
 					'delimiter' => '://',
 					'host' => 'example.org',
-				)
-			),
-			array(
+				]
+			],
+			[
 				'https://example.org',
-				array(
+				[
 					'scheme' => 'https',
 					'delimiter' => '://',
 					'host' => 'example.org',
-				)
-			),
-			array(
+				]
+			],
+			[
 				'http://id:key@example.org:123/path?foo=bar#baz',
-				array(
+				[
 					'scheme' => 'http',
 					'delimiter' => '://',
 					'user' => 'id',
@@ -90,68 +90,68 @@ class WfParseUrlTest extends MediaWikiTestCase {
 					'path' => '/path',
 					'query' => 'foo=bar',
 					'fragment' => 'baz',
-				)
-			),
-			array(
+				]
+			],
+			[
 				'file://example.org/etc/php.ini',
-				array(
+				[
 					'scheme' => 'file',
 					'delimiter' => '://',
 					'host' => 'example.org',
 					'path' => '/etc/php.ini',
-				)
-			),
-			array(
+				]
+			],
+			[
 				'file:///etc/php.ini',
-				array(
+				[
 					'scheme' => 'file',
 					'delimiter' => '://',
 					'host' => '',
 					'path' => '/etc/php.ini',
-				)
-			),
-			array(
+				]
+			],
+			[
 				'file:///c:/',
-				array(
+				[
 					'scheme' => 'file',
 					'delimiter' => '://',
 					'host' => '',
 					'path' => '/c:/',
-				)
-			),
-			array(
+				]
+			],
+			[
 				'mailto:id@example.org',
-				array(
+				[
 					'scheme' => 'mailto',
 					'delimiter' => ':',
 					'host' => 'id@example.org',
 					'path' => '',
-				)
-			),
-			array(
+				]
+			],
+			[
 				'mailto:id@example.org?subject=Foo',
-				array(
+				[
 					'scheme' => 'mailto',
 					'delimiter' => ':',
 					'host' => 'id@example.org',
 					'path' => '',
 					'query' => 'subject=Foo',
-				)
-			),
-			array(
+				]
+			],
+			[
 				'mailto:?subject=Foo',
-				array(
+				[
 					'scheme' => 'mailto',
 					'delimiter' => ':',
 					'host' => '',
 					'path' => '',
 					'query' => 'subject=Foo',
-				)
-			),
-			array(
+				]
+			],
+			[
 				'invalid://test/',
 				false
-			),
-		);
+			],
+		];
 	}
 }

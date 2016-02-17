@@ -39,11 +39,11 @@ class XmlTypeCheckTest extends PHPUnit_Framework_TestCase {
 			self::XML_WITH_PIH,
 			null,
 			false,
-			array(
+			[
 				'processing_instruction_handler' => function() use ( &$called ) {
 					$called = true;
 				}
-			)
+			]
 		);
 		$this->assertTrue( $called );
 	}

@@ -208,15 +208,15 @@ abstract class ApiFormatBase extends ApiBase {
 
 				$header = $msg->parseAsBlock();
 				$out->addHTML(
-					Html::rawElement( 'div', array( 'class' => 'api-pretty-header' ),
+					Html::rawElement( 'div', [ 'class' => 'api-pretty-header' ],
 						ApiHelp::fixHelpLinks( $header )
 					)
 				);
 			}
 
-			if ( Hooks::run( 'ApiFormatHighlight', array( $context, $result, $mime, $format ) ) ) {
+			if ( Hooks::run( 'ApiFormatHighlight', [ $context, $result, $mime, $format ] ) ) {
 				$out->addHTML(
-					Html::element( 'pre', array( 'class' => 'api-pretty-content' ), $result )
+					Html::element( 'pre', [ 'class' => 'api-pretty-content' ], $result )
 				);
 			}
 
@@ -224,7 +224,7 @@ abstract class ApiFormatBase extends ApiBase {
 				// This is a special output mode mainly intended for ApiSandbox use
 				$time = microtime( true ) - $this->getConfig()->get( 'RequestTime' );
 				$json = FormatJson::encode(
-					array(
+					[
 						'html' => $out->getHTML(),
 						'modules' => array_values( array_unique( array_merge(
 							$out->getModules(),
@@ -232,7 +232,7 @@ abstract class ApiFormatBase extends ApiBase {
 							$out->getModuleStyles()
 						) ) ),
 						'time' => round( $time * 1000 ),
-					),
+					],
 					false, FormatJson::ALL_OK
 				);
 
@@ -278,22 +278,22 @@ abstract class ApiFormatBase extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		$ret = array();
+		$ret = [];
 		if ( $this->getIsHtml() ) {
-			$ret['wrappedhtml'] = array(
+			$ret['wrappedhtml'] = [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-format-param-wrappedhtml',
 
-			);
+			];
 		}
 		return $ret;
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&meta=siteinfo&siprop=namespaces&format=' . $this->getModuleName()
-				=> array( 'apihelp-format-example-generic', $this->getFormat() )
-		);
+				=> [ 'apihelp-format-example-generic', $this->getFormat() ]
+		];
 	}
 
 	public function getHelpUrls() {
@@ -369,7 +369,7 @@ abstract class ApiFormatBase extends ApiBase {
 		}
 
 		// Armor links (bug 61362)
-		$masked = array();
+		$masked = [];
 		$text = preg_replace_callback( '#<a .*?</a>#', function ( $matches ) use ( &$masked ) {
 			$sha = sha1( $matches[0] );
 			$masked[$sha] = $matches[0];

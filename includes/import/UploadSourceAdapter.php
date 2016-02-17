@@ -30,7 +30,7 @@
  */
 class UploadSourceAdapter {
 	/** @var array */
-	public static $sourceRegistrations = array();
+	public static $sourceRegistrations = [];
 
 	/** @var string */
 	private $mSource;
@@ -128,7 +128,7 @@ class UploadSourceAdapter {
 	 * @return array
 	 */
 	function url_stat() {
-		$result = array();
+		$result = [];
 
 		$result['dev'] = $result[0] = 0;
 		$result['ino'] = $result[1] = 0;

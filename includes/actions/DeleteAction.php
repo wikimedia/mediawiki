@@ -45,10 +45,10 @@ class DeleteAction extends FormlessAction {
 
 		$out = $this->getOutput();
 		if ( $this->getContext()->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
-			$out->addModuleStyles( array(
+			$out->addModuleStyles( [
 				'mediawiki.ui.input',
 				'mediawiki.ui.checkbox',
-			) );
+			] );
 		}
 		$this->addHelpLink( 'Help:Sysop deleting and undeleting' );
 		$this->page->delete();

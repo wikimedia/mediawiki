@@ -46,7 +46,7 @@ class ChangeTagsRevisionItem extends RevisionItem {
 		}
 
 		$content = "$difflink $revlink $userlink $comment";
-		$attribs = array();
+		$attribs = [];
 		$tags = $this->getTags();
 		if ( $tags ) {
 			list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow(

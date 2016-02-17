@@ -45,7 +45,7 @@ class SpecialListGrants extends SpecialPage {
 
 		$out->addHTML(
 			\Html::openElement( 'table',
-				array( 'class' => 'wikitable mw-listgrouprights-table' ) ) .
+				[ 'class' => 'wikitable mw-listgrouprights-table' ] ) .
 				'<tr>' .
 				\Html::element( 'th', null, $this->msg( 'listgrants-grant' )->text() ) .
 				\Html::element( 'th', null, $this->msg( 'listgrants-rights' )->text() ) .
@@ -53,7 +53,7 @@ class SpecialListGrants extends SpecialPage {
 		);
 
 		foreach ( $this->getConfig()->get( 'GrantPermissions' ) as $grant => $rights ) {
-			$descs = array();
+			$descs = [];
 			$rights = array_filter( $rights ); // remove ones with 'false'
 			foreach ( $rights as $permission => $granted ) {
 				$descs[] = $this->msg(
@@ -70,7 +70,7 @@ class SpecialListGrants extends SpecialPage {
 			}
 
 			$id = \Sanitizer::escapeId( $grant );
-			$out->addHTML( \Html::rawElement( 'tr', array( 'id' => $id ),
+			$out->addHTML( \Html::rawElement( 'tr', [ 'id' => $id ],
 				"<td>" . $this->msg( "grant-$grant" )->escaped() . "</td>" .
 				"<td>" . $grantCellHtml . '</td>'
 			) );

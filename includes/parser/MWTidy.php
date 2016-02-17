@@ -63,9 +63,9 @@ class MWTidy {
 	public static function getModuleStyles() {
 		$driver = self::singleton();
 		if ( $driver && $driver instanceof MediaWiki\Tidy\RaggettBase ) {
-			return array( 'mediawiki.raggett' );
+			return [ 'mediawiki.raggett' ];
 		} else {
-			return array();
+			return [];
 		}
 	}
 
@@ -102,11 +102,11 @@ class MWTidy {
 				$config = $wgTidyConfig;
 			} elseif ( $wgUseTidy ) {
 				// b/c configuration
-				$config = array(
+				$config = [
 					'tidyConfigFile' => $wgTidyConf,
 					'debugComment' => $wgDebugTidy,
 					'tidyBin' => $wgTidyBin,
-					'tidyCommandLine' => $wgTidyOpts );
+					'tidyCommandLine' => $wgTidyOpts ];
 				if ( $wgTidyInternal ) {
 					if ( wfIsHHVM() ) {
 						$config['driver'] = 'RaggettInternalHHVM';

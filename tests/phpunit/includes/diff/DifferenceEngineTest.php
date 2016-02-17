@@ -44,8 +44,8 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 		$title = $this->getTitle();
 		$page = WikiPage::factory( $title );
 
-		$strings = array( "it is a kitten", "two kittens", "three kittens", "four kittens" );
-		$revisions = array();
+		$strings = [ "it is a kitten", "two kittens", "three kittens", "four kittens" ];
+		$revisions = [];
 
 		foreach ( $strings as $string ) {
 			$content = ContentHandler::makeContent( $string, $title );
@@ -71,11 +71,11 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	private function getMapDiffPrevNextCases() {
 		$revs = self::$revisions;
 
-		return array(
-			array( array( $revs[1], $revs[2] ), $revs[2], 'prev', 'diff=prev' ),
-			array( array( $revs[2], $revs[3] ), $revs[2], 'next', 'diff=next' ),
-			array( array( $revs[1], $revs[3] ), $revs[1], $revs[3], 'diff=' . $revs[3] )
-		);
+		return [
+			[ [ $revs[1], $revs[2] ], $revs[2], 'prev', 'diff=prev' ],
+			[ [ $revs[2], $revs[3] ], $revs[2], 'next', 'diff=next' ],
+			[ [ $revs[1], $revs[3] ], $revs[1], $revs[3], 'diff=' . $revs[3] ]
+		];
 	}
 
 	public function testLoadRevisionData() {
@@ -95,12 +95,12 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	private function getLoadRevisionDataCases() {
 		$revs = self::$revisions;
 
-		return array(
-			array( $revs[2], $revs[3], $revs[3], 'prev', 'diff=prev' ),
-			array( $revs[2], $revs[3], $revs[2], 'next', 'diff=next' ),
-			array( $revs[1], $revs[3], $revs[1], $revs[3], 'diff=' . $revs[3] ),
-			array( $revs[1], $revs[3], $revs[1], 0, 'diff=0' )
-		);
+		return [
+			[ $revs[2], $revs[3], $revs[3], 'prev', 'diff=prev' ],
+			[ $revs[2], $revs[3], $revs[2], 'next', 'diff=next' ],
+			[ $revs[1], $revs[3], $revs[1], $revs[3], 'diff=' . $revs[3] ],
+			[ $revs[1], $revs[3], $revs[1], 0, 'diff=0' ]
+		];
 	}
 
 	public function testGetOldid() {

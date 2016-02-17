@@ -32,10 +32,10 @@ class MWCryptHash {
 	/**
 	 * The number of bytes outputted by the hash algorithm
 	 */
-	protected static $hashLength = array(
+	protected static $hashLength = [
 		true => null,
 		false => null,
-	);
+	];
 
 	/**
 	 * Decide on the best acceptable hash algorithm we have available for hash()
@@ -47,7 +47,7 @@ class MWCryptHash {
 		}
 
 		$algos = hash_algos();
-		$preference = array( 'whirlpool', 'sha256', 'sha1', 'md5' );
+		$preference = [ 'whirlpool', 'sha256', 'sha1', 'md5' ];
 
 		foreach ( $preference as $algorithm ) {
 			if ( in_array( $algorithm, $algos ) ) {

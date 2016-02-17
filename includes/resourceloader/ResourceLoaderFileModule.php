@@ -35,7 +35,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected $remoteBasePath = '';
 
 	/** @var array Saves a list of the templates named by the modules. */
-	protected $templates = array();
+	protected $templates = [];
 
 	/**
 	 * @var array List of paths to JavaScript files to always include
@@ -44,7 +44,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * array( [file-path], [file-path], ... )
 	 * @endcode
 	 */
-	protected $scripts = array();
+	protected $scripts = [];
 
 	/**
 	 * @var array List of JavaScript files to include when using a specific language
@@ -53,7 +53,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * array( [language-code] => array( [file-path], [file-path], ... ), ... )
 	 * @endcode
 	 */
-	protected $languageScripts = array();
+	protected $languageScripts = [];
 
 	/**
 	 * @var array List of JavaScript files to include when using a specific skin
@@ -62,7 +62,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * array( [skin-name] => array( [file-path], [file-path], ... ), ... )
 	 * @endcode
 	 */
-	protected $skinScripts = array();
+	protected $skinScripts = [];
 
 	/**
 	 * @var array List of paths to JavaScript files to include in debug mode
@@ -71,7 +71,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * array( [skin-name] => array( [file-path], [file-path], ... ), ... )
 	 * @endcode
 	 */
-	protected $debugScripts = array();
+	protected $debugScripts = [];
 
 	/**
 	 * @var array List of paths to CSS files to always include
@@ -80,7 +80,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * array( [file-path], [file-path], ... )
 	 * @endcode
 	 */
-	protected $styles = array();
+	protected $styles = [];
 
 	/**
 	 * @var array List of paths to CSS files to include when using specific skins
@@ -89,7 +89,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * array( [file-path], [file-path], ... )
 	 * @endcode
 	 */
-	protected $skinStyles = array();
+	protected $skinStyles = [];
 
 	/**
 	 * @var array List of modules this module depends on
@@ -98,7 +98,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * array( [file-path], [file-path], ... )
 	 * @endcode
 	 */
-	protected $dependencies = array();
+	protected $dependencies = [];
 
 	/**
 	 * @var string File name containing the body of the skip function
@@ -112,7 +112,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * array( [message-key], [message-key], ... )
 	 * @endcode
 	 */
-	protected $messages = array();
+	protected $messages = [];
 
 	/** @var string Name of group to load this module in */
 	protected $group;
@@ -126,7 +126,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/** @var bool Whether mw.loader.state() call should be omitted */
 	protected $raw = false;
 
-	protected $targets = array( 'desktop' );
+	protected $targets = [ 'desktop' ];
 
 	/**
 	 * @var bool Whether getStyleURLsForDebug should return raw file paths,
@@ -141,13 +141,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * array( [file-path], [file-path], ... )
 	 * @endcode
 	 */
-	protected $localFileRefs = array();
+	protected $localFileRefs = [];
 
 	/**
 	 * @var array Place where readStyleFile() tracks file dependencies for non-existent files.
 	 * Used in tests to detect missing dependencies.
 	 */
-	protected $missingLocalFileRefs = array();
+	protected $missingLocalFileRefs = [];
 
 	/* Methods */
 
@@ -211,7 +211,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @endcode
 	 */
 	public function __construct(
-		$options = array(),
+		$options = [],
 		$localBasePath = null,
 		$remoteBasePath = null
 	) {
@@ -307,7 +307,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return array Array( localBasePath, remoteBasePath )
 	 */
 	public static function extractBasePaths(
-		$options = array(),
+		$options = [],
 		$localBasePath = null,
 		$remoteBasePath = null
 	) {
@@ -345,7 +345,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// but possibly protocol-relative to avoid cache pollution
 		$remoteBasePath = wfExpandUrl( $remoteBasePath, PROTO_RELATIVE );
 
-		return array( $localBasePath, $remoteBasePath );
+		return [ $localBasePath, $remoteBasePath ];
 	}
 
 	/**
@@ -364,7 +364,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getScriptURLsForDebug( ResourceLoaderContext $context ) {
-		$urls = array();
+		$urls = [];
 		foreach ( $this->getScriptFiles( $context ) as $file ) {
 			$urls[] = $this->getRemotePath( $file );
 		}
@@ -408,9 +408,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 		// Our module consists entirely of real css files,
 		// in debug mode we can load those directly.
-		$urls = array();
+		$urls = [];
 		foreach ( $this->getStyleFiles( $context ) as $mediaType => $list ) {
-			$urls[$mediaType] = array();
+			$urls[$mediaType] = [];
 			foreach ( $list as $file ) {
 				$urls[$mediaType][] = $this->getRemotePath( $file );
 			}
@@ -503,7 +503,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	protected function getFileHashes( ResourceLoaderContext $context ) {
-		$files = array();
+		$files = [];
 
 		// Flatten style files into $files
 		$styles = self::collateFilePathListByOption( $this->styles, 'media', 'all' );
@@ -525,14 +525,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$files,
 			$this->scripts,
 			$this->templates,
-			$context->getDebug() ? $this->debugScripts : array(),
+			$context->getDebug() ? $this->debugScripts : [],
 			$this->getLanguageScripts( $context->getLanguage() ),
 			self::tryForKey( $this->skinScripts, $context->getSkin(), 'default' )
 		);
 		if ( $this->skipFunction ) {
 			$files[] = $this->skipFunction;
 		}
-		$files = array_map( array( $this, 'getLocalPath' ), $files );
+		$files = array_map( [ $this, 'getLocalPath' ], $files );
 		// File deps need to be treated separately because they're already prefixed
 		$files = array_merge( $files, $this->getFileDependencies( $context ) );
 		// Filter out any duplicates from getFileDependencies() and others.
@@ -543,7 +543,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// Don't include keys or file paths here, only the hashes. Including that would needlessly
 		// cause global cache invalidation when files move or if e.g. the MediaWiki path changes.
 		// Any significant ordering is already detected by the definition summary.
-		return array_map( array( __CLASS__, 'safeFileHash' ), $files );
+		return array_map( [ __CLASS__, 'safeFileHash' ], $files );
 	}
 
 	/**
@@ -555,8 +555,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
 		$summary = parent::getDefinitionSummary( $context );
 
-		$options = array();
-		foreach ( array(
+		$options = [];
+		foreach ( [
 			// The following properties are omitted because they don't affect the module reponse:
 			// - localBasePath (Per T104950; Changes when absolute directory name changes. If
 			//    this affects 'scripts' and other file paths, getFileHashes accounts for that.)
@@ -576,15 +576,15 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			'skipFunction',
 			'debugRaw',
 			'raw',
-		) as $member ) {
+		] as $member ) {
 			$options[$member] = $this->{$member};
 		};
 
-		$summary[] = array(
+		$summary[] = [
 			'options' => $options,
 			'fileHashes' => $this->getFileHashes( $context ),
 			'messageBlob' => $this->getMessageBlob( $context ),
-		);
+		];
 		return $summary;
 	}
 
@@ -633,19 +633,19 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return array List of file paths, collated by $option
 	 */
 	protected static function collateFilePathListByOption( array $list, $option, $default ) {
-		$collatedFiles = array();
+		$collatedFiles = [];
 		foreach ( (array)$list as $key => $value ) {
 			if ( is_int( $key ) ) {
 				// File name as the value
 				if ( !isset( $collatedFiles[$default] ) ) {
-					$collatedFiles[$default] = array();
+					$collatedFiles[$default] = [];
 				}
 				$collatedFiles[$default][] = $value;
 			} elseif ( is_array( $value ) ) {
 				// File name as the key, options array as the value
 				$optionValue = isset( $value[$option] ) ? $value[$option] : $default;
 				if ( !isset( $collatedFiles[$optionValue] ) ) {
-					$collatedFiles[$optionValue] = array();
+					$collatedFiles[$optionValue] = [];
 				}
 				$collatedFiles[$optionValue][] = $key;
 			}
@@ -671,7 +671,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		) {
 			return $list[$fallback];
 		}
-		return array();
+		return [];
 	}
 
 	/**
@@ -713,7 +713,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			}
 		}
 
-		return array();
+		return [];
 	}
 
 	/**
@@ -755,7 +755,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return array A list of file paths collated by media type
 	 */
 	protected function getAllSkinStyleFiles() {
-		$styleFiles = array();
+		$styleFiles = [];
 		$internalSkinNames = array_keys( Skin::getSkinNames() );
 		$internalSkinNames[] = 'default';
 
@@ -780,7 +780,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$this->getAllSkinStyleFiles()
 		);
 
-		$result = array();
+		$result = [];
 
 		foreach ( $collatedStyleFiles as $media => $styleFiles ) {
 			foreach ( $styleFiles as $styleFile ) {
@@ -842,11 +842,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 
 		if ( empty( $styles ) ) {
-			return array();
+			return [];
 		}
 		foreach ( $styles as $media => $files ) {
 			$uniqueFiles = array_unique( $files, SORT_REGULAR );
-			$styleFiles = array();
+			$styleFiles = [];
 			foreach ( $uniqueFiles as $file ) {
 				$styleFiles[] = $this->readStyleFile( $file, $flip, $context );
 			}
@@ -898,7 +898,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			}
 		}
 		return MemoizedCallable::call( 'CSSMin::remap',
-			array( $style, $localDir, $remoteDir, true ) );
+			[ $style, $localDir, $remoteDir, true ] );
 	}
 
 	/**
@@ -962,11 +962,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$files = $compiler->AllParsedFiles();
 		$this->localFileRefs = array_merge( $this->localFileRefs, $files );
 
-		$cache->set( $cacheKey, array(
+		$cache->set( $cacheKey, [
 			'css'   => $css,
 			'files' => $files,
 			'hash'  => FileContentsHasher::getFileContentsHash( $files ),
-		), 60 * 60 * 24 );  // 86400 seconds, or 24 hours.
+		], 60 * 60 * 24 );  // 86400 seconds, or 24 hours.
 
 		return $css;
 	}
@@ -977,7 +977,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @throws MWException
 	 */
 	public function getTemplates() {
-		$templates = array();
+		$templates = [];
 
 		foreach ( $this->templates as $alias => $templatePath ) {
 			// Alias is optional

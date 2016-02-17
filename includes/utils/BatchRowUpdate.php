@@ -86,14 +86,14 @@ class BatchRowUpdate {
 	 */
 	public function execute() {
 		foreach ( $this->reader as $rows ) {
-			$updates = array();
+			$updates = [];
 			foreach ( $rows as $row ) {
 				$update = $this->generator->update( $row );
 				if ( $update ) {
-					$updates[] = array(
+					$updates[] = [
 						'primaryKey' => $this->reader->extractPrimaryKeys( $row ),
 						'changes' => $update,
-					);
+					];
 				}
 			}
 

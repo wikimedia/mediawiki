@@ -49,20 +49,20 @@ class LanguageKk_cyrl extends Language {
 		}
 		// Set up some constants...
 		// Vowels in last syllable
-		$frontVowels = array( "е", "ө", "ү", "і", "ә", "э", "я", "ё", "и" );
-		$backVowels = array( "а", "о", "ұ", "ы" );
-		$allVowels = array( "е", "ө", "ү", "і", "ә", "э", "а", "о", "ұ", "ы", "я", "ё", "и" );
+		$frontVowels = [ "е", "ө", "ү", "і", "ә", "э", "я", "ё", "и" ];
+		$backVowels = [ "а", "о", "ұ", "ы" ];
+		$allVowels = [ "е", "ө", "ү", "і", "ә", "э", "а", "о", "ұ", "ы", "я", "ё", "и" ];
 		// Preceding letters
-		$Nasals = array( "м", "н", "ң" );
-		$Sonants = array( "и", "й", "л", "р", "у", "ю" );
-		$Consonants = array( "п", "ф", "к", "қ", "т", "ш", "с", "х", "ц", "ч", "щ", "б", "в", "г", "д" );
-		$Sibilants = array( "ж", "з" );
-		$Sonorants = array( "и", "й", "л", "р", "у", "ю", "м", "н", "ң", "ж", "з" );
+		$Nasals = [ "м", "н", "ң" ];
+		$Sonants = [ "и", "й", "л", "р", "у", "ю" ];
+		$Consonants = [ "п", "ф", "к", "қ", "т", "ш", "с", "х", "ц", "ч", "щ", "б", "в", "г", "д" ];
+		$Sibilants = [ "ж", "з" ];
+		$Sonorants = [ "и", "й", "л", "р", "у", "ю", "м", "н", "ң", "ж", "з" ];
 
 		// Possessives
-		$firstPerson = array( "м", "ң" ); // 1st singular, 2nd unformal
-		$secondPerson = array( "з" ); // 1st plural, 2nd formal
-		$thirdPerson = array( "ы", "і" ); // 3rd
+		$firstPerson = [ "м", "ң" ]; // 1st singular, 2nd unformal
+		$secondPerson = [ "з" ]; // 1st plural, 2nd formal
+		$thirdPerson = [ "ы", "і" ]; // 3rd
 
 		$lastLetter = $this->lastLetter( $word, $allVowels );
 		$wordEnding =& $lastLetter[0];
@@ -283,20 +283,20 @@ class LanguageKk_cyrl extends Language {
 		}
 		// Set up some constants...
 		// Vowels in last syllable
-		$frontVowels = array( "e", "ö", "ü", "i", "ä", "é" );
-		$backVowels = array( "a", "o", "u", "ı" );
-		$allVowels = array( "e", "ö", "ü", "i", "ä", "é", "a", "o", "u", "ı" );
+		$frontVowels = [ "e", "ö", "ü", "i", "ä", "é" ];
+		$backVowels = [ "a", "o", "u", "ı" ];
+		$allVowels = [ "e", "ö", "ü", "i", "ä", "é", "a", "o", "u", "ı" ];
 		// Preceding letters
-		$Nasals = array( "m", "n", "ñ" );
-		$Sonants = array( "ï", "y", "ý", "l", "r", "w" );
-		$Consonants = array( "p", "f", "k", "q", "t", "ş", "s", "x", "c", "ç", "b", "v", "g", "d" );
-		$Sibilants = array( "j", "z" );
-		$Sonorants = array( "ï", "y", "ý", "l", "r", "w", "m", "n", "ñ", "j", "z" );
+		$Nasals = [ "m", "n", "ñ" ];
+		$Sonants = [ "ï", "y", "ý", "l", "r", "w" ];
+		$Consonants = [ "p", "f", "k", "q", "t", "ş", "s", "x", "c", "ç", "b", "v", "g", "d" ];
+		$Sibilants = [ "j", "z" ];
+		$Sonorants = [ "ï", "y", "ý", "l", "r", "w", "m", "n", "ñ", "j", "z" ];
 
 		// Possessives
-		$firstPerson = array( "m", "ñ" ); // 1st singular, 2nd unformal
-		$secondPerson = array( "z" ); // 1st plural, 2nd formal
-		$thirdPerson = array( "ı", "i" ); // 3rd
+		$firstPerson = [ "m", "ñ" ]; // 1st singular, 2nd unformal
+		$secondPerson = [ "z" ]; // 1st plural, 2nd formal
+		$thirdPerson = [ "ı", "i" ]; // 3rd
 
 		$lastLetter = $this->lastLetter( $word, $allVowels );
 		$wordEnding =& $lastLetter[0];
@@ -517,20 +517,20 @@ class LanguageKk_cyrl extends Language {
 		}
 		// Set up some constants...
 		// Vowels in last syllable
-		$frontVowels = array( "ە", "ٶ", "ٷ", "ٸ", "ٵ", "ە" );
-		$backVowels = array( "ا", "و", "ۇ", "ى" );
-		$allVowels = array( "ە", "ٶ", "ٷ", "ٸ", "ٵ", "ە", "ا", "و", "ۇ", "ى" );
+		$frontVowels = [ "ە", "ٶ", "ٷ", "ٸ", "ٵ", "ە" ];
+		$backVowels = [ "ا", "و", "ۇ", "ى" ];
+		$allVowels = [ "ە", "ٶ", "ٷ", "ٸ", "ٵ", "ە", "ا", "و", "ۇ", "ى" ];
 		// Preceding letters
-		$Nasals = array( "م", "ن", "ڭ" );
-		$Sonants = array( "ي", "ي", "ل", "ر", "ۋ" );
-		$Consonants = array( "پ", "ف", "ك", "ق", "ت", "ش", "س", "ح", "تس", "چ", "ب", "ۆ", "گ", "د" );
-		$Sibilants = array( "ج", "ز" );
-		$Sonorants = array( "ي", "ي", "ل", "ر", "ۋ", "م", "ن", "ڭ", "ج", "ز" );
+		$Nasals = [ "م", "ن", "ڭ" ];
+		$Sonants = [ "ي", "ي", "ل", "ر", "ۋ" ];
+		$Consonants = [ "پ", "ف", "ك", "ق", "ت", "ش", "س", "ح", "تس", "چ", "ب", "ۆ", "گ", "د" ];
+		$Sibilants = [ "ج", "ز" ];
+		$Sonorants = [ "ي", "ي", "ل", "ر", "ۋ", "م", "ن", "ڭ", "ج", "ز" ];
 
 		// Possessives
-		$firstPerson = array( "م", "ڭ" ); // 1st singular, 2nd unformal
-		$secondPerson = array( "ز" ); // 1st plural, 2nd formal
-		$thirdPerson = array( "ى", "ٸ" ); // 3rd
+		$firstPerson = [ "م", "ڭ" ]; // 1st singular, 2nd unformal
+		$secondPerson = [ "ز" ]; // 1st plural, 2nd formal
+		$thirdPerson = [ "ى", "ٸ" ]; // 3rd
 
 		$lastLetter = $this->lastLetter( $word, $allVowels );
 		$wordEnding = $lastLetter[0];
@@ -742,7 +742,7 @@ class LanguageKk_cyrl extends Language {
 	 * @return array
 	 */
 	function lastLetter( $word, $allVowels ) {
-		$lastLetter = array();
+		$lastLetter = [];
 
 		// Put the word in a form we can play with since we're using UTF-8
 		$ar = preg_split( '//u', parent::lc( $word ), -1, PREG_SPLIT_NO_EMPTY );

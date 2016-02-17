@@ -65,7 +65,7 @@ class HTMLFileCache extends FileCacheBase {
 	 * @return array
 	 */
 	protected static function cacheablePageActions() {
-		return array( 'view', 'history' );
+		return [ 'view', 'history' ];
 	}
 
 	/**
@@ -132,7 +132,7 @@ class HTMLFileCache extends FileCacheBase {
 			return false;
 		}
 		// Allow extensions to disable caching
-		return Hooks::run( 'HTMLFileCache::useFileCache', array( $context ) );
+		return Hooks::run( 'HTMLFileCache::useFileCache', [ $context ] );
 	}
 
 	/**
