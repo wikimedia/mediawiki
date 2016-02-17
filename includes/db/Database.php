@@ -1552,8 +1552,8 @@ abstract class DatabaseBase implements IDatabase {
 						// Special-case single values, as IN isn't terribly efficient
 						// Don't necessarily assume the single key is 0; we don't
 						// enforce linear numeric ordering on other arrays here.
-						$value = array_values( $value );
-						$list .= $field . " = " . $this->addQuotes( $value[0] );
+						$value = array_values( $value )[0];
+						$list .= $field . " = " . $this->addQuotes( $value );
 					} else {
 						$list .= $field . " IN (" . $this->makeList( $value ) . ") ";
 					}

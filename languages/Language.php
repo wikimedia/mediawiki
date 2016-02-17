@@ -4303,8 +4303,7 @@ class Language {
 			return $this->mParentLanguage;
 		}
 
-		$pieces = explode( '-', $this->getCode() );
-		$code = $pieces[0];
+		$code = explode( '-', $this->getCode() )[0];
 		if ( !in_array( $code, LanguageConverter::$languagesWithVariants ) ) {
 			$this->mParentLanguage = null;
 			return null;

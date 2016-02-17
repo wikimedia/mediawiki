@@ -304,8 +304,8 @@ class IcuCollation extends Collation {
 
 		$this->locale = $locale;
 		// Drop everything after the '@' in locale's name
-		$localeParts = explode( '@', $locale );
-		$this->digitTransformLanguage = Language::factory( $locale === 'root' ? 'en' : $localeParts[0] );
+		$digitTransformLocale = explode( '@', $locale )[0];
+		$this->digitTransformLanguage = Language::factory( $locale === 'root' ? 'en' : $digitTransformLocale );
 
 		$this->mainCollator = Collator::create( $locale );
 		if ( !$this->mainCollator ) {

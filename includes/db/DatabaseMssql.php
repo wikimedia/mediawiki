@@ -301,8 +301,7 @@ class DatabaseMssql extends Database {
 			$res = $res->result;
 		}
 
-		$metadata = sqlsrv_field_metadata( $res );
-		return $metadata[$n]['Name'];
+		return sqlsrv_field_metadata( $res )[$n]['Name'];
 	}
 
 	/**

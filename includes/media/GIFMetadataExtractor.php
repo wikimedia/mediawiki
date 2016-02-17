@@ -118,8 +118,7 @@ class GIFMetadataExtractor {
 				if ( strlen( $buf ) < 1 ) {
 					throw new Exception( "Ran out of input" );
 				}
-				$extension_code = unpack( 'C', $buf );
-				$extension_code = $extension_code[1];
+				$extension_code = unpack( 'C', $buf )[1];
 
 				if ( $extension_code == 0xF9 ) {
 					// Graphics Control Extension.
@@ -131,8 +130,7 @@ class GIFMetadataExtractor {
 					if ( strlen( $buf ) < 2 ) {
 						throw new Exception( "Ran out of input" );
 					}
-					$delay = unpack( 'v', $buf );
-					$delay = $delay[1];
+					$delay = unpack( 'v', $buf )[1];
 					$duration += $delay * 0.01;
 
 					fread( $fh, 1 ); // Transparent colour index
@@ -141,8 +139,7 @@ class GIFMetadataExtractor {
 					if ( strlen( $term ) < 1 ) {
 						throw new Exception( "Ran out of input" );
 					}
-					$term = unpack( 'C', $term );
-					$term = $term[1];
+					$term = unpack( 'C', $term )[1];
 					if ( $term != 0 ) {
 						throw new Exception( "Malformed Graphics Control Extension block" );
 					}
@@ -182,8 +179,7 @@ class GIFMetadataExtractor {
 					if ( strlen( $blockLength ) < 1 ) {
 						throw new Exception( "Ran out of input" );
 					}
-					$blockLength = unpack( 'C', $blockLength );
-					$blockLength = $blockLength[1];
+					$blockLength = unpack( 'C', $blockLength )[1];
 					$data = fread( $fh, $blockLength );
 
 					if ( $blockLength != 11 ) {
@@ -206,8 +202,7 @@ class GIFMetadataExtractor {
 						if ( strlen( $loopData ) < 2 ) {
 							throw new Exception( "Ran out of input" );
 						}
-						$loopData = unpack( 'v', $loopData );
-						$loopCount = $loopData[1];
+						$loopCount = unpack( 'v', $loopData )[1];
 
 						if ( $loopCount != 1 ) {
 							$isLooped = true;
@@ -245,8 +240,7 @@ class GIFMetadataExtractor {
 				if ( strlen( $buf ) < 1 ) {
 					throw new Exception( "Ran out of input" );
 				}
-				$byte = unpack( 'C', $buf );
-				$byte = $byte[1];
+				$byte = unpack( 'C', $buf )[1];
 				throw new Exception( "At position: " . ftell( $fh ) . ", Unknown byte " . $byte );
 			}
 		}
@@ -283,8 +277,7 @@ class GIFMetadataExtractor {
 		if ( strlen( $data ) < 1 ) {
 			throw new Exception( "Ran out of input" );
 		}
-		$buf = unpack( 'C', $data );
-		$buf = $buf[1];
+		$buf = unpack( 'C', $data )[1];
 		$bpp = ( $buf & 7 ) + 1;
 		$buf >>= 7;
 
@@ -303,8 +296,7 @@ class GIFMetadataExtractor {
 			if ( strlen( $buf ) < 1 ) {
 				throw new Exception( "Ran out of input" );
 			}
-			$block_len = unpack( 'C', $buf );
-			$block_len = $block_len[1];
+			$block_len = unpack( 'C', $buf )[1];
 			if ( $block_len == 0 ) {
 				return;
 			}
