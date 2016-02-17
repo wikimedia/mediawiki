@@ -84,8 +84,6 @@ class CheckSyntax extends Maintenance {
 		global $IP;
 
 		$this->mIgnorePaths = array(
-			// Compat stuff, explodes on PHP 5.3
-			"includes/NamespaceCompat.php$",
 		);
 
 		$this->mNoStyleCheckPaths = array(
