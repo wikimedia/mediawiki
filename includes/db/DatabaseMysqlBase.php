@@ -757,19 +757,13 @@ abstract class DatabaseMysqlBase extends Database {
 		return $approxLag;
 	}
 
-	/**
-	 * Wait for the slave to catch up to a given master position.
-	 * @todo Return values for this and base class are rubbish
-	 *
-	 * @param DBMasterPos|MySQLMasterPos $pos
-	 * @param int $timeout The maximum number of seconds to wait for synchronisation
-	 * @return int Zero if the slave was past that position already,
-	 *   greater than zero if we waited for some period of time, less than
-	 *   zero if we timed out.
-	 */
 	function masterPosWait( DBMasterPos $pos, $timeout ) {
+		if ( !( $pos instanceof MySQLMasterPos ) ) {
+			throw new InvalidArgumentException( "Position not an instance of MySQLMasterPos" );
+		}
+
 		if ( $this->lastKnownSlavePos && $this->lastKnownSlavePos->hasReached( $pos ) ) {
-			return '0'; // http://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html
+			return 0;
 		}
 
 		# Commit any open transactions
@@ -778,18 +772,28 @@ abstract class DatabaseMysqlBase extends Database {
 		# Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
 		$encFile = $this->addQuotes( $pos->file );
 		$encPos = intval( $pos->pos );
-		$sql = "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)";
-		$res = $this->doQuery( $sql );
+		$res = $this->doQuery( "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)" );
 
-		$status = false;
-		if ( $res ) {
-			$row = $this->fetchRow( $res );
-			if ( $row ) {
-				$status = $row[0]; // can be NULL, -1, or 0+ per the MySQL manual
-				if ( ctype_digit( $status ) ) { // success
-					$this->lastKnownSlavePos = $pos;
-				}
+		$row = $res ? $this->fetchRow( $res ) : false;
+		if ( !$row ) {
+			return null; // this shouldn't happen
+		}
+
+		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
+		$status = ctype_digit( $row[0] ) ? intval( $row[0] ) : null;
+		if ( $status === null ) {
+			// T126436: jobs programmed to wait on master positions might be referencing binlogs
+			// with an old master hostname. Such calls make MASTER_POS_WAIT() return null. Try
+			// to detect this and treat the slave as having reached the position; a proper master
+			// switchover already requires that the new master be caught up before the switch.
+			$slavePos = $this->getSlavePos();
+			if ( $slavePos && !$slavePos->channelsMatch( $pos ) ) {
+				$this->lastKnownSlavePos = $slavePos;
+				$status = 0;
 			}
+		} elseif ( $status >= 0 ) {
+			// Remember that this position was reached to save queries next time
+			$this->lastKnownSlavePos = $pos;
 		}
 
 		return $status;
@@ -1446,9 +1450,29 @@ class MySQLMasterPos implements DBMasterPos {
 		return ( $thisPos && $thatPos && $thisPos >= $thatPos );
 	}
 
+	function channelsMatch( DBMasterPos $pos ) {
+		if ( !( $pos instanceof self ) ) {
+			throw new InvalidArgumentException( "Position not an instance of " . __CLASS__ );
+		}
+
+		return ( $this->getBinlogName() === $pos->getBinlogName() );
+	}
+
 	function __toString() {
 		// e.g db1034-bin.000976/843431247
 		return "{$this->file}/{$this->pos}";
+	}
+
+	/**
+	 * @return string|bool
+	 */
+	protected function getBinlogName() {
+		$m = [];
+		if ( preg_match( '!^(.+)\.(\d+)/(\d+)$!', (string)$this, $m ) ) {
+			return $m[1];
+		}
+
+		return false;
 	}
 
 	/**
