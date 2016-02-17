@@ -94,7 +94,6 @@ class RiffExtractor {
 	 * @return int
 	 */
 	public static function extractUInt32( $string ) {
-		$unpacked = unpack( 'V', $string );
-		return $unpacked[1];
+		return unpack( 'V', $string )[1];
 	}
 };

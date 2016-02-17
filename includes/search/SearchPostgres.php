@@ -136,8 +136,7 @@ class SearchPostgres extends SearchDatabase {
 			# # TODO: Better output (example to catch: one 'two)
 			die( "Sorry, that was not a valid search string. Please go back and try again" );
 		}
-		$top = $res->fetchRow();
-		$top = $top[0];
+		$top = $res->fetchRow()[0];
 
 		$this->searchTerms = [];
 		if ( $top === "" ) { # # e.g. if only stopwords are used XXX return something better

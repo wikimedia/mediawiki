@@ -1949,9 +1949,9 @@ function mimeTypeMatch( $type, $avail ) {
 	if ( array_key_exists( $type, $avail ) ) {
 		return $type;
 	} else {
-		$parts = explode( '/', $type );
-		if ( array_key_exists( $parts[0] . '/*', $avail ) ) {
-			return $parts[0] . '/*';
+		$mainType = explode( '/', $type )[0];
+		if ( array_key_exists( "$mainType/*", $avail ) ) {
+			return "$mainType/*";
 		} elseif ( array_key_exists( '*/*', $avail ) ) {
 			return '*/*';
 		} else {
@@ -1977,8 +1977,8 @@ function wfNegotiateType( $cprefs, $sprefs ) {
 	$combine = [];
 
 	foreach ( array_keys( $sprefs ) as $type ) {
-		$parts = explode( '/', $type );
-		if ( $parts[1] != '*' ) {
+		$subType = explode( '/', $type )[1];
+		if ( $subType != '*' ) {
 			$ckey = mimeTypeMatch( $type, $cprefs );
 			if ( $ckey ) {
 				$combine[$type] = $sprefs[$type] * $cprefs[$ckey];
@@ -1987,8 +1987,8 @@ function wfNegotiateType( $cprefs, $sprefs ) {
 	}
 
 	foreach ( array_keys( $cprefs ) as $type ) {
-		$parts = explode( '/', $type );
-		if ( $parts[1] != '*' && !array_key_exists( $type, $sprefs ) ) {
+		$subType = explode( '/', $type )[1];
+		if ( $subType != '*' && !array_key_exists( $type, $sprefs ) ) {
 			$skey = mimeTypeMatch( $type, $sprefs );
 			if ( $skey ) {
 				$combine[$type] = $sprefs[$skey] * $cprefs[$type];

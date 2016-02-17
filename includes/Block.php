@@ -1307,8 +1307,7 @@ class Block {
 		# but actually an old subpage (bug #29797)
 		if ( strpos( $target, '/' ) !== false ) {
 			# An old subpage, drill down to the user behind it
-			$parts = explode( '/', $target );
-			$target = $parts[0];
+			$target = explode( '/', $target )[0];
 		}
 
 		$userObj = User::newFromName( $target );
