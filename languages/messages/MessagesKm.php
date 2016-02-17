@@ -60,7 +60,6 @@ $namespaceAliases = [
 	'ការពិភាក្សាអំពីចំនាត់ថ្នាក់ក្រុម' => NS_CATEGORY_TALK,
 ];
 
-
 $digitTransformTable = [
 	'0' => '០', # &#x17e0;
 	'1' => '១', # &#x17e1;

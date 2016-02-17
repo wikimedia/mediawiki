@@ -43,7 +43,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( 'wgSpecialPages', [] );
 	}
 
-	protected function searchProvision( Array $results = null ) {
+	protected function searchProvision( array $results = null ) {
 		if ( $results === null ) {
 			$this->setMwGlobals( 'wgHooks', [] );
 		} else {
@@ -149,7 +149,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 	 * @covers PrefixSearch::search
 	 * @covers PrefixSearch::searchBackend
 	 */
-	public function testSearch( Array $case ) {
+	public function testSearch( array $case ) {
 		$this->searchProvision( null );
 		$searcher = new StringPrefixSearch;
 		$results = $searcher->search( $case['query'], 3 );
@@ -165,7 +165,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 	 * @covers PrefixSearch::search
 	 * @covers PrefixSearch::searchBackend
 	 */
-	public function testSearchWithOffset( Array $case ) {
+	public function testSearchWithOffset( array $case ) {
 		$this->searchProvision( null );
 		$searcher = new StringPrefixSearch;
 		$results = $searcher->search( $case['query'], 3, [], 1 );
@@ -298,7 +298,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideSearchBackend
 	 * @covers PrefixSearch::searchBackend
 	 */
-	public function testSearchBackend( Array $case ) {
+	public function testSearchBackend( array $case ) {
 		$this->searchProvision( $case['provision'] );
 		$searcher = new StringPrefixSearch;
 		$results = $searcher->search( $case['query'], 3 );

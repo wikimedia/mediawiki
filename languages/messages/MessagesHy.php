@@ -40,7 +40,6 @@ $namespaceAliases = [
 	'Սպասարկող' => NS_SPECIAL,
 ];
 
-
 $datePreferences = [
 	'default',
 	'mdy',
