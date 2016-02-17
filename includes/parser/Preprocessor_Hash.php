@@ -722,9 +722,9 @@ class PPDStack_Hash extends PPDStack {
  */
 // @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
 class PPDStackElement_Hash extends PPDStackElement {
-	// @codingStandardsIgnoreENd
+	// @codingStandardsIgnoreEnd
 
-	public function __construct( $data = array() ) {
+	public function __construct( $data = [] ) {
 		$this->partClass = 'PPDPart_Hash';
 		parent::__construct( $data );
 	}
