@@ -315,14 +315,13 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	protected function doIsRootJobOldDuplicate( Job $job ) {
-		$params = $job->getRootJobParams();
-		$sigature = $params['rootJobSignature'];
-		$partition = $this->partitionRing->getLiveLocation( $sigature );
+		$signature = $job->getRootJobParams()['rootJobSignature'];
+		$partition = $this->partitionRing->getLiveLocation( $signature );
 		try {
 			return $this->partitionQueues[$partition]->doIsRootJobOldDuplicate( $job );
 		} catch ( JobQueueError $e ) {
 			if ( $this->partitionRing->ejectFromLiveRing( $partition, 5 ) ) {
-				$partition = $this->partitionRing->getLiveLocation( $sigature );
+				$partition = $this->partitionRing->getLiveLocation( $signature );
 				return $this->partitionQueues[$partition]->doIsRootJobOldDuplicate( $job );
 			}
 		}
@@ -331,14 +330,13 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	protected function doDeduplicateRootJob( IJobSpecification $job ) {
-		$params = $job->getRootJobParams();
-		$sigature = $params['rootJobSignature'];
-		$partition = $this->partitionRing->getLiveLocation( $sigature );
+		$signature = $job->getRootJobParams()['rootJobSignature'];
+		$partition = $this->partitionRing->getLiveLocation( $signature );
 		try {
 			return $this->partitionQueues[$partition]->doDeduplicateRootJob( $job );
 		} catch ( JobQueueError $e ) {
 			if ( $this->partitionRing->ejectFromLiveRing( $partition, 5 ) ) {
-				$partition = $this->partitionRing->getLiveLocation( $sigature );
+				$partition = $this->partitionRing->getLiveLocation( $signature );
 				return $this->partitionQueues[$partition]->doDeduplicateRootJob( $job );
 			}
 		}

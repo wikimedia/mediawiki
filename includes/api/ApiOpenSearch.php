@@ -338,8 +338,7 @@ class ApiOpenSearch extends ApiBase {
 			return trim( $matches[1] );
 		} else {
 			// Just return the first line
-			$lines = explode( "\n", $text );
-			return trim( $lines[0] );
+			return trim( explode( "\n", $text )[0] );
 		}
 	}
 

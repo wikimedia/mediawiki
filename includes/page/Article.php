@@ -1252,8 +1252,7 @@ class Article implements Page {
 		if ( $title->getNamespace() == NS_USER
 			|| $title->getNamespace() == NS_USER_TALK
 		) {
-			$parts = explode( '/', $title->getText() );
-			$rootPart = $parts[0];
+			$rootPart = explode( '/', $title->getText() )[0];
 			$user = User::newFromName( $rootPart, false /* allow IP users*/ );
 			$ip = User::isIP( $rootPart );
 			$block = Block::newFromTarget( $user, $user );

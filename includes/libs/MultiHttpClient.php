@@ -105,8 +105,7 @@ class MultiHttpClient {
 	 * @return array Response array for request
 	 */
 	final public function run( array $req, array $opts = [] ) {
-		$req = $this->runMulti( [ $req ], $opts );
-		return $req[0]['response'];
+		return $this->runMulti( [ $req ], $opts )[0]['response'];
 	}
 
 	/**
