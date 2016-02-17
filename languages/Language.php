@@ -4320,7 +4320,7 @@ class Language {
 	}
 
 	/**
-	 * Get the RFC 3066 code for this language object
+	 * Get the internal language code for this language object
 	 *
 	 * NOTE: The return value of this function is NOT HTML-safe and must be escaped with
 	 * htmlspecialchars() or similar
@@ -4332,7 +4332,7 @@ class Language {
 	}
 
 	/**
-	 * Get the code in Bcp47 format which we can use
+	 * Get the code in BCP 47 format which we can use
 	 * inside of html lang="" tags.
 	 *
 	 * NOTE: The return value of this function is NOT HTML-safe and must be escaped with

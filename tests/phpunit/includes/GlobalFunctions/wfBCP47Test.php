@@ -6,7 +6,7 @@
 class WfBCP47Test extends MediaWikiTestCase {
 	/**
 	 * test @see wfBCP47().
-	 * Please note the BCP explicitly state that language codes are case
+	 * Please note the BCP 47 explicitly state that language codes are case
 	 * insensitive, there are some exceptions to the rule :)
 	 * This test is used to verify our formatting against all lower and
 	 * all upper cases language code.
@@ -31,7 +31,7 @@ class WfBCP47Test extends MediaWikiTestCase {
 	 */
 	public static function provideLanguageCodes() {
 		return array(
-			// Extracted from BCP47 (list not exhaustive)
+			// Extracted from BCP 47 (list not exhaustive)
 			# 2.1.1
 			array( 'en-ca-x-ca', 'en-CA-x-ca' ),
 			array( 'sgn-be-fr', 'sgn-BE-FR' ),
@@ -50,7 +50,7 @@ class WfBCP47Test extends MediaWikiTestCase {
 				'en-Latn-GB-boont-r-extended-sequence-x-private'
 			),
 
-			// Examples from BCP47 Appendix A
+			// Examples from BCP 47 Appendix A
 			# Simple language subtag:
 			array( 'DE', 'de' ),
 			array( 'fR', 'fr' ),
@@ -93,7 +93,7 @@ class WfBCP47Test extends MediaWikiTestCase {
 			array( 'de-ch-x-phonebk', 'de-CH-x-phonebk' ),
 			array( 'az-arab-x-aze-derbend', 'az-Arab-x-aze-derbend' ),
 			/**
-			 * Previous test does not reflect the BCP which states:
+			 * Previous test does not reflect the BCP 47 which states:
 			 *  az-Arab-x-AZE-derbend
 			 * AZE being private, it should be lower case, hence the test above
 			 * should probably be:
