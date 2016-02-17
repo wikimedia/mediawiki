@@ -2810,9 +2810,15 @@ class EditPage {
 					"<div id='mw-anon-edit-warning'>\n$1\n</div>",
 					[ 'anoneditwarning',
 						// Log-in link
-						'{{fullurl:Special:UserLogin|returnto={{FULLPAGENAMEE}}}}',
+						SpecialPage::getTitleFor( 'UserLogin' )->getFullURL( [
+							'returnto' => $this->getTitle()->getFullText()
+						] ),
 						// Sign-up link
-						'{{fullurl:Special:UserLogin/signup|returnto={{FULLPAGENAMEE}}}}' ]
+						SpecialPage::getTitleFor( 'UserLogin' )->getFullURL( [
+							'returnto' => $this->getTitle()->getFullText(),
+							'type' => 'signup'
+						] )
+					]
 				);
 			} else {
 				$wgOut->wrapWikiMsg( "<div id=\"mw-anon-preview-warning\">\n$1</div>",
