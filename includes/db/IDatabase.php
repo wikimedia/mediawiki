@@ -1183,14 +1183,13 @@ interface IDatabase {
 	public function wasReadOnlyError();
 
 	/**
-	 * Wait for the slave to catch up to a given master position.
+	 * Wait for the slave to catch up to a given master position
 	 *
-	 * @param DBMasterPos $pos
-	 * @param int $timeout The maximum number of seconds to wait for
-	 *   synchronisation
-	 * @return int Zero if the slave was past that position already,
+	 * @param DBMasterPos|MySQLMasterPos $pos
+	 * @param int $timeout The maximum number of seconds to wait for synchronisation
+	 * @return int|null Zero if the slave was past that position already,
 	 *   greater than zero if we waited for some period of time, less than
-	 *   zero if we timed out.
+	 *   zero if it timed out, and null on error
 	 */
 	public function masterPosWait( DBMasterPos $pos, $timeout );
 
