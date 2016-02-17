@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.15.3
+ * OOjs UI v0.15.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-02-09T21:21:21Z
+ * Date: 2016-02-17T02:03:27Z
  */
 .oo-ui-element-hidden {
 	display: none !important;
@@ -155,9 +155,9 @@
 	min-width: 1em;
 	border-radius: 2px;
 	position: relative;
-	-webkit-transition: background 100ms ease, color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
-	   -moz-transition: background 100ms ease, color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
-	        transition: background 100ms ease, color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
+	-webkit-transition: background 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
+	   -moz-transition: background 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
+	        transition: background 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:focus {
@@ -778,9 +778,9 @@
 	border-width: 9px;
 }
 .oo-ui-popupWidget-transitioning .oo-ui-popupWidget-popup {
-	-webkit-transition: width 100ms ease, height 100ms ease, left 100ms ease;
-	   -moz-transition: width 100ms ease, height 100ms ease, left 100ms ease;
-	        transition: width 100ms ease, height 100ms ease, left 100ms ease;
+	-webkit-transition: width 100ms, height 100ms, left 100ms;
+	   -moz-transition: width 100ms, height 100ms, left 100ms;
+	        transition: width 100ms, height 100ms, left 100ms;
 }
 .oo-ui-popupWidget-head {
 	height: 2.5em;
@@ -923,6 +923,12 @@
 	border-radius: 2px;
 	padding-left: 1em;
 	vertical-align: middle;
+}
+.oo-ui-dropdownInputWidget option {
+	font-size: inherit;
+	font-family: inherit;
+	height: 1.5em;
+	padding: 0.5em 1em;
 }
 .oo-ui-dropdownInputWidget.oo-ui-widget-enabled select:hover,
 .oo-ui-dropdownInputWidget.oo-ui-widget-enabled select:focus {

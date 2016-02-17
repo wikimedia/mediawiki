@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.15.3
+ * OOjs UI v0.15.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-02-09T21:21:16Z
+ * Date: 2016-02-17T02:03:23Z
  */
 ( function ( OO ) {
 
@@ -2093,6 +2093,11 @@ OO.ui.ListToolGroup.prototype.populate = function () {
 	this.updateCollapsibleState();
 };
 
+/**
+ * Get the expand/collapse tool for this group
+ *
+ * @return {OO.ui.Tool} Expand collapse tool
+ */
 OO.ui.ListToolGroup.prototype.getExpandCollapseTool = function () {
 	var ExpandCollapseTool;
 	if ( this.expandCollapseTool === undefined ) {

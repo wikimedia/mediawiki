@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.15.3
+ * OOjs UI v0.15.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2016 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2016-02-09T21:21:16Z
+ * Date: 2016-02-17T02:03:23Z
  */
 ( function ( OO ) {
 
@@ -1055,71 +1055,77 @@ OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) 
  * @static
  * @param {HTMLElement} el Element to scroll into view
  * @param {Object} [config] Configuration options
- * @param {string} [config.duration] jQuery animation duration value
+ * @param {string} [config.duration='fast'] jQuery animation duration value
  * @param {string} [config.direction] Scroll in only one direction, e.g. 'x' or 'y', omit
  *  to scroll in both directions
- * @param {Function} [config.complete] Function to call when scrolling completes
+ * @param {Function} [config.complete] Function to call when scrolling completes.
+ *  Deprecated since 0.15.4, use the return promise instead.
+ * @return {jQuery.Promise} Promise which resolves when the scroll is complete
  */
 OO.ui.Element.static.scrollIntoView = function ( el, config ) {
-	var rel, anim, callback, sc, $sc, eld, scd, $win;
+	var position, animations, callback, container, $container, elementDimensions, containerDimensions, $window,
+		deferred = $.Deferred();
 
 	// Configuration initialization
 	config = config || {};
 
-	anim = {};
+	animations = {};
 	callback = typeof config.complete === 'function' && config.complete;
-	sc = this.getClosestScrollableContainer( el, config.direction );
-	$sc = $( sc );
-	eld = this.getDimensions( el );
-	scd = this.getDimensions( sc );
-	$win = $( this.getWindow( el ) );
+	container = this.getClosestScrollableContainer( el, config.direction );
+	$container = $( container );
+	elementDimensions = this.getDimensions( el );
+	containerDimensions = this.getDimensions( container );
+	$window = $( this.getWindow( el ) );
 
-	// Compute the distances between the edges of el and the edges of the scroll viewport
-	if ( $sc.is( 'html, body' ) ) {
+	// Compute the element's position relative to the container
+	if ( $container.is( 'html, body' ) ) {
 		// If the scrollable container is the root, this is easy
-		rel = {
-			top: eld.rect.top,
-			bottom: $win.innerHeight() - eld.rect.bottom,
-			left: eld.rect.left,
-			right: $win.innerWidth() - eld.rect.right
+		position = {
+			top: elementDimensions.rect.top,
+			bottom: $window.innerHeight() - elementDimensions.rect.bottom,
+			left: elementDimensions.rect.left,
+			right: $window.innerWidth() - elementDimensions.rect.right
 		};
 	} else {
-		// Otherwise, we have to subtract el's coordinates from sc's coordinates
-		rel = {
-			top: eld.rect.top - ( scd.rect.top + scd.borders.top ),
-			bottom: scd.rect.bottom - scd.borders.bottom - scd.scrollbar.bottom - eld.rect.bottom,
-			left: eld.rect.left - ( scd.rect.left + scd.borders.left ),
-			right: scd.rect.right - scd.borders.right - scd.scrollbar.right - eld.rect.right
+		// Otherwise, we have to subtract el's coordinates from container's coordinates
+		position = {
+			top: elementDimensions.rect.top - ( containerDimensions.rect.top + containerDimensions.borders.top ),
+			bottom: containerDimensions.rect.bottom - containerDimensions.borders.bottom - containerDimensions.scrollbar.bottom - elementDimensions.rect.bottom,
+			left: elementDimensions.rect.left - ( containerDimensions.rect.left + containerDimensions.borders.left ),
+			right: containerDimensions.rect.right - containerDimensions.borders.right - containerDimensions.scrollbar.right - elementDimensions.rect.right
 		};
 	}
 
 	if ( !config.direction || config.direction === 'y' ) {
-		if ( rel.top < 0 ) {
-			anim.scrollTop = scd.scroll.top + rel.top;
-		} else if ( rel.top > 0 && rel.bottom < 0 ) {
-			anim.scrollTop = scd.scroll.top + Math.min( rel.top, -rel.bottom );
+		if ( position.top < 0 ) {
+			animations.scrollTop = containerDimensions.scroll.top + position.top;
+		} else if ( position.top > 0 && position.bottom < 0 ) {
+			animations.scrollTop = containerDimensions.scroll.top + Math.min( position.top, -position.bottom );
 		}
 	}
 	if ( !config.direction || config.direction === 'x' ) {
-		if ( rel.left < 0 ) {
-			anim.scrollLeft = scd.scroll.left + rel.left;
-		} else if ( rel.left > 0 && rel.right < 0 ) {
-			anim.scrollLeft = scd.scroll.left + Math.min( rel.left, -rel.right );
+		if ( position.left < 0 ) {
+			animations.scrollLeft = containerDimensions.scroll.left + position.left;
+		} else if ( position.left > 0 && position.right < 0 ) {
+			animations.scrollLeft = containerDimensions.scroll.left + Math.min( position.left, -position.right );
 		}
 	}
-	if ( !$.isEmptyObject( anim ) ) {
-		$sc.stop( true ).animate( anim, config.duration === undefined ? 'fast' : config.duration );
-		if ( callback ) {
-			$sc.queue( function ( next ) {
+	if ( !$.isEmptyObject( animations ) ) {
+		$container.stop( true ).animate( animations, config.duration === undefined ? 'fast' : config.duration );
+		$container.queue( function ( next ) {
+			if ( callback ) {
 				callback();
-				next();
-			} );
-		}
+			}
+			deferred.resolve();
+			next();
+		} );
 	} else {
 		if ( callback ) {
 			callback();
 		}
+		deferred.resolve();
 	}
+	return deferred.promise();
 };
 
 /**
@@ -1285,6 +1291,8 @@ OO.ui.Element.prototype.getElementWindow = function () {
 
 /**
  * Get closest scrollable container.
+ *
+ * @return {HTMLElement} Closest scrollable container
  */
 OO.ui.Element.prototype.getClosestScrollableElementContainer = function () {
 	return OO.ui.Element.static.getClosestScrollableContainer( this.$element[ 0 ] );
@@ -1314,6 +1322,7 @@ OO.ui.Element.prototype.setElementGroup = function ( group ) {
  * Scroll element into view.
  *
  * @param {Object} [config] Configuration options
+ * @return {jQuery.Promise} Promise which resolves when the scroll is complete
  */
 OO.ui.Element.prototype.scrollElementIntoView = function ( config ) {
 	return OO.ui.Element.static.scrollIntoView( this.$element[ 0 ], config );
@@ -4082,9 +4091,9 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
  *  This config option is only relevant if #autoClose is set to `true`. See the [OOjs UI docs on MediaWiki][2]
  *  for an example.
  *  [2]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Popups#autocloseExample
- * @cfg {boolean} [head] Show a popup header that contains a #label (if specified) and close
+ * @cfg {boolean} [head=false] Show a popup header that contains a #label (if specified) and close
  *  button.
- * @cfg {boolean} [padded] Add padding to the popup's body
+ * @cfg {boolean} [padded=false] Add padding to the popup's body
  */
 OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	// Configuration initialization
@@ -4105,8 +4114,6 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	} ) );
 
 	// Properties
-	this.$head = $( '<div>' );
-	this.$footer = $( '<div>' );
 	this.$anchor = $( '<div>' );
 	// If undefined, will be computed lazily in updateDimensions()
 	this.$container = config.$container;
@@ -4118,42 +4125,43 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.width = config.width !== undefined ? config.width : 320;
 	this.height = config.height !== undefined ? config.height : null;
 	this.setAlignment( config.align );
-	this.closeButton = new OO.ui.ButtonWidget( { framed: false, icon: 'close' } );
 	this.onMouseDownHandler = this.onMouseDown.bind( this );
 	this.onDocumentKeyDownHandler = this.onDocumentKeyDown.bind( this );
-
-	// Events
-	this.closeButton.connect( this, { click: 'onCloseButtonClick' } );
 
 	// Initialization
 	this.toggleAnchor( config.anchor === undefined || config.anchor );
 	this.$body.addClass( 'oo-ui-popupWidget-body' );
 	this.$anchor.addClass( 'oo-ui-popupWidget-anchor' );
-	this.$head
-		.addClass( 'oo-ui-popupWidget-head' )
-		.append( this.$label, this.closeButton.$element );
-	this.$footer.addClass( 'oo-ui-popupWidget-footer' );
-	if ( !config.head ) {
-		this.$head.addClass( 'oo-ui-element-hidden' );
-	}
-	if ( !config.$footer ) {
-		this.$footer.addClass( 'oo-ui-element-hidden' );
-	}
 	this.$popup
 		.addClass( 'oo-ui-popupWidget-popup' )
-		.append( this.$head, this.$body, this.$footer );
+		.append( this.$body );
 	this.$element
 		.addClass( 'oo-ui-popupWidget' )
 		.append( this.$popup, this.$anchor );
 	// Move content, which was added to #$element by OO.ui.Widget, to the body
+	// FIXME This is gross, we should use '$body' or something for the config
 	if ( config.$content instanceof jQuery ) {
 		this.$body.append( config.$content );
 	}
-	if ( config.$footer instanceof jQuery ) {
-		this.$footer.append( config.$footer );
-	}
+
 	if ( config.padded ) {
 		this.$body.addClass( 'oo-ui-popupWidget-body-padded' );
+	}
+
+	if ( config.head ) {
+		this.closeButton = new OO.ui.ButtonWidget( { framed: false, icon: 'close' } );
+		this.closeButton.connect( this, { click: 'onCloseButtonClick' } );
+		this.$head = $( '<div>' )
+			.addClass( 'oo-ui-popupWidget-head' )
+			.append( this.$label, this.closeButton.$element );
+		this.$popup.prepend( this.$head );
+	}
+
+	if ( config.$footer ) {
+		this.$footer = $( '<div>' )
+			.addClass( 'oo-ui-popupWidget-footer' )
+			.append( config.$footer );
+		this.$popup.append( this.$footer );
 	}
 
 	// Initially hidden - using #toggle may cause errors if subclasses override toggle with methods
@@ -4879,6 +4887,7 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	this.onKeyPressHandler = this.onKeyPress.bind( this );
 	this.keyPressBuffer = '';
 	this.keyPressBufferTimer = null;
+	this.blockMouseOverEvents = 0;
 
 	// Events
 	this.connect( this, {
@@ -5041,7 +5050,9 @@ OO.ui.SelectWidget.prototype.onMouseMove = function ( e ) {
  */
 OO.ui.SelectWidget.prototype.onMouseOver = function ( e ) {
 	var item;
-
+	if ( this.blockMouseOverEvents ) {
+		return;
+	}
 	if ( !this.isDisabled() ) {
 		item = this.getTargetItem( e );
 		this.highlightItem( item && item.isHighlightable() ? item : null );
@@ -5112,7 +5123,7 @@ OO.ui.SelectWidget.prototype.onKeyDown = function ( e ) {
 			} else {
 				this.chooseItem( nextItem );
 			}
-			nextItem.scrollElementIntoView();
+			this.scrollItemIntoView( nextItem );
 		}
 
 		if ( handled ) {
@@ -5138,6 +5149,23 @@ OO.ui.SelectWidget.prototype.bindKeyDownListener = function () {
  */
 OO.ui.SelectWidget.prototype.unbindKeyDownListener = function () {
 	this.getElementWindow().removeEventListener( 'keydown', this.onKeyDownHandler, true );
+};
+
+/**
+ * Scroll item into view, preventing spurious mouse highlight actions from happening.
+ *
+ * @return {OO.ui.OptionWidget} Item to scroll into view
+ */
+OO.ui.SelectWidget.prototype.scrollItemIntoView = function ( item ) {
+	var widget = this;
+	// Chromium's Blink engine will generate spurious 'mouseover' events during programmatic scrolling
+	// and around 100-150 ms after it is finished.
+	this.blockMouseOverEvents++;
+	item.scrollElementIntoView().done( function () {
+		setTimeout( function () {
+			widget.blockMouseOverEvents--;
+		}, 200 );
+	} );
 };
 
 /**
@@ -5202,7 +5230,7 @@ OO.ui.SelectWidget.prototype.onKeyPress = function ( e ) {
 		} else {
 			this.chooseItem( item );
 		}
-		item.scrollElementIntoView();
+		this.scrollItemIntoView( item );
 	}
 
 	e.preventDefault();
